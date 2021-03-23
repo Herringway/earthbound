@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/earthbound
+earthbound.so
+earthbound.dylib
+earthbound.dll
+earthbound.a
+earthbound.lib
+earthbound-test-*
+*.exe
+*.o
+*.obj
+*.lst
