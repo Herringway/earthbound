@@ -148,7 +148,7 @@ ushort UnknownC04FFE() {
                 Unknown7E4DC6.current_hp_target -= 10;
                 UnknownC04F9F(x02);
             }
-        } else if (((affliction < 4) && ((gameState.troddenTileType & 0xC) == 0xC)) || (affliction <= 7)) {
+        } else if (((affliction < 4) && ((gameState.troddenTileType & 0xC) == 0xC)) || ((affliction >= 4) && (affliction <= 7))) {
             if (Unknown7E5D66[x02] == 0) {
                 if (affliction == 4) {
                     Unknown7E5D66[x02] = 0x78;
