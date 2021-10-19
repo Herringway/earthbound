@@ -175,7 +175,7 @@ ushort UnknownC04FFE() {
                 Unknown7E4DC6.afflictions[0] = 1;
                 Unknown7E4DC6.current_hp_target = 0;
                 Unknown7E4DC6.current_hp = 0;
-                UNKNOWN_30X2_TABLE_6[Unknown7E4DC6.unknown59] = 0x10;
+                EntityScriptVar3Table[Unknown7E4DC6.unknown59] = 0x10;
                 x16++;
             }
         } else {

@@ -182,14 +182,14 @@ __gshared short[MAX_ENTITIES] ENTITY_DELTA_Z_TABLE;
 __gshared short[MAX_ENTITIES] ENTITY_DELTA_X_FRACTION_TABLE;
 __gshared short[MAX_ENTITIES] ENTITY_DELTA_Y_FRACTION_TABLE;
 __gshared short[MAX_ENTITIES] ENTITY_DELTA_Z_FRACTION_TABLE;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_3;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_4;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_5;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_6;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_7;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_8;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_9;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_10;
+__gshared short[MAX_ENTITIES] EntityScriptVar0Table;
+__gshared short[MAX_ENTITIES] EntityScriptVar1Table;
+__gshared short[MAX_ENTITIES] EntityScriptVar2Table;
+__gshared short[MAX_ENTITIES] EntityScriptVar3Table;
+__gshared short[MAX_ENTITIES] EntityScriptVar4Table;
+__gshared short[MAX_ENTITIES] EntityScriptVar5Table;
+__gshared short[MAX_ENTITIES] EntityScriptVar6Table;
+__gshared short[MAX_ENTITIES] EntityScriptVar7Table;
 __gshared short[MAX_ENTITIES] Unknown30x2Table11;
 
 // original code isn't very portable...
