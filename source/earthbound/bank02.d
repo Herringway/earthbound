@@ -6,3 +6,6 @@ immutable ubyte[] C200B9 = [0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0xF8, 0xFF, 0x00
 
 void C200D9() {}
 void C20266() {}
+
+// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
+ushort Func_C20B65(short, short, short, short, short);
