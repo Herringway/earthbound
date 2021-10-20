@@ -286,3 +286,6 @@ void     DisplayText(ubyte* script_ptr);
 
 // $C1BEC6
 void     GetOffBicycle();
+
+// $C1DBBB
+void ShowHPAlert(short);

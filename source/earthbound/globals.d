@@ -142,6 +142,8 @@ __gshared short UNKNOWN_7E00D3;
 
 __gshared ushort[16][32] palettes;
 
+auto ref CurrentTextPalette() { return palettes[0]; }
+
 
 __gshared short Unknown7E0A34;
 __gshared short Unknown7E0A36;
@@ -199,6 +201,15 @@ __gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_HIGH;+/
 __gshared ushort[MAX_ENTITIES] ENTITY_TICK_CALLBACK_FLAGS;
 __gshared void function()[MAX_ENTITIES] ENTITY_TICK_CALLBACKS;
 
+__gshared short[MAX_ENTITIES] EntityAnimationFrames; //$10F2
+
+__gshared ushort[MAX_ENTITIES] EntitySpriteMapFlags;
+__gshared void*[MAX_ENTITIES] EntitySpriteMapPointers;
+
+__gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; //$11A6
+__gshared void function()[MAX_ENTITIES] EntityDrawCallbacks; //$11E2
+__gshared void function()[MAX_ENTITIES] EntityMoveCallbacks; //$121E
+
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_14;
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_15;
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_16;
@@ -240,12 +251,13 @@ __gshared short Unknown7E5D5E;           // $5D5E
 __gshared short BattleSwirlCountdown;           // $5D60
 __gshared short CurrentTPTEntry;           // $5D62
 __gshared short Unknown7E5D64;           // $5D64
-__gshared ubyte[12] Unknown7E5D66;           // $5D66
+__gshared short[6] Unknown7E5D66;           // $5D66
 __gshared short Unknown7E5D72;           // $5D72
 __gshared short Unknown7E5D74;           // $5D74
 __gshared short Unknown7E5D76;           // $5D76
 __gshared short Unknown7E5D78;           // $5D78
 
+__gshared short[6] Unknown7E5D8C;           // $5D8C
 __gshared short OverworldStatusSuppression;           // $5D98
 __gshared short Unknown7E5D9A;           // $5D9A
 
@@ -255,6 +267,11 @@ __gshared short Unknown7E5DAC;           // $5DAC
 __gshared short Unknown7E5DAE;           // $5DAE
 
 __gshared short Unknown7E5DBA;           // $5DBA
+
+__gshared short Unknown7E5DD4;           // $5DD4
+__gshared short Unknown7E5DD6;           // $5DD6
+
+__gshared short Unknown7E5DDA;           // $5DDA
 
 __gshared short Unknown7E5E02;           // $5E02
 __gshared short Unknown7E5E04;           // $5E04
@@ -311,6 +328,16 @@ __gshared void     *path_heap_current;       // [$B43A] Pathfinder heap current 
 __gshared void     *path_heap_end;           // [$B43C] Pathfinder heap end pointer
 
 __gshared ubyte  var7EB49D;         // $7EB49D - Adressed specifically using long addressing, why??
+
+__gshared ushort CurrentMusicTrack;         // $B53B
+
 __gshared ushort SectorBoundaryBehaviourFlag;         // $B549
 
 __gshared ushort[0x8000] Unknown7F8000;
+
+
+// Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
+
+__gshared ushort ActionScript88;         // $88
+
+__gshared void* ActionScript8C;         // $8C

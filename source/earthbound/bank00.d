@@ -2,6 +2,7 @@ module earthbound.bank00;
 
 import earthbound.commondefs;
 import earthbound.globals;
+import earthbound.hardware;
 import earthbound.bank01;
 import earthbound.bank03;
 import earthbound.bank04;
@@ -54,7 +55,15 @@ void UnknownC02140(short);
 void UpdateParty();
 
 // $C03C25
-void UnknownC03C25();
+void UnknownC03C25() {
+    Unknown7E5DDA = 1;
+    UnknownC068F4(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+    if (Unknown7E5DD6 != Unknown7E5DD4) {
+        WaitUntilNextFrame();
+        UnknownC069AF();
+    }
+    Unknown7E5DDA = 0;
+}
 
 // $C0404F
 short MapInputToDirection(short style) {
@@ -115,11 +124,41 @@ void UnknownC04C45();
 // $C04D78
 void UnknownC04D78();
 
+// $C04F47
+void UnknownC04F47() {
+    CurrentTextPalette[0] = Unknown7E5D72;
+    TM_MIRROR = 0x17;
+    UnknownC0856B(8);
+}
+
 // $C04F60
-void UnknownC04F60();
+void UnknownC04F60() {
+    if (BattleSwirlCountdown != 0) {
+        return;
+    }
+    if (BattleSwirlFlag != 0) {
+        return;
+    }
+    Unknown7E5D72 = CurrentTextPalette[0];
+    CurrentTextPalette[0] = 0x1F;
+    TM_MIRROR = 0;
+    UnknownC0856B(8);
+    UnknownC0DBE6(1, &UnknownC04F47);
+}
 
 // $C04F9F
-void UnknownC04F9F(short);
+void UnknownC04F9F(short arg1) {
+    short x10 = arg1;
+    PartyCharacter* x0E = ChosenFourPtrs[gameState.playerControlledPartyMembers[x10]];
+    if ((x0E.max_hp * 20) / 100 <= x0E.current_hp) {
+        if (Unknown7E5D8C[x10] == 0) {
+            ShowHPAlert(cast(short)(x0E.unknown53 + 1));
+        }
+        Unknown7E5D8C[x10] = 1;
+    } else {
+        Unknown7E5D8C[x10] = 0;
+    }
+}
 
 // $C04FFE
 ushort UnknownC04FFE() {
@@ -251,6 +290,12 @@ short unknownC05F33(short x, short y, short entityID) {
     return Unknown7E5DA4;
 }
 
+// $C068F4
+void UnknownC068F4(short, short);
+
+// $C069AF
+void UnknownC069AF();
+
 immutable ushort[] UNKNOWN_C06E02 = [
 	0x0008,
 	0x0000,
@@ -284,6 +329,9 @@ void UnknownC07B52();
 // $C07C5B
 void UnknownC07C5B();
 
+// $C0856B
+void UnknownC0856B(short);
+
 // $C08616 - Copy data to VRAM (mode, count, address, data)
 void CopyToVram(short, short, ushort, ubyte* /* 32-bit pointer */);
 
@@ -304,7 +352,6 @@ void FadeOut(short, short);
 
 // $C088B1
 void OAMClear();
-
 // $C08B19
 void UnknownC08B19() {
     UNKNOWN_7E0009 = 0;
@@ -331,14 +378,38 @@ void UnknownC09451();
 // $C09466
 void UnknownC09466();
 
+// $C0A0E3
+void UnknownC0A0E3(short arg1, bool overflowed) {
+    if ((EntitySpriteMapFlags[arg1 / 2] < 0) || overflowed) {
+        return;
+    }
+    ActionScript8C = EntitySpriteMapPointers[arg1 / 2];
+    if (EntityAnimationFrames[arg1 / 2] >= 0) {
+        EntityDrawCallbacks[arg1 / 2]();
+    }
+}
+
 // $C0A0CA
-void UnknownC0A0CA(short);
+void UnknownC0A0CA(short arg1) {
+    while (arg1 < 0) {}
+    ActionScript88 = cast(ushort)(arg1 * 2);
+    UnknownC0A0E3(ActionScript88, arg1 < 0);
+}
 
 // $C0ABC6
-void StopMusic();
+void StopMusic() {
+    APUIO0 = 0;
+    while (UnknownC0AC20() != 0) {}
+    CurrentMusicTrack = 0xFFFF;
+}
 
 // $C0ABE0 - Play a sound effect
 void PlaySfx(short sound_effect);
+
+// $C0AC20
+ubyte UnknownC0AC20() {
+    return APUIO0;
+}
 
 // $C0B525
 void FileSelectInit();
@@ -493,6 +564,9 @@ void UnknownC0DB0F() {
     }
     // UNKNOWN13
 }
+
+// $C0DBE6
+void UnknownC0DBE6(short, void function());
 
 // $C0DCC6
 void LoadDadPhone();
