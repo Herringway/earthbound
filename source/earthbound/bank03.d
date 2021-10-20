@@ -26,9 +26,14 @@ immutable ushort[2] arrC3E406 = [ 0x2441, 0x268D ];
 immutable ushort[2] arrC3E40A = [ 0x2451, 0x269D ];
 
 // $C3E4CA - Clear the instant text print flag
-void     ClearInstaprint();
+void ClearInstaprint() {
+	Unknown7E9622 = 0;
+}
+
 // $C3E4D4 - Set the instant text print flag
-void     SetInstaprint();
+void SetInstaprint() {
+	Unknown7E9622 = 1;
+}
 
 // $C3E521
 void CloseWindow(short);
@@ -61,6 +66,7 @@ void UnknownC3EB1C(short arg1) {
 		}
 	}
 }
+
 // $C3EBCA
 void UnknownC3EBCA() {
 	for (short i = 0; TimedItemTransformationTable[i].item != 0; i++) {
