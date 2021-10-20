@@ -18,6 +18,17 @@ void UnknownC1004E();
 // $C1007E - Set the focused window
 void Win_SetFocus(short window_id);
 
+// $C10084
+void CloseFocusWindowN() {
+    CloseWindow(CurrentFocusWindow);
+}
+
+// $C104EE
+void CreateWindowN(short id);
+
+// $C1078D
+void UnknownC1078D();
+
 // $C107AF
 void UnknownC107AF(short window_id);
 
@@ -45,7 +56,7 @@ ushort UnknownC118E7(short, short, short, short, short, short, short);
 int Win_MenuSelection(int cancelable) {
     // $28 = cancelable
 
-    int dp26 = focused_window_id;
+    int dp26 = CurrentFocusWindow;
     if (dp26 == -1) return 0;
 
     WinStat *dp24 = focused_window_stat; // 16-bit pointer
@@ -182,7 +193,7 @@ label2:
 
                 if (var5E6E) {
                     if (var7EB49D != 1) {
-                        if (focused_window_id == 19) {
+                        if (CurrentFocusWindow == 19) {
                             UnknownC43B15();
                         } else {
                             UnknownC43BB9(4, 1, dp04.label.ptr); // field13
@@ -226,9 +237,9 @@ label2:
         }
 
         ++dp22;
-        if (window_table[0] == window_tail) { // If the field/overworld commands window is the last opened window...
+        if (WindowTable[0] == window_tail) { // If the field/overworld commands window is the last opened window...
             if (dp22 > 60) {                  // If 60 frames have passed
-                if (window_table[10] == -1) { // If the wallet window is not open
+                if (WindowTable[10] == -1) { // If the wallet window is not open
                     OpenHpAndWallet();
                     Win_SetFocus(0);
                     // Funky! I didn't expect a goto back to the start here...
@@ -298,7 +309,16 @@ void Win_Tick() {
 }
 
 // $C12E42 - Looks like a "minimal" window tick function, doesn't advance RNG
-void UnknownC12E42();
+void UnknownC12E42() {
+    HPPPRoller();
+    if (Unknown7E9649 != 0) {
+        UnknownC1078D();
+        Unknown7E9649 = 0;
+        Unknown7E9624 = 1;
+    }
+    UnknownC213AC();
+    UnknownC1004E();
+}
 
 // $C12E63
 void DebugYButtonMenu();
@@ -318,11 +338,56 @@ void ShowTownMap();
 // $C186B1 - Call a text script (script_ptr)
 void DisplayText(ubyte* script_ptr);
 
+// $C1AC4A
+void UnknownC1AC4A(PartyCharacter*, short);
+
 // $C1BEC6
 void GetOffBicycle();
 
 // $C1DBBB
-void ShowHPAlert(short);
+void ShowHPAlert(short arg1) {
+    Battler battler;
+    short x60 = arg1;
+    Battler* x02 = currentAttacker;
+    battler.allyOrEnemy = 0;
+    battler.id = cast(ubyte)x60;
+    currentAttacker = &battler;
+    UnknownC0943C();
+    CreateWindowN(Window.TextStandard);
+    UnknownC1AC4A(&PartyCharacters[x60], 5);
+    //DisplayText(TextAlertConditionCritical);
+    CloseFocusWindowN();
+    Win_Tick();
+    UnknownC09451();
+    currentAttacker = x02;
+}
+
+// $C1DD47
+void CreateWindow(short id) {
+    CreateWindowN(id);
+}
+
+// $C1DD47
+void CloseFocusWindow() {
+    CloseFocusWindowN();
+}
 
 // $C1FF2C
-short UnknownC1FF2C();
+short UnknownC1FF2C() {
+    short result;
+    ubyte xX = 0;
+    switch(ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
+        case 1:
+        case 2:
+            xX = 1;
+            goto default;
+        default:
+            result = 0;
+            if (xX != Unknown7EB4A2) {
+                result = 1;
+            }
+            break;
+    }
+    Unknown7EB4A2 = xX;
+    return result;
+}

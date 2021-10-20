@@ -26,3 +26,6 @@ immutable ushort[2] arrC3E40A = [ 0x2451, 0x269D ];
 void     ClearInstaprint();
 // $C3E4D4 - Set the instant text print flag
 void     SetInstaprint();
+
+// $C3E521
+void CloseWindow(short);

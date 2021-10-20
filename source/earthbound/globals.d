@@ -2,52 +2,52 @@ module earthbound.globals;
 
 import earthbound.commondefs;
 
-__gshared ubyte UNKNOWN_7E0000;
-__gshared ubyte UNKNOWN_7E0001;
-__gshared ubyte UNKNOWN_7E0002;
-__gshared ushort UNKNOWN_7E0003;
-__gshared ushort UNKNOWN_7E0005;
+__gshared ubyte Unknown7E0000;
+__gshared ubyte Unknown7E0001;
+__gshared ubyte Unknown7E0002;
+__gshared ushort Unknown7E0003;
+__gshared ushort Unknown7E0005;
 //Some kind of pointer?
-__gshared ushort UNKNOWN_7E0007;
-__gshared ubyte UNKNOWN_7E0009;
-__gshared ubyte UNKNOWN_7E000A;
-__gshared ubyte UNKNOWN_7E000B;
-__gshared ubyte UNKNOWN_7E000C;
+__gshared ushort Unknown7E0007;
+__gshared ubyte Unknown7E0009;
+__gshared ubyte Unknown7E000A;
+__gshared ubyte Unknown7E000B;
+__gshared ubyte Unknown7E000C;
 __gshared ubyte INIDISP_MIRROR;
 __gshared ubyte OBSEL_MIRROR;
-__gshared ubyte UNKNOWN_7E000F;
+__gshared ubyte Unknown7E000F;
 __gshared ubyte MOSAIC_MIRROR;
-__gshared ubyte UNKNOWN_7E0011;
-__gshared ubyte UNKNOWN_7E0012;
-__gshared ubyte UNKNOWN_7E0013;
-__gshared ubyte UNKNOWN_7E0014;
+__gshared ubyte Unknown7E0011;
+__gshared ubyte Unknown7E0012;
+__gshared ubyte Unknown7E0013;
+__gshared ubyte Unknown7E0014;
 __gshared ubyte BG12NBA_MIRROR;
-__gshared ubyte UNKNOWN_7E0016;
+__gshared ubyte Unknown7E0016;
 __gshared ubyte UNUSED_WH2_MIRROR;
-__gshared ushort UNKNOWN_7E0018;
+__gshared ushort Unknown7E0018;
 __gshared ubyte TM_MIRROR;
 __gshared ubyte TD_MIRROR;
 
-__gshared ubyte UNKNOWN_7E001D;
-__gshared ubyte UNKNOWN_7E001E;
+__gshared ubyte Unknown7E001D;
+__gshared ubyte Unknown7E001E;
 __gshared ubyte HDMAEN_MIRROR;
-__gshared ushort UNKNOWN_7E0020;
-__gshared ubyte UNKNOWN_7E0022;
-__gshared ubyte UNKNOWN_7E0023;
+__gshared ushort Unknown7E0020;
+__gshared ubyte Unknown7E0022;
+__gshared ubyte Unknown7E0023;
 __gshared ushort RAND_A;
 __gshared ushort RAND_B;
-__gshared ubyte UNKNOWN_7E0028;
-__gshared ubyte UNKNOWN_7E0029;
-__gshared ubyte UNKNOWN_7E002A;
-__gshared ubyte UNKNOWN_7E002B;
+__gshared ubyte Unknown7E0028;
+__gshared ubyte Unknown7E0029;
+__gshared ubyte Unknown7E002A;
+__gshared ubyte Unknown7E002B;
 //the ID of the frame being/about to be displayed, multiplied by 2
 __gshared ubyte NEXT_FRAME_DISPLAY_ID;
-__gshared ubyte UNKNOWN_7E002D;
+__gshared ubyte Unknown7E002D;
 //the ID of the next frame to buffer as a byte offset - 0 for buffer 0, 2 for buffer 1
 __gshared ubyte NEXT_FRAME_BUF_ID;
-__gshared ubyte UNKNOWN_7E002F;
+__gshared ubyte Unknown7E002F;
 //DMA table offset?
-__gshared ubyte UNKNOWN_7E0030;
+__gshared ubyte Unknown7E0030;
 __gshared ushort BG1_X_POS;
 __gshared ushort BG1_Y_POS;
 __gshared ushort BG2_X_POS;
@@ -64,8 +64,8 @@ __gshared ushort[2] BG3_X_POS_BUF;
 __gshared ushort[2] BG3_Y_POS_BUF;
 __gshared ushort[2] BG4_X_POS_BUF;
 __gshared ushort[2] BG4_Y_POS_BUF;
-__gshared ushort UNKNOWN_7E0061;
-__gshared ushort UNKNOWN_7E0063;
+__gshared ushort Unknown7E0061;
+__gshared ushort Unknown7E0063;
 
 __gshared ushort pad1_state;
 __gshared ushort pad2_state;
@@ -75,70 +75,70 @@ __gshared ushort pad1_press;        // $006D - Pressed buttons on Controller 1
 __gshared ushort pad2_press;        // $006F - Pressed buttons on Controller 2
 
 
-__gshared ubyte UNKNOWN_7E0077;
-__gshared ubyte UNKNOWN_7E0078;
-__gshared ubyte UNKNOWN_7E0079;
-__gshared ubyte UNKNOWN_7E007A;
-__gshared ubyte UNKNOWN_7E007B;
-__gshared ubyte UNKNOWN_7E007C;
-__gshared ubyte UNKNOWN_7E007D;
-__gshared ubyte UNKNOWN_7E007E;
-__gshared ubyte UNKNOWN_7E007F;
-__gshared ubyte UNKNOWN_7E0080;
-__gshared short UNKNOWN_7E0081;
-__gshared short UNKNOWN_7E0083;
-__gshared short UNKNOWN_7E0085;
-__gshared short UNKNOWN_7E0087;
-__gshared short UNKNOWN_7E0089;
-__gshared short UNKNOWN_7E008B;
-__gshared short UNKNOWN_7E008D;
-__gshared short UNKNOWN_7E008F;
-__gshared ubyte UNKNOWN_7E0091;
+__gshared ubyte Unknown7E0077;
+__gshared ubyte Unknown7E0078;
+__gshared ubyte Unknown7E0079;
+__gshared ubyte Unknown7E007A;
+__gshared ubyte Unknown7E007B;
+__gshared ubyte Unknown7E007C;
+__gshared ubyte Unknown7E007D;
+__gshared ubyte Unknown7E007E;
+__gshared ubyte Unknown7E007F;
+__gshared ubyte Unknown7E0080;
+__gshared short Unknown7E0081;
+__gshared short Unknown7E0083;
+__gshared short Unknown7E0085;
+__gshared short Unknown7E0087;
+__gshared short Unknown7E0089;
+__gshared short Unknown7E008B;
+__gshared short Unknown7E008D;
+__gshared short Unknown7E008F;
+__gshared ubyte Unknown7E0091;
 __gshared short DMA_COPY_SIZE;
 __gshared ubyte[3] DMA_COPY_RAM_SRC;
 __gshared short DMA_COPY_VRAM_DEST;
-__gshared short UNKNOWN_7E0099;
+__gshared short Unknown7E0099;
 
-__gshared short UNKNOWN_7E009C;
-__gshared short UNKNOWN_7E009E;
-__gshared ubyte UNKNOWN_7E00A0;
-__gshared ubyte UNKNOWN_7E00A1;
-__gshared ubyte UNKNOWN_7E00A2;
-__gshared ubyte UNKNOWN_7E00A3;
-__gshared ubyte UNKNOWN_7E00A4;
-__gshared ubyte UNKNOWN_7E00A5;
-__gshared ubyte UNKNOWN_7E00A6;
+__gshared short Unknown7E009C;
+__gshared short Unknown7E009E;
+__gshared ubyte Unknown7E00A0;
+__gshared ubyte Unknown7E00A1;
+__gshared ubyte Unknown7E00A2;
+__gshared ubyte Unknown7E00A3;
+__gshared ubyte Unknown7E00A4;
+__gshared ubyte Unknown7E00A5;
+__gshared ubyte Unknown7E00A6;
 __gshared uint TIMER;
-__gshared ubyte UNKNOWN_7E00AB;
-__gshared ubyte UNKNOWN_7E00AC;
-__gshared ubyte UNKNOWN_7E00AD;
-__gshared short UNKNOWN_7E00AE;
+__gshared ubyte Unknown7E00AB;
+__gshared ubyte Unknown7E00AC;
+__gshared ubyte Unknown7E00AD;
+__gshared short Unknown7E00AE;
 
-__gshared ubyte UNKNOWN_7E00B0;
-__gshared ubyte UNKNOWN_7E00B1;
-__gshared short UNKNOWN_7E00B2;
+__gshared ubyte Unknown7E00B0;
+__gshared ubyte Unknown7E00B1;
+__gshared short Unknown7E00B2;
 __gshared ubyte TEMP_DIVIDEND;
-__gshared ubyte UNKNOWN_7E00B5;
-__gshared ubyte UNKNOWN_7E00B6;
-__gshared ubyte UNKNOWN_7E00B7;
-__gshared ubyte UNKNOWN_7E00B8;
-__gshared ubyte UNKNOWN_7E00B9;
-__gshared short UNKNOWN_7E00BA;
-__gshared short UNKNOWN_7E00BC;
-__gshared short UNKNOWN_7E00BE;
-__gshared short UNKNOWN_7E00C0;
+__gshared ubyte Unknown7E00B5;
+__gshared ubyte Unknown7E00B6;
+__gshared ubyte Unknown7E00B7;
+__gshared ubyte Unknown7E00B8;
+__gshared ubyte Unknown7E00B9;
+__gshared short Unknown7E00BA;
+__gshared short Unknown7E00BC;
+__gshared short Unknown7E00BE;
+__gshared short Unknown7E00C0;
 
-__gshared short UNKNOWN_7E00C4;
+__gshared short Unknown7E00C4;
 __gshared short SPC_DATA_PTR;
-__gshared short UNKNOWN_7E00C8;
-__gshared ubyte UNKNOWN_7E00CA;
-__gshared ubyte UNKNOWN_7E00CB;
-__gshared short UNKNOWN_7E00CC;
-__gshared ubyte UNKNOWN_7E00CE;
-__gshared short UNKNOWN_7E00CF;
-__gshared ubyte UNKNOWN_7E00D1;
-__gshared ubyte UNKNOWN_7E00D2;
-__gshared short UNKNOWN_7E00D3;
+__gshared short Unknown7E00C8;
+__gshared ubyte Unknown7E00CA;
+__gshared ubyte Unknown7E00CB;
+__gshared short Unknown7E00CC;
+__gshared ubyte Unknown7E00CE;
+__gshared short Unknown7E00CF;
+__gshared ubyte Unknown7E00D1;
+__gshared ubyte Unknown7E00D2;
+__gshared short Unknown7E00D3;
 
 __gshared ushort[16][32] palettes;
 
@@ -167,7 +167,7 @@ __gshared short Unknown7E0A58;
 __gshared void* MOVEMENT_42_LOADED_PTR;
 __gshared short Unknown7E0A5E;
 __gshared short Unknown7E0A60;
-__gshared short[MAX_ENTITIES] ENTITY_SCRIPT_TABLE;
+__gshared short[MAX_ENTITIES] EntityScriptTable;
 __gshared short[MAX_ENTITIES] Unknown30x2Table1;
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_2;
 __gshared short[MAX_ENTITIES] EntityScreenXTable;
@@ -198,8 +198,8 @@ __gshared short[MAX_ENTITIES] Unknown30x2Table11;
 /+__gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_LOW;
 __gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_HIGH;+/
 
-__gshared ushort[MAX_ENTITIES] ENTITY_TICK_CALLBACK_FLAGS;
-__gshared void function()[MAX_ENTITIES] ENTITY_TICK_CALLBACKS;
+__gshared ushort[MAX_ENTITIES] EntityTickCallbackFlags;
+__gshared void function()[MAX_ENTITIES] EntityTickCallbacks;
 
 __gshared short[MAX_ENTITIES] EntityAnimationFrames; //$10F2
 
@@ -217,6 +217,12 @@ __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_17;
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_18;
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19;
 __gshared short UNKNOWN_7E125A;
+
+__gshared short[32] Unknown7E1AD6; //$1AD6
+
+__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; //$2A42
+
+__gshared short[MAX_ENTITIES] EntityDirections; //$2AF6
 
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_36; //$2B6E
 
@@ -279,15 +285,15 @@ __gshared short var5E6E;           // $5E6E - I have this labeled as "word-wrap 
 
 __gshared ubyte  var5E79;           // $5E79 - Mystery flag
 
-__gshared WinStat[9]  window_stat;    // $8650
+__gshared WinStat[9]  WindowStats;    // $8650
 
 __gshared Game_State gameState;
 __gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters;
 
 __gshared short  window_head;       // $88E0 - Head of the window linked list
 __gshared short  window_tail;       // $88E2 - Tail of the window linked list
-__gshared short[53]  window_table;  // $88E4 - Index: Window ID; Value: Index to window_stat
-__gshared short  focused_window_id; // $8958 - Window ID of the focused window
+__gshared short[53]  WindowTable;  // $88E4 - Index: Window ID; Value: Index to WindowStats
+__gshared short  CurrentFocusWindow; // $8958 - Window ID of the focused window
 __gshared WinStat* focused_window_stat;
 
 __gshared MenuOpt[70]  menu_options;  // $89D4 - Window menu options
@@ -307,16 +313,45 @@ __gshared short Unknown7E968C;           // $968C
 __gshared ushort DadPhoneTimer;           // $9E54
 
 __gshared short Unknown7E9F2A;           // $9F2A
+__gshared ubyte Unknown7E9F2C;           // $9F2C
+__gshared short Unknown7E9F2D;           // $9F2D
+__gshared short Unknown7E9F2F;           // $9F2F
+__gshared short Unknown7E9F31;           // $9F31
+__gshared short Unknown7E9F33;           // $9F33
+__gshared short Unknown7E9F35;           // $9F35
 
+__gshared short Unknown7E9F39;           // $9F39
+__gshared short Unknown7E9F3B;           // $9F3B
+__gshared short Unknown7E9F3D;           // $9F3D
 __gshared short TeleportDestination;           // $9F3F
 __gshared TeleportStyle teleportStyle;           // $9F41
 __gshared short Unknown7E9F43;           // $9F43
 __gshared short Unknown7E9F45;           // $9F45
 __gshared short Unknown7E9F47;           // $9F47
-
+__gshared int Unknown7E9F49;           // $9F49
+__gshared int Unknown7E9F4D;           // $9F4D
+__gshared int Unknown7E9F51;           // $9F51
+__gshared int Unknown7E9F55;           // $9F55
+__gshared short Unknown7E9F59;           // $9F59
+__gshared short Unknown7E9F5B;           // $9F5B
+__gshared short Unknown7E9F5D;           // $9F5D
+__gshared short Unknown7E9F5F;           // $9F5F
+__gshared short Unknown7E9F61;           // $9F61
+__gshared short Unknown7E9F63;           // $9F63
+__gshared short Unknown7E9F65;           // $9F65
+__gshared short Unknown7E9F67;           // $9F67
+__gshared short Unknown7E9F69;           // $9F69
 __gshared short Unknown7E9F6B;           // $9F6B
-
+__gshared short Unknown7E9F6D;           // $9F6D
 __gshared short Unknown7E9F6F;           // $9F6F
+__gshared short PajamaFlag;           // $9F71
+__gshared short Unknown7E9F73;           // $9F73
+__gshared short Unknown7E9F75;           // $9F75
+__gshared short Unknown7E9F77;           // $9F77
+__gshared ubyte Unknown7E9F79;           // $9F79
+
+__gshared Battler* currentAttacker;           // $A970
+__gshared Battler* currentTarget;           // $A972
 
 __gshared ubyte  *path_matrix_buffer;      // [$B3FC] Matrix buffer
 __gshared ushort  path_matrix_rows;        // [$B400] Matrix rows
@@ -334,7 +369,9 @@ __gshared void     *path_heap_start;         // [$B438] Pathfinder heap start po
 __gshared void     *path_heap_current;       // [$B43A] Pathfinder heap current pointer
 __gshared void     *path_heap_end;           // [$B43C] Pathfinder heap end pointer
 
-__gshared ubyte  var7EB49D;         // $7EB49D - Adressed specifically using long addressing, why??
+__gshared ubyte  var7EB49D;         // $7EB49D - Addressed specifically using long addressing, why??
+
+__gshared ubyte Unknown7EB4A2;         // $7EB4A2
 
 __gshared ubyte Unknown7EB4B6;         // $7EB4B6
 

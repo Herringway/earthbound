@@ -41,6 +41,41 @@ void UnknownC2038B();
 // $C2087C
 void UnknownC2087C();
 
+immutable short[32] UnknownC20958 = [
+	-1,
+	-1,
+	-1,
+	-1,
+	-28673,
+	-32737,
+	1023,
+	1023,
+	1,
+	1,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+];
+
 // $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 ushort UnknownC20B65(short, short, short, short, short);
 

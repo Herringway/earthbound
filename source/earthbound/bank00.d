@@ -6,6 +6,7 @@ import earthbound.hardware;
 import earthbound.bank01;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank2F;
 
 short* ClearEntityDrawSortingTable() {
     EntityDrawSorting[] = 0;
@@ -322,12 +323,80 @@ void UnknownC0777A() {
     UnknownC02140(Unknown7E9F6B);
     Unknown7E9F6B = -1;
 }
+// $C0780F
+short UnknownC0780F(short, short, PartyCharacter*);
+
+// $C07A56
+void UnknownC07A56(short arg1, short arg2, short arg3) {
+    short x04 = arg3;
+    short x02 = arg2;
+    short x16 = arg2;
+    short x14 = arg1;
+    Unknown7E9F73 = x04;
+    short x12 = UnknownC0780F(x14, x02, Unknown7E4DC6);
+    if (x12 == 0xFFFF) {
+        EntityAnimationFrames[x04] = x12;
+    } else {
+        auto x0E = SpriteGroupingPointers[x12];
+        // figure out sprite stuff
+        UNKNOWN_30X2_TABLE_31[x04] = x0E.unknown8;
+        UNKNOWN_30X2_TABLE_31[x04] = x02;
+        Unknown7E00C0 = x02;
+        x02 = Unknown7E4DC6.unknown55;
+        if (Unknown7E00C0 != x02) {
+            x02 = x16;
+            Unknown7E4DC6.unknown55 = x16;
+            EntityScriptVar7Table[x04] |= 1<<15;
+        }
+        if ((gameState.unknown90 != 0) || (x16 != 0xC)) {
+            EntityScriptVar7Table[x04] ^= (1 << 15 | 1 << 14 | 1 << 13);
+        } else {
+            EntityScriptVar7Table[x04] |= (1 << 14 | 1 << 13);
+        }
+    }
+    if (gameState.unknownB0 == 2) {
+        EntityScriptVar7Table[x04] |= 1 << 12;
+    }
+}
 
 // $C07B52
-void UnknownC07B52();
+void UnknownC07B52() {
+    ushort x14 = PartyCharacters[0].position_index;
+    for (ushort x12 = 0x18; x12 < 0x1E; x12++) {
+        ushort x04 = x12;
+        ushort x10 = x12;
+        if (EntityScriptTable[x04] != 0xFFFF) {
+            EntityTickCallbackFlags[x04] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+            Unknown7E4DC6 = &PartyCharacters[EntityScriptVar1Table[x04]];
+            if ((gameState.currentPartyMembers == x12) || (Unknown7E4DC6.position_index == x14)) {
+                UnknownC07A56(EntityScriptVar0Table[x12], gameState.walkingStyle, x12);
+                EntityAbsXTable[x12] = gameState.leaderXCoordinate;
+                EntityAbsYTable[x12] = gameState.leaderYCoordinate;
+                if (gameState.partyCount != 1) {
+                    EntityDirections[x12] = gameState.leaderDirection;
+                }
+            } else {
+                UnknownC07A56(EntityScriptVar0Table[x12], PlayerPositionBuffer[Unknown7E4DC6.position_index].walking_style, x12);
+                EntityAbsXTable[x10] = PlayerPositionBuffer[Unknown7E4DC6.position_index].x_coord;
+                EntityAbsYTable[x10] = PlayerPositionBuffer[Unknown7E4DC6.position_index].y_coord;
+                EntityDirections[x10] = PlayerPositionBuffer[Unknown7E4DC6.position_index].direction;
+            }
+            EntityScreenXTable[x12] = cast(short)(EntityAbsXTable[x12] - BG1_X_POS);
+            EntityScreenYTable[x12] = cast(short)(EntityAbsYTable[x12] - BG1_Y_POS);
+            UnknownC0A780();
+        }
+    }
+}
 
 // $C07C5B
-void UnknownC07C5B();
+void UnknownC07C5B() {
+    if (Unknown7E5D58 == 0) {
+        return;
+    }
+    for (short i = 0x18; i < 0x1E; i++) {
+        EntitySpriteMapFlags[i] &= 0x7FFF;
+    }
+}
 
 // $C0856B
 void UnknownC0856B(short);
@@ -354,7 +423,7 @@ void FadeOut(short, short);
 void OAMClear();
 // $C08B19
 void UnknownC08B19() {
-    UNKNOWN_7E0009 = 0;
+    Unknown7E0009 = 0;
     OAMClear();
     UpdateScreen();
 }
@@ -395,6 +464,9 @@ void UnknownC0A0CA(short arg1) {
     ActionScript88 = cast(ushort)(arg1 * 2);
     UnknownC0A0E3(ActionScript88, arg1 < 0);
 }
+
+// $C0A780
+void UnknownC0A780();
 
 // $C0ABC6
 void StopMusic() {
@@ -604,15 +676,15 @@ void UnknownC0E9BA();
 // $C0EA3E
 void TeleportFreezeObjects() {
     for (int i = 0; i < 0x17; i++) {
-        ENTITY_TICK_CALLBACK_FLAGS[i] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
+        EntityTickCallbackFlags[i] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
     }
 }
 
 // $C0EA68
 void TeleportFreezeObjects2() {
     for (int i = 0; i < 0x17; i++) {
-        if ((ENTITY_TICK_CALLBACK_FLAGS[i] & (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) != (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) {
-            ENTITY_TICK_CALLBACK_FLAGS[i] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
+        if ((EntityTickCallbackFlags[i] & (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) != (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) {
+            EntityTickCallbackFlags[i] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
         }
     }
 }

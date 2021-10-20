@@ -54,6 +54,62 @@ enum WalkingStyle {
 	Stairs = 13,
 }
 
+enum Window {
+	unknown00 = 0x00,
+	TextStandard = 0x01,
+	Inventory = 0x02,
+	InventoryMenu = 0x03,
+	unknown04 = 0x04,
+	PhoneMenu = 0x05,
+	EquipMenu = 0x06,
+	EquipMenuItemlist = 0x07,
+	StatusMenu = 0x08,
+	Unknown09 = 0x09,
+	CarriedMoney = 0x0A,
+	Unknown0b = 0x0B,
+	Unknown0c = 0x0C,
+	Unknown0d = 0x0D,
+	TextBattle = 0x0E,
+	BattleMenu = 0x0F,
+	Unknown10 = 0x10,
+	Unknown11 = 0x11,
+	BattleMenuJeff = 0x12,
+	FileSelectMain = 0x13,
+	FileSelectMenu = 0x14,
+	FileSelectCopyMenuTwoFiles = 0x15,
+	FileSelectCopyMenuOneFile = 0x16,
+	FileSelectDeleteConfirmation = 0x17,
+	FileSelectTextSpeed = 0x18,
+	FileSelectMusicMode = 0x19,
+	FileSelectNamingNameBox = 0x1A,
+	FileSelectNamingMessage = 0x1B,
+	FileSelectNamingKeyboard = 0x1C,
+	FileSelectNamingConfirmationNess = 0x1D,
+	FileSelectNamingConfirmationPaula = 0x1E,
+	FileSelectNamingConfirmationJeff = 0x1F,
+	FileSelectNamingConfirmationPoo = 0x20,
+	FileSelectNamingConfirmationKing = 0x21,
+	FileSelectNamingConfirmationFood = 0x22,
+	FileSelectNamingConfirmationThing = 0x23,
+	FileSelectNamingConfirmationMessage = 0x24,
+	Unknown25 = 0x25,
+	Unknown26 = 0x26,
+	Unknown27 = 0x27,
+	Unknown28 = 0x28,
+	Unknown29 = 0x29,
+	Unknown2a = 0x2A,
+	Unknown2b = 0x2B,
+	Unknown2c = 0x2C,
+	Unknown2d = 0x2D,
+	Unknown2e = 0x2E,
+	Unknown2f = 0x2F,
+	Unknown30 = 0x30,
+	Unknown31 = 0x31,
+	FileSelectFlavourChoice = 0x32,
+	Unknown33 = 0x33,
+	Unknown34 = 0x34,
+}
+
 enum TeleportStyle {
 	None = 0,
 	PSIAlpha = 1,
@@ -232,7 +288,7 @@ struct WinStat {
     short   selected_option;      // [2F]
     short   menu_columns;         // [31]
     short   menu_page;            // [33]
-    ushort *tilemap_buffer;       // [35] 16-bit pointer
+    ushort* tilemapBuffer;       // [35] 16-bit pointer
     void function(short) menu_callback; // [37] 32-bit pointer
     ubyte   title_id;             // [3B]
     ubyte[32]   title;            // [3C]
@@ -303,4 +359,80 @@ struct QueuedInteraction {
 		void* text_ptr;
 		void* door_ptr;
 	}
+}
+
+struct SpriteGrouping {
+	ubyte height;
+	ubyte width;
+	ubyte unknown3;
+	ubyte unknown4;
+	ubyte unknown5;
+	ubyte unknown6;
+	ubyte unknown7;
+	ubyte unknown8;
+	ubyte spriteBank;
+	Sprites[0] sprites;
+}
+struct Sprites {
+	ushort group;
+	ushort[8] ids;
+}
+
+struct Battler {
+	ubyte id;
+	ubyte unknown01;
+	ubyte sprite;
+	ubyte unknown03;
+	ushort currentAction;
+	ubyte actionOrderVar;
+	ubyte unknown07;
+	ubyte currentActionArgument;
+	ubyte unknown09;
+	ubyte currentTarget;
+	ubyte theFlag;
+	ubyte consciousness;
+	ubyte unknown13;
+	ubyte allyOrEnemy;
+	ubyte npcID;
+	ubyte row;
+	ushort hp;
+	ushort hpTarget;
+	ushort hpMax;
+	ushort pp;
+	ushort ppTarget;
+	ushort ppMax;
+	ubyte[AFFLICTION_GROUP_COUNT] afflictions;
+	ubyte guarding;
+	ubyte shieldHP;
+	ushort offense;
+	ushort defense;
+	ushort speed;
+	ushort guts;
+	ushort luck;
+	ubyte vitality;
+	ubyte iq;
+	ubyte baseOffense;
+	ubyte baseDefense;
+	ubyte baseSpeed;
+	ubyte baseGuts;
+	ubyte baseLuck;
+	ubyte paralysisResist;
+	ubyte freezeResist;
+	ubyte flashResist;
+	ubyte fireResist;
+	ubyte brainshockResist;
+	ubyte hypnosisResist;
+	ushort money;
+	ushort exp;
+	ubyte vramSpriteIndex;
+	ubyte spriteX;
+	ubyte spriteY;
+	ubyte initiative;
+	ubyte unknown69;
+	ubyte[2] unknown70;
+	ubyte unknown72;
+	ubyte unknown73;
+	ubyte unknown74;
+	ubyte id2;
+	ubyte[2] unknown76;
 }
