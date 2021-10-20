@@ -218,7 +218,7 @@ __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_18;
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19;
 __gshared short UNKNOWN_7E125A;
 
-__gshared short[32] Unknown7E1AD6; //$1AD6
+__gshared short[64] Unknown7E1AD6; //$1AD6
 
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; //$2A42
 
@@ -311,6 +311,8 @@ __gshared short  var968A;           // $968A
 __gshared short Unknown7E968C;           // $968C
 
 __gshared ushort DadPhoneTimer;           // $9E54
+
+__gshared Unknown7E9F1AEntry[4] Unknown7E9F1A;           // $9F1A
 
 __gshared short Unknown7E9F2A;           // $9F2A
 __gshared ubyte Unknown7E9F2C;           // $9F2C

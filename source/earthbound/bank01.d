@@ -338,6 +338,12 @@ void ShowTownMap();
 // $C186B1 - Call a text script (script_ptr)
 void DisplayText(ubyte* script_ptr);
 
+// $C18BC6
+ushort GiveItemToCharacter(ushort character, ushort item);
+
+// $C18EAD
+ushort TakeItemFromCharacter(ushort character, ushort item);
+
 // $C1AC4A
 void UnknownC1AC4A(PartyCharacter*, short);
 

@@ -1,8 +1,13 @@
 module earthbound.bank04;
 
 import earthbound.commondefs;
+import earthbound.bank00;
+import earthbound.bank01;
 import earthbound.bank02;
+import earthbound.bank15;
+import earthbound.bank20;
 import earthbound.globals;
+import core.stdc.string;
 
 immutable short[17] UnknownC42A1F = [
     0x0008,
@@ -117,6 +122,9 @@ immutable ushort[16] UnknownC44AD7 = [
     0x7FFF,
 ];
 
+// $C45F7B
+ubyte randMod(ubyte arg1);
+
 // $C44AF7
 void UnknownC44AF7(short arg1) {
     short x10 = arg1 & 0x3FF;
@@ -138,10 +146,55 @@ void UnknownC44E4D(short arg1) {
 }
 
 // $C47F87
-void UnknownC47F87();
+void UnknownC47F87() {
+    switch(ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
+        case 0:
+        case 1:
+            if (Unknown7EB4B6 != 0) {
+                goto default;
+            }
+            memcpy(palettes.ptr, TextWindowDeathPalette.ptr, 0x40);
+            break;
+        default:
+            memcpy(palettes.ptr, (cast(void*)TextWindowFlavourPalettes.ptr) + TextWindowProperties[gameState.textFlavour].offset, 0x40);
+            break;
+    }
+    CurrentTextPalette[0] = 0;
+    UnknownC0856B(8);
+}
 
 // $C48FC4
-void UnknownC48FC4();
+void UnknownC48FC4() {
+    if (BattleSwirlFlag + BattleSwirlCountdown != 0) {
+        return;
+    }
+    if (Unknown7EB4B6 != 0) {
+        return;
+    }
+    if (gameState.unknownB0 == 2) {
+        return;
+    }
+    if (--Unknown7E9F2C != 0) {
+        return;
+    }
+    Unknown7E9F2C = 0x3C;
+    Unknown7E9F1AEntry* x02 = Unknown7E9F1A.ptr;
+    short x14 = 1;
+    short x12 = 0;
+    for (short i = 0; i < 4; i++) {
+        if ((x14 != 0) && (x02.unknown1 != 0) && (x02.unknown2-- == 0)) {
+            x02.unknown2 = cast(ubyte)(x02.unknown1 + randMod(2) - 1);
+            PlaySfx(x02.unknown0);
+            x14 = 0;
+        }
+        if (x02.unknown3 != 0) {
+            if (x02.unknown3-- == 0) {
+                GiveItemToCharacter(TakeItemFromCharacter(0xFF, TimedItemTransformationTable[i].item), TimedItemTransformationTable[i].targetItem);
+            }
+        }
+        x02++;
+    }
+}
 
 // $C490EE
 void UnknownC490EE();
