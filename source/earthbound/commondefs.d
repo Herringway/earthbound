@@ -840,14 +840,14 @@ struct RGB {
 struct TimedItemTransformation {
 	ubyte item;
 	ubyte sfx;
-	ubyte unknown2;
+	ubyte sfxFrequency;
 	ubyte targetItem;
-	ubyte unknown4;
+	ubyte transformationTime;
 }
 
-struct Unknown7E9F1AEntry {
-	ubyte unknown0;
-	ubyte unknown1;
-	ubyte unknown2;
-	ubyte unknown3;
+struct LoadedItemTransformation {
+	ubyte sfx;
+	ubyte sfxFrequency;
+	ubyte sfxCountdown;
+	ubyte transformationCountdown;
 }

@@ -312,7 +312,7 @@ __gshared short Unknown7E968C;           // $968C
 
 __gshared ushort DadPhoneTimer;           // $9E54
 
-__gshared Unknown7E9F1AEntry[4] Unknown7E9F1A;           // $9F1A
+__gshared LoadedItemTransformation[4] LoadedItemTransformations;           // $9F1A
 
 __gshared short Unknown7E9F2A;           // $9F2A
 __gshared ubyte Unknown7E9F2C;           // $9F2C

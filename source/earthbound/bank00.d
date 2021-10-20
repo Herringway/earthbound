@@ -253,7 +253,7 @@ void UnknownC05200() {
         AnimateTileset();
     }
     if (Unknown7E9F2A != 0) {
-        UnknownC48FC4();
+        ProcessItemTransformations();
     }
     UnknownC04C45();
     const x = gameState.leaderXCoordinate >> 8;
