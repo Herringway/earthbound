@@ -292,10 +292,17 @@ __gshared WinStat* focused_window_stat;
 
 __gshared MenuOpt[70]  menu_options;  // $89D4 - Window menu options
 
+__gshared ubyte Unknown7E9622;           // $9622
+__gshared ubyte Unknown7E9623;           // $9623
+__gshared ubyte Unknown7E9624;           // $9624
+
+__gshared ubyte Unknown7E9649;           // $9649
+
 __gshared short  var9684;           // $9684
 __gshared short  var9686;           // $9686
 __gshared short  var9688;           // $9688
 __gshared short  var968A;           // $968A
+__gshared short Unknown7E968C;           // $968C
 
 __gshared ushort DadPhoneTimer;           // $9E54
 
@@ -328,6 +335,8 @@ __gshared void     *path_heap_current;       // [$B43A] Pathfinder heap current 
 __gshared void     *path_heap_end;           // [$B43C] Pathfinder heap end pointer
 
 __gshared ubyte  var7EB49D;         // $7EB49D - Adressed specifically using long addressing, why??
+
+__gshared ubyte Unknown7EB4B6;         // $7EB4B6
 
 __gshared ushort CurrentMusicTrack;         // $B53B
 

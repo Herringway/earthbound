@@ -21,7 +21,7 @@ void inflictSunstrokeCheck() {
 		if (Unknown7E4DC6.afflictions[0] != 0 && Unknown7E4DC6.afflictions[0] == 7) {
 			continue;
 		}
-		if (((30 - Unknown7E4DC6.guts > 0) ? (30 - Unknown7E4DC6.guts) : 1) / 100 == rand()) {
+		if (((30 - Unknown7E4DC6.guts > 0) ? (30 - Unknown7E4DC6.guts) : 1) * 256 / 100 < rand()) {
 			Unknown7E4DC6.afflictions[0] = 6;
 		}
 	}
@@ -29,8 +29,23 @@ void inflictSunstrokeCheck() {
 
 immutable ubyte[] C200B9 = [0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x07, 0x00, 0x07, 0x00, 0x1E, 0x00, 0x33, 0x00, 0x1E, 0x00, 0x33, 0x00];
 
-void C200D9() {}
-void C20266() {}
+// $C200D9
+void UnknownC200D9();
+
+// $C20266
+void UnknownC20266();
+
+// $C2038B
+void UnknownC2038B();
+
+// $C2087C
+void UnknownC2087C();
 
 // $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
-ushort Func_C20B65(short, short, short, short, short);
+ushort UnknownC20B65(short, short, short, short, short);
+
+// $C2109F
+void HPPPRoller();
+
+// $C213AC
+void UnknownC213AC();

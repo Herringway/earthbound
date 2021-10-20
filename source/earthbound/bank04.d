@@ -73,19 +73,22 @@ void SetPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
 void UnknownC43317();
 
 // $C43B15 - Unknown, but looks like it resets the color of existing text in the focused window
-void     Func_C43B15();
+void UnknownC43B15();
 
 // $C43BB9 - Unknown, but looks like it prints optionally highlighted text
-void     Func_C43BB9(short maxLength, short highlighted, ubyte* text);
+void UnknownC43BB9(short maxLength, short highlighted, ubyte* text);
 
 // $C43CD2 - Set text position on focused window (for menu options)
-void     Func_C43CD2(MenuOpt* opt, short x, short y);
+void UnknownC43CD2(MenuOpt* opt, short x, short y);
 
 //$C43DDB
 void UNKNOWN_C43DDB(MenuOpt* menuEntry) {}
 
 // $C43F53
 void UnknownC43F53();
+
+// $C47F87
+void UnknownC47F87();
 
 // $C48FC4
 void UnknownC48FC4();
@@ -94,7 +97,7 @@ void UnknownC48FC4();
 void UnknownC490EE();
 
 //$C49EC4
-void UNKNOWN_C49EC4(short id) {}
+void UnknownC49EC4(short id) {}
 
 //$C4A7B0
 short UnknownC4A7B0();

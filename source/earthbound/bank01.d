@@ -8,32 +8,38 @@ import earthbound.bank04;
 import earthbound.bank2F;
 import earthbound.globals;
 
-void UNKNOWN_C10004(void* arg1);
-	//ubyte[4] unknown;
-void UNKNOWN_C10048(ushort arg1);
+void UnknownC10004(void* arg1);
+
+void UnknownC10048(ushort arg1);
+
+// $C1004E
+void UnknownC1004E();
 
 // $C1007E - Set the focused window
-void     Win_SetFocus(short window_id);
+void Win_SetFocus(short window_id);
+
+// $C107AF
+void UnknownC107AF(short window_id);
 
 // $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
-void     Func_C10D60(short tile);
+void UnknownC10D60(short tile);
 
 // $C10FA3 - Clears the focused window
-void     Win_ClearFocus();
+void Win_ClearFocus();
 
 // $C10FEA - Sets the text color for the focused window
-void     Win_SetTextColor(short window_id);
+void Win_SetTextColor(short window_id);
 
 // $C1134B - Opens the HP/PP and wallet windows
-void     OpenHpAndWallet();
+void OpenHpAndWallet();
 
 // $C1163C - Prints the options into the focused window
-void     Win_PrintOptions();
+void Win_PrintOptions();
 
 // $C118E7 - Get target X/Y window positions after menu cursor movement
 //           Returns low byte = X, high byte = Y
 //           (arguments unknown)
-ushort Func_C118E7(short, short, short, short, short, short, short);
+ushort UnknownC118E7(short, short, short, short, short, short, short);
 
 // $C1196A - Handle menu selection on the focused window
 int Win_MenuSelection(int cancelable) {
@@ -63,8 +69,8 @@ int Win_MenuSelection(int cancelable) {
         }
 
         SetInstaprint();
-        Func_C43CD2(dp04, dp04.text_x, dp04.text_y); // field08, field0A
-        Func_C43BB9(-1, 0, dp04.label.ptr); // field13
+        UnknownC43CD2(dp04, dp04.text_x, dp04.text_y); // field08, field0A
+        UnknownC43BB9(-1, 0, dp04.label.ptr); // field13
     } else {
         dp20 = 0;
         dp04 = &menu_options[dp24.current_option]; // field2B
@@ -104,9 +110,9 @@ label1:
         dp04.text_y = var9686; // field0A
     }
 
-    Func_C43CD2(dp04, dp04.text_x, dp04.text_y);
+    UnknownC43CD2(dp04, dp04.text_x, dp04.text_y);
     Win_SetTextColor(1);
-    Func_C10D60(0x21);   // Put cursor on the window maybe?
+    UnknownC10D60(0x21);   // Put cursor on the window maybe?
     Win_SetTextColor(0);
     Win_Tick();
 
@@ -125,67 +131,67 @@ label2:
 
     int dp1C;
     for (dp1E = 0; dp1E < 10; dp1E++) {
-        Func_C12E42();
+        UnknownC12E42();
 
         if (pad1_press & PAD_UP) {
-            dp1C = Func_C118E7(dp04.text_x, dp04.text_y, -1, 0, 3, dp04.text_x, dp24.height);
+            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, -1, 0, 3, dp04.text_x, dp24.height);
             goto label3;
         }
 
         if (pad1_press & PAD_LEFT) {
-            dp1C = Func_C118E7(dp04.text_x, dp04.text_y, 0, -1, 2, dp24.width, dp04.text_y);
+            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 0, -1, 2, dp24.width, dp04.text_y);
             goto label3;
         }
 
         if (pad1_press & PAD_DOWN) {
-            dp1C = Func_C118E7(dp04.text_x, dp04.text_y, 1, 0, 3, dp04.text_x, -1);
+            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 1, 0, 3, dp04.text_x, -1);
             goto label3;
         }
 
         if (pad1_press & PAD_RIGHT) {
-            dp1C = Func_C118E7(dp04.text_x, dp04.text_y, 0, 1, 2, -1, dp04.text_y);
+            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 0, 1, 2, -1, dp04.text_y);
             goto label3;
         }
 
         if (pad1_repeat & PAD_UP) {
-            dp1C = Func_C20B65(dp04.text_x, dp04.text_y, -1, 0, 3);
+            dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, -1, 0, 3);
             goto label3;
         }
 
         if (pad1_repeat & PAD_LEFT) {
-            dp1C = Func_C20B65(dp04.text_x, dp04.text_y, 0, -1, 2);
+            dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, 0, -1, 2);
             goto label3;
         }
 
         if (pad1_repeat & PAD_DOWN) {
-            dp1C = Func_C20B65(dp04.text_x, dp04.text_y, 1, 0, 3);
+            dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, 1, 0, 3);
             goto label3;
         }
 
         if (pad1_repeat & PAD_RIGHT) {
-            dp1C = Func_C20B65(dp04.text_x, dp04.text_y, 0, 1, 2);
+            dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, 0, 1, 2);
         }
 
         if (pad1_press & (PAD_A|PAD_L)) {
             SetInstaprint();
             if (dp04.page) {        // field06
                 PlaySfx(dp04.sfx);  // field0E
-                Func_C43CD2(dp04, dp04.text_x, dp04.text_y);
-                Func_C10D60(0x2F);   // Remove cursor from window?
+                UnknownC43CD2(dp04, dp04.text_x, dp04.text_y);
+                UnknownC10D60(0x2F);   // Remove cursor from window?
                 Win_SetTextColor(6);
 
                 if (var5E6E) {
                     if (var7EB49D != 1) {
                         if (focused_window_id == 19) {
-                            Func_C43B15();
+                            UnknownC43B15();
                         } else {
-                            Func_C43BB9(4, 1, dp04.label.ptr); // field13
+                            UnknownC43BB9(4, 1, dp04.label.ptr); // field13
                         }
                     } else {
-                        Func_C43BB9(-1, 1, dp04.label.ptr); // field13;
+                        UnknownC43BB9(-1, 1, dp04.label.ptr); // field13;
                     }
                 } else {
-                    Func_C43B15();
+                    UnknownC43B15();
                 }
 
                 Win_SetTextColor(0);
@@ -206,7 +212,7 @@ label2:
             }
 
             ClearInstaprint();
-            Func_EF0115(cast(short)dp26);
+            UnknownEF0115(cast(short)dp26);
             Win_Tick();
 
             Win_PrintOptions(); // Print the options for the new page
@@ -252,8 +258,8 @@ label3:
         dp22_opt = &menu_options[dp22_opt.next]; // field02
     }
 
-    Func_C43CD2(dp04, dp04.text_x, dp04.text_y);
-    Func_C10D60(0x2F); // Remove cursor from window?
+    UnknownC43CD2(dp04, dp04.text_x, dp04.text_y);
+    UnknownC10D60(0x2F); // Remove cursor from window?
 
     dp20 = dp02;
     dp04 = dp22_opt;
@@ -261,10 +267,38 @@ label3:
 }
 
 // $C12DD5 - Tick windows (draw windows if necessary, roll HP/PP, advance RNG, wait a frame)
-void     Win_Tick();
+void Win_Tick() {
+    rand();
+    if (Unknown7E968C != 0) {
+        Unknown7E968C = 0;
+        return;
+    }
+    if (Unknown7E9622 != 0) {
+        return;
+    }
+    if (Unknown7E9623 == 0) {
+        if (window_head != 0xFFFF) {
+            UnknownC107AF(window_tail);
+        }
+    } else {
+        UnknownC2087C();
+        Unknown7E9623 = 0;
+    }
+    HPPPRoller();
+    Unknown7E9624 = 1;
+    UnknownC213AC();
+    if (Unknown7EB4B6 == 0) {
+        if (UnknownC1FF2C() != 0) {
+            UnknownC47F87();
+        }
+    }
+    Unknown7E9649 = 0;
+    UnknownC2038B();
+    UnknownC1004E();
+}
 
 // $C12E42 - Looks like a "minimal" window tick function, doesn't advance RNG
-void     Func_C12E42();
+void UnknownC12E42();
 
 // $C12E63
 void DebugYButtonMenu();
@@ -282,10 +316,13 @@ void OpenHPPPDisplay();
 void ShowTownMap();
 
 // $C186B1 - Call a text script (script_ptr)
-void     DisplayText(ubyte* script_ptr);
+void DisplayText(ubyte* script_ptr);
 
 // $C1BEC6
-void     GetOffBicycle();
+void GetOffBicycle();
 
 // $C1DBBB
 void ShowHPAlert(short);
+
+// $C1FF2C
+short UnknownC1FF2C();
