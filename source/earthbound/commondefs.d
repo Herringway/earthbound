@@ -663,7 +663,7 @@ struct WinStat {
     short   text_x;               // [0E]
     short   text_y;               // [10]
     ubyte   num_padding;          // [12]
-    ushort  tile_attr;            // [13]
+    ushort  tileAttributes;            // [13]
     short   font;                 // [15]
     uint  result;               // [17]
     uint  argument;             // [1B]

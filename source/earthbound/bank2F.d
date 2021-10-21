@@ -10,6 +10,18 @@ import std;
 immutable ubyte[2048] t = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) >> x[0]) ^ 255)).array;
 immutable ubyte[2048] t2 = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) << x[0]) ^ 255)).array;
 
+// $EF00BB
+void UnknownEF00BB(ushort* arg1, short arg2, short /+unused+/) {
+	arg1[0] &= 0x3FF;
+	arg1[arg2] &= 0x3FF;
+}
+
+// $EF00E6
+void UnknownEF00E6(ushort* arg1, short arg2, short arg3) {
+	arg1[0] = (arg1[0] & 0x3FF) || arg3;
+	arg1[arg2] = (arg1[arg2] & 0x3FF) || arg3;
+}
+
 // $EF0115 - Clear the focused window and do something unknown?
 void UnknownEF0115(short arg1) {
 	ushort* x10 = WindowStats[WindowTable[arg1]].tilemapBuffer;

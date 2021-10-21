@@ -304,11 +304,17 @@ __gshared ubyte Unknown7E9624;           // $9624
 
 __gshared ubyte Unknown7E9649;           // $9649
 
+__gshared ushort Unknown7E9652;           // $9652
+__gshared ushort Unknown7E9654;           // $9654
+
 __gshared short  var9684;           // $9684
 __gshared short  var9686;           // $9686
 __gshared short  var9688;           // $9688
 __gshared short  var968A;           // $968A
 __gshared short Unknown7E968C;           // $968C
+
+__gshared ushort Unknown7E9E23;           // $9E23
+__gshared ushort Unknown7E9E25;           // $9E25
 
 __gshared ushort DadPhoneTimer;           // $9E54
 

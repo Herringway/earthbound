@@ -6,6 +6,7 @@ import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank15;
 import earthbound.bank20;
+import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
 
@@ -85,14 +86,72 @@ void UnknownC43317() {
 // $C43B15 - Unknown, but looks like it resets the color of existing text in the focused window
 void UnknownC43B15();
 
+// $C43874
+void UnknownC43874(short arg1, short arg2, short arg3) {
+    UnknownC43CAA();
+    WindowStats[WindowTable[arg1]].text_x = arg2;
+    WindowStats[WindowTable[arg1]].text_y = arg3;
+}
+
+// $C438A5
+void UnknownC438A5(short arg1, short arg2) {
+    UnknownC43874(CurrentFocusWindow, arg1, arg2);
+}
+
 // $C43BB9 - Unknown, but looks like it prints optionally highlighted text
-void UnknownC43BB9(short maxLength, short highlighted, ubyte* text);
+void UnknownC43BB9(short maxLength, short highlighted, ubyte* text) {
+    if (WindowTable[CurrentFocusWindow] == 0xFFFF) {
+        return;
+    }
+    if ((CurrentFocusWindow != 0x18) && (CurrentFocusWindow != 0x19) && (CurrentFocusWindow != 0x14) && (CurrentFocusWindow != 0x24)) {
+        return;
+    }
+    WinStat* x14 = &WindowStats[WindowTable[CurrentFocusWindow]];
+    short x12 = WindowStats[WindowTable[CurrentFocusWindow]].tileAttributes;
+    short x10 = WindowStats[WindowTable[CurrentFocusWindow]].text_x;
+    ushort* x04 = &WindowStats[WindowTable[CurrentFocusWindow]].tilemapBuffer[WindowStats[WindowTable[CurrentFocusWindow]].text_y * WindowStats[WindowTable[CurrentFocusWindow]].width * 2 + x10];
+    while ((*text != 0) && (maxLength != 0)) {
+        if (*x04 == 0x40) {
+            break;
+        }
+        if (highlighted != 0) {
+            UnknownEF00E6(x04, x14.width, x12);
+        } else {
+            UnknownEF00BB(x04, x14.width, x12);
+        }
+        x10++;
+        x04++;
+        text++;
+        maxLength--;
+    }
+    x14.text_x = x10;
+    Unknown7E9622 = 0;
+}
+
+// $C43CAA
+void UnknownC43CAA() {
+    if (++Unknown7E9E25 > 0x33) {
+        Unknown7E9E25 = 0;
+        Unknown7E9E23 = 0;
+    } else {
+        Unknown7E9E23 = cast(ushort)(Unknown7E9E25 * 8);
+    }
+    Unknown7E9654 = 0;
+    Unknown7E9652 = Unknown7E9E23;
+}
 
 // $C43CD2 - Set text position on focused window (for menu options)
 void UnknownC43CD2(MenuOpt* opt, short x, short y);
 
 //$C43DDB
-void UnknownC43DDB(MenuOpt* menuEntry) {}
+void UnknownC43DDB(MenuOpt* menuEntry) {
+    UnknownC438A5F(menuEntry.text_x, menuEntry.text_y);
+    UnknownC43F77(0x2F);
+    UnknownC43CAA();
+    if (menuEntry.pixel_align != 0) {
+        UnknownC43CD2(menuEntry, menuEntry.text_x, menuEntry.text_y);
+    }
+}
 
 //$C45637
 ubyte FindItemInInventory(short arg1, short arg2) {
@@ -125,6 +184,9 @@ void UnknownC43F53() {
         Unknown7E1AD6[i] = UnknownC20958[i];
     }
 }
+
+// $C43F77
+void UnknownC43F77(short unknown);
 
 immutable ushort[16] UnknownC44AD7 = [
     0xFFFE,

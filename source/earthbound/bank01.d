@@ -330,6 +330,10 @@ void OpenMenuButton();
 void OpenMenuButtonCheckTalk();
 
 // $C13CA1
+void UnknownC438A5F(short arg1, short arg2) {
+    UnknownC438A5(arg1, arg2);
+}
+// $C13CA1
 void OpenHPPPDisplay();
 
 // $C13CE5
