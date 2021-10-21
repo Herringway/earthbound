@@ -631,12 +631,8 @@ struct PartyCharacter {
 	ushort position_index;
 	ushort unknown63;
 	ushort unknown65;
-	ushort unknown67;
-	ushort current_hp;
-	ushort current_hp_target;
-	ushort unknown73;
-	ushort current_pp;
-	ushort current_pp_target;
+	RollingStat hp;
+	RollingStat pp;
 	ushort hp_pp_window_options;
 	ubyte miss_rate;
 	ubyte fire_resist;
@@ -653,7 +649,10 @@ struct PartyCharacter {
 	ubyte unknown93;
 	ubyte unknown94;
 }
-
+struct RollingStat {
+	FixedPoint1616 current;
+	ushort target;
+}
 
 struct PhotoState {
 	ushort unknown;
@@ -863,4 +862,12 @@ struct LoadedItemTransformation {
 struct Unknown7E007DEntry {
 	ubyte unknown0;
 	ushort unknown1;
+}
+
+union FixedPoint1616 {
+	struct {
+		short fraction;
+		short integer;
+	}
+	uint combined;
 }

@@ -154,7 +154,7 @@ void UnknownC04F60() {
 void UnknownC04F9F(short arg1) {
     short x10 = arg1;
     PartyCharacter* x0E = ChosenFourPtrs[gameState.playerControlledPartyMembers[x10]];
-    if ((x0E.max_hp * 20) / 100 <= x0E.current_hp) {
+    if ((x0E.max_hp * 20) / 100 <= x0E.hp.current.integer) {
         if (Unknown7E5D8C[x10] == 0) {
             ShowHPAlert(cast(short)(x0E.unknown53 + 1));
         }
@@ -187,8 +187,8 @@ ushort UnknownC04FFE() {
                 Unknown7E5D66[x02] = 0x78;
             } else if (!--Unknown7E5D66[x02]) {
                 x04++;
-                Unknown7E4DC6.current_hp -= 10;
-                Unknown7E4DC6.current_hp_target -= 10;
+                Unknown7E4DC6.hp.current.integer -= 10;
+                Unknown7E4DC6.hp.target -= 10;
                 UnknownC04F9F(x02);
             }
         } else if (((affliction < 4) && ((gameState.troddenTileType & 0xC) == 0xC)) || ((affliction >= 4) && (affliction <= 7))) {
@@ -201,29 +201,29 @@ ushort UnknownC04FFE() {
             } else if (!--Unknown7E5D66[x02]) {
                 x04++;
                 if (affliction == 4) {
-                    Unknown7E4DC6.current_hp -= 10;
-                    Unknown7E4DC6.current_hp_target -= 10;
+                    Unknown7E4DC6.hp.current.integer -= 10;
+                    Unknown7E4DC6.hp.target -= 10;
                 } else {
-                    Unknown7E4DC6.current_hp -= 2;
-                    Unknown7E4DC6.current_hp_target -= 2;
+                    Unknown7E4DC6.hp.current.integer -= 2;
+                    Unknown7E4DC6.hp.target -= 2;
                 }
                 UnknownC04F9F(x02);
             }
         }
-        if (Unknown7E4DC6.current_hp <= 0) {
+        if (Unknown7E4DC6.hp.current.integer <= 0) {
             if (affliction != 1) {
                 for (short i = 0; i < 6; i++) {
                     Unknown7E4DC6.afflictions[i] = 0;
                 }
                 Unknown7E4DC6.afflictions[0] = 1;
-                Unknown7E4DC6.current_hp_target = 0;
-                Unknown7E4DC6.current_hp = 0;
+                Unknown7E4DC6.hp.target = 0;
+                Unknown7E4DC6.hp.current.integer = 0;
                 EntityScriptVar3Table[Unknown7E4DC6.unknown59] = 0x10;
                 x16++;
             }
         } else {
             if (affliction != 2) {
-                result += Unknown7E4DC6.current_hp;
+                result += Unknown7E4DC6.hp.current.integer;
             }
         }
     }
@@ -702,8 +702,8 @@ void ebMain() {
             }
             if (!Debug && ((pad_press[1] & PAD_B) != 0)) {
                 for (int i = 0; i < TOTAL_PARTY_COUNT; i++) {
-                    PartyCharacters[i].current_hp_target = PartyCharacters[i].max_hp;
-                    PartyCharacters[i].current_pp_target = PartyCharacters[i].max_pp;
+                    PartyCharacters[i].hp.target = PartyCharacters[i].max_hp;
+                    PartyCharacters[i].pp.target = PartyCharacters[i].max_pp;
                 }
             }
         }

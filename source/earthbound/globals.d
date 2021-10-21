@@ -301,6 +301,8 @@ __gshared ubyte Unknown7E9622;           // $9622
 __gshared ubyte Unknown7E9623;           // $9623
 __gshared ubyte Unknown7E9624;           // $9624
 
+__gshared uint Unknown7E9627;           // $9627
+
 __gshared ubyte Unknown7E9649;           // $9649
 
 __gshared ushort Unknown7E9652;           // $9652
@@ -312,6 +314,7 @@ __gshared short  var9688;           // $9688
 __gshared short  var968A;           // $968A
 __gshared short Unknown7E968C;           // $968C
 
+__gshared ubyte Unknown7E9695;           // $9625
 __gshared ubyte Unknown7E9696;           // $9696
 __gshared ubyte Unknown7E9697;           // $9697
 __gshared ubyte Unknown7E9698;           // $9698

@@ -92,65 +92,71 @@ void HPPPRoller() {
 		return;
 	}
 	PartyCharacter* x10 = &PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3]];
-	if ((Unknown7E9698 == 0) && ((x10.unknown67 & 1) != 0)) {
-		if (x10.current_hp < x10.current_hp_target) {
-			x10.unknown67 += ((Unknown7E9696 == 0) && (Unknown7E9698 != 0)) ? 0x64000 : UnknownC20F58(); // these fields aren't uints. what's going on here...?
-			if (x10.current_hp >= x10.current_hp_target) {
-				x10.current_hp = x10.current_hp_target;
-				x10.unknown67 = 1;
+	if ((Unknown7E9698 == 0) && ((x10.hp.current.fraction & 1) != 0)) {
+		if (x10.hp.current.integer < x10.hp.target) {
+			x10.hp.current.combined += ((Unknown7E9696 == 0) && (Unknown7E9698 != 0)) ? 0x64000 : UnknownC20F58();
+			if (x10.hp.current.integer >= x10.hp.target) {
+				x10.hp.current.integer = x10.hp.target;
+				x10.hp.current.fraction = 1;
 			}
-		} else if ((x10.current_hp == x10.current_hp_target) && (x10.unknown67 == 1)) {
-			x10.unknown67 = 0;
+		} else if ((x10.hp.current.integer == x10.hp.target) && (x10.hp.current.fraction == 1)) {
+			x10.hp.current.fraction = 0;
 		} else {
-			x10.unknown67 += (Unknown7E9698 != 0) ? 0x64000 : UnknownC20F58(); // these fields aren't uints. what's going on here...?
-			if ((x10.current_hp < x10.current_hp_target) || (x10.current_hp > 0x1000)) {
-				x10.current_hp = x10.current_hp_target;
-				x10.unknown67 = 1;
+			x10.hp.current.combined += (Unknown7E9698 != 0) ? 0x64000 : UnknownC20F58();
+			if ((x10.hp.current.integer < x10.hp.target) || (x10.hp.current.integer > 0x1000)) {
+				x10.hp.current.integer = x10.hp.target;
+				x10.hp.current.fraction = 1;
 			}
 		}
-	} else if ((x10.unknown67 & 1) == 1) {
-		if (x10.current_hp != x10.current_hp_target) {
-			x10.unknown67 = 1;
+	} else if ((x10.hp.current.fraction & 1) == 1) {
+		if (x10.hp.current.integer != x10.hp.target) {
+			x10.hp.current.fraction = 1;
 		}
 	}
-	if ((Unknown7E9698 == 0) && ((x10.unknown73 & 1) != 0)) {
-		if (x10.current_pp < x10.current_pp_target) {
-			x10.unknown73 += (Unknown7E9698 != 0) ?  0x64000 : 0x19000; // these fields aren't uints. what's going on here...?
-			if (x10.current_pp >= x10.current_pp_target) {
-				x10.current_pp = x10.current_pp_target;
-				x10.unknown67 = 1;
+	if ((Unknown7E9698 == 0) && ((x10.pp.current.fraction & 1) != 0)) {
+		if (x10.pp.current.integer < x10.pp.target) {
+			x10.pp.current.combined += (Unknown7E9698 != 0) ?  0x64000 : 0x19000;
+			if (x10.pp.current.integer >= x10.pp.target) {
+				x10.pp.current.integer = x10.pp.target;
+				x10.hp.current.fraction = 1;
 			}
-		} else if ((x10.current_pp == x10.current_pp_target) && (x10.unknown73 == 1)) {
-			x10.unknown73 = 0;
+		} else if ((x10.pp.current.integer == x10.pp.target) && (x10.pp.current.fraction == 1)) {
+			x10.pp.current.fraction = 0;
 		} else {
-			x10.unknown73 += (Unknown7E9698 != 0) ? 0x64000 : 0x19000; // these fields aren't uints. what's going on here...?
-			if ((x10.current_pp < x10.current_pp_target) || (x10.current_pp > 0x1000)) {
-				x10.current_pp = x10.current_pp_target;
-				x10.unknown73 = 1;
+			x10.pp.current.combined += (Unknown7E9698 != 0) ? 0x64000 : 0x19000;
+			if ((x10.pp.current.integer < x10.pp.target) || (x10.pp.current.integer > 0x1000)) {
+				x10.pp.current.integer = x10.pp.target;
+				x10.pp.current.fraction = 1;
 			}
 		}
-	} else if ((x10.unknown73) == 0) {
-		if (x10.current_pp != x10.current_pp_target) {
-			x10.unknown73 = 1;
+	} else if ((x10.pp.current.fraction) == 0) {
+		if (x10.pp.current.integer != x10.pp.target) {
+			x10.pp.current.fraction = 1;
 		}
 	}
 	if (Unknown7E9698 == 0) {
 		return;
 	}
-	if (x10.current_hp == 999) {
-		x10.current_hp_target = 1;
-	} else if (x10.current_hp == 1) {
-		x10.current_hp_target = 999;
+	if (x10.hp.current.integer == 999) {
+		x10.hp.target = 1;
+	} else if (x10.hp.current.integer == 1) {
+		x10.hp.target = 999;
 	}
-	if (x10.current_pp == 999) {
-		x10.current_pp_target = 0;
-	} else if (x10.current_pp == 0) {
-		x10.current_pp_target = 999;
+	if (x10.pp.current.integer == 999) {
+		x10.pp.target = 0;
+	} else if (x10.pp.current.integer == 0) {
+		x10.pp.target = 999;
 	}
 }
 
 // $C20F58
-uint UnknownC20F58();
+uint UnknownC20F58() {
+	if (Unknown7E9695 != 0) {
+		return Unknown7E9627 >> 1;
+	} else {
+		return Unknown7E9627;
+	}
+}
 
 // $C213AC
 void UnknownC213AC();
