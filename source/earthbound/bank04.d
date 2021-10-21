@@ -10,6 +10,9 @@ import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
 
+// $C41EFF
+short UnknownC41EFF(short, short, short, short);
+
 immutable short[17] UnknownC42A1F = [
     0x0008,
     0x0008,
@@ -214,9 +217,6 @@ immutable ushort[16] UnknownC44AD7 = [
     0x7FFF,
 ];
 
-// $C45F7B
-ubyte randMod(ubyte arg1);
-
 // $C44AF7
 void UnknownC44AF7(short arg1) {
     short x10 = arg1 & 0x3FF;
@@ -235,6 +235,21 @@ void UnknownC44E4D(short arg1) {
         return;
     }
     UnknownC44AF7(arg1);
+}
+
+// $C45F7B
+ubyte randMod(ubyte arg1) {
+    return cast(ubyte)(rand() % (arg1 + 1));
+}
+
+// $C46028
+short UnknownC46028(short arg1) {
+    for (short i = 0; i < 0x1E; i++) {
+        if (EntityTPTEntrySprites[i] == arg1) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 // $C47F87
@@ -322,7 +337,37 @@ void ProcessItemTransformations() {
 }
 
 // $C490EE
-void UnknownC490EE();
+short UnknownC490EE() {
+    short x04 = UnknownC46028(0x178);
+    if (x04 == 0xFFFF) {
+        return 0;
+    }
+    if (EntityAbsXTable[x04] < gameState.leaderXCoordinate - 0x40) {
+        return 1;
+    }
+    if (EntityAbsXTable[x04] == gameState.leaderXCoordinate + 0x40) {
+        if (EntityAbsYTable[x04] < gameState.leaderYCoordinate - 0x40) {
+            return 1;
+        }
+        if (EntityAbsYTable[x04] > gameState.leaderYCoordinate + 0x40) {
+            return 1;
+        }
+    } else {
+        return 1;
+    }
+    short x10 = cast(short)(EntityAbsYTable[x04] - gameState.leaderYCoordinate);
+    if (x10 < 0) {
+        x10 = cast(short)-cast(int)x10;
+    }
+    short x12 = cast(short)(EntityAbsXTable[x04] - gameState.leaderXCoordinate);
+    if (x12 < 0) {
+        x12 = cast(short)-cast(int)x12;
+    }
+    if (x10 + x12 < 16) {
+        return 10;
+    }
+    return ((UnknownC41EFF(gameState.leaderXCoordinate, gameState.leaderYCoordinate, EntityAbsXTable[x04], EntityAbsYTable[x04]) + 0x1000) / 0x2000) + 2;
+}
 
 //$C49EC4
 void UnknownC49EC4(short id) {}

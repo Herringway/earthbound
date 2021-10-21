@@ -226,6 +226,7 @@ __gshared short[MAX_ENTITIES] EntityDirections; //$2AF6
 
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_36; //$2B6E
 
+__gshared short[MAX_ENTITIES] EntityTPTEntrySprites; //$2CD6
 
 __gshared short[MAX_ENTITIES] EntityDrawSorting; //$280C
 
