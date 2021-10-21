@@ -67,27 +67,20 @@ __gshared ushort[2] BG4_Y_POS_BUF;
 __gshared ushort Unknown7E0061;
 __gshared ushort Unknown7E0063;
 
-__gshared ushort pad1_state;
-__gshared ushort pad2_state;
-__gshared ushort pad1_repeat;       // $0069 - Repeated buttons on Controller 1
-__gshared ushort pad2_repeat;       // $006B - Repeated buttons on Controller 2
-__gshared ushort pad1_press;        // $006D - Pressed buttons on Controller 1
-__gshared ushort pad2_press;        // $006F - Pressed buttons on Controller 2
-
-
-__gshared ubyte Unknown7E0077;
-__gshared ubyte Unknown7E0078;
-__gshared ubyte Unknown7E0079;
-__gshared ubyte Unknown7E007A;
+__gshared ushort[2] pad_state;
+__gshared ushort[2] pad_held;       // $0069 - Held buttons on Controllers
+__gshared ushort[2] pad_press;        // $006D - Pressed buttons on Controllers
+__gshared ushort[2] Unknown7E0071;
+__gshared ushort Unknown7E0075;
+__gshared ushort[2] Unknown7E0077;
 __gshared ubyte Unknown7E007B;
 __gshared ubyte Unknown7E007C;
-__gshared ubyte Unknown7E007D;
-__gshared ubyte Unknown7E007E;
+__gshared Unknown7E007DEntry* Unknown7E007D;
 __gshared ubyte Unknown7E007F;
 __gshared ubyte Unknown7E0080;
 __gshared short Unknown7E0081;
 __gshared short Unknown7E0083;
-__gshared short Unknown7E0085;
+__gshared ubyte* Unknown7E0085;
 __gshared short Unknown7E0087;
 __gshared short Unknown7E0089;
 __gshared short Unknown7E008B;
@@ -285,9 +278,11 @@ __gshared short Unknown7E5DDA;           // $5DDA
 
 __gshared short Unknown7E5E02;           // $5E02
 __gshared short Unknown7E5E04;           // $5E04
-__gshared short var5E6E;           // $5E6E - I have this labeled as "word-wrap flag"...
+__gshared short Unknown7E5E6E;           // $5E6E - I have this labeled as "word-wrap flag"...
 
 __gshared ubyte Unknown7E5E79;           // $5E79 - Mystery flag
+
+__gshared ushort[0x380] bg2Buffer;           // $7DFE
 
 __gshared WinStat[9]  WindowStats;    // $8650
 
@@ -316,6 +311,10 @@ __gshared short  var9686;           // $9686
 __gshared short  var9688;           // $9688
 __gshared short  var968A;           // $968A
 __gshared short Unknown7E968C;           // $968C
+
+__gshared ubyte Unknown7E9696;           // $9696
+__gshared ubyte Unknown7E9697;           // $9697
+__gshared ubyte Unknown7E9698;           // $9698
 
 __gshared ushort Unknown7E9E23;           // $9E23
 __gshared ushort Unknown7E9E25;           // $9E25
@@ -391,6 +390,7 @@ __gshared ushort CurrentMusicTrack;         // $B53B
 
 __gshared ushort SectorBoundaryBehaviourFlag;         // $B549
 
+__gshared ubyte[0x8000] Unknown7F0000;
 __gshared ushort[0x8000] Unknown7F8000;
 
 

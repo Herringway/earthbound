@@ -144,46 +144,46 @@ label2:
     for (dp1E = 0; dp1E < 10; dp1E++) {
         UnknownC12E42();
 
-        if (pad1_press & PAD_UP) {
+        if (pad_press[0] & PAD_UP) {
             dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, -1, 0, 3, dp04.text_x, dp24.height);
             goto label3;
         }
 
-        if (pad1_press & PAD_LEFT) {
+        if (pad_press[0] & PAD_LEFT) {
             dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 0, -1, 2, dp24.width, dp04.text_y);
             goto label3;
         }
 
-        if (pad1_press & PAD_DOWN) {
+        if (pad_press[0] & PAD_DOWN) {
             dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 1, 0, 3, dp04.text_x, -1);
             goto label3;
         }
 
-        if (pad1_press & PAD_RIGHT) {
+        if (pad_press[0] & PAD_RIGHT) {
             dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 0, 1, 2, -1, dp04.text_y);
             goto label3;
         }
 
-        if (pad1_repeat & PAD_UP) {
+        if (pad_held[0] & PAD_UP) {
             dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, -1, 0, 3);
             goto label3;
         }
 
-        if (pad1_repeat & PAD_LEFT) {
+        if (pad_held[0] & PAD_LEFT) {
             dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, 0, -1, 2);
             goto label3;
         }
 
-        if (pad1_repeat & PAD_DOWN) {
+        if (pad_held[0] & PAD_DOWN) {
             dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, 1, 0, 3);
             goto label3;
         }
 
-        if (pad1_repeat & PAD_RIGHT) {
+        if (pad_held[0] & PAD_RIGHT) {
             dp1C = UnknownC20B65(dp04.text_x, dp04.text_y, 0, 1, 2);
         }
 
-        if (pad1_press & (PAD_A|PAD_L)) {
+        if (pad_press[0] & (PAD_A|PAD_L)) {
             SetInstaprint();
             if (dp04.page) {        // field06
                 PlaySfx(dp04.sfx);  // field0E
@@ -191,7 +191,7 @@ label2:
                 UnknownC10D60(0x2F);   // Remove cursor from window?
                 Win_SetTextColor(6);
 
-                if (var5E6E) {
+                if (Unknown7E5E6E) {
                     if (var7EB49D != 1) {
                         if (CurrentFocusWindow == 19) {
                             UnknownC43B15();
@@ -231,7 +231,7 @@ label2:
             goto label1;        // Back to the start....
         }
 
-        if ((pad1_press & (PAD_B|PAD_SELECT)) && cancelable == 1) {
+        if ((pad_press[0] & (PAD_B|PAD_SELECT)) && cancelable == 1) {
             PlaySfx(2);
             return 0;
         }

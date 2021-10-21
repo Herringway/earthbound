@@ -535,6 +535,14 @@ enum Sfx {
 	UNKNOWN7F = 127,
 }
 
+enum ActionScript {
+	Unknown786 = 786
+}
+
+enum OverworldSprite {
+	MiniGhost = 264
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -850,4 +858,9 @@ struct LoadedItemTransformation {
 	ubyte sfxFrequency;
 	ubyte sfxCountdown;
 	ubyte transformationCountdown;
+}
+
+struct Unknown7E007DEntry {
+	ubyte unknown0;
+	ushort unknown1;
 }

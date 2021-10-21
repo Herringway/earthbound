@@ -270,6 +270,9 @@ void UnknownC47F87() {
     UnknownC0856B(8);
 }
 
+// $C4800B
+void UndrawFlyoverText();
+
 // $C48ECE
 short IsValidItemTransformation(short arg1) {
     if (LoadedItemTransformations[arg1].transformationCountdown != 0) {
@@ -369,8 +372,79 @@ short UnknownC490EE() {
     return ((UnknownC41EFF(gameState.leaderXCoordinate, gameState.leaderYCoordinate, EntityAbsXTable[x04], EntityAbsYTable[x04]) + 0x1000) / 0x2000) + 2;
 }
 
+immutable ubyte*[8] FlyoverTextPointers;
+
+//$C49740
+void UnknownC49740() {
+    memcpy(palettes.ptr, Unknown7F0000.ptr, 0x200);
+    UnknownC0856B(0x18);
+}
+
+//$C49A56
+void UnknownC49A56();
+
+//$C49B6E
+void UnknownC49B6E(short);
+
+//$C49C56
+void UnknownC49C56(short);
+
+//$C49CA8
+void UnknownC49CA8(ubyte);
+
+//$C49CC3
+void UnknownC49CC3(ubyte, short);
+
+//$C49D16
+void UnknownC49D16(ubyte, short, short);
+
 //$C49EC4
-void UnknownC49EC4(short id) {}
+void UnknownC49EC4(short id) {
+    ushort x02 = EntityTickCallbackFlags[23];
+    EntityTickCallbackFlags[23] |= 0xC000;
+    UnknownC49A56();
+    immutable(ubyte)* x06 = FlyoverTextPointers[id];
+    Unknown7E5E6E = 0;
+    while (true) {
+        switch(*(x06++)) {
+            case 0:
+                TM_MIRROR = 4;
+                FadeInWithMosaic(1, 3, 0);
+                for (short i = 0; i < 0xB4; i++) {
+                    WaitUntilNextFrame();
+                }
+                FadeOutWithMosaic(1, 3, 0);
+                TM_MIRROR = 0x17;
+                ushort* buf = bg2Buffer.ptr;
+                for (short i = 0x380; i != 0; i--) {
+                    *(buf++) = 0;
+                }
+                Unknown7E5E6E = 0xFF;
+                UnknownC08726();
+                UndrawFlyoverText();
+                EntityTickCallbackFlags[23] = x02;
+                UnknownC08744();
+                return;
+            case 2:
+                Unknown7E9F2D = *(x06++);
+                break;
+            case 9:
+                UnknownC49B6E(0x18);
+                WaitUntilNextFrame();
+                UnknownC49C56(0x18);
+                break;
+            case 1:
+                UnknownC49CA8(*(x06++));
+                break;
+            case 8:
+                UnknownC49CC3(*(x06++), 0xC);
+                break;
+            default:
+                UnknownC49D16(*(x06 - 1), 0, 0xC);
+                break;
+        }
+    }
+}
 
 //$C4A7B0
 short UnknownC4A7B0();

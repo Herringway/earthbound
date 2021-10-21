@@ -1,5 +1,6 @@
 module earthbound.bank02;
 
+import earthbound.commondefs;
 import earthbound.bank00;
 import earthbound.globals;
 
@@ -80,7 +81,76 @@ immutable short[32] UnknownC20958 = [
 ushort UnknownC20B65(short, short, short, short, short);
 
 // $C2109F
-void HPPPRoller();
+void HPPPRoller() {
+	if (Unknown7E9697 != 0) {
+		return;
+	}
+	if (gameState.partyMembers[Unknown7E0002 & 3] == 0) {
+		return;
+	}
+	if (gameState.partyMembers[Unknown7E0002 & 3] > 4) {
+		return;
+	}
+	PartyCharacter* x10 = &PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3]];
+	if ((Unknown7E9698 == 0) && ((x10.unknown67 & 1) != 0)) {
+		if (x10.current_hp < x10.current_hp_target) {
+			x10.unknown67 += ((Unknown7E9696 == 0) && (Unknown7E9698 != 0)) ? 0x64000 : UnknownC20F58(); // these fields aren't uints. what's going on here...?
+			if (x10.current_hp >= x10.current_hp_target) {
+				x10.current_hp = x10.current_hp_target;
+				x10.unknown67 = 1;
+			}
+		} else if ((x10.current_hp == x10.current_hp_target) && (x10.unknown67 == 1)) {
+			x10.unknown67 = 0;
+		} else {
+			x10.unknown67 += (Unknown7E9698 != 0) ? 0x64000 : UnknownC20F58(); // these fields aren't uints. what's going on here...?
+			if ((x10.current_hp < x10.current_hp_target) || (x10.current_hp > 0x1000)) {
+				x10.current_hp = x10.current_hp_target;
+				x10.unknown67 = 1;
+			}
+		}
+	} else if ((x10.unknown67 & 1) == 1) {
+		if (x10.current_hp != x10.current_hp_target) {
+			x10.unknown67 = 1;
+		}
+	}
+	if ((Unknown7E9698 == 0) && ((x10.unknown73 & 1) != 0)) {
+		if (x10.current_pp < x10.current_pp_target) {
+			x10.unknown73 += (Unknown7E9698 != 0) ?  0x64000 : 0x19000; // these fields aren't uints. what's going on here...?
+			if (x10.current_pp >= x10.current_pp_target) {
+				x10.current_pp = x10.current_pp_target;
+				x10.unknown67 = 1;
+			}
+		} else if ((x10.current_pp == x10.current_pp_target) && (x10.unknown73 == 1)) {
+			x10.unknown73 = 0;
+		} else {
+			x10.unknown73 += (Unknown7E9698 != 0) ? 0x64000 : 0x19000; // these fields aren't uints. what's going on here...?
+			if ((x10.current_pp < x10.current_pp_target) || (x10.current_pp > 0x1000)) {
+				x10.current_pp = x10.current_pp_target;
+				x10.unknown73 = 1;
+			}
+		}
+	} else if ((x10.unknown73) == 0) {
+		if (x10.current_pp != x10.current_pp_target) {
+			x10.unknown73 = 1;
+		}
+	}
+	if (Unknown7E9698 == 0) {
+		return;
+	}
+	if (x10.current_hp == 999) {
+		x10.current_hp_target = 1;
+	} else if (x10.current_hp == 1) {
+		x10.current_hp_target = 999;
+	}
+	if (x10.current_pp == 999) {
+		x10.current_pp_target = 0;
+	} else if (x10.current_pp == 0) {
+		x10.current_pp_target = 999;
+	}
+}
+
+// $C20F58
+uint UnknownC20F58();
 
 // $C213AC
 void UnknownC213AC();

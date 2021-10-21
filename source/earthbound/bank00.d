@@ -49,6 +49,9 @@ void Function14(size_t index1, size_t index2);
 // $C006F2
 void UnknownC006F2();
 
+// $C01E49
+short CreateEntity(short sprite, short actionScript, short index, short x, short y);
+
 // $C02140
 void UnknownC02140(short);
 
@@ -73,7 +76,7 @@ short MapInputToDirection(short style) {
         return -1;
     }
     style = AllowedInputDirections[style];
-    switch (pad1_state & (PAD_UP | PAD_DOWN | PAD_LEFT | PAD_RIGHT)) {
+    switch (pad_state[0] & (PAD_UP | PAD_DOWN | PAD_LEFT | PAD_RIGHT)) {
         case PAD_UP:
             if ((style & DirectionMask.Up) != 0) {
                 result = Direction.Up;
@@ -316,7 +319,22 @@ immutable ushort[] UNKNOWN_C06E02 = [
 void ProcessQueuedInteractions();
 
 // $C07716
-void UnknownC07716();
+void UnknownC07716() {
+    if ((EntityTickCallbackFlags[gameState.currentPartyMembers] & (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) != 0) {
+        return;
+    }
+    if ((EntitySpriteMapFlags[gameState.currentPartyMembers] & 0x8000) != 0) {
+        return;
+    }
+    if (gameState.unknownB0 == 2) {
+        return;
+    }
+    Unknown7E9F6B = CreateEntity(OverworldSprite.MiniGhost, ActionScript.Unknown786, -1, 0, 0);
+    EntityAnimationFrames[Unknown7E9F6B] = -1;
+    EntityScreenYTable[Unknown7E9F6B] = -256;
+    EntityAbsYTable[Unknown7E9F6B] = -256;
+    EntityAbsXTable[Unknown7E9F6B] = -256;
+}
 
 // $C0777A
 void UnknownC0777A() {
@@ -398,14 +416,139 @@ void UnknownC07C5B() {
     }
 }
 
+// $C0841B
+void ReadJoypad() {
+    if (Unknown7E007B == 0) {
+        goto l1;
+    }
+    if ((Unknown7E007B & 0x4000) == 0) {
+        goto l1;
+    }
+    if (--Unknown7E0081 != 0) {
+        return;
+    }
+    Unknown7E007D++;
+    if (Unknown7E007D[0].unknown0 == 0) {
+        goto l0;
+    }
+    Unknown7E0081 = Unknown7E007D[0].unknown0;
+    Unknown7E0077[0] = Unknown7E007D[0].unknown1;
+    Unknown7E0077[1] = Unknown7E007D[0].unknown1;
+    return;
+
+    l0:
+    Unknown7E007B &= 0xBFFF;
+
+    l1:
+    Unknown7E0077[1] = JOYPAD_2_DATA;
+    Unknown7E0077[0] = JOYPAD_1_DATA;
+}
+
+// $C08456
+void UnknownC08456() {
+    if ((Unknown7E007B & 0x8000) == 0) {
+        return;
+    }
+    if ((Unknown7E0077[0] | Unknown7E0077[1]) == Unknown7E008B) {
+        Unknown7E0089++;
+        if (Unknown7E0089 != 0xFF) {
+            return;
+        }
+    }
+    *Unknown7E0085 = cast(ubyte)Unknown7E0089;
+    Unknown7E0085++;
+    *cast(ushort*)Unknown7E0085 = Unknown7E008B;
+    Unknown7E0085++;
+    Unknown7E0085++;
+    Unknown7E008B = Unknown7E0077[0] | Unknown7E0077[1];
+    Unknown7E0089 = 0;
+    Unknown7E0089++;
+    *Unknown7E0085 = 0;
+    if (Unknown7E0085 !is null) { //not sure about this... but what is BPL on a pointer supposed to mean?
+        return;
+    }
+    Unknown7E007B &= 0x7FFF;
+}
+
+// $C08496
+void UnknownC08496() {
+    while ((HVBJOY & 1) == 1) {}
+    ReadJoypad();
+    UnknownC08456();
+    short x = 1;
+
+    l1:
+    Unknown7E0075 = Unknown7E0077[x] & 0xFFF0;
+    pad_press[x] = (pad_state[x] ^ 0xFFFF) & Unknown7E0075;
+    bool eq = pad_state[x] == Unknown7E0075;
+    pad_state[x] = Unknown7E0075;
+    if (eq) {
+        goto l2;
+    }
+    pad_held[x] = pad_press[x];
+    Unknown7E0071[x] = 0x14;
+    goto l4;
+
+    l2:
+    if (Unknown7E0071[x] == 0) {
+        goto l3;
+    }
+    pad_held[x] = 0;
+    goto l4;
+
+    l3:
+    pad_held[x] = Unknown7E0075;
+    Unknown7E0071[x] = 3;
+
+    l4:
+    if (x-- > 0) {
+        goto l1;
+    }
+    if (Debug == 0) {
+        pad_state[0] |= pad_state[1];
+        pad_held[0] |= pad_held[1];
+        pad_press[0] |= pad_press[1];
+    }
+    if (pad_press[0] != 0) {
+        Unknown7E0A34++;
+    }
+}
+
 // $C0856B
 void UnknownC0856B(short);
 
 // $C08616 - Copy data to VRAM (mode, count, address, data)
 void CopyToVram(short, short, ushort, ubyte* /* 32-bit pointer */);
 
+// $C08726
+void UnknownC08726() {
+    INIDISP_MIRROR = 0x80;
+    HDMAEN_MIRROR = 0;
+    Unknown7E0028 = 0;
+    Unknown7E002B = 0;
+    while (Unknown7E002B == 0) {}
+    HDMAEN = 0;
+}
+
+// $C08744
+void UnknownC08744() {
+    INIDISP_MIRROR = 0x80;
+    Unknown7E002B = 0;
+    while (Unknown7E002B == 0) {}
+}
+
 // $C08756
-void WaitUntilNextFrame();
+void WaitUntilNextFrame() {
+    if ((Unknown7E001E & 0xB0) != 0) {
+        while (Unknown7E002B == 0) {}
+        Unknown7E002B = 0;
+    } else {
+        while (HVBJOY < 0) {}
+        while (HVBJOY >= 0) {}
+    }
+    Unknown7E002B = 0;
+    UnknownC08496();
+}
 
 // $C087CE
 void FadeInWithMosaic(short, short, short);
@@ -421,6 +564,7 @@ void FadeOut(short, short);
 
 // $C088B1
 void OAMClear();
+
 // $C08B19
 void UnknownC08B19() {
     Unknown7E0009 = 0;
@@ -516,21 +660,21 @@ void ebMain() {
             if (!BattleDebug) {
                 InitBattleOverworld();
                 Unknown7E5D74++;
-            } else if (((pad1_press & (PAD_A | PAD_L)) != 0) || (gameState.walkingStyle == WalkingStyle.Bicycle)) {
+            } else if (((pad_press[0] & (PAD_A | PAD_L)) != 0) || (gameState.walkingStyle == WalkingStyle.Bicycle)) {
                 UnknownC0943C();
                 GetOffBicycle();
                 UnknownC09451();
                 continue;
             }
             if (Debug) {
-                if (((pad1_state & (PAD_B | PAD_SELECT)) != 0) && (((pad1_press & PAD_R)) != 0)) {
+                if (((pad_state[0] & (PAD_B | PAD_SELECT)) != 0) && (((pad_press[0] & PAD_R)) != 0)) {
                     DebugYButtonMenu();
                     continue;
                 }
-                if ((pad2_press & PAD_A) != 0) {
+                if ((pad_press[1] & PAD_A) != 0) {
                     UnknownC490EE();
                 }
-                if ((pad2_press & PAD_B) != 0) {
+                if ((pad_press[1] & PAD_B) != 0) {
                     UnknownC4E366();
                 }
             }
@@ -543,20 +687,20 @@ void ebMain() {
             if (Unknown7E5D74) {
                 Unknown7E5D74--;
             } else if (!Unknown7E5D9A) {
-                if ((pad1_press & PAD_A) != 0 ) {
+                if ((pad_press[0] & PAD_A) != 0 ) {
                     OpenMenuButton();
-                } else if (((pad1_press & (PAD_B | PAD_SELECT)) != 0) && (gameState.walkingStyle != WalkingStyle.Bicycle)) {
+                } else if (((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) && (gameState.walkingStyle != WalkingStyle.Bicycle)) {
                     OpenHPPPDisplay();
-                } else if ((pad1_press & PAD_X) != 0) {
+                } else if ((pad_press[0] & PAD_X) != 0) {
                     ShowTownMap();
-                } else if ((pad1_press & PAD_L) != 0) {
+                } else if ((pad_press[0] & PAD_L) != 0) {
                     OpenMenuButtonCheckTalk();
                 }
             }
             if (TeleportDestination) {
                 TeleportMainloop();
             }
-            if (!Debug && ((pad2_press & PAD_B) != 0)) {
+            if (!Debug && ((pad_press[1] & PAD_B) != 0)) {
                 for (int i = 0; i < TOTAL_PARTY_COUNT; i++) {
                     PartyCharacters[i].current_hp_target = PartyCharacters[i].max_hp;
                     PartyCharacters[i].current_pp_target = PartyCharacters[i].max_pp;
@@ -566,7 +710,7 @@ void ebMain() {
         if (UnknownC04FFE() && !Spawn()) {
             //longjmp(&jmpbuf1, 0);
         }
-        if (Debug && ((pad1_state & PAD_START) != 0) && ((pad1_state & PAD_SELECT) == 0)) {
+        if (Debug && ((pad_state[0] & PAD_START) != 0) && ((pad_state[0] & PAD_SELECT) == 0)) {
             break;
         }
     }
@@ -577,7 +721,7 @@ void UnknownC0DA31();
 
 // $C0DB0F
 void UnknownC0DB0F() {
-    if (pad2_state & PAD_SELECT) {
+    if (pad_state[1] & PAD_SELECT) {
         UnknownC0DA31();
         return;
     }
