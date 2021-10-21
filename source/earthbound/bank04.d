@@ -141,7 +141,14 @@ void UnknownC43CAA() {
 }
 
 // $C43CD2 - Set text position on focused window (for menu options)
-void UnknownC43CD2(MenuOpt* opt, short x, short y);
+void UnknownC43CD2(MenuOpt* opt, short x, short y) {
+    UnknownC438A5F(x, y);
+    if (opt.pixel_align != 0) {
+        Unknown7E9E23 += opt.pixel_align;
+        memset(&Unknown7E3492[Unknown7E9E25][0], 0xFF, 0x20);
+    }
+    Unknown7E5E79 = 0;
+}
 
 //$C43DDB
 void UnknownC43DDB(MenuOpt* menuEntry) {

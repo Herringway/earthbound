@@ -229,6 +229,9 @@ __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_36; //$2B6E
 
 __gshared short[MAX_ENTITIES] EntityDrawSorting; //$280C
 
+// what is this???
+__gshared ubyte[32][52] Unknown7E3492; //$3492
+
 __gshared short Debug; //$436C
 
 __gshared short Unknown7E4472; //$4472
@@ -283,7 +286,7 @@ __gshared short Unknown7E5E02;           // $5E02
 __gshared short Unknown7E5E04;           // $5E04
 __gshared short var5E6E;           // $5E6E - I have this labeled as "word-wrap flag"...
 
-__gshared ubyte  var5E79;           // $5E79 - Mystery flag
+__gshared ubyte Unknown7E5E79;           // $5E79 - Mystery flag
 
 __gshared WinStat[9]  WindowStats;    // $8650
 

@@ -61,7 +61,7 @@ int Win_MenuSelection(int cancelable) {
 
     WinStat *dp24 = focused_window_stat; // 16-bit pointer
 
-    if (var5E79) {
+    if (Unknown7E5E79) {
         dp24.current_option = var9688;  // field2B
         dp24.selected_option = var968A; // field2F
     }
@@ -116,7 +116,7 @@ label1:
     }
 
     ClearInstaprint();
-    if (var5E79) {
+    if (Unknown7E5E79) {
         dp04.text_x = var9684; // field08
         dp04.text_y = var9686; // field0A
     }
