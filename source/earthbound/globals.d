@@ -7,8 +7,7 @@ __gshared ubyte Unknown7E0001;
 __gshared ubyte Unknown7E0002;
 __gshared ushort Unknown7E0003;
 __gshared ushort Unknown7E0005;
-//Some kind of pointer?
-__gshared ushort Unknown7E0007;
+__gshared ushort OAMHighTableAddr;
 __gshared ubyte Unknown7E0009;
 __gshared ubyte Unknown7E000A;
 __gshared ubyte Unknown7E000B;
@@ -41,10 +40,10 @@ __gshared ubyte Unknown7E0029;
 __gshared ubyte Unknown7E002A;
 __gshared ubyte Unknown7E002B;
 //the ID of the frame being/about to be displayed, multiplied by 2
-__gshared ubyte NEXT_FRAME_DISPLAY_ID;
+__gshared ubyte NextFrameDisplayID;
 __gshared ubyte Unknown7E002D;
 //the ID of the next frame to buffer as a byte offset - 0 for buffer 0, 2 for buffer 1
-__gshared ubyte NEXT_FRAME_BUF_ID;
+__gshared ubyte NextFrameBufferID;
 __gshared ubyte Unknown7E002F;
 //DMA table offset?
 __gshared ubyte Unknown7E0030;
@@ -133,26 +132,26 @@ __gshared ubyte Unknown7E00D1;
 __gshared ubyte Unknown7E00D2;
 __gshared short Unknown7E00D3;
 
-__gshared ushort[16][32] palettes;
+__gshared ushort[16][32] palettes; //$0200
 
 auto ref CurrentTextPalette() { return palettes[0]; }
 
 
 __gshared short Unknown7E0A34;
 __gshared short Unknown7E0A36;
-__gshared short Unknown7E0A38;
-__gshared short Unknown7E0A3A;
-__gshared short Unknown7E0A3C;
-__gshared short Unknown7E0A3E;
-__gshared short Unknown7E0A40;
-__gshared short Unknown7E0A42;
-__gshared short Unknown7E0A44;
-__gshared short Unknown7E0A46;
+__gshared short NewEntityVar0;
+__gshared short NewEntityVar1;
+__gshared short NewEntityVar2;
+__gshared short NewEntityVar3;
+__gshared short NewEntityVar4;
+__gshared short NewEntityVar5;
+__gshared short NewEntityVar6;
+__gshared short NewEntityVar7;
 __gshared short Unknown7E0A48;
 __gshared short Unknown7E0A4A;
-__gshared short Unknown7E0A4C;
-__gshared short Unknown7E0A4E;
-__gshared short Unknown7E0A50;
+__gshared short EntityAllocationMinSlot; //$0A4C
+__gshared short EntityAllocationMaxSlot; //$0A4E
+__gshared short FirstEntity;
 __gshared short Unknown7E0A52;
 __gshared short Unknown7E0A54;
 __gshared short Unknown7E0A56;
@@ -160,36 +159,36 @@ __gshared short Unknown7E0A58;
 __gshared void* MOVEMENT_42_LOADED_PTR;
 __gshared short Unknown7E0A5E;
 __gshared short Unknown7E0A60;
-__gshared short[MAX_ENTITIES] EntityScriptTable;
-__gshared short[MAX_ENTITIES] Unknown30x2Table1;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_2;
-__gshared short[MAX_ENTITIES] EntityScreenXTable;
-__gshared short[MAX_ENTITIES] EntityScreenYTable;
-__gshared short[MAX_ENTITIES] EntityAbsXTable;
-__gshared short[MAX_ENTITIES] EntityAbsYTable;
-__gshared short[MAX_ENTITIES] EntityAbsZTable;
-__gshared short[MAX_ENTITIES] ENTITY_ABS_X_FRACTION_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_ABS_Y_FRACTION_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_ABS_Z_FRACTION_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_DELTA_X_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_DELTA_Y_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_DELTA_Z_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_DELTA_X_FRACTION_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_DELTA_Y_FRACTION_TABLE;
-__gshared short[MAX_ENTITIES] ENTITY_DELTA_Z_FRACTION_TABLE;
-__gshared short[MAX_ENTITIES] EntityScriptVar0Table;
-__gshared short[MAX_ENTITIES] EntityScriptVar1Table;
-__gshared short[MAX_ENTITIES] EntityScriptVar2Table;
-__gshared short[MAX_ENTITIES] EntityScriptVar3Table;
-__gshared short[MAX_ENTITIES] EntityScriptVar4Table;
-__gshared short[MAX_ENTITIES] EntityScriptVar5Table;
-__gshared short[MAX_ENTITIES] EntityScriptVar6Table;
-__gshared short[MAX_ENTITIES] EntityScriptVar7Table;
-__gshared short[MAX_ENTITIES] Unknown30x2Table11;
+__gshared short[MAX_ENTITIES] EntityScriptTable; //$0A62
+__gshared short[MAX_ENTITIES] EntityNextEntityTable; //$0A9E
+__gshared short[MAX_ENTITIES] EntityScriptIndexTable; //$0ADA
+__gshared short[MAX_ENTITIES] EntityScreenXTable; //$0B16
+__gshared short[MAX_ENTITIES] EntityScreenYTable; //$0B52
+__gshared short[MAX_ENTITIES] EntityAbsXTable; //$0B8E
+__gshared short[MAX_ENTITIES] EntityAbsYTable; //$0BCA
+__gshared short[MAX_ENTITIES] EntityAbsZTable; //$0C06
+__gshared short[MAX_ENTITIES] EntityAbsXFractionTable; //$0C42
+__gshared short[MAX_ENTITIES] EntityAbsYFractionTable; //$0C7E
+__gshared short[MAX_ENTITIES] EntityAbsZFractionTable; //$0CBA
+__gshared short[MAX_ENTITIES] EntityDeltaXTable; //$0CF6
+__gshared short[MAX_ENTITIES] EntityDeltaYTable; //$0D32
+__gshared short[MAX_ENTITIES] EntityDeltaZTable; //$0D6E
+__gshared short[MAX_ENTITIES] EntityDeltaXFractionTable; //$0DAA
+__gshared short[MAX_ENTITIES] EntityDeltaYFractionTable; //$0DE6
+__gshared short[MAX_ENTITIES] EntityDeltaZFractionTable; //$0E22
+__gshared short[MAX_ENTITIES] EntityScriptVar0Table; //$0E5E
+__gshared short[MAX_ENTITIES] EntityScriptVar1Table; //$0E9A
+__gshared short[MAX_ENTITIES] EntityScriptVar2Table; //$0ED6
+__gshared short[MAX_ENTITIES] EntityScriptVar3Table; //$0F12
+__gshared short[MAX_ENTITIES] EntityScriptVar4Table; //$0F4E
+__gshared short[MAX_ENTITIES] EntityScriptVar5Table; //$0F8A
+__gshared short[MAX_ENTITIES] EntityScriptVar6Table; //$0FC6
+__gshared short[MAX_ENTITIES] EntityScriptVar7Table; //$1002
+__gshared short[MAX_ENTITIES] EntityDrawPriority; //$103E
 
 // original code isn't very portable...
-/+__gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_LOW;
-__gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_HIGH;+/
+/+__gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_LOW; //$107A
+__gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_HIGH; //$10B6+/
 
 __gshared ushort[MAX_ENTITIES] EntityTickCallbackFlags;
 __gshared void function()[MAX_ENTITIES] EntityTickCallbacks;
@@ -211,14 +210,24 @@ __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_18;
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19;
 __gshared short UNKNOWN_7E125A;
 
+
+__gshared ubyte[8] soundEffectQueue; //$1AC2
+__gshared ubyte Unknown7E1ACA; //$1ACA
+__gshared ubyte Unknown7E1ACB; //$1ACB
+__gshared short Unknown7E1ACC; //$1ACC
+__gshared short Unknown7E1ACE; //$1ACE
+
 __gshared short[64] Unknown7E1AD6; //$1AD6
+
+__gshared ushort[MAX_ENTITIES] EntityCollidedObjects; //$289E
 
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; //$2A42
 
 __gshared short[MAX_ENTITIES] EntityDirections; //$2AF6
-
+__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_35; //$2B32
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_36; //$2B6E
 
+__gshared ushort[MAX_ENTITIES] EntityTPTEntries; //$2C9A
 __gshared short[MAX_ENTITIES] EntityTPTEntrySprites; //$2CD6
 
 __gshared short[MAX_ENTITIES] EntityDrawSorting; //$280C
@@ -230,6 +239,12 @@ __gshared short Debug; //$436C
 
 __gshared short Unknown7E4472; //$4472
 __gshared short Unknown7E4474; //$4474
+
+__gshared ubyte[88] Unknown7E4A00; // $4A00
+__gshared short Unknown7E4A58; // $4A58
+__gshared short Unknown7E4A5A; // $4A5A
+
+__gshared short Unknown7E4A5E; // $4A5E
 
 __gshared short Unknown7E4DB8; // $4DB8
 __gshared short BattleSwirlFlag; // $4DBA
@@ -273,11 +288,15 @@ __gshared short Unknown7E5DBA;           // $5DBA
 
 __gshared short Unknown7E5DD4;           // $5DD4
 __gshared short Unknown7E5DD6;           // $5DD6
+__gshared short Unknown7E5DD8;           // $5DD8
 
 __gshared short Unknown7E5DDA;           // $5DDA
 
 __gshared short Unknown7E5E02;           // $5E02
 __gshared short Unknown7E5E04;           // $5E04
+
+__gshared ubyte* Unknown7E5E38;           // $5E38
+
 __gshared short Unknown7E5E6E;           // $5E6E - I have this labeled as "word-wrap flag"...
 
 __gshared ubyte Unknown7E5E79;           // $5E79 - Mystery flag
@@ -288,6 +307,8 @@ __gshared WinStat[9]  WindowStats;    // $8650
 
 __gshared Game_State gameState;
 __gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters;
+__gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags;
+
 
 __gshared short  window_head;       // $88E0 - Head of the window linked list
 __gshared short  window_tail;       // $88E2 - Tail of the window linked list
@@ -321,6 +342,8 @@ __gshared ubyte Unknown7E9698;           // $9698
 
 __gshared ushort Unknown7E9E23;           // $9E23
 __gshared ushort Unknown7E9E25;           // $9E25
+
+__gshared Unknown7E9E3CEntry[4] Unknown7E9E3C;           // $9E3C
 
 __gshared ushort DadPhoneTimer;           // $9E54
 
@@ -367,25 +390,32 @@ __gshared ubyte Unknown7E9F79;           // $9F79
 __gshared Battler* currentAttacker;           // $A970
 __gshared Battler* currentTarget;           // $A972
 
-__gshared ubyte  *path_matrix_buffer;      // [$B3FC] Matrix buffer
-__gshared ushort  path_matrix_rows;        // [$B400] Matrix rows
-__gshared ushort  path_matrix_cols;        // [$B402] Matrix columns
-__gshared ushort  path_matrix_border;      // [$B404] Matrix start point border size (for offscreen deliverymen)
-__gshared ushort  path_matrix_size;        // [$B406] Matrix size (path_matrix_rows * path_matrix_cols)
-__gshared ushort *path_B408;               // [$B408] Pathfinder unknown int array start pointer
-__gshared ushort *path_B40A;               // [$B40A] Pathfinder unknown int array end pointer
-__gshared ushort *path_B40C;               // [$B40C] Pathfinder unknown int array curr pointer #1
-__gshared ushort *path_B40E;               // [$B40E] Pathfinder unknown int array curr pointer #2
-__gshared short[4]   path_cardinal_offset; // [$B410] Pathfinder matrix offset increments for each cardinal (N/E/S/W) direction
-__gshared VecYX[4]     path_cardinal_index;  // [$B418] Pathfinder matrix index increments for each cardinal direction
-__gshared VecYX[4]     path_diagonal_index;  // [$B428] Pathfinder matrix index increments for each ordinal (NE/SE/SW/NW) direction
-__gshared void     *path_heap_start;         // [$B438] Pathfinder heap start pointer
-__gshared void     *path_heap_current;       // [$B43A] Pathfinder heap current pointer
-__gshared void     *path_heap_end;           // [$B43C] Pathfinder heap end pointer
+__gshared ubyte* path_matrix_buffer;      // [$B3FC] Matrix buffer
+__gshared ushort path_matrix_rows;        // [$B400] Matrix rows
+__gshared ushort path_matrix_cols;        // [$B402] Matrix columns
+__gshared ushort path_matrix_border;      // [$B404] Matrix start point border size (for offscreen deliverymen)
+__gshared ushort path_matrix_size;        // [$B406] Matrix size (path_matrix_rows * path_matrix_cols)
+__gshared ushort* path_B408;               // [$B408] Pathfinder unknown int array start pointer
+__gshared ushort* path_B40A;               // [$B40A] Pathfinder unknown int array end pointer
+__gshared ushort* path_B40C;               // [$B40C] Pathfinder unknown int array curr pointer #1
+__gshared ushort* path_B40E;               // [$B40E] Pathfinder unknown int array curr pointer #2
+__gshared short[4] path_cardinal_offset; // [$B410] Pathfinder matrix offset increments for each cardinal (N/E/S/W) direction
+__gshared VecYX[4] path_cardinal_index;  // [$B418] Pathfinder matrix index increments for each cardinal direction
+__gshared VecYX[4] path_diagonal_index;  // [$B428] Pathfinder matrix index increments for each ordinal (NE/SE/SW/NW) direction
+__gshared void* path_heap_start;         // [$B438] Pathfinder heap start pointer
+__gshared void* path_heap_current;       // [$B43A] Pathfinder heap current pointer
+__gshared void* path_heap_end;           // [$B43C] Pathfinder heap end pointer
 
-__gshared ubyte  var7EB49D;         // $7EB49D - Addressed specifically using long addressing, why??
+__gshared ubyte  Unknown7EB49D;         // $7EB49D - Addressed specifically using long addressing, why??
 
 __gshared ubyte Unknown7EB4A2;         // $7EB4A2
+
+__gshared short Unknown7EB4A8;         // $7EB4A8
+
+__gshared short Unknown7EB4AE;         // $7EB4AE
+
+__gshared short Unknown7EB4B0;         // $7EB4B0
+__gshared short Unknown7EB4B2;         // $7EB4B2
 
 __gshared ubyte Unknown7EB4B6;         // $7EB4B6
 

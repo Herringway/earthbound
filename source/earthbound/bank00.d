@@ -4,18 +4,29 @@ import earthbound.commondefs;
 import earthbound.globals;
 import earthbound.hardware;
 import earthbound.bank01;
+import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank20;
 import earthbound.bank2F;
+import core.stdc.string;
 
+// $C00000
 short* ClearEntityDrawSortingTable() {
     EntityDrawSorting[] = 0;
     return EntityDrawSorting.ptr;
 }
 
-void OW_SetUpVRAM();
+// $C00013
+void OverworldSetupVRAM() {
+    UnknownC08D79(9);
+    SetBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
+    SetBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
+    SetOAMSize(0x62);
+}
 
-void OW_Initialize();
+void OverworldInitialize();
 
 void LoadTilesetAnim();
 
@@ -39,7 +50,7 @@ uint Func_C00434(uint arg1, uint arg2);
 void ColorMystery();
 
 // $C005E7
-void Function12();
+void UnknownC005E7();
 
 void LoadCollisionData(int tileset);
 
@@ -49,14 +60,50 @@ void Function14(size_t index1, size_t index2);
 // $C006F2
 void UnknownC006F2();
 
+// $C013F6
+void LoadMapAtPosition(short x, short y);
+
+// $C018F3
+void ReloadMap();
+
+// $C01A69
+void InitializeMiscObjectData() {
+    for (short i = 0; i < 0x1E; i++) {
+        UNKNOWN_30X2_TABLE_35[i] = 0;
+        EntityCollidedObjects[i] = 0xFFFF;
+        EntityTPTEntries[i] = 0xFFFF;
+    }
+}
+
+// $C01A86
+void UnknownC01A86();
+
+// $C01C11
+void AllocSpriteMem(short arg1, ubyte arg2) {
+    for (short i = 0; i < 0x58; i++) {
+        if (((Unknown7E4A00[i] & 0xFF) == (arg1 | 0x80)) || (arg1 == short.min)) {
+            Unknown7E4A00[i] = arg2;
+        }
+    }
+}
+
 // $C01E49
 short CreateEntity(short sprite, short actionScript, short index, short x, short y);
 
 // $C02140
 void UnknownC02140(short);
 
+// $C02D29
+void UnknownC02D29();
+
 // $C034D6
 void UpdateParty();
+
+// $C039E5
+void UnknownC039E5();
+
+// $C03A24
+void UnknownC03A24();
 
 // $C03C25
 void UnknownC03C25() {
@@ -298,7 +345,23 @@ short unknownC05F33(short x, short y, short entityID) {
 void UnknownC068F4(short, short);
 
 // $C069AF
-void UnknownC069AF();
+void UnknownC069AF() {
+    if (Unknown7E5DD8 != 0) {
+        return;
+    }
+    if (Unknown7E5DD6 == Unknown7E4DD4) {
+        return;
+    }
+    Unknown7E5DD4 = Unknown7E5DD6;
+    ChangeMusic(Unknown7E5DD6);
+    UnknownC0AC0C(Unknown7E5E38[3]);
+}
+
+// $C06B21
+void SpawnBuzzBuzz() {
+    //DisplayText(TextSpawnBuzzBuzz);
+    UnknownEF0EE8();
+}
 
 immutable ushort[] UNKNOWN_C06E02 = [
 	0x0008,
@@ -514,11 +577,14 @@ void UnknownC08496() {
     }
 }
 
+// $C0851C
+void UnknownC0851C(void function());
+
 // $C0856B
 void UnknownC0856B(short);
 
-// $C08616 - Copy data to VRAM (mode, count, address, data)
-void CopyToVram(short, short, ushort, ubyte* /* 32-bit pointer */);
+// $C08616 - Copy data to VRAM
+void CopyToVram(short mode, short count, ushort address, ubyte* data);
 
 // $C08726
 void UnknownC08726() {
@@ -573,7 +639,91 @@ void UnknownC08B19() {
 }
 
 // $C08B26
-void UpdateScreen();
+void UpdateScreen() {
+    UnknownC08B8E();
+    if (false /+Actually tests if the DBR is 0xFF, which should never happen+/) while(true) {}
+    ubyte Unknown7E000Atmp = Unknown7E000A;
+    if (Unknown7E000Atmp != 0x80) {
+        do {
+            Unknown7E000Atmp >>= 2;
+        } while ((Unknown7E000Atmp & 2) == 0);
+    }
+    OAMHighTableAddr = Unknown7E000Atmp;
+    BG1_X_POS_BUF[NextFrameBufferID - 1] = BG1_X_POS;
+    BG1_Y_POS_BUF[NextFrameBufferID - 1] = BG1_Y_POS;
+    BG2_X_POS_BUF[NextFrameBufferID - 1] = BG2_X_POS;
+    BG2_Y_POS_BUF[NextFrameBufferID - 1] = BG2_Y_POS;
+    BG3_X_POS_BUF[NextFrameBufferID - 1] = BG3_X_POS;
+    BG3_Y_POS_BUF[NextFrameBufferID - 1] = BG3_Y_POS;
+    BG4_X_POS_BUF[NextFrameBufferID - 1] = BG4_X_POS;
+    BG4_Y_POS_BUF[NextFrameBufferID - 1] = BG4_Y_POS;
+    NextFrameDisplayID = NextFrameBufferID;
+    NextFrameBufferID ^= 3;
+}
+
+// $C08B8E
+void UnknownC08B8E();
+
+// $C08D79
+void UnknownC08D79(ubyte arg1) {
+    Unknown7E000F &= 0xF0;
+    Unknown7E000F |= arg1;
+    BGMODE = Unknown7E000F;
+}
+
+// $C08D92
+void SetOAMSize(ubyte arg1) {
+    OBSEL_MIRROR = arg1;
+    OBSEL = arg1;
+}
+
+// $C08D9E
+void SetBG1VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
+    Unknown7E0011 = arg1 & 3;
+    Unknown7E0011 |= ((arg2 >> 8) & 0xFC);
+    BG1SC = Unknown7E0011;
+    BG12NBA_MIRROR &= 0xF;
+    BG1_X_POS = 0;
+    BG1_Y_POS = 0;
+    BG12NBA_MIRROR |= (arg3 >> 12);
+    BG12NBA = BG12NBA_MIRROR;
+}
+
+// $C08DDE
+void SetBG2VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
+    Unknown7E0012 = arg1 & 3;
+    Unknown7E0012 |= ((arg2 >> 8) & 0xFC);
+    BG2SC = Unknown7E0012;
+    BG12NBA_MIRROR &= 0xF;
+    BG2_X_POS = 0;
+    BG2_Y_POS = 0;
+    BG12NBA_MIRROR |= ((arg3 >> 8) & 0xF0);
+    BG12NBA = BG12NBA_MIRROR;
+}
+
+// $C08E1C
+void SetBG3VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
+    Unknown7E0013 = arg1 & 3;
+    Unknown7E0013 |= ((arg2 >> 8) & 0xFC);
+    BG3SC = Unknown7E0013;
+    Unknown7E0016 &= 0xF;
+    BG3_X_POS = 0;
+    BG3_Y_POS = 0;
+    Unknown7E0016 |= (arg3 >> 12);
+    BG34NBA = Unknown7E0016;
+}
+
+// $C08E5C
+void SetBG4VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
+    Unknown7E0014 = arg1 & 3;
+    Unknown7E0014 |= ((arg2 >> 8) & 0xFC);
+    BG4SC = Unknown7E0014;
+    Unknown7E0016 &= 0xF;
+    BG4_X_POS = 0;
+    BG4_Y_POS = 0;
+    Unknown7E0016 |= ((arg3 >> 8) & 0xF0);
+    BG34NBA = Unknown7E0016;
+}
 
 // $C08E9A
 short rand();
@@ -582,14 +732,32 @@ immutable ubyte[] UNKNOWN_C08F98 = [ 0x80, 0xFE, 0x00, 0x01, 0x00, 0x02, 0x00, 0
 
 immutable ubyte[] UNKNOWN_C08FC2 = [ 0x81, 0x39, 0x80, 0x80, 0x39, 0x00, 0x80, 0x3A, 0x80, 0x01, 0x18, 0x81, 0x09, 0x18, 0x81, 0x00, 0x18, 0x01, 0x08, 0x18, 0x01, 0x00, 0x19, 0x81, 0x08, 0x19, 0x81, 0x81, 0x39, 0x81, 0x80, 0x39, 0x01, 0x80, 0x3A, 0x81, 0xEB, 0x98 ];
 
+// $C0927C
+void UnknownC0927C();
+
+// $C09321
+void InitEntity(short, short, short);
+
 // $C0943C
-void UnknownC0943C();
+void UnknownC0943C() {
+    if (FirstEntity < 0) {
+        return;
+    }
+    auto x = FirstEntity;
+    do {
+        EntityTickCallbackFlags[x] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+        x = EntityNextEntityTable[x];
+    } while(x >= 0);
+}
 
 // $C09451
 void UnknownC09451();
 
 // $C09466
 void UnknownC09466();
+
+// $C09C35
+void UnknownC09C35(short);
 
 // $C0A0E3
 void UnknownC0A0E3(short arg1, bool overflowed) {
@@ -622,16 +790,88 @@ void StopMusic() {
 // $C0ABE0 - Play a sound effect
 void PlaySfx(short sound_effect);
 
+// $C0AC0C
+void UnknownC0AC0C(short arg1) {
+    APUIO1 = cast(ubyte)(arg1 | Unknown7E1ACB);
+    Unknown7E1ACB ^= 0x80;
+}
+
 // $C0AC20
 ubyte UnknownC0AC20() {
     return APUIO0;
 }
 
 // $C0B525
-void FileSelectInit();
+void FileSelectInit() {
+    UnknownC08726();
+    UnknownC0927C();
+    OAMClear();
+    UpdateScreen();
+    UnknownC01A86();
+    AllocSpriteMem(-32768, 0);
+    InitializeMiscObjectData();
+    OverworldSetupVRAM();
+    UnknownC432B1();
+    UnknownC005E7();
+    memcpy(&palettes[16][0], SpriteGroupPalettes.ptr, 0x100);
+    UnknownC200D9();
+    CopyToVram(3, 0x800, 0x7C00, Unknown7F0000.ptr);
+    Decomp(TextWindowGraphics.ptr, Unknown7F0000.ptr);
+    memcpy(&Unknown7F0000[0x2000], &Unknown7F0000[0x1000], 0x2A00);
+    UnknownC44963(1);
+    memcpy(&palettes[0][0], TextWindowFlavourPalettes.ptr, 0x40);
+    LoadBackgroundAnimation(BackgroundLayer.FileSelect, 0);
+    EntityAllocationMinSlot = 0x17;
+    EntityAllocationMaxSlot = 0x18;
+    InitEntity(ActionScript.Unknown787, 0, 0);
+    TM_MIRROR = 0x16;
+    BG2_Y_POS = 0;
+    BG1_Y_POS = 0;
+    BG2_X_POS = 0;
+    BG1_X_POS = 0;
+    OAMClear();
+    UpdateScreen();
+    FadeIn(1, 1);
+    UnknownC1FF6B();
+    FadeOutWithMosaic(1, 1, 0);
+    UnknownC09C35(0x17);
+    TM_MIRROR = 0x17;
+    UnknownC4FD18(gameState.soundSetting - 1);
+}
 
 // $C0B67F
-void UnknownC0B67F();
+void UnknownC0B67F() {
+    UnknownC0927C();
+    UnknownC01A86();
+    AllocSpriteMem(short.min, 0);
+    InitializeMiscObjectData();
+    BattleDebug = 0;
+    Unknown7E5D74 = 0;
+    Unknown7E4A58 = 1;
+    Unknown7E4A5A = -1;
+    Unknown7E4A5E = 10;
+    BattleSwirlCountdown = 0;
+    Unknown7E5D9A = 0;
+    SetBoundaryBehaviour(1);
+    DadPhoneTimer = 0x697;
+    UnknownC0851C(&UnknownC0DC4E);
+    teleportStyle = TeleportStyle.None;
+    TeleportDestination = 0;
+    Unknown7EB4A8 = -1;
+    EntityAllocationMinSlot = 0x17;
+    EntityAllocationMaxSlot = 0x18;
+    InitEntity(ActionScript.Unknown001, 0, 0);
+    UnknownC02D29();
+    UnknownC03A24();
+    memset(&palettes[0][0], 0, 0x200);
+    UnknownC47F87();
+    OverworldInitialize();
+    LoadMapAtPosition(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+    SpawnBuzzBuzz();
+    LoadWindowGraphics();
+    UnknownC44963(1);
+    UnknownC039E5();
+}
 
 // $C0B731
 void InitBattleOverworld();
@@ -727,7 +967,7 @@ void UnknownC0DB0F() {
     }
 
     int dp16 = -1;
-    uint dp14 = Unknown7E0A50;
+    uint dp14 = FirstEntity;
 
     // UNKNOWN6
     // I guess this is a micro-optimization they decided to add here...? We've seen what == -1 looks like normally,
@@ -735,7 +975,7 @@ void UnknownC0DB0F() {
     while (dp14 + 1) {
         if (EntityScreenYTable[dp14 / 2] < 256 || EntityScreenYTable[dp14 / 2] >= -64u) {
             // UNKNOWN3
-            if (Unknown30x2Table11[dp14 / 2] == 1) {
+            if (EntityDrawPriority[dp14 / 2] == 1) {
                 EntityDrawSorting[dp14 / 2] = cast(short)dp16;
                 dp16 = dp14 / 2;
             } else {
@@ -744,7 +984,7 @@ void UnknownC0DB0F() {
             }
         }
         // UNKNOWN5
-        dp14 = Unknown30x2Table1[dp14 / 2];
+        dp14 = EntityNextEntityTable[dp14 / 2];
     }
 
     // UNKNOWN12
@@ -782,7 +1022,22 @@ void UnknownC0DB0F() {
 }
 
 // $C0DBE6
-void UnknownC0DBE6(short, void function());
+short UnknownC0DBE6(short arg1, void function() arg2) {
+    Unknown7E9E3CEntry* x10 = &Unknown7E9E3C[0];
+    short i;
+    for (i = 0; i < 4; i++) {
+        if (x10.unknown0 == 0) {
+            break;
+        }
+        x10++;
+    }
+    x10.unknown0 = arg1;
+    x10.unknown2 = arg2;
+    return i;
+}
+
+// $C0DC4E
+void UnknownC0DC4E();
 
 // $C0DCC6
 void LoadDadPhone();

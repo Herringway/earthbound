@@ -10,6 +10,9 @@ import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
 
+// $C41A9E
+short Decomp(const(void)*, void*);
+
 // $C41EFF
 short UnknownC41EFF(short, short, short, short);
 
@@ -78,6 +81,9 @@ void SetPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
         EntityTickCallbacks[leaderEntityID++] = partyCallback;
     }
 }
+
+// $C432B1
+void UnknownC432B1();
 
 // $C43317
 void UnknownC43317() {
@@ -162,6 +168,12 @@ void UnknownC43DDB(MenuOpt* menuEntry) {
         UnknownC43CD2(menuEntry, menuEntry.text_x, menuEntry.text_y);
     }
 }
+
+//$C44963
+void UnknownC44963(short);
+
+//$C4562F
+immutable ubyte[8] PowersOfTwo8Bit = [1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 7];
 
 //$C45637
 ubyte FindItemInInventory(short arg1, short arg2) {
@@ -251,6 +263,19 @@ short UnknownC46028(short arg1) {
     }
     return -1;
 }
+
+// $C47370
+void LoadBackgroundAnimation(short bg, short arg2) {
+    UnknownC08726();
+    UnknownC08D79(9);
+    SetBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0x0000);
+    SetBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
+    LoadBattleBG(bg, arg2, 4);
+    UnknownC08744();
+}
+
+// $C47C3F
+void LoadWindowGraphics();
 
 // $C47F87
 void UnknownC47F87() {
@@ -451,6 +476,50 @@ short UnknownC4A7B0();
 
 //$C4C718
 short Spawn();
+
+//$C4D274
+ubyte GetTownMapID(short x, short y) {
+    return MapDataPerSectorTownMapData[(x >> 8) * 3 + (y / 0x80) * 96];
+}
+
+//$C4D43F
+void UnknownC4D43F(short);
+
+//$C4D552
+void LoadTownMapData(short);
+
+//$C4D681
+short DisplayTownMap() {
+    Unknown7EB4AE = 0x3C;
+    Unknown7EB4B0 = 0x14;
+    Unknown7EB4B2 = 0xC;
+    short x10 = GetTownMapID(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+    if (x10 == 0) {
+        return 0;
+    }
+    LoadTownMapData(cast(short)(x10 - 1));
+    while(((pad_press[0] & (PAD_A | PAD_L)) == 0) && ((pad_press[0] & (PAD_B | PAD_SELECT)) == 0) && ((pad_press[0] & PAD_L) == 0) && ((pad_press[0] & PAD_X) == 0)) {
+        WaitUntilNextFrame();
+        OAMClear();
+        UnknownC4D43F(cast(short)(x10 - 1));
+        UpdateScreen();
+    }
+    FadeOut(2, 1);
+    for (short i = 0; i < 16; i++) {
+        WaitUntilNextFrame();
+        OAMClear();
+        UnknownC4D43F(cast(short)(x10 - 1));
+        UpdateScreen();
+    }
+    Unknown7E5DD8 = 1;
+    ReloadMap();
+    Unknown7E5DD4 = Unknown7E5DD6;
+    UndrawFlyoverText();
+    Unknown7E5DD8 = 0;
+    TM_MIRROR = 0x17;
+    FadeIn(2, 1);
+    return x10;
+}
 
 //$C4DAD2
 void InitIntro();
@@ -1011,5 +1080,11 @@ ushort Path_C4BF7F(ushort count, VecYX **points) {
     return count;
 }
 
-void ChangeMusic(Music track);
+void ChangeMusic(short track);
+
+// $C4FD18
+void UnknownC4FD18(short);
+
+// $C4FD45
+void SetBoundaryBehaviour(short);
 

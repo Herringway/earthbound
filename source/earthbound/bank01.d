@@ -5,6 +5,7 @@ import earthbound.bank00;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank15;
 import earthbound.bank2F;
 import earthbound.globals;
 
@@ -192,7 +193,7 @@ label2:
                 Win_SetTextColor(6);
 
                 if (Unknown7E5E6E) {
-                    if (var7EB49D != 1) {
+                    if (Unknown7EB49D != 1) {
                         if (CurrentFocusWindow == 19) {
                             UnknownC43B15();
                         } else {
@@ -337,13 +338,51 @@ void UnknownC438A5F(short arg1, short arg2) {
 void OpenHPPPDisplay();
 
 // $C13CE5
-void ShowTownMap();
+void ShowTownMap() {
+    if (FindItemInInventory(0xFF, ItemID.TOWN_MAP) == 0) {
+        return;
+    }
+    UnknownC0943C();
+    DisplayTownMap();
+    UnknownC09451();
+}
 
 // $C186B1 - Call a text script (script_ptr)
 void DisplayText(ubyte* script_ptr);
 
+// $C18B2C
+ushort GiveItemToSpecificCharacter(ushort character, ubyte item) {
+    character--;
+    for (short i = 0; i < 14; i++) {
+        if (PartyCharacters[character].items[i] != 0) {
+            continue;
+        }
+        PartyCharacters[character].items[i] = item;
+        if (ItemData[item].type == ItemType.TeddyBear) {
+            UnknownC216DB();
+        }
+        if ((ItemData[item].flags & ItemFlags.Transform) != 0) {
+            UnknownC3EAD0(item);
+        }
+        return cast(ushort)(character + 1);
+    }
+    return 0;
+}
+
 // $C18BC6
-ushort GiveItemToCharacter(ushort character, ushort item);
+ushort GiveItemToCharacter(ushort character, ubyte item) {
+    if (character == 0xFF) {
+        for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+            if (GiveItemToSpecificCharacter(gameState.partyMembers[i], item) == 0) {
+                continue;
+            }
+            return gameState.playerControlledPartyMembers[i];
+        }
+        return 0;
+    } else {
+        return GiveItemToSpecificCharacter(character, item);
+    }
+}
 
 // $C18EAD
 ushort TakeItemFromCharacter(ushort character, ushort item);
@@ -357,14 +396,13 @@ void GetOffBicycle();
 // $C1DBBB
 void ShowHPAlert(short arg1) {
     Battler battler;
-    short x60 = arg1;
     Battler* x02 = currentAttacker;
     battler.allyOrEnemy = 0;
-    battler.id = cast(ubyte)x60;
+    battler.id = cast(ubyte)arg1;
     currentAttacker = &battler;
     UnknownC0943C();
     CreateWindowN(Window.TextStandard);
-    UnknownC1AC4A(&PartyCharacters[x60], 5);
+    UnknownC1AC4A(&PartyCharacters[arg1], 5);
     //DisplayText(TextAlertConditionCritical);
     CloseFocusWindowN();
     Win_Tick();
@@ -381,6 +419,9 @@ void CreateWindow(short id) {
 void CloseFocusWindow() {
     CloseFocusWindowN();
 }
+
+// $C1F805
+void FileMenuLoop();
 
 // $C1FF2C
 short UnknownC1FF2C() {
@@ -400,4 +441,18 @@ short UnknownC1FF2C() {
     }
     Unknown7EB4A2 = xX;
     return result;
+}
+
+// $C1FF6B
+short UnknownC1FF6B() {
+    Unknown7E5E6E = 0;
+    Unknown7EB49D = 1;
+    FileMenuLoop();
+    ClearInstaprint();
+    Win_Tick();
+    Unknown7EB4B6 = 0;
+    Unknown7EB4A2 = 0;
+    Unknown7E5E6E = 0xFF;
+    Unknown7EB49D = 0;
+    return 0;
 }

@@ -2,6 +2,7 @@ module earthbound.bank02;
 
 import earthbound.commondefs;
 import earthbound.bank00;
+import earthbound.bank04;
 import earthbound.globals;
 
 void inflictSunstrokeCheck() {
@@ -80,6 +81,15 @@ immutable short[32] UnknownC20958 = [
 // $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 ushort UnknownC20B65(short, short, short, short, short);
 
+// $C20F58
+uint UnknownC20F58() {
+	if (Unknown7E9695 != 0) {
+		return Unknown7E9627 >> 1;
+	} else {
+		return Unknown7E9627;
+	}
+}
+
 // $C2109F
 void HPPPRoller() {
 	if (Unknown7E9697 != 0) {
@@ -149,14 +159,30 @@ void HPPPRoller() {
 	}
 }
 
-// $C20F58
-uint UnknownC20F58() {
-	if (Unknown7E9695 != 0) {
-		return Unknown7E9627 >> 1;
-	} else {
-		return Unknown7E9627;
-	}
-}
-
 // $C213AC
 void UnknownC213AC();
+
+// $C21628
+short getEventFlag(short flag) {
+	flag--;
+	if ((PowersOfTwo8Bit[flag % 8] & EventFlags[flag / 8]) != 0) {
+		return 1;
+	}
+	return 0;
+}
+
+// $C2165E
+short setEventFlag(short flag, short value) {
+	flag--;
+	if (value == 1) {
+		EventFlags[flag / 8] |= PowersOfTwo8Bit[flag % 8];
+	} else {
+		EventFlags[flag / 8] &= (PowersOfTwo8Bit[flag % 8] ^ 0xFF);
+	}
+	return EventFlags[flag / 8];
+}
+// $C216DB
+void UnknownC216DB();
+
+// $C2D121
+void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox);

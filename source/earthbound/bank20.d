@@ -2,6 +2,9 @@ module earthbound.bank20;
 
 import earthbound.commondefs;
 
+// $E00000
+immutable ubyte[0x754] TextWindowGraphics;
+
 // $E01FB9
 immutable TextWindowPropertiesEntry[5] TextWindowProperties = [
 	TextWindowPropertiesEntry(0x00, 1),

@@ -5,6 +5,9 @@ import earthbound.bank04;
 import earthbound.bank15;
 import earthbound.globals;
 
+//$C30000
+immutable ushort[16][8] SpriteGroupPalettes;
+
 immutable ushort[] AllowedInputDirections = [
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //NORMAL
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //UNKNOWN_01
@@ -77,3 +80,10 @@ void UnknownC3EBCA() {
 		}
 	}
 }
+
+immutable ushort[4] UnusedForSaleSignSpriteTable = [
+	OverworldSprite.GuyInBlueClothes,
+	OverworldSprite.JamaicanGuy,
+	OverworldSprite.MrT,
+	OverworldSprite.OldGuyWithCane,
+];
