@@ -33,6 +33,17 @@ void UnknownC1078D();
 // $C107AF
 void UnknownC107AF(short window_id);
 
+// $C10A04
+void ShowHPPPWindows() {
+    UnknownC3E6F8();
+    Unknown7E89C9 = 1;
+    Unknown7E9623 = 1;
+    Unknown7E9647 = -1;
+}
+
+// $C10EB4
+void UnknownC10EB4(short);
+
 // $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
 void UnknownC10D60(short tile);
 
@@ -43,7 +54,10 @@ void Win_ClearFocus();
 void Win_SetTextColor(short window_id);
 
 // $C1134B - Opens the HP/PP and wallet windows
-void OpenHpAndWallet();
+void OpenHpAndWallet() {
+    ShowHPPPWindows();
+    UnknownC1AA18();
+}
 
 // $C1163C - Prints the options into the focused window
 void Win_PrintOptions();
@@ -386,6 +400,18 @@ ushort GiveItemToCharacter(ushort character, ubyte item) {
 
 // $C18EAD
 ushort TakeItemFromCharacter(ushort character, ushort item);
+
+// $C1AA18
+void UnknownC1AA18() {
+    UnknownC20A20(&Unknown7E9C8A);
+    CreateWindowN(Window.CarriedMoney);
+    UnknownC10EB4(5);
+    SetInstaprint();
+    Win_ClearFocus();
+    UnknownC4507A(&gameState.moneyCarried);
+    ClearInstaprint();
+    UnknownC20ABC(&Unknown7E9C8A);
+}
 
 // $C1AC4A
 void UnknownC1AC4A(PartyCharacter*, short);

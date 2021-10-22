@@ -1288,6 +1288,50 @@ struct Item {
 	ubyte* helpText;
 }
 
+struct WindowTextAttributesCopy {
+	short id;
+	short text_x;
+	short text_y;
+	ubyte number_padding;
+	short curr_tile_attributes;
+	short font;
+	ubyte[10] unknown11;
+}
+
+struct DMAQueueEntry {
+	ubyte mode;
+	ushort size;
+	const(void)* source;
+	ushort destination;
+}
+
+struct DMATableEntry {
+	ubyte unknown0;
+	ubyte unknown1;
+	ubyte unknown2;
+}
+
+struct SRAM {
+	SaveBlock[6] saves;
+	ubyte[0x1FE] unknown;
+	ushort signature;
+}
+
+struct SaveBlock {
+	char[28] signature;
+	ushort checksum;
+	ushort checksumComplement;
+	union {
+		SaveData saveData;
+		ubyte[SaveData.sizeof] rawData;
+	}
+}
+
+struct SaveData {}
+
+
+//helper funcs not in the original game
+
 char[length] EBString(size_t length)(string str) {
 	char[length] result = 0;
 	foreach (idx, c; str) {

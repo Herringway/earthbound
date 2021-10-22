@@ -2,7 +2,7 @@ module earthbound.globals;
 
 import earthbound.commondefs;
 
-__gshared ubyte Unknown7E0000;
+__gshared ubyte DMAQueueIndex;
 __gshared ubyte Unknown7E0001;
 __gshared ubyte Unknown7E0002;
 __gshared ushort Unknown7E0003;
@@ -33,8 +33,8 @@ __gshared ubyte HDMAEN_MIRROR;
 __gshared ushort Unknown7E0020;
 __gshared ubyte Unknown7E0022;
 __gshared ubyte Unknown7E0023;
-__gshared ushort RAND_A;
-__gshared ushort RAND_B;
+__gshared ushort RandA;
+__gshared ushort RandB;
 __gshared ubyte Unknown7E0028;
 __gshared ubyte Unknown7E0029;
 __gshared ubyte Unknown7E002A;
@@ -85,9 +85,9 @@ __gshared short Unknown7E0089;
 __gshared short Unknown7E008B;
 __gshared short Unknown7E008D;
 __gshared short Unknown7E008F;
-__gshared ubyte Unknown7E0091;
+__gshared ubyte DMA_COPY_MODE;
 __gshared short DMA_COPY_SIZE;
-__gshared ubyte[3] DMA_COPY_RAM_SRC;
+__gshared const(void)* DMA_COPY_RAM_SRC;
 __gshared short DMA_COPY_VRAM_DEST;
 __gshared short Unknown7E0099;
 
@@ -123,8 +123,8 @@ __gshared short Unknown7E00C0;
 __gshared short Unknown7E00C4;
 __gshared short SPC_DATA_PTR;
 __gshared short Unknown7E00C8;
-__gshared ubyte Unknown7E00CA;
-__gshared ubyte Unknown7E00CB;
+__gshared ubyte SoundEffectQueueEndIndex;
+__gshared ubyte SoundEffectQueueIndex;
 __gshared short Unknown7E00CC;
 __gshared ubyte Unknown7E00CE;
 __gshared short Unknown7E00CF;
@@ -133,6 +133,7 @@ __gshared ubyte Unknown7E00D2;
 __gshared short Unknown7E00D3;
 
 __gshared ushort[16][32] palettes; //$0200
+__gshared DMAQueueEntry[30] DMAQueue;
 
 auto ref CurrentTextPalette() { return palettes[0]; }
 
@@ -211,13 +212,15 @@ __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19;
 __gshared short UNKNOWN_7E125A;
 
 
-__gshared ubyte[8] soundEffectQueue; //$1AC2
+__gshared ubyte[8] SoundEffectQueue; //$1AC2
 __gshared ubyte Unknown7E1ACA; //$1ACA
 __gshared ubyte Unknown7E1ACB; //$1ACB
 __gshared short Unknown7E1ACC; //$1ACC
 __gshared short Unknown7E1ACE; //$1ACE
 
 __gshared short[64] Unknown7E1AD6; //$1AD6
+
+__gshared ushort Unknown7E2402; //$2402
 
 __gshared ushort[MAX_ENTITIES] EntityCollidedObjects; //$289E
 
@@ -316,6 +319,8 @@ __gshared short[53]  WindowTable;  // $88E4 - Index: Window ID; Value: Index to 
 __gshared short  CurrentFocusWindow; // $8958 - Window ID of the focused window
 __gshared WinStat* focused_window_stat;
 
+__gshared ubyte Unknown7E89C9;           // $89C9
+
 __gshared MenuOpt[70]  menu_options;  // $89D4 - Window menu options
 
 __gshared ubyte Unknown7E9622;           // $9622
@@ -324,6 +329,7 @@ __gshared ubyte Unknown7E9624;           // $9624
 
 __gshared uint Unknown7E9627;           // $9627
 
+__gshared short Unknown7E9647;           // $9647
 __gshared ubyte Unknown7E9649;           // $9649
 
 __gshared ushort Unknown7E9652;           // $9652
@@ -340,8 +346,12 @@ __gshared ubyte Unknown7E9696;           // $9696
 __gshared ubyte Unknown7E9697;           // $9697
 __gshared ubyte Unknown7E9698;           // $9698
 
+__gshared WindowTextAttributesCopy Unknown7E9C8A;           // $9C8A
+
 __gshared ushort Unknown7E9E23;           // $9E23
 __gshared ushort Unknown7E9E25;           // $9E25
+
+__gshared ushort DMATransferFlag;           // $9E2B
 
 __gshared Unknown7E9E3CEntry[4] Unknown7E9E3C;           // $9E3C
 
@@ -432,3 +442,7 @@ __gshared ushort[0x8000] Unknown7F8000;
 __gshared ushort ActionScript88;         // $88
 
 __gshared void* ActionScript8C;         // $8C
+
+// Other hardware stuff
+
+SRAM sram;

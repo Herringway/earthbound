@@ -479,6 +479,107 @@ void UnknownC07C5B() {
     }
 }
 
+void start() {
+    // emulation mode? never heard of it
+    NMITIMEN = 0;
+    DMAQueueIndex = 0;
+
+    // stack setup would happen here
+
+    INIDISP = 0x80;
+    INIDISP_MIRROR = 0x80;
+    OBSEL = 0;
+    OAMADDL = 0;
+    OAMADDH = 0;
+    BGMODE = 0;
+    MOSAIC = 0;
+    BG1SC = 0;
+    BG2SC = 0;
+    BG3SC = 0;
+    BG4SC = 0;
+    BG12NBA = 0;
+    BG34NBA = 0;
+    //yes these are meant to be repeated
+    BG1HOFS = 0;
+    BG1HOFS = 0;
+    BG1VOFS = 0;
+    BG1VOFS = 0;
+    BG2HOFS = 0;
+    BG2HOFS = 0;
+    BG2VOFS = 0;
+    BG2VOFS = 0;
+    BG3HOFS = 0;
+    BG3HOFS = 0;
+    BG3VOFS = 0;
+    BG3VOFS = 0;
+    BG4HOFS = 0;
+    BG4HOFS = 0;
+    BG4VOFS = 0;
+    BG4VOFS = 0;
+    VMAIN = 0x80;
+    VMADDL = 0;
+    VMADDH = 0;
+    M7SEL = 0;
+    //yep, repeating again. kinda
+    M7A = 0;
+    M7A = 1;
+    M7B = 0;
+    M7B = 0;
+    M7C = 0;
+    M7C = 0;
+    M7D = 0;
+    M7D = 1;
+    M7X = 0;
+    M7X = 0;
+    M7Y = 0;
+    M7Y = 0;
+    CGADD = 0;
+    W12SEL = 0;
+    W34SEL = 0;
+    WOBJSEL = 0;
+    WH0 = 0;
+    WH1 = 0;
+    WH2 = 0;
+    WH3 = 0;
+    WBGLOG = 0;
+    WOBJLOG = 0;
+    TM = 0x1F;
+    TD = 0;
+    TMW = 0;
+    TSW = 0;
+    CGWSEL = 0;
+    CGADSUB = 0;
+    FIXED_COLOUR_DATA = 0xE0;
+    SETINI = 0;
+    WRMPYA = 0xFF;
+    WRMPYA = 0;
+    WRMPYB = 0;
+    WRDIVL = 0;
+    WRDIVH = 0;
+    WRDIVB = 0;
+    HTIMEL = 0;
+    HTIMEH = 0;
+    VTIMEL = 0;
+    VTIMEH = 0;
+    MDMAEN = 0;
+    HDMAEN = 0;
+    MEMSEL = 1;
+
+    // clearing the heap would happen here
+
+    Unknown7E00A1 = 0x00;
+    Unknown7E00A2 = 0x20;
+    Unknown7E00A3 = 0x00;
+    Unknown7E00A4 = 0x20;
+    Unknown7E2402 = 0xFFFF;
+    RandA = 0x1234;
+    RandB = 0x5678;
+    NextFrameBufferID = 1;
+    Unknown7E0020 = 0x851B;
+    UnknownC08B19();
+    GameInit();
+}
+
 // $C0841B
 void ReadJoypad() {
     if (Unknown7E007B == 0) {
@@ -583,8 +684,78 @@ void UnknownC0851C(void function());
 // $C0856B
 void UnknownC0856B(short);
 
+// $C085B7 - Copy data to VRAM in chunks of 0x1200
+void CopyToVram2(ubyte mode, short count, ushort address, const(ubyte)* data) {
+    DMA_COPY_MODE = mode;
+    while (Unknown7E0099 != 0) {}
+    DMA_COPY_RAM_SRC = data;
+    DMA_COPY_VRAM_DEST = address;
+    if (count >= 0x1201) {
+        DMA_COPY_SIZE = 0x1200;
+        while (count >= 0x1201) {
+            while (Unknown7E0099 != 0) {}
+            CopyToVramCommon();
+            DMA_COPY_RAM_SRC += 0x1200;
+            DMA_COPY_VRAM_DEST += 0x900;
+            count -= 0x1200;
+        }
+    }
+    DMA_COPY_SIZE = count;
+    while (Unknown7E0099 != 0) {}
+    CopyToVramCommon();
+    while (Unknown7E0099 != 0) {}
+}
+
 // $C08616 - Copy data to VRAM
-void CopyToVram(short mode, short count, ushort address, ubyte* data);
+void CopyToVram(ubyte mode, short count, ushort address, const(ubyte)* data) {
+    DMA_COPY_MODE = mode;
+    DMA_COPY_SIZE = count;
+    DMA_COPY_RAM_SRC = data;
+    DMA_COPY_VRAM_DEST = address;
+    CopyToVramCommon();
+}
+// this actually splits the address into bank/address parameters, but we don't need that
+void CopyToVramAlt(ubyte mode, short count, ushort address, const(ubyte)* data) {
+    CopyToVram(mode, count, address, data);
+}
+
+void CopyToVramCommon() {
+    CopyToVramInternal();
+}
+
+// $C0865F
+void CopyToVramInternal() {
+    if ((INIDISP_MIRROR & 0x80) != 0) {
+        ushort tmp92  = cast(ushort)(DMA_COPY_SIZE + Unknown7E0099);
+        if (tmp92 >= 0x1201) {
+            while (Unknown7E0099 != 0) {}
+            tmp92 = DMA_COPY_SIZE;
+        }
+        Unknown7E0099 = tmp92;
+        Unknown7E00A5 = Unknown7E0001;
+        DMAQueue[DMAQueueIndex].mode = DMA_COPY_MODE;
+        DMAQueue[DMAQueueIndex].size = DMA_COPY_SIZE;
+        DMAQueue[DMAQueueIndex].source = DMA_COPY_RAM_SRC;
+        DMAQueue[DMAQueueIndex].destination = DMA_COPY_VRAM_DEST;
+        if (DMAQueueIndex + 1 == Unknown7E00A5) {
+            while (DMAQueueIndex + 1 == Unknown7E0001) {}
+        }
+        DMAQueueIndex++;
+    } else {
+        DMAP1 = DMATable[DMA_COPY_MODE].unknown0;
+        //original assembly relied on DMAP1+BBAD1 being adjacent for a 16-bit write, but we probably shouldn't do that
+        BBAD1 = DMATable[DMA_COPY_MODE].unknown1;
+        VMAIN = DMATable[DMA_COPY_MODE].unknown2;
+        DAS1L = DMA_COPY_SIZE;
+        A1T1L = DMA_COPY_RAM_SRC;
+        //A1B1 is not really relevant without segmented addressing
+        VMADDL = DMA_COPY_VRAM_DEST;
+        MDMAEN = 2;
+        Unknown7E00A1 = Unknown7E00A3;
+        DMATransferFlag = 0;
+    }
+}
+
 
 // $C08726
 void UnknownC08726() {
@@ -601,6 +772,12 @@ void UnknownC08744() {
     INIDISP_MIRROR = 0x80;
     Unknown7E002B = 0;
     while (Unknown7E002B == 0) {}
+}
+
+// $C08715
+void EnableNMIJoypad() {
+    Unknown7E001E |= 0x81;
+    NMITIMEN = Unknown7E001E;
 }
 
 // $C08756
@@ -730,6 +907,15 @@ short rand();
 
 immutable ubyte[] UNKNOWN_C08F98 = [ 0x80, 0xFE, 0x00, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x03, 0x80, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02, 0x00, 0x00 ];
 
+immutable DMATableEntry[6] DMATable = [
+    DMATableEntry(0x01, 0x18, 0x80),
+    DMATableEntry(0x09, 0x18, 0x80),
+    DMATableEntry(0x00, 0x18, 0x00),
+    DMATableEntry(0x08, 0x18, 0x00),
+    DMATableEntry(0x00, 0x19, 0x80),
+    DMATableEntry(0x08, 0x19, 0x80),
+];
+
 immutable ubyte[] UNKNOWN_C08FC2 = [ 0x81, 0x39, 0x80, 0x80, 0x39, 0x00, 0x80, 0x3A, 0x80, 0x01, 0x18, 0x81, 0x09, 0x18, 0x81, 0x00, 0x18, 0x01, 0x08, 0x18, 0x01, 0x00, 0x19, 0x81, 0x08, 0x19, 0x81, 0x81, 0x39, 0x81, 0x80, 0x39, 0x01, 0x80, 0x3A, 0x81, 0xEB, 0x98 ];
 
 // $C0927C
@@ -776,6 +962,17 @@ void UnknownC0A0CA(short arg1) {
     ActionScript88 = cast(ushort)(arg1 * 2);
     UnknownC0A0E3(ActionScript88, arg1 < 0);
 }
+// $C0A11C
+void CheckHardware() {
+    //AntiPiracyScratchSpace = 0x30;
+    //AntiPiracyMirrorTest = 0x31;
+    if (false/*AntiPiracyScratchSpace != AntiPiracyMirrorTest*/) {
+        DisplayAntiPiracyScreen();
+    }
+    if ((STAT78 & 0x10) != 0) {
+        DisplayFaultyGamepakScreen();
+    }
+}
 
 // $C0A780
 void UnknownC0A780();
@@ -788,7 +985,15 @@ void StopMusic() {
 }
 
 // $C0ABE0 - Play a sound effect
-void PlaySfx(short sound_effect);
+void PlaySfx(short sfx) {
+    if (sfx != 0) {
+        SoundEffectQueue[SoundEffectQueueEndIndex] = cast(ubyte)(sfx | Unknown7E1ACA);
+        SoundEffectQueueEndIndex = (SoundEffectQueueEndIndex + 1) & 7;
+        Unknown7E1ACA ^= 0x80;
+        return;
+    }
+    APUIO3 = 0x57;
+}
 
 // $C0AC0C
 void UnknownC0AC0C(short arg1) {
@@ -954,6 +1159,25 @@ void ebMain() {
             break;
         }
     }
+}
+
+// $C0B99A
+void GameInit() {
+    CheckSRAMIntegrity();
+    InitializeSPC700();
+    EnableNMIJoypad();
+    CheckHardware();
+    WaitUntilNextFrame();
+    WaitUntilNextFrame();
+    version(DebugBuild) {
+        if ((pad_state[0] & (PAD_DOWN | PAD_L)) != 0) {
+            Debug = 1;
+            DebugMenuLoad();
+            return;
+        }
+    }
+    Debug = 0;
+    ebMain();
 }
 
 // $C0DA31

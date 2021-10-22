@@ -7,6 +7,7 @@ import earthbound.bank04;
 import earthbound.bank15;
 import earthbound.globals;
 import earthbound.commondefs;
+import core.stdc.string;
 
 import std;
 
@@ -40,6 +41,103 @@ void UnknownEF0115(short arg1) {
 	Unknown7E9623 = 1;
 	UnknownC07C5B();
 }
+
+// $EF0591
+immutable string SRAMSignature = "HAL Laboratory, inc.";
+
+// $EF05A6
+immutable ubyte[3] UnknownEF05A6 = [1 << 0, 1 << 1, 1 << 2];
+
+// $EF05A9
+void EraseSaveBlock(short id) {
+	memset(&sram.saves[id], 0, SaveBlock.sizeof);
+	memcpy(&sram.saves[id].signature[0], &SRAMSignature[0], strlen(&SRAMSignature[0]));
+}
+
+// $EF0630
+short CheckBlockSignature(short id) {
+	if (strcmp(&SRAMSignature[0], &sram.saves[id].signature[0]) != 0) {
+		EraseSaveBlock(id);
+		return 1;
+	}
+	return 0;
+}
+
+// $EF06A2
+void CopySaveBlock(short to, short from) {
+	memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
+}
+
+// $EF0683
+void CheckAllBlocksSignature() {
+	for (short i = 0; i < 6; i++) {
+		CheckBlockSignature(i);
+	}
+}
+
+// $EF0734
+ushort CalcSaveBlockAddChecksum(short id) {
+	ubyte* x06 = &sram.saves[id].rawData[0];
+	ushort checksum;
+	for (short i = 0; i < sram.saves[id].rawData.sizeof; i++) {
+		checksum += x06[0];
+		x06++;
+	}
+	return checksum;
+}
+
+// $EF077B
+ushort CalcSaveBlockXORChecksum(short id) {
+	ushort* x06 = cast(ushort*)&sram.saves[id].rawData[0];
+	ushort checksum;
+	for (short i = 0; i < sram.saves[id].rawData.sizeof / 2; i++) {
+		checksum ^= x06[0];
+		x06++;
+	}
+	return checksum;
+}
+
+// $EF07C0
+short ValidateSaveBlockChecksums(short id) {
+	if ((CalcSaveBlockAddChecksum(id) == sram.saves[id].checksum) && (CalcSaveBlockXORChecksum(id) == sram.saves[id].checksumComplement)) {
+		return 0;
+	}
+	return -1;
+}
+
+// $EF0EE8
+void CheckSaveCorruption(short id) {
+	if (ValidateSaveBlockChecksums(cast(short)(id * 2)) != 0) {
+		EraseSaveBlock(cast(short)(id * 2));
+		if (ValidateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
+			EraseSaveBlock(cast(short)(id * 2 + 1));
+			Unknown7E9F79 |= UnknownEF05A6[id];
+			return;
+		} else {
+			CopySaveBlock(cast(short)(id * 2), cast(short)(id * 2 + 1));
+		}
+	}
+	if (ValidateSaveBlockChecksums(cast(short)(id * 2 + 1)) == 0) {
+		return;
+	}
+	EraseSaveBlock(cast(short)(id * 2 + 1));
+	CopySaveBlock(cast(short)(id * 2 + 1), cast(short)(id * 2));
+}
+
+// $EF0EE8
+void CheckSRAMIntegrity() {
+	Unknown7E9F77 = 0x493;
+	if (sram.signature != 0x493) {
+		memset(&sram, 0, 0x2000);
+	}
+	CheckAllBlocksSignature();
+	Unknown7E9F79 = 0;
+	for (short i = 0; i < 3; i++) {
+		CheckSaveCorruption(i);
+	}
+	sram.signature = Unknown7E9F77;
+}
+
 // $EF0EE8
 void UnknownEF0EE8() {
 	for (short i = 0; i < 10; i++) {

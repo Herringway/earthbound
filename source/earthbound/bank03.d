@@ -3,10 +3,27 @@ module earthbound.bank03;
 import earthbound.commondefs;
 import earthbound.bank04;
 import earthbound.bank15;
+import earthbound.bank18;
 import earthbound.globals;
 
 //$C30000
 immutable ushort[16][8] SpriteGroupPalettes;
+
+// $C30100
+void DisplayAntiPiracyScreen() {
+	UnknownC40B51();
+	Decomp(&AntiPiracyNoticeGraphics[0], &Unknown7F0000[0]);
+	Decomp(&AntiPiracyNoticeArrangement[0], &Unknown7F0000[0x4000]);
+	UnknownC40B75();
+}
+
+// $C30142
+void DisplayFaultyGamepakScreen() {
+	UnknownC40B51();
+	Decomp(&FaultyGamepakGraphics[0], &Unknown7F0000[0]);
+	Decomp(&FaultyGamepakArrangement[0], &Unknown7F0000[0x4000]);
+	UnknownC40B75();
+}
 
 immutable ushort[] AllowedInputDirections = [
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //NORMAL
@@ -37,6 +54,9 @@ void ClearInstaprint() {
 void SetInstaprint() {
 	Unknown7E9622 = 1;
 }
+
+// $C3E6F8
+void UnknownC3E6F8();
 
 // $C3E521
 void CloseWindow(short);

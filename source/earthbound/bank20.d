@@ -254,3 +254,6 @@ immutable RGB[32] TextWindowDeathPalette =[
 	RGB(17, 18, 18),
 	RGB(5, 1, 5),
 ];
+
+// $E02190
+immutable void*[6] TownMapGraphicsPointerTable;

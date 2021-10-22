@@ -2,6 +2,7 @@ module earthbound.bank02;
 
 import earthbound.commondefs;
 import earthbound.bank00;
+import earthbound.bank01;
 import earthbound.bank04;
 import earthbound.globals;
 
@@ -38,10 +39,39 @@ void UnknownC200D9();
 void UnknownC20266();
 
 // $C2038B
-void UnknownC2038B();
+void UnknownC2038B() {
+	CopyToVramAlt(0, 0x700, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
+	CopyToVram(0, 0x40, 0x7F80, &UnknownC40BE8[0]);
+}
+
+// $C203C3
+void DrawHPPPWindow(short id);
+
+// $C2077D
+void UnknownC2077D() {
+	ushort x10 = Unknown7E9647;
+	for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
+		if ((x10 & 1) != 0) {
+			DrawHPPPWindow(i);
+		}
+		x10 >>= 1;
+	}
+}
 
 // $C2087C
-void UnknownC2087C();
+void UnknownC2087C() {
+	if (Unknown7E89C9 != 0) {
+		UnknownC2077D();
+	}
+	if (window_head == 0xFFFF) {
+		return;
+	}
+	short x0E = window_head;
+	do {
+		UnknownC107AF(x0E);
+		x0E = WindowStats[x0E].next;
+	} while(x0E != 0xFFFF);
+}
 
 immutable short[32] UnknownC20958 = [
 	-1,
@@ -77,6 +107,35 @@ immutable short[32] UnknownC20958 = [
 	0,
 	0,
 ];
+
+// $C20A20
+void UnknownC20A20(WindowTextAttributesCopy* buf) {
+	buf.id = CurrentFocusWindow;
+	if (CurrentFocusWindow == 0xFFFF) {
+		return;
+	}
+	buf.text_x = WindowStats[WindowTable[CurrentFocusWindow]].text_x;
+	buf.text_y = WindowStats[WindowTable[CurrentFocusWindow]].text_y;
+	buf.number_padding = WindowStats[WindowTable[CurrentFocusWindow]].num_padding;
+	buf.curr_tile_attributes = WindowStats[WindowTable[CurrentFocusWindow]].tileAttributes;
+	buf.font = WindowStats[WindowTable[CurrentFocusWindow]].font;
+}
+
+// $C20ABC
+void UnknownC20ABC(WindowTextAttributesCopy* buf) {
+	if (buf.id == 0xFFFF) {
+		return;
+	}
+	if (WindowTable[buf.id] == 0xFFFF) {
+		return;
+	}
+	CurrentFocusWindow = buf.id;
+	WindowStats[WindowTable[CurrentFocusWindow]].text_x = buf.text_x;
+	WindowStats[WindowTable[CurrentFocusWindow]].text_y = buf.text_y;
+	WindowStats[WindowTable[CurrentFocusWindow]].num_padding = buf.number_padding;
+	WindowStats[WindowTable[CurrentFocusWindow]].tileAttributes = buf.curr_tile_attributes;
+	WindowStats[WindowTable[CurrentFocusWindow]].font = buf.font;
+}
 
 // $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 ushort UnknownC20B65(short, short, short, short, short);

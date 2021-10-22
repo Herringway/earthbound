@@ -13,3 +13,4 @@ earthbound-test-*
 *.o
 *.obj
 *.lst
+data
