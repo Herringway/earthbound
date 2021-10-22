@@ -306,6 +306,8 @@ __gshared ubyte Unknown7E5E79;           // $5E79 - Mystery flag
 
 __gshared ushort[0x380] bg2Buffer;           // $7DFE
 
+__gshared ushort[0x100] Unknown7E827E;           // $827E
+
 __gshared WinStat[9]  WindowStats;    // $8650
 
 __gshared Game_State gameState;
@@ -320,6 +322,7 @@ __gshared short  CurrentFocusWindow; // $8958 - Window ID of the focused window
 __gshared WinStat* focused_window_stat;
 
 __gshared ubyte Unknown7E89C9;           // $89C9
+__gshared short BattleMenuCurrentCharacterID;           // $89CA
 
 __gshared MenuOpt[70]  menu_options;  // $89D4 - Window menu options
 

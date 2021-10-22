@@ -1,6 +1,7 @@
 module earthbound.bank03;
 
 import earthbound.commondefs;
+import earthbound.bank00;
 import earthbound.bank04;
 import earthbound.bank15;
 import earthbound.bank18;
@@ -56,7 +57,20 @@ void SetInstaprint() {
 }
 
 // $C3E6F8
-void UnknownC3E6F8();
+void UnknownC3E6F8() {
+	if (BattleMenuCurrentCharacterID == 0xFFFF) {
+		return;
+	}
+	WaitUntilNextFrame();
+
+	ushort* y = &Unknown7E827E[0x10 - (BattleMenuCurrentCharacterID * 7) + (gameState.playerControlledPartyMemberCount * 7) / 2];
+	for (short i = 7; i != 0; i--) {
+		*y = 0;
+		y++;
+	}
+	BattleMenuCurrentCharacterID = -1;
+	Unknown7E9623 = 1;
+}
 
 // $C3E521
 void CloseWindow(short);
