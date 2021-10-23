@@ -376,7 +376,7 @@ void FillHPPPTileBuffer(short arg1, short arg2, short arg3) {
 	if ((HPPPWindowDigitBuffer[1] != 9) || (y == 0)) {
 		y = 0;
 	}
-	x[0] = cast(ushort)(((HPPPWindowDigitBuffer[0] >> 2) * 16) + (HPPPWindowDigitBuffer[0] * 4) + y + ((HPPPWindowDigitBuffer[0] != 0) ? 0x248 : 0x200) + 0x2400);
+	x[0] = cast(ushort)(((HPPPWindowDigitBuffer[0] >> 2) * 16) + (HPPPWindowDigitBuffer[0] * 4) + y + ((HPPPWindowDigitBuffer[0] != 0) ? 0x200 : 0x248) + 0x2400);
 	x[3] = cast(ushort)(x[0] + 0x10);
 }
 
