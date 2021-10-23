@@ -30,37 +30,37 @@ void DisplayFaultyGamepakScreen() {
 immutable NessPajamaFlag = EventFlag.NessPajamas;
 
 // $C3E12C
-immutable FixedPoint1616[14] MovementSpeeds = [
-	FixedPoint1616(0x6000, 1),
-	FixedPoint1616(0x6000, 1),
-	FixedPoint1616(0x6000, 1),
-	FixedPoint1616(0xCCCC, 1),
-	FixedPoint1616(0x0000, 1),
-	FixedPoint1616(0x0000, 0),
-	FixedPoint1616(0x0000, 1),
-	FixedPoint1616(0xCCCC, 0),
-	FixedPoint1616(0xCCCC, 0),
-	FixedPoint1616(0x0000, 0),
-	FixedPoint1616(0x8000, 0),
-	FixedPoint1616(0x0000, 0),
-	FixedPoint1616(0xCCCC, 0),
-	FixedPoint1616(0xCCCC, 0),
+immutable FixedPoint1616[14] defaultMovementSpeeds = [
+	FixedPoint1616(0x6000, 1), //NORMAL
+	FixedPoint1616(0x6000, 1), //UNKNOWN_01
+	FixedPoint1616(0x6000, 1), //UNKNOWN_02
+	FixedPoint1616(0xCCCC, 1), //BICYCLE
+	FixedPoint1616(0x0000, 1), //GHOST
+	FixedPoint1616(0x0000, 0), //UNKNOWN_05
+	FixedPoint1616(0x0000, 1), //SLOWER
+	FixedPoint1616(0xCCCC, 0), //LADDER
+	FixedPoint1616(0xCCCC, 0), //ROPE
+	FixedPoint1616(0x0000, 0), //UNKNOWN_09
+	FixedPoint1616(0x8000, 0), //SLOWEST
+	FixedPoint1616(0x0000, 0), //UNKNOWN_0B
+	FixedPoint1616(0xCCCC, 0), //ESCALATOR
+	FixedPoint1616(0xCCCC, 0), //STAIRS
 ];
-immutable FixedPoint1616[14] MovementSpeedsDiagonal = [
-	FixedPoint1616(0xF8E6, 0),
-	FixedPoint1616(0xF8E6, 0),
-	FixedPoint1616(0xF8E6, 0),
-	FixedPoint1616(0x45D5, 1),
-	FixedPoint1616(0xB505, 0),
-	FixedPoint1616(0x0000, 0),
-	FixedPoint1616(0xB505, 0),
-	FixedPoint1616(0x90D0, 0),
-	FixedPoint1616(0x90D0, 0),
-	FixedPoint1616(0x0000, 0),
-	FixedPoint1616(0x5A82, 0),
-	FixedPoint1616(0x0000, 0),
-	FixedPoint1616(0x90D0, 0),
-	FixedPoint1616(0x90D0, 0),
+immutable FixedPoint1616[14] defaultMovementSpeedsDiagonal = [
+	FixedPoint1616(0xF8E6, 0), //NORMAL
+	FixedPoint1616(0xF8E6, 0), //UNKNOWN_01
+	FixedPoint1616(0xF8E6, 0), //UNKNOWN_02
+	FixedPoint1616(0x45D5, 1), //BICYCLE
+	FixedPoint1616(0xB505, 0), //GHOST
+	FixedPoint1616(0x0000, 0), //UNKNOWN_05
+	FixedPoint1616(0xB505, 0), //SLOWER
+	FixedPoint1616(0x90D0, 0), //LADDER
+	FixedPoint1616(0x90D0, 0), //ROPE
+	FixedPoint1616(0x0000, 0), //UNKNOWN_09
+	FixedPoint1616(0x5A82, 0), //SLOWEST
+	FixedPoint1616(0x0000, 0), //UNKNOWN_0B
+	FixedPoint1616(0x90D0, 0), //ESCALATOR
+	FixedPoint1616(0x90D0, 0), //STAIRS
 ];
 
 // $C3E12C

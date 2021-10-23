@@ -2902,15 +2902,15 @@ struct PlayerPositionBufferEntry {
 	short unknown10;
 }
 
-struct Unknown4DD6 {
-	FixedPoint1616 unknown0; //0
-	FixedPoint1616 unknown4; //4
-	FixedPoint1616 unknown8; //8
-	FixedPoint1616 unknown12; //12
-	FixedPoint1616 unknown16; //16
-	FixedPoint1616 unknown20; //20
-	FixedPoint1616 unknown24; //24
-	FixedPoint1616 unknown28; //24
+struct MovementSpeeds {
+	FixedPoint1616 up; //0
+	FixedPoint1616 upRight; //4
+	FixedPoint1616 right; //8
+	FixedPoint1616 downRight; //12
+	FixedPoint1616 down; //16
+	FixedPoint1616 downLeft; //20
+	FixedPoint1616 left; //24
+	FixedPoint1616 upLeft; //24
 }
 
 struct QueuedInteraction {

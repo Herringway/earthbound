@@ -206,25 +206,25 @@ immutable ushort[88] UnknownC42F8C = [
 // $C430EC
 void VelocityStore() {
     for (short i = 0; i < 14; i++) {
-        Unknown7E4DD6[i].unknown16.combined = 0;
-        Unknown7E4DD6[i].unknown0.combined = 0;
-        Unknown7E4F96[i].unknown24.combined = 0;
-        Unknown7E4F96[i].unknown8.combined = 0;
-        Unknown7E4F96[i].unknown16.combined = 0;
-        Unknown7E4DD6[i].unknown8.combined = 0;
+        horizontalMovementSpeeds[i].down.combined = 0;
+        horizontalMovementSpeeds[i].up.combined = 0;
+        verticalMovementSpeeds[i].left.combined = 0;
+        verticalMovementSpeeds[i].right.combined = 0;
+        verticalMovementSpeeds[i].down.combined = 0;
+        horizontalMovementSpeeds[i].right.combined = 0;
 
-        Unknown7E4F96[i].unknown0.combined = -MovementSpeeds[i].combined;
-        Unknown7E4DD6[i].unknown24.combined = -MovementSpeeds[i].combined;
+        verticalMovementSpeeds[i].up.combined = -defaultMovementSpeeds[i].combined;
+        horizontalMovementSpeeds[i].left.combined = -defaultMovementSpeeds[i].combined;
 
-        Unknown7E4F96[i].unknown20.combined = MovementSpeedsDiagonal[i].combined;
-        Unknown7E4F96[i].unknown12.combined = MovementSpeedsDiagonal[i].combined;
-        Unknown7E4DD6[i].unknown12.combined = MovementSpeedsDiagonal[i].combined;
-        Unknown7E4DD6[i].unknown4.combined = MovementSpeedsDiagonal[i].combined;
+        verticalMovementSpeeds[i].downLeft.combined = defaultMovementSpeedsDiagonal[i].combined;
+        verticalMovementSpeeds[i].downRight.combined = defaultMovementSpeedsDiagonal[i].combined;
+        horizontalMovementSpeeds[i].downRight.combined = defaultMovementSpeedsDiagonal[i].combined;
+        horizontalMovementSpeeds[i].upRight.combined = defaultMovementSpeedsDiagonal[i].combined;
 
-        Unknown7E4F96[i].unknown28.combined = -MovementSpeedsDiagonal[i].combined;
-        Unknown7E4F96[i].unknown4.combined = -MovementSpeedsDiagonal[i].combined;
-        Unknown7E4DD6[i].unknown20.combined = -MovementSpeedsDiagonal[i].combined;
-        Unknown7E4DD6[i].unknown28.combined = -MovementSpeedsDiagonal[i].combined;
+        verticalMovementSpeeds[i].upLeft.combined = -defaultMovementSpeedsDiagonal[i].combined;
+        verticalMovementSpeeds[i].upRight.combined = -defaultMovementSpeedsDiagonal[i].combined;
+        horizontalMovementSpeeds[i].downLeft.combined = -defaultMovementSpeedsDiagonal[i].combined;
+        horizontalMovementSpeeds[i].upLeft.combined = -defaultMovementSpeedsDiagonal[i].combined;
     }
 }
 
