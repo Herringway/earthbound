@@ -301,16 +301,21 @@ __gshared short Unknown7E5E04;           // $5E04
 
 __gshared ubyte* Unknown7E5E38;           // $5E38
 
+__gshared ubyte Unknown7E5E6C;           // $5E6C
 __gshared ubyte Unknown7E5E6D;           // $5E6D
-
 __gshared short Unknown7E5E6E;           // $5E6E - I have this labeled as "word-wrap flag"...
-
+__gshared ubyte Unknown7E5E70;           // $5E70
 __gshared ubyte Unknown7E5E71;           // $5E71
 __gshared ubyte Unknown7E5E72;           // $5E72
-__gshared ushort Unknown7E5E73;           // $5E73
+__gshared ubyte Unknown7E5E73;           // $5E73
+__gshared ubyte Unknown7E5E74;           // $5E74
 __gshared ubyte Unknown7E5E75;           // $5E75
-
+__gshared ubyte Unknown7E5E76;           // $5E76
+__gshared ubyte Unknown7E5E77;           // $5E77
+__gshared ubyte Unknown7E5E78;           // $5E78
 __gshared ubyte Unknown7E5E79;           // $5E79 - Mystery flag
+__gshared short Unknown7E5E7A;           // $5E7A
+__gshared short Unknown7E5E7C;           // $5E7C
 
 __gshared ushort[0x380] bg2Buffer;           // $7DFE
 
@@ -326,12 +331,19 @@ __gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags;
 __gshared short  window_head;       // $88E0 - Head of the window linked list
 __gshared short  window_tail;       // $88E2 - Tail of the window linked list
 __gshared short[53]  WindowTable;  // $88E4 - Index: Window ID; Value: Index to WindowStats
+__gshared short[5] Unknown7E894E; //$894E
 __gshared short  CurrentFocusWindow; // $8958 - Window ID of the focused window
 __gshared ubyte[0] Unknown7E895A; //$895A
+
+__gshared ushort[12][4] HPPPWindowBuffer; //$8969
 
 __gshared ubyte Unknown7E89C9;           // $89C9
 __gshared short BattleMenuCurrentCharacterID;           // $89CA
 
+__gshared short Unknown7E89CC;           // $89CC
+__gshared short Unknown7E89CE;           // $89CE
+__gshared short Unknown7E89D0;           // $89D0
+__gshared short Unknown7E89D2;           // $89D2
 __gshared MenuOpt[70]  menu_options;  // $89D4 - Window menu options
 
 __gshared ubyte Unknown7E9622;           // $9622
@@ -340,12 +352,16 @@ __gshared ubyte Unknown7E9624;           // $9624
 __gshared ushort SelectedTextSpeed;           // $9625
 __gshared uint Unknown7E9627;           // $9627
 
+__gshared void*[4] Unknown7E9631;           // $9631
+__gshared short Unknown7E9641;           // $9641
+__gshared short BattleModeFlag;           // $9643
+__gshared short InputLockFlag;           // $9645
 __gshared short Unknown7E9647;           // $9647
-__gshared ubyte Unknown7E9649;           // $9649
-
+__gshared short Unknown7E9649;           // $9649
+__gshared short Unknown7E964B;           // $964B
 __gshared ushort BlinkingTriangleFlag;           // $964D
 __gshared ushort Unknown7E964F;           // $964F
-
+__gshared ubyte Unknown7E9651;           // $9651
 __gshared ushort Unknown7E9652;           // $9652
 __gshared ushort Unknown7E9654;           // $9654
 
@@ -364,7 +380,7 @@ __gshared ubyte Unknown7E9698;           // $9698
 __gshared WindowTextAttributesCopy Unknown7E9C8A;           // $9C8A
 
 // is this the actual size? maybe it's 0x100?
-__gshared ubyte[0x20] Unknown7E9D23;           // $9D23
+__gshared ubyte[0x20][8] Unknown7E9D23;           // $9D23
 
 __gshared ushort Unknown7E9E23;           // $9E23
 __gshared ushort Unknown7E9E25;           // $9E25
@@ -448,6 +464,8 @@ __gshared short Unknown7EB4B0;         // $7EB4B0
 __gshared short Unknown7EB4B2;         // $7EB4B2
 
 __gshared ubyte Unknown7EB4B6;         // $7EB4B6
+
+__gshared ubyte Unknown7EB4CE;         // $7EB4CE
 
 __gshared ushort CurrentMusicTrack;         // $B53B
 __gshared ushort CurrentPrimarySamplePack; //$B53D

@@ -9,12 +9,32 @@ import earthbound.bank15;
 import earthbound.bank2F;
 import earthbound.globals;
 
-void UnknownC10004(void* arg1);
+void UnknownC10004(ubyte* arg1) {
+    UnknownC0943C();
+    DisplayText(arg1);
+    do {
+        Win_Tick();
+    } while (Unknown7EB4A8 != -1);
+    UnknownC09451();
+}
 
-void UnknownC10048(ushort arg1);
+void UnknownC10048(ushort arg1) {
+    Unknown7E964F = arg1;
+}
 
 // $C1004E
-void UnknownC1004E();
+void UnknownC1004E() {
+    if (Unknown7E89C9 != 0) {
+        UnknownC3E450();
+    }
+    if (BattleModeFlag != 0) {
+        UnknownC43568();
+    }
+    OAMClear();
+    UnknownC09466();
+    UpdateScreen();
+    WaitUntilNextFrame();
+}
 
 // $C1007E - Set the focused window
 void Win_SetFocus(short window_id);
@@ -28,7 +48,9 @@ void CloseFocusWindowN() {
 void CreateWindowN(short id);
 
 // $C1078D
-void UnknownC1078D();
+void UnknownC1078D() {
+    CopyToVramAlt(0, 0x240, 0x7E40, cast(ubyte*)&Unknown7E827E[0]);
+}
 
 // $C107AF
 void UnknownC107AF(short window_id);

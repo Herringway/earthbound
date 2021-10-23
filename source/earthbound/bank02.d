@@ -3,8 +3,11 @@ module earthbound.bank02;
 import earthbound.commondefs;
 import earthbound.bank00;
 import earthbound.bank01;
+import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.globals;
+
+import core.stdc.string;
 
 void inflictSunstrokeCheck() {
 	if (OverworldStatusSuppression) {
@@ -33,10 +36,75 @@ void inflictSunstrokeCheck() {
 immutable ubyte[] C200B9 = [0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x07, 0x00, 0x07, 0x00, 0x1E, 0x00, 0x33, 0x00, 0x1E, 0x00, 0x33, 0x00];
 
 // $C200D9
-void UnknownC200D9();
+void UnknownC200D9() {
+	Unknown7E89C9 = 0;
+	Unknown7E89D2 = -1;
+	Unknown7E89D0 = -1;
+	Unknown7E89CE = -1;
+	Unknown7E89CC = -1;
+	BattleMenuCurrentCharacterID = -1;
+	Unknown7E9622 = 0;
+	Unknown7E9623 = 0;
+	Unknown7E9641 = 0;
+	Unknown7E9624 = 0;
+	window_head = -1;
+	window_tail = -1;
+	for (short i = 0; i != 8; i++) {
+		WindowStats[i].next = -1;
+	}
+	for (short i = 0; i != 0x35; i++) {
+		WindowTable[i] = -1;
+	}
+	for (short i = 0; i != 5; i++) {
+		Unknown7E894E[i] = -1;
+	}
+	Unknown7E5E7A = -1;
+	Unknown7E5E7C = -1;
+	for (short i = 0x380; i != 0; i--) {
+		bg2Buffer[i] = 0;
+	}
+	for (short i = 0; i != 0x46; i++) {
+		menu_options[i].field00 = 0;
+	}
+	for (short i = 0; i < 8; i++) {
+		for (short j = 0; j < 0x20; j++) {
+			Unknown7E9D23[i][j] = 0xFF;
+		}
+	}
+	Unknown7E9E29 = 0;
+	Unknown7E9E27 = 0;
+	Unknown7E9E25 = 0;
+	Unknown7E9E23 = 0;
+	BlinkingTriangleFlag = 0;
+	Unknown7E964F = 1;
+	BattleModeFlag = 0;
+	InputLockFlag = 0;
+	CurrentFocusWindow = -1;
+	Unknown7E5E6D = 1;
+	UnknownC43F53();
+	Unknown7E9651 = 0xFF;
+	Unknown7E5E6E = 0xFF;
+	Unknown7E5E70 = 0;
+	Unknown7E5E75 = 0;
+	// uhhhhh
+	menu_options[WindowStats[WindowTable[CurrentFocusWindow]].current_option].pixel_align = 0;
+	Unknown7E5E71 = 0;
+	Unknown7E5E72 = 0;
+	Unknown7E5E73 = 0;
+	Unknown7E5E74 = 0;
+	Unknown7E5E76 = 0;
+	Unknown7E5E78 = 0;
+	Unknown7E5E77 = 0;
+	Unknown7EB4CE = 0;
+	Unknown7E5E6C = 0;
+}
 
 // $C20266
-void UnknownC20266();
+void UnknownC20266() {
+	for (short i = 0; i < 4; i++) {
+		Unknown7E827E[i] = UnknownC3E40E[i];
+	}
+}
 
 // $C2038B
 void UnknownC2038B() {
@@ -45,7 +113,128 @@ void UnknownC2038B() {
 }
 
 // $C203C3
-void DrawHPPPWindow(short id);
+void DrawHPPPWindow(short id) {
+	PartyCharacter* character = &PartyCharacters[gameState.partyMembers[id] - 1];
+	short x22 = UnknownC223D9(&character.afflictions[0], 1);
+	short x04 = UnknownC223D9(&character.afflictions[0], 1);
+	short x20 = cast(short)((x22 & 0xFFF0) + x04);
+	ushort x1E = character.hp_pp_window_options;
+	short x18;
+	short x1A;
+	short x1C;
+	if (x1E == 0xC00) {
+		x1C = 0xC00;
+		x22 = 0xC00;
+		x1A = 0x800;
+	} else {
+		x1C = cast(short)(UnknownC22474(&character.afflictions[0]) * 0x400);
+		x22 = 0x1000;
+		x1A = 0;
+	}
+	if (BattleMenuCurrentCharacterID == id) {
+		x18 = 18;
+	} else {
+		x18 = 19;
+	}
+	ushort* x = &bg2Buffer[10 - gameState.playerControlledPartyMemberCount / 2 + id + x18 * 64];
+	x[0] = cast(ushort)(x1E + 0x2004);
+	x++;
+	for (short i = 6; i != 0; i--) {
+		x[0] = cast(ushort)(x1E + 0x2005);
+		x++;
+	}
+	x[0] = cast(ushort)(x1E + 0x6004);
+	x++;
+	x += 24;
+
+	x[0] = cast(ushort)(x1E + 0x2006);
+	short x14 = (gameState.partyMembers[id] - 1) * 4 + 0x22A0;
+	short x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
+	for (short i = 0; i != 5; i++) {
+		if (x12 != 0) {
+			x[0] = cast(ushort)(x14 + x1C);
+			x++;
+			x14++;
+			x12--;
+		} else {
+			x[0] = cast(ushort)(x1C + 0x2007);
+			x++;
+		}
+	}
+	x[0] = cast(ushort)(x1C + x20 + 0x2000);
+	x++;
+	x[0] = cast(ushort)(x1E + 0x6006);
+	x += 24;
+
+	x[0] = cast(ushort)(x1E + 0x2006);
+	x++;
+	x14 = ((gameState.partyMembers[id] - 1) * 4) + 0x22B0;
+	x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
+	for (short i =0 ; i != 5; i++) {
+		if (x12 != 0) {
+			x[0] = cast(ushort)(x14 + x1C);
+			x++;
+			x14++;
+			x12--;
+		} else {
+			x[0] = cast(ushort)(x1C + 0x2017);
+			x++;
+		}
+	}
+	x[0] = cast(ushort)(x1C + x20 + 0x2010);
+	x++;
+	x[0] = cast(ushort)(x1E + 0x6006);
+	x++;
+	x+= 24;
+
+	FillCharacterHPTileBuffer(character, character.hp.current.integer, character.hp.current.fraction);
+	const(ubyte)* x06 = &UnknownC3E3F8[0];
+	ushort* y = &HPPPWindowBuffer[id][0];
+	for (short i = 2; i != 0; i--) {
+		x[0] = cast(ushort)(x1E + 0x2006);
+		x++;
+		for (short j = 2;j != 0; j--) {
+			x[0] = cast(ushort)(x06[0] + x22 + 0x2000);
+			x06++;
+			x++;
+		}
+		for (short j = 4; j != 0; j--) {
+			x[0] = y[0];
+			y++;
+			x++;
+		}
+		x[0] = cast(ushort)(x1E + 0x6006);
+		x++;
+		x += 24;
+	}
+
+	FillCharacterPPTileBuffer(character, character.pp.current.integer, character.pp.current.fraction);
+	y = &HPPPWindowBuffer[id][6];
+	for (short i = 2; i != 0; i--) {
+		x[0] = cast(ushort)(x1E + 0x2006);
+		x++;
+		for (short j = 2; j != 0; j--) {
+			x[0] = cast(ushort)(x06[0] + x22 + 0x2000);
+			x06++;
+			x++;
+		}
+		for (short j = 4; j != 0; j--) {
+			x[0] = y[0];
+			y++;
+			x++;
+		}
+		x[0] = cast(ushort)(x1E + 0x6006);
+		x++;
+		x += 24;
+	}
+	x[0] = cast(ushort)(x1E + 0xA004);
+	x++;
+	for (short i = 6; i != 0; i--) {
+		x[0] = cast(ushort)(x1E + 0xA005);
+		x++;
+	}
+	x[0] = cast(ushort)(x1E + 0xE004);
+}
 
 // $C2077D
 void UnknownC2077D() {
@@ -139,6 +328,12 @@ void UnknownC20ABC(WindowTextAttributesCopy* buf) {
 
 // $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 ushort UnknownC20B65(short, short, short, short, short);
+
+// $C20F08
+void FillCharacterHPTileBuffer(PartyCharacter*, short, short);
+
+// $C20F26
+void FillCharacterPPTileBuffer(PartyCharacter*, short, short);
 
 // $C20F58
 uint UnknownC20F58() {
@@ -240,8 +435,18 @@ short setEventFlag(short flag, short value) {
 	}
 	return EventFlags[flag / 8];
 }
+
 // $C216DB
 void UnknownC216DB();
 
+// $C223D9
+short UnknownC223D9(ubyte*, short);
+
+// $C22474
+short UnknownC22474(ubyte*);
+
 // $C2D121
 void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox);
+
+// $C2DB3F
+void UnknownC2DB3F();

@@ -26,6 +26,7 @@ void DisplayFaultyGamepakScreen() {
 	UnknownC40B75();
 }
 
+// $C3E12C
 immutable ushort[] AllowedInputDirections = [
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //NORMAL
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //UNKNOWN_01
@@ -43,8 +44,15 @@ immutable ushort[] AllowedInputDirections = [
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft //STAIRS
 ];
 
+// $C3E3F8
+immutable ubyte[22] UnknownC3E3F8 = [0x08, 0x09, 0x18, 0x19, 0x0A, 0x09, 0x1A, 0x19, 0x15, 0x24, 0x16, 0x24, 0x15, 0x64, 0x41, 0x24, 0x8D, 0x26, 0x51, 0x24, 0x9D, 0x26];
+
 immutable ushort[2] arrC3E406 = [ 0x2441, 0x268D ];
 immutable ushort[2] arrC3E40A = [ 0x2451, 0x269D ];
+immutable ushort[4] UnknownC3E40E = [ 0x3A69, 0x3A6A, 0x3A6B, 0x3A6C ];
+
+// $C3E450
+void UnknownC3E450();
 
 // $C3E4CA - Clear the instant text print flag
 void ClearInstaprint() {
@@ -55,6 +63,9 @@ void ClearInstaprint() {
 void SetInstaprint() {
 	Unknown7E9622 = 1;
 }
+
+// $C3E521
+void CloseWindow(short);
 
 // $C3E6F8
 void UnknownC3E6F8() {
@@ -71,9 +82,6 @@ void UnknownC3E6F8() {
 	BattleMenuCurrentCharacterID = -1;
 	Unknown7E9623 = 1;
 }
-
-// $C3E521
-void CloseWindow(short);
 
 // $C3EB1C
 void UnknownC3EAD0(short arg1) {

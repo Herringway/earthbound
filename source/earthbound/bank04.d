@@ -126,6 +126,11 @@ void UnknownC43317() {
         ChosenFourPtrs[i] = &PartyCharacters[i];
     }
 }
+// $C43568
+void UnknownC43568() {
+    WaitUntilNextFrame();
+    UnknownC2DB3F();
+}
 
 // $C43B15 - Unknown, but looks like it resets the color of existing text in the focused window
 void UnknownC43B15() {
@@ -427,7 +432,7 @@ ubyte FindItemInInventory2(short arg1, short arg2) {
 void UnknownC45E96() {
     while (DMATransferFlag != 0) {}
     for (short i =0; i < 0x20; i++) {
-        Unknown7E9D23[i] = 0xFF;
+        Unknown7E9D23[i][0] = 0xFF;
     }
     Unknown7E9E25 = 0;
     Unknown7E9E23 = 0;
