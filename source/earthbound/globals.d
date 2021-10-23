@@ -389,6 +389,9 @@ __gshared ushort Unknown7E9E27;           // $9E27
 __gshared ushort Unknown7E9E29;           // $9E29
 
 __gshared ushort DMATransferFlag;           // $9E2B
+__gshared ushort EntityPreparedXCoordinate;           // $9E2D
+__gshared ushort EntityPreparedYCoordinate;           // $9E2F
+__gshared ushort EntityPreparedDirection;           // $9E31
 
 __gshared Unknown7E9E3CEntry[4] Unknown7E9E3C;           // $9E3C
 

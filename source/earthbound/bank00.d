@@ -96,6 +96,9 @@ void UnknownC02140(short);
 // $C02D29
 void UnknownC02D29();
 
+// $C032EC
+void UnknownC032EC();
+
 // $C034D6
 void UpdateParty();
 
@@ -103,7 +106,31 @@ void UpdateParty();
 short UnknownC0369B(short id);
 
 // $C03903
-void UnknownC03903(short id);
+void UnknownC03903(short id) {
+    short i;
+    for (i = 0; (gameState.unknown96[i] != id) && (i != 6); i++) {}
+    if (i == 6) {
+        return;
+    }
+    //x02 = gameState.unknownA2[i]
+    short j;
+    for (j = i; j < 5; j++) {
+        gameState.unknown96[j] = gameState.unknown96[j + 1];
+        gameState.unknownA2[j] = gameState.unknownA2[j + 1];
+        gameState.playerControlledPartyMembers[j] = gameState.playerControlledPartyMembers[j + 1];
+    }
+    if (i == 0) {
+        PartyCharacters[gameState.playerControlledPartyMembers[0]].position_index = EntityScriptVar1Table[gameState.unknownA2[i]];
+    }
+    gameState.unknown96[j] = 0;
+    gameState.partyCount--;
+    EntityAbsXTable[gameState.unknownA2[i]] = EntityPreparedXCoordinate;
+    EntityAbsYTable[gameState.unknownA2[i]] = EntityPreparedYCoordinate;
+    EntityDirections[gameState.unknownA2[i]] = EntityPreparedDirection;
+    UnknownC02140(gameState.unknownA2[i]);
+    UnknownC032EC();
+    UpdateParty();
+}
 
 // $C039E5
 void UnknownC039E5();
