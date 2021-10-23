@@ -102,6 +102,9 @@ void UpdateParty();
 // $C0369B
 short UnknownC0369B(short id);
 
+// $C03903
+void UnknownC03903(short id);
+
 // $C039E5
 void UnknownC039E5();
 

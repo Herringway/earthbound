@@ -559,7 +559,7 @@ void AddCharToParty(short id) {
 		}
 		gameState.partyMembers[i] = cast(ubyte)id;
 		EntityTickCallbackFlags[UnknownC0369B(id)] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
-		if (id < 4) {
+		if (id <= 4) {
 			UnknownC216DB();
 			UnknownC3EBCA();
 		}
@@ -568,7 +568,25 @@ void AddCharToParty(short id) {
 }
 
 // $C229BB
-void RemoveCharFromParty(short id);
+void RemoveCharFromParty(short id) {
+	for (short i = 0; gameState.partyCount > i; i++) {
+		if (gameState.partyMembers[i] != id) {
+			continue;
+		}
+		while (6 > i) {
+			gameState.partyMembers[i] = gameState.partyMembers[i + 1];
+			i++;
+		}
+		i--;
+		gameState.partyMembers[i] = 0;
+		UnknownC03903(id);
+		if (id <= 4) {
+			UnknownC216DB();
+			UnknownC3EBCA();
+		}
+		return;
+	}
+}
 
 // $C22474
 short UnknownC22474(ubyte*);
