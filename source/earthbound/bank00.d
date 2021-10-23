@@ -163,7 +163,24 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 void UnknownC02140(short);
 
 // $C02D29
-void UnknownC02D29();
+void UnknownC02D29() {
+    UNKNOWN_30X2_TABLE_36[23] = 1;
+    Unknown7E9F6B = -1;
+    gameState.unknown88 = 0;
+    gameState.unknownB0 = 0;
+    gameState.unknownB2 = 0;
+    gameState.unknownB4 = 0;
+    gameState.partyStatus = 0;
+    gameState.currentPartyMembers = 0x18;
+    for (short i = 0; i < 6; i++) {
+        gameState.unknown96[i] = 0;
+        Unknown7E5D8C[i] = 0;
+    }
+    gameState.playerControlledPartyMemberCount = 0;
+    gameState.partyCount = 0;
+    VelocityStore();
+    PajamaFlag = getEventFlag(NessPajamaFlag);
+}
 
 // $C032EC
 void UnknownC032EC();

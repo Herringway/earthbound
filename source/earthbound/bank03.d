@@ -26,6 +26,43 @@ void DisplayFaultyGamepakScreen() {
 	UnknownC40B75();
 }
 
+// $C30186
+immutable NessPajamaFlag = EventFlag.NessPajamas;
+
+// $C3E12C
+immutable FixedPoint1616[14] MovementSpeeds = [
+	FixedPoint1616(0x6000, 1),
+	FixedPoint1616(0x6000, 1),
+	FixedPoint1616(0x6000, 1),
+	FixedPoint1616(0xCCCC, 1),
+	FixedPoint1616(0x0000, 1),
+	FixedPoint1616(0x0000, 0),
+	FixedPoint1616(0x0000, 1),
+	FixedPoint1616(0xCCCC, 0),
+	FixedPoint1616(0xCCCC, 0),
+	FixedPoint1616(0x0000, 0),
+	FixedPoint1616(0x8000, 0),
+	FixedPoint1616(0x0000, 0),
+	FixedPoint1616(0xCCCC, 0),
+	FixedPoint1616(0xCCCC, 0),
+];
+immutable FixedPoint1616[14] MovementSpeedsDiagonal = [
+	FixedPoint1616(0xF8E6, 0),
+	FixedPoint1616(0xF8E6, 0),
+	FixedPoint1616(0xF8E6, 0),
+	FixedPoint1616(0x45D5, 1),
+	FixedPoint1616(0xB505, 0),
+	FixedPoint1616(0x0000, 0),
+	FixedPoint1616(0xB505, 0),
+	FixedPoint1616(0x90D0, 0),
+	FixedPoint1616(0x90D0, 0),
+	FixedPoint1616(0x0000, 0),
+	FixedPoint1616(0x5A82, 0),
+	FixedPoint1616(0x0000, 0),
+	FixedPoint1616(0x90D0, 0),
+	FixedPoint1616(0x90D0, 0),
+];
+
 // $C3E12C
 immutable ushort[] AllowedInputDirections = [
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //NORMAL

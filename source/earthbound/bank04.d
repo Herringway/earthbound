@@ -203,6 +203,31 @@ immutable ushort[88] UnknownC42F8C = [
     0x14E0,
 ];
 
+// $C430EC
+void VelocityStore() {
+    for (short i = 0; i < 14; i++) {
+        Unknown7E4DD6[i].unknown16.combined = 0;
+        Unknown7E4DD6[i].unknown0.combined = 0;
+        Unknown7E4F96[i].unknown24.combined = 0;
+        Unknown7E4F96[i].unknown8.combined = 0;
+        Unknown7E4F96[i].unknown16.combined = 0;
+        Unknown7E4DD6[i].unknown8.combined = 0;
+
+        Unknown7E4F96[i].unknown0.combined = -MovementSpeeds[i].combined;
+        Unknown7E4DD6[i].unknown24.combined = -MovementSpeeds[i].combined;
+
+        Unknown7E4F96[i].unknown20.combined = MovementSpeedsDiagonal[i].combined;
+        Unknown7E4F96[i].unknown12.combined = MovementSpeedsDiagonal[i].combined;
+        Unknown7E4DD6[i].unknown12.combined = MovementSpeedsDiagonal[i].combined;
+        Unknown7E4DD6[i].unknown4.combined = MovementSpeedsDiagonal[i].combined;
+
+        Unknown7E4F96[i].unknown28.combined = -MovementSpeedsDiagonal[i].combined;
+        Unknown7E4F96[i].unknown4.combined = -MovementSpeedsDiagonal[i].combined;
+        Unknown7E4DD6[i].unknown20.combined = -MovementSpeedsDiagonal[i].combined;
+        Unknown7E4DD6[i].unknown28.combined = -MovementSpeedsDiagonal[i].combined;
+    }
+}
+
 // $C432B1
 void UnknownC432B1() {
     for (short i = 0; i < 0x1E; i++) {

@@ -2398,7 +2398,7 @@ enum EventFlag {
 	UNKNOWN_2EA = 0x2EA,
 	UNKNOWN_2EB = 0x2EB,
 	UNKNOWN_2EC = 0x2EC,
-	NESS_PAJAMAS = 0x2ED,
+	NessPajamas = 0x2ED,
 	UNKNOWN_2EE = 0x2EE,
 	UNKNOWN_2EF = 0x2EF,
 	UNKNOWN_2F0 = 0x2F0,
@@ -2903,15 +2903,14 @@ struct PlayerPositionBufferEntry {
 }
 
 struct Unknown4DD6 {
-	ubyte[4] unknown0; //0
-	ubyte[4] unknown4; //4
-	ubyte[4] unknown8; //8
-	ubyte[4] unknown12; //12
-	ubyte[4] unknown16; //16
-	ubyte[4] unknown20; //20
-	ubyte[4] unknown24; //24
-	ubyte[356] unknown28; //28
-	ubyte[64] unknown384; //384
+	FixedPoint1616 unknown0; //0
+	FixedPoint1616 unknown4; //4
+	FixedPoint1616 unknown8; //8
+	FixedPoint1616 unknown12; //12
+	FixedPoint1616 unknown16; //16
+	FixedPoint1616 unknown20; //20
+	FixedPoint1616 unknown24; //24
+	FixedPoint1616 unknown28; //24
 }
 
 struct QueuedInteraction {
@@ -3032,7 +3031,7 @@ struct Unknown7E007DEntry {
 
 union FixedPoint1616 {
 	struct {
-		short fraction;
+		ushort fraction;
 		short integer;
 	}
 	uint combined;

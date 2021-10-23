@@ -300,8 +300,8 @@ __gshared PartyCharacter* Unknown7E4DC6; // $4DC6
 __gshared PartyCharacter*[6] ChosenFourPtrs; // $4DC8
 
 __gshared short Unknown7E4DD4; //$4DD4
-__gshared Unknown4DD6 Unknown7E4DD6; //$4DD6
-__gshared Unknown4DD6 Unknown7E4F96; //$4F96
+__gshared Unknown4DD6[14] Unknown7E4DD6; //$4DD6
+__gshared Unknown4DD6[14] Unknown7E4F96; //$4F96
 
 __gshared PlayerPositionBufferEntry[256] PlayerPositionBuffer;           // $5156
 __gshared short MiscDebugFlags;           // $5D56
