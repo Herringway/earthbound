@@ -75,6 +75,9 @@ void InitializeMiscObjectData() {
     }
 }
 
+// $C01A9D
+short FindFree7E4682(ushort);
+
 // $C01A86
 void UnknownC01A86();
 
@@ -87,8 +90,74 @@ void AllocSpriteMem(short arg1, ubyte arg2) {
     }
 }
 
+// $C01C52
+short UnknownC01C52(short, short, short);
+
+// $C01D38
+void UnknownC01D38(short, short, short);
+
+// $C01DED
+short UnknownC01DED(short);
+
 // $C01E49
-short CreateEntity(short sprite, short actionScript, short index, short x, short y);
+short CreateEntity(short sprite, short actionScript, short index, short x, short y) {
+    short result;
+    if (Debug != 0) {
+        if (sprite == -1) {
+            return 0;
+        }
+    }
+    short x02 = UnknownC01DED(sprite);
+    short x21 = UnknownC01C52(Unknown7E467A, Unknown7E467C, index);
+    while (x21 <= 0) {}
+    short x1F = FindFree7E4682(UnknownC42B0D[x02].unknown0);
+    while (x1F <= 0) {}
+    NewEntityPriority = 1;
+    UnknownC01D38(x1F, x21, SpriteGroupingPointers[sprite].unknown3);
+    if (index != -1) {
+        EntityAllocationMinSlot = index;
+        EntityAllocationMaxSlot = cast(short)(index + 1);
+        result = InitEntity(actionScript, x, y);
+    } else {
+        EntityAllocationMinSlot = 0;
+        EntityAllocationMaxSlot = 0x16;
+        result = InitEntity(actionScript, x, y);
+        AllocSpriteMem(-1, cast(ubyte)(result | 0x80));
+    }
+    EntitySpriteMapPointers[result] = &SpriteTable7E467E[x1F];
+    EntityUnknown2916[result] = UnknownC42B0D[x02].unknown0 * 5;
+    EntityUnknown2952[result] = x21;
+    EntityVramAddresses[result] = cast(ushort)(UnknownC42F8C[x21] + 0x4000);
+    EntityByteWidths[result] = SpriteGroupingPointers[sprite].width;
+    EntityTileHeights[result] = SpriteGroupingPointers[sprite].height;
+    UNKNOWN_30X2_TABLE_31[result] = SpriteGroupingPointers[sprite].spriteBank;
+    EntityTPTEntrySprites[result] = sprite;
+    //EntityGraphicsPointerHigh[result] = &SpriteGroupingPointers[sprite];
+    //EntityGraphicsPointerLow[result] = &SpriteGroupingPointers[sprite];
+    EntityGraphicsPointers[result] = &SpriteGroupingPointers[sprite];
+    if ((Unknown7E467C & 1) != 0) {
+        EntityVramAddresses[result] += 0x100;
+    }
+    UNKNOWN_30X2_TABLE_36[result] = SpriteGroupingPointers[sprite + 1].height;
+    Unknown7E3366[result] = SpriteGroupingPointers[sprite].unknown4;
+    Unknown7E33A2[result] = SpriteGroupingPointers[sprite].unknown5;
+    Unknown7E33DE[result] = SpriteGroupingPointers[sprite].unknown6;
+    Unknown7E1A4A[result] = SpriteGroupingPointers[sprite].unknown7;
+    Unknown7E332A[result] = UnknownC42AEB[SpriteGroupingPointers[sprite + 1].width];
+    UNKNOWN_30X2_TABLE_38[result] = cast(ushort)((UnknownC42B0D[x02].unknown1 <<8) | (UnknownC42B0D[x02].unknown0 - UnknownC42B0D[x02].unknown1));
+    UNKNOWN_30X2_TABLE_43[result] = 0xFFFF;
+    EntityEnemyIDs[result] = -1;
+    EntityTPTEntries[result] = 0xFFFF;
+    EntityCollidedObjects[result] = 0xFFFF;
+    EntitySurfaceFlags[result] = 0;
+    UNKNOWN_30X2_TABLE_45[result] = 0;
+    UNKNOWN_30X2_TABLE_44[result] = 0;
+    UNKNOWN_30X2_TABLE_41[result] = 0;
+    UNKNOWN_30X2_TABLE_35[result] = 0;
+    EntityDirections[result] = 0;
+    EntityObstacleFlags[result] = 0;
+    return result;
+}
 
 // $C02140
 void UnknownC02140(short);
@@ -453,7 +522,7 @@ void UnknownC07A56(short arg1, short arg2, short arg3) {
     } else {
         auto x0E = SpriteGroupingPointers[x12];
         // figure out sprite stuff
-        UNKNOWN_30X2_TABLE_31[x04] = x0E.unknown8;
+        //UNKNOWN_30X2_TABLE_31[x04] = x0E.spriteBank;
         UNKNOWN_30X2_TABLE_31[x04] = x02;
         Unknown7E00C0 = x02;
         x02 = Unknown7E4DC6.unknown55;
@@ -955,7 +1024,7 @@ immutable ubyte[] UNKNOWN_C08FC2 = [ 0x81, 0x39, 0x80, 0x80, 0x39, 0x00, 0x80, 0
 void UnknownC0927C();
 
 // $C09321
-void InitEntity(short, short, short);
+short InitEntity(short, short, short);
 
 // $C0943C
 void UnknownC0943C() {

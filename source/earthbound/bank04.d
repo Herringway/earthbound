@@ -6,6 +6,7 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
+import earthbound.bank0F;
 import earthbound.bank15;
 import earthbound.bank18;
 import earthbound.bank20;
@@ -99,6 +100,9 @@ immutable short[17] UnknownC42AEB = [
     0x0041,
 ];
 
+// $C42B0D
+immutable UnknownC42B0DEntry*[17] UnknownC42B0D;
+
 // $C42F45
 void SetPartyTickCallbacks(short leaderEntityID, void function() leaderCallback, void function() partyCallback) {
     EntityTickCallbacks[leaderEntityID] = leaderCallback;
@@ -106,6 +110,98 @@ void SetPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
         EntityTickCallbacks[leaderEntityID++] = partyCallback;
     }
 }
+
+// $C42F8C
+immutable ushort[88] UnknownC42F8C = [
+    0x0000,
+    0x0020,
+    0x0040,
+    0x0060,
+    0x0080,
+    0x00A0,
+    0x00C0,
+    0x00E0,
+    0x0200,
+    0x0220,
+    0x0240,
+    0x0260,
+    0x0280,
+    0x02A0,
+    0x02C0,
+    0x02E0,
+    0x0400,
+    0x0420,
+    0x0440,
+    0x0460,
+    0x0480,
+    0x04A0,
+    0x04C0,
+    0x04E0,
+    0x0600,
+    0x0620,
+    0x0640,
+    0x0660,
+    0x0680,
+    0x06A0,
+    0x06C0,
+    0x06E0,
+    0x0800,
+    0x0820,
+    0x0840,
+    0x0860,
+    0x0880,
+    0x08A0,
+    0x08C0,
+    0x08E0,
+    0x0A00,
+    0x0A20,
+    0x0A40,
+    0x0A60,
+    0x0A80,
+    0x0AA0,
+    0x0AC0,
+    0x0AE0,
+    0x0C00,
+    0x0C20,
+    0x0C40,
+    0x0C60,
+    0x0C80,
+    0x0CA0,
+    0x0CC0,
+    0x0CE0,
+    0x0E00,
+    0x0E20,
+    0x0E40,
+    0x0E60,
+    0x0E80,
+    0x0EA0,
+    0x0EC0,
+    0x0EE0,
+    0x1000,
+    0x1020,
+    0x1040,
+    0x1060,
+    0x1080,
+    0x10A0,
+    0x10C0,
+    0x10E0,
+    0x1200,
+    0x1220,
+    0x1240,
+    0x1260,
+    0x1280,
+    0x12A0,
+    0x12C0,
+    0x12E0,
+    0x1400,
+    0x1420,
+    0x1440,
+    0x1460,
+    0x1480,
+    0x14A0,
+    0x14C0,
+    0x14E0,
+];
 
 // $C432B1
 void UnknownC432B1() {
@@ -456,6 +552,21 @@ short UnknownC46028(short arg1) {
         }
     }
     return -1;
+}
+
+// $C464B5
+short CreatePreparedEntityNPC(short npcID, short actionScript) {
+    short result = CreateEntity(NPCConfig[npcID].sprite, actionScript, -1, EntityPreparedXCoordinate, EntityPreparedYCoordinate);
+    EntityDirections[result] = EntityPreparedDirection;
+    EntityTPTEntries[result] = npcID;
+    return result;
+}
+
+// $C46507
+short CreatePreparedEntitySprite(short sprite, short actionScript) {
+    short result = CreateEntity(sprite, actionScript, -1, EntityPreparedXCoordinate, EntityPreparedYCoordinate);
+    EntityDirections[result] = EntityPreparedDirection;
+    return result;
 }
 
 // $C47370

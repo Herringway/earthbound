@@ -148,8 +148,8 @@ __gshared short NewEntityVar4;
 __gshared short NewEntityVar5;
 __gshared short NewEntityVar6;
 __gshared short NewEntityVar7;
-__gshared short Unknown7E0A48;
-__gshared short Unknown7E0A4A;
+__gshared short NewEntityPosZ; //$0A48
+__gshared short NewEntityPriority; //$0A4A
 __gshared short EntityAllocationMinSlot; //$0A4C
 __gshared short EntityAllocationMaxSlot; //$0A4E
 __gshared short FirstEntity;
@@ -203,13 +203,15 @@ __gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; //$11A6
 __gshared void function()[MAX_ENTITIES] EntityDrawCallbacks; //$11E2
 __gshared void function()[MAX_ENTITIES] EntityMoveCallbacks; //$121E
 
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_14;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_15;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_16;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_17;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_18;
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19;
-__gshared short UNKNOWN_7E125A;
+deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_14; //$10F2
+deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_15; //$112E
+deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_16; //$116A
+deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_17; //$11A6
+deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_18; //$11E2
+deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19; //$121E
+__gshared short Unknown7E125A;
+
+__gshared short[MAX_ENTITIES] Unknown7E1A4A;
 
 
 __gshared ubyte[8] SoundEffectQueue; //$1AC2
@@ -222,20 +224,53 @@ __gshared short[64] Unknown7E1AD6; //$1AD6
 
 __gshared ushort Unknown7E2402; //$2402
 
+__gshared short[MAX_ENTITIES] EntityDrawSorting; //$280C
+__gshared short Unknown7E2848; //$2848
+__gshared short Unknown7E284A; //$284A
+__gshared ushort[MAX_ENTITIES] EntityUnknown284C; //$284C
+__gshared short Unknown7E2888; //$2888
+__gshared short Unknown7E288A; //$288A
+__gshared short Unknown7E288C; //$288C
+__gshared short Unknown7E288E; //$288E
+__gshared short Unknown7E2890; //$2890
+__gshared short Unknown7E2892; //$2892
+__gshared short Unknown7E2894; //$2894
+__gshared short Unknown7E2896; //$2896
+__gshared short Unknown7E2898; //$2898
+__gshared short FootstepSoundID; //$289A
+__gshared short FootstepSoundIDOverride; //$289C
 __gshared ushort[MAX_ENTITIES] EntityCollidedObjects; //$289E
-
+__gshared ushort[MAX_ENTITIES] EntityObstacleFlags; //$28DA
+__gshared ushort[MAX_ENTITIES] EntityUnknown2916; //$2916
+__gshared ushort[MAX_ENTITIES] EntityUnknown2952; //$2952
+__gshared ushort[MAX_ENTITIES] EntityVramAddresses; //$298E
+//__gshared ushort[MAX_ENTITIES] EntityGraphicsPointersLow; //$29CA
+//__gshared ushort[MAX_ENTITIES] EntityGraphicsPointersHigh; //$2A06
+__gshared void*[MAX_ENTITIES] EntityGraphicsPointers; //$29CA
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; //$2A42
-
+__gshared short[MAX_ENTITIES] EntityByteWidths; //$2A7E
+__gshared short[MAX_ENTITIES] EntityTileHeights; //$2ABA
 __gshared short[MAX_ENTITIES] EntityDirections; //$2AF6
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_35; //$2B32
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_36; //$2B6E
-__gshared ushort[MAX_ENTITIES] EntitySurfaceFlags; //$2B6E
-
+__gshared ushort[MAX_ENTITIES] EntitySurfaceFlags; //$2BAA
+__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_38; //$2BE6
+__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_40; //$2C22
+__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_41; //$2C5E
 __gshared ushort[MAX_ENTITIES] EntityTPTEntries; //$2C9A
 __gshared short[MAX_ENTITIES] EntityTPTEntrySprites; //$2CD6
+__gshared short[MAX_ENTITIES] EntityEnemyIDs; //$2D12
+__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_43; //$2D4E
+__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_44; //$2D8A
+__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_45; //$2DC6
+__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_46; //$2E02
 
-__gshared short[MAX_ENTITIES] EntityDrawSorting; //$280C
-
+__gshared short[MAX_ENTITIES] Unknown7E332A; //$332A
+__gshared short[MAX_ENTITIES] Unknown7E3366; //$3366
+__gshared short[MAX_ENTITIES] Unknown7E33A2; //$33A2
+__gshared short[MAX_ENTITIES] Unknown7E33DE; //$33DE
+__gshared short[MAX_ENTITIES] Unknown7E341A; //$331A
+__gshared short[MAX_ENTITIES] Unknown7E3456; //$3356
 // what is this???
 __gshared ubyte[32][52] Unknown7E3492; //$3492
 
@@ -243,6 +278,10 @@ __gshared short Debug; //$436C
 
 __gshared short Unknown7E4472; //$4472
 __gshared short Unknown7E4474; //$4474
+
+__gshared short Unknown7E467A; //$467A
+__gshared short Unknown7E467C; //$467C
+__gshared short[0] SpriteTable7E467E; //$467E - how big is this...?
 
 __gshared ubyte[88] Unknown7E4A00; // $4A00
 __gshared short Unknown7E4A58; // $4A58
