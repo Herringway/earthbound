@@ -392,7 +392,7 @@ void FillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short arg2, short
 		FillHPPPTileBufferX(arg1);
 		return;
 	}
-	SeparateDecimalDigits(arg3);
+	SeparateDecimalDigits(arg2);
 	FillHPPPTileBuffer(arg1, 1, arg3);
 }
 
