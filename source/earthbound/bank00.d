@@ -291,9 +291,9 @@ void UnknownC05200() {
     if (BattleDebug != 0) {
         return;
     }
-    if ((Unknown7E9F6F == 0) && (Unknown7E9F6B != 0xFFFF)) {
+    if ((Unknown7E9F6F == 0) && (Unknown7E9F6B != -1)) {
         UnknownC07716();
-    } else if (Unknown7E9F6B != 0xFFFF) {
+    } else if (Unknown7E9F6B != -1) {
         UnknownC0777A();
     }
     if (Unknown7E4472 != 0) {
@@ -415,7 +415,7 @@ void UnknownC07A56(short arg1, short arg2, short arg3) {
     short x14 = arg1;
     Unknown7E9F73 = x04;
     short x12 = UnknownC0780F(x14, x02, Unknown7E4DC6);
-    if (x12 == 0xFFFF) {
+    if (x12 == -1) {
         EntityAnimationFrames[x04] = x12;
     } else {
         auto x0E = SpriteGroupingPointers[x12];
@@ -446,7 +446,7 @@ void UnknownC07B52() {
     for (ushort x12 = 0x18; x12 < 0x1E; x12++) {
         ushort x04 = x12;
         ushort x10 = x12;
-        if (EntityScriptTable[x04] != 0xFFFF) {
+        if (EntityScriptTable[x04] != -1) {
             EntityTickCallbackFlags[x04] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
             Unknown7E4DC6 = &PartyCharacters[EntityScriptVar1Table[x04]];
             if ((gameState.currentPartyMembers == x12) || (Unknown7E4DC6.position_index == x14)) {
@@ -977,11 +977,83 @@ void CheckHardware() {
 // $C0A780
 void UnknownC0A780();
 
+// $C0ABA8
+void WaitForSPC700() {
+    APUIO2 = 0;
+    APUIO0 = 0;
+    do {
+        APUIO0 = 0xFF;
+        APUIO1 = 0x00;
+    } while ((APUIO0 != 0xAA) || (APUIO1 != 0xBB));
+}
+
 // $C0ABC6
 void StopMusic() {
     APUIO0 = 0;
     while (UnknownC0AC20() != 0) {}
     CurrentMusicTrack = 0xFFFF;
+}
+
+// $C0ABBD
+void UnknownC0ABBD(short);
+
+// $C0ABC6
+//original version had separate bank/addr parameters
+void LoadSPC700Data(const(ubyte)* data) {
+    SPC_DATA_PTR = data;
+    //Unknown7E00C8 = bank;
+    ushort y = 0;
+    ubyte b;
+    if ((APUIO0 != 0xAA) || (APUIO1 != 0xBB)) {
+        WaitForSPC700();
+    }
+    Unknown7E001E &= 0x7F;
+    NMITIMEN = Unknown7E001E;
+    ubyte a = 0xCC;
+    ushort x;
+    // proceed at your own peril.
+    // definitely going to have to triple check this one later
+    goto l7;
+    l1:
+        b = SPC_DATA_PTR[y++];
+        a = 0;
+        goto l4;
+    l2:
+        b = SPC_DATA_PTR[y++];
+        while (APUIO0 != a) {}
+        a++;
+    l4:
+        APUIO0 = a;
+        APUIO1 = b;
+        if (--x != 0) {
+            goto l2;
+        }
+        while(APUIO0 != a) {}
+        while((a += 3) == 0) {}
+    l7:
+        ubyte tmpA = a;
+        x = cast(ushort)(a | (b << 8));
+        if (SPC_DATA_PTR[y] != 0) {
+            a = 0;
+            b = 5;
+        } else {
+            y += 2;
+            a = SPC_DATA_PTR[y];
+            b = SPC_DATA_PTR[y + 1];
+            y += 2;
+        }
+        APUIO2 = a;
+        APUIO3 = b;
+        APUIO1 = x < 1;
+        a = tmpA;
+        APUIO0 = a;
+        while (APUIO0 != a) {}
+        if (x < 1) {
+            goto l1;
+        }
+        while (APUIO0 != 0 || APUIO1 != 0) {}
+        Unknown7E001E |= 0x80;
+        NMITIMEN = Unknown7E001E;
 }
 
 // $C0ABE0 - Play a sound effect
@@ -992,6 +1064,9 @@ void PlaySfx(short sfx) {
         Unknown7E1ACA ^= 0x80;
         return;
     }
+    PlaySfxUnknown();
+}
+void PlaySfxUnknown() {
     APUIO3 = 0x57;
 }
 
@@ -1005,6 +1080,12 @@ void UnknownC0AC0C(short arg1) {
 ubyte UnknownC0AC20() {
     return APUIO0;
 }
+
+// $C0AC2C
+immutable ubyte[14] StereoMonoData = [
+    0x01, 0x00, 0x31, 0x04, 0x00, 0x00, 0x00,
+    0x01, 0x00, 0x31, 0x04, 0x01, 0x00, 0x00,
+];
 
 // $C0B525
 void FileSelectInit() {

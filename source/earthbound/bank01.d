@@ -44,11 +44,44 @@ void ShowHPPPWindows() {
 // $C10EB4
 void UnknownC10EB4(short);
 
+// $C10C55
+short UnknownC10C55(uint*);
+
+// $C10C80
+void UnknownC10BA1F(short);
+
+// $C10C86
+void PrintLetterF(short arg1) {
+    PrintLetter(arg1);
+}
+// $C10CB6
+void PrintLetter(short arg1);
+
 // $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
 void UnknownC10D60(short tile);
 
+// $C10F40
+void UnknownC10F40(short window) {
+    if (window == -1) {
+        return;
+    }
+    //x10 = WindowStats[WindowTable[window]];
+    ushort* x0E = &WindowStats[WindowTable[window]].tilemapBuffer[0];
+    for (short i = cast(short)(WindowStats[WindowTable[window]].height * WindowStats[WindowTable[window]].width); i != 0; i--) {
+        if (x0E[0] != 0) {
+            UnknownC44E4D(x0E[0]);
+        }
+        x0E[0] = 0x40;
+        x0E++;
+    }
+    UnknownC45E96();
+    WindowStats[WindowTable[window]].text_y = 0;
+    WindowStats[WindowTable[window]].text_x = 0;
+}
 // $C10FA3 - Clears the focused window
-void Win_ClearFocus();
+void Win_ClearFocus() {
+    UnknownC10F40(CurrentFocusWindow);
+}
 
 // $C10FEA - Sets the text color for the focused window
 void Win_SetTextColor(short window_id);
@@ -74,11 +107,11 @@ int Win_MenuSelection(int cancelable) {
     int dp26 = CurrentFocusWindow;
     if (dp26 == -1) return 0;
 
-    WinStat *dp24 = focused_window_stat; // 16-bit pointer
+    WinStat *dp24 = &WindowStats[WindowTable[CurrentFocusWindow]]; // 16-bit pointer
 
     if (Unknown7E5E79) {
-        dp24.current_option = var9688;  // field2B
-        dp24.selected_option = var968A; // field2F
+        dp24.current_option = Unknown7E9688;  // field2B
+        dp24.selected_option = Unknown7E968A; // field2F
     }
 
     int dp20;
@@ -132,8 +165,8 @@ label1:
 
     ClearInstaprint();
     if (Unknown7E5E79) {
-        dp04.text_x = var9684; // field08
-        dp04.text_y = var9686; // field0A
+        dp04.text_x = Unknown7E9684; // field08
+        dp04.text_y = Unknown7E9686; // field0A
     }
 
     UnknownC43CD2(dp04, dp04.text_x, dp04.text_y);

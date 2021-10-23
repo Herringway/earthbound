@@ -121,7 +121,7 @@ __gshared short Unknown7E00BE;
 __gshared short Unknown7E00C0;
 
 __gshared short Unknown7E00C4;
-__gshared short SPC_DATA_PTR;
+__gshared const(ubyte)* SPC_DATA_PTR;
 __gshared short Unknown7E00C8;
 __gshared ubyte SoundEffectQueueEndIndex;
 __gshared ubyte SoundEffectQueueIndex;
@@ -229,6 +229,7 @@ __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; //$2A42
 __gshared short[MAX_ENTITIES] EntityDirections; //$2AF6
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_35; //$2B32
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_36; //$2B6E
+__gshared ushort[MAX_ENTITIES] EntitySurfaceFlags; //$2B6E
 
 __gshared ushort[MAX_ENTITIES] EntityTPTEntries; //$2C9A
 __gshared short[MAX_ENTITIES] EntityTPTEntrySprites; //$2CD6
@@ -300,7 +301,14 @@ __gshared short Unknown7E5E04;           // $5E04
 
 __gshared ubyte* Unknown7E5E38;           // $5E38
 
+__gshared ubyte Unknown7E5E6D;           // $5E6D
+
 __gshared short Unknown7E5E6E;           // $5E6E - I have this labeled as "word-wrap flag"...
+
+__gshared ubyte Unknown7E5E71;           // $5E71
+__gshared ubyte Unknown7E5E72;           // $5E72
+__gshared ushort Unknown7E5E73;           // $5E73
+__gshared ubyte Unknown7E5E75;           // $5E75
 
 __gshared ubyte Unknown7E5E79;           // $5E79 - Mystery flag
 
@@ -319,7 +327,7 @@ __gshared short  window_head;       // $88E0 - Head of the window linked list
 __gshared short  window_tail;       // $88E2 - Tail of the window linked list
 __gshared short[53]  WindowTable;  // $88E4 - Index: Window ID; Value: Index to WindowStats
 __gshared short  CurrentFocusWindow; // $8958 - Window ID of the focused window
-__gshared WinStat* focused_window_stat;
+__gshared ubyte[0] Unknown7E895A; //$895A
 
 __gshared ubyte Unknown7E89C9;           // $89C9
 __gshared short BattleMenuCurrentCharacterID;           // $89CA
@@ -329,30 +337,39 @@ __gshared MenuOpt[70]  menu_options;  // $89D4 - Window menu options
 __gshared ubyte Unknown7E9622;           // $9622
 __gshared ubyte Unknown7E9623;           // $9623
 __gshared ubyte Unknown7E9624;           // $9624
-
+__gshared ushort SelectedTextSpeed;           // $9625
 __gshared uint Unknown7E9627;           // $9627
 
 __gshared short Unknown7E9647;           // $9647
 __gshared ubyte Unknown7E9649;           // $9649
 
+__gshared ushort BlinkingTriangleFlag;           // $964D
+__gshared ushort Unknown7E964F;           // $964F
+
 __gshared ushort Unknown7E9652;           // $9652
 __gshared ushort Unknown7E9654;           // $9654
 
-__gshared short  var9684;           // $9684
-__gshared short  var9686;           // $9686
-__gshared short  var9688;           // $9688
-__gshared short  var968A;           // $968A
+__gshared short Unknown7E9684;           // $9684
+__gshared short Unknown7E9686;           // $9686
+__gshared short Unknown7E9688;           // $9688
+__gshared short Unknown7E968A;           // $968A
 __gshared short Unknown7E968C;           // $968C
 
-__gshared ubyte Unknown7E9695;           // $9625
+__gshared ubyte Unknown7E9695;           // $9695
+
 __gshared ubyte Unknown7E9696;           // $9696
 __gshared ubyte Unknown7E9697;           // $9697
 __gshared ubyte Unknown7E9698;           // $9698
 
 __gshared WindowTextAttributesCopy Unknown7E9C8A;           // $9C8A
 
+// is this the actual size? maybe it's 0x100?
+__gshared ubyte[0x20] Unknown7E9D23;           // $9D23
+
 __gshared ushort Unknown7E9E23;           // $9E23
 __gshared ushort Unknown7E9E25;           // $9E25
+__gshared ushort Unknown7E9E27;           // $9E27
+__gshared ushort Unknown7E9E29;           // $9E29
 
 __gshared ushort DMATransferFlag;           // $9E2B
 
@@ -433,6 +450,9 @@ __gshared short Unknown7EB4B2;         // $7EB4B2
 __gshared ubyte Unknown7EB4B6;         // $7EB4B6
 
 __gshared ushort CurrentMusicTrack;         // $B53B
+__gshared ushort CurrentPrimarySamplePack; //$B53D
+__gshared ushort CurrentSecondarySamplePack; //$B53F
+__gshared ushort CurrentSequencePack; //$B541
 
 __gshared ushort SectorBoundaryBehaviourFlag;         // $B549
 

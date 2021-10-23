@@ -147,6 +147,14 @@ enum DirectionMask {
 enum Music {
 	None = 0,
 	TeleportOut = 13,
+	SoundstoneRecordingGiantStep = 160,
+	SoundstoneRecordingLilliputSteps = 161,
+	SoundstoneRecordingMilkyWell = 162,
+	SoundstoneRecordingRainyCircle = 163,
+	SoundstoneRecordingMagnetHill = 164,
+	SoundstoneRecordingPinkCloud = 165,
+	SoundstoneRecordingLumineHall = 166,
+	SoundstoneRecordingFireSpring = 167,
 }
 
 enum ItemID {
@@ -414,7 +422,7 @@ enum Sfx {
 	CURSOR4 = 4,
 	CURSOR_INVALID = 5,
 	UNKNOWN06 = 6,
-	TEXT_PRINT = 7,
+	TextPrint = 7,
 	DOOR_OPEN = 8,
 	DOOR_CLOSE = 9,
 	PHONE_RING = 10,
@@ -1329,6 +1337,23 @@ struct SaveBlock {
 
 struct SaveData {}
 
+struct Font {
+	const(ubyte)* data;
+	const(void)* gfx;
+	ushort height;
+	ushort width;
+}
+
+struct MusicDataset {
+	ubyte primarySamplePack;
+	ubyte secondarySamplePack;
+	ubyte sequencePack;
+}
+
+struct MusicPackPointer {
+	//ubyte bank;
+	const(ubyte)* addr;
+}
 
 //helper funcs not in the original game
 

@@ -58,7 +58,7 @@ void SetInstaprint() {
 
 // $C3E6F8
 void UnknownC3E6F8() {
-	if (BattleMenuCurrentCharacterID == 0xFFFF) {
+	if (BattleMenuCurrentCharacterID == -1) {
 		return;
 	}
 	WaitUntilNextFrame();
@@ -115,6 +115,16 @@ void UnknownC3EBCA() {
 	}
 }
 
+// $C3F054
+immutable Font[5] FontConfigTable = [
+	Font(null, null, 32, 16), //main font
+	Font(null, null, 32, 16), //mr saturn font
+	Font(null, null, 16, 16), //battle font
+	Font(null, null, 8, 8), //tiny font
+	Font(null, null, 32, 16), //large font
+];
+
+// $C3FDBD
 immutable ushort[4] UnusedForSaleSignSpriteTable = [
 	OverworldSprite.GuyInBlueClothes,
 	OverworldSprite.JamaicanGuy,

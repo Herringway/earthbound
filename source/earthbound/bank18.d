@@ -6,6 +6,9 @@ immutable ubyte[] AntiPiracyNoticeArrangement = cast(immutable(ubyte)[])import("
 // $D8F05E
 immutable ubyte[] AntiPiracyNoticeGraphics = cast(immutable(ubyte)[])import("errors/antipiracy.gfx.lzhal");
 
+// $D8F3BE
+immutable ubyte[] WarningPalette = cast(immutable(ubyte)[])import("errors/shared.pal");
+
 // $D8F8CE
 immutable ubyte[] FaultyGamepakArrangement = cast(immutable(ubyte)[])import("errors/faulty.arr.lzhal");
 
