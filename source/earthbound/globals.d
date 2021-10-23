@@ -335,6 +335,7 @@ __gshared short[5] Unknown7E894E; //$894E
 __gshared short  CurrentFocusWindow; // $8958 - Window ID of the focused window
 __gshared ubyte[0] Unknown7E895A; //$895A
 
+__gshared ubyte[3] HPPPWindowDigitBuffer; //$8966
 __gshared ushort[12][4] HPPPWindowBuffer; //$8969
 
 __gshared ubyte Unknown7E89C9;           // $89C9

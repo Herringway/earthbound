@@ -187,7 +187,7 @@ void DrawHPPPWindow(short id) {
 	x++;
 	x+= 24;
 
-	FillCharacterHPTileBuffer(character, character.hp.current.integer, character.hp.current.fraction);
+	FillCharacterHPTileBuffer(id, character.hp.current.integer, character.hp.current.fraction);
 	const(ubyte)* x06 = &UnknownC3E3F8[0];
 	ushort* y = &HPPPWindowBuffer[id][0];
 	for (short i = 2; i != 0; i--) {
@@ -208,7 +208,7 @@ void DrawHPPPWindow(short id) {
 		x += 24;
 	}
 
-	FillCharacterPPTileBuffer(character, character.pp.current.integer, character.pp.current.fraction);
+	FillCharacterPPTileBuffer(id, &character.afflictions[0], character.pp.current.integer, character.pp.current.fraction);
 	y = &HPPPWindowBuffer[id][6];
 	for (short i = 2; i != 0; i--) {
 		x[0] = cast(ushort)(x1E + 0x2006);
@@ -329,11 +329,72 @@ void UnknownC20ABC(WindowTextAttributesCopy* buf) {
 // $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 ushort UnknownC20B65(short, short, short, short, short);
 
+// $C20D3F
+void SeparateDecimalDigits(short arg1) {
+	ubyte* x = &HPPPWindowDigitBuffer[2];
+	x[0] = cast(ubyte)(arg1%10);
+	x--;
+
+	arg1 /= 10;
+	x[0] = cast(ubyte)(arg1%10);
+	x--;
+
+	arg1 /= 10;
+	x[0] = cast(ubyte)arg1;
+	x--;
+}
+
+// $C20D89
+void FillHPPPTileBufferX(short arg1) {
+	ushort* x = &HPPPWindowBuffer[arg1][6];
+	for (short i = 0; i < 3; i++) {
+		x[0] = cast(ushort)(i + 0x264C);
+		x[3] = cast(ushort)(i + 0x265C);
+		x++;
+	}
+}
+// $C20DC5
+void FillHPPPTileBuffer(short arg1, short arg2, short arg3) {
+	short x16 = cast(short)((arg3 >= 0x3000) ? (arg3 - 0x3000) : 0);
+	short y = x16 / 0x3400;
+	ushort* x = &HPPPWindowBuffer[arg1][arg2 * 6 + 3 - 1];
+
+	//100s digit
+	x[0] = cast(ushort)(((HPPPWindowDigitBuffer[2] >> 2) * 16) + (HPPPWindowDigitBuffer[2] * 4) + y + 0x2600);
+	x[3] = cast(ushort)(x[0] + 0x10);
+	x--;
+
+	//10s digit
+	if ((HPPPWindowDigitBuffer[2] != 9) || (y == 0)) {
+		y = 0;
+	}
+	x[0] = cast(ushort)(((HPPPWindowDigitBuffer[1] >> 2) * 16) + (HPPPWindowDigitBuffer[1] * 4) + y + (((HPPPWindowDigitBuffer[1] != 0) || (HPPPWindowDigitBuffer[0] != 0)) ? 0x200 : 0x248) + 0x2400);
+	x[3] = cast(ushort)(x[0] + 0x10);
+	x--;
+
+	//1s digit
+	if ((HPPPWindowDigitBuffer[1] != 9) || (y == 0)) {
+		y = 0;
+	}
+	x[0] = cast(ushort)(((HPPPWindowDigitBuffer[0] >> 2) * 16) + (HPPPWindowDigitBuffer[0] * 4) + y + ((HPPPWindowDigitBuffer[0] != 0) ? 0x248 : 0x200) + 0x2400);
+	x[3] = cast(ushort)(x[0] + 0x10);
+}
+
 // $C20F08
-void FillCharacterHPTileBuffer(PartyCharacter*, short, short);
+void FillCharacterHPTileBuffer(short arg1, short arg2, short arg3) {
+	SeparateDecimalDigits(arg2);
+	FillHPPPTileBuffer(arg1, 0, arg3);
+}
 
 // $C20F26
-void FillCharacterPPTileBuffer(PartyCharacter*, short, short);
+void FillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short arg2, short arg3) {
+	if (afflictions[4] != 0) {
+		FillHPPPTileBufferX(arg1);
+		return;
+	}
+	SeparateDecimalDigits(arg3);
+	FillHPPPTileBuffer(arg1, 1, arg3);
+}
 
 // $C20F58
 uint UnknownC20F58() {
