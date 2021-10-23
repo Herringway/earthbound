@@ -354,9 +354,8 @@ void FillHPPPTileBufferX(short arg1) {
 	}
 }
 // $C20DC5
-void FillHPPPTileBuffer(short arg1, short arg2, short arg3) {
-	short x16 = cast(short)((arg3 >= 0x3000) ? (arg3 - 0x3000) : 0);
-	short y = x16 / 0x3400;
+void FillHPPPTileBuffer(short arg1, short arg2, short fraction) {
+	ushort y = cast(ushort)(((fraction >= 0x3000) ? (fraction - 0x3000) : 0) / 0x3400);
 	ushort* x = &HPPPWindowBuffer[arg1][arg2 * 6 + 3 - 1];
 
 	//100s digit
@@ -381,19 +380,19 @@ void FillHPPPTileBuffer(short arg1, short arg2, short arg3) {
 }
 
 // $C20F08
-void FillCharacterHPTileBuffer(short arg1, short arg2, short arg3) {
-	SeparateDecimalDigits(arg2);
-	FillHPPPTileBuffer(arg1, 0, arg3);
+void FillCharacterHPTileBuffer(short arg1, short integer, short fraction) {
+	SeparateDecimalDigits(integer);
+	FillHPPPTileBuffer(arg1, 0, fraction);
 }
 
 // $C20F26
-void FillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short arg2, short arg3) {
+void FillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short integer, short fraction) {
 	if (afflictions[4] != 0) {
 		FillHPPPTileBufferX(arg1);
 		return;
 	}
-	SeparateDecimalDigits(arg2);
-	FillHPPPTileBuffer(arg1, 1, arg3);
+	SeparateDecimalDigits(integer);
+	FillHPPPTileBuffer(arg1, 1, fraction);
 }
 
 // $C20F58
