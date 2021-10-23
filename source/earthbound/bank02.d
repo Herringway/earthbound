@@ -5,6 +5,7 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank15;
 import earthbound.globals;
 
 import core.stdc.string;
@@ -497,10 +498,77 @@ short setEventFlag(short flag, short value) {
 }
 
 // $C216DB
-void UnknownC216DB();
+void UnknownC216DB() {
+	ubyte x18 = 0;
+	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+		PartyCharacter* x15 = &PartyCharacters[gameState.partyMembers[i]];
+		for (short j = 0; (j < 14) && (x15.items[j] != 0); j++) {
+			if (ItemData[x15.items[j]].type != 4) {
+				continue;
+			}
+			if (x18 != 0) {
+				if (ItemData[x18].ep > ItemData[x15.items[j]].ep) {
+					x18 = x15.items[j];
+				}
+			}
+		}
+	}
+	if (x18 != 0) {
+		if (UnknownC2239D(ItemData[x18].strength) != 0) {
+			return;
+		}
+		RemoveCharFromParty(PartyMember.TeddyBear);
+		RemoveCharFromParty(PartyMember.PlushTeddyBear);
+		AddCharToParty(ItemData[x18].strength);
+	} else {
+		RemoveCharFromParty(PartyMember.TeddyBear);
+		RemoveCharFromParty(PartyMember.PlushTeddyBear);
+	}
+}
+
+// $C2239D
+short UnknownC2239D(short id) {
+	for (short i = 0; i < gameState.partyCount; i++) {
+		if (gameState.partyMembers[i] == id) {
+			return id;
+		}
+	}
+	return 0;
+}
 
 // $C223D9
 short UnknownC223D9(ubyte*, short);
+
+// $C228F8
+void AddCharToParty(short id) {
+	for (short i = 0; 6 > i; i++) {
+		if (gameState.partyMembers[i] == id) {
+			return;
+		}
+		if ((gameState.partyMembers[i] <= id) && (gameState.partyMembers[i] != 0)) {
+			continue;
+		}
+		short j;
+		for (j = i; gameState.partyMembers[j] != 0; j++) {
+			if (6 <= j) {
+				return;
+			}
+		}
+		while(j > i) {
+			gameState.partyMembers[j] = gameState.partyMembers[--j];
+		}
+		gameState.partyMembers[i] = cast(ubyte)id;
+		EntityTickCallbackFlags[UnknownC0369B(id)] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+		if (id < 4) {
+			UnknownC216DB();
+			UnknownC3EBCA();
+		}
+		return;
+	}
+}
+
+// $C229BB
+void RemoveCharFromParty(short id);
 
 // $C22474
 short UnknownC22474(ubyte*);

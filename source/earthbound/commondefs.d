@@ -937,6 +937,26 @@ enum EventFlag {
 	Unknown2B7 = 0x2B7,
 }
 
+enum PartyMember {
+	None = 0,
+	Ness = 1,
+	Paula = 2,
+	Jeff = 3,
+	Poo = 4,
+	Pokey = 5,
+	Picky = 6,
+	King = 7,
+	Tony = 8,
+	BubbleMonkey = 9,
+	DungeonMan = 10,
+	FlyingMan1 = 11,
+	FlyingMan2 = 12,
+	FlyingMan3 = 13,
+	FlyingMan4 = 14,
+	FlyingMan5 = 15,
+	TeddyBear = 16,
+	PlushTeddyBear = 17,
+}
 
 
 struct Game_State {
@@ -1289,7 +1309,7 @@ struct Item {
 	ushort cost;
 	ubyte flags;
 	ushort battleAction;
-	ubyte strength;
+	byte strength;
 	ubyte epi;
 	ubyte ep;
 	ubyte special;
