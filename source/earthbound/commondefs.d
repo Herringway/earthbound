@@ -2708,6 +2708,13 @@ enum NPCConfigFlagStyle {
 	ShowIfOn = 2,
 }
 
+enum Font {
+	Main = 0,
+	MrSaturn = 1,
+	Battle = 2,
+	Tiny = 3,
+	Large = 4
+}
 
 struct Game_State {
 	ubyte[12] mother2PlayerName;
@@ -3106,9 +3113,9 @@ struct SaveBlock {
 
 struct SaveData {}
 
-struct Font {
+struct FontConfig {
 	const(ubyte)* data;
-	const(void)* gfx;
+	const(void)* graphics;
 	ushort height;
 	ushort width;
 }

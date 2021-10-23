@@ -461,6 +461,9 @@ void UnknownC44AF7(short arg1) {
     Unknown7E1AD6[x10 >> 4] &= UnknownC44AD7[x10 & 0xF];
 }
 
+// $C44B3A
+void UnknownC44B3A(short, short, const(void)*);
+
 // $C44E44
 void UnknownC44E44() {
     Unknown7E9654 = 0;
@@ -549,6 +552,17 @@ ubyte FindItemInInventory2(short arg1, short arg2) {
     }
 }
 
+// wrong name
+immutable ushort[49] StatusEquipWindowText2 = [
+    0x0020, 0x000D, 0x000E, 0x000F, 0x001D, 0x001E, 0x001F,
+    0x001C, 0x012F, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020,
+    0x000C, 0x013F, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020,
+    0x000B, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020,
+    0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020,
+    0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020,
+    0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0020, 0x0000
+];
+
 // $C45E96
 void UnknownC45E96() {
     while (DMATransferFlag != 0) {}
@@ -605,7 +619,57 @@ void LoadBackgroundAnimation(short bg, short arg2) {
 }
 
 // $C47C3F
-void LoadWindowGraphics();
+//definitely need to check this one over
+void LoadWindowGraphics() {
+    Decomp(&TextWindowGraphics[0], &Unknown7F0000[0]);
+    memcpy(&Unknown7F0000[0x2000], &Unknown7F0000[0x1000], 0x2A00);
+    memset(&Unknown7F0000[0x3200], 0, 0x600);
+    if (TextWindowProperties[gameState.textFlavour - 1].unknown == 8) {
+        Decomp(&FlavouredTextGraphics[0], &Unknown7F0000[0x100]);
+    }
+    ushort* x24 = cast(ushort*)&Unknown7F0000[0x2A00];
+    for (short i = 0; i < 4; i++) {
+        Unknown7E9E25 = 0;
+        Unknown7E9E23 = 0;
+        memset(&Unknown7E3492[0][0], 0xFF, 0x340);
+        Unknown7E9654 = 0;
+        Unknown7E9652 = 0;
+        ubyte* x0A = &PartyCharacters[i].name[0];
+        Unknown7E9E23 = 2;
+        for (short j = 0; x0A[0] != 0; j++) {
+            UnknownC44B3A(6, FontConfigTable[Font.Battle].width, &FontConfigTable[Font.Battle].graphics[FontConfigTable[Font.Battle].height * ((*x0A - 0x50) & 0x7F)]);
+            x0A++;
+        }
+        for (short j = 0; j < 4; j++) {
+            memcpy(&Unknown7F0000[0x2A00 + j * 16 + i * 64], &Unknown7E3492[j][0], 0x10);
+            memcpy(&Unknown7F0000[0x2A00 + j * 16 + i * 64 + 0x100], &Unknown7E3492[j][16], 0x10);
+        }
+    }
+    for (short i = 0; i < 0x20; i++) {
+        ubyte* x1A = &Unknown7F0000[0x70];
+        for (short j = 0; j < 8; j++) {
+            x24[0] = (x24[0] & 0xFF00) | ((x24[0] >> 8) ^ 0xFF) | x1A[0];
+            x24++;
+            x1A++;
+        }
+    }
+    ushort* x16 = cast(ushort*)&Unknown7F0000[0x2C00];
+
+    for (const(ushort)* x24_2 = &StatusEquipWindowText2[0]; *x24_2 != 0; x24_2++) {
+        if (*x24_2 == 0x20) {
+            continue;
+        }
+        ushort* x0A = cast(ushort*)(&Unknown7F0000[(*x24_2 & 0xFFF0) + *x24_2]);
+        ubyte* x1A = &Unknown7F0000[0x70];
+        for (short i = 0; i < 8; i++) {
+            x16[0] = (x0A[0] & 0xFF00) | ((x0A[0] >> 8) ^ 0xFF) | x1A[0];
+            x16[0x100] = (x0A[0x100] & 0xFF00) | ((x0A[0x100] >> 8) ^ 0xFF) | x1A[0x100];
+            x16++;
+            x0A++;
+            x1A += 2;
+        }
+    }
+}
 
 // $C47F87
 void UnknownC47F87() {

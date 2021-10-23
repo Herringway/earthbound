@@ -161,12 +161,12 @@ void UnknownC3EBCA() {
 }
 
 // $C3F054
-immutable Font[5] FontConfigTable = [
-	Font(null, null, 32, 16), //main font
-	Font(null, null, 32, 16), //mr saturn font
-	Font(null, null, 16, 16), //battle font
-	Font(null, null, 8, 8), //tiny font
-	Font(null, null, 32, 16), //large font
+immutable FontConfig[5] FontConfigTable = [
+	FontConfig(null, null, 32, 16), //main font
+	FontConfig(null, null, 32, 16), //mr saturn font
+	FontConfig(null, null, 16, 16), //battle font
+	FontConfig(null, null, 8, 8), //tiny font
+	FontConfig(null, null, 32, 16), //large font
 ];
 
 // $C3FDBD

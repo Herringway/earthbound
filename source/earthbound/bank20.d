@@ -3,7 +3,10 @@ module earthbound.bank20;
 import earthbound.commondefs;
 
 // $E00000
-immutable ubyte[0x754] TextWindowGraphics;
+immutable ubyte[] TextWindowGraphics = cast(immutable(ubyte)[])import("graphics/text_window.gfx.lzhal");
+
+// $E00751
+immutable ubyte[] FlavouredTextGraphics = cast(immutable(ubyte)[])import("graphics/flavoured_text.gfx.lzhal");
 
 // $E01FB9
 immutable TextWindowPropertiesEntry[5] TextWindowProperties = [
