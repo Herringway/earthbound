@@ -2716,6 +2716,12 @@ enum Font {
 	Tiny = 3,
 	Large = 4
 }
+enum EquipmentSlot {
+	Weapon = 0,
+	Body = 1,
+	Arms = 2,
+	Other = 3,
+}
 
 struct Game_State {
 	ubyte[12] mother2PlayerName;
@@ -3066,11 +3072,27 @@ struct Item {
 	ushort cost;
 	ubyte flags;
 	ushort battleAction;
-	byte strength;
-	ubyte epi;
-	ubyte ep;
-	ubyte special;
+	union {
+		byte[2] parameters;
+		struct {
+			byte strength;
+			byte epi;
+		}
+		ubyte ep;
+		ubyte special;
+	}
 	ubyte* helpText;
+	this(char[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, ubyte* helpText ) {
+		this.name = name;
+		this.type = type;
+		this.cost = cost;
+		this.flags = flags;
+		this.battleAction = battleAction;
+		this.parameters = [parameter1, parameter2];
+		this.ep = parameter3;
+		this.special = parameter4;
+		this.helpText = helpText;
+	}
 }
 
 struct WindowTextAttributesCopy {

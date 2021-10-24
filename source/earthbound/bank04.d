@@ -554,16 +554,40 @@ ubyte FindItemInInventory2(short arg1, short arg2) {
 }
 
 //$C4577D
-void ChangeEquippedWeapon(ushort character, ubyte slot);
+ubyte ChangeEquippedWeapon(ushort character, ubyte slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon] = slot;
+    RecalcCharacterPostmathOffense(character);
+    RecalcCharacterPostmathGuts(character);
+    RecalcCharacterMissRate(character);
+    return PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon];
+}
 
 //$C457CA
-void ChangeEquippedBody(ushort character, ubyte slot);
+ubyte ChangeEquippedBody(ushort character, ubyte slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Body] = slot;
+    RecalcCharacterPostmathDefense(character);
+    RecalcCharacterPostmathSpeed(character);
+    CalcResistances(character);
+    return PartyCharacters[character - 1].equipment[EquipmentSlot.Body];
+}
 
 //$C45815
-void ChangeEquippedArms(ushort character, ubyte slot);
+ubyte ChangeEquippedArms(ushort character, ubyte slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Arms] = slot;
+    RecalcCharacterPostmathDefense(character);
+    RecalcCharacterPostmathLuck(character);
+    CalcResistances(character);
+    return PartyCharacters[character - 1].equipment[EquipmentSlot.Arms];
+}
 
 //$C45860
-void ChangeEquippedOther(ushort character, ubyte slot);
+ubyte ChangeEquippedOther(ushort character, ubyte slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Other] = slot;
+    RecalcCharacterPostmathDefense(character);
+    RecalcCharacterPostmathLuck(character);
+    CalcResistances(character);
+    return PartyCharacters[character - 1].equipment[EquipmentSlot.Other];
+}
 
 
 // wrong name

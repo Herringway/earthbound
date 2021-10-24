@@ -455,26 +455,26 @@ ushort GiveItemToCharacter(ushort character, ubyte item) {
 
 // $C18E5B
 ushort RemoveItemFromInventory(ushort character, ushort slot) {
-    if (slot == PartyCharacters[character - 1].equipment[0]) {
+    if (slot == PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon]) {
         ChangeEquippedWeapon(character, 0);
-    } else if (slot == PartyCharacters[character - 1].equipment[1]) {
+    } else if (slot == PartyCharacters[character - 1].equipment[EquipmentSlot.Body]) {
         ChangeEquippedBody(character, 0);
-    } else if (slot == PartyCharacters[character - 1].equipment[2]) {
+    } else if (slot == PartyCharacters[character - 1].equipment[EquipmentSlot.Arms]) {
         ChangeEquippedArms(character, 0);
-    } else if (slot == PartyCharacters[character - 1].equipment[3]) {
+    } else if (slot == PartyCharacters[character - 1].equipment[EquipmentSlot.Other]) {
         ChangeEquippedOther(character, 0);
     }
-    if (slot >= PartyCharacters[character - 1].equipment[0]) {
-        PartyCharacters[character - 1].equipment[0]--;
+    if (slot >= PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon]) {
+        PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon]--;
     }
-    if (slot >= PartyCharacters[character - 1].equipment[1]) {
-        PartyCharacters[character - 1].equipment[1]--;
+    if (slot >= PartyCharacters[character - 1].equipment[EquipmentSlot.Body]) {
+        PartyCharacters[character - 1].equipment[EquipmentSlot.Body]--;
     }
-    if (slot >= PartyCharacters[character - 1].equipment[2]) {
-        PartyCharacters[character - 1].equipment[2]--;
+    if (slot >= PartyCharacters[character - 1].equipment[EquipmentSlot.Arms]) {
+        PartyCharacters[character - 1].equipment[EquipmentSlot.Arms]--;
     }
-    if (slot >= PartyCharacters[character - 1].equipment[3]) {
-        PartyCharacters[character - 1].equipment[3]--;
+    if (slot >= PartyCharacters[character - 1].equipment[EquipmentSlot.Other]) {
+        PartyCharacters[character - 1].equipment[EquipmentSlot.Other]--;
     }
     short x00 = PartyCharacters[character - 1].items[slot - 1];
     ushort i;
