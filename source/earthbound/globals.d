@@ -274,10 +274,39 @@ __gshared short[MAX_ENTITIES] Unknown7E3456; //$3356
 // what is this???
 __gshared ubyte[32][52] Unknown7E3492; //$3492
 
+
+__gshared short Unknown7E3C14; //$3C14
+__gshared short Unknown7E3C16; //$3C16
+__gshared short Unknown7E3C18; //$3C18
+__gshared short Unknown7E3C1A; //$3C1A
+__gshared short Unknown7E3C1C; //$3C1C
+__gshared short Unknown7E3C1E; //$3C1E
+__gshared short Unknown7E3C20; //$3C20
+__gshared ubyte Unknown7E3C22; //$3C22
+__gshared ubyte Unknown7E3C23; //$3C23
+__gshared short Unknown7E3C24; //$3C24
+__gshared ubyte Unknown7E3C26; //$3C26
+__gshared ubyte Unknown7E3C27; //$3C27
+__gshared short Unknown7E3C28; //$3C28
+__gshared short Unknown7E3C2A; //$3C2A
+__gshared short Unknown7E3C2C; //$3C2C
+__gshared short Unknown7E3C2E; //$3C2E
+__gshared short Unknown7E3C30; //$3C30
+__gshared short Unknown7E3C32; //$3C32
+
 __gshared short Debug; //$436C
+__gshared short Unknown7E436E; //$436E
+__gshared short Unknown7E4370; //$4370
+__gshared short Unknown7E4372; //$4372
+__gshared short Unknown7E4374; //$4374
+
+__gshared short Unknown7E438A; //$438A
+__gshared short Unknown7E438C; //$438C
 
 __gshared short Unknown7E4472; //$4472
 __gshared short Unknown7E4474; //$4474
+
+__gshared short Unknown7E4676; //$4676
 
 __gshared short Unknown7E467A; //$467A
 __gshared short Unknown7E467C; //$467C
@@ -317,6 +346,8 @@ __gshared short Unknown7E5D72;           // $5D72
 __gshared short Unknown7E5D74;           // $5D74
 __gshared short Unknown7E5D76;           // $5D76
 __gshared short Unknown7E5D78;           // $5D78
+
+__gshared short Unknown7E5D7E;           // $5D7E
 
 __gshared short[6] Unknown7E5D8C;           // $5D8C
 __gshared short OverworldStatusSuppression;           // $5D98
@@ -419,6 +450,8 @@ __gshared ubyte Unknown7E9698;           // $9698
 
 __gshared WindowTextAttributesCopy Unknown7E9C8A;           // $9C8A
 
+__gshared short RespawnX;           // $9D1F
+__gshared short RespawnY;           // $9D21
 // is this the actual size? maybe it's 0x100?
 __gshared ubyte[0x20][8] Unknown7E9D23;           // $9D23
 
@@ -435,6 +468,7 @@ __gshared ushort EntityPreparedDirection;           // $9E31
 __gshared Unknown7E9E3CEntry[4] Unknown7E9E3C;           // $9E3C
 
 __gshared ushort DadPhoneTimer;           // $9E54
+__gshared short Unknown7E9E56;           // $9E56
 
 __gshared LoadedItemTransformation[4] LoadedItemTransformations;           // $9F1A
 

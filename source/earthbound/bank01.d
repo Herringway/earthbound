@@ -445,7 +445,7 @@ ushort GiveItemToCharacter(ushort character, ubyte item) {
             if (GiveItemToSpecificCharacter(gameState.partyMembers[i], item) == 0) {
                 continue;
             }
-            return gameState.playerControlledPartyMembers[i];
+            return gameState.partyMembers[i];
         }
         return 0;
     } else {
@@ -453,8 +453,68 @@ ushort GiveItemToCharacter(ushort character, ubyte item) {
     }
 }
 
+// $C18E5B
+ushort RemoveItemFromInventory(ushort character, ushort slot) {
+    if (slot == PartyCharacters[character - 1].equipment[0]) {
+        ChangeEquippedWeapon(character, 0);
+    } else if (slot == PartyCharacters[character - 1].equipment[1]) {
+        ChangeEquippedBody(character, 0);
+    } else if (slot == PartyCharacters[character - 1].equipment[2]) {
+        ChangeEquippedArms(character, 0);
+    } else if (slot == PartyCharacters[character - 1].equipment[3]) {
+        ChangeEquippedOther(character, 0);
+    }
+    if (slot >= PartyCharacters[character - 1].equipment[0]) {
+        PartyCharacters[character - 1].equipment[0]--;
+    }
+    if (slot >= PartyCharacters[character - 1].equipment[1]) {
+        PartyCharacters[character - 1].equipment[1]--;
+    }
+    if (slot >= PartyCharacters[character - 1].equipment[2]) {
+        PartyCharacters[character - 1].equipment[2]--;
+    }
+    if (slot >= PartyCharacters[character - 1].equipment[3]) {
+        PartyCharacters[character - 1].equipment[3]--;
+    }
+    short x00 = PartyCharacters[character - 1].items[slot - 1];
+    ushort i;
+    for (i = slot; (i < 14) && (PartyCharacters[character - 1].items[i] != 0); i++) {
+        PartyCharacters[character - 1].items[i - 1] = PartyCharacters[character - 1].items[i];
+    }
+    PartyCharacters[character - 1].items[i - 1] = 0;
+    if (ItemData[i].type == ItemType.TeddyBear) {
+        RemoveCharFromParty(ItemData[i].strength);
+        UnknownC216DB();
+    }
+    if ((ItemData[i].flags & ItemFlags.Transform) != 0) {
+        UnknownC3EB1C(i);
+    }
+    return character;
+}
+
+// $C18E5B
+ushort TakeItemFromSpecificCharacter(ushort character, ushort item) {
+    for (short i = 0; 14 > i; i++) {
+        if (PartyCharacters[character - 1].items[i] == item) {
+            return RemoveItemFromInventory(character, i);
+        }
+    }
+    return 0;
+}
 // $C18EAD
-ushort TakeItemFromCharacter(ushort character, ushort item);
+ushort TakeItemFromCharacter(ushort character, ushort item) {
+    if (character != 0xFF) {
+        for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+            if (TakeItemFromSpecificCharacter(gameState.partyMembers[i], item) == 0) {
+                continue;
+            }
+            return gameState.partyMembers[i];
+        }
+        return 0;
+    } else {
+        return TakeItemFromSpecificCharacter(character, item);
+    }
+}
 
 // $C1AA18
 void UnknownC1AA18() {

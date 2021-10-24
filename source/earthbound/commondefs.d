@@ -1639,6 +1639,7 @@ enum OverworldSprite {
 	MASTER_CRIMINAL_WORM = 461,
 	TESSIE_WATER_RING = 462,
 	BIG_TESSIE_WATER_RING = 463,
+	Invalid = 0xFFFF
 }
 
 enum BGTileMapSize {
@@ -3169,6 +3170,13 @@ struct UnknownC42B0DEntry {
 	ubyte unknown0;
 	ubyte unknown1;
 	ubyte[0] unknown2;
+}
+
+struct CharacterInitialEntityDataEntry {
+	ushort overworldSprite;
+	ushort lostUnderworldSprite;
+	ushort actionScript;
+	ushort unknown6;
 }
 
 //helper funcs not in the original game

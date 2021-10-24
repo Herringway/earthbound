@@ -538,6 +538,7 @@ ubyte FindItemInInventory(short arg1, short arg2) {
     }
     return 0;
 }
+
 //$C45683
 ubyte FindItemInInventory2(short arg1, short arg2) {
     if (arg1 == 0xFF) {
@@ -551,6 +552,19 @@ ubyte FindItemInInventory2(short arg1, short arg2) {
         return FindItemInInventory(arg1, arg2);
     }
 }
+
+//$C4577D
+void ChangeEquippedWeapon(ushort character, ubyte slot);
+
+//$C457CA
+void ChangeEquippedBody(ushort character, ubyte slot);
+
+//$C45815
+void ChangeEquippedArms(ushort character, ubyte slot);
+
+//$C45860
+void ChangeEquippedOther(ushort character, ubyte slot);
+
 
 // wrong name
 immutable ushort[49] StatusEquipWindowText2 = [
@@ -793,6 +807,9 @@ short UnknownC490EE() {
 
 immutable ubyte*[8] FlyoverTextPointers;
 
+//$C4984B
+void UnknownC4984B();
+
 //$C49740
 void UnknownC49740() {
     memcpy(palettes.ptr, Unknown7F0000.ptr, 0x200);
@@ -803,7 +820,23 @@ void UnknownC49740() {
 void UnknownC49A56();
 
 //$C49B6E
-void UnknownC49B6E(short);
+void UnknownC49B6E(short arg1) {
+    UnknownC4984B();
+    //x14 = Unknown7E9F2D * 0x1A0
+    if (Unknown7E9F2D * 0x1A0 + 0x4E0 > 0x3400) {
+        if (0x3400 - Unknown7E9F2D * 0x1A0 != 0) {
+            CopyToVram(0, cast(short)(0x3400 - Unknown7E9F2D * 0x1A0), cast(ushort)(0xD0 * Unknown7E9F2D + 0x6150), &Unknown7E3492[0][0]);
+        }
+        if (Unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400 != 0) {
+            //CopyToVram(0, Unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400, 0x6150, 0x6892 - Unknown7E9F2D * 0x1A0);
+        }
+    } else {
+        CopyToVram(0, 0x4E0, cast(ushort)(0xD0 * Unknown7E9F2D + 0x6150), &Unknown7E3492[0][0]);
+    }
+    Unknown7E3C1E = -1;
+    Unknown7E3C20 = 0;
+    WaitUntilNextFrame();
+}
 
 //$C49C56
 void UnknownC49C56(short);
@@ -868,8 +901,62 @@ void UnknownC49EC4(short id) {
 //$C4A7B0
 short UnknownC4A7B0();
 
+//$C4C2DE
+void UnknownC4C2DE();
+
+//$C4C58F
+void UnknownC4C58F(short);
+
+//$C4C60E
+void UnknownC4C60E(short);
+
+//$C4C64D
+short UnknownC4C64D();
+
 //$C4C718
-short Spawn();
+short Spawn() {
+    UnknownC0943C();
+    UnknownC4C2DE();
+    short result = UnknownC4C64D();
+    if (result != 0) {
+        FadeOutWithMosaic(2, 1, 0);
+        UnknownC09451();
+        return result;
+    }
+    UnknownC4C58F(0x20);
+    UnknownC0AC0C(2);
+    TM_MIRROR = 0x17;
+    Unknown7E436E = -1;
+    Unknown7E5DD4 = -1;
+    CurrentMusicTrack = 0xFFFF;
+    Unknown7E4676 = 1;
+    WaitUntilNextFrame();
+    InitializeMap(RespawnX, RespawnY, 6);
+    Unknown7E4DC6 = &PartyCharacters[gameState.partyMembers[0]];
+    for (short i = 0; i < 6; i++) {
+        Unknown7E4DC6.afflictions[i] = 0;
+    }
+    Unknown7E4DC6.hp.target = Unknown7E4DC6.max_hp;
+    Unknown7E4DC6.hp.current.integer = Unknown7E4DC6.max_hp;
+    Unknown7E4DC6.pp.target = 0;
+    Unknown7E4DC6.pp.current.integer = 0;
+    gameState.moneyCarried = (gameState.moneyCarried & 1) + gameState.moneyCarried / 2;
+    UnknownC07B52();
+    for (short i = 1; 10 < i; i++) {
+        setEventFlag(i, 0);
+    }
+    for (short i = 0; i < 0x1E; i++) {
+        EntityCollidedObjects[i] = 0xFFFF;
+    }
+    UnknownC064D4();
+    Unknown7E9E56 = 0;
+    Unknown7E5D58 = 0;
+    SpawnBuzzBuzz();
+    OAMClear();
+    UnknownC09451();
+    UnknownC4C60E(0x20);
+    return result;
+}
 
 //$C4D274
 ubyte GetTownMapID(short x, short y) {

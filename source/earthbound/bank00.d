@@ -66,6 +66,14 @@ void LoadMapAtPosition(short x, short y);
 // $C018F3
 void ReloadMap();
 
+// $C019B2
+void InitializeMap(short x, short y, short direction) {
+    UnknownC068F4(x, y);
+    LoadMapAtPosition(x, y);
+    UnknownC03FA9(x, y, direction);
+    UnknownC069AF();
+}
+
 // $C01A69
 void InitializeMiscObjectData() {
     for (short i = 0; i < 0x1E; i++) {
@@ -189,7 +197,73 @@ void UnknownC032EC();
 void UpdateParty();
 
 // $C0369B
-short UnknownC0369B(short id);
+short UnknownC0369B(short id) {
+    short x18 = 0;
+    if (id >= 5) {
+        while(true) {
+            if (gameState.unknown96[x18] == 0) {
+                break;
+            }
+            if (gameState.unknown96[x18] <= id) {
+                break;
+            }
+            x18++;
+        }
+    } else {
+        while (true) {
+            if (gameState.unknown96[x18] == 0) {
+                break;
+            }
+            if (5 <=gameState.unknown96[x18]) {
+                break;
+            }
+            if (gameState.unknown96[x18] > id) {
+                break;
+            }
+            if (PartyCharacters[EntityScriptVar1Table[x18]].afflictions[0] == 1) {
+                break;
+            }
+            x18++;
+        }
+    }
+    if (gameState.unknown96[x18] != 0) {
+        for (short i = 5; i != x18 - 1; i--) {
+            gameState.unknown96[i] = gameState.unknown96[i - 1];
+            gameState.unknownA2[i] = gameState.unknownA2[i - 1];
+            gameState.playerControlledPartyMembers[i] = gameState.playerControlledPartyMembers[i - 1];
+        }
+    }
+    gameState.unknown96[x18] = cast(ubyte)id;
+    gameState.partyCount++;
+    NewEntityVar0 = cast(short)(id - 1);
+    short x1A_2 = CharacterInitialEntityData[id - 1].unknown6;
+    if (EntityScriptTable[x1A_2] != -1) {
+        x1A_2++;
+    }
+    gameState.unknownA2[x18] = cast(ubyte)x1A_2;
+    NewEntityVar1 = cast(short)(x1A_2 - 0x18);
+    gameState.playerControlledPartyMembers[x18] = cast(ubyte)NewEntityVar1;
+    if (gameState.partyCount == 1) {
+        PartyCharacters[NewEntityVar1].position_index = gameState.unknown88;
+    } else {
+        short x16 = (x18 == 0) ? gameState.unknown88 : PartyCharacters[EntityScriptVar1Table[gameState.unknownA2[x18 - 1]]].position_index;
+        PartyCharacters[NewEntityVar1].position_index = x16;
+    }
+    short x = (PartyCharacters[NewEntityVar1].position_index != 0) ? cast(short)(PartyCharacters[NewEntityVar1].position_index - 1) : 0xFF;
+    short x18_2 = (gameState.unknown92 != 3) ? CharacterInitialEntityData[id - 1].overworldSprite : CharacterInitialEntityData[id - 1].lostUnderworldSprite;
+    CreateEntity(x18_2, CharacterInitialEntityData[id - 1].actionScript, x1A_2, PlayerPositionBuffer[x].x_coord, PlayerPositionBuffer[x].y_coord);
+    EntityScreenXTable[x1A_2] = cast(short)(PlayerPositionBuffer[x].x_coord - BG1_X_POS);
+    EntityScreenYTable[x1A_2] = cast(short)(PlayerPositionBuffer[x].y_coord - BG1_Y_POS);
+    gameState.currentPartyMembers = CharacterInitialEntityData[gameState.unknown96[0] - 1].unknown6;
+    UnknownC09CD7();
+    UnknownC032EC();
+    gameState.currentPartyMembers = gameState.unknownA2[0];
+    UpdateParty();
+    EntityPreparedXCoordinate = PlayerPositionBuffer[x].x_coord;
+    EntityPreparedYCoordinate = PlayerPositionBuffer[x].y_coord;
+    EntityPreparedDirection = EntityDirections[x1A_2];
+    return x1A_2;
+}
 
 // $C03903
 void UnknownC03903(short id) {
@@ -198,7 +272,6 @@ void UnknownC03903(short id) {
     if (i == 6) {
         return;
     }
-    //x02 = gameState.unknownA2[i]
     short j;
     for (j = i; j < 5; j++) {
         gameState.unknown96[j] = gameState.unknown96[j + 1];
@@ -222,7 +295,28 @@ void UnknownC03903(short id) {
 void UnknownC039E5();
 
 // $C03A24
-void UnknownC03A24();
+void UnknownC03A24() {
+    gameState.playerControlledPartyMemberCount = 0;
+    gameState.partyCount = 0;
+    for (short i = 0; i < 6; i++) {
+        gameState.unknown96[i] = 0;
+        gameState.playerControlledPartyMembers[i] = 0;
+        gameState.unknownA2[i] = 0;
+    }
+    Unknown7E5D7E = 1;
+    for (short i = 0; i < 6; i++) {
+        if (gameState.partyMembers[i] == 0) {
+            break;
+        }
+        UnknownC0369B(i);
+    }
+    Unknown7E5D7E = 0;
+    FootstepSoundID = gameState.unknown92;
+    FootstepSoundIDOverride = 0;
+}
+
+// $C03A94
+void UnknownC03A94(short);
 
 // $C03C25
 void UnknownC03C25() {
@@ -233,6 +327,27 @@ void UnknownC03C25() {
         UnknownC069AF();
     }
     Unknown7E5DDA = 0;
+}
+
+// $C03F1E
+void UnknownC03F1E();
+
+// $C03FA9
+void UnknownC03FA9(short x, short y, short direction) {
+    gameState.leaderXCoordinate = x;
+    gameState.leaderYCoordinate = y;
+    gameState.leaderDirection = direction;
+    gameState.troddenTileType = UnknownC05F33(x, y, gameState.currentPartyMembers);
+    UnknownC03A94(direction);
+    UnknownC03F1E();
+    for (short i = 0; i < 6; i++) {
+        Unknown7E3456[i + 24] = -1;
+    }
+    Unknown7E9F6B = -1;
+    Unknown7E438C = 0;
+    Unknown7E438A = 0;
+    PajamaFlag = getEventFlag(NessPajamaFlag);
+    UnknownC07B52();
 }
 
 // $C0404F
@@ -450,7 +565,7 @@ void UnknownC05639(short, short);
 // $C056D0
 void UnknownC056D0(short, short);
 // $C05F33
-short unknownC05F33(short x, short y, short entityID) {
+short UnknownC05F33(short x, short y, short entityID) {
     const size = UNKNOWN_30X2_TABLE_36[entityID];
     Unknown7E5DA4 = 0;
     Unknown7E5DAC = cast(short)(x - UnknownC42A1F[size]);
@@ -459,6 +574,9 @@ short unknownC05F33(short x, short y, short entityID) {
     UnknownC056D0(Unknown7E5DAE, size);
     return Unknown7E5DA4;
 }
+
+// $C064D4
+void UnknownC064D4();
 
 // $C068F4
 void UnknownC068F4(short, short);
@@ -1063,6 +1181,9 @@ void UnknownC09466();
 
 // $C09C35
 void UnknownC09C35(short);
+
+// $C09CD7
+void UnknownC09CD7();
 
 // $C0A0E3
 void UnknownC0A0E3(short arg1, bool overflowed) {

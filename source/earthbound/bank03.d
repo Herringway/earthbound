@@ -29,6 +29,27 @@ void DisplayFaultyGamepakScreen() {
 // $C30186
 immutable NessPajamaFlag = EventFlag.NessPajamas;
 
+// $C3E012
+immutable CharacterInitialEntityDataEntry[17] CharacterInitialEntityData = [
+	CharacterInitialEntityDataEntry(OverworldSprite.Ness, OverworldSprite.LIL_NESS, ActionScript.Unknown002, 0x0018),
+	CharacterInitialEntityDataEntry(OverworldSprite.PAULA, OverworldSprite.LIL_PAULA, ActionScript.Unknown002, 0x0019),
+	CharacterInitialEntityDataEntry(OverworldSprite.JEFF, OverworldSprite.LIL_JEFF, ActionScript.Unknown002, 0x001A),
+	CharacterInitialEntityDataEntry(OverworldSprite.POO, OverworldSprite.LIL_POO, ActionScript.Unknown002, 0x001B),
+	CharacterInitialEntityDataEntry(OverworldSprite.POKEY, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.PICKY, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.KING, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.TONY, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.BUBBLE_MONKEY, OverworldSprite.Invalid, ActionScript.Unknown003, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.DUNGEON_MAN, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.FLYING_MAN, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.FLYING_MAN, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.FLYING_MAN, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.FLYING_MAN, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.FLYING_MAN, OverworldSprite.Invalid, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.TEDDY_BEAR_PARTY, OverworldSprite.LIL_TEDDY_BEAR, ActionScript.Unknown002, 0x001C),
+	CharacterInitialEntityDataEntry(OverworldSprite.TEDDY_BEAR_PARTY, OverworldSprite.LIL_TEDDY_BEAR, ActionScript.Unknown002, 0x001C),
+];
+
 // $C3E12C
 immutable FixedPoint1616[14] defaultMovementSpeeds = [
 	FixedPoint1616(0x6000, 1), //NORMAL
