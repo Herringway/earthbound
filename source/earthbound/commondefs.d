@@ -3267,6 +3267,10 @@ struct LoadedBackgroundData {
 	short DistortionCompressionAcceleration;
 }
 
+struct HDMAWordTransfer {
+	ubyte scanlines;
+	ushort value;
+}
 
 //helper funcs not in the original game
 

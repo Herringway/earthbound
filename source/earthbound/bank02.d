@@ -765,23 +765,28 @@ void UnknownC2CFE5(LoadedBackgroundData* arg1, const(AnimatedBackground)* arg2);
 
 // $C2D0AC
 void UnknownC2D0AC() {
-	ubyte* x = cast(ubyte*)&Unknown7EADB8;
-	*(x++) = cast(ubyte)Unknown7EADB2;
-	*(cast(ushort*)x) = Unknown7EADB0;
-	x += 2;
+	HDMAWordTransfer* x = &Unknown7EADB8[0];
+
+	x.scanlines = cast(ubyte)Unknown7EADB2;
+	x.value = Unknown7EADB0;
+	x++;
+
 	short i;
 	for (i = cast(short)(Unknown7EADB4 - Unknown7EADB2); i >= 0x80; i -= 0x7F) {
-		*(x++) = 0x7F;
-		*(cast(ushort*)x) = Unknown7EADAE;
-		x += 2;
+		x.scanlines = 0x7F;
+		x.value = Unknown7EADAE;
+		x++;
 	}
-	*(x++) = cast(ubyte)i;
-	*(cast(ushort*)x) = Unknown7EADAE;
-	x += 2;
-	*(x++) = 1;
-	*(cast(ushort*)x) = Unknown7EADB0;
-	x += 2;
-	*(x++) = 0;
+
+	x.scanlines = cast(ubyte)i;
+	x.value = Unknown7EADAE;
+	x++;
+
+	x.scanlines = 1;
+	x.value = Unknown7EADB0;
+	x++;
+
+	x.scanlines = 0;
 }
 
 // $C2D121

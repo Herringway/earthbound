@@ -538,7 +538,7 @@ __gshared short Unknown7EADB0; //$ADB0
 __gshared short Unknown7EADB2; //$ADB2
 __gshared short Unknown7EADB4; //$ADB4
 __gshared short Unknown7EADB6; //$ADB6
-__gshared short Unknown7EADB8; //$ADB8
+__gshared HDMAWordTransfer[6] Unknown7EADB8; //$ADB8
 
 __gshared short Unknown7EADCC; // $ADCC
 __gshared short Unknown7EADCE; // $ADCE
