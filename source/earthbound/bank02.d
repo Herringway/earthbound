@@ -764,7 +764,25 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer);
 void UnknownC2CFE5(LoadedBackgroundData* arg1, const(AnimatedBackground)* arg2);
 
 // $C2D0AC
-void UnknownC2D0AC();
+void UnknownC2D0AC() {
+	ubyte* x = cast(ubyte*)&Unknown7EADB8;
+	*(x++) = cast(ubyte)Unknown7EADB2;
+	*(cast(ushort*)x) = Unknown7EADB0;
+	x += 2;
+	short i;
+	for (i = cast(short)(Unknown7EADB4 - Unknown7EADB2); i >= 0x80; i -= 0x7F) {
+		*(x++) = 0x7F;
+		*(cast(ushort*)x) = Unknown7EADAE;
+		x += 2;
+	}
+	*(x++) = cast(ubyte)i;
+	*(cast(ushort*)x) = Unknown7EADAE;
+	x += 2;
+	*(x++) = 1;
+	*(cast(ushort*)x) = Unknown7EADB0;
+	x += 2;
+	*(x++) = 0;
+}
 
 // $C2D121
 // check this one over later
