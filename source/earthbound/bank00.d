@@ -1327,6 +1327,9 @@ immutable ubyte[14] StereoMonoData = [
     0x01, 0x00, 0x31, 0x04, 0x01, 0x00, 0x00,
 ];
 
+// $C0AFCD
+void UnknownC0AFCD();
+
 // $C0B525
 void FileSelectInit() {
     UnknownC08726();

@@ -2723,6 +2723,13 @@ enum EquipmentSlot {
 	Other = 3,
 }
 
+enum LetterboxStyle {
+	None = 0,
+	Large = 1,
+	Medium = 2,
+	Small = 3,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -3200,6 +3207,66 @@ struct CharacterInitialEntityDataEntry {
 	ushort actionScript;
 	ushort unknown6;
 }
+
+struct AnimatedBackground {
+	ubyte graphics;
+	ubyte palette;
+	ubyte bitsPerPixel;
+	ubyte unknown3;
+	ubyte paletteCycle1First;
+	ubyte paletteCycle1Last;
+	ubyte paletteCycle2First;
+	ubyte paletteCycle2Last;
+	ubyte paletteChangeSpeed;
+	ubyte scrollingMovement1;
+	ubyte scrollingMovement2;
+	ubyte scrollingMovement3;
+	ubyte scrollingMovement4;
+	ubyte distortionStyle1;
+	ubyte distortionStyle2;
+	ubyte distortionStyle3;
+	ubyte distortionStyle4;
+}
+
+struct LoadedBackgroundData {
+	ubyte TargetLayer;
+	ubyte Bitdepth;
+	ubyte Unknown2;
+	ubyte PaletteShiftingStyle;
+	ubyte PaletteCycle1First;
+	ubyte PaletteCycle1Last;
+	ubyte PaletteCycle2First;
+	ubyte PaletteCycle2Last;
+	ubyte PaletteCycle1Step;
+	ubyte PaletteCycle2Step;
+	ubyte PaletteChangeSpeed;
+	ubyte PaletteChangeDurationLeft;
+	ushort[16] Palette;
+	ushort[16] Palette2;
+	ushort[16]* PalettePointer;
+	ubyte[4] ScrollingMovements;
+	ubyte CurrentScrollingMovement;
+	short ScrollingDurationLeft;
+	short HorizontalPosition;
+	short VerticalPosition;
+	short HorizontalVelocity;
+	short VerticalVelocity;
+	short HorizontalAcceleration;
+	short VerticalAcceleration;
+	ubyte[4] DistortionStyles;
+	ubyte Unknown101;
+	short DistortionDurationLeft;
+	ubyte DistortionType;
+	short DistortionRippleFrequency;
+	short DistortionRippleAmplitude;
+	ubyte DistortionSpeed;
+	short DistortionCompressionRate;
+	short DistortionRippleFrequencyAcceleration;
+	short DistortionRippleAmplitudeAcceleration;
+	ubyte DistortionSpeedAcceleration;
+	short DistortionCompressionAcceleration;
+}
+
 
 //helper funcs not in the original game
 

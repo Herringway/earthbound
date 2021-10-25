@@ -5,6 +5,7 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank0A;
 import earthbound.bank15;
 import earthbound.globals;
 
@@ -676,7 +677,33 @@ short UnknownC2239D(short id) {
 }
 
 // $C223D9
-short UnknownC223D9(ubyte*, short);
+short UnknownC223D9(ubyte* arg1, short arg2) {
+	short x0E;
+	if (arg1[0] != 0) {
+		x0E = 0;
+	} else {
+		if (arg1[3] != 0) {
+			x0E = 3;
+		} else {
+			for (x0E = 1; x0E < 7; x0E++) {
+				if (arg1[x0E] != 0) {
+					goto lx;
+				}
+			}
+			if (arg2 == 0) {
+				return 32;
+			} else {
+				return 7;
+			}
+		}
+	}
+	lx:
+	if (arg2 != 0) {
+		return StatusEquipWindowText[x0E][arg2 - 1];
+	} else {
+		return StatusEquipWindowText2[x0E][arg2 - 1];
+	}
+}
 
 // $C228F8
 void AddCharToParty(short id) {
@@ -730,8 +757,156 @@ void RemoveCharFromParty(short id) {
 // $C22474
 short UnknownC22474(ubyte*);
 
+// $C2C92D
+void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer);
+
+// $C2CFE5
+void UnknownC2CFE5(LoadedBackgroundData* arg1, const(AnimatedBackground)* arg2);
+
+// $C2D0AC
+void UnknownC2D0AC();
+
 // $C2D121
-void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox);
+// check this one over later
+void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
+	RedFlashDuration = 0;
+	GreenFlashDuration = 0;
+	ShakeDuration = 0;
+	WobbleDuration = 0;
+	Unknown7EAD90 = 0;
+	VerticalShakeHoldDuration = 0;
+	VerticalShakeDuration = 0;
+	switch (letterbox) {
+		case LetterboxStyle.None:
+			Unknown7EADB2 = 0;
+			Unknown7EADB4 = 224;
+			break;
+		case LetterboxStyle.Large:
+			Unknown7EADB2 = 48 - 1;
+			Unknown7EADB4 = 224 - 48;
+			break;
+		case LetterboxStyle.Medium:
+			Unknown7EADB2 = 58 - 1;
+			Unknown7EADB4 = 224 - 58;
+			break;
+		case LetterboxStyle.Small:
+			Unknown7EADB2 = 68 - 1;
+			Unknown7EADB4 = 224 - 68;
+			break;
+		default: break;
+	}
+	Unknown7EADB6 = 0;
+	Unknown7EADCE = 0x7000;
+	Unknown7EADCC = 0x7000;
+	Unknown7EADD0 = 0;
+	Unknown7EADD2 = -1;
+	Decomp(BattleBGGraphicsPointers[animatedBackgrounds[layer1].graphics], &Unknown7F0000[0]);
+	if (CurrentBattleGroup == 0x1DE) {
+		SetBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x3000);
+		CopyToVram(0, 0x5000, 0x3000, &Unknown7F0000[0]);
+	} else {
+		CopyToVram(0, 0x2000, 0x1000, &Unknown7F0000[0]);
+	}
+	Unknown7F0000[0] = 0;
+	CopyToVram(3, 0x800, 0x5800, &Unknown7F0000[0]);
+	CopyToVram(3, 0x800, 0, &Unknown7F0000[0]);
+	Decomp(BattleBGArrangementPointers[animatedBackgrounds[layer1].graphics], &Unknown7F0000[0]);
+	if (animatedBackgrounds[layer1].bitsPerPixel == 4) {
+		UnknownC08D79(9);
+		for (short i = 0; i < 0x800; i += 2) {
+			Unknown7F0000[i + 1] = (Unknown7F0000[i + 1] & 0xDF) | 8;
+		}
+		CopyToVram(0, 0x800, 0x5C00, &Unknown7F0000[0]);
+		UnknownC2CFE5(&LoadedBGDataLayer1, &animatedBackgrounds[layer1]);
+		LoadedBGDataLayer1.PalettePointer = &palettes[2];
+		memcpy(&LoadedBGDataLayer1.Palette[0], BattleBGPalettePointers[animatedBackgrounds[layer1].palette], 32);
+		memcpy(&LoadedBGDataLayer1.Palette2[0], BattleBGPalettePointers[animatedBackgrounds[layer1].palette], 32);
+		memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], 32);
+		LoadedBGDataLayer1.TargetLayer = 2;
+		GenerateBattleBGFrame(&LoadedBGDataLayer1, 0);
+		LoadedBGDataLayer2.TargetLayer = 0;
+		Unknown7EAD8A = 1;
+		UnknownC0AFCD();
+		Unknown7EADAE = 0x17;
+		Unknown7EADB0 = 0x15;
+		if (layer2 != 0) {
+			if ((letterbox & 4) != 0) {
+				Unknown7EAD8A = 7;
+				UnknownC0AFCD();
+				Decomp(BattleBGGraphicsPointers[animatedBackgrounds[layer2].graphics], &Unknown7F0000[0]);
+				CopyToVram(0, 0x2000, 0, &Unknown7F0000[0]);
+				Decomp(BattleBGArrangementPointers[animatedBackgrounds[layer2].graphics], &Unknown7F0000[0]);
+				for (short i = 0; i < 0x800; i += 2) {
+					Unknown7F0000[i + 1] = (Unknown7F0000[i + 1] & 0xDF) | 8;
+				}
+				CopyToVram(0, 0x800, 0x5800, &Unknown7F0000[0]);
+				UnknownC2CFE5(&LoadedBGDataLayer2, &animatedBackgrounds[layer2]);
+				LoadedBGDataLayer2.PalettePointer = &palettes[4];
+				LoadedBGDataLayer2.TargetLayer = 1;
+				memcpy(&LoadedBGDataLayer2.Palette[0], BattleBGPalettePointers[animatedBackgrounds[layer2].palette], 32);
+				memcpy(&LoadedBGDataLayer2.Palette2[0], BattleBGPalettePointers[animatedBackgrounds[layer2].palette], 32);
+				memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], 32);
+				GenerateBattleBGFrame(&LoadedBGDataLayer2, 1);
+				Unknown7EADAE = 0x215;
+				Unknown7EADB0 = 0x14;
+			} else {
+				UnknownC2CFE5(&LoadedBGDataLayer2, &animatedBackgrounds[layer2]);
+				LoadedBGDataLayer2.Unknown2 = 1;
+				LoadedBGDataLayer2.TargetLayer = 2;
+			}
+		}
+	} else {
+		UnknownC08D79(8);
+		SetBG1VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
+		SetBG2VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
+		SetBG3VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
+		SetBG4VRAMLocation(BGTileMapSize.normal, 0xC00, 0x3000);
+		for (short i = 0; i < 0x800; i++) {
+			Unknown7F0000[i + 1] = Unknown7F0000[i + 1] & 0xDF;
+		}
+		CopyToVram(0, 0x800, 0x5C00, &Unknown7F0000[0]);
+		UnknownC2CFE5(&LoadedBGDataLayer1, &animatedBackgrounds[layer1]);
+		LoadedBGDataLayer1.PalettePointer = &palettes[4];
+		memcpy(&LoadedBGDataLayer1.Palette[0], BattleBGPalettePointers[animatedBackgrounds[layer1].palette], 32);
+		memcpy(&LoadedBGDataLayer1.Palette2[0], BattleBGPalettePointers[animatedBackgrounds[layer1].palette], 32);
+		memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], 32);
+		LoadedBGDataLayer1.TargetLayer = 3;
+		if (layer2 != 0) {
+			Unknown7EAD8A = 3;
+			UnknownC0AFCD();
+
+			Decomp(BattleBGGraphicsPointers[animatedBackgrounds[layer2].graphics], &Unknown7F0000[0]);
+			CopyToVram(0, 0x1800, 0x3000, &Unknown7F0000[0]);
+			Decomp(BattleBGArrangementPointers[animatedBackgrounds[layer2].graphics], &Unknown7F0000[0]);
+			for (short i = 0; i < 0x800; i += 2) {
+				Unknown7F0000[i + 1] = (Unknown7F0000[i + 1] & 0xDF);
+			}
+			CopyToVram(0, 0x800, 0xC00, &Unknown7F0000[0]);
+			UnknownC2CFE5(&LoadedBGDataLayer2 ,&animatedBackgrounds[layer2]);
+			LoadedBGDataLayer2.PalettePointer = &palettes[6];
+			memcpy(&LoadedBGDataLayer2.Palette[0], BattleBGPalettePointers[animatedBackgrounds[layer2].palette], 32);
+			memcpy(&LoadedBGDataLayer2.Palette2[0], BattleBGPalettePointers[animatedBackgrounds[layer2].palette], 32);
+			memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], 32);
+			LoadedBGDataLayer2.TargetLayer = 4;
+		} else {
+			LoadedBGDataLayer2.TargetLayer = 0;
+		}
+		Unknown7EADAE = 0x817;
+		Unknown7EADB0 = 0x13;
+	}
+	Unknown7EADAC = 0;
+	if ((LoadedBGDataLayer2.TargetLayer != 0) && (LoadedBGDataLayer2.DistortionStyles[0] != 0)) {
+		Unknown7EADAC = 1;
+	}
+	UnknownC2D0AC();
+	if (Unknown7EADB2 != 0) {
+		UnknownC429E8(2);
+	}
+	UnknownC2E9ED();
+}
 
 // $C2DB3F
 void UnknownC2DB3F();
+
+// $C2E9ED
+void UnknownC2E9ED();

@@ -318,6 +318,8 @@ __gshared short Unknown7E4A5A; // $4A5A
 
 __gshared short Unknown7E4A5E; // $4A5E
 
+__gshared short CurrentBattleGroup; // $4A8C
+
 __gshared short Unknown7E4DB8; // $4DB8
 __gshared short BattleSwirlFlag; // $4DBA
 __gshared short BattleInitiative; // $4DBC
@@ -512,6 +514,41 @@ __gshared ubyte Unknown7E9F79;           // $9F79
 
 __gshared Battler* currentAttacker;           // $A970
 __gshared Battler* currentTarget;           // $A972
+
+__gshared short Unknown7EAD8A; //$AD8A
+__gshared short VerticalShakeDuration; //$AD8C
+__gshared short VerticalShakeHoldDuration; //$AD8E
+__gshared short Unknown7EAD90; //$AD90
+__gshared short WobbleDuration; //$AD92
+__gshared short ShakeDuration; //$AD94
+__gshared short Unknown7EAD96; //$AD96
+__gshared short Unknown7EAD98; //$AD98
+__gshared short Unknown7EAD9A; //$AD9A
+__gshared short Unknown7EAD9C; //$AD9C
+__gshared short GreenFlashDuration; //$AD9E
+__gshared short RedFlashDuration; //$ADA0
+__gshared short Unknown7EADA2; //$ADA2
+__gshared short HPPPBoxBlinkDuration; //$ADA4
+__gshared short HPPPBoxBlinkTarget; //$ADA6
+__gshared short Unknown7EADA8; //$ADA8
+__gshared short Unknown7EADAA; //$ADAA
+__gshared short Unknown7EADAC; //$ADAC
+__gshared short Unknown7EADAE; //$ADAE
+__gshared short Unknown7EADB0; //$ADB0
+__gshared short Unknown7EADB2; //$ADB2
+__gshared short Unknown7EADB4; //$ADB4
+__gshared short Unknown7EADB6; //$ADB6
+__gshared short Unknown7EADB8; //$ADB8
+
+__gshared short Unknown7EADCC; // $ADCC
+__gshared short Unknown7EADCE; // $ADCE
+__gshared short Unknown7EADD0; // $ADD0
+__gshared short Unknown7EADD2; // $ADD2
+__gshared LoadedBackgroundData LoadedBGDataLayer1; // $ADD4
+__gshared LoadedBackgroundData LoadedBGDataLayer2; // $AE4B
+__gshared ubyte Unknown7EAEC2; // $AEC2
+__gshared ubyte Unknown7EAEC3; // $AEC3
+__gshared ubyte Unknown7EAEC4; // $AEC4
 
 __gshared ubyte* path_matrix_buffer;      // [$B3FC] Matrix buffer
 __gshared ushort path_matrix_rows;        // [$B400] Matrix rows
