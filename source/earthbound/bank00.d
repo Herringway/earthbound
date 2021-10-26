@@ -1146,10 +1146,10 @@ void SetBG4VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 
 // $C08E9A
 ubyte rand() {
-    ushort tmp = ror(cast(ushort)((RandA << 8) * (RandB & 0xFF)), 2);
-    RandB = cast(ushort)((RandA << 8) | (RandB & 0xFF));
-    ushort tmp2 = ror(cast(ushort)(tmp & 3 + RandA), 1);
-    if (((tmp & 3 + RandA) & 1) == 0) {
+    ushort tmp = ror(cast(ushort)((cast(ushort)(RandA << 8) >> 8) * (RandB & 0xFF)), 2);
+    RandB = cast(ushort)(((RandA << 8) | (RandB & 0xFF)) + 0x6D);
+    ushort tmp2 = ror(cast(ushort)((tmp & 3) + RandA), 1);
+    if (((tmp & 3 + RandA) & 1) != 0) {
         tmp2 |= 0x8000;
     }
     RandA = tmp2;
