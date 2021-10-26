@@ -1170,10 +1170,147 @@ immutable DMATableEntry[6] DMATable = [
 immutable ubyte[] UNKNOWN_C08FC2 = [ 0x81, 0x39, 0x80, 0x80, 0x39, 0x00, 0x80, 0x3A, 0x80, 0x01, 0x18, 0x81, 0x09, 0x18, 0x81, 0x00, 0x18, 0x01, 0x08, 0x18, 0x01, 0x00, 0x19, 0x81, 0x08, 0x19, 0x81, 0x81, 0x39, 0x81, 0x80, 0x39, 0x01, 0x80, 0x3A, 0x81, 0xEB, 0x98 ];
 
 // $C0927C
-void UnknownC0927C();
+void UnknownC0927C() {
+    Unknown7E0A5E = &UnknownC0DB0F;
+    FirstEntity = -1;
+    EntityNextEntityTable[29] = -1;
+    Unknown7E125A[69] = -1;
+    Unknown7E0A52 = 0;
+    Unknown7E0A54 = 0;
+    ushort x = 0x38;
+    do {
+        EntityNextEntityTable[x / 2] = cast(short)(x + 2);
+        x -= 2;
+    } while (x > 0);
+
+    x = 0x88;
+    do {
+        Unknown7E125A[x / 2] = cast(short)(x + 2);
+        x -= 2;
+    } while (x > 0);
+
+    x = 0x3A;
+    do {
+        EntityScriptTable[x / 2] = -1;
+        x -= 2;
+    } while (x > 0);
+
+    x = 0x3A;
+    do {
+        EntitySpriteMapFlags[x / 2] = 0;
+        EntityTickCallbacks[x / 2] = null;
+        x -= 2;
+    } while (x > 0);
+
+    x = 6;
+    do {
+        Unknown7E1A12[x / 2] = 0;
+        Unknown7E1A1A[x / 2] = 0;
+        Unknown7E1A22[x / 2] = 0;
+        Unknown7E1A32[x / 2] = 0;
+        Unknown7E1A2A[x / 2] = 0;
+        Unknown7E1A3A[x / 2] = 0;
+        Unknown7E1A02[x / 2] = 0;
+        Unknown7E1A0A[x / 2] = 0;
+        EntityDrawPriority[x / 2] = 0;
+        x -= 2;
+    } while (x > 0);
+    ClearEntityDrawSortingTable();
+    Unknown7E0A60 = 0;
+}
 
 // $C09321
-short InitEntity(short, short, short);
+short InitEntityWipe(short actionScript, short x, short y) {
+    NewEntityPosZ = 0;
+    NewEntityVar0 = 0;
+    NewEntityVar1 = 0;
+    NewEntityVar2 = 0;
+    NewEntityVar3 = 0;
+    NewEntityVar4 = 0;
+    NewEntityVar5 = 0;
+    NewEntityVar6 = 0;
+    NewEntityVar7 = 0;
+    NewEntityPriority = 0;
+    EntityAllocationMinSlot = 0;
+    EntityAllocationMaxSlot = 0x1E;
+    return InitEntity(actionScript, x, y);
+}
+
+short InitEntity(short actionScript, short x, short y) {
+    EntityAllocationMinSlot *= 2;
+    EntityAllocationMaxSlot *= 2;
+    bool allocationFailed;
+    short newEntity = UnknownC09C02(allocationFailed);
+    if (allocationFailed) {
+        return 0;
+    }
+    bool __ignored;
+    short newScript = UnknownC09D03(__ignored);
+    EntityScriptIndexTable[newEntity / 2] = newScript;
+    Unknown7E125A[newScript / 2] = -1;
+    EntityMoveCallbacks[newEntity / 2] = &UnknownC09FAEEntry2;
+    EntityScreenPositionCallbacks[newEntity / 2] = &UnknownC0A023;
+    EntityDrawCallbacks[newEntity / 2] = &UnknownC0A3A4;
+    EntityScriptVar0Table[newEntity / 2] = NewEntityVar0;
+    EntityScriptVar1Table[newEntity / 2] = NewEntityVar1;
+    EntityScriptVar2Table[newEntity / 2] = NewEntityVar2;
+    EntityScriptVar3Table[newEntity / 2] = NewEntityVar3;
+    EntityScriptVar4Table[newEntity / 2] = NewEntityVar4;
+    EntityScriptVar5Table[newEntity / 2] = NewEntityVar5;
+    EntityScriptVar6Table[newEntity / 2] = NewEntityVar6;
+    EntityScriptVar7Table[newEntity / 2] = NewEntityVar7;
+    EntityDrawPriority[newEntity / 2] = NewEntityPriority;
+    EntityAbsXFractionTable[newEntity / 2] = -32768;
+    EntityAbsYFractionTable[newEntity / 2] = -32768;
+    EntityAbsZFractionTable[newEntity / 2] = -32768;
+    EntityScreenXTable[newEntity / 2] = x;
+    EntityAbsXTable[newEntity / 2] = x;
+    EntityScreenYTable[newEntity / 2] = y;
+    EntityAbsYTable[newEntity / 2] = y;
+    EntityAbsZTable[newEntity / 2] = NewEntityPosZ;
+    newEntity = UnknownC09C57(newEntity);
+    //Unreachable code?
+    /+
+    UnknownC09C99();
+    short newScript2 = UnknownC09D03(__ignored);
+    EntityScriptIndexTable[newEntity / 2] = newScript2;
+    Unknown7E125A[newScript2 / 2] = -1;
+    +/
+    EntityScriptTable[newEntity / 2] = actionScript;
+    EntityAnimationFrames[newEntity / 2] = -1;
+    EntityDeltaXFractionTable[newEntity / 2] = 0;
+    EntityDeltaXTable[newEntity / 2] = 0;
+    EntityDeltaYFractionTable[newEntity / 2] = 0;
+    EntityDeltaYTable[newEntity / 2] = 0;
+    EntityDeltaZFractionTable[newEntity / 2] = 0;
+    EntityDeltaZTable[newEntity / 2] = 0;
+    return UnknownC092F5Unknown4(EventScriptPointers[EntityScriptTable[actionScript]], newEntity);
+}
+
+short InitEntityUnknown1(const(void)* pc, short entityID) {
+    return InitEntityUnknown1(pc, cast(short)(entityID * 2));
+}
+short InitEntityUnknown2(const(void)* pc, short entityIndex) {
+    if (EntityScriptTable[entityIndex / 2] < 0) {
+        while(true) {} //oh no
+    }
+    entityIndex = UnknownC09C99(entityIndex);
+    bool __ignored;
+    short newScript = UnknownC09D03(__ignored);
+    EntityScriptIndexTable[entityIndex / 2] = newScript;
+    Unknown7E125A[newScript / 2] = 0;
+    return UnknownC092F5Unknown4(pc, entityIndex);
+}
+
+short UnknownC092F5Unknown4(const(void)* pc, short entityIndex) {
+    ClearSpriteTickCallback(entityIndex);
+    EntityProgramCounters[EntityScriptIndexTable[entityIndex / 2]] = pc;
+    EntitySleepFrames[EntityScriptIndexTable[entityIndex / 2]] = 0;
+    Unknown7E12E6[EntityScriptIndexTable[entityIndex / 2]] = 0;
+    return entityIndex / 2;
+}
+//actually part of the previous function normally, but whatever
+void MovementNOP() {}
 
 // $C0943C
 void UnknownC0943C() {
@@ -1193,11 +1330,89 @@ void UnknownC09451();
 // $C09466
 void UnknownC09466();
 
+// $C09C02 - allocates an entity slot
+short UnknownC09C02(out bool flag) {
+    if (Unknown7E0A54 < 0) {
+        flag = true;
+        return 0; //actually just whatever was in the Y register when called
+    }
+    if (Unknown7E0A52 < 0) {
+        flag = true;
+        return -1;
+    }
+    short x = Unknown7E0A52;
+    short y;
+    do {
+        if ((x >= EntityAllocationMinSlot) && (x < EntityAllocationMaxSlot)) {
+            break;
+        }
+        y = x;
+    } while((x = EntityNextEntityTable[x / 2]) >= 0);
+    if (y >= 0) {
+        EntityNextEntityTable[y / 2] = EntityNextEntityTable[x / 2];
+        flag = false;
+        return y;
+    } else {
+        Unknown7E0A52 = EntityNextEntityTable[x / 2];
+        flag = false;
+        return y;
+    }
+}
+
 // $C09C35
 void UnknownC09C35(short);
 
+// $C09C57
+short UnknownC09C57(short index) {
+    EntityNextEntityTable[index / 2] = -1;
+    if (FirstEntity >= 0) {
+        while (EntityNextEntityTable[FirstEntity / 2] >= 0) {} //uh oh
+        EntityNextEntityTable[FirstEntity / 2] = index;
+        return index;
+    } else {
+        FirstEntity = index;
+        return index;
+    }
+}
+
+// $C09C99
+short UnknownC09C99(short index) {
+    if (EntityScriptIndexTable[index / 2] < 0) {
+        return index;
+    }
+    short Unknown7E0A54Copy = Unknown7E0A54;
+    short a = EntityScriptIndexTable[index / 2];
+    Unknown7E0A54 = a;
+    while((a = Unknown7E125A[a / 2]) > 0) {}
+    Unknown7E125A[a / 2] = Unknown7E0A54;
+    return index;
+}
+
 // $C09CD7
 void UnknownC09CD7();
+
+// $C09D03 - allocates a script slot
+short UnknownC09D03(out bool flag) {
+    short result = Unknown7E0A54;
+    if (result <= 0) {
+        flag = true;
+        return result;
+    }
+    Unknown7E0A54 = Unknown7E125A[result / 2];
+    flag = false;
+    return result;
+}
+
+// $C09DA1
+void ClearSpriteTickCallback(short index) {
+    EntityTickCallbacks[index / 2] = &MovementNOP;
+}
+
+// $C09FAE
+void UnknownC09FAEEntry2();
+
+// $C0A023
+void UnknownC0A023();
 
 // $C0A0E3
 void UnknownC0A0E3(short arg1, bool overflowed) {
@@ -1206,7 +1421,7 @@ void UnknownC0A0E3(short arg1, bool overflowed) {
     }
     ActionScript8C = EntitySpriteMapPointers[arg1 / 2];
     if (EntityAnimationFrames[arg1 / 2] >= 0) {
-        EntityDrawCallbacks[arg1 / 2]();
+        EntityDrawCallbacks[arg1 / 2](EntityAnimationFrames[arg1 / 2]);
     }
 }
 
@@ -1216,6 +1431,7 @@ void UnknownC0A0CA(short arg1) {
     ActionScript88 = cast(ushort)(arg1 * 2);
     UnknownC0A0E3(ActionScript88, arg1 < 0);
 }
+
 // $C0A11C
 void CheckHardware() {
     //AntiPiracyScratchSpace = 0x30;

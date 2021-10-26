@@ -159,7 +159,7 @@ __gshared short Unknown7E0A54;
 __gshared short Unknown7E0A56;
 __gshared short Unknown7E0A58;
 __gshared void* MOVEMENT_42_LOADED_PTR;
-__gshared short Unknown7E0A5E;
+__gshared void function() Unknown7E0A5E;
 __gshared short Unknown7E0A60;
 __gshared short[MAX_ENTITIES] EntityScriptTable; //$0A62
 __gshared short[MAX_ENTITIES] EntityNextEntityTable; //$0A9E
@@ -201,16 +201,15 @@ __gshared ushort[MAX_ENTITIES] EntitySpriteMapFlags;
 __gshared ubyte*[MAX_ENTITIES] EntitySpriteMapPointers;
 
 __gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; //$11A6
-__gshared void function()[MAX_ENTITIES] EntityDrawCallbacks; //$11E2
+__gshared void function(short)[MAX_ENTITIES] EntityDrawCallbacks; //$11E2
 __gshared void function()[MAX_ENTITIES] EntityMoveCallbacks; //$121E
+__gshared short[MAX_SCRIPTS] Unknown7E125A; //$125A
+__gshared short[MAX_SCRIPTS] Unknown7E12E6; //$12E6
+__gshared short[MAX_ENTITIES] EntitySleepFrames; //$1372
+//deprecated __gshared short[MAX_ENTITIES] ENTITY_PROGRAM_COUNTER; //$13FE
+//deprecated __gshared short[MAX_ENTITIES] ENTITY_PROGRAM_COUNTER_BANK; //$148A
 
-deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_14; //$10F2
-deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_15; //$112E
-deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_16; //$116A
-deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_17; //$11A6
-deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_18; //$11E2
-deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19; //$121E
-__gshared short Unknown7E125A;
+__gshared const(void)*[MAX_ENTITIES] EntityProgramCounters;
 
 __gshared ubyte[8] Unknown7E1A02; //$1A02
 __gshared ubyte[8] Unknown7E1A0A; //$1A0A

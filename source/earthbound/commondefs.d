@@ -1,6 +1,7 @@
 module earthbound.commondefs;
 
 enum MAX_ENTITIES = 30;
+enum MAX_SCRIPTS = 70;
 
 enum PAD_R =      0x0010;
 enum PAD_L =      0x0020;
@@ -3270,6 +3271,13 @@ struct LoadedBackgroundData {
 struct HDMAWordTransfer {
 	ubyte scanlines;
 	ushort value;
+}
+
+struct BattleEntryPointer {
+	void* ptr;
+	ushort runAwayFlag;
+	ubyte runAwayFlagState;
+	LetterboxStyle letterboxStyle;
 }
 
 //helper funcs not in the original game
