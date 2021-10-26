@@ -85,6 +85,7 @@ __gshared short Unknown7E0089;
 __gshared short Unknown7E008B;
 __gshared short Unknown7E008D;
 __gshared short Unknown7E008F;
+__gshared ubyte Unknown7E0091; //$0091
 __gshared ubyte DMA_COPY_MODE;
 __gshared short DMA_COPY_SIZE;
 __gshared const(void)* DMA_COPY_RAM_SRC;
@@ -197,7 +198,7 @@ __gshared void function()[MAX_ENTITIES] EntityTickCallbacks;
 __gshared short[MAX_ENTITIES] EntityAnimationFrames; //$10F2
 
 __gshared ushort[MAX_ENTITIES] EntitySpriteMapFlags;
-__gshared void*[MAX_ENTITIES] EntitySpriteMapPointers;
+__gshared ubyte*[MAX_ENTITIES] EntitySpriteMapPointers;
 
 __gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; //$11A6
 __gshared void function()[MAX_ENTITIES] EntityDrawCallbacks; //$11E2
@@ -211,6 +212,18 @@ deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_18; //$11E2
 deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_19; //$121E
 __gshared short Unknown7E125A;
 
+__gshared ubyte[8] Unknown7E1A02; //$1A02
+__gshared ubyte[8] Unknown7E1A0A; //$1A0A
+__gshared ubyte[8] Unknown7E1A12; //$1A12
+__gshared ubyte[8] Unknown7E1A1A; //$1A1A
+__gshared ubyte[8] Unknown7E1A22; //$1A22
+__gshared ubyte[8] Unknown7E1A2A; //$1A2A
+__gshared ubyte[8] Unknown7E1A32; //$1A32
+__gshared ubyte[8] Unknown7E1A3A; //$1A3A
+__gshared short CurrentEntitySlot; //$1A42
+__gshared short CurrentEntityOffset; //$1A44
+__gshared short CurrentScriptSlot; //$1A46
+__gshared short CurrentScriptOffset; //$1A48
 __gshared short[MAX_ENTITIES] Unknown7E1A4A;
 
 
@@ -222,6 +235,7 @@ __gshared short Unknown7E1ACE; //$1ACE
 
 __gshared short[64] Unknown7E1AD6; //$1AD6
 
+__gshared ushort Unknown7E2400; //$2400
 __gshared ushort Unknown7E2402; //$2402
 
 __gshared short[MAX_ENTITIES] EntityDrawSorting; //$280C
@@ -271,8 +285,7 @@ __gshared short[MAX_ENTITIES] Unknown7E33A2; //$33A2
 __gshared short[MAX_ENTITIES] Unknown7E33DE; //$33DE
 __gshared short[MAX_ENTITIES] Unknown7E341A; //$331A
 __gshared short[MAX_ENTITIES] Unknown7E3456; //$3356
-// what is this???
-__gshared ubyte[32][52] Unknown7E3492; //$3492
+__gshared ubyte[32][52] VWFBuffer; //$3492
 
 
 __gshared short Unknown7E3C14; //$3C14
@@ -310,7 +323,7 @@ __gshared short Unknown7E4676; //$4676
 
 __gshared short Unknown7E467A; //$467A
 __gshared short Unknown7E467C; //$467C
-__gshared short[0] SpriteTable7E467E; //$467E - how big is this...?
+__gshared ubyte[0] SpriteTable7E467E; //$467E - how big is this...?
 
 __gshared ubyte[88] Unknown7E4A00; // $4A00
 __gshared short Unknown7E4A58; // $4A58
@@ -457,8 +470,8 @@ __gshared short RespawnY;           // $9D21
 // is this the actual size? maybe it's 0x100?
 __gshared ubyte[0x20][8] Unknown7E9D23;           // $9D23
 
-__gshared ushort Unknown7E9E23;           // $9E23
-__gshared ushort Unknown7E9E25;           // $9E25
+__gshared ushort VWFX;           // $9E23
+__gshared ushort VWFTile;           // $9E25
 __gshared ushort Unknown7E9E27;           // $9E27
 __gshared ushort Unknown7E9E29;           // $9E29
 
@@ -594,9 +607,16 @@ __gshared ushort[0x8000] Unknown7F8000;
 
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
 
+__gshared ubyte ActionScript00;         // $00
+__gshared ubyte ActionScript02;         // $02
+
+__gshared short ActionScript06;         // $06
+__gshared short ActionScript08;         // $08
+
 __gshared ushort ActionScript88;         // $88
 
-__gshared void* ActionScript8C;         // $8C
+__gshared ubyte* ActionScript8C;         // $8C
+__gshared ubyte ActionScript8E;         // $8E
 
 // Other hardware stuff
 

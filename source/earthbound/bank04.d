@@ -44,7 +44,16 @@ short Decomp(const(void)*, void*);
 short UnknownC41EFF(short, short, short, short);
 
 // $C429E8
-void UnknownC429E8(short);
+void UnknownC429E8(short channel) {
+    //segmented addressing stuff
+    //DMAChannels[channel].A1B = 0x7E;
+    //DMAChannels[channel].DASB = 0x7E;
+    DMAChannels[channel].BBAD = 0x2C;
+    DMAChannels[channel].DMAP = DMATransferUnit.Word;
+    DMAChannels[channel].A1T = &Unknown7EADB8[0];
+    HDMAEN_MIRROR |= DMAFlags[channel];
+
+}
 
 // $C42A1F
 immutable short[17] UnknownC42A1F = [
@@ -322,22 +331,22 @@ void UnknownC43BB9(short maxLength, short highlighted, ubyte* text) {
 
 // $C43CAA
 void UnknownC43CAA() {
-    if (++Unknown7E9E25 > 0x33) {
-        Unknown7E9E25 = 0;
-        Unknown7E9E23 = 0;
+    if (++VWFTile > 0x33) {
+        VWFTile = 0;
+        VWFX = 0;
     } else {
-        Unknown7E9E23 = cast(ushort)(Unknown7E9E25 * 8);
+        VWFX = cast(ushort)(VWFTile * 8);
     }
     Unknown7E9654 = 0;
-    Unknown7E9652 = Unknown7E9E23;
+    Unknown7E9652 = VWFX;
 }
 
 // $C43CD2 - Set text position on focused window (for menu options)
 void UnknownC43CD2(MenuOpt* opt, short x, short y) {
     UnknownC438A5F(x, y);
     if (opt.pixel_align != 0) {
-        Unknown7E9E23 += opt.pixel_align;
-        memset(&Unknown7E3492[Unknown7E9E25][0], 0xFF, 0x20);
+        VWFX += opt.pixel_align;
+        memset(&VWFBuffer[VWFTile][0], 0xFF, 0x20);
     }
     Unknown7E5E79 = 0;
 }
@@ -360,8 +369,8 @@ void UnknownC43D24(ushort arg1, short arg2) {
     if (Unknown7E5E72 == 0) {
         return;
     }
-    Unknown7E9E23 += Unknown7E5E72;
-    memset(&Unknown7E3492[Unknown7E9E25][0], 0xFF, 0x20);
+    VWFX += Unknown7E5E72;
+    memset(&VWFBuffer[VWFTile][0], 0xFF, 0x20);
     Unknown7E5E73 = Unknown7E5E72;
     Unknown7E5E72 = 0;
 }
@@ -471,7 +480,51 @@ void UnknownC44AF7(short arg1) {
 }
 
 // $C44B3A
-void UnknownC44B3A(short, short, const(void)*);
+void RenderText(short width, short sizeof_tile, const(ubyte)* gfx_data) {
+    short i;
+    short new_vwftile;
+    short pixel_x = VWFX & 7;
+    ubyte* bufptr = &VWFBuffer[VWFTile][0];
+    const(ubyte)* gfxptr = gfx_data;
+
+    if (pixel_x == 0) { /* Is this the first time we're writing to this tile? */
+        memset(bufptr, 0xFF, sizeof_tile*2);
+    }
+
+    bufptr++; /* Move to high byte */
+    for (i = 0; i < sizeof_tile; i++) {
+        *bufptr &= (((*gfxptr) ^ 255) >> pixel_x) ^ 255; /* Is this right? Don't know! */
+        /* *bufptr &= arrEFC51B[pixel_x][*gfxptr]; */
+
+        ++gfxptr;
+        bufptr += 2;
+    }
+
+    VWFX += width;
+    if (VWFX >= VWFBuffer.length*8) VWFX -= VWFBuffer.length*8;
+
+    new_vwftile = VWFX >> 3;
+    if (new_vwftile == VWFTile) return; /* Bail out if going to write on the same tile */
+
+    /* Well, we're in a new tile now */
+    VWFTile = new_vwftile;
+
+    pixel_x = cast(short)(8 - pixel_x);
+    bufptr = &VWFBuffer[VWFTile][0];
+    gfxptr = gfx_data;
+
+    memset(bufptr, 0xFF, sizeof_tile*2); /* We need to clear what was previously in this, now new, tile */
+    if (pixel_x == 8) return;
+
+    bufptr++; /* Move to high byte */
+    for (i = 0; i < sizeof_tile; i++) {
+        *bufptr = cast(ubyte)((((*gfxptr) ^ 255) << pixel_x) ^ 255); /* Is this right? Don't know! */
+        /* *bufptr = arrEFCD1B[pixel_x][*gfxptr]; */
+
+        ++gfxptr;
+        bufptr += 2;
+    }
+}
 
 // $C44E44
 void UnknownC44E44() {
@@ -627,8 +680,8 @@ void UnknownC45E96() {
     for (short i =0; i < 0x20; i++) {
         Unknown7E9D23[i][0] = 0xFF;
     }
-    Unknown7E9E25 = 0;
-    Unknown7E9E23 = 0;
+    VWFTile = 0;
+    VWFX = 0;
     if (++Unknown7E9E27 >= 0x30) {
         Unknown7E9E27 = 0;
     }
@@ -687,20 +740,20 @@ void LoadWindowGraphics() {
     }
     ushort* x24 = cast(ushort*)&Unknown7F0000[0x2A00];
     for (short i = 0; i < 4; i++) {
-        Unknown7E9E25 = 0;
-        Unknown7E9E23 = 0;
-        memset(&Unknown7E3492[0][0], 0xFF, 0x340);
+        VWFTile = 0;
+        VWFX = 0;
+        memset(&VWFBuffer[0][0], 0xFF, 0x340);
         Unknown7E9654 = 0;
         Unknown7E9652 = 0;
         ubyte* x0A = &PartyCharacters[i].name[0];
-        Unknown7E9E23 = 2;
+        VWFX = 2;
         for (short j = 0; x0A[0] != 0; j++) {
-            UnknownC44B3A(6, FontConfigTable[Font.Battle].width, &FontConfigTable[Font.Battle].graphics[FontConfigTable[Font.Battle].height * ((*x0A - 0x50) & 0x7F)]);
+            RenderText(6, FontConfigTable[Font.Battle].width, &FontConfigTable[Font.Battle].graphics[FontConfigTable[Font.Battle].height * ((*x0A - 0x50) & 0x7F)]);
             x0A++;
         }
         for (short j = 0; j < 4; j++) {
-            memcpy(&Unknown7F0000[0x2A00 + j * 16 + i * 64], &Unknown7E3492[j][0], 0x10);
-            memcpy(&Unknown7F0000[0x2A00 + j * 16 + i * 64 + 0x100], &Unknown7E3492[j][16], 0x10);
+            memcpy(&Unknown7F0000[0x2A00 + j * 16 + i * 64], &VWFBuffer[j][0], 0x10);
+            memcpy(&Unknown7F0000[0x2A00 + j * 16 + i * 64 + 0x100], &VWFBuffer[j][16], 0x10);
         }
     }
     for (short i = 0; i < 0x20; i++) {
@@ -869,13 +922,13 @@ void UnknownC49B6E(short arg1) {
     //x14 = Unknown7E9F2D * 0x1A0
     if (Unknown7E9F2D * 0x1A0 + 0x4E0 > 0x3400) {
         if (0x3400 - Unknown7E9F2D * 0x1A0 != 0) {
-            CopyToVram(0, cast(short)(0x3400 - Unknown7E9F2D * 0x1A0), cast(ushort)(0xD0 * Unknown7E9F2D + 0x6150), &Unknown7E3492[0][0]);
+            CopyToVram(0, cast(short)(0x3400 - Unknown7E9F2D * 0x1A0), cast(ushort)(0xD0 * Unknown7E9F2D + 0x6150), &VWFBuffer[0][0]);
         }
         if (Unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400 != 0) {
             //CopyToVram(0, Unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400, 0x6150, 0x6892 - Unknown7E9F2D * 0x1A0);
         }
     } else {
-        CopyToVram(0, 0x4E0, cast(ushort)(0xD0 * Unknown7E9F2D + 0x6150), &Unknown7E3492[0][0]);
+        CopyToVram(0, 0x4E0, cast(ushort)(0xD0 * Unknown7E9F2D + 0x6150), &VWFBuffer[0][0]);
     }
     Unknown7E3C1E = -1;
     Unknown7E3C20 = 0;

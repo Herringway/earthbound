@@ -7,9 +7,11 @@ import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank0F;
 import earthbound.bank20;
 import earthbound.bank2F;
 import core.stdc.string;
+import core.bitop;
 
 // $C00000
 short* ClearEntityDrawSortingTable() {
@@ -979,12 +981,12 @@ void CopyToVramInternal() {
         }
         DMAQueueIndex++;
     } else {
-        DMAP1 = DMATable[DMA_COPY_MODE].unknown0;
+        DMAChannels[1].DMAP = DMATable[DMA_COPY_MODE].unknown0;
         //original assembly relied on DMAP1+BBAD1 being adjacent for a 16-bit write, but we probably shouldn't do that
         BBAD1 = DMATable[DMA_COPY_MODE].unknown1;
         VMAIN = DMATable[DMA_COPY_MODE].unknown2;
-        DAS1L = DMA_COPY_SIZE;
-        A1T1L = DMA_COPY_RAM_SRC;
+        DMAChannels[1].DAS = DMA_COPY_SIZE;
+        DMAChannels[1].A1T = DMA_COPY_RAM_SRC;
         //A1B1 is not really relevant without segmented addressing
         VMADDL = DMA_COPY_VRAM_DEST;
         MDMAEN = 2;
@@ -1078,6 +1080,9 @@ void UpdateScreen() {
 // $C08B8E
 void UnknownC08B8E();
 
+// $C08C58
+void UnknownC08C58(ubyte*, short, short);
+
 // $C08D79
 void UnknownC08D79(ubyte arg1) {
     Unknown7E000F &= 0xF0;
@@ -1140,7 +1145,16 @@ void SetBG4VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 }
 
 // $C08E9A
-short rand();
+ubyte rand() {
+    ushort tmp = ror(cast(ushort)((RandA << 8) * (RandB & 0xFF)), 2);
+    RandB = cast(ushort)((RandA << 8) | (RandB & 0xFF));
+    ushort tmp2 = ror(cast(ushort)(tmp & 3 + RandA), 1);
+    if (((tmp & 3 + RandA) & 1) == 0) {
+        tmp2 |= 0x8000;
+    }
+    RandA = tmp2;
+    return ror(tmp, 2) & 0xFF;
+}
 
 immutable ubyte[] UNKNOWN_C08F98 = [ 0x80, 0xFE, 0x00, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x03, 0x80, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02, 0x00, 0x00 ];
 
@@ -1213,6 +1227,143 @@ void CheckHardware() {
         DisplayFaultyGamepakScreen();
     }
 }
+
+// $C0A3A4
+// originally handwirtten assembly, id was actually an offset
+void UnknownC0A3A4(short id) {
+    if ((Unknown7E341A[id / 2] & 1) != 0) {
+        ActionScript8C += EntityUnknown2916[id / 2];
+    }
+    ActionScript00 = 0x30;
+    ActionScript02 = 0x30;
+    if ((EntitySurfaceFlags[id /2] & 1) != 0) {
+        ActionScript02 = 0x20;
+    }
+    if ((EntitySurfaceFlags[id / 2] & 2) != 0) {
+        ActionScript00 = 0x20;
+    }
+    short y = 0xFD;
+    for (short i = UNKNOWN_30X2_TABLE_38[id / 2] & 0xFF; i >= 0; i--) {
+        y += 5;
+        ActionScript8C[y] = (ActionScript8C[y] & 0xCF) | ActionScript00;
+    }
+    for (short i = UNKNOWN_30X2_TABLE_38[ActionScript88 / 2]; i >= 0; i--) {
+        y+= 5;
+        ActionScript8C[y] = (ActionScript8C[y] & 0xCF) | ActionScript02;
+    }
+    Unknown7E000B = ActionScript8E;
+    Unknown7E2400 = EntityDrawPriority[ActionScript88 / 2];
+    short Unknown7E2400Copy = Unknown7E2400;
+    if ((Unknown7E2400 & 0x8000) != 0) {
+        Unknown7E2400 = EntityDrawPriority[Unknown7E2400Copy & 0x3F];
+        if ((Unknown7E2400 & 0x4000) == 0) {
+            EntityDrawPriority[ActionScript88 / 2] = 0;
+        }
+    }
+    UnknownC0AC43();
+    Unknown7E000B = ActionScript8E;
+    UnknownC08C58(ActionScript8C, EntityScreenXTable[ActionScript88 / 2], EntityScreenYTable[ActionScript88 / 2]);
+}
+
+// $C0A443
+//what a mess
+void UnknownC0A443() {
+    ActionScript00 = (Unknown7E2890 + CurrentEntitySlot >> 3) & 1;
+    ActionScript02 = cast(ubyte)((EntityDirections[ActionScript88 / 2] * 2) | ActionScript00);
+    if (((UNKNOWN_30X2_TABLE_40[ActionScript88 / 2] >> 8) | ((UNKNOWN_30X2_TABLE_40[ActionScript88 / 2] &0xFF) << 8) | ActionScript02) == Unknown7E3456[ActionScript88 / 2]) {
+        return;
+    }
+    Unknown7E3456[ActionScript88 / 2] = cast(short)((UNKNOWN_30X2_TABLE_40[ActionScript88 / 2] >> 8) | ((UNKNOWN_30X2_TABLE_40[ActionScript88 / 2] &0xFF) << 8) | ActionScript02);
+
+    UnknownC0A443Unknown10();
+}
+
+// $C0A472
+void UnknownC0A472() {
+    Unknown7E2892 = (Unknown7E0002 >> 3) & 1;
+    UnknownC0A443Unknown10();
+}
+void UnknownC0A443MovementEntry3() {
+    UnknownC0A443Unknown9(ActionScript88);
+}
+void UnknownC0A443Entry2(short arg1) {
+    UnknownC0A443Unknown9(cast(short)(arg1 * 2));
+}
+void UnknownC0A443Unknown9(short arg1) {
+    Unknown7E2892 = EntityAnimationFrames[arg1 / 2];
+    UnknownC0A443Entry4(arg1);
+}
+void UnknownC0A443Entry3() {
+    Unknown7E2892 = 0;
+    if (UnknownC0C711() != 0) {
+        UnknownC0A443Unknown10();
+    }
+}
+void UnknownC0A443MovementEntry1() {
+    Unknown7E2892 = 1;
+    if (UnknownC0C711() != 0) {
+        UnknownC0A443Unknown10();
+    }
+}
+void UnknownC0A443MovementEntry2() {
+    Unknown7E2892 = 0;
+    UnknownC0A443Unknown10();
+}
+void UnknownC0A443Unknown10() {
+    UnknownC0A443Entry4(ActionScript88);
+}
+void UnknownC0A443Entry4(short arg1) {
+    ActionScript08 = arg1;
+    ActionScript00 = cast(ubyte)(EntityTileHeights[arg1 / 2]);
+    DMA_COPY_SIZE = EntityByteWidths[arg1 / 2];
+    DMA_COPY_VRAM_DEST = EntityVramAddresses[arg1 / 2];
+    //x04 = EnttiyGraphicsPointerHigh[arg1 / 2]
+    ubyte* x02 = cast(ubyte*)EntityGraphicsPointers[arg1 / 2];
+    if (UnknownC0A60B[EntityDirections[arg1 / 2]] != 0) {
+        for (short i = UnknownC0A60B[EntityDirections[arg1 / 2]]; i > 0; i--) {
+            x02 += 4;
+        }
+    }
+    if (Unknown7E2892 != 0) {
+        x02 += 2;
+    }
+    if (*x02 != 0) {
+        return;
+    }
+    if ((EntitySurfaceFlags[arg1 / 2] & 8) != 0) {
+        return;
+    }
+    Unknown7E0091 = 3;
+    DMA_COPY_RAM_SRC = &UnknownC40BE8;
+    UnknownC0A56E();
+    if (--ActionScript00 == 0) {
+        return;
+    }
+    if ((ActionScript06 & 0x4) != 0) {
+        UnknownC0A56E();
+        if (--ActionScript00 == 0) {
+            return;
+        }
+    }
+    Unknown7E341A[ActionScript08 / 2] = *x02;
+    //TODO: rework this
+    //DMA_COPY_RAM_SRC = cast(void*)((*x02) & 0xFFF0);
+    Unknown7E0091 = 0;
+    //DMA_COPY_RAM_SRC + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
+    while (true) {
+        UnknownC0A56E();
+        if (--ActionScript00 == 0) {
+            return;
+        }
+        DMA_COPY_RAM_SRC += DMA_COPY_SIZE;
+    }
+}
+
+// $C0A56E
+void UnknownC0A56E();
+
+// $C0A60B
+ubyte[24] UnknownC0A60B = [0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x05, 0x00, 0x06, 0x00, 0x07, 0x00];
 
 // $C0A780
 void UnknownC0A780();
@@ -1321,11 +1472,15 @@ ubyte UnknownC0AC20() {
     return APUIO0;
 }
 
+// $C0AC43
+void UnknownC0AC43();
+
 // $C0AC2C
 immutable ubyte[14] StereoMonoData = [
     0x01, 0x00, 0x31, 0x04, 0x00, 0x00, 0x00,
     0x01, 0x00, 0x31, 0x04, 0x01, 0x00, 0x00,
 ];
+immutable ubyte[7] DMAFlags = [ 1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6];
 
 // $C0AFCD
 void UnknownC0AFCD();
@@ -1504,8 +1659,66 @@ void GameInit() {
     ebMain();
 }
 
+// $C0C30C
+void UnknownC0C30C(short arg1) {
+  if (getEventFlag(NPCConfig[EntityTPTEntries[arg1]].eventFlag)) {
+    EntityDirections[arg1] = Direction.Up; // 0
+  } else {
+    EntityDirections[arg1] = Direction.Down; // 4
+  }
+  UnknownC0A443Entry2(arg1);
+}
+
+// $C0C711
+short UnknownC0C711() {
+    //weird...
+    if (((EntityScreenXTable[CurrentEntitySlot] - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[CurrentEntitySlot]]) | (EntityScreenYTable[CurrentEntitySlot] - UnknownC42A41[UNKNOWN_30X2_TABLE_36[CurrentEntitySlot]]) | (CurrentEntitySlot + 8) & 0xFF00) == 0) {
+        return -1;
+    } else {
+        return 0;
+    }
+}
+
 // $C0DA31
-void UnknownC0DA31();
+//this looks pretty ugly... is this right?
+void UnknownC0DA31() {
+    if (FirstEntity + 1 == 0) {
+        return;
+    }
+    short x02 = 0;
+    for (short i = 0; i != 0x1E; i++) {
+        if (EntityScriptTable[i] + 1 == 0) {
+            continue;
+        }
+        if (EntityDrawPriority[i] - 1 == 0) {
+            if (((EntityScreenYTable[i] + 8) & 0xFE00) == 0) {
+                EntityDrawSorting[x02++] = cast(short)(i + 1);
+            } else {
+                UnknownC0A0CA(i);
+            }
+        }
+    }
+    EntityDrawSorting[x02] = -1;
+    for (short i = x02; i-- != 0;)  {
+        short j;
+        for (j = 0; EntityDrawSorting[j] == 0; j++) {}
+        x02 = j;
+        short x12 = j;
+        short y = EntityAbsYTable[j - 1];
+        while (EntityDrawSorting[++j] + 1 != 0) {
+            if (EntityDrawSorting[j] == 0) {
+                continue;
+            }
+            if (y >= EntityAbsYTable[EntityDrawSorting[j - 1]]) {
+                continue;
+            }
+            y = EntityAbsYTable[EntityDrawSorting[j - 1]];
+            x12 = j;
+        }
+        UnknownC0A0CA(cast(short)(EntityDrawSorting[x12] - 1));
+        EntityDrawSorting[x12] = 0;
+    }
+}
 
 // $C0DB0F
 void UnknownC0DB0F() {

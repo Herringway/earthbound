@@ -3145,7 +3145,7 @@ struct SaveData {}
 
 struct FontConfig {
 	const(ubyte)* data;
-	const(void)* graphics;
+	const(ubyte)* graphics;
 	ushort height;
 	ushort width;
 }

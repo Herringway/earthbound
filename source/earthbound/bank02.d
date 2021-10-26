@@ -75,8 +75,8 @@ void UnknownC200D9() {
 	}
 	Unknown7E9E29 = 0;
 	Unknown7E9E27 = 0;
-	Unknown7E9E25 = 0;
-	Unknown7E9E23 = 0;
+	VWFTile = 0;
+	VWFX = 0;
 	BlinkingTriangleFlag = 0;
 	Unknown7E964F = 1;
 	BattleModeFlag = 0;

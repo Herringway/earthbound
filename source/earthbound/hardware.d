@@ -25,11 +25,59 @@ __gshared ubyte CGWSEL;
 
 __gshared ubyte OBSEL;
 
-__gshared ubyte DMAP1;
-__gshared ubyte VMAIN;
-__gshared ushort DAS1L;
 
-__gshared const(void)* A1T1L;
+enum DMATransferUnit {
+	Byte = 0,
+	Word = 1,
+	ByteTwice = 2,
+	WordTwiceInterlaced = 3,
+	Int = 4,
+	WordTwice = 5,
+	WordCopy = 6,
+	WordTwiceInterlacedCopy = 7,
+}
+
+struct DMAChannel {
+	//x0
+	ubyte DMAP;
+	//x1
+	ubyte BBAD;
+	//x2
+	union {
+		struct {
+			ubyte A1TL;
+			ubyte A1TH;
+			ubyte A1B;
+		}
+		const(void)* A1T;
+	}
+	//x5
+	union {
+		struct {
+			ubyte DASL;
+			ubyte DASH;
+			ubyte DASB; //HDMA only
+		}
+		ushort DAS; //not for HDMA
+		const(void)* HDMADAS;
+	}
+	//x8, HDMA only
+	union {
+		struct {
+			ubyte A2AL;
+			ubyte A2AH;
+		}
+		ushort A2A;
+	}
+	//xA, HDMA only
+	ubyte NTLR;
+	//unused
+	ubyte[5] __unused;
+}
+
+__gshared DMAChannel[8] DMAChannels;
+
+__gshared ubyte VMAIN;
 
 __gshared ushort VMADDL;
 __gshared ubyte MDMAEN;
