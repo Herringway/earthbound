@@ -1,5 +1,12 @@
 module earthbound.hardware;
 
+struct OAMEntry {
+	ubyte xCoord; //0
+	ubyte yCoord; //1
+	ubyte startingTile; //2
+	ubyte flags; //3
+}
+
 __gshared ubyte APUIO0;
 __gshared ubyte APUIO1;
 __gshared ubyte APUIO2;

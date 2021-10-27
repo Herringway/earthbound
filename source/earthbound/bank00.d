@@ -1063,20 +1063,104 @@ void WaitUntilNextFrame() {
     UnknownC08496();
 }
 
+// $C0878B
+void UnknownC0878B(ubyte arg1) {
+    do {
+        NextFrameDisplayID++;
+        WaitUntilNextFrame();
+    } while (--arg1 != 0);
+}
+
+// $C0879D
+void SetINIDISP(ubyte arg1) {
+    INIDISP_MIRROR = arg1 & 0x8F;
+}
+
+// $C087AB
+void UnknownC087AB(ubyte arg1) {
+    MOSAIC_MIRROR = (((INIDISP_MIRROR ^ 0xFF) << 4) & 0xF0) | arg1;
+}
+
 // $C087CE
-void FadeInWithMosaic(short, short, short);
+void FadeInWithMosaic(short arg1, short arg2, short arg3) {
+    Unknown7E0028 = 0;
+    INIDISP_MIRROR = 0;
+    while(true) {
+        MOSAIC_MIRROR = 0;
+        if (INIDISP_MIRROR + arg1 >= 0x15) {
+            break;
+        }
+        SetINIDISP(cast(ubyte)(INIDISP_MIRROR + arg1));
+        if (arg3 != 0) {
+            UnknownC087AB(cast(ubyte)arg3);
+        }
+        UnknownC0878B(cast(ubyte)arg2);
+    }
+    SetINIDISP(0xF);
+}
 
 // $C08814
-void FadeOutWithMosaic(short, short, short);
+void FadeOutWithMosaic(short arg1, short arg2, short arg3) {
+    Unknown7E0028 = 0;
+    while (true) {
+        MOSAIC_MIRROR = 0;
+        if ((INIDISP_MIRROR & 0x80) != 0) {
+            break;
+        }
+        if (INIDISP_MIRROR - arg1 < 0) {
+            break;
+        }
+        SetINIDISP(cast(ubyte)(INIDISP_MIRROR - arg1));
+        if (arg3 != 0) {
+            UnknownC087AB(cast(ubyte)arg3);
+        }
+        UnknownC0878B(cast(ubyte)arg2);
+    }
+    SetINIDISP(0x80);
+    HDMAEN_MIRROR = 0;
+    Unknown7E002B = 0;
+    while (Unknown7E002B == 0) {}
+    HDMAEN = 0;
+}
 
 // $C0886C
-void FadeIn(short, short);
+void FadeIn(ubyte arg1, ubyte arg2) {
+    Unknown7E0028 = arg1;
+    Unknown7E0029 = arg2;
+    Unknown7E002A = arg2;
+}
 
 // $C0887A
-void FadeOut(short, short);
+void FadeOut(ubyte arg1, ubyte arg2) {
+    Unknown7E0028 = cast(ubyte)((arg1^0xFF) + 1);
+    Unknown7E0029 = arg2;
+    Unknown7E002A = arg2;
+}
 
 // $C088B1
-void OAMClear();
+void OAMClear() {
+    Unknown7E2504 = 0;
+    Unknown7E2606 = 0;
+    Unknown7E2708 = 0;
+    Unknown7E280A = 0;
+    if (NextFrameBufferID - 1 == 0) {
+        OAMAddr = &OAM1[0];
+        OAMEndAddr = OAM1.ptr + 128;
+        OAMHighTableAddr = &OAM1HighTable[0];
+        Unknown7E000A = 0x80;
+        for (short i = 0; i < 128; i++) { //original code has this loop unrolled
+            OAM1[i].yCoord = 0xE0;
+        }
+    } else {
+        OAMAddr = &OAM2[0];
+        OAMEndAddr = OAM2.ptr + 128;
+        OAMHighTableAddr = &OAM2HighTable[0];
+        Unknown7E000A = 0x80;
+        for (short i = 0; i < 128; i++) { //original code has this loop unrolled
+            OAM2[i].yCoord = 0xE0;
+        }
+    }
+}
 
 // $C08B19
 void UnknownC08B19() {
@@ -1095,7 +1179,7 @@ void UpdateScreen() {
             Unknown7E000Atmp >>= 2;
         } while ((Unknown7E000Atmp & 2) == 0);
     }
-    OAMHighTableAddr = Unknown7E000Atmp;
+    *OAMHighTableAddr = Unknown7E000Atmp;
     BG1_X_POS_BUF[NextFrameBufferID - 1] = BG1_X_POS;
     BG1_Y_POS_BUF[NextFrameBufferID - 1] = BG1_Y_POS;
     BG2_X_POS_BUF[NextFrameBufferID - 1] = BG2_X_POS;

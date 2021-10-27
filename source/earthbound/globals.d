@@ -1,13 +1,14 @@
 module earthbound.globals;
 
 import earthbound.commondefs;
+import earthbound.hardware;
 
 __gshared ubyte DMAQueueIndex;
 __gshared ubyte Unknown7E0001;
 __gshared ubyte Unknown7E0002;
-__gshared ushort Unknown7E0003;
-__gshared ushort Unknown7E0005;
-__gshared ushort OAMHighTableAddr;
+__gshared OAMEntry* OAMAddr;
+__gshared OAMEntry* OAMEndAddr;
+__gshared ubyte* OAMHighTableAddr;
 __gshared ubyte Unknown7E0009;
 __gshared ubyte Unknown7E000A;
 __gshared ubyte Unknown7E000B;
@@ -137,6 +138,13 @@ __gshared DMAQueueEntry[30] DMAQueue;
 auto ref CurrentTextPalette() { return palettes[0]; }
 
 
+//OAM data for every odd frame
+__gshared OAMEntry[128] OAM1; //$0500
+__gshared ubyte[32] OAM1HighTable; //$0700
+// Same as OAM1, but used for every other frame
+__gshared OAMEntry[128] OAM2; //$0800
+__gshared ubyte[32] OAM2HighTable; //$0A00
+
 __gshared short Unknown7E0A34;
 __gshared short Unknown7E0A36;
 __gshared short NewEntityVar0;
@@ -236,7 +244,26 @@ __gshared ubyte[0x200] heap; // $2000
 
 __gshared ushort Unknown7E2400; //$2400
 __gshared ushort Unknown7E2402; //$2402
-
+__gshared short[32] Unknown7E2404; //$2404
+__gshared short[32] Unknown7E2444; //$2444
+__gshared short[32] Unknown7E2484; //$2484
+__gshared short[32] Unknown7E24C4; //$24C4
+__gshared short Unknown7E2504; //$2504
+__gshared short[32] Unknown7E2506; //$2506
+__gshared short[32] Unknown7E2546; //$2546
+__gshared short[32] Unknown7E2586; //$2586
+__gshared short[32] Unknown7E25C6; //$25C6
+__gshared short Unknown7E2606; //$2606
+__gshared short[32] Unknown7E2608; //$2608
+__gshared short[32] Unknown7E2648; //$2648
+__gshared short[32] Unknown7E2688; //$2688
+__gshared short[32] Unknown7E26C8; //$26C8
+__gshared short Unknown7E2708; //$2708
+__gshared short[32] Unknown7E270A; //$270A
+__gshared short[32] Unknown7E274A; //$274A
+__gshared short[32] Unknown7E278A; //$278A
+__gshared short[32] Unknown7E27CA; //$27CA
+__gshared short Unknown7E280A; //$280A
 __gshared short[MAX_ENTITIES] EntityDrawSorting; //$280C
 __gshared short Unknown7E2848; //$2848
 __gshared short Unknown7E284A; //$284A
