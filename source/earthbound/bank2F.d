@@ -586,7 +586,7 @@ void UnknownEFE175() {
 	FadeIn(1, 1);
 	do {
 		OAMClear();
-		if (DebugModeNumber == 7) {
+		if (DebugModeNumber == 2) {
 			UnknownEFDE1A();
 		} else if (DebugModeNumber == 5) {
 			UnknownEFDCBC();
