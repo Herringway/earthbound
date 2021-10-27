@@ -757,6 +757,15 @@ void RemoveCharFromParty(short id) {
 // $C22474
 short UnknownC22474(ubyte*);
 
+// $C24821
+short BattleRoutine();
+
+// $C261BD
+void InstantWinHandler();
+
+// $C26634
+short InstantWinCheck();
+
 // $C2C92D
 void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer);
 

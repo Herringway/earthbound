@@ -1618,6 +1618,9 @@ short CreatePreparedEntitySprite(short sprite, short actionScript) {
     return result;
 }
 
+// $C46631
+void UnknownC46631(short);
+
 // $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
     UnknownC08726();

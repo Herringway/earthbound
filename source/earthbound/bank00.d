@@ -85,6 +85,9 @@ void InitializeMiscObjectData() {
     }
 }
 
+// $C01A87
+void UnknownC01A87();
+
 // $C01A9D
 short FindFree7E4682(ushort);
 
@@ -171,6 +174,9 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 
 // $C02140
 void UnknownC02140(short);
+
+// $C0262D
+short UnknownC0262D(short, short);
 
 // $C02D29
 void UnknownC02D29() {
@@ -562,10 +568,22 @@ void UnknownC05200() {
     }
 }
 
+// $C052AA
+short InitBattleCommon() {
+    FadeOutWithMosaic(1, 1, 0);
+    short result = BattleRoutine();
+    UpdateParty();
+    Unknown7E4DC4 = 1;
+    BattleDebug = 0;
+    return result;
+}
+
 // $C05639
 void UnknownC05639(short, short);
+
 // $C056D0
 void UnknownC056D0(short, short);
+
 // $C05F33
 short UnknownC05F33(short x, short y, short entityID) {
     const size = UNKNOWN_30X2_TABLE_36[entityID];
@@ -616,6 +634,9 @@ immutable ushort[] UNKNOWN_C06E02 = [
 	0x0006,
 	0x0002
 ];
+
+// $C07477
+ubyte UnknownC07477(short, short);
 
 // $C075DD
 void ProcessQueuedInteractions();
@@ -983,7 +1004,7 @@ void CopyToVramInternal() {
     } else {
         DMAChannels[1].DMAP = DMATable[DMA_COPY_MODE].unknown0;
         //original assembly relied on DMAP1+BBAD1 being adjacent for a 16-bit write, but we probably shouldn't do that
-        BBAD1 = DMATable[DMA_COPY_MODE].unknown1;
+        DMAChannels[1].BBAD = DMATable[DMA_COPY_MODE].unknown1;
         VMAIN = DMATable[DMA_COPY_MODE].unknown2;
         DMAChannels[1].DAS = DMA_COPY_SIZE;
         DMAChannels[1].A1T = DMA_COPY_RAM_SRC;
@@ -995,6 +1016,8 @@ void CopyToVramInternal() {
     }
 }
 
+// $C086DE
+ushort* UnknownC086DE(ushort);
 
 // $C08726
 void UnknownC08726() {
@@ -1774,7 +1797,43 @@ void UnknownC0B67F() {
 }
 
 // $C0B731
-void InitBattleOverworld();
+void InitBattleOverworld() {
+    if (BattleDebug == 0) {
+        return;
+    }
+    if ((Debug == 0) || (UnknownEFE708() != -1)) {
+        if (InstantWinCheck() != 0) {
+            InstantWinHandler();
+            BattleDebug = 0;
+        }
+    } else {
+        short x10 = InitBattleCommon();
+        UnknownC07B52();
+        if (TeleportDestination == 0) {
+            if (x10 != 0) {
+                if (Debug == 0) {
+                    return;
+                }
+                if (DebugCheckViewCharacterMode() != 0) {
+                    return;
+                }
+            }
+            ReloadMap();
+            FadeIn(1, 1);
+        } else {
+            TeleportMainLoop();
+        }
+    }
+    for (short i = 0; i != 0x17; i++) {
+        EntityCollidedObjects[i] = 0xFFFF;
+        UNKNOWN_30X2_TABLE_41[i] = 0;
+        EntitySpriteMapFlags[i] &= 0x7FFF;
+    }
+    OverworldStatusSuppression = 0;
+    UnknownC09451();
+    Unknown7E5D58 = 0x78;
+    TouchedEnemy = -1;
+}
 
 //$C0B7D8
 void ebMain() {
@@ -1793,7 +1852,7 @@ void ebMain() {
         UpdateScreen();
         UnknownC4A7B0();
         WaitUntilNextFrame();
-        if (((Unknown7E5E02 - Unknown7E5E04) != 0) && !BattleSwirlCountdown && !BattleSwirlFlag && !BattleDebug) {
+        if (((CurrentQueuedInteraction - NextQueuedInteraction) != 0) && !BattleSwirlCountdown && !BattleSwirlFlag && !BattleDebug) {
             ProcessQueuedInteractions();
             Unknown7E5D74++;
         } else if ((gameState.unknownB0 != 2) && (gameState.walkingStyle != WalkingStyle.Escalator) && !BattleSwirlCountdown) {
@@ -1838,7 +1897,7 @@ void ebMain() {
                 }
             }
             if (TeleportDestination) {
-                TeleportMainloop();
+                TeleportMainLoop();
             }
             if (!Debug && ((pad_press[1] & PAD_B) != 0)) {
                 for (int i = 0; i < TOTAL_PARTY_COUNT; i++) {
@@ -1874,6 +1933,9 @@ void GameInit() {
     Debug = 0;
     ebMain();
 }
+
+// $C0BD96
+void UnknownC0BD96();
 
 // $C0C30C
 void UnknownC0C30C(short arg1) {
@@ -2066,7 +2128,7 @@ void TeleportFreezeObjects2() {
 }
 
 // $C0EA99
-void TeleportMainloop() {
+void TeleportMainLoop() {
     StopMusic();
     WaitUntilNextFrame();
     TeleportFreezeObjects();

@@ -1060,6 +1060,7 @@ enum ActionScript {
 	Unknown485 = 485,
 	Unknown486 = 486,
 	Unknown498 = 498,
+	Unknown499 = 499,
 	Unknown500 = 500,
 	Unknown581 = 581,
 	Unknown582 = 582,

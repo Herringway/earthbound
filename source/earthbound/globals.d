@@ -312,8 +312,11 @@ __gshared short Unknown7E4370; //$4370
 __gshared short Unknown7E4372; //$4372
 __gshared short Unknown7E4374; //$4374
 
+__gshared short Unknown7E4380; //$4380
+
 __gshared short Unknown7E438A; //$438A
 __gshared short Unknown7E438C; //$438C
+__gshared short CurrentSectorAttributes; //$438E
 
 __gshared short Unknown7E4472; //$4472
 __gshared short Unknown7E4474; //$4474
@@ -324,11 +327,26 @@ __gshared short Unknown7E467A; //$467A
 __gshared short Unknown7E467C; //$467C
 __gshared ubyte[0] SpriteTable7E467E; //$467E - how big is this...?
 
+__gshared short TouchedEnemy; // $4D86
+
 __gshared ubyte[88] Unknown7E4A00; // $4A00
 __gshared short Unknown7E4A58; // $4A58
 __gshared short Unknown7E4A5A; // $4A5A
-
+__gshared short OverworldEnemyCount; // $4A5C
 __gshared short Unknown7E4A5E; // $4A5E
+__gshared short MagicButterfly; // $4A60
+__gshared short Unknown7E4A62; //$4A62
+__gshared short Unknown7E4A64; //$4A64
+__gshared short ShowNPCFlag; //$4A66
+__gshared short Unknown7E4A68; //$4A68
+__gshared short Unknown7E4A6A; //$4A6A
+__gshared short Unknown7E4A6C; //$4A6C
+__gshared short Unknown7E4A6E; //$4A6E
+__gshared short Unknown7E4A70; //$4A70
+__gshared short Unknown7E4A72; //$4A72
+__gshared short Unknown7E4A74; //$4A74
+__gshared int Unknown7E4A76; //$4A76
+__gshared short Unknown7E4A7A; //$4A7A
 
 __gshared short CurrentBattleGroup; // $4A8C
 
@@ -380,8 +398,8 @@ __gshared short Unknown7E5DD8;           // $5DD8
 
 __gshared short Unknown7E5DDA;           // $5DDA
 
-__gshared short Unknown7E5E02;           // $5E02
-__gshared short Unknown7E5E04;           // $5E04
+__gshared short CurrentQueuedInteraction;           // $5E02
+__gshared short NextQueuedInteraction;           // $5E04
 
 __gshared ubyte* Unknown7E5E38;           // $5E38
 
@@ -523,7 +541,18 @@ __gshared short Unknown7E9F73;           // $9F73
 __gshared short Unknown7E9F75;           // $9F75
 __gshared short Unknown7E9F77;           // $9F77
 __gshared ubyte Unknown7E9F79;           // $9F79
-
+__gshared short Unknown7E9F7A; //$9F7A
+__gshared short Unknown7E9F7C; //$9F7C
+__gshared short Unknown7E9F7E; //$9F7E
+__gshared short Unknown7E9F80; //$9F80
+__gshared short Unknown7E9F82; //$9F82
+__gshared short Unknown7E9F84; //$9F84
+__gshared short Unknown7E9F86; //$9F86
+__gshared short Unknown7E9F88; //$9F88
+__gshared short EnemiesInBattle; //$9F8A
+__gshared short[16] Unknown7E9F8C; //$9F8C
+__gshared Battler[32] BattlersTable; //$9FAC
+__gshared uint BattlerTargetFlags; //$A96C
 __gshared Battler* currentAttacker;           // $A970
 __gshared Battler* currentTarget;           // $A972
 
@@ -597,9 +626,35 @@ __gshared ushort CurrentMusicTrack;         // $B53B
 __gshared ushort CurrentPrimarySamplePack; //$B53D
 __gshared ushort CurrentSecondarySamplePack; //$B53F
 __gshared ushort CurrentSequencePack; //$B541
-
+__gshared short Unknown7EB543;         // $B543
+__gshared short Unknown7EB545;         // $B545
+__gshared short Unknown7EB547;         // $B547
 __gshared ushort SectorBoundaryBehaviourFlag;         // $B549
+__gshared ushort Unknown7EB54B; //$B54B
+__gshared ushort Unknown7EB54D; //$B54D
+__gshared ushort Unknown7EB54F; //$B54F
+__gshared ushort Unknown7EB551; //$B551
+__gshared ushort Unknown7EB553; //$B553
+__gshared ushort DebugMenuCursorPosition; //$B555
+__gshared ushort Unknown7EB557; //$B557
+__gshared ushort DebugModeNumber;         // $B559
 
+
+__gshared ushort Unknown7EB55D; //$B55D
+__gshared ushort Unknown7EB55F; //$B55F
+__gshared ushort DebugStartPositionX; //$B561
+__gshared ushort DebugStartPositionY; //$B563
+__gshared ushort DebugUnknownB565; //$B565
+__gshared ushort Unknown7EB567; //$B567
+__gshared ushort Unknown7EB569; //$B569
+__gshared ushort Unknown7EB56B; //$B56B
+__gshared ushort Unknown7EB56D; //$B56D
+__gshared ushort Unknown7EB56F; //$B56F
+__gshared ushort Unknown7EB571; //$B571
+__gshared ushort Unknown7EB573; //$B573
+__gshared ushort Unknown7EB575; //$B575
+
+__gshared ubyte[64][64] Unknown7EE000;
 __gshared ubyte[0x8000] Unknown7F0000;
 __gshared ushort[0x8000] Unknown7F8000;
 

@@ -129,5 +129,5 @@ __gshared ubyte HTIMEH;
 __gshared ubyte VTIMEL;
 __gshared ubyte VTIMEH;
 __gshared ubyte MEMSEL;
-__gshared ubyte BBAD1;
 __gshared ubyte STAT78;
+__gshared ubyte COLDATA;
