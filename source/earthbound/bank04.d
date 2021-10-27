@@ -1777,31 +1777,31 @@ short UnknownC490EE() {
     if (x04 == -1) {
         return 0;
     }
-    if (EntityAbsXTable[x04] < gameState.leaderXCoordinate - 0x40) {
+    if (EntityAbsXTable[x04] < gameState.leaderX.integer - 0x40) {
         return 1;
     }
-    if (EntityAbsXTable[x04] == gameState.leaderXCoordinate + 0x40) {
-        if (EntityAbsYTable[x04] < gameState.leaderYCoordinate - 0x40) {
+    if (EntityAbsXTable[x04] == gameState.leaderX.integer + 0x40) {
+        if (EntityAbsYTable[x04] < gameState.leaderY.integer - 0x40) {
             return 1;
         }
-        if (EntityAbsYTable[x04] > gameState.leaderYCoordinate + 0x40) {
+        if (EntityAbsYTable[x04] > gameState.leaderY.integer + 0x40) {
             return 1;
         }
     } else {
         return 1;
     }
-    short x10 = cast(short)(EntityAbsYTable[x04] - gameState.leaderYCoordinate);
+    short x10 = cast(short)(EntityAbsYTable[x04] - gameState.leaderY.integer);
     if (x10 < 0) {
         x10 = cast(short)-cast(int)x10;
     }
-    short x12 = cast(short)(EntityAbsXTable[x04] - gameState.leaderXCoordinate);
+    short x12 = cast(short)(EntityAbsXTable[x04] - gameState.leaderX.integer);
     if (x12 < 0) {
         x12 = cast(short)-cast(int)x12;
     }
     if (x10 + x12 < 16) {
         return 10;
     }
-    return ((UnknownC41EFF(gameState.leaderXCoordinate, gameState.leaderYCoordinate, EntityAbsXTable[x04], EntityAbsYTable[x04]) + 0x1000) / 0x2000) + 2;
+    return ((UnknownC41EFF(gameState.leaderX.integer, gameState.leaderY.integer, EntityAbsXTable[x04], EntityAbsYTable[x04]) + 0x1000) / 0x2000) + 2;
 }
 
 immutable ubyte*[8] FlyoverTextPointers;
@@ -1994,7 +1994,7 @@ short DisplayTownMap() {
     Unknown7EB4AE = 0x3C;
     Unknown7EB4B0 = 0x14;
     Unknown7EB4B2 = 0xC;
-    short x10 = GetTownMapID(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+    short x10 = GetTownMapID(gameState.leaderX.integer, gameState.leaderY.integer);
     if (x10 == 0) {
         return 0;
     }

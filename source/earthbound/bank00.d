@@ -332,7 +332,7 @@ void UnknownC03A94(short);
 // $C03C25
 void UnknownC03C25() {
     Unknown7E5DDA = 1;
-    UnknownC068F4(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+    UnknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
     if (Unknown7E5DD6 != Unknown7E5DD4) {
         WaitUntilNextFrame();
         UnknownC069AF();
@@ -345,8 +345,8 @@ void UnknownC03F1E();
 
 // $C03FA9
 void UnknownC03FA9(short x, short y, short direction) {
-    gameState.leaderXCoordinate = x;
-    gameState.leaderYCoordinate = y;
+    gameState.leaderX.integer = x;
+    gameState.leaderY.integer = y;
     gameState.leaderDirection = direction;
     gameState.troddenTileType = UnknownC05F33(x, y, gameState.currentPartyMembers);
     UnknownC03A94(direction);
@@ -556,8 +556,8 @@ void UnknownC05200() {
         ProcessItemTransformations();
     }
     UnknownC04C45();
-    const x = gameState.leaderXCoordinate >> 8;
-    const y = gameState.leaderYCoordinate >> 8;
+    const x = gameState.leaderX.integer >> 8;
+    const y = gameState.leaderY.integer >> 8;
     if (((x^Unknown7E5D5C) != 0) && ((y^Unknown7E5D5E) != 0)) {
         Unknown7E5D5C = x;
         Unknown7E5D5E = y;
@@ -719,8 +719,8 @@ void UnknownC07B52() {
             Unknown7E4DC6 = &PartyCharacters[EntityScriptVar1Table[x04]];
             if ((gameState.currentPartyMembers == x12) || (Unknown7E4DC6.position_index == x14)) {
                 UnknownC07A56(EntityScriptVar0Table[x12], gameState.walkingStyle, x12);
-                EntityAbsXTable[x12] = gameState.leaderXCoordinate;
-                EntityAbsYTable[x12] = gameState.leaderYCoordinate;
+                EntityAbsXTable[x12] = gameState.leaderX.integer;
+                EntityAbsYTable[x12] = gameState.leaderY.integer;
                 if (gameState.partyCount != 1) {
                     EntityDirections[x12] = gameState.leaderDirection;
                 }
@@ -1889,7 +1889,7 @@ void UnknownC0B67F() {
     memset(&palettes[0][0], 0, 0x200);
     UnknownC47F87();
     OverworldInitialize();
-    LoadMapAtPosition(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+    LoadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
     SpawnBuzzBuzz();
     LoadWindowGraphics();
     UnknownC44963(1);
@@ -2217,7 +2217,7 @@ void UnknownC0E815();
 // $C0E897
 void UnknownC0E897() {
     if (teleportStyle == TeleportStyle.Instant) {
-        CenterScreen(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+        CenterScreen(gameState.leaderX.integer, gameState.leaderY.integer);
         FadeIn(1, 1);
         UnknownC0DD0F();
         return;
@@ -2243,7 +2243,7 @@ void UnknownC0E897() {
         UpdateScreen();
         WaitUntilNextFrame();
     }
-    CenterScreen(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+    CenterScreen(gameState.leaderX.integer, gameState.leaderY.integer);
 }
 
 // $C0E979

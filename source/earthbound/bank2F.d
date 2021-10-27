@@ -443,22 +443,22 @@ ushort* IntegerToBinaryDebugTiles(short arg1) {
 
 // $EFDCBC
 void DisplayCheckPositionDebugOverlay() {
-	CopyToVramAlt(0, 8, 0x7F44, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate >> 8));
-	CopyToVramAlt(0, 8, 0x7F4A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate >> 8));
-	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate / 8));
-	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate / 8));
-	CopyToVramAlt(0, 8, 0x7F04, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate & 0xFF));
-	CopyToVramAlt(0, 8, 0x7F0A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate & 0xFF));
-	CopyToVramAlt(0, 4, 0x7C42, cast(ubyte*)IntegerToHexDebugTiles(MapDataPerSectorMusic[gameState.leaderXCoordinate >> 8 + ((gameState.leaderYCoordinate / 128) * 32)]));
+	CopyToVramAlt(0, 8, 0x7F44, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderX.integer >> 8));
+	CopyToVramAlt(0, 8, 0x7F4A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderY.integer >> 8));
+	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderX.integer / 8));
+	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderY.integer / 8));
+	CopyToVramAlt(0, 8, 0x7F04, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderX.integer & 0xFF));
+	CopyToVramAlt(0, 8, 0x7F0A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderY.integer & 0xFF));
+	CopyToVramAlt(0, 4, 0x7C42, cast(ubyte*)IntegerToHexDebugTiles(MapDataPerSectorMusic[gameState.leaderX.integer >> 8 + ((gameState.leaderY.integer / 128) * 32)]));
 	CopyToVramAlt(0, 16, 0x7C62, cast(ubyte*)IntegerToBinaryDebugTiles(CurrentSectorAttributes));
 	CopyToVramAlt(0, 16, 0x7C82, cast(ubyte*)IntegerToBinaryDebugTiles(gameState.troddenTileType));
 }
 
 // $EFDE1A
 void DisplayViewCharacterDebugOverlay() {
-	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate / 0x40));
-	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate / 0x40));
-	CopyToVramAlt(0, 8, 0x7F35, cast(ubyte*)IntegerToDecimalDebugTiles(UnknownC0262D(gameState.leaderXCoordinate / 0x40, gameState.leaderYCoordinate / 0x40)));
+	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderX.integer / 0x40));
+	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderY.integer / 0x40));
+	CopyToVramAlt(0, 8, 0x7F35, cast(ubyte*)IntegerToDecimalDebugTiles(UnknownC0262D(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
 	CopyToVramAlt(0, 8, 0x7F3A, cast(ubyte*)IntegerToDecimalDebugTiles(Unknown7E4A68));
 	if (BattleSwirlCountdown == 0) {
 		return;
@@ -546,8 +546,8 @@ void UnknownEFE175() {
 	EntityAllocationMinSlot = 0x17;
 	EntityAllocationMaxSlot = 0x18;
 	NewEntityPriority = 3;
-	gameState.leaderXCoordinate = DebugStartPositionX;
-	gameState.leaderYCoordinate = DebugStartPositionY;
+	gameState.leaderX.integer = DebugStartPositionX;
+	gameState.leaderY.integer = DebugStartPositionY;
 	InitEntity(ActionScript.Unknown001, 0, 0);
 	UnknownC02D29();
 	for (short i = 0; i < 6; i++) {
@@ -600,8 +600,8 @@ void UnknownEFE175() {
 			Unknown7E436E = -1;
 			Unknown7E4380 &= 0xFFF8;
 			UnknownC08726();
-			LoadMapAtPosition(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
-			UnknownC03FA9(gameState.leaderXCoordinate, gameState.leaderYCoordinate, gameState.leaderDirection);
+			LoadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
+			UnknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
 			UnknownEFD95E();
 			Unknown7EB575 = 0;
 			if (DebugModeNumber == 5) {
@@ -664,7 +664,7 @@ void UnknownEFE175() {
 						if (++Unknown7EB55F == 4) {
 							Unknown7EB55F = 0;
 						}
-						UnknownEFE133(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+						UnknownEFE133(gameState.leaderX.integer, gameState.leaderY.integer);
 					}
 				}
 				if ((DebugModeNumber == 1) && ((pad_press[0] & PAD_B) != 0)) {

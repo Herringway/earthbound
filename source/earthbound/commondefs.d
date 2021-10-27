@@ -2757,10 +2757,8 @@ struct Game_State {
 	uint walletScratch;
 	ubyte[36] escargoExpressItems;
 	ubyte[6] partyMembers;
-	ushort unknown80;
-	short leaderXCoordinate;
-	ushort unknown84;
-	short leaderYCoordinate;
+	FixedPoint1616 leaderX;
+	FixedPoint1616 leaderY;
 	ushort unknown88;
 	ushort leaderDirection;
 	ushort troddenTileType;
