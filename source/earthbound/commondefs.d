@@ -3,6 +3,8 @@ module earthbound.commondefs;
 enum MAX_ENTITIES = 30;
 enum MAX_SCRIPTS = 70;
 
+enum PARTY_LEADER_ENTITY_INDEX = 24;
+
 enum PAD_R =      0x0010;
 enum PAD_L =      0x0020;
 enum PAD_X =      0x0040;
@@ -148,6 +150,8 @@ enum DirectionMask {
 enum Music {
 	None = 0,
 	TeleportOut = 13,
+	TeleportFail = 14,
+	TeleportIn = 135,
 	SoundstoneRecordingGiantStep = 160,
 	SoundstoneRecordingLilliputSteps = 161,
 	SoundstoneRecordingMilkyWell = 162,

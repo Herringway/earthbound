@@ -65,6 +65,9 @@ void UnknownC006F2();
 // $C013F6
 void LoadMapAtPosition(short x, short y);
 
+// $C01558
+void RefreshMapAtPosition(short x, short y);
+
 // $C018F3
 void ReloadMap();
 
@@ -356,6 +359,11 @@ void UnknownC03FA9(short x, short y, short direction) {
     Unknown7E438A = 0;
     PajamaFlag = getEventFlag(NessPajamaFlag);
     UnknownC07B52();
+}
+
+// $C0400E
+void CenterScreen(short x, short y) {
+    RefreshMapAtPosition(cast(short)(x - 0x80), cast(short)(y - 0x70));
 }
 
 // $C0404F
@@ -2173,11 +2181,17 @@ void UnknownC0DC4E();
 // $C0DCC6
 void LoadDadPhone();
 
+// $C0DD0F
+void UnknownC0DD0F();
+
 // $C0DD2C
 void UnknownC0DD2C(short);
 
 // $C0DD79
 void UnknownC0DD79();
+
+// $C0DE16
+void UnknownC0DE16();
 
 // $C0DE46
 void UnknownC0DE46();
@@ -2194,14 +2208,71 @@ void UnknownC0E3C1();
 // $C0E516
 void UnknownC0E516();
 
+// $C0E776
+void UnknownC0E776();
+
 // $C0E815
 void UnknownC0E815();
 
 // $C0E897
-void UnknownC0E897();
+void UnknownC0E897() {
+    if (teleportStyle == TeleportStyle.Instant) {
+        CenterScreen(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+        FadeIn(1, 1);
+        UnknownC0DD0F();
+        return;
+    }
+    for (short i = 0; i < 6; i++) {
+        PartyCharacters[i].unknown55 = 0xFFFF;
+        UnknownC07A56(gameState.unknown96[i] - 1, 0, cast(short)(i + 0x18));
+    }
+    Unknown7E9F45 = 0;
+    Unknown7E9F47 = 8;
+    gameState.leaderDirection = 6;
+    Unknown7E9F43 = 3;
+    SetPartyTickCallbacks(0x17, &UnknownC0E776, &UnknownC0E3C1);
+    UnknownC0DE16();
+    ChangeMusic(Music.TeleportIn);
+    for (short i = 0; i < 0x1E; i++) {
+        WaitUntilNextFrame();
+    }
+    FadeIn(1, 4);
+    while (Unknown7E9F47 != 0) {
+        OAMClear();
+        UnknownC09466();
+        UpdateScreen();
+        WaitUntilNextFrame();
+    }
+    CenterScreen(gameState.leaderXCoordinate, gameState.leaderYCoordinate);
+}
+
+// $C0E979
+void UnknownC0E979() {}
+
+// $C0E97C
+void UnknownC0E97C() {
+    EntitySurfaceFlags[CurrentEntitySlot] = UnknownC05F33(EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot], CurrentEntitySlot);
+    UnknownC07A56(EntityScriptVar0Table[CurrentEntitySlot], -1, CurrentEntitySlot);
+}
 
 // $C0E9BA
-void UnknownC0E9BA();
+void UnknownC0E9BA() {
+    Unknown7EB4B6 = 1;
+    ChangeMusic(Music.TeleportFail);
+    for (short i = PARTY_LEADER_ENTITY_INDEX; i < MAX_ENTITIES; i++) {
+        EntityScriptVar7Table[i] |= 0x8000;
+    }
+    SetPartyTickCallbacks(0x17, &UnknownC0E979, &UnknownC0E97C);
+    gameState.partyStatus = 1;
+    for (short i = 0; i < 0xB4; i++) {
+        OAMClear();
+        UnknownC09466();
+        UpdateScreen();
+        WaitUntilNextFrame();
+    }
+    gameState.partyStatus = 0;
+    Unknown7EB4B6 = 0;
+}
 
 // $C0EA3E
 void TeleportFreezeObjects() {
