@@ -393,7 +393,7 @@ void DebugDisplayMenuOptions() {
 }
 
 // $EFDB95
-ushort* UnknownEFDB95(short arg1) {
+ushort* IntegerToHexDebugTiles(short arg1) {
 	ushort* x02 = UnknownC086DE(8);
 	for (short i = 3; i != -1; i--) {
 		short x0E;
@@ -409,7 +409,7 @@ ushort* UnknownEFDB95(short arg1) {
 }
 
 // $EFDBF0
-ushort* UnknownEFDBF0(short arg1) {
+ushort* IntegerToDecimalDebugTiles(short arg1) {
 	ushort* x12 = UnknownC086DE(8);
 	ushort x14 = 1;
 	for (short i = 3; i != -1; i--) {
@@ -426,7 +426,7 @@ ushort* UnknownEFDBF0(short arg1) {
 }
 
 // $EFDC69
-ushort* UnknownEFDC69(short arg1) {
+ushort* IntegerToBinaryDebugTiles(short arg1) {
 	ushort* x02 = UnknownC086DE(16);
 	for (short i = 0; i < 8; i++) {
 		ushort x0E;
@@ -442,31 +442,31 @@ ushort* UnknownEFDC69(short arg1) {
 }
 
 // $EFDCBC
-void UnknownEFDCBC() {
-	CopyToVramAlt(0, 8, 0x7F44, cast(ubyte*)UnknownEFDB95(gameState.leaderXCoordinate >> 8));
-	CopyToVramAlt(0, 8, 0x7F4A, cast(ubyte*)UnknownEFDB95(gameState.leaderYCoordinate >> 8));
-	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)UnknownEFDB95(gameState.leaderXCoordinate / 8));
-	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)UnknownEFDB95(gameState.leaderYCoordinate / 8));
-	CopyToVramAlt(0, 8, 0x7F04, cast(ubyte*)UnknownEFDB95(gameState.leaderXCoordinate & 0xFF));
-	CopyToVramAlt(0, 8, 0x7F0A, cast(ubyte*)UnknownEFDB95(gameState.leaderYCoordinate & 0xFF));
-	CopyToVramAlt(0, 4, 0x7C42, cast(ubyte*)UnknownEFDB95(MapDataPerSectorMusic[gameState.leaderXCoordinate >> 8 + ((gameState.leaderYCoordinate / 128) * 32)]));
-	CopyToVramAlt(0, 16, 0x7C62, cast(ubyte*)UnknownEFDC69(CurrentSectorAttributes));
-	CopyToVramAlt(0, 16, 0x7C82, cast(ubyte*)UnknownEFDC69(gameState.troddenTileType));
+void DisplayCheckPositionDebugOverlay() {
+	CopyToVramAlt(0, 8, 0x7F44, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate >> 8));
+	CopyToVramAlt(0, 8, 0x7F4A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate >> 8));
+	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate / 8));
+	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate / 8));
+	CopyToVramAlt(0, 8, 0x7F04, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate & 0xFF));
+	CopyToVramAlt(0, 8, 0x7F0A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate & 0xFF));
+	CopyToVramAlt(0, 4, 0x7C42, cast(ubyte*)IntegerToHexDebugTiles(MapDataPerSectorMusic[gameState.leaderXCoordinate >> 8 + ((gameState.leaderYCoordinate / 128) * 32)]));
+	CopyToVramAlt(0, 16, 0x7C62, cast(ubyte*)IntegerToBinaryDebugTiles(CurrentSectorAttributes));
+	CopyToVramAlt(0, 16, 0x7C82, cast(ubyte*)IntegerToBinaryDebugTiles(gameState.troddenTileType));
 }
 
 // $EFDE1A
-void UnknownEFDE1A() {
-	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)UnknownEFDB95(gameState.leaderXCoordinate / 0x40));
-	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)UnknownEFDB95(gameState.leaderYCoordinate / 0x40));
-	CopyToVramAlt(0, 8, 0x7F35, cast(ubyte*)UnknownEFDBF0(UnknownC0262D(gameState.leaderXCoordinate / 0x40, gameState.leaderYCoordinate / 0x40)));
-	CopyToVramAlt(0, 8, 0x7F3A, cast(ubyte*)UnknownEFDBF0(Unknown7E4A68));
+void DisplayViewCharacterDebugOverlay() {
+	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderXCoordinate / 0x40));
+	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderYCoordinate / 0x40));
+	CopyToVramAlt(0, 8, 0x7F35, cast(ubyte*)IntegerToDecimalDebugTiles(UnknownC0262D(gameState.leaderXCoordinate / 0x40, gameState.leaderYCoordinate / 0x40)));
+	CopyToVramAlt(0, 8, 0x7F3A, cast(ubyte*)IntegerToDecimalDebugTiles(Unknown7E4A68));
 	if (BattleSwirlCountdown == 0) {
 		return;
 	}
 	for (short i = 0; i != 5; i++) {
-		CopyToVram(0, 8, cast(ushort)(0x7F46 + i * 5), cast(ubyte*)UnknownEFDBF0(Unknown7E9F8C[i]));
+		CopyToVram(0, 8, cast(ushort)(0x7F46 + i * 5), cast(ubyte*)IntegerToDecimalDebugTiles(Unknown7E9F8C[i]));
 	}
-	CopyToVramAlt(0, 8, 0x7F41, cast(ubyte*)UnknownEFDBF0(CurrentBattleGroup));
+	CopyToVramAlt(0, 8, 0x7F41, cast(ubyte*)IntegerToDecimalDebugTiles(CurrentBattleGroup));
 }
 
 // $EFDF0B
@@ -587,9 +587,9 @@ void UnknownEFE175() {
 	do {
 		OAMClear();
 		if (DebugModeNumber == 2) {
-			UnknownEFDE1A();
+			DisplayViewCharacterDebugOverlay();
 		} else if (DebugModeNumber == 5) {
-			UnknownEFDCBC();
+			DisplayCheckPositionDebugOverlay();
 		}
 		if ((pad_press[0] & PAD_A) != 0) {
 			BattleSwirlCountdown = 0;
