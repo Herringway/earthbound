@@ -95,10 +95,8 @@ __gshared short Unknown7E0099;
 __gshared short Unknown7E009C;
 __gshared short Unknown7E009E;
 __gshared ubyte Unknown7E00A0;
-__gshared ubyte Unknown7E00A1;
-__gshared ubyte Unknown7E00A2;
-__gshared ubyte Unknown7E00A3;
-__gshared ubyte Unknown7E00A4;
+__gshared void* CurrentHeapAddress;
+__gshared void* HeapBaseAddress;
 __gshared ubyte Unknown7E00A5;
 __gshared ubyte Unknown7E00A6;
 __gshared uint TIMER;
@@ -233,6 +231,8 @@ __gshared short Unknown7E1ACC; //$1ACC
 __gshared short Unknown7E1ACE; //$1ACE
 
 __gshared short[64] Unknown7E1AD6; //$1AD6
+
+__gshared ubyte[0x200] heap; // $2000
 
 __gshared ushort Unknown7E2400; //$2400
 __gshared ushort Unknown7E2402; //$2402

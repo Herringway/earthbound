@@ -827,10 +827,8 @@ void start() {
 
     // clearing the heap would happen here
 
-    Unknown7E00A1 = 0x00;
-    Unknown7E00A2 = 0x20;
-    Unknown7E00A3 = 0x00;
-    Unknown7E00A4 = 0x20;
+    CurrentHeapAddress = &heap[0];
+    HeapBaseAddress = &heap[0];
     Unknown7E2402 = 0xFFFF;
     RandA = 0x1234;
     RandB = 0x5678;
@@ -1011,13 +1009,23 @@ void CopyToVramInternal() {
         //A1B1 is not really relevant without segmented addressing
         VMADDL = DMA_COPY_VRAM_DEST;
         MDMAEN = 2;
-        Unknown7E00A1 = Unknown7E00A3;
+        CurrentHeapAddress = HeapBaseAddress;
         DMATransferFlag = 0;
     }
 }
 
 // $C086DE
-ushort* UnknownC086DE(ushort);
+void* sbrk(ushort i) {
+    while (true) {
+        if (i + CurrentHeapAddress - heap.length < HeapBaseAddress) {
+            void* result = CurrentHeapAddress;
+            CurrentHeapAddress += i;
+            return result;
+        }
+        while (Unknown7E002B == 0) {}
+        Unknown7E002B = 0;
+    }
+}
 
 // $C08726
 void UnknownC08726() {
