@@ -2,11 +2,828 @@ module earthbound.bank0F;
 
 import earthbound.commondefs;
 
-//$$CF58EF
+// $CF58EF
+immutable OverworldEventMusic[][164] OverworldEventMusicPointerTable = [
+	[
+		OverworldEventMusic(0, Music.None2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_174 | EVENT_FLAG_UNSET, Music.GIVE_US_STRENGTH),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_278 | EVENT_FLAG_UNSET, Music.ALIEN_INVESTIGATION),
+		OverworldEventMusic(EventFlag.UNKNOWN_06B | EVENT_FLAG_UNSET, Music.None2),
+		OverworldEventMusic(EventFlag.UNKNOWN_068 | EVENT_FLAG_UNSET, Music.ONETT),
+		OverworldEventMusic(EventFlag.BUZZ_BUZZ_IN_PARTY | EVENT_FLAG_UNSET, Music.ONETT_AT_NIGHT_BUZZ_BUZZ),
+		OverworldEventMusic(EventFlag.UNKNOWN_177 | EVENT_FLAG_UNSET, Music.ONETT_AT_NIGHT_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_201 | EVENT_FLAG_UNSET, Music.ONETT_AFTER_METEOR1),
+		OverworldEventMusic(0, Music.ONETT_INTRO),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.YELLOW_SUBMARINE),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_174 | EVENT_FLAG_UNSET, Music.GIVE_US_STRENGTH),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(0, Music.BOY_MEETS_GIRL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_044 | EVENT_FLAG_UNSET, Music.BOY_MEETS_GIRL),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.PEACEFUL_REST_VALLEY2),
+		OverworldEventMusic(0, Music.PEACEFUL_REST_VALLEY),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.HAPPY_THREED),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_TESSIE | EVENT_FLAG_UNSET, Music.TESSIE),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(EventFlag.UNKNOWN_158 | EVENT_FLAG_UNSET, Music.TESSIE_SIGHTING),
+		OverworldEventMusic(EventFlag.UNKNOWN_220 | EVENT_FLAG_UNSET, Music.WINTERS),
+		OverworldEventMusic(EventFlag.UNKNOWN_080 | EVENT_FLAG_UNSET, Music.BOARDING_SCHOOL),
+		OverworldEventMusic(0, Music.WINTERS_INTRO),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_295 | EVENT_FLAG_UNSET, Music.RETURN_TO_YOUR_BODY),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_174 | EVENT_FLAG_UNSET, Music.GIVE_US_STRENGTH),
+		OverworldEventMusic(EventFlag.UNKNOWN_2F8 | EVENT_FLAG_UNSET, Music.PHASE_DISTORTER_TIME_TRAVEL),
+		OverworldEventMusic(0, Music.SATURN_VALLEY),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.PEACEFUL_REST_VALLEY2),
+		OverworldEventMusic(0, Music.PEACEFUL_REST_VALLEY),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(0, Music.DUSTY_DUNES_DESERT),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(EventFlag.UNKNOWN_03C | EVENT_FLAG_UNSET, Music.MONOTOLI_BUILDING),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(0, Music.FOURSIDE),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.SAILING_TO_SCARABA),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_174 | EVENT_FLAG_UNSET, Music.GIVE_US_STRENGTH),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.SKY_RUNNER_FALLING),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(EventFlag.UNKNOWN_251 | EVENT_FLAG_UNSET, Music.TeleportIn),
+		OverworldEventMusic(0, Music.SUMMERS),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.SAILING_TO_SCARABA),
+		OverworldEventMusic(EventFlag.UNKNOWN_21F | EVENT_FLAG_UNSET, Music.KRAKEN_DEFEATED),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.BAZAAR),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.YELLOW_SUBMARINE),
+		OverworldEventMusic(EventFlag.UNKNOWN_296 | EVENT_FLAG_UNSET, Music.MEGATON_WALK),
+		OverworldEventMusic(0, Music.SCARABA_DESERT),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_174 | EVENT_FLAG_UNSET, Music.GIVE_US_STRENGTH),
+		OverworldEventMusic(EventFlag.DALAAM_INTRO_PLAYED | EVENT_FLAG_UNSET, Music.DALAAM),
+		OverworldEventMusic(0, Music.DALAAM_INTRO),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.YELLOW_SUBMARINE),
+		OverworldEventMusic(0, Music.DEEP_DARKNESS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.TENDA_VILLAGE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.LOST_UNDERWORLD),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_2F6 | EVENT_FLAG_UNSET, Music.GOING_TO_MAGICANT),
+		OverworldEventMusic(0, Music.EIGHT_MELODIES),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_24B | EVENT_FLAG_UNSET, Music.FLYING_MAN),
+		OverworldEventMusic(EventFlag.UNKNOWN_2F6 | EVENT_FLAG_UNSET, Music.GOING_TO_MAGICANT),
+		OverworldEventMusic(0, Music.WELCOME_HOME),
+	],
+	[
+		OverworldEventMusic(0, Music.SEA_OF_EDEN),
+	],
+	[
+		OverworldEventMusic(0, Music.SEA_OF_EDEN2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_2F8 | EVENT_FLAG_UNSET, Music.PHASE_DISTORTER_TIME_TRAVEL),
+		OverworldEventMusic(0, Music.FIRST_STEP_BACK),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_295 | EVENT_FLAG_UNSET, Music.RETURN_TO_YOUR_BODY),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.None2),
+		OverworldEventMusic(0, Music.SECOND_STEP_BACK),
+	],
+	[
+		OverworldEventMusic(0, Music.THE_PLACE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_06B | EVENT_FLAG_UNSET, Music.SUNRISE_ONETT),
+		OverworldEventMusic(EventFlag.UNKNOWN_068 | EVENT_FLAG_UNSET, Music.ONETT),
+		OverworldEventMusic(EventFlag.BUZZ_BUZZ_IN_PARTY | EVENT_FLAG_UNSET, Music.ONETT_AT_NIGHT_BUZZ_BUZZ),
+		OverworldEventMusic(EventFlag.UNKNOWN_177 | EVENT_FLAG_UNSET, Music.ONETT_AT_NIGHT_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_201 | EVENT_FLAG_UNSET, Music.ONETT_AFTER_METEOR1),
+		OverworldEventMusic(0, Music.ONETT_INTRO),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_251 | EVENT_FLAG_UNSET, Music.TeleportOut),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(0, Music.YOUR_SANCTUARY_1),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.SOUND_STONE_MELODY_4 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(0, Music.YOUR_SANCTUARY_1),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_251 | EVENT_FLAG_UNSET, Music.TeleportOut),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(0, Music.NEAR_A_BOSS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_251 | EVENT_FLAG_UNSET, Music.TeleportOut),
+		OverworldEventMusic(EventFlag.SOUND_STONE_MELODY_5 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(0, Music.YOUR_SANCTUARY_1),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(0, Music.YOUR_SANCTUARY_1),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(0, Music.YOUR_SANCTUARY_1),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_251 | EVENT_FLAG_UNSET, Music.TeleportOut),
+		OverworldEventMusic(EventFlag.SOUND_STONE_MELODY_8 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(0, Music.YOUR_SANCTUARY_1),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_21F | EVENT_FLAG_UNSET, Music.KRAKEN_DEFEATED),
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.SAILING_TO_SCARABA),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SAILING_TO_SCARABA),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.HAPPY_THREED),
+		OverworldEventMusic(0, Music.SPOOKY_CAVE),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.HAPPY_THREED),
+		OverworldEventMusic(0, Music.SPOOKY_CAVE),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(0, Music.SPOOKY_CAVE),
+	],
+	[
+		OverworldEventMusic(EventFlag.ON_CITY_BUS | EVENT_FLAG_UNSET, Music.CITY_BUS),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_217 | EVENT_FLAG_UNSET, Music.RUNAWAY5_TOUR_BUS),
+		OverworldEventMusic(0, Music.FOURSIDE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SPOOKY_CAVE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SATURN_VALLEY_CAVE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.ONETT_AT_NIGHT_2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.CAVE_NEAR_A_BOSS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.CAVE_NEAR_A_BOSS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEAR_A_BOSS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEAR_A_BOSS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.RABBIT_CAVE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.ONETT_AT_NIGHT_1),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_004 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_2),
+		OverworldEventMusic(EventFlag.UNKNOWN_003 | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(EventFlag.UNKNOWN_20C | EVENT_FLAG_UNSET, Music.YOUR_SANCTUARY_1),
+		OverworldEventMusic(0, Music.FIRE_SPRINGS_HALL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.SAILING_TO_SCARABA),
+		OverworldEventMusic(EventFlag.UNKNOWN_21F | EVENT_FLAG_UNSET, Music.KRAKEN_DEFEATED),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.ALIEN_INVESTIGATION),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.ALIEN_INVESTIGATION),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.ALIEN_INVESTIGATION),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(EventFlag.UNKNOWN_080 | EVENT_FLAG_UNSET, Music.SPOOKY_CAVE),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.BELCH_BASE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.MONKEY_CAVES),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.None2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_048 | EVENT_FLAG_UNSET, Music.DUSTY_DUNES_DESERT),
+		OverworldEventMusic(0, Music.NEAR_A_BOSS),
+	],
+	[
+		OverworldEventMusic(0, Music.MOONSIDE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ON_TESSIE | EVENT_FLAG_UNSET, Music.TESSIE),
+		OverworldEventMusic(EventFlag.UNKNOWN_080 | EVENT_FLAG_UNSET, Music.PYRAMID),
+		OverworldEventMusic(0, Music.WINTERS_INTRO),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.INSIDE_THE_DUNGEON),
+	],
+	[
+		OverworldEventMusic(0, Music.ARCADE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_214 | EVENT_FLAG_UNSET, Music.METEOR_FALL),
+		OverworldEventMusic(EventFlag.UNKNOWN_215 | EVENT_FLAG_UNSET, Music.METEOR_STRIKE),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_278 | EVENT_FLAG_UNSET, Music.ONETT_AFTER_METEOR2),
+		OverworldEventMusic(EventFlag.UNKNOWN_068 | EVENT_FLAG_UNSET, Music.NESSS_HOUSE),
+		OverworldEventMusic(EventFlag.BUZZ_BUZZ_IN_PARTY | EVENT_FLAG_UNSET, Music.ONETT_AT_NIGHT_BUZZ_BUZZ2),
+		OverworldEventMusic(EventFlag.UNKNOWN_061 | EVENT_FLAG_UNSET, Music.POKEY_THEME),
+		OverworldEventMusic(EventFlag.UNKNOWN_177 | EVENT_FLAG_UNSET, Music.KNOCK_KNOCK_RIGHT),
+		OverworldEventMusic(EventFlag.UNKNOWN_1D9 | EVENT_FLAG_UNSET, Music.KNOCK_KNOCK),
+		OverworldEventMusic(0, Music.ONETT_AFTER_METEOR2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_174 | EVENT_FLAG_UNSET, Music.GIVE_US_STRENGTH),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_068 | EVENT_FLAG_UNSET, Music.POKEYS_HOUSE),
+		OverworldEventMusic(EventFlag.BUZZ_BUZZ_IN_PARTY | EVENT_FLAG_UNSET, Music.POKEYS_HOUSE_BUZZ_BUZZ),
+		OverworldEventMusic(0, Music.ONETT_AFTER_METEOR2),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOTEL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_006 | EVENT_FLAG_UNSET, Music.NEAR_A_BOSS),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOSPITAL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(0, Music.CHAOS_THEATRE),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOTEL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOSPITAL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_00D | EVENT_FLAG_UNSET, Music.NESSS_HOUSE),
+		OverworldEventMusic(0, Music.PAULAS_THEME),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_044 | EVENT_FLAG_UNSET, Music.MONOTOLI_BUILDING),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_044 | EVENT_FLAG_UNSET, Music.MONOTOLI_BUILDING),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_044 | EVENT_FLAG_UNSET, Music.DEPARTMENT_STORE),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_044 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_044 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_044 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.ZOMBIE_THREED2),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOTEL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOSPITAL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.PAULAS_THEME),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.DEPARTMENT_STORE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.DEPARTMENT_STORE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ZOMBIE_LADY_ACTIVE | EVENT_FLAG_UNSET, Music.HOTEL_OF_THE_LIVING_DEAD),
+		OverworldEventMusic(0, Music.HOTEL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.DEPARTMENT_STORE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.NEIGHBOURS_HOUSE),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_047 | EVENT_FLAG_UNSET, Music.HOSPITAL),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_174 | EVENT_FLAG_UNSET, Music.GIVE_US_STRENGTH),
+		OverworldEventMusic(EventFlag.TONY_JOINED_YOU, Music.APPLE_OF_ENLIGHTENMENT),
+		OverworldEventMusic(0, Music.BOARDING_SCHOOL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ON_SKY_RUNNER | EVENT_FLAG_UNSET, Music.SKY_RUNNER),
+		OverworldEventMusic(0, Music.DR_ANDONUTS_LAB),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING2),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.ON_TESSIE | EVENT_FLAG_UNSET, Music.TESSIE),
+		OverworldEventMusic(EventFlag.UNKNOWN_158 | EVENT_FLAG_UNSET, Music.TESSIE_SIGHTING),
+		OverworldEventMusic(0, Music.WINTERS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.NEIGHBOURS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_039, Music.DEPARTMENT_STORE),
+		OverworldEventMusic(EventFlag.UNKNOWN_039 | EVENT_FLAG_UNSET, Music.SPOOKY_CAVE),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(EventFlag.UNKNOWN_08F | EVENT_FLAG_UNSET, Music.MONOTOLI_BUILDING),
+		OverworldEventMusic(0, Music.POKEYS_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(EventFlag.UNKNOWN_08F | EVENT_FLAG_UNSET, Music.PAULAS_THEME),
+		OverworldEventMusic(0, Music.SPOOKY_CAVE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(EventFlag.UNKNOWN_08F | EVENT_FLAG_UNSET, Music.PAULAS_THEME),
+		OverworldEventMusic(0, Music.SLOPPY_HOUSE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(EventFlag.UNKNOWN_00F | EVENT_FLAG_UNSET, Music.PAULAS_THEME),
+		OverworldEventMusic(0, Music.None2),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(EventFlag.UNKNOWN_08F | EVENT_FLAG_UNSET, Music.PAULAS_THEME),
+		OverworldEventMusic(0, Music.MONOTOLI_BUILDING),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_218 | EVENT_FLAG_UNSET, Music.RUNAWAY5_ARE_FREED),
+		OverworldEventMusic(0, Music.TOPOLLA_THEATRE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.TOPOLLA_THEATRE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.YELLOW_SUBMARINE),
+		OverworldEventMusic(0, Music.HOTEL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.JACKIES_CAFE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.UNKNOWN_21E | EVENT_FLAG_UNSET, Music.YELLOW_SUBMARINE),
+		OverworldEventMusic(0, Music.DR_ANDONUTS_LAB),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOSPITAL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DR_ANDONUTS_LAB),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOTEL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SUMMERS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DR_ANDONUTS_LAB),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOSPITAL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.SUMMERS),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(EventFlag.DALAAM_INTRO_PLAYED | EVENT_FLAG_UNSET, Music.DALAAM),
+		OverworldEventMusic(0, Music.DALAAM_INTRO),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DALAAM),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.DEPARTMENT_STORE),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING_SCARABA),
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOTEL),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.BAZAAR),
+	],
+	[
+		OverworldEventMusic(EventFlag.USE_POSTGAME_MUSIC | EVENT_FLAG_UNSET, Music.BecauseILoveYou),
+		OverworldEventMusic(0, Music.HOSPITAL),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_24B | EVENT_FLAG_UNSET, Music.FLYING_MAN),
+		OverworldEventMusic(0, Music.PEACEFUL_REST_VALLEY2),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_24B | EVENT_FLAG_UNSET, Music.FLYING_MAN),
+		OverworldEventMusic(0, Music.WELCOME_HOME),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_24B | EVENT_FLAG_UNSET, Music.FLYING_MAN),
+		OverworldEventMusic(0, Music.WELCOME_HOME),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_24B | EVENT_FLAG_UNSET, Music.FLYING_MAN),
+		OverworldEventMusic(0, Music.WELCOME_HOME),
+	],
+	[
+		OverworldEventMusic(0, Music.FLYING_MAN),
+	],
+	[
+		OverworldEventMusic(EventFlag.JUST_RESTED | EVENT_FLAG_UNSET, Music.GOOD_MORNING_MOONSIDE),
+		OverworldEventMusic(0, Music.MOONSIDE),
+	],
+	[
+		OverworldEventMusic(0, Music.SKY_RUNNER),
+	],
+	[
+		OverworldEventMusic(EventFlag.UNKNOWN_283 | EVENT_FLAG_UNSET, Music.SMILES_AND_TEARS),
+		OverworldEventMusic(EventFlag.ONETT_REACHED | EVENT_FLAG_UNSET, Music.None2),
+		OverworldEventMusic(EventFlag.UNKNOWN_1DA, Music.KNOCK_KNOCK),
+		OverworldEventMusic(0, Music.None2),
+	]
+];
 
-immutable OverworldEventMusic*[164] OverworldEventMusicPointerTable;
-
-//$CF8985
+// $CF8985
 immutable NPC[1584] NPCConfig = [
 	NPC(NPCType.Person, OverworldSprite.Ness, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowIfOff, null /+NULL+/, null /+NULL+/),
 	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Down, ActionScript.Unknown605, EventFlag.FLG_ONET_GUARDSHARK_DISAPPEAR, NPCConfigFlagStyle.ShowIfOff, null /+TEXT_NPC_0001+/, null /+NULL+/),

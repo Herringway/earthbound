@@ -674,7 +674,7 @@ void UnknownC068F4(short arg1, short arg2) {
     if (Unknown7E5DD8 != 0) {
         return;
     }
-    const(OverworldEventMusic)* x0A = OverworldEventMusicPointerTable[MapDataPerSectorMusic[(arg2 / 128) * 32 + ((arg1 >> 8) & 0xFF)]];
+    const(OverworldEventMusic)* x0A = &OverworldEventMusicPointerTable[MapDataPerSectorMusic[(arg2 / 128) * 32 + ((arg1 >> 8) & 0xFF)]][0];
     while (x0A.flag != 0) {
         if (getEventFlag(x0A.flag & 0x7FFF) == (x0A.flag > 0x8000) ? 1 : 0) {
             break;
