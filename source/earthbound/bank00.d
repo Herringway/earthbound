@@ -604,7 +604,61 @@ short UnknownC05F33(short x, short y, short entityID) {
 }
 
 // $C05FF6
-short NPCCollisionCheck(short, short, short);
+short NPCCollisionCheck(short x, short y, short arg3) {
+    short result = -1;
+    if ((Unknown7E332A[arg3] != 0) && ((MiscDebugFlags & 2) == 0) && (gameState.walkingStyle != WalkingStyle.Escalator) && (Unknown7E0081 == 0)) {
+        short x18;
+        short x04;
+        if ((EntityDirections[arg3] == Direction.Right) || (EntityDirections[arg3] == Direction.Left)) {
+            x18 = Unknown7E33DE[arg3];
+            x04 = Unknown7E1A4A[arg3];
+        } else {
+            x18 = Unknown7E3366[arg3];
+            x04 = Unknown7E33A2[arg3];
+        }
+        y -= x04;
+        for (short i = 0; i != 0x17; i++) {
+            if (EntityScriptTable[i] == -1) {
+                continue;
+            }
+            if (EntityCollidedObjects[i] == 0x8000) {
+                continue;
+            }
+            if ((Unknown7E5D58 != 0) && (EntityTPTEntries[i] + 1 >= 0x8001)){
+                continue;
+            }
+            if (Unknown7E332A[i] == 0) {
+                continue;
+            }
+            short yReg;
+            short x10;
+            if ((EntityDirections[i] == Direction.Right) || (EntityDirections[i] == Direction.Left)) {
+                yReg = Unknown7E33DE[i];
+                x10 = Unknown7E1A4A[i];
+            } else {
+                yReg = Unknown7E3366[i];
+                x10 = Unknown7E33A2[i];
+            }
+            if (EntityAbsYTable[i] - x10 - x04 >= y) {
+                continue;
+            }
+            if (x10 + EntityAbsYTable[i] - x10 <= y) {
+                continue;
+            }
+            if (EntityAbsXTable[i] - yReg - x18 * 2  >= x) {
+                continue;
+            }
+            if (EntityAbsXTable[i] - yReg + yReg * 2 <= y) {
+                continue;
+            }
+            result = i;
+            break;
+        }
+
+    }
+    EntityCollidedObjects[23] = result;
+    return result;
+}
 
 // $C064D4
 void UnknownC064D4();
