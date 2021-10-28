@@ -603,6 +603,9 @@ short UnknownC05F33(short x, short y, short entityID) {
     return Unknown7E5DA4;
 }
 
+// $C05FF6
+short NPCCollisionCheck(short, short, short);
+
 // $C064D4
 void UnknownC064D4();
 
@@ -2196,8 +2199,133 @@ void UnknownC0DE16();
 // $C0DE46
 void UnknownC0DE46();
 
+// $C0DF22
+void UnknownC0DF22(ushort arg1) {
+    //x12 = arg1
+    FixedPoint1616 x0E;
+    switch (Unknown7E9F43) {
+        case 1:
+            if (gameState.unknown92 == 3) {
+                FixedPoint1616 x06;
+                x06.combined = Unknown7E9F45.combined;
+                x06.fraction += 0x51E;
+                if (x06.fraction < 0x51E) {
+                    x06.integer++;
+                }
+                x0E = x06;
+            } else {
+                FixedPoint1616 x06;
+                x06.combined = Unknown7E9F45.combined;
+                x06.fraction += 0x3333;
+                if (x06.fraction < 0x3333) {
+                    x06.integer++;
+                }
+                x0E = x06;
+            }
+            break;
+        case 3:
+            if (gameState.unknown92 == 3) {
+                FixedPoint1616 x06;
+                x06.combined = Unknown7E9F45.combined;
+                x06.fraction -= 0x1999;
+                if (x06.fraction >= 0x10000 - 0x1999) {
+                    x06.integer--;
+                }
+                x0E = x06;
+            } else {
+                FixedPoint1616 x06;
+                x06.combined = Unknown7E9F45.combined;
+                x06.fraction += 0x1999;
+                if (x06.fraction >= 0x10000 - 0x1999) {
+                    x06.integer--;
+                }
+                x0E = x06;
+            }
+            break;
+        default:
+            if (gameState.unknown92 == 3) {
+                FixedPoint1616 x06;
+                x06.combined = Unknown7E9F45.combined;
+                x06.fraction += 0x29FB;
+                if (x06.fraction < 0x29FB) {
+                    x06.integer++;
+                }
+                x0E = x06;
+            } else {
+                FixedPoint1616 x06;
+                x06.combined = Unknown7E9F45.combined;
+                x06.fraction += 0x1851;
+                if (x06.fraction < 0x1851) {
+                    x06.integer++;
+                }
+                x0E = x06;
+            }
+            break;
+    }
+    Unknown7E9F45.combined = x0E.combined;
+    if ((arg1 & 1) != 0) {
+        Unknown7E9F49.combined = ((x0E.combined >> 8) * 0xB505) >> 8;
+        Unknown7E9F4D.combined = ((x0E.combined >> 8) * 0xB505) >> 8;
+    } else {
+        Unknown7E9F49.combined = x0E.combined;
+        Unknown7E9F4D.combined = x0E.combined;
+    }
+    switch (arg1) { //this is hard to read. were the cases rearranged to dedupe code?
+        case 0:
+            Unknown7E9F4D.combined = -Unknown7E9F4D.combined;
+            goto case;
+        case 4:
+            Unknown7E9F49.combined = 0;
+            break;
+        case 6:
+            Unknown7E9F49.combined = -Unknown7E9F49.combined;
+            goto case;
+        case 2:
+            Unknown7E9F4D.combined = 0;
+            break;
+        case 1:
+            Unknown7E9F4D.combined = -Unknown7E9F4D.combined;
+            break;
+        case 7:
+            Unknown7E9F4D.combined = -Unknown7E9F4D.combined;
+            goto case;
+        case 5:
+            Unknown7E9F49.combined = -Unknown7E9F49.combined;
+            break;
+        default: break;
+    }
+}
+
 // $C0DE7C
 void UnknownC0DE7C();
+
+// $C0DED9
+short UnknownC0DED9(short, short, short, short, short);
+
+// $C0E196
+void UnknownC0E196() {
+    //x14 = &gameState.unknown88
+    PlayerPositionBuffer[gameState.unknown88].x_coord = gameState.leaderX.integer;
+    PlayerPositionBuffer[gameState.unknown88].y_coord = gameState.leaderY.integer;
+    PlayerPositionBuffer[gameState.unknown88].tile_flags =UnknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+    PlayerPositionBuffer[gameState.unknown88].walking_style = 0;
+    PlayerPositionBuffer[gameState.unknown88].direction = gameState.leaderDirection;
+    gameState.unknown88++;
+    //uh... yeah, sure
+    gameState.unknown88 = gameState.unknown88;
+}
+
+// $C0E254
+void UnknownC0E254() {
+    ushort x10 = cast(ushort)(12 - Unknown7E9F45.integer);
+    //weird way to say x10 <= 0
+    if ((x10 == 0) || ((x10 & 0x8000) != 0)) {
+        x10 = 1;
+    }
+    for (short i = 0x18; i < 0x1D; i++) {
+        EntityScriptVar3Table[i] = x10;
+    }
+}
 
 // $C0E28F
 void UnknownC0E28F();
@@ -2205,14 +2333,100 @@ void UnknownC0E28F();
 // $C0E3C1
 void UnknownC0E3C1();
 
+// $C0E44D
+void UnknownC0E44D();
+
+// $C0E48A
+void UnknownC0E48A();
+
 // $C0E516
-void UnknownC0E516();
+void UnknownC0E516() {
+    gameState.unknown90 = 1;
+    UnknownC0E44D();
+    FixedPoint1616 x12 = UnknownC41FFF(Unknown7E9F61, Unknown7E9F63);
+    Unknown7E9F51.integer = x12.integer >> 8 + Unknown7E9F67;
+    Unknown7E9F55.integer = x12.integer >> 8 + Unknown7E9F69;
+    if (teleportStyle != TeleportStyle.PSIBetter) {
+        if ((UnknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, Unknown7E9F51.integer, Unknown7E9F55.integer, gameState.leaderDirection) & 0xC0) != 0) {
+            Unknown7E9F43 = 2;
+        }
+        if (BattleSwirlCountdown != 0) {
+            Unknown7E9F43 = 2;
+            BattleDebug = 1;
+        }
+        if (NPCCollisionCheck(Unknown7E9F51.integer, Unknown7E9F55.integer, gameState.currentPartyMembers) != -1) {
+            Unknown7E9F43 = 2;
+        }
+    }
+    if (Unknown7E9F43 != 2) {
+        gameState.leaderX.integer = Unknown7E9F51.integer;
+        gameState.leaderY.integer = Unknown7E9F55.integer;
+    }
+    gameState.leaderDirection = ((Unknown7E9F61 >> 13) + 2) & 7;
+    Unknown7E9F45.combined += 0x1851;
+    if (teleportStyle == TeleportStyle.PSIBeta) {
+        Unknown7E9F61 += 0xA00;
+        Unknown7E9F63 += 0xC;
+    } else {
+        Unknown7E9F65 += 0x20;
+        Unknown7E9F61 += Unknown7E9F65;
+        Unknown7E9F63 += 0x10;
+    }
+    CenterScreen(gameState.leaderX.integer, gameState.leaderY.integer);
+    UnknownC0E196();
+    UnknownC0E254();
+    if (teleportStyle == TeleportStyle.PSIBeta) {
+        if (Unknown7E9F63 > 0x1000) {
+            Unknown7E9F43 = 1;
+            UnknownC0E48A();
+        }
+    } else {
+        if (Unknown7E9F65 > 0x1800) {
+            Unknown7E9F43 = 1;
+            UnknownC0E48A();
+        }
+    }
+}
+
+// $C0E674
+void UnknownC0E674() {
+    UnknownC0DF22(gameState.leaderDirection);
+    gameState.leaderX.combined += Unknown7E9F49.combined;
+    gameState.leaderY.combined += Unknown7E9F4D.combined;
+    Unknown7E9F5B += Unknown7E9F59;
+    Unknown7E9F5F += Unknown7E9F5D;
+    CenterScreen(Unknown7E9F5B, Unknown7E9F5F);
+    UnknownC0E196();
+}
 
 // $C0E776
-void UnknownC0E776();
+void UnknownC0E776() {
+    UnknownC0DF22(gameState.leaderDirection);
+    gameState.leaderX.combined += Unknown7E9F49.combined;
+    gameState.leaderX.combined += Unknown7E9F4D.combined;
+    CenterScreen(cast(short)(gameState.leaderX.integer - ((Unknown7E9F45.combined * 2) & 0xFFFF)), gameState.leaderY.integer);
+    UnknownC0E196();
+    UnknownC0E254();
+}
 
 // $C0E815
-void UnknownC0E815();
+void UnknownC0E815() {
+    if (teleportStyle == TeleportStyle.Instant) {
+        return;
+    }
+    for (short i = 0x18; i < 0x1E; i++) {
+        EntityCollidedObjects[i] = 0x8000;
+    }
+    Unknown7E9F4D.integer = 0;
+    Unknown7E9F49.integer = 0;
+    SetPartyTickCallbacks(0x17, &UnknownC0E674, &UnknownC0E3C1);
+    Unknown7E9F59 = Unknown7E9F49.integer;
+    Unknown7E9F5B = gameState.leaderX.integer;
+    Unknown7E9F5D = Unknown7E9F4D.integer;
+    Unknown7E9F5F = gameState.leaderY.integer;
+    FadeOut(1, 4);
+    UnknownC0DD0F();
+}
 
 // $C0E897
 void UnknownC0E897() {
@@ -2226,8 +2440,8 @@ void UnknownC0E897() {
         PartyCharacters[i].unknown55 = 0xFFFF;
         UnknownC07A56(gameState.unknown96[i] - 1, 0, cast(short)(i + 0x18));
     }
-    Unknown7E9F45 = 0;
-    Unknown7E9F47 = 8;
+    Unknown7E9F45.fraction = 0;
+    Unknown7E9F45.integer = 8;
     gameState.leaderDirection = 6;
     Unknown7E9F43 = 3;
     SetPartyTickCallbacks(0x17, &UnknownC0E776, &UnknownC0E3C1);
@@ -2237,7 +2451,7 @@ void UnknownC0E897() {
         WaitUntilNextFrame();
     }
     FadeIn(1, 4);
-    while (Unknown7E9F47 != 0) {
+    while (Unknown7E9F45.integer != 0) {
         OAMClear();
         UnknownC09466();
         UpdateScreen();
@@ -2296,8 +2510,8 @@ void TeleportMainLoop() {
     WaitUntilNextFrame();
     TeleportFreezeObjects();
     Unknown7E5DBA = 1;
-    Unknown7E9F45 = 0;
-    Unknown7E9F47 = 0;
+    Unknown7E9F45.fraction = 0;
+    Unknown7E9F45.integer = 0;
     Unknown7E9F43 = 0;
     UnknownC07C5B();
     UnknownC0DE46();
@@ -2347,8 +2561,8 @@ void TeleportMainLoop() {
     UnknownC0DE7C();
     UnknownC09451();
     Unknown7E5DBA = 0;
-    Unknown7E9F45 = 0;
-    Unknown7E9F47 = 0;
+    Unknown7E9F45.fraction = 0;
+    Unknown7E9F45.integer = 0;
     Unknown7E5D58 = 0;
     TeleportDestination = 0;
 }

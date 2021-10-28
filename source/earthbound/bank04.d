@@ -942,6 +942,9 @@ short Decomp(const(void)*, void*);
 // $C41EFF
 short UnknownC41EFF(short, short, short, short);
 
+// $C41FFF
+FixedPoint1616 UnknownC41FFF(short, short);
+
 // $C429E8
 void UnknownC429E8(short channel) {
     //segmented addressing stuff
