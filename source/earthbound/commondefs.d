@@ -3283,6 +3283,12 @@ struct BattleEntryPointer {
 	LetterboxStyle letterboxStyle;
 }
 
+struct OverworldEventMusic {
+	ushort flag;
+	ubyte music;
+	ubyte unknown3;
+}
+
 //helper funcs not in the original game
 
 char[length] EBString(size_t length)(string str) {

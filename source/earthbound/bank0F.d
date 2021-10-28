@@ -2,6 +2,10 @@ module earthbound.bank0F;
 
 import earthbound.commondefs;
 
+//$$CF58EF
+
+immutable OverworldEventMusic*[164] OverworldEventMusicPointerTable;
+
 //$CF8985
 immutable NPC[1584] NPCConfig = [
 	NPC(NPCType.Person, OverworldSprite.Ness, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowIfOff, null /+NULL+/, null /+NULL+/),

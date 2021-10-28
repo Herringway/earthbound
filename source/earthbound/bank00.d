@@ -8,6 +8,7 @@ import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank0F;
+import earthbound.bank1C;
 import earthbound.bank20;
 import earthbound.bank2F;
 import core.stdc.string;
@@ -661,10 +662,31 @@ short NPCCollisionCheck(short x, short y, short arg3) {
 }
 
 // $C064D4
-void UnknownC064D4();
+void UnknownC064D4() {
+    NextQueuedInteraction = 0;
+    CurrentQueuedInteraction = 0;
+    CurrentQueuedInteractionType = -1;
+}
 
 // $C068F4
-void UnknownC068F4(short, short);
+void UnknownC068F4(short arg1, short arg2) {
+    //x10 = arg1
+    if (Unknown7E5DD8 != 0) {
+        return;
+    }
+    const(OverworldEventMusic)* x0A = OverworldEventMusicPointerTable[MapDataPerSectorMusic[(arg2 / 128) * 32 + ((arg1 >> 8) & 0xFF)]];
+    while (x0A.flag != 0) {
+        if (getEventFlag(x0A.flag & 0x7FFF) == (x0A.flag > 0x8000) ? 1 : 0) {
+            break;
+        }
+        x0A++;
+    }
+    Unknown7E5E38 = x0A;
+    Unknown7E5DD6 = x0A.music;
+    if ((Unknown7E5DDA == 0) && (x0A.music != Unknown7E5DD4)) {
+        UnknownC0AC0C(2);
+    }
+}
 
 // $C069AF
 void UnknownC069AF() {
@@ -676,7 +698,7 @@ void UnknownC069AF() {
     }
     Unknown7E5DD4 = Unknown7E5DD6;
     ChangeMusic(Unknown7E5DD6);
-    UnknownC0AC0C(Unknown7E5E38[3]);
+    UnknownC0AC0C(Unknown7E5E38.unknown3);
 }
 
 // $C06B21

@@ -419,6 +419,8 @@ __gshared short Unknown7E5DAE;           // $5DAE
 
 __gshared short Unknown7E5DBA;           // $5DBA
 
+__gshared short CurrentQueuedInteractionType;           // $5DC0
+
 __gshared short Unknown7E5DD4;           // $5DD4
 __gshared short Unknown7E5DD6;           // $5DD6
 __gshared short Unknown7E5DD8;           // $5DD8
@@ -428,7 +430,7 @@ __gshared short Unknown7E5DDA;           // $5DDA
 __gshared short CurrentQueuedInteraction;           // $5E02
 __gshared short NextQueuedInteraction;           // $5E04
 
-__gshared ubyte* Unknown7E5E38;           // $5E38
+__gshared const(OverworldEventMusic)* Unknown7E5E38;           // $5E38
 
 __gshared ubyte Unknown7E5E6C;           // $5E6C
 __gshared ubyte Unknown7E5E6D;           // $5E6D
