@@ -1898,11 +1898,52 @@ short UnknownC490EE() {
 
 immutable ubyte*[8] FlyoverTextPointers;
 
+//$C491EE
+ushort UnknownC491EE(ushort arg1, ushort arg2, short arg3) {
+    return cast(ushort)((arg2 - arg1) / arg3);
+}
+
+//$C49496
+ushort UnknownC49496(ushort, short);
+
 //$C4954C
-void UnknownC4954C(short, ushort*);
+void UnknownC4954C(short arg1, ushort* arg2) {
+    ushort* x06 = cast(ushort*)(&Unknown7F0000[0]);
+    for (short i = 0; i < 0x100; i++) {
+        *(x06++) = UnknownC49496(*(arg2++), arg1);
+    }
+}
+
+//$C4958E
+void UnknownC4958E(short arg1, short arg2, ushort* arg3) {
+    ushort* x06 = cast(ushort*)&Unknown7F0000[0];
+    memset(&Unknown7F0000[0x200], 0, 0x1000);
+    for (ubyte i = 0; i < 0x100; i += 16) {
+        for (ubyte j = i; j < i + 16; j++) {
+            ubyte x02;
+            if ((arg2 & 1) != 0) {
+                x02 = x06[j] & 0xFF;
+            } else {
+                x02 = arg3[j] & 0xFF;
+                x06[j] = x02;
+            }
+            x06[0x200 + j] = UnknownC491EE(arg3[j] & 0x1F, x02 & 0x1F, arg1);
+            x06[0x400 + j] = UnknownC491EE((arg3[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
+            x06[0x600 + j] = UnknownC491EE((arg3[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
+        }
+        for (short j = i; j < i + 16; j++) {
+            x06[0x400 + j] = ((arg3[j] & 0x1F) << 8) & 0xFF00;
+            x06[0x500 + j] = (arg3[j] & 0x3E0) << 3;
+            x06[0x600 + j] = (arg3[j] & 0x7C00) >> 2;
+        }
+        arg2 >>= 1;
+    }
+}
 
 //$C496E7
-void UnknownC496E7(short, short);
+void UnknownC496E7(short arg1, short arg2) {
+    UnknownC4958E(arg1, arg2, &palettes[0][0]);
+}
 
 //$C49740
 void UnknownC49740() {
