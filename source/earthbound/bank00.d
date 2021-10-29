@@ -674,7 +674,7 @@ void UnknownC068F4(short arg1, short arg2) {
     if (Unknown7E5DD8 != 0) {
         return;
     }
-    const(OverworldEventMusic)* x0A = &OverworldEventMusicPointerTable[MapDataPerSectorMusic[(arg2 / 128) * 32 + ((arg1 >> 8) & 0xFF)]][0];
+    const(OverworldEventMusic)* x0A = &OverworldEventMusicPointerTable[MapDataPerSectorMusic[arg2 / 128][(arg1 >> 8) & 0xFF]][0];
     while (x0A.flag != 0) {
         if (getEventFlag(x0A.flag & 0x7FFF) == (x0A.flag > 0x8000) ? 1 : 0) {
             break;
@@ -1249,6 +1249,13 @@ void OAMClear() {
     }
 }
 
+// $C088A5
+ubyte UnknownC088A5(ubyte arg1) {
+    ubyte tmp = Unknown7E000B;
+    Unknown7E000B = arg1;
+    return tmp;
+}
+
 // $C08B19
 void UnknownC08B19() {
     Unknown7E0009 = 0;
@@ -1282,8 +1289,51 @@ void UpdateScreen() {
 // $C08B8E
 void UnknownC08B8E();
 
+// $C08C54
+void UnknownC08C58F(const(SpriteMap)* arg1, short arg2, short arg3) {
+    UnknownC08C58(arg1, arg2, arg3);
+}
+
 // $C08C58
-void UnknownC08C58(ubyte*, short, short);
+void UnknownC08C58(const(SpriteMap)* arg1, short arg2, short arg3) {
+    UnknownC08C65[Unknown7E2400](arg1, arg2, arg3);
+}
+
+immutable void function(const(SpriteMap)*, short, short)[4] UnknownC08C65 = [
+    &UnknownC08C6D,
+    &UnknownC08C87,
+    &UnknownC08CA1,
+    &UnknownC08CBB,
+];
+
+void UnknownC08C6D(const(SpriteMap)* arg1, short arg2, short arg3) {
+    Unknown7E2404[Unknown7E2504 / 2] = arg1;
+    Unknown7E2444[Unknown7E2504 / 2] = arg2;
+    Unknown7E2484[Unknown7E2504 / 2] = arg3;
+    //Unknown7E24C4[Unknown7E2504 / 2] = Unknown7E000B;
+    Unknown7E2504 += 2;
+}
+void UnknownC08C87(const(SpriteMap)* arg1, short arg2, short arg3) {
+    Unknown7E2506[Unknown7E2606 / 2] = arg1;
+    Unknown7E2546[Unknown7E2606 / 2] = arg2;
+    Unknown7E2586[Unknown7E2606 / 2] = arg3;
+    //Unknown7E25C6[Unknown7E2606 / 2] = Unknown7E000B;
+    Unknown7E2606 += 2;
+}
+void UnknownC08CA1(const(SpriteMap)* arg1, short arg2, short arg3) {
+    Unknown7E2608[Unknown7E2708 / 2] = arg1;
+    Unknown7E2648[Unknown7E2708 / 2] = arg2;
+    Unknown7E2688[Unknown7E2708 / 2] = arg3;
+    //Unknown7E26C8[Unknown7E2708 / 2] = Unknown7E000B;
+    Unknown7E2708 += 2;
+}
+void UnknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
+    Unknown7E270A[Unknown7E280A / 2] = arg1;
+    Unknown7E274A[Unknown7E280A / 2] = arg2;
+    Unknown7E278A[Unknown7E280A / 2] = arg3;
+    //Unknown7E27CA[Unknown7E280A / 2] = Unknown7E000B;
+    Unknown7E280A += 2;
+}
 
 // $C08D79
 void UnknownC08D79(ubyte arg1) {
@@ -1650,7 +1700,7 @@ void CheckHardware() {
 // originally handwirtten assembly, id was actually an offset
 void UnknownC0A3A4(short id) {
     if ((Unknown7E341A[id / 2] & 1) != 0) {
-        ActionScript8C += EntityUnknown2916[id / 2];
+        ActionScript8C += EntityUnknown2916[id / 2] / 5;
     }
     ActionScript00 = 0x30;
     ActionScript02 = 0x30;
@@ -1660,14 +1710,14 @@ void UnknownC0A3A4(short id) {
     if ((EntitySurfaceFlags[id / 2] & 2) != 0) {
         ActionScript00 = 0x20;
     }
-    short y = 0xFD;
+    short y = 50;
     for (short i = UNKNOWN_30X2_TABLE_38[id / 2] & 0xFF; i >= 0; i--) {
-        y += 5;
-        ActionScript8C[y] = (ActionScript8C[y] & 0xCF) | ActionScript00;
+        y++;
+        (cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | ActionScript00;
     }
     for (short i = UNKNOWN_30X2_TABLE_38[ActionScript88 / 2]; i >= 0; i--) {
-        y+= 5;
-        ActionScript8C[y] = (ActionScript8C[y] & 0xCF) | ActionScript02;
+        y++;
+        (cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | ActionScript02;
     }
     Unknown7E000B = ActionScript8E;
     Unknown7E2400 = EntityDrawPriority[ActionScript88 / 2];
@@ -1900,8 +1950,26 @@ immutable ubyte[14] StereoMonoData = [
 ];
 immutable ubyte[7] DMAFlags = [ 1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6];
 
+// $C0AE34
+void UnknownC0AE34(short);
+
 // $C0AFCD
-void UnknownC0AFCD();
+void UnknownC0AFCD(short);
+
+// $C0B01A
+void SetColData(ubyte red, ubyte green, ubyte blue);
+
+// $C0B047
+void SetWindowMask(ushort, ushort);
+
+// $C0B0B8
+void UnknownC0B0B8(short, const(ubyte)*);
+
+// $C0B0EF
+void UnknownC0B0EF(short, short);
+
+// $C0B0EF
+void UnknownC0B149(ushort, ushort, short, short);
 
 // $C0B525
 void FileSelectInit() {

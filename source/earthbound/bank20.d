@@ -259,4 +259,11 @@ immutable RGB[32] TextWindowDeathPalette =[
 ];
 
 // $E02190
-immutable void*[6] TownMapGraphicsPointerTable;
+immutable ubyte[][6] TownMapGraphicsPointerTable = [
+	cast(immutable(ubyte)[])import("town_maps/0.bin.lzhal"), //onett
+	cast(immutable(ubyte)[])import("town_maps/1.bin.lzhal"), //twoson
+	cast(immutable(ubyte)[])import("town_maps/2.bin.lzhal"), //threed
+	cast(immutable(ubyte)[])import("town_maps/3.bin.lzhal"), //fourside
+	cast(immutable(ubyte)[])import("town_maps/4.bin.lzhal"), //scaraba
+	cast(immutable(ubyte)[])import("town_maps/5.bin.lzhal"), //summers
+];

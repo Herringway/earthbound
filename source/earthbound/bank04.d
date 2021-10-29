@@ -6,6 +6,7 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
+import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank15;
 import earthbound.bank18;
@@ -1900,8 +1901,142 @@ void UnknownC49EC4(short id) {
     }
 }
 
+// $C4A5FA
+immutable Unknown7EAECCEntry[2] UnknownC4A5FA = [
+    Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
+    Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
+];
+
+// $C4A626
+immutable Unknown7EAECCEntry[2] UnknownC4A626 = [
+    Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
+    Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
+];
+
+// $C4A652
+immutable Unknown7EAECCEntry[2] UnknownC4A652 = [
+    Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
+    Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
+];
+
 //$C4A7B0
-short UnknownC4A7B0();
+void UnknownC4A7B0() {
+    if (Unknown7EAEC2 == 0) {
+        return;
+    }
+    if (Unknown7EAECC != null) {
+        if (--Unknown7EAEC2 == 0)  {
+            if (Unknown7EAECC.unknown0 == 0) {
+                Unknown7EAECC = null;
+                return;
+            }
+            if (Unknown7EAECC.unknown2 != 0x8000) {
+                Unknown7EAED0 = Unknown7EAECC.unknown2;
+            }
+            if (Unknown7EAECC.unknown4 != 0x8000) {
+                Unknown7EAED2 = Unknown7EAECC.unknown4;
+            }
+            if (Unknown7EAECC.unknown6 != 0x8000) {
+                Unknown7EAED4 = Unknown7EAECC.unknown6;
+            }
+            if (Unknown7EAECC.unknown8 != 0x8000) {
+                Unknown7EAED6 = Unknown7EAECC.unknown8;
+            }
+            Unknown7EAED8 = Unknown7EAECC.unknown10;
+            Unknown7EAEDA = Unknown7EAECC.unknown12;
+            Unknown7EAEDC = Unknown7EAECC.unknown14;
+            Unknown7EAEDE = Unknown7EAECC.unknown16;
+            Unknown7EAEE0 = Unknown7EAECC.unknown18;
+            Unknown7EAEE2 = Unknown7EAECC.unknown20;
+            Unknown7EAECC++;
+        }
+        Unknown7EAED0 += Unknown7EAED8;
+        Unknown7EAED2 += Unknown7EAEDA;
+        Unknown7EAEDC += Unknown7EAEE0;
+        Unknown7EAEDE += Unknown7EAEE2;
+        if ((0 > Unknown7EAEDC) && (Unknown7EAED4 < -cast(int)Unknown7EAEDC)) {
+            Unknown7EAED4 = 0;
+        } else {
+            Unknown7EAED4 += Unknown7EAEDC;
+        }
+        if ((0 > Unknown7EAEDE) && (Unknown7EAED6 < -cast(int)Unknown7EAEDE)) {
+            Unknown7EAED6 = 0;
+        } else {
+            Unknown7EAED6 += Unknown7EAEDE;
+        }
+        if ((Unknown7EAED4 == 0) && (Unknown7EAED6 == 0)) {
+            Unknown7EAEC2 = 0;
+            Unknown7EAECC = null;
+        }
+        UnknownC0B149(Unknown7EAED0, Unknown7EAED2, (Unknown7EAED4 >> 8) & 0xFF, (Unknown7EAED6 >> 8) & 0xFF);
+        UnknownC0B0EF(3, 65);
+        SetWindowMask(Unknown7EAEC8, (Unknown7EAEC6 >> 8) & 0xFF);
+        return;
+    }
+
+    if (--Unknown7EAEC2 != 0) {
+        return;
+    }
+    while (true) { //pretty weird but I'm not sure how else to express this mass of branches
+        if (Unknown7EAEC4 != 0) {
+            Unknown7EAEC2 = Unknown7EAEC3;
+            UnknownC0AE34(Unknown7EAEC9 + 3);
+            Unknown7EAEC9++;
+            Unknown7EAEC9 &= 1;
+            if (Unknown7EAEC7 == 0) {
+                UnknownC0B0B8(Unknown7EAEC9 + 3, &SwirlPointerTable[Unknown7EAEC5++][0]);
+            } else {
+                UnknownC0B0B8(Unknown7EAEC9 + 3, &SwirlPointerTable[Unknown7EAEC5 - 1][0]);
+            }
+            SetWindowMask(Unknown7EAEC8, Unknown7EAEC6);
+            Unknown7EAEC4--;
+            return;
+        }
+        if (Unknown7EAEE4 != 0) {
+            if (--Unknown7EAEE6 != 0) {
+                Unknown7EAEC4 = SwirlPrimaryTable[Unknown7EAEE4 * 4 + 2];
+                Unknown7EAEE6 = SwirlPrimaryTable[Unknown7EAEE4 * 4 + 1];
+                if (Unknown7EAEC7 == 0) {
+                    continue;
+                }
+                Unknown7EAEE6 += Unknown7EAEC4;
+                continue;
+            }
+            switch (++Unknown7EAEE5) {
+                case 1:
+                    Unknown7EAEE6 = 7;
+                    Unknown7EAEC3 = 3;
+                    break;
+                case 2:
+                    Unknown7EAEE6 = 6;
+                    Unknown7EAEC3 = 2;
+                    break;
+                case 3:
+                    Unknown7EAEE6 = 12;
+                    Unknown7EAEC3 = 1;
+                    break;
+                default: break;
+            }
+            if (Unknown7EAEE6 != 0) {
+                continue;
+            }
+        }
+        if (Unknown7EAECA != 0) {
+            Unknown7EAEC2 = 1;
+            Unknown7EAECA--;
+            return;
+        }
+        break;
+    }
+    if (Unknown7EAECB == 0) {
+        return;
+    }
+    UnknownC0AE34(Unknown7EAEC9 + 3);
+    SetWindowMask(0, 0);
+    UnknownC2DE96();
+    SetColData(0, 0, 0);
+    UnknownC0AFCD(Unknown7EAD8A);
+}
 
 //$C4C2DE
 void UnknownC4C2DE();
@@ -1962,16 +2097,86 @@ short Spawn() {
 
 //$C4D274
 ubyte GetTownMapID(short x, short y) {
-    return MapDataPerSectorTownMapData[(x >> 8) * 3 + (y / 0x80) * 96];
+    return MapDataPerSectorTownMapData[y / 0x80][((x >> 8) & 0xFF)].unknown0;
+}
+
+// $C4D2A8
+void UnknownC4D2A8() {
+    if (Unknown7EB4B2 == 0) {
+        Unknown7EB4B2 = 0xC;
+        short x10 = palettes[8][1];
+        for (short i = 1; i < 4; i++) {
+            palettes[4][i] = palettes[4][i - 1];
+        }
+        palettes[8][1] = x10;
+        UnknownC0856B(16);
+    }
+    Unknown7EB4B2--;
+}
+
+// $C4D2F0
+void UnknownC4D2F0() {
+    switch (MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown0 & 0x70) {
+        case 0x10:
+            UnknownC08C58F(&UnknownE1F44C[TownMapMapping[2]][0], MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+            break;
+        case 0x20:
+            UnknownC08C58F(&UnknownE1F44C[TownMapMapping[3]][0], MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
+            break;
+        case 0x40:
+            UnknownC08C58F(&UnknownE1F44C[TownMapMapping[4]][0], MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+            break;
+        case 0x30:
+            UnknownC08C58F(&UnknownE1F44C[TownMapMapping[5]][0], MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+            break;
+        default:
+            break;
+    }
+    if (Unknown7EB4B0 < 10) {
+        UnknownC08C58F(&UnknownE1F44C[TownMapMapping[1]][0], MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+    } else {
+        UnknownC08C58F(&UnknownE1F44C[TownMapMapping[0]][0], MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+    }
+    if (--Unknown7EB4B0 == 0) {
+        Unknown7EB4B0 = 0x14;
+    }
 }
 
 //$C4D43F
-void UnknownC4D43F(short);
+void UnknownC4D43F(short arg1) {
+    Unknown7E2400 = 0;
+    //not used - segmented addressing stuff
+    //ubyte savedBank = UnknownC088A5(bankbyte(&UnknownE1F44C[0]));
+    for (const(TownMapIconPlacement)* x06 = &TownMapIconPlacementTable[arg1][0]; x06.unknown0 != 0xFF; x06++) {
+        short x14 = 1;
+        if ((UnknownE1F47A[x06.unknown2] != 0) && (Unknown7EB4AE < 10)) {
+            x14 = 0;
+        }
+        short x12 = 0;
+        if (x06.eventFlag < 0x8000) {
+            x12 = 1;
+        }
+        if (getEventFlag(x06.eventFlag & 0x7FFF) != x12) {
+            x14 = 0;
+        }
+        if (x14 == 0) {
+            continue;
+        }
+        UnknownC08C58F(&UnknownE1F44C[x06.unknown2][0], x06.unknown0, x06.unknown1);
+    }
+    UnknownC4D2F0();
+    if (--Unknown7EB4AE == 0) {
+        Unknown7EB4AE = 0x3C;
+    }
+    // see above
+    //UnknownC088A5(savedBank);
+    UnknownC4D2A8();
+}
 
 //$C4D552
 void LoadTownMapData(short arg1) {
     FadeOut(2, 1);
-    Decomp(TownMapGraphicsPointerTable[arg1], &Unknown7F0000[0]);
+    Decomp(&TownMapGraphicsPointerTable[arg1][0], &Unknown7F0000[0]);
     while (Unknown7E0028 != 0) {}
     memcpy(&palettes[0][0], &Unknown7F0000[0], 0x40);
     memcpy(&palettes[16][0], &TownMapIconPalette[0], 0x100);

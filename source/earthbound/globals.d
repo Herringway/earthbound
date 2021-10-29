@@ -204,7 +204,7 @@ __gshared void function()[MAX_ENTITIES] EntityTickCallbacks;
 __gshared short[MAX_ENTITIES] EntityAnimationFrames; //$10F2
 
 __gshared ushort[MAX_ENTITIES] EntitySpriteMapFlags;
-__gshared ubyte*[MAX_ENTITIES] EntitySpriteMapPointers;
+__gshared const(SpriteMap)*[MAX_ENTITIES] EntitySpriteMapPointers;
 
 __gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; //$11A6
 __gshared void function(short)[MAX_ENTITIES] EntityDrawCallbacks; //$11E2
@@ -244,22 +244,22 @@ __gshared ubyte[0x200] heap; // $2000
 
 __gshared ushort Unknown7E2400; //$2400
 __gshared ushort Unknown7E2402; //$2402
-__gshared short[32] Unknown7E2404; //$2404
+__gshared const(SpriteMap)*[32] Unknown7E2404; //$2404
 __gshared short[32] Unknown7E2444; //$2444
 __gshared short[32] Unknown7E2484; //$2484
 __gshared short[32] Unknown7E24C4; //$24C4
 __gshared short Unknown7E2504; //$2504
-__gshared short[32] Unknown7E2506; //$2506
+__gshared const(SpriteMap)*[32] Unknown7E2506; //$2506
 __gshared short[32] Unknown7E2546; //$2546
 __gshared short[32] Unknown7E2586; //$2586
 __gshared short[32] Unknown7E25C6; //$25C6
 __gshared short Unknown7E2606; //$2606
-__gshared short[32] Unknown7E2608; //$2608
+__gshared const(SpriteMap)*[32] Unknown7E2608; //$2608
 __gshared short[32] Unknown7E2648; //$2648
 __gshared short[32] Unknown7E2688; //$2688
 __gshared short[32] Unknown7E26C8; //$26C8
 __gshared short Unknown7E2708; //$2708
-__gshared short[32] Unknown7E270A; //$270A
+__gshared const(SpriteMap)*[32] Unknown7E270A; //$270A
 __gshared short[32] Unknown7E274A; //$274A
 __gshared short[32] Unknown7E278A; //$278A
 __gshared short[32] Unknown7E27CA; //$27CA
@@ -352,7 +352,7 @@ __gshared short Unknown7E4676; //$4676
 
 __gshared short Unknown7E467A; //$467A
 __gshared short Unknown7E467C; //$467C
-__gshared ubyte[0] SpriteTable7E467E; //$467E - how big is this...?
+__gshared SpriteMap[0] SpriteTable7E467E; //$467E
 
 __gshared short TouchedEnemy; // $4D86
 
@@ -619,6 +619,33 @@ __gshared LoadedBackgroundData LoadedBGDataLayer2; // $AE4B
 __gshared ubyte Unknown7EAEC2; // $AEC2
 __gshared ubyte Unknown7EAEC3; // $AEC3
 __gshared ubyte Unknown7EAEC4; // $AEC4
+__gshared ubyte Unknown7EAEC5; //$AEC5
+__gshared ubyte Unknown7EAEC6; //$AEC6
+__gshared ubyte Unknown7EAEC7; //$AEC7
+__gshared ubyte Unknown7EAEC8; //$AEC8
+__gshared ubyte Unknown7EAEC9; //$AEC9
+__gshared ubyte Unknown7EAECA; //$AECA
+__gshared ubyte Unknown7EAECB; //$AECB
+__gshared const(Unknown7EAECCEntry)* Unknown7EAECC; // $AECC
+__gshared short Unknown7EAED0; //$AED0
+__gshared short Unknown7EAED2; //$AED2
+__gshared short Unknown7EAED4; //$AED4
+__gshared short Unknown7EAED6; //$AED6
+__gshared short Unknown7EAED8; //$AED8
+__gshared short Unknown7EAEDA; //$AEDA
+__gshared short Unknown7EAEDC; //$AEDC
+__gshared short Unknown7EAEDE; //$AEDE
+__gshared short Unknown7EAEE0; //$AEE0
+__gshared short Unknown7EAEE2; //$AEE2
+__gshared ubyte Unknown7EAEE4; //$AEE4
+__gshared ubyte Unknown7EAEE5; //$AEE5
+__gshared ubyte Unknown7EAEE6; //$AEE6
+__gshared ushort[4] Unknown7EAEE7; //$AEE7
+__gshared ubyte Unknown7EAEEF; //$AEEF
+__gshared ushort Unknown7EAEF0; //$AEF0
+__gshared ushort Unknown7EAEF2; //$AEF2
+__gshared ushort[4] Unknown7EAEF4; //$AEF4
+//UNKNOWN_7EAEFC: ;$7EAEFC
 
 __gshared ubyte* path_matrix_buffer;      // [$B3FC] Matrix buffer
 __gshared ushort path_matrix_rows;        // [$B400] Matrix rows
@@ -698,7 +725,7 @@ __gshared short ActionScript08;         // $08
 
 __gshared ushort ActionScript88;         // $88
 
-__gshared ubyte* ActionScript8C;         // $8C
+__gshared const(SpriteMap)* ActionScript8C;         // $8C
 __gshared ubyte ActionScript8E;         // $8E
 
 // Other hardware stuff

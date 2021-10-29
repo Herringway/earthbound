@@ -3470,6 +3470,41 @@ struct OverworldEventMusic {
 	ubyte unknown3;
 }
 
+struct TownMapIconPlacement {
+	ubyte unknown0;
+	ubyte unknown1;
+	ubyte unknown2;
+	ushort eventFlag;
+}
+
+struct SpriteMap {
+	ubyte unknown0;
+	ushort unknown1;
+	ubyte unknown3;
+	ubyte unknown4;
+}
+
+struct TownMapData {
+	ubyte unknown0;
+	ubyte unknown1;
+	ubyte unknown2;
+}
+
+struct Unknown7EAECCEntry {
+	ubyte unknown0;
+	ubyte unknown1;
+	ushort unknown2;
+	ushort unknown4;
+	ushort unknown6;
+	ushort unknown8;
+	ushort unknown10;
+	ushort unknown12;
+	ushort unknown14;
+	ushort unknown16;
+	ushort unknown18;
+	ushort unknown20;
+}
+
 //helper funcs not in the original game
 
 char[length] EBString(size_t length)(string str) {
