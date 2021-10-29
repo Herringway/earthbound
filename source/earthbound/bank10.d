@@ -2,6 +2,14 @@ module earthbound.bank10;
 
 import earthbound.commondefs;
 
+// $D02188
+immutable RGB[4] MovementTextStringPalette = [
+	RGB(0,0,0),
+	RGB(17,18,17),
+	RGB(17,18,17),
+	RGB(31,31,27)
+];
+
 // $D0C60D
 immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 	BattleEntryPointer(null /+ENEMY_GROUP_000+/, 0x0000, 0x00, LetterboxStyle.None),

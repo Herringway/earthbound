@@ -105,6 +105,15 @@ immutable SpriteMap[][9] UnknownE1CF9D = [
 	]
 ];
 
+// $E1CFAF
+immutable ubyte[] UnknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
+
+// $E1D4F4
+immutable ubyte[] UnknownE1D4F4 = cast(immutable(ubyte)[])import("E1D4F4.pal.lzhal");
+
+// $E1D5E8
+immutable ubyte[] UnknownE1D5E8 = cast(immutable(ubyte)[])import("E1D5E8.arr.lzhal");
+
 // $E1EA50
 immutable ubyte[] TownMapLabelGfx = cast(immutable(ubyte)[])import("town_maps/label.gfx.lzhal");
 

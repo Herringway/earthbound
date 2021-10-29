@@ -8,6 +8,7 @@ import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank0E;
 import earthbound.bank0F;
+import earthbound.bank10;
 import earthbound.bank15;
 import earthbound.bank18;
 import earthbound.bank20;
@@ -946,6 +947,61 @@ short UnknownC41EFF(short, short, short, short);
 // $C41FFF
 FixedPoint1616 UnknownC41FFF(short, short);
 
+// $C426ED
+void UnknownC426ED() {
+    for (short i = 0; i != 0x200; i += 2) {
+        Unknown7F0000[0x800 + i] += Unknown7F0000[0x200 + i];
+        Unknown7F0000[0x800 + i + 1] += Unknown7F0000[0x200 + i + 1];
+        ushort a = (cast(ushort*)&Unknown7F0000[0x800 + i])[0];
+        if ((a & 0x8000) != 0) {
+            Unknown7F0000[0x200 + i] = 0;
+            Unknown7F0000[0x200 + i + 1] = 0;
+            a = 0;
+        } else {
+            a &= 0x1F00;
+            if (a == 0x1F00) {
+                Unknown7F0000[0x200 + i] = 0;
+                Unknown7F0000[0x200 + i + 1] = 0;
+                a = 0x1F00;
+            }
+        }
+        a = ((a & 0xFF) << 8) | ((a >> 8) & 0xFF);
+        Unknown7F0000[0xA00 + i] += Unknown7F0000[0x400 + i];
+        Unknown7F0000[0xA00 + i + 1] += Unknown7F0000[0x400 + i + 1];
+        ushort a2 = (cast(ushort*)&Unknown7F0000[0xA00 + i])[0];
+        if ((a2 & 0x8000) != 0) {
+            Unknown7F0000[0x400 + i] = 0;
+            Unknown7F0000[0x400 + i + 1] = 0;
+            a2 = 0;
+        } else {
+            a2 &= 0x1F00;
+            if (a2 == 0x1F00) {
+                Unknown7F0000[0x400 + i] = 0;
+                Unknown7F0000[0x400 + i + 1] = 0;
+                a2 = 0x1F00;
+            }
+        }
+        a = cast(ushort)((a2 >> 3) | a);
+        Unknown7F0000[0xC00 + i] += Unknown7F0000[0x600 + i];
+        Unknown7F0000[0xC00 + i + 1] += Unknown7F0000[0x600 + i + 1];
+        a2 = (cast(ushort*)&Unknown7F0000[0xC00 + i])[0];
+        if ((a2 & 0x8000) != 0) {
+            Unknown7F0000[0x400 + i] = 0;
+            Unknown7F0000[0x400 + i + 1] = 0;
+            a2 = 0;
+        } else {
+            a2 &= 0x1F00;
+            if (a2 == 0x1F00) {
+                Unknown7F0000[0x600 + i] = 0;
+                Unknown7F0000[0x600 + i + 1] = 0;
+                a2 = 0x1F00;
+            }
+        }
+        (cast(ushort*)&palettes)[i / 2] = cast(ushort)((a2 << 2) | a);
+    }
+    Unknown7E0030 = 0x18;
+}
+
 // $C429E8
 void UnknownC429E8(short channel) {
     //segmented addressing stuff
@@ -1596,12 +1652,24 @@ void UnknownC45E96() {
 ubyte randMod(ubyte arg1) {
     return cast(ubyte)(rand() % (arg1 + 1));
 }
-
 // $C46028
 short UnknownC46028(short arg1) {
     for (short i = 0; i < 0x1E; i++) {
         if (EntityTPTEntrySprites[i] == arg1) {
             return i;
+        }
+    }
+    return -1;
+}
+
+// $C4608C
+short UnknownC4608C(short arg1) {
+    if (arg1 == 0) {
+        return gameState.currentPartyMembers;
+    }
+    for (short i = 0; i < 6; i++) {
+        if (arg1 == gameState.unknown96[i]) {
+            return gameState.unknownA2[i];
         }
     }
     return -1;
@@ -1623,7 +1691,20 @@ short CreatePreparedEntitySprite(short sprite, short actionScript) {
 }
 
 // $C46631
-void UnknownC46631(short);
+void UnknownC46631(short arg1) {
+    if (arg1 != 0xFF) {
+        short a = UnknownC4608C(arg1);
+        if (a == -1) {
+            return;
+        }
+        EntityTickCallbackFlags[a] &= (0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED));
+        return;
+    }
+    EntityTickCallbackFlags[23] &= 0x3FFF;
+    for (short i = 0; i < gameState.partyCount; i++) {
+        EntityTickCallbackFlags[gameState.unknownA2[i]] &= (0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED));
+    }
+}
 
 // $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
@@ -1707,7 +1788,14 @@ void UnknownC47F87() {
 }
 
 // $C4800B
-void UndrawFlyoverText();
+void UndrawFlyoverText() {
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
+    UnknownC2038B();
+    LoadWindowGraphics();
+    UnknownC44963(2);
+    UnknownC47F87();
+    Unknown7E0030 = 0x18;
+}
 
 // $C48ECE
 short IsValidItemTransformation(short arg1) {
@@ -1810,8 +1898,11 @@ short UnknownC490EE() {
 
 immutable ubyte*[8] FlyoverTextPointers;
 
-//$C4984B
-void UnknownC4984B();
+//$C4954C
+void UnknownC4954C(short, ushort*);
+
+//$C496E7
+void UnknownC496E7(short, short);
 
 //$C49740
 void UnknownC49740() {
@@ -1819,13 +1910,95 @@ void UnknownC49740() {
     UnknownC0856B(0x18);
 }
 
+//$C4984B
+void UnknownC4984B() {
+    ushort* x0E = cast(ushort*)&VWFBuffer[0][0];
+    for (short i = 0x340; i != 0; i--) {
+        x0E[0] ^= 0xFFFF;
+        x0E++;
+    }
+}
+
+//$C49875
+void UnknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData) {
+    ubyte* x02 = &buf[Unknown7E9F31];
+    ubyte* x12 = x02;
+    ubyte* x06 = buf;
+    for (short i = 0; 2 > i; i++) {
+        for (short j = 0; j < 8; j++) {
+            *(x02 + 1) &= ((x06[0] ^ 0xFF) >> (Unknown7E9F2F % 8)) ^ 0xFF;
+            *x02 = *(x02 + 1);
+            x02 += 2;
+            x06++;
+        }
+        x02 = &buf[Unknown7E9F31 + 0x1A0];
+    }
+    Unknown7E9F2F += arg1;
+    if (Unknown7E9F2F / 8 == Unknown7E9F31) {
+        return;
+    }
+    arg1 = cast(ubyte)((Unknown7E9F2F / 8) * 16);
+    Unknown7E9F31 = arg1;
+    for (short i = 0; 2 > i; i++) {
+        for (short j = 0; j < 8; j++) {
+            *(x02 + 1) &= ((x06[0] ^ 0xFF) << (8 - (Unknown7E9F2F % 8))) ^ 0xFF;
+            *x02 = *(x02 + 1);
+            x02 += 2;
+            x06++;
+        }
+        x02 = &buf[arg1 + 0x1A0];
+    }
+}
+
+//$C4999B
+void UnknownC4999B(ubyte arg1) {
+    arg1 = (arg1 - 0x50) & 0x7F;
+    const(ubyte)* x06 = &FontConfigTable[Font.Large].graphics[arg1 * FontConfigTable[Font.Large].height];
+    ubyte x02 = cast(ubyte)(FontConfigTable[Font.Large].data[arg1] + 1);
+    while (x02 > 8) {
+        UnknownC49875(8, FontConfigTable[Font.Large].width, &VWFBuffer[0][0], x06);
+        x02 -= 8;
+        x06 += FontConfigTable[Font.Large].width;
+    }
+    UnknownC49875(x02, FontConfigTable[Font.Large].width, &VWFBuffer[0][0], x06);
+}
+
 //$C49A56
-void UnknownC49A56();
+void UnknownC49A56() {
+    UnknownC08726();
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
+    CopyToVram(3, 0x3800, 0x6000, &Unknown7F0000[0]);
+    memcpy(&palettes[0][0], &MovementTextStringPalette[0], 8);
+    Unknown7E0030 = 0x18;
+    memset(&VWFBuffer[0][0], 0xFF, 0x680);
+    ushort y = 0x10;
+    for (short i = 0; i < 0x20; i++) {
+        bg2Buffer[i * 32] = 0;
+        bg2Buffer[i * 32 + 2] = 0;
+        bg2Buffer[i * 32 + 4] = 0;
+        for (short j = 0; j < 0x1D; j++) {
+            bg2Buffer[i * 32 + j] = cast(ushort)(0x2000 + y);
+            y++;
+        }
+        bg2Buffer[i * 32 + 58] = 0;
+        bg2Buffer[i * 32 + 60] = 0;
+        bg2Buffer[i * 32 + 62] = 0;
+    }
+    CopyToVram(0, 0x800, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
+    Unknown7E3C18 = 0x1A;
+    Unknown7E3C1C = 0;
+    Unknown7E3C1E = -1;
+    Unknown7E3C20 = 0;
+    Unknown7E3C14 = 0;
+    Unknown7E3C16 = 0;
+    Unknown7E9F2F = 0;
+    Unknown7E9F31 = 0;
+    UnknownC08744();
+}
 
 //$C49B6E
 void UnknownC49B6E(short arg1) {
     UnknownC4984B();
-    //x14 = Unknown7E9F2D * 0x1A0
     if (Unknown7E9F2D * 0x1A0 + 0x4E0 > 0x3400) {
         if (0x3400 - Unknown7E9F2D * 0x1A0 != 0) {
             CopyToVram(0, cast(short)(0x3400 - Unknown7E9F2D * 0x1A0), cast(ushort)(0xD0 * Unknown7E9F2D + 0x6150), &VWFBuffer[0][0]);
@@ -1842,16 +2015,39 @@ void UnknownC49B6E(short arg1) {
 }
 
 //$C49C56
-void UnknownC49C56(short);
+void UnknownC49C56(short arg1) {
+    Unknown7E3C16 += arg1;
+    Unknown7E3C14 = 0;
+    Unknown7E9F2D += Unknown7E3C16 / 8 + 1;
+    if (Unknown7E9F2D >= 0x20) {
+        Unknown7E9F2D -= 0x20;
+    }
+    UnknownC08F8B();
+    memset(&VWFBuffer[0][0], 0xFF, 0x680);
+    Unknown7E3C16 &= 7;
+    Unknown7E9F2F = 0;
+    Unknown7E9F31 = 0;
+}
 
 //$C49CA8
-void UnknownC49CA8(ubyte);
+void UnknownC49CA8(ubyte arg1) {
+    Unknown7E9F2F += arg1 + 8;
+    Unknown7E9F31 = cast(short)((Unknown7E9F2F / 8) * 16);
+}
 
 //$C49CC3
-void UnknownC49CC3(ubyte, short);
+void UnknownC49CC3(ubyte arg1, short arg2) {
+    ubyte* x06 = &PartyCharacters[arg1 - 1].name[0];
+    for (short i = 0; (i < 5) && (x06[0] > 0x4F); i++) {
+        UnknownC4999B(*(x06++));
+    }
+}
 
 //$C49D16
-void UnknownC49D16(ubyte, short, short);
+// seems weird, but mother 2 did make use of the other args
+void UnknownC49D16(ubyte arg1, short, short) {
+    UnknownC4999B(arg1);
+}
 
 //$C49EC4
 void UnknownC49EC4(short id) {
@@ -2039,10 +2235,56 @@ void UnknownC4A7B0() {
 }
 
 //$C4C2DE
-void UnknownC4C2DE();
+void UnknownC4C2DE() {
+    if (Unknown7E4DC4 == 0) {
+        ChangeMusic(Music.YouLose);
+        FadeOutWithMosaic(1, 1, 0);
+    }
+    Unknown7E4472 = 0;
+    Unknown7E4474 = 0;
+    Unknown7E9F2A = 0;
+    UnknownC08D79(9);
+    SetBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
+    Decomp(&UnknownE1CFAF[0], &Unknown7F0000[0]);
+    if (gameState.partyMembers[0] == 3) {
+        CopyToVram(0, 0x8000, 0, &Unknown7F8000[0]);
+    } else {
+        CopyToVram(0, 0x8000, 0, &Unknown7F0000[0]);
+    }
+    Decomp(&UnknownE1D5E8[0], &Unknown7F0000[0]);
+    CopyToVram(0, 0x800, 0x5800, &Unknown7F0000[0]);
+    Decomp(&UnknownE1D4F4[0], cast(ubyte*)&palettes[0][0]);
+    memcpy(&palettes[7][0], &palettes[0][0], 0x20);
+    memset(&palettes[1][0], 0, 0xC0);
+    memcpy(&palettes[2][0], &palettes[7][0], 0x20);
+    UnknownC200D9();
+    LoadWindowGraphics();
+    UnknownC44963(1);
+    UnknownC47F87();
+    UnknownC0856B(0x18);
+    TM_MIRROR = 5;
+    Unknown7E4DC4 = 0;
+    BG2_Y_POS = 0;
+    BG2_X_POS = 0;
+    BG1_X_POS = 0;
+    BG1_X_POS = 0;
+    FadeIn(1, 1);
+    UnknownC0888B();
+}
 
 //$C4C58F
-void UnknownC4C58F(short);
+void UnknownC4C58F(short arg1) {
+    UnknownC4954C(0x64, &palettes[0][0]);
+    UnknownC496E7(arg1, -1);
+    for (short i = 0; i < arg1; i++) {
+        UnknownC426ED();
+        WaitUntilNextFrame();
+    }
+    memset(&palettes[0][0], 0xFF, 0x200);
+    UnknownC0856B(0x18);
+    WaitUntilNextFrame();
+}
 
 //$C4C60E
 void UnknownC4C60E(short);

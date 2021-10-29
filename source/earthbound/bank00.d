@@ -1030,7 +1030,7 @@ void UnknownC0851C(void function());
 void UnknownC0856B(short);
 
 // $C085B7 - Copy data to VRAM in chunks of 0x1200
-void CopyToVram2(ubyte mode, short count, ushort address, const(ubyte)* data) {
+void CopyToVram2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
     DMA_COPY_MODE = mode;
     while (Unknown7E0099 != 0) {}
     DMA_COPY_RAM_SRC = data;
@@ -1052,7 +1052,7 @@ void CopyToVram2(ubyte mode, short count, ushort address, const(ubyte)* data) {
 }
 
 // $C08616 - Copy data to VRAM
-void CopyToVram(ubyte mode, short count, ushort address, const(ubyte)* data) {
+void CopyToVram(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
     DMA_COPY_MODE = mode;
     DMA_COPY_SIZE = count;
     DMA_COPY_RAM_SRC = data;
@@ -1060,7 +1060,7 @@ void CopyToVram(ubyte mode, short count, ushort address, const(ubyte)* data) {
     CopyToVramCommon();
 }
 // this actually splits the address into bank/address parameters, but we don't need that
-void CopyToVramAlt(ubyte mode, short count, ushort address, const(ubyte)* data) {
+void CopyToVramAlt(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
     CopyToVram(mode, count, address, data);
 }
 
@@ -1223,6 +1223,9 @@ void FadeOut(ubyte arg1, ubyte arg2) {
     Unknown7E0029 = arg2;
     Unknown7E002A = arg2;
 }
+
+// $C0888B
+void UnknownC0888B();
 
 // $C088B1
 void OAMClear() {
@@ -1408,7 +1411,11 @@ ubyte rand() {
     return ror(tmp, 2) & 0xFF;
 }
 
-immutable ubyte[] UNKNOWN_C08F98 = [ 0x80, 0xFE, 0x00, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x03, 0x80, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02, 0x00, 0x00 ];
+// $C08F8B
+void UnknownC08F8B();
+
+// $C08F98
+immutable ubyte[24] UnknownC08F98 = [ 0x80, 0xFE, 0x00, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x03, 0x80, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02, 0x00, 0x00 ];
 
 immutable DMATableEntry[6] DMATable = [
     DMATableEntry(0x01, 0x18, 0x80),
@@ -1963,7 +1970,7 @@ void SetColData(ubyte red, ubyte green, ubyte blue);
 void SetWindowMask(ushort, ushort);
 
 // $C0B0B8
-void UnknownC0B0B8(short, const(ubyte)*);
+void UnknownC0B0B8(short, const(void)*);
 
 // $C0B0EF
 void UnknownC0B0EF(short, short);

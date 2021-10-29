@@ -712,7 +712,7 @@ __gshared ushort Unknown7EB575; //$B575
 
 __gshared ubyte[64][64] Unknown7EE000;
 __gshared ubyte[0x8000] Unknown7F0000;
-__gshared ushort[0x8000] Unknown7F8000;
+__gshared ubyte[0x8000] Unknown7F8000;
 
 
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly

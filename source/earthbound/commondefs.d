@@ -156,7 +156,7 @@ enum Music {
 	None2 = 4,
 	YouWon1 = 5,
 	LEVEL_UP = 6,
-	YOU_LOSE = 7,
+	YouLose = 7,
 	BATTLE_SWIRL1 = 8,
 	BATTLE_SWIRL2 = 9,
 	WHAT_THE_HECK = 10,
