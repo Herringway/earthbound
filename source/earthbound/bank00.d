@@ -10,6 +10,7 @@ import earthbound.bank04;
 import earthbound.bank0F;
 import earthbound.bank1C;
 import earthbound.bank20;
+import earthbound.bank21;
 import earthbound.bank2F;
 import core.stdc.string;
 import core.bitop;
@@ -178,6 +179,9 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 
 // $C02140
 void UnknownC02140(short);
+
+// $C021E6
+void UnknownC021E6();
 
 // $C0262D
 short UnknownC0262D(short, short);
@@ -752,7 +756,96 @@ void UnknownC0777A() {
     Unknown7E9F6B = -1;
 }
 // $C0780F
-short UnknownC0780F(short, short, PartyCharacter*);
+short UnknownC0780F(short characterID, short walkingStyle, PartyCharacter* character) {
+    short y = 0;
+    if ((characterID == 0) && (Unknown7EB4B6 == 0) && (PajamaFlag != 0)) {
+        return 0x1B5;
+    }
+    if (Unknown7E9F73 != -1) {
+        Unknown7E2E7A[Unknown7E9F73] = 0;
+    }
+    if (gameState.partyStatus == 1) {
+        if (gameState.unknown92 != 3) {
+            return 0xD;
+        } else {
+            return 0x25;
+        }
+    }
+    switch (character.afflictions[0]) {
+        case Status0.Unconscious:
+            y = 1;
+            break;
+        case Status0.Diamondized:
+            if (gameState.unknown92 != 3) {
+                return 0xC;
+            }
+            return 0x24;
+        case Status0.Nauseous:
+            if (Unknown7E9F73 != -1) {
+                Unknown7E2E7A[Unknown7E9F73] |= 0x8000;
+            }
+            break;
+        default: break;
+    }
+    switch (character.afflictions[1]) {
+        case Status1.Mushroomized:
+            if (Unknown7E9F73 != -1) {
+                Unknown7E2E7A[Unknown7E9F73] |= 0x4000;
+            }
+            break;
+        case Status1.Possessed:
+            Unknown7E9F6F++;
+            break;
+        default: break;
+    }
+    if (gameState.unknown92 == 6) {
+            return 7;
+    } else if (gameState.unknown92 == 6) {
+        if (character.unknown53 == 0) {
+            return 6;
+        }
+    }
+    if (y == 0) {
+        switch (walkingStyle) {
+            case 0:
+            case 0xC:
+            case 0xD:
+                y = 0;
+                break;
+            case 0x4:
+                y = 1;
+                break;
+            case 0x7:
+                y = 2;
+                break;
+            case 0x8:
+                y = 3;
+                break;
+            default: break;
+        }
+    }
+    if (gameState.unknown92 == 3) {
+        y += 4;
+        Unknown7E2E7A[Unknown7E9F73] = 0;
+    } else if ((gameState.unknown92 == 5) && (y == 0)) {
+        y += 6;
+    }
+    if (gameState.partyStatus == 3) {
+        EntityScriptVar3Table[Unknown7E9F73] = 5;
+    } else if (character.afflictions[0] == Status0.Unconscious) {
+        EntityScriptVar3Table[Unknown7E9F73] = 16;
+    } else if ((EntitySurfaceFlags[Unknown7E9F73] & 0xC) == 0xC) {
+        EntityScriptVar3Table[Unknown7E9F73] = 24;
+    } else if ((EntitySurfaceFlags[Unknown7E9F73] & 8) == 8) {
+        EntityScriptVar3Table[Unknown7E9F73] = 16;
+    } else {
+        EntityScriptVar3Table[Unknown7E9F73] = 8;
+    }
+    if (character.afflictions[0] == Status0.Paralyzed) {
+        EntityScriptVar3Table[Unknown7E9F73] = 56;
+    }
+    return PartyCharacterGraphicsTable[characterID][y];
+}
 
 // $C07A56
 void UnknownC07A56(short arg1, short arg2, short arg3) {
@@ -2016,6 +2109,9 @@ void FileSelectInit() {
     UnknownC4FD18(gameState.soundSetting - 1);
 }
 
+// $C0B65F
+void UnknownC0B65F(short);
+
 // $C0B67F
 void UnknownC0B67F() {
     UnknownC0927C();
@@ -2716,4 +2812,95 @@ void TeleportMainLoop() {
     Unknown7E9F45.integer = 0;
     Unknown7E5D58 = 0;
     TeleportDestination = 0;
+}
+
+// $C0EE68
+void LogoScreenLoad(short arg1) {
+    UnknownC08D79(1);
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x4000, 0);
+    TM_MIRROR = 4;
+    switch (arg1) {
+        case 0:
+            Decomp(&NintendoGraphics[0], &Unknown7F0000[0]);
+            Decomp(&NintendoArrangement[0], &IntroBG2Buffer[0]);
+            Decomp(&NintendoPalette[0], &palettes[0][0]);
+            break;
+        case 1:
+            Decomp(&APEGraphics[0], &Unknown7F0000[0]);
+            Decomp(&APEArrangement[0], &IntroBG2Buffer[0]);
+            Decomp(&APEPalette[0], &palettes[0][0]);
+            break;
+        case 2:
+            Decomp(&HALKENGraphics[0], &Unknown7F0000[0]);
+            Decomp(&HALKENArrangement[0], &IntroBG2Buffer[0]);
+            Decomp(&HALKENPalette[0], &palettes[0][0]);
+            break;
+        default: break;
+    }
+    CopyToVram(0, 0x8000, 0, &Unknown7F0000[0]);
+    CopyToVram(0, 0x800, 0x4000, &IntroBG2Buffer[0]);
+    Unknown7E0030 = 0x18;
+}
+
+// $C0EFE1
+short UnknownC0EFE1(short);
+
+// $C0F009
+short LogoScreen() {
+    LogoScreenLoad(0);
+    FadeInWithMosaic(1, 2, 0);
+    if (Debug != 0) {
+        UnknownC0EFE1(0xB4);
+    } else {
+        for (short i = 0; i < 0xB4; i++) {
+            WaitUntilNextFrame();
+        }
+    }
+    FadeOutWithMosaic(1, 2, 0);
+    LogoScreenLoad(1);
+    FadeInWithMosaic(1, 2, 0);
+    if (UnknownC0EFE1(0x78) != 0) {
+        FadeOutWithMosaic(2, 1, 0);
+        return 1;
+    }
+    FadeOutWithMosaic(1, 2, 0);
+    LogoScreenLoad(2);
+    FadeInWithMosaic(1, 2, 0);
+    if (UnknownC0EFE1(0x78) != 0) {
+        FadeOutWithMosaic(2, 1, 0);
+        return 1;
+    }
+    FadeOutWithMosaic(1, 2, 0);
+    return 0;
+}
+
+// $C0F0D2
+void GasStationLoad();
+
+// $C0F21E
+short UnknownC0F21E();
+
+// $C0F33C
+short GasStation() {
+    UnknownC0927C();
+    GasStationLoad();
+    FadeIn(1, 11);
+    short x11 = UnknownC0F21E();
+    if (x11 != 0) {
+        return 1;
+    }
+    for (short i = 0; i < 0x14A; i++) {
+        if (pad_press[0] != 0) {
+            return 1;
+        }
+        UnknownC426ED();
+        WaitUntilNextFrame();
+    }
+    TM_MIRROR = 0;
+    memset(&palettes[0][0], 0, 0x200);
+    Unknown7E0030 = 0x18;
+    if (x11 == 0) { //isn't this always true...?
+        UnknownC0EFE1(0x1E);
+    }
+    return x11;
 }

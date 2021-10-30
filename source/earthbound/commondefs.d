@@ -306,7 +306,7 @@ enum Music {
 	ONETT_AT_NIGHT_BUZZ_BUZZ2 = 154,
 	YOUR_SANCTUARY_BOSS2 = 155,
 	METEOR_STRIKE = 156,
-	ATTRACT_MODE = 157,
+	AttractMode = 157,
 	NAME_CONFIRMATION = 158,
 	PEACEFUL_REST_VALLEY2 = 159,
 	SoundstoneRecordingGiantStep = 160,
@@ -324,7 +324,7 @@ enum Music {
 	POKEY_ESCAPES = 172,
 	GOOD_MORNING_MOONSIDE = 173,
 	GAS_STATION_2 = 174,
-	TITLE_SCREEN = 175,
+	TitleScreen = 175,
 	BATTLE_SWIRL4 = 176,
 	POKEY_INTRO = 177,
 	GOOD_MORNING_SCARABA = 178,
@@ -2312,7 +2312,7 @@ enum EventFlag {
 	UNKNOWN_1D8 = 0x1D8,
 	UNKNOWN_1D9 = 0x1D9,
 	UNKNOWN_1DA = 0x1DA,
-	NOCONTINUE_SELECTED = 0x1DB,
+	NoContinueSelected = 0x1DB,
 	UNKNOWN_1DC = 0x1DC,
 	UNKNOWN_1DD = 0x1DD,
 	AT_STORE_1DE = 0x1DE,
@@ -2915,6 +2915,47 @@ enum LetterboxStyle {
 	Large = 1,
 	Medium = 2,
 	Small = 3,
+}
+enum Status0 {
+	Unconscious = 1,
+	Diamondized = 2,
+	Paralyzed = 3,
+	Nauseous = 4,
+	Poisoned = 5,
+	Sunstroke = 6,
+	Cold = 7,
+}
+
+enum Status1 {
+	Mushroomized = 1,
+	Possessed = 2,
+}
+
+enum Status2 {
+	Asleep = 1,
+	Crying = 2,
+	Immobilized = 3,
+	Solidified = 4,
+}
+
+enum Status3 {
+	Strange = 1
+}
+
+enum Status4 {
+	CantConcentrate = 1,
+	CantConcentrate4 = 4,
+}
+
+enum Status5 {
+	Homesick = 1
+}
+
+enum Status6 {
+	PSIShieldPower = 1,
+	PSIShield = 2,
+	ShieldPower = 3,
+	Shield = 4,
 }
 
 struct Game_State {

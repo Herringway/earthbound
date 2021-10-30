@@ -945,7 +945,160 @@ short Decomp(const(void)*, void*);
 short UnknownC41EFF(short, short, short, short);
 
 // $C41FFF
-FixedPoint1616 UnknownC41FFF(short, short);
+FixedPoint1616 UnknownC41FFF(short arg1, short arg2) {
+    //push arg2
+    //push ((arg1 >> 8) & 0xFC
+    short a;
+    if (UnknownC4205D[((arg1 >> 8) & 0xFC) >> 2] == 0x100) {
+        a = arg2;
+    } else {
+        a = UnknownC4213F(UnknownC4205D[((arg1 >> 8) & 0xFC) >> 2], arg2);
+    }
+    //pop x
+    //pop arg2 -> y
+    //push a
+    short a2;
+    if (UnknownC420BD[((arg1 >> 8) & 0xFC)] == 0x100) {
+        a2 = arg2;
+    } else {
+        a2 = UnknownC4213F(UnknownC420BD[((arg1 >> 8) & 0xFC)], arg2);
+    }
+    //push ((arg1 >> 8) & 0xFC)
+    //pop x
+    if ((((arg1 >> 8) & 0xFC) < 0x20) || (((arg1 >> 8) & 0xFC) >= 0x62)) {
+        a2 = cast(short)-cast(int)a2;
+    }
+    if ((((arg1 >> 8) & 0xFC) >= 0x4C) && (((arg1 >> 8) & 0xFC) < 0x80)) {
+        a = cast(short)-cast(int)a;
+    }
+    return FixedPoint1616(a2, a);
+}
+
+// $C4205D
+immutable ushort[48] UnknownC4205D = [
+    0x0000,
+    0x0019,
+    0x0032,
+    0x004A,
+    0x0062,
+    0x0079,
+    0x008E,
+    0x00A2,
+    0x00B5,
+    0x00C6,
+    0x00D5,
+    0x00E2,
+    0x00EC,
+    0x00F5,
+    0x00FB,
+    0x00FE,
+    0x0100,
+    0x00FE,
+    0x00FB,
+    0x00F5,
+    0x00ED,
+    0x00E2,
+    0x00D5,
+    0x00C6,
+    0x00B5,
+    0x00A2,
+    0x008E,
+    0x0079,
+    0x0062,
+    0x004A,
+    0x0032,
+    0x0019,
+    0x0000,
+    0x0019,
+    0x0032,
+    0x004A,
+    0x0062,
+    0x0079,
+    0x008E,
+    0x00A2,
+    0x00B5,
+    0x00C6,
+    0x00D5,
+    0x00E2,
+    0x00EC,
+    0x00F5,
+    0x00FB,
+    0x00FE,
+];
+
+// $C420BD
+immutable ushort[65] UnknownC420BD = [
+    0x0100,
+    0x00FE,
+    0x00FB,
+    0x00F5,
+    0x00EC,
+    0x00E2,
+    0x00D5,
+    0x00C6,
+    0x00B5,
+    0x00A3,
+    0x008E,
+    0x0079,
+    0x0062,
+    0x004B,
+    0x0032,
+    0x0019,
+    0x0000,
+    0x0019,
+    0x0032,
+    0x004A,
+    0x0062,
+    0x0079,
+    0x008E,
+    0x00A2,
+    0x00B5,
+    0x00C6,
+    0x00D5,
+    0x00E2,
+    0x00EC,
+    0x00F5,
+    0x00FB,
+    0x00FE,
+    0x0100,
+    0x00FE,
+    0x00FB,
+    0x00F5,
+    0x00ED,
+    0x00E2,
+    0x00D5,
+    0x00C6,
+    0x00B5,
+    0x00A2,
+    0x008E,
+    0x0079,
+    0x0062,
+    0x004A,
+    0x0032,
+    0x0019,
+    0x0000,
+    0x0019,
+    0x0032,
+    0x004A,
+    0x0062,
+    0x0079,
+    0x008E,
+    0x00A2,
+    0x00B5,
+    0x00C6,
+    0x00D5,
+    0x00E2,
+    0x00EC,
+    0x00F5,
+    0x00FB,
+    0x00FE,
+    0x0100,
+];
+
+// $C4213F
+short UnknownC4213F(short arg1, short arg2) {
+    return cast(short)((((arg2 & 0xFF00) >> 8) * (arg1 & 0xFF)) + ((arg2 & 0xFF) * (arg1 & 0xFF) >> 8));
+}
 
 // $C426ED
 void UnknownC426ED() {
@@ -1903,8 +2056,60 @@ ushort UnknownC491EE(ushort arg1, ushort arg2, short arg3) {
     return cast(ushort)((arg2 - arg1) / arg3);
 }
 
+//$C49209
+void UnknownC49208(short arg1) {
+    ushort* buf = cast(ushort*)(&Unknown7F0000[0]);
+    ushort* x06 = &buf[0x3C00];
+    for (short i = 0; i < 0x60; i++) {
+        buf[0x3C80 + i] = UnknownC491EE(palettes[2][i] & 0x1F, x06[0] & 0x1F, arg1);
+        buf[0x3D00 + i] = UnknownC491EE((palettes[2][i] & 0x3E0) >> 5, (x06[0] & 0x3E0) >> 5, arg1);
+        buf[0x3D80 + i] = UnknownC491EE((palettes[2][i] & 0x7C00) >> 10, (x06[0] & 0x7C00) >> 10, arg1);
+
+        buf[0x3E00 + i] = ((palettes[2][i] & 0x1F) << 8) & 0xFF00;
+        buf[0x3E80 + i] = (palettes[2][i] & 0x3E0) << 3;
+        buf[0x3F00 + i] = (palettes[2][i] & 0x7C00) >> 2;
+        x06++;
+    }
+}
+
+//$C492D2
+void UnknownC492D2() {
+    ushort* x12 = &palettes[2][0];
+    ushort* buf = cast(ushort*)&Unknown7F0000[0];
+    for (short i = 0; i < 0x60; i++) {
+        buf[0x3E00 + i * 2] += buf[0x3C80 + i * 2];
+        buf[0x3E80 + i * 2] += buf[0x3D00 + i * 2];
+        buf[0x3F00 + i * 2] += buf[0x3D80 + i * 2];
+        x12[0] = ((buf[0x3E00 + i * 2] >> 8) & 0x1F) | (((buf[0x3E80 + i * 2] >> 8) & 0x1F) << 5) | (((buf[0x3F00 + i * 2] >> 8) & 0x1F) << 10);
+        x12++;
+    }
+}
+
 //$C49496
-ushort UnknownC49496(ushort, short);
+ushort UnknownC49496(ushort arg1, short arg2) {
+    ushort red;
+    ushort green;
+    ushort blue;
+    if (arg2 < 0x32) {
+        red = cast(ushort)((arg1 & 0x1F) * arg2 * 5);
+        green = cast(ushort)(((arg1 >> 5) & 0x1F) * arg2 * 5);
+        blue = cast(ushort)(((arg1 >> 10) & 0x1F) * arg2 * 5);
+        if (red > 0x1E45) {
+            red = 0x1F00;
+        }
+        if (green > 0x1E45) {
+            green = 0x1F00;
+        }
+        if (blue > 0x1E45) {
+            blue = 0x1F00;
+        }
+    } else if (arg2 != 0x32) {
+        red = 0x1F00;
+        green = 0x1F00;
+        blue = 0x1F00;
+    }
+    return cast(ushort)(((red >> 8) & 0xFF) | (((green >> 8) & 0xFF) << 5) | (((blue >> 8) & 0xFF) << 10));
+}
 
 //$C4954C
 void UnknownC4954C(short arg1, ushort* arg2) {
@@ -2314,6 +2519,41 @@ void UnknownC4C2DE() {
     UnknownC0888B();
 }
 
+//$C4C45F
+void UnknownC4C45F(short arg1) {
+    memcpy(&Unknown7F0000[0x7800], &palettes[2][0], 0xC0);
+    memcpy(&Unknown7F0000[0x7800 + (arg1 << 5)], &palettes[7][0], 0x20);
+    memcpy(&Unknown7F0000[0x7800 + ((arg1 - 1) << 5)], &palettes[6][0], 0x20);
+}
+
+//$C4C519
+short UnknownC4C519(short arg1, short arg2) {
+    UnknownC4C45F(arg1);
+    UnknownC49208(arg2);
+    while (arg2 != 0) {
+        if (pad_press[0] != 0) {
+            return -1;
+        }
+        UnknownC492D2();
+        WaitUntilNextFrame();
+        arg2--;
+    }
+    memcpy(&palettes[2][0], &Unknown7F0000[0x7800], 0xC0);
+    return 0;
+}
+
+//$C4C567
+short SkippablePause(short arg1) {
+    while (arg1 != 0) {
+        if (pad_press[0] != 0) {
+            return -1;
+        }
+        WaitUntilNextFrame();
+        arg1--;
+    }
+    return 0;
+}
+
 //$C4C58F
 void UnknownC4C58F(short arg1) {
     UnknownC4954C(0x64, &palettes[0][0]);
@@ -2328,10 +2568,53 @@ void UnknownC4C58F(short arg1) {
 }
 
 //$C4C60E
-void UnknownC4C60E(short);
+void UnknownC4C60E(short arg1) {
+    UnknownC496E7(arg1, -1);
+    for (short i = 0; i < arg1; i++) {
+        UnknownC426ED();
+        OAMClear();
+        UnknownC09466();
+        UpdateScreen();
+        WaitUntilNextFrame();
+    }
+    UnknownC49740();
+}
 
 //$C4C64D
-short UnknownC4C64D();
+short UnknownC4C64D() {
+    SkippablePause(0x3C);
+    //DisplayText(TextGameOver);
+    UnknownC1DD5F();
+    if (getEventFlag(EventFlag.NoContinueSelected) == 0) {
+        SkippablePause(0x3C);
+        return -1;
+    }
+    if (SkippablePause(0x3C) != 0) {
+        return 0;
+    }
+    if (UnknownC4C519(1, 0x5A) != 0) {
+        return 0;
+    }
+    if (SkippablePause(1) != 0) {
+        return 0;
+    }
+    if (UnknownC4C519(2, 0x5A) != 0) {
+        return 0;
+    }
+    if (SkippablePause(1) != 0) {
+        return 0;
+    }
+    if (UnknownC4C519(3, 0x5A) != 0) {
+        return 0;
+    }
+    if (SkippablePause(1) != 0) {
+        return 0;
+    }
+    if (UnknownC4C519(4, 8) != 0) {
+        return 0;
+    }
+    return 0;
+}
 
 //$C4C718
 short Spawn() {
@@ -2513,8 +2796,163 @@ short DisplayTownMap() {
     return x10;
 }
 
+//$C4D989
+short UnknownC4D989(short arg1) {
+    UnknownC0927C();
+    UnknownC01A86();
+    AllocSpriteMem(short.min, 0);
+    InitializeMiscObjectData();
+    Unknown7E4A58 = 1;
+    Unknown7E4A5A = 0;
+    SetBoundaryBehaviour(0);
+    EntityAllocationMinSlot = 0x17;
+    EntityAllocationMaxSlot = 0x18;
+    InitEntity(1, 0, 0);
+    UnknownC02D29();
+    for (short i = 0; i < 6; i++) {
+        gameState.partyMembers[i] = 0;
+    }
+    UnknownC0B65F(0x1D60);
+    UnknownC03A24();
+    memset(&palettes[0][0], 0, 0x200);
+    OverworldInitialize();
+    TM_MIRROR = 0;
+    UnknownC2EA15();
+    UnknownC4A7B0();
+    Unknown7E9641 = 0;
+    short x12 = 0;
+    short x14 = 0;
+    //DisplayText(AttractModeText[arg1]);
+    while (Unknown7E9641 == 0) {
+        UnknownC4A7B0();
+        if (((pad_press[0] & PAD_A) != 0) || ((pad_press[0] & PAD_B) != 0) || ((pad_press[0] & PAD_START) != 0)) {
+            x12 = 1;
+            break;
+        }
+        UnknownC1004E();
+        if ((x14 == 0) || (x14 == 1)) {
+            TM_MIRROR = 0x13;
+        }
+        x14++;
+    }
+    UnknownC2EA74();
+    while (UnknownC2EACF() != 0) {
+        UnknownC1004E();
+        UnknownC4A7B0();
+    }
+    FadeOut(1, 1);
+    while (Unknown7E0028 != 0) {
+        UnknownC1004E();
+    }
+    UnknownC2EAAA();
+    Unknown7E9641 = 0;
+    UnknownC021E6();
+    return x12;
+}
+
 //$C4DAD2
-void InitIntro();
+void InitIntro() {
+    short x02 = 0;
+    Unknown7EB4B6 = 1;
+    UnknownC0AC0C(2);
+    UnknownC0927C();
+    UnknownC200D9();
+    UnknownC432B1();
+    Unknown7E5DD8 = 1;
+    BG3_X_POS = 0;
+    BG3_Y_POS = 0;
+    BG2_X_POS = 0;
+    BG2_Y_POS = 0;
+    BG1_X_POS = 0;
+    BG1_Y_POS = 0;
+    UpdateScreen();
+    BG3_X_POS = 0;
+    BG3_Y_POS = 0;
+    BG2_X_POS = 0;
+    BG2_Y_POS = 0;
+    BG1_X_POS = 0;
+    BG1_Y_POS = 0;
+    UpdateScreen();
+    short x; //x0E
+    while (x == 0) {
+        switch (x02) {
+            case 0:
+                if (LogoScreen() != 0) {
+                    UnknownC0AC0C(2);
+                    if ((INIDISP_MIRROR & 0x80) != 0) {
+                        FadeOutWithMosaic(4, 1, 0);
+                    }
+                    ChangeMusic(Music.TitleScreen);
+                    x = ShowTitleScreen(1);
+                    x02 = 2;
+                } else {
+                    x = 0;
+                }
+                break;
+            case 1:
+                ChangeMusic(Music.GasStation);
+                if (GasStation() != 0) {
+                    UnknownC0AC0C(2);
+                    if ((INIDISP_MIRROR & 0x80) != 0) {
+                        FadeOutWithMosaic(4, 1, 0);
+                    }
+                    CGADSUB = 0;
+                    CGWSEL = 0;
+                    TM_MIRROR = 1;
+                    TD_MIRROR = 0;
+                    ChangeMusic(Music.TitleScreen);
+                    x = ShowTitleScreen(1);
+                    x02++;
+                } else {
+                    x = 0;
+                }
+                break;
+            case 2: //@UNKNOWN17
+                ChangeMusic(Music.TitleScreen);
+                x = ShowTitleScreen(0);
+                break;
+            case 3: //@UNKNOWN18
+                ChangeMusic(Music.AttractMode);
+                x = UnknownC4D989(0);
+                break;
+            case 4: //@UNKNOWN19
+                x = UnknownC4D989(2);
+                break;
+            case 5: //@UNKNOWN20
+                x = UnknownC4D989(3);
+                break;
+            case 6: //@UNKNOWN21
+                x = UnknownC4D989(4);
+                break;
+            case 7: //@UNKNOWN22
+                x = UnknownC4D989(5);
+                break;
+            case 8: //@UNKNOWN23
+                x = UnknownC4D989(6);
+                break;
+            case 9: //@UNKNOWN24
+                x = UnknownC4D989(7);
+                break;
+            case 10: //@UNKNOWN25
+                x = UnknownC4D989(9);
+                break;
+            default: //@UNKNOWN26
+                x02 = 1;
+                break;
+        }
+        x02++;
+    }
+    UnknownC0AC0C(2);
+    Unknown7E0028 = 0;
+    if ((INIDISP_MIRROR & 0x80) != 0) {
+        FadeOutWithMosaic(4, 1, 0);
+    }
+    CGADSUB = 0;
+    CGWSEL = 0;
+    TM_MIRROR = 1;
+    TD_MIRROR = 0;
+    Unknown7E5DD8 = 0;
+}
 
 // $C4E366
 void UnknownC4E366();

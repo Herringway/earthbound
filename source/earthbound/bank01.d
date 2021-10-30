@@ -561,6 +561,9 @@ void CloseFocusWindow() {
     CloseFocusWindowN();
 }
 
+// $C1DD5F
+void UnknownC1DD5F();
+
 // $C1F805
 void FileMenuLoop();
 

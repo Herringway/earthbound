@@ -105,6 +105,33 @@ immutable SpriteMap[][9] UnknownE1CF9D = [
 	]
 ];
 
+// $E14EC1
+immutable ubyte[] APEArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
+
+// $E14F2A
+immutable ubyte[] APEGraphics = cast(immutable(ubyte)[])import("intro/logos/ape.gfx.lzhal");
+
+// $E15130
+immutable ubyte[] APEPalette = cast(immutable(ubyte)[])import("intro/logos/ape.pal.lzhal");
+
+// $E15174
+immutable ubyte[] HALKENArrangement = cast(immutable(ubyte)[])import("intro/logos/halken.arr.lzhal");
+
+// $E151E8
+immutable ubyte[] HALKENGraphics = cast(immutable(ubyte)[])import("intro/logos/halken.gfx.lzhal");
+
+// $E153B8
+immutable ubyte[] HALKENPalette = cast(immutable(ubyte)[])import("intro/logos/halken.pal.lzhal");
+
+// $E15455
+immutable ubyte[] NintendoArrangement = cast(immutable(ubyte)[])import("intro/logos/nintendo.arr.lzhal");
+
+// $E1549E
+immutable ubyte[] NintendoGraphics = cast(immutable(ubyte)[])import("intro/logos/nintendo.gfx.lzhal");
+
+// $E1558F
+immutable ubyte[] NintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
+
 // $E1CFAF
 immutable ubyte[] UnknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
 

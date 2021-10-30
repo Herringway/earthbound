@@ -945,3 +945,15 @@ void UnknownC2DE96();
 
 // $C2E9ED
 void UnknownC2E9ED();
+
+// $C2EA15
+void UnknownC2EA15();
+
+// $C2EA74
+void UnknownC2EA74();
+
+// $C2EAAA
+void UnknownC2EAAA();
+
+// $C2EACF
+short UnknownC2EACF();
