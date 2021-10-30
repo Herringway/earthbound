@@ -946,25 +946,18 @@ short UnknownC41EFF(short, short, short, short);
 
 // $C41FFF
 FixedPoint1616 UnknownC41FFF(short arg1, short arg2) {
-    //push arg2
-    //push ((arg1 >> 8) & 0xFC
     short a;
     if (UnknownC4205D[((arg1 >> 8) & 0xFC) >> 2] == 0x100) {
         a = arg2;
     } else {
         a = UnknownC4213F(UnknownC4205D[((arg1 >> 8) & 0xFC) >> 2], arg2);
     }
-    //pop x
-    //pop arg2 -> y
-    //push a
     short a2;
     if (UnknownC420BD[((arg1 >> 8) & 0xFC)] == 0x100) {
         a2 = arg2;
     } else {
         a2 = UnknownC4213F(UnknownC420BD[((arg1 >> 8) & 0xFC)], arg2);
     }
-    //push ((arg1 >> 8) & 0xFC)
-    //pop x
     if ((((arg1 >> 8) & 0xFC) < 0x20) || (((arg1 >> 8) & 0xFC) >= 0x62)) {
         a2 = cast(short)-cast(int)a2;
     }
