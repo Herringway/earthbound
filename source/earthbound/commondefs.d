@@ -3424,8 +3424,16 @@ struct NPC {
 struct UnknownC42B0DEntry {
 	ubyte unknown0;
 	ubyte unknown1;
-	ubyte[0] unknown2;
+	UnknownC42B0DSubEntry[2][] unknown2;
 }
+struct UnknownC42B0DSubEntry {
+	ubyte unknown0;
+	ubyte unknown1;
+	ubyte unknown2;
+	ubyte unknown3;
+	ubyte unknown4;
+}
+
 
 struct CharacterInitialEntityDataEntry {
 	ushort overworldSprite;

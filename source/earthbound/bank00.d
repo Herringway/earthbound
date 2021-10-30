@@ -112,7 +112,26 @@ void AllocSpriteMem(short arg1, ubyte arg2) {
 short UnknownC01C52(short, short, short);
 
 // $C01D38
-void UnknownC01D38(short, short, short);
+void UnknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)* arg4) {
+    // why???
+    ubyte* x10 = cast(ubyte*)&SpriteTable7E467E.ptr[0] + arg1;
+    const(UnknownC42B0DSubEntry)* x06 = &arg4.unknown2[0][0];
+    for (short i = 0; i < 2; i++) {
+        for (short j = 0; j < arg4.unknown0; j++) {
+            x10[0] = x06.unknown0;
+            x10++;
+            x10[0] = cast(ubyte)UnknownC4303C[arg2 + j];
+            x10++;
+            x10[0] = cast(ubyte)((x06.unknown2 & 0xFE) | ((UnknownC4303C[arg2 + j] >> 8) & 0xFF) | arg3);
+            x10++;
+            x10[0] = x06.unknown3;
+            x10++;
+            x10[0] = x06.unknown4;
+            x10++;
+            x06++;
+        }
+    }
+}
 
 // $C01DED
 short UnknownC01DED(short);
@@ -128,10 +147,10 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
     short x02 = UnknownC01DED(sprite);
     short x21 = UnknownC01C52(Unknown7E467A, Unknown7E467C, index);
     while (x21 <= 0) {}
-    short x1F = FindFree7E4682(UnknownC42B0D[x02].unknown0);
+    short x1F = FindFree7E4682(UnknownC42B0D[x02].unknown0 * 10);
     while (x1F <= 0) {}
     NewEntityPriority = 1;
-    UnknownC01D38(x1F, x21, SpriteGroupingPointers[sprite].unknown3);
+    UnknownC01D38(x1F, x21, SpriteGroupingPointers[sprite].unknown3, &UnknownC42B0D[x02]);
     if (index != -1) {
         EntityAllocationMinSlot = index;
         EntityAllocationMaxSlot = cast(short)(index + 1);
