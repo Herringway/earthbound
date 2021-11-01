@@ -7,6 +7,7 @@ import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank05;
 import earthbound.bank0F;
 import earthbound.bank1C;
 import earthbound.bank20;
@@ -726,7 +727,7 @@ void UnknownC069AF() {
 
 // $C06B21
 void SpawnBuzzBuzz() {
-    //DisplayText(TextSpawnBuzzBuzz);
+    DisplayText(TextSpawnBuzzBuzz);
     UnknownEF0EE8();
 }
 

@@ -5,10 +5,14 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank07;
+import earthbound.bank08;
+import earthbound.bank09;
 import earthbound.bank0A;
 import earthbound.bank0B;
 import earthbound.bank10;
 import earthbound.bank15;
+import earthbound.bank2F;
 import earthbound.globals;
 
 import core.stdc.string;
@@ -1050,19 +1054,19 @@ short BattleRoutine() {
 		FixAttackerName(1);
 		DisplayInBattleText(EnemyConfigurationTable[Unknown7E9F8C[0]].encounterTextPointer);
 		if (x1D == Initiative.PartyFirst) {
-			//DisplayInBattleText(TextBattleSurpriseOpeningAttack);
+			DisplayInBattleText(TextBattleSurpriseOpeningAttack);
 		}
 		for (short i = 0; i < EnemiesInBattle; i++) {
 			currentTarget = &BattlersTable[i];
 			FixTargetName();
 			if (currentTarget.afflictions[2] == Status2.Asleep) {
-				//DisplayInBattleText(TextBattleFallenAsleepIndirect);
+				DisplayInBattleText(TextBattleFallenAsleepIndirect);
 			}
 			if (currentTarget.afflictions[4] != 0) {
-				//DisplayInBattleText(TextBattleStoppedBeingAbleToConcentrate);
+				DisplayInBattleText(TextBattleStoppedBeingAbleToConcentrate);
 			}
 			if (currentTarget.afflictions[3] == Status3.Strange) {
-				//DisplayInBattleText(TextBattleActingALittleStrange);
+				DisplayInBattleText(TextBattleActingALittleStrange);
 			}
 		}
 		CloseFocusWindow();
@@ -1256,7 +1260,7 @@ short BattleRoutine() {
 			}
 			CreateWindow(Window.TextBattle);
 			if (x1D == Initiative.EnemiesFirst) {
-				//DisplayBattleText(TextBattleEnemysOpeningAttack);
+				DisplayInBattleText(TextBattleEnemysOpeningAttack);
 			}
 			if (x27 != 0) {
 				short x04;
@@ -1301,12 +1305,12 @@ short BattleRoutine() {
 				}
 				if ((x04 == 0) || (x1D == 4) || ((x25 * 10 + x1B >= x04) && (RandLimit(100) < (x25 * 10 + x1B - x04)))) {
 					x17 = 0;
-					//DisplayInBattleText(TextBattleRunSuccess);
+					DisplayInBattleText(TextBattleRunSuccess);
 					break turnLoop;
 				} else {
 					RunFailure:
 					x27 = 0;
-					//DisplayInBattleText(TextBattleRunFailure);
+					DisplayInBattleText(TextBattleRunFailure);
 				}
 			}
 			x1D = 0;
@@ -1388,19 +1392,19 @@ short BattleRoutine() {
 					switch (currentAttacker.afflictions[0]) {
 						case Status0.Nauseous:
 							x2F = TwentyFivePercentVariance(20);
-							//DisplayTextWait(TextBattleFeltSickAndTookDamage, x2F);
+							DisplayTextWait(TextBattleFeltSickAndTookDamage, x2F);
 							break;
 						case Status0.Poisoned:
 							x2F = TwentyFivePercentVariance(20);
-							//DisplayTextWait(TextBattleFeltPainFromPoison, x2F);
+							DisplayTextWait(TextBattleFeltPainFromPoison, x2F);
 							break;
 						case Status0.Sunstroke:
 							x2F = TwentyFivePercentVariance(4);
-							//DisplayTextWait(TextBattleFeltDizzyAndWeak, x2F);
+							DisplayTextWait(TextBattleFeltDizzyAndWeak, x2F);
 							break;
 						case Status0.Cold:
 							x2F = TwentyFivePercentVariance(4);
-							//DisplayTextWait(TextBattleSneezedAndReceivedDamage, x2F);
+							DisplayTextWait(TextBattleSneezedAndReceivedDamage, x2F);
 							break;
 						default: break;
 					}
@@ -1458,7 +1462,7 @@ short BattleRoutine() {
 					}
 					if (BattleActionTable[currentAttacker.currentAction].ppCost != 0) {
 						if (BattleActionTable[currentAttacker.currentAction].ppCost > currentAttacker.ppTarget) {
-							//DisplayInBattleText(TextBattleUsedPSI);
+							DisplayInBattleText(TextBattleUsedPSI);
 							goto Unknown215;
 						} else {
 							UnknownC2BCB9(currentAttacker);
@@ -1485,10 +1489,10 @@ short BattleRoutine() {
 					}
 					if (x31 != 0) {
 						if (currentAttacker.afflictions[3] == Status3.Strange) {
-							//DisplayInBattleText(TextBattleActingABitUnusual);
+							DisplayInBattleText(TextBattleActingABitUnusual);
 						}
 						if (currentAttacker.afflictions[1] == Status1.Mushroomized) {
-							//DisplayInBattleText(TextBattleFeelingFunky);
+							DisplayInBattleText(TextBattleFeelingFunky);
 						}
 					}
 					UnknownC1DD9F(BattleActionTable[currentAttacker.currentAction].text);
@@ -1508,7 +1512,7 @@ short BattleRoutine() {
 										goto Unknown204;
 									}
 								}
-								//DisplayInBattleText(TextBattleWasAlreadyGone);
+								DisplayInBattleText(TextBattleWasAlreadyGone);
 								break;
 							}
 							Unknown204:
@@ -1549,7 +1553,7 @@ short BattleRoutine() {
 						if ((MirrorEnemy != 0) && (currentAttacker.id == 4) && (--MirrorTurnTimer == 0)) {
 							MirrorEnemy = 0;
 							CopyMirrorData(currentAttacker, &Unknown7EAA14);
-							//DisplayInBattleText(TextBattleReturnedOriginalForm);
+							DisplayInBattleText(TextBattleReturnedOriginalForm);
 						}
 						UnknownC3E6F8F();
 					}
@@ -1559,18 +1563,18 @@ short BattleRoutine() {
 					switch (currentAttacker.afflictions[2]) {
 						case Status2.Asleep:
 							if ((rand() & 3) == 0) {
-								//DisplayInBattleText(TextBattleWokeUp);
+								DisplayInBattleText(TextBattleWokeUp);
 								currentAttacker.afflictions[2] = 0;
 							}
 							break;
 						case Status2.Immobilized:
-							if (RandLimit(100) < 15) {
-								//DisplayInBattleText(TextBattleAgainMovedFreely);
+							if (RandLimit(100) < 85) {
+								DisplayInBattleText(TextBattleBodyAgainMovedFreely);
 								currentAttacker.afflictions[2] = 0;
 							}
 							break;
 						case Status2.Solidified:
-							//DisplayInBattleText(TextBattleAbleToMove);
+							DisplayInBattleText(TextBattleAbleToMove);
 							currentAttacker.afflictions[2] = 0;
 							break;
 						default: break;
@@ -1578,7 +1582,7 @@ short BattleRoutine() {
 					if (currentAttacker.afflictions[4] != 0) {
 						currentAttacker.afflictions[4]--;
 						if (currentAttacker.afflictions[4] == 0) {
-							//DisplayInBattleText(TextBattleAbleToConcentrate);
+							DisplayInBattleText(TextBattleAbleToConcentrate);
 						}
 					}
 					for (short i = 0; i < BattlersTable.length; i++) {
@@ -1591,7 +1595,7 @@ short BattleRoutine() {
 				if (CountChars(0) == 0) {
 					x17 = 1;
 					UnknownC20F9A();
-					//DisplayInBattleText(TextBattleLostTheBattle);
+					DisplayInBattleText(TextBattleLostTheBattle);
 					x23 = 1;
 				}
 				if (CountChars(1) == 0) {
@@ -1605,13 +1609,13 @@ short BattleRoutine() {
 					BattleEXPScratch += CountChars(0) - 1;
 					BattleEXPScratch /= CountChars(0); //Bug! if party is dead, this is division by 0
 					if (CurrentBattleGroup >= 0x1C0) {
-						//DisplayTextWait(TextBattleYouWonBoss, BattleEXPScratch);
+						DisplayTextWait(TextBattleYouWonBoss, BattleEXPScratch);
 					} else {
-						//DisplayTextWait(TextBattleYouWon, BattleEXPScratch);
+						DisplayTextWait(TextBattleYouWon, BattleEXPScratch);
 					}
 					if (ItemDropped != 0) {
 						UnknownC1ACF8F(ItemDropped);
-						//DisplayInBattleText(TextBattleEnemyLeftPresent);
+						DisplayInBattleText(TextBattleEnemyLeftPresent);
 					}
 					for (short i = 0; i < BattlersTable.length; i++) {
 						if (BattlersTable[i].consciousness == 0) {
@@ -1692,6 +1696,129 @@ short IsCharacterTargetted(short);
 // $C27550
 void KOTarget(Battler*);
 
+// $C27E8A
+void SwapAttackerWithTarget();
+
+// $C28125
+void CalcResistDamage(short damage, short);
+
+// $C284AD
+short DetermineDodge();
+
+// $C2889B
+void BattleActionNull() {
+	//nothing
+}
+
+// $C29033
+void BattleActionNull2() {
+	//nothing
+}
+
+// $C29036
+void BattleActionNull3() {
+	//nothing
+}
+
+// $C29039
+void BattleActionNull4() {
+	//nothing
+}
+
+// $C2903C
+void BattleActionNull5() {
+	//nothing
+}
+
+// $C2903F
+void BattleActionNull6() {
+	//nothing
+}
+
+// $C29042
+void BattleActionNull7() {
+	//nothing
+}
+
+// $C29045
+void BattleActionNull8() {
+	//nothing
+}
+
+// $C29048
+void BattleActionNull9() {
+	//nothing
+}
+
+// $C2904B
+void BattleActionNull10() {
+	//nothing
+}
+
+// $C2904E
+void BattleActionNull11() {
+	//nothing
+}
+
+// $C2941D
+short PSIShieldNullify();
+
+// $C294CE
+void WeakenShield() {
+	Unknown7EAA94 = 0;
+	if (Unknown7EAA96 == 0) {
+		return;
+	}
+	SwapAttackerWithTarget();
+	currentTarget.shieldHP--;
+	if (currentTarget.shieldHP == 0) {
+		currentTarget.afflictions[6] = 0;
+		DisplayInBattleText(TextBattleShieldDisappeared);
+	}
+	Unknown7EAA96 = 0;
+}
+
+// $C29516
+void PSIRockinCommon(short baseDamage) {
+	if (PSIShieldNullify() == 0) {
+		return;
+	}
+	if (DetermineDodge() != 0) {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	} else {
+		CalcResistDamage(FiftyPercentVariance(baseDamage), 0xFF);
+	}
+	WeakenShield();
+}
+
+// $C29556
+void BattleActionPSIRockinAlpha() {
+	PSIRockinCommon(80);
+}
+
+// $C2955F
+void BattleActionPSIRockinBeta() {
+	PSIRockinCommon(180);
+}
+
+// $C29568
+void BattleActionPSIRockinGamma() {
+	PSIRockinCommon(540);
+}
+
+// $C29568
+void BattleActionPSIRockinOmega() {
+	PSIRockinCommon(720);
+}
+
+// $C2A39D
+void HealPoison() {
+	if (currentTarget.afflictions[0] == Status0.Poisoned) {
+		currentTarget.afflictions[0] = 0;
+		DisplayInBattleText(TextBattlePoisonWasRemoved);
+	}
+}
+
 // $C2AF1F
 void CopyMirrorData(Battler*, Battler*);
 
@@ -1715,6 +1842,11 @@ void UnknownC2BCB9(Battler*);
 
 // $C2BCE6
 void LoseHPStatus(Battler*, short);
+
+// $C2C513
+void BattleActionNull12() {
+	//nothing
+}
 
 // $C2C8C8
 void LoadEnemyBattleSprites();

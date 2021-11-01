@@ -3,6 +3,7 @@ module earthbound.bank03;
 import earthbound.commondefs;
 import earthbound.bank00;
 import earthbound.bank04;
+import earthbound.bank05;
 import earthbound.bank15;
 import earthbound.bank18;
 import earthbound.globals;
@@ -374,6 +375,19 @@ immutable(Unknown7EAECCEntry)[4] UnknownC3F819 = [
 	Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
 ];
 
+// $C3FDBD
+immutable ubyte*[10] AttractModeText = [
+	null /+TEXT_ATTRACT_MODE_0+/,
+	null /+TEXT_ATTRACT_MODE_1+/,
+	null /+TEXT_ATTRACT_MODE_2+/,
+	null /+TEXT_ATTRACT_MODE_3+/,
+	null /+TEXT_ATTRACT_MODE_4+/,
+	null /+TEXT_ATTRACT_MODE_5+/,
+	null /+TEXT_ATTRACT_MODE_6+/,
+	null /+TEXT_ATTRACT_MODE_7+/,
+	null /+TEXT_ATTRACT_MODE_8+/,
+	null /+TEXT_ATTRACT_MODE_9+/,
+];
 // $C3FDBD
 immutable ushort[4] UnusedForSaleSignSpriteTable = [
 	OverworldSprite.GuyInBlueClothes,

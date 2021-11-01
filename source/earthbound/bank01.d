@@ -5,6 +5,7 @@ import earthbound.bank00;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank07;
 import earthbound.bank15;
 import earthbound.bank2F;
 import earthbound.globals;
@@ -417,7 +418,7 @@ void ShowTownMap() {
 }
 
 // $C186B1 - Call a text script (script_ptr)
-void DisplayText(ubyte* script_ptr);
+void DisplayText(const(ubyte)* script_ptr);
 
 // $C18B2C
 ushort GiveItemToSpecificCharacter(ushort character, ubyte item) {
@@ -547,12 +548,15 @@ void ShowHPAlert(short arg1) {
     UnknownC0943C();
     CreateWindowN(Window.TextStandard);
     UnknownC1AC4A(&PartyCharacters[arg1], 5);
-    //DisplayText(TextAlertConditionCritical);
+    DisplayText(TextAlertConditionCritical);
     CloseFocusWindowN();
     Win_Tick();
     UnknownC09451();
     currentAttacker = x02;
 }
+
+// $C1DC66
+void DisplayTextWait(const(ubyte)*, uint);
 
 // $C1DCCB
 void DisplayInBattleText(const(ubyte)*);

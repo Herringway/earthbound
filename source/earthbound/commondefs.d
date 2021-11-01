@@ -3846,23 +3846,23 @@ struct Battler {
 	ubyte actionOrderVar; //6
 	ubyte unknown7; //7
 	ubyte currentActionArgument; //8
-	ubyte unknown9;
-	ubyte currentTarget;
-	ubyte theFlag;
-	ubyte consciousness;
-	ubyte unknown13;
-	ubyte allyOrEnemy;
-	ubyte npcID;
-	ubyte row;
-	ushort hp;
-	ushort hpTarget;
-	ushort hpMax;
-	ushort pp;
-	ushort ppTarget;
-	ushort ppMax;
-	ubyte[AFFLICTION_GROUP_COUNT] afflictions;
-	ubyte guarding;
-	ubyte shieldHP;
+	ubyte unknown9; //9
+	ubyte currentTarget; //10
+	ubyte theFlag; //11
+	ubyte consciousness; //12
+	ubyte unknown13; //13
+	ubyte allyOrEnemy; //14
+	ubyte npcID; //15
+	ubyte row; //16
+	ushort hp; //17
+	ushort hpTarget; //19
+	ushort hpMax; //21
+	ushort pp; //23
+	ushort ppTarget; //25
+	ushort ppMax; //27
+	ubyte[AFFLICTION_GROUP_COUNT] afflictions; //29
+	ubyte guarding; //36
+	ubyte shieldHP; //37
 	ushort offense;
 	ushort defense;
 	ushort speed;

@@ -6,6 +6,7 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
+import earthbound.bank07;
 import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank10;
@@ -2862,7 +2863,7 @@ void UnknownC4C60E(short arg1) {
 //$C4C64D
 short UnknownC4C64D() {
     SkippablePause(0x3C);
-    //DisplayText(TextGameOver);
+    DisplayText(TextGameOver);
     UnknownC1DD5F();
     if (getEventFlag(EventFlag.NoContinueSelected) == 0) {
         SkippablePause(0x3C);
@@ -3101,7 +3102,7 @@ short UnknownC4D989(short arg1) {
     Unknown7E9641 = 0;
     short x12 = 0;
     short x14 = 0;
-    //DisplayText(AttractModeText[arg1]);
+    DisplayText(AttractModeText[arg1]);
     while (Unknown7E9641 == 0) {
         UnknownC4A7B0();
         if (((pad_press[0] & PAD_A) != 0) || ((pad_press[0] & PAD_B) != 0) || ((pad_press[0] & PAD_START) != 0)) {
