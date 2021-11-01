@@ -1401,6 +1401,9 @@ void UpdateScreen() {
     NextFrameBufferID ^= 3;
 }
 
+// $C08B6B
+void UnknownC08B6B(short);
+
 // $C08B8E
 void UnknownC08B8E();
 
@@ -1589,6 +1592,9 @@ void UnknownC0927C() {
     ClearEntityDrawSortingTable();
     Unknown7E0A60 = 0;
 }
+
+// $C09279
+void UnknownC09279();
 
 // $C09321
 short InitEntityWipe(short actionScript, short x, short y) {

@@ -6,6 +6,8 @@ import earthbound.bank01;
 import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank0A;
+import earthbound.bank0B;
+import earthbound.bank10;
 import earthbound.bank15;
 import earthbound.globals;
 
@@ -107,6 +109,9 @@ void UnknownC20266() {
 		Unknown7E827E[i] = UnknownC3E40E[i];
 	}
 }
+
+// $C20293
+void UnknownC20293();
 
 // $C2038B
 void UnknownC2038B() {
@@ -405,6 +410,12 @@ uint UnknownC20F58() {
 		return Unknown7E9627;
 	}
 }
+
+// $C20F9A
+void UnknownC20F9A();
+
+// $C2108C
+short UnknownC2108C();
 
 // $C2109F
 void HPPPRoller() {
@@ -705,6 +716,9 @@ short UnknownC223D9(ubyte* arg1, short arg2) {
 	}
 }
 
+// $C2281D
+void DepositIntoATM(ushort);
+
 // $C228F8
 void AddCharToParty(short id) {
 	for (short i = 0; 6 > i; i++) {
@@ -757,14 +771,953 @@ void RemoveCharFromParty(short id) {
 // $C22474
 short UnknownC22474(ubyte*);
 
+// $C23109
+immutable ConsolationPrize[2] ConsolationItemTable = [
+	ConsolationPrize(EnemyID.CuteLilUFO, [ItemID.Cookie,ItemID.BagOfFries, ItemID.Hamburger, ItemID.BoiledEgg, ItemID.FreshEgg, ItemID.PicnicLunch, ItemID.Pizza, 0]),
+	ConsolationPrize(EnemyID.BeautifulUFO, [ItemID.CanOfFruitJuice, ItemID.RoyalIcedTea, ItemID.ProteinDrink, ItemID.KrakenSoup, ItemID.BottleOfWater, ItemID.ColdRemedy, ItemID.VialOfSerum, 0]),
+];
+
+// $C2311B
+short BattleSelectionMenu(short, short);
+
+// $C23BCF
+void FixAttackerName(short);
+
+// $C23D05
+void FixTargetName();
+
+// $C23E32
+void UnknownC23E32();
+
+// $C24009
+void FeelingStrangeRetargetting();
+
+// $C2416F
+void UnknownC2416F();
+
+// $C24348
+ubyte SelectStealableItem();
+
+// $C24348
+short UnknownC24348(short);
+
+// $C2437E
+void UnknownC2437E();
+
+// $C24477
+void ChooseTarget(Battler*);
+
+// $C24703
+void UnknownC24703(Battler*);
+
 // $C24821
-short BattleRoutine();
+short BattleRoutine() {
+	short x17;
+	ushort x23;
+	ushort x25;
+	ushort x27;
+	ushort x29;
+	ushort x2B;
+	ushort x2D;
+	short x33;
+	short x35;
+	if (BattleDebug == 0) {
+		x35 = 1;
+		x33 = 1;
+		gameState.playerControlledPartyMemberCount = 1;
+		memset(&gameState.partyMembers[0], 0, 6);
+		memset(&gameState.unknown96[0], 0, 6);
+		gameState.partyMembers[0] = 1;
+		gameState.unknown96[0] = 1;
+		EnemiesInBattle = 1;
+		CurrentBattleGroup = 1;
+		Unknown7E9F8C = *cast(ushort*)(BattleEntryPointerTable[0].pointer + 1);
+	}
+	CurrentGiygasPhase = 0;
+	if (CurrentBattleGroup == 0x1DB) {
+		CurrentGiygasPhase = GiygasPhase.BattleStarted;
+	}
+	x2D = BattleEntryBGTable[CurrentBattleGroup].layer1;
+	x2B = BattleEntryBGTable[CurrentBattleGroup].layer2;
+	x29 = cast(ushort)BattleEntryPointerTable[CurrentBattleGroup].letterboxStyle;
+	infiniteBattleLoop: do {
+		ushort x1D;
+		MirrorEnemy = 0;
+		x27 = 0;
+		Unknown7EA97C = 0;
+		x25 = 0;
+		BattleMoneyScratch = 0;
+		BattleEXPScratch = 0;
+		UnknownC08726();
+		UnknownC2E0E7();
+		LoadEnemyBattleSprites();
+		LoadWindowGraphics();
+		UnknownC44963(1);
+		LoadBattleBG(x2D, x2B, x29);
+		UnknownC2EEE7();
+		for (short i = 0; i < BattlersTable.length; i++) {
+			memset(&BattlersTable[i], 0, Battler.sizeof);
+		}
+		Unknown7EAA0C = 0;
+		x23 = 0;
+		for (short i = 0; i < 6; i++ ) {
+			if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
+				BattleInitPlayerStats(gameState.partyMembers[i], &BattlersTable[i]);
+			} else if (gameState.partyMembers[i] >= 5) {
+				BattleInitEnemyStats(NPCAITable[gameState.partyMembers[i]].enemyID, &BattlersTable[i]);
+				BattlersTable[i].allyOrEnemy = 0;
+				BattlersTable[i].npcID = gameState.partyMembers[i];
+				BattlersTable[i].row = cast(ubyte)x23;
+				BattlersTable[i].hpTarget = gameState.partyNPCHP[x23];
+				BattlersTable[i].hp = gameState.partyNPCHP[x23];
+				BattlersTable[i].ppTarget = 0;
+				BattlersTable[i].pp = 0;
+				x23++;
+			}
+		}
+		UnknownC2F0D1();
+		for (short i = 0; i < EnemiesInBattle; i++) {
+			BattleInitEnemyStats(Unknown7E9F8C[i], &BattlersTable[i + 8]);
+		}
+		UnknownC2F121();
+		UnknownC2F8F9();
+		UnknownC47F87();
+		UnknownC08B6B(0x18);
+		BattleModeFlag = 1;
+		ChangeMusic(EnemyConfigurationTable[Unknown7E9F8C[0]].music);
+		UnknownC08744();
+		FadeIn(1, 1);
+		if (BattleDebug == 0) {
+			UnknownC1DCCB(x35);
+			short x02 = 0;
+			for (short i = 0; i < 6; i++) {
+				if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
+					BattleInitPlayerStats(gameState.partyMembers[i], &BattlersTable[i]);
+				} else if (gameState.partyMembers[i] >= 5) {
+					if ((NPCAITable[gameState.partyMembers[i]].targettability & 1) != 0) {
+						BattleInitEnemyStats(NPCAITable[gameState.partyMembers[i]].enemyID, &BattlersTable[i]);
+						BattlersTable[i].row = cast(ubyte)x02;
+						BattlersTable[i].hpTarget = gameState.partyNPCHP[x02];
+						BattlersTable[i].hp = gameState.partyNPCHP[x02];
+						BattlersTable[i].ppTarget = 0;
+						BattlersTable[i].pp = 0;
+						BattlersTable[i].allyOrEnemy = 0;
+						BattlersTable[i].npcID = gameState.partyMembers[i];
+					}
+				}
+			}
+			ShowHPPPWindowsF();
+			Win_Tick();
+			while (true) {
+				WaitUntilNextFrame();
+				UnknownC2DB3F();
+				if ((pad_press[0] & PAD_START) != 0) {
+					break;
+				}
+				if ((pad_press[0] & PAD_SELECT) != 0) {
+					CurrentBattleGroup = EnemySelectMode(CurrentBattleGroup);
+					x2D = BattleEntryBGTable[CurrentBattleGroup].layer1;
+					x2B = BattleEntryBGTable[CurrentBattleGroup].layer2;
+					x29 = cast(ushort)BattleEntryPointerTable[CurrentBattleGroup].letterboxStyle;
+				} else if (((pad_held[0] & PAD_RIGHT) != 0) && (x33 < 0xF)) {
+					x33++;
+				} else if (((pad_held[0] & PAD_LEFT) != 0) && (x33 > 1)) {
+					x33--;
+				} else if (((pad_held[0] & PAD_DOWN) != 0) && (x35 > 1)) {
+					x35--;
+				} else if (((pad_held[0] & PAD_UP) != 0) && (x35 < 99)) {
+					x35++;
+				} else if ((pad_press[0] & PAD_X) != 0) {
+					x35 = Unknown7EAA0C;
+				} else {
+					if ((pad_press[0] & PAD_A) != 0) {
+						ShowPSIAnimation(Unknown7EAA70);
+						if (++Unknown7EAA70 == 0x22) {
+							Unknown7EAA70 = 0;
+						}
+					}
+					if ((pad_press[0] & PAD_B) != 0) {
+						UnknownC4A67E(Unknown7EAA72, Unknown7EAA74);
+						if (++Unknown7EAA72 == 8) {
+							Unknown7EAA72 = 0;
+							Unknown7EAA74 = (Unknown7EAA74 + 1) & 3;
+						}
+					}
+					continue;
+				}
+				short x = 0;
+				if ((x33 & 1) != 0) {
+					gameState.partyMembers[x] = 1;
+					x = 1;
+				}
+				if ((x33 & 2) != 0) {
+					gameState.partyMembers[x] = 2;
+					x++;
+				}
+				if ((x33 & 4) != 0) {
+					gameState.partyMembers[x] = 3;
+					x++;
+				}
+				if ((x33 & 8) != 0) {
+					gameState.partyMembers[x] = 4;
+					x++;
+				}
+				gameState.playerControlledPartyMemberCount = cast(ubyte)x;
+				for (short i = x; i < 6; i++) {
+					gameState.partyMembers[i] = 0;
+				}
+			}
+			ChangeMusic(EnemyConfigurationTable[Unknown7E9F8C[0]].music);
+		}
+		if (getEventFlag(EventFlag.BUZZ_BUZZ_IN_PARTY) != 0) {
+			BattleInitEnemyStats(EnemyID.BuzzBuzz, &BattlersTable[6]);
+			BattlersTable[6].row = 1;
+			BattlersTable[6].allyOrEnemy = 0;
+			BattlersTable[6].npcID = EnemyID.BuzzBuzz;
+		}
+		for (short i = 0; i < 6; i++) {
+			if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
+				if (PartyCharacters[gameState.partyMembers[i] - 1].afflictions[1] == Status1.Possessed) {
+					BattleInitEnemyStats(EnemyID.TinyLilGhost, &BattlersTable[6]);
+					BattlersTable[6].npcID = EnemyID.TinyLilGhost;
+				}
+			}
+		}
+		ShowHPPPWindowsF();
+		short x2F = Unknown7E9F8C[RandLimit(EnemiesInBattle)];
+		ItemDropped = EnemyConfigurationTable[x2F].itemDropped;
+		switch (EnemyConfigurationTable[x2F].itemDropRate) {
+			case 0:
+				if ((rand() & 0x7F) != 0) {
+					ItemDropped = 0;
+				}
+				break;
+			case 1:
+				if ((rand() & 0x3F) != 0) {
+					ItemDropped = 0;
+				}
+				break;
+			case 2:
+				if ((rand() & 0x1F) != 0) {
+					ItemDropped = 0;
+				}
+				break;
+			case 3:
+				if ((rand() & 0x0F) != 0) {
+					ItemDropped = 0;
+				}
+				break;
+			case 5:
+				if ((rand() & 0x03) != 0) {
+					ItemDropped = 0;
+				}
+				break;
+			case 6:
+				if ((rand() & 0x01) != 0) {
+					ItemDropped = 0;
+				}
+				break;
+			default: break;
+		}
+		if (ItemDropped == 0) {
+			for (short i = 0; i < ConsolationItemTable.length; i++) {
+				for (short j = 8; j < BattlersTable.length; j++) {
+					if (BattlersTable[j].consciousness == 0) {
+						continue;
+					}
+					if (ConsolationItemTable[i].enemy != BattlersTable[j].id) {
+						continue;
+					}
+					ItemDropped = ConsolationItemTable[i].items[RandLimit(7)];
+				}
+			}
+		}
+		x1D = Initiative.Normal;
+		switch (BattleInitiative) {
+			case 0:
+				break;
+			case 1:
+				x1D = Initiative.PartyFirst;
+				break;
+			case 2:
+				x1D = Initiative.EnemiesFirst;
+				break;
+			default: break;
+		}
+		BattleInitiative = 0;
+		CreateWindow(Window.TextBattle);
+		currentAttacker = &BattlersTable[8];
+		FixAttackerName(1);
+		DisplayInBattleText(EnemyConfigurationTable[Unknown7E9F8C[0]].encounterTextPointer);
+		if (x1D == Initiative.PartyFirst) {
+			//DisplayInBattleText(TextBattleSurpriseOpeningAttack);
+		}
+		for (short i = 0; i < EnemiesInBattle; i++) {
+			currentTarget = &BattlersTable[i];
+			FixTargetName();
+			if (currentTarget.afflictions[2] == Status2.Asleep) {
+				//DisplayInBattleText(TextBattleFallenAsleepIndirect);
+			}
+			if (currentTarget.afflictions[4] != 0) {
+				//DisplayInBattleText(TextBattleStoppedBeingAbleToConcentrate);
+			}
+			if (currentTarget.afflictions[3] == Status3.Strange) {
+				//DisplayInBattleText(TextBattleActingALittleStrange);
+			}
+		}
+		CloseFocusWindow();
+		x23 = 0;
+		Unknown7EAA0E = x23;
+		turnLoop: while (x23 == 0) {
+			x25++;
+			UnknownC2F917();
+			for (short i = 0; i < BattlersTable.length; i++) {
+				BattlersTable[i].unknown13 = 0;
+				if (BattlersTable[i].consciousness == 0) {
+					continue;
+				}
+				BattlersTable[i].unknown70 = FiftyPercentVariance(BattlersTable[i].speed);
+				if (BattlersTable[i].unknown70 == 0) {
+					BattlersTable[i].unknown70 = 1;
+				}
+			}
+			for (short i = 0; i < 4; i++) {
+				PartyCharacters[i].unknown94 = 0;
+			}
+			short x19 = 0;
+			for (short i = 0; i < 6; i++) {
+				short x1F;
+				CheckDeadPlayers();
+				if (CountChars(0) == 0) {
+					CreateWindow(Window.TextBattle);
+					goto Unknown225;
+				}
+				if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
+					if ((x1D != Initiative.EnemiesFirst) && (x1D != Initiative.RunningAway) && (x1D != Initiative.RunningAlwaysSuccessful)) {
+						if ((gameState.partyMembers[i] != 4) || (MirrorEnemy == 0)) {
+							if ((PartyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.Unconscious) || (PartyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.Diamondized) || (PartyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.Asleep) || (PartyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.Solidified)) {
+								x1F = BattleActions.NoEffect;
+								Unknown7EA97C = 0;
+							}
+						}
+					} else {
+						UnknownC43573F(i);
+						x1F = BattleSelectionMenu(gameState.partyMembers[i], x19);
+						UnknownC3E6F8F();
+						CloseFocusWindow();
+						if ((BattleDebug != 0) && (x1F == -1)) {
+							x17 = 0;
+							break turnLoop;
+						}
+						if (x1F == BattleActions.RunAway) {
+							x1F = BattleActions.UseNoEffect;
+							if (x1D == Initiative.PartyFirst) {
+								x1D = Initiative.RunningAlwaysSuccessful;
+							} else {
+								x1D = Initiative.RunningAway;
+							}
+							x27 = 1;
+						}
+						if (x1F == -1) {
+							continue infiniteBattleLoop;
+						}
+						if (x1F == 0) {
+							if (i == 0) {
+								continue;
+							}
+							x19--;
+							i = Unknown7EAA66[x19];
+							continue;
+						}
+						Unknown7EAA66[x19] = i;
+						x19++;
+						if (x1F == 1) {
+							x1F = 0;
+						}
+					}
+					for (short j = 0; j < BattlersTable.length; j++) {
+						if (BattlersTable[j].consciousness == 0) {
+							continue;
+						}
+						if (BattlersTable[j].allyOrEnemy == 0) {
+							continue;
+						}
+						if (gameState.partyMembers[i] == BattlersTable[j].id) {
+							continue;
+						}
+						BattlersTable[j].currentAction = x1F;
+						if (Unknown7EA97C != 0) {
+							BattlersTable[j].unknown7 = Unknown7EA97D.unknown1;
+							BattlersTable[j].currentActionArgument = Unknown7EA97C;
+						} else {
+							BattlersTable[j].unknown7 = 0;
+							BattlersTable[j].currentActionArgument = Unknown7EA97D.unknown1;
+						}
+						BattlersTable[j].unknown9 = Unknown7EA97D.unknown4;
+						BattlersTable[j].currentTarget = Unknown7EA97D.unknown5;
+						if (Unknown7EA97D.unknown4 == 1) {
+							for (short k = 0; k < 6; k++) {
+								if (BattlersTable[k].consciousness == 0) {
+									continue;
+								}
+								if (Unknown7EA97D.unknown5 == BattlersTable[k].id) {
+									continue;
+								}
+								BattlersTable[j].currentTarget = cast(ubyte)k;
+								break;
+							}
+						}
+						if (BattlersTable[j].currentAction == BattleActions.Guard) {
+							BattlersTable[j].guarding = 1;
+						} else {
+							BattlersTable[j].guarding = 0;
+						}
+						break;
+					}
+				}
+			}
+			for (short i = 0; i < BattlersTable.length; i++) {
+				if (((BattlersTable[i].consciousness == 0) || (BattlersTable[i].allyOrEnemy != 1)) && (BattlersTable[i].npcID == 0)) {
+					if (BattlersTable[i].id != 4) {
+						continue;
+					}
+					if (MirrorEnemy == 0) {
+						continue;
+					}
+				}
+				if (((x1D != Initiative.PartyFirst) || (x1D != Initiative.RunningAlwaysSuccessful)) && (BattlersTable[i].allyOrEnemy == 1)) {
+					BattlersTable[i].currentAction = 0;
+					continue;
+				}
+				if ((x1D == 2) && (BattlersTable[i].allyOrEnemy == 0)) {
+					BattlersTable[i].currentAction = 0;
+					continue;
+				}
+				while (true) {
+					const(Enemy)* x06;
+					if ((BattlersTable[i].allyOrEnemy == 0) && (BattlersTable[i].id == 4)) {
+						x06 = &EnemyConfigurationTable[MirrorEnemy];
+					} else {
+						x06 = &EnemyConfigurationTable[BattlersTable[i].id];
+					}
+					short x21;
+					switch (x06.actionOrder) {
+						case 0:
+							x21 = rand() & 3;
+							break;
+						case 1:
+							switch (rand() & 7) {
+								case 0:
+									x21 = 3;
+									break;
+								case 1:
+									x21 = 2;
+									break;
+								case 2:
+								case 3:
+									x21 = 1;
+									break;
+								default:
+									x21 = 0;
+									break;
+							}
+							break;
+						case 2:
+							x21 = BattlersTable[i].actionOrderVar;
+							BattlersTable[i].actionOrderVar = (BattlersTable[i].actionOrderVar + 1) & 3;
+							break;
+						case 3:
+							x21 = (BattlersTable[i].actionOrderVar * 2) + (rand() & 1);
+							BattlersTable[i].actionOrderVar = (BattlersTable[i].actionOrderVar + 1) & 1;
+							break;
+						default: break;
+					}
+					BattlersTable[i].currentAction = x06.actions[x21];
+					BattlersTable[i].currentActionArgument = x06.actionArgs[x21];
+					if (BattlersTable[i].currentAction != BattleActions.EnemyExtender) {
+						break;
+					}
+					if ((BattlersTable[i].allyOrEnemy == 0) && (BattlersTable[i].id == 4)) {
+						MirrorEnemy = BattlersTable[i].currentActionArgument;
+						continue;
+					}
+					BattlersTable[i].id = BattlersTable[i].currentActionArgument;
+				}
+				if (BattlersTable[i].currentAction == BattleActions.Steal) {
+					BattlersTable[i].currentActionArgument = SelectStealableItem();
+					BattlersTable[i].unknown70 = 0;
+				}
+				if (BattlersTable[i].currentAction == BattleActions.Guard) {
+					BattlersTable[i].guarding = 1;
+				} else {
+					BattlersTable[i].guarding = 0;
+				}
+				ChooseTarget(&BattlersTable[i]);
+			}
+			CreateWindow(Window.TextBattle);
+			if (x1D == Initiative.EnemiesFirst) {
+				//DisplayBattleText(TextBattleEnemysOpeningAttack);
+			}
+			if (x27 != 0) {
+				short x04;
+				short x1B;
+				for (short i = 0; i < BattlersTable.length; i++) {
+					if (BattlersTable[i].consciousness == 0) {
+						continue;
+					}
+					if (BattlersTable[i].npcID != 0) {
+						continue;
+					}
+					if (BattlersTable[i].allyOrEnemy == 1) {
+						if (EnemyConfigurationTable[BattlersTable[i].id].boss == 0) {
+							goto RunFailure;
+						}
+						if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+							continue;
+						}
+						if (BattlersTable[i].afflictions[0] == Status0.Diamondized) {
+							continue;
+						}
+						if (BattlersTable[i].afflictions[0] == Status0.Paralyzed) {
+							continue;
+						}
+						if (BattlersTable[i].afflictions[2] == Status2.Asleep) {
+							continue;
+						}
+						if (BattlersTable[i].afflictions[2] == Status2.Immobilized) {
+							continue;
+						}
+						if (BattlersTable[i].afflictions[2] == Status2.Solidified) {
+							continue;
+						}
+						if (BattlersTable[i].speed > x04) {
+							x04 = BattlersTable[i].speed;
+						}
+					} else {
+						if (BattlersTable[i].speed > x1B) {
+							x1B = BattlersTable[i].speed;
+						}
+					}
+				}
+				if ((x04 == 0) || (x1D == 4) || ((x25 * 10 + x1B >= x04) && (RandLimit(100) < (x25 * 10 + x1B - x04)))) {
+					x17 = 0;
+					//DisplayInBattleText(TextBattleRunSuccess);
+					break turnLoop;
+				} else {
+					RunFailure:
+					x27 = 0;
+					//DisplayInBattleText(TextBattleRunFailure);
+				}
+			}
+			x1D = 0;
+			while (x23 == 0) {
+				CheckDeadPlayers();
+				if ((CountChars(0) != 0) && (CountChars(1) != 0)) {
+					short x04 = -1;
+					short x = 0;
+					for (short i = 0; i < BattlersTable.length; i++) {
+						if (BattlersTable[i].consciousness == 0) {
+							continue;
+						}
+						if (BattlersTable[i].unknown13 != 0) {
+							continue;
+						}
+						if (BattlersTable[i].unknown70 < x) {
+							continue;
+						}
+						x04 = i;
+						x = BattlersTable[i].unknown70;
+					}
+					if (x04 == -1) {
+						break;
+					}
+					currentAttacker = &BattlersTable[x04];
+					currentAttacker.unknown13 = 1;
+					if ((currentAttacker.afflictions[0] == Status0.Unconscious) || (currentAttacker.afflictions[0] == Status0.Diamondized)) {
+						continue;
+					}
+					if ((currentAttacker.afflictions[0] == Status0.Paralyzed) || (currentAttacker.afflictions[2] == Status2.Immobilized)) {
+						if ((BattleActionTable[currentAttacker.currentAction].type != ActionType.PSI) &&
+						(currentAttacker.currentAction != BattleActions.Pray) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer1) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer2) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer3) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer4) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer5) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer6) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer7) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer8) &&
+						(currentAttacker.currentAction != BattleActions.FinalPrayer9) &&
+						(currentAttacker.currentAction != BattleActions.Spy) &&
+						(currentAttacker.currentAction != BattleActions.Mirror) &&
+						(currentAttacker.currentAction != BattleActions.NoEffect)) {
+							if (currentAttacker.afflictions[0] == Status0.Paralyzed) {
+								currentAttacker.currentAction = BattleActions.Action252;
+							} else {
+								currentAttacker.currentAction = BattleActions.Action254;
+							}
+						}
+					}
+					if ((currentAttacker.afflictions[2] == Status2.Asleep) && (currentAttacker.currentAction != 0)) {
+						currentAttacker.currentAction = BattleActions.Action253;
+						currentAttacker.unknown7 = 0;
+					}
+					if ((currentAttacker.afflictions[2] == Status2.Solidified) && (currentAttacker.currentAction != 0)) {
+						currentAttacker.currentAction = BattleActions.Action255;
+						currentAttacker.afflictions[2] = 0;
+						currentAttacker.unknown7 = 0;
+					}
+					if ((currentAttacker.afflictions[4] != 0) && (BattleActionTable[currentAttacker.currentAction].type == ActionType.PSI) && (currentAttacker.currentAction != 0)) {
+						currentAttacker.currentAction = BattleActions.Action256;
+					}
+					if ((currentAttacker.afflictions[5] == Status5.Homesick) && (currentAttacker.currentAction != 0) && ((rand() & 7) == 0)) {
+						currentAttacker.currentAction = BattleActions.Action251;
+						currentAttacker.unknown7 = 0;
+					}
+					if ((BattleActionTable[currentAttacker.currentAction].direction == ActionDirection.Enemy) && (BattleActionTable[currentAttacker.currentAction].target == 0)) {
+						currentAttacker.unknown9 = 1;
+						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &BattlersTable[0]) / Battler.sizeof);
+					} else {
+						currentAttacker.unknown9 = 17;
+						UnknownC4A228(currentAttacker, cast(short)((currentAttacker - &BattlersTable[0]) / Battler.sizeof));
+					}
+					x2F = 0;
+					currentTarget = currentAttacker;
+					FixAttackerName(0);
+					FixTargetName();
+					switch (currentAttacker.afflictions[0]) {
+						case Status0.Nauseous:
+							x2F = TwentyFivePercentVariance(20);
+							//DisplayTextWait(TextBattleFeltSickAndTookDamage, x2F);
+							break;
+						case Status0.Poisoned:
+							x2F = TwentyFivePercentVariance(20);
+							//DisplayTextWait(TextBattleFeltPainFromPoison, x2F);
+							break;
+						case Status0.Sunstroke:
+							x2F = TwentyFivePercentVariance(4);
+							//DisplayTextWait(TextBattleFeltDizzyAndWeak, x2F);
+							break;
+						case Status0.Cold:
+							x2F = TwentyFivePercentVariance(4);
+							//DisplayTextWait(TextBattleSneezedAndReceivedDamage, x2F);
+							break;
+						default: break;
+					}
+					LoseHPStatus(currentAttacker, x2F);
+					if (currentAttacker.hp == 0) {
+						KOTarget(currentAttacker);
+						if (CountChars(0) == 0) {
+							goto Unknown225;
+						}
+						if (CountChars(1) != 0) {
+							continue;
+						}
+						goto Unknown225;
+					}
+					if (currentAttacker.allyOrEnemy == 1) {
+						ChooseTarget(currentAttacker);
+						if (currentAttacker.currentAction == BattleActions.Steal) {
+							currentAttacker.currentActionArgument = SelectStealableItem();
+						}
+					}
+					UnknownC24703(currentAttacker);
+					if ((currentAttacker.allyOrEnemy == 0) && (BattleActionTable[currentAttacker.currentAction].direction == 0)) {
+						UnknownC2416F();
+						if (BattlerTargetFlags == 0) {
+							ChooseTarget(currentAttacker);
+							UnknownC24703(currentAttacker);
+							UnknownC2416F();
+						}
+					}
+					short x31 = 0;
+					if (((currentAttacker.afflictions[1] == Status1.Mushroomized) && (RandLimit(100) < 25)) || (currentAttacker.afflictions[3] == Status3.Strange)) {
+						if (BattleActionTable[currentAttacker.currentAction].target != 0) {
+							x31 = 1;
+							while (BattlerTargetFlags == 0) {
+								FeelingStrangeRetargetting();
+								UnknownC2416F();
+							}
+						}
+					}
+					if (currentAttacker.currentAction == BattleActions.Steal) {
+						if (UnknownC24348(currentAttacker.currentActionArgument) != 0) {
+							currentAttacker.currentActionArgument = 0;
+						}
+					}
+					FixAttackerName(0);
+					UnknownC1ACF8F(currentAttacker.currentActionArgument);
+					UnknownC23E32();
+					if ((currentAttacker.allyOrEnemy == 0) && (currentAttacker.id <= 4)) {
+						for (short i = 0; i < 6; i++) {
+							if (gameState.partyMembers[i] == currentAttacker.id) {
+								UnknownC43573F(i);
+								break;
+							}
+						}
+					}
+					if (BattleActionTable[currentAttacker.currentAction].ppCost != 0) {
+						if (BattleActionTable[currentAttacker.currentAction].ppCost > currentAttacker.ppTarget) {
+							//DisplayInBattleText(TextBattleUsedPSI);
+							goto Unknown215;
+						} else {
+							UnknownC2BCB9(currentAttacker);
+						}
+					}
+					if ((currentAttacker.allyOrEnemy == 1) && (currentAttacker.currentAction != 0)) {
+						switch (BattleActionTable[currentAttacker.currentAction].type) {
+							case ActionType.Physical:
+							case ActionType.PiercingPhysical:
+								UnknownC2FEF9(1);
+								break;
+							case ActionType.PSI:
+								UnknownC2FEF9(2);
+								break;
+							case ActionType.Other:
+								UnknownC2FEF9(3);
+								break;
+							default: break;
+						}
+						currentAttacker.unknown73 = 12;
+						for (short i = 0; i < 12; i++) {
+							Win_Tick();
+						}
+					}
+					if (x31 != 0) {
+						if (currentAttacker.afflictions[3] == Status3.Strange) {
+							//DisplayInBattleText(TextBattleActingABitUnusual);
+						}
+						if (currentAttacker.afflictions[1] == Status1.Mushroomized) {
+							//DisplayInBattleText(TextBattleFeelingFunky);
+						}
+					}
+					UnknownC1DD9F(BattleActionTable[currentAttacker.currentAction].text);
+					if (currentAttacker.currentAction != 0) {
+						while (UnknownC2EACF() != 0) {
+							Win_Tick();
+						}
+						for (short i = 0; i < BattlersTable.length; i++) {
+							if (IsCharacterTargetted(i) == 0) {
+								continue;
+							}
+							currentTarget = &BattlersTable[i];
+							FixTargetName();
+							if (currentTarget.afflictions[0] == Status0.Unconscious) {
+								for (short j = 0; DeadTargettableActions[j] != 0; j++) {
+									if (currentAttacker.currentAction == DeadTargettableActions[j]) {
+										goto Unknown204;
+									}
+								}
+								//DisplayInBattleText(TextBattleWasAlreadyGone);
+								break;
+							}
+							Unknown204:
+							if (BattleActionTable[currentAttacker.currentAction].func is null) {
+								continue;
+							}
+							// we don't need this kinda help
+							//Unknown7E00BC = BattleActionTable[currentAttacker.currentAction].func;
+							//UnknownC09279();
+							BattleActionTable[currentAttacker.currentAction].func();
+							CheckDeadPlayers();
+							Unknown7E9623 = 1;
+							if ((CountChars(0) == 0) || (CountChars(1) == 0)) {
+								UnknownC2437E();
+								goto Unknown225;
+							}
+							switch (Unknown7EAA0E) {
+								case 3:
+									x17 = 0;
+									break turnLoop;
+								case 2:
+									UnknownC2437E();
+									goto EnemiesAreDead;
+								case 1:
+									x17 = 2;
+									break turnLoop;
+								default:
+									while(Unknown7EAD90 != 0) {
+										Win_Tick();
+									}
+									break;
+							}
+						}
+					}
+					Unknown215:
+					if (currentAttacker.allyOrEnemy == 0) {
+						UnknownC2437E();
+						if ((MirrorEnemy != 0) && (currentAttacker.id == 4) && (--MirrorTurnTimer == 0)) {
+							MirrorEnemy = 0;
+							CopyMirrorData(currentAttacker, &Unknown7EAA14);
+							//DisplayInBattleText(TextBattleReturnedOriginalForm);
+						}
+						UnknownC3E6F8F();
+					}
+					CheckDeadPlayers();
+					currentTarget = currentAttacker;
+					FixTargetName();
+					switch (currentAttacker.afflictions[2]) {
+						case Status2.Asleep:
+							if ((rand() & 3) == 0) {
+								//DisplayInBattleText(TextBattleWokeUp);
+								currentAttacker.afflictions[2] = 0;
+							}
+							break;
+						case Status2.Immobilized:
+							if (RandLimit(100) < 15) {
+								//DisplayInBattleText(TextBattleAgainMovedFreely);
+								currentAttacker.afflictions[2] = 0;
+							}
+							break;
+						case Status2.Solidified:
+							//DisplayInBattleText(TextBattleAbleToMove);
+							currentAttacker.afflictions[2] = 0;
+							break;
+						default: break;
+					}
+					if (currentAttacker.afflictions[4] != 0) {
+						currentAttacker.afflictions[4]--;
+						if (currentAttacker.afflictions[4] == 0) {
+							//DisplayInBattleText(TextBattleAbleToConcentrate);
+						}
+					}
+					for (short i = 0; i < BattlersTable.length; i++) {
+						BattlersTable[i].id2 = 0;
+					}
+					CheckDeadPlayers();
+					ShowHPPPWindowsF();
+				}
+				Unknown225:
+				if (CountChars(0) == 0) {
+					x17 = 1;
+					UnknownC20F9A();
+					//DisplayInBattleText(TextBattleLostTheBattle);
+					x23 = 1;
+				}
+				if (CountChars(1) == 0) {
+					EnemiesAreDead:
+					x17 = 0;
+					UnknownC20F9A();
+					Unknown7EADB6 = 1;
+					Unknown7EADD0 = 0;
+					DepositIntoATM(BattleMoneyScratch);
+					gameState.unknownC4 += BattleMoneyScratch;
+					BattleEXPScratch += CountChars(0) - 1;
+					BattleEXPScratch /= CountChars(0); //Bug! if party is dead, this is division by 0
+					if (CurrentBattleGroup >= 0x1C0) {
+						//DisplayTextWait(TextBattleYouWonBoss, BattleEXPScratch);
+					} else {
+						//DisplayTextWait(TextBattleYouWon, BattleEXPScratch);
+					}
+					if (ItemDropped != 0) {
+						UnknownC1ACF8F(ItemDropped);
+						//DisplayInBattleText(TextBattleEnemyLeftPresent);
+					}
+					for (short i = 0; i < BattlersTable.length; i++) {
+						if (BattlersTable[i].consciousness == 0) {
+							continue;
+						}
+						if (BattlersTable[i].allyOrEnemy != 0) {
+							continue;
+						}
+						if (BattlersTable[i].npcID != 0) {
+							continue;
+						}
+						if ((BattlersTable[i].afflictions[0] == Status0.Unconscious) || (BattlersTable[i].afflictions[0] == Status0.Diamondized)) {
+							continue;
+						}
+						GainEXP(BattlersTable[i].id, 1, BattleEXPScratch);
+					}
+				}
+			}
+			CloseFocusWindow();
+		}
+		UnknownC20F9A();
+		do {
+			Win_Tick();
+		} while (UnknownC2108C() == 0);
+		if (MirrorEnemy != 0) {
+			for (short i = 0; i < BattlersTable.length; i++) {
+				if (BattlersTable[i].consciousness == 0) {
+					continue;
+				}
+				if (BattlersTable[i].allyOrEnemy != 0) {
+					continue;
+				}
+				if (BattlersTable[i].id != 4) {
+					continue;
+				}
+				MirrorEnemy = 0;
+				ubyte persistentEasyAffliction = BattlersTable[i].afflictions[0];
+				CopyMirrorData(&BattlersTable[i], &Unknown7EAA14);
+				BattlersTable[i].afflictions[0] = persistentEasyAffliction;
+				CheckDeadPlayers();
+				break;
+			}
+		}
+		ResetPostBattleStats();
+		gameState.autoFightEnable = 0;
+		BattleModeFlag = 0;
+	} while (BattleDebug == 0);
+	FadeOut(1, 1);
+	do {
+		WaitUntilNextFrame();
+		UnknownC2DB3F();
+	} while (Unknown7E0028 != 0);
+	UnknownC20293();
+	UnknownC08726();
+	UnknownC1DD5F();
+	UnknownC2E0E7();
+	return x17;
+}
 
 // $C261BD
 void InstantWinHandler();
 
 // $C26634
 short InstantWinCheck();
+
+// $C26A2D
+short RandLimit(short);
+
+// $C26A44
+short FiftyPercentVariance(short);
+
+// $C26AFD
+short TwentyFivePercentVariance(short);
+
+// $C27029
+short IsCharacterTargetted(short);
+
+// $C27550
+void KOTarget(Battler*);
+
+// $C2AF1F
+void CopyMirrorData(Battler*, Battler*);
+
+// $C2B6EB
+void BattleInitEnemyStats(short, Battler*);
+
+// $C2B930
+void BattleInitPlayerStats(short, Battler*);
+
+// $C2BAC5
+short CountChars(short);
+
+// $C2BB18
+void CheckDeadPlayers();
+
+// $C2BC5C
+void ResetPostBattleStats();
+
+// $C2BCB9
+void UnknownC2BCB9(Battler*);
+
+// $C2BCE6
+void LoseHPStatus(Battler*, short);
+
+// $C2C8C8
+void LoadEnemyBattleSprites();
 
 // $C2C92D
 void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer);
@@ -943,6 +1896,12 @@ void UnknownC2DB3F();
 // $C2DE96
 void UnknownC2DE96();
 
+// $C2E0E7
+void UnknownC2E0E7();
+
+// $C2E116
+void ShowPSIAnimation(short);
+
 // $C2E9ED
 void UnknownC2E9ED();
 
@@ -957,3 +1916,21 @@ void UnknownC2EAAA();
 
 // $C2EACF
 short UnknownC2EACF();
+
+// $C2EEE7
+void UnknownC2EEE7();
+
+// $C2F0D1
+void UnknownC2F0D1();
+
+// $C2F121
+void UnknownC2F121();
+
+// $C2F8F9
+void UnknownC2F8F9();
+
+// $C2F917
+void UnknownC2F917();
+
+// $C2FEF9
+void UnknownC2FEF9(short);

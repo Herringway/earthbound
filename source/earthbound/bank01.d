@@ -534,6 +534,9 @@ void UnknownC1AC4A(PartyCharacter*, short);
 // $C1BEC6
 void GetOffBicycle();
 
+// $C1D9E9
+void GainEXP(ubyte, short, uint);
+
 // $C1DBBB
 void ShowHPAlert(short arg1) {
     Battler battler;
@@ -551,18 +554,42 @@ void ShowHPAlert(short arg1) {
     currentAttacker = x02;
 }
 
+// $C1DCCB
+void DisplayInBattleText(const(ubyte)*);
+
+// $C1DCCB
+void UnknownC1DCCB(short);
+
+// $C1DCCC
+void UnknownC43573F(short);
+
+// $C1DDD3
+void UnknownC3E6F8F();
+
 // $C1DD47
 void CreateWindow(short id) {
     CreateWindowN(id);
 }
 
-// $C1DD47
+// $C1DD59
 void CloseFocusWindow() {
     CloseFocusWindowN();
 }
 
 // $C1DD5F
 void UnknownC1DD5F();
+
+// $C1DD3B
+void ShowHPPPWindowsF();
+
+// $C1DD7C
+void UnknownC1ACF8F(short);
+
+// $C1DD9F
+void UnknownC1DD9F(const(ubyte)*);
+
+// $C1E1A5
+short EnemySelectMode(short);
 
 // $C1F805
 void FileMenuLoop();

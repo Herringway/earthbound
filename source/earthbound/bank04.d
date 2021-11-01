@@ -2579,6 +2579,46 @@ void UnknownC49EC4(short id) {
     }
 }
 
+// $C4A08D
+immutable ushort[33] DeadTargettableActions = [
+    BattleActions.PSI_LIFEUP_ALPHA,
+    BattleActions.PSI_LIFEUP_BETA,
+    BattleActions.PSI_LIFEUP_GAMMA,
+    BattleActions.PSI_LIFEUP_OMEGA,
+    BattleActions.PSI_HEALING_ALPHA,
+    BattleActions.PSI_HEALING_BETA,
+    BattleActions.PSI_HEALING_GAMMA,
+    BattleActions.PSI_HEALING_OMEGA,
+    BattleActions.ACTION_135,
+    BattleActions.ACTION_136,
+    BattleActions.ACTION_137,
+    BattleActions.ACTION_138,
+    BattleActions.ACTION_139,
+    BattleActions.HAND_AID,
+    BattleActions.ACTION_141,
+    BattleActions.ACTION_142,
+    BattleActions.ACTION_143,
+    BattleActions.ACTION_144,
+    BattleActions.ACTION_145,
+    BattleActions.ACTION_146,
+    BattleActions.ACTION_147,
+    BattleActions.ACTION_148,
+    BattleActions.WET_TOWEL,
+    BattleActions.REFRESHING_HERB,
+    BattleActions.SECRET_HERB,
+    BattleActions.FULL_STATUS_HEAL,
+    BattleActions.ACTION_153,
+    BattleActions.ACTION_154,
+    BattleActions.ACTION_155,
+    BattleActions.ACTION_156,
+    BattleActions.ACTION_157,
+    BattleActions.ACTION_158,
+    0,
+];
+
+// $C4A228
+void UnknownC4A228(Battler*, short);
+
 // $C4A5FA
 immutable Unknown7EAECCEntry[2] UnknownC4A5FA = [
     Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
@@ -2596,6 +2636,9 @@ immutable Unknown7EAECCEntry[2] UnknownC4A652 = [
     Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
     Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
 ];
+
+//$C4A67E
+void UnknownC4A67E(short, short);
 
 //$C4A7B0
 void UnknownC4A7B0() {

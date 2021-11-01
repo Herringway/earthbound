@@ -432,16 +432,16 @@ enum ItemID {
 	SHINY_COIN = 0x55,
 	SOUVENIR_COIN = 0x56,
 	DIADEM_OF_KINGS = 0x57,
-	COOKIE = 0x58,
-	BAG_OF_FRIES = 0x59,
-	HAMBURGER = 0x5A,
+	Cookie = 0x58,
+	BagOfFries = 0x59,
+	Hamburger = 0x5A,
 	BoiledEgg = 0x5B,
 	FreshEgg = 0x5C,
-	PICNIC_LUNCH = 0x5D,
+	PicnicLunch = 0x5D,
 	PASTA_DI_SUMMERS = 0x5E,
-	PIZZA = 0x5F,
+	Pizza = 0x5F,
 	CHEFS_SPECIAL = 0x60,
-	LARGE_PIZZA = 0x61,
+	LargePizza = 0x61,
 	PSI_CARAMEL = 0x62,
 	MAGIC_TRUFFLE = 0x63,
 	BRAIN_FOOD_LUNCH = 0x64,
@@ -450,13 +450,13 @@ enum ItemID {
 	BREAD_ROLL = 0x67,
 	PAK_OF_BUBBLE_GUM = 0x68,
 	JAR_OF_FLY_HONEY = 0x69,
-	CAN_OF_FRUIT_JUICE = 0x6A,
-	ROYAL_ICED_TEA = 0x6B,
-	PROTEIN_DRINK = 0x6C,
-	KRAKEN_SOUP = 0x6D,
-	BOTTLE_OF_WATER = 0x6E,
-	COLD_REMEDY = 0x6F,
-	VIAL_OF_SERUM = 0x70,
+	CanOfFruitJuice = 0x6A,
+	RoyalIcedTea = 0x6B,
+	ProteinDrink = 0x6C,
+	KrakenSoup = 0x6D,
+	BottleOfWater = 0x6E,
+	ColdRemedy = 0x6F,
+	VialOfSerum = 0x70,
 	IQ_CAPSULE = 0x71,
 	GUTS_CAPSULE = 0x72,
 	SPEED_CAPSULE = 0x73,
@@ -539,7 +539,7 @@ enum ItemID {
 	KEY_TO_THE_TOWER = 0xC0,
 	METEORITE_PIECE = 0xC1,
 	EARTH_PENDANT = 0xC2,
-	NEUTRALIZER = 0xC3,
+	Neutralizer = 0xC3,
 	SOUND_STONE = 0xC4,
 	EXIT_MOUSE = 0xC5,
 	GELATO_DE_RESORT = 0xC6,
@@ -768,9 +768,9 @@ enum BattleActions {
 	ACTION_003,
 	BASH,
 	SHOOT,
-	SPY,
-	PRAY,
-	GUARD,
+	Spy,
+	Pray,
+	Guard,
 	ACTION_009,
 	PSI_ROCKIN_ALPHA,
 	PSI_ROCKIN_BETA,
@@ -828,7 +828,7 @@ enum BattleActions {
 	SOW_SEEDS,
 	EXPLODE,
 	BURST_INTO_FLAMES,
-	STEAL,
+	Steal,
 	FREEZE_IN_TIME,
 	EERIE_GLARE,
 	ELECTRIC_FIELD,
@@ -940,7 +940,7 @@ enum BattleActions {
 	PHAROAHS_CURSE,
 	HUNGRY_HP_SUCKER,
 	BAG_OF_DRAGONITE,
-	INSECTICIDE,
+	Insecticide,
 	XTERMINATOR_SPRAY,
 	RUST_PROMOTER,
 	RUST_PROMOTER_DX,
@@ -1007,28 +1007,28 @@ enum BattleActions {
 	COIL_AROUND,
 	RUNAWAY_FIVE_EVENT,
 	MASTER_BARF_DEFEAT,
-	ENEMY_EXTENDER,
+	EnemyExtender,
 	ACTION_246,
-	NEUTRALIZER,
+	Neutralizer,
 	EMIT_PALE_GREEN_LIGHT,
 	GenericFood,
 	GenericFoodParty,
-	ACTION_251,
-	ACTION_252,
-	ACTION_253,
-	ACTION_254,
-	ACTION_255,
-	ACTION_256,
+	Action251,
+	Action252,
+	Action253,
+	Action254,
+	Action255,
+	Action256,
 	WOLFED_DOWN_FLY_HONEY,
 	SOUND_STONE,
 	EXIT_MOUSE,
 	BePokey,
-	ACTION_261,
-	ACTION_262,
-	ACTION_263,
+	Action261,
+	Action262,
+	Action263,
 	BARK,
 	CHANT_SPELL,
-	NO_EFFECT_TONY,
+	NoEffectTony,
 	SCRATCH_HEAD,
 	SNAKE,
 	VIPER,
@@ -1041,8 +1041,8 @@ enum BattleActions {
 	PokeyAttack,
 	GIYGAS_ATTACK,
 	PokeySpeech2,
-	RUN_AWAY,
-	MIRROR,
+	RunAway,
+	Mirror,
 	SUPORMA,
 	INSIGNIFICANT_ITEM,
 	MONKEYS_LOVE,
@@ -1053,15 +1053,15 @@ enum BattleActions {
 	LetterFromTony,
 	LETTER_FROM_KIDS,
 	GIVE_OFF_RAINBOW,
-	FINAL_PRAYER_1,
-	FINAL_PRAYER_2,
-	FINAL_PRAYER_3,
-	FINAL_PRAYER_4,
-	FINAL_PRAYER_5,
-	FINAL_PRAYER_6,
-	FINAL_PRAYER_7,
-	FINAL_PRAYER_8,
-	FINAL_PRAYER_9,
+	FinalPrayer1,
+	FinalPrayer2,
+	FinalPrayer3,
+	FinalPrayer4,
+	FinalPrayer5,
+	FinalPrayer6,
+	FinalPrayer7,
+	FinalPrayer8,
+	FinalPrayer9,
 	INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA,
 	INCOMPREHENSIBLE_ATTACK_FLASH_GAMMA,
 	INCOMPREHENSIBLE_ATTACK_THUNDER_BETA_VULNERABLE,
@@ -1109,6 +1109,19 @@ enum ActionScript {
 	Unknown017 = 17,
 	Unknown018 = 18,
 	Unknown019 = 19,
+	Unknown020 = 20,
+	Unknown021 = 21,
+	Unknown022 = 22,
+	Unknown023 = 23,
+	Unknown024 = 24,
+	Unknown025 = 25,
+	Unknown026 = 26,
+	Unknown027 = 27,
+	Unknown028 = 28,
+	Unknown029 = 29,
+	Unknown030 = 30,
+	Unknown031 = 31,
+	Unknown032 = 32,
 	Unknown037 = 37,
 	Unknown038 = 38,
 	Unknown040 = 40,
@@ -2958,6 +2971,646 @@ enum Status6 {
 	Shield = 4,
 }
 
+enum GiygasPhase {
+	BattleStarted = 1,
+	DevilsMachineOff = 2,
+	GiygasStartsAttacking = 3,
+	StartPraying = 4,
+	Prayer1Used = 5,
+	Prayer2Used = 6,
+	Prayer3Used = 7,
+	Prayer4Used = 8,
+	Prayer5Used = 9,
+	Prayer6Used = 10,
+	Prayer7Used = 11,
+	Prayer8Used = 12,
+	Defeated = 0xFFFF,
+}
+
+enum Gender : ubyte {
+	Male = 1,
+	Female = 2,
+	Neutral = 3,
+}
+
+enum EnemyType : ubyte {
+	Normal = 0,
+	Metal = 1,
+	Insect = 2,
+}
+
+enum InitialStatus : ubyte {
+	None = 0,
+	PSIShield = 1,
+	PSIShieldPower = 2,
+	Shield = 3,
+	ShieldPower = 4,
+	Asleep = 5,
+	CantConcentrate = 6,
+	Strange = 7,
+}
+
+enum EnemyID {
+	NULL = 0,
+	INSANE_CULTIST_1 = 1,
+	DEPT_STORE_SPOOK_1 = 2,
+	ARMORED_FROG = 3,
+	BAD_BUFFALO = 4,
+	BLACK_ANTOID_1 = 5,
+	RED_ANTOID = 6,
+	RAMBLIN_EVIL_MUSHROOM = 7,
+	STRUTTIN_EVIL_MUSHROOM_1 = 8,
+	MOBILE_SPROUT = 9,
+	TOUGH_MOBILE_SPROUT = 10,
+	ENRAGED_FIRE_PLUG = 11,
+	MYSTICAL_RECORD = 12,
+	ATOMIC_POWER_ROBOT = 13,
+	NUCLEAR_REACTOR_ROBOT = 14,
+	GUARDIAN_HIEROGLYPH = 15,
+	LETHAL_ASP_HIEROGLYPH = 16,
+	ELECTRO_SWOOSH = 17,
+	CONDUCTING_MENACE = 18,
+	CONDUCTING_SPIRIT = 19,
+	EVIL_ELEMENTAL = 20,
+	YOUR_NIGHTMARE_1 = 21,
+	ANNOYING_OLD_PARTY_MAN = 22,
+	ANNOYING_REVELER = 23,
+	UNASSUMING_LOCAL_GUY = 24,
+	NEW_AGE_RETRO_HIPPIE = 25,
+	MR_CARPAINTER_1 = 26,
+	CARBON_DOG_1 = 27,
+	MIGHTY_BEAR = 28,
+	MIGHTY_BEAR_SEVEN = 29,
+	PUTRID_MOLDYMAN = 30,
+	THUNDER_MITE = 31,
+	CRANKY_LADY = 32,
+	EXTRA_CRANKY_LADY = 33,
+	GIYGAS_1 = 34,
+	WETNOSAUR = 35,
+	CHOMPOSAUR_1 = 36,
+	TITANIC_ANT_1 = 37,
+	GIGANTIC_ANT_1 = 38,
+	SHROOOM_1 = 39,
+	PLAGUE_RAT_OF_DOOM_1 = 40,
+	MONDO_MOLE_1 = 41,
+	GUARDIAN_DIGGER_1 = 42,
+	SCALDING_COFFEE_CUP = 43,
+	LOADED_DICE_1 = 44,
+	SLIMY_LIL_PILE = 45,
+	EVEN_SLIMIER_LITTLE_PILE = 46,
+	ARACHNID = 47,
+	ARACHNID2 = 48,
+	KRAKEN_1 = 49,
+	BIONIC_KRAKEN_1 = 50,
+	SPINNING_ROBO = 51,
+	WHIRLING_ROBO = 52,
+	HYPER_SPINNING_ROBO = 53,
+	COP = 54,
+	COIL_SNAKE = 55,
+	THIRSTY_COIL_SNAKE = 56,
+	MR_BATTY = 57,
+	ELDER_BATTY = 58,
+	VIOLENT_ROACH = 59,
+	FILTHY_ATTACK_ROACH = 60,
+	CRAZED_SIGN = 61,
+	WOOLY_SHAMBLER = 62,
+	WILD_N_WOOLY_SHAMBLER = 63,
+	SKATE_PUNK = 64,
+	SKELPION = 65,
+	DREAD_SKELPION = 66,
+	STARMAN_1 = 67,
+	STARMAN_SUPER_1 = 68,
+	GHOST_OF_STARMAN_1 = 69,
+	SMILIN_SPHERE = 70,
+	UNCONTROLLABLE_SPHERE = 71,
+	PETRIFIED_ROYAL_GUARD = 72,
+	GUARDIAN_GENERAL_1 = 73,
+	STARMAN_DELUXE_1 = 74,
+	FINAL_STARMAN_1 = 75,
+	URBAN_ZOMBIE_1 = 76,
+	ZOMBIE_POSSESSOR = 77,
+	ZOMBIE_DOG = 78,
+	CROOKED_COP = 79,
+	OVER_ZEALOUS_COP = 80,
+	TERRITORIAL_OAK = 81,
+	HOSTILE_ELDER_OAK = 82,
+	DIAMOND_DOG_1 = 83,
+	MARAUDER_OCTOBOT = 84,
+	MILITARY_OCTOBOT = 85,
+	MECHANICAL_OCTOBOT = 86,
+	ULTIMATE_OCTOBOT = 87,
+	MAD_DUCK = 88,
+	DALIS_CLOCK = 89,
+	TRILLIONAGE_SPROUT_1 = 90,
+	MUSICA = 91,
+	DESERT_WOLF = 92,
+	MASTER_BELCH_1 = 93,
+	BIG_PILE_OF_PUKE_1 = 94,
+	MASTER_BARF_1 = 95,
+	KISS_OF_DEATH = 96,
+	FRENCH_KISS_OF_DEATH = 97,
+	FOPPY_1 = 98,
+	FOBBY = 99,
+	ZAP_EEL = 100,
+	TANGOO_1 = 101,
+	BOOGEY_TENT_1 = 102,
+	SQUATTER_DEMON_1 = 103,
+	CRESTED_BOOKA = 104,
+	GREAT_CRESTED_BOOKA = 105,
+	LESSER_MOOK = 106,
+	MOOK_SENIOR = 107,
+	SMELLY_GHOST = 108,
+	STINKY_GHOST = 109,
+	EVERDRED_1 = 110,
+	ATTACK_SLUG = 111,
+	PIT_BULL_SLUG = 112,
+	ROWDY_MOUSE = 113,
+	DEADLY_MOUSE = 114,
+	CARE_FREE_BOMB = 115,
+	ELECTRO_SPECTER_1 = 116,
+	HANDSOME_TOM = 117,
+	SMILIN_SAM = 118,
+	MANLY_FISH = 119,
+	MANLY_FISHS_BROTHER = 120,
+	RUNAWAY_DOG_1 = 121,
+	TRICK_OR_TRICK_KID = 122,
+	CAVE_BOY_1 = 123,
+	ABSTRACT_ART = 124,
+	SHATTERED_MAN = 125,
+	FIERCE_SHATTERED_MAN = 126,
+	EGO_ORB = 127,
+	THUNDER_AND_STORM_1 = 128,
+	YES_MAN_JUNIOR = 129,
+	FRANKYSTEIN_MARK_II_1 = 130,
+	FRANK = 131,
+	CuteLilUFO = 132,
+	BeautifulUFO = 133,
+	POGO_PUNK = 134,
+	TOUGH_GUY = 135,
+	MAD_TAXI = 136,
+	EVIL_MANI_MANI_1 = 137,
+	MR_MOLECULE = 138,
+	WORTHLESS_PROTOPLASM = 139,
+	SENTRY_ROBOT = 140,
+	HeavilyArmedPokey1 = 141,
+	PSYCHIC_PSYCHO = 142,
+	MAJOR_PSYCHIC_PSYCHO = 143,
+	MOLE_PLAYING_ROUGH = 144,
+	GRUFF_GOAT = 145,
+	CLUMSY_ROBOT_1 = 146,
+	SOUL_CONSUMING_FLAME = 147,
+	DEMONIC_PETUNIA = 148,
+	RANBOOB = 149,
+	LIL_UFO = 150,
+	HIGH_CLASS_UFO = 151,
+	NOOSE_MAN = 152,
+	ROBO_PUMP_1 = 153,
+	PLAIN_CROCODILE = 154,
+	STRONG_CROCODILE = 155,
+	HARD_CROCODILE = 156,
+	NO_GOOD_FLY = 157,
+	MOSTLY_BAD_FLY = 158,
+	SPITEFUL_CROW = 159,
+	MyPet = 160,
+	Pokey = 161,
+	Picky = 162,
+	Tony = 163,
+	BubbleMonkey = 164,
+	DungeonMan = 165,
+	FlyingMan = 166,
+	TeddyBear = 167,
+	SuperPlushBear = 168,
+	MASTER_BELCH_2 = 169,
+	INSANE_CULTIST_2 = 170,
+	DEPT_STORE_SPOOK_2 = 171,
+	YOUR_NIGHTMARE_2 = 172,
+	MR_CARPAINTER_2 = 173,
+	CARBON_DOG_2 = 174,
+	CHOMPOSAUR_2 = 175,
+	TITANIC_ANT_2 = 176,
+	GIGANTIC_ANT_2 = 177,
+	SHROOOM_2 = 178,
+	PLAGUE_RAT_OF_DOOM_2 = 179,
+	MONDO_MOLE_2 = 180,
+	GUARDIAN_DIGGER_2 = 181,
+	KRAKEN_2 = 182,
+	BIONIC_KRAKEN_2 = 183,
+	STARMAN_2 = 184,
+	STARMAN_SUPER_2 = 185,
+	GHOST_OF_STARMAN_2 = 186,
+	STARMAN_DELUXE_2 = 187,
+	FINAL_STARMAN_2 = 188,
+	URBAN_ZOMBIE_2 = 189,
+	DIAMOND_DOG_2 = 190,
+	TRILLIONAGE_SPROUT_2 = 191,
+	MASTER_BELCH_3 = 192,
+	BIG_PILE_OF_PUKE_2 = 193,
+	MASTER_BARF_2 = 194,
+	LOADED_DICE_2 = 195,
+	TANGOO_2 = 196,
+	BOOGEY_TENT_2 = 197,
+	SQUATTER_DEMON_2 = 198,
+	EVERDRED_2 = 199,
+	ELECTRO_SPECTER_2 = 200,
+	THUNDER_AND_STORM_2 = 201,
+	FRANKYSTEIN_MARK_II_2 = 202,
+	EVIL_MANI_MANI_2 = 203,
+	HeavilyArmedPokey2 = 204,
+	CLUMSY_ROBOT_2 = 205,
+	ROBO_PUMP_2 = 206,
+	FOPPY_2 = 207,
+	GUARDIAN_GENERAL_2 = 208,
+	BLACK_ANTOID_2 = 209,
+	STRUTTIN_EVIL_MUSHROOM_2 = 210,
+	RUNAWAY_DOG_2 = 211,
+	CAVE_BOY_2 = 212,
+	TinyLilGhost = 213,
+	STARMAN_JR = 214,
+	BuzzBuzz = 215,
+	HeavilyArmedPokey3 = 216,
+	HeavilyArmedPokey4 = 217,
+	GIYGAS_2 = 218,
+	GIYGAS_3 = 219,
+	GIYGAS_4 = 220,
+	GIYGAS_5 = 221,
+	FARM_ZOMBIE = 222,
+	CRIMINAL_CATERPILLAR = 223,
+	EVIL_EYE = 224,
+	MAGIC_BUTTERFLY = 225,
+	MINI_BARF = 226,
+	MASTER_CRIMINAL_WORM = 227,
+	CAPTAIN_STRONG = 228,
+	GIYGAS_6 = 229,
+	CLUMSY_ROBOT_3 = 230,
+}
+
+enum BattleBGLayer : ushort{
+	NONE = 0,
+	UNKNOWN001 = 1,
+	UNKNOWN002 = 2,
+	UNKNOWN003 = 3,
+	UNKNOWN004 = 4,
+	UNKNOWN005 = 5,
+	UNKNOWN006 = 6,
+	UNKNOWN007 = 7,
+	UNKNOWN008 = 8,
+	UNKNOWN009 = 9,
+	UNKNOWN010 = 10,
+	UNKNOWN011 = 11,
+	UNKNOWN012 = 12,
+	UNKNOWN013 = 13,
+	UNKNOWN014 = 14,
+	UNKNOWN015 = 15,
+	UNKNOWN016 = 16,
+	UNKNOWN017 = 17,
+	UNKNOWN018 = 18,
+	UNKNOWN019 = 19,
+	UNKNOWN020 = 20,
+	UNKNOWN021 = 21,
+	UNKNOWN022 = 22,
+	UNKNOWN023 = 23,
+	UNKNOWN024 = 24,
+	UNKNOWN025 = 25,
+	UNKNOWN026 = 26,
+	UNKNOWN027 = 27,
+	UNKNOWN028 = 28,
+	UNKNOWN029 = 29,
+	UNKNOWN030 = 30,
+	UNKNOWN031 = 31,
+	UNKNOWN032 = 32,
+	UNKNOWN033 = 33,
+	UNKNOWN034 = 34,
+	UNKNOWN035 = 35,
+	UNKNOWN036 = 36,
+	UNKNOWN037 = 37,
+	UNKNOWN038 = 38,
+	UNKNOWN039 = 39,
+	UNKNOWN040 = 40,
+	UNKNOWN041 = 41,
+	UNKNOWN042 = 42,
+	UNKNOWN043 = 43,
+	UNKNOWN044 = 44,
+	UNKNOWN045 = 45,
+	UNKNOWN046 = 46,
+	UNKNOWN047 = 47,
+	UNKNOWN048 = 48,
+	UNKNOWN049 = 49,
+	UNKNOWN050 = 50,
+	UNKNOWN051 = 51,
+	UNKNOWN052 = 52,
+	UNKNOWN053 = 53,
+	UNKNOWN054 = 54,
+	UNKNOWN055 = 55,
+	UNKNOWN056 = 56,
+	UNKNOWN057 = 57,
+	UNKNOWN058 = 58,
+	UNKNOWN059 = 59,
+	UNKNOWN060 = 60,
+	UNKNOWN061 = 61,
+	UNKNOWN062 = 62,
+	UNKNOWN063 = 63,
+	UNKNOWN064 = 64,
+	UNKNOWN065 = 65,
+	UNKNOWN066 = 66,
+	UNKNOWN067 = 67,
+	UNKNOWN068 = 68,
+	UNKNOWN069 = 69,
+	UNKNOWN070 = 70,
+	UNKNOWN071 = 71,
+	UNKNOWN072 = 72,
+	UNKNOWN073 = 73,
+	UNKNOWN074 = 74,
+	UNKNOWN075 = 75,
+	UNKNOWN076 = 76,
+	UNKNOWN077 = 77,
+	UNKNOWN078 = 78,
+	UNKNOWN079 = 79,
+	UNKNOWN080 = 80,
+	UNKNOWN081 = 81,
+	UNKNOWN082 = 82,
+	UNKNOWN083 = 83,
+	UNKNOWN084 = 84,
+	UNKNOWN085 = 85,
+	UNKNOWN086 = 86,
+	UNKNOWN087 = 87,
+	UNKNOWN088 = 88,
+	UNKNOWN089 = 89,
+	UNKNOWN090 = 90,
+	UNKNOWN091 = 91,
+	UNKNOWN092 = 92,
+	UNKNOWN093 = 93,
+	UNKNOWN094 = 94,
+	UNKNOWN095 = 95,
+	UNKNOWN096 = 96,
+	UNKNOWN097 = 97,
+	UNKNOWN098 = 98,
+	UNKNOWN099 = 99,
+	UNKNOWN100 = 100,
+	UNKNOWN101 = 101,
+	UNKNOWN102 = 102,
+	UNKNOWN103 = 103,
+	UNKNOWN104 = 104,
+	UNKNOWN105 = 105,
+	UNKNOWN106 = 106,
+	UNKNOWN107 = 107,
+	UNKNOWN108 = 108,
+	UNKNOWN109 = 109,
+	UNKNOWN110 = 110,
+	UNKNOWN111 = 111,
+	UNKNOWN112 = 112,
+	UNKNOWN113 = 113,
+	UNKNOWN114 = 114,
+	UNKNOWN115 = 115,
+	UNKNOWN116 = 116,
+	UNKNOWN117 = 117,
+	UNKNOWN118 = 118,
+	UNKNOWN119 = 119,
+	UNKNOWN120 = 120,
+	UNKNOWN121 = 121,
+	UNKNOWN122 = 122,
+	UNKNOWN123 = 123,
+	UNKNOWN124 = 124,
+	UNKNOWN125 = 125,
+	UNKNOWN126 = 126,
+	UNKNOWN127 = 127,
+	UNKNOWN128 = 128,
+	UNKNOWN129 = 129,
+	UNKNOWN130 = 130,
+	UNKNOWN131 = 131,
+	UNKNOWN132 = 132,
+	UNKNOWN133 = 133,
+	UNKNOWN134 = 134,
+	UNKNOWN135 = 135,
+	UNKNOWN136 = 136,
+	UNKNOWN137 = 137,
+	UNKNOWN138 = 138,
+	UNKNOWN139 = 139,
+	UNKNOWN140 = 140,
+	UNKNOWN141 = 141,
+	UNKNOWN142 = 142,
+	UNKNOWN143 = 143,
+	UNKNOWN144 = 144,
+	UNKNOWN145 = 145,
+	UNKNOWN146 = 146,
+	UNKNOWN147 = 147,
+	UNKNOWN148 = 148,
+	UNKNOWN149 = 149,
+	UNKNOWN150 = 150,
+	UNKNOWN151 = 151,
+	UNKNOWN152 = 152,
+	UNKNOWN153 = 153,
+	UNKNOWN154 = 154,
+	UNKNOWN155 = 155,
+	UNKNOWN156 = 156,
+	UNKNOWN157 = 157,
+	UNKNOWN158 = 158,
+	UNKNOWN159 = 159,
+	UNKNOWN160 = 160,
+	UNKNOWN161 = 161,
+	UNKNOWN162 = 162,
+	UNKNOWN163 = 163,
+	UNKNOWN164 = 164,
+	UNKNOWN165 = 165,
+	UNKNOWN166 = 166,
+	UNKNOWN167 = 167,
+	UNKNOWN168 = 168,
+	UNKNOWN169 = 169,
+	UNKNOWN170 = 170,
+	UNKNOWN171 = 171,
+	UNKNOWN172 = 172,
+	UNKNOWN173 = 173,
+	UNKNOWN174 = 174,
+	UNKNOWN175 = 175,
+	UNKNOWN176 = 176,
+	UNKNOWN177 = 177,
+	UNKNOWN178 = 178,
+	UNKNOWN179 = 179,
+	UNKNOWN180 = 180,
+	UNKNOWN181 = 181,
+	UNKNOWN182 = 182,
+	UNKNOWN183 = 183,
+	UNKNOWN184 = 184,
+	UNKNOWN185 = 185,
+	UNKNOWN186 = 186,
+	UNKNOWN187 = 187,
+	UNKNOWN188 = 188,
+	UNKNOWN189 = 189,
+	UNKNOWN190 = 190,
+	UNKNOWN191 = 191,
+	UNKNOWN192 = 192,
+	UNKNOWN193 = 193,
+	UNKNOWN194 = 194,
+	UNKNOWN195 = 195,
+	NUMBER3 = 196,
+	UNKNOWN197 = 197,
+	UNKNOWN198 = 198,
+	UNKNOWN199 = 199,
+	UNKNOWN200 = 200,
+	UNKNOWN201 = 201,
+	UNKNOWN202 = 202,
+	UNKNOWN203 = 203,
+	UNKNOWN204 = 204,
+	UNKNOWN205 = 205,
+	UNKNOWN206 = 206,
+	UNKNOWN207 = 207,
+	UNKNOWN208 = 208,
+	UNKNOWN209 = 209,
+	UNKNOWN210 = 210,
+	UNKNOWN211 = 211,
+	UNKNOWN212 = 212,
+	UNKNOWN213 = 213,
+	UNKNOWN214 = 214,
+	UNKNOWN215 = 215,
+	UNKNOWN216 = 216,
+	UNKNOWN217 = 217,
+	UNKNOWN218 = 218,
+	UNKNOWN219 = 219,
+	GIYGAS_DEVILSMACHINE = 220,
+	GIYGAS_DEVILSMACHINE_OFF_CUTSCENE1 = 221,
+	GIYGAS_DEVILSMACHINE_OFF_CUTSCENE2 = 222,
+	GIYGAS_DEVILSMACHINE_OFF_1 = 223,
+	GIYGAS_DEVILSMACHINE_OFF_2 = 224,
+	GIYGAS_VULNERABLE = 225,
+	GIYGAS_UNSTABLE_1 = 226,
+	GIYGAS_UNSTABLE_2 = 227,
+	SOUNDSTONE1 = 228,
+	SOUNDSTONE2 = 229,
+	FILE_SELECT = 230,
+	COFFEE1 = 231,
+	COFFEE2 = 232,
+	TEA1 = 233,
+	TEA2 = 234,
+	UNKNOWN235 = 235,
+	UNKNOWN236 = 236,
+	UNKNOWN237 = 237,
+	UNKNOWN238 = 238,
+	UNKNOWN239 = 239,
+	UNKNOWN240 = 240,
+	UNKNOWN241 = 241,
+	UNKNOWN242 = 242,
+	UNKNOWN243 = 243,
+	UNKNOWN244 = 244,
+	UNKNOWN245 = 245,
+	UNKNOWN246 = 246,
+	UNKNOWN247 = 247,
+	UNKNOWN248 = 248,
+	UNKNOWN249 = 249,
+	UNKNOWN250 = 250,
+	UNKNOWN251 = 251,
+	UNKNOWN252 = 252,
+	UNKNOWN253 = 253,
+	UNKNOWN254 = 254,
+	MU_TRAINING = 255,
+	UNKNOWN256 = 256,
+	UNKNOWN257 = 257,
+	UNKNOWN258 = 258,
+	UNKNOWN259 = 259,
+	UNKNOWN260 = 260,
+	UNKNOWN261 = 261,
+	UNKNOWN262 = 262,
+	MAGIC_CAKE1 = 263,
+	MAGIC_CAKE2 = 264,
+	GIYGAS_UNUSED = 265,
+	UNKNOWN266 = 266,
+	UNKNOWN267 = 267,
+	UNKNOWN268 = 268,
+	UNKNOWN269 = 269,
+	UNKNOWN270 = 270,
+	UNKNOWN271 = 271,
+	UNKNOWN272 = 272,
+	UNKNOWN273 = 273,
+	UNKNOWN274 = 274,
+	UNKNOWN275 = 275,
+	UNKNOWN276 = 276,
+	UNKNOWN277 = 277,
+	UNKNOWN278 = 278,
+	UNKNOWN279 = 279,
+	UNKNOWN280 = 280,
+	UNKNOWN281 = 281,
+	UNKNOWN282 = 282,
+	UNKNOWN283 = 283,
+	UNKNOWN284 = 284,
+	UNKNOWN285 = 285,
+	UNKNOWN286 = 286,
+	UNKNOWN287 = 287,
+	UNKNOWN288 = 288,
+	UNKNOWN289 = 289,
+	UNKNOWN290 = 290,
+	UNKNOWN291 = 291,
+	UNKNOWN292 = 292,
+	UNKNOWN293 = 293,
+	UNKNOWN294 = 294,
+	UNKNOWN295 = 295,
+	UNKNOWN296 = 296,
+	UNKNOWN297 = 297,
+	UNKNOWN298 = 298,
+	UNKNOWN299 = 299,
+	UNKNOWN300 = 300,
+	UNKNOWN301 = 301,
+	UNKNOWN302 = 302,
+	UNKNOWN303 = 303,
+	UNKNOWN304 = 304,
+	UNKNOWN305 = 305,
+	UNKNOWN306 = 306,
+	UNKNOWN307 = 307,
+	UNKNOWN308 = 308,
+	UNKNOWN309 = 309,
+	UNKNOWN310 = 310,
+	UNKNOWN311 = 311,
+	UNKNOWN312 = 312,
+	UNKNOWN313 = 313,
+	UNKNOWN314 = 314,
+	UNKNOWN315 = 315,
+	UNKNOWN316 = 316,
+	UNKNOWN317 = 317,
+	UNKNOWN318 = 318,
+	UNKNOWN319 = 319,
+	UNKNOWN320 = 320,
+	UNKNOWN321 = 321,
+	UNKNOWN322 = 322,
+	UNKNOWN323 = 323,
+	UNKNOWN324 = 324,
+	UNKNOWN325 = 325,
+	UNKNOWN326 = 326,
+	UNKNOWN327 = 327,
+	UNKNOWN328 = 328,
+	UNKNOWN329 = 329,
+}
+
+enum Initiative {
+	Normal = 0,
+	PartyFirst = 1,
+	EnemiesFirst = 2,
+	RunningAway = 3,
+	RunningAlwaysSuccessful = 4,
+}
+
+enum ActionDirection {
+	Party = 0,
+	Enemy = 1,
+}
+enum ActionType {
+	Nothing = 0,
+	Physical = 1,
+	PiercingPhysical = 2,
+	PSI = 3,
+	Item = 4,
+	Other = 5,
+}
+enum ActionTarget {
+	None = 0,
+	One = 1,
+	Random = 2,
+	Row = 3,
+	All = 4,
+}
+
+enum NPCTargettability {
+	Untargettable = 1,
+	Forced = 6,
+	Normal = 7,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -2969,8 +3622,7 @@ struct Game_State {
 	ubyte partyPSI;
 	ubyte partyNPC1;
 	ubyte partyNPC2;
-	ushort partyNPC1HP;
-	ushort partyNPC2HP;
+	ushort[2] partyNPCHP;
 	ubyte partyStatus;
 	ubyte partyNPC1Copy;
 	ubyte partyNPC2Copy;
@@ -3004,7 +3656,7 @@ struct Game_State {
 	ubyte textSpeed;
 	ubyte soundSetting;
 	ubyte unknownC3;
-	ubyte[4] unknownC4;
+	uint unknownC4;
 	ubyte[12] unknownC8;
 	PhotoState[32] savedPhotoStates;
 	uint timer;
@@ -3186,15 +3838,15 @@ struct Sprites {
 }
 
 struct Battler {
-	ubyte id;
-	ubyte unknown01;
-	ubyte sprite;
-	ubyte unknown03;
-	ushort currentAction;
-	ubyte actionOrderVar;
-	ubyte unknown07;
-	ubyte currentActionArgument;
-	ubyte unknown09;
+	ubyte id; //0
+	ubyte unknown1; //1
+	ubyte sprite; //2
+	ubyte unknown3; //3
+	ushort currentAction; //4
+	ubyte actionOrderVar; //6
+	ubyte unknown7; //7
+	ubyte currentActionArgument; //8
+	ubyte unknown9;
 	ubyte currentTarget;
 	ubyte theFlag;
 	ubyte consciousness;
@@ -3236,7 +3888,7 @@ struct Battler {
 	ubyte spriteY;
 	ubyte initiative;
 	ubyte unknown69;
-	ubyte[2] unknown70;
+	short unknown70;
 	ubyte unknown72;
 	ubyte unknown73;
 	ubyte unknown74;
@@ -3300,7 +3952,7 @@ struct TimedDelivery {
 }
 
 struct Item {
-	char[25] name;
+	ubyte[25] name;
 	ubyte type;
 	ushort cost;
 	ubyte flags;
@@ -3315,7 +3967,7 @@ struct Item {
 		ubyte special;
 	}
 	ubyte* helpText;
-	this(char[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, ubyte* helpText ) {
+	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, ubyte* helpText ) {
 		this.name = name;
 		this.type = type;
 		this.cost = cost;
@@ -3507,7 +4159,7 @@ struct HDMAWordTransfer {
 }
 
 struct BattleEntryPointer {
-	void* ptr;
+	void* pointer;
 	ushort runAwayFlag;
 	ubyte runAwayFlagState;
 	LetterboxStyle letterboxStyle;
@@ -3554,15 +4206,92 @@ struct Unknown7EAECCEntry {
 	ushort unknown20;
 }
 
+struct BattleEntryBGEntry {
+	ushort layer1;
+	ushort layer2;
+}
+
+struct Enemy {
+	ubyte theFlag; //0
+	ubyte[25] name; //1
+	Gender gender;//26
+	EnemyType type; //27
+	ushort battle_sprite; //28
+	ushort overworld_sprite; //30
+	ubyte run_flag; //32
+	ushort hp; //33
+	ushort pp; //35
+	uint exp; //37
+	ushort money; //41
+	ushort event_script; //43
+	const(ubyte)* encounterTextPointer; //45
+	const(ubyte)* deathTextPointer; //49
+	ubyte battle_sprite_palette; //53
+	ubyte level; //54
+	ubyte music; //55
+	ushort offense; //56
+	ushort defense; //58
+	ubyte speed; //60
+	ubyte guts; //61
+	ubyte luck; //62
+	ubyte fire_vulnerability; //63
+	ubyte freeze_vulnerability; //64
+	ubyte flash_vulnerability; //65
+	ubyte paralysis_vulnerability; //66
+	ubyte hypnosis_brainshock_vulnerability; //67
+	ubyte miss_rate; //68
+	ubyte actionOrder; //69
+	ushort[4] actions; //70
+	ushort final_action; //78
+	ubyte[4] actionArgs; //80
+	ubyte final_action_arg; //84
+	ubyte iq; //85
+	ubyte boss; //86
+	ubyte itemDropRate; //87
+	ubyte itemDropped; //88
+	ubyte initial_status; //89
+	ubyte death_type; //90
+	ubyte row; //91
+	ubyte max_called; //92
+	ubyte mirror_success; //93
+}
+
+struct BattleAction {
+	ubyte direction;
+	ubyte target;
+	ubyte type;
+	ubyte ppCost;
+	const(ubyte)* text;
+	void function() func;
+}
+
+struct UnknownA97D {
+	ubyte unknown0;
+	ubyte unknown1;
+	ubyte[2] unknown2;
+	ubyte unknown4;
+	ubyte unknown5;
+}
+
+struct NPCAI {
+	ubyte targettability;
+	ubyte enemyID;
+}
+
+struct ConsolationPrize {
+	ubyte enemy;
+	ubyte[8] items;
+}
+
 //helper funcs not in the original game
 
-char[length] EBString(size_t length)(string str) {
-	char[length] result = 0;
+ubyte[length] EBString(size_t length)(string str) {
+	ubyte[length] result = 0;
 	foreach (idx, c; str) {
 		switch (c) {
 			case '0': .. case '9':
 			case 'A': .. case 'Z':
-			case 'a': .. case 'z': result[idx] = cast(char)(c + 0x30); break;
+			case 'a': .. case 'z': result[idx] = cast(ubyte)(c + 0x30); break;
 			default: break;
 		}
 	}

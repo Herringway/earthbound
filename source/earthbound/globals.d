@@ -586,6 +586,36 @@ __gshared Battler[32] BattlersTable; //$9FAC
 __gshared uint BattlerTargetFlags; //$A96C
 __gshared Battler* currentAttacker;           // $A970
 __gshared Battler* currentTarget;           // $A972
+__gshared uint BattleEXPScratch;           // $A974
+__gshared ushort BattleMoneyScratch;           // $A978
+__gshared ushort CurrentGiygasPhase;           // $A97A
+__gshared ubyte Unknown7EA97C; //$A97C
+__gshared UnknownA97D Unknown7EA97D; //$A97D
+__gshared ubyte[27] AttackerNameAdjustScratch; //$A983
+__gshared ubyte[27] TargetNameAdjustScratch; //$A99E
+__gshared ubyte[27] Unknown7EA9B9; //$A9B9
+//UNKNOWN_7EA9D4: ;$7EA9D4
+
+__gshared short Unknown7EAA0C; //$AA0C
+__gshared short Unknown7EAA0E; //$AA0E
+__gshared short ItemDropped; //$AA10
+__gshared short MirrorEnemy; //$AA12
+__gshared Battler Unknown7EAA14; //$AA14
+
+__gshared ushort MirrorTurnTimer; //$AA64
+__gshared ushort[5] Unknown7EAA66; //$AA66
+__gshared ushort Unknown7EAA70; //$AA70
+__gshared ushort Unknown7EAA72; //$AA72
+__gshared ushort Unknown7EAA74; //$AA74
+__gshared ushort[4] Unknown7EAA76; //$AA76
+__gshared ushort[4] Unknown7EAA7E; //$AA7E
+__gshared ushort[4] Unknown7EAA86; //$AA86
+__gshared ushort Unknown7EAA8E; //$AA8E
+__gshared ushort Unknown7EAA90; //$AA90
+__gshared ushort Unknown7EAA92; //$AA92
+__gshared ushort Unknown7EAA94; //$AA94
+__gshared ushort Unknown7EAA96; //$AA96
+//UNKNOWN_7EAA98: ;$7EAA98
 
 __gshared short Unknown7EAD8A; //$AD8A
 __gshared short VerticalShakeDuration; //$AD8C
