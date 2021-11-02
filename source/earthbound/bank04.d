@@ -2919,8 +2919,8 @@ short Spawn() {
     for (short i = 0; i < 6; i++) {
         Unknown7E4DC6.afflictions[i] = 0;
     }
-    Unknown7E4DC6.hp.target = Unknown7E4DC6.max_hp;
-    Unknown7E4DC6.hp.current.integer = Unknown7E4DC6.max_hp;
+    Unknown7E4DC6.hp.target = Unknown7E4DC6.maxHP;
+    Unknown7E4DC6.hp.current.integer = Unknown7E4DC6.maxHP;
     Unknown7E4DC6.pp.target = 0;
     Unknown7E4DC6.pp.current.integer = 0;
     gameState.moneyCarried = (gameState.moneyCarried & 1) + gameState.moneyCarried / 2;

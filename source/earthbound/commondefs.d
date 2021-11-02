@@ -3104,7 +3104,7 @@ enum EnemyID {
 	TRILLIONAGE_SPROUT_1 = 90,
 	MUSICA = 91,
 	DESERT_WOLF = 92,
-	MASTER_BELCH_1 = 93,
+	MasterBelch1 = 93,
 	BIG_PILE_OF_PUKE_1 = 94,
 	MASTER_BARF_1 = 95,
 	KISS_OF_DEATH = 96,
@@ -3180,7 +3180,7 @@ enum EnemyID {
 	FlyingMan = 166,
 	TeddyBear = 167,
 	SuperPlushBear = 168,
-	MASTER_BELCH_2 = 169,
+	MasterBelch2 = 169,
 	INSANE_CULTIST_2 = 170,
 	DEPT_STORE_SPOOK_2 = 171,
 	YOUR_NIGHTMARE_2 = 172,
@@ -3203,7 +3203,7 @@ enum EnemyID {
 	URBAN_ZOMBIE_2 = 189,
 	DIAMOND_DOG_2 = 190,
 	TRILLIONAGE_SPROUT_2 = 191,
-	MASTER_BELCH_3 = 192,
+	MasterBelch3 = 192,
 	BIG_PILE_OF_PUKE_2 = 193,
 	MASTER_BARF_2 = 194,
 	LOADED_DICE_2 = 195,
@@ -3670,8 +3670,8 @@ struct PartyCharacter {
 	}
 	ubyte level;
 	uint exp;
-	ushort max_hp;
-	ushort max_pp;
+	ushort maxHP;
+	ushort maxPP;
 	ubyte[AFFLICTION_GROUP_COUNT] afflictions;
 	ubyte offense;
 	ubyte defense;
@@ -3700,11 +3700,11 @@ struct PartyCharacter {
 	RollingStat pp;
 	ushort hp_pp_window_options;
 	ubyte miss_rate;
-	ubyte fire_resist;
-	ubyte freeze_resist;
-	ubyte flash_resist;
-	ubyte paralysis_resist;
-	ubyte hypnosis_brainshock_resist;
+	ubyte fireResist;
+	ubyte freezeResist;
+	ubyte flashResist;
+	ubyte paralysisResist;
+	ubyte hypnosisBrainshockResist;
 	ubyte boosted_speed;
 	ubyte boosted_guts;
 	ubyte boosted_vitality;
@@ -3882,7 +3882,7 @@ struct Battler {
 	ubyte brainshockResist;
 	ubyte hypnosisResist;
 	ushort money;
-	ushort exp;
+	uint exp;
 	ubyte vramSpriteIndex;
 	ubyte spriteX;
 	ubyte spriteY;
@@ -4216,17 +4216,17 @@ struct Enemy {
 	ubyte[25] name; //1
 	Gender gender;//26
 	EnemyType type; //27
-	ushort battle_sprite; //28
-	ushort overworld_sprite; //30
-	ubyte run_flag; //32
+	ushort battleSprite; //28
+	ushort overworldSprite; //30
+	ubyte runFlag; //32
 	ushort hp; //33
 	ushort pp; //35
 	uint exp; //37
 	ushort money; //41
-	ushort event_script; //43
+	ushort eventScript; //43
 	const(ubyte)* encounterTextPointer; //45
 	const(ubyte)* deathTextPointer; //49
-	ubyte battle_sprite_palette; //53
+	ubyte battleSpritePalette; //53
 	ubyte level; //54
 	ubyte music; //55
 	ushort offense; //56
@@ -4234,26 +4234,26 @@ struct Enemy {
 	ubyte speed; //60
 	ubyte guts; //61
 	ubyte luck; //62
-	ubyte fire_vulnerability; //63
-	ubyte freeze_vulnerability; //64
-	ubyte flash_vulnerability; //65
-	ubyte paralysis_vulnerability; //66
-	ubyte hypnosis_brainshock_vulnerability; //67
-	ubyte miss_rate; //68
+	ubyte fireResist; //63
+	ubyte freezeResist; //64
+	ubyte flashResist; //65
+	ubyte paralysisResist; //66
+	ubyte hypnosisBrainshockResist; //67
+	ubyte missRate; //68
 	ubyte actionOrder; //69
 	ushort[4] actions; //70
-	ushort final_action; //78
+	ushort finalAction; //78
 	ubyte[4] actionArgs; //80
-	ubyte final_action_arg; //84
+	ubyte finalActionArg; //84
 	ubyte iq; //85
 	ubyte boss; //86
 	ubyte itemDropRate; //87
 	ubyte itemDropped; //88
-	ubyte initial_status; //89
-	ubyte death_type; //90
+	ubyte initialStatus; //89
+	ubyte deathType; //90
 	ubyte row; //91
-	ubyte max_called; //92
-	ubyte mirror_success; //93
+	ubyte maxCalled; //92
+	ubyte mirrorSuccess; //93
 }
 
 struct BattleAction {

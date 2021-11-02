@@ -629,7 +629,7 @@ void CalcResistances(short id) {
 	if (total >= 3) {
 		total = 3;
 	}
-	PartyCharacters[id - 1].fire_resist = cast(ubyte)total;
+	PartyCharacters[id - 1].fireResist = cast(ubyte)total;
 
 	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 0xC : 0;
 	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].special & 0xC : 0;
@@ -637,7 +637,7 @@ void CalcResistances(short id) {
 	if (total >= 3) {
 		total = 3;
 	}
-	PartyCharacters[id - 1].freeze_resist = cast(ubyte)total;
+	PartyCharacters[id - 1].freezeResist = cast(ubyte)total;
 
 	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 0x30 : 0;
 	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].special & 0x30 : 0;
@@ -645,7 +645,7 @@ void CalcResistances(short id) {
 	if (total >= 3) {
 		total = 3;
 	}
-	PartyCharacters[id - 1].flash_resist = cast(ubyte)total;
+	PartyCharacters[id - 1].flashResist = cast(ubyte)total;
 
 	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 0xC0 : 0;
 	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].special & 0xC0 : 0;
@@ -653,10 +653,10 @@ void CalcResistances(short id) {
 	if (total >= 3) {
 		total = 3;
 	}
-	PartyCharacters[id - 1].paralysis_resist = cast(ubyte)total;
+	PartyCharacters[id - 1].paralysisResist = cast(ubyte)total;
 
 	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].special : 0;
-	PartyCharacters[id - 1].hypnosis_brainshock_resist = cast(ubyte)total;
+	PartyCharacters[id - 1].hypnosisBrainshockResist = cast(ubyte)total;
 }
 
 // $C2239D
@@ -1681,6 +1681,21 @@ void InstantWinHandler();
 // $C26634
 short InstantWinCheck();
 
+// $C2698B
+short GetBattleActionType(short id) {
+	return BattleActionTable[id].type;
+}
+
+// $C269EF
+short RandLong() {
+	return rand();
+}
+
+// $C269F8
+short Truncate16To8(short arg1, short arg2) {
+	return cast(short)((arg1 * arg2) >> 8);
+}
+
 // $C26A2D
 short RandLimit(short);
 
@@ -1690,17 +1705,117 @@ short FiftyPercentVariance(short);
 // $C26AFD
 short TwentyFivePercentVariance(short);
 
+// $C26BB8
+short Success255(short arg) {
+	if (RandLong() < arg) {
+		return 1;
+	}
+	return 0;
+}
+
 // $C27029
 short IsCharacterTargetted(short);
+
+// $C27029
+short InflictStatusBattle(Battler*, short, short);
 
 // $C27550
 void KOTarget(Battler*);
 
 // $C27E8A
-void SwapAttackerWithTarget();
+void SwapAttackerWithTarget() {
+	Battler* tmp = currentAttacker;
+	currentAttacker = currentTarget;
+	currentTarget = tmp;
+	FixAttackerName(0);
+	FixTargetName();
+}
+
+// $C27CFD
+short FailAttackOnNPCs() {
+	if (currentTarget.npcID != 0) {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+		return 1;
+	}
+	return 0;
+}
+
+// $C27EAF
+short CalcDamage(Battler* target, short damage);
 
 // $C28125
-void CalcResistDamage(short damage, short);
+short CalcResistDamage(short damage, short arg2) {
+	if (damage <= 0) {
+		damage = 0;
+	}
+	if (arg2 < 0xFF) {
+		damage = Truncate16To8(arg2, damage);
+	}
+	if (currentTarget.consciousness != 1) {
+		return damage;
+	}
+	if (currentTarget.afflictions[0] == Status0.Unconscious) {
+		return damage;
+	}
+	if (currentAttacker.guarding == 1) {
+		if (GetBattleActionType(currentAttacker.currentAction) == ActionType.Physical) {
+			damage /= 2;
+		}
+	}
+	if (GetBattleActionType(currentAttacker.currentAction) == ActionType.Physical) {
+		if ((currentTarget.afflictions[6] == Status6.ShieldPower) || (currentTarget.afflictions[6] == Status6.Shield)) {
+			damage /= 2;
+		}
+	}
+	if (damage == 0) {
+		damage = 1;
+	}
+	if (CalcDamage(currentTarget, damage) != 0) {
+		if (currentTarget.hp == 0) {
+			KOTarget(currentTarget);
+		}
+	}
+	// damage hasn't changed at all since the last check, so this seems unnecessary
+	if (damage == 0) {
+		damage = 1;
+	}
+	if (Unknown7EAA94 == 0) {
+		switch (currentTarget.afflictions[6]) {
+			case Status6.ShieldPower:
+				if (Unknown7EAA90 != 0) {
+					goto case;
+				}
+				damage /= 2;
+				if (damage == 0) {
+					damage = 1;
+				}
+				DisplayInBattleText(TextBattlePowerShieldDeflected);
+				SwapAttackerWithTarget();
+				CalcDamage(currentTarget, damage);
+				if (currentTarget.hp == 0) {
+					KOTarget(currentTarget);
+				}
+				SwapAttackerWithTarget();
+				goto case;
+			case Status6.Shield:
+				if (--currentTarget.shieldHP == 0) {
+					currentTarget.afflictions[6] = 0;
+					DisplayInBattleText(TextBattleShieldDisappeared);
+				}
+				break;
+			default: break;
+		}
+	}
+	if ((currentTarget.allyOrEnemy == 0) && (currentTarget.npcID == 0) && (PartyCharacters[currentTarget.row].hp.current.integer == 0)) {
+		return damage;
+	}
+	if ((currentTarget.afflictions[2] == Status2.Asleep) && (Success255(128) != 0)) {
+		currentTarget.currentAction = 0;
+		currentTarget.afflictions[2] = 0;
+		DisplayInBattleText(TextBattleWokeUp);
+	}
+	return damage;
+}
 
 // $C284AD
 short DetermineDodge();
@@ -1780,7 +1895,7 @@ void WeakenShield() {
 
 // $C29516
 void PSIRockinCommon(short baseDamage) {
-	if (PSIShieldNullify() == 0) {
+	if (PSIShieldNullify() != 0) {
 		return;
 	}
 	if (DetermineDodge() != 0) {
@@ -1811,6 +1926,102 @@ void BattleActionPSIRockinOmega() {
 	PSIRockinCommon(720);
 }
 
+// $C295CF
+void PSIFreezeCommon(short baseDamage) {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (PSIShieldNullify() != 0) {
+		return;
+	}
+	short damageDone = CalcResistDamage(TwentyFivePercentVariance(baseDamage), currentTarget.freezeResist);
+	if ((currentTarget.afflictions[0] != Status0.Unconscious) && (damageDone != 0) && (RandLimit(100) < 25)) {
+		if (InflictStatusBattle(currentTarget, 2, Status2.Solidified) != 0) {
+			DisplayInBattleText(TextBattleBodySolidified);
+		}
+	}
+	WeakenShield();
+}
+
+// $C29647
+void BattleActionPSIFreezeAlpha() {
+	PSIFreezeCommon(180);
+}
+
+// $C29650
+void BattleActionPSIFreezeBeta() {
+	PSIFreezeCommon(360);
+}
+
+// $C29659
+void BattleActionPSIFreezeGamma() {
+	PSIFreezeCommon(540);
+}
+
+// $C29662
+void BattleActionPSIFreezeOmega() {
+	PSIFreezeCommon(720);
+}
+
+// $C29CDC
+short ShieldsCommon(Battler*, ubyte status);
+
+// $C29D44
+void BattleActionShieldAlpha() {
+	if (ShieldsCommon(currentTarget, Status6.Shield) == 1) {
+		DisplayInBattleText(TextBattleShieldGotStronger);
+	} else {
+		DisplayInBattleText(TextBattleProtectedByShield);
+	}
+}
+
+// $C29D7A
+void BattleActionShieldSigma() {
+	BattleActionShieldAlpha();
+}
+
+// $C29D81
+void BattleActionShieldBeta() {
+	if (ShieldsCommon(currentTarget, Status6.ShieldPower) == 1) {
+		DisplayInBattleText(TextBattlePowerShieldGotStronger);
+	} else {
+		DisplayInBattleText(TextBattleProtectedByPowerShield);
+	}
+}
+
+// $C29DB7
+void BattleActionShieldOmega() {
+	BattleActionShieldBeta();
+}
+
+// $C29DBE
+void BattleActionPSIShieldAlpha() {
+	if (ShieldsCommon(currentTarget, Status6.PSIShield) == 1) {
+		DisplayInBattleText(TextBattlePsychicShieldGotStronger);
+	} else {
+		DisplayInBattleText(TextBattleProtectedByPsychicShield);
+	}
+}
+
+// $C29DF4
+void BattleActionPSIShieldSigma() {
+	BattleActionPSIShieldAlpha();
+}
+
+// $C29DFB
+void BattleActionPSIShieldBeta() {
+	if (ShieldsCommon(currentTarget, Status6.PSIShieldPower) == 1) {
+		DisplayInBattleText(TextBattlePsychicPowerShieldGotStronger);
+	} else {
+		DisplayInBattleText(TextBattleProtectedByPsychicPowerShield);
+	}
+}
+
+// $C29E31
+void BattleActionPSIShieldOmega() {
+	BattleActionPSIShieldBeta();
+}
+
 // $C2A39D
 void HealPoison() {
 	if (currentTarget.afflictions[0] == Status0.Poisoned) {
@@ -1822,11 +2033,117 @@ void HealPoison() {
 // $C2AF1F
 void CopyMirrorData(Battler*, Battler*);
 
+// $C2B608
+ubyte CalcPSIDamageModifiers(ubyte arg1) {
+	switch (arg1) {
+		case 0: return 255;
+		case 1: return 179;
+		case 2: return 102;
+		case 3: return 13;
+		default: return arg1;
+	}
+}
+// $C2B639
+ubyte CalcPSIResistanceModifiers(ubyte arg1) {
+	switch (arg1) {
+		case 0: return 255;
+		case 1: return 128;
+		case 2: return 26;
+		case 3: return 0;
+		default: return arg1;
+	}
+}
+
+// $C2B66A
+ubyte UnknownC2B66A(short);
+
 // $C2B6EB
-void BattleInitEnemyStats(short, Battler*);
+void BattleInitEnemyStats(short arg1, Battler* battler) {
+	memset(battler, 0, Battler.sizeof);
+	if (EnemyConfigurationTable[arg1].level > Unknown7EAA0C) {
+		Unknown7EAA0C = EnemyConfigurationTable[arg1].level;
+	}
+	battler.id = cast(ubyte)arg1;
+	battler.unknown76 = cast(ubyte)arg1;
+	battler.sprite = cast(ubyte)EnemyConfigurationTable[arg1].battleSprite;
+	battler.theFlag = UnknownC2B66A(arg1);
+	battler.consciousness = 1;
+	battler.allyOrEnemy = 1;
+	battler.npcID = 0;
+	battler.row = EnemyConfigurationTable[arg1].row;
+	battler.hp = battler.hpTarget = battler.hpMax = EnemyConfigurationTable[arg1].hp;
+	battler.pp = battler.ppTarget = battler.ppMax = EnemyConfigurationTable[arg1].pp;
+	battler.offense = battler.baseOffense = cast(ubyte)EnemyConfigurationTable[arg1].offense;
+	battler.defense = battler.baseDefense = cast(ubyte)EnemyConfigurationTable[arg1].defense;
+	battler.speed = battler.baseSpeed = EnemyConfigurationTable[arg1].speed;
+	battler.guts = battler.baseGuts = EnemyConfigurationTable[arg1].guts;
+	battler.luck = battler.baseLuck = EnemyConfigurationTable[arg1].luck;
+	battler.vitality = 0;
+	battler.iq = EnemyConfigurationTable[arg1].iq;
+	battler.fireResist = CalcPSIDamageModifiers(EnemyConfigurationTable[arg1].fireResist);
+	battler.freezeResist = CalcPSIDamageModifiers(EnemyConfigurationTable[arg1].freezeResist);
+	battler.flashResist = CalcPSIResistanceModifiers(EnemyConfigurationTable[arg1].flashResist);
+	battler.paralysisResist = CalcPSIResistanceModifiers(EnemyConfigurationTable[arg1].paralysisResist);
+	battler.hypnosisResist = CalcPSIResistanceModifiers(EnemyConfigurationTable[arg1].hypnosisBrainshockResist);
+	battler.brainshockResist = CalcPSIResistanceModifiers(cast(ubyte)(3 - EnemyConfigurationTable[arg1].hypnosisBrainshockResist));
+	battler.money = EnemyConfigurationTable[arg1].money;
+	battler.exp = EnemyConfigurationTable[arg1].exp;
+	switch (EnemyConfigurationTable[arg1].initialStatus) {
+		case InitialStatus.PSIShield:
+			ShieldsCommon(battler, Status6.PSIShield);
+			break;
+		case InitialStatus.PSIShieldPower:
+			ShieldsCommon(battler, Status6.PSIShieldPower);
+			break;
+		case InitialStatus.Shield:
+			ShieldsCommon(battler, Status6.Shield);
+			break;
+		case InitialStatus.ShieldPower:
+			ShieldsCommon(battler, Status6.ShieldPower);
+			break;
+		case InitialStatus.Asleep:
+			battler.afflictions[2] = Status2.Asleep;
+			break;
+		case InitialStatus.CantConcentrate:
+			battler.afflictions[4] = Status4.CantConcentrate4;
+			break;
+		case InitialStatus.Strange:
+			battler.afflictions[3] = Status3.Strange;
+			break;
+		default: break;
+	}
+}
 
 // $C2B930
-void BattleInitPlayerStats(short, Battler*);
+void BattleInitPlayerStats(short arg1, Battler* battler) {
+	memset(battler, 0, Battler.sizeof);
+	battler.id = cast(ubyte)arg1;
+	battler.sprite = 0;
+	battler.consciousness = 1;
+	battler.allyOrEnemy = 0;
+	battler.npcID = 0;
+	battler.hp = PartyCharacters[arg1 - 1].hp.current.integer;
+	battler.hpTarget = PartyCharacters[arg1 - 1].hp.target;
+	battler.hpMax = PartyCharacters[arg1 - 1].maxHP;
+	battler.pp = PartyCharacters[arg1 - 1].pp.current.integer;
+	battler.ppTarget = PartyCharacters[arg1 - 1].pp.target;
+	battler.ppMax = PartyCharacters[arg1 - 1].maxPP;
+	memcpy(&battler.afflictions[0], &PartyCharacters[arg1 - 1].afflictions[0], battler.afflictions.length);
+	battler.offense = battler.baseOffense = PartyCharacters[arg1 - 1].offense;
+	battler.defense = battler.baseDefense = PartyCharacters[arg1 - 1].defense;
+	battler.speed = battler.baseSpeed = PartyCharacters[arg1 - 1].speed;
+	battler.guts = battler.baseGuts = PartyCharacters[arg1 - 1].guts;
+	battler.luck = battler.baseLuck = PartyCharacters[arg1 - 1].luck;
+	battler.vitality = PartyCharacters[arg1 - 1].vitality;
+	battler.iq = PartyCharacters[arg1 - 1].iq;
+	battler.fireResist = CalcPSIDamageModifiers(PartyCharacters[arg1 - 1].fireResist);
+	battler.freezeResist = CalcPSIDamageModifiers(PartyCharacters[arg1 - 1].freezeResist);
+	battler.flashResist = CalcPSIResistanceModifiers(PartyCharacters[arg1 - 1].flashResist);
+	battler.paralysisResist = CalcPSIResistanceModifiers(PartyCharacters[arg1 - 1].paralysisResist);
+	battler.hypnosisResist = CalcPSIResistanceModifiers(PartyCharacters[arg1 - 1].hypnosisBrainshockResist);
+	battler.brainshockResist = CalcPSIResistanceModifiers(cast(ubyte)(3 - PartyCharacters[arg1 - 1].hypnosisBrainshockResist));
+	battler.row = cast(ubyte)(arg1 - 1);
+}
 
 // $C2BAC5
 short CountChars(short);
@@ -1842,6 +2159,23 @@ void UnknownC2BCB9(Battler*);
 
 // $C2BCE6
 void LoseHPStatus(Battler*, short);
+
+// $C2C1BD
+void BattleActionFlyHoney() {
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		if ((BattlersTable[i].id == EnemyID.MasterBelch3) || (BattlersTable[i].id == EnemyID.MasterBelch1)) {
+			BattlersTable[i].id = EnemyID.MasterBelch2;
+			DisplayInBattleText(TextBattleFlyHoneyBelch);
+		}
+	}
+	DisplayInBattleText(TextBattleFlyHoneyNormal);
+}
 
 // $C2C513
 void BattleActionNull12() {

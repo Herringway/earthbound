@@ -281,10 +281,10 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Party, ActionTarget.Row, ActionType.PSI, 0x0C, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_FIRE_B), //PSI_FIRE_BETA
 	BattleAction(ActionDirection.Party, ActionTarget.Row, ActionType.PSI, 0x14, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_FIRE_G), //PSI_FIRE_GAMMA
 	BattleAction(ActionDirection.Party, ActionTarget.Row, ActionType.PSI, 0x2A, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_FIRE_O), //PSI_FIRE_OMEGA
-	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x04, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_FREEZE_A), //PSI_FREEZE_ALPHA
-	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x09, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_FREEZE_B), //PSI_FREEZE_BETA
-	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x12, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_FREEZE_G), //PSI_FREEZE_GAMMA
-	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x1C, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_FREEZE_O), //PSI_FREEZE_OMEGA
+	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x04, null /+ TEXT_ACTION_010+/, &BattleActionPSIFreezeAlpha), //PSI_FREEZE_ALPHA
+	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x09, null /+ TEXT_ACTION_010+/, &BattleActionPSIFreezeBeta), //PSI_FREEZE_BETA
+	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x12, null /+ TEXT_ACTION_010+/, &BattleActionPSIFreezeGamma), //PSI_FREEZE_GAMMA
+	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x1C, null /+ TEXT_ACTION_010+/, &BattleActionPSIFreezeOmega), //PSI_FREEZE_OMEGA
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.PSI, 0x03, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_THUNDER_A), //PSI_THUNDER_ALPHA
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.PSI, 0x07, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_THUNDER_B), //PSI_THUNDER_BETA
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.PSI, 0x10, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_THUNDER_G), //PSI_THUNDER_GAMMA
@@ -303,14 +303,14 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x08, null /+ TEXT_ACTION_010+/, &BTLACT_HEALING_B), //PSI_HEALING_BETA
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x14, null /+ TEXT_ACTION_010+/, &BTLACT_HEALING_G), //PSI_HEALING_GAMMA
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x26, null /+ TEXT_ACTION_010+/, &BTLACT_HEALING_O), //PSI_HEALING_OMEGA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x06, null /+ TEXT_ACTION_010+/, &BTLACT_SHIELD_A), //PSI_SHIELD_ALPHA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x0A, null /+ TEXT_ACTION_010+/, &BTLACT_SHIELD_B), //PSI_SHIELD_BETA
-	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x12, null /+ TEXT_ACTION_010+/, &REDIRECT_BTLACT_SHIELD_A), //PSI_SHIELD_SIGMA
-	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x1E, null /+ TEXT_ACTION_010+/, &REDIRECT_BTLACT_SHIELD_B), //PSI_SHIELD_OMEGA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x08, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_SHIELD_A), //PSI_PSI_SHIELD_ALPHA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x0E, null /+ TEXT_ACTION_010+/, &BTLACT_PSI_SHIELD_B), //PSI_PSI_SHIELD_BETA
-	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x18, null /+ TEXT_ACTION_010+/, &REDIRECT_BTLACT_PSI_SHIELD_A), //PSI_PSI_SHIELD_SIGMA
-	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x2A, null /+ TEXT_ACTION_010+/, &REDIRECT_BTLACT_PSI_SHIELD_B), //PSI_PSI_SHIELD_OMEGA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x06, null /+ TEXT_ACTION_010+/, &BattleActionShieldAlpha), //PSI_SHIELD_ALPHA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x0A, null /+ TEXT_ACTION_010+/, &BattleActionShieldBeta), //PSI_SHIELD_BETA
+	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x12, null /+ TEXT_ACTION_010+/, &BattleActionShieldSigma), //PSI_SHIELD_SIGMA
+	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x1E, null /+ TEXT_ACTION_010+/, &BattleActionShieldOmega), //PSI_SHIELD_OMEGA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x08, null /+ TEXT_ACTION_010+/, &BattleActionPSIShieldAlpha), //PSI_PSI_SHIELD_ALPHA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x0E, null /+ TEXT_ACTION_010+/, &BattleActionPSIShieldBeta), //PSI_PSI_SHIELD_BETA
+	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x18, null /+ TEXT_ACTION_010+/, &BattleActionPSIShieldSigma), //PSI_PSI_SHIELD_SIGMA
+	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x2A, null /+ TEXT_ACTION_010+/, &BattleActionPSIShieldOmega), //PSI_PSI_SHIELD_OMEGA
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x0A, null /+ TEXT_ACTION_010+/, &BTLACT_OFFENSE_UP_A), //PSI_OFFENSE_UP_ALPHA
 	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x1E, null /+ TEXT_ACTION_010+/, &REDIRECT_BTLACT_OFFENSE_UP_A), //PSI_OFFENSE_UP_OMEGA
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PSI, 0x06, null /+ TEXT_ACTION_010+/, &BTLACT_DEFENSE_DOWN_A), //PSI_DEFENSE_DOWN_ALPHA
@@ -452,7 +452,7 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_186+/, &BattleActionNull2), //RULER
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_187+/, &BattleActionNull2), //PROTRACTOR
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_188+/, &BattleActionNull2), //BUBBLE_GUM
-	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_NO_MESSAGE+/, &BTLACT_FLY_HONEY), //FLY_HONEY
+	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_NO_MESSAGE+/, &BattleActionFlyHoney), //FLY_HONEY
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_190+/, &BattleActionNull4), //PIGGY_NOSE
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_191+/, &BattleActionNull4), //FOR_SALE_SIGN
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_192+/, &BattleActionNull4), //SHYNESS_BOOK
@@ -563,13 +563,13 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_297+/, &BTLACT_GIYGAS_PRAYER_7), //FINAL_PRAYER_7
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_298+/, &BTLACT_GIYGAS_PRAYER_8), //FINAL_PRAYER_8
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_299+/, &BTLACT_GIYGAS_PRAYER_9), //FINAL_PRAYER_9
-	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_274+/, &BTLACT_PSI_FREEZE_A), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA
+	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_274+/, &BattleActionPSIFreezeAlpha), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_274+/, &BTLACT_PSI_FLASH_G), //INCOMPREHENSIBLE_ATTACK_FLASH_GAMMA
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_302+/, &BTLACT_PSI_THUNDER_B), //INCOMPREHENSIBLE_ATTACK_THUNDER_BETA_VULNERABLE
-	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_302+/, &BTLACT_PSI_FREEZE_A), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA_VULNERABLE
+	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_302+/, &BattleActionPSIFreezeAlpha), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA_VULNERABLE
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_302+/, &BTLACT_PSI_FLASH_G), //INCOMPREHENSIBLE_ATTACK_FLASH_GAMMA_VULNERABLE
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_305+/, &BTLACT_PSI_THUNDER_B), //INCOMPREHENSIBLE_ATTACK_THUNDER_BETA_UNSTABLE
-	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_305+/, &BTLACT_PSI_FREEZE_A), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA_UNSTABLE
+	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_305+/, &BattleActionPSIFreezeAlpha), //INCOMPREHENSIBLE_ATTACK_FREEZE_ALPHA_UNSTABLE
 	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_305+/, &BTLACT_PSI_FLASH_G), //INCOMPREHENSIBLE_ATTACK_FLASH_GAMMA_UNSTABLE
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_308+/, &BattleActionNull4), //RANDOM_GIYGAS_QUOTE
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_309+/, &BattleActionNull4), //RANDOM_GIYGAS_QUOTE_TIMES_3
@@ -701,7 +701,7 @@ immutable Enemy[231] EnemyConfigurationTable = [
 	Enemy(0x00, EBString!25("Trillionage Sprout"), Gender.Neutral, EnemyType.Normal, 0x0058, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, 0x07, 1048, 240, 30303, 1358, ActionScript.Unknown023, null/*TEXT_BATTLE_ENEMY_ATTACKED*/, null/*TEXT_BLOCK_EF6D96*/, 0x05, 29, Music.VS_YOUR_SANCTUARY_BOSS, 54, 88, 16, 21, 71, 0x00, 0x02, 0x01, 0x03, 0x02, 0x00, 0x01, [BattleActions.BASH, BattleActions.EnemyExtender, BattleActions.PSI_FLASH_ALPHA, BattleActions.PSI_PARALYSIS_ALPHA], BattleActions.NoEffect, [0x00, EnemyID.TRILLIONAGE_SPROUT_2, 0x11, 0x2F], 0x00, 3, 0x01, 0x00, ItemID.None, InitialStatus.None, 0x01, 0x00, 0x03, 0x00),
 	Enemy(0x01, EBString!25("Musica"), Gender.Neutral, EnemyType.Normal, 0x0008, OverworldSprite.GiftBox, 0x07, 292, 0, 3748, 341, ActionScript.Unknown031, null/*TEXT_BLOCK_EF78B8*/, null/*TEXT_BLOCK_EF6D83*/, 0x09, 35, Music.VS_STRUTTIN_EVIL_MUSHROOM, 69, 85, 21, 20, 8, 0x01, 0x01, 0x02, 0x01, 0x01, 0x01, 0x01, [BattleActions.ELECTRIC_SHOCK, BattleActions.HAUNTING_MELODY, BattleActions.BASH, BattleActions.ELECTRIC_SHOCK], BattleActions.NoEffect, [0x00, 0x00, 0x00, 0x00], 0x00, 1, 0x00, 0x00, ItemID.SUDDEN_GUTS_PILL, InitialStatus.None, 0x00, 0x00, 0x00, 0x32),
 	Enemy(0x01, EBString!25("Desert Wolf"), Gender.Male, EnemyType.Normal, 0x0067, OverworldSprite.RUNAWAY_DOG, 0x07, 247, 0, 3740, 114, ActionScript.Unknown022, null/*TEXT_BLOCK_EF78B8*/, null/*TEXT_BLOCK_EF6D96*/, 0x07, 30, Music.VS_CRANKY_LADY, 57, 67, 33, 2, 11, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x00, [BattleActions.BITING_ATTACK, BattleActions.HOWL, BattleActions.BITING_ATTACK, BattleActions.POISONOUS_BITE], BattleActions.NoEffect, [0x00, 0x00, 0x00, 0x00], 0x00, 2, 0x00, 0x01, ItemID.SUDDEN_GUTS_PILL, InitialStatus.None, 0x00, 0x01, 0x00, 0x32),
-	Enemy(0x00, EBString!25("Master Belch"), Gender.Male, EnemyType.Normal, 0x0062, OverworldSprite.MASTER_BELCH, 0x07, 650, 0, 12509, 664, ActionScript.Unknown029, null/*TEXT_BATTLE_ENEMY_ATTACKED*/, null/*TEXT_BLOCK_EF6D71*/, 0x06, 27, Music.VS_MASTER_BELCH, 50, 88, 16, 20, 61, 0x01, 0x01, 0x01, 0x02, 0x00, 0x00, 0x02, [BattleActions.NAUSEATING_BURP, BattleActions.NAUSEATING_BURP, BattleActions.CALL_FOR_HELP, BattleActions.EnemyExtender], BattleActions.NoEffect, [0x00, 0x00, EnemyID.SLIMY_LIL_PILE, EnemyID.MASTER_BELCH_3], 0x00, 3, 0x01, 0x00, ItemID.None, InitialStatus.None, 0x01, 0x00, 0x03, 0x00),
+	Enemy(0x00, EBString!25("Master Belch"), Gender.Male, EnemyType.Normal, 0x0062, OverworldSprite.MASTER_BELCH, 0x07, 650, 0, 12509, 664, ActionScript.Unknown029, null/*TEXT_BATTLE_ENEMY_ATTACKED*/, null/*TEXT_BLOCK_EF6D71*/, 0x06, 27, Music.VS_MASTER_BELCH, 50, 88, 16, 20, 61, 0x01, 0x01, 0x01, 0x02, 0x00, 0x00, 0x02, [BattleActions.NAUSEATING_BURP, BattleActions.NAUSEATING_BURP, BattleActions.CALL_FOR_HELP, BattleActions.EnemyExtender], BattleActions.NoEffect, [0x00, 0x00, EnemyID.SLIMY_LIL_PILE, EnemyID.MasterBelch3], 0x00, 3, 0x01, 0x00, ItemID.None, InitialStatus.None, 0x01, 0x00, 0x03, 0x00),
 	Enemy(0x01, EBString!25("Big Pile of Puke"), Gender.Neutral, EnemyType.Normal, 0x0062, OverworldSprite.MASTER_BELCH, 0x07, 631, 0, 19659, 728, ActionScript.Unknown029, null/*TEXT_BLOCK_EF78C7*/, null/*TEXT_BLOCK_EF6D71*/, 0x05, 57, Music.VS_MASTER_BELCH, 120, 158, 16, 26, 32, 0x01, 0x02, 0x01, 0x01, 0x02, 0x01, 0x01, [BattleActions.BASH, BattleActions.STINKY_BREATH, BattleActions.STICKY_MUCUS, BattleActions.NAUSEATING_BURP], BattleActions.NoEffect, [0x00, 0x00, 0x00, 0x00], 0x00, 3, 0x00, 0x01, ItemID.METEOTITE, InitialStatus.None, 0x00, 0x01, 0x00, 0x32),
 	Enemy(0x00, EBString!25("Master Barf"), Gender.Male, EnemyType.Normal, 0x0062, OverworldSprite.MASTER_BELCH, 0x07, 1319, 0, 125056, 3536, ActionScript.Unknown029, null/*TEXT_BATTLE_ENEMY_ATTACKED*/, null/*TEXT_BLOCK_EF6D71*/, 0x13, 60, Music.VS_MASTER_BELCH, 136, 177, 24, 39, 64, 0x01, 0x02, 0x01, 0x02, 0x01, 0x00, 0x00, [BattleActions.NAUSEATING_BURP, BattleActions.CONTINUOUS_ATTACK, BattleActions.STINKY_BREATH, BattleActions.EnemyExtender], BattleActions.MASTER_BARF_DEFEAT, [0x00, 0x00, 0x00, EnemyID.MASTER_BARF_2], 0x00, 3, 0x01, 0x07, ItemID.CASEY_BAT, InitialStatus.None, 0x01, 0x00, 0x03, 0x00),
 	Enemy(0x01, EBString!25("Kiss of Death"), Gender.Female, EnemyType.Normal, 0x0015, OverworldSprite.THUNDER_MITE, 0x07, 333, 0, 10354, 528, ActionScript.Unknown023, null/*TEXT_BLOCK_EF78C7*/, null/*TEXT_BLOCK_EF6D71*/, 0x01, 46, Music.VS_CRANKY_LADY, 91, 100, 19, 7, 16, 0x01, 0x01, 0x02, 0x01, 0x00, 0x01, 0x00, [BattleActions.BASH, BattleActions.BASH, BattleActions.KISS_OF_DEATH, BattleActions.BASH], BattleActions.NoEffect, [0x00, 0x00, 0x00, 0x00], 0x00, 2, 0x00, 0x01, ItemID.JAR_OF_DELISAUCE, InitialStatus.None, 0x00, 0x01, 0x00, 0x32),
@@ -954,7 +954,6 @@ void BTLACT_DISTRACT();
 void BTLACT_DOUBLE_BASH();
 void BTLACT_ENEMYEXTEND();
 void BTLACT_FEELSTRANGE();
-void BTLACT_FLY_HONEY();
 void BTLACT_FREEZETIME();
 void BTLACT_GIYGAS_PRAYER_1();
 void BTLACT_GIYGAS_PRAYER_2();
@@ -1021,12 +1020,6 @@ void BTLACT_PSI_FLASH_A();
 void BTLACT_PSI_FLASH_B();
 void BTLACT_PSI_FLASH_G();
 void BTLACT_PSI_FLASH_O();
-void BTLACT_PSI_FREEZE_A();
-void BTLACT_PSI_FREEZE_B();
-void BTLACT_PSI_FREEZE_G();
-void BTLACT_PSI_FREEZE_O();
-void BTLACT_PSI_SHIELD_A();
-void BTLACT_PSI_SHIELD_B();
 void BTLACT_PSI_STARSTORM_A();
 void BTLACT_PSI_STARSTORM_O();
 void BTLACT_PSI_THUNDER_A();
@@ -1040,8 +1033,6 @@ void BTLACT_REDUCEOFFDEF();
 void BTLACT_REDUCEPP();
 void BTLACT_RUST_PROMOTER();
 void BTLACT_RUST_PROMOTER_DX();
-void BTLACT_SHIELD_A();
-void BTLACT_SHIELD_B();
 void BTLACT_SHIELD_KILLER();
 void BTLACT_SHOOT();
 void BTLACT_SNAKE();
@@ -1066,9 +1057,5 @@ void REDIRECT_BTLACT_HYPNOSIS_A_COPY();
 void REDIRECT_BTLACT_LEVEL_3_ATK();
 void REDIRECT_BTLACT_OFFENSE_UP_A();
 void REDIRECT_BTLACT_PARALYSIS_A();
-void REDIRECT_BTLACT_PSI_SHIELD_A();
-void REDIRECT_BTLACT_PSI_SHIELD_B();
-void REDIRECT_BTLACT_SHIELD_A();
-void REDIRECT_BTLACT_SHIELD_B();
 void UNKNOWN_C290C6();
 void EAT_FOOD();

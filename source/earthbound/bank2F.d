@@ -289,7 +289,7 @@ immutable ubyte* TEXT_BATTLE_BEGAN_TO_FEEL_STRANGE_MUSHROOMIZED;
 immutable ubyte* TEXT_BATTLE_WAS_POSSESSED;
 immutable ubyte* TEXT_BATTLE_COULD_NOT_STOP_CRYING;
 immutable ubyte* TEXT_BATTLE_SUDDENLY_COULDNT_MOVE;
-immutable ubyte* TEXT_BATTLE_BODY_SOLIDIFIED;
+immutable ubyte* TextBattleBodySolidified;
 immutable ubyte* TEXT_BATTLE_WAS_NOT_ABLE_TO_CONCENTRATE;
 immutable ubyte* TEXT_BATTLE_FELT_A_LITTLE_STRANGE;
 immutable ubyte* TEXT_BATTLE_FELL_ASLEEP;

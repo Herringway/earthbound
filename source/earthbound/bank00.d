@@ -476,7 +476,7 @@ void UnknownC04F60() {
 void UnknownC04F9F(short arg1) {
     short x10 = arg1;
     PartyCharacter* x0E = ChosenFourPtrs[gameState.playerControlledPartyMembers[x10]];
-    if ((x0E.max_hp * 20) / 100 <= x0E.hp.current.integer) {
+    if ((x0E.maxHP * 20) / 100 <= x0E.hp.current.integer) {
         if (Unknown7E5D8C[x10] == 0) {
             ShowHPAlert(cast(short)(x0E.unknown53 + 1));
         }
@@ -2277,8 +2277,8 @@ void ebMain() {
             }
             if (!Debug && ((pad_press[1] & PAD_B) != 0)) {
                 for (int i = 0; i < TOTAL_PARTY_COUNT; i++) {
-                    PartyCharacters[i].hp.target = PartyCharacters[i].max_hp;
-                    PartyCharacters[i].pp.target = PartyCharacters[i].max_pp;
+                    PartyCharacters[i].hp.target = PartyCharacters[i].maxHP;
+                    PartyCharacters[i].pp.target = PartyCharacters[i].maxPP;
                 }
             }
         }
