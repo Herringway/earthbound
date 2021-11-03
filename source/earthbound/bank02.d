@@ -115,7 +115,11 @@ void UnknownC20266() {
 }
 
 // $C20293
-void UnknownC20293();
+void UnknownC20293() {
+	for (short i = 0; i < 4; i++) {
+		(cast(ushort*)(&IntroBG2Buffer[0x272]))[i] = 0;
+	}
+}
 
 // $C2038B
 void UnknownC2038B() {
@@ -793,6 +797,9 @@ void FixTargetName();
 // $C23E32
 void UnknownC23E32();
 
+// $C23FEA
+short GetShieldTargetting(short, Battler*);
+
 // $C24009
 void FeelingStrangeRetargetting();
 
@@ -812,7 +819,54 @@ void UnknownC2437E();
 void ChooseTarget(Battler*);
 
 // $C24703
-void UnknownC24703(Battler*);
+void UnknownC24703(Battler* battler) {
+	BattlerTargetFlags = 0;
+	switch (battler.unknown9) {
+		case 1:
+			UnknownC26FDC(battler.currentTarget - 1);
+			break;
+		case 2:
+		case 4:
+			TargetAllies();
+			if ((GetShieldTargetting(battler.currentAction, battler) == 0) && (battler.allyOrEnemy == 0)) {
+				RemoveNPCTargetting();
+			}
+			UnknownC2416F();
+			break;
+		case 11:
+			if (battler.currentTarget > Unknown7EAD56) {
+				UnknownC26FDC(Unknown7EAD82[battler.currentTarget - Unknown7EAD56 - 1]);
+			} else {
+				UnknownC26FDC(Unknown7EAD7A[battler.currentTarget - 1]);
+			}
+			if (battler.currentAction == BattleActions.PSIHealingOmega) {
+				for (short i = 8; i < BattlersTable.length; i++) {
+					if (BattlersTable[i].consciousness == 0) {
+						continue;
+					}
+					if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+						continue;
+					}
+					BattlerTargetFlags = 0;
+					UnknownC26FDC(i);
+				}
+			}
+			break;
+		case 12:
+			TargetRow(battler.currentTarget);
+			RemoveNPCTargetting();
+			UnknownC2416F();
+			break;
+		case 14:
+			TargetAllEnemies();
+			if (battler.allyOrEnemy == 0) {
+				RemoveNPCTargetting();
+			}
+			UnknownC2416F();
+			break;
+		default: break;
+	}
+}
 
 // $C24821
 short BattleRoutine() {
@@ -1080,7 +1134,7 @@ short BattleRoutine() {
 				if (BattlersTable[i].consciousness == 0) {
 					continue;
 				}
-				BattlersTable[i].unknown70 = FiftyPercentVariance(BattlersTable[i].speed);
+				BattlersTable[i].unknown70 = cast(ubyte)FiftyPercentVariance(BattlersTable[i].speed);
 				if (BattlersTable[i].unknown70 == 0) {
 					BattlersTable[i].unknown70 = 1;
 				}
@@ -1713,6 +1767,29 @@ short Success255(short arg) {
 	return 0;
 }
 
+// $C26BDB
+short Success500(short arg) {
+	if (RandLimit(500) < arg) {
+		return 1;
+	}
+	return 0;
+}
+
+// $C26BFB
+void TargetAllies();
+
+// $C26C82
+void TargetAllEnemies();
+
+// $C26D04
+void TargetRow(ubyte);
+
+// $C26E77
+void RemoveNPCTargetting();
+
+// $C26FDC
+void UnknownC26FDC(short);
+
 // $C27029
 short IsCharacterTargetted(short);
 
@@ -1817,8 +1894,115 @@ short CalcResistDamage(short damage, short arg2) {
 	return damage;
 }
 
+// $C283F8
+short Smaaaash() {
+	Unknown7EAA8E = 0;
+	short guts = currentAttacker.guts;
+	if ((currentAttacker.allyOrEnemy == 0) && (guts < 25)) {
+		guts = 25;
+	}
+	if (Success500(guts) == 0) {
+		return 0;
+	}
+	if (currentAttacker.allyOrEnemy == 0) {
+		GreenFlashDuration = 60;
+		DisplayInBattleText(TextBattleSmaaaash);
+	} else {
+		RedFlashDuration = 60;
+		DisplayInBattleText(TextBattleSmaaaashReceived);
+	}
+	if ((currentTarget.afflictions[6] == Status6.ShieldPower) || (currentTarget.afflictions[6] == Status6.Shield)) {
+		currentTarget.shieldHP = 1;
+	}
+	Unknown7EAA8E = 1;
+	CalcResistDamage(cast(short)(currentAttacker.offense * 4 - currentTarget.defense), 0xFF);
+	return 1;
+}
+
 // $C284AD
-short DetermineDodge();
+short MissCalc(short arg1) {
+	short x12;
+	if ((currentAttacker.allyOrEnemy == 0) && (currentAttacker.npcID == 0)) {
+		if (PartyCharacters[currentAttacker.row].equipment[0] != 0) {
+			x12 = ItemData[PartyCharacters[currentAttacker.row].items[PartyCharacters[currentAttacker.row].equipment[0] - 1]].special;
+		} else {
+			x12 = 1;
+		}
+		if ((currentAttacker.afflictions[2] == Status2.Crying) | (currentAttacker.afflictions[0] == Status0.Nauseous)) {
+			x12 += 8;
+		}
+	} else {
+		x12 = EnemyConfigurationTable[currentAttacker.id].missRate;
+	}
+	if (x12 == 0) {
+		return 0;
+	}
+	if (x12 < RandLimit(16)) {
+		return 0;
+	}
+	if (arg1 != 0) {
+		DisplayInBattleText(TextBattleNarrowlyMissed);
+	} else {
+		DisplayInBattleText(TextBattleJustMissed);
+	}
+	return 1;
+}
+
+// $C284AD
+short DetermineDodge() {
+	if (currentTarget.afflictions[0] == Status0.Paralyzed) {
+		return 0;
+	}
+	if (currentTarget.afflictions[2] == Status2.Asleep) {
+		return 0;
+	}
+	if (currentTarget.afflictions[2] == Status2.Immobilized) {
+		return 0;
+	}
+	if (currentTarget.afflictions[2] == Status2.Solidified) {
+		return 0;
+	}
+	if (0 > currentTarget.speed * 2 - currentAttacker.speed) {
+		return 0;
+	}
+	if (Success500(cast(short)(currentTarget.speed * 2 - currentAttacker.speed)) == 0) {
+		return 1;
+	}
+	return 0;
+}
+
+// $C28523
+void BattleActionLevel2Attack() {
+	short damageDone = cast(short)(currentAttacker.offense * 2 - currentTarget.defense);
+	if (damageDone > 0) {
+		damageDone = TwentyFivePercentVariance(damageDone);
+	}
+	if (damageDone <= 0) {
+		damageDone = 1;
+	}
+	CalcResistDamage(damageDone, 0xFF);
+}
+
+// $C2856B
+void HealStrangeness() {
+	if (currentTarget.afflictions[3] == Status3.Strange) {
+		currentTarget.afflictions[3] = 0;
+		DisplayInBattleText(TextBattleBackToNormal);
+	}
+}
+
+// $C2859F
+void BattleActionBash() {
+	if ((MissCalc(0) != 0) || (Smaaaash() != 0)) {
+		return;
+	}
+	if (DetermineDodge() == 0) {
+		BattleActionLevel2Attack();
+		HealStrangeness();
+	} else {
+		DisplayInBattleText(TextBattleDodged);
+	}
+}
 
 // $C2889B
 void BattleActionNull() {
@@ -1963,6 +2147,29 @@ void BattleActionPSIFreezeOmega() {
 	PSIFreezeCommon(720);
 }
 
+// $C2966B
+void PSIThunderCommon(short baseDamage, short strikes);
+
+// $C29871
+void BattleActionPSIThunderAlpha() {
+	PSIThunderCommon(120, 1);
+}
+
+// $C2987D
+void BattleActionPSIThunderBeta() {
+	PSIThunderCommon(120, 2);
+}
+
+// $C29889
+void BattleActionPSIThunderGamma() {
+	PSIThunderCommon(200, 3);
+}
+
+// $C29895
+void BattleActionPSIThunderOmega() {
+	PSIThunderCommon(200, 4);
+}
+
 // $C29CDC
 short ShieldsCommon(Battler*, ubyte status);
 
@@ -2055,7 +2262,28 @@ ubyte CalcPSIResistanceModifiers(ubyte arg1) {
 }
 
 // $C2B66A
-ubyte UnknownC2B66A(short);
+ubyte UnknownC2B66A(short arg1) {
+	memset(&Unknown7EAA98, 0, 26);
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		if (BattlersTable[i].id2 != arg1) {
+			continue;
+		}
+		Unknown7EAA98[BattlersTable[i].theFlag - 1] = 1;
+	}
+	for (short i = 0; i < 26; i++) {
+		if (Unknown7EAA98[i] != 0) {
+			continue;
+		}
+		return cast(ubyte)(i + 1);
+	}
+	return 0;
+}
 
 // $C2B6EB
 void BattleInitEnemyStats(short arg1, Battler* battler) {
@@ -2064,7 +2292,7 @@ void BattleInitEnemyStats(short arg1, Battler* battler) {
 		Unknown7EAA0C = EnemyConfigurationTable[arg1].level;
 	}
 	battler.id = cast(ubyte)arg1;
-	battler.unknown76 = cast(ubyte)arg1;
+	battler.id2 = cast(ubyte)arg1;
 	battler.sprite = cast(ubyte)EnemyConfigurationTable[arg1].battleSprite;
 	battler.theFlag = UnknownC2B66A(arg1);
 	battler.consciousness = 1;

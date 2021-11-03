@@ -615,8 +615,25 @@ __gshared ushort Unknown7EAA90; //$AA90
 __gshared ushort Unknown7EAA92; //$AA92
 __gshared ushort Unknown7EAA94; //$AA94
 __gshared ushort Unknown7EAA96; //$AA96
-//UNKNOWN_7EAA98: ;$7EAA98
-
+__gshared ubyte[26] Unknown7EAA98; //$AA98
+__gshared ushort Unknown7EAAB2; //$AAB2
+__gshared ushort Unknown7EAAB4; //$AAB4
+__gshared ubyte[8] Unknown7EAAB6; //$AAB6
+__gshared ubyte[8] Unknown7EAABE; //$AABE
+__gshared ubyte[8] Unknown7EAAC6; //$AAC6
+__gshared ubyte[8] Unknown7EAACE; //$AACE
+//UNKNOWN_7EAAD6: ;$7EAAD6
+//	.RES 80 * 4
+//UNKNOWN_7EAC16: ;$7EAC16
+//	.RES 80 * 4
+__gshared ushort Unknown7EAD56; //$AD56
+__gshared ushort Unknown7EAD58; //$AD58
+__gshared ubyte[8] Unknown7EAD5A; //$AD5A
+__gshared ubyte[8] Unknown7EAD62; //$AD62
+__gshared ubyte[8] Unknown7EAD6A; //$AD6A
+__gshared ubyte[8] Unknown7EAD72; //$AD72
+__gshared ubyte[8] Unknown7EAD7A; //$AD7A
+__gshared ubyte[8] Unknown7EAD82; //$AD82
 __gshared short Unknown7EAD8A; //$AD8A
 __gshared short VerticalShakeDuration; //$AD8C
 __gshared short VerticalShakeHoldDuration; //$AD8E
