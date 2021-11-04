@@ -1815,13 +1815,61 @@ short Truncate16To8(short arg1, short arg2) {
 }
 
 // $C26A2D
-short RandLimit(short);
+short RandLimit(short arg1) {
+	return Truncate16To8(RandLong(), arg1);
+}
 
 // $C26A44
-short FiftyPercentVariance(short);
+short FiftyPercentVariance(short arg1) {
+	ubyte x12 = RandLong() & 0xFF;
+	ubyte x10 = RandLong() & 0xFF;
+	short x0E = cast(short)(x12 - 0x80);
+	if (x0E > 0) {
+		x0E = cast(short)-cast(int)x0E;
+	}
+	short x0E2 = cast(short)(x10 - 0x80);
+	if (x0E2 > 0) {
+		x0E2 = cast(short)-cast(int)x0E2;
+	}
+	short x = x12;
+	short y = x0E;
+	if (x0E > x0E2) {
+		x = x10;
+		y = x0E2;
+	}
+	if (x > 0x80) {
+		arg1 -= Truncate16To8(arg1, y);
+	} else if (0x80 > x) {
+		arg1 += Truncate16To8(arg1, y);
+	}
+	return arg1;
+}
 
 // $C26AFD
-short TwentyFivePercentVariance(short);
+short TwentyFivePercentVariance(short arg1) {
+	ubyte x12 = RandLong() & 0xFF;
+	ubyte x10 = RandLong() & 0xFF;
+	short x0E = cast(short)(x12 - 0x80);
+	if (x0E > 0) {
+		x0E = cast(short)-cast(int)x0E;
+	}
+	short x0E2 = cast(short)(x10 - 0x80);
+	if (x0E2 > 0) {
+		x0E2 = cast(short)-cast(int)x0E2;
+	}
+	short x = x12;
+	short y = x0E;
+	if (x0E > x0E2) {
+		x = x10;
+		y = x0E2;
+	}
+	if (x > 0x80) {
+		arg1 -= Truncate16To8(arg1, y) / 2;
+	} else if (0x80 > x) {
+		arg1 += Truncate16To8(arg1, y) / 2;
+	}
+	return arg1;
+}
 
 // $C26BB8
 short Success255(short arg) {
@@ -1938,6 +1986,24 @@ void RemoveDeadTargetting() {
 		if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
 			RemoveTarget(i);
 		}
+	}
+}
+
+// $C27126
+void SetHP(Battler* battler, short arg2) {
+	ushort x10 = (arg2 > battler.hpMax) ? battler.hpMax : arg2;
+	if (battler.allyOrEnemy == 0) {
+		if (battler.npcID == 0) {
+			battler.hpTarget = x10;
+			PartyCharacters[battler.row].hp.target = x10;
+		} else {
+			battler.hp = x10;
+			battler.hpTarget = x10;
+			gameState.partyNPCHP[battler.row] = x10;
+		}
+	} else {
+		battler.hp = x10;
+		battler.hpTarget = x10;
 	}
 }
 
@@ -2701,7 +2767,9 @@ void UnknownC2BCB9(Battler* battler, short arg2) {
 }
 
 // $C2BCE6
-void LoseHPStatus(Battler*, short);
+void LoseHPStatus(Battler* battler, short arg2) {
+	SetHP(battler, (arg2 > battler.hpTarget) ? 0 : cast(ushort)(battler.hpTarget - arg2));
+}
 
 // $C2C14E
 void BattleActionRainbowOfColours() {
