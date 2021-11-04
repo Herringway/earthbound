@@ -2656,22 +2656,71 @@ immutable uint[32] PowersOfTwo32Bit = [
     1 << 31,
 ];
 
+// $C4A331
+immutable ushort[22] GiygasDeathStaticTransitionDelays = [
+    8 * 60,
+    3 * 6,
+    4 * 60,
+    3 * 6,
+    2 * 60,
+    1 * 6,
+    1 * 60,
+    6 * 6,
+    3 * 60,
+    3 * 6,
+    2 * 60,
+    1 * 6,
+    2 * 6,
+    3 * 6,
+    6 * 6,
+    1 * 60,
+    3 * 6,
+    3 * 60,
+    2 * 6,
+    4 * 60,
+    1 * 6,
+    0
+];
+
+// $C4A35D
+immutable FinalGiygasPrayerNoiseEntry[13] FinalGiygasPrayerNoiseTable = [
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 90),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 25),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 90),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 25),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 75),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 10),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 8),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 10),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 6),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 6),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 6),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 6),
+        FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 0),
+];
+
+// $C4A5CE
+immutable Unknown7EAECCEntry[2] UnknownC4A5CE = [
+    Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
+    Unknown7EAECCEntry(0),
+];
+
 // $C4A5FA
 immutable Unknown7EAECCEntry[2] UnknownC4A5FA = [
     Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
-    Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
+    Unknown7EAECCEntry(0),
 ];
 
 // $C4A626
 immutable Unknown7EAECCEntry[2] UnknownC4A626 = [
     Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
-    Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
+    Unknown7EAECCEntry(0),
 ];
 
 // $C4A652
 immutable Unknown7EAECCEntry[2] UnknownC4A652 = [
     Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
-    Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
+    Unknown7EAECCEntry(0),
 ];
 
 //$C4A67E
@@ -3133,7 +3182,7 @@ short UnknownC4D989(short arg1) {
     memset(&palettes[0][0], 0, 0x200);
     OverworldInitialize();
     TM_MIRROR = 0;
-    UnknownC2EA15();
+    UnknownC2EA15(0);
     UnknownC4A7B0();
     Unknown7E9641 = 0;
     short x12 = 0;

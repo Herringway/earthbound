@@ -2,6 +2,41 @@ module earthbound.bank0E;
 
 import earthbound.commondefs;
 
+immutable ushort[][32] BattleSpritePalettes = [
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/0.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/1.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/2.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/3.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/4.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/5.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/6.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/7.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/8.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/9.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/10.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/11.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/12.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/13.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/14.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/15.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/16.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/17.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/18.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/19.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/20.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/21.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/22.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/23.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/24.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/25.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/26.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/27.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/28.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/29.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/30.pal")),
+	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/31.pal")),
+];
+
 // $CEDC45
 immutable ubyte[][126] SwirlPointerTable = [
 	cast(immutable(ubyte)[])import("swirls/0.swirl"),

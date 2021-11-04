@@ -240,6 +240,27 @@ __gshared short Unknown7E1ACE; //$1ACE
 
 __gshared short[64] Unknown7E1AD6; //$1AD6
 
+
+__gshared ubyte[24] Unknown7E1B6E; //$1B6E
+__gshared ubyte[24] Unknown7E1B86; //$1B86
+__gshared short Unknown7E1B9E; //$1B9E
+__gshared ubyte Unknown7E1BA0; //$1BA0
+__gshared short Unknown7E1BA1; //$1BA1
+__gshared short Unknown7E1BA3; //$1BA3
+__gshared ubyte Unknown7E1BA5; //$1BA5
+__gshared ubyte Unknown7E1BA6; //$1BA6
+__gshared ubyte Unknown7E1BA7; //$1BA7
+__gshared ubyte Unknown7E1BA8; //$1BA8
+__gshared ubyte Unknown7E1BA9; //$1BA9
+//UNKNOWN_7E1BAA: ;$7E1BAA
+
+__gshared short Unknown7E1BCA; //$1BCA
+__gshared short Unknown7E1BCC; //$1BCC
+__gshared short Unknown7E1BCE; //$1BCE
+__gshared short Unknown7E1BD0; //$1BD0
+__gshared short Unknown7E1BD2; //$1BD2
+//UNKNOWN_7E1BD4: ;$7E1BD4
+
 __gshared ubyte[0x200] heap; // $2000
 
 __gshared ushort Unknown7E2400; //$2400
@@ -619,7 +640,7 @@ __gshared ubyte[26] Unknown7EAA98; //$AA98
 __gshared ushort Unknown7EAAB2; //$AAB2
 __gshared ushort Unknown7EAAB4; //$AAB4
 __gshared ubyte[8] Unknown7EAAB6; //$AAB6
-__gshared ubyte[8] Unknown7EAABE; //$AABE
+__gshared ushort[4] Unknown7EAABE; //$AABE
 __gshared ubyte[8] Unknown7EAAC6; //$AAC6
 __gshared ubyte[8] Unknown7EAACE; //$AACE
 //UNKNOWN_7EAAD6: ;$7EAAD6

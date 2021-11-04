@@ -12,488 +12,2193 @@ immutable RGB[4] MovementTextStringPalette = [
 
 // $D0C60D
 immutable BattleEntryPointer[484] BattleEntryPointerTable = [
-	BattleEntryPointer(null /+ENEMY_GROUP_000+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_001+/, 0x0040, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_002+/, 0x0040, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_003+/, 0x0040, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_004+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_005+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_006+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_007+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_008+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_009+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_010+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_011+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_012+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_013+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_014+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_015+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_016+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_017+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_018+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_019+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_020+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_021+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_022+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_023+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_024+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_025+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_026+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_027+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_028+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_029+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_030+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_031+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_032+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_033+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_034+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_035+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_036+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_037+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_038+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_039+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_040+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_041+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_042+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_043+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_044+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_045+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_046+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_047+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_048+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_049+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_050+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_051+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_052+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_053+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_054+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_055+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_056+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_057+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_058+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_059+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_060+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_061+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_062+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_063+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_064+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_065+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_066+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_067+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_068+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_069+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_070+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_071+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_072+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_073+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_074+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_075+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_076+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_077+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_078+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_079+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_080+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_081+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_082+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_083+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_084+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_085+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_086+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_087+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_088+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_089+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_090+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_091+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_092+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_093+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_094+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_095+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_096+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_097+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_098+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_099+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_100+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_101+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_102+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_103+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_104+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_105+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_106+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_107+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_108+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_109+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_110+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_111+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_112+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_113+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_114+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_115+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_116+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_117+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_118+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_119+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_120+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_121+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_122+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_123+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_124+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_125+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_126+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_127+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_128+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_129+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_130+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_131+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_132+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_133+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_134+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_135+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_136+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_137+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_138+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_139+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_140+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_141+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_142+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_143+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_144+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_145+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_146+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_147+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_148+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_149+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_150+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_151+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_152+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_153+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_154+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_155+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_156+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_157+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_158+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_159+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_160+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_161+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_162+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_163+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_164+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_165+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_166+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_167+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_168+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_169+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_170+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_171+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_172+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_173+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_174+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_175+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_176+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_177+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_178+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_179+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_180+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_181+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_182+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_183+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_184+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_185+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_186+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_187+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_188+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_189+/, 0x00C0, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_190+/, 0x00C0, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_191+/, 0x00C0, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_192+/, 0x00C0, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_193+/, 0x00C0, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_194+/, 0x00C0, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_195+/, 0x00C0, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_196+/, 0x00C0, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_197+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_198+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_199+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_200+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_201+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_202+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_203+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_204+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_205+/, 0x00BE, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_206+/, 0x00BF, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_207+/, 0x00BF, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_208+/, 0x00BF, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_209+/, 0x00BF, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_210+/, 0x00BF, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_211+/, 0x00BF, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_212+/, 0x00BF, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_213+/, 0x00BF, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_214+/, 0x00BF, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_215+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_216+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_217+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_218+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_219+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_220+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_221+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_222+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_223+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_224+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_225+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_226+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_227+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_228+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_229+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_230+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_231+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_232+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_233+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_234+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_235+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_236+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_237+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_238+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_239+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_240+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_241+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_242+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_243+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_244+/, 0x00C1, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_245+/, 0x0154, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_246+/, 0x0154, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_247+/, 0x0154, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_248+/, 0x0154, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_249+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_250+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_251+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_252+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_253+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_254+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_255+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_256+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_257+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_258+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_259+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_260+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_261+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_262+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_263+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_264+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_265+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_266+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_267+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_268+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_269+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_270+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_271+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_272+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_273+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_274+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_275+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_276+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_277+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_278+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_279+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_280+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_281+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_282+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_283+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_284+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_285+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_286+/, 0x00C2, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_287+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_288+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_289+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_290+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_291+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_292+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_293+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_294+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_295+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_296+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_297+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_298+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_299+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_300+/, 0x00C3, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_301+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_302+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_303+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_304+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_305+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_306+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_307+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_308+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_309+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_310+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_311+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_312+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_313+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_314+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_315+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_316+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_317+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_318+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_319+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_320+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_321+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_322+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_323+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_324+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_325+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_326+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_327+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_328+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_329+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_330+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_331+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_332+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_333+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_334+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_335+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_336+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_337+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_338+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_339+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_340+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_341+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_342+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_343+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_344+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_345+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_346+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_347+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_348+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_349+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_350+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_351+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_352+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_353+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_354+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_355+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_356+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_357+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_358+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_359+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_360+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_361+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_362+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_363+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_364+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_365+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_366+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_367+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_368+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_369+/, 0x00C4, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_370+/, 0x00C4, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_371+/, 0x00C4, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_372+/, 0x00C4, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_373+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_374+/, 0x00C4, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_375+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_376+/, 0x00C4, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_377+/, 0x00C4, 0x01, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_378+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_379+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_380+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_381+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_382+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_383+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_384+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_385+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_386+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_387+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_388+/, 0x00C4, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_389+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_390+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_391+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_392+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_393+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_394+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_395+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_396+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_397+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_398+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_399+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_400+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_401+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_402+/, 0x00C5, 0x01, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_403+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_404+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_405+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_406+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_407+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_408+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_409+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_410+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_411+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_412+/, 0x0000, 0x00, LetterboxStyle.Large),
-	BattleEntryPointer(null /+ENEMY_GROUP_413+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_414+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_415+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_416+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_417+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_418+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_419+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_420+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_421+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_422+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_423+/, 0x0154, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_424+/, 0x0154, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_425+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_426+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_427+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_428+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_429+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_430+/, 0x0154, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_431+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_432+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_433+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_434+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_435+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_436+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_437+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_438+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_439+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_440+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_441+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_442+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_443+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_444+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_445+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_446+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_447+/, 0x0000, 0x00, LetterboxStyle.Small),
-	BattleEntryPointer(null /+ENEMY_GROUP_448+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_449+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_450+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_451+/, 0x0000, 0x00, LetterboxStyle.Medium),
-	BattleEntryPointer(null /+ENEMY_GROUP_452+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_453+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_454+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_455+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_456+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_457+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_458+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_459+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_460+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_461+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_462+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_463+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_464+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_465+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_466+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_467+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_468+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_469+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_470+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_471+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_472+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_473+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_474+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_475+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_476+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_477+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_478+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_479+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_480+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_481+/, 0x0154, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_482+/, 0x0000, 0x00, LetterboxStyle.None),
-	BattleEntryPointer(null /+ENEMY_GROUP_483+/, 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.SPITEFUL_CROW),
+		BattleGroupEnemy(0xFF),
+		BattleGroupEnemy(1, EnemyID.PETRIFIED_ROYAL_GUARD),
+		BattleGroupEnemy(1, EnemyID.LOADED_DICE_1),
+		BattleGroupEnemy(1, EnemyID.DEMONIC_PETUNIA),
+		BattleGroupEnemy(1, EnemyID.CRESTED_BOOKA),
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(1, EnemyID.MAD_TAXI),
+		BattleGroupEnemy(1, EnemyID.RUNAWAY_DOG_1),
+		BattleGroupEnemy(1, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(2, EnemyID.STARMAN_1)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SPITEFUL_CROW),
+		BattleGroupEnemy(0xFF)
+	], 0x0040, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.RUNAWAY_DOG_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0040, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.COIL_SNAKE),
+		BattleGroupEnemy(0xFF)
+	], 0x0040, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.EVIL_EYE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.MECHANICAL_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVIL_EYE),
+		BattleGroupEnemy(1, EnemyID.MECHANICAL_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.MECHANICAL_OCTOBOT),
+		BattleGroupEnemy(1, EnemyID.EVIL_EYE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKATE_PUNK),
+		BattleGroupEnemy(1, EnemyID.YES_MAN_JUNIOR),
+		BattleGroupEnemy(0, EnemyID.POGO_PUNK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKATE_PUNK),
+		BattleGroupEnemy(1, EnemyID.POGO_PUNK),
+		BattleGroupEnemy(0, EnemyID.YES_MAN_JUNIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.POGO_PUNK),
+		BattleGroupEnemy(1, EnemyID.YES_MAN_JUNIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKATE_PUNK),
+		BattleGroupEnemy(1, EnemyID.YES_MAN_JUNIOR),
+		BattleGroupEnemy(1, EnemyID.POGO_PUNK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.RUNAWAY_DOG_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SPITEFUL_CROW),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GRUFF_GOAT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(1, EnemyID.WHIRLING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(1, EnemyID.WOOLY_SHAMBLER),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.WOOLY_SHAMBLER),
+		BattleGroupEnemy(1, EnemyID.WHIRLING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(1, EnemyID.WHIRLING_ROBO),
+		BattleGroupEnemy(1, EnemyID.WOOLY_SHAMBLER),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SPITEFUL_CROW),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GRUFF_GOAT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.RUNAWAY_DOG_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(1, EnemyID.WHIRLING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(1, EnemyID.WOOLY_SHAMBLER),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.WOOLY_SHAMBLER),
+		BattleGroupEnemy(1, EnemyID.WHIRLING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(1, EnemyID.WOOLY_SHAMBLER),
+		BattleGroupEnemy(1, EnemyID.WHIRLING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CAVE_BOY_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.CAVE_BOY_1),
+		BattleGroupEnemy(1, EnemyID.MIGHTY_BEAR_SEVEN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CAVE_BOY_1),
+		BattleGroupEnemy(2, EnemyID.MIGHTY_BEAR_SEVEN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CAVE_BOY_1),
+		BattleGroupEnemy(1, EnemyID.MIGHTY_BEAR_SEVEN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.BLACK_ANTOID_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.BLACK_ANTOID_1),
+		BattleGroupEnemy(1, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RUNAWAY_DOG_1),
+		BattleGroupEnemy(1, EnemyID.COP),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRANKY_LADY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ANNOYING_OLD_PARTY_MAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.UNASSUMING_LOCAL_GUY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.NEW_AGE_RETRO_HIPPIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(1, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.TERRITORIAL_OAK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.TERRITORIAL_OAK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.LIL_UFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TERRITORIAL_OAK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SPINNING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LIL_UFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LIL_UFO),
+		BattleGroupEnemy(1, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LIL_UFO),
+		BattleGroupEnemy(1, EnemyID.SPINNING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.LIL_UFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.INSANE_CULTIST_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.INSANE_CULTIST_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.SPITEFUL_CROW),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SPITEFUL_CROW),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRANKY_LADY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ANNOYING_OLD_PARTY_MAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.NEW_AGE_RETRO_HIPPIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TRICK_OR_TRICK_KID),
+		BattleGroupEnemy(1, EnemyID.HANDSOME_TOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TRICK_OR_TRICK_KID),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HANDSOME_TOM),
+		BattleGroupEnemy(1, EnemyID.SMILIN_SAM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HANDSOME_TOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SMILIN_SAM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.URBAN_ZOMBIE_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(1, EnemyID.URBAN_ZOMBIE_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.NO_GOOD_FLY),
+		BattleGroupEnemy(1, EnemyID.PUTRID_MOLDYMAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PUTRID_MOLDYMAN),
+		BattleGroupEnemy(1, EnemyID.SMELLY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(1, EnemyID.PUTRID_MOLDYMAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(1, EnemyID.SMELLY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PUTRID_MOLDYMAN),
+		BattleGroupEnemy(1, EnemyID.SMELLY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.NO_GOOD_FLY),
+		BattleGroupEnemy(1, EnemyID.PUTRID_MOLDYMAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.NO_GOOD_FLY),
+		BattleGroupEnemy(1, EnemyID.SMELLY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.NO_GOOD_FLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_DOG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_DOG),
+		BattleGroupEnemy(2, EnemyID.NO_GOOD_FLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.BLACK_ANTOID_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(2, EnemyID.BLACK_ANTOID_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(1, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(1, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(1, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(1, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(1, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(1, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.BLACK_ANTOID_2),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.BLACK_ANTOID_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(2, EnemyID.BLACK_ANTOID_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(1, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(2, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.RED_ANTOID),
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(2, EnemyID.ARMORED_FROG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.PLAIN_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.VIOLENT_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(1, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BAD_BUFFALO),
+		BattleGroupEnemy(1, EnemyID.DESERT_WOLF),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BAD_BUFFALO),
+		BattleGroupEnemy(1, EnemyID.SMILIN_SPHERE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BAD_BUFFALO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DESERT_WOLF),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKELPION),
+		BattleGroupEnemy(1, EnemyID.CuteLilUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKELPION),
+		BattleGroupEnemy(1, EnemyID.SMILIN_SPHERE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKELPION),
+		BattleGroupEnemy(1, EnemyID.SMILIN_SPHERE),
+		BattleGroupEnemy(1, EnemyID.CuteLilUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKELPION),
+		BattleGroupEnemy(1, EnemyID.CRESTED_BOOKA),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKELPION),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.SKELPION),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRESTED_BOOKA),
+		BattleGroupEnemy(1, EnemyID.BAD_BUFFALO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRESTED_BOOKA),
+		BattleGroupEnemy(1, EnemyID.DESERT_WOLF),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRESTED_BOOKA),
+		BattleGroupEnemy(1, EnemyID.CuteLilUFO),
+		BattleGroupEnemy(1, EnemyID.SMILIN_SPHERE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRESTED_BOOKA),
+		BattleGroupEnemy(1, EnemyID.CuteLilUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRESTED_BOOKA),
+		BattleGroupEnemy(1, EnemyID.SMILIN_SPHERE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAD_TAXI),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EXTRA_CRANKY_LADY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ANNOYING_REVELER),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRAZED_SIGN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DALIS_CLOCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ENRAGED_FIRE_PLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ENRAGED_FIRE_PLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ABSTRACT_ART),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROBO_PUMP_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROBO_PUMP_1),
+		BattleGroupEnemy(1, EnemyID.ENRAGED_FIRE_PLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAD_TAXI),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAD_TAXI),
+		BattleGroupEnemy(1, EnemyID.CRAZED_SIGN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRAZED_SIGN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TOUGH_GUY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.OVER_ZEALOUS_COP),
+		BattleGroupEnemy(1, EnemyID.TOUGH_GUY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.OVER_ZEALOUS_COP),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HIGH_CLASS_UFO),
+		BattleGroupEnemy(1, EnemyID.BeautifulUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HIGH_CLASS_UFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.HIGH_CLASS_UFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BeautifulUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DREAD_SKELPION),
+		BattleGroupEnemy(1, EnemyID.GREAT_CRESTED_BOOKA),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DREAD_SKELPION),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GREAT_CRESTED_BOOKA),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GREAT_CRESTED_BOOKA),
+		BattleGroupEnemy(1, EnemyID.DREAD_SKELPION),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.GREAT_CRESTED_BOOKA),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.HIGH_CLASS_UFO),
+		BattleGroupEnemy(1, EnemyID.BeautifulUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HIGH_CLASS_UFO),
+		BattleGroupEnemy(1, EnemyID.MARAUDER_OCTOBOT),
+		BattleGroupEnemy(1, EnemyID.BeautifulUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.HIGH_CLASS_UFO),
+		BattleGroupEnemy(1, EnemyID.MARAUDER_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BeautifulUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MARAUDER_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HOSTILE_ELDER_OAK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.PIT_BULL_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DEMONIC_PETUNIA),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BIG_PILE_OF_PUKE_1),
+		BattleGroupEnemy(0, EnemyID.EVEN_SLIMIER_LITTLE_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BIG_PILE_OF_PUKE_1),
+		BattleGroupEnemy(1, EnemyID.EVEN_SLIMIER_LITTLE_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HOSTILE_ELDER_OAK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZAP_EEL),
+		BattleGroupEnemy(1, EnemyID.HARD_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ZAP_EEL),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVEN_SLIMIER_LITTLE_PILE),
+		BattleGroupEnemy(1, EnemyID.ZAP_EEL),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVEN_SLIMIER_LITTLE_PILE),
+		BattleGroupEnemy(1, EnemyID.HARD_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVEN_SLIMIER_LITTLE_PILE),
+		BattleGroupEnemy(1, EnemyID.MANLY_FISH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MANLY_FISH),
+		BattleGroupEnemy(1, EnemyID.HARD_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MANLY_FISH),
+		BattleGroupEnemy(1, EnemyID.MANLY_FISHS_BROTHER),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(6, EnemyID.PIT_BULL_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DEMONIC_PETUNIA),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DEMONIC_PETUNIA),
+		BattleGroupEnemy(1, EnemyID.HOSTILE_ELDER_OAK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.WETNOSAUR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CHOMPOSAUR_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EGO_ORB),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CARE_FREE_BOMB),
+		BattleGroupEnemy(2, EnemyID.MR_MOLECULE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.CARE_FREE_BOMB),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FRENCH_KISS_OF_DEATH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LOADED_DICE_1),
+		BattleGroupEnemy(0, EnemyID.CARE_FREE_BOMB),
+		BattleGroupEnemy(0, EnemyID.BeautifulUFO),
+		BattleGroupEnemy(0, EnemyID.HIGH_CLASS_UFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LOADED_DICE_2),
+		BattleGroupEnemy(0, EnemyID.ELECTRO_SWOOSH),
+		BattleGroupEnemy(0, EnemyID.FOBBY),
+		BattleGroupEnemy(0, EnemyID.UNCONTROLLABLE_SPHERE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ELECTRO_SWOOSH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ELECTRO_SWOOSH),
+		BattleGroupEnemy(1, EnemyID.FRENCH_KISS_OF_DEATH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.MR_MOLECULE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.MR_MOLECULE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(1, EnemyID.ATTACK_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_2),
+		BattleGroupEnemy(1, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STRUTTIN_EVIL_MUSHROOM_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ATTACK_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.ATTACK_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ELDER_BATTY),
+		BattleGroupEnemy(1, EnemyID.ARACHNID),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ELDER_BATTY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ELDER_BATTY),
+		BattleGroupEnemy(1, EnemyID.ARACHNID),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ELDER_BATTY),
+		BattleGroupEnemy(1, EnemyID.STRONG_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STRONG_CROCODILE),
+		BattleGroupEnemy(1, EnemyID.ARACHNID),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STRONG_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STRONG_CROCODILE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARACHNID),
+		BattleGroupEnemy(0xFF)
+	], 0x00C0, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BLACK_ANTOID_1),
+		BattleGroupEnemy(1, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BLACK_ANTOID_1),
+		BattleGroupEnemy(1, EnemyID.ATTACK_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BLACK_ANTOID_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.BLACK_ANTOID_1),
+		BattleGroupEnemy(1, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.BLACK_ANTOID_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.ATTACK_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(6, EnemyID.ATTACK_SLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x00BE, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOLE_PLAYING_ROUGH),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MR_BATTY),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MR_BATTY),
+		BattleGroupEnemy(1, EnemyID.MOLE_PLAYING_ROUGH),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MR_BATTY),
+		BattleGroupEnemy(1, EnemyID.MIGHTY_BEAR),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.MR_BATTY),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOLE_PLAYING_ROUGH),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOLE_PLAYING_ROUGH),
+		BattleGroupEnemy(1, EnemyID.MIGHTY_BEAR),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MIGHTY_BEAR),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MIGHTY_BEAR),
+		BattleGroupEnemy(1, EnemyID.MR_BATTY),
+		BattleGroupEnemy(0xFF)
+	], 0x00BF, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.URBAN_ZOMBIE_1),
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_DOG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.URBAN_ZOMBIE_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_DOG),
+		BattleGroupEnemy(2, EnemyID.NO_GOOD_FLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(1, EnemyID.URBAN_ZOMBIE_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(1, EnemyID.URBAN_ZOMBIE_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.VIOLENT_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FOPPY_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.FOPPY_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.FOPPY_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.FOPPY_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(6, EnemyID.FOPPY_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.MOSTLY_BAD_FLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SLIMY_LIL_PILE),
+		BattleGroupEnemy(1, EnemyID.MOSTLY_BAD_FLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SLIMY_LIL_PILE),
+		BattleGroupEnemy(2, EnemyID.MOSTLY_BAD_FLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SLIMY_LIL_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.SLIMY_LIL_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.SLIMY_LIL_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.FARM_ZOMBIE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(1, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(1, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(1, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.RANBOOB),
+		BattleGroupEnemy(0xFF)
+	], 0x00C1, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STRUTTIN_EVIL_MUSHROOM_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIGANTIC_ANT_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.GIGANTIC_ANT_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.THIRSTY_COIL_SNAKE),
+		BattleGroupEnemy(1, EnemyID.GIGANTIC_ANT_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.THIRSTY_COIL_SNAKE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.THIRSTY_COIL_SNAKE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(1, EnemyID.THIRSTY_COIL_SNAKE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(1, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(2, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(3, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(2, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(5, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(1, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(1, EnemyID.GIGANTIC_ANT_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(1, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(2, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.NOOSE_MAN),
+		BattleGroupEnemy(1, EnemyID.GIGANTIC_ANT_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MUSICA),
+		BattleGroupEnemy(1, EnemyID.MYSTICAL_RECORD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MUSICA),
+		BattleGroupEnemy(2, EnemyID.MYSTICAL_RECORD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MUSICA),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SCALDING_COFFEE_CUP),
+		BattleGroupEnemy(1, EnemyID.MYSTICAL_RECORD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SCALDING_COFFEE_CUP),
+		BattleGroupEnemy(2, EnemyID.MYSTICAL_RECORD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SCALDING_COFFEE_CUP),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MYSTICAL_RECORD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STINKY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DEADLY_MOUSE),
+		BattleGroupEnemy(1, EnemyID.STINKY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FILTHY_ATTACK_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.FILTHY_ATTACK_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.DEADLY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DEADLY_MOUSE),
+		BattleGroupEnemy(1, EnemyID.STINKY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STINKY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.DEADLY_MOUSE),
+		BattleGroupEnemy(1, EnemyID.STINKY_GHOST),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FILTHY_ATTACK_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.FILTHY_ATTACK_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FILTHY_ATTACK_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.FILTHY_ATTACK_ROACH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.DEADLY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.DEADLY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C2, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.THUNDER_MITE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TANGOO_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.THUNDER_MITE),
+		BattleGroupEnemy(1, EnemyID.TANGOO_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TANGOO_1),
+		BattleGroupEnemy(1, EnemyID.KISS_OF_DEATH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.THUNDER_MITE),
+		BattleGroupEnemy(1, EnemyID.TANGOO_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.TANGOO_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.THUNDER_MITE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_MENACE),
+		BattleGroupEnemy(1, EnemyID.TANGOO_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.CONDUCTING_MENACE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.KISS_OF_DEATH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.KISS_OF_DEATH),
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_MENACE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.CONDUCTING_MENACE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_MENACE),
+		BattleGroupEnemy(1, EnemyID.TANGOO_1),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_MENACE),
+		BattleGroupEnemy(1, EnemyID.TANGOO_1),
+		BattleGroupEnemy(1, EnemyID.KISS_OF_DEATH),
+		BattleGroupEnemy(0xFF)
+	], 0x00C3, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FIERCE_SHATTERED_MAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FIERCE_SHATTERED_MAN),
+		BattleGroupEnemy(1, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PETRIFIED_ROYAL_GUARD),
+		BattleGroupEnemy(1, EnemyID.LETHAL_ASP_HIEROGLYPH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARACHNID2),
+		BattleGroupEnemy(1, EnemyID.GUARDIAN_HIEROGLYPH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FIERCE_SHATTERED_MAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FIERCE_SHATTERED_MAN),
+		BattleGroupEnemy(1, EnemyID.PETRIFIED_ROYAL_GUARD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PETRIFIED_ROYAL_GUARD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LETHAL_ASP_HIEROGLYPH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.ARACHNID2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FIERCE_SHATTERED_MAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FIERCE_SHATTERED_MAN),
+		BattleGroupEnemy(1, EnemyID.PETRIFIED_ROYAL_GUARD),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PETRIFIED_ROYAL_GUARD),
+		BattleGroupEnemy(1, EnemyID.LETHAL_ASP_HIEROGLYPH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FIERCE_SHATTERED_MAN),
+		BattleGroupEnemy(1, EnemyID.GUARDIAN_HIEROGLYPH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SCALDING_COFFEE_CUP),
+		BattleGroupEnemy(1, EnemyID.MYSTICAL_RECORD),
+		BattleGroupEnemy(1, EnemyID.WORTHLESS_PROTOPLASM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.CuteLilUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.CuteLilUFO),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DALIS_CLOCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROBO_PUMP_1),
+		BattleGroupEnemy(1, EnemyID.ENRAGED_FIRE_PLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROBO_PUMP_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ENRAGED_FIRE_PLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LESSER_MOOK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(5, EnemyID.WORTHLESS_PROTOPLASM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.WORTHLESS_PROTOPLASM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(3, EnemyID.WORTHLESS_PROTOPLASM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOOK_SENIOR),
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(1, EnemyID.STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(1, EnemyID.MILITARY_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(2, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(1, EnemyID.MILITARY_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(1, EnemyID.MILITARY_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ATOMIC_POWER_ROBOT),
+		BattleGroupEnemy(2, EnemyID.MILITARY_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(6, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.UNCONTROLLABLE_SPHERE),
+		BattleGroupEnemy(1, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HYPER_SPINNING_ROBO),
+		BattleGroupEnemy(1, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(4, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(6, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(1, EnemyID.FOBBY),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.UNCONTROLLABLE_SPHERE),
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.UNCONTROLLABLE_SPHERE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HYPER_SPINNING_ROBO),
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.UNCONTROLLABLE_SPHERE),
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HYPER_SPINNING_ROBO),
+		BattleGroupEnemy(1, EnemyID.CONDUCTING_SPIRIT),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HYPER_SPINNING_ROBO),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.HYPER_SPINNING_ROBO),
+		BattleGroupEnemy(1, EnemyID.UNCONTROLLABLE_SPHERE),
+		BattleGroupEnemy(0xFF)
+	], 0x00C4, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PSYCHIC_PSYCHO),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.EVIL_ELEMENTAL),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVIL_ELEMENTAL),
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVIL_ELEMENTAL),
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.EVIL_ELEMENTAL),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVIL_ELEMENTAL),
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PSYCHIC_PSYCHO),
+		BattleGroupEnemy(1, EnemyID.MAJOR_PSYCHIC_PSYCHO),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVIL_ELEMENTAL),
+		BattleGroupEnemy(1, EnemyID.PSYCHIC_PSYCHO),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(1, EnemyID.MAJOR_PSYCHIC_PSYCHO),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(1, EnemyID.MAJOR_PSYCHIC_PSYCHO),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SOUL_CONSUMING_FLAME),
+		BattleGroupEnemy(0xFF)
+	], 0x00C5, 0x01, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.NUCLEAR_REACTOR_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.WILD_N_WOOLY_SHAMBLER),
+		BattleGroupEnemy(1, EnemyID.ULTIMATE_OCTOBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ULTIMATE_OCTOBOT),
+		BattleGroupEnemy(1, EnemyID.NUCLEAR_REACTOR_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SQUATTER_DEMON_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.WILD_N_WOOLY_SHAMBLER),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.NUCLEAR_REACTOR_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.NUCLEAR_REACTOR_ROBOT),
+		BattleGroupEnemy(1, EnemyID.FINAL_STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.FINAL_STARMAN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GHOST_OF_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.FINAL_STARMAN_1),
+		BattleGroupEnemy(1, EnemyID.NUCLEAR_REACTOR_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BIONIC_KRAKEN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Large),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(1, EnemyID.RAMBLIN_EVIL_MUSHROOM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.INSANE_CULTIST_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.INSANE_CULTIST_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.MR_BATTY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MR_BATTY),
+		BattleGroupEnemy(1, EnemyID.ZOMBIE_POSSESSOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKELPION),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAD_TAXI),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CRIMINAL_CATERPILLAR),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MASTER_CRIMINAL_WORM),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAGIC_BUTTERFLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.COIL_SNAKE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.COIL_SNAKE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOLE_PLAYING_ROUGH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOLE_PLAYING_ROUGH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MOLE_PLAYING_ROUGH),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SKATE_PUNK),
+		BattleGroupEnemy(0, EnemyID.POGO_PUNK),
+		BattleGroupEnemy(0, EnemyID.YES_MAN_JUNIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.POGO_PUNK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.YES_MAN_JUNIOR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.INSANE_CULTIST_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.UNASSUMING_LOCAL_GUY),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(2, EnemyID.INSANE_CULTIST_1),
+		BattleGroupEnemy(1, EnemyID.SPITEFUL_CROW),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SLIMY_LIL_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ENRAGED_FIRE_PLUG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROBO_PUMP_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ABSTRACT_ART),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SENTRY_ROBOT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SHATTERED_MAN),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GUARDIAN_HIEROGLYPH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.LETHAL_ASP_HIEROGLYPH),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAD_DUCK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.WORTHLESS_PROTOPLASM),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ROWDY_MOUSE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Small),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FRANK),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.FRANKYSTEIN_MARK_II_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TITANIC_ANT_1),
+		BattleGroupEnemy(2, EnemyID.BLACK_ANTOID_2),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.COP),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.Medium),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CAPTAIN_STRONG),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVERDRED_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MR_CARPAINTER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MONDO_MOLE_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MasterBelch1),
+		BattleGroupEnemy(0, EnemyID.SLIMY_LIL_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.TRILLIONAGE_SPROUT_1),
+		BattleGroupEnemy(2, EnemyID.TOUGH_MOBILE_SPROUT),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.BOOGEY_TENT_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GUARDIAN_DIGGER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.DEPT_STORE_SPOOK_1),
+		BattleGroupEnemy(0, EnemyID.INSANE_CULTIST_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.EVIL_MANI_MANI_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CLUMSY_ROBOT_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.PLAGUE_RAT_OF_DOOM_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.THUNDER_AND_STORM_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.SHROOOM_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_DELUXE_1),
+		BattleGroupEnemy(0, EnemyID.STARMAN_1),
+		BattleGroupEnemy(0, EnemyID.STARMAN_SUPER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.KRAKEN_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GUARDIAN_GENERAL_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MASTER_BARF_1),
+		BattleGroupEnemy(0, EnemyID.EVEN_SLIMIER_LITTLE_PILE),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.ELECTRO_SPECTER_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.CARBON_DOG_1),
+		BattleGroupEnemy(0, EnemyID.DIAMOND_DOG_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.YOUR_NIGHTMARE_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(0, EnemyID.STARMAN_JR),
+		BattleGroupEnemy(0, EnemyID.GIYGAS_1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.STARMAN_JR),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIYGAS_2),
+		BattleGroupEnemy(1, EnemyID.HeavilyArmedPokey3),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIYGAS_3),
+		BattleGroupEnemy(1, EnemyID.HeavilyArmedPokey3),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIYGAS_4),
+		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIYGAS_5),
+		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIYGAS_6),
+		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIYGAS_6),
+		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MAGIC_BUTTERFLY),
+		BattleGroupEnemy(0xFF)
+	], 0x0154, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.MINI_BARF),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
+	BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.GIYGAS_6),
+		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.None),
 ];

@@ -221,10 +221,10 @@ enum Music {
 	FIRST_STEP_BACK = 69,
 	SECOND_STEP_BACK = 70,
 	THE_PLACE = 71,
-	GIYGAS_AWAKENS = 72,
-	GIYGAS_PHASE2 = 73,
-	GIYGAS_WEAKENED2 = 74,
-	GIYGAS_DEATH2 = 75,
+	GiygasAwakens = 72,
+	GiygasPhase2 = 73,
+	GiygasWeakened2 = 74,
+	GiygasDeath2 = 75,
 	RUNAWAY5_CONCERT_1 = 76,
 	RUNAWAY5_TOUR_BUS = 77,
 	RUNAWAY5_CONCERT_2 = 78,
@@ -331,16 +331,16 @@ enum Music {
 	ROBOTOMY1 = 179,
 	PokeyEscapes2 = 180,
 	RETURN_TO_YOUR_BODY2 = 181,
-	GIYGAS_STATIC = 182,
+	GiygasStatic = 182,
 	SUDDEN_VICTORY = 183,
 	YOU_WON3 = 184,
-	GIYGAS_PHASE3 = 185,
-	GIYGAS_PHASE1 = 186,
+	GiygasPhase3 = 185,
+	GiygasPhase1 = 186,
 	GIVE_US_STRENGTH = 187,
 	GOOD_MORNING2 = 188,
 	SOUND_STONE = 189,
-	GIYGAS_DEATH = 190,
-	GIYGAS_WEAKENED = 191,
+	GiygasDeath = 190,
+	GiygasWeakened = 191,
 }
 
 enum ItemID {
@@ -609,8 +609,8 @@ enum Sfx {
 	CURSOR_INVALID = 5,
 	UNKNOWN06 = 6,
 	TextPrint = 7,
-	DOOR_OPEN = 8,
-	DOOR_CLOSE = 9,
+	DoorOpen = 8,
+	DoorClose = 9,
 	PHONE_RING = 10,
 	PHONE_ANSWERED = 11,
 	CASH_REGISTER = 12,
@@ -661,11 +661,11 @@ enum Sfx {
 	PSI_FREEZE_2 = 57,
 	PSI_FREEZE_FINISH = 58,
 	HP_SUCKER = 59,
-	PSI_THUNDER_MISS = 60,
-	PSI_THUNDER_HIT = 61,
-	PSI_THUNDER_MISS_2 = 62,
-	PSI_THUNDER_DAMAGE = 63,
-	PSI_STARSTORM = 64,
+	PSIThunderMiss = 60,
+	PSIThunderHit = 61,
+	PSIThunderMiss2 = 62,
+	PSIThunderDamage = 63,
+	PSIStarstorm = 64,
 	PSI_FLASH_1 = 65,
 	PSI_FLASH_2 = 66,
 	PSI_FLASH_3 = 67,
@@ -4097,20 +4097,14 @@ struct AnimatedBackground {
 	ubyte graphics;
 	ubyte palette;
 	ubyte bitsPerPixel;
-	ubyte unknown3;
+	ubyte paletteShiftingStyle;
 	ubyte paletteCycle1First;
 	ubyte paletteCycle1Last;
 	ubyte paletteCycle2First;
 	ubyte paletteCycle2Last;
 	ubyte paletteChangeSpeed;
-	ubyte scrollingMovement1;
-	ubyte scrollingMovement2;
-	ubyte scrollingMovement3;
-	ubyte scrollingMovement4;
-	ubyte distortionStyle1;
-	ubyte distortionStyle2;
-	ubyte distortionStyle3;
-	ubyte distortionStyle4;
+	ubyte[4] scrollingMovements;
+	ubyte[4] distortionStyles;
 }
 
 struct LoadedBackgroundData {
@@ -4158,7 +4152,7 @@ struct HDMAWordTransfer {
 }
 
 struct BattleEntryPointer {
-	void* pointer;
+	BattleGroupEnemy[] enemies;
 	ushort runAwayFlag;
 	ubyte runAwayFlagState;
 	LetterboxStyle letterboxStyle;
@@ -4282,6 +4276,16 @@ struct ConsolationPrize {
 	ubyte[8] items;
 }
 
+struct FinalGiygasPrayerNoiseEntry {
+	ubyte sfx;
+	ubyte duration;
+}
+
+struct BattleGroupEnemy {
+	ubyte count;
+	ushort enemyID;
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {
@@ -4298,3 +4302,15 @@ ubyte[length] EBString(size_t length)(string str) {
 }
 
 static assert(EBString!4("Null") == [0x7E, 0xA5, 0x9C, 0x9C]);
+
+T[] convert(T)(const(ubyte)[] input) {
+	T[] output;
+	foreach (idx; 0 .. input.length / T.sizeof) {
+		T val;
+		static foreach (i; 0 .. T.sizeof) {
+			val += input[idx + i] << (i * 8);
+		}
+		output ~= val;
+	}
+	return output;
+}

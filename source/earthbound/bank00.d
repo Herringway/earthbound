@@ -2066,14 +2066,21 @@ ubyte UnknownC0AC20() {
     return APUIO0;
 }
 
-// $C0AC43
-void UnknownC0AC43();
-
 // $C0AC2C
 immutable ubyte[14] StereoMonoData = [
     0x01, 0x00, 0x31, 0x04, 0x00, 0x00, 0x00,
     0x01, 0x00, 0x31, 0x04, 0x01, 0x00, 0x00,
 ];
+
+// $C0AC3A
+void UnknownC0AC3A(short arg1) {
+    APUIO2 = cast(ubyte)arg1;
+}
+
+// $C0AC43
+void UnknownC0AC43();
+
+// $C0AE16
 immutable ubyte[7] DMAFlags = [ 1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6];
 
 // $C0AE34
