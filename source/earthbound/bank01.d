@@ -536,7 +536,7 @@ void UnknownC1AC4A(PartyCharacter*, short);
 void GetOffBicycle();
 
 // $C1D9E9
-void GainEXP(ubyte, short, uint);
+void GainEXP(short, short, uint);
 
 // $C1DBBB
 void ShowHPAlert(short arg1) {

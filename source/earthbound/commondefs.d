@@ -3838,8 +3838,7 @@ struct Sprites {
 }
 
 struct Battler {
-	ubyte id; //0
-	ubyte unknown1; //1
+	short id; //0
 	ubyte sprite; //2
 	ubyte unknown3; //3
 	ushort currentAction; //4

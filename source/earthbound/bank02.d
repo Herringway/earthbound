@@ -1894,32 +1894,7 @@ short CalcResistDamage(short damage, short arg2) {
 	return damage;
 }
 
-// $C283F8
-short Smaaaash() {
-	Unknown7EAA8E = 0;
-	short guts = currentAttacker.guts;
-	if ((currentAttacker.allyOrEnemy == 0) && (guts < 25)) {
-		guts = 25;
-	}
-	if (Success500(guts) == 0) {
-		return 0;
-	}
-	if (currentAttacker.allyOrEnemy == 0) {
-		GreenFlashDuration = 60;
-		DisplayInBattleText(TextBattleSmaaaash);
-	} else {
-		RedFlashDuration = 60;
-		DisplayInBattleText(TextBattleSmaaaashReceived);
-	}
-	if ((currentTarget.afflictions[6] == Status6.ShieldPower) || (currentTarget.afflictions[6] == Status6.Shield)) {
-		currentTarget.shieldHP = 1;
-	}
-	Unknown7EAA8E = 1;
-	CalcResistDamage(cast(short)(currentAttacker.offense * 4 - currentTarget.defense), 0xFF);
-	return 1;
-}
-
-// $C284AD
+// $C282F8
 short MissCalc(short arg1) {
 	short x12;
 	if ((currentAttacker.allyOrEnemy == 0) && (currentAttacker.npcID == 0)) {
@@ -1945,6 +1920,31 @@ short MissCalc(short arg1) {
 	} else {
 		DisplayInBattleText(TextBattleJustMissed);
 	}
+	return 1;
+}
+
+// $C283F8
+short Smaaaash() {
+	Unknown7EAA8E = 0;
+	short guts = currentAttacker.guts;
+	if ((currentAttacker.allyOrEnemy == 0) && (guts < 25)) {
+		guts = 25;
+	}
+	if (Success500(guts) == 0) {
+		return 0;
+	}
+	if (currentAttacker.allyOrEnemy == 0) {
+		GreenFlashDuration = 60;
+		DisplayInBattleText(TextBattleSmaaaash);
+	} else {
+		RedFlashDuration = 60;
+		DisplayInBattleText(TextBattleSmaaaashReceived);
+	}
+	if ((currentTarget.afflictions[6] == Status6.ShieldPower) || (currentTarget.afflictions[6] == Status6.Shield)) {
+		currentTarget.shieldHP = 1;
+	}
+	Unknown7EAA8E = 1;
+	CalcResistDamage(cast(short)(currentAttacker.offense * 4 - currentTarget.defense), 0xFF);
 	return 1;
 }
 
@@ -2060,7 +2060,26 @@ void BattleActionNull11() {
 }
 
 // $C2941D
-short PSIShieldNullify();
+short PSIShieldNullify() {
+	Unknown7EAA94 = 1;
+	UnknownC1ACF8F(currentAttacker.currentActionArgument);
+	if (BattleActionTable[currentAttacker.currentAction].type != ActionType.PSI) {
+		return 0;
+	}
+	if (currentTarget.afflictions[6] != Status6.PSIShieldPower) {
+		DisplayInBattleText(TextBattlePsychicPowerShieldDeflected);
+		Unknown7EAA96 = 1;
+		SwapAttackerWithTarget();
+	} else if (currentTarget.afflictions[6] != Status6.PSIShield) {
+		DisplayInBattleText(TextBattlePsychicPowerShieldBlocked);
+		if (--currentTarget.shieldHP == 0) {
+			currentTarget.afflictions[6] = 0;
+			DisplayInBattleText(TextBattleShieldDisappeared);
+		}
+		return 1;
+	}
+	return 0;
+}
 
 // $C294CE
 void WeakenShield() {
@@ -2238,7 +2257,31 @@ void HealPoison() {
 }
 
 // $C2AF1F
-void CopyMirrorData(Battler*, Battler*);
+void CopyMirrorData(Battler* arg1, Battler* arg2) {
+	short x44 = arg1.hp;
+	short x3E = arg1.pp;
+	short x38 = arg1.hpTarget;
+	short x32 = arg1.ppTarget;
+	short x2C = arg1.hpMax;
+	short x26 = arg1.ppMax;
+	ubyte x04 = arg1.allyOrEnemy;
+	ubyte x02 = arg1.row;
+	short x18 = arg1.id;
+	ubyte x16 = arg1.unknown13;
+
+	memcpy(arg1, arg2, Battler.sizeof);
+
+	arg1.hp = x44;
+	arg1.pp = x3E;
+	arg1.hpTarget = x38;
+	arg1.ppTarget = x32;
+	arg1.hpMax = x2C;
+	arg1.ppMax = x26;
+	arg1.allyOrEnemy = x04;
+	arg1.row = x02;
+	arg1.id = x18;
+	arg1.unknown13 = x16;
+}
 
 // $C2B608
 ubyte CalcPSIDamageModifiers(ubyte arg1) {
