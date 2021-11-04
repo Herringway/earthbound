@@ -2398,6 +2398,29 @@ void BattleActionPSIRockinOmega() {
 	PSIRockinCommon(720);
 }
 
+// $C2957A
+void PSIFireCommon(short baseDamage);
+
+// $C295AB
+void BattleActionPSIFireAlpha() {
+	PSIFireCommon(80);
+}
+
+// $C295B4
+void BattleActionPSIFireBeta() {
+	PSIFireCommon(160);
+}
+
+// $C295BD
+void BattleActionPSIFireGamma() {
+	PSIFireCommon(240);
+}
+
+// $C295C6
+void BattleActionPSIFireOmega() {
+	PSIFireCommon(320);
+}
+
 // $C295CF
 void PSIFreezeCommon(short baseDamage) {
 	if (FailAttackOnNPCs() != 0) {
@@ -2456,6 +2479,149 @@ void BattleActionPSIThunderGamma() {
 // $C29895
 void BattleActionPSIThunderOmega() {
 	PSIThunderCommon(200, 4);
+}
+
+// $C298A1
+short FlashImmunityTest();
+
+// $C298DE
+void FlashInflictFeelingStrange() {
+	if (InflictStatusBattle(currentTarget, 3, Status3.Strange) != 0) {
+		DisplayInBattleText(TextBattleFeltALittleStrange);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
+
+// $C29917
+void FlashInflictParalysis()  {
+	if (InflictStatusBattle(currentTarget, 0, Status0.Paralyzed) != 0) {
+		DisplayInBattleText(TextBattleBecameNumb);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
+
+// $C29950
+void FlashInflictCrying() {
+	if (InflictStatusBattle(currentTarget, 2, Status2.Crying) != 0) {
+		DisplayInBattleText(TextBattleCouldNotStopCrying);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
+
+// $C29987
+void BattleActionPSIFlashAlpha() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (FlashImmunityTest() != 0) {
+		if ((rand() & 7) == 0) {
+			FlashInflictFeelingStrange();
+		} else {
+			FlashInflictCrying();
+		}
+	}
+	WeakenShield();
+}
+
+// $C299AE
+void BattleActionPSIFlashBeta() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (FlashImmunityTest() != 0) {
+		switch (rand() & 7) {
+			case 0:
+				KOTarget(currentTarget);
+				break;
+			case 1:
+				FlashInflictParalysis();
+				break;
+			case 2:
+				FlashInflictFeelingStrange();
+				break;
+			default:
+				FlashInflictCrying();
+				break;
+		}
+	}
+	WeakenShield();
+}
+
+// $C299EF
+void BattleActionPSIFlashGamma() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (FlashImmunityTest() != 0) {
+		switch (rand() & 7) {
+			case 0:
+			case 1:
+				KOTarget(currentTarget);
+				break;
+			case 2:
+				FlashInflictParalysis();
+				break;
+			case 3:
+				FlashInflictFeelingStrange();
+				break;
+			default:
+				FlashInflictCrying();
+				break;
+		}
+	}
+	WeakenShield();
+}
+
+// $C29A35
+void BattleActionPSIFlashOmega() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (FlashImmunityTest() != 0) {
+		switch (rand() & 7) {
+			case 0:
+			case 1:
+			case 2:
+				KOTarget(currentTarget);
+				break;
+			case 3:
+				FlashInflictParalysis();
+				break;
+			case 4:
+				FlashInflictFeelingStrange();
+				break;
+			default:
+				FlashInflictCrying();
+				break;
+		}
+	}
+	WeakenShield();
+}
+
+// $C29AB8
+void LifeupCommon(short baseHealing);
+
+// $C29AC6
+void BattleActionLifeupAlpha() {
+	LifeupCommon(100);
+}
+
+// $C29ACF
+void BattleActionLifeupBeta() {
+	LifeupCommon(300);
+}
+
+// $C29AD8
+void BattleActionLifeupGamma() {
+	LifeupCommon(10000);
+}
+
+// $C29AE1
+void BattleActionLifeupOmega() {
+	LifeupCommon(400);
 }
 
 // $C29CDC
