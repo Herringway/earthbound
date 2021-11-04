@@ -2620,6 +2620,42 @@ immutable ushort[33] DeadTargettableActions = [
 // $C4A228
 void UnknownC4A228(Battler*, short);
 
+// $C4A228
+immutable uint[32] PowersOfTwo32Bit = [
+    1 << 0,
+    1 << 1,
+    1 << 2,
+    1 << 3,
+    1 << 4,
+    1 << 5,
+    1 << 6,
+    1 << 7,
+    1 << 8,
+    1 << 9,
+    1 << 10,
+    1 << 11,
+    1 << 12,
+    1 << 13,
+    1 << 14,
+    1 << 15,
+    1 << 16,
+    1 << 17,
+    1 << 18,
+    1 << 19,
+    1 << 20,
+    1 << 21,
+    1 << 22,
+    1 << 23,
+    1 << 24,
+    1 << 25,
+    1 << 26,
+    1 << 27,
+    1 << 28,
+    1 << 29,
+    1 << 30,
+    1 << 31,
+];
+
 // $C4A5FA
 immutable Unknown7EAECCEntry[2] UnknownC4A5FA = [
     Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
@@ -3153,7 +3189,7 @@ void InitIntro() {
     BG1_X_POS = 0;
     BG1_Y_POS = 0;
     UpdateScreen();
-    short x; //x0E
+    short x;
     while (x == 0) {
         switch (x02) {
             case 0:
@@ -3187,36 +3223,36 @@ void InitIntro() {
                     x = 0;
                 }
                 break;
-            case 2: //@UNKNOWN17
+            case 2:
                 ChangeMusic(Music.TitleScreen);
                 x = ShowTitleScreen(0);
                 break;
-            case 3: //@UNKNOWN18
+            case 3:
                 ChangeMusic(Music.AttractMode);
                 x = UnknownC4D989(0);
                 break;
-            case 4: //@UNKNOWN19
+            case 4:
                 x = UnknownC4D989(2);
                 break;
-            case 5: //@UNKNOWN20
+            case 5:
                 x = UnknownC4D989(3);
                 break;
-            case 6: //@UNKNOWN21
+            case 6:
                 x = UnknownC4D989(4);
                 break;
-            case 7: //@UNKNOWN22
+            case 7:
                 x = UnknownC4D989(5);
                 break;
-            case 8: //@UNKNOWN23
+            case 8:
                 x = UnknownC4D989(6);
                 break;
-            case 9: //@UNKNOWN24
+            case 9:
                 x = UnknownC4D989(7);
                 break;
-            case 10: //@UNKNOWN25
+            case 10:
                 x = UnknownC4D989(9);
                 break;
-            default: //@UNKNOWN26
+            default:
                 x02 = 1;
                 break;
         }

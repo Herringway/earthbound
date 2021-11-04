@@ -592,6 +592,11 @@ void UnknownC1ACF8F(short);
 // $C1DD9F
 void UnknownC1DD9F(const(ubyte)*);
 
+// $C1DDC6
+ushort RemoveItemFromInventoryF(ushort character, ushort id) {
+    return RemoveItemFromInventory(character, id);
+}
+
 // $C1E1A5
 short EnemySelectMode(short);
 

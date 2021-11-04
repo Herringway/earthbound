@@ -3849,7 +3849,7 @@ struct Battler {
 	ubyte currentTarget; //10
 	ubyte theFlag; //11
 	ubyte consciousness; //12
-	ubyte unknown13; //13
+	ubyte hasTakenTurn; //13
 	ubyte allyOrEnemy; //14
 	ubyte npcID; //15
 	ubyte row; //16

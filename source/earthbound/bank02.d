@@ -803,8 +803,51 @@ short GetShieldTargetting(short, Battler*);
 // $C24009
 void FeelingStrangeRetargetting();
 
+// $C240A4
+void UnknownC240A4(void function() action) {
+	while (UnknownC2EACF() != 0) {
+		Win_Tick();
+	}
+	for (short i = 8; i < BattlersTable.length; i++) {
+		currentTarget = &BattlersTable[i];
+		if (IsCharacterTargetted(i) == 0) {
+			continue;
+		}
+		FixTargetName();
+		if (action is null) {
+			continue;
+		}
+		action();
+	}
+	for (short i = 0; i < 8; i++) {
+		currentTarget = &BattlersTable[i];
+		if (IsCharacterTargetted(i) == 0) {
+			continue;
+		}
+		FixTargetName();
+		if (action is null) {
+			continue;
+		}
+		action();
+	}
+}
+
 // $C2416F
-void UnknownC2416F();
+void RemoveStatusUntargettableTargets() {
+	for (short i = 0; DeadTargettableActions[i] != 0; i++) {
+		if (currentAttacker.currentAction == DeadTargettableActions[i]) {
+			return;
+		}
+	}
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (IsCharacterTargetted(i) == 0) {
+			continue;
+		}
+		if ((BattlersTable[i].consciousness == 0) || (BattlersTable[i].afflictions[0] == Status0.Unconscious) || (BattlersTable[i].afflictions[0] == Status0.Diamondized)) {
+			RemoveTarget(i);
+		}
+	}
+}
 
 // $C24348
 ubyte SelectStealableItem();
@@ -813,7 +856,27 @@ ubyte SelectStealableItem();
 short UnknownC24348(short);
 
 // $C2437E
-void UnknownC2437E();
+void UnknownC2437E() {
+	if (currentAttacker.allyOrEnemy != 0) {
+		return;
+	}
+	if (currentAttacker.npcID != 0) {
+		return;
+	}
+	if (currentAttacker.unknown7 == 0) {
+		return;
+	}
+	if (PartyCharacters[currentAttacker.id].items[currentAttacker.unknown7] != currentAttacker.currentActionArgument) {
+		return;
+	}
+	if ((ItemData[PartyCharacters[currentAttacker.id].items[currentAttacker.unknown7]].flags & ItemFlags.ConsumedOnUse) == 0) {
+		return;
+	}
+	if (UnknownC3EE14(currentAttacker.id, currentAttacker.currentActionArgument) == 0) {
+		return;
+	}
+	RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.unknown7);
+}
 
 // $C24477
 void ChooseTarget(Battler*);
@@ -823,7 +886,7 @@ void UnknownC24703(Battler* battler) {
 	BattlerTargetFlags = 0;
 	switch (battler.unknown9) {
 		case 1:
-			UnknownC26FDC(battler.currentTarget - 1);
+			TargetBattler(battler.currentTarget - 1);
 			break;
 		case 2:
 		case 4:
@@ -831,13 +894,13 @@ void UnknownC24703(Battler* battler) {
 			if ((GetShieldTargetting(battler.currentAction, battler) == 0) && (battler.allyOrEnemy == 0)) {
 				RemoveNPCTargetting();
 			}
-			UnknownC2416F();
+			RemoveStatusUntargettableTargets();
 			break;
 		case 11:
 			if (battler.currentTarget > Unknown7EAD56) {
-				UnknownC26FDC(Unknown7EAD82[battler.currentTarget - Unknown7EAD56 - 1]);
+				TargetBattler(Unknown7EAD82[battler.currentTarget - Unknown7EAD56 - 1]);
 			} else {
-				UnknownC26FDC(Unknown7EAD7A[battler.currentTarget - 1]);
+				TargetBattler(Unknown7EAD7A[battler.currentTarget - 1]);
 			}
 			if (battler.currentAction == BattleActions.PSIHealingOmega) {
 				for (short i = 8; i < BattlersTable.length; i++) {
@@ -848,21 +911,22 @@ void UnknownC24703(Battler* battler) {
 						continue;
 					}
 					BattlerTargetFlags = 0;
-					UnknownC26FDC(i);
+					TargetBattler(i);
+					break;
 				}
 			}
 			break;
 		case 12:
 			TargetRow(battler.currentTarget);
 			RemoveNPCTargetting();
-			UnknownC2416F();
+			RemoveStatusUntargettableTargets();
 			break;
 		case 14:
 			TargetAllEnemies();
 			if (battler.allyOrEnemy == 0) {
 				RemoveNPCTargetting();
 			}
-			UnknownC2416F();
+			RemoveStatusUntargettableTargets();
 			break;
 		default: break;
 	}
@@ -1130,7 +1194,7 @@ short BattleRoutine() {
 			x25++;
 			UnknownC2F917();
 			for (short i = 0; i < BattlersTable.length; i++) {
-				BattlersTable[i].unknown13 = 0;
+				BattlersTable[i].hasTakenTurn = 0;
 				if (BattlersTable[i].consciousness == 0) {
 					continue;
 				}
@@ -1377,7 +1441,7 @@ short BattleRoutine() {
 						if (BattlersTable[i].consciousness == 0) {
 							continue;
 						}
-						if (BattlersTable[i].unknown13 != 0) {
+						if (BattlersTable[i].hasTakenTurn != 0) {
 							continue;
 						}
 						if (BattlersTable[i].unknown70 < x) {
@@ -1390,7 +1454,7 @@ short BattleRoutine() {
 						break;
 					}
 					currentAttacker = &BattlersTable[x04];
-					currentAttacker.unknown13 = 1;
+					currentAttacker.hasTakenTurn = 1;
 					if ((currentAttacker.afflictions[0] == Status0.Unconscious) || (currentAttacker.afflictions[0] == Status0.Diamondized)) {
 						continue;
 					}
@@ -1481,11 +1545,11 @@ short BattleRoutine() {
 					}
 					UnknownC24703(currentAttacker);
 					if ((currentAttacker.allyOrEnemy == 0) && (BattleActionTable[currentAttacker.currentAction].direction == 0)) {
-						UnknownC2416F();
+						RemoveStatusUntargettableTargets();
 						if (BattlerTargetFlags == 0) {
 							ChooseTarget(currentAttacker);
 							UnknownC24703(currentAttacker);
-							UnknownC2416F();
+							RemoveStatusUntargettableTargets();
 						}
 					}
 					short x31 = 0;
@@ -1494,7 +1558,7 @@ short BattleRoutine() {
 							x31 = 1;
 							while (BattlerTargetFlags == 0) {
 								FeelingStrangeRetargetting();
-								UnknownC2416F();
+								RemoveStatusUntargettableTargets();
 							}
 						}
 					}
@@ -1519,7 +1583,7 @@ short BattleRoutine() {
 							DisplayInBattleText(TextBattleUsedPSI);
 							goto Unknown215;
 						} else {
-							UnknownC2BCB9(currentAttacker);
+							UnknownC2BCB9(currentAttacker, BattleActionTable[currentAttacker.currentAction].ppCost);
 						}
 					}
 					if ((currentAttacker.allyOrEnemy == 1) && (currentAttacker.currentAction != 0)) {
@@ -1776,24 +1840,125 @@ short Success500(short arg) {
 }
 
 // $C26BFB
-void TargetAllies();
+void TargetAllies() {
+	BattlerTargetFlags = 0;
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if ((BattlersTable[i].consciousness != 0) && ((BattlersTable[i].allyOrEnemy == 0) || (BattlersTable[i].npcID != 0))) {
+			BattlerTargetFlags |= PowersOfTwo32Bit[i];
+		}
+	}
+}
 
 // $C26C82
-void TargetAllEnemies();
+void TargetAllEnemies() {
+	BattlerTargetFlags = 0;
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		BattlerTargetFlags |= PowersOfTwo32Bit[i];
+	}
+}
 
 // $C26D04
-void TargetRow(ubyte);
+void TargetRow(ubyte arg1)  {
+	BattlerTargetFlags = 0;
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		switch (arg1) {
+			case 0:
+				if (BattlersTable[i].allyOrEnemy == 0) {
+					BattlerTargetFlags |= PowersOfTwo32Bit[i];
+				}
+				break;
+			case 1:
+			case 2:
+				if ((BattlersTable[i].allyOrEnemy == 1) && (BattlersTable[i].row == arg1)) {
+					BattlerTargetFlags |= PowersOfTwo32Bit[i];
+				}
+				break;
+			default: break;
+		}
+	}
+}
+
+// $C26E00
+void TargetAll() {
+	BattlerTargetFlags = 0;
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		BattlerTargetFlags |= PowersOfTwo32Bit[i];
+	}
+}
 
 // $C26E77
-void RemoveNPCTargetting();
+void RemoveNPCTargetting() {
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].npcID == 0) {
+			continue;
+		}
+		BattlerTargetFlags &= (0xFFFFFFFF ^ PowersOfTwo32Bit[i]);
+	}
+}
 
 // $C26FDC
-void UnknownC26FDC(short);
+void TargetBattler(short arg1) {
+	BattlerTargetFlags |= PowersOfTwo32Bit[arg1];
+}
 
 // $C27029
-short IsCharacterTargetted(short);
+short IsCharacterTargetted(short arg1) {
+	if ((BattlerTargetFlags & PowersOfTwo32Bit[arg1]) != 0) {
+		return 1;
+	}
+	return 0;
+}
 
-// $C27029
+// $C27089
+void RemoveTarget(short arg1) {
+	BattlerTargetFlags &= (0xFFFFFFFF ^ PowersOfTwo32Bit[arg1]);
+}
+
+// $C270E4
+void RemoveDeadTargetting() {
+	for (short i = 0; i < BattlersTable.length; i ++) {
+		if (IsCharacterTargetted(i) == 0) {
+			continue;
+		}
+		if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+			RemoveTarget(i);
+		}
+	}
+}
+
+// $C27191
+void SetPP(Battler* battler, short arg2) {
+	ushort x10 = (arg2 > battler.ppMax) ? battler.ppMax : arg2;
+	if (battler.allyOrEnemy == 0) {
+		if (battler.npcID == 0) {
+			battler.ppTarget = x10;
+			PartyCharacters[battler.row].pp.target = x10;
+		} else {
+			battler.pp = x10;
+			battler.ppTarget = x10;
+		}
+	} else {
+		battler.pp = x10;
+		battler.ppTarget = x10;
+	}
+}
+
+// $C2724A
 short InflictStatusBattle(Battler*, short, short);
 
 // $C27550
@@ -2059,6 +2224,44 @@ void BattleActionNull11() {
 	//nothing
 }
 
+// $C29051
+void BattleActionNeutralize() {
+	currentTarget.offense = currentTarget.baseOffense;
+	currentTarget.defense = currentTarget.baseDefense;
+	currentTarget.speed = currentTarget.baseSpeed;
+	currentTarget.guts = currentTarget.baseGuts;
+	currentTarget.luck = currentTarget.baseLuck;
+	currentTarget.shieldHP = 0;
+	currentTarget.afflictions[6] = 0;
+	DisplayInBattleText(TextBattleEffectsOfPSIAreGone);
+}
+
+// $C290C6
+void UnknownC290C6() {
+	if (MirrorEnemy != 0) {
+		for (short i = 0; i < BattlersTable.length; i++) {
+			if (BattlersTable[i].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[i].allyOrEnemy != 0) {
+				continue;
+			}
+			if (BattlersTable[i].id != 4) {
+				continue;
+			}
+			MirrorEnemy = 0;
+			CopyMirrorData(&BattlersTable[i], &Unknown7EAA14);
+			BattlersTable[i].currentAction = 0;
+			DisplayInBattleText(TextBattleReturnedOriginalForm);
+			break;
+		}
+	}
+	TargetAll();
+	RemoveDeadTargetting();
+	UnknownC240A4(&BattleActionNeutralize);
+	BattlerTargetFlags = 0;
+}
+
 // $C2941D
 short PSIShieldNullify() {
 	Unknown7EAA94 = 1;
@@ -2267,7 +2470,7 @@ void CopyMirrorData(Battler* arg1, Battler* arg2) {
 	ubyte x04 = arg1.allyOrEnemy;
 	ubyte x02 = arg1.row;
 	short x18 = arg1.id;
-	ubyte x16 = arg1.unknown13;
+	ubyte x16 = arg1.hasTakenTurn;
 
 	memcpy(arg1, arg2, Battler.sizeof);
 
@@ -2280,7 +2483,7 @@ void CopyMirrorData(Battler* arg1, Battler* arg2) {
 	arg1.allyOrEnemy = x04;
 	arg1.row = x02;
 	arg1.id = x18;
-	arg1.unknown13 = x16;
+	arg1.hasTakenTurn = x16;
 }
 
 // $C2B0A1
@@ -2433,16 +2636,84 @@ void BattleInitPlayerStats(short arg1, Battler* battler) {
 short CountChars(short);
 
 // $C2BB18
-void CheckDeadPlayers();
+void CheckDeadPlayers() {
+	for (short i = 0; i < 6; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 0) {
+			continue;
+		}
+		if (BattlersTable[i].npcID != 0) {
+			continue;
+		}
+		BattlersTable[i].hp = PartyCharacters[BattlersTable[i].row].hp.current.integer;
+		BattlersTable[i].pp = PartyCharacters[BattlersTable[i].row].pp.current.integer;
+		if ((PartyCharacters[BattlersTable[i].row].hp.current.integer == 0) && (BattlersTable[i].afflictions[0] != Status0.Unconscious)) {
+			currentTarget = &BattlersTable[i];
+			currentTarget.afflictions[0] = Status0.Unconscious;
+			currentTarget.afflictions[6] = 0;
+			currentTarget.afflictions[5] = 0;
+			currentTarget.afflictions[4] = 0;
+			currentTarget.afflictions[3] = 0;
+			currentTarget.afflictions[2] = 0;
+			currentTarget.afflictions[1] = 0;
+			FixTargetName();
+			short x16 = WindowTable[Window.TextBattle];
+			CreateWindow(Window.TextBattle);
+			DisplayInBattleText(TextBattleGotHurtAndCollapsed);
+			if (x16 == -1) {
+				CloseFocusWindow();
+			}
+		}
+		for (short j = 0; j < 7; j++) {
+			PartyCharacters[BattlersTable[i].row].afflictions[j] = BattlersTable[i].afflictions[j];
+		}
+		if (PartyCharacters[BattlersTable[i].row].afflictions[4] != 0) {
+			PartyCharacters[BattlersTable[i].row].afflictions[4] = Status4.CantConcentrate4;
+		}
+		UpdateParty();
+	}
+}
 
 // $C2BC5C
-void ResetPostBattleStats();
+void ResetPostBattleStats() {
+	for (short i = 0; i < 6; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 0) {
+			continue;
+		}
+		if (BattlersTable[i].npcID != 0) {
+			continue;
+		}
+		PartyCharacters[BattlersTable[i].row].afflictions[6] = 0;
+		PartyCharacters[BattlersTable[i].row].afflictions[4] = 0;
+		PartyCharacters[BattlersTable[i].row].afflictions[3] = 0;
+		PartyCharacters[BattlersTable[i].row].afflictions[2] = 0;
+	}
+}
 
 // $C2BCB9
-void UnknownC2BCB9(Battler*);
+void UnknownC2BCB9(Battler* battler, short arg2) {
+	SetPP(battler, (arg2 > battler.ppTarget) ? 0 : cast(ushort)(battler.ppTarget - arg2));
+}
 
 // $C2BCE6
 void LoseHPStatus(Battler*, short);
+
+// $C2C14E
+void BattleActionRainbowOfColours() {
+	ubyte x02 = currentAttacker.spriteX;
+	ubyte x10 = currentAttacker.spriteY;
+	BattleInitEnemyStats(currentAttacker.currentActionArgument, currentAttacker);
+	currentAttacker.spriteX = x02;
+	currentAttacker.spriteY = x10;
+	currentAttacker.vramSpriteIndex = UnknownC2F09F(currentAttacker.id);
+	currentAttacker.hasTakenTurn = 1;
+	Unknown7EAA92 = 1;
+}
 
 // $C2C1BD
 void BattleActionFlyHoney() {
@@ -2669,6 +2940,9 @@ short UnknownC2EACF();
 
 // $C2EEE7
 void UnknownC2EEE7();
+
+// $C2F09F
+ubyte UnknownC2F09F(short);
 
 // $C2F0D1
 void UnknownC2F0D1();

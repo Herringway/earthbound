@@ -182,6 +182,9 @@ void UnknownC3EBCA() {
 	}
 }
 
+// $C3EE14
+short UnknownC3EE14(short, short);
+
 // $C3F054
 immutable FontConfig[5] FontConfigTable = [
 	FontConfig(null, null, 32, 16), //main font

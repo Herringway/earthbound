@@ -510,8 +510,8 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_244+/, &BTLACT_MASTERBARFDEATH), //MASTER_BARF_DEFEAT
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_NO_MESSAGE+/, &BTLACT_ENEMYEXTEND), //ENEMY_EXTENDER
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PiercingPhysical, 0x00, null /+ TEXT_NO_MESSAGE+/, &BTLACT_SWITCH_WEAPONS), //ACTION_246
-	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_140+/, &UNKNOWN_C290C6), //NEUTRALIZER
-	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_248+/, &UNKNOWN_C290C6), //EMIT_PALE_GREEN_LIGHT
+	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_140+/, &UnknownC290C6), //NEUTRALIZER
+	BattleAction(ActionDirection.Party, ActionTarget.All, ActionType.Other, 0x00, null /+ TEXT_ACTION_248+/, &UnknownC290C6), //EMIT_PALE_GREEN_LIGHT
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_135+/, &EAT_FOOD), //GENERIC_FOOD
 	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.Item, 0x00, null /+ TEXT_ACTION_250+/, &EAT_FOOD), //GENERIC_FOOD_PARTY
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_251+/, &BattleActionNull11), //ACTION_251
@@ -553,7 +553,7 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_287+/, &BattleActionNull4), //LETTER_FROM_MOM
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_288+/, &BattleActionNull4), //LETTER_FROM_TONY
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_289+/, &BattleActionNull4), //LETTER_FROM_KIDS
-	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_290+/, &BTLACT_RAINBOW_OF_COLOURS), //GIVE_OFF_RAINBOW
+	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_290+/, &BattleActionRainbowOfColours), //GIVE_OFF_RAINBOW
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_291+/, &BTLACT_GIYGAS_PRAYER_1), //FINAL_PRAYER_1
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_292+/, &BTLACT_GIYGAS_PRAYER_2), //FINAL_PRAYER_2
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_293+/, &BTLACT_GIYGAS_PRAYER_3), //FINAL_PRAYER_3
@@ -1020,7 +1020,6 @@ void BTLACT_PSI_FLASH_G();
 void BTLACT_PSI_FLASH_O();
 void BTLACT_PSI_STARSTORM_A();
 void BTLACT_PSI_STARSTORM_O();
-void BTLACT_RAINBOW_OF_COLOURS();
 void BTLACT_RANDOM_STAT_UP_1D4();
 void BTLACT_REDUCEOFF();
 void BTLACT_REDUCEOFFDEF();
@@ -1051,5 +1050,4 @@ void REDIRECT_BTLACT_HYPNOSIS_A_COPY();
 void REDIRECT_BTLACT_LEVEL_3_ATK();
 void REDIRECT_BTLACT_OFFENSE_UP_A();
 void REDIRECT_BTLACT_PARALYSIS_A();
-void UNKNOWN_C290C6();
 void EAT_FOOD();

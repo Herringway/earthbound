@@ -293,7 +293,7 @@ immutable ubyte* TextBattleBodySolidified;
 immutable ubyte* TEXT_BATTLE_WAS_NOT_ABLE_TO_CONCENTRATE;
 immutable ubyte* TEXT_BATTLE_FELT_A_LITTLE_STRANGE;
 immutable ubyte* TEXT_BATTLE_FELL_ASLEEP;
-immutable ubyte* TEXT_BATTLE_GOT_HURT_AND_COLLAPSED;
+immutable ubyte* TextBattleGotHurtAndCollapsed;
 immutable ubyte* TEXT_BLOCK_EF6C84;
 immutable ubyte* TEXT_BLOCK_EF6CC7;
 immutable ubyte* TEXT_BLOCK_EF6CD0;
