@@ -2283,6 +2283,19 @@ void CopyMirrorData(Battler* arg1, Battler* arg2) {
 	arg1.unknown13 = x16;
 }
 
+// $C2B0A1
+void BattleActionMirror() {
+	if ((currentTarget.allyOrEnemy != 0) && (currentTarget.npcID == 0) && (RandLimit(100) < EnemyConfigurationTable[currentTarget.id].mirrorSuccess)) {
+		MirrorEnemy = currentTarget.id;
+		MirrorTurnTimer = 16;
+		memcpy(&Unknown7EAA14, currentAttacker, Battler.sizeof);
+		CopyMirrorData(currentAttacker, currentTarget);
+		DisplayInBattleText(TextBattleTurnedIntoEnemy);
+	} else {
+		DisplayInBattleText(TextBattleDidntTurnIntoEnemy);
+	}
+}
+
 // $C2B608
 ubyte CalcPSIDamageModifiers(ubyte arg1) {
 	switch (arg1) {

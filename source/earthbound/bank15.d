@@ -543,7 +543,7 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_NO_MESSAGE+/, &BattleActionNull12), //GIYGAS_ATTACK
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_NO_MESSAGE+/, &BTLACT_POKEY_SPEECH_2), //POKEY_SPEECH_2
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_BATTLE_RUN_SUCCESS+/, &BattleActionNull4), //RUN_AWAY
-	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_280+/, &BTLACT_MIRROR), //MIRROR
+	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_280+/, &BattleActionMirror), //MIRROR
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_281+/, &BattleActionNull4), //SUPORMA
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_282+/, &BattleActionNull4), //INSIGNIFICANT_ITEM
 	BattleAction(ActionDirection.Party, ActionTarget.Random, ActionType.Item, 0x00, null /+ TEXT_ACTION_283+/, &BTLACT_SOLIDIFY), //MONKEYS_LOVE
@@ -996,7 +996,6 @@ void BTLACT_LVL_2_ATK_DIAMONDIZE();
 void BTLACT_MAGNET_A();
 void BTLACT_MAGNET_O();
 void BTLACT_MASTERBARFDEATH();
-void BTLACT_MIRROR();
 void BTLACT_MULTI_BOTTLE_ROCKET();
 void BTLACT_MUMMY_WRAP();
 void BTLACT_MUSHROOMIZE();
