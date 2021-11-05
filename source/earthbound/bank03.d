@@ -378,7 +378,63 @@ immutable(Unknown7EAECCEntry)[4] UnknownC3F819 = [
 	Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
 ];
 
-// $C3FDBD
+// $C3F8F1
+immutable RGB[16][3] UnknownC3F8F1 = [
+	[
+		RGB(0, 0, 0),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(27, 28, 29),
+		RGB(15, 13, 13),
+	], [
+		RGB(0, 0, 0),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 29, 2),
+		RGB(31, 3, 11),
+	], [
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(0, 0, 0),
+		RGB(15, 13, 13),
+	]
+];
+
+// $C3FD8D
 immutable ubyte*[10] AttractModeText = [
 	null /+TEXT_ATTRACT_MODE_0+/,
 	null /+TEXT_ATTRACT_MODE_1+/,
@@ -391,6 +447,7 @@ immutable ubyte*[10] AttractModeText = [
 	null /+TEXT_ATTRACT_MODE_8+/,
 	null /+TEXT_ATTRACT_MODE_9+/,
 ];
+
 // $C3FDBD
 immutable ushort[4] UnusedForSaleSignSpriteTable = [
 	OverworldSprite.GuyInBlueClothes,

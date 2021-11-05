@@ -299,10 +299,10 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x08, null /+ TEXT_ACTION_010+/, &BattleActionLifeupBeta), //PSI_LIFEUP_BETA
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x0D, null /+ TEXT_ACTION_010+/, &BattleActionLifeupGamma), //PSI_LIFEUP_GAMMA
 	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x18, null /+ TEXT_ACTION_010+/, &BattleActionLifeupOmega), //PSI_LIFEUP_OMEGA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x05, null /+ TEXT_ACTION_010+/, &BTLACT_HEALING_A), //PSI_HEALING_ALPHA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x08, null /+ TEXT_ACTION_010+/, &BTLACT_HEALING_B), //PSI_HEALING_BETA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x14, null /+ TEXT_ACTION_010+/, &BTLACT_HEALING_G), //PSI_HEALING_GAMMA
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x26, null /+ TEXT_ACTION_010+/, &BTLACT_HEALING_O), //PSI_HEALING_OMEGA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x05, null /+ TEXT_ACTION_010+/, &BattleActionHealingAlpha), //PSI_HEALING_ALPHA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x08, null /+ TEXT_ACTION_010+/, &BattleActionHealingBeta), //PSI_HEALING_BETA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x14, null /+ TEXT_ACTION_010+/, &BattleActionHealingGamma), //PSI_HEALING_GAMMA
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x26, null /+ TEXT_ACTION_010+/, &BattleActionHealingOmega), //PSI_HEALING_OMEGA
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x06, null /+ TEXT_ACTION_010+/, &BattleActionShieldAlpha), //PSI_SHIELD_ALPHA
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.PSI, 0x0A, null /+ TEXT_ACTION_010+/, &BattleActionShieldBeta), //PSI_SHIELD_BETA
 	BattleAction(ActionDirection.Enemy, ActionTarget.All, ActionType.PSI, 0x12, null /+ TEXT_ACTION_010+/, &BattleActionShieldSigma), //PSI_SHIELD_SIGMA
@@ -329,8 +329,8 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_063+/, &BTLACT_SOW_SEEDS), //SOW_SEEDS
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_064+/, &BTLACT_SUPER_BOMB), //EXPLODE
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_065+/, &BTLACT_SUPER_BOMB), //BURST_INTO_FLAMES
-	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_066+/, &BTLACT_Steal), //Steal
-	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Physical, 0x00, null /+ TEXT_ACTION_067+/, &BTLACT_FREEZETIME), //FREEZE_IN_TIME
+	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_066+/, &BattleActionSteal), //Steal
+	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Physical, 0x00, null /+ TEXT_ACTION_067+/, &BattleActionFreezeTime), //FREEZE_IN_TIME
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_068+/, &BTLACT_DIAMONDIZE), //EERIE_GLARE
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_069+/, &BTLACT_PARALYZE), //ELECTRIC_FIELD
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, null /+ TEXT_ACTION_070+/, &BTLACT_SOLIDIFY), //CLUMSY_BEAM
@@ -412,10 +412,10 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_135+/, &BTLACT_HP_RECOVERY_10), //ACTION_146
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_135+/, &BTLACT_HP_RECOVERY_100), //ACTION_147
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_135+/, &BTLACT_HP_RECOVERY_10000), //ACTION_148
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BTLACT_HEALING_A), //WET_TOWEL
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BTLACT_HEALING_B), //REFRESHING_HERB
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BTLACT_HEALING_G), //SECRET_HERB
-	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BTLACT_HEALING_O), //FULL_STATUS_HEAL
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BattleActionHealingAlpha), //WET_TOWEL
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BattleActionHealingBeta), //REFRESHING_HERB
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BattleActionHealingGamma), //SECRET_HERB
+	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &BattleActionHealingOmega), //FULL_STATUS_HEAL
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_140+/, &HealPoison), //ACTION_153
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_135+/, &BTLACT_IQ_UP_1D4), //ACTION_154
 	BattleAction(ActionDirection.Enemy, ActionTarget.One, ActionType.Item, 0x00, null /+ TEXT_ACTION_135+/, &BTLACT_GUTS_UP_1D4), //ACTION_155
@@ -953,13 +953,8 @@ void BTLACT_DISTRACT();
 void BTLACT_DOUBLE_BASH();
 void BTLACT_ENEMYEXTEND();
 void BTLACT_FEELSTRANGE();
-void BTLACT_FREEZETIME();
 void BTLACT_GUTS_UP_1D4();
 void BTLACT_HANDBAG_STRAP();
-void BTLACT_HEALING_A();
-void BTLACT_HEALING_B();
-void BTLACT_HEALING_G();
-void BTLACT_HEALING_O();
 void BTLACT_HP_RECOVERY_10();
 void BTLACT_HP_RECOVERY_100();
 void BTLACT_HP_RECOVERY_10000();
@@ -1012,7 +1007,6 @@ void BTLACT_SOLIDIFY();
 void BTLACT_SOW_SEEDS();
 void BTLACT_SPEED_UP_1D4();
 void BTLACT_SPY();
-void BTLACT_Steal();
 void BTLACT_SUDDEN_GUTS_PILL();
 void BTLACT_SUPER_BOMB();
 void BTLACT_SWITCH_ARMOR();

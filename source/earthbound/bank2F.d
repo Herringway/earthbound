@@ -45,6 +45,17 @@ void UnknownEF0115(short arg1) {
 	UnknownC07C5B();
 }
 
+// $EF0256
+void PauseMusic() {
+	Unknown7E9697 = 1;
+}
+
+// $EF026E
+void ResumeMusic() {
+	Unknown7E9695 = 0;
+	Unknown7E9697 = 0;
+}
+
 // $EF0591
 immutable string SRAMSignature = "HAL Laboratory, inc.";
 
@@ -259,9 +270,9 @@ immutable ubyte* TEXT_BLOCK_EF681A;
 immutable ubyte* TEXT_BLOCK_EF6874;
 immutable ubyte* TEXT_BLOCK_EF68D7;
 immutable ubyte* TEXT_BLOCK_EF6954;
-immutable ubyte* TEXT_BATTLE_HP_ARE_MAXED_OUT;
-immutable ubyte* TEXT_BATTLE_RECOVERED_HP;
-immutable ubyte* TEXT_BATTLE_RECOVERED_PP;
+immutable ubyte* TextBattleHPAreMaxedOut;
+immutable ubyte* TextBattleRecoveredHP;
+immutable ubyte* TextBattleRecoveredPP;
 immutable ubyte* TEXT_BATTLE_SPY_OFFENSE;
 immutable ubyte* TEXT_BATTLE_SPY_DEFENSE;
 immutable ubyte* TEXT_BATTLE_SPY_VULNERABLE_TO_FIRE;
@@ -316,16 +327,16 @@ immutable ubyte* TEXT_BLOCK_EF6DF0;
 immutable ubyte* TEXT_BLOCK_EF6E03;
 immutable ubyte* TEXT_BATTLE_TURNED_BACK_TO_NORMAL;
 immutable ubyte* TEXT_BLOCK_EF6E31;
-immutable ubyte* TEXT_BATTLE_BODY_RETURNED_TO_NORMAL;
-immutable ubyte* TEXT_BATTLE_NUMBNESS_GONE;
-immutable ubyte* TEXT_BATTLE_FELT_MUCH_BETTER;
+immutable ubyte* TextBattleBodyReturnedToNormal;
+immutable ubyte* TextBattleNumbnessGone;
+immutable ubyte* TextBattleFeltMuchBetter;
 immutable ubyte* TextBattlePoisonWasRemoved;
-immutable ubyte* TEXT_BATTLE_GOT_OVER_COLD;
-immutable ubyte* TEXT_BATTLE_STOPPED_CRYING;
+immutable ubyte* TextBattleGotOverCold;
+immutable ubyte* TextBattleStoppedCrying;
 immutable ubyte* TextBattleBodyAgainMovedFreely;
 immutable ubyte* TextBattleAbleToMove;
 immutable ubyte* TextBattleBackToNormal;
-immutable ubyte* TEXT_BATTLE_SUNSTROKE_CURED;
+immutable ubyte* TextBattleSunstrokeCured;
 immutable ubyte* TextBattleWokeUp;
 immutable ubyte* TextBattleAbleToConcentrate;
 immutable ubyte* TextBattleRevived;
@@ -389,7 +400,7 @@ immutable ubyte* TextBattleDodgedShoot;
 immutable ubyte* TextBattleDodged;
 immutable ubyte* TextBattleItDidntWorkOnX;
 immutable ubyte* TEXT_BLOCK_EF7682;
-immutable ubyte* TEXT_BATTLE_NO_VISIBLE_EFFECT;
+immutable ubyte* TextBattleNoVisibleEffect;
 immutable ubyte* TEXT_BLOCK_EF76B3;
 immutable ubyte* TextBattleJustMissed;
 immutable ubyte* TextBattleNarrowlyMissed;
@@ -406,7 +417,7 @@ immutable ubyte* TEXT_BATTLE_JOINED_BATTLE;
 immutable ubyte* TEXT_BATTLE_STARTED_GROWING;
 immutable ubyte* TEXT_BATTLE_NOBODY_CAME;
 immutable ubyte* TEXT_BATTLE_SEED_SPROUT_FAILURE;
-immutable ubyte* TEXT_BATTLE_TIME_STARTED_AGAIN;
+immutable ubyte* TextBattleTimeStartedAgain;
 immutable ubyte* TEXT_BATTLE_ENEMY_ATTACKED;
 immutable ubyte* TEXT_BLOCK_EF7866;
 immutable ubyte* TEXT_BLOCK_EF7879;

@@ -1978,6 +1978,8 @@ void RemoveNPCTargetting() {
 	}
 }
 
+uint RandomTargetting(uint);
+
 // $C26FDC
 void TargetBattler(short arg1) {
 	BattlerTargetFlags |= PowersOfTwo32Bit[arg1];
@@ -2045,6 +2047,26 @@ void SetPP(Battler* battler, short arg2) {
 
 // $C2724A
 short InflictStatusBattle(Battler*, short, short);
+
+// $C27294
+void RecoverHP(Battler* battler, short amount) {
+	if (battler.consciousness != 1) {
+		return;
+	}
+	if (battler.afflictions[0] != Status0.Unconscious) {
+		SetHP(battler, cast(short)(amount + battler.hpTarget));
+		if (battler.hpMax >= amount + battler.hpTarget) {
+			DisplayInBattleText(TextBattleHPAreMaxedOut);
+		} else {
+			DisplayTextWait(TextBattleRecoveredHP, amount);
+		}
+	} else {
+		DisplayInBattleText(TextBattleNoVisibleEffect);
+	}
+}
+
+// $C27397
+void ReviveTarget(Battler*, short);
 
 // $C27550
 void KOTarget(Battler*);
@@ -2257,6 +2279,47 @@ void BattleActionBash() {
 // $C2889B
 void BattleActionNull() {
 	//nothing
+}
+
+// $C2889E
+void BattleActionSteal() {
+	if (currentTarget.allyOrEnemy == 1) {
+		return;
+	}
+	if (currentTarget.npcID != 0) {
+		return;
+	}
+	if ((MirrorEnemy == 0) || (currentAttacker.allyOrEnemy != 0) || (currentAttacker.id != 4)) {
+		if (currentAttacker.currentActionArgument != 0) {
+			TakeItemFromCharacter(0xFF, currentAttacker.currentActionArgument);
+		}
+	}
+}
+
+// $C288EB
+void BattleActionFreezeTime() {
+	PauseMusic();
+	short x02 = cast(short)(RandLimit(4) + 1);
+	uint x16 = BattlerTargetFlags;
+	for (short i = 0; i < x02; i++) {
+		RemoveStatusUntargettableTargets();
+		if (BattlerTargetFlags == 0) {
+			break;
+		}
+		BattlerTargetFlags = RandomTargetting(x16);
+		short j;
+		for (j = 0; j < BattlersTable.length; j++) {
+			if (IsCharacterTargetted(j) != 0) {
+				break;
+			}
+		}
+		currentTarget = &BattlersTable[j];
+		FixTargetName();
+		BattleActionBash();
+	}
+	ResumeMusic();
+	DisplayInBattleText(TextBattleTimeStartedAgain);
+	BattlerTargetFlags = 0;
 }
 
 // $C29033
@@ -2652,6 +2715,86 @@ void BattleActionLifeupOmega() {
 	LifeupCommon(400);
 }
 
+// $C29AEA
+void BattleActionHealingAlpha() {
+	switch (currentTarget.afflictions[0]) {
+		case Status0.Cold:
+			currentTarget.afflictions[0] = 0;
+			DisplayInBattleText(TextBattleGotOverCold);
+			break;
+		case Status0.Sunstroke:
+			currentTarget.afflictions[0] = 0;
+			DisplayInBattleText(TextBattleSunstrokeCured);
+			break;
+		default:
+			if (currentTarget.afflictions[2] == Status2.Asleep) {
+				currentTarget.afflictions[2] = 0;
+				DisplayInBattleText(TextBattleWokeUp);
+			} else {
+				DisplayInBattleText(TextBattleNoVisibleEffect);
+			}
+			break;
+	}
+}
+
+// $C29B7A
+void BattleActionHealingBeta() {
+	switch (currentTarget.afflictions[0]) {
+		case Status0.Poisoned:
+			currentTarget.afflictions[0] = 0;
+			DisplayInBattleText(TextBattlePoisonWasRemoved);
+			break;
+		case Status0.Nauseous:
+			currentTarget.afflictions[0] = 0;
+			DisplayInBattleText(TextBattleFeltMuchBetter);
+			break;
+		default:
+			if (currentTarget.afflictions[2] == Status2.Crying) {
+				currentTarget.afflictions[2] = 0;
+				DisplayInBattleText(TextBattleStoppedCrying);
+			} else if (currentTarget.afflictions[3] == Status3.Strange) {
+				currentTarget.afflictions[3] = 0;
+				DisplayInBattleText(TextBattleBackToNormal);
+			} else {
+				BattleActionHealingAlpha();
+			}
+			break;
+	}
+}
+
+// $C29C2C
+void BattleActionHealingGamma() {
+	switch (currentTarget.afflictions[0]) {
+		case Status0.Paralyzed:
+			currentTarget.afflictions[0] = 0;
+			DisplayInBattleText(TextBattleNumbnessGone);
+			break;
+		case Status0.Diamondized:
+			currentTarget.afflictions[0] = 0;
+			DisplayInBattleText(TextBattleBodyReturnedToNormal);
+			break;
+		case Status0.Unconscious:
+			if (Success255(192) != 0) {
+				ReviveTarget(currentTarget, currentTarget.hpMax / 4);
+			} else {
+				DisplayInBattleText(TextBattleReviveDidntWork);
+			}
+			break;
+		default:
+			BattleActionHealingBeta();
+			break;
+	}
+}
+
+// $C29CB8
+void BattleActionHealingOmega() {
+	if (currentTarget.afflictions[0] == Status0.Unconscious) {
+		ReviveTarget(currentTarget, currentTarget.hpMax);
+	} else {
+		BattleActionHealingGamma();
+	}
+}
+
 // $C29CDC
 short ShieldsCommon(Battler*, ubyte status);
 
@@ -2709,6 +2852,20 @@ void BattleActionPSIShieldBeta() {
 // $C29E31
 void BattleActionPSIShieldOmega() {
 	BattleActionPSIShieldBeta();
+}
+
+// $C2A0AE
+void BattleActionHPRecovery1d4() {
+	RecoverHP(currentTarget, RandLimit(4));
+}
+
+// $C2A380
+void BattleActionHPRecovery10000() {
+	if (currentTarget.id != 4) {
+		RecoverHP(currentTarget, 10000);
+	} else {
+		BattleActionHPRecovery1d4();
+	}
 }
 
 // $C2A39D
@@ -3594,4 +3751,17 @@ void UnknownC2F8F9() {
 void UnknownC2F917();
 
 // $C2FEF9
-void UnknownC2FEF9(short);
+void UnknownC2FEF9(short type) {
+	if (type - 1 != 0) {
+		memcpy(&palettes[8][0], &UnknownC3F8F1[type - 1][0], 32);
+		memcpy(&palettes[13][0], &UnknownC3F8F1[type - 1][0], 32);
+		memcpy(&palettes[14][0], &UnknownC3F8F1[type - 1][0], 32);
+		memcpy(&palettes[15][0], &UnknownC3F8F1[type - 1][0], 32);
+		UnknownC0856B(16);
+		return;
+	}
+	for (short i = 32 * 4; i < 32 * 6; i++) {
+		palettes[(i / 32) + 4][i % 32] = (palettes[i / 32][i % 32] >> 2) & ((7 << 10) | (7 << 5) | 7);
+	}
+	UnknownC0856B(16);
+}

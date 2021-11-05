@@ -3900,7 +3900,8 @@ struct TextWindowPropertiesEntry {
 	ubyte unknown;
 }
 
-struct RGB {
+align(1) struct RGB {
+	align(1):
 	ushort bgr555;
 	this(ushort red, ushort green, ushort blue) {
 		bgr555 = (red & 0x1F) | ((green & 0x1F) << 5) | ((blue & 0x1F) << 10);
