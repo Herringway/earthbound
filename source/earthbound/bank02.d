@@ -3547,7 +3547,7 @@ void UnknownC2EEE7() {
 	while (x1A.count != 0xFF) {
 		memcpy(&palettes[8 + Unknown7EAAB4][0], &BattleSpritePalettes[EnemyConfigurationTable[x1A.enemyID].battleSpritePalette][0], 32);
 		Unknown7EAABE[Unknown7EAAB4] = x1A.enemyID;
-		UnknownC2EAEA(EnemyConfigurationTable[x1A.enemyID].battleSpritePalette);
+		UnknownC2EAEA(EnemyConfigurationTable[x1A.enemyID].battleSprite);
 		x1A++;
 	}
 	CopyToVram(0, (Unknown7EAAB2 > 16) ? 0x3000 : 0x2000, 0x2000, &Unknown7F0000[0]);
