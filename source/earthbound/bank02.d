@@ -3536,6 +3536,9 @@ short UnknownC2EACF() {
 // $C2EAEA
 void UnknownC2EAEA(short);
 
+// $C2EFFD
+short GetBattleSpriteWidth(short);
+
 // $C2EEE7
 void UnknownC2EEE7() {
 	Unknown7EAAB4 = 0;
@@ -3551,16 +3554,41 @@ void UnknownC2EEE7() {
 }
 
 // $C2F09F
-ubyte UnknownC2F09F(short);
+ubyte UnknownC2F09F(short arg1) {
+	for (ubyte i = 0; i < 4; i++) {
+		if (Unknown7EAABE[i] == arg1) {
+			return i;
+		}
+	}
+	return 0;
+}
 
 // $C2F0D1
-void UnknownC2F0D1();
+void UnknownC2F0D1() {
+	short y = 0;
+	for (short i = 0; i < EnemiesInBattle; i++) {
+		y += GetBattleSpriteWidth(EnemyConfigurationTable[Unknown7E9F8C[i]].battleSprite);
+		if (y > 32) {
+			EnemiesInBattle = i;
+			return;
+		}
+	}
+}
 
 // $C2F121
 void UnknownC2F121();
 
+// $C2F121
+void UnknownC2F724(short);
+
 // $C2F8F9
-void UnknownC2F8F9();
+void UnknownC2F8F9() {
+	UnknownC088A5(0x7E);
+	OAMClear();
+	UnknownC2F724(0);
+	UnknownC2F724(1);
+	UpdateScreen();
+}
 
 // $C2F917
 void UnknownC2F917();
