@@ -56,6 +56,9 @@ void ResumeMusic() {
 	Unknown7E9697 = 0;
 }
 
+// $EF04DC
+short UnknownEF04DC();
+
 // $EF0591
 immutable string SRAMSignature = "HAL Laboratory, inc.";
 

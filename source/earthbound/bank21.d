@@ -132,6 +132,9 @@ immutable ubyte[] NintendoGraphics = cast(immutable(ubyte)[])import("intro/logos
 // $E1558F
 immutable ubyte[] NintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
 
+// $E1AE7C
+immutable ubyte[] UnknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
+
 // $E1CFAF
 immutable ubyte[] UnknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
 

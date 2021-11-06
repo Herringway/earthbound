@@ -2,11 +2,15 @@ module earthbound.bank03;
 
 import earthbound.commondefs;
 import earthbound.bank00;
+import earthbound.bank01;
 import earthbound.bank04;
 import earthbound.bank05;
 import earthbound.bank15;
 import earthbound.bank18;
+import earthbound.bank21;
+import earthbound.bank2F;
 import earthbound.globals;
+import core.stdc.string;
 
 //$C30000
 immutable ushort[16][8] SpriteGroupPalettes;
@@ -368,7 +372,94 @@ immutable ushort[8][17] PartyCharacterGraphicsTable = [
 ];
 
 // $C3F3C5
-short ShowTitleScreen(short);
+short ShowTitleScreen(short arg1) {
+	Unknown7E9F75 = arg1;
+	short x04 = 0;
+	UnknownC08726();
+	UnknownC0927C();
+	if (0) { //interesting... this is unreachable and the entry statement seems to have been optimized out, but the body, condition and post-body statement remain
+		for (short i = 0; i < 30; i++) {
+			EntitySpriteMapFlags[i] |= 0x8000;
+		}
+	}
+	UnknownC08D79(11);
+	SetOAMSize(3);
+	SetBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
+	BG3_X_POS = 0;
+	BG3_Y_POS = 0;
+	BG2_X_POS = 0;
+	BG2_Y_POS = 0;
+	BG1_X_POS = 0;
+	BG1_Y_POS = 0;
+	UpdateScreen();
+	BG3_X_POS = 0;
+	BG3_Y_POS = 0;
+	BG2_X_POS = 0;
+	BG2_Y_POS = 0;
+	BG1_X_POS = 0;
+	BG1_Y_POS = 0;
+	UpdateScreen();
+	UnknownC0EBE0();
+	TM_MIRROR = 0x11;
+	OAMClear();
+	InitEntityWipe(ActionScript.TitleScreen1, 0, 0);
+	Unknown7E9641 = 0;
+	if (Unknown7E9F75 == 0) {
+		memset(&palettes[0][0], 0, 0x200);
+		Unknown7E0030 = 0x18;
+		UnknownC08744();
+		INIDISP_MIRROR = 0xF;
+		WaitUntilNextFrame();
+		Unknown7E0030 = 0;
+		Decomp(&UnknownE1AE7C[0], &palettes[8][0]);
+		UnknownC496F9();
+		memset(&palettes[0][0], 0, 0x200);
+		UnknownC496E7(0x3C, 0x100);
+		Unknown7E0030 = 0x18;
+		for (short i = 0; 0x3C < i; i++) {
+			UnknownC426ED();
+			UnknownC1004E();
+		}
+	} else {
+		FadeIn(4, 1);
+		for (short i = 0; 0x3C > i; i++) {
+			UnknownC1004E();
+		}
+	}
+	short x02 = 0;
+	while ((Unknown7E9641 == 0) || (Unknown7E9641 == 2)) {
+		if (x04 == 0) {
+			if (((pad_press[0] & PAD_A) != 0) || ((pad_press[0] & PAD_B) != 0) || ((pad_press[0] & PAD_START) != 0)) {
+				x02 = 1;
+				break;
+			}
+		}
+		UnknownC1004E();
+	}
+	if ((Unknown7E9F75 == 0) && (Unknown7E9641 == 0)) {
+		x02 = UnknownEF04DC();
+	}
+	FadeOutWithMosaic(1, 4, 0);
+	if (x04 == 0) {
+		Unknown7E9641 = 0;
+		UnknownC474A8(0);
+		UnknownC0927C();
+		return x02;
+	}
+	for (short i = 0; i < 0x1E; i++) {
+		if ((EntityScriptTable[i] >= ActionScript.TitleScreen1) && (EntityScriptTable[i] <= ActionScript.TitleScreen11)) {
+			UnknownC09C35(i);
+		}
+		EntitySpriteMapFlags[i] &= 0x7FFF;
+	}
+	UnknownC08726();
+	ReloadMap();
+	UndrawFlyoverText();
+	TM_MIRROR = 0x17;
+	FadeIn(1, 1);
+	//the original code may not have had an explicit return, but this is what effectively happens
+	return 1;
+}
 
 // $C3F819
 immutable(Unknown7EAECCEntry)[4] UnknownC3F819 = [

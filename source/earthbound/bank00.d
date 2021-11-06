@@ -2095,8 +2095,21 @@ void SetColData(ubyte red, ubyte green, ubyte blue);
 // $C0B047
 void SetWindowMask(ushort, ushort);
 
+// $C0B0AA
+void UnknownC0B0AA() {
+    WH0 = 0xFF;
+    WH2 = 0xFF;
+}
+
 // $C0B0B8
-void UnknownC0B0B8(short, const(void)*);
+void UnknownC0B0B8(short arg1, const(ubyte)* arg2) {
+    //DMAChannels[arg1].A1B = bank of arg2;
+    //DMAChannels[arg1].DASB = bank of arg2;
+    DMAChannels[arg1].BBAD = 0x26;
+    DMAChannels[arg1].DMAP = *arg2;
+    DMAChannels[arg1].A1T = &arg2[1];
+    HDMAEN_MIRROR |= DMAFlags[arg1];
+}
 
 // $C0B0EF
 void UnknownC0B0EF(short, short);
@@ -2846,6 +2859,9 @@ void TeleportMainLoop() {
     Unknown7E5D58 = 0;
     TeleportDestination = 0;
 }
+
+// $C0EBE0
+void UnknownC0EBE0();
 
 // $C0EE68
 void LogoScreenLoad(short arg1) {

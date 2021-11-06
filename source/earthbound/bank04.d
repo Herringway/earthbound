@@ -2042,6 +2042,7 @@ void UnknownC45E96() {
 ubyte randMod(ubyte arg1) {
     return cast(ubyte)(rand() % (arg1 + 1));
 }
+
 // $C46028
 short UnknownC46028(short arg1) {
     for (short i = 0; i < 0x1E; i++) {
@@ -2105,6 +2106,9 @@ void LoadBackgroundAnimation(short bg, short arg2) {
     LoadBattleBG(bg, arg2, 4);
     UnknownC08744();
 }
+
+// $C474A8
+void UnknownC474A8(short);
 
 // $C47C3F
 //definitely need to check this one over
@@ -2387,6 +2391,9 @@ void UnknownC496E7(short arg1, short arg2) {
     UnknownC4958E(arg1, arg2, &palettes[0][0]);
 }
 
+//$C496F9
+void UnknownC496F9();
+
 //$C49740
 void UnknownC49740() {
     memcpy(palettes.ptr, Unknown7F0000.ptr, 0x200);
@@ -2618,7 +2625,22 @@ immutable ushort[33] DeadTargettableActions = [
 ];
 
 // $C4A228
-void UnknownC4A228(Battler*, short);
+void UnknownC4A228(Battler* battler, short arg2) {
+    for (short i = 0; i < Unknown7EAD56; i++) {
+        if (Unknown7EAD7A[i] != arg2) {
+            continue;
+        }
+        battler.currentTarget = cast(ubyte)(arg2 + 1);
+        return;
+    }
+    for (short i = 0; i < Unknown7EAD58; i++) {
+        if (Unknown7EAD82[i] != arg2) {
+            continue;
+        }
+        battler.currentTarget = cast(ubyte)(i + Unknown7EAD56 + 1);
+        return;
+    }
+}
 
 // $C4A228
 immutable uint[32] PowersOfTwo32Bit = [
@@ -2724,7 +2746,48 @@ immutable Unknown7EAECCEntry[2] UnknownC4A652 = [
 ];
 
 //$C4A67E
-void UnknownC4A67E(short, short);
+void UnknownC4A67E(short arg1, short arg2) {
+    //x02 = arg2
+    //x04 = arg1
+    if ((arg2 & 2) != 0) {
+        Unknown7EAEC6 = 1;
+    } else {
+        Unknown7EAEC6 = 0;
+    }
+    if ((arg2 & 1) != 0) {
+        Unknown7EAEC7 = 1;
+    } else {
+        Unknown7EAEC7 = 0;
+    }
+    if ((arg2 & 4) != 0) {
+        Unknown7EAEC8 = 32;
+    } else {
+        Unknown7EAEC8 = 31;
+    }
+    Unknown7EAEC2 = 1;
+    Unknown7EAEC3 = SwirlPrimaryTable[arg1][0];
+    Unknown7EAEC4 = SwirlPrimaryTable[arg1][2];
+    Unknown7EAEC5 = SwirlPrimaryTable[arg1][1];
+    if (Unknown7EAEC7 != 0) {
+        Unknown7EAEC5 += Unknown7EAEC4;
+    }
+    Unknown7EAECC = null;
+    if (arg1 == 0) {
+        Unknown7EAECC = &UnknownC4A5CE[0];
+    }
+    Unknown7EAEC9 = 0;
+    Unknown7EAECA = 0;
+    Unknown7EAEC8 = 1;
+    if ((arg2 & 0x80) != 0) {
+        Unknown7EAEE4 = cast(ubyte)arg1;
+        Unknown7EAEC3 = 4;
+        Unknown7EAEE5 = 0;
+        Unknown7EAEE6 = 6;
+    } else {
+        Unknown7EAEE4 = 0;
+    }
+    UnknownC0B0AA();
+}
 
 //$C4A7B0
 void UnknownC4A7B0() {
@@ -2791,7 +2854,7 @@ void UnknownC4A7B0() {
             Unknown7EAEC9++;
             Unknown7EAEC9 &= 1;
             if (Unknown7EAEC7 == 0) {
-                UnknownC0B0B8(Unknown7EAEC9 + 3, &SwirlPointerTable[Unknown7EAEC5++][0]);
+                UnknownC0B0B8(Unknown7EAEC9 + 3, &SwirlPointerTable[Unknown7EAEC5 + 1][0]);
             } else {
                 UnknownC0B0B8(Unknown7EAEC9 + 3, &SwirlPointerTable[Unknown7EAEC5 - 1][0]);
             }
@@ -2801,8 +2864,8 @@ void UnknownC4A7B0() {
         }
         if (Unknown7EAEE4 != 0) {
             if (--Unknown7EAEE6 != 0) {
-                Unknown7EAEC4 = SwirlPrimaryTable[Unknown7EAEE4 * 4 + 2];
-                Unknown7EAEE6 = SwirlPrimaryTable[Unknown7EAEE4 * 4 + 1];
+                Unknown7EAEC4 = SwirlPrimaryTable[Unknown7EAEE4][2];
+                Unknown7EAEE6 = SwirlPrimaryTable[Unknown7EAEE4][1];
                 if (Unknown7EAEC7 == 0) {
                     continue;
                 }
@@ -3319,8 +3382,26 @@ void InitIntro() {
     Unknown7E5DD8 = 0;
 }
 
-// $C4E366
-void UnknownC4E366();
+// $C4E366 - some debugging code deleted from earthbound
+void UnknownC4E366() {
+    version(JPN) {
+        UnknownC4DE98();
+        short x0E = 0;
+        while (true) {
+            BG1_X_POS = 0;
+            BG1_Y_POS = 0;
+            UpdateScreen();
+            WaitUntilNextFrame();
+            if ((pad_state[0] & PAD_R) == 0) {
+                UnknownC4E2D7(x0E, x0E);
+                UnknownC4DED0();
+                if (++x0E == 8) {
+                    x0E = 0;
+                }
+            }
+        }
+    }
+}
 
 //$C4????
 void* Path_sbrk(size_t inc) {
@@ -4069,7 +4150,177 @@ immutable MusicDataset[191] MusicDatasetTable = [
     MusicDataset(0x05, 0x50, 0x51),
 ];
 
-immutable MusicPackPointer[169] MusicPackPointerTable;
+immutable ubyte[][169] MusicPackPointerTable = [
+    cast(immutable(ubyte)[])import("audiopacks/0.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/1.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/2.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/3.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/4.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/5.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/6.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/7.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/8.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/9.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/10.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/11.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/12.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/13.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/14.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/15.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/16.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/17.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/18.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/19.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/20.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/21.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/22.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/23.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/24.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/25.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/26.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/27.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/28.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/29.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/30.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/31.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/32.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/33.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/34.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/35.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/36.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/37.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/38.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/39.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/40.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/41.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/42.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/43.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/44.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/45.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/46.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/47.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/48.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/49.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/50.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/51.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/52.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/53.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/54.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/55.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/56.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/57.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/58.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/59.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/60.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/61.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/62.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/63.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/64.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/65.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/66.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/67.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/68.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/69.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/70.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/71.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/72.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/73.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/74.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/75.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/76.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/77.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/78.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/79.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/80.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/81.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/82.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/83.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/84.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/85.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/86.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/87.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/88.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/89.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/90.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/91.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/92.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/93.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/94.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/95.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/96.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/97.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/98.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/99.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/100.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/101.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/102.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/103.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/104.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/105.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/106.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/107.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/108.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/109.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/110.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/111.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/112.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/113.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/114.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/115.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/116.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/117.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/118.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/119.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/120.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/121.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/122.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/123.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/124.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/125.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/126.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/127.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/128.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/129.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/130.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/131.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/132.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/133.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/134.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/135.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/136.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/137.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/138.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/139.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/140.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/141.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/142.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/143.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/144.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/145.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/146.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/147.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/148.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/149.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/150.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/151.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/152.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/153.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/154.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/155.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/156.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/157.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/158.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/159.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/160.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/161.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/162.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/163.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/164.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/165.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/166.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/167.spcpack"),
+    cast(immutable(ubyte)[])import("audiopacks/168.spcpack"),
+];
 
 // $C4FBBD
 void ChangeMusic(short track) {
@@ -4089,23 +4340,31 @@ void ChangeMusic(short track) {
         CurrentPrimarySamplePack = dataset.primarySamplePack;
         // not using segmented addressing...
         //LoadSPC700Data(MusicPackPointerTable[dataset.primarySamplePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.primarySamplePack].bank));
-        LoadSPC700Data(MusicPackPointerTable[dataset.primarySamplePack].addr);
+        LoadSPC700Data(&MusicPackPointerTable[dataset.primarySamplePack][0]);
     }
     if ((dataset.secondarySamplePack != CurrentSecondarySamplePack) || (dataset.secondarySamplePack != 0xFF)) {
         CurrentSecondarySamplePack = dataset.secondarySamplePack;
         //LoadSPC700Data(MusicPackPointerTable[dataset.secondarySamplePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.secondarySamplePack].bank));
-        LoadSPC700Data(MusicPackPointerTable[dataset.secondarySamplePack].addr);
+        LoadSPC700Data(&MusicPackPointerTable[dataset.secondarySamplePack][0]);
     }
     if ((dataset.sequencePack != CurrentSequencePack) || (dataset.sequencePack != 0xFF)) {
         CurrentSequencePack = dataset.sequencePack;
         //LoadSPC700Data(MusicPackPointerTable[dataset.sequencePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.sequencePack].bank));
-        LoadSPC700Data(MusicPackPointerTable[dataset.sequencePack].addr);
+        LoadSPC700Data(&MusicPackPointerTable[dataset.sequencePack][0]);
     }
     UnknownC0ABBD(track);
 }
 
 // $C4FB58
-void InitializeSPC700();
+void InitializeSPC700() {
+    CurrentSequencePack = 0xFFFF;
+    CurrentPrimarySamplePack = 0xFFFF;
+    Unknown7EB543 = MusicDatasetTable[0].sequencePack;
+    CurrentSecondarySamplePack = MusicDatasetTable[0].sequencePack;
+    //LoadSPC700Data(MusicPackPointerTable[MusicDatasetTable[0].sequencePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[MusicDatasetTable[0].sequencePack].bank));
+    LoadSPC700Data(&MusicPackPointerTable[MusicDatasetTable[0].sequencePack][0]);
+    SectorBoundaryBehaviourFlag = 1;
+}
 
 // $C4FD18
 void UnknownC4FD18(short arg1) {
