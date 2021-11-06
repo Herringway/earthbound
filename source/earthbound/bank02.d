@@ -1842,24 +1842,17 @@ short RandLimit(short arg1) {
 short FiftyPercentVariance(short arg1) {
 	ubyte x12 = RandLong() & 0xFF;
 	ubyte x10 = RandLong() & 0xFF;
-	short x0E = cast(short)(x12 - 0x80);
-	if (x0E > 0) {
-		x0E = cast(short)-cast(int)x0E;
-	}
-	short x0E2 = cast(short)(x10 - 0x80);
-	if (x0E2 > 0) {
-		x0E2 = cast(short)-cast(int)x0E2;
-	}
-	short x = x12;
-	short y = x0E;
+	short x0E = (x12 - 128 < 0) ? (-cast(int)(x12 - 0x80)) : (x12 - 0x80);
+	short x0E2 = (x10 - 128 < 0) ? (-cast(int)(x10 - 0x80)) : (x10 - 0x80);
+
 	if (x0E > x0E2) {
-		x = x10;
-		y = x0E2;
+		x12 = x10;
+		x0E = x0E2;
 	}
-	if (x > 0x80) {
-		arg1 -= Truncate16To8(arg1, y);
-	} else if (0x80 > x) {
-		arg1 += Truncate16To8(arg1, y);
+	if (x12 < 0x80) {
+		arg1 -= Truncate16To8(arg1, x0E);
+	} else if (x12 > 0x80) {
+		arg1 += Truncate16To8(arg1, x0E);
 	}
 	return arg1;
 }
@@ -1868,24 +1861,17 @@ short FiftyPercentVariance(short arg1) {
 short TwentyFivePercentVariance(short arg1) {
 	ubyte x12 = RandLong() & 0xFF;
 	ubyte x10 = RandLong() & 0xFF;
-	short x0E = cast(short)(x12 - 0x80);
-	if (x0E > 0) {
-		x0E = cast(short)-cast(int)x0E;
-	}
-	short x0E2 = cast(short)(x10 - 0x80);
-	if (x0E2 > 0) {
-		x0E2 = cast(short)-cast(int)x0E2;
-	}
-	short x = x12;
-	short y = x0E;
+	short x0E = (x12 - 128 < 0) ? (-cast(int)(x12 - 0x80)) : (x12 - 0x80);
+	short x0E2 = (x10 - 128 < 0) ? (-cast(int)(x10 - 0x80)) : (x10 - 0x80);
+
 	if (x0E > x0E2) {
-		x = x10;
-		y = x0E2;
+		x12 = x10;
+		x0E = x0E2;
 	}
-	if (x > 0x80) {
-		arg1 -= Truncate16To8(arg1, y) / 2;
-	} else if (0x80 > x) {
-		arg1 += Truncate16To8(arg1, y) / 2;
+	if (x12 < 0x80) {
+		arg1 -= Truncate16To8(arg1, x0E) / 2;
+	} else if (x12 > 0x80) {
+		arg1 += Truncate16To8(arg1, x0E) / 2;
 	}
 	return arg1;
 }
