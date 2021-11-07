@@ -264,7 +264,11 @@ void UnknownC2077D() {
 }
 
 // $C207B6
-void UnknownC207B6(short);
+void UnknownC207B6(short arg1) {
+	Unknown7E9647 |= (1 << arg1);
+	DrawHPPPWindow(arg1);
+	Unknown7E9649 = 1;
+}
 
 // $C2087C
 void UnknownC2087C() {
@@ -425,10 +429,42 @@ uint UnknownC20F58() {
 }
 
 // $C20F9A
-void UnknownC20F9A();
+void ResetRolling() {
+	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+		if ((PartyCharacters[gameState.partyMembers[i] - 1].afflictions[0] != 1) && (PartyCharacters[gameState.partyMembers[i] - 1].hp.current.integer == 0)) {
+			PartyCharacters[gameState.partyMembers[i] - 1].hp.target = 1;
+		}
+		if ((PartyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction != 0) && (PartyCharacters[gameState.partyMembers[i] - 1].hp.current.integer > PartyCharacters[gameState.partyMembers[i] - 1].hp.target)) {
+			PartyCharacters[gameState.partyMembers[i] - 1].hp.target = PartyCharacters[gameState.partyMembers[i] - 1].hp.current.integer;
+		}
+		if ((PartyCharacters[gameState.partyMembers[i] - 1].pp.current.fraction != 0) && (PartyCharacters[gameState.partyMembers[i] - 1].pp.current.integer > PartyCharacters[gameState.partyMembers[i] - 1].pp.target)) {
+			PartyCharacters[gameState.partyMembers[i] - 1].pp.target = PartyCharacters[gameState.partyMembers[i] - 1].pp.current.integer;
+		}
+	}
+	Unknown7E9696 = 1;
+}
+
+// $C21034
+short UnknownC21034() {
+	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+		if ((PartyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction != 0)
+			|| (PartyCharacters[gameState.partyMembers[i] - 1].pp.current.fraction != 0)
+			|| (PartyCharacters[gameState.partyMembers[i] - 1].hp.current.integer != PartyCharacters[gameState.partyMembers[i] - 1].hp.target)
+			|| (PartyCharacters[gameState.partyMembers[i] - 1].pp.current.integer != PartyCharacters[gameState.partyMembers[i] - 1].pp.target)) {
+			return 0;
+		}
+	}
+	return 1;
+}
 
 // $C2108C
-short UnknownC2108C();
+short UnknownC2108C() {
+	short a = UnknownC21034();
+	if (a != 0) {
+		Unknown7E9696 = 0;
+	}
+	return a;
+}
 
 // $C2109F
 void HPPPRoller() {
@@ -782,7 +818,23 @@ void RemoveCharFromParty(short id) {
 }
 
 // $C22474
-short UnknownC22474(ubyte*);
+short UnknownC22474(ubyte* arg1) {
+	short x0E;
+	if (arg1[0] != 0) {
+		x0E = 0;
+	} else if (arg1[3] != 0) {
+		x0E = 3;
+	} else {
+		for (x0E = 1; x0E < 7; x0E++) {
+			if (arg1[x0E] != 0) {
+				goto found;
+			}
+		}
+		return 4;
+	}
+	found:
+	return StatusEquipWindowText3[x0E][arg1[x0E] - 1];
+}
 
 // $C23109
 immutable ConsolationPrize[2] ConsolationItemTable = [
@@ -794,19 +846,98 @@ immutable ConsolationPrize[2] ConsolationItemTable = [
 short BattleSelectionMenu(short, short);
 
 // $C23BCF
+ubyte* CopyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
+	while (arg3-- != 0) {
+		if (arg1[0] == 0) {
+			break;
+		}
+		if (arg1[0] == EBChar('|')) {
+			for (short i = 0; i < PartyCharacter.name.length; i++) {
+				(arg2++)[0] = PartyCharacters[0].name[i];
+			}
+		} else {
+			(arg2++)[0] = arg1[0];
+		}
+		arg1++;
+	}
+	arg2[0] = 0;
+	return arg2;
+}
+
+// $C23BCF
 void FixAttackerName(short);
 
 // $C23D05
-void FixTargetName();
+void FixTargetName() {
+	Unknown7E5E78 = 0;
+	memset(&TargetNameAdjustScratch[0], 0, TargetNameAdjustScratch.length);
+	if ((currentTarget.allyOrEnemy == 1) || (currentTarget.npcID != 0)) {
+		ubyte* x14 = CopyEnemyName(&EnemyConfigurationTable[currentTarget.id].name[0], &TargetNameAdjustScratch[0], 25);
+		if ((currentTarget.allyOrEnemy == 1) && ((currentTarget.theFlag != 1)  ||(UnknownC2B66A(currentTarget.unknown76) != 2))) {
+			x14[0] = EBChar(' ');
+			Unknown7E5E78 = 1;
+			x14[1] = cast(ubyte)(currentTarget.theFlag + 0x70);
+		}
+		if (currentTarget.id == EnemyID.MyPet) {
+			memcpy(&TargetNameAdjustScratch[0], &gameState.petName[0], gameState.petName.length);
+			TargetNameAdjustScratch[gameState.petName.length] = 0;
+		}
+		UnknownC1ACA1F(&TargetNameAdjustScratch[0], 27);
+		Unknown7E965A = currentTarget.id;
+	} else {
+		if (currentTarget.id <= 4) {
+			UnknownC1ACA1F(&PartyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
+		}
+	}
+}
 
 // $C23E32
-void UnknownC23E32();
+void UnknownC23E32() {
+	if (BattlerTargetFlags == 0) {
+		return;
+	}
+	short i;
+	for (i = 0; i < BattlersTable.length; i++) {
+		if (IsCharacterTargetted(i) != 0) {
+			break;
+		}
+	}
+	currentTarget = &BattlersTable[i];
+	FixTargetName();
+}
 
 // $C23FEA
-short GetShieldTargetting(short, Battler*);
+short GetShieldTargetting(short arg1, Battler* battler) {
+	if ((arg1 == BattleActions.PSIShieldSigma) || (arg1 == BattleActions.PSIShieldOmega) || (arg1 == BattleActions.PSIPSIShieldSigma) || (arg1 == BattleActions.PSIPSIShieldOmega)) {
+		return 1;
+	}
+	return 0;
+}
 
 // $C24009
-void FeelingStrangeRetargetting();
+void FeelingStrangeRetargetting() {
+	BattlerTargetFlags = 0;
+	switch (currentAttacker.unknown9 & 7) {
+		case 1:
+			TargetAll();
+			BattlerTargetFlags = RandomTargetting(BattlerTargetFlags);
+			break;
+		case 2:
+			TargetRow(rand() % 3);
+			break;
+		case 4:
+			if ((rand() & 1) != 0) {
+				TargetAllies();
+			} else {
+				TargetAllEnemies();
+			}
+			if ((GetShieldTargetting(currentAttacker.currentAction, currentAttacker) == 0) && (currentAttacker.allyOrEnemy == 0)) {
+				RemoveNPCTargetting();
+			}
+			break;
+		default: break;
+	}
+}
 
 // $C240A4
 void UnknownC240A4(void function() action) {
@@ -1203,9 +1334,9 @@ short BattleRoutine() {
 				if (BattlersTable[i].consciousness == 0) {
 					continue;
 				}
-				BattlersTable[i].unknown70 = cast(ubyte)FiftyPercentVariance(BattlersTable[i].speed);
-				if (BattlersTable[i].unknown70 == 0) {
-					BattlersTable[i].unknown70 = 1;
+				BattlersTable[i].initiative = cast(ubyte)FiftyPercentVariance(BattlersTable[i].speed);
+				if (BattlersTable[i].initiative == 0) {
+					BattlersTable[i].initiative = 1;
 				}
 			}
 			for (short i = 0; i < 4; i++) {
@@ -1372,7 +1503,7 @@ short BattleRoutine() {
 				}
 				if (BattlersTable[i].currentAction == BattleActions.Steal) {
 					BattlersTable[i].currentActionArgument = SelectStealableItem();
-					BattlersTable[i].unknown70 = 0;
+					BattlersTable[i].initiative = 0;
 				}
 				if (BattlersTable[i].currentAction == BattleActions.Guard) {
 					BattlersTable[i].guarding = 1;
@@ -1449,11 +1580,11 @@ short BattleRoutine() {
 						if (BattlersTable[i].hasTakenTurn != 0) {
 							continue;
 						}
-						if (BattlersTable[i].unknown70 < x) {
+						if (BattlersTable[i].initiative < x) {
 							continue;
 						}
 						x04 = i;
-						x = BattlersTable[i].unknown70;
+						x = BattlersTable[i].initiative;
 					}
 					if (x04 == -1) {
 						break;
@@ -1717,14 +1848,14 @@ short BattleRoutine() {
 				Unknown225:
 				if (CountChars(0) == 0) {
 					x17 = 1;
-					UnknownC20F9A();
+					ResetRolling();
 					DisplayInBattleText(TextBattleLostTheBattle);
 					x23 = 1;
 				}
 				if (CountChars(1) == 0) {
 					EnemiesAreDead:
 					x17 = 0;
-					UnknownC20F9A();
+					ResetRolling();
 					Unknown7EADB6 = 1;
 					Unknown7EADD0 = 0;
 					DepositIntoATM(BattleMoneyScratch);
@@ -1759,7 +1890,7 @@ short BattleRoutine() {
 			}
 			CloseFocusWindow();
 		}
-		UnknownC20F9A();
+		ResetRolling();
 		do {
 			Win_Tick();
 		} while (UnknownC2108C() == 0);
@@ -3312,7 +3443,7 @@ void BattleActionGiygasPrayer8() {
 
 // $C2C6F0
 void BattleActionGiygasPrayer9() {
-	UnknownC20F9A();
+	ResetRolling();
 	UnknownC2C41F(74, TextBattleGiygasPrayer91);
 	GiygasHurtPrayer(3200);
 	UnknownC2C41F(74, TextBattleGiygasPrayer92);

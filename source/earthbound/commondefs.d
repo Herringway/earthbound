@@ -802,14 +802,14 @@ enum BattleActions {
 	PSIHealingBeta,
 	PSIHealingGamma,
 	PSIHealingOmega,
-	PSI_SHIELD_ALPHA,
-	PSI_SHIELD_BETA,
-	PSI_SHIELD_SIGMA,
-	PSI_SHIELD_OMEGA,
-	PSI_PSI_SHIELD_ALPHA,
-	PSI_PSI_SHIELD_BETA,
-	PSI_PSI_SHIELD_SIGMA,
-	PSI_PSI_SHIELD_OMEGA,
+	PSIShieldAlpha,
+	PSIShieldBeta,
+	PSIShieldSigma,
+	PSIShieldOmega,
+	PSIPSIShieldAlpha,
+	PSIPSIShieldBeta,
+	PSIPSIShieldSigma,
+	PSIPSIShieldOmega,
 	PSI_OFFENSE_UP_ALPHA,
 	PSI_OFFENSE_UP_OMEGA,
 	PSI_DEFENSE_DOWN_ALPHA,
@@ -3897,12 +3897,12 @@ struct Battler {
 	ubyte spriteX;
 	ubyte spriteY;
 	ubyte initiative;
-	ubyte unknown69;
-	ubyte unknown70;
 	ubyte unknown71;
 	ubyte unknown72;
 	ubyte unknown73;
 	ubyte unknown74;
+	ubyte unknown75;
+	ubyte unknown76;
 	ubyte id2;
 }
 
@@ -4303,17 +4303,28 @@ struct BattleGroupEnemy {
 ubyte[length] EBString(size_t length)(string str) {
 	ubyte[length] result = 0;
 	foreach (idx, c; str) {
-		switch (c) {
-			case '0': .. case '9':
-			case 'A': .. case 'Z':
-			case 'a': .. case 'z': result[idx] = cast(ubyte)(c + 0x30); break;
-			default: break;
-		}
+		result[idx] = EBChar(c);
 	}
 	return result;
 }
 
 static assert(EBString!4("Null") == [0x7E, 0xA5, 0x9C, 0x9C]);
+
+ubyte EBChar(char c) {
+	switch (c) {
+		case ' ':
+		case '!':
+		case '\'':
+		case '-':
+		case '.':
+		case '0': .. case '9':
+		case 'A': .. case 'Z':
+		case 'a': .. case 'z': return cast(ubyte)(c + 0x30);
+		case '_': return 0x90;
+		case '|': return 0xAC;
+		default: assert(0, "unhandled character: '" ~ c ~ "'");
+	}
+}
 
 T[] convert(T)(const(ubyte)[] input) {
 	T[] output;

@@ -586,6 +586,9 @@ void UnknownC1DD5F();
 // $C1DD3B
 void ShowHPPPWindowsF();
 
+// $C1DD76
+void UnknownC1ACA1F(ubyte*, short);
+
 // $C1DD7C
 void UnknownC1ACF8F(short);
 

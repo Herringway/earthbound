@@ -520,6 +520,9 @@ __gshared ubyte Unknown7E9651;           // $9651
 __gshared ushort Unknown7E9652;           // $9652
 __gshared ushort Unknown7E9654;           // $9654
 
+__gshared short Unknown7E9658;           // $9658
+__gshared short Unknown7E965A;           // $965A
+
 __gshared short Unknown7E9684;           // $9684
 __gshared short Unknown7E9686;           // $9686
 __gshared short Unknown7E9688;           // $9688
