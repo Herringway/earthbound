@@ -100,7 +100,7 @@ __gshared void* CurrentHeapAddress;
 __gshared void* HeapBaseAddress;
 __gshared ubyte Unknown7E00A5;
 __gshared ubyte Unknown7E00A6;
-__gshared uint TIMER;
+__gshared uint Timer;
 __gshared ubyte Unknown7E00AB;
 __gshared ubyte Unknown7E00AC;
 __gshared ubyte Unknown7E00AD;
@@ -370,6 +370,7 @@ __gshared short CurrentSectorAttributes; //$438E
 
 __gshared short Unknown7E4472; //$4472
 __gshared short Unknown7E4474; //$4474
+__gshared short[16] Unknown7E4476; //$4476 - might be more
 
 __gshared short Unknown7E4676; //$4676
 
@@ -499,7 +500,7 @@ __gshared short Unknown7E89CC;           // $89CC
 __gshared short Unknown7E89CE;           // $89CE
 __gshared short Unknown7E89D0;           // $89D0
 __gshared short Unknown7E89D2;           // $89D2
-__gshared MenuOpt[70]  menu_options;  // $89D4 - Window menu options
+__gshared MenuOpt[70]  MenuOptions;  // $89D4 - Window menu options
 
 __gshared ubyte Unknown7E9622;           // $9622
 __gshared ubyte Unknown7E9623;           // $9623
@@ -751,6 +752,7 @@ __gshared ubyte Unknown7EB4B6;         // $7EB4B6
 
 __gshared ubyte Unknown7EB4CE;         // $7EB4CE
 
+__gshared ushort[11] Unknown7EB525;         // $B525
 __gshared ushort CurrentMusicTrack;         // $B53B
 __gshared ushort CurrentPrimarySamplePack; //$B53D
 __gshared ushort CurrentSecondarySamplePack; //$B53F
@@ -768,6 +770,7 @@ __gshared ushort DebugMenuCursorPosition; //$B555
 __gshared ushort Unknown7EB557; //$B557
 __gshared ushort DebugModeNumber;         // $B559
 
+__gshared short[38] Unknown7EB511; //$B511
 
 __gshared ushort Unknown7EB55D; //$B55D
 __gshared ushort Unknown7EB55F; //$B55F

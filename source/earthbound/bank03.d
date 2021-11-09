@@ -546,3 +546,6 @@ immutable ushort[4] UnusedForSaleSignSpriteTable = [
 	OverworldSprite.MrT,
 	OverworldSprite.OldGuyWithCane,
 ];
+
+// $C3FDC5
+void UnknownC3FDC5();

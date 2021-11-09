@@ -365,6 +365,12 @@ void UnknownC03C25() {
     Unknown7E5DDA = 0;
 }
 
+// $C03E9D
+short UnknownC03E9D(short);
+
+// $C03EC3
+short UnknownC03EC3(short, short, short, short);
+
 // $C03F1E
 void UnknownC03F1E();
 
@@ -2861,7 +2867,14 @@ void TeleportMainLoop() {
 }
 
 // $C0EBE0
-void UnknownC0EBE0();
+void UnknownC0EBE0() {
+    Decomp(&TitleScreenGraphics[0], &Unknown7F0000[0]);
+    CopyToVram(0, 0x8000, 0, &Unknown7F0000[0]);
+    Decomp(&TitleScreenArrangement[0], &Unknown7F0000[0]);
+    CopyToVram(0, 0x1000, 0x5800, &Unknown7F0000[0]);
+    Decomp(&UnknownE1C6E5[0], &Unknown7F0000[0]);
+    CopyToVram(0, 0x4000, 0x6000, &Unknown7F0000[0]);
+}
 
 // $C0EE68
 void LogoScreenLoad(short arg1) {
@@ -2892,7 +2905,15 @@ void LogoScreenLoad(short arg1) {
 }
 
 // $C0EFE1
-short UnknownC0EFE1(short);
+short UnknownC0EFE1(short arg1) {
+    for (short i = arg1; i != 0; i--) {
+        if (pad_press[0] != 0) {
+            return 1;
+        }
+        WaitUntilNextFrame();
+    }
+    return 0;
+}
 
 // $C0F009
 short LogoScreen() {
@@ -2924,10 +2945,80 @@ short LogoScreen() {
 }
 
 // $C0F0D2
-void GasStationLoad();
+void GasStationLoad() {
+    BG2_Y_POS = 0;
+    BG2_X_POS = 0;
+    BG1_Y_POS = 0;
+    BG1_X_POS = 0;
+    Decomp(&GasStationGraphics[0], &Unknown7F0000[0]);
+    CopyToVram(0, 0xC000, 0, &Unknown7F0000[0]);
+    Decomp(&GasStationArrangement[0], &Unknown7F0000[0]);
+    CopyToVram(0, 0x800, 0x7800, &Unknown7F0000[0]);
+    Decomp(&GasStationPalette[0], &palettes[0][0]);
+    UnknownC4A377();
+    UnknownC496F9();
+    memset(&Unknown7F0000[0x40], 0, 0x20);
+    memset(&palettes[0][0], 0, 0x40);
+    memset(&palettes[3][0], 0, 0x1A0);
+    UnknownC496E7(0x1E0, -1);
+    TM_MIRROR = 1;
+    TD_MIRROR = 2;
+    CGWSEL = 2;
+    CGADSUB = 3;
+    Unknown7E0030 = 0x18;
+}
+
+// $C0F1D2
+void UnknownC0F1D2(short arg1) {
+    //the original code also seems to set the bank byte separately, for some reason.
+    UnknownC4954C(100, &palettes[0][0]);
+    UnknownC496E7(arg1, -1);
+}
 
 // $C0F21E
-short UnknownC0F21E();
+short UnknownC0F21E() {
+    short result = 0;
+    for (short i = 0; i < 236; i++) {
+        if (pad_press[0] != 0) {
+            return 1;
+        }
+        UnknownC2DB3F();
+        WaitUntilNextFrame();
+    }
+    for (short i = 0; i < 480; i++) {
+        if (pad_press[0] != 0) {
+            return 1;
+        }
+        memcpy(&Unknown7E4476[0], &palettes[2][0], 0x20);
+        UnknownC426ED();
+        Unknown7E0030 = 0;
+        UnknownC2DB14();
+        memcpy(&palettes[2][0], &Unknown7E4476[0], 0x20);
+        UnknownC2DB3F();
+        Unknown7E0030 = 0x18;
+        WaitUntilNextFrame();
+    }
+    UnknownC49740();
+    CGADSUB = 0;
+    CGWSEL = 0;
+    TM_MIRROR = 1;
+    TD_MIRROR = 0;
+    if (UnknownC0EFE1(120) != 0) {
+        return 1;
+    }
+    ChangeMusic(Music.GasStation2);
+    short x12 = InitEntityWipe(ActionScript.Unknown860, 0, 0);
+    while (EntityScriptTable[x12] != -1) {
+        UnknownC09466();
+        WaitUntilNextFrame();
+        if (pad_press[0] != 0) {
+            UnknownC09C35(x12);
+            return 1;
+        }
+    }
+    UnknownC0F1D2(330);
+    return result;
+}
 
 // $C0F33C
 short GasStation() {

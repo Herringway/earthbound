@@ -7,6 +7,7 @@ import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank07;
+import earthbound.bank0A;
 import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank10;
@@ -1964,6 +1965,30 @@ ubyte FindItemInInventory2(short arg1, short arg2) {
     }
 }
 
+//$C456E4
+short FindInventorySpace(short arg1) {
+    for (short i = 0; i < 14; i++) {
+        if (PartyCharacters[arg1 - 1].items[i] == 0) {
+            return arg1;
+        }
+    }
+    return 0;
+}
+
+//$C4577D
+short FindInventorySpace2(short arg1) {
+    if (arg1 == 0xFF) {
+        for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+            if (FindInventorySpace(gameState.partyMembers[i] != 0)) {
+                return gameState.partyMembers[i];
+            }
+        }
+        return 0;
+    } else {
+        return FindInventorySpace(arg1);
+    }
+}
+
 //$C4577D
 ubyte ChangeEquippedWeapon(ushort character, ubyte slot) {
     PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon] = slot;
@@ -2731,6 +2756,28 @@ immutable FinalGiygasPrayerNoiseEntry[13] FinalGiygasPrayerNoiseTable = [
         FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 0),
 ];
 
+//$C4A377
+void UnknownC4A377() {
+    UnknownC08D79(3);
+    SetBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
+    SetBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
+    Decomp(&BattleBGGraphicsPointers[animatedBackgrounds[295].graphics][0], &Unknown7F0000[0]);
+    CopyToVram(0, 0x2000, 0x6000, &Unknown7F0000[0]);
+    Decomp(&BattleBGArrangementPointers[animatedBackgrounds[295].graphics][0], &Unknown7F0000[0]);
+    for (short i = 0; i < 0x800; i += 2) {
+        Unknown7F0000[i + 1] = (Unknown7F0000[i + 1] & 0xDF) | 8;
+    }
+    CopyToVram(0, 0x800, 0x7C00, &Unknown7F0000[0]);
+    UnknownC2CFE5(&LoadedBGDataLayer1, &animatedBackgrounds[295]);
+    LoadedBGDataLayer1.PalettePointer = &palettes[2];
+    memcpy(&LoadedBGDataLayer1.Palette[0], &BattleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
+    memcpy(&LoadedBGDataLayer1.Palette2[0], &BattleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
+    memcpy(&LoadedBGDataLayer1.PalettePointer[0], &LoadedBGDataLayer1.Palette[0], 0x20);
+    LoadedBGDataLayer1.TargetLayer = 2;
+    GenerateBattleBGFrame(&LoadedBGDataLayer1, 0);
+    LoadedBGDataLayer2.TargetLayer = 0;
+}
+
 // $C4A5CE
 immutable Unknown7EAECCEntry[2] UnknownC4A5CE = [
     Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
@@ -2757,8 +2804,6 @@ immutable Unknown7EAECCEntry[2] UnknownC4A652 = [
 
 //$C4A67E
 void UnknownC4A67E(short arg1, short arg2) {
-    //x02 = arg2
-    //x04 = arg1
     if ((arg2 & 2) != 0) {
         Unknown7EAEC6 = 1;
     } else {

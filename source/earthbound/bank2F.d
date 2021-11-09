@@ -45,9 +45,32 @@ void UnknownEF0115(short arg1) {
 	UnknownC07C5B();
 }
 
+// $EF016F
+void UnknownEF016F() {
+	Unknown7E9684 = MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option + WindowStats[WindowTable[CurrentFocusWindow]].selected_option].text_x;
+	Unknown7E9686 = MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option + WindowStats[WindowTable[CurrentFocusWindow]].selected_option].text_y;
+	Unknown7E9688 = WindowStats[WindowTable[CurrentFocusWindow]].current_option;
+	Unknown7E968A = WindowStats[WindowTable[CurrentFocusWindow]].selected_option;
+}
+
+// $EF01D2
+void UnknownEF01D2(short arg1) {
+	short x0E = (arg1 - 0x50) & 0x7F;
+	arg1 = FontConfigTable[0].data[x0E] + Unknown7E5E6D;
+	if (WindowStats[WindowTable[CurrentFocusWindow]].width < (WindowStats[WindowTable[CurrentFocusWindow]].text_x - 1) * 8 + (VWFX & 7) + x0E) {
+		PrintNewLineF();
+		Unknown7E5E75 = 1;
+	}
+}
+
 // $EF0256
 void PauseMusic() {
 	Unknown7E9697 = 1;
+}
+
+// $EF0262
+void UnknownEF0262() {
+	Unknown7E9695 = 1;
 }
 
 // $EF026E
@@ -56,8 +79,117 @@ void ResumeMusic() {
 	Unknown7E9697 = 0;
 }
 
+// $EF027D
+void UnknownEF027D() {
+	Unknown7E9F33 = 0;
+	Unknown7E9F35 = 30;
+	EntityScriptVar3Table[CurrentEntitySlot] = 4;
+	PlayerPositionBuffer[ChosenFourPtrs[EntityScriptVar1Table[CurrentEntitySlot]].position_index].x_coord = gameState.leaderX.integer;
+	PlayerPositionBuffer[ChosenFourPtrs[EntityScriptVar1Table[CurrentEntitySlot]].position_index].y_coord = gameState.leaderY.integer;
+}
+
+// $EF02C4
+void UnknownEF02C4(short arg1) {
+	short x0E = void;
+	if ((Unknown7E9F33 == 3) || (Unknown7E9F33 == 1)) {
+		Unknown7E9F33 = 2;
+	} else if (UnknownC03E9D(arg1) > 40) {
+		Unknown7E9F33 = 2;
+	} else {
+		x0E = rand() & 3;
+		Unknown7E9F33 = x0E;
+	}
+	// uh oh. x0E may not have been initialized by this point...
+	Unknown7E9F35 = ((x0E & 3) * 3) + 4;
+}
+
+void UnknownEF031E() {
+	Unknown7E4DC6 = &PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]];
+	short x16 = PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index;
+	EntityAbsXTable[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].x_coord;
+	EntityAbsYTable[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].y_coord;
+	if (PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].walking_style != 0) {
+		UnknownC07A56(EntityScriptVar0Table[CurrentEntitySlot], PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].walking_style, CurrentEntitySlot);
+		Unknown7E4DC6.position_index = UnknownC03EC3(EntityScriptVar0Table[CurrentEntitySlot], 0x1E, PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index, 2);
+	}
+	switch (Unknown7E9F33) {
+		case 0:
+		case 2:
+			Unknown7E4DC6.position_index = UnknownC03EC3(EntityScriptVar0Table[CurrentEntitySlot], 0xC, PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index, 2);
+			if ((x16 == Unknown7E4DC6.position_index) || (x16 + 1 == Unknown7E4DC6.position_index)) {
+				UnknownC07A56(EntityScriptVar0Table[CurrentEntitySlot], PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].walking_style, CurrentEntitySlot);
+				if (gameState.unknown90 == 0) {
+					break;
+				}
+			} else {
+				UnknownC07A56(EntityScriptVar0Table[CurrentEntitySlot], 14, CurrentEntitySlot);
+			}
+			EntityDirections[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].direction;
+			EntityScriptVar7Table[CurrentEntitySlot] &= 0x1FFF;
+			break;
+		case 1:
+			EntityScriptVar7Table[CurrentEntitySlot] |= 0x7000;
+			break;
+		case 3:
+			EntityScriptVar7Table[CurrentEntitySlot] |= 0x7000;
+			if (--Unknown7E9F3B != 0) {
+				break;
+			}
+			if (--Unknown7E9F3D == 0) {
+				Unknown7E9F35 = 15;
+				Unknown7E9F3B = -1;
+			}
+			Unknown7E9F3B = ((rand() * 4) & 0xF) + 4;
+			Unknown7E9F39 ^= 4;
+			EntityDirections[CurrentEntitySlot] = Unknown7E9F39;
+			break;
+		default: break;
+	}
+	EntityScriptVar3Table[CurrentEntitySlot] = 4;
+	if (--Unknown7E9F35 == 0) {
+		UnknownEF02C4(EntityScriptVar0Table[CurrentEntitySlot]);
+		if (Unknown7E9F33 == 3) {
+			Unknown7E9F3D = 4;
+			Unknown7E9F39 = 6;
+			Unknown7E9F3B = 15;
+			Unknown7E9F35 = -1;
+		} else {
+			Unknown7E9F35 = 60;
+		}
+	}
+	EntitySurfaceFlags[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].tile_flags;
+}
+
 // $EF04DC
-short UnknownEF04DC();
+short UnknownEF04DC() {
+	short x04 = 0;
+	UnknownC08726();
+	UnknownC0927C();
+	UnknownC0EBE0();
+	TM_MIRROR = 0x11;
+	OAMClear();
+	Unknown7E9F75 = 1;
+	InitEntityWipe(ActionScript.TitleScreen1, 0, 0);
+	Unknown7E9641 = 0;
+	UnknownC1004E();
+	FadeIn(16, 1);
+	for (short i = 0; i < 60; i++) {
+		UnknownC1004E();
+	}
+	short x02 = 0;
+	while ((Unknown7E9641 == 0) || (Unknown7E9641 == 2)) {
+		if ((x04 == 0) && (((pad_press[0] & PAD_A) != 0) || ((pad_press[0] & PAD_B) != 0) || ((pad_press[0] & PAD_START) != 0))) {
+			x02 = 1;
+			break;
+		}
+		UnknownC1004E();
+	}
+	FadeOutWithMosaic(1, 4, 0);
+	Unknown7E9641 = 0;
+	UnknownC474A8(0);
+	UnknownC0927C();
+	return x02;
+}
 
 // $EF0591
 immutable string SRAMSignature = "HAL Laboratory, inc.";
@@ -80,16 +212,16 @@ short CheckBlockSignature(short id) {
 	return 0;
 }
 
-// $EF06A2
-void CopySaveBlock(short to, short from) {
-	memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
-}
-
 // $EF0683
 void CheckAllBlocksSignature() {
 	for (short i = 0; i < 6; i++) {
 		CheckBlockSignature(i);
 	}
+}
+
+// $EF06A2
+void CopySaveBlock(short to, short from) {
+	memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
 }
 
 // $EF0734
@@ -122,7 +254,7 @@ short ValidateSaveBlockChecksums(short id) {
 	return -1;
 }
 
-// $EF0EE8
+ // $EF0825
 void CheckSaveCorruption(short id) {
 	if (ValidateSaveBlockChecksums(cast(short)(id * 2)) != 0) {
 		EraseSaveBlock(cast(short)(id * 2));
@@ -134,14 +266,44 @@ void CheckSaveCorruption(short id) {
 			CopySaveBlock(cast(short)(id * 2), cast(short)(id * 2 + 1));
 		}
 	}
-	if (ValidateSaveBlockChecksums(cast(short)(id * 2 + 1)) == 0) {
-		return;
+	if (ValidateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
+		EraseSaveBlock(cast(short)(id * 2 + 1));
+		CopySaveBlock(cast(short)(id * 2 + 1), cast(short)(id * 2));
 	}
-	EraseSaveBlock(cast(short)(id * 2 + 1));
-	CopySaveBlock(cast(short)(id * 2 + 1), cast(short)(id * 2));
 }
 
-// $EF0EE8
+// $EF088F
+void SaveGameBlock(short id) {
+	gameState.timer = Timer;
+	Retry:
+	memcpy(&sram.saves[id].saveData.gameState, &gameState, Game_State.sizeof);
+	memcpy(&sram.saves[id].saveData.partyCharacters, &PartyCharacters[0], (PartyCharacter[6]).sizeof);
+	memcpy(&sram.saves[id].saveData.eventFlags, &EventFlags[0], EventFlags.sizeof);
+	sram.saves[id].checksum = CalcSaveBlockAddChecksum(id);
+	if (sram.saves[id].checksum != CalcSaveBlockAddChecksum(id)) {
+		goto Retry;
+	}
+	sram.saves[id].checksumComplement = CalcSaveBlockXORChecksum(id);
+	if (sram.saves[id].checksumComplement != CalcSaveBlockXORChecksum(id)) {
+		goto Retry;
+	}
+}
+
+// $EF0A4D
+void SaveGameSlot(short id) {
+	SaveGameBlock(cast(short)(id * 2));
+	SaveGameBlock(cast(short)(id * 2 + 1));
+}
+
+// $EF0A68
+void LoadGameSlot(short id) {
+	memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, Game_State.sizeof);
+	memcpy(&PartyCharacters[0], &sram.saves[id * 2].saveData.partyCharacters, (PartyCharacter[6]).sizeof);
+	memcpy(&EventFlags[0], &sram.saves[id * 2].saveData.eventFlags, EventFlags.sizeof);
+	Timer = gameState.timer;
+}
+
+// $EF0B9E
 void CheckSRAMIntegrity() {
 	Unknown7E9F77 = 0x493;
 	if (sram.signature != 0x493) {
@@ -153,6 +315,61 @@ void CheckSRAMIntegrity() {
 		CheckSaveCorruption(i);
 	}
 	sram.signature = Unknown7E9F77;
+}
+
+// $EF0BFA
+void EraseSaveSlot(short id) {
+	EraseSaveBlock(cast(short)(id * 2));
+	EraseSaveBlock(cast(short)(id * 2 + 1));
+}
+
+// $EF0C15
+void CopySaveSlot(short to, short from) {
+	CopySaveBlock(cast(short)(to * 2), cast(short)(from * 2));
+	CopySaveBlock(cast(short)(to * 2 + 1), cast(short)(from * 2 + 1));
+}
+
+// $EF0C3D
+void UnknownEF0C3D() {
+	LoadGameSlot(3);
+	FadeOut(1, 1);
+	UnknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+	LoadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
+	UnknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
+	UnknownC069AF();
+	FadeIn(1, 1);
+}
+
+// $EF0C87
+short UnknownEF0C87() {
+	return Unknown7EB511[EntityScriptVar0Table[CurrentEntitySlot]];
+}
+
+// $EF0C97
+void UnknownEF0C97() {
+	Unknown7EB511[EntityScriptVar0Table[CurrentEntitySlot]] = 0;
+}
+
+// $EF0CA7
+short UnknownEF0CA7() {
+	if (TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].unknown4 == 0xFF) {
+		return 1;
+	}
+	Unknown7EB511[EntityScriptVar0Table[CurrentEntitySlot]]++;
+	if (TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].unknown4 > Unknown7EB511[EntityScriptVar0Table[CurrentEntitySlot]]) {
+		return 1;
+	}
+	return 0;
+}
+
+// $EF0D23
+short UnknownEF0D23() {
+	return TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].unknown6;
+}
+
+// $EF0D46
+void UnknownEF0D46() {
+	Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]] = TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].deliveryTime;
 }
 
 // $EF0EE8
@@ -276,14 +493,14 @@ immutable ubyte* TEXT_BLOCK_EF6954;
 immutable ubyte* TextBattleHPAreMaxedOut;
 immutable ubyte* TextBattleRecoveredHP;
 immutable ubyte* TextBattleRecoveredPP;
-immutable ubyte* TEXT_BATTLE_SPY_OFFENSE;
-immutable ubyte* TEXT_BATTLE_SPY_DEFENSE;
-immutable ubyte* TEXT_BATTLE_SPY_VULNERABLE_TO_FIRE;
-immutable ubyte* TEXT_BATTLE_SPY_VULNERABLE_TO_ICE;
-immutable ubyte* TEXT_BATTLE_SPY_VULNERABLE_TO_FLASH;
-immutable ubyte* TEXT_BATTLE_SPY_VULNERABLE_TO_PARALYSIS;
-immutable ubyte* TEXT_BATTLE_SPY_VULNERABLE_TO_HYPNOSIS;
-immutable ubyte* TEXT_BATTLE_SPY_VULNERABLE_TO_BRAINSHOCK;
+immutable ubyte* TextBattleSpyOffense;
+immutable ubyte* TextBattleSpyDefense;
+immutable ubyte* TextBattleSpyVulnerableToFire;
+immutable ubyte* TextBattleSpyVulnerableToIce;
+immutable ubyte* TextBattleSpyVulnerableToFlash;
+immutable ubyte* TextBattleSpyVulnerableToParalysis;
+immutable ubyte* TextBattleSpyVulnerableToHypnosis;
+immutable ubyte* TextBattleSpyVulnerableToBrainshock;
 immutable ubyte* TextBattleTurnedIntoEnemy;
 immutable ubyte* TextBattleDidntTurnIntoEnemy;
 immutable ubyte* TextBattleWasDiamondized;
@@ -483,7 +700,7 @@ immutable ubyte* TEXT_BLOCK_EF7D61;
 immutable ubyte* TEXT_BLOCK_EF7D6F;
 immutable ubyte* TEXT_BLOCK_EF7D83;
 immutable ubyte* TEXT_BLOCK_EF7DBE;
-immutable ubyte* TEXT_BATTLE_SPY_FOUND_ITEM;
+immutable ubyte* TextBattleSpyFoundItem;
 immutable ubyte* TextAction095;
 immutable ubyte* TextAction096;
 immutable ubyte* TextAction097;

@@ -323,7 +323,7 @@ enum Music {
 	WINTERS_INTRO = 171,
 	PokeyEscapes = 172,
 	GOOD_MORNING_MOONSIDE = 173,
-	GAS_STATION_2 = 174,
+	GasStation2 = 174,
 	TitleScreen = 175,
 	BATTLE_SWIRL4 = 176,
 	PokeyIntro = 177,
@@ -1353,6 +1353,8 @@ enum ActionScript {
 	TitleScreen9 = 796,
 	TitleScreen10 = 797,
 	TitleScreen11 = 798,
+	Unknown860 = 860,
+	Unknown861 = 861,
 	Unknown862 = 862,
 	Unknown863 = 863,
 	Unknown864 = 864,
@@ -3006,8 +3008,8 @@ enum Gender : ubyte {
 
 enum EnemyType : ubyte {
 	Normal = 0,
-	Metal = 1,
-	Insect = 2,
+	Insect = 1,
+	Metal = 2,
 }
 
 enum InitialStatus : ubyte {
@@ -3056,7 +3058,7 @@ enum EnemyID {
 	THUNDER_MITE = 31,
 	CRANKY_LADY = 32,
 	EXTRA_CRANKY_LADY = 33,
-	GIYGAS_1 = 34,
+	Giygas1 = 34,
 	WETNOSAUR = 35,
 	CHOMPOSAUR_1 = 36,
 	TITANIC_ANT_1 = 37,
@@ -3240,10 +3242,10 @@ enum EnemyID {
 	BuzzBuzz = 215,
 	HeavilyArmedPokey3 = 216,
 	HeavilyArmedPokey4 = 217,
-	GIYGAS_2 = 218,
-	GIYGAS_3 = 219,
-	GIYGAS_4 = 220,
-	GIYGAS_5 = 221,
+	Giygas2 = 218,
+	Giygas3 = 219,
+	Giygas4 = 220,
+	Giygas5 = 221,
 	FARM_ZOMBIE = 222,
 	CRIMINAL_CATERPILLAR = 223,
 	EVIL_EYE = 224,
@@ -3251,7 +3253,7 @@ enum EnemyID {
 	MINI_BARF = 226,
 	MASTER_CRIMINAL_WORM = 227,
 	CAPTAIN_STRONG = 228,
-	GIYGAS_6 = 229,
+	Giygas6 = 229,
 	CLUMSY_ROBOT_3 = 230,
 }
 
@@ -3955,7 +3957,8 @@ struct Unknown7E9E3CEntry {
 struct TimedDelivery {
 	ushort spriteID; //0
 	ushort eventFlag; //2
-	ubyte[4] unknown4; //4
+	short unknown4; //4
+	short unknown6; //6
 	ushort deliveryTime; //8
 	void* textPointer1; //10
 	void* textPointer2; //14
@@ -4030,7 +4033,11 @@ struct SaveBlock {
 	}
 }
 
-struct SaveData {}
+struct SaveData {
+	Game_State gameState;
+	PartyCharacter[6] partyCharacters;
+	ubyte[EVENT_FLAG_COUNT / 8] eventFlags;
+}
 
 struct FontConfig {
 	const(ubyte)* data;

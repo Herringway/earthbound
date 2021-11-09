@@ -2151,7 +2151,7 @@ immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
 		BattleGroupEnemy(0, EnemyID.STARMAN_JR),
-		BattleGroupEnemy(0, EnemyID.GIYGAS_1),
+		BattleGroupEnemy(0, EnemyID.Giygas1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
@@ -2159,32 +2159,32 @@ immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.GIYGAS_2),
+		BattleGroupEnemy(1, EnemyID.Giygas2),
 		BattleGroupEnemy(1, EnemyID.HeavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.GIYGAS_3),
+		BattleGroupEnemy(1, EnemyID.Giygas3),
 		BattleGroupEnemy(1, EnemyID.HeavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.GIYGAS_4),
+		BattleGroupEnemy(1, EnemyID.Giygas4),
 		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.GIYGAS_5),
+		BattleGroupEnemy(1, EnemyID.Giygas5),
 		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.GIYGAS_6),
+		BattleGroupEnemy(1, EnemyID.Giygas6),
 		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.GIYGAS_6),
+		BattleGroupEnemy(1, EnemyID.Giygas6),
 		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
@@ -2197,7 +2197,7 @@ immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.GIYGAS_6),
+		BattleGroupEnemy(1, EnemyID.Giygas6),
 		BattleGroupEnemy(0, EnemyID.HeavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),

@@ -70,6 +70,9 @@ void UnknownC10EB4(short);
 // $C10C55
 short UnknownC10C55(uint*);
 
+// $C10C79
+void PrintNewLineF();
+
 // $C10C80
 void UnknownC10BA1F(short);
 
@@ -143,11 +146,11 @@ int Win_MenuSelection(int cancelable) {
         int dp22 = dp24.selected_option;
         dp20 = dp22;
 
-        dp04 = &menu_options[dp24.current_option]; // field2B
+        dp04 = &MenuOptions[dp24.current_option]; // field2B
 
         while (dp22) {
             dp22--;
-            dp04 = &menu_options[dp04.next]; // field02
+            dp04 = &MenuOptions[dp04.next]; // field02
         }
 
         SetInstaprint();
@@ -155,7 +158,7 @@ int Win_MenuSelection(int cancelable) {
         UnknownC43BB9(-1, 0, dp04.label.ptr); // field13
     } else {
         dp20 = 0;
-        dp04 = &menu_options[dp24.current_option]; // field2B
+        dp04 = &MenuOptions[dp24.current_option]; // field2B
     }
 
     int dp22;
@@ -287,7 +290,7 @@ label2:
             Win_ClearFocus(); // Clear the focused window
 
             dp1E = dp24.menu_page;
-            if (dp1E == menu_options[dp04.prev].page) { // prev=field04
+            if (dp1E == MenuOptions[dp04.prev].page) { // prev=field04
                 dp24.menu_page = 1;
             } else {
                 dp24.menu_page = cast(short)(dp1E+1);
@@ -330,14 +333,14 @@ label3:
     if (dp1C == -1) goto label1; // Back to the start...
 
     dp02 = 0;
-    MenuOpt *dp22_opt = &menu_options[dp24.current_option]; // Reuses dp22, 16-bit pointer
+    MenuOpt *dp22_opt = &MenuOptions[dp24.current_option]; // Reuses dp22, 16-bit pointer
 
     int tmp = dp1C & 0xFF;
     dp1C = dp1C >> 8;
 
     while ((dp22_opt.text_x != tmp) || (dp22_opt.text_y != dp1C) || ((dp22_opt.page != dp24.menu_page) && (dp22_opt.page != 0))) {
         ++dp02;
-        dp22_opt = &menu_options[dp22_opt.next]; // field02
+        dp22_opt = &MenuOptions[dp22_opt.next]; // field02
     }
 
     UnknownC43CD2(dp04, dp04.text_x, dp04.text_y);

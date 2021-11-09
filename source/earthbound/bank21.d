@@ -132,8 +132,44 @@ immutable ubyte[] NintendoGraphics = cast(immutable(ubyte)[])import("intro/logos
 // $E1558F
 immutable ubyte[] NintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
 
+// $E155D3
+immutable ubyte[] GasStationArrangement = cast(immutable(ubyte)[])import("intro/gas_station.arr.lzhal");
+
+// $E15B33
+immutable ubyte[] GasStationGraphics = cast(immutable(ubyte)[])import("intro/gas_station.gfx.lzhal");
+
+// $E1A9B7
+immutable ubyte[] GasStationPalette = cast(immutable(ubyte)[])import("intro/gas_station.pal.lzhal");
+
+// $E1AA5D
+immutable ubyte[] GasStationPalette2 = cast(immutable(ubyte)[])import("intro/gas_station2.pal.lzhal");
+
+// $E1AADF
+immutable ubyte[] ProducedItoiArrangement = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.arr.lzhal");
+
+// $E1AB4B
+immutable ubyte[] ProducedItoiGraphics = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.gfx.lzhal");
+
+// $E1AD01
+immutable ubyte[] NintendoPresentationArrangement = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.arr.lzhal");
+
+// $E1AD4E
+immutable ubyte[] NintendoPresentationGraphics = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.gfx.lzhal");
+
+// $E1AE6F
+immutable ubyte[] NintendoItoiPalette = cast(immutable(ubyte)[])import("intro/attract/nintendo_itoi.pal.lzhal");
+
 // $E1AE7C
 immutable ubyte[] UnknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
+
+// $E1AF7D
+immutable ubyte[] TitleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
+
+// $E1B211
+immutable ubyte[] TitleScreenGraphics = cast(immutable(ubyte)[])import("intro/title_screen.gfx.lzhal");
+
+// $E1C6E5
+immutable ubyte[] UnknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
 
 // $E1CFAF
 immutable ubyte[] UnknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
