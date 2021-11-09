@@ -647,10 +647,8 @@ __gshared ubyte[8] Unknown7EAAB6; //$AAB6
 __gshared ushort[4] Unknown7EAABE; //$AABE
 __gshared ubyte[8] Unknown7EAAC6; //$AAC6
 __gshared ubyte[8] Unknown7EAACE; //$AACE
-//UNKNOWN_7EAAD6: ;$7EAAD6
-//	.RES 80 * 4
-//UNKNOWN_7EAC16: ;$7EAC16
-//	.RES 80 * 4
+__gshared SpriteMap[16][4] Unknown7EAAD6; //$AAD6
+__gshared SpriteMap[16][4] Unknown7EAC16; //$AC16
 __gshared ushort Unknown7EAD56; //$AD56
 __gshared ushort Unknown7EAD58; //$AD58
 __gshared ubyte[8] Unknown7EAD5A; //$AD5A

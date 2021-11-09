@@ -3624,6 +3624,15 @@ enum NPCTargettability {
 	Normal = 7,
 }
 
+enum BattleSpriteSize {
+	_32X32 = 1,
+	_64X32 = 2,
+	_32X64 = 3,
+	_64X64 = 4,
+	_128X64 = 5,
+	_128X128 = 6,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -4303,6 +4312,11 @@ struct FinalGiygasPrayerNoiseEntry {
 struct BattleGroupEnemy {
 	ubyte count;
 	ushort enemyID;
+}
+
+struct BattleSpritePointer {
+	immutable(ubyte)[] sprite;
+	ubyte size;
 }
 
 //helper funcs not in the original game

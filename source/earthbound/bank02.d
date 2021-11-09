@@ -3453,7 +3453,25 @@ void BattleInitPlayerStats(short arg1, Battler* battler) {
 }
 
 // $C2BAC5
-short CountChars(short);
+short CountChars(short arg1) {
+	short result = 0;
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != arg1) {
+			continue;
+		}
+		if (BattlersTable[i].npcID != 0) {
+			continue;
+		}
+		if ((BattlersTable[i].afflictions[0] == Status0.Unconscious) || (BattlersTable[i].afflictions[0] == Status0.Diamondized)) {
+			continue;
+		}
+		result++;
+	}
+	return result;
+}
 
 // $C2BB18
 void CheckDeadPlayers() {
@@ -4033,7 +4051,9 @@ void UnknownC2DAE3() {
 }
 
 // $C2DB14
-void UnknownC2DB14();
+void UnknownC2DB14() {
+	memcpy(&LoadedBGDataLayer1.Palette[0], LoadedBGDataLayer1.PalettePointer, LoadedBGDataLayer1.Palette[0].sizeof);
+}
 
 // $C2DB3F
 void UnknownC2DB3F();
@@ -4136,7 +4156,21 @@ short UnknownC2EACF() {
 void UnknownC2EAEA(short);
 
 // $C2EFFD
-short GetBattleSpriteWidth(short);
+short GetBattleSpriteWidth(short arg1) {
+	switch (BattleSpritePointers[arg1 - 1].size) {
+		case BattleSpriteSize._32X32:
+		case BattleSpriteSize._32X64:
+			return 4;
+		case BattleSpriteSize._64X32:
+		case BattleSpriteSize._64X64:
+			return 8;
+		case BattleSpriteSize._128X64:
+		case BattleSpriteSize._128X128:
+			return 16;
+		default:
+			return 0;
+	}
+}
 
 // $C2EEE7
 void UnknownC2EEE7() {
@@ -4177,8 +4211,38 @@ void UnknownC2F0D1() {
 // $C2F121
 void UnknownC2F121();
 
-// $C2F121
-void UnknownC2F724(short);
+// $C2F724
+void UnknownC2F724(short arg1) {
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		if (BattlersTable[i].row != arg1) {
+			continue;
+		}
+		if (BattlersTable[i].sprite == 0) {
+			continue;
+		}
+		if ((BattlersTable[i].unknown72 != 0) && (((--BattlersTable[i].unknown72 / 3) & 1) != 0)) {
+			continue;
+		}
+		if ((BattlersTable[i].unknown73 != 0) && ((--BattlersTable[i].unknown73 & 4) == 0)) {
+			UnknownC08CD5(&Unknown7EAC16[BattlersTable[i].vramSpriteIndex][0], cast(short)(BattlersTable[i].spriteX - Unknown7EAD96), cast(short)(BattlersTable[i].spriteY - Unknown7EAD98));
+		} else if (BattlersTable[i].unknown75 != 0) {
+			UnknownC08CD5(&Unknown7EAC16[BattlersTable[i].vramSpriteIndex][0], cast(short)(BattlersTable[i].spriteX - Unknown7EAD96), cast(short)(BattlersTable[i].spriteY - Unknown7EAD98));
+		} else if ((Unknown7EADA2 != 0) && ((BattlersTable[i].unknown74 == 0) || ((Unknown7E0002 & 8) != 0))) {
+			UnknownC08CD5(&Unknown7EAC16[BattlersTable[i].vramSpriteIndex][0], cast(short)(BattlersTable[i].spriteX - Unknown7EAD96), cast(short)(BattlersTable[i].spriteY - Unknown7EAD98));
+		} else {
+			UnknownC08CD5(&Unknown7EAAD6[BattlersTable[i].vramSpriteIndex][0], cast(short)(BattlersTable[i].spriteX - Unknown7EAD96), cast(short)(BattlersTable[i].spriteY - Unknown7EAD98));
+		}
+	}
+}
 
 // $C2F8F9
 void UnknownC2F8F9() {

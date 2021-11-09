@@ -1424,6 +1424,7 @@ void UnknownC08C58(const(SpriteMap)* arg1, short arg2, short arg3) {
     UnknownC08C65[Unknown7E2400](arg1, arg2, arg3);
 }
 
+// $C08C65
 immutable void function(const(SpriteMap)*, short, short)[4] UnknownC08C65 = [
     &UnknownC08C6D,
     &UnknownC08C87,
@@ -1431,6 +1432,7 @@ immutable void function(const(SpriteMap)*, short, short)[4] UnknownC08C65 = [
     &UnknownC08CBB,
 ];
 
+// $C08C6D
 void UnknownC08C6D(const(SpriteMap)* arg1, short arg2, short arg3) {
     Unknown7E2404[Unknown7E2504 / 2] = arg1;
     Unknown7E2444[Unknown7E2504 / 2] = arg2;
@@ -1438,6 +1440,8 @@ void UnknownC08C6D(const(SpriteMap)* arg1, short arg2, short arg3) {
     //Unknown7E24C4[Unknown7E2504 / 2] = Unknown7E000B;
     Unknown7E2504 += 2;
 }
+
+// $C08C87
 void UnknownC08C87(const(SpriteMap)* arg1, short arg2, short arg3) {
     Unknown7E2506[Unknown7E2606 / 2] = arg1;
     Unknown7E2546[Unknown7E2606 / 2] = arg2;
@@ -1445,6 +1449,8 @@ void UnknownC08C87(const(SpriteMap)* arg1, short arg2, short arg3) {
     //Unknown7E25C6[Unknown7E2606 / 2] = Unknown7E000B;
     Unknown7E2606 += 2;
 }
+
+// $C08CA1
 void UnknownC08CA1(const(SpriteMap)* arg1, short arg2, short arg3) {
     Unknown7E2608[Unknown7E2708 / 2] = arg1;
     Unknown7E2648[Unknown7E2708 / 2] = arg2;
@@ -1452,6 +1458,8 @@ void UnknownC08CA1(const(SpriteMap)* arg1, short arg2, short arg3) {
     //Unknown7E26C8[Unknown7E2708 / 2] = Unknown7E000B;
     Unknown7E2708 += 2;
 }
+
+// $C08CBB
 void UnknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
     Unknown7E270A[Unknown7E280A / 2] = arg1;
     Unknown7E274A[Unknown7E280A / 2] = arg2;
@@ -1459,6 +1467,9 @@ void UnknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
     //Unknown7E27CA[Unknown7E280A / 2] = Unknown7E000B;
     Unknown7E280A += 2;
 }
+
+// $C08CD5
+void UnknownC08CD5(const(SpriteMap)* arg1, short arg2, short arg3);
 
 // $C08D79
 void UnknownC08D79(ubyte arg1) {
