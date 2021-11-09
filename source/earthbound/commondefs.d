@@ -4201,9 +4201,21 @@ struct TownMapIconPlacement {
 
 struct SpriteMap {
 	ubyte unknown0;
-	ushort unknown1;
+	union {
+		ushort unknown1;
+		struct {
+			ubyte unknown10;
+			ubyte unknown11;
+		}
+	}
 	ubyte unknown3;
 	ubyte unknown4;
+	this (ubyte u0, ushort u1, ubyte u3, ubyte u4) {
+		unknown0 = u0;
+		unknown1 = u1;
+		unknown3 = u3;
+		unknown4 = u4;
+	}
 }
 
 struct TownMapData {

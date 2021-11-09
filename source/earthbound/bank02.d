@@ -4153,7 +4153,112 @@ short UnknownC2EACF() {
 }
 
 // $C2EAEA
-void UnknownC2EAEA(short);
+void UnknownC2EAEA(short arg1) {
+	Unknown7EAAB6[Unknown7EAAB4] = cast(ubyte)Unknown7EAAB2;
+	SpriteMap* x26 = &Unknown7EAAD6[Unknown7EAAB4][0];
+	arg1--;
+	short x24 = 1;
+	short x22 = 1;
+	for (short i = 0; i < 16; i++) {
+		x26[i].unknown0 = 0xE0;
+		//weird. why is it done like this?
+		x26[i].unknown10 = cast(ubyte)((UnknownC3F8B1[i + Unknown7EAAB2]));
+		x26[i].unknown11 = cast(ubyte)((UnknownC3F8B1[i + Unknown7EAAB2] >> 8) + (Unknown7EAAB4 * 2) + 32);
+		x26[i].unknown3 = 0xF0;
+		x26[i].unknown4 = 1;
+	}
+	switch (BattleSpritePointers[arg1].size) {
+		case 2:
+			x22 = 2;
+			x26.unknown3 = 0xE0;
+			x26[1].unknown3 = 0;
+			break;
+		case 3:
+			x24 = 2;
+			x26.unknown0 = 0xC0;
+			break;
+		case 4:
+			x24 = 2;
+			x22 = 2;
+			x26[1].unknown0 = 0xC0;
+			x26[0].unknown0 = 0xC0;
+			x26[2].unknown3 = 0xE0;
+			x26[0].unknown3 = 0xE0;
+			x26[3].unknown3 = 0;
+			x26[1].unknown3 = 0;
+			break;
+		case 5:
+			x22 = 4;
+			x24 = 2;
+			x26[3].unknown0 = 0xC0;
+			x26[2].unknown0 = 0xC0;
+			x26[1].unknown0 = 0xC0;
+			x26[0].unknown0 = 0xC0;
+			x26[4].unknown3 = 0xC0;
+			x26[0].unknown3 = 0xC0;
+			x26[5].unknown3 = 0xE0;
+			x26[1].unknown3 = 0xE0;
+			x26[6].unknown3 = 0;
+			x26[2].unknown3 = 0;
+			x26[7].unknown3 = 0x20;
+			x26[3].unknown3 = 0x20;
+			break;
+		case 6:
+			x24 = 4;
+			x22 = 4;
+			x26[3].unknown0 = 0xA0;
+			x26[2].unknown0 = 0xA0;
+			x26[1].unknown0 = 0xA0;
+			x26[0].unknown0 = 0xA0;
+			x26[7].unknown0 = 0xC0;
+			x26[6].unknown0 = 0xC0;
+			x26[5].unknown0 = 0xC0;
+			x26[4].unknown0 = 0xC0;
+			x26[15].unknown0 = 0;
+			x26[14].unknown0 = 0;
+			x26[13].unknown0 = 0;
+			x26[12].unknown0 = 0;
+			x26[12].unknown3 = 0xC0;
+			x26[8].unknown3 = 0xC0;
+			x26[4].unknown3 = 0xC0;
+			x26[0].unknown3 = 0xC0;
+			x26[13].unknown3 = 0xE0;
+			x26[9].unknown3 = 0xE0;
+			x26[5].unknown3 = 0xE0;
+			x26[1].unknown3 = 0xE0;
+			x26[14].unknown3 = 0;
+			x26[10].unknown3 = 0;
+			x26[6].unknown3 = 0;
+			x26[2].unknown3 = 0;
+			x26[15].unknown3 = 0x20;
+			x26[11].unknown3 = 0x20;
+			x26[7].unknown3 = 0x20;
+			x26[3].unknown3 = 0x20;
+			break;
+		default: break;
+	}
+	x26[(x24 * x22) - 1].unknown4 = 0x81;
+	memcpy(&Unknown7EAC16[Unknown7EAAB4][0], &Unknown7EAAD6[Unknown7EAAB4][0], 80);
+	for (short i = 0; i < 16; i++) {
+		Unknown7EAC16[Unknown7EAAB4][0].unknown11 += 8;
+	}
+	Unknown7EAAC6[Unknown7EAAB4] = cast(ubyte)x22;
+	Unknown7EAACE[Unknown7EAAB4] = cast(ubyte)x24;
+	Unknown7EAAB4++;
+	ubyte* x1A = &Unknown7F8000[0];
+	Decomp(&BattleSpritePointers[arg1].sprite[0], x1A);
+	short y = cast(short)(x24 * x22);
+	while (--y != 0) {
+		ubyte* x0A = &Unknown7F0000[UnknownC3F871[Unknown7EAAB2++]];
+		for (short i = 0; i < 4; i++) {
+			ubyte* x16 = x0A;
+			for (short j = 0; j < 0x80; j++) {
+				*(x16++) = *(x1A++);
+			}
+			x0A += 0x200;
+		}
+	}
+}
 
 // $C2EFFD
 short GetBattleSpriteWidth(short arg1) {
