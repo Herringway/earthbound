@@ -2097,20 +2097,69 @@ void UnknownC0AC3A(short arg1) {
 // $C0AC43
 void UnknownC0AC43();
 
+// $C0AD9F
+void UnknownC0AD9F() {
+    BG3VOFS = BG3_Y_POS & 0xFF;
+    BG3VOFS = (BG3_Y_POS >> 8) & 0xFF;
+}
+
 // $C0AE16
 immutable ubyte[7] DMAFlags = [ 1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6];
 
 // $C0AE34
-void UnknownC0AE34(short);
+void UnknownC0AE34(short arg1) {
+    HDMAEN_MIRROR &= UnknownC0AE44[arg1];
+}
+
+// $C0AE44
+immutable ubyte[8] UnknownC0AE44 = [0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F];
 
 // $C0AFCD
-void UnknownC0AFCD(short);
+void UnknownC0AFCD(short arg1) {
+    TM_MIRROR = UnknownC0AFF1[arg1];
+    TD_MIRROR = UnknownC0AFFC[arg1];
+    CGWSEL = UnknownC0B006[arg1];
+    CGADSUB = UnknownC0B010[arg1];
+}
+
+// $C0AFF1
+immutable ubyte[11] UnknownC0AFF1 = [0x17, 0x1F, 0x17, 0x17, 0x17, 0x17, 0x15, 0x15, 0x15, 0x15, 0x15];
+
+// $C0AFFC
+immutable ubyte[10] UnknownC0AFFC = [0x00, 0x00, 0x08, 0x08, 0x08, 0x08, 0x02, 0x02, 0x02, 0x02];
+
+// $C0B006
+immutable ubyte[10] UnknownC0B006 = [0x00, 0x00, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02];
+
+// $C0B010
+immutable ubyte[10] UnknownC0B010 = [0x00, 0x00, 0x24, 0x64, 0xA4, 0xE4, 0x21, 0x61, 0xA1, 0xE1];
 
 // $C0B01A
-void SetColData(ubyte red, ubyte green, ubyte blue);
+void SetColData(ubyte red, ubyte green, ubyte blue) {
+    FIXED_COLOUR_DATA = (red & 0x1F) | 0x20;
+    FIXED_COLOUR_DATA = (green & 0x1F) | 0x40;
+    FIXED_COLOUR_DATA = (blue & 0x1F) | 0x80;
+}
+
+// $C0B039
+void SetColourAddSubMode(ubyte cgwsel, ubyte cgadsub) {
+    CGWSEL = cgwsel;
+    CGADSUB = cgadsub;
+}
 
 // $C0B047
-void SetWindowMask(ushort, ushort);
+void SetWindowMask(ushort arg1, ushort arg2) {
+    W12SEL = UnknownC0B0A6[arg1 & 3] & ((arg2 != 0) ? 0xAA : 0xFF);
+    W34SEL = UnknownC0B0A6[(arg1>>2) & 3] & ((arg2 != 0) ? 0xAA : 0xFF);
+    WOBJSEL = UnknownC0B0A6[(arg1>>4) & 3] & ((arg2 != 0) ? 0xAA : 0xFF);
+    TMW = arg1 & 0x1F;
+    TSW = arg1 & 0x1F;
+    WBGLOG = (arg2 != 0) ? 0 : 0x55;
+    WOBJLOG = (arg2 != 0) ? 0 : 0x55;
+}
+
+// $C0B0A6
+immutable ubyte[4] UnknownC0B0A6 = [0x00, 0x0F, 0xF0, 0xFF];
 
 // $C0B0AA
 void UnknownC0B0AA() {
@@ -2129,10 +2178,25 @@ void UnknownC0B0B8(short arg1, const(ubyte)* arg2) {
 }
 
 // $C0B0EF
-void UnknownC0B0EF(short, short);
+void UnknownC0B0EF(ubyte arg1, ubyte arg2) {
+    Unknown7E3FC6[0].count = 0x64 | 0x80;
+    Unknown7E3FC6[0].ptr = &Unknown7E3FD0[0];
+    Unknown7E3FC6[1].count = 0x7C | 0x80;
+    Unknown7E3FC6[2].count = 0;
+    //DMAChannels[arg1].A1B = 0x7E;
+    //DMAChannels[arg1].DASB = 0x7E;
+    DMAChannels[arg1].BBAD = 0x26;
+    DMAChannels[arg1].DMAP = arg2;
+    Unknown7E3FC6[1].ptr = ((arg2 & 4) != 0) ? (&Unknown7E4160[0]) : (&Unknown7E4098[0]);
+    DMAChannels[arg1].A1T = &Unknown7E3FC6;
+    HDMAEN_MIRROR |= DMAFlags[arg1];
+}
 
-// $C0B0EF
+// $C0B149
 void UnknownC0B149(ushort, ushort, short, short);
+
+// $C0B425
+immutable byte[256] SineLookupTable = [0, 3, 6, 9, 12, 15, 18, 21, 24, 28, 31, 34, 37, 40, 43, 46, 48, 51, 54, 57, 60, 63, 65, 68, 71, 73, 76, 78, 81, 83, 85, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 109, 111, 112, 114, 115, 117, 118, 119, 120, 121, 122, 123, 124, 124, 125, 126, 126, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 126, 126, 125, 124, 124, 123, 122, 121, 120, 119, 118, 117, 115, 114, 112, 111, 109, 108, 106, 104, 102, 100, 98, 96, 94, 92, 90, 88, 85, 83, 81, 78, 76, 73, 71, 68, 65, 63, 60, 57, 54, 51, 48, 46, 43, 40, 37, 34, 31, 28, 24, 21, 18, 15, 12, 9, 6, 3, 0, -3, -6, -9, -12, -15, -18, -21, -24, -28, -31, -34, -37, -40, -43, -46, -48, -51, -54, -57, -60, -63, -65, -68, -71, -73, -76, -78, -81, -83, -85, -88, -90, -92, -94, -96, -98, -100, -102, -104, -106, -108, -109, -111, -112, -114, -115, -117, -118, -119, -120, -121, -122, -123, -124, -124, -125, -126, -126, -127, -127, -127, -127, -127, -127, -127, -127, -127, -127, -127, -126, -126, -125, -124, -124, -123, -122, -121, -120, -119, -118, -117, -115, -114, -112, -111, -109, -108, -106, -104, -102, -100, -98, -96, -94, -92, -90, -88, -85, -83, -81, -78, -76, -73, -71, -68, -65, -63, -60, -57, -54, -51, -48, -46, -43, -40, -37, -34, -31, -28, -24, -21, -18, -15, -12, -9, -6, -3];
 
 // $C0B525
 void FileSelectInit() {
@@ -2173,7 +2237,14 @@ void FileSelectInit() {
 }
 
 // $C0B65F
-void UnknownC0B65F(short);
+void UnknownC0B65F(short arg1, short arg2) {
+    gameState.leaderX.integer = arg1;
+    gameState.leaderY.integer = arg2;
+    gameState.leaderDirection = 2;
+    gameState.partyMembers[0] = 1;
+    EntityScreenXTable[24] = arg1;
+    EntityScreenYTable[24] = arg2;
+}
 
 // $C0B67F
 void UnknownC0B67F() {

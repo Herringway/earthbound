@@ -4026,6 +4026,11 @@ struct DMATableEntry {
 	ubyte unknown2;
 }
 
+struct HDMATableEntry {
+	ubyte count;
+	const(ubyte)* ptr;
+}
+
 struct SRAM {
 	SaveBlock[6] saves;
 	ubyte[0x1FE] unknown;

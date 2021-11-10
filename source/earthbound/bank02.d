@@ -270,6 +270,9 @@ void UnknownC207B6(short arg1) {
 	Unknown7E9649 = 1;
 }
 
+// $C207E1
+void UndrawHPPPWindow(short);
+
 // $C2087C
 void UnknownC2087C() {
 	if (Unknown7E89C9 != 0) {
@@ -2187,6 +2190,19 @@ void RecoverHP(Battler* battler, short amount) {
 	}
 }
 
+// $C27318
+void RecoverPP(Battler* battler, short amount) {
+	if (battler.consciousness != 1) {
+		return;
+	}
+	if (battler.afflictions[0] == Status0.Unconscious) {
+		return;
+	}
+	short x16 = (battler.ppTarget + amount >= battler.ppMax) ? cast(short)(battler.ppMax - battler.ppTarget) : amount;
+	SetPP(battler, cast(short)(battler.ppTarget + amount));
+	DisplayTextWait(TextBattleRecoveredPP, x16);
+}
+
 // $C27397
 void ReviveTarget(Battler*, short);
 
@@ -2562,6 +2578,36 @@ void BattleActionFreezeTime() {
 	BattlerTargetFlags = 0;
 }
 
+// $C289CE
+void BattleActionDiamondize();
+
+// $C28A92
+void BattleActionParalyze();
+
+// $C28AEB
+void BattleActionNauseate();
+
+// $C28B2C
+void BattleActionPoison();
+
+// $C28B6D
+void BattleActionCold();
+
+// $C28BBE
+void BattleActionMushroomize();
+
+// $C28BFD
+void BattleActionPossess();
+
+// $C28C69
+void BattleActionCrying();
+
+// $C28CB8
+void BattleActionImmobilize();
+
+// $C28CF1
+void BattleActionSolidify();
+
 // $C28D3A
 void BattleActionBrainshockAlphaCopy() {
 	BattleActionBrainshockAlpha();
@@ -2574,6 +2620,35 @@ short SuccessLuck40() {
 	}
 	return 1;
 }
+
+// $C28D5A
+void BattleActionDistract();
+
+// $C28D8B
+void BattleActionFeelStrange();
+
+// $C28DFC
+void BattleActionCrying2();
+
+// $C28E3B
+void BattleActionHypnosisAlphaCopy() {
+	BattleActionHypnosisAlpha();
+}
+
+// $C28E42
+void BattleActionReducePP();
+
+// $C28EAE
+void BattleActionCutGuts();
+
+// $C28F21
+void BattleActionReduceOffenseDefense();
+
+// $C28F97
+void BattleActionLevel2AttackPoison();
+
+// $C28FF9
+void BattleActionDoubleBash();
 
 // $C2900B
 void BattleAction350FireDamage() {
@@ -2704,6 +2779,18 @@ void BattleActionLevel2AttackDiamondize() {
 		DisplayInBattleText(TextBattleDodged);
 	}
 }
+
+// $C29254
+void BattleActionReduceOffense();
+
+// $C29254
+void BattleActionClumsyRobotDeath();
+
+// $C292EB
+void BattleActionEnemyExtend() {}
+
+// $C292EE
+void BattleActionMasterBarfDeath();
 
 // $C2941D
 short PSIShieldNullify() {
@@ -3168,6 +3255,48 @@ void BattleActionPSIShieldOmega() {
 	BattleActionPSIShieldBeta();
 }
 
+// $C29E38
+void BattleActionOffenseUpAlpha();
+
+// $C29E7F
+void BattleActionOffenseUpOmega() {
+	BattleActionOffenseUpAlpha();
+}
+
+// $C29F06
+void BattleActionHypnosisAlpha();
+
+// $C29F57
+void BattleActionHypnosisOmega() {
+	BattleActionHypnosisAlpha();
+}
+
+// $C29E86
+void BattleActionDefenseDownAlpha();
+
+// $C29EFF
+void BattleActionDefenseDownOmega() {
+	BattleActionDefenseDownAlpha();
+}
+
+// $C29F5E
+void BattleActionPSIMagnetAlpha();
+
+// $C29FE1
+void BattleActionPSIMagnetOmega() {
+	if ((currentTarget.allyOrEnemy != 0) || (currentTarget.id != 3)) {
+		BattleActionPSIMagnetAlpha();
+	}
+}
+
+// $C29FFE
+void BattleActionParalysisAlpha();
+
+// $C2A04F
+void BattleActionParalysisOmega() {
+	BattleActionParalysisAlpha();
+}
+
 // $C2A056
 void BattleActionBrainshockAlpha() {
 	if (FailAttackOnNPCs() != 0) {
@@ -3200,10 +3329,38 @@ void BattleActionHPRecovery200() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(200));
 }
 
+// $C2A0DF
+void BattleActionPPRecovery20() {
+	RecoverPP(currentTarget, TwentyFivePercentVariance(20));
+}
+
+// $C2A0EF
+void BattleActionPPRecovery80() {
+	RecoverPP(currentTarget, TwentyFivePercentVariance(80));
+}
+
+// $C2A0FF
+void BattleActionIQUp1d4();
+
+// $C2A14B
+void BattleActionGutsUp1d4();
+
+// $C2A193
+void BattleActionSpeedUp1d4();
+
+// $C2A1DB
+void BattleActionVitalityUp1d4();
+
+// $C2A227
+void BattleActionLuckUp1d4();
+
 // $C2A26F
 void BattleActionHPRecovery300() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(300));
 }
+
+// $C2A27F
+void BattleActionRandomStatUp1d4();
 
 // $C2A360
 void BattleActionHPRecovery10() {
@@ -3224,6 +3381,9 @@ void BattleActionHPRecovery10000() {
 	}
 }
 
+// $C2A3D1
+void BattleActionCounterPSI();
+
 // $C2A39D
 void HealPoison() {
 	if (currentTarget.afflictions[0] == Status0.Poisoned) {
@@ -3232,8 +3392,59 @@ void HealPoison() {
 	}
 }
 
+// $C2A422
+void BattleActionShieldKiller();
+
+// $C2A46B
+void BattleActionHPSucker();
+
+// $C2A507
+void BattleActionHungryHPSucker() {
+	BattleActionHPSucker();
+}
+
+// $C2A50E
+void BattleActionMummyWrap();
+
+// $C2A57A
+void BottleRocketCommon(short);
+
+// $C2A5D1
+void BattleActionBottleRocket() {
+	BottleRocketCommon(1);
+}
+
+// $C2A5DA
+void BattleActionBigBottleRocket() {
+	BottleRocketCommon(5);
+}
+
+// $C2A5E3
+void BattleActionMultiBottleRocket() {
+	BottleRocketCommon(20);
+}
+
+// $C2A5EC
+void BattleActionHandbagStrap();
+
+// $C2A658
+void BombCommon(short);
+
+// $C2A818
+void BattleActionBomb() {
+	BombCommon(90);
+}
+
+// $C2A821
+void BattleActionSuperBomb() {
+	BombCommon(270);
+}
+
 // $C2A86B
 void BattleActionYogurtDispenser();
+
+// $C2A89D
+void BattleActionSnake();
 
 // $C2A99C
 void BattleActionBagOfDragonite();
@@ -3276,8 +3487,22 @@ void BattleActionRustPromoterDX() {
 	RustSprayCommon(400);
 }
 
+// $C2AA7F
+void BattleActionSuddenGutsPill();
+
+// $C2AAC6
+void BattleActionDefenseSpray();
+
+// $C2AB0D
+void BattleActionDefenseShower() {
+	BattleActionDefenseSpray();
+}
+
 // $C2AB71
 void BattleActionTeleportBox();
+
+// $C2AD1B
+void BattleActionPray();
 
 // $C2AF1F
 void CopyMirrorData(Battler* arg1, Battler* arg2) {
@@ -3318,6 +3543,9 @@ void BattleActionMirror() {
 		DisplayInBattleText(TextBattleDidntTurnIntoEnemy);
 	}
 }
+
+// $C2B27D
+void EatFood();
 
 // $C2B608
 ubyte CalcPSIDamageModifiers(ubyte arg1) {
@@ -3541,6 +3769,19 @@ void UnknownC2BCB9(Battler* battler, short arg2) {
 // $C2BCE6
 void LoseHPStatus(Battler* battler, short arg2) {
 	SetHP(battler, (arg2 > battler.hpTarget) ? 0 : cast(ushort)(battler.hpTarget - arg2));
+}
+
+// $C2BD5E
+void CallForHelpCommon(short);
+
+// $C2C13C
+void BattleActionSowSeeds() {
+	CallForHelpCommon(1);
+}
+
+// $C2C145
+void BattleActionCallForHelp() {
+	CallForHelpCommon(0);
 }
 
 // $C2C14E
@@ -4056,7 +4297,133 @@ void UnknownC2DB14() {
 }
 
 // $C2DB3F
-void UnknownC2DB3F();
+void UnknownC2DB3F() {
+	if (Unknown7EADD0 != 0) {
+		Unknown7EADD2 -= 0x555;
+		if (Unknown7EADD2 > 0x6000) {
+			Unknown7EADD2 = 0x6000;
+			Unknown7EADD0 = 0;
+		}
+		UnknownC2E08E(Unknown7EADD2 >> 8);
+	}
+	if (Unknown7EADA8 != 0) {
+		if ((--Unknown7EADA8 & 2) == 0) {
+			UnknownC2E08E(-1);
+		} else {
+			UnknownC2E08E(0x100);
+		}
+	}
+	if (Unknown7EADAA != 0) {
+		palettes[0][0] = 0;
+		switch (Unknown7EADAA) {
+			case 3:
+				palettes[0][0] = 0x3E0;
+				goto case;
+			case 2:
+				UnknownC0856B(0x18);
+				break;
+			default: break;
+		}
+		if ((--Unknown7EADAA & 2) != 0) {
+			UnknownC2E08E(0);
+		} else {
+			UnknownC2E08E(0x100);
+		}
+	}
+	if (VerticalShakeDuration == 0) {
+		Unknown7EAD98 = 0;
+	} else {
+		Unknown7EAD98 = UnknownC4A591[(1 * 60) - VerticalShakeDuration];
+		if ((--VerticalShakeDuration == 0) && (VerticalShakeHoldDuration != 0)) {
+			VerticalShakeHoldDuration--;
+			VerticalShakeDuration = 10;
+		}
+	}
+	Unknown7EAD96 = 0;
+	if (WobbleDuration != 0) {
+		Unknown7EAD96 = (cast(short)(SineLookupTable[((WobbleDuration-- % 72) << 8) / 72]) * 64) / 256;
+	}
+	if (ShakeDuration != 0) {
+		switch (ShakeDuration-- & 3) {
+			case 0:
+			case 2:
+				Unknown7EAD96 = 0;
+				break;
+			case 1:
+				Unknown7EAD96 = 2;
+				break;
+			case 3:
+				Unknown7EAD96 = -2;
+				break;
+			default: break;
+		}
+	}
+	if (LoadedBGDataLayer1.Bitdepth == 2) {
+		BG1_X_POS = Unknown7EAD96;
+		BG1_Y_POS = Unknown7EAD98;
+	} else if (BattleModeFlag != 0) {
+		BG3_X_POS = Unknown7EAD96;
+		BG3_Y_POS = Unknown7EAD98;
+	}
+	if (Unknown7EAD90 != 0) {
+		Unknown7EAD90--;
+	}
+	if (BattleModeFlag != 0) {
+		UnknownC2F8F9();
+	}
+	GenerateBattleBGFrame(&LoadedBGDataLayer1, 0);
+	if (LoadedBGDataLayer2.TargetLayer != 0) {
+		GenerateBattleBGFrame(&LoadedBGDataLayer2, 1);
+	}
+	UnknownC2E6B6();
+	if (RedFlashDuration != 0) {
+		if (((--RedFlashDuration / 12) & 1) != 0) {
+			SetColData(31, 0, 4);
+			SetColourAddSubMode(0, 0x3F);
+		} else {
+			SetColData(0, 0, 0);
+			UnknownC0AFCD(Unknown7EAD8A);
+		}
+	}
+	if (GreenFlashDuration != 0) {
+		if (((--GreenFlashDuration / 12) & 1) != 0) {
+			SetColData(0, 31, 4);
+			SetColourAddSubMode(0, 0x3F);
+		} else {
+			SetColData(0, 0, 0);
+			UnknownC0AFCD(Unknown7EAD8A);
+		}
+	}
+	if (HPPPBoxBlinkDuration != 0) {
+		if (((--HPPPBoxBlinkDuration / 3) & 1) != 0) {
+			UndrawHPPPWindow(HPPPBoxBlinkTarget);
+		} else {
+			UnknownC207B6(HPPPBoxBlinkTarget);
+		}
+	}
+	UnknownC4A7B0();
+	UnknownC2FD99();
+	if ((Unknown7EADB6 != 0) && (Unknown7EADB2 != 0)) {
+		if (Unknown7EADCC < 0x3BB) {
+			Unknown7EADCC = 0;
+			Unknown7EADCE = 0xE0;
+			Unknown7EADB6 = 0;
+		} else {
+			Unknown7EADCC -= 0x3BB;
+			Unknown7EADCE += 0x3BB;
+		}
+		if ((Unknown7EADCC >> 8) < Unknown7EADB2) {
+			Unknown7EADB2 = Unknown7EADCC >> 8;
+		}
+		if ((Unknown7EADCE >> 8) > Unknown7EADB4) {
+			Unknown7EADB4 = Unknown7EADCE >> 8;
+		}
+		UnknownC2D0AC();
+	}
+}
+
+// $C2DE43
+void BattleActionSwitchWeapons();
 
 // $C2DE96
 void UnknownC2DE96() {
@@ -4065,6 +4432,12 @@ void UnknownC2DE96() {
 	memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], LoadedBGDataLayer1.Palette.sizeof);
 	memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], LoadedBGDataLayer2.Palette.sizeof);
 }
+
+// $C2E00F
+void BattleActionSwitchArmor();
+
+// $C2E08E
+void UnknownC2E08E(short);
 
 // $C2E0E7
 void UnknownC2E0E7() {
@@ -4081,6 +4454,9 @@ void UnknownC2E0E7() {
 
 // $C2E116
 void ShowPSIAnimation(short);
+
+// $C2E6B6
+void UnknownC2E6B6();
 
 // $C2E8C4
 void UnknownC2E8C4(short arg1, short arg2, short arg3) {
@@ -4360,6 +4736,9 @@ void UnknownC2F8F9() {
 
 // $C2F917
 void UnknownC2F917();
+
+// $C2FD99
+void UnknownC2FD99();
 
 // $C2FEF9
 void UnknownC2FEF9(short type) {

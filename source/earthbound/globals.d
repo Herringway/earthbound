@@ -356,6 +356,14 @@ __gshared short Unknown7E3C2E; //$3C2E
 __gshared short Unknown7E3C30; //$3C30
 __gshared short Unknown7E3C32; //$3C32
 
+
+__gshared ubyte[896] Unknown7E3C46; //$3C46
+__gshared HDMATableEntry[3] Unknown7E3FC6; //$3FC6
+
+__gshared ubyte[200] Unknown7E3FD0; //$3FD0
+__gshared ubyte[200] Unknown7E4098; //$4098
+__gshared ubyte[200] Unknown7E4160; //$4160
+
 __gshared short Debug; //$436C
 __gshared short Unknown7E436E; //$436E
 __gshared short Unknown7E4370; //$4370

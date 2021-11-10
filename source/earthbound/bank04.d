@@ -2778,6 +2778,11 @@ void UnknownC4A377() {
     LoadedBGDataLayer2.TargetLayer = 0;
 }
 
+// $C4A591
+immutable byte[61] UnknownC4A591 = [
+    0, 14, 23, 23, 12, -5, -18, -16, 0, 15, 12, -6, -14, 0, 13, 2, -11, 0, 10, -4, -7, 8, 0, -6, 7, -2, -3, 6, -5, 3, 0, -2, 3, -4, 4, -4, 4, -3, 3, -3, 3, -2, 2, -1, 0, 1, -2, 2, -1, -1, 2, -1, 0, 1, -1, -1, 1, 0, -1, 0, 1
+];
+
 // $C4A5CE
 immutable Unknown7EAECCEntry[2] UnknownC4A5CE = [
     Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
@@ -2894,7 +2899,7 @@ void UnknownC4A7B0() {
             Unknown7EAECC = null;
         }
         UnknownC0B149(Unknown7EAED0, Unknown7EAED2, (Unknown7EAED4 >> 8) & 0xFF, (Unknown7EAED6 >> 8) & 0xFF);
-        UnknownC0B0EF(3, 65);
+        UnknownC0B0EF(3, 0x41);
         SetWindowMask(Unknown7EAEC8, (Unknown7EAEC6 >> 8) & 0xFF);
         return;
     }
@@ -3295,7 +3300,7 @@ short UnknownC4D989(short arg1) {
     for (short i = 0; i < 6; i++) {
         gameState.partyMembers[i] = 0;
     }
-    UnknownC0B65F(0x1D60);
+    UnknownC0B65F(0x1D60, 0xB08);
     UnknownC03A24();
     memset(&palettes[0][0], 0, 0x200);
     OverworldInitialize();
