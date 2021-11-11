@@ -177,6 +177,9 @@ immutable ushort[2] arrC3E40A = [ 0x2451, 0x269D ];
 /// $C3E40E
 immutable ushort[4] UnknownC3E40E = [ 0x3A69, 0x3A6A, 0x3A6B, 0x3A6C ];
 
+/// $C3E416
+immutable ushort[3] BlinkingTriangleTiles = [ 0x3C14, 0x3C15, 0xBC11 ];
+
 /// $C3E450
 void UnknownC3E450();
 

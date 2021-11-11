@@ -1818,7 +1818,7 @@ void UnknownC43F77(short arg1) {
 }
 
 /// $C445E1
-void UnknownC445E1(Unknown7E96AAEntry*, const(ubyte)*);
+void UnknownC445E1(DisplayTextState*, const(ubyte)*);
 
 /// $C44963
 void UnknownC44963(short arg1) {

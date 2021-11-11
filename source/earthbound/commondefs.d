@@ -4388,10 +4388,10 @@ struct WindowConfig {
 	ushort height;
 }
 
-struct Unknown7E96AAEntry {
-	const(ubyte)* unknown0; //0
+struct DisplayTextState {
+	const(ubyte)* textptr; //0
 	ushort unknown4; //4
-	WindowTextAttributesCopy unknown6; //6
+	WindowTextAttributesCopy savedTextAttributes; //6
 }
 
 //helper funcs not in the original game

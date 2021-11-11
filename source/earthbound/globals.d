@@ -548,7 +548,7 @@ __gshared ubyte Unknown7E9696; /// $9696
 __gshared ubyte Unknown7E9697; /// $9697
 __gshared ubyte Unknown7E9698; /// $9698
 
-__gshared Unknown7E96AAEntry[10] Unknown7E96AA; /// $96AA
+__gshared DisplayTextState[10] DisplayTextStates; /// $96AA
 
 __gshared ushort Unknown7E97B8; /// $97B8
 

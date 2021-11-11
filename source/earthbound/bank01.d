@@ -67,7 +67,16 @@ void CloseFocusWindowN() {
 }
 
 /// $C1008E
-void UnknownC1008E();
+void UnknownC1008E() {
+    Unknown7E5E70 = 1;
+    while (window_tail != -1) {
+        CloseWindow(WindowStats[window_tail].window_id);
+    }
+    ClearInstaprint();
+    Win_Tick();
+    Unknown7E5E70 = 0;
+    UnknownC43F53();
+}
 
 /// $C100D6
 void UnknownC100D6(ushort arg1) {
@@ -78,8 +87,54 @@ void UnknownC100D6(ushort arg1) {
     }
 }
 
-/// $C10166
-void CC1314(short, short);
+/// $C100FE
+void UnknownC100FE(short arg1);
+
+/// $C10166 - CC [03], [13], [14] common code - halt parsing
+void CC1314(short arg1, short arg2) {
+    while (InputLockFlag) {
+        if (Debug == 0) {
+            continue;
+        }
+        if ((pad_press[0] & (PAD_B | PAD_R)) == (PAD_B | PAD_R)) {
+            InputLockFlag = 0;
+            break;
+        }
+    }
+    ClearInstaprint();
+    Win_Tick();
+    if ((arg2 == 0) && (BlinkingTriangleFlag != 0) &&(Unknown7E964B != 0)) {
+        UnknownC100FE(0);
+        return;
+    }
+    if (BlinkingTriangleFlag != 0) {
+        PauseMusic();
+    }
+    if (arg1 == 0) {
+        while ((pad_press[0] & (PAD_B | PAD_SELECT | PAD_A | PAD_L)) == 0) {
+            UnknownC12E42();
+        }
+    } else {
+        outer: while (true) {
+            CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].height + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[0]);
+            for (short i = 15; i != 0; i--) {
+                if ((pad_press[0] & (PAD_B | PAD_SELECT | PAD_A | PAD_L)) != 0) {
+                    break outer;
+                }
+                UnknownC12E42();
+            }
+            CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].height + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[1]);
+            for (short i = 10; i != 0; i--) {
+                if ((pad_press[0] & (PAD_B | PAD_SELECT | PAD_A | PAD_L)) != 0) {
+                    break outer;
+                }
+                UnknownC12E42();
+            }
+        }
+        CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].height + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[2]);
+    }
+    ResumeMusic();
+}
 
 /// $C10301
 WinStat* GetActiveWindowAddress() {
@@ -623,12 +678,12 @@ void ShowTownMap() {
 }
 
 /// $C14012
-Unknown7E96AAEntry* UnknownC14012() {
+DisplayTextState* UnknownC14012() {
     Unknown7E97B8++;
     if (Unknown7E97B8 > 10) {
         Unknown7E97B8 = 0;
     }
-    return &Unknown7E96AA[Unknown7E97B8];
+    return &DisplayTextStates[Unknown7E97B8];
 }
 
 /// $C14049
@@ -640,92 +695,92 @@ void UnknownC14049() {
 }
 
 /// $C14103
-void* CC0A(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC0A(DisplayTextState* arg1, ushort arg2) {
     if ((const(ubyte)*).sizeof - 1 > CCArgumentGatheringLoopCounter) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC0A;
     }
     //original code is not portable
-    //arg1.unknown0 = cast(const(ubyte)*)((arg2 << 24) | (CCArgumentStorage[2] << 16) | (CCArgumentStorage[1] << 8) | CCArgumentStorage[0]);
-    arg1.unknown0 = cast(const(ubyte)*)
+    //arg1.textptr = cast(const(ubyte)*)((arg2 << 24) | (CCArgumentStorage[2] << 16) | (CCArgumentStorage[1] << 8) | CCArgumentStorage[0]);
+    arg1.textptr = cast(const(ubyte)*)
         ((cast(size_t)arg2 << (((const(ubyte)*).sizeof - 1) * 8)) |
         (*cast(size_t*)(&CCArgumentStorage[0])) & ~(cast(size_t)0xFF << (((const(ubyte)*).sizeof - 1) * 8)));
     return null;
 }
 
 /// $C141D0
-void* CC09(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC09(DisplayTextState* arg1, ushort arg2) {
     if ((GetWorkingMemory() != 0) && (GetWorkingMemory() < arg2)) {
-        arg1.unknown0 = cast(const(ubyte)*)&arg1.unknown0[(GetWorkingMemory() - 1) * (const(ubyte)*).sizeof];
+        arg1.textptr = cast(const(ubyte)*)&arg1.textptr[(GetWorkingMemory() - 1) * (const(ubyte)*).sizeof];
         CCArgumentGatheringLoopCounter = 0;
         return &CC09;
     } else {
-        arg1.unknown0 = cast(const(ubyte)*)&arg1.unknown0[arg2 * (const(ubyte)*).sizeof];
+        arg1.textptr = cast(const(ubyte)*)&arg1.textptr[arg2 * (const(ubyte)*).sizeof];
         return null;
     }
 }
 
 /// $C14265
-void* CC04(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC04(DisplayTextState* arg1, ushort arg2) {
     if (CCArgumentGatheringLoopCounter == 0) {
-        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.textptr[0];
         return &CC04;
     } else {
-        setEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0]), 1);
+        setEventFlag(((cast(ushort)arg1.textptr[0]) << 8) || (CCArgumentStorage[0]), 1);
         return null;
     }
 }
 
 /// $C142AD - [05 XX XX] clear flag
-void* CC05(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC05(DisplayTextState* arg1, ushort arg2) {
     if (CCArgumentGatheringLoopCounter == 0) {
-        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.textptr[0];
         return &CC05;
     } else {
-        setEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0]), 0);
+        setEventFlag(((cast(ushort)arg1.textptr[0]) << 8) || (CCArgumentStorage[0]), 0);
         return null;
     }
 }
 
 /// $C142F5 - [06 XX XX ptr] - jump if flag set
-void* CC06(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC06(DisplayTextState* arg1, ushort arg2) {
     if (CCArgumentGatheringLoopCounter == 0) {
-        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.textptr[0];
         return &CC06;
-    } else if (getEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0])) != 0) {
+    } else if (getEventFlag(((cast(ushort)arg1.textptr[0]) << 8) || (CCArgumentStorage[0])) != 0) {
         CCArgumentGatheringLoopCounter = 0;
         return &CC0A;
     } else {
-        arg1.unknown0 += 4;
+        arg1.textptr += 4;
         return null;
     }
 }
 
 /// $C1435F - [07 XX XX] get event flag
-void* CC07(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC07(DisplayTextState* arg1, ushort arg2) {
     if (CCArgumentGatheringLoopCounter == 0) {
-        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.textptr[0];
         return &CC07;
     } else {
-        SetWorkingMemory(getEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0])));
+        SetWorkingMemory(getEventFlag(((cast(ushort)arg1.textptr[0]) << 8) || (CCArgumentStorage[0])));
         return null;
     }
 }
 
 /// $C143C2 - [18 01 XX] open window
-void* CC1801(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC1801(DisplayTextState* arg1, ushort arg2) {
     CreateWindowN(arg2);
     return null;
 }
 
 /// $C143CC - [18 03 XX] switch to window
-void* CC1803(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC1803(DisplayTextState* arg1, ushort arg2) {
     SetWindowFocus(arg2);
     return null;
 }
 
 /// $C143D6 - [08 ptr] call
-void* CC08(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC08(DisplayTextState* arg1, ushort arg2) {
     if ((const(ubyte)*).sizeof - 1 > CCArgumentGatheringLoopCounter) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC08;
@@ -739,7 +794,7 @@ void* CC08(Unknown7E96AAEntry* arg1, ushort arg2) {
 }
 
 /// $C14509 - [18 05 XX YY] force text alignment
-void* CC1805(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC1805(DisplayTextState* arg1, ushort arg2) {
     if (1 > CCArgumentGatheringLoopCounter) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC1805;
@@ -753,37 +808,37 @@ void* CC1805(Unknown7E96AAEntry* arg1, ushort arg2) {
 }
 
 /// $C14558
-void* CC0B(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC0B(DisplayTextState* arg1, ushort arg2) {
     SetWorkingMemory(GetWorkingMemory() == arg2 ? 1 : 0);
     return null;
 }
 
 /// $C14591
-void* CC0C(Unknown7E96AAEntry* arg, ushort arg2) {
+void* CC0C(DisplayTextState* arg, ushort arg2) {
     SetWorkingMemory(GetWorkingMemory() != arg2 ? 1 : 0);
     return null;
 }
 
 /// $C145EF
-void* CC0D(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC0D(DisplayTextState* arg1, ushort arg2) {
     SetArgumentMemory((arg2 != 0) ? GetSecondaryMemory() : GetWorkingMemory());
     return null;
 }
 
 /// $C1461A
-void* CC0E(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC0E(DisplayTextState* arg1, ushort arg2) {
     SetSecondaryMemory(arg2 == 0 ? GetArgumentMemory() & 0xFF : arg2);
     return null;
 }
 
 /// $C14EAB
-void* CC10(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC10(DisplayTextState* arg1, ushort arg2) {
     UnknownC100D6(arg2);
     return null;
 }
 
 /// $C1528D - [18 07 XX XX XX XX YY]
-void* CC1807(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC1807(DisplayTextState* arg1, ushort arg2) {
     if (CCArgumentGatheringLoopCounter < 4) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC1807;
@@ -803,19 +858,19 @@ void* CC1807(Unknown7E96AAEntry* arg1, ushort arg2) {
 }
 
 /// $C15529 - [18 08 XX] selection menu, no cancelling
-void* CC1808(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC1808(DisplayTextState* arg1, ushort arg2) {
     SetWorkingMemory(UnknownC19A11(0, arg2));
     return null;
 }
 
 /// $C1554E - [18 09 XX] selection menu
-void* CC1809(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC1809(DisplayTextState* arg1, ushort arg2) {
     SetWorkingMemory(UnknownC19A11(1, arg2));
     return null;
 }
 
 /// $C15B46 - [18 0D XX YY] print character status info
-void* CC180D(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC180D(DisplayTextState* arg1, ushort arg2) {
     if (1 > CCArgumentGatheringLoopCounter) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC180D;
@@ -834,7 +889,7 @@ void* CC180D(Unknown7E96AAEntry* arg1, ushort arg2) {
 }
 
 /// $C1790B
-void* CC18Tree(Unknown7E96AAEntry* arg1, ushort arg2) {
+void* CC18Tree(DisplayTextState* arg1, ushort arg2) {
     switch (arg2) {
         case 0x00:
             CloseFocusWindow();
@@ -842,7 +897,7 @@ void* CC18Tree(Unknown7E96AAEntry* arg1, ushort arg2) {
         case 0x01:
             return &CC1801;
         case 0x02:
-            UnknownC20A20(&arg1.unknown6);
+            UnknownC20A20(&arg1.savedTextAttributes);
             arg1.unknown4 = 1;
             break;
         case 0x03:
@@ -874,56 +929,56 @@ void* CC18Tree(Unknown7E96AAEntry* arg1, ushort arg2) {
 }
 
 /// $C179AA
-void* CC19Tree(Unknown7E96AAEntry*, ushort);
+void* CC19Tree(DisplayTextState*, ushort);
 
 /// $C17B56
-void* CC1ATree(Unknown7E96AAEntry*, ushort);
+void* CC1ATree(DisplayTextState*, ushort);
 
 /// $C17C36
-void* CC1BTree(Unknown7E96AAEntry*, ushort);
+void* CC1BTree(DisplayTextState*, ushort);
 
 /// $C17D94
-void* CC1CTree(Unknown7E96AAEntry*, ushort);
+void* CC1CTree(DisplayTextState*, ushort);
 
 /// $C17F11
-void* CC1DTree(Unknown7E96AAEntry*, ushort);
+void* CC1DTree(DisplayTextState*, ushort);
 
 /// $C1811F
-void* CC1ETree(Unknown7E96AAEntry*, ushort);
+void* CC1ETree(DisplayTextState*, ushort);
 
 /// $C181BB
-void* CC1FTree(Unknown7E96AAEntry*, ushort);
+void* CC1FTree(DisplayTextState*, ushort);
 
 /// $C1866D
-Unknown7E96AAEntry* UnknownC1866D(Unknown7E96AAEntry* arg1, const(ubyte)* arg2) {
+DisplayTextState* UnknownC1866D(DisplayTextState* arg1, const(ubyte)* arg2) {
     if (arg1 is null) {
         return null;
     }
     arg1.unknown4 = 0;
-    arg1.unknown0 = arg2;
+    arg1.textptr = arg2;
     return arg1;
 }
 
 /// $C1869D
-void UnknownC1869D(Unknown7E96AAEntry* arg1) {
+void UnknownC1869D(DisplayTextState* arg1) {
     if (arg1 is null) {
         return;
     }
     if (arg1.unknown4 == 0) {
         return;
     }
-    UnknownC20ABC(&arg1.unknown6);
+    UnknownC20ABC(&arg1.savedTextAttributes);
 }
 
 /// $C186B1 - Call a text script (script_ptr)
 const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
-    void* function(Unknown7E96AAEntry*, ushort) x1E = null;
+    void* function(DisplayTextState*, ushort) x1E = null;
     ushort x14;
     const(ubyte)* x1A = &BattleBackRowText[12];
     if (script_ptr is null) {
         return script_ptr;
     }
-    Unknown7E96AAEntry* x12 = UnknownC1866D(UnknownC14012(), script_ptr);
+    DisplayTextState* x12 = UnknownC1866D(UnknownC14012(), script_ptr);
     if (x12 is null) {
         return null;
     }
@@ -939,8 +994,8 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
             x14 = x1A[0];
             x1A++;
         } else {
-            x14 = x12.unknown0[0];
-            x12.unknown0++;
+            x14 = x12.textptr[0];
+            x12.textptr++;
         }
         if (x1E !is null) {
             x1E = cast(typeof(x1E))x1E(x12, x14);
@@ -948,20 +1003,20 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
         }
         switch (x14) {
             case 0x15:
-                const(ubyte)* tmp = &compressedText[0][x12.unknown0[0]][0];
-                x12.unknown0++;
+                const(ubyte)* tmp = &compressedText[0][x12.textptr[0]][0];
+                x12.textptr++;
                 x14 = tmp[0];
                 tmp++;
                 break;
             case 0x16:
-                const(ubyte)* tmp = &compressedText[1][x12.unknown0[0]][0];
-                x12.unknown0++;
+                const(ubyte)* tmp = &compressedText[1][x12.textptr[0]][0];
+                x12.textptr++;
                 x14 = tmp[0];
                 tmp++;
                 break;
             case 0x17:
-                const(ubyte)* tmp = &compressedText[2][x12.unknown0[0]][0];
-                x12.unknown0++;
+                const(ubyte)* tmp = &compressedText[2][x12.textptr[0]][0];
+                x12.textptr++;
                 x14 = tmp[0];
                 tmp++;
                 break;
@@ -1067,7 +1122,7 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
     }
     UnknownC1869D(x12);
     UnknownC14049();
-    return x12.unknown0;
+    return x12.textptr;
 }
 
 /// $C18B2C
