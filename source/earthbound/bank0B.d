@@ -1,7 +1,9 @@
+///
 module earthbound.bank0B;
 
 import earthbound.commondefs;
 
+/// $CBD89A
 immutable BattleEntryBGEntry[484] BattleEntryBGTable = [
 	BattleEntryBGEntry(BattleBGLayer.NONE, BattleBGLayer.NONE), //0
 	BattleEntryBGEntry(BattleBGLayer.UNKNOWN262, BattleBGLayer.NONE), //1

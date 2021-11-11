@@ -1,3 +1,4 @@
+/// more misc things
 module earthbound.bank04;
 
 import earthbound.commondefs;
@@ -19,7 +20,7 @@ import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
 
-// $C400D4
+/// $C400D4
 immutable void*[895] EventScriptPointers = [
     null /+EVENT_0+/,
     null /+EVENT_1+/,
@@ -918,7 +919,7 @@ immutable void*[895] EventScriptPointers = [
     null /+EVENT_894+/,
 ];
 
-// $C40B51
+/// $C40B51
 void UnknownC40B51() {
     StopMusic();
     UnknownC08D79(1);
@@ -927,7 +928,7 @@ void UnknownC40B51() {
     UnknownC08726();
 }
 
-// $C40B75
+/// $C40B75
 noreturn UnknownC40B75() {
     CopyToVram(0, 0xA00, 0, &Unknown7F0000[0]);
     CopyToVram(0, 0x800, 0x4000, &Unknown7F0000[0x4000]);
@@ -937,16 +938,16 @@ noreturn UnknownC40B75() {
     while (true) {}
 }
 
-// $C40BE8
+/// $C40BE8
 immutable ubyte[512] UnknownC40BE8 = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
-// $C41A9E
+/// $C41A9E
 short Decomp(const(void)*, void*);
 
-// $C41EFF
+/// $C41EFF
 short UnknownC41EFF(short, short, short, short);
 
-// $C41FFF
+/// $C41FFF
 FixedPoint1616 UnknownC41FFF(short arg1, short arg2) {
     short a;
     if (UnknownC4205D[((arg1 >> 8) & 0xFC) >> 2] == 0x100) {
@@ -969,7 +970,7 @@ FixedPoint1616 UnknownC41FFF(short arg1, short arg2) {
     return FixedPoint1616(a2, a);
 }
 
-// $C4205D
+/// $C4205D
 immutable ushort[48] UnknownC4205D = [
     0x0000,
     0x0019,
@@ -1021,7 +1022,7 @@ immutable ushort[48] UnknownC4205D = [
     0x00FE,
 ];
 
-// $C420BD
+/// $C420BD
 immutable ushort[65] UnknownC420BD = [
     0x0100,
     0x00FE,
@@ -1090,12 +1091,12 @@ immutable ushort[65] UnknownC420BD = [
     0x0100,
 ];
 
-// $C4213F
+/// $C4213F
 short UnknownC4213F(short arg1, short arg2) {
     return cast(short)((((arg2 & 0xFF00) >> 8) * (arg1 & 0xFF)) + ((arg2 & 0xFF) * (arg1 & 0xFF) >> 8));
 }
 
-// $C426ED
+/// $C426ED
 void UnknownC426ED() {
     for (short i = 0; i != 0x200; i += 2) {
         Unknown7F0000[0x800 + i] += Unknown7F0000[0x200 + i];
@@ -1150,7 +1151,7 @@ void UnknownC426ED() {
     Unknown7E0030 = 0x18;
 }
 
-// $C429E8
+/// $C429E8
 void UnknownC429E8(short channel) {
     //segmented addressing stuff
     //DMAChannels[channel].A1B = 0x7E;
@@ -1162,7 +1163,7 @@ void UnknownC429E8(short channel) {
 
 }
 
-// $C42A1F
+/// $C42A1F
 immutable short[17] UnknownC42A1F = [
     0x0008,
     0x0008,
@@ -1183,7 +1184,7 @@ immutable short[17] UnknownC42A1F = [
     0x0020,
 ];
 
-// $C42A41
+/// $C42A41
 immutable short[17] UnknownC42A41 = [
     0x0008,
     0x0008,
@@ -1204,7 +1205,7 @@ immutable short[17] UnknownC42A41 = [
     0x0048,
 ];
 
-// $C42AEB
+/// $C42AEB
 immutable short[17] UnknownC42AEB = [
     0x000A,
     0x0000,
@@ -1225,7 +1226,7 @@ immutable short[17] UnknownC42AEB = [
     0x0041,
 ];
 
-// $C42B0D
+/// $C42B0D
 immutable UnknownC42B0DEntry[17] UnknownC42B0D = [
     UnknownC42B0DEntry(1, 0, [
             [UnknownC42B0DSubEntry(0xF8, 0x00, 0x00, 0xF8, 0x80), UnknownC42B0DSubEntry(0xF8, 0x00, 0x40, 0xF8, 0x80)],
@@ -1379,7 +1380,7 @@ immutable UnknownC42B0DEntry[17] UnknownC42B0D = [
     )
 ];
 
-// $C42F45
+/// $C42F45
 void SetPartyTickCallbacks(short leaderEntityID, void function() leaderCallback, void function() partyCallback) {
     EntityTickCallbacks[leaderEntityID] = leaderCallback;
     for (int i = 6; i > 0; i--) {
@@ -1387,7 +1388,7 @@ void SetPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
     }
 }
 
-// $C42F8C
+/// $C42F8C
 immutable ushort[88] UnknownC42F8C = [
     0x0000,
     0x0020,
@@ -1479,7 +1480,7 @@ immutable ushort[88] UnknownC42F8C = [
     0x14E0,
 ];
 
-// $C4303C
+/// $C4303C
 immutable ushort[88] UnknownC4303C = [
     0x0000,
     0x0002,
@@ -1571,7 +1572,7 @@ immutable ushort[88] UnknownC4303C = [
     0x014E,
 ];
 
-// $C430EC
+/// $C430EC
 void VelocityStore() {
     for (short i = 0; i < 14; i++) {
         horizontalMovementSpeeds[i].down.combined = 0;
@@ -1596,7 +1597,7 @@ void VelocityStore() {
     }
 }
 
-// $C432B1
+/// $C432B1
 void UnknownC432B1() {
     for (short i = 0; i < 0x1E; i++) {
         EntitySurfaceFlags[i] = 0;
@@ -1609,20 +1610,20 @@ void UnknownC432B1() {
     gameState.partyStatus = 0;
 }
 
-// $C43317
+/// $C43317
 void UnknownC43317() {
     for (short i = 0; i < 6; i++) {
         ChosenFourPtrs[i] = &PartyCharacters[i];
     }
 }
 
-// $C43568
+/// $C43568
 void UnknownC43568() {
     WaitUntilNextFrame();
     UnknownC2DB3F();
 }
 
-// $C436D7
+/// $C436D7
 void UnknownC436D7(short arg1, short arg2) {
     ushort* x0E  = &WindowStats[WindowTable[arg1]].tilemapBuffer[WindowStats[WindowTable[arg1]].width * arg2 * 2];
     for (short i = 0; i != WindowStats[WindowTable[arg1]].width * 2; i++) {
@@ -1630,7 +1631,10 @@ void UnknownC436D7(short arg1, short arg2) {
     }
 }
 
-// $C437B8
+/// $C43739
+void UnknownC43739(short arg1);
+
+/// $C437B8
 void UnknownC437B8(short arg1) {
     ushort* x14 = &WindowStats[WindowTable[arg1]].tilemapBuffer[0];
     ushort* x12 = &WindowStats[WindowTable[arg1]].tilemapBuffer[0];
@@ -1644,7 +1648,7 @@ void UnknownC437B8(short arg1) {
     UnknownC436D7(arg1, (WindowStats[WindowTable[arg1]].height / 2) - 1);
 }
 
-// $C438B1
+/// $C438B1
 void PrintNewLine() {
     if (CurrentFocusWindow == -1) {
         return;
@@ -1660,7 +1664,7 @@ void PrintNewLine() {
     WindowStats[WindowTable[CurrentFocusWindow]].text_x = 0;
 }
 
-// $C43B15 - Unknown, but looks like it resets the color of existing text in the focused window
+/// $C43B15 - Unknown, but looks like it resets the color of existing text in the focused window
 void UnknownC43B15() {
     WinStat* x12 = &WindowStats[WindowTable[CurrentFocusWindow]];
     ushort* y = &x12.tilemapBuffer[x12.width * x12.text_y * 2];
@@ -1676,19 +1680,19 @@ void UnknownC43B15() {
     }
 }
 
-// $C43874
+/// $C43874
 void UnknownC43874(short arg1, short arg2, short arg3) {
     UnknownC43CAA();
     WindowStats[WindowTable[arg1]].text_x = arg2;
     WindowStats[WindowTable[arg1]].text_y = arg3;
 }
 
-// $C438A5
+/// $C438A5
 void UnknownC438A5(short arg1, short arg2) {
     UnknownC43874(CurrentFocusWindow, arg1, arg2);
 }
 
-// $C43BB9 - Unknown, but looks like it prints optionally highlighted text
+/// $C43BB9 - Unknown, but looks like it prints optionally highlighted text
 void UnknownC43BB9(short maxLength, short highlighted, ubyte* text) {
     if (WindowTable[CurrentFocusWindow] == -1) {
         return;
@@ -1718,7 +1722,7 @@ void UnknownC43BB9(short maxLength, short highlighted, ubyte* text) {
     Unknown7E9622 = 0;
 }
 
-// $C43CAA
+/// $C43CAA
 void UnknownC43CAA() {
     if (++VWFTile > 0x33) {
         VWFTile = 0;
@@ -1730,7 +1734,7 @@ void UnknownC43CAA() {
     Unknown7E9652 = VWFX;
 }
 
-// $C43CD2 - Set text position on focused window (for menu options)
+/// $C43CD2 - Set text position on focused window (for menu options)
 void UnknownC43CD2(MenuOpt* opt, short x, short y) {
     UnknownC438A5F(x, y);
     if (opt.pixel_align != 0) {
@@ -1740,7 +1744,7 @@ void UnknownC43CD2(MenuOpt* opt, short x, short y) {
     Unknown7E5E79 = 0;
 }
 
-//$C43DDB
+/// $C43DDB
 void UnknownC43DDB(MenuOpt* menuEntry) {
     UnknownC438A5F(menuEntry.text_x, menuEntry.text_y);
     UnknownC43F77(0x2F);
@@ -1752,7 +1756,7 @@ void UnknownC43DDB(MenuOpt* menuEntry) {
 
 immutable ubyte[0x400] UnknownC43915 = [0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
-// $C43D24
+/// $C43D24
 void UnknownC43D24(ushort arg1, short arg2) {
     UnknownC438A5F(arg1, arg2);
     if (Unknown7E5E72 == 0) {
@@ -1764,20 +1768,20 @@ void UnknownC43D24(ushort arg1, short arg2) {
     Unknown7E5E72 = 0;
 }
 
-// $C43D75
+/// $C43D75
 void UnknownC43D75(ushort arg1, short arg2) {
     Unknown7E5E72 = cast(ubyte)(arg1 & 7);
     UnknownC43D24(arg1 / 8, arg2);
 }
 
-// $C43F53
+/// $C43F53
 void UnknownC43F53() {
     for (short i = 0; i < 0x20; i++) {
         Unknown7E1AD6[i] = UnknownC20958[i];
     }
 }
 
-// $C43F77
+/// $C43F77
 void UnknownC43F77(short arg1) {
     if (CurrentFocusWindow == -1) {
         return;
@@ -1813,10 +1817,10 @@ void UnknownC43F77(short arg1) {
     }
 }
 
-//$C445E1
-void UnknownC445E1(const(ubyte)**, const(ubyte)*);
+/// $C445E1
+void UnknownC445E1(Unknown7E96AAEntry*, const(ubyte)*);
 
-//$C44963
+/// $C44963
 void UnknownC44963(short arg1) {
     switch (arg1) {
         case 1:
@@ -1843,6 +1847,7 @@ void UnknownC44963(short arg1) {
     }
 }
 
+/// $C44AD7
 immutable ushort[16] UnknownC44AD7 = [
     0xFFFE,
     0xFFFD,
@@ -1862,7 +1867,7 @@ immutable ushort[16] UnknownC44AD7 = [
     0x7FFF,
 ];
 
-// $C44AF7
+/// $C44AF7
 void UnknownC44AF7(short arg1) {
     short x10 = arg1 & 0x3FF;
     if (UnknownC43915[x10] != 0) {
@@ -1871,7 +1876,7 @@ void UnknownC44AF7(short arg1) {
     Unknown7E1AD6[x10 >> 4] &= UnknownC44AD7[x10 & 0xF];
 }
 
-// $C44B3A
+/// $C44B3A
 void RenderText(short width, short sizeof_tile, const(ubyte)* gfx_data) {
     short i;
     short new_vwftile;
@@ -1918,13 +1923,13 @@ void RenderText(short width, short sizeof_tile, const(ubyte)* gfx_data) {
     }
 }
 
-// $C44E44
+/// $C44E44
 void UnknownC44E44() {
     Unknown7E9654 = 0;
     Unknown7E9652 = 0;
 }
 
-// $C44E4D
+/// $C44E4D
 void UnknownC44E4D(short arg1) {
     if ((arg1 & 0x3FF) == 0x40) {
         return;
@@ -1935,7 +1940,7 @@ void UnknownC44E4D(short arg1) {
     UnknownC44AF7(arg1);
 }
 
-// $C44FF3
+/// $C44FF3
 short UnknownC44FF3(short arg1, short fontID, ubyte* arg3) {
     short result;
     for (short i = 0; i < arg1; i++) {
@@ -1945,7 +1950,7 @@ short UnknownC44FF3(short arg1, short fontID, ubyte* arg3) {
     return result;
 }
 
-// $C4507A
+/// $C4507A
 void UnknownC4507A(uint* arg1) {
     ubyte[8] x12;
     if (CurrentFocusWindow == -1) {
@@ -1980,13 +1985,13 @@ void UnknownC4507A(uint* arg1) {
     Unknown7E5E75 = Unknown7E5E75Copy;
 }
 
-//$C45502
+/// $C45502
 immutable ubyte[13] BattleBackRowText = EBString!13("the Back Row");
 
-//$C4562F
+/// $C4562F
 immutable ubyte[8] PowersOfTwo8Bit = [1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 7];
 
-//$C45637
+/// $C45637
 ubyte FindItemInInventory(short arg1, short arg2) {
     for (int i = 0; i < 14; i++) {
         if (PartyCharacters[arg1 - 1].items[i] == arg2) {
@@ -1996,7 +2001,7 @@ ubyte FindItemInInventory(short arg1, short arg2) {
     return 0;
 }
 
-//$C45683
+/// $C45683
 ubyte FindItemInInventory2(short arg1, short arg2) {
     if (arg1 == 0xFF) {
         for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
@@ -2010,7 +2015,7 @@ ubyte FindItemInInventory2(short arg1, short arg2) {
     }
 }
 
-//$C456E4
+/// $C456E4
 short FindInventorySpace(short arg1) {
     for (short i = 0; i < 14; i++) {
         if (PartyCharacters[arg1 - 1].items[i] == 0) {
@@ -2020,7 +2025,7 @@ short FindInventorySpace(short arg1) {
     return 0;
 }
 
-//$C4577D
+/// $C4577D
 short FindInventorySpace2(short arg1) {
     if (arg1 == 0xFF) {
         for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
@@ -2034,7 +2039,7 @@ short FindInventorySpace2(short arg1) {
     }
 }
 
-//$C4577D
+/// $C4577D
 ubyte ChangeEquippedWeapon(ushort character, ubyte slot) {
     PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon] = slot;
     RecalcCharacterPostmathOffense(character);
@@ -2043,7 +2048,7 @@ ubyte ChangeEquippedWeapon(ushort character, ubyte slot) {
     return PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon];
 }
 
-//$C457CA
+/// $C457CA
 ubyte ChangeEquippedBody(ushort character, ubyte slot) {
     PartyCharacters[character - 1].equipment[EquipmentSlot.Body] = slot;
     RecalcCharacterPostmathDefense(character);
@@ -2052,7 +2057,7 @@ ubyte ChangeEquippedBody(ushort character, ubyte slot) {
     return PartyCharacters[character - 1].equipment[EquipmentSlot.Body];
 }
 
-//$C45815
+/// $C45815
 ubyte ChangeEquippedArms(ushort character, ubyte slot) {
     PartyCharacters[character - 1].equipment[EquipmentSlot.Arms] = slot;
     RecalcCharacterPostmathDefense(character);
@@ -2061,7 +2066,7 @@ ubyte ChangeEquippedArms(ushort character, ubyte slot) {
     return PartyCharacters[character - 1].equipment[EquipmentSlot.Arms];
 }
 
-//$C45860
+/// $C45860
 ubyte ChangeEquippedOther(ushort character, ubyte slot) {
     PartyCharacters[character - 1].equipment[EquipmentSlot.Other] = slot;
     RecalcCharacterPostmathDefense(character);
@@ -2103,7 +2108,7 @@ immutable ushort[7][7] StatusEquipWindowText3 = [
     [0x0004, 0x0004, 0x0004, 0x0004, 0x0000, 0x0000, 0x0000],
 ];
 
-// $C45E96
+/// $C45E96
 void UnknownC45E96() {
     while (DMATransferFlag != 0) {}
     for (short i =0; i < 0x20; i++) {
@@ -2118,12 +2123,12 @@ void UnknownC45E96() {
     UnknownC44E44();
 }
 
-// $C45F7B
+/// $C45F7B
 ubyte randMod(ubyte arg1) {
     return cast(ubyte)(rand() % (arg1 + 1));
 }
 
-// $C46028
+/// $C46028
 short UnknownC46028(short arg1) {
     for (short i = 0; i < 0x1E; i++) {
         if (EntityTPTEntrySprites[i] == arg1) {
@@ -2133,7 +2138,7 @@ short UnknownC46028(short arg1) {
     return -1;
 }
 
-// $C4608C
+/// $C4608C
 short UnknownC4608C(short arg1) {
     if (arg1 == 0) {
         return gameState.currentPartyMembers;
@@ -2146,7 +2151,7 @@ short UnknownC4608C(short arg1) {
     return -1;
 }
 
-// $C464B5
+/// $C464B5
 short CreatePreparedEntityNPC(short npcID, short actionScript) {
     short result = CreateEntity(NPCConfig[npcID].sprite, actionScript, -1, EntityPreparedXCoordinate, EntityPreparedYCoordinate);
     EntityDirections[result] = EntityPreparedDirection;
@@ -2154,14 +2159,14 @@ short CreatePreparedEntityNPC(short npcID, short actionScript) {
     return result;
 }
 
-// $C46507
+/// $C46507
 short CreatePreparedEntitySprite(short sprite, short actionScript) {
     short result = CreateEntity(sprite, actionScript, -1, EntityPreparedXCoordinate, EntityPreparedYCoordinate);
     EntityDirections[result] = EntityPreparedDirection;
     return result;
 }
 
-// $C46631
+/// $C46631
 void UnknownC46631(short arg1) {
     if (arg1 != 0xFF) {
         short a = UnknownC4608C(arg1);
@@ -2177,7 +2182,7 @@ void UnknownC46631(short arg1) {
     }
 }
 
-// $C47370
+/// $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
     UnknownC08726();
     UnknownC08D79(9);
@@ -2187,10 +2192,10 @@ void LoadBackgroundAnimation(short bg, short arg2) {
     UnknownC08744();
 }
 
-// $C474A8
+/// $C474A8
 void UnknownC474A8(short);
 
-// $C47C3F
+/// $C47C3F
 //definitely need to check this one over
 void LoadWindowGraphics() {
     Decomp(&TextWindowGraphics[0], &Unknown7F0000[0]);
@@ -2243,7 +2248,7 @@ void LoadWindowGraphics() {
     }
 }
 
-// $C47F87
+/// $C47F87
 void UnknownC47F87() {
     switch(ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
         case 0:
@@ -2261,7 +2266,7 @@ void UnknownC47F87() {
     UnknownC0856B(8);
 }
 
-// $C4800B
+/// $C4800B
 void UndrawFlyoverText() {
     SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
     UnknownC2038B();
@@ -2271,7 +2276,7 @@ void UndrawFlyoverText() {
     Unknown7E0030 = 0x18;
 }
 
-// $C48ECE
+/// $C48ECE
 short IsValidItemTransformation(short arg1) {
     if (LoadedItemTransformations[arg1].transformationCountdown != 0) {
         return 1;
@@ -2282,7 +2287,7 @@ short IsValidItemTransformation(short arg1) {
     return 0;
 }
 
-// $C48EEB
+/// $C48EEB
 void InitializeItemTransformation(short arg1) {
     if (IsValidItemTransformation(arg1) == 0) {
         Unknown7E9F2C = 0x3C;
@@ -2294,7 +2299,7 @@ void InitializeItemTransformation(short arg1) {
     LoadedItemTransformations[arg1].transformationCountdown = TimedItemTransformationTable[arg1].transformationTime;
 }
 
-// $C48F98
+/// $C48F98
 void UnknownC48F98(short arg1) {
     if (IsValidItemTransformation(arg1) == 0) {
         return;
@@ -2304,7 +2309,7 @@ void UnknownC48F98(short arg1) {
     LoadedItemTransformations[arg1].transformationCountdown = 0;
 }
 
-// $C48FC4
+/// $C48FC4
 void ProcessItemTransformations() {
     if (BattleSwirlFlag + BattleSwirlCountdown != 0) {
         return;
@@ -2337,7 +2342,7 @@ void ProcessItemTransformations() {
     }
 }
 
-// $C490EE
+/// $C490EE
 short UnknownC490EE() {
     short x04 = UnknownC46028(0x178);
     if (x04 == -1) {
@@ -2372,12 +2377,12 @@ short UnknownC490EE() {
 
 immutable ubyte*[8] FlyoverTextPointers;
 
-//$C491EE
+/// $C491EE
 ushort UnknownC491EE(ushort arg1, ushort arg2, short arg3) {
     return cast(ushort)((arg2 - arg1) / arg3);
 }
 
-//$C49209
+/// $C49209
 void UnknownC49208(short arg1) {
     ushort* buf = cast(ushort*)(&Unknown7F0000[0]);
     ushort* x06 = &buf[0x3C00];
@@ -2393,7 +2398,7 @@ void UnknownC49208(short arg1) {
     }
 }
 
-//$C492D2
+/// $C492D2
 void UnknownC492D2() {
     ushort* x12 = &palettes[2][0];
     ushort* buf = cast(ushort*)&Unknown7F0000[0];
@@ -2406,7 +2411,7 @@ void UnknownC492D2() {
     }
 }
 
-//$C49496
+/// $C49496
 ushort UnknownC49496(ushort arg1, short arg2) {
     ushort red;
     ushort green;
@@ -2432,7 +2437,7 @@ ushort UnknownC49496(ushort arg1, short arg2) {
     return cast(ushort)(((red >> 8) & 0xFF) | (((green >> 8) & 0xFF) << 5) | (((blue >> 8) & 0xFF) << 10));
 }
 
-//$C4954C
+/// $C4954C
 void UnknownC4954C(short arg1, ushort* arg2) {
     ushort* x06 = cast(ushort*)(&Unknown7F0000[0]);
     for (short i = 0; i < 0x100; i++) {
@@ -2440,7 +2445,7 @@ void UnknownC4954C(short arg1, ushort* arg2) {
     }
 }
 
-//$C4958E
+/// $C4958E
 void UnknownC4958E(short arg1, short arg2, ushort* arg3) {
     ushort* x06 = cast(ushort*)&Unknown7F0000[0];
     memset(&Unknown7F0000[0x200], 0, 0x1000);
@@ -2466,21 +2471,21 @@ void UnknownC4958E(short arg1, short arg2, ushort* arg3) {
     }
 }
 
-//$C496E7
+/// $C496E7
 void UnknownC496E7(short arg1, short arg2) {
     UnknownC4958E(arg1, arg2, &palettes[0][0]);
 }
 
-//$C496F9
+/// $C496F9
 void UnknownC496F9();
 
-//$C49740
+/// $C49740
 void UnknownC49740() {
     memcpy(palettes.ptr, Unknown7F0000.ptr, 0x200);
     UnknownC0856B(0x18);
 }
 
-//$C4984B
+/// $C4984B
 void UnknownC4984B() {
     ushort* x0E = cast(ushort*)&VWFBuffer[0][0];
     for (short i = 0x340; i != 0; i--) {
@@ -2489,7 +2494,7 @@ void UnknownC4984B() {
     }
 }
 
-//$C49875
+/// $C49875
 void UnknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData) {
     ubyte* x02 = &buf[Unknown7E9F31];
     ubyte* x12 = x02;
@@ -2520,7 +2525,7 @@ void UnknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData)
     }
 }
 
-//$C4999B
+/// $C4999B
 void UnknownC4999B(ubyte arg1) {
     arg1 = (arg1 - 0x50) & 0x7F;
     const(ubyte)* x06 = &FontConfigTable[Font.Large].graphics[arg1 * FontConfigTable[Font.Large].height];
@@ -2533,7 +2538,7 @@ void UnknownC4999B(ubyte arg1) {
     UnknownC49875(x02, FontConfigTable[Font.Large].width, &VWFBuffer[0][0], x06);
 }
 
-//$C49A56
+/// $C49A56
 void UnknownC49A56() {
     UnknownC08726();
     SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
@@ -2566,7 +2571,7 @@ void UnknownC49A56() {
     UnknownC08744();
 }
 
-//$C49B6E
+/// $C49B6E
 void UnknownC49B6E(short arg1) {
     UnknownC4984B();
     if (Unknown7E9F2D * 0x1A0 + 0x4E0 > 0x3400) {
@@ -2584,7 +2589,7 @@ void UnknownC49B6E(short arg1) {
     WaitUntilNextFrame();
 }
 
-//$C49C56
+/// $C49C56
 void UnknownC49C56(short arg1) {
     Unknown7E3C16 += arg1;
     Unknown7E3C14 = 0;
@@ -2599,13 +2604,13 @@ void UnknownC49C56(short arg1) {
     Unknown7E9F31 = 0;
 }
 
-//$C49CA8
+/// $C49CA8
 void UnknownC49CA8(ubyte arg1) {
     Unknown7E9F2F += arg1 + 8;
     Unknown7E9F31 = cast(short)((Unknown7E9F2F / 8) * 16);
 }
 
-//$C49CC3
+/// $C49CC3
 void UnknownC49CC3(ubyte arg1, short arg2) {
     ubyte* x06 = &PartyCharacters[arg1 - 1].name[0];
     for (short i = 0; (i < 5) && (x06[0] > 0x4F); i++) {
@@ -2613,13 +2618,13 @@ void UnknownC49CC3(ubyte arg1, short arg2) {
     }
 }
 
-//$C49D16
+/// $C49D16
 // seems weird, but mother 2 did make use of the other args
 void UnknownC49D16(ubyte arg1, short, short) {
     UnknownC4999B(arg1);
 }
 
-//$C49EC4
+/// $C49EC4
 void UnknownC49EC4(short id) {
     ushort x02 = EntityTickCallbackFlags[23];
     EntityTickCallbackFlags[23] |= 0xC000;
@@ -2667,7 +2672,7 @@ void UnknownC49EC4(short id) {
     }
 }
 
-// $C4A08D
+/// $C4A08D
 immutable ushort[33] DeadTargettableActions = [
     BattleActions.PSILifeupAlpha,
     BattleActions.PSILifeupBeta,
@@ -2704,7 +2709,7 @@ immutable ushort[33] DeadTargettableActions = [
     0,
 ];
 
-// $C4A228
+/// $C4A228
 void UnknownC4A228(Battler* battler, short arg2) {
     for (short i = 0; i < Unknown7EAD56; i++) {
         if (Unknown7EAD7A[i] != arg2) {
@@ -2722,7 +2727,7 @@ void UnknownC4A228(Battler* battler, short arg2) {
     }
 }
 
-// $C4A228
+/// $C4A228
 immutable uint[32] PowersOfTwo32Bit = [
     1 << 0,
     1 << 1,
@@ -2758,7 +2763,7 @@ immutable uint[32] PowersOfTwo32Bit = [
     1 << 31,
 ];
 
-// $C4A331
+/// $C4A331
 immutable ushort[22] GiygasDeathStaticTransitionDelays = [
     8 * 60,
     3 * 6,
@@ -2784,7 +2789,7 @@ immutable ushort[22] GiygasDeathStaticTransitionDelays = [
     0
 ];
 
-// $C4A35D
+/// $C4A35D
 immutable FinalGiygasPrayerNoiseEntry[13] FinalGiygasPrayerNoiseTable = [
         FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 90),
         FinalGiygasPrayerNoiseEntry(Sfx.DoorOpen, 25),
@@ -2801,7 +2806,7 @@ immutable FinalGiygasPrayerNoiseEntry[13] FinalGiygasPrayerNoiseTable = [
         FinalGiygasPrayerNoiseEntry(Sfx.DoorClose, 0),
 ];
 
-//$C4A377
+/// $C4A377
 void UnknownC4A377() {
     UnknownC08D79(3);
     SetBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
@@ -2823,36 +2828,36 @@ void UnknownC4A377() {
     LoadedBGDataLayer2.TargetLayer = 0;
 }
 
-// $C4A591
+/// $C4A591
 immutable byte[61] UnknownC4A591 = [
     0, 14, 23, 23, 12, -5, -18, -16, 0, 15, 12, -6, -14, 0, 13, 2, -11, 0, 10, -4, -7, 8, 0, -6, 7, -2, -3, 6, -5, 3, 0, -2, 3, -4, 4, -4, 4, -3, 3, -3, 3, -2, 2, -1, 0, 1, -2, 2, -1, -1, 2, -1, 0, 1, -1, -1, 1, 0, -1, 0, 1
 ];
 
-// $C4A5CE
+/// $C4A5CE
 immutable Unknown7EAECCEntry[2] UnknownC4A5CE = [
     Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
     Unknown7EAECCEntry(0),
 ];
 
-// $C4A5FA
+/// $C4A5FA
 immutable Unknown7EAECCEntry[2] UnknownC4A5FA = [
     Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
     Unknown7EAECCEntry(0),
 ];
 
-// $C4A626
+/// $C4A626
 immutable Unknown7EAECCEntry[2] UnknownC4A626 = [
     Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
     Unknown7EAECCEntry(0),
 ];
 
-// $C4A652
+/// $C4A652
 immutable Unknown7EAECCEntry[2] UnknownC4A652 = [
     Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
     Unknown7EAECCEntry(0),
 ];
 
-//$C4A67E
+/// $C4A67E
 void UnknownC4A67E(short arg1, short arg2) {
     if ((arg2 & 2) != 0) {
         Unknown7EAEC6 = 1;
@@ -2894,7 +2899,7 @@ void UnknownC4A67E(short arg1, short arg2) {
     UnknownC0B0AA();
 }
 
-//$C4A7B0
+/// $C4A7B0
 void UnknownC4A7B0() {
     if (Unknown7EAEC2 == 0) {
         return;
@@ -3013,7 +3018,7 @@ void UnknownC4A7B0() {
     UnknownC0AFCD(Unknown7EAD8A);
 }
 
-//$C4C2DE
+/// $C4C2DE
 void UnknownC4C2DE() {
     if (Unknown7E4DC4 == 0) {
         ChangeMusic(Music.YouLose);
@@ -3052,14 +3057,14 @@ void UnknownC4C2DE() {
     UnknownC0888B();
 }
 
-//$C4C45F
+/// $C4C45F
 void UnknownC4C45F(short arg1) {
     memcpy(&Unknown7F0000[0x7800], &palettes[2][0], 0xC0);
     memcpy(&Unknown7F0000[0x7800 + (arg1 << 5)], &palettes[7][0], 0x20);
     memcpy(&Unknown7F0000[0x7800 + ((arg1 - 1) << 5)], &palettes[6][0], 0x20);
 }
 
-//$C4C519
+/// $C4C519
 short UnknownC4C519(short arg1, short arg2) {
     UnknownC4C45F(arg1);
     UnknownC49208(arg2);
@@ -3075,7 +3080,7 @@ short UnknownC4C519(short arg1, short arg2) {
     return 0;
 }
 
-//$C4C567
+/// $C4C567
 short SkippablePause(short arg1) {
     while (arg1 != 0) {
         if (pad_press[0] != 0) {
@@ -3087,7 +3092,7 @@ short SkippablePause(short arg1) {
     return 0;
 }
 
-//$C4C58F
+/// $C4C58F
 void UnknownC4C58F(short arg1) {
     UnknownC4954C(0x64, &palettes[0][0]);
     UnknownC496E7(arg1, -1);
@@ -3100,7 +3105,7 @@ void UnknownC4C58F(short arg1) {
     WaitUntilNextFrame();
 }
 
-//$C4C60E
+/// $C4C60E
 void UnknownC4C60E(short arg1) {
     UnknownC496E7(arg1, -1);
     for (short i = 0; i < arg1; i++) {
@@ -3113,7 +3118,7 @@ void UnknownC4C60E(short arg1) {
     UnknownC49740();
 }
 
-//$C4C64D
+/// $C4C64D
 short UnknownC4C64D() {
     SkippablePause(0x3C);
     DisplayText(TextGameOver);
@@ -3149,7 +3154,7 @@ short UnknownC4C64D() {
     return 0;
 }
 
-//$C4C718
+/// $C4C718
 short Spawn() {
     UnknownC0943C();
     UnknownC4C2DE();
@@ -3194,12 +3199,12 @@ short Spawn() {
     return result;
 }
 
-//$C4D274
+/// $C4D274
 ubyte GetTownMapID(short x, short y) {
     return MapDataPerSectorTownMapData[y / 0x80][((x >> 8) & 0xFF)].unknown0;
 }
 
-// $C4D2A8
+/// $C4D2A8
 void UnknownC4D2A8() {
     if (Unknown7EB4B2 == 0) {
         Unknown7EB4B2 = 0xC;
@@ -3213,7 +3218,7 @@ void UnknownC4D2A8() {
     Unknown7EB4B2--;
 }
 
-// $C4D2F0
+/// $C4D2F0
 void UnknownC4D2F0() {
     switch (MapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown0 & 0x70) {
         case 0x10:
@@ -3241,7 +3246,7 @@ void UnknownC4D2F0() {
     }
 }
 
-//$C4D43F
+/// $C4D43F
 void UnknownC4D43F(short arg1) {
     Unknown7E2400 = 0;
     //not used - segmented addressing stuff
@@ -3272,7 +3277,7 @@ void UnknownC4D43F(short arg1) {
     UnknownC4D2A8();
 }
 
-//$C4D552
+/// $C4D552
 void LoadTownMapData(short arg1) {
     FadeOut(2, 1);
     Decomp(&TownMapGraphicsPointerTable[arg1][0], &Unknown7F0000[0]);
@@ -3296,7 +3301,7 @@ void LoadTownMapData(short arg1) {
     FadeIn(2, 1);
 }
 
-//$C4D681
+/// $C4D681
 short DisplayTownMap() {
     Unknown7EB4AE = 0x3C;
     Unknown7EB4B0 = 0x14;
@@ -3329,7 +3334,7 @@ short DisplayTownMap() {
     return x10;
 }
 
-//$C4D989
+/// $C4D989
 short UnknownC4D989(short arg1) {
     UnknownC0927C();
     UnknownC01A86();
@@ -3383,7 +3388,7 @@ short UnknownC4D989(short arg1) {
     return x12;
 }
 
-//$C4DAD2
+/// $C4DAD2
 void InitIntro() {
     short x02 = 0;
     Unknown7EB4B6 = 1;
@@ -3487,7 +3492,7 @@ void InitIntro() {
     Unknown7E5DD8 = 0;
 }
 
-// $C4E366 - some debugging code deleted from earthbound
+/// $C4E366 - some debugging code deleted from earthbound
 void UnknownC4E366() {
     version(JPN) {
         UnknownC4DE98();
@@ -3508,14 +3513,14 @@ void UnknownC4E366() {
     }
 }
 
-//$C4????
+/// $C4????
 void* Path_sbrk(size_t inc) {
     void *ptr = path_heap_current;
     path_heap_current = cast(byte*)path_heap_current + inc;
     return ptr;
 }
 
-//$C4????
+/// $C4????
 ushort Path_GetHeapSize() {
     return cast(ushort)(cast(byte*)path_heap_current - cast(byte*)path_heap_start);
 }
@@ -4427,7 +4432,7 @@ immutable ubyte[][169] MusicPackPointerTable = [
     cast(immutable(ubyte)[])import("audiopacks/168.spcpack"),
 ];
 
-// $C4FBBD
+/// $C4FBBD
 void ChangeMusic(short track) {
     if (track == CurrentMusicTrack) {
         return;
@@ -4460,7 +4465,7 @@ void ChangeMusic(short track) {
     UnknownC0ABBD(track);
 }
 
-// $C4FB58
+/// $C4FB58
 void InitializeSPC700() {
     CurrentSequencePack = 0xFFFF;
     CurrentPrimarySamplePack = 0xFFFF;
@@ -4471,7 +4476,7 @@ void InitializeSPC700() {
     SectorBoundaryBehaviourFlag = 1;
 }
 
-// $C4FD18
+/// $C4FD18
 void UnknownC4FD18(short arg1) {
     if (arg1 == 0) {
         LoadSPC700Data(&StereoMonoData[7]);
@@ -4480,7 +4485,7 @@ void UnknownC4FD18(short arg1) {
     }
 }
 
-// $C4FD45
+/// $C4FD45
 void SetBoundaryBehaviour(short val) {
     SectorBoundaryBehaviourFlag = val;
 }

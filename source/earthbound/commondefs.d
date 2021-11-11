@@ -1,3 +1,4 @@
+/// Misc definitions
 module earthbound.commondefs;
 
 enum MAX_ENTITIES = 30;
@@ -4385,6 +4386,12 @@ struct WindowConfig {
 	ushort y;
 	ushort width;
 	ushort height;
+}
+
+struct Unknown7E96AAEntry {
+	const(ubyte)* unknown0; //0
+	ushort unknown4; //4
+	WindowTextAttributesCopy unknown6; //6
 }
 
 //helper funcs not in the original game

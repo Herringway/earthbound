@@ -1,14 +1,15 @@
+///
 module earthbound.bank20;
 
 import earthbound.commondefs;
 
-// $E00000
+/// $E00000
 immutable ubyte[] TextWindowGraphics = cast(immutable(ubyte)[])import("graphics/text_window.gfx.lzhal");
 
-// $E00751
+/// $E00751
 immutable ubyte[] FlavouredTextGraphics = cast(immutable(ubyte)[])import("graphics/flavoured_text.gfx.lzhal");
 
-// $E01FB9
+/// $E01FB9
 immutable TextWindowPropertiesEntry[5] TextWindowProperties = [
 	TextWindowPropertiesEntry(0x00, 1),
 	TextWindowPropertiesEntry(0x40, 8),
@@ -16,7 +17,8 @@ immutable TextWindowPropertiesEntry[5] TextWindowProperties = [
 	TextWindowPropertiesEntry(0xC0, 8),
 	TextWindowPropertiesEntry(0x100, 8),
 ];
-// $E01FC8
+
+/// $E01FC8
 immutable RGB[32][6] TextWindowFlavourPalettes = [
 	[
 		RGB(0, 0, 0),
@@ -258,7 +260,7 @@ immutable RGB[32] TextWindowDeathPalette =[
 	RGB(5, 1, 5),
 ];
 
-// $E02190
+/// $E02190
 immutable ubyte[][6] TownMapGraphicsPointerTable = [
 	cast(immutable(ubyte)[])import("town_maps/0.bin.lzhal"), //onett
 	cast(immutable(ubyte)[])import("town_maps/1.bin.lzhal"), //twoson

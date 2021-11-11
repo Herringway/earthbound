@@ -1,8 +1,9 @@
+/// intro screen data, town maps, etc
 module earthbound.bank21;
 
 import earthbound.commondefs;
 
-// $E1CE08
+/// $E1CE08
 immutable SpriteMap[][9] UnknownE1CF9D = [
 	[
 		SpriteMap(0x10, 0x3052, 0x04, 0x00),
@@ -105,88 +106,88 @@ immutable SpriteMap[][9] UnknownE1CF9D = [
 	]
 ];
 
-// $E14EC1
+/// $E14EC1
 immutable ubyte[] APEArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
 
-// $E14F2A
+/// $E14F2A
 immutable ubyte[] APEGraphics = cast(immutable(ubyte)[])import("intro/logos/ape.gfx.lzhal");
 
-// $E15130
+/// $E15130
 immutable ubyte[] APEPalette = cast(immutable(ubyte)[])import("intro/logos/ape.pal.lzhal");
 
-// $E15174
+/// $E15174
 immutable ubyte[] HALKENArrangement = cast(immutable(ubyte)[])import("intro/logos/halken.arr.lzhal");
 
-// $E151E8
+/// $E151E8
 immutable ubyte[] HALKENGraphics = cast(immutable(ubyte)[])import("intro/logos/halken.gfx.lzhal");
 
-// $E153B8
+/// $E153B8
 immutable ubyte[] HALKENPalette = cast(immutable(ubyte)[])import("intro/logos/halken.pal.lzhal");
 
-// $E15455
+/// $E15455
 immutable ubyte[] NintendoArrangement = cast(immutable(ubyte)[])import("intro/logos/nintendo.arr.lzhal");
 
-// $E1549E
+/// $E1549E
 immutable ubyte[] NintendoGraphics = cast(immutable(ubyte)[])import("intro/logos/nintendo.gfx.lzhal");
 
-// $E1558F
+/// $E1558F
 immutable ubyte[] NintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
 
-// $E155D3
+/// $E155D3
 immutable ubyte[] GasStationArrangement = cast(immutable(ubyte)[])import("intro/gas_station.arr.lzhal");
 
-// $E15B33
+/// $E15B33
 immutable ubyte[] GasStationGraphics = cast(immutable(ubyte)[])import("intro/gas_station.gfx.lzhal");
 
-// $E1A9B7
+/// $E1A9B7
 immutable ubyte[] GasStationPalette = cast(immutable(ubyte)[])import("intro/gas_station.pal.lzhal");
 
-// $E1AA5D
+/// $E1AA5D
 immutable ubyte[] GasStationPalette2 = cast(immutable(ubyte)[])import("intro/gas_station2.pal.lzhal");
 
-// $E1AADF
+/// $E1AADF
 immutable ubyte[] ProducedItoiArrangement = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.arr.lzhal");
 
-// $E1AB4B
+/// $E1AB4B
 immutable ubyte[] ProducedItoiGraphics = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.gfx.lzhal");
 
-// $E1AD01
+/// $E1AD01
 immutable ubyte[] NintendoPresentationArrangement = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.arr.lzhal");
 
-// $E1AD4E
+/// $E1AD4E
 immutable ubyte[] NintendoPresentationGraphics = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.gfx.lzhal");
 
-// $E1AE6F
+/// $E1AE6F
 immutable ubyte[] NintendoItoiPalette = cast(immutable(ubyte)[])import("intro/attract/nintendo_itoi.pal.lzhal");
 
-// $E1AE7C
+/// $E1AE7C
 immutable ubyte[] UnknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
 
-// $E1AF7D
+/// $E1AF7D
 immutable ubyte[] TitleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
 
-// $E1B211
+/// $E1B211
 immutable ubyte[] TitleScreenGraphics = cast(immutable(ubyte)[])import("intro/title_screen.gfx.lzhal");
 
-// $E1C6E5
+/// $E1C6E5
 immutable ubyte[] UnknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
 
-// $E1CFAF
+/// $E1CFAF
 immutable ubyte[] UnknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
 
-// $E1D4F4
+/// $E1D4F4
 immutable ubyte[] UnknownE1D4F4 = cast(immutable(ubyte)[])import("E1D4F4.pal.lzhal");
 
-// $E1D5E8
+/// $E1D5E8
 immutable ubyte[] UnknownE1D5E8 = cast(immutable(ubyte)[])import("E1D5E8.arr.lzhal");
 
-// $E1EA50
+/// $E1EA50
 immutable ubyte[] TownMapLabelGfx = cast(immutable(ubyte)[])import("town_maps/label.gfx.lzhal");
 
-// $E1F1C3
+/// $E1F1C3
 immutable ubyte[] TownMapIconPalette = cast(immutable(ubyte)[])import("town_maps/icon.pal");
 
-// $E1F44C
+/// $E1F44C
 immutable SpriteMap[][23] UnknownE1F44C = [
 	[
 		SpriteMap(0x00, 0x320C, 0x00, 0x01),
@@ -351,10 +352,10 @@ immutable SpriteMap[][23] UnknownE1F44C = [
 	]
 ];
 
-// $E1F47A
+/// $E1F47A
 immutable ubyte[23] UnknownE1F47A = [0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
-// $E1F491
+/// $E1F491
 immutable TownMapIconPlacement[][6] TownMapIconPlacementTable = [
 	[
 		TownMapIconPlacement(0x55, 0x5B, 0x06, EventFlag.UNKNOWN_22E),

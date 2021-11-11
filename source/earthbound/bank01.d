@@ -1,3 +1,4 @@
+/// mostly text code
 module earthbound.bank01;
 
 import earthbound.commondefs;
@@ -11,12 +12,12 @@ import earthbound.bank15;
 import earthbound.bank2F;
 import earthbound.globals;
 
-// $C10000
+/// $C10000
 void UnknownC10000() {
     HideHPPPWindows();
 }
 
-// $C10004
+/// $C10004
 void UnknownC10004(ubyte* arg1) {
     UnknownC0943C();
     DisplayText(arg1);
@@ -26,22 +27,22 @@ void UnknownC10004(ubyte* arg1) {
     UnknownC09451();
 }
 
-// $C10036
+/// $C10036
 void EnableBlinkingTriangle(ushort arg1) {
     BlinkingTriangleFlag = arg1;
 }
 
-// $C1003C
+/// $C1003C
 void ClearBlinkingPrompt() {
     BlinkingTriangleFlag = 0;
 }
 
-// $C10048
+/// $C10048
 void UnknownC10048(ushort arg1) {
     Unknown7E964F = arg1;
 }
 
-// $C1004E
+/// $C1004E
 void UnknownC1004E() {
     if (Unknown7E89C9 != 0) {
         UnknownC3E450();
@@ -55,23 +56,32 @@ void UnknownC1004E() {
     WaitUntilNextFrame();
 }
 
-// $C1007E - Set the focused window
-void Win_SetFocus(short id) {
+/// $C1007E - Set the focused window
+void SetWindowFocus(short id) {
     CurrentFocusWindow = id;
 }
 
-// $C10084
+/// $C10084
 void CloseFocusWindowN() {
     CloseWindow(CurrentFocusWindow);
 }
 
-// $C1008E
+/// $C1008E
 void UnknownC1008E();
 
-// $C10166
+/// $C100D6
+void UnknownC100D6(ushort arg1) {
+    ClearInstaprint();
+    Win_Tick();
+    while (--arg1 != 0) {
+        UnknownC12E42();
+    }
+}
+
+/// $C10166
 void CC1314(short, short);
 
-// $C10301
+/// $C10301
 WinStat* GetActiveWindowAddress() {
     if (window_head == -1) {
         return &Unknown7E85FE;
@@ -79,18 +89,59 @@ WinStat* GetActiveWindowAddress() {
     return &WindowStats[WindowTable[CurrentFocusWindow]];
 }
 
-// $C1042E
-void IncrementSecondaryMemory();
+/// $C103DC
+uint GetArgumentMemory() {
+    return GetActiveWindowAddress().argument;
+}
 
-// $C1045D
-void SetWorkingMemory(uint);
+/// $C10400
+ushort GetSecondaryMemory() {
+    return GetActiveWindowAddress().counter;
+}
 
-// $C104B5
-short GetTextX();
+/// $C1040A
+uint GetWorkingMemory() {
+    return GetActiveWindowAddress().result;
+}
 
-// $C104EE
+/// $C1042E
+void IncrementSecondaryMemory() {
+    GetActiveWindowAddress().counter++;
+}
+
+/// $C10443
+ushort SetSecondaryMemory(ushort arg1) {
+    GetActiveWindowAddress().counter = arg1;
+    return arg1;
+}
+
+/// $C1045D
+uint SetWorkingMemory(uint arg1) {
+    GetActiveWindowAddress.result = arg1;
+    return arg1;
+}
+
+/// $C10489
+uint SetArgumentMemory(uint arg1) {
+    GetActiveWindowAddress.argument = arg1;
+    return arg1;
+}
+
+/// $C104B5
+short GetTextX() {
+    if (CurrentFocusWindow == -1) {
+        return 0;
+    }
+    return WindowStats[WindowTable[CurrentFocusWindow]].text_x;
+}
+
+/// $C104D8
+short GetTextY() {
+    return WindowStats[WindowTable[CurrentFocusWindow]].text_y;
+}
+
+/// $C104EE
 void CreateWindowN(short id) {
-    //x14 = id
     WinStat* x10;
     if (WindowTable[id] != -1) {
         CurrentFocusWindow = id;
@@ -166,15 +217,15 @@ void CreateWindowN(short id) {
     UnknownC07C5B();
 }
 
-// $C1078D
+/// $C1078D
 void UnknownC1078D() {
     CopyToVramAlt(0, 0x240, 0x7E40, cast(ubyte*)&Unknown7E827E[0]);
 }
 
-// $C107AF
+/// $C107AF
 void UnknownC107AF(short window_id);
 
-// $C10A04
+/// $C10A04
 void ShowHPPPWindows() {
     UnknownC3E6F8();
     Unknown7E89C9 = 1;
@@ -182,37 +233,40 @@ void ShowHPPPWindows() {
     Unknown7E9647 = -1;
 }
 
-// $C10A1D
+/// $C10A1D
 void HideHPPPWindows();
 
-// $C10BD3
-void* CC12(const(ubyte)**, ushort);
+/// $C10BD3
+void CC12() {
+    UnknownC43739(CurrentFocusWindow);
+    UnknownC438A5(0, WindowStats[WindowTable[CurrentFocusWindow]].text_y);
+}
 
-// $C10EB4
+/// $C10EB4
 void UnknownC10EB4(short);
 
-// $C10C55
+/// $C10C55
 short UnknownC10C55(uint*);
 
-// $C10C79
+/// $C10C79
 void PrintNewLineF() {
     PrintNewLine();
 }
 
-// $C10C80
+/// $C10C80
 void UnknownC10BA1F(short);
 
-// $C10C86
+/// $C10C86
 void PrintLetterF(short arg1) {
     PrintLetter(arg1);
 }
-// $C10CB6
+/// $C10CB6
 void PrintLetter(short arg1);
 
-// $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
+/// $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
 void UnknownC10D60(short tile);
 
-// $C10F40
+/// $C10F40
 void UnknownC10F40(short window) {
     if (window == -1) {
         return;
@@ -231,32 +285,32 @@ void UnknownC10F40(short window) {
     WindowStats[WindowTable[window]].text_x = 0;
 }
 
-// $C10FA3 - Clears the focused window
-void Win_ClearFocus() {
+/// $C10FA3 - Clears the focused window
+void ClearFocusWindow() {
     UnknownC10F40(CurrentFocusWindow);
 }
 
-// $C10FEA - Sets the text color for the focused window
+/// $C10FEA - Sets the text color for the focused window
 void Win_SetTextColor(short window_id);
 
-// $C1134B - Opens the HP/PP and wallet windows
+/// $C1134B - Opens the HP/PP and wallet windows
 void OpenHpAndWallet() {
     ShowHPPPWindows();
     UnknownC1AA18();
 }
 
-// $C11383
+/// $C11383
 void UnknownC11383();
 
-// $C1163C - Prints the options into the focused window
+/// $C1163C - Prints the options into the focused window
 void Win_PrintOptions();
 
-// $C118E7 - Get target X/Y window positions after menu cursor movement
-//           Returns low byte = X, high byte = Y
-//           (arguments unknown)
+/// $C118E7 - Get target X/Y window positions after menu cursor movement
+///           Returns low byte = X, high byte = Y
+///           (arguments unknown)
 ushort UnknownC118E7(short, short, short, short, short, short, short);
 
-// $C1196A - Handle menu selection on the focused window
+/// $C1196A - Handle menu selection on the focused window
 int Win_MenuSelection(int cancelable) {
     // $28 = cancelable
 
@@ -316,7 +370,7 @@ label1:
          */
         int dp1C = (dp04.field00 == 1) ? dp20+1 : dp04.field0C;
         dp24.menu_callback(cast(short)dp1C);
-        Win_SetFocus(cast(short)dp26);
+        SetWindowFocus(cast(short)dp26);
     }
 
     ClearInstaprint();
@@ -417,7 +471,7 @@ label2:
             }
 
             PlaySfx(2);
-            Win_ClearFocus(); // Clear the focused window
+            ClearFocusWindow(); // Clear the focused window
 
             dp1E = dp24.menu_page;
             if (dp1E == MenuOptions[dp04.prev].page) { // prev=field04
@@ -445,7 +499,7 @@ label2:
             if (dp22 > 60) {                  // If 60 frames have passed
                 if (WindowTable[10] == -1) { // If the wallet window is not open
                     OpenHpAndWallet();
-                    Win_SetFocus(0);
+                    SetWindowFocus(0);
                     // Funky! I didn't expect a goto back to the start here...
                     // The reason this is here is because the code path from label1 calls Win_Tick (draws the HP and wallet windows) and resets dp22.
                     // Why they didn't just do that here, I have no idea. This has the "side-effect" of acting as if the player
@@ -481,7 +535,7 @@ label3:
     goto label1; // Aaaand back to the start....
 }
 
-// $C12DD5 - Tick windows (draw windows if necessary, roll HP/PP, advance RNG, wait a frame)
+/// $C12DD5 - Tick windows (draw windows if necessary, roll HP/PP, advance RNG, wait a frame)
 void Win_Tick() {
     rand();
     if (Unknown7E968C != 0) {
@@ -512,7 +566,7 @@ void Win_Tick() {
     UnknownC1004E();
 }
 
-// $C12E42 - Looks like a "minimal" window tick function, doesn't advance RNG
+/// $C12E42 - Looks like a "minimal" window tick function, doesn't advance RNG
 void UnknownC12E42() {
     HPPPRoller();
     if (Unknown7E9649 != 0) {
@@ -524,21 +578,21 @@ void UnknownC12E42() {
     UnknownC1004E();
 }
 
-// $C12E63
+/// $C12E63
 void DebugYButtonMenu();
 
-// $C133B0
+/// $C133B0
 void OpenMenuButton();
 
-// $C13---
+/// $C13---
 void OpenMenuButtonCheckTalk();
 
-// $C10C72
+/// $C10C72
 void UnknownC438A5F(short arg1, short arg2) {
     UnknownC438A5(arg1, arg2);
 }
 
-// $C13CA1
+/// $C13CA1
 void OpenHPPPDisplay() {
     UnknownC0943C();
     PlaySfx(Sfx.Cursor1);
@@ -558,7 +612,7 @@ void OpenHPPPDisplay() {
     UnknownC09451();
 }
 
-// $C13CE5
+/// $C13CE5
 void ShowTownMap() {
     if (FindItemInInventory(0xFF, ItemID.TOWN_MAP) == 0) {
         return;
@@ -568,87 +622,308 @@ void ShowTownMap() {
     UnknownC09451();
 }
 
-// $C14012
-short UnknownC14012();
+/// $C14012
+Unknown7E96AAEntry* UnknownC14012() {
+    Unknown7E97B8++;
+    if (Unknown7E97B8 > 10) {
+        Unknown7E97B8 = 0;
+    }
+    return &Unknown7E96AA[Unknown7E97B8];
+}
 
-// $C14049
-void UnknownC14049();
+/// $C14049
+void UnknownC14049() {
+    Unknown7E97B8--;
+    if (Unknown7E97B8 > 10) {
+        Unknown7E97B8 = 9;
+    }
+}
 
-// $C14103
-void* CC0A(const(ubyte)**, ushort);
+/// $C14103
+void* CC0A(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if ((const(ubyte)*).sizeof - 1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC0A;
+    }
+    //original code is not portable
+    //arg1.unknown0 = cast(const(ubyte)*)((arg2 << 24) | (CCArgumentStorage[2] << 16) | (CCArgumentStorage[1] << 8) | CCArgumentStorage[0]);
+    arg1.unknown0 = cast(const(ubyte)*)
+        ((cast(size_t)arg2 << (((const(ubyte)*).sizeof - 1) * 8)) |
+        (*cast(size_t*)(&CCArgumentStorage[0])) & ~(cast(size_t)0xFF << (((const(ubyte)*).sizeof - 1) * 8)));
+    return null;
+}
 
-// $C141D0
-void* CC09(const(ubyte)**, ushort);
+/// $C141D0
+void* CC09(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if ((GetWorkingMemory() != 0) && (GetWorkingMemory() < arg2)) {
+        arg1.unknown0 = cast(const(ubyte)*)&arg1.unknown0[(GetWorkingMemory() - 1) * (const(ubyte)*).sizeof];
+        CCArgumentGatheringLoopCounter = 0;
+        return &CC09;
+    } else {
+        arg1.unknown0 = cast(const(ubyte)*)&arg1.unknown0[arg2 * (const(ubyte)*).sizeof];
+        return null;
+    }
+}
 
-// $C14265
-void* CC04(const(ubyte)**, ushort);
+/// $C14265
+void* CC04(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter == 0) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        return &CC04;
+    } else {
+        setEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0]), 1);
+        return null;
+    }
+}
 
-// $C142AD
-void* CC05(const(ubyte)**, ushort);
+/// $C142AD - [05 XX XX] clear flag
+void* CC05(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter == 0) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        return &CC05;
+    } else {
+        setEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0]), 0);
+        return null;
+    }
+}
 
-// $C142F5
-void* CC06(const(ubyte)**, ushort);
+/// $C142F5 - [06 XX XX ptr] - jump if flag set
+void* CC06(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter == 0) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        return &CC06;
+    } else if (getEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0])) != 0) {
+        CCArgumentGatheringLoopCounter = 0;
+        return &CC0A;
+    } else {
+        arg1.unknown0 += 4;
+        return null;
+    }
+}
 
-// $C1435F
-void* CC07(const(ubyte)**, ushort);
+/// $C1435F - [07 XX XX] get event flag
+void* CC07(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter == 0) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.unknown0[0];
+        return &CC07;
+    } else {
+        SetWorkingMemory(getEventFlag(((cast(ushort)arg1.unknown0[0]) << 8) || (CCArgumentStorage[0])));
+        return null;
+    }
+}
 
-// $C143D6
-void* CC08(const(ubyte)**, ushort);
+/// $C143C2 - [18 01 XX] open window
+void* CC1801(Unknown7E96AAEntry* arg1, ushort arg2) {
+    CreateWindowN(arg2);
+    return null;
+}
 
-// $C14558
-void* CC0B(const(ubyte)**, ushort);
+/// $C143CC - [18 03 XX] switch to window
+void* CC1803(Unknown7E96AAEntry* arg1, ushort arg2) {
+    SetWindowFocus(arg2);
+    return null;
+}
 
-// $C14591
-void* CC0C(const(ubyte)**, ushort);
+/// $C143D6 - [08 ptr] call
+void* CC08(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if ((const(ubyte)*).sizeof - 1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC08;
+    }
+    //original code is not portable
+    //DisplayText(cast(const(ubyte)*)((arg2 << 24) | (CCArgumentStorage[2] << 16) | (CCArgumentStorage[1] << 8) | CCArgumentStorage[0]));
+    DisplayText(cast(const(ubyte)*)
+        ((cast(size_t)arg2 << (((const(ubyte)*).sizeof - 1) * 8)) |
+        (*cast(size_t*)(&CCArgumentStorage[0])) & ~(cast(size_t)0xFF << (((const(ubyte)*).sizeof - 1) * 8))));
+    return null;
+}
 
-// $C145EF
-void* CC0D(const(ubyte)**, ushort);
+/// $C14509 - [18 05 XX YY] force text alignment
+void* CC1805(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1805;
+    }
+    if (Unknown7E5E71 != 0) {
+        UnknownC43D75(CCArgumentStorage[0], arg2);
+    } else {
+        UnknownC438A5(CCArgumentStorage[0], arg2);
+    }
+    return null;
+}
 
-// $C1461A
-void* CC0E(const(ubyte)**, ushort);
+/// $C14558
+void* CC0B(Unknown7E96AAEntry* arg1, ushort arg2) {
+    SetWorkingMemory(GetWorkingMemory() == arg2 ? 1 : 0);
+    return null;
+}
 
-// $C14EAB
-void* CC10(const(ubyte)**, ushort);
+/// $C14591
+void* CC0C(Unknown7E96AAEntry* arg, ushort arg2) {
+    SetWorkingMemory(GetWorkingMemory() != arg2 ? 1 : 0);
+    return null;
+}
 
-// $C1790B
-void* CC18Tree(const(ubyte)**, ushort);
+/// $C145EF
+void* CC0D(Unknown7E96AAEntry* arg1, ushort arg2) {
+    SetArgumentMemory((arg2 != 0) ? GetSecondaryMemory() : GetWorkingMemory());
+    return null;
+}
 
-// $C179AA
-void* CC19Tree(const(ubyte)**, ushort);
+/// $C1461A
+void* CC0E(Unknown7E96AAEntry* arg1, ushort arg2) {
+    SetSecondaryMemory(arg2 == 0 ? GetArgumentMemory() & 0xFF : arg2);
+    return null;
+}
 
-// $C17B56
-void* CC1ATree(const(ubyte)**, ushort);
+/// $C14EAB
+void* CC10(Unknown7E96AAEntry* arg1, ushort arg2) {
+    UnknownC100D6(arg2);
+    return null;
+}
 
-// $C17C36
-void* CC1BTree(const(ubyte)**, ushort);
+/// $C1528D - [18 07 XX XX XX XX YY]
+void* CC1807(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter < 4) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1807;
+    }
+    uint x0A = (cast(uint)CCArgumentStorage[1] << 8) | (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)CCArgumentStorage[3] << 24);
+    uint x06 = (arg2 == 0) ? GetWorkingMemory() : (arg2 == 1) ? GetArgumentMemory() : GetSecondaryMemory;
+    short tmp;
+    if (x06 < x0A) {
+        tmp = 0;
+    } else if (x06 == x0A) {
+        tmp = 1;
+    } else {
+        tmp = 2;
+    }
+    SetWorkingMemory(tmp);
+    return null;
+}
 
-// $C17D94
-void* CC1CTree(const(ubyte)**, ushort);
+/// $C15529 - [18 08 XX] selection menu, no cancelling
+void* CC1808(Unknown7E96AAEntry* arg1, ushort arg2) {
+    SetWorkingMemory(UnknownC19A11(0, arg2));
+    return null;
+}
 
-// $C17F11
-void* CC1DTree(const(ubyte)**, ushort);
+/// $C1554E - [18 09 XX] selection menu
+void* CC1809(Unknown7E96AAEntry* arg1, ushort arg2) {
+    SetWorkingMemory(UnknownC19A11(1, arg2));
+    return null;
+}
 
-// $C1811F
-void* CC1ETree(const(ubyte)**, ushort);
+/// $C15B46 - [18 0D XX YY] print character status info
+void* CC180D(Unknown7E96AAEntry* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC180D;
+    }
+    short tmp = (CCArgumentStorage[0] != 0) ? CCArgumentStorage[0] : cast(short)GetWorkingMemory();
+    switch (arg2) {
+        case 1:
+            UnknownC1952F(tmp);
+            break;
+        case 2:
+            NullC3EF23(tmp);
+            break;
+        default: break;
+    }
+    return null;
+}
 
-// $C181BB
-void* CC1FTree(const(ubyte)**, ushort);
+/// $C1790B
+void* CC18Tree(Unknown7E96AAEntry* arg1, ushort arg2) {
+    switch (arg2) {
+        case 0x00:
+            CloseFocusWindow();
+            break;
+        case 0x01:
+            return &CC1801;
+        case 0x02:
+            UnknownC20A20(&arg1.unknown6);
+            arg1.unknown4 = 1;
+            break;
+        case 0x03:
+            return &CC1803;
+        case 0x04:
+            UnknownC1008E();
+            HideHPPPWindows();
+            Win_Tick();
+            break;
+        case 0x05:
+            return &CC1805;
+        case 0x06:
+            ClearFocusWindow();
+            break;
+        case 0x07:
+            return &CC1807;
+        case 0x08:
+            return &CC1808;
+        case 0x09:
+            return &CC1809;
+        case 0x0A:
+            UnknownC1AA18();
+            break;
+        case 0x0D:
+            return &CC180D;
+        default: break;
+    }
+    return null;
+}
 
-// $C1866D
-const(ubyte)** UnknownC1866D(short, const(ubyte)*);
+/// $C179AA
+void* CC19Tree(Unknown7E96AAEntry*, ushort);
 
-// $C1869D
-void UnknownC1869D(const(ubyte)**, const(ubyte)*);
+/// $C17B56
+void* CC1ATree(Unknown7E96AAEntry*, ushort);
 
-// $C186B1 - Call a text script (script_ptr)
+/// $C17C36
+void* CC1BTree(Unknown7E96AAEntry*, ushort);
+
+/// $C17D94
+void* CC1CTree(Unknown7E96AAEntry*, ushort);
+
+/// $C17F11
+void* CC1DTree(Unknown7E96AAEntry*, ushort);
+
+/// $C1811F
+void* CC1ETree(Unknown7E96AAEntry*, ushort);
+
+/// $C181BB
+void* CC1FTree(Unknown7E96AAEntry*, ushort);
+
+/// $C1866D
+Unknown7E96AAEntry* UnknownC1866D(Unknown7E96AAEntry* arg1, const(ubyte)* arg2) {
+    if (arg1 is null) {
+        return null;
+    }
+    arg1.unknown4 = 0;
+    arg1.unknown0 = arg2;
+    return arg1;
+}
+
+/// $C1869D
+void UnknownC1869D(Unknown7E96AAEntry* arg1) {
+    if (arg1 is null) {
+        return;
+    }
+    if (arg1.unknown4 == 0) {
+        return;
+    }
+    UnknownC20ABC(&arg1.unknown6);
+}
+
+/// $C186B1 - Call a text script (script_ptr)
 const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
-    void* function(const(ubyte)**, ushort) x1E = null;
+    void* function(Unknown7E96AAEntry*, ushort) x1E = null;
     ushort x14;
     const(ubyte)* x1A = &BattleBackRowText[12];
     if (script_ptr is null) {
         return script_ptr;
     }
-    const(ubyte)** x12 = UnknownC1866D(UnknownC14012(), script_ptr);
+    Unknown7E96AAEntry* x12 = UnknownC1866D(UnknownC14012(), script_ptr);
     if (x12 is null) {
         return null;
     }
@@ -664,8 +939,8 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
             x14 = x1A[0];
             x1A++;
         } else {
-            x14 = **x12;
-            (*x12)++;
+            x14 = x12.unknown0[0];
+            x12.unknown0++;
         }
         if (x1E !is null) {
             x1E = cast(typeof(x1E))x1E(x12, x14);
@@ -673,20 +948,20 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
         }
         switch (x14) {
             case 0x15:
-                const(ubyte)* tmp = &compressedText[0][**x12][0];
-                (*x12)++;
+                const(ubyte)* tmp = &compressedText[0][x12.unknown0[0]][0];
+                x12.unknown0++;
                 x14 = tmp[0];
                 tmp++;
                 break;
             case 0x16:
-                const(ubyte)* tmp = &compressedText[1][**x12][0];
-                (*x12)++;
+                const(ubyte)* tmp = &compressedText[1][x12.unknown0[0]][0];
+                x12.unknown0++;
                 x14 = tmp[0];
                 tmp++;
                 break;
             case 0x17:
-                const(ubyte)* tmp = &compressedText[2][**x12][0];
-                (*x12)++;
+                const(ubyte)* tmp = &compressedText[2][x12.unknown0[0]][0];
+                x12.unknown0++;
                 x14 = tmp[0];
                 tmp++;
                 break;
@@ -752,7 +1027,7 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
                     UnknownC11383();
                     break;
                 case 0x12:
-                    x1E = &CC12;
+                    CC12();
                     break;
                 case 0x13:
                     CC1314(0, 0);
@@ -790,12 +1065,12 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
             PrintLetter(x14);
         }
     }
-    UnknownC1869D(x12, *x12);
+    UnknownC1869D(x12);
     UnknownC14049();
-    return *x12;
+    return x12.unknown0;
 }
 
-// $C18B2C
+/// $C18B2C
 ushort GiveItemToSpecificCharacter(ushort character, ubyte item) {
     character--;
     for (short i = 0; i < 14; i++) {
@@ -814,7 +1089,7 @@ ushort GiveItemToSpecificCharacter(ushort character, ubyte item) {
     return 0;
 }
 
-// $C18BC6
+/// $C18BC6
 ushort GiveItemToCharacter(ushort character, ubyte item) {
     if (character == 0xFF) {
         for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
@@ -829,7 +1104,7 @@ ushort GiveItemToCharacter(ushort character, ubyte item) {
     }
 }
 
-// $C18E5B
+/// $C18E5B
 ushort RemoveItemFromInventory(ushort character, ushort slot) {
     if (slot == PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon]) {
         ChangeEquippedWeapon(character, 0);
@@ -868,7 +1143,7 @@ ushort RemoveItemFromInventory(ushort character, ushort slot) {
     return character;
 }
 
-// $C18E5B
+/// $C18E5B
 ushort TakeItemFromSpecificCharacter(ushort character, ushort item) {
     for (short i = 0; 14 > i; i++) {
         if (PartyCharacters[character - 1].items[i] == item) {
@@ -877,7 +1152,8 @@ ushort TakeItemFromSpecificCharacter(ushort character, ushort item) {
     }
     return 0;
 }
-// $C18EAD
+
+/// $C18EAD
 ushort TakeItemFromCharacter(ushort character, ushort item) {
     if (character != 0xFF) {
         for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
@@ -892,28 +1168,34 @@ ushort TakeItemFromCharacter(ushort character, ushort item) {
     }
 }
 
-// $C1AA18
+/// $C1952F
+void UnknownC1952F(short);
+
+/// $C19A11
+uint UnknownC19A11(short, short);
+
+/// $C1AA18
 void UnknownC1AA18() {
     UnknownC20A20(&Unknown7E9C8A);
     CreateWindowN(Window.CarriedMoney);
     UnknownC10EB4(5);
     SetInstaprint();
-    Win_ClearFocus();
+    ClearFocusWindow();
     UnknownC4507A(&gameState.moneyCarried);
     ClearInstaprint();
     UnknownC20ABC(&Unknown7E9C8A);
 }
 
-// $C1AC4A
+/// $C1AC4A
 void UnknownC1AC4A(PartyCharacter*, short);
 
-// $C1BEC6
+/// $C1BEC6
 void GetOffBicycle();
 
-// $C1D9E9
+/// $C1D9E9
 void GainEXP(short, short, uint);
 
-// $C1DBBB
+/// $C1DBBB
 void ShowHPAlert(short arg1) {
     Battler battler;
     Battler* x02 = currentAttacker;
@@ -930,10 +1212,10 @@ void ShowHPAlert(short arg1) {
     currentAttacker = x02;
 }
 
-// $C1DC66
+/// $C1DC66
 void DisplayTextWait(const(ubyte)*, uint);
 
-// $C1DCCB
+/// $C1DCCB
 void DisplayInBattleText(const(ubyte)* ptr) {
     if ((gameState.autoFightEnable != 0) && ((pad_state[0] & PAD_B) != 0)) {
         gameState.autoFightEnable = 0;
@@ -946,52 +1228,52 @@ void DisplayInBattleText(const(ubyte)* ptr) {
     ClearBlinkingPrompt();
 }
 
-// $C1DCCB
+/// $C1DCCB
 void UnknownC1DCCB(short);
 
-// $C1DCCC
+/// $C1DCCC
 void UnknownC43573F(short);
 
-// $C1DDD3
+/// $C1DDD3
 void UnknownC3E6F8F();
 
-// $C1DD47
+/// $C1DD47
 void CreateWindow(short id) {
     CreateWindowN(id);
 }
 
-// $C1DD59
+/// $C1DD59
 void CloseFocusWindow() {
     CloseFocusWindowN();
 }
 
-// $C1DD5F
+/// $C1DD5F
 void UnknownC1DD5F();
 
-// $C1DD3B
+/// $C1DD3B
 void ShowHPPPWindowsF();
 
-// $C1DD76
+/// $C1DD76
 void UnknownC1ACA1F(ubyte*, short);
 
-// $C1DD7C
+/// $C1DD7C
 void UnknownC1ACF8F(short);
 
-// $C1DD9F
+/// $C1DD9F
 void UnknownC1DD9F(const(ubyte)*);
 
-// $C1DDC6
+/// $C1DDC6
 ushort RemoveItemFromInventoryF(ushort character, ushort id) {
     return RemoveItemFromInventory(character, id);
 }
 
-// $C1E1A5
+/// $C1E1A5
 short EnemySelectMode(short);
 
-// $C1F805
+/// $C1F805
 void FileMenuLoop();
 
-// $C1FF2C
+/// $C1FF2C
 short UnknownC1FF2C() {
     short result;
     ubyte xX = 0;
@@ -1011,7 +1293,7 @@ short UnknownC1FF2C() {
     return result;
 }
 
-// $C1FF6B
+/// $C1FF6B
 short UnknownC1FF6B() {
     Unknown7E5E6E = 0;
     Unknown7EB49D = 1;

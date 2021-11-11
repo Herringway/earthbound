@@ -1,3 +1,4 @@
+/// actionscripts, misc things
 module earthbound.bank03;
 
 import earthbound.commondefs;
@@ -15,7 +16,7 @@ import core.stdc.string;
 //$C30000
 immutable ushort[16][8] SpriteGroupPalettes;
 
-// $C30100
+/// $C30100
 void DisplayAntiPiracyScreen() {
 	UnknownC40B51();
 	Decomp(&AntiPiracyNoticeGraphics[0], &Unknown7F0000[0]);
@@ -23,7 +24,7 @@ void DisplayAntiPiracyScreen() {
 	UnknownC40B75();
 }
 
-// $C30142
+/// $C30142
 void DisplayFaultyGamepakScreen() {
 	UnknownC40B51();
 	Decomp(&FaultyGamepakGraphics[0], &Unknown7F0000[0]);
@@ -31,10 +32,10 @@ void DisplayFaultyGamepakScreen() {
 	UnknownC40B75();
 }
 
-// $C30186
+/// $C30186
 immutable NessPajamaFlag = EventFlag.NessPajamas;
 
-// $C3E012
+/// $C3E012
 immutable CharacterInitialEntityDataEntry[17] CharacterInitialEntityData = [
 	CharacterInitialEntityDataEntry(OverworldSprite.Ness, OverworldSprite.LilNess, ActionScript.Unknown002, 0x0018),
 	CharacterInitialEntityDataEntry(OverworldSprite.Paula, OverworldSprite.LilPaula, ActionScript.Unknown002, 0x0019),
@@ -55,7 +56,7 @@ immutable CharacterInitialEntityDataEntry[17] CharacterInitialEntityData = [
 	CharacterInitialEntityDataEntry(OverworldSprite.TeddyBearParty, OverworldSprite.LilTeddyBear, ActionScript.Unknown002, 0x001C),
 ];
 
-// $C3E12C
+/// $C3E12C
 immutable FixedPoint1616[14] defaultMovementSpeeds = [
 	FixedPoint1616(0x6000, 1), //NORMAL
 	FixedPoint1616(0x6000, 1), //UNKNOWN_01
@@ -89,7 +90,7 @@ immutable FixedPoint1616[14] defaultMovementSpeedsDiagonal = [
 	FixedPoint1616(0x90D0, 0), //STAIRS
 ];
 
-// $C3E12C
+/// $C3E12C
 immutable ushort[] AllowedInputDirections = [
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //NORMAL
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft, //UNKNOWN_01
@@ -107,7 +108,7 @@ immutable ushort[] AllowedInputDirections = [
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft //STAIRS
 ];
 
-// $C3E250
+/// $C3E250
 immutable WindowConfig[53] WindowConfigurationTable = [
 	WindowConfig(0x0001, 0x0001, 0x000D, 0x0008),
 	WindowConfig(0x000C, 0x0001, 0x0013, 0x0008), // Out-of-battle text
@@ -164,33 +165,38 @@ immutable WindowConfig[53] WindowConfigurationTable = [
 	WindowConfig(0x0007, 0x0009, 0x0012, 0x0012),
 ];
 
-// $C3E3F8
+/// $C3E3F8
 immutable ubyte[22] UnknownC3E3F8 = [0x08, 0x09, 0x18, 0x19, 0x0A, 0x09, 0x1A, 0x19, 0x15, 0x24, 0x16, 0x24, 0x15, 0x64, 0x41, 0x24, 0x8D, 0x26, 0x51, 0x24, 0x9D, 0x26];
 
+/// $C3E406
 immutable ushort[2] arrC3E406 = [ 0x2441, 0x268D ];
+
+/// $C3E40A
 immutable ushort[2] arrC3E40A = [ 0x2451, 0x269D ];
+
+/// $C3E40E
 immutable ushort[4] UnknownC3E40E = [ 0x3A69, 0x3A6A, 0x3A6B, 0x3A6C ];
 
-// $C3E450
+/// $C3E450
 void UnknownC3E450();
 
-// $C3E4CA - Clear the instant text print flag
+/// $C3E4CA - Clear the instant text print flag
 void ClearInstaprint() {
 	Unknown7E9622 = 0;
 }
 
-// $C3E4D4 - Set the instant text print flag
+/// $C3E4D4 - Set the instant text print flag
 void SetInstaprint() {
 	Unknown7E9622 = 1;
 }
 
-// $C3E4EF
+/// $C3E4EF
 short UnknownC3E4EF();
 
-// $C3E521
+/// $C3E521
 void CloseWindow(short);
 
-// $C3E6F8
+/// $C3E6F8
 void UnknownC3E6F8() {
 	if (BattleMenuCurrentCharacterID == -1) {
 		return;
@@ -206,7 +212,7 @@ void UnknownC3E6F8() {
 	Unknown7E9623 = 1;
 }
 
-// $C3EB1C
+/// $C3EB1C
 void UnknownC3EAD0(short arg1) {
 	for (short i = 0; TimedItemTransformationTable[i].item != 0; i++) {
 		if (arg1 != TimedItemTransformationTable[i].item) {
@@ -220,7 +226,7 @@ void UnknownC3EAD0(short arg1) {
 	}
 }
 
-// $C3EB1C
+/// $C3EB1C
 void UnknownC3EB1C(short arg1) {
 	short x14 = 0;
 	for (; (TimedItemTransformationTable[x14].sfx != 0) && (TimedItemTransformationTable[x14].item != arg1); x14++) {}
@@ -235,7 +241,7 @@ void UnknownC3EB1C(short arg1) {
 	}
 }
 
-// $C3EBCA
+/// $C3EBCA
 void UnknownC3EBCA() {
 	for (short i = 0; TimedItemTransformationTable[i].item != 0; i++) {
 		if (FindItemInInventory2(0xFF, TimedItemTransformationTable[i].item) != 0) {
@@ -246,10 +252,15 @@ void UnknownC3EBCA() {
 	}
 }
 
-// $C3EE14
+/// $C3EE14
 short UnknownC3EE14(short, short);
 
-// $C3F054
+/// $C3EF23
+void NullC3EF23(short) {
+	//do nothing
+}
+
+/// $C3F054
 immutable FontConfig[5] FontConfigTable = [
 	FontConfig(null, null, 32, 16), //main font
 	FontConfig(null, null, 32, 16), //mr saturn font
@@ -431,7 +442,7 @@ immutable ushort[8][17] PartyCharacterGraphicsTable = [
 	]
 ];
 
-// $C3F3C5
+/// $C3F3C5
 short ShowTitleScreen(short arg1) {
 	Unknown7E9F75 = arg1;
 	short x04 = 0;
@@ -521,7 +532,7 @@ short ShowTitleScreen(short arg1) {
 	return 1;
 }
 
-// $C3F819
+/// $C3F819
 immutable(Unknown7EAECCEntry)[4] UnknownC3F819 = [
 	Unknown7EAECCEntry(0x3C, 0x00, 0x0080, 0x0070, 0x9800, 0x7F00, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
 	Unknown7EAECCEntry(0x3C, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
@@ -529,7 +540,7 @@ immutable(Unknown7EAECCEntry)[4] UnknownC3F819 = [
 	Unknown7EAECCEntry(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
 ];
 
-// $C3F871
+/// $C3F871
 immutable ushort[32] UnknownC3F871 = [
 	0x0000,
 	0x0080,
@@ -569,7 +580,7 @@ immutable ushort[32] UnknownC3F871 = [
 	0x3980,
 ];
 
-// $C3F8B1
+/// $C3F8B1
 immutable ushort[32] UnknownC3F8B1 = [
 	0x0000,
 	0x0004,
@@ -611,7 +622,7 @@ immutable ushort[32] UnknownC3F8B1 = [
 	0x01CC,
 ];
 
-// $C3F8F1
+/// $C3F8F1
 immutable RGB[16][3] UnknownC3F8F1 = [
 	[
 		RGB(0, 0, 0),
@@ -667,7 +678,7 @@ immutable RGB[16][3] UnknownC3F8F1 = [
 	]
 ];
 
-// $C3FD8D
+/// $C3FD8D
 immutable ubyte*[10] AttractModeText = [
 	null /+TEXT_ATTRACT_MODE_0+/,
 	null /+TEXT_ATTRACT_MODE_1+/,
@@ -681,7 +692,7 @@ immutable ubyte*[10] AttractModeText = [
 	null /+TEXT_ATTRACT_MODE_9+/,
 ];
 
-// $C3FDBD
+/// $C3FDBD
 immutable ushort[4] UnusedForSaleSignSpriteTable = [
 	OverworldSprite.GuyInBlueClothes,
 	OverworldSprite.JamaicanGuy,
@@ -689,5 +700,5 @@ immutable ushort[4] UnusedForSaleSignSpriteTable = [
 	OverworldSprite.OldGuyWithCane,
 ];
 
-// $C3FDC5
+/// $C3FDC5
 void UnknownC3FDC5();

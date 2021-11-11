@@ -1,3 +1,4 @@
+///
 module earthbound.bank05;
 
 immutable ubyte* STORE_TEXT_WELCOME;

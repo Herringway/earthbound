@@ -1,9 +1,10 @@
+///
 module earthbound.bank15;
 
 import earthbound.commondefs;
 import earthbound.bank02;
 
-// $D55000
+/// $D55000
 immutable Item[254] ItemData = [
   Item(EBString!25("Null"), 0xFF, 2,  0x00, BattleActions.UseNoEffect, 0x00, 0x00, 0x00, 0x00, null/+TextItem000+/),
   Item(EBString!25("Franklin badge"), 0x00, 0,  ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.UseNoEffect, 0x00, 0x00, 0x00, 0x00, null/+TextItem001+/),
@@ -261,6 +262,7 @@ immutable Item[254] ItemData = [
   Item(EBString!25("Carrot key"), 0x3B, 0,  ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.UseNoEffect, 0x00, 0x00, 0x00, 0x00, null/+TextItem253+/),
 ];
 
+/// $D57880
 immutable TeleportDestination[17] PSITeleportDestinationTable = [
 	TeleportDestination(EBString!25(""), EventFlag.None, 0x0000, 0x0000),
 	TeleportDestination(EBString!25("Onett"), EventFlag.ONETT_REACHED, 0x00FD, 0x00BA),
@@ -281,7 +283,7 @@ immutable TeleportDestination[17] PSITeleportDestinationTable = [
 	TeleportDestination(EBString!25(""), EventFlag.None, 0x0000, 0x0000),
 ];
 
-// $D57B68
+/// $D57B68
 immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Nothing, 0x00, null /+ TEXT_NO_MESSAGE+/, &BattleActionNull4), //NO_EFFECT
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, null /+ TEXT_ACTION_001+/, &BattleActionNull4), //USE_NO_EFFECT
@@ -603,7 +605,7 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Other, 0x00, null /+ TEXT_ACTION_317+/, &BattleActionNull4), //WANT_BATTERY
 ];
 
-// $D58F23
+/// $D58F23
 immutable NPCAI[19] NPCAITable = [
 	NPCAI(0, 0),
 	NPCAI(0, 0),
@@ -626,7 +628,7 @@ immutable NPCAI[19] NPCAITable = [
 	NPCAI(0, 0),
 ];
 
-// $D59589
+/// $D59589
 immutable Enemy[231] EnemyConfigurationTable = [
 	Enemy(0x00, EBString!25("null"), Gender.Male, EnemyType.Normal, 0x0000, OverworldSprite.None, 0x07, 0, 0, 0, 0, ActionScript.Unknown000, null/*TEXT_BATTLE_ENEMY_ATTACKED*/, null/*TEXT_NO_MESSAGE*/, 0x00, 0, Music.None, 0, 0, 0, 0, 0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, [BattleActions.NoEffect, BattleActions.NoEffect, BattleActions.NoEffect, BattleActions.NoEffect], BattleActions.NoEffect, [0x00, 0x00, 0x00, 0x00], 0x00, 0, 0x00, 0x00, ItemID.None, InitialStatus.None, 0x00, 0x00, 0x00, 0x00),
 	Enemy(0x01, EBString!25("Insane Cultist"), Gender.Male, EnemyType.Normal, 0x003F, OverworldSprite.INSANE_CULTIST, 0x07, 94, 0, 353, 33, ActionScript.Unknown021, null/*TEXT_BATTLE_ENEMY_TRAPPED_YOU*/, null/*TEXT_BATTLE_TURNED_BACK_TO_NORMAL*/, 0x03, 13, Music.VS_CAVE_BOY, 19, 25, 8, 20, 64, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, [BattleActions.PAINT_ATTACK, BattleActions.CALL_FOR_HELP, BattleActions.PAINT_ATTACK, BattleActions.PAINT_ATTACK], BattleActions.NoEffect, [0x00, EnemyID.INSANE_CULTIST_1, 0x00, 0x00], 0x00, 3, 0x01, 0x00, ItemID.PSI_CARAMEL, InitialStatus.None, 0x00, 0x01, 0x03, 0x32),
@@ -861,7 +863,7 @@ immutable Enemy[231] EnemyConfigurationTable = [
 	Enemy(0x00, EBString!25("Clumsy Robot"), Gender.Neutral, EnemyType.Metal, 0x0047, OverworldSprite.CAPSULE, 0x07, 962, 0, 32378, 2081, ActionScript.Unknown027, null/*TEXT_BLOCK_EF7866*/, null/*TEXT_BLOCK_EF6D83*/, 0x04, 46, Music.VS_STARMAN_JR, 88, 137, 83, 30, 49, 0x02, 0x02, 0x02, 0x01, 0x02, 0x05, 0x03, [BattleActions.REEL, BattleActions.WOBBLE, BattleActions.WANT_BATTERY, BattleActions.EnemyExtender], BattleActions.RUNAWAY_FIVE_EVENT, [0x00, 0x00, 0x00, EnemyID.CLUMSY_ROBOT_1], 0x00, 3, 0x01, 0x00, ItemID.None, InitialStatus.None, 0x01, 0x01, 0x00, 0x00),
 ];
 
-// $D5F4BB
+/// $D5F4BB
 immutable TimedItemTransformation[4] TimedItemTransformationTable = [
 	TimedItemTransformation(ItemID.FreshEgg, Sfx.None, 0, ItemID.Chick, 0x32),
 	TimedItemTransformation(ItemID.Chick, Sfx.Cheep, 2, ItemID.Chicken, 0x2C),
@@ -869,7 +871,7 @@ immutable TimedItemTransformation[4] TimedItemTransformationTable = [
 	TimedItemTransformation(ItemID.None, Sfx.None, 0, ItemID.None, 0),
 ];
 
-// $D5F4CF
+/// $D5F4CF
 immutable char[6][7][7] dontCareNames = [
 	[
 		"Ness",
@@ -936,7 +938,7 @@ immutable char[6][7][7] dontCareNames = [
 	]
 ];
 
-// $D5F645
+/// $D5F645
 immutable TimedDelivery[10] TimedDeliveries = [
 	TimedDelivery(0x97, EventFlag.Unknown0B4, 0x0006, 0x000F, 0x00B4, null /+TextDelivery1+/, null /+TextDelivery1_2+/, [0x00, 0x02, 0x00, 0x02]),
 	TimedDelivery(0x87, EventFlag.Unknown0B5, 0x0006, 0x000F, 0x000A, null /+TextDelivery2+/, null /+TextDelivery2_2+/, [0x80, 0x01, 0x80, 0x01]),

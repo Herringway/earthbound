@@ -1,3 +1,4 @@
+/// snes hardware layer
 module earthbound.hardware;
 
 struct OAMEntry {

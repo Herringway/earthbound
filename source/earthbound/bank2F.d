@@ -1,3 +1,4 @@
+/// where things that don't fit elsewhere ended up, especially debugging and SRAM management
 module earthbound.bank2F;
 
 import earthbound.bank00;
@@ -17,19 +18,19 @@ import std;
 immutable ubyte[2048] t = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) >> x[0]) ^ 255)).array;
 immutable ubyte[2048] t2 = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) << x[0]) ^ 255)).array;
 
-// $EF00BB
+/// $EF00BB
 void UnknownEF00BB(ushort* arg1, short arg2, short /+unused+/) {
 	arg1[0] &= 0x3FF;
 	arg1[arg2] &= 0x3FF;
 }
 
-// $EF00E6
+/// $EF00E6
 void UnknownEF00E6(ushort* arg1, short arg2, short arg3) {
 	arg1[0] = (arg1[0] & 0x3FF) || arg3;
 	arg1[arg2] = (arg1[arg2] & 0x3FF) || arg3;
 }
 
-// $EF0115 - Clear the focused window and do something unknown?
+/// $EF0115 - Clear the focused window and do something unknown?
 void UnknownEF0115(short arg1) {
 	ushort* x10 = WindowStats[WindowTable[arg1]].tilemapBuffer;
 	ushort x0E = cast(ushort)(WindowStats[WindowTable[arg1]].height * WindowStats[WindowTable[arg1]].width);
@@ -45,7 +46,7 @@ void UnknownEF0115(short arg1) {
 	UnknownC07C5B();
 }
 
-// $EF016F
+/// $EF016F
 void UnknownEF016F() {
 	Unknown7E9684 = MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option + WindowStats[WindowTable[CurrentFocusWindow]].selected_option].text_x;
 	Unknown7E9686 = MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option + WindowStats[WindowTable[CurrentFocusWindow]].selected_option].text_y;
@@ -53,7 +54,7 @@ void UnknownEF016F() {
 	Unknown7E968A = WindowStats[WindowTable[CurrentFocusWindow]].selected_option;
 }
 
-// $EF01D2
+/// $EF01D2
 void UnknownEF01D2(short arg1) {
 	short x0E = (arg1 - 0x50) & 0x7F;
 	arg1 = FontConfigTable[0].data[x0E] + Unknown7E5E6D;
@@ -63,23 +64,23 @@ void UnknownEF01D2(short arg1) {
 	}
 }
 
-// $EF0256
+/// $EF0256
 void PauseMusic() {
 	Unknown7E9697 = 1;
 }
 
-// $EF0262
+/// $EF0262
 void UnknownEF0262() {
 	Unknown7E9695 = 1;
 }
 
-// $EF026E
+/// $EF026E
 void ResumeMusic() {
 	Unknown7E9695 = 0;
 	Unknown7E9697 = 0;
 }
 
-// $EF027D
+/// $EF027D
 void UnknownEF027D() {
 	Unknown7E9F33 = 0;
 	Unknown7E9F35 = 30;
@@ -88,7 +89,7 @@ void UnknownEF027D() {
 	PlayerPositionBuffer[ChosenFourPtrs[EntityScriptVar1Table[CurrentEntitySlot]].position_index].y_coord = gameState.leaderY.integer;
 }
 
-// $EF02C4
+/// $EF02C4
 void UnknownEF02C4(short arg1) {
 	short x0E = void;
 	if ((Unknown7E9F33 == 3) || (Unknown7E9F33 == 1)) {
@@ -160,7 +161,7 @@ void UnknownEF031E() {
 	EntitySurfaceFlags[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].tile_flags;
 }
 
-// $EF04DC
+/// $EF04DC
 short UnknownEF04DC() {
 	short x04 = 0;
 	UnknownC08726();
@@ -191,19 +192,19 @@ short UnknownEF04DC() {
 	return x02;
 }
 
-// $EF0591
+/// $EF0591
 immutable string SRAMSignature = "HAL Laboratory, inc.";
 
-// $EF05A6
+/// $EF05A6
 immutable ubyte[3] UnknownEF05A6 = [1 << 0, 1 << 1, 1 << 2];
 
-// $EF05A9
+/// $EF05A9
 void EraseSaveBlock(short id) {
 	memset(&sram.saves[id], 0, SaveBlock.sizeof);
 	memcpy(&sram.saves[id].signature[0], &SRAMSignature[0], strlen(&SRAMSignature[0]));
 }
 
-// $EF0630
+/// $EF0630
 short CheckBlockSignature(short id) {
 	if (strcmp(&SRAMSignature[0], &sram.saves[id].signature[0]) != 0) {
 		EraseSaveBlock(id);
@@ -212,19 +213,19 @@ short CheckBlockSignature(short id) {
 	return 0;
 }
 
-// $EF0683
+/// $EF0683
 void CheckAllBlocksSignature() {
 	for (short i = 0; i < 6; i++) {
 		CheckBlockSignature(i);
 	}
 }
 
-// $EF06A2
+/// $EF06A2
 void CopySaveBlock(short to, short from) {
 	memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
 }
 
-// $EF0734
+/// $EF0734
 ushort CalcSaveBlockAddChecksum(short id) {
 	ubyte* x06 = &sram.saves[id].rawData[0];
 	ushort checksum;
@@ -235,7 +236,7 @@ ushort CalcSaveBlockAddChecksum(short id) {
 	return checksum;
 }
 
-// $EF077B
+/// $EF077B
 ushort CalcSaveBlockXORChecksum(short id) {
 	ushort* x06 = cast(ushort*)&sram.saves[id].rawData[0];
 	ushort checksum;
@@ -246,7 +247,7 @@ ushort CalcSaveBlockXORChecksum(short id) {
 	return checksum;
 }
 
-// $EF07C0
+/// $EF07C0
 short ValidateSaveBlockChecksums(short id) {
 	if ((CalcSaveBlockAddChecksum(id) == sram.saves[id].checksum) && (CalcSaveBlockXORChecksum(id) == sram.saves[id].checksumComplement)) {
 		return 0;
@@ -272,7 +273,7 @@ void CheckSaveCorruption(short id) {
 	}
 }
 
-// $EF088F
+/// $EF088F
 void SaveGameBlock(short id) {
 	gameState.timer = Timer;
 	Retry:
@@ -289,13 +290,13 @@ void SaveGameBlock(short id) {
 	}
 }
 
-// $EF0A4D
+/// $EF0A4D
 void SaveGameSlot(short id) {
 	SaveGameBlock(cast(short)(id * 2));
 	SaveGameBlock(cast(short)(id * 2 + 1));
 }
 
-// $EF0A68
+/// $EF0A68
 void LoadGameSlot(short id) {
 	memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, Game_State.sizeof);
 	memcpy(&PartyCharacters[0], &sram.saves[id * 2].saveData.partyCharacters, (PartyCharacter[6]).sizeof);
@@ -303,7 +304,7 @@ void LoadGameSlot(short id) {
 	Timer = gameState.timer;
 }
 
-// $EF0B9E
+/// $EF0B9E
 void CheckSRAMIntegrity() {
 	Unknown7E9F77 = 0x493;
 	if (sram.signature != 0x493) {
@@ -317,19 +318,19 @@ void CheckSRAMIntegrity() {
 	sram.signature = Unknown7E9F77;
 }
 
-// $EF0BFA
+/// $EF0BFA
 void EraseSaveSlot(short id) {
 	EraseSaveBlock(cast(short)(id * 2));
 	EraseSaveBlock(cast(short)(id * 2 + 1));
 }
 
-// $EF0C15
+/// $EF0C15
 void CopySaveSlot(short to, short from) {
 	CopySaveBlock(cast(short)(to * 2), cast(short)(from * 2));
 	CopySaveBlock(cast(short)(to * 2 + 1), cast(short)(from * 2 + 1));
 }
 
-// $EF0C3D
+/// $EF0C3D
 void UnknownEF0C3D() {
 	LoadGameSlot(3);
 	FadeOut(1, 1);
@@ -340,17 +341,17 @@ void UnknownEF0C3D() {
 	FadeIn(1, 1);
 }
 
-// $EF0C87
+/// $EF0C87
 short UnknownEF0C87() {
 	return Unknown7EB511[EntityScriptVar0Table[CurrentEntitySlot]];
 }
 
-// $EF0C97
+/// $EF0C97
 void UnknownEF0C97() {
 	Unknown7EB511[EntityScriptVar0Table[CurrentEntitySlot]] = 0;
 }
 
-// $EF0CA7
+/// $EF0CA7
 short UnknownEF0CA7() {
 	if (TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].unknown4 == 0xFF) {
 		return 1;
@@ -362,17 +363,17 @@ short UnknownEF0CA7() {
 	return 0;
 }
 
-// $EF0D23
+/// $EF0D23
 short UnknownEF0D23() {
 	return TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].unknown6;
 }
 
-// $EF0D46
+/// $EF0D46
 void UnknownEF0D46() {
 	Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]] = TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].deliveryTime;
 }
 
-// $EF0EE8
+/// $EF0EE8
 void UnknownEF0EE8() {
 	for (short i = 0; i < 10; i++) {
 		if (getEventFlag(TimedDeliveries[i].eventFlag) == 0) {
@@ -969,7 +970,7 @@ immutable ubyte* TEXT_BLOCK_EFA2FA;
 
 __gshared SpriteGrouping*[463] SpriteGroupingPointers;
 
-// $EFA70F
+/// $EFA70F
 immutable TownMapData[32][80] MapDataPerSectorTownMapData = [
 	[
 		TownMapData(0x00, 0x00, 0x00),
@@ -3614,7 +3615,7 @@ immutable TownMapData[32][80] MapDataPerSectorTownMapData = [
 	]
 ];
 
-// $EFC50F
+/// $EFC50F
 immutable ushort[6] TownMapMapping = [
 	0x0011,
 	0x0012,
@@ -3633,7 +3634,7 @@ immutable char[14][6] DebugSoundModeMenuText = [
 	"1994/05/12\0\0\0\0",
 ];
 
-// $EFD56F
+/// $EFD56F
 void UnknownEFD56F(short arg1, short arg2, ushort arg3) {
 	ushort* x = cast(ushort*)sbrk(2 * ushort.sizeof);
 	ushort a = (arg3 >> 4);
@@ -3651,7 +3652,7 @@ void UnknownEFD56F(short arg1, short arg2, ushort arg3) {
 	CopyToVramAlt(0, 4, cast(ushort)(0x7C00 + (arg2 * 32) + arg1), cast(ubyte*)x);
 }
 
-// $EFD5D9
+/// $EFD5D9
 void UnknownEFD5D9(ushort arg1) {
 	//x02 = arg1
 	FadeOutWithMosaic(4, 1, 0);
@@ -3668,7 +3669,7 @@ void UnknownEFD5D9(ushort arg1) {
 	FadeInWithMosaic(4, 1, 0);
 }
 
-// $EFD6D4
+/// $EFD6D4
 void UnknownEFD6D4(ushort arg1) {
 	short x02 = 0;
 	Unknown7EB545 = CurrentMusicTrack;
@@ -3769,7 +3770,7 @@ void UnknownEFD6D4(ushort arg1) {
 	} while (true);
 }
 
-// $EFD8B5
+/// $EFD8B5
 immutable char[33] DebugMenuText2Line1 = "MOTHER2 ROM  1994/07/09  VERSION\0";
 immutable char[17][8] DebugMenuText2Lines = [
 	"DEBUG MENU      \0",
@@ -3782,7 +3783,7 @@ immutable char[17][8] DebugMenuText2Lines = [
 	"7 SOUND MODE    \0",
 ];
 
-// $EFD95E
+/// $EFD95E
 void UnknownEFD95E() {
 	UnknownC200D9();
 	WaitUntilNextFrame();
@@ -3804,7 +3805,7 @@ void UnknownEFD95E() {
 	Unknown7E0030 = 0x18;
 }
 
-// $EFDA05
+/// $EFDA05
 void UnknownEFDA05() {
 	UnknownC08726();
 	TM_MIRROR = 0x17;
@@ -3830,7 +3831,7 @@ void UnknownEFDA05() {
 	Unknown7E4A5A = 0;
 }
 
-// $EFDABD
+/// $EFDABD
 void UnknownEFDABD(short x, short y, const(char)* str) {
 	short x02 = 0;
 	ushort* yReg = cast(ushort*)sbrk(32 * ushort.sizeof);
@@ -3844,7 +3845,7 @@ void UnknownEFDABD(short x, short y, const(char)* str) {
 	CopyToVramAlt(0, x02, cast(ushort)(0x7C00 + y * 32 + x), cast(ubyte*)yReg);
 }
 
-// $EFDB21
+/// $EFDB21
 void DebugDisplayMenuOptions() {
 	UnknownEFDABD(0, 0, &DebugMenuText2Line1[0]);
 	UnknownEFDABD(8, 3, &DebugMenuText2Lines[0][0]);
@@ -3855,7 +3856,7 @@ void DebugDisplayMenuOptions() {
 	}
 }
 
-// $EFDB95
+/// $EFDB95
 ushort* IntegerToHexDebugTiles(short arg1) {
 	ushort* x02 = cast(ushort*)sbrk(4 * ushort.sizeof);
 	for (short i = 3; i != -1; i--) {
@@ -3871,7 +3872,7 @@ ushort* IntegerToHexDebugTiles(short arg1) {
 	return x02;
 }
 
-// $EFDBF0
+/// $EFDBF0
 ushort* IntegerToDecimalDebugTiles(short arg1) {
 	ushort* x12 = cast(ushort*)sbrk(4 * ushort.sizeof);
 	ushort x14 = 1;
@@ -3888,7 +3889,7 @@ ushort* IntegerToDecimalDebugTiles(short arg1) {
 	return x12;
 }
 
-// $EFDC69
+/// $EFDC69
 ushort* IntegerToBinaryDebugTiles(short arg1) {
 	ushort* x02 = cast(ushort*)sbrk(8 * ushort.sizeof);
 	for (short i = 0; i < 8; i++) {
@@ -3904,7 +3905,7 @@ ushort* IntegerToBinaryDebugTiles(short arg1) {
 	return x02;
 }
 
-// $EFDCBC
+/// $EFDCBC
 void DisplayCheckPositionDebugOverlay() {
 	CopyToVramAlt(0, 8, 0x7F44, cast(ubyte*)IntegerToHexDebugTiles((gameState.leaderX.integer >> 8) & 0xFF));
 	CopyToVramAlt(0, 8, 0x7F4A, cast(ubyte*)IntegerToHexDebugTiles((gameState.leaderY.integer >> 8) & 0xFF));
@@ -3917,7 +3918,7 @@ void DisplayCheckPositionDebugOverlay() {
 	CopyToVramAlt(0, 16, 0x7C82, cast(ubyte*)IntegerToBinaryDebugTiles(gameState.troddenTileType));
 }
 
-// $EFDE1A
+/// $EFDE1A
 void DisplayViewCharacterDebugOverlay() {
 	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderX.integer / 0x40));
 	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderY.integer / 0x40));
@@ -3932,7 +3933,7 @@ void DisplayViewCharacterDebugOverlay() {
 	CopyToVramAlt(0, 8, 0x7F41, cast(ubyte*)IntegerToDecimalDebugTiles(CurrentBattleGroup));
 }
 
-// $EFDF0B
+/// $EFDF0B
 ushort UnknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 	if (Unknown7EB55F == 0) {
 		if ((arg1 & 2) != 0) {
@@ -3970,7 +3971,7 @@ ushort UnknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 	return 0;
 }
 
-// $EFDFC4
+/// $EFDFC4
 void UnknownEFDFC4(ushort arg1, ushort arg2) {
 	if (DebugModeNumber != 3) {
 		return;
@@ -3989,14 +3990,14 @@ void UnknownEFDFC4(ushort arg1, ushort arg2) {
 	CopyToVram(0, 0x40, cast(ushort)(0x7C00 + arg2 * 32), cast(ubyte*)x16);
 }
 
-// $EFE133
+/// $EFE133
 void UnknownEFE133(short x, short y) {
 	for (short i = -1; i != 0x1F; i++) {
 		UnknownEFDFC4(cast(short)((x >> 3) - 16), cast(short)((y >> 3) - 14 + i));
 	}
 }
 
-// $EFE175
+/// $EFE175
 void UnknownEFE175() {
 	short x1A;
 	*(cast(ushort*)&Unknown7F0000[0]) = 0;
@@ -4144,7 +4145,7 @@ void UnknownEFE175() {
 	} while(true);
 }
 
-// $EFE5D3
+/// $EFE5D3
 void DebugProcessCommandSelection() {
 	if (Unknown7EB557 == 0) {
 		return;
@@ -4192,7 +4193,7 @@ void DebugProcessCommandSelection() {
 	FadeIn(1, 1);
 }
 
-// $EFE689
+/// $EFE689
 void DebugHandleCursorMovement() {
 	if ((pad_held[0] & PAD_UP) != 0) {
 		if (DebugMenuCursorPosition != 0) {
@@ -4212,7 +4213,7 @@ void DebugHandleCursorMovement() {
 	Unknown7EB557 = pad_press[0] & (PAD_B | PAD_START | PAD_A | PAD_L);
 }
 
-// $EFE689
+/// $EFE689
 noreturn DebugMenuLoad() {
 	DebugStartPositionX = 0;
 	DebugStartPositionY = 0x70;
@@ -4232,7 +4233,7 @@ noreturn DebugMenuLoad() {
 	}
 }
 
-// $EFE708
+/// $EFE708
 short UnknownEFE708() {
 	short result = 0;
 	if (DebugModeNumber == 2) {
@@ -4249,7 +4250,7 @@ short UnknownEFE708() {
 	return result;
 }
 
-// $EFE746
+/// $EFE746
 short DebugCheckViewCharacterMode() {
 	if (DebugModeNumber == 2) {
 		return 0;
@@ -4257,7 +4258,7 @@ short DebugCheckViewCharacterMode() {
 	return 1;
 }
 
-// $EFEAC8
+/// $EFEAC8
 void UnknownEFEAC8() {
 	WOBJSEL = 0x20;
 	WH0 = 0x18;
@@ -4273,24 +4274,24 @@ void UnknownEFEAC8() {
 	HDMAEN_MIRROR = 0x10;
 }
 
-// $EFEB1D
+/// $EFEB1D
 immutable ubyte[13] UnknownEFEB1D = [0x7F, 0x80, 0x7F, 0x3C, 0x80, 0x7F, 0x20, 0x18, 0x78, 0x01, 0x80, 0x7F, 0x00];
 
-// $EFEB2A
+/// $EFEB2A
 void UnknownEFEB2A() {
 	HDMAEN_MIRROR = 0;
 	WH0 = 0x80;
 	WH1 = 0x7F;
 }
 
-// $EFEB5F
+/// $EFEB5F
 immutable ubyte[17] UnknownEFEB5F = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
-// $EFFEF70
+/// $EFFEF70
 immutable ubyte[71] UnknownEFEF70 = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];
 
-// $EFFF9F
+/// $EFFF9F
 immutable ubyte[71] UnknownEFEF9F = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];
 
-// $EFF1BB
+/// $EFF1BB
 immutable ushort[256] UnknownEFF1BB = [0x620C, 0x5F19, 0x5B7C, 0x7EA9, 0x0265, 0x5A94, 0x5F19, 0x7EA9, 0x0265, 0x7F64, 0x7FEF, 0x7FF8, 0x0265, 0x5287, 0x4A48, 0x7E89, 0x35AD, 0x7FD8, 0x7E67, 0x7F0B, 0x0265, 0x7E67, 0x7E89, 0x7F0A, 0x0265, 0x45FF, 0x0000, 0x1CF7, 0x0000, 0x7FFF, 0x43FF, 0x3D5F, 0x35AD, 0x0000, 0x0006, 0x000D, 0x1CF7, 0x2D5A, 0x45FF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x7FFF, 0x35AD, 0x3D28, 0x637B, 0x55EE, 0x7BFF, 0x7D5F, 0x3095, 0x7FFF, 0x7FFF, 0x726F, 0x3480, 0x5DE7, 0x0000, 0x7F73, 0x7F3F, 0x7D5F, 0x35AD, 0x211F, 0x1094, 0x000C, 0x0000, 0x0000, 0x03E0, 0x4314, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x35AD, 0x1E41, 0x2EC5, 0x3F49, 0x00A6, 0x012A, 0x09AE, 0x1611, 0x2274, 0x2ED7, 0x3B3A, 0x19A6, 0x2EAB, 0x19B5, 0x42BB, 0x5F5F, 0x35AD, 0x2BF4, 0x032F, 0x0227, 0x7FFF, 0x2085, 0x70A5, 0x7EE1, 0x1A7D, 0x277F, 0x6EF8, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x35AD, 0x03E0, 0x3907, 0x456A, 0x51CD, 0x5E30, 0x51D2, 0x5B39, 0x637B, 0x6BBD, 0x73FF, 0x31D0, 0x1D2B, 0x35F1, 0x214C, 0x4C9A, 0x2D6B, 0x0421, 0x2C9C, 0x453F, 0x61DF, 0x7A7F, 0x7F5F, 0x294A, 0x7FFF, 0x1CE7, 0x35AD, 0x000B, 0x2D29, 0x4A30, 0x6B58, 0x7FFF, 0x2D6B, 0x0C63, 0x00D4, 0x11F9, 0x331C, 0x537D, 0x6BFF, 0x294A, 0x7FFF, 0x1CE7, 0x1869, 0x3CDF, 0x61DF, 0x7A7F, 0x7F5F, 0x7FFF, 0x2D6B, 0x0C63, 0x01C0, 0x0240, 0x0300, 0x03E0, 0x77FC, 0x33D5, 0x0220, 0x5BFD, 0x0CC8, 0x09D1, 0x0297, 0x033F, 0x5FFF, 0x7FFF, 0x2D6B, 0x02B5, 0x0318, 0x037B, 0x03FF, 0x6FFF, 0x01EF, 0x2ED7, 0x4BBE, 0x4E73, 0x1CE7, 0x314A, 0x41CF, 0x4E52, 0x6B5A, 0x7FFF, 0x2D6B, 0x0000, 0x0005, 0x0010, 0x00BF, 0x067F, 0x27EB, 0x5B39, 0x637B, 0x6BBD, 0x105A, 0x21D0, 0x090A, 0x00C8, 0x03E0, 0x7FFF, 0x2D6B, 0x0000, 0x08EA, 0x2592, 0x3277, 0x00E0, 0x0180, 0x02C0, 0x00C9, 0x2995, 0x46BA, 0x102A, 0x3CF9, 0x727F, 0x14A5, 0x7FFF, 0x2D6B, 0x0000, 0x0924, 0x1607, 0x1D90, 0x3698, 0x5F5F, 0x2D34, 0x55FD, 0x7FFF, 0x00A9, 0x0112, 0x01F6, 0x1CE7, 0x3DEF, 0x7FFF, 0x2D6B, 0x0000, 0x0000, 0x0000, 0x0903, 0x1E08, 0x36ED, 0x0000, 0x0000, 0x033F, 0x1A57, 0x158F, 0x03FF, 0x0299, 0x01D1, 0x7FFF];

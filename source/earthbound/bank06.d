@@ -1,3 +1,4 @@
+///
 module earthbound.bank06;
 
 immutable ubyte* TEXT_NPC_0747;

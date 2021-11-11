@@ -1,8 +1,9 @@
+///
 module earthbound.bank0A;
 
 import earthbound.commondefs;
 
-// $CAD7A1
+/// $CAD7A1
 immutable ubyte[][103] BattleBGGraphicsPointers = [
 	cast(immutable(ubyte)[])import("battle_bgs/graphics/0.gfx.lzhal"),
 	cast(immutable(ubyte)[])import("battle_bgs/graphics/1.gfx.lzhal"),
@@ -109,7 +110,7 @@ immutable ubyte[][103] BattleBGGraphicsPointers = [
 	cast(immutable(ubyte)[])import("battle_bgs/graphics/102.gfx.lzhal"),
 ];
 
-// $CAD93D
+/// $CAD93D
 immutable ubyte[][103] BattleBGArrangementPointers = [
 	cast(immutable(ubyte)[])import("battle_bgs/arrangements/0.arr.lzhal"),
 	cast(immutable(ubyte)[])import("battle_bgs/arrangements/1.arr.lzhal"),
@@ -216,7 +217,7 @@ immutable ubyte[][103] BattleBGArrangementPointers = [
 	cast(immutable(ubyte)[])import("battle_bgs/arrangements/102.arr.lzhal"),
 ];
 
-// $CADAD9
+/// $CADAD9
 immutable ubyte[][114] BattleBGPalettePointers = [
 	cast(immutable(ubyte)[])import("battle_bgs/palettes/0.pal"),
 	cast(immutable(ubyte)[])import("battle_bgs/palettes/1.pal"),
@@ -334,7 +335,7 @@ immutable ubyte[][114] BattleBGPalettePointers = [
 	cast(immutable(ubyte)[])import("battle_bgs/palettes/113.pal"),
 ];
 
-// $CADCA1
+/// $CADCA1
 immutable AnimatedBackground[327] animatedBackgrounds = [
 	AnimatedBackground(0x00, 0x00, 0x02, 0x03, 0x01, 0x03, 0x00, 0x00, 0x1E, [0x00, 0x00, 0x00, 0x00], [0x00, 0x00, 0x00, 0x00]),
 	AnimatedBackground(0x01, 0x01, 0x04, 0x03, 0x02, 0x0F, 0x00, 0x00, 0x08, [0x4C, 0x00, 0x00, 0x00], [0x3C, 0x00, 0x00, 0x00]),

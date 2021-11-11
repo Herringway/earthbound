@@ -1,7 +1,9 @@
+///
 module earthbound.bank17;
 
 import earthbound.commondefs;
 
+/// $D7B200
 immutable ushort[2560] MapDataPerSectorAttributesTable = [
 	SectorAttributes(MapSectorConfig.CANNOT_TELEPORT | MapSectorMiscConfig.EXIT_MOUSE_USABLE | MapSectorTownMap.NONE, ItemID.None),
 	SectorAttributes(MapSectorConfig.CANNOT_TELEPORT | MapSectorMiscConfig.EXIT_MOUSE_USABLE | MapSectorTownMap.NONE, ItemID.None),

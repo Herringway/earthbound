@@ -1,8 +1,9 @@
+///
 module earthbound.bank10;
 
 import earthbound.commondefs;
 
-// $D02188
+/// $D02188
 immutable RGB[4] MovementTextStringPalette = [
 	RGB(0,0,0),
 	RGB(17,18,17),
@@ -10,7 +11,7 @@ immutable RGB[4] MovementTextStringPalette = [
 	RGB(31,31,27)
 ];
 
-// $D0C60D
+/// $D0C60D
 immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 	BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.SPITEFUL_CROW),

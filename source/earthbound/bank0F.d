@@ -1,8 +1,9 @@
+///
 module earthbound.bank0F;
 
 import earthbound.commondefs;
 
-// $CF58EF
+/// $CF58EF
 immutable OverworldEventMusic[][164] OverworldEventMusicPointerTable = [
 	[
 		OverworldEventMusic(0, Music.None2),
@@ -823,7 +824,7 @@ immutable OverworldEventMusic[][164] OverworldEventMusicPointerTable = [
 	]
 ];
 
-// $CF8985
+/// $CF8985
 immutable NPC[1584] NPCConfig = [
 	NPC(NPCType.Person, OverworldSprite.Ness, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowIfOff, null /+NULL+/, null /+NULL+/),
 	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Down, ActionScript.Unknown605, EventFlag.FLG_ONET_GUARDSHARK_DISAPPEAR, NPCConfigFlagStyle.ShowIfOff, null /+TEXT_NPC_0001+/, null /+NULL+/),

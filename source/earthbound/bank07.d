@@ -1,3 +1,4 @@
+///
 module earthbound.bank07;
 
 immutable ubyte* TEXT_BLOCK_C70000;

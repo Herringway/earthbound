@@ -1,3 +1,4 @@
+/// mostly battle code
 module earthbound.bank02;
 
 import earthbound.commondefs;
@@ -18,6 +19,7 @@ import earthbound.globals;
 
 import core.stdc.string;
 
+/// $C20000
 void inflictSunstrokeCheck() {
 	if (OverworldStatusSuppression) {
 		return;
@@ -25,7 +27,7 @@ void inflictSunstrokeCheck() {
 	if ((gameState.troddenTileType & 0xC) != 4) {
 		return;
 	}
-	for (int i = 0 ; i < 6; i++) {
+	for (short i = 0 ; i < 6; i++) {
 		if (gameState.unknown96[i] == 0) {
 			return;
 		}
@@ -44,7 +46,7 @@ void inflictSunstrokeCheck() {
 
 immutable ubyte[] C200B9 = [0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x07, 0x00, 0x07, 0x00, 0x1E, 0x00, 0x33, 0x00, 0x1E, 0x00, 0x33, 0x00];
 
-// $C200D9
+/// $C200D9
 void UnknownC200D9() {
 	Unknown7E89C9 = 0;
 	Unknown7E89D2 = -1;
@@ -108,27 +110,27 @@ void UnknownC200D9() {
 	Unknown7E5E6C = 0;
 }
 
-// $C20266
+/// $C20266
 void UnknownC20266() {
 	for (short i = 0; i < 4; i++) {
 		Unknown7E827E[i] = UnknownC3E40E[i];
 	}
 }
 
-// $C20293
+/// $C20293
 void UnknownC20293() {
 	for (short i = 0; i < 4; i++) {
 		(cast(ushort*)(&IntroBG2Buffer[0x272]))[i] = 0;
 	}
 }
 
-// $C2038B
+/// $C2038B
 void UnknownC2038B() {
 	CopyToVramAlt(0, 0x700, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
 	CopyToVram(0, 0x40, 0x7F80, &UnknownC40BE8[0]);
 }
 
-// $C203C3
+/// $C203C3
 void DrawHPPPWindow(short id) {
 	PartyCharacter* character = &PartyCharacters[gameState.partyMembers[id] - 1];
 	short x22 = UnknownC223D9(&character.afflictions[0], 1);
@@ -252,7 +254,7 @@ void DrawHPPPWindow(short id) {
 	x[0] = cast(ushort)(x1E + 0xE004);
 }
 
-// $C2077D
+/// $C2077D
 void UnknownC2077D() {
 	ushort x10 = Unknown7E9647;
 	for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
@@ -263,17 +265,17 @@ void UnknownC2077D() {
 	}
 }
 
-// $C207B6
+/// $C207B6
 void UnknownC207B6(short arg1) {
 	Unknown7E9647 |= (1 << arg1);
 	DrawHPPPWindow(arg1);
 	Unknown7E9649 = 1;
 }
 
-// $C207E1
+/// $C207E1
 void UndrawHPPPWindow(short);
 
-// $C2087C
+/// $C2087C
 void UnknownC2087C() {
 	if (Unknown7E89C9 != 0) {
 		UnknownC2077D();
@@ -288,7 +290,7 @@ void UnknownC2087C() {
 	} while(x0E != 0xFFFF);
 }
 
-// $C20958
+/// $C20958
 immutable short[32] UnknownC20958 = [
 	-1,
 	-1,
@@ -324,7 +326,7 @@ immutable short[32] UnknownC20958 = [
 	0,
 ];
 
-// $C20A20
+/// $C20A20
 void UnknownC20A20(WindowTextAttributesCopy* buf) {
 	buf.id = CurrentFocusWindow;
 	if (CurrentFocusWindow == 0xFFFF) {
@@ -337,7 +339,7 @@ void UnknownC20A20(WindowTextAttributesCopy* buf) {
 	buf.font = WindowStats[WindowTable[CurrentFocusWindow]].font;
 }
 
-// $C20ABC
+/// $C20ABC
 void UnknownC20ABC(WindowTextAttributesCopy* buf) {
 	if (buf.id == 0xFFFF) {
 		return;
@@ -353,10 +355,10 @@ void UnknownC20ABC(WindowTextAttributesCopy* buf) {
 	WindowStats[WindowTable[CurrentFocusWindow]].font = buf.font;
 }
 
-// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
+/// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 ushort UnknownC20B65(short, short, short, short, short);
 
-// $C20D3F
+/// $C20D3F
 void SeparateDecimalDigits(short arg1) {
 	ubyte* x = &HPPPWindowDigitBuffer[2];
 	x[0] = cast(ubyte)(arg1%10);
@@ -371,7 +373,7 @@ void SeparateDecimalDigits(short arg1) {
 	x--;
 }
 
-// $C20D89
+/// $C20D89
 void FillHPPPTileBufferX(short arg1) {
 	ushort* x = &HPPPWindowBuffer[arg1][6];
 	for (short i = 0; i < 3; i++) {
@@ -380,7 +382,7 @@ void FillHPPPTileBufferX(short arg1) {
 		x++;
 	}
 }
-// $C20DC5
+/// $C20DC5
 void FillHPPPTileBuffer(short arg1, short arg2, short fraction) {
 	ushort y = cast(ushort)(((fraction >= 0x3000) ? (fraction - 0x3000) : 0) / 0x3400);
 	ushort* x = &HPPPWindowBuffer[arg1][arg2 * 6 + 3 - 1];
@@ -406,13 +408,13 @@ void FillHPPPTileBuffer(short arg1, short arg2, short fraction) {
 	x[3] = cast(ushort)(x[0] + 0x10);
 }
 
-// $C20F08
+/// $C20F08
 void FillCharacterHPTileBuffer(short arg1, short integer, short fraction) {
 	SeparateDecimalDigits(integer);
 	FillHPPPTileBuffer(arg1, 0, fraction);
 }
 
-// $C20F26
+/// $C20F26
 void FillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short integer, short fraction) {
 	if (afflictions[4] != 0) {
 		FillHPPPTileBufferX(arg1);
@@ -422,7 +424,7 @@ void FillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short integer, sh
 	FillHPPPTileBuffer(arg1, 1, fraction);
 }
 
-// $C20F58
+/// $C20F58
 uint UnknownC20F58() {
 	if (Unknown7E9695 != 0) {
 		return Unknown7E9627 >> 1;
@@ -431,7 +433,7 @@ uint UnknownC20F58() {
 	}
 }
 
-// $C20F9A
+/// $C20F9A
 void ResetRolling() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
 		if ((PartyCharacters[gameState.partyMembers[i] - 1].afflictions[0] != 1) && (PartyCharacters[gameState.partyMembers[i] - 1].hp.current.integer == 0)) {
@@ -447,7 +449,7 @@ void ResetRolling() {
 	Unknown7E9696 = 1;
 }
 
-// $C21034
+/// $C21034
 short UnknownC21034() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
 		if ((PartyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction != 0)
@@ -460,7 +462,7 @@ short UnknownC21034() {
 	return 1;
 }
 
-// $C2108C
+/// $C2108C
 short UnknownC2108C() {
 	short a = UnknownC21034();
 	if (a != 0) {
@@ -469,7 +471,7 @@ short UnknownC2108C() {
 	return a;
 }
 
-// $C2109F
+/// $C2109F
 void HPPPRoller() {
 	if (Unknown7E9697 != 0) {
 		return;
@@ -538,10 +540,10 @@ void HPPPRoller() {
 	}
 }
 
-// $C213AC
+/// $C213AC
 void UnknownC213AC();
 
-// $C21628
+/// $C21628
 short getEventFlag(short flag) {
 	flag--;
 	if ((PowersOfTwo8Bit[flag % 8] & EventFlags[flag / 8]) != 0) {
@@ -550,7 +552,7 @@ short getEventFlag(short flag) {
 	return 0;
 }
 
-// $C2165E
+/// $C2165E
 short setEventFlag(short flag, short value) {
 	flag--;
 	if (value == 1) {
@@ -561,7 +563,7 @@ short setEventFlag(short flag, short value) {
 	return EventFlags[flag / 8];
 }
 
-// $C216DB
+/// $C216DB
 void UnknownC216DB() {
 	ubyte x18 = 0;
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
@@ -590,7 +592,7 @@ void UnknownC216DB() {
 	}
 }
 
-// $C21857
+/// $C21857
 void RecalcCharacterPostmathOffense(short id) {
 	short total = PartyCharacters[id - 1].base_offense;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] != 0) {
@@ -606,7 +608,7 @@ void RecalcCharacterPostmathOffense(short id) {
 	PartyCharacters[id - 1].offense = cast(ubyte)total;
 }
 
-// $C21AEB
+/// $C21AEB
 void RecalcCharacterPostmathSpeed(short id) {
 	short total = PartyCharacters[id - 1].base_speed;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) {
@@ -621,7 +623,7 @@ void RecalcCharacterPostmathSpeed(short id) {
 	PartyCharacters[id - 1].speed = cast(ubyte)total;
 }
 
-// $C21BA4
+/// $C21BA4
 void RecalcCharacterPostmathGuts(short id) {
 	short total = PartyCharacters[id - 1].base_guts;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] != 0) {
@@ -636,7 +638,7 @@ void RecalcCharacterPostmathGuts(short id) {
 	PartyCharacters[id - 1].guts = cast(ubyte)total;
 }
 
-// $C21C5D
+/// $C21C5D
 void RecalcCharacterPostmathLuck(short id) {
 	short total = PartyCharacters[id - 1].base_luck;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) {
@@ -654,22 +656,22 @@ void RecalcCharacterPostmathLuck(short id) {
 	PartyCharacters[id - 1].luck = cast(ubyte)total;
 }
 
-// $C21D65
+/// $C21D65
 void RecalcCharacterPostmathVitality(short id) {
 	PartyCharacters[id - 1].vitality = cast(ubyte)(PartyCharacters[id - 1].base_vitality + PartyCharacters[id - 1].boosted_vitality);
 }
 
-// $C21D7D
+/// $C21D7D
 void RecalcCharacterPostmathIQ(short id) {
 	PartyCharacters[id - 1].iq = cast(ubyte)(PartyCharacters[id - 1].base_iq + PartyCharacters[id - 1].boosted_iq);
 }
 
-// $C21D7D
+/// $C21D7D
 void RecalcCharacterMissRate(short id) {
 	PartyCharacters[id - 1].miss_rate = cast(ubyte)((PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] != 0) ? ItemData[PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] - 1].special : 0);
 }
 
-// $C21E03
+/// $C21E03
 void CalcResistances(short id) {
 	short total;
 	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 3 : 0;
@@ -707,7 +709,7 @@ void CalcResistances(short id) {
 	PartyCharacters[id - 1].hypnosisBrainshockResist = cast(ubyte)total;
 }
 
-// $C2239D
+/// $C2239D
 void RecalcCharacterPostmathDefense(short id) {
 	short total = PartyCharacters[id - 1].base_defense;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) {
@@ -729,7 +731,7 @@ void RecalcCharacterPostmathDefense(short id) {
 	PartyCharacters[id - 1].defense = cast(ubyte)total;
 }
 
-// $C2239D
+/// $C2239D
 short UnknownC2239D(short id) {
 	for (short i = 0; i < gameState.partyCount; i++) {
 		if (gameState.partyMembers[i] == id) {
@@ -739,7 +741,7 @@ short UnknownC2239D(short id) {
 	return 0;
 }
 
-// $C223D9
+/// $C223D9
 short UnknownC223D9(ubyte* arg1, short arg2) {
 	short x0E;
 	if (arg1[0] != 0) {
@@ -768,10 +770,10 @@ short UnknownC223D9(ubyte* arg1, short arg2) {
 	}
 }
 
-// $C2281D
+/// $C2281D
 void DepositIntoATM(ushort);
 
-// $C228F8
+/// $C228F8
 void AddCharToParty(short id) {
 	for (short i = 0; 6 > i; i++) {
 		if (gameState.partyMembers[i] == id) {
@@ -799,7 +801,7 @@ void AddCharToParty(short id) {
 	}
 }
 
-// $C229BB
+/// $C229BB
 void RemoveCharFromParty(short id) {
 	for (short i = 0; gameState.partyCount > i; i++) {
 		if (gameState.partyMembers[i] != id) {
@@ -820,7 +822,7 @@ void RemoveCharFromParty(short id) {
 	}
 }
 
-// $C22474
+/// $C22474
 short UnknownC22474(ubyte* arg1) {
 	short x0E;
 	if (arg1[0] != 0) {
@@ -839,16 +841,16 @@ short UnknownC22474(ubyte* arg1) {
 	return StatusEquipWindowText3[x0E][arg1[x0E] - 1];
 }
 
-// $C23109
+/// $C23109
 immutable ConsolationPrize[2] ConsolationItemTable = [
 	ConsolationPrize(EnemyID.CuteLilUFO, [ItemID.Cookie,ItemID.BagOfFries, ItemID.Hamburger, ItemID.BoiledEgg, ItemID.FreshEgg, ItemID.PicnicLunch, ItemID.Pizza, 0]),
 	ConsolationPrize(EnemyID.BeautifulUFO, [ItemID.CanOfFruitJuice, ItemID.RoyalIcedTea, ItemID.ProteinDrink, ItemID.KrakenSoup, ItemID.BottleOfWater, ItemID.ColdRemedy, ItemID.VialOfSerum, 0]),
 ];
 
-// $C2311B
+/// $C2311B
 short BattleSelectionMenu(short, short);
 
-// $C23BCF
+/// $C23BCF
 ubyte* CopyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
 	while (arg3-- != 0) {
 		if (arg1[0] == 0) {
@@ -867,10 +869,10 @@ ubyte* CopyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
 	return arg2;
 }
 
-// $C23BCF
+/// $C23BCF
 void FixAttackerName(short);
 
-// $C23D05
+/// $C23D05
 void FixTargetName() {
 	Unknown7E5E78 = 0;
 	memset(&TargetNameAdjustScratch[0], 0, TargetNameAdjustScratch.length);
@@ -894,7 +896,7 @@ void FixTargetName() {
 	}
 }
 
-// $C23E32
+/// $C23E32
 void UnknownC23E32() {
 	if (BattlerTargetFlags == 0) {
 		return;
@@ -909,7 +911,7 @@ void UnknownC23E32() {
 	FixTargetName();
 }
 
-// $C23FEA
+/// $C23FEA
 short GetShieldTargetting(short arg1, Battler* battler) {
 	if ((arg1 == BattleActions.PSIShieldSigma) || (arg1 == BattleActions.PSIShieldOmega) || (arg1 == BattleActions.PSIPSIShieldSigma) || (arg1 == BattleActions.PSIPSIShieldOmega)) {
 		return 1;
@@ -917,7 +919,7 @@ short GetShieldTargetting(short arg1, Battler* battler) {
 	return 0;
 }
 
-// $C24009
+/// $C24009
 void FeelingStrangeRetargetting() {
 	BattlerTargetFlags = 0;
 	switch (currentAttacker.unknown9 & 7) {
@@ -942,7 +944,7 @@ void FeelingStrangeRetargetting() {
 	}
 }
 
-// $C240A4
+/// $C240A4
 void UnknownC240A4(void function() action) {
 	while (UnknownC2EACF() != 0) {
 		Win_Tick();
@@ -971,7 +973,7 @@ void UnknownC240A4(void function() action) {
 	}
 }
 
-// $C2416F
+/// $C2416F
 void RemoveStatusUntargettableTargets() {
 	for (short i = 0; DeadTargettableActions[i] != 0; i++) {
 		if (currentAttacker.currentAction == DeadTargettableActions[i]) {
@@ -988,13 +990,13 @@ void RemoveStatusUntargettableTargets() {
 	}
 }
 
-// $C24348
+/// $C24348
 ubyte SelectStealableItem();
 
-// $C24348
+/// $C24348
 short UnknownC24348(short);
 
-// $C2437E
+/// $C2437E
 void UnknownC2437E() {
 	if (currentAttacker.allyOrEnemy != 0) {
 		return;
@@ -1017,10 +1019,10 @@ void UnknownC2437E() {
 	RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.unknown7);
 }
 
-// $C24477
+/// $C24477
 void ChooseTarget(Battler*);
 
-// $C24703
+/// $C24703
 void UnknownC24703(Battler* battler) {
 	BattlerTargetFlags = 0;
 	switch (battler.unknown9) {
@@ -1071,7 +1073,7 @@ void UnknownC24703(Battler* battler) {
 	}
 }
 
-// $C24821
+/// $C24821
 short BattleRoutine() {
 	short x17;
 	ushort x23;
@@ -1932,52 +1934,52 @@ short BattleRoutine() {
 	return x17;
 }
 
-// $C261BD
+/// $C261BD
 void InstantWinHandler();
 
-// $C26634
+/// $C26634
 short InstantWinCheck();
 
-// $C2698B
+/// $C2698B
 short GetBattleActionType(short id) {
 	return BattleActionTable[id].type;
 }
 
-// $C2698B
+/// $C2698B
 short GetEnemyType(short id) {
 	return EnemyConfigurationTable[id].type;
 }
 
-// $C269DE
+/// $C269DE
 void UnknownC269DE() {
 	while (Unknown7E0028 != 0) {
 		Win_Tick();
 	}
 }
 
-// $C269BE
+/// $C269BE
 void Wait(short frames) {
 	while (--frames != 0) {
 		Win_Tick();
 	}
 }
 
-// $C269EF
+/// $C269EF
 short RandLong() {
 	return rand();
 }
 
-// $C269F8
+/// $C269F8
 short Truncate16To8(short arg1, short arg2) {
 	return cast(short)((arg1 * arg2) >> 8);
 }
 
-// $C26A2D
+/// $C26A2D
 short RandLimit(short arg1) {
 	return Truncate16To8(RandLong(), arg1);
 }
 
-// $C26A44
+/// $C26A44
 short FiftyPercentVariance(short arg1) {
 	ubyte x12 = RandLong() & 0xFF;
 	ubyte x10 = RandLong() & 0xFF;
@@ -1996,7 +1998,7 @@ short FiftyPercentVariance(short arg1) {
 	return arg1;
 }
 
-// $C26AFD
+/// $C26AFD
 short TwentyFivePercentVariance(short arg1) {
 	ubyte x12 = RandLong() & 0xFF;
 	ubyte x10 = RandLong() & 0xFF;
@@ -2015,7 +2017,7 @@ short TwentyFivePercentVariance(short arg1) {
 	return arg1;
 }
 
-// $C26BB8
+/// $C26BB8
 short Success255(short arg) {
 	if (RandLong() < arg) {
 		return 1;
@@ -2023,7 +2025,7 @@ short Success255(short arg) {
 	return 0;
 }
 
-// $C26BDB
+/// $C26BDB
 short Success500(short arg) {
 	if (RandLimit(500) < arg) {
 		return 1;
@@ -2031,7 +2033,7 @@ short Success500(short arg) {
 	return 0;
 }
 
-// $C26BFB
+/// $C26BFB
 void TargetAllies() {
 	BattlerTargetFlags = 0;
 	for (short i = 0; i < BattlersTable.length; i++) {
@@ -2041,7 +2043,7 @@ void TargetAllies() {
 	}
 }
 
-// $C26C82
+/// $C26C82
 void TargetAllEnemies() {
 	BattlerTargetFlags = 0;
 	for (short i = 0; i < BattlersTable.length; i++) {
@@ -2055,7 +2057,7 @@ void TargetAllEnemies() {
 	}
 }
 
-// $C26D04
+/// $C26D04
 void TargetRow(ubyte arg1)  {
 	BattlerTargetFlags = 0;
 	for (short i = 0; i < BattlersTable.length; i++) {
@@ -2079,7 +2081,7 @@ void TargetRow(ubyte arg1)  {
 	}
 }
 
-// $C26E00
+/// $C26E00
 void TargetAll() {
 	BattlerTargetFlags = 0;
 	for (short i = 0; i < BattlersTable.length; i++) {
@@ -2090,7 +2092,7 @@ void TargetAll() {
 	}
 }
 
-// $C26E77
+/// $C26E77
 void RemoveNPCTargetting() {
 	for (short i = 0; i < BattlersTable.length; i++) {
 		if (BattlersTable[i].consciousness == 0) {
@@ -2105,12 +2107,12 @@ void RemoveNPCTargetting() {
 
 uint RandomTargetting(uint);
 
-// $C26FDC
+/// $C26FDC
 void TargetBattler(short arg1) {
 	BattlerTargetFlags |= PowersOfTwo32Bit[arg1];
 }
 
-// $C27029
+/// $C27029
 short IsCharacterTargetted(short arg1) {
 	if ((BattlerTargetFlags & PowersOfTwo32Bit[arg1]) != 0) {
 		return 1;
@@ -2118,12 +2120,12 @@ short IsCharacterTargetted(short arg1) {
 	return 0;
 }
 
-// $C27089
+/// $C27089
 void RemoveTarget(short arg1) {
 	BattlerTargetFlags &= (0xFFFFFFFF ^ PowersOfTwo32Bit[arg1]);
 }
 
-// $C270E4
+/// $C270E4
 void RemoveDeadTargetting() {
 	for (short i = 0; i < BattlersTable.length; i ++) {
 		if (IsCharacterTargetted(i) == 0) {
@@ -2135,7 +2137,7 @@ void RemoveDeadTargetting() {
 	}
 }
 
-// $C27126
+/// $C27126
 void SetHP(Battler* battler, short arg2) {
 	ushort x10 = (arg2 > battler.hpMax) ? battler.hpMax : arg2;
 	if (battler.allyOrEnemy == 0) {
@@ -2153,7 +2155,7 @@ void SetHP(Battler* battler, short arg2) {
 	}
 }
 
-// $C27191
+/// $C27191
 void SetPP(Battler* battler, short arg2) {
 	ushort x10 = (arg2 > battler.ppMax) ? battler.ppMax : arg2;
 	if (battler.allyOrEnemy == 0) {
@@ -2170,10 +2172,10 @@ void SetPP(Battler* battler, short arg2) {
 	}
 }
 
-// $C2724A
+/// $C2724A
 short InflictStatusBattle(Battler*, short, short);
 
-// $C27294
+/// $C27294
 void RecoverHP(Battler* battler, short amount) {
 	if (battler.consciousness != 1) {
 		return;
@@ -2190,7 +2192,7 @@ void RecoverHP(Battler* battler, short amount) {
 	}
 }
 
-// $C27318
+/// $C27318
 void RecoverPP(Battler* battler, short amount) {
 	if (battler.consciousness != 1) {
 		return;
@@ -2203,16 +2205,16 @@ void RecoverPP(Battler* battler, short amount) {
 	DisplayTextWait(TextBattleRecoveredPP, x16);
 }
 
-// $C27397
+/// $C27397
 void ReviveTarget(Battler*, short);
 
-// $C27550
+/// $C27550
 void KOTarget(Battler*);
 
-// $C27D82
+/// $C27D82
 void IncreaseDefense16th(Battler*);
 
-// $C27E8A
+/// $C27E8A
 void SwapAttackerWithTarget() {
 	Battler* tmp = currentAttacker;
 	currentAttacker = currentTarget;
@@ -2221,7 +2223,7 @@ void SwapAttackerWithTarget() {
 	FixTargetName();
 }
 
-// $C27C96
+/// $C27C96
 short SuccessLuck80() {
 	if (RandLimit(80) < currentTarget.luck) {
 		return 0;
@@ -2229,7 +2231,7 @@ short SuccessLuck80() {
 	return 1;
 }
 
-// $C27CAF
+/// $C27CAF
 short SuccessSpeed(short amount) {
 	short x10 = (currentTarget.speed < currentAttacker.speed) ? 0 : cast(short)(currentTarget.speed - currentAttacker.speed);
 	if (RandLimit(amount) >= x10) {
@@ -2238,7 +2240,7 @@ short SuccessSpeed(short amount) {
 	return 0;
 }
 
-// $C27CFD
+/// $C27CFD
 short FailAttackOnNPCs() {
 	if (currentTarget.npcID != 0) {
 		DisplayInBattleText(TextBattleItDidntWorkOnX);
@@ -2247,10 +2249,10 @@ short FailAttackOnNPCs() {
 	return 0;
 }
 
-// $C27EAF
+/// $C27EAF
 short CalcDamage(Battler* target, short damage);
 
-// $C28125
+/// $C28125
 short CalcResistDamage(short damage, short arg2) {
 	if (damage <= 0) {
 		damage = 0;
@@ -2324,7 +2326,7 @@ short CalcResistDamage(short damage, short arg2) {
 	return damage;
 }
 
-// $C282F8
+/// $C282F8
 short MissCalc(short arg1) {
 	short x12;
 	if ((currentAttacker.allyOrEnemy == 0) && (currentAttacker.npcID == 0)) {
@@ -2353,7 +2355,7 @@ short MissCalc(short arg1) {
 	return 1;
 }
 
-// $C283F8
+/// $C283F8
 short Smaaaash() {
 	Unknown7EAA8E = 0;
 	short guts = currentAttacker.guts;
@@ -2378,7 +2380,7 @@ short Smaaaash() {
 	return 1;
 }
 
-// $C284AD
+/// $C284AD
 short DetermineDodge() {
 	if (currentTarget.afflictions[0] == Status0.Paralyzed) {
 		return 0;
@@ -2401,7 +2403,7 @@ short DetermineDodge() {
 	return 0;
 }
 
-// $C28523
+/// $C28523
 void BattleActionLevel2Attack() {
 	short damageDone = cast(short)(currentAttacker.offense * 2 - currentTarget.defense);
 	if (damageDone > 0) {
@@ -2413,7 +2415,7 @@ void BattleActionLevel2Attack() {
 	CalcResistDamage(damageDone, 0xFF);
 }
 
-// $C2856B
+/// $C2856B
 void HealStrangeness() {
 	if (currentTarget.afflictions[3] == Status3.Strange) {
 		currentTarget.afflictions[3] = 0;
@@ -2421,7 +2423,7 @@ void HealStrangeness() {
 	}
 }
 
-// $C2859F
+/// $C2859F
 void BattleActionBash() {
 	if ((MissCalc(0) != 0) || (Smaaaash() != 0)) {
 		return;
@@ -2434,7 +2436,7 @@ void BattleActionBash() {
 	}
 }
 
-// $C285DA
+/// $C285DA
 void BattleActionLevel4Attack() {
 	if (MissCalc(0) != 0) {
 		return;
@@ -2457,7 +2459,7 @@ void BattleActionLevel4Attack() {
 	}
 }
 
-// $C28651
+/// $C28651
 void BattleActionLevel3Attack() {
 	if (MissCalc(0) != 0) {
 		return;
@@ -2480,7 +2482,7 @@ void BattleActionLevel3Attack() {
 	}
 }
 
-// $C286CB
+/// $C286CB
 void BattleActionLevel1Attack() {
 	if (MissCalc(0) != 0) {
 		return;
@@ -2503,7 +2505,7 @@ void BattleActionLevel1Attack() {
 	}
 }
 
-// $C28740
+/// $C28740
 void BattleActionShoot() {
 	if (MissCalc(0) != 0) {
 		return;
@@ -2515,7 +2517,7 @@ void BattleActionShoot() {
 	}
 }
 
-// $C28770
+/// $C28770
 void BattleActionSpy() {
 	DisplayTextWait(TextBattleSpyOffense, currentTarget.offense);
 	DisplayTextWait(TextBattleSpyDefense, currentTarget.defense);
@@ -2544,12 +2546,12 @@ void BattleActionSpy() {
 	}
 }
 
-// $C2889B
+/// $C2889B
 void BattleActionNull() {
 	//nothing
 }
 
-// $C2889E
+/// $C2889E
 void BattleActionSteal() {
 	if (currentTarget.allyOrEnemy == 1) {
 		return;
@@ -2564,7 +2566,7 @@ void BattleActionSteal() {
 	}
 }
 
-// $C288EB
+/// $C288EB
 void BattleActionFreezeTime() {
 	PauseMusic();
 	short x02 = cast(short)(RandLimit(4) + 1);
@@ -2590,42 +2592,42 @@ void BattleActionFreezeTime() {
 	BattlerTargetFlags = 0;
 }
 
-// $C289CE
+/// $C289CE
 void BattleActionDiamondize();
 
-// $C28A92
+/// $C28A92
 void BattleActionParalyze();
 
-// $C28AEB
+/// $C28AEB
 void BattleActionNauseate();
 
-// $C28B2C
+/// $C28B2C
 void BattleActionPoison();
 
-// $C28B6D
+/// $C28B6D
 void BattleActionCold();
 
-// $C28BBE
+/// $C28BBE
 void BattleActionMushroomize();
 
-// $C28BFD
+/// $C28BFD
 void BattleActionPossess();
 
-// $C28C69
+/// $C28C69
 void BattleActionCrying();
 
-// $C28CB8
+/// $C28CB8
 void BattleActionImmobilize();
 
-// $C28CF1
+/// $C28CF1
 void BattleActionSolidify();
 
-// $C28D3A
+/// $C28D3A
 void BattleActionBrainshockAlphaCopy() {
 	BattleActionBrainshockAlpha();
 }
 
-// $C28D41
+/// $C28D41
 short SuccessLuck40() {
 	if (RandLimit(40) < currentTarget.luck) {
 		return 0;
@@ -2633,96 +2635,96 @@ short SuccessLuck40() {
 	return 1;
 }
 
-// $C28D5A
+/// $C28D5A
 void BattleActionDistract();
 
-// $C28D8B
+/// $C28D8B
 void BattleActionFeelStrange();
 
-// $C28DFC
+/// $C28DFC
 void BattleActionCrying2();
 
-// $C28E3B
+/// $C28E3B
 void BattleActionHypnosisAlphaCopy() {
 	BattleActionHypnosisAlpha();
 }
 
-// $C28E42
+/// $C28E42
 void BattleActionReducePP();
 
-// $C28EAE
+/// $C28EAE
 void BattleActionCutGuts();
 
-// $C28F21
+/// $C28F21
 void BattleActionReduceOffenseDefense();
 
-// $C28F97
+/// $C28F97
 void BattleActionLevel2AttackPoison();
 
-// $C28FF9
+/// $C28FF9
 void BattleActionDoubleBash();
 
-// $C2900B
+/// $C2900B
 void BattleAction350FireDamage() {
 	CalcResistDamage(TwentyFivePercentVariance(350), currentTarget.fireResist);
 }
 
-// $C2902C
+/// $C2902C
 void BattleActionLevel3AttackCopy() {
 	BattleActionLevel3Attack();
 }
 
-// $C29033
+/// $C29033
 void BattleActionNull2() {
 	//nothing
 }
 
-// $C29036
+/// $C29036
 void BattleActionNull3() {
 	//nothing
 }
 
-// $C29039
+/// $C29039
 void BattleActionNull4() {
 	//nothing
 }
 
-// $C2903C
+/// $C2903C
 void BattleActionNull5() {
 	//nothing
 }
 
-// $C2903F
+/// $C2903F
 void BattleActionNull6() {
 	//nothing
 }
 
-// $C29042
+/// $C29042
 void BattleActionNull7() {
 	//nothing
 }
 
-// $C29045
+/// $C29045
 void BattleActionNull8() {
 	//nothing
 }
 
-// $C29048
+/// $C29048
 void BattleActionNull9() {
 	//nothing
 }
 
-// $C2904B
+/// $C2904B
 void BattleActionNull10() {
 	//nothing
 }
 
-// $C2904E
+/// $C2904E
 void BattleActionNull11() {
 	//nothing
 }
 
-// $C29051
+/// $C29051
 void BattleActionNeutralize() {
 	currentTarget.offense = currentTarget.baseOffense;
 	currentTarget.defense = currentTarget.baseDefense;
@@ -2734,7 +2736,7 @@ void BattleActionNeutralize() {
 	DisplayInBattleText(TextBattleEffectsOfPSIAreGone);
 }
 
-// $C290C6
+/// $C290C6
 void UnknownC290C6() {
 	if (MirrorEnemy != 0) {
 		for (short i = 0; i < BattlersTable.length; i++) {
@@ -2760,7 +2762,7 @@ void UnknownC290C6() {
 	BattlerTargetFlags = 0;
 }
 
-// $C2916E
+/// $C2916E
 void BattleActionLevel2AttackDiamondize() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -2792,10 +2794,10 @@ void BattleActionLevel2AttackDiamondize() {
 	}
 }
 
-// $C29254
+/// $C29254
 void BattleActionReduceOffense();
 
-// $C29298
+/// $C29298
 void BattleActionClumsyRobotDeath() {
 	if (getEventFlag(PSITeleportDestinationTable[13].eventFlag) != 0) {
 		DisplayInBattleText(TextBattleRunawayFiveDefeatClumsyRobot);
@@ -2807,15 +2809,15 @@ void BattleActionClumsyRobotDeath() {
 	}
 }
 
-// $C292EB
+/// $C292EB
 void BattleActionEnemyExtend() {
 	//nothing
 }
 
-// $C292EE
+/// $C292EE
 void BattleActionMasterBarfDeath();
 
-// $C2941D
+/// $C2941D
 short PSIShieldNullify() {
 	Unknown7EAA94 = 1;
 	UnknownC1ACF8F(currentAttacker.currentActionArgument);
@@ -2837,7 +2839,7 @@ short PSIShieldNullify() {
 	return 0;
 }
 
-// $C294CE
+/// $C294CE
 void WeakenShield() {
 	Unknown7EAA94 = 0;
 	if (Unknown7EAA96 == 0) {
@@ -2852,7 +2854,7 @@ void WeakenShield() {
 	Unknown7EAA96 = 0;
 }
 
-// $C29516
+/// $C29516
 void PSIRockinCommon(short baseDamage) {
 	if (PSIShieldNullify() != 0) {
 		return;
@@ -2865,50 +2867,50 @@ void PSIRockinCommon(short baseDamage) {
 	WeakenShield();
 }
 
-// $C29556
+/// $C29556
 void BattleActionPSIRockinAlpha() {
 	PSIRockinCommon(80);
 }
 
-// $C2955F
+/// $C2955F
 void BattleActionPSIRockinBeta() {
 	PSIRockinCommon(180);
 }
 
-// $C29568
+/// $C29568
 void BattleActionPSIRockinGamma() {
 	PSIRockinCommon(540);
 }
 
-// $C29568
+/// $C29568
 void BattleActionPSIRockinOmega() {
 	PSIRockinCommon(720);
 }
 
-// $C2957A
+/// $C2957A
 void PSIFireCommon(short baseDamage);
 
-// $C295AB
+/// $C295AB
 void BattleActionPSIFireAlpha() {
 	PSIFireCommon(80);
 }
 
-// $C295B4
+/// $C295B4
 void BattleActionPSIFireBeta() {
 	PSIFireCommon(160);
 }
 
-// $C295BD
+/// $C295BD
 void BattleActionPSIFireGamma() {
 	PSIFireCommon(240);
 }
 
-// $C295C6
+/// $C295C6
 void BattleActionPSIFireOmega() {
 	PSIFireCommon(320);
 }
 
-// $C295CF
+/// $C295CF
 void PSIFreezeCommon(short baseDamage) {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -2925,50 +2927,50 @@ void PSIFreezeCommon(short baseDamage) {
 	WeakenShield();
 }
 
-// $C29647
+/// $C29647
 void BattleActionPSIFreezeAlpha() {
 	PSIFreezeCommon(180);
 }
 
-// $C29650
+/// $C29650
 void BattleActionPSIFreezeBeta() {
 	PSIFreezeCommon(360);
 }
 
-// $C29659
+/// $C29659
 void BattleActionPSIFreezeGamma() {
 	PSIFreezeCommon(540);
 }
 
-// $C29662
+/// $C29662
 void BattleActionPSIFreezeOmega() {
 	PSIFreezeCommon(720);
 }
 
-// $C2966B
+/// $C2966B
 void PSIThunderCommon(short baseDamage, short strikes);
 
-// $C29871
+/// $C29871
 void BattleActionPSIThunderAlpha() {
 	PSIThunderCommon(120, 1);
 }
 
-// $C2987D
+/// $C2987D
 void BattleActionPSIThunderBeta() {
 	PSIThunderCommon(120, 2);
 }
 
-// $C29889
+/// $C29889
 void BattleActionPSIThunderGamma() {
 	PSIThunderCommon(200, 3);
 }
 
-// $C29895
+/// $C29895
 void BattleActionPSIThunderOmega() {
 	PSIThunderCommon(200, 4);
 }
 
-// $C298A1
+/// $C298A1
 short FlashImmunityTest() {
 	if (PSIShieldNullify() != 0) {
 		return 0;
@@ -2980,7 +2982,7 @@ short FlashImmunityTest() {
 	return 0;
 }
 
-// $C298DE
+/// $C298DE
 void FlashInflictFeelingStrange() {
 	if (InflictStatusBattle(currentTarget, 3, Status3.Strange) != 0) {
 		DisplayInBattleText(TextBattleFeltALittleStrange);
@@ -2989,7 +2991,7 @@ void FlashInflictFeelingStrange() {
 	}
 }
 
-// $C29917
+/// $C29917
 void FlashInflictParalysis()  {
 	if (InflictStatusBattle(currentTarget, 0, Status0.Paralyzed) != 0) {
 		DisplayInBattleText(TextBattleBecameNumb);
@@ -2998,7 +3000,7 @@ void FlashInflictParalysis()  {
 	}
 }
 
-// $C29950
+/// $C29950
 void FlashInflictCrying() {
 	if (InflictStatusBattle(currentTarget, 2, Status2.Crying) != 0) {
 		DisplayInBattleText(TextBattleCouldNotStopCrying);
@@ -3007,7 +3009,7 @@ void FlashInflictCrying() {
 	}
 }
 
-// $C29987
+/// $C29987
 void BattleActionPSIFlashAlpha() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -3022,7 +3024,7 @@ void BattleActionPSIFlashAlpha() {
 	WeakenShield();
 }
 
-// $C299AE
+/// $C299AE
 void BattleActionPSIFlashBeta() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -3046,7 +3048,7 @@ void BattleActionPSIFlashBeta() {
 	WeakenShield();
 }
 
-// $C299EF
+/// $C299EF
 void BattleActionPSIFlashGamma() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -3071,7 +3073,7 @@ void BattleActionPSIFlashGamma() {
 	WeakenShield();
 }
 
-// $C29A35
+/// $C29A35
 void BattleActionPSIFlashOmega() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -3097,7 +3099,7 @@ void BattleActionPSIFlashOmega() {
 	WeakenShield();
 }
 
-// $C29A80
+/// $C29A80
 void PSIStarstormCommon(short baseDamage) {
 	if (PSIShieldNullify() != 0) {
 		return;
@@ -3106,40 +3108,40 @@ void PSIStarstormCommon(short baseDamage) {
 	WeakenShield();
 }
 
-// $C29AA6
+/// $C29AA6
 void BattleActionPSIStarstormAlpha() {
 	PSIStarstormCommon(360);
 }
 
-// $C29AAF
+/// $C29AAF
 void BattleActionPSIStarstormOmega() {
 	PSIStarstormCommon(720);
 }
 
-// $C29AB8
+/// $C29AB8
 void LifeupCommon(short baseHealing);
 
-// $C29AC6
+/// $C29AC6
 void BattleActionLifeupAlpha() {
 	LifeupCommon(100);
 }
 
-// $C29ACF
+/// $C29ACF
 void BattleActionLifeupBeta() {
 	LifeupCommon(300);
 }
 
-// $C29AD8
+/// $C29AD8
 void BattleActionLifeupGamma() {
 	LifeupCommon(10000);
 }
 
-// $C29AE1
+/// $C29AE1
 void BattleActionLifeupOmega() {
 	LifeupCommon(400);
 }
 
-// $C29AEA
+/// $C29AEA
 void BattleActionHealingAlpha() {
 	switch (currentTarget.afflictions[0]) {
 		case Status0.Cold:
@@ -3161,7 +3163,7 @@ void BattleActionHealingAlpha() {
 	}
 }
 
-// $C29B7A
+/// $C29B7A
 void BattleActionHealingBeta() {
 	switch (currentTarget.afflictions[0]) {
 		case Status0.Poisoned:
@@ -3186,7 +3188,7 @@ void BattleActionHealingBeta() {
 	}
 }
 
-// $C29C2C
+/// $C29C2C
 void BattleActionHealingGamma() {
 	switch (currentTarget.afflictions[0]) {
 		case Status0.Paralyzed:
@@ -3210,7 +3212,7 @@ void BattleActionHealingGamma() {
 	}
 }
 
-// $C29CB8
+/// $C29CB8
 void BattleActionHealingOmega() {
 	if (currentTarget.afflictions[0] == Status0.Unconscious) {
 		ReviveTarget(currentTarget, currentTarget.hpMax);
@@ -3219,10 +3221,10 @@ void BattleActionHealingOmega() {
 	}
 }
 
-// $C29CDC
+/// $C29CDC
 short ShieldsCommon(Battler*, ubyte status);
 
-// $C29D44
+/// $C29D44
 void BattleActionShieldAlpha() {
 	if (ShieldsCommon(currentTarget, Status6.Shield) == 1) {
 		DisplayInBattleText(TextBattleShieldGotStronger);
@@ -3231,12 +3233,12 @@ void BattleActionShieldAlpha() {
 	}
 }
 
-// $C29D7A
+/// $C29D7A
 void BattleActionShieldSigma() {
 	BattleActionShieldAlpha();
 }
 
-// $C29D81
+/// $C29D81
 void BattleActionShieldBeta() {
 	if (ShieldsCommon(currentTarget, Status6.ShieldPower) == 1) {
 		DisplayInBattleText(TextBattlePowerShieldGotStronger);
@@ -3245,12 +3247,12 @@ void BattleActionShieldBeta() {
 	}
 }
 
-// $C29DB7
+/// $C29DB7
 void BattleActionShieldOmega() {
 	BattleActionShieldBeta();
 }
 
-// $C29DBE
+/// $C29DBE
 void BattleActionPSIShieldAlpha() {
 	if (ShieldsCommon(currentTarget, Status6.PSIShield) == 1) {
 		DisplayInBattleText(TextBattlePsychicShieldGotStronger);
@@ -3259,12 +3261,12 @@ void BattleActionPSIShieldAlpha() {
 	}
 }
 
-// $C29DF4
+/// $C29DF4
 void BattleActionPSIShieldSigma() {
 	BattleActionPSIShieldAlpha();
 }
 
-// $C29DFB
+/// $C29DFB
 void BattleActionPSIShieldBeta() {
 	if (ShieldsCommon(currentTarget, Status6.PSIShieldPower) == 1) {
 		DisplayInBattleText(TextBattlePsychicPowerShieldGotStronger);
@@ -3273,54 +3275,54 @@ void BattleActionPSIShieldBeta() {
 	}
 }
 
-// $C29E31
+/// $C29E31
 void BattleActionPSIShieldOmega() {
 	BattleActionPSIShieldBeta();
 }
 
-// $C29E38
+/// $C29E38
 void BattleActionOffenseUpAlpha();
 
-// $C29E7F
+/// $C29E7F
 void BattleActionOffenseUpOmega() {
 	BattleActionOffenseUpAlpha();
 }
 
-// $C29F06
+/// $C29F06
 void BattleActionHypnosisAlpha();
 
-// $C29F57
+/// $C29F57
 void BattleActionHypnosisOmega() {
 	BattleActionHypnosisAlpha();
 }
 
-// $C29E86
+/// $C29E86
 void BattleActionDefenseDownAlpha();
 
-// $C29EFF
+/// $C29EFF
 void BattleActionDefenseDownOmega() {
 	BattleActionDefenseDownAlpha();
 }
 
-// $C29F5E
+/// $C29F5E
 void BattleActionPSIMagnetAlpha();
 
-// $C29FE1
+/// $C29FE1
 void BattleActionPSIMagnetOmega() {
 	if ((currentTarget.allyOrEnemy != 0) || (currentTarget.id != 3)) {
 		BattleActionPSIMagnetAlpha();
 	}
 }
 
-// $C29FFE
+/// $C29FFE
 void BattleActionParalysisAlpha();
 
-// $C2A04F
+/// $C2A04F
 void BattleActionParalysisOmega() {
 	BattleActionParalysisAlpha();
 }
 
-// $C2A056
+/// $C2A056
 void BattleActionBrainshockAlpha() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -3332,70 +3334,70 @@ void BattleActionBrainshockAlpha() {
 	}
 }
 
-// $C2A0A7
+/// $C2A0A7
 void BattleActionBrainshockOmega() {
 	BattleActionBrainshockAlpha();
 }
 
-// $C2A0AE
+/// $C2A0AE
 void BattleActionHPRecovery1d4() {
 	RecoverHP(currentTarget, RandLimit(4));
 }
 
-// $C2A0BF
+/// $C2A0BF
 void BattleActionHPRecovery50() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(50));
 }
 
-// $C2A0CF
+/// $C2A0CF
 void BattleActionHPRecovery200() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(200));
 }
 
-// $C2A0DF
+/// $C2A0DF
 void BattleActionPPRecovery20() {
 	RecoverPP(currentTarget, TwentyFivePercentVariance(20));
 }
 
-// $C2A0EF
+/// $C2A0EF
 void BattleActionPPRecovery80() {
 	RecoverPP(currentTarget, TwentyFivePercentVariance(80));
 }
 
-// $C2A0FF
+/// $C2A0FF
 void BattleActionIQUp1d4();
 
-// $C2A14B
+/// $C2A14B
 void BattleActionGutsUp1d4();
 
-// $C2A193
+/// $C2A193
 void BattleActionSpeedUp1d4();
 
-// $C2A1DB
+/// $C2A1DB
 void BattleActionVitalityUp1d4();
 
-// $C2A227
+/// $C2A227
 void BattleActionLuckUp1d4();
 
-// $C2A26F
+/// $C2A26F
 void BattleActionHPRecovery300() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(300));
 }
 
-// $C2A27F
+/// $C2A27F
 void BattleActionRandomStatUp1d4();
 
-// $C2A360
+/// $C2A360
 void BattleActionHPRecovery10() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(10));
 }
 
-// $C2A370
+/// $C2A370
 void BattleActionHPRecovery100() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(100));
 }
 
-// $C2A380
+/// $C2A380
 void BattleActionHPRecovery10000() {
 	if (currentTarget.id != 4) {
 		RecoverHP(currentTarget, 10000);
@@ -3404,10 +3406,10 @@ void BattleActionHPRecovery10000() {
 	}
 }
 
-// $C2A3D1
+/// $C2A3D1
 void BattleActionCounterPSI();
 
-// $C2A39D
+/// $C2A39D
 void HealPoison() {
 	if (currentTarget.afflictions[0] == Status0.Poisoned) {
 		currentTarget.afflictions[0] = 0;
@@ -3415,21 +3417,21 @@ void HealPoison() {
 	}
 }
 
-// $C2A422
+/// $C2A422
 void BattleActionShieldKiller();
 
-// $C2A46B
+/// $C2A46B
 void BattleActionHPSucker();
 
-// $C2A507
+/// $C2A507
 void BattleActionHungryHPSucker() {
 	BattleActionHPSucker();
 }
 
-// $C2A50E
+/// $C2A50E
 void BattleActionMummyWrap();
 
-// $C2A57A
+/// $C2A57A
 void BottleRocketCommon(short count) {
 	short x14 = 0;
 	for (short i = 0; i < count; i++) {
@@ -3445,47 +3447,47 @@ void BottleRocketCommon(short count) {
 	}
 }
 
-// $C2A5D1
+/// $C2A5D1
 void BattleActionBottleRocket() {
 	BottleRocketCommon(1);
 }
 
-// $C2A5DA
+/// $C2A5DA
 void BattleActionBigBottleRocket() {
 	BottleRocketCommon(5);
 }
 
-// $C2A5E3
+/// $C2A5E3
 void BattleActionMultiBottleRocket() {
 	BottleRocketCommon(20);
 }
 
-// $C2A5EC
+/// $C2A5EC
 void BattleActionHandbagStrap();
 
-// $C2A658
+/// $C2A658
 void BombCommon(short);
 
-// $C2A818
+/// $C2A818
 void BattleActionBomb() {
 	BombCommon(90);
 }
 
-// $C2A821
+/// $C2A821
 void BattleActionSuperBomb() {
 	BombCommon(270);
 }
 
-// $C2A86B
+/// $C2A86B
 void BattleActionYogurtDispenser();
 
-// $C2A89D
+/// $C2A89D
 void BattleActionSnake();
 
-// $C2A99C
+/// $C2A99C
 void BattleActionBagOfDragonite();
 
-// $C2A9BD
+/// $C2A9BD
 void InsectSprayCommon(short baseDamage) {
 	if ((SuccessLuck80() != 0) && (currentTarget.allyOrEnemy == 1) && (GetEnemyType(currentTarget.id) == EnemyType.Insect)) {
 		CalcResistDamage(FiftyPercentVariance(baseDamage), 0xFF);
@@ -3494,17 +3496,17 @@ void InsectSprayCommon(short baseDamage) {
 	}
 }
 
-// $C2AA0C
+/// $C2AA0C
 void BattleActionInsecticideSpray() {
 	InsectSprayCommon(100);
 }
 
-// $C2AA15
+/// $C2AA15
 void BattleActionXterminatorSpray() {
 	InsectSprayCommon(200);
 }
 
-// $C2AA1E
+/// $C2AA1E
 void RustSprayCommon(short baseDamage) {
 	if ((SuccessLuck80() != 0) && (currentTarget.allyOrEnemy == 1) && (GetEnemyType(currentTarget.id) == EnemyType.Metal)) {
 		CalcResistDamage(FiftyPercentVariance(baseDamage), 0xFF);
@@ -3513,17 +3515,17 @@ void RustSprayCommon(short baseDamage) {
 	}
 }
 
-// $C2AA6D
+/// $C2AA6D
 void BattleActionRustPromoter() {
 	RustSprayCommon(200);
 }
 
-// $C2AA76
+/// $C2AA76
 void BattleActionRustPromoterDX() {
 	RustSprayCommon(400);
 }
 
-// $C2AA7F
+/// $C2AA7F
 void BattleActionSuddenGutsPill() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -3532,7 +3534,7 @@ void BattleActionSuddenGutsPill() {
 	DisplayTextWait(TextBattleGutsBecame, currentTarget.guts);
 }
 
-// $C2AAC6
+/// $C2AAC6
 void BattleActionDefenseSpray() {
 	if (FailAttackOnNPCs() != 0) {
 		return;
@@ -3542,15 +3544,15 @@ void BattleActionDefenseSpray() {
 	DisplayTextWait(TextBattleDefenseWentUp, currentTarget.defense - x16);
 }
 
-// $C2AB0D
+/// $C2AB0D
 void BattleActionDefenseShower() {
 	BattleActionDefenseSpray();
 }
 
-// $C2AB14
+/// $C2AB14
 short BossBattleCheck();
 
-// $C2AB71
+/// $C2AB71
 void BattleActionTeleportBox() {
 	if ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 0x80) == 0) {
 		if ((BattleModeFlag == 0) || ((RandLimit(100) < ItemData[currentAttacker.currentActionArgument].strength) && (BossBattleCheck() != 0))) {
@@ -3566,10 +3568,10 @@ void BattleActionTeleportBox() {
 	}
 }
 
-// $C2AD1B
+/// $C2AD1B
 void BattleActionPray();
 
-// $C2AF1F
+/// $C2AF1F
 void CopyMirrorData(Battler* arg1, Battler* arg2) {
 	short x44 = arg1.hp;
 	short x3E = arg1.pp;
@@ -3596,7 +3598,7 @@ void CopyMirrorData(Battler* arg1, Battler* arg2) {
 	arg1.hasTakenTurn = x16;
 }
 
-// $C2B0A1
+/// $C2B0A1
 void BattleActionMirror() {
 	if ((currentTarget.allyOrEnemy != 0) && (currentTarget.npcID == 0) && (RandLimit(100) < EnemyConfigurationTable[currentTarget.id].mirrorSuccess)) {
 		MirrorEnemy = currentTarget.id;
@@ -3609,10 +3611,10 @@ void BattleActionMirror() {
 	}
 }
 
-// $C2B27D
+/// $C2B27D
 void EatFood();
 
-// $C2B608
+/// $C2B608
 ubyte CalcPSIDamageModifiers(ubyte arg1) {
 	switch (arg1) {
 		case 0: return 255;
@@ -3622,7 +3624,7 @@ ubyte CalcPSIDamageModifiers(ubyte arg1) {
 		default: return arg1;
 	}
 }
-// $C2B639
+/// $C2B639
 ubyte CalcPSIResistanceModifiers(ubyte arg1) {
 	switch (arg1) {
 		case 0: return 255;
@@ -3633,7 +3635,7 @@ ubyte CalcPSIResistanceModifiers(ubyte arg1) {
 	}
 }
 
-// $C2B66A
+/// $C2B66A
 ubyte UnknownC2B66A(short arg1) {
 	memset(&Unknown7EAA98, 0, 26);
 	for (short i = 0; i < BattlersTable.length; i++) {
@@ -3657,7 +3659,7 @@ ubyte UnknownC2B66A(short arg1) {
 	return 0;
 }
 
-// $C2B6EB
+/// $C2B6EB
 void BattleInitEnemyStats(short arg1, Battler* battler) {
 	memset(battler, 0, Battler.sizeof);
 	if (EnemyConfigurationTable[arg1].level > Unknown7EAA0C) {
@@ -3714,7 +3716,7 @@ void BattleInitEnemyStats(short arg1, Battler* battler) {
 	}
 }
 
-// $C2B930
+/// $C2B930
 void BattleInitPlayerStats(short arg1, Battler* battler) {
 	memset(battler, 0, Battler.sizeof);
 	battler.id = cast(ubyte)arg1;
@@ -3745,7 +3747,7 @@ void BattleInitPlayerStats(short arg1, Battler* battler) {
 	battler.row = cast(ubyte)(arg1 - 1);
 }
 
-// $C2BAC5
+/// $C2BAC5
 short CountChars(short arg1) {
 	short result = 0;
 	for (short i = 0; i < BattlersTable.length; i++) {
@@ -3766,7 +3768,7 @@ short CountChars(short arg1) {
 	return result;
 }
 
-// $C2BB18
+/// $C2BB18
 void CheckDeadPlayers() {
 	for (short i = 0; i < 6; i++) {
 		if (BattlersTable[i].consciousness == 0) {
@@ -3807,7 +3809,7 @@ void CheckDeadPlayers() {
 	}
 }
 
-// $C2BC5C
+/// $C2BC5C
 void ResetPostBattleStats() {
 	for (short i = 0; i < 6; i++) {
 		if (BattlersTable[i].consciousness == 0) {
@@ -3826,30 +3828,30 @@ void ResetPostBattleStats() {
 	}
 }
 
-// $C2BCB9
+/// $C2BCB9
 void UnknownC2BCB9(Battler* battler, short arg2) {
 	SetPP(battler, (arg2 > battler.ppTarget) ? 0 : cast(ushort)(battler.ppTarget - arg2));
 }
 
-// $C2BCE6
+/// $C2BCE6
 void LoseHPStatus(Battler* battler, short arg2) {
 	SetHP(battler, (arg2 > battler.hpTarget) ? 0 : cast(ushort)(battler.hpTarget - arg2));
 }
 
-// $C2BD5E
+/// $C2BD5E
 void CallForHelpCommon(short);
 
-// $C2C13C
+/// $C2C13C
 void BattleActionSowSeeds() {
 	CallForHelpCommon(1);
 }
 
-// $C2C145
+/// $C2C145
 void BattleActionCallForHelp() {
 	CallForHelpCommon(0);
 }
 
-// $C2C14E
+/// $C2C14E
 void BattleActionRainbowOfColours() {
 	ubyte x02 = currentAttacker.spriteX;
 	ubyte x10 = currentAttacker.spriteY;
@@ -3861,7 +3863,7 @@ void BattleActionRainbowOfColours() {
 	Unknown7EAA92 = 1;
 }
 
-// $C2C1BD
+/// $C2C1BD
 void BattleActionFlyHoney() {
 	for (short i = 8; i < BattlersTable.length; i++) {
 		if (BattlersTable[i].consciousness == 0) {
@@ -3878,7 +3880,7 @@ void BattleActionFlyHoney() {
 	DisplayInBattleText(TextBattleFlyHoneyNormal);
 }
 
-// $C2C21F
+/// $C2C21F
 void UnknownC2C21F(short group, short music) {
 	short x10 = 0;
 	if ((BattleModeFlag != 0) || (group == 483)) {
@@ -3919,7 +3921,7 @@ void UnknownC2C21F(short group, short music) {
 	}
 }
 
-// $C2C32C
+/// $C2C32C
 void UnknownC2C32C(short arg1) {
 	ubyte x10 = BattlersTable[8].spriteX;
 	ubyte x04 = BattlersTable[8].spriteY;
@@ -3929,7 +3931,7 @@ void UnknownC2C32C(short arg1) {
 	BattlersTable[8].hasTakenTurn = 1;
 }
 
-// $C2C37A
+/// $C2C37A
 void UnknownC2C37A(short arg1, short arg2, const(ubyte)* arg3) {
 	FadeOut(1, 4);
 	UnknownC269DE();
@@ -3946,7 +3948,7 @@ void UnknownC2C37A(short arg1, short arg2, const(ubyte)* arg3) {
 	Wait(1 * 60);
 }
 
-// $C2C3E2
+/// $C2C3E2
 void GiygasHurtPrayer(short damage) {
 	Wait(1 * 60);
 	currentTarget = &BattlersTable[8];
@@ -3957,7 +3959,7 @@ void GiygasHurtPrayer(short damage) {
 	Wait(1 * 60);
 }
 
-// $C2C41F
+/// $C2C41F
 void UnknownC2C41F(short arg1, const(ubyte)* arg2) {
 	FadeOut(1, 1);
 	UnknownC0AC0C(2);
@@ -3983,7 +3985,7 @@ void UnknownC2C41F(short arg1, const(ubyte)* arg2) {
 	UnknownC269DE();
 }
 
-// $C2C4C0
+/// $C2C4C0
 void BattleActionPokeySpeech() {
 	CurrentGiygasPhase = GiygasPhase.DevilsMachineOff;
 	UnknownC2C32C(EnemyID.Giygas3);
@@ -3997,12 +3999,12 @@ void BattleActionPokeySpeech() {
 	Unknown7EAA92 = 1;
 }
 
-// $C2C513
+/// $C2C513
 void BattleActionNull12() {
 	//nothing
 }
 
-// $C2C516
+/// $C2C516
 void BattleActionPokeySpeech2() {
 	CurrentGiygasPhase = GiygasPhase.StartPraying;
 	Wait(2 * 60);
@@ -4017,7 +4019,7 @@ void BattleActionPokeySpeech2() {
 	Unknown7EAA92 = 1;
 }
 
-// $C2C572
+/// $C2C572
 void BattleActionGiygasPrayer1() {
 	UnknownC2C37A(479, Music.GiygasPhase3, TextBattleGiygasPrayer1);
 	Wait(2 * 60);
@@ -4031,42 +4033,42 @@ void BattleActionGiygasPrayer1() {
 	UnknownC2C21F(479, Music.None);
 }
 
-// $C2C5D1
+/// $C2C5D1
 void BattleActionGiygasPrayer2() {
 	UnknownC2C37A(479, Music.GiygasPhase3, TextBattleGiygasPrayer2);
 	GiygasHurtPrayer(50);
 	CurrentGiygasPhase = GiygasPhase.Prayer2Used;
 }
 
-// $C2C5FA
+/// $C2C5FA
 void BattleActionGiygasPrayer3() {
 	UnknownC2C37A(479, Music.GiygasPhase3, TextBattleGiygasPrayer3);
 	GiygasHurtPrayer(100);
 	CurrentGiygasPhase = GiygasPhase.Prayer3Used;
 }
 
-// $C2C623
+/// $C2C623
 void BattleActionGiygasPrayer4() {
 	UnknownC2C37A(479, Music.GiygasPhase3, TextBattleGiygasPrayer4);
 	GiygasHurtPrayer(200);
 	CurrentGiygasPhase = GiygasPhase.Prayer4Used;
 }
 
-// $C2C64C
+/// $C2C64C
 void BattleActionGiygasPrayer5() {
 	UnknownC2C37A(479, Music.GiygasPhase3, TextBattleGiygasPrayer5);
 	GiygasHurtPrayer(400);
 	CurrentGiygasPhase = GiygasPhase.Prayer5Used;
 }
 
-// $C2C675
+/// $C2C675
 void BattleActionGiygasPrayer6() {
 	UnknownC2C37A(479, Music.GiygasPhase3, TextBattleGiygasPrayer6);
 	GiygasHurtPrayer(800);
 	CurrentGiygasPhase = GiygasPhase.Prayer6Used;
 }
 
-// $C2C69E
+/// $C2C69E
 void BattleActionGiygasPrayer7() {
 	UnknownC2C37A(479, Music.GiygasPhase3, TextBattleGiygasPrayer7);
 	GiygasHurtPrayer(1600);
@@ -4074,13 +4076,13 @@ void BattleActionGiygasPrayer7() {
 	UnknownC2C21F(480, Music.GiygasWeakened2);
 }
 
-// $C2C6D0
+/// $C2C6D0
 void BattleActionGiygasPrayer8() {
 	UnknownC2C41F(74, TextBattleGiygasPrayer8);
 	CurrentGiygasPhase = GiygasPhase.Prayer8Used;
 }
 
-// $C2C6F0
+/// $C2C6F0
 void BattleActionGiygasPrayer9() {
 	ResetRolling();
 	UnknownC2C41F(74, TextBattleGiygasPrayer91);
@@ -4152,7 +4154,7 @@ void BattleActionGiygasPrayer9() {
 	Unknown7EAA0E = 3;
 }
 
-// $C2C8C8
+/// $C2C8C8
 void LoadEnemyBattleSprites() {
 	UnknownC08D79(9);
 	SetBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
@@ -4162,10 +4164,10 @@ void LoadEnemyBattleSprites() {
 	CopyToVram(3, 0x800, 0x7C00, &Unknown7F8000[0]);
 }
 
-// $C2C92D
+/// $C2C92D
 void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer);
 
-// $C2CFE5
+/// $C2CFE5
 void UnknownC2CFE5(LoadedBackgroundData* target, const(AnimatedBackground)* bg) {
 	memset(target, 0, LoadedBackgroundData.sizeof);
 	target.Bitdepth = bg.bitsPerPixel;
@@ -4182,7 +4184,7 @@ void UnknownC2CFE5(LoadedBackgroundData* target, const(AnimatedBackground)* bg) 
 	target.PaletteChangeDurationLeft = 1;
 }
 
-// $C2D0AC
+/// $C2D0AC
 void UnknownC2D0AC() {
 	HDMAWordTransfer* x = &Unknown7EADB8[0];
 
@@ -4208,7 +4210,7 @@ void UnknownC2D0AC() {
 	x.scanlines = 0;
 }
 
-// $C2D121
+/// $C2D121
 // check this one over later
 void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	RedFlashDuration = 0;
@@ -4347,7 +4349,7 @@ void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	UnknownC2E9ED();
 }
 
-// $C2DAE3
+/// $C2DAE3
 void UnknownC2DAE3() {
 	ubyte x0E = LoadedBGDataLayer1.DistortionStyles[0];
 	LoadedBGDataLayer1.DistortionStyles[0] = LoadedBGDataLayer1.DistortionStyles[3];
@@ -4356,12 +4358,12 @@ void UnknownC2DAE3() {
 	LoadedBGDataLayer1.DistortionStyles[3] = x0E;
 }
 
-// $C2DB14
+/// $C2DB14
 void UnknownC2DB14() {
 	memcpy(&LoadedBGDataLayer1.Palette[0], LoadedBGDataLayer1.PalettePointer, LoadedBGDataLayer1.Palette[0].sizeof);
 }
 
-// $C2DB3F
+/// $C2DB3F
 void UnknownC2DB3F() {
 	if (Unknown7EADD0 != 0) {
 		Unknown7EADD2 -= 0x555;
@@ -4487,10 +4489,10 @@ void UnknownC2DB3F() {
 	}
 }
 
-// $C2DE43
+/// $C2DE43
 void BattleActionSwitchWeapons();
 
-// $C2DE96
+/// $C2DE96
 void UnknownC2DE96() {
 	memcpy(&LoadedBGDataLayer1.Palette[0], &LoadedBGDataLayer1.Palette2[0], LoadedBGDataLayer1.Palette.sizeof);
 	memcpy(&LoadedBGDataLayer2.Palette[0], &LoadedBGDataLayer2.Palette2[0], LoadedBGDataLayer2.Palette.sizeof);
@@ -4498,13 +4500,13 @@ void UnknownC2DE96() {
 	memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], LoadedBGDataLayer2.Palette.sizeof);
 }
 
-// $C2E00F
+/// $C2E00F
 void BattleActionSwitchArmor();
 
-// $C2E08E
+/// $C2E08E
 void UnknownC2E08E(short);
 
-// $C2E0E7
+/// $C2E0E7
 void UnknownC2E0E7() {
 	GreenFlashDuration = 0;
 	RedFlashDuration = 0;
@@ -4517,19 +4519,19 @@ void UnknownC2E0E7() {
 	UnknownC0AFCD(1);
 }
 
-// $C2E116
+/// $C2E116
 void ShowPSIAnimation(short);
 
-// $C2E6B6
+/// $C2E6B6
 void UnknownC2E6B6();
 
-// $C2E8C4
+/// $C2E8C4
 void UnknownC2E8C4(short arg1, short arg2, short arg3) {
 	UnknownC4A67E(arg1, arg2);
 	Unknown7EAECA = cast(ubyte)arg3;
 }
 
-// $C2E9C8
+/// $C2E9C8
 short UnknownC2E9C8() {
 	if ((Unknown7EAEC2 != 0) && (4 > Unknown7EAECA)) {
 		return 1;
@@ -4537,7 +4539,7 @@ short UnknownC2E9C8() {
 	return 0;
 }
 
-// $C2E9ED
+/// $C2E9ED
 void UnknownC2E9ED() {
 	Unknown7EAEC2 = 0;
 	UnknownC0AE34(Unknown7EAEC9 + 3);
@@ -4545,7 +4547,7 @@ void UnknownC2E9ED() {
 	SetWindowMask(0, 0);
 }
 
-// $C2EA15
+/// $C2EA15
 void UnknownC2EA15(short arg1) {
 	Unknown7EAEEF = cast(ubyte)arg1;
 	UnknownC4A67E(0, 0);
@@ -4563,7 +4565,7 @@ void UnknownC2EA15(short arg1) {
 	}
 }
 
-// $C2EA74
+/// $C2EA74
 void UnknownC2EA74() {
 	UnknownC4A67E(0, 0);
 	Unknown7EAEC8 = 0x13;
@@ -4574,7 +4576,7 @@ void UnknownC2EA74() {
 	}
 }
 
-// $C2EAAA
+/// $C2EAAA
 void UnknownC2EAAA() {
 	Unknown7EAEC2 = 0;
 	Unknown7EAECC = null;
@@ -4582,7 +4584,7 @@ void UnknownC2EAAA() {
 	SetWindowMask(0, 0);
 }
 
-// $C2EACF
+/// $C2EACF
 short UnknownC2EACF() {
 	if (Unknown7E1B9E != 0) {
 		return 1;
@@ -4593,7 +4595,7 @@ short UnknownC2EACF() {
 	return 1;
 }
 
-// $C2EAEA
+/// $C2EAEA
 void UnknownC2EAEA(short arg1) {
 	Unknown7EAAB6[Unknown7EAAB4] = cast(ubyte)Unknown7EAAB2;
 	SpriteMap* x26 = &Unknown7EAAD6[Unknown7EAAB4][0];
@@ -4701,7 +4703,7 @@ void UnknownC2EAEA(short arg1) {
 	}
 }
 
-// $C2EFFD
+/// $C2EFFD
 short GetBattleSpriteWidth(short arg1) {
 	switch (BattleSpritePointers[arg1 - 1].size) {
 		case BattleSpriteSize._32X32:
@@ -4718,7 +4720,7 @@ short GetBattleSpriteWidth(short arg1) {
 	}
 }
 
-// $C2EEE7
+/// $C2EEE7
 void UnknownC2EEE7() {
 	Unknown7EAAB4 = 0;
 	Unknown7EAAB2 = 0;
@@ -4732,7 +4734,7 @@ void UnknownC2EEE7() {
 	CopyToVram(0, (Unknown7EAAB2 > 16) ? 0x3000 : 0x2000, 0x2000, &Unknown7F0000[0]);
 }
 
-// $C2F09F
+/// $C2F09F
 ubyte UnknownC2F09F(short arg1) {
 	for (ubyte i = 0; i < 4; i++) {
 		if (Unknown7EAABE[i] == arg1) {
@@ -4742,7 +4744,7 @@ ubyte UnknownC2F09F(short arg1) {
 	return 0;
 }
 
-// $C2F0D1
+/// $C2F0D1
 void UnknownC2F0D1() {
 	short y = 0;
 	for (short i = 0; i < EnemiesInBattle; i++) {
@@ -4754,10 +4756,10 @@ void UnknownC2F0D1() {
 	}
 }
 
-// $C2F121
+/// $C2F121
 void UnknownC2F121();
 
-// $C2F724
+/// $C2F724
 void UnknownC2F724(short arg1) {
 	for (short i = 8; i < BattlersTable.length; i++) {
 		if (BattlersTable[i].consciousness == 0) {
@@ -4790,7 +4792,7 @@ void UnknownC2F724(short arg1) {
 	}
 }
 
-// $C2F8F9
+/// $C2F8F9
 void UnknownC2F8F9() {
 	UnknownC088A5(0x7E);
 	OAMClear();
@@ -4799,13 +4801,13 @@ void UnknownC2F8F9() {
 	UpdateScreen();
 }
 
-// $C2F917
+/// $C2F917
 void UnknownC2F917();
 
-// $C2FD99
+/// $C2FD99
 void UnknownC2FD99();
 
-// $C2FEF9
+/// $C2FEF9
 void UnknownC2FEF9(short type) {
 	if (type - 1 != 0) {
 		memcpy(&palettes[8][0], &UnknownC3F8F1[type - 1][0], 32);

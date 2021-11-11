@@ -1,8 +1,9 @@
+///
 module earthbound.bank0E;
 
 import earthbound.commondefs;
 
-// $CE62EE
+/// $CE62EE
 immutable BattleSpritePointer[110] BattleSpritePointers = [
 	BattleSpritePointer(cast(immutable(ubyte)[])import("battle_sprites/0.gfx.lzhal"), BattleSpriteSize._32X32),
 	BattleSpritePointer(cast(immutable(ubyte)[])import("battle_sprites/1.gfx.lzhal"), BattleSpriteSize._32X32),
@@ -116,7 +117,7 @@ immutable BattleSpritePointer[110] BattleSpritePointers = [
 	BattleSpritePointer(cast(immutable(ubyte)[])import("battle_sprites/109.gfx.lzhal"), BattleSpriteSize._64X64),
 ];
 
-// $CE6514
+/// $CE6514
 immutable ushort[][32] BattleSpritePalettes = [
 	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/0.pal")),
 	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/1.pal")),
@@ -152,7 +153,7 @@ immutable ushort[][32] BattleSpritePalettes = [
 	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/31.pal")),
 ];
 
-// $CEDC45
+/// $CEDC45
 immutable ubyte[][126] SwirlPointerTable = [
 	cast(immutable(ubyte)[])import("swirls/0.swirl"),
 	cast(immutable(ubyte)[])import("swirls/1.swirl"),
@@ -282,7 +283,7 @@ immutable ubyte[][126] SwirlPointerTable = [
 	cast(immutable(ubyte)[])import("swirls/125.swirl"),
 ];
 
-// $CEDD41
+/// $CEDD41
 immutable ubyte[4][7] SwirlPrimaryTable = [
 	[ 0x00, 0x00, 0x00, 0x00 ],
 	[ 0x02, 0x00, 0x17, 0x00 ],

@@ -1,3 +1,4 @@
+///
 module earthbound.bank08;
 
 import earthbound.commondefs;
@@ -756,7 +757,7 @@ immutable ubyte* TEXT_NPC_1077;
 immutable ubyte* TEXT_DOOR_740;
 immutable ubyte* TEXT_DOOR_742;
 
-
+/// $C8CDED
 immutable ubyte[][256][3] compressedText = [
 [
 	EBString("                "),
