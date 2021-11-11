@@ -6,10 +6,17 @@ import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank07;
+import earthbound.bank08;
 import earthbound.bank15;
 import earthbound.bank2F;
 import earthbound.globals;
 
+// $C10000
+void UnknownC10000() {
+    HideHPPPWindows();
+}
+
+// $C10004
 void UnknownC10004(ubyte* arg1) {
     UnknownC0943C();
     DisplayText(arg1);
@@ -19,6 +26,17 @@ void UnknownC10004(ubyte* arg1) {
     UnknownC09451();
 }
 
+// $C10036
+void EnableBlinkingTriangle(ushort arg1) {
+    BlinkingTriangleFlag = arg1;
+}
+
+// $C1003C
+void ClearBlinkingPrompt() {
+    BlinkingTriangleFlag = 0;
+}
+
+// $C10048
 void UnknownC10048(ushort arg1) {
     Unknown7E964F = arg1;
 }
@@ -38,15 +56,115 @@ void UnknownC1004E() {
 }
 
 // $C1007E - Set the focused window
-void Win_SetFocus(short window_id);
+void Win_SetFocus(short id) {
+    CurrentFocusWindow = id;
+}
 
 // $C10084
 void CloseFocusWindowN() {
     CloseWindow(CurrentFocusWindow);
 }
 
+// $C1008E
+void UnknownC1008E();
+
+// $C10166
+void CC1314(short, short);
+
+// $C10301
+WinStat* GetActiveWindowAddress() {
+    if (window_head == -1) {
+        return &Unknown7E85FE;
+    }
+    return &WindowStats[WindowTable[CurrentFocusWindow]];
+}
+
+// $C1042E
+void IncrementSecondaryMemory();
+
+// $C1045D
+void SetWorkingMemory(uint);
+
+// $C104B5
+short GetTextX();
+
 // $C104EE
-void CreateWindowN(short id);
+void CreateWindowN(short id) {
+    //x14 = id
+    WinStat* x10;
+    if (WindowTable[id] != -1) {
+        CurrentFocusWindow = id;
+        UnknownC11383();
+        x10 = &WindowStats[WindowTable[id]];
+    } else {
+        short x0E = UnknownC3E4EF();
+        if (x0E == -1) {
+            return;
+        }
+        x10 = &WindowStats[x0E];
+        if (id == 10) {
+            if (window_head == -1) {
+                x10.next = -1;
+                window_tail = x0E;
+            } else {
+                WindowStats[window_head].prev = x0E;
+                x10.next = window_head;
+            }
+            x10.prev = -1;
+            window_head = x0E;
+        } else {
+            if (window_head == -1) {
+                x10.prev = -1;
+                window_head = x0E;
+            } else {
+                x10.prev = window_tail;
+                WindowStats[window_tail].next = x0E;
+            }
+            window_tail = x0E;
+            x10.next = -1;
+        }
+        x10.window_id = id;
+        WindowStats[id].next = x0E;
+        x10.x = WindowConfigurationTable[id].x;
+        x10.y = WindowConfigurationTable[id].y;
+        x10.width = WindowConfigurationTable[id].width;
+        x10.height = WindowConfigurationTable[id].height;
+        x10.tilemapBuffer = &Unknown7E5E7E[x0E][0];
+        CurrentFocusWindow = id;
+    }
+    WinStat* x12 = GetActiveWindowAddress();
+    x10.text_y = 0;
+    x10.text_x = 0;
+    x10.num_padding = 0x80;
+    x10.tileAttributes = 0;
+    x10.font = 0;
+    x10.result = x12.result;
+    x10.argument = x12.argument;
+    x10.result_bak = x12.result_bak;
+    x10.argument_bak = x12.argument_bak;
+    x10.counter = x12.counter;
+    x10.counter_bak = x12.counter_bak;
+    x10.selected_option = -1;
+    x10.option_count = -1;
+    x10.current_option = -1;
+    x10.menu_columns = 1;
+    x10.menu_page = 1;
+    x10.menu_callback = null;
+    for (short i = cast(short)(x10.height * x10.width); i != 0; i--) {
+        if (x10.tilemapBuffer[i] != 0) {
+            UnknownC44E4D(x10.tilemapBuffer[i]);
+        }
+        x10.tilemapBuffer[i] = 0x40;
+    }
+    if (x10.title_id != 0) {
+        Unknown7E894E[x10.title_id - 1] = -1;
+    }
+    x10.title[0] = 0;
+    x10.title_id = 0;
+    UnknownC45E96();
+    Unknown7E9623 = 1;
+    UnknownC07C5B();
+}
 
 // $C1078D
 void UnknownC1078D() {
@@ -64,6 +182,12 @@ void ShowHPPPWindows() {
     Unknown7E9647 = -1;
 }
 
+// $C10A1D
+void HideHPPPWindows();
+
+// $C10BD3
+void* CC12(const(ubyte)**, ushort);
+
 // $C10EB4
 void UnknownC10EB4(short);
 
@@ -71,7 +195,9 @@ void UnknownC10EB4(short);
 short UnknownC10C55(uint*);
 
 // $C10C79
-void PrintNewLineF();
+void PrintNewLineF() {
+    PrintNewLine();
+}
 
 // $C10C80
 void UnknownC10BA1F(short);
@@ -104,6 +230,7 @@ void UnknownC10F40(short window) {
     WindowStats[WindowTable[window]].text_y = 0;
     WindowStats[WindowTable[window]].text_x = 0;
 }
+
 // $C10FA3 - Clears the focused window
 void Win_ClearFocus() {
     UnknownC10F40(CurrentFocusWindow);
@@ -117,6 +244,9 @@ void OpenHpAndWallet() {
     ShowHPPPWindows();
     UnknownC1AA18();
 }
+
+// $C11383
+void UnknownC11383();
 
 // $C1163C - Prints the options into the focused window
 void Win_PrintOptions();
@@ -403,12 +533,30 @@ void OpenMenuButton();
 // $C13---
 void OpenMenuButtonCheckTalk();
 
-// $C13CA1
+// $C10C72
 void UnknownC438A5F(short arg1, short arg2) {
     UnknownC438A5(arg1, arg2);
 }
+
 // $C13CA1
-void OpenHPPPDisplay();
+void OpenHPPPDisplay() {
+    UnknownC0943C();
+    PlaySfx(Sfx.Cursor1);
+    OpenHpAndWallet();
+    do {
+        Win_Tick();
+        if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+            OpenMenuButton();
+            return;
+        }
+    } while ((pad_press[0] & (PAD_B | PAD_SELECT)) != 0);
+    PlaySfx(Sfx.Cursor2);
+    ClearInstaprint();
+    HideHPPPWindows();
+    UnknownC1008E();
+    Win_Tick();
+    UnknownC09451();
+}
 
 // $C13CE5
 void ShowTownMap() {
@@ -420,8 +568,232 @@ void ShowTownMap() {
     UnknownC09451();
 }
 
+// $C14012
+short UnknownC14012();
+
+// $C14049
+void UnknownC14049();
+
+// $C14103
+void* CC0A(const(ubyte)**, ushort);
+
+// $C141D0
+void* CC09(const(ubyte)**, ushort);
+
+// $C14265
+void* CC04(const(ubyte)**, ushort);
+
+// $C142AD
+void* CC05(const(ubyte)**, ushort);
+
+// $C142F5
+void* CC06(const(ubyte)**, ushort);
+
+// $C1435F
+void* CC07(const(ubyte)**, ushort);
+
+// $C143D6
+void* CC08(const(ubyte)**, ushort);
+
+// $C14558
+void* CC0B(const(ubyte)**, ushort);
+
+// $C14591
+void* CC0C(const(ubyte)**, ushort);
+
+// $C145EF
+void* CC0D(const(ubyte)**, ushort);
+
+// $C1461A
+void* CC0E(const(ubyte)**, ushort);
+
+// $C14EAB
+void* CC10(const(ubyte)**, ushort);
+
+// $C1790B
+void* CC18Tree(const(ubyte)**, ushort);
+
+// $C179AA
+void* CC19Tree(const(ubyte)**, ushort);
+
+// $C17B56
+void* CC1ATree(const(ubyte)**, ushort);
+
+// $C17C36
+void* CC1BTree(const(ubyte)**, ushort);
+
+// $C17D94
+void* CC1CTree(const(ubyte)**, ushort);
+
+// $C17F11
+void* CC1DTree(const(ubyte)**, ushort);
+
+// $C1811F
+void* CC1ETree(const(ubyte)**, ushort);
+
+// $C181BB
+void* CC1FTree(const(ubyte)**, ushort);
+
+// $C1866D
+const(ubyte)** UnknownC1866D(short, const(ubyte)*);
+
+// $C1869D
+void UnknownC1869D(const(ubyte)**, const(ubyte)*);
+
 // $C186B1 - Call a text script (script_ptr)
-void DisplayText(const(ubyte)* script_ptr);
+const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
+    void* function(const(ubyte)**, ushort) x1E = null;
+    ushort x14;
+    const(ubyte)* x1A = &BattleBackRowText[12];
+    if (script_ptr is null) {
+        return script_ptr;
+    }
+    const(ubyte)** x12 = UnknownC1866D(UnknownC14012(), script_ptr);
+    if (x12 is null) {
+        return null;
+    }
+    loop: while (true) {
+        if ((Unknown7E5E6E != 0) && (x1E is null)) {
+            if (Unknown7E9660 == 0) {
+                UnknownC445E1(x12, x1A);
+            } else {
+                Unknown7E9660--;
+            }
+        }
+        if (x1A[0] != 0) {
+            x14 = x1A[0];
+            x1A++;
+        } else {
+            x14 = **x12;
+            (*x12)++;
+        }
+        if (x1E !is null) {
+            x1E = cast(typeof(x1E))x1E(x12, x14);
+            continue;
+        }
+        switch (x14) {
+            case 0x15:
+                const(ubyte)* tmp = &compressedText[0][**x12][0];
+                (*x12)++;
+                x14 = tmp[0];
+                tmp++;
+                break;
+            case 0x16:
+                const(ubyte)* tmp = &compressedText[1][**x12][0];
+                (*x12)++;
+                x14 = tmp[0];
+                tmp++;
+                break;
+            case 0x17:
+                const(ubyte)* tmp = &compressedText[2][**x12][0];
+                (*x12)++;
+                x14 = tmp[0];
+                tmp++;
+                break;
+            default: break;
+        }
+        if (x14 < 0x20) {
+            CCArgumentGatheringLoopCounter = 0;
+            switch (x14) {
+                case 0x00:
+                    PrintNewLine();
+                    break;
+                case 0x01:
+                    if (GetTextX() != 0) {
+                        PrintNewLine();
+                    }
+                    break;
+                case 0x02:
+                    break loop;
+                case 0x03:
+                    CC1314(1, 0);
+                    break;
+                case 0x04:
+                    x1E = &CC04;
+                    break;
+                case 0x05:
+                    x1E = &CC05;
+                    break;
+                case 0x06:
+                    x1E = &CC06;
+                    break;
+                case 0x07:
+                    x1E = &CC07;
+                    break;
+                case 0x08:
+                    x1E = &CC08;
+                    break;
+                case 0x09:
+                    x1E = &CC09;
+                    break;
+                case 0x0A:
+                    x1E = &CC0A;
+                    break;
+                case 0x0B:
+                    x1E = &CC0B;
+                    break;
+                case 0x0C:
+                    x1E = &CC0C;
+                    break;
+                case 0x0D:
+                    x1E = &CC0D;
+                    break;
+                case 0x0E:
+                    x1E = &CC0E;
+                    break;
+                case 0x0F:
+                    IncrementSecondaryMemory();
+                    break;
+                case 0x10:
+                    x1E = &CC10;
+                    break;
+                case 0x11:
+                    SetWorkingMemory(Win_MenuSelection(1));
+                    UnknownC11383();
+                    break;
+                case 0x12:
+                    x1E = &CC12;
+                    break;
+                case 0x13:
+                    CC1314(0, 0);
+                    break;
+                case 0x14:
+                    CC1314(1, 1);
+                    break;
+                case 0x18:
+                    x1E = &CC18Tree;
+                    break;
+                case 0x19:
+                    x1E = &CC19Tree;
+                    break;
+                case 0x1A:
+                    x1E = &CC1ATree;
+                    break;
+                case 0x1B:
+                    x1E = &CC1BTree;
+                    break;
+                case 0x1C:
+                    x1E = &CC1CTree;
+                    break;
+                case 0x1D:
+                    x1E = &CC1DTree;
+                    break;
+                case 0x1E:
+                    x1E = &CC1ETree;
+                    break;
+                case 0x1F:
+                    x1E = &CC1FTree;
+                    break;
+                default: break;
+            }
+        } else {
+            PrintLetter(x14);
+        }
+    }
+    UnknownC1869D(x12, *x12);
+    UnknownC14049();
+    return *x12;
+}
 
 // $C18B2C
 ushort GiveItemToSpecificCharacter(ushort character, ubyte item) {
@@ -562,7 +934,17 @@ void ShowHPAlert(short arg1) {
 void DisplayTextWait(const(ubyte)*, uint);
 
 // $C1DCCB
-void DisplayInBattleText(const(ubyte)*);
+void DisplayInBattleText(const(ubyte)* ptr) {
+    if ((gameState.autoFightEnable != 0) && ((pad_state[0] & PAD_B) != 0)) {
+        gameState.autoFightEnable = 0;
+        UnknownC20293();
+    }
+    if (BattleModeFlag != 0) {
+        EnableBlinkingTriangle(2);
+    }
+    DisplayText(ptr);
+    ClearBlinkingPrompt();
+}
 
 // $C1DCCB
 void UnknownC1DCCB(short);

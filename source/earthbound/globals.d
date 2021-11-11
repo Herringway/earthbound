@@ -480,23 +480,24 @@ __gshared ubyte Unknown7E5E79;           // $5E79 - Mystery flag
 __gshared short Unknown7E5E7A;           // $5E7A
 __gshared short Unknown7E5E7C;           // $5E7C
 
+__gshared ushort[0x1F8][8] Unknown7E5E7E;           // $5E7E
+
 __gshared ushort[0x380] bg2Buffer;           // $7DFE
 
 __gshared ushort[0x100] Unknown7E827E;           // $827E
 
+__gshared WinStat Unknown7E85FE;    // $85FE
 __gshared WinStat[9]  WindowStats;    // $8650
-
-__gshared Game_State gameState;
-__gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters;
-__gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags;
-
-
 __gshared short  window_head;       // $88E0 - Head of the window linked list
 __gshared short  window_tail;       // $88E2 - Tail of the window linked list
 __gshared short[53]  WindowTable;  // $88E4 - Index: Window ID; Value: Index to WindowStats
 __gshared short[5] Unknown7E894E; //$894E
 __gshared short  CurrentFocusWindow; // $8958 - Window ID of the focused window
 __gshared ubyte[0] Unknown7E895A; //$895A
+
+__gshared Game_State gameState;
+__gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters;
+__gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags;
 
 __gshared ubyte[3] HPPPWindowDigitBuffer; //$8966
 __gshared ushort[12][4] HPPPWindowBuffer; //$8969
@@ -532,6 +533,8 @@ __gshared ushort Unknown7E9654;           // $9654
 __gshared short Unknown7E9658;           // $9658
 __gshared short Unknown7E965A;           // $965A
 
+__gshared short Unknown7E9660;           // $9660
+__gshared short Unknown7E9662;           // $9662
 __gshared short Unknown7E9684;           // $9684
 __gshared short Unknown7E9686;           // $9686
 __gshared short Unknown7E9688;           // $9688
@@ -543,6 +546,8 @@ __gshared ubyte Unknown7E9695;           // $9695
 __gshared ubyte Unknown7E9696;           // $9696
 __gshared ubyte Unknown7E9697;           // $9697
 __gshared ubyte Unknown7E9698;           // $9698
+
+__gshared ushort CCArgumentGatheringLoopCounter; //$97CA
 
 __gshared WindowTextAttributesCopy Unknown7E9C8A;           // $9C8A
 
@@ -579,7 +584,7 @@ __gshared short Unknown7E9F35;           // $9F35
 __gshared short Unknown7E9F39;           // $9F39
 __gshared short Unknown7E9F3B;           // $9F3B
 __gshared short Unknown7E9F3D;           // $9F3D
-__gshared short TeleportDestination;           // $9F3F
+__gshared short teleportDestination;           // $9F3F
 __gshared TeleportStyle teleportStyle;           // $9F41
 __gshared short Unknown7E9F43;           // $9F43
 __gshared FixedPoint1616 Unknown7E9F45;           // $9F45

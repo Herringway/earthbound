@@ -602,10 +602,10 @@ enum ItemID {
 
 enum Sfx {
 	None = 0,
-	CURSOR1 = 1,
-	CURSOR2 = 2,
-	CURSOR3 = 3,
-	CURSOR4 = 4,
+	Cursor1 = 1,
+	Cursor2 = 2,
+	Cursor3 = 3,
+	Cursor4 = 4,
 	CURSOR_INVALID = 5,
 	UNKNOWN06 = 6,
 	TextPrint = 7,
@@ -3633,6 +3633,43 @@ enum BattleSpriteSize {
 	_128X128 = 6,
 }
 
+
+enum MapSectorConfig {
+	UNKNOWN = 1<<6,
+	CANNOT_TELEPORT = 1<<7,
+}
+
+enum MapSectorMiscConfig {
+	NONE = 0,
+	INDOOR_AREA = 1,
+	EXIT_MOUSE_USABLE = 2,
+	USE_MINI_SPRITES = 3,
+	USE_MAGICANT_SPRITES = 4,
+	USE_ROBOT_SPRITES = 5,
+	FREQUENT_MAGIC_BUTTERFLIES = 6,
+	FREQUENT_MAGIC_BUTTERFLIES2 = 7,
+}
+
+enum MapSectorTownMap {
+	NONE = 0,
+	ONETT = 1<<3,
+	TWOSON = 2<<3,
+	THREED = 3<<3,
+	FOURSIDE = 4<<3,
+	SCARABA = 5<<3,
+	SUMMERS = 6<<3,
+	NONE2 = 7<<3,
+}
+
+enum TownMap {
+	ONETT,
+	TWOSON,
+	THREED,
+	FOURSIDE,
+	SCARABA,
+	SUMMERS,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -4336,10 +4373,32 @@ struct BattleSpritePointer {
 	ubyte size;
 }
 
+struct TeleportDestination {
+	ubyte[25] name;
+	ushort eventFlag;
+	ushort x;
+	ushort y;
+}
+
+struct WindowConfig {
+	ushort x;
+	ushort y;
+	ushort width;
+	ushort height;
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {
 	ubyte[length] result = 0;
+	foreach (idx, c; str) {
+		result[idx] = EBChar(c);
+	}
+	return result;
+}
+
+ubyte[] EBString(string str) {
+	ubyte[] result = new ubyte[](str.length);
 	foreach (idx, c; str) {
 		result[idx] = EBChar(c);
 	}
@@ -4352,12 +4411,16 @@ ubyte EBChar(char c) {
 	switch (c) {
 		case ' ':
 		case '!':
+		case '(':
+		case ')':
 		case '\'':
+		case ',':
 		case '-':
 		case '.':
 		case '0': .. case '9':
 		case 'A': .. case 'Z':
 		case 'a': .. case 'z': return cast(ubyte)(c + 0x30);
+		case '@': return 0x70;
 		case '_': return 0x90;
 		case '|': return 0xAC;
 		default: assert(0, "unhandled character: '" ~ c ~ "'");
@@ -4374,4 +4437,8 @@ T[] convert(T)(const(ubyte)[] input) {
 		output ~= val;
 	}
 	return output;
+}
+
+ushort SectorAttributes(ubyte a, ubyte b) {
+	return cast(short)(a + (b << 8));
 }

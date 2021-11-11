@@ -1615,10 +1615,49 @@ void UnknownC43317() {
         ChosenFourPtrs[i] = &PartyCharacters[i];
     }
 }
+
 // $C43568
 void UnknownC43568() {
     WaitUntilNextFrame();
     UnknownC2DB3F();
+}
+
+// $C436D7
+void UnknownC436D7(short arg1, short arg2) {
+    ushort* x0E  = &WindowStats[WindowTable[arg1]].tilemapBuffer[WindowStats[WindowTable[arg1]].width * arg2 * 2];
+    for (short i = 0; i != WindowStats[WindowTable[arg1]].width * 2; i++) {
+        *(x0E++) = 0x40;
+    }
+}
+
+// $C437B8
+void UnknownC437B8(short arg1) {
+    ushort* x14 = &WindowStats[WindowTable[arg1]].tilemapBuffer[0];
+    ushort* x12 = &WindowStats[WindowTable[arg1]].tilemapBuffer[0];
+    ushort* x04 = &WindowStats[WindowTable[arg1]].tilemapBuffer[WindowStats[WindowTable[arg1]].width * 2];
+    for (short i = 0; i != WindowStats[WindowTable[arg1]].width * 2; i++) {
+        UnknownC44AF7(*(x14++));
+    }
+    for (short i = 0; i != (WindowStats[WindowTable[arg1]].height - 2) * WindowStats[WindowTable[arg1]].width; i++) {
+        *(x12++) = *(x04++);
+    }
+    UnknownC436D7(arg1, (WindowStats[WindowTable[arg1]].height / 2) - 1);
+}
+
+// $C438B1
+void PrintNewLine() {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    UnknownC45E96();
+    if (WindowStats[WindowTable[CurrentFocusWindow]].font != 0) {
+        UnknownC45E96();
+    }
+    if (WindowStats[WindowTable[CurrentFocusWindow]].text_y != (WindowStats[WindowTable[CurrentFocusWindow]].height / 2) - 1) {
+        WindowStats[WindowTable[CurrentFocusWindow]].text_y++;
+    }
+    UnknownC437B8(CurrentFocusWindow);
+    WindowStats[WindowTable[CurrentFocusWindow]].text_x = 0;
 }
 
 // $C43B15 - Unknown, but looks like it resets the color of existing text in the focused window
@@ -1773,6 +1812,9 @@ void UnknownC43F77(short arg1) {
         }
     }
 }
+
+//$C445E1
+void UnknownC445E1(const(ubyte)**, const(ubyte)*);
 
 //$C44963
 void UnknownC44963(short arg1) {
@@ -1937,6 +1979,9 @@ void UnknownC4507A(uint* arg1) {
     UnknownC438A5F(x1E, x1C);
     Unknown7E5E75 = Unknown7E5E75Copy;
 }
+
+//$C45502
+immutable ubyte[13] BattleBackRowText = EBString!13("the Back Row");
 
 //$C4562F
 immutable ubyte[8] PowersOfTwo8Bit = [1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 7];

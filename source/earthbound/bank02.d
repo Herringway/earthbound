@@ -2209,6 +2209,9 @@ void ReviveTarget(Battler*, short);
 // $C27550
 void KOTarget(Battler*);
 
+// $C27D82
+void IncreaseDefense16th(Battler*);
+
 // $C27E8A
 void SwapAttackerWithTarget() {
 	Battler* tmp = currentAttacker;
@@ -2224,6 +2227,15 @@ short SuccessLuck80() {
 		return 0;
 	}
 	return 1;
+}
+
+// $C27CAF
+short SuccessSpeed(short amount) {
+	short x10 = (currentTarget.speed < currentAttacker.speed) ? 0 : cast(short)(currentTarget.speed - currentAttacker.speed);
+	if (RandLimit(amount) >= x10) {
+		return 1;
+	}
+	return 0;
 }
 
 // $C27CFD
@@ -2783,11 +2795,22 @@ void BattleActionLevel2AttackDiamondize() {
 // $C29254
 void BattleActionReduceOffense();
 
-// $C29254
-void BattleActionClumsyRobotDeath();
+// $C29298
+void BattleActionClumsyRobotDeath() {
+	if (getEventFlag(PSITeleportDestinationTable[13].eventFlag) != 0) {
+		DisplayInBattleText(TextBattleRunawayFiveDefeatClumsyRobot);
+		SetTeleportState(15, TeleportStyle.Instant);
+	} else {
+		DisplayInBattleText(TextBattleBlackSmokePouredOut);
+		SetTeleportState(13, TeleportStyle.Instant);
+		Unknown7EAA0E = 1;
+	}
+}
 
 // $C292EB
-void BattleActionEnemyExtend() {}
+void BattleActionEnemyExtend() {
+	//nothing
+}
 
 // $C292EE
 void BattleActionMasterBarfDeath();
@@ -3407,7 +3430,20 @@ void BattleActionHungryHPSucker() {
 void BattleActionMummyWrap();
 
 // $C2A57A
-void BottleRocketCommon(short);
+void BottleRocketCommon(short count) {
+	short x14 = 0;
+	for (short i = 0; i < count; i++) {
+		if (SuccessSpeed(100) == 0) {
+			continue;
+		}
+		x14++;
+	}
+	if (x14 != 0) {
+		CalcResistDamage(TwentyFivePercentVariance(cast(short)(120 * x14)), 0xFF);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
 
 // $C2A5D1
 void BattleActionBottleRocket() {
@@ -3488,18 +3524,47 @@ void BattleActionRustPromoterDX() {
 }
 
 // $C2AA7F
-void BattleActionSuddenGutsPill();
+void BattleActionSuddenGutsPill() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	currentTarget.guts = (currentTarget.guts * 2 >= 255) ? 255 : cast(ubyte)(currentTarget.guts * 2);
+	DisplayTextWait(TextBattleGutsBecame, currentTarget.guts);
+}
 
 // $C2AAC6
-void BattleActionDefenseSpray();
+void BattleActionDefenseSpray() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	short x16 = currentTarget.defense;
+	IncreaseDefense16th(currentTarget);
+	DisplayTextWait(TextBattleDefenseWentUp, currentTarget.defense - x16);
+}
 
 // $C2AB0D
 void BattleActionDefenseShower() {
 	BattleActionDefenseSpray();
 }
 
+// $C2AB14
+short BossBattleCheck();
+
 // $C2AB71
-void BattleActionTeleportBox();
+void BattleActionTeleportBox() {
+	if ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 0x80) == 0) {
+		if ((BattleModeFlag == 0) || ((RandLimit(100) < ItemData[currentAttacker.currentActionArgument].strength) && (BossBattleCheck() != 0))) {
+			RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.unknown7);
+			DisplayInBattleText(TextBattleTeleportBoxExploded);
+			SetTeleportState(gameState.unknownC3, TeleportStyle.Instant);
+			Unknown7EAA0E = 1;
+		} else {
+			DisplayInBattleText(TextBattleTeleportBoxFailed);
+		}
+	} else {
+		DisplayInBattleText(TextBattleTeleportBoxCannotBeUsedHere);
+	}
+}
 
 // $C2AD1B
 void BattleActionPray();

@@ -9,6 +9,7 @@ import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank05;
 import earthbound.bank0F;
+import earthbound.bank17;
 import earthbound.bank1C;
 import earthbound.bank20;
 import earthbound.bank21;
@@ -49,7 +50,7 @@ ushort UnknownC0035B(ushort a, ushort x, ushort y) {
 void GetColorAverage(uint* ptr);
 
 // $C00434
-uint Func_C00434(uint arg1, uint arg2);
+ushort Func_C00434(ushort arg1, ushort arg2);
 
 // $C00480
 void ColorMystery();
@@ -57,13 +58,19 @@ void ColorMystery();
 // $C005E7
 void UnknownC005E7();
 
-void LoadCollisionData(int tileset);
+void LoadCollisionData(short tileset);
 
 // $C0067E
 void Function14(size_t index1, size_t index2);
 
 // $C006F2
 void UnknownC006F2();
+
+// $C00AA1
+short LoadSectorAttributes(ushort arg1, ushort arg2) {
+    CurrentSectorAttributes = MapDataPerSectorAttributesTable[((arg2 &0xFF80) >> 2) + (arg1 >> 8)];
+    return CurrentSectorAttributes;
+}
 
 // $C013F6
 void LoadMapAtPosition(short x, short y);
@@ -2263,7 +2270,7 @@ void UnknownC0B67F() {
     DadPhoneTimer = 0x697;
     UnknownC0851C(&UnknownC0DC4E);
     teleportStyle = TeleportStyle.None;
-    TeleportDestination = 0;
+    teleportDestination = 0;
     Unknown7EB4A8 = -1;
     EntityAllocationMinSlot = 0x17;
     EntityAllocationMaxSlot = 0x18;
@@ -2293,7 +2300,7 @@ void InitBattleOverworld() {
     } else {
         short x10 = InitBattleCommon();
         UnknownC07B52();
-        if (TeleportDestination == 0) {
+        if (teleportDestination == 0) {
             if (x10 != 0) {
                 if (Debug == 0) {
                     return;
@@ -2380,11 +2387,11 @@ void ebMain() {
                     OpenMenuButtonCheckTalk();
                 }
             }
-            if (TeleportDestination) {
+            if (teleportDestination) {
                 TeleportMainLoop();
             }
             if (!Debug && ((pad_press[1] & PAD_B) != 0)) {
-                for (int i = 0; i < TOTAL_PARTY_COUNT; i++) {
+                for (short i = 0; i < TOTAL_PARTY_COUNT; i++) {
                     PartyCharacters[i].hp.target = PartyCharacters[i].maxHP;
                     PartyCharacters[i].pp.target = PartyCharacters[i].maxPP;
                 }
@@ -2570,6 +2577,12 @@ void UnknownC0DD0F();
 
 // $C0DD2C
 void UnknownC0DD2C(short);
+
+// $C0DD53
+void SetTeleportState(ubyte arg1, TeleportStyle arg2) {
+    teleportDestination = arg1;
+    teleportStyle = arg2;
+}
 
 // $C0DD79
 void UnknownC0DD79();
@@ -2871,14 +2884,14 @@ void UnknownC0E9BA() {
 
 // $C0EA3E
 void TeleportFreezeObjects() {
-    for (int i = 0; i < 0x17; i++) {
+    for (short i = 0; i < 0x17; i++) {
         EntityTickCallbackFlags[i] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
     }
 }
 
 // $C0EA68
 void TeleportFreezeObjects2() {
-    for (int i = 0; i < 0x17; i++) {
+    for (short i = 0; i < 0x17; i++) {
         if ((EntityTickCallbackFlags[i] & (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) != (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) {
             EntityTickCallbackFlags[i] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
         }
@@ -2945,7 +2958,7 @@ void TeleportMainLoop() {
     Unknown7E9F45.fraction = 0;
     Unknown7E9F45.integer = 0;
     Unknown7E5D58 = 0;
-    TeleportDestination = 0;
+    teleportDestination = 0;
 }
 
 // $C0EBE0

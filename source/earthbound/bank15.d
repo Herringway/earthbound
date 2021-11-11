@@ -261,6 +261,26 @@ immutable Item[254] ItemData = [
   Item(EBString!25("Carrot key"), 0x3B, 0,  ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.UseNoEffect, 0x00, 0x00, 0x00, 0x00, null/+TextItem253+/),
 ];
 
+immutable TeleportDestination[17] PSITeleportDestinationTable = [
+	TeleportDestination(EBString!25(""), EventFlag.None, 0x0000, 0x0000),
+	TeleportDestination(EBString!25("Onett"), EventFlag.ONETT_REACHED, 0x00FD, 0x00BA),
+	TeleportDestination(EBString!25("Twoson"), EventFlag.TWOSON_REACHED, 0x00B0, 0x0334),
+	TeleportDestination(EBString!25("Threed"), EventFlag.THREED_REACHED, 0x02B4, 0x0466),
+	TeleportDestination(EBString!25("Saturn Valley"), EventFlag.SATURN_VALLEY_REACHED, 0x0022, 0x03CC),
+	TeleportDestination(EBString!25("Fourside"), EventFlag.FOURSIDE_REACHED, 0x017C, 0x01F9),
+	TeleportDestination(EBString!25("Winters"), EventFlag.WINTERS_REACHED, 0x003E, 0x0121),
+	TeleportDestination(EBString!25("Summers"), EventFlag.SUMMERS_REACHED, 0x022A, 0x0161),
+	TeleportDestination(EBString!25("Scaraba"), EventFlag.SCARABA_REACHED, 0x0098, 0x020E),
+	TeleportDestination(EBString!25("Dalaam"), EventFlag.DALAAM_REACHED, 0x023A, 0x01C1),
+	TeleportDestination(EBString!25("Deep Darkness"), EventFlag.DEEP_DARKNESS_REACHED, 0x02C0, 0x0380),
+	TeleportDestination(EBString!25("Tenda Village"), EventFlag.TENDA_VILLAGE_REACHED, 0x0234, 0x0379),
+	TeleportDestination(EBString!25("Underworld"), EventFlag.UNDERWORLD_REACHED, 0x0145, 0x015F),
+	TeleportDestination(EBString!25(""), EventFlag.UNKNOWN_092, 0x01B1, 0x0203),
+	TeleportDestination(EBString!25("Dusty Dunes"), EventFlag.UNKNOWN_254, 0x00A0, 0x04E3),
+	TeleportDestination(EBString!25(""), EventFlag.UNKNOWN_092, 0x02EE, 0x02EB),
+	TeleportDestination(EBString!25(""), EventFlag.None, 0x0000, 0x0000),
+];
+
 // $D57B68
 immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Nothing, 0x00, null /+ TEXT_NO_MESSAGE+/, &BattleActionNull4), //NO_EFFECT
