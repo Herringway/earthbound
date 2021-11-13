@@ -3,6 +3,2269 @@ module earthbound.bank0F;
 
 import earthbound.commondefs;
 
+/// $CF0000
+
+immutable SectorDoors[1280] doorConfig = [	SectorDoors(1, [DoorConfig(0x11, 0x15, DoorType.Type5, null/+&DoorEntry910+/)]),
+	SectorDoors(2, [DoorConfig(0x0E, 0x15, DoorType.Type2, null/+&DoorEntry908+/), DoorConfig(0x19, 0x15, DoorType.Type5, null/+&DoorEntry911+/)]),
+	SectorDoors(1, [DoorConfig(0x0E, 0x16, DoorType.Type2, null/+&DoorEntry904+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0F, 0x05, DoorType.Type2, null/+&DoorEntry0+/)]),
+	SectorDoors(4, [DoorConfig(0x11, 0x02, DoorType.Type5, null/+&DoorEntry150+/), DoorConfig(0x11, 0x04, DoorType.Type5, null/+&DoorEntry150+/), DoorConfig(0x12, 0x03, DoorType.Type5, null/+&DoorEntry150+/), DoorConfig(0x12, 0x05, DoorType.Type5, null/+&DoorEntry150+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x11, 0x0B, DoorType.Type2, null/+&DoorEntry885+/), DoorConfig(0x11, 0x0C, DoorType.Type2, null/+&DoorEntry885+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x15, 0x07, DoorType.Type2, null/+&DoorEntry886+/), DoorConfig(0x15, 0x08, DoorType.Type2, null/+&DoorEntry886+/)]),
+	SectorDoors(2, [DoorConfig(0x11, 0x01, DoorType.Type2, null/+&DoorEntry887+/), DoorConfig(0x11, 0x02, DoorType.Type2, null/+&DoorEntry887+/)]),
+	SectorDoors(6, [DoorConfig(0x0D, 0x06, DoorType.Type5, null/+&DoorEntry840+/), DoorConfig(0x0D, 0x0C, DoorType.Type5, null/+&DoorEntry862+/), DoorConfig(0x0D, 0x12, DoorType.Type5, null/+&DoorEntry841+/), DoorConfig(0x15, 0x0E, DoorType.Type5, null/+&DoorEntry842+/), DoorConfig(0x19, 0x0A, DoorType.Type5, null/+&DoorEntry843+/), DoorConfig(0x1D, 0x11, DoorType.Type5, null/+&DoorEntry844+/)]),
+	SectorDoors(45, [DoorConfig(0x01, 0x07, DoorType.Type2, null/+&DoorEntry818+/), DoorConfig(0x01, 0x13, DoorType.Type2, null/+&DoorEntry819+/), DoorConfig(0x02, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x0D, DoorType.Type2, null/+&DoorEntry820+/), DoorConfig(0x02, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x19, DoorType.Type2, null/+&DoorEntry821+/), DoorConfig(0x03, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x07, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x05, DoorType.Type5, null/+&DoorEntry845+/), DoorConfig(0x0D, 0x0A, DoorType.Type5, null/+&DoorEntry845+/), DoorConfig(0x0D, 0x11, DoorType.Type5, null/+&DoorEntry845+/), DoorConfig(0x0D, 0x16, DoorType.Type5, null/+&DoorEntry845+/), DoorConfig(0x1A, 0x18, DoorType.Type5, null/+&DoorEntry847+/)]),
+	SectorDoors(4, [DoorConfig(0x09, 0x11, DoorType.Type2, null/+&DoorEntry839+/), DoorConfig(0x0D, 0x15, DoorType.Type5, null/+&DoorEntry848+/), DoorConfig(0x15, 0x01, DoorType.Type5, null/+&DoorEntry849+/), DoorConfig(0x19, 0x06, DoorType.Type5, null/+&DoorEntry850+/)]),
+	SectorDoors(5, [DoorConfig(0x1C, 0x05, DoorType.Type2, null/+&DoorEntry402+/), DoorConfig(0x1C, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x1D, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x1E, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x1F, 0x16, DoorType.Type1, 0x8000)]),
+	SectorDoors(5, [DoorConfig(0x14, 0x02, DoorType.Type2, null/+&DoorEntry403+/), DoorConfig(0x1C, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x1D, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x1E, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x1F, 0x16, DoorType.Type1, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x16, DoorType.Type2, null/+&DoorEntry942+/)]),
+	SectorDoors(6, [DoorConfig(0x08, 0x06, DoorType.Type2, null/+&DoorEntry345+/), DoorConfig(0x09, 0x05, DoorType.Type2, null/+&DoorEntry345+/), DoorConfig(0x0A, 0x04, DoorType.Type2, null/+&DoorEntry345+/), DoorConfig(0x0B, 0x03, DoorType.Type2, null/+&DoorEntry345+/), DoorConfig(0x0C, 0x02, DoorType.Type2, null/+&DoorEntry345+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry345+/)]),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x08, 0x19, DoorType.Type2, null/+&DoorEntry346+/), DoorConfig(0x09, 0x1A, DoorType.Type2, null/+&DoorEntry346+/), DoorConfig(0x0A, 0x1B, DoorType.Type2, null/+&DoorEntry346+/), DoorConfig(0x0B, 0x1C, DoorType.Type2, null/+&DoorEntry346+/), DoorConfig(0x0C, 0x1D, DoorType.Type2, null/+&DoorEntry346+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry346+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x06, DoorType.Type2, null/+&DoorEntry31+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x11, DoorType.Type2, null/+&DoorEntry32+/), DoorConfig(0x07, 0x1D, DoorType.Type2, null/+&DoorEntry33+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry34+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry35+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry36+/)]),
+	SectorDoors(4, [DoorConfig(0x0B, 0x09, DoorType.Type2, null/+&DoorEntry151+/), DoorConfig(0x0B, 0x11, DoorType.Type2, null/+&DoorEntry152+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry37+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry38+/)]),
+	SectorDoors(2, [DoorConfig(0x11, 0x13, DoorType.Type2, null/+&DoorEntry905+/), DoorConfig(0x11, 0x14, DoorType.Type2, null/+&DoorEntry905+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x09, 0x11, DoorType.Type5, null/+&DoorEntry912+/)]),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x06, 0x09, DoorType.Type2, null/+&DoorEntry1+/), DoorConfig(0x19, 0x1D, DoorType.Type2, null/+&DoorEntry2+/), DoorConfig(0x1A, 0x05, DoorType.Type2, null/+&DoorEntry3+/)]),
+	SectorDoors(1, [DoorConfig(0x1E, 0x11, DoorType.Type2, null/+&DoorEntry4+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x0B, DoorType.Type2, null/+&DoorEntry21+/)]),
+	SectorDoors(3, [DoorConfig(0x0A, 0x0B, DoorType.Type2, null/+&DoorEntry22+/), DoorConfig(0x13, 0x1A, DoorType.Type5, null/+&DoorEntry148+/), DoorConfig(0x13, 0x1C, DoorType.Type5, null/+&DoorEntry148+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x11, 0x0B, DoorType.Type2, null/+&DoorEntry888+/), DoorConfig(0x11, 0x0C, DoorType.Type2, null/+&DoorEntry888+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x05, 0x04, DoorType.Type5, null/+&DoorEntry851+/)]),
+	SectorDoors(1, []),
+	SectorDoors(3, [DoorConfig(0x01, 0x11, DoorType.Type5, null/+&DoorEntry852+/), DoorConfig(0x0D, 0x05, DoorType.Type5, null/+&DoorEntry853+/), DoorConfig(0x11, 0x15, DoorType.Type5, null/+&DoorEntry854+/)]),
+	SectorDoors(11, [DoorConfig(0x00, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x0F, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x14, DoorType.Type1, 0x8000)]),
+	SectorDoors(13, [DoorConfig(0x00, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x0F, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x14, 0x1A, DoorType.Type2, null/+&DoorEntry404+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x00, 0x1C, DoorType.Type2, null/+&DoorEntry461+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.Type2, null/+&DoorEntry39+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x06, DoorType.Type2, null/+&DoorEntry40+/)]),
+	SectorDoors(2, [DoorConfig(0x0A, 0x04, DoorType.Type2, null/+&DoorEntry41+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry42+/)]),
+	SectorDoors(4, [DoorConfig(0x0A, 0x0F, DoorType.Type2, null/+&DoorEntry43+/), DoorConfig(0x17, 0x0D, DoorType.Type2, null/+&DoorEntry44+/), DoorConfig(0x17, 0x19, DoorType.Type2, null/+&DoorEntry45+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry46+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry47+/), DoorConfig(0x1D, 0x16, DoorType.Type2, null/+&DoorEntry48+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x11, DoorType.Type5, null/+&DoorEntry863+/)]),
+	SectorDoors(9, [DoorConfig(0x09, 0x05, DoorType.Type2, null/+&DoorEntry825+/), DoorConfig(0x09, 0x06, DoorType.Type2, null/+&DoorEntry825+/), DoorConfig(0x09, 0x0D, DoorType.Type2, null/+&DoorEntry826+/), DoorConfig(0x09, 0x0E, DoorType.Type2, null/+&DoorEntry826+/), DoorConfig(0x09, 0x15, DoorType.Type2, null/+&DoorEntry827+/), DoorConfig(0x09, 0x16, DoorType.Type2, null/+&DoorEntry827+/), DoorConfig(0x09, 0x1D, DoorType.Type2, null/+&DoorEntry828+/), DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry828+/), DoorConfig(0x1D, 0x01, DoorType.Type5, null/+&DoorEntry864+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x12, DoorType.Type5, null/+&DoorEntry865+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x04, 0x15, DoorType.Type2, null/+&DoorEntry5+/), DoorConfig(0x04, 0x17, DoorType.Type2, null/+&DoorEntry5+/), DoorConfig(0x07, 0x15, DoorType.Type2, null/+&DoorEntry6+/), DoorConfig(0x09, 0x19, DoorType.Type5, null/+&DoorEntry133+/), DoorConfig(0x09, 0x1A, DoorType.Type5, null/+&DoorEntry133+/)]),
+	SectorDoors(2, [DoorConfig(0x1F, 0x02, DoorType.Type5, null/+&DoorEntry135+/), DoorConfig(0x1F, 0x04, DoorType.Type5, null/+&DoorEntry135+/)]),
+	SectorDoors(1, [DoorConfig(0x12, 0x1C, DoorType.Type2, null/+&DoorEntry7+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x0C, 0x15, DoorType.Type2, null/+&DoorEntry28+/), DoorConfig(0x0C, 0x17, DoorType.Type2, null/+&DoorEntry28+/), DoorConfig(0x0C, 0x19, DoorType.Type2, null/+&DoorEntry28+/), DoorConfig(0x0C, 0x1B, DoorType.Type2, null/+&DoorEntry28+/), DoorConfig(0x0C, 0x1D, DoorType.Type2, null/+&DoorEntry28+/), DoorConfig(0x0C, 0x1F, DoorType.Type2, null/+&DoorEntry28+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0D, 0x0D, DoorType.Type2, null/+&DoorEntry889+/), DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry889+/)]),
+	SectorDoors(4, [DoorConfig(0x01, 0x03, DoorType.Type2, null/+&DoorEntry890+/), DoorConfig(0x01, 0x04, DoorType.Type2, null/+&DoorEntry890+/), DoorConfig(0x1D, 0x07, DoorType.Type2, null/+&DoorEntry891+/), DoorConfig(0x1D, 0x08, DoorType.Type2, null/+&DoorEntry891+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x05, 0x03, DoorType.Type2, null/+&DoorEntry892+/), DoorConfig(0x05, 0x04, DoorType.Type2, null/+&DoorEntry892+/)]),
+	SectorDoors(3, [DoorConfig(0x05, 0x19, DoorType.Type5, null/+&DoorEntry855+/), DoorConfig(0x15, 0x09, DoorType.Type2, null/+&DoorEntry822+/), DoorConfig(0x19, 0x09, DoorType.Type5, null/+&DoorEntry856+/)]),
+	SectorDoors(3, [DoorConfig(0x11, 0x16, DoorType.Type5, null/+&DoorEntry857+/), DoorConfig(0x19, 0x0A, DoorType.Type5, null/+&DoorEntry858+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x0D, DoorType.Type5, null/+&DoorEntry859+/), DoorConfig(0x15, 0x0C, DoorType.Type5, null/+&DoorEntry860+/)]),
+	SectorDoors(6, [DoorConfig(0x16, 0x00, DoorType.Type2, null/+&DoorEntry650+/), DoorConfig(0x16, 0x11, DoorType.Type1, 0), DoorConfig(0x17, 0x00, DoorType.Type2, null/+&DoorEntry650+/), DoorConfig(0x17, 0x11, DoorType.Type1, 0), DoorConfig(0x1A, 0x00, DoorType.Type2, null/+&DoorEntry651+/), DoorConfig(0x1B, 0x00, DoorType.Type2, null/+&DoorEntry651+/)]),
+	SectorDoors(13, [DoorConfig(0x03, 0x03, DoorType.Type2, null/+&DoorEntry652+/), DoorConfig(0x04, 0x03, DoorType.Type1, 0), DoorConfig(0x05, 0x03, DoorType.Type1, 0), DoorConfig(0x06, 0x03, DoorType.Type1, 0), DoorConfig(0x07, 0x03, DoorType.Type1, 0), DoorConfig(0x08, 0x03, DoorType.Type1, 0), DoorConfig(0x09, 0x03, DoorType.Type1, 0), DoorConfig(0x0A, 0x03, DoorType.Type1, 0), DoorConfig(0x0B, 0x03, DoorType.Type1, 0), DoorConfig(0x0C, 0x03, DoorType.Type1, 0), DoorConfig(0x0D, 0x03, DoorType.Type1, 0), DoorConfig(0x0E, 0x03, DoorType.Type1, 0), DoorConfig(0x13, 0x19, DoorType.Type2, null/+&DoorEntry653+/)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x1D, DoorType.Type2, null/+&DoorEntry654+/)]),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x16, 0x0D, DoorType.Type1, 0), DoorConfig(0x16, 0x1F, DoorType.Type2, null/+&DoorEntry655+/), DoorConfig(0x17, 0x0D, DoorType.Type1, 0), DoorConfig(0x17, 0x1F, DoorType.Type2, null/+&DoorEntry655+/), DoorConfig(0x1A, 0x1F, DoorType.Type2, null/+&DoorEntry656+/), DoorConfig(0x1B, 0x1F, DoorType.Type2, null/+&DoorEntry656+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x14, 0x0D, DoorType.Type2, null/+&DoorEntry432+/)]),
+	SectorDoors(5, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry49+/), DoorConfig(0x17, 0x11, DoorType.Type2, null/+&DoorEntry50+/), DoorConfig(0x17, 0x19, DoorType.Type2, null/+&DoorEntry153+/), DoorConfig(0x17, 0x1D, DoorType.Type2, null/+&DoorEntry154+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry51+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry52+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry53+/)]),
+	SectorDoors(6, [DoorConfig(0x07, 0x11, DoorType.Type2, null/+&DoorEntry54+/), DoorConfig(0x07, 0x1A, DoorType.Type5, null/+&DoorEntry155+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry55+/), DoorConfig(0x15, 0x11, DoorType.Type2, null/+&DoorEntry56+/), DoorConfig(0x15, 0x12, DoorType.Type2, null/+&DoorEntry56+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry57+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x01, DoorType.Type2, null/+&DoorEntry58+/), DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry59+/), DoorConfig(0x19, 0x06, DoorType.Type2, null/+&DoorEntry60+/)]),
+	SectorDoors(8, [DoorConfig(0x02, 0x15, DoorType.Type2, null/+&DoorEntry829+/), DoorConfig(0x03, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x18, DoorType.Type5, null/+&DoorEntry866+/), DoorConfig(0x15, 0x0C, DoorType.Type5, null/+&DoorEntry867+/)]),
+	SectorDoors(5, [DoorConfig(0x01, 0x11, DoorType.Type5, null/+&DoorEntry846+/), DoorConfig(0x15, 0x16, DoorType.Type5, null/+&DoorEntry868+/), DoorConfig(0x15, 0x1D, DoorType.Type2, null/+&DoorEntry830+/), DoorConfig(0x15, 0x1E, DoorType.Type2, null/+&DoorEntry830+/)]),
+	SectorDoors(3, [DoorConfig(0x09, 0x19, DoorType.Type5, null/+&DoorEntry869+/), DoorConfig(0x11, 0x10, DoorType.Type5, null/+&DoorEntry870+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x14, 0x12, DoorType.Type2, null/+&DoorEntry124+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0C, 0x0A, DoorType.Type2, null/+&DoorEntry23+/), DoorConfig(0x13, 0x1E, DoorType.Type5, null/+&DoorEntry145+/)]),
+	SectorDoors(1, [DoorConfig(0x13, 0x00, DoorType.Type5, null/+&DoorEntry145+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x09, 0x0D, DoorType.Type2, null/+&DoorEntry893+/), DoorConfig(0x09, 0x0E, DoorType.Type2, null/+&DoorEntry893+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x15, 0x0F, DoorType.Type2, null/+&DoorEntry894+/), DoorConfig(0x15, 0x10, DoorType.Type2, null/+&DoorEntry894+/)]),
+	SectorDoors(1, [DoorConfig(0x12, 0x16, DoorType.Type2, null/+&DoorEntry895+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x11, 0x15, DoorType.Type5, null/+&DoorEntry861+/), DoorConfig(0x12, 0x1A, DoorType.Type2, null/+&DoorEntry824+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry61+/), DoorConfig(0x1A, 0x13, DoorType.Type2, null/+&DoorEntry62+/)]),
+	SectorDoors(5, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry63+/), DoorConfig(0x17, 0x0A, DoorType.Type5, null/+&DoorEntry677+/), DoorConfig(0x17, 0x12, DoorType.Type2, null/+&DoorEntry64+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry66+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry65+/)]),
+	SectorDoors(4, [DoorConfig(0x0A, 0x13, DoorType.Type2, null/+&DoorEntry67+/), DoorConfig(0x1B, 0x11, DoorType.Type2, null/+&DoorEntry68+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry69+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry70+/)]),
+	SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry71+/), DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry72+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry73+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry74+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry75+/)]),
+	SectorDoors(5, [DoorConfig(0x00, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x14, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x06, DoorType.Type5, null/+&DoorEntry871+/)]),
+	SectorDoors(4, [DoorConfig(0x01, 0x01, DoorType.Type5, null/+&DoorEntry872+/), DoorConfig(0x0D, 0x15, DoorType.Type2, null/+&DoorEntry831+/), DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry831+/), DoorConfig(0x11, 0x09, DoorType.Type5, null/+&DoorEntry873+/)]),
+	SectorDoors(2, [DoorConfig(0x05, 0x05, DoorType.Type5, null/+&DoorEntry874+/), DoorConfig(0x19, 0x02, DoorType.Type5, null/+&DoorEntry875+/)]),
+	SectorDoors(0, []),
+	SectorDoors(4, [DoorConfig(0x0B, 0x15, DoorType.Type5, null/+&DoorEntry130+/), DoorConfig(0x0B, 0x17, DoorType.Type5, null/+&DoorEntry130+/), DoorConfig(0x0B, 0x18, DoorType.Type5, null/+&DoorEntry130+/), DoorConfig(0x0B, 0x1A, DoorType.Type5, null/+&DoorEntry130+/)]),
+	SectorDoors(3, [DoorConfig(0x03, 0x02, DoorType.Type5, null/+&DoorEntry131+/), DoorConfig(0x03, 0x04, DoorType.Type5, null/+&DoorEntry131+/), DoorConfig(0x04, 0x12, DoorType.Type2, null/+&DoorEntry125+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x08, DoorType.Type2, null/+&DoorEntry8+/), DoorConfig(0x0D, 0x19, DoorType.Type2, null/+&DoorEntry9+/)]),
+	SectorDoors(0, []),
+	SectorDoors(4, [DoorConfig(0x0A, 0x15, DoorType.Type5, null/+&DoorEntry143+/), DoorConfig(0x0A, 0x17, DoorType.Type5, null/+&DoorEntry143+/), DoorConfig(0x0A, 0x18, DoorType.Type5, null/+&DoorEntry143+/), DoorConfig(0x0A, 0x1A, DoorType.Type5, null/+&DoorEntry143+/)]),
+	SectorDoors(2, [DoorConfig(0x0B, 0x01, DoorType.Type2, null/+&DoorEntry24+/), DoorConfig(0x0B, 0x0D, DoorType.Type2, null/+&DoorEntry25+/)]),
+	SectorDoors(5, [DoorConfig(0x12, 0x11, DoorType.Type5, null/+&DoorEntry147+/), DoorConfig(0x12, 0x13, DoorType.Type5, null/+&DoorEntry147+/), DoorConfig(0x12, 0x14, DoorType.Type5, null/+&DoorEntry147+/), DoorConfig(0x12, 0x16, DoorType.Type5, null/+&DoorEntry147+/), DoorConfig(0x1F, 0x11, DoorType.Type2, null/+&DoorEntry139+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0A, 0x11, DoorType.Type2, null/+&DoorEntry281+/), DoorConfig(0x0A, 0x12, DoorType.Type2, null/+&DoorEntry281+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x17, DoorType.Type2, null/+&DoorEntry277+/)]),
+	SectorDoors(1, [DoorConfig(0x09, 0x06, DoorType.Type2, null/+&DoorEntry276+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(11, [DoorConfig(0x08, 0x08, DoorType.Type5, null/+&DoorEntry157+/), DoorConfig(0x08, 0x09, DoorType.Type5, null/+&DoorEntry157+/), DoorConfig(0x08, 0x0A, DoorType.Type5, null/+&DoorEntry157+/), DoorConfig(0x08, 0x0C, DoorType.Type5, null/+&DoorEntry158+/), DoorConfig(0x08, 0x0D, DoorType.Type5, null/+&DoorEntry158+/), DoorConfig(0x08, 0x0E, DoorType.Type5, null/+&DoorEntry158+/), DoorConfig(0x08, 0x10, DoorType.Type5, null/+&DoorEntry159+/), DoorConfig(0x08, 0x11, DoorType.Type5, null/+&DoorEntry159+/), DoorConfig(0x08, 0x12, DoorType.Type5, null/+&DoorEntry159+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry76+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry77+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x0A, DoorType.Type2, null/+&DoorEntry78+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry79+/)]),
+	SectorDoors(3, [DoorConfig(0x0A, 0x1B, DoorType.Type2, null/+&DoorEntry80+/), DoorConfig(0x1A, 0x13, DoorType.Type2, null/+&DoorEntry81+/), DoorConfig(0x1B, 0x0C, DoorType.Type2, null/+&DoorEntry82+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry83+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry84+/)]),
+	SectorDoors(2, [DoorConfig(0x0A, 0x04, DoorType.Type2, null/+&DoorEntry85+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry86+/)]),
+	SectorDoors(4, [DoorConfig(0x12, 0x1F, DoorType.Type2, null/+&DoorEntry657+/), DoorConfig(0x13, 0x1F, DoorType.Type2, null/+&DoorEntry657+/), DoorConfig(0x16, 0x1F, DoorType.Type2, null/+&DoorEntry658+/), DoorConfig(0x17, 0x1F, DoorType.Type2, null/+&DoorEntry658+/)]),
+	SectorDoors(3, [DoorConfig(0x0A, 0x1D, DoorType.Type4, 0x0200), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry787+/), DoorConfig(0x1D, 0x0A, DoorType.Type4, 0x0100)]),
+	SectorDoors(1, [DoorConfig(0x09, 0x06, DoorType.Type2, null/+&DoorEntry788+/)]),
+	SectorDoors(1, [DoorConfig(0x01, 0x1F, DoorType.Type2, null/+&DoorEntry126+/)]),
+	SectorDoors(3, [DoorConfig(0x00, 0x1A, DoorType.Type2, null/+&DoorEntry10+/), DoorConfig(0x0B, 0x09, DoorType.Type2, null/+&DoorEntry11+/), DoorConfig(0x1B, 0x05, DoorType.Type2, null/+&DoorEntry12+/)]),
+	SectorDoors(4, [DoorConfig(0x02, 0x19, DoorType.Type5, null/+&DoorEntry134+/), DoorConfig(0x02, 0x1B, DoorType.Type5, null/+&DoorEntry134+/), DoorConfig(0x02, 0x1C, DoorType.Type5, null/+&DoorEntry134+/), DoorConfig(0x02, 0x1E, DoorType.Type5, null/+&DoorEntry134+/)]),
+	SectorDoors(3, [DoorConfig(0x06, 0x0F, DoorType.Type2, null/+&DoorEntry13+/), DoorConfig(0x13, 0x16, DoorType.Type5, null/+&DoorEntry136+/), DoorConfig(0x13, 0x18, DoorType.Type5, null/+&DoorEntry136+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x1F, DoorType.Type2, null/+&DoorEntry14+/)]),
+	SectorDoors(4, [DoorConfig(0x0D, 0x17, DoorType.Type2, null/+&DoorEntry142+/), DoorConfig(0x11, 0x0B, DoorType.Type2, null/+&DoorEntry141+/), DoorConfig(0x13, 0x19, DoorType.Type5, null/+&DoorEntry144+/), DoorConfig(0x13, 0x1A, DoorType.Type5, null/+&DoorEntry144+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0F, 0x01, DoorType.Type2, null/+&DoorEntry26+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(12, [DoorConfig(0x08, 0x08, DoorType.Type5, null/+&DoorEntry160+/), DoorConfig(0x08, 0x09, DoorType.Type5, null/+&DoorEntry160+/), DoorConfig(0x08, 0x0A, DoorType.Type5, null/+&DoorEntry160+/), DoorConfig(0x08, 0x0C, DoorType.Type5, null/+&DoorEntry161+/), DoorConfig(0x08, 0x0D, DoorType.Type5, null/+&DoorEntry161+/), DoorConfig(0x08, 0x0E, DoorType.Type5, null/+&DoorEntry161+/), DoorConfig(0x08, 0x10, DoorType.Type5, null/+&DoorEntry162+/), DoorConfig(0x08, 0x11, DoorType.Type5, null/+&DoorEntry162+/), DoorConfig(0x08, 0x12, DoorType.Type5, null/+&DoorEntry162+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry87+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry88+/), DoorConfig(0x1A, 0x17, DoorType.Type2, null/+&DoorEntry89+/)]),
+	SectorDoors(5, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry90+/), DoorConfig(0x1B, 0x09, DoorType.Type2, null/+&DoorEntry91+/), DoorConfig(0x1B, 0x0E, DoorType.Type5, null/+&DoorEntry156+/), DoorConfig(0x1B, 0x11, DoorType.Type2, null/+&DoorEntry92+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry93+/)]),
+	SectorDoors(3, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry94+/), DoorConfig(0x18, 0x16, DoorType.Type5, null/+&DoorEntry163+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry95+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry96+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry97+/)]),
+	SectorDoors(4, [DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry98+/), DoorConfig(0x17, 0x11, DoorType.Type2, null/+&DoorEntry99+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry100+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry101+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1B, 0x19, DoorType.Type2, null/+&DoorEntry15+/)]),
+	SectorDoors(2, [DoorConfig(0x1B, 0x01, DoorType.Type5, null/+&DoorEntry128+/), DoorConfig(0x1B, 0x02, DoorType.Type5, null/+&DoorEntry128+/)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x12, 0x0F, DoorType.Type2, null/+&DoorEntry16+/), DoorConfig(0x1B, 0x05, DoorType.Type5, null/+&DoorEntry129+/), DoorConfig(0x1B, 0x07, DoorType.Type5, null/+&DoorEntry129+/), DoorConfig(0x1B, 0x08, DoorType.Type5, null/+&DoorEntry129+/), DoorConfig(0x1B, 0x0A, DoorType.Type5, null/+&DoorEntry129+/)]),
+	SectorDoors(3, [DoorConfig(0x0B, 0x00, DoorType.Type5, null/+&DoorEntry132+/), DoorConfig(0x0B, 0x02, DoorType.Type5, null/+&DoorEntry132+/), DoorConfig(0x19, 0x14, DoorType.Type2, null/+&DoorEntry127+/)]),
+	SectorDoors(3, [DoorConfig(0x12, 0x05, DoorType.Type2, null/+&DoorEntry17+/), DoorConfig(0x12, 0x07, DoorType.Type2, null/+&DoorEntry17+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry18+/)]),
+	SectorDoors(4, [DoorConfig(0x03, 0x16, DoorType.Type5, null/+&DoorEntry138+/), DoorConfig(0x03, 0x18, DoorType.Type5, null/+&DoorEntry138+/), DoorConfig(0x15, 0x1C, DoorType.Type2, null/+&DoorEntry19+/), DoorConfig(0x19, 0x08, DoorType.Type2, null/+&DoorEntry20+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x07, 0x11, DoorType.Type2, null/+&DoorEntry27+/), DoorConfig(0x17, 0x01, DoorType.Type2, null/+&DoorEntry140+/)]),
+	SectorDoors(6, [DoorConfig(0x07, 0x05, DoorType.Type5, null/+&DoorEntry146+/), DoorConfig(0x07, 0x07, DoorType.Type5, null/+&DoorEntry146+/), DoorConfig(0x07, 0x08, DoorType.Type5, null/+&DoorEntry146+/), DoorConfig(0x07, 0x0A, DoorType.Type5, null/+&DoorEntry146+/), DoorConfig(0x13, 0x11, DoorType.Type5, null/+&DoorEntry149+/), DoorConfig(0x13, 0x12, DoorType.Type5, null/+&DoorEntry149+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x05, DoorType.Type2, null/+&DoorEntry282+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x04, 0x09, DoorType.Type2, null/+&DoorEntry278+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry258+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry259+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry260+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry381+/), DoorConfig(0x18, 0x0D, DoorType.Type2, null/+&DoorEntry395+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry261+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry262+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry382+/), DoorConfig(0x18, 0x0D, DoorType.Type2, null/+&DoorEntry396+/)]),
+	SectorDoors(3, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry102+/), DoorConfig(0x1A, 0x04, DoorType.Type2, null/+&DoorEntry265+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry266+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x07, 0x0D, DoorType.Type5, null/+&DoorEntry137+/), DoorConfig(0x07, 0x0E, DoorType.Type5, null/+&DoorEntry137+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1F, 0x11, DoorType.Type2, null/+&DoorEntry948+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x10, 0x02, DoorType.Type2, null/+&DoorEntry383+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry384+/), DoorConfig(0x18, 0x0D, DoorType.Type2, null/+&DoorEntry397+/)]),
+	SectorDoors(1, [DoorConfig(0x12, 0x04, DoorType.Type2, null/+&DoorEntry267+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry385+/), DoorConfig(0x18, 0x0D, DoorType.Type2, null/+&DoorEntry398+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry491+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x11, 0x1C, DoorType.Type2, null/+&DoorEntry365+/), DoorConfig(0x11, 0x1E, DoorType.Type2, null/+&DoorEntry365+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(14, [DoorConfig(0x0A, 0x07, DoorType.Type2, null/+&DoorEntry115+/), DoorConfig(0x0A, 0x08, DoorType.Type2, null/+&DoorEntry115+/), DoorConfig(0x12, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x13, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x14, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x15, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x16, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x17, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x18, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x19, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x1A, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x1B, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x1C, 0x0A, DoorType.Type1, 0x8000), DoorConfig(0x1D, 0x0A, DoorType.Type1, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1B, 0x05, DoorType.Type2, null/+&DoorEntry29+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x09, 0x0B, DoorType.Type2, null/+&DoorEntry121+/)]),
+	SectorDoors(1, [DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry122+/)]),
+	SectorDoors(10, [DoorConfig(0x0A, 0x09, DoorType.Type2, null/+&DoorEntry896+/), DoorConfig(0x0B, 0x09, DoorType.Type1, 0), DoorConfig(0x0C, 0x09, DoorType.Type1, 0), DoorConfig(0x0D, 0x09, DoorType.Type1, 0), DoorConfig(0x0E, 0x09, DoorType.Type1, 0), DoorConfig(0x0F, 0x09, DoorType.Type1, 0), DoorConfig(0x10, 0x09, DoorType.Type1, 0), DoorConfig(0x11, 0x09, DoorType.Type1, 0), DoorConfig(0x12, 0x09, DoorType.Type1, 0), DoorConfig(0x13, 0x09, DoorType.Type1, 0)]),
+	SectorDoors(10, [DoorConfig(0x06, 0x01, DoorType.Type2, null/+&DoorEntry897+/), DoorConfig(0x07, 0x01, DoorType.Type1, 0), DoorConfig(0x08, 0x01, DoorType.Type1, 0), DoorConfig(0x09, 0x01, DoorType.Type1, 0), DoorConfig(0x0A, 0x01, DoorType.Type1, 0), DoorConfig(0x0B, 0x01, DoorType.Type1, 0), DoorConfig(0x0C, 0x01, DoorType.Type1, 0), DoorConfig(0x0D, 0x01, DoorType.Type1, 0), DoorConfig(0x0E, 0x01, DoorType.Type1, 0), DoorConfig(0x0F, 0x01, DoorType.Type1, 0)]),
+	SectorDoors(2, [DoorConfig(0x18, 0x16, DoorType.Type2, null/+&DoorEntry279+/), DoorConfig(0x18, 0x17, DoorType.Type2, null/+&DoorEntry279+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0C, 0x09, DoorType.Type2, null/+&DoorEntry447+/)]),
+	SectorDoors(2, [DoorConfig(0x1E, 0x15, DoorType.Type2, null/+&DoorEntry446+/), DoorConfig(0x1E, 0x16, DoorType.Type2, null/+&DoorEntry446+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry263+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry492+/)]),
+	SectorDoors(1, [DoorConfig(0x01, 0x12, DoorType.Type2, null/+&DoorEntry264+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x02, 0x11, DoorType.Type5, null/+&DoorEntry379+/), DoorConfig(0x02, 0x13, DoorType.Type5, null/+&DoorEntry379+/), DoorConfig(0x03, 0x17, DoorType.Type2, null/+&DoorEntry366+/)]),
+	SectorDoors(0, []),
+	SectorDoors(21, [DoorConfig(0x04, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x0F, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x13, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x14, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x15, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x16, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x17, 0x06, DoorType.Type1, 0x8000), DoorConfig(0x19, 0x0E, DoorType.Type2, null/+&DoorEntry116+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, []),
+	SectorDoors(10, [DoorConfig(0x16, 0x01, DoorType.Type2, null/+&DoorEntry898+/), DoorConfig(0x17, 0x01, DoorType.Type1, 0), DoorConfig(0x18, 0x01, DoorType.Type1, 0), DoorConfig(0x19, 0x01, DoorType.Type1, 0), DoorConfig(0x1A, 0x01, DoorType.Type1, 0), DoorConfig(0x1B, 0x01, DoorType.Type1, 0), DoorConfig(0x1C, 0x01, DoorType.Type1, 0), DoorConfig(0x1D, 0x01, DoorType.Type1, 0), DoorConfig(0x1E, 0x01, DoorType.Type1, 0), DoorConfig(0x1F, 0x01, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(4, [DoorConfig(0x03, 0x01, DoorType.Type2, null/+&DoorEntry328+/), DoorConfig(0x03, 0x1E, DoorType.Type2, null/+&DoorEntry329+/), DoorConfig(0x1E, 0x05, DoorType.Type2, null/+&DoorEntry902+/), DoorConfig(0x1F, 0x05, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry270+/)]),
+	SectorDoors(1, [DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry271+/)]),
+	SectorDoors(2, [DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry119+/), DoorConfig(0x1B, 0x01, DoorType.Type2, null/+&DoorEntry120+/)]),
+	SectorDoors(2, [DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry785+/), DoorConfig(0x19, 0x12, DoorType.Type2, null/+&DoorEntry786+/)]),
+	SectorDoors(2, [DoorConfig(0x18, 0x05, DoorType.Type2, null/+&DoorEntry113+/), DoorConfig(0x19, 0x17, DoorType.Type2, null/+&DoorEntry114+/)]),
+	SectorDoors(2, [DoorConfig(0x04, 0x16, DoorType.Type2, null/+&DoorEntry433+/), DoorConfig(0x04, 0x17, DoorType.Type2, null/+&DoorEntry433+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1A, 0x01, DoorType.Type2, null/+&DoorEntry938+/), DoorConfig(0x1A, 0x11, DoorType.Type2, null/+&DoorEntry939+/)]),
+	SectorDoors(1, [DoorConfig(0x1A, 0x06, DoorType.Type2, null/+&DoorEntry940+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x02, 0x0C, DoorType.Type2, null/+&DoorEntry268+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry380+/)]),
+	SectorDoors(2, [DoorConfig(0x1B, 0x11, DoorType.Type2, null/+&DoorEntry386+/), DoorConfig(0x1B, 0x1A, DoorType.Type2, null/+&DoorEntry387+/)]),
+	SectorDoors(1, [DoorConfig(0x02, 0x13, DoorType.Type2, null/+&DoorEntry269+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1A, 0x03, DoorType.Type2, null/+&DoorEntry378+/)]),
+	SectorDoors(0, []),
+	SectorDoors(11, [DoorConfig(0x01, 0x13, DoorType.Type2, null/+&DoorEntry906+/), DoorConfig(0x02, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x13, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x05, DoorType.Type2, null/+&DoorEntry907+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x08, 0x17, DoorType.Type2, null/+&DoorEntry913+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(12, [DoorConfig(0x02, 0x0D, DoorType.Type2, null/+&DoorEntry899+/), DoorConfig(0x03, 0x0D, DoorType.Type1, 0), DoorConfig(0x04, 0x0D, DoorType.Type1, 0), DoorConfig(0x05, 0x0D, DoorType.Type1, 0), DoorConfig(0x06, 0x0D, DoorType.Type1, 0), DoorConfig(0x07, 0x0D, DoorType.Type1, 0), DoorConfig(0x08, 0x0D, DoorType.Type1, 0), DoorConfig(0x09, 0x0D, DoorType.Type1, 0), DoorConfig(0x0A, 0x0D, DoorType.Type1, 0), DoorConfig(0x0B, 0x0D, DoorType.Type1, 0), DoorConfig(0x1E, 0x0D, DoorType.Type2, null/+&DoorEntry900+/), DoorConfig(0x1F, 0x0D, DoorType.Type1, 0)]),
+	SectorDoors(1, []),
+	SectorDoors(0, []),
+	SectorDoors(8, [DoorConfig(0x00, 0x05, DoorType.Type1, 0), DoorConfig(0x01, 0x05, DoorType.Type1, 0), DoorConfig(0x02, 0x05, DoorType.Type1, 0), DoorConfig(0x03, 0x05, DoorType.Type1, 0), DoorConfig(0x04, 0x05, DoorType.Type1, 0), DoorConfig(0x05, 0x05, DoorType.Type1, 0), DoorConfig(0x06, 0x05, DoorType.Type1, 0), DoorConfig(0x07, 0x05, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x14, 0x17, DoorType.Type2, null/+&DoorEntry682+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x13, 0x08, DoorType.Type2, null/+&DoorEntry683+/)]),
+	SectorDoors(1, [DoorConfig(0x13, 0x17, DoorType.Type2, null/+&DoorEntry684+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x14, 0x02, DoorType.Type2, null/+&DoorEntry685+/), DoorConfig(0x14, 0x03, DoorType.Type2, null/+&DoorEntry685+/)]),
+	SectorDoors(3, [DoorConfig(0x11, 0x0C, DoorType.Type2, null/+&DoorEntry686+/), DoorConfig(0x11, 0x0E, DoorType.Type2, null/+&DoorEntry686+/), DoorConfig(0x11, 0x10, DoorType.Type2, null/+&DoorEntry686+/)]),
+	SectorDoors(3, [DoorConfig(0x17, 0x05, DoorType.Type5, null/+&DoorEntry741+/), DoorConfig(0x17, 0x07, DoorType.Type5, null/+&DoorEntry741+/), DoorConfig(0x17, 0x08, DoorType.Type5, null/+&DoorEntry741+/)]),
+	SectorDoors(2, [DoorConfig(0x16, 0x0D, DoorType.Type2, null/+&DoorEntry687+/), DoorConfig(0x16, 0x0E, DoorType.Type2, null/+&DoorEntry687+/)]),
+	SectorDoors(3, [DoorConfig(0x18, 0x0D, DoorType.Type5, null/+&DoorEntry742+/), DoorConfig(0x18, 0x0F, DoorType.Type5, null/+&DoorEntry742+/), DoorConfig(0x18, 0x11, DoorType.Type5, null/+&DoorEntry742+/)]),
+	SectorDoors(1, [DoorConfig(0x1A, 0x0A, DoorType.Type2, null/+&DoorEntry688+/)]),
+	SectorDoors(1, [DoorConfig(0x1A, 0x0B, DoorType.Type2, null/+&DoorEntry738+/)]),
+	SectorDoors(1, [DoorConfig(0x1A, 0x0B, DoorType.Type2, null/+&DoorEntry739+/)]),
+	SectorDoors(1, [DoorConfig(0x01, 0x05, DoorType.Type2, null/+&DoorEntry388+/)]),
+	SectorDoors(1, [DoorConfig(0x01, 0x0A, DoorType.Type2, null/+&DoorEntry389+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(8, [DoorConfig(0x00, 0x0D, DoorType.Type1, 0), DoorConfig(0x01, 0x0D, DoorType.Type1, 0), DoorConfig(0x02, 0x0D, DoorType.Type1, 0), DoorConfig(0x03, 0x0D, DoorType.Type1, 0), DoorConfig(0x04, 0x0D, DoorType.Type1, 0), DoorConfig(0x05, 0x0D, DoorType.Type1, 0), DoorConfig(0x06, 0x0D, DoorType.Type1, 0), DoorConfig(0x07, 0x0D, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x0E, 0x0D, DoorType.Type2, null/+&DoorEntry901+/), DoorConfig(0x0F, 0x0D, DoorType.Type1, 0), DoorConfig(0x10, 0x0D, DoorType.Type1, 0), DoorConfig(0x11, 0x0D, DoorType.Type1, 0), DoorConfig(0x12, 0x0D, DoorType.Type1, 0), DoorConfig(0x13, 0x0D, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x05, 0x0D, DoorType.Type4, 0x0300), DoorConfig(0x05, 0x1E, DoorType.Type4, 0x0200), DoorConfig(0x07, 0x05, DoorType.Type4, 0x0300), DoorConfig(0x07, 0x0F, DoorType.Type4, 0), DoorConfig(0x07, 0x1C, DoorType.Type4, 0x0100), DoorConfig(0x09, 0x07, DoorType.Type4, 0)]),
+	SectorDoors(2, [DoorConfig(0x07, 0x0A, DoorType.Type4, 0x0200), DoorConfig(0x09, 0x08, DoorType.Type4, 0x0100)]),
+	SectorDoors(4, [DoorConfig(0x09, 0x02, DoorType.Type4, 0x0200), DoorConfig(0x0B, 0x00, DoorType.Type4, 0x0100), DoorConfig(0x0B, 0x0E, DoorType.Type4, 0x0200), DoorConfig(0x0D, 0x0C, DoorType.Type4, 0x0100)]),
+	SectorDoors(6, [DoorConfig(0x09, 0x09, DoorType.Type4, 0x0300), DoorConfig(0x09, 0x1A, DoorType.Type4, 0x0200), DoorConfig(0x0B, 0x01, DoorType.Type4, 0x0300), DoorConfig(0x0B, 0x0B, DoorType.Type4, 0), DoorConfig(0x0B, 0x18, DoorType.Type4, 0x0100), DoorConfig(0x0D, 0x03, DoorType.Type4, 0)]),
+	SectorDoors(10, [DoorConfig(0x08, 0x08, DoorType.Type5, null/+&DoorEntry740+/), DoorConfig(0x08, 0x09, DoorType.Type5, null/+&DoorEntry740+/), DoorConfig(0x08, 0x0A, DoorType.Type5, null/+&DoorEntry740+/), DoorConfig(0x08, 0x0C, DoorType.Type5, null/+&DoorEntry740+/), DoorConfig(0x08, 0x0D, DoorType.Type5, null/+&DoorEntry740+/), DoorConfig(0x08, 0x0E, DoorType.Type5, null/+&DoorEntry740+/), DoorConfig(0x0B, 0x02, DoorType.Type4, 0x0200), DoorConfig(0x0B, 0x19, DoorType.Type4, 0x0300), DoorConfig(0x0D, 0x00, DoorType.Type4, 0x0100), DoorConfig(0x0D, 0x1B, DoorType.Type4, 0)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x05, DoorType.Type4, 0x0300), DoorConfig(0x0B, 0x07, DoorType.Type4, 0)]),
+	SectorDoors(6, [DoorConfig(0x05, 0x09, DoorType.Type4, 0x0300), DoorConfig(0x05, 0x1E, DoorType.Type4, 0x0200), DoorConfig(0x07, 0x01, DoorType.Type4, 0x0300), DoorConfig(0x07, 0x0B, DoorType.Type4, 0), DoorConfig(0x07, 0x1C, DoorType.Type4, 0x0100), DoorConfig(0x09, 0x03, DoorType.Type4, 0)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x0A, DoorType.Type4, 0x0200), DoorConfig(0x09, 0x08, DoorType.Type4, 0x0100), DoorConfig(0x0B, 0x1E, DoorType.Type4, 0x0100)]),
+	SectorDoors(1, [DoorConfig(0x09, 0x00, DoorType.Type4, 0x0200)]),
+	SectorDoors(2, [DoorConfig(0x02, 0x02, DoorType.Type2, null/+&DoorEntry689+/), DoorConfig(0x02, 0x16, DoorType.Type2, null/+&DoorEntry690+/)]),
+	SectorDoors(2, [DoorConfig(0x02, 0x02, DoorType.Type2, null/+&DoorEntry691+/), DoorConfig(0x02, 0x16, DoorType.Type2, null/+&DoorEntry692+/)]),
+	SectorDoors(1, [DoorConfig(0x02, 0x02, DoorType.Type2, null/+&DoorEntry693+/)]),
+	SectorDoors(3, [DoorConfig(0x04, 0x1E, DoorType.Type2, null/+&DoorEntry391+/), DoorConfig(0x1B, 0x11, DoorType.Type2, null/+&DoorEntry392+/), DoorConfig(0x1B, 0x1A, DoorType.Type2, null/+&DoorEntry393+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x1A, DoorType.Type2, null/+&DoorEntry390+/), DoorConfig(0x0A, 0x1B, DoorType.Type2, null/+&DoorEntry390+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0E, 0x03, DoorType.Type2, null/+&DoorEntry367+/)]),
+	SectorDoors(2, [DoorConfig(0x10, 0x18, DoorType.Type2, null/+&DoorEntry30+/), DoorConfig(0x10, 0x1A, DoorType.Type2, null/+&DoorEntry30+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x02, 0x0A, DoorType.Type2, null/+&DoorEntry914+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, []),
+	SectorDoors(6, [DoorConfig(0x16, 0x00, DoorType.Type2, null/+&DoorEntry667+/), DoorConfig(0x16, 0x11, DoorType.Type1, 0), DoorConfig(0x17, 0x00, DoorType.Type2, null/+&DoorEntry667+/), DoorConfig(0x17, 0x11, DoorType.Type1, 0), DoorConfig(0x1A, 0x00, DoorType.Type2, null/+&DoorEntry668+/), DoorConfig(0x1B, 0x00, DoorType.Type2, null/+&DoorEntry668+/)]),
+	SectorDoors(13, [DoorConfig(0x03, 0x1B, DoorType.Type2, null/+&DoorEntry669+/), DoorConfig(0x04, 0x1B, DoorType.Type1, 0), DoorConfig(0x05, 0x1B, DoorType.Type1, 0), DoorConfig(0x06, 0x1B, DoorType.Type1, 0), DoorConfig(0x07, 0x1B, DoorType.Type1, 0), DoorConfig(0x08, 0x1B, DoorType.Type1, 0), DoorConfig(0x09, 0x1B, DoorType.Type1, 0), DoorConfig(0x0A, 0x1B, DoorType.Type1, 0), DoorConfig(0x0B, 0x1B, DoorType.Type1, 0), DoorConfig(0x0C, 0x1B, DoorType.Type1, 0), DoorConfig(0x0D, 0x1B, DoorType.Type1, 0), DoorConfig(0x0E, 0x1B, DoorType.Type1, 0), DoorConfig(0x13, 0x09, DoorType.Type2, null/+&DoorEntry670+/)]),
+	SectorDoors(2, [DoorConfig(0x16, 0x09, DoorType.Type1, 0), DoorConfig(0x17, 0x09, DoorType.Type1, 0)]),
+	SectorDoors(3, [DoorConfig(0x09, 0x01, DoorType.Type2, null/+&DoorEntry797+/), DoorConfig(0x0A, 0x0A, DoorType.Type4, 0x0300), DoorConfig(0x1D, 0x1D, DoorType.Type4, 0)]),
+	SectorDoors(1, [DoorConfig(0x1D, 0x0A, DoorType.Type2, null/+&DoorEntry798+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry458+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x19, 0x1F, DoorType.Type2, null/+&DoorEntry455+/), DoorConfig(0x1B, 0x01, DoorType.Type2, null/+&DoorEntry456+/)]),
+	SectorDoors(1, [DoorConfig(0x01, 0x05, DoorType.Type2, null/+&DoorEntry394+/)]),
+	SectorDoors(1, [DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry457+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x02, 0x0B, DoorType.Type2, null/+&DoorEntry368+/), DoorConfig(0x06, 0x13, DoorType.Type2, null/+&DoorEntry369+/)]),
+	SectorDoors(1, [DoorConfig(0x02, 0x07, DoorType.Type2, null/+&DoorEntry370+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x18, 0x1A, DoorType.Type2, null/+&DoorEntry400+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x09, 0x01, DoorType.Type2, null/+&DoorEntry272+/)]),
+	SectorDoors(1, [DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry273+/)]),
+	SectorDoors(1, [DoorConfig(0x19, 0x19, DoorType.Type2, null/+&DoorEntry743+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry808+/), DoorConfig(0x1D, 0x0E, DoorType.Type4, 0x0100)]),
+	SectorDoors(6, [DoorConfig(0x09, 0x0E, DoorType.Type2, null/+&DoorEntry809+/), DoorConfig(0x0A, 0x01, DoorType.Type4, 0x0200), DoorConfig(0x15, 0x00, DoorType.Type2, null/+&DoorEntry330+/), DoorConfig(0x15, 0x0A, DoorType.Type4, 0x0300), DoorConfig(0x1D, 0x12, DoorType.Type4, 0), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry331+/)]),
+	SectorDoors(7, [DoorConfig(0x08, 0x06, DoorType.Type2, null/+&DoorEntry548+/), DoorConfig(0x09, 0x05, DoorType.Type2, null/+&DoorEntry548+/), DoorConfig(0x0A, 0x04, DoorType.Type2, null/+&DoorEntry548+/), DoorConfig(0x0B, 0x03, DoorType.Type2, null/+&DoorEntry548+/), DoorConfig(0x0C, 0x02, DoorType.Type2, null/+&DoorEntry548+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry548+/), DoorConfig(0x1C, 0x19, DoorType.Type2, null/+&DoorEntry659+/)]),
+	SectorDoors(1, [DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry813+/)]),
+	SectorDoors(7, [DoorConfig(0x08, 0x15, DoorType.Type2, null/+&DoorEntry549+/), DoorConfig(0x09, 0x16, DoorType.Type2, null/+&DoorEntry549+/), DoorConfig(0x0A, 0x17, DoorType.Type2, null/+&DoorEntry549+/), DoorConfig(0x0B, 0x18, DoorType.Type2, null/+&DoorEntry549+/), DoorConfig(0x0C, 0x19, DoorType.Type2, null/+&DoorEntry549+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry549+/), DoorConfig(0x1D, 0x1E, DoorType.Type4, 0x0100)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry814+/), DoorConfig(0x0A, 0x11, DoorType.Type4, 0x0200)]),
+	SectorDoors(3, [DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry478+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry459+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry460+/)]),
+	SectorDoors(6, [DoorConfig(0x16, 0x00, DoorType.Type2, null/+&DoorEntry661+/), DoorConfig(0x16, 0x11, DoorType.Type1, 0), DoorConfig(0x17, 0x00, DoorType.Type2, null/+&DoorEntry661+/), DoorConfig(0x17, 0x11, DoorType.Type1, 0), DoorConfig(0x1A, 0x00, DoorType.Type2, null/+&DoorEntry662+/), DoorConfig(0x1B, 0x00, DoorType.Type2, null/+&DoorEntry662+/)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x1D, DoorType.Type2, null/+&DoorEntry663+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x16, 0x0D, DoorType.Type1, 0), DoorConfig(0x16, 0x1F, DoorType.Type2, null/+&DoorEntry664+/), DoorConfig(0x17, 0x0D, DoorType.Type1, 0), DoorConfig(0x17, 0x1F, DoorType.Type2, null/+&DoorEntry664+/), DoorConfig(0x1A, 0x1F, DoorType.Type2, null/+&DoorEntry665+/), DoorConfig(0x1B, 0x1F, DoorType.Type2, null/+&DoorEntry665+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x0D, 0x05, DoorType.Type2, null/+&DoorEntry793+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry794+/), DoorConfig(0x0E, 0x0F, DoorType.Type2, null/+&DoorEntry795+/), DoorConfig(0x0E, 0x10, DoorType.Type2, null/+&DoorEntry795+/), DoorConfig(0x11, 0x01, DoorType.Type2, null/+&DoorEntry796+/)]),
+	SectorDoors(1, [DoorConfig(0x10, 0x09, DoorType.Type2, null/+&DoorEntry401+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x08, 0x14, DoorType.Type2, null/+&DoorEntry552+/), DoorConfig(0x09, 0x15, DoorType.Type2, null/+&DoorEntry552+/), DoorConfig(0x0A, 0x16, DoorType.Type2, null/+&DoorEntry552+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x18, 0x10, DoorType.Type2, null/+&DoorEntry562+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x13, 0x00, DoorType.Type2, null/+&DoorEntry744+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1F, 0x0E, DoorType.Type1, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(13, [DoorConfig(0x0A, 0x0C, DoorType.Type2, null/+&DoorEntry423+/), DoorConfig(0x14, 0x06, DoorType.Type1, 0), DoorConfig(0x15, 0x06, DoorType.Type1, 0), DoorConfig(0x16, 0x06, DoorType.Type1, 0), DoorConfig(0x17, 0x06, DoorType.Type1, 0), DoorConfig(0x18, 0x06, DoorType.Type1, 0), DoorConfig(0x19, 0x06, DoorType.Type1, 0), DoorConfig(0x1A, 0x06, DoorType.Type1, 0), DoorConfig(0x1B, 0x06, DoorType.Type1, 0), DoorConfig(0x1C, 0x06, DoorType.Type1, 0), DoorConfig(0x1D, 0x06, DoorType.Type1, 0), DoorConfig(0x1E, 0x06, DoorType.Type1, 0), DoorConfig(0x1F, 0x06, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(13, [DoorConfig(0x04, 0x0C, DoorType.Type2, null/+&DoorEntry409+/), DoorConfig(0x05, 0x0C, DoorType.Type1, 0), DoorConfig(0x06, 0x0C, DoorType.Type1, 0), DoorConfig(0x07, 0x0C, DoorType.Type1, 0), DoorConfig(0x08, 0x0C, DoorType.Type1, 0), DoorConfig(0x09, 0x0C, DoorType.Type1, 0), DoorConfig(0x0A, 0x0C, DoorType.Type1, 0), DoorConfig(0x0B, 0x0C, DoorType.Type1, 0), DoorConfig(0x0C, 0x0C, DoorType.Type1, 0), DoorConfig(0x0D, 0x0C, DoorType.Type1, 0), DoorConfig(0x0E, 0x0C, DoorType.Type1, 0), DoorConfig(0x0F, 0x0C, DoorType.Type1, 0), DoorConfig(0x14, 0x1A, DoorType.Type2, null/+&DoorEntry410+/)]),
+	SectorDoors(1, [DoorConfig(0x1E, 0x18, DoorType.Type2, null/+&DoorEntry963+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1B, 0x1C, DoorType.Type2, null/+&DoorEntry964+/), DoorConfig(0x1E, 0x02, DoorType.Type5, null/+&DoorEntry976+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x00, 0x19, DoorType.Type2, null/+&DoorEntry371+/), DoorConfig(0x00, 0x1A, DoorType.Type2, null/+&DoorEntry371+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x17, 0x04, DoorType.Type2, null/+&DoorEntry767+/), DoorConfig(0x17, 0x18, DoorType.Type2, null/+&DoorEntry768+/)]),
+	SectorDoors(9, [DoorConfig(0x0C, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x0F, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x13, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x1F, 0x0C, DoorType.Type2, null/+&DoorEntry769+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x02, 0x04, DoorType.Type2, null/+&DoorEntry553+/)]),
+	SectorDoors(1, [DoorConfig(0x06, 0x0A, DoorType.Type5, null/+&DoorEntry672+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x18, DoorType.Type2, null/+&DoorEntry745+/)]),
+	SectorDoors(1, [DoorConfig(0x13, 0x08, DoorType.Type2, null/+&DoorEntry746+/)]),
+	SectorDoors(1, [DoorConfig(0x03, 0x10, DoorType.Type2, null/+&DoorEntry747+/)]),
+	SectorDoors(26, [DoorConfig(0x00, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x0E, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x13, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x14, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x15, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x16, 0x0D, DoorType.Type1, 0x8000), DoorConfig(0x1A, 0x0C, DoorType.Type1, 0x8000), DoorConfig(0x1B, 0x0C, DoorType.Type1, 0x8000), DoorConfig(0x1C, 0x0C, DoorType.Type1, 0x8000), DoorConfig(0x1D, 0x0C, DoorType.Type1, 0x8000), DoorConfig(0x1E, 0x0C, DoorType.Type1, 0x8000), DoorConfig(0x1F, 0x0C, DoorType.Type1, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(7, [DoorConfig(0x00, 0x06, DoorType.Type1, 0), DoorConfig(0x01, 0x06, DoorType.Type1, 0), DoorConfig(0x02, 0x06, DoorType.Type1, 0), DoorConfig(0x03, 0x06, DoorType.Type1, 0), DoorConfig(0x04, 0x06, DoorType.Type1, 0), DoorConfig(0x05, 0x06, DoorType.Type1, 0), DoorConfig(0x06, 0x06, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(16, [DoorConfig(0x10, 0x06, DoorType.Type1, 0), DoorConfig(0x11, 0x06, DoorType.Type1, 0), DoorConfig(0x12, 0x06, DoorType.Type1, 0), DoorConfig(0x13, 0x06, DoorType.Type1, 0), DoorConfig(0x14, 0x06, DoorType.Type1, 0), DoorConfig(0x15, 0x06, DoorType.Type1, 0), DoorConfig(0x16, 0x06, DoorType.Type1, 0), DoorConfig(0x17, 0x06, DoorType.Type1, 0), DoorConfig(0x18, 0x06, DoorType.Type1, 0), DoorConfig(0x19, 0x06, DoorType.Type1, 0), DoorConfig(0x1A, 0x06, DoorType.Type1, 0), DoorConfig(0x1B, 0x06, DoorType.Type1, 0), DoorConfig(0x1C, 0x06, DoorType.Type1, 0), DoorConfig(0x1D, 0x06, DoorType.Type1, 0), DoorConfig(0x1E, 0x06, DoorType.Type1, 0), DoorConfig(0x1F, 0x06, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x04, 0x08, DoorType.Type2, null/+&DoorEntry965+/), DoorConfig(0x05, 0x09, DoorType.Type2, null/+&DoorEntry965+/), DoorConfig(0x06, 0x0A, DoorType.Type2, null/+&DoorEntry965+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x14, 0x15, DoorType.Type2, null/+&DoorEntry372+/), DoorConfig(0x14, 0x16, DoorType.Type2, null/+&DoorEntry372+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x04, 0x19, DoorType.Type2, null/+&DoorEntry770+/)]),
+	SectorDoors(1, [DoorConfig(0x03, 0x0C, DoorType.Type2, null/+&DoorEntry771+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x16, 0x1A, DoorType.Type5, null/+&DoorEntry673+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x14, 0x14, DoorType.Type2, null/+&DoorEntry554+/), DoorConfig(0x16, 0x12, DoorType.Type2, null/+&DoorEntry554+/), DoorConfig(0x18, 0x10, DoorType.Type2, null/+&DoorEntry554+/)]),
+	SectorDoors(1, [DoorConfig(0x02, 0x10, DoorType.Type2, null/+&DoorEntry555+/)]),
+	SectorDoors(2, [DoorConfig(0x17, 0x03, DoorType.Type2, null/+&DoorEntry556+/), DoorConfig(0x18, 0x04, DoorType.Type2, null/+&DoorEntry556+/)]),
+	SectorDoors(2, [DoorConfig(0x01, 0x0D, DoorType.Type2, null/+&DoorEntry557+/), DoorConfig(0x02, 0x0D, DoorType.Type2, null/+&DoorEntry557+/)]),
+	SectorDoors(1, [DoorConfig(0x09, 0x1D, DoorType.Type2, null/+&DoorEntry748+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x00, 0x0C, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x0C, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x0C, DoorType.Type1, 0x8000)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x11, DoorType.Type2, null/+&DoorEntry949+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x01, DoorType.Type2, null/+&DoorEntry648+/), DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry649+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x11, 0x0E, DoorType.Type5, null/+&DoorEntry975+/), DoorConfig(0x11, 0x1E, DoorType.Type2, null/+&DoorEntry974+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry430+/)]),
+	SectorDoors(32, [DoorConfig(0x00, 0x06, DoorType.Type1, 0), DoorConfig(0x01, 0x06, DoorType.Type1, 0), DoorConfig(0x02, 0x06, DoorType.Type1, 0), DoorConfig(0x03, 0x06, DoorType.Type1, 0), DoorConfig(0x04, 0x06, DoorType.Type1, 0), DoorConfig(0x05, 0x06, DoorType.Type1, 0), DoorConfig(0x06, 0x06, DoorType.Type1, 0), DoorConfig(0x07, 0x06, DoorType.Type1, 0), DoorConfig(0x08, 0x06, DoorType.Type1, 0), DoorConfig(0x09, 0x06, DoorType.Type1, 0), DoorConfig(0x0A, 0x06, DoorType.Type1, 0), DoorConfig(0x0B, 0x06, DoorType.Type1, 0), DoorConfig(0x0C, 0x06, DoorType.Type1, 0), DoorConfig(0x0D, 0x06, DoorType.Type1, 0), DoorConfig(0x0E, 0x06, DoorType.Type1, 0), DoorConfig(0x0F, 0x06, DoorType.Type1, 0), DoorConfig(0x10, 0x06, DoorType.Type1, 0), DoorConfig(0x11, 0x06, DoorType.Type1, 0), DoorConfig(0x12, 0x06, DoorType.Type1, 0), DoorConfig(0x13, 0x06, DoorType.Type1, 0), DoorConfig(0x14, 0x06, DoorType.Type1, 0), DoorConfig(0x15, 0x06, DoorType.Type1, 0), DoorConfig(0x16, 0x06, DoorType.Type1, 0), DoorConfig(0x17, 0x06, DoorType.Type1, 0), DoorConfig(0x18, 0x06, DoorType.Type1, 0), DoorConfig(0x19, 0x06, DoorType.Type1, 0), DoorConfig(0x1A, 0x06, DoorType.Type1, 0), DoorConfig(0x1B, 0x06, DoorType.Type1, 0), DoorConfig(0x1C, 0x06, DoorType.Type1, 0), DoorConfig(0x1D, 0x06, DoorType.Type1, 0), DoorConfig(0x1E, 0x06, DoorType.Type1, 0), DoorConfig(0x1F, 0x06, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x04, 0x1C, DoorType.Type2, null/+&DoorEntry966+/), DoorConfig(0x06, 0x1A, DoorType.Type2, null/+&DoorEntry966+/), DoorConfig(0x08, 0x18, DoorType.Type2, null/+&DoorEntry966+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0B, 0x0A, DoorType.Type2, null/+&DoorEntry377+/), DoorConfig(0x0B, 0x0B, DoorType.Type2, null/+&DoorEntry377+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(4, [DoorConfig(0x17, 0x1E, DoorType.Type2, null/+&DoorEntry558+/), DoorConfig(0x1C, 0x19, DoorType.Type2, null/+&DoorEntry558+/), DoorConfig(0x1D, 0x18, DoorType.Type2, null/+&DoorEntry558+/), DoorConfig(0x1E, 0x17, DoorType.Type2, null/+&DoorEntry558+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x0C, 0x19, DoorType.Type2, null/+&DoorEntry660+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry789+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry790+/)]),
+	SectorDoors(4, [DoorConfig(0x15, 0x09, DoorType.Type2, null/+&DoorEntry760+/), DoorConfig(0x15, 0x0A, DoorType.Type2, null/+&DoorEntry760+/), DoorConfig(0x19, 0x19, DoorType.Type2, null/+&DoorEntry761+/), DoorConfig(0x19, 0x1A, DoorType.Type2, null/+&DoorEntry761+/)]),
+	SectorDoors(3, [DoorConfig(0x19, 0x15, DoorType.Type2, null/+&DoorEntry762+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry762+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x15, DoorType.Type6, null/+&DoorEntry960+/), DoorConfig(0x0D, 0x16, DoorType.Type6, null/+&DoorEntry960+/)]),
+	SectorDoors(2, [DoorConfig(0x1F, 0x11, DoorType.Type5, null/+&DoorEntry957+/), DoorConfig(0x1F, 0x13, DoorType.Type5, null/+&DoorEntry957+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1B, 0x11, DoorType.Type5, null/+&DoorEntry958+/), DoorConfig(0x1B, 0x13, DoorType.Type5, null/+&DoorEntry958+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry431+/)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x06, 0x07, DoorType.Type1, 0), DoorConfig(0x07, 0x07, DoorType.Type1, 0), DoorConfig(0x08, 0x07, DoorType.Type1, 0), DoorConfig(0x09, 0x07, DoorType.Type1, 0), DoorConfig(0x0A, 0x07, DoorType.Type1, 0)]),
+	SectorDoors(1, [DoorConfig(0x0A, 0x07, DoorType.Type2, null/+&DoorEntry424+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x09, 0x15, DoorType.Type2, null/+&DoorEntry374+/)]),
+	SectorDoors(2, [DoorConfig(0x04, 0x01, DoorType.Type2, null/+&DoorEntry373+/), DoorConfig(0x04, 0x02, DoorType.Type2, null/+&DoorEntry373+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x04, DoorType.Type2, null/+&DoorEntry559+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x0E, 0x0D, DoorType.Type5, null/+&DoorEntry674+/), DoorConfig(0x0E, 0x10, DoorType.Type2, null/+&DoorEntry560+/), DoorConfig(0x0F, 0x11, DoorType.Type2, null/+&DoorEntry560+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0C, 0x19, DoorType.Type2, null/+&DoorEntry666+/), DoorConfig(0x19, 0x0E, DoorType.Type2, null/+&DoorEntry799+/)]),
+	SectorDoors(1, [DoorConfig(0x0E, 0x0E, DoorType.Type2, null/+&DoorEntry444+/)]),
+	SectorDoors(1, [DoorConfig(0x12, 0x0B, DoorType.Type2, null/+&DoorEntry445+/)]),
+	SectorDoors(3, [DoorConfig(0x10, 0x1F, DoorType.Type2, null/+&DoorEntry950+/), DoorConfig(0x11, 0x15, DoorType.Type6, null/+&DoorEntry961+/), DoorConfig(0x11, 0x16, DoorType.Type6, null/+&DoorEntry961+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x0D, DoorType.Type6, null/+&DoorEntry962+/), DoorConfig(0x09, 0x0E, DoorType.Type6, null/+&DoorEntry962+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(4, [DoorConfig(0x07, 0x01, DoorType.Type6, null/+&DoorEntry959+/), DoorConfig(0x07, 0x02, DoorType.Type6, null/+&DoorEntry959+/), DoorConfig(0x08, 0x0B, DoorType.Type2, null/+&DoorEntry951+/), DoorConfig(0x0C, 0x1B, DoorType.Type2, null/+&DoorEntry952+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry903+/), DoorConfig(0x19, 0x06, DoorType.Type2, null/+&DoorEntry903+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, []),
+	SectorDoors(1, [DoorConfig(0x0A, 0x18, DoorType.Type5, null/+&DoorEntry977+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.Type2, null/+&DoorEntry429+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x02, 0x08, DoorType.Type2, null/+&DoorEntry375+/)]),
+	SectorDoors(2, [DoorConfig(0x00, 0x11, DoorType.Type2, null/+&DoorEntry376+/), DoorConfig(0x00, 0x12, DoorType.Type2, null/+&DoorEntry376+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, []),
+	SectorDoors(3, [DoorConfig(0x02, 0x1F, DoorType.Type2, null/+&DoorEntry772+/), DoorConfig(0x15, 0x18, DoorType.Type0, null/+&DoorEntry779+/), DoorConfig(0x1C, 0x1A, DoorType.Type0, null/+&DoorEntry778+/)]),
+	SectorDoors(5, [DoorConfig(0x02, 0x00, DoorType.Type2, null/+&DoorEntry772+/), DoorConfig(0x0C, 0x00, DoorType.Type6, null/+&DoorEntry774+/), DoorConfig(0x11, 0x00, DoorType.Type0, null/+&DoorEntry775+/), DoorConfig(0x15, 0x07, DoorType.Type0, null/+&DoorEntry776+/), DoorConfig(0x1C, 0x05, DoorType.Type0, null/+&DoorEntry777+/)]),
+	SectorDoors(8, [DoorConfig(0x18, 0x16, DoorType.Type2, null/+&DoorEntry561+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry561+/), DoorConfig(0x1A, 0x16, DoorType.Type2, null/+&DoorEntry561+/), DoorConfig(0x1B, 0x16, DoorType.Type2, null/+&DoorEntry561+/), DoorConfig(0x1C, 0x16, DoorType.Type2, null/+&DoorEntry561+/), DoorConfig(0x1D, 0x16, DoorType.Type2, null/+&DoorEntry561+/), DoorConfig(0x1E, 0x16, DoorType.Type2, null/+&DoorEntry561+/), DoorConfig(0x1F, 0x16, DoorType.Type2, null/+&DoorEntry561+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x17, DoorType.Type2, null/+&DoorEntry110+/)]),
+	SectorDoors(3, [DoorConfig(0x0C, 0x1D, DoorType.Type2, null/+&DoorEntry671+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry802+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry803+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry645+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry563+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x05, DoorType.Type2, null/+&DoorEntry633+/)]),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry564+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry565+/), DoorConfig(0x17, 0x05, DoorType.Type2, null/+&DoorEntry566+/)]),
+	SectorDoors(1, [DoorConfig(0x0A, 0x0E, DoorType.Type2, null/+&DoorEntry567+/)]),
+	SectorDoors(2, [DoorConfig(0x0A, 0x01, DoorType.Type2, null/+&DoorEntry568+/), DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry569+/)]),
+	SectorDoors(4, [DoorConfig(0x07, 0x0D, DoorType.Type2, null/+&DoorEntry570+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry571+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry572+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry573+/)]),
+	SectorDoors(1, [DoorConfig(0x0C, 0x05, DoorType.Type2, null/+&DoorEntry407+/)]),
+	SectorDoors(2, [DoorConfig(0x07, 0x0E, DoorType.Type5, null/+&DoorEntry677+/), DoorConfig(0x09, 0x05, DoorType.Type2, null/+&DoorEntry970+/)]),
+	SectorDoors(1, [DoorConfig(0x0C, 0x1E, DoorType.Type2, null/+&DoorEntry408+/)]),
+	SectorDoors(2, [DoorConfig(0x19, 0x0A, DoorType.Type4, 0x0300), DoorConfig(0x1D, 0x0E, DoorType.Type4, 0)]),
+	SectorDoors(2, [DoorConfig(0x0B, 0x1D, DoorType.Type2, null/+&DoorEntry967+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry448+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x0A, DoorType.Type5, null/+&DoorEntry677+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry968+/), DoorConfig(0x19, 0x1B, DoorType.Type2, null/+&DoorEntry449+/)]),
+	SectorDoors(1, [DoorConfig(0x1D, 0x00, DoorType.Type2, null/+&DoorEntry413+/)]),
+	SectorDoors(4, [DoorConfig(0x01, 0x0E, DoorType.Type4, 0x0300), DoorConfig(0x05, 0x12, DoorType.Type4, 0), DoorConfig(0x05, 0x1E, DoorType.Type2, null/+&DoorEntry414+/), DoorConfig(0x1D, 0x04, DoorType.Type2, null/+&DoorEntry415+/)]),
+	SectorDoors(2, [DoorConfig(0x14, 0x1E, DoorType.Type2, null/+&DoorEntry452+/), DoorConfig(0x14, 0x1F, DoorType.Type2, null/+&DoorEntry452+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x14, 0x0E, DoorType.Type2, null/+&DoorEntry453+/), DoorConfig(0x14, 0x0F, DoorType.Type2, null/+&DoorEntry453+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(10, [DoorConfig(0x00, 0x0C, DoorType.Type2, null/+&DoorEntry476+/), DoorConfig(0x01, 0x0C, DoorType.Type1, 0), DoorConfig(0x02, 0x0C, DoorType.Type1, 0), DoorConfig(0x03, 0x0C, DoorType.Type1, 0), DoorConfig(0x04, 0x0C, DoorType.Type1, 0), DoorConfig(0x05, 0x0C, DoorType.Type1, 0), DoorConfig(0x06, 0x0C, DoorType.Type1, 0), DoorConfig(0x07, 0x0C, DoorType.Type1, 0), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry477+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry479+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x03, 0x01, DoorType.Type2, null/+&DoorEntry332+/), DoorConfig(0x03, 0x1E, DoorType.Type2, null/+&DoorEntry333+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry440+/)]),
+	SectorDoors(4, [DoorConfig(0x06, 0x12, DoorType.Type2, null/+&DoorEntry933+/), DoorConfig(0x0A, 0x01, DoorType.Type2, null/+&DoorEntry934+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry806+/), DoorConfig(0x1D, 0x05, DoorType.Type0, 0x20ED)]),
+	SectorDoors(2, [DoorConfig(0x11, 0x1E, DoorType.Type5, null/+&DoorEntry679+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry634+/)]),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x16, 0x1D, DoorType.Type2, null/+&DoorEntry635+/), DoorConfig(0x17, 0x1D, DoorType.Type2, null/+&DoorEntry635+/), DoorConfig(0x18, 0x1D, DoorType.Type2, null/+&DoorEntry635+/), DoorConfig(0x19, 0x1D, DoorType.Type2, null/+&DoorEntry635+/), DoorConfig(0x1A, 0x1D, DoorType.Type2, null/+&DoorEntry635+/), DoorConfig(0x1B, 0x1D, DoorType.Type2, null/+&DoorEntry635+/)]),
+	SectorDoors(4, [DoorConfig(0x07, 0x10, DoorType.Type2, null/+&DoorEntry574+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry575+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry576+/), DoorConfig(0x17, 0x05, DoorType.Type2, null/+&DoorEntry577+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x01, 0x02, DoorType.Type2, null/+&DoorEntry578+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry579+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry580+/)]),
+	SectorDoors(6, [DoorConfig(0x12, 0x05, DoorType.Type2, null/+&DoorEntry499+/), DoorConfig(0x13, 0x05, DoorType.Type1, 0), DoorConfig(0x14, 0x05, DoorType.Type1, 0), DoorConfig(0x15, 0x05, DoorType.Type1, 0), DoorConfig(0x16, 0x05, DoorType.Type1, 0), DoorConfig(0x17, 0x05, DoorType.Type1, 0)]),
+	SectorDoors(9, [DoorConfig(0x07, 0x05, DoorType.Type2, null/+&DoorEntry533+/), DoorConfig(0x07, 0x09, DoorType.Type2, null/+&DoorEntry534+/), DoorConfig(0x09, 0x0E, DoorType.Type2, null/+&DoorEntry535+/), DoorConfig(0x12, 0x19, DoorType.Type2, null/+&DoorEntry500+/), DoorConfig(0x13, 0x19, DoorType.Type1, 0), DoorConfig(0x14, 0x19, DoorType.Type1, 0), DoorConfig(0x15, 0x19, DoorType.Type1, 0), DoorConfig(0x16, 0x19, DoorType.Type1, 0), DoorConfig(0x17, 0x19, DoorType.Type1, 0)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x00, DoorType.Type2, null/+&DoorEntry419+/)]),
+	SectorDoors(0, []),
+	SectorDoors(7, [DoorConfig(0x02, 0x0D, DoorType.Type2, null/+&DoorEntry501+/), DoorConfig(0x03, 0x0D, DoorType.Type1, 0), DoorConfig(0x04, 0x0D, DoorType.Type1, 0), DoorConfig(0x05, 0x0D, DoorType.Type1, 0), DoorConfig(0x06, 0x0D, DoorType.Type1, 0), DoorConfig(0x07, 0x0D, DoorType.Type1, 0), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry506+/)]),
+	SectorDoors(8, [DoorConfig(0x10, 0x18, DoorType.Type2, null/+&DoorEntry505+/), DoorConfig(0x11, 0x18, DoorType.Type1, 0), DoorConfig(0x12, 0x18, DoorType.Type1, 0), DoorConfig(0x13, 0x18, DoorType.Type1, 0), DoorConfig(0x14, 0x18, DoorType.Type1, 0), DoorConfig(0x15, 0x18, DoorType.Type1, 0), DoorConfig(0x16, 0x18, DoorType.Type1, 0), DoorConfig(0x17, 0x18, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1C, 0x06, DoorType.Type2, null/+&DoorEntry454+/), DoorConfig(0x1C, 0x07, DoorType.Type2, null/+&DoorEntry454+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x17, DoorType.Type2, null/+&DoorEntry773+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.Type2, null/+&DoorEntry765+/)]),
+	SectorDoors(3, [DoorConfig(0x19, 0x15, DoorType.Type2, null/+&DoorEntry766+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry766+/)]),
+	SectorDoors(12, [DoorConfig(0x14, 0x16, DoorType.Type1, 0), DoorConfig(0x15, 0x16, DoorType.Type1, 0), DoorConfig(0x16, 0x16, DoorType.Type1, 0), DoorConfig(0x17, 0x16, DoorType.Type1, 0), DoorConfig(0x18, 0x16, DoorType.Type1, 0), DoorConfig(0x19, 0x16, DoorType.Type1, 0), DoorConfig(0x1A, 0x16, DoorType.Type1, 0), DoorConfig(0x1B, 0x16, DoorType.Type1, 0), DoorConfig(0x1C, 0x16, DoorType.Type1, 0), DoorConfig(0x1D, 0x16, DoorType.Type1, 0), DoorConfig(0x1E, 0x16, DoorType.Type1, 0), DoorConfig(0x1F, 0x16, DoorType.Type1, 0)]),
+	SectorDoors(2, [DoorConfig(0x07, 0x1E, DoorType.Type5, null/+&DoorEntry462+/), DoorConfig(0x11, 0x06, DoorType.Type2, null/+&DoorEntry434+/)]),
+	SectorDoors(1, [DoorConfig(0x06, 0x04, DoorType.Type2, null/+&DoorEntry435+/)]),
+	SectorDoors(21, [DoorConfig(0x09, 0x1A, DoorType.Type2, null/+&DoorEntry436+/), DoorConfig(0x0C, 0x0E, DoorType.Type1, 0), DoorConfig(0x0D, 0x0E, DoorType.Type1, 0), DoorConfig(0x0E, 0x0E, DoorType.Type1, 0), DoorConfig(0x0F, 0x0E, DoorType.Type1, 0), DoorConfig(0x10, 0x0E, DoorType.Type1, 0), DoorConfig(0x11, 0x0E, DoorType.Type1, 0), DoorConfig(0x12, 0x0E, DoorType.Type1, 0), DoorConfig(0x13, 0x0E, DoorType.Type1, 0), DoorConfig(0x14, 0x0E, DoorType.Type1, 0), DoorConfig(0x15, 0x0E, DoorType.Type1, 0), DoorConfig(0x16, 0x0E, DoorType.Type1, 0), DoorConfig(0x17, 0x0E, DoorType.Type1, 0), DoorConfig(0x18, 0x0E, DoorType.Type1, 0), DoorConfig(0x19, 0x0E, DoorType.Type1, 0), DoorConfig(0x1A, 0x0E, DoorType.Type1, 0), DoorConfig(0x1B, 0x0E, DoorType.Type1, 0), DoorConfig(0x1C, 0x0E, DoorType.Type1, 0), DoorConfig(0x1D, 0x0E, DoorType.Type1, 0), DoorConfig(0x1E, 0x0E, DoorType.Type1, 0), DoorConfig(0x1F, 0x0E, DoorType.Type1, 0)]),
+	SectorDoors(2, [DoorConfig(0x0A, 0x01, DoorType.Type2, null/+&DoorEntry929+/), DoorConfig(0x19, 0x1B, DoorType.Type2, null/+&DoorEntry111+/)]),
+	SectorDoors(5, [DoorConfig(0x05, 0x15, DoorType.Type4, 0x0200), DoorConfig(0x05, 0x1E, DoorType.Type2, null/+&DoorEntry334+/), DoorConfig(0x0D, 0x00, DoorType.Type2, null/+&DoorEntry335+/), DoorConfig(0x0D, 0x0D, DoorType.Type4, 0x0100), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry441+/)]),
+	SectorDoors(5, [DoorConfig(0x0A, 0x01, DoorType.Type2, null/+&DoorEntry935+/), DoorConfig(0x0A, 0x0E, DoorType.Type2, null/+&DoorEntry936+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry807+/), DoorConfig(0x1A, 0x0E, DoorType.Type5, null/+&DoorEntry817+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry581+/), DoorConfig(0x11, 0x01, DoorType.Type2, null/+&DoorEntry582+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x19, DoorType.Type2, null/+&DoorEntry636+/), DoorConfig(0x07, 0x1A, DoorType.Type2, null/+&DoorEntry636+/), DoorConfig(0x0B, 0x0B, DoorType.Type2, null/+&DoorEntry637+/)]),
+	SectorDoors(1, [DoorConfig(0x15, 0x1E, DoorType.Type2, null/+&DoorEntry638+/)]),
+	SectorDoors(4, [DoorConfig(0x07, 0x0A, DoorType.Type2, null/+&DoorEntry583+/), DoorConfig(0x07, 0x10, DoorType.Type2, null/+&DoorEntry584+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry585+/), DoorConfig(0x17, 0x05, DoorType.Type2, null/+&DoorEntry586+/)]),
+	SectorDoors(1, [DoorConfig(0x05, 0x09, DoorType.Type2, null/+&DoorEntry587+/)]),
+	SectorDoors(1, [DoorConfig(0x05, 0x0A, DoorType.Type2, null/+&DoorEntry588+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry589+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry590+/)]),
+	SectorDoors(6, [DoorConfig(0x07, 0x05, DoorType.Type2, null/+&DoorEntry521+/), DoorConfig(0x07, 0x0D, DoorType.Type2, null/+&DoorEntry522+/), DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry523+/), DoorConfig(0x15, 0x00, DoorType.Type2, null/+&DoorEntry420+/), DoorConfig(0x15, 0x0E, DoorType.Type4, 0x0300), DoorConfig(0x1D, 0x16, DoorType.Type4, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x09, 0x15, DoorType.Type2, null/+&DoorEntry493+/), DoorConfig(0x09, 0x16, DoorType.Type2, null/+&DoorEntry493+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x05, 0x1E, DoorType.Type2, null/+&DoorEntry416+/)]),
+	SectorDoors(1, [DoorConfig(0x05, 0x1E, DoorType.Type2, null/+&DoorEntry417+/)]),
+	SectorDoors(7, [DoorConfig(0x02, 0x15, DoorType.Type2, null/+&DoorEntry502+/), DoorConfig(0x03, 0x15, DoorType.Type1, 0), DoorConfig(0x04, 0x15, DoorType.Type1, 0), DoorConfig(0x05, 0x15, DoorType.Type1, 0), DoorConfig(0x06, 0x15, DoorType.Type1, 0), DoorConfig(0x07, 0x15, DoorType.Type1, 0), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry418+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0A, 0x10, DoorType.Type2, null/+&DoorEntry437+/)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x00, 0x16, DoorType.Type1, 0), DoorConfig(0x01, 0x16, DoorType.Type1, 0), DoorConfig(0x02, 0x16, DoorType.Type1, 0), DoorConfig(0x03, 0x16, DoorType.Type1, 0), DoorConfig(0x0D, 0x05, DoorType.Type2, null/+&DoorEntry438+/)]),
+	SectorDoors(0, []),
+	SectorDoors(12, [DoorConfig(0x0C, 0x1A, DoorType.Type1, 0), DoorConfig(0x0D, 0x1A, DoorType.Type1, 0), DoorConfig(0x0E, 0x1A, DoorType.Type1, 0), DoorConfig(0x0F, 0x1A, DoorType.Type1, 0), DoorConfig(0x10, 0x1A, DoorType.Type1, 0), DoorConfig(0x11, 0x1A, DoorType.Type1, 0), DoorConfig(0x12, 0x1A, DoorType.Type1, 0), DoorConfig(0x13, 0x1A, DoorType.Type1, 0), DoorConfig(0x14, 0x1A, DoorType.Type1, 0), DoorConfig(0x15, 0x1A, DoorType.Type1, 0), DoorConfig(0x16, 0x1A, DoorType.Type1, 0), DoorConfig(0x17, 0x1A, DoorType.Type1, 0)]),
+	SectorDoors(1, [DoorConfig(0x1D, 0x0A, DoorType.Type2, null/+&DoorEntry439+/)]),
+	SectorDoors(3, [DoorConfig(0x0A, 0x01, DoorType.Type2, null/+&DoorEntry930+/), DoorConfig(0x0A, 0x1A, DoorType.Type2, null/+&DoorEntry931+/), DoorConfig(0x19, 0x17, DoorType.Type2, null/+&DoorEntry112+/)]),
+	SectorDoors(9, [DoorConfig(0x00, 0x1C, DoorType.Type2, null/+&DoorEntry336+/), DoorConfig(0x01, 0x1C, DoorType.Type1, 0), DoorConfig(0x02, 0x1C, DoorType.Type1, 0), DoorConfig(0x03, 0x1C, DoorType.Type1, 0), DoorConfig(0x04, 0x1C, DoorType.Type1, 0), DoorConfig(0x05, 0x15, DoorType.Type4, 0x0200), DoorConfig(0x0D, 0x00, DoorType.Type2, null/+&DoorEntry337+/), DoorConfig(0x0D, 0x0D, DoorType.Type4, 0x0100), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry442+/)]),
+	SectorDoors(4, [DoorConfig(0x0A, 0x12, DoorType.Type2, null/+&DoorEntry937+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry810+/), DoorConfig(0x1A, 0x09, DoorType.Type2, null/+&DoorEntry811+/), DoorConfig(0x1A, 0x0A, DoorType.Type2, null/+&DoorEntry811+/)]),
+	SectorDoors(2, [DoorConfig(0x1A, 0x1E, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x1D, 0x11, DoorType.Type2, null/+&DoorEntry639+/)]),
+	SectorDoors(6, [DoorConfig(0x1A, 0x04, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x1A, 0x09, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x1A, 0x0A, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x1A, 0x15, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x1A, 0x16, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x1A, 0x1C, DoorType.Type6, null/+&DoorEntry681+/)]),
+	SectorDoors(2, [DoorConfig(0x1A, 0x02, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x1D, 0x0E, DoorType.Type2, null/+&DoorEntry640+/)]),
+	SectorDoors(4, [DoorConfig(0x07, 0x10, DoorType.Type2, null/+&DoorEntry591+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry592+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry593+/), DoorConfig(0x17, 0x05, DoorType.Type2, null/+&DoorEntry594+/)]),
+	SectorDoors(4, [DoorConfig(0x1A, 0x09, DoorType.Type2, null/+&DoorEntry595+/), DoorConfig(0x1A, 0x11, DoorType.Type2, null/+&DoorEntry596+/), DoorConfig(0x1A, 0x19, DoorType.Type2, null/+&DoorEntry675+/), DoorConfig(0x1A, 0x1D, DoorType.Type2, null/+&DoorEntry675+/)]),
+	SectorDoors(4, [DoorConfig(0x01, 0x0A, DoorType.Type2, null/+&DoorEntry597+/), DoorConfig(0x1A, 0x09, DoorType.Type2, null/+&DoorEntry598+/), DoorConfig(0x1A, 0x11, DoorType.Type2, null/+&DoorEntry599+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry600+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry601+/), DoorConfig(0x19, 0x0A, DoorType.Type2, null/+&DoorEntry602+/)]),
+	SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.Type2, null/+&DoorEntry524+/), DoorConfig(0x07, 0x0D, DoorType.Type2, null/+&DoorEntry525+/), DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry526+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry507+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry508+/)]),
+	SectorDoors(8, [DoorConfig(0x02, 0x15, DoorType.Type2, null/+&DoorEntry503+/), DoorConfig(0x03, 0x15, DoorType.Type1, 0), DoorConfig(0x04, 0x15, DoorType.Type1, 0), DoorConfig(0x05, 0x15, DoorType.Type1, 0), DoorConfig(0x06, 0x15, DoorType.Type1, 0), DoorConfig(0x07, 0x15, DoorType.Type1, 0), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry972+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry973+/)]),
+	SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.Type2, null/+&DoorEntry536+/), DoorConfig(0x07, 0x15, DoorType.Type2, null/+&DoorEntry537+/), DoorConfig(0x09, 0x1A, DoorType.Type2, null/+&DoorEntry538+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry425+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry426+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x09, 0x15, DoorType.Type2, null/+&DoorEntry494+/), DoorConfig(0x09, 0x16, DoorType.Type2, null/+&DoorEntry494+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x05, DoorType.Type2, null/+&DoorEntry545+/), DoorConfig(0x09, 0x16, DoorType.Type2, null/+&DoorEntry546+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry969+/)]),
+	SectorDoors(1, [DoorConfig(0x13, 0x18, DoorType.Type2, null/+&DoorEntry943+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0B, 0x14, DoorType.Type2, null/+&DoorEntry944+/), DoorConfig(0x0B, 0x15, DoorType.Type2, null/+&DoorEntry944+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x05, 0x0B, DoorType.Type2, null/+&DoorEntry164+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x09, 0x16, DoorType.Type2, null/+&DoorEntry791+/), DoorConfig(0x0A, 0x0D, DoorType.Type4, 0x0200)]),
+	SectorDoors(1, [DoorConfig(0x0A, 0x0E, DoorType.Type2, null/+&DoorEntry932+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x01, DoorType.Type2, null/+&DoorEntry123+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry443+/)]),
+	SectorDoors(3, [DoorConfig(0x08, 0x0D, DoorType.Type2, null/+&DoorEntry399+/), DoorConfig(0x19, 0x12, DoorType.Type2, null/+&DoorEntry812+/)]),
+	SectorDoors(9, [DoorConfig(0x02, 0x16, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x02, 0x1C, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x0E, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x14, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x1A, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x0A, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x10, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x16, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x1C, DoorType.Type6, null/+&DoorEntry681+/)]),
+	SectorDoors(13, [DoorConfig(0x02, 0x02, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x02, 0x08, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x02, 0x18, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x02, 0x1E, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x00, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x06, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x0C, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x14, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x1A, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x02, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x08, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x18, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x1E, DoorType.Type6, null/+&DoorEntry681+/)]),
+	SectorDoors(10, [DoorConfig(0x02, 0x04, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x02, 0x0A, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x00, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x06, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x0C, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0A, 0x12, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x04, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x0A, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x10, DoorType.Type6, null/+&DoorEntry681+/), DoorConfig(0x0E, 0x16, DoorType.Type6, null/+&DoorEntry681+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry603+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x09, DoorType.Type2, null/+&DoorEntry605+/)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x02, DoorType.Type2, null/+&DoorEntry604+/)]),
+	SectorDoors(5, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry606+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry607+/), DoorConfig(0x17, 0x11, DoorType.Type2, null/+&DoorEntry608+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry609+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry610+/)]),
+	SectorDoors(3, [DoorConfig(0x09, 0x0E, DoorType.Type2, null/+&DoorEntry527+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry509+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry510+/)]),
+	SectorDoors(3, [DoorConfig(0x05, 0x00, DoorType.Type2, null/+&DoorEntry411+/), DoorConfig(0x05, 0x06, DoorType.Type4, 0x0300), DoorConfig(0x09, 0x0A, DoorType.Type4, 0)]),
+	SectorDoors(3, [DoorConfig(0x09, 0x0E, DoorType.Type2, null/+&DoorEntry539+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry518+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry517+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x09, 0x15, DoorType.Type2, null/+&DoorEntry495+/), DoorConfig(0x09, 0x16, DoorType.Type2, null/+&DoorEntry495+/)]),
+	SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.Type2, null/+&DoorEntry541+/), DoorConfig(0x07, 0x0D, DoorType.Type2, null/+&DoorEntry542+/), DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry543+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry427+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry428+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x0D, DoorType.Type2, null/+&DoorEntry496+/), DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry496+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1B, 0x14, DoorType.Type2, null/+&DoorEntry947+/), DoorConfig(0x1B, 0x15, DoorType.Type2, null/+&DoorEntry947+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x19, DoorType.Type2, null/+&DoorEntry165+/)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x19, DoorType.Type2, null/+&DoorEntry166+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x1B, DoorType.Type2, null/+&DoorEntry179+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1D, 0x05, DoorType.Type2, null/+&DoorEntry792+/), DoorConfig(0x1D, 0x0E, DoorType.Type4, 0x0100)]),
+	SectorDoors(2, [DoorConfig(0x05, 0x12, DoorType.Type4, 0x0100), DoorConfig(0x06, 0x05, DoorType.Type4, 0x0200)]),
+	SectorDoors(2, [DoorConfig(0x1A, 0x01, DoorType.Type2, null/+&DoorEntry915+/), DoorConfig(0x1A, 0x02, DoorType.Type2, null/+&DoorEntry915+/)]),
+	SectorDoors(1, [DoorConfig(0x05, 0x05, DoorType.Type2, null/+&DoorEntry749+/)]),
+	SectorDoors(10, [DoorConfig(0x0D, 0x08, DoorType.Type5, null/+&DoorEntry876+/), DoorConfig(0x11, 0x05, DoorType.Type2, null/+&DoorEntry832+/), DoorConfig(0x11, 0x06, DoorType.Type2, null/+&DoorEntry832+/), DoorConfig(0x16, 0x15, DoorType.Type2, null/+&DoorEntry833+/), DoorConfig(0x17, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x18, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x19, 0x0A, DoorType.Type5, null/+&DoorEntry877+/), DoorConfig(0x19, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1A, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1B, 0x15, DoorType.Type1, 0x8000)]),
+	SectorDoors(1, [DoorConfig(0x15, 0x06, DoorType.Type5, null/+&DoorEntry878+/)]),
+	SectorDoors(1, [DoorConfig(0x0C, 0x02, DoorType.Type2, null/+&DoorEntry611+/)]),
+	SectorDoors(2, [DoorConfig(0x0B, 0x13, DoorType.Type3, 0x0300), DoorConfig(0x0E, 0x10, DoorType.Type3, 0x8000)]),
+	SectorDoors(1, [DoorConfig(0x1E, 0x06, DoorType.Type3, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x07, 0x0D, DoorType.Type5, null/+&DoorEntry676+/), DoorConfig(0x07, 0x12, DoorType.Type2, null/+&DoorEntry612+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry613+/), DoorConfig(0x17, 0x11, DoorType.Type2, null/+&DoorEntry614+/), DoorConfig(0x17, 0x1D, DoorType.Type2, null/+&DoorEntry615+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x0E, DoorType.Type5, null/+&DoorEntry677+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry616+/), DoorConfig(0x1D, 0x0E, DoorType.Type2, null/+&DoorEntry617+/)]),
+	SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry618+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry619+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry620+/)]),
+	SectorDoors(5, [DoorConfig(0x07, 0x05, DoorType.Type2, null/+&DoorEntry528+/), DoorConfig(0x07, 0x09, DoorType.Type2, null/+&DoorEntry529+/), DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry530+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry511+/), DoorConfig(0x1B, 0x01, DoorType.Type2, null/+&DoorEntry512+/)]),
+	SectorDoors(1, [DoorConfig(0x1D, 0x00, DoorType.Type2, null/+&DoorEntry412+/)]),
+	SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry519+/)]),
+	SectorDoors(3, [DoorConfig(0x05, 0x19, DoorType.Type2, null/+&DoorEntry497+/), DoorConfig(0x05, 0x1A, DoorType.Type2, null/+&DoorEntry497+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry520+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x09, 0x0E, DoorType.Type2, null/+&DoorEntry544+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0F, 0x13, DoorType.Type5, null/+&DoorEntry241+/), DoorConfig(0x0F, 0x15, DoorType.Type5, null/+&DoorEntry241+/)]),
+	SectorDoors(2, [DoorConfig(0x0E, 0x0B, DoorType.Type2, null/+&DoorEntry167+/), DoorConfig(0x0E, 0x1C, DoorType.Type2, null/+&DoorEntry168+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x12, DoorType.Type2, null/+&DoorEntry169+/)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x10, 0x16, DoorType.Type2, null/+&DoorEntry170+/), DoorConfig(0x11, 0x01, DoorType.Type5, null/+&DoorEntry243+/), DoorConfig(0x11, 0x03, DoorType.Type5, null/+&DoorEntry243+/), DoorConfig(0x11, 0x04, DoorType.Type5, null/+&DoorEntry243+/), DoorConfig(0x11, 0x06, DoorType.Type5, null/+&DoorEntry243+/)]),
+	SectorDoors(5, [DoorConfig(0x1A, 0x09, DoorType.Type5, null/+&DoorEntry244+/), DoorConfig(0x1A, 0x0B, DoorType.Type5, null/+&DoorEntry244+/), DoorConfig(0x1A, 0x0C, DoorType.Type5, null/+&DoorEntry244+/), DoorConfig(0x1A, 0x0E, DoorType.Type5, null/+&DoorEntry244+/), DoorConfig(0x1A, 0x13, DoorType.Type2, null/+&DoorEntry180+/)]),
+	SectorDoors(2, [DoorConfig(0x1B, 0x01, DoorType.Type5, null/+&DoorEntry245+/), DoorConfig(0x1B, 0x02, DoorType.Type5, null/+&DoorEntry245+/)]),
+	SectorDoors(0, []),
+	SectorDoors(15, [DoorConfig(0x03, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x0E, DoorType.Type2, null/+&DoorEntry916+/), DoorConfig(0x1E, 0x02, DoorType.Type2, null/+&DoorEntry917+/), DoorConfig(0x1E, 0x0D, DoorType.Type2, null/+&DoorEntry918+/)]),
+	SectorDoors(12, [DoorConfig(0x0E, 0x11, DoorType.Type2, null/+&DoorEntry919+/), DoorConfig(0x0F, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x02, DoorType.Type2, null/+&DoorEntry920+/), DoorConfig(0x12, 0x09, DoorType.Type1, 0x8000), DoorConfig(0x17, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x18, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x19, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1A, 0x05, DoorType.Type2, null/+&DoorEntry921+/), DoorConfig(0x1A, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1F, 0x05, DoorType.Type1, 0x8000)]),
+	SectorDoors(4, [DoorConfig(0x1B, 0x01, DoorType.Type1, 0x8000), DoorConfig(0x1C, 0x01, DoorType.Type1, 0x8000), DoorConfig(0x1D, 0x01, DoorType.Type1, 0x8000), DoorConfig(0x1E, 0x01, DoorType.Type1, 0x8000)]),
+	SectorDoors(5, [DoorConfig(0x01, 0x1D, DoorType.Type2, null/+&DoorEntry834+/), DoorConfig(0x01, 0x1E, DoorType.Type2, null/+&DoorEntry834+/), DoorConfig(0x02, 0x12, DoorType.Type5, null/+&DoorEntry879+/), DoorConfig(0x15, 0x09, DoorType.Type5, null/+&DoorEntry880+/)]),
+	SectorDoors(4, [DoorConfig(0x01, 0x11, DoorType.Type2, null/+&DoorEntry835+/), DoorConfig(0x01, 0x12, DoorType.Type2, null/+&DoorEntry835+/), DoorConfig(0x0D, 0x0E, DoorType.Type5, null/+&DoorEntry881+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1A, 0x11, DoorType.Type3, 0x8000), DoorConfig(0x1D, 0x14, DoorType.Type3, 0x0100)]),
+	SectorDoors(3, [DoorConfig(0x01, 0x03, DoorType.Type3, 0), DoorConfig(0x07, 0x04, DoorType.Type3, 0x0200), DoorConfig(0x0A, 0x07, DoorType.Type3, 0x8000)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x1C, DoorType.Type2, null/+&DoorEntry621+/)]),
+	SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry622+/), DoorConfig(0x17, 0x12, DoorType.Type5, null/+&DoorEntry680+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry641+/)]),
+	SectorDoors(4, [DoorConfig(0x0B, 0x05, DoorType.Type2, null/+&DoorEntry623+/), DoorConfig(0x0B, 0x0D, DoorType.Type5, null/+&DoorEntry678+/), DoorConfig(0x0B, 0x11, DoorType.Type2, null/+&DoorEntry624+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry625+/)]),
+	SectorDoors(3, [DoorConfig(0x06, 0x0D, DoorType.Type2, null/+&DoorEntry626+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry627+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry628+/)]),
+	SectorDoors(3, [DoorConfig(0x05, 0x0A, DoorType.Type2, null/+&DoorEntry531+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry514+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry513+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry971+/)]),
+	SectorDoors(1, [DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry540+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1F, 0x09, DoorType.Type2, null/+&DoorEntry172+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x06, 0x0A, DoorType.Type2, null/+&DoorEntry239+/), DoorConfig(0x0E, 0x02, DoorType.Type2, null/+&DoorEntry178+/)]),
+	SectorDoors(0, []),
+	SectorDoors(10, [DoorConfig(0x03, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x1D, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x12, DoorType.Type2, null/+&DoorEntry922+/), DoorConfig(0x0F, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x05, DoorType.Type2, null/+&DoorEntry923+/), DoorConfig(0x11, 0x19, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x19, DoorType.Type1, 0x8000)]),
+	SectorDoors(6, [DoorConfig(0x02, 0x1D, DoorType.Type2, null/+&DoorEntry924+/), DoorConfig(0x03, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x16, DoorType.Type2, null/+&DoorEntry925+/)]),
+	SectorDoors(10, [DoorConfig(0x00, 0x05, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x05, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x05, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x1D, DoorType.Type2, null/+&DoorEntry926+/), DoorConfig(0x06, 0x0E, DoorType.Type2, null/+&DoorEntry927+/), DoorConfig(0x0B, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x11, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x0D, DoorType.Type2, null/+&DoorEntry928+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x19, 0x09, DoorType.Type2, null/+&DoorEntry757+/), DoorConfig(0x19, 0x0A, DoorType.Type2, null/+&DoorEntry757+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x01, 0x04, DoorType.Type2, null/+&DoorEntry629+/)]),
+	SectorDoors(2, [DoorConfig(0x03, 0x13, DoorType.Type3, 0x0300), DoorConfig(0x06, 0x10, DoorType.Type3, 0x8000)]),
+	SectorDoors(2, [DoorConfig(0x16, 0x06, DoorType.Type3, 0x8000), DoorConfig(0x19, 0x03, DoorType.Type3, 0)]),
+	SectorDoors(3, [DoorConfig(0x16, 0x17, DoorType.Type2, null/+&DoorEntry630+/), DoorConfig(0x17, 0x18, DoorType.Type2, null/+&DoorEntry630+/), DoorConfig(0x18, 0x19, DoorType.Type2, null/+&DoorEntry630+/)]),
+	SectorDoors(3, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry642+/), DoorConfig(0x1B, 0x0D, DoorType.Type2, null/+&DoorEntry643+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry644+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry631+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry632+/)]),
+	SectorDoors(5, [DoorConfig(0x0A, 0x1A, DoorType.Type2, null/+&DoorEntry823+/), DoorConfig(0x1C, 0x00, DoorType.Type2, null/+&DoorEntry646+/), DoorConfig(0x1D, 0x00, DoorType.Type2, null/+&DoorEntry646+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry647+/), DoorConfig(0x1E, 0x00, DoorType.Type2, null/+&DoorEntry646+/)]),
+	SectorDoors(3, [DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry532+/), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry516+/), DoorConfig(0x19, 0x1E, DoorType.Type2, null/+&DoorEntry515+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x09, 0x0A, DoorType.Type2, null/+&DoorEntry421+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry422+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x16, DoorType.Type2, null/+&DoorEntry547+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1A, 0x1A, DoorType.Type2, null/+&DoorEntry498+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x12, 0x09, DoorType.Type2, null/+&DoorEntry176+/), DoorConfig(0x16, 0x1F, DoorType.Type2, null/+&DoorEntry175+/)]),
+	SectorDoors(1, [DoorConfig(0x15, 0x15, DoorType.Type2, null/+&DoorEntry174+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x18, 0x06, DoorType.Type2, null/+&DoorEntry181+/)]),
+	SectorDoors(21, [DoorConfig(0x00, 0x14, DoorType.Type2, null/+&DoorEntry117+/), DoorConfig(0x01, 0x14, DoorType.Type1, 0), DoorConfig(0x02, 0x14, DoorType.Type1, 0), DoorConfig(0x03, 0x14, DoorType.Type1, 0), DoorConfig(0x04, 0x14, DoorType.Type1, 0), DoorConfig(0x05, 0x14, DoorType.Type1, 0), DoorConfig(0x06, 0x14, DoorType.Type1, 0), DoorConfig(0x07, 0x14, DoorType.Type1, 0), DoorConfig(0x08, 0x14, DoorType.Type1, 0), DoorConfig(0x09, 0x14, DoorType.Type1, 0), DoorConfig(0x0A, 0x14, DoorType.Type1, 0), DoorConfig(0x0B, 0x14, DoorType.Type1, 0), DoorConfig(0x0C, 0x14, DoorType.Type1, 0), DoorConfig(0x0D, 0x14, DoorType.Type1, 0), DoorConfig(0x0E, 0x14, DoorType.Type1, 0), DoorConfig(0x0F, 0x14, DoorType.Type1, 0), DoorConfig(0x10, 0x14, DoorType.Type1, 0), DoorConfig(0x11, 0x14, DoorType.Type1, 0), DoorConfig(0x12, 0x14, DoorType.Type1, 0), DoorConfig(0x13, 0x14, DoorType.Type1, 0), DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry118+/)]),
+	SectorDoors(13, [DoorConfig(0x03, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x1F, 0x0F, DoorType.Type1, 0x8000)]),
+	SectorDoors(2, [DoorConfig(0x10, 0x12, DoorType.Type2, null/+&DoorEntry884+/), DoorConfig(0x10, 0x13, DoorType.Type2, null/+&DoorEntry884+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1B, 0x04, DoorType.Type3, 0x0200), DoorConfig(0x1E, 0x07, DoorType.Type3, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry450+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0B, 0x08, DoorType.Type2, null/+&DoorEntry780+/), DoorConfig(0x19, 0x1B, DoorType.Type2, null/+&DoorEntry451+/)]),
+	SectorDoors(1, [DoorConfig(0x1F, 0x1B, DoorType.Type2, null/+&DoorEntry463+/)]),
+	SectorDoors(14, [DoorConfig(0x12, 0x05, DoorType.Type1, 0), DoorConfig(0x13, 0x05, DoorType.Type1, 0), DoorConfig(0x14, 0x05, DoorType.Type1, 0), DoorConfig(0x14, 0x15, DoorType.Type2, null/+&DoorEntry467+/), DoorConfig(0x15, 0x05, DoorType.Type1, 0), DoorConfig(0x16, 0x05, DoorType.Type1, 0), DoorConfig(0x17, 0x05, DoorType.Type1, 0), DoorConfig(0x18, 0x05, DoorType.Type1, 0), DoorConfig(0x19, 0x05, DoorType.Type1, 0), DoorConfig(0x1A, 0x05, DoorType.Type1, 0), DoorConfig(0x1B, 0x05, DoorType.Type1, 0), DoorConfig(0x1C, 0x05, DoorType.Type1, 0), DoorConfig(0x1D, 0x05, DoorType.Type1, 0), DoorConfig(0x1F, 0x15, DoorType.Type1, 0)]),
+	SectorDoors(1, [DoorConfig(0x10, 0x05, DoorType.Type2, null/+&DoorEntry472+/)]),
+	SectorDoors(2, [DoorConfig(0x17, 0x10, DoorType.Type2, null/+&DoorEntry946+/), DoorConfig(0x17, 0x11, DoorType.Type2, null/+&DoorEntry946+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x0A, 0x05, DoorType.Type5, null/+&DoorEntry242+/), DoorConfig(0x0A, 0x07, DoorType.Type5, null/+&DoorEntry242+/), DoorConfig(0x0A, 0x08, DoorType.Type5, null/+&DoorEntry242+/), DoorConfig(0x0A, 0x0A, DoorType.Type5, null/+&DoorEntry242+/), DoorConfig(0x0E, 0x17, DoorType.Type2, null/+&DoorEntry171+/), DoorConfig(0x16, 0x0F, DoorType.Type2, null/+&DoorEntry173+/)]),
+	SectorDoors(3, [DoorConfig(0x0F, 0x12, DoorType.Type5, null/+&DoorEntry246+/), DoorConfig(0x0F, 0x14, DoorType.Type5, null/+&DoorEntry246+/), DoorConfig(0x16, 0x1D, DoorType.Type2, null/+&DoorEntry177+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry758+/)]),
+	SectorDoors(16, [DoorConfig(0x00, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x0F, DoorType.Type1, 0x8000), DoorConfig(0x16, 0x1E, DoorType.Type2, null/+&DoorEntry759+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(4, [DoorConfig(0x0E, 0x11, DoorType.Type3, 0x8000), DoorConfig(0x11, 0x14, DoorType.Type3, 0x0100), DoorConfig(0x17, 0x13, DoorType.Type3, 0x0300), DoorConfig(0x1A, 0x10, DoorType.Type3, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x07, 0x19, DoorType.Type2, null/+&DoorEntry187+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry188+/), DoorConfig(0x17, 0x11, DoorType.Type2, null/+&DoorEntry230+/), DoorConfig(0x17, 0x12, DoorType.Type2, null/+&DoorEntry230+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry231+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry232+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x06, DoorType.Type2, null/+&DoorEntry189+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry193+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry191+/)]),
+	SectorDoors(10, [DoorConfig(0x02, 0x1B, DoorType.Type1, 0), DoorConfig(0x03, 0x1B, DoorType.Type1, 0), DoorConfig(0x04, 0x1B, DoorType.Type1, 0), DoorConfig(0x05, 0x1B, DoorType.Type1, 0), DoorConfig(0x06, 0x18, DoorType.Type2, null/+&DoorEntry465+/), DoorConfig(0x06, 0x1B, DoorType.Type1, 0), DoorConfig(0x0F, 0x15, DoorType.Type2, null/+&DoorEntry466+/), DoorConfig(0x10, 0x15, DoorType.Type1, 0), DoorConfig(0x11, 0x15, DoorType.Type1, 0), DoorConfig(0x12, 0x15, DoorType.Type1, 0)]),
+	SectorDoors(7, [DoorConfig(0x00, 0x15, DoorType.Type1, 0), DoorConfig(0x01, 0x15, DoorType.Type1, 0), DoorConfig(0x09, 0x0D, DoorType.Type2, null/+&DoorEntry464+/), DoorConfig(0x0B, 0x05, DoorType.Type2, null/+&DoorEntry471+/), DoorConfig(0x0F, 0x1D, DoorType.Type1, 0), DoorConfig(0x10, 0x1D, DoorType.Type1, 0), DoorConfig(0x11, 0x1D, DoorType.Type1, 0)]),
+	SectorDoors(6, [DoorConfig(0x00, 0x01, DoorType.Type1, 0), DoorConfig(0x01, 0x01, DoorType.Type1, 0), DoorConfig(0x02, 0x01, DoorType.Type1, 0), DoorConfig(0x03, 0x01, DoorType.Type1, 0), DoorConfig(0x04, 0x01, DoorType.Type1, 0), DoorConfig(0x05, 0x01, DoorType.Type1, 0)]),
+	SectorDoors(2, [DoorConfig(0x17, 0x0C, DoorType.Type2, null/+&DoorEntry945+/), DoorConfig(0x17, 0x0D, DoorType.Type2, null/+&DoorEntry945+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x02, 0x0D, DoorType.Type2, null/+&DoorEntry240+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x14, 0x18, DoorType.Type2, null/+&DoorEntry249+/)]),
+	SectorDoors(2, [DoorConfig(0x17, 0x0D, DoorType.Type5, null/+&DoorEntry274+/), DoorConfig(0x17, 0x0E, DoorType.Type5, null/+&DoorEntry274+/)]),
+	SectorDoors(1, [DoorConfig(0x17, 0x17, DoorType.Type2, null/+&DoorEntry250+/)]),
+	SectorDoors(1, [DoorConfig(0x17, 0x02, DoorType.Type2, null/+&DoorEntry251+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry781+/)]),
+	SectorDoors(1, [DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry192+/)]),
+	SectorDoors(3, [DoorConfig(0x0A, 0x06, DoorType.Type3, 0x8000), DoorConfig(0x0D, 0x03, DoorType.Type3, 0), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry190+/)]),
+	SectorDoors(4, [DoorConfig(0x0A, 0x0B, DoorType.Type2, null/+&DoorEntry194+/), DoorConfig(0x0B, 0x0C, DoorType.Type2, null/+&DoorEntry194+/), DoorConfig(0x0C, 0x0D, DoorType.Type2, null/+&DoorEntry194+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry195+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry197+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry233+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x06, DoorType.Type2, null/+&DoorEntry196+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry198+/)]),
+	SectorDoors(1, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry234+/)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x1B, DoorType.Type2, null/+&DoorEntry468+/)]),
+	SectorDoors(1, [DoorConfig(0x03, 0x17, DoorType.Type2, null/+&DoorEntry469+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x00, 0x1E, DoorType.Type2, null/+&DoorEntry343+/), DoorConfig(0x01, 0x1E, DoorType.Type2, null/+&DoorEntry343+/), DoorConfig(0x02, 0x1E, DoorType.Type2, null/+&DoorEntry343+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x00, 0x09, DoorType.Type2, null/+&DoorEntry344+/), DoorConfig(0x01, 0x09, DoorType.Type2, null/+&DoorEntry344+/), DoorConfig(0x02, 0x09, DoorType.Type2, null/+&DoorEntry344+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x02, 0x17, DoorType.Type2, null/+&DoorEntry252+/), DoorConfig(0x1B, 0x1F, DoorType.Type2, null/+&DoorEntry253+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x04, 0x0E, DoorType.Type2, null/+&DoorEntry254+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry199+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry782+/)]),
+	SectorDoors(3, [DoorConfig(0x0A, 0x04, DoorType.Type2, null/+&DoorEntry201+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry200+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry202+/)]),
+	SectorDoors(4, [DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry750+/), DoorConfig(0x1B, 0x09, DoorType.Type2, null/+&DoorEntry203+/), DoorConfig(0x1B, 0x11, DoorType.Type2, null/+&DoorEntry204+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry205+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry206+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry207+/)]),
+	SectorDoors(2, [DoorConfig(0x0A, 0x1B, DoorType.Type2, null/+&DoorEntry953+/), DoorConfig(0x19, 0x12, DoorType.Type2, null/+&DoorEntry751+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry208+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry209+/)]),
+	SectorDoors(3, [DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry210+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry211+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry954+/)]),
+	SectorDoors(1, [DoorConfig(0x01, 0x19, DoorType.Type2, null/+&DoorEntry470+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x12, 0x1D, DoorType.Type2, null/+&DoorEntry103+/), DoorConfig(0x12, 0x1E, DoorType.Type2, null/+&DoorEntry103+/), DoorConfig(0x1C, 0x11, DoorType.Type2, null/+&DoorEntry104+/)]),
+	SectorDoors(2, [DoorConfig(0x0E, 0x19, DoorType.Type2, null/+&DoorEntry105+/), DoorConfig(0x0E, 0x1A, DoorType.Type2, null/+&DoorEntry105+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x14, 0x02, DoorType.Type2, null/+&DoorEntry283+/), DoorConfig(0x14, 0x03, DoorType.Type2, null/+&DoorEntry283+/)]),
+	SectorDoors(1, [DoorConfig(0x03, 0x19, DoorType.Type2, null/+&DoorEntry255+/)]),
+	SectorDoors(3, [DoorConfig(0x17, 0x0A, DoorType.Type2, null/+&DoorEntry256+/), DoorConfig(0x1D, 0x15, DoorType.Type5, null/+&DoorEntry275+/), DoorConfig(0x1D, 0x16, DoorType.Type5, null/+&DoorEntry275+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x02, DoorType.Type2, null/+&DoorEntry257+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(7, [DoorConfig(0x03, 0x09, DoorType.Type1, 0), DoorConfig(0x04, 0x09, DoorType.Type1, 0), DoorConfig(0x05, 0x09, DoorType.Type1, 0), DoorConfig(0x06, 0x09, DoorType.Type1, 0), DoorConfig(0x07, 0x09, DoorType.Type1, 0), DoorConfig(0x09, 0x0D, DoorType.Type2, null/+&DoorEntry473+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry783+/)]),
+	SectorDoors(4, [DoorConfig(0x07, 0x11, DoorType.Type2, null/+&DoorEntry212+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry213+/), DoorConfig(0x1A, 0x04, DoorType.Type2, null/+&DoorEntry214+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry215+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry752+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry216+/)]),
+	SectorDoors(3, [DoorConfig(0x09, 0x0D, DoorType.Type2, null/+&DoorEntry474+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry217+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry218+/)]),
+	SectorDoors(2, [DoorConfig(0x0A, 0x1B, DoorType.Type2, null/+&DoorEntry955+/), DoorConfig(0x19, 0x16, DoorType.Type2, null/+&DoorEntry753+/)]),
+	SectorDoors(7, [DoorConfig(0x03, 0x09, DoorType.Type1, 0), DoorConfig(0x04, 0x09, DoorType.Type1, 0), DoorConfig(0x05, 0x09, DoorType.Type1, 0), DoorConfig(0x06, 0x09, DoorType.Type1, 0), DoorConfig(0x07, 0x09, DoorType.Type1, 0), DoorConfig(0x09, 0x0D, DoorType.Type2, null/+&DoorEntry475+/), DoorConfig(0x1D, 0x16, DoorType.Type2, null/+&DoorEntry219+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry220+/), DoorConfig(0x1A, 0x17, DoorType.Type2, null/+&DoorEntry956+/)]),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x12, 0x11, DoorType.Type2, null/+&DoorEntry504+/), DoorConfig(0x13, 0x11, DoorType.Type1, 0), DoorConfig(0x14, 0x11, DoorType.Type1, 0), DoorConfig(0x15, 0x11, DoorType.Type1, 0), DoorConfig(0x16, 0x11, DoorType.Type1, 0), DoorConfig(0x17, 0x11, DoorType.Type1, 0)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x19, 0x08, DoorType.Type5, null/+&DoorEntry882+/), DoorConfig(0x1D, 0x05, DoorType.Type2, null/+&DoorEntry836+/), DoorConfig(0x1D, 0x06, DoorType.Type2, null/+&DoorEntry836+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(14, [DoorConfig(0x0A, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x0F, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x1D, DoorType.Type2, null/+&DoorEntry106+/), DoorConfig(0x12, 0x1E, DoorType.Type2, null/+&DoorEntry106+/), DoorConfig(0x13, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x14, 0x16, DoorType.Type1, 0x8000), DoorConfig(0x15, 0x16, DoorType.Type1, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(10, [DoorConfig(0x00, 0x1C, DoorType.Type2, null/+&DoorEntry326+/), DoorConfig(0x01, 0x1C, DoorType.Type1, 0), DoorConfig(0x02, 0x1C, DoorType.Type1, 0), DoorConfig(0x03, 0x1C, DoorType.Type1, 0), DoorConfig(0x04, 0x1C, DoorType.Type1, 0), DoorConfig(0x05, 0x15, DoorType.Type4, 0x0200), DoorConfig(0x0D, 0x0D, DoorType.Type4, 0x0100), DoorConfig(0x11, 0x0A, DoorType.Type4, 0x0300), DoorConfig(0x1D, 0x16, DoorType.Type4, 0), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry327+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x11, 0x10, DoorType.Type2, null/+&DoorEntry284+/), DoorConfig(0x12, 0x10, DoorType.Type2, null/+&DoorEntry284+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x0A, DoorType.Type2, null/+&DoorEntry754+/)]),
+	SectorDoors(1, [DoorConfig(0x0B, 0x15, DoorType.Type2, null/+&DoorEntry221+/)]),
+	SectorDoors(2, [DoorConfig(0x0F, 0x09, DoorType.Type2, null/+&DoorEntry222+/), DoorConfig(0x15, 0x1A, DoorType.Type2, null/+&DoorEntry223+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x05, DoorType.Type2, null/+&DoorEntry755+/)]),
+	SectorDoors(1, [DoorConfig(0x11, 0x1A, DoorType.Type2, null/+&DoorEntry756+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1B, 0x12, DoorType.Type5, null/+&DoorEntry247+/), DoorConfig(0x1B, 0x14, DoorType.Type5, null/+&DoorEntry247+/)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x09, 0x0C, DoorType.Type5, null/+&DoorEntry883+/), DoorConfig(0x09, 0x19, DoorType.Type2, null/+&DoorEntry837+/), DoorConfig(0x09, 0x1A, DoorType.Type2, null/+&DoorEntry837+/), DoorConfig(0x0D, 0x09, DoorType.Type2, null/+&DoorEntry838+/), DoorConfig(0x0D, 0x0A, DoorType.Type2, null/+&DoorEntry838+/)]),
+	SectorDoors(13, [DoorConfig(0x02, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x12, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x05, DoorType.Type2, null/+&DoorEntry107+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x06, 0x09, DoorType.Type2, null/+&DoorEntry108+/), DoorConfig(0x06, 0x0A, DoorType.Type2, null/+&DoorEntry108+/)]),
+	SectorDoors(1, [DoorConfig(0x14, 0x1A, DoorType.Type2, null/+&DoorEntry109+/)]),
+	SectorDoors(1, [DoorConfig(0x14, 0x05, DoorType.Type2, null/+&DoorEntry405+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x18, 0x1E, DoorType.Type2, null/+&DoorEntry406+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x05, DoorType.Type2, null/+&DoorEntry804+/), DoorConfig(0x0A, 0x12, DoorType.Type4, 0x0300)]),
+	SectorDoors(2, [DoorConfig(0x1D, 0x05, DoorType.Type4, 0), DoorConfig(0x1E, 0x0E, DoorType.Type4, 0x0300)]),
+	SectorDoors(2, [DoorConfig(0x15, 0x0D, DoorType.Type2, null/+&DoorEntry763+/), DoorConfig(0x15, 0x0E, DoorType.Type2, null/+&DoorEntry763+/)]),
+	SectorDoors(3, [DoorConfig(0x16, 0x1E, DoorType.Type2, null/+&DoorEntry764+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0E, 0x10, DoorType.Type2, null/+&DoorEntry285+/), DoorConfig(0x0F, 0x10, DoorType.Type2, null/+&DoorEntry285+/)]),
+	SectorDoors(6, [DoorConfig(0x07, 0x19, DoorType.Type2, null/+&DoorEntry286+/), DoorConfig(0x09, 0x1D, DoorType.Type5, null/+&DoorEntry364+/), DoorConfig(0x09, 0x1E, DoorType.Type5, null/+&DoorEntry364+/), DoorConfig(0x1F, 0x15, DoorType.Type5, null/+&DoorEntry363+/), DoorConfig(0x1F, 0x16, DoorType.Type5, null/+&DoorEntry363+/), DoorConfig(0x1F, 0x18, DoorType.Type5, null/+&DoorEntry363+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x09, DoorType.Type2, null/+&DoorEntry235+/)]),
+	SectorDoors(1, [DoorConfig(0x15, 0x1A, DoorType.Type2, null/+&DoorEntry236+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0D, 0x0A, DoorType.Type2, null/+&DoorEntry224+/)]),
+	SectorDoors(6, [DoorConfig(0x18, 0x06, DoorType.Type2, null/+&DoorEntry550+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry550+/), DoorConfig(0x1A, 0x04, DoorType.Type2, null/+&DoorEntry550+/), DoorConfig(0x1B, 0x03, DoorType.Type2, null/+&DoorEntry550+/), DoorConfig(0x1C, 0x02, DoorType.Type2, null/+&DoorEntry550+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry550+/)]),
+	SectorDoors(7, [DoorConfig(0x0D, 0x0A, DoorType.Type2, null/+&DoorEntry784+/), DoorConfig(0x18, 0x19, DoorType.Type2, null/+&DoorEntry551+/), DoorConfig(0x19, 0x1A, DoorType.Type2, null/+&DoorEntry551+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry551+/), DoorConfig(0x1B, 0x1C, DoorType.Type2, null/+&DoorEntry551+/), DoorConfig(0x1C, 0x1D, DoorType.Type2, null/+&DoorEntry551+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry551+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(3, [DoorConfig(0x00, 0x01, DoorType.Type2, null/+&DoorEntry182+/), DoorConfig(0x01, 0x01, DoorType.Type2, null/+&DoorEntry182+/), DoorConfig(0x02, 0x01, DoorType.Type2, null/+&DoorEntry182+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x1D, 0x0D, DoorType.Type4, 0), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry805+/)]),
+	SectorDoors(28, [DoorConfig(0x04, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0F, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x10, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x11, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x12, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x13, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x14, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x15, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x16, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x17, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x18, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x19, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1A, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1B, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1C, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1D, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1E, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x1F, 0x15, DoorType.Type1, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x11, 0x01, DoorType.Type2, null/+&DoorEntry349+/)]),
+	SectorDoors(1, [DoorConfig(0x14, 0x15, DoorType.Type2, null/+&DoorEntry350+/)]),
+	SectorDoors(1, [DoorConfig(0x08, 0x05, DoorType.Type2, null/+&DoorEntry351+/)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x12, 0x11, DoorType.Type5, null/+&DoorEntry730+/), DoorConfig(0x12, 0x1D, DoorType.Type5, null/+&DoorEntry731+/), DoorConfig(0x15, 0x05, DoorType.Type2, null/+&DoorEntry703+/), DoorConfig(0x19, 0x0F, DoorType.Type5, null/+&DoorEntry732+/), DoorConfig(0x19, 0x1B, DoorType.Type5, null/+&DoorEntry733+/)]),
+	SectorDoors(6, [DoorConfig(0x12, 0x09, DoorType.Type5, null/+&DoorEntry734+/), DoorConfig(0x16, 0x1B, DoorType.Type2, null/+&DoorEntry704+/), DoorConfig(0x17, 0x1B, DoorType.Type2, null/+&DoorEntry704+/), DoorConfig(0x18, 0x1B, DoorType.Type2, null/+&DoorEntry704+/), DoorConfig(0x19, 0x07, DoorType.Type5, null/+&DoorEntry735+/), DoorConfig(0x19, 0x1B, DoorType.Type2, null/+&DoorEntry704+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x18, DoorType.Type2, null/+&DoorEntry705+/), DoorConfig(0x09, 0x09, DoorType.Type2, null/+&DoorEntry706+/), DoorConfig(0x1C, 0x02, DoorType.Type2, null/+&DoorEntry707+/)]),
+	SectorDoors(2, [DoorConfig(0x07, 0x08, DoorType.Type2, null/+&DoorEntry708+/), DoorConfig(0x1C, 0x1D, DoorType.Type2, null/+&DoorEntry709+/)]),
+	SectorDoors(5, [DoorConfig(0x07, 0x0E, DoorType.Type5, null/+&DoorEntry248+/), DoorConfig(0x07, 0x11, DoorType.Type2, null/+&DoorEntry225+/), DoorConfig(0x07, 0x1E, DoorType.Type5, null/+&DoorEntry677+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry226+/), DoorConfig(0x19, 0x0A, DoorType.Type2, null/+&DoorEntry227+/)]),
+	SectorDoors(3, [DoorConfig(0x0C, 0x0E, DoorType.Type2, null/+&DoorEntry228+/), DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry228+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry229+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, []),
+	SectorDoors(16, [DoorConfig(0x00, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x01, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x02, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x03, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x04, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x05, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x06, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x07, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x08, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x09, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0A, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0B, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0C, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0D, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0E, 0x15, DoorType.Type1, 0x8000), DoorConfig(0x0F, 0x15, DoorType.Type1, 0x8000)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0F, 0x1E, DoorType.Type5, null/+&DoorEntry356+/), DoorConfig(0x1B, 0x0D, DoorType.Type2, null/+&DoorEntry352+/)]),
+	SectorDoors(1, [DoorConfig(0x0F, 0x00, DoorType.Type5, null/+&DoorEntry356+/)]),
+	SectorDoors(3, [DoorConfig(0x01, 0x13, DoorType.Type2, null/+&DoorEntry287+/), DoorConfig(0x15, 0x1B, DoorType.Type2, null/+&DoorEntry288+/), DoorConfig(0x15, 0x1C, DoorType.Type2, null/+&DoorEntry288+/)]),
+	SectorDoors(1, [DoorConfig(0x19, 0x13, DoorType.Type2, null/+&DoorEntry353+/)]),
+	SectorDoors(6, [DoorConfig(0x03, 0x01, DoorType.Type5, null/+&DoorEntry360+/), DoorConfig(0x03, 0x02, DoorType.Type5, null/+&DoorEntry360+/), DoorConfig(0x0F, 0x0D, DoorType.Type5, null/+&DoorEntry361+/), DoorConfig(0x0F, 0x0E, DoorType.Type5, null/+&DoorEntry361+/), DoorConfig(0x0F, 0x10, DoorType.Type5, null/+&DoorEntry361+/), DoorConfig(0x17, 0x09, DoorType.Type2, null/+&DoorEntry289+/)]),
+	SectorDoors(1, [DoorConfig(0x01, 0x0D, DoorType.Type2, null/+&DoorEntry354+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry694+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry710+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x16, 0x0B, DoorType.Type2, null/+&DoorEntry711+/), DoorConfig(0x18, 0x0D, DoorType.Type2, null/+&DoorEntry711+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry695+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry712+/)]),
+	SectorDoors(2, [DoorConfig(0x10, 0x15, DoorType.Type2, null/+&DoorEntry713+/), DoorConfig(0x18, 0x1D, DoorType.Type2, null/+&DoorEntry714+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x18, 0x0F, DoorType.Type2, null/+&DoorEntry290+/), DoorConfig(0x19, 0x0F, DoorType.Type2, null/+&DoorEntry290+/), DoorConfig(0x1A, 0x0F, DoorType.Type2, null/+&DoorEntry290+/), DoorConfig(0x1B, 0x0F, DoorType.Type2, null/+&DoorEntry290+/), DoorConfig(0x1C, 0x0F, DoorType.Type2, null/+&DoorEntry290+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x05, DoorType.Type2, null/+&DoorEntry291+/)]),
+	SectorDoors(6, [DoorConfig(0x03, 0x14, DoorType.Type5, null/+&DoorEntry357+/), DoorConfig(0x03, 0x16, DoorType.Type5, null/+&DoorEntry357+/), DoorConfig(0x0D, 0x0D, DoorType.Type2, null/+&DoorEntry292+/), DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry292+/), DoorConfig(0x0D, 0x1C, DoorType.Type2, null/+&DoorEntry293+/), DoorConfig(0x0D, 0x1D, DoorType.Type2, null/+&DoorEntry293+/)]),
+	SectorDoors(1, [DoorConfig(0x0C, 0x1F, DoorType.Type2, null/+&DoorEntry294+/)]),
+	SectorDoors(4, [DoorConfig(0x06, 0x1F, DoorType.Type2, null/+&DoorEntry355+/), DoorConfig(0x0C, 0x01, DoorType.Type2, null/+&DoorEntry294+/), DoorConfig(0x0D, 0x11, DoorType.Type2, null/+&DoorEntry295+/), DoorConfig(0x0D, 0x12, DoorType.Type2, null/+&DoorEntry295+/)]),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x10, 0x02, DoorType.Type2, null/+&DoorEntry296+/), DoorConfig(0x16, 0x19, DoorType.Type2, null/+&DoorEntry297+/)]),
+	SectorDoors(5, [DoorConfig(0x18, 0x10, DoorType.Type2, null/+&DoorEntry298+/), DoorConfig(0x19, 0x10, DoorType.Type2, null/+&DoorEntry298+/), DoorConfig(0x1A, 0x10, DoorType.Type2, null/+&DoorEntry298+/), DoorConfig(0x1B, 0x10, DoorType.Type2, null/+&DoorEntry298+/), DoorConfig(0x1C, 0x10, DoorType.Type2, null/+&DoorEntry298+/)]),
+	SectorDoors(5, [DoorConfig(0x07, 0x11, DoorType.Type2, null/+&DoorEntry299+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry300+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry301+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry715+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry716+/)]),
+	SectorDoors(3, [DoorConfig(0x08, 0x12, DoorType.Type5, null/+&DoorEntry347+/), DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry302+/), DoorConfig(0x1D, 0x16, DoorType.Type2, null/+&DoorEntry303+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x0A, DoorType.Type2, null/+&DoorEntry304+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry717+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry305+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry306+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x0D, DoorType.Type2, null/+&DoorEntry307+/), DoorConfig(0x07, 0x15, DoorType.Type2, null/+&DoorEntry308+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry718+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x06, DoorType.Type2, null/+&DoorEntry309+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry310+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry487+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x13, 0x13, DoorType.Type2, null/+&DoorEntry482+/)]),
+	SectorDoors(2, [DoorConfig(0x14, 0x0A, DoorType.Type2, null/+&DoorEntry485+/), DoorConfig(0x15, 0x09, DoorType.Type2, null/+&DoorEntry486+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x19, 0x01, DoorType.Type2, null/+&DoorEntry800+/), DoorConfig(0x1A, 0x0E, DoorType.Type4, 0x0300)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x07, 0x11, DoorType.Type5, null/+&DoorEntry358+/), DoorConfig(0x07, 0x12, DoorType.Type5, null/+&DoorEntry358+/)]),
+	SectorDoors(4, [DoorConfig(0x03, 0x11, DoorType.Type5, null/+&DoorEntry359+/), DoorConfig(0x03, 0x13, DoorType.Type5, null/+&DoorEntry359+/), DoorConfig(0x03, 0x14, DoorType.Type5, null/+&DoorEntry359+/), DoorConfig(0x03, 0x16, DoorType.Type5, null/+&DoorEntry359+/)]),
+	SectorDoors(0, []),
+	SectorDoors(4, [DoorConfig(0x07, 0x0D, DoorType.Type5, null/+&DoorEntry362+/), DoorConfig(0x07, 0x0F, DoorType.Type5, null/+&DoorEntry362+/), DoorConfig(0x07, 0x10, DoorType.Type5, null/+&DoorEntry362+/), DoorConfig(0x07, 0x12, DoorType.Type5, null/+&DoorEntry362+/)]),
+	SectorDoors(1, [DoorConfig(0x1A, 0x12, DoorType.Type2, null/+&DoorEntry909+/)]),
+	SectorDoors(8, [DoorConfig(0x10, 0x1C, DoorType.Type2, null/+&DoorEntry338+/), DoorConfig(0x11, 0x1C, DoorType.Type1, 0), DoorConfig(0x12, 0x1C, DoorType.Type1, 0), DoorConfig(0x13, 0x1C, DoorType.Type1, 0), DoorConfig(0x14, 0x1C, DoorType.Type1, 0), DoorConfig(0x15, 0x11, DoorType.Type4, 0x0200), DoorConfig(0x1D, 0x00, DoorType.Type2, null/+&DoorEntry339+/), DoorConfig(0x1D, 0x09, DoorType.Type4, 0x0100)]),
+	SectorDoors(5, [DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry719+/), DoorConfig(0x17, 0x0A, DoorType.Type5, null/+&DoorEntry677+/), DoorConfig(0x17, 0x12, DoorType.Type2, null/+&DoorEntry696+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry698+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry697+/)]),
+	SectorDoors(5, [DoorConfig(0x0C, 0x00, DoorType.Type2, null/+&DoorEntry720+/), DoorConfig(0x0D, 0x00, DoorType.Type2, null/+&DoorEntry720+/), DoorConfig(0x0D, 0x1E, DoorType.Type2, null/+&DoorEntry721+/), DoorConfig(0x0E, 0x00, DoorType.Type2, null/+&DoorEntry720+/), DoorConfig(0x1D, 0x16, DoorType.Type2, null/+&DoorEntry311+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry722+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry699+/)]),
+	SectorDoors(3, [DoorConfig(0x07, 0x0D, DoorType.Type2, null/+&DoorEntry723+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry724+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry312+/)]),
+	SectorDoors(5, [DoorConfig(0x09, 0x12, DoorType.Type2, null/+&DoorEntry725+/), DoorConfig(0x1B, 0x09, DoorType.Type2, null/+&DoorEntry700+/), DoorConfig(0x1B, 0x0E, DoorType.Type5, null/+&DoorEntry737+/), DoorConfig(0x1B, 0x11, DoorType.Type2, null/+&DoorEntry701+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry702+/)]),
+	SectorDoors(3, [DoorConfig(0x0B, 0x0D, DoorType.Type5, null/+&DoorEntry736+/), DoorConfig(0x0D, 0x01, DoorType.Type2, null/+&DoorEntry726+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry313+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1B, 0x0F, DoorType.Type2, null/+&DoorEntry480+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x1E, 0x16, DoorType.Type5, null/+&DoorEntry490+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x0D, 0x01, DoorType.Type4, 0), DoorConfig(0x0D, 0x0E, DoorType.Type2, null/+&DoorEntry801+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(2, [DoorConfig(0x12, 0x19, DoorType.Type2, null/+&DoorEntry941+/), DoorConfig(0x12, 0x1A, DoorType.Type2, null/+&DoorEntry941+/)]),
+	SectorDoors(0, []),
+	SectorDoors(5, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry727+/), DoorConfig(0x17, 0x0A, DoorType.Type5, null/+&DoorEntry677+/), DoorConfig(0x17, 0x12, DoorType.Type2, null/+&DoorEntry314+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry316+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry315+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry280+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry317+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry728+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry318+/)]),
+	SectorDoors(1, [DoorConfig(0x1A, 0x17, DoorType.Type2, null/+&DoorEntry319+/)]),
+	SectorDoors(5, [DoorConfig(0x0D, 0x16, DoorType.Type2, null/+&DoorEntry729+/), DoorConfig(0x1B, 0x09, DoorType.Type2, null/+&DoorEntry320+/), DoorConfig(0x1B, 0x0E, DoorType.Type5, null/+&DoorEntry348+/), DoorConfig(0x1B, 0x11, DoorType.Type2, null/+&DoorEntry321+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry322+/)]),
+	SectorDoors(2, [DoorConfig(0x0D, 0x1A, DoorType.Type2, null/+&DoorEntry323+/), DoorConfig(0x1D, 0x1A, DoorType.Type2, null/+&DoorEntry324+/)]),
+	SectorDoors(0, []),
+	SectorDoors(8, [DoorConfig(0x00, 0x10, DoorType.Type2, null/+&DoorEntry481+/), DoorConfig(0x01, 0x10, DoorType.Type2, null/+&DoorEntry481+/), DoorConfig(0x02, 0x10, DoorType.Type2, null/+&DoorEntry481+/), DoorConfig(0x03, 0x10, DoorType.Type2, null/+&DoorEntry481+/), DoorConfig(0x04, 0x10, DoorType.Type2, null/+&DoorEntry481+/), DoorConfig(0x05, 0x10, DoorType.Type2, null/+&DoorEntry481+/), DoorConfig(0x06, 0x10, DoorType.Type2, null/+&DoorEntry481+/), DoorConfig(0x07, 0x10, DoorType.Type2, null/+&DoorEntry481+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(8, [DoorConfig(0x00, 0x0F, DoorType.Type2, null/+&DoorEntry488+/), DoorConfig(0x01, 0x0F, DoorType.Type2, null/+&DoorEntry488+/), DoorConfig(0x02, 0x0F, DoorType.Type2, null/+&DoorEntry488+/), DoorConfig(0x03, 0x0F, DoorType.Type2, null/+&DoorEntry488+/), DoorConfig(0x04, 0x0F, DoorType.Type2, null/+&DoorEntry488+/), DoorConfig(0x05, 0x0F, DoorType.Type2, null/+&DoorEntry488+/), DoorConfig(0x06, 0x0F, DoorType.Type2, null/+&DoorEntry488+/), DoorConfig(0x07, 0x0F, DoorType.Type2, null/+&DoorEntry488+/)]),
+	SectorDoors(14, [DoorConfig(0x00, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x01, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x02, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x03, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x04, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x05, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x06, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x07, 0x10, DoorType.Type2, null/+&DoorEntry489+/), DoorConfig(0x18, 0x06, DoorType.Type2, null/+&DoorEntry341+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry341+/), DoorConfig(0x1A, 0x04, DoorType.Type2, null/+&DoorEntry341+/), DoorConfig(0x1B, 0x03, DoorType.Type2, null/+&DoorEntry341+/), DoorConfig(0x1C, 0x02, DoorType.Type2, null/+&DoorEntry341+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry341+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(6, [DoorConfig(0x18, 0x19, DoorType.Type2, null/+&DoorEntry342+/), DoorConfig(0x19, 0x1A, DoorType.Type2, null/+&DoorEntry342+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry342+/), DoorConfig(0x1B, 0x1C, DoorType.Type2, null/+&DoorEntry342+/), DoorConfig(0x1C, 0x1D, DoorType.Type2, null/+&DoorEntry342+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry342+/)]),
+	SectorDoors(8, [DoorConfig(0x00, 0x0F, DoorType.Type2, null/+&DoorEntry484+/), DoorConfig(0x01, 0x0F, DoorType.Type2, null/+&DoorEntry484+/), DoorConfig(0x02, 0x0F, DoorType.Type2, null/+&DoorEntry484+/), DoorConfig(0x03, 0x0F, DoorType.Type2, null/+&DoorEntry484+/), DoorConfig(0x04, 0x0F, DoorType.Type2, null/+&DoorEntry484+/), DoorConfig(0x05, 0x0F, DoorType.Type2, null/+&DoorEntry484+/), DoorConfig(0x06, 0x0F, DoorType.Type2, null/+&DoorEntry484+/), DoorConfig(0x07, 0x0F, DoorType.Type2, null/+&DoorEntry484+/)]),
+	SectorDoors(6, [DoorConfig(0x18, 0x06, DoorType.Type2, null/+&DoorEntry237+/), DoorConfig(0x19, 0x05, DoorType.Type2, null/+&DoorEntry237+/), DoorConfig(0x1A, 0x04, DoorType.Type2, null/+&DoorEntry237+/), DoorConfig(0x1B, 0x03, DoorType.Type2, null/+&DoorEntry237+/), DoorConfig(0x1C, 0x02, DoorType.Type2, null/+&DoorEntry237+/), DoorConfig(0x1D, 0x01, DoorType.Type2, null/+&DoorEntry237+/)]),
+	SectorDoors(0, []),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x05, 0x1A, DoorType.Type2, null/+&DoorEntry340+/)]),
+	SectorDoors(2, [DoorConfig(0x09, 0x01, DoorType.Type2, null/+&DoorEntry183+/), DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry184+/)]),
+	SectorDoors(0, []),
+	SectorDoors(1, [DoorConfig(0x0B, 0x01, DoorType.Type2, null/+&DoorEntry185+/)]),
+	SectorDoors(7, [DoorConfig(0x09, 0x1E, DoorType.Type2, null/+&DoorEntry186+/), DoorConfig(0x18, 0x19, DoorType.Type2, null/+&DoorEntry238+/), DoorConfig(0x19, 0x1A, DoorType.Type2, null/+&DoorEntry238+/), DoorConfig(0x1A, 0x1B, DoorType.Type2, null/+&DoorEntry238+/), DoorConfig(0x1B, 0x1C, DoorType.Type2, null/+&DoorEntry238+/), DoorConfig(0x1C, 0x1D, DoorType.Type2, null/+&DoorEntry238+/), DoorConfig(0x1D, 0x1E, DoorType.Type2, null/+&DoorEntry238+/)]),
+	SectorDoors(2, [DoorConfig(0x0F, 0x1C, DoorType.Type2, null/+&DoorEntry325+/), DoorConfig(0x10, 0x1C, DoorType.Type2, null/+&DoorEntry325+/)]),
+	];
+
+immutable DoorEntryA DoorEntry0 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_279 | EVENT_FLAG_UNSET,  0xC09A, 0x03B1, 0x04);
+immutable DoorEntryA DoorEntry1 = DoorEntryA(null /+TEXT_DOOR_001+/, EventFlag.None,  0x010B, 0x0087, 0x01);
+immutable DoorEntryA DoorEntry2 = DoorEntryA(null, EventFlag.None,  0x03EF, 0x0119, 0x01);
+immutable DoorEntryA DoorEntry3 = DoorEntryA(null, EventFlag.None,  0x83FC, 0x00F3, 0x01);
+immutable DoorEntryA DoorEntry4 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC434, 0x0158, 0x01);
+immutable DoorEntryA DoorEntry5 = DoorEntryA(null, EventFlag.None,  0x80B9, 0x0367, 0x01);
+immutable DoorEntryA DoorEntry6 = DoorEntryA(null /+TEXT_DOOR_006+/, EventFlag.UNKNOWN_06C | EVENT_FLAG_UNSET,  0xC0BA, 0x0375, 0x04);
+immutable DoorEntryA DoorEntry7 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC0A9, 0x03F0, 0x01);
+immutable DoorEntryA DoorEntry8 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC0BD, 0x03DC, 0x06);
+immutable DoorEntryA DoorEntry9 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC03D, 0x03BC, 0x06);
+immutable DoorEntryA DoorEntry10 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC02D, 0x03FC, 0x04);
+immutable DoorEntryA DoorEntry11 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC04D, 0x03B8, 0x04);
+immutable DoorEntryA DoorEntry12 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC06A, 0x03B1, 0x04);
+immutable DoorEntryA DoorEntry13 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC04D, 0x03EC, 0x01);
+immutable DoorEntryA DoorEntry14 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC0BD, 0x03FC, 0x01);
+immutable DoorEntryA DoorEntry15 = DoorEntryA(null /+TEXT_DOOR_015+/, EventFlag.UNKNOWN_2EA | EVENT_FLAG_UNSET,  0xC0BA, 0x03B9, 0x04);
+immutable DoorEntryA DoorEntry16 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC07D, 0x039C, 0x01);
+immutable DoorEntryA DoorEntry17 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0x0056, 0x03D1, 0x04);
+immutable DoorEntryA DoorEntry18 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC059, 0x03E4, 0x06);
+immutable DoorEntryA DoorEntry19 = DoorEntryA(null /+TEXT_DOOR_019+/, EventFlag.UNKNOWN_278,  0xC031, 0x0384, 0x01);
+immutable DoorEntryA DoorEntry20 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC0AD, 0x0398, 0x06);
+immutable DoorEntryA DoorEntry21 = DoorEntryA(null /+TEXT_DOOR_021+/, EventFlag.UNKNOWN_1D4,  0xC06D, 0x0398, 0x04);
+immutable DoorEntryA DoorEntry22 = DoorEntryA(null /+TEXT_DOOR_022+/, EventFlag.UNKNOWN_1DA,  0xC02A, 0x03CD, 0x04);
+immutable DoorEntryA DoorEntry23 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC03D, 0x03F4, 0x01);
+immutable DoorEntryA DoorEntry24 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC07A, 0x0371, 0x04);
+immutable DoorEntryA DoorEntry25 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC09D, 0x03F8, 0x04);
+immutable DoorEntryA DoorEntry26 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC08A, 0x03B9, 0x04);
+immutable DoorEntryA DoorEntry27 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC09D, 0x0378, 0x04);
+immutable DoorEntryA DoorEntry28 = DoorEntryA(null /+TEXT_DOOR_028+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0xC02A, 0x03CD, 0x00);
+immutable DoorEntryA DoorEntry29 = DoorEntryA(null /+TEXT_DOOR_000+/, EventFlag.UNKNOWN_278,  0xC0AD, 0x03B4, 0x04);
+immutable DoorEntryA DoorEntry30 = DoorEntryA(null /+TEXT_DOOR_030+/, EventFlag.None,  0x02E6, 0x008B, 0x01);
+immutable DoorEntryA DoorEntry31 = DoorEntryA(null, EventFlag.None,  0x0048, 0x03D1, 0x07);
+immutable DoorEntryA DoorEntry32 = DoorEntryA(null, EventFlag.None,  0xC0AD, 0x03D8, 0x07);
+immutable DoorEntryA DoorEntry33 = DoorEntryA(null, EventFlag.None,  0xC0CD, 0x03FC, 0x07);
+immutable DoorEntryA DoorEntry34 = DoorEntryA(null, EventFlag.UNKNOWN_026,  0x800D, 0x03E3, 0x07);
+immutable DoorEntryA DoorEntry35 = DoorEntryA(null /+TEXT_DOOR_035+/, EventFlag.None,  0x80BD, 0x03E3, 0x01);
+immutable DoorEntryA DoorEntry36 = DoorEntryA(null, EventFlag.None,  0x806D, 0x03C3, 0x0F);
+immutable DoorEntryA DoorEntry37 = DoorEntryA(null, EventFlag.None,  0xC01A, 0x03B9, 0x07);
+immutable DoorEntryA DoorEntry38 = DoorEntryA(null, EventFlag.None,  0x8031, 0x0363, 0x01);
+immutable DoorEntryA DoorEntry39 = DoorEntryA(null, EventFlag.None,  0xC00D, 0x03FC, 0x01);
+immutable DoorEntryA DoorEntry40 = DoorEntryA(null, EventFlag.None,  0x00D6, 0x00FC, 0x01);
+immutable DoorEntryA DoorEntry41 = DoorEntryA(null, EventFlag.None,  0x807D, 0x03A3, 0x0F);
+immutable DoorEntryA DoorEntry42 = DoorEntryA(null, EventFlag.None,  0x008E, 0x00D9, 0x0C);
+immutable DoorEntryA DoorEntry43 = DoorEntryA(null /+TEXT_DOOR_043+/, EventFlag.UNKNOWN_1D3,  0x002B, 0x014B, 0x0A);
+immutable DoorEntryA DoorEntry44 = DoorEntryA(null, EventFlag.None,  0xC08D, 0x037C, 0x07);
+immutable DoorEntryA DoorEntry45 = DoorEntryA(null, EventFlag.None,  0xC0AD, 0x037C, 0x07);
+immutable DoorEntryA DoorEntry46 = DoorEntryA(null, EventFlag.None,  0x805D, 0x0363, 0x0F);
+immutable DoorEntryA DoorEntry47 = DoorEntryA(null, EventFlag.None,  0x00A1, 0x009A, 0x0A);
+immutable DoorEntryA DoorEntry48 = DoorEntryA(null /+TEXT_DOOR_048+/, EventFlag.None,  0x006D, 0x010A, 0x01);
+immutable DoorEntryA DoorEntry49 = DoorEntryA(null, EventFlag.None,  0x806D, 0x0363, 0x0F);
+immutable DoorEntryA DoorEntry50 = DoorEntryA(null, EventFlag.None,  0xC06D, 0x03FC, 0x07);
+immutable DoorEntryA DoorEntry51 = DoorEntryA(null, EventFlag.None,  0x803D, 0x03C3, 0x0F);
+immutable DoorEntryA DoorEntry52 = DoorEntryA(null, EventFlag.None,  0x00AC, 0x0089, 0x0A);
+immutable DoorEntryA DoorEntry53 = DoorEntryA(null, EventFlag.None,  0x007C, 0x03B1, 0x07);
+immutable DoorEntryA DoorEntry54 = DoorEntryA(null, EventFlag.None,  0xC011, 0x0384, 0x07);
+immutable DoorEntryA DoorEntry55 = DoorEntryA(null, EventFlag.None,  0xC06D, 0x03D4, 0x07);
+immutable DoorEntryA DoorEntry56 = DoorEntryA(null, EventFlag.FLG_ONET_GUARDSHARK_DISAPPEAR | EVENT_FLAG_UNSET,  0x40D1, 0x00C5, 0x0A);
+immutable DoorEntryA DoorEntry57 = DoorEntryA(null, EventFlag.None,  0x8079, 0x03E7, 0x0F);
+immutable DoorEntryA DoorEntry58 = DoorEntryA(null, EventFlag.None,  0xC08D, 0x03DC, 0x07);
+immutable DoorEntryA DoorEntry59 = DoorEntryA(null, EventFlag.None,  0x00A7, 0x00CF, 0x01);
+immutable DoorEntryA DoorEntry60 = DoorEntryA(null, EventFlag.None,  0x00DA, 0x00C5, 0x0C);
+immutable DoorEntryA DoorEntry61 = DoorEntryA(null, EventFlag.None,  0x804D, 0x0363, 0x0F);
+immutable DoorEntryA DoorEntry62 = DoorEntryA(null, EventFlag.None,  0x008C, 0x0121, 0x0A);
+immutable DoorEntryA DoorEntry63 = DoorEntryA(null /+TEXT_DOOR_063+/, EventFlag.None,  0x002C, 0x012B, 0x0A);
+immutable DoorEntryA DoorEntry64 = DoorEntryA(null, EventFlag.None,  0xC09D, 0x0398, 0x07);
+immutable DoorEntryA DoorEntry65 = DoorEntryA(null, EventFlag.None,  0x00D3, 0x008F, 0x01);
+immutable DoorEntryA DoorEntry66 = DoorEntryA(null, EventFlag.None,  0x80BD, 0x0383, 0x0F);
+immutable DoorEntryA DoorEntry67 = DoorEntryA(null, EventFlag.None,  0x00BC, 0x0085, 0x0A);
+immutable DoorEntryA DoorEntry68 = DoorEntryA(null, EventFlag.None,  0xC05D, 0x03BC, 0x07);
+immutable DoorEntryA DoorEntry69 = DoorEntryA(null /+TEXT_DOOR_069+/, EventFlag.None,  0x802A, 0x03A6, 0x0F);
+immutable DoorEntryA DoorEntry70 = DoorEntryA(null, EventFlag.None,  0x808A, 0x03E6, 0x07);
+immutable DoorEntryA DoorEntry71 = DoorEntryA(null /+TEXT_DOOR_071+/, EventFlag.None,  0x801D, 0x03C3, 0x0F);
+immutable DoorEntryA DoorEntry72 = DoorEntryA(null, EventFlag.None,  0x804D, 0x03C3, 0x07);
+immutable DoorEntryA DoorEntry73 = DoorEntryA(null, EventFlag.None,  0x00BC, 0x0389, 0x07);
+immutable DoorEntryA DoorEntry74 = DoorEntryA(null, EventFlag.None,  0x0058, 0x0371, 0x07);
+immutable DoorEntryA DoorEntry75 = DoorEntryA(null, EventFlag.None,  0x8059, 0x03C7, 0x0F);
+immutable DoorEntryA DoorEntry76 = DoorEntryA(null, EventFlag.None,  0x0038, 0x03CD, 0x07);
+immutable DoorEntryA DoorEntry77 = DoorEntryA(null, EventFlag.None,  0x00C8, 0x0131, 0x0A);
+immutable DoorEntryA DoorEntry78 = DoorEntryA(null, EventFlag.None,  0x00B8, 0x03F1, 0x07);
+immutable DoorEntryA DoorEntry79 = DoorEntryA(null, EventFlag.None,  0x0078, 0x0392, 0x07);
+immutable DoorEntryA DoorEntry80 = DoorEntryA(null, EventFlag.None,  0x00B0, 0x0141, 0x0A);
+immutable DoorEntryA DoorEntry81 = DoorEntryA(null, EventFlag.None,  0x0010, 0x00E5, 0x0A);
+immutable DoorEntryA DoorEntry82 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.UNKNOWN_01F,  0x0361, 0x01F4, 0x01);
+immutable DoorEntryA DoorEntry83 = DoorEntryA(null, EventFlag.None,  0x0048, 0x03E1, 0x07);
+immutable DoorEntryA DoorEntry84 = DoorEntryA(null, EventFlag.None,  0x00BC, 0x0391, 0x07);
+immutable DoorEntryA DoorEntry85 = DoorEntryA(null /+TEXT_DOOR_085+/, EventFlag.None,  0xC07D, 0x03BC, 0x07);
+immutable DoorEntryA DoorEntry86 = DoorEntryA(null, EventFlag.None,  0x008C, 0x012D, 0x0A);
+immutable DoorEntryA DoorEntry87 = DoorEntryA(null, EventFlag.None,  0x0038, 0x03D9, 0x07);
+immutable DoorEntryA DoorEntry88 = DoorEntryA(null, EventFlag.None,  0x4043, 0x00B5, 0x01);
+immutable DoorEntryA DoorEntry89 = DoorEntryA(null, EventFlag.None,  0x0048, 0x00B5, 0x0A);
+immutable DoorEntryA DoorEntry90 = DoorEntryA(null, EventFlag.None,  0x00DA, 0x00E8, 0x0C);
+immutable DoorEntryA DoorEntry91 = DoorEntryA(null, EventFlag.None,  0xC07D, 0x03D8, 0x07);
+immutable DoorEntryA DoorEntry92 = DoorEntryA(null, EventFlag.None,  0xC09D, 0x03D8, 0x07);
+immutable DoorEntryA DoorEntry93 = DoorEntryA(null, EventFlag.None,  0x807D, 0x0383, 0x0F);
+immutable DoorEntryA DoorEntry94 = DoorEntryA(null, EventFlag.None,  0x011C, 0x00C5, 0x0A);
+immutable DoorEntryA DoorEntry95 = DoorEntryA(null, EventFlag.None,  0x00DC, 0x0039, 0x0A);
+immutable DoorEntryA DoorEntry96 = DoorEntryA(null, EventFlag.None,  0x0008, 0x03B1, 0x07);
+immutable DoorEntryA DoorEntry97 = DoorEntryA(null, EventFlag.None,  0x008E, 0x00C8, 0x0C);
+immutable DoorEntryA DoorEntry98 = DoorEntryA(null, EventFlag.None,  0x0053, 0x00FC, 0x01);
+immutable DoorEntryA DoorEntry99 = DoorEntryA(null, EventFlag.None,  0xC089, 0x0388, 0x07);
+immutable DoorEntryA DoorEntry100 = DoorEntryA(null, EventFlag.None,  0xC00D, 0x03CC, 0x01);
+immutable DoorEntryA DoorEntry101 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x00B2, 0x00FF, 0x01);
+immutable DoorEntryA DoorEntry102 = DoorEntryA(null, EventFlag.None,  0x0008, 0x03BD, 0x07);
+immutable DoorEntryA DoorEntry103 = DoorEntryA(null, EventFlag.None,  0xC139, 0x02F5, 0x01);
+immutable DoorEntryA DoorEntry104 = DoorEntryA(null, EventFlag.None,  0x003B, 0x0085, 0x01);
+immutable DoorEntryA DoorEntry105 = DoorEntryA(null, EventFlag.None,  0x003A, 0x009D, 0x01);
+immutable DoorEntryA DoorEntry106 = DoorEntryA(null, EventFlag.None,  0xC2D9, 0x01D5, 0x01);
+immutable DoorEntryA DoorEntry107 = DoorEntryA(null, EventFlag.None,  0xC2B9, 0x01D9, 0x01);
+immutable DoorEntryA DoorEntry108 = DoorEntryA(null, EventFlag.None,  0xC279, 0x01F5, 0x01);
+immutable DoorEntryA DoorEntry109 = DoorEntryA(null /+TEXT_DOOR_109+/, EventFlag.None,  0x003F, 0x00B1, 0x01);
+immutable DoorEntryA DoorEntry110 = DoorEntryA(null, EventFlag.None,  0x0427, 0x0129, 0x01);
+immutable DoorEntryA DoorEntry111 = DoorEntryA(null, EventFlag.None,  0x8430, 0x00E7, 0x01);
+immutable DoorEntryA DoorEntry112 = DoorEntryA(null, EventFlag.None,  0x0413, 0x013D, 0x01);
+immutable DoorEntryA DoorEntry113 = DoorEntryA(null, EventFlag.None,  0xC139, 0x008C, 0x01);
+immutable DoorEntryA DoorEntry114 = DoorEntryA(null, EventFlag.None,  0x03F3, 0x00FD, 0x01);
+immutable DoorEntryA DoorEntry115 = DoorEntryA(null /+TEXT_DOOR_115+/, EventFlag.DEFEATED_SANCTUARY_BOSS_1 | EVENT_FLAG_UNSET,  0x0027, 0x0089, 0x01);
+immutable DoorEntryA DoorEntry116 = DoorEntryA(null, EventFlag.None,  0x8138, 0x02E7, 0x01);
+immutable DoorEntryA DoorEntry117 = DoorEntryA(null, EventFlag.None,  0x409A, 0x03AC, 0x01);
+immutable DoorEntryA DoorEntry118 = DoorEntryA(null, EventFlag.None,  0xC139, 0x02BC, 0x01);
+immutable DoorEntryA DoorEntry119 = DoorEntryA(null, EventFlag.None,  0x8379, 0x01E3, 0x01);
+immutable DoorEntryA DoorEntry120 = DoorEntryA(null, EventFlag.None,  0xC109, 0x01BC, 0x01);
+immutable DoorEntryA DoorEntry121 = DoorEntryA(null, EventFlag.None,  0x82E9, 0x01E3, 0x01);
+immutable DoorEntryA DoorEntry122 = DoorEntryA(null, EventFlag.None,  0x813B, 0x02A3, 0x01);
+immutable DoorEntryA DoorEntry123 = DoorEntryA(null, EventFlag.None,  0xC109, 0x0189, 0x01);
+immutable DoorEntryA DoorEntry124 = DoorEntryA(null /+TEXT_DOOR_124+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0075, 0x0092, 0x00);
+immutable DoorEntryA DoorEntry125 = DoorEntryA(null /+TEXT_DOOR_125+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0085, 0x00B2, 0x00);
+immutable DoorEntryA DoorEntry126 = DoorEntryA(null /+TEXT_DOOR_126+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x00A2, 0x007F, 0x00);
+immutable DoorEntryA DoorEntry127 = DoorEntryA(null /+TEXT_DOOR_127+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x00DA, 0x00B4, 0x00);
+immutable DoorEntryC DoorEntry128 = DoorEntryC(null /+TEXT_DOOR_128+/);
+immutable DoorEntryC DoorEntry129 = DoorEntryC(null /+TEXT_DOOR_129+/);
+immutable DoorEntryC DoorEntry130 = DoorEntryC(null /+TEXT_DOOR_130+/);
+immutable DoorEntryC DoorEntry131 = DoorEntryC(null /+TEXT_DOOR_131+/);
+immutable DoorEntryC DoorEntry132 = DoorEntryC(null /+TEXT_DOOR_132+/);
+immutable DoorEntryC DoorEntry133 = DoorEntryC(null /+TEXT_DOOR_133+/);
+immutable DoorEntryC DoorEntry134 = DoorEntryC(null /+TEXT_DOOR_134+/);
+immutable DoorEntryC DoorEntry135 = DoorEntryC(null /+TEXT_DOOR_135+/);
+immutable DoorEntryC DoorEntry136 = DoorEntryC(null /+TEXT_DOOR_136+/);
+immutable DoorEntryC DoorEntry137 = DoorEntryC(null /+TEXT_DOOR_137+/);
+immutable DoorEntryC DoorEntry138 = DoorEntryC(null /+TEXT_DOOR_138+/);
+immutable DoorEntryA DoorEntry139 = DoorEntryA(null /+TEXT_DOOR_139+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x00A0, 0x0151, 0x00);
+immutable DoorEntryA DoorEntry140 = DoorEntryA(null /+TEXT_DOOR_140+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x00D8, 0x0121, 0x00);
+immutable DoorEntryA DoorEntry141 = DoorEntryA(null /+TEXT_DOOR_141+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x00B2, 0x010B, 0x00);
+immutable DoorEntryA DoorEntry142 = DoorEntryA(null /+TEXT_DOOR_142+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x00AE, 0x0117, 0x00);
+immutable DoorEntryC DoorEntry143 = DoorEntryC(null /+TEXT_DOOR_143+/);
+immutable DoorEntryC DoorEntry144 = DoorEntryC(null /+TEXT_DOOR_144+/);
+immutable DoorEntryC DoorEntry145 = DoorEntryC(null /+TEXT_DOOR_145+/);
+immutable DoorEntryC DoorEntry146 = DoorEntryC(null /+TEXT_DOOR_146+/);
+immutable DoorEntryC DoorEntry147 = DoorEntryC(null /+TEXT_DOOR_147+/);
+immutable DoorEntryC DoorEntry148 = DoorEntryC(null /+TEXT_DOOR_148+/);
+immutable DoorEntryC DoorEntry149 = DoorEntryC(null /+TEXT_DOOR_149+/);
+immutable DoorEntryC DoorEntry150 = DoorEntryC(null /+TEXT_DOOR_150+/);
+immutable DoorEntryA DoorEntry151 = DoorEntryA(null /+TEXT_DOOR_151+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x000C, 0x03E9, 0x00);
+immutable DoorEntryA DoorEntry152 = DoorEntryA(null /+TEXT_DOOR_152+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x000C, 0x03F1, 0x00);
+immutable DoorEntryA DoorEntry153 = DoorEntryA(null /+TEXT_DOOR_153+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0058, 0x0379, 0x00);
+immutable DoorEntryA DoorEntry154 = DoorEntryA(null /+TEXT_DOOR_154+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0058, 0x037D, 0x00);
+immutable DoorEntryC DoorEntry155 = DoorEntryC(null /+TEXT_DOOR_155+/);
+immutable DoorEntryC DoorEntry156 = DoorEntryC(null /+TEXT_DOOR_156+/);
+immutable DoorEntryC DoorEntry157 = DoorEntryC(null /+TEXT_DOOR_157+/);
+immutable DoorEntryC DoorEntry158 = DoorEntryC(null /+TEXT_DOOR_157+/);
+immutable DoorEntryC DoorEntry159 = DoorEntryC(null /+TEXT_DOOR_157+/);
+immutable DoorEntryC DoorEntry160 = DoorEntryC(null /+TEXT_DOOR_160+/);
+immutable DoorEntryC DoorEntry161 = DoorEntryC(null /+TEXT_DOOR_157+/);
+immutable DoorEntryC DoorEntry162 = DoorEntryC(null /+TEXT_DOOR_157+/);
+immutable DoorEntryC DoorEntry163 = DoorEntryC(null /+TEXT_DOOR_163+/);
+immutable DoorEntryA DoorEntry164 = DoorEntryA(null, EventFlag.None,  0x418F, 0x0098, 0x01);
+immutable DoorEntryA DoorEntry165 = DoorEntryA(null, EventFlag.None,  0xC3FD, 0x0358, 0x04);
+immutable DoorEntryA DoorEntry166 = DoorEntryA(null, EventFlag.None,  0xC3FD, 0x0398, 0x04);
+immutable DoorEntryA DoorEntry167 = DoorEntryA(null, EventFlag.None,  0xC38D, 0x03C4, 0x01);
+immutable DoorEntryA DoorEntry168 = DoorEntryA(null, EventFlag.None,  0xC3BD, 0x0378, 0x06);
+immutable DoorEntryA DoorEntry169 = DoorEntryA(null, EventFlag.None,  0xC3AB, 0x038A, 0x06);
+immutable DoorEntryA DoorEntry170 = DoorEntryA(null /+TEXT_DOOR_170+/, EventFlag.THREED_REACHED,  0xC39D, 0x03BC, 0x04);
+immutable DoorEntryA DoorEntry171 = DoorEntryA(null, EventFlag.None,  0xC3BD, 0x03D8, 0x04);
+immutable DoorEntryA DoorEntry172 = DoorEntryA(null, EventFlag.None,  0xC3FD, 0x03D4, 0x04);
+immutable DoorEntryA DoorEntry173 = DoorEntryA(null, EventFlag.None,  0xC3DD, 0x03D8, 0x04);
+immutable DoorEntryA DoorEntry174 = DoorEntryA(null, EventFlag.None,  0xC42D, 0x03A8, 0x06);
+immutable DoorEntryA DoorEntry175 = DoorEntryA(null, EventFlag.None,  0xC3CD, 0x0334, 0x06);
+immutable DoorEntryA DoorEntry176 = DoorEntryA(null, EventFlag.None,  0xC3AD, 0x03C4, 0x04);
+immutable DoorEntryA DoorEntry177 = DoorEntryA(null, EventFlag.None,  0xC3FD, 0x037C, 0x04);
+immutable DoorEntryA DoorEntry178 = DoorEntryA(null, EventFlag.None,  0xC3CD, 0x03F8, 0x04);
+immutable DoorEntryA DoorEntry179 = DoorEntryA(null, EventFlag.None,  0xC44D, 0x03EC, 0x01);
+immutable DoorEntryA DoorEntry180 = DoorEntryA(null, EventFlag.None,  0xC38D, 0x03F8, 0x04);
+immutable DoorEntryA DoorEntry181 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x84E9, 0x0363, 0x01);
+immutable DoorEntryA DoorEntry182 = DoorEntryA(null /+TEXT_DOOR_182+/, EventFlag.None,  0x84FC, 0x02E4, 0x01);
+immutable DoorEntryA DoorEntry183 = DoorEntryA(null /+TEXT_DOOR_183+/, EventFlag.None,  0xC378, 0x01C4, 0x01);
+immutable DoorEntryA DoorEntry184 = DoorEntryA(null, EventFlag.None,  0x84EB, 0x03A3, 0x01);
+immutable DoorEntryA DoorEntry185 = DoorEntryA(null, EventFlag.None,  0xC4E9, 0x037C, 0x01);
+immutable DoorEntryA DoorEntry186 = DoorEntryA(null, EventFlag.None,  0x0119, 0x0216, 0x01);
+immutable DoorEntryA DoorEntry187 = DoorEntryA(null, EventFlag.None,  0xC459, 0x03C8, 0x07);
+immutable DoorEntryA DoorEntry188 = DoorEntryA(null, EventFlag.None,  0xC415, 0x03B8, 0x01);
+immutable DoorEntryA DoorEntry189 = DoorEntryA(null /+TEXT_DOOR_189+/, EventFlag.None,  0x032F, 0x00AB, 0x01);
+immutable DoorEntryA DoorEntry190 = DoorEntryA(null /+TEXT_DOOR_190+/, EventFlag.None,  0x032F, 0x00BC, 0x0C);
+immutable DoorEntryA DoorEntry191 = DoorEntryA(null, EventFlag.None,  0x033B, 0x0133, 0x0A);
+immutable DoorEntryA DoorEntry192 = DoorEntryA(null, EventFlag.None,  0x03DC, 0x0369, 0x07);
+immutable DoorEntryA DoorEntry193 = DoorEntryA(null, EventFlag.None,  0x0448, 0x03D1, 0x07);
+immutable DoorEntryA DoorEntry194 = DoorEntryA(null /+TEXT_DOOR_194+/, EventFlag.None,  0x0332, 0x00D2, 0x0C);
+immutable DoorEntryA DoorEntry195 = DoorEntryA(null, EventFlag.None,  0x03DC, 0x0371, 0x07);
+immutable DoorEntryA DoorEntry196 = DoorEntryA(null /+TEXT_DOOR_196+/, EventFlag.None,  0x0373, 0x0109, 0x0A);
+immutable DoorEntryA DoorEntry197 = DoorEntryA(null, EventFlag.None,  0xC3CD, 0x035C, 0x07);
+immutable DoorEntryA DoorEntry198 = DoorEntryA(null, EventFlag.None,  0x038F, 0x00F7, 0x0A);
+immutable DoorEntryA DoorEntry199 = DoorEntryA(null, EventFlag.None,  0x0377, 0x011F, 0x0A);
+immutable DoorEntryA DoorEntry200 = DoorEntryA(null, EventFlag.None,  0x83AD, 0x03A3, 0x07);
+immutable DoorEntryA DoorEntry201 = DoorEntryA(null, EventFlag.None,  0x83ED, 0x0343, 0x0F);
+immutable DoorEntryA DoorEntry202 = DoorEntryA(null, EventFlag.None,  0x83FA, 0x0346, 0x0F);
+immutable DoorEntryA DoorEntry203 = DoorEntryA(null, EventFlag.None,  0xC3BD, 0x035C, 0x07);
+immutable DoorEntryA DoorEntry204 = DoorEntryA(null, EventFlag.None,  0xC3BD, 0x039C, 0x07);
+immutable DoorEntryA DoorEntry205 = DoorEntryA(null, EventFlag.None,  0x844D, 0x03C3, 0x0F);
+immutable DoorEntryA DoorEntry206 = DoorEntryA(null, EventFlag.None,  0x040C, 0x0395, 0x07);
+immutable DoorEntryA DoorEntry207 = DoorEntryA(null, EventFlag.None,  0x83FD, 0x0383, 0x0F);
+immutable DoorEntryA DoorEntry208 = DoorEntryA(null, EventFlag.None,  0x0410, 0x03A9, 0x07);
+immutable DoorEntryA DoorEntry209 = DoorEntryA(null, EventFlag.UNKNOWN_126,  0x0397, 0x00EF, 0x0A);
+immutable DoorEntryA DoorEntry210 = DoorEntryA(null, EventFlag.None,  0xC3ED, 0x03F8, 0x07);
+immutable DoorEntryA DoorEntry211 = DoorEntryA(null, EventFlag.None,  0x034F, 0x0122, 0x0A);
+immutable DoorEntryA DoorEntry212 = DoorEntryA(null, EventFlag.None,  0xC45D, 0x03F8, 0x07);
+immutable DoorEntryA DoorEntry213 = DoorEntryA(null, EventFlag.None,  0x83CA, 0x0346, 0x0F);
+immutable DoorEntryA DoorEntry214 = DoorEntryA(null, EventFlag.None,  0x83DD, 0x0343, 0x0F);
+immutable DoorEntryA DoorEntry215 = DoorEntryA(null, EventFlag.None,  0x030C, 0x00D9, 0x0A);
+immutable DoorEntryA DoorEntry216 = DoorEntryA(null, EventFlag.None,  0x0397, 0x011D, 0x0A);
+immutable DoorEntryA DoorEntry217 = DoorEntryA(null, EventFlag.None,  0x83DD, 0x0383, 0x0F);
+immutable DoorEntryA DoorEntry218 = DoorEntryA(null, EventFlag.None,  0x030C, 0x00F9, 0x0A);
+immutable DoorEntryA DoorEntry219 = DoorEntryA(null, EventFlag.None,  0x0360, 0x00A9, 0x0A);
+immutable DoorEntryA DoorEntry220 = DoorEntryA(null, EventFlag.None,  0x83CD, 0x03E3, 0x07);
+immutable DoorEntryA DoorEntry221 = DoorEntryA(null, EventFlag.None,  0xC3CD, 0x039C, 0x07);
+immutable DoorEntryA DoorEntry222 = DoorEntryA(null, EventFlag.None,  0xC3CD, 0x03DC, 0x07);
+immutable DoorEntryA DoorEntry223 = DoorEntryA(null, EventFlag.None,  0x838D, 0x03A3, 0x01);
+immutable DoorEntryA DoorEntry224 = DoorEntryA(null, EventFlag.None,  0x0376, 0x0135, 0x0C);
+immutable DoorEntryA DoorEntry225 = DoorEntryA(null, EventFlag.None,  0xC39D, 0x03D8, 0x07);
+immutable DoorEntryA DoorEntry226 = DoorEntryA(null, EventFlag.None,  0x83DD, 0x0363, 0x0F);
+immutable DoorEntryA DoorEntry227 = DoorEntryA(null, EventFlag.None,  0x0388, 0x03B9, 0x07);
+immutable DoorEntryA DoorEntry228 = DoorEntryA(null, EventFlag.None,  0x030E, 0x011B, 0x01);
+immutable DoorEntryA DoorEntry229 = DoorEntryA(null, EventFlag.None,  0x03E8, 0x0351, 0x07);
+immutable DoorEntryA DoorEntry230 = DoorEntryA(null, EventFlag.UNKNOWN_135,  0xC435, 0x0378, 0x07);
+immutable DoorEntryA DoorEntry231 = DoorEntryA(null, EventFlag.None,  0xC3BD, 0x03BC, 0x07);
+immutable DoorEntryA DoorEntry232 = DoorEntryA(null /+TEXT_DOOR_232+/, EventFlag.None,  0x0331, 0x0116, 0x0A);
+immutable DoorEntryA DoorEntry233 = DoorEntryA(null, EventFlag.None,  0x839D, 0x03A3, 0x07);
+immutable DoorEntryA DoorEntry234 = DoorEntryA(null /+TEXT_DOOR_234+/, EventFlag.None,  0x8431, 0x034B, 0x07);
+immutable DoorEntryA DoorEntry235 = DoorEntryA(null /+TEXT_DOOR_235+/, EventFlag.UNKNOWN_073 | EVENT_FLAG_UNSET,  0xC3AD, 0x03FC, 0x07);
+immutable DoorEntryA DoorEntry236 = DoorEntryA(null, EventFlag.None,  0x0398, 0x03B1, 0x07);
+immutable DoorEntryA DoorEntry237 = DoorEntryA(null /+TEXT_DOOR_237+/, EventFlag.UNKNOWN_2F9,  0xC442, 0x009F, 0x01);
+immutable DoorEntryA DoorEntry238 = DoorEntryA(null /+TEXT_DOOR_238+/, EventFlag.THREED_REACHED | EVENT_FLAG_UNSET,  0x849B, 0x0231, 0x01);
+immutable DoorEntryA DoorEntry239 = DoorEntryA(null /+TEXT_DOOR_239+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0347, 0x012A, 0x00);
+immutable DoorEntryA DoorEntry240 = DoorEntryA(null /+TEXT_DOOR_240+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x03A3, 0x010D, 0x00);
+immutable DoorEntryC DoorEntry241 = DoorEntryC(null /+TEXT_DOOR_241+/);
+immutable DoorEntryC DoorEntry242 = DoorEntryC(null /+TEXT_DOOR_242+/);
+immutable DoorEntryC DoorEntry243 = DoorEntryC(null /+TEXT_DOOR_243+/);
+immutable DoorEntryC DoorEntry244 = DoorEntryC(null /+TEXT_DOOR_244+/);
+immutable DoorEntryC DoorEntry245 = DoorEntryC(null /+TEXT_DOOR_245+/);
+immutable DoorEntryC DoorEntry246 = DoorEntryC(null /+TEXT_DOOR_246+/);
+immutable DoorEntryC DoorEntry247 = DoorEntryC(null /+TEXT_DOOR_247+/);
+immutable DoorEntryC DoorEntry248 = DoorEntryC(null /+TEXT_DOOR_248+/);
+immutable DoorEntryA DoorEntry249 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC139, 0x029C, 0x01);
+immutable DoorEntryA DoorEntry250 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC1A9, 0x021C, 0x01);
+immutable DoorEntryA DoorEntry251 = DoorEntryA(null, EventFlag.None,  0xC0DD, 0x037C, 0x04);
+immutable DoorEntryA DoorEntry252 = DoorEntryA(null, EventFlag.None,  0xC10D, 0x03BC, 0x04);
+immutable DoorEntryA DoorEntry253 = DoorEntryA(null /+TEXT_DOOR_253+/, EventFlag.THREED_REACHED,  0xC122, 0x03F1, 0x04);
+immutable DoorEntryA DoorEntry254 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x80D1, 0x0187, 0x01);
+immutable DoorEntryA DoorEntry255 = DoorEntryA(null /+TEXT_DOOR_255+/, EventFlag.SATURN_VALLEY_REACHED | EVENT_FLAG_UNSET,  0xC101, 0x03F0, 0x04);
+immutable DoorEntryA DoorEntry256 = DoorEntryA(null, EventFlag.None,  0xC0CD, 0x037C, 0x04);
+immutable DoorEntryA DoorEntry257 = DoorEntryA(null, EventFlag.None,  0xC0DD, 0x03BC, 0x04);
+immutable DoorEntryA DoorEntry258 = DoorEntryA(null, EventFlag.None,  0x80CD, 0x03A3, 0x0F);
+immutable DoorEntryA DoorEntry259 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x03F8, 0x01CA, 0x0A);
+immutable DoorEntryA DoorEntry260 = DoorEntryA(null, EventFlag.None,  0x03B8, 0x0202, 0x0A);
+immutable DoorEntryA DoorEntry261 = DoorEntryA(null, EventFlag.None,  0x80CD, 0x0363, 0x0F);
+immutable DoorEntryA DoorEntry262 = DoorEntryA(null, EventFlag.None,  0x03EC, 0x0202, 0x0A);
+immutable DoorEntryA DoorEntry263 = DoorEntryA(null, EventFlag.None,  0x03C3, 0x01D7, 0x0A);
+immutable DoorEntryA DoorEntry264 = DoorEntryA(null, EventFlag.None,  0x03E4, 0x01B9, 0x0A);
+immutable DoorEntryA DoorEntry265 = DoorEntryA(null, EventFlag.None,  0x80F2, 0x03A6, 0x0F);
+immutable DoorEntryA DoorEntry266 = DoorEntryA(null /+TEXT_DOOR_266+/, EventFlag.None,  0x8122, 0x03AE, 0x07);
+immutable DoorEntryA DoorEntry267 = DoorEntryA(null, EventFlag.None,  0x80DA, 0x03E6, 0x0F);
+immutable DoorEntryA DoorEntry268 = DoorEntryA(null /+TEXT_DOOR_268+/, EventFlag.None,  0xC0DA, 0x03F9, 0x07);
+immutable DoorEntryA DoorEntry269 = DoorEntryA(null /+TEXT_DOOR_269+/, EventFlag.None,  0x03DC, 0x01DF, 0x0A);
+immutable DoorEntryA DoorEntry270 = DoorEntryA(null, EventFlag.None,  0x00C5, 0x02E9, 0x01);
+immutable DoorEntryA DoorEntry271 = DoorEntryA(null /+TEXT_DOOR_271+/, EventFlag.None,  0x83B4, 0x01BA, 0x01);
+immutable DoorEntryA DoorEntry272 = DoorEntryA(null, EventFlag.None,  0x008A, 0x02E6, 0x01);
+immutable DoorEntryA DoorEntry273 = DoorEntryA(null, EventFlag.None,  0x03B8, 0x01F7, 0x01);
+immutable DoorEntryC DoorEntry274 = DoorEntryC(null /+TEXT_DOOR_274+/);
+immutable DoorEntryC DoorEntry275 = DoorEntryC(null /+TEXT_DOOR_275+/);
+immutable DoorEntryA DoorEntry276 = DoorEntryA(null, EventFlag.None,  0x81A9, 0x01E3, 0x01);
+immutable DoorEntryA DoorEntry277 = DoorEntryA(null, EventFlag.None,  0xC4CD, 0x0374, 0x04);
+immutable DoorEntryA DoorEntry278 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x8139, 0x0263, 0x01);
+immutable DoorEntryA DoorEntry279 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC4E9, 0x03DC, 0x01);
+immutable DoorEntryA DoorEntry280 = DoorEntryA(null, EventFlag.None,  0x009A, 0x02D7, 0x0A);
+immutable DoorEntryA DoorEntry281 = DoorEntryA(null /+TEXT_DOOR_281+/, EventFlag.DEFEATED_SANCTUARY_BOSS_2 | EVENT_FLAG_UNSET,  0x03F5, 0x0182, 0x01);
+immutable DoorEntryA DoorEntry282 = DoorEntryA(null, EventFlag.None,  0xC3C4, 0x020C, 0x01);
+immutable DoorEntryA DoorEntry283 = DoorEntryA(null /+TEXT_DOOR_001+/, EventFlag.None,  0x008B, 0x01F1, 0x01);
+immutable DoorEntryA DoorEntry284 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x0401, 0x023C, 0x01);
+immutable DoorEntryA DoorEntry285 = DoorEntryA(null, EventFlag.None,  0x04B1, 0x033C, 0x01);
+immutable DoorEntryA DoorEntry286 = DoorEntryA(null, EventFlag.None,  0xC4CD, 0x03F8, 0x04);
+immutable DoorEntryA DoorEntry287 = DoorEntryA(null, EventFlag.None,  0xC48D, 0x035C, 0x04);
+immutable DoorEntryA DoorEntry288 = DoorEntryA(null, EventFlag.None,  0xC4EF, 0x03FA, 0x01);
+immutable DoorEntryA DoorEntry289 = DoorEntryA(null, EventFlag.None,  0xC4BD, 0x03B8, 0x04);
+immutable DoorEntryA DoorEntry290 = DoorEntryA(null /+TEXT_DOOR_290+/, EventFlag.None,  0xC4FC, 0x03DB, 0x01);
+immutable DoorEntryA DoorEntry291 = DoorEntryA(null, EventFlag.None,  0xC4BD, 0x0374, 0x04);
+immutable DoorEntryA DoorEntry292 = DoorEntryA(null, EventFlag.None,  0xC4BD, 0x03FC, 0x06);
+immutable DoorEntryA DoorEntry293 = DoorEntryA(null, EventFlag.None,  0xC49D, 0x0374, 0x06);
+immutable DoorEntryA DoorEntry294 = DoorEntryA(null, EventFlag.None,  0xC4DD, 0x035C, 0x01);
+immutable DoorEntryA DoorEntry295 = DoorEntryA(null, EventFlag.None,  0xC4DD, 0x03F8, 0x06);
+immutable DoorEntryA DoorEntry296 = DoorEntryA(null, EventFlag.None,  0xC4DA, 0x0379, 0x04);
+immutable DoorEntryA DoorEntry297 = DoorEntryA(null, EventFlag.None,  0xC4DA, 0x03B5, 0x04);
+immutable DoorEntryA DoorEntry298 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x84FC, 0x0224, 0x01);
+immutable DoorEntryA DoorEntry299 = DoorEntryA(null, EventFlag.None,  0xC489, 0x0388, 0x07);
+immutable DoorEntryA DoorEntry300 = DoorEntryA(null, EventFlag.None,  0xC48D, 0x03E4, 0x01);
+immutable DoorEntryA DoorEntry301 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x0462, 0x02B3, 0x0A);
+immutable DoorEntryA DoorEntry302 = DoorEntryA(null, EventFlag.None,  0x04DC, 0x03C9, 0x07);
+immutable DoorEntryA DoorEntry303 = DoorEntryA(null, EventFlag.None,  0x048E, 0x029C, 0x0C);
+immutable DoorEntryA DoorEntry304 = DoorEntryA(null, EventFlag.None,  0x0488, 0x0351, 0x07);
+immutable DoorEntryA DoorEntry305 = DoorEntryA(null, EventFlag.None,  0x04DC, 0x03D1, 0x07);
+immutable DoorEntryA DoorEntry306 = DoorEntryA(null, EventFlag.None,  0x0488, 0x03CD, 0x07);
+immutable DoorEntryA DoorEntry307 = DoorEntryA(null /+TEXT_DOOR_307+/, EventFlag.None,  0xC49D, 0x03BC, 0x07);
+immutable DoorEntryA DoorEntry308 = DoorEntryA(null, EventFlag.None,  0xC49D, 0x03FC, 0x07);
+immutable DoorEntryA DoorEntry309 = DoorEntryA(null, EventFlag.None,  0x848D, 0x0343, 0x01);
+immutable DoorEntryA DoorEntry310 = DoorEntryA(null, EventFlag.None,  0x0488, 0x03D5, 0x07);
+immutable DoorEntryA DoorEntry311 = DoorEntryA(null, EventFlag.None,  0x048C, 0x0265, 0x0A);
+immutable DoorEntryA DoorEntry312 = DoorEntryA(null, EventFlag.None,  0x0478, 0x02E9, 0x0A);
+immutable DoorEntryA DoorEntry313 = DoorEntryA(null, EventFlag.None,  0x048E, 0x028D, 0x0C);
+immutable DoorEntryA DoorEntry314 = DoorEntryA(null, EventFlag.None,  0xC4DD, 0x0398, 0x07);
+immutable DoorEntryA DoorEntry315 = DoorEntryA(null, EventFlag.None,  0x048D, 0x02BF, 0x01);
+immutable DoorEntryA DoorEntry316 = DoorEntryA(null, EventFlag.None,  0x84DD, 0x03C3, 0x0F);
+immutable DoorEntryA DoorEntry317 = DoorEntryA(null, EventFlag.None,  0x0491, 0x0302, 0x0A);
+immutable DoorEntryA DoorEntry318 = DoorEntryA(null, EventFlag.None,  0x04D8, 0x0352, 0x07);
+immutable DoorEntryA DoorEntry319 = DoorEntryA(null, EventFlag.None,  0x0497, 0x0319, 0x0A);
+immutable DoorEntryA DoorEntry320 = DoorEntryA(null, EventFlag.None,  0xC48D, 0x0378, 0x07);
+immutable DoorEntryA DoorEntry321 = DoorEntryA(null, EventFlag.None,  0xC48D, 0x03B8, 0x07);
+immutable DoorEntryA DoorEntry322 = DoorEntryA(null, EventFlag.None,  0x84DD, 0x0343, 0x0F);
+immutable DoorEntryA DoorEntry323 = DoorEntryA(null, EventFlag.None,  0x0428, 0x0319, 0x0A);
+immutable DoorEntryA DoorEntry324 = DoorEntryA(null, EventFlag.None,  0x048E, 0x02D1, 0x0C);
+immutable DoorEntryA DoorEntry325 = DoorEntryA(null, EventFlag.None,  0x0476, 0x02BB, 0x01);
+immutable DoorEntryA DoorEntry326 = DoorEntryA(null, EventFlag.None,  0x0413, 0x0290, 0x01);
+immutable DoorEntryA DoorEntry327 = DoorEntryA(null, EventFlag.None,  0x8123, 0x01E3, 0x01);
+immutable DoorEntryA DoorEntry328 = DoorEntryA(null, EventFlag.None,  0xC41D, 0x023C, 0x01);
+immutable DoorEntryA DoorEntry329 = DoorEntryA(null, EventFlag.None,  0x81B5, 0x02A2, 0x01);
+immutable DoorEntryA DoorEntry330 = DoorEntryA(null, EventFlag.None,  0xC123, 0x01FC, 0x01);
+immutable DoorEntryA DoorEntry331 = DoorEntryA(null, EventFlag.None,  0x8283, 0x01E3, 0x01);
+immutable DoorEntryA DoorEntry332 = DoorEntryA(null, EventFlag.None,  0xC1BD, 0x02BC, 0x01);
+immutable DoorEntryA DoorEntry333 = DoorEntryA(null, EventFlag.None,  0x82AD, 0x01E2, 0x01);
+immutable DoorEntryA DoorEntry334 = DoorEntryA(null, EventFlag.None,  0x82CD, 0x01E2, 0x01);
+immutable DoorEntryA DoorEntry335 = DoorEntryA(null, EventFlag.None,  0xC283, 0x01FC, 0x01);
+immutable DoorEntryA DoorEntry336 = DoorEntryA(null, EventFlag.None,  0x0125, 0x0316, 0x01);
+immutable DoorEntryA DoorEntry337 = DoorEntryA(null, EventFlag.None,  0xC2A5, 0x01FC, 0x01);
+immutable DoorEntryA DoorEntry338 = DoorEntryA(null, EventFlag.None,  0x0430, 0x02F0, 0x01);
+immutable DoorEntryA DoorEntry339 = DoorEntryA(null, EventFlag.None,  0xC4E5, 0x0358, 0x07);
+immutable DoorEntryA DoorEntry340 = DoorEntryA(null /+TEXT_DOOR_340+/, EventFlag.UNKNOWN_21D | EVENT_FLAG_UNSET,  0x84BD, 0x0322, 0x07);
+immutable DoorEntryA DoorEntry341 = DoorEntryA(null, EventFlag.None,  0xC49B, 0x032E, 0x01);
+immutable DoorEntryA DoorEntry342 = DoorEntryA(null /+TEXT_DOOR_342+/, EventFlag.UNKNOWN_2F9,  0x83C2, 0x0140, 0x01);
+immutable DoorEntryA DoorEntry343 = DoorEntryA(null, EventFlag.None,  0xC4FC, 0x02BB, 0x01);
+immutable DoorEntryA DoorEntry344 = DoorEntryA(null, EventFlag.None,  0x800C, 0x0304, 0x01);
+immutable DoorEntryA DoorEntry345 = DoorEntryA(null, EventFlag.None,  0xC3C2, 0x0187, 0x01);
+immutable DoorEntryA DoorEntry346 = DoorEntryA(null /+TEXT_DOOR_346+/, EventFlag.None,  0x84E6, 0x0032, 0x01);
+immutable DoorEntryC DoorEntry347 = DoorEntryC(null /+TEXT_DOOR_347+/);
+immutable DoorEntryC DoorEntry348 = DoorEntryC(null /+TEXT_DOOR_348+/);
+immutable DoorEntryA DoorEntry349 = DoorEntryA(null /+TEXT_DOOR_349+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0452, 0x02C1, 0x00);
+immutable DoorEntryA DoorEntry350 = DoorEntryA(null /+TEXT_DOOR_350+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0455, 0x02F5, 0x00);
+immutable DoorEntryA DoorEntry351 = DoorEntryA(null /+TEXT_DOOR_351+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0449, 0x0305, 0x00);
+immutable DoorEntryA DoorEntry352 = DoorEntryA(null /+TEXT_DOOR_352+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x047C, 0x026D, 0x00);
+immutable DoorEntryA DoorEntry353 = DoorEntryA(null /+TEXT_DOOR_353+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x047A, 0x02D3, 0x00);
+immutable DoorEntryA DoorEntry354 = DoorEntryA(null /+TEXT_DOOR_354+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0462, 0x030D, 0x00);
+immutable DoorEntryA DoorEntry355 = DoorEntryA(null /+TEXT_DOOR_355+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0487, 0x02DF, 0x00);
+immutable DoorEntryC DoorEntry356 = DoorEntryC(null /+TEXT_DOOR_356+/);
+immutable DoorEntryC DoorEntry357 = DoorEntryC(null /+TEXT_DOOR_357+/);
+immutable DoorEntryC DoorEntry358 = DoorEntryC(null /+TEXT_DOOR_358+/);
+immutable DoorEntryC DoorEntry359 = DoorEntryC(null /+TEXT_DOOR_359+/);
+immutable DoorEntryC DoorEntry360 = DoorEntryC(null /+TEXT_DOOR_360+/);
+immutable DoorEntryC DoorEntry361 = DoorEntryC(null /+TEXT_DOOR_361+/);
+immutable DoorEntryC DoorEntry362 = DoorEntryC(null /+TEXT_DOOR_362+/);
+immutable DoorEntryC DoorEntry363 = DoorEntryC(null /+TEXT_DOOR_363+/);
+immutable DoorEntryC DoorEntry364 = DoorEntryC(null /+TEXT_DOOR_364+/);
+immutable DoorEntryA DoorEntry365 = DoorEntryA(null, EventFlag.None,  0xC141, 0x03E8, 0x04);
+immutable DoorEntryA DoorEntry366 = DoorEntryA(null, EventFlag.None,  0xC13D, 0x03B8, 0x04);
+immutable DoorEntryA DoorEntry367 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC0F8, 0x03CB, 0x01);
+immutable DoorEntryA DoorEntry368 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC0D8, 0x038B, 0x01);
+immutable DoorEntryA DoorEntry369 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC0D8, 0x03CB, 0x01);
+immutable DoorEntryA DoorEntry370 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC0F8, 0x038B, 0x01);
+immutable DoorEntryA DoorEntry371 = DoorEntryA(null /+TEXT_DOOR_001+/, EventFlag.None,  0xC014, 0x0280, 0x01);
+immutable DoorEntryA DoorEntry372 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x801C, 0x0267, 0x01);
+immutable DoorEntryA DoorEntry373 = DoorEntryA(null /+TEXT_DOOR_373+/, EventFlag.None,  0xC1B8, 0x00F8, 0x01);
+immutable DoorEntryA DoorEntry374 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x81D0, 0x008B, 0x01);
+immutable DoorEntryA DoorEntry375 = DoorEntryA(null, EventFlag.None,  0xC169, 0x03F8, 0x04);
+immutable DoorEntryA DoorEntry376 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC26C, 0x035C, 0x01);
+immutable DoorEntryA DoorEntry377 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x01C5, 0x036C, 0x01);
+immutable DoorEntryA DoorEntry378 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC2E8, 0x020B, 0x01);
+immutable DoorEntryC DoorEntry379 = DoorEntryC(null /+TEXT_DOOR_379+/);
+immutable DoorEntryA DoorEntry380 = DoorEntryA(null, EventFlag.None,  0x0124, 0x0057, 0x0A);
+immutable DoorEntryA DoorEntry381 = DoorEntryA(null, EventFlag.None,  0x013C, 0x03DA, 0x07);
+immutable DoorEntryA DoorEntry382 = DoorEntryA(null, EventFlag.None,  0x013C, 0x03D1, 0x07);
+immutable DoorEntryA DoorEntry383 = DoorEntryA(null, EventFlag.None,  0x8164, 0x03E0, 0x0F);
+immutable DoorEntryA DoorEntry384 = DoorEntryA(null, EventFlag.None,  0x017C, 0x03DA, 0x07);
+immutable DoorEntryA DoorEntry385 = DoorEntryA(null, EventFlag.None,  0x017C, 0x03D1, 0x07);
+immutable DoorEntryA DoorEntry386 = DoorEntryA(null, EventFlag.None,  0xC0CD, 0x03D8, 0x07);
+immutable DoorEntryA DoorEntry387 = DoorEntryA(null, EventFlag.None,  0xC0CD, 0x0394, 0x07);
+immutable DoorEntryA DoorEntry388 = DoorEntryA(null, EventFlag.None,  0x8181, 0x03C7, 0x0F);
+immutable DoorEntryA DoorEntry389 = DoorEntryA(null /+TEXT_DOOR_389+/, EventFlag.None,  0x0112, 0x003E, 0x0A);
+immutable DoorEntryA DoorEntry390 = DoorEntryA(null, EventFlag.None,  0x0263, 0x0028, 0x0A);
+immutable DoorEntryA DoorEntry391 = DoorEntryA(null, EventFlag.None,  0x80F0, 0x0364, 0x0F);
+immutable DoorEntryA DoorEntry392 = DoorEntryA(null, EventFlag.None,  0xC0ED, 0x03D8, 0x07);
+immutable DoorEntryA DoorEntry393 = DoorEntryA(null, EventFlag.None,  0xC0ED, 0x0398, 0x07);
+immutable DoorEntryA DoorEntry394 = DoorEntryA(null, EventFlag.None,  0x8141, 0x03C7, 0x0F);
+immutable DoorEntryA DoorEntry395 = DoorEntryA(null /+TEXT_DOOR_395+/, EventFlag.None,  0x01A3, 0x002B, 0x01);
+immutable DoorEntryA DoorEntry396 = DoorEntryA(null /+TEXT_DOOR_395+/, EventFlag.None,  0x01A7, 0x0033, 0x01);
+immutable DoorEntryA DoorEntry397 = DoorEntryA(null /+TEXT_DOOR_395+/, EventFlag.None,  0x01A3, 0x0047, 0x01);
+immutable DoorEntryA DoorEntry398 = DoorEntryA(null /+TEXT_DOOR_395+/, EventFlag.None,  0x018F, 0x0063, 0x01);
+immutable DoorEntryA DoorEntry399 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x015B, 0x0043, 0x01);
+immutable DoorEntryA DoorEntry400 = DoorEntryA(null, EventFlag.None,  0x0245, 0x0061, 0x01);
+immutable DoorEntryA DoorEntry401 = DoorEntryA(null /+TEXT_DOOR_401+/, EventFlag.None,  0x024A, 0x0055, 0x01);
+immutable DoorEntryA DoorEntry402 = DoorEntryA(null /+TEXT_DOOR_402+/, EventFlag.None,  0x0215, 0x0035, 0x01);
+immutable DoorEntryA DoorEntry403 = DoorEntryA(null /+TEXT_DOOR_403+/, EventFlag.DEFEATED_SANCTUARY_BOSS_4 | EVENT_FLAG_UNSET,  0x01E1, 0x0019, 0x01);
+immutable DoorEntryA DoorEntry404 = DoorEntryA(null, EventFlag.None,  0x8434, 0x0167, 0x01);
+immutable DoorEntryA DoorEntry405 = DoorEntryA(null, EventFlag.None,  0xC034, 0x0298, 0x01);
+immutable DoorEntryA DoorEntry406 = DoorEntryA(null, EventFlag.None,  0x826C, 0x0307, 0x01);
+immutable DoorEntryA DoorEntry407 = DoorEntryA(null, EventFlag.None,  0xC438, 0x01BC, 0x01);
+immutable DoorEntryA DoorEntry408 = DoorEntryA(null /+TEXT_DOOR_408+/, EventFlag.None,  0x0261, 0x0051, 0x01);
+immutable DoorEntryA DoorEntry409 = DoorEntryA(null, EventFlag.None,  0x422A, 0x002A, 0x01);
+immutable DoorEntryA DoorEntry410 = DoorEntryA(null, EventFlag.None,  0x82E5, 0x0322, 0x01);
+immutable DoorEntryA DoorEntry411 = DoorEntryA(null, EventFlag.None,  0xC1D4, 0x0378, 0x01);
+immutable DoorEntryA DoorEntry412 = DoorEntryA(null, EventFlag.None,  0xC265, 0x03FC, 0x01);
+immutable DoorEntryA DoorEntry413 = DoorEntryA(null, EventFlag.None,  0xC2A5, 0x03BC, 0x01);
+immutable DoorEntryA DoorEntry414 = DoorEntryA(null, EventFlag.None,  0x831D, 0x0322, 0x01);
+immutable DoorEntryA DoorEntry415 = DoorEntryA(null, EventFlag.None,  0xC2A5, 0x03DC, 0x01);
+immutable DoorEntryA DoorEntry416 = DoorEntryA(null, EventFlag.None,  0x827D, 0x03C2, 0x01);
+immutable DoorEntryA DoorEntry417 = DoorEntryA(null, EventFlag.None,  0x827D, 0x03E6, 0x01);
+immutable DoorEntryA DoorEntry418 = DoorEntryA(null, EventFlag.None,  0x8291, 0x0342, 0x01);
+immutable DoorEntryA DoorEntry419 = DoorEntryA(null, EventFlag.None,  0xC2BD, 0x03FC, 0x01);
+immutable DoorEntryA DoorEntry420 = DoorEntryA(null, EventFlag.None,  0xC349, 0x0348, 0x01);
+immutable DoorEntryA DoorEntry421 = DoorEntryA(null, EventFlag.None,  0x82B5, 0x0302, 0x01);
+immutable DoorEntryA DoorEntry422 = DoorEntryA(null, EventFlag.None,  0x01CB, 0x030C, 0x01);
+immutable DoorEntryA DoorEntry423 = DoorEntryA(null, EventFlag.None,  0xC35D, 0x039C, 0x01);
+immutable DoorEntryA DoorEntry424 = DoorEntryA(null, EventFlag.None,  0x82DD, 0x0343, 0x04);
+immutable DoorEntryA DoorEntry425 = DoorEntryA(null, EventFlag.None,  0xC22A, 0x0385, 0x07);
+immutable DoorEntryA DoorEntry426 = DoorEntryA(null, EventFlag.None,  0x8239, 0x0323, 0x07);
+immutable DoorEntryA DoorEntry427 = DoorEntryA(null, EventFlag.None,  0xC219, 0x035C, 0x07);
+immutable DoorEntryA DoorEntry428 = DoorEntryA(null, EventFlag.None,  0x8251, 0x03E3, 0x07);
+immutable DoorEntryA DoorEntry429 = DoorEntryA(null, EventFlag.None,  0xC2FD, 0x03DC, 0x07);
+immutable DoorEntryA DoorEntry430 = DoorEntryA(null, EventFlag.None,  0x82FD, 0x03C3, 0x07);
+immutable DoorEntryA DoorEntry431 = DoorEntryA(null, EventFlag.None,  0xC2DD, 0x0358, 0x07);
+immutable DoorEntryA DoorEntry432 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x819B, 0x03A3, 0x01);
+immutable DoorEntryA DoorEntry433 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x02C1, 0x01FC, 0x01);
+immutable DoorEntryA DoorEntry434 = DoorEntryA(null, EventFlag.None,  0x82D9, 0x01E3, 0x07);
+immutable DoorEntryA DoorEntry435 = DoorEntryA(null, EventFlag.None,  0x0021, 0x031C, 0x01);
+immutable DoorEntryA DoorEntry436 = DoorEntryA(null, EventFlag.None,  0x8299, 0x01E3, 0x07);
+immutable DoorEntryA DoorEntry437 = DoorEntryA(null, EventFlag.None,  0xC252, 0x0249, 0x01);
+immutable DoorEntryA DoorEntry438 = DoorEntryA(null, EventFlag.None,  0xC2F9, 0x01F4, 0x07);
+immutable DoorEntryA DoorEntry439 = DoorEntryA(null, EventFlag.None,  0x82B9, 0x01E3, 0x07);
+immutable DoorEntryA DoorEntry440 = DoorEntryA(null, EventFlag.None,  0xC2A9, 0x01B8, 0x07);
+immutable DoorEntryA DoorEntry441 = DoorEntryA(null, EventFlag.None,  0xC2DD, 0x01A8, 0x07);
+immutable DoorEntryA DoorEntry442 = DoorEntryA(null, EventFlag.None,  0xC2B1, 0x0164, 0x07);
+immutable DoorEntryA DoorEntry443 = DoorEntryA(null, EventFlag.None,  0x82CD, 0x0147, 0x07);
+immutable DoorEntryA DoorEntry444 = DoorEntryA(null, EventFlag.None,  0x8379, 0x03A3, 0x01);
+immutable DoorEntryA DoorEntry445 = DoorEntryA(null, EventFlag.None,  0x02CB, 0x0110, 0x01);
+immutable DoorEntryA DoorEntry446 = DoorEntryA(null /+TEXT_DOOR_446+/, EventFlag.DEFEATED_SANCTUARY_BOSS_3 | EVENT_FLAG_UNSET,  0x0295, 0x004E, 0x01);
+immutable DoorEntryA DoorEntry447 = DoorEntryA(null /+TEXT_DOOR_447+/, EventFlag.None,  0x02BD, 0x0066, 0x01);
+immutable DoorEntryA DoorEntry448 = DoorEntryA(null, EventFlag.None,  0x0391, 0x0045, 0x01);
+immutable DoorEntryA DoorEntry449 = DoorEntryA(null /+TEXT_DOOR_447+/, EventFlag.None,  0x0295, 0x001E, 0x01);
+immutable DoorEntryA DoorEntry450 = DoorEntryA(null, EventFlag.None,  0x024F, 0x022E, 0x01);
+immutable DoorEntryA DoorEntry451 = DoorEntryA(null, EventFlag.None,  0x0395, 0x0035, 0x01);
+immutable DoorEntryA DoorEntry452 = DoorEntryA(null, EventFlag.None,  0xC279, 0x03B9, 0x01);
+immutable DoorEntryA DoorEntry453 = DoorEntryA(null /+TEXT_DOOR_001+/, EventFlag.None,  0x011F, 0x0395, 0x01);
+immutable DoorEntryA DoorEntry454 = DoorEntryA(null, EventFlag.None,  0x810C, 0x036B, 0x01);
+immutable DoorEntryA DoorEntry455 = DoorEntryA(null, EventFlag.None,  0x8199, 0x0343, 0x01);
+immutable DoorEntryA DoorEntry456 = DoorEntryA(null, EventFlag.None,  0x0055, 0x034D, 0x01);
+immutable DoorEntryA DoorEntry457 = DoorEntryA(null, EventFlag.None,  0x81B9, 0x0343, 0x01);
+immutable DoorEntryA DoorEntry458 = DoorEntryA(null, EventFlag.None,  0xC199, 0x03BD, 0x01);
+immutable DoorEntryA DoorEntry459 = DoorEntryA(null, EventFlag.None,  0xC199, 0x03FC, 0x01);
+immutable DoorEntryA DoorEntry460 = DoorEntryA(null /+TEXT_DOOR_460+/, EventFlag.None,  0x03E2, 0x0019, 0x01);
+immutable DoorEntryA DoorEntry461 = DoorEntryA(null /+TEXT_DOOR_461+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0021, 0x031C, 0x01);
+immutable DoorEntryC DoorEntry462 = DoorEntryC(null /+TEXT_DOOR_462+/);
+immutable DoorEntryA DoorEntry463 = DoorEntryA(null, EventFlag.None,  0xC3E9, 0x03CB, 0x04);
+immutable DoorEntryA DoorEntry464 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC1A9, 0x0350, 0x01);
+immutable DoorEntryA DoorEntry465 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x0281, 0x018C, 0x01);
+immutable DoorEntryA DoorEntry466 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x828D, 0x0183, 0x01);
+immutable DoorEntryA DoorEntry467 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC379, 0x03F9, 0x01);
+immutable DoorEntryA DoorEntry468 = DoorEntryA(null, EventFlag.None,  0xC3E9, 0x032B, 0x04);
+immutable DoorEntryA DoorEntry469 = DoorEntryA(null, EventFlag.None,  0xC3E9, 0x038B, 0x04);
+immutable DoorEntryA DoorEntry470 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC1B9, 0x035C, 0x01);
+immutable DoorEntryA DoorEntry471 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC28D, 0x019C, 0x01);
+immutable DoorEntryA DoorEntry472 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x8279, 0x0383, 0x01);
+immutable DoorEntryA DoorEntry473 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x03CC, 0x001B, 0x0A);
+immutable DoorEntryA DoorEntry474 = DoorEntryA(null, EventFlag.None,  0x03C4, 0x0037, 0x0A);
+immutable DoorEntryA DoorEntry475 = DoorEntryA(null, EventFlag.None,  0x03A0, 0x001B, 0x0A);
+immutable DoorEntryA DoorEntry476 = DoorEntryA(null, EventFlag.None,  0x03A7, 0x0018, 0x01);
+immutable DoorEntryA DoorEntry477 = DoorEntryA(null, EventFlag.None,  0x03B0, 0x0015, 0x01);
+immutable DoorEntryA DoorEntry478 = DoorEntryA(null, EventFlag.None,  0x03AA, 0x002D, 0x01);
+immutable DoorEntryA DoorEntry479 = DoorEntryA(null, EventFlag.None,  0x03AC, 0x0025, 0x01);
+immutable DoorEntryA DoorEntry480 = DoorEntryA(null, EventFlag.None,  0xC10D, 0x03D8, 0x01);
+immutable DoorEntryA DoorEntry481 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC00C, 0x035B, 0x01);
+immutable DoorEntryA DoorEntry482 = DoorEntryA(null, EventFlag.None,  0xC0ED, 0x03F4, 0x01);
+immutable DoorEntryA DoorEntry483 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x81AC, 0x02C4, 0x01);
+immutable DoorEntryA DoorEntry484 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x81AC, 0x02C4, 0x01);
+immutable DoorEntryA DoorEntry485 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC35A, 0x03F8, 0x01);
+immutable DoorEntryA DoorEntry486 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x0413, 0x0031, 0x01);
+immutable DoorEntryA DoorEntry487 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x0291, 0x03B8, 0x01);
+immutable DoorEntryA DoorEntry488 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x843C, 0x03C4, 0x01);
+immutable DoorEntryA DoorEntry489 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0xC43C, 0x03FB, 0x01);
+immutable DoorEntryC DoorEntry490 = DoorEntryC(null /+TEXT_DOOR_490+/);
+immutable DoorEntryA DoorEntry491 = DoorEntryA(null /+TEXT_DOOR_346+/, EventFlag.None,  0x04B4, 0x01B3, 0x01);
+immutable DoorEntryA DoorEntry492 = DoorEntryA(null /+TEXT_DOOR_346+/, EventFlag.None,  0x04DC, 0x00AF, 0x01);
+immutable DoorEntryA DoorEntry493 = DoorEntryA(null, EventFlag.None,  0x0283, 0x038D, 0x01);
+immutable DoorEntryA DoorEntry494 = DoorEntryA(null, EventFlag.None,  0x02A3, 0x03F5, 0x01);
+immutable DoorEntryA DoorEntry495 = DoorEntryA(null, EventFlag.None,  0x0293, 0x0305, 0x01);
+immutable DoorEntryA DoorEntry496 = DoorEntryA(null, EventFlag.None,  0x0293, 0x0339, 0x01);
+immutable DoorEntryA DoorEntry497 = DoorEntryA(null, EventFlag.None,  0x02C3, 0x0335, 0x01);
+immutable DoorEntryA DoorEntry498 = DoorEntryA(null, EventFlag.None,  0x84B4, 0x01CC, 0x01);
+immutable DoorEntryA DoorEntry499 = DoorEntryA(null, EventFlag.None,  0x02EA, 0x03B5, 0x01);
+immutable DoorEntryA DoorEntry500 = DoorEntryA(null, EventFlag.None,  0x42EC, 0x03ED, 0x01);
+immutable DoorEntryA DoorEntry501 = DoorEntryA(null, EventFlag.None,  0x42A8, 0x0375, 0x01);
+immutable DoorEntryA DoorEntry502 = DoorEntryA(null, EventFlag.None,  0x02CA, 0x03D5, 0x01);
+immutable DoorEntryA DoorEntry503 = DoorEntryA(null, EventFlag.None,  0x4304, 0x0379, 0x01);
+immutable DoorEntryA DoorEntry504 = DoorEntryA(null /+TEXT_DOOR_346+/, EventFlag.None,  0x04B6, 0x01C9, 0x01);
+immutable DoorEntryA DoorEntry505 = DoorEntryA(null, EventFlag.None,  0x44BC, 0x00C1, 0x01);
+immutable DoorEntryA DoorEntry506 = DoorEntryA(null, EventFlag.UNKNOWN_2E9 | EVENT_FLAG_UNSET,  0xC2A9, 0x0310, 0x01);
+immutable DoorEntryA DoorEntry507 = DoorEntryA(null, EventFlag.None,  0xC2C9, 0x0310, 0x01);
+immutable DoorEntryA DoorEntry508 = DoorEntryA(null, EventFlag.None,  0x02A8, 0x0305, 0x01);
+immutable DoorEntryA DoorEntry509 = DoorEntryA(null, EventFlag.None,  0xC2E9, 0x030C, 0x01);
+immutable DoorEntryA DoorEntry510 = DoorEntryA(null, EventFlag.None,  0x02C8, 0x0305, 0x01);
+immutable DoorEntryA DoorEntry511 = DoorEntryA(null, EventFlag.None,  0x02C8, 0x030D, 0x01);
+immutable DoorEntryA DoorEntry512 = DoorEntryA(null, EventFlag.None,  0xC309, 0x031C, 0x01);
+immutable DoorEntryA DoorEntry513 = DoorEntryA(null, EventFlag.None,  0x02A8, 0x030D, 0x01);
+immutable DoorEntryA DoorEntry514 = DoorEntryA(null, EventFlag.None,  0xC289, 0x032C, 0x01);
+immutable DoorEntryA DoorEntry515 = DoorEntryA(null, EventFlag.None,  0x0288, 0x0329, 0x01);
+immutable DoorEntryA DoorEntry516 = DoorEntryA(null, EventFlag.None,  0xC2C9, 0x0358, 0x01);
+immutable DoorEntryA DoorEntry517 = DoorEntryA(null, EventFlag.None,  0x0288, 0x0325, 0x01);
+immutable DoorEntryA DoorEntry518 = DoorEntryA(null, EventFlag.None,  0xC2E9, 0x03D0, 0x01);
+immutable DoorEntryA DoorEntry519 = DoorEntryA(null, EventFlag.None,  0xC2C9, 0x03F4, 0x01);
+immutable DoorEntryA DoorEntry520 = DoorEntryA(null, EventFlag.None,  0x02E8, 0x03CD, 0x01);
+immutable DoorEntryA DoorEntry521 = DoorEntryA(null, EventFlag.UNKNOWN_1C4 | EVENT_FLAG_UNSET,  0xC2D9, 0x031C, 0x01);
+immutable DoorEntryA DoorEntry522 = DoorEntryA(null, EventFlag.UNKNOWN_1C3 | EVENT_FLAG_UNSET,  0xC339, 0x031C, 0x01);
+immutable DoorEntryA DoorEntry523 = DoorEntryA(null, EventFlag.None,  0x8299, 0x0383, 0x01);
+immutable DoorEntryA DoorEntry524 = DoorEntryA(null, EventFlag.UNKNOWN_1C6 | EVENT_FLAG_UNSET,  0xC2F9, 0x031C, 0x01);
+immutable DoorEntryA DoorEntry525 = DoorEntryA(null, EventFlag.UNKNOWN_1C5 | EVENT_FLAG_UNSET,  0xC319, 0x031C, 0x01);
+immutable DoorEntryA DoorEntry526 = DoorEntryA(null, EventFlag.None,  0x82D9, 0x0303, 0x01);
+immutable DoorEntryA DoorEntry527 = DoorEntryA(null, EventFlag.None,  0x82F9, 0x0303, 0x01);
+immutable DoorEntryA DoorEntry528 = DoorEntryA(null, EventFlag.UNKNOWN_1CA | EVENT_FLAG_UNSET,  0xC325, 0x0308, 0x01);
+immutable DoorEntryA DoorEntry529 = DoorEntryA(null, EventFlag.UNKNOWN_1C9 | EVENT_FLAG_UNSET,  0xC349, 0x0310, 0x01);
+immutable DoorEntryA DoorEntry530 = DoorEntryA(null, EventFlag.None,  0x831B, 0x0303, 0x01);
+immutable DoorEntryA DoorEntry531 = DoorEntryA(null, EventFlag.None,  0x0308, 0x0305, 0x01);
+immutable DoorEntryA DoorEntry532 = DoorEntryA(null, EventFlag.None,  0x0308, 0x0309, 0x01);
+immutable DoorEntryA DoorEntry533 = DoorEntryA(null, EventFlag.UNKNOWN_1C8 | EVENT_FLAG_UNSET,  0xC2F9, 0x035C, 0x01);
+immutable DoorEntryA DoorEntry534 = DoorEntryA(null, EventFlag.UNKNOWN_1C7 | EVENT_FLAG_UNSET,  0xC359, 0x031C, 0x01);
+immutable DoorEntryA DoorEntry535 = DoorEntryA(null, EventFlag.None,  0x8339, 0x0303, 0x01);
+immutable DoorEntryA DoorEntry536 = DoorEntryA(null, EventFlag.UNKNOWN_1CE | EVENT_FLAG_UNSET,  0xC2E9, 0x034C, 0x01);
+immutable DoorEntryA DoorEntry537 = DoorEntryA(null, EventFlag.UNKNOWN_1CD | EVENT_FLAG_UNSET,  0xC329, 0x035C, 0x01);
+immutable DoorEntryA DoorEntry538 = DoorEntryA(null, EventFlag.None,  0x8359, 0x0303, 0x01);
+immutable DoorEntryA DoorEntry539 = DoorEntryA(null, EventFlag.None,  0x02C8, 0x0345, 0x01);
+immutable DoorEntryA DoorEntry540 = DoorEntryA(null, EventFlag.None,  0x02C8, 0x0355, 0x01);
+immutable DoorEntryA DoorEntry541 = DoorEntryA(null, EventFlag.UNKNOWN_1CC | EVENT_FLAG_UNSET,  0xC309, 0x03CC, 0x01);
+immutable DoorEntryA DoorEntry542 = DoorEntryA(null, EventFlag.UNKNOWN_1CB | EVENT_FLAG_UNSET,  0xC319, 0x037C, 0x01);
+immutable DoorEntryA DoorEntry543 = DoorEntryA(null, EventFlag.None,  0x82F9, 0x0343, 0x01);
+immutable DoorEntryA DoorEntry544 = DoorEntryA(null, EventFlag.None,  0x02E8, 0x03C5, 0x01);
+immutable DoorEntryA DoorEntry545 = DoorEntryA(null, EventFlag.UNKNOWN_204 | EVENT_FLAG_UNSET,  0xC351, 0x03B4, 0x01);
+immutable DoorEntryA DoorEntry546 = DoorEntryA(null, EventFlag.None,  0x8319, 0x0343, 0x01);
+immutable DoorEntryA DoorEntry547 = DoorEntryA(null, EventFlag.None,  0x02C8, 0x03E5, 0x01);
+immutable DoorEntryA DoorEntry548 = DoorEntryA(null /+TEXT_DOOR_548+/, EventFlag.None,  0xC4E6, 0x02CD, 0x01);
+immutable DoorEntryA DoorEntry549 = DoorEntryA(null /+TEXT_DOOR_549+/, EventFlag.None,  0x827E, 0x0118, 0x01);
+immutable DoorEntryA DoorEntry550 = DoorEntryA(null, EventFlag.None,  0xC4E6, 0x020D, 0x01);
+immutable DoorEntryA DoorEntry551 = DoorEntryA(null, EventFlag.None,  0x84E6, 0x0232, 0x01);
+immutable DoorEntryA DoorEntry552 = DoorEntryA(null, EventFlag.None,  0xC30D, 0x02DC, 0x01);
+immutable DoorEntryA DoorEntry553 = DoorEntryA(null, EventFlag.None,  0x8339, 0x02A7, 0x04);
+immutable DoorEntryA DoorEntry554 = DoorEntryA(null /+TEXT_DOOR_554+/, EventFlag.None,  0xC35D, 0x02FC, 0x04);
+immutable DoorEntryA DoorEntry555 = DoorEntryA(null /+TEXT_DOOR_555+/, EventFlag.None,  0xC2A5, 0x02C8, 0x01);
+immutable DoorEntryA DoorEntry556 = DoorEntryA(null /+TEXT_DOOR_556+/, EventFlag.UNKNOWN_092 | EVENT_FLAG_UNSET,  0xC357, 0x0296, 0x06);
+immutable DoorEntryA DoorEntry557 = DoorEntryA(null /+TEXT_DOOR_001+/, EventFlag.None,  0x0184, 0x01BB, 0x01);
+immutable DoorEntryA DoorEntry558 = DoorEntryA(null, EventFlag.None,  0xC2B5, 0x027C, 0x04);
+immutable DoorEntryA DoorEntry559 = DoorEntryA(null, EventFlag.None,  0xC2FD, 0x02FC, 0x01);
+immutable DoorEntryA DoorEntry560 = DoorEntryA(null, EventFlag.None,  0xC2AD, 0x0238, 0x06);
+immutable DoorEntryA DoorEntry561 = DoorEntryA(null /+TEXT_DOOR_561+/, EventFlag.None,  0xC1AC, 0x0317, 0x01);
+immutable DoorEntryA DoorEntry562 = DoorEntryA(null, EventFlag.None,  0x8209, 0x02A3, 0x04);
+immutable DoorEntryA DoorEntry563 = DoorEntryA(null, EventFlag.None,  0x0308, 0x02B2, 0x07);
+immutable DoorEntryA DoorEntry564 = DoorEntryA(null, EventFlag.None,  0x02DB, 0x02C9, 0x07);
+immutable DoorEntryA DoorEntry565 = DoorEntryA(null, EventFlag.None,  0x02DB, 0x02D1, 0x07);
+immutable DoorEntryA DoorEntry566 = DoorEntryA(null /+TEXT_DOOR_566+/, EventFlag.UNKNOWN_15E,  0x82A5, 0x02AB, 0x0D);
+immutable DoorEntryA DoorEntry567 = DoorEntryA(null, EventFlag.None,  0xC281, 0x02C0, 0x07);
+immutable DoorEntryA DoorEntry568 = DoorEntryA(null, EventFlag.None,  0xC2C1, 0x02C8, 0x07);
+immutable DoorEntryA DoorEntry569 = DoorEntryA(null, EventFlag.None,  0x0327, 0x02ED, 0x07);
+immutable DoorEntryA DoorEntry570 = DoorEntryA(null, EventFlag.None,  0xC28D, 0x0298, 0x07);
+immutable DoorEntryA DoorEntry571 = DoorEntryA(null, EventFlag.None,  0x02DB, 0x02A9, 0x07);
+immutable DoorEntryA DoorEntry572 = DoorEntryA(null, EventFlag.None,  0x02DB, 0x02B1, 0x07);
+immutable DoorEntryA DoorEntry573 = DoorEntryA(null /+TEXT_DOOR_573+/, EventFlag.None,  0x830C, 0x0224, 0x07);
+immutable DoorEntryA DoorEntry574 = DoorEntryA(null, EventFlag.None,  0xC28D, 0x02F8, 0x07);
+immutable DoorEntryA DoorEntry575 = DoorEntryA(null, EventFlag.None,  0xC2AD, 0x0298, 0x07);
+immutable DoorEntryA DoorEntry576 = DoorEntryA(null, EventFlag.None,  0x0268, 0x02ED, 0x07);
+immutable DoorEntryA DoorEntry577 = DoorEntryA(null /+TEXT_DOOR_577+/, EventFlag.UNKNOWN_15E,  0x832D, 0x02E3, 0x0D);
+immutable DoorEntryA DoorEntry578 = DoorEntryA(null, EventFlag.None,  0x026B, 0x02AE, 0x07);
+immutable DoorEntryA DoorEntry579 = DoorEntryA(null, EventFlag.None,  0x0288, 0x0290, 0x07);
+immutable DoorEntryA DoorEntry580 = DoorEntryA(null, EventFlag.None,  0xC32B, 0x029A, 0x07);
+immutable DoorEntryA DoorEntry581 = DoorEntryA(null, EventFlag.None,  0xC24F, 0x01AF, 0x0C);
+immutable DoorEntryA DoorEntry582 = DoorEntryA(null, EventFlag.None,  0x82ED, 0x0283, 0x0F);
+immutable DoorEntryA DoorEntry583 = DoorEntryA(null, EventFlag.None,  0xC2AD, 0x02F8, 0x07);
+immutable DoorEntryA DoorEntry584 = DoorEntryA(null, EventFlag.None,  0xC2CD, 0x0298, 0x07);
+immutable DoorEntryA DoorEntry585 = DoorEntryA(null, EventFlag.None,  0x828D, 0x0283, 0x07);
+immutable DoorEntryA DoorEntry586 = DoorEntryA(null /+TEXT_DOOR_586+/, EventFlag.UNKNOWN_15E,  0xC32D, 0x02F8, 0x0D);
+immutable DoorEntryA DoorEntry587 = DoorEntryA(null /+TEXT_DOOR_587+/, EventFlag.None,  0x0278, 0x0285, 0x0D);
+immutable DoorEntryA DoorEntry588 = DoorEntryA(null /+TEXT_DOOR_588+/, EventFlag.None,  0x0203, 0x01B0, 0x01);
+immutable DoorEntryA DoorEntry589 = DoorEntryA(null, EventFlag.None,  0x02A8, 0x028A, 0x07);
+immutable DoorEntryA DoorEntry590 = DoorEntryA(null, EventFlag.None,  0x8341, 0x0226, 0x07);
+immutable DoorEntryA DoorEntry591 = DoorEntryA(null, EventFlag.None,  0xC2CD, 0x02F8, 0x07);
+immutable DoorEntryA DoorEntry592 = DoorEntryA(null, EventFlag.None,  0xC2ED, 0x02F8, 0x07);
+immutable DoorEntryA DoorEntry593 = DoorEntryA(null, EventFlag.None,  0x02A8, 0x0290, 0x07);
+immutable DoorEntryA DoorEntry594 = DoorEntryA(null /+TEXT_DOOR_594+/, EventFlag.UNKNOWN_15E,  0xC30D, 0x02F8, 0x0D);
+immutable DoorEntryA DoorEntry595 = DoorEntryA(null, EventFlag.None,  0x826D, 0x02E3, 0x07);
+immutable DoorEntryA DoorEntry596 = DoorEntryA(null, EventFlag.None,  0xC26D, 0x02F8, 0x07);
+immutable DoorEntryA DoorEntry597 = DoorEntryA(null, EventFlag.None,  0x026B, 0x02C1, 0x07);
+immutable DoorEntryA DoorEntry598 = DoorEntryA(null, EventFlag.None,  0x826D, 0x0283, 0x07);
+immutable DoorEntryA DoorEntry599 = DoorEntryA(null, EventFlag.None,  0xC26D, 0x0298, 0x07);
+immutable DoorEntryA DoorEntry600 = DoorEntryA(null, EventFlag.None,  0x830D, 0x02E3, 0x07);
+immutable DoorEntryA DoorEntry601 = DoorEntryA(null, EventFlag.None,  0x02C8, 0x0290, 0x07);
+immutable DoorEntryA DoorEntry602 = DoorEntryA(null, EventFlag.None,  0x02F8, 0x02F1, 0x07);
+immutable DoorEntryA DoorEntry603 = DoorEntryA(null, EventFlag.None,  0x82B1, 0x0223, 0x0F);
+immutable DoorEntryA DoorEntry604 = DoorEntryA(null /+TEXT_DOOR_604+/, EventFlag.UNKNOWN_08F | EVENT_FLAG_UNSET,  0x82ED, 0x02E3, 0x07);
+immutable DoorEntryA DoorEntry605 = DoorEntryA(null, EventFlag.UNKNOWN_298 | EVENT_FLAG_UNSET,  0xC209, 0x02BC, 0x0F);
+immutable DoorEntryA DoorEntry606 = DoorEntryA(null, EventFlag.UNKNOWN_16A | EVENT_FLAG_UNSET,  0x02EC, 0x02C2, 0x07);
+immutable DoorEntryA DoorEntry607 = DoorEntryA(null, EventFlag.None,  0x82CD, 0x0283, 0x07);
+immutable DoorEntryA DoorEntry608 = DoorEntryA(null, EventFlag.None,  0xC2D9, 0x02E8, 0x07);
+immutable DoorEntryA DoorEntry609 = DoorEntryA(null, EventFlag.None,  0xC31D, 0x02CC, 0x01);
+immutable DoorEntryA DoorEntry610 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0xC24B, 0x0142, 0x01);
+immutable DoorEntryA DoorEntry611 = DoorEntryA(null, EventFlag.None,  0xC27D, 0x02FC, 0x07);
+immutable DoorEntryA DoorEntry612 = DoorEntryA(null, EventFlag.None,  0xC27D, 0x0238, 0x07);
+immutable DoorEntryA DoorEntry613 = DoorEntryA(null, EventFlag.None,  0x832D, 0x02A3, 0x0F);
+immutable DoorEntryA DoorEntry614 = DoorEntryA(null, EventFlag.None,  0xC33D, 0x02D8, 0x07);
+immutable DoorEntryA DoorEntry615 = DoorEntryA(null, EventFlag.None,  0xC35D, 0x02D8, 0x07);
+immutable DoorEntryA DoorEntry616 = DoorEntryA(null, EventFlag.None,  0xC1C9, 0x0173, 0x01);
+immutable DoorEntryA DoorEntry617 = DoorEntryA(null, EventFlag.None,  0x82FD, 0x02E3, 0x01);
+immutable DoorEntryA DoorEntry618 = DoorEntryA(null, EventFlag.None,  0xC2DD, 0x02DC, 0x07);
+immutable DoorEntryA DoorEntry619 = DoorEntryA(null /+TEXT_DOOR_587+/, EventFlag.None,  0x02D8, 0x0285, 0x0D);
+immutable DoorEntryA DoorEntry620 = DoorEntryA(null, EventFlag.None,  0x032C, 0x02C5, 0x07);
+immutable DoorEntryA DoorEntry621 = DoorEntryA(null, EventFlag.None,  0x829D, 0x02E3, 0x07);
+immutable DoorEntryA DoorEntry622 = DoorEntryA(null, EventFlag.None,  0x830D, 0x02A3, 0x0F);
+immutable DoorEntryA DoorEntry623 = DoorEntryA(null, EventFlag.None,  0xC31D, 0x02FC, 0x07);
+immutable DoorEntryA DoorEntry624 = DoorEntryA(null, EventFlag.None,  0xC34D, 0x02DC, 0x07);
+immutable DoorEntryA DoorEntry625 = DoorEntryA(null, EventFlag.None,  0x0318, 0x02B1, 0x07);
+immutable DoorEntryA DoorEntry626 = DoorEntryA(null, EventFlag.None,  0xC26D, 0x02CC, 0x07);
+immutable DoorEntryA DoorEntry627 = DoorEntryA(null /+TEXT_DOOR_587+/, EventFlag.None,  0x0298, 0x0285, 0x0D);
+immutable DoorEntryA DoorEntry628 = DoorEntryA(null /+TEXT_DOOR_628+/, EventFlag.UNKNOWN_08E | EVENT_FLAG_UNSET,  0x02B8, 0x0285, 0x0D);
+immutable DoorEntryA DoorEntry629 = DoorEntryA(null, EventFlag.None,  0xC2BD, 0x02FC, 0x07);
+immutable DoorEntryA DoorEntry630 = DoorEntryA(null /+TEXT_DOOR_630+/, EventFlag.None,  0xC218, 0x01C2, 0x0C);
+immutable DoorEntryA DoorEntry631 = DoorEntryA(null, EventFlag.None,  0x032C, 0x02D1, 0x07);
+immutable DoorEntryA DoorEntry632 = DoorEntryA(null, EventFlag.None,  0x0318, 0x02BD, 0x07);
+immutable DoorEntryA DoorEntry633 = DoorEntryA(null /+TEXT_DOOR_633+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x035E, 0x02BE, 0x00);
+immutable DoorEntryA DoorEntry634 = DoorEntryA(null, EventFlag.UNKNOWN_03A | EVENT_FLAG_UNSET,  0xC35D, 0x02BC, 0x07);
+immutable DoorEntryA DoorEntry635 = DoorEntryA(null, EventFlag.None,  0x835D, 0x02E2, 0x01);
+immutable DoorEntryA DoorEntry636 = DoorEntryA(null /+TEXT_DOOR_636+/, EventFlag.None,  0xC2DD, 0x026C, 0x07);
+immutable DoorEntryA DoorEntry637 = DoorEntryA(null, EventFlag.None,  0xC26D, 0x023C, 0x07);
+immutable DoorEntryA DoorEntry638 = DoorEntryA(null /+TEXT_DOOR_638+/, EventFlag.None,  0x823E, 0x0179, 0x0A);
+immutable DoorEntryA DoorEntry639 = DoorEntryA(null, EventFlag.UNKNOWN_176 | EVENT_FLAG_UNSET,  0xC34D, 0x02BC, 0x07);
+immutable DoorEntryA DoorEntry640 = DoorEntryA(null /+TEXT_DOOR_640+/, EventFlag.None,  0x02A8, 0x0259, 0x07);
+immutable DoorEntryA DoorEntry641 = DoorEntryA(null /+TEXT_DOOR_641+/, EventFlag.None,  0xC1E2, 0x0142, 0x0A);
+immutable DoorEntryA DoorEntry642 = DoorEntryA(null /+TEXT_DOOR_642+/, EventFlag.None,  0x82DD, 0x0233, 0x07);
+immutable DoorEntryA DoorEntry643 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x0044, 0x0283, 0x01);
+immutable DoorEntryA DoorEntry644 = DoorEntryA(null, EventFlag.None,  0x8299, 0x0227, 0x07);
+immutable DoorEntryA DoorEntry645 = DoorEntryA(null, EventFlag.None,  0x82AB, 0x024D, 0x07);
+immutable DoorEntryA DoorEntry646 = DoorEntryA(null, EventFlag.None,  0xC297, 0x027B, 0x01);
+immutable DoorEntryA DoorEntry647 = DoorEntryA(null /+TEXT_DOOR_647+/, EventFlag.None,  0x0217, 0x0192, 0x0A);
+immutable DoorEntryA DoorEntry648 = DoorEntryA(null, EventFlag.None,  0x01D9, 0x01B0, 0x0A);
+immutable DoorEntryA DoorEntry649 = DoorEntryA(null, EventFlag.None,  0x82F1, 0x02AB, 0x0F);
+immutable DoorEntryA DoorEntry650 = DoorEntryA(null, EventFlag.None,  0xC0B2, 0x001D, 0x01);
+immutable DoorEntryA DoorEntry651 = DoorEntryA(null, EventFlag.None,  0xC0B6, 0x001D, 0x01);
+immutable DoorEntryA DoorEntry652 = DoorEntryA(null, EventFlag.None,  0x435A, 0x02AD, 0x01);
+immutable DoorEntryA DoorEntry653 = DoorEntryA(null, EventFlag.None,  0xC1BC, 0x02D7, 0x07);
+immutable DoorEntryA DoorEntry654 = DoorEntryA(null, EventFlag.None,  0xC22C, 0x0217, 0x07);
+immutable DoorEntryA DoorEntry655 = DoorEntryA(null, EventFlag.None,  0x81B6, 0x0362, 0x01);
+immutable DoorEntryA DoorEntry656 = DoorEntryA(null, EventFlag.None,  0x81BA, 0x0362, 0x01);
+immutable DoorEntryA DoorEntry657 = DoorEntryA(null, EventFlag.None,  0x8056, 0x0262, 0x01);
+immutable DoorEntryA DoorEntry658 = DoorEntryA(null, EventFlag.None,  0x805A, 0x0262, 0x01);
+immutable DoorEntryA DoorEntry659 = DoorEntryA(null, EventFlag.None,  0x0054, 0x0299, 0x07);
+immutable DoorEntryA DoorEntry660 = DoorEntryA(null, EventFlag.None,  0x004C, 0x02BD, 0x07);
+immutable DoorEntryA DoorEntry661 = DoorEntryA(null, EventFlag.None,  0xC056, 0x02FD, 0x01);
+immutable DoorEntryA DoorEntry662 = DoorEntryA(null, EventFlag.None,  0xC05A, 0x02FD, 0x01);
+immutable DoorEntryA DoorEntry663 = DoorEntryA(null, EventFlag.None,  0xC24C, 0x0217, 0x07);
+immutable DoorEntryA DoorEntry664 = DoorEntryA(null, EventFlag.None,  0x8196, 0x0182, 0x01);
+immutable DoorEntryA DoorEntry665 = DoorEntryA(null, EventFlag.None,  0x819A, 0x0182, 0x01);
+immutable DoorEntryA DoorEntry666 = DoorEntryA(null, EventFlag.None,  0x01AC, 0x039D, 0x07);
+immutable DoorEntryA DoorEntry667 = DoorEntryA(null, EventFlag.None,  0xC1B6, 0x03FD, 0x01);
+immutable DoorEntryA DoorEntry668 = DoorEntryA(null, EventFlag.None,  0xC1BA, 0x03FD, 0x01);
+immutable DoorEntryA DoorEntry669 = DoorEntryA(null /+TEXT_DOOR_669+/, EventFlag.None,  0x4200, 0x01ED, 0x01);
+immutable DoorEntryA DoorEntry670 = DoorEntryA(null, EventFlag.None,  0xC26C, 0x021B, 0x07);
+immutable DoorEntryA DoorEntry671 = DoorEntryA(null, EventFlag.None,  0x0194, 0x01A9, 0x07);
+immutable DoorEntryC DoorEntry672 = DoorEntryC(null /+TEXT_DOOR_672+/);
+immutable DoorEntryC DoorEntry673 = DoorEntryC(null /+TEXT_DOOR_673+/);
+immutable DoorEntryC DoorEntry674 = DoorEntryC(null /+TEXT_DOOR_674+/);
+immutable DoorEntryA DoorEntry675 = DoorEntryA(null /+TEXT_DOOR_675+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x02DB, 0x02B9, 0x00);
+immutable DoorEntryC DoorEntry676 = DoorEntryC(null /+TEXT_DOOR_676+/);
+immutable DoorEntryC DoorEntry677 = DoorEntryC(null /+TEXT_DOOR_677+/);
+immutable DoorEntryC DoorEntry678 = DoorEntryC(null /+TEXT_DOOR_678+/);
+immutable DoorEntryC DoorEntry679 = DoorEntryC(null /+TEXT_DOOR_679+/);
+immutable DoorEntryC DoorEntry680 = DoorEntryC(null /+TEXT_DOOR_680+/);
+immutable DoorEntryC DoorEntry681 = DoorEntryC(null /+TEXT_DOOR_681+/);
+immutable DoorEntryA DoorEntry682 = DoorEntryA(null, EventFlag.None,  0xC49D, 0x035C, 0x04);
+immutable DoorEntryA DoorEntry683 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC478, 0x03AB, 0x04);
+immutable DoorEntryA DoorEntry684 = DoorEntryA(null, EventFlag.None,  0xC47D, 0x035C, 0x04);
+immutable DoorEntryA DoorEntry685 = DoorEntryA(null /+TEXT_DOOR_685+/, EventFlag.HAVE_STOIC_CLUB_RESERVATION | EVENT_FLAG_UNSET,  0xC47A, 0x03D9, 0x01);
+immutable DoorEntryA DoorEntry686 = DoorEntryA(null /+TEXT_DOOR_686+/, EventFlag.None,  0xC4AD, 0x037C, 0x04);
+immutable DoorEntryA DoorEntry687 = DoorEntryA(null, EventFlag.None,  0xC4BD, 0x035C, 0x04);
+immutable DoorEntryA DoorEntry688 = DoorEntryA(null, EventFlag.None,  0xC4CD, 0x03D4, 0x04);
+immutable DoorEntryA DoorEntry689 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC4AD, 0x035C, 0x04);
+immutable DoorEntryA DoorEntry690 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC4A9, 0x0390, 0x04);
+immutable DoorEntryA DoorEntry691 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC4A9, 0x03D0, 0x04);
+immutable DoorEntryA DoorEntry692 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC4CD, 0x0354, 0x04);
+immutable DoorEntryA DoorEntry693 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC4CD, 0x0394, 0x04);
+immutable DoorEntryA DoorEntry694 = DoorEntryA(null, EventFlag.None,  0x04BC, 0x03C9, 0x07);
+immutable DoorEntryA DoorEntry695 = DoorEntryA(null, EventFlag.None,  0x04BC, 0x03D1, 0x07);
+immutable DoorEntryA DoorEntry696 = DoorEntryA(null, EventFlag.None,  0xC4BD, 0x0398, 0x07);
+immutable DoorEntryA DoorEntry697 = DoorEntryA(null, EventFlag.None,  0x0157, 0x032D, 0x0A);
+immutable DoorEntryA DoorEntry698 = DoorEntryA(null, EventFlag.None,  0x84BD, 0x03C3, 0x0F);
+immutable DoorEntryA DoorEntry699 = DoorEntryA(null, EventFlag.None,  0x04B8, 0x0352, 0x07);
+immutable DoorEntryA DoorEntry700 = DoorEntryA(null, EventFlag.None,  0xC46D, 0x0354, 0x07);
+immutable DoorEntryA DoorEntry701 = DoorEntryA(null, EventFlag.None,  0xC46D, 0x03D4, 0x07);
+immutable DoorEntryA DoorEntry702 = DoorEntryA(null, EventFlag.None,  0x84BD, 0x0343, 0x0F);
+immutable DoorEntryA DoorEntry703 = DoorEntryA(null, EventFlag.None,  0x84AD, 0x03A3, 0x0F);
+immutable DoorEntryA DoorEntry704 = DoorEntryA(null /+TEXT_DOOR_704+/, EventFlag.None,  0x84AD, 0x0362, 0x01);
+immutable DoorEntryA DoorEntry705 = DoorEntryA(null, EventFlag.None,  0xC49D, 0x039C, 0x07);
+immutable DoorEntryA DoorEntry706 = DoorEntryA(null, EventFlag.None,  0xC470, 0x03F3, 0x0F);
+immutable DoorEntryA DoorEntry707 = DoorEntryA(null, EventFlag.None,  0xC478, 0x03FB, 0x0F);
+immutable DoorEntryA DoorEntry708 = DoorEntryA(null, EventFlag.None,  0xC49D, 0x03DC, 0x07);
+immutable DoorEntryA DoorEntry709 = DoorEntryA(null, EventFlag.None,  0x849D, 0x0343, 0x0F);
+immutable DoorEntryA DoorEntry710 = DoorEntryA(null, EventFlag.None,  0x0154, 0x0297, 0x0A);
+immutable DoorEntryA DoorEntry711 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x0154, 0x0268, 0x0A);
+immutable DoorEntryA DoorEntry712 = DoorEntryA(null, EventFlag.None,  0x0155, 0x02C2, 0x0F);
+immutable DoorEntryA DoorEntry713 = DoorEntryA(null, EventFlag.None,  0x8449, 0x038B, 0x0F);
+immutable DoorEntryA DoorEntry714 = DoorEntryA(null, EventFlag.None,  0x845C, 0x0384, 0x0F);
+immutable DoorEntryA DoorEntry715 = DoorEntryA(null, EventFlag.None,  0xC45C, 0x03BB, 0x0F);
+immutable DoorEntryA DoorEntry716 = DoorEntryA(null /+TEXT_DOOR_716+/, EventFlag.None,  0x0155, 0x0237, 0x0A);
+immutable DoorEntryA DoorEntry717 = DoorEntryA(null, EventFlag.None,  0x0448, 0x0398, 0x07);
+immutable DoorEntryA DoorEntry718 = DoorEntryA(null, EventFlag.None,  0x0448, 0x03A8, 0x07);
+immutable DoorEntryA DoorEntry719 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x0163, 0x0362, 0x0A);
+immutable DoorEntryA DoorEntry720 = DoorEntryA(null, EventFlag.None,  0xC457, 0x0379, 0x01);
+immutable DoorEntryA DoorEntry721 = DoorEntryA(null /+TEXT_DOOR_647+/, EventFlag.None,  0x0152, 0x02EE, 0x0A);
+immutable DoorEntryA DoorEntry722 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x0163, 0x0376, 0x0A);
+immutable DoorEntryA DoorEntry723 = DoorEntryA(null, EventFlag.None,  0x84AD, 0x03E3, 0x07);
+immutable DoorEntryA DoorEntry724 = DoorEntryA(null, EventFlag.None,  0x8455, 0x0347, 0x0F);
+immutable DoorEntryA DoorEntry725 = DoorEntryA(null /+TEXT_DOOR_725+/, EventFlag.None,  0x0163, 0x0382, 0x0A);
+immutable DoorEntryA DoorEntry726 = DoorEntryA(null, EventFlag.None,  0x04A8, 0x03AD, 0x07);
+immutable DoorEntryA DoorEntry727 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x0163, 0x0396, 0x0A);
+immutable DoorEntryA DoorEntry728 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x0163, 0x03A2, 0x0A);
+immutable DoorEntryA DoorEntry729 = DoorEntryA(null, EventFlag.None,  0x015B, 0x036A, 0x0A);
+immutable DoorEntryC DoorEntry730 = DoorEntryC(null /+TEXT_DOOR_730+/);
+immutable DoorEntryC DoorEntry731 = DoorEntryC(null /+TEXT_DOOR_731+/);
+immutable DoorEntryC DoorEntry732 = DoorEntryC(null /+TEXT_DOOR_732+/);
+immutable DoorEntryC DoorEntry733 = DoorEntryC(null /+TEXT_DOOR_733+/);
+immutable DoorEntryC DoorEntry734 = DoorEntryC(null /+TEXT_DOOR_734+/);
+immutable DoorEntryC DoorEntry735 = DoorEntryC(null /+TEXT_DOOR_735+/);
+immutable DoorEntryC DoorEntry736 = DoorEntryC(null /+TEXT_DOOR_736+/);
+immutable DoorEntryC DoorEntry737 = DoorEntryC(null /+TEXT_DOOR_737+/);
+immutable DoorEntryA DoorEntry738 = DoorEntryA(null /+TEXT_DOOR_738+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x015B, 0x038B, 0x00);
+immutable DoorEntryA DoorEntry739 = DoorEntryA(null /+TEXT_DOOR_739+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x015B, 0x03AB, 0x00);
+immutable DoorEntryC DoorEntry740 = DoorEntryC(null /+TEXT_DOOR_740+/);
+immutable DoorEntryC DoorEntry741 = DoorEntryC(null /+TEXT_DOOR_741+/);
+immutable DoorEntryC DoorEntry742 = DoorEntryC(null /+TEXT_DOOR_742+/);
+immutable DoorEntryA DoorEntry743 = DoorEntryA(null, EventFlag.None,  0xC411, 0x03F8, 0x01);
+immutable DoorEntryA DoorEntry744 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3C9, 0x0370, 0x01);
+immutable DoorEntryA DoorEntry745 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3F9, 0x03B4, 0x01);
+immutable DoorEntryA DoorEntry746 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3E9, 0x0370, 0x01);
+immutable DoorEntryA DoorEntry747 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3D9, 0x03B0, 0x01);
+immutable DoorEntryA DoorEntry748 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.UNKNOWN_28C | EVENT_FLAG_UNSET,  0xC396, 0x021C, 0x01);
+immutable DoorEntryA DoorEntry749 = DoorEntryA(null /+TEXT_DOOR_001+/, EventFlag.None,  0x82B1, 0x0103, 0x01);
+immutable DoorEntryA DoorEntry750 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x01D4, 0x0220, 0x01);
+immutable DoorEntryA DoorEntry751 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x01E4, 0x0250, 0x01);
+immutable DoorEntryA DoorEntry752 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x01F4, 0x0228, 0x01);
+immutable DoorEntryA DoorEntry753 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x01EC, 0x0218, 0x01);
+immutable DoorEntryA DoorEntry754 = DoorEntryA(null, EventFlag.None,  0x8411, 0x03C7, 0x01);
+immutable DoorEntryA DoorEntry755 = DoorEntryA(null, EventFlag.None,  0xC411, 0x0368, 0x01);
+immutable DoorEntryA DoorEntry756 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x01BA, 0x0239, 0x01);
+immutable DoorEntryA DoorEntry757 = DoorEntryA(null, EventFlag.None,  0x023A, 0x024E, 0x05);
+immutable DoorEntryA DoorEntry758 = DoorEntryA(null, EventFlag.None,  0xC436, 0x023C, 0x01);
+immutable DoorEntryA DoorEntry759 = DoorEntryA(null, EventFlag.None,  0x020A, 0x021D, 0x01);
+immutable DoorEntryA DoorEntry760 = DoorEntryA(null, EventFlag.None,  0x0437, 0x0221, 0x05);
+immutable DoorEntryA DoorEntry761 = DoorEntryA(null, EventFlag.None,  0x0437, 0x0234, 0x05);
+immutable DoorEntryA DoorEntry762 = DoorEntryA(null, EventFlag.None,  0x0397, 0x01F1, 0x05);
+immutable DoorEntryA DoorEntry763 = DoorEntryA(null, EventFlag.None,  0x02B7, 0x012E, 0x05);
+immutable DoorEntryA DoorEntry764 = DoorEntryA(null, EventFlag.None,  0x8399, 0x01E7, 0x01);
+immutable DoorEntryA DoorEntry765 = DoorEntryA(null /+TEXT_DOOR_765+/, EventFlag.DEFEATED_SANCTUARY_BOSS_6 | EVENT_FLAG_UNSET,  0x0306, 0x01C5, 0x01);
+immutable DoorEntryA DoorEntry766 = DoorEntryA(null, EventFlag.None,  0x047A, 0x0216, 0x05);
+immutable DoorEntryA DoorEntry767 = DoorEntryA(null, EventFlag.None,  0xC42D, 0x03E8, 0x01);
+immutable DoorEntryA DoorEntry768 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3D9, 0x0334, 0x01);
+immutable DoorEntryA DoorEntry769 = DoorEntryA(null, EventFlag.None,  0xC3B9, 0x0334, 0x01);
+immutable DoorEntryA DoorEntry770 = DoorEntryA(null, EventFlag.None,  0xC36B, 0x03E6, 0x01);
+immutable DoorEntryA DoorEntry771 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3F9, 0x0334, 0x01);
+immutable DoorEntryA DoorEntry772 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x8139, 0x02C7, 0x01);
+immutable DoorEntryA DoorEntry773 = DoorEntryA(null /+TEXT_DOOR_773+/, EventFlag.UNKNOWN_2F4,  0xC1A9, 0x033C, 0x01);
+immutable DoorEntryC DoorEntry774 = DoorEntryC(null /+TEXT_DOOR_774+/);
+immutable DoorEntryB DoorEntry775 = DoorEntryB(EventFlag.SCARABA_REACHED | EVENT_FLAG_UNSET, null /+TEXT_DOOR_775+/);
+immutable DoorEntryB DoorEntry776 = DoorEntryB(EventFlag.UNKNOWN_098 | EVENT_FLAG_UNSET, null /+TEXT_DOOR_776+/);
+immutable DoorEntryB DoorEntry777 = DoorEntryB(EventFlag.UNKNOWN_098 | EVENT_FLAG_UNSET, null /+TEXT_DOOR_777+/);
+immutable DoorEntryB DoorEntry778 = DoorEntryB(EventFlag.UNKNOWN_098 | EVENT_FLAG_UNSET, null /+TEXT_DOOR_778+/);
+immutable DoorEntryB DoorEntry779 = DoorEntryB(EventFlag.UNKNOWN_098 | EVENT_FLAG_UNSET, null /+TEXT_DOOR_779+/);
+immutable DoorEntryA DoorEntry780 = DoorEntryA(null /+TEXT_DOOR_780+/, EventFlag.None,  0x0205, 0x0099, 0x01);
+immutable DoorEntryA DoorEntry781 = DoorEntryA(null, EventFlag.None,  0x0200, 0x00CC, 0x01);
+immutable DoorEntryA DoorEntry782 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x01F8, 0x00B8, 0x01);
+immutable DoorEntryA DoorEntry783 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x0204, 0x00AC, 0x01);
+immutable DoorEntryA DoorEntry784 = DoorEntryA(null, EventFlag.None,  0x01F8, 0x00A4, 0x01);
+immutable DoorEntryA DoorEntry785 = DoorEntryA(null, EventFlag.None,  0x0263, 0x00DF, 0x01);
+immutable DoorEntryA DoorEntry786 = DoorEntryA(null, EventFlag.None,  0x80BD, 0x0023, 0x01);
+immutable DoorEntryA DoorEntry787 = DoorEntryA(null, EventFlag.None,  0xC139, 0x02D0, 0x01);
+immutable DoorEntryA DoorEntry788 = DoorEntryA(null, EventFlag.None,  0x8239, 0x0207, 0x01);
+immutable DoorEntryA DoorEntry789 = DoorEntryA(null, EventFlag.None,  0xC0A9, 0x0044, 0x01);
+immutable DoorEntryA DoorEntry790 = DoorEntryA(null, EventFlag.None,  0x831D, 0x0167, 0x01);
+immutable DoorEntryA DoorEntry791 = DoorEntryA(null, EventFlag.None,  0x81D1, 0x0063, 0x01);
+immutable DoorEntryA DoorEntry792 = DoorEntryA(null, EventFlag.None,  0xC239, 0x0214, 0x01);
+immutable DoorEntryA DoorEntry793 = DoorEntryA(null, EventFlag.None,  0xC19D, 0x0208, 0x01);
+immutable DoorEntryA DoorEntry794 = DoorEntryA(null, EventFlag.None,  0x84B9, 0x0223, 0x01);
+immutable DoorEntryA DoorEntry795 = DoorEntryA(null, EventFlag.UNKNOWN_15B | EVENT_FLAG_UNSET,  0x02BE, 0x0206, 0x05);
+immutable DoorEntryA DoorEntry796 = DoorEntryA(null, EventFlag.None,  0xC2E9, 0x01B4, 0x01);
+immutable DoorEntryA DoorEntry797 = DoorEntryA(null, EventFlag.None,  0xC259, 0x020C, 0x01);
+immutable DoorEntryA DoorEntry798 = DoorEntryA(null, EventFlag.None,  0x81CD, 0x0067, 0x01);
+immutable DoorEntryA DoorEntry799 = DoorEntryA(null, EventFlag.None,  0x8189, 0x01E3, 0x01);
+immutable DoorEntryA DoorEntry800 = DoorEntryA(null, EventFlag.None,  0xC1CD, 0x0078, 0x01);
+immutable DoorEntryA DoorEntry801 = DoorEntryA(null, EventFlag.None,  0x8279, 0x0207, 0x01);
+immutable DoorEntryA DoorEntry802 = DoorEntryA(null, EventFlag.None,  0xC4CD, 0x024C, 0x01);
+immutable DoorEntryA DoorEntry803 = DoorEntryA(null, EventFlag.None,  0x8429, 0x01C7, 0x01);
+immutable DoorEntryA DoorEntry804 = DoorEntryA(null, EventFlag.None,  0xC279, 0x0214, 0x01);
+immutable DoorEntryA DoorEntry805 = DoorEntryA(null, EventFlag.UNKNOWN_1B3 | EVENT_FLAG_UNSET,  0x8299, 0x0207, 0x01);
+immutable DoorEntryA DoorEntry806 = DoorEntryA(null, EventFlag.None,  0xC45D, 0x0218, 0x01);
+immutable DoorEntryA DoorEntry807 = DoorEntryA(null /+TEXT_DOOR_807+/, EventFlag.UNKNOWN_15C | EVENT_FLAG_UNSET,  0x81BD, 0x0283, 0x01);
+immutable DoorEntryA DoorEntry808 = DoorEntryA(null, EventFlag.None,  0xC2B9, 0x0214, 0x01);
+immutable DoorEntryA DoorEntry809 = DoorEntryA(null, EventFlag.None,  0x82D9, 0x0203, 0x01);
+immutable DoorEntryA DoorEntry810 = DoorEntryA(null, EventFlag.None,  0xC1A9, 0x02AC, 0x01);
+immutable DoorEntryA DoorEntry811 = DoorEntryA(null, EventFlag.None,  0x02F9, 0x020A, 0x05);
+immutable DoorEntryA DoorEntry812 = DoorEntryA(null, EventFlag.None,  0x81BD, 0x02E3, 0x01);
+immutable DoorEntryA DoorEntry813 = DoorEntryA(null, EventFlag.None,  0xC2F9, 0x0210, 0x01);
+immutable DoorEntryA DoorEntry814 = DoorEntryA(null /+TEXT_DOOR_814+/, EventFlag.None,  0x02AC, 0x00D7, 0x01);
+immutable ushort DoorEntry815 = 0x015B;
+immutable DoorEntryC DoorEntry816 = DoorEntryC(null /+TEXT_DOOR_816+/);
+immutable DoorEntryC DoorEntry817 = DoorEntryC(null /+TEXT_DOOR_817+/);
+immutable DoorEntryA DoorEntry818 = DoorEntryA(null, EventFlag.None,  0x4048, 0x0025, 0x01);
+immutable DoorEntryA DoorEntry819 = DoorEntryA(null, EventFlag.None,  0x004A, 0x0035, 0x01);
+immutable DoorEntryA DoorEntry820 = DoorEntryA(null, EventFlag.None,  0x004A, 0x002D, 0x01);
+immutable DoorEntryA DoorEntry821 = DoorEntryA(null, EventFlag.None,  0x4048, 0x003D, 0x01);
+immutable DoorEntryA DoorEntry822 = DoorEntryA(null, EventFlag.None,  0xC34A, 0x02F8, 0x01);
+immutable DoorEntryA DoorEntry823 = DoorEntryA(null, EventFlag.None,  0x8055, 0x020B, 0x01);
+immutable DoorEntryA DoorEntry824 = DoorEntryA(null /+TEXT_DOOR_824+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x0270, 0x00A7, 0x01);
+immutable DoorEntryA DoorEntry825 = DoorEntryA(null, EventFlag.None,  0x0002, 0x0227, 0x01);
+immutable DoorEntryA DoorEntry826 = DoorEntryA(null, EventFlag.None,  0x0003, 0x022D, 0x01);
+immutable DoorEntryA DoorEntry827 = DoorEntryA(null, EventFlag.None,  0x0002, 0x0233, 0x01);
+immutable DoorEntryA DoorEntry828 = DoorEntryA(null, EventFlag.None,  0x0003, 0x0239, 0x01);
+immutable DoorEntryA DoorEntry829 = DoorEntryA(null, EventFlag.None,  0x4310, 0x01E5, 0x01);
+immutable DoorEntryA DoorEntry830 = DoorEntryA(null, EventFlag.None,  0x003B, 0x023D, 0x05);
+immutable DoorEntryA DoorEntry831 = DoorEntryA(null, EventFlag.None,  0x0053, 0x0234, 0x05);
+immutable DoorEntryA DoorEntry832 = DoorEntryA(null, EventFlag.None,  0x0063, 0x0015, 0x01);
+immutable DoorEntryA DoorEntry833 = DoorEntryA(null, EventFlag.None,  0x441C, 0x00C5, 0x01);
+immutable DoorEntryA DoorEntry834 = DoorEntryA(null, EventFlag.None,  0x0075, 0x002C, 0x05);
+immutable DoorEntryA DoorEntry835 = DoorEntryA(null, EventFlag.None,  0x0075, 0x0041, 0x05);
+immutable DoorEntryA DoorEntry836 = DoorEntryA(null, EventFlag.None,  0x0317, 0x01F5, 0x01);
+immutable DoorEntryA DoorEntry837 = DoorEntryA(null, EventFlag.None,  0x0324, 0x020A, 0x05);
+immutable DoorEntryA DoorEntry838 = DoorEntryA(null, EventFlag.None,  0x0328, 0x01FA, 0x05);
+immutable DoorEntryA DoorEntry839 = DoorEntryA(null /+TEXT_DOOR_839+/, EventFlag.UNKNOWN_154 | EVENT_FLAG_UNSET,  0x000A, 0x0251, 0x00);
+immutable DoorEntryC DoorEntry840 = DoorEntryC(null /+TEXT_DOOR_840+/);
+immutable DoorEntryC DoorEntry841 = DoorEntryC(null /+TEXT_DOOR_841+/);
+immutable DoorEntryC DoorEntry842 = DoorEntryC(null /+TEXT_DOOR_842+/);
+immutable DoorEntryC DoorEntry843 = DoorEntryC(null /+TEXT_DOOR_843+/);
+immutable DoorEntryC DoorEntry844 = DoorEntryC(null /+TEXT_DOOR_844+/);
+immutable DoorEntryC DoorEntry845 = DoorEntryC(null /+TEXT_DOOR_845+/);
+immutable DoorEntryC DoorEntry846 = DoorEntryC(null /+TEXT_DOOR_846+/);
+immutable DoorEntryC DoorEntry847 = DoorEntryC(null /+TEXT_DOOR_847+/);
+immutable DoorEntryC DoorEntry848 = DoorEntryC(null /+TEXT_DOOR_848+/);
+immutable DoorEntryC DoorEntry849 = DoorEntryC(null /+TEXT_DOOR_849+/);
+immutable DoorEntryC DoorEntry850 = DoorEntryC(null /+TEXT_DOOR_850+/);
+immutable DoorEntryC DoorEntry851 = DoorEntryC(null /+TEXT_DOOR_851+/);
+immutable DoorEntryC DoorEntry852 = DoorEntryC(null /+TEXT_DOOR_852+/);
+immutable DoorEntryC DoorEntry853 = DoorEntryC(null /+TEXT_DOOR_853+/);
+immutable DoorEntryC DoorEntry854 = DoorEntryC(null /+TEXT_DOOR_854+/);
+immutable DoorEntryC DoorEntry855 = DoorEntryC(null /+TEXT_DOOR_855+/);
+immutable DoorEntryC DoorEntry856 = DoorEntryC(null /+TEXT_DOOR_856+/);
+immutable DoorEntryC DoorEntry857 = DoorEntryC(null /+TEXT_DOOR_857+/);
+immutable DoorEntryC DoorEntry858 = DoorEntryC(null /+TEXT_DOOR_858+/);
+immutable DoorEntryC DoorEntry859 = DoorEntryC(null /+TEXT_DOOR_859+/);
+immutable DoorEntryC DoorEntry860 = DoorEntryC(null /+TEXT_DOOR_860+/);
+immutable DoorEntryC DoorEntry861 = DoorEntryC(null /+TEXT_DOOR_861+/);
+immutable DoorEntryC DoorEntry862 = DoorEntryC(null /+TEXT_DOOR_862+/);
+immutable DoorEntryC DoorEntry863 = DoorEntryC(null /+TEXT_DOOR_863+/);
+immutable DoorEntryC DoorEntry864 = DoorEntryC(null /+TEXT_DOOR_864+/);
+immutable DoorEntryC DoorEntry865 = DoorEntryC(null /+TEXT_DOOR_865+/);
+immutable DoorEntryC DoorEntry866 = DoorEntryC(null /+TEXT_DOOR_866+/);
+immutable DoorEntryC DoorEntry867 = DoorEntryC(null /+TEXT_DOOR_867+/);
+immutable DoorEntryC DoorEntry868 = DoorEntryC(null /+TEXT_DOOR_868+/);
+immutable DoorEntryC DoorEntry869 = DoorEntryC(null /+TEXT_DOOR_869+/);
+immutable DoorEntryC DoorEntry870 = DoorEntryC(null /+TEXT_DOOR_870+/);
+immutable DoorEntryC DoorEntry871 = DoorEntryC(null /+TEXT_DOOR_871+/);
+immutable DoorEntryC DoorEntry872 = DoorEntryC(null /+TEXT_DOOR_872+/);
+immutable DoorEntryC DoorEntry873 = DoorEntryC(null /+TEXT_DOOR_873+/);
+immutable DoorEntryC DoorEntry874 = DoorEntryC(null /+TEXT_DOOR_874+/);
+immutable DoorEntryC DoorEntry875 = DoorEntryC(null /+TEXT_DOOR_875+/);
+immutable DoorEntryC DoorEntry876 = DoorEntryC(null /+TEXT_DOOR_876+/);
+immutable DoorEntryC DoorEntry877 = DoorEntryC(null /+TEXT_DOOR_877+/);
+immutable DoorEntryC DoorEntry878 = DoorEntryC(null /+TEXT_DOOR_878+/);
+immutable DoorEntryC DoorEntry879 = DoorEntryC(null /+TEXT_DOOR_879+/);
+immutable DoorEntryC DoorEntry880 = DoorEntryC(null /+TEXT_DOOR_880+/);
+immutable DoorEntryC DoorEntry881 = DoorEntryC(null /+TEXT_DOOR_881+/);
+immutable DoorEntryC DoorEntry882 = DoorEntryC(null /+TEXT_DOOR_882+/);
+immutable DoorEntryC DoorEntry883 = DoorEntryC(null /+TEXT_DOOR_883+/);
+immutable DoorEntryA DoorEntry884 = DoorEntryA(null /+TEXT_DOOR_884+/, EventFlag.None,  0xC00E, 0x0054, 0x01);
+immutable DoorEntryA DoorEntry885 = DoorEntryA(null /+TEXT_DOOR_885+/, EventFlag.DEFEATED_SANCTUARY_BOSS_7 | EVENT_FLAG_UNSET,  0x0257, 0x0392, 0x05);
+immutable DoorEntryA DoorEntry886 = DoorEntryA(null, EventFlag.None,  0x010B, 0x01C9, 0x01);
+immutable DoorEntryA DoorEntry887 = DoorEntryA(null, EventFlag.None,  0x0107, 0x01E1, 0x01);
+immutable DoorEntryA DoorEntry888 = DoorEntryA(null, EventFlag.None,  0x0139, 0x018C, 0x05);
+immutable DoorEntryA DoorEntry889 = DoorEntryA(null, EventFlag.None,  0x0143, 0x018D, 0x01);
+immutable DoorEntryA DoorEntry890 = DoorEntryA(null, EventFlag.None,  0x0137, 0x01A1, 0x01);
+immutable DoorEntryA DoorEntry891 = DoorEntryA(null, EventFlag.None,  0x015F, 0x01A6, 0x05);
+immutable DoorEntryA DoorEntry892 = DoorEntryA(null, EventFlag.None,  0x013F, 0x01E5, 0x01);
+immutable DoorEntryA DoorEntry893 = DoorEntryA(null, EventFlag.None,  0x015F, 0x018D, 0x01);
+immutable DoorEntryA DoorEntry894 = DoorEntryA(null, EventFlag.None,  0x016F, 0x01CD, 0x01);
+immutable DoorEntryA DoorEntry895 = DoorEntryA(null, EventFlag.None,  0x8151, 0x0087, 0x01);
+immutable DoorEntryA DoorEntry896 = DoorEntryA(null, EventFlag.None,  0x4014, 0x01C7, 0x01);
+immutable DoorEntryA DoorEntry897 = DoorEntryA(null, EventFlag.None,  0x4010, 0x01E1, 0x01);
+immutable DoorEntryA DoorEntry898 = DoorEntryA(null, EventFlag.None,  0x4040, 0x01A3, 0x01);
+immutable DoorEntryA DoorEntry899 = DoorEntryA(null, EventFlag.None,  0x404C, 0x018D, 0x01);
+immutable DoorEntryA DoorEntry900 = DoorEntryA(null, EventFlag.None,  0x4068, 0x018D, 0x01);
+immutable DoorEntryA DoorEntry901 = DoorEntryA(null, EventFlag.None,  0x4074, 0x01CF, 0x01);
+immutable DoorEntryA DoorEntry902 = DoorEntryA(null, EventFlag.None,  0x4044, 0x01E3, 0x01);
+immutable DoorEntryA DoorEntry903 = DoorEntryA(null /+TEXT_DOOR_903+/, EventFlag.None,  0x0090, 0x018F, 0x21);
+immutable DoorEntryA DoorEntry904 = DoorEntryA(null /+TEXT_DOOR_904+/, EventFlag.None,  0x0371, 0x0232, 0x01);
+immutable DoorEntryA DoorEntry905 = DoorEntryA(null, EventFlag.UNKNOWN_099 | EVENT_FLAG_UNSET,  0x0142, 0x0093, 0x01);
+immutable DoorEntryA DoorEntry906 = DoorEntryA(null, EventFlag.None,  0x4030, 0x0013, 0x01);
+immutable DoorEntryA DoorEntry907 = DoorEntryA(null /+TEXT_DOOR_907+/, EventFlag.UNKNOWN_289 | EVENT_FLAG_UNSET,  0xC072, 0x01F4, 0x01);
+immutable DoorEntryA DoorEntry908 = DoorEntryA(null, EventFlag.None,  0xC4BA, 0x0310, 0x01);
+immutable DoorEntryA DoorEntry909 = DoorEntryA(null, EventFlag.None,  0x800E, 0x0037, 0x01);
+immutable DoorEntryC DoorEntry910 = DoorEntryC(null /+TEXT_DOOR_910+/);
+immutable DoorEntryC DoorEntry911 = DoorEntryC(null /+TEXT_DOOR_911+/);
+immutable DoorEntryC DoorEntry912 = DoorEntryC(null /+TEXT_DOOR_912+/);
+immutable DoorEntryA DoorEntry913 = DoorEntryA(null, EventFlag.None,  0xC011, 0x02F4, 0x01);
+immutable DoorEntryA DoorEntry914 = DoorEntryA(null /+TEXT_DOOR_004+/, EventFlag.None,  0x8351, 0x0167, 0x01);
+immutable DoorEntryA DoorEntry915 = DoorEntryA(null /+TEXT_DOOR_915+/, EventFlag.DEFEATED_SANCTUARY_BOSS_8 | EVENT_FLAG_UNSET,  0x04D3, 0x0319, 0x01);
+immutable DoorEntryA DoorEntry916 = DoorEntryA(null, EventFlag.None,  0x813A, 0x0343, 0x01);
+immutable DoorEntryA DoorEntry917 = DoorEntryA(null, EventFlag.None,  0x82AA, 0x0203, 0x01);
+immutable DoorEntryA DoorEntry918 = DoorEntryA(null, EventFlag.None,  0xC2AA, 0x020C, 0x01);
+immutable DoorEntryA DoorEntry919 = DoorEntryA(null, EventFlag.None,  0xC13A, 0x0364, 0x01);
+immutable DoorEntryA DoorEntry920 = DoorEntryA(null, EventFlag.None,  0x813A, 0x0353, 0x01);
+immutable DoorEntryA DoorEntry921 = DoorEntryA(null, EventFlag.None,  0xC2CA, 0x0210, 0x01);
+immutable DoorEntryA DoorEntry922 = DoorEntryA(null, EventFlag.None,  0x82AA, 0x01C3, 0x01);
+immutable DoorEntryA DoorEntry923 = DoorEntryA(null, EventFlag.None,  0x0183, 0x00EA, 0x01);
+immutable DoorEntryA DoorEntry924 = DoorEntryA(null, EventFlag.None,  0xC2EA, 0x01CC, 0x01);
+immutable DoorEntryA DoorEntry925 = DoorEntryA(null, EventFlag.None,  0x82CA, 0x01C3, 0x01);
+immutable DoorEntryA DoorEntry926 = DoorEntryA(null, EventFlag.None,  0xC286, 0x0210, 0x01);
+immutable DoorEntryA DoorEntry927 = DoorEntryA(null, EventFlag.None,  0x828A, 0x0203, 0x01);
+immutable DoorEntryA DoorEntry928 = DoorEntryA(null, EventFlag.None,  0xC2CA, 0x01D8, 0x01);
+immutable DoorEntryA DoorEntry929 = DoorEntryA(null, EventFlag.None,  0xC34E, 0x0170, 0x01);
+immutable DoorEntryA DoorEntry930 = DoorEntryA(null, EventFlag.None,  0xC34E, 0x0194, 0x01);
+immutable DoorEntryA DoorEntry931 = DoorEntryA(null, EventFlag.None,  0x8352, 0x01AF, 0x01);
+immutable DoorEntryA DoorEntry932 = DoorEntryA(null, EventFlag.None,  0x8342, 0x019F, 0x01);
+immutable DoorEntryA DoorEntry933 = DoorEntryA(null, EventFlag.None,  0x8342, 0x01BF, 0x01);
+immutable DoorEntryA DoorEntry934 = DoorEntryA(null, EventFlag.None,  0xC346, 0x01AC, 0x01);
+immutable DoorEntryA DoorEntry935 = DoorEntryA(null, EventFlag.None,  0xC33E, 0x0180, 0x01);
+immutable DoorEntryA DoorEntry936 = DoorEntryA(null, EventFlag.None,  0x833E, 0x018F, 0x01);
+immutable DoorEntryA DoorEntry937 = DoorEntryA(null, EventFlag.None,  0x833A, 0x01A7, 0x01);
+immutable DoorEntryA DoorEntry938 = DoorEntryA(null, EventFlag.None,  0xC332, 0x018C, 0x01);
+immutable DoorEntryA DoorEntry939 = DoorEntryA(null, EventFlag.None,  0xC332, 0x01A0, 0x01);
+immutable DoorEntryA DoorEntry940 = DoorEntryA(null, EventFlag.None,  0x832E, 0x01B3, 0x01);
+immutable DoorEntryA DoorEntry941 = DoorEntryA(null, EventFlag.None,  0x031B, 0x01A1, 0x01);
+immutable DoorEntryA DoorEntry942 = DoorEntryA(null, EventFlag.None,  0x0149, 0x00F7, 0x01);
+immutable DoorEntryA DoorEntry943 = DoorEntryA(null /+TEXT_DOOR_943+/, EventFlag.None,  0x40FE, 0x0211, 0x01);
+immutable DoorEntryA DoorEntry944 = DoorEntryA(null, EventFlag.None,  0x03B8, 0x006C, 0x0E);
+immutable DoorEntryA DoorEntry945 = DoorEntryA(null, EventFlag.None,  0x02EC, 0x0054, 0x0E);
+immutable DoorEntryA DoorEntry946 = DoorEntryA(null, EventFlag.None,  0x031C, 0x0034, 0x0E);
+immutable DoorEntryA DoorEntry947 = DoorEntryA(null, EventFlag.None,  0x0398, 0x0070, 0x0E);
+immutable DoorEntryA DoorEntry948 = DoorEntryA(null, EventFlag.None,  0x02F4, 0x0018, 0x01);
+immutable DoorEntryA DoorEntry949 = DoorEntryA(null, EventFlag.None,  0xC3FA, 0x03F5, 0x04);
+immutable DoorEntryA DoorEntry950 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3EA, 0x03B9, 0x04);
+immutable DoorEntryA DoorEntry951 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3DA, 0x03F9, 0x04);
+immutable DoorEntryA DoorEntry952 = DoorEntryA(null /+TEXT_DOOR_367+/, EventFlag.None,  0xC3CA, 0x03B9, 0x04);
+immutable DoorEntryA DoorEntry953 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x824C, 0x02FD, 0x0A);
+immutable DoorEntryA DoorEntry954 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x8248, 0x02ED, 0x0A);
+immutable DoorEntryA DoorEntry955 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x8250, 0x0281, 0x0A);
+immutable DoorEntryA DoorEntry956 = DoorEntryA(null /+TEXT_DOOR_711+/, EventFlag.None,  0x020C, 0x0291, 0x0A);
+immutable DoorEntryC DoorEntry957 = DoorEntryC(null /+TEXT_DOOR_957+/);
+immutable DoorEntryC DoorEntry958 = DoorEntryC(null /+TEXT_DOOR_958+/);
+immutable DoorEntryC DoorEntry959 = DoorEntryC(null /+TEXT_DOOR_959+/);
+immutable DoorEntryC DoorEntry960 = DoorEntryC(null /+TEXT_DOOR_960+/);
+immutable DoorEntryC DoorEntry961 = DoorEntryC(null /+TEXT_DOOR_961+/);
+immutable DoorEntryC DoorEntry962 = DoorEntryC(null /+TEXT_DOOR_962+/);
+immutable DoorEntryA DoorEntry963 = DoorEntryA(null, EventFlag.None,  0x8269, 0x0327, 0x04);
+immutable DoorEntryA DoorEntry964 = DoorEntryA(null, EventFlag.None,  0xC2DD, 0x033C, 0x04);
+immutable DoorEntryA DoorEntry965 = DoorEntryA(null, EventFlag.None,  0xC26D, 0x03B8, 0x04);
+immutable DoorEntryA DoorEntry966 = DoorEntryA(null, EventFlag.None,  0xC211, 0x031C, 0x04);
+immutable DoorEntryA DoorEntry967 = DoorEntryA(null, EventFlag.None,  0xC2DD, 0x03F8, 0x07);
+immutable DoorEntryA DoorEntry968 = DoorEntryA(null, EventFlag.None,  0x01E7, 0x03EA, 0x0A);
+immutable DoorEntryA DoorEntry969 = DoorEntryA(null, EventFlag.None,  0x026C, 0x039D, 0x07);
+immutable DoorEntryA DoorEntry970 = DoorEntryA(null, EventFlag.None,  0xC1DE, 0x0396, 0x0A);
+immutable DoorEntryA DoorEntry971 = DoorEntryA(null, EventFlag.None,  0x82D9, 0x0327, 0x07);
+immutable DoorEntryA DoorEntry972 = DoorEntryA(null, EventFlag.None,  0xC32D, 0x0334, 0x07);
+immutable DoorEntryA DoorEntry973 = DoorEntryA(null /+TEXT_DOOR_101+/, EventFlag.None,  0x01DC, 0x03DC, 0x0A);
+immutable DoorEntryA DoorEntry974 = DoorEntryA(null, EventFlag.None,  0x0207, 0x03DA, 0x0A);
+immutable DoorEntryC DoorEntry975 = DoorEntryC(null /+TEXT_DOOR_975+/);
+immutable DoorEntryC DoorEntry976 = DoorEntryC(null /+TEXT_DOOR_976+/);
+immutable DoorEntryC DoorEntry977 = DoorEntryC(null /+TEXT_NO_PROBLEM_HERE+/);
+
 /// $CF58EF
 immutable OverworldEventMusic[][164] OverworldEventMusicPointerTable = [
 	[

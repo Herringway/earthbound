@@ -56,7 +56,7 @@ immutable CharacterInitialEntityDataEntry[17] CharacterInitialEntityData = [
 	CharacterInitialEntityDataEntry(OverworldSprite.TeddyBearParty, OverworldSprite.LilTeddyBear, ActionScript.Unknown002, 0x001C),
 ];
 
-/// $C3E12C
+/// $C3E0BC
 immutable FixedPoint1616[14] defaultMovementSpeeds = [
 	FixedPoint1616(0x6000, 1), //NORMAL
 	FixedPoint1616(0x6000, 1), //UNKNOWN_01
@@ -107,6 +107,24 @@ immutable ushort[] AllowedInputDirections = [
 	0, //ESCALATOR
 	DirectionMask.Up | DirectionMask.UpRight | DirectionMask.Right | DirectionMask.DownRight | DirectionMask.Down | DirectionMask.DownLeft | DirectionMask.DownLeft | DirectionMask.Left | DirectionMask.UpLeft //STAIRS
 ];
+
+/// $C3E148
+immutable short[8] UnknownC3E148 = [0, 0, 10, 0, 0, 0, -10, 0];
+
+/// $C3E158
+immutable short[8] UnknownC3E158 = [-5, -5, 0, 5, 5, 5, 0, -5];
+
+/// $C3E1D8
+immutable short[4] UnknownC3E1D8 = [4, 0, 2, 6];
+
+//wonder what this is...?
+//[0, 0, 4, 0, 0, 0, -4, 0, -4, 0, 0, 0, 4, 0, 0, 0, 7, 1, 5, 3, 2, 6, 2, 6, 0, 8, 0, 8, 0, 0, 8, 8, 8, 0, 8, 0, 8, 8, 0, 0];
+
+/// $C3E230
+immutable short[8] UnknownC3E230 = [0, 1, 1, 1, 0, -1, -1, -1];
+
+/// $C3E240
+immutable short[8] UnknownC3E240 = [-1, -1, 0, 1, 1, 1, 0, -1];
 
 /// $C3E250
 immutable WindowConfig[53] WindowConfigurationTable = [

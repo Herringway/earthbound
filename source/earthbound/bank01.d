@@ -8,6 +8,7 @@ import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank07;
 import earthbound.bank08;
+import earthbound.bank0F;
 import earthbound.bank15;
 import earthbound.bank2F;
 import earthbound.globals;
@@ -18,7 +19,7 @@ void UnknownC10000() {
 }
 
 /// $C10004
-void UnknownC10004(ubyte* arg1) {
+void UnknownC10004(const(ubyte)* arg1) {
     UnknownC0943C();
     DisplayText(arg1);
     do {
@@ -326,7 +327,6 @@ void UnknownC10F40(short window) {
     if (window == -1) {
         return;
     }
-    //x10 = WindowStats[WindowTable[window]];
     ushort* x0E = &WindowStats[WindowTable[window]].tilemapBuffer[0];
     for (short i = cast(short)(WindowStats[WindowTable[window]].height * WindowStats[WindowTable[window]].width); i != 0; i--) {
         if (x0E[0] != 0) {
@@ -636,11 +636,65 @@ void UnknownC12E42() {
 /// $C12E63
 void DebugYButtonMenu();
 
+/// $C13187
+const(ubyte)* TalkTo();
+
+/// $C1323B
+const(ubyte)* Check() {
+    CreateWindowN(Window.TextStandard);
+    FindNearbyCheckableTPTEntry();
+    if (CurrentTPTEntry == 0) {
+        return null;
+    }
+    if (CurrentTPTEntry == -1) {
+        return null;
+    }
+    if (CurrentTPTEntry == -2) {
+        return Unknown7E5DDE;
+    }
+    switch (NPCConfig[CurrentTPTEntry].type) {
+        case NPCType.Person:
+            return null;
+        case NPCType.ItemBox:
+            if (NPCConfig[CurrentTPTEntry].item < 0x100) {
+                SetWorkingMemory(NPCConfig[CurrentTPTEntry].item);
+            } else {
+                SetWorkingMemory(0);
+                SetArgumentMemory(NPCConfig[CurrentTPTEntry].item - 0x100);
+            }
+            CurrentInteractingEventFlag = NPCConfig[CurrentTPTEntry].eventFlag;
+            return NPCConfig[CurrentTPTEntry].talkText;
+        case NPCType.Object:
+            return NPCConfig[CurrentTPTEntry].talkText;
+        default: break;
+    }
+    return null;
+}
+
 /// $C133B0
 void OpenMenuButton();
 
 /// $C13---
-void OpenMenuButtonCheckTalk();
+void OpenMenuButtonCheckTalk() {
+    UnknownC0943C();
+    PlaySfx(Sfx.Cursor1);
+    const(ubyte)* textPtr;
+    textPtr = TalkTo();
+    if (textPtr is null) {
+        textPtr = Check();
+        if (textPtr is null) {
+            textPtr = TextNoProblemHere;
+        }
+    }
+    DisplayText(textPtr);
+    ClearInstaprint();
+    HideHPPPWindows();
+    UnknownC1008E();
+    do {
+        Win_Tick();
+    } while (Unknown7EB4A8 != -1);
+    UnknownC09451();
+}
 
 /// $C10C72
 void UnknownC438A5F(short arg1, short arg2) {

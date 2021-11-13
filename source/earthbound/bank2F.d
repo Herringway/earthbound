@@ -3654,7 +3654,6 @@ void UnknownEFD56F(short arg1, short arg2, ushort arg3) {
 
 /// $EFD5D9
 void UnknownEFD5D9(ushort arg1) {
-	//x02 = arg1
 	FadeOutWithMosaic(4, 1, 0);
 	UnknownC0927C();
 	UnknownEFDA05();
@@ -4256,6 +4255,28 @@ short DebugCheckViewCharacterMode() {
 		return 0;
 	}
 	return 1;
+}
+
+/// $EFE771
+void SaveReplaySaveSlot() {
+	if (TestSRAMSize() == 0) {
+		return;
+	}
+	memcpy(&replaySRAM.gameState, &gameState, Game_State.sizeof);
+	memcpy(&replaySRAM.partyCharacters, &PartyCharacters[0], (PartyCharacter[6]).sizeof);
+	memcpy(&replaySRAM.eventFlags, &EventFlags[0], EventFlags.sizeof);
+	memcpy(&replaySRAM.timer, &Timer, Timer.sizeof);
+	UnknownC083C1(sram3.ptr);
+}
+
+/// $EFE895
+void UnknownEFE895(short arg1) {
+	if (TestSRAMSize != 0) {
+		Unknown7EB56D = RandA;
+		Unknown7EB56F = RandB;
+		Unknown7EB571 = Unknown7E0002;
+		Unknown7EB573 = arg1;
+	}
 }
 
 /// $EFEAC8

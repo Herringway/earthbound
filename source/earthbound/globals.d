@@ -74,8 +74,7 @@ __gshared ushort[2] pad_press; /// $006D - Pressed buttons on Controllers
 __gshared ushort[2] Unknown7E0071;
 __gshared ushort Unknown7E0075;
 __gshared ushort[2] Unknown7E0077;
-__gshared ubyte Unknown7E007B;
-__gshared ubyte Unknown7E007C;
+__gshared ushort Unknown7E007B;
 __gshared Unknown7E007DEntry* Unknown7E007D;
 __gshared ubyte Unknown7E007F;
 __gshared ubyte Unknown7E0080;
@@ -444,25 +443,38 @@ __gshared short Unknown7E5D7E; /// $5D7E
 __gshared short[6] Unknown7E5D8C; /// $5D8C
 __gshared short OverworldStatusSuppression; /// $5D98
 __gshared short Unknown7E5D9A; /// $5D9A
-
-__gshared short Unknown7E5DA4; /// $5DA4
-
-__gshared short Unknown7E5DAC; /// $5DAC
+__gshared ushort MushroomizationTimer; /// $5D9C - Time left until next direction swap in frames
+__gshared ushort MushroomizationModifier; /// $5D9E - Which set of swapped directions to use
+__gshared ushort MushroomizedWalkingFlag; /// $5DA0 - Whether or not to use mushroomized movement logic
+__gshared ushort Unknown7E5DA2; /// $5DA2
+__gshared ushort Unknown7E5DA4; /// $5DA4
+__gshared ushort Unknown7E5DA6; /// $5DA6
+__gshared ushort Unknown7E5DA8; /// $5DA8
+__gshared ushort Unknown7E5DAA; /// $5DAA
+__gshared ushort Unknown7E5DAC; /// $5DAC
 __gshared short Unknown7E5DAE; /// $5DAE
 
 __gshared short Unknown7E5DBA; /// $5DBA
-
+__gshared const(void)* Unknown7E5DBC; /// $5DBC
+__gshared short Unknown7E5DBE; /// $5DBC
 __gshared short CurrentQueuedInteractionType; /// $5DC0
+__gshared ushort Unknown7E5DC2; /// $5DC2
+__gshared short Unknown7E5DC4; /// $5DC4
 
 __gshared short Unknown7E5DD4; /// $5DD4
 __gshared short Unknown7E5DD6; /// $5DD6
 __gshared short Unknown7E5DD8; /// $5DD8
 
 __gshared short Unknown7E5DDA; /// $5DDA
+__gshared short Unknown7E5DDC; /// $5DDC
+__gshared const(ubyte)* Unknown7E5DDE; /// $5DDE
 
+__gshared QueuedInteraction[4] QueuedInteractions; /// $5DEA
 __gshared short CurrentQueuedInteraction; /// $5E02
 __gshared short NextQueuedInteraction; /// $5E04
+__gshared Unknown7E5E06Entry[24] Unknown7E5E06; /// $5E06
 
+__gshared short Unknown7E5E36; /// $5E36
 __gshared const(OverworldEventMusic)* Unknown7E5E38; /// $5E38
 
 __gshared ubyte Unknown7E5E6C; /// $5E6C
@@ -495,10 +507,6 @@ __gshared short[53] WindowTable; /// $88E4 - Index: Window ID; Value: Index to W
 __gshared short[5] Unknown7E894E; /// $894E
 __gshared short CurrentFocusWindow; /// $8958 - Window ID of the focused window
 __gshared ubyte[0] Unknown7E895A; /// $895A
-
-__gshared Game_State gameState;
-__gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters;
-__gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags;
 
 __gshared ubyte[3] HPPPWindowDigitBuffer; /// $8966
 __gshared ushort[12][4] HPPPWindowBuffer; /// $8969
@@ -554,6 +562,11 @@ __gshared ushort Unknown7E97B8; /// $97B8
 
 __gshared ubyte[10] CCArgumentStorage; /// $97BA
 __gshared ushort CCArgumentGatheringLoopCounter; /// $97CA
+
+__gshared Game_State gameState; /// $97F5
+__gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters; /// $99CE
+__gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags; /// $9C08
+__gshared ushort CurrentInteractingEventFlag; /// $9C88
 
 __gshared WindowTextAttributesCopy Unknown7E9C8A; /// $9C8A
 
@@ -825,4 +838,6 @@ __gshared ubyte ActionScript8E; /// $8E
 
 // Other hardware stuff
 
-SRAM sram;
+__gshared SRAM sram; //$306000
+__gshared SaveDataReplay replaySRAM; //$316000
+__gshared ubyte[0] sram3; //$326000

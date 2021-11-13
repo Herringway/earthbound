@@ -9,7 +9,9 @@ import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank05;
+import earthbound.bank07;
 import earthbound.bank0F;
+import earthbound.bank10;
 import earthbound.bank17;
 import earthbound.bank1C;
 import earthbound.bank20;
@@ -465,6 +467,144 @@ short MapInputToDirection(short style) {
     return result;
 }
 
+/// $C04116
+short UnknownC04116(short direction) {
+    short x14 = cast(short)(UnknownC3E148[direction] + gameState.leaderX.integer);
+    short x04 = cast(short)(UnknownC3E158[direction] + gameState.leaderY.integer);
+    short x12 = Unknown7E5D58;
+    Unknown7E5D58 = 1;
+    while (true) {
+        short x10 = NPCCollisionCheck(x14, x04, gameState.currentPartyMembers);
+        if (x10 > 0) {
+            CurrentTPTEntry = EntityTPTEntries[x10];
+            Unknown7E5D64 = x10;
+            break;
+        }
+        if ((UnknownC05CD7(x14, x04, gameState.currentPartyMembers, direction) & 0x82) != 0x82) {
+            break;
+        }
+        if (UnknownC3E148[direction] != 0) {
+            x14 += ((UnknownC3E148[direction] & 0x8000) != 0) ? -8 : 8;
+        }
+        if (UnknownC3E158[direction] != 0) {
+            x04 += ((UnknownC3E158[direction] & 0x8000) != 0) ? -8 : 8;
+        }
+    }
+    Unknown7E5D58 = x12;
+    if ((CurrentTPTEntry == -1) || (CurrentTPTEntry == 0)) {
+        UnknownC4334A(direction);
+    }
+    return CurrentTPTEntry;
+}
+
+/// $C041E3
+short UnknownC041E3() {
+    short x10 = cast(short)(gameState.leaderDirection & 0xFFFE);
+    short a = UnknownC04116(cast(short)(gameState.leaderDirection & 0xFFFE));
+    if ((a != -1) && (a != 0)) {
+        return cast(short)(gameState.leaderDirection & 0xFFFE);
+    }
+    gameState.leaderDirection = (((gameState.leaderDirection & 0xFFFE) + 2) & 7);
+    a = UnknownC04116(gameState.leaderDirection);
+    if ((a != -1) && (a != 0)) {
+        return gameState.leaderDirection;
+    }
+    gameState.leaderDirection = ((gameState.leaderDirection + 4) & 7);
+    a = UnknownC04116(gameState.leaderDirection);
+    if ((a != -1) && (a != 0)) {
+        return gameState.leaderDirection;
+    }
+    gameState.leaderDirection = ((gameState.leaderDirection - 2) & 7);
+    a = UnknownC04116(gameState.leaderDirection);
+    if ((a != -1) && (a != 0)) {
+        return gameState.leaderDirection;
+    }
+    gameState.leaderDirection = x10;
+    return -1;
+}
+
+/// $C04279
+ushort FindNearbyCheckableTPTEntry() {
+    CurrentTPTEntry = -1;
+    Unknown7E5D64 = -1;
+    short x10 = UnknownC041E3();
+    if ((x10 != -1) && (EntityDirections[gameState.currentPartyMembers] != x10)) {
+        gameState.leaderDirection = x10;
+        EntityDirections[gameState.currentPartyMembers] = x10;
+        UnknownC0A780(gameState.currentPartyMembers);
+    }
+    return CurrentTPTEntry;
+}
+
+/// $C042EF
+short UnknownC042EF(short direction) {
+    short x14 = cast(short)(UnknownC3E148[direction] + gameState.leaderX.integer);
+    short x04 = cast(short)(UnknownC3E158[direction] + gameState.leaderY.integer);
+    short x12 = Unknown7E5D58;
+    Unknown7E5D58 = 1;
+    while (true) {
+        short x10 = NPCCollisionCheck(x14, x04, gameState.currentPartyMembers);
+        if (x10 > 0) {
+            CurrentTPTEntry = EntityTPTEntries[x10];
+            Unknown7E5D64 = x10;
+            break;
+        }
+        if ((UnknownC05CD7(x14, x04, gameState.currentPartyMembers, direction) & 0x82) != 0x82) {
+            break;
+        }
+        if (UnknownC3E148[direction] != 0) {
+            x14 += ((UnknownC3E148[direction] & 0x8000) != 0) ? -8 : 8;
+        }
+        if (UnknownC3E158[direction] != 0) {
+            x04 += ((UnknownC3E158[direction] & 0x8000) != 0) ? -8 : 8;
+        }
+    }
+    Unknown7E5D58 = x12;
+    if ((CurrentTPTEntry == 0) || (CurrentTPTEntry == -1)) {
+        UnknownC065C2(direction);
+    }
+    return CurrentTPTEntry;
+}
+
+/// $C043BC
+short UnknownC043BC() {
+    short x10 = cast(short)(gameState.leaderDirection & 0xFFFE);
+    short a = UnknownC042EF(cast(short)(gameState.leaderDirection & 0xFFFE));
+    if ((a != -1) && (a != 0)) {
+        return cast(short)(gameState.leaderDirection & 0xFFFE);
+    }
+    gameState.leaderDirection = (((gameState.leaderDirection & 0xFFFE) + 2) & 7);
+    a = UnknownC042EF(gameState.leaderDirection);
+    if ((a != -1) && (a != 0)) {
+        return gameState.leaderDirection;
+    }
+    gameState.leaderDirection = ((gameState.leaderDirection + 4) & 7);
+    a = UnknownC042EF(gameState.leaderDirection);
+    if ((a != -1) && (a != 0)) {
+        return gameState.leaderDirection;
+    }
+    gameState.leaderDirection = ((gameState.leaderDirection - 2) & 7);
+    a = UnknownC042EF(gameState.leaderDirection);
+    if ((a != -1) && (a != 0)) {
+        return gameState.leaderDirection;
+    }
+    gameState.leaderDirection = x10;
+    return -1;
+}
+
+/// $C04452
+ushort FindNearbyTalkableTPTEntry() {
+    CurrentTPTEntry = -1;
+    Unknown7E5D64 = -1;
+    short x10 = UnknownC043BC();
+    if ((x10 != -1) && (EntityDirections[gameState.currentPartyMembers] != x10)) {
+        gameState.leaderDirection = x10;
+        EntityDirections[gameState.currentPartyMembers] = x10;
+        UnknownC0A780(gameState.currentPartyMembers);
+    }
+    return CurrentTPTEntry;
+}
+
 /// $C04C45
 void UnknownC04C45();
 
@@ -509,7 +649,7 @@ void UnknownC04F9F(short arg1) {
 
 /// $C04FFE
 ushort UnknownC04FFE() {
-    ushort result = 0; //x14
+    ushort result = 0;
     ushort x02;
     ushort x04;
     ushort x16;
@@ -521,7 +661,7 @@ ushort UnknownC04FFE() {
     }
     for(x02 = 0; (gameState.unknown96[x02] != 0) && (gameState.unknown96[x02] <= 4); x02++) {
         Unknown7E4DC6 = ChosenFourPtrs[gameState.playerControlledPartyMembers[x02]];
-        const affliction = Unknown7E4DC6.afflictions[0]; //x10
+        const affliction = Unknown7E4DC6.afflictions[0];
         if ((affliction == 1) || (affliction == 2)) {
             continue;
         }
@@ -632,11 +772,52 @@ short InitBattleCommon() {
     return result;
 }
 
+/// $C05503
+void UnknownC05503(short, short);
+
+/// $C0559C
+void UnknownC0559C(short, short);
+
 /// $C05639
 void UnknownC05639(short, short);
 
 /// $C056D0
 void UnknownC056D0(short, short);
+
+/// $C05CD7
+short UnknownC05CD7(short arg1, short arg2, short arg3, short arg4) {
+    Unknown7E5DA4 = 0;
+    Unknown7E5DAC = cast(short)(arg1 - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[arg3]]);
+    Unknown7E5DAE = cast(short)(arg2 - UnknownC42A41[UNKNOWN_30X2_TABLE_36[arg3]] + UnknownC42AEB[UNKNOWN_30X2_TABLE_36[arg3]]);
+    switch(arg4) {
+        case 1:
+            UnknownC056D0(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            goto case;
+        case 0:
+            UnknownC05503(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            break;
+        case 3:
+            UnknownC0559C(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            goto case;
+        case 2:
+            UnknownC056D0(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            break;
+        case 5:
+            UnknownC05639(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            goto case;
+        case 4:
+            UnknownC0559C(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            break;
+        case 7:
+            UnknownC05503(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            goto case;
+        case 6:
+            UnknownC05639(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            break;
+        default: break;
+    }
+    return Unknown7E5DA4;
+}
 
 /// $C05F33
 short UnknownC05F33(short x, short y, short entityID) {
@@ -713,6 +894,122 @@ void UnknownC064D4() {
     CurrentQueuedInteractionType = -1;
 }
 
+/// $C06578
+void UnknownC06578(short arg1, short arg2) {
+    Unknown7E5E06[Unknown7E5E36].unknown0 = arg1;
+    Unknown7E5E06[Unknown7E5E36].unknown2 = arg2;
+    Unknown7E5E36++;
+}
+
+/// $C065A3
+void UnknownC065A3() {
+    while (Unknown7E5E36 != 0) {
+        Unknown7E5E36--;
+        CreatePreparedEntitySprite(Unknown7E5E06[Unknown7E5E36].unknown0, Unknown7E5E06[Unknown7E5E36].unknown2);
+    }
+}
+
+/// $C065C2
+void UnknownC065C2(short direction) {
+    short x0E = cast(short)((gameState.leaderX.integer / 8) + UnknownC3E230[direction]);
+    short x02 = cast(short)((gameState.leaderY.integer / 8) + UnknownC3E240[direction]);
+    if (direction == Direction.Left) {
+        x0E--;
+    }
+    short x = UnknownC07477(x0E, x02);
+    if (x == -1) {
+        x = UnknownC07477(cast(short)(x0E + 1), x02);
+    }
+    if ((x != -1) && (x != 6)) {
+        Unknown7E5DDC = Unknown7E5DBE;
+        //Unknown7E5DDE = doorData[Unknown7E5DBC & 0x7FFF]
+
+        //not sure if this is the correct type...
+        Unknown7E5DDE = (cast(const(DoorEntryA)*)Unknown7E5DBC).textPtr;
+        CurrentTPTEntry = -2;
+    }
+}
+
+/// $C06662
+void ScreenTransition(short arg1, short arg2) {
+    short x02 = ScreenTransitionConfigTable[arg1].duration == 0xFF ? 900 : ScreenTransitionConfigTable[arg1].duration;
+    UnknownC42631(ScreenTransitionConfigTable[arg1].unknown5, ScreenTransitionConfigTable[arg1].direction * 4);
+    if (arg2 == 1) {
+        UnknownC0943C();
+        UnknownC0DD2C(2);
+        if (ScreenTransitionConfigTable[arg1].animationID != 0) {
+            UnknownC4A67E(ScreenTransitionConfigTable[arg1].animationID, ScreenTransitionConfigTable[arg1].animationFlags + 2);
+        }
+        UnknownC4954C(ScreenTransitionConfigTable[arg1].fadeStyle, &palettes[0][0]);
+        UnknownC496E7(x02, -1);
+        for (short i = 0; i < x02; i++) {
+            if (Unknown7E0030 != 0) {
+                WaitUntilNextFrame();
+            }
+            UnknownC426ED();
+            OAMClear();
+            UnknownC4268A();
+            UnknownC426C7();
+            UnknownC09466();
+            UpdateScreen();
+            UnknownC4A7B0();
+            WaitUntilNextFrame();
+        }
+        if (ScreenTransitionConfigTable[arg1].fadeStyle <= 50) {
+            UnknownC08726();
+        } else {
+            memset(&palettes[0][0], 0xFF, 0x200);
+            UnknownC0856B(0x18);
+            WaitUntilNextFrame();
+            Unknown7E4676 = 1;
+        }
+        UnknownC09451();
+    } else {
+        short x1D = (ScreenTransitionConfigTable[arg1].fadeStyle <= 50) ? 1 : 0;
+        if (x1D != 0) {
+            FadeIn(1, 1);
+        } else {
+            UnknownC496E7(ScreenTransitionConfigTable[arg1].secondaryDuration, -1);
+        }
+        if (ScreenTransitionConfigTable[arg1].secondaryAnimationID != 0) {
+            UnknownC4A67E(ScreenTransitionConfigTable[arg1].secondaryAnimationID, ScreenTransitionConfigTable[arg1].secondaryAnimationFlags);
+        }
+        for (short i = 0; i < ScreenTransitionConfigTable[arg1].secondaryDuration; i++) {
+            if (arg1 == 0) {
+                if (Unknown7E0030 != 0) {
+                    WaitUntilNextFrame();
+                }
+                UnknownC426ED();
+            }
+            OAMClear();
+            UnknownC09466();
+            UnknownC4A7B0();
+            UpdateScreen();
+            WaitUntilNextFrame();
+            if (i == 1) {
+                UnknownC0943C();
+            }
+        }
+        if (x1D == 0) {
+            UnknownC49740();
+        }
+    }
+    if (CurrentGiygasPhase < GiygasPhase.StartPraying) {
+        UnknownC2EAAA();
+    }
+    UnknownC09451();
+    Unknown7E5DAA = 0;
+    Unknown7E5DA8 = 0;
+}
+
+/// $C068AF
+short GetScreenTransitionSoundEffect(short transition, short getStart) {
+    if (getStart == 0) {
+        return ScreenTransitionConfigTable[transition].endingSoundEffect;
+    }
+    return ScreenTransitionConfigTable[transition].startSoundEffect;
+}
+
 /// $C068F4
 void UnknownC068F4(short arg1, short arg2) {
     if (Unknown7E5DD8 != 0) {
@@ -751,6 +1048,67 @@ void SpawnBuzzBuzz() {
     UnknownEF0EE8();
 }
 
+/// $C06B3D
+void UnknownC06B3D();
+
+/// $C06BFF
+void DoorTransition(const(DoorEntryA)* arg1) {
+    if (arg1.textPtr !is null) {
+        UnknownC10004(arg1.textPtr);
+    }
+    Unknown7E5DAA = 0;
+    Unknown7E5DA8 = 0;
+    if (getEventFlag(arg1.eventFlag & 0x7FFF) != (arg1.eventFlag > EVENT_FLAG_UNSET) ? 1 : 0) {
+        Unknown7E5DC2 = 0;
+        return;
+    }
+    for (short i = 1; i <= 10; i++) {
+        setEventFlag(i, 0);
+    }
+    UnknownC06B3D();
+    UnknownC07C5B();
+    PlaySfx(GetScreenTransitionSoundEffect(arg1.unknown10, 1));
+    if (Unknown7EB4B6 != 0) {
+        FadeOut(1, 1);
+    } else {
+        ScreenTransition(arg1.unknown10, 1);
+    }
+    short x02 = cast(short)(arg1.unknown8 * 8);
+    short x04 = cast(short)((arg1.unknown6 & 0x3FFF) * 8);
+    if (UnknownC3E1D8[arg1.unknown6 >> 14] != 2) {
+        x02 += 8;
+    }
+    if (Debug != 0) {
+        if (DebugModeNumber != 6) {
+            UnknownC068F4(x02, x04);
+        }
+        if (Unknown7EB567 == 0) {
+            UnknownEFE895(arg1.unknown10);
+        }
+    } else {
+        UnknownC068F4(x02, x04);
+    }
+    LoadMapAtPosition(x02, x04);
+    Unknown7E2890 = 0;
+    gameState.walkingStyle = 0;
+    UnknownC03FA9(x02, x04, UnknownC3E1D8[arg1.unknown6 >> 14]);
+    if ((Debug != 0) && (Unknown7EB567 == 0)) {
+        SaveReplaySaveSlot();
+    }
+    UnknownC069AF();
+    UnknownC065A3();
+    PlaySfx(GetScreenTransitionSoundEffect(arg1.unknown10, 0));
+    if (Unknown7EB4B6 != 0) {
+        FadeIn(1, 1);
+    } else {
+        ScreenTransition(arg1.unknown10, 0);
+    }
+    Unknown7E5DC4 = -1;
+    Unknown7E0A34 = -1;
+    SpawnBuzzBuzz();
+    Unknown7E5DC2 = 0;
+}
+
 immutable ushort[] UNKNOWN_C06E02 = [
 	0x0008,
 	0x0000,
@@ -767,10 +1125,54 @@ immutable ushort[] UNKNOWN_C06E02 = [
 ];
 
 /// $C07477
-ubyte UnknownC07477(short, short);
+byte UnknownC07477(short arg1, short arg2) {
+    const(SectorDoors)* x0A = &doorConfig[(arg1 / 32) + (arg2 & 0xFFE0)];
+    if (x0A.length == 0) {
+        return -1;
+    }
+    const(DoorConfig)* x06 = &x0A.doors[0];
+    for (short i = x0A.length; i != 0; x06++, i--) {
+        if (x06.unknown1 != (arg1 % 32)) {
+            continue;
+        }
+        if (x06.unknown0 != (arg2 % 32)) {
+            continue;
+        }
+        //is this right?
+        Unknown7E5DBC = x06.entryA;
+        Unknown7E5DBE = x06.type;
+    }
+    return -1;
+}
 
 /// $C075DD
-void ProcessQueuedInteractions();
+void ProcessQueuedInteractions() {
+    const(void)* ptr = QueuedInteractions[CurrentQueuedInteraction].text_ptr;
+    CurrentQueuedInteractionType = QueuedInteractions[CurrentQueuedInteraction].type;
+    CurrentQueuedInteraction = (CurrentQueuedInteraction + 1) & 3;
+    Unknown7E5D58 &= 0xFFFE;
+    UnknownC07C5B();
+    switch(CurrentQueuedInteractionType) {
+        case 2:
+            DoorTransition(cast(DoorEntryA*)ptr);
+            break;
+        case 10:
+            UnknownC10004(cast(const(ubyte)*)ptr);
+            if (ptr is TextDadCalls) {
+                DadPhoneTimer = 0x697;
+                Unknown7E9E56 = 0;
+            }
+            break;
+        case 0:
+        case 8:
+        case 9:
+            UnknownC10004(cast(const(ubyte)*)ptr);
+            break;
+        default: break;
+    }
+    Unknown7E5D9A = (CurrentQueuedInteraction != NextQueuedInteraction) ? 1 : 0;
+    CurrentQueuedInteractionType = -1;
+}
 
 /// $C07716
 void UnknownC07716() {
@@ -945,7 +1347,7 @@ void UnknownC07B52() {
             }
             EntityScreenXTable[x12] = cast(short)(EntityAbsXTable[x12] - BG1_X_POS);
             EntityScreenYTable[x12] = cast(short)(EntityAbsYTable[x12] - BG1_Y_POS);
-            UnknownC0A780();
+            UnknownC0A780(x12);
         }
     }
 }
@@ -1058,6 +1460,21 @@ void start() {
     Unknown7E0020 = 0x851B;
     UnknownC08B19();
     GameInit();
+}
+
+/// $C083C1
+void UnknownC083C1(ubyte* arg1) {
+    Unknown7E0085 = arg1;
+    Unknown7E008B = pad_state[0];
+    Unknown7E0089 = 1;
+    Unknown7E007B = 0x8000 | Unknown7E007B;
+}
+
+/// $C0841B
+short TestSRAMSize() {
+    //original code tested how large SRAM was by writing to areas beyond retail SRAM and comparing to a value guaranteed to be in SRAM
+    //if SRAM is retail-sized, these areas would just be mirrors of the existing SRAM
+    return Unknown7E0A36;
 }
 
 /// $C0841B
@@ -1995,7 +2412,7 @@ void UnknownC0A56E();
 ubyte[24] UnknownC0A60B = [0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x05, 0x00, 0x06, 0x00, 0x07, 0x00];
 
 /// $C0A780
-void UnknownC0A780();
+void UnknownC0A780(short);
 
 /// $C0ABA8
 void WaitForSPC700() {
@@ -2708,7 +3125,6 @@ short UnknownC0DED9(short, short, short, short, short);
 
 /// $C0E196
 void UnknownC0E196() {
-    //x14 = &gameState.unknown88
     PlayerPositionBuffer[gameState.unknown88].x_coord = gameState.leaderX.integer;
     PlayerPositionBuffer[gameState.unknown88].y_coord = gameState.leaderY.integer;
     PlayerPositionBuffer[gameState.unknown88].tile_flags =UnknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);

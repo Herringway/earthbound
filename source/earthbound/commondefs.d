@@ -3671,6 +3671,17 @@ enum TownMap {
 	SUMMERS,
 }
 
+enum DoorType {
+	Type0 = 0,
+	Type1 = 1,
+	Type2 = 2,
+	Type3 = 3,
+	Type4 = 4,
+	Type5 = 5,
+	Type6 = 6,
+	Type7 = 7,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -3875,8 +3886,8 @@ struct MovementSpeeds {
 struct QueuedInteraction {
 	ushort type; //0
 	union { //2
-		void* text_ptr;
-		void* door_ptr;
+		const(ubyte)* text_ptr;
+		const(DoorEntryA)* door_ptr;
 	}
 }
 
@@ -4091,6 +4102,13 @@ struct SaveData {
 	ubyte[EVENT_FLAG_COUNT / 8] eventFlags;
 }
 
+struct SaveDataReplay {
+	Game_State gameState;
+	PartyCharacter[6] partyCharacters;
+	ubyte[EVENT_FLAG_COUNT / 8] eventFlags;
+	uint timer;
+}
+
 struct FontConfig {
 	const(ubyte)* data;
 	const(ubyte)* graphics;
@@ -4116,9 +4134,10 @@ struct NPC {
 	ushort actionScript;
 	ushort eventFlag;
 	ubyte appearanceStyle;
-	ubyte* talkText;
+	const(ubyte)* talkText;
 	union {
-		ubyte* checkText;
+		const(ubyte)* checkText;
+		uint item;
 		ubyte[4] somethingElse;
 	}
 	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, ubyte* tt, ubyte* ct) {
@@ -4392,6 +4411,92 @@ struct DisplayTextState {
 	const(ubyte)* textptr; //0
 	ushort unknown4; //4
 	WindowTextAttributesCopy savedTextAttributes; //6
+}
+
+struct DoorEntryA {
+	const(ubyte)* textPtr; // 0
+	ushort eventFlag; // 4
+	ushort unknown6; // 6
+	ushort unknown8; // 8
+	ubyte unknown10; // 10
+}
+
+struct DoorEntryB {
+	ushort eventFlag;
+	const(ubyte)* textPtr;
+}
+
+struct DoorEntryC {
+	const(ubyte)* textPtr;
+}
+
+struct SectorDoors {
+	ushort length;
+	const(DoorConfig)[] doors;
+}
+
+struct DoorConfig {
+	ubyte unknown0;
+	ubyte unknown1;
+	ubyte type;
+	union {
+		immutable(DoorEntryA)* entryA;
+		immutable(DoorEntryB)* entryB;
+		immutable(DoorEntryC)* entryC;
+		//ushort unknown3;
+	}
+	bool bit8; //doesn't exist in original code, but masking pointers isn't a great idea for portability
+	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryA)* a) {
+		unknown0 = u0;
+		unknown1 = u1;
+		type = t;
+		entryA = a;
+	}
+	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryB)* b) {
+		unknown0 = u0;
+		unknown1 = u1;
+		type = t;
+		entryB = b;
+	}
+	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryC)* c) {
+		unknown0 = u0;
+		unknown1 = u1;
+		type = t;
+		entryC = c;
+	}
+	this(ubyte u0, ubyte u1, ubyte t, ushort u3) {
+		unknown0 = u0;
+		unknown1 = u1;
+		type = t;
+		if ((u3 & 0x8000) != 0) {
+			bit8 = true;
+		}
+	}
+	this(ubyte u0, ubyte u1, ubyte t, typeof(null)) {
+		unknown0 = u0;
+		unknown1 = u1;
+		type = t;
+	}
+}
+
+struct ScreenTransitionConfig {
+	ubyte duration; //0
+	ubyte animationID; //1
+	ubyte animationFlags; //2
+	ubyte fadeStyle; //3
+	ubyte direction; //4
+	ubyte unknown5; //5
+	ubyte slideSpeed; //6
+	ubyte startSoundEffect; //7
+	ubyte secondaryDuration; //8
+	ubyte secondaryAnimationID; //9
+	ubyte secondaryAnimationFlags; //10
+	ubyte endingSoundEffect; //11
+}
+
+struct Unknown7E5E06Entry {
+	ushort unknown0; //0
+	ushort unknown2; //2
 }
 
 //helper funcs not in the original game

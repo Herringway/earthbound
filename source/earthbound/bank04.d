@@ -1096,6 +1096,15 @@ short UnknownC4213F(short arg1, short arg2) {
     return cast(short)((((arg2 & 0xFF00) >> 8) * (arg1 & 0xFF)) + ((arg2 & 0xFF) * (arg1 & 0xFF) >> 8));
 }
 
+/// $C42631
+void UnknownC42631(ubyte, short);
+
+/// $C4268A
+void UnknownC4268A();
+
+/// $C426C7
+void UnknownC426C7();
+
 /// $C426ED
 void UnknownC426ED() {
     for (short i = 0; i != 0x200; i += 2) {
@@ -1616,6 +1625,9 @@ void UnknownC43317() {
         ChosenFourPtrs[i] = &PartyCharacters[i];
     }
 }
+
+/// $C4334A
+void UnknownC4334A(short);
 
 /// $C43568
 void UnknownC43568() {
@@ -3257,7 +3269,7 @@ void UnknownC4D43F(short arg1) {
             x14 = 0;
         }
         short x12 = 0;
-        if (x06.eventFlag < 0x8000) {
+        if (x06.eventFlag < EVENT_FLAG_UNSET) {
             x12 = 1;
         }
         if (getEventFlag(x06.eventFlag & 0x7FFF) != x12) {
