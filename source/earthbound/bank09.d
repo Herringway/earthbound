@@ -1044,7 +1044,7 @@ immutable ubyte* TEXT_NPC_1272;
 immutable ubyte* TEXT_BLOCK_C9C293;
 immutable ubyte* TEXT_BLOCK_C9C65B;
 immutable ubyte* TEXT_EVENT_771;
-immutable ubyte* TEXT_END_OF_GAME_PICKY_EVENT;
+immutable ubyte* TextEndOfGamePickyEvent;
 immutable ubyte* TEXT_BLOCK_C9C85D;
 immutable ubyte* TEXT_BLOCK_C9C98A;
 immutable ubyte* TEXT_NPC_1089;

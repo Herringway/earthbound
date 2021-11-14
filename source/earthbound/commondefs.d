@@ -138,6 +138,19 @@ enum Direction {
 	None = 8,
 }
 
+enum CCDirection {
+	USE_VAR = 0,
+	Undefined = 0,
+	Up = Direction.Up+1,
+	UpRight = Direction.UpRight+1,
+	Right = Direction.Right+1,
+	DownRight = Direction.DownRight+1,
+	Down = Direction.Down+1,
+	DownLeft = Direction.DownLeft+1,
+	Left = Direction.Left+1,
+	UpLeft = Direction.UpLeft+1,
+}
+
 enum DirectionMask {
 	Up = 1<<0,
 	UpRight = 1<<1,
@@ -3682,6 +3695,50 @@ enum DoorType {
 	Type7 = 7,
 }
 
+enum PartyPSIFlags {
+	TeleportAlpha = 1<<0,
+	TeleportBeta = 1<<1,
+	StarstormAlpha = 1<<2,
+	StarstormBeta = 1<<3,
+}
+
+enum WarpStyle {
+	INSTANT_PLUS_FADE = 0,
+	STANDARD_DOOR = 1,
+	STANDARD_DOOR_WHITE = 2,
+	STANDARD_DOOR2 = 3,
+	STANDARD_DOOR_WITH_SOUND = 4,
+	HOLE = 5,
+	STANDARD_DOOR3 = 6,
+	STANDARD_DOOR_WITH_SOUND2 = 7,
+	STANDARD_DOOR_WITH_SOUND3 = 8,
+	STANDARD_DOOR_WITH_SOUND4 = 9,
+	STANDARD_DOOR4 = 10,
+	UNKNOWN = 11,
+	STANDARD_DOOR5 = 12,
+	STANDARD_DOOR6 = 13,
+	STANDARD_DOOR_WHITE2 = 14,
+	STANDARD_DOOR_WITH_UNKNOWN_SOUND = 15,
+	PHASE_DISTORTER_III = 16,
+	MOONSIDE1 = 17,
+	MOONSIDE2 = 18,
+	MOONSIDE3 = 19,
+	MOONSIDE4 = 20,
+	MOONSIDE5 = 21,
+	MOONSIDE6 = 22,
+	MOONSIDE7 = 23,
+	MOONSIDE8 = 24,
+	MOONSIDE9 = 25,
+	MOONSIDE10 = 26,
+	MOONSIDE11 = 27,
+	STANDARD_DOOR7 = 28,
+	STANDARD_DOOR_WHITE_SLOW = 29,
+	STANDARD_DOOR_WHITE_SLOW_SOUND = 30,
+	GHOST_TUNNEL = 31,
+	GHOST_TUNNEL2 = 32,
+	HOLE2 = 33,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -4393,7 +4450,7 @@ struct BattleSpritePointer {
 	ubyte size;
 }
 
-struct TeleportDestination {
+struct PSITeleportDestination {
 	ubyte[25] name;
 	ushort eventFlag;
 	ushort x;
@@ -4499,27 +4556,39 @@ struct Unknown7E5E06Entry {
 	ushort unknown2; //2
 }
 
+struct TeleportDestination {
+	short x; //0
+	short y; //2
+	ubyte direction; //4
+	ubyte screenTransition; //5
+	ushort unknown6; //6
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {
 	ubyte[length] result = 0;
-	foreach (idx, c; str) {
-		result[idx] = EBChar(c);
+	size_t idx;
+	foreach (dchar c; str) {
+		result[idx++] = EBChar(c);
 	}
 	return result;
 }
 
 ubyte[] EBString(string str) {
 	ubyte[] result = new ubyte[](str.length);
-	foreach (idx, c; str) {
-		result[idx] = EBChar(c);
+	size_t idx;
+	foreach (dchar c; str) {
+		result[idx++] = EBChar(c);
 	}
 	return result;
 }
 
 static assert(EBString!4("Null") == [0x7E, 0xA5, 0x9C, 0x9C]);
 
-ubyte EBChar(char c) {
+ubyte EBChar(dchar c) {
+	import std.conv : text;
+	import std.utf : toUTF8;
 	switch (c) {
 		case ' ':
 		case '!':
@@ -4535,7 +4604,172 @@ ubyte EBChar(char c) {
 		case '@': return 0x70;
 		case '_': return 0x90;
 		case '|': return 0xAC;
-		default: assert(0, "unhandled character: '" ~ c ~ "'");
+		case 'α': return 0x2A;
+		case 'β': return 0x2B;
+		case 'γ': return 0x2C;
+		case 'Σ': return 0x2D;
+		case 'Ω': return 0x2E;
+		case 'ー': return 0x25;
+		case 'あ': return 0x60;
+		case 'ぁ': return 0x61;
+		case 'か': return 0x62;
+		case 'が': return 0x63;
+		case 'さ': return 0x64;
+		case 'ざ': return 0x65;
+		case 'た': return 0x66;
+		case 'だ': return 0x67;
+		case 'な': return 0x68;
+		case 'は': return 0x69;
+		case 'ば': return 0x6A;
+		case 'ぱ': return 0x6B;
+		case 'ま': return 0x6C;
+		case 'や': return 0x6D;
+		case 'ゃ': return 0x6E;
+		case 'ら': return 0x6F;
+		case 'い': return 0x70;
+		case 'ぃ': return 0x71;
+		case 'き': return 0x72;
+		case 'ぎ': return 0x73;
+		case 'し': return 0x74;
+		case 'じ': return 0x75;
+		case 'ち': return 0x76;
+		case 'ぢ': return 0x77;
+		case 'に': return 0x78;
+		case 'ひ': return 0x79;
+		case 'び': return 0x7A;
+		case 'ぴ': return 0x7B;
+		case 'み': return 0x7C;
+		case 'わ': return 0x7D;
+		case 'っ': return 0x7E;
+		case 'り': return 0x7F;
+		case 'う': return 0x80;
+		case 'ぅ': return 0x81;
+		case 'く': return 0x82;
+		case 'ぐ': return 0x83;
+		case 'す': return 0x84;
+		case 'ず': return 0x85;
+		case 'つ': return 0x86;
+		case 'づ': return 0x87;
+		case 'ぬ': return 0x88;
+		case 'ふ': return 0x89;
+		case 'ぶ': return 0x8A;
+		case 'ぷ': return 0x8B;
+		case 'む': return 0x8C;
+		case 'ゆ': return 0x8D;
+		case 'ゅ': return 0x8E;
+		case 'る': return 0x8F;
+		case 'え': return 0x90;
+		case 'ぇ': return 0x91;
+		case 'け': return 0x92;
+		case 'げ': return 0x93;
+		case 'せ': return 0x94;
+		case 'ぜ': return 0x95;
+		case 'て': return 0x96;
+		case 'で': return 0x97;
+		case 'ね': return 0x98;
+		case 'へ': return 0x99;
+		case 'べ': return 0x9A;
+		case 'ぺ': return 0x9B;
+		case 'め': return 0x9C;
+		case 'ん': return 0x9D;
+		case 'を': return 0x9E;
+		case 'れ': return 0x9F;
+		case 'お': return 0xA0;
+		case 'ぉ': return 0xA1;
+		case 'こ': return 0xA2;
+		case 'ご': return 0xA3;
+		case 'そ': return 0xA4;
+		case 'ぞ': return 0xA5;
+		case 'と': return 0xA6;
+		case 'ど': return 0xA7;
+		case 'の': return 0xA8;
+		case 'ほ': return 0xA9;
+		case 'ぼ': return 0xAA;
+		case 'ぽ': return 0xAB;
+		case 'も': return 0xAC;
+		case 'よ': return 0xAD;
+		case 'ょ': return 0xAE;
+		case 'ろ': return 0xAF;
+		case 'ア': return 0xB0;
+		case 'ァ': return 0xB1;
+		case 'カ': return 0xB2;
+		case 'ガ': return 0xB3;
+		case 'サ': return 0xB4;
+		case 'ザ': return 0xB5;
+		case 'タ': return 0xB6;
+		case 'ダ': return 0xB7;
+		case 'ナ': return 0xB8;
+		case 'ハ': return 0xB9;
+		case 'バ': return 0xBA;
+		case 'パ': return 0xBB;
+		case 'マ': return 0xBC;
+		case 'ヤ': return 0xBD;
+		case 'ャ': return 0xBE;
+		case 'ラ': return 0xBF;
+		case 'イ': return 0xC0;
+		case 'ィ': return 0xC1;
+		case 'キ': return 0xC2;
+		case 'ギ': return 0xC3;
+		case 'シ': return 0xC4;
+		case 'ジ': return 0xC5;
+		case 'チ': return 0xC6;
+		case 'ヂ': return 0xC7;
+		case 'ニ': return 0xC8;
+		case 'ヒ': return 0xC9;
+		case 'ビ': return 0xCA;
+		case 'ピ': return 0xCB;
+		case 'ミ': return 0xCC;
+		case 'ワ': return 0xCD;
+		case 'ッ': return 0xCE;
+		case 'リ': return 0xCF;
+		case 'ウ': return 0xD0;
+		case 'ゥ': return 0xD1;
+		case 'ク': return 0xD2;
+		case 'グ': return 0xD3;
+		case 'ス': return 0xD4;
+		case 'ズ': return 0xD5;
+		case 'ツ': return 0xD6;
+		case 'ヅ': return 0xD7;
+		case 'ヌ': return 0xD8;
+		case 'フ': return 0xD9;
+		case 'ブ': return 0xDA;
+		case 'プ': return 0xDB;
+		case 'ム': return 0xDC;
+		case 'ユ': return 0xDD;
+		case 'ュ': return 0xDE;
+		case 'ル': return 0xDF;
+		case 'エ': return 0xE0;
+		case 'ェ': return 0xE1;
+		case 'ケ': return 0xE2;
+		case 'ゲ': return 0xE3;
+		case 'セ': return 0xE4;
+		case 'ゼ': return 0xE5;
+		case 'テ': return 0xE6;
+		case 'デ': return 0xE7;
+		case 'ネ': return 0xE8;
+		case 'ヘ': return 0xE9;
+		case 'ベ': return 0xEA;
+		case 'ペ': return 0xEB;
+		case 'メ': return 0xEC;
+		case 'ン': return 0xED;
+		case 'レ': return 0xEF;
+		case 'オ': return 0xF0;
+		case 'ォ': return 0xF1;
+		case 'コ': return 0xF2;
+		case 'ゴ': return 0xF3;
+		case 'ソ': return 0xF4;
+		case 'ゾ': return 0xF5;
+		case 'ト': return 0xF6;
+		case 'ド': return 0xF7;
+		case 'ノ': return 0xF8;
+		case 'ホ': return 0xF9;
+		case 'ボ': return 0xFA;
+		case 'ポ': return 0xFB;
+		case 'モ': return 0xFC;
+		case 'ヨ': return 0xFD;
+		case 'ョ': return 0xFE;
+		case 'ロ': return 0xFF;
+		default: assert(0, ("unhandled character: '"d ~ c ~ "'"d).toUTF8);
 	}
 }
 

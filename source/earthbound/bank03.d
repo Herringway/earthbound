@@ -233,6 +233,33 @@ void UnknownC3E6F8() {
 	Unknown7E9623 = 1;
 }
 
+immutable ubyte[10][24] DebugMenuText = [
+	EBString!10("Flag"),
+	EBString!10("Goods"),
+	EBString!10("Save"),
+	EBString!10("Apple"),
+	EBString!10("Banana"),
+	EBString!10("TV"),
+	EBString!10("Event"),
+	EBString!10("Warp"),
+	EBString!10("Tea"),
+	EBString!10("テレポ"), //Teleport
+	EBString!10("スターα"), //Star α
+	EBString!10("スターβ"), //Star β
+	EBString!10("プレーヤー0"), //Player 0
+	EBString!10("プレーヤー1"), //Player 1
+	EBString!10("GUIDE"),
+	EBString!10("TRACK"),
+	EBString!10("CAST"),
+	EBString!10("STONE"),
+	EBString!10("STAFF"),
+	EBString!10("メーター"), //Meter
+	EBString!10("REPLAY"),
+	EBString!10("TEST1"),
+	EBString!10("TEST2"),
+	EBString!10(""),
+];
+
 /// $C3EB1C
 void UnknownC3EAD0(short arg1) {
 	for (short i = 0; TimedItemTransformationTable[i].item != 0; i++) {

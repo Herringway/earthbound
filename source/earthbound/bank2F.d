@@ -970,6 +970,9 @@ immutable ubyte* TEXT_BLOCK_EFA2FA;
 
 __gshared SpriteGrouping*[463] SpriteGroupingPointers;
 
+immutable ubyte* TextBlockEFA6EB;
+immutable ubyte* TextDebugUnknownMenu2;
+
 /// $EFA70F
 immutable TownMapData[32][80] MapDataPerSectorTownMapData = [
 	[
@@ -4278,6 +4281,12 @@ void UnknownEFE895(short arg1) {
 		Unknown7EB573 = arg1;
 	}
 }
+
+/// $EFEA4A
+void UnknownEFEA4A();
+
+/// $EFEA9E
+void UnknownEFEA9E();
 
 /// $EFEAC8
 void UnknownEFEAC8() {

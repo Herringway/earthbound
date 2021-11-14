@@ -82,11 +82,72 @@ short LoadSectorAttributes(ushort arg1, ushort arg2) {
     return CurrentSectorAttributes;
 }
 
+/// $C00AC5
+void UnknownC00AC5(short x, short y);
+
+/// $C00BDC
+void UnknownC00BDC(short x, short y);
+
+/// $C00CF3
+void UnknownC00CF3(short x, short y);
+
+/// $C00D7E
+void UnknownC00D7E(short x, short y);
+
+/// $C00E16
+void UnknownC00E16(short x, short y);
+
+/// $C00FCB
+void UnknownC00FCB(short x, short y);
+
 /// $C013F6
 void LoadMapAtPosition(short x, short y);
 
 /// $C01558
-void RefreshMapAtPosition(short x, short y);
+void RefreshMapAtPosition(short x, short y) {
+    BG2_X_POS = x;
+    BG1_X_POS = x;
+    BG2_Y_POS = y;
+    BG1_Y_POS = y;
+    ushort x04 = cast(short)(((x & 0x8000) != 0) ? ((x / 8) | 0xE000) : (x / 8));
+    ushort x02 = cast(short)(((y & 0x8000) != 0) ? ((y / 8) | 0xE000) : (y / 8));
+    while ((Unknown7E4374 - x04) != 0) {
+        if (((Unknown7E4374 - x04) < 0) != 0) {
+            Unknown7E4374++;
+            UnknownC00BDC(cast(short)(Unknown7E4374 + 41), cast(short)(x02 - 16));
+            UnknownC00D7E(cast(short)(Unknown7E4374 + 41), cast(short)(x02 - 16));
+            UnknownC00FCB(cast(short)(Unknown7E4374 + 32), x02);
+            UnknownC025CF(cast(short)(Unknown7E4374 + 34), cast(short)(x02 - 1));
+            SpawnVertical(cast(short)(Unknown7E4374 + 40), cast(short)(x02 - 8));
+        } else {
+            Unknown7E4374--;
+            UnknownC00BDC(cast(short)(Unknown7E4374 - 16), cast(short)(x02 - 16));
+            UnknownC00D7E(cast(short)(Unknown7E4374 - 16), cast(short)(x02 - 16));
+            UnknownC00FCB(cast(short)(Unknown7E4374 - 1), x02);
+            UnknownC025CF(cast(short)(Unknown7E4374 - 3), cast(short)(x02 - 1));
+            SpawnVertical(cast(short)(Unknown7E4374 - 8), cast(short)(x02 - 8));
+        }
+    }
+    while ((Unknown7E4376 - x02) != 0) {
+        if (((Unknown7E4376 - 0x02) < 0) != 0) {
+            Unknown7E4376++;
+            UnknownC00AC5(cast(short)(x04 - 16), cast(short)(Unknown7E4376 + 41));
+            UnknownC00CF3(cast(short)(x04 - 16), cast(short)(Unknown7E4376 + 41));
+            UnknownC00E16(x04, cast(short)(Unknown7E4376 + 28));
+            UnknownC0255C(x04, cast(short)(Unknown7E4376 + 29));
+            SpawnHorizontal(cast(short)(x04 - 8), cast(short)(Unknown7E4376 + 36));
+        } else {
+            Unknown7E4376--;
+            UnknownC00AC5(cast(short)(x04 - 16), cast(short)(Unknown7E4376 - 16));
+            UnknownC00CF3(cast(short)(x04 - 16), cast(short)(Unknown7E4376 - 16));
+            UnknownC00E16(x04, cast(short)(Unknown7E4376 - 1));
+            UnknownC0255C(x04, cast(short)(Unknown7E4376 - 1));
+            SpawnHorizontal(cast(short)(x04 - 8), cast(short)(Unknown7E4376 - 8));
+        }
+    }
+    Unknown7E4386 = x;
+    Unknown7E4388 = y;
+}
 
 /// $C018F3
 void ReloadMap();
@@ -220,8 +281,100 @@ void UnknownC02140(short);
 /// $C021E6
 void UnknownC021E6();
 
+/// $C0255C
+void UnknownC0255C(short x, short y);
+
+/// $C025CF
+void UnknownC025CF(short x, short y);
+
 /// $C0262D
 short UnknownC0262D(short, short);
+
+/// $C0263D
+short UnknownC0263D(short, short);
+
+/// $C02668
+short UnknownC02668(short, short, short);
+
+/// $C02A6B
+void SpawnHorizontal(short x, short y) {
+    if (getEventFlag(EventFlag.UNKNOWN_00B) != 0) {
+        return;
+    }
+    if (getEventFlag(EventFlag.USE_POSTGAME_MUSIC) != 0) {
+        return;
+    }
+    if (Unknown7E4A5A == 0) {
+        return;
+    }
+    if ((y & 7) != 0) {
+        return;
+    }
+    if (((y < -16) ? 0 : y) >= 0x500) {
+        return;
+    }
+    short x14 = x / 8;
+    short x12 = ((y < -16) ? 0 : y) / 8;
+    for (short i = x14; x14 + 5 > i; i++) {
+        short x10 = i;
+        Unknown7E4A62 = 8;
+        Unknown7E4A64 = 8;
+        short x02 = 1;
+        Unknown9:
+        short x16 = UnknownC0263D(i, x12);
+        short tmp = UnknownC0263D(cast(short)(i + 1), x12);
+        if ((x16 != 0) && (tmp == x16)) {
+            Unknown7E4A62 += 8;
+            i++;
+            if (++x02 != 6) {
+                goto Unknown9;
+            }
+        }
+        while (x02-- != 0) {
+            UnknownC02668(x10, x12, x16);
+        }
+    }
+}
+
+/// $C02B55
+void SpawnVertical(short x, short y) {
+    if (getEventFlag(EventFlag.UNKNOWN_00B) != 0) {
+        return;
+    }
+    if (getEventFlag(EventFlag.USE_POSTGAME_MUSIC) != 0) {
+        return;
+    }
+    if (Unknown7E4A5A == 0) {
+        return;
+    }
+    if ((x & 7) != 0) {
+        return;
+    }
+    if (((x < -16) ? 0 : x) >= 0x400) {
+        return;
+    }
+    short x14 = ((x < -16) ? 0 : x) / 8;
+    short x12 = y / 8;
+    for (short i = x12; x12 + 5 > i; i++) {
+        short x10 = i;
+        Unknown7E4A62 = 8;
+        Unknown7E4A64 = 8;
+        short x02 = 1;
+        Unknown9:
+        short x18 = UnknownC0263D(x14, i);
+        short tmp = UnknownC0263D(x14, cast(short)(i + 1));
+        if ((x18 != 0) && (tmp == x18)) {
+            Unknown7E4A64 += 8;
+            i++;
+            if (++x02 != 6) {
+                goto Unknown9;
+            }
+        }
+        while (x02-- != 0) {
+            UnknownC02668(x14, x10, x18);
+        }
+    }
+}
 
 /// $C02D29
 void UnknownC02D29() {
@@ -771,6 +924,9 @@ short InitBattleCommon() {
     BattleDebug = 0;
     return result;
 }
+
+/// $C052D4
+void UnknownC052D4(short);
 
 /// $C05503
 void UnknownC05503(short, short);

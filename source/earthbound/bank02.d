@@ -608,6 +608,28 @@ void RecalcCharacterPostmathOffense(short id) {
 	PartyCharacters[id - 1].offense = cast(ubyte)total;
 }
 
+/// $C2192B
+void RecalcCharacterPostmathDefense(short id) {
+	short total = PartyCharacters[id - 1].base_defense;
+	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) {
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
+	}
+	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) {
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
+	}
+	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) {
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
+	}
+	if (0 >= total) {
+		total = 0;
+	} else if (total > 0xFF) {
+		total = 0xFF;
+	} else { //why would they explicitly do this...?
+		total = (total & 0xFF);
+	}
+	PartyCharacters[id - 1].defense = cast(ubyte)total;
+}
+
 /// $C21AEB
 void RecalcCharacterPostmathSpeed(short id) {
 	short total = PartyCharacters[id - 1].base_speed;
@@ -710,28 +732,6 @@ void CalcResistances(short id) {
 }
 
 /// $C2239D
-void RecalcCharacterPostmathDefense(short id) {
-	short total = PartyCharacters[id - 1].base_defense;
-	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
-	}
-	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
-	}
-	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
-	}
-	if (0 >= total) {
-		total = 0;
-	} else if (total > 0xFF) {
-		total = 0xFF;
-	} else { //why would they explicitly do this...?
-		total = (total & 0xFF);
-	}
-	PartyCharacters[id - 1].defense = cast(ubyte)total;
-}
-
-/// $C2239D
 short UnknownC2239D(short id) {
 	for (short i = 0; i < gameState.partyCount; i++) {
 		if (gameState.partyMembers[i] == id) {
@@ -767,6 +767,44 @@ short UnknownC223D9(ubyte* arg1, short arg2) {
 		return StatusEquipWindowText[x0E][arg2 - 1];
 	} else {
 		return StatusEquipWindowText2[x0E][arg2 - 1];
+	}
+}
+
+/// $C22474
+short UnknownC22474(ubyte* arg1) {
+	short x0E;
+	if (arg1[0] != 0) {
+		x0E = 0;
+	} else if (arg1[3] != 0) {
+		x0E = 3;
+	} else {
+		for (x0E = 1; x0E < 7; x0E++) {
+			if (arg1[x0E] != 0) {
+				goto found;
+			}
+		}
+		return 4;
+	}
+	found:
+	return StatusEquipWindowText3[x0E][arg1[x0E] - 1];
+}
+
+/// $C227C8
+void LearnSpecialPSI(short id) {
+	switch (id) {
+		case 1:
+			gameState.partyPSI |= PartyPSIFlags.TeleportAlpha;
+			break;
+		case 2:
+			gameState.partyPSI |= PartyPSIFlags.TeleportBeta;
+			break;
+		case 3:
+			gameState.partyPSI |= PartyPSIFlags.StarstormAlpha;
+			break;
+		case 4:
+			gameState.partyPSI |= PartyPSIFlags.StarstormBeta;
+			break;
+		default: break;
 	}
 }
 
@@ -822,23 +860,9 @@ void RemoveCharFromParty(short id) {
 	}
 }
 
-/// $C22474
-short UnknownC22474(ubyte* arg1) {
-	short x0E;
-	if (arg1[0] != 0) {
-		x0E = 0;
-	} else if (arg1[3] != 0) {
-		x0E = 3;
-	} else {
-		for (x0E = 1; x0E < 7; x0E++) {
-			if (arg1[x0E] != 0) {
-				goto found;
-			}
-		}
-		return 4;
-	}
-	found:
-	return StatusEquipWindowText3[x0E][arg1[x0E] - 1];
+/// $C22A2C
+void SaveCurrentGame() {
+	SaveGameSlot(CurrentSaveSlot - 1);
 }
 
 /// $C23109
@@ -850,7 +874,7 @@ immutable ConsolationPrize[2] ConsolationItemTable = [
 /// $C2311B
 short BattleSelectionMenu(short, short);
 
-/// $C23BCF
+/// $C23B66
 ubyte* CopyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
 	while (arg3-- != 0) {
 		if (arg1[0] == 0) {
@@ -870,7 +894,30 @@ ubyte* CopyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
 }
 
 /// $C23BCF
-void FixAttackerName(short);
+void FixAttackerName(short arg1) {
+	Unknown7E5E77 = 0;
+	memset(&AttackerNameAdjustScratch[0], 0, 28);
+	if ((currentAttacker.allyOrEnemy == 1) || (currentAttacker.npcID != 0)) {
+		ubyte* x14 = CopyEnemyName(&EnemyConfigurationTable[currentAttacker.id].name[0], &AttackerNameAdjustScratch[0], 25);
+		if ((currentAttacker.allyOrEnemy == 1) && (arg1 == 0)) {
+			if ((currentAttacker.theFlag != 1) || (UnknownC2B66A(currentAttacker.unknown76) != 2)) {
+				x14[0] = EBChar(' ');
+				Unknown7E5E77 = 1;
+				x14[1] = cast(ubyte)(currentAttacker.theFlag + 0x70);
+			}
+		}
+		if (currentAttacker.id == EnemyID.MyPet) {
+			memcpy(&AttackerNameAdjustScratch[0], &gameState.petName[0], 6);
+			AttackerNameAdjustScratch[6] = 0;
+		}
+		UnknownC1AC4AF(&AttackerNameAdjustScratch[0], 27);
+		Unknown7E9658 = currentAttacker.id;
+	} else {
+		if (currentAttacker.id <= 4) {
+			UnknownC1AC4AF(&PartyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
+		}
+	}
+}
 
 /// $C23D05
 void FixTargetName() {
@@ -990,11 +1037,88 @@ void RemoveStatusUntargettableTargets() {
 	}
 }
 
-/// $C24348
-ubyte SelectStealableItem();
+/// $C241DC
+ubyte FindStealableItems() {
+	ubyte x18 = 0;
+	for (short i = 0; i < 6; i++) {
+		short x14 = gameState.partyMembers[i];
+		if (x14 < 1) {
+			continue;
+		}
+		if (x14 >= 4) {
+			continue;
+		}
+		short x10;
+		for (short j = 0; j < 6; j++) {
+			if (BattlersTable[j].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[j].id == x14) {
+				continue;
+			}
+			if (BattlersTable[j].npcID != 0) {
+				continue;
+			}
+			x10 = BattlersTable[i].unknown7;
+		}
+		for (short j = 0; j < 14; j++) {
+			if (j + 1 == x10) {
+				continue;
+			}
+			if (PartyCharacters[x14 - 1].items[j] == 0) {
+				continue;
+			}
+			if (ItemData[PartyCharacters[x14 - 1].items[j]].cost == 0) {
+				continue;
+			}
+			if (ItemData[PartyCharacters[x14 - 1].items[j]].cost >= 290) {
+				continue;
+			}
+			if ((ItemData[PartyCharacters[x14 - 1].items[j]].type & 0x30) != 0x20) {
+				continue;
+			}
+			if (PartyCharacters[x14 - 1].equipment[0] == j + 1) {
+				continue;
+			}
+			if (PartyCharacters[x14 - 1].equipment[1] == j + 1) {
+				continue;
+			}
+			if (PartyCharacters[x14 - 1].equipment[2] == j + 1) {
+				continue;
+			}
+			if (PartyCharacters[x14 - 1].equipment[3] == j + 1) {
+				continue;
+			}
+			Unknown7EA9D4[x18] = PartyCharacters[x14 - 1].items[j];
+			x18++;
+		}
+	}
+	return x18;
+}
+
+/// $C24316
+ubyte SelectStealableItem() {
+	short x0E = FindStealableItems();
+	if (x0E == 0) {
+		return 0;
+	}
+	if ((rand() & 0x80) != 0) {
+		return 0;
+	}
+	return Unknown7EA9D4[RandLimit(x0E)];
+}
 
 /// $C24348
-short UnknownC24348(short);
+short UnknownC24348(short arg1) {
+	short x02 = FindStealableItems();
+	for (short i = 0; i < x02; i++) {
+		if (Unknown7EA9D4[i] != arg1) {
+			continue;
+		}
+		return 1;
+	}
+	return 0;
+}
 
 /// $C2437E
 void UnknownC2437E() {
@@ -2105,7 +2229,22 @@ void RemoveNPCTargetting() {
 	}
 }
 
-uint RandomTargetting(uint);
+/// $C26EF8
+uint RandomTargetting(uint arg1) {
+	if (arg1 == 0) {
+		return arg1;
+	}
+	short x10 = 0;
+	short x0E = (RandLong() % BattlersTable.length) + 1;
+	while (x0E-- != 0) {
+		do {
+			if (++x10 == 32) {
+				x10 = 0;
+			}
+		} while ((PowersOfTwo32Bit[x10] & arg1) == 0);
+	}
+	return PowersOfTwo32Bit[x10];
+}
 
 /// $C26FDC
 void TargetBattler(short arg1) {
@@ -3446,7 +3585,22 @@ void BattleActionHungryHPSucker() {
 }
 
 /// $C2A50E
-void BattleActionMummyWrap();
+void BattleActionMummyWrap() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (SuccessSpeed(250) != 0) {
+		short damageDone = cast(short)(400 - currentTarget.defense);
+		if (damageDone > 0) {
+			CalcResistDamage(damageDone, 0xFF);
+		}
+		if (InflictStatusBattle(currentTarget, 2, Status2.Solidified) != 0) {
+			DisplayInBattleText(TextBattleBodySolidified);
+		}
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
 
 /// $C2A57A
 void BottleRocketCommon(short count) {
@@ -3496,10 +3650,32 @@ void BattleActionSuperBomb() {
 }
 
 /// $C2A86B
-void BattleActionYogurtDispenser();
+void BattleActionYogurtDispenser() {
+	if (SuccessSpeed(250) != 0) {
+		CalcResistDamage(RandLimit(4), 0xFF);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
 
 /// $C2A89D
-void BattleActionSnake();
+void BattleActionSnake() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (SuccessSpeed(250) != 0) {
+		CalcResistDamage(RandLimit(4), 0xFF);
+		if (Success255(128) == 0) {
+			return;
+		}
+		if (InflictStatusBattle(currentTarget, 0, Status0.Poisoned) == 0) {
+			return;
+		}
+		DisplayInBattleText(TextBattleGotPoisoned);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
 
 /// $C2A99C
 void BattleActionBagOfDragonite();

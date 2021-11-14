@@ -6,12 +6,16 @@ import earthbound.bank00;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
+import earthbound.bank05;
 import earthbound.bank07;
 import earthbound.bank08;
+import earthbound.bank09;
 import earthbound.bank0F;
 import earthbound.bank15;
 import earthbound.bank2F;
 import earthbound.globals;
+
+import core.stdc.string;
 
 /// $C10000
 void UnknownC10000() {
@@ -357,8 +361,17 @@ void OpenHpAndWallet() {
 /// $C11383
 void UnknownC11383();
 
+/// $C113D1
+MenuOpt* UnknownC113D1(const(ubyte)* label, const(ubyte)* selectedText);
+
 /// $C1163C - Prints the options into the focused window
-void Win_PrintOptions();
+void PrintMenuItems();
+
+/// $C1180D
+void UnknownC1180D(short arg1, short arg2) {
+    UnknownC451FA(arg1, 0, arg2);
+    PrintMenuItems();
+}
 
 /// $C118E7 - Get target X/Y window positions after menu cursor movement
 ///           Returns low byte = X, high byte = Y
@@ -366,7 +379,7 @@ void Win_PrintOptions();
 ushort UnknownC118E7(short, short, short, short, short, short, short);
 
 /// $C1196A - Handle menu selection on the focused window
-int Win_MenuSelection(int cancelable) {
+int SelectionMenu(int cancelable) {
     // $28 = cancelable
 
     int dp26 = CurrentFocusWindow;
@@ -539,7 +552,7 @@ label2:
             UnknownEF0115(cast(short)dp26);
             Win_Tick();
 
-            Win_PrintOptions(); // Print the options for the new page
+            PrintMenuItems(); // Print the options for the new page
             SetInstaprint();
             goto label1;        // Back to the start....
         }
@@ -590,6 +603,29 @@ label3:
     goto label1; // Aaaand back to the start....
 }
 
+/// $C12D17
+void UnknownC12D17(short arg1) {
+    if ((Unknown7E9698 == 0) && (arg1 != 0)) {
+        for (short i = 0; 4 > i; i++) {
+            Unknown7E969A[i] = PartyCharacters[i].hp.target;
+            PartyCharacters[i].hp.target = 999;
+            PartyCharacters[i].hp.current.integer = 999;
+            Unknown7E96A2[i] = PartyCharacters[i].pp.target;
+            PartyCharacters[i].pp.target = 0;
+            PartyCharacters[i].pp.current.integer = 0;
+        }
+    } else {
+        if ((Unknown7E9698 != 0) && (arg1 == 0)) {
+            for (short i = 0; 4 > i; i++) {
+                PartyCharacters[i].hp.target = Unknown7E969A[i];
+                PartyCharacters[i].pp.target = Unknown7E96A2[i];
+            }
+        }
+    }
+    Unknown7E9698 = arg1;
+    ResumeMusic();
+}
+
 /// $C12DD5 - Tick windows (draw windows if necessary, roll HP/PP, advance RNG, wait a frame)
 void Win_Tick() {
     rand();
@@ -634,7 +670,122 @@ void UnknownC12E42() {
 }
 
 /// $C12E63
-void DebugYButtonMenu();
+void DebugYButtonMenu() {
+    UnknownC0943C();
+    PlaySfx(Sfx.Cursor1);
+    ShowHPPPWindows();
+    const(ubyte)* x1A = null;
+    loop: while (x1A is null) {
+        CreateWindowN(Window.PhoneMenu);
+        for (short i = 0; DebugMenuText[i][0] != 0; i++) {
+            UnknownC113D1(&DebugMenuText[i][0], null);
+        }
+        UnknownC1180D(1, 0);
+        switch (SelectionMenu(1)) {
+            case 1:
+                DebugYButtonFlag();
+                break;
+            case 2:
+                DebugYButtonGoods();
+                break;
+            case 3:
+                SaveCurrentGame();
+                RespawnX = gameState.leaderX.integer;
+                RespawnY = gameState.leaderY.integer;
+                break;
+            case 4:
+                x1A = TextDebugAppleMenu;
+                break;
+            case 5:
+                x1A = TextDebugBananaMenu;
+                break;
+            case 6:
+                x1A = TextDebugUnknownMenu;
+                break;
+            case 7:
+                x1A = TextDebugUnknownMenu2;
+                break;
+            case 8:
+                for (short i = 0; i < 30; i++) {
+                    UndrawHPPPWindow(0);
+                    UnknownC12E42();
+                    UnknownC12E42();
+                    UnknownC207B6(0);
+                    UnknownC12E42();
+                    UnknownC12E42();
+                }
+                FadeOut(1, 1);
+                LoadMapAtPosition(7696, 2280);
+                UnknownC03FA9(7696, 2280, 0);
+                FadeIn(1, 1);
+                break;
+            case 9:
+                CoffeeTeaScene(rand()&1);
+                break;
+            case 10:
+                LearnSpecialPSI(1);
+                break;
+            case 11:
+                LearnSpecialPSI(2);
+                break;
+            case 12:
+                LearnSpecialPSI(3);
+                LearnSpecialPSI(4);
+                break;
+            case 13:
+                EnterYourNamePlease(0);
+                break;
+            case 14:
+                EnterYourNamePlease(1);
+                break;
+            case 15:
+                UnknownC4D744();
+                break;
+            case 16:
+                DebugYButtonGuide();
+                break;
+            case 17:
+                UnknownC4ED0E();
+                Teleport(1);
+                break;
+            case 18:
+                UseSoundStone(1);
+                break;
+            case 19:
+                PlayCredits();
+                Teleport(1);
+                break;
+            case 20:
+                UnknownC12D17(Unknown7E9698 == 0 ? 1 : 0);
+                break;
+            case 21:
+                UnknownEFEA4A();
+                goto Unknown56;
+            case 22:
+                x1A = TextBattleGiygasPrayer91;
+                break;
+            case 23:
+                x1A = TextEndOfGamePickyEvent;
+                UnknownC1008E();
+                HideHPPPWindows();
+                DisplayText(x1A);
+                goto Unknown56;
+            default:
+                UnknownEFEA9E();
+                goto Unknown56;
+        }
+    }
+    CloseFocusWindow();
+    CreateWindowN(Window.TextStandard);
+    DisplayText(x1A);
+    Unknown56:
+    UnknownC1008E();
+    HideHPPPWindows();
+    do {
+        Win_Tick();
+    } while (Unknown7EB4A8 != -1);
+    UnknownC09451();
+}
 
 /// $C13187
 const(ubyte)* TalkTo();
@@ -730,6 +881,15 @@ void ShowTownMap() {
     DisplayTownMap();
     UnknownC09451();
 }
+
+/// $C13D03
+void DebugYButtonFlag();
+
+/// $C13E0E
+void DebugYButtonGuide();
+
+/// $C13EE7
+void DebugYButtonGoods();
 
 /// $C14012
 DisplayTextState* UnknownC14012() {
@@ -1132,7 +1292,7 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
                     x1E = &CC10;
                     break;
                 case 0x11:
-                    SetWorkingMemory(Win_MenuSelection(1));
+                    SetWorkingMemory(SelectionMenu(1));
                     UnknownC11383();
                     break;
                 case 0x12:
@@ -1296,7 +1456,60 @@ void UnknownC1AA18() {
 }
 
 /// $C1AC4A
-void UnknownC1AC4A(PartyCharacter*, short);
+void UnknownC1AC4A(ubyte* arg1, short arg2) {
+    memcpy(&Unknown7E9CD7[0], arg1, arg2);
+    Unknown7E9CD7[arg2] = 0;
+    Unknown7E9658 = -1;
+}
+
+/// $C1ACA1
+void UnknownC1ACA1(ubyte* arg1, short arg2) {
+    memcpy(&Unknown7E9CF5[0], arg1, arg2);
+    Unknown7E9CF5[arg2] = 0;
+    Unknown7E965A = -1;
+}
+
+/// $C1ACF8
+void UnknownC1ACF8(ubyte arg1) {
+    Unknown7E9D11 = arg1;
+}
+
+/// $C1BCAB
+void Teleport(short arg1) {
+    short x16 = OverworldStatusSuppression;
+    OverworldStatusSuppression = 1;
+    for (short i = 1; i <= 10; i++) {
+        setEventFlag(i, 0);
+    }
+    UnknownC06B3D();
+    PlaySfx(GetScreenTransitionSoundEffect(TeleportDestinationTable[arg1].screenTransition, 1));
+    if (Unknown7EB4B6 != 0) {
+        FadeOut(1, 1);
+    } else {
+        ScreenTransition(TeleportDestinationTable[arg1].screenTransition, 1);
+    }
+    LoadMapAtPosition(cast(short)(TeleportDestinationTable[arg1].x * 8), cast(short)(TeleportDestinationTable[arg1].y * 8));
+    Unknown7E2890 = 0;
+    UnknownC03FA9(cast(short)(TeleportDestinationTable[arg1].x * 8), cast(short)(TeleportDestinationTable[arg1].y * 8), cast(short)((TeleportDestinationTable[arg1].direction & 0x7F) - 1));
+    if ((TeleportDestinationTable[arg1].direction & 0x80) != 0) {
+        UnknownC052D4(cast(short)((TeleportDestinationTable[arg1].direction & 0x7F) - 1));
+    }
+    UnknownC068F4(cast(short)(TeleportDestinationTable[arg1].x * 8), cast(short)(TeleportDestinationTable[arg1].y * 8));
+    UnknownC069AF();
+    if (Unknown7E9D1B !is null) {
+        Unknown7E9D1B();
+        Unknown7E9D1B = null;
+    }
+    UnknownC065A3();
+    PlaySfx(GetScreenTransitionSoundEffect(TeleportDestinationTable[arg1].screenTransition, 0));
+    if (Unknown7EB4B6 != 0) {
+        FadeIn(1, 1);
+    } else {
+        ScreenTransition(TeleportDestinationTable[arg1].screenTransition, 0);
+    }
+    Unknown7E5DC4 = -1;
+    OverworldStatusSuppression = x16;
+}
 
 /// $C1BEC6
 void GetOffBicycle();
@@ -1313,7 +1526,7 @@ void ShowHPAlert(short arg1) {
     currentAttacker = &battler;
     UnknownC0943C();
     CreateWindowN(Window.TextStandard);
-    UnknownC1AC4A(&PartyCharacters[arg1], 5);
+    UnknownC1AC4A(&PartyCharacters[arg1].name[0], 5);
     DisplayText(TextAlertConditionCritical);
     CloseFocusWindowN();
     Win_Tick();
@@ -1343,8 +1556,8 @@ void UnknownC1DCCB(short);
 /// $C1DCCC
 void UnknownC43573F(short);
 
-/// $C1DDD3
-void UnknownC3E6F8F();
+/// $C1DD3B
+void ShowHPPPWindowsF();
 
 /// $C1DD47
 void CreateWindow(short id) {
@@ -1359,11 +1572,15 @@ void CloseFocusWindow() {
 /// $C1DD5F
 void UnknownC1DD5F();
 
-/// $C1DD3B
-void ShowHPPPWindowsF();
+/// $C1DD70
+void UnknownC1AC4AF(ubyte* arg1, short arg2) {
+    UnknownC1AC4A(arg1, arg2);
+}
 
 /// $C1DD76
-void UnknownC1ACA1F(ubyte*, short);
+void UnknownC1ACA1F(ubyte* arg1, short arg2) {
+    UnknownC1ACA1(arg1, arg2);
+}
 
 /// $C1DD7C
 void UnknownC1ACF8F(short);
@@ -1376,8 +1593,14 @@ ushort RemoveItemFromInventoryF(ushort character, ushort id) {
     return RemoveItemFromInventory(character, id);
 }
 
+/// $C1DDD3
+void UnknownC3E6F8F();
+
 /// $C1E1A5
 short EnemySelectMode(short);
+
+/// $C1EAA6
+short EnterYourNamePlease(short);
 
 /// $C1F805
 void FileMenuLoop();

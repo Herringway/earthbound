@@ -369,8 +369,12 @@ __gshared short Unknown7E436E; /// $436E
 __gshared short Unknown7E4370; /// $4370
 __gshared short Unknown7E4372; /// $4372
 __gshared short Unknown7E4374; /// $4374
+__gshared short Unknown7E4376; /// $4376
 
 __gshared short Unknown7E4380; /// $4380
+
+__gshared short Unknown7E4386; /// $4386
+__gshared short Unknown7E4388; /// $4388
 
 __gshared short Unknown7E438A; /// $438A
 __gshared short Unknown7E438C; /// $438C
@@ -554,7 +558,9 @@ __gshared ubyte Unknown7E9695; /// $9695
 
 __gshared ubyte Unknown7E9696; /// $9696
 __gshared ubyte Unknown7E9697; /// $9697
-__gshared ubyte Unknown7E9698; /// $9698
+__gshared short Unknown7E9698; /// $9698
+__gshared short[4] Unknown7E969A; /// $969A
+__gshared short[4] Unknown7E96A2; /// $96A2
 
 __gshared DisplayTextState[10] DisplayTextStates; /// $96AA
 
@@ -570,6 +576,11 @@ __gshared ushort CurrentInteractingEventFlag; /// $9C88
 
 __gshared WindowTextAttributesCopy Unknown7E9C8A; /// $9C8A
 
+__gshared ubyte[30] Unknown7E9CD7; /// $9CD7
+__gshared ubyte[28] Unknown7E9CF5; /// $9CF5
+__gshared ubyte Unknown7E9D11; /// $9D11
+
+__gshared void function() Unknown7E9D1B; /// $9D1B
 __gshared short RespawnX; /// $9D1F
 __gshared short RespawnY; /// $9D21
 // is this the actual size? maybe it's 0x100?
@@ -651,7 +662,7 @@ __gshared UnknownA97D Unknown7EA97D; /// $A97D
 __gshared ubyte[27] AttackerNameAdjustScratch; /// $A983
 __gshared ubyte[27] TargetNameAdjustScratch; /// $A99E
 __gshared ubyte[27] Unknown7EA9B9; /// $A9B9
-//UNKNOWN_7EA9D4: ;$A9D4
+__gshared ubyte[56] Unknown7EA9D4; // $A9D4
 
 __gshared short Unknown7EAA0C; /// $AA0C
 __gshared short Unknown7EAA0E; /// $AA0E
@@ -769,6 +780,7 @@ __gshared void* path_heap_end; /// $B43C - Pathfinder heap end pointer
 
 __gshared ubyte Unknown7EB49D; /// $B49D - Addressed specifically using long addressing, why??
 
+__gshared ubyte CurrentSaveSlot; /// $B4A1
 __gshared ubyte Unknown7EB4A2; /// $B4A2
 
 __gshared short Unknown7EB4A8; /// $B4A8
