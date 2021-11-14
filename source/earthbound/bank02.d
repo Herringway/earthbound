@@ -3387,6 +3387,23 @@ void BattleActionHPRecovery300() {
 /// $C2A27F
 void BattleActionRandomStatUp1d4();
 
+/// $C2A2F9
+immutable ubyte[16] PrayerList = [0, 0, 0, 0, 0, 1, 1, 2, 3, 4, 5, 5, 6, 7, 8, 9];
+
+/// $C2A2F9
+immutable const(ubyte)*[10] PrayerTextPointers = [
+	null /+TextSubtleLight+/,
+	null /+TextWarmLight+/,
+	null /+TextMysteriousLight+/,
+	null /+TextGoldenLight+/,
+	null /+TextDazzlingLightChased+/,
+	null /+TextDazzlingLightEnveloped+/,
+	null /+TextRainbowLight+/,
+	null /+TextMysteriousAroma+/,
+	null /+TextHeavenRendingSound+/,
+	null /+TextHeavyAir+/,
+];
+
 /// $C2A360
 void BattleActionHPRecovery10() {
 	RecoverHP(currentTarget, TwentyFivePercentVariance(10));
@@ -3549,8 +3566,22 @@ void BattleActionDefenseShower() {
 	BattleActionDefenseSpray();
 }
 
-/// $C2AB14
-short BossBattleCheck();
+/// $C2AB14 - returns 0 if there's a boss in the battle
+short BossBattleCheck() {
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		if (EnemyConfigurationTable[BattlersTable[i].id].boss == 0) {
+			continue;
+		}
+		return 0;
+	}
+	return 1;
+}
 
 /// $C2AB71
 void BattleActionTeleportBox() {
@@ -3568,8 +3599,123 @@ void BattleActionTeleportBox() {
 	}
 }
 
+/// $C2AC2A
+void BattleActionPraySubtle() {
+	RecoverHP(currentTarget, currentTarget.hpMax / 16);
+}
+
+/// $C2AC3E
+void BattleActionPrayWarm() {
+	RecoverHP(currentTarget, currentTarget.hpMax / 8);
+}
+
+/// $C2AC51
+void BattleActionPrayGolden() {
+	RecoverHP(currentTarget, cast(short)(currentTarget.hpMax - currentAttacker.hpTarget));
+}
+
+/// $C2AC68
+void BattleActionPrayMysterious() {
+	short x = FiftyPercentVariance(5);
+	if (x == 0) {
+		x++;
+	}
+	RecoverPP(currentTarget, x);
+}
+
+/// $C2AC7B
+void BattleActionPrayRainbow() {
+	if (currentTarget.afflictions[0] == Status0.Unconscious) {
+		ReviveTarget(currentTarget, currentTarget.hpMax);
+	}
+}
+
+/// $C2AC99
+void BattleActionPrayAroma() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (InflictStatusBattle(currentTarget, 2, Status2.Asleep) != 0) {
+		DisplayInBattleText(TextBattleFellAsleep);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
+
+/// $C2ACDA
+void BattleActionPrayRendingSound() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (InflictStatusBattle(currentTarget, 3, Status3.Strange) != 0) {
+		DisplayInBattleText(TextBattleFeltALittleStrange);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
+
 /// $C2AD1B
-void BattleActionPray();
+void BattleActionPray() {
+	short x16 = PrayerList[RandLimit(16)];
+	DisplayInBattleText(PrayerTextPointers[x16]);
+	void function() x12;
+	switch (x16) {
+		case 0:
+			TargetAllies();
+			RemoveNPCTargetting();
+			x12 = &BattleActionPraySubtle;
+			break;
+		case 1:
+			TargetAllies();
+			RemoveNPCTargetting();
+			x12 = &BattleActionPrayWarm;
+			break;
+		case 2:
+			TargetAllies();
+			RemoveNPCTargetting();
+			x12 = &BattleActionPrayMysterious;
+			break;
+		case 3:
+			TargetAllies();
+			RemoveNPCTargetting();
+			RemoveDeadTargetting();
+			BattlerTargetFlags = RandomTargetting(BattlerTargetFlags);
+			x12 = &BattleActionPrayGolden;
+			break;
+		case 4:
+			TargetAllEnemies();
+			RemoveNPCTargetting();
+			BattlerTargetFlags = RandomTargetting(BattlerTargetFlags);
+			x12 = &BattleActionPSIRockinBeta;
+			break;
+		case 5:
+			TargetAll();
+			x12 = &BattleActionPSIFlashAlpha;
+			break;
+		case 6:
+			TargetAll();
+			x12 = &BattleActionPrayRainbow;
+			break;
+		case 7:
+			TargetAll();
+			x12 = &BattleActionPrayAroma;
+			break;
+		case 8:
+			TargetAll();
+			x12 = &BattleActionPrayRendingSound;
+			break;
+		case 9:
+			TargetAll();
+			x12 = &BattleActionDefenseDownAlpha;
+			break;
+		default: break;
+	}
+	if (x16 != 6) {
+		RemoveDeadTargetting();
+	}
+	UnknownC240A4(x12);
+	BattlerTargetFlags = 0;
+}
 
 /// $C2AF1F
 void CopyMirrorData(Battler* arg1, Battler* arg2) {
@@ -3838,8 +3984,142 @@ void LoseHPStatus(Battler* battler, short arg2) {
 	SetHP(battler, (arg2 > battler.hpTarget) ? 0 : cast(ushort)(battler.hpTarget - arg2));
 }
 
+/// $C2BD13
+short UnknownC2BD13() {
+	short x02 = 0;
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness != 1) {
+			continue;
+		}
+		x02 += GetBattleSpriteWidth(BattlersTable[i].sprite);
+	}
+	return x02;
+}
+
 /// $C2BD5E
-void CallForHelpCommon(short);
+void CallForHelpCommon(short sowingSeeds) {
+	if (currentAttacker.allyOrEnemy != 0) {
+		const(BattleGroupEnemy)* x06 = &BattleEntryPointerTable[CurrentBattleGroup].enemies[0];
+		while (x06.count != 0xFF) {
+			if (x06.enemyID == currentAttacker.currentActionArgument) {
+				goto Success;
+			}
+			x06++;
+		}
+	}
+	Failure:
+	if (sowingSeeds != 0) {
+		DisplayInBattleText(TextBattleSeedSproutFailure);
+	} else {
+		DisplayInBattleText(TextBattleNobodyCame);
+	}
+	Success:
+	short x24 = 0;
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness != 1) {
+			continue;
+		}
+		if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+			continue;
+		}
+		if (BattlersTable[i].unknown76 != currentAttacker.currentActionArgument) {
+			continue;
+		}
+		x24++;
+	}
+	if (Success255(cast(short)(((EnemyConfigurationTable[currentAttacker.currentActionArgument].maxCalled - x24) * 205) / EnemyConfigurationTable[currentAttacker.currentActionArgument].maxCalled)) == 0) {
+		goto Failure;
+	}
+	short x1E = cast(short)((GetBattleSpriteWidth(EnemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) * 8) + 16);
+	short x1C = EnemyConfigurationTable[currentAttacker.currentActionArgument].row;
+	if (GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) + UnknownC2BD13() < 32) {
+		short x1A = 0x80;
+		short x18 = 0x80;
+		short x04 = 0x80;
+		short x16 = 0x80;
+		for (short i = 8; i < BattlersTable.length; i++) {
+			if (BattlersTable[i].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[i].row == EnemyConfigurationTable[currentTarget.currentActionArgument].row) {
+				if (BattlersTable[i].spriteX - ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2) < x16) {
+					x16 = cast(short)(BattlersTable[i].spriteX - ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2));
+				}
+				if (BattlersTable[i].spriteX + ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2) > x04) {
+					x04 = cast(short)(BattlersTable[i].spriteX + ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2));
+				}
+			} else {
+				if (BattlersTable[i].spriteX - ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2) < x18) {
+					x18 = cast(short)(BattlersTable[i].spriteX - ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2));
+				}
+				if (BattlersTable[i].spriteX + ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2) > x1A) {
+					x1A = cast(short)(BattlersTable[i].spriteX + ((GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) * 8) / 2));
+				}
+			}
+		}
+		if ((0x80 - x16 < x04 - 0x80)) {
+			if (x16 > x1E) {
+				x24 = cast(short)(x16 - x1E / 2);
+				goto Unknown25;
+			}
+		} else if (x04 + x1E < 0x100) {
+			x24 = cast(short)(x04 + x1E / 2);
+			goto Unknown25;
+		}
+		x1C = cast(short)(1 - x1C);
+		if (0x80 - x18 < x1A - 0x80) {
+			if (x18 > x1E) {
+				x24 = cast(short)(x18 - x1E / 2);
+				goto Unknown25;
+			}
+		} else if (x1A + x1E < 0x100) {
+			x24 = cast(short)(x1A + x1E / 2);
+			goto Unknown25;
+		}
+	}
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness != 1) {
+			continue;
+		}
+		if (BattlersTable[i].afflictions[0] != Status0.Unconscious) {
+			continue;
+		}
+		if (GetBattleSpriteWidth(EnemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) != GetBattleSpriteWidth(BattlersTable[i].sprite)) {
+			continue;
+		}
+		BattlersTable[i].consciousness = 0;
+		x24 = BattlersTable[i].spriteX;
+		x1C = BattlersTable[i].row;
+	}
+	Unknown25:
+	if (GetBattleSpriteWidth(EnemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) + UnknownC2BD13() >= BattlersTable.length) {
+		goto Failure;
+	}
+	Battler* x22 = &BattlersTable[8];
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			break;
+		}
+		x22++;
+	}
+	currentTarget = x22;
+	BattleInitEnemyStats(currentAttacker.currentActionArgument, currentTarget);
+	currentTarget.spriteX = cast(ubyte)x24;
+	currentTarget.row = cast(ubyte)x1C;
+	if (currentTarget.row != 0) {
+		currentTarget.spriteY = 0x80;
+	} else {
+		currentTarget.spriteY = 0x90;
+	}
+	currentTarget.vramSpriteIndex = UnknownC2F09F(currentAttacker.currentActionArgument);
+	currentTarget.hasTakenTurn = 1;
+	FixTargetName();
+	if (sowingSeeds != 0) {
+		DisplayInBattleText(TextBattleStartedGrowing);
+	} else {
+		DisplayInBattleText(TextBattleJoinedBattle);
+	}
+}
 
 /// $C2C13C
 void BattleActionSowSeeds() {

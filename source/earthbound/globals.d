@@ -88,9 +88,9 @@ __gshared short Unknown7E008D;
 __gshared short Unknown7E008F;
 __gshared ubyte Unknown7E0091; /// $0091
 __gshared ubyte DMA_COPY_MODE;
-__gshared short DMA_COPY_SIZE;
+__gshared ushort DMA_COPY_SIZE;
 __gshared const(void)* DMA_COPY_RAM_SRC;
-__gshared short DMA_COPY_VRAM_DEST;
+__gshared ushort DMA_COPY_VRAM_DEST;
 __gshared short Unknown7E0099;
 
 __gshared short Unknown7E009C;

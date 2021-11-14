@@ -2365,8 +2365,8 @@ void UnknownC0A443Entry4(short arg1) {
     DMA_COPY_VRAM_DEST = EntityVramAddresses[arg1 / 2];
     //x04 = EnttiyGraphicsPointerHigh[arg1 / 2]
     ubyte* x02 = cast(ubyte*)EntityGraphicsPointers[arg1 / 2];
-    if (UnknownC0A60B[EntityDirections[arg1 / 2]] != 0) {
-        for (short i = UnknownC0A60B[EntityDirections[arg1 / 2]]; i > 0; i--) {
+    if (SpriteDirectionMappings4Direction[EntityDirections[arg1 / 2]] != 0) {
+        for (short i = SpriteDirectionMappings4Direction[EntityDirections[arg1 / 2]]; i > 0; i--) {
             x02 += 4;
         }
     }
@@ -2406,13 +2406,88 @@ void UnknownC0A443Entry4(short arg1) {
 }
 
 /// $C0A56E
-void UnknownC0A56E();
+void UnknownC0A56E() {
+    if (((((DMA_COPY_SIZE / 2) + DMA_COPY_VRAM_DEST - 1) ^ DMA_COPY_VRAM_DEST) & 0x100) != 0) {
+        const(void)* DMA_COPY_RAM_SRCCopy = DMA_COPY_RAM_SRC;
+        ushort DMA_COPY_SIZECopy = DMA_COPY_SIZE;
+        ushort DMA_COPY_VRAM_DESTCopy = DMA_COPY_VRAM_DEST;
+        DMA_COPY_SIZE = cast(ushort)((((DMA_COPY_VRAM_DEST + 0x100) & 0xFF00) - DMA_COPY_VRAM_DEST) * 2);
+        CopyToVramCommon();
+        DMA_COPY_RAM_SRC += DMA_COPY_SIZE;
+        DMA_COPY_VRAM_DEST = cast(ushort)(((DMA_COPY_VRAM_DEST + 0x100) & 0xFF00) + 0x100);
+        DMA_COPY_SIZE = cast(ushort)(DMA_COPY_SIZECopy - DMA_COPY_SIZE);
+        CopyToVramCommon();
+        DMA_COPY_VRAM_DEST = DMA_COPY_VRAM_DESTCopy;
+        DMA_COPY_SIZE = DMA_COPY_SIZECopy;
+        DMA_COPY_RAM_SRC = DMA_COPY_RAM_SRCCopy;
+    } else {
+        CopyToVramCommon();
+    }
+    if ((DMA_COPY_VRAM_DEST & 0x100) == 0) {
+        DMA_COPY_VRAM_DEST += 0x100;
+        return;
+    }
+    if (((((((DMA_COPY_SIZE + 0x20) & 0xFFC0) / 2) + DMA_COPY_VRAM_DEST) ^ DMA_COPY_VRAM_DEST) & 0x100) != 0) {
+        DMA_COPY_VRAM_DEST = cast(ushort)((((DMA_COPY_SIZE + 0x20) & 0xFFC0) / 2) + DMA_COPY_VRAM_DEST);
+    } else {
+        DMA_COPY_VRAM_DEST = cast(ushort)((((DMA_COPY_SIZE + 0x20) & 0xFFC0) / 2) + DMA_COPY_VRAM_DEST - 0x100);
+    }
+}
 
 /// $C0A60B
-ubyte[24] UnknownC0A60B = [0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x02, 0x00, 0x02, 0x00, 0x02, 0x00, 0x03, 0x00, 0x00, 0x00, 0x04, 0x00, 0x05, 0x00, 0x06, 0x00, 0x07, 0x00];
+ushort[12] SpriteDirectionMappings4Direction = [0, 0, 1, 2, 2, 2, 3, 0, 4, 5, 6, 7];
+
+/// $C0A623
+ushort[8] SpriteDirectionMappings8Direction = [0, 4, 1, 5, 2, 6, 3, 7];
+
+/// $C0A66D
+void UnknownC0A66D(short arg1) {
+    EntityDirections[ActionScript88 / 2] = arg1;
+}
+
+/// $C0A673
+short UnknownC0A673() {
+    return EntityDirections[ActionScript88 / 2];
+}
 
 /// $C0A780
-void UnknownC0A780(short);
+void UnknownC0A780(short arg1) {
+    Unknown7E2896 = cast(short)(arg1 * 2);
+    UnknownC0A794();
+}
+
+/// $C0A794
+void UnknownC0A794() {
+    ushort x00 = EntityTileHeights[Unknown7E2896 / 2];
+    DMA_COPY_SIZE = EntityByteWidths[Unknown7E2896 / 2];
+    DMA_COPY_VRAM_DEST = EntityVramAddresses[Unknown7E2896 / 2];
+    const(ubyte)* x02 = cast(const(ubyte)*)(EntityGraphicsPointers[Unknown7E2896 / 2] + SpriteDirectionMappings8Direction[EntityDirections[Unknown7E2896 / 2] / 2] * 4 + EntityAnimationFrames[Unknown7E2896 / 2]);
+    if (((*x02 & 2) == 0) && ((EntitySurfaceFlags[Unknown7E2896 / 2] & 8) != 0)) {
+        Unknown7E0091 = 3;
+        DMA_COPY_RAM_SRC = &UnknownC40BE8;
+        UnknownC0A56E();
+        if (--x00 == 0) {
+            return;
+        }
+        if ((EntitySurfaceFlags[Unknown7E2896 / 2] & 4) != 0) {
+            UnknownC0A56E();
+            x00--;
+            return;
+        }
+    }
+    Unknown7E341A[Unknown7E2896 / 2] = *x02;
+    //TODO: figure this out too
+    //DMA_COPY_RAM_SRC = (*x02) & 0xFFFE;
+    Unknown7E0091 = 0;
+    //DMA_COPY_RAM_SRC + 2= UNKNOWN_30X2_TABLE_31[Unknown7E2896 / 2];
+    while (true) {
+        UnknownC0A56E();
+        if (--x00 == 0) {
+            break;
+        }
+        DMA_COPY_RAM_SRC += DMA_COPY_SIZE;
+    }
+}
 
 /// $C0ABA8
 void WaitForSPC700() {
