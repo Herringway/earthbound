@@ -4013,6 +4013,7 @@ void CallForHelpCommon(short sowingSeeds) {
 	} else {
 		DisplayInBattleText(TextBattleNobodyCame);
 	}
+	return;
 	Success:
 	short x24 = 0;
 	for (short i = 8; i < BattlersTable.length; i++) {
