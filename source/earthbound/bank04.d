@@ -1214,6 +1214,27 @@ immutable short[17] UnknownC42A41 = [
     0x0048,
 ];
 
+/// $C42AA7
+immutable short[17] UnknownC42AA7 = [
+    0x0002,
+    0x0000,
+    0x0002,
+    0x0004,
+    0x0006,
+    0x0002,
+    0x0003,
+    0x0002,
+    0x0004,
+    0x0006,
+    0x0000,
+    0x0002,
+    0x0004,
+    0x0006,
+    0x0008,
+    0x0000,
+    0x0006,
+];
+
 /// $C42AEB
 immutable short[17] UnknownC42AEB = [
     0x000A,

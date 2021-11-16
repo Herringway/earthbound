@@ -1201,7 +1201,15 @@ void UnknownC052D4(short arg1) {
 }
 
 /// $C05503
-void UnknownC05503(short, short);
+void UnknownC05503(short arg1, short arg2) {
+    ushort x10 = cast(ushort)(Unknown7EE000[(Unknown7E5DAE / 8) & 0x3F][(arg1 / 8) & 0x3F] | Unknown7E5DA4);
+    short x14 = (arg1 + 7) / 8;
+    for (short i = 0; i < UnknownC42AA7[arg2]; i++) {
+        x10 |= Unknown7EE000[Unknown7E5DAE / 8][x14 & 0x3F];
+        x14++;
+    }
+    Unknown7E5DA4 = x10;
+}
 
 /// $C0559C
 void UnknownC0559C(short, short);
