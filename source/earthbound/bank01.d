@@ -1512,7 +1512,14 @@ void Teleport(short arg1) {
 }
 
 /// $C1BEC6
-void GetOffBicycle();
+void GetOffBicycle() {
+    CreateWindowN(Window.TextStandard);
+    SetWorkingMemory(1);
+    DisplayText(TextGotOffBike);
+    CloseFocusWindowN();
+    Win_Tick();
+    UnknownC03CFD();
+}
 
 /// $C1D9E9
 void GainEXP(short, short, uint);

@@ -245,7 +245,7 @@ enum Music {
 	POWER = 79,
 	VENUS_CONCERT = 80,
 	YELLOW_SUBMARINE = 81,
-	BICYCLE = 82,
+	Bicycle = 82,
 	SKY_RUNNER = 83,
 	SKY_RUNNER_FALLING = 84,
 	BULLDOZER = 85,
@@ -3739,6 +3739,22 @@ enum WarpStyle {
 	HOLE2 = 33,
 }
 
+enum SurfaceFlags {
+	ObscureLowerBody = 1<<0,
+	ObscureUpperBody = 1<<1,
+	CausesSunstroke = 1<<2,
+	ShallowWater = 1<<3,
+	DeepWater = ShallowWater + CausesSunstroke,
+	LadderOrStairs = 1<<4,
+	Unknown1 = 1<<5,
+	Unknown2 = 1<<6,
+	Solid = 1<<7,
+}
+
+enum ShallowWaterSpeed = FixedPoint1616(0x8000, 0x0000); //0.5x
+enum DeepWaterSpeed = FixedPoint1616(0x547A, 0x0000); //0.33x
+enum SkipSandwichSpeed = FixedPoint1616(0x8000, 0x0001); //1.5x
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -3930,14 +3946,19 @@ struct PlayerPositionBufferEntry {
 }
 
 struct MovementSpeeds {
-	FixedPoint1616 up; //0
-	FixedPoint1616 upRight; //4
-	FixedPoint1616 right; //8
-	FixedPoint1616 downRight; //12
-	FixedPoint1616 down; //16
-	FixedPoint1616 downLeft; //20
-	FixedPoint1616 left; //24
-	FixedPoint1616 upLeft; //24
+	union {
+		struct {
+			FixedPoint1616 up; //0
+			FixedPoint1616 upRight; //4
+			FixedPoint1616 right; //8
+			FixedPoint1616 downRight; //12
+			FixedPoint1616 down; //16
+			FixedPoint1616 downLeft; //20
+			FixedPoint1616 left; //24
+			FixedPoint1616 upLeft; //24
+		}
+		FixedPoint1616[8] directionSpeeds;
+	}
 }
 
 struct QueuedInteraction {
@@ -4562,6 +4583,21 @@ struct TeleportDestination {
 	ubyte direction; //4
 	ubyte screenTransition; //5
 	ushort unknown6; //6
+}
+
+struct UnknownC08F98Entry {
+	ushort unknown0; //0
+	ushort unknown2; //2
+	ushort unknown4; //4
+}
+
+struct OverlayScript {
+	ushort command;
+	union {
+		ushort frames;
+		const(OverlayScript)* dest;
+		const(SpriteMap)* spriteMap;
+	}
 }
 
 //helper funcs not in the original game

@@ -3060,6 +3060,9 @@ void UnknownC4A7B0() {
 /// $C4ACCE
 void UseSoundStone(short);
 
+/// $C4B26B
+void LoadOverlaySprites();
+
 /// $C4B587
 void* Path_sbrk(size_t inc) {
     void *ptr = path_heap_current;

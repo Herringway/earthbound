@@ -742,7 +742,7 @@ immutable ubyte* TEXT_BLOCK_C7C8C0;
 immutable ubyte* TEXT_BLOCK_C7C8E8;
 immutable ubyte* TEXT_BLOCK_C7C912;
 immutable ubyte* TEXT_BLOCK_C7C93F;
-immutable ubyte* TEXT_GOT_OFF_BIKE;
+immutable ubyte* TextGotOffBike;
 immutable ubyte* TEXT_SAVE_FILE_LOST;
 immutable ubyte* TEXT_PHONE_STOIC_CLUB;
 immutable ubyte* TEXT_BLOCK_C7CA3C;

@@ -62,7 +62,7 @@ void GetColorAverage(uint* ptr);
 ushort Func_C00434(ushort arg1, ushort arg2);
 
 /// $C00480
-void ColorMystery();
+void UnknownC00480();
 
 /// $C005E7
 void UnknownC005E7();
@@ -74,7 +74,69 @@ void LoadCollisionData(short tileset);
 void Function14(size_t index1, size_t index2);
 
 /// $C006F2
-void UnknownC006F2();
+void UnknownC006F2(short);
+
+/// $C00778
+void LoadSpecialSpritePalette();
+
+/// $C007B6
+void LoadMapPalette(short, short);
+
+/// $C008C3
+void LoadMapAtSector(short x, short y) {
+    //x1A = x
+    if ((Unknown7E438A | Unknown7E438C) != 0) {
+        x = Unknown7E438A / 32;
+        y = Unknown7E438C / 16;
+    }
+    ubyte x1A = GlobalMapTilesetPaletteData[y][x];
+    ubyte x18 = x1A & 7;
+    ubyte x04 = x1A >> 3;
+    Decomp(&MapDataTileArrangementPtrTable[TilesetTable[x04]][0], &Unknown7F8000[0]);
+    LoadCollisionData(TilesetTable[x04]);
+    UnknownC006F2(TilesetTable[x04]);
+    UnknownC005E7();
+    memcpy(&palettes[8][0], &SpriteGroupPalettes[0], 0x100);
+    if (x04 != Unknown7E436E) {
+        Unknown7E4372 = TilesetTable[x04];
+        Decomp(&MapDataTilesetPtrTable[TilesetTable[x04]][0], &Unknown7F0000[0]);
+        while (Unknown7E0028 != 0) {}
+        if (Unknown7EB4EF == 0) {
+            CopyToVram2(0, 0x7000, 0, &Unknown7F0000[0]);
+        } else {
+            CopyToVram2(0, 0x4000, 0, &Unknown7F0000[0]);
+        }
+    }
+    while (Unknown7E0028 != 0) {}
+    LoadMapPalette(x04, x18);
+    UnknownC00480();
+    LoadSpecialSpritePalette();
+    if (Unknown7EB4EF == 0) {
+        LoadOverlaySprites();
+        LoadTilesetAnim();
+        LoadPaletteAnim();
+    }
+    if (Unknown7EB4EF == 0) {
+        if (Debug != 0) {
+            UnknownEFD9F3();
+        } else {
+            UnknownC47F87();
+        }
+        UnknownC0856B(0);
+    }
+    memcpy(&Unknown7E4476[0], &palettes[2][0], 0x1C0);
+    if (Unknown7E4676 != 0) {
+        UnknownC496F9();
+        memset(&palettes[0][0], 0xFF, 0x200);
+    }
+    if (Unknown7EB4EF != 0) {
+        UnknownC496F9();
+        memset(&palettes[1][0], 0, 0x1E0);
+    }
+    UnknownC0856B(0x18);
+    Unknown7E436E = x04;
+    Unknown7E4370 = x18;
+}
 
 /// $C00AA1
 short LoadSectorAttributes(ushort arg1, ushort arg2) {
@@ -100,8 +162,90 @@ void UnknownC00E16(short x, short y);
 /// $C00FCB
 void UnknownC00FCB(short x, short y);
 
+/// $C012ED
+void ReloadMapAtPosition(short x, short y) {
+    Unknown7E4380 = x;
+    Unknown7E437C = x;
+    Unknown7E4382 = y;
+    Unknown7E437E = y;
+    short x14 = x / 8;
+    short x02 = y / 8;
+    Unknown7E4370 = -1;
+    Unknown7E436E = -1;
+    LoadMapAtSector(x14 / 32, x02 / 16);
+    for (short i = 0; i < 16; i++) {
+        Unknown7E43C0[i] = -1;
+        Unknown7E43B0[i] = -1;
+        Unknown7E43A0[i] = -1;
+        Unknown7E4390[i] = -1;
+    }
+    for (short i = 0; i < 60; i++) {
+        UnknownC00AC5(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
+    }
+    for (short i = 0; i < 60; i++) {
+        UnknownC00CF3(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
+    }
+    for (short i = -1; i != 31; i++) {
+        UnknownC00E16(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
+    }
+    while (Unknown7E0028 != 0) {}
+    BG2_X_POS = cast(short)(Unknown7E4380 - 0x80);
+    BG1_X_POS = cast(short)(Unknown7E4380 - 0x80);
+    BG2_Y_POS = cast(short)(Unknown7E4382 - 0x70);
+    BG1_Y_POS = cast(short)(Unknown7E4382 - 0x70);
+    Unknown7E4374 = cast(short)(x14 - 16);
+    Unknown7E4376 = cast(short)(x02 - 14);
+}
+
 /// $C013F6
-void LoadMapAtPosition(short x, short y);
+void LoadMapAtPosition(short x, short y) {
+    UnknownC02194(x, y);
+    Unknown7E4380 = x;
+    Unknown7E437C = x;
+    Unknown7E4382 = y;
+    Unknown7E437E = y;
+    short x02 = x / 8;
+    short x12 = y / 8;
+    LoadMapAtSector(x02 / 32, x12 / 16);
+    if (Unknown7EB4EF == 0) {
+        OverworldSetupVRAM();
+    }
+    for (short i = 0; i < 16; i++) {
+        Unknown7E43C0[i] = -1;
+        Unknown7E43B0[i] = -1;
+        Unknown7E43A0[i] = -1;
+        Unknown7E4390[i] = -1;
+    }
+    for (short i = 0; i < 60; i++) {
+        UnknownC00AC5(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
+    }
+    for (short i = 0; i < 60; i++) {
+        UnknownC00CF3(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
+    }
+    while (Unknown7E0028 != 0) {}
+    if (Unknown7EB4EF == 0) {
+        TM_MIRROR = 0x17;
+    }
+    if (Unknown7E4A58 != 0) {
+        Unknown7E4A58 = 1;
+    }
+    BG2_X_POS = cast(short)(Unknown7E4380 - 0x80);
+    BG1_X_POS = cast(short)(Unknown7E4380 - 0x80);
+    BG2_Y_POS = cast(short)(Unknown7E4382 - 0x70);
+    BG1_Y_POS = cast(short)(Unknown7E4382 - 0x70);
+    for (short i = -1; i != 31; i++) {
+        UnknownC00E16(cast(short)(x02 - 16), cast(short)(x12 - 14 + i));
+        UnknownC0255C(cast(short)(x02 - 16), cast(short)(x12 - 14 + i));
+    }
+    for (short i = -8; i != 40; i++) {
+        SpawnHorizontal(cast(short)(x02 - 16), cast(short)(x12 + i));
+    }
+    if (Unknown7E4A58 != 0) {
+        Unknown7E4A58 = -1;
+    }
+    Unknown7E4374 = cast(short)(x02 - 16);
+    Unknown7E4376 = cast(short)(x12 - 14);
+}
 
 /// $C01558
 void RefreshMapAtPosition(short x, short y) {
@@ -150,7 +294,31 @@ void RefreshMapAtPosition(short x, short y) {
 }
 
 /// $C018F3
-void ReloadMap();
+void ReloadMap() {
+    Unknown7E4370 = -1;
+    Unknown7E436E = -1;
+    Unknown7E4380 &= 0xFFF8;
+    Unknown7E4382 &= 0xFFF8;
+    UnknownC08726();
+    Unknown7E5DD4 = -1;
+    UnknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+    UnknownC08D79(9);
+    SetBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
+    SetBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
+    SetOAMSize(0x62);
+    ReloadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
+    if (gameState.walkingStyle == WalkingStyle.Bicycle) {
+        ChangeMusic(Music.Bicycle);
+    } else {
+        UnknownC069AF();
+    }
+    TM_MIRROR = 0x17;
+    if (Debug != 0) {
+        UnknownEFD9F3();
+    }
+    UnknownC08744();
+}
 
 /// $C019B2
 void InitializeMap(short x, short y, short direction) {
@@ -278,6 +446,9 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 /// $C02140
 void UnknownC02140(short);
 
+/// $C02194
+void UnknownC02194(short, short);
+
 /// $C021E6
 void UnknownC021E6();
 
@@ -394,6 +565,40 @@ void UnknownC02D29() {
     gameState.partyCount = 0;
     VelocityStore();
     PajamaFlag = getEventFlag(NessPajamaFlag);
+}
+
+/// $C02D8F
+uint AdjustPositionHorizontal(short arg1, uint arg2, short arg3) {
+    switch (arg3 & SurfaceFlags.DeepWater) {
+        case SurfaceFlags.ShallowWater:
+            return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * ShallowWaterSpeed.combined) / 256) + arg2;
+        case SurfaceFlags.DeepWater:
+            return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * DeepWaterSpeed.combined) / 256) + arg2;
+        default:
+            if (Unknown7E0081 != 0) {
+                return horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+            } else if ((gameState.partyStatus == 3) && (gameState.walkingStyle == 0)) {
+                return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * SkipSandwichSpeed.combined) / 256) + arg2;
+            }
+            return horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+    }
+}
+
+/// $C03017
+uint AdjustPositionVertical(short arg1, uint arg2, short arg3) {
+    switch (arg3 & SurfaceFlags.DeepWater) {
+        case SurfaceFlags.ShallowWater:
+            return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * ShallowWaterSpeed.combined) / 256) + arg2;
+        case SurfaceFlags.DeepWater:
+            return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * DeepWaterSpeed.combined) / 256) + arg2;
+        default:
+            if (Unknown7E0081 != 0) {
+                return verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+            } else if ((gameState.partyStatus == 3) && (gameState.walkingStyle == 0)) {
+                return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * SkipSandwichSpeed.combined) / 256) + arg2;
+            }
+            return verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
+    }
 }
 
 /// $C032EC
@@ -533,6 +738,42 @@ void UnknownC03C25() {
         UnknownC069AF();
     }
     Unknown7E5DDA = 0;
+}
+
+/// $C03CFD
+void UnknownC03CFD() {
+    if (gameState.walkingStyle != WalkingStyle.Bicycle) {
+        return;
+    }
+    SetBoundaryBehaviour(1);
+    if ((BattleDebug == 0) && (Unknown7E5D9A == 0)) {
+        UnknownC06A07();
+    }
+    UnknownC02140(0x18);
+    gameState.unknown92 = 0;
+    gameState.walkingStyle = 0;
+    PartyCharacters[0].position_index = 0;
+    gameState.unknown88 = 0;
+    if (Unknown7E5D9A == 0) {
+        OAMClear();
+        UnknownC09466();
+        UpdateScreen();
+        WaitUntilNextFrame();
+    }
+    NewEntityVar0 = 0;
+    NewEntityVar1 = 0;
+    CreateEntity(OverworldSprite.Ness, ActionScript.Unknown002, 0x18, EntityAbsXTable[24], EntityAbsYTable[24]);
+    EntityAnimationFrames[24] = 0;
+    EntityDirections[24] = gameState.leaderDirection;
+    EntityScriptVar7Table[24] |= 0x9000;
+    if (Unknown7E5D9A != 0) {
+        EntityTickCallbackFlags[24] |= 0xC000;
+    }
+    WaitUntilNextFrame();
+    WaitUntilNextFrame();
+    UnknownC0A780(0x18);
+    Unknown7E5DBA = 0;
+    Unknown7E5D74 = 2;
 }
 
 /// $C03E9D
@@ -926,7 +1167,38 @@ short InitBattleCommon() {
 }
 
 /// $C052D4
-void UnknownC052D4(short);
+void UnknownC052D4(short arg1) {
+    short x26 = 0xFF;
+    gameState.unknown88 = 0xFF;
+    short x24 = gameState.leaderX.integer;
+    short x22 = gameState.leaderY.integer;
+    short x20 = gameState.troddenTileType;
+    short x1E = gameState.walkingStyle;
+    FixedPoint1616 x12 = { combined: AdjustPositionHorizontal((arg1 + 4) & 7, gameState.leaderX.combined, gameState.troddenTileType) - gameState.leaderX.combined };
+    FixedPoint1616 x16 = { combined: AdjustPositionVertical((arg1 + 4) & 7, gameState.leaderY.combined, gameState.troddenTileType) - gameState.leaderY.combined };
+    short x1C = 0x100;
+    while(x1C != 0) {
+        x1C--;
+        PlayerPositionBuffer[x1C].x_coord = x24;
+        PlayerPositionBuffer[x1C].y_coord = x22;
+        PlayerPositionBuffer[x1C].tile_flags = x20;
+        PlayerPositionBuffer[x1C].walking_style = x1E;
+        PlayerPositionBuffer[x1C].direction = arg1;
+        PlayerPositionBuffer[x1C].unknown10 = 0;
+        x24 += x12.integer;
+        x22 += x16.integer;
+    }
+    for (short i = 0; i < gameState.partyCount; i++) {
+        PartyCharacters[gameState.playerControlledPartyMembers[i]].position_index = x26;
+        PartyCharacters[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
+        PartyCharacters[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
+        EntityAbsXTable[gameState.unknownA2[i]] = PlayerPositionBuffer[x26].x_coord;
+        EntityAbsYTable[gameState.unknownA2[i]] = PlayerPositionBuffer[x26].y_coord;
+        EntityDirections[gameState.unknownA2[i]] = PlayerPositionBuffer[x26].direction;
+        EntitySurfaceFlags[gameState.unknownA2[i]] = PlayerPositionBuffer[x26].tile_flags;
+        x26 -= 16;
+    }
+}
 
 /// $C05503
 void UnknownC05503(short, short);
@@ -1048,6 +1320,27 @@ void UnknownC064D4() {
     NextQueuedInteraction = 0;
     CurrentQueuedInteraction = 0;
     CurrentQueuedInteractionType = -1;
+}
+
+/// $C064E3
+void UnknownC064E3(short arg1, const(ubyte)* arg2) {
+    if (arg1 == CurrentQueuedInteractionType) {
+        return;
+    }
+    QueuedInteractions[NextQueuedInteraction].type = arg1;
+    QueuedInteractions[NextQueuedInteraction].text_ptr = arg2;
+    NextQueuedInteraction = (NextQueuedInteraction + 1) & 3;
+    Unknown7E5D9A = 1;
+}
+
+/// $C06537
+short UnknownC06537() {
+    return QueuedInteractions[CurrentQueuedInteraction].type;
+}
+
+/// $C0654E
+const(ubyte)* UnknownC0654E() {
+    return QueuedInteractions[CurrentQueuedInteraction].text_ptr;
 }
 
 /// $C06578
@@ -1198,6 +1491,12 @@ void UnknownC069AF() {
     UnknownC0AC0C(Unknown7E5E38.unknown3);
 }
 
+/// $C06A07
+void UnknownC06A07() {
+    UnknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+    ChangeMusic(Unknown7E5DD6);
+}
+
 /// $C06B21
 void SpawnBuzzBuzz() {
     DisplayText(TextSpawnBuzzBuzz);
@@ -1205,7 +1504,19 @@ void SpawnBuzzBuzz() {
 }
 
 /// $C06B3D
-void UnknownC06B3D();
+void UnknownC06B3D() {
+    short i;
+    for (i = 0; (4 > i) && (CurrentQueuedInteraction != NextQueuedInteraction); CurrentQueuedInteraction = (CurrentQueuedInteraction + 1) & 3, i++) {
+        if (UnknownC06537() != 10) {
+            continue;
+        }
+        Unknown7E5E58[i] = UnknownC0654E();
+    }
+    Unknown7E5E58[i] = null;
+    for (short j = 0; Unknown7E5E58[j] !is null; j++) {
+        UnknownC064E3(10, Unknown7E5E58[j]);
+    }
+}
 
 /// $C06BFF
 void DoorTransition(const(DoorEntryA)* arg1) {
@@ -1613,17 +1924,170 @@ void start() {
     RandA = 0x1234;
     RandB = 0x5678;
     NextFrameBufferID = 1;
-    Unknown7E0020 = 0x851B;
+    Unknown7E0020 = &UnknownC0851B;
     UnknownC08B19();
     GameInit();
 }
 
+/// $C0814F
+void IRQ() {
+    if (TIMEUP & 0x80) {
+        IRQNMICommon();
+    }
+}
+
+void NMI() {
+    IRQNMICommon();
+}
+
+void IRQNMICommon() {
+    // a read from RDNMI is required on real hardware during NMI, apparently
+    //ubyte __unused = RDNMI;
+    HDMAEN = 0;
+    INIDISP = 0x80;
+    Unknown7E002B++;
+    Unknown7E0002++;
+    if (NextFrameDisplayID != 0) {
+        OAMADDL = 0;
+        DMAChannels[0].DMAP = 0;
+        DMAChannels[0].A1T = null;
+        DMAChannels[0].BBAD = 4;
+        DMAChannels[0].A1T = ((NextFrameDisplayID - 1) != 0) ? (&OAM2) : (&OAM1);
+        DMAChannels[0].DAS = 0x220;
+        MDMAEN = 1;
+        Unknown7E0099 += 0x220;
+    }
+    if (Unknown7E0030 != 0) {
+        ushort x = Unknown7E0030 / UnknownC08F98Entry.sizeof;
+        //TODO: fix this?
+        //DMAChannels[0].A1T = UnknownC08F98[x - 1].unknown2;
+        CGADD = UnknownC08F98[x - 1].unknown4 & 0xFF;
+        CGDATA = UnknownC08F98[x - 1].unknown4 >> 8;
+        DMAChannels[0].DMAP = 0x00;
+        DMAChannels[0].BBAD = 0x22;
+        //DMAChannels[0].A1B = 0;
+        Unknown7E0030 = 0;
+        DMAChannels[0].DAS = UnknownC08F98[x - 1].unknown0;
+        MDMAEN = 1;
+        Unknown7E0099 += UnknownC08F98[x - 1].unknown0;
+    }
+    if ((Unknown7E0028 != 0) && (--Unknown7E002A < 0)) {
+        Unknown7E002A = Unknown7E0029;
+        ubyte a = 0;
+        if (((INIDISP_MIRROR & 0xF) + Unknown7E0028) < 0) {
+            HDMAEN_MIRROR = 0;
+            a = 0x80;
+        } else {
+            if (((INIDISP_MIRROR & 0xF) + Unknown7E0028) < 16) {
+                a = cast(ubyte)(((INIDISP_MIRROR & 0xF) + Unknown7E0028));
+                goto Unknown6;
+            }
+            a = 15;
+        }
+        Unknown7E0028 = 0;
+        Unknown6:
+        INIDISP_MIRROR = a;
+    }
+    INIDISP = INIDISP_MIRROR;
+    MOSAIC = MOSAIC_MIRROR;
+    BG12NBA = BG12NBA_MIRROR;
+    WH2 = UNUSED_WH2_MIRROR;
+    for (short i = Unknown7E0001; i != DMAQueueIndex; i++) {
+        DMAChannels[0].DMAP = DMATable[DMAQueue[i].mode].unknown0;
+        VMAIN = DMATable[DMAQueue[i].mode].unknown2;
+        DMAChannels[0].DAS = DMAQueue[i].size;
+        DMAChannels[0].A1T = DMAQueue[i].source;
+        //DMAChannels[0].A1B = DMAQueue[i].source bank;
+        VMADDL = DMAQueue[i].destination;
+        MDMAEN = 1;
+    }
+    Unknown7E0001 = DMAQueueIndex;
+    if (NextFrameDisplayID != 0) {
+        if (NextFrameDisplayID - 1 == 0) {
+            BG1HOFS = BG1_X_POS_BUF[0] & 0xFF;
+            BG1HOFS = BG1_X_POS_BUF[0] >> 8;
+            BG1VOFS = BG1_Y_POS_BUF[0] & 0xFF;
+            BG1VOFS = BG1_Y_POS_BUF[0] >> 8;
+            BG2HOFS = BG2_X_POS_BUF[0] & 0xFF;
+            BG2HOFS = BG2_X_POS_BUF[0] >> 8;
+            BG2VOFS = BG2_Y_POS_BUF[0] & 0xFF;
+            BG2VOFS = BG2_Y_POS_BUF[0] >> 8;
+            BG3HOFS = BG3_X_POS_BUF[0] & 0xFF;
+            BG3HOFS = BG3_X_POS_BUF[0] >> 8;
+            BG3VOFS = BG3_Y_POS_BUF[0] & 0xFF;
+            BG3VOFS = BG3_Y_POS_BUF[0] >> 8;
+            BG4HOFS = BG4_X_POS_BUF[0] & 0xFF;
+            BG4HOFS = BG4_X_POS_BUF[0] >> 8;
+            BG4VOFS = BG4_Y_POS_BUF[0] & 0xFF;
+            BG4VOFS = BG4_Y_POS_BUF[0] >> 8;
+        } else{
+            BG1HOFS = BG1_X_POS_BUF[1] & 0xFF;
+            BG1HOFS = BG1_X_POS_BUF[1] >> 8;
+            BG1VOFS = BG1_Y_POS_BUF[1] & 0xFF;
+            BG1VOFS = BG1_Y_POS_BUF[1] >> 8;
+            BG2HOFS = BG2_X_POS_BUF[1] & 0xFF;
+            BG2HOFS = BG2_X_POS_BUF[1] >> 8;
+            BG2VOFS = BG2_Y_POS_BUF[1] & 0xFF;
+            BG2VOFS = BG2_Y_POS_BUF[1] >> 8;
+            BG3HOFS = BG3_X_POS_BUF[1] & 0xFF;
+            BG3HOFS = BG3_X_POS_BUF[1] >> 8;
+            BG3VOFS = BG3_Y_POS_BUF[1] & 0xFF;
+            BG3VOFS = BG3_Y_POS_BUF[1] >> 8;
+            BG4HOFS = BG4_X_POS_BUF[1] & 0xFF;
+            BG4HOFS = BG4_X_POS_BUF[1] >> 8;
+            BG4VOFS = BG4_Y_POS_BUF[1] & 0xFF;
+            BG4VOFS = BG4_Y_POS_BUF[1] >> 8;
+            Unknown7E0061 = BG1_X_POS;
+            Unknown7E0063 = BG1_Y_POS;
+        }
+    }
+    NextFrameDisplayID = 0;
+    if ((INIDISP_MIRROR & 0x80) != 0) {
+        TM = TM_MIRROR;
+        TD = TD_MIRROR;
+        HDMAEN = HDMAEN_MIRROR;
+    }
+    ProcessSfxQueue();
+    Unknown7E0099 = 0;
+    if (Unknown7E0022 == 0) {
+        Unknown7E0022++;
+        UnknownC08518();
+        Unknown7E0022 = 0;
+    }
+    HeapBaseAddress = (&heap[0] == HeapBaseAddress) ? (&heap.ptr[0x200]) : &heap[0];
+    CurrentHeapAddress = (&heap[0] == HeapBaseAddress) ? (&heap.ptr[0x200]) : &heap[0];
+    DMATransferFlag = 0;
+    Unknown7E00AB = 0;
+    Timer++;
+}
+
+/// $C083B8
+void UnknownC083B8() {
+    Unknown7E007B = 0;
+}
+
 /// $C083C1
-void UnknownC083C1(ubyte* arg1) {
+void UnknownC083C1(Unknown7E007DEntry* arg1) {
     Unknown7E0085 = arg1;
     Unknown7E008B = pad_state[0];
     Unknown7E0089 = 1;
-    Unknown7E007B = 0x8000 | Unknown7E007B;
+    Unknown7E007B |= 0x8000;
+}
+
+/// $C083E3
+void UnknownC083E3(Unknown7E007DEntry* arg1) {
+    if ((Unknown7E007B & 0x4000) != 0) {
+        return;
+    }
+    if (arg1.unknown0 == 0) {
+        UnknownC083B8();
+    }
+    Unknown7E0081 = arg1.unknown0;
+    Unknown7E0083 = arg1.unknown1;
+    Unknown7E007D = arg1;
+    Unknown7E0077[0] = arg1.unknown1;
+    Unknown7E0077[1] = arg1.unknown1;
+    Unknown7E007B |= 0x4000;
 }
 
 /// $C0841B
@@ -1672,15 +2136,13 @@ void UnknownC08456() {
             return;
         }
     }
-    *Unknown7E0085 = cast(ubyte)Unknown7E0089;
-    Unknown7E0085++;
-    *cast(ushort*)Unknown7E0085 = Unknown7E008B;
-    Unknown7E0085++;
+    Unknown7E0085.unknown0 = cast(ubyte)Unknown7E0089;
+    Unknown7E0085.unknown1 = Unknown7E008B;
     Unknown7E0085++;
     Unknown7E008B = Unknown7E0077[0] | Unknown7E0077[1];
     Unknown7E0089 = 0;
     Unknown7E0089++;
-    *Unknown7E0085 = 0;
+    Unknown7E0085.unknown0 = 0;
     if (Unknown7E0085 !is null) { //not sure about this... but what is BPL on a pointer supposed to mean?
         return;
     }
@@ -1731,11 +2193,39 @@ void UnknownC08496() {
     }
 }
 
+/// $C08501
+void ProcessSfxQueue() {
+    if (SoundEffectQueueIndex == SoundEffectQueueEndIndex) {
+        return;
+    }
+    APUIO3 = SoundEffectQueue[SoundEffectQueueIndex];
+    SoundEffectQueueIndex = (SoundEffectQueueIndex + 1) & 7;
+}
+
+/// $C08518
+void UnknownC08518() {
+    Unknown7E0020();
+}
+
+/// $C0851B
+void UnknownC0851B() {
+    //nothing
+}
+
 /// $C0851C
-void UnknownC0851C(void function());
+void UnknownC0851C(void function() arg1) {
+    Unknown7E0020 = arg1;
+}
+
+/// $C08522
+void UnknownC08522() {
+    Unknown7E0020 = &UnknownC0851B;
+}
 
 /// $C0856B
-void UnknownC0856B(short);
+void UnknownC0856B(short arg1) {
+    Unknown7E0030 = cast(ubyte)arg1;
+}
 
 /// $C085B7 - Copy data to VRAM in chunks of 0x1200
 void CopyToVram2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
@@ -2137,7 +2627,12 @@ ubyte rand() {
 void UnknownC08F8B();
 
 /// $C08F98
-immutable ubyte[24] UnknownC08F98 = [ 0x80, 0xFE, 0x00, 0x01, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x03, 0x80, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x02, 0x00, 0x00 ];
+immutable UnknownC08F98Entry[4] UnknownC08F98 = [
+    UnknownC08F98Entry(0xFE80, 0x0100, 0x0200),
+    UnknownC08F98Entry(0x0000, 0x0000, 0x0100),
+    UnknownC08F98Entry(0x0300, 0x0080, 0x0000),
+    UnknownC08F98Entry(0x0200, 0x0200, 0x0000)
+];
 
 /// $C08FB0
 immutable DMATableEntry[6] DMATable = [
@@ -2203,7 +2698,9 @@ void UnknownC0927C() {
 }
 
 /// $C09279
-void UnknownC09279();
+void UnknownC09279() {
+    assert(0, "Not used");
+}
 
 /// $C09321
 short InitEntityWipe(short actionScript, short x, short y) {
@@ -2447,11 +2944,11 @@ void UnknownC0A3A4(short id) {
     short y = 50;
     for (short i = UNKNOWN_30X2_TABLE_38[id / 2] & 0xFF; i >= 0; i--) {
         y++;
-        (cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | ActionScript00;
+        (cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | (ActionScript00 & 0xFF);
     }
     for (short i = UNKNOWN_30X2_TABLE_38[ActionScript88 / 2]; i >= 0; i--) {
         y++;
-        (cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | ActionScript02;
+        (cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | (ActionScript02 & 0xFF);
     }
     Unknown7E000B = ActionScript8E;
     Unknown7E2400 = EntityDrawPriority[ActionScript88 / 2];
@@ -2761,7 +3258,85 @@ void UnknownC0AC3A(short arg1) {
 }
 
 /// $C0AC43
-void UnknownC0AC43();
+void UnknownC0AC43() {
+    Unknown7E000B = 0xC4;
+    ActionScript04 = 0xC4;
+    ActionScript00 = ((EntitySurfaceFlags[ActionScript88 / 2] & 1) != 0) ? 5 : 0;
+    switch (EntitySurfaceFlags[ActionScript88 / 2] & 0xC) {
+        default:
+            if (EntityByteWidths[ActionScript88 / 2] == 0x40) {
+                ActionScript02Overlay = EntityRippleOverlayPtrs[ActionScript88 / 2];
+                if (Unknown7E305A[ActionScript88 / 2] == 0) {
+                    EntityRippleOverlayPtrs[ActionScript88 / 2] = UnknownC0AD56(&Unknown7E3096[0], Unknown7E305A[ActionScript88 / 2]);
+                }
+                Unknown7E305A[ActionScript88 / 2]--;
+                ActionScript06 = EntityScreenXTable[ActionScript88 / 2];
+                UnknownC08C58(Unknown7E3096[ActionScript88 / 2] + ActionScript00, EntityScreenXTable[ActionScript88 / 2], EntityScreenYTable[ActionScript88 / 2]);
+            } else {
+                ActionScript02Overlay = EntityBigRippleOverlayPtrs[ActionScript88 / 2];
+                if (Unknown7E310E[ActionScript88 / 2] == 0) {
+                    EntityBigRippleOverlayPtrs[ActionScript88 / 2] = UnknownC0AD56(&Unknown7E314A[0], Unknown7E310E[ActionScript88 / 2]);
+                }
+                Unknown7E310E[ActionScript88 / 2]--;
+                ActionScript06 = EntityScreenXTable[ActionScript88 / 2];
+                UnknownC08C58(Unknown7E314A[ActionScript88 / 2] + ActionScript00 + ActionScript00, EntityScreenXTable[ActionScript88 / 2], cast(short)(EntityScreenYTable[ActionScript88 / 2] + 8));
+            }
+            goto case;
+        case 0:
+            if (Unknown7E2E7A[ActionScript88 / 2] != 0) {
+                return;
+            }
+            if ((Unknown7E2E7A[ActionScript88 / 2] & 0x80) == 0) {
+                break;
+            }
+            goto case;
+        case 4:
+            if (ActionScript88 >= 46) {
+                return;
+            }
+            ActionScript02Overlay = EntitySweatingOverlayPtrs[ActionScript88 / 2];
+            if (Unknown7E2FA6[ActionScript88 / 2] == 0) {
+                EntitySweatingOverlayPtrs[ActionScript88 / 2] = UnknownC0AD56(&Unknown7E2FE2[0], Unknown7E2FA6[ActionScript88 / 2]);
+            }
+            Unknown7E2FA6[ActionScript88 / 2]--;
+            ActionScript06 = EntityScreenXTable[ActionScript88 / 2];
+            if (Unknown7E2FE2[ActionScript88 / 2] is null) {
+                break;
+            }
+            UnknownC08C58(Unknown7E2FE2[ActionScript88 / 2] + ActionScript00, EntityScreenXTable[ActionScript88 / 2], EntityScreenYTable[ActionScript88 / 2]);
+            break;
+    }
+    if ((Unknown7E2E7A[ActionScript88 / 2] & 0x4000) == 0) {
+        return;
+    }
+    if (ActionScript88 >= 46) {
+        return;
+    }
+    ActionScript02Overlay = EntityMushroomizedOverlayPtrs[ActionScript88 / 2];
+    if (Unknown7E2EF2[ActionScript88 / 2] == 0) {
+        EntityMushroomizedOverlayPtrs[ActionScript88 / 2] = UnknownC0AD56(&Unknown7E2F2E[0], Unknown7E2EF2[ActionScript88 / 2]);
+    }
+    Unknown7E2EF2[ActionScript88 / 2]--;
+    ActionScript06 = EntityScreenXTable[ActionScript88 / 2];
+    UnknownC08C58(Unknown7E2F2E[ActionScript88 / 2] + ActionScript00, EntityScreenXTable[ActionScript88 / 2], EntityScreenYTable[ActionScript88 / 2]);
+}
+
+/// $C0AD56
+const(OverlayScript)* UnknownC0AD56(const(SpriteMap)** arg1, out ushort frames) {
+    ushort y = 0;
+    NextCommand:
+    if (ActionScript02Overlay[y].command == 1) {
+        arg1[ActionScript88 / 2] = ActionScript02Overlay[y++].spriteMap;
+        goto NextCommand;
+    }
+    if (ActionScript02Overlay[y].command == 3) {
+        ActionScript02Overlay = ActionScript02Overlay[y++].dest;
+        goto NextCommand;
+    }
+    frames = ActionScript02Overlay[y++].frames;
+    ActionScript08 = y;
+    return &ActionScript02Overlay[y];
+}
 
 /// $C0AD9F
 void UnknownC0AD9F() {
@@ -3226,7 +3801,32 @@ short UnknownC0DBE6(short arg1, void function() arg2) {
 }
 
 /// $C0DC4E
-void UnknownC0DC4E();
+void UnknownC0DC4E() {
+    if ((Unknown7E0002 == 0) && (DadPhoneTimer != 0)) {
+        DadPhoneTimer--;
+    }
+    if (window_head != -1) {
+        return;
+    }
+    if (BattleModeFlag != 0) {
+        return;
+    }
+    if (BattleSwirlCountdown != 0) {
+        return;
+    }
+    if (BattleSwirlFlag != 0) {
+        return;
+    }
+    for (short i = 0; i < Unknown7E9E3C.length; i++) {
+        if (Unknown7E9E3C[i].unknown0 == 0) {
+            continue;
+        }
+        if (--Unknown7E9E3C[i].unknown0 != 0) {
+            continue;
+        }
+        Unknown7E9E3C[i].unknown2();
+    }
+}
 
 /// $C0DCC6
 void LoadDadPhone();
@@ -3796,3 +4396,21 @@ short GasStation() {
     }
     return x11;
 }
+
+immutable SNESHeader header = {
+    makerCode: "01",
+    gameCode: "MB  ",
+    title: "EARTH BOUND          ",
+    mapMode: 0x31,
+    romType: 0x02,
+    romSize: 0x0C,
+    sramSize: 0x03,
+    destinationCode: 0x01,
+    licenseeCode: 0x33,
+    version_: 0,
+    checksumComplement: 0xBFB7,
+    checksum: 0x4048,
+    nativeNMI: &NMI,
+    nativeIRQ: &IRQ,
+    emulationRESET: &start,
+};

@@ -15,6 +15,7 @@ __gshared ubyte APUIO3;
 
 __gshared ubyte HDMAEN;
 
+__gshared ubyte TIMEUP;
 __gshared ubyte HVBJOY;
 __gshared ubyte JOYPAD_1_DATA;
 __gshared ubyte JOYPAD_2_DATA;
@@ -112,6 +113,7 @@ __gshared ubyte M7D;
 __gshared ubyte M7X;
 __gshared ubyte M7Y;
 __gshared ubyte CGADD;
+__gshared ubyte CGDATA;
 __gshared ubyte W12SEL;
 __gshared ubyte W34SEL;
 __gshared ubyte WOBJSEL;
@@ -139,3 +141,35 @@ __gshared ubyte VTIMEH;
 __gshared ubyte MEMSEL;
 __gshared ubyte STAT78;
 __gshared ubyte COLDATA;
+
+struct SNESHeader {
+	char[2] makerCode;
+	char[4] gameCode;
+	ushort[5] padding;
+	char[21] title;
+	ubyte mapMode;
+	ubyte romType;
+	ubyte romSize;
+	ubyte sramSize;
+	ubyte destinationCode;
+	ubyte licenseeCode = 0x33;
+	ubyte version_;
+	ushort checksumComplement;
+	ushort checksum;
+	void function() unusedNativeVector0;
+	void function() unusedNativeVector1;
+	void function() nativeCOP;
+	void function() nativeBRK;
+	void function() nativeABORT;
+	void function() nativeNMI;
+	void function() unusedNativeVector6;
+	void function() nativeIRQ;
+	void function() unusedEmulationVector0;
+	void function() unusedEmulationVector1;
+	void function() emulationCOP;
+	void function() unusedEmulationVector3;
+	void function() emulationABORT;
+	void function() emulationNMI;
+	void function() emulationRESET;
+	void function() emulationIRQBRK;
+}

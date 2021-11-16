@@ -32,14 +32,14 @@ __gshared ubyte TD_MIRROR;
 __gshared ubyte Unknown7E001D;
 __gshared ubyte Unknown7E001E;
 __gshared ubyte HDMAEN_MIRROR;
-__gshared ushort Unknown7E0020;
+__gshared void function() Unknown7E0020;
 __gshared ubyte Unknown7E0022;
 __gshared ubyte Unknown7E0023;
 __gshared ushort RandA;
 __gshared ushort RandB;
 __gshared ubyte Unknown7E0028;
 __gshared ubyte Unknown7E0029;
-__gshared ubyte Unknown7E002A;
+__gshared byte Unknown7E002A;
 __gshared ubyte Unknown7E002B;
 //the ID of the frame being/about to be displayed, multiplied by 2
 __gshared ubyte NextFrameDisplayID;
@@ -80,7 +80,7 @@ __gshared ubyte Unknown7E007F;
 __gshared ubyte Unknown7E0080;
 __gshared short Unknown7E0081;
 __gshared short Unknown7E0083;
-__gshared ubyte* Unknown7E0085;
+__gshared Unknown7E007DEntry* Unknown7E0085;
 __gshared short Unknown7E0087;
 __gshared short Unknown7E0089;
 __gshared short Unknown7E008B;
@@ -133,7 +133,7 @@ __gshared ubyte Unknown7E00D2;
 __gshared short Unknown7E00D3;
 
 __gshared ushort[16][32] palettes; /// $0200
-__gshared DMAQueueEntry[30] DMAQueue;
+__gshared DMAQueueEntry[30] DMAQueue; /// $0400
 
 auto ref CurrentTextPalette() { return palettes[0]; }
 
@@ -327,6 +327,18 @@ __gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_45; /// $2DC6
 __gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_46; /// $2E02
 __gshared ushort[MAX_ENTITIES] Unknown7E2E3E; /// $2E3E
 __gshared ushort[MAX_ENTITIES] Unknown7E2E7A; /// $2E7A
+__gshared const(OverlayScript)*[MAX_ENTITIES] EntityMushroomizedOverlayPtrs; //$2EB6
+__gshared ushort[MAX_ENTITIES] Unknown7E2EF2; //$2EF2
+__gshared const(SpriteMap)*[MAX_ENTITIES] Unknown7E2F2E; //$2F2E
+__gshared const(OverlayScript)*[MAX_ENTITIES] EntitySweatingOverlayPtrs; //$2F6A
+__gshared ushort[MAX_ENTITIES] Unknown7E2FA6; //$2FA6
+__gshared const(SpriteMap)*[MAX_ENTITIES] Unknown7E2FE2; //$2FE2
+__gshared const(OverlayScript)*[MAX_ENTITIES] EntityRippleOverlayPtrs; //$301E
+__gshared ushort[MAX_ENTITIES] Unknown7E305A; //$305A
+__gshared const(SpriteMap)*[MAX_ENTITIES] Unknown7E3096; //$3096
+__gshared const(OverlayScript)*[MAX_ENTITIES] EntityBigRippleOverlayPtrs; //$30D2
+__gshared ushort[MAX_ENTITIES] Unknown7E310E; //$310E
+__gshared const(SpriteMap)*[MAX_ENTITIES] Unknown7E314A; //$314A
 
 __gshared short[MAX_ENTITIES] Unknown7E332A; /// $332A
 __gshared short[MAX_ENTITIES] Unknown7E3366; /// $3366
@@ -371,7 +383,11 @@ __gshared short Unknown7E4372; /// $4372
 __gshared short Unknown7E4374; /// $4374
 __gshared short Unknown7E4376; /// $4376
 
+__gshared short Unknown7E437C; /// $437C
+__gshared short Unknown7E437E; /// $437E
+
 __gshared short Unknown7E4380; /// $4380
+__gshared short Unknown7E4382; /// $4382
 
 __gshared short Unknown7E4386; /// $4386
 __gshared short Unknown7E4388; /// $4388
@@ -379,6 +395,10 @@ __gshared short Unknown7E4388; /// $4388
 __gshared short Unknown7E438A; /// $438A
 __gshared short Unknown7E438C; /// $438C
 __gshared short CurrentSectorAttributes; /// $438E
+__gshared byte[16] Unknown7E4390; /// $4390
+__gshared byte[16] Unknown7E43A0; /// $43A0
+__gshared byte[16] Unknown7E43B0; /// $43B0
+__gshared byte[16] Unknown7E43C0; /// $43C0
 
 __gshared short Unknown7E4472; /// $4472
 __gshared short Unknown7E4474; /// $4474
@@ -480,7 +500,7 @@ __gshared Unknown7E5E06Entry[24] Unknown7E5E06; /// $5E06
 
 __gshared short Unknown7E5E36; /// $5E36
 __gshared const(OverworldEventMusic)* Unknown7E5E38; /// $5E38
-
+__gshared const(ubyte)*[5] Unknown7E5E58; /// $5E38
 __gshared ubyte Unknown7E5E6C; /// $5E6C
 __gshared ubyte Unknown7E5E6D; /// $5E6D
 __gshared short Unknown7E5E6E; /// $5E6E - "word-wrap flag"?
@@ -794,6 +814,8 @@ __gshared ubyte Unknown7EB4B6; /// $B4B6
 
 __gshared ubyte Unknown7EB4CE; /// $B4CE
 
+__gshared short Unknown7EB4EF; /// $B4EF
+
 __gshared ushort[11] Unknown7EB525; /// $B525
 __gshared ushort CurrentMusicTrack; /// $B53B
 __gshared ushort CurrentPrimarySamplePack; /// $B53D
@@ -839,9 +861,12 @@ __gshared ubyte[0x8000] IntroBG2Buffer; /// $8000 - this seems to overlap with o
 
 __gshared ubyte ActionScript00; /// $00
 __gshared ubyte ActionScript02; /// $02
+__gshared const(ubyte)* ActionScript02p; /// $02
+__gshared const(OverlayScript)* ActionScript02Overlay; /// $02
 
-__gshared short ActionScript06; /// $06
-__gshared short ActionScript08; /// $08
+__gshared ushort ActionScript04; /// $04
+__gshared ushort ActionScript06; /// $06
+__gshared ushort ActionScript08; /// $08
 
 __gshared ushort ActionScript88; /// $88
 
@@ -852,4 +877,4 @@ __gshared ubyte ActionScript8E; /// $8E
 
 __gshared SRAM sram; //$306000
 __gshared SaveDataReplay replaySRAM; //$316000
-__gshared ubyte[0] sram3; //$326000
+__gshared Unknown7E007DEntry[0] sram3; //$326000

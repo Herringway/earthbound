@@ -388,6 +388,90 @@ void UnknownEF0EE8() {
 	}
 }
 
+/// $EF101B
+immutable ubyte[32] TilesetTable = [
+	0x00,
+	0x01,
+	0x02,
+	0x03,
+	0x04,
+	0x05,
+	0x06,
+	0x07,
+	0x08,
+	0x09,
+	0x0A,
+	0x0A,
+	0x0A,
+	0x11,
+	0x0A,
+	0x0A,
+	0x0A,
+	0x0A,
+	0x12,
+	0x10,
+	0x0C,
+	0x0B,
+	0x0B,
+	0x0B,
+	0x0F,
+	0x0E,
+	0x13,
+	0x0D,
+	0x0D,
+	0x0D,
+	0x0D,
+	0x00,
+];
+
+/// $EF105B
+immutable ubyte[][20] MapDataTilesetPtrTable = [
+	cast(immutable(ubyte)[])import("maps/gfx/0.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/1.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/2.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/3.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/4.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/5.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/6.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/7.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/8.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/9.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/10.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/11.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/12.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/13.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/14.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/15.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/16.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/17.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/18.gfx.lzhal"),
+	cast(immutable(ubyte)[])import("maps/gfx/19.gfx.lzhal"),
+];
+
+/// $EF10AB
+immutable ubyte[][20] MapDataTileArrangementPtrTable = [
+	cast(immutable(ubyte)[])import("maps/arrangements/0.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/1.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/2.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/3.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/4.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/5.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/6.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/7.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/8.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/9.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/10.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/11.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/12.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/13.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/14.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/15.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/16.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/17.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/18.arr.lzhal"),
+	cast(immutable(ubyte)[])import("maps/arrangements/19.arr.lzhal"),
+];
+
 immutable ubyte* TEXT_PSI_ROCKIN_ALPHA_DESC;
 immutable ubyte* TEXT_PSI_ROCKIN_BETA_DESC;
 immutable ubyte* TEXT_PSI_ROCKIN_GAMMA_DESC;
@@ -3807,6 +3891,15 @@ void UnknownEFD95E() {
 	Unknown7E0030 = 0x18;
 }
 
+/// $EFD9F3
+void UnknownEFD9F3() {
+	if (DebugModeNumber != 0) {
+		UnknownEFD95E();
+	} else {
+		UnknownC47F87();
+	}
+}
+
 /// $EFDA05
 void UnknownEFDA05() {
 	UnknownC08726();
@@ -4282,8 +4375,36 @@ void UnknownEFE895(short arg1) {
 	}
 }
 
+/// $EFE8C7
+void LoadReplaySaveSlot() {
+	if (TestSRAMSize() == 0) {
+		return;
+	}
+	memcpy(&gameState, &replaySRAM.gameState, Game_State.sizeof);
+	memcpy(&PartyCharacters[0], &replaySRAM.partyCharacters, (PartyCharacter[6]).sizeof);
+	memcpy(&EventFlags[0], &replaySRAM.eventFlags, EventFlags.sizeof);
+	memcpy(&Timer, &replaySRAM.timer, Timer.sizeof);
+	Unknown7E0002 = cast(ubyte)Unknown7EB571;
+	RandA = Unknown7EB56D;
+	RandB = Unknown7EB56F;
+	UnknownC083B8();
+	UnknownC083E3(sram3.ptr);
+}
+
 /// $EFEA4A
-void UnknownEFEA4A();
+void UnknownEFEA4A() {
+	if (TestSRAMSize() == 0) {
+		return;
+	}
+	Unknown7EB567 = 1;
+	LoadReplaySaveSlot();
+	FadeOut(1, 1);
+	LoadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
+	UnknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, 0);
+	UnknownC09451();
+	ScreenTransition(Unknown7EB573, 0);
+	UnknownC0943C();
+}
 
 /// $EFEA9E
 void UnknownEFEA9E();
