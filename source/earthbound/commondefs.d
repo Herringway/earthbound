@@ -4101,21 +4101,24 @@ struct TimedDelivery {
 	ubyte[4] unknown18; //18
 }
 
+union ItemParameters {
+	byte[4] raw;
+	struct {
+		byte strength;
+		byte epi;
+		ubyte ep;
+		ubyte special;
+	}
+
+}
+
 struct Item {
 	ubyte[25] name;
 	ubyte type;
 	ushort cost;
 	ubyte flags;
 	ushort battleAction;
-	union {
-		byte[2] parameters;
-		struct {
-			byte strength;
-			byte epi;
-		}
-		ubyte ep;
-		ubyte special;
-	}
+	ItemParameters parameters;
 	ubyte* helpText;
 	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, ubyte* helpText ) {
 		this.name = name;
@@ -4123,10 +4126,25 @@ struct Item {
 		this.cost = cost;
 		this.flags = flags;
 		this.battleAction = battleAction;
-		this.parameters = [parameter1, parameter2];
-		this.ep = parameter3;
-		this.special = parameter4;
+		this.parameters.strength = parameter1;
+		this.parameters.epi = parameter2;
+		this.parameters.ep = parameter3;
+		this.parameters.special = parameter4;
 		this.helpText = helpText;
+	}
+}
+
+struct CondimentTableEntry {
+	ubyte item;
+	ubyte[2] goodCondiments;
+	ItemParameters parameters;
+	this(ubyte item, ubyte[2] goodCondiments, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4 ) {
+		this.item = item;
+		this.goodCondiments = goodCondiments;
+		this.parameters.strength = parameter1;
+		this.parameters.epi = parameter2;
+		this.parameters.ep = parameter3;
+		this.parameters.special = parameter4;
 	}
 }
 

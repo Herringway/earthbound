@@ -573,19 +573,19 @@ void UnknownC216DB() {
 				continue;
 			}
 			if (x18 != 0) {
-				if (ItemData[x18].ep > ItemData[x15.items[j]].ep) {
+				if (ItemData[x18].parameters.ep > ItemData[x15.items[j]].parameters.ep) {
 					x18 = x15.items[j];
 				}
 			}
 		}
 	}
 	if (x18 != 0) {
-		if (UnknownC2239D(ItemData[x18].strength) != 0) {
+		if (UnknownC2239D(ItemData[x18].parameters.strength) != 0) {
 			return;
 		}
 		RemoveCharFromParty(PartyMember.TeddyBear);
 		RemoveCharFromParty(PartyMember.PlushTeddyBear);
-		AddCharToParty(ItemData[x18].strength);
+		AddCharToParty(ItemData[x18].parameters.strength);
 	} else {
 		RemoveCharFromParty(PartyMember.TeddyBear);
 		RemoveCharFromParty(PartyMember.PlushTeddyBear);
@@ -596,7 +596,7 @@ void UnknownC216DB() {
 void RecalcCharacterPostmathOffense(short id) {
 	short total = PartyCharacters[id - 1].base_offense;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] - 1]].parameters.raw[((id - 1) == 3) ? 1 : 0];
 	}
 	if (0 >= total) {
 		total = 0;
@@ -612,13 +612,13 @@ void RecalcCharacterPostmathOffense(short id) {
 void RecalcCharacterPostmathDefense(short id) {
 	short total = PartyCharacters[id - 1].base_defense;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters.raw[((id - 1) == 3) ? 1 : 0];
 	}
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].parameters.raw[((id - 1) == 3) ? 1 : 0];
 	}
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters[((id - 1) == 3) ? 1 : 0];
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters.raw[((id - 1) == 3) ? 1 : 0];
 	}
 	if (0 >= total) {
 		total = 0;
@@ -634,7 +634,7 @@ void RecalcCharacterPostmathDefense(short id) {
 void RecalcCharacterPostmathSpeed(short id) {
 	short total = PartyCharacters[id - 1].base_speed;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].ep;
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters.ep;
 	}
 	total += PartyCharacters[id - 1].boosted_speed;
 	if (0 >= total) {
@@ -649,7 +649,7 @@ void RecalcCharacterPostmathSpeed(short id) {
 void RecalcCharacterPostmathGuts(short id) {
 	short total = PartyCharacters[id - 1].base_guts;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] - 1]].ep;
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] - 1]].parameters.ep;
 	}
 	total += PartyCharacters[id - 1].boosted_guts;
 	if (0 >= total) {
@@ -664,10 +664,10 @@ void RecalcCharacterPostmathGuts(short id) {
 void RecalcCharacterPostmathLuck(short id) {
 	short total = PartyCharacters[id - 1].base_luck;
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].ep;
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].parameters.ep;
 	}
 	if (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) {
-		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].ep;
+		total += ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters.ep;
 	}
 	total += PartyCharacters[id - 1].boosted_luck;
 	if (0 >= total) {
@@ -690,44 +690,44 @@ void RecalcCharacterPostmathIQ(short id) {
 
 /// $C21D7D
 void RecalcCharacterMissRate(short id) {
-	PartyCharacters[id - 1].miss_rate = cast(ubyte)((PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] != 0) ? ItemData[PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] - 1].special : 0);
+	PartyCharacters[id - 1].miss_rate = cast(ubyte)((PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] != 0) ? ItemData[PartyCharacters[id - 1].equipment[EquipmentSlot.Weapon] - 1].parameters.special : 0);
 }
 
 /// $C21E03
 void CalcResistances(short id) {
 	short total;
-	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 3 : 0;
-	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].special & 3 : 0;
+	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters.special & 3 : 0;
+	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters.special & 3 : 0;
 	if (total >= 3) {
 		total = 3;
 	}
 	PartyCharacters[id - 1].fireResist = cast(ubyte)total;
 
-	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 0xC : 0;
-	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].special & 0xC : 0;
+	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters.special & 0xC : 0;
+	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters.special & 0xC : 0;
 	total >>= 2;
 	if (total >= 3) {
 		total = 3;
 	}
 	PartyCharacters[id - 1].freezeResist = cast(ubyte)total;
 
-	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 0x30 : 0;
-	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].special & 0x30 : 0;
+	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters.special & 0x30 : 0;
+	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters.special & 0x30 : 0;
 	total >>= 4;
 	if (total >= 3) {
 		total = 3;
 	}
 	PartyCharacters[id - 1].flashResist = cast(ubyte)total;
 
-	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].special & 0xC0 : 0;
-	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].special & 0xC0 : 0;
+	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Body] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Body] - 1]].parameters.special & 0xC0 : 0;
+	total += (PartyCharacters[id - 1].equipment[EquipmentSlot.Other] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Other] - 1]].parameters.special & 0xC0 : 0;
 	total >>= 6;
 	if (total >= 3) {
 		total = 3;
 	}
 	PartyCharacters[id - 1].paralysisResist = cast(ubyte)total;
 
-	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].special : 0;
+	total = (PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] != 0) ? ItemData[PartyCharacters[id - 1].items[PartyCharacters[id - 1].equipment[EquipmentSlot.Arms] - 1]].parameters.special : 0;
 	PartyCharacters[id - 1].hypnosisBrainshockResist = cast(ubyte)total;
 }
 
@@ -2589,7 +2589,7 @@ short MissCalc(short arg1) {
 	short x12;
 	if ((currentAttacker.allyOrEnemy == 0) && (currentAttacker.npcID == 0)) {
 		if (PartyCharacters[currentAttacker.row].equipment[0] != 0) {
-			x12 = ItemData[PartyCharacters[currentAttacker.row].items[PartyCharacters[currentAttacker.row].equipment[0] - 1]].special;
+			x12 = ItemData[PartyCharacters[currentAttacker.row].items[PartyCharacters[currentAttacker.row].equipment[0] - 1]].parameters.special;
 		} else {
 			x12 = 1;
 		}
@@ -4013,7 +4013,9 @@ void BattleActionSnake() {
 }
 
 /// $C2A99C
-void BattleActionBagOfDragonite();
+void BattleActionBagOfDragonite() {
+	CalcResistDamage(TwentyFivePercentVariance(800), currentTarget.fireResist);
+}
 
 /// $C2A9BD
 void InsectSprayCommon(short baseDamage) {
@@ -4097,7 +4099,7 @@ short BossBattleCheck() {
 /// $C2AB71
 void BattleActionTeleportBox() {
 	if ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 0x80) == 0) {
-		if ((BattleModeFlag == 0) || ((RandLimit(100) < ItemData[currentAttacker.currentActionArgument].strength) && (BossBattleCheck() != 0))) {
+		if ((BattleModeFlag == 0) || ((RandLimit(100) < ItemData[currentAttacker.currentActionArgument].parameters.strength) && (BossBattleCheck() != 0))) {
 			RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.unknown7);
 			DisplayInBattleText(TextBattleTeleportBoxExploded);
 			SetTeleportState(gameState.unknownC3, TeleportStyle.Instant);
@@ -4268,8 +4270,106 @@ void BattleActionMirror() {
 	}
 }
 
+/// $C2B172
+const(ItemParameters)* ApplyCondiment() {
+	short x16 = currentAttacker.currentActionArgument;
+	short x02 = FindCondiment(cast(ubyte)x16);
+	if (x02 != 0) {
+		TakeItemFromCharacter(currentAttacker.id, x02);
+		for (short i = 0; CondimentTable[i].item != 0; i++) {
+			if (CondimentTable[i].item != x16) {
+				continue;
+			}
+			if ((CondimentTable[i].goodCondiments[0] != x02) && (CondimentTable[i].goodCondiments[1] != x02)) {
+				break;
+			}
+			DisplayInBattleText(TextBattleItWasPrettyGood);
+			return &CondimentTable[i].parameters;
+		}
+		DisplayInBattleText(TextBattleItDidntTasteVeryGood);
+	}
+	return &ItemData[x16].parameters;
+}
+
 /// $C2B27D
-void EatFood();
+void EatFood() {
+	short x1C = currentTarget.id;
+	if (PartyCharacters[x1C - 1].afflictions[0] == Status0.Unconscious) {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+		return;
+	}
+	const(ItemParameters)* x18 = ApplyCondiment();
+	ubyte x16 = x18.raw[(x1C == 4) ? 2 : 1];
+	switch (x18.raw[0]) {
+		case 0:
+			RecoverHP(currentTarget, (x16 != 0) ? TwentyFivePercentVariance(x16 * 6) : 30000);
+			break;
+		case 1:
+			RecoverPP(currentTarget, (x16 != 0) ? TwentyFivePercentVariance(x16) : 30000);
+			break;
+		case 2:
+			RecoverHP(currentTarget, (x16 != 0) ? TwentyFivePercentVariance(x16 * 6) : 30000);
+			RecoverPP(currentTarget, (x16 != 0) ? TwentyFivePercentVariance(x16) : 30000);
+			break;
+		case 3:
+			switch (RandLimit(4)) {
+				case 0:
+					goto BoostIQ;
+				case 1:
+					goto BoostGuts;
+				case 2:
+					goto BoostSpeed;
+				case 3:
+					goto BoostVitality;
+				case 4:
+					goto BoostLuck;
+				default: break;
+			}
+			break;
+		case 4:
+		BoostIQ:
+			currentTarget.iq += cast(ubyte)x16;
+			PartyCharacters[x1C - 1].boosted_iq += cast(ubyte)x16;
+			RecalcCharacterPostmathIQ(x1C);
+			DisplayTextWait(TextBattleIQWentUp, x16);
+			break;
+		case 5:
+		BoostGuts:
+			currentTarget.guts += x16;
+			PartyCharacters[x1C - 1].boosted_guts += cast(ubyte)x16;
+			RecalcCharacterPostmathGuts(x1C);
+			DisplayTextWait(TextBattleGutsWentUp, x16);
+			break;
+		case 6:
+		BoostSpeed:
+			currentTarget.speed += x16;
+			PartyCharacters[x1C - 1].boosted_speed += cast(ubyte)x16;
+			RecalcCharacterPostmathSpeed(x1C);
+			DisplayTextWait(TextBattleSpeedWentUp, x16);
+			break;
+		case 7:
+		BoostVitality:
+			currentTarget.vitality += cast(ubyte)x16;
+			PartyCharacters[x1C - 1].boosted_vitality += cast(ubyte)x16;
+			RecalcCharacterPostmathVitality(x1C);
+			DisplayTextWait(TextBattleVitalityWentUp, x16);
+			break;
+		case 8:
+		BoostLuck:
+			currentTarget.luck += x16;
+			PartyCharacters[x1C - 1].boosted_luck += cast(ubyte)x16;
+			RecalcCharacterPostmathLuck(x1C);
+			DisplayTextWait(TextBattleLuckWentUp, x16);
+			break;
+		case 9:
+			BattleActionHealingAlpha();
+			break;
+		case 10:
+			HealPoison();
+			break;
+		default: break;
+	}
+}
 
 /// $C2B608
 ubyte CalcPSIDamageModifiers(ubyte arg1) {

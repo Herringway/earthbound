@@ -1403,7 +1403,7 @@ ushort RemoveItemFromInventory(ushort character, ushort slot) {
     }
     PartyCharacters[character - 1].items[i - 1] = 0;
     if (ItemData[i].type == ItemType.TeddyBear) {
-        RemoveCharFromParty(ItemData[i].strength);
+        RemoveCharFromParty(ItemData[i].parameters.strength);
         UnknownC216DB();
     }
     if ((ItemData[i].flags & ItemFlags.Transform) != 0) {
@@ -1523,6 +1523,18 @@ void GetOffBicycle() {
 
 /// $C1D9E9
 void GainEXP(short, short, uint);
+
+/// $C1DB33
+short FindCondiment(short item) {
+    if ((ItemData[item].type & 0x3C) == 0x20) {
+        for (short i = 0; (i < 14) && (PartyCharacters[currentAttacker.id - 1].items[i] != 0xFF); i++) {
+            if ((ItemData[PartyCharacters[currentAttacker.id - 1].items[i]].type & 0x3C) == 0x28) {
+                return PartyCharacters[currentAttacker.id - 1].items[i];
+            }
+        }
+    }
+    return 0;
+}
 
 /// $C1DBBB
 void ShowHPAlert(short arg1) {
