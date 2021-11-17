@@ -4378,6 +4378,9 @@ void EatFood() {
 			break;
 		default: break;
 	}
+	if (x18.ep != 0) {
+		UnknownC076C8(x18.ep);
+	}
 }
 
 /// $C2B608

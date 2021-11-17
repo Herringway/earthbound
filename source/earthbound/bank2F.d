@@ -4140,7 +4140,7 @@ void UnknownEFE175() {
 	if (DebugModeNumber == 5) {
 		UnknownEFEAC8();
 	}
-	UnknownC0851C(&UnknownC0DC4E);
+	SetIRQCallback(&ProcessOverworldTasks);
 	UnknownC08744();
 	FadeIn(1, 1);
 	do {

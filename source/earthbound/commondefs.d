@@ -4085,9 +4085,9 @@ union FixedPoint1616 {
 	uint combined;
 }
 
-struct Unknown7E9E3CEntry {
-	ushort unknown0;
-	void function() unknown2;
+struct OverworldTask {
+	ushort framesLeft;
+	void function() func;
 }
 
 struct TimedDelivery {
@@ -4109,7 +4109,6 @@ union ItemParameters {
 		ubyte ep;
 		ubyte special;
 	}
-
 }
 
 struct Item {
@@ -4361,6 +4360,7 @@ struct SpriteMap {
 	ubyte unknown0;
 	union {
 		ushort unknown1;
+		SpriteMap* unknown1ptr;
 		struct {
 			ubyte unknown10;
 			ubyte unknown11;
@@ -4841,4 +4841,20 @@ T[] convert(T)(const(ubyte)[] input) {
 
 ushort SectorAttributes(ubyte a, ubyte b) {
 	return cast(short)(a + (b << 8));
+}
+
+T ROR(T)(T val, ref bool carry) {
+	bool LSB = val & (1 << 0);
+	val >>= 1;
+	val |= (cast(T)carry << ((T.sizeof * 8) - 1));
+	carry = LSB;
+    return val;
+}
+
+T ROL(T)(T val, ref bool carry) {
+	bool MSB = !!(val & (1 << ((T.sizeof * 8) - 1)));
+	val <<= 1;
+	val |= carry;
+	carry = MSB;
+    return val;
 }

@@ -32,7 +32,7 @@ __gshared ubyte TD_MIRROR;
 __gshared ubyte Unknown7E001D;
 __gshared ubyte Unknown7E001E;
 __gshared ubyte HDMAEN_MIRROR;
-__gshared void function() Unknown7E0020;
+__gshared void function() IRQCallback;
 __gshared ubyte Unknown7E0022;
 __gshared ubyte Unknown7E0023;
 __gshared ushort RandA;
@@ -92,10 +92,9 @@ __gshared ushort DMA_COPY_SIZE;
 __gshared const(void)* DMA_COPY_RAM_SRC;
 __gshared ushort DMA_COPY_VRAM_DEST;
 __gshared short Unknown7E0099;
-
-__gshared short Unknown7E009C;
-__gshared short Unknown7E009E;
-__gshared ubyte Unknown7E00A0;
+__gshared short Unknown7E009B;
+__gshared short Unknown7E009D;
+__gshared short Unknown7E009F;
 __gshared void* CurrentHeapAddress;
 __gshared void* HeapBaseAddress;
 __gshared ubyte Unknown7E00A5;
@@ -613,7 +612,7 @@ __gshared ushort EntityPreparedXCoordinate; /// $9E2D
 __gshared ushort EntityPreparedYCoordinate; /// $9E2F
 __gshared ushort EntityPreparedDirection; /// $9E31
 
-__gshared Unknown7E9E3CEntry[4] Unknown7E9E3C; /// $9E3C
+__gshared OverworldTask[4] OverworldTasks; /// $9E3C
 
 __gshared ushort DadPhoneTimer; /// $9E54
 __gshared short Unknown7E9E56; /// $9E56
