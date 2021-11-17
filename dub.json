@@ -2,8 +2,8 @@
 	"authors": [
 		"elpen"
 	],
-	"copyright": "Copyright © 2020, elpen",
-	"description": "earthbound",
+	"copyright": "Copyright © 2021, elpen",
+	"description": "attempt at decompiling+porting earthbound.",
 	"license": "proprietary",
 	"name": "earthbound",
 	"stringImportPaths": ["data"]
