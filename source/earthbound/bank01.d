@@ -296,14 +296,60 @@ void ShowHPPPWindows() {
 /// $C10A1D
 void HideHPPPWindows();
 
+/// $C10A85
+void UnknownC10A85(short arg1, short arg2, ushort arg3) {
+    if (WindowTable[arg1] == -1) {
+        return;
+    }
+    short x10 = WindowStats[WindowTable[arg1]].text_x;
+    short x04 = WindowStats[WindowTable[arg1]].text_y;
+    if (arg3 == WindowStats[WindowTable[arg1]].width) {
+        if (x04 != (WindowStats[WindowTable[arg1]].height / 2) - 1) {
+            x04++;
+        } else {
+            UnknownC437B8(arg1);
+        }
+        x10 = 0;
+    }
+    if ((BlinkingTriangleFlag != 0) && (x10 == 0) && ((arg2 == 0x20) || (arg2 == 0x40)))  {
+        if (BlinkingTriangleFlag != 1) {
+            goto Unknown9;
+        }
+        if (BlinkingTriangleFlag == 2) {
+            arg2 = 0x20;
+        }
+    }
+    WindowStats[WindowTable[arg1]].tilemapBuffer[(WindowStats[WindowTable[arg1]].width * x04 * 2) + x10] = cast(ushort)(((arg2 & 0xFFF0) * 2) + (arg2 & 0xF) + ((arg2 == 0x22) ? 0xC00 : arg3));
+    WindowStats[WindowTable[arg1]].tilemapBuffer[(WindowStats[WindowTable[arg1]].width * x04 * 2) + x10 + WindowStats[WindowTable[arg1]].width] = cast(ushort)(((arg2 & 0xFFF0) * 2) + (arg2 & 0xF) + ((arg2 == 0x22) ? 0xC00 : arg3) + 0x10);
+    x10++;
+    Unknown9:
+    WindowStats[WindowTable[arg1]].text_x = x10;
+    WindowStats[WindowTable[arg1]].text_y = x04;
+}
+
+/// $C10BA1
+void UnknownC10BA1(short arg1) {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    UnknownC10A85(CurrentFocusWindow, arg1, WindowStats[WindowTable[CurrentFocusWindow]].tileAttributes);
+}
+
 /// $C10BD3
 void CC12() {
     UnknownC43739(CurrentFocusWindow);
     UnknownC438A5(0, WindowStats[WindowTable[CurrentFocusWindow]].text_y);
 }
 
-/// $C10EB4
-void UnknownC10EB4(short);
+/// $C10BFE
+MenuOpt* UnknownC10BFE(short arg1, short x, short y, const(ubyte)* label, const(ubyte)* selectedText) {
+    return UnknownC1153B(arg1, x, y, label, selectedText);
+}
+
+/// $C10C49
+short UnknownC1138DF(short arg1) {
+    return UnknownC1138D(arg1);
+}
 
 /// $C10C55
 short UnknownC10C55(uint*);
@@ -314,7 +360,9 @@ void PrintNewLineF() {
 }
 
 /// $C10C80
-void UnknownC10BA1F(short);
+void UnknownC10BA1F(short arg1) {
+    UnknownC10BA1(arg1);
+}
 
 /// $C10C86
 void PrintLetterF(short arg1) {
@@ -324,7 +372,15 @@ void PrintLetterF(short arg1) {
 void PrintLetter(short arg1);
 
 /// $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
-void UnknownC10D60(short tile);
+void UnknownC10D60(short tile) {
+    UnknownC10BA1(tile);
+    if (WindowTable[CurrentFocusWindow] != window_tail) {
+        Unknown7E9623 = 1;
+    }
+}
+
+/// $C10EB4
+void UnknownC10EB4(short);
 
 /// $C10F40
 void UnknownC10F40(short window) {
@@ -350,7 +406,12 @@ void ClearFocusWindow() {
 }
 
 /// $C10FEA - Sets the text color for the focused window
-void Win_SetTextColor(short window_id);
+void Win_SetTextColor(short window_id) {
+    if (window_id == -1) {
+        return;
+    }
+    WindowStats[WindowTable[window_id]].tileAttributes = cast(ushort)(window_id * 0x400);
+}
 
 /// $C1134B - Opens the HP/PP and wallet windows
 void OpenHpAndWallet() {
@@ -358,11 +419,82 @@ void OpenHpAndWallet() {
     UnknownC1AA18();
 }
 
+/// $C11354
+short UnknownC11354() {
+    for (short i = 0; i < MenuOptions.length; i++) {
+        if (MenuOptions[i].field00 == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 /// $C11383
-void UnknownC11383();
+void UnknownC11383() {
+    UnknownC3E7E3(CurrentFocusWindow);
+}
+
+/// $C1138D
+short UnknownC1138D(short arg1) {
+    if (arg1 == -1) {
+        return 0;
+    }
+    short i = 1;
+    for (MenuOpt* tmp = &MenuOptions[arg1]; tmp.next != -1; tmp++) {
+        i++;
+    }
+    return i;
+}
 
 /// $C113D1
-MenuOpt* UnknownC113D1(const(ubyte)* label, const(ubyte)* selectedText);
+MenuOpt* UnknownC113D1(const(ubyte)* label, const(ubyte)* selectedText) {
+    if (CurrentFocusWindow == -1) {
+        return &MenuOptions[$ - 1];
+    }
+    short x10 = UnknownC11354();
+    if (x10 == -1) {
+        return &MenuOptions[$ - 1];
+    }
+
+    if (WindowStats[WindowTable[CurrentFocusWindow]].current_option == -1) {
+        MenuOptions[x10].prev = -1;
+        WindowStats[WindowTable[CurrentFocusWindow]].current_option = x10;
+    } else {
+        MenuOptions[x10].prev = WindowStats[WindowTable[CurrentFocusWindow]].option_count;
+        MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].option_count].next = x10;
+    }
+    WindowStats[WindowTable[CurrentFocusWindow]].option_count = x10;
+    MenuOptions[x10].next = -1;
+    MenuOptions[x10].field00 = 1;
+    MenuOptions[x10].script = selectedText;
+    MenuOptions[x10].sfx = Sfx.Cursor1;
+    ubyte* x = &MenuOptions[x10].label[0];
+    do {
+        (x++)[0] = label[0];
+    } while ((label++)[0] != 0);
+    return &MenuOptions[x10];
+}
+
+/// $C114B1
+MenuOpt* UnknownC114B1(short x, short y, const(ubyte)* label, const(ubyte)* selectedText) {
+    MenuOpt* x16 = UnknownC113D1(label, selectedText);
+    x16.pixel_align = 0;
+    if (Unknown7E5E71 != 0) {
+        x16.pixel_align = x & 7;
+        x = x >> 3;
+    }
+    x16.text_x = x;
+    x16.text_y = y;
+    return x16;
+}
+
+/// $C1153B
+MenuOpt* UnknownC1153B(short arg1, short x, short y, const(ubyte)* label, const(ubyte)* selectedText) {
+    MenuOpt* X = UnknownC114B1(x, y, label, selectedText);
+    X.field0C = arg1;
+    X.field00 = 2;
+    return X;
+}
 
 /// $C1163C - Prints the options into the focused window
 void PrintMenuItems();
@@ -1521,8 +1653,27 @@ void GetOffBicycle() {
     UnknownC03CFD();
 }
 
+/// $C1D109
+void LevelUpChar(short, short);
+
 /// $C1D9E9
-void GainEXP(short, short, uint);
+void GainEXP(short arg1, short arg2, uint exp) {
+    PartyCharacters[arg1 - 1].exp += exp;
+    if (PartyCharacters[arg1 - 1].level > 99) {
+        return;
+    }
+    if (EXPTable[arg1 - 1][PartyCharacters[arg1 - 1].level + 1] < PartyCharacters[arg1 - 1].exp) {
+        if (arg2 != 0) {
+            ChangeMusic(Music.LevelUp);
+        }
+        while (EXPTable[arg1 - 1][PartyCharacters[arg1 - 1].level + 1] < PartyCharacters[arg1 - 1].exp) {
+            LevelUpChar(arg1, arg2);
+            if (PartyCharacters[arg1 - 1].level > 99) {
+                return;
+            }
+        }
+    }
+}
 
 /// $C1DB33
 short FindCondiment(short item) {

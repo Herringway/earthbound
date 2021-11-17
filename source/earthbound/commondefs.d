@@ -169,7 +169,7 @@ enum Music {
 	SetupScreen = 3,
 	None2 = 4,
 	YouWon1 = 5,
-	LEVEL_UP = 6,
+	LevelUp = 6,
 	YouLose = 7,
 	BATTLE_SWIRL1 = 8,
 	BATTLE_SWIRL2 = 9,
@@ -3899,17 +3899,17 @@ struct WinStat {
 }
 
 struct MenuOpt {
-    short  field00;     // [00]
-    short  next;        // [02]
-    short  prev;        // [04]
-    short  page;        // [06]
-    short  text_x;      // [08]
-    short  text_y;      // [0A]
-    short  field0C;     // [0C]
-    ubyte  sfx;         // [0E]
-    ubyte *script;      // [0F] 32-bit pointer
-    ubyte[25]  label;   // [13]
-    ubyte  pixel_align; // [2C]
+    short field00;     // [00]
+    short next;        // [02]
+    short prev;        // [04]
+    short page;        // [06]
+    short text_x;      // [08]
+    short text_y;      // [0A]
+    short field0C;     // [0C]
+    ubyte sfx;         // [0E]
+    const(ubyte)* script;      // [0F] 32-bit pointer
+    ubyte[25] label;   // [13]
+    ubyte pixel_align; // [2C]
 }
 struct VecYX {
     short y;

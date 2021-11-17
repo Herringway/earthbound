@@ -808,8 +808,17 @@ void LearnSpecialPSI(short id) {
 	}
 }
 
-/// $C2281D
-void DepositIntoATM(ushort);
+/// $C2281D - Deposits money into your bank account
+/// Returns: amount of money successfully deposited
+uint DepositIntoATM(uint amount) {
+	uint x0A = gameState.bankBalance + amount;
+	uint x06 = 9999999;
+	if (x0A <= x06) {
+		x06 = x0A;
+	}
+	gameState.bankBalance = x06;
+	return amount - (x0A - gameState.bankBalance);
+}
 
 /// $C228F8
 void AddCharToParty(short id) {

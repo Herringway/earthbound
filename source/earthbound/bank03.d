@@ -198,6 +198,9 @@ immutable ushort[4] UnknownC3E40E = [ 0x3A69, 0x3A6A, 0x3A6B, 0x3A6C ];
 /// $C3E416
 immutable ushort[3] BlinkingTriangleTiles = [ 0x3C14, 0x3C15, 0xBC11 ];
 
+/// $C3E44C
+immutable ubyte[4] UnknownC3E44C = EBString!4("そのた"); //tx6 in EB
+
 /// $C3E450
 void UnknownC3E450();
 
@@ -233,6 +236,30 @@ void UnknownC3E6F8() {
 	Unknown7E9623 = 1;
 }
 
+/// $C3E7E3
+void UnknownC3E7E3(short arg1) {
+	if (arg1 == -1) {
+		return;
+	}
+	if (WindowStats[WindowTable[arg1]].current_option == -1) {
+		return;
+	}
+	MenuOpt* x = &MenuOptions[WindowStats[WindowTable[arg1]].current_option];
+	while (true) {
+		x.field00 = 0;
+		if (x.next == -1) {
+			break;
+		}
+		x++;
+	}
+	WindowStats[WindowTable[arg1]].selected_option = -1;
+	WindowStats[WindowTable[arg1]].option_count = -1;
+	WindowStats[WindowTable[arg1]].current_option = -1;
+	WindowStats[WindowTable[arg1]].menu_columns = 1;
+	WindowStats[WindowTable[arg1]].menu_page = 1;
+}
+
+/// $C3E874
 immutable ubyte[10][24] DebugMenuText = [
 	EBString!10("Flag"),
 	EBString!10("Goods"),

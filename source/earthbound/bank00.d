@@ -84,7 +84,6 @@ void LoadMapPalette(short, short);
 
 /// $C008C3
 void LoadMapAtSector(short x, short y) {
-    //x1A = x
     if ((Unknown7E438A | Unknown7E438C) != 0) {
         x = Unknown7E438A / 32;
         y = Unknown7E438C / 16;
@@ -458,11 +457,13 @@ void UnknownC0255C(short x, short y);
 /// $C025CF
 void UnknownC025CF(short x, short y);
 
-/// $C0262D
-short UnknownC0262D(short, short);
-
 /// $C0263D
-short UnknownC0263D(short, short);
+short UnknownC0263D(short x, short y) {
+    if ((x >= 128) && (y >= 160)) {
+        return 0;
+    }
+    return MapEnemyPlacement[y][x];
+}
 
 /// $C02668
 short UnknownC02668(short, short, short);
@@ -776,11 +777,37 @@ void UnknownC03CFD() {
     Unknown7E5D74 = 2;
 }
 
+/// $C03E5A
+short UnknownC03E5A(short arg1) {
+    short x;
+    for (x = 0; gameState.unknown96[x] != arg1 + 1; x++) {}
+    if (x == 0) {
+        return -1;
+    }
+    return ChosenFourPtrs[EntityScriptVar1Table[gameState.unknownA2[x - 1]]].position_index;
+}
+
 /// $C03E9D
-short UnknownC03E9D(short);
+short UnknownC03E9D(short arg1) {
+    short x0E = UnknownC03E5A(arg1);
+    if (x0E < Unknown7E4DC6.position_index) {
+        x0E += 0x100;
+    }
+    return cast(short)(x0E - Unknown7E4DC6.position_index);
+}
 
 /// $C03EC3
-short UnknownC03EC3(short, short, short, short);
+short UnknownC03EC3(short arg1, short arg2, short arg3, short arg4) {
+    short tmp = UnknownC03E9D(arg1);
+    if (tmp == arg2) {
+        arg3++;
+        EntityScriptVar7Table[CurrentEntitySlot] &= 0xEFFF;
+    } else if (tmp > arg2) {
+        arg3 += arg3;
+        EntityScriptVar7Table[CurrentEntitySlot] |= 0x1000;
+    }
+    return arg3;
+}
 
 /// $C03F1E
 void UnknownC03F1E();
@@ -1497,6 +1524,11 @@ void UnknownC069AF() {
     Unknown7E5DD4 = Unknown7E5DD6;
     ChangeMusic(Unknown7E5DD6);
     UnknownC0AC0C(Unknown7E5E38.unknown3);
+}
+
+/// $C069ED
+void ChangeMusic5DD6() {
+    ChangeMusic(Unknown7E5DD6);
 }
 
 /// $C06A07
@@ -3957,10 +3989,25 @@ void UnknownC0DF22(ushort arg1) {
 }
 
 /// $C0DE7C
-void UnknownC0DE7C();
+void UnknownC0DE7C() {
+    Unknown7E4DC6 = &PartyCharacters[0];
+    for (short i = 0x18; i < 0x1E; i++) {
+        EntityScriptVar3Table[i] = 8;
+        EntityScriptVar7Table[i] &= 0xF7FF;
+        EntityCollidedObjects[i] &= 0x7FFF;
+        Unknown7E4DC6.unknown55 = 0xFFFF;
+        Unknown7E4DC6++;
+    }
+    ChangeMusic5DD6();
+}
 
 /// $C0DED9
-short UnknownC0DED9(short, short, short, short, short);
+short UnknownC0DED9(short arg1, short arg2, short arg3, short arg4, short) {
+    if (Unknown7E9F43 != 0) {
+        return 1;
+    }
+    return UnknownC05F33(arg1, arg2, gameState.currentPartyMembers) | UnknownC05F33(arg3, arg4, gameState.currentPartyMembers);
+}
 
 /// $C0E196
 void UnknownC0E196() {
@@ -3972,6 +4019,17 @@ void UnknownC0E196() {
     gameState.unknown88++;
     //uh... yeah, sure
     gameState.unknown88 = gameState.unknown88;
+}
+
+/// $C0E214
+short UnknownC0E214(short arg1, short arg2) {
+    if (gameState.unknown96[0] == arg1 + 1) {
+        return cast(short)(arg2 + 1);
+    }
+    if (Unknown7E9F45.integer == 0) {
+        return arg2;
+    }
+    return UnknownC03EC3(arg1, 6, arg2, 2);
 }
 
 /// $C0E254
@@ -3987,16 +4045,107 @@ void UnknownC0E254() {
 }
 
 /// $C0E28F
-void UnknownC0E28F();
+void UnknownC0E28F() {
+    gameState.unknown90 = 1;
+    ushort x02 = MapInputToDirection(0);
+    if (gameState.leaderDirection == (x02 ^ 4)) {
+        x02 = gameState.leaderDirection;
+    }
+    if (x02 == -1) {
+        x02 = gameState.leaderDirection;
+    }
+    gameState.leaderDirection = x02;
+    if (BattleSwirlCountdown != 0) {
+        Unknown7E9F43 = 2;
+        BattleDebug = 1;
+    }
+    UnknownC0DF22(x02);
+    Unknown7E9F51.combined = Unknown7E9F49.combined + gameState.leaderX.combined;
+    Unknown7E9F55.combined = Unknown7E9F4D.combined + gameState.leaderY.combined;
+    if (NPCCollisionCheck(Unknown7E9F51.integer, Unknown7E9F55.integer, gameState.currentPartyMembers) != -1) {
+        Unknown7E9F43 = 2;
+    }
+    if ((UnknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, Unknown7E9F51.integer, Unknown7E9F55.integer, x02) & 0xC0) != 0) {
+        Unknown7E9F43 = 2;
+    }
+    if (Unknown7E9F43 != 2) {
+        gameState.leaderX = Unknown7E9F51;
+        gameState.leaderY = Unknown7E9F55;
+    }
+    CenterScreen(gameState.leaderX.integer, gameState.leaderY.integer);
+    UnknownC0E196();
+    UnknownC0E254();
+    if (Unknown7E9F45.integer > 9) {
+        Unknown7E9F43 = 1;
+    }
+}
 
 /// $C0E3C1
-void UnknownC0E3C1();
+void UnknownC0E3C1() {
+    Unknown7E4DC6 = &PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]];
+    UnknownC07A56(EntityScriptVar0Table[CurrentEntitySlot], PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].walking_style, CurrentEntitySlot);
+    EntityAbsXTable[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].x_coord;
+    EntityAbsYTable[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].y_coord;
+    EntityDirections[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].direction;
+    EntitySurfaceFlags[CurrentEntitySlot] = PlayerPositionBuffer[PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index].tile_flags;
+    Unknown7E4DC6.position_index = cast(ubyte)UnknownC0E214(EntityScriptVar0Table[CurrentEntitySlot], PartyCharacters[EntityScriptVar1Table[CurrentEntitySlot]].position_index);
+}
 
 /// $C0E44D
-void UnknownC0E44D();
+void UnknownC0E44D() {
+    if (teleportStyle == TeleportStyle.PSIBetter) {
+        return;
+    }
+    if ((pad_state[0] & PAD_UP) != 0) {
+        Unknown7E9F69--;
+    }
+    if ((pad_state[0] & PAD_DOWN) != 0) {
+        Unknown7E9F69++;
+    }
+    if ((pad_state[0] & PAD_LEFT) != 0) {
+        Unknown7E9F67--;
+    }
+    if ((pad_state[0] & PAD_RIGHT) != 0) {
+        Unknown7E9F67++;
+    }
+}
 
 /// $C0E48A
-void UnknownC0E48A();
+void UnknownC0E48A() {
+    Unknown7E9F4D.integer = 0;
+    Unknown7E9F49.integer = 0;
+    switch (gameState.leaderDirection) {
+        case Direction.Up:
+            Unknown7E9F4D.integer = -5;
+            break;
+        case Direction.UpRight:
+            Unknown7E9F4D.integer = -5;
+            Unknown7E9F49.integer = 5;
+            break;
+        case Direction.Right:
+            Unknown7E9F49.integer = 5;
+            break;
+        case Direction.DownRight:
+            Unknown7E9F4D.integer = 5;
+            Unknown7E9F49.integer = 5;
+            break;
+        case Direction.Down:
+            Unknown7E9F4D.integer = 5;
+            break;
+        case Direction.DownLeft:
+            Unknown7E9F4D.integer = 5;
+            Unknown7E9F49.integer = -5;
+            break;
+        case Direction.Left:
+            Unknown7E9F49.integer = -5;
+            break;
+        case Direction.UpLeft:
+            Unknown7E9F4D.integer = -5;
+            Unknown7E9F49.integer = -5;
+            break;
+        default: break;
+    }
+}
 
 /// $C0E516
 void UnknownC0E516() {
@@ -4120,7 +4269,9 @@ void UnknownC0E897() {
 }
 
 /// $C0E979
-void UnknownC0E979() {}
+void UnknownC0E979() {
+    //nothing
+}
 
 /// $C0E97C
 void UnknownC0E97C() {

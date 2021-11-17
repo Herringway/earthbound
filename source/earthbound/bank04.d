@@ -1829,6 +1829,9 @@ void UnknownC43D75(ushort arg1, short arg2) {
     UnknownC43D24(arg1 / 8, arg2);
 }
 
+/// $C43E31
+short UnknownC43E31(ubyte*, short);
+
 /// $C43F53
 void UnknownC43F53() {
     for (short i = 0; i < 0x20; i++) {
@@ -2040,7 +2043,84 @@ void UnknownC4507A(uint* arg1) {
 }
 
 /// $C451FA
-void UnknownC451FA(short, short, short);
+void UnknownC451FA(short arg1, short arg2, short arg3) {
+    short x20 = void;
+    short x04 = 0;
+    short x02 = 0;
+    if (WindowStats[WindowTable[CurrentFocusWindow]].current_option == -1) {
+        return;
+    }
+    WindowStats[WindowTable[CurrentFocusWindow]].menu_columns = arg1;
+    MenuOpt* x24 = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+    memset(&Unknown7E968D[0], 0, 4);
+    memset(&Unknown7E9691[0], 0xFF, 4);
+    if (arg3 != 0) {
+        while (true) {
+            Unknown7E968D[x04] = cast(ubyte)(UnknownC43E31(&x24.label[0], 30) + 8);
+            x02 += Unknown7E968D[x04];
+            if (x24.next == -1) {
+                break;
+            }
+            x24 = &MenuOptions[x24.next];
+            x04++;
+        }
+        ushort x22 = cast(ushort)((WindowStats[WindowTable[CurrentFocusWindow]].width * 0x800) / x02);
+        while (x04 != -1) {
+            Unknown7E9691[x04] = cast(ubyte)((x22 * Unknown7E968D[x04]) / 256);
+            x04--;
+        }
+        x24 = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+        x04 = 0;
+    } else {
+        x20 = cast(short)(((arg1 - 1) * arg2 + WindowStats[WindowTable[CurrentFocusWindow]].width) / arg1);
+    }
+    short x1E = WindowStats[WindowTable[CurrentFocusWindow]].height / 2;
+    if ((arg1 + UnknownC1138DF(WindowStats[WindowTable[CurrentFocusWindow]].current_option) - 1) / arg1 > x1E) {
+        x1E -= 2;
+    }
+    short x22 = 0;
+    short x1C = 1;
+    short x1A = WindowStats[WindowTable[CurrentFocusWindow]].text_y;
+    outermost: while (true) {
+        for (short x2A = x1E; x2A != 0; x2A--) {
+            for (short x18 = arg1; x18 != 0; x18--) {
+                if (arg3 != 0) {
+                    x24.text_x = cast(short)(x22 + (Unknown7E9691[x04] - Unknown7E968D[x04]) / 16);
+                    x24.text_y = x1A;
+                    x24.page = x1C;
+                    if (x24.next == -1) {
+                        break outermost;
+                    }
+                    x22 += (Unknown7E9691[x04] + 7) / 8;
+                    x04++;
+                    x24 = &MenuOptions[x24.next];
+                } else {
+                    x24.text_x = x22;
+                    x24.text_y = x1A;
+                    x24.page = x1C;
+                    if (x24.next == -1) {
+                        break outermost;
+                    }
+                    x22 += x20;
+                    x24 = &MenuOptions[x24.next];
+                }
+            }
+            x22 = 0;
+            x1A++;
+        }
+        x1C++;
+    }
+     if (((arg1 + UnknownC1138DF(WindowStats[WindowTable[CurrentFocusWindow]].current_option) - 1) / arg1) > WindowStats[WindowTable[CurrentFocusWindow]].height / 2) {
+        MenuOpt* x = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+        x20 = cast(short)(arg1 - 1);
+        while (x20 != 0) {
+            x20--;
+            x = &MenuOptions[MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option].next];
+        }
+        UnknownC10BFE(0, 0, WindowStats[WindowTable[CurrentFocusWindow]].height / 2 - 1, &UnknownC3E44C[0], null);
+        MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].option_count].page = 0;
+     }
+}
 
 /// $C45502
 immutable ubyte[13] BattleBackRowText = EBString!13("the Back Row");

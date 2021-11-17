@@ -4017,7 +4017,7 @@ void DisplayCheckPositionDebugOverlay() {
 void DisplayViewCharacterDebugOverlay() {
 	CopyToVramAlt(0, 8, 0x7F24, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderX.integer / 0x40));
 	CopyToVramAlt(0, 8, 0x7F2A, cast(ubyte*)IntegerToHexDebugTiles(gameState.leaderY.integer / 0x40));
-	CopyToVramAlt(0, 8, 0x7F35, cast(ubyte*)IntegerToDecimalDebugTiles(UnknownC0262D(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
+	CopyToVramAlt(0, 8, 0x7F35, cast(ubyte*)IntegerToDecimalDebugTiles(UnknownC0263D(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
 	CopyToVramAlt(0, 8, 0x7F3A, cast(ubyte*)IntegerToDecimalDebugTiles(Unknown7E4A68));
 	if (BattleSwirlCountdown == 0) {
 		return;

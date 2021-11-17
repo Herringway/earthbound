@@ -573,19 +573,16 @@ __gshared short Unknown7E9686; /// $9686
 __gshared short Unknown7E9688; /// $9688
 __gshared short Unknown7E968A; /// $968A
 __gshared short Unknown7E968C; /// $968C
-
+__gshared ubyte[4] Unknown7E968D; /// $968D
+__gshared ubyte[4] Unknown7E9691; /// $9691
 __gshared ubyte Unknown7E9695; /// $9695
-
 __gshared ubyte Unknown7E9696; /// $9696
 __gshared ubyte Unknown7E9697; /// $9697
 __gshared short Unknown7E9698; /// $9698
 __gshared short[4] Unknown7E969A; /// $969A
 __gshared short[4] Unknown7E96A2; /// $96A2
-
 __gshared DisplayTextState[10] DisplayTextStates; /// $96AA
-
 __gshared ushort Unknown7E97B8; /// $97B8
-
 __gshared ubyte[10] CCArgumentStorage; /// $97BA
 __gshared ushort CCArgumentGatheringLoopCounter; /// $97CA
 
@@ -638,7 +635,6 @@ __gshared short teleportDestination; /// $9F3F
 __gshared TeleportStyle teleportStyle; /// $9F41
 __gshared short Unknown7E9F43; /// $9F43
 __gshared FixedPoint1616 Unknown7E9F45; /// $9F45
-//__gshared short Unknown7E9F47; /// $9F47
 __gshared FixedPoint1616 Unknown7E9F49; /// $9F49
 __gshared FixedPoint1616 Unknown7E9F4D; /// $9F4D
 __gshared FixedPoint1616 Unknown7E9F51; /// $9F51
