@@ -322,7 +322,7 @@ __gshared short[MAX_ENTITIES] EntityEnemyIDs; /// $2D12
 __gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_43; /// $2D4E
 __gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_44; /// $2D8A
 __gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_45; /// $2DC6
-__gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_46; /// $2E02
+__gshared VecYX*[MAX_ENTITIES] UNKNOWN_30X2_TABLE_46; /// $2E02
 __gshared ushort[MAX_ENTITIES] Unknown7E2E3E; /// $2E3E
 __gshared ushort[MAX_ENTITIES] Unknown7E2E7A; /// $2E7A
 __gshared const(OverlayScript)*[MAX_ENTITIES] EntityMushroomizedOverlayPtrs; //$2EB6
@@ -851,6 +851,7 @@ __gshared ushort Unknown7EB575; /// $B575
 
 __gshared ubyte[64][64] Unknown7EE000;
 __gshared PathCtx Unknown7EF200;
+__gshared ubyte[0xC00] Unknown7EF400;
 __gshared ubyte[0x8000] Unknown7F0000;
 __gshared ubyte[0x8000] Unknown7F8000;
 

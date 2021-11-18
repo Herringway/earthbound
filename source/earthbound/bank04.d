@@ -1256,6 +1256,27 @@ immutable short[17] UnknownC42AEB = [
     0x0041,
 ];
 
+/// $C42AC9
+immutable short[17] UnknownC42AC9 = [
+    0x0001,
+    0x0000,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0000,
+    0x0001,
+    0x0002,
+    0x0002,
+    0x0002,
+    0x0000,
+    0x0002,
+];
+
 /// $C42B0D
 immutable UnknownC42B0DEntry[17] UnknownC42B0D = [
     UnknownC42B0DEntry(1, 0, [
@@ -3197,7 +3218,7 @@ Params:
 ushort Path_Main(ushort heap_size, void *heap_start, VecYX *matrix_dim,
                    ubyte *matrix, ushort border_size, ushort target_count,
                    VecYX* targets_pos, ushort pather_count, Pather* pathers,
-                   ushort unk1, ushort unk2, ushort search_radius)
+                   short unk1, ushort unk2, ushort search_radius)
 {
     ushort dp20 = 0;
 
@@ -3450,7 +3471,7 @@ void Path_C4B923(ushort count, Pather **pathers) {
 }
 
 /// $C4BAF6
-void Path_C4BAF6(ushort target_count, VecYX *targets_pos, Pather *pather, ushort unk1, ushort unk2, ushort unk3) {
+void Path_C4BAF6(ushort target_count, VecYX *targets_pos, Pather *pather, ushort unk1, ushort unk2, short unk3) {
     ushort dp19 = pather.hitbox.y;
     ushort dp17 = pather.hitbox.x;
     ushort dp15 = 0;

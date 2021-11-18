@@ -3933,7 +3933,59 @@ void UnknownC0B9BC(PathCtx* arg1, short arg2, short arg3, short arg4) {
 }
 
 /// $C0BA35
-short UnknownC0BA35(PathCtx*, short, short, short, short, short, short);
+short UnknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg5, short arg6, short arg7) {
+    ubyte* x06 = &Unknown7F0000[0x3000];
+    arg1.target_count = arg2;
+    for (short i = 0; i != arg1.radius.x; i++) {
+        for (short j = 0; j != arg1.radius.y; j++) {
+            if ((Unknown7EE000[(i + arg7) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
+                (x06++)[0] = 0xFD;
+            } else {
+                (x06++)[0] = 0;
+            }
+        }
+    }
+    short x02 = 0;
+    short x26 = 0;
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if (EntityScriptTable[i] == -1) {
+            continue;
+        }
+        if (UNKNOWN_30X2_TABLE_41[i] == -1) {
+            continue;
+        }
+        arg1.pathers[x26].obj_index = i;
+        arg1.pathers[x26].from_offscreen = arg6;
+        arg1.pathers[x26].hitbox.x = UnknownC42AA7[UNKNOWN_30X2_TABLE_36[i]];
+        arg1.pathers[x26].hitbox.y = UnknownC42AC9[UNKNOWN_30X2_TABLE_36[i]];
+        arg1.pathers[x26].origin.x = ((EntityAbsXTable[i] - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[i]]) / 8 - arg3) & 0x3F;
+        arg1.pathers[x26].origin.y = ((EntityAbsYTable[i] - UnknownC42A41[UNKNOWN_30X2_TABLE_36[i]] + UnknownC42AEB[UNKNOWN_30X2_TABLE_36[i]]) / 8 - arg3) & 0x3F;
+        x26++;
+    }
+    arg1.pather_count = x26;
+    ushort x28 = Path_Main(0xC00, &Unknown7EF400[0], &arg1.radius, &Unknown7F0000[0x3000], 4, arg2, &arg1.targets_pos[0], x26, &arg1.pathers[0], -1, arg5, arg6);
+    while (Path_GetHeapSize() > 0xC00) {}
+    if (x28 == 0) {
+        for (short i = 0; i != MAX_ENTITIES; i++) {
+            if (EntityScriptTable[i] == -1) {
+                continue;
+            }
+            UNKNOWN_30X2_TABLE_41[i] = 1;
+        }
+        return -1;
+    } else {
+        for (short i = 0; i < x26; i++) {
+            short x22 = arg1.pathers[i].obj_index;
+            if (arg1.pathers[i].field0A != 0) {
+                UNKNOWN_30X2_TABLE_46[x22] = arg1.pathers[i].points;
+                Unknown7E2E3E[x22] = arg1.pathers[i].field0A;
+            } else {
+                UNKNOWN_30X2_TABLE_41[x22] = 1;
+            }
+        }
+        return 0;
+    }
+}
 
 /// $C0BD96
 short UnknownC0BD96() {

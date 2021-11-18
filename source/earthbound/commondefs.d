@@ -3917,23 +3917,21 @@ struct VecYX {
 }
 
 struct Pather {
-    int    from_offscreen; // [00] Starts off-screen flag
-    VecYX  hitbox;         // [02] ??? some sort of hitbox??? (Old notes, I have no idea why I labeled this "hitbox")
-    VecYX  origin;         // [06] Origin point in the collision map?
-    int    field0A;        // [0A] ??? unknown index
-    VecYX *points;         // [0C] Goal points
-    int    point_count;    // [0E] Amount of goal points
-    int    obj_index;      // [10] Object index
+    short from_offscreen; // [00] Starts off-screen flag
+    VecYX hitbox;         // [02] ??? some sort of hitbox??? (Old notes, I have no idea why I labeled this "hitbox")
+    VecYX origin;         // [06] Origin point in the collision map?
+    short field0A;        // [0A] ??? unknown index
+    VecYX* points;         // [0C] Goal points
+    short point_count;    // [0E] Amount of goal points
+    short obj_index;      // [10] Object index
 }
 
 struct PathCtx {
-	ubyte[120] unknown0;
-    // Up until offset 0x78 is unused??
-
-    VecYX  radius;         // [78] Pathfinder radius
-    VecYX[8]  targets_pos; // [7C] Positions for all targets (row, col)
-    int    target_count;   // [9C] Amount of targets
-    int    pather_count;   // [9E] Amount of pathers
+	ubyte[120] unknown0; //unused??
+    VecYX radius;         // [78] Pathfinder radius
+    VecYX[8] targets_pos; // [7C] Positions for all targets (row, col)
+    short target_count;   // [9C] Amount of targets
+    short pather_count;   // [9E] Amount of pathers
     Pather[8] pathers;     // [A0] Data for all pathers
 }
 
