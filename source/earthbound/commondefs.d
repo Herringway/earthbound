@@ -1815,7 +1815,7 @@ enum OverworldSprite {
 	HELICOPTER = 410,
 	BROKEN_HELICOPTER = 411,
 	DEEP_DARKNESS_PHONE = 412,
-	MAGIC_BUTTERFLY = 413,
+	MagicButterfly = 413,
 	TOOLS = 414,
 	MOLE_PLAYING_ROUGH = 415,
 	ROWDY_MOUSE = 416,
@@ -3263,7 +3263,7 @@ enum EnemyID {
 	FARM_ZOMBIE = 222,
 	CRIMINAL_CATERPILLAR = 223,
 	EVIL_EYE = 224,
-	MAGIC_BUTTERFLY = 225,
+	MagicButterfly = 225,
 	MINI_BARF = 226,
 	MASTER_CRIMINAL_WORM = 227,
 	CAPTAIN_STRONG = 228,
@@ -4856,4 +4856,8 @@ T ROL(T)(T val, ref bool carry) {
 	val |= carry;
 	carry = MSB;
     return val;
+}
+
+void XBA(T)(ref T val) {
+	val = cast(T)((val >> 8) | (val << 8));
 }

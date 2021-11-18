@@ -199,7 +199,7 @@ void ReloadMapAtPosition(short x, short y) {
 
 /// $C013F6
 void LoadMapAtPosition(short x, short y) {
-    UnknownC02194(x, y);
+    UnknownC02194();
     Unknown7E4380 = x;
     Unknown7E437C = x;
     Unknown7E4382 = y;
@@ -337,14 +337,85 @@ void InitializeMiscObjectData() {
     }
 }
 
-/// $C01A87
-void UnknownC01A87();
+/// $C01A86
+void UnknownC01A86() {
+    ubyte* tmpPtr = cast(ubyte*)&SpriteTable7E467E[0];
+    for (short i = 0; i < SpriteTable7E467E.sizeof; i++) {
+        tmpPtr[i] = 0xFF;
+    }
+}
 
 /// $C01A9D
-short FindFree7E4682(ushort);
+short FindFree7E4682(ushort arg1) {
+    arg1 /= 5; //convert offset to index
+    short x10 = 0;
+    Unknown7E4A6A = cast(short)(arg1 * 5);
+    Unknown1:
+    while (x10 < SpriteTable7E467E.length) {
+        if (SpriteTable7E467E[x10].unknown4 == 0xFF) {
+            goto Found;
+        }
+        x10++;
+    }
+    return -255;
+    Found:
+    if ((x10 + arg1) < SpriteTable7E467E.length) {
+        for (short i = x10; i < x10 + arg1; i++) {
+            if (SpriteTable7E467E[i].unknown4 == 0xFF) {
+                continue;
+            }
+            x10 = cast(short)(i + 1);
+            goto Unknown1;
+        }
+        return x10;
+    }
+    return -254;
+}
 
-/// $C01A86
-void UnknownC01A86();
+/// $C01B15
+void UnknownC01B15(const(SpriteMap)* arg1) {
+    if (arg1 < &SpriteTable7E467E[0]) {
+        return;
+    }
+    //??????????
+    if (cast(const(ubyte)*)arg1 > cast(ubyte*)&SpriteTable7E467E.ptr[179] + 1) {
+        return;
+    }
+    short x10 = cast(short)(arg1 - &SpriteTable7E467E[0]);
+    short i = 0;
+    while(i < 2) {
+        ubyte y = SpriteTable7E467E[x10 / SpriteTable7E467E.sizeof].unknown4;
+        SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown0 = 0xFF;
+        SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown10 = 0xFF;
+        SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown11 = 0xFF;
+        SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown3 = 0xFF;
+        SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown4 = 0xFF;
+        x10 += SpriteMap.sizeof;
+        if ((y & 0x80) != 0) {
+            i++;
+        }
+    }
+}
+
+/// $C01B96
+// no idea what's going on here
+short UnknownC01B96(short arg1, short arg2) {
+    short x;
+    outer: for (short i = 0; i <= 0x58 - arg1; i = cast(short)(x + 1)) {
+        for (short j = 0; j < arg1; j++) {
+            x = cast(short)(i + j);
+            if (Unknown7E4A00[i + j] != 0) {
+                continue outer;
+            }
+        }
+        for (short j = 0; j < arg1; j++) {
+            x = cast(short)(i + j);
+            Unknown7E4A00[i + j] = cast(ubyte)arg2 | 0x80;
+        }
+        return i;
+    }
+    return -253;
+}
 
 /// $C01C11
 void AllocSpriteMem(short arg1, ubyte arg2) {
@@ -356,7 +427,25 @@ void AllocSpriteMem(short arg1, ubyte arg2) {
 }
 
 /// $C01C52
-short UnknownC01C52(short, short, short);
+short UnknownC01C52(short arg1, short arg2, short arg3) {
+    short local4 = cast(short)((((arg1 + 1) & 0xFFFE) * ((arg2 + 1) & 0xFFFE)) / 4);
+    short local3 = UnknownC01B96(local4, arg3);
+    if (local3 < 0) {
+        return local3;
+    }
+    if ((((arg1 + 1) & 0xFFFE) != arg1) || (((arg2 + 1) & 0xFFFE) != arg2)) {
+        short local6;
+        for (short i = local3; i <local3 + local4; i += local6) {
+            local6 = cast(short)(((i + 8) & 0xF8) - i);
+            if (local3 + local4 - i < local6) {
+                local6 = cast(short)(local3 + local4 - i);
+            }
+            CopyToVram(3, cast(ushort)(local6 * 64), cast(ushort)(UnknownC42F8C[i] + 0x4000), &UnknownC40BE8[0]);
+            CopyToVram(3, cast(ushort)(local6 * 64), cast(ushort)(UnknownC42F8C[i] + 0x4100), &UnknownC40BE8[0]);
+        }
+    }
+    return local3;
+}
 
 /// $C01D38
 void UnknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)* arg4) {
@@ -440,13 +529,51 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 }
 
 /// $C02140
-void UnknownC02140(short);
+void UnknownC02140(short arg1) {
+    UnknownC01B15(EntitySpriteMapPointers[arg1]);
+    AllocSpriteMem(arg1, 0);
+    if ((EntityTPTEntries[arg1] & 0xF000) == 0x8000) {
+        OverworldEnemyCount--;
+    }
+    if (EntityEnemyIDs[arg1] == EnemyID.MagicButterfly) {
+        MagicButterfly = 0;
+    }
+    EntityTPTEntrySprites[arg1] = -1;
+    EntityTPTEntries[arg1] = 0xFFFF;
+    UnknownC09C35(arg1);
+}
 
 /// $C02194
-void UnknownC02194(short, short);
+void UnknownC02194() {
+    MagicButterfly = 0;
+    Unknown7E4A68 = 0;
+    OverworldEnemyCount = 0;
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if ((EntityScriptTable[i] + 1) > 6) {
+            UnknownC02140(i);
+        }
+    }
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        EntityCollidedObjects[i] = 0xFFFF;
+    }
+}
 
 /// $C021E6
-void UnknownC021E6();
+void UnknownC021E6() {
+    MagicButterfly = 0;
+    Unknown7E4A68 = 0;
+    OverworldEnemyCount = 0;
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if (EntityScriptTable[i] + 1 <= 2) {
+            continue;
+        }
+        if (i == 23) {
+            continue;
+        }
+        UnknownC02140(i);
+    }
+    UnknownC09C35(23);
+}
 
 /// $C0255C
 void UnknownC0255C(short x, short y);
@@ -3699,7 +3826,108 @@ void UnknownC0B0EF(ubyte arg1, ubyte arg2) {
 }
 
 /// $C0B149
-void UnknownC0B149(ushort, ushort, short, short);
+void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
+    if (/+(arg2 > 0) && (+/arg2 >= 0x70) {
+        short y = 0;
+        short a = cast(short)(arg2 - arg4);
+        if (a > 0) {
+            do {
+                Unknown7E3FD0[y] = 0xFF;
+                y += 2;
+            } while(--a != 0);
+            a = 0;
+        }
+        short x0A = cast(short)(a + arg4);
+        short x0C;
+        while (true) {
+            short x08 = (a == 0) ? arg3 : ((0x80 + arg3 * UnknownC0B2FF[cast(ushort)x0A / cast(ubyte)arg4]) >> 8);
+            a = cast(short)(x08 + arg1);
+            if (a >= 0) {
+                if (a >= 0x100) {
+                    a = 0xFF;
+                }
+                x0C = a;
+                a = cast(short)(arg1 - x08);
+                if (a < 0) {
+                    a = 0;
+                } else if (a >= 0x100) {
+                    a = 0xFF;
+                } else {
+                    a = cast(ushort)(x0C << 8) | cast(ubyte)a;
+                }
+            }
+            *cast(ushort*)&Unknown7E3FD0[y] = a;
+            x0C = cast(short)(x0A * 4);
+            if (y + x0C < 0x1C0) {
+                *cast(ushort*)&Unknown7E3FD0[y + x0C] = a;
+            }
+            y += 2;
+            if (--x0A < 0) {
+                break;
+            }
+        }
+        a = y;
+        y = cast(short)(a + arg4 + arg4);
+        if (y < 0x1C0) {
+            a = 0xFF;
+            do {
+                Unknown7E3FD0[y] = 0xFF;
+                y += 2;
+            } while (y < 0x1C0);
+        }
+    } else {
+        short y = 0x1BE;
+        short a = 0xE0;
+        a = cast(short)(a - arg2 - arg4);
+        if (a > 0) {
+            do {
+                Unknown7E3FD0[y] = 0xFF;
+                y -= 2;
+            } while (--a != 0);
+            a = 0;
+        }
+        short x0A = cast(short)(a + arg4);
+        short x0C;
+        while (true) {
+            short x08 = (a == 0) ? arg3 : ((0x80 + arg3 * UnknownC0B2FF[cast(ushort)x0A / cast(ubyte)arg4]) >> 8);
+            a = cast(short)(x08 + arg1);
+            if (a >= 0) {
+                if (a >= 0x100) {
+                    a = 0xFF;
+                }
+                x0C = a;
+                a = cast(short)(arg1 - x08);
+                if (a < 0) {
+                    a = 0;
+                } else if (a >= 0x100) {
+                    a = 0xFF;
+                } else {
+                    a = cast(ushort)(x0C << 8) | cast(ubyte)a;
+                }
+            }
+            *cast(ushort*)&Unknown7E3FD0[y] = a;
+            x0C = cast(short)(x0A * 4);
+            if (y - x0C >= 0) {
+                *cast(ushort*)&Unknown7E3FD0[y - x0C] = a;
+            }
+            y -= 2;
+            if (--x0A < 0) {
+                break;
+            }
+        }
+        a = y;
+        y = cast(short)(a - arg4 - arg4);
+        if (y >= 0) {
+            do {
+                Unknown7E3FD0[y] = 0xFF;
+                y -= 2;
+            } while (y >= 0);
+        }
+    }
+}
+
+/// $C0B2FF
+immutable byte[256] UnknownC0B2FF = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -2, -2, -2, -2, -2, -2, -2, -2, -3, -3, -3, -3, -3, -3, -3, -4, -4, -4, -4, -4, -5, -5, -5, -5, -5, -6, -6, -6, -6, -6, -7, -7, -7, -7, -8, -8, -8, -8, -9, -9, -9, -9, -10, -10, -10, -11, -11, -11, -12, -12, -12, -12, -13, -13, -13, -14, -14, -15, -15, -15, -16, -16, -16, -17, -17, -17, -18, -18, -19, -19, -20, -20, -20, -21, -21, -22, -22, -23, -23, -23, -24, -24, -25, -25, -26, -26, -27, -27, -28, -28, -29, -29, -30, -30, -31, -31, -32, -33, -33, -34, -34, -35, -35, -36, -37, -37, -38, -38, -39, -40, -40, -41, -42, -42, -43, -44, -44, -45, -46, -46, -47, -48, -49, -49, -50, -51, -52, -52, -53, -54, -55, -55, -56, -57, -58, -59, -59, -60, -61, -62, -63, -64, -65, -65, -66, -67, -68, -69, -70, -71, -72, -73, -74, -75, -76, -77, -78, -79, -80, -81, -82, -83, -84, -86, -87, -88, -89, -90, -91, -93, -94, -95, -96, -97, -99, -100, -101, -103, -104, -105, -107, -108, -110, -111, -113, -114, -116, -117, -119, -120, -122, -123, -125, -127, 127, 126, 124, 122, 120, 118, 116, 114, 112, 110, 108, 106, 104, 102, 99, 97, 94, 92, 89, 86, 83, 81, 77, 74, 71, 67, 63, 59, 55, 50, 45, 39, 32, 23];
 
 /// $C0B425
 immutable byte[256] SineLookupTable = [0, 3, 6, 9, 12, 15, 18, 21, 24, 28, 31, 34, 37, 40, 43, 46, 48, 51, 54, 57, 60, 63, 65, 68, 71, 73, 76, 78, 81, 83, 85, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 109, 111, 112, 114, 115, 117, 118, 119, 120, 121, 122, 123, 124, 124, 125, 126, 126, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 127, 126, 126, 125, 124, 124, 123, 122, 121, 120, 119, 118, 117, 115, 114, 112, 111, 109, 108, 106, 104, 102, 100, 98, 96, 94, 92, 90, 88, 85, 83, 81, 78, 76, 73, 71, 68, 65, 63, 60, 57, 54, 51, 48, 46, 43, 40, 37, 34, 31, 28, 24, 21, 18, 15, 12, 9, 6, 3, 0, -3, -6, -9, -12, -15, -18, -21, -24, -28, -31, -34, -37, -40, -43, -46, -48, -51, -54, -57, -60, -63, -65, -68, -71, -73, -76, -78, -81, -83, -85, -88, -90, -92, -94, -96, -98, -100, -102, -104, -106, -108, -109, -111, -112, -114, -115, -117, -118, -119, -120, -121, -122, -123, -124, -124, -125, -126, -126, -127, -127, -127, -127, -127, -127, -127, -127, -127, -127, -127, -126, -126, -125, -124, -124, -123, -122, -121, -120, -119, -118, -117, -115, -114, -112, -111, -109, -108, -106, -104, -102, -100, -98, -96, -94, -92, -90, -88, -85, -83, -81, -78, -76, -73, -71, -68, -65, -63, -60, -57, -54, -51, -48, -46, -43, -40, -37, -34, -31, -28, -24, -21, -18, -15, -12, -9, -6, -3];
@@ -3939,7 +4167,7 @@ short UnknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
     for (short i = 0; i != arg1.radius.x; i++) {
         for (short j = 0; j != arg1.radius.y; j++) {
             if ((Unknown7EE000[(i + arg7) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
-                (x06++)[0] = 0xFD;
+                (x06++)[0] = PATH_UNWALKABLE;
             } else {
                 (x06++)[0] = 0;
             }

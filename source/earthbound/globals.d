@@ -406,9 +406,7 @@ __gshared short Unknown7E4676; /// $4676
 
 __gshared short Unknown7E467A; /// $467A
 __gshared short Unknown7E467C; /// $467C
-__gshared SpriteMap[0] SpriteTable7E467E; /// $467E
-
-__gshared short TouchedEnemy; /// $4D86
+__gshared SpriteMap[179] SpriteTable7E467E; /// $467E
 
 __gshared ubyte[88] Unknown7E4A00; /// $4A00
 __gshared short Unknown7E4A58; /// $4A58
@@ -435,6 +433,8 @@ __gshared short Unknown7E4A90; //$4A90
 __gshared short Unknown7E4A92; //$4A92
 __gshared short Unknown7E4A94; //$4A94
 __gshared short Unknown7E4A96; //$4A96
+
+__gshared short TouchedEnemy; /// $4D86
 
 __gshared short Unknown7E4DB8; /// $4DB8
 __gshared short BattleSwirlFlag; /// $4DBA

@@ -2151,7 +2151,7 @@ immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.MAGIC_BUTTERFLY),
+		BattleGroupEnemy(1, EnemyID.MagicButterfly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
@@ -2393,7 +2393,7 @@ immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.MAGIC_BUTTERFLY),
+		BattleGroupEnemy(1, EnemyID.MagicButterfly),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.None),
 	BattleEntryPointer([

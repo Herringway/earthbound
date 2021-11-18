@@ -4098,7 +4098,7 @@ void UnknownEFE175() {
 	*(cast(ushort*)&Unknown7F0000[0]) = 0;
 	UnknownC08726();
 	UnknownC0927C();
-	UnknownC01A87();
+	UnknownC01A86();
 	AllocSpriteMem(short.min, 0);
 	InitializeMiscObjectData();
 	short x1C = DebugUnknownB565;
