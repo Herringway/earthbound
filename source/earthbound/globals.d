@@ -12,8 +12,7 @@ __gshared OAMEntry* OAMEndAddr;
 __gshared ubyte* OAMHighTableAddr;
 __gshared ubyte Unknown7E0009;
 __gshared ubyte Unknown7E000A;
-__gshared ubyte Unknown7E000B;
-__gshared ubyte Unknown7E000C;
+__gshared ushort Unknown7E000B;
 __gshared ubyte INIDISP_MIRROR;
 __gshared ubyte OBSEL_MIRROR;
 __gshared ubyte Unknown7E000F;
@@ -267,22 +266,22 @@ __gshared ushort Unknown7E2402; /// $2402
 __gshared const(SpriteMap)*[32] Unknown7E2404; /// $2404
 __gshared short[32] Unknown7E2444; /// $2444
 __gshared short[32] Unknown7E2484; /// $2484
-__gshared short[32] Unknown7E24C4; /// $24C4
+__gshared ushort[32] Unknown7E24C4; /// $24C4
 __gshared short Unknown7E2504; /// $2504
 __gshared const(SpriteMap)*[32] Unknown7E2506; /// $2506
 __gshared short[32] Unknown7E2546; /// $2546
 __gshared short[32] Unknown7E2586; /// $2586
-__gshared short[32] Unknown7E25C6; /// $25C6
+__gshared ushort[32] Unknown7E25C6; /// $25C6
 __gshared short Unknown7E2606; /// $2606
 __gshared const(SpriteMap)*[32] Unknown7E2608; /// $2608
 __gshared short[32] Unknown7E2648; /// $2648
 __gshared short[32] Unknown7E2688; /// $2688
-__gshared short[32] Unknown7E26C8; /// $26C8
+__gshared ushort[32] Unknown7E26C8; /// $26C8
 __gshared short Unknown7E2708; /// $2708
 __gshared const(SpriteMap)*[32] Unknown7E270A; /// $270A
 __gshared short[32] Unknown7E274A; /// $274A
 __gshared short[32] Unknown7E278A; /// $278A
-__gshared short[32] Unknown7E27CA; /// $27CA
+__gshared ushort[32] Unknown7E27CA; /// $27CA
 __gshared short Unknown7E280A; /// $280A
 __gshared short[MAX_ENTITIES] EntityDrawSorting; /// $280C
 __gshared short Unknown7E2848; /// $2848
@@ -431,6 +430,11 @@ __gshared int Unknown7E4A76; /// $4A76
 __gshared short Unknown7E4A7A; /// $4A7A
 
 __gshared short CurrentBattleGroup; /// $4A8C
+__gshared short Unknown7E4A8E; //$4A8E
+__gshared short Unknown7E4A90; //$4A90
+__gshared short Unknown7E4A92; //$4A92
+__gshared short Unknown7E4A94; //$4A94
+__gshared short Unknown7E4A96; //$4A96
 
 __gshared short Unknown7E4DB8; /// $4DB8
 __gshared short BattleSwirlFlag; /// $4DBA
@@ -846,6 +850,7 @@ __gshared ushort Unknown7EB573; /// $B573
 __gshared ushort Unknown7EB575; /// $B575
 
 __gshared ubyte[64][64] Unknown7EE000;
+__gshared PathCtx Unknown7EF200;
 __gshared ubyte[0x8000] Unknown7F0000;
 __gshared ubyte[0x8000] Unknown7F8000;
 

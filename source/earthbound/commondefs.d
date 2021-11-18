@@ -3927,6 +3927,7 @@ struct Pather {
 }
 
 struct PathCtx {
+	ubyte[120] unknown0;
     // Up until offset 0x78 is unused??
 
     VecYX  radius;         // [78] Pathfinder radius

@@ -1278,7 +1278,7 @@ short BattleRoutine() {
 		UnknownC2F121();
 		UnknownC2F8F9();
 		UnknownC47F87();
-		UnknownC08B6B(0x18);
+		UnknownC0856B(0x18);
 		BattleModeFlag = 1;
 		ChangeMusic(EnemyConfigurationTable[Unknown7E9F8C[0]].music);
 		UnknownC08744();
