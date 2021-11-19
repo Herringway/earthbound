@@ -507,7 +507,7 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
     if ((Unknown7E467C & 1) != 0) {
         EntityVramAddresses[result] += 0x100;
     }
-    UNKNOWN_30X2_TABLE_36[result] = SpriteGroupingPointers[sprite + 1].height;
+    EntitySizes[result] = SpriteGroupingPointers[sprite + 1].height;
     Unknown7E3366[result] = SpriteGroupingPointers[sprite].unknown4;
     Unknown7E33A2[result] = SpriteGroupingPointers[sprite].unknown5;
     Unknown7E33DE[result] = SpriteGroupingPointers[sprite].unknown6;
@@ -674,7 +674,7 @@ void SpawnVertical(short x, short y) {
 
 /// $C02D29
 void UnknownC02D29() {
-    UNKNOWN_30X2_TABLE_36[23] = 1;
+    EntitySizes[23] = 1;
     Unknown7E9F6B = -1;
     gameState.unknown88 = 0;
     gameState.unknownB0 = 0;
@@ -828,7 +828,16 @@ void UnknownC03903(short id) {
 }
 
 /// $C039E5
-void UnknownC039E5();
+void UnknownC039E5() {
+    for (short i = 0; i < 6; i++) {
+        if (gameState.unknown96[i] == 0) {
+            continue;
+        }
+        EntityAbsXTable[gameState.unknownA2[i]] = gameState.leaderX.integer;
+        EntityAbsYTable[gameState.unknownA2[i]] = gameState.leaderY.integer;
+        UnknownC0A254(gameState.unknownA2[i]);
+    }
+}
 
 /// $C03A24
 void UnknownC03A24() {
@@ -934,7 +943,30 @@ short UnknownC03EC3(short arg1, short arg2, short arg3, short arg4) {
 }
 
 /// $C03F1E
-void UnknownC03F1E();
+void UnknownC03F1E() {
+    gameState.unknown88 = 0;
+    PlayerPositionBufferEntry* x = &PlayerPositionBuffer[0];
+    short y = 2;
+    while (--y != 0) {
+        x.x_coord = gameState.leaderX.integer;
+        x.y_coord = gameState.leaderY.integer;
+        x.direction = gameState.leaderDirection;
+        x.walking_style = gameState.walkingStyle;
+        x.tile_flags = gameState.troddenTileType;
+        MiscDebugFlags = 0;
+        x.unknown10 = 0;
+        x += 255;
+    }
+    for (short i = 0; i < gameState.partyCount; i++) {
+        ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].position_index = 0;
+        ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
+        ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
+        EntityAbsXTable[gameState.unknownA2[i]] = gameState.leaderX.integer;
+        EntityAbsYTable[gameState.unknownA2[i]] = gameState.leaderY.integer;
+        EntityDirections[gameState.unknownA2[i]] = gameState.leaderDirection;
+        EntitySurfaceFlags[gameState.unknownA2[i]] = gameState.troddenTileType;
+    }
+}
 
 /// $C03FA9
 void UnknownC03FA9(short x, short y, short direction) {
@@ -1150,11 +1182,290 @@ ushort FindNearbyTalkableTPTEntry() {
     return CurrentTPTEntry;
 }
 
+/// $C0449B
+void UnknownC0449B();
+
+/// $C0476D
+void UnknownC0476D() {
+    short x04 = 0;
+    if ((EntityAbsXTable[Unknown7E9E33] != gameState.leaderX.integer) || (EntityAbsYTable[Unknown7E9E33] != gameState.leaderY.integer) || (EntityAbsXFractionTable[Unknown7E9E33] != gameState.leaderX.fraction) || (EntityAbsYFractionTable[Unknown7E9E33] != gameState.leaderY.fraction)) {
+        x04 = 1;
+    }
+    gameState.leaderX.integer = EntityAbsXTable[Unknown7E9E33];
+    gameState.leaderY.integer = EntityAbsYTable[Unknown7E9E33];
+    gameState.leaderX.fraction = EntityAbsXFractionTable[Unknown7E9E33];
+    gameState.leaderY.fraction = EntityAbsYFractionTable[Unknown7E9E33];
+    gameState.leaderDirection = EntityDirections[Unknown7E9E33];
+    gameState.unknown90 = x04;
+}
+
+/// $C047CF
+void UnknownC047CF() {
+    if (BattleSwirlFlag != 0) {
+        return;
+    }
+    if (BattleSwirlCountdown != 0) {
+        BattleSwirlCountdown--;
+        return;
+    }
+    short x14;
+    switch (Unknown7E5DC6 & 0x300) {
+        case 0x000:
+            x14 = Direction.UpLeft;
+            break;
+        case 0x200:
+            x14 = Direction.DownLeft;
+            break;
+        case 0x100:
+            x14 = Direction.UpRight;
+            break;
+        case 0x300:
+            x14 = Direction.DownRight;
+            break;
+        default:
+            break;
+    }
+    Unknown7E5DA8 = 0xFFFF;
+    UnknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers, x14);
+    if (Unknown7E5DA8 != -1) {
+        UnknownC07526(Unknown7E5DA8, Unknown7E5DAA);
+    }
+    if (1 != 0) { //wat
+        gameState.leaderX.combined += horizontalMovementSpeeds[12].directionSpeeds[x14 * 4].combined;
+        gameState.leaderY.combined += verticalMovementSpeeds[12].directionSpeeds[x14 * 4].combined;
+    }
+    gameState.unknown90 = 1;
+}
+
+/// $C048D3
+void UnknownC048D3(short arg1) {
+    FixedPoint1616 x10;
+    FixedPoint1616 x14;
+    short x1E = MapInputToDirection(gameState.walkingStyle);
+    short x02 = x1E;
+    if (BattleSwirlCountdown != 0) {
+        if (--BattleSwirlCountdown != 0) {
+            NPCCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+            return;
+        } else {
+            BattleDebug = -1;
+            return;
+        }
+    }
+    if ((pad_press[0] & PAD_R) != 0) {
+        PlaySfx(Sfx.BicycleBell);
+    }
+    if ((x1E == -1) || (arg1 != 0)) {
+        x1E = gameState.leaderDirection;
+    } else {
+        NPCCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+        return;
+    }
+    if ((x1E & 1) != 0) {
+        Unknown7E5D5A = 4;
+    } else if (Unknown7E5D5A != 0) {
+        if (--Unknown7E5D5A != 0) {
+            x1E = gameState.leaderDirection;
+        } else if (x02 == -1) {
+            x1E = gameState.leaderDirection;
+        }
+    }
+    gameState.leaderDirection = x1E;
+    x10.combined = gameState.leaderX.combined + horizontalMovementSpeeds[WalkingStyle.Bicycle].directionSpeeds[x1E].combined;
+    x14.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.Bicycle].directionSpeeds[x1E].combined;
+    Unknown7E5DA8 = 0xFFFF;
+    short x1A = UnknownC05CD7(x10.integer, x14.integer, 0x18, x1E);
+    NPCCollisionCheck(x10.integer, x14.integer, gameState.currentPartyMembers);
+    if (EntityCollidedObjects[23] == -1) {
+        gameState.unknown90++;
+        Unknown7E2890++;
+        if ((x1A & 0xC0) != 0) {
+            gameState.unknown90 = 0;
+        } else {
+            gameState.leaderX.combined = x10.combined;
+            gameState.leaderY.combined = x14.combined;
+        }
+    }
+}
+
+/// $C04A7B
+void UnknownC04A7B() {
+    gameState.unknownB0 = Unknown7E5D7A;
+    UnknownC0D19B();
+}
+
+/// $C04AAD
+void UnknownC04AAD() {
+    if (--Unknown7E5D7C != 0) {
+        short x10 = MapInputToDirection(gameState.walkingStyle);
+        if (x10 == -1) {
+            return;
+        }
+        for (short i = 0x18; i <= 0x1D; i++) {
+            if (EntityScriptTable[i] == -1) {
+                continue;
+            }
+            if (EntityDirections[i] == x10) {
+                continue;
+            }
+            Unknown7E4DC6 = &PartyCharacters[EntityScriptVar1Table[i]];
+            if ((PlayerPositionBuffer[Unknown7E4DC6.position_index].walking_style == WalkingStyle.Rope) || (PlayerPositionBuffer[Unknown7E4DC6.position_index].walking_style == WalkingStyle.Ladder)) {
+                continue;
+            }
+            EntityDirections[i] = x10;
+            UnknownC0A780(i);
+        }
+        gameState.leaderDirection = x10;
+    } else {
+        UnknownC04A7B();
+    }
+}
+
+/// $C04B53
+void UnknownC04B53() {
+    //x12 = gameState.walkingStyle;
+    short x10;
+    if (gameState.walkingStyle != WalkingStyle.Stairs) {
+        x10 = gameState.leaderDirection;
+    } else {
+        x10 = Unknown7E5DCA;
+    }
+    switch (gameState.unknownB0) {
+        case 1:
+            gameState.leaderX.combined += horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[x10].combined;
+            gameState.leaderY.combined += verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[x10].combined;
+            if (--gameState.unknownB2 == 0) {
+                gameState.unknownB0 = 0;
+                gameState.walkingStyle = gameState.unknownB4;
+            }
+            gameState.unknown90 = 1;
+            break;
+        case 2:
+            UnknownC0476D();
+            break;
+        case 3:
+            UnknownC04AAD();
+            break;
+        default:
+            break;
+    }
+}
+
 /// $C04C45
-void UnknownC04C45();
+void UnknownC04C45() {
+    short x14 = gameState.unknown90;
+    gameState.unknown90 = 0;
+    if (Unknown7E5D58 != 0) {
+        UnknownC07C5B();
+        Unknown7E5D58--;
+    }
+    if ((Debug != 0) && ((pad_state[0] & PAD_X) != 0) && ((Unknown7E0002 & 0xF) != 0)) {
+        return;
+    }
+    ChosenFourPtrs[EntityScriptVar1Table[gameState.currentPartyMembers]].position_index = gameState.unknown88;
+    if (gameState.unknownB0 != 0) {
+        UnknownC04B53();
+    } else {
+        switch (gameState.walkingStyle) {
+            case WalkingStyle.Escalator:
+                UnknownC047CF();
+                break;
+            case WalkingStyle.Bicycle:
+                UnknownC048D3(x14);
+                break;
+            default:
+                UnknownC0449B();
+                break;
+        }
+    }
+    short x12 = gameState.unknown88;
+    PlayerPositionBufferEntry* x10 = &PlayerPositionBuffer[gameState.unknown88];
+    gameState.troddenTileType = UnknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+    if (gameState.unknown90 != 0) {
+        x10.x_coord = gameState.leaderX.integer;
+        x10.y_coord = gameState.leaderY.integer;
+        gameState.unknown88 = cast(short)(x12 + 1);
+        CenterScreen(gameState.leaderX.integer, gameState.leaderY.integer);
+        Unknown7E4DD4 = 1;
+    } else {
+        Unknown7E4DD4 = 0;
+    }
+    x10.tile_flags = gameState.troddenTileType;
+    x10.walking_style = gameState.walkingStyle;
+    x10.direction = gameState.leaderDirection;
+    FootstepSoundIDOverride = 0;
+    if ((gameState.troddenTileType & 8) != 0) {
+        if ((gameState.troddenTileType & 4) != 0) {
+            FootstepSoundIDOverride = 0x10;
+        } else {
+            FootstepSoundIDOverride = 0x12;
+        }
+    }
+}
 
 /// $C04D78
-void UnknownC04D78();
+void UnknownC04D78() {
+    if (gameState.unknownB0 == 3) {
+        return;
+    }
+    if (BattleSwirlCountdown != 0) {
+        return;
+    }
+    if (BattleSwirlFlag != 0) {
+        return;
+    }
+    if (BattleDebug != 0) {
+        return;
+    }
+    Unknown7E4DC6 = ChosenFourPtrs[EntityScriptVar1Table[CurrentEntitySlot]];
+    EntityDirections[CurrentEntitySlot] = PlayerPositionBuffer[Unknown7E4DC6.position_index].direction;
+    EntitySurfaceFlags[CurrentEntitySlot] = PlayerPositionBuffer[Unknown7E4DC6.position_index].tile_flags;
+    UnknownC07A56(EntityScriptVar0Table[CurrentEntitySlot], PlayerPositionBuffer[Unknown7E4DC6.position_index].walking_style, CurrentEntitySlot);
+    if (gameState.unknown90 == 0) {
+        if (PlayerPositionBuffer[Unknown7E4DC6.position_index].walking_style != WalkingStyle.Escalator) {
+            return;
+        }
+    }
+    EntityAbsXTable[CurrentEntitySlot] = PlayerPositionBuffer[Unknown7E4DC6.position_index].x_coord;
+    EntityAbsYTable[CurrentEntitySlot] = PlayerPositionBuffer[Unknown7E4DC6.position_index].y_coord;
+    short x1C = 0;
+    short x12 = void;
+    if (EntityScriptVar0Table[CurrentEntitySlot] != gameState.unknown96[0]) {
+        switch (PlayerPositionBuffer[Unknown7E4DC6.position_index].walking_style) {
+            case WalkingStyle.Ladder:
+            case WalkingStyle.Rope:
+                x12 = 0x1E;
+                break;
+            case WalkingStyle.Escalator:
+                if (gameState.walkingStyle == WalkingStyle.Normal) {
+                    x1C = 0x1;
+                } else {
+                    x12 = 0x1E;
+                }
+                break;
+            case WalkingStyle.Stairs:
+                x12 = 0x18;
+                break;
+            default:
+                if (gameState.unknown92 == 3) {
+                    x12 = 0x8;
+                } else {
+                    x12 = 0xC;
+                }
+                break;
+        }
+    }
+    Unknown7E4DC6.unknown65 = PlayerPositionBuffer[Unknown7E4DC6.position_index].walking_style;
+    short x1A;
+    if ((EntityScriptVar0Table[CurrentEntitySlot] + 1 != gameState.unknown96[0]) && (x1C == 0)) {
+        //uh oh, x12 may not have been initialized
+        x1A = UnknownC03EC3(EntityScriptVar0Table[CurrentEntitySlot], cast(short)(CharacterSizes[EntityScriptVar0Table[CurrentEntitySlot]] + x12), Unknown7E4DC6.position_index, 2);
+    } else {
+        x1A = cast(short)(Unknown7E4DC6.position_index + 1);
+        EntityScriptVar7Table[CurrentEntitySlot] &= (0xFFFF ^ (1 << 12));
+    }
+    Unknown7E4DC6.position_index = x1A;
+}
 
 /// $C04F47
 void UnknownC04F47() {
@@ -1363,43 +1674,70 @@ void UnknownC05503(short arg1, short arg2) {
 }
 
 /// $C0559C
-void UnknownC0559C(short, short);
+void UnknownC0559C(short arg1, short arg2) {
+    ushort y = cast(ushort)(Unknown7EE000[((((UnknownC42AC9[arg2] * 8) + Unknown7E5DAE - 1) / 8) & 0x3F)][(arg1 / 8) & 0x3F] | Unknown7E5DA4);
+    short x12 = (arg1 + 7) / 8;
+    for (short i = 0; i < UnknownC42AA7[arg2]; i++) {
+        y |= Unknown7EE000[(((UnknownC42AC9[arg2] * 8) + Unknown7E5DAE - 1) / 8) & 0x3F][x12 & 0x3F];
+        x12++;
+    }
+    Unknown7E5DA4 = y;
+}
 
 /// $C05639
-void UnknownC05639(short, short);
+void UnknownC05639(short arg1, short arg2) {
+    ushort x10 = cast(ushort)(Unknown7EE000[(arg1 / 8) & 0x3F][(Unknown7E5DAC / 8) & 0x3F] | Unknown7E5DA4);
+    short x12 = (arg1 + 7) / 8;
+    for (short i = 0; i < UnknownC42AC9[arg2]; i++) {
+        x10 |= Unknown7EE000[x12 & 0x3F][(Unknown7E5DAC / 8) & 0x3F];
+        x12++;
+    }
+    Unknown7E5DA4 = x10;
+}
 
 /// $C056D0
-void UnknownC056D0(short, short);
+void UnknownC056D0(short arg1, short arg2) {
+    ushort y = cast(ushort)(Unknown7EE000[(arg1 / 8) & 0x3F][(((UnknownC42AA7[arg2] * 8) + Unknown7E5DAC - 1) / 8) & 0x3F] | Unknown7E5DA4);
+    short x12 = (arg1 + 7) / 8;
+    for (short i = 0; i < UnknownC42AC9[arg2]; i++) {
+        y |= Unknown7EE000[x12 & 0x3F][(((UnknownC42AA7[arg2] * 8) + Unknown7E5DAC - 1) / 8) & 0x3F];
+        x12++;
+    }
+    Unknown7E5DA4 = y;
+}
+
+/// $C05B7B
+void UnknownC05B7B(short, short, short, short);
 
 /// $C05CD7
 short UnknownC05CD7(short arg1, short arg2, short arg3, short arg4) {
     Unknown7E5DA4 = 0;
-    Unknown7E5DAC = cast(short)(arg1 - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[arg3]]);
-    Unknown7E5DAE = cast(short)(arg2 - UnknownC42A41[UNKNOWN_30X2_TABLE_36[arg3]] + UnknownC42AEB[UNKNOWN_30X2_TABLE_36[arg3]]);
+    Unknown7E5DAC = cast(short)(arg1 - UnknownC42A1F[EntitySizes[arg3]]);
+    Unknown7E5DAE = cast(short)(arg2 - UnknownC42A41[EntitySizes[arg3]] + UnknownC42AEB[EntitySizes[arg3]]);
     switch(arg4) {
         case 1:
-            UnknownC056D0(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC056D0(Unknown7E5DAE, EntitySizes[arg3]);
             goto case;
         case 0:
-            UnknownC05503(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC05503(Unknown7E5DAC, EntitySizes[arg3]);
             break;
         case 3:
-            UnknownC0559C(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC0559C(Unknown7E5DAC, EntitySizes[arg3]);
             goto case;
         case 2:
-            UnknownC056D0(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC056D0(Unknown7E5DAE, EntitySizes[arg3]);
             break;
         case 5:
-            UnknownC05639(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC05639(Unknown7E5DAE, EntitySizes[arg3]);
             goto case;
         case 4:
-            UnknownC0559C(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC0559C(Unknown7E5DAC, EntitySizes[arg3]);
             break;
         case 7:
-            UnknownC05503(Unknown7E5DAC, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC05503(Unknown7E5DAC, EntitySizes[arg3]);
             goto case;
         case 6:
-            UnknownC05639(Unknown7E5DAE, UNKNOWN_30X2_TABLE_36[arg3]);
+            UnknownC05639(Unknown7E5DAE, EntitySizes[arg3]);
             break;
         default: break;
     }
@@ -1408,12 +1746,23 @@ short UnknownC05CD7(short arg1, short arg2, short arg3, short arg4) {
 
 /// $C05F33
 short UnknownC05F33(short x, short y, short entityID) {
-    const size = UNKNOWN_30X2_TABLE_36[entityID];
+    const size = EntitySizes[entityID];
     Unknown7E5DA4 = 0;
     Unknown7E5DAC = cast(short)(x - UnknownC42A1F[size]);
     Unknown7E5DAE = cast(short)(y - UnknownC42A41[size] + UnknownC42AEB[size]);
     UnknownC05639(Unknown7E5DAE, size);
     UnknownC056D0(Unknown7E5DAE, size);
+    return Unknown7E5DA4;
+}
+
+/// $C05F82
+short UnknownC05F82(short x, short y, short entityID) {
+    Unknown7E5DA4 = 0;
+    const size = EntitySizes[entityID];
+    Unknown7E5DAE = cast(short)(y - UnknownC42A41[size] + UnknownC42AEB[size]);
+    Unknown7E5DAC = cast(short)(x + UnknownC42A1F[size]);
+    UnknownC05503(Unknown7E5DAC, size);
+    UnknownC0559C(Unknown7E5DAC, size);
     return Unknown7E5DA4;
 }
 
@@ -1482,12 +1831,12 @@ void UnknownC064D4() {
 }
 
 /// $C064E3
-void UnknownC064E3(short arg1, const(ubyte)* arg2) {
+void UnknownC064E3(short arg1, QueuedInteractionPtr arg2) {
     if (arg1 == CurrentQueuedInteractionType) {
         return;
     }
     QueuedInteractions[NextQueuedInteraction].type = arg1;
-    QueuedInteractions[NextQueuedInteraction].text_ptr = arg2;
+    QueuedInteractions[NextQueuedInteraction].ptr = arg2;
     NextQueuedInteraction = (NextQueuedInteraction + 1) & 3;
     Unknown7E5D9A = 1;
 }
@@ -1498,8 +1847,8 @@ short UnknownC06537() {
 }
 
 /// $C0654E
-const(ubyte)* UnknownC0654E() {
-    return QueuedInteractions[CurrentQueuedInteraction].text_ptr;
+QueuedInteractionPtr UnknownC0654E() {
+    return QueuedInteractions[CurrentQueuedInteraction].ptr;
 }
 
 /// $C06578
@@ -1533,7 +1882,7 @@ void UnknownC065C2(short direction) {
         //Unknown7E5DDE = doorData[Unknown7E5DBC & 0x7FFF]
 
         //not sure if this is the correct type...
-        Unknown7E5DDE = (cast(const(DoorEntryA)*)Unknown7E5DBC).textPtr;
+        Unknown7E5DDE = Unknown7E5DBC.entryA.textPtr;
         CurrentTPTEntry = -2;
     }
 }
@@ -1661,6 +2010,59 @@ void UnknownC06A07() {
     ChangeMusic(Unknown7E5DD6);
 }
 
+/// $C06A1B
+void UnknownC06A1B(const(DoorEntryB)* arg1) {
+    if (getEventFlag(arg1.eventFlag & 0x7FFF) == (arg1.eventFlag > EVENT_FLAG_UNSET) ? 1 : 0) {
+        UnknownC064E3(0, QueuedInteractionPtr(arg1.textPtr));
+        Unknown7E5DAA = 0;
+        Unknown7E5DA8 = 0;
+    }
+}
+
+/// $C06A8B
+void UnknownC06A8B(const(DoorEntryC)*) {
+    //you wanted something? too bad!
+}
+
+/// $C06A8E
+void UnknownC06A8E(const(DoorEntryC)*) {
+    //nothing
+}
+
+/// $C06A91
+void UnknownC06A91(short arg1) {
+    if ((gameState.walkingStyle == WalkingStyle.Ladder) || (gameState.walkingStyle == WalkingStyle.Rope)) {
+        return;
+    }
+    if (arg1 == 0) {
+        gameState.walkingStyle = WalkingStyle.Ladder;
+    } else {
+        gameState.walkingStyle = WalkingStyle.Rope;
+    }
+    gameState.leaderDirection &= 0xFFFE;
+    Unknown7E5DC4 = -1;
+}
+
+/// $C06ACA
+void UnknownC06ACA(const(DoorEntryA)* arg1) {
+    if (Unknown7E0A34 == 0) {
+        return;
+    }
+    if (gameState.unknownB0 == 2) {
+        return;
+    }
+    if (Unknown7E5D9A != 0) {
+        return;
+    }
+    if ((BattleSwirlFlag | BattleSwirlCountdown) != 0) {
+        return;
+    }
+    Unknown7E5DC2 = 1;
+    QueuedInteractionPtr ptr = { door_ptr: arg1 };
+    UnknownC064E3(2, cast(QueuedInteractionPtr)ptr);
+    UnknownC07C5B();
+}
+
 /// $C06B21
 void SpawnBuzzBuzz() {
     DisplayText(TextSpawnBuzzBuzz);
@@ -1676,8 +2078,8 @@ void UnknownC06B3D() {
         }
         Unknown7E5E58[i] = UnknownC0654E();
     }
-    Unknown7E5E58[i] = null;
-    for (short j = 0; Unknown7E5E58[j] !is null; j++) {
+    Unknown7E5E58[i].text_ptr = null;
+    for (short j = 0; Unknown7E5E58[j].text_ptr !is null; j++) {
         UnknownC064E3(10, Unknown7E5E58[j]);
     }
 }
@@ -1740,20 +2142,195 @@ void DoorTransition(const(DoorEntryA)* arg1) {
     Unknown7E5DC2 = 0;
 }
 
-immutable ushort[] UNKNOWN_C06E02 = [
-	0x0008,
-	0x0000,
-	0x0000,
-	0x0008,
-	0x0000,
-	0x0008,
-	0x0000,
-	0x0008,
-	0x0006,
-	0x0002,
-	0x0006,
-	0x0002
-];
+/// $C06E02
+immutable short[4] UnknownC06E02 = [8, 0, 0, 8];
+
+/// $C06E0A
+immutable short[4] UnknownC06E0A = [0, 8, 0, 8];
+
+/// $C06E12
+immutable short[4] UnknownC06E12 = [Direction.Left, Direction.Right, Direction.Left, Direction.Right];
+
+/// $C06E2C
+void UnknownC06E2C() {
+    gameState.walkingStyle = WalkingStyle.Escalator;
+    MiscDebugFlags = 0;
+    gameState.leaderX.integer = Unknown7E5DD0;
+    gameState.leaderY.integer = Unknown7E5DD2;
+    gameState.leaderY.fraction = 0;
+    gameState.leaderX.fraction = 0;
+}
+
+/// $C06E4A
+void UnknownC06E4A() {
+    Unknown7E5DC4 = -1;
+    gameState.walkingStyle = WalkingStyle.Normal;
+    MiscDebugFlags = 0;
+    Unknown7E5DBA = 0;
+    gameState.leaderX.integer = Unknown7E5DD0;
+    gameState.leaderY.integer = Unknown7E5DD2;
+    gameState.leaderY.fraction = 0;
+    gameState.leaderX.fraction = 0;
+}
+
+/// $C06E6E
+void UnknownC06E6E(ushort arg1, short arg2, short arg3) {
+    if (Unknown7E0081 != 0) {
+        return;
+    }
+    UnknownC48C69();
+    short x04;
+    if ((arg1 & 0x8000) != 0) {
+        if (gameState.walkingStyle != WalkingStyle.Escalator) {
+            return;
+        }
+        gameState.walkingStyle = WalkingStyle.Normal;
+        MiscDebugFlags = 3;
+        x04 = cast(short)((arg2 * 8) + UnknownC06E02[Unknown7E5DC6 >> 8]);
+        short x1A = UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8));
+        UnknownC48E6B(UnknownC06E12[Unknown7E5DC6 >> 8], 16);
+        ScheduleOverworldTask(cast(short)(x1A + 1), &UnknownC06E4A);
+        UnknownC48E95();
+        Unknown7E5DC6 = 0;
+        Unknown7E5DBA = 1;
+    } else {
+        if (gameState.walkingStyle == WalkingStyle.Escalator) {
+            return;
+        }
+        Unknown7E5DBA = 1;
+        Unknown7E5DC6 = arg1;
+        gameState.leaderDirection = UnknownC06E12[arg1 >> 8];
+        MiscDebugFlags = 3;
+        x04 = cast(short)((arg2 * 8) + UnknownC06E02[arg1 >> 8]);
+        ScheduleOverworldTask(UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8)), &UnknownC06E2C);
+        UnknownC48E95();
+    }
+    Unknown7E5DD0 = x04;
+    Unknown7E5DD2 = cast(short)(arg3 * 8);
+    Unknown7E5DC4 = -1;
+}
+
+/// $C06F82
+void UnknownC06F82() {
+    short x12 = 0;
+    if ((Unknown7E5DC4 == 0) || (Unknown7E5DC4 == 0x100)) {
+        if (Unknown7E5DCE - 1 > gameState.leaderY.integer) {
+            x12 = 1;
+        }
+    } else {
+        if (Unknown7E5DCE + 1 < gameState.leaderY.integer) {
+            x12 = 1;
+        }
+    }
+    if (x12 != 0) {
+        gameState.walkingStyle = WalkingStyle.Stairs;
+        gameState.leaderX.integer = Unknown7E5DCC;
+        gameState.leaderY.integer = Unknown7E5DCE;
+        gameState.leaderY.fraction = 0;
+        gameState.leaderX.fraction = 0;
+    } else {
+        ScheduleOverworldTask(1, &UnknownC06F82);
+    }
+}
+
+/// $C06FED
+void UnknownC06FED() {
+    short x12 = 0;
+    if ((Unknown7E5DC4 == 0) || (Unknown7E5DC4 == 0x100)) {
+        if (Unknown7E5DCE < gameState.leaderY.integer) {
+            x12 = 1;
+        }
+    } else {
+        if (Unknown7E5DCE > gameState.leaderY.integer) {
+            x12 = 1;
+        }
+    }
+    if (x12 != 0) {
+        Unknown7E5DC4 = -1;
+        gameState.walkingStyle = WalkingStyle.Normal;
+        MiscDebugFlags = 0;
+        gameState.leaderX.integer = Unknown7E5DCC;
+        gameState.leaderY.integer = Unknown7E5DCE;
+        gameState.leaderY.fraction = 0;
+        gameState.leaderX.fraction = 0;
+        Unknown7E5DBA = 0;
+    } else {
+        ScheduleOverworldTask(1, &UnknownC06FED);
+    }
+}
+
+/// $C0705F
+short UnknownC0705F(ushort arg1) {
+    short y = 1;
+    switch (arg1) {
+        case 0x100:
+            if ((gameState.leaderDirection == 0) || ((gameState.leaderDirection & 3) != 0)) {
+                y = 0;
+            }
+            Unknown7E5DCA = Direction.Right;
+            break;
+        case 0x000:
+            if ((gameState.leaderDirection == 0) || ((gameState.leaderDirection & 3) != 0)) {
+                y = 0;
+            }
+            Unknown7E5DCA = Direction.Left;
+            break;
+        case 0x300:
+            if ((gameState.leaderDirection & 7) != 0) {
+                y = 0;
+            }
+            Unknown7E5DCA = Direction.Right;
+            break;
+        case 0x200:
+            if ((gameState.leaderDirection & 7) != 0) {
+                y = 0;
+            }
+            Unknown7E5DCA = Direction.Left;
+            break;
+        default: break;
+    }
+    return y;
+}
+
+/// $C070CB
+void UnknownC070CB(ushort arg1, short arg2, short arg3) {
+    if (Unknown7E0081 != 0) {
+        return;
+    }
+    UnknownC48C69();
+    short x16;
+    short x0E;
+    if (gameState.walkingStyle == 0) {
+        if (UnknownC0705F(arg1) != 0) {
+            return;
+        }
+        gameState.leaderDirection = Unknown7E5DCA;
+        Unknown7E5DB8 = 0;
+        MiscDebugFlags = 3;
+        Unknown7E5DBA = 1;
+        Unknown7E5DC4 = cast(short)(arg1 & 0xFF00);
+        x16 = cast(short)((arg2 * 8) + UnknownC3E210[arg1 >> 8]);
+        x0E = cast(short)((arg3 * 8) + UnknownC3E218[arg1 >> 8]);
+        short x14 = UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
+        if (x14 == 0) {
+            x14++;
+        }
+        UnknownC48E6B(UnknownC3E200[arg1 >> 8], 6);
+        ScheduleOverworldTask(x14, &UnknownC06F82);
+    } else {
+        x16 = cast(short)((arg2 * 8) + UnknownC3E220[arg1 >> 8]);
+        x0E = cast(short)((arg3 * 8) + UnknownC3E228[arg1 >> 8]);
+        short x14 = UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
+        if (x14 == 0) {
+            x14++;
+        }
+        UnknownC48E6B(UnknownC3E208[arg1 >> 8], 12);
+        ScheduleOverworldTask(x14, &UnknownC06FED);
+    }
+    Unknown7E5DCC = x16;
+    Unknown7E5DCE = x0E;
+    UnknownC48E95();
+}
 
 /// $C07477
 byte UnknownC07477(short arg1, short arg2) {
@@ -1769,27 +2346,64 @@ byte UnknownC07477(short arg1, short arg2) {
         if (x06.unknown0 != (arg2 % 32)) {
             continue;
         }
-        //is this right?
-        Unknown7E5DBC = x06.entryA;
+        Unknown7E5DBC = x06.doorPtr;
         Unknown7E5DBE = x06.type;
     }
     return -1;
 }
 
+/// $C07526
+short UnknownC07526(short arg1, short arg2) {
+    short x0E;
+    switch (UnknownC07477(arg1, arg2)) {
+        case DoorType.Switch:
+            UnknownC06A1B(Unknown7E5DBC.entryB);
+            x0E = 0;
+            break;
+        case DoorType.RopeLadder:
+            UnknownC06A91(Unknown7E5DBC.unknown3);
+            x0E = 1;
+            break;
+        case DoorType.Door:
+            UnknownC06ACA(Unknown7E5DBC.entryA);
+            x0E = 0;
+            break;
+        case DoorType.Escalator:
+            UnknownC06E6E(Unknown7E5DBC.unknown3, arg1, arg2);
+            x0E = 0;
+            break;
+        case DoorType.Stairway:
+            UnknownC070CB(Unknown7E5DBC.unknown3, arg1, arg2);
+            x0E = 1;
+            break;
+        case DoorType.Object:
+        case DoorType.Type7:
+            UnknownC06A8B(Unknown7E5DBC.entryC);
+            x0E = 0;
+            break;
+        case DoorType.Person:
+            UnknownC06A8E(Unknown7E5DBC.entryC);
+            x0E = 0;
+            break;
+        default: break;
+    }
+    return x0E;
+}
+
 /// $C075DD
 void ProcessQueuedInteractions() {
-    const(void)* ptr = QueuedInteractions[CurrentQueuedInteraction].text_ptr;
+    QueuedInteractionPtr ptr = QueuedInteractions[CurrentQueuedInteraction].ptr;
     CurrentQueuedInteractionType = QueuedInteractions[CurrentQueuedInteraction].type;
     CurrentQueuedInteraction = (CurrentQueuedInteraction + 1) & 3;
     Unknown7E5D58 &= 0xFFFE;
     UnknownC07C5B();
     switch(CurrentQueuedInteractionType) {
         case 2:
-            DoorTransition(cast(DoorEntryA*)ptr);
+            DoorTransition(ptr.door_ptr);
             break;
         case 10:
-            UnknownC10004(cast(const(ubyte)*)ptr);
-            if (ptr is TextDadCalls) {
+            UnknownC10004(ptr.text_ptr);
+            if (ptr.text_ptr is TextDadCalls) {
                 DadPhoneTimer = 0x697;
                 Unknown7E9E56 = 0;
             }
@@ -1797,7 +2411,7 @@ void ProcessQueuedInteractions() {
         case 0:
         case 8:
         case 9:
-            UnknownC10004(cast(const(ubyte)*)ptr);
+            UnknownC10004(ptr.text_ptr);
             break;
         default: break;
     }
@@ -1902,17 +2516,17 @@ short UnknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
     if (y == 0) {
         switch (walkingStyle) {
             case 0:
-            case 0xC:
-            case 0xD:
+            case WalkingStyle.Escalator:
+            case WalkingStyle.Stairs:
                 y = 0;
                 break;
-            case 0x4:
+            case WalkingStyle.Ghost:
                 y = 1;
                 break;
-            case 0x7:
+            case WalkingStyle.Ladder:
                 y = 2;
                 break;
-            case 0x8:
+            case WalkingStyle.Rope:
                 y = 3;
                 break;
             default: break;
@@ -3086,7 +3700,9 @@ short UnknownC092F5Unknown4(const(void)* pc, short entityIndex) {
     return entityIndex / 2;
 }
 //actually part of the previous function normally, but whatever
-void MovementNOP() {}
+void MovementNOP() {
+    //nothin
+}
 
 /// $C0943C
 void UnknownC0943C() {
@@ -3285,6 +3901,12 @@ void UnknownC0A023() {
 /// $C0A039
 void UnknownC0A039() {
     //nothing
+}
+
+/// $C0A254
+void UnknownC0A254(short arg1) {
+    EntityScreenXTable[arg1] = cast(short)(EntityAbsXTable[arg1] - BG1_X_POS);
+    EntityScreenYTable[arg1] = cast(short)(EntityAbsYTable[arg1] - BG1_Y_POS);
 }
 
 /// $C0A0E3
@@ -3832,7 +4454,7 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
         short a = cast(short)(arg2 - arg4);
         if (a > 0) {
             do {
-                Unknown7E3FD0[y] = 0xFF;
+                *cast(ushort*)Unknown7E3FD0[y] = 0xFF;
                 y += 2;
             } while(--a != 0);
             a = 0;
@@ -3871,7 +4493,7 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
         if (y < 0x1C0) {
             a = 0xFF;
             do {
-                Unknown7E3FD0[y] = 0xFF;
+                *cast(ushort*)Unknown7E3FD0[y] = 0xFF;
                 y += 2;
             } while (y < 0x1C0);
         }
@@ -3881,7 +4503,7 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
         a = cast(short)(a - arg2 - arg4);
         if (a > 0) {
             do {
-                Unknown7E3FD0[y] = 0xFF;
+                *cast(ushort*)Unknown7E3FD0[y] = 0xFF;
                 y -= 2;
             } while (--a != 0);
             a = 0;
@@ -4155,8 +4777,8 @@ void GameInit() {
 /// $C0B9BC
 void UnknownC0B9BC(PathCtx* arg1, short arg2, short arg3, short arg4) {
     for (short i = 0; i < arg2; i++) {
-        arg1.targets_pos[i].x = ((EntityAbsXTable[UNKNOWN_30X2_TABLE_36[gameState.unknownA2[i]]] - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[gameState.unknownA2[i]]]) / 8 - arg3) & 0x3F;
-        arg1.targets_pos[i].y = ((EntityAbsYTable[UNKNOWN_30X2_TABLE_36[gameState.unknownA2[i]]] - UnknownC42A41[UNKNOWN_30X2_TABLE_36[gameState.unknownA2[i]]] + UnknownC42AEB[UNKNOWN_30X2_TABLE_36[gameState.unknownA2[i]]]) / 8 - arg4) & 0x3F;
+        arg1.targets_pos[i].x = ((EntityAbsXTable[EntitySizes[gameState.unknownA2[i]]] - UnknownC42A1F[EntitySizes[gameState.unknownA2[i]]]) / 8 - arg3) & 0x3F;
+        arg1.targets_pos[i].y = ((EntityAbsYTable[EntitySizes[gameState.unknownA2[i]]] - UnknownC42A41[EntitySizes[gameState.unknownA2[i]]] + UnknownC42AEB[EntitySizes[gameState.unknownA2[i]]]) / 8 - arg4) & 0x3F;
     }
 }
 
@@ -4184,10 +4806,10 @@ short UnknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
         }
         arg1.pathers[x26].obj_index = i;
         arg1.pathers[x26].from_offscreen = arg6;
-        arg1.pathers[x26].hitbox.x = UnknownC42AA7[UNKNOWN_30X2_TABLE_36[i]];
-        arg1.pathers[x26].hitbox.y = UnknownC42AC9[UNKNOWN_30X2_TABLE_36[i]];
-        arg1.pathers[x26].origin.x = ((EntityAbsXTable[i] - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[i]]) / 8 - arg3) & 0x3F;
-        arg1.pathers[x26].origin.y = ((EntityAbsYTable[i] - UnknownC42A41[UNKNOWN_30X2_TABLE_36[i]] + UnknownC42AEB[UNKNOWN_30X2_TABLE_36[i]]) / 8 - arg3) & 0x3F;
+        arg1.pathers[x26].hitbox.x = UnknownC42AA7[EntitySizes[i]];
+        arg1.pathers[x26].hitbox.y = UnknownC42AC9[EntitySizes[i]];
+        arg1.pathers[x26].origin.x = ((EntityAbsXTable[i] - UnknownC42A1F[EntitySizes[i]]) / 8 - arg3) & 0x3F;
+        arg1.pathers[x26].origin.y = ((EntityAbsYTable[i] - UnknownC42A41[EntitySizes[i]] + UnknownC42AEB[EntitySizes[i]]) / 8 - arg3) & 0x3F;
         x26++;
     }
     arg1.pather_count = x26;
@@ -4223,15 +4845,15 @@ short UnknownC0BD96() {
     short x02 = Unknown7EF200.radius.x = 56;
     Unknown7E4A92 = Unknown7EF200.radius.y / 2;
     Unknown7E4A94 = Unknown7EF200.radius.x / 2;
-    Unknown7E4A8E = (EntityAbsXTable[x2A] - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[x2A]]) / 8;
-    Unknown7E4A90 = (EntityAbsYTable[x2A] - UnknownC42A41[UNKNOWN_30X2_TABLE_36[x2A]] + UnknownC42AEB[UNKNOWN_30X2_TABLE_36[x2A]]) / 8;
-    x04 = cast(short)((EntityAbsXTable[x2A] - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[x2A]]) / 8 - x04);
-    x02 = cast(short)((EntityAbsYTable[x2A] - UnknownC42A41[UNKNOWN_30X2_TABLE_36[x2A]] + UnknownC42AEB[UNKNOWN_30X2_TABLE_36[x2A]]) / 8 - x02);
+    Unknown7E4A8E = (EntityAbsXTable[x2A] - UnknownC42A1F[EntitySizes[x2A]]) / 8;
+    Unknown7E4A90 = (EntityAbsYTable[x2A] - UnknownC42A41[EntitySizes[x2A]] + UnknownC42AEB[EntitySizes[x2A]]) / 8;
+    x04 = cast(short)((EntityAbsXTable[x2A] - UnknownC42A1F[EntitySizes[x2A]]) / 8 - x04);
+    x02 = cast(short)((EntityAbsYTable[x2A] - UnknownC42A41[EntitySizes[x2A]] + UnknownC42AEB[EntitySizes[x2A]]) / 8 - x02);
     UnknownC0B9BC(x28, 1, x04, x02);
     short result = UnknownC0BA35(x28, 1, x04, x02, 1, 0xFC, 0x32);
     if (result == 0) {
-        EntityAbsXTable[Unknown7EF200.pathers[0].obj_index] = cast(short)((Unknown7EF200.pathers[0].origin.x * 8) + UnknownC42A1F[UNKNOWN_30X2_TABLE_36[Unknown7EF200.pathers[0].obj_index]] + ((Unknown7E4A8E - Unknown7E4A92) * 8));
-        EntityAbsYTable[Unknown7EF200.pathers[0].obj_index] = cast(short)((Unknown7EF200.pathers[0].origin.y * 8) -UnknownC42AEB[UNKNOWN_30X2_TABLE_36[Unknown7EF200.pathers[0].obj_index]] + UnknownC42A41[UNKNOWN_30X2_TABLE_36[Unknown7EF200.pathers[0].obj_index]] + ((Unknown7E4A90 - Unknown7E4A94) * 8));
+        EntityAbsXTable[Unknown7EF200.pathers[0].obj_index] = cast(short)((Unknown7EF200.pathers[0].origin.x * 8) + UnknownC42A1F[EntitySizes[Unknown7EF200.pathers[0].obj_index]] + ((Unknown7E4A8E - Unknown7E4A92) * 8));
+        EntityAbsYTable[Unknown7EF200.pathers[0].obj_index] = cast(short)((Unknown7EF200.pathers[0].origin.y * 8) -UnknownC42AEB[EntitySizes[Unknown7EF200.pathers[0].obj_index]] + UnknownC42A41[EntitySizes[Unknown7EF200.pathers[0].obj_index]] + ((Unknown7E4A90 - Unknown7E4A94) * 8));
         UNKNOWN_30X2_TABLE_46[Unknown7EF200.pathers[0].obj_index] += 4;
         Unknown7E2E3E[Unknown7EF200.pathers[0].obj_index]--;
     }
@@ -4251,12 +4873,15 @@ void UnknownC0C30C(short arg1) {
 /// $C0C711
 short UnknownC0C711() {
     //weird...
-    if (((EntityScreenXTable[CurrentEntitySlot] - UnknownC42A1F[UNKNOWN_30X2_TABLE_36[CurrentEntitySlot]]) | (EntityScreenYTable[CurrentEntitySlot] - UnknownC42A41[UNKNOWN_30X2_TABLE_36[CurrentEntitySlot]]) | (CurrentEntitySlot + 8) & 0xFF00) == 0) {
+    if (((EntityScreenXTable[CurrentEntitySlot] - UnknownC42A1F[EntitySizes[CurrentEntitySlot]]) | (EntityScreenYTable[CurrentEntitySlot] - UnknownC42A41[EntitySizes[CurrentEntitySlot]]) | (CurrentEntitySlot + 8) & 0xFF00) == 0) {
         return -1;
     } else {
         return 0;
     }
 }
+
+/// $C0D19B
+void UnknownC0D19B();
 
 /// $C0DA31
 //this looks pretty ugly... is this right?
@@ -4424,7 +5049,7 @@ void LoadDadPhone() {
     if (getEventFlag(EventFlag.UNKNOWN_307) != 0) {
         return;
     }
-    UnknownC064E3(10, TextDadCalls);
+    UnknownC064E3(10, QueuedInteractionPtr(TextDadCalls));
     Unknown7E9E56 = 1;
 }
 

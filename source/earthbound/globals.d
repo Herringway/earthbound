@@ -311,7 +311,7 @@ __gshared short[MAX_ENTITIES] EntityByteWidths; /// $2A7E
 __gshared short[MAX_ENTITIES] EntityTileHeights; /// $2ABA
 __gshared short[MAX_ENTITIES] EntityDirections; /// $2AF6
 __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_35; /// $2B32
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_36; /// $2B6E
+__gshared short[MAX_ENTITIES] EntitySizes; /// $2B6E
 __gshared ushort[MAX_ENTITIES] EntitySurfaceFlags; /// $2BAA
 __gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_38; /// $2BE6
 __gshared ushort[MAX_ENTITIES] UNKNOWN_30X2_TABLE_40; /// $2C22
@@ -464,7 +464,8 @@ __gshared short Unknown7E5D72; /// $5D72
 __gshared short Unknown7E5D74; /// $5D74
 __gshared short Unknown7E5D76; /// $5D76
 __gshared short Unknown7E5D78; /// $5D78
-
+__gshared short Unknown7E5D7A; /// $5D7A
+__gshared short Unknown7E5D7C; /// $5D7C
 __gshared short Unknown7E5D7E; /// $5D7E
 
 __gshared short[6] Unknown7E5D8C; /// $5D8C
@@ -481,17 +482,25 @@ __gshared ushort Unknown7E5DAA; /// $5DAA
 __gshared ushort Unknown7E5DAC; /// $5DAC
 __gshared short Unknown7E5DAE; /// $5DAE
 
+__gshared short Unknown7E5DB4; /// $5DB4
+__gshared short Unknown7E5DB6; /// $5DB6
+__gshared short Unknown7E5DB8; /// $5DB8
 __gshared short Unknown7E5DBA; /// $5DBA
-__gshared const(void)* Unknown7E5DBC; /// $5DBC
+__gshared DoorPtr Unknown7E5DBC; /// $5DBC
 __gshared short Unknown7E5DBE; /// $5DBC
 __gshared short CurrentQueuedInteractionType; /// $5DC0
 __gshared ushort Unknown7E5DC2; /// $5DC2
 __gshared short Unknown7E5DC4; /// $5DC4
+__gshared short Unknown7E5DC6; /// $5DC6
 
+__gshared short Unknown7E5DCA; /// $5DCA
+__gshared short Unknown7E5DCC; /// $5DCC
+__gshared short Unknown7E5DCE; /// $5DCE
+__gshared short Unknown7E5DD0; /// $5DD0
+__gshared short Unknown7E5DD2; /// $5DD2
 __gshared short Unknown7E5DD4; /// $5DD4
 __gshared short Unknown7E5DD6; /// $5DD6
 __gshared short Unknown7E5DD8; /// $5DD8
-
 __gshared short Unknown7E5DDA; /// $5DDA
 __gshared short Unknown7E5DDC; /// $5DDC
 __gshared const(ubyte)* Unknown7E5DDE; /// $5DDE
@@ -503,7 +512,7 @@ __gshared Unknown7E5E06Entry[24] Unknown7E5E06; /// $5E06
 
 __gshared short Unknown7E5E36; /// $5E36
 __gshared const(OverworldEventMusic)* Unknown7E5E38; /// $5E38
-__gshared const(ubyte)*[5] Unknown7E5E58; /// $5E38
+__gshared QueuedInteractionPtr[5] Unknown7E5E58; /// $5E38
 __gshared ubyte Unknown7E5E6C; /// $5E6C
 __gshared ubyte Unknown7E5E6D; /// $5E6D
 __gshared short Unknown7E5E6E; /// $5E6E - "word-wrap flag"?
@@ -615,6 +624,7 @@ __gshared ushort DMATransferFlag; /// $9E2B
 __gshared ushort EntityPreparedXCoordinate; /// $9E2D
 __gshared ushort EntityPreparedYCoordinate; /// $9E2F
 __gshared ushort EntityPreparedDirection; /// $9E31
+__gshared ushort Unknown7E9E33; /// $9E33
 
 __gshared OverworldTask[4] OverworldTasks; /// $9E3C
 
@@ -681,7 +691,7 @@ __gshared UnknownA97D Unknown7EA97D; /// $A97D
 __gshared ubyte[27] AttackerNameAdjustScratch; /// $A983
 __gshared ubyte[27] TargetNameAdjustScratch; /// $A99E
 __gshared ubyte[27] Unknown7EA9B9; /// $A9B9
-__gshared ubyte[56] Unknown7EA9D4; // $A9D4
+__gshared ubyte[56] Unknown7EA9D4; /// $A9D4
 
 __gshared short Unknown7EAA0C; /// $AA0C
 __gshared short Unknown7EAA0E; /// $AA0E

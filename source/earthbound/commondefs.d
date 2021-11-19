@@ -638,7 +638,7 @@ enum Sfx {
 	UNKNOWN14 = 20,
 	UNKNOWN15 = 21,
 	ONETT_TRUMPET_SOLO = 22,
-	BICYCLE_BELL = 23,
+	BicycleBell = 23,
 	ALLY_ATTACKS = 24,
 	ENEMY_ATTACKS = 25,
 	ATTACK_ABOUT_TO_LAND = 26,
@@ -3685,13 +3685,13 @@ enum TownMap {
 }
 
 enum DoorType {
-	Type0 = 0,
-	Type1 = 1,
-	Type2 = 2,
-	Type3 = 3,
-	Type4 = 4,
-	Type5 = 5,
-	Type6 = 6,
+	Switch = 0,
+	RopeLadder = 1,
+	Door = 2,
+	Escalator = 3,
+	Stairway = 4,
+	Object = 5,
+	Person = 6,
 	Type7 = 7,
 }
 
@@ -3791,7 +3791,7 @@ struct Game_State {
 	ubyte playerControlledPartyMemberCount;
 	ushort unknownB0;
 	ushort unknownB2;
-	ubyte[2] unknownB4;
+	ushort unknownB4;
 	ubyte[3] unknownB6;
 	ubyte[3] unknownB8;
 	ubyte autoFightEnable;
@@ -3960,12 +3960,14 @@ struct MovementSpeeds {
 	}
 }
 
+union QueuedInteractionPtr {
+	const(ubyte)* text_ptr;
+	const(DoorEntryA)* door_ptr;
+}
+
 struct QueuedInteraction {
 	ushort type; //0
-	union { //2
-		const(ubyte)* text_ptr;
-		const(DoorEntryA)* door_ptr;
-	}
+	QueuedInteractionPtr ptr; //2
 }
 
 struct SpriteGrouping {
@@ -4530,42 +4532,41 @@ struct SectorDoors {
 	const(DoorConfig)[] doors;
 }
 
+union DoorPtr {
+	immutable(DoorEntryA)* entryA;
+	immutable(DoorEntryB)* entryB;
+	immutable(DoorEntryC)* entryC;
+	ushort unknown3;
+}
+
 struct DoorConfig {
 	ubyte unknown0;
 	ubyte unknown1;
 	ubyte type;
-	union {
-		immutable(DoorEntryA)* entryA;
-		immutable(DoorEntryB)* entryB;
-		immutable(DoorEntryC)* entryC;
-		//ushort unknown3;
-	}
-	bool bit8; //doesn't exist in original code, but masking pointers isn't a great idea for portability
+	DoorPtr doorPtr;
 	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryA)* a) {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		entryA = a;
+		doorPtr.entryA = a;
 	}
 	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryB)* b) {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		entryB = b;
+		doorPtr.entryB = b;
 	}
 	this(ubyte u0, ubyte u1, ubyte t, immutable(DoorEntryC)* c) {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		entryC = c;
+		doorPtr.entryC = c;
 	}
 	this(ubyte u0, ubyte u1, ubyte t, ushort u3) {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		if ((u3 & 0x8000) != 0) {
-			bit8 = true;
-		}
+		doorPtr.unknown3 = u3;
 	}
 	this(ubyte u0, ubyte u1, ubyte t, typeof(null)) {
 		unknown0 = u0;

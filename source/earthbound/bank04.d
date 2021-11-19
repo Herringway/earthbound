@@ -1687,7 +1687,7 @@ void UnknownC4334A(short arg1) {
         Unknown7E5DDC = Unknown7E5DBE;
         //Unknown7E5DDE = doorData[Unknown7E5DBC & 0x7FFF]
 
-        Unknown7E5DDE = (cast(const(DoorEntryA)*)Unknown7E5DBC).textPtr;
+        Unknown7E5DDE = Unknown7E5DBC.entryA.textPtr;
         CurrentTPTEntry = -2;
     }
 }
@@ -2433,6 +2433,18 @@ void UndrawFlyoverText() {
     UnknownC47F87();
     Unknown7E0030 = 0x18;
 }
+
+/// $C48C69
+short UnknownC48C69();
+
+/// $C48D58
+short UnknownC48D58(short, short, short, short);
+
+/// $C48E6B
+void UnknownC48E6B(short, short);
+
+/// $C48E95
+void UnknownC48E95();
 
 /// $C48ECE
 short IsValidItemTransformation(short arg1) {

@@ -56,6 +56,27 @@ immutable CharacterInitialEntityDataEntry[17] CharacterInitialEntityData = [
 	CharacterInitialEntityDataEntry(OverworldSprite.TeddyBearParty, OverworldSprite.LilTeddyBear, ActionScript.Unknown002, 0x001C),
 ];
 
+/// $C3E09A
+immutable ushort[17] CharacterSizes = [
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	4,
+	0,
+	0,
+	10,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+	0,
+];
+
 /// $C3E0BC
 immutable FixedPoint1616[14] defaultMovementSpeeds = [
 	FixedPoint1616(0x6000, 1), //NORMAL
@@ -117,8 +138,27 @@ immutable short[8] UnknownC3E158 = [-5, -5, 0, 5, 5, 5, 0, -5];
 /// $C3E1D8
 immutable short[4] UnknownC3E1D8 = [4, 0, 2, 6];
 
+/// $C3E1E0
 //wonder what this is...?
-//[0, 0, 4, 0, 0, 0, -4, 0, -4, 0, 0, 0, 4, 0, 0, 0, 7, 1, 5, 3, 2, 6, 2, 6, 0, 8, 0, 8, 0, 0, 8, 8, 8, 0, 8, 0, 8, 8, 0, 0];
+immutable short[4][4] UnknownC3E1E0 = [[0, 0, 4, 0], [0, 0, -4, 0], [-4, 0, 0, 0], [4, 0, 0, 0]];
+
+/// $C3E200
+immutable short[4] UnknownC3E200 = [7, 1, 5, 3];
+
+/// $C3E208
+immutable short[4] UnknownC3E208 = [2, 6, 2, 6];
+
+/// $C3E210
+immutable short[4] UnknownC3E210 = [0, 8, 0, 8];
+
+/// $C3E218
+immutable short[4] UnknownC3E218 = [0, 0, 8, 8];
+
+/// $C3E220
+immutable short[4] UnknownC3E220 = [8, 0, 8, 0];
+
+/// $C3E228
+immutable short[4] UnknownC3E228 = [8, 8, 0, 0];
 
 /// $C3E230
 immutable short[8] UnknownC3E230 = [0, 1, 1, 1, 0, -1, -1, -1];
