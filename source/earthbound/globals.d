@@ -227,9 +227,8 @@ __gshared short CurrentEntitySlot; /// $1A42
 __gshared short CurrentEntityOffset; /// $1A44
 __gshared short CurrentScriptSlot; /// $1A46
 __gshared short CurrentScriptOffset; /// $1A48
-__gshared short[MAX_ENTITIES] Unknown7E1A4A;
-
-
+__gshared short[MAX_ENTITIES] Unknown7E1A4A; //$1A4A
+__gshared short[MAX_ENTITIES] Unknown7E1A86; /// $1A86
 __gshared ubyte[8] SoundEffectQueue; /// $1AC2
 __gshared ubyte Unknown7E1ACA; /// $1ACA
 __gshared ubyte Unknown7E1ACB; /// $1ACB
@@ -426,7 +425,8 @@ __gshared short Unknown7E4A72; /// $4A72
 __gshared short Unknown7E4A74; /// $4A74
 __gshared int Unknown7E4A76; /// $4A76
 __gshared short Unknown7E4A7A; /// $4A7A
-
+__gshared short[4] Unknown7E4A7C; /// $4A7C
+__gshared short[4] Unknown7E4A84; /// $4A84
 __gshared short CurrentBattleGroup; /// $4A8C
 __gshared short Unknown7E4A8E; //$4A8E
 __gshared short Unknown7E4A90; //$4A90
@@ -860,6 +860,7 @@ __gshared ushort Unknown7EB573; /// $B573
 __gshared ushort Unknown7EB575; /// $B575
 
 __gshared ubyte[64][64] Unknown7EE000;
+__gshared ushort[16][16] Unknown7EF000;
 __gshared PathCtx Unknown7EF200;
 __gshared ubyte[0xC00] Unknown7EF400;
 __gshared ubyte[0x8000] Unknown7F0000;

@@ -2,6 +2,7 @@
 module earthbound.bank02;
 
 import earthbound.commondefs;
+import earthbound.hardware;
 import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank03;
@@ -5433,6 +5434,65 @@ void UnknownC2E6B6();
 void UnknownC2E8C4(short arg1, short arg2, short arg3) {
 	UnknownC4A67E(arg1, arg2);
 	Unknown7EAECA = cast(ubyte)arg3;
+}
+
+/// $C2E8E0
+void BattleSwirlSequence() {
+	short x16 = 1;
+	short swirlRed = 4;
+	short swirlGreen = 4;
+	short swirlBlue = 0;
+	short swirlMusic;
+	short x0E;
+	switch (BattleInitiative) {
+		case Initiative.Normal:
+			swirlMusic = Music.BattleSwirl4;
+			x0E = 14;
+			break;
+		case Initiative.PartyFirst:
+			swirlMusic = Music.BattleSwirl4;
+			swirlRed = 28;
+			swirlGreen = 5;
+			swirlBlue = 12;
+			x0E = 6;
+			break;
+		case Initiative.EnemiesFirst:
+			swirlMusic = Music.BattleSwirl2;
+			swirlRed = 0;
+			swirlGreen = 31;
+			swirlBlue = 31;
+			x0E = 6;
+			break;
+		default: break;
+	}
+	if (CurrentBattleGroup >= 448) {
+		x16 = 3;
+		x0E = 14;
+		swirlMusic = Music.BattleSwirl1;
+	}
+	ChangeMusic(swirlMusic);
+	UnknownC04F47();
+	if ((x0E & 4) != 0) {
+		SetColData(cast(ubyte)swirlRed, cast(ubyte)swirlGreen, cast(ubyte)swirlBlue);
+	}
+	if ((x0E & 8) != 0) {
+		SetColourAddSubMode(
+			CGWSELFlags.ColourMathEnableMathWin | CGWSELFlags.MainScreenBlackNever | CGWSELFlags.SubscreenBGOBJDisable | CGWSELFlags.UsePalette,
+			CGADSUBFlags.ColourMathAddsub | CGADSUBFlags.ColourMathDiv2 | CGADSUBFlags.ColourMathMainIsBackdrop | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBG4 | CGADSUBFlags.ColourMathMainIsBG3 | CGADSUBFlags.ColourMathMainIsBG2 | CGADSUBFlags.ColourMathMainIsBG1
+		);
+	} else {
+		SetColourAddSubMode(
+			CGWSELFlags.ColourMathEnableMathWin | CGWSELFlags.MainScreenBlackNever | CGWSELFlags.SubscreenBGOBJDisable | CGWSELFlags.UsePalette,
+			CGADSUBFlags.ColourMathAddsub | CGADSUBFlags.ColourMathMainIsBackdrop | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBG4 | CGADSUBFlags.ColourMathMainIsBG3 | CGADSUBFlags.ColourMathMainIsBG2 | CGADSUBFlags.ColourMathMainIsBG1
+		);
+	}
+	UnknownC2E8C4(x16, x0E, 30);
+	if ((x0E & 4) != 0) {
+		Unknown7EAEC8 = 0x20;
+	} else {
+		Unknown7EAEC8 = 0x0F;
+	}
+	Unknown7EAECB = 0;
 }
 
 /// $C2E9C8

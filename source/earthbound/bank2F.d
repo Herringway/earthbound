@@ -4067,22 +4067,41 @@ ushort UnknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 }
 
 /// $EFDFC4
-void UnknownEFDFC4(ushort arg1, ushort arg2) {
+void UnknownEFDFC4(ushort x, ushort y) {
 	if (DebugModeNumber != 3) {
 		return;
 	}
 	ushort* x16 =cast(ushort*)sbrk(32 * ushort.sizeof);
-	if (arg2 < 0x8000) {
-		ushort x14 = arg1 & 0x1F;
+	if (y < 0x8000) {
+		ushort x14 = x & 0x1F;
 		for (short i = 0; i < 0x20; i++) {
-			if (arg1 < 0x8000) {
-				x16[x14] = UnknownEFDF0B(Unknown7EE000[arg2 & 0x3F][arg1 & 0x3F], arg1, arg2);
+			if (x < 0x8000) {
+				x16[x14] = UnknownEFDF0B(Unknown7EE000[y & 0x3F][x & 0x3F], x, y);
 			}
 			x14 = (x14 + 1) & 0x1F;
-			arg1++;
+			x++;
 		}
 	}
-	CopyToVram(0, 0x40, cast(ushort)(0x7C00 + arg2 * 32), cast(ubyte*)x16);
+	CopyToVram(0, 0x40, cast(ushort)(0x7C00 + y * 32), cast(ubyte*)x16);
+}
+
+/// $EFE07C
+void UnknownEFE07C(short x, short y) {
+	if (DebugModeNumber != 3) {
+		return;
+	}
+	ushort* x16 = cast(ushort*)sbrk(32 * ushort.sizeof);
+	if (x < 0x8000) {
+		ushort x14 = y & 0x1F;
+		for (short i = 0; i < 0x20; i++) {
+			if (y < 0x8000) {
+				x16[x14] = UnknownEFDF0B(Unknown7EE000[y & 0x3F][x & 0x3F], x, y);
+			}
+			x14 = (x14 + 1) & 0x1F;
+			y++;
+		}
+	}
+	CopyToVram(0x1B, 0x40, 0x7C00 + (x & 0x1F), cast(ubyte*)x16);
 }
 
 /// $EFE133

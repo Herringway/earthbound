@@ -173,3 +173,29 @@ struct SNESHeader {
 	void function() emulationRESET;
 	void function() emulationIRQBRK;
 }
+
+enum CGWSELFlags {
+	MainScreenBlackNever = 0<<6,
+	MainScreenBlackNotMathWin = 1<<6,
+	MainScreenBlackMathWin = 2<<6,
+	MainScreenBlackAlways = 3<<6,
+	ColourMathEnableAlways = 0 << 4,
+	ColourMathEnableMathWin = 1 << 4,
+	ColourMathEnableNotMathWin = 2 << 4,
+	ColourMathEnableNever = 3 << 4,
+	SubscreenBGOBJEnable = 1 << 1,
+	SubscreenBGOBJDisable = 0 << 1,
+	DirectColour = 1,
+	UsePalette = 0,
+}
+
+enum CGADSUBFlags {
+	ColourMathAddsub = 1 << 7,
+	ColourMathDiv2 = 1 << 6,
+	ColourMathMainIsBackdrop = 1 << 5,
+	ColourMathMainIsOBJ47 = 1 << 4,
+	ColourMathMainIsBG4 = 1 << 3,
+	ColourMathMainIsBG3 = 1 << 2,
+	ColourMathMainIsBG2 = 1 << 1,
+	ColourMathMainIsBG1 = 1 << 0,
+}
