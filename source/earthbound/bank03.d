@@ -4,6 +4,7 @@ module earthbound.bank03;
 import earthbound.commondefs;
 import earthbound.bank00;
 import earthbound.bank01;
+import earthbound.bank02;
 import earthbound.bank04;
 import earthbound.bank05;
 import earthbound.bank15;
@@ -277,7 +278,35 @@ void UnknownC3E6F8() {
 }
 
 /// $C3E75D
-void UnknownC3E75D(short);
+void UnknownC3E75D(short arg1) {
+	short a;
+	if (arg1 == 0) {
+		if (Unknown7E9658 == -1) {
+			Unknown7E5E77 = 0;
+			return;
+		}
+		if (Unknown7E5E77 == 0) {
+			return;
+		}
+		a = Unknown7E9658;
+	} else {
+		if (Unknown7E965A == -1) {
+			Unknown7E5E78 = 0;
+			return;
+		}
+		if (Unknown7E5E78 == 0) {
+			return;
+		}
+		a = Unknown7E965A;
+	}
+	if (EnemyConfigurationTable[a].theFlag != 0) {
+		if (Unknown7E5E76 == EBChar('@')) {
+			UnknownC447FB(4, &Thethe[0][0]);
+		} else {
+			UnknownC447FB(4, &Thethe[1][0]);
+		}
+	}
+}
 
 /// $C3E7E3
 void UnknownC3E7E3(short arg1) {
@@ -371,10 +400,34 @@ void UnknownC3EBCA() {
 }
 
 /// $C3EE14
-short UnknownC3EE14(short, short);
+short UnknownC3EE14(short arg1, short arg2) {
+	if ((ItemData[arg2].flags & ItemUsableFlags[arg1]) != 0) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
 
 /// $C3EE7A
-uint UnknownC3EE7A(short);
+WorkingMemory UnknownC3EE7A(short arg1) {
+	WorkingMemory result;
+	if ((CC1C01Table[arg1].size & 0x80) != 0) {
+		switch (CC1C01Table[arg1].size & 0x7F) {
+			case 1:
+				result.integer = *cast(ubyte*)CC1C01Table[arg1].address;
+				break;
+			case 2:
+				result.integer = *cast(ushort*)CC1C01Table[arg1].address;
+				break;
+			default:
+				result.integer = *cast(uint*)CC1C01Table[arg1].address;
+				break;
+		}
+	} else {
+		result.pointer = cast(void*)CC1C01Table[arg1].address;
+	}
+	return result;
+}
 
 /// $C3EF23
 void NullC3EF23(short) {

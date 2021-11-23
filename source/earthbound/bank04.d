@@ -1851,7 +1851,10 @@ void UnknownC43D75(ushort arg1, short arg2) {
 }
 
 /// $C43E31
-short UnknownC43E31(ubyte*, short);
+short UnknownC43E31(const(ubyte)*, short);
+
+/// $C43EF8
+short UnknownC43EF8(const(ubyte)*, short);
 
 /// $C43F53
 void UnknownC43F53() {
@@ -1900,7 +1903,14 @@ void UnknownC43F77(short arg1) {
 void UnknownC445E1(DisplayTextState*, const(ubyte)*);
 
 /// $C447FB
-void UnknownC447FB(short, ubyte*);
+void UnknownC447FB(short length, const(ubyte)* text) {
+    short x12 = UnknownC43E31(text, length);
+    if ((VWFX & 7) + ((WindowStats[WindowTable[CurrentFocusWindow]].text_x - 1) * 8) + x12 < (WindowStats[WindowTable[CurrentFocusWindow]].width * 8)) {
+        PrintNewLineF();
+        Unknown7E5E75 = 1;
+    }
+    PrintStringF(length, text);
+}
 
 /// $C44963
 void UnknownC44963(short arg1) {
@@ -2149,6 +2159,8 @@ void UnknownC451FA(short arg1, short arg2, short arg3) {
 /// $C45502
 immutable ubyte[13] BattleBackRowText = EBString!13("the Back Row");
 
+const CC1C01Entry[96] CC1C01Table;
+
 /// $C4562F
 immutable ubyte[8] PowersOfTwo8Bit = [1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6, 1 << 7];
 
@@ -2236,7 +2248,15 @@ ubyte ChangeEquippedOther(ushort character, ubyte slot) {
     return PartyCharacters[character - 1].equipment[EquipmentSlot.Other];
 }
 
+/// $C458AB
+immutable ubyte[4] ItemUsableFlags = [
+    ItemFlags.NessCanUse,
+    ItemFlags.PaulaCanUse,
+    ItemFlags.JeffCanUse,
+    ItemFlags.PooCanUse,
+];
 
+/// $C45A27
 // wrong name
 immutable ushort[7][7] StatusEquipWindowText = [
     [0x0007, 0x0160, 0x0161, 0x0162, 0x0163, 0x0164, 0x0165],

@@ -327,6 +327,11 @@ immutable short[32] UnknownC20958 = [
 	0,
 ];
 
+immutable ubyte[4][2] Thethe = [
+	EBString!4("The "),
+	EBString!4("the "),
+];
+
 /// $C20A20
 void UnknownC20A20(WindowTextAttributesCopy* buf) {
 	buf.id = CurrentFocusWindow;

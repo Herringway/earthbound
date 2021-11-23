@@ -604,7 +604,7 @@ __gshared DisplayTextState[10] DisplayTextStates; /// $96AA
 __gshared ushort Unknown7E97B8; /// $97B8
 __gshared ubyte[10] CCArgumentStorage; /// $97BA
 __gshared ushort CCArgumentGatheringLoopCounter; /// $97CA
-__gshared uint WRAMScriptWorkMemory; //$97CC
+__gshared WorkingMemory WRAMScriptWorkMemory; //$97CC
 __gshared uint WRAMScriptArgMemory; //$97D0
 __gshared ubyte WRAMScriptSecMemory; //$97D4
 

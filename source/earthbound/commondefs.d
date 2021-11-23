@@ -3755,6 +3755,11 @@ enum ShallowWaterSpeed = FixedPoint1616(0x8000, 0x0000); //0.5x
 enum DeepWaterSpeed = FixedPoint1616(0x547A, 0x0000); //0.33x
 enum SkipSandwichSpeed = FixedPoint1616(0x8000, 0x0001); //1.5x
 
+enum CC1C01Type {
+	string = 0,
+	integer = 0x80,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -3881,10 +3886,10 @@ struct WinStat {
     ubyte   num_padding;          // [12]
     ushort  tileAttributes;            // [13]
     short   font;                 // [15]
-    uint  result;               // [17]
+    WorkingMemory  result;               // [17]
     uint  argument;             // [1B]
     ushort  counter;              // [1F]
-    uint  result_bak;           // [21]
+    WorkingMemory  result_bak;           // [21]
     uint  argument_bak;         // [25]
     ushort  counter_bak;          // [29]
     short   current_option;       // [2B]
@@ -4691,6 +4696,16 @@ struct PhotographerConfigEntryObject {
 
 union CCArgStorage {
 	ubyte[10] raw;
+}
+
+union WorkingMemory {
+	uint integer;
+	void* pointer;
+}
+
+struct CC1C01Entry {
+	ubyte size;
+	void* address;
 }
 
 //helper funcs not in the original game

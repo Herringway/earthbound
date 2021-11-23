@@ -179,7 +179,7 @@ ushort GetSecondaryMemory() {
 }
 
 /// $C1040A
-uint GetWorkingMemory() {
+WorkingMemory GetWorkingMemory() {
     return GetActiveWindowAddress().result;
 }
 
@@ -195,7 +195,7 @@ ushort SetSecondaryMemory(ushort arg1) {
 }
 
 /// $C1045D
-uint SetWorkingMemory(uint arg1) {
+WorkingMemory SetWorkingMemory(WorkingMemory arg1) {
     GetActiveWindowAddress.result = arg1;
     return arg1;
 }
@@ -387,6 +387,12 @@ void UnknownC10BA1F(short arg1) {
 void PrintLetterF(short arg1) {
     PrintLetter(arg1);
 }
+
+/// $C10C8C
+void PrintStringF(short arg1, const(ubyte)* arg2) {
+    PrintString(arg1, arg2);
+}
+
 /// $C10CB6
 void PrintLetter(short arg1);
 
@@ -403,6 +409,17 @@ void PrintNumber(uint);
 
 /// $C10EB4
 void UnknownC10EB4(short);
+
+/// $C10EFC
+void PrintString(short length, const(ubyte)* text) {
+    if (Unknown7E5E74 != 0) {
+        UnknownC43EF8(text, length);
+    }
+    while ((text[0] != 0) && (length != 0)) {
+        length--;
+        PrintLetter((text++)[0]);
+    }
+}
 
 /// $C10F40
 void UnknownC10F40(short window) {
@@ -965,9 +982,9 @@ const(ubyte)* Check() {
             return null;
         case NPCType.ItemBox:
             if (NPCConfig[CurrentTPTEntry].item < 0x100) {
-                SetWorkingMemory(NPCConfig[CurrentTPTEntry].item);
+                SetWorkingMemory(WorkingMemory(NPCConfig[CurrentTPTEntry].item));
             } else {
-                SetWorkingMemory(0);
+                SetWorkingMemory(WorkingMemory(0));
                 SetArgumentMemory(NPCConfig[CurrentTPTEntry].item - 0x100);
             }
             CurrentInteractingEventFlag = NPCConfig[CurrentTPTEntry].eventFlag;
@@ -1096,8 +1113,8 @@ void* CC0A(DisplayTextState* arg1, ushort arg2) {
 
 /// $C141D0
 void* CC09(DisplayTextState* arg1, ushort arg2) {
-    if ((GetWorkingMemory() != 0) && (GetWorkingMemory() < arg2)) {
-        arg1.textptr = cast(const(ubyte)*)&arg1.textptr[(GetWorkingMemory() - 1) * (const(ubyte)*).sizeof];
+    if ((GetWorkingMemory().integer != 0) && (GetWorkingMemory().integer < arg2)) {
+        arg1.textptr = cast(const(ubyte)*)&arg1.textptr[(GetWorkingMemory().integer - 1) * (const(ubyte)*).sizeof];
         CCArgumentGatheringLoopCounter = 0;
         return &CC09;
     } else {
@@ -1148,7 +1165,7 @@ void* CC07(DisplayTextState* arg1, ushort arg2) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = arg1.textptr[0];
         return &CC07;
     } else {
-        SetWorkingMemory(getEventFlag(((cast(ushort)arg1.textptr[0]) << 8) || (CCArgumentStorage[0])));
+        SetWorkingMemory(WorkingMemory(getEventFlag(((cast(ushort)arg1.textptr[0]) << 8) || (CCArgumentStorage[0]))));
         return null;
     }
 }
@@ -1201,13 +1218,13 @@ void* CC1805(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14558
 void* CC0B(DisplayTextState* arg1, ushort arg2) {
-    SetWorkingMemory(GetWorkingMemory() == arg2 ? 1 : 0);
+    SetWorkingMemory(WorkingMemory(GetWorkingMemory().integer == arg2 ? 1 : 0));
     return null;
 }
 
 /// $C14591
 void* CC0C(DisplayTextState* arg, ushort arg2) {
-    SetWorkingMemory(GetWorkingMemory() != arg2 ? 1 : 0);
+    SetWorkingMemory(WorkingMemory(GetWorkingMemory().integer != arg2 ? 1 : 0));
     return null;
 }
 
@@ -1216,7 +1233,7 @@ void* CC1C07(DisplayTextState* arg1, ushort arg2);
 
 /// $C145EF
 void* CC0D(DisplayTextState* arg1, ushort arg2) {
-    SetArgumentMemory((arg2 != 0) ? GetSecondaryMemory() : GetWorkingMemory());
+    SetArgumentMemory((arg2 != 0) ? GetSecondaryMemory() : GetWorkingMemory().integer);
     return null;
 }
 
@@ -1356,7 +1373,7 @@ void* CC1807(DisplayTextState* arg1, ushort arg2) {
         return &CC1807;
     }
     uint x0A = (cast(uint)CCArgumentStorage[1] << 8) | (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)CCArgumentStorage[3] << 24);
-    uint x06 = (arg2 == 0) ? GetWorkingMemory() : (arg2 == 1) ? GetArgumentMemory() : GetSecondaryMemory;
+    uint x06 = (arg2 == 0) ? GetWorkingMemory().integer : (arg2 == 1) ? GetArgumentMemory() : GetSecondaryMemory;
     short tmp;
     if (x06 < x0A) {
         tmp = 0;
@@ -1365,7 +1382,7 @@ void* CC1807(DisplayTextState* arg1, ushort arg2) {
     } else {
         tmp = 2;
     }
-    SetWorkingMemory(tmp);
+    SetWorkingMemory(WorkingMemory(tmp));
     return null;
 }
 
@@ -1383,13 +1400,13 @@ void* CC1A05(DisplayTextState* arg1, ushort arg2);
 
 /// $C15529 - [18 08 XX] selection menu, no cancelling
 void* CC1808(DisplayTextState* arg1, ushort arg2) {
-    SetWorkingMemory(UnknownC19A11(0, arg2));
+    SetWorkingMemory(WorkingMemory(UnknownC19A11(0, arg2)));
     return null;
 }
 
 /// $C1554E - [18 09 XX] selection menu
 void* CC1809(DisplayTextState* arg1, ushort arg2) {
-    SetWorkingMemory(UnknownC19A11(1, arg2));
+    SetWorkingMemory(WorkingMemory(UnknownC19A11(1, arg2)));
     return null;
 }
 
@@ -1432,7 +1449,7 @@ void* CC180D(DisplayTextState* arg1, ushort arg2) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC180D;
     }
-    short tmp = (CCArgumentStorage[0] != 0) ? CCArgumentStorage[0] : cast(short)GetWorkingMemory();
+    short tmp = (CCArgumentStorage[0] != 0) ? CCArgumentStorage[0] : cast(short)GetWorkingMemory().integer;
     switch (arg2) {
         case 1:
             UnknownC1952F(tmp);
@@ -1730,7 +1747,7 @@ void* CC1D23(DisplayTextState* arg1, ushort arg2) {
             x06 = 0;
             break;
     }
-    SetWorkingMemory(x06);
+    SetWorkingMemory(WorkingMemory(x06));
     return null;
 }
 
@@ -1830,7 +1847,7 @@ void* CC19Tree(DisplayTextState* arg1, ushort arg2) {
         case 0x11:
             return &CC1911;
         case 0x14:
-            SetWorkingMemory(gameState.escargoExpressItems[GetSecondaryMemory() - 1]);
+            SetWorkingMemory(WorkingMemory(gameState.escargoExpressItems[GetSecondaryMemory() - 1]));
             IncrementSecondaryMemory();
             break;
         case 0x16:
@@ -1848,13 +1865,13 @@ void* CC19Tree(DisplayTextState* arg1, ushort arg2) {
         case 0x1D:
             return &CC191D;
         case 0x1E:
-            SetWorkingMemory(UnknownC1AD26());
+            SetWorkingMemory(WorkingMemory(UnknownC1AD26()));
             break;
         case 0x1F:
-            SetWorkingMemory(UnknownC1AD02());
+            SetWorkingMemory(WorkingMemory(UnknownC1AD02()));
             break;
         case 0x20:
-            SetWorkingMemory(gameState.playerControlledPartyMemberCount);
+            SetWorkingMemory(WorkingMemory(gameState.playerControlledPartyMemberCount));
             break;
         case 0x21:
             return &CC1921;
@@ -1885,7 +1902,7 @@ void* CC1ATree(DisplayTextState* arg1, ushort arg2) {
         case 0x01:
             return &CC1A01;
         case 0x04:
-            SetWorkingMemory(SelectionMenu(0));
+            SetWorkingMemory(WorkingMemory(SelectionMenu(0)));
             UnknownC11383();
             break;
         case 0x05:
@@ -1893,19 +1910,19 @@ void* CC1ATree(DisplayTextState* arg1, ushort arg2) {
         case 0x06:
             return &CC1A06;
         case 0x07:
-            SetWorkingMemory(UnknownC19A43());
+            SetWorkingMemory(WorkingMemory(UnknownC19A43()));
             break;
         case 0x08:
-            SetWorkingMemory(SelectionMenu(0));
+            SetWorkingMemory(WorkingMemory(SelectionMenu(0)));
             break;
         case 0x09:
-            SetWorkingMemory(SelectionMenu(1));
+            SetWorkingMemory(WorkingMemory(SelectionMenu(1)));
             break;
         case 0x0A:
-            SetWorkingMemory(UnknownC1AC00());
+            SetWorkingMemory(WorkingMemory(UnknownC1AC00()));
             break;
         case 0x0B:
-            SetWorkingMemory(UnknownC1AAFA());
+            SetWorkingMemory(WorkingMemory(UnknownC1AAFA()));
             break;
         default: break;
     }
@@ -1922,22 +1939,22 @@ void* CC1BTree(DisplayTextState* arg1, ushort arg2) {
             TransferStorageMemActive();
             break;
         case 0x02:
-            if (GetWorkingMemory() == 0) {
+            if (GetWorkingMemory().integer == 0) {
                 return &CC0A;
             } else {
                 arg1.textptr += (const(ubyte)*).sizeof;
             }
             break;
         case 0x03:
-            if (GetWorkingMemory() != 0) {
+            if (GetWorkingMemory().integer != 0) {
                 return &CC0A;
             } else {
                 arg1.textptr += (const(ubyte)*).sizeof;
             }
             break;
         case 0x04:
-            uint x12 = GetWorkingMemory();
-            SetWorkingMemory(GetArgumentMemory());
+            uint x12 = GetWorkingMemory().integer;
+            SetWorkingMemory(WorkingMemory(GetArgumentMemory()));
             SetArgumentMemory(x12);
             break;
         case 0x05:
@@ -2069,7 +2086,7 @@ void* CC1DTree(DisplayTextState* arg1, ushort arg2) {
             if (UnknownC14070(ReturnBattleTargetAddress(), ReturnBattleAttackerAddress()) == 0) {
                 x14 = 1;
             }
-            SetWorkingMemory(x14);
+            SetWorkingMemory(WorkingMemory(x14));
             break;
         case 0x21:
             return &CC1D21;
@@ -2078,7 +2095,7 @@ void* CC1DTree(DisplayTextState* arg1, ushort arg2) {
             if ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) == 2) {
                 x14 = 1;
             }
-            SetWorkingMemory(x14);
+            SetWorkingMemory(WorkingMemory(x14));
             break;
         case 0x23:
             return &CC1D23;
@@ -2243,7 +2260,7 @@ void* CC1FTree(DisplayTextState* arg1, ushort arg2) {
         case 0x83:
             return &CC1F83;
         case 0x90:
-            SetWorkingMemory(UnknownC19441());
+            SetWorkingMemory(WorkingMemory(UnknownC19441()));
             break;
         case 0xA0:
             UnknownC226C5(1);
@@ -2252,7 +2269,7 @@ void* CC1FTree(DisplayTextState* arg1, ushort arg2) {
             UnknownC226C5(0);
             break;
         case 0xA2:
-            SetWorkingMemory(UnknownC226E6());
+            SetWorkingMemory(WorkingMemory(UnknownC226E6()));
             break;
         case 0xB0:
             SaveCurrentGame();
@@ -2262,7 +2279,7 @@ void* CC1FTree(DisplayTextState* arg1, ushort arg2) {
         case 0xD0:
             return &CC1FD0;
         case 0xD1:
-            SetWorkingMemory(UnknownC490EE());
+            SetWorkingMemory(WorkingMemory(UnknownC490EE()));
             break;
         case 0xD2:
             return &CC1FD2;
@@ -2440,7 +2457,7 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
                     x1E = &CC10;
                     break;
                 case 0x11:
-                    SetWorkingMemory(SelectionMenu(1));
+                    SetWorkingMemory(WorkingMemory(SelectionMenu(1)));
                     UnknownC11383();
                     break;
                 case 0x12:
@@ -2694,7 +2711,7 @@ void Teleport(short arg1) {
 /// $C1BEC6
 void GetOffBicycle() {
     CreateWindowN(Window.TextStandard);
-    SetWorkingMemory(1);
+    SetWorkingMemory(WorkingMemory(1));
     DisplayText(TextGotOffBike);
     CloseFocusWindowN();
     Win_Tick();
