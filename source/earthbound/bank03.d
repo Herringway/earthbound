@@ -276,6 +276,9 @@ void UnknownC3E6F8() {
 	Unknown7E9623 = 1;
 }
 
+/// $C3E75D
+void UnknownC3E75D(short);
+
 /// $C3E7E3
 void UnknownC3E7E3(short arg1) {
 	if (arg1 == -1) {
@@ -369,6 +372,9 @@ void UnknownC3EBCA() {
 
 /// $C3EE14
 short UnknownC3EE14(short, short);
+
+/// $C3EE7A
+uint UnknownC3EE7A(short);
 
 /// $C3EF23
 void NullC3EF23(short) {

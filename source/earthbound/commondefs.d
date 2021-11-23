@@ -730,7 +730,7 @@ enum Sfx {
 	UNKNOWN70 = 112,
 	MYSTERIOUS = 113,
 	MYSTERIOUS_2 = 114,
-	EQUIPPED_ITEM = 115,
+	EquippedItem = 115,
 	TOOK_ITEM = 116,
 	OPENED_BOX_2 = 117,
 	GOT_ITEM = 118,
@@ -4618,6 +4618,81 @@ struct OverlayScript {
 	}
 }
 
+struct TilesetAnimation {
+	ubyte count;
+	AnimatedTiles[] animations;
+}
+
+struct AnimatedTiles {
+	ubyte unknown0;
+	ubyte frameDelay;
+	ushort copySize;
+	ushort sourceOffset;
+	ushort destinationAddress;
+}
+
+struct LoadedAnimatedTiles {
+	short unknown0; //0
+	short frameDelay; //2
+	short copySize; //4
+	short sourceOffset; //6
+	short destinationAddress; //8
+	short framesUntilUpdate; //10
+	short destinationAddress2; //12
+	short sourceOffset2; //14
+}
+
+struct MapDataPaletteAnimationPointer {
+	ubyte[] ptr;
+	ubyte count;
+	ubyte[] entries;
+}
+
+struct LoadedOverworldPaletteAnimation {
+	ushort timer; //0
+	ushort index; //2
+	ushort[9] delays; //4
+}
+
+struct MapTileEvent {
+	ushort eventFlag;
+	ushort count;
+	MapTilePair[] tiles;
+}
+
+struct MapTilePair {
+	ushort tile1;
+	ushort tile2;
+}
+
+struct CreditsPhotograph {
+	ushort eventFlag; //0
+	short mapX; //2
+	short mapY; //4
+	ushort creditsMapPalettesOffset; //6
+	byte slideDirection; //8
+	byte slideDistance; //9
+	short photographerX; //10
+	short photographerY; //12
+	Coordinates[6] party_config; //14
+	PhotographerConfigEntryObject[4] objectConfig; //38
+}
+
+struct Coordinates {
+	short x;
+	short y;
+}
+
+struct PhotographerConfigEntryObject {
+	short tileX;//0
+	short tileY;//2
+	ushort sprite; //4
+}
+
+union CCArgStorage {
+	ubyte[10] raw;
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {
@@ -4861,4 +4936,52 @@ T ROL(T)(T val, ref bool carry) {
 
 void XBA(T)(ref T val) {
 	val = cast(T)((val >> 8) | (val << 8));
+}
+
+const(ubyte)[] paletteOffsetToPointer(ushort offset) {
+	import std.range : enumerate, slide;
+	import earthbound.bank2F : MapPalettePointerTable;
+	static immutable ushort[] offsetList = [
+		0x7CA7,
+		0x7FA7,
+		0x81E7,
+		0x84E7,
+		0x8667,
+		0x87E7,
+		0x8AE7,
+		0x9027,
+		0x90E7,
+		0x9267,
+		0x96E7,
+		0x9CE7,
+		0xA2E7,
+		0xA8E7,
+		0xABE7,
+		0xB1E7,
+		0xB7E7,
+		0xBAE7,
+		0xC0E7,
+		0xC1A7,
+		0xC6E7,
+		0xCCE7,
+		0xD0A7,
+		0xD467,
+		0xD767,
+		0xDB27,
+		0xE127,
+		0xE5A7,
+		0xE967,
+		0xEDE7,
+		0xF267,
+		0xF4A7,
+	];
+	assert(offset >= offsetList[0], "Invalid palette offset?");
+	foreach (idx, pair; offsetList.slide(2).enumerate) {
+		if ((offset >= pair[0]) && (offset < pair[1])) {
+			const subOffset = (offset - pair[0]) / 0xC0;
+			return MapPalettePointerTable[idx][subOffset * 0xC0 .. (subOffset + 1) * 0xC0];
+		}
+	}
+	const subOffset = (offset - offsetList[$ - 1]) / 0xC0;
+	return MapPalettePointerTable[$ - 1][subOffset * 0xC0 .. (subOffset + 1) * 0xC0];
 }

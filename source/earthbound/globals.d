@@ -396,8 +396,15 @@ __gshared byte[16] Unknown7E4390; /// $4390
 __gshared byte[16] Unknown7E43A0; /// $43A0
 __gshared byte[16] Unknown7E43B0; /// $43B0
 __gshared byte[16] Unknown7E43C0; /// $43C0
-
-__gshared short Unknown7E4472; /// $4472
+__gshared ushort Unknown7E43D0; /// $43D0
+__gshared ushort Unknown7E43D2; /// $43D2
+__gshared ushort Unknown7E43D4; /// $43D4
+__gshared ushort Unknown7E43D6; /// $43D6
+__gshared ushort Unknown7E43D8; /// $43D8
+__gshared ushort Unknown7E43DA; /// $43DA
+__gshared LoadedAnimatedTiles[8] OverworldTilesetAnim; //$43DC
+__gshared LoadedOverworldPaletteAnimation OverworldPaletteAnim; //$445C
+__gshared short LoadedAnimatedTileCount; /// $4472
 __gshared short Unknown7E4474; /// $4474
 __gshared short[16] Unknown7E4476; /// $4476 - might be more
 
@@ -597,6 +604,11 @@ __gshared DisplayTextState[10] DisplayTextStates; /// $96AA
 __gshared ushort Unknown7E97B8; /// $97B8
 __gshared ubyte[10] CCArgumentStorage; /// $97BA
 __gshared ushort CCArgumentGatheringLoopCounter; /// $97CA
+__gshared uint WRAMScriptWorkMemory; //$97CC
+__gshared uint WRAMScriptArgMemory; //$97D0
+__gshared ubyte WRAMScriptSecMemory; //$97D4
+
+__gshared ubyte[3] Unknown7E97D7; //$97D7
 
 __gshared Game_State gameState; /// $97F5
 __gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters; /// $99CE
@@ -608,6 +620,7 @@ __gshared WindowTextAttributesCopy Unknown7E9C8A; /// $9C8A
 __gshared ubyte[30] Unknown7E9CD7; /// $9CD7
 __gshared ubyte[28] Unknown7E9CF5; /// $9CF5
 __gshared ubyte Unknown7E9D11; /// $9D11
+__gshared uint Unknown7E9D12; /// $9D12
 
 __gshared void function() Unknown7E9D1B; /// $9D1B
 __gshared short RespawnX; /// $9D1F
@@ -825,6 +838,8 @@ __gshared ubyte Unknown7EB4CE; /// $B4CE
 
 __gshared short Unknown7EB4EF; /// $B4EF
 
+__gshared short CurPhotoDisplay; //$B4F1
+
 __gshared ushort[11] Unknown7EB525; /// $B525
 __gshared ushort CurrentMusicTrack; /// $B53B
 __gshared ushort CurrentPrimarySamplePack; /// $B53D
@@ -859,12 +874,16 @@ __gshared ushort Unknown7EB571; /// $B571
 __gshared ushort Unknown7EB573; /// $B573
 __gshared ushort Unknown7EB575; /// $B575
 
+__gshared ubyte[0x800] Unknown7EB800;
+__gshared ubyte[0x2000] Unknown7EC000;
+
 __gshared ubyte[64][64] Unknown7EE000;
 __gshared ushort[16][16] Unknown7EF000;
 __gshared PathCtx Unknown7EF200;
 __gshared ubyte[0xC00] Unknown7EF400;
 __gshared ubyte[0x8000] Unknown7F0000;
 __gshared ubyte[0x8000] Unknown7F8000;
+__gshared const(ubyte[4][4])*[0x400] TileCollisionBuffer; /// $7FF800
 
 __gshared ubyte[0x8000] IntroBG2Buffer; /// $8000 - this seems to overlap with other stuff...?
 

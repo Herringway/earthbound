@@ -15,6 +15,7 @@ import earthbound.bank10;
 import earthbound.bank15;
 import earthbound.bank17;
 import earthbound.bank1C;
+import earthbound.bank1F;
 import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
@@ -37,19 +38,84 @@ void OverworldSetupVRAM() {
 }
 
 /// $C0004B
-void OverworldInitialize();
+void OverworldInitialize() {
+    OverworldSetupVRAM();
+    Unknown7F0000[0] = 0;
+    CopyToVram(3, 0, 0, &Unknown7F0000[0]);
+    Unknown7E4370 = -1;
+    Unknown7E436E = -1;
+}
 
 /// $C00085
-void LoadTilesetAnim();
+void LoadTilesetAnim() {
+    LoadedAnimatedTileCount = 0;
+    if (MapDataWeirdTileAnimationPointerTable[Unknown7E4372].count == 0) {
+        return;
+    }
+    Decomp(&MapDataTileAnimationPointerTable[Unknown7E4372][0], &Unknown7EC000[0]);
+    LoadedAnimatedTileCount = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].count;
+    for (short i = 0; i < LoadedAnimatedTileCount; i++) {
+        OverworldTilesetAnim[i].unknown0 = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].unknown0;
+        OverworldTilesetAnim[i].framesUntilUpdate = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].frameDelay;
+        OverworldTilesetAnim[i].frameDelay = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].frameDelay;
+        OverworldTilesetAnim[i].copySize = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].copySize;
+        OverworldTilesetAnim[i].sourceOffset = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].sourceOffset;
+        OverworldTilesetAnim[i].sourceOffset2 = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].sourceOffset;
+        OverworldTilesetAnim[i].destinationAddress = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].destinationAddress;
+        OverworldTilesetAnim[i].destinationAddress2 = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].destinationAddress;
+    }
+}
 
 /// $C00172
-void AnimateTileset();
+void AnimateTileset() {
+    for (short i = 0; i < LoadedAnimatedTileCount; i++) {
+        if (--OverworldTilesetAnim[i].framesUntilUpdate != 0) {
+            continue;
+        }
+        OverworldTilesetAnim[i].framesUntilUpdate = OverworldTilesetAnim[i].frameDelay;
+        if (OverworldTilesetAnim[i].destinationAddress2 == OverworldTilesetAnim[i].unknown0) {
+            OverworldTilesetAnim[i].destinationAddress2 = 0;
+            OverworldTilesetAnim[i].sourceOffset2 = OverworldTilesetAnim[i].sourceOffset;
+        }
+        CopyToVram(0, OverworldTilesetAnim[i].copySize, OverworldTilesetAnim[i].destinationAddress, &Unknown7EC000[OverworldTilesetAnim[i].sourceOffset2]);
+        OverworldTilesetAnim[i].sourceOffset2 += OverworldTilesetAnim[i].copySize;
+        OverworldTilesetAnim[i].destinationAddress2++;
+    }
+}
 
 /// $C0023F
-void LoadPaletteAnim();
+void LoadPaletteAnim() {
+    Unknown7E4474 = 0;
+    if (palettes[10][0] == 0) {
+        return;
+    }
+    if (MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].count == 0) {
+        return;
+    }
+    Decomp(&MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].ptr[0], &Unknown7EB800[0]);
+    for (short i = 0; i < OverworldPaletteAnim.delays.length; i++) {
+        OverworldPaletteAnim.delays[i] = 0;
+    }
+    for (short i = 0; i < MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].count; i++) {
+        OverworldPaletteAnim.delays[i] = MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].entries[i];
+    }
+    OverworldPaletteAnim.timer = OverworldPaletteAnim.delays[0];
+    Unknown7E4474 = 1;
+    OverworldPaletteAnim.index = 1;
+}
 
 /// $C0030F
-void AnimatePalette();
+void AnimatePalette() {
+    if (--OverworldPaletteAnim.timer != 0) {
+        return;
+    }
+    if (OverworldPaletteAnim.delays[OverworldPaletteAnim.index] == 0) {
+        OverworldPaletteAnim.index = 0;
+    }
+    OverworldPaletteAnim.timer = OverworldPaletteAnim.delays[OverworldPaletteAnim.index];
+    UnknownC0A1F2(OverworldPaletteAnim.index);
+    OverworldPaletteAnim.index++;
+}
 
 /// $C0035B
 ushort UnknownC0035B(ushort a, ushort x, ushort y) {
@@ -57,31 +123,153 @@ ushort UnknownC0035B(ushort a, ushort x, ushort y) {
 }
 
 /// $C00391
-void GetColorAverage(uint* ptr);
+void GetColorAverage(ushort* ptr) {
+    ushort x04 = 0;
+    ushort x16 = 0;
+    ushort x14 = 0;
+    ushort x12 = 0;
+    ushort* x10 = ptr - 1;
+    for (short i = 0; i < 96; i++) {
+        ushort x18 = *++x10;
+        if ((x18 & 0x7FFF) == 0) {
+            continue;
+        }
+        x04 += x18 & BGR555Mask.Red;
+        x14 += (x18 & BGR555Mask.Green) >> 5;
+        x16 += (x18 & BGR555Mask.Blue) >> 10;
+        x12++;
+    }
+    Unknown7E43D0 = cast(ushort)((x04 * 8) / x12);
+    Unknown7E43D2 = cast(ushort)((x14 * 8) / x12);
+    Unknown7E43D4 = cast(ushort)((x16 * 8) / x12);
+}
 
 /// $C00434
-ushort Func_C00434(ushort arg1, ushort arg2);
+ushort UnknownC00434(ushort arg1, ushort arg2) {
+    if (arg1 == arg2) {
+        return arg2;
+    } else if (arg1 > arg2) {
+        if (arg1 - arg2 > 0) {
+            return cast(ushort)(arg1 - 6);
+        } else {
+            return arg2;
+        }
+    } else if (arg2 - arg1 > 6) {
+        return cast(ushort)(arg1 + 6);
+    }
+    return arg2;
+}
 
 /// $C00480
-void UnknownC00480();
+void UnknownC00480() {
+    GetColorAverage(&palettes[2][0]);
+    ushort x20 = cast(ushort)((Unknown7E43D0 / Unknown7E43D6) << 8);
+    ushort x1E = cast(ushort)((Unknown7E43D2 / Unknown7E43D8) << 8);
+    ushort x1C = cast(ushort)((Unknown7E43D4 / Unknown7E43DA) << 8);
+    ushort x1A = (x20 + x1E + x1C) / 3;
+    if ((x20 < 0x100) && (x1E < 0x100) && (x1C < 0x100)) {
+        for (short i = 0x80; i < 0x100; i++) {
+            ushort x16, x14, x10, x02, x04, x0E;
+            x16 = x14 = palettes[i / 16][i % 16] & BGR555Mask.Red;
+            x02 = x10 = (palettes[i / 16][i % 16] & BGR555Mask.Green) >> 5;
+            x04 = x0E = (palettes[i / 16][i % 16] & BGR555Mask.Blue) >> 10;
+            if ((x16 == x02) && (x02 == x04) && (x04 == x16)) {
+                x16 *= x1A;
+                x02 *= x1A;
+                x04 *= x1A;
+            } else {
+                x16 *= x20;
+                x02 *= x1E;
+                x04 *= x1C;
+            }
+            x14 = UnknownC00434(x14, (x16 >> 8) & 0x1F);
+            x02 = UnknownC00434(x10, (x02 >> 8) & 0x1F);
+            x0E = UnknownC00434(x0E, (x04 >> 8) & 0x1F);
+            palettes[i / 16][i % 16] = cast(ushort)((x0E << 10) | (x02 << 5) | x14);
+        }
+    }
+}
 
 /// $C005E7
-void UnknownC005E7();
+void UnknownC005E7() {
+    memcpy(&palettes[2][0], &MapPalettePointerTable[1][0], 0xC0);
+    GetColorAverage(&palettes[2][0]);
+    Unknown7E43D6 = Unknown7E43D0;
+    Unknown7E43D8 = Unknown7E43D2;
+    Unknown7E43DA = Unknown7E43D4;
+}
 
 /// $C0062A
-void LoadCollisionData(short tileset);
+void LoadCollisionData(short tileset) {
+    const(ubyte[4][4]*)* x0A = &MapDataTileCollisionPointerTable[tileset][0];
+    const(ubyte[4][4])** x06 = &TileCollisionBuffer[0];
+    for (short i = 0; i < 0x3C0; i++) {
+        *(x06++) = *(x0A++);
+    }
+}
 
 /// $C0067E
-void Function14(size_t index1, size_t index2);
+void Function14(short index1, short index2) {
+    ushort* x0A = cast(ushort*)&Unknown7F8000[index1 * 32];
+    ushort* x06 = cast(ushort*)&Unknown7F8000[index2 * 32];
+    for (short i = 0; i < 16; i++) {
+        *(x0A++) = *(x06++);
+    }
+    TileCollisionBuffer[index1] = TileCollisionBuffer[index2];
+}
 
 /// $C006F2
-void UnknownC006F2(short);
+void UnknownC006F2(short arg1) {
+    const(MapTileEvent)* x06 = &EventControlPointerTable[arg1][0];
+    while (true) {
+        if (x06.eventFlag == 0) {
+            break;
+        }
+        short x0E = getEventFlag(x06.eventFlag & 0x7FFF);
+        short y = x06.count;
+        if (x0E == (x06.eventFlag >= EVENT_FLAG_UNSET) ? 1 : 0) {
+            const(MapTilePair)* x06_2 = &x06.tiles[0];
+            for (short i = y; i != 0; i--) {
+                Function14(x06_2.tile1, x06_2.tile2);
+                x06_2++;
+            }
+        } else {
+            x06++;
+        }
+    }
+}
 
 /// $C00778
-void LoadSpecialSpritePalette();
+void LoadSpecialSpritePalette() {
+    if (palettes[4][0] == 0) {
+        return;
+    }
+    ushort* x10 = &palettes[palettes[4][0]][0];
+    for (short i = 0x40; i < 0x50; i++) {
+        palettes[8][i] = *(x10++);
+    }
+}
 
 /// $C007B6
-void LoadMapPalette(short, short);
+void LoadMapPalette(short arg1, short arg2) {
+    const(ubyte)* x16 = &MapPalettePointerTable[arg1][arg2 * 192];
+    if (Unknown7EB4EF == 0) {
+        while (true) {
+            memcpy(&palettes[2][0], x16, 0xC0);
+            if (palettes[2][0] == 0) {
+                break;
+            }
+            if (getEventFlag(palettes[2][0] & 0x7FFF) != (palettes[2][0] > EVENT_FLAG_UNSET) ? 1 : 0) {
+                break;
+            }
+            //the original code used palettes[3][0] as a raw near pointer, which isn't possible on most platforms
+            x16 = &paletteOffsetToPointer(palettes[3][0])[0];
+        }
+    } else {
+        ubyte* x0A = Decomp(&CompressedPaletteUnknown[0], &Unknown7F0000[0]);
+        memcpy(&palettes[2][0], &x0A[PhotographerConfigTable[CurPhotoDisplay].creditsMapPalettesOffset], 0xC0);
+    }
+}
 
 /// $C008C3
 void LoadMapAtSector(short x, short y) {
@@ -963,6 +1151,9 @@ void UnknownC03C25() {
     Unknown7E5DDA = 0;
 }
 
+/// $C03C5E
+void GetOnBicycle();
+
 /// $C03CFD
 void UnknownC03CFD() {
     if (gameState.walkingStyle != WalkingStyle.Bicycle) {
@@ -1676,7 +1867,7 @@ void UnknownC05200() {
     } else if (Unknown7E9F6B != -1) {
         UnknownC0777A();
     }
-    if (Unknown7E4472 != 0) {
+    if (LoadedAnimatedTileCount != 0) {
         AnimateTileset();
     }
     if (Unknown7E4474 != 0) {
@@ -2091,6 +2282,9 @@ void UnknownC069AF() {
 void ChangeMusic5DD6() {
     ChangeMusic(Unknown7E5DD6);
 }
+
+/// $C069F7
+short UnknownC069F7();
 
 /// $C06A07
 void UnknownC06A07() {
@@ -3993,6 +4187,9 @@ void UnknownC0A039() {
 
 /// $C0A156
 short UnknownC0A156(short x, short y);
+
+/// $C0A1F2
+void UnknownC0A1F2(short);
 
 /// $C0A254
 void UnknownC0A254(short arg1) {

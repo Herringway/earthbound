@@ -564,6 +564,9 @@ short setEventFlag(short flag, short value) {
 	return EventFlags[flag / 8];
 }
 
+/// $C216AD
+void UnknownC216AD(short, short);
+
 /// $C216DB
 void UnknownC216DB() {
 	ubyte x18 = 0;
@@ -790,6 +793,12 @@ short UnknownC22474(ubyte* arg1) {
 	return StatusEquipWindowText3[x0E][arg1[x0E] - 1];
 }
 
+/// $C226C5
+void UnknownC226C5(short);
+
+/// $C226E6
+short UnknownC226E6();
+
 /// $C227C8
 void LearnSpecialPSI(short id) {
 	switch (id) {
@@ -874,6 +883,12 @@ void RemoveCharFromParty(short id) {
 void SaveCurrentGame() {
 	SaveGameSlot(CurrentSaveSlot - 1);
 }
+
+/// $C23008
+void UnknownC23008();
+
+/// $C2307B
+void UnknownC2307B();
 
 /// $C23109
 immutable ConsolationPrize[2] ConsolationItemTable = [

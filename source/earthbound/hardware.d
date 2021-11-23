@@ -199,3 +199,9 @@ enum CGADSUBFlags {
 	ColourMathMainIsBG2 = 1 << 1,
 	ColourMathMainIsBG1 = 1 << 0,
 }
+
+enum BGR555Mask {
+	Red = 0x1F,
+	Green = 0x3E0,
+	Blue = 0x7C00,
+}
