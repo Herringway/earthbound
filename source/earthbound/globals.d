@@ -549,7 +549,7 @@ __gshared short window_tail; /// $88E2 - Tail of the window linked list
 __gshared short[53] WindowTable; /// $88E4 - Index: Window ID; Value: Index to WindowStats
 __gshared short[5] Unknown7E894E; /// $894E
 __gshared short CurrentFocusWindow; /// $8958 - Window ID of the focused window
-__gshared ubyte[0] Unknown7E895A; /// $895A
+__gshared ubyte[12] Unknown7E895A; /// $895A
 
 __gshared ubyte[3] HPPPWindowDigitBuffer; /// $8966
 __gshared ushort[12][4] HPPPWindowBuffer; /// $8969

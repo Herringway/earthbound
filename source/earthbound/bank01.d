@@ -394,7 +394,34 @@ void PrintStringF(short arg1, const(ubyte)* arg2) {
 }
 
 /// $C10CB6
-void PrintLetter(short arg1);
+void PrintLetter(short arg1) {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    UnknownC44E61(WindowStats[WindowTable[CurrentFocusWindow]].font, arg1);
+    if (WindowTable[CurrentFocusWindow] != window_tail) {
+        Unknown7E9623 = 1;
+    }
+    short x;
+    if (Unknown7E964F == 2) {
+        x = 1;
+    } else if (Unknown7E964F == 3) {
+        x = 0;
+    } else {
+        x = 0;
+        if (BlinkingTriangleFlag == 0) {
+            x = 1;
+        }
+    }
+    if ((x != 0) && (Unknown7E9622 == 0) && (arg1 != 0x20) && (arg1 != EBChar(' '))) {
+        PlaySfx(Sfx.TextPrint);
+    }
+    if (Unknown7E9622 == 0) {
+        for (short i = SelectedTextSpeed; i != 0; i--) {
+            Win_Tick();
+        }
+    }
+}
 
 /// $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
 void UnknownC10D60(short tile) {
@@ -404,11 +431,55 @@ void UnknownC10D60(short tile) {
     }
 }
 
+/// $C10D7C
+short UnknownC10D7C(uint arg1) {
+    short result = 1;
+    ubyte* x = &Unknown7E895A[6];
+    while (arg1 >= 10) {
+        *(x--) = arg1 % 10;
+        arg1 /= 10;
+        result++;
+    }
+    return result;
+}
+
 /// $C10DF6
-void PrintNumber(uint);
+void PrintNumber(uint arg1) {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    version(bugfix) {
+        enum limit = 9_999_999;
+    } else {
+        //C enums can only be ints, and 9,999,999 does not fit in a 16-bit int
+        enum limit = cast(short)9_999_999;
+    }
+    if (limit < arg1) {
+        arg1 = limit;
+    }
+    short x14 = UnknownC10D7C(arg1);
+    ubyte* x12 = &Unknown7E895A[7 - x14];
+    short x16 = WindowStats[WindowTable[CurrentFocusWindow]].num_padding;
+    if (x16 == 0) {
+        short a = (x16 & 0xF) + 1;
+        if (a < x14) {
+            a = x14;
+        }
+        UnknownC43D95(cast(short)((x14 - a) * 6));
+        while (x14 != 0) {
+            PrintLetter(*(x12++) + EBChar('0'));
+            x14--;
+        }
+    }
+}
 
 /// $C10EB4
-void UnknownC10EB4(short);
+void UnknownC10EB4(short arg1) {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    WindowStats[WindowTable[CurrentFocusWindow]].num_padding = cast(ubyte)arg1;
+}
 
 /// $C10EFC
 void PrintString(short length, const(ubyte)* text) {

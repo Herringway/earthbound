@@ -1822,6 +1822,9 @@ void UnknownC43CD2(MenuOpt* opt, short x, short y) {
     Unknown7E5E79 = 0;
 }
 
+/// $C43D95
+void UnknownC43D95(short);
+
 /// $C43DDB
 void UnknownC43DDB(MenuOpt* menuEntry) {
     UnknownC438A5F(menuEntry.text_x, menuEntry.text_y);
@@ -2030,6 +2033,41 @@ void UnknownC44E4D(short arg1) {
         return;
     }
     UnknownC44AF7(arg1);
+}
+
+/// $C44E61
+void UnknownC44E61(short arg1, short arg2) {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    if ((arg2 == 0x2F) || (arg2 == 0x22) || (arg2 == 0x20)) {
+        UnknownC43F77(arg2);
+        UnknownC43CAA();
+    } else {
+        if (arg2 == EBChar(' ')) {
+            if (Unknown7E5E75 != 0) {
+                return;
+            }
+        } else if (Unknown7E5E75 != 0) {
+            WindowStats[WindowTable[CurrentFocusWindow]].text_x = 0;
+            if (arg2 != EBChar('@')) {
+                UnknownC43D75(6, WindowStats[WindowTable[CurrentFocusWindow]].text_y);
+            } else {
+                Unknown7E5E75 = 0;
+            }
+        }
+        Unknown7E5E76 = cast(ubyte)arg2;
+        const(ubyte)* x14 = &FontConfigTable[arg1].graphics[(arg2 - EBChar(' ')) * FontConfigTable[arg1].height];
+        short x12 = FontConfigTable[arg1].data[arg2 - EBChar(' ')] + Unknown7E5E6D;
+        if (x12 > 8) {
+            while (x12 > 8) {
+                RenderText(8, FontConfigTable[arg1].width, x14);
+                x12 -= 8;
+                x14 +=FontConfigTable[arg1].width;
+            }
+        }
+        RenderText(x12, FontConfigTable[arg1].width, x14);
+    }
 }
 
 /// $C44FF3

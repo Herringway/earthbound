@@ -57,7 +57,7 @@ void UnknownEF016F() {
 
 /// $EF01D2
 void UnknownEF01D2(short arg1) {
-	short x0E = (arg1 - 0x50) & 0x7F;
+	short x0E = (arg1 - EBChar(' ')) & 0x7F;
 	arg1 = FontConfigTable[0].data[x0E] + Unknown7E5E6D;
 	if (WindowStats[WindowTable[CurrentFocusWindow]].width < (WindowStats[WindowTable[CurrentFocusWindow]].text_x - 1) * 8 + (VWFX & 7) + x0E) {
 		PrintNewLineF();
