@@ -1698,7 +1698,7 @@ immutable ubyte* TextBattleUsedPSI;
 immutable ubyte* TEXT_BLOCK_C8FACA;
 immutable ubyte* TEXT_BLOCK_C8FACD;
 immutable ubyte* TEXT_BATTLE_IT_DIDNT_HIT_ANYONE;
-immutable ubyte* TEXT_BATTLE_DOES_NOT_HAVE_ANY_PP;
+immutable ubyte* TextBattleDoesNotHaveAnyPP;
 immutable ubyte* TextAction275;
 immutable ubyte* TextPokeySpeech3;
 immutable ubyte* TextPokeySpeech4;

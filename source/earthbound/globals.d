@@ -643,7 +643,9 @@ __gshared OverworldTask[4] OverworldTasks; /// $9E3C
 
 __gshared ushort DadPhoneTimer; /// $9E54
 __gshared short Unknown7E9E56; /// $9E56
+__gshared Unknown7E9E58Entry[40] Unknown7E9E58; /// $9E58
 
+__gshared short Unknown7E9F18; /// $9E56
 __gshared LoadedItemTransformation[4] LoadedItemTransformations; /// $9F1A
 
 __gshared short Unknown7E9F2A; /// $9F2A

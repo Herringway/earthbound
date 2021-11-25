@@ -1271,6 +1271,9 @@ void CenterScreen(short x, short y) {
     RefreshMapAtPosition(cast(short)(x - 0x80), cast(short)(y - 0x70));
 }
 
+/// $C0402B
+void UnknownC0402B(Unknown7E9E58Entry*);
+
 /// $C0404F
 short MapInputToDirection(short style) {
     short result = -1;

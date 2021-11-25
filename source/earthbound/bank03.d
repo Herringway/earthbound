@@ -687,7 +687,7 @@ short ShowTitleScreen(short arg1) {
 	FadeOutWithMosaic(1, 4, 0);
 	if (x04 == 0) {
 		Unknown7E9641 = 0;
-		UnknownC474A8(0);
+		UnknownC474A8(/+0+/);
 		UnknownC0927C();
 		return x02;
 	}

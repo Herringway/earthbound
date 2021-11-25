@@ -941,6 +941,87 @@ noreturn UnknownC40B75() {
 /// $C40BE8
 immutable ubyte[512] UnknownC40BE8 = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
+/// $C40E31
+immutable ubyte EntityOverlayCount = 4;
+
+/// $C40E32
+immutable EntityOverlaySprite[4] EntityOverlaySprites = [
+    EntityOverlaySprite(OverworldSprite.Sweat, 0, 1),
+    EntityOverlaySprite(OverworldSprite.LittleMushroom, 0, -1),
+    EntityOverlaySprite(OverworldSprite.WaterRipple, 0, -1),
+    EntityOverlaySprite(OverworldSprite.BigWaterRipple, 0, -1),
+];
+
+///
+immutable SpriteMap[2] EntityOverlaySweatingFrame1 = [
+    SpriteMap(0xF0,0x3360 | SpritemapOrientation.Horizontal, 0xEA, 0x80),
+    SpriteMap(0xF0,0x2360 | SpritemapOrientation.Horizontal, 0xEA, 0x80),
+];
+
+///
+immutable SpriteMap[2] EntityOverlaySweatingFrame2 = [
+    SpriteMap(0xF0,0x3362 | SpritemapOrientation.Horizontal, 0xEA, 0x80),
+    SpriteMap(0xF0,0x2362 | SpritemapOrientation.Horizontal, 0xEA, 0x80),
+];
+
+///
+immutable SpriteMap[2] EntityOverlaySweatingFrame3 = [
+    SpriteMap(0xF0,0x3360, 0x04, 0x80),
+    SpriteMap(0xF0,0x2360, 0x04, 0x80),
+];
+
+///
+immutable SpriteMap[2] EntityOverlaySweatingFrame4 = [
+    SpriteMap(0xF0,0x3362, 0x04, 0x80),
+    SpriteMap(0xF0,0x2362, 0x04, 0x80),
+];
+
+///
+immutable SpriteMap[2] EntityOverlayMushroomizedFrame1 = [
+    SpriteMap(0xE8,0x3364, 0xF8, 0x80),
+    SpriteMap(0xE8,0x2364, 0xF8, 0x80),
+];
+
+///
+immutable SpriteMap[2] EntityOverlayRippleFrame1 = [
+    SpriteMap(0xFE,0x3366, 0xF8, 0x80),
+    SpriteMap(0xFE,0x2366, 0xF8, 0x80),
+];
+
+///
+immutable SpriteMap[2] EntityOverlayRippleFrame2 = [
+    SpriteMap(0xFE,0x3366 | SpritemapOrientation.Horizontal, 0xF8, 0x80),
+    SpriteMap(0xFE,0x2366 | SpritemapOrientation.Horizontal, 0xF8, 0x80),
+];
+
+///
+immutable SpriteMap[4] EntityOverlayBigRippleFrame1 = [
+    SpriteMap(0xF8,0x3368, 0xF0, 0x00),
+    SpriteMap(0xF8,0x336A, 0x00, 0x80),
+    SpriteMap(0xF8,0x2368, 0xF0, 0x00),
+    SpriteMap(0xF8,0x236A, 0x00, 0x80),
+];
+
+///
+immutable SpriteMap[] EntityOverlayBigRippleFrame2 = [
+    SpriteMap(0xF8,0x336A | SpritemapOrientation.Horizontal, 0xF0, 0x00),
+    SpriteMap(0xF8,0x3368 | SpritemapOrientation.Horizontal, 0x00, 0x80),
+    SpriteMap(0xF8,0x236A | SpritemapOrientation.Horizontal, 0xF0, 0x00),
+    SpriteMap(0xF8,0x2368 | SpritemapOrientation.Horizontal, 0x00, 0x80),
+];
+
+///
+immutable OverlayScript[] EntityOverlaySweating;
+
+///
+immutable OverlayScript[] EntityOverlayMushroomized;
+
+///
+immutable OverlayScript[] EntityOverlayRipple;
+
+///
+immutable OverlayScript[] EntityOverlayBigRipple;
+
 /// $C41A9E
 ubyte* Decomp(const(void)*, void*);
 
@@ -1094,6 +1175,19 @@ immutable ushort[65] UnknownC420BD = [
 /// $C4213F
 short UnknownC4213F(short arg1, short arg2) {
     return cast(short)((((arg2 & 0xFF00) >> 8) * (arg1 & 0xFF)) + ((arg2 & 0xFF) * (arg1 & 0xFF) >> 8));
+}
+
+/// $C4249A
+void UnknownC4249A(ubyte arg1, ubyte arg2) {
+    CGADSUB = arg1;
+    WOBJSEL = 0x20;
+    WH0 = 0;
+    WH1 = 0xFF;
+    TMW = 0x13;
+    WBGLOG = 0;
+    WOBJLOG = 0;
+    CGWSEL = 0x10;
+    COLDATA = arg2 | 0xE0;
 }
 
 /// $C42631
@@ -2197,6 +2291,7 @@ void UnknownC451FA(short arg1, short arg2, short arg3) {
 /// $C45502
 immutable ubyte[13] BattleBackRowText = EBString!13("the Back Row");
 
+/// $C4550F
 const CC1C01Entry[96] CC1C01Table;
 
 /// $C4562F
@@ -2402,7 +2497,10 @@ void UnknownC46631(short arg1) {
 }
 
 /// $C466B8
-void UnknownC466B8();
+void UnknownC466B8() {
+    gameState.unknown90 = 0;
+    gameState.unknownB0 = 0;
+}
 
 /// $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
@@ -2415,7 +2513,13 @@ void LoadBackgroundAnimation(short bg, short arg2) {
 }
 
 /// $C474A8
-void UnknownC474A8(short);
+// calls to this seem to specify an argument, but the registers are clobbered immediately
+void UnknownC474A8() {
+    UnknownC4249A(
+        (0 <= EntityScriptVar0Table[CurrentEntitySlot]) ? 0x33 : 0xB3,
+        cast(ubyte)((0 <= EntityScriptVar0Table[CurrentEntitySlot]) ? EntityScriptVar0Table[CurrentEntitySlot] : cast(short)-cast(int)EntityScriptVar0Table[CurrentEntitySlot])
+    );
+}
 
 /// $C47C3F
 //definitely need to check this one over
@@ -2498,17 +2602,69 @@ void UndrawFlyoverText() {
     Unknown7E0030 = 0x18;
 }
 
+/// $C48C59
+immutable short[8] UnknownC48C59 = [ 0x0800, 0x0900, 0x0100, 0x0500, 0x0400, 0x0600, 0x0200, 0x0A00 ];
+
 /// $C48C69
-short UnknownC48C69();
+void UnknownC48C69() {
+    Unknown7E9F18 = 0;
+    for (short i = 0; i < 0x40; i++) {
+        Unknown7E9E58[i].unknown1 = 0;
+        Unknown7E9E58[i].unknown0 = 0;
+    }
+}
+
+/// $C48C97
+void UnknownC48C97(short arg1) {
+    if ((Unknown7E9F18 == 0) && (Unknown7E9E58[Unknown7E9F18].unknown1 == 0)) {
+        Unknown7E9E58[Unknown7E9F18].unknown1 = arg1;
+        Unknown7E9E58[0].unknown0 = 1;
+    } else {
+        if (Unknown7E9E58[Unknown7E9F18].unknown1 == arg1) {
+            Unknown7E9E58[Unknown7E9F18].unknown0++;
+        } else {
+            if (++Unknown7E9F18 == 0x40) {
+                while (true) {}
+            } else {
+                Unknown7E9E58[Unknown7E9F18].unknown1 = arg1;
+                Unknown7E9E58[Unknown7E9F18].unknown0 = 1;
+            }
+        }
+    }
+}
 
 /// $C48D58
-short UnknownC48D58(short, short, short, short);
+short UnknownC48D58(short arg1, short arg2, short arg3, short arg4) {
+    FixedPoint1616 x10 = { fraction: arg1 };
+    FixedPoint1616 x14 = { fraction: arg2 };
+    short result = 0;
+    while (true) {
+        short x1A = cast(short)(x10.integer - arg3);
+        short x18 = cast(short)(x14.integer - arg4);
+        if (((0 > x1A) ? (cast(short)-cast(int)x1A) : x1A <= 1) && ((0 > x18) ? (cast(short)-cast(int)x18) : x18 <= 1)) {
+            break;
+        }
+        short x18_2 = (UnknownC41EFF(x10.integer, x14.integer, arg3, arg4) + 0x1000) / 0x2000;
+        UnknownC48C97(UnknownC48C59[x18_2]);
+        x10.combined += horizontalMovementSpeeds[x18_2 / 8].directionSpeeds[0].combined;
+        x14.combined += verticalMovementSpeeds[x18_2 / 8].directionSpeeds[0].combined;
+        result++;
+    }
+    return result;
+}
 
 /// $C48E6B
-void UnknownC48E6B(short, short);
+void UnknownC48E6B(short arg1, short arg2) {
+    for (short i = arg2; i != 0; i--) {
+        UnknownC48C97(UnknownC48C59[arg1]);
+    }
+}
 
 /// $C48E95
-void UnknownC48E95();
+void UnknownC48E95() {
+    Unknown7E9E58[++Unknown7E9F18].unknown0 = 0;
+    UnknownC0402B(&Unknown7E9E58[0]);
+}
 
 /// $C48ECE
 short IsValidItemTransformation(short arg1) {
@@ -2711,7 +2867,9 @@ void UnknownC496E7(short arg1, short arg2) {
 }
 
 /// $C496F9
-void UnknownC496F9();
+void UnknownC496F9() {
+    memcpy(&Unknown7F0000[0], &palettes[0][0], 0x200);
+}
 
 /// $C49740
 void UnknownC49740() {
@@ -2770,6 +2928,12 @@ void UnknownC4999B(ubyte arg1) {
         x06 += FontConfigTable[Font.Large].width;
     }
     UnknownC49875(x02, FontConfigTable[Font.Large].width, &VWFBuffer[0][0], x06);
+}
+
+/// $C49A4B
+void UnknownC49A4B() {
+    WaitUntilNextFrame();
+    UnknownC2DB3F();
 }
 
 /// $C49A56
@@ -2858,8 +3022,72 @@ void UnknownC49D16(ubyte arg1, short, short) {
     UnknownC4999B(arg1);
 }
 
+/// $C49D1E
+short UnknownC49D1E(short arg1) {
+    OAMClear();
+    ushort x02 = arg1 & 0xFF00;
+    short x0E = cast(short)(arg1 + 0x40);
+    arg1 = cast(short)((arg1 + 0x40) & 0xFF00);
+    if (arg1 != x02) {
+        BG3_Y_POS += (arg1 - x02) >> 8;
+        UpdateScreen();
+    }
+    return x0E;
+}
+
 /// $C49D6A
-void CoffeeTeaScene(short id);
+void CoffeeTeaScene(short id) {
+    FadeOutWithMosaic(1, 1, 0);
+    UnknownC49A56();
+    OAMClear();
+    LoadBackgroundAnimation((id == 0) ? BattleBGLayer.Coffee1 : BattleBGLayer.Tea1, (id == 0) ? BattleBGLayer.Coffee2 : BattleBGLayer.Tea2);
+    FadeIn(1, 1);
+    Unknown7E9F2D = 0x1C;
+    short x04 = 0;
+    const(ubyte)* x06 = (id == 0) ? CoffeeSequenceText : TeaSequenceText;
+    Unknown7E5E6E = 0;
+    parseLoop: while (true) {
+        switch ((x06++)[0]) {
+            case 0:
+                break parseLoop;
+            case 9:
+                short x0E = UnknownC49D1E(x04);
+                UnknownC49B6E(0x18);
+                UnknownC2DB3F();
+                while (x0E < 0x2000) {
+                    x0E = UnknownC49D1E(x0E);
+                    UnknownC49A4B();
+                }
+                x04 = cast(short)(x0E - 0x2000);
+                UnknownC49B6E(0x18);
+                break;
+            case 1:
+                UnknownC49CA8(*(x06++));
+                break;
+            case 8:
+                UnknownC49CC3(0xC, *(x06++));
+                break;
+            default:
+                UnknownC49D16(*(x06 - 1), 0, 0xC);
+                break;
+        }
+    }
+    FadeOut(1, 1);
+    while (Unknown7E0028 != 0) {
+        UnknownC49A4B();
+    }
+    UnknownC08726();
+    ReloadMap();
+    ushort* y = &bg2Buffer[0];
+    for (short i = 0x380; i != 0; i--) {
+        *(y++) = 0;
+    }
+    Unknown7E5E6E = 0xFF;
+    UnknownC08726();
+    UndrawFlyoverText();
+    UnknownC08744();
+    FadeIn(1, 1);
+}
 
 /// $C49EC4
 void UnknownC49EC4(short id) {
@@ -3258,8 +3486,30 @@ void UnknownC4A7B0() {
 /// $C4ACCE
 void UseSoundStone(short);
 
+/// $C4B1B8
+short UnknownC4B1B8(short arg1, short arg2, short arg3) {
+    if (arg3 == 0xFF) {
+        return arg1;
+    }
+    CopyToVram(0, SpriteGroupingPointers[arg2].width * 2, arg1, &SpriteGroupingPointers[arg2].sprites[arg3].data[0]);
+    CopyToVram(0, SpriteGroupingPointers[arg2].width * 2, cast(ushort)(arg1 + 0x100), &SpriteGroupingPointers[arg2].sprites[arg3].data[SpriteGroupingPointers[arg2].width]);
+    return cast(short)(arg1 + SpriteGroupingPointers[arg2].width);
+}
+
 /// $C4B26B
-void LoadOverlaySprites();
+void LoadOverlaySprites() {
+    short x12 = 0x5600;
+    for (short i = 0; i < EntityOverlayCount; i++) {
+        short x10 = UnknownC4B1B8(x12, EntityOverlaySprites[i].spriteID, EntityOverlaySprites[i].unknown2);
+        x12 = UnknownC4B1B8(x10, EntityOverlaySprites[i].spriteID, EntityOverlaySprites[i].unknown3);
+    }
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        EntityMushroomizedOverlayPtrs[i] = &EntityOverlayMushroomized[0];
+        EntitySweatingOverlayPtrs[i] = &EntityOverlaySweating[0];
+        EntityRippleOverlayPtrs[i] = &EntityOverlayRipple[0];
+        EntityBigRippleOverlayPtrs[i] = &EntityOverlayBigRipple[0];
+    }
+}
 
 /// $C4B587
 void* Path_sbrk(size_t inc) {

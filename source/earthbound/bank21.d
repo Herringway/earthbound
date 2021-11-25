@@ -3,6 +3,12 @@ module earthbound.bank21;
 
 import earthbound.commondefs;
 
+/// $E10000
+immutable ubyte* CoffeeSequenceText;
+
+/// $E10652
+immutable ubyte* TeaSequenceText;
+
 /// $E12F8A
 immutable CreditsPhotograph[32] PhotographerConfigTable = [
 	CreditsPhotograph(EventFlag.UNKNOWN_2BA, 332, 43, 0x0000, 0x00, 0x00, 329, 56, [ Coordinates(331, 45), Coordinates(329, 44), Coordinates(333, 44), Coordinates(335, 43), Coordinates(327, 44), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),

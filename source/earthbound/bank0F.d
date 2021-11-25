@@ -3352,7 +3352,7 @@ immutable NPC[1584] NPCConfig = [
 	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Right, ActionScript.Unknown605, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, null /+TEXT_NPC_0260+/, null /+NULL+/),
 	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null /+TEXT_NPC_0261+/, null /+NULL+/),
 	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null /+TEXT_NPC_0262+/, null /+NULL+/),
-	NPC(NPCType.Object, OverworldSprite.LITTLE_MUSHROOM, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null /+NULL+/, null /+NULL+/),
+	NPC(NPCType.Object, OverworldSprite.LittleMushroom, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null /+NULL+/, null /+NULL+/),
 	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null /+TEXT_NPC_0264+/, null /+NULL+/),
 	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null /+TEXT_NPC_0265+/, null /+NULL+/),
 	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null /+TEXT_NPC_0266+/, null /+NULL+/),

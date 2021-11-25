@@ -1621,14 +1621,14 @@ enum OverworldSprite {
 	PAY_PHONE = 216,
 	WEIRD_THINK_MARKS = 217,
 	SURPRISE_MARK = 218,
-	SWEAT = 219,
+	Sweat = 219,
 	TWINKLING_STARS = 220,
 	PHARAOH_CASKET = 221,
 	UNDERWATER_NPC = 222,
 	APPLE = 223,
 	BANANAS = 224,
 	CAN_TENDA_VILLAGE = 225,
-	LITTLE_MUSHROOM = 226,
+	LittleMushroom = 226,
 	MAILBOX = 227,
 	DONT_ENTER_SIGN = 228,
 	MAGIC_TART_STAND = 229,
@@ -1750,8 +1750,8 @@ enum OverworldSprite {
 	TEDDY_BEAR_SURPRISED = 345,
 	RUNAWAY_5_PIANIST = 346,
 	FLY = 347,
-	WATER_RIPPLE = 348,
-	BIG_WATER_RIPPLE = 349,
+	WaterRipple = 348,
+	BigWaterRipple = 349,
 	KNOCKING_ON_DOOR = 350,
 	HEART = 351,
 	CELL_PHONE_TENDA_VILLAGE = 352,
@@ -3503,10 +3503,10 @@ enum BattleBGLayer : ushort{
 	SOUNDSTONE1 = 228,
 	SOUNDSTONE2 = 229,
 	FILE_SELECT = 230,
-	COFFEE1 = 231,
-	COFFEE2 = 232,
-	TEA1 = 233,
-	TEA2 = 234,
+	Coffee1 = 231,
+	Coffee2 = 232,
+	Tea1 = 233,
+	Tea2 = 234,
 	UNKNOWN235 = 235,
 	UNKNOWN236 = 236,
 	UNKNOWN237 = 237,
@@ -3760,6 +3760,11 @@ enum CC1C01Type {
 	integer = 0x80,
 }
 
+enum SpritemapOrientation {
+	Vertical = 0x8000,
+	Horizontal = 0x4000,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -3959,7 +3964,7 @@ struct MovementSpeeds {
 			FixedPoint1616 down; //16
 			FixedPoint1616 downLeft; //20
 			FixedPoint1616 left; //24
-			FixedPoint1616 upLeft; //24
+			FixedPoint1616 upLeft; //28
 		}
 		FixedPoint1616[8] directionSpeeds;
 	}
@@ -3985,11 +3990,12 @@ struct SpriteGrouping {
 	ubyte unknown6;
 	ubyte unknown7;
 	ubyte spriteBank;
-	Sprites[0] sprites;
+	OverworldSpriteGraphics[] sprites;
 }
-struct Sprites {
-	ushort group;
-	ushort[8] ids;
+
+struct OverworldSpriteGraphics {
+	const(ubyte)[] data;
+	ubyte lsb;
 }
 
 struct Battler {
@@ -4706,6 +4712,17 @@ union WorkingMemory {
 struct CC1C01Entry {
 	ubyte size;
 	void* address;
+}
+
+struct Unknown7E9E58Entry {
+	ubyte unknown0;
+	short unknown1;
+}
+
+struct EntityOverlaySprite {
+	ushort spriteID;
+	byte unknown2;
+	byte unknown3;
 }
 
 //helper funcs not in the original game

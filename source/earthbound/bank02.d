@@ -2346,6 +2346,11 @@ void ReduceHP(Battler* battler, short arg2) {
 	SetHP(battler, (arg2 > battler.hpTarget) ? 0 : cast(short)(battler.hpTarget - arg2));
 }
 
+/// $C2721D
+void ReducePP(Battler* battler, short arg2) {
+	SetPP(battler, (arg2 > battler.ppTarget) ? 0 : cast(short)(battler.ppTarget - arg2));
+}
+
 /// $C2724A
 short InflictStatusBattle(Battler* target, short statusGroup, short status) {
 	if (target.npcID != 0) {
@@ -2924,7 +2929,17 @@ short SuccessLuck40() {
 }
 
 /// $C28D5A
-void BattleActionDistract();
+void BattleActionDistract() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if ((SuccessLuck40() != 0) && (Success255(currentTarget.paralysisResist) != 0) && (currentTarget.afflictions[4] == 0)) {
+		currentTarget.afflictions[4] = Status4.CantConcentrate4;
+		DisplayInBattleText(TextBattleWasNotAbleToConcentrate);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX);
+	}
+}
 
 /// $C28D8B
 void BattleActionFeelStrange();
@@ -2938,7 +2953,19 @@ void BattleActionHypnosisAlphaCopy() {
 }
 
 /// $C28E42
-void BattleActionReducePP();
+void BattleActionReducePP() {
+	if (currentTarget.ppTarget == 0) {
+		DisplayInBattleText(TextBattleDoesNotHaveAnyPP);
+	} else {
+		short x16 = FiftyPercentVariance(currentTarget.ppMax / 16);
+		if (x16 != 0) {
+			ReducePP(currentTarget, x16);
+			DisplayTextWait(TextBattleDrainedPP2, x16);
+		} else {
+			DisplayInBattleText(TextBattleItDidntWorkOnX);
+		}
+	}
+}
 
 /// $C28EAE
 void BattleActionCutGuts() {

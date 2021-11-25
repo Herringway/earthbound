@@ -4,6 +4,324 @@ module earthbound.bank15;
 import earthbound.commondefs;
 import earthbound.bank02;
 
+//TONY_IN_BED
+immutable ubyte[] Sprite1028 = cast(immutable(ubyte)[])import("overworld_sprites/1028.gfx");
+
+//NESS_SLEEPING_HATTED
+immutable ubyte[] Sprite1029 = cast(immutable(ubyte)[])import("overworld_sprites/1029.gfx");
+immutable ubyte[] Sprite1030 = cast(immutable(ubyte)[])import("overworld_sprites/1030.gfx");
+
+//NESS_SLEEPING
+immutable ubyte[] Sprite1031 = cast(immutable(ubyte)[])import("overworld_sprites/1031.gfx");
+immutable ubyte[] Sprite1032 = cast(immutable(ubyte)[])import("overworld_sprites/1032.gfx");
+
+//LIL_TEDDY_BEAR
+immutable ubyte[] Sprite1033 = cast(immutable(ubyte)[])import("overworld_sprites/1033.gfx");
+immutable ubyte[] Sprite1034 = cast(immutable(ubyte)[])import("overworld_sprites/1034.gfx");
+
+//LIL_ANGEL
+immutable ubyte[] Sprite1035 = cast(immutable(ubyte)[])import("overworld_sprites/1035.gfx");
+immutable ubyte[] Sprite1036 = cast(immutable(ubyte)[])import("overworld_sprites/1036.gfx");
+
+//LIL_GIFT_BOX
+immutable ubyte[] Sprite1037 = cast(immutable(ubyte)[])import("overworld_sprites/1037.gfx");
+immutable ubyte[] Sprite1038 = cast(immutable(ubyte)[])import("overworld_sprites/1038.gfx");
+
+//JEFF_IN_BED
+immutable ubyte[] Sprite1039 = cast(immutable(ubyte)[])import("overworld_sprites/1039.gfx");
+
+//BIRD
+immutable ubyte[] Sprite1040 = cast(immutable(ubyte)[])import("overworld_sprites/1040.gfx");
+immutable ubyte[] Sprite1041 = cast(immutable(ubyte)[])import("overworld_sprites/1041.gfx");
+
+//FLOWER
+immutable ubyte[] Sprite1042 = cast(immutable(ubyte)[])import("overworld_sprites/1042.gfx");
+immutable ubyte[] Sprite1043 = cast(immutable(ubyte)[])import("overworld_sprites/1043.gfx");
+
+//BUS_DRIVER_HEAD
+immutable ubyte[] Sprite1044 = cast(immutable(ubyte)[])import("overworld_sprites/1044.gfx");
+immutable ubyte[] Sprite1045 = cast(immutable(ubyte)[])import("overworld_sprites/1045.gfx");
+
+//FLY
+immutable ubyte[] Sprite1046 = cast(immutable(ubyte)[])import("overworld_sprites/1046.gfx");
+immutable ubyte[] Sprite1047 = cast(immutable(ubyte)[])import("overworld_sprites/1047.gfx");
+
+//MOBILE_SPROUT
+immutable ubyte[] Sprite1048 = cast(immutable(ubyte)[])import("overworld_sprites/1048.gfx");
+immutable ubyte[] Sprite1049 = cast(immutable(ubyte)[])import("overworld_sprites/1049.gfx");
+
+//SLIMY_PILE
+immutable ubyte[] Sprite1050 = cast(immutable(ubyte)[])import("overworld_sprites/1050.gfx");
+immutable ubyte[] Sprite1051 = cast(immutable(ubyte)[])import("overworld_sprites/1051.gfx");
+
+//ARACHNID
+immutable ubyte[] Sprite1052 = cast(immutable(ubyte)[])import("overworld_sprites/1052.gfx");
+immutable ubyte[] Sprite1053 = cast(immutable(ubyte)[])import("overworld_sprites/1053.gfx");
+
+//ZAP_EEL
+immutable ubyte[] Sprite1054 = cast(immutable(ubyte)[])import("overworld_sprites/1054.gfx");
+immutable ubyte[] Sprite1055 = cast(immutable(ubyte)[])import("overworld_sprites/1055.gfx");
+
+//ARMORED_FROG
+immutable ubyte[] Sprite1056 = cast(immutable(ubyte)[])import("overworld_sprites/1056.gfx");
+immutable ubyte[] Sprite1057 = cast(immutable(ubyte)[])import("overworld_sprites/1057.gfx");
+
+//ROBO_PUMP
+immutable ubyte[] Sprite1058 = cast(immutable(ubyte)[])import("overworld_sprites/1058.gfx");
+immutable ubyte[] Sprite1059 = cast(immutable(ubyte)[])import("overworld_sprites/1059.gfx");
+
+//FRENCH_KISS_OF_DEATH
+immutable ubyte[] Sprite1060 = cast(immutable(ubyte)[])import("overworld_sprites/1060.gfx");
+immutable ubyte[] Sprite1061 = cast(immutable(ubyte)[])import("overworld_sprites/1061.gfx");
+
+//ELECTRO_SWOOSH
+immutable ubyte[] Sprite1062 = cast(immutable(ubyte)[])import("overworld_sprites/1062.gfx");
+immutable ubyte[] Sprite1063 = cast(immutable(ubyte)[])import("overworld_sprites/1063.gfx");
+
+//CAPSULE
+immutable ubyte[] Sprite1064 = cast(immutable(ubyte)[])import("overworld_sprites/1064.gfx");
+immutable ubyte[] Sprite1065 = cast(immutable(ubyte)[])import("overworld_sprites/1065.gfx");
+
+//ROPE
+immutable ubyte[] Sprite1066 = cast(immutable(ubyte)[])import("overworld_sprites/1066.gfx");
+
+//MICROPHONE
+immutable ubyte[] Sprite1067 = cast(immutable(ubyte)[])import("overworld_sprites/1067.gfx");
+
+//EVERDRED_GHOST
+immutable ubyte[] Sprite1068 = cast(immutable(ubyte)[])import("overworld_sprites/1068.gfx");
+
+//EVERDRED_SURPRISED
+immutable ubyte[] Sprite1069 = cast(immutable(ubyte)[])import("overworld_sprites/1069.gfx");
+
+//TONY_KNEELING
+immutable ubyte[] Sprite1070 = cast(immutable(ubyte)[])import("overworld_sprites/1070.gfx");
+
+//NESS_MOM_SITTING
+immutable ubyte[] Sprite1071 = cast(immutable(ubyte)[])import("overworld_sprites/1071.gfx");
+
+//EVERDRED_LYING_DOWN
+immutable ubyte[] Sprite1072 = cast(immutable(ubyte)[])import("overworld_sprites/1072.gfx");
+
+//TEDDY_BEAR
+immutable ubyte[] Sprite1073 = cast(immutable(ubyte)[])import("overworld_sprites/1073.gfx");
+
+//PREET_PROOT_GUY
+immutable ubyte[] Sprite1074 = cast(immutable(ubyte)[])import("overworld_sprites/1074.gfx");
+
+//DIAMONDIZED_SURPRISED
+immutable ubyte[] Sprite1075 = cast(immutable(ubyte)[])import("overworld_sprites/1075.gfx");
+
+//POO_GHOST_SURPRISED
+immutable ubyte[] Sprite1076 = cast(immutable(ubyte)[])import("overworld_sprites/1076.gfx");
+
+//JEFF_GHOST_SURPRISED
+immutable ubyte[] Sprite1077 = cast(immutable(ubyte)[])import("overworld_sprites/1077.gfx");
+
+//PAULA_GHOST_SURPRISED
+immutable ubyte[] Sprite1078 = cast(immutable(ubyte)[])import("overworld_sprites/1078.gfx");
+
+//NESS_GHOST_SURPRISED
+immutable ubyte[] Sprite1079 = cast(immutable(ubyte)[])import("overworld_sprites/1079.gfx");
+
+//NESS_ROBOT_RESTING
+immutable ubyte[] Sprite1080 = cast(immutable(ubyte)[])import("overworld_sprites/1080.gfx");
+
+//PAULA_RESTING
+immutable ubyte[] Sprite1081 = cast(immutable(ubyte)[])import("overworld_sprites/1081.gfx");
+
+//NESS_RESTING
+immutable ubyte[] Sprite1082 = cast(immutable(ubyte)[])import("overworld_sprites/1082.gfx");
+
+//POO_LYING_DOWN
+immutable ubyte[] Sprite1083 = cast(immutable(ubyte)[])import("overworld_sprites/1083.gfx");
+
+//JEFF_LYING_DOWN
+immutable ubyte[] Sprite1084 = cast(immutable(ubyte)[])import("overworld_sprites/1084.gfx");
+
+//PAULA_LYING_DOWN
+immutable ubyte[] Sprite1085 = cast(immutable(ubyte)[])import("overworld_sprites/1085.gfx");
+
+//POO_SURPRISED
+immutable ubyte[] Sprite1086 = cast(immutable(ubyte)[])import("overworld_sprites/1086.gfx");
+
+//JEFF_SURPRISED
+immutable ubyte[] Sprite1087 = cast(immutable(ubyte)[])import("overworld_sprites/1087.gfx");
+
+//PAULA_SURPRISED
+immutable ubyte[] Sprite1088 = cast(immutable(ubyte)[])import("overworld_sprites/1088.gfx");
+
+//NESS_SURPRISED
+immutable ubyte[] Sprite1089 = cast(immutable(ubyte)[])import("overworld_sprites/1089.gfx");
+
+//ROBOT_BROKEN
+immutable ubyte[] Sprite1090 = cast(immutable(ubyte)[])import("overworld_sprites/1090.gfx");
+
+//POO_CLIMBING_UP
+immutable ubyte[] Sprite1091 = cast(immutable(ubyte)[])import("overworld_sprites/1091.gfx");
+
+//JEFF_CLIMBING_UP
+immutable ubyte[] Sprite1092 = cast(immutable(ubyte)[])import("overworld_sprites/1092.gfx");
+
+//PAULA_CLIMBING_UP
+immutable ubyte[] Sprite1093 = cast(immutable(ubyte)[])import("overworld_sprites/1093.gfx");
+
+//NESS_CLIMBING_UP
+immutable ubyte[] Sprite1094 = cast(immutable(ubyte)[])import("overworld_sprites/1094.gfx");
+
+//NESS_LYING_DOWN
+immutable ubyte[] Sprite1095 = cast(immutable(ubyte)[])import("overworld_sprites/1095.gfx");
+
+//NESS_POSING
+immutable ubyte[] Sprite1096 = cast(immutable(ubyte)[])import("overworld_sprites/1096.gfx");
+
+//CHARRED_HUMAN
+immutable ubyte[] Sprite1097 = cast(immutable(ubyte)[])import("overworld_sprites/1097.gfx");
+
+//BUS_DRIVER
+immutable ubyte[] Sprite1098 = cast(immutable(ubyte)[])import("overworld_sprites/1098.gfx");
+
+//INVISIBLE
+immutable ubyte[] Sprite1099 = cast(immutable(ubyte)[])import("overworld_sprites/1099.gfx");
+
+//SUNBATHING_LADY
+immutable ubyte[] Sprite1100 = cast(immutable(ubyte)[])import("overworld_sprites/1100.gfx");
+
+//PALM_TAN_GUY
+immutable ubyte[] Sprite1101 = cast(immutable(ubyte)[])import("overworld_sprites/1101.gfx");
+
+//KING_CLIMBING_UP
+immutable ubyte[] Sprite1102 = cast(immutable(ubyte)[])import("overworld_sprites/1102.gfx");
+
+//CLUMSY_ROBOT
+immutable ubyte[] Sprite1103 = cast(immutable(ubyte)[])import("overworld_sprites/1103.gfx");
+
+//CRAZED_SIGN
+immutable ubyte[] Sprite1104 = cast(immutable(ubyte)[])import("overworld_sprites/1104.gfx");
+
+//WOOD_BOX
+immutable ubyte[] Sprite1105 = cast(immutable(ubyte)[])import("overworld_sprites/1105.gfx");
+
+//SKY_RUNNER_BOLTS
+immutable ubyte[] Sprite1106 = cast(immutable(ubyte)[])import("overworld_sprites/1106.gfx");
+
+//MONEY_BOX
+immutable ubyte[] Sprite1107 = cast(immutable(ubyte)[])import("overworld_sprites/1107.gfx");
+
+//SPA_SIGN
+immutable ubyte[] Sprite1108 = cast(immutable(ubyte)[])import("overworld_sprites/1108.gfx");
+
+//ZZZS
+immutable ubyte[] Sprite1109 = cast(immutable(ubyte)[])import("overworld_sprites/1109.gfx");
+
+//376
+immutable ubyte[] Sprite1110 = cast(immutable(ubyte)[])import("overworld_sprites/1110.gfx");
+
+//PLATE
+immutable ubyte[] Sprite1111 = cast(immutable(ubyte)[])import("overworld_sprites/1111.gfx");
+
+//TESSIE_LEAF
+immutable ubyte[] Sprite1112 = cast(immutable(ubyte)[])import("overworld_sprites/1112.gfx");
+
+//358
+immutable ubyte[] Sprite1113 = cast(immutable(ubyte)[])import("overworld_sprites/1113.gfx");
+
+//HAWKS_EYE
+immutable ubyte[] Sprite1114 = cast(immutable(ubyte)[])import("overworld_sprites/1114.gfx");
+
+//TENDA_PHONE
+immutable ubyte[] Sprite1115 = cast(immutable(ubyte)[])import("overworld_sprites/1115.gfx");
+
+//WEIRD_JUNK
+immutable ubyte[] Sprite1116 = cast(immutable(ubyte)[])import("overworld_sprites/1116.gfx");
+
+//LIL_TALKING_STONE
+immutable ubyte[] Sprite1117 = cast(immutable(ubyte)[])import("overworld_sprites/1117.gfx");
+
+//MINI_GHOST
+immutable ubyte[] Sprite1118 = cast(immutable(ubyte)[])import("overworld_sprites/1118.gfx");
+
+//JAR_OF_FLY_HONEY
+immutable ubyte[] Sprite1119 = cast(immutable(ubyte)[])import("overworld_sprites/1119.gfx");
+
+//247
+immutable ubyte[] Sprite1120 = cast(immutable(ubyte)[])import("overworld_sprites/1120.gfx");
+
+//GARBAGE
+immutable ubyte[] Sprite1121 = cast(immutable(ubyte)[])import("overworld_sprites/1121.gfx");
+
+//CROSS_GRAVESTONE
+immutable ubyte[] Sprite1122 = cast(immutable(ubyte)[])import("overworld_sprites/1122.gfx");
+
+//UNKNOWN3
+immutable ubyte[] Sprite1123 = cast(immutable(ubyte)[])import("overworld_sprites/1123.gfx");
+
+//SESAME_SEED
+immutable ubyte[] Sprite1124 = cast(immutable(ubyte)[])import("overworld_sprites/1124.gfx");
+
+//EXCLAMATION_MARK
+immutable ubyte[] Sprite1125 = cast(immutable(ubyte)[])import("overworld_sprites/1125.gfx");
+
+//LITTLE_MUSHROOM
+immutable ubyte[] Sprite1126 = cast(immutable(ubyte)[])import("overworld_sprites/1126.gfx");
+
+//CAN
+immutable ubyte[] Sprite1127 = cast(immutable(ubyte)[])import("overworld_sprites/1127.gfx");
+
+//BANANAS
+immutable ubyte[] Sprite1128 = cast(immutable(ubyte)[])import("overworld_sprites/1128.gfx");
+
+//APPLE
+immutable ubyte[] Sprite1129 = cast(immutable(ubyte)[])import("overworld_sprites/1129.gfx");
+
+//SURPRISE_MARK
+immutable ubyte[] Sprite1130 = cast(immutable(ubyte)[])import("overworld_sprites/1130.gfx");
+
+//WEIRD_THINK_MARKS
+immutable ubyte[] Sprite1131 = cast(immutable(ubyte)[])import("overworld_sprites/1131.gfx");
+
+//SIGN
+immutable ubyte[] Sprite1132 = cast(immutable(ubyte)[])import("overworld_sprites/1132.gfx");
+
+//WEIRD_QUESTION_MARK
+immutable ubyte[] Sprite1133 = cast(immutable(ubyte)[])import("overworld_sprites/1133.gfx");
+
+//LIGHTBULB
+immutable ubyte[] Sprite1134 = cast(immutable(ubyte)[])import("overworld_sprites/1134.gfx");
+
+//ZZZ
+immutable ubyte[] Sprite1135 = cast(immutable(ubyte)[])import("overworld_sprites/1135.gfx");
+
+//PU_PU
+immutable ubyte[] Sprite1136 = cast(immutable(ubyte)[])import("overworld_sprites/1136.gfx");
+
+//MUSIC_NOTES
+immutable ubyte[] Sprite1137 = cast(immutable(ubyte)[])import("overworld_sprites/1137.gfx");
+
+//RUNAWAY_5_HEAD
+immutable ubyte[] Sprite1138 = cast(immutable(ubyte)[])import("overworld_sprites/1138.gfx");
+
+//BRICK_ROAD_HEAD
+immutable ubyte[] Sprite1139 = cast(immutable(ubyte)[])import("overworld_sprites/1139.gfx");
+
+//SMALL_SHADOW
+immutable ubyte[] Sprite1140 = cast(immutable(ubyte)[])import("overworld_sprites/1140.gfx");
+
+//LIL_NESS_POSING
+immutable ubyte[] Sprite1141 = cast(immutable(ubyte)[])import("overworld_sprites/1141.gfx");
+
+//LIL_CHARRED_HUMAN
+immutable ubyte[] Sprite1142 = cast(immutable(ubyte)[])import("overworld_sprites/1142.gfx");
+
+//LIL_DIAMONDIZED_HUMAN
+immutable ubyte[] Sprite1143 = cast(immutable(ubyte)[])import("overworld_sprites/1143.gfx");
+
+//LIL_TOUCAN_PHONE
+immutable ubyte[] Sprite1144 = cast(immutable(ubyte)[])import("overworld_sprites/1144.gfx");
+
+//RICH_POKEY_HEAD
+immutable ubyte[] Sprite1145 = cast(immutable(ubyte)[])import("overworld_sprites/1145.gfx");
+
 /// $D55000
 immutable Item[254] ItemData = [
   Item(EBString!25("Null"), 0xFF, 2,  0x00, BattleActions.UseNoEffect, 0x00, 0x00, 0x00, 0x00, null/+TextItem000+/),
