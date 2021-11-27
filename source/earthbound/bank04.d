@@ -1023,10 +1023,116 @@ immutable OverlayScript[] EntityOverlayRipple;
 immutable OverlayScript[] EntityOverlayBigRipple;
 
 /// $C41A9E
-ubyte* Decomp(const(void)*, void*);
+ubyte* Decomp(const(ubyte)*, void*);
 
 /// $C41EFF
-short UnknownC41EFF(short, short, short, short);
+ushort UnknownC41EFF(short arg1, short arg2, short arg3, short arg4) {
+    short a = cast(short)(arg1 - arg3);
+    short y;
+    if (a < 0) {
+        a = cast(short)-cast(int)a;
+    }
+    y = a;
+    a = cast(short)(arg2 - arg4);
+    if (a < 0) {
+        a = cast(short)-cast(int)a;
+    }
+    short x0C = a;
+    a = y;
+    while (true) {
+        if (a < 0x100) {
+            break;
+        }
+        a /= 2;
+        x0C /= 2;
+    }
+    short x0A = a;
+    a = cast(short)(arg2 - arg4);
+    if (a == 0) {
+        a = 8;
+    } else if (a > 0) {
+        a = 2;
+    } else {
+        a = 0;
+    }
+    if (arg1 - arg3 == 0) {
+        a |= 4;
+    } else if (arg1 - arg3 > 0) {
+        a |= 1;
+    }
+    if ((a & 0xC) != 0) {
+        return UnknownC41FC5[a];
+    }
+    short x0E = a;
+    short x08 = cast(short)(a * 2);
+    a = x0C;
+    XBA(a);
+    if ((a & 0xFF) != 0) {
+        a = -1;
+    }
+    a /= x0A;
+    short x = 0;
+    while (x < 16) {
+        if (a < UnknownC41FDF[x]) {
+            break;
+        }
+        x++;
+    }
+    a = x0E;
+    if ((a != 0) && ((a ^ 3) != 0)) {
+        x0E = cast(short)(x * 2);
+        a = cast(short)(32 - x0E);
+    } else {
+        a = cast(short)(x * 2);
+    }
+    a *= 2;
+    XBA(a);
+    return cast(ushort)(a + UnknownC41FC5[x08]);
+}
+
+unittest {
+    assert(UnknownC41EFF(0x7D0,0x488,0x5F8,0x488) == 0xC000);
+    assert(UnknownC41EFF(0x818,0x5D8,0x8F0,0x5D8) == 0x4000);
+    assert(UnknownC41EFF(0x718,0x6E8,0x570,0x6E8) == 0xC000);
+    assert(UnknownC41EFF(0x56F,0x694,0x575,0x6E3) == 0x7C00);
+}
+
+/// $C41FC5
+immutable ushort[13] UnknownC41FC5 = [
+    0x4000,
+    0x8000,
+    0x0000,
+    0xC000,
+    0x8000,
+    0xFFFF,
+    0x0000,
+    0xFFFF,
+    0x4000,
+    0xC000,
+    0xFFFF,
+    0xFFFF,
+    0x0000,
+];
+
+/// $C41FDF
+immutable ushort[16] UnknownC41FDF = [
+    0x000D,
+    0x0026,
+    0x0040,
+    0x005C,
+    0x0079,
+    0x0099,
+    0x00BE,
+    0x00E8,
+    0x011A,
+    0x0159,
+    0x01AB,
+    0x021D,
+    0x02CB,
+    0x03FD,
+    0x06BB,
+    0x143D,
+];
 
 /// $C41FFF
 FixedPoint1616 UnknownC41FFF(short arg1, short arg2) {
@@ -1801,7 +1907,13 @@ void UnknownC436D7(short arg1, short arg2) {
 }
 
 /// $C43739
-void UnknownC43739(short arg1);
+void UnknownC43739(short arg1) {
+    ushort* x10 = &WindowStats[WindowTable[arg1]].tilemapBuffer[(WindowStats[WindowTable[arg1]].width * WindowStats[WindowTable[arg1]].text_y * 2)];
+    for (short i = 0; i != WindowStats[WindowTable[arg1]].width * 2; i++) {
+        UnknownC44AF7((x10++)[0]);
+    }
+    UnknownC436D7(arg1, WindowStats[WindowTable[arg1]].text_y);
+}
 
 /// $C437B8
 void UnknownC437B8(short arg1) {
@@ -1917,7 +2029,10 @@ void UnknownC43CD2(MenuOpt* opt, short x, short y) {
 }
 
 /// $C43D95
-void UnknownC43D95(short);
+void UnknownC43D95(short arg1) {
+    arg1 += (WindowStats[WindowTable[CurrentFocusWindow]].text_x * 8);
+    UnknownC43D75(cast(short)(arg1 + Unknown7E5E73), WindowStats[WindowTable[CurrentFocusWindow]].text_y);
+}
 
 /// $C43DDB
 void UnknownC43DDB(MenuOpt* menuEntry) {
@@ -1948,10 +2063,20 @@ void UnknownC43D75(ushort arg1, short arg2) {
 }
 
 /// $C43E31
-short UnknownC43E31(const(ubyte)*, short);
+short UnknownC43E31(const(ubyte)* arg1, short arg2) {
+    short x12 = 0;
+    while ((arg1[0] != 0) && (arg2 != 0)) {
+        arg2--;
+        x12 += Unknown7E5E6D + (Unknown7EB4CE != 0) ? FontConfigTable[0].data[((arg1++)[0] - EBChar(' ')) & 0x7F] : FontConfigTable[WindowStats[WindowTable[CurrentFocusWindow]].font].data[((arg1++)[0] - EBChar(' ')) & 0x7F];
+    }
+    return x12;
+}
 
 /// $C43EF8
-short UnknownC43EF8(const(ubyte)*, short);
+void UnknownC43EF8(const(ubyte)* arg1, short arg2) {
+    UnknownC43D75(cast(short)((WindowStats[WindowTable[CurrentFocusWindow]].width * 8 - UnknownC43E31(arg1, arg2)) / 2), WindowStats[WindowTable[CurrentFocusWindow]].text_y);
+    Unknown7E5E74 = 0;
+}
 
 /// $C43F53
 void UnknownC43F53() {
@@ -2765,7 +2890,6 @@ short UnknownC490EE() {
     return ((UnknownC41EFF(gameState.leaderX.integer, gameState.leaderY.integer, EntityAbsXTable[x04], EntityAbsYTable[x04]) + 0x1000) / 0x2000) + 2;
 }
 
-immutable ubyte*[8] FlyoverTextPointers;
 
 /// $C491EE
 ushort UnknownC491EE(ushort arg1, ushort arg2, short arg3) {
@@ -3088,6 +3212,9 @@ void CoffeeTeaScene(short id) {
     UnknownC08744();
     FadeIn(1, 1);
 }
+
+/// $C49EA4
+immutable ubyte*[8] FlyoverTextPointers;
 
 /// $C49EC4
 void UnknownC49EC4(short id) {
@@ -4384,7 +4511,42 @@ short DisplayTownMap() {
 }
 
 /// $C4D744
-void UnknownC4D744();
+void UnknownC4D744() {
+    short x10 = 0;
+    short x0E = 0;
+    Unknown7EB4AE = 0x3C;
+    Unknown7EB4B0 = 0x14;
+    Unknown7EB4B2 = 0x0C;
+    LoadTownMapData(0);
+    while (true) {
+        WaitUntilNextFrame();
+        OAMClear();
+        if ((pad_press[0] & PAD_UP) != 0) {
+            x10--;
+        }
+        if ((pad_press[0] & PAD_DOWN) != 0) {
+            x10++;
+        }
+        if (x10 == -1) {
+            x10 = 5;
+        }
+        if (x10 == 6) {
+            x10 = 0;
+        }
+        if (x0E != x10) {
+            LoadTownMapData(x10);
+            x0E = x10;
+        }
+        UnknownC4D43F(x10);
+        if ((pad_press[0] & PAD_A) == 0) {
+            break;
+        }
+        UpdateScreen();
+    }
+    UndrawFlyoverText();
+    ReloadMap();
+    TM_MIRROR = 0x17;
+}
 
 /// $C4D989
 short UnknownC4D989(short arg1) {
@@ -4565,11 +4727,352 @@ void UnknownC4E366() {
     }
 }
 
+/// $C4E369
+void UnknownC4E369() {
+    Unknown7E9F2A = 0;
+    FadeOutWithMosaic(1, 1, 0);
+    UnknownC08726();
+    UnknownC021E6();
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if (EntityScriptTable[i] == -1) {
+            continue;
+        }
+        EntitySpriteMapFlags[i] |= 0x8000;
+    }
+    LoadBackgroundAnimation(BackgroundLayer.Unknown279, BackgroundLayer.None);
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0);
+    SetOAMSize(0x62);
+    BG3_X_POS = 0;
+    BG3_Y_POS = 0;
+    BG2_Y_POS = 0;
+    BG2_X_POS = 0;
+    BG1_Y_POS = 0;
+    BG1_X_POS = 0;
+    UpdateScreen();
+    *cast(ushort*)&Unknown7F0000[0] = 0;
+    CopyToVram(3, 0x800, 0x7C00, &Unknown7F0000[0]);
+    Unknown7EB4CE = 0xFF;
+    memset(&Unknown7F0000[0], 0, 0x1000);
+    Decomp(&UnknownE1D6E1[0], &Unknown7F0000[0x200]);
+    Decomp(&CastNamesGraphics[0], &Unknown7F0000[0x600]);
+    UnknownC4E7AE();
+    CopyToVram(0, 0x8000, 0, &Unknown7F0000[0]);
+    Unknown7EB4CE = 0;
+    UnknownC47F87();
+    memcpy(&palettes[0][0], &UnknownE1D815[0], 0x20);
+    memcpy(&palettes[8][0], &SpriteGroupPalettes[0], 0x100);
+    Decomp(&UnknownE1E4E6[0], &Unknown7F0000[0x7000]);
+    Unknown7E0030 = 0x18;
+    TM_MIRROR = 0x14;
+    Unknown7EB4CF = 0;
+    Unknown7EB4D1 = 0;
+    UnknownC08744();
+}
+
+/// $C4E583
+void UnknownC4E583(ubyte* arg1, short arg2, short arg3) {
+    VWFTile = 0;
+    VWFX = 0;
+    memset(&VWFBuffer[0][0], 0xFF, 0x340);
+    Unknown7E9654 = 0;
+    Unknown7E9652 = 0;
+    UnknownC1FF99(-1, arg2, arg1);
+    for (short i = 0; arg1[0] != 0; arg1++, i++) {
+        const(ubyte)* x0A = &FontConfigTable[0].graphics[FontConfigTable[0].width * (arg1[0] - EBChar(' ') & 0x7F)];
+        short x1E = FontConfigTable[0].data[arg1[0] - EBChar(' ') & 0x7F] + Unknown7E5E6D;
+        while (x1E > 8) {
+            RenderText(x1E, FontConfigTable[0].width, x0A);
+            x1E -= 8;
+            x0A += FontConfigTable[0].width;
+        }
+        RenderText(x1E, FontConfigTable[0].width, x0A);
+    }
+    UnknownC4EEE1(arg2);
+    short x04 = cast(short)(arg3 * 8);
+    for (short i = 0; i < arg2; i++, x04 += 8) {
+        memcpy(&Unknown7F0000[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16], &VWFBuffer[i][0], 16);
+        memcpy(&Unknown7F0000[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16 + 256], &VWFBuffer[i][16], 16);
+    }
+}
+
+/// $C4E796
+immutable ubyte[][3] CharacterGuardianText = [
+    EBString("'s dad"),
+    EBString("'s mom"),
+    EBString("'s Master"),
+];
+
+/// $C4E7AE
+void UnknownC4E7AE() {
+    ubyte[10] x16;
+    for (short i = 0; i < 4; i++) {
+        memset(&x16[0], 0, 0x10);
+        memcpy(&x16[0], &PartyCharacters[i].name[0], 5);
+        UnknownC4E583(&x16[0], 6, UnknownC3FDB5[i]);
+    }
+    memset(&x16[0], 0, 0x10);
+    memcpy(&x16[0], &gameState.petName[0], 6);
+    UnknownC4E583(&x16[0], 6, 0x1C0);
+    memset(&x16[0], 0, 0x10);
+    memcpy(&x16[0], &PartyCharacters[1].name[0], 5);
+    strcat(cast(char*)&x16[0], cast(immutable(char)*)&CharacterGuardianText[0][0]);
+    UnknownC4E583(&x16[0], CastSequenceFormatting[13].unknown2, CastSequenceFormatting[13].unknown0);
+    memset(&x16[0], 0, 0x10);
+    memcpy(&x16[0], &PartyCharacters[1].name[0], 5);
+    strcat(cast(char*)&x16[0], cast(immutable(char)*)&CharacterGuardianText[1][0]);
+    UnknownC4E583(&x16[0], CastSequenceFormatting[12].unknown2, CastSequenceFormatting[12].unknown0);
+    memset(&x16[0], 0, 0x10);
+    memcpy(&x16[0], &PartyCharacters[3].name[0], 5);
+    strcat(cast(char*)&x16[0], cast(immutable(char)*)&CharacterGuardianText[2][0]);
+    UnknownC4E583(&x16[0], CastSequenceFormatting[36].unknown2, CastSequenceFormatting[36].unknown0);
+}
+
 /// $C4ED0E
-void UnknownC4ED0E();
+void UnknownC4ED0E() {
+    UnknownC4E369();
+    OAMClear();
+    FadeIn(1, 1);
+    InitEntityWipe(ActionScript.Unknown801, 0, 0);
+    Unknown7E9641 = 0;
+    while (Unknown7E9641 == 0) {
+        UnknownC1004E();
+        UnknownC2DB3F();
+    }
+    FadeOutWithMosaic(1, 1, 0);
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if (EntityScriptTable[i] == ActionScript.Unknown801) {
+            UnknownC09C35(i);
+        }
+    }
+    EntityAllocationMinSlot = 0x17;
+    EntityAllocationMaxSlot = 0x18;
+    InitEntity(0, 0, ActionScript.Unknown001);
+    UnknownC02D29();
+    UnknownC03A24();
+    UnknownC08726();
+    UndrawFlyoverText();
+    TM_MIRROR = 0x17;
+}
+
+/// $C4EEE1
+void UnknownC4EEE1(short arg1) {
+    ubyte* x = &VWFBuffer[0][0];
+    for (short i = 0; i < arg1 * 16; i++) {
+        ubyte x0F = 0;
+        ubyte x00 = 0;
+        ubyte x0E = x[0];
+        ubyte x01 = x[1];
+        for (short j = 0; j < 8; j++) {
+            x00 *= 2;
+            x0F *= 2;
+            if (((x0E & 0x80) != 0) && ((x01 & 0x80) != 0)) {
+                x00 &= 0xFE;
+                x0F &= 0xFE;
+            } else {
+                x00 |= ((x0E & 0x80) != 0) ? 1 : 0;
+                x0F |= ((x01 & 0x80) != 0) ? 1 : 0;
+            }
+            x0E *= 2;
+            x01 *= 2;
+        }
+        x[1] = x0F;
+        x[0] = x00;
+        x += 2;
+    }
+}
+
+/// $C4F01D
+void UnknownC4F01D() {
+    if (Unknown7EB4F5 == Unknown7EB4F3) {
+        return;
+    }
+    CopyToVram(Unknown7E5156Credits[Unknown7EB4F3].unknown0, Unknown7E5156Credits[Unknown7EB4F3].unknown1, Unknown7E5156Credits[Unknown7EB4F3].unknown7, Unknown7E5156Credits[Unknown7EB4F3].unknown3);
+    Unknown7EB4F3 = (Unknown7EB4F3 + 1) & 0x7F;
+}
+
+/// $C4F07D
+void UnknownC4F07D() {
+    UnknownC08726();
+    UnknownC021E6();
+    Unknown7EB4F7 = 0;
+    Unknown7EB4F5 = 0;
+    Unknown7EB4F3 = 0;
+    SetBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
+    SetBG2VRAMLocation(BGTileMapSize.both, 0x7000, 0x2000);
+    SetBG3VRAMLocation(BGTileMapSize.normal, 0x6C00, 0x6000);
+    SetOAMSize(0x62);
+    BG3_X_POS = 0;
+    BG3_Y_POS = 0;
+    BG2_Y_POS = 0;
+    BG2_X_POS = 0;
+    BG1_Y_POS = 0;
+    BG1_X_POS = 0;
+    UpdateScreen();
+    *(cast(ushort*)&Unknown7F0000[0]) = 0;
+    CopyToVram(3, 0x1000, 0x3800, &Unknown7F0000[0]);
+    *(cast(ushort*)&Unknown7F0000[0]) = 0x240C;
+    CopyToVram(9, 0x1000, 0x7000, &Unknown7F0000[0]);
+    CopyToVram(15, 0x1000, 0x7000, &Unknown7F0000[1]);
+    Decomp(&UnknownE1E94A[0], &Unknown7F0000[0]);
+    memcpy(&palettes[1][0], &UnknownE1E92A[0], 0x20);
+    CopyToVram(0, 0x700, 0x7000, &Unknown7F0000[0]);
+    CopyToVram(0, 0x2000, 0x2000, &Unknown7F0000[0x700]);
+    *(cast(ushort*)&Unknown7F0000[0]) = 0;
+    CopyToVram(3, 0x800, 0x6C00, &Unknown7F0000[0x700]);
+    Decomp(&StaffCreditsFontGraphics[0], &Unknown7F0000[0]);
+    CopyToVram(0, 0xC00, 0x6200, &Unknown7F0000[0]);
+    memcpy(&palettes[0][0], &StaffCreditsFontPalette[0], 0x10);
+    memcpy(&palettes[8][0], &SpriteGroupPalettes[0], 0x100);
+    memset(&palettes[1][0], 0, 0x1E0);
+    Unknown7E0030 = 0x18;
+    TM_MIRROR = 0x17;
+    Unknown7EB4E3 = 0;
+    Unknown7EB4EB = null;
+    Unknown7EB4E5 = 7;
+    ushort* x06 = &bg2Buffer[0];
+    for (short i = 0; i < 0x200; i++) {
+        *(x06++) = 0;
+    }
+    Unknown7EB4E7 = &StaffText[0];
+    UnknownC08744();
+}
+
+/// $C4F264
+short UnknownC4F264(short arg1) {
+    if (getEventFlag(PhotographerConfigTable[arg1].eventFlag) == 0) {
+        return 0;
+    }
+    Unknown7EB4EF = 1;
+    CurPhotoDisplay = arg1;
+    short x02 = Unknown7E4A5A;
+    Unknown7E4A5A = 0;
+    ushort* x = cast(ushort*)&heap[0][0];
+    // the original code went way beyond the heap. the heap appears to be 0x400 bytes, so perhaps they just forgot to factor the size of a short?
+    for (short i = 0; i < 0x200/+0x400+/; i++) {
+        *(x++) = 0;
+    }
+    Unknown7E0030 = 0;
+    memcpy(&palettes[1][0], &UnknownE1E92A[0], 32);
+    LoadMapAtPosition(PhotographerConfigTable[arg1].mapX, PhotographerConfigTable[arg1].mapY);
+    Unknown7E4A5A = x02;
+    BG2_Y_POS = 0;
+    BG2_X_POS = 0;
+    Unknown7EB4EF = 0;
+    short x1A = 0;
+    for (short i = 0; i < 4; i++) {
+        if (PhotographerConfigTable[arg1].objectConfig[i].sprite == 0) {
+            continue;
+        }
+        NewEntityVar0 = x1A++;
+        CreateEntity(PhotographerConfigTable[arg1].objectConfig[i].sprite, ActionScript.Unknown799, -1, PhotographerConfigTable[arg1].objectConfig[i].tileX, PhotographerConfigTable[arg1].objectConfig[i].tileY);
+    }
+    for (short i = 0; i < 6; i++) {
+        if ((gameState.savedPhotoStates[arg1].partyMembers[i] & 0x1F) >= 18) {
+            continue;
+        }
+        if ((gameState.savedPhotoStates[arg1].partyMembers[i] & 0x1F) == 0) {
+            continue;
+        }
+        NewEntityVar0 = x1A++;
+        UnknownC07A31(CreateEntity(UnknownC079EC(gameState.savedPhotoStates[arg1].partyMembers[i]), ActionScript.Unknown800, -1, PhotographerConfigTable[arg1].party_config[i].x, PhotographerConfigTable[arg1].party_config[i].y), gameState.savedPhotoStates[arg1].partyMembers[i]);
+    }
+    return 1;
+}
+
+/// $C4F433
+short CountPhotoFlags() {
+    short x10 = 0;
+    for (short i = 0; i < 32; i++) {
+        if (getEventFlag(PhotographerConfigTable[i].eventFlag) != 0) {
+            x10++;
+        }
+    }
+    return x10;
+}
+
+/// $C4F46F
+void UnknownC4F46F(short arg1) {
+    FixedPoint1616 x0A = UnknownC41FFF(cast(short)(PhotographerConfigTable[arg1].slideDirection * 0x400), 0x100);
+    short x18 = BG1_X_POS;
+    short x16 = BG1_Y_POS;
+    short x02 = 0;
+    short x04 = 0;
+    for (short i = 0; i < (PhotographerConfigTable[arg1].slideDistance << 8) / 0x100; i++) {
+        x02 += x0A.integer;
+        x04 += x0A.fraction;
+        BG1_X_POS = cast(ushort)((x02 / 0x100) + x18);
+        BG1_Y_POS = cast(ushort)((x04 / 0x100) + x16);
+        BG2_X_POS = cast(ushort)(x02 / 0x100);
+        BG2_Y_POS = cast(ushort)(x04 / 0x100);
+        UnknownC4F01D();
+        UnknownC1004E();
+    }
+}
 
 /// $C4F554
-void PlayCredits();
+void PlayCredits() {
+    Unknown7EB4B6 = 1;
+    UnknownC4F07D();
+    OAMClear();
+    FadeIn(1, 2);
+    short x04 = (CountPhotoFlags() != 0) ? (4528 / CountPhotoFlags()) : 4528;
+    short x02 = x04;
+    SetIRQCallback(&UnknownC0F41E);
+    for (short i = 0; i < 32; i++) {
+        if (UnknownC4F264(i) != 0) {
+            UnknownC496E7(64, -1);
+            for (short j = 0x40; j != 0; j--) {
+                UnknownC426ED();
+                UnknownC4F01D();
+                UnknownC1004E();
+            }
+            UnknownC49740();
+            UnknownC4F46F(i);
+            while (x02 > BG3_Y_POS) {
+                UnknownC4F01D();
+                UnknownC1004E();
+            }
+            memset(&Unknown7F0000[32], 0, 0x1E0);
+            UnknownC496E7(64, -1);
+            for (short j = 0; j < 64; j++) {
+                UnknownC426ED();
+                UnknownC4F01D();
+                UnknownC1004E();
+            }
+            memset(&palettes[1][0], 0, 0x1E0);
+            UnknownC0856B(0x18);
+            UnknownC4F01D();
+            UnknownC1004E();
+            x02 += x04;
+        }
+    }
+    while (BG3_Y_POS < 4528) {
+        UnknownC4F01D();
+        UnknownC1004E();
+    }
+    ResetIRQCallback();
+    for (short i = 0; i < 2000; i++) {
+        UnknownC1004E();
+    }
+    FadeOutWithMosaic(1, 2, 0);
+    UnknownC4249A(0xB3, 0);
+    UnknownC08726();
+    OverworldSetupVRAM();
+    UnknownC021E6();
+    EntityAllocationMinSlot = 0x17;
+    EntityAllocationMaxSlot = 0x18;
+    InitEntity(ActionScript.Unknown001, 0, 0);
+    UnknownC02D29();
+    UnknownC03A24();
+    ushort* x06 = &bg2Buffer[0];
+    for (short i = 0; i < 0x200; i++) {
+        *(x06++) = 0;
+    }
+    UndrawFlyoverText();
+    TM_MIRROR = 0x17;
+    SetIRQCallback(&ProcessOverworldTasks);
+    Unknown7EB4B6 = 0;
+}
 
 /// $C4F70D
 immutable MusicDataset[191] MusicDatasetTable = [

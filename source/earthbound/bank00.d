@@ -2840,6 +2840,26 @@ short UnknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
     return PartyCharacterGraphicsTable[characterID][y];
 }
 
+/// $C079EC
+short UnknownC079EC(short arg1) {
+    short x = 0;
+    if ((arg1 & 0x20) != 0) {
+        x = 1;
+    } else if ((arg1 & 0x40) != 0) {
+        return OverworldSprite.HumanDiamondized;
+    }
+    short a = PartyCharacterGraphicsTable[(arg1 & 0x1F) - 1][x];
+    return (a == 1) ? OverworldSprite.NessPosing : a;
+}
+
+/// $C07A31
+void UnknownC07A31(short arg1, short arg2) {
+    if ((arg2 & 0x80) == 0) {
+        return;
+    }
+    Unknown7E2E7A[arg1] |= 0x4000;
+}
+
 /// $C07A56
 void UnknownC07A56(short arg1, short arg2, short arg3) {
     short x04 = arg3;
@@ -3001,8 +3021,8 @@ void start() {
 
     // clearing the heap would happen here
 
-    CurrentHeapAddress = &heap[0];
-    HeapBaseAddress = &heap[0];
+    CurrentHeapAddress = &heap[0][0];
+    HeapBaseAddress = &heap[0][0];
     Unknown7E2402 = 0xFFFF;
     RandA = 0x1234;
     RandB = 0x5678;
@@ -3137,8 +3157,8 @@ void IRQNMICommon() {
         ExecuteIRQCallback();
         Unknown7E0022 = 0;
     }
-    HeapBaseAddress = (&heap[0] == HeapBaseAddress) ? (&heap.ptr[0x200]) : &heap[0];
-    CurrentHeapAddress = (&heap[0] == HeapBaseAddress) ? (&heap.ptr[0x200]) : &heap[0];
+    HeapBaseAddress = (&heap[0] == HeapBaseAddress) ? (&heap[1][0]) : &heap[0][0];
+    CurrentHeapAddress = (&heap[0] == HeapBaseAddress) ? (&heap[1][0]) : &heap[0][0];
     DMATransferFlag = 0;
     Unknown7E00AB = 0;
     Timer++;
@@ -3385,7 +3405,7 @@ void CopyToVramInternal() {
 /// $C086DE
 void* sbrk(ushort i) {
     while (true) {
-        if (i + CurrentHeapAddress - heap.length < HeapBaseAddress) {
+        if (i + CurrentHeapAddress - heap[0].length < HeapBaseAddress) {
             void* result = CurrentHeapAddress;
             CurrentHeapAddress += i;
             return result;
@@ -6209,6 +6229,9 @@ short GasStation() {
     }
     return x11;
 }
+
+/// $C0F41E
+void UnknownC0F41E();
 
 immutable SNESHeader header = {
     makerCode: "01",

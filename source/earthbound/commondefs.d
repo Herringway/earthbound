@@ -1099,7 +1099,9 @@ enum BattleActions {
 
 
 enum BackgroundLayer {
-	FileSelect = 230
+	None = 0,
+	FileSelect = 230,
+	Unknown279 = 279
 }
 
 enum ActionScript {
@@ -1367,6 +1369,9 @@ enum ActionScript {
 	TitleScreen9 = 796,
 	TitleScreen10 = 797,
 	TitleScreen11 = 798,
+	Unknown799 = 799,
+	Unknown800 = 800,
+	Unknown801 = 801,
 	Unknown860 = 860,
 	Unknown861 = 861,
 	Unknown862 = 862,
@@ -1414,9 +1419,9 @@ enum OverworldSprite {
 	PaulaAngel = 9,
 	JeffAngel = 10,
 	PooAngel = 11,
-	HUMAN_DIAMONDIZED = 12,
+	HumanDiamondized = 12,
 	HUMAN_CHARRED = 13,
-	NESS_POSING = 14,
+	NessPosing = 14,
 	JeffInBed = 15,
 	NessLyingDown = 16,
 	NessClimbingUp = 17,
@@ -4723,6 +4728,24 @@ struct EntityOverlaySprite {
 	ushort spriteID;
 	byte unknown2;
 	byte unknown3;
+}
+
+struct CastSequenceFormattingEntry {
+	ushort unknown0;
+	ubyte unknown2;
+}
+
+struct Unknown7E5156CreditsEntry {
+	ubyte unknown0;
+	ushort unknown1;
+	const(ubyte)* unknown3;
+	ushort unknown7;
+}
+
+struct Unknown7EAEFCEntry {
+	short unknown0;
+	short unknown2;
+	short unknown4;
 }
 
 //helper funcs not in the original game

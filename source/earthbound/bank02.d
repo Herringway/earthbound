@@ -5815,8 +5815,86 @@ void UnknownC2F8F9() {
 /// $C2F917
 void UnknownC2F917();
 
+/// $C2FB35
+void UnknownC2FB35(short arg1, short arg2, short arg3, short arg4) {
+	Unknown7EAEF4[arg1 / 16] = Unknown7EB37C;
+	ushort x12 = (&palettes[12][0])[arg1];
+	ushort x02 = x12 & 0x1F;
+	ushort x10 = (x12 >> 5) & 0x1F;
+	ushort x0E = (x12 >> 10) & 0x1F;
+	if (arg2 > x02) {
+		Unknown7EB1FC[arg1].unknown0 = cast(short)(arg2 - x02);
+		Unknown7EAEFC[arg1].unknown0 = 1;
+	} else if (arg2 == x02) {
+		Unknown7EAEFC[arg1].unknown0 = 0;
+	} else {
+		Unknown7EB1FC[arg1].unknown0 = cast(short)(x02 - arg2);
+		Unknown7EAEFC[arg1].unknown0 = -1;
+	}
+	if (arg3 > x10) {
+		Unknown7EB1FC[arg1].unknown2 = cast(short)(arg3 - x10);
+		Unknown7EAEFC[arg1].unknown2 = 0x20;
+	} else if (arg3 == x10) {
+		Unknown7EAEFC[arg1].unknown2 = 0;
+	} else {
+		Unknown7EB1FC[arg1].unknown2 = cast(short)(x10 - arg3);
+		Unknown7EAEFC[arg1].unknown2 = -0x20;
+	}
+	if (arg4 > x0E) {
+		Unknown7EB1FC[arg1].unknown4 = cast(short)(arg4 - x0E);
+		Unknown7EAEFC[arg1].unknown4 = 0x400;
+	} else if (arg4 == x0E) {
+		Unknown7EAEFC[arg1].unknown4 = 0;
+	} else {
+		Unknown7EB1FC[arg1].unknown4 = cast(short)(x0E - arg4);
+		Unknown7EAEFC[arg1].unknown4 = -0x400;
+	}
+	Unknown7EB07C[arg1].unknown4 = 0;
+	Unknown7EB07C[arg1].unknown2 = 0;
+	Unknown7EB07C[arg1].unknown0 = 0;
+}
+
 /// $C2FD99
-void UnknownC2FD99();
+void UnknownC2FD99() {
+	for (short i = 0; i < 4; i++) {
+		if (Unknown7EAEF4[i] == 0) {
+			continue;
+		}
+		Unknown7EAEF4[i]--;
+		Unknown7EAEFCEntry* y = &Unknown7EAEFC[i * 16 + 1];
+		Unknown7EAEFCEntry* x14 = &Unknown7EB07C[i * 16 + 1];
+		Unknown7EAEFCEntry* x12 = &Unknown7EB1FC[i * 16 + 1];
+		ushort* x02 = &palettes[12 + i][1];
+		for (short j = 1; j < 16; j++, x02++) {
+			if (y[0].unknown0 != 0) {
+				x14[0].unknown0 += x12[0].unknown0;
+				while (Unknown7EB37C <= x14[0].unknown0) {
+					x14[0].unknown0 -= Unknown7EB37C;
+					x02[0] += y[0].unknown0;
+				}
+			}
+			if (y[0].unknown2 != 0) {
+				x14[0].unknown2 += x12[0].unknown2;
+				while (Unknown7EB37C <= x14[0].unknown2) {
+					x14[0].unknown2 -= Unknown7EB37C;
+					x02[0] += y[0].unknown2;
+				}
+			}
+			if (y[0].unknown4 != 0) {
+				x14[0].unknown4 += x12[0].unknown4;
+				while (Unknown7EB37C <= x14[0].unknown4) {
+					x14[0].unknown4 -= Unknown7EB37C;
+					x02[0] += y[0].unknown4;
+				}
+			}
+			y++;
+			x14++;
+			x12++;
+			x02++;
+		}
+		UnknownC0856B(0x10);
+	}
+}
 
 /// $C2FEF9
 void UnknownC2FEF9(short type) {

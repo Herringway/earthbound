@@ -258,7 +258,7 @@ __gshared short Unknown7E1BD0; /// $1BD0
 __gshared short Unknown7E1BD2; /// $1BD2
 //UNKNOWN_7E1BD4: ;$1BD4
 
-__gshared ubyte[0x200] heap; /// $2000
+__gshared ubyte[0x200][2] heap; /// $2000
 
 __gshared ushort Unknown7E2400; /// $2400
 __gshared ushort Unknown7E2402; /// $2402
@@ -458,6 +458,8 @@ __gshared MovementSpeeds[14] horizontalMovementSpeeds; /// $4DD6
 __gshared MovementSpeeds[14] verticalMovementSpeeds; /// $4F96
 
 __gshared PlayerPositionBufferEntry[256] PlayerPositionBuffer; /// $5156
+//normally this occupies the same position as the player position buffer, but we're not so constrained
+__gshared Unknown7E5156CreditsEntry[128] Unknown7E5156Credits; /// $5156
 __gshared short MiscDebugFlags; /// $5D56
 __gshared short Unknown7E5D58; /// $5D58
 __gshared short Unknown7E5D5A; /// $5D5A
@@ -804,8 +806,29 @@ __gshared ubyte Unknown7EAEEF; /// $AEEF
 __gshared ushort Unknown7EAEF0; /// $AEF0
 __gshared ushort Unknown7EAEF2; /// $AEF2
 __gshared ushort[4] Unknown7EAEF4; /// $AEF4
-//UNKNOWN_7EAEFC: ;$AEFC
+__gshared Unknown7EAEFCEntry[16 * 4] Unknown7EAEFC; /// $AEFC
+__gshared Unknown7EAEFCEntry[16 * 4] Unknown7EB07C; /// $B07C
+__gshared Unknown7EAEFCEntry[16 * 4] Unknown7EB1FC; /// $B1FC
+__gshared short Unknown7EB37C; /// $B37C
+__gshared short Unknown7EB37E; /// $B37E
+__gshared short Unknown7EB380; /// $B380
+__gshared short Unknown7EB382; /// $B382
+__gshared short Unknown7EB384; /// $B384
+__gshared short Unknown7EB386; /// $B386
+__gshared short Unknown7EB388; /// $B388
 
+__gshared ubyte Unknown7EB3EE; /// $B3EE
+__gshared ubyte Unknown7EB3EF; /// $B3EF
+__gshared ubyte Unknown7EB3F0; /// $B3F0
+__gshared ubyte Unknown7EB3F1; /// $B3F1
+__gshared ubyte Unknown7EB3F2; /// $B3F2
+__gshared ubyte Unknown7EB3F3; /// $B3F3
+__gshared ubyte Unknown7EB3F4; /// $B3F4
+__gshared ubyte Unknown7EB3F5; /// $B3F5
+__gshared ubyte Unknown7EB3F6; /// $B3F6
+__gshared ubyte Unknown7EB3F7; /// $B3F7
+__gshared short Unknown7EB3F8; /// $B3F8
+__gshared short Unknown7EB3FA; /// $B3FA
 __gshared ubyte* path_matrix_buffer; /// $B3FC - Matrix buffer
 __gshared ushort path_matrix_rows; /// $B400 - Matrix rows
 __gshared ushort path_matrix_cols; /// $B402 - Matrix columns
@@ -837,10 +860,19 @@ __gshared short Unknown7EB4B2; /// $B4B2
 __gshared ubyte Unknown7EB4B6; /// $B4B6
 
 __gshared ubyte Unknown7EB4CE; /// $B4CE
+__gshared short Unknown7EB4CF; /// $B4CF
+__gshared short Unknown7EB4D1; /// $B4D1
+__gshared short Unknown7EB4D3; /// $B4D3
 
-__gshared short Unknown7EB4EF; /// $B4EF
-
+__gshared short Unknown7EB4E3; //$B4E3
+__gshared short Unknown7EB4E5; //$B4E5
+__gshared const(ubyte)* Unknown7EB4E7; //$B4E7
+__gshared const(ubyte)* Unknown7EB4EB; //$B4EB
+__gshared short Unknown7EB4EF; //$B4EF
 __gshared short CurPhotoDisplay; //$B4F1
+__gshared short Unknown7EB4F3; //$B4F3
+__gshared short Unknown7EB4F5; //$B4F5
+__gshared short Unknown7EB4F7; //$B4F7
 
 __gshared ushort[11] Unknown7EB525; /// $B525
 __gshared ushort CurrentMusicTrack; /// $B53B

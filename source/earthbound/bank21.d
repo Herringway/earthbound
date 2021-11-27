@@ -9,6 +9,58 @@ immutable ubyte* CoffeeSequenceText;
 /// $E10652
 immutable ubyte* TeaSequenceText;
 
+/// $E12EFA
+immutable CastSequenceFormattingEntry[48] CastSequenceFormatting = [
+	CastSequenceFormattingEntry(0x0030, 0x00),
+	CastSequenceFormattingEntry(0x0030, 0x08),
+	CastSequenceFormattingEntry(0x0038, 0x08),
+	CastSequenceFormattingEntry(0x0040, 0x08),
+	CastSequenceFormattingEntry(0x0048, 0x08),
+	CastSequenceFormattingEntry(0x0050, 0x06),
+	CastSequenceFormattingEntry(0x0056, 0x08),
+	CastSequenceFormattingEntry(0x005E, 0x06),
+	CastSequenceFormattingEntry(0x0064, 0x06),
+	CastSequenceFormattingEntry(0x006A, 0x06),
+	CastSequenceFormattingEntry(0x0070, 0x08),
+	CastSequenceFormattingEntry(0x0078, 0x0A),
+	CastSequenceFormattingEntry(0x0082, 0x0A),
+	CastSequenceFormattingEntry(0x008C, 0x0A),
+	CastSequenceFormattingEntry(0x0096, 0x06),
+	CastSequenceFormattingEntry(0x009C, 0x04),
+	CastSequenceFormattingEntry(0x00A0, 0x06),
+	CastSequenceFormattingEntry(0x00A6, 0x08),
+	CastSequenceFormattingEntry(0x00AE, 0x08),
+	CastSequenceFormattingEntry(0x00B6, 0x0A),
+	CastSequenceFormattingEntry(0x00C0, 0x06),
+	CastSequenceFormattingEntry(0x00C6, 0x08),
+	CastSequenceFormattingEntry(0x00CE, 0x04),
+	CastSequenceFormattingEntry(0x00D2, 0x06),
+	CastSequenceFormattingEntry(0x00D8, 0x04),
+	CastSequenceFormattingEntry(0x00DC, 0x0C),
+	CastSequenceFormattingEntry(0x00E8, 0x06),
+	CastSequenceFormattingEntry(0x00EE, 0x08),
+	CastSequenceFormattingEntry(0x00F6, 0x06),
+	CastSequenceFormattingEntry(0x00FC, 0x08),
+	CastSequenceFormattingEntry(0x0104, 0x0A),
+	CastSequenceFormattingEntry(0x010E, 0x0A),
+	CastSequenceFormattingEntry(0x0118, 0x08),
+	CastSequenceFormattingEntry(0x0120, 0x0C),
+	CastSequenceFormattingEntry(0x012C, 0x04),
+	CastSequenceFormattingEntry(0x0130, 0x08),
+	CastSequenceFormattingEntry(0x0138, 0x0C),
+	CastSequenceFormattingEntry(0x0144, 0x08),
+	CastSequenceFormattingEntry(0x014C, 0x08),
+	CastSequenceFormattingEntry(0x0154, 0x0A),
+	CastSequenceFormattingEntry(0x015E, 0x06),
+	CastSequenceFormattingEntry(0x0164, 0x02),
+	CastSequenceFormattingEntry(0x0166, 0x04),
+	CastSequenceFormattingEntry(0x016A, 0x02),
+	CastSequenceFormattingEntry(0x016C, 0x04),
+	CastSequenceFormattingEntry(0x0010, 0x04),
+	CastSequenceFormattingEntry(0x0014, 0x04),
+	CastSequenceFormattingEntry(0x0020, 0x0C),
+];
+
 /// $E12F8A
 immutable CreditsPhotograph[32] PhotographerConfigTable = [
 	CreditsPhotograph(EventFlag.UNKNOWN_2BA, 332, 43, 0x0000, 0x00, 0x00, 329, 56, [ Coordinates(331, 45), Coordinates(329, 44), Coordinates(333, 44), Coordinates(335, 43), Coordinates(327, 44), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
@@ -47,6 +99,75 @@ immutable CreditsPhotograph[32] PhotographerConfigTable = [
 
 /// $E1374A
 immutable ubyte[] CompressedPaletteUnknown = cast(immutable(ubyte)[])import("unknown_palette.pal.lzhal");
+
+/// $E1413F
+immutable ubyte[] StaffText;
+
+/// $E14EC1
+immutable ubyte[] APEArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
+
+/// $E14F2A
+immutable ubyte[] APEGraphics = cast(immutable(ubyte)[])import("intro/logos/ape.gfx.lzhal");
+
+/// $E15130
+immutable ubyte[] APEPalette = cast(immutable(ubyte)[])import("intro/logos/ape.pal.lzhal");
+
+/// $E15174
+immutable ubyte[] HALKENArrangement = cast(immutable(ubyte)[])import("intro/logos/halken.arr.lzhal");
+
+/// $E151E8
+immutable ubyte[] HALKENGraphics = cast(immutable(ubyte)[])import("intro/logos/halken.gfx.lzhal");
+
+/// $E153B8
+immutable ubyte[] HALKENPalette = cast(immutable(ubyte)[])import("intro/logos/halken.pal.lzhal");
+
+/// $E15455
+immutable ubyte[] NintendoArrangement = cast(immutable(ubyte)[])import("intro/logos/nintendo.arr.lzhal");
+
+/// $E1549E
+immutable ubyte[] NintendoGraphics = cast(immutable(ubyte)[])import("intro/logos/nintendo.gfx.lzhal");
+
+/// $E1558F
+immutable ubyte[] NintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
+
+/// $E155D3
+immutable ubyte[] GasStationArrangement = cast(immutable(ubyte)[])import("intro/gas_station.arr.lzhal");
+
+/// $E15B33
+immutable ubyte[] GasStationGraphics = cast(immutable(ubyte)[])import("intro/gas_station.gfx.lzhal");
+
+/// $E1A9B7
+immutable ubyte[] GasStationPalette = cast(immutable(ubyte)[])import("intro/gas_station.pal.lzhal");
+
+/// $E1AA5D
+immutable ubyte[] GasStationPalette2 = cast(immutable(ubyte)[])import("intro/gas_station2.pal.lzhal");
+
+/// $E1AADF
+immutable ubyte[] ProducedItoiArrangement = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.arr.lzhal");
+
+/// $E1AB4B
+immutable ubyte[] ProducedItoiGraphics = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.gfx.lzhal");
+
+/// $E1AD01
+immutable ubyte[] NintendoPresentationArrangement = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.arr.lzhal");
+
+/// $E1AD4E
+immutable ubyte[] NintendoPresentationGraphics = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.gfx.lzhal");
+
+/// $E1AE6F
+immutable ubyte[] NintendoItoiPalette = cast(immutable(ubyte)[])import("intro/attract/nintendo_itoi.pal.lzhal");
+
+/// $E1AE7C
+immutable ubyte[] UnknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
+
+/// $E1AF7D
+immutable ubyte[] TitleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
+
+/// $E1B211
+immutable ubyte[] TitleScreenGraphics = cast(immutable(ubyte)[])import("intro/title_screen.gfx.lzhal");
+
+/// $E1C6E5
+immutable ubyte[] UnknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
 
 /// $E1CE08
 immutable SpriteMap[][9] UnknownE1CF9D = [
@@ -151,72 +272,6 @@ immutable SpriteMap[][9] UnknownE1CF9D = [
 	]
 ];
 
-/// $E14EC1
-immutable ubyte[] APEArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
-
-/// $E14F2A
-immutable ubyte[] APEGraphics = cast(immutable(ubyte)[])import("intro/logos/ape.gfx.lzhal");
-
-/// $E15130
-immutable ubyte[] APEPalette = cast(immutable(ubyte)[])import("intro/logos/ape.pal.lzhal");
-
-/// $E15174
-immutable ubyte[] HALKENArrangement = cast(immutable(ubyte)[])import("intro/logos/halken.arr.lzhal");
-
-/// $E151E8
-immutable ubyte[] HALKENGraphics = cast(immutable(ubyte)[])import("intro/logos/halken.gfx.lzhal");
-
-/// $E153B8
-immutable ubyte[] HALKENPalette = cast(immutable(ubyte)[])import("intro/logos/halken.pal.lzhal");
-
-/// $E15455
-immutable ubyte[] NintendoArrangement = cast(immutable(ubyte)[])import("intro/logos/nintendo.arr.lzhal");
-
-/// $E1549E
-immutable ubyte[] NintendoGraphics = cast(immutable(ubyte)[])import("intro/logos/nintendo.gfx.lzhal");
-
-/// $E1558F
-immutable ubyte[] NintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
-
-/// $E155D3
-immutable ubyte[] GasStationArrangement = cast(immutable(ubyte)[])import("intro/gas_station.arr.lzhal");
-
-/// $E15B33
-immutable ubyte[] GasStationGraphics = cast(immutable(ubyte)[])import("intro/gas_station.gfx.lzhal");
-
-/// $E1A9B7
-immutable ubyte[] GasStationPalette = cast(immutable(ubyte)[])import("intro/gas_station.pal.lzhal");
-
-/// $E1AA5D
-immutable ubyte[] GasStationPalette2 = cast(immutable(ubyte)[])import("intro/gas_station2.pal.lzhal");
-
-/// $E1AADF
-immutable ubyte[] ProducedItoiArrangement = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.arr.lzhal");
-
-/// $E1AB4B
-immutable ubyte[] ProducedItoiGraphics = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.gfx.lzhal");
-
-/// $E1AD01
-immutable ubyte[] NintendoPresentationArrangement = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.arr.lzhal");
-
-/// $E1AD4E
-immutable ubyte[] NintendoPresentationGraphics = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.gfx.lzhal");
-
-/// $E1AE6F
-immutable ubyte[] NintendoItoiPalette = cast(immutable(ubyte)[])import("intro/attract/nintendo_itoi.pal.lzhal");
-
-/// $E1AE7C
-immutable ubyte[] UnknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
-
-/// $E1AF7D
-immutable ubyte[] TitleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
-
-/// $E1B211
-immutable ubyte[] TitleScreenGraphics = cast(immutable(ubyte)[])import("intro/title_screen.gfx.lzhal");
-
-/// $E1C6E5
-immutable ubyte[] UnknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
-
 /// $E1CFAF
 immutable ubyte[] UnknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
 
@@ -225,6 +280,33 @@ immutable ubyte[] UnknownE1D4F4 = cast(immutable(ubyte)[])import("E1D4F4.pal.lzh
 
 /// $E1D5E8
 immutable ubyte[] UnknownE1D5E8 = cast(immutable(ubyte)[])import("E1D5E8.arr.lzhal");
+
+/// $E1D6E1
+immutable ubyte[] UnknownE1D6E1 = cast(immutable(ubyte)[])import("E1D6E1.gfx.lzhal");
+
+/// $E1D815
+immutable ubyte[] UnknownE1D815 = [0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10];
+
+/// $E1D835
+immutable ubyte[] CastNamesGraphics = cast(immutable(ubyte)[])import("ending/cast_names.gfx.lzhal");
+
+/// $E1E4E6
+immutable ubyte[] UnknownE1E4E6 = cast(immutable(ubyte)[])import("ending/cast_names.pal.lzhal");
+
+/// $E1E528
+immutable ubyte[] StaffCreditsFontGraphics = cast(immutable(ubyte)[])import("ending/credits_font.gfx.lzhal");
+
+/// $E1E914
+immutable ubyte[] StaffCreditsFontPalette = cast(immutable(ubyte)[])import("ending/credits_font.pal");
+
+/// $E1E924
+immutable ubyte[] UnknownE1E924 = [ 0x04, 0x00, 0x7F, 0x1F, 0x58, 0x32 ];
+
+/// $E1E92A
+immutable ubyte[] UnknownE1E92A = [ 0x1F, 0x3D, 0xFF, 0x7F, 0xE0, 0x07, 0x86, 0x10, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xDF, 0x57, 0xE0, 0x07, 0x55, 0x25, 0x00, 0x00 ];
+
+/// $E1E94A
+immutable ubyte[] UnknownE1E94A = [ 0xE8, 0x62, 0x0C, 0x24, 0x00, 0x0D, 0x57, 0x24, 0x0E, 0x02, 0x24, 0x0D, 0x64, 0x45, 0x0C, 0x24, 0x00, 0x0F, 0x57, 0x24, 0x00, 0x02, 0x24, 0x0F, 0xE4, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF2, 0x7F, 0x00, 0xFA, 0x45, 0x0C, 0x24, 0x01, 0x0D, 0xA4, 0x57, 0x0E, 0xE4, 0x01, 0x0D, 0xE4, 0xE8, 0x62, 0x0C, 0x24, 0x3F, 0x00, 0x03, 0x3C, 0x3C, 0x7E, 0x42, 0x43, 0xFF, 0x99, 0x01, 0x7E, 0x42, 0xD1, 0x07, 0x21, 0x0F, 0x1C, 0x1C, 0x3C, 0x34, 0x7C, 0x44, 0x7C, 0x64, 0x3C, 0x24, 0xFF, 0xE7, 0xFF, 0x81, 0xFF, 0xFF, 0x2F, 0x00, 0x84, 0x07, 0x20, 0x06, 0xB9, 0x7F, 0x79, 0x7E, 0x42, 0xFE, 0x9E, 0x98, 0x07, 0x4C, 0x04, 0x99, 0x7E, 0x72, 0x7F, 0x79, 0x95, 0x07, 0x2A, 0x0F, 0x06, 0x06, 0x0E, 0x0A, 0x1E, 0x12, 0x3E, 0x22, 0x7F, 0x53, 0xFF, 0x81, 0xFF, 0xF3, 0x0E, 0x0E, 0x2F, 0x00, 0x22, 0xFF, 0x04, 0x81, 0xFE, 0x9E, 0xFE, 0x82, 0x97, 0x07, 0x88, 0x07, 0x3E, 0x3E, 0x7E, 0x42, 0xFC, 0x9C, 0xFE, 0x82, 0x97, 0x07, 0x28, 0x83, 0x07, 0xC0, 0x03, 0xFF, 0x99, 0xFE, 0xF2, 0x42, 0x3C, 0x24, 0x91, 0x07, 0x2E, 0x86, 0x07, 0x80, 0x00, 0x42, 0x97, 0x07, 0x28, 0x87, 0x07, 0x20, 0x07, 0x7F, 0x41, 0x3F, 0x39, 0x7E, 0x42, 0x7C, 0x7C, 0x31, 0x00, 0x83, 0x07, 0xA0, 0x07, 0x1C, 0x14, 0x38, 0x28, 0x70, 0x50, 0x60, 0x60, 0x31, 0x00, 0x3F, 0xFF, 0x2B, 0x00, 0x03, 0x03, 0x00, 0x02, 0x01, 0x2B, 0xFF, 0x03, 0xFC, 0xFC, 0xFD, 0xFD, 0xCC, 0x08, 0xAB, 0xCE, 0x08, 0xA1, 0x83, 0x08, 0xCD, 0x47, 0x02, 0x01, 0x2F, 0xFD, 0xFF ];
 
 /// $E1EA50
 immutable ubyte[] TownMapLabelGfx = cast(immutable(ubyte)[])import("town_maps/label.gfx.lzhal");

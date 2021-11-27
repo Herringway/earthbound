@@ -9,6 +9,7 @@ import earthbound.bank04;
 import earthbound.bank05;
 import earthbound.bank15;
 import earthbound.bank18;
+import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
@@ -243,7 +244,16 @@ immutable ushort[3] BlinkingTriangleTiles = [ 0x3C14, 0x3C15, 0xBC11 ];
 immutable ubyte[4] UnknownC3E44C = EBString!4("そのた"); //tx6 in EB
 
 /// $C3E450
-void UnknownC3E450();
+void UnknownC3E450() {
+	const(RGB)* x06;
+	if ((Unknown7E0002 & 4) != 0) {
+		x06 = &TextWindowFlavourPalettes[TextWindowProperties[gameState.textFlavour].offset / 0x40][4];
+	} else {
+		x06 = &TextWindowFlavourPalettes[TextWindowProperties[gameState.textFlavour].offset / 0x40][20];
+	}
+	memcpy(&palettes[1][4], x06, 8);
+	Unknown7E0030 = 0x18;
+}
 
 /// $C3E4CA - Clear the instant text print flag
 void ClearInstaprint() {
@@ -255,11 +265,79 @@ void SetInstaprint() {
 	Unknown7E9622 = 1;
 }
 
+/// $C3E4E0
+void CallC12DD5WithZero9622() {
+	ClearInstaprint();
+	Win_Tick();
+	SetInstaprint();
+}
+
 /// $C3E4EF
-short UnknownC3E4EF();
+short UnknownC3E4EF() {
+	for (short i = 0; i != 8; i++) {
+		if (WindowStats[i].window_id == -1) {
+			return i;
+		}
+	}
+	return -1;
+}
 
 /// $C3E521
-void CloseWindow(short);
+void CloseWindow(short arg1) {
+	if (arg1 == -1) {
+		return;
+	}
+	if (WindowTable[arg1] == -1) {
+		return;
+	}
+	if (CurrentFocusWindow == arg1) {
+		CurrentFocusWindow = -1;
+	}
+	UnknownC3E7E3(arg1);
+	short x14 = WindowStats[WindowTable[arg1]].next;
+	short x12 = WindowStats[WindowTable[arg1]].prev;
+	if (x14 == -1) {
+		window_tail = x12;
+	} else {
+		WindowStats[x14].prev = x12;
+	}
+	if (x12 == -1) {
+		window_head = x14;
+	} else {
+		WindowStats[x12].next = x14;
+	}
+	WindowStats[WindowTable[arg1]].window_id = -1;
+	WindowTable[arg1] = -1;
+	ushort* x0E = &bg2Buffer[WindowStats[WindowTable[arg1]].y * 32 + WindowStats[WindowTable[arg1]].x];
+	ushort* x14_2 = WindowStats[WindowTable[arg1]].tilemapBuffer;
+	for (short i = 0; i < WindowStats[WindowTable[arg1]].width * WindowStats[WindowTable[arg1]].height; i++) {
+		if ((x14_2[0] == 0x40) || (x14_2[0] == 0)) {
+			UnknownC44AF7(x14_2[0]);
+		}
+		x14_2[0] = 0x40;
+		x14_2++;
+	}
+	for (short i = 0; i != WindowStats[WindowTable[arg1]].height + 2; i++) {
+		for (short j = 0; j != WindowStats[WindowTable[arg1]].width + 2; j++) {
+			*(x0E++) = 0;
+		}
+		x0E += 32 - WindowStats[WindowTable[arg1]].width - 2;
+	}
+	UnknownC45E96();
+	if (WindowStats[WindowTable[arg1]].title_id != 0) {
+		Unknown7E894E[WindowStats[WindowTable[arg1]].title_id - 1] = -1;
+	}
+	WindowStats[WindowTable[arg1]].title_id = 0;
+	Unknown7E9623 = 1;
+	if (Unknown7E5E7A == arg1) {
+		Unknown7E5E7A = -1;
+	}
+	if (Unknown7E5E70 == 0) {
+		CallC12DD5WithZero9622();
+		ClearInstaprint();
+	}
+	Unknown7E5E75 = 0;
+}
 
 /// $C3E6F8
 void UnknownC3E6F8() {
@@ -443,6 +521,7 @@ immutable FontConfig[5] FontConfigTable = [
 	FontConfig(null, null, 32, 16), //large font
 ];
 
+/// $C3F2B5
 immutable ushort[8][17] PartyCharacterGraphicsTable = [
 	[
 		OverworldSprite.Ness,
@@ -874,5 +953,16 @@ immutable ushort[4] UnusedForSaleSignSpriteTable = [
 	OverworldSprite.OldGuyWithCane,
 ];
 
+/// $C3FDB5
+immutable ushort[4] UnknownC3FDB5 = [
+	0x180,
+	0x190,
+	0x1A0,
+	0x1B0,
+];
+
 /// $C3FDC5
-void UnknownC3FDC5();
+short UnknownC3FDC5() {
+	//nope. not doing this one, sorry
+	return 0;
+}

@@ -2944,3 +2944,9 @@ short UnknownC1FF6B() {
     Unknown7EB49D = 0;
     return 0;
 }
+
+/// $C1FF99
+void UnknownC1FF99(short arg1, short arg2, ubyte* arg3) {
+    VWFX = cast(ushort)((arg2 *8 - UnknownC43E31(arg3, arg1)) / 2);
+    VWFTile = VWFX / 8;
+}
