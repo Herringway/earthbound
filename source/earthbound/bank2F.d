@@ -13259,7 +13259,7 @@ immutable ubyte* TextAction243;
 immutable ubyte* TextBattleBlackSmokePouredOut;
 immutable ubyte* TextBattleRunawayFiveDefeatClumsyRobot;
 immutable ubyte* TextAction244;
-immutable ubyte* TEXT_BATTLE_POO_USED_NEW_POWER_STARSTORM;
+immutable ubyte* TextBattlePooUsedNewPowerStarstorm;
 immutable ubyte* TextAction260;
 immutable ubyte* TextAction261;
 immutable ubyte* TextAction262;
@@ -13629,6 +13629,9 @@ immutable ubyte* TEXT_DOOR_006;
 immutable ubyte* TEXT_BLOCK_EFA2D5;
 immutable ubyte* TEXT_NPC_0147_ALT;
 immutable ubyte* TEXT_BLOCK_EFA2FA;
+
+/// $EFA3B6
+immutable ubyte* StatusWindowText;
 
 
 __gshared SpriteGrouping[463] SpriteGroupingPointers = [

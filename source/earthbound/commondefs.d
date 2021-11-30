@@ -30,6 +30,8 @@ enum JPN = false;
 enum USA = true;
 enum USAPROTOTYPE = false;
 
+enum MAX_LEVEL = 99;
+
 
 enum EVENT_FLAG_COUNT = 1024;
 enum EVENT_FLAG_UNSET = 0x8000;
@@ -2953,6 +2955,7 @@ enum EquipmentSlot {
 	Body = 1,
 	Arms = 2,
 	Other = 3,
+	All = 3,
 }
 
 enum LetterboxStyle {
@@ -4310,42 +4313,42 @@ struct AnimatedBackground {
 }
 
 struct LoadedBackgroundData {
-	ubyte TargetLayer;
-	ubyte Bitdepth;
-	ubyte Unknown2;
-	ubyte PaletteShiftingStyle;
-	ubyte PaletteCycle1First;
-	ubyte PaletteCycle1Last;
-	ubyte PaletteCycle2First;
-	ubyte PaletteCycle2Last;
-	ubyte PaletteCycle1Step;
-	ubyte PaletteCycle2Step;
-	ubyte PaletteChangeSpeed;
-	ubyte PaletteChangeDurationLeft;
-	ushort[16] Palette;
-	ushort[16] Palette2;
-	ushort[16]* PalettePointer;
-	ubyte[4] ScrollingMovements;
-	ubyte CurrentScrollingMovement;
-	short ScrollingDurationLeft;
-	short HorizontalPosition;
-	short VerticalPosition;
-	short HorizontalVelocity;
-	short VerticalVelocity;
-	short HorizontalAcceleration;
-	short VerticalAcceleration;
-	ubyte[4] DistortionStyles;
-	ubyte Unknown101;
-	short DistortionDurationLeft;
-	ubyte DistortionType;
-	short DistortionRippleFrequency;
-	short DistortionRippleAmplitude;
-	ubyte DistortionSpeed;
-	short DistortionCompressionRate;
-	short DistortionRippleFrequencyAcceleration;
-	short DistortionRippleAmplitudeAcceleration;
-	ubyte DistortionSpeedAcceleration;
-	short DistortionCompressionAcceleration;
+	ubyte TargetLayer; //0
+	ubyte Bitdepth; //1
+	ubyte Unknown2; //2
+	ubyte PaletteShiftingStyle; //3
+	ubyte PaletteCycle1First; //4
+	ubyte PaletteCycle1Last; //5
+	ubyte PaletteCycle2First; //6
+	ubyte PaletteCycle2Last; //7
+	ubyte PaletteCycle1Step; //8
+	ubyte PaletteCycle2Step; //9
+	ubyte PaletteChangeSpeed; //10
+	ubyte PaletteChangeDurationLeft; //11
+	ushort[16] Palette; //12
+	ushort[16] Palette2; //44
+	ushort[16]* PalettePointer; //76
+	ubyte[4] ScrollingMovements; //78
+	ubyte CurrentScrollingMovement; //82
+	short ScrollingDurationLeft; //83
+	short HorizontalPosition; //85
+	short VerticalPosition; //87
+	short HorizontalVelocity; //89
+	short VerticalVelocity; //91
+	short HorizontalAcceleration; //93
+	short VerticalAcceleration; //95
+	ubyte[4] DistortionStyles; //97
+	ubyte Unknown101; //101
+	short DistortionDurationLeft; //102
+	ubyte DistortionType; //104
+	short DistortionRippleFrequency; //105
+	short DistortionRippleAmplitude; //107
+	ubyte DistortionSpeed; //109
+	short DistortionCompressionRate; //110
+	short DistortionRippleFrequencyAcceleration; //112
+	short DistortionRippleAmplitudeAcceleration; //114
+	ubyte DistortionSpeedAcceleration; //116
+	short DistortionCompressionAcceleration; //117
 }
 
 struct HDMAWordTransfer {
@@ -4748,6 +4751,12 @@ struct Unknown7EAEFCEntry {
 	short unknown4;
 }
 
+struct TelephoneContact {
+	ubyte[25] title;
+	ushort eventFlag;
+	const(ubyte)* text;
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {
@@ -4785,6 +4794,8 @@ ubyte EBChar(dchar c) {
 		case '0': .. case '9':
 		case 'A': .. case 'Z':
 		case 'a': .. case 'z': return cast(ubyte)(c + 0x30);
+		case ':': return 0x6A;
+		case '?': return 0x6F;
 		case '@': return 0x70;
 		case '_': return 0x90;
 		case '|': return 0xAC;

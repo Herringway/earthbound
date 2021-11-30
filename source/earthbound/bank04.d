@@ -1898,6 +1898,20 @@ void UnknownC43568() {
     UnknownC2DB3F();
 }
 
+/// $C43573
+void UnknownC43573(short arg1) {
+    if (BattleMenuCurrentCharacterID != -1) {
+        UnknownC3E6F8();
+    }
+    BattleMenuCurrentCharacterID = arg1;
+    WaitUntilNextFrame();
+    ushort* x = &Unknown7E847E[16 - ((gameState.playerControlledPartyMemberCount * 7) / 2) + (arg1 * 7)];
+    for (short i = 7; i != 0; i--) {
+        *(x++) = 0;
+    }
+    Unknown7E9623 = 1;
+}
+
 /// $C436D7
 void UnknownC436D7(short arg1, short arg2) {
     ushort* x0E  = &WindowStats[WindowTable[arg1]].tilemapBuffer[WindowStats[WindowTable[arg1]].width * arg2 * 2];
@@ -2116,10 +2130,19 @@ void UnknownC43F77(short arg1) {
     }
     if (Unknown7E9622 == 0) {
         for (short i = cast(short)(SelectedTextSpeed + 1); i != 0; i--) {
-            Win_Tick();
+            WindowTick();
         }
     }
 }
+
+/// $C440B5
+void UnknownC440B5(ubyte*, short);
+
+/// $C441B7
+void UnknownC441B7(short);
+
+/// $C444FB
+void UnknownC444FB(ubyte*, ubyte*);
 
 /// $C445E1
 void UnknownC445E1(DisplayTextState*, const(ubyte)*);
@@ -2133,6 +2156,9 @@ void UnknownC447FB(short length, const(ubyte)* text) {
     }
     PrintStringF(length, text);
 }
+
+/// $C4487C
+void UnknownC4487C(short arg1, const(ubyte)*);
 
 /// $C44963
 void UnknownC44963(short arg1) {
@@ -2299,7 +2325,7 @@ short UnknownC44FF3(short arg1, short fontID, ubyte* arg3) {
 }
 
 /// $C4507A
-void UnknownC4507A(uint* arg1) {
+void UnknownC4507A(uint arg1) {
     ubyte[8] x12;
     if (CurrentFocusWindow == -1) {
         return;
@@ -2471,8 +2497,8 @@ short FindInventorySpace2(short arg1) {
 }
 
 /// $C4577D
-ubyte ChangeEquippedWeapon(ushort character, ubyte slot) {
-    PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon] = slot;
+ubyte ChangeEquippedWeapon(ushort character, short slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Weapon] = cast(ubyte)slot;
     RecalcCharacterPostmathOffense(character);
     RecalcCharacterPostmathGuts(character);
     RecalcCharacterMissRate(character);
@@ -2480,8 +2506,8 @@ ubyte ChangeEquippedWeapon(ushort character, ubyte slot) {
 }
 
 /// $C457CA
-ubyte ChangeEquippedBody(ushort character, ubyte slot) {
-    PartyCharacters[character - 1].equipment[EquipmentSlot.Body] = slot;
+ubyte ChangeEquippedBody(ushort character, short slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Body] = cast(ubyte)slot;
     RecalcCharacterPostmathDefense(character);
     RecalcCharacterPostmathSpeed(character);
     CalcResistances(character);
@@ -2489,8 +2515,8 @@ ubyte ChangeEquippedBody(ushort character, ubyte slot) {
 }
 
 /// $C45815
-ubyte ChangeEquippedArms(ushort character, ubyte slot) {
-    PartyCharacters[character - 1].equipment[EquipmentSlot.Arms] = slot;
+ubyte ChangeEquippedArms(ushort character, short slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Arms] = cast(ubyte)slot;
     RecalcCharacterPostmathDefense(character);
     RecalcCharacterPostmathLuck(character);
     CalcResistances(character);
@@ -2498,8 +2524,8 @@ ubyte ChangeEquippedArms(ushort character, ubyte slot) {
 }
 
 /// $C45860
-ubyte ChangeEquippedOther(ushort character, ubyte slot) {
-    PartyCharacters[character - 1].equipment[EquipmentSlot.Other] = slot;
+ubyte ChangeEquippedOther(ushort character, short slot) {
+    PartyCharacters[character - 1].equipment[EquipmentSlot.Other] = cast(ubyte)slot;
     RecalcCharacterPostmathDefense(character);
     RecalcCharacterPostmathLuck(character);
     CalcResistances(character);
@@ -2513,6 +2539,27 @@ immutable ubyte[4] ItemUsableFlags = [
     ItemFlags.JeffCanUse,
     ItemFlags.PooCanUse,
 ];
+
+/// $C45963
+immutable ubyte[10][5] MiscTargetText = [
+    EBString!10("Who?"),
+    EBString!10("Which?"),
+    EBString!10("Where?"),
+    EBString!10("Whom?"),
+    EBString!10("Where?"),
+];
+
+/// $C4
+immutable ubyte[5] PhoneCallText = EBString!5("Call:");
+
+/// $C45860
+uint GetRequiredEXP(short character) {
+    character--;
+    if (PartyCharacters[character].level == MAX_LEVEL) {
+        return 0;
+    }
+    return EXPTable[character][PartyCharacters[character].level + 1] - PartyCharacters[character].exp;
+}
 
 /// $C45A27
 // wrong name
@@ -2546,6 +2593,38 @@ immutable ushort[7][7] StatusEquipWindowText3 = [
     [0x0004, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000],
     [0x0004, 0x0004, 0x0004, 0x0004, 0x0000, 0x0000, 0x0000],
 ];
+
+immutable ubyte[35] StatusEquipWindowText4 = EBString!35("@Press the -A- Button for PSI info.");
+immutable ubyte[16][9] StatusEquipWindowText5 = [
+    EBString!16("Unconscious"),
+    EBString!16("Diamondized"),
+    EBString!16("Paralyzed"),
+    EBString!16("Nauseous"),
+    EBString!16("Poisoned"),
+    EBString!16("Sunstroke"),
+    EBString!16("Sniffling"),
+    EBString!16("Mashroomized"),
+    EBString!16("Possessed"),
+];
+immutable ubyte[16] StatusEquipWindowText6 = EBString!16("Homesick");
+immutable ubyte[12] StatusEquipWindowText7 = EBString!12("Stored Goods");
+immutable ubyte[8] StatusEquipWindowText8 = EBString!8("Offense:");
+immutable ubyte[8] StatusEquipWindowText9 = EBString!8("Defense:");
+immutable ubyte[11][4] StatusEquipWindowText10 = [
+    EBString!11("  Weapon"),
+    EBString!11("      Body"),
+    EBString!11("     Arms"),
+    EBString!11("     Other"),
+];
+immutable ubyte[8][4] StatusEquipWindowText11 = [
+    EBString!8("Weapons"),
+    EBString!8("Body"),
+    EBString!8("Arms"),
+    EBString!8("Others"),
+];
+immutable ubyte[10] StatusEquipWindowText12 = EBString!10("(Nothing) ");
+immutable ubyte[5] StatusEquipWindowText13 = EBString!5("None");
+immutable ubyte[3] StatusEquipWindowText14 = EBString!3("To:");
 
 /// $C45E96
 void UnknownC45E96() {
@@ -4374,6 +4453,9 @@ short Spawn() {
     UnknownC4C60E(0x20);
     return result;
 }
+
+/// $C4D065
+void UnknownC4D065(ubyte*, ubyte*);
 
 /// $C4D274
 ubyte GetTownMapID(short x, short y) {

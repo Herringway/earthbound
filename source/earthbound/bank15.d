@@ -2,6 +2,7 @@
 module earthbound.bank15;
 
 import earthbound.commondefs;
+import earthbound.bank01;
 import earthbound.bank02;
 
 //TONY_IN_BED
@@ -599,6 +600,17 @@ immutable PSITeleportDestination[17] PSITeleportDestinationTable = [
 	PSITeleportDestination(EBString!25("Dusty Dunes"), EventFlag.UNKNOWN_254, 160, 1251),
 	PSITeleportDestination(EBString!25(""), EventFlag.UNKNOWN_092, 750, 747),
 	PSITeleportDestination(EBString!25(""), EventFlag.None, 0, 0),
+];
+
+/// $D57B68
+immutable TelephoneContact[7] TelephoneContacts = [
+	TelephoneContact(EBString!25(""), EventFlag.None, null),
+	TelephoneContact(EBString!25("Dad"), EventFlag.DAD_PHONE_UNLOCKED, null/+TEXT_PHONE_DAD+/),
+	TelephoneContact(EBString!25("Mom"), EventFlag.MOM_PHONE_UNLOCKED, null/+TEXT_PHONE_MOM+/),
+	TelephoneContact(EBString!25("Escargo Express"), EventFlag.ESCARGO_EXPRESS_PHONE_UNLOCKED, null/+TEXT_PHONE_ESCARGO_EXPRESS+/),
+	TelephoneContact(EBString!25("Mach Pizza"), EventFlag.MACH_PIZZA_PHONE_UNLOCKED, null/+TEXT_PHONE_MACH_PIZZA+/),
+	TelephoneContact(EBString!25("Stoic Club"), EventFlag.STOIC_CLUB_PHONE_UNLOCKED, null/+TEXT_PHONE_STOIC_CLUB+/),
+	TelephoneContact(EBString!25(""), EventFlag.None, null),
 ];
 
 /// $D57B68

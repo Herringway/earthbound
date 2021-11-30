@@ -256,20 +256,20 @@ void UnknownC3E450() {
 }
 
 /// $C3E4CA - Clear the instant text print flag
-void ClearInstaprint() {
+void ClearInstantPrinting() {
 	Unknown7E9622 = 0;
 }
 
 /// $C3E4D4 - Set the instant text print flag
-void SetInstaprint() {
+void SetInstantPrinting() {
 	Unknown7E9622 = 1;
 }
 
 /// $C3E4E0
-void CallC12DD5WithZero9622() {
-	ClearInstaprint();
-	Win_Tick();
-	SetInstaprint();
+void WindowTickWithoutInstantPrinting() {
+	ClearInstantPrinting();
+	WindowTick();
+	SetInstantPrinting();
 }
 
 /// $C3E4EF
@@ -333,8 +333,8 @@ void CloseWindow(short arg1) {
 		Unknown7E5E7A = -1;
 	}
 	if (Unknown7E5E70 == 0) {
-		CallC12DD5WithZero9622();
-		ClearInstaprint();
+		WindowTickWithoutInstantPrinting();
+		ClearInstantPrinting();
 	}
 	Unknown7E5E75 = 0;
 }
@@ -409,6 +409,12 @@ void UnknownC3E7E3(short arg1) {
 	WindowStats[WindowTable[arg1]].menu_page = 1;
 }
 
+/// $C3E84E
+immutable ushort[10] UnknownC3E84E = [ 0x0130, 0x0131, 0x0132, 0x0133, 0x0134, 0x0135, 0x0136, 0x0137, 0x0138, 0x0000 ];
+
+/// $C3E862
+immutable ushort[9] UnknownC3E862 = [ 0x0140, 0x0141, 0x0142, 0x0143, 0x0144, 0x0145, 0x0146, 0x0147, 0x0148 ];
+
 /// $C3E874
 immutable ubyte[10][24] DebugMenuText = [
 	EBString!10("Flag"),
@@ -474,6 +480,37 @@ void UnknownC3EBCA() {
 		} else {
 			UnknownC3EB1C(TimedItemTransformationTable[i].item);
 		}
+	}
+}
+
+/// $C3EC8B
+void UnknownC3EC8B(short arg1, short arg2, short arg3) {
+	if (arg1 == 0) {
+		return;
+	}
+	if (arg3 == 0) {
+		arg2 = cast(short)((arg2 * PartyCharacters[arg1 - 1].maxHP) / 100);
+	}
+	PartyCharacters[arg1 - 1].hp.target += arg2;
+	if (PartyCharacters[arg1 - 1].hp.current.integer == 0) {
+		PartyCharacters[arg1 - 1].hp.current.integer = 1;
+	}
+	if (PartyCharacters[arg1 - 1].hp.target > PartyCharacters[arg1 - 1].maxHP) {
+		PartyCharacters[arg1 - 1].hp.target = PartyCharacters[arg1 - 1].maxHP;
+	}
+}
+
+/// $C3ED98
+void UnknownC3ED98(short arg1, short arg2, short arg3) {
+	if (arg1 == 0) {
+		return;
+	}
+	if (arg3 == 0) {
+		arg2 = cast(short)((arg2 * PartyCharacters[arg1 - 1].maxPP) / 100);
+	}
+	PartyCharacters[arg1 - 1].pp.target += arg2;
+	if (PartyCharacters[arg1 - 1].pp.target > PartyCharacters[arg1 - 1].maxPP) {
+		PartyCharacters[arg1 - 1].pp.target = PartyCharacters[arg1 - 1].maxPP;
 	}
 }
 
@@ -930,6 +967,9 @@ immutable RGB[16][3] UnknownC3F8F1 = [
 		RGB(15, 13, 13),
 	]
 ];
+
+/// $C3FB2B
+immutable ubyte[26] NameRegistryRequestString = EBString!26("Register your name, please");
 
 /// $C3FD8D
 immutable ubyte*[10] AttractModeText = [

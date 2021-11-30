@@ -125,6 +125,33 @@ void UnknownC20293() {
 	}
 }
 
+/// $C202AC
+void UnknownC202AC(short arg1) {
+	if (WindowStats[WindowTable[arg1]].title_id == 0) {
+		short i;
+		for (i = 0; i != 5; i++) {
+			if (Unknown7E894E[i] == -1) {
+				goto Unknown2;
+			}
+		}
+		return;
+		Unknown2:
+		Unknown7E894E[i] = WindowTable[arg1];
+		WindowStats[WindowTable[arg1]].title_id = cast(ubyte)(i + 1);
+	}
+	UnknownC444FB(&WindowStats[WindowTable[arg1]].title[0], &Unknown7E7700[WindowStats[WindowTable[arg1]].title_id - 1][0]);
+}
+
+/// $C2032B
+void SetWindowTitle(short arg1, short arg2, const(ubyte)* arg3) {
+	ubyte* y = &WindowStats[WindowTable[arg1]].title[0];
+	while ((*arg3 != 0) && (arg2-- != 0)) {
+		*(y++) = *(arg3++);
+	}
+	*y = 0;
+	UnknownC202AC(arg1);
+}
+
 /// $C2038B
 void UnknownC2038B() {
 	CopyToVramAlt(0, 0x700, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
@@ -740,6 +767,9 @@ void CalcResistances(short id) {
 	PartyCharacters[id - 1].hypnosisBrainshockResist = cast(ubyte)total;
 }
 
+/// $C22351
+short UnknownC22351(short);
+
 /// $C2239D
 short UnknownC2239D(short id) {
 	for (short i = 0; i < gameState.partyCount; i++) {
@@ -1024,7 +1054,7 @@ void FeelingStrangeRetargetting() {
 /// $C240A4
 void UnknownC240A4(void function() action) {
 	while (UnknownC2EACF() != 0) {
-		Win_Tick();
+		WindowTick();
 	}
 	for (short i = 8; i < BattlersTable.length; i++) {
 		currentTarget = &BattlersTable[i];
@@ -1324,7 +1354,7 @@ short BattleRoutine() {
 				}
 			}
 			ShowHPPPWindowsF();
-			Win_Tick();
+			WindowTick();
 			while (true) {
 				WaitUntilNextFrame();
 				UnknownC2DB3F();
@@ -1897,7 +1927,7 @@ short BattleRoutine() {
 						}
 						currentAttacker.unknown73 = 12;
 						for (short i = 0; i < 12; i++) {
-							Win_Tick();
+							WindowTick();
 						}
 					}
 					if (x31 != 0) {
@@ -1911,7 +1941,7 @@ short BattleRoutine() {
 					UnknownC1DD9F(BattleActionTable[currentAttacker.currentAction].text);
 					if (currentAttacker.currentAction != 0) {
 						while (UnknownC2EACF() != 0) {
-							Win_Tick();
+							WindowTick();
 						}
 						for (short i = 0; i < BattlersTable.length; i++) {
 							if (IsCharacterTargetted(i) == 0) {
@@ -1954,7 +1984,7 @@ short BattleRoutine() {
 									break turnLoop;
 								default:
 									while(Unknown7EAD90 != 0) {
-										Win_Tick();
+										WindowTick();
 									}
 									break;
 							}
@@ -2051,7 +2081,7 @@ short BattleRoutine() {
 		}
 		ResetRolling();
 		do {
-			Win_Tick();
+			WindowTick();
 		} while (UnknownC2108C() == 0);
 		if (MirrorEnemy != 0) {
 			for (short i = 0; i < BattlersTable.length; i++) {
@@ -2107,14 +2137,14 @@ short GetEnemyType(short id) {
 /// $C269DE
 void UnknownC269DE() {
 	while (Unknown7E0028 != 0) {
-		Win_Tick();
+		WindowTick();
 	}
 }
 
 /// $C269BE
 void Wait(short frames) {
 	while (--frames != 0) {
-		Win_Tick();
+		WindowTick();
 	}
 }
 
@@ -3133,7 +3163,14 @@ void BattleActionLevel2AttackDiamondize() {
 }
 
 /// $C29254
-void BattleActionReduceOffense();
+void BattleActionReduceOffense() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	short x16 = currentTarget.offense;
+	HexadecimateOffense(currentTarget);
+	DisplayTextWait(TextBattleOffenseWentDown, x16 - currentTarget.offense);
+}
 
 /// $C29298
 void BattleActionClumsyRobotDeath() {
@@ -3153,7 +3190,46 @@ void BattleActionEnemyExtend() {
 }
 
 /// $C292EE
-void BattleActionMasterBarfDeath();
+void BattleActionMasterBarfDeath() {
+	Battler* x04 = currentAttacker;
+	Battler* x16 = currentTarget;
+	HideHPPPWindowsF();
+	AddCharToParty(PartyMember.Poo);
+	outer: for (short i = 0; BattlersTable.length > i; i++) {
+		if (BattlersTable[i].consciousness != 0) {
+			continue;
+		}
+		BattleInitPlayerStats(PartyMember.Poo, &BattlersTable[i]);
+		currentAttacker = &BattlersTable[i];
+		ShowHPPPWindowsF();
+		for (short j = 0; 6 > j; j++) {
+			if (gameState.partyMembers[j] != 4) {
+				continue;
+			}
+			UnknownC43573F(j);
+			break outer;
+		}
+	}
+	DisplayInBattleText(TextBattlePooUsedNewPowerStarstorm);
+	FixAttackerName(0);
+	UnknownC1ACF8F(0x15);
+	DisplayInBattleText(BattleActionTable[30].text);
+	for (short i = 0; BattlersTable.length > i; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		currentTarget = &BattlersTable[i];
+		FixTargetName();
+		CalcDamage(currentTarget, TwentyFivePercentVariance(360));
+	}
+	currentAttacker = x04;
+	currentTarget = x16;
+	FixAttackerName(0);
+	FixTargetName();
+}
 
 /// $C2941D
 short PSIShieldNullify() {
@@ -3681,7 +3757,19 @@ void BattleActionDefenseDownOmega() {
 }
 
 /// $C29F5E
-void BattleActionPSIMagnetAlpha();
+void BattleActionPSIMagnetAlpha() {
+	if (currentTarget.ppTarget == 0) {
+		DisplayInBattleText(TextBattleDoesNotHaveAnyPP);
+		return;
+	}
+	short x02 = cast(short)(RandLimit(4) + RandLimit(4) + 2);
+	if (x02 > currentTarget.ppTarget) {
+		x02 = currentTarget.ppTarget;
+	}
+	DisplayTextWait(TextBattleDrainedPP, x02);
+	ReducePP(currentTarget, x02);
+	SetPP(currentAttacker, cast(short)(x02 + currentAttacker.ppTarget));
+}
 
 /// $C29FE1
 void BattleActionPSIMagnetOmega() {
@@ -4841,7 +4929,7 @@ void UnknownC2C21F(short group, short music) {
 	if (x10 == 0) {
 		UnknownC2E8C4(6, 1, 30);
 		while (UnknownC2E9C8() != 0) {
-			Win_Tick();
+			WindowTick();
 		}
 	}
 	CurrentBattleGroup = group;
@@ -4869,7 +4957,7 @@ void UnknownC2C21F(short group, short music) {
 	}
 	UnknownC2E8C4(6, 0, 5);
 	while (UnknownC2E9C8() != 0) {
-		Win_Tick();
+		WindowTick();
 	}
 }
 
@@ -5047,7 +5135,7 @@ void BattleActionGiygasPrayer9() {
 	GiygasHurtPrayer(25600);
 	CloseFocusWindow();
 	BattleModeFlag = 0;
-	Win_Tick();
+	WindowTick();
 	CurrentGiygasPhase = GiygasPhase.Defeated;
 	ChangeMusic(Music.GiygasDeath);
 	short x18 = 0;
@@ -5073,7 +5161,7 @@ void BattleActionGiygasPrayer9() {
 	VerticalShakeDuration = 1 * 60;
 	for (short i = 0; GiygasDeathStaticTransitionDelays[i] != 0; i++) {
 		for (short j = 0; j < GiygasDeathStaticTransitionDelays[i]; j++) {
-			Win_Tick();
+			WindowTick();
 			if (x04 == 0) {
 				continue;
 			}
@@ -5098,7 +5186,7 @@ void BattleActionGiygasPrayer9() {
 	StopMusic();
 	UnknownC2E8C4(5, 0, 5);
 	while (UnknownC2E9C8() != 0) {
-		Win_Tick();
+		WindowTick();
 	}
 	StopMusic();
 	UnknownC2C21F(Music.None, 483);
@@ -5441,9 +5529,6 @@ void UnknownC2DB3F() {
 	}
 }
 
-/// $C2DE43
-void BattleActionSwitchWeapons();
-
 /// $C2DE96
 void UnknownC2DE96() {
 	memcpy(&LoadedBGDataLayer1.Palette[0], &LoadedBGDataLayer1.Palette2[0], LoadedBGDataLayer1.Palette.sizeof);
@@ -5452,11 +5537,43 @@ void UnknownC2DE96() {
 	memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], LoadedBGDataLayer2.Palette.sizeof);
 }
 
-/// $C2E00F
-void BattleActionSwitchArmor();
+/// $C2DF2E
+void UnknownC2DF2E(LoadedBackgroundData* arg1, short arg2, short arg3) {
+	if ((arg2 == -1) || (arg2 == 0)) {
+		arg1.Palette[arg3] = arg2;
+		(*arg1.PalettePointer)[arg3] = arg2;
+	} else if (arg2 == 0x100) {
+		arg1.Palette[arg3] = arg1.Palette2[arg3];
+		(*arg1.PalettePointer)[arg3] = arg1.Palette2[arg3];
+	} else {
+		short x12 = arg1.Palette2[arg3] & 0x1F;
+		short x10 = (arg1.Palette2[arg3] >> 5) & 0x1F;
+		short x16 = (arg1.Palette2[arg3] >> 10) & 0x1F;
+		x12 = cast(short)((arg2 * x12) >> 8);
+		x10 = cast(short)((arg2 * x10) >> 8);
+		x16 = cast(short)((arg2 * x16) >> 8);
+		arg1.Palette[arg3] = cast(ushort)((x16 << 10) | (x10 << 5) | (x12));
+		if ((arg1.PaletteShiftingStyle != 2) || (arg1.PaletteCycle2First > arg3) || (arg1.PaletteCycle2Last < arg3)) {
+			if ((arg1.PaletteShiftingStyle == 0) || (arg1.PaletteCycle1First > arg3) || (arg1.PaletteCycle1Last < arg3)) {
+				(*arg1.PalettePointer)[arg3] = arg1.Palette[arg3];
+			}
+		}
+	}
+}
 
 /// $C2E08E
-void UnknownC2E08E(short);
+void UnknownC2E08E(short arg1) {
+	if (LoadedBGDataLayer1.Bitdepth == 4) {
+		for (short i = 1; i < 16; i++) {
+			UnknownC2DF2E(&LoadedBGDataLayer1, arg1, i);
+		}
+	} else {
+		for (short i = 1; i < 4; i++) {
+			UnknownC2DF2E(&LoadedBGDataLayer1, arg1, i);
+			UnknownC2DF2E(&LoadedBGDataLayer2, arg1, i);
+		}
+	}
+}
 
 /// $C2E0E7
 void UnknownC2E0E7() {
@@ -5474,8 +5591,56 @@ void UnknownC2E0E7() {
 /// $C2E116
 void ShowPSIAnimation(short);
 
+immutable ubyte[3] UnknownC2E6B3 = [ 0x30, 0, 0 ];
+
 /// $C2E6B6
-void UnknownC2E6B6();
+void UnknownC2E6B6() {
+	if ((Unknown7E1B9E != 0) && (--Unknown7E1B9E == 0)) {
+		if (Unknown7E1BA0 != 0) {
+			Unknown7E1B9E = Unknown7E1B9F;
+			CopyToVram(6, 0x400, 0x5800, Unknown7E1BA1);
+			CopyToVram(15, 0x400, 0x5800, &UnknownC2E6B3[0]);
+			Unknown7E1BA1 += 0x400;
+			Unknown7E1BA0--;
+		} else {
+			CopyToVram(3, 0x800, 0x5800, &UnknownC2E6B3[1]);
+			UnknownC2DE96();
+		}
+		if ((Unknown7E1BA9 != 0) && (--Unknown7E1BA9 == 0)) {
+			Unknown7E1BA9 = Unknown7E1BA8;
+			for (short i = 0; i < Unknown7E1BA6 - Unknown7E1BA5 + 1; i++) {
+				short x04 = Unknown7E1BA7;
+				if (i < x04) {
+					x04 = cast(short)(i + Unknown7E1BA6 - Unknown7E1BA5 + 1 - x04);
+				} else {
+					x04 = cast(short)(i - x04);
+				}
+				Unknown7E1BCA[Unknown7E1BA5 + x04] = Unknown7E1BAA[x04 + Unknown7E1BA5];
+			}
+			if (++Unknown7E1BA7 < Unknown7E1BA6 - Unknown7E1BA5 + 1) {
+				Unknown7E1BA7 = 0;
+			}
+			UnknownC0856B(0x18);
+		}
+	}
+	if ((Unknown7E1BCC != 0) && (--Unknown7E1BCC == 0)) {
+		UnknownC2FAD8(0x14);
+		for (short i = 0; i < 4; i++) {
+			if (Unknown7EAEE7[i] != 0) {
+				for (short j = 1; j < 16; j++) {
+					UnknownC2FB35(cast(short)(i * 16 + j), Unknown7E1BD0, Unknown7E1BD2, Unknown7E1BD4);
+				}
+			}
+		}
+	}
+	if ((Unknown7E1BCE != 0) && (--Unknown7E1BCE == 0)) {
+		for (short i = 0; i < 4; i++) {
+			if (Unknown7EAEE7[i] != 0) {
+				UnknownC2FADE(0x14, i);
+			}
+		}
+	}
+}
 
 /// $C2E8C4
 void UnknownC2E8C4(short arg1, short arg2, short arg3) {
@@ -5714,6 +5879,20 @@ void UnknownC2EAEA(short arg1) {
 	}
 }
 
+/// $C2EEE7
+void UnknownC2EEE7() {
+	Unknown7EAAB4 = 0;
+	Unknown7EAAB2 = 0;
+	const(BattleGroupEnemy)* x1A = &BattleEntryPointerTable[CurrentBattleGroup].enemies[0];
+	while (x1A.count != 0xFF) {
+		memcpy(&palettes[8 + Unknown7EAAB4][0], &BattleSpritePalettes[EnemyConfigurationTable[x1A.enemyID].battleSpritePalette][0], 32);
+		Unknown7EAABE[Unknown7EAAB4] = x1A.enemyID;
+		UnknownC2EAEA(EnemyConfigurationTable[x1A.enemyID].battleSprite);
+		x1A++;
+	}
+	CopyToVram(0, (Unknown7EAAB2 > 16) ? 0x3000 : 0x2000, 0x2000, &Unknown7F0000[0]);
+}
+
 /// $C2EFFD
 short GetBattleSpriteWidth(short arg1) {
 	switch (BattleSpritePointers[arg1 - 1].size) {
@@ -5731,18 +5910,21 @@ short GetBattleSpriteWidth(short arg1) {
 	}
 }
 
-/// $C2EEE7
-void UnknownC2EEE7() {
-	Unknown7EAAB4 = 0;
-	Unknown7EAAB2 = 0;
-	const(BattleGroupEnemy)* x1A = &BattleEntryPointerTable[CurrentBattleGroup].enemies[0];
-	while (x1A.count != 0xFF) {
-		memcpy(&palettes[8 + Unknown7EAAB4][0], &BattleSpritePalettes[EnemyConfigurationTable[x1A.enemyID].battleSpritePalette][0], 32);
-		Unknown7EAABE[Unknown7EAAB4] = x1A.enemyID;
-		UnknownC2EAEA(EnemyConfigurationTable[x1A.enemyID].battleSprite);
-		x1A++;
+/// $C2F04E
+short GetBattleSpriteHeight(short arg1) {
+	switch (BattleSpritePointers[arg1 - 1].size) {
+		case BattleSpriteSize._32X32:
+		case BattleSpriteSize._64X32:
+			return 4;
+		case BattleSpriteSize._32X64:
+		case BattleSpriteSize._64X64:
+		case BattleSpriteSize._128X64:
+			return 8;
+		case BattleSpriteSize._128X128:
+			return 16;
+		default:
+			return 0;
 	}
-	CopyToVram(0, (Unknown7EAAB2 > 16) ? 0x3000 : 0x2000, 0x2000, &Unknown7F0000[0]);
 }
 
 /// $C2F09F
@@ -5813,7 +5995,99 @@ void UnknownC2F8F9() {
 }
 
 /// $C2F917
-void UnknownC2F917();
+void UnknownC2F917() {
+	short x0E;
+	Unknown7EAD58 = 0;
+	Unknown7EAD56 = 0;
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].afflictions[0] == 1) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		if (BattlersTable[i].row == 0) {
+			Unknown7EAD58++;
+		} else {
+			Unknown7EAD56++;
+		}
+	}
+	short x10 = 0;
+	for (short i = 0; i < Unknown7EAD56; i++) {
+		short x04 = -1;
+		for (short j = 8; j < BattlersTable.length; j++) {
+			if (BattlersTable[j].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[j].afflictions[0] == 1) {
+				continue;
+			}
+			if (BattlersTable[j].allyOrEnemy != 1) {
+				continue;
+			}
+			if (BattlersTable[j].row != 0) {
+				continue;
+			}
+			if ((BattlersTable[j].spriteX > x10) && (BattlersTable[j].spriteX < x04)) {
+				x0E = j;
+				x04 = BattlersTable[j].spriteX;
+			}
+		}
+		Unknown7EAD7A[i] = cast(ubyte)(x0E);
+		Unknown7EAD5A[i] = cast(ubyte)(x04 / 8);
+		Unknown7EAD62[i] = cast(ubyte)(18 - GetBattleSpriteHeight(BattlersTable[x0E].sprite));
+		x10 = x04;
+	}
+	x10 = 0;
+	for (short i = 0; i < Unknown7EAD58; i++) {
+		short x04 = -1;
+		for (short j = 8; j < BattlersTable.length; j++) {
+			if (BattlersTable[j].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[j].afflictions[0] == 1) {
+				continue;
+			}
+			if (BattlersTable[j].allyOrEnemy != 1) {
+				continue;
+			}
+			if (BattlersTable[j].row == 0) {
+				continue;
+			}
+			if ((BattlersTable[j].spriteX > x10) && (BattlersTable[j].spriteX < x04)) {
+				x0E = j;
+				x04 = BattlersTable[j].spriteX;
+			}
+		}
+		Unknown7EAD82[i] = cast(ubyte)(x0E);
+		Unknown7EAD6A[i] = cast(ubyte)(x04 / 8);
+		Unknown7EAD72[i] = cast(ubyte)(18 - GetBattleSpriteHeight(BattlersTable[x0E].sprite));
+		x10 = x04;
+	}
+}
+
+/// $C2FAD8
+short UnknownC2FAD2() {
+	return 1;
+}
+
+/// $C2FAD8
+void UnknownC2FAD8(short arg1) {
+	Unknown7EB37C = arg1;
+}
+
+/// $C2FADE
+void UnknownC2FADE(short arg1, short arg2) {
+	Unknown7EB37C = arg1;
+	Unknown7EAEF4[arg2] = Unknown7EB37C;
+	for (short i = 0; i < 48; i++) {
+		Unknown7EAEFC[(8 * arg2) * 3 + i] = cast(short)-cast(int)(Unknown7EAEFC[(8 * arg2) * 3 + i]);
+		Unknown7EB07C[(8 * arg2) * 3 + i] = 0;
+	}
+}
 
 /// $C2FB35
 void UnknownC2FB35(short arg1, short arg2, short arg3, short arg4) {
@@ -5823,35 +6097,35 @@ void UnknownC2FB35(short arg1, short arg2, short arg3, short arg4) {
 	ushort x10 = (x12 >> 5) & 0x1F;
 	ushort x0E = (x12 >> 10) & 0x1F;
 	if (arg2 > x02) {
-		Unknown7EB1FC[arg1].unknown0 = cast(short)(arg2 - x02);
-		Unknown7EAEFC[arg1].unknown0 = 1;
+		Unknown7EB1FC[arg1 * 3] = cast(short)(arg2 - x02);
+		Unknown7EAEFC[arg1 * 3] = 1;
 	} else if (arg2 == x02) {
-		Unknown7EAEFC[arg1].unknown0 = 0;
+		Unknown7EAEFC[arg1 * 3] = 0;
 	} else {
-		Unknown7EB1FC[arg1].unknown0 = cast(short)(x02 - arg2);
-		Unknown7EAEFC[arg1].unknown0 = -1;
+		Unknown7EB1FC[arg1 * 3] = cast(short)(x02 - arg2);
+		Unknown7EAEFC[arg1 * 3] = -1;
 	}
 	if (arg3 > x10) {
-		Unknown7EB1FC[arg1].unknown2 = cast(short)(arg3 - x10);
-		Unknown7EAEFC[arg1].unknown2 = 0x20;
+		Unknown7EB1FC[arg1 * 3 + 1] = cast(short)(arg3 - x10);
+		Unknown7EAEFC[arg1 * 3 + 1] = 0x20;
 	} else if (arg3 == x10) {
-		Unknown7EAEFC[arg1].unknown2 = 0;
+		Unknown7EAEFC[arg1 * 3 + 1] = 0;
 	} else {
-		Unknown7EB1FC[arg1].unknown2 = cast(short)(x10 - arg3);
-		Unknown7EAEFC[arg1].unknown2 = -0x20;
+		Unknown7EB1FC[arg1 * 3 + 1] = cast(short)(x10 - arg3);
+		Unknown7EAEFC[arg1 * 3 + 1] = -0x20;
 	}
 	if (arg4 > x0E) {
-		Unknown7EB1FC[arg1].unknown4 = cast(short)(arg4 - x0E);
-		Unknown7EAEFC[arg1].unknown4 = 0x400;
+		Unknown7EB1FC[arg1 * 3 + 2] = cast(short)(arg4 - x0E);
+		Unknown7EAEFC[arg1 * 3 + 2] = 0x400;
 	} else if (arg4 == x0E) {
-		Unknown7EAEFC[arg1].unknown4 = 0;
+		Unknown7EAEFC[arg1 * 3 + 2] = 0;
 	} else {
-		Unknown7EB1FC[arg1].unknown4 = cast(short)(x0E - arg4);
-		Unknown7EAEFC[arg1].unknown4 = -0x400;
+		Unknown7EB1FC[arg1 * 3 + 2] = cast(short)(x0E - arg4);
+		Unknown7EAEFC[arg1 * 3 + 2] = -0x400;
 	}
-	Unknown7EB07C[arg1].unknown4 = 0;
-	Unknown7EB07C[arg1].unknown2 = 0;
-	Unknown7EB07C[arg1].unknown0 = 0;
+	Unknown7EB07C[arg1 * 3 + 2] = 0;
+	Unknown7EB07C[arg1 * 3 + 1] = 0;
+	Unknown7EB07C[arg1 * 3 + 0] = 0;
 }
 
 /// $C2FD99
@@ -5861,35 +6135,35 @@ void UnknownC2FD99() {
 			continue;
 		}
 		Unknown7EAEF4[i]--;
-		Unknown7EAEFCEntry* y = &Unknown7EAEFC[i * 16 + 1];
-		Unknown7EAEFCEntry* x14 = &Unknown7EB07C[i * 16 + 1];
-		Unknown7EAEFCEntry* x12 = &Unknown7EB1FC[i * 16 + 1];
+		short* y = &Unknown7EAEFC[(i * 16 + 1) * 3];
+		short* x14 = &Unknown7EB07C[(i * 16 + 1) * 3];
+		short* x12 = &Unknown7EB1FC[(i * 16 + 1) * 3];
 		ushort* x02 = &palettes[12 + i][1];
 		for (short j = 1; j < 16; j++, x02++) {
-			if (y[0].unknown0 != 0) {
-				x14[0].unknown0 += x12[0].unknown0;
-				while (Unknown7EB37C <= x14[0].unknown0) {
-					x14[0].unknown0 -= Unknown7EB37C;
-					x02[0] += y[0].unknown0;
+			if (y[0] != 0) {
+				x14[0] += x12[0];
+				while (Unknown7EB37C <= x14[0]) {
+					x14[0] -= Unknown7EB37C;
+					x02[0] += y[0];
 				}
 			}
-			if (y[0].unknown2 != 0) {
-				x14[0].unknown2 += x12[0].unknown2;
-				while (Unknown7EB37C <= x14[0].unknown2) {
-					x14[0].unknown2 -= Unknown7EB37C;
-					x02[0] += y[0].unknown2;
+			if (y[1] != 0) {
+				x14[1] += x12[1];
+				while (Unknown7EB37C <= x14[1]) {
+					x14[1] -= Unknown7EB37C;
+					x02[0] += y[1];
 				}
 			}
-			if (y[0].unknown4 != 0) {
-				x14[0].unknown4 += x12[0].unknown4;
-				while (Unknown7EB37C <= x14[0].unknown4) {
-					x14[0].unknown4 -= Unknown7EB37C;
-					x02[0] += y[0].unknown4;
+			if (y[2] != 0) {
+				x14[2] += x12[2];
+				while (Unknown7EB37C <= x14[2]) {
+					x14[2] -= Unknown7EB37C;
+					x02[0] += y[2];
 				}
 			}
-			y++;
-			x14++;
-			x12++;
+			y += 3;
+			x14 += 3;
+			x12 += 3;
 			x02++;
 		}
 		UnknownC0856B(0x10);

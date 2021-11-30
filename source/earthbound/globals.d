@@ -240,23 +240,22 @@ __gshared short[64] Unknown7E1AD6; /// $1AD6
 
 __gshared ubyte[24] Unknown7E1B6E; /// $1B6E
 __gshared ubyte[24] Unknown7E1B86; /// $1B86
-__gshared short Unknown7E1B9E; /// $1B9E
+__gshared ubyte Unknown7E1B9E; /// $1B9E
+__gshared ubyte Unknown7E1B9F; /// $1B9F
 __gshared ubyte Unknown7E1BA0; /// $1BA0
-__gshared short Unknown7E1BA1; /// $1BA1
-__gshared short Unknown7E1BA3; /// $1BA3
+__gshared const(ubyte)* Unknown7E1BA1; /// $1BA1
 __gshared ubyte Unknown7E1BA5; /// $1BA5
 __gshared ubyte Unknown7E1BA6; /// $1BA6
 __gshared ubyte Unknown7E1BA7; /// $1BA7
 __gshared ubyte Unknown7E1BA8; /// $1BA8
 __gshared ubyte Unknown7E1BA9; /// $1BA9
-//UNKNOWN_7E1BAA: ;$1BAA
-
-__gshared short Unknown7E1BCA; /// $1BCA
+__gshared ushort[16] Unknown7E1BAA; /// $1BAA
+__gshared ushort* Unknown7E1BCA; /// $1BCA
 __gshared short Unknown7E1BCC; /// $1BCC
 __gshared short Unknown7E1BCE; /// $1BCE
 __gshared short Unknown7E1BD0; /// $1BD0
 __gshared short Unknown7E1BD2; /// $1BD2
-//UNKNOWN_7E1BD4: ;$1BD4
+__gshared short Unknown7E1BD4; /// $1BD4
 
 __gshared ubyte[0x200][2] heap; /// $2000
 
@@ -539,11 +538,12 @@ __gshared short Unknown7E5E7A; /// $5E7A
 __gshared short Unknown7E5E7C; /// $5E7C
 
 __gshared ushort[0x1F8][8] Unknown7E5E7E; /// $5E7E
+__gshared ubyte[128][5] Unknown7E7700; /// $5E7E
 
 __gshared ushort[0x380] bg2Buffer; /// $7DFE
 
 __gshared ushort[0x100] Unknown7E827E; /// $827E
-
+__gshared ushort[192] Unknown7E847E; /// $847E
 __gshared WinStat Unknown7E85FE; /// $85FE
 __gshared WinStat[9] WindowStats; /// $8650
 __gshared short window_head; /// $88E0 - Head of the window linked list
@@ -618,6 +618,7 @@ __gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags; /// $9C08
 __gshared ushort CurrentInteractingEventFlag; /// $9C88
 
 __gshared WindowTextAttributesCopy Unknown7E9C8A; /// $9C8A
+__gshared ubyte[49] Unknown7E9C9F; /// $9C9F
 
 __gshared ubyte[30] Unknown7E9CD7; /// $9CD7
 __gshared ubyte[28] Unknown7E9CF5; /// $9CF5
@@ -806,9 +807,9 @@ __gshared ubyte Unknown7EAEEF; /// $AEEF
 __gshared ushort Unknown7EAEF0; /// $AEF0
 __gshared ushort Unknown7EAEF2; /// $AEF2
 __gshared ushort[4] Unknown7EAEF4; /// $AEF4
-__gshared Unknown7EAEFCEntry[16 * 4] Unknown7EAEFC; /// $AEFC
-__gshared Unknown7EAEFCEntry[16 * 4] Unknown7EB07C; /// $B07C
-__gshared Unknown7EAEFCEntry[16 * 4] Unknown7EB1FC; /// $B1FC
+__gshared short[3 * 16 * 4] Unknown7EAEFC; /// $AEFC
+__gshared short[3 * 16 * 4] Unknown7EB07C; /// $B07C
+__gshared short[3 * 16 * 4] Unknown7EB1FC; /// $B1FC
 __gshared short Unknown7EB37C; /// $B37C
 __gshared short Unknown7EB37E; /// $B37E
 __gshared short Unknown7EB380; /// $B380
