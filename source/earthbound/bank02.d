@@ -88,7 +88,7 @@ void UnknownC200D9() {
 	VWFTile = 0;
 	VWFX = 0;
 	BlinkingTriangleFlag = 0;
-	Unknown7E964F = 1;
+	TextSoundMode = 1;
 	BattleModeFlag = 0;
 	InputLockFlag = 0;
 	CurrentFocusWindow = -1;

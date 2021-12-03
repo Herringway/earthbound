@@ -579,7 +579,7 @@ __gshared short Unknown7E9647; /// $9647
 __gshared short Unknown7E9649; /// $9649
 __gshared short Unknown7E964B; /// $964B
 __gshared ushort BlinkingTriangleFlag; /// $964D
-__gshared ushort Unknown7E964F; /// $964F
+__gshared ushort TextSoundMode; /// $964F
 __gshared ubyte Unknown7E9651; /// $9651
 __gshared ushort Unknown7E9652; /// $9652
 __gshared ushort Unknown7E9654; /// $9654

@@ -2115,9 +2115,9 @@ void UnknownC43F77(short arg1) {
         Unknown7E9623 = 1;
     }
     short x;
-    if (Unknown7E964F == 2) {
+    if (TextSoundMode == 2) {
         x = 1;
-    } else if (Unknown7E964F == 3) {
+    } else if (TextSoundMode == 3) {
         x = 0;
     } else {
         x = 0;
@@ -2670,6 +2670,16 @@ short UnknownC46028(short arg1) {
     return -1;
 }
 
+/// $C4605A
+short UnknownC4605A(short arg1) {
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if (arg1 == EntityTPTEntries[i]) {
+            return i;
+        }
+    }
+    return -1;
+}
+
 /// $C4608C
 short UnknownC4608C(short arg1) {
     if (arg1 == 0) {
@@ -2682,6 +2692,24 @@ short UnknownC4608C(short arg1) {
     }
     return -1;
 }
+
+/// $C462FF
+void UnknownC462FF(short arg1, short arg2) {
+    short x0E = UnknownC4605A(arg1);
+    if (x0E == -1) {
+        return;
+    }
+    if (EntityDirections[x0E] != arg2) {
+        EntityDirections[x0E] = arg2;
+        UnknownC0A443Entry2(x0E);
+    }
+}
+
+/// $C46363
+void UnknownC46363(short, short);
+
+/// $C46397
+void UnknownC46397(short);
 
 /// $C464B5
 short CreatePreparedEntityNPC(short npcID, short actionScript) {
@@ -3731,6 +3759,32 @@ void LoadOverlaySprites() {
     }
 }
 
+/// $C4B3D0
+void SpawnFloatingSprite(short, short);
+
+/// $C4B4BE
+void UnknownC4B4BE(short arg1) {
+    if (arg1 == -1) {
+        return;
+    }
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if (EntityDrawPriority[i] == (arg1 | 0xC000)) {
+            EntityDrawPriority[i] = 0;
+            UnknownC02140(i);
+        }
+    }
+}
+
+/// $C4B524
+void UnknownC4B524(short arg1, short arg2) {
+    SpawnFloatingSprite(UnknownC4605A(arg1), arg2);
+}
+
+/// $C4B53F
+void UnknownC4B53F(short arg1) {
+    UnknownC4B4BE(UnknownC4605A(arg1));
+}
+
 /// $C4B587
 void* Path_sbrk(size_t inc) {
     void *ptr = path_heap_current;
@@ -4467,6 +4521,9 @@ short Spawn() {
     UnknownC4C60E(0x20);
     return result;
 }
+
+/// $C4C91A
+void UnknownC4C91A(short, short);
 
 /// $C4D065
 void UnknownC4D065(ubyte*, ubyte*);
