@@ -2347,7 +2347,7 @@ void UnknownC4507A(uint arg1) {
     x18 += Unknown7E5E6D;
     Unknown7E5E71 =1;
     UnknownC43D75(cast(short)((WindowStats[WindowTable[CurrentFocusWindow]].width - 1) * 8 - x18), WindowStats[WindowTable[CurrentFocusWindow]].text_y);
-    PrintLetterF(0x54);
+    PrintLetterF(EBChar('$'));
     while (x24 != 0) {
         PrintLetterF(*(x20++) + 0x60);
         x24--;
@@ -2540,6 +2540,20 @@ immutable ubyte[4] ItemUsableFlags = [
     ItemFlags.PooCanUse,
 ];
 
+/// $C45860
+short CheckStatusGroup(short arg1, short arg2) {
+    if (arg2 == 8) {
+        return gameState.partyStatus + 1;
+    }
+    if (UnknownC2239D(arg1) != 0) {
+        return PartyCharacters[arg1 - 1].afflictions[arg2 - 1] + 1;
+    }
+    return 0;
+}
+
+/// $C458FE
+short InflictStatusNonBattle(short arg1, short arg2, short arg3);
+
 /// $C45963
 immutable ubyte[10][5] MiscTargetText = [
     EBString!10("Who?"),
@@ -2642,7 +2656,7 @@ void UnknownC45E96() {
 }
 
 /// $C45F7B
-ubyte randMod(ubyte arg1) {
+ushort randMod(ushort arg1) {
     return cast(ubyte)(rand() % (arg1 + 1));
 }
 

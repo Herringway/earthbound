@@ -609,7 +609,7 @@ __gshared ushort CCArgumentGatheringLoopCounter; /// $97CA
 __gshared WorkingMemory WRAMScriptWorkMemory; //$97CC
 __gshared uint WRAMScriptArgMemory; //$97D0
 __gshared ubyte WRAMScriptSecMemory; //$97D4
-
+__gshared short Unknown7E97D5; //$97D5
 __gshared ubyte[3] Unknown7E97D7; //$97D7
 
 __gshared Game_State gameState; /// $97F5

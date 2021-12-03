@@ -599,6 +599,17 @@ short setEventFlag(short flag, short value) {
 /// $C216AD
 void UnknownC216AD(short, short);
 
+/// $C216C9
+void StopMusicF(short arg1) {
+	StopMusic();
+}
+
+/// $C216D0
+void PlaySfxAndUnknown(short arg1) {
+	PlaySfx(arg1);
+	UnknownC12E42();
+}
+
 /// $C216DB
 void UnknownC216DB() {
 	ubyte x18 = 0;
@@ -767,6 +778,24 @@ void CalcResistances(short id) {
 	PartyCharacters[id - 1].hypnosisBrainshockResist = cast(ubyte)total;
 }
 
+/// $C22214
+int IncreaseWalletBalance(int arg1) {
+	gameState.moneyCarried = (gameState.moneyCarried + arg1 > 99_999) ? 99_999 : gameState.moneyCarried + arg1;
+	return gameState.moneyCarried;
+}
+
+/// $C22272
+short DecreaseWalletBalance(int arg1) {
+	if (0 > gameState.moneyCarried - arg1) {
+		return 1;
+	}
+	gameState.moneyCarried -= arg1;
+	return 0;
+}
+
+/// $C222D3
+ubyte* GetPartyCharacterName(short);
+
 /// $C22351
 short UnknownC22351(short);
 
@@ -828,11 +857,32 @@ short UnknownC22474(ubyte* arg1) {
 	return StatusEquipWindowText3[x0E][arg1[x0E] - 1];
 }
 
+/// $C22524
+short GetItemSubtype2(short arg1) {
+	switch (ItemData[arg1].type & 0xC) {
+		case 0:
+		case 0xC: return 1;
+		case 0x4: return 2;
+		case 0x8: return 3;
+		default: return 0;
+	}
+}
+
 /// $C226C5
 void UnknownC226C5(short);
 
 /// $C226E6
 short UnknownC226E6();
+
+/// $C226F0
+ushort UnknownC226F0() {
+	ushort i;
+	for (i = 0; (PartyCharacters[gameState.unknown96[i] - 1].afflictions[0] != 0) && (i < gameState.playerControlledPartyMemberCount); i++) {}
+	return i;
+}
+
+/// $C2272F
+short UnknownC2272F();
 
 /// $C227C8
 void LearnSpecialPSI(short id) {
@@ -863,6 +913,13 @@ uint DepositIntoATM(uint amount) {
 	}
 	gameState.bankBalance = x06;
 	return amount - (x0A - gameState.bankBalance);
+}
+
+/// $C228B7 - Withdraws money from your bank account
+void WithdrawFromATM(uint amount) {
+	if (gameState.bankBalance >= amount) {
+		gameState.bankBalance -= amount;
+	}
 }
 
 /// $C228F8

@@ -344,7 +344,7 @@ void UnknownC10A85(short arg1, short arg2, ushort arg3) {
         x10 = 0;
     }
     if ((BlinkingTriangleFlag != 0) && (x10 == 0) && ((arg2 == 0x20) || (arg2 == 0x40)))  {
-        if (BlinkingTriangleFlag != 1) {
+        if (BlinkingTriangleFlag == 1) {
             goto Unknown9;
         }
         if (BlinkingTriangleFlag == 2) {
@@ -1508,76 +1508,212 @@ void* CC1910(DisplayTextState* arg1, ushort arg2) {
 }
 
 /// $C14751
-void* CC1F00(DisplayTextState* arg1, ushort arg2);
+void* CC1F00(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1F00;
+    }
+    UnknownC216AD(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory(), CCArgumentStorage[0]);
+    return null;
+}
 
 /// $C147A0
-void* CC1F01(DisplayTextState* arg1, ushort arg2);
+void* CC1F01(DisplayTextState* arg1, ushort arg2) {
+    StopMusicF(arg2);
+    return null;
+}
 
 /// $C147AB
-void* CC1F02(DisplayTextState* arg1, ushort arg2);
+void* CC1F02(DisplayTextState* arg1, ushort arg2) {
+    PlaySfxAndUnknown(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
 
 /// $C147CC
-void* CC1911(DisplayTextState* arg1, ushort arg2);
+void* CC1911(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(GetPartyCharacterName(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())[cast(short)-cast(int)(1 - GetSecondaryMemory())]));
+    return null;
+}
 
 /// $C14819
-void* CC1928(DisplayTextState* arg1, ushort arg2);
+void* CC1928(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory((CC1C01Table[arg2].size < GetSecondaryMemory()) ? 0 : (cast(ubyte*)CC1C01Table[arg2].address)[GetSecondaryMemory() - 1]));
+    return null;
+}
 
 /// $C1488D
-void* CC1C03(DisplayTextState* arg1, ushort arg2);
+void* CC1C03(DisplayTextState* arg1, ushort arg2) {
+    PrintLetter(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
 
 /// $C148AC
-void* CC1D02(DisplayTextState* arg1, ushort arg2);
+void* CC1D02(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory((GetItemType(cast(short)GetArgumentMemory()) == arg2) ? 1 : 0));
+    return null;
+}
 
 /// $C148E9
-void* CC1D08(DisplayTextState* arg1, ushort arg2);
+void* CC1D08(DisplayTextState* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter == 0) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D08;
+    }
+    SetWorkingMemory(WorkingMemory(IncreaseWalletBalance(((arg2 >> 8 | CCArgumentStorage[0]) != 0) ? (arg2 >> 8 | CCArgumentStorage[0]) : cast(short)GetArgumentMemory())));
+    return null;
+}
 
 /// $C1494A
-void* CC1D09(DisplayTextState* arg1, ushort arg2);
+void* CC1D09(DisplayTextState* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter == 0) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D09;
+    }
+    SetWorkingMemory(WorkingMemory(DecreaseWalletBalance(((arg2 >> 8 | CCArgumentStorage[0]) != 0) ? (arg2 >> 8 | CCArgumentStorage[0]) : cast(short)GetArgumentMemory())));
+    return null;
+}
 
 /// $C149B6
-void* CC1E00(DisplayTextState* arg1, ushort arg2);
+void* CC1E00(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E00;
+    }
+    RecoverHPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 0);
+    return null;
+}
 
 /// $C14A03
-void* CC1E01(DisplayTextState* arg1, ushort arg2);
+void* CC1E01(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E01;
+    }
+    ReduceHPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 0);
+    return null;
+}
 
 /// $C14A50
-void* CC1E02(DisplayTextState* arg1, ushort arg2);
+void* CC1E02(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E02;
+    }
+    RecoverHPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 1);
+    return null;
+}
 
 /// $C14A9D
-void* CC1E03(DisplayTextState* arg1, ushort arg2);
+void* CC1E03(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E03;
+    }
+    ReduceHPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 1);
+    return null;
+}
 
 /// $C14AEA
-void* CC1E04(DisplayTextState* arg1, ushort arg2);
+void* CC1E04(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E04;
+    }
+    RecoverPPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 0);
+    return null;
+}
 
 /// $C14B37
-void* CC1E05(DisplayTextState* arg1, ushort arg2);
+void* CC1E05(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E05;
+    }
+    ReducePPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 0);
+    return null;
+}
 
 /// $C14B84
-void* CC1E06(DisplayTextState* arg1, ushort arg2);
+void* CC1E06(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E06;
+    }
+    RecoverPPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 1);
+    return null;
+}
 
 /// $C14BD1
-void* CC1E07(DisplayTextState* arg1, ushort arg2);
+void* CC1E07(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1E07;
+    }
+    ReducePPAmtPercent(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetArgumentMemory(), arg2, 1);
+    return null;
+}
 
 /// $C14C1E
-void* CC1D00(DisplayTextState* arg1, ushort arg2);
+void* CC1D00(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D00;
+    }
+    SetWorkingMemory(WorkingMemory(GiveItemToCharacter((CCArgumentStorage[0] == 0) ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(ubyte)((arg2 != 0) ? arg2 : cast(short)GetArgumentMemory()))));
+    return null;
+}
 
 /// $C14C86
-void* CC1D01(DisplayTextState* arg1, ushort arg2);
+void* CC1D01(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D01;
+    }
+    SetWorkingMemory(WorkingMemory(TakeItemFromCharacter((CCArgumentStorage[0] == 0) ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(ubyte)((arg2 != 0) ? arg2 : cast(short)GetArgumentMemory()))));
+    return null;
+}
 
 /// $C14CEE
-void* CC1D03(DisplayTextState* arg1, ushort arg2);
+void* CC1D03(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(FindInventorySpace2(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())));
+    return null;
+}
 
 /// $C14D24
-void* CC1D04(DisplayTextState* arg1, ushort arg2);
+void* CC1D04(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D04;
+    }
+    SetWorkingMemory(WorkingMemory(UnknownC3E9F7((CCArgumentStorage[0] == 0) ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(ubyte)((arg2 != 0) ? arg2 : cast(short)GetArgumentMemory()))));
+    return null;
+}
 
 /// $C14D93
-void* CC1D05(DisplayTextState* arg1, ushort arg2);
+void* CC1D05(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D05;
+    }
+    SetWorkingMemory(WorkingMemory(FindItemInInventory2((CCArgumentStorage[0] == 0) ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(ubyte)((arg2 != 0) ? arg2 : cast(short)GetArgumentMemory()))));
+    return null;
+}
 
 /// $C14DFB
-void* CC1F20(DisplayTextState* arg1, ushort arg2);
+void* CC1F20(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1F20;
+    }
+    SetTeleportState(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(ubyte)GetWorkingMemory().integer, cast(TeleportStyle)(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory()));
+    return null;
+}
 
 /// $C14E8C
-void* CC1F21(DisplayTextState* arg1, ushort arg2);
+void* CC1F21(DisplayTextState* arg1, ushort arg2) {
+    Teleport(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
 
 /// $C14EAB
 void* CC10(DisplayTextState* arg1, ushort arg2) {
@@ -1586,34 +1722,134 @@ void* CC10(DisplayTextState* arg1, ushort arg2) {
 }
 
 /// $C14EB5
-void* CC1A06(DisplayTextState* arg1, ushort arg2);
+void* CC1A06(DisplayTextState* arg1, ushort arg2) {
+    ClearInstantPrinting();
+    CreateWindowN(CurrentFocusWindow);
+    WindowTick();
+    SetWorkingMemory(WorkingMemory(UnknownC19DB5(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())));
+    SetWindowFocus(CurrentFocusWindow);
+    return null;
+}
 
 /// $C14EF8
-void* CC1D0A(DisplayTextState* arg1, ushort arg2);
+void* CC1D0A(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(ItemData[arg2 != 0 ? arg2 : cast(short)GetArgumentMemory()].cost));
+    return null;
+}
 
 /// $C14F33
-void* CC1D0B(DisplayTextState* arg1, ushort arg2);
+void* CC1D0B(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(ItemData[arg2 != 0 ? arg2 : cast(short)GetArgumentMemory()].cost / 2));
+    return null;
+}
 
 /// $C14F6F
-void* CC1F81(DisplayTextState* arg1, ushort arg2);
+void* CC1F81(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1F81;
+    }
+    SetWorkingMemory(WorkingMemory(UnknownC3EE14(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(ubyte)GetWorkingMemory().integer, arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())));
+    return null;
+}
 
 /// $C14FD7
-void* CC1C02(DisplayTextState* arg1, ushort arg2);
+void* CC1C02(DisplayTextState* arg1, ushort arg2) {
+    if (arg2 == 0xFF) {
+        UnknownC1931B(cast(short)GetActiveWindowAddress().result.integer);
+    } else {
+        UnknownC1931B(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    }
+    return null;
+}
 
 /// $C15007
-void* CC1916(DisplayTextState* arg1, ushort arg2);
+void* CC1916(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1916;
+    }
+    SetWorkingMemory(WorkingMemory(CheckStatusGroup(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(ubyte)GetWorkingMemory().integer, arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())));
+    return null;
+}
 
 /// $C1506F
-void* CC1905(DisplayTextState* arg1, ushort arg2);
+void* CC1905(DisplayTextState* arg1, ushort arg2) {
+    if (2 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1905;
+    }
+    SetWorkingMemory(WorkingMemory(InflictStatusNonBattle(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(ubyte)GetWorkingMemory().integer, CCArgumentStorage[1] != 0 ? CCArgumentStorage[1] : cast(short)GetArgumentMemory(), arg2)));
+    return null;
+}
 
 /// $C150E4
-void* CC1D0D(DisplayTextState* arg1, ushort arg2);
+void* CC1D0D(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D0D;
+    }
+    SetWorkingMemory(WorkingMemory(CheckStatusGroup(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(ubyte)GetWorkingMemory().integer, CCArgumentStorage[1] != 0 ? CCArgumentStorage[1] : cast(short)GetArgumentMemory()) == arg2 ? 1 : 0));
+    return null;
+}
 
 /// $C1516B
-void* CC1C14(DisplayTextState* arg1, ushort arg2);
+void* CC1C14(DisplayTextState* arg1, ushort arg2) {
+    ushort a;
+    if (currentAttacker.allyOrEnemy == 1) {
+        if (arg2 != 1) {
+            if (EnemiesInBattle > 3) {
+                a = 3;
+            } else {
+                a = EnemiesInBattle;
+            }
+        } else {
+            a = EnemyConfigurationTable[currentAttacker.id].gender;
+        }
+    } else {
+        if (arg2 != 1) {
+            short x = UnknownC2272F();
+            if (x > 3) {
+                a = 3;
+            } else {
+                a = x;
+            }
+        } else {
+            a = (currentAttacker.id == 2) ? 2 : 1;
+        }
+    }
+    SetWorkingMemory(WorkingMemory(a));
+    return null;
+}
 
 /// $C151FC
-void* CC1C15(DisplayTextState* arg1, ushort arg2);
+void* CC1C15(DisplayTextState* arg1, ushort arg2) {
+    ushort a;
+    if (currentTarget.allyOrEnemy == 1) {
+        if (arg2 != 1) {
+            if (EnemiesInBattle > 3) {
+                a = 3;
+            } else {
+                a = EnemiesInBattle;
+            }
+        } else {
+            a = EnemyConfigurationTable[currentTarget.id].gender;
+        }
+    } else {
+        if (arg2 != 1) {
+            short x = UnknownC2272F();
+            if (x > 3) {
+                a = 3;
+            } else {
+                a = x;
+            }
+        } else {
+            a = (currentTarget.id == 2) ? 2 : 1;
+        }
+    }
+    SetWorkingMemory(WorkingMemory(a));
+    return null;
+}
 
 /// $C1528D - [18 07 XX XX XX XX YY]
 void* CC1807(DisplayTextState* arg1, ushort arg2) {
@@ -1636,16 +1872,44 @@ void* CC1807(DisplayTextState* arg1, ushort arg2) {
 }
 
 /// $C153AF
-void* CC1C0A(DisplayTextState* arg1, ushort arg2);
+void* CC1C0A(DisplayTextState* arg1, ushort arg2) {
+    if (3 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1C0A;
+    }
+    uint x06 = (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[1] << 8) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)arg2 << 24);
+    PrintNumber(x06 == 0 ? GetArgumentMemory() : x06);
+    return null;
+}
 
 /// $C15384
-void* CC1918(DisplayTextState* arg1, ushort arg2);
+void* CC1918(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(GetRequiredEXP(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())));
+    return null;
+}
 
 /// $C15494
-void* CC1F60(DisplayTextState* arg1, ushort arg2);
+void* CC1F60(DisplayTextState* arg1, ushort arg2) {
+    UnknownC100FE(arg2);
+    return null;
+}
 
 /// $C1549E
-void* CC1A05(DisplayTextState* arg1, ushort arg2);
+void* CC1A05(DisplayTextState* arg1, ushort arg2) {
+    if (1 < CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1A05;
+    }
+    if (CurrentFocusWindow == 1) {
+        UnknownEF0115(1);
+        WindowStats[WindowTable[CurrentFocusWindow]].text_y = 0;
+        WindowStats[WindowTable[CurrentFocusWindow]].text_x = 0;
+        UnknownC20A20(&arg1.savedTextAttributes);
+        Unknown7E5E71 = 0;
+    }
+    InventoryGetItemName(CCArgumentStorage[0], arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
 
 /// $C15529 - [18 08 XX] selection menu, no cancelling
 void* CC1808(DisplayTextState* arg1, ushort arg2) {
@@ -1660,37 +1924,122 @@ void* CC1809(DisplayTextState* arg1, ushort arg2) {
 }
 
 /// $C15573
-void* CC1C0B(DisplayTextState* arg1, ushort arg2);
+void* CC1C0B(DisplayTextState* arg1, ushort arg2)  {
+    if (3 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1C0B;
+    }
+    uint x06 = (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[1] << 8) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)arg2 << 24);
+    UnknownC4507A(x06 == 0 ? GetArgumentMemory() : x06);
+    return null;
+}
 
 /// $C15659
-void* CC1D0E(DisplayTextState* arg1, ushort arg2);
+void* CC1D0E(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D0E;
+    }
+    short x12 = GiveItemToCharacter(CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(ubyte)(arg2 != 0 ? arg2 : GetArgumentMemory()));
+    SetArgumentMemory(UnknownC22351(x12));
+    SetWorkingMemory(WorkingMemory(x12));
+    return null;
+}
 
 /// $C156DB
-void* CC1D0F(DisplayTextState* arg1, ushort arg2);
+void* CC1D0F(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D0F;
+    }
+    short x02 = CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0];
+    short x12 = cast(ubyte)(arg2 != 0 ? arg2 : GetArgumentMemory());
+    SetArgumentMemory(GetCharacterItem(x02, x12));
+    SetWorkingMemory(WorkingMemory(RemoveItemFromInventory(x02, x12)));
+    return null;
+}
 
 /// $C1575D
-void* CC1D10(DisplayTextState* arg1, ushort arg2);
+void* CC1D10(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D10;
+    }
+    SetWorkingMemory(WorkingMemory(CheckItemEquipped(CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory()))));
+    return null;
+}
 
 /// $C157CD
-void* CC1D11(DisplayTextState* arg1, ushort arg2);
+void* CC1D11(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D11;
+    }
+    short x02 = CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0];
+    SetWorkingMemory(WorkingMemory(UnknownC3EE14(x02, GetCharacterItem(x02, cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory())))));
+    return null;
+}
 
-/// $C15838
-void* CC1F83(DisplayTextState* arg1, ushort arg2);
+/// $C1583D
+void* CC1F83(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1F83;
+    }
+    SetArgumentMemory(EquipItem(CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory())));
+    return null;
+}
 
 /// $C158A5
-void* CC1D12(DisplayTextState* arg1, ushort arg2);
+void* CC1D12(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D12;
+    }
+    EscargoExpressMove(CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory()));
+    return null;
+}
 
 /// $C158FE
-void* CC1D13(DisplayTextState* arg1, ushort arg2);
+void* CC1D13(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D13;
+    }
+    short x12 = UnknownC191F8(CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0], cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory()));
+    SetArgumentMemory(UnknownC22351(x12));
+    SetWorkingMemory(WorkingMemory(x12));
+    return null;
+}
 
 /// $C1597F
-void* CC1919(DisplayTextState* arg1, ushort arg2);
+void* CC1919(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1919;
+    }
+    short x02 = CCArgumentStorage[0] == 0 ? cast(short)GetWorkingMemory().integer : CCArgumentStorage[0];
+    SetArgumentMemory(GetCharacterItem(x02, cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory())));
+    SetWorkingMemory(WorkingMemory(x02));
+    return null;
+}
 
 /// $C159F9
-void* CC1D14(DisplayTextState* arg1, ushort arg2);
+void* CC1D14(DisplayTextState* arg1, ushort arg2) {
+    if (3 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D14;
+    }
+    uint x06 = (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[1] << 8) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)arg2 << 24);
+    SetWorkingMemory(WorkingMemory((((x06 == 0 ? GetArgumentMemory() : x06) < gameState.moneyCarried) ? 1 : 0)));
+    return null;
+}
 
 /// $C15B0E
-void* CC191A(DisplayTextState* arg1, ushort arg2);
+void* CC191A(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(gameState.escargoExpressItems[(arg2 != 0 ? arg2 : GetArgumentMemory()) - 1]));
+    return null;
+}
 
 /// $C15B46 - [18 0D XX YY] print character status info
 void* CC180D(DisplayTextState* arg1, ushort arg2) {
@@ -1712,58 +2061,185 @@ void* CC180D(DisplayTextState* arg1, ushort arg2) {
 }
 
 /// $C15BA7
-void* CC1C0C(DisplayTextState* arg1, ushort arg2);
+void* CC1C0C(DisplayTextState* arg1, ushort arg2) {
+    UnknownC1180D(arg2 != 0 ? arg2 : cast(ushort)GetArgumentMemory(), 0, 0);
+    return null;
+}
 
 /// $C15BCA
-void* CC1D15(DisplayTextState* arg1, ushort arg2);
+void* CC1D15(DisplayTextState* arg1, ushort arg2) {
+    if (CCArgumentGatheringLoopCounter == 0) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D15;
+    }
+    SetWorkingMemory(WorkingMemory((((arg2 << 8) | CCArgumentStorage[0]) == 0 ? cast(ushort)GetArgumentMemory() : (arg2 << 8) | CCArgumentStorage[0]) * UnknownC226F0()));
+    return null;
+}
 
 /// $C15C36
-void* CC191B(DisplayTextState* arg1, ushort arg2);
+void* CC191B(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(UnknownC12BD5(arg2)));
+    return null;
+}
 
 /// $C15C58
-void* CC1F71(DisplayTextState* arg1, ushort arg2);
+void* CC1F71(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1F71;
+    }
+    LearnSpecialPSI(arg2);
+    return null;
+}
 
 /// $C15C85
-void* CC1D06(DisplayTextState* arg1, ushort arg2);
+void* CC1D06(DisplayTextState* arg1, ushort arg2) {
+    if (3 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D06;
+    }
+    uint x06 = (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[1] << 8) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)arg2 << 24);
+    DepositIntoATM((x06 == 0) ? GetArgumentMemory() : x06);
+    return null;
+}
 
 /// $C15D6B
-void* CC1D07(DisplayTextState* arg1, ushort arg2);
+void* CC1D07(DisplayTextState* arg1, ushort arg2) {
+    if (3 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D07;
+    }
+    uint x06 = (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[1] << 8) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)arg2 << 24);
+    uint amount = (x06 == 0) ? GetArgumentMemory() : x06;
+    WithdrawFromATM(amount);
+    SetWorkingMemory(WorkingMemory(amount));
+    return null;
+}
 
 /// $C15E5C
-void* CC1D17(DisplayTextState* arg1, ushort arg2);
+void* CC1D17(DisplayTextState* arg1, ushort arg2) {
+    if (3 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC1D17;
+    }
+    uint x06 = (CCArgumentStorage[0]) | (cast(uint)CCArgumentStorage[1] << 8) | (cast(uint)CCArgumentStorage[2] << 16) | (cast(uint)arg2 << 24);
+    SetWorkingMemory(WorkingMemory(gameState.bankBalance > x06 ? 0 : 1));
+    return null;
+}
 
 /// $C15F71
-void* CC1F11(DisplayTextState* arg1, ushort arg2);
+void* CC1F11(DisplayTextState* arg1, ushort arg2) {
+    AddCharToParty(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
 
 /// $C15F91
-void* CC1F12(DisplayTextState* arg1, ushort arg2);
+void* CC1F12(DisplayTextState* arg1, ushort arg2) {
+    RemoveCharFromParty(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
+
+/// $C15FB1
+void UnknownC15FB1(short, short);
 
 /// $C15FF7
-void* CC191C(DisplayTextState* arg1, ushort arg2);
+void* CC191C(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC191C;
+    }
+    short x04 = cast(short)(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : GetWorkingMemory().integer);
+    short x0E = arg2 != 0 ? arg2 : cast(short)GetArgumentMemory();
+    short x02;
+    if (x04 == 0xFF) {
+        x02 = UnknownC191B0(x0E);
+    } else {
+        x02 = GetCharacterItem(x04, x0E);
+        RemoveItemFromInventory(x04, x0E);
+    }
+    UnknownC15FB1(x04, x02);
+    return null;
+}
 
 /// $C16080
-void* CC191D(DisplayTextState* arg1, ushort arg2);
+void* CC191D(DisplayTextState* arg1, ushort arg2) {
+    if (1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &CC191D;
+    }
+    short tmp = cast(short)((CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : cast(short)GetWorkingMemory().integer) - 1);
+    SetWorkingMemory(WorkingMemory(gameState.unknownB8[tmp]));
+    SetArgumentMemory(gameState.unknownB6[tmp]);
+    if (arg2 != 0) {
+        gameState.unknownB6[tmp] = 0;
+        gameState.unknownB8[tmp] = 0;
+    }
+    return null;
+}
 
 /// $C16124
-void* CC1D18(DisplayTextState* arg1, ushort arg2);
+void* CC1D18(DisplayTextState* arg1, ushort arg2) {
+    EscargoExpressStore(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
 
 /// $C16143
-void* CC1921(DisplayTextState* arg1, ushort arg2);
+void* CC1921(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(GetItemSubtype2(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())));
+    return null;
+}
 
 /// $C16172
-void* CC1D19(DisplayTextState* arg1, ushort arg2);
+void* CC1D19(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory((gameState.playerControlledPartyMemberCount < (arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())) ? 1 : 0));
+    return null;
+}
 
 /// $C161D1
-void* CC1C12(DisplayTextState* arg1, ushort arg2);
+void* CC1C12(DisplayTextState* arg1, ushort arg2) {
+    UnknownC1CA06(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    return null;
+}
 
 /// $C161F0
-void* CC1D21(DisplayTextState* arg1, ushort arg2);
+void* CC1D21(DisplayTextState* arg1, ushort arg2) {
+    SetWorkingMemory(WorkingMemory(randMod(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory())));
+    return null;
+}
+
+/// $C1621F
+void* UnknownC1621F(DisplayTextState* arg1, ushort arg2) {
+    if ((const(ubyte)*).sizeof - 1 > CCArgumentGatheringLoopCounter) {
+        CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+        return &UnknownC1621F;
+    }
+    DisplayText(cast(const(ubyte)*)
+        ((cast(size_t)arg2 << (((const(ubyte)*).sizeof - 1) * 8)) |
+        (*cast(size_t*)(&CCArgumentStorage[0])) & ~(cast(size_t)0xFF << (((const(ubyte)*).sizeof - 1) * 8))));
+    arg1.textptr += Unknown7E97D5 * 4;
+    return null;
+}
 
 /// $C16308
-void* CC1FC0(DisplayTextState* arg1, ushort arg2);
+void* CC1FC0(DisplayTextState* arg1, ushort arg2) {
+    if ((GetWorkingMemory().integer != 0) && (GetWorkingMemory().integer < arg2)) {
+        Unknown7E97D5 = cast(short)(arg2 - cast(short)GetWorkingMemory().integer);
+        arg1.textptr += (cast(short)GetWorkingMemory().integer - 1) * 4;
+        CCArgumentGatheringLoopCounter = 0;
+        return &UnknownC1621F;
+    } else {
+        arg1.textptr += arg2 * 4;
+        return null;
+    }
+}
 
 /// $C163A7
-void* CC1FD0(DisplayTextState* arg1, ushort arg2);
+void* CC1FD0(DisplayTextState* arg1, ushort arg2) {
+    short x12 = UnknownC3F1EC(arg2 != 0 ? arg2 : cast(short)GetArgumentMemory());
+    SetWorkingMemory(WorkingMemory(x12 != 0 ? UnknownC1D038(x12) : 0));
+    SetArgumentMemory(x12);
+    return null;
+}
 
 /// $C163FD
 void* CC1F13(DisplayTextState* arg1, ushort arg2);
@@ -1814,7 +2290,10 @@ void* CC1922(DisplayTextState* arg1, ushort arg2);
 void* CC1923(DisplayTextState* arg1, ushort arg2);
 
 /// $C169F7
-void* CC1F62(DisplayTextState* arg1, ushort arg2);
+void* CC1F62(DisplayTextState* arg1, ushort arg2) {
+    EnableBlinkingTriangle(arg2);
+    return null;
+}
 
 /// $C16A01
 void* CC1E08(DisplayTextState* arg1, ushort arg2);
@@ -2851,6 +3330,17 @@ ushort TakeItemFromCharacter(ushort character, ushort item) {
     }
 }
 
+/// $C18F0E
+void ReduceHPAmtPercent(short arg1, short arg2, short arg3) {
+    if (arg1 == 0xFF) {
+        for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+            UnknownC3EC1F(gameState.partyMembers[i], arg2, arg3);
+        }
+    } else {
+        UnknownC3EC1F(arg1, arg2, arg3);
+    }
+}
+
 /// $C18F64
 void RecoverHPAmtPercent(short arg1, short arg2, short arg3) {
     if (arg1 == 0xFF) {
@@ -2859,6 +3349,17 @@ void RecoverHPAmtPercent(short arg1, short arg2, short arg3) {
         }
     } else {
         UnknownC3EC8B(arg1, arg2, arg3);
+    }
+}
+
+/// $C18FBA
+void ReducePPAmtPercent(short arg1, short arg2, short arg3) {
+    if (arg1 == 0xFF) {
+        for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+            UnknownC3ED2C(gameState.partyMembers[i], arg2, arg3);
+        }
+    } else {
+        UnknownC3ED2C(arg1, arg2, arg3);
     }
 }
 
@@ -2890,7 +3391,46 @@ short EquipItem(short arg1, short arg2) {
 }
 
 /// $C190E6
-short UnknownC190E6(short arg1);
+short UnknownC190E6(short arg1) {
+    return gameState.unknown96[arg1 - 1];
+}
+
+/// $C1913D
+short EscargoExpressStore(short arg1) {
+    for (short i = 0; gameState.escargoExpressItems.length > i; i++) {
+        if (gameState.escargoExpressItems[i] != 0) {
+            continue;
+        }
+        gameState.escargoExpressItems[i] = cast(ubyte)arg1;
+        return arg1;
+    }
+    return 0;
+}
+
+/// $C19183
+short EscargoExpressMove(short arg1, short arg2) {
+    if (EscargoExpressStore(GetCharacterItem(arg1, arg2)) != 0) {
+        return RemoveItemFromInventory(arg1, arg2);
+    }
+    return 0;
+}
+
+/// $C191B0
+short UnknownC191B0(short arg1) {
+    arg1--;
+    ubyte x01 = gameState.escargoExpressItems[arg1];
+    while ((gameState.escargoExpressItems[arg1 + 1] != 0) && (arg1++ < gameState.escargoExpressItems.length)) {
+        gameState.escargoExpressItems[arg1] = gameState.escargoExpressItems[arg1 + 1];
+    }
+    gameState.escargoExpressItems[arg1] = 0;
+    return x01;
+}
+
+/// $C191F8
+short UnknownC191F8(short arg1, short arg2) {
+    GiveItemToCharacter(arg1, cast(ubyte)UnknownC191B0(arg2));
+    return arg1;
+}
 
 /// $C19216
 void UnknownC19216(short arg1) {
@@ -2915,6 +3455,9 @@ void UnknownC19249(short arg1) {
         UnknownC447FB(CC1C01Table[arg1].size, cast(ubyte*)CC1C01Table[arg1].address);
     }
 }
+
+/// $C1931B
+void UnknownC1931B(short arg1);
 
 /// $C193E7
 void UnknownC193E7(short arg1) {
@@ -3037,6 +3580,9 @@ void UnknownC1952F(short arg1) {
     ClearInstantPrinting();
 }
 
+/// $C198DE
+void InventoryGetItemName(short arg1, short arg2);
+
 /// $C19A11
 short UnknownC19A11(short arg1, short arg2) {
     UnknownC20A20(&Unknown7E9C8A);
@@ -3071,6 +3617,9 @@ ushort UnknownC19A43() {
     UnknownC20ABC(&Unknown7E9C8A);
     return x18_2;
 }
+
+/// $C19DB5
+ushort UnknownC19DB5(short arg1);
 
 /// $C19EE6
 short GetItemType(short arg1) {
@@ -3221,6 +3770,31 @@ void GetOffBicycle() {
     CloseFocusWindowN();
     WindowTick();
     UnknownC03CFD();
+}
+
+void GetPSIName(short arg1) {
+    const(ubyte)* x06;
+    if (arg1 == 1) {
+        x06 = &gameState.favouriteThing[0];
+    } else {
+        x06 = &PSINameTable[arg1 - 1][0];
+    }
+    UnknownC447FB(-1, x06);
+}
+
+/// $C1CA06
+void UnknownC1CA06(short arg1) {
+    GetPSIName(PSIAbilityTable[arg1].name);
+    UnknownC447FB(-1, &PSISuffixes[PSIAbilityTable[arg1].level - 1][0]);
+}
+
+/// $C1D038 - Get fixed version of an item
+/// Returns: Fixed item id, or 0 if nonexistant
+short UnknownC1D038(short arg1) {
+    if (ItemData[arg1].type == 8) {
+        return ItemData[arg1].parameters.ep;
+    }
+    return 0;
 }
 
 /// $C1D109

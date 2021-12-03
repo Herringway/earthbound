@@ -3773,6 +3773,55 @@ enum SpritemapOrientation {
 	Horizontal = 0x4000,
 }
 
+enum PSILevel {
+	Alpha = 1,
+	Beta = 2,
+	Gamma = 3,
+	Sigma = 4,
+	Omega = 5,
+}
+
+enum PSIID {
+	Rockin = 1,
+	Fire = 2,
+	Freeze = 3,
+	Thunder = 4,
+	Flash = 5,
+	Starstorm = 6,
+	Lifeup = 7,
+	Healing = 8,
+	Shield = 9,
+	PSIShield = 10,
+	OffenseUp = 11,
+	DefenseDown = 12,
+	Hypnosis = 13,
+	Magnet = 14,
+	Paralysis = 15,
+	Brainshock = 16,
+	Teleport = 17,
+}
+
+enum PSICategory {
+	Offense = 1,
+	Recover = 2,
+	Assist = 4,
+	Other = 8,
+}
+
+enum PSITarget {
+	Nobody = 1,
+	Enemies = 2,
+	Allies = 3,
+}
+
+enum PSITargetA {
+	Single = 0,
+	Row = 1,
+	AllEnemies = 2,
+	Random = 3,
+}
+
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -4757,6 +4806,20 @@ struct TelephoneContact {
 	const(ubyte)* text;
 }
 
+struct PSIAbility {
+	ubyte name;
+	ubyte level;
+	ubyte type;
+	ubyte target;
+	short battleAction;
+	ubyte nessLevel;
+	ubyte paulaLevel;
+	ubyte pooLevel;
+	ubyte menuX;
+	ubyte menuY;
+	const(ubyte)* text;
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {
@@ -4785,6 +4848,7 @@ ubyte EBChar(dchar c) {
 	switch (c) {
 		case ' ':
 		case '!':
+		case '$':
 		case '(':
 		case ')':
 		case '\'':
@@ -4797,6 +4861,11 @@ ubyte EBChar(dchar c) {
 		case ':': return 0x6A;
 		case '?': return 0x6F;
 		case '@': return 0x70;
+		case '~': return 0x8B;
+		case '^': return 0x8C;
+		case '[': return 0x8D;
+		case ']': return 0x8E;
+		case '#': return 0x8F;
 		case '_': return 0x90;
 		case '|': return 0xAC;
 		case 'α': return 0x2A;

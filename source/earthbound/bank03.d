@@ -457,6 +457,31 @@ void UnknownC3EAD0(short arg1) {
 	}
 }
 
+/// $C3E977
+short GetCharacterItem(short arg1, short arg2) {
+	return PartyCharacters[arg1 - 1].items[arg2 - 1];
+}
+
+/// $C3E9F7
+short UnknownC3E9F7(short arg1, short arg2);
+
+/// $C3E9A0
+short CheckItemEquipped(short arg1, short arg2) {
+	if (PartyCharacters[arg1 - 1].equipment[0] == arg2) {
+		return 1;
+	}
+	if (PartyCharacters[arg1 - 1].equipment[1] == arg2) {
+		return 1;
+	}
+	if (PartyCharacters[arg1 - 1].equipment[2] == arg2) {
+		return 1;
+	}
+	if (PartyCharacters[arg1 - 1].equipment[3] == arg2) {
+		return 1;
+	}
+	return 0;
+}
+
 /// $C3EB1C
 void UnknownC3EB1C(short arg1) {
 	short x14 = 0;
@@ -483,6 +508,20 @@ void UnknownC3EBCA() {
 	}
 }
 
+/// $C3EC1F
+void UnknownC3EC1F(short arg1, short arg2, short arg3) {
+	if (arg1 == 0) {
+		return;
+	}
+	if (arg3 == 0) {
+		arg2 = cast(short)((arg2 * PartyCharacters[arg1 - 1].maxHP) / 100);
+	}
+	PartyCharacters[arg1 - 1].hp.target -= arg2;
+	if (PartyCharacters[arg1 - 1].hp.target > PartyCharacters[arg1 - 1].maxHP) {
+		PartyCharacters[arg1 - 1].hp.target = 0;
+	}
+}
+
 /// $C3EC8B
 void UnknownC3EC8B(short arg1, short arg2, short arg3) {
 	if (arg1 == 0) {
@@ -497,6 +536,20 @@ void UnknownC3EC8B(short arg1, short arg2, short arg3) {
 	}
 	if (PartyCharacters[arg1 - 1].hp.target > PartyCharacters[arg1 - 1].maxHP) {
 		PartyCharacters[arg1 - 1].hp.target = PartyCharacters[arg1 - 1].maxHP;
+	}
+}
+
+/// $C3ED2C
+void UnknownC3ED2C(short arg1, short arg2, short arg3) {
+	if (arg1 == 0) {
+		return;
+	}
+	if (arg3 == 0) {
+		arg2 = cast(short)((arg2 * PartyCharacters[arg1 - 1].maxPP) / 100);
+	}
+	PartyCharacters[arg1 - 1].pp.target -= arg2;
+	if (PartyCharacters[arg1 - 1].pp.target > PartyCharacters[arg1 - 1].maxPP) {
+		PartyCharacters[arg1 - 1].pp.target = 0;
 	}
 }
 
@@ -557,6 +610,37 @@ immutable FontConfig[5] FontConfigTable = [
 	FontConfig(null, null, 8, 8), //tiny font
 	FontConfig(null, null, 32, 16), //large font
 ];
+
+/// $C3F112
+immutable ubyte[2][5] PSISuffixes = [
+	EBString!2("~"),
+	EBString!2("^"),
+	EBString!2("["),
+	EBString!2("]"),
+	EBString!2("#"),
+];
+
+/// $C3F1EC
+short UnknownC3F1EC(short arg1) {
+	if (UnknownC2239D(3) == 0) {
+		return 0;
+	}
+	for (short i = 0; (i < 14) && (PartyCharacters[3].items[i] != 0); i++) {
+		short x0E = PartyCharacters[3].items[i];
+		if (ItemData[x0E].type != 8) {
+			continue;
+		}
+		if (ItemData[x0E].parameters.epi > PartyCharacters[3].iq) {
+			continue;
+		}
+		if (randMod(99) >= arg1) {
+			continue;
+		}
+		PartyCharacters[3].items[i] = ItemData[x0E].parameters.ep;
+		return x0E;
+	}
+	return 0;
+}
 
 /// $C3F2B5
 immutable ushort[8][17] PartyCharacterGraphicsTable = [
