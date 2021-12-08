@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module earthbound.bank03</title>
+		<link rel="stylesheet" type="text/css" href="../styles/ddox.css"/>
+		<link rel="stylesheet" href="../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../scripts/jquery.js">/**/</script><script type="text/javascript" src="../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">earthbound
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank00.html">bank00</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank01.html">bank01</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank02.html">bank02</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../earthbound/bank03.html">bank03</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank04.html">bank04</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank05.html">bank05</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank06.html">bank06</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank07.html">bank07</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank08.html">bank08</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank09.html">bank09</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0A.html">bank0A</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0B.html">bank0B</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0E.html">bank0E</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0F.html">bank0F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank10.html">bank10</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank11.html">bank11</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank12.html">bank12</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank13.html">bank13</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank14.html">bank14</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank15.html">bank15</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank17.html">bank17</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank18.html">bank18</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank1C.html">bank1C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank1F.html">bank1F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank20.html">bank20</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank21.html">bank21</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank2F.html">bank2F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/commondefs.html">commondefs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/globals.html">globals</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/hardware.html">hardware</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module earthbound.bank03</h1><p>actionscripts, misc things
+</p>
+			<section></section>
+			<section>
+				<h2>Functions</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CheckItemEquipped" class="public" href="../earthbound/bank03/CheckItemEquipped.html">CheckItemEquipped</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C3E9A0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ClearInstantPrinting" class="public" href="../earthbound/bank03/ClearInstantPrinting.html">ClearInstantPrinting</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3E4CA - Clear the instant text print flag
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CloseWindow" class="public" href="../earthbound/bank03/CloseWindow.html">CloseWindow</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3E521
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="DisplayAntiPiracyScreen" class="public" href="../earthbound/bank03/DisplayAntiPiracyScreen.html">DisplayAntiPiracyScreen</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C30100
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="DisplayFaultyGamepakScreen" class="public" href="../earthbound/bank03/DisplayFaultyGamepakScreen.html">DisplayFaultyGamepakScreen</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C30142
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetCharacterItem" class="public" href="../earthbound/bank03/GetCharacterItem.html">GetCharacterItem</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C3E977
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="NullC3EF23" class="public" href="../earthbound/bank03/NullC3EF23.html">NullC3EF23</a><span class="tableEntryAnnotation">(_param_0)</span>
+							</code>
+						</td>
+						<td>$C3EF23
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SetInstantPrinting" class="public" href="../earthbound/bank03/SetInstantPrinting.html">SetInstantPrinting</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3E4D4 - Set the instant text print flag
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ShowTitleScreen" class="public" href="../earthbound/bank03/ShowTitleScreen.html">ShowTitleScreen</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3F3C5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3E450" class="public" href="../earthbound/bank03/UnknownC3E450.html">UnknownC3E450</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3E450
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3E4EF" class="public" href="../earthbound/bank03/UnknownC3E4EF.html">UnknownC3E4EF</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3E4EF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3E6F8" class="public" href="../earthbound/bank03/UnknownC3E6F8.html">UnknownC3E6F8</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3E6F8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3E75D" class="public" href="../earthbound/bank03/UnknownC3E75D.html">UnknownC3E75D</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3E75D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3E7E3" class="public" href="../earthbound/bank03/UnknownC3E7E3.html">UnknownC3E7E3</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3E7E3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3E9F7" class="public" href="../earthbound/bank03/UnknownC3E9F7.html">UnknownC3E9F7</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C3E9F7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3EAD0" class="public" href="../earthbound/bank03/UnknownC3EAD0.html">UnknownC3EAD0</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3EB1C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3EB1C" class="public" href="../earthbound/bank03/UnknownC3EB1C.html">UnknownC3EB1C</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3EB1C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3EBCA" class="public" href="../earthbound/bank03/UnknownC3EBCA.html">UnknownC3EBCA</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3EBCA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3EC1F" class="public" href="../earthbound/bank03/UnknownC3EC1F.html">UnknownC3EC1F</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C3EC1F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3EC8B" class="public" href="../earthbound/bank03/UnknownC3EC8B.html">UnknownC3EC8B</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C3EC8B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3ED2C" class="public" href="../earthbound/bank03/UnknownC3ED2C.html">UnknownC3ED2C</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C3ED2C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3ED98" class="public" href="../earthbound/bank03/UnknownC3ED98.html">UnknownC3ED98</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C3ED98
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3EE14" class="public" href="../earthbound/bank03/UnknownC3EE14.html">UnknownC3EE14</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C3EE14
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3EE7A" class="public" href="../earthbound/bank03/UnknownC3EE7A.html">UnknownC3EE7A</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3EE7A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3F1EC" class="public" href="../earthbound/bank03/UnknownC3F1EC.html">UnknownC3F1EC</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C3F1EC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC3FDC5" class="public" href="../earthbound/bank03/UnknownC3FDC5.html">UnknownC3FDC5</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3FDC5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="WindowTickWithoutInstantPrinting" class="public" href="../earthbound/bank03/WindowTickWithoutInstantPrinting.html">WindowTickWithoutInstantPrinting</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C3E4E0
+</td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<h2>Global variables</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="AllowedInputDirections" class="public" href="../earthbound/bank03/AllowedInputDirections.html">
+								<code>AllowedInputDirections</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E12C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="arrC3E406" class="public" href="../earthbound/bank03/arrC3E406.html">
+								<code>arrC3E406</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E406
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="arrC3E40A" class="public" href="../earthbound/bank03/arrC3E40A.html">
+								<code>arrC3E40A</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E40A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="AttractModeText" class="public" href="../earthbound/bank03/AttractModeText.html">
+								<code>AttractModeText</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">*</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3FD8D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="BlinkingTriangleTiles" class="public" href="../earthbound/bank03/BlinkingTriangleTiles.html">
+								<code>BlinkingTriangleTiles</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E416
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="CharacterInitialEntityData" class="public" href="../earthbound/bank03/CharacterInitialEntityData.html">
+								<code>CharacterInitialEntityData</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">CharacterInitialEntityDataEntry</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E012
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="CharacterSizes" class="public" href="../earthbound/bank03/CharacterSizes.html">
+								<code>CharacterSizes</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E09A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="DebugMenuText" class="public" href="../earthbound/bank03/DebugMenuText.html">
+								<code>DebugMenuText</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">[</span><span class="lit">24</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E874
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="defaultMovementSpeeds" class="public" href="../earthbound/bank03/defaultMovementSpeeds.html">
+								<code>defaultMovementSpeeds</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">FixedPoint1616</span><span class="pun">[</span><span class="lit">14</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E0BC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="FontConfigTable" class="public" href="../earthbound/bank03/FontConfigTable.html">
+								<code>FontConfigTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">FontConfig</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3F054
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NameRegistryRequestString" class="public" href="../earthbound/bank03/NameRegistryRequestString.html">
+								<code>NameRegistryRequestString</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">26</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3FB2B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NessPajamaFlag" class="public" href="../earthbound/bank03/NessPajamaFlag.html">
+								<code>NessPajamaFlag</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">EventFlag</span><span class="pun">)</span></code>
+						</td>
+						<td>$C30186
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="PartyCharacterGraphicsTable" class="public" href="../earthbound/bank03/PartyCharacterGraphicsTable.html">
+								<code>PartyCharacterGraphicsTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3F2B5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="PSISuffixes" class="public" href="../earthbound/bank03/PSISuffixes.html">
+								<code>PSISuffixes</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">[</span><span class="lit">5</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3F112
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E148" class="public" href="../earthbound/bank03/UnknownC3E148.html">
+								<code>UnknownC3E148</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E148
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E158" class="public" href="../earthbound/bank03/UnknownC3E158.html">
+								<code>UnknownC3E158</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E158
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E1D8" class="public" href="../earthbound/bank03/UnknownC3E1D8.html">
+								<code>UnknownC3E1D8</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E1D8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E1E0" class="public" href="../earthbound/bank03/UnknownC3E1E0.html">
+								<code>UnknownC3E1E0</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E1E0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E200" class="public" href="../earthbound/bank03/UnknownC3E200.html">
+								<code>UnknownC3E200</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E200
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E208" class="public" href="../earthbound/bank03/UnknownC3E208.html">
+								<code>UnknownC3E208</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E208
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E210" class="public" href="../earthbound/bank03/UnknownC3E210.html">
+								<code>UnknownC3E210</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E210
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E218" class="public" href="../earthbound/bank03/UnknownC3E218.html">
+								<code>UnknownC3E218</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E218
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E220" class="public" href="../earthbound/bank03/UnknownC3E220.html">
+								<code>UnknownC3E220</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E220
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E228" class="public" href="../earthbound/bank03/UnknownC3E228.html">
+								<code>UnknownC3E228</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E228
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E230" class="public" href="../earthbound/bank03/UnknownC3E230.html">
+								<code>UnknownC3E230</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E230
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E240" class="public" href="../earthbound/bank03/UnknownC3E240.html">
+								<code>UnknownC3E240</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E240
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E3F8" class="public" href="../earthbound/bank03/UnknownC3E3F8.html">
+								<code>UnknownC3E3F8</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">22</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E3F8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E40E" class="public" href="../earthbound/bank03/UnknownC3E40E.html">
+								<code>UnknownC3E40E</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E40E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E44C" class="public" href="../earthbound/bank03/UnknownC3E44C.html">
+								<code>UnknownC3E44C</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E44C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E84E" class="public" href="../earthbound/bank03/UnknownC3E84E.html">
+								<code>UnknownC3E84E</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E84E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3E862" class="public" href="../earthbound/bank03/UnknownC3E862.html">
+								<code>UnknownC3E862</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">9</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E862
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3F819" class="public" href="../earthbound/bank03/UnknownC3F819.html">
+								<code>UnknownC3F819</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">Unknown7EAECCEntry</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3F819
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3F871" class="public" href="../earthbound/bank03/UnknownC3F871.html">
+								<code>UnknownC3F871</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3F871
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3F8B1" class="public" href="../earthbound/bank03/UnknownC3F8B1.html">
+								<code>UnknownC3F8B1</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3F8B1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3F8F1" class="public" href="../earthbound/bank03/UnknownC3F8F1.html">
+								<code>UnknownC3F8F1</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="pln">RGB</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3F8F1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC3FDB5" class="public" href="../earthbound/bank03/UnknownC3FDB5.html">
+								<code>UnknownC3FDB5</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3FDB5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnusedForSaleSignSpriteTable" class="public" href="../earthbound/bank03/UnusedForSaleSignSpriteTable.html">
+								<code>UnusedForSaleSignSpriteTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3FDBD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="WindowConfigurationTable" class="public" href="../earthbound/bank03/WindowConfigurationTable.html">
+								<code>WindowConfigurationTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">WindowConfig</span><span class="pun">[</span><span class="lit">53</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C3E250
+</td>
+					</tr>
+				</table>
+			</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

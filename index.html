@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>API documentation</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">earthbound
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank00.html">bank00</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank01.html">bank01</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank02.html">bank02</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank03.html">bank03</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank04.html">bank04</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank05.html">bank05</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank06.html">bank06</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank07.html">bank07</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank08.html">bank08</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank09.html">bank09</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank0A.html">bank0A</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank0B.html">bank0B</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank0E.html">bank0E</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank0F.html">bank0F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank10.html">bank10</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank11.html">bank11</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank12.html">bank12</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank13.html">bank13</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank14.html">bank14</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank15.html">bank15</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank17.html">bank17</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank18.html">bank18</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank1C.html">bank1C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank1F.html">bank1F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank20.html">bank20</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank21.html">bank21</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/bank2F.html">bank2F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/commondefs.html">commondefs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/globals.html">globals</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./earthbound/hardware.html">hardware</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>API documentation</h1>
+			<table>
+				<col class="caption"/>
+				<tr>
+					<th>Module</th><th>Description</th>
+				</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank00.html">earthbound.bank00</a>
+				</td>
+				<td>
+					low level stuff, actionscript, overworld code
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank01.html">earthbound.bank01</a>
+				</td>
+				<td>
+					mostly text code
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank02.html">earthbound.bank02</a>
+				</td>
+				<td>
+					mostly battle code
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank03.html">earthbound.bank03</a>
+				</td>
+				<td>
+					actionscripts, misc things
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank04.html">earthbound.bank04</a>
+				</td>
+				<td>
+					more misc things
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank05.html">earthbound.bank05</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank06.html">earthbound.bank06</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank07.html">earthbound.bank07</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank08.html">earthbound.bank08</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank09.html">earthbound.bank09</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank0A.html">earthbound.bank0A</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank0B.html">earthbound.bank0B</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank0E.html">earthbound.bank0E</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank0F.html">earthbound.bank0F</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank10.html">earthbound.bank10</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank11.html">earthbound.bank11</a>
+				</td>
+				<td>
+					Sprite bank 1
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank12.html">earthbound.bank12</a>
+				</td>
+				<td>
+					Sprite bank 2
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank13.html">earthbound.bank13</a>
+				</td>
+				<td>
+					Sprite bank 3
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank14.html">earthbound.bank14</a>
+				</td>
+				<td>
+					Sprite bank 4
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank15.html">earthbound.bank15</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank17.html">earthbound.bank17</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank18.html">earthbound.bank18</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank1C.html">earthbound.bank1C</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank1F.html">earthbound.bank1F</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank20.html">earthbound.bank20</a>
+				</td>
+				<td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank21.html">earthbound.bank21</a>
+				</td>
+				<td>
+					intro screen data, town maps, etc
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/bank2F.html">earthbound.bank2F</a>
+				</td>
+				<td>
+					where things that don't fit elsewhere ended up, especially debugging and SRAM management
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/commondefs.html">earthbound.commondefs</a>
+				</td>
+				<td>
+					Misc definitions
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/globals.html">earthbound.globals</a>
+				</td>
+				<td>
+					Every one of Earthbound's global variables
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./earthbound/hardware.html">earthbound.hardware</a>
+				</td>
+				<td>
+					snes hardware layer
+
+				</td>
+			</tr>
+			</table>
+			<footer>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

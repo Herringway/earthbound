@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module earthbound.bank21</title>
+		<link rel="stylesheet" type="text/css" href="../styles/ddox.css"/>
+		<link rel="stylesheet" href="../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../scripts/jquery.js">/**/</script><script type="text/javascript" src="../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">earthbound
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank00.html">bank00</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank01.html">bank01</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank02.html">bank02</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank03.html">bank03</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank04.html">bank04</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank05.html">bank05</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank06.html">bank06</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank07.html">bank07</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank08.html">bank08</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank09.html">bank09</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0A.html">bank0A</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0B.html">bank0B</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0E.html">bank0E</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0F.html">bank0F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank10.html">bank10</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank11.html">bank11</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank12.html">bank12</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank13.html">bank13</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank14.html">bank14</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank15.html">bank15</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank17.html">bank17</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank18.html">bank18</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank1C.html">bank1C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank1F.html">bank1F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank20.html">bank20</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../earthbound/bank21.html">bank21</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank2F.html">bank2F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/commondefs.html">commondefs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/globals.html">globals</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/hardware.html">hardware</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module earthbound.bank21</h1><p>intro screen data, town maps, etc
+</p>
+			<section></section>
+			<section>
+				<h2>Global variables</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="APEArrangement" class="public" href="../earthbound/bank21/APEArrangement.html">
+								<code>APEArrangement</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E14EC1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="APEGraphics" class="public" href="../earthbound/bank21/APEGraphics.html">
+								<code>APEGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E14F2A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="APEPalette" class="public" href="../earthbound/bank21/APEPalette.html">
+								<code>APEPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E15130
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="CastNamesGraphics" class="public" href="../earthbound/bank21/CastNamesGraphics.html">
+								<code>CastNamesGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1D835
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="CastSequenceFormatting" class="public" href="../earthbound/bank21/CastSequenceFormatting.html">
+								<code>CastSequenceFormatting</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">CastSequenceFormattingEntry</span><span class="pun">[</span><span class="lit">48</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E12EFA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="CoffeeSequenceText" class="public" href="../earthbound/bank21/CoffeeSequenceText.html">
+								<code>CoffeeSequenceText</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">*</span><span class="pun">)</span></code>
+						</td>
+						<td>$E10000
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="CompressedPaletteUnknown" class="public" href="../earthbound/bank21/CompressedPaletteUnknown.html">
+								<code>CompressedPaletteUnknown</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1374A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="GasStationArrangement" class="public" href="../earthbound/bank21/GasStationArrangement.html">
+								<code>GasStationArrangement</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E155D3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="GasStationGraphics" class="public" href="../earthbound/bank21/GasStationGraphics.html">
+								<code>GasStationGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E15B33
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="GasStationPalette" class="public" href="../earthbound/bank21/GasStationPalette.html">
+								<code>GasStationPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1A9B7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="GasStationPalette2" class="public" href="../earthbound/bank21/GasStationPalette2.html">
+								<code>GasStationPalette2</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AA5D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="HALKENArrangement" class="public" href="../earthbound/bank21/HALKENArrangement.html">
+								<code>HALKENArrangement</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E15174
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="HALKENGraphics" class="public" href="../earthbound/bank21/HALKENGraphics.html">
+								<code>HALKENGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E151E8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="HALKENPalette" class="public" href="../earthbound/bank21/HALKENPalette.html">
+								<code>HALKENPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E153B8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NintendoArrangement" class="public" href="../earthbound/bank21/NintendoArrangement.html">
+								<code>NintendoArrangement</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E15455
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NintendoGraphics" class="public" href="../earthbound/bank21/NintendoGraphics.html">
+								<code>NintendoGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1549E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NintendoItoiPalette" class="public" href="../earthbound/bank21/NintendoItoiPalette.html">
+								<code>NintendoItoiPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AE6F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NintendoPalette" class="public" href="../earthbound/bank21/NintendoPalette.html">
+								<code>NintendoPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1558F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NintendoPresentationArrangement" class="public" href="../earthbound/bank21/NintendoPresentationArrangement.html">
+								<code>NintendoPresentationArrangement</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AD01
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="NintendoPresentationGraphics" class="public" href="../earthbound/bank21/NintendoPresentationGraphics.html">
+								<code>NintendoPresentationGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AD4E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="PhotographerConfigTable" class="public" href="../earthbound/bank21/PhotographerConfigTable.html">
+								<code>PhotographerConfigTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">CreditsPhotograph</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E12F8A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="ProducedItoiArrangement" class="public" href="../earthbound/bank21/ProducedItoiArrangement.html">
+								<code>ProducedItoiArrangement</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AADF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="ProducedItoiGraphics" class="public" href="../earthbound/bank21/ProducedItoiGraphics.html">
+								<code>ProducedItoiGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AB4B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="StaffCreditsFontGraphics" class="public" href="../earthbound/bank21/StaffCreditsFontGraphics.html">
+								<code>StaffCreditsFontGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1E528
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="StaffCreditsFontPalette" class="public" href="../earthbound/bank21/StaffCreditsFontPalette.html">
+								<code>StaffCreditsFontPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1E914
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="StaffText" class="public" href="../earthbound/bank21/StaffText.html">
+								<code>StaffText</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1413F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="TeaSequenceText" class="public" href="../earthbound/bank21/TeaSequenceText.html">
+								<code>TeaSequenceText</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">*</span><span class="pun">)</span></code>
+						</td>
+						<td>$E10652
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="TitleScreenArrangement" class="public" href="../earthbound/bank21/TitleScreenArrangement.html">
+								<code>TitleScreenArrangement</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AF7D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="TitleScreenGraphics" class="public" href="../earthbound/bank21/TitleScreenGraphics.html">
+								<code>TitleScreenGraphics</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1B211
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="TownMapIconPalette" class="public" href="../earthbound/bank21/TownMapIconPalette.html">
+								<code>TownMapIconPalette</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1F1C3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="TownMapIconPlacementTable" class="public" href="../earthbound/bank21/TownMapIconPlacementTable.html">
+								<code>TownMapIconPlacementTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">TownMapIconPlacement</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1F491
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="TownMapLabelGfx" class="public" href="../earthbound/bank21/TownMapLabelGfx.html">
+								<code>TownMapLabelGfx</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1EA50
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1AE7C" class="public" href="../earthbound/bank21/UnknownE1AE7C.html">
+								<code>UnknownE1AE7C</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1AE7C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1C6E5" class="public" href="../earthbound/bank21/UnknownE1C6E5.html">
+								<code>UnknownE1C6E5</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1C6E5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1CF9D" class="public" href="../earthbound/bank21/UnknownE1CF9D.html">
+								<code>UnknownE1CF9D</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">SpriteMap</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">9</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1CE08
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1CFAF" class="public" href="../earthbound/bank21/UnknownE1CFAF.html">
+								<code>UnknownE1CFAF</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1CFAF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1D4F4" class="public" href="../earthbound/bank21/UnknownE1D4F4.html">
+								<code>UnknownE1D4F4</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1D4F4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1D5E8" class="public" href="../earthbound/bank21/UnknownE1D5E8.html">
+								<code>UnknownE1D5E8</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1D5E8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1D6E1" class="public" href="../earthbound/bank21/UnknownE1D6E1.html">
+								<code>UnknownE1D6E1</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1D6E1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1D815" class="public" href="../earthbound/bank21/UnknownE1D815.html">
+								<code>UnknownE1D815</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1D815
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1E4E6" class="public" href="../earthbound/bank21/UnknownE1E4E6.html">
+								<code>UnknownE1E4E6</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1E4E6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1E924" class="public" href="../earthbound/bank21/UnknownE1E924.html">
+								<code>UnknownE1E924</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1E924
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1E92A" class="public" href="../earthbound/bank21/UnknownE1E92A.html">
+								<code>UnknownE1E92A</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1E92A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1E94A" class="public" href="../earthbound/bank21/UnknownE1E94A.html">
+								<code>UnknownE1E94A</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1E94A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1F44C" class="public" href="../earthbound/bank21/UnknownE1F44C.html">
+								<code>UnknownE1F44C</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">SpriteMap</span><span class="pun">[]</span><span class="pun">[</span><span class="lit">23</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1F44C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownE1F47A" class="public" href="../earthbound/bank21/UnknownE1F47A.html">
+								<code>UnknownE1F47A</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">23</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$E1F47A
+</td>
+					</tr>
+				</table>
+			</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

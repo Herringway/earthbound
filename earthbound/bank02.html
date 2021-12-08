@@ -1,0 +1,3534 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module earthbound.bank02</title>
+		<link rel="stylesheet" type="text/css" href="../styles/ddox.css"/>
+		<link rel="stylesheet" href="../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../scripts/jquery.js">/**/</script><script type="text/javascript" src="../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">earthbound
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank00.html">bank00</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank01.html">bank01</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../earthbound/bank02.html">bank02</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank03.html">bank03</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank04.html">bank04</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank05.html">bank05</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank06.html">bank06</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank07.html">bank07</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank08.html">bank08</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank09.html">bank09</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0A.html">bank0A</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0B.html">bank0B</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0E.html">bank0E</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank0F.html">bank0F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank10.html">bank10</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank11.html">bank11</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank12.html">bank12</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank13.html">bank13</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank14.html">bank14</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank15.html">bank15</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank17.html">bank17</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank18.html">bank18</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank1C.html">bank1C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank1F.html">bank1F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank20.html">bank20</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank21.html">bank21</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/bank2F.html">bank2F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/commondefs.html">commondefs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/globals.html">globals</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../earthbound/hardware.html">hardware</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module earthbound.bank02</h1><p>mostly battle code
+</p>
+			<section></section>
+			<section>
+				<h2>Functions</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="AddCharToParty" class="public" href="../earthbound/bank02/AddCharToParty.html">AddCharToParty</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C228F8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ApplyCondiment" class="public" href="../earthbound/bank02/ApplyCondiment.html">ApplyCondiment</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2B172
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleAction350FireDamage" class="public" href="../earthbound/bank02/BattleAction350FireDamage.html">BattleAction350FireDamage</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2900B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBagOfDragonite" class="public" href="../earthbound/bank02/BattleActionBagOfDragonite.html">BattleActionBagOfDragonite</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A99C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBash" class="public" href="../earthbound/bank02/BattleActionBash.html">BattleActionBash</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2859F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBigBottleRocket" class="public" href="../earthbound/bank02/BattleActionBigBottleRocket.html">BattleActionBigBottleRocket</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A5DA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBomb" class="public" href="../earthbound/bank02/BattleActionBomb.html">BattleActionBomb</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A818
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBottleRocket" class="public" href="../earthbound/bank02/BattleActionBottleRocket.html">BattleActionBottleRocket</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A5D1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBrainshockAlpha" class="public" href="../earthbound/bank02/BattleActionBrainshockAlpha.html">BattleActionBrainshockAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A056
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBrainshockAlphaCopy" class="public" href="../earthbound/bank02/BattleActionBrainshockAlphaCopy.html">BattleActionBrainshockAlphaCopy</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28D3A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionBrainshockOmega" class="public" href="../earthbound/bank02/BattleActionBrainshockOmega.html">BattleActionBrainshockOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A0A7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionCallForHelp" class="public" href="../earthbound/bank02/BattleActionCallForHelp.html">BattleActionCallForHelp</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C145
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionClumsyRobotDeath" class="public" href="../earthbound/bank02/BattleActionClumsyRobotDeath.html">BattleActionClumsyRobotDeath</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29298
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionCold" class="public" href="../earthbound/bank02/BattleActionCold.html">BattleActionCold</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28B6D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionCounterPSI" class="public" href="../earthbound/bank02/BattleActionCounterPSI.html">BattleActionCounterPSI</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A3D1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionCrying" class="public" href="../earthbound/bank02/BattleActionCrying.html">BattleActionCrying</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28C69
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionCrying2" class="public" href="../earthbound/bank02/BattleActionCrying2.html">BattleActionCrying2</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28DFC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionCutGuts" class="public" href="../earthbound/bank02/BattleActionCutGuts.html">BattleActionCutGuts</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28EAE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionDefenseDownAlpha" class="public" href="../earthbound/bank02/BattleActionDefenseDownAlpha.html">BattleActionDefenseDownAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29E86
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionDefenseDownOmega" class="public" href="../earthbound/bank02/BattleActionDefenseDownOmega.html">BattleActionDefenseDownOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29EFF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionDefenseShower" class="public" href="../earthbound/bank02/BattleActionDefenseShower.html">BattleActionDefenseShower</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AB0D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionDefenseSpray" class="public" href="../earthbound/bank02/BattleActionDefenseSpray.html">BattleActionDefenseSpray</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AAC6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionDiamondize" class="public" href="../earthbound/bank02/BattleActionDiamondize.html">BattleActionDiamondize</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C289CE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionDistract" class="public" href="../earthbound/bank02/BattleActionDistract.html">BattleActionDistract</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28D5A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionDoubleBash" class="public" href="../earthbound/bank02/BattleActionDoubleBash.html">BattleActionDoubleBash</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28FF9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionEnemyExtend" class="public" href="../earthbound/bank02/BattleActionEnemyExtend.html">BattleActionEnemyExtend</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C292EB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionFeelStrange" class="public" href="../earthbound/bank02/BattleActionFeelStrange.html">BattleActionFeelStrange</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28D8B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionFlyHoney" class="public" href="../earthbound/bank02/BattleActionFlyHoney.html">BattleActionFlyHoney</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C1BD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionFreezeTime" class="public" href="../earthbound/bank02/BattleActionFreezeTime.html">BattleActionFreezeTime</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C288EB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer1" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer1.html">BattleActionGiygasPrayer1</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C572
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer2" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer2.html">BattleActionGiygasPrayer2</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C5D1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer3" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer3.html">BattleActionGiygasPrayer3</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C5FA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer4" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer4.html">BattleActionGiygasPrayer4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C623
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer5" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer5.html">BattleActionGiygasPrayer5</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C64C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer6" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer6.html">BattleActionGiygasPrayer6</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C675
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer7" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer7.html">BattleActionGiygasPrayer7</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C69E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer8" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer8.html">BattleActionGiygasPrayer8</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C6D0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGiygasPrayer9" class="public" href="../earthbound/bank02/BattleActionGiygasPrayer9.html">BattleActionGiygasPrayer9</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C6F0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionGutsUp1d4" class="public" href="../earthbound/bank02/BattleActionGutsUp1d4.html">BattleActionGutsUp1d4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A14B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHandbagStrap" class="public" href="../earthbound/bank02/BattleActionHandbagStrap.html">BattleActionHandbagStrap</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A5EC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHealingAlpha" class="public" href="../earthbound/bank02/BattleActionHealingAlpha.html">BattleActionHealingAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29AEA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHealingBeta" class="public" href="../earthbound/bank02/BattleActionHealingBeta.html">BattleActionHealingBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29B7A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHealingGamma" class="public" href="../earthbound/bank02/BattleActionHealingGamma.html">BattleActionHealingGamma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29C2C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHealingOmega" class="public" href="../earthbound/bank02/BattleActionHealingOmega.html">BattleActionHealingOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29CB8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPRecovery10" class="public" href="../earthbound/bank02/BattleActionHPRecovery10.html">BattleActionHPRecovery10</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A360
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPRecovery100" class="public" href="../earthbound/bank02/BattleActionHPRecovery100.html">BattleActionHPRecovery100</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A370
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPRecovery10000" class="public" href="../earthbound/bank02/BattleActionHPRecovery10000.html">BattleActionHPRecovery10000</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A380
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPRecovery1d4" class="public" href="../earthbound/bank02/BattleActionHPRecovery1d4.html">BattleActionHPRecovery1d4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A0AE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPRecovery200" class="public" href="../earthbound/bank02/BattleActionHPRecovery200.html">BattleActionHPRecovery200</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A0CF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPRecovery300" class="public" href="../earthbound/bank02/BattleActionHPRecovery300.html">BattleActionHPRecovery300</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A26F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPRecovery50" class="public" href="../earthbound/bank02/BattleActionHPRecovery50.html">BattleActionHPRecovery50</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A0BF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHPSucker" class="public" href="../earthbound/bank02/BattleActionHPSucker.html">BattleActionHPSucker</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A46B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHungryHPSucker" class="public" href="../earthbound/bank02/BattleActionHungryHPSucker.html">BattleActionHungryHPSucker</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A507
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHypnosisAlpha" class="public" href="../earthbound/bank02/BattleActionHypnosisAlpha.html">BattleActionHypnosisAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29F06
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHypnosisAlphaCopy" class="public" href="../earthbound/bank02/BattleActionHypnosisAlphaCopy.html">BattleActionHypnosisAlphaCopy</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28E3B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionHypnosisOmega" class="public" href="../earthbound/bank02/BattleActionHypnosisOmega.html">BattleActionHypnosisOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29F57
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionImmobilize" class="public" href="../earthbound/bank02/BattleActionImmobilize.html">BattleActionImmobilize</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28CB8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionInsecticideSpray" class="public" href="../earthbound/bank02/BattleActionInsecticideSpray.html">BattleActionInsecticideSpray</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AA0C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionIQUp1d4" class="public" href="../earthbound/bank02/BattleActionIQUp1d4.html">BattleActionIQUp1d4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A0FF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLevel1Attack" class="public" href="../earthbound/bank02/BattleActionLevel1Attack.html">BattleActionLevel1Attack</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C286CB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLevel2Attack" class="public" href="../earthbound/bank02/BattleActionLevel2Attack.html">BattleActionLevel2Attack</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28523
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLevel2AttackDiamondize" class="public" href="../earthbound/bank02/BattleActionLevel2AttackDiamondize.html">BattleActionLevel2AttackDiamondize</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2916E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLevel2AttackPoison" class="public" href="../earthbound/bank02/BattleActionLevel2AttackPoison.html">BattleActionLevel2AttackPoison</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28F97
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLevel3Attack" class="public" href="../earthbound/bank02/BattleActionLevel3Attack.html">BattleActionLevel3Attack</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28651
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLevel3AttackCopy" class="public" href="../earthbound/bank02/BattleActionLevel3AttackCopy.html">BattleActionLevel3AttackCopy</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2902C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLevel4Attack" class="public" href="../earthbound/bank02/BattleActionLevel4Attack.html">BattleActionLevel4Attack</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C285DA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLifeupAlpha" class="public" href="../earthbound/bank02/BattleActionLifeupAlpha.html">BattleActionLifeupAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29AC6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLifeupBeta" class="public" href="../earthbound/bank02/BattleActionLifeupBeta.html">BattleActionLifeupBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29ACF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLifeupGamma" class="public" href="../earthbound/bank02/BattleActionLifeupGamma.html">BattleActionLifeupGamma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29AD8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLifeupOmega" class="public" href="../earthbound/bank02/BattleActionLifeupOmega.html">BattleActionLifeupOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29AE1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionLuckUp1d4" class="public" href="../earthbound/bank02/BattleActionLuckUp1d4.html">BattleActionLuckUp1d4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A227
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionMasterBarfDeath" class="public" href="../earthbound/bank02/BattleActionMasterBarfDeath.html">BattleActionMasterBarfDeath</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C292EE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionMirror" class="public" href="../earthbound/bank02/BattleActionMirror.html">BattleActionMirror</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2B0A1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionMultiBottleRocket" class="public" href="../earthbound/bank02/BattleActionMultiBottleRocket.html">BattleActionMultiBottleRocket</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A5E3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionMummyWrap" class="public" href="../earthbound/bank02/BattleActionMummyWrap.html">BattleActionMummyWrap</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A50E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionMushroomize" class="public" href="../earthbound/bank02/BattleActionMushroomize.html">BattleActionMushroomize</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28BBE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNauseate" class="public" href="../earthbound/bank02/BattleActionNauseate.html">BattleActionNauseate</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28AEB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNeutralize" class="public" href="../earthbound/bank02/BattleActionNeutralize.html">BattleActionNeutralize</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29051
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull" class="public" href="../earthbound/bank02/BattleActionNull.html">BattleActionNull</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2889B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull10" class="public" href="../earthbound/bank02/BattleActionNull10.html">BattleActionNull10</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2904B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull11" class="public" href="../earthbound/bank02/BattleActionNull11.html">BattleActionNull11</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2904E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull12" class="public" href="../earthbound/bank02/BattleActionNull12.html">BattleActionNull12</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C513
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull2" class="public" href="../earthbound/bank02/BattleActionNull2.html">BattleActionNull2</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29033
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull3" class="public" href="../earthbound/bank02/BattleActionNull3.html">BattleActionNull3</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29036
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull4" class="public" href="../earthbound/bank02/BattleActionNull4.html">BattleActionNull4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29039
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull5" class="public" href="../earthbound/bank02/BattleActionNull5.html">BattleActionNull5</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2903C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull6" class="public" href="../earthbound/bank02/BattleActionNull6.html">BattleActionNull6</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2903F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull7" class="public" href="../earthbound/bank02/BattleActionNull7.html">BattleActionNull7</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29042
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull8" class="public" href="../earthbound/bank02/BattleActionNull8.html">BattleActionNull8</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29045
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionNull9" class="public" href="../earthbound/bank02/BattleActionNull9.html">BattleActionNull9</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29048
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionOffenseUpAlpha" class="public" href="../earthbound/bank02/BattleActionOffenseUpAlpha.html">BattleActionOffenseUpAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29E38
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionOffenseUpOmega" class="public" href="../earthbound/bank02/BattleActionOffenseUpOmega.html">BattleActionOffenseUpOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29E7F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionParalysisAlpha" class="public" href="../earthbound/bank02/BattleActionParalysisAlpha.html">BattleActionParalysisAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29FFE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionParalysisOmega" class="public" href="../earthbound/bank02/BattleActionParalysisOmega.html">BattleActionParalysisOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A04F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionParalyze" class="public" href="../earthbound/bank02/BattleActionParalyze.html">BattleActionParalyze</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28A92
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPoison" class="public" href="../earthbound/bank02/BattleActionPoison.html">BattleActionPoison</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28B2C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPokeySpeech" class="public" href="../earthbound/bank02/BattleActionPokeySpeech.html">BattleActionPokeySpeech</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C4C0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPokeySpeech2" class="public" href="../earthbound/bank02/BattleActionPokeySpeech2.html">BattleActionPokeySpeech2</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C516
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPossess" class="public" href="../earthbound/bank02/BattleActionPossess.html">BattleActionPossess</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28BFD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPPRecovery20" class="public" href="../earthbound/bank02/BattleActionPPRecovery20.html">BattleActionPPRecovery20</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A0DF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPPRecovery80" class="public" href="../earthbound/bank02/BattleActionPPRecovery80.html">BattleActionPPRecovery80</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A0EF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPray" class="public" href="../earthbound/bank02/BattleActionPray.html">BattleActionPray</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AD1B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPrayAroma" class="public" href="../earthbound/bank02/BattleActionPrayAroma.html">BattleActionPrayAroma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AC99
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPrayGolden" class="public" href="../earthbound/bank02/BattleActionPrayGolden.html">BattleActionPrayGolden</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AC51
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPrayMysterious" class="public" href="../earthbound/bank02/BattleActionPrayMysterious.html">BattleActionPrayMysterious</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AC68
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPrayRainbow" class="public" href="../earthbound/bank02/BattleActionPrayRainbow.html">BattleActionPrayRainbow</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AC7B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPrayRendingSound" class="public" href="../earthbound/bank02/BattleActionPrayRendingSound.html">BattleActionPrayRendingSound</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2ACDA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPraySubtle" class="public" href="../earthbound/bank02/BattleActionPraySubtle.html">BattleActionPraySubtle</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AC2A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPrayWarm" class="public" href="../earthbound/bank02/BattleActionPrayWarm.html">BattleActionPrayWarm</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AC3E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFireAlpha" class="public" href="../earthbound/bank02/BattleActionPSIFireAlpha.html">BattleActionPSIFireAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C295AB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFireBeta" class="public" href="../earthbound/bank02/BattleActionPSIFireBeta.html">BattleActionPSIFireBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C295B4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFireGamma" class="public" href="../earthbound/bank02/BattleActionPSIFireGamma.html">BattleActionPSIFireGamma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C295BD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFireOmega" class="public" href="../earthbound/bank02/BattleActionPSIFireOmega.html">BattleActionPSIFireOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C295C6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFlashAlpha" class="public" href="../earthbound/bank02/BattleActionPSIFlashAlpha.html">BattleActionPSIFlashAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29987
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFlashBeta" class="public" href="../earthbound/bank02/BattleActionPSIFlashBeta.html">BattleActionPSIFlashBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C299AE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFlashGamma" class="public" href="../earthbound/bank02/BattleActionPSIFlashGamma.html">BattleActionPSIFlashGamma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C299EF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFlashOmega" class="public" href="../earthbound/bank02/BattleActionPSIFlashOmega.html">BattleActionPSIFlashOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29A35
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFreezeAlpha" class="public" href="../earthbound/bank02/BattleActionPSIFreezeAlpha.html">BattleActionPSIFreezeAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29647
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFreezeBeta" class="public" href="../earthbound/bank02/BattleActionPSIFreezeBeta.html">BattleActionPSIFreezeBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29650
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFreezeGamma" class="public" href="../earthbound/bank02/BattleActionPSIFreezeGamma.html">BattleActionPSIFreezeGamma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29659
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIFreezeOmega" class="public" href="../earthbound/bank02/BattleActionPSIFreezeOmega.html">BattleActionPSIFreezeOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29662
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIMagnetAlpha" class="public" href="../earthbound/bank02/BattleActionPSIMagnetAlpha.html">BattleActionPSIMagnetAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29F5E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIMagnetOmega" class="public" href="../earthbound/bank02/BattleActionPSIMagnetOmega.html">BattleActionPSIMagnetOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29FE1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIRockinAlpha" class="public" href="../earthbound/bank02/BattleActionPSIRockinAlpha.html">BattleActionPSIRockinAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29556
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIRockinBeta" class="public" href="../earthbound/bank02/BattleActionPSIRockinBeta.html">BattleActionPSIRockinBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2955F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIRockinGamma" class="public" href="../earthbound/bank02/BattleActionPSIRockinGamma.html">BattleActionPSIRockinGamma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29568
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIRockinOmega" class="public" href="../earthbound/bank02/BattleActionPSIRockinOmega.html">BattleActionPSIRockinOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29568
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIShieldAlpha" class="public" href="../earthbound/bank02/BattleActionPSIShieldAlpha.html">BattleActionPSIShieldAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29DBE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIShieldBeta" class="public" href="../earthbound/bank02/BattleActionPSIShieldBeta.html">BattleActionPSIShieldBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29DFB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIShieldOmega" class="public" href="../earthbound/bank02/BattleActionPSIShieldOmega.html">BattleActionPSIShieldOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29E31
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIShieldSigma" class="public" href="../earthbound/bank02/BattleActionPSIShieldSigma.html">BattleActionPSIShieldSigma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29DF4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIStarstormAlpha" class="public" href="../earthbound/bank02/BattleActionPSIStarstormAlpha.html">BattleActionPSIStarstormAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29AA6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIStarstormOmega" class="public" href="../earthbound/bank02/BattleActionPSIStarstormOmega.html">BattleActionPSIStarstormOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29AAF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIThunderAlpha" class="public" href="../earthbound/bank02/BattleActionPSIThunderAlpha.html">BattleActionPSIThunderAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29871
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIThunderBeta" class="public" href="../earthbound/bank02/BattleActionPSIThunderBeta.html">BattleActionPSIThunderBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2987D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIThunderGamma" class="public" href="../earthbound/bank02/BattleActionPSIThunderGamma.html">BattleActionPSIThunderGamma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29889
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionPSIThunderOmega" class="public" href="../earthbound/bank02/BattleActionPSIThunderOmega.html">BattleActionPSIThunderOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29895
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionRainbowOfColours" class="public" href="../earthbound/bank02/BattleActionRainbowOfColours.html">BattleActionRainbowOfColours</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C14E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionRandomStatUp1d4" class="public" href="../earthbound/bank02/BattleActionRandomStatUp1d4.html">BattleActionRandomStatUp1d4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A27F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionReduceOffense" class="public" href="../earthbound/bank02/BattleActionReduceOffense.html">BattleActionReduceOffense</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29254
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionReduceOffenseDefense" class="public" href="../earthbound/bank02/BattleActionReduceOffenseDefense.html">BattleActionReduceOffenseDefense</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28F21
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionReducePP" class="public" href="../earthbound/bank02/BattleActionReducePP.html">BattleActionReducePP</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28E42
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionRustPromoter" class="public" href="../earthbound/bank02/BattleActionRustPromoter.html">BattleActionRustPromoter</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AA6D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionRustPromoterDX" class="public" href="../earthbound/bank02/BattleActionRustPromoterDX.html">BattleActionRustPromoterDX</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AA76
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionShieldAlpha" class="public" href="../earthbound/bank02/BattleActionShieldAlpha.html">BattleActionShieldAlpha</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29D44
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionShieldBeta" class="public" href="../earthbound/bank02/BattleActionShieldBeta.html">BattleActionShieldBeta</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29D81
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionShieldKiller" class="public" href="../earthbound/bank02/BattleActionShieldKiller.html">BattleActionShieldKiller</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A422
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionShieldOmega" class="public" href="../earthbound/bank02/BattleActionShieldOmega.html">BattleActionShieldOmega</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29DB7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionShieldSigma" class="public" href="../earthbound/bank02/BattleActionShieldSigma.html">BattleActionShieldSigma</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29D7A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionShoot" class="public" href="../earthbound/bank02/BattleActionShoot.html">BattleActionShoot</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28740
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSnake" class="public" href="../earthbound/bank02/BattleActionSnake.html">BattleActionSnake</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A89D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSolidify" class="public" href="../earthbound/bank02/BattleActionSolidify.html">BattleActionSolidify</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28CF1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSowSeeds" class="public" href="../earthbound/bank02/BattleActionSowSeeds.html">BattleActionSowSeeds</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C13C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSpeedUp1d4" class="public" href="../earthbound/bank02/BattleActionSpeedUp1d4.html">BattleActionSpeedUp1d4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A193
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSpy" class="public" href="../earthbound/bank02/BattleActionSpy.html">BattleActionSpy</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28770
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSteal" class="public" href="../earthbound/bank02/BattleActionSteal.html">BattleActionSteal</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2889E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSuddenGutsPill" class="public" href="../earthbound/bank02/BattleActionSuddenGutsPill.html">BattleActionSuddenGutsPill</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AA7F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionSuperBomb" class="public" href="../earthbound/bank02/BattleActionSuperBomb.html">BattleActionSuperBomb</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A821
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionTeleportBox" class="public" href="../earthbound/bank02/BattleActionTeleportBox.html">BattleActionTeleportBox</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AB71
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionVitalityUp1d4" class="public" href="../earthbound/bank02/BattleActionVitalityUp1d4.html">BattleActionVitalityUp1d4</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A1DB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionXterminatorSpray" class="public" href="../earthbound/bank02/BattleActionXterminatorSpray.html">BattleActionXterminatorSpray</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AA15
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleActionYogurtDispenser" class="public" href="../earthbound/bank02/BattleActionYogurtDispenser.html">BattleActionYogurtDispenser</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A86B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleInitEnemyStats" class="public" href="../earthbound/bank02/BattleInitEnemyStats.html">BattleInitEnemyStats</a><span class="tableEntryAnnotation">(arg1, battler)</span>
+							</code>
+						</td>
+						<td>$C2B6EB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleInitPlayerStats" class="public" href="../earthbound/bank02/BattleInitPlayerStats.html">BattleInitPlayerStats</a><span class="tableEntryAnnotation">(arg1, battler)</span>
+							</code>
+						</td>
+						<td>$C2B930
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleRoutine" class="public" href="../earthbound/bank02/BattleRoutine.html">BattleRoutine</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C24821
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleSelectionMenu" class="public" href="../earthbound/bank02/BattleSelectionMenu.html">BattleSelectionMenu</a><span class="tableEntryAnnotation">(, )</span>
+							</code>
+						</td>
+						<td>$C2311B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BattleSwirlSequence" class="public" href="../earthbound/bank02/BattleSwirlSequence.html">BattleSwirlSequence</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2E8E0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BombCommon" class="public" href="../earthbound/bank02/BombCommon.html">BombCommon</a><span class="tableEntryAnnotation">(baseDamage)</span>
+							</code>
+						</td>
+						<td>$C2A658
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BossBattleCheck" class="public" href="../earthbound/bank02/BossBattleCheck.html">BossBattleCheck</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2AB14 - returns 0 if there's a boss in the battle
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="BottleRocketCommon" class="public" href="../earthbound/bank02/BottleRocketCommon.html">BottleRocketCommon</a><span class="tableEntryAnnotation">(count)</span>
+							</code>
+						</td>
+						<td>$C2A57A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CalcDamage" class="public" href="../earthbound/bank02/CalcDamage.html">CalcDamage</a><span class="tableEntryAnnotation">(target, damage)</span>
+							</code>
+						</td>
+						<td>$C27EAF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CalcPSIDamageModifiers" class="public" href="../earthbound/bank02/CalcPSIDamageModifiers.html">CalcPSIDamageModifiers</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2B608
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CalcPSIResistanceModifiers" class="public" href="../earthbound/bank02/CalcPSIResistanceModifiers.html">CalcPSIResistanceModifiers</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2B639
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CalcResistances" class="public" href="../earthbound/bank02/CalcResistances.html">CalcResistances</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21E03
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CalcResistDamage" class="public" href="../earthbound/bank02/CalcResistDamage.html">CalcResistDamage</a><span class="tableEntryAnnotation">(damage, arg2)</span>
+							</code>
+						</td>
+						<td>$C28125
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CallForHelpCommon" class="public" href="../earthbound/bank02/CallForHelpCommon.html">CallForHelpCommon</a><span class="tableEntryAnnotation">(sowingSeeds)</span>
+							</code>
+						</td>
+						<td>$C2BD5E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CheckDeadPlayers" class="public" href="../earthbound/bank02/CheckDeadPlayers.html">CheckDeadPlayers</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2BB18
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ChooseTarget" class="public" href="../earthbound/bank02/ChooseTarget.html">ChooseTarget</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C24477
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CopyEnemyName" class="public" href="../earthbound/bank02/CopyEnemyName.html">CopyEnemyName</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C23B66
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CopyMirrorData" class="public" href="../earthbound/bank02/CopyMirrorData.html">CopyMirrorData</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C2AF1F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="CountChars" class="public" href="../earthbound/bank02/CountChars.html">CountChars</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2BAC5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="DecreaseWalletBalance" class="public" href="../earthbound/bank02/DecreaseWalletBalance.html">DecreaseWalletBalance</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C22272
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="DepositIntoATM" class="public" href="../earthbound/bank02/DepositIntoATM.html">DepositIntoATM</a><span class="tableEntryAnnotation">(amount)</span>
+							</code>
+						</td>
+						<td>$C2281D - Deposits money into your bank account
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="DetermineDodge" class="public" href="../earthbound/bank02/DetermineDodge.html">DetermineDodge</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C284AD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="DrawHPPPWindow" class="public" href="../earthbound/bank02/DrawHPPPWindow.html">DrawHPPPWindow</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C203C3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="EatFood" class="public" href="../earthbound/bank02/EatFood.html">EatFood</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2B27D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FailAttackOnNPCs" class="public" href="../earthbound/bank02/FailAttackOnNPCs.html">FailAttackOnNPCs</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C27CFD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FeelingStrangeRetargetting" class="public" href="../earthbound/bank02/FeelingStrangeRetargetting.html">FeelingStrangeRetargetting</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C24009
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FiftyPercentVariance" class="public" href="../earthbound/bank02/FiftyPercentVariance.html">FiftyPercentVariance</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C26A44
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FillCharacterHPTileBuffer" class="public" href="../earthbound/bank02/FillCharacterHPTileBuffer.html">FillCharacterHPTileBuffer</a><span class="tableEntryAnnotation">(arg1, integer, fraction)</span>
+							</code>
+						</td>
+						<td>$C20F08
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FillCharacterPPTileBuffer" class="public" href="../earthbound/bank02/FillCharacterPPTileBuffer.html">FillCharacterPPTileBuffer</a><span class="tableEntryAnnotation">(arg1, afflictions, integer, fraction)</span>
+							</code>
+						</td>
+						<td>$C20F26
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FillHPPPTileBuffer" class="public" href="../earthbound/bank02/FillHPPPTileBuffer.html">FillHPPPTileBuffer</a><span class="tableEntryAnnotation">(arg1, arg2, fraction)</span>
+							</code>
+						</td>
+						<td>$C20DC5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FillHPPPTileBufferX" class="public" href="../earthbound/bank02/FillHPPPTileBufferX.html">FillHPPPTileBufferX</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C20D89
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FindStealableItems" class="public" href="../earthbound/bank02/FindStealableItems.html">FindStealableItems</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C241DC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FixAttackerName" class="public" href="../earthbound/bank02/FixAttackerName.html">FixAttackerName</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C23BCF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FixTargetName" class="public" href="../earthbound/bank02/FixTargetName.html">FixTargetName</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C23D05
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FlashImmunityTest" class="public" href="../earthbound/bank02/FlashImmunityTest.html">FlashImmunityTest</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C298A1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FlashInflictCrying" class="public" href="../earthbound/bank02/FlashInflictCrying.html">FlashInflictCrying</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29950
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FlashInflictFeelingStrange" class="public" href="../earthbound/bank02/FlashInflictFeelingStrange.html">FlashInflictFeelingStrange</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C298DE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="FlashInflictParalysis" class="public" href="../earthbound/bank02/FlashInflictParalysis.html">FlashInflictParalysis</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C29917
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GenerateBattleBGFrame" class="public" href="../earthbound/bank02/GenerateBattleBGFrame.html">GenerateBattleBGFrame</a><span class="tableEntryAnnotation">(arg1, layer)</span>
+							</code>
+						</td>
+						<td>$C2C92D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetBattleActionType" class="public" href="../earthbound/bank02/GetBattleActionType.html">GetBattleActionType</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C2698B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetBattleSpriteHeight" class="public" href="../earthbound/bank02/GetBattleSpriteHeight.html">GetBattleSpriteHeight</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2F04E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetBattleSpriteWidth" class="public" href="../earthbound/bank02/GetBattleSpriteWidth.html">GetBattleSpriteWidth</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2EFFD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetEnemyType" class="public" href="../earthbound/bank02/GetEnemyType.html">GetEnemyType</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C2698B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="getEventFlag" class="public" href="../earthbound/bank02/getEventFlag.html">getEventFlag</a><span class="tableEntryAnnotation">(flag)</span>
+							</code>
+						</td>
+						<td>$C21628
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetItemSubtype2" class="public" href="../earthbound/bank02/GetItemSubtype2.html">GetItemSubtype2</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C22524
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetPartyCharacterName" class="public" href="../earthbound/bank02/GetPartyCharacterName.html">GetPartyCharacterName</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C222D3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GetShieldTargetting" class="public" href="../earthbound/bank02/GetShieldTargetting.html">GetShieldTargetting</a><span class="tableEntryAnnotation">(arg1, battler)</span>
+							</code>
+						</td>
+						<td>$C23FEA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="GiygasHurtPrayer" class="public" href="../earthbound/bank02/GiygasHurtPrayer.html">GiygasHurtPrayer</a><span class="tableEntryAnnotation">(damage)</span>
+							</code>
+						</td>
+						<td>$C2C3E2
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="HealPoison" class="public" href="../earthbound/bank02/HealPoison.html">HealPoison</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2A39D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="HealStrangeness" class="public" href="../earthbound/bank02/HealStrangeness.html">HealStrangeness</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2856B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="HexadecimateDefense" class="public" href="../earthbound/bank02/HexadecimateDefense.html">HexadecimateDefense</a><span class="tableEntryAnnotation">(target)</span>
+							</code>
+						</td>
+						<td>$C27E33
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="HexadecimateOffense" class="public" href="../earthbound/bank02/HexadecimateOffense.html">HexadecimateOffense</a><span class="tableEntryAnnotation">(target)</span>
+							</code>
+						</td>
+						<td>$C27DDC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="HPPPRoller" class="public" href="../earthbound/bank02/HPPPRoller.html">HPPPRoller</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2109F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="IncreaseDefense16th" class="public" href="../earthbound/bank02/IncreaseDefense16th.html">IncreaseDefense16th</a><span class="tableEntryAnnotation">(battler)</span>
+							</code>
+						</td>
+						<td>$C27D82
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="IncreaseOffense16th" class="public" href="../earthbound/bank02/IncreaseOffense16th.html">IncreaseOffense16th</a><span class="tableEntryAnnotation">(battler)</span>
+							</code>
+						</td>
+						<td>$C27D28
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="IncreaseWalletBalance" class="public" href="../earthbound/bank02/IncreaseWalletBalance.html">IncreaseWalletBalance</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C22214
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="InflictStatusBattle" class="public" href="../earthbound/bank02/InflictStatusBattle.html">InflictStatusBattle</a><span class="tableEntryAnnotation">(target, statusGroup, status)</span>
+							</code>
+						</td>
+						<td>$C2724A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="inflictSunstrokeCheck" class="public" href="../earthbound/bank02/inflictSunstrokeCheck.html">inflictSunstrokeCheck</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C20000
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="InsectSprayCommon" class="public" href="../earthbound/bank02/InsectSprayCommon.html">InsectSprayCommon</a><span class="tableEntryAnnotation">(baseDamage)</span>
+							</code>
+						</td>
+						<td>$C2A9BD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="InstantWinCheck" class="public" href="../earthbound/bank02/InstantWinCheck.html">InstantWinCheck</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C26634
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="InstantWinHandler" class="public" href="../earthbound/bank02/InstantWinHandler.html">InstantWinHandler</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C261BD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="IsCharacterTargetted" class="public" href="../earthbound/bank02/IsCharacterTargetted.html">IsCharacterTargetted</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C27029
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="KOTarget" class="public" href="../earthbound/bank02/KOTarget.html">KOTarget</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C27550
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="LearnSpecialPSI" class="public" href="../earthbound/bank02/LearnSpecialPSI.html">LearnSpecialPSI</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C227C8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="LifeupCommon" class="public" href="../earthbound/bank02/LifeupCommon.html">LifeupCommon</a><span class="tableEntryAnnotation">(baseHealing)</span>
+							</code>
+						</td>
+						<td>$C29AB8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="LoadBattleBG" class="public" href="../earthbound/bank02/LoadBattleBG.html">LoadBattleBG</a><span class="tableEntryAnnotation">(layer1, layer2, letterbox)</span>
+							</code>
+						</td>
+						<td>$C2D121
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="LoadEnemyBattleSprites" class="public" href="../earthbound/bank02/LoadEnemyBattleSprites.html">LoadEnemyBattleSprites</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2C8C8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="LoseHPStatus" class="public" href="../earthbound/bank02/LoseHPStatus.html">LoseHPStatus</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+							</code>
+						</td>
+						<td>$C2BCE6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="MissCalc" class="public" href="../earthbound/bank02/MissCalc.html">MissCalc</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C282F8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PlaySfxAndUnknown" class="public" href="../earthbound/bank02/PlaySfxAndUnknown.html">PlaySfxAndUnknown</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C216D0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PSIFireCommon" class="public" href="../earthbound/bank02/PSIFireCommon.html">PSIFireCommon</a><span class="tableEntryAnnotation">(baseDamage)</span>
+							</code>
+						</td>
+						<td>$C2957A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PSIFreezeCommon" class="public" href="../earthbound/bank02/PSIFreezeCommon.html">PSIFreezeCommon</a><span class="tableEntryAnnotation">(baseDamage)</span>
+							</code>
+						</td>
+						<td>$C295CF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PSIRockinCommon" class="public" href="../earthbound/bank02/PSIRockinCommon.html">PSIRockinCommon</a><span class="tableEntryAnnotation">(baseDamage)</span>
+							</code>
+						</td>
+						<td>$C29516
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PSIShieldNullify" class="public" href="../earthbound/bank02/PSIShieldNullify.html">PSIShieldNullify</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2941D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PSIStarstormCommon" class="public" href="../earthbound/bank02/PSIStarstormCommon.html">PSIStarstormCommon</a><span class="tableEntryAnnotation">(baseDamage)</span>
+							</code>
+						</td>
+						<td>$C29A80
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="PSIThunderCommon" class="public" href="../earthbound/bank02/PSIThunderCommon.html">PSIThunderCommon</a><span class="tableEntryAnnotation">(baseDamage, strikes)</span>
+							</code>
+						</td>
+						<td>$C2966B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RandLimit" class="public" href="../earthbound/bank02/RandLimit.html">RandLimit</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C26A2D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RandLong" class="public" href="../earthbound/bank02/RandLong.html">RandLong</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C269EF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RandomTargetting" class="public" href="../earthbound/bank02/RandomTargetting.html">RandomTargetting</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C26EF8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterMissRate" class="public" href="../earthbound/bank02/RecalcCharacterMissRate.html">RecalcCharacterMissRate</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21D7D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterPostmathDefense" class="public" href="../earthbound/bank02/RecalcCharacterPostmathDefense.html">RecalcCharacterPostmathDefense</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C2192B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterPostmathGuts" class="public" href="../earthbound/bank02/RecalcCharacterPostmathGuts.html">RecalcCharacterPostmathGuts</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21BA4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterPostmathIQ" class="public" href="../earthbound/bank02/RecalcCharacterPostmathIQ.html">RecalcCharacterPostmathIQ</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21D7D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterPostmathLuck" class="public" href="../earthbound/bank02/RecalcCharacterPostmathLuck.html">RecalcCharacterPostmathLuck</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21C5D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterPostmathOffense" class="public" href="../earthbound/bank02/RecalcCharacterPostmathOffense.html">RecalcCharacterPostmathOffense</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21857
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterPostmathSpeed" class="public" href="../earthbound/bank02/RecalcCharacterPostmathSpeed.html">RecalcCharacterPostmathSpeed</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21AEB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecalcCharacterPostmathVitality" class="public" href="../earthbound/bank02/RecalcCharacterPostmathVitality.html">RecalcCharacterPostmathVitality</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C21D65
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecoverHP" class="public" href="../earthbound/bank02/RecoverHP.html">RecoverHP</a><span class="tableEntryAnnotation">(battler, amount)</span>
+							</code>
+						</td>
+						<td>$C27294
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RecoverPP" class="public" href="../earthbound/bank02/RecoverPP.html">RecoverPP</a><span class="tableEntryAnnotation">(battler, amount)</span>
+							</code>
+						</td>
+						<td>$C27318
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ReduceHP" class="public" href="../earthbound/bank02/ReduceHP.html">ReduceHP</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+							</code>
+						</td>
+						<td>$C271F0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ReducePP" class="public" href="../earthbound/bank02/ReducePP.html">ReducePP</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+							</code>
+						</td>
+						<td>$C2721D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RemoveCharFromParty" class="public" href="../earthbound/bank02/RemoveCharFromParty.html">RemoveCharFromParty</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C229BB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RemoveDeadTargetting" class="public" href="../earthbound/bank02/RemoveDeadTargetting.html">RemoveDeadTargetting</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C270E4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RemoveNPCTargetting" class="public" href="../earthbound/bank02/RemoveNPCTargetting.html">RemoveNPCTargetting</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C26E77
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RemoveStatusUntargettableTargets" class="public" href="../earthbound/bank02/RemoveStatusUntargettableTargets.html">RemoveStatusUntargettableTargets</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2416F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RemoveTarget" class="public" href="../earthbound/bank02/RemoveTarget.html">RemoveTarget</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C27089
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ResetPostBattleStats" class="public" href="../earthbound/bank02/ResetPostBattleStats.html">ResetPostBattleStats</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2BC5C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ResetRolling" class="public" href="../earthbound/bank02/ResetRolling.html">ResetRolling</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C20F9A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ReviveTarget" class="public" href="../earthbound/bank02/ReviveTarget.html">ReviveTarget</a><span class="tableEntryAnnotation">(, )</span>
+							</code>
+						</td>
+						<td>$C27397
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="RustSprayCommon" class="public" href="../earthbound/bank02/RustSprayCommon.html">RustSprayCommon</a><span class="tableEntryAnnotation">(baseDamage)</span>
+							</code>
+						</td>
+						<td>$C2AA1E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SaveCurrentGame" class="public" href="../earthbound/bank02/SaveCurrentGame.html">SaveCurrentGame</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C22A2C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SelectStealableItem" class="public" href="../earthbound/bank02/SelectStealableItem.html">SelectStealableItem</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C24316
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SeparateDecimalDigits" class="public" href="../earthbound/bank02/SeparateDecimalDigits.html">SeparateDecimalDigits</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C20D3F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setEventFlag" class="public" href="../earthbound/bank02/setEventFlag.html">setEventFlag</a><span class="tableEntryAnnotation">(flag, value)</span>
+							</code>
+						</td>
+						<td>$C2165E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SetHP" class="public" href="../earthbound/bank02/SetHP.html">SetHP</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+							</code>
+						</td>
+						<td>$C27126
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SetPP" class="public" href="../earthbound/bank02/SetPP.html">SetPP</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+							</code>
+						</td>
+						<td>$C27191
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SetWindowTitle" class="public" href="../earthbound/bank02/SetWindowTitle.html">SetWindowTitle</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C2032B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ShieldsCommon" class="public" href="../earthbound/bank02/ShieldsCommon.html">ShieldsCommon</a><span class="tableEntryAnnotation">(target, status)</span>
+							</code>
+						</td>
+						<td>$C29CDC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="ShowPSIAnimation" class="public" href="../earthbound/bank02/ShowPSIAnimation.html">ShowPSIAnimation</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2E116
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Smaaaash" class="public" href="../earthbound/bank02/Smaaaash.html">Smaaaash</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C283F8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="StopMusicF" class="public" href="../earthbound/bank02/StopMusicF.html">StopMusicF</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C216C9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Success255" class="public" href="../earthbound/bank02/Success255.html">Success255</a><span class="tableEntryAnnotation">(arg)</span>
+							</code>
+						</td>
+						<td>$C26BB8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Success500" class="public" href="../earthbound/bank02/Success500.html">Success500</a><span class="tableEntryAnnotation">(arg)</span>
+							</code>
+						</td>
+						<td>$C26BDB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SuccessLuck40" class="public" href="../earthbound/bank02/SuccessLuck40.html">SuccessLuck40</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C28D41
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SuccessLuck80" class="public" href="../earthbound/bank02/SuccessLuck80.html">SuccessLuck80</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C27C96
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SuccessSpeed" class="public" href="../earthbound/bank02/SuccessSpeed.html">SuccessSpeed</a><span class="tableEntryAnnotation">(amount)</span>
+							</code>
+						</td>
+						<td>$C27CAF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="SwapAttackerWithTarget" class="public" href="../earthbound/bank02/SwapAttackerWithTarget.html">SwapAttackerWithTarget</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C27E8A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="TargetAll" class="public" href="../earthbound/bank02/TargetAll.html">TargetAll</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C26E00
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="TargetAllEnemies" class="public" href="../earthbound/bank02/TargetAllEnemies.html">TargetAllEnemies</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C26C82
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="TargetAllies" class="public" href="../earthbound/bank02/TargetAllies.html">TargetAllies</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C26BFB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="TargetBattler" class="public" href="../earthbound/bank02/TargetBattler.html">TargetBattler</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C26FDC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="TargetRow" class="public" href="../earthbound/bank02/TargetRow.html">TargetRow</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C26D04
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Truncate16To8" class="public" href="../earthbound/bank02/Truncate16To8.html">Truncate16To8</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C269F8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="TwentyFivePercentVariance" class="public" href="../earthbound/bank02/TwentyFivePercentVariance.html">TwentyFivePercentVariance</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C26AFD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UndrawHPPPWindow" class="public" href="../earthbound/bank02/UndrawHPPPWindow.html">UndrawHPPPWindow</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C207E1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC200D9" class="public" href="../earthbound/bank02/UnknownC200D9.html">UnknownC200D9</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C200D9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC20266" class="public" href="../earthbound/bank02/UnknownC20266.html">UnknownC20266</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C20266
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC20293" class="public" href="../earthbound/bank02/UnknownC20293.html">UnknownC20293</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C20293
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC202AC" class="public" href="../earthbound/bank02/UnknownC202AC.html">UnknownC202AC</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C202AC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2038B" class="public" href="../earthbound/bank02/UnknownC2038B.html">UnknownC2038B</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2038B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2077D" class="public" href="../earthbound/bank02/UnknownC2077D.html">UnknownC2077D</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2077D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC207B6" class="public" href="../earthbound/bank02/UnknownC207B6.html">UnknownC207B6</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C207B6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2087C" class="public" href="../earthbound/bank02/UnknownC2087C.html">UnknownC2087C</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2087C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC20A20" class="public" href="../earthbound/bank02/UnknownC20A20.html">UnknownC20A20</a><span class="tableEntryAnnotation">(buf)</span>
+							</code>
+						</td>
+						<td>$C20A20
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC20ABC" class="public" href="../earthbound/bank02/UnknownC20ABC.html">UnknownC20ABC</a><span class="tableEntryAnnotation">(buf)</span>
+							</code>
+						</td>
+						<td>$C20ABC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC20B65" class="public" href="../earthbound/bank02/UnknownC20B65.html">UnknownC20B65</a><span class="tableEntryAnnotation">(, , , , )</span>
+							</code>
+						</td>
+						<td>$C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC20F58" class="public" href="../earthbound/bank02/UnknownC20F58.html">UnknownC20F58</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C20F58
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC21034" class="public" href="../earthbound/bank02/UnknownC21034.html">UnknownC21034</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C21034
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2108C" class="public" href="../earthbound/bank02/UnknownC2108C.html">UnknownC2108C</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2108C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC213AC" class="public" href="../earthbound/bank02/UnknownC213AC.html">UnknownC213AC</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C213AC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC216AD" class="public" href="../earthbound/bank02/UnknownC216AD.html">UnknownC216AD</a><span class="tableEntryAnnotation">(, )</span>
+							</code>
+						</td>
+						<td>$C216AD
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC216DB" class="public" href="../earthbound/bank02/UnknownC216DB.html">UnknownC216DB</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C216DB
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC22351" class="public" href="../earthbound/bank02/UnknownC22351.html">UnknownC22351</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C22351
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2239D" class="public" href="../earthbound/bank02/UnknownC2239D.html">UnknownC2239D</a><span class="tableEntryAnnotation">(id)</span>
+							</code>
+						</td>
+						<td>$C2239D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC223D9" class="public" href="../earthbound/bank02/UnknownC223D9.html">UnknownC223D9</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C223D9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC22474" class="public" href="../earthbound/bank02/UnknownC22474.html">UnknownC22474</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C22474
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC226C5" class="public" href="../earthbound/bank02/UnknownC226C5.html">UnknownC226C5</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C226C5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC226E6" class="public" href="../earthbound/bank02/UnknownC226E6.html">UnknownC226E6</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C226E6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC226F0" class="public" href="../earthbound/bank02/UnknownC226F0.html">UnknownC226F0</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C226F0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2272F" class="public" href="../earthbound/bank02/UnknownC2272F.html">UnknownC2272F</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2272F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC23008" class="public" href="../earthbound/bank02/UnknownC23008.html">UnknownC23008</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C23008
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2307B" class="public" href="../earthbound/bank02/UnknownC2307B.html">UnknownC2307B</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2307B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC23E32" class="public" href="../earthbound/bank02/UnknownC23E32.html">UnknownC23E32</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C23E32
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC240A4" class="public" href="../earthbound/bank02/UnknownC240A4.html">UnknownC240A4</a><span class="tableEntryAnnotation">(action)</span>
+							</code>
+						</td>
+						<td>$C240A4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC24348" class="public" href="../earthbound/bank02/UnknownC24348.html">UnknownC24348</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C24348
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2437E" class="public" href="../earthbound/bank02/UnknownC2437E.html">UnknownC2437E</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2437E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC24703" class="public" href="../earthbound/bank02/UnknownC24703.html">UnknownC24703</a><span class="tableEntryAnnotation">(battler)</span>
+							</code>
+						</td>
+						<td>$C24703
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC269DE" class="public" href="../earthbound/bank02/UnknownC269DE.html">UnknownC269DE</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C269DE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC290C6" class="public" href="../earthbound/bank02/UnknownC290C6.html">UnknownC290C6</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C290C6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2B66A" class="public" href="../earthbound/bank02/UnknownC2B66A.html">UnknownC2B66A</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2B66A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2BCB9" class="public" href="../earthbound/bank02/UnknownC2BCB9.html">UnknownC2BCB9</a><span class="tableEntryAnnotation">(battler, arg2)</span>
+							</code>
+						</td>
+						<td>$C2BCB9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2BD13" class="public" href="../earthbound/bank02/UnknownC2BD13.html">UnknownC2BD13</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2BD13
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2C21F" class="public" href="../earthbound/bank02/UnknownC2C21F.html">UnknownC2C21F</a><span class="tableEntryAnnotation">(group, music)</span>
+							</code>
+						</td>
+						<td>$C2C21F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2C32C" class="public" href="../earthbound/bank02/UnknownC2C32C.html">UnknownC2C32C</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2C32C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2C37A" class="public" href="../earthbound/bank02/UnknownC2C37A.html">UnknownC2C37A</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C2C37A
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2C41F" class="public" href="../earthbound/bank02/UnknownC2C41F.html">UnknownC2C41F</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C2C41F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2CFE5" class="public" href="../earthbound/bank02/UnknownC2CFE5.html">UnknownC2CFE5</a><span class="tableEntryAnnotation">(target, bg)</span>
+							</code>
+						</td>
+						<td>$C2CFE5
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2D0AC" class="public" href="../earthbound/bank02/UnknownC2D0AC.html">UnknownC2D0AC</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2D0AC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2DAE3" class="public" href="../earthbound/bank02/UnknownC2DAE3.html">UnknownC2DAE3</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2DAE3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2DB14" class="public" href="../earthbound/bank02/UnknownC2DB14.html">UnknownC2DB14</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2DB14
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2DB3F" class="public" href="../earthbound/bank02/UnknownC2DB3F.html">UnknownC2DB3F</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2DB3F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2DE96" class="public" href="../earthbound/bank02/UnknownC2DE96.html">UnknownC2DE96</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2DE96
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2DF2E" class="public" href="../earthbound/bank02/UnknownC2DF2E.html">UnknownC2DF2E</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C2DF2E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2E08E" class="public" href="../earthbound/bank02/UnknownC2E08E.html">UnknownC2E08E</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2E08E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2E0E7" class="public" href="../earthbound/bank02/UnknownC2E0E7.html">UnknownC2E0E7</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2E0E7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2E6B6" class="public" href="../earthbound/bank02/UnknownC2E6B6.html">UnknownC2E6B6</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2E6B6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2E8C4" class="public" href="../earthbound/bank02/UnknownC2E8C4.html">UnknownC2E8C4</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
+							</code>
+						</td>
+						<td>$C2E8C4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2E9C8" class="public" href="../earthbound/bank02/UnknownC2E9C8.html">UnknownC2E9C8</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2E9C8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2E9ED" class="public" href="../earthbound/bank02/UnknownC2E9ED.html">UnknownC2E9ED</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2E9ED
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2EA15" class="public" href="../earthbound/bank02/UnknownC2EA15.html">UnknownC2EA15</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2EA15
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2EA74" class="public" href="../earthbound/bank02/UnknownC2EA74.html">UnknownC2EA74</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2EA74
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2EAAA" class="public" href="../earthbound/bank02/UnknownC2EAAA.html">UnknownC2EAAA</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2EAAA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2EACF" class="public" href="../earthbound/bank02/UnknownC2EACF.html">UnknownC2EACF</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2EACF
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2EAEA" class="public" href="../earthbound/bank02/UnknownC2EAEA.html">UnknownC2EAEA</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2EAEA
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2EEE7" class="public" href="../earthbound/bank02/UnknownC2EEE7.html">UnknownC2EEE7</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2EEE7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2F09F" class="public" href="../earthbound/bank02/UnknownC2F09F.html">UnknownC2F09F</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2F09F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2F0D1" class="public" href="../earthbound/bank02/UnknownC2F0D1.html">UnknownC2F0D1</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2F0D1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2F121" class="public" href="../earthbound/bank02/UnknownC2F121.html">UnknownC2F121</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2F121
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2F724" class="public" href="../earthbound/bank02/UnknownC2F724.html">UnknownC2F724</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2F724
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2F8F9" class="public" href="../earthbound/bank02/UnknownC2F8F9.html">UnknownC2F8F9</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2F8F9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2F917" class="public" href="../earthbound/bank02/UnknownC2F917.html">UnknownC2F917</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2F917
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2FAD2" class="public" href="../earthbound/bank02/UnknownC2FAD2.html">UnknownC2FAD2</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2FAD8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2FAD8" class="public" href="../earthbound/bank02/UnknownC2FAD8.html">UnknownC2FAD8</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C2FAD8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2FADE" class="public" href="../earthbound/bank02/UnknownC2FADE.html">UnknownC2FADE</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
+							</code>
+						</td>
+						<td>$C2FADE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2FB35" class="public" href="../earthbound/bank02/UnknownC2FB35.html">UnknownC2FB35</a><span class="tableEntryAnnotation">(arg1, arg2, arg3, arg4)</span>
+							</code>
+						</td>
+						<td>$C2FB35
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2FD99" class="public" href="../earthbound/bank02/UnknownC2FD99.html">UnknownC2FD99</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C2FD99
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="UnknownC2FEF9" class="public" href="../earthbound/bank02/UnknownC2FEF9.html">UnknownC2FEF9</a><span class="tableEntryAnnotation">(type)</span>
+							</code>
+						</td>
+						<td>$C2FEF9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="Wait" class="public" href="../earthbound/bank02/Wait.html">Wait</a><span class="tableEntryAnnotation">(frames)</span>
+							</code>
+						</td>
+						<td>$C269BE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="WeakenShield" class="public" href="../earthbound/bank02/WeakenShield.html">WeakenShield</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C294CE
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="WithdrawFromATM" class="public" href="../earthbound/bank02/WithdrawFromATM.html">WithdrawFromATM</a><span class="tableEntryAnnotation">(amount)</span>
+							</code>
+						</td>
+						<td>$C228B7 - Withdraws money from your bank account
+</td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<h2>Global variables</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a id="ConsolationItemTable" class="public" href="../earthbound/bank02/ConsolationItemTable.html">
+								<code>ConsolationItemTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">ConsolationPrize</span><span class="pun">[</span><span class="lit">2</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C23109
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="PrayerList" class="public" href="../earthbound/bank02/PrayerList.html">
+								<code>PrayerList</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">16</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C2A2F9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="PrayerTextPointers" class="public" href="../earthbound/bank02/PrayerTextPointers.html">
+								<code>PrayerTextPointers</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">*</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C2A2F9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="UnknownC20958" class="public" href="../earthbound/bank02/UnknownC20958.html">
+								<code>UnknownC20958</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C20958
+</td>
+					</tr>
+				</table>
+			</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
