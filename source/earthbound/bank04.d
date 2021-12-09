@@ -2158,7 +2158,28 @@ void UnknownC447FB(short length, const(ubyte)* text) {
 }
 
 /// $C4487C
-void UnknownC4487C(short arg1, const(ubyte)*);
+void UnknownC4487C(short arg1, const(ubyte)* arg2) {
+    ubyte x00 = 0;
+    ubyte* x15 = &Unknown7E9664[0];
+    short x12;
+    do {
+        ubyte x14 = arg2[0];
+        x12 = x14;
+        x15[x00] = x14;
+        arg2++;
+        if ((x12 == EBChar(' ')) || (x12 == 0)) {
+            if (x12 == EBChar(' ')) {
+                x15[x00++] = EBChar(' ');
+            }
+            x15[x00] = 0;
+            UnknownC447FB(-1, x15);
+            x00 = 0;
+            x15 = &Unknown7E9664[0];
+        } else {
+            x00++;
+        }
+    } while (x12 != 0);
+}
 
 /// $C44963
 void UnknownC44963(short arg1) {
@@ -2662,7 +2683,7 @@ ushort randMod(ushort arg1) {
 
 /// $C46028
 short UnknownC46028(short arg1) {
-    for (short i = 0; i < 0x1E; i++) {
+    for (short i = 0; i < MAX_ENTITIES; i++) {
         if (EntityTPTEntrySprites[i] == arg1) {
             return i;
         }
@@ -2693,6 +2714,58 @@ short UnknownC4608C(short arg1) {
     return -1;
 }
 
+/// $C460CE
+void UnknownC460CE(short arg1, short arg2);
+
+/// $C46125
+void UnknownC46125(short arg1, short arg2);
+
+/// $C4617C
+void UnknownC4617C(short arg1, short arg2);
+
+/// $C461CC
+void UnknownC461CC(short arg1, short arg2);
+
+/// $C4621C
+short UnknownC4621C(short arg1, short arg2) {
+    short x0E;
+    switch (arg1) {
+        case 0:
+            x0E = UnknownC4608C(arg2);
+            break;
+        case 1:
+            x0E = UnknownC4605A(arg2);
+            break;
+        case 2:
+            x0E = UnknownC46028(arg2);
+            break;
+        default: break;
+    }
+    return x0E;
+}
+
+/// $C46257
+short UnknownC46257(short arg1, short arg2, short arg3, short arg4) {
+    short x14 = UnknownC4621C(arg1, arg2);
+    short x = UnknownC4621C(arg2, arg4);
+    return (UnknownC41EFF(EntityAbsYTable[x14], EntityAbsXTable[x14], EntityAbsYTable[x], EntityAbsXTable[x]) + 0x1000) / 0x2000;
+}
+
+/// $C462AE
+short UnknownC462AE(short arg1, short arg2, short arg3) {
+    return UnknownC46257(1, arg1, arg2, arg3);
+}
+
+/// $C462C9
+short UnknownC462C9(short arg1, short arg2, short arg3) {
+    return UnknownC46257(2, arg1, arg2, arg3);
+}
+
+/// $C462E4
+short UnknownC462E4(short arg1, short arg2, short arg3) {
+    return UnknownC46257(0, arg1, arg2, arg3);
+}
+
 /// $C462FF
 void UnknownC462FF(short arg1, short arg2) {
     short x0E = UnknownC4605A(arg1);
@@ -2705,11 +2778,20 @@ void UnknownC462FF(short arg1, short arg2) {
     }
 }
 
+/// $C46331
+void UnknownC46331(short, short);
+
 /// $C46363
 void UnknownC46363(short, short);
 
 /// $C46397
 void UnknownC46397(short);
+
+/// $C463F4
+void UnknownC463F4(short);
+
+/// $C4645A
+void UnknownC4645A(short);
 
 /// $C464B5
 short CreatePreparedEntityNPC(short npcID, short actionScript) {
@@ -2725,6 +2807,21 @@ short CreatePreparedEntitySprite(short sprite, short actionScript) {
     EntityDirections[result] = EntityPreparedDirection;
     return result;
 }
+
+/// $C4655E
+void UnknownC4655E(short arg1);
+
+/// $C46579
+void UnknownC46579(short arg1);
+
+/// $C46594
+void UnknownC46594(short arg1);
+
+/// $C465FB
+void UnknownC465FB(short arg1);
+
+/// $C46616
+void UnknownC46616(short arg1);
 
 /// $C46631
 void UnknownC46631(short arg1) {
@@ -2742,11 +2839,20 @@ void UnknownC46631(short arg1) {
     }
 }
 
+/// $C46698
+void UnknownC46698(short arg1);
+
+/// $C466A8
+void UnknownC466A8(short arg1);
+
 /// $C466B8
 void UnknownC466B8() {
     gameState.unknown90 = 0;
     gameState.unknownB0 = 0;
 }
+
+/// $C466C1
+void UnknownC466C1(short arg1);
 
 /// $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
@@ -3045,6 +3151,9 @@ void UnknownC492D2() {
         x12++;
     }
 }
+
+/// $C4939C
+void UnknownC4939C(ubyte arg1, ubyte arg2, ubyte arg2);
 
 /// $C49496
 ushort UnknownC49496(ushort arg1, short arg2) {
@@ -3775,14 +3884,34 @@ void UnknownC4B4BE(short arg1) {
     }
 }
 
+/// $C4B4FE
+void UnknownC4B4FE(short arg1, short arg2) {
+    SpawnFloatingSprite(UnknownC4608C(arg1), arg2);
+}
+
 /// $C4B524
 void UnknownC4B524(short arg1, short arg2) {
     SpawnFloatingSprite(UnknownC4605A(arg1), arg2);
 }
 
+/// $C4B519
+void UnknownC4B519(short arg1) {
+    UnknownC4B4BE(UnknownC4608C(arg1));
+}
+
 /// $C4B53F
 void UnknownC4B53F(short arg1) {
     UnknownC4B4BE(UnknownC4605A(arg1));
+}
+
+/// $C4B54A
+void UnknownC4B54A(short arg1, short arg2) {
+    SpawnFloatingSprite(UnknownC46028(arg1), arg2);
+}
+
+/// $C4B565
+void UnknownC4B565(short arg1) {
+    UnknownC4B4BE(UnknownC46028(arg1));
 }
 
 /// $C4B587

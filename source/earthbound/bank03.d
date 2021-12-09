@@ -576,6 +576,18 @@ short UnknownC3EE14(short arg1, short arg2) {
 	}
 }
 
+/// $C3EE4D
+void UnknownC3EE4D() {
+	UpdateParty();
+	UnknownC07B52();
+	UnknownC1004E();
+	UnknownC0943C();
+	if (Unknown7EB4A8 == -1) {
+		return;
+	}
+	EntityTickCallbackFlags[Unknown7EB4A8] &= 0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+}
+
 /// $C3EE7A
 WorkingMemory UnknownC3EE7A(short arg1) {
 	WorkingMemory result;
@@ -1052,8 +1064,80 @@ immutable RGB[16][3] UnknownC3F8F1 = [
 	]
 ];
 
+/// $C3F951
+immutable ubyte[3][11] UnknownC3F951 = [
+	[31, 0, 0],
+	[18, 6, 0],
+	[16, 6, 0],
+	[0, 0, 10],
+	[29, 29, 29],
+	[0, 0, 31],
+	[26, 14, 14],
+	[0, 10, 4],
+	[18, 18, 18],
+	[18, 18, 31],
+	[31, 31, 11],
+];
+
+/// $C3F951
+immutable ubyte[3][5] UnknownC3F972 = [
+	[15, 15, 15],
+	[15, 15, 0],
+	[15, 7, 15],
+	[0, 0, 15],
+	[31, 0, 12],
+];
+
+/// $C3F981
+void UnknownC3F981(short arg1) {
+	if (arg1 < 35) {
+		ShowPSIAnimation(arg1);
+		return;
+	}
+	if (arg1 < 46) {
+		UnknownC2DE0F();
+		SetColData(UnknownC3F951[arg1 - 35][0], UnknownC3F951[arg1 - 35][1], UnknownC3F951[arg1 - 35][2]);
+		SetColourAddSubMode(0x10, 0x3F);
+		UnknownC4A67E(5, 7);
+	} else if (arg1 < 49) {
+		switch (arg1 + 1) {
+			case 47:
+				WobbleDuration = 144;
+				break;
+			case 48:
+				ShakeDuration = 300;
+				break;
+			case 49:
+			default:
+				break;
+		}
+	} else if (arg1 < 54) {
+		UnknownC2DE0F();
+		SetColData(UnknownC3F972[arg1 - 49][0], UnknownC3F972[arg1 - 49][1], UnknownC3F972[arg1 - 49][2]);
+		SetColourAddSubMode(0x10, 0x3F);
+		if (arg1 < 53) {
+			UnknownC4A67E(4, 5);
+		} else {
+			UnknownC4A67E(2, 4);
+		}
+	}
+}
+
 /// $C3FB2B
 immutable ubyte[26] NameRegistryRequestString = EBString!26("Register your name, please");
+
+/// $C3FAC9
+short UnknownC3FAC9(short arg1, short arg2) {
+	if (currentTarget.npcID == EnemyID.TinyLilGhost) {
+		return 1;
+	}
+	if (currentTarget.allyOrEnemy == 0) {
+		UnknownC3F981(arg1);
+		return 0;
+	}
+	UnknownC3F981(arg2);
+	return 1;
+}
 
 /// $C3FD8D
 immutable ubyte*[10] AttractModeText = [

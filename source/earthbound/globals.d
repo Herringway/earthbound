@@ -520,7 +520,8 @@ __gshared Unknown7E5E06Entry[24] Unknown7E5E06; /// $5E06
 
 __gshared short Unknown7E5E36; /// $5E36
 __gshared const(OverworldEventMusic)* Unknown7E5E38; /// $5E38
-__gshared QueuedInteractionPtr[5] Unknown7E5E58; /// $5E38
+__gshared Unknown7E5E3CEntry[2] Unknown7E5E3C; /// $5E3C
+__gshared QueuedInteractionPtr[5] Unknown7E5E58; /// $5E58
 __gshared ubyte Unknown7E5E6C; /// $5E6C
 __gshared ubyte Unknown7E5E6D; /// $5E6D
 __gshared short Unknown7E5E6E; /// $5E6E - "word-wrap flag"?
@@ -589,6 +590,7 @@ __gshared short Unknown7E965A; /// $965A
 
 __gshared short Unknown7E9660; /// $9660
 __gshared short Unknown7E9662; /// $9662
+__gshared ubyte[32] Unknown7E9664; /// $9664
 __gshared short Unknown7E9684; /// $9684
 __gshared short Unknown7E9686; /// $9686
 __gshared short Unknown7E9688; /// $9688

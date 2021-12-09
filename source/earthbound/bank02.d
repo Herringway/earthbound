@@ -976,11 +976,56 @@ void SaveCurrentGame() {
 	SaveGameSlot(CurrentSaveSlot - 1);
 }
 
+/// $C22F38
+short InitBattleScripted(short arg1) {
+	CurrentBattleGroup = arg1;
+	const(BattleGroupEnemy)* x06 = &BattleEntryPointerTable[arg1].enemies[0];
+	EnemiesInBattle = 0;
+	while (x06.count != 0xFF) {
+		short x0E = x06.count;
+		while (x0E-- != 0) {
+			Unknown7E9F8C[EnemiesInBattle++] = x06.enemyID;
+		}
+		x06++;
+	}
+	BattleDebug = -1;
+	BattleSwirlSequence();
+	while (UnknownC2E9C8() != 0) {
+		WaitUntilNextFrame();
+		UnknownC4A7B0();
+	}
+	short x10 = InitBattleCommon();
+	if (teleportDestination != 0) {
+		if (x10 != 0) {
+			return 1;
+		}
+		ReloadMap();
+		FadeIn(1, 1);
+	} else {
+		TeleportMainLoop();
+		if (x10 != 0) {
+			return 1;
+		}
+		UnknownC3EE4D();
+		if (CurrentBattleGroup < 0x1C0) {
+			Unknown7E5D58 = 120;
+		}
+	}
+	return 0;
+}
+
 /// $C23008
 void UnknownC23008();
 
 /// $C2307B
 void UnknownC2307B();
+
+/// $C230F3
+void SetTeleportBoxDestination(short arg1) {
+	gameState.unknownC3 = cast(ubyte)arg1;
+	RespawnX = gameState.leaderX.integer;
+	RespawnY = gameState.leaderY.integer;
+}
 
 /// $C23109
 immutable ConsolationPrize[2] ConsolationItemTable = [
@@ -5583,6 +5628,18 @@ void UnknownC2DB3F() {
 			Unknown7EADB4 = Unknown7EADCE >> 8;
 		}
 		UnknownC2D0AC();
+	}
+}
+
+/// $C2DE0F
+void UnknownC2DE0F() {
+	for (short i = 0; i < 16; i++) {
+		LoadedBGDataLayer1.Palette[i] = (LoadedBGDataLayer1.Palette[i] / 2) & 0x3DEF;
+		LoadedBGDataLayer2.Palette[i] = (LoadedBGDataLayer2.Palette[i] / 2) & 0x3DEF;
+	}
+	memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], LoadedBGDataLayer1.Palette.sizeof);
+	if (LoadedBGDataLayer2.TargetLayer != 0) {
+		memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], LoadedBGDataLayer2.Palette.sizeof);
 	}
 }
 

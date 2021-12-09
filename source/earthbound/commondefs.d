@@ -119,7 +119,7 @@ enum Window {
 	Unknown34 = 0x34,
 }
 
-enum TeleportStyle {
+enum TeleportStyle : ubyte {
 	None = 0,
 	PSIAlpha = 1,
 	PSIBeta = 2,
@@ -4818,6 +4818,15 @@ struct PSIAbility {
 	ubyte menuX;
 	ubyte menuY;
 	const(ubyte)* text;
+}
+
+struct Unknown7E5E3CEntry {
+	short unknown0;
+	short unknown2;
+	short unknown4;
+	short unknown6;
+	short unknown8;
+	const(ubyte)* unknown10;
 }
 
 //helper funcs not in the original game

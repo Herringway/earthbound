@@ -365,10 +365,34 @@ void UnknownC00AC5(short x, short y) {
 void UnknownC00BDC(short x, short y);
 
 /// $C00CF3
-void UnknownC00CF3(short x, short y);
+void UnknownC00CF3(short x, short y) {
+    ushort* x02 = &Unknown7EF000[(y / 4) & 0xF][0];
+    ubyte* x10 = &Unknown7EE000[y & 0x3F][0];
+    for (short i = 0; i < 16; i++) {
+        const(ubyte[4][4])* x12 = TileCollisionBuffer[*x02];
+        x02++;
+        x10[0] = (*x12)[y & 3][0];
+        x10[1] = (*x12)[y & 3][1];
+        x10[2] = (*x12)[y & 3][2];
+        x10[3] = (*x12)[y & 3][3];
+        x10 += 4;
+    }
+}
 
 /// $C00D7E
-void UnknownC00D7E(short x, short y);
+void UnknownC00D7E(short x, short y) {
+    ushort* x02 = &Unknown7EF000[0][(x / 4) & 0xF];
+    ubyte* x10 = &Unknown7EE000[0][x & 0x3F];
+    for (short i = 0; i < 16; i++) {
+        const(ubyte[4][4])* x12 = TileCollisionBuffer[*x02];
+        x02 += 16;
+        x10[0] = (*x12)[0][x & 3];
+        x10[64] = (*x12)[1][x & 3];
+        x10[128] = (*x12)[2][x & 3];
+        x10[192] = (*x12)[3][x & 3];
+        x10 += 256;
+    }
+}
 
 /// $C00E16
 void UnknownC00E16(short x, short y) {
@@ -743,7 +767,11 @@ void UnknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)
 }
 
 /// $C01DED
-short UnknownC01DED(short);
+short UnknownC01DED(short arg1) {
+    Unknown7E467A = SpriteGroupingPointers[arg1].width / 16;
+    Unknown7E467C = SpriteGroupingPointers[arg1].height;
+    return SpriteGroupingPointers[arg1].unknown2;
+}
 
 /// $C01E49
 short CreateEntity(short sprite, short actionScript, short index, short x, short y) {
@@ -852,11 +880,57 @@ void UnknownC021E6() {
     UnknownC09C35(23);
 }
 
+/// $C0222B
+void UnknownC0222B(short x, short y);
+
 /// $C0255C
-void UnknownC0255C(short x, short y);
+void UnknownC0255C(short x, short y) {
+    short x12 = void;
+    short x14 = short.min;
+    if (Unknown7E4A58 == 0) {
+        return;
+    }
+    if (x12 < 0) {
+        return;
+    }
+    short x10 = y / 32;
+    for (short i = cast(short)(x - 2); i != x + 36; i++) {
+        if (i < 0) {
+            continue;
+        }
+        x12 = i / 32;
+        if (x12 == x14) {
+            continue;
+        }
+        UnknownC0222B(x12, x10);
+        x14 = x12;
+    }
+}
 
 /// $C025CF
-void UnknownC025CF(short x, short y);
+void UnknownC025CF(short x, short y) {
+    short x10 = void;
+    short x_ = short.min;
+    if (Unknown7E4A58 == 0) {
+        return;
+    }
+    if (x10 < 0) {
+        return;
+    }
+    short x0E = x / 32;
+    short x12;
+    for (short i = y; i != y + 32; i++) {
+        if (i < 0) {
+            continue;
+        }
+        x12 = i / 32;
+        if (x12 == x_) {
+            continue;
+        }
+        UnknownC0222B(x0E, x12);
+        x_ = x12;
+    }
+}
 
 /// $C0263D
 short UnknownC0263D(short x, short y) {
@@ -949,6 +1023,22 @@ void SpawnVertical(short x, short y) {
     }
 }
 
+/// $C02C3E
+void UnknownC02C3E() {
+    if (PartyCharacters[gameState.playerControlledPartyMembers[0]].afflictions[1] == Status1.Mushroomized) {
+        MushroomizedWalkingFlag = 1;
+        if (MushroomizationTimer == 0) {
+            MushroomizationTimer = 1800;
+            MushroomizationModifier = 0;
+        }
+        if (gameState.walkingStyle == WalkingStyle.Bicycle) {
+            UnknownC03CFD();
+        }
+    } else {
+        MushroomizedWalkingFlag = 0;
+    }
+}
+
 /// $C02D29
 void UnknownC02D29() {
     EntitySizes[23] = 1;
@@ -1007,7 +1097,57 @@ uint AdjustPositionVertical(short arg1, uint arg2, short arg3) {
 void UnknownC032EC();
 
 /// $C034D6
-void UpdateParty();
+void UpdateParty() {
+    short[6] local1;
+    short[6] local2;
+    short[6] local3;
+    short[6] local4;
+    short partyCount = gameState.partyCount;
+    for (short i = 0; i < partyCount; i++) {
+        local1[i] = PartyCharacters[gameState.playerControlledPartyMembers[i]].position_index;
+    }
+    for (short i = 0; i < partyCount; i++) {
+        short local9 = gameState.unknown96[i];
+        if (local9 >= 5) {
+            local9 += 0x300;
+        } else {
+            short x = PartyCharacters[EntityScriptVar1Table[gameState.unknownA2[i]]].afflictions[0];
+            if ((x == Status0.Unconscious) || (x == Status0.Diamondized)) {
+                local9 += 0x100;
+            }
+        }
+        local2[i] = local9;
+        local3[i] = gameState.unknownA2[i];
+        local4[i] = gameState.playerControlledPartyMembers[i];
+    }
+    for (short i = 0; partyCount - 1 < i; i++) {
+        for (short j = 0; partyCount - 1 < j; j++) {
+            short local9 = local2[j];
+            short local11 = local2[j + 1];
+            if (local9 > local11) {
+                local2[j] = local11;
+                local2[j + 1] = local9;
+                short local6 = local3[j];
+                local3[j] = local3[j + 1];
+                local3[j + 1] = local6;
+                short local11_2 = local4[j];
+                local4[j] = local4[j + 1];
+                local4[j + 1] = local11_2;
+            }
+        }
+    }
+    for (short i = 0; i < partyCount; i++) {
+        gameState.unknown96[i] = cast(ubyte)local2[i];
+        gameState.unknownA2[i] = cast(ubyte)local3[i];
+        gameState.playerControlledPartyMembers[i] = cast(ubyte)local4[i];
+        PartyCharacters[i].position_index = local1[i];
+        EntityScriptVar5Table[i] = gameState.unknownA2[i];
+    }
+    gameState.currentPartyMembers = gameState.unknownA2[0];
+    UnknownC032EC();
+    UnknownC02C3E();
+    UnknownC47F87();
+}
 
 /// $C0369B
 short UnknownC0369B(short id) {
@@ -2617,6 +2757,15 @@ void UnknownC070CB(ushort arg1, short arg2, short arg3) {
     UnknownC48E95();
 }
 
+/// $C071E5
+void UnknownC071E5(short arg1) {
+    Unknown7E5E3C[arg1 - 1].unknown0 = 0;
+    gameState.unknownC8[arg1 - 1] = 0;
+}
+
+/// $C072CF
+void UnknownC072CF(short arg1, short arg2, const(ubyte)* arg3);
+
 /// $C07477
 byte UnknownC07477(short arg1, short arg2) {
     const(SectorDoors)* x0A = &doorConfig[(arg1 / 32) + (arg2 & 0xFFE0)];
@@ -4212,7 +4361,17 @@ void UnknownC0A039() {
 short UnknownC0A156(short x, short y);
 
 /// $C0A1F2
-void UnknownC0A1F2(short);
+void UnknownC0A1F2(short arg1) {
+    const(ubyte)* source = cast(const(ubyte)*)UnknownC0A20C[arg1];
+    ubyte* destination = cast(ubyte*)&palettes[2][0];
+    short bytesLeft = 0xBF;
+    while (--bytesLeft >= 0) {
+        *(destination++) = *(source++);
+    }
+    Unknown7E0030 = 8;
+}
+
+__gshared const ubyte*[8] UnknownC0A20C;
 
 /// $C0A254
 void UnknownC0A254(short arg1) {

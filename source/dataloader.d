@@ -2,9 +2,20 @@ module dataloader;
 
 import earthbound.commondefs;
 import earthbound.globals;
+import earthbound.bank00;
 import earthbound.bank04;
 
 shared static this() {
+	cast()UnknownC0A20C = [
+		&Unknown7EB800[0],
+		&Unknown7EB800[0xC0],
+		&Unknown7EB800[0x180],
+		&Unknown7EB800[0x240],
+		&Unknown7EB800[0x300],
+		&Unknown7EB800[0x3C0],
+		&Unknown7EB800[0x480],
+		&Unknown7EB800[0x540],
+	];
 	cast()CC1C01Table = [
 	    CC1C01Entry(0, null),
 	    CC1C01Entry(CC1C01Type.string | gameState.mother2PlayerName.sizeof, &gameState.mother2PlayerName[0]),
