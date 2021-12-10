@@ -688,34 +688,34 @@ enum Sfx {
 	FOOD_EATEN = 68,
 	UNKNOWN45 = 69,
 	BOTTLE_ROCKET_LAUNCHED = 70,
-	UNKNOWN47 = 71,
+	Unknown47 = 71,
 	CALLED_FOR_HELP = 72,
 	ReflectDamage = 73,
 	DEVIL_MACHINE_OFF = 74,
 	FIRE_BREATH = 75,
 	PSI_DEFENSE_DOWN = 76,
 	BEAM = 77,
-	UNKNOWN4E = 78,
+	Unknown4E = 78,
 	PSI_PARALYSIS_O = 79,
 	PSI_BRAINSHOCK_O = 80,
 	SPRAY = 81,
 	SPORES = 82,
 	AFFLICTED = 83,
 	OUCH = 84,
-	UNKNOWN55 = 85,
-	UNKNOWN56 = 86,
-	UNKNOWN57 = 87,
-	UNKNOWN58 = 88,
+	Unknown55 = 85,
+	Unknown56 = 86,
+	Unknown57 = 87,
+	Unknown58 = 88,
 	REFILLED = 89,
 	DEFENSES_DESTROYED = 90,
-	UNKNOWN5B = 91,
-	UNKNOWN5C = 92,
+	Unknown5B = 91,
+	Unknown5C = 92,
 	PSI_REFLECTED = 93,
-	UNKNOWN5E = 94,
+	Unknown5E = 94,
 	MAGIC_BUTTERFLY = 95,
 	GHOST = 96,
-	UNKNOWN61 = 97,
-	UNKNOWN62 = 98,
+	Unknown61 = 97,
+	Unknown62 = 98,
 	SHIELD_KILLER = 99,
 	MYSTERIOUS_TRANSPORT = 100,
 	Cheep = 101,
@@ -729,7 +729,7 @@ enum Sfx {
 	PYRAMID_5 = 109,
 	PYRAMID_OPENED = 110,
 	RAPID_KNOCKING = 111,
-	UNKNOWN70 = 112,
+	Unknown70 = 112,
 	MYSTERIOUS = 113,
 	MYSTERIOUS_2 = 114,
 	EquippedItem = 115,
@@ -738,13 +738,13 @@ enum Sfx {
 	GOT_ITEM = 118,
 	OPENED_LOCKED_DOOR = 119,
 	ITEM_SOLD = 120,
-	UNKNOWN79 = 121,
-	TEXT_INPUT = 122,
-	CURSOR1_COPY = 123,
-	UNKNOWN7C = 124,
-	UNKNOWN7D = 125,
-	UNKNOWN7E = 126,
-	UNKNOWN7F = 127,
+	Unknown79 = 121,
+	TextInput = 122,
+	Unknown7B = 123,
+	Unknown7C = 124,
+	Unknown7D = 125,
+	Unknown7E = 126,
+	Unknown7F = 127,
 }
 
 enum ItemType {
@@ -4867,6 +4867,8 @@ ubyte EBChar(dchar c) {
 		case '0': .. case '9':
 		case 'A': .. case 'Z':
 		case 'a': .. case 'z': return cast(ubyte)(c + 0x30);
+		case '{': return 0x53;
+		case '/': return 0x5F;
 		case ':': return 0x6A;
 		case '?': return 0x6F;
 		case '@': return 0x70;
@@ -4876,7 +4878,7 @@ ubyte EBChar(dchar c) {
 		case ']': return 0x8E;
 		case '#': return 0x8F;
 		case '_': return 0x90;
-		case '|': return 0xAC;
+		case '♪': return 0xAC;
 		case 'α': return 0x2A;
 		case 'β': return 0x2B;
 		case 'γ': return 0x2C;

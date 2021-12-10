@@ -568,6 +568,8 @@ void Win_SetTextColor(short window_id) {
     }
     WindowStats[WindowTable[window_id]].tileAttributes = cast(ushort)(window_id * 0x400);
 }
+deprecated alias UnknownC10FEA = Win_SetTextColor;
+
 
 /// $C1101C
 int NumSelectPrompt(short arg1) {
@@ -735,7 +737,7 @@ void UnknownC1180D(short arg1, short arg2, short) {
 /// $C118E7 - Get target X/Y window positions after menu cursor movement
 ///           Returns low byte = X, high byte = Y
 ///           (arguments unknown)
-ushort UnknownC118E7(short, short, short, short, short, short, short);
+ushort MoveCursor(short, short, short, short, short, short, short);
 
 /// $C1196A - Handle menu selection on the focused window
 short SelectionMenu(short cancelable) {
@@ -830,22 +832,22 @@ label2:
         UnknownC12E42();
 
         if (pad_press[0] & PAD_UP) {
-            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, -1, 0, 3, dp04.text_x, dp24.height);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, -1, 0, 3, dp04.text_x, dp24.height);
             goto label3;
         }
 
         if (pad_press[0] & PAD_LEFT) {
-            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 0, -1, 2, dp24.width, dp04.text_y);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 0, -1, 2, dp24.width, dp04.text_y);
             goto label3;
         }
 
         if (pad_press[0] & PAD_DOWN) {
-            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 1, 0, 3, dp04.text_x, -1);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 1, 0, 3, dp04.text_x, -1);
             goto label3;
         }
 
         if (pad_press[0] & PAD_RIGHT) {
-            dp1C = UnknownC118E7(dp04.text_x, dp04.text_y, 0, 1, 2, -1, dp04.text_y);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 0, 1, 2, -1, dp04.text_y);
             goto label3;
         }
 
@@ -4399,10 +4401,181 @@ void BattleActionSwitchArmor() {
 }
 
 /// $C1E1A5
-short EnemySelectMode(short);
+short EnemySelectMode(short arg1);
+
+/// $C1E48D
+short UnknownC1E48D(short arg1, short arg2, short arg3) {
+    SetInstantPrinting();
+    SetWindowFocus(arg1);
+    short x0E = UnknownC442AC(arg1, arg2, arg3);
+    SetWindowFocus(Window.FileSelectNamingKeyboard);
+    return x0E;
+}
+
+/// $C1E4BE
+short UnknownC1E4BE(short arg1, short arg2, short arg3) {
+    SetInstantPrinting();
+    CreateWindowN(arg1);
+    short x10 = (4 > arg2) ? 5 : 6;
+    UnknownC441B7(x10);
+    UnknownC438A5(0, WindowStats[WindowTable[CurrentFocusWindow]].text_y);
+    short x12 = (arg3 == 6) ? 0 : cast(short)(arg3 + 1);
+    for (short i = 0; dontCareNames[arg2][x12][i] != 0; i++) {
+        UnknownC442AC(arg1, x10, dontCareNames[arg2][x12][i]);
+    }
+    SetWindowFocus(Window.FileSelectNamingKeyboard);
+    return x12;
+}
 
 /// $C1E57F
-short TextInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg5);
+short TextInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg5) {
+    short x24 = -1;
+    short x22 = 0;
+    short x20 = 0;
+    short x1E = arg4;
+    short x04;
+    short x16;
+    SetInstantPrinting();
+    CreateWindowN(Window.FileSelectNamingKeyboard);
+    if (arg5 == -1) {
+        DisplayText(&NameInputWindowSelectionLayoutPointers[5][0]);
+    } else {
+        DisplayText(&NameInputWindowSelectionLayoutPointers[4][0]);
+    }
+    Unknown7E5E6D = 0;
+    if (arg5 == -1) {
+        DisplayText(&NameInputWindowSelectionLayoutPointers[2 + arg4][0]);
+    } else {
+        DisplayText(&NameInputWindowSelectionLayoutPointers[arg4][0]);
+    }
+    Unknown7E5E6D = 1;
+    l0: while (true) {
+        SetInstantPrinting();
+        if (x1E != arg4) {
+            CreateWindowN(Window.FileSelectNamingKeyboard);
+            WindowTickWithoutInstantPrinting();
+            if (arg5 == -1) {
+                DisplayText(&NameInputWindowSelectionLayoutPointers[5][0]);
+            } else {
+                DisplayText(&NameInputWindowSelectionLayoutPointers[4][0]);
+            }
+            Unknown7E5E6D = 0;
+            if (arg5 == -1) {
+                DisplayText(&NameInputWindowSelectionLayoutPointers[2 + arg4][0]);
+            } else {
+                DisplayText(&NameInputWindowSelectionLayoutPointers[arg4][0]);
+            }
+            Unknown7E5E6D = 1;
+        }
+        l1: while (true) {
+            ClearInstantPrinting();
+            UnknownC438A5(x20, x22);
+            Win_SetTextColor(1);
+            UnknownC10D60(33);
+            Win_SetTextColor(0);
+            WindowTick();
+            x04 = 1;
+            l2: while (true) {
+                x04 ^= 1;
+                CopyToVram(0, 2, cast(ushort)((WindowStats[WindowTable[CurrentFocusWindow]].text_y * 2 + WindowStats[WindowTable[CurrentFocusWindow]].y) * 32 + WindowStats[WindowTable[CurrentFocusWindow]].x + WindowStats[WindowTable[CurrentFocusWindow]].text_x + 0x7C20), cast(const(ubyte)*)&arrC3E406[x04]);
+                CopyToVram(0, 2, cast(ushort)((WindowStats[WindowTable[CurrentFocusWindow]].text_y * 2 + WindowStats[WindowTable[CurrentFocusWindow]].y) * 32 + WindowStats[WindowTable[CurrentFocusWindow]].x + WindowStats[WindowTable[CurrentFocusWindow]].text_x + 0x7C40), cast(const(ubyte)*)&arrC3E40A[x04]);
+                for (short i = 0; 10 > i; i++) {
+                    UnknownC1004E();
+                    if ((pad_press[0] & PAD_UP) != 0) {
+                        x16 = MoveCursor(x20, x22, -1, 0, Sfx.Unknown7C, x20, WindowStats[WindowTable[CurrentFocusWindow]].height / 2);
+                        break l2;
+                    }
+                    if ((pad_press[0] & PAD_LEFT) != 0) {
+                        x16 = MoveCursor(x20, x22, 0, -1, Sfx.Unknown7B, WindowStats[WindowTable[CurrentFocusWindow]].width, x22);
+                        break l2;
+                    }
+                    if ((pad_press[0] & PAD_DOWN) != 0) {
+                        x16 = MoveCursor(x20, x22, 1, 0, Sfx.Unknown7C, x20, -1);
+                        break l2;
+                    }
+                    if ((pad_press[0] & PAD_RIGHT) != 0) {
+                        x16 = MoveCursor(x20, x22, 0, 1, Sfx.Unknown7B, -1, x22);
+                        break l2;
+                    }
+                    if ((pad_held[0] & PAD_UP) != 0) {
+                        x16 = UnknownC20B65(x20, x22, -1, 0, Sfx.Unknown7C);
+                    }
+                    if ((pad_held[0] & PAD_DOWN) != 0) {
+                        x16 = UnknownC20B65(x20, x22, 1, 0, Sfx.Unknown7C);
+                    }
+                    if ((pad_held[0] & PAD_LEFT) != 0) {
+                        x16 = UnknownC20B65(x20, x22, 0, -1, Sfx.Unknown7B);
+                    }
+                    if ((pad_held[0] & PAD_RIGHT) != 0) {
+                        x16 = UnknownC20B65(x20, x22, 0, 1, Sfx.Unknown7B);
+                    }
+                    if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+                        if (x22 == 6) {
+                            switch (x20) {
+                                case 0: //don't care
+                                    PlaySfx(Sfx.TextInput);
+                                    x24 = UnknownC1E4BE(arg1, arg5, x24);
+                                    continue l1;
+                                case 17: //backspace
+                                    PlaySfx(Sfx.TextInput);
+                                    if ((UnknownC1E48D(arg1, arg2, -1) != 0) && (arg5 != -1)) {
+                                        return 1;
+                                    }
+                                    continue l1;
+                                case 19: //OK
+                                    PlaySfx(Sfx.Unknown5E);
+                                    goto Unknown42;
+                                default: break;
+                            }
+                        } else {
+                            PlaySfx(Sfx.TextInput);
+                            if (x22 == 4) {
+                                switch (x20) {
+                                    case 0:
+                                        arg4 = 0;
+                                        continue l0;
+                                    case 7:
+                                        arg4 = 1;
+                                        continue l0;
+                                    default: break;
+                                }
+                            }
+                            UnknownC1E48D(arg1, arg2, GetCharacterAtCursorPosition(x20 / 2, x22, arg4));
+                        }
+                    } else if ((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) {
+                        PlaySfx(Sfx.Unknown7D);
+                        if ((UnknownC1E48D(arg1, arg2, -1) != 0) && (arg5 != -1)) {
+                            return 1;
+                        }
+                    } else if ((pad_press[0] & PAD_START) != 0) {
+                        PlaySfx(Sfx.Unknown7E);
+                        goto Unknown42;
+                    }
+                }
+            }
+            UnknownC438A5(x20, x22);
+            UnknownC10D60(0x2F);
+            if (x16 != -1) {
+                x20 = x16 & 0xFF;
+                x22 = x16 >> 8;
+            }
+            continue;
+            Unknown42:
+            if (strlen(cast(char*)&Unknown7E1B86[0]) != 0) {
+                SetWindowFocus(arg1);
+                short i;
+                for(i = 0; (Unknown7E1B86[i] != 0) && (i < arg2); i++) {
+                    (arg3++)[0] = Unknown7E1B86[i];
+                }
+                for(; i < arg2; i++) {
+                    (arg3++)[0] = 0;
+                }
+                return 0;
+            }
+        }
+    }
+    assert(0); //unreachable
+}
 
 /// $C1EAA6
 short EnterYourNamePlease(short arg1) {

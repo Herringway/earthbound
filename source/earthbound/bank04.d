@@ -2135,11 +2135,19 @@ void UnknownC43F77(short arg1) {
     }
 }
 
+/// $C4406A
+short GetCharacterAtCursorPosition(short arg1, short arg2, short arg3) {
+    return NameInputWindowSelectionLayoutPointers[arg3][NameEntryGridCharacterOffsetTable[arg2][arg1]];
+}
+
 /// $C440B5
 void UnknownC440B5(ubyte*, short);
 
 /// $C441B7
 void UnknownC441B7(short);
+
+/// $C442AC
+short UnknownC442AC(short, short, short);
 
 /// $C444FB
 void UnknownC444FB(ubyte*, ubyte*);
