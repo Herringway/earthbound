@@ -541,6 +541,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/InventoryGetItemName.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/LevelUpChar.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/LockInput.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/MoveCursor.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/NumSelectPrompt.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/OpenHpAndWallet.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/OpenHPPPDisplay.html</loc></url>
@@ -607,7 +608,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1153B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC115F4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1180D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC118E7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1244C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC12BD5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC12BF3.html</loc></url>
@@ -655,6 +655,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1DCCB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1DD5F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1DD9F.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1E48D.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1E4BE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1FF2C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1FF6B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1FF99.html</loc></url>
@@ -898,6 +900,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/LoadEnemyBattleSprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/LoseHPStatus.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/MissCalc.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/NameEntryGridCharacterOffsetTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/PlaySfxAndUnknown.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/PrayerList.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/PrayerTextPointers.html</loc></url>
@@ -1144,6 +1147,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/FindItemInInventory.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/FindItemInInventory2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/FlyoverTextPointers.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/GetCharacterAtCursorPosition.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/GetRequiredEXP.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/GetTownMapID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/GiygasDeathStaticTransitionDelays.html</loc></url>
@@ -1232,6 +1236,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC43F77.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC440B5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC441B7.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC442AC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC444FB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC445E1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC447FB.html</loc></url>
@@ -1493,6 +1498,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/MapDataTilesetPtrTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/MapDataWeirdTileAnimationPointerTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/MapPalettePointerTable.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/NameInputWindowSelectionLayoutPointers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/PauseMusic.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/ResumeMusic.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/SaveGameBlock.html</loc></url>
