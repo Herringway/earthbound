@@ -361,7 +361,7 @@ enum Music {
 
 enum ItemID {
 	None = 0x00,
-	FRANKLIN_BADGE = 0x01,
+	FranklinBadge = 0x01,
 	TEDDY_BEAR = 0x02,
 	SUPER_PLUSH_BEAR = 0x03,
 	BROKEN_MACHINE = 0x04,
@@ -3841,7 +3841,7 @@ struct Game_State {
 	ubyte partyNPC2Copy;
 	ushort partyNPC1HPCopy;
 	ushort partyNPC2HPCopy;
-	uint walletScratch;
+	uint walletBackup;
 	ubyte[36] escargoExpressItems;
 	ubyte[6] partyMembers;
 	FixedPoint1616 leaderX;

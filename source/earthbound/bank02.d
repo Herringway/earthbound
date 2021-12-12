@@ -583,7 +583,59 @@ void HPPPRoller() {
 }
 
 /// $C213AC
-void UnknownC213AC();
+void UnknownC213AC() {
+	if (Unknown7E89C9 == 0) {
+		return;
+	}
+	if (gameState.partyMembers[Unknown7E0002 & 3] == 0) {
+		return;
+	}
+	if (gameState.partyMembers[Unknown7E0002 & 3] > 4) {
+		return;
+	}
+	if ((Unknown7E9647 >> (Unknown7E0002 & 3) & 1) == 0) {
+		return;
+	}
+	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((BattleMenuCurrentCharacterID == (Unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + Unknown7E0002 & 3;
+	ushort* x1A = &bg2Buffer[x1C];
+	//x1C = 0x7C00[x1C];
+	if ((PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3] - 1].hp.current.fraction & 1) != 0) {
+		FillCharacterHPTileBuffer(Unknown7E0002 & 3, PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3] - 1].hp.current.integer, PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3] - 1].hp.current.fraction);
+		if (Unknown7E9624 == 0) {
+			CopyToVramAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&HPPPWindowBuffer[Unknown7E0002 & 3][0]);
+			CopyToVramAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&HPPPWindowBuffer[(Unknown7E0002 & 3) + 1][0]);
+		}
+		ushort* y = &HPPPWindowBuffer[Unknown7E0002 & 3][0];
+		for (short i = 0; i != 3; i++) {
+			(x1A++)[0] = (y++)[0];
+		}
+		ushort* x1E = x1A + 29;
+		for (short i = 0; i != 3; i++) {
+			(x1E++)[0] = (y++)[0];
+		}
+		x1A = x1E + 29;
+	} else {
+		x1A += 64;
+	}
+	if ((PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3] - 1].pp.current.fraction & 1) != 0) {
+		FillCharacterPPTileBuffer(Unknown7E0002 & 3, &PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3] - 1].afflictions[0], PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3] - 1].pp.current.integer, PartyCharacters[gameState.partyMembers[Unknown7E0002 & 3] - 1].pp.current.fraction);
+		if (Unknown7E9624 == 0) {
+			CopyToVramAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&HPPPWindowBuffer[(Unknown7E0002 & 3) + 2][0]);
+			CopyToVramAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&HPPPWindowBuffer[(Unknown7E0002 & 3) + 3][0]);
+		}
+		ushort* x12 = &HPPPWindowBuffer[(Unknown7E0002 & 3) + 2][0];
+		for (short i = 0; i != 3; i++) {
+			(x1A++)[0] = (x12++)[0];
+		}
+		ushort* y = x1A + 29;
+		for (short i = 0; i != 3; i++) {
+			(y++)[0] = (x12++)[0];
+		}
+	}
+	if (Unknown7E9624 != 0) {
+		Unknown7E9624 = 0;
+	}
+}
 
 /// $C21628
 short getEventFlag(short flag) {
@@ -803,10 +855,23 @@ short DecreaseWalletBalance(int arg1) {
 }
 
 /// $C222D3
-ubyte* GetPartyCharacterName(short);
+const(ubyte)* GetPartyCharacterName(short arg1) {
+	if (arg1 > PartyMember.Poo) {
+		if (arg1 == PartyMember.King) {
+			return &gameState.petName[0];
+		}
+		return &EnemyConfigurationTable[NPCAITable[arg1].enemyID].name[0];
+	}
+	return &PartyCharacters[arg1 - 1].name[0];
+}
 
 /// $C22351
-short UnknownC22351(short);
+short UnknownC22351(short arg1) {
+	arg1--;
+	short x0E;
+	for (x0E = 0; (14 > x0E) && (PartyCharacters[arg1].items[x0E] != 0); x0E++) {}
+	return x0E;
+}
 
 /// $C2239D
 short UnknownC2239D(short id) {
@@ -878,10 +943,16 @@ short GetItemSubtype2(short arg1) {
 }
 
 /// $C226C5
-void UnknownC226C5(short);
+short UnknownC226C5(short arg1) {
+	short x0E = setEventFlag(CurrentInteractingEventFlag, arg1);
+	UnknownC0C30C(Unknown7E5D64);
+	return x0E;
+}
 
 /// $C226E6
-short UnknownC226E6();
+short UnknownC226E6() {
+	return getEventFlag(CurrentInteractingEventFlag);
+}
 
 /// $C226F0
 ushort UnknownC226F0() {
@@ -891,7 +962,15 @@ ushort UnknownC226F0() {
 }
 
 /// $C2272F
-short UnknownC2272F();
+short UnknownC2272F() {
+	short x10 = 0;
+	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+		if ((PartyCharacters[gameState.unknown96[i] - 1].afflictions[0] != Status0.Unconscious) && (PartyCharacters[gameState.unknown96[i] - 1].afflictions[0] != Status0.Diamondized)) {
+			x10++;
+		}
+	}
+	return x10;
+}
 
 /// $C227C8
 void LearnSpecialPSI(short id) {
@@ -1024,10 +1103,33 @@ short InitBattleScripted(short arg1) {
 }
 
 /// $C23008
-void UnknownC23008();
+void UnknownC23008() {
+	gameState.partyNPC1Copy = gameState.partyNPC1;
+	gameState.partyNPC1HPCopy = gameState.partyNPCHP[0];
+	gameState.partyNPC2Copy = gameState.partyNPC2;
+	gameState.partyNPC2HPCopy = gameState.partyNPCHP[1];
+	RemoveCharFromParty(gameState.partyNPC2);
+	RemoveCharFromParty(gameState.partyNPC1);
+	gameState.walletBackup = gameState.moneyCarried;
+	gameState.moneyCarried = 0;
+}
 
 /// $C2307B
-void UnknownC2307B();
+void UnknownC2307B() {
+	RemoveCharFromParty(gameState.partyNPC1);
+	RemoveCharFromParty(gameState.partyNPC2);
+	if (gameState.partyNPC1Copy != 0) {
+		gameState.partyNPC1 = gameState.partyNPC1Copy;
+		AddCharToParty(gameState.partyNPC1Copy);
+		gameState.partyNPCHP[0] = gameState.partyNPC1HPCopy;
+		if (gameState.partyNPC2Copy != 0) {
+			gameState.partyNPC2 = gameState.partyNPC2Copy;
+			AddCharToParty(gameState.partyNPC2Copy);
+			gameState.partyNPCHP[1] = gameState.partyNPC2HPCopy;
+		}
+	}
+	gameState.moneyCarried = gameState.walletBackup;
+}
 
 /// $C230F3
 void SetTeleportBoxDestination(short arg1) {
@@ -3027,34 +3129,134 @@ void BattleActionFreezeTime() {
 }
 
 /// $C289CE
-void BattleActionDiamondize();
+void BattleActionDiamondize() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if ((Success255(currentTarget.paralysisResist) != 0) && (InflictStatusBattle(currentTarget, 0, Status0.Diamondized) != 0)) {
+		currentTarget.afflictions[6] = 0;
+		currentTarget.afflictions[5] = 0;
+		currentTarget.afflictions[4] = 0;
+		currentTarget.afflictions[3] = 0;
+		currentTarget.afflictions[2] = 0;
+		currentTarget.afflictions[1] = 0;
+		BattleEXPScratch += currentTarget.exp;
+		BattleMoneyScratch += currentTarget.money;
+		DisplayInBattleText(TextBattleWasDiamondized.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28A92
-void BattleActionParalyze();
+void BattleActionParalyze() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if ((Success255(currentTarget.paralysisResist) != 0) && (InflictStatusBattle(currentTarget, 0, Status0.Paralyzed) != 0)) {
+		DisplayInBattleText(TextBattleBecameNumb.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28AEB
-void BattleActionNauseate();
+void BattleActionNauseate() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if (InflictStatusBattle(currentTarget, 0, Status0.Nauseous) != 0) {
+		DisplayInBattleText(TextBattleFeltNauseous.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28B2C
-void BattleActionPoison();
+void BattleActionPoison() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if (InflictStatusBattle(currentTarget, 0, Status0.Poisoned) != 0) {
+		DisplayInBattleText(TextBattleGotPoisoned.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28B6D
-void BattleActionCold();
+void BattleActionCold() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if ((Success255(currentTarget.freezeResist) != 0) && (InflictStatusBattle(currentTarget, 0, Status0.Cold) != 0)) {
+		DisplayInBattleText(TextBattleCaughtCold.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28BBE
-void BattleActionMushroomize();
+void BattleActionMushroomize() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if (InflictStatusBattle(currentTarget, 1, Status1.Mushroomized) != 0) {
+		DisplayInBattleText(TextBattleBeganToFeelStrangeMushroomized.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28BFD
-void BattleActionPossess();
+void BattleActionPossess() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if ((currentTarget.allyOrEnemy == 0) && (InflictStatusBattle(currentTarget, 1, Status1.Possessed) != 0)) {
+		DisplayInBattleText(TextBattleWasPossessed.ptr);
+		if (BattlersTable[6].consciousness == 0) {
+			BattleInitEnemyStats(EnemyID.TinyLilGhost, &BattlersTable[6]);
+			BattlersTable[6].npcID = EnemyID.TinyLilGhost;
+			BattlersTable[6].hasTakenTurn = 1;
+		}
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28C69
-void BattleActionCrying();
+void BattleActionCrying() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if ((Success255(currentTarget.flashResist) != 0) && (InflictStatusBattle(currentTarget, 2, Status2.Crying) != 0)) {
+		DisplayInBattleText(TextBattleCouldNotStopCrying.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28CB8
-void BattleActionImmobilize();
+void BattleActionImmobilize() {
+	if (InflictStatusBattle(currentTarget, 2, Status2.Immobilized) != 0) {
+		DisplayInBattleText(TextBattleSuddenlyCouldntMove.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28CF1
-void BattleActionSolidify();
+void BattleActionSolidify() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if ((SuccessLuck80() != 0) && (InflictStatusBattle(currentTarget, 2, Status2.Solidified) != 0)) {
+		DisplayInBattleText(TextBattleBodySolidified.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28D3A
 void BattleActionBrainshockAlphaCopy() {
@@ -3083,10 +3285,28 @@ void BattleActionDistract() {
 }
 
 /// $C28D8B
-void BattleActionFeelStrange();
+void BattleActionFeelStrange() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if (InflictStatusBattle(currentTarget, 3, Status3.Strange) != 0) {
+		DisplayInBattleText(TextBattleFeltALittleStrange.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28DFC
-void BattleActionCrying2();
+void BattleActionCrying2() {
+	if (FailAttackOnNPCs() == 0) {
+		return;
+	}
+	if (InflictStatusBattle(currentTarget, 2, Status2.Crying) != 0) {
+		DisplayInBattleText(TextBattleCouldNotStopCrying.ptr);
+	} else {
+		DisplayInBattleText(TextBattleItDidntWorkOnX.ptr);
+	}
+}
 
 /// $C28E3B
 void BattleActionHypnosisAlphaCopy() {
@@ -3135,7 +3355,26 @@ void BattleActionReduceOffenseDefense() {
 }
 
 /// $C28F97
-void BattleActionLevel2AttackPoison();
+void BattleActionLevel2AttackPoison() {
+	if (FailAttackOnNPCs() != 0) {
+		return;
+	}
+	if (MissCalc(0) != 0) {
+		return;
+	}
+	if (Smaaaash() != 0) {
+		return;
+	}
+	if (DetermineDodge() == 0) {
+		BattleActionLevel2Attack();
+		HealStrangeness();
+		if (InflictStatusBattle(currentTarget, 0, Status0.Poisoned) != 0) {
+			DisplayInBattleText(TextBattleGotPoisoned.ptr);
+		}
+	} else {
+		DisplayInBattleText(TextBattleDodged.ptr);
+	}
+}
 
 /// $C28FF9
 void BattleActionDoubleBash() {
@@ -3413,7 +3652,13 @@ void BattleActionPSIRockinOmega() {
 }
 
 /// $C2957A
-void PSIFireCommon(short baseDamage);
+void PSIFireCommon(short baseDamage) {
+	if (PSIShieldNullify() != 0) {
+		return;
+	}
+	CalcResistDamage(TwentyFivePercentVariance(baseDamage), currentTarget.fireResist);
+	WeakenShield();
+}
 
 /// $C295AB
 void BattleActionPSIFireAlpha() {
@@ -3473,7 +3718,69 @@ void BattleActionPSIFreezeOmega() {
 }
 
 /// $C2966B
-void PSIThunderCommon(short baseDamage, short strikes);
+void PSIThunderCommon(short baseDamage, short strikes) {
+	short x18 = 0;
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (IsCharacterTargetted(i) == 0) {
+			continue;
+		}
+		x18++;
+	}
+	short x02 = cast(short)(x18 * 64);
+	if (x02 >= 0x100) {
+		x02 = 0xFF;
+	}
+	uint x12 = BattlerTargetFlags;
+	for (short i = 0 ; i < strikes; i++) {
+		BattlerTargetFlags = x12;
+		RemoveStatusUntargettableTargets();
+		if (BattlerTargetFlags == 0) {
+			break;
+		}
+		BattlerTargetFlags = RandomTargetting(BattlerTargetFlags);
+		short x16;
+		for (x16 = 0; x16 < BattlersTable.length; x16++) {
+			if (IsCharacterTargetted(x16) != 0) {
+				break;
+			}
+		}
+		currentTarget = &BattlersTable[x16];
+		FixTargetName();
+		if (Success255(x02) != 0) {
+			if (baseDamage == 120) {
+				DisplayInBattleText(TextBattleThunderHit.ptr);
+			} else {
+				DisplayInBattleText(TextBattleThunderStrongerHit.ptr);
+			}
+			while (UnknownC2EACF() != 0) {
+				WindowTick();
+			}
+			currentTarget.unknown75 = 0;
+			if ((currentTarget.allyOrEnemy == 0) && (FindItemInInventory2(currentTarget.row, ItemID.FranklinBadge) != 0)) {
+				DisplayInBattleText(TextBattleFranklinBadgeDeflected.ptr);
+				Unknown7EAA96 = 1;
+				SwapAttackerWithTarget();
+			}
+			if ((currentTarget.afflictions[6] == Status6.PSIShieldPower) || (currentTarget.afflictions[6] == Status6.PSIShield)) {
+				currentTarget.shieldHP = 1;
+			}
+			if (PSIShieldNullify() == 0) {
+				CalcResistDamage(FiftyPercentVariance(baseDamage), 0xFF);
+			}
+			WeakenShield();
+		} else {
+			DisplayInBattleText(TextBattleThunderMiss.ptr);
+			DisplayInBattleText(TextBattleItDidntHitAnyone.ptr);
+		}
+		if (CountChars(0) == 0) {
+			break;
+		}
+		if (CountChars(1) == 0) {
+			break;
+		}
+	}
+	BattlerTargetFlags = 0;
+}
 
 /// $C29871
 void BattleActionPSIThunderAlpha() {
@@ -3644,7 +3951,9 @@ void BattleActionPSIStarstormOmega() {
 }
 
 /// $C29AB8
-void LifeupCommon(short baseHealing);
+void LifeupCommon(short baseHealing) {
+	RecoverHP(currentTarget, TwentyFivePercentVariance(baseHealing));
+}
 
 /// $C29AC6
 void BattleActionLifeupAlpha() {

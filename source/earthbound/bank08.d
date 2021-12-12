@@ -1697,7 +1697,7 @@ immutable ubyte[0] TEXT_NOT_ENOUGH_PP;
 immutable ubyte[0] TextBattleUsedPSI;
 immutable ubyte[0] TextBlockC8FACA;
 immutable ubyte[0] TextBlockC8FACD;
-immutable ubyte[0] TEXT_BATTLE_IT_DIDNT_HIT_ANYONE;
+immutable ubyte[0] TextBattleItDidntHitAnyone;
 immutable ubyte[0] TextBattleDoesNotHaveAnyPP;
 immutable ubyte[0] TextAction275;
 immutable ubyte[0] TextPokeySpeech3;
