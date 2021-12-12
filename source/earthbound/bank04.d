@@ -8,6 +8,7 @@ import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank07;
+import earthbound.bank08;
 import earthbound.bank0A;
 import earthbound.bank0E;
 import earthbound.bank0F;
@@ -21,902 +22,902 @@ import earthbound.globals;
 import core.stdc.string;
 
 /// $C400D4
-immutable void*[895] EventScriptPointers = [
-    null /+EVENT_0+/,
-    null /+EVENT_1+/,
-    null /+EVENT_2+/,
-    null /+EVENT_3+/,
-    null /+EVENT_4+/,
-    null /+EVENT_5+/,
-    null /+EVENT_6_12+/,
-    null /+EVENT_7+/,
-    null /+EVENT_8+/,
-    null /+EVENT_9+/,
-    null /+EVENT_10_11+/,
-    null /+EVENT_10_11+/,
-    null /+EVENT_6_12+/,
-    null /+EVENT_13+/,
-    null /+EVENT_14+/,
-    null /+EVENT_15+/,
-    null /+EVENT_16+/,
-    null /+EVENT_17+/,
-    null /+EVENT_18+/,
-    null /+EVENT_19+/,
-    null /+EVENT_20+/,
-    null /+EVENT_21+/,
-    null /+EVENT_22+/,
-    null /+EVENT_23+/,
-    null /+EVENT_24+/,
-    null /+EVENT_25+/,
-    null /+EVENT_26+/,
-    null /+EVENT_27+/,
-    null /+EVENT_28+/,
-    null /+EVENT_29+/,
-    null /+EVENT_30+/,
-    null /+EVENT_31+/,
-    null /+EVENT_32+/,
-    null /+EVENT_33+/,
-    null /+EVENT_34+/,
-    null /+EVENT_35+/,
-    null /+EVENT_36+/,
-    null /+EVENT_37+/,
-    null /+EVENT_38+/,
-    null /+EVENT_39+/,
-    null /+EVENT_40+/,
-    null /+EVENT_41+/,
-    null /+EVENT_42+/,
-    null /+EVENT_43+/,
-    null /+EVENT_44+/,
-    null /+EVENT_45+/,
-    null /+EVENT_46+/,
-    null /+EVENT_47+/,
-    null /+EVENT_48+/,
-    null /+EVENT_49+/,
-    null /+EVENT_50+/,
-    null /+EVENT_51+/,
-    null /+EVENT_52+/,
-    null /+EVENT_53+/,
-    null /+EVENT_54+/,
-    null /+EVENT_55+/,
-    null /+EVENT_56+/,
-    null /+EVENT_57+/,
-    null /+EVENT_58+/,
-    null /+EVENT_59+/,
-    null /+EVENT_60+/,
-    null /+EVENT_61+/,
-    null /+EVENT_62+/,
-    null /+EVENT_63+/,
-    null /+EVENT_64+/,
-    null /+EVENT_65+/,
-    null /+EVENT_66+/,
-    null /+EVENT_67+/,
-    null /+EVENT_68+/,
-    null /+EVENT_69+/,
-    null /+EVENT_70+/,
-    null /+EVENT_71+/,
-    null /+EVENT_72+/,
-    null /+EVENT_73+/,
-    null /+EVENT_74+/,
-    null /+EVENT_75+/,
-    null /+EVENT_76+/,
-    null /+EVENT_77+/,
-    null /+EVENT_78+/,
-    null /+EVENT_79+/,
-    null /+EVENT_80+/,
-    null /+EVENT_81+/,
-    null /+EVENT_82+/,
-    null /+EVENT_83+/,
-    null /+EVENT_84+/,
-    null /+EVENT_85+/,
-    null /+EVENT_86+/,
-    null /+EVENT_87+/,
-    null /+EVENT_88+/,
-    null /+EVENT_89+/,
-    null /+EVENT_90+/,
-    null /+EVENT_91+/,
-    null /+EVENT_92+/,
-    null /+EVENT_93+/,
-    null /+EVENT_94+/,
-    null /+EVENT_95+/,
-    null /+EVENT_96+/,
-    null /+EVENT_97+/,
-    null /+EVENT_98+/,
-    null /+EVENT_99+/,
-    null /+EVENT_100+/,
-    null /+EVENT_101+/,
-    null /+EVENT_102+/,
-    null /+EVENT_103+/,
-    null /+EVENT_104+/,
-    null /+EVENT_105+/,
-    null /+EVENT_106+/,
-    null /+EVENT_107+/,
-    null /+EVENT_108+/,
-    null /+EVENT_109+/,
-    null /+EVENT_110+/,
-    null /+EVENT_111+/,
-    null /+EVENT_112+/,
-    null /+EVENT_113+/,
-    null /+EVENT_114+/,
-    null /+EVENT_115+/,
-    null /+EVENT_116+/,
-    null /+EVENT_117+/,
-    null /+EVENT_118+/,
-    null /+EVENT_119+/,
-    null /+EVENT_120+/,
-    null /+EVENT_121+/,
-    null /+EVENT_122+/,
-    null /+EVENT_123+/,
-    null /+EVENT_124+/,
-    null /+EVENT_125+/,
-    null /+EVENT_126+/,
-    null /+EVENT_127+/,
-    null /+EVENT_128+/,
-    null /+EVENT_129+/,
-    null /+EVENT_130+/,
-    null /+EVENT_131+/,
-    null /+EVENT_132+/,
-    null /+EVENT_133+/,
-    null /+EVENT_134+/,
-    null /+EVENT_135+/,
-    null /+EVENT_136+/,
-    null /+EVENT_137+/,
-    null /+EVENT_138+/,
-    null /+EVENT_139+/,
-    null /+EVENT_140+/,
-    null /+EVENT_141+/,
-    null /+EVENT_142+/,
-    null /+EVENT_143+/,
-    null /+EVENT_144+/,
-    null /+EVENT_145+/,
-    null /+EVENT_146+/,
-    null /+EVENT_147+/,
-    null /+EVENT_148+/,
-    null /+EVENT_149+/,
-    null /+EVENT_150+/,
-    null /+EVENT_151+/,
-    null /+EVENT_152+/,
-    null /+EVENT_153+/,
-    null /+EVENT_154+/,
-    null /+EVENT_155+/,
-    null /+EVENT_156+/,
-    null /+EVENT_157+/,
-    null /+EVENT_158+/,
-    null /+EVENT_159+/,
-    null /+EVENT_160+/,
-    null /+EVENT_161+/,
-    null /+EVENT_162+/,
-    null /+EVENT_163+/,
-    null /+EVENT_164+/,
-    null /+EVENT_165+/,
-    null /+EVENT_166+/,
-    null /+EVENT_167+/,
-    null /+EVENT_168+/,
-    null /+EVENT_169+/,
-    null /+EVENT_170+/,
-    null /+EVENT_171+/,
-    null /+EVENT_172+/,
-    null /+EVENT_173+/,
-    null /+EVENT_174+/,
-    null /+EVENT_175+/,
-    null /+EVENT_176+/,
-    null /+EVENT_177+/,
-    null /+EVENT_178+/,
-    null /+EVENT_179+/,
-    null /+EVENT_180+/,
-    null /+EVENT_181+/,
-    null /+EVENT_182+/,
-    null /+EVENT_183+/,
-    null /+EVENT_184+/,
-    null /+EVENT_185+/,
-    null /+EVENT_186+/,
-    null /+EVENT_187+/,
-    null /+EVENT_188+/,
-    null /+EVENT_189+/,
-    null /+EVENT_190+/,
-    null /+EVENT_191+/,
-    null /+EVENT_192+/,
-    null /+EVENT_193+/,
-    null /+EVENT_194+/,
-    null /+EVENT_195+/,
-    null /+EVENT_196+/,
-    null /+EVENT_197+/,
-    null /+EVENT_198+/,
-    null /+EVENT_199+/,
-    null /+EVENT_200+/,
-    null /+EVENT_201+/,
-    null /+EVENT_202+/,
-    null /+EVENT_203+/,
-    null /+EVENT_204+/,
-    null /+EVENT_205+/,
-    null /+EVENT_206+/,
-    null /+EVENT_207+/,
-    null /+EVENT_208+/,
-    null /+EVENT_209+/,
-    null /+EVENT_210+/,
-    null /+EVENT_211+/,
-    null /+EVENT_212+/,
-    null /+EVENT_213+/,
-    null /+EVENT_214+/,
-    null /+EVENT_215+/,
-    null /+EVENT_216+/,
-    null /+EVENT_217+/,
-    null /+EVENT_218+/,
-    null /+EVENT_219+/,
-    null /+EVENT_220+/,
-    null /+EVENT_221+/,
-    null /+EVENT_222+/,
-    null /+EVENT_223+/,
-    null /+EVENT_224+/,
-    null /+EVENT_225_226_227+/,
-    null /+EVENT_225_226_227+/,
-    null /+EVENT_225_226_227+/,
-    null /+EVENT_228+/,
-    null /+EVENT_229+/,
-    null /+EVENT_230+/,
-    null /+EVENT_231+/,
-    null /+EVENT_232+/,
-    null /+EVENT_233_234_235_236_237+/,
-    null /+EVENT_233_234_235_236_237+/,
-    null /+EVENT_233_234_235_236_237+/,
-    null /+EVENT_233_234_235_236_237+/,
-    null /+EVENT_233_234_235_236_237+/,
-    null /+EVENT_238+/,
-    null /+EVENT_239+/,
-    null /+EVENT_240+/,
-    null /+EVENT_241+/,
-    null /+EVENT_242_243+/,
-    null /+EVENT_242_243+/,
-    null /+EVENT_244+/,
-    null /+EVENT_245+/,
-    null /+EVENT_246+/,
-    null /+EVENT_247_248+/,
-    null /+EVENT_247_248+/,
-    null /+EVENT_249+/,
-    null /+EVENT_250+/,
-    null /+EVENT_251+/,
-    null /+EVENT_252+/,
-    null /+EVENT_253+/,
-    null /+EVENT_254+/,
-    null /+EVENT_255+/,
-    null /+EVENT_256+/,
-    null /+EVENT_257+/,
-    null /+EVENT_258+/,
-    null /+EVENT_259+/,
-    null /+EVENT_260+/,
-    null /+EVENT_261+/,
-    null /+EVENT_262+/,
-    null /+EVENT_263+/,
-    null /+EVENT_264+/,
-    null /+EVENT_265+/,
-    null /+EVENT_266+/,
-    null /+EVENT_267+/,
-    null /+EVENT_268+/,
-    null /+EVENT_269+/,
-    null /+EVENT_270+/,
-    null /+EVENT_271+/,
-    null /+EVENT_272+/,
-    null /+EVENT_273+/,
-    null /+EVENT_274_275_276+/,
-    null /+EVENT_274_275_276+/,
-    null /+EVENT_274_275_276+/,
-    null /+EVENT_277+/,
-    null /+EVENT_278+/,
-    null /+EVENT_279+/,
-    null /+EVENT_280+/,
-    null /+EVENT_281+/,
-    null /+EVENT_282+/,
-    null /+EVENT_283+/,
-    null /+EVENT_284+/,
-    null /+EVENT_285+/,
-    null /+EVENT_286+/,
-    null /+EVENT_287+/,
-    null /+EVENT_288+/,
-    null /+EVENT_289+/,
-    null /+EVENT_290+/,
-    null /+EVENT_291+/,
-    null /+EVENT_292+/,
-    null /+EVENT_293+/,
-    null /+EVENT_294+/,
-    null /+EVENT_295+/,
-    null /+EVENT_296+/,
-    null /+EVENT_297+/,
-    null /+EVENT_298+/,
-    null /+EVENT_299+/,
-    null /+EVENT_300+/,
-    null /+EVENT_301+/,
-    null /+EVENT_302+/,
-    null /+EVENT_303+/,
-    null /+EVENT_304+/,
-    null /+EVENT_305+/,
-    null /+EVENT_306+/,
-    null /+EVENT_307+/,
-    null /+EVENT_308+/,
-    null /+EVENT_309+/,
-    null /+EVENT_310+/,
-    null /+EVENT_311+/,
-    null /+EVENT_312+/,
-    null /+EVENT_313+/,
-    null /+EVENT_314+/,
-    null /+EVENT_315+/,
-    null /+EVENT_316+/,
-    null /+EVENT_317+/,
-    null /+EVENT_318+/,
-    null /+EVENT_319+/,
-    null /+EVENT_320+/,
-    null /+EVENT_321+/,
-    null /+EVENT_322+/,
-    null /+EVENT_323+/,
-    null /+EVENT_324+/,
-    null /+EVENT_325+/,
-    null /+EVENT_326+/,
-    null /+EVENT_327+/,
-    null /+EVENT_328+/,
-    null /+EVENT_329+/,
-    null /+EVENT_330+/,
-    null /+EVENT_331+/,
-    null /+EVENT_332+/,
-    null /+EVENT_333+/,
-    null /+EVENT_334+/,
-    null /+EVENT_335+/,
-    null /+EVENT_336+/,
-    null /+EVENT_337+/,
-    null /+EVENT_338+/,
-    null /+EVENT_339+/,
-    null /+EVENT_340+/,
-    null /+EVENT_341+/,
-    null /+EVENT_342+/,
-    null /+EVENT_343+/,
-    null /+EVENT_344+/,
-    null /+EVENT_345+/,
-    null /+EVENT_346+/,
-    null /+EVENT_347+/,
-    null /+EVENT_348_349+/,
-    null /+EVENT_348_349+/,
-    null /+EVENT_350+/,
-    null /+EVENT_351+/,
-    null /+EVENT_352+/,
-    null /+EVENT_353+/,
-    null /+EVENT_354+/,
-    null /+EVENT_355+/,
-    null /+EVENT_356+/,
-    null /+EVENT_357+/,
-    null /+EVENT_358+/,
-    null /+EVENT_359+/,
-    null /+EVENT_360+/,
-    null /+EVENT_361+/,
-    null /+EVENT_362+/,
-    null /+EVENT_363+/,
-    null /+EVENT_364+/,
-    null /+EVENT_365+/,
-    null /+EVENT_366+/,
-    null /+EVENT_367+/,
-    null /+EVENT_368+/,
-    null /+EVENT_369+/,
-    null /+EVENT_370+/,
-    null /+EVENT_371+/,
-    null /+EVENT_372+/,
-    null /+EVENT_373+/,
-    null /+EVENT_374+/,
-    null /+EVENT_375_404+/,
-    null /+EVENT_376_405+/,
-    null /+EVENT_377_406+/,
-    null /+EVENT_378_407+/,
-    null /+EVENT_379_408+/,
-    null /+EVENT_380+/,
-    null /+EVENT_381+/,
-    null /+EVENT_382+/,
-    null /+EVENT_383+/,
-    null /+EVENT_384+/,
-    null /+EVENT_385+/,
-    null /+EVENT_386+/,
-    null /+EVENT_387+/,
-    null /+EVENT_388+/,
-    null /+EVENT_389_393+/,
-    null /+EVENT_390_394+/,
-    null /+EVENT_391+/,
-    null /+EVENT_392+/,
-    null /+EVENT_389_393+/,
-    null /+EVENT_390_394+/,
-    null /+EVENT_395+/,
-    null /+EVENT_396+/,
-    null /+EVENT_397+/,
-    null /+EVENT_398+/,
-    null /+EVENT_399+/,
-    null /+EVENT_400+/,
-    null /+EVENT_401+/,
-    null /+EVENT_402+/,
-    null /+EVENT_403+/,
-    null /+EVENT_375_404+/,
-    null /+EVENT_376_405+/,
-    null /+EVENT_377_406+/,
-    null /+EVENT_378_407+/,
-    null /+EVENT_379_408+/,
-    null /+EVENT_409+/,
-    null /+EVENT_410+/,
-    null /+EVENT_411+/,
-    null /+EVENT_412+/,
-    null /+EVENT_413+/,
-    null /+EVENT_414+/,
-    null /+EVENT_415+/,
-    null /+EVENT_416+/,
-    null /+EVENT_417+/,
-    null /+EVENT_418+/,
-    null /+EVENT_419+/,
-    null /+EVENT_420+/,
-    null /+EVENT_421+/,
-    null /+EVENT_422+/,
-    null /+EVENT_423+/,
-    null /+EVENT_424+/,
-    null /+EVENT_425+/,
-    null /+EVENT_426+/,
-    null /+EVENT_427+/,
-    null /+EVENT_428+/,
-    null /+EVENT_429+/,
-    null /+EVENT_430+/,
-    null /+EVENT_431_432_433_434+/,
-    null /+EVENT_431_432_433_434+/,
-    null /+EVENT_431_432_433_434+/,
-    null /+EVENT_431_432_433_434+/,
-    null /+EVENT_435+/,
-    null /+EVENT_436+/,
-    null /+EVENT_437+/,
-    null /+EVENT_438+/,
-    null /+EVENT_439+/,
-    null /+EVENT_440+/,
-    null /+EVENT_441+/,
-    null /+EVENT_442+/,
-    null /+EVENT_443+/,
-    null /+EVENT_444+/,
-    null /+EVENT_445+/,
-    null /+EVENT_446+/,
-    null /+EVENT_447+/,
-    null /+EVENT_448+/,
-    null /+EVENT_449+/,
-    null /+EVENT_450+/,
-    null /+EVENT_451+/,
-    null /+EVENT_452+/,
-    null /+EVENT_453+/,
-    null /+EVENT_454+/,
-    null /+EVENT_455+/,
-    null /+EVENT_456+/,
-    null /+EVENT_457+/,
-    null /+EVENT_458+/,
-    null /+EVENT_459+/,
-    null /+EVENT_460+/,
-    null /+EVENT_461+/,
-    null /+EVENT_462+/,
-    null /+EVENT_463+/,
-    null /+EVENT_464+/,
-    null /+EVENT_465+/,
-    null /+EVENT_466+/,
-    null /+EVENT_467+/,
-    null /+EVENT_468+/,
-    null /+EVENT_469+/,
-    null /+EVENT_470+/,
-    null /+EVENT_471+/,
-    null /+EVENT_472+/,
-    null /+EVENT_473+/,
-    null /+EVENT_474+/,
-    null /+EVENT_475+/,
-    null /+EVENT_476+/,
-    null /+EVENT_477+/,
-    null /+EVENT_478+/,
-    null /+EVENT_479+/,
-    null /+EVENT_480+/,
-    null /+EVENT_481+/,
-    null /+EVENT_482+/,
-    null /+EVENT_483+/,
-    null /+EVENT_484+/,
-    null /+EVENT_485+/,
-    null /+EVENT_486+/,
-    null /+EVENT_487+/,
-    null /+EVENT_488+/,
-    null /+EVENT_489+/,
-    null /+EVENT_490+/,
-    null /+EVENT_491+/,
-    null /+EVENT_492+/,
-    null /+EVENT_493+/,
-    null /+EVENT_494+/,
-    null /+EVENT_495+/,
-    null /+EVENT_496+/,
-    null /+EVENT_497+/,
-    null /+EVENT_498+/,
-    null /+EVENT_499+/,
-    null /+EVENT_500+/,
-    null /+EVENT_501+/,
-    null /+EVENT_502+/,
-    null /+EVENT_503+/,
-    null /+EVENT_504+/,
-    null /+EVENT_505+/,
-    null /+EVENT_506+/,
-    null /+EVENT_507+/,
-    null /+EVENT_508+/,
-    null /+EVENT_509+/,
-    null /+EVENT_510+/,
-    null /+EVENT_511+/,
-    null /+EVENT_512+/,
-    null /+EVENT_513+/,
-    null /+EVENT_514+/,
-    null /+EVENT_515+/,
-    null /+EVENT_516+/,
-    null /+EVENT_517+/,
-    null /+EVENT_518+/,
-    null /+EVENT_519+/,
-    null /+EVENT_520+/,
-    null /+EVENT_521+/,
-    null /+EVENT_522+/,
-    null /+EVENT_523+/,
-    null /+EVENT_524+/,
-    null /+EVENT_525+/,
-    null /+EVENT_526+/,
-    null /+EVENT_527+/,
-    null /+EVENT_528+/,
-    null /+EVENT_529+/,
-    null /+EVENT_530+/,
-    null /+EVENT_531+/,
-    null /+EVENT_532+/,
-    null /+EVENT_533+/,
-    null /+EVENT_534+/,
-    null /+EVENT_535+/,
-    null /+EVENT_536+/,
-    null /+EVENT_537+/,
-    null /+EVENT_538+/,
-    null /+EVENT_539+/,
-    null /+EVENT_540+/,
-    null /+EVENT_541+/,
-    null /+EVENT_542+/,
-    null /+EVENT_543+/,
-    null /+EVENT_544+/,
-    null /+EVENT_545+/,
-    null /+EVENT_546+/,
-    null /+EVENT_547+/,
-    null /+EVENT_548+/,
-    null /+EVENT_549+/,
-    null /+EVENT_550+/,
-    null /+EVENT_551+/,
-    null /+EVENT_552+/,
-    null /+EVENT_553+/,
-    null /+EVENT_554+/,
-    null /+EVENT_555+/,
-    null /+EVENT_556+/,
-    null /+EVENT_557+/,
-    null /+EVENT_558+/,
-    null /+EVENT_559+/,
-    null /+EVENT_560+/,
-    null /+EVENT_561+/,
-    null /+EVENT_562+/,
-    null /+EVENT_563+/,
-    null /+EVENT_564+/,
-    null /+EVENT_565+/,
-    null /+EVENT_566+/,
-    null /+EVENT_567+/,
-    null /+EVENT_568+/,
-    null /+EVENT_569+/,
-    null /+EVENT_570+/,
-    null /+EVENT_571+/,
-    null /+EVENT_572+/,
-    null /+EVENT_573+/,
-    null /+EVENT_574+/,
-    null /+EVENT_575+/,
-    null /+EVENT_576+/,
-    null /+EVENT_577+/,
-    null /+EVENT_578+/,
-    null /+EVENT_579+/,
-    null /+EVENT_580+/,
-    null /+EVENT_581+/,
-    null /+EVENT_582+/,
-    null /+EVENT_583+/,
-    null /+EVENT_584+/,
-    null /+EVENT_585+/,
-    null /+EVENT_586+/,
-    null /+EVENT_587+/,
-    null /+EVENT_588+/,
-    null /+EVENT_589+/,
-    null /+EVENT_590+/,
-    null /+EVENT_591+/,
-    null /+EVENT_592+/,
-    null /+EVENT_593+/,
-    null /+EVENT_594+/,
-    null /+EVENT_595+/,
-    null /+EVENT_596+/,
-    null /+EVENT_597+/,
-    null /+EVENT_598+/,
-    null /+EVENT_599+/,
-    null /+EVENT_600+/,
-    null /+EVENT_601+/,
-    null /+EVENT_602+/,
-    null /+EVENT_603+/,
-    null /+EVENT_604+/,
-    null /+EVENT_605+/,
-    null /+EVENT_606+/,
-    null /+EVENT_607+/,
-    null /+EVENT_608+/,
-    null /+EVENT_609+/,
-    null /+EVENT_610+/,
-    null /+EVENT_611+/,
-    null /+EVENT_612+/,
-    null /+EVENT_613+/,
-    null /+EVENT_614+/,
-    null /+EVENT_615+/,
-    null /+EVENT_616+/,
-    null /+EVENT_617+/,
-    null /+EVENT_618+/,
-    null /+EVENT_619+/,
-    null /+EVENT_620+/,
-    null /+EVENT_621+/,
-    null /+EVENT_622+/,
-    null /+EVENT_623+/,
-    null /+EVENT_624+/,
-    null /+EVENT_625+/,
-    null /+EVENT_626+/,
-    null /+EVENT_627+/,
-    null /+EVENT_628+/,
-    null /+EVENT_629+/,
-    null /+EVENT_630+/,
-    null /+EVENT_631+/,
-    null /+EVENT_632+/,
-    null /+EVENT_633+/,
-    null /+EVENT_634+/,
-    null /+EVENT_635+/,
-    null /+EVENT_636+/,
-    null /+EVENT_637+/,
-    null /+EVENT_638+/,
-    null /+EVENT_639+/,
-    null /+EVENT_640+/,
-    null /+EVENT_641+/,
-    null /+EVENT_642+/,
-    null /+EVENT_643+/,
-    null /+EVENT_644+/,
-    null /+EVENT_645+/,
-    null /+EVENT_646+/,
-    null /+EVENT_647+/,
-    null /+EVENT_648+/,
-    null /+EVENT_649+/,
-    null /+EVENT_650+/,
-    null /+EVENT_651+/,
-    null /+EVENT_652+/,
-    null /+EVENT_653+/,
-    null /+EVENT_654+/,
-    null /+EVENT_655+/,
-    null /+EVENT_656+/,
-    null /+EVENT_657+/,
-    null /+EVENT_658+/,
-    null /+EVENT_659+/,
-    null /+EVENT_660+/,
-    null /+EVENT_661+/,
-    null /+EVENT_662+/,
-    null /+EVENT_663+/,
-    null /+EVENT_664+/,
-    null /+EVENT_665+/,
-    null /+EVENT_666+/,
-    null /+EVENT_667+/,
-    null /+EVENT_668+/,
-    null /+EVENT_669+/,
-    null /+EVENT_670+/,
-    null /+EVENT_671+/,
-    null /+EVENT_672+/,
-    null /+EVENT_673+/,
-    null /+EVENT_674+/,
-    null /+EVENT_675+/,
-    null /+EVENT_676+/,
-    null /+EVENT_677+/,
-    null /+EVENT_678+/,
-    null /+EVENT_679+/,
-    null /+EVENT_680+/,
-    null /+EVENT_681+/,
-    null /+EVENT_682+/,
-    null /+EVENT_683+/,
-    null /+EVENT_684+/,
-    null /+EVENT_685+/,
-    null /+EVENT_686+/,
-    null /+EVENT_687+/,
-    null /+EVENT_688+/,
-    null /+EVENT_689+/,
-    null /+EVENT_690+/,
-    null /+EVENT_691+/,
-    null /+EVENT_692+/,
-    null /+EVENT_693+/,
-    null /+EVENT_694+/,
-    null /+EVENT_695+/,
-    null /+EVENT_696+/,
-    null /+EVENT_697+/,
-    null /+EVENT_698+/,
-    null /+EVENT_699+/,
-    null /+EVENT_700+/,
-    null /+EVENT_701+/,
-    null /+EVENT_702+/,
-    null /+EVENT_703+/,
-    null /+EVENT_704+/,
-    null /+EVENT_705+/,
-    null /+EVENT_706+/,
-    null /+EVENT_707+/,
-    null /+EVENT_708+/,
-    null /+EVENT_709+/,
-    null /+EVENT_710+/,
-    null /+EVENT_711+/,
-    null /+EVENT_712+/,
-    null /+EVENT_713+/,
-    null /+EVENT_714+/,
-    null /+EVENT_715+/,
-    null /+EVENT_716+/,
-    null /+EVENT_717+/,
-    null /+EVENT_718+/,
-    null /+EVENT_719+/,
-    null /+EVENT_720+/,
-    null /+EVENT_721+/,
-    null /+EVENT_722+/,
-    null /+EVENT_723+/,
-    null /+EVENT_724+/,
-    null /+EVENT_725+/,
-    null /+EVENT_726+/,
-    null /+EVENT_727+/,
-    null /+EVENT_728+/,
-    null /+EVENT_729+/,
-    null /+EVENT_730+/,
-    null /+EVENT_731+/,
-    null /+EVENT_732+/,
-    null /+EVENT_733+/,
-    null /+EVENT_734+/,
-    null /+EVENT_735+/,
-    null /+EVENT_736+/,
-    null /+EVENT_737+/,
-    null /+EVENT_738+/,
-    null /+EVENT_739+/,
-    null /+EVENT_740+/,
-    null /+EVENT_741+/,
-    null /+EVENT_742+/,
-    null /+EVENT_743+/,
-    null /+EVENT_744+/,
-    null /+EVENT_745+/,
-    null /+EVENT_746+/,
-    null /+EVENT_747+/,
-    null /+EVENT_748+/,
-    null /+EVENT_749+/,
-    null /+EVENT_750+/,
-    null /+EVENT_751+/,
-    null /+EVENT_752+/,
-    null /+EVENT_753+/,
-    null /+EVENT_754+/,
-    null /+EVENT_755+/,
-    null /+EVENT_756+/,
-    null /+EVENT_757+/,
-    null /+EVENT_758+/,
-    null /+EVENT_759+/,
-    null /+EVENT_760+/,
-    null /+EVENT_761+/,
-    null /+EVENT_762+/,
-    null /+EVENT_763+/,
-    null /+EVENT_764+/,
-    null /+EVENT_765+/,
-    null /+EVENT_766+/,
-    null /+EVENT_767+/,
-    null /+EVENT_768+/,
-    null /+EVENT_769+/,
-    null /+EVENT_770+/,
-    null /+EVENT_771+/,
-    null /+EVENT_772+/,
-    null /+EVENT_773+/,
-    null /+EVENT_774+/,
-    null /+EVENT_775+/,
-    null /+EVENT_776+/,
-    null /+EVENT_777+/,
-    null /+EVENT_778+/,
-    null /+EVENT_779+/,
-    null /+EVENT_780+/,
-    null /+EVENT_781+/,
-    null /+EVENT_782+/,
-    null /+EVENT_783+/,
-    null /+EVENT_784+/,
-    null /+EVENT_785+/,
-    null /+EVENT_786+/,
-    null /+EVENT_787+/,
-    null /+EVENT_788+/,
-    null /+EVENT_789+/,
-    null /+EVENT_790+/,
-    null /+EVENT_791+/,
-    null /+EVENT_792+/,
-    null /+EVENT_793+/,
-    null /+EVENT_794+/,
-    null /+EVENT_795+/,
-    null /+EVENT_796+/,
-    null /+EVENT_797+/,
-    null /+EVENT_798+/,
-    null /+EVENT_799+/,
-    null /+EVENT_800+/,
-    null /+EVENT_801+/,
-    null /+EVENT_802+/,
-    null /+EVENT_803+/,
-    null /+EVENT_804+/,
-    null /+EVENT_805+/,
-    null /+EVENT_806+/,
-    null /+EVENT_807+/,
-    null /+EVENT_808+/,
-    null /+EVENT_809+/,
-    null /+EVENT_810+/,
-    null /+EVENT_811+/,
-    null /+EVENT_812+/,
-    null /+EVENT_813+/,
-    null /+EVENT_814+/,
-    null /+EVENT_815+/,
-    null /+EVENT_816+/,
-    null /+EVENT_817+/,
-    null /+EVENT_818+/,
-    null /+EVENT_819+/,
-    null /+EVENT_820+/,
-    null /+EVENT_821+/,
-    null /+EVENT_822+/,
-    null /+EVENT_823+/,
-    null /+EVENT_824+/,
-    null /+EVENT_825+/,
-    null /+EVENT_826+/,
-    null /+EVENT_827+/,
-    null /+EVENT_828+/,
-    null /+EVENT_829+/,
-    null /+EVENT_830+/,
-    null /+EVENT_831+/,
-    null /+EVENT_832+/,
-    null /+EVENT_833+/,
-    null /+EVENT_834+/,
-    null /+EVENT_835+/,
-    null /+EVENT_836+/,
-    null /+EVENT_837+/,
-    null /+EVENT_838+/,
-    null /+EVENT_839+/,
-    null /+EVENT_840+/,
-    null /+EVENT_841+/,
-    null /+EVENT_842+/,
-    null /+EVENT_843+/,
-    null /+EVENT_844+/,
-    null /+EVENT_845+/,
-    null /+EVENT_846+/,
-    null /+EVENT_847+/,
-    null /+EVENT_848+/,
-    null /+EVENT_849+/,
-    null /+EVENT_850+/,
-    null /+EVENT_851+/,
-    null /+EVENT_852+/,
-    null /+EVENT_853+/,
-    null /+EVENT_854+/,
-    null /+EVENT_855+/,
-    null /+EVENT_856+/,
-    null /+EVENT_857+/,
-    null /+EVENT_858+/,
-    null /+EVENT_859+/,
-    null /+EVENT_860+/,
-    null /+EVENT_861+/,
-    null /+EVENT_862+/,
-    null /+EVENT_863+/,
-    null /+EVENT_864+/,
-    null /+EVENT_865+/,
-    null /+EVENT_866+/,
-    null /+EVENT_867+/,
-    null /+EVENT_868+/,
-    null /+EVENT_869+/,
-    null /+EVENT_870+/,
-    null /+EVENT_871+/,
-    null /+EVENT_872+/,
-    null /+EVENT_873+/,
-    null /+EVENT_874+/,
-    null /+EVENT_875+/,
-    null /+EVENT_876+/,
-    null /+EVENT_877+/,
-    null /+EVENT_878+/,
-    null /+EVENT_879+/,
-    null /+EVENT_880+/,
-    null /+EVENT_881+/,
-    null /+EVENT_882+/,
-    null /+EVENT_883+/,
-    null /+EVENT_884+/,
-    null /+EVENT_885+/,
-    null /+EVENT_886+/,
-    null /+EVENT_887+/,
-    null /+EVENT_888+/,
-    null /+EVENT_889+/,
-    null /+EVENT_890+/,
-    null /+EVENT_891+/,
-    null /+EVENT_892+/,
-    null /+EVENT_893+/,
-    null /+EVENT_894+/,
+immutable ubyte[][895] EventScriptPointers = [
+    Event0[],
+    Event1[],
+    Event2[],
+    Event3[],
+    Event4[],
+    Event5[],
+    Event6_12[],
+    Event7[],
+    Event8[],
+    Event9[],
+    Event10_11[],
+    Event10_11[],
+    Event6_12[],
+    Event13[],
+    Event14[],
+    Event15[],
+    Event16[],
+    Event17[],
+    Event18[],
+    Event19[],
+    Event20[],
+    Event21[],
+    Event22[],
+    Event23[],
+    Event24[],
+    Event25[],
+    Event26[],
+    Event27[],
+    Event28[],
+    Event29[],
+    Event30[],
+    Event31[],
+    Event32[],
+    Event33[],
+    Event34[],
+    Event35[],
+    Event36[],
+    Event37[],
+    Event38[],
+    Event39[],
+    Event40[],
+    Event41[],
+    Event42[],
+    Event43[],
+    Event44[],
+    Event45[],
+    Event46[],
+    Event47[],
+    Event48[],
+    Event49[],
+    Event50[],
+    Event51[],
+    Event52[],
+    Event53[],
+    Event54[],
+    Event55[],
+    Event56[],
+    Event57[],
+    Event58[],
+    Event59[],
+    Event60[],
+    Event61[],
+    Event62[],
+    Event63[],
+    Event64[],
+    Event65[],
+    Event66[],
+    Event67[],
+    Event68[],
+    Event69[],
+    Event70[],
+    Event71[],
+    Event72[],
+    Event73[],
+    Event74[],
+    Event75[],
+    Event76[],
+    Event77[],
+    Event78[],
+    Event79[],
+    Event80[],
+    Event81[],
+    Event82[],
+    Event83[],
+    Event84[],
+    Event85[],
+    Event86[],
+    Event87[],
+    Event88[],
+    Event89[],
+    Event90[],
+    Event91[],
+    Event92[],
+    Event93[],
+    Event94[],
+    Event95[],
+    Event96[],
+    Event97[],
+    Event98[],
+    Event99[],
+    Event100[],
+    Event101[],
+    Event102[],
+    Event103[],
+    Event104[],
+    Event105[],
+    Event106[],
+    Event107[],
+    Event108[],
+    Event109[],
+    Event110[],
+    Event111[],
+    Event112[],
+    Event113[],
+    Event114[],
+    Event115[],
+    Event116[],
+    Event117[],
+    Event118[],
+    Event119[],
+    Event120[],
+    Event121[],
+    Event122[],
+    Event123[],
+    Event124[],
+    Event125[],
+    Event126[],
+    Event127[],
+    Event128[],
+    Event129[],
+    Event130[],
+    Event131[],
+    Event132[],
+    Event133[],
+    Event134[],
+    Event135[],
+    Event136[],
+    Event137[],
+    Event138[],
+    Event139[],
+    Event140[],
+    Event141[],
+    Event142[],
+    Event143[],
+    Event144[],
+    Event145[],
+    Event146[],
+    Event147[],
+    Event148[],
+    Event149[],
+    Event150[],
+    Event151[],
+    Event152[],
+    Event153[],
+    Event154[],
+    Event155[],
+    Event156[],
+    Event157[],
+    Event158[],
+    Event159[],
+    Event160[],
+    Event161[],
+    Event162[],
+    Event163[],
+    Event164[],
+    Event165[],
+    Event166[],
+    Event167[],
+    Event168[],
+    Event169[],
+    Event170[],
+    Event171[],
+    Event172[],
+    Event173[],
+    Event174[],
+    Event175[],
+    Event176[],
+    Event177[],
+    Event178[],
+    Event179[],
+    Event180[],
+    Event181[],
+    Event182[],
+    Event183[],
+    Event184[],
+    Event185[],
+    Event186[],
+    Event187[],
+    Event188[],
+    Event189[],
+    Event190[],
+    Event191[],
+    Event192[],
+    Event193[],
+    Event194[],
+    Event195[],
+    Event196[],
+    Event197[],
+    Event198[],
+    Event199[],
+    Event200[],
+    Event201[],
+    Event202[],
+    Event203[],
+    Event204[],
+    Event205[],
+    Event206[],
+    Event207[],
+    Event208[],
+    Event209[],
+    Event210[],
+    Event211[],
+    Event212[],
+    Event213[],
+    Event214[],
+    Event215[],
+    Event216[],
+    Event217[],
+    Event218[],
+    Event219[],
+    Event220[],
+    Event221[],
+    Event222[],
+    Event223[],
+    Event224[],
+    Event225_226_227[],
+    Event225_226_227[],
+    Event225_226_227[],
+    Event228[],
+    Event229[],
+    Event230[],
+    Event231[],
+    Event232[],
+    Event233_234_235_236_237[],
+    Event233_234_235_236_237[],
+    Event233_234_235_236_237[],
+    Event233_234_235_236_237[],
+    Event233_234_235_236_237[],
+    Event238[],
+    Event239[],
+    Event240[],
+    Event241[],
+    Event242_243[],
+    Event242_243[],
+    Event244[],
+    Event245[],
+    Event246[],
+    Event247_248[],
+    Event247_248[],
+    Event249[],
+    Event250[],
+    Event251[],
+    Event252[],
+    Event253[],
+    Event254[],
+    Event255[],
+    Event256[],
+    Event257[],
+    Event258[],
+    Event259[],
+    Event260[],
+    Event261[],
+    Event262[],
+    Event263[],
+    Event264[],
+    Event265[],
+    Event266[],
+    Event267[],
+    Event268[],
+    Event269[],
+    Event270[],
+    Event271[],
+    Event272[],
+    Event273[],
+    Event274_275_276[],
+    Event274_275_276[],
+    Event274_275_276[],
+    Event277[],
+    Event278[],
+    Event279[],
+    Event280[],
+    Event281[],
+    Event282[],
+    Event283[],
+    Event284[],
+    Event285[],
+    Event286[],
+    Event287[],
+    Event288[],
+    Event289[],
+    Event290[],
+    Event291[],
+    Event292[],
+    Event293[],
+    Event294[],
+    Event295[],
+    Event296[],
+    Event297[],
+    Event298[],
+    Event299[],
+    Event300[],
+    Event301[],
+    Event302[],
+    Event303[],
+    Event304[],
+    Event305[],
+    Event306[],
+    Event307[],
+    Event308[],
+    Event309[],
+    Event310[],
+    Event311[],
+    Event312[],
+    Event313[],
+    Event314[],
+    Event315[],
+    Event316[],
+    Event317[],
+    Event318[],
+    Event319[],
+    Event320[],
+    Event321[],
+    Event322[],
+    Event323[],
+    Event324[],
+    Event325[],
+    Event326[],
+    Event327[],
+    Event328[],
+    Event329[],
+    Event330[],
+    Event331[],
+    Event332[],
+    Event333[],
+    Event334[],
+    Event335[],
+    Event336[],
+    Event337[],
+    Event338[],
+    Event339[],
+    Event340[],
+    Event341[],
+    Event342[],
+    Event343[],
+    Event344[],
+    Event345[],
+    Event346[],
+    Event347[],
+    Event348_349[],
+    Event348_349[],
+    Event350[],
+    Event351[],
+    Event352[],
+    Event353[],
+    Event354[],
+    Event355[],
+    Event356[],
+    Event357[],
+    Event358[],
+    Event359[],
+    Event360[],
+    Event361[],
+    Event362[],
+    Event363[],
+    Event364[],
+    Event365[],
+    Event366[],
+    Event367[],
+    Event368[],
+    Event369[],
+    Event370[],
+    Event371[],
+    Event372[],
+    Event373[],
+    Event374[],
+    Event375_404[],
+    Event376_405[],
+    Event377_406[],
+    Event378_407[],
+    Event379_408[],
+    Event380[],
+    Event381[],
+    Event382[],
+    Event383[],
+    Event384[],
+    Event385[],
+    Event386[],
+    Event387[],
+    Event388[],
+    Event389_393[],
+    Event390_394[],
+    Event391[],
+    Event392[],
+    Event389_393[],
+    Event390_394[],
+    Event395[],
+    Event396[],
+    Event397[],
+    Event398[],
+    Event399[],
+    Event400[],
+    Event401[],
+    Event402[],
+    Event403[],
+    Event375_404[],
+    Event376_405[],
+    Event377_406[],
+    Event378_407[],
+    Event379_408[],
+    Event409[],
+    Event410[],
+    Event411[],
+    Event412[],
+    Event413[],
+    Event414[],
+    Event415[],
+    Event416[],
+    Event417[],
+    Event418[],
+    Event419[],
+    Event420[],
+    Event421[],
+    Event422[],
+    Event423[],
+    Event424[],
+    Event425[],
+    Event426[],
+    Event427[],
+    Event428[],
+    Event429[],
+    Event430[],
+    Event431_432_433_434[],
+    Event431_432_433_434[],
+    Event431_432_433_434[],
+    Event431_432_433_434[],
+    Event435[],
+    Event436[],
+    Event437[],
+    Event438[],
+    Event439[],
+    Event440[],
+    Event441[],
+    Event442[],
+    Event443[],
+    Event444[],
+    Event445[],
+    Event446[],
+    Event447[],
+    Event448[],
+    Event449[],
+    Event450[],
+    Event451[],
+    Event452[],
+    Event453[],
+    Event454[],
+    Event455[],
+    Event456[],
+    Event457[],
+    Event458[],
+    Event459[],
+    Event460[],
+    Event461[],
+    Event462[],
+    Event463[],
+    Event464[],
+    Event465[],
+    Event466[],
+    Event467[],
+    Event468[],
+    Event469[],
+    Event470[],
+    Event471[],
+    Event472[],
+    Event473[],
+    Event474[],
+    Event475[],
+    Event476[],
+    Event477[],
+    Event478[],
+    Event479[],
+    Event480[],
+    Event481[],
+    Event482[],
+    Event483[],
+    Event484[],
+    Event485[],
+    Event486[],
+    Event487[],
+    Event488[],
+    Event489[],
+    Event490[],
+    Event491[],
+    Event492[],
+    Event493[],
+    Event494[],
+    Event495[],
+    Event496[],
+    Event497[],
+    Event498[],
+    Event499[],
+    Event500[],
+    Event501[],
+    Event502[],
+    Event503[],
+    Event504[],
+    Event505[],
+    Event506[],
+    Event507[],
+    Event508[],
+    Event509[],
+    Event510[],
+    Event511[],
+    Event512[],
+    Event513[],
+    Event514[],
+    Event515[],
+    Event516[],
+    Event517[],
+    Event518[],
+    Event519[],
+    Event520[],
+    Event521[],
+    Event522[],
+    Event523[],
+    Event524[],
+    Event525[],
+    Event526[],
+    Event527[],
+    Event528[],
+    Event529[],
+    Event530[],
+    Event531[],
+    Event532[],
+    Event533[],
+    Event534[],
+    Event535[],
+    Event536[],
+    Event537[],
+    Event538[],
+    Event539[],
+    Event540[],
+    Event541[],
+    Event542[],
+    Event543[],
+    Event544[],
+    Event545[],
+    Event546[],
+    Event547[],
+    Event548[],
+    Event549[],
+    Event550[],
+    Event551[],
+    Event552[],
+    Event553[],
+    Event554[],
+    Event555[],
+    Event556[],
+    Event557[],
+    Event558[],
+    Event559[],
+    Event560[],
+    Event561[],
+    Event562[],
+    Event563[],
+    Event564[],
+    Event565[],
+    Event566[],
+    Event567[],
+    Event568[],
+    Event569[],
+    Event570[],
+    Event571[],
+    Event572[],
+    Event573[],
+    Event574[],
+    Event575[],
+    Event576[],
+    Event577[],
+    Event578[],
+    Event579[],
+    Event580[],
+    Event581[],
+    Event582[],
+    Event583[],
+    Event584[],
+    Event585[],
+    Event586[],
+    Event587[],
+    Event588[],
+    Event589[],
+    Event590[],
+    Event591[],
+    Event592[],
+    Event593[],
+    Event594[],
+    Event595[],
+    Event596[],
+    Event597[],
+    Event598[],
+    Event599[],
+    Event600[],
+    Event601[],
+    Event602[],
+    Event603[],
+    Event604[],
+    Event605[],
+    Event606[],
+    Event607[],
+    Event608[],
+    Event609[],
+    Event610[],
+    Event611[],
+    Event612[],
+    Event613[],
+    Event614[],
+    Event615[],
+    Event616[],
+    Event617[],
+    Event618[],
+    Event619[],
+    Event620[],
+    Event621[],
+    Event622[],
+    Event623[],
+    Event624[],
+    Event625[],
+    Event626[],
+    Event627[],
+    Event628[],
+    Event629[],
+    Event630[],
+    Event631[],
+    Event632[],
+    Event633[],
+    Event634[],
+    Event635[],
+    Event636[],
+    Event637[],
+    Event638[],
+    Event639[],
+    Event640[],
+    Event641[],
+    Event642[],
+    Event643[],
+    Event644[],
+    Event645[],
+    Event646[],
+    Event647[],
+    Event648[],
+    Event649[],
+    Event650[],
+    Event651[],
+    Event652[],
+    Event653[],
+    Event654[],
+    Event655[],
+    Event656[],
+    Event657[],
+    Event658[],
+    Event659[],
+    Event660[],
+    Event661[],
+    Event662[],
+    Event663[],
+    Event664[],
+    Event665[],
+    Event666[],
+    Event667[],
+    Event668[],
+    Event669[],
+    Event670[],
+    Event671[],
+    Event672[],
+    Event673[],
+    Event674[],
+    Event675[],
+    Event676[],
+    Event677[],
+    Event678[],
+    Event679[],
+    Event680[],
+    Event681[],
+    Event682[],
+    Event683[],
+    Event684[],
+    Event685[],
+    Event686[],
+    Event687[],
+    Event688[],
+    Event689[],
+    Event690[],
+    Event691[],
+    Event692[],
+    Event693[],
+    Event694[],
+    Event695[],
+    Event696[],
+    Event697[],
+    Event698[],
+    Event699[],
+    Event700[],
+    Event701[],
+    Event702[],
+    Event703[],
+    Event704[],
+    Event705[],
+    Event706[],
+    Event707[],
+    Event708[],
+    Event709[],
+    Event710[],
+    Event711[],
+    Event712[],
+    Event713[],
+    Event714[],
+    Event715[],
+    Event716[],
+    Event717[],
+    Event718[],
+    Event719[],
+    Event720[],
+    Event721[],
+    Event722[],
+    Event723[],
+    Event724[],
+    Event725[],
+    Event726[],
+    Event727[],
+    Event728[],
+    Event729[],
+    Event730[],
+    Event731[],
+    Event732[],
+    Event733[],
+    Event734[],
+    Event735[],
+    Event736[],
+    Event737[],
+    Event738[],
+    Event739[],
+    Event740[],
+    Event741[],
+    Event742[],
+    Event743[],
+    Event744[],
+    Event745[],
+    Event746[],
+    Event747[],
+    Event748[],
+    Event749[],
+    Event750[],
+    Event751[],
+    Event752[],
+    Event753[],
+    Event754[],
+    Event755[],
+    Event756[],
+    Event757[],
+    Event758[],
+    Event759[],
+    Event760[],
+    Event761[],
+    Event762[],
+    Event763[],
+    Event764[],
+    Event765[],
+    Event766[],
+    Event767[],
+    Event768[],
+    Event769[],
+    Event770[],
+    Event771[],
+    Event772[],
+    Event773[],
+    Event774[],
+    Event775[],
+    Event776[],
+    Event777[],
+    Event778[],
+    Event779[],
+    Event780[],
+    Event781[],
+    Event782[],
+    Event783[],
+    Event784[],
+    Event785[],
+    Event786[],
+    Event787[],
+    Event788[],
+    Event789[],
+    Event790[],
+    Event791[],
+    Event792[],
+    Event793[],
+    Event794[],
+    Event795[],
+    Event796[],
+    Event797[],
+    Event798[],
+    Event799[],
+    Event800[],
+    Event801[],
+    Event802[],
+    Event803[],
+    Event804[],
+    Event805[],
+    Event806[],
+    Event807[],
+    Event808[],
+    Event809[],
+    Event810[],
+    Event811[],
+    Event812[],
+    Event813[],
+    Event814[],
+    Event815[],
+    Event816[],
+    Event817[],
+    Event818[],
+    Event819[],
+    Event820[],
+    Event821[],
+    Event822[],
+    Event823[],
+    Event824[],
+    Event825[],
+    Event826[],
+    Event827[],
+    Event828[],
+    Event829[],
+    Event830[],
+    Event831[],
+    Event832[],
+    Event833[],
+    Event834[],
+    Event835[],
+    Event836[],
+    Event837[],
+    Event838[],
+    Event839[],
+    Event840[],
+    Event841[],
+    Event842[],
+    Event843[],
+    Event844[],
+    Event845[],
+    Event846[],
+    Event847[],
+    Event848[],
+    Event849[],
+    Event850[],
+    Event851[],
+    Event852[],
+    Event853[],
+    Event854[],
+    Event855[],
+    Event856[],
+    Event857[],
+    Event858[],
+    Event859[],
+    Event860[],
+    Event861[],
+    Event862[],
+    Event863[],
+    Event864[],
+    Event865[],
+    Event866[],
+    Event867[],
+    Event868[],
+    Event869[],
+    Event870[],
+    Event871[],
+    Event872[],
+    Event873[],
+    Event874[],
+    Event875[],
+    Event876[],
+    Event877[],
+    Event878[],
+    Event879[],
+    Event880[],
+    Event881[],
+    Event882[],
+    Event883[],
+    Event884[],
+    Event885[],
+    Event886[],
+    Event887[],
+    Event888[],
+    Event889[],
+    Event890[],
+    Event891[],
+    Event892[],
+    Event893[],
+    Event894[],
 ];
 
 /// $C40B51
@@ -940,6 +941,22 @@ noreturn UnknownC40B75() {
 
 /// $C40BE8
 immutable ubyte[512] UnknownC40BE8 = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
+
+/// $C40DE8
+immutable FloatingSpriteTableEntry[12] FloatingSpriteTable = [
+    FloatingSpriteTableEntry(OverworldSprite.None, 0x00, 0x00, 0x00),
+    FloatingSpriteTableEntry(OverworldSprite.SURPRISE_MARK, 0x02, 0x00, 0xF8),
+    FloatingSpriteTableEntry(OverworldSprite.CELL_PHONE_TENDA_VILLAGE, 0x05, 0xF8, 0xFC),
+    FloatingSpriteTableEntry(OverworldSprite.EXCLAMATION_MARK, 0x02, 0x08, 0xF8),
+    FloatingSpriteTableEntry(OverworldSprite.LIGHT_BULB, 0x02, 0x00, 0xF8),
+    FloatingSpriteTableEntry(OverworldSprite.SKY_RUNNER_ELECTRIC_THINGIES, 0x02, 0x00, 0xF4),
+    FloatingSpriteTableEntry(OverworldSprite.FLAG_OF_THE_EXTINCT_HAPPY_PEOPLE, 0x02, 0x00, 0x08),
+    FloatingSpriteTableEntry(OverworldSprite.RUNAWAY_5_MEMBERS_HEAD, 0x02, 0xF8, 0x10),
+    FloatingSpriteTableEntry(OverworldSprite.RUNAWAY_5_MEMBERS_HEAD, 0x02, 0x08, 0x10),
+    FloatingSpriteTableEntry(OverworldSprite.HEART, 0x02, 0x00, 0xF8),
+    FloatingSpriteTableEntry(OverworldSprite.BUS_DRIVER_HEAD, 0x02, 0xF0, 0x10),
+    FloatingSpriteTableEntry(OverworldSprite.BUS_DRIVER_HEAD, 0x02, 0x10, 0x10),
+];
 
 /// $C40E31
 immutable ubyte EntityOverlayCount = 4;
@@ -1360,6 +1377,32 @@ void UnknownC426ED() {
     Unknown7E0030 = 0x18;
 }
 
+/// $C4283F
+void UnknownC4283F(short arg1, short arg2, short arg3) {
+    //original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
+    const(ubyte)* x00 = &EntityGraphicsPointers[arg1][SpriteDirectionMappings8Direction[EntityDirections[arg1]] + EntityAnimationFrames[arg1]].data[0];
+    //UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
+    do {
+        (cast(ushort*)&Unknown7F0000[0])[arg2 + arg3] = (cast(ushort*)x00)[arg3];
+    } while (--arg3 > 0);
+}
+
+/// $C42884
+void UnknownC42884(short arg1, short arg2, short arg3) {
+    OverworldSpriteGraphics* x00 = &EntityGraphicsPointers[arg1][0];
+    if (SpriteDirectionMappings4Direction[EntityDirections[arg1]] != 0) {
+        for (short i = SpriteDirectionMappings4Direction[EntityDirections[arg1]]; i != 0; i--) {
+            x00++;
+        }
+    }
+    //UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
+    //original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
+    const(ubyte)* x00_2 = &x00.data[0];
+    do {
+        (cast(ushort*)&Unknown7F0000[0])[arg2 + arg3] = (cast(ushort*)x00_2)[arg3];
+    } while (--arg3 > 0);
+}
+
 /// $C429E8
 void UnknownC429E8(short channel) {
     //segmented addressing stuff
@@ -1412,6 +1455,27 @@ immutable short[17] UnknownC42A41 = [
     0x0028,
     0x0038,
     0x0048,
+];
+
+/// $C42A63
+immutable short[17] UnknownC42A63 = [
+    0x0010,
+    0x0010,
+    0x0020,
+    0x0020,
+    0x0030,
+    0x0010,
+    0x0018,
+    0x0010,
+    0x0020,
+    0x0030,
+    0x0018,
+    0x0010,
+    0x0020,
+    0x0030,
+    0x0040,
+    0x0040,
+    0x0040,
 ];
 
 /// $C42AA7
@@ -1887,8 +1951,38 @@ void UnknownC4334A(short arg1) {
         Unknown7E5DDC = Unknown7E5DBE;
         //Unknown7E5DDE = doorData[Unknown7E5DBC & 0x7FFF]
 
-        Unknown7E5DDE = Unknown7E5DBC.entryA.textPtr;
+        Unknown7E5DDE = &Unknown7E5DBC.entryA.textPtr[0];
         CurrentTPTEntry = -2;
+    }
+}
+
+/// $C4343E
+void UnknownC4343E(short arg1) {
+    arg1--;
+    ushort x12;
+    if (60000 > Timer / 3600) {
+        x12 = cast(ushort)(Timer / 3600);
+    } else {
+        x12 = 59999;
+    }
+    gameState.savedPhotoStates[arg1].unknown = x12;
+    for (short i = 0; i < 6; i++) {
+        if (gameState.unknown96[i] == 0xFF) {
+            gameState.savedPhotoStates[arg1].partyMembers[i] = 0;
+        } else {
+            Unknown7E4DC6 = &PartyCharacters[gameState.playerControlledPartyMembers[i]];
+            short x0E = gameState.unknown96[i];
+            if ((PartyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[0] == Status0.Unconscious)) {
+                x0E |= 0x20;
+            }
+            if ((PartyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[0] == Status0.Diamondized)) {
+                x0E |= 0x40;
+            }
+            if ((PartyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[1] == Status1.Mushroomized)) {
+                x0E |= 0x80;
+            }
+            gameState.savedPhotoStates[arg1].partyMembers[i] = cast(ubyte)x0E;
+        }
     }
 }
 
@@ -2017,7 +2111,7 @@ void UnknownC43BB9(short maxLength, short highlighted, ubyte* text) {
         maxLength--;
     }
     x14.text_x = x10;
-    Unknown7E9622 = 0;
+    InstantPrinting = 0;
 }
 
 /// $C43CAA
@@ -2125,10 +2219,10 @@ void UnknownC43F77(short arg1) {
             x = 1;
         }
     }
-    if ((x != 0) && (Unknown7E9622 == 0) && (arg1 != 0x20)) {
+    if ((x != 0) && (InstantPrinting == 0) && (arg1 != 0x20)) {
         PlaySfx(Sfx.TextPrint);
     }
-    if (Unknown7E9622 == 0) {
+    if (InstantPrinting == 0) {
         for (short i = cast(short)(SelectedTextSpeed + 1); i != 0; i--) {
             WindowTick();
         }
@@ -2141,19 +2235,182 @@ short GetCharacterAtCursorPosition(short arg1, short arg2, short arg3) {
 }
 
 /// $C440B5
-void UnknownC440B5(ubyte*, short);
+void UnknownC440B5(ubyte* arg1, short arg2) {
+    memset(&Unknown7E1B6E[0], 0, 0x18);
+    short i;
+    for (i = 0; (arg1[i] != 0) && (i < arg2); i++, arg1++) {
+        Unknown7E1B86[i] = arg1[0];
+        Unknown7E1B56[i] = (arg1[0] - EBChar(' ')) & 0x7F;
+        Unknown7E1B6E[i] = cast(ubyte)(FontConfigTable[0].data[(arg1[0] - EBChar(' ')) & 0x7F] + Unknown7E5E6D);
+        UnknownC44E61(0, arg1[0]);
+    }
+    Unknown7E9662 = i;
+    if (i >= arg2) {
+        return;
+    }
+    Unknown7E1B56[i] = 0x20;
+    Unknown7E1B6E[i] = 0x06;
+    UnknownC44E61(0, 0x70);
+    Unknown7E1B86[i++] = 0;
+    if (arg2 - i <= 0) {
+        return;
+    }
+    for (short x02 = cast(short)(arg2 - i); x02 != 0; x02--, i++) {
+        Unknown7E1B56[i] = 0x03;
+        UnknownC44E61(0, 0x53);
+        Unknown7E1B6E[i] = 0x03;
+    }
+}
 
 /// $C441B7
-void UnknownC441B7(short);
+void UnknownC441B7(short arg1) {
+    memset(&VWFBuffer[0][0], 0xFF, 0x680);
+    short x02 = 3;
+    Unknown7E9662 = 0;
+    memset(&Unknown7E1B86[0], 0, 0x18);
+    UnknownC44E61(0, 0x70);
+    Unknown7E1B56[0] = 0x20;
+    for (short i = 1; i < arg1; i++) {
+        Unknown7E1B56[i] = cast(ubyte)x02;
+        Unknown7E1B6E[i] = cast(ubyte)(FontConfigTable[0].data[x02] + Unknown7E5E6D);
+        UnknownC44E61(0, 0x53);
+    }
+}
+
+/// $C4424A
+void UnknownC4424A(short arg1) {
+    if (arg1 == 0x70) {
+        Unknown7E1B86[Unknown7E9662] = 0;
+    } else {
+        Unknown7E1B86[Unknown7E9662] = cast(ubyte)arg1;
+    }
+    Unknown7E1B56[Unknown7E9662] = cast(ubyte)((arg1 - EBChar(' ')) & 0x7F);
+    Unknown7E1B6E[Unknown7E9662] = cast(ubyte)(FontConfigTable[0].data[(arg1 - EBChar(' ')) & 0x7F] + Unknown7E5E6D);
+}
 
 /// $C442AC
-short UnknownC442AC(short, short, short);
+short UnknownC442AC(short arg1, short arg2, short arg3) {
+    WaitUntilNextFrame();
+    VWFTile = 0;
+    VWFX = 0;
+    memset(&VWFBuffer[0][0], 0xFF, 0x340);
+    Unknown7E9654 = 0;
+    Unknown7E9652 = 0;
+    if (arg3 == -1) {
+        if (Unknown7E9662 == 0) {
+            return 1;
+        }
+        if (Unknown7E9662 < arg2) {
+            UnknownC4424A(0x53);
+        }
+        Unknown7E9662--;
+        UnknownC4424A(0x70);
+    } else {
+        if (arg2 - 1 < Unknown7E9662) {
+            return 0;
+        }
+        UnknownC4424A(arg3);
+        if (++Unknown7E9662 < arg2) {
+            UnknownC4424A(0x70);
+        }
+    }
+    WindowStats[WindowTable[CurrentFocusWindow]].text_x = 0;
+    for (short i = 0; i < arg2; i++) {
+        const(ubyte)* x06 = &FontConfigTable[0].graphics[FontConfigTable[0].height * Unknown7E1B56[i]];
+        short j;
+        for (j = Unknown7E1B6E[i]; j >= 8; j -= 8) {
+            RenderText(8, FontConfigTable[0].width, x06);
+            x06 +=FontConfigTable[0].width;
+        }
+        RenderText(FontConfigTable[0].width, j, x06);
+    }
+    WindowStats[WindowTable[CurrentFocusWindow]].text_x = 0;
+    ushort x04 = 0x7700;
+    for (short i = 0; i < WindowStats[WindowTable[CurrentFocusWindow]].width + 1; i++) {
+        CopyToVram(0, 0x10, x04, &VWFBuffer[i][0]);
+        CopyToVram(0, 0x10, cast(ushort)(x04 + 8), &VWFBuffer[i + 1][0]);
+        x04 += 16;
+    }
+    DMATransferFlag = 1;
+    for (short i = 0; i < WindowStats[WindowTable[CurrentFocusWindow]].width + 1; i++) {
+        UnknownC44C8C(cast(short)(i * 2 + 0x2E0), cast(short)(i * 2 + 0x2E0 + 1));
+    }
+    if (WindowTable[CurrentFocusWindow] != window_tail) {
+        Unknown7E9623 = 1;
+    }
+    short x;
+    if (TextSoundMode == 2) {
+        x = 1;
+    } else if (TextSoundMode == 3) {
+        x = 0;
+    } else {
+        x = 0;
+        if (BlinkingTriangleFlag == 0) {
+            x = 1;
+        }
+    }
+    if ((x != 0) && (InstantPrinting == 0) && (arg3 != 0x20)) {
+        PlaySfx(Sfx.TextPrint);
+    }
+    for (short i = cast(short)(SelectedTextSpeed + 1); i != 0; i--) {
+        WindowTick();
+    }
+    return 0;
+}
 
 /// $C444FB
-void UnknownC444FB(ubyte*, ubyte*);
+void UnknownC444FB(ubyte* arg1, ushort arg2) {
+    UnknownC43CAA();
+    ubyte* x0A = arg1;
+    for (short i = 0; arg1[0] != 0; i++) {
+        RenderText(6, FontConfigTable[3].width, &FontConfigTable[3].graphics[(((arg1++)[0] - EBChar(' ')) & 0x7F) * FontConfigTable[3].height]);
+    }
+    for (short i = VWFTile; *(x0A++) != 0; i++) {
+        CopyToVram(0, 0x10, arg2, &VWFBuffer[i][0]);
+        arg2 += 8;
+        if (i == 0x33) {
+            i = -1;
+        }
+    }
+    WaitUntilNextFrame();
+    WaitUntilNextFrame();
+}
 
 /// $C445E1
-void UnknownC445E1(DisplayTextState*, const(ubyte)*);
+void UnknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
+    short x18 = 0;
+    const(ubyte)* x14 = arg1.textptr;
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    while (true) {
+        short a = (arg2[0] != 0) ? *(arg2++) : *(x14++);
+        switch (a) {
+            case 0x15:
+                arg2 = &compressedText[0][*(x14++)][0];
+                a = *(arg2++);
+                break;
+            case 0x16:
+                arg2 = &compressedText[1][*(x14++)][0];
+                a = *(arg2++);
+                break;
+            case 0x17:
+                arg2 = &compressedText[2][*(x14++)][0];
+                a = *(arg2++);
+                break;
+            default: break;
+        }
+        if (a == EBChar(' ') || (a < 0x20)) {
+            break;
+        }
+        Unknown7E9660++;
+         x18 += (a == 0x2F) ? 8 : cast(ubyte)(FontConfigTable[WindowStats[WindowTable[CurrentFocusWindow]].font].data[(a - EBChar(' ')) & 0x7F] + Unknown7E5E6D);
+    }
+    if (WindowStats[WindowTable[CurrentFocusWindow]].width * 8 < (WindowStats[WindowTable[CurrentFocusWindow]].text_x != 0) ? ((VWFX & 7) + ((WindowStats[WindowTable[CurrentFocusWindow]].text_x - 1) * 8) + x18) : ((VWFX & 7) + x18)) {
+        PrintNewLineF();
+        Unknown7E5E75 = 1;
+    }
+}
 
 /// $C447FB
 void UnknownC447FB(short length, const(ubyte)* text) {
@@ -2290,6 +2547,60 @@ void RenderText(short width, short sizeof_tile, const(ubyte)* gfx_data) {
         ++gfxptr;
         bufptr += 2;
     }
+}
+
+deprecated("RenderText") alias UnknownC44B3A = RenderText;
+
+/// $C44C8C
+void UnknownC44C8C(short arg1, short arg2) {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    if (WindowTable[CurrentFocusWindow] == -1) {
+        return;
+    }
+    short x04 = WindowStats[WindowTable[CurrentFocusWindow]].text_x;
+    short x12 = WindowStats[WindowTable[CurrentFocusWindow]].text_y;
+    short x10 = WindowStats[WindowTable[CurrentFocusWindow]].tileAttributes;
+    ushort* x0E;
+    ushort* x16;
+    if (x04 == WindowStats[WindowTable[CurrentFocusWindow]].width) {
+        x04 = 0;
+        if ((WindowStats[WindowTable[CurrentFocusWindow]].height / 2) - 1 != x12) {
+            x12++;
+        } else {
+            if (Unknown7EB49D != 0) {
+                goto Unknown15;
+            }
+            UnknownC437B8F(CurrentFocusWindow);
+        }
+        if (Unknown7E5E6E != 0) {
+            Unknown7E5E75 = 1;
+        }
+    }
+    if ((BlinkingTriangleFlag != 0) && (x04 == 0) && ((arg1 == 0x20) || (arg1 == 0x70))) {
+        if (BlinkingTriangleFlag == 1) {
+            goto Unknown15;
+        }
+        if (BlinkingTriangleFlag == 1) {
+            arg1 = 0x20;
+        }
+    }
+    x0E = &WindowStats[WindowTable[CurrentFocusWindow]].tilemapBuffer[WindowStats[WindowTable[CurrentFocusWindow]].width * x12 * 2 + x04];
+    if (*x0E != 0) {
+        UnknownC44E4D(*x0E);
+    }
+    *x0E = cast(ushort)(((arg1 == 0x22) ? 0xC00 : x10) + arg1);
+    x16 = x0E + WindowStats[WindowTable[CurrentFocusWindow]].width;
+    if (*x16 != 0) {
+        UnknownC44E4D(*x16);
+    }
+    *x16 = cast(ushort)(((arg2 == 0x22) ? 0xC00 : x10) + arg2);
+    x04++;
+
+    Unknown15:
+    WindowStats[WindowTable[CurrentFocusWindow]].text_x = x04;
+    WindowStats[WindowTable[CurrentFocusWindow]].text_y = x12;
 }
 
 /// $C44E44
@@ -2723,16 +3034,46 @@ short UnknownC4608C(short arg1) {
 }
 
 /// $C460CE
-void UnknownC460CE(short arg1, short arg2);
+void UnknownC460CE(short arg1, short arg2) {
+    short x12 = UnknownC4605A(arg1);
+    if (x12 == -1) {
+        return;
+    }
+    EntityPreparedXCoordinate = EntityAbsXTable[x12];
+    EntityPreparedYCoordinate = EntityAbsYTable[x12];
+    EntityPreparedDirection = EntityDirections[x12];
+    InitEntityUnknown1((arg2 != 6) ? &UnknownC3A209.ptr[0] : &Event35.ptr[0], x12);
+}
 
 /// $C46125
-void UnknownC46125(short arg1, short arg2);
+void UnknownC46125(short arg1, short arg2) {
+    short x12 = UnknownC46028(arg1);
+    if (x12 == -1) {
+        return;
+    }
+    EntityPreparedXCoordinate = EntityAbsXTable[x12];
+    EntityPreparedYCoordinate = EntityAbsYTable[x12];
+    EntityPreparedDirection = EntityDirections[x12];
+    InitEntityUnknown1((arg2 != 6) ? &UnknownC3A209.ptr[0] : &Event35.ptr[0], x12);
+}
 
 /// $C4617C
-void UnknownC4617C(short arg1, short arg2);
+void UnknownC4617C(short arg1, short arg2) {
+    short x = UnknownC4605A(arg1);
+    if (x == -1) {
+        return;
+    }
+    InitEntityUnknown1(&EventScriptPointers[arg2][0], x);
+}
 
 /// $C461CC
-void UnknownC461CC(short arg1, short arg2);
+void UnknownC461CC(short arg1, short arg2) {
+    short x = UnknownC46028(arg1);
+    if (x == -1) {
+        return;
+    }
+    InitEntityUnknown1(&EventScriptPointers[arg2][0], x);
+}
 
 /// $C4621C
 short UnknownC4621C(short arg1, short arg2) {
@@ -2787,19 +3128,73 @@ void UnknownC462FF(short arg1, short arg2) {
 }
 
 /// $C46331
-void UnknownC46331(short, short);
+void UnknownC46331(short arg1, short arg2) {
+    short x0E = UnknownC46028(arg1);
+    if (x0E == -1) {
+        return;
+    }
+    if (EntityDirections[x0E] != arg2) {
+        EntityDirections[x0E] = arg2;
+        UnknownC0A443Entry2(x0E);
+    }
+}
 
 /// $C46363
-void UnknownC46363(short, short);
+void UnknownC46363(short arg1, short arg2) {
+    short x0E = UnknownC4608C(arg1);
+    if (x0E == -1) {
+        return;
+    }
+    if (EntityDirections[x0E] != arg2) {
+        EntityDirections[x0E] = arg2;
+        UnknownC0A780(x0E);
+    }
+}
 
 /// $C46397
-void UnknownC46397(short);
+void UnknownC46397(short arg1) {
+    for (short i = 0; i < gameState.partyCount; i++) {
+        if (16 <= gameState.unknown96[i]) {
+            continue;
+        }
+        short x0E = gameState.unknownA2[i];
+        if (EntityDirections[x0E] == arg1) {
+            continue;
+        }
+        EntityDirections[x0E] = arg1;
+        UnknownC0A780(x0E);
+    }
+}
 
 /// $C463F4
-void UnknownC463F4(short);
+void UnknownC463F4(short arg1) {
+    UnknownC07C5B();
+    Unknown7E5D58 = 0;
+    if (arg1 != 0xFF) {
+        short a = UnknownC4608C(arg1);
+        if (a != -1) {
+            EntitySpriteMapFlags[a] |= 0x8000;
+        }
+    } else {
+        for (short i = 0; i < gameState.partyCount; i++) {
+            EntitySpriteMapFlags[gameState.unknownA2[i]] |= 0x8000;
+        }
+    }
+}
 
 /// $C4645A
-void UnknownC4645A(short);
+void UnknownC4645A(short arg1) {
+    if (arg1 != 0xFF) {
+        short a = UnknownC4608C(arg1);
+        if (a != -1) {
+            EntitySpriteMapFlags[a] &= 0x7FFF;
+        }
+    } else {
+        for (short i = 0; i < gameState.partyCount; i++) {
+            EntitySpriteMapFlags[gameState.unknownA2[i]] &= 0x7FFF;
+        }
+    }
+}
 
 /// $C464B5
 short CreatePreparedEntityNPC(short npcID, short actionScript) {
@@ -2817,19 +3212,54 @@ short CreatePreparedEntitySprite(short sprite, short actionScript) {
 }
 
 /// $C4655E
-void UnknownC4655E(short arg1);
+void UnknownC4655E(short arg1) {
+    short a = UnknownC4605A(arg1);
+    if (a == -1) {
+        return;
+    }
+    EntityTickCallbackFlags[a] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+}
 
 /// $C46579
-void UnknownC46579(short arg1);
+void UnknownC46579(short arg1){
+    short a = UnknownC46028(arg1);
+    if (a == -1) {
+        return;
+    }
+    EntityTickCallbackFlags[a] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+}
 
 /// $C46594
-void UnknownC46594(short arg1);
+void UnknownC46594(short arg1) {
+    if (arg1 != 0xFF) {
+        short a = UnknownC4608C(arg1);
+        if (a == -1) {
+            return;
+        }
+    }
+    EntityTickCallbackFlags[23] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+    for (short i = 0; i < gameState.partyCount; i++) {
+        EntityTickCallbackFlags[gameState.unknownA2[i]] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+    }
+}
 
 /// $C465FB
-void UnknownC465FB(short arg1);
+void UnknownC465FB(short arg1) {
+    short a = UnknownC4605A(arg1);
+    if (a == -1) {
+        return;
+    }
+    EntityTickCallbackFlags[a] &= (0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED));
+}
 
 /// $C46616
-void UnknownC46616(short arg1);
+void UnknownC46616(short arg1) {
+    short a = UnknownC46028(arg1);
+    if (a == -1) {
+        return;
+    }
+    EntityTickCallbackFlags[a] &= (0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED));
+}
 
 /// $C46631
 void UnknownC46631(short arg1) {
@@ -2848,10 +3278,16 @@ void UnknownC46631(short arg1) {
 }
 
 /// $C46698
-void UnknownC46698(short arg1);
+void UnknownC46698(short arg1) {
+    Unknown7E9E33 = UnknownC4605A(arg1);
+    gameState.unknownB0 = 2;
+}
 
 /// $C466A8
-void UnknownC466A8(short arg1);
+void UnknownC466A8(short arg1) {
+    Unknown7E9E33 = UnknownC46028(arg1);
+    gameState.unknownB0 = 2;
+}
 
 /// $C466B8
 void UnknownC466B8() {
@@ -2860,7 +3296,13 @@ void UnknownC466B8() {
 }
 
 /// $C466C1
-void UnknownC466C1(short arg1);
+void UnknownC466C1(short arg1) {
+    UnknownC07C5B();
+    Unknown7E5D58 = 0;
+    Unknown7E9E35 = cast(short)(arg1 - 1);
+    DisplayText(TextC466C1.ptr);
+    UnknownC4343E(arg1);
+}
 
 /// $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
@@ -3161,7 +3603,25 @@ void UnknownC492D2() {
 }
 
 /// $C4939C
-void UnknownC4939C(ubyte arg1, ubyte arg2, ubyte arg2);
+void UnknownC4939C(ubyte arg1, ubyte arg2, ubyte arg3) {
+    Unknown7E4474 = 0;
+    if (arg3 == 0) {
+        memcpy(&palettes[2][0], &MapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
+    } else {
+        memcpy(&Unknown7F0000[0x7800], &MapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
+        UnknownC49208(arg3);
+        for (short i = 0; i < arg3; i++) {
+            WaitUntilNextFrame();
+            UnknownC492D2();
+        }
+        memcpy(&palettes[2][0], &MapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
+        memcpy(&palettes[0][0], &SpriteGroupPalettes[0], 0x100);
+        UnknownC00480();
+        LoadSpecialSpritePalette();
+        UnknownC0856B(0x18);
+        while (Unknown7E0030 != 0) {}
+    }
+}
 
 /// $C49496
 ushort UnknownC49496(ushort arg1, short arg2) {
@@ -3876,8 +4336,47 @@ void LoadOverlaySprites() {
     }
 }
 
+/// $C4B329
+void UnknownC4B329(short arg1, short arg2) {
+    switch (arg1) {
+        case 1:
+            Unknown7EB3FA -= UnknownC42A41[arg2] + 8;
+            goto case;
+        case 4:
+            Unknown7EB3F8 -= UnknownC42A1F[arg2] - 8;
+            break;
+        case 2:
+            Unknown7EB3FA -= UnknownC42A41[arg2] - 8;
+            goto case;
+        case 5: break;
+        case 3:
+            Unknown7EB3FA -= UnknownC42A41[arg2] + 8;
+            goto case;
+        case 6:
+            Unknown7EB3F8 -= UnknownC42A1F[arg2] + 8;
+            break;
+        default: break;
+    }
+}
+
 /// $C4B3D0
-void SpawnFloatingSprite(short, short);
+void SpawnFloatingSprite(short arg1, short arg2) {
+    if (arg1 == -1) {
+        return;
+    }
+    if (EntityScriptTable[arg1] == -1) {
+        return;
+    }
+    //FloatingSpriteTable[arg2]
+    Unknown7EB3F8 = EntityAbsXTable[arg1];
+    Unknown7EB3FA = EntityAbsYTable[arg1];
+    UnknownC4B329(FloatingSpriteTable[arg2].unknown2, EntitySizes[arg1]);
+    Unknown7EB3F8 += FloatingSpriteTable[arg2].unknown3 | (((FloatingSpriteTable[arg2].unknown3 & 0x80) != 0) ? -256 : 0);
+    Unknown7EB3FA += FloatingSpriteTable[arg2].unknown4 | (((FloatingSpriteTable[arg2].unknown4 & 0x80) != 0) ? -256 : 0);
+    short x12 = CreateEntity(FloatingSpriteTable[arg2].sprite, ActionScript.Unknown785, -1, Unknown7EB3F8, Unknown7EB3FA);
+    EntityDrawPriority[x12] = cast(ushort)(arg1 | 0xC000);
+    EntitySurfaceFlags[x12] = EntitySurfaceFlags[arg1];
+}
 
 /// $C4B4BE
 void UnknownC4B4BE(short arg1) {
@@ -4581,7 +5080,7 @@ void UnknownC4C60E(short arg1) {
 /// $C4C64D
 short UnknownC4C64D() {
     SkippablePause(0x3C);
-    DisplayText(TextGameOver);
+    DisplayText(TextGameOver.ptr);
     UnknownC1DD5F();
     if (getEventFlag(EventFlag.NoContinueSelected) == 0) {
         SkippablePause(0x3C);
@@ -4659,8 +5158,100 @@ short Spawn() {
     return result;
 }
 
+/// $C4C8A4
+void UnknownC4C8A4() {
+    Unknown7EB4A4 = 0;
+    Unknown7EB4A6 = 0;
+    Unknown7EB4AA = cast(Unknown7EB4AAEntry*)&Unknown7F0000[0x7C00];
+    memset(&Unknown7F0000[0x7C00], 0, 0x400);
+}
+
+/// $C4C8DB
+short UnknownC4C8DB(short arg1) {
+    short result = Unknown7EB4A4;
+    Unknown7EB4A4 += arg1;
+    return result;
+}
+
+/// $C4C8E9
+void UnknownC4C8E9(short arg1, short arg2) {
+    while (arg2 != 0) {
+        Unknown7F0000[arg1++] = 0;
+        arg2--;
+    }
+}
+
 /// $C4C91A
-void UnknownC4C91A(short, short);
+void UnknownC4C91A(short arg1, short arg2) {
+    if (arg2 == 0) {
+        return;
+    }
+    if (arg2 == 1) {
+        return;
+    }
+    if (arg2 == 6) {
+        return;
+    }
+    if (EntityTileHeights[arg1] == 0) {
+        return;
+    }
+    if (Unknown7EB4A8 == -1) {
+        UnknownC4C8A4();
+        NewEntityVar3 = 0;
+        NewEntityVar2 = 0;
+        NewEntityVar1 = 0;
+        NewEntityVar0 = 0;
+        Unknown7EB4A8 = InitEntityWipe(ActionScript.Unknown859, 0, 0);
+    }
+    Unknown7EB4AAEntry* x1A = &Unknown7EB4AA[Unknown7EB4A6];
+    x1A.unknown0 = arg1;
+    EntitySpriteMapFlags[arg1] |= 0x4000;
+    x1A.unknown2 = arg2;
+    x1A.unknown6 = UnknownC42A63[EntitySizes[arg1]];
+    x1A.unknown8 = cast(short)(EntityTileHeights[arg1] * 8);
+    x1A.unknown14 = cast(short)(EntityTileHeights[arg1] * 8 * UnknownC42A63[EntitySizes[arg1]]);
+    x1A.unknown10 = UnknownC4C8DB(x1A.unknown14);
+    UnknownC4C8E9(x1A.unknown10, x1A.unknown14);
+    x1A.unknown12 += x1A.unknown10;
+    x1A.unknown18 = 0;
+    x1A.unknown16 = 0;
+    short x16;
+    if ((arg2 == 2) || (arg2 == 3) || (arg2 == 4) || (arg2 == 5)) {
+        x16 = x1A.unknown10;
+    } else {
+        x16 = x1A.unknown12;
+    }
+    if (arg1 >= 0x18) {
+        UnknownC4283F(arg1, x16, x1A.unknown14);
+    } else {
+        UnknownC42884(arg1, x16, x1A.unknown14);
+    }
+    switch (arg2) {
+        case 2:
+        case 7:
+            EntityScriptVar0Table[Unknown7EB4A8] = 1;
+            x1A.unknown4 = 1;
+            break;
+        case 3:
+        case 8:
+            EntityScriptVar1Table[Unknown7EB4A8] = 1;
+            x1A.unknown4 = 2;
+            break;
+        case 4:
+        case 9:
+            EntityScriptVar2Table[Unknown7EB4A8] = 1;
+            x1A.unknown4 = 3;
+            break;
+        case 5:
+        case 10:
+            EntityScriptVar3Table[Unknown7EB4A8] = 1;
+            x1A.unknown4 = 4;
+            break;
+        default: break;
+    }
+    EntityScriptVar4Table[Unknown7EB4A8] = cast(short)(EntityScriptVar0Table[Unknown7EB4A8] + EntityScriptVar1Table[Unknown7EB4A8] + EntityScriptVar2Table[Unknown7EB4A8] + EntityScriptVar3Table[Unknown7EB4A8]);
+    Unknown7EB4A6++;
+}
 
 /// $C4D065
 void UnknownC4D065(ubyte*, ubyte*);
@@ -4864,7 +5455,7 @@ short UnknownC4D989(short arg1) {
     Unknown7E9641 = 0;
     short x12 = 0;
     short x14 = 0;
-    DisplayText(AttractModeText[arg1]);
+    DisplayText(&AttractModeText[arg1][0]);
     while (Unknown7E9641 == 0) {
         UnknownC4A7B0();
         if (((pad_press[0] & PAD_A) != 0) || ((pad_press[0] & PAD_B) != 0) || ((pad_press[0] & PAD_START) != 0)) {

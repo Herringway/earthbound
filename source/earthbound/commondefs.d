@@ -1358,6 +1358,7 @@ enum ActionScript {
 	Unknown769 = 769,
 	Unknown771 = 771,
 	Unknown784 = 784,
+	Unknown785 = 785,
 	Unknown786 = 786,
 	Unknown787 = 787,
 	TitleScreen1 = 788,
@@ -1374,6 +1375,7 @@ enum ActionScript {
 	Unknown799 = 799,
 	Unknown800 = 800,
 	Unknown801 = 801,
+	Unknown859 = 859,
 	Unknown860 = 860,
 	Unknown861 = 861,
 	Unknown862 = 862,
@@ -4165,8 +4167,8 @@ struct TimedDelivery {
 	short unknown4; //4
 	short unknown6; //6
 	ushort deliveryTime; //8
-	void* textPointer1; //10
-	void* textPointer2; //14
+	const(ubyte)[] textPointer1; //10
+	const(ubyte)[] textPointer2; //14
 	ubyte[4] unknown18; //18
 }
 
@@ -4187,8 +4189,8 @@ struct Item {
 	ubyte flags;
 	ushort battleAction;
 	ItemParameters parameters;
-	ubyte* helpText;
-	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, ubyte* helpText ) {
+	const(ubyte)[] helpText;
+	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, const(ubyte)[] helpText ) {
 		this.name = name;
 		this.type = type;
 		this.cost = cost;
@@ -4298,13 +4300,13 @@ struct NPC {
 	ushort actionScript;
 	ushort eventFlag;
 	ubyte appearanceStyle;
-	const(ubyte)* talkText;
+	const(ubyte)[] talkText;
 	union {
-		const(ubyte)* checkText;
+		const(ubyte)[] checkText;
 		uint item;
 		ubyte[4] somethingElse;
 	}
-	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, ubyte* tt, ubyte* ct) {
+	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, const(ubyte)[] tt, const(ubyte)[] ct) {
 		type = t;
 		sprite = s;
 		direction = d;
@@ -4314,7 +4316,7 @@ struct NPC {
 		talkText = tt;
 		checkText = ct;
 	}
-	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, ubyte* tt, ubyte[4] se) {
+	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, const(ubyte)[] tt, ubyte[4] se) {
 		type = t;
 		sprite = s;
 		direction = d;
@@ -4484,8 +4486,8 @@ struct Enemy {
 	uint exp; //37
 	ushort money; //41
 	ushort eventScript; //43
-	const(ubyte)* encounterTextPointer; //45
-	const(ubyte)* deathTextPointer; //49
+	const(ubyte)[] encounterTextPointer; //45
+	const(ubyte)[] deathTextPointer; //49
 	ubyte battleSpritePalette; //53
 	ubyte level; //54
 	ubyte music; //55
@@ -4521,7 +4523,7 @@ struct BattleAction {
 	ubyte target;
 	ubyte type;
 	ubyte ppCost;
-	const(ubyte)* text;
+	const(ubyte)[] text;
 	void function() func;
 }
 
@@ -4579,7 +4581,7 @@ struct DisplayTextState {
 }
 
 struct DoorEntryA {
-	const(ubyte)* textPtr; // 0
+	const(ubyte)[] textPtr; // 0
 	ushort eventFlag; // 4
 	ushort unknown6; // 6
 	ushort unknown8; // 8
@@ -4588,11 +4590,11 @@ struct DoorEntryA {
 
 struct DoorEntryB {
 	ushort eventFlag;
-	const(ubyte)* textPtr;
+	const(ubyte)[] textPtr;
 }
 
 struct DoorEntryC {
-	const(ubyte)* textPtr;
+	const(ubyte)[] textPtr;
 }
 
 struct SectorDoors {
@@ -4803,7 +4805,7 @@ struct Unknown7EAEFCEntry {
 struct TelephoneContact {
 	ubyte[25] title;
 	ushort eventFlag;
-	const(ubyte)* text;
+	const(ubyte)[] text;
 }
 
 struct PSIAbility {
@@ -4817,7 +4819,7 @@ struct PSIAbility {
 	ubyte pooLevel;
 	ubyte menuX;
 	ubyte menuY;
-	const(ubyte)* text;
+	const(ubyte)[] text;
 }
 
 struct Unknown7E5E3CEntry {
@@ -4827,6 +4829,26 @@ struct Unknown7E5E3CEntry {
 	short unknown6;
 	short unknown8;
 	const(ubyte)* unknown10;
+}
+
+struct FloatingSpriteTableEntry {
+	short sprite;
+	ubyte unknown2;
+	ubyte unknown3;
+	ubyte unknown4;
+}
+
+struct Unknown7EB4AAEntry {
+	short unknown0;
+	short unknown2;
+	short unknown4;
+	short unknown6;
+	short unknown8;
+	short unknown10;
+	short unknown12;
+	short unknown14;
+	short unknown16;
+	short unknown18;
 }
 
 //helper funcs not in the original game

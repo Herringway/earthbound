@@ -804,11 +804,11 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
     EntityVramAddresses[result] = cast(ushort)(UnknownC42F8C[x21] + 0x4000);
     EntityByteWidths[result] = SpriteGroupingPointers[sprite].width;
     EntityTileHeights[result] = SpriteGroupingPointers[sprite].height;
-    UNKNOWN_30X2_TABLE_31[result] = SpriteGroupingPointers[sprite].spriteBank;
+    //UNKNOWN_30X2_TABLE_31[result] = SpriteGroupingPointers[sprite].spriteBank;
     EntityTPTEntrySprites[result] = sprite;
     //EntityGraphicsPointerHigh[result] = &SpriteGroupingPointers[sprite];
     //EntityGraphicsPointerLow[result] = &SpriteGroupingPointers[sprite];
-    EntityGraphicsPointers[result] = &SpriteGroupingPointers[sprite];
+    EntityGraphicsPointers[result] = &SpriteGroupingPointers[sprite].sprites[0];
     if ((Unknown7E467C & 1) != 0) {
         EntityVramAddresses[result] += 0x100;
     }
@@ -2304,7 +2304,7 @@ void UnknownC065C2(short direction) {
         //Unknown7E5DDE = doorData[Unknown7E5DBC & 0x7FFF]
 
         //not sure if this is the correct type...
-        Unknown7E5DDE = Unknown7E5DBC.entryA.textPtr;
+        Unknown7E5DDE = &Unknown7E5DBC.entryA.textPtr[0];
         CurrentTPTEntry = -2;
     }
 }
@@ -2438,7 +2438,7 @@ void UnknownC06A07() {
 /// $C06A1B
 void UnknownC06A1B(const(DoorEntryB)* arg1) {
     if (getEventFlag(arg1.eventFlag & 0x7FFF) == (arg1.eventFlag > EVENT_FLAG_UNSET) ? 1 : 0) {
-        UnknownC064E3(0, QueuedInteractionPtr(arg1.textPtr));
+        UnknownC064E3(0, QueuedInteractionPtr(&arg1.textPtr[0]));
         Unknown7E5DAA = 0;
         Unknown7E5DA8 = 0;
     }
@@ -2490,7 +2490,7 @@ void UnknownC06ACA(const(DoorEntryA)* arg1) {
 
 /// $C06B21
 void SpawnBuzzBuzz() {
-    DisplayText(TextSpawnBuzzBuzz);
+    DisplayText(TextSpawnBuzzBuzz.ptr);
     UnknownEF0EE8();
 }
 
@@ -2512,7 +2512,7 @@ void UnknownC06B3D() {
 /// $C06BFF
 void DoorTransition(const(DoorEntryA)* arg1) {
     if (arg1.textPtr !is null) {
-        UnknownC10004(arg1.textPtr);
+        UnknownC10004(&arg1.textPtr[0]);
     }
     Unknown7E5DAA = 0;
     Unknown7E5DA8 = 0;
@@ -2837,7 +2837,7 @@ void ProcessQueuedInteractions() {
             break;
         case 10:
             UnknownC10004(ptr.text_ptr);
-            if (ptr.text_ptr is TextDadCalls) {
+            if (ptr.text_ptr is TextDadCalls.ptr) {
                 DadPhoneTimer = 0x697;
                 Unknown7E9E56 = 0;
             }
@@ -3021,9 +3021,8 @@ void UnknownC07A56(short arg1, short arg2, short arg3) {
         EntityAnimationFrames[x04] = x12;
     } else {
         auto x0E = SpriteGroupingPointers[x12];
-        // figure out sprite stuff
         //UNKNOWN_30X2_TABLE_31[x04] = x0E.spriteBank;
-        UNKNOWN_30X2_TABLE_31[x04] = x02;
+        EntityGraphicsPointers[x04] = &x0E.sprites[0];
         Unknown7E00C0 = x02;
         x02 = Unknown7E4DC6.unknown55;
         if (Unknown7E00C0 != x02) {
@@ -4128,10 +4127,10 @@ short InitEntity(short actionScript, short x, short y) {
     EntityDeltaYTable[newEntity / 2] = 0;
     EntityDeltaZFractionTable[newEntity / 2] = 0;
     EntityDeltaZTable[newEntity / 2] = 0;
-    return UnknownC092F5Unknown4(EventScriptPointers[EntityScriptTable[actionScript]], newEntity);
+    return UnknownC092F5Unknown4(&EventScriptPointers[EntityScriptTable[actionScript]][0], newEntity);
 }
 
-short InitEntityUnknown1(const(void)* pc, short entityID) {
+short InitEntityUnknown1(const(ubyte)* pc, short entityID) {
     return InitEntityUnknown1(pc, cast(short)(entityID * 2));
 }
 short InitEntityUnknown2(const(void)* pc, short entityIndex) {
@@ -5655,7 +5654,7 @@ void LoadDadPhone() {
     if (getEventFlag(EventFlag.UNKNOWN_307) != 0) {
         return;
     }
-    UnknownC064E3(10, QueuedInteractionPtr(TextDadCalls));
+    UnknownC064E3(10, QueuedInteractionPtr(TextDadCalls.ptr));
     Unknown7E9E56 = 1;
 }
 

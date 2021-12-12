@@ -413,6 +413,11 @@ void PrintStringF(short arg1, const(ubyte)* arg2) {
     PrintString(arg1, arg2);
 }
 
+/// $C10CAF
+void UnknownC437B8F(short arg1) {
+    UnknownC437B8(arg1);
+}
+
 /// $C10CB6
 void PrintLetter(short arg1) {
     if (CurrentFocusWindow == -1) {
@@ -433,10 +438,10 @@ void PrintLetter(short arg1) {
             x = 1;
         }
     }
-    if ((x != 0) && (Unknown7E9622 == 0) && (arg1 != 0x20) && (arg1 != EBChar(' '))) {
+    if ((x != 0) && (InstantPrinting == 0) && (arg1 != 0x20) && (arg1 != EBChar(' '))) {
         PlaySfx(Sfx.TextPrint);
     }
-    if (Unknown7E9622 == 0) {
+    if (InstantPrinting == 0) {
         for (short i = SelectedTextSpeed; i != 0; i--) {
             WindowTick();
         }
@@ -1040,7 +1045,7 @@ void WindowTick() {
         Unknown7E968C = 0;
         return;
     }
-    if (Unknown7E9622 != 0) {
+    if (InstantPrinting != 0) {
         return;
     }
     if (Unknown7E9623 == 0) {
@@ -1101,16 +1106,16 @@ void DebugYButtonMenu() {
                 RespawnY = gameState.leaderY.integer;
                 break;
             case 4:
-                x1A = TextDebugAppleMenu;
+                x1A = TextDebugAppleMenu.ptr;
                 break;
             case 5:
-                x1A = TextDebugBananaMenu;
+                x1A = TextDebugBananaMenu.ptr;
                 break;
             case 6:
-                x1A = TextDebugUnknownMenu;
+                x1A = TextDebugUnknownMenu.ptr;
                 break;
             case 7:
-                x1A = TextDebugUnknownMenu2;
+                x1A = TextDebugUnknownMenu2.ptr;
                 break;
             case 8:
                 for (short i = 0; i < 30; i++) {
@@ -1169,10 +1174,10 @@ void DebugYButtonMenu() {
                 UnknownEFEA4A();
                 goto Unknown56;
             case 22:
-                x1A = TextBattleGiygasPrayer91;
+                x1A = TextBattleGiygasPrayer91.ptr;
                 break;
             case 23:
-                x1A = TextEndOfGamePickyEvent;
+                x1A = TextEndOfGamePickyEvent.ptr;
                 UnknownC1008E();
                 HideHPPPWindows();
                 DisplayText(x1A);
@@ -1221,9 +1226,9 @@ const(ubyte)* Check() {
                 SetArgumentMemory(NPCConfig[CurrentTPTEntry].item - 0x100);
             }
             CurrentInteractingEventFlag = NPCConfig[CurrentTPTEntry].eventFlag;
-            return NPCConfig[CurrentTPTEntry].talkText;
+            return &NPCConfig[CurrentTPTEntry].talkText[0];
         case NPCType.Object:
-            return NPCConfig[CurrentTPTEntry].talkText;
+            return &NPCConfig[CurrentTPTEntry].talkText[0];
         default: break;
     }
     return null;
@@ -1241,7 +1246,7 @@ void OpenMenuButtonCheckTalk() {
     if (textPtr is null) {
         textPtr = Check();
         if (textPtr is null) {
-            textPtr = TextNoProblemHere;
+            textPtr = TextNoProblemHere.ptr;
         }
     }
     DisplayText(textPtr);
@@ -3885,7 +3890,7 @@ void UnknownC1952F(short arg1) {
     CreateWindowN(Window.StatusMenu);
     WindowTickWithoutInstantPrinting();
     Unknown7E5E71 = 1;
-    DisplayText(StatusWindowText);
+    DisplayText(StatusWindowText.ptr);
     Unknown7E5E71 = 0;
     if (gameState.playerControlledPartyMemberCount != 1) {
         Unknown7E5E7A = 8;
@@ -4062,7 +4067,7 @@ ushort UnknownC1AAFA() {
 ushort UnknownC1AC00() {
     ushort x12 = UnknownC19441();
     if (x12 != 0) {
-        DisplayText(TelephoneContacts[x12].text);
+        DisplayText(&TelephoneContacts[x12].text[0]);
     }
     return x12;
 }
@@ -4152,7 +4157,7 @@ void Teleport(short arg1) {
 void GetOffBicycle() {
     CreateWindowN(Window.TextStandard);
     SetWorkingMemory(WorkingMemory(1));
-    DisplayText(TextGotOffBike);
+    DisplayText(TextGotOffBike.ptr);
     CloseFocusWindowN();
     WindowTick();
     UnknownC03CFD();
@@ -4231,7 +4236,7 @@ void ShowHPAlert(short arg1) {
     UnknownC0943C();
     CreateWindowN(Window.TextStandard);
     UnknownC1AC4A(&PartyCharacters[arg1].name[0], 5);
-    DisplayText(TextAlertConditionCritical);
+    DisplayText(TextAlertConditionCritical.ptr);
     CloseFocusWindowN();
     WindowTick();
     UnknownC09451();
@@ -4358,16 +4363,16 @@ void BattleActionSwitchWeapons() {
         currentAttacker.offense = cast(short)(currentAttacker.baseOffense + x18);
         currentAttacker.baseGuts = PartyCharacters[currentAttacker.id - 1].guts;
         currentAttacker.guts = cast(short)(currentAttacker.baseGuts + x04);
-        DisplayText(TextBattleEquipXInstead);
+        DisplayText(TextBattleEquipXInstead.ptr);
     } else {
-        DisplayText(TextBattleCouldNotEquipAttackAnyway);
+        DisplayText(TextBattleCouldNotEquipAttackAnyway.ptr);
     }
     short tmp = PartyCharacters[currentAttacker.id - 1].items[PartyCharacters[currentAttacker.id - 1].equipment[EquipmentSlot.Weapon] - 1];
     if ((tmp != 0) && ((ItemData[tmp].type & 3) == 1)) {
-        DisplayText(BattleActionTable[5].text);
+        DisplayText(&BattleActionTable[5].text[0]);
         BattleActionTable[5].func();
     } else {
-        DisplayText(BattleActionTable[4].text);
+        DisplayText(&BattleActionTable[4].text[0]);
         BattleActionTable[4].func();
     }
     ClearBlinkingPrompt();
@@ -4381,7 +4386,7 @@ void BattleActionSwitchArmor() {
         short x04 = cast(short)(currentAttacker.speed - currentAttacker.baseSpeed);
         short x02 = cast(short)(currentAttacker.luck - currentAttacker.baseLuck);
         EquipItem(currentAttacker.id, currentAttacker.unknown7);
-        DisplayText(TextBattleEquipXInstead);
+        DisplayText(TextBattleEquipXInstead.ptr);
         currentAttacker.baseDefense = PartyCharacters[currentAttacker.id - 1].defense;
         currentAttacker.defense = cast(short)(currentAttacker.baseDefense + x16);
         currentAttacker.baseSpeed = PartyCharacters[currentAttacker.id - 1].speed;
@@ -4395,7 +4400,7 @@ void BattleActionSwitchArmor() {
         currentAttacker.hypnosisResist = CalcPSIResistanceModifiers(PartyCharacters[currentAttacker.id - 1].hypnosisBrainshockResist);
         currentAttacker.brainshockResist = CalcPSIResistanceModifiers(cast(ubyte)(3 - PartyCharacters[currentAttacker.id - 1].hypnosisBrainshockResist));
     } else {
-        DisplayText(TextBattleCouldNotEquipAttackAnyway);
+        DisplayText(TextBattleCouldNotEquipAttackAnyway.ptr);
     }
     ClearBlinkingPrompt();
 }

@@ -190,7 +190,7 @@ __gshared short[MAX_ENTITIES] EntityScriptVar4Table; /// $0F4E
 __gshared short[MAX_ENTITIES] EntityScriptVar5Table; /// $0F8A
 __gshared short[MAX_ENTITIES] EntityScriptVar6Table; /// $0FC6
 __gshared short[MAX_ENTITIES] EntityScriptVar7Table; /// $1002
-__gshared short[MAX_ENTITIES] EntityDrawPriority; /// $103E
+__gshared ushort[MAX_ENTITIES] EntityDrawPriority; /// $103E
 
 // original code isn't very portable...
 /+__gshared short[MAX_ENTITIES] ENTITY_TICK_CALLBACK_LOW; /// $107A
@@ -238,6 +238,7 @@ __gshared short Unknown7E1ACE; /// $1ACE
 __gshared short[64] Unknown7E1AD6; /// $1AD6
 
 
+__gshared ubyte[24] Unknown7E1B56; /// $1B56
 __gshared ubyte[24] Unknown7E1B6E; /// $1B6E
 __gshared ubyte[24] Unknown7E1B86; /// $1B86
 __gshared ubyte Unknown7E1B9E; /// $1B9E
@@ -303,8 +304,8 @@ __gshared ushort[MAX_ENTITIES] EntityUnknown2952; /// $2952
 __gshared ushort[MAX_ENTITIES] EntityVramAddresses; /// $298E
 //__gshared ushort[MAX_ENTITIES] EntityGraphicsPointersLow; /// $29CA
 //__gshared ushort[MAX_ENTITIES] EntityGraphicsPointersHigh; /// $2A06
-__gshared void*[MAX_ENTITIES] EntityGraphicsPointers; /// $29CA
-__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; /// $2A42
+__gshared OverworldSpriteGraphics*[MAX_ENTITIES] EntityGraphicsPointers; /// $29CA
+deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; /// $2A42
 __gshared short[MAX_ENTITIES] EntityByteWidths; /// $2A7E
 __gshared short[MAX_ENTITIES] EntityTileHeights; /// $2ABA
 __gshared short[MAX_ENTITIES] EntityDirections; /// $2AF6
@@ -539,7 +540,6 @@ __gshared short Unknown7E5E7A; /// $5E7A
 __gshared short Unknown7E5E7C; /// $5E7C
 
 __gshared ushort[0x1F8][8] Unknown7E5E7E; /// $5E7E
-__gshared ubyte[128][5] Unknown7E7700; /// $5E7E
 
 __gshared ushort[0x380] bg2Buffer; /// $7DFE
 
@@ -566,7 +566,7 @@ __gshared short Unknown7E89D0; /// $89D0
 __gshared short Unknown7E89D2; /// $89D2
 __gshared MenuOpt[70] MenuOptions; /// $89D4 - Window menu options
 
-__gshared ubyte Unknown7E9622; /// $9622
+__gshared ubyte InstantPrinting; /// $9622
 __gshared ubyte Unknown7E9623; /// $9623
 __gshared ubyte Unknown7E9624; /// $9624
 __gshared ushort SelectedTextSpeed; /// $9625
@@ -634,7 +634,9 @@ __gshared short RespawnY; /// $9D21
 __gshared ubyte[0x20][8] Unknown7E9D23; /// $9D23
 
 __gshared ushort VWFX; /// $9E23
+deprecated("VWFX") alias Unknown7E9E23 = VWFX;
 __gshared ushort VWFTile; /// $9E25
+deprecated("VWFTile") alias Unknown7E9E25 = VWFTile;
 __gshared ushort Unknown7E9E27; /// $9E27
 __gshared ushort Unknown7E9E29; /// $9E29
 
@@ -643,6 +645,7 @@ __gshared ushort EntityPreparedXCoordinate; /// $9E2D
 __gshared ushort EntityPreparedYCoordinate; /// $9E2F
 __gshared ushort EntityPreparedDirection; /// $9E31
 __gshared ushort Unknown7E9E33; /// $9E33
+__gshared short Unknown7E9E35; /// $9E35
 
 __gshared OverworldTask[4] OverworldTasks; /// $9E3C
 
@@ -853,8 +856,10 @@ __gshared ubyte Unknown7EB49D; /// $B49D - Addressed specifically using long add
 __gshared ubyte CurrentSaveSlot; /// $B4A1
 __gshared ubyte Unknown7EB4A2; /// $B4A2
 
+__gshared short Unknown7EB4A4; /// $B4A4
+__gshared short Unknown7EB4A6; /// $B4A6
 __gshared short Unknown7EB4A8; /// $B4A8
-
+__gshared Unknown7EB4AAEntry* Unknown7EB4AA; /// $B4AA
 __gshared short Unknown7EB4AE; /// $B4AE
 
 __gshared short Unknown7EB4B0; /// $B4B0
