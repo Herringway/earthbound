@@ -45,7 +45,14 @@ void inflictSunstrokeCheck() {
 	}
 }
 
-immutable ubyte[] C200B9 = [0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0xF8, 0xFF, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07, 0x00, 0x07, 0x00, 0x07, 0x00, 0x1E, 0x00, 0x33, 0x00, 0x1E, 0x00, 0x33, 0x00];
+/// $C200B9
+immutable short[6] UnknownC200B9 = [-8, 0, 7, -8, 0, 7];
+
+/// $C200C5
+immutable short[6] UnknownC200C5 = [0, 0, 0, 7, 7, 7];
+
+/// $C200D1
+immutable ushort[4] UnknownC200D1 = [30, 51, 30, 51];
 
 /// $C200D9
 void UnknownC200D9() {
@@ -658,7 +665,11 @@ short setEventFlag(short flag, short value) {
 }
 
 /// $C216AD
-void UnknownC216AD(short, short);
+void UnknownC216AD(short arg1, short) {
+	ChangeMusic(arg1);
+	Unknown7E5DD4 = arg1;
+	Unknown7E5DD6 = arg1;
+}
 
 /// $C216C9
 void StopMusicF(short arg1) {

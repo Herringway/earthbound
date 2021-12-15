@@ -606,7 +606,7 @@ enum ItemID {
 	MAMMOTH_BURGER = 0xF3,
 	SPICY_JERKY = 0xF4,
 	LUXURY_JERKY = 0xF5,
-	BOTTLE_OF_DXWATER = 0xF6,
+	BottleOfDXWater = 0xF6,
 	MAGIC_PUDDING = 0xF7,
 	NONSTICK_FRYPAN = 0xF8,
 	MR_SATURN_COIN = 0xF9,
@@ -3974,7 +3974,7 @@ struct MenuOpt {
     short page;        // [06]
     short text_x;      // [08]
     short text_y;      // [0A]
-    short field0C;     // [0C]
+    short userdata;     // [0C]
     ubyte sfx;         // [0E]
     const(ubyte)* script;      // [0F] 32-bit pointer
     ubyte[25] label;   // [13]
@@ -4773,11 +4773,6 @@ struct CC1C01Entry {
 	void* address;
 }
 
-struct Unknown7E9E58Entry {
-	ubyte unknown0;
-	short unknown1;
-}
-
 struct EntityOverlaySprite {
 	ushort spriteID;
 	byte unknown2;
@@ -4849,6 +4844,17 @@ struct Unknown7EB4AAEntry {
 	short unknown14;
 	short unknown16;
 	short unknown18;
+}
+
+struct SpritePlacementEntry {
+	ushort entries;
+	SpritePlacement[] spritePlacements;
+}
+
+struct SpritePlacement {
+	short unknown0;
+	ubyte unknown2;
+	ubyte unknown3;
 }
 
 //helper funcs not in the original game

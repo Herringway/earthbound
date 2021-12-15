@@ -1703,6 +1703,20 @@ void SetPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
     }
 }
 
+/// $C42F64
+immutable ubyte[][10] MapDataTileTableChunksTable = [
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_01.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_02.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_03.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_04.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_05.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_06.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_07.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_08.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_09.bin"),
+    cast(immutable(ubyte)[])import("maps/tiles/chunk_10.bin"),
+];
+
 /// $C42F8C
 immutable ushort[88] UnknownC42F8C = [
     0x0000,
@@ -1930,6 +1944,11 @@ void UnknownC43317() {
     for (short i = 0; i < 6; i++) {
         ChosenFourPtrs[i] = &PartyCharacters[i];
     }
+}
+
+/// $C43344
+void UnknownC43344(short arg1) {
+    OverworldStatusSuppression = arg1;
 }
 
 /// $C4334A
@@ -2979,6 +2998,15 @@ immutable ubyte[8][4] StatusEquipWindowText11 = [
 immutable ubyte[10] StatusEquipWindowText12 = EBString!10("(Nothing) ");
 immutable ubyte[5] StatusEquipWindowText13 = EBString!5("None");
 immutable ubyte[3] StatusEquipWindowText14 = EBString!3("To:");
+
+immutable ubyte[6] HomesicknessProbabilities = [
+    0,
+    100,
+    150,
+    200,
+    250,
+    0,
+];
 
 /// $C45E96
 void UnknownC45E96() {

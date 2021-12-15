@@ -10,7 +10,6 @@ import earthbound.bank09;
 import earthbound.bank2F;
 
 /// $CF0000
-
 immutable SectorDoors[1280] doorConfig = [	SectorDoors(1, [DoorConfig(0x11, 0x15, DoorType.Object, null/+&DoorEntry910+/)]),
 	SectorDoors(2, [DoorConfig(0x0E, 0x15, DoorType.Door, null/+&DoorEntry908+/), DoorConfig(0x19, 0x15, DoorType.Object, null/+&DoorEntry911+/)]),
 	SectorDoors(1, [DoorConfig(0x0E, 0x16, DoorType.Door, null/+&DoorEntry904+/)]),
@@ -3092,6 +3091,4795 @@ immutable OverworldEventMusic[][164] OverworldEventMusicPointerTable = [
 		OverworldEventMusic(0, Music.None2),
 	]
 ];
+
+/// $CF61E7
+immutable SpritePlacementEntry*[32][40] SpritePlacementPointerTable = [
+	[
+		&SpritePlacementEntry0,
+		&SpritePlacementEntry1,
+		&SpritePlacementEntry2,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry3,
+		&SpritePlacementEntry4,
+		&SpritePlacementEntry5,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry6,
+		null,
+		null,
+		&SpritePlacementEntry7,
+		&SpritePlacementEntry8,
+		null,
+		null,
+		&SpritePlacementEntry9,
+		null,
+		&SpritePlacementEntry10,
+		&SpritePlacementEntry11,
+		null,
+		&SpritePlacementEntry12,
+		null,
+		&SpritePlacementEntry13,
+		null,
+		&SpritePlacementEntry14,
+		&SpritePlacementEntry15,
+		&SpritePlacementEntry16,
+	], [
+		&SpritePlacementEntry17,
+		&SpritePlacementEntry18,
+		&SpritePlacementEntry19,
+		null,
+		null,
+		&SpritePlacementEntry20,
+		null,
+		&SpritePlacementEntry21,
+		&SpritePlacementEntry22,
+		&SpritePlacementEntry23,
+		&SpritePlacementEntry24,
+		null,
+		&SpritePlacementEntry25,
+		&SpritePlacementEntry26,
+		null,
+		null,
+		&SpritePlacementEntry27,
+		&SpritePlacementEntry28,
+		&SpritePlacementEntry29,
+		&SpritePlacementEntry30,
+		null,
+		&SpritePlacementEntry31,
+		null,
+		&SpritePlacementEntry32,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry33,
+		null,
+		&SpritePlacementEntry34,
+		&SpritePlacementEntry35,
+		&SpritePlacementEntry36,
+	], [
+		&SpritePlacementEntry37,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry38,
+		null,
+		null,
+		&SpritePlacementEntry39,
+		&SpritePlacementEntry40,
+		&SpritePlacementEntry41,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry42,
+		&SpritePlacementEntry43,
+		null,
+		&SpritePlacementEntry44,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry45,
+		&SpritePlacementEntry46,
+		&SpritePlacementEntry47,
+		&SpritePlacementEntry48,
+		null,
+	], [
+		&SpritePlacementEntry49,
+		&SpritePlacementEntry50,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry51,
+		&SpritePlacementEntry52,
+		&SpritePlacementEntry53,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry54,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry55,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry56,
+		null,
+		&SpritePlacementEntry57,
+		&SpritePlacementEntry58,
+		&SpritePlacementEntry59,
+		&SpritePlacementEntry60,
+		&SpritePlacementEntry61,
+	], [
+		&SpritePlacementEntry62,
+		&SpritePlacementEntry63,
+		&SpritePlacementEntry64,
+		null,
+		null,
+		&SpritePlacementEntry65,
+		&SpritePlacementEntry66,
+		&SpritePlacementEntry67,
+		&SpritePlacementEntry68,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry69,
+		&SpritePlacementEntry70,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry71,
+		&SpritePlacementEntry72,
+		null,
+		&SpritePlacementEntry73,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry74,
+		&SpritePlacementEntry75,
+		&SpritePlacementEntry76,
+		&SpritePlacementEntry77,
+		&SpritePlacementEntry78,
+	], [
+		&SpritePlacementEntry79,
+		null,
+		&SpritePlacementEntry80,
+		null,
+		&SpritePlacementEntry81,
+		&SpritePlacementEntry82,
+		&SpritePlacementEntry83,
+		&SpritePlacementEntry84,
+		&SpritePlacementEntry85,
+		&SpritePlacementEntry86,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry87,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry88,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry89,
+		&SpritePlacementEntry90,
+		&SpritePlacementEntry91,
+		&SpritePlacementEntry92,
+		&SpritePlacementEntry93,
+	], [
+		null,
+		&SpritePlacementEntry94,
+		&SpritePlacementEntry95,
+		null,
+		&SpritePlacementEntry96,
+		&SpritePlacementEntry97,
+		&SpritePlacementEntry98,
+		&SpritePlacementEntry99,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry100,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry101,
+		null,
+		&SpritePlacementEntry102,
+		&SpritePlacementEntry103,
+		&SpritePlacementEntry104,
+		&SpritePlacementEntry105,
+		&SpritePlacementEntry106,
+	], [
+		null,
+		&SpritePlacementEntry107,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry108,
+		&SpritePlacementEntry109,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry110,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry111,
+		&SpritePlacementEntry112,
+		null,
+		null,
+		&SpritePlacementEntry113,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry114,
+		&SpritePlacementEntry115,
+		&SpritePlacementEntry116,
+		&SpritePlacementEntry117,
+		&SpritePlacementEntry118,
+	], [
+		null,
+		&SpritePlacementEntry119,
+		&SpritePlacementEntry120,
+		null,
+		&SpritePlacementEntry121,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry122,
+		&SpritePlacementEntry123,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry124,
+		&SpritePlacementEntry125,
+		null,
+		&SpritePlacementEntry126,
+		null,
+		null,
+		&SpritePlacementEntry127,
+		&SpritePlacementEntry128,
+		null,
+		null,
+		&SpritePlacementEntry129,
+		null,
+		&SpritePlacementEntry130,
+		&SpritePlacementEntry131,
+		&SpritePlacementEntry132,
+	], [
+		null,
+		&SpritePlacementEntry133,
+		&SpritePlacementEntry134,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry135,
+		null,
+		&SpritePlacementEntry136,
+		&SpritePlacementEntry137,
+		&SpritePlacementEntry138,
+		&SpritePlacementEntry139,
+		&SpritePlacementEntry140,
+		&SpritePlacementEntry141,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry142,
+		&SpritePlacementEntry143,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry144,
+		&SpritePlacementEntry145,
+		&SpritePlacementEntry146,
+		&SpritePlacementEntry147,
+	], [
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry148,
+		null,
+		&SpritePlacementEntry149,
+		null,
+		&SpritePlacementEntry150,
+		&SpritePlacementEntry151,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry152,
+		null,
+		&SpritePlacementEntry153,
+		&SpritePlacementEntry154,
+		&SpritePlacementEntry155,
+		&SpritePlacementEntry156,
+		&SpritePlacementEntry157,
+		null,
+		&SpritePlacementEntry158,
+		&SpritePlacementEntry159,
+		null,
+		null,
+		&SpritePlacementEntry160,
+		null,
+		null,
+		null,
+		null,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry161,
+		&SpritePlacementEntry162,
+		&SpritePlacementEntry163,
+		&SpritePlacementEntry164,
+		&SpritePlacementEntry165,
+		&SpritePlacementEntry166,
+		&SpritePlacementEntry167,
+		null,
+		null,
+		&SpritePlacementEntry168,
+		null,
+		&SpritePlacementEntry169,
+		&SpritePlacementEntry170,
+		&SpritePlacementEntry171,
+		&SpritePlacementEntry172,
+		&SpritePlacementEntry173,
+		&SpritePlacementEntry174,
+		null,
+		&SpritePlacementEntry175,
+		&SpritePlacementEntry176,
+		&SpritePlacementEntry177,
+		&SpritePlacementEntry178,
+		&SpritePlacementEntry179,
+		&SpritePlacementEntry180,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry181,
+		&SpritePlacementEntry182,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry183,
+		null,
+		null,
+		&SpritePlacementEntry184,
+		null,
+		&SpritePlacementEntry185,
+		null,
+		&SpritePlacementEntry186,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry187,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry188,
+	], [
+		null,
+		&SpritePlacementEntry189,
+		&SpritePlacementEntry190,
+		null,
+		null,
+		&SpritePlacementEntry191,
+		&SpritePlacementEntry192,
+		&SpritePlacementEntry193,
+		null,
+		null,
+		&SpritePlacementEntry194,
+		null,
+		null,
+		&SpritePlacementEntry195,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry196,
+		&SpritePlacementEntry197,
+		null,
+		null,
+		&SpritePlacementEntry198,
+		&SpritePlacementEntry199,
+		&SpritePlacementEntry200,
+		&SpritePlacementEntry201,
+		&SpritePlacementEntry202,
+		&SpritePlacementEntry203,
+		null,
+		&SpritePlacementEntry204,
+		null,
+		null,
+		null,
+	], [
+		null,
+		&SpritePlacementEntry205,
+		null,
+		&SpritePlacementEntry206,
+		&SpritePlacementEntry207,
+		&SpritePlacementEntry208,
+		&SpritePlacementEntry209,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry210,
+		null,
+		&SpritePlacementEntry211,
+		null,
+		&SpritePlacementEntry212,
+		null,
+		&SpritePlacementEntry213,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry214,
+		null,
+		&SpritePlacementEntry215,
+		null,
+		null,
+		&SpritePlacementEntry216,
+		null,
+		&SpritePlacementEntry217,
+		null,
+		&SpritePlacementEntry218,
+		&SpritePlacementEntry219,
+	], [
+		null,
+		&SpritePlacementEntry220,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry221,
+		&SpritePlacementEntry222,
+		&SpritePlacementEntry223,
+		null,
+		&SpritePlacementEntry224,
+		&SpritePlacementEntry225,
+		&SpritePlacementEntry226,
+		&SpritePlacementEntry227,
+		&SpritePlacementEntry228,
+		&SpritePlacementEntry229,
+		null,
+		&SpritePlacementEntry230,
+		&SpritePlacementEntry231,
+		null,
+		null,
+		&SpritePlacementEntry232,
+		&SpritePlacementEntry233,
+		null,
+		&SpritePlacementEntry234,
+		null,
+		&SpritePlacementEntry235,
+		null,
+		null,
+		&SpritePlacementEntry236,
+		&SpritePlacementEntry237,
+		&SpritePlacementEntry238,
+		&SpritePlacementEntry239,
+	], [
+		null,
+		&SpritePlacementEntry240,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry241,
+		&SpritePlacementEntry242,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry243,
+		&SpritePlacementEntry244,
+		&SpritePlacementEntry245,
+		&SpritePlacementEntry246,
+		&SpritePlacementEntry247,
+		&SpritePlacementEntry248,
+		&SpritePlacementEntry249,
+		null,
+		&SpritePlacementEntry250,
+		&SpritePlacementEntry251,
+		&SpritePlacementEntry252,
+		null,
+		null,
+		&SpritePlacementEntry253,
+		&SpritePlacementEntry254,
+		&SpritePlacementEntry255,
+		null,
+		&SpritePlacementEntry256,
+		&SpritePlacementEntry257,
+		null,
+		&SpritePlacementEntry258,
+	], [
+		null,
+		&SpritePlacementEntry259,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry260,
+		null,
+		&SpritePlacementEntry261,
+		null,
+		&SpritePlacementEntry262,
+		null,
+		&SpritePlacementEntry263,
+		null,
+		&SpritePlacementEntry264,
+		&SpritePlacementEntry265,
+		&SpritePlacementEntry266,
+		&SpritePlacementEntry267,
+		&SpritePlacementEntry268,
+		&SpritePlacementEntry269,
+		&SpritePlacementEntry270,
+		null,
+		&SpritePlacementEntry271,
+		null,
+		null,
+		&SpritePlacementEntry272,
+		&SpritePlacementEntry273,
+		&SpritePlacementEntry274,
+	], [
+		null,
+		null,
+		&SpritePlacementEntry275,
+		&SpritePlacementEntry276,
+		null,
+		&SpritePlacementEntry277,
+		&SpritePlacementEntry278,
+		&SpritePlacementEntry279,
+		null,
+		null,
+		&SpritePlacementEntry280,
+		&SpritePlacementEntry281,
+		null,
+		&SpritePlacementEntry282,
+		null,
+		null,
+		&SpritePlacementEntry283,
+		&SpritePlacementEntry284,
+		null,
+		&SpritePlacementEntry285,
+		&SpritePlacementEntry286,
+		null,
+		&SpritePlacementEntry287,
+		&SpritePlacementEntry288,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry289,
+		&SpritePlacementEntry290,
+		&SpritePlacementEntry291,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry292,
+		&SpritePlacementEntry293,
+		&SpritePlacementEntry294,
+		null,
+		&SpritePlacementEntry295,
+		&SpritePlacementEntry296,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry297,
+		&SpritePlacementEntry298,
+		&SpritePlacementEntry299,
+		&SpritePlacementEntry300,
+		null,
+		&SpritePlacementEntry301,
+		null,
+		null,
+		&SpritePlacementEntry302,
+		&SpritePlacementEntry303,
+		&SpritePlacementEntry304,
+		null,
+		&SpritePlacementEntry305,
+		&SpritePlacementEntry306,
+		&SpritePlacementEntry307,
+		null,
+		null,
+	], [
+		null,
+		null,
+		&SpritePlacementEntry308,
+		&SpritePlacementEntry309,
+		null,
+		null,
+		&SpritePlacementEntry310,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry311,
+		null,
+		null,
+		&SpritePlacementEntry312,
+		&SpritePlacementEntry313,
+		&SpritePlacementEntry314,
+		&SpritePlacementEntry315,
+		null,
+		&SpritePlacementEntry316,
+		&SpritePlacementEntry317,
+		null,
+		&SpritePlacementEntry318,
+		&SpritePlacementEntry319,
+		&SpritePlacementEntry320,
+		null,
+		null,
+		&SpritePlacementEntry321,
+		null,
+		&SpritePlacementEntry322,
+		&SpritePlacementEntry323,
+	], [
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry324,
+		null,
+		&SpritePlacementEntry325,
+		null,
+		&SpritePlacementEntry326,
+		null,
+		&SpritePlacementEntry327,
+		null,
+		&SpritePlacementEntry328,
+		null,
+		&SpritePlacementEntry329,
+		&SpritePlacementEntry330,
+		&SpritePlacementEntry331,
+		&SpritePlacementEntry332,
+		&SpritePlacementEntry333,
+		&SpritePlacementEntry334,
+		&SpritePlacementEntry335,
+		&SpritePlacementEntry336,
+		&SpritePlacementEntry337,
+		&SpritePlacementEntry338,
+		&SpritePlacementEntry339,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry340,
+		&SpritePlacementEntry341,
+		null,
+		null,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry342,
+		&SpritePlacementEntry343,
+		null,
+		&SpritePlacementEntry344,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry345,
+		null,
+		&SpritePlacementEntry346,
+		&SpritePlacementEntry347,
+		&SpritePlacementEntry348,
+		&SpritePlacementEntry349,
+		null,
+		null,
+		&SpritePlacementEntry350,
+		&SpritePlacementEntry351,
+		&SpritePlacementEntry352,
+		&SpritePlacementEntry353,
+		&SpritePlacementEntry354,
+		&SpritePlacementEntry355,
+		&SpritePlacementEntry356,
+		null,
+		&SpritePlacementEntry357,
+		&SpritePlacementEntry358,
+		null,
+		&SpritePlacementEntry359,
+	], [
+		&SpritePlacementEntry360,
+		&SpritePlacementEntry361,
+		null,
+		null,
+		&SpritePlacementEntry362,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry363,
+		null,
+		&SpritePlacementEntry364,
+		&SpritePlacementEntry365,
+		null,
+		&SpritePlacementEntry366,
+		null,
+		&SpritePlacementEntry367,
+		&SpritePlacementEntry368,
+		&SpritePlacementEntry369,
+		&SpritePlacementEntry370,
+		&SpritePlacementEntry371,
+		&SpritePlacementEntry372,
+		&SpritePlacementEntry373,
+		null,
+		&SpritePlacementEntry374,
+		null,
+		&SpritePlacementEntry375,
+		null,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry376,
+		&SpritePlacementEntry377,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry378,
+		&SpritePlacementEntry379,
+		&SpritePlacementEntry380,
+		&SpritePlacementEntry381,
+		&SpritePlacementEntry382,
+		&SpritePlacementEntry383,
+		&SpritePlacementEntry384,
+		&SpritePlacementEntry385,
+		null,
+		&SpritePlacementEntry386,
+		&SpritePlacementEntry387,
+		&SpritePlacementEntry388,
+		&SpritePlacementEntry389,
+		null,
+		&SpritePlacementEntry390,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry391,
+		null,
+	], [
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry392,
+		&SpritePlacementEntry393,
+		&SpritePlacementEntry394,
+		&SpritePlacementEntry395,
+		&SpritePlacementEntry396,
+		&SpritePlacementEntry397,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry398,
+		null,
+		&SpritePlacementEntry399,
+		&SpritePlacementEntry400,
+		&SpritePlacementEntry401,
+		&SpritePlacementEntry402,
+		&SpritePlacementEntry403,
+		null,
+		&SpritePlacementEntry404,
+		null,
+		&SpritePlacementEntry405,
+		&SpritePlacementEntry406,
+		&SpritePlacementEntry407,
+		&SpritePlacementEntry408,
+		null,
+		&SpritePlacementEntry409,
+		&SpritePlacementEntry410,
+		null,
+		null,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry411,
+		&SpritePlacementEntry412,
+		&SpritePlacementEntry413,
+		&SpritePlacementEntry414,
+		&SpritePlacementEntry415,
+		null,
+		null,
+		&SpritePlacementEntry416,
+		null,
+		&SpritePlacementEntry417,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry418,
+		&SpritePlacementEntry419,
+		&SpritePlacementEntry420,
+		&SpritePlacementEntry421,
+		null,
+		&SpritePlacementEntry422,
+		&SpritePlacementEntry423,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry424,
+		&SpritePlacementEntry425,
+		null,
+		&SpritePlacementEntry426,
+	], [
+		null,
+		null,
+		&SpritePlacementEntry427,
+		null,
+		&SpritePlacementEntry428,
+		&SpritePlacementEntry429,
+		&SpritePlacementEntry430,
+		&SpritePlacementEntry431,
+		&SpritePlacementEntry432,
+		&SpritePlacementEntry433,
+		&SpritePlacementEntry434,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry435,
+		&SpritePlacementEntry436,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry437,
+		null,
+		null,
+		&SpritePlacementEntry438,
+		&SpritePlacementEntry439,
+		&SpritePlacementEntry440,
+		null,
+		null,
+		&SpritePlacementEntry441,
+		null,
+		&SpritePlacementEntry442,
+		&SpritePlacementEntry443,
+		&SpritePlacementEntry444,
+	], [
+		null,
+		&SpritePlacementEntry445,
+		&SpritePlacementEntry446,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry447,
+		&SpritePlacementEntry448,
+		&SpritePlacementEntry449,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry450,
+		&SpritePlacementEntry451,
+		&SpritePlacementEntry452,
+		&SpritePlacementEntry453,
+		&SpritePlacementEntry454,
+		&SpritePlacementEntry455,
+		null,
+		null,
+		&SpritePlacementEntry456,
+		&SpritePlacementEntry457,
+		&SpritePlacementEntry458,
+	], [
+		&SpritePlacementEntry459,
+		&SpritePlacementEntry460,
+		&SpritePlacementEntry461,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry462,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry463,
+		null,
+		&SpritePlacementEntry464,
+		null,
+		&SpritePlacementEntry465,
+		&SpritePlacementEntry466,
+		null,
+		&SpritePlacementEntry467,
+		null,
+		&SpritePlacementEntry468,
+		null,
+		&SpritePlacementEntry469,
+		&SpritePlacementEntry470,
+		&SpritePlacementEntry471,
+		&SpritePlacementEntry472,
+		&SpritePlacementEntry473,
+		&SpritePlacementEntry474,
+		&SpritePlacementEntry475,
+	], [
+		&SpritePlacementEntry476,
+		&SpritePlacementEntry477,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry478,
+		&SpritePlacementEntry479,
+		&SpritePlacementEntry480,
+		null,
+		null,
+		&SpritePlacementEntry481,
+		&SpritePlacementEntry482,
+		&SpritePlacementEntry483,
+		null,
+		&SpritePlacementEntry484,
+		null,
+		&SpritePlacementEntry485,
+		&SpritePlacementEntry486,
+		&SpritePlacementEntry487,
+		&SpritePlacementEntry488,
+		&SpritePlacementEntry489,
+		&SpritePlacementEntry490,
+		&SpritePlacementEntry491,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry492,
+		&SpritePlacementEntry493,
+		&SpritePlacementEntry494,
+		&SpritePlacementEntry495,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry496,
+		null,
+		&SpritePlacementEntry497,
+		&SpritePlacementEntry498,
+		&SpritePlacementEntry499,
+		&SpritePlacementEntry500,
+		&SpritePlacementEntry501,
+		&SpritePlacementEntry502,
+		&SpritePlacementEntry503,
+	], [
+		null,
+		null,
+		null,
+		&SpritePlacementEntry504,
+		null,
+		null,
+		&SpritePlacementEntry505,
+		null,
+		&SpritePlacementEntry506,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry507,
+		null,
+		&SpritePlacementEntry508,
+		null,
+		&SpritePlacementEntry509,
+		null,
+		null,
+		&SpritePlacementEntry510,
+		&SpritePlacementEntry511,
+		null,
+		&SpritePlacementEntry512,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry513,
+		&SpritePlacementEntry514,
+		&SpritePlacementEntry515,
+		null,
+		null,
+		&SpritePlacementEntry516,
+	], [
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry517,
+		null,
+		&SpritePlacementEntry518,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry519,
+		null,
+		&SpritePlacementEntry520,
+		null,
+		null,
+		&SpritePlacementEntry521,
+		null,
+		&SpritePlacementEntry522,
+		&SpritePlacementEntry523,
+		null,
+		&SpritePlacementEntry524,
+		null,
+		&SpritePlacementEntry525,
+		&SpritePlacementEntry526,
+		&SpritePlacementEntry527,
+		&SpritePlacementEntry528,
+		&SpritePlacementEntry529,
+		&SpritePlacementEntry530,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry531,
+		&SpritePlacementEntry532,
+		&SpritePlacementEntry533,
+		null,
+		null,
+		&SpritePlacementEntry534,
+		&SpritePlacementEntry535,
+		null,
+		&SpritePlacementEntry536,
+		null,
+		&SpritePlacementEntry537,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry538,
+		&SpritePlacementEntry539,
+		&SpritePlacementEntry540,
+		&SpritePlacementEntry541,
+		&SpritePlacementEntry542,
+		null,
+		&SpritePlacementEntry543,
+		&SpritePlacementEntry544,
+		&SpritePlacementEntry545,
+		&SpritePlacementEntry546,
+		&SpritePlacementEntry547,
+		&SpritePlacementEntry548,
+	], [
+		null,
+		&SpritePlacementEntry549,
+		&SpritePlacementEntry550,
+		null,
+		null,
+		&SpritePlacementEntry551,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry552,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry553,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry554,
+		&SpritePlacementEntry555,
+		&SpritePlacementEntry556,
+		&SpritePlacementEntry557,
+		&SpritePlacementEntry558,
+		null,
+		&SpritePlacementEntry559,
+		&SpritePlacementEntry560,
+		&SpritePlacementEntry561,
+		&SpritePlacementEntry562,
+		&SpritePlacementEntry563,
+		null,
+	], [
+		null,
+		null,
+		&SpritePlacementEntry564,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry565,
+		&SpritePlacementEntry566,
+		&SpritePlacementEntry567,
+		null,
+		null,
+		&SpritePlacementEntry568,
+		null,
+		null,
+		&SpritePlacementEntry569,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry570,
+		&SpritePlacementEntry571,
+		&SpritePlacementEntry572,
+		&SpritePlacementEntry573,
+		&SpritePlacementEntry574,
+		&SpritePlacementEntry575,
+		null,
+		&SpritePlacementEntry576,
+		&SpritePlacementEntry577,
+		&SpritePlacementEntry578,
+		&SpritePlacementEntry579,
+		&SpritePlacementEntry580,
+		&SpritePlacementEntry581,
+	], [
+		null,
+		&SpritePlacementEntry582,
+		null,
+		&SpritePlacementEntry583,
+		null,
+		&SpritePlacementEntry584,
+		&SpritePlacementEntry585,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry586,
+		&SpritePlacementEntry587,
+		&SpritePlacementEntry588,
+		&SpritePlacementEntry589,
+		null,
+		null,
+		&SpritePlacementEntry590,
+		null,
+		&SpritePlacementEntry591,
+		&SpritePlacementEntry592,
+		&SpritePlacementEntry593,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry594,
+		&SpritePlacementEntry595,
+		&SpritePlacementEntry596,
+		&SpritePlacementEntry597,
+		&SpritePlacementEntry598,
+		&SpritePlacementEntry599,
+	], [
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry600,
+		&SpritePlacementEntry601,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry602,
+		null,
+		&SpritePlacementEntry603,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry604,
+		&SpritePlacementEntry605,
+		&SpritePlacementEntry606,
+		&SpritePlacementEntry607,
+		null,
+		&SpritePlacementEntry608,
+		&SpritePlacementEntry609,
+		&SpritePlacementEntry610,
+		&SpritePlacementEntry611,
+		&SpritePlacementEntry612,
+		&SpritePlacementEntry613,
+	], [
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry614,
+		&SpritePlacementEntry615,
+		&SpritePlacementEntry616,
+		&SpritePlacementEntry617,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry618,
+		&SpritePlacementEntry619,
+		&SpritePlacementEntry620,
+		null,
+		null,
+		null,
+		&SpritePlacementEntry621,
+		&SpritePlacementEntry622,
+		&SpritePlacementEntry623,
+		&SpritePlacementEntry624,
+		null,
+		&SpritePlacementEntry625,
+		null,
+		&SpritePlacementEntry626
+	]
+];
+
+/// $CF6BE7
+immutable SpritePlacementEntry SpritePlacementEntry0 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04E6, 0x70, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry1 = SpritePlacementEntry(4, [
+	SpritePlacement(0x04E3, 0x70, 0xD0),
+	SpritePlacement(0x04F3, 0xA0, 0x30),
+	SpritePlacement(0x04EB, 0xB0, 0x48),
+	SpritePlacement(0x04E8, 0xF0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry2 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04E5, 0x88, 0x80),
+	SpritePlacement(0x04E2, 0xC0, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry3 = SpritePlacementEntry(4, [
+	SpritePlacement(0x00C5, 0x18, 0xE8),
+	SpritePlacement(0x00C4, 0x30, 0xB8),
+	SpritePlacement(0x00C3, 0xB0, 0x40),
+	SpritePlacement(0x00C2, 0xC0, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry4 = SpritePlacementEntry(5, [
+	SpritePlacement(0x00C1, 0x38, 0xF0),
+	SpritePlacement(0x007C, 0x70, 0xD8),
+	SpritePlacement(0x007D, 0x80, 0x30),
+	SpritePlacement(0x00C0, 0x80, 0x48),
+	SpritePlacement(0x00A0, 0xE8, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry5 = SpritePlacementEntry(9, [
+	SpritePlacement(0x00C6, 0x90, 0x20),
+	SpritePlacement(0x00A4, 0x98, 0x38),
+	SpritePlacement(0x00A5, 0xA0, 0x20),
+	SpritePlacement(0x00BB, 0xE0, 0x60),
+	SpritePlacement(0x00C9, 0xE8, 0x88),
+	SpritePlacement(0x009E, 0xF0, 0x48),
+	SpritePlacement(0x009D, 0xF0, 0x78),
+	SpritePlacement(0x00A1, 0xF8, 0x58),
+	SpritePlacement(0x00BC, 0xF8, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry6 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04DE, 0xC8, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry7 = SpritePlacementEntry(4, [
+	SpritePlacement(0x04AD, 0x58, 0x48),
+	SpritePlacement(0x04B7, 0x58, 0x70),
+	SpritePlacement(0x04AE, 0x60, 0x90),
+	SpritePlacement(0x04AF, 0x98, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry8 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05FA, 0xC8, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry9 = SpritePlacementEntry(2, [
+	SpritePlacement(0x02A4, 0xA8, 0x08),
+	SpritePlacement(0x05A9, 0xB0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry10 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04F6, 0xB0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry11 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04F5, 0xD0, 0x38),
+	SpritePlacement(0x04F7, 0xF8, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry12 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02C5, 0xF8, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry13 = SpritePlacementEntry(4, [
+	SpritePlacement(0x004F, 0x60, 0x60),
+	SpritePlacement(0x0050, 0x60, 0xA8),
+	SpritePlacement(0x0051, 0x78, 0x48),
+	SpritePlacement(0x0052, 0x88, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry14 = SpritePlacementEntry(6, [
+	SpritePlacement(0x003E, 0x48, 0xB0),
+	SpritePlacement(0x0049, 0xC0, 0x48),
+	SpritePlacement(0x004A, 0xC0, 0x58),
+	SpritePlacement(0x004B, 0xC0, 0x68),
+	SpritePlacement(0x004C, 0xC0, 0x78),
+	SpritePlacement(0x004D, 0xC0, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry15 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0040, 0x40, 0x10),
+	SpritePlacement(0x003F, 0x60, 0x08),
+	SpritePlacement(0x0056, 0xC8, 0xC0),
+	SpritePlacement(0x0057, 0xD0, 0x98),
+	SpritePlacement(0x0058, 0xF0, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry16 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0048, 0x60, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry17 = SpritePlacementEntry(4, [
+	SpritePlacement(0x04E7, 0x08, 0xA0),
+	SpritePlacement(0x04EA, 0x90, 0x88),
+	SpritePlacement(0x04EF, 0x90, 0xA0),
+	SpritePlacement(0x04ED, 0xA0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry18 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04E9, 0x48, 0x60),
+	SpritePlacement(0x04E4, 0x50, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry19 = SpritePlacementEntry(5, [
+	SpritePlacement(0x04F2, 0x30, 0x88),
+	SpritePlacement(0x061F, 0x50, 0x60),
+	SpritePlacement(0x04F0, 0x60, 0x60),
+	SpritePlacement(0x04EE, 0x68, 0x98),
+	SpritePlacement(0x04F1, 0x70, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry20 = SpritePlacementEntry(2, [
+	SpritePlacement(0x009C, 0x90, 0xF8),
+	SpritePlacement(0x007E, 0xF8, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry21 = SpritePlacementEntry(1, [
+	SpritePlacement(0x057F, 0xA8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry22 = SpritePlacementEntry(1, [
+	SpritePlacement(0x009F, 0x18, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry23 = SpritePlacementEntry(2, [
+	SpritePlacement(0x00B6, 0x70, 0x30),
+	SpritePlacement(0x0095, 0xA0, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry24 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0094, 0x58, 0x60),
+	SpritePlacement(0x00B7, 0x70, 0x68),
+	SpritePlacement(0x0098, 0xF0, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry25 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0617, 0x80, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry26 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0616, 0x70, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry27 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04B1, 0x18, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry28 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0600, 0x00, 0xC8),
+	SpritePlacement(0x0601, 0xC0, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry29 = SpritePlacementEntry(3, [
+	SpritePlacement(0x04B2, 0x00, 0x60),
+	SpritePlacement(0x04B0, 0x00, 0x78),
+	SpritePlacement(0x05FE, 0x68, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry30 = SpritePlacementEntry(2, [
+	SpritePlacement(0x02A5, 0x50, 0xA4),
+	SpritePlacement(0x05AA, 0xB8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry31 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04FA, 0x30, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry32 = SpritePlacementEntry(4, [
+	SpritePlacement(0x04F9, 0x10, 0xB0),
+	SpritePlacement(0x04FB, 0x18, 0x58),
+	SpritePlacement(0x04F8, 0x20, 0x90),
+	SpritePlacement(0x04F4, 0x28, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry33 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0043, 0x48, 0x90),
+	SpritePlacement(0x0045, 0x60, 0x78),
+	SpritePlacement(0x0044, 0x60, 0xC8),
+	SpritePlacement(0x0047, 0x88, 0xA0),
+	SpritePlacement(0x0046, 0x88, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry34 = SpritePlacementEntry(12, [
+	SpritePlacement(0x0018, 0x30, 0x70),
+	SpritePlacement(0x0015, 0x38, 0xF0),
+	SpritePlacement(0x0014, 0x50, 0x58),
+	SpritePlacement(0x000E, 0x58, 0xA0),
+	SpritePlacement(0x000F, 0x68, 0xD8),
+	SpritePlacement(0x0012, 0x70, 0x74),
+	SpritePlacement(0x0024, 0xC0, 0x58),
+	SpritePlacement(0x0021, 0xC0, 0x88),
+	SpritePlacement(0x0022, 0xE0, 0x50),
+	SpritePlacement(0x0023, 0xE8, 0x60),
+	SpritePlacement(0x0026, 0xE8, 0x78),
+	SpritePlacement(0x0025, 0xE8, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry35 = SpritePlacementEntry(7, [
+	SpritePlacement(0x0017, 0x30, 0x30),
+	SpritePlacement(0x0010, 0x50, 0x04),
+	SpritePlacement(0x0013, 0x50, 0x28),
+	SpritePlacement(0x0011, 0x50, 0x70),
+	SpritePlacement(0x0016, 0x58, 0x70),
+	SpritePlacement(0x0063, 0xC8, 0x90),
+	SpritePlacement(0x0064, 0xD8, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry36 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0059, 0x40, 0x68),
+	SpritePlacement(0x0062, 0xC0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry37 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05FD, 0xC8, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry38 = SpritePlacementEntry(4, [
+	SpritePlacement(0x00B9, 0x30, 0x80),
+	SpritePlacement(0x0093, 0x38, 0xB0),
+	SpritePlacement(0x0080, 0x58, 0xA0),
+	SpritePlacement(0x00A2, 0x60, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry39 = SpritePlacementEntry(3, [
+	SpritePlacement(0x009B, 0x30, 0x48),
+	SpritePlacement(0x00C8, 0x48, 0xF8),
+	SpritePlacement(0x009A, 0x50, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry40 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0099, 0x90, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry41 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0097, 0x10, 0xF0),
+	SpritePlacement(0x0096, 0x20, 0xC0),
+	SpritePlacement(0x00BE, 0x28, 0xF0),
+	SpritePlacement(0x00BD, 0x30, 0xB8),
+	SpritePlacement(0x00C7, 0x38, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry42 = SpritePlacementEntry(1, [
+	SpritePlacement(0x061A, 0x88, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry43 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0605, 0x40, 0xB8),
+	SpritePlacement(0x04B6, 0x98, 0x80),
+	SpritePlacement(0x04B3, 0xA8, 0xD0),
+	SpritePlacement(0x04B5, 0xB0, 0xA0),
+	SpritePlacement(0x04B4, 0xB0, 0xB8),
+	SpritePlacement(0x04B8, 0xB8, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry44 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05FB, 0x78, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry45 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0036, 0x38, 0x70),
+	SpritePlacement(0x0037, 0x38, 0xB0),
+	SpritePlacement(0x0034, 0x58, 0xA8),
+	SpritePlacement(0x0065, 0xD8, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry46 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0038, 0x38, 0x10),
+	SpritePlacement(0x0039, 0x50, 0x70),
+	SpritePlacement(0x0035, 0x60, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry47 = SpritePlacementEntry(5, [
+	SpritePlacement(0x005A, 0x60, 0x80),
+	SpritePlacement(0x001F, 0xB0, 0x90),
+	SpritePlacement(0x0020, 0xD0, 0x10),
+	SpritePlacement(0x001E, 0xD8, 0x90),
+	SpritePlacement(0x0584, 0xE8, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry48 = SpritePlacementEntry(4, [
+	SpritePlacement(0x004E, 0x50, 0xA8),
+	SpritePlacement(0x0001, 0xB0, 0x90),
+	SpritePlacement(0x0002, 0xE0, 0xD0),
+	SpritePlacement(0x0003, 0xF0, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry49 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05FC, 0x90, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry50 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0602, 0x30, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry51 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0082, 0x08, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry52 = SpritePlacementEntry(1, [
+	SpritePlacement(0x007F, 0x08, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry53 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0081, 0xC0, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry54 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0619, 0xB8, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry55 = SpritePlacementEntry(1, [
+	SpritePlacement(0x058E, 0xB0, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry56 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05BB, 0x40, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry57 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0033, 0x38, 0x70),
+	SpritePlacement(0x0032, 0x38, 0xB0),
+	SpritePlacement(0x002C, 0x50, 0x90),
+	SpritePlacement(0x002D, 0x60, 0xD8),
+	SpritePlacement(0x002E, 0x68, 0xC8),
+	SpritePlacement(0x005B, 0xD0, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry58 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0031, 0x38, 0x70),
+	SpritePlacement(0x0030, 0x50, 0x68),
+	SpritePlacement(0x002F, 0x58, 0x98),
+	SpritePlacement(0x006E, 0xC0, 0x50),
+	SpritePlacement(0x006F, 0xE8, 0x50),
+	SpritePlacement(0x0070, 0xE8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry59 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0019, 0xE0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry60 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0055, 0x48, 0x58),
+	SpritePlacement(0x0073, 0xD8, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry61 = SpritePlacementEntry(6, [
+	SpritePlacement(0x006D, 0x40, 0xA0),
+	SpritePlacement(0x006C, 0x48, 0x50),
+	SpritePlacement(0x0006, 0xB8, 0x78),
+	SpritePlacement(0x0004, 0xE0, 0x98),
+	SpritePlacement(0x0005, 0xF0, 0x48),
+	SpritePlacement(0x0007, 0xF0, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry62 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05FF, 0x68, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry63 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0603, 0x48, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry64 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04B9, 0x00, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry65 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0084, 0x70, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry66 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00A8, 0xA0, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry67 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0580, 0x68, 0x20),
+	SpritePlacement(0x00AF, 0x88, 0xD0),
+	SpritePlacement(0x0083, 0x90, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry68 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0086, 0x68, 0xC0),
+	SpritePlacement(0x00AD, 0xA0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry69 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0593, 0x78, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry70 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01C3, 0x60, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry71 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01BE, 0x98, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry72 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0590, 0xF8, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry73 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01BF, 0xC0, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry74 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0069, 0x48, 0x80),
+	SpritePlacement(0x0067, 0x60, 0xC0),
+	SpritePlacement(0x0066, 0x68, 0x30),
+	SpritePlacement(0x0068, 0x68, 0x70),
+	SpritePlacement(0x005D, 0xE0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry75 = SpritePlacementEntry(3, [
+	SpritePlacement(0x003D, 0x40, 0x30),
+	SpritePlacement(0x0071, 0xC8, 0x60),
+	SpritePlacement(0x0072, 0xD0, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry76 = SpritePlacementEntry(2, [
+	SpritePlacement(0x005C, 0x48, 0x40),
+	SpritePlacement(0x0077, 0xD0, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry77 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0053, 0x48, 0x78),
+	SpritePlacement(0x0054, 0x68, 0x50),
+	SpritePlacement(0x0075, 0xD8, 0x78),
+	SpritePlacement(0x0074, 0xE0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry78 = SpritePlacementEntry(5, [
+	SpritePlacement(0x001C, 0x30, 0x90),
+	SpritePlacement(0x001B, 0x38, 0xD8),
+	SpritePlacement(0x001A, 0x40, 0xC8),
+	SpritePlacement(0x001D, 0x50, 0xF0),
+	SpritePlacement(0x0027, 0xC8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry79 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05F2, 0x80, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry80 = SpritePlacementEntry(1, [
+	SpritePlacement(0x048F, 0x38, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry81 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00B5, 0x78, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry82 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0089, 0x90, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry83 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0087, 0xB0, 0x50),
+	SpritePlacement(0x00A9, 0xE0, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry84 = SpritePlacementEntry(3, [
+	SpritePlacement(0x008A, 0x60, 0x1C),
+	SpritePlacement(0x00BF, 0xA0, 0xD8),
+	SpritePlacement(0x00AA, 0xE0, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry85 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0582, 0x80, 0xA0),
+	SpritePlacement(0x00BA, 0xD8, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry86 = SpritePlacementEntry(3, [
+	SpritePlacement(0x00B8, 0xA0, 0xF8),
+	SpritePlacement(0x00AE, 0xB0, 0x40),
+	SpritePlacement(0x0088, 0xB0, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry87 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01C2, 0x78, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry88 = SpritePlacementEntry(4, [
+	SpritePlacement(0x01B7, 0x20, 0xB8),
+	SpritePlacement(0x01B8, 0x30, 0xA0),
+	SpritePlacement(0x01BA, 0x38, 0x90),
+	SpritePlacement(0x01B9, 0x38, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry89 = SpritePlacementEntry(2, [
+	SpritePlacement(0x006B, 0x60, 0xB0),
+	SpritePlacement(0x006A, 0x68, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry90 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0028, 0x40, 0x68),
+	SpritePlacement(0x0029, 0x58, 0x80),
+	SpritePlacement(0x002B, 0x60, 0x40),
+	SpritePlacement(0x002A, 0x68, 0x18),
+	SpritePlacement(0x0076, 0xF0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry91 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0060, 0x48, 0x68),
+	SpritePlacement(0x0061, 0x50, 0x80),
+	SpritePlacement(0x005F, 0x60, 0x40),
+	SpritePlacement(0x005E, 0x68, 0x60),
+	SpritePlacement(0x007B, 0x90, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry92 = SpritePlacementEntry(8, [
+	SpritePlacement(0x0041, 0x60, 0x50),
+	SpritePlacement(0x0042, 0x60, 0x60),
+	SpritePlacement(0x000C, 0xC0, 0x68),
+	SpritePlacement(0x000B, 0xC8, 0x4C),
+	SpritePlacement(0x0008, 0xC8, 0xA8),
+	SpritePlacement(0x0009, 0xC8, 0xC0),
+	SpritePlacement(0x000D, 0xF0, 0x78),
+	SpritePlacement(0x000A, 0xF8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry93 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0079, 0x30, 0x50),
+	SpritePlacement(0x0078, 0x48, 0x30),
+	SpritePlacement(0x007A, 0x50, 0x68),
+	SpritePlacement(0x003C, 0xC0, 0x40),
+	SpritePlacement(0x003A, 0xC0, 0x58),
+	SpritePlacement(0x003B, 0xD8, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry94 = SpritePlacementEntry(1, [
+	SpritePlacement(0x008B, 0xE0, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry95 = SpritePlacementEntry(1, [
+	SpritePlacement(0x008C, 0xF0, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry96 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0085, 0xB0, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry97 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0583, 0xC0, 0xF8),
+	SpritePlacement(0x00AB, 0xD0, 0x20),
+	SpritePlacement(0x008E, 0xD0, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry98 = SpritePlacementEntry(4, [
+	SpritePlacement(0x00CA, 0x48, 0x78),
+	SpritePlacement(0x0092, 0x50, 0x50),
+	SpritePlacement(0x00A3, 0x80, 0x90),
+	SpritePlacement(0x00AC, 0xD0, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry99 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00B0, 0xE8, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry100 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0595, 0x48, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry101 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05BC, 0x78, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry102 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0198, 0x50, 0xB0),
+	SpritePlacement(0x0196, 0xC0, 0x68),
+	SpritePlacement(0x0195, 0xC8, 0x48),
+	SpritePlacement(0x0194, 0xC8, 0xA8),
+	SpritePlacement(0x0193, 0xC8, 0xC0),
+	SpritePlacement(0x0197, 0xF0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry103 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0254, 0x40, 0x48),
+	SpritePlacement(0x0253, 0x40, 0x60),
+	SpritePlacement(0x0257, 0x60, 0x20),
+	SpritePlacement(0x0256, 0x60, 0x38),
+	SpritePlacement(0x0255, 0x60, 0x50),
+	SpritePlacement(0x0264, 0xC8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry104 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0199, 0xD0, 0x98),
+	SpritePlacement(0x019A, 0xD8, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry105 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0252, 0x48, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry106 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0179, 0xC0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry107 = SpritePlacementEntry(1, [
+	SpritePlacement(0x008D, 0x00, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry108 = SpritePlacementEntry(7, [
+	SpritePlacement(0x008F, 0x00, 0x20),
+	SpritePlacement(0x0090, 0xC0, 0xB0),
+	SpritePlacement(0x0091, 0xC8, 0x98),
+	SpritePlacement(0x00B1, 0xD0, 0x80),
+	SpritePlacement(0x00B3, 0xD0, 0xB8),
+	SpritePlacement(0x00B2, 0xD8, 0x98),
+	SpritePlacement(0x00B4, 0xD8, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry109 = SpritePlacementEntry(2, [
+	SpritePlacement(0x00A6, 0x40, 0x78),
+	SpritePlacement(0x00A7, 0xA0, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry110 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0594, 0xB0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry111 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01C1, 0x40, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry112 = SpritePlacementEntry(3, [
+	SpritePlacement(0x058D, 0x00, 0xD0),
+	SpritePlacement(0x01BD, 0x40, 0x28),
+	SpritePlacement(0x01BB, 0x40, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry113 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0592, 0x80, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry114 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05A3, 0x78, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry115 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0250, 0x48, 0x40),
+	SpritePlacement(0x024F, 0x60, 0x28),
+	SpritePlacement(0x0251, 0x60, 0xA0),
+	SpritePlacement(0x0266, 0xB8, 0x30),
+	SpritePlacement(0x0265, 0xD0, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry116 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0177, 0x60, 0x80),
+	SpritePlacement(0x0178, 0x70, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry117 = SpritePlacementEntry(9, [
+	SpritePlacement(0x059C, 0x40, 0x60),
+	SpritePlacement(0x025D, 0x40, 0x78),
+	SpritePlacement(0x059D, 0x50, 0x98),
+	SpritePlacement(0x059E, 0x58, 0x50),
+	SpritePlacement(0x059F, 0x58, 0x80),
+	SpritePlacement(0x05A0, 0x58, 0xA8),
+	SpritePlacement(0x05A1, 0x60, 0x40),
+	SpritePlacement(0x025C, 0x70, 0x28),
+	SpritePlacement(0x05A2, 0x70, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry118 = SpritePlacementEntry(3, [
+	SpritePlacement(0x02F1, 0x68, 0x68),
+	SpritePlacement(0x02F0, 0x70, 0x50),
+	SpritePlacement(0x0192, 0xF8, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry119 = SpritePlacementEntry(1, [
+	SpritePlacement(0x027A, 0xE8, 0xEC),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry120 = SpritePlacementEntry(1, [
+	SpritePlacement(0x027F, 0xF8, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry121 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00D1, 0x60, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry122 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00CE, 0x60, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry123 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00CD, 0x60, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry124 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01C0, 0xB0, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry125 = SpritePlacementEntry(1, [
+	SpritePlacement(0x058F, 0x10, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry126 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0591, 0x38, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry127 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00D3, 0x60, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry128 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02C4, 0xF8, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry129 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05BA, 0x58, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry130 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0191, 0x40, 0x90),
+	SpritePlacement(0x0190, 0x58, 0x80),
+	SpritePlacement(0x018F, 0x58, 0x98),
+	SpritePlacement(0x018E, 0x68, 0x50),
+	SpritePlacement(0x018D, 0x70, 0x40),
+	SpritePlacement(0x0189, 0xF0, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry131 = SpritePlacementEntry(8, [
+	SpritePlacement(0x02EE, 0x40, 0xA0),
+	SpritePlacement(0x02EB, 0x48, 0x70),
+	SpritePlacement(0x02EF, 0x48, 0x88),
+	SpritePlacement(0x02EC, 0x68, 0x28),
+	SpritePlacement(0x02ED, 0x68, 0x58),
+	SpritePlacement(0x0184, 0xD8, 0x58),
+	SpritePlacement(0x0188, 0xF0, 0x38),
+	SpritePlacement(0x058B, 0xF0, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry132 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0181, 0xE8, 0x18),
+	SpritePlacement(0x018C, 0xE8, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry133 = SpritePlacementEntry(2, [
+	SpritePlacement(0x027E, 0x00, 0xE8),
+	SpritePlacement(0x0272, 0x68, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry134 = SpritePlacementEntry(1, [
+	SpritePlacement(0x027D, 0x00, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry135 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0623, 0x70, 0xF8),
+	SpritePlacement(0x0518, 0xB0, 0x10),
+	SpritePlacement(0x050A, 0xB0, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry136 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0622, 0xA0, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry137 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04E1, 0xC8, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry138 = SpritePlacementEntry(1, [
+	SpritePlacement(0x061B, 0x68, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry139 = SpritePlacementEntry(1, [
+	SpritePlacement(0x061D, 0xF0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry140 = SpritePlacementEntry(1, [
+	SpritePlacement(0x059A, 0x70, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry141 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01BC, 0x00, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry142 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00CC, 0xE0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry143 = SpritePlacementEntry(1, [
+	SpritePlacement(0x048E, 0xB8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry144 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02C1, 0x00, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry145 = SpritePlacementEntry(7, [
+	SpritePlacement(0x0186, 0x30, 0xC0),
+	SpritePlacement(0x025F, 0xC8, 0x60),
+	SpritePlacement(0x0262, 0xC8, 0x88),
+	SpritePlacement(0x025E, 0xC8, 0xA0),
+	SpritePlacement(0x0261, 0xE0, 0xB8),
+	SpritePlacement(0x0263, 0xF0, 0x58),
+	SpritePlacement(0x0260, 0xF8, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry146 = SpritePlacementEntry(8, [
+	SpritePlacement(0x018A, 0x10, 0x10),
+	SpritePlacement(0x0180, 0x18, 0xA8),
+	SpritePlacement(0x018B, 0x28, 0x28),
+	SpritePlacement(0x0183, 0x28, 0xA8),
+	SpritePlacement(0x017F, 0x28, 0xD8),
+	SpritePlacement(0x0185, 0x38, 0x60),
+	SpritePlacement(0x0182, 0x58, 0xB8),
+	SpritePlacement(0x0187, 0x70, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry147 = SpritePlacementEntry(6, [
+	SpritePlacement(0x017B, 0x18, 0x48),
+	SpritePlacement(0x017E, 0x38, 0x08),
+	SpritePlacement(0x017D, 0x48, 0x08),
+	SpritePlacement(0x017C, 0x48, 0x48),
+	SpritePlacement(0x017A, 0x48, 0x88),
+	SpritePlacement(0x058C, 0x58, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry148 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04EC, 0xA0, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry149 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0581, 0x70, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry150 = SpritePlacementEntry(1, [
+	SpritePlacement(0x050B, 0x18, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry151 = SpritePlacementEntry(15, [
+	SpritePlacement(0x0514, 0x10, 0x18),
+	SpritePlacement(0x0505, 0x18, 0x30),
+	SpritePlacement(0x0506, 0x20, 0x38),
+	SpritePlacement(0x0508, 0x30, 0x10),
+	SpritePlacement(0x050C, 0x30, 0x40),
+	SpritePlacement(0x0502, 0x38, 0x00),
+	SpritePlacement(0x0509, 0x40, 0x48),
+	SpritePlacement(0x0504, 0x48, 0x38),
+	SpritePlacement(0x0512, 0x58, 0x18),
+	SpritePlacement(0x0503, 0x58, 0x30),
+	SpritePlacement(0x0511, 0x60, 0x08),
+	SpritePlacement(0x0513, 0x78, 0x20),
+	SpritePlacement(0x0620, 0xE8, 0x68),
+	SpritePlacement(0x0507, 0xE8, 0xF0),
+	SpritePlacement(0x050D, 0xF8, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry152 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04DF, 0x68, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry153 = SpritePlacementEntry(2, [
+	SpritePlacement(0x043E, 0xC0, 0x78),
+	SpritePlacement(0x0437, 0xE8, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry154 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0422, 0xC0, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry155 = SpritePlacementEntry(1, [
+	SpritePlacement(0x043B, 0xB8, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry156 = SpritePlacementEntry(4, [
+	SpritePlacement(0x043A, 0xB8, 0xF0),
+	SpritePlacement(0x041E, 0xC0, 0x18),
+	SpritePlacement(0x0438, 0xE8, 0x08),
+	SpritePlacement(0x0439, 0xF0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry157 = SpritePlacementEntry(5, [
+	SpritePlacement(0x043F, 0xB0, 0x68),
+	SpritePlacement(0x043C, 0xB8, 0x08),
+	SpritePlacement(0x0430, 0xB8, 0x18),
+	SpritePlacement(0x0431, 0xB8, 0x30),
+	SpritePlacement(0x0432, 0xF0, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry158 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0423, 0xC0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry159 = SpritePlacementEntry(2, [
+	SpritePlacement(0x042F, 0x78, 0x90),
+	SpritePlacement(0x0424, 0xC0, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry160 = SpritePlacementEntry(1, [
+	SpritePlacement(0x042B, 0xF8, 0x74),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry161 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0624, 0x08, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry162 = SpritePlacementEntry(2, [
+	SpritePlacement(0x050F, 0x08, 0xD8),
+	SpritePlacement(0x0515, 0x20, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry163 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0517, 0xB0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry164 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0621, 0x50, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry165 = SpritePlacementEntry(1, [
+	SpritePlacement(0x061C, 0xB8, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry166 = SpritePlacementEntry(2, [
+	SpritePlacement(0x061E, 0x18, 0x00),
+	SpritePlacement(0x04E0, 0x38, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry167 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0618, 0x20, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry168 = SpritePlacementEntry(1, [
+	SpritePlacement(0x042E, 0xB8, 0x84),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry169 = SpritePlacementEntry(1, [
+	SpritePlacement(0x041D, 0x98, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry170 = SpritePlacementEntry(2, [
+	SpritePlacement(0x043D, 0x28, 0x30),
+	SpritePlacement(0x042D, 0x30, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry171 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0433, 0x08, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry172 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0426, 0x50, 0x88),
+	SpritePlacement(0x0420, 0xF8, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry173 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0436, 0x78, 0x80),
+	SpritePlacement(0x0425, 0x78, 0x98),
+	SpritePlacement(0x041F, 0xD0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry174 = SpritePlacementEntry(1, [
+	SpritePlacement(0x042A, 0xB8, 0xD4),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry175 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0435, 0x18, 0x98),
+	SpritePlacement(0x0434, 0x78, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry176 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0427, 0x38, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry177 = SpritePlacementEntry(3, [
+	SpritePlacement(0x042C, 0x20, 0x7C),
+	SpritePlacement(0x0429, 0x70, 0x60),
+	SpritePlacement(0x0440, 0xA8, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry178 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0428, 0x30, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry179 = SpritePlacementEntry(4, [
+	SpritePlacement(0x026D, 0x30, 0x90),
+	SpritePlacement(0x026F, 0x30, 0x90),
+	SpritePlacement(0x0269, 0x68, 0x98),
+	SpritePlacement(0x026A, 0x70, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry180 = SpritePlacementEntry(5, [
+	SpritePlacement(0x026E, 0x10, 0x40),
+	SpritePlacement(0x026B, 0x20, 0x70),
+	SpritePlacement(0x026C, 0x48, 0x58),
+	SpritePlacement(0x0267, 0x50, 0x30),
+	SpritePlacement(0x0268, 0x58, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry181 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0516, 0x80, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry182 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0519, 0x70, 0x70),
+	SpritePlacement(0x0510, 0x90, 0x18),
+	SpritePlacement(0x050E, 0x90, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry183 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03E3, 0x80, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry184 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0496, 0xD8, 0x08),
+	SpritePlacement(0x0497, 0xD8, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry185 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0421, 0x00, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry186 = SpritePlacementEntry(2, [
+	SpritePlacement(0x041C, 0x68, 0x58),
+	SpritePlacement(0x041B, 0x68, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry187 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05BD, 0xD8, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry188 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0259, 0x18, 0x30),
+	SpritePlacement(0x0258, 0x20, 0x10),
+	SpritePlacement(0x025A, 0x30, 0x48),
+	SpritePlacement(0x025B, 0x38, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry189 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0274, 0x40, 0x30),
+	SpritePlacement(0x0273, 0x50, 0x90),
+	SpritePlacement(0x0275, 0x50, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry190 = SpritePlacementEntry(10, [
+	SpritePlacement(0x027B, 0x08, 0x70),
+	SpritePlacement(0x027C, 0x10, 0xF8),
+	SpritePlacement(0x0281, 0x68, 0x50),
+	SpritePlacement(0x0276, 0x78, 0x98),
+	SpritePlacement(0x028F, 0x98, 0x58),
+	SpritePlacement(0x0290, 0xA8, 0x58),
+	SpritePlacement(0x0282, 0xB0, 0x58),
+	SpritePlacement(0x0283, 0xC0, 0x58),
+	SpritePlacement(0x0284, 0xD0, 0x58),
+	SpritePlacement(0x028E, 0xE0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry191 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02A9, 0xC0, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry192 = SpritePlacementEntry(3, [
+	SpritePlacement(0x02AE, 0xC0, 0x30),
+	SpritePlacement(0x02AA, 0xC0, 0x98),
+	SpritePlacement(0x05A8, 0xC8, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry193 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02AD, 0xC0, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry194 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03B4, 0xD0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry195 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03DC, 0x80, 0xB8),
+	SpritePlacement(0x03C9, 0x80, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry196 = SpritePlacementEntry(4, [
+	SpritePlacement(0x045A, 0x58, 0xC0),
+	SpritePlacement(0x0459, 0x88, 0x98),
+	SpritePlacement(0x0456, 0x90, 0x28),
+	SpritePlacement(0x0457, 0xF0, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry197 = SpritePlacementEntry(3, [
+	SpritePlacement(0x045C, 0x58, 0x40),
+	SpritePlacement(0x045B, 0x88, 0x18),
+	SpritePlacement(0x044D, 0xB8, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry198 = SpritePlacementEntry(2, [
+	SpritePlacement(0x049F, 0x38, 0x30),
+	SpritePlacement(0x04A0, 0x38, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry199 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05F3, 0xE8, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry200 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04A4, 0xD8, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry201 = SpritePlacementEntry(3, [
+	SpritePlacement(0x04A7, 0xD8, 0x58),
+	SpritePlacement(0x04A5, 0xD8, 0xB0),
+	SpritePlacement(0x04A6, 0xD8, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry202 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04A8, 0x38, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry203 = SpritePlacementEntry(3, [
+	SpritePlacement(0x05C0, 0x48, 0x30),
+	SpritePlacement(0x05C1, 0x58, 0x18),
+	SpritePlacement(0x05BF, 0x58, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry204 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05EF, 0xA0, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry205 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0287, 0xF0, 0x38),
+	SpritePlacement(0x0288, 0xF0, 0x50),
+	SpritePlacement(0x0289, 0xF8, 0x28),
+	SpritePlacement(0x028A, 0xF8, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry206 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0494, 0x58, 0x48),
+	SpritePlacement(0x0495, 0x58, 0xA8),
+	SpritePlacement(0x04A9, 0x70, 0x80),
+	SpritePlacement(0x04AA, 0x70, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry207 = SpritePlacementEntry(4, [
+	SpritePlacement(0x02AB, 0x50, 0xD8),
+	SpritePlacement(0x05A5, 0x60, 0xD0),
+	SpritePlacement(0x02AF, 0x80, 0x78),
+	SpritePlacement(0x02AC, 0x88, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry208 = SpritePlacementEntry(2, [
+	SpritePlacement(0x02A7, 0x20, 0xD0),
+	SpritePlacement(0x05A7, 0x48, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry209 = SpritePlacementEntry(4, [
+	SpritePlacement(0x02A6, 0x68, 0x48),
+	SpritePlacement(0x05A6, 0x80, 0x30),
+	SpritePlacement(0x05A4, 0x80, 0xB0),
+	SpritePlacement(0x02A8, 0x98, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry210 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03D6, 0xA0, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry211 = SpritePlacementEntry(4, [
+	SpritePlacement(0x03DE, 0xD8, 0x80),
+	SpritePlacement(0x03DF, 0xE0, 0x98),
+	SpritePlacement(0x03E0, 0xF0, 0x80),
+	SpritePlacement(0x03DD, 0xF0, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry212 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03BF, 0xA8, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry213 = SpritePlacementEntry(2, [
+	SpritePlacement(0x044C, 0x90, 0xD0),
+	SpritePlacement(0x0450, 0xA8, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry214 = SpritePlacementEntry(1, [
+	SpritePlacement(0x062D, 0x30, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry215 = SpritePlacementEntry(1, [
+	SpritePlacement(0x062C, 0xF0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry216 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05AE, 0x60, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry217 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0572, 0x38, 0xB8),
+	SpritePlacement(0x0563, 0xB8, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry218 = SpritePlacementEntry(1, [
+	SpritePlacement(0x056C, 0xB8, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry219 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05EC, 0xE0, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry220 = SpritePlacementEntry(3, [
+	SpritePlacement(0x028B, 0x00, 0x60),
+	SpritePlacement(0x028C, 0x08, 0x38),
+	SpritePlacement(0x028D, 0x10, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry221 = SpritePlacementEntry(1, [
+	SpritePlacement(0x046E, 0x20, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry222 = SpritePlacementEntry(2, [
+	SpritePlacement(0x047C, 0x58, 0x70),
+	SpritePlacement(0x0483, 0x80, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry223 = SpritePlacementEntry(2, [
+	SpritePlacement(0x048A, 0x88, 0x10),
+	SpritePlacement(0x048B, 0x90, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry224 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03C7, 0x08, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry225 = SpritePlacementEntry(9, [
+	SpritePlacement(0x03C8, 0x30, 0x30),
+	SpritePlacement(0x03B8, 0x30, 0x74),
+	SpritePlacement(0x03BD, 0x40, 0x48),
+	SpritePlacement(0x03BE, 0x48, 0x40),
+	SpritePlacement(0x03B9, 0x50, 0x48),
+	SpritePlacement(0x03BA, 0x58, 0x58),
+	SpritePlacement(0x03BC, 0x58, 0x78),
+	SpritePlacement(0x03BB, 0x60, 0x68),
+	SpritePlacement(0x03D7, 0xC0, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry226 = SpritePlacementEntry(3, [
+	SpritePlacement(0x03CF, 0x70, 0xA0),
+	SpritePlacement(0x03CE, 0xA8, 0xC8),
+	SpritePlacement(0x03D1, 0xC8, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry227 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03D0, 0x78, 0x28),
+	SpritePlacement(0x03D2, 0xF0, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry228 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03CB, 0x78, 0xD0),
+	SpritePlacement(0x03B6, 0xD0, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry229 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03C6, 0xB8, 0x78),
+	SpritePlacement(0x03C5, 0xD8, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry230 = SpritePlacementEntry(2, [
+	SpritePlacement(0x045D, 0x60, 0xE0),
+	SpritePlacement(0x0452, 0x80, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry231 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0451, 0x20, 0xC8),
+	SpritePlacement(0x044E, 0xC0, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry232 = SpritePlacementEntry(1, [
+	SpritePlacement(0x062E, 0x80, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry233 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0549, 0x48, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry234 = SpritePlacementEntry(2, [
+	SpritePlacement(0x062A, 0xE8, 0x70),
+	SpritePlacement(0x0537, 0xE8, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry235 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05AF, 0x68, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry236 = SpritePlacementEntry(4, [
+	SpritePlacement(0x056F, 0x28, 0x60),
+	SpritePlacement(0x0569, 0x48, 0xF0),
+	SpritePlacement(0x0575, 0xA0, 0x68),
+	SpritePlacement(0x0564, 0xF0, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry237 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0579, 0x48, 0xF0),
+	SpritePlacement(0x0578, 0x98, 0x90),
+	SpritePlacement(0x0577, 0xF8, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry238 = SpritePlacementEntry(1, [
+	SpritePlacement(0x056E, 0x18, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry239 = SpritePlacementEntry(3, [
+	SpritePlacement(0x057D, 0x08, 0x10),
+	SpritePlacement(0x057A, 0x48, 0x38),
+	SpritePlacement(0x0568, 0x78, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry240 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0278, 0xD0, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry241 = SpritePlacementEntry(4, [
+	SpritePlacement(0x048C, 0x28, 0x18),
+	SpritePlacement(0x0478, 0x28, 0x48),
+	SpritePlacement(0x0479, 0xA0, 0x68),
+	SpritePlacement(0x0488, 0xA0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry242 = SpritePlacementEntry(11, [
+	SpritePlacement(0x048D, 0x00, 0x80),
+	SpritePlacement(0x0473, 0x28, 0x48),
+	SpritePlacement(0x046F, 0x30, 0x28),
+	SpritePlacement(0x0470, 0x38, 0x38),
+	SpritePlacement(0x0471, 0x38, 0x60),
+	SpritePlacement(0x0476, 0x48, 0x98),
+	SpritePlacement(0x0484, 0x50, 0x28),
+	SpritePlacement(0x0475, 0x78, 0x48),
+	SpritePlacement(0x0472, 0x80, 0x70),
+	SpritePlacement(0x0474, 0x88, 0x08),
+	SpritePlacement(0x0485, 0xA8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry243 = SpritePlacementEntry(3, [
+	SpritePlacement(0x03B3, 0x10, 0x98),
+	SpritePlacement(0x03D3, 0x88, 0xB8),
+	SpritePlacement(0x03AF, 0xC0, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry244 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03D5, 0xB0, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry245 = SpritePlacementEntry(4, [
+	SpritePlacement(0x03C0, 0x20, 0xA8),
+	SpritePlacement(0x03E2, 0x30, 0xC0),
+	SpritePlacement(0x03B7, 0x70, 0xC0),
+	SpritePlacement(0x03D8, 0x78, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry246 = SpritePlacementEntry(3, [
+	SpritePlacement(0x05E7, 0x38, 0xE8),
+	SpritePlacement(0x03C2, 0xC8, 0x00),
+	SpritePlacement(0x03C3, 0xF0, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry247 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03DB, 0x28, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry248 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0453, 0x50, 0xE0),
+	SpritePlacement(0x0454, 0x58, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry249 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0455, 0x50, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry250 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0458, 0x20, 0x48),
+	SpritePlacement(0x044F, 0x20, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry251 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0544, 0x60, 0x40),
+	SpritePlacement(0x0546, 0x60, 0x60),
+	SpritePlacement(0x0543, 0x68, 0x30),
+	SpritePlacement(0x0545, 0x68, 0x50),
+	SpritePlacement(0x0547, 0x68, 0x70),
+	SpritePlacement(0x0548, 0x68, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry252 = SpritePlacementEntry(2, [
+	SpritePlacement(0x052E, 0x98, 0x10),
+	SpritePlacement(0x053C, 0xA0, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry253 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0559, 0x80, 0x38),
+	SpritePlacement(0x055B, 0x90, 0x60),
+	SpritePlacement(0x055A, 0x90, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry254 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05B0, 0xF0, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry255 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05B2, 0x10, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry256 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05ED, 0x68, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry257 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0566, 0x20, 0x38),
+	SpritePlacement(0x0576, 0x58, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry258 = SpritePlacementEntry(2, [
+	SpritePlacement(0x056D, 0x38, 0xD0),
+	SpritePlacement(0x0571, 0x68, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry259 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0280, 0x08, 0x58),
+	SpritePlacement(0x0279, 0xD8, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry260 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03CA, 0x60, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry261 = SpritePlacementEntry(5, [
+	SpritePlacement(0x03D4, 0x00, 0x88),
+	SpritePlacement(0x03B2, 0x48, 0x70),
+	SpritePlacement(0x03D9, 0x98, 0x28),
+	SpritePlacement(0x03C1, 0xB0, 0xB0),
+	SpritePlacement(0x03C4, 0xE8, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry262 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03B5, 0xF8, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry263 = SpritePlacementEntry(3, [
+	SpritePlacement(0x05F1, 0x40, 0x50),
+	SpritePlacement(0x0490, 0xB8, 0x68),
+	SpritePlacement(0x05F6, 0xC0, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry264 = SpritePlacementEntry(1, [
+	SpritePlacement(0x060E, 0xA8, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry265 = SpritePlacementEntry(4, [
+	SpritePlacement(0x052F, 0xF0, 0xC8),
+	SpritePlacement(0x0531, 0xF0, 0xE8),
+	SpritePlacement(0x0530, 0xF8, 0xD8),
+	SpritePlacement(0x0532, 0xF8, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry266 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0541, 0x60, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry267 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0561, 0x58, 0x48),
+	SpritePlacement(0x0562, 0x68, 0x80),
+	SpritePlacement(0x052D, 0xA8, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry268 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0542, 0xA8, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry269 = SpritePlacementEntry(2, [
+	SpritePlacement(0x053D, 0x50, 0xD0),
+	SpritePlacement(0x052A, 0xA0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry270 = SpritePlacementEntry(4, [
+	SpritePlacement(0x053E, 0x40, 0xA8),
+	SpritePlacement(0x053F, 0x50, 0x78),
+	SpritePlacement(0x0540, 0x50, 0xC4),
+	SpritePlacement(0x0538, 0xC8, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry271 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05AC, 0x20, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry272 = SpritePlacementEntry(3, [
+	SpritePlacement(0x05EE, 0x38, 0x38),
+	SpritePlacement(0x0567, 0x58, 0x28),
+	SpritePlacement(0x0565, 0xB0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry273 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0570, 0x08, 0xA0),
+	SpritePlacement(0x0574, 0xF8, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry274 = SpritePlacementEntry(1, [
+	SpritePlacement(0x056A, 0xA0, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry275 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0277, 0x60, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry276 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0286, 0x38, 0x28),
+	SpritePlacement(0x0285, 0x80, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry277 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0481, 0x40, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry278 = SpritePlacementEntry(1, [
+	SpritePlacement(0x047A, 0x98, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry279 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0486, 0xF0, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry280 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03E1, 0x80, 0x50),
+	SpritePlacement(0x03DA, 0xF8, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry281 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03B1, 0x88, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry282 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03B0, 0x18, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry283 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05F4, 0xC0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry284 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02B9, 0x88, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry285 = SpritePlacementEntry(1, [
+	SpritePlacement(0x062B, 0x30, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry286 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0533, 0x00, 0x08),
+	SpritePlacement(0x0534, 0x08, 0x18),
+	SpritePlacement(0x0536, 0x08, 0x38),
+	SpritePlacement(0x0535, 0x10, 0x28),
+	SpritePlacement(0x052B, 0x68, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry287 = SpritePlacementEntry(1, [
+	SpritePlacement(0x052C, 0x40, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry288 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0539, 0x90, 0x70),
+	SpritePlacement(0x053A, 0xA0, 0x68),
+	SpritePlacement(0x053B, 0xA0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry289 = SpritePlacementEntry(4, [
+	SpritePlacement(0x057E, 0x60, 0xC8),
+	SpritePlacement(0x0573, 0x68, 0xC8),
+	SpritePlacement(0x057B, 0xB8, 0x10),
+	SpritePlacement(0x05EA, 0xE8, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry290 = SpritePlacementEntry(3, [
+	SpritePlacement(0x05EB, 0x50, 0xD0),
+	SpritePlacement(0x056B, 0x98, 0xC8),
+	SpritePlacement(0x057C, 0xB8, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry291 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02A0, 0x68, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry292 = SpritePlacementEntry(1, [
+	SpritePlacement(0x047E, 0x78, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry293 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0477, 0x18, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry294 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0482, 0x18, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry295 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03CC, 0xB0, 0xA8),
+	SpritePlacement(0x03CD, 0xB0, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry296 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03AE, 0x18, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry297 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0586, 0xD8, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry298 = SpritePlacementEntry(4, [
+	SpritePlacement(0x05F0, 0x58, 0x38),
+	SpritePlacement(0x049A, 0xB8, 0x90),
+	SpritePlacement(0x05F5, 0xC0, 0x60),
+	SpritePlacement(0x05F8, 0xC0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry299 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0347, 0x48, 0x60),
+	SpritePlacement(0x0394, 0xC8, 0x60),
+	SpritePlacement(0x0395, 0xE0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry300 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0388, 0x68, 0x68),
+	SpritePlacement(0x0389, 0xA0, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry301 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0358, 0xC0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry302 = SpritePlacementEntry(2, [
+	SpritePlacement(0x036F, 0x60, 0x70),
+	SpritePlacement(0x03AD, 0xC8, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry303 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05AB, 0x58, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry304 = SpritePlacementEntry(5, [
+	SpritePlacement(0x054F, 0x40, 0x60),
+	SpritePlacement(0x0550, 0x60, 0x78),
+	SpritePlacement(0x0553, 0x68, 0x28),
+	SpritePlacement(0x0551, 0x68, 0xA0),
+	SpritePlacement(0x0552, 0x78, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry305 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05AD, 0x28, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry306 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0555, 0x40, 0x90),
+	SpritePlacement(0x0557, 0x48, 0x60),
+	SpritePlacement(0x0556, 0x70, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry307 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0554, 0x40, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry308 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02C0, 0xC0, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry309 = SpritePlacementEntry(4, [
+	SpritePlacement(0x02BD, 0xC8, 0x08),
+	SpritePlacement(0x02BE, 0xC8, 0x18),
+	SpritePlacement(0x02BC, 0xD0, 0x14),
+	SpritePlacement(0x02BF, 0xD0, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry310 = SpritePlacementEntry(2, [
+	SpritePlacement(0x047B, 0xD0, 0x90),
+	SpritePlacement(0x0489, 0xD0, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry311 = SpritePlacementEntry(4, [
+	SpritePlacement(0x02E4, 0x48, 0x80),
+	SpritePlacement(0x02E3, 0x60, 0x90),
+	SpritePlacement(0x02E2, 0x70, 0xD0),
+	SpritePlacement(0x02E1, 0x80, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry312 = SpritePlacementEntry(2, [
+	SpritePlacement(0x059B, 0x50, 0x98),
+	SpritePlacement(0x05B5, 0xD0, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry313 = SpritePlacementEntry(2, [
+	SpritePlacement(0x049D, 0xB8, 0x78),
+	SpritePlacement(0x05F9, 0xC0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry314 = SpritePlacementEntry(2, [
+	SpritePlacement(0x038D, 0xB0, 0x70),
+	SpritePlacement(0x038C, 0xC8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry315 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0391, 0x70, 0x30),
+	SpritePlacement(0x0390, 0x98, 0x10),
+	SpritePlacement(0x038F, 0xA8, 0x38),
+	SpritePlacement(0x038E, 0xB8, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry316 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0360, 0xC0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry317 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0364, 0x18, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry318 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05E8, 0x68, 0x30),
+	SpritePlacement(0x0370, 0x68, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry319 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05DB, 0x38, 0x68),
+	SpritePlacement(0x0345, 0x40, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry320 = SpritePlacementEntry(4, [
+	SpritePlacement(0x032F, 0x40, 0x20),
+	SpritePlacement(0x032D, 0x40, 0x30),
+	SpritePlacement(0x032E, 0x40, 0x50),
+	SpritePlacement(0x0330, 0x40, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry321 = SpritePlacementEntry(2, [
+	SpritePlacement(0x031D, 0xC8, 0x18),
+	SpritePlacement(0x031E, 0xD0, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry322 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05E4, 0xC8, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry323 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05DE, 0x50, 0xB8),
+	SpritePlacement(0x0346, 0x78, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry324 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0487, 0x18, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry325 = SpritePlacementEntry(1, [
+	SpritePlacement(0x047D, 0x20, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry326 = SpritePlacementEntry(1, [
+	SpritePlacement(0x045E, 0x88, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry327 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02B4, 0x80, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry328 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02B0, 0x80, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry329 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0629, 0x50, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry330 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05B9, 0xC0, 0x88),
+	SpritePlacement(0x05B4, 0xE0, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry331 = SpritePlacementEntry(2, [
+	SpritePlacement(0x049E, 0xB8, 0x90),
+	SpritePlacement(0x04AB, 0xC0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry332 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0355, 0x40, 0x88),
+	SpritePlacement(0x0356, 0x70, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry333 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0354, 0x88, 0xB0),
+	SpritePlacement(0x0353, 0x90, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry334 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0351, 0x90, 0x78),
+	SpritePlacement(0x0352, 0x90, 0x90),
+	SpritePlacement(0x0350, 0x90, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry335 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0379, 0x60, 0x60),
+	SpritePlacement(0x0365, 0xC0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry336 = SpritePlacementEntry(7, [
+	SpritePlacement(0x035B, 0x00, 0xD0),
+	SpritePlacement(0x035D, 0x08, 0x78),
+	SpritePlacement(0x035C, 0x20, 0x68),
+	SpritePlacement(0x035A, 0x28, 0xB0),
+	SpritePlacement(0x0359, 0x58, 0xF8),
+	SpritePlacement(0x0362, 0xE8, 0xB8),
+	SpritePlacement(0x0361, 0xF0, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry337 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0363, 0xE8, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry338 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05E9, 0x70, 0x60),
+	SpritePlacement(0x03A8, 0xD0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry339 = SpritePlacementEntry(4, [
+	SpritePlacement(0x031F, 0x40, 0x30),
+	SpritePlacement(0x0321, 0x40, 0x40),
+	SpritePlacement(0x0322, 0x40, 0x60),
+	SpritePlacement(0x0320, 0x40, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry340 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05DC, 0x50, 0xB0),
+	SpritePlacement(0x033F, 0x58, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry341 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05B3, 0x88, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry342 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0480, 0x38, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry343 = SpritePlacementEntry(1, [
+	SpritePlacement(0x047F, 0x98, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry344 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02B3, 0x70, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry345 = SpritePlacementEntry(8, [
+	SpritePlacement(0x02B5, 0x10, 0x10),
+	SpritePlacement(0x02BA, 0x10, 0x20),
+	SpritePlacement(0x02B6, 0x10, 0x48),
+	SpritePlacement(0x02BB, 0x10, 0x58),
+	SpritePlacement(0x02B7, 0x18, 0x78),
+	SpritePlacement(0x02B8, 0x18, 0x88),
+	SpritePlacement(0x02B1, 0x48, 0x38),
+	SpritePlacement(0x02B2, 0x60, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry346 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0587, 0xD8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry347 = SpritePlacementEntry(4, [
+	SpritePlacement(0x024E, 0x28, 0xD0),
+	SpritePlacement(0x05B7, 0xC8, 0x78),
+	SpritePlacement(0x05B6, 0xD8, 0x90),
+	SpritePlacement(0x05B8, 0xF0, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry348 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0626, 0x50, 0x20),
+	SpritePlacement(0x04A1, 0xB8, 0x48),
+	SpritePlacement(0x05F7, 0xC0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry349 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0349, 0xD8, 0xA8),
+	SpritePlacement(0x0348, 0xE8, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry350 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0366, 0xC0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry351 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0372, 0xE8, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry352 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0371, 0xF0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry353 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0367, 0x60, 0x50),
+	SpritePlacement(0x037D, 0xC0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry354 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0323, 0x40, 0x30),
+	SpritePlacement(0x0325, 0x40, 0x40),
+	SpritePlacement(0x0326, 0x40, 0x60),
+	SpritePlacement(0x0324, 0x40, 0x70),
+	SpritePlacement(0x05C8, 0xE8, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry355 = SpritePlacementEntry(6, [
+	SpritePlacement(0x05E1, 0x60, 0x38),
+	SpritePlacement(0x055D, 0xC0, 0x50),
+	SpritePlacement(0x055F, 0xC0, 0xB8),
+	SpritePlacement(0x055E, 0xC8, 0x80),
+	SpritePlacement(0x055C, 0xC8, 0x98),
+	SpritePlacement(0x0560, 0xC8, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry356 = SpritePlacementEntry(7, [
+	SpritePlacement(0x0331, 0x40, 0x30),
+	SpritePlacement(0x0333, 0x40, 0x40),
+	SpritePlacement(0x0334, 0x40, 0xA0),
+	SpritePlacement(0x0332, 0x40, 0xB0),
+	SpritePlacement(0x02A2, 0xC0, 0x70),
+	SpritePlacement(0x02A3, 0xD0, 0x98),
+	SpritePlacement(0x02A1, 0xE0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry357 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05E0, 0x58, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry358 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05DF, 0x58, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry359 = SpritePlacementEntry(3, [
+	SpritePlacement(0x033B, 0x40, 0x30),
+	SpritePlacement(0x033A, 0x50, 0x70),
+	SpritePlacement(0x0558, 0xD8, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry360 = SpritePlacementEntry(4, [
+	SpritePlacement(0x051A, 0xC0, 0xC4),
+	SpritePlacement(0x051B, 0xC8, 0xD4),
+	SpritePlacement(0x051C, 0xD0, 0xB4),
+	SpritePlacement(0x051D, 0xD8, 0xC4),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry361 = SpritePlacementEntry(1, [
+	SpritePlacement(0x062F, 0xF8, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry362 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0157, 0xB0, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry363 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0493, 0x38, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry364 = SpritePlacementEntry(2, [
+	SpritePlacement(0x00D0, 0x50, 0xA0),
+	SpritePlacement(0x00CF, 0x58, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry365 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0270, 0x48, 0x48),
+	SpritePlacement(0x0271, 0x50, 0x38),
+	SpritePlacement(0x04A3, 0xB8, 0x48),
+	SpritePlacement(0x04A2, 0xB8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry366 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03A6, 0xF0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry367 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0357, 0x50, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry368 = SpritePlacementEntry(6, [
+	SpritePlacement(0x036C, 0x60, 0xF0),
+	SpritePlacement(0x036B, 0x68, 0xB0),
+	SpritePlacement(0x036E, 0x70, 0x50),
+	SpritePlacement(0x036A, 0x80, 0xA8),
+	SpritePlacement(0x0369, 0x80, 0xB8),
+	SpritePlacement(0x036D, 0x90, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry369 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0368, 0x78, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry370 = SpritePlacementEntry(9, [
+	SpritePlacement(0x0377, 0x48, 0x70),
+	SpritePlacement(0x0375, 0x50, 0x48),
+	SpritePlacement(0x0373, 0x58, 0x70),
+	SpritePlacement(0x0374, 0x68, 0x28),
+	SpritePlacement(0x0376, 0x68, 0x58),
+	SpritePlacement(0x0378, 0x68, 0x88),
+	SpritePlacement(0x037C, 0xC0, 0x40),
+	SpritePlacement(0x037A, 0xC0, 0x58),
+	SpritePlacement(0x037B, 0xD0, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry371 = SpritePlacementEntry(3, [
+	SpritePlacement(0x032C, 0x48, 0x28),
+	SpritePlacement(0x032B, 0x48, 0x38),
+	SpritePlacement(0x05CA, 0xD0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry372 = SpritePlacementEntry(1, [
+	SpritePlacement(0x029F, 0xB0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry373 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0335, 0x48, 0x30),
+	SpritePlacement(0x05CD, 0xE8, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry374 = SpritePlacementEntry(5, [
+	SpritePlacement(0x05E5, 0x48, 0x88),
+	SpritePlacement(0x05E3, 0x60, 0x98),
+	SpritePlacement(0x0344, 0x68, 0x58),
+	SpritePlacement(0x0343, 0x88, 0x48),
+	SpritePlacement(0x0342, 0x90, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry375 = SpritePlacementEntry(18, [
+	SpritePlacement(0x0336, 0x40, 0x30),
+	SpritePlacement(0x0338, 0x40, 0x40),
+	SpritePlacement(0x0339, 0x40, 0x60),
+	SpritePlacement(0x0337, 0x40, 0x70),
+	SpritePlacement(0x029B, 0xA0, 0x78),
+	SpritePlacement(0x0297, 0xB0, 0x58),
+	SpritePlacement(0x0293, 0xC0, 0x68),
+	SpritePlacement(0x029D, 0xC0, 0x88),
+	SpritePlacement(0x0295, 0xC8, 0x58),
+	SpritePlacement(0x0291, 0xC8, 0x98),
+	SpritePlacement(0x029E, 0xC8, 0xA8),
+	SpritePlacement(0x0296, 0xD0, 0x68),
+	SpritePlacement(0x0298, 0xD0, 0xC8),
+	SpritePlacement(0x029A, 0xE0, 0x38),
+	SpritePlacement(0x029C, 0xE0, 0x90),
+	SpritePlacement(0x0299, 0xE8, 0x58),
+	SpritePlacement(0x0292, 0xE8, 0xA8),
+	SpritePlacement(0x0294, 0xE8, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry376 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0165, 0xD8, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry377 = SpritePlacementEntry(2, [
+	SpritePlacement(0x014B, 0xB0, 0x30),
+	SpritePlacement(0x016A, 0xE0, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry378 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0492, 0x18, 0x50),
+	SpritePlacement(0x0491, 0x18, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry379 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0460, 0x30, 0xE8),
+	SpritePlacement(0x0461, 0x30, 0xF8),
+	SpritePlacement(0x045F, 0x40, 0xF4),
+	SpritePlacement(0x04FC, 0xE0, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry380 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0462, 0x40, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry381 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04BB, 0xF8, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry382 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04C2, 0x70, 0x88),
+	SpritePlacement(0x04C1, 0x88, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry383 = SpritePlacementEntry(4, [
+	SpritePlacement(0x03A5, 0x00, 0xA8),
+	SpritePlacement(0x03A7, 0x00, 0xD8),
+	SpritePlacement(0x03A0, 0x18, 0xD0),
+	SpritePlacement(0x03A1, 0x48, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry384 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03AC, 0x20, 0x98),
+	SpritePlacement(0x03A2, 0x60, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry385 = SpritePlacementEntry(2, [
+	SpritePlacement(0x039B, 0xB8, 0x98),
+	SpritePlacement(0x039A, 0xB8, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry386 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0393, 0x48, 0xD0),
+	SpritePlacement(0x037E, 0xE0, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry387 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0392, 0x40, 0x70),
+	SpritePlacement(0x037F, 0xC0, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry388 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0396, 0xD8, 0x48),
+	SpritePlacement(0x0397, 0xE8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry389 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0329, 0x40, 0x20),
+	SpritePlacement(0x0327, 0x40, 0x30),
+	SpritePlacement(0x0328, 0x40, 0x50),
+	SpritePlacement(0x032A, 0x40, 0x60),
+	SpritePlacement(0x05CC, 0xD0, 0x88),
+	SpritePlacement(0x05CB, 0xD8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry390 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0340, 0x40, 0x60),
+	SpritePlacement(0x05D9, 0x48, 0x40),
+	SpritePlacement(0x05D0, 0xC8, 0xF8),
+	SpritePlacement(0x05CF, 0xD0, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry391 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05C4, 0x48, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry392 = SpritePlacementEntry(1, [
+	SpritePlacement(0x012F, 0x28, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry393 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0167, 0x80, 0xD0),
+	SpritePlacement(0x016F, 0x90, 0x88),
+	SpritePlacement(0x0168, 0xB8, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry394 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0132, 0x98, 0xE8),
+	SpritePlacement(0x016C, 0xC0, 0x50),
+	SpritePlacement(0x0133, 0xD0, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry395 = SpritePlacementEntry(2, [
+	SpritePlacement(0x016B, 0x90, 0x80),
+	SpritePlacement(0x0166, 0xA8, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry396 = SpritePlacementEntry(7, [
+	SpritePlacement(0x0146, 0x90, 0x80),
+	SpritePlacement(0x0154, 0x90, 0xD0),
+	SpritePlacement(0x0142, 0x98, 0x60),
+	SpritePlacement(0x0147, 0x98, 0x70),
+	SpritePlacement(0x0175, 0xA8, 0x80),
+	SpritePlacement(0x0140, 0xB0, 0xB0),
+	SpritePlacement(0x016E, 0xC0, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry397 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0149, 0x70, 0x30),
+	SpritePlacement(0x0176, 0x78, 0x00),
+	SpritePlacement(0x0148, 0x80, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry398 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0625, 0x90, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry399 = SpritePlacementEntry(4, [
+	SpritePlacement(0x04BC, 0x10, 0x68),
+	SpritePlacement(0x04BD, 0x38, 0x70),
+	SpritePlacement(0x04BA, 0xB0, 0x68),
+	SpritePlacement(0x0604, 0xD0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry400 = SpritePlacementEntry(3, [
+	SpritePlacement(0x04BE, 0x78, 0xC0),
+	SpritePlacement(0x04BF, 0xA0, 0x98),
+	SpritePlacement(0x04C0, 0xA8, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry401 = SpritePlacementEntry(1, [
+	SpritePlacement(0x039D, 0xA8, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry402 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03A4, 0x90, 0x20),
+	SpritePlacement(0x039C, 0xF0, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry403 = SpritePlacementEntry(1, [
+	SpritePlacement(0x039F, 0x28, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry404 = SpritePlacementEntry(8, [
+	SpritePlacement(0x0387, 0xC0, 0x50),
+	SpritePlacement(0x0380, 0xC0, 0x78),
+	SpritePlacement(0x0381, 0xC8, 0xA0),
+	SpritePlacement(0x0382, 0xD8, 0xB8),
+	SpritePlacement(0x0383, 0xE0, 0x50),
+	SpritePlacement(0x0386, 0xE0, 0x88),
+	SpritePlacement(0x0385, 0xE0, 0x98),
+	SpritePlacement(0x0384, 0xF0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry405 = SpritePlacementEntry(2, [
+	SpritePlacement(0x035E, 0x58, 0x58),
+	SpritePlacement(0x035F, 0x60, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry406 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05C3, 0x20, 0x30),
+	SpritePlacement(0x05C9, 0xD0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry407 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0341, 0xC0, 0x80),
+	SpritePlacement(0x05DD, 0xC8, 0x60),
+	SpritePlacement(0x05DA, 0xD8, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry408 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05C5, 0x48, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry409 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05E6, 0x28, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry410 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05E2, 0xB8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry411 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0144, 0xC0, 0xF0),
+	SpritePlacement(0x014E, 0xD8, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry412 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0152, 0xB0, 0x48),
+	SpritePlacement(0x0145, 0xB8, 0xF0),
+	SpritePlacement(0x0156, 0xC0, 0x58),
+	SpritePlacement(0x013A, 0xE0, 0x08),
+	SpritePlacement(0x013D, 0xE0, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry413 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0171, 0xF8, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry414 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0136, 0x40, 0x9C),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry415 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0161, 0x38, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry416 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0628, 0x30, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry417 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0627, 0xC0, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry418 = SpritePlacementEntry(2, [
+	SpritePlacement(0x03AB, 0x08, 0x00),
+	SpritePlacement(0x039E, 0x08, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry419 = SpritePlacementEntry(4, [
+	SpritePlacement(0x03A9, 0x70, 0x88),
+	SpritePlacement(0x03AA, 0x70, 0xA0),
+	SpritePlacement(0x0398, 0x80, 0xF8),
+	SpritePlacement(0x03A3, 0x98, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry420 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0399, 0x80, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry421 = SpritePlacementEntry(6, [
+	SpritePlacement(0x034F, 0x48, 0x50),
+	SpritePlacement(0x034A, 0x48, 0x90),
+	SpritePlacement(0x034D, 0x50, 0x70),
+	SpritePlacement(0x034C, 0x58, 0x40),
+	SpritePlacement(0x034B, 0x70, 0x60),
+	SpritePlacement(0x034E, 0x70, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry422 = SpritePlacementEntry(6, [
+	SpritePlacement(0x04C7, 0x20, 0x70),
+	SpritePlacement(0x04C9, 0x30, 0x58),
+	SpritePlacement(0x04C8, 0x30, 0x90),
+	SpritePlacement(0x04C6, 0x50, 0x38),
+	SpritePlacement(0x038B, 0xC0, 0x60),
+	SpritePlacement(0x038A, 0xC8, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry423 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05C2, 0x40, 0x50),
+	SpritePlacement(0x05CE, 0xE0, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry424 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05B1, 0x30, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry425 = SpritePlacementEntry(4, [
+	SpritePlacement(0x033D, 0xA0, 0x80),
+	SpritePlacement(0x05C6, 0xA8, 0x58),
+	SpritePlacement(0x033C, 0xA8, 0x68),
+	SpritePlacement(0x05C7, 0xB0, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry426 = SpritePlacementEntry(1, [
+	SpritePlacement(0x033E, 0xB0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry427 = SpritePlacementEntry(1, [
+	SpritePlacement(0x051E, 0x18, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry428 = SpritePlacementEntry(1, [
+	SpritePlacement(0x014F, 0xB0, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry429 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0137, 0x28, 0xC8),
+	SpritePlacement(0x0139, 0x50, 0x70),
+	SpritePlacement(0x013E, 0x80, 0xA0),
+	SpritePlacement(0x0173, 0x88, 0x90),
+	SpritePlacement(0x0174, 0x88, 0xB0),
+	SpritePlacement(0x0150, 0xA0, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry430 = SpritePlacementEntry(3, [
+	SpritePlacement(0x013B, 0x00, 0xC0),
+	SpritePlacement(0x0138, 0x28, 0x18),
+	SpritePlacement(0x013C, 0x40, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry431 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0130, 0x00, 0x78),
+	SpritePlacement(0x0170, 0xD0, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry432 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0151, 0x60, 0x4C),
+	SpritePlacement(0x015F, 0x98, 0x30),
+	SpritePlacement(0x0143, 0xA0, 0x18),
+	SpritePlacement(0x0141, 0xB0, 0x28),
+	SpritePlacement(0x0162, 0xC0, 0x08),
+	SpritePlacement(0x0155, 0xD0, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry433 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0153, 0xC0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry434 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0131, 0xA8, 0xD0),
+	SpritePlacement(0x0134, 0xD8, 0x68),
+	SpritePlacement(0x0164, 0xD8, 0xC8),
+	SpritePlacement(0x0135, 0xF8, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry435 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01B0, 0xB8, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry436 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00CB, 0xC8, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry437 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04DC, 0x98, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry438 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04D6, 0xD8, 0x50),
+	SpritePlacement(0x04D2, 0xD8, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry439 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04D1, 0xB0, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry440 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04CA, 0xE8, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry441 = SpritePlacementEntry(6, [
+	SpritePlacement(0x0127, 0x68, 0x70),
+	SpritePlacement(0x0128, 0x68, 0x88),
+	SpritePlacement(0x012E, 0x80, 0xB8),
+	SpritePlacement(0x012A, 0x90, 0xD8),
+	SpritePlacement(0x012C, 0xA0, 0x48),
+	SpritePlacement(0x0129, 0xD0, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry442 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0465, 0x38, 0x58),
+	SpritePlacement(0x0466, 0x60, 0xF8),
+	SpritePlacement(0x02C2, 0xD8, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry443 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0468, 0x38, 0xC0),
+	SpritePlacement(0x0464, 0x38, 0xD8),
+	SpritePlacement(0x0467, 0x48, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry444 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02C3, 0xC8, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry445 = SpritePlacementEntry(3, [
+	SpritePlacement(0x02D2, 0x88, 0x30),
+	SpritePlacement(0x02D0, 0xB0, 0x90),
+	SpritePlacement(0x02DC, 0xB0, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry446 = SpritePlacementEntry(4, [
+	SpritePlacement(0x02E7, 0x90, 0x18),
+	SpritePlacement(0x02E6, 0xD0, 0x10),
+	SpritePlacement(0x02E0, 0xD0, 0x78),
+	SpritePlacement(0x02D3, 0xF0, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry447 = SpritePlacementEntry(5, [
+	SpritePlacement(0x014D, 0x18, 0xA0),
+	SpritePlacement(0x014C, 0x18, 0xB8),
+	SpritePlacement(0x016D, 0x58, 0xF0),
+	SpritePlacement(0x013F, 0x78, 0xD0),
+	SpritePlacement(0x0169, 0xD0, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry448 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0172, 0x00, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry449 = SpritePlacementEntry(2, [
+	SpritePlacement(0x015E, 0x00, 0x88),
+	SpritePlacement(0x0160, 0x00, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry450 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04D3, 0x50, 0x80),
+	SpritePlacement(0x04CC, 0xB0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry451 = SpritePlacementEntry(3, [
+	SpritePlacement(0x04D7, 0x18, 0x08),
+	SpritePlacement(0x04CB, 0x28, 0xB0),
+	SpritePlacement(0x04D9, 0xD8, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry452 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04D0, 0xA8, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry453 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04D8, 0x60, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry454 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0123, 0x78, 0xA8),
+	SpritePlacement(0x0125, 0xC0, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry455 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0124, 0x48, 0x40),
+	SpritePlacement(0x012B, 0x60, 0x60),
+	SpritePlacement(0x0126, 0xC0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry456 = SpritePlacementEntry(7, [
+	SpritePlacement(0x0102, 0x40, 0x80),
+	SpritePlacement(0x0100, 0x40, 0x98),
+	SpritePlacement(0x00E5, 0xC0, 0x90),
+	SpritePlacement(0x00E2, 0xD0, 0x98),
+	SpritePlacement(0x00E4, 0xD0, 0xB0),
+	SpritePlacement(0x00E6, 0xD8, 0x28),
+	SpritePlacement(0x00E3, 0xE8, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry457 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0101, 0x50, 0x00),
+	SpritePlacement(0x010A, 0xC8, 0x60),
+	SpritePlacement(0x010B, 0xD8, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry458 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0116, 0x48, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry459 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02DA, 0xC0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry460 = SpritePlacementEntry(14, [
+	SpritePlacement(0x02D4, 0x38, 0xF8),
+	SpritePlacement(0x05BE, 0x70, 0xF0),
+	SpritePlacement(0x02E8, 0x80, 0x88),
+	SpritePlacement(0x02DB, 0x90, 0xA8),
+	SpritePlacement(0x02E9, 0xA8, 0x40),
+	SpritePlacement(0x02D9, 0xB8, 0x50),
+	SpritePlacement(0x02DF, 0xB8, 0x60),
+	SpritePlacement(0x02E5, 0xC0, 0x80),
+	SpritePlacement(0x02EA, 0xC8, 0xD0),
+	SpritePlacement(0x02DD, 0xD0, 0x38),
+	SpritePlacement(0x02D7, 0xD8, 0x60),
+	SpritePlacement(0x02CF, 0xD8, 0xA8),
+	SpritePlacement(0x02D8, 0xE0, 0x80),
+	SpritePlacement(0x02DE, 0xE0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry461 = SpritePlacementEntry(2, [
+	SpritePlacement(0x02D1, 0x60, 0x38),
+	SpritePlacement(0x02D5, 0xC8, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry462 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0163, 0x38, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry463 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01AB, 0x70, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry464 = SpritePlacementEntry(2, [
+	SpritePlacement(0x01B3, 0xC0, 0x00),
+	SpritePlacement(0x01AF, 0xD0, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry465 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0611, 0x08, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry466 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04CD, 0xB8, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry467 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04DA, 0x50, 0x28),
+	SpritePlacement(0x0615, 0xB0, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry468 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0614, 0x90, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry469 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0463, 0xB8, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry470 = SpritePlacementEntry(1, [
+	SpritePlacement(0x010C, 0xD0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry471 = SpritePlacementEntry(7, [
+	SpritePlacement(0x011E, 0x20, 0x78),
+	SpritePlacement(0x0120, 0x20, 0xB0),
+	SpritePlacement(0x0121, 0x20, 0xD0),
+	SpritePlacement(0x011F, 0x30, 0x50),
+	SpritePlacement(0x012D, 0x38, 0x68),
+	SpritePlacement(0x0122, 0x58, 0x90),
+	SpritePlacement(0x00D4, 0xC8, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry472 = SpritePlacementEntry(1, [
+	SpritePlacement(0x010D, 0xC0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry473 = SpritePlacementEntry(5, [
+	SpritePlacement(0x00D8, 0x48, 0xD8),
+	SpritePlacement(0x00D5, 0x50, 0x50),
+	SpritePlacement(0x00D6, 0x58, 0x98),
+	SpritePlacement(0x00D7, 0x68, 0x78),
+	SpritePlacement(0x00FD, 0xC8, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry474 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00DC, 0xD0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry475 = SpritePlacementEntry(6, [
+	SpritePlacement(0x00FB, 0x48, 0x48),
+	SpritePlacement(0x00FC, 0x50, 0x60),
+	SpritePlacement(0x00F8, 0x50, 0x90),
+	SpritePlacement(0x00F9, 0x58, 0xA8),
+	SpritePlacement(0x00FA, 0x68, 0x38),
+	SpritePlacement(0x00F7, 0x70, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry476 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02D6, 0x00, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry477 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02CE, 0x68, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry478 = SpritePlacementEntry(4, [
+	SpritePlacement(0x01AC, 0x10, 0xE0),
+	SpritePlacement(0x019D, 0x60, 0x98),
+	SpritePlacement(0x01A4, 0x78, 0x38),
+	SpritePlacement(0x019B, 0xB0, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry479 = SpritePlacementEntry(6, [
+	SpritePlacement(0x01B2, 0x28, 0x90),
+	SpritePlacement(0x01B1, 0x38, 0x90),
+	SpritePlacement(0x01A6, 0x50, 0x50),
+	SpritePlacement(0x019C, 0x60, 0xC8),
+	SpritePlacement(0x01A1, 0xD0, 0xE0),
+	SpritePlacement(0x01A2, 0xF0, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry480 = SpritePlacementEntry(2, [
+	SpritePlacement(0x01A5, 0x18, 0x58),
+	SpritePlacement(0x01A0, 0x58, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry481 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04DB, 0xD0, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry482 = SpritePlacementEntry(3, [
+	SpritePlacement(0x04CE, 0x00, 0x78),
+	SpritePlacement(0x0612, 0x20, 0x78),
+	SpritePlacement(0x04D5, 0x28, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry483 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0613, 0x70, 0x28),
+	SpritePlacement(0x04DD, 0xC8, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry484 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04D4, 0x30, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry485 = SpritePlacementEntry(2, [
+	SpritePlacement(0x00FF, 0x50, 0x80),
+	SpritePlacement(0x0469, 0xD0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry486 = SpritePlacementEntry(2, [
+	SpritePlacement(0x00D9, 0x50, 0x78),
+	SpritePlacement(0x0117, 0xD0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry487 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0447, 0x38, 0x60),
+	SpritePlacement(0x0609, 0x50, 0x18),
+	SpritePlacement(0x010E, 0xE8, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry488 = SpritePlacementEntry(1, [
+	SpritePlacement(0x011B, 0xE0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry489 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0520, 0x48, 0x90),
+	SpritePlacement(0x0448, 0xC0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry490 = SpritePlacementEntry(8, [
+	SpritePlacement(0x0107, 0x30, 0x90),
+	SpritePlacement(0x0106, 0x40, 0x90),
+	SpritePlacement(0x00DF, 0xC8, 0x58),
+	SpritePlacement(0x00E1, 0xD0, 0x40),
+	SpritePlacement(0x00DD, 0xD8, 0x78),
+	SpritePlacement(0x00E0, 0xD8, 0x98),
+	SpritePlacement(0x058A, 0xE8, 0x30),
+	SpritePlacement(0x00DE, 0xF0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry491 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0115, 0x58, 0x80),
+	SpritePlacement(0x0528, 0xC0, 0x90),
+	SpritePlacement(0x0529, 0xC0, 0xA8),
+	SpritePlacement(0x0527, 0xE8, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry492 = SpritePlacementEntry(4, [
+	SpritePlacement(0x019E, 0x40, 0x08),
+	SpritePlacement(0x01AA, 0xB8, 0xA8),
+	SpritePlacement(0x01A3, 0xB8, 0xC0),
+	SpritePlacement(0x01AE, 0xD8, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry493 = SpritePlacementEntry(1, [
+	SpritePlacement(0x019F, 0xC8, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry494 = SpritePlacementEntry(2, [
+	SpritePlacement(0x01A9, 0x50, 0x50),
+	SpritePlacement(0x01AD, 0x68, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry495 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0610, 0x58, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry496 = SpritePlacementEntry(1, [
+	SpritePlacement(0x04CF, 0x18, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry497 = SpritePlacementEntry(3, [
+	SpritePlacement(0x02C7, 0x10, 0x50),
+	SpritePlacement(0x02C6, 0x60, 0x30),
+	SpritePlacement(0x046A, 0xC0, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry498 = SpritePlacementEntry(4, [
+	SpritePlacement(0x00DA, 0x60, 0xA4),
+	SpritePlacement(0x011A, 0xD8, 0x78),
+	SpritePlacement(0x0119, 0xE0, 0x58),
+	SpritePlacement(0x0118, 0xE0, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry499 = SpritePlacementEntry(4, [
+	SpritePlacement(0x060B, 0x38, 0x70),
+	SpritePlacement(0x0449, 0x48, 0x38),
+	SpritePlacement(0x011C, 0xE0, 0x84),
+	SpritePlacement(0x011D, 0xE8, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry500 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02C8, 0x38, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry501 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0526, 0x48, 0x78),
+	SpritePlacement(0x060C, 0xB8, 0x40),
+	SpritePlacement(0x060A, 0xB8, 0x58),
+	SpritePlacement(0x044B, 0xB8, 0x90),
+	SpritePlacement(0x044A, 0xD0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry502 = SpritePlacementEntry(6, [
+	SpritePlacement(0x02CD, 0x10, 0x38),
+	SpritePlacement(0x02CB, 0x40, 0x40),
+	SpritePlacement(0x02CC, 0x48, 0x20),
+	SpritePlacement(0x02CA, 0x60, 0x28),
+	SpritePlacement(0x02C9, 0x60, 0x50),
+	SpritePlacement(0x00FE, 0xC8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry503 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0522, 0xC0, 0x68),
+	SpritePlacement(0x0523, 0xD8, 0x48),
+	SpritePlacement(0x0521, 0xE0, 0x90),
+	SpritePlacement(0x0525, 0xF0, 0x28),
+	SpritePlacement(0x0524, 0xF0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry504 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0588, 0xC8, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry505 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04AC, 0x20, 0x80),
+	SpritePlacement(0x04C5, 0x48, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry506 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0585, 0x18, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry507 = SpritePlacementEntry(4, [
+	SpritePlacement(0x01C5, 0x00, 0x18),
+	SpritePlacement(0x01C6, 0x00, 0x28),
+	SpritePlacement(0x01C4, 0x10, 0x24),
+	SpritePlacement(0x01C7, 0x10, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry508 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01A8, 0x18, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry509 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01A7, 0x28, 0x38),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry510 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0229, 0xC8, 0x18),
+	SpritePlacement(0x0228, 0xC8, 0x30),
+	SpritePlacement(0x022A, 0xF0, 0x38),
+	SpritePlacement(0x022B, 0xF8, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry511 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0216, 0xB0, 0x38),
+	SpritePlacement(0x0217, 0xB8, 0x48),
+	SpritePlacement(0x0225, 0xC0, 0x58),
+	SpritePlacement(0x0226, 0xC8, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry512 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0237, 0x90, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry513 = SpritePlacementEntry(7, [
+	SpritePlacement(0x0445, 0x50, 0xC0),
+	SpritePlacement(0x0441, 0x68, 0xA8),
+	SpritePlacement(0x0444, 0x70, 0xC0),
+	SpritePlacement(0x0606, 0x88, 0x50),
+	SpritePlacement(0x0607, 0xA0, 0x58),
+	SpritePlacement(0x0442, 0xA0, 0x80),
+	SpritePlacement(0x0608, 0xA8, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry514 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0443, 0x78, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry515 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0104, 0x60, 0x98),
+	SpritePlacement(0x0105, 0xA0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry516 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0446, 0xA0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry517 = SpritePlacementEntry(1, [
+	SpritePlacement(0x014A, 0xF0, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry518 = SpritePlacementEntry(2, [
+	SpritePlacement(0x04C3, 0x58, 0xD0),
+	SpritePlacement(0x04C4, 0x70, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry519 = SpritePlacementEntry(1, [
+	SpritePlacement(0x049B, 0x38, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry520 = SpritePlacementEntry(1, [
+	SpritePlacement(0x060D, 0x90, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry521 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0596, 0x58, 0x00),
+	SpritePlacement(0x0231, 0x58, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry522 = SpritePlacementEntry(1, [
+	SpritePlacement(0x022C, 0xE8, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry523 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0239, 0xD0, 0x00),
+	SpritePlacement(0x023C, 0xF0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry524 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0597, 0x40, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry525 = SpritePlacementEntry(9, [
+	SpritePlacement(0x00F6, 0x80, 0x98),
+	SpritePlacement(0x00F5, 0x80, 0xA8),
+	SpritePlacement(0x00ED, 0x90, 0xE0),
+	SpritePlacement(0x00EE, 0x90, 0xF8),
+	SpritePlacement(0x00E7, 0xA0, 0x80),
+	SpritePlacement(0x00EC, 0xB0, 0x58),
+	SpritePlacement(0x00EB, 0xB0, 0xD0),
+	SpritePlacement(0x00E9, 0xB8, 0xA0),
+	SpritePlacement(0x00E8, 0xD0, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry526 = SpritePlacementEntry(7, [
+	SpritePlacement(0x00F3, 0x80, 0x60),
+	SpritePlacement(0x00EA, 0x98, 0x20),
+	SpritePlacement(0x00F2, 0x98, 0x70),
+	SpritePlacement(0x00F4, 0xB0, 0x40),
+	SpritePlacement(0x00F0, 0xB0, 0xA0),
+	SpritePlacement(0x00EF, 0xB8, 0xB8),
+	SpritePlacement(0x00F1, 0xC8, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry527 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0114, 0x40, 0xB0),
+	SpritePlacement(0x0111, 0x48, 0x70),
+	SpritePlacement(0x0112, 0x48, 0xF0),
+	SpritePlacement(0x0110, 0x68, 0xB0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry528 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0113, 0x40, 0x18),
+	SpritePlacement(0x010F, 0x88, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry529 = SpritePlacementEntry(2, [
+	SpritePlacement(0x046C, 0x40, 0x90),
+	SpritePlacement(0x046D, 0x50, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry530 = SpritePlacementEntry(1, [
+	SpritePlacement(0x046B, 0x48, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry531 = SpritePlacementEntry(1, [
+	SpritePlacement(0x00D2, 0x78, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry532 = SpritePlacementEntry(1, [
+	SpritePlacement(0x030E, 0xE8, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry533 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05D4, 0x78, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry534 = SpritePlacementEntry(1, [
+	SpritePlacement(0x031A, 0xE8, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry535 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05D3, 0x70, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry536 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05D6, 0xB0, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry537 = SpritePlacementEntry(1, [
+	SpritePlacement(0x049C, 0xF0, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry538 = SpritePlacementEntry(1, [
+	SpritePlacement(0x023E, 0xD0, 0xB8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry539 = SpritePlacementEntry(4, [
+	SpritePlacement(0x023D, 0x18, 0x18),
+	SpritePlacement(0x022E, 0x30, 0x60),
+	SpritePlacement(0x0230, 0x50, 0x68),
+	SpritePlacement(0x022F, 0x80, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry540 = SpritePlacementEntry(1, [
+	SpritePlacement(0x023F, 0xF0, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry541 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0240, 0x28, 0x68),
+	SpritePlacement(0x0206, 0xC0, 0x88),
+	SpritePlacement(0x020B, 0xC0, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry542 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0233, 0x58, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry543 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0411, 0x78, 0x90),
+	SpritePlacement(0x0412, 0x78, 0xF0),
+	SpritePlacement(0x0414, 0xB0, 0x80),
+	SpritePlacement(0x0415, 0xB0, 0xE0),
+	SpritePlacement(0x040C, 0xD0, 0x88),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry544 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0413, 0x78, 0x50),
+	SpritePlacement(0x040B, 0xA0, 0x20),
+	SpritePlacement(0x0416, 0xB0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry545 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03FA, 0xD8, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry546 = SpritePlacementEntry(3, [
+	SpritePlacement(0x03F8, 0x40, 0x10),
+	SpritePlacement(0x03FB, 0x40, 0x68),
+	SpritePlacement(0x03F9, 0xC0, 0x40),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry547 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0108, 0x40, 0xF0),
+	SpritePlacement(0x0109, 0x58, 0x58),
+	SpritePlacement(0x0103, 0xC0, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry548 = SpritePlacementEntry(2, [
+	SpritePlacement(0x00DB, 0xD0, 0x78),
+	SpritePlacement(0x0589, 0xD0, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry549 = SpritePlacementEntry(1, [
+	SpritePlacement(0x054E, 0xA8, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry550 = SpritePlacementEntry(1, [
+	SpritePlacement(0x054C, 0xD8, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry551 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05D2, 0xC8, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry552 = SpritePlacementEntry(1, [
+	SpritePlacement(0x030A, 0x50, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry553 = SpritePlacementEntry(1, [
+	SpritePlacement(0x060F, 0xD0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry554 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0219, 0x08, 0xD8),
+	SpritePlacement(0x0232, 0x48, 0x18),
+	SpritePlacement(0x0208, 0x98, 0xF8),
+	SpritePlacement(0x0205, 0xA8, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry555 = SpritePlacementEntry(12, [
+	SpritePlacement(0x0247, 0x10, 0x78),
+	SpritePlacement(0x023A, 0x18, 0x50),
+	SpritePlacement(0x0227, 0x20, 0xC0),
+	SpritePlacement(0x021A, 0x28, 0x88),
+	SpritePlacement(0x0245, 0x48, 0x78),
+	SpritePlacement(0x0244, 0x48, 0x98),
+	SpritePlacement(0x0238, 0x98, 0xE0),
+	SpritePlacement(0x021B, 0xB8, 0xC0),
+	SpritePlacement(0x020A, 0xC8, 0x48),
+	SpritePlacement(0x0235, 0xC8, 0xB8),
+	SpritePlacement(0x021D, 0xC8, 0xF0),
+	SpritePlacement(0x021C, 0xD0, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry556 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0248, 0x38, 0xA0),
+	SpritePlacement(0x021E, 0xC0, 0x00),
+	SpritePlacement(0x0236, 0xD0, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry557 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0209, 0x60, 0xC0),
+	SpritePlacement(0x0204, 0xD8, 0x20),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry558 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0234, 0x10, 0x70),
+	SpritePlacement(0x0241, 0xE0, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry559 = SpritePlacementEntry(5, [
+	SpritePlacement(0x03F6, 0xC0, 0xB8),
+	SpritePlacement(0x03F3, 0xC8, 0xA0),
+	SpritePlacement(0x03F7, 0xE0, 0x60),
+	SpritePlacement(0x03F4, 0xE8, 0x30),
+	SpritePlacement(0x03F5, 0xE8, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry560 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0408, 0x38, 0xD0),
+	SpritePlacement(0x0404, 0x78, 0x90),
+	SpritePlacement(0x0403, 0x90, 0x80),
+	SpritePlacement(0x0406, 0xB8, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry561 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0407, 0x78, 0x10),
+	SpritePlacement(0x0402, 0x80, 0x48),
+	SpritePlacement(0x0405, 0x98, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry562 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0401, 0x88, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry563 = SpritePlacementEntry(7, [
+	SpritePlacement(0x03E8, 0xC8, 0x40),
+	SpritePlacement(0x03E4, 0xC8, 0xB0),
+	SpritePlacement(0x03E7, 0xD8, 0x58),
+	SpritePlacement(0x03E5, 0xD8, 0x88),
+	SpritePlacement(0x03E6, 0xD8, 0xA0),
+	SpritePlacement(0x03E9, 0xF0, 0x30),
+	SpritePlacement(0x03EA, 0xF0, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry564 = SpritePlacementEntry(1, [
+	SpritePlacement(0x054B, 0x38, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry565 = SpritePlacementEntry(2, [
+	SpritePlacement(0x02F6, 0x00, 0xFC),
+	SpritePlacement(0x030C, 0xA8, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry566 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02F7, 0x10, 0x0C),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry567 = SpritePlacementEntry(2, [
+	SpritePlacement(0x05D5, 0x50, 0x70),
+	SpritePlacement(0x0300, 0x88, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry568 = SpritePlacementEntry(1, [
+	SpritePlacement(0x030D, 0x80, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry569 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05D8, 0x58, 0xE0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry570 = SpritePlacementEntry(1, [
+	SpritePlacement(0x020D, 0xC0, 0xA0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry571 = SpritePlacementEntry(4, [
+	SpritePlacement(0x0207, 0x30, 0x20),
+	SpritePlacement(0x0598, 0x70, 0x98),
+	SpritePlacement(0x0203, 0xA8, 0x68),
+	SpritePlacement(0x0242, 0xA8, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry572 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0218, 0x20, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry573 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0243, 0x70, 0xC0),
+	SpritePlacement(0x0210, 0xE0, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry574 = SpritePlacementEntry(5, [
+	SpritePlacement(0x0599, 0x88, 0xB8),
+	SpritePlacement(0x023B, 0xB0, 0xF8),
+	SpritePlacement(0x0211, 0xE8, 0x08),
+	SpritePlacement(0x020E, 0xE8, 0x80),
+	SpritePlacement(0x0212, 0xF8, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry575 = SpritePlacementEntry(1, [
+	SpritePlacement(0x022D, 0xB0, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry576 = SpritePlacementEntry(9, [
+	SpritePlacement(0x01E7, 0x40, 0x40),
+	SpritePlacement(0x01E3, 0x40, 0x58),
+	SpritePlacement(0x01E6, 0x50, 0xA8),
+	SpritePlacement(0x01E5, 0x60, 0x70),
+	SpritePlacement(0x01E4, 0x68, 0x48),
+	SpritePlacement(0x03FF, 0xC0, 0x40),
+	SpritePlacement(0x03FE, 0xC0, 0xB8),
+	SpritePlacement(0x03FC, 0xC8, 0x70),
+	SpritePlacement(0x03FD, 0xE0, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry577 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01FC, 0xD0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry578 = SpritePlacementEntry(2, [
+	SpritePlacement(0x01E8, 0x40, 0x30),
+	SpritePlacement(0x0400, 0xD8, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry579 = SpritePlacementEntry(7, [
+	SpritePlacement(0x01F6, 0x58, 0x58),
+	SpritePlacement(0x01ED, 0xD8, 0xD0),
+	SpritePlacement(0x01EC, 0xE0, 0x98),
+	SpritePlacement(0x01EE, 0xE0, 0xC0),
+	SpritePlacement(0x01F1, 0xE8, 0x88),
+	SpritePlacement(0x01EF, 0xF0, 0xB8),
+	SpritePlacement(0x01F0, 0xF8, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry580 = SpritePlacementEntry(2, [
+	SpritePlacement(0x01EA, 0x40, 0x88),
+	SpritePlacement(0x01E9, 0x58, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry581 = SpritePlacementEntry(2, [
+	SpritePlacement(0x01EB, 0x58, 0x08),
+	SpritePlacement(0x01F2, 0xE0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry582 = SpritePlacementEntry(1, [
+	SpritePlacement(0x054D, 0x80, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry583 = SpritePlacementEntry(1, [
+	SpritePlacement(0x054A, 0xB8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry584 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0304, 0xE0, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry585 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0303, 0xC8, 0x10),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry586 = SpritePlacementEntry(1, [
+	SpritePlacement(0x030F, 0x80, 0x68),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry587 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05D1, 0xA0, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry588 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0318, 0xB0, 0x78),
+	SpritePlacement(0x02F8, 0xC0, 0xF0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry589 = SpritePlacementEntry(10, [
+	SpritePlacement(0x0314, 0x30, 0xC0),
+	SpritePlacement(0x0307, 0x38, 0xD0),
+	SpritePlacement(0x02FB, 0x48, 0x80),
+	SpritePlacement(0x02FA, 0x50, 0x70),
+	SpritePlacement(0x0306, 0x50, 0xB0),
+	SpritePlacement(0x02F9, 0x70, 0x58),
+	SpritePlacement(0x02FC, 0x70, 0xD0),
+	SpritePlacement(0x0309, 0x78, 0x90),
+	SpritePlacement(0x0319, 0xE0, 0x20),
+	SpritePlacement(0x031C, 0xE0, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry590 = SpritePlacementEntry(2, [
+	SpritePlacement(0x0498, 0xB8, 0x30),
+	SpritePlacement(0x0499, 0xB8, 0x50),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry591 = SpritePlacementEntry(2, [
+	SpritePlacement(0x021F, 0x58, 0xC0),
+	SpritePlacement(0x0222, 0xE8, 0xF8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry592 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0220, 0xC8, 0x60),
+	SpritePlacement(0x0221, 0xC8, 0x90),
+	SpritePlacement(0x020C, 0xE0, 0xDC),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry593 = SpritePlacementEntry(6, [
+	SpritePlacement(0x020F, 0x20, 0x90),
+	SpritePlacement(0x0246, 0x88, 0x20),
+	SpritePlacement(0x0213, 0x98, 0x10),
+	SpritePlacement(0x0214, 0x98, 0x30),
+	SpritePlacement(0x0215, 0xB8, 0x20),
+	SpritePlacement(0x0223, 0xD8, 0x98),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry594 = SpritePlacementEntry(3, [
+	SpritePlacement(0x03EB, 0x58, 0x80),
+	SpritePlacement(0x0417, 0xC0, 0x50),
+	SpritePlacement(0x0418, 0xD8, 0xA8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry595 = SpritePlacementEntry(3, [
+	SpritePlacement(0x0409, 0x48, 0x70),
+	SpritePlacement(0x040A, 0x48, 0x90),
+	SpritePlacement(0x0200, 0xD8, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry596 = SpritePlacementEntry(3, [
+	SpritePlacement(0x03EC, 0x60, 0x50),
+	SpritePlacement(0x0419, 0xC8, 0x60),
+	SpritePlacement(0x041A, 0xD0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry597 = SpritePlacementEntry(2, [
+	SpritePlacement(0x040D, 0x40, 0x68),
+	SpritePlacement(0x0201, 0xC8, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry598 = SpritePlacementEntry(1, [
+	SpritePlacement(0x03ED, 0x50, 0x48),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry599 = SpritePlacementEntry(7, [
+	SpritePlacement(0x040E, 0x58, 0x50),
+	SpritePlacement(0x040F, 0x60, 0x98),
+	SpritePlacement(0x0410, 0x68, 0xA8),
+	SpritePlacement(0x01FA, 0xC0, 0x68),
+	SpritePlacement(0x01F9, 0xC8, 0xA8),
+	SpritePlacement(0x01F8, 0xC8, 0xC0),
+	SpritePlacement(0x01FB, 0xF0, 0x78),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry600 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0301, 0x68, 0xC0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry601 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0316, 0xF8, 0x08),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry602 = SpritePlacementEntry(1, [
+	SpritePlacement(0x05D7, 0x70, 0x28),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry603 = SpritePlacementEntry(4, [
+	SpritePlacement(0x02FD, 0xB8, 0x70),
+	SpritePlacement(0x02FE, 0xB8, 0x88),
+	SpritePlacement(0x02FF, 0xB8, 0xA0),
+	SpritePlacement(0x030B, 0xD8, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry604 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0224, 0x08, 0xD8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry605 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0308, 0xE8, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry606 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0501, 0x20, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry607 = SpritePlacementEntry(4, [
+	SpritePlacement(0x04FF, 0x40, 0x10),
+	SpritePlacement(0x04FE, 0x40, 0x20),
+	SpritePlacement(0x04FD, 0x48, 0x1C),
+	SpritePlacement(0x0500, 0x48, 0x30),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry608 = SpritePlacementEntry(3, [
+	SpritePlacement(0x01F3, 0xC0, 0x50),
+	SpritePlacement(0x01F5, 0xD0, 0xB8),
+	SpritePlacement(0x01F4, 0xE8, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry609 = SpritePlacementEntry(4, [
+	SpritePlacement(0x01B5, 0x40, 0x48),
+	SpritePlacement(0x01B6, 0x40, 0x80),
+	SpritePlacement(0x01B4, 0x50, 0x58),
+	SpritePlacement(0x0202, 0xE0, 0x58),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry610 = SpritePlacementEntry(3, [
+	SpritePlacement(0x03EE, 0x60, 0x50),
+	SpritePlacement(0x03EF, 0x68, 0x7C),
+	SpritePlacement(0x01F7, 0xC8, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry611 = SpritePlacementEntry(1, [
+	SpritePlacement(0x01FF, 0xD0, 0x60),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry612 = SpritePlacementEntry(3, [
+	SpritePlacement(0x03F0, 0x48, 0x68),
+	SpritePlacement(0x03F1, 0x58, 0x30),
+	SpritePlacement(0x03F2, 0x68, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry613 = SpritePlacementEntry(2, [
+	SpritePlacement(0x01FE, 0x48, 0x70),
+	SpritePlacement(0x01FD, 0xC0, 0x70),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry614 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0305, 0x10, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry615 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0317, 0x40, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry616 = SpritePlacementEntry(1, [
+	SpritePlacement(0x02F2, 0x60, 0xC8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry617 = SpritePlacementEntry(8, [
+	SpritePlacement(0x02F5, 0x08, 0x30),
+	SpritePlacement(0x0310, 0x10, 0x08),
+	SpritePlacement(0x0312, 0x10, 0x58),
+	SpritePlacement(0x0311, 0x10, 0xA0),
+	SpritePlacement(0x02F3, 0x18, 0x58),
+	SpritePlacement(0x02F4, 0x30, 0x38),
+	SpritePlacement(0x0313, 0x38, 0x78),
+	SpritePlacement(0x0315, 0x38, 0xD0),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry618 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0249, 0xC0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry619 = SpritePlacementEntry(5, [
+	SpritePlacement(0x031B, 0x10, 0x90),
+	SpritePlacement(0x0302, 0x18, 0x88),
+	SpritePlacement(0x024B, 0xC0, 0xB8),
+	SpritePlacement(0x024A, 0xE8, 0x00),
+	SpritePlacement(0x024C, 0xE8, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry620 = SpritePlacementEntry(1, [
+	SpritePlacement(0x024D, 0xC0, 0x90),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry621 = SpritePlacementEntry(1, [
+	SpritePlacement(0x015C, 0xC0, 0x80),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry622 = SpritePlacementEntry(1, [
+	SpritePlacement(0x015D, 0xE8, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry623 = SpritePlacementEntry(7, [
+	SpritePlacement(0x01DF, 0x28, 0xD8),
+	SpritePlacement(0x01E0, 0x30, 0x68),
+	SpritePlacement(0x01E2, 0x30, 0x68),
+	SpritePlacement(0x01DE, 0x38, 0x40),
+	SpritePlacement(0x01E1, 0x40, 0x38),
+	SpritePlacement(0x01DD, 0x50, 0x80),
+	SpritePlacement(0x0159, 0xE8, 0xE8),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry624 = SpritePlacementEntry(1, [
+	SpritePlacement(0x0158, 0xC0, 0x18),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry625 = SpritePlacementEntry(2, [
+	SpritePlacement(0x015B, 0xC0, 0x80),
+	SpritePlacement(0x015A, 0xE8, 0x00),
+]);
+
+immutable SpritePlacementEntry SpritePlacementEntry626 = SpritePlacementEntry(21, [
+	SpritePlacement(0x01DC, 0x60, 0x70),
+	SpritePlacement(0x01D2, 0x70, 0x9C),
+	SpritePlacement(0x01CD, 0x78, 0x28),
+	SpritePlacement(0x01CF, 0x78, 0x7C),
+	SpritePlacement(0x01CE, 0x80, 0x30),
+	SpritePlacement(0x01CC, 0x88, 0x18),
+	SpritePlacement(0x01C8, 0x98, 0x88),
+	SpritePlacement(0x01D1, 0x98, 0x8C),
+	SpritePlacement(0x01D0, 0x98, 0xBC),
+	SpritePlacement(0x01D3, 0xA8, 0x5C),
+	SpritePlacement(0x01C9, 0xA8, 0x68),
+	SpritePlacement(0x01D4, 0xA8, 0xB4),
+	SpritePlacement(0x01D5, 0xB0, 0x4C),
+	SpritePlacement(0x01CB, 0xB0, 0x98),
+	SpritePlacement(0x01DB, 0xB8, 0x18),
+	SpritePlacement(0x01CA, 0xB8, 0x80),
+	SpritePlacement(0x01D6, 0xB8, 0x94),
+	SpritePlacement(0x01D7, 0xC0, 0x6C),
+	SpritePlacement(0x01DA, 0xD8, 0x64),
+	SpritePlacement(0x01D8, 0xD8, 0xCC),
+	SpritePlacement(0x01D9, 0xE0, 0x9C),
+]);
 
 /// $CF8985
 immutable NPC[1584] NPCConfig = [

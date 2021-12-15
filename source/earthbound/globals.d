@@ -305,7 +305,7 @@ __gshared ushort[MAX_ENTITIES] EntityVramAddresses; /// $298E
 //__gshared ushort[MAX_ENTITIES] EntityGraphicsPointersLow; /// $29CA
 //__gshared ushort[MAX_ENTITIES] EntityGraphicsPointersHigh; /// $2A06
 __gshared OverworldSpriteGraphics*[MAX_ENTITIES] EntityGraphicsPointers; /// $29CA
-deprecated __gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; /// $2A42
+//__gshared short[MAX_ENTITIES] UNKNOWN_30X2_TABLE_31; /// $2A42
 __gshared short[MAX_ENTITIES] EntityByteWidths; /// $2A7E
 __gshared short[MAX_ENTITIES] EntityTileHeights; /// $2ABA
 __gshared short[MAX_ENTITIES] EntityDirections; /// $2AF6
@@ -651,7 +651,7 @@ __gshared OverworldTask[4] OverworldTasks; /// $9E3C
 
 __gshared ushort DadPhoneTimer; /// $9E54
 __gshared short Unknown7E9E56; /// $9E56
-__gshared Unknown7E9E58Entry[40] Unknown7E9E58; /// $9E58
+__gshared Unknown7E007DEntry[40] Unknown7E9E58; /// $9E58
 
 __gshared short Unknown7E9F18; /// $9E56
 __gshared LoadedItemTransformation[4] LoadedItemTransformations; /// $9F1A

@@ -1338,7 +1338,24 @@ short GetCharacterItem(short arg1, short arg2) {
 }
 
 /// $C3E9F7
-short UnknownC3E9F7(short arg1, short arg2);
+short UnknownC3E9F7(short arg1, short arg2) {
+	arg1--;
+	if (PartyCharacters[arg1].equipment[EquipmentSlot.Weapon] != 0) {
+		if (PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Weapon] - 1] == arg2) {
+			return 1;
+		}
+		if (PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Body] - 1] == arg2) {
+			return 1;
+		}
+		if (PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Arms] - 1] == arg2) {
+			return 1;
+		}
+		if (PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Other] - 1] == arg2) {
+			return 1;
+		}
+	}
+	return 0;
+}
 
 /// $C3E9A0
 short CheckItemEquipped(short arg1, short arg2) {
@@ -1996,6 +2013,14 @@ void UnknownC3F981(short arg1) {
 			UnknownC4A67E(2, 4);
 		}
 	}
+}
+
+/// $C3FB09
+short UnknownC3FB09() {
+	if (currentAttacker.allyOrEnemy == 0) {
+		return 0;
+	}
+	return 1;
 }
 
 /// $C3FB2B

@@ -362,7 +362,35 @@ void UnknownC00AC5(short x, short y) {
 }
 
 /// $C00BDC
-void UnknownC00BDC(short x, short y);
+void UnknownC00BDC(short x, short y) {
+    x /= 4;
+    y /= 4;
+    short x18 = x & 0xF;
+    Unknown7E43B0[x18] = cast(byte)x;
+    short x16 = y & 0xF;
+    Unknown7E43C0[x16] = cast(byte)y;
+    short x14 = GlobalMapTilesetPaletteData[y / 4][x / 8] / 8;
+    ushort* x12 = &Unknown7EF000[x18][0];
+    if (x < 0x100) {
+        short x10 = cast(short)(x16 * 16);
+        for (short i = 0; i < 16; i++) {
+            if ((y & 3) == 0) {
+                x14 = GlobalMapTilesetPaletteData[y / 4][x / 8] / 8;
+            }
+            if ((y < 0x140) && (Unknown7E436E == x14)) {
+                x12[x10] = UnknownC0A156(x, y);
+            } else {
+                x12[x10] = 0;
+            }
+            x10 += 16;
+            y++;
+        }
+    } else {
+        for (short i = 0; i < 16; i++) {
+            x12[i * 16] = 0;
+        }
+    }
+}
 
 /// $C00CF3
 void UnknownC00CF3(short x, short y) {
@@ -881,7 +909,74 @@ void UnknownC021E6() {
 }
 
 /// $C0222B
-void UnknownC0222B(short x, short y);
+void UnknownC0222B(short x, short y) {
+    if (x >= 0x20) {
+        return;
+    }
+    if (y >= 0x28) {
+        return;
+    }
+    if (SpritePlacementPointerTable[y][x] != null) {
+        short x24 = SpritePlacementPointerTable[y][x].entries;
+        const(SpritePlacement)* x0A = &SpritePlacementPointerTable[y][x].spritePlacements[0];
+        for (short i = 0; i < x24; i++) {
+            short x20 = x0A.unknown0;
+            short x1E = x0A.unknown3;
+            short x1C = x0A.unknown2;
+            x0A++;
+            if ((GlobalMapTilesetPaletteData[((x1C / 8) + (y * 32)) / 16][((x1E / 8) + (x * 32)) / 32] / 8 == Unknown7E436E) && (UnknownC0A21C(x20) == 0)) {
+                short x18 = cast(short)((x << 8) + x1E);
+                short x16 = cast(short)((y << 8) + x1C);
+                short x1A = cast(short)(x18 - BG1_X_POS);
+                short xreg = cast(short)(x16 - BG1_Y_POS);
+                if (Debug != 0) {
+                    if ((((pad_state[0] & (PAD_L | PAD_R)) != 0) || (Unknown7E4A58 - 1 != 0)) && ((x1A < 0x100) && (xreg < 0xE0))) {
+                        continue;
+                    }
+                } else {
+                    if ((Unknown7E4A58 - 1 != 0) && (x1A < 0x100) && (xreg < 0xE0)) {
+                        continue;
+                    }
+                }
+                if (-64 > x1A) {
+                    continue;
+                }
+                if (0x140 <= x1A) {
+                    continue;
+                }
+                if (-64 > xreg) {
+                    continue;
+                }
+                if (0x140 <= xreg) {
+                    continue;
+                }
+                x1A = -1;
+                if (Unknown7EB4EF == 0) {
+                    if ((Debug != 0) && (NPCConfig[x20].appearanceStyle != 0) && (UnknownEFE6CF() != 0) && ((((NPCConfig[x20].appearanceStyle - 2) ^ getEventFlag(NPCConfig[x20].eventFlag)) & 1) == 0)) {
+                        continue;
+                    } else if ((NPCConfig[x20].appearanceStyle != 0) && ((((NPCConfig[x20].appearanceStyle - 2) ^ getEventFlag(NPCConfig[x20].eventFlag)) & 1) == 0)) {
+                        continue;
+                    }
+                    if (Debug != 0) {
+                        if ((ShowNPCFlag == 0) || (NPCConfig[x20].type == 3)) {
+                            x1A = CreateEntity(NPCConfig[x20].sprite, UnknownEFE6E2(NPCConfig[x20].actionScript), -1, x18, x16);
+                        }
+                    } else {
+                        if ((ShowNPCFlag == 0) || (NPCConfig[x20].type == 3)) {
+                            x1A = CreateEntity(NPCConfig[x20].sprite, NPCConfig[x20].actionScript, -1, x18, x16);
+                        }
+                    }
+                } else if (NPCConfig[x20].appearanceStyle == 0) {
+                    x1A = CreateEntity(NPCConfig[x20].sprite, ActionScript.Unknown799, -1, x18, x16);
+                }
+                if (x1A != -1) {
+                    EntityDirections[x1A] = NPCConfig[x20].direction;
+                    EntityTPTEntries[x1A] = x20;
+                }
+            }
+        }
+    }
+}
 
 /// $C0255C
 void UnknownC0255C(short x, short y) {
@@ -1292,7 +1387,33 @@ void UnknownC03C25() {
 }
 
 /// $C03C5E
-void GetOnBicycle();
+void GetOnBicycle() {
+    if (gameState.partyCount != 1) {
+        return;
+    }
+    if (gameState.unknown96[0] != 1) {
+        return;
+    }
+    if (Unknown7E5DD8 == 0) {
+        ChangeMusic(Music.Bicycle);
+    }
+    UnknownC02140(0x18);
+    gameState.unknown92 = 6;
+    gameState.walkingStyle = WalkingStyle.Bicycle;
+    PartyCharacters[0].position_index = 0;
+    gameState.unknown88 = 0;
+    NewEntityVar0 = 0;
+    NewEntityVar1 = 0;
+    CreateEntity(OverworldSprite.NessBicycle, ActionScript.Unknown002, 0x18, EntityAbsXTable[24], EntityAbsYTable[24]);
+    EntityTickCallbackFlags[24] |= 0x8000;
+    EntityScriptVar7Table[25] |= 0x3000;
+    EntityAnimationFrames[24] = 0;
+    EntityDirections[24] = gameState.leaderDirection;
+    SetBoundaryBehaviour(0);
+    gameState.unknown90 = 1;
+    Unknown7E5DBA = 1;
+    Unknown7E5D74 = 2;
+}
 
 /// $C03CFD
 void UnknownC03CFD() {
@@ -1412,7 +1533,9 @@ void CenterScreen(short x, short y) {
 }
 
 /// $C0402B
-void UnknownC0402B(Unknown7E9E58Entry*);
+void UnknownC0402B(Unknown7E007DEntry* arg1) {
+    UnknownC083E3(arg1);
+}
 
 /// $C0404F
 short MapInputToDirection(short style) {
@@ -1654,8 +1777,8 @@ void UnknownC047CF() {
         UnknownC07526(Unknown7E5DA8, Unknown7E5DAA);
     }
     if (1 != 0) { //wat
-        gameState.leaderX.combined += horizontalMovementSpeeds[12].directionSpeeds[x14 * 4].combined;
-        gameState.leaderY.combined += verticalMovementSpeeds[12].directionSpeeds[x14 * 4].combined;
+        gameState.leaderX.combined += horizontalMovementSpeeds[WalkingStyle.Escalator].directionSpeeds[x14 * 4].combined;
+        gameState.leaderY.combined += verticalMovementSpeeds[WalkingStyle.Escalator].directionSpeeds[x14 * 4].combined;
     }
     gameState.unknown90 = 1;
 }
@@ -2084,6 +2207,16 @@ void UnknownC052D4(short arg1) {
     }
 }
 
+/// $C054C9
+short UnknownC054C9(short arg1, short arg2) {
+    short y = Unknown7EE000[arg2 & 0x3F][arg1 & 0x3F];
+    if ((y & 0x10) != 0) {
+        Unknown7E5DA8 = arg1;
+        Unknown7E5DAA = arg2;
+    }
+    return y;
+}
+
 /// $C05503
 void UnknownC05503(short arg1, short arg2) {
     ushort x10 = cast(ushort)(Unknown7EE000[(Unknown7E5DAE / 8) & 0x3F][(arg1 / 8) & 0x3F] | Unknown7E5DA4);
@@ -2128,8 +2261,267 @@ void UnknownC056D0(short arg1, short arg2) {
     Unknown7E5DA4 = y;
 }
 
+/// $C05769
+short UnknownC05769(short arg1) {
+    short x02 = 0;
+    short x12 = 0;
+    for (short i = 0; i < 6; i++, x02 /= 2, arg1 /= 2) {
+        if ((arg1 & 1) == 0) {
+            continue;
+        }
+        short x0E = UnknownC054C9((UnknownC200B9[i] + Unknown7E5DAC) / 8, (UnknownC200C5[i] + Unknown7E5DAE) / 8);
+        x12 |= x0E;
+        if ((x0E & 0xC0) != 0) {
+            x02 |= 0x40;
+        }
+    }
+    if (Unknown7E5DB4 == 1) {
+        Unknown7E5DA4 = x12;
+    }
+    return x02;
+}
+
+/// $C057E8
+short UnknownC057E8() {
+    Unknown7E5DA4 = 0;
+    Unknown7E5DB4++;
+    Unknown7E5DB6 = UnknownC05769(7);
+    if ((Unknown7E5DB6 == 7) || (Unknown7E5DB6 == 2)) {
+        return -256;
+    }
+    if (Unknown7E5DB6 == 0) {
+        return -1;
+    }
+    if (Unknown7E5DB6 == 1) {
+        return 1;
+    }
+    if (Unknown7E5DB6 == 4) {
+        return 7;
+    }
+    if ((Unknown7E5DB6 == 6) && ((Unknown7E5DAC & 7) == 0)) {
+        return 7;
+    }
+    return -1;
+}
+
+/// $C0583C
+short UnknownC0583C() {
+    Unknown7E5DA4 = 0;
+    Unknown7E5DB4++;
+    Unknown7E5DB6 = UnknownC05769(0x38);
+    if ((Unknown7E5DB6 == 7) || (Unknown7E5DB6 == 0x10)) {
+        return -256;
+    }
+    if (Unknown7E5DB6 == 0) {
+        return -1;
+    }
+    if (Unknown7E5DB6 == 8) {
+        return 3;
+    }
+    if (Unknown7E5DB6 == 0x20) {
+        return 5;
+    }
+    if ((Unknown7E5DB6 == 0x30) && ((Unknown7E5DAC & 7) == 0)) {
+        return 5;
+    }
+    return -1;
+}
+
+/// $C05890
+short UnknownC05890() {
+    short x12 = -1;
+    short x02 = 0;
+    short x10 = 0;
+    Unknown7E5DA4 = 0;
+    Unknown7E5DB4 = 1;
+    short x0E = UnknownC05769(9);
+    if (x0E == 0) {
+        Unknown7E5DAC -= 4;
+        x0E = UnknownC05769(9);
+        if (x0E == 0) {
+            return 6;
+        }
+        x02 = 1;
+    }
+    if (((x0E & 9) == 9) && ((Unknown7E5DAE & 7) != 0)) {
+        if (x02 != 0) {
+            return 6;
+        }
+        return -1;
+    }
+    if ((Unknown7EE000[((Unknown7E5DAE - 2) / 8) & 0x3F][((Unknown7E5DAC - 4) / 8) & 0x3F] & 0xC0) != 0) {
+        x10 |= 1;
+    }
+    if ((Unknown7EE000[((Unknown7E5DAE + 9) / 8) & 0x3F][((Unknown7E5DAC - 4) / 8) & 0x3F] & 0xC0) != 0) {
+        x10 |= 2;
+    }
+    switch (x0E) {
+        case 9:
+            if (x10 == 1) {
+                x12 = 5;
+            } else if (x10 == 2) {
+                x12 = 7;
+            } else if (x10 == 0) {
+                if ((Unknown7E5DAE & 7) < 4) {
+                    x12 = 7;
+                } else {
+                    x12 = 5;
+                }
+            }
+            break;
+        case 1:
+            if ((x10 & 2) == 0) {
+                x12 = 5;
+            }
+            break;
+        case 8:
+            if ((x10 & 1) == 0) {
+                x12 = 7;
+            }
+            break;
+        default: break;
+    }
+    if ((x02 != 0) && (x12 == -1)) {
+        return 6;
+    }
+    return x12;
+}
+
+/// $C059EF
+short UnknownC059EF() {
+    short x12 = -1;
+    short x02 = 0;
+    short x10 = 0;
+    Unknown7E5DA4 = 0;
+    Unknown7E5DB4 = 1;
+    short x0E = UnknownC05769(0x24);
+    if (x0E == 0) {
+        Unknown7E5DAC += 4;
+        x0E = UnknownC05769(36);
+        if (x0E == 0) {
+            return 2;
+        }
+        x02 = 1;
+    }
+    if (((x0E & 0x24) == 0x24) && ((Unknown7E5DAE & 7) != 0)) {
+        if (x02 != 0) {
+            return 2;
+        }
+        return -1;
+    }
+    if ((Unknown7EE000[((Unknown7E5DAE - 2) / 8) & 0x3F][((Unknown7E5DAC + 4) / 8) & 0x3F] & 0xC0) != 0) {
+        x10 |= 1;
+    }
+    if ((Unknown7EE000[((Unknown7E5DAE + 9) / 8) & 0x3F][((Unknown7E5DAC + 4) / 8) & 0x3F] & 0xC0) != 0) {
+        x10 |= 2;
+    }
+    switch (x0E) {
+        case 0x24:
+            if (x10 == 1) {
+                x12 = 3;
+            } else if (x10 == 2) {
+                x12 = 1;
+            } else if (x10 == 0) {
+                if ((Unknown7E5DAE & 7) < 4) {
+                    x12 = 1;
+                } else {
+                    x12 = 3;
+                }
+            }
+            break;
+        case 0x04:
+            if ((x10 & 2) == 0) {
+                x12 = 3;
+            }
+            break;
+        case 0x20:
+            if ((x10 & 1) == 0) {
+                x12 = 1;
+            }
+            break;
+        default: break;
+    }
+    if ((x02 != 0) && (x12 == -1)) {
+        return 2;
+    }
+    return x12;
+}
+
+/// $C05B4E
+short UnknownC05B4E(short arg1) {
+    Unknown7E5DA4 = 0;
+    Unknown7E5DB4++;
+    return (UnknownC05769(UnknownC200D1[arg1 / 2]) != 0) ? -256 : arg1;
+}
+
 /// $C05B7B
-void UnknownC05B7B(short, short, short, short);
+short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
+    Unknown7E5DB8 = 0;
+    Unknown7E5DB4 = 0;
+    Unknown7E5DA4 = 0;
+    Unknown7E5DA6 = arg4;
+    Unknown7E5DA2 = arg4;
+    Unknown7E5DAC = arg1;
+    Unknown7E5DAE = arg2;
+    short x12;
+    switch (arg4) {
+        case 0:
+            x12 = UnknownC057E8();
+            if (x12 != -1) {
+                break;
+            }
+            short x10 = Unknown7E5DA8;
+            if ((Unknown7E5DAE & 7) < 5) {
+                Unknown7E5DAE -= 4;
+                short x0E = UnknownC057E8();
+                if ((x0E & 0xFF00) != 0xFF00) {
+                    x12 = x0E;
+                }
+            }
+            Unknown7E5DA8 = x10;
+            break;
+        case 4:
+            x12 = UnknownC0583C();
+            if (x12 != -1) {
+                break;
+            }
+            short x10 = Unknown7E5DA8;
+            if ((Unknown7E5DAE & 7) > 3) {
+                Unknown7E5DAE += 4;
+                short x0E = UnknownC0583C();
+                if ((x0E & 0xFF00) != 0xFF00) {
+                    x12 = x0E;
+                }
+            }
+            Unknown7E5DA8 = x10;
+            break;
+        case 6:
+            x12 = UnknownC05890();
+            break;
+        case 2:
+            x12 = UnknownC059EF();
+            break;
+        case 7:
+        case 1:
+        case 5:
+        case 3:
+            x12 = UnknownC05B4E(arg4);
+            if (x12 != 0xFF00) {
+                x12 = arg4;
+            }
+            break;
+        default: break;
+    }
+    if (Unknown7E5D9A != 0) {
+        Unknown7E5DA8 = 0xFFFF;
+    }
+    if ((x12 == -1) || (x12 == 0xFF00)) {
+        return Unknown7E5DA4;
+    }
+    Unknown7E5DB8 = (x12 != arg4) ? 1 : 0;
+    Unknown7E5DA6 = x12;
+    return Unknown7E5DA4 & 0x3F;
+}
 
 /// $C05CD7
 short UnknownC05CD7(short arg1, short arg2, short arg3, short arg4) {
@@ -4357,7 +4749,45 @@ void UnknownC0A039() {
 }
 
 /// $C0A156
-short UnknownC0A156(short x, short y);
+short UnknownC0A156(short x, short y) {
+    if ((x | y) < 0) {
+        return -1;
+    }
+    if ((x == Unknown7E2888) && (y == Unknown7E288A)) {
+        return Unknown7E288C;
+    }
+    Unknown7E2888 = x;
+    Unknown7E288A = y;
+    return UnknownC0A1AE[y & 7](MapDataTileTableChunksTable[(y & 4) != 0 ? 10 : 9][(((y / 8) & 0xFF) << 8) | x], y & 7, cast(short)((((y / 8) & 0xFF) << 8) | x));
+}
+
+/// $C0A1AE
+short function(short, short, short)[8] UnknownC0A1AE = [
+    &UnknownC0A1CE4,
+    &UnknownC0A1CE3,
+    &UnknownC0A1CE2,
+    &UnknownC0A1CE,
+    &UnknownC0A1CE4,
+    &UnknownC0A1CE3,
+    &UnknownC0A1CE2,
+    &UnknownC0A1CE,
+];
+
+/// $C0A1CE
+short UnknownC0A1CE(short arg1, short xreg, short yreg) {
+    return UnknownC0A1CE2(arg1 / 4, xreg, yreg);
+}
+short UnknownC0A1CE2(short arg1, short xreg, short yreg) {
+    return UnknownC0A1CE3(arg1 / 4, xreg, yreg);
+}
+short UnknownC0A1CE3(short arg1, short xreg, short yreg) {
+    return UnknownC0A1CE4(arg1 / 4, xreg, yreg);
+}
+short UnknownC0A1CE4(short arg1, short xreg, short yreg) {
+    short x08 = (arg1 & 3) << 8;
+    Unknown7E288C = MapDataTileTableChunksTable[xreg][yreg] | x08;
+    return Unknown7E288C;
+}
 
 /// $C0A1F2
 void UnknownC0A1F2(short arg1) {
@@ -4371,6 +4801,18 @@ void UnknownC0A1F2(short arg1) {
 }
 
 __gshared const ubyte*[8] UnknownC0A20C;
+
+/// $C0A21C
+short UnknownC0A21C(short arg1) {
+    short y = FirstEntity;
+    while (y >= 0) {
+        if (arg1 == EntityTPTEntries[y / 2]) {
+            return arg1;
+        }
+        y = EntityNextEntityTable[y / 2];
+    }
+    return 0;
+}
 
 /// $C0A254
 void UnknownC0A254(short arg1) {

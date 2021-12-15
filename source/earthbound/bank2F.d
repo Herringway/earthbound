@@ -22378,6 +22378,22 @@ noreturn DebugMenuLoad() {
 	}
 }
 
+/// $EFE6CF
+short UnknownEFE6CF() {
+	if (DebugModeNumber == 1) {
+		return 0;
+	}
+	return -1;
+}
+
+/// $EFE6E2
+short UnknownEFE6E2(short arg1) {
+	if ((DebugModeNumber == 1) && (arg1 > 10)) {
+		arg1 = 10;
+	}
+	return arg1;
+}
+
 /// $EFE708
 short UnknownEFE708() {
 	short result = 0;
@@ -22457,7 +22473,9 @@ void UnknownEFEA4A() {
 }
 
 /// $EFEA9E
-void UnknownEFEA9E();
+void UnknownEFEA9E() {
+	Unknown7EB567 = 0;
+}
 
 /// $EFEAC8
 void UnknownEFEAC8() {
