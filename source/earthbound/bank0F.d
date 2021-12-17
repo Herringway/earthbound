@@ -7899,7 +7899,7 @@ immutable NPC[1584] NPCConfig = [
 	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
 	NPC(NPCType.Person, OverworldSprite.MOM, Direction.Down, ActionScript.Unknown037, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOn, TextNPC0014, null),
 	NPC(NPCType.Person, OverworldSprite.MOM, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0015, null),
-	NPC(NPCType.Person, OverworldSprite.NESS_DOG_SLEEPING, Direction.Down, ActionScript.Unknown627, EventFlag.UNKNOWN_013, NPCConfigFlagStyle.ShowIfOff, TextNPC0016, null),
+	NPC(NPCType.Person, OverworldSprite.NessDogSleeping, Direction.Down, ActionScript.Unknown627, EventFlag.UNKNOWN_013, NPCConfigFlagStyle.ShowIfOff, TextNPC0016, null),
 	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_12D, NPCConfigFlagStyle.ShowIfOn, TextNPC0017, null),
 	NPC(NPCType.Person, OverworldSprite.King, Direction.Right, ActionScript.Unknown018, EventFlag.UNKNOWN_130, NPCConfigFlagStyle.ShowIfOn, TextNPC0016, null),
 	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Down, ActionScript.Unknown045, EventFlag.UNKNOWN_136, NPCConfigFlagStyle.ShowIfOn, TextNPC0017, null),

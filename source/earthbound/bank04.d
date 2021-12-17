@@ -3332,6 +3332,14 @@ void UnknownC466C1(short arg1) {
     UnknownC4343E(arg1);
 }
 
+/// $C46881
+void UnknownC46881(const(ubyte)* arg1);
+
+/// $C4733C
+void UnknownC4733C() {
+    UnknownC006F2(TilesetTable[Unknown7E436E]);
+}
+
 /// $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
     UnknownC08726();
@@ -4026,6 +4034,17 @@ immutable ushort[33] DeadTargettableActions = [
     BattleActions.Action158,
     0,
 ];
+
+/// $C4A1F5
+short CheckIfValidTarget(short arg1) {
+    if ((BattlersTable[arg1].consciousness != 0) &&
+        (BattlersTable[arg1].npcID == 0) &&
+        (BattlersTable[arg1].afflictions[0] != Status0.Unconscious) &&
+        (BattlersTable[arg1].afflictions[0] != Status0.Diamondized)) {
+        return 1;
+    }
+    return 0;
+}
 
 /// $C4A228
 void UnknownC4A228(Battler* battler, short arg2) {
@@ -5005,6 +5024,76 @@ ushort Path_C4BF7F(ushort count, VecYX **points) {
     return count;
 }
 
+/// $C4C05E
+immutable ubyte[16] FileSelectTextStartNewGame = EBString(": Start New Game");
+
+immutable ubyte[6] FileSelectTextLevel = EBString("Level:");
+
+immutable ubyte[11] FileSelectTextTextSpeed = EBString("Text Speed:");
+
+immutable ubyte[7][3] FileSelectTextTextSpeedStrings = [
+    EBString!7("Fast"),
+    EBString!7("Medium"),
+    EBString!7("Slow"),
+];
+
+immutable ubyte[9] FileSelectTextContinue = EBStringz("Continue");
+
+immutable ubyte[5] FileSelectTextCopy = EBStringz("Copy");
+
+immutable ubyte[7] FileSelectTextDelete = EBStringz("Delete");
+
+immutable ubyte[7] FileSelectTextSetUp = EBStringz("Set Up");
+
+immutable ubyte[14] FileSelectTextCopyToWhere = EBString!14("Copy to where?");
+
+immutable ubyte[32] FileSelectTextAreYouSureDelete = EBString!32("Are you sure you want to delete?");
+
+immutable ubyte[3] FileSelectTextAreYouSureDeleteNo = EBStringz("No");
+
+immutable ubyte[4] FileSelectTextAreYouSureDeleteYes = EBStringz("Yes");
+
+immutable ubyte[25] FileSelectTextSelectTextSpeed = EBString!25("Please select text speed.");
+
+immutable ubyte[28] FileSelectTextSelectSoundSetting = EBString!28("Please select sound setting.");
+
+immutable ubyte[7][2] FileSelectTextSoundSettingStrings = [
+    EBString!7("Stereo"),
+    EBString!7("Mono"),
+];
+
+immutable ubyte[37] FileSelectTextWhichStyle = EBString!37("Which style of windows do you prefer?");
+
+immutable ubyte[13] FileSelectTextFlavorPlain = EBStringz("Plain flavor");
+
+immutable ubyte[12] FileSelectTextFlavorMint = EBStringz("Mint flavor");
+
+immutable ubyte[18] FileSelectTextFlavorStrawberry = EBStringz("Strawberry flavor");
+
+immutable ubyte[14] FileSelectTextFlavorBanana = EBStringz("Banana flavor");
+
+immutable ubyte[14] FileSelectTextFlavorPeanut = EBStringz("Peanut flavor");
+
+immutable ubyte[40][7] FileSelectTextPleaseNameThemStrings = [
+    EBString!40("Please name him."),
+    EBString!40("Name her, too."),
+    EBString!40("Name your friend."),
+    EBString!40("Name another friend."),
+    EBString!40("Name your pet."),
+    EBString!40("Favorite homemade food?"),
+    EBString!40("What's your favorite thing?"),
+];
+
+immutable ubyte[14] FileSelectTextFavoriteFood =EBString!14("Favorite food:");
+
+immutable ubyte[14] FileSelectTextCoolestThing =EBString!14("Coolest thing:");
+
+immutable ubyte[13] FileSelectTextAreYouSure =EBString!13("Are you sure?");
+
+immutable ubyte[4] FileSelectTextAreYouSureYep = EBStringz("Yep");
+
+immutable ubyte[5] FileSelectTextAreYouSureNope = EBStringz("Nope");
+
 /// $C4C2DE
 void UnknownC4C2DE() {
     if (Unknown7E4DC4 == 0) {
@@ -5455,6 +5544,46 @@ void UnknownC4D744() {
     UndrawFlyoverText();
     ReloadMap();
     TM_MIRROR = 0x17;
+}
+
+/// $C4D7D9
+void DisplayAnimatedNamingSprite(short arg1) {
+    for (const(NamingScreenEntity)* x06 = &UnknownC3FD2D[arg1][0]; x06.sprite != 0; x06++) {
+        CreateEntity(x06.sprite, x06.script, -1, 0, 0);
+    }
+    Unknown7EB4B4 = 0;
+}
+
+/// $C4D830
+void UnknownC4D830(short arg1) {
+    while (Unknown7EB4B4 != 0) {
+        UnknownC1004E();
+    }
+    for (const(NamingScreenEntity)* x06 = &UnknownC3FD2D[arg1 + 7][0]; x06.sprite != 0; x06++) {
+        short x = UnknownC46028(x06.sprite);
+        if (x == -1) {
+            continue;
+        }
+        InitEntityUnknown1(&EventScriptPointers[x06.script][0], x);
+    }
+    while (true) {
+        short* y = &EntityScriptTable[0];
+        ushort x0E = 0xFFFF;
+        for (short i = 0; i < 23; i++) {
+            x0E &= (y++)[0];
+        }
+        UnknownC1004E();
+        if (x0E == 0xFFFF) {
+            break;
+        }
+    }
+}
+
+/// $C4D8FA
+void UnknownC4D8FA() {
+    for (short i = 0; i < 5; i++) {
+        EntityDirections[CreateEntity(FileSelectSummarySpriteConfig[i].sprite, FileSelectSummarySpriteConfig[i].script, -1, FileSelectSummarySpriteConfig[i].x, FileSelectSummarySpriteConfig[i].y)] = Direction.Down;
+    }
 }
 
 /// $C4D989

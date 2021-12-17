@@ -308,7 +308,23 @@ void UnknownC207B6(short arg1) {
 }
 
 /// $C207E1
-void UndrawHPPPWindow(short);
+void UndrawHPPPWindow(short arg1) {
+	Unknown7E9649 = 1;
+	Unknown7E9647 &= cast(short)(0xFFFF ^ (1 << arg1));
+	short x0E;
+	if (arg1 == BattleMenuCurrentCharacterID) {
+		x0E = 18;
+	} else {
+		x0E = 19;
+	}
+	ushort* x = &bg2Buffer[(x0E * 32) + (16 - ((gameState.playerControlledPartyMemberCount * 7) / 2) + (arg1 * 7)) * 2];
+	for (short i = 8; i != 0; i--) {
+		for (short j = 7; j != 0; j--) {
+			(x++)[0] = 0;
+		}
+		x += 32 - 7;
+	}
+}
 
 /// $C2087C
 void UnknownC2087C() {
@@ -323,6 +339,15 @@ void UnknownC2087C() {
 		UnknownC107AF(x0E);
 		x0E = WindowStats[x0E].next;
 	} while(x0E != 0xFFFF);
+}
+
+/// $C208B8
+short UnknownC208B8(short arg1, short arg2) {
+	short a = WindowStats[WindowTable[CurrentFocusWindow]].tilemapBuffer[(WindowStats[WindowTable[CurrentFocusWindow]].width * arg2 * 2) + arg1];
+	if (((a & 0x3FF) == 0x4F) || (a & 0x3FF) == 0x41) {
+		return 0x2F;
+	}
+	return 0x40;
 }
 
 /// $C20912
@@ -405,7 +430,57 @@ void UnknownC20ABC(WindowTextAttributesCopy* buf) {
 }
 
 /// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
-ushort UnknownC20B65(short, short, short, short, short);
+short UnknownC20B65(short arg1, short arg2, short arg3, short arg4, short arg5) {
+	short x0E = arg2;
+	short x02 = arg1;
+	if (arg3 != 0) {
+		for (x0E = cast(short)(x0E + arg3); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += arg3) {
+			if (UnknownC208B8(x02, x0E) == 0x2F) {
+				goto Unknown27;
+			}
+		}
+		for (x0E = cast(short)(arg2 + arg3); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += arg3) {
+			for (x02 = cast(short)(x02 - 1); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02--) {
+				if (UnknownC208B8(x02, x0E) == 0x2F) {
+					goto Unknown27;
+				}
+			}
+		}
+		for (x0E = cast(short)(arg2 + arg3); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += arg3) {
+			for (x02 = cast(short)(x02 + 1); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02++) {
+				if (UnknownC208B8(x02, x0E) == 0x2F) {
+					goto Unknown27;
+				}
+			}
+		}
+	} else {
+		for (x02 = cast(short)(x02 + arg4); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += arg4) {
+			if (UnknownC208B8(x02, x0E) == 0x2F) {
+				goto Unknown27;
+			}
+		}
+		for (x02 = cast(short)(arg1 + arg4); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += arg4) {
+			for (x0E = cast(short)(x0E - 1); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E--) {
+				if (UnknownC208B8(x02, x0E) == 0x2F) {
+					goto Unknown27;
+				}
+			}
+		}
+		for (x02 = cast(short)(arg1 + arg4); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += arg4) {
+			for (x0E = cast(short)(x0E + 1); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E++) {
+				if (UnknownC208B8(x02, x0E) == 0x2F) {
+					goto Unknown27;
+				}
+			}
+		}
+		return -1;
+	}
+	Unknown27:
+	if (arg5 != -1) {
+		PlaySfx(arg5);
+	}
+	return cast(short)(((x0E << 8) & 0xFF00) + x02);
+}
 
 /// $C20D3F
 void SeparateDecimalDigits(short arg1) {
@@ -1242,6 +1317,31 @@ void UnknownC23E32() {
 	FixTargetName();
 }
 
+/// $C23F6C
+short FindTargettableNPC() {
+	if ((rand() & 3) == 0) {
+		return 0;
+	}
+	for (short i = 0; i < gameState.partyMembers.length; i++) {
+		if (gameState.partyMembers[i] < PartyMember.Pokey) {
+			continue;
+		}
+		if ((NPCAITable[gameState.partyMembers[i]].targettability & NPCTargettability.Untargettable) == 0) {
+			continue;
+		}
+		for (short j = 0; j < gameState.partyMembers.length; j++) {
+			if (BattlersTable[j].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[j].npcID != gameState.partyMembers[i]) {
+				continue;
+			}
+			return j;
+		}
+	}
+	return 0;
+}
+
 /// $C23FEA
 short GetShieldTargetting(short arg1, Battler* battler) {
 	if ((arg1 == BattleActions.PSIShieldSigma) || (arg1 == BattleActions.PSIShieldOmega) || (arg1 == BattleActions.PSIPSIShieldSigma) || (arg1 == BattleActions.PSIPSIShieldOmega)) {
@@ -1427,8 +1527,107 @@ void UnknownC2437E() {
 	RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.unknown7);
 }
 
+/// $C24434
+short UnknownC24434(Battler* arg1) {
+	arg1.currentTarget = cast(ubyte)(RandLimit(cast(short)(Unknown7EAD56 + Unknown7EAD58)) + 1);
+	if (arg1.currentTarget > Unknown7EAD56) {
+		return Unknown7EAD82[arg1.currentTarget - Unknown7EAD56 - 1];
+	}
+	return Unknown7EAD7A[arg1.currentTarget - 1];
+}
+
 /// $C24477
-void ChooseTarget(Battler*);
+void ChooseTarget(Battler* arg1) {
+	for (short i = 0; i < Unknown7EAD56; i++) {
+		if (CheckIfValidTarget(Unknown7EAD7A[i]) == 0) {
+			goto Unknown4;
+		}
+	}
+	for (short i = 0; i < Unknown7EAD58; i++) {
+		if (CheckIfValidTarget(Unknown7EAD82[i]) == 0) {
+			goto Unknown4;
+		}
+	}
+	UnknownC2F917();
+	Unknown4:
+	if (BattleActionTable[arg1.currentAction].direction == ActionDirection.Party) {
+		if (arg1.allyOrEnemy == 1) {
+			arg1.unknown9 = 0;
+		} else {
+			arg1.unknown9 = 16;
+		}
+	} else {
+		if (arg1.allyOrEnemy == 1) {
+			arg1.unknown9 = 16;
+		} else {
+			arg1.unknown9 = 0;
+		}
+		switch (BattleActionTable[arg1.currentAction].target) {
+			case ActionTarget.None:
+				arg1.unknown9 |= 1;
+				if (arg1.allyOrEnemy == 1) {
+					UnknownC4A228(arg1, cast(short)((arg1 - &BattlersTable[0]) / Battler.sizeof));
+				} else {
+					arg1.currentTarget = cast(ubyte)(((arg1 - &BattlersTable[0]) / Battler.sizeof) + 1);
+				}
+				break;
+			case ActionTarget.One:
+			case ActionTarget.Random:
+				arg1.unknown9 |= 1;
+				if (arg1.allyOrEnemy == 1) {
+					if (BattleActionTable[arg1.currentAction].direction == ActionDirection.Party) {
+						arg1.currentTarget = cast(ubyte)FindTargettableNPC();
+						if (arg1.currentTarget != 0) {
+							return;
+						}
+						while (true) {
+							arg1.currentTarget = (rand() & 7) + 1;
+							if (CheckIfValidTarget(arg1.currentTarget - 1) != 0) {
+								return;
+							}
+						}
+					} else {
+						while (true) {
+							if (CheckIfValidTarget(UnknownC24434(arg1)) != 0) {
+								return;
+							}
+						}
+					}
+				} else {
+					if (BattleActionTable[arg1.currentAction].direction == ActionDirection.Party) {
+						while (true) {
+							if (CheckIfValidTarget(UnknownC24434(arg1)) != 0) {
+								return;
+							}
+						}
+					} else {
+						arg1.currentTarget = (rand() & 7) + 1;
+						if (CheckIfValidTarget(arg1.currentTarget - 1) != 0) {
+							return;
+						}
+					}
+				}
+				break;
+			case ActionTarget.Row:
+				arg1.unknown9 |= 2;
+				if (arg1.allyOrEnemy == 1) {
+					arg1.currentTarget = 1;
+				} else if (Unknown7EAD56 == 0) {
+					arg1.currentTarget = 2;
+				} else if (Unknown7EAD58 == 0) {
+					arg1.currentTarget = 1;
+				} else {
+					arg1.currentTarget = (rand() & 1) + 1;
+				}
+				break;
+			case ActionTarget.All:
+				arg1.unknown9 |= 4;
+				arg1.currentTarget = 1;
+				break;
+			default: break;
+		}
+	}
+}
 
 /// $C24703
 void UnknownC24703(Battler* battler) {

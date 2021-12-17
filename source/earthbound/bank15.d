@@ -2221,7 +2221,15 @@ immutable Enemy[231] EnemyConfigurationTable = [
 ];
 
 /// $D5EBAB
-TeleportDestination[234] TeleportDestinationTable = [
+immutable StatsGrowth[4] StatsGrowthVars = [
+	StatsGrowth(18, 5, 4, 7, 5, 5, 6),
+	StatsGrowth(12, 3, 8, 5, 2, 7, 5),
+	StatsGrowth(10, 6, 5, 5, 3, 9, 4),
+	StatsGrowth(21, 18, 7, 3, 4, 4, 3),
+];
+
+/// $D5EBAB
+immutable TeleportDestination[234] TeleportDestinationTable = [
 	TeleportDestination(0x0000, 0x0000, CCDirection.Undefined, WarpStyle.INSTANT_PLUS_FADE, 0x0000),
 	TeleportDestination(0x0388, 0x03E9, CCDirection.Down, WarpStyle.STANDARD_DOOR, 0x007F),
 	TeleportDestination(0x02C8, 0x035B, CCDirection.Down, WarpStyle.STANDARD_DOOR, 0x007F),
@@ -2579,6 +2587,14 @@ immutable ubyte[6][7][7] dontCareNames = [
 		EBString!6("Gaming"),
 		EBString!6("Boxing"),
 	]
+];
+
+/// $D5F5F5
+immutable CharacterInitialStats[4] InitialStats = [
+	CharacterInitialStats(0x03F7, 0x008A, 20, 1, 0, [ItemID.ATM_CARD, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None]),
+	CharacterInitialStats(0x0000, 0x0000, 0, 1, 0, [ItemID.BREAD_ROLL, ItemID.TEDDY_BEAR, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None]),
+	CharacterInitialStats(0x0000, 0x0000, 0, 1, 0, [ItemID.BIG_BOTTLE_ROCKET, ItemID.BoiledEgg, ItemID.RULER, ItemID.PROTRACTOR, ItemID.BROKEN_SPRAY_CAN, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None]),
+	CharacterInitialStats(0x0000, 0x0000, 0, 15, 6000, [ItemID.TINY_RUBY, ItemID.BottleOfWater, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None, ItemID.None]),
 ];
 
 /// $D5F645

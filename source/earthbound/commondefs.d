@@ -323,7 +323,7 @@ enum Music {
 	YOUR_SANCTUARY_BOSS2 = 155,
 	METEOR_STRIKE = 156,
 	AttractMode = 157,
-	NAME_CONFIRMATION = 158,
+	NameConfirmation = 158,
 	PEACEFUL_REST_VALLEY2 = 159,
 	SoundstoneRecordingGiantStep = 160,
 	SoundstoneRecordingLilliputSteps = 161,
@@ -1140,6 +1140,7 @@ enum ActionScript {
 	Unknown030 = 30,
 	Unknown031 = 31,
 	Unknown032 = 32,
+	Unknown035 = 35,
 	Unknown037 = 37,
 	Unknown038 = 38,
 	Unknown040 = 40,
@@ -1278,6 +1279,38 @@ enum ActionScript {
 	Unknown498 = 498,
 	Unknown499 = 499,
 	Unknown500 = 500,
+	Unknown502 = 502,
+	Unknown503 = 503,
+	Unknown504 = 504,
+	Unknown505 = 505,
+	Unknown506 = 506,
+	Unknown507 = 507,
+	Unknown508 = 508,
+	Unknown509 = 509,
+	Unknown510 = 510,
+	Unknown511 = 511,
+	Unknown512 = 512,
+	Unknown513 = 513,
+	Unknown514 = 514,
+	Unknown515 = 515,
+	Unknown516 = 516,
+	Unknown517 = 517,
+	Unknown518 = 518,
+	Unknown519 = 519,
+	Unknown520 = 520,
+	Unknown521 = 521,
+	Unknown522 = 522,
+	Unknown523 = 523,
+	Unknown524 = 524,
+	Unknown525 = 525,
+	Unknown526 = 526,
+	Unknown527 = 527,
+	Unknown528 = 528,
+	Unknown529 = 529,
+	Unknown530 = 530,
+	Unknown532 = 532,
+	Unknown533 = 533,
+	Unknown534 = 534,
 	Unknown581 = 581,
 	Unknown582 = 582,
 	Unknown583 = 583,
@@ -1770,7 +1803,7 @@ enum OverworldSprite {
 	ROPE = 356,
 	TONY_KNEELING = 357,
 	UNKNOWN_358 = 358,
-	NESS_DOG_SLEEPING = 359,
+	NessDogSleeping = 359,
 	ROCK = 360,
 	NEW_AGE_RETRO_HIPPIE = 361,
 	POO_MEDITATING = 362,
@@ -3823,6 +3856,16 @@ enum PSITargetA {
 	Random = 3,
 }
 
+enum ThingsToName {
+	Char1 = 0,
+	Char2 = 1,
+	Char3 = 2,
+	Char4 = 3,
+	Dog = 4,
+	FavoriteFood = 5,
+	FavoriteThing = 6,
+}
+
 
 struct Game_State {
 	ubyte[12] mother2PlayerName;
@@ -4857,6 +4900,37 @@ struct SpritePlacement {
 	ubyte unknown3;
 }
 
+struct StatsGrowth {
+	ubyte offense;
+	ubyte defense;
+	ubyte speed;
+	ubyte guts;
+	ubyte vitality;
+	ubyte iq;
+	ubyte luck;
+}
+
+struct CharacterInitialStats {
+	short unknown0;
+	short unknown2;
+	short money;
+	short level;
+	short exp;
+	ubyte[10] items;
+}
+
+struct NamingScreenEntity {
+	ushort sprite;
+	ushort script;
+}
+
+struct FileSelectSummarySpriteConfigEntry {
+	short sprite;
+	short script;
+	short x;
+	short y;
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {
@@ -4874,6 +4948,16 @@ ubyte[] EBString(string str) {
 	foreach (dchar c; str) {
 		result[idx++] = EBChar(c);
 	}
+	return result;
+}
+
+ubyte[] EBStringz(string str) {
+	ubyte[] result = new ubyte[](str.length + 1);
+	size_t idx;
+	foreach (dchar c; str) {
+		result[idx++] = EBChar(c);
+	}
+	result[$ - 1] = 0;
 	return result;
 }
 

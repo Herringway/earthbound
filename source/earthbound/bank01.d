@@ -777,7 +777,53 @@ MenuOpt* UnknownC115F4(short arg1, const(ubyte)* arg2, const(ubyte)* arg3) {
 }
 
 /// $C1163C - Prints the options into the focused window
-void PrintMenuItems();
+void PrintMenuItems() {
+    if (CurrentFocusWindow == -1) {
+        return;
+    }
+    if (WindowStats[WindowTable[CurrentFocusWindow]].current_option == -1) {
+        Unknown7E968C = 0xFF;
+        return;
+    }
+    MenuOpt* x02 = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+    SetInstantPrinting();
+    while (true) {
+        if (x02.page == WindowStats[WindowTable[CurrentFocusWindow]].menu_page) {
+            UnknownC43DDB(x02);
+            if (x02.page == 0) {
+                Win_SetTextColor(0);
+                UnknownC43F77(0x14F);
+                UnknownC43CAA();
+                Win_SetTextColor(0);
+                ubyte* y = &WindowStats[WindowTable[CurrentFocusWindow]].title[0];
+                if (y[0] != 0) {
+                    ubyte* x;
+                    for (x = &Unknown7E9C9F[0]; (y[0] != 0) && (y[0] != EBChar('(')); x++) {
+                        x[0] = (y++)[0];
+                    }
+                    (x++)[0] = EBChar('(');
+                    (x++)[0] = cast(ubyte)(WindowStats[WindowTable[CurrentFocusWindow]].menu_page + EBChar('0'));
+                    (x++)[0] = EBChar(')');
+                    x[0] = 0;
+                    UnknownC43CAA();
+                    SetWindowTitle(CurrentFocusWindow, -1, &Unknown7E9C9F[0]);
+                    UnknownC43CAA();
+                    PrintString(cast(short)(strlen(cast(char*)&Unknown7E9C9F[0]) - 2), &Unknown7E9C9F[0]);
+                    PrintLetter((WindowStats[WindowTable[CurrentFocusWindow]].menu_page == MenuOptions[MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].option_count].prev].page) ? EBChar('1') : cast(ubyte)(WindowStats[WindowTable[CurrentFocusWindow]].menu_page + EBChar('1')));
+                    PrintLetter(EBChar(')'));
+                } else {
+                    PrintString(-1, &x02.label[0]);
+                }
+            } else {
+                PrintString(-1, &x02.label[0]);
+            }
+        }
+        if (x02.next == -1) {
+            break;
+        }
+        x02 = &MenuOptions[x02.next];
+    }
+}
 
 /// $C1180D
 // third argument unused?
@@ -786,10 +832,36 @@ void UnknownC1180D(short arg1, short arg2, short) {
     PrintMenuItems();
 }
 
+/// $C11887
+void UnknownC11887(short arg1) {
+    WindowStats[WindowTable[CurrentFocusWindow]].selected_option = arg1;
+    MenuOpt* x = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+    while (arg1 != 0) {
+        arg1--;
+        x = &MenuOptions[x.next];
+    }
+    WindowStats[WindowTable[CurrentFocusWindow]].menu_page = x.page;
+    PrintMenuItems();
+}
+
 /// $C118E7 - Get target X/Y window positions after menu cursor movement
 ///           Returns low byte = X, high byte = Y
 ///           (arguments unknown)
-ushort MoveCursor(short, short, short, short, short, short, short);
+short MoveCursor(short arg1, short arg2, short arg3, short arg4, short arg5, short arg6, short arg7) {
+    short x12 = UnknownC20B65(arg1, arg2, arg3, arg4, -1);
+    if (x12 == -1) {
+        x12 = UnknownC20B65(arg6, arg7, arg3, arg4, -1);
+        if ((arg3 == 0) && (((x12 >> 8) & 0xFF) != arg2)) {
+            x12 = -1;
+        } else if ((x12 & 0xFF) != arg1) {
+            x12 = -1;
+        }
+    }
+    if (x12 != -1) {
+        PlaySfx(arg5);
+    }
+    return x12;
+}
 
 /// $C1196A - Handle menu selection on the focused window
 short SelectionMenu(short cancelable) {
@@ -884,22 +956,22 @@ label2:
         UnknownC12E42();
 
         if (pad_press[0] & PAD_UP) {
-            dp1C = MoveCursor(dp04.text_x, dp04.text_y, -1, 0, 3, dp04.text_x, dp24.height);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, -1, 0, Sfx.Cursor3, dp04.text_x, dp24.height);
             goto label3;
         }
 
         if (pad_press[0] & PAD_LEFT) {
-            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 0, -1, 2, dp24.width, dp04.text_y);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 0, -1, Sfx.Cursor2, dp24.width, dp04.text_y);
             goto label3;
         }
 
         if (pad_press[0] & PAD_DOWN) {
-            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 1, 0, 3, dp04.text_x, -1);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 1, 0, Sfx.Cursor3, dp04.text_x, -1);
             goto label3;
         }
 
         if (pad_press[0] & PAD_RIGHT) {
-            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 0, 1, 2, -1, dp04.text_y);
+            dp1C = MoveCursor(dp04.text_x, dp04.text_y, 0, 1, Sfx.Cursor2, -1, dp04.text_y);
             goto label3;
         }
 
@@ -1019,6 +1091,11 @@ label3:
 /// $C11F5A
 void UnknownC11F5A(void function(short) arg1) {
     WindowStats[WindowTable[CurrentFocusWindow]].menu_callback = arg1;
+}
+
+/// $C11F8A
+void UnknownC11F8A() {
+    WindowStats[WindowTable[CurrentFocusWindow]].menu_callback = null;
 }
 
 /// $C1244C
@@ -1350,7 +1427,24 @@ void ShowTownMap() {
 void DebugYButtonFlag();
 
 /// $C13E0E
-void DebugYButtonGuide();
+void DebugYButtonGuide() {
+    short x14 = 0;
+    for (short i = 0; i < MAX_ENTITIES; i++) {
+        if (EntityScriptTable[i] != -1) {
+            x14++;
+        }
+    }
+    SetInstantPrinting();
+    CreateWindowN(Window.FileSelectMenu);
+    UnknownC10EB4(3);
+    PrintNumber(x14);
+    ClearInstantPrinting();
+    WindowTick();
+    while ((pad_press[0] & (PAD_B | PAD_SELECT)) == 0) {
+        WaitUntilNextFrame();
+    }
+    CloseWindow(Window.FileSelectMenu);
+}
 
 /// $C13EE7
 void DebugYButtonGoods() {
@@ -4447,8 +4541,152 @@ short UnknownC1D038(short arg1) {
     return 0;
 }
 
+/// $C1D08B
+short UnknownC1D08B(short arg1, short arg2, short arg3) {
+    short x0E = cast(short)((arg1 * arg2) - ((arg3 - 2) * 10));
+    short x02 = (x0E <= 0) ? 0 : randMod(3);
+    return cast(short)(((UnknownC3F2B1[(arg1 + 1) % 4] + x02 - 1) * x0E) / 50);
+}
+
 /// $C1D109
-void LevelUpChar(short, short);
+void LevelUpChar(short arg1, short arg2) {
+    arg1--;
+    short x16 = PartyCharacters[arg1].level;
+    PartyCharacters[arg1].level++;
+    if (arg2 != 0) {
+        EnableBlinkingTriangle(1);
+        UnknownC1ACA1(&PartyCharacters[arg1].name[0], 5);
+        UnknownC1AD0A(PartyCharacters[arg1].level);
+        DisplayText(TextLevelIsNowX.ptr);
+        EnableBlinkingTriangle(2);
+    }
+    short x02 = UnknownC1D08B(x16, StatsGrowthVars[arg2].offense, PartyCharacters[arg1].base_offense);
+    if (x02 > 0) {
+        PartyCharacters[arg1].base_offense += x02;
+        RecalcCharacterPostmathOffense(cast(short)(arg1 + 1));
+        if (arg2 != 0) {
+            UnknownC1AD0A(x02);
+            DisplayText(TextLevelUpOffense.ptr);
+        }
+    }
+    x02 = UnknownC1D08B(x16, StatsGrowthVars[arg2].defense, PartyCharacters[arg1].base_defense);
+    if (x02 > 0) {
+        PartyCharacters[arg1].base_defense += x02;
+        RecalcCharacterPostmathDefense(cast(short)(arg1 + 1));
+        if (arg2 != 0) {
+            UnknownC1AD0A(x02);
+            DisplayText(TextLevelUpDefense.ptr);
+        }
+    }
+    x02 = UnknownC1D08B(x16, StatsGrowthVars[arg2].speed, PartyCharacters[arg1].base_speed);
+    if (x02 > 0) {
+        PartyCharacters[arg1].base_speed += x02;
+        RecalcCharacterPostmathSpeed(cast(short)(arg1 + 1));
+        if (arg2 != 0) {
+            UnknownC1AD0A(x02);
+            DisplayText(TextLevelUpSpeed.ptr);
+        }
+    }
+    x02 = UnknownC1D08B(x16, StatsGrowthVars[arg2].guts, PartyCharacters[arg1].base_guts);
+    if (x02 > 0) {
+        PartyCharacters[arg1].base_guts += x02;
+        RecalcCharacterPostmathGuts(cast(short)(arg1 + 1));
+        if (arg2 != 0) {
+            UnknownC1AD0A(x02);
+            DisplayText(TextLevelUpGuts.ptr);
+        }
+    }
+    if (10 > x16) {
+        x02 = cast(short)(((StatsGrowthVars[arg1].vitality * x16) - (PartyCharacters[arg1].base_vitality - 2) * 10) / 10);
+    } else {
+        x02 = UnknownC1D08B(x16, StatsGrowthVars[arg1].vitality, PartyCharacters[arg1].base_vitality);
+    }
+    if (x02 > 0) {
+        PartyCharacters[arg1].base_vitality += x02;
+        RecalcCharacterPostmathVitality(cast(short)(arg1 + 1));
+        if (arg2 != 0) {
+            UnknownC1AD0A(x02);
+            DisplayText(TextLevelUpVitality.ptr);
+        }
+    }
+    if (10 > x16) {
+        x02 = cast(short)(((StatsGrowthVars[arg1].iq * x16) - (PartyCharacters[arg1].base_iq - 2) * 10) / 10);
+    } else {
+        x02 = UnknownC1D08B(x16, StatsGrowthVars[arg1].iq, PartyCharacters[arg1].base_iq);
+    }
+    if (x02 > 0) {
+        PartyCharacters[arg1].base_iq += x02;
+        RecalcCharacterPostmathIQ(cast(short)(arg1 + 1));
+        if (arg2 != 0) {
+            UnknownC1AD0A(x02);
+            DisplayText(TextLevelUpIQ.ptr);
+        }
+    }
+    x02 = UnknownC1D08B(x16, StatsGrowthVars[arg2].luck, PartyCharacters[arg1].base_luck);
+    if (x02 > 0) {
+        PartyCharacters[arg1].base_luck += x02;
+        RecalcCharacterPostmathLuck(cast(short)(arg1 + 1));
+        if (arg2 != 0) {
+            UnknownC1AD0A(x02);
+            DisplayText(TextLevelUpLuck.ptr);
+        }
+    }
+    short x14 = cast(short)(PartyCharacters[arg1].vitality * 15 - PartyCharacters[arg1].maxHP);
+    x02 = (x14 > 1) ? x14 : cast(short)(randMod(2) + 1);
+    PartyCharacters[arg1].maxHP += x02;
+    PartyCharacters[arg1].hp.target += x02;
+    if (arg2 != 0) {
+        UnknownC1AD0A(x02);
+        DisplayText(TextLevelUpMaxHP.ptr);
+    }
+    if (arg1 != 2) {
+        short x12 = ((arg1 == 0) && (getEventFlag(EventFlag.MAGICANT_COMPLETED) != 0)) ? PartyCharacters[arg1].iq * 2 : PartyCharacters[arg1].iq;
+        x14 = cast(short)(x12 * 5 - PartyCharacters[arg1].maxPP);
+        x14 = (x14 > 1) ? x14 : (randMod(2));
+        if (x14 != 0) {
+            PartyCharacters[arg1].maxPP += x14;
+            PartyCharacters[arg1].pp.target += x14;
+            if (arg2 != 0) {
+                UnknownC1AD0A(x14);
+                DisplayText(TextLevelUpMaxPP.ptr);
+            }
+        }
+        if (arg2 != 0) {
+            x02 = x16;
+            x02++;
+            switch (arg1) {
+                case 0:
+                    for (short i = 1; PSIAbilityTable[i].name != 0; i++) {
+                        if (PSIAbilityTable[i].nessLevel == x02) {
+                            UnknownC1ACF8(i);
+                            DisplayText(TextLevelUpPSILearned.ptr);
+                        }
+                    }
+                    break;
+                case 1:
+                    for (short i = 1; PSIAbilityTable[i].name != 0; i++) {
+                        if (PSIAbilityTable[i].paulaLevel == x02) {
+                            UnknownC1ACF8(i);
+                            DisplayText(TextLevelUpPSILearned.ptr);
+                        }
+                    }
+                    break;
+                case 3:
+                    for (short i = 1; PSIAbilityTable[i].name != 0; i++) {
+                        if (PSIAbilityTable[i].pooLevel == x02) {
+                            UnknownC1ACF8(i);
+                            DisplayText(TextLevelUpPSILearned.ptr);
+                        }
+                    }
+                    break;
+                default: break;
+            }
+        }
+    }
+    if (arg2 != 0) {
+        ClearBlinkingPrompt();
+    }
+}
 
 /// $C1D9E9
 void GainEXP(short arg1, short arg2, uint exp) {
@@ -4876,8 +5114,518 @@ short EnterYourNamePlease(short arg1) {
     return result;
 }
 
+/// $C1EC04
+short NameACharacter(short arg1, ubyte* arg2, short arg3, const(ubyte)* arg4, short arg5) {
+    CreateWindowN(Window.FileSelectNamingNameBox);
+    WindowTickWithoutInstantPrinting();
+    if (arg2[0] != 0) {
+        UnknownC440B5(arg2, arg1);
+    } else {
+        UnknownC441B7(arg1);
+    }
+    UnknownC438A5(0, 0);
+    CreateWindowN(Window.FileSelectNamingMessage);
+    WindowTickWithoutInstantPrinting();
+    PrintString(arg5, arg4);
+    CC1314(1, 0);
+    short x14 = TextInputDialog(0x1A, arg1, arg2, 0,  arg3);
+    CloseWindow(Window.FileSelectNamingKeyboard);
+    return x14;
+}
+
+/// $C1EC8F
+void UnknownC1EC8F(short arg1) {
+    ubyte x00 = gameState.textFlavour;
+    gameState.textFlavour = cast(ubyte)arg1;
+    LoadWindowGraphics();
+    UnknownC44963(2);
+    UnknownC47F87();
+    Unknown7E0030 = 0x18;
+    gameState.textFlavour = x00;
+}
+
+/// $C1ECD1
+void UnknownC1ECD1(short arg1) {
+    UnknownC1EC8F(arg1 >> 8);
+}
+
+/// $C1ECDC
+void CorruptionCheck() {
+    if (Unknown7E9F79 == 0) {
+        return;
+    }
+    UnknownC20A20(&Unknown7E9C8A);
+    CreateWindowN(Window.Unknown2f);
+    for (short i = 0; 3 > i; i++) {
+        if ((UnknownEF05A6[i] & Unknown7E9F79) == 0) {
+            continue;
+        }
+        UnknownC1AD0A(i + 1);
+        DisplayText(TextSaveFileLost.ptr);
+    }
+    CloseFocusWindowN();
+    Unknown7E9F79 = 0;
+    UnknownC20ABC(&Unknown7E9C8A);
+}
+
+/// $C1ED5B
+short FileSelectMenu(short arg1) {
+    short x1C;
+    CreateWindowN(Window.FileSelectMain);
+    for (short i = 0; i < 3; i++, UnknownC115F4(x1C | i, &Unknown7E9C9F[0], null)) {
+        LoadGameSlot(i);
+        if (gameState.favouriteThing[1] != 0) {
+            memset(&Unknown7E9C9F[0], 0, 0x20);
+            Unknown7E9C9F[0] = cast(ubyte)(EBChar('1') + i);
+            Unknown7E9C9F[1] = EBChar(':');
+            Unknown7E9C9F[2] = EBChar(' ');
+            for (short j = 0; j < PartyCharacter.name.length; j++) {
+                if ((PartyCharacters[0].name[j] == 0) || (j >= PartyCharacter.name.length)) {
+                    Unknown7E9C9F[j + 3] = 0;
+                } else if (j < PartyCharacter.name.length) {
+                    Unknown7E9C9F[j + 3] = PartyCharacters[0].name[j];
+                }
+            }
+            Unknown7EB49E[i] = 1;
+            x1C = cast(short)(gameState.textFlavour << 8);
+        } else {
+            Unknown7E9C9F[0] = cast(ubyte)(EBChar('1') + i);
+            memcpy(&Unknown7E9C9F[1], &FileSelectTextStartNewGame[0], FileSelectTextStartNewGame.length);
+            Unknown7E9C9F[17] = 0;
+            Unknown7EB49E[i] = 0;
+            x1C = 0x100;
+        }
+    }
+    UnknownC1180D(1, 0, 0);
+    for (short i = 0; i < 3; i++) {
+        LoadGameSlot(i);
+        if (gameState.favouriteThing[1] != 0) {
+            memcpy(&Unknown7E9C9F[0], &FileSelectTextLevel[0], FileSelectTextLevel.length);
+            Unknown7E9C9F[6] = 0;
+            UnknownC438A5(9, i);
+            PrintString(0x20, &Unknown7E9C9F[0]);
+            Unknown7E9C9F[0] = cast(ubyte)(Unknown7E895A[7 - UnknownC10D7C(PartyCharacters[0].level)] + EBChar('0'));
+            Unknown7E9C9F[1] = cast(ubyte)(Unknown7E895A[6] + EBChar('0'));
+            Unknown7E9C9F[2] = 0;
+            UnknownC438A5(13, i);
+            PrintString(0x20, &Unknown7E9C9F[0]);
+            memcpy(&Unknown7E9C9F[0], &FileSelectTextTextSpeed[0], FileSelectTextTextSpeed.length);
+            Unknown7E9C9F[11] = EBChar(' ');
+            memcpy(&Unknown7E9C9F[12], &FileSelectTextTextSpeedStrings[gameState.textSpeed - 1][0], FileSelectTextTextSpeedStrings[gameState.textSpeed - 1].length);
+            UnknownC438A5(16, i);
+            PrintString(0x20, &Unknown7E9C9F[0]);
+        }
+    }
+    if (arg1 != 0) {
+        MenuOpt* x1C_2 = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+        for (short i = cast(short)(CurrentSaveSlot - 1); i != 0; i--) {
+            x1C_2 = &MenuOptions[x1C_2.next];
+        }
+        Win_SetTextColor(6);
+        UnknownC438A5(cast(short)(x1C_2.text_x + 1), x1C_2.text_y);
+        Unknown7E5E6E = 0;
+        UnknownC43B15();
+        Win_SetTextColor(0);
+    } else {
+        CorruptionCheck();
+        while (Unknown7E0028 != 0) {}
+        ChangeMusic(Music.SetupScreen);
+        UnknownC11F5A(&UnknownC1ECD1);
+        CurrentSaveSlot = cast(ubyte)SelectionMenu(1);
+        UnknownC11F8A();
+    }
+    LoadGameSlot(cast(short)(CurrentSaveSlot - 1));
+    return CurrentSaveSlot;
+}
+
+/// $C1F07E
+short UnknownC1F07E() {
+    CreateWindowN(Window.FileSelectMenu);
+    UnknownC1153B(1, 0, 0, &FileSelectTextContinue[0], null);
+    for (short i = 0; 3 > i; i++) {
+        if (CurrentSaveSlot -1 == i) {
+            continue;
+        }
+        if (Unknown7EB49E[i] != 0) {
+            continue;
+        }
+        UnknownC1153B(2, 6, 0, &FileSelectTextCopy[0], null);
+    }
+    UnknownC1153B(3, 10, 0, &FileSelectTextDelete[0], null);
+    UnknownC1153B(4, 15, 0, &FileSelectTextSetUp[0], null);
+    PrintMenuItems();
+    Unknown7E5E6E = 0xFF;
+    return SelectionMenu(1);
+}
+
+/// $C1F14F
+short UnknownC1F14F() {
+    short y;
+    for (short i = 0; 3 > i; i++) {
+        if (Unknown7EB49E[i] == 0) {
+            y++;
+        }
+    }
+    if (y == 1) {
+        CreateWindowN(Window.FileSelectCopyMenuOneFile);
+        SetInstantPrinting();
+        PrintString(FileSelectTextCopyToWhere.length, &FileSelectTextCopyToWhere[0]);
+        for (short i = 0; 3 > i; i++) {
+            if (Unknown7EB49E[i] == 0) {
+                Unknown7E9C9F[0] = cast(ubyte)(EBChar('1') + i);
+                Unknown7E9C9F[1] = EBChar(':');
+                Unknown7E9C9F[2] = 0;
+                UnknownC1153B(cast(short)(i + 1), 0, 1, &Unknown7E9C9F[0], null);
+            }
+        }
+    } else {
+        CreateWindowN(Window.FileSelectCopyMenuTwoFiles);
+        SetInstantPrinting();
+        PrintString(FileSelectTextCopyToWhere.length, &FileSelectTextCopyToWhere[0]);
+        short x04 = 1;
+        for (short i = 0; 3 > i; i++) {
+            if (Unknown7EB49E[i] == 0) {
+                Unknown7E9C9F[0] = cast(ubyte)(EBChar('1') + i);
+                Unknown7E9C9F[1] = EBChar(':');
+                Unknown7E9C9F[2] = 0;
+                UnknownC1153B(cast(short)(i + 1), 0, x04++, &Unknown7E9C9F[0], null);
+            }
+        }
+    }
+    PrintMenuItems();
+    short x16 = SelectionMenu(1);
+    if (x16 != 0) {
+        CopySaveSlot(cast(short)(x16 - 1), cast(short)(CurrentSaveSlot - 1));
+    }
+    Unknown7E5E6E = 0;
+    CloseFocusWindowN();
+    return x16;
+}
+
+/// $C1F2A8
+short UnknownC1F2A8() {
+    CreateWindowN(Window.FileSelectDeleteConfirmation);
+    SetInstantPrinting();
+    UnknownC10EB4(0);
+    UnknownC438A5(0, 0);
+    PrintString(FileSelectTextAreYouSureDelete.length, &FileSelectTextAreYouSureDelete[0]);
+    UnknownC43D75(0, 1);
+    UnknownC438A5(0, 1);
+    PrintNumber(CurrentSaveSlot);
+    PrintLetter(EBChar(':'));
+    UnknownC438A5(2, 1);
+    UnknownC1931B(1);
+    UnknownC438A5(8, 1);
+    PrintString(FileSelectTextLevel.length, &FileSelectTextLevel[0]);
+    UnknownC438A5(12, 1);
+    PrintNumber(PartyCharacters[0].level);
+    UnknownC1153B(0, 0, 2, &FileSelectTextAreYouSureDeleteNo[0], null);
+    UnknownC1153B(1, 0, 3, &FileSelectTextAreYouSureDeleteYes[0], null);
+    PrintMenuItems();
+    short x16 = SelectionMenu(1);
+    if (x16 != 0) {
+        EraseSaveSlot(CurrentSaveSlot - 1);
+    }
+    Unknown7E5E6E = 0;
+    CloseFocusWindowN();
+    return x16;
+}
+
+/// $C1F3C2
+void OpenTextSpeedMenu() {
+    CreateWindowN(Window.FileSelectTextSpeed);
+    SetInstantPrinting();
+    PrintString(FileSelectTextSelectTextSpeed.length, &FileSelectTextSelectTextSpeed[0]);
+    UnknownC114B1(0, 1, &FileSelectTextTextSpeedStrings[0][0], null);
+    UnknownC114B1(0, 2, &FileSelectTextTextSpeedStrings[1][0], null);
+    UnknownC114B1(0, 3, &FileSelectTextTextSpeedStrings[2][0], null);
+    UnknownC11887(gameState.textSpeed != 0 ? gameState.textSpeed - 1 : 1);
+}
+
+/// $C1F497
+short UnknownC1F497(short arg1) {
+    short x12;
+    CurrentFocusWindow = Window.FileSelectTextSpeed;
+    SetInstantPrinting();
+    if (arg1 != 0) {
+        OpenTextSpeedMenu();
+        MenuOpt* x14 = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+        for (short i = cast(short)(gameState.textSpeed - 1); i != 0; i--) {
+            x14 = &MenuOptions[MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option].next];
+        }
+        Win_SetTextColor(6);
+        UnknownC438A5(cast(short)(x14.text_x + 1), x14.text_y);
+        UnknownC43BB9(-1, 1, &x14.label[0]);
+        Win_SetTextColor(0);
+        x12 = gameState.textSpeed;
+    } else {
+        Unknown7E5E6E = 0;
+        x12 = SelectionMenu(1);
+        if (x12 != 0) {
+            gameState.textSpeed = cast(ubyte)x12;
+            SaveGameSlot(cast(short)(CurrentSaveSlot - 1));
+        }
+    }
+    return x12;
+}
+
+/// $C1F568
+void OpenSoundMenu() {
+    CreateWindowN(Window.FileSelectMusicMode);
+    SetInstantPrinting();
+    PrintString(FileSelectTextSelectSoundSetting.length, &FileSelectTextSelectSoundSetting[0]);
+    UnknownC114B1(0, 1, &FileSelectTextSoundSettingStrings[0][0], null);
+    UnknownC114B1(0, 2, &FileSelectTextSoundSettingStrings[1][0], null);
+    UnknownC11887(gameState.soundSetting != 0 ? gameState.soundSetting - 1 : 0);
+}
+
+/// $C1F616
+short UnknownC1F616(short arg1) {
+    short x12;
+    CurrentFocusWindow = Window.FileSelectMusicMode;
+    SetInstantPrinting();
+    if (arg1 != 0) {
+        OpenSoundMenu();
+        MenuOpt* x14 = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+        for (short i = gameState.soundSetting; i != 0; i--) {
+            x14 = &MenuOptions[MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option].next];
+        }
+        Win_SetTextColor(6);
+        UnknownC438A5(cast(short)(x14.text_x + 1), x14.text_y);
+        UnknownC43BB9(-1, 1, &x14.label[0]);
+        Win_SetTextColor(0);
+        x12 = gameState.soundSetting;
+    } else {
+        x12 = SelectionMenu(1);
+        if (x12 != 0) {
+            gameState.soundSetting = cast(ubyte)x12;
+        }
+        SaveGameSlot(cast(short)(CurrentSaveSlot - 1));
+    }
+    return x12;
+}
+
+/// $C1F6E3
+short OpenFlavourMenu() {
+    CreateWindowN(Window.FileSelectFlavourChoice);
+    SetInstantPrinting();
+    PrintString(FileSelectTextWhichStyle.length, &FileSelectTextWhichStyle[0]);
+    UnknownC114B1(0, 2, &FileSelectTextFlavorPlain[0], null);
+    UnknownC114B1(0, 3, &FileSelectTextFlavorMint[0], null);
+    UnknownC114B1(0, 4, &FileSelectTextFlavorStrawberry[0], null);
+    UnknownC114B1(0, 5, &FileSelectTextFlavorBanana[0], null);
+    UnknownC114B1(0, 6, &FileSelectTextFlavorPeanut[0], null);
+    if (gameState.textFlavour == 0) {
+        gameState.textFlavour = 1;
+    }
+    UnknownC11887(gameState.textFlavour - 1);
+    UnknownC11F5A(&UnknownC1EC8F);
+    short x16 = SelectionMenu(1);
+    if (x16 != 0) {
+        gameState.textFlavour = cast(ubyte)x16;
+    } else {
+        UnknownC1EC8F((gameState.textFlavour != 0) ? gameState.textFlavour : 1);
+    }
+    SaveGameSlot(CurrentSaveSlot - 1);
+    return x16;
+}
+
 /// $C1F805
-void FileMenuLoop();
+void FileMenuLoop() {
+    outermost: while (true) {
+        SetInstantPrinting();
+        if (Unknown7EB49E[FileSelectMenu(0) - 1] != 0) {
+            ValidFileSelected:
+            switch (UnknownC1F07E()) {
+                case 0: //B pressed
+                    CloseFocusWindow();
+                    continue;
+                case 1: //Start Game
+                    UnknownC064D4();
+                    UnknownC07213();
+                    RespawnX = gameState.leaderX.integer;
+                    RespawnY = gameState.leaderY.integer;
+                    break outermost;
+                case 2: //Copy
+                    if (UnknownC1F14F() == 0) {
+                        goto ValidFileSelected;
+                    }
+                    break;
+                case 3: //Delete
+                    if (UnknownC1F2A8() == 0) {
+                        goto ValidFileSelected;
+                    }
+                    break;
+                case 4: //Setup
+                    OpenTextSpeedMenu();
+                    while (true) {
+                        if (UnknownC1F497(0) == 0) {
+                            CloseWindow(0x18);
+                            goto ValidFileSelected;
+                        }
+                        OpenSoundMenu();
+                        while (true) {
+                            if (UnknownC1F616(0) == 0) {
+                                CloseWindow(0x19);
+                                break;
+                            }
+                            if (OpenFlavourMenu() == 0) {
+                                CloseWindow(0x32);
+                            }
+                        }
+                    }
+                    break;
+                default: break;
+            }
+            UnknownC1008E();
+        } else {
+            OpenTextSpeedMenu();
+            while (true) {
+                if (UnknownC1F497(0) == 0) {
+                    CloseWindow(0x18);
+                    break;
+                }
+                OpenSoundMenu();
+                while (true) {
+                    if (UnknownC1F616(0) == 0) {
+                        CloseWindow(0x19);
+                        break;
+                    }
+                    Unknown16:
+                    if (OpenFlavourMenu() == 0) {
+                        CloseWindow(0x32);
+                    } else {
+                        ChangeMusic(Music.NamingScreen);
+                        nameLoop: while (true) {
+                            UnknownC1008E();
+                            short x20;
+                            for (short i = 0; 7 > i; UnknownC4D830(i), i += x20) {
+                                if (i == -1) {
+                                    UnknownC1008E();
+                                    FileSelectMenu(1);
+                                    UnknownC1F497(1);
+                                    UnknownC1F616(1);
+                                    ChangeMusic(Music.SetupScreen);
+                                    goto Unknown16;
+                                }
+                                DisplayAnimatedNamingSprite(i);
+                                if (ThingsToName.Dog <= i) {
+                                    if (NameACharacter(PartyCharacter.name.length, &PartyCharacters[i].name[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+                                        x20 = -1;
+                                        continue;
+                                    }
+                                    x20 = 1;
+                                    continue;
+                                }
+                                if (i == ThingsToName.Dog) {
+                                    if (NameACharacter(gameState.petName.length, &gameState.petName[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+                                        x20 = -1;
+                                        continue;
+                                    }
+                                    x20 = 1;
+                                    continue;
+                                }
+                                if (i == ThingsToName.FavoriteFood) {
+                                    if (NameACharacter(gameState.favouriteFood.length, &gameState.favouriteFood[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+                                        x20 = -1;
+                                        continue;
+                                    }
+                                    x20 = 1;
+                                    continue;
+                                }
+                                if (i == ThingsToName.FavoriteThing) {
+                                    if (NameACharacter(gameState.favouriteThing.length, &gameState.favouriteThing[4], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+                                        x20 = -1;
+                                        continue;
+                                    }
+                                    x20 = 1;
+                                    continue;
+                                }
+                            }
+                            UnknownC1008E();
+                            SetInstantPrinting();
+                            for (short i = 0; 4 > i; i++, UnknownC1931B(i)) {
+                                CreateWindowN(cast(short)(Window.FileSelectNamingConfirmationNess + i));
+                            }
+                            CreateWindowN(Window.FileSelectNamingConfirmationKing);
+                            UnknownC1931B(7);
+                            CreateWindowN(Window.FileSelectNamingConfirmationFood);
+                            PrintString(FileSelectTextFavoriteFood.length, &FileSelectTextFavoriteFood[0]);
+                            short x = UnknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
+                            UnknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - WindowStats[WindowTable[Window.FileSelectNamingConfirmationFood]].width), 1);
+                            PrintString(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), &gameState.favouriteFood[0]);
+
+                            CreateWindowN(Window.FileSelectNamingConfirmationThing);
+                            PrintString(FileSelectTextCoolestThing.length, &FileSelectTextCoolestThing[0]);
+                            x = UnknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
+                            UnknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - WindowStats[WindowTable[Window.FileSelectNamingConfirmationThing]].width), 1);
+                            PrintString(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), &gameState.favouriteThing[4]);
+
+                            CreateWindowN(Window.FileSelectNamingConfirmationMessage);
+                            PrintString(FileSelectTextAreYouSure.length, &FileSelectTextAreYouSure[0]);
+
+                            UnknownC1153B(1, 14, 0, &FileSelectTextAreYouSureYep[0], null);
+                            UnknownC1153B(0, 18, 0, &FileSelectTextAreYouSureNope[0], null);
+                            PrintMenuItems();
+                            UnknownC4D8FA();
+                            Unknown7E5E6E = 0xFF;
+                            if (SelectionMenu(1) == 0) {
+                                UnknownC021E6();
+                                continue nameLoop;
+                            }
+                            ChangeMusic(Music.NameConfirmation);
+                            WindowTick();
+                            for (short i = 0; 180 > i; i++) {
+                                UnknownC1004E();
+                            }
+                            UnknownC021E6();
+                            for (short i = 0; 4 > i; i++) {
+                                ResetCharLevelOne(cast(short)(i + 1), InitialStats[i].level, 0);
+                                if (InitialStats[i].exp != 0) {
+                                    GainEXP(cast(short)(i + 1), 0, InitialStats[i].exp);
+                                }
+                                PartyCharacters[i].hp.target = PartyCharacters[i].hp.current.integer = PartyCharacters[i].maxHP;
+                                PartyCharacters[i].pp.target = PartyCharacters[i].pp.current.integer = PartyCharacters[i].maxPP;
+                                PartyCharacters[i].pp.current.fraction = 0;
+                                PartyCharacters[i].hp.current.fraction = 0;
+                                memset(&PartyCharacters[i].items[0], 0, PartyCharacter.items.length);
+                                memcpy(&PartyCharacters[i].items[0], &InitialStats[i].items[0], PartyCharacter.items.length);
+                                PartyCharacters[i].hp_pp_window_options = 0x400;
+                            }
+                            gameState.moneyCarried = InitialStats[0].money;
+                            UnknownC0B65F(InitialStats[0].unknown0, InitialStats[0].unknown2);
+                            gameState.favouriteThing[0] = EBChar('P');
+                            gameState.favouriteThing[1] = EBChar('S');
+                            gameState.favouriteThing[2] = EBChar('I');
+                            gameState.favouriteThing[3] = EBChar(' ');
+                            for (short i = 4; gameState.favouriteThing.length - 1 > i; i++) {
+                                if (gameState.favouriteThing[i] == 0) {
+                                    gameState.favouriteThing[i] = EBChar(' ');
+                                    break;
+                                }
+                            }
+                            gameState.unknownC3 = 1;
+                            RespawnX = gameState.leaderX.integer;
+                            RespawnY = gameState.leaderY.integer;
+                            UnknownC064D4();
+                            UnknownC0B65F(0x840, 0x6E8);
+                            UnknownC46881(TextFileSelectScreen1.ptr);
+                            setEventFlag(EventFlag.UNKNOWN_00B, 1);
+                            ShowNPCFlag = 1;
+                            break outermost;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    UnknownC1008E();
+    Unknown7E9627 = UnknownC3FB1F[gameState.textSpeed - 1];
+    SelectedTextSpeed = cast(ushort)(gameState.textSpeed - 1);
+    Unknown7E964B = (gameState.textSpeed == 3) ? 0 : 30;
+    Unknown7E5DBA = 0;
+    DisplayText(TextFileSelectScreen2.ptr);
+}
 
 /// $C1FF2C
 short UnknownC1FF2C() {

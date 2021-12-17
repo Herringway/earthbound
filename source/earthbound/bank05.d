@@ -1596,7 +1596,7 @@ immutable ubyte[0] TextAttractMode7;
 immutable ubyte[0] TEXT_EVENT_544;
 immutable ubyte[0] TextAttractMode8;
 immutable ubyte[0] TextAttractMode9;
-immutable ubyte[0] TEXT_FILE_SELECT_SCREEN_1;
+immutable ubyte[0] TextFileSelectScreen1;
 immutable ubyte[0] TEXT_EVENT_37;
 immutable ubyte[0] TEXT_EVENT_38;
 immutable ubyte[0] TextBlockC5E812;

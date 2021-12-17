@@ -393,7 +393,7 @@ void UnknownC00BDC(short x, short y) {
 }
 
 /// $C00CF3
-void UnknownC00CF3(short x, short y) {
+void LoadCollisionRow(short x, short y) {
     ushort* x02 = &Unknown7EF000[(y / 4) & 0xF][0];
     ubyte* x10 = &Unknown7EE000[y & 0x3F][0];
     for (short i = 0; i < 16; i++) {
@@ -408,7 +408,7 @@ void UnknownC00CF3(short x, short y) {
 }
 
 /// $C00D7E
-void UnknownC00D7E(short x, short y) {
+void LoadCollisionColumn(short x, short y) {
     ushort* x02 = &Unknown7EF000[0][(x / 4) & 0xF];
     ubyte* x10 = &Unknown7EE000[0][x & 0x3F];
     for (short i = 0; i < 16; i++) {
@@ -512,7 +512,7 @@ void ReloadMapAtPosition(short x, short y) {
         UnknownC00AC5(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
     }
     for (short i = 0; i < 60; i++) {
-        UnknownC00CF3(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
+        LoadCollisionRow(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
     }
     for (short i = -1; i != 31; i++) {
         UnknownC00E16(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
@@ -549,7 +549,7 @@ void LoadMapAtPosition(short x, short y) {
         UnknownC00AC5(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
     }
     for (short i = 0; i < 60; i++) {
-        UnknownC00CF3(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
+        LoadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
     }
     while (Unknown7E0028 != 0) {}
     if (Unknown7EB4EF == 0) {
@@ -588,14 +588,14 @@ void RefreshMapAtPosition(short x, short y) {
         if (((Unknown7E4374 - x04) < 0) != 0) {
             Unknown7E4374++;
             UnknownC00BDC(cast(short)(Unknown7E4374 + 41), cast(short)(x02 - 16));
-            UnknownC00D7E(cast(short)(Unknown7E4374 + 41), cast(short)(x02 - 16));
+            LoadCollisionColumn(cast(short)(Unknown7E4374 + 41), cast(short)(x02 - 16));
             UnknownC00FCB(cast(short)(Unknown7E4374 + 32), x02);
             UnknownC025CF(cast(short)(Unknown7E4374 + 34), cast(short)(x02 - 1));
             SpawnVertical(cast(short)(Unknown7E4374 + 40), cast(short)(x02 - 8));
         } else {
             Unknown7E4374--;
             UnknownC00BDC(cast(short)(Unknown7E4374 - 16), cast(short)(x02 - 16));
-            UnknownC00D7E(cast(short)(Unknown7E4374 - 16), cast(short)(x02 - 16));
+            LoadCollisionColumn(cast(short)(Unknown7E4374 - 16), cast(short)(x02 - 16));
             UnknownC00FCB(cast(short)(Unknown7E4374 - 1), x02);
             UnknownC025CF(cast(short)(Unknown7E4374 - 3), cast(short)(x02 - 1));
             SpawnVertical(cast(short)(Unknown7E4374 - 8), cast(short)(x02 - 8));
@@ -605,14 +605,14 @@ void RefreshMapAtPosition(short x, short y) {
         if (((Unknown7E4376 - 0x02) < 0) != 0) {
             Unknown7E4376++;
             UnknownC00AC5(cast(short)(x04 - 16), cast(short)(Unknown7E4376 + 41));
-            UnknownC00CF3(cast(short)(x04 - 16), cast(short)(Unknown7E4376 + 41));
+            LoadCollisionRow(cast(short)(x04 - 16), cast(short)(Unknown7E4376 + 41));
             UnknownC00E16(x04, cast(short)(Unknown7E4376 + 28));
             UnknownC0255C(x04, cast(short)(Unknown7E4376 + 29));
             SpawnHorizontal(cast(short)(x04 - 8), cast(short)(Unknown7E4376 + 36));
         } else {
             Unknown7E4376--;
             UnknownC00AC5(cast(short)(x04 - 16), cast(short)(Unknown7E4376 - 16));
-            UnknownC00CF3(cast(short)(x04 - 16), cast(short)(Unknown7E4376 - 16));
+            LoadCollisionRow(cast(short)(x04 - 16), cast(short)(Unknown7E4376 - 16));
             UnknownC00E16(x04, cast(short)(Unknown7E4376 - 1));
             UnknownC0255C(x04, cast(short)(Unknown7E4376 - 1));
             SpawnHorizontal(cast(short)(x04 - 8), cast(short)(Unknown7E4376 - 8));
@@ -2265,7 +2265,7 @@ void UnknownC056D0(short arg1, short arg2) {
 short UnknownC05769(short arg1) {
     short x02 = 0;
     short x12 = 0;
-    for (short i = 0; i < 6; i++, x02 /= 2, arg1 /= 2) {
+    for (short i = 0; i < 6; i++, x02 >>= 2, arg1 >>= 2) {
         if ((arg1 & 1) == 0) {
             continue;
         }
@@ -2293,13 +2293,13 @@ short UnknownC057E8() {
         return -1;
     }
     if (Unknown7E5DB6 == 1) {
-        return 1;
+        return Direction.UpRight;
     }
     if (Unknown7E5DB6 == 4) {
-        return 7;
+        return Direction.UpLeft;
     }
     if ((Unknown7E5DB6 == 6) && ((Unknown7E5DAC & 7) == 0)) {
-        return 7;
+        return Direction.UpLeft;
     }
     return -1;
 }
@@ -2316,13 +2316,13 @@ short UnknownC0583C() {
         return -1;
     }
     if (Unknown7E5DB6 == 8) {
-        return 3;
+        return Direction.DownRight;
     }
     if (Unknown7E5DB6 == 0x20) {
-        return 5;
+        return Direction.DownLeft;
     }
     if ((Unknown7E5DB6 == 0x30) && ((Unknown7E5DAC & 7) == 0)) {
-        return 5;
+        return Direction.DownLeft;
     }
     return -1;
 }
@@ -2339,13 +2339,13 @@ short UnknownC05890() {
         Unknown7E5DAC -= 4;
         x0E = UnknownC05769(9);
         if (x0E == 0) {
-            return 6;
+            return Direction.Left;
         }
         x02 = 1;
     }
     if (((x0E & 9) == 9) && ((Unknown7E5DAE & 7) != 0)) {
         if (x02 != 0) {
-            return 6;
+            return Direction.Left;
         }
         return -1;
     }
@@ -2358,31 +2358,31 @@ short UnknownC05890() {
     switch (x0E) {
         case 9:
             if (x10 == 1) {
-                x12 = 5;
+                x12 = Direction.DownLeft;
             } else if (x10 == 2) {
-                x12 = 7;
+                x12 = Direction.UpLeft;
             } else if (x10 == 0) {
                 if ((Unknown7E5DAE & 7) < 4) {
-                    x12 = 7;
+                    x12 = Direction.UpLeft;
                 } else {
-                    x12 = 5;
+                    x12 = Direction.DownLeft;
                 }
             }
             break;
         case 1:
             if ((x10 & 2) == 0) {
-                x12 = 5;
+                x12 = Direction.DownLeft;
             }
             break;
         case 8:
             if ((x10 & 1) == 0) {
-                x12 = 7;
+                x12 = Direction.UpLeft;
             }
             break;
         default: break;
     }
     if ((x02 != 0) && (x12 == -1)) {
-        return 6;
+        return Direction.Left;
     }
     return x12;
 }
@@ -2399,13 +2399,13 @@ short UnknownC059EF() {
         Unknown7E5DAC += 4;
         x0E = UnknownC05769(36);
         if (x0E == 0) {
-            return 2;
+            return Direction.Right;
         }
         x02 = 1;
     }
     if (((x0E & 0x24) == 0x24) && ((Unknown7E5DAE & 7) != 0)) {
         if (x02 != 0) {
-            return 2;
+            return Direction.Right;
         }
         return -1;
     }
@@ -2418,31 +2418,31 @@ short UnknownC059EF() {
     switch (x0E) {
         case 0x24:
             if (x10 == 1) {
-                x12 = 3;
+                x12 = Direction.DownRight;
             } else if (x10 == 2) {
-                x12 = 1;
+                x12 = Direction.UpRight;
             } else if (x10 == 0) {
                 if ((Unknown7E5DAE & 7) < 4) {
-                    x12 = 1;
+                    x12 = Direction.UpRight;
                 } else {
-                    x12 = 3;
+                    x12 = Direction.DownRight;
                 }
             }
             break;
         case 0x04:
             if ((x10 & 2) == 0) {
-                x12 = 3;
+                x12 = Direction.DownRight;
             }
             break;
         case 0x20:
             if ((x10 & 1) == 0) {
-                x12 = 1;
+                x12 = Direction.UpRight;
             }
             break;
         default: break;
     }
     if ((x02 != 0) && (x12 == -1)) {
-        return 2;
+        return Direction.Right;
     }
     return x12;
 }
@@ -2465,7 +2465,7 @@ short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
     Unknown7E5DAE = arg2;
     short x12;
     switch (arg4) {
-        case 0:
+        case Direction.Up:
             x12 = UnknownC057E8();
             if (x12 != -1) {
                 break;
@@ -2480,7 +2480,7 @@ short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
             }
             Unknown7E5DA8 = x10;
             break;
-        case 4:
+        case Direction.Down:
             x12 = UnknownC0583C();
             if (x12 != -1) {
                 break;
@@ -2495,18 +2495,18 @@ short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
             }
             Unknown7E5DA8 = x10;
             break;
-        case 6:
+        case Direction.Left:
             x12 = UnknownC05890();
             break;
-        case 2:
+        case Direction.Right:
             x12 = UnknownC059EF();
             break;
-        case 7:
-        case 1:
-        case 5:
-        case 3:
+        case Direction.UpLeft:
+        case Direction.UpRight:
+        case Direction.DownLeft:
+        case Direction.DownRight:
             x12 = UnknownC05B4E(arg4);
-            if (x12 != 0xFF00) {
+            if (x12 != -256) {
                 x12 = arg4;
             }
             break;
@@ -2515,7 +2515,7 @@ short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
     if (Unknown7E5D9A != 0) {
         Unknown7E5DA8 = 0xFFFF;
     }
-    if ((x12 == -1) || (x12 == 0xFF00)) {
+    if ((x12 == -1) || (x12 == -256)) {
         return Unknown7E5DA4;
     }
     Unknown7E5DB8 = (x12 != arg4) ? 1 : 0;
@@ -3154,6 +3154,9 @@ void UnknownC071E5(short arg1) {
     Unknown7E5E3C[arg1 - 1].unknown0 = 0;
     gameState.unknownC8[arg1 - 1] = 0;
 }
+
+/// $C07213
+void UnknownC07213();
 
 /// $C072CF
 void UnknownC072CF(short arg1, short arg2, const(ubyte)* arg3);

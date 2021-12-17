@@ -1546,6 +1546,9 @@ short UnknownC3F1EC(short arg1) {
 	return 0;
 }
 
+/// $C3F2B1
+immutable ubyte[4] UnknownC3F2B1 = [8, 4, 4, 4];
+
 /// $C3F2B5
 immutable ushort[8][17] PartyCharacterGraphicsTable = [
 	[
@@ -2038,6 +2041,105 @@ short UnknownC3FAC9(short arg1, short arg2) {
 	UnknownC3F981(arg2);
 	return 1;
 }
+
+/// $C3FB1F
+immutable uint[3] UnknownC3FB1F = [
+	0x12000,
+	0x11800,
+	0x11000,
+];
+
+/// $C3FD2D
+immutable NamingScreenEntity[][14] UnknownC3FD2D = [
+	[
+		NamingScreenEntity(OverworldSprite.Ness, ActionScript.Unknown502),
+		NamingScreenEntity(OverworldSprite.NessPosing, ActionScript.Unknown503),
+		NamingScreenEntity(OverworldSprite.NESS_SURPRISED, ActionScript.Unknown504),
+		NamingScreenEntity(OverworldSprite.SMALL_SHADOW, ActionScript.Unknown505),
+		NamingScreenEntity(OverworldSprite.SURPRISE_MARK, ActionScript.Unknown506),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.Paula, ActionScript.Unknown507),
+		NamingScreenEntity(OverworldSprite.PAULA_SURPRISED, ActionScript.Unknown508),
+		NamingScreenEntity(OverworldSprite.SMALL_SHADOW, ActionScript.Unknown509),
+		NamingScreenEntity(OverworldSprite.MUSIC_NOTES, ActionScript.Unknown510),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.Jeff, ActionScript.Unknown511),
+		NamingScreenEntity(OverworldSprite.SURPRISE_MARK, ActionScript.Unknown512),
+		NamingScreenEntity(OverworldSprite.Sweat, ActionScript.Unknown513),
+		NamingScreenEntity(OverworldSprite.LIGHT_BULB, ActionScript.Unknown514),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.Poo, ActionScript.Unknown515),
+		NamingScreenEntity(OverworldSprite.POO_MEDITATING, ActionScript.Unknown516),
+		NamingScreenEntity(OverworldSprite.PooClimbingUp, ActionScript.Unknown517),
+		NamingScreenEntity(OverworldSprite.STAR_MASTERS_POOF_CLOUD, ActionScript.Unknown518),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.King, ActionScript.Unknown521),
+		NamingScreenEntity(OverworldSprite.NessDogSleeping, ActionScript.Unknown522),
+		NamingScreenEntity(OverworldSprite.Ness, ActionScript.Unknown520),
+		NamingScreenEntity(OverworldSprite.ZZZ, ActionScript.Unknown523),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.FRENCH_KISS_OF_DEATH, ActionScript.Unknown524),
+		NamingScreenEntity(OverworldSprite.A_PLATE, ActionScript.Unknown526),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.FRENCH_KISS_OF_DEATH, ActionScript.Unknown528),
+		NamingScreenEntity(OverworldSprite.TWINKLING_STARS, ActionScript.Unknown530),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.Ness, ActionScript.Unknown532),
+		NamingScreenEntity(OverworldSprite.NessPosing, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.NESS_SURPRISED, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.SMALL_SHADOW, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.SURPRISE_MARK, ActionScript.Unknown035),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.Paula, ActionScript.Unknown532),
+		NamingScreenEntity(OverworldSprite.PAULA_SURPRISED, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.SMALL_SHADOW, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.MUSIC_NOTES, ActionScript.Unknown035),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.Jeff, ActionScript.Unknown532),
+		NamingScreenEntity(OverworldSprite.SURPRISE_MARK, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.Sweat, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.LIGHT_BULB, ActionScript.Unknown035),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.Poo, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.POO_MEDITATING, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.PooClimbingUp, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.STAR_MASTERS_POOF_CLOUD, ActionScript.Unknown519),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.King, ActionScript.Unknown533),
+		NamingScreenEntity(OverworldSprite.NessDogSleeping, ActionScript.Unknown035),
+		NamingScreenEntity(OverworldSprite.Ness, ActionScript.Unknown532),
+		NamingScreenEntity(OverworldSprite.ZZZ, ActionScript.Unknown035),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.FRENCH_KISS_OF_DEATH, ActionScript.Unknown525),
+		NamingScreenEntity(OverworldSprite.A_PLATE, ActionScript.Unknown527),
+		NamingScreenEntity(0x0000)
+	],	[
+		NamingScreenEntity(OverworldSprite.FRENCH_KISS_OF_DEATH, ActionScript.Unknown529),
+		NamingScreenEntity(OverworldSprite.TWINKLING_STARS, ActionScript.Unknown035),
+		NamingScreenEntity(0x0000)
+	]
+];
+
+/// $C3FD65
+immutable FileSelectSummarySpriteConfigEntry[5] FileSelectSummarySpriteConfig = [
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.Ness, ActionScript.Unknown861, 40, 44),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.Paula, ActionScript.Unknown861, 40, 76),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.Jeff, ActionScript.Unknown861, 40, 108),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.Poo, ActionScript.Unknown861, 40, 140),
+	FileSelectSummarySpriteConfigEntry(OverworldSprite.NessDogSleeping, ActionScript.Unknown534, 136, 40)
+];
 
 /// $C3FD8D
 immutable ubyte[][10] AttractModeText = [

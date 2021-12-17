@@ -852,7 +852,7 @@ __gshared void* path_heap_current; /// $B43A - Pathfinder heap current pointer
 __gshared void* path_heap_end; /// $B43C - Pathfinder heap end pointer
 
 __gshared ubyte Unknown7EB49D; /// $B49D - Addressed specifically using long addressing, why??
-
+__gshared ubyte[3] Unknown7EB49E; /// $B49E
 __gshared ubyte CurrentSaveSlot; /// $B4A1
 __gshared ubyte Unknown7EB4A2; /// $B4A2
 
@@ -864,7 +864,7 @@ __gshared short Unknown7EB4AE; /// $B4AE
 
 __gshared short Unknown7EB4B0; /// $B4B0
 __gshared short Unknown7EB4B2; /// $B4B2
-
+__gshared short Unknown7EB4B4; /// $B4B4
 __gshared ubyte Unknown7EB4B6; /// $B4B6
 
 __gshared ubyte Unknown7EB4CE; /// $B4CE
