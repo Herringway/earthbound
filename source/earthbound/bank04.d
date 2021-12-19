@@ -1314,13 +1314,52 @@ void UnknownC4249A(ubyte arg1, ubyte arg2) {
 }
 
 /// $C42631
-void UnknownC42631(ubyte, short);
+void UnknownC42631(short arg1, short arg2) {
+    Unknown7E3C22 = 0;
+    Unknown7E3C24 = 0;
+    Unknown7E3C26 = 0;
+    Unknown7E3C28 = 0;
+    short a = CosineSine(arg1, cast(ubyte)(arg2 - 128));
+    Unknown7E3C22 = cast(short)((a & 0xFF) << 8);
+    Unknown7E3C24 = (cast(ushort)a & 0xFF00) >> 8;
+    if (a < 0) {
+        Unknown7E3C24 |= 0xFF00;
+    }
+    a = Cosine(arg1, cast(ubyte)(arg2 - 128));
+    Unknown7E3C26 = cast(short)((a & 0xFF) << 8);
+    Unknown7E3C28 = (cast(ushort)a & 0xFF00) >> 8;
+    if (a < 0) {
+        Unknown7E3C28 |= 0xFF00;
+    }
+    Unknown7E3C2C = BG1_X_POS;
+    Unknown7E3C30 = BG1_Y_POS;
+    Unknown7E3C2A = 0;
+    Unknown7E3C2E = 0;
+}
 
 /// $C4268A
-void UnknownC4268A();
+void UnknownC4268A() {
+    Unknown7E3C2A += Unknown7E3C22;
+    Unknown7E3C2C += Unknown7E3C24;
+    BG1_X_POS = Unknown7E3C2C;
+    BG2_X_POS = Unknown7E3C2C;
+    Unknown7E3C2E += Unknown7E3C26;
+    Unknown7E3C30 += Unknown7E3C28;
+    BG1_Y_POS = Unknown7E3C30;
+    BG2_Y_POS = Unknown7E3C30;
+    UnknownC01731(BG1_X_POS, BG1_Y_POS);
+}
 
 /// $C426C7
-void UnknownC426C7();
+void UnknownC426C7() {
+    for (short i = 0; i != MAX_ENTITIES; i++) {
+        if (EntityScriptTable[i] < 0) {
+            continue;
+        }
+        EntityScreenXTable[i] = cast(short)(EntityAbsXTable[i] - BG1_X_POS);
+        EntityScreenYTable[i] = cast(short)(EntityAbsYTable[i] - BG1_Y_POS);
+    }
+}
 
 /// $C426ED
 void UnknownC426ED() {
@@ -3333,7 +3372,10 @@ void UnknownC466C1(short arg1) {
 }
 
 /// $C46881
-void UnknownC46881(const(ubyte)* arg1);
+void UnknownC46881(const(ubyte)* arg1) {
+    UnknownC46594(0xFF);
+    UnknownC064E3(8, QueuedInteractionPtr(arg1));
+}
 
 /// $C4733C
 void UnknownC4733C() {
@@ -5370,8 +5412,99 @@ void UnknownC4C91A(short arg1, short arg2) {
     Unknown7EB4A6++;
 }
 
+/// $C4D00F
+ubyte* UnknownC4D00F(ubyte* arg1, short arg2, short arg3) {
+    const(ubyte)* x06 = &UnknownC3FB45[(arg2 - 0x41)][arg3 * 2];
+    for (short i = 2; (i != 0) && (x06[0] != 0); i--) {
+        (arg1++)[0] = (x06++)[0];
+    }
+    return arg1;
+}
+
 /// $C4D065
-void UnknownC4D065(ubyte*, ubyte*);
+void UnknownC4D065(ubyte* arg1, ubyte* arg2) {
+    //x04 = arg2
+    //x10 = arg1
+    short x0E = 0;
+    while (arg2[0] != 0) {
+        short x00 = (arg2++)[0];
+        if (x0E != 0) {
+            if (x0E == x00) {
+                (arg1++)[0] = 0x7E;
+            } else {
+                switch (x00) {
+                    case 0x41:
+                        arg1 = UnknownC4D00F(arg1, x0E, 0);
+                        break;
+                    case 0x49:
+                        arg1 = UnknownC4D00F(arg1, x0E, 1);
+                        break;
+                    case 0x55:
+                        arg1 = UnknownC4D00F(arg1, x0E, 2);
+                        break;
+                    case 0x45:
+                        arg1 = UnknownC4D00F(arg1, x0E, 3);
+                        break;
+                    case 0x4F:
+                        arg1 = UnknownC4D00F(arg1, x0E, 4);
+                        break;
+                    default:
+                        if ((0x41 <= x00) && (x00 <= 0x5A)) {
+                            if (x0E == 0x4E) {
+                                (arg1++)[0] = 0x9D;
+                            } else {
+                                arg1 = UnknownC4D00F(arg1, x0E, 1);
+                            }
+                            x0E = x00;
+                            continue;
+                        } else {
+                            if (x0E ==0x4E) {
+                                (arg1++)[0] = 0x9D;
+                            } else {
+                                arg1 = UnknownC4D00F(arg1, x0E, 1);
+                            }
+                            (arg1++)[0] = cast(ubyte)x00;
+                        }
+                        break;
+                }
+                x0E = 0;
+            }
+        } else {
+            switch (x00) {
+                case 0x41:
+                    (arg1++)[0] = 0x60;
+                    break;
+                case 0x49:
+                    (arg1++)[0] = 0x70;
+                    break;
+                case 0x55:
+                    (arg1++)[0] = 0x80;
+                    break;
+                case 0x45:
+                    (arg1++)[0] = 0x90;
+                    break;
+                case 0x4F:
+                    (arg1++)[0] = 0xA0;
+                    break;
+                default:
+                    if ((0x41 <= x00) && (x00 <= 0x5A)) {
+                        x0E = x00;
+                    } else {
+                        (arg1++)[0] = cast(ubyte)x00;
+                    }
+                    break;
+            }
+        }
+    }
+    if (x0E != 0) {
+        if (x0E == 0x4E) {
+            (arg1++)[0] = 0x9D;
+        } else {
+            arg1 = UnknownC4D00F(arg1, x0E, 1);
+        }
+    }
+    arg1[0] = 0;
+}
 
 /// $C4D274
 ubyte GetTownMapID(short x, short y) {

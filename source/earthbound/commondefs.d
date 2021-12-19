@@ -644,7 +644,7 @@ enum Sfx {
 	ALLY_ATTACKS = 24,
 	ENEMY_ATTACKS = 25,
 	ATTACK_ABOUT_TO_LAND = 26,
-	MENU_OPEN_CLOSE = 27,
+	MenuOpenClose = 27,
 	PRAYING = 28,
 	PSI_USED = 29,
 	DAMAGE_TAKEN = 30,
@@ -4929,6 +4929,11 @@ struct FileSelectSummarySpriteConfigEntry {
 	short script;
 	short x;
 	short y;
+}
+
+struct ActionLoopCallState {
+	const(ubyte)* pc;
+	ubyte counter;
 }
 
 //helper funcs not in the original game

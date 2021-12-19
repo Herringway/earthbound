@@ -162,7 +162,7 @@ __gshared short Unknown7E0A52;
 __gshared short Unknown7E0A54;
 __gshared short Unknown7E0A56;
 __gshared short Unknown7E0A58;
-__gshared void* MOVEMENT_42_LOADED_PTR;
+__gshared void function() Movement42LoadedPtr;
 __gshared void function() Unknown7E0A5E;
 __gshared short Unknown7E0A60;
 __gshared short[MAX_ENTITIES] EntityScriptTable; /// $0A62
@@ -213,16 +213,19 @@ __gshared short[MAX_ENTITIES] EntitySleepFrames; /// $1372
 //deprecated __gshared short[MAX_ENTITIES] ENTITY_PROGRAM_COUNTER; /// $13FE
 //deprecated __gshared short[MAX_ENTITIES] ENTITY_PROGRAM_COUNTER_BANK; /// $148A
 
-__gshared const(void)*[MAX_ENTITIES] EntityProgramCounters;
+__gshared const(ubyte)*[MAX_ENTITIES] EntityProgramCounters;
 
-__gshared ubyte[8] Unknown7E1A02; /// $1A02
-__gshared ubyte[8] Unknown7E1A0A; /// $1A0A
-__gshared ubyte[8] Unknown7E1A12; /// $1A12
-__gshared ubyte[8] Unknown7E1A1A; /// $1A1A
-__gshared ubyte[8] Unknown7E1A22; /// $1A22
-__gshared ubyte[8] Unknown7E1A2A; /// $1A2A
-__gshared ubyte[8] Unknown7E1A32; /// $1A32
-__gshared ubyte[8] Unknown7E1A3A; /// $1A3A
+__gshared short[MAX_SCRIPTS] EntityTempvars; /// $1516
+
+__gshared ActionLoopCallState[5][MAX_SCRIPTS] Unknown7E15A2; /// $15A2
+__gshared short[4] Unknown7E1A02; /// $1A02
+__gshared short[4] Unknown7E1A0A; /// $1A0A
+__gshared short[4] Unknown7E1A12; /// $1A12
+__gshared short[4] Unknown7E1A1A; /// $1A1A
+__gshared short[4] Unknown7E1A22; /// $1A22
+__gshared short[4] Unknown7E1A2A; /// $1A2A
+__gshared short[4] Unknown7E1A32; /// $1A32
+__gshared short[4] Unknown7E1A3A; /// $1A3A
 __gshared short CurrentEntitySlot; /// $1A42
 __gshared short CurrentEntityOffset; /// $1A44
 __gshared short CurrentScriptSlot; /// $1A46
@@ -353,11 +356,9 @@ __gshared short Unknown7E3C1A; /// $3C1A
 __gshared short Unknown7E3C1C; /// $3C1C
 __gshared short Unknown7E3C1E; /// $3C1E
 __gshared short Unknown7E3C20; /// $3C20
-__gshared ubyte Unknown7E3C22; /// $3C22
-__gshared ubyte Unknown7E3C23; /// $3C23
+__gshared short Unknown7E3C22; /// $3C22
 __gshared short Unknown7E3C24; /// $3C24
-__gshared ubyte Unknown7E3C26; /// $3C26
-__gshared ubyte Unknown7E3C27; /// $3C27
+__gshared short Unknown7E3C26; /// $3C26
 __gshared short Unknown7E3C28; /// $3C28
 __gshared short Unknown7E3C2A; /// $3C2A
 __gshared short Unknown7E3C2C; /// $3C2C
@@ -572,7 +573,7 @@ __gshared ubyte Unknown7E9624; /// $9624
 __gshared ushort SelectedTextSpeed; /// $9625
 __gshared uint Unknown7E9627; /// $9627
 
-__gshared void*[4] Unknown7E9631; /// $9631
+__gshared const(ubyte)*[4] Unknown7E9631; /// $9631
 __gshared short Unknown7E9641; /// $9641
 __gshared short BattleModeFlag; /// $9643
 __gshared short InputLockFlag; /// $9645
@@ -941,10 +942,20 @@ __gshared ushort ActionScript04; /// $04
 __gshared ushort ActionScript06; /// $06
 __gshared ushort ActionScript08; /// $08
 
-__gshared ushort ActionScript88; /// $88
+__gshared ushort ActionScript80; /// $80
 
+__gshared ActionLoopCallState* ActionScript84; /// $84
+__gshared ushort ActionScript86; /// $86
+__gshared ushort ActionScript88; /// $88
+__gshared ushort ActionScript8A; /// $8A
 __gshared const(SpriteMap)* ActionScript8C; /// $8C
+__gshared const(ubyte)* ActionScript8CScript; /// $8C
+__gshared ushort* ActionScript8CMemory; /// $8C
 __gshared ubyte ActionScript8E; /// $8E
+
+__gshared short ActionScript90; /// $90
+
+__gshared const(ubyte)* ActionScript94; /// $94
 
 // Other hardware stuff
 

@@ -1099,10 +1099,195 @@ void UnknownC11F8A() {
 }
 
 /// $C1244C
-short UnknownC1244C(ubyte*, short, short);
+short UnknownC1244C(ubyte** arg1, short arg2, short arg3) {
+    short x16;
+    WinStat* x22 = GetActiveWindowAddress();
+    uint x1E = x22.argument;
+    if (arg2 == 1) {
+        UnknownC20A20(&Unknown7E9C8A);
+        short x1C = gameState.playerControlledPartyMemberCount == 1 ? Window.Unknown33 : cast(short)(gameState.playerControlledPartyMemberCount + Window.Unknown28 - 1);
+        CreateWindowN(x1C);
+        for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
+            memcpy(&Unknown7E9C9F[0], GetPartyCharacterName(gameState.partyMembers[i]), 6);
+            Unknown7E9C9F[PartyCharacter.name.length] = 0;
+            UnknownC1153B(gameState.partyMembers[i], cast(short)(i * 6), 0, &Unknown7E9C9F[0], arg1[i]);
+        }
+        PrintMenuItems();
+        x16 = SelectionMenu(arg3);
+        CloseWindow(x1C);
+        UnknownC20ABC(&Unknown7E9C8A);
+    } else {
+        for (short i = 0; i != 4; i++) {
+            Unknown7E9631[i] = arg1[i];
+        }
+        short x04 = (BattleMenuCurrentCharacterID == -1) ? 0 : BattleMenuCurrentCharacterID;
+        const(ubyte)* x06 = Unknown7E9631[gameState.partyMembers[x04] - 1];
+        if (x06 != null) {
+            DisplayText(x06);
+        }
+        Unknown7E5E7C = 0;
+        short x1C = 10;
+        while (true) {
+            if (arg2 == 0) {
+                UnknownC43573(x04);
+            }
+            ClearInstantPrinting();
+            WindowTick();
+            WinStat* x1A;
+            if ((Unknown7E5E7A != -1) && (WindowTable[Unknown7E5E7A] != -1)) {
+                x1A = &WindowStats[WindowTable[Unknown7E5E7A]];
+            }
+            short y;
+            l2: while (true) {
+                if ((Unknown7E5E7A != -1) && (WindowTable[Unknown7E5E7A] != -1)) {
+                    CopyToVram(0, 8, cast(ushort)((x1A.y * 32) + x1A.x + x1A.width - 3 + 0x7C00), cast(ubyte*)&UnknownC3E41CPointerTable[Unknown7E5E7C]);
+                }
+                for (x16 = 0; x16 < x1C; x16++) {
+                    UnknownC12E42();
+                    if ((pad_press[0] & PAD_LEFT) != 0) {
+                        x16 = cast(short)(x04 - 1);
+                        y = (arg2 != 0) ? Sfx.Cursor2 : Sfx.MenuOpenClose;
+                        Unknown7E5E7C = 2;
+                        break l2;
+                    } else if ((pad_press[0] & PAD_RIGHT) != 0) {
+                        x16 = cast(short)(x04 + 1);
+                        y = (arg2 != 0) ? Sfx.Cursor2 : Sfx.MenuOpenClose;
+                        Unknown7E5E7C = 3;
+                        break l2;
+                    } else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+                        x16 = gameState.partyMembers[x04];
+                        PlaySfx(Sfx.Cursor1);
+                        goto Unknown42;
+                    } else if (((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) && (arg3 == 1)) {
+                        x16 = 0;
+                        PlaySfx((arg2 != 0) ? Sfx.Cursor2 : Sfx.MenuOpenClose);
+                        UnknownC3E6F8();
+                        goto Unknown42;
+                    }
+                }
+                Unknown7E5E7C = (Unknown7E5E7C == 0) ? 1 : 0;
+                x1C = 10;
+            }
+            if (gameState.playerControlledPartyMemberCount > x16) {
+                x16 = 0;
+            }
+            if (0 <= x16) {
+                x16 = gameState.playerControlledPartyMemberCount - 1;
+            }
+            if (x16 != x04) {
+                PlaySfx(y);
+                if (Unknown7E9631[gameState.partyMembers[x16] - 1] != null) {
+                    DisplayText(Unknown7E9631[gameState.partyMembers[x16] - 1]);
+                }
+            }
+            x1C = 4;
+        }
+    }
+    Unknown42:
+    Unknown7E5E7C = -1;
+    x22.argument = x1E;
+    return x16;
+}
 
 /// $C127EF
-short CharSelectPrompt(short, short);
+short CharSelectPrompt(short arg1, short arg2, void function(short) arg3, short function(short) arg4) {
+    //x30 = arg1
+    //x32 = arg2
+    //x2C = arg4
+    //x28 = arg3
+    short x1E;
+    WinStat* x26 = GetActiveWindowAddress();
+    uint x22 = x26.argument;
+    if (arg1 == 0) {
+        UnknownC20A20(&Unknown7E9C8A);
+        short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.Unknown33 : cast(short)(Window.Unknown28 + gameState.playerControlledPartyMemberCount);
+        CreateWindowN(x20);
+        for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
+            memcpy(&Unknown7E9C9F[0], GetPartyCharacterName(gameState.partyMembers[i]), 6);
+            Unknown7E9C9F[PartyCharacter.name.length] = 0;
+            UnknownC1153B(gameState.partyMembers[i], cast(short)(i * 6), 0, &Unknown7E9C9F[0], null);
+        }
+        PrintMenuItems();
+        x1E = SelectionMenu(arg2);
+        CloseWindow(x20);
+        UnknownC20ABC(&Unknown7E9C8A);
+    } else {
+        short x04 = (BattleMenuCurrentCharacterID == -1) ? 0 : BattleMenuCurrentCharacterID;
+        if (arg3 != null) {
+            arg3(gameState.partyMembers[x04]);
+        }
+        Unknown7E5E7C = 0;
+        short x20 = 10;
+        while (true) {
+            if (arg2 == 0) {
+                UnknownC43573(x04);
+            }
+            ClearInstantPrinting();
+            WindowTick();
+            short x1A = x04;
+            WinStat* x18;
+            if ((Unknown7E5E7A != -1) && (WindowTable[Unknown7E5E7A] != -1)) {
+                x18 = &WindowStats[WindowTable[Unknown7E5E7A]];
+            }
+            short x16;
+            l2: while (true) {
+                if ((Unknown7E5E7A != -1) && (WindowTable[Unknown7E5E7A] != -1)) {
+                    CopyToVram(0, 8, cast(ushort)((x18.y * 32) + x18.x + x18.width - 3 + 0x7C00), cast(ubyte*)&UnknownC3E41CPointerTable[Unknown7E5E7C]);
+                }
+                for (x1E = 0; x1E < x20; x1E++) {
+                    UnknownC12E42();
+                    if ((pad_press[0] & PAD_LEFT) != 0) {
+                        x1A--;
+                        x16 = (arg1 != 0) ? Sfx.Cursor2 : Sfx.MenuOpenClose;
+                        Unknown7E5E7C = 2;
+                        break l2;
+                    } else if ((pad_press[0] & PAD_RIGHT) != 0) {
+                        x1A++;
+                        x16 = (arg1 != 0) ? Sfx.Cursor2 : Sfx.MenuOpenClose;
+                        Unknown7E5E7C = 3;
+                        break l2;
+                    } else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+                        x1E = gameState.partyMembers[x1A];
+                        PlaySfx(Sfx.Cursor1);
+                        goto Unknown44;
+                    } else if (((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) && (arg2 == 1)) {
+                        x1E = 0;
+                        PlaySfx((arg1 != 0) ? Sfx.Cursor2 : Sfx.MenuOpenClose);
+                        UnknownC3E6F8();
+                        goto Unknown44;
+                    }
+                }
+                Unknown7E5E7C = (Unknown7E5E7C == 0) ? 1 : 0;
+                x20 = 10;
+            }
+            x20 = cast(short)(x1A - x04);
+            Unknown33:
+            x1E = gameState.playerControlledPartyMemberCount;
+            if (x1E > x1A) {
+                x1A = 0;
+            } else if (0 <= x1A) {
+                x1A = cast(short)(x1E - 1);
+            }
+            if (arg4 != null) {
+                if (arg4(gameState.partyMembers[x1A]) == 0) {
+                    x1A -= x20;
+                    goto Unknown33;
+                }
+            }
+            if (x1A != x04) {
+                PlaySfx(x16);
+                if (arg3 != null) {
+                    arg3(gameState.partyMembers[x04]);
+                }
+            }
+            x20 = 4;
+        }
+    }
+    Unknown44:
+    Unknown7E5E7C = -1;
+    x26.argument = x22;
+    return x1E;
+}
 
 /// $C12BD5
 short UnknownC12BD5(short arg1) {
@@ -1424,7 +1609,41 @@ void ShowTownMap() {
 }
 
 /// $C13D03
-void DebugYButtonFlag();
+void DebugYButtonFlag() {
+    short x02 = EventFlag.UNKNOWN_DEBUG_001;
+    while (true) {
+        SetInstantPrinting();
+        CreateWindowN(Window.FileSelectMenu);
+        UnknownC10EB4(3);
+        PrintNumber(x02);
+        UnknownC43F77(0x20);
+        UnknownC43CAA();
+        PrintString(0x100, (getEventFlag(x02) != 0) ? &DebugOnText[0] : &DebugOffText[0]);
+        ClearInstantPrinting();
+        WindowTick();
+        short x12 = x02;
+        while(true) {
+            WaitUntilNextFrame();
+            if ((pad_held[0] & PAD_UP) != 0) {
+                x12++;
+            } else if ((pad_held[0] & PAD_DOWN) != 0) {
+                x12--;
+            } else if ((pad_held[0] & PAD_RIGHT) != 0) {
+                x12 += 10;
+            } else if ((pad_held[0] & PAD_LEFT) != 0) {
+                x12 -= 10;
+            } else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+                setEventFlag(x02, (getEventFlag(x02) != 0) ? 0 : 1);
+            } else if ((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) {
+                CloseWindow(Window.FileSelectMenu);
+                return;
+            }
+            if ((x12 < 2000) && (x12 != 0)) {
+                x02 = x12;
+            }
+        }
+    }
+}
 
 /// $C13E0E
 void DebugYButtonGuide() {
@@ -1472,7 +1691,7 @@ void DebugYButtonGoods() {
             } else if ((pad_held[0] & PAD_LEFT) != 0) {
                 x02 -= 10;
             } else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
-                short x16 = CharSelectPrompt(1, 1);
+                short x16 = CharSelectPrompt(1, 1, null, null);
                 if ((x16 != 0) && (FindInventorySpace2(x16) != 0)) {
                     GiveItemToCharacter(x16, cast(ubyte)x04);
                     if (UnknownC3EE14(x16, x04) == 0) {
@@ -1712,21 +1931,21 @@ void* CC0E(DisplayTextState* arg1, ushort arg2) {
 
 /// $C1463B
 void* CC1A00(DisplayTextState* arg1, ushort arg2) {
-    if (10 > CCArgumentGatheringLoopCounter) {
+    if ((ubyte*).sizeof * 4 > CCArgumentGatheringLoopCounter) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC1A00;
     }
-    SetWorkingMemory(WorkingMemory(UnknownC1244C(&CCArgumentStorage[0], arg2, 0)));
+    SetWorkingMemory(WorkingMemory(UnknownC1244C(cast(ubyte**)&CCArgumentStorage[0], arg2, 0)));
     return null;
 }
 
 /// $C1467D
 void* CC1A01(DisplayTextState* arg1, ushort arg2) {
-    if (10 > CCArgumentGatheringLoopCounter) {
+    if ((ubyte*).sizeof * 4 > CCArgumentGatheringLoopCounter) {
         CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
         return &CC1A01;
     }
-    SetWorkingMemory(WorkingMemory(UnknownC1244C(&CCArgumentStorage[0], arg2, 1)));
+    SetWorkingMemory(WorkingMemory(UnknownC1244C(cast(ubyte**)&CCArgumentStorage[0], arg2, 1)));
     return null;
 }
 
@@ -4161,7 +4380,29 @@ void UnknownC1952F(short arg1) {
 }
 
 /// $C198DE
-void InventoryGetItemName(short arg1, short arg2);
+void InventoryGetItemName(short arg1, short arg2) {
+    arg1--;
+    CreateWindowN(arg2);
+    if (gameState.playerControlledPartyMemberCount != 1) {
+        Unknown7E5E7A = arg2;
+    }
+    SetWindowTitle(arg2, PartyCharacter.name.length, &PartyCharacters[arg1].name[0]);
+    for (short i = 0; PartyCharacter.items.length > i; i++) {
+        short x16 = PartyCharacters[arg1].items[i];
+        if (CheckItemEquipped(cast(short)(arg1 + 1), i) != 0) {
+            Unknown7E9C9F[0] = 0x22;
+            memcpy(&Unknown7E9C9F[1], &ItemData[x16].name[0], Item.name.length);
+        } else {
+            memcpy(&Unknown7E9C9F[0], &ItemData[x16].name[0], Item.name.length);
+        }
+        Unknown7E9C9F[Item.name.length] = 0;
+        if (x16 != 0) {
+            UnknownC113D1(&Unknown7E9C9F[0], null);
+        }
+    }
+    WindowTickWithoutInstantPrinting();
+    UnknownC1180D(2, 0, 0);
+}
 
 /// $C19A11
 short UnknownC19A11(short arg1, short arg2) {
