@@ -817,23 +817,9 @@ __gshared short[3 * 16 * 4] Unknown7EAEFC; /// $AEFC
 __gshared short[3 * 16 * 4] Unknown7EB07C; /// $B07C
 __gshared short[3 * 16 * 4] Unknown7EB1FC; /// $B1FC
 __gshared short Unknown7EB37C; /// $B37C
-__gshared short Unknown7EB37E; /// $B37E
-__gshared short Unknown7EB380; /// $B380
-__gshared short Unknown7EB382; /// $B382
-__gshared short Unknown7EB384; /// $B384
-__gshared short Unknown7EB386; /// $B386
-__gshared short Unknown7EB388; /// $B388
-
-__gshared ubyte Unknown7EB3EE; /// $B3EE
-__gshared ubyte Unknown7EB3EF; /// $B3EF
-__gshared ubyte Unknown7EB3F0; /// $B3F0
-__gshared ubyte Unknown7EB3F1; /// $B3F1
-__gshared ubyte Unknown7EB3F2; /// $B3F2
-__gshared ubyte Unknown7EB3F3; /// $B3F3
-__gshared ubyte Unknown7EB3F4; /// $B3F4
-__gshared ubyte Unknown7EB3F5; /// $B3F5
-__gshared ubyte Unknown7EB3F6; /// $B3F6
-__gshared ubyte Unknown7EB3F7; /// $B3F7
+__gshared Unknown7EB37EStruct[8] Unknown7EB37E; /// $B37E
+__gshared SpriteMap Unknown7EB3EE; /// $B3EE
+__gshared SpriteMap Unknown7EB3F3; /// $B3F3
 __gshared short Unknown7EB3F8; /// $B3F8
 __gshared short Unknown7EB3FA; /// $B3FA
 __gshared ubyte* path_matrix_buffer; /// $B3FC - Matrix buffer

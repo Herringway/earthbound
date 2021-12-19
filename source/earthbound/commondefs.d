@@ -333,7 +333,7 @@ enum Music {
 	SoundstoneRecordingPinkCloud = 165,
 	SoundstoneRecordingLumineHall = 166,
 	SoundstoneRecordingFireSpring = 167,
-	SOUNDSTONE_BGM = 168,
+	SoundstoneBGM = 168,
 	EIGHT_MELODIES = 169,
 	DALAAM_INTRO = 170,
 	WINTERS_INTRO = 171,
@@ -1102,6 +1102,8 @@ enum BattleActions {
 
 enum BackgroundLayer {
 	None = 0,
+	SoundStone1 = 228,
+	SoundStone2 = 229,
 	FileSelect = 230,
 	Unknown279 = 279
 }
@@ -4934,6 +4936,16 @@ struct FileSelectSummarySpriteConfigEntry {
 struct ActionLoopCallState {
 	const(ubyte)* pc;
 	ubyte counter;
+}
+
+struct Unknown7EB37EStruct {
+	short unknown0;
+	short unknown2;
+	short unknown4;
+	short unknown6;
+	short unknown8;
+	short unknown10;
+	short unknown12;
 }
 
 //helper funcs not in the original game

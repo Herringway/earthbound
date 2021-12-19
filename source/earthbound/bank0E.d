@@ -293,3 +293,9 @@ immutable ubyte[4][7] SwirlPrimaryTable = [
 	[ 0x02, 0x51, 0x1C, 0x00 ],
 	[ 0x03, 0x6D, 0x11, 0x00 ],
 ];
+
+/// $CEDD5D
+immutable ubyte[] SoundStoneGraphics = cast(immutable(ubyte)[])import("graphics/sound_stone.gfx.lzhal");
+
+/// $CEF806
+immutable ubyte[] SoundStonePalette = cast(immutable(ubyte)[])import("sound_stone.pal");
