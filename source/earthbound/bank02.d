@@ -760,7 +760,7 @@ void PlaySfxAndUnknown(short arg1) {
 /// $C216DB
 void UnknownC216DB() {
 	ubyte x18 = 0;
-	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
+	for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 		PartyCharacter* x15 = &PartyCharacters[gameState.partyMembers[i]];
 		for (short j = 0; (j < 14) && (x15.items[j] != 0); j++) {
 			if (ItemData[x15.items[j]].type != 4) {
@@ -1429,10 +1429,7 @@ ubyte FindStealableItems() {
 	ubyte x18 = 0;
 	for (short i = 0; i < 6; i++) {
 		short x14 = gameState.partyMembers[i];
-		if (x14 < 1) {
-			continue;
-		}
-		if (x14 >= 4) {
+		if ((x14 < 1) || (x14 > 4)) {
 			continue;
 		}
 		short x10;
@@ -2671,7 +2668,7 @@ short InstantWinCheck() {
 	ushort x04 = 0xFFFF;
 	for (short i = 0; i < 6; i++) {
 		short x1A = gameState.partyMembers[i];
-		if ((x1A < 1) || (x1A >= 4)) {
+		if ((x1A < 1) || (x1A > 4)) {
 			continue;
 		}
 		if (PartyCharacters[x1A].speed < x04) {
@@ -5653,7 +5650,7 @@ void CallForHelpCommon(short sowingSeeds) {
 	}
 	short x1E = cast(short)((GetBattleSpriteWidth(EnemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) * 8) + 16);
 	short x1C = EnemyConfigurationTable[currentAttacker.currentActionArgument].row;
-	if (GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) + UnknownC2BD13() < 32) {
+	if (GetBattleSpriteWidth(EnemyConfigurationTable[currentTarget.currentActionArgument].battleSprite) + UnknownC2BD13() <= 32) {
 		short x1A = 0x80;
 		short x18 = 0x80;
 		short x04 = 0x80;
@@ -5713,7 +5710,7 @@ void CallForHelpCommon(short sowingSeeds) {
 		x1C = BattlersTable[i].row;
 	}
 	Unknown25:
-	if (GetBattleSpriteWidth(EnemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) + UnknownC2BD13() >= BattlersTable.length) {
+	if (GetBattleSpriteWidth(EnemyConfigurationTable[currentAttacker.currentActionArgument].battleSprite) + UnknownC2BD13() > BattlersTable.length) {
 		goto Failure;
 	}
 	Battler* x22 = &BattlersTable[8];

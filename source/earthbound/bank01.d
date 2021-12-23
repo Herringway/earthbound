@@ -5255,7 +5255,7 @@ void GeneratePSIList(short arg1, ubyte arg2, ubyte arg3) {
         if ((PSIAbilityTable[i].target & arg2) == 0) {
             continue;
         }
-        if (x18 >= PartyCharacters[arg1].level) {
+        if (x18 > PartyCharacters[arg1].level) {
             continue;
         }
         if ((PSIAbilityTable[i].type & arg3) == 0) {

@@ -68,7 +68,7 @@ void LoadTilesetAnim() {
 
 /// $C00172
 void AnimateTileset() {
-    for (short i = 0; i < LoadedAnimatedTileCount; i++) {
+    for (short i = 0; LoadedAnimatedTileCount > i; i++) {
         if (--OverworldTilesetAnim[i].framesUntilUpdate != 0) {
             continue;
         }
@@ -167,7 +167,7 @@ void UnknownC00480() {
     ushort x1E = cast(ushort)((Unknown7E43D2 / Unknown7E43D8) << 8);
     ushort x1C = cast(ushort)((Unknown7E43D4 / Unknown7E43DA) << 8);
     ushort x1A = (x20 + x1E + x1C) / 3;
-    if ((x20 < 0x100) && (x1E < 0x100) && (x1C < 0x100)) {
+    if ((x20 <= 0x100) && (x1E <= 0x100) && (x1C <= 0x100)) {
         for (short i = 0x80; i < 0x100; i++) {
             ushort x16, x14, x10, x02, x04, x0E;
             x16 = x14 = palettes[i / 16][i % 16] & BGR555Mask.Red;
@@ -1269,8 +1269,8 @@ void UpdateParty() {
         local3[i] = gameState.unknownA2[i];
         local4[i] = gameState.playerControlledPartyMembers[i];
     }
-    for (short i = 0; partyCount - 1 < i; i++) {
-        for (short j = 0; partyCount - 1 < j; j++) {
+    for (short i = 0; partyCount - 1 > i; i++) {
+        for (short j = 0; partyCount - 1 > j; j++) {
             short local9 = local2[j];
             short local11 = local2[j + 1];
             if (local9 > local11) {

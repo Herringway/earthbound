@@ -3748,7 +3748,7 @@ void UnknownC4958E(short arg1, short arg2, ushort* arg3) {
     ushort* x06 = cast(ushort*)&Unknown7F0000[0];
     memset(&Unknown7F0000[0x200], 0, 0x1000);
     for (ubyte i = 0; i < 0x100; i += 16) {
-        for (ubyte j = i; j < i + 16; j++) {
+        for (ubyte j = i; i + 16 > j; j++) {
             ubyte x02;
             if ((arg2 & 1) != 0) {
                 x02 = x06[j] & 0xFF;
