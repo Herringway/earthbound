@@ -623,6 +623,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/FileSelectMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/FindCondiment.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/GainEXP.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/GeneratePSIList.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/GetActiveWindowAddress.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/GetArgumentMemory.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/GetBlinkingPrompt.html</loc></url>
@@ -651,6 +652,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/OpenMenuButtonCheckTalk.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/OpenSoundMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/OpenTextSpeedMenu.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/OverworldUseItem.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/PrintLetter.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/PrintLetterF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/PrintMenuItems.html</loc></url>
@@ -658,6 +660,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/PrintNumber.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/PrintString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/PrintStringF.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/PSICategories.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/RecoverHPAmtPercent.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/RecoverPPAmtPercent.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/ReduceHPAmtPercent.html</loc></url>
@@ -722,6 +725,9 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC12C36.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC12D17.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC12E42.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1339E.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC133A7.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC133B0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC14012.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC14049.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC14070.html</loc></url>
@@ -747,7 +753,12 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC19CDD.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC19D49.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC19DB5.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC19F29.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1A1D8.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1A778.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1A795.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AA18.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AA5D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AAFA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AC00.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AC4A.html</loc></url>
@@ -759,8 +770,17 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AD02.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AD0A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1AD26.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1B5B6.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1BB06.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1BB71.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1BEFC.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1C165.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1C1BA.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1C32A.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1C373.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1C3B6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1CA06.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1CAF5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1D038.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1D08B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1DCCB.html</loc></url>
@@ -779,6 +799,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1FF6B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC1FF99.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC3E6F8F.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/UnknownC3F0B0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC43573F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC437B8F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/UnknownC438A5F.html</loc></url>
@@ -1110,6 +1131,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC226E6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC226F0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC2272F.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/UnknownC22A3A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC23008.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC2307B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC23E32.html</loc></url>
@@ -1118,6 +1140,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC2437E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC24434.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC24703.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/UnknownC26189.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC269DE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC290C6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/UnknownC2B66A.html</loc></url>
@@ -1295,6 +1318,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/InitIntro.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/IsValidItemTransformation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/ItemUsableFlags.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/ItemUseMenuStrings.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/LoadBackgroundAnimation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/LoadOverlaySprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/LoadTownMapData.html</loc></url>
@@ -2173,10 +2197,12 @@
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E97B8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9C8A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9C9F.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9CD4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9CD7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9CF5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9D11.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9D12.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9D19.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9D1B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9D23.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9E27.html</loc></url>
