@@ -2044,6 +2044,14 @@ void UnknownC4343E(short arg1) {
     }
 }
 
+/// $C43550
+immutable ubyte[6][4] ItemUseMenuStrings = [
+    EBString!6("Use"),
+    EBString!6("Give"),
+    EBString!6("Drop"),
+    EBString!6("Help!"),
+];
+
 /// $C43568
 void UnknownC43568() {
     WaitUntilNextFrame();

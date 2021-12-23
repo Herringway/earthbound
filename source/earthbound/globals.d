@@ -623,11 +623,14 @@ __gshared ushort CurrentInteractingEventFlag; /// $9C88
 __gshared WindowTextAttributesCopy Unknown7E9C8A; /// $9C8A
 __gshared ubyte[49] Unknown7E9C9F; /// $9C9F
 
+__gshared short Unknown7E9CD4; /// $9CD4
+
 __gshared ubyte[30] Unknown7E9CD7; /// $9CD7
 __gshared ubyte[28] Unknown7E9CF5; /// $9CF5
 __gshared ubyte Unknown7E9D11; /// $9D11
 __gshared uint Unknown7E9D12; /// $9D12
 
+__gshared short Unknown7E9D19; /// $9D19
 __gshared void function() Unknown7E9D1B; /// $9D1B
 __gshared short RespawnX; /// $9D1F
 __gshared short RespawnY; /// $9D21

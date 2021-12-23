@@ -1150,6 +1150,9 @@ void SaveCurrentGame() {
 	SaveGameSlot(CurrentSaveSlot - 1);
 }
 
+/// $C22A3A
+void UnknownC22A3A(short arg1, short arg2, short arg3);
+
 /// $C22F38
 short InitBattleScripted(short arg1) {
 	CurrentBattleGroup = arg1;
@@ -2541,11 +2544,239 @@ short BattleRoutine() {
 	return x17;
 }
 
+/// $C26189
+void UnknownC26189(ushort arg1) {
+	for (short i = 0; i < 0x100; i++) {
+		palettes[0][i] = arg1;
+	}
+	UnknownC0856B(0x18);
+	WaitUntilNextFrame();
+}
+
 /// $C261BD
-void InstantWinHandler();
+void InstantWinHandler() {
+	BattleInitiative = Initiative.Normal;
+	ChangeMusic(Music.SuddenVictory);
+	UnknownC2E9ED();
+	for (short i = 0; i < 2; i++) {
+		UnknownC26189(0x3E0);
+		UnknownC26189(0x1F);
+		UnknownC26189(0x7C00);
+	}
+	UnknownC26189(0);
+	memcpy(&Unknown7F0000[0], &Unknown7F0000[0x2000], 0x200);
+	UnknownC496E7(6, -1);
+	for (short i = 0; i < 6; i++) {
+		UnknownC426ED();
+		WaitUntilNextFrame();
+	}
+	UnknownC49740();
+	UnknownC0943C();
+	CreateWindow(Window.TextBattle);
+	BattleMoneyScratch = 0;
+	for (short i = 0; i < EnemiesInBattle; i++) {
+		BattleMoneyScratch += EnemyConfigurationTable[Unknown7E9F8C[i]].money;
+	}
+	gameState.unknownC4 += DepositIntoATM(BattleMoneyScratch);
+	for (short i = 0; i < BattlersTable.length; i++) {
+		memset(&BattlersTable[i], 0, Battler.sizeof);
+	}
+	for (short i = 0; i < 6; i++) {
+		if (gameState.partyMembers[i] == 0) {
+			continue;
+		}
+		if (gameState.partyMembers[i] > 4) {
+			continue;
+		}
+		BattleInitPlayerStats(gameState.partyMembers[i], &BattlersTable[i]);
+	}
+	BattleEXPScratch = 0;
+	for (short i = 0; i < EnemiesInBattle; i++) {
+		BattleEXPScratch += EnemyConfigurationTable[Unknown7E9F8C[i]].exp;
+	}
+	BattleEXPScratch += CountChars(0) - 1;
+	BattleEXPScratch /= CountChars(0);
+	DisplayTextWait(TextBattleYouWonInstant.ptr, BattleEXPScratch);
+	for (short i = 0; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 0) {
+			continue;
+		}
+		if (BattlersTable[i].npcID != 0) {
+			continue;
+		}
+		if ((BattlersTable[i].afflictions[0] == Status0.Unconscious) || (BattlersTable[i].afflictions[0] == Status0.Diamondized)) {
+			continue;
+		}
+		GainEXP(BattlersTable[i].id, 1, BattleEXPScratch);
+	}
+	short x16 = Unknown7E9F8C[RandLimit(EnemiesInBattle)];
+	ItemDropped = EnemyConfigurationTable[x16].itemDropped;
+	switch (EnemyConfigurationTable[x16].itemDropRate) {
+		case 0:
+			if ((rand() & 0x7F) != 0) {
+				ItemDropped = 0;
+			}
+			break;
+		case 1:
+			if ((rand() & 0x3F) != 0) {
+				ItemDropped = 0;
+			}
+			break;
+		case 2:
+			if ((rand() & 0x1F) != 0) {
+				ItemDropped = 0;
+			}
+			break;
+		case 3:
+			if ((rand() & 0x0F) != 0) {
+				ItemDropped = 0;
+			}
+			break;
+		case 5:
+			if ((rand() & 0x03) != 0) {
+				ItemDropped = 0;
+			}
+			break;
+		case 6:
+			if ((rand() & 0x01) != 0) {
+				ItemDropped = 0;
+			}
+			break;
+		default: break;
+	}
+	if (ItemDropped != 0) {
+		UnknownC1ACF8F(ItemDropped);
+		DisplayInBattleText(TextBattleEnemyLeftPresent.ptr);
+	}
+	UnknownC1DD5F();
+	if (gameState.walkingStyle == WalkingStyle.Bicycle) {
+		ChangeMusic(Music.Bicycle);
+	} else {
+		UnknownC06A07();
+	}
+	UnknownC09451();
+}
 
 /// $C26634
-short InstantWinCheck();
+short InstantWinCheck() {
+	if (BattleInitiative == Initiative.EnemiesFirst) {
+		return 0;
+	}
+	short x22 = 0;
+	short x20 = 0;
+	ushort x1E = 0xFFFF;
+	ushort x04 = 0xFFFF;
+	for (short i = 0; i < 6; i++) {
+		short x1A = gameState.partyMembers[i];
+		if ((x1A < 1) || (x1A >= 4)) {
+			continue;
+		}
+		if (PartyCharacters[x1A].speed < x04) {
+			x04 = PartyCharacters[x1A].speed;
+		}
+		if (PartyCharacters[x1A].offense < x1E) {
+			x1E = PartyCharacters[x1A].offense;
+		}
+		short x16 = PartyCharacters[x1A].afflictions[0];
+		if (x16 == Status0.Unconscious) {
+			continue;
+		}
+		if (x16 == Status0.Diamondized) {
+			continue;
+		}
+		if (x16 == Status0.Paralyzed) {
+			continue;
+		}
+		if (x16 == Status0.Nauseous) {
+			continue;
+		}
+		if (x16 == Status0.Poisoned) {
+			continue;
+		}
+		if (x16 == Status0.Sunstroke) {
+			continue;
+		}
+		if (x16 == Status0.Cold) {
+			continue;
+		}
+		if ((PartyCharacters[x1A].afflictions[1] == Status1.Mushroomized) || (PartyCharacters[x1A].afflictions[1] == Status1.Possessed)) {
+			continue;
+		}
+		Unknown7EAA76[x20++] = PartyCharacters[x1A].offense;
+	}
+	if (EnemiesInBattle > x20) {
+		return 0;
+	}
+	if (BattleInitiative == Initiative.Normal) {
+		for (short i = 0; i < EnemiesInBattle; i++) {
+			if (EnemyConfigurationTable[Unknown7E9F8C[i]].speed > x22) {
+				x22 = EnemyConfigurationTable[Unknown7E9F8C[i]].speed;
+			}
+		}
+		if (x04 < x22) {
+			return 0;
+		}
+		for (short i = 0; i < EnemiesInBattle; i++) {
+			if (x1E * 2 < EnemyConfigurationTable[Unknown7E9F8C[i]].defense + EnemyConfigurationTable[Unknown7E9F8C[i]].hp) {
+				return 0;
+			}
+		}
+		return 1;
+	}
+	for (short i = 0; i < EnemiesInBattle; i++) {
+		Unknown7EAA7E[i] = EnemyConfigurationTable[Unknown7E9F8C[i]].hp;
+		Unknown7EAA86[i] = EnemyConfigurationTable[Unknown7E9F8C[i]].defense;
+	}
+	while (true) {
+		short y = 1;
+		for (short i = 0; i < x20 - 1; i++) {
+			for (short j = cast(short)(i + 1); j < x20; j++) {
+				short x10 = Unknown7EAA76[i];
+				if (Unknown7EAA76[j] > x10) {
+					y = 0;
+					Unknown7EAA76[i] = Unknown7EAA76[j];
+					Unknown7EAA76[j] = x10;
+				}
+			}
+		}
+		if (y != 0) {
+			break;
+		}
+	}
+	while (true) {
+		short x1E_2 = 1;
+		for (short i = 0; i < EnemiesInBattle - 1; i++) {
+			for (short j = cast(short)(i + 1); j < EnemiesInBattle; j++) {
+				short x0E = Unknown7EAA7E[i];
+				if (Unknown7EAA7E[j] > x0E) {
+					x1E_2 = 0;
+					Unknown7EAA7E[i] = Unknown7EAA7E[i];
+					Unknown7EAA7E[j] = x0E;
+					short x04_2 = Unknown7EAA86[j];
+					Unknown7EAA86[i] = Unknown7EAA86[i];
+					Unknown7EAA86[j] = x04_2;
+				}
+			}
+		}
+		if (x1E_2 != 0) {
+			break;
+		}
+	}
+	short x22_2 = 0;
+	for (short i = 0; i < x20; i++) {
+		if (Unknown7EAA76[i] * 2 < Unknown7EAA7E[x22_2] + Unknown7EAA86[x22_2]) {
+			Unknown7EAA7E[x22_2] -= Unknown7EAA76[i] * 2 - Unknown7EAA86[x22_2];
+		} else {
+			if (++x22_2 >= EnemiesInBattle) {
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
 
 /// $C2698B
 short GetBattleActionType(short id) {

@@ -348,7 +348,7 @@ enum Music {
 	PokeyEscapes2 = 180,
 	RETURN_TO_YOUR_BODY2 = 181,
 	GiygasStatic = 182,
-	SUDDEN_VICTORY = 183,
+	SuddenVictory = 183,
 	YOU_WON3 = 184,
 	GiygasPhase3 = 185,
 	GiygasPhase1 = 186,
@@ -3868,6 +3868,15 @@ enum ThingsToName {
 	FavoriteThing = 6,
 }
 
+enum MainMenuOptions {
+	TalkTo = 1,
+	Goods = 2,
+	PSI = 3,
+	Equip = 4,
+	Check = 5,
+	Status = 6,
+}
+
 
 struct Game_State {
 	ubyte[12] mother2PlayerName;
@@ -4849,17 +4858,17 @@ struct TelephoneContact {
 }
 
 struct PSIAbility {
-	ubyte name;
-	ubyte level;
-	ubyte type;
-	ubyte target;
-	short battleAction;
-	ubyte nessLevel;
-	ubyte paulaLevel;
-	ubyte pooLevel;
-	ubyte menuX;
-	ubyte menuY;
-	const(ubyte)[] text;
+	ubyte name; //0
+	ubyte level; //1
+	ubyte type; //2
+	ubyte target; //3
+	short battleAction; //4
+	ubyte nessLevel; //6
+	ubyte paulaLevel; //7
+	ubyte pooLevel; //8
+	ubyte menuX; //9
+	ubyte menuY; //10
+	const(ubyte)[] text; //11
 }
 
 struct Unknown7E5E3CEntry {
