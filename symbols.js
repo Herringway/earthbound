@@ -2335,7 +2335,6 @@ var symbols = [
 {name: 'earthbound.globals.Unknown7EAEE7', kind: "variabledeclaration", path: './earthbound/globals/Unknown7EAEE7.html', attributes: []},
 {name: 'earthbound.globals.Unknown7EAEEF', kind: "variabledeclaration", path: './earthbound/globals/Unknown7EAEEF.html', attributes: []},
 {name: 'earthbound.globals.Unknown7EAEF0', kind: "variabledeclaration", path: './earthbound/globals/Unknown7EAEF0.html', attributes: []},
-{name: 'earthbound.globals.Unknown7EAEF2', kind: "variabledeclaration", path: './earthbound/globals/Unknown7EAEF2.html', attributes: []},
 {name: 'earthbound.globals.Unknown7EAEF4', kind: "variabledeclaration", path: './earthbound/globals/Unknown7EAEF4.html', attributes: []},
 {name: 'earthbound.globals.Unknown7EAEFC', kind: "variabledeclaration", path: './earthbound/globals/Unknown7EAEFC.html', attributes: []},
 {name: 'earthbound.globals.Unknown7EB07C', kind: "variabledeclaration", path: './earthbound/globals/Unknown7EB07C.html', attributes: []},
