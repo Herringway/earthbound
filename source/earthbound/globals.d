@@ -813,8 +813,7 @@ __gshared ubyte Unknown7EAEE5; /// $AEE5
 __gshared ubyte Unknown7EAEE6; /// $AEE6
 __gshared ushort[4] Unknown7EAEE7; /// $AEE7
 __gshared ubyte Unknown7EAEEF; /// $AEEF
-__gshared ushort Unknown7EAEF0; /// $AEF0
-__gshared ushort Unknown7EAEF2; /// $AEF2
+__gshared ushort[2] Unknown7EAEF0; /// $AEF0
 __gshared ushort[4] Unknown7EAEF4; /// $AEF4
 __gshared short[3 * 16 * 4] Unknown7EAEFC; /// $AEFC
 __gshared short[3 * 16 * 4] Unknown7EB07C; /// $B07C

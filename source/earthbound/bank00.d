@@ -1460,7 +1460,7 @@ void GetOnBicycle() {
     NewEntityVar1 = 0;
     CreateEntity(OverworldSprite.NessBicycle, ActionScript.Unknown002, 0x18, EntityAbsXTable[24], EntityAbsYTable[24]);
     EntityTickCallbackFlags[24] |= 0x8000;
-    EntityScriptVar7Table[25] |= 0x3000;
+    EntityScriptVar7Table[24] |= 0x3000;
     EntityAnimationFrames[24] = 0;
     EntityDirections[24] = gameState.leaderDirection;
     SetBoundaryBehaviour(0);

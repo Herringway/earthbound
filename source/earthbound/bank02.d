@@ -6820,7 +6820,163 @@ void UnknownC2F0D1() {
 }
 
 /// $C2F121
-void UnknownC2F121();
+short UnknownC2F121() {
+	Unknown7EAEF0[1] = 0;
+	Unknown7EAEF0[0] = 0;
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		BattlersTable[i].vramSpriteIndex = UnknownC2F09F(BattlersTable[i].id);
+		short x02 = GetBattleSpriteWidth(BattlersTable[i].sprite);
+		if (Unknown7EAEF0[BattlersTable[i].row] != 0) {
+			x02++;
+		}
+		if (Unknown7EAEF0[BattlersTable[i].row] + x02 <= 30) {
+			Unknown7EAEF0[BattlersTable[i].row] += x02;
+		} else {
+			x02 = GetBattleSpriteWidth(BattlersTable[i].sprite);
+			if (Unknown7EAEF0[1 - BattlersTable[i].row] != 0) {
+				x02++;
+			}
+			if (Unknown7EAEF0[1 - BattlersTable[i].row] + x02 <= 30) {
+				BattlersTable[i].row = cast(ubyte)(1 - BattlersTable[i].row);
+				Unknown7EAEF0[1 - BattlersTable[i].row] += x02;
+			} else {
+				return 0;
+			}
+		}
+	}
+	short x1D = 32;
+	short x1B = 32;
+	short x17;
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		if (BattlersTable[i].row != BattlersTable[8].row) {
+			continue;
+		}
+		short x19 = GetBattleSpriteWidth(BattlersTable[i].sprite) / 2;
+		if (x1B == x1D) {
+			BattlersTable[i].spriteX = cast(ubyte)x1B;
+			x1B -= x19;
+			x1D += x19;
+			if ((RandLong() & 1) != 0) {
+				x17 = x1B;
+			} else {
+				x17 = x1D;
+			}
+		} else {
+			if ((32 - x1B < x1D - 32) || (((32 - x1B == x1D - 32) && ((RandLong() & 1) != 0)))) {
+				BattlersTable[i].spriteX = cast(ubyte)(x1B - x19 - 1);
+				x1B = cast(short)(cast(ubyte)(x1B - x19 - 1) - x19);
+			} else {
+				BattlersTable[i].spriteX = cast(ubyte)(x1D + x19 + 1);
+				x1D = cast(short)(cast(ubyte)(x1D + x19 + 1) + x19);
+			}
+		}
+	}
+	short x25 = x17;
+	short x14 = x17;
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		if (BattlersTable[i].row == BattlersTable[8].row) {
+			continue;
+		}
+		short x12 = GetBattleSpriteWidth(BattlersTable[i].sprite) / 2;
+		if (x14 == x25) {
+			BattlersTable[i].spriteX = cast(ubyte)x14;
+			x14 -= x12;
+			x25 += x12;
+		} else {
+			if ((x25 > 32) && ((x14 > 32)) || (32 - x14 < x25 - 32) || ((32 - x14 == x25 - 32) && ((RandLong() & 1) != 0))) {
+				BattlersTable[i].spriteX = cast(ubyte)(x14 - x12 - 1);
+				x14 = cast(short)(cast(ubyte)(x14 - x12 - 1) - x12);
+			} else {
+				BattlersTable[i].spriteX = cast(ubyte)(x25 + x12 + 1);
+				x25 = cast(short)(cast(ubyte)(x25 + x12 + 1) + x12);
+			}
+		}
+	}
+	if ((BattlersTable[8].row == 1) && (x14 == x25)) {
+		for (short i = 8; i < BattlersTable.length; i++) {
+			if (BattlersTable[i].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[i].allyOrEnemy != 1) {
+				continue;
+			}
+			BattlersTable[i].row = 0;
+		}
+	}
+	if (x14 < x1B) {
+		x1B = x14;
+	}
+	if (x25 > x1D) {
+		x1D = x25;
+	}
+	x1B = cast(short)(32 - ((x1B + x1D) / 2) - 16);
+	for (short i = 8; i < BattlersTable.length; i++) {
+		if (BattlersTable[i].consciousness == 0) {
+			continue;
+		}
+		if (BattlersTable[i].allyOrEnemy != 1) {
+			continue;
+		}
+		BattlersTable[i].spriteX = cast(ubyte)((BattlersTable[i].spriteX + x1B) * 8);
+		if (BattlersTable[i].row != 0) {
+			BattlersTable[i].spriteY = 0x80;
+		} else {
+			BattlersTable[i].spriteY = 0x90;
+		}
+	}
+	//TODO: don't hardcode this
+	if (CurrentBattleGroup == 0x1DB) {
+		BattlersTable[8].spriteX = 0x80;
+		BattlersTable[8].spriteY = 0x80;
+		BattlersTable[9].spriteX = 0xC8;
+		BattlersTable[9].spriteY = 0x90;
+	}
+	while (true) {
+		short x21 = 0;
+		for (short i = 0; i < EnemiesInBattle - 1; i++) {
+			for (short j = cast(short)(i + 1); j < EnemiesInBattle; j++) {
+				if (BattlersTable[8 + i].id != BattlersTable[8 + j].id) {
+					continue;
+				}
+				if (((BattlersTable[8 + i].theFlag >= BattlersTable[8 + j].theFlag) || ((BattlersTable[8 + i].spriteY >= BattlersTable[8 + j].spriteY) && (BattlersTable[8 + i].spriteY != BattlersTable[8 + j].spriteY)) || (BattlersTable[8 + i].spriteX <= BattlersTable[8 + j].spriteX)) &&
+				(BattlersTable[8 + i].theFlag > BattlersTable[8 + j].theFlag) && ((BattlersTable[8 + i].spriteY > BattlersTable[8 + j].spriteY) || ((BattlersTable[8 + i].spriteY == BattlersTable[8 + j].spriteY) && (BattlersTable[8 + i].spriteX < BattlersTable[8 + j].spriteX)))) {
+					x21 = 1;
+					short x12 = BattlersTable[8 + i].theFlag;
+					BattlersTable[8 + i].theFlag = BattlersTable[8 + j].theFlag;
+					BattlersTable[8 + j].theFlag = cast(ubyte)x12;
+					if (BattlersTable[8 + i].theFlag > BattlersTable[8 + j].theFlag) {
+						memcpy(&BattlersTable[BattlersTable.length - 1], &BattlersTable[8 + i], Battler.sizeof);
+						memcpy(&BattlersTable[8 + i], &BattlersTable[8 + j], Battler.sizeof);
+						memcpy(&BattlersTable[8 + j], &BattlersTable[BattlersTable.length - 1], Battler.sizeof);
+					}
+				}
+			}
+		}
+		if (x21 == 0) {
+			break;
+		}
+	}
+	memset(&BattlersTable[BattlersTable.length - 1], 0, Battler.sizeof);
+	return 0;
+}
 
 /// $C2F724
 void UnknownC2F724(short arg1) {
