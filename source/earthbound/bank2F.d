@@ -22236,7 +22236,7 @@ void UnknownEFE175() {
 						x1C = 0;
 					}
 				} else if ((pad_held[1] & PAD_DOWN) != 0) {
-					if (x1C  != 0) {
+					if (x1C != 0) {
 						x1C--;
 					} else {
 						x1C = 0x144;

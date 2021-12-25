@@ -6,18 +6,18 @@ enum MAX_SCRIPTS = 70;
 
 enum PARTY_LEADER_ENTITY_INDEX = 24;
 
-enum PAD_R =      0x0010;
-enum PAD_L =      0x0020;
-enum PAD_X =      0x0040;
-enum PAD_A =      0x0080;
-enum PAD_RIGHT =  0x0100;
-enum PAD_LEFT =   0x0200;
-enum PAD_DOWN =   0x0400;
-enum PAD_UP =     0x0800;
-enum PAD_START =  0x1000;
+enum PAD_R = 0x0010;
+enum PAD_L = 0x0020;
+enum PAD_X = 0x0040;
+enum PAD_A = 0x0080;
+enum PAD_RIGHT = 0x0100;
+enum PAD_LEFT = 0x0200;
+enum PAD_DOWN = 0x0400;
+enum PAD_UP = 0x0800;
+enum PAD_START = 0x1000;
 enum PAD_SELECT = 0x2000;
-enum PAD_Y =      0x4000;
-enum PAD_B =      0x8000;
+enum PAD_Y = 0x4000;
+enum PAD_B = 0x8000;
 
 
 enum PATH_FB = 0xFB;
@@ -1582,7 +1582,7 @@ enum OverworldSprite {
 	MONKEY = 133,
 	BLUE_COW = 134,
 	ESCARGO_EXPRESS_GUY = 135,
-	HINT_GUY  = 136,
+	HINT_GUY = 136,
 	BAKER = 137,
 	GIRL_IN_STRIPED_APRON = 138,
 	DOCTOR = 139,
@@ -1637,7 +1637,7 @@ enum OverworldSprite {
 	HELPFUL_MOLE = 188,
 	HEALER = 189,
 	MUSIC_NOTES = 190,
-	PU_PU  = 191,
+	PU_PU = 191,
 	ZZZ = 192,
 	WEIRD_WHITE_BUBBLE_THING = 193,
 	LIGHT_BULB = 194,
@@ -3994,70 +3994,71 @@ struct PhotoState {
 }
 
 struct WinStat {
-    short   next;                 // [00]
-    short   prev;                 // [02]
-    short   window_id;            // [04]
-    short   x;                    // [06]
-    short   y;                    // [08]
-    short   width;                // [0A]
-    short   height;               // [0C]
-    short   text_x;               // [0E]
-    short   text_y;               // [10]
-    ubyte   num_padding;          // [12]
-    ushort  tileAttributes;            // [13]
-    short   font;                 // [15]
-    WorkingMemory  result;               // [17]
-    uint  argument;             // [1B]
-    ushort  counter;              // [1F]
-    WorkingMemory  result_bak;           // [21]
-    uint  argument_bak;         // [25]
-    ushort  counter_bak;          // [29]
-    short   current_option;       // [2B]
-    short   option_count;         // [2D]
-    short   selected_option;      // [2F]
-    short   menu_columns;         // [31]
-    short   menu_page;            // [33]
-    ushort* tilemapBuffer;       // [35] 16-bit pointer
-    void function(short) menu_callback; // [37] 32-bit pointer
-    ubyte   title_id;             // [3B]
-    ubyte[32]   title;            // [3C]
+	short next; // [00]
+	short prev; // [02]
+	short window_id; // [04]
+	short x; // [06]
+	short y; // [08]
+	short width; // [0A]
+	short height; // [0C]
+	short text_x; // [0E]
+	short text_y; // [10]
+	ubyte num_padding; // [12]
+	ushort tileAttributes; // [13]
+	short font; // [15]
+	WorkingMemory result; // [17]
+	uint argument; // [1B]
+	ushort counter; // [1F]
+	WorkingMemory result_bak; // [21]
+	uint argument_bak; // [25]
+	ushort counter_bak; // [29]
+	short current_option; // [2B]
+	short option_count; // [2D]
+	short selected_option; // [2F]
+	short menu_columns; // [31]
+	short menu_page; // [33]
+	ushort* tilemapBuffer; // [35] 16-bit pointer
+	void function(short) menu_callback; // [37] 32-bit pointer
+	ubyte title_id; // [3B]
+	ubyte[32] title; // [3C]
 }
 
 struct MenuOpt {
-    short field00;     // [00]
-    short next;        // [02]
-    short prev;        // [04]
-    short page;        // [06]
-    short text_x;      // [08]
-    short text_y;      // [0A]
-    short userdata;     // [0C]
-    ubyte sfx;         // [0E]
-    const(ubyte)* script;      // [0F] 32-bit pointer
-    ubyte[25] label;   // [13]
-    ubyte pixel_align; // [2C]
+	short field00; // [00]
+	short next; // [02]
+	short prev; // [04]
+	short page; // [06]
+	short text_x; // [08]
+	short text_y; // [0A]
+	short userdata; // [0C]
+	ubyte sfx; // [0E]
+	const(ubyte)* script; // [0F] 32-bit pointer
+	ubyte[25] label; // [13]
+	ubyte pixel_align; // [2C]
 }
+
 struct VecYX {
-    short y;
-    short x;
+	short y;
+	short x;
 }
 
 struct Pather {
-    short from_offscreen; // [00] Starts off-screen flag
-    VecYX hitbox;         // [02] ??? some sort of hitbox??? (Old notes, I have no idea why I labeled this "hitbox")
-    VecYX origin;         // [06] Origin point in the collision map?
-    short field0A;        // [0A] ??? unknown index
-    VecYX* points;         // [0C] Goal points
-    short point_count;    // [0E] Amount of goal points
-    short obj_index;      // [10] Object index
+	short from_offscreen; // [00] Starts off-screen flag
+	VecYX hitbox; // [02] ??? some sort of hitbox??? (Old notes, I have no idea why I labeled this "hitbox")
+	VecYX origin; // [06] Origin point in the collision map?
+	short field0A; // [0A] ??? unknown index
+	VecYX* points; // [0C] Goal points
+	short point_count; // [0E] Amount of goal points
+	short obj_index; // [10] Object index
 }
 
 struct PathCtx {
 	ubyte[120] unknown0; //unused??
-    VecYX radius;         // [78] Pathfinder radius
-    VecYX[8] targets_pos; // [7C] Positions for all targets (row, col)
-    short target_count;   // [9C] Amount of targets
-    short pather_count;   // [9E] Amount of pathers
-    Pather[8] pathers;     // [A0] Data for all pathers
+	VecYX radius; // [78] Pathfinder radius
+	VecYX[8] targets_pos; // [7C] Positions for all targets (row, col)
+	short target_count; // [9C] Amount of targets
+	short pather_count; // [9E] Amount of pathers
+	Pather[8] pathers; // [A0] Data for all pathers
 }
 
 struct PlayerPositionBufferEntry {
@@ -5221,7 +5222,7 @@ T ROR(T)(T val, ref bool carry) {
 	val >>= 1;
 	val |= (cast(T)carry << ((T.sizeof * 8) - 1));
 	carry = LSB;
-    return val;
+	return val;
 }
 
 T ROL(T)(T val, ref bool carry) {
@@ -5229,7 +5230,7 @@ T ROL(T)(T val, ref bool carry) {
 	val <<= 1;
 	val |= carry;
 	carry = MSB;
-    return val;
+	return val;
 }
 
 void XBA(T)(ref T val) {

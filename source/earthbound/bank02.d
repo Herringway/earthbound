@@ -630,7 +630,7 @@ void HPPPRoller() {
 	}
 	if ((Unknown7E9698 == 0) && ((x10.pp.current.fraction & 1) != 0)) {
 		if (x10.pp.current.integer < x10.pp.target) {
-			x10.pp.current.combined += (Unknown7E9698 != 0) ?  0x64000 : 0x19000;
+			x10.pp.current.combined += (Unknown7E9698 != 0) ? 0x64000 : 0x19000;
 			if (x10.pp.current.integer >= x10.pp.target) {
 				x10.pp.current.integer = x10.pp.target;
 				x10.hp.current.fraction = 1;
@@ -1287,7 +1287,7 @@ void FixTargetName() {
 	memset(&TargetNameAdjustScratch[0], 0, TargetNameAdjustScratch.length);
 	if ((currentTarget.allyOrEnemy == 1) || (currentTarget.npcID != 0)) {
 		ubyte* x14 = CopyEnemyName(&EnemyConfigurationTable[currentTarget.id].name[0], &TargetNameAdjustScratch[0], 25);
-		if ((currentTarget.allyOrEnemy == 1) && ((currentTarget.theFlag != 1)  ||(UnknownC2B66A(currentTarget.unknown76) != 2))) {
+		if ((currentTarget.allyOrEnemy == 1) && ((currentTarget.theFlag != 1) ||(UnknownC2B66A(currentTarget.unknown76) != 2))) {
 			x14[0] = EBChar(' ');
 			Unknown7E5E78 = 1;
 			x14[1] = cast(ubyte)(currentTarget.theFlag + 0x70);
@@ -2893,7 +2893,7 @@ void TargetAllEnemies() {
 }
 
 /// $C26D04
-void TargetRow(ubyte arg1)  {
+void TargetRow(ubyte arg1) {
 	BattlerTargetFlags = 0;
 	for (short i = 0; i < BattlersTable.length; i++) {
 		if (BattlersTable[i].consciousness == 0) {
@@ -4298,7 +4298,7 @@ void FlashInflictFeelingStrange() {
 }
 
 /// $C29917
-void FlashInflictParalysis()  {
+void FlashInflictParalysis() {
 	if (InflictStatusBattle(currentTarget, 0, Status0.Paralyzed) != 0) {
 		DisplayInBattleText(TextBattleBecameNumb.ptr);
 	} else {
