@@ -1700,6 +1700,13 @@ short UnknownC041E3() {
     return -1;
 }
 
+/// $C042C2
+void UnknownC042C2(short arg1) {
+    EntityDirections[arg1] = UnknownC3E168[gameState.leaderDirection];
+    UnknownC09907(arg1);
+    UnknownC0A443Entry2(arg1);
+}
+
 /// $C04279
 ushort FindNearbyCheckableTPTEntry() {
     CurrentTPTEntry = -1;
@@ -5078,6 +5085,16 @@ const(ubyte)* MovementCode39(const(ubyte)* y) {
     EntityDeltaZFractionTable[ActionScript88 / 2] = 0;
     EntityDeltaZTable[ActionScript88 / 2] = 0;
     return y;
+}
+
+/// $C09907
+void UnknownC09907(short arg1) {
+    EntityDeltaXFractionTable[arg1] = 0;
+    EntityDeltaXTable[arg1] = 0;
+    EntityDeltaYFractionTable[arg1] = 0;
+    EntityDeltaYTable[arg1] = 0;
+    EntityDeltaZFractionTable[arg1] = 0;
+    EntityDeltaZTable[arg1] = 0;
 }
 
 /// $C0991C

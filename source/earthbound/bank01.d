@@ -1586,7 +1586,31 @@ void DebugYButtonMenu() {
 }
 
 /// $C13187
-const(ubyte)* TalkTo();
+const(ubyte)* TalkTo() {
+    const(ubyte)* x0A = null;
+    CreateWindowN(Window.TextStandard);
+    FindNearbyTalkableTPTEntry();
+    if (CurrentTPTEntry == 0) {
+        return null;
+    }
+    if (CurrentTPTEntry == -1) {
+        return null;
+    }
+    if (CurrentTPTEntry == -2) {
+        x0A = Unknown7E5DDE;
+    } else {
+        switch (NPCConfig[CurrentTPTEntry].type) {
+            case NPCType.Person:
+                UnknownC042C2(Unknown7E5D64);
+                x0A = &NPCConfig[CurrentTPTEntry].talkText[0];
+                break;
+            case NPCType.ItemBox:
+            case NPCType.Object:
+            default: break;
+        }
+    }
+    return x0A;
+}
 
 /// $C1323B
 const(ubyte)* Check() {
@@ -5073,7 +5097,16 @@ short OverworldUseItem(short arg1, short arg2, short arg3);
 short UnknownC1B5B6();
 
 /// $C1BB06
-void UnknownC1BB06(short arg1);
+void UnknownC1BB06(short arg1) {
+    if ((Unknown7E9D19 == 0xFF) || (arg1 == Unknown7E9D19)) {
+        UnknownC1C8BC(arg1);
+        CreateWindowN(Window.Unknown2f);
+        WindowTickWithoutInstantPrinting();
+        Unknown7E9D19 = arg1;
+        DisplayText(&PSIAbilityTable[arg1].text[0]);
+        ClearInstantPrinting();
+    }
+}
 
 /// $C1BB71
 void UnknownC1BB71() {
@@ -5412,6 +5445,28 @@ void GeneratePSIList(short arg1, ubyte arg2, ubyte arg3) {
         }
     }
     PrintMenuItems();
+    ClearInstantPrinting();
+}
+
+/// $C1C8BC
+void UnknownC1C8BC(short arg1) {
+    const(ubyte)* x06;
+    CreateWindowN(Window.unknown04);
+    WindowTickWithoutInstantPrinting();
+    Unknown7E5E6E = 0;
+    if (PSIAbilityTable[arg1].name == 4) {
+        x06 = &PSITargetText[0][0][0];
+    } else {
+        x06 = &PSITargetText[BattleActionTable[PSIAbilityTable[arg1].battleAction].direction][BattleActionTable[PSIAbilityTable[arg1].battleAction].target][0];
+    }
+    PrintString(PSITargetText[0][0].length, x06);
+    Unknown7E5E6E = 0xFF;
+    UnknownC438A5(0, 1);
+    PrintString(PPCostText.length, &PPCostText[0]);
+    PrintLetter(EBChar(' '));
+    UnknownC10EB4(0x81);
+    UnknownC43D75(0x28, 0x1);
+    PrintNumber(BattleActionTable[PSIAbilityTable[arg1].battleAction].ppCost);
     ClearInstantPrinting();
 }
 

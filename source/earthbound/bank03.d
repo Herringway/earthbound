@@ -1012,6 +1012,9 @@ immutable short[8] UnknownC3E148 = [0, 0, 10, 0, 0, 0, -10, 0];
 /// $C3E158
 immutable short[8] UnknownC3E158 = [-5, -5, 0, 5, 5, 5, 0, -5];
 
+/// $C3E168
+immutable short[8] UnknownC3E168 = [Direction.Down, Direction.Down, Direction.Left, Direction.Up, Direction.Up, Direction.Up, Direction.Right, Direction.Down];
+
 /// $C3E1D8
 immutable short[4] UnknownC3E1D8 = [4, 0, 2, 6];
 
@@ -1546,6 +1549,26 @@ immutable ubyte[2][5] PSISuffixes = [
 	EBString!2("["),
 	EBString!2("]"),
 	EBString!2("#"),
+];
+
+/// $C3F11C
+immutable ubyte[8] PPCostText = EBString("PP Cost:");
+
+/// $C3F124
+immutable ubyte[20][5][2] PSITargetText = [
+	[
+		EBString!20("To enemy"),
+		EBString!20("To one enemy"),
+		EBString!20("to One Enemy"),
+		EBString!20("To row of foes"),
+		EBString!20("To all enemies"),
+	], [
+		EBString!20("himself"),
+		EBString!20("To one of us"),
+		EBString!20("to One Friend"),
+		EBString!20("To all of us"),
+		EBString!20("To all of us"),
+	]
 ];
 
 /// $C3F1EC
