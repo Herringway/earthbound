@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function MoveCursor</title>
+		<title>Variable DebugMenuElementSpacingData</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -30,7 +30,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank01.html">bank01</a>
 					</div>
 				</li>
@@ -40,7 +40,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank03.html">bank03</a>
 					</div>
 				</li>
@@ -179,38 +179,18 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function MoveCursor</h1><p>$C118E7 - Get target X/Y window positions after menu cursor movement
+			<h1>Variable DebugMenuElementSpacingData</h1><p>$C3E964
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">short</span> <span class="pln">MoveCursor</span>
-			<span class="pun">(</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg3</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg4</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg5</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg6</span><span class="pun">,</span>
-			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg7</span>
-			<br/>
-			<span class="pun">)</span><span class="pun">;</span>
+			<span class="kwd">immutable</span><span class="pun">(</span><span class="pln">earthbound<wbr/></span><span class="pun">.</span><span class="pln">commondefs<wbr/></span><span class="pun">.</span><span class="typ">CommandWindowSpacing</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span> <span class="pln">DebugMenuElementSpacingData</span>
+			 <span class="pun">=</span> <span class="pun">[</span><span class="typ">CommandWindowSpacing</span><span class="pun">(</span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">0u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">0u</span><span class="pun">), </span><span class="typ">CommandWindowSpacing</span><span class="pun">(</span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">6u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">0u</span><span class="pun">), </span><span class="typ">CommandWindowSpacing</span><span class="pun">(</span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">0u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">1u</span><span class="pun">), </span><span class="typ">CommandWindowSpacing</span><span class="pun">(</span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">6u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">1u</span><span class="pun">), </span><span class="typ">CommandWindowSpacing</span><span class="pun">(</span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">0u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">2u</span><span class="pun">), </span><span class="typ">CommandWindowSpacing</span><span class="pun">(</span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">6u</span><span class="pun">, </span><span class="kwd">cast</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="lit">2u</span><span class="pun">)]</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
-			<section><h2>Returns</h2>
-<p>low byte = X, high byte = Y
-</p>
-</section>
-
+			
 			<footer>
 				<table class="license-info">
 					<tr>
