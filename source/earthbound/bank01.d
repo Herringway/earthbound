@@ -348,8 +348,68 @@ void UnknownC1078D() {
     CopyToVramAlt(0, 0x240, 0x7E40, cast(ubyte*)&Unknown7E827E[0]);
 }
 
-/// $C107AF
-void UnknownC107AF(short window_id);
+/// $C107AF - Draws a window
+void UnknownC107AF(short windowID) {
+    ushort* x1E = &WindowStats[windowID].tilemapBuffer[0];
+    ushort* x18 = &bg2Buffer[WindowStats[windowID].y * 32 + WindowStats[windowID].x];
+    short x1C = WindowStats[windowID].width;
+    short x04 = x1C;
+    short x1A = WindowStats[windowID].height;
+    if ((x18[0] == 0) || (x18[0] == 0x3C10)) {
+        (x18++)[0] = 0x3C10;
+    } else {
+        (x18++)[0] = 0x3C13;
+    }
+    if (WindowStats[windowID].title_id != 0) {
+        short x02 = cast(short)((WindowStats[windowID].title_id - 1) * 16 + 0x2E0);
+        (x18++)[0] = 0x3C16;
+        short x12 = cast(short)(x1C - 1);
+        for (short i = cast(short)(((strlen(cast(char*)&WindowStats[windowID].title[0]) * 6) + 7) / 8); i != 0; i--) {
+            (x18++)[0] = cast(ushort)(x02 + 0x2000);
+            x12--;
+        }
+        (x18++)[0] = 0x7C16;
+        x04 = cast(short)(x12 - 1);
+    }
+    if ((WindowStats[windowID].window_id == Unknown7E5E7A) && (Unknown7E5E7C != -1)) {
+        x04 -= 4;
+    }
+    for (short i = x04; i != 0; i--) {
+        (x18++)[0] = 0x3C11;
+    }
+    if ((WindowStats[windowID].window_id == Unknown7E5E7A) && (Unknown7E5E7C != -1)) {
+        for (short i = 0; i < 4; i++) {
+            (x18++)[0] = UnknownC3E41CPointerTable[Unknown7E5E7C][i];
+        }
+    }
+    if ((x18[0] == 0) || (x18[0] == 0x7C10)) {
+        (x18++)[0] = 0x7C10;
+    } else {
+        (x18++)[0] = 0x7C13;
+    }
+    x18 += 32 - x1C - 2;
+    for (short i = x1A; i != 0; i++) {
+        (x18++)[0] = 0x3C12;
+        for (short j = x1C; j != 0; j--) {
+            (x18++)[0] = cast(ushort)((x1E++)[0] + 0x2000);
+        }
+        (x18++)[0] = 0x7C12;
+        x18 += 32 - x1C - 2;
+    }
+    if ((x18[0] == 0) || (x18[0] == 0xBC10)) {
+        (x18++)[0] = 0xBC10;
+    } else {
+        (x18++)[0] = 0xBC13;
+    }
+    for (short i = x1C; i != 0; i--) {
+        (x18++)[0] = 0xBC11;
+    }
+    if ((x18[0] == 0) || (x18[0] == 0xFC10)) {
+        (x18++)[0] = 0xFC10;
+    } else {
+        (x18++)[0] = 0xFC13;
+    }
+}
 
 /// $C10A04
 void ShowHPPPWindows() {
@@ -770,6 +830,13 @@ MenuOpt* UnknownC1153B(short arg1, short x, short y, const(ubyte)* label, const(
     MenuOpt* X = UnknownC114B1(x, y, label, selectedText);
     X.userdata = arg1;
     X.field00 = 2;
+    return X;
+}
+
+/// $C11596
+MenuOpt* UnknownC11596(short arg1, short x, short y, const(ubyte)* arg4, const(ubyte)* arg5, ubyte arg6) {
+    MenuOpt* X = UnknownC1153B(arg1, x, y, arg4, arg5);
+    X.sfx = arg6;
     return X;
 }
 
@@ -1554,13 +1621,29 @@ const(ubyte)* Check() {
 }
 
 /// $C1339E
-void UnknownC1339E(short arg1);
+void UnknownC1339E(short arg1) {
+    return InventoryGetItemName(arg1, Window.Inventory);
+}
 
 /// $C133A7
-void UnknownC133A7(short arg1);
+void UnknownC133A7(short arg1) {
+    return InventoryGetItemName(arg1, Window.Unknown2c);
+}
 
 /// $C133B0
-void UnknownC133B0();
+void UnknownC133B0() {
+    if (Unknown7E5E6C == -1) {
+        for (short i = 1; i < 7; i++) {
+            if ((i == 3) && (UnknownC1C373() == 0)) {
+                continue;
+            }
+            short y = ((i == 1) || (i == 5) || ((i == 2) && (gameState.playerControlledPartyMemberCount == 1) && (GetCharacterItem(gameState.partyMembers[0], 1) == 0))) ? Sfx.Cursor1 : Sfx.MenuOpenClose;
+            UnknownC11596(i, DebugMenuElementSpacingData[i - 1].unknown0, DebugMenuElementSpacingData[i - 1].unknown1, &CommandWindowText[i - 1][0], null, cast(ubyte)y);
+        }
+    }
+    Unknown7E5E6C = 0;
+    PrintMenuItems();
+}
 
 /// $C134A7
 void OpenMenuButton() {
@@ -4795,7 +4878,57 @@ short GetItemType(short arg1) {
 }
 
 /// $C19F29
-void UnknownC19F29(short arg1);
+void UnknownC19F29(short arg1) {
+    arg1--;
+    CreateWindowN(Window.EquipMenu);
+    WindowTickWithoutInstantPrinting();
+    if (gameState.playerControlledPartyMemberCount != 1) {
+        Unknown7E5E7A = 6;
+    }
+    SetWindowTitle(6, PartyCharacter.name.length, &PartyCharacters[arg1].name[0]);
+    for (short i = 0; 4 > i; i++) {
+        Unknown7E5E71 = 1;
+        short x18;
+        switch (i) {
+            case 0:
+                UnknownC114B1(0, i, &StatusEquipWindowText10[i][0], null);
+                x18 = PartyCharacters[i].equipment[EquipmentSlot.Weapon];
+                break;
+            case 1:
+                UnknownC114B1(0, i, &StatusEquipWindowText10[i][0], null);
+                x18 = PartyCharacters[i].equipment[EquipmentSlot.Body];
+                break;
+            case 2:
+                UnknownC114B1(0, i, &StatusEquipWindowText10[i][0], null);
+                x18 = PartyCharacters[i].equipment[EquipmentSlot.Arms];
+                break;
+            case 3:
+                UnknownC114B1(0, i, &StatusEquipWindowText10[i][0], null);
+                x18 = PartyCharacters[i].equipment[EquipmentSlot.Other];
+                break;
+            default: break;
+        }
+        if (x18 != 0) {
+            if (CheckItemEquipped(cast(short)(arg1 + 1), x18) != 0) {
+                Unknown7E9C9F[0] = 0x22;
+                memcpy(&Unknown7E9C9F[1], &ItemData[PartyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
+            } else {
+                memcpy(&Unknown7E9C9F[0], &ItemData[PartyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
+            }
+            Unknown7E9C9F[Item.name.length] = 0;
+        } else {
+            memcpy(&Unknown7E9C9F[0], &StatusEquipWindowText12[0], StatusEquipWindowText12.length);
+            Unknown7E9C9F[StatusEquipWindowText12.length] = 0;
+        }
+        UnknownC438A5(6, i);
+        PrintLetter(EBChar(':'));
+        PrintLetter(EBChar(' '));
+        PrintString(49, &Unknown7E9C9F[0]);
+    }
+    PrintMenuItems();
+    Unknown7E5E71 = 0;
+    ClearInstantPrinting();
+}
 
 /// $C1A1D8
 void UnknownC1A1D8(short arg1);

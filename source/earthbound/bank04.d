@@ -2958,7 +2958,18 @@ short CheckStatusGroup(short arg1, short arg2) {
 }
 
 /// $C458FE
-short InflictStatusNonBattle(short arg1, short arg2, short arg3);
+short InflictStatusNonBattle(short arg1, short arg2, short arg3) {
+    if (arg2 == 8) {
+        gameState.partyStatus = cast(ubyte)(arg3 - 1);
+        return arg1;
+    }
+    if (UnknownC2239D(arg1) != 0) {
+        PartyCharacters[arg1 - 1].afflictions[arg2 - 1] = cast(ubyte)(arg3 - 1);
+        UnknownC3EE4D();
+        return arg1;
+    }
+    return 0;
+}
 
 /// $C45963
 immutable ubyte[10][5] MiscTargetText = [
@@ -5697,8 +5708,6 @@ ubyte* UnknownC4D00F(ubyte* arg1, short arg2, short arg3) {
 
 /// $C4D065
 void UnknownC4D065(ubyte* arg1, ubyte* arg2) {
-    //x04 = arg2
-    //x10 = arg1
     short x0E = 0;
     while (arg2[0] != 0) {
         short x00 = (arg2++)[0];

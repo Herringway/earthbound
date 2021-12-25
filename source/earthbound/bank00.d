@@ -3210,10 +3210,38 @@ void UnknownC071E5(short arg1) {
 }
 
 /// $C07213
-void UnknownC07213();
+void UnknownC07213() {
+    for (short i = 0; i < 2; i++) {
+        if (gameState.unknownC8[i] == 0) {
+            continue;
+        }
+        Unknown7E5E3C[i].unknown0 = gameState.unknownC8[i];
+        Unknown7E5E3C[i].unknown2 = MapHotspots[gameState.unknownCA[i]].unknown0;
+        Unknown7E5E3C[i].unknown6 = MapHotspots[gameState.unknownCA[i]].unknown4;
+        Unknown7E5E3C[i].unknown4 = MapHotspots[gameState.unknownCA[i]].unknown2;
+        Unknown7E5E3C[i].unknown8 = MapHotspots[gameState.unknownCA[i]].unknown6;
+        Unknown7E5E3C[i].unknown10 = gameState.unknownCC[i];
+    }
+}
 
 /// $C072CF
-void UnknownC072CF(short arg1, short arg2, const(ubyte)* arg3);
+void UnknownC072CF(short arg1, short arg2, const(ubyte)* arg3) {
+    short x;
+    if ((gameState.leaderX.integer > MapHotspots[arg1 - 1].unknown0) && (gameState.leaderX.integer < MapHotspots[arg1 - 1].unknown4) && (gameState.leaderY.integer > MapHotspots[arg1 - 1].unknown2) && (gameState.leaderY.integer < MapHotspots[arg1 - 1].unknown6)) {
+        x = 1;
+    } else {
+        x = 2;
+    }
+    Unknown7E5E3C[arg1 - 1].unknown0 = x;
+    Unknown7E5E3C[arg1 - 1].unknown2 = MapHotspots[arg1 - 1].unknown0;
+    Unknown7E5E3C[arg1 - 1].unknown6 = MapHotspots[arg1 - 1].unknown4;
+    Unknown7E5E3C[arg1 - 1].unknown4 = MapHotspots[arg1 - 1].unknown2;
+    Unknown7E5E3C[arg1 - 1].unknown8 = MapHotspots[arg1 - 1].unknown6;
+    Unknown7E5E3C[arg1 - 1].unknown10 = arg3;
+    gameState.unknownC8[arg1 - 1] = cast(ubyte)x;
+    gameState.unknownCA[arg1 - 1] = cast(ubyte)arg2;
+    gameState.unknownCC[arg1 - 1] = arg3;
+}
 
 /// $C07477
 byte UnknownC07477(short arg1, short arg2) {

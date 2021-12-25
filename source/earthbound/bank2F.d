@@ -13630,6 +13630,16 @@ immutable ubyte[0] TextBlockEFA2D5;
 immutable ubyte[0] TextNPC0147_ALT;
 immutable ubyte[0] TextBlockEFA2FA;
 
+/// $EFA37A
+immutable ubyte[10][6] CommandWindowText = [
+	EBString!10("Talk to"),
+	EBString!10("Goods"),
+	EBString!10("PSI"),
+	EBString!10("Equip"),
+	EBString!10("Check"),
+	EBString!10("Status"),
+];
+
 /// $EFA3B6
 immutable ubyte[0] StatusWindowText;
 

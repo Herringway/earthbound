@@ -3924,7 +3924,9 @@ struct Game_State {
 	ubyte soundSetting;
 	ubyte unknownC3;
 	uint unknownC4;
-	ubyte[12] unknownC8;
+	ubyte[2] unknownC8;
+	ubyte[2] unknownCA;
+	const(ubyte)*[2] unknownCC;
 	PhotoState[32] savedPhotoStates;
 	uint timer;
 	ubyte textFlavour;
@@ -4955,6 +4957,18 @@ struct Unknown7EB37EStruct {
 	short unknown8;
 	short unknown10;
 	short unknown12;
+}
+
+struct Hotspot {
+	short unknown0;
+	short unknown2;
+	short unknown4;
+	short unknown6;
+}
+
+struct CommandWindowSpacing {
+	ubyte unknown0;
+	ubyte unknown1;
 }
 
 //helper funcs not in the original game

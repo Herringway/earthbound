@@ -1326,6 +1326,16 @@ immutable ubyte[10][24] DebugMenuText = [
 	EBString!10(""),
 ];
 
+/// $C3E964
+immutable CommandWindowSpacing[6] DebugMenuElementSpacingData = [
+	CommandWindowSpacing(0x00, 0x00),
+	CommandWindowSpacing(0x06, 0x00),
+	CommandWindowSpacing(0x00, 0x01),
+	CommandWindowSpacing(0x06, 0x01),
+	CommandWindowSpacing(0x00, 0x02),
+	CommandWindowSpacing(0x06, 0x02),
+];
+
 /// $C3E970
 immutable ubyte[3] DebugOnText = EBStringz("ON");
 

@@ -3075,7 +3075,43 @@ void RecoverPP(Battler* battler, short amount) {
 }
 
 /// $C27397
-void ReviveTarget(Battler*, short);
+short ReviveTarget(Battler* arg1, short arg2) {
+	DisplayInBattleText(TextBattleRevived.ptr);
+	arg1.afflictions[6] = 0;
+	arg1.afflictions[5] = 0;
+	arg1.afflictions[4] = 0;
+	arg1.afflictions[3] = 0;
+	arg1.afflictions[2] = 0;
+	arg1.afflictions[1] = 0;
+	arg1.afflictions[0] = 0;
+	arg1.currentAction = 0;
+	arg1.hasTakenTurn = 1;
+	SetHP(arg1, arg2);
+	if ((arg1.allyOrEnemy == 0) && (arg1.npcID == 0)) {
+		PartyCharacters[arg1.row].hp.target = arg2;
+		PartyCharacters[arg1.row].hp.current.integer = arg2;
+	}
+	if ((arg1.allyOrEnemy == 1) && (arg1.npcID == 0)) {
+		for (short i = 0; i < BattlersTable.length; i++) {
+			BattlersTable[i].unknown75 = 0;
+		}
+		arg1.unknown75 = 1;
+		for (short i = 1; i < 16; i++) {
+			palettes[12 + arg1.vramSpriteIndex][i] = 0;
+		}
+		UnknownC2FAD8(10);
+		for (short i = 1; i < 16; i++) {
+			UnknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), 0x1F, 0x1F, 0x1F);
+		}
+		Wait(10);
+		UnknownC2FAD8(20);
+		for (short i = 1; i < 16; i++) {
+			UnknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), palettes[8 + arg1.vramSpriteIndex][i] & 0x1F, (palettes[8 + arg1.vramSpriteIndex][i] >> 5) & 0x1F, (palettes[8 + arg1.vramSpriteIndex][i] >> 10) & 0x1F);
+		}
+		Wait(20);
+	}
+	return 1;
+}
 
 /// $C27550
 void KOTarget(Battler*);
