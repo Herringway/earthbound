@@ -11,6 +11,7 @@ import earthbound.bank07;
 import earthbound.bank08;
 import earthbound.bank09;
 import earthbound.bank0F;
+import earthbound.bank10;
 import earthbound.bank15;
 import earthbound.bank20;
 import earthbound.bank2F;
@@ -5850,7 +5851,98 @@ void BattleActionSwitchArmor() {
 }
 
 /// $C1E1A5
-short EnemySelectMode(short arg1);
+short EnemySelectMode(short arg1) {
+	//x22 = arg1
+	short x16;
+	short x24 = arg1;
+	SetInstantPrinting();
+	CreateWindowN(Window.TextBattle);
+	short x1C = 1;
+	short x1A = 1;
+	outer: while (true) {
+		SetInstantPrinting();
+		UnknownC438A5(WindowStats[WindowTable[Window.TextBattle]].text_x, WindowStats[WindowTable[Window.TextBattle]].text_y);
+		short x02 = UnknownC10D7C(x24);
+		ubyte* x18 = &Unknown7E895A[7 - x02];
+		for (short i = 3; i > x02; i--) {
+			version(bugfix) {
+				PrintLetter((i == x1C) ? EBChar('0') : EBChar('0'));
+			} else {
+				PrintLetter((i == x1C) ? 0x10 : 0x30);
+			}
+		}
+		for (short i = x02; i != 0; i--) {
+			version(bugfix) {
+				PrintLetter(((i == x1C) ? EBChar('0') : EBChar('0')) + (x18++)[0]);
+			} else {
+				PrintLetter(((i == x1C) ? 0x10 : 0x30) + (x18++)[0]);
+			}
+		}
+		ClearInstantPrinting();
+		WindowTick();
+		while (true) {
+			WindowTick();
+			if (((pad_press[0] & PAD_LEFT) != 0) && (x1C < 3)) {
+				x1C++;
+				x1A *= 10;
+				continue;
+			} else if (((pad_press[0] & PAD_RIGHT) != 0) && (x1C > 1)) {
+				x1C--;
+				x1A /= 10;
+				continue;
+			} else if ((pad_held[0] & PAD_UP) != 0) {
+				if ((x24 / x1A) % 10 != 9) {
+					x24 += x1A;
+				} else {
+					x24 -= x1A * 9;
+				}
+			} else if ((pad_held[0] & PAD_DOWN) != 0) {
+				if ((x24 / x1A) % 10 != 0) {
+					x24 -= x1A;
+				} else {
+					x24 += x1A * 9;
+				}
+			} else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+				x16 = x24;
+				break outer;
+			} else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+				x16 = arg1;
+				break outer;
+			}
+		}
+		if (x24 == 0) {
+			continue outer;
+		}
+		if (x24 > 482) {
+			x24 = 482;
+		}
+		CurrentBattleGroup = x24;
+		const(BattleGroupEnemy)* x06 = &BattleEntryPointerTable[x24].enemies[0];
+		EnemiesInBattle = 0;
+		while (x06[0].count != 0xFF) {
+			short x14 = x06[0].count;
+			while (x14-- != 0) {
+				Unknown7E9F8C[EnemiesInBattle++] = x06[0].enemyID;
+			}
+			x06++;
+		}
+		UnknownC08726();
+		UnknownC2EEE7();
+		for (short i = 8; i < BattlersTable.length; i++) {
+			memset(&BattlersTable[i], 0, Battler.sizeof);
+		}
+		for (short i = 0; i < EnemiesInBattle; i++) {
+			BattleInitEnemyStats(Unknown7E9F8C[i], &BattlersTable[8 + i]);
+		}
+		UnknownC2F121();
+		UnknownC0856B(0x18);
+		UnknownC08744();
+		FadeIn(1, 1);
+	}
+	SetWindowFocus(Window.TextBattle);
+	CloseFocusWindow();
+	return x16;
+}
 
 /// $C1E48D
 short UnknownC1E48D(short arg1, short arg2, short arg3) {

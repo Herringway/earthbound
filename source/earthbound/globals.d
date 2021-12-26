@@ -339,6 +339,7 @@ __gshared const(SpriteMap)*[MAX_ENTITIES] Unknown7E3096; //$3096
 __gshared const(OverlayScript)*[MAX_ENTITIES] EntityBigRippleOverlayPtrs; //$30D2
 __gshared ushort[MAX_ENTITIES] Unknown7E310E; //$310E
 __gshared const(SpriteMap)*[MAX_ENTITIES] Unknown7E314A; //$314A
+__gshared short[MAX_ENTITIES] Unknown7E3186; //$3186
 
 __gshared short[MAX_ENTITIES] Unknown7E332A; /// $332A
 __gshared short[MAX_ENTITIES] Unknown7E3366; /// $3366
@@ -872,6 +873,8 @@ __gshared short Unknown7EB4F5; //$B4F5
 __gshared short Unknown7EB4F7; //$B4F7
 
 __gshared ushort[11] Unknown7EB525; /// $B525
+
+__gshared short PiracyFlag; /// $B539
 __gshared ushort CurrentMusicTrack; /// $B53B
 __gshared ushort CurrentPrimarySamplePack; /// $B53D
 __gshared ushort CurrentSecondarySamplePack; /// $B53F

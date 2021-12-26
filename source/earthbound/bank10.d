@@ -434,6 +434,1031 @@ immutable RGB[4] MovementTextStringPalette = [
 	RGB(31,31,27)
 ];
 
+/// $D0B880
+immutable EnemyPlacementGroups[203] EnemyPlacementGroupsPointerTable = [
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_000)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_084, 0x05, 0x08, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_001),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_002),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_003),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_004),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_005),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_006),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_007)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_084, 0x07, 0x08, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_001),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_002),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_003),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_004),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_005),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_006),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_007)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_084, 0x05, 0x08, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_001),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_002),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_003),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_004),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_005),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_006),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_007)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_084, 0x05, 0x08, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_003),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_002),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_004),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_005),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_006),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_007)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_084, 0x64, 0x64, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_001),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_002),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_003),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_004),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_005),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_006),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_007)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_084, 0x05, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_002),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_001),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_003)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_084, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_001),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_003)
+	]),
+	EnemyPlacementGroups(EventFlag.FLG_WIN_FRANK, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_008),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_009),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_010),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_011)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00F, 0x00, 0x64, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_015),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_016),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_017),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_018)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00F, 0x64, 0x64, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_012),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_013),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_014),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_015),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_016),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_017),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_018)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00F, 0x64, 0x64, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_012),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_013),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_014),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_015),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_016),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_017),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_018)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00F, 0x64, 0x64, [
+	    EnemyPlacementGroup(0x00, EnemyGroup.UNKNOWN_019),
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_020),
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_025)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00F, 0x64, 0x64, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_020),
+	    EnemyPlacementGroup(0x00, EnemyGroup.UNKNOWN_023),
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_025)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00F, 0x5A, 0x5A, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_026),
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_027),
+	    EnemyPlacementGroup(0x00, EnemyGroup.UNKNOWN_028),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_029)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_030)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_031),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_032)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0C, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_035),
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_033)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x05, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_040),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_038),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_037)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x05, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_040),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_039),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_038),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_037),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_036)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_034),
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_035)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0C, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_041),
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_042)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_041),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_042)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_050),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_046),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_051)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_053),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_045),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_047),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_049)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_045),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_047),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_049),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_048)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_043),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_052),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_049)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0C, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_048),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_044),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_052),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_043)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_048)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_044),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_043),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_052),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_049)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_044),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_043),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_052)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_0AF, 0x00, 0x0A, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_054)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_0AF, 0x00, 0x07, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_055)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_0AF, 0x00, 0x07, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_055)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_056),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_057)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_060),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_059),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_058)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_059),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_058),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_060)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_058),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_060),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_059)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_060)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_061),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_063),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_062),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_064),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_065),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_427)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_061),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_063),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_064),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_065),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_062),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_427)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_066),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_067),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_068),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_069)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_070),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_071),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_072),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_073),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_074)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_075)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_076),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_077)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x14, 0x0F, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_084),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_085),
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_099)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x0F, 0x0F, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_078),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_081),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_079),
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_080),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_092),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_095),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_093)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x0F, 0x0F, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_080),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_083),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_081),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_091),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_096),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_094),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_101)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x28, 0x28, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_086),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_082),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_089),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_088),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_100),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_098),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_102),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_094)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x28, 0x28, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_090),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_089),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_087),
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_097),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_102)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_103),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_104)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_105),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_106),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_107),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_108),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_113),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_117),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_114),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_116),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_122),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_123),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_109),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_112),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_120),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_115),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_118),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_109),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_119),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_110),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_111),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_118),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_121),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_125),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_126)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_126),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_125),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_124),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_127)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_124),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_127),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_126),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_125)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_129),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_131),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_132),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_133),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_128)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_129),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_131),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_130),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_128),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_133)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_134),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_135),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_136)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x05, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_137),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_138),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_139)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_146),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_145),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_148),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_144),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_142),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_140)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_146),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_148),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_144),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_147),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_145),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_141),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_143)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_153),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_151),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_150)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_153),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_151),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_149),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_152)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_153),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_151),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_150)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x12, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_154),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_155),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_156)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_157),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_160),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_161),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_162)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_157),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_160),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_161),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_162),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_160)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_165),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_157),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_163),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_164)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_157),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_164),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_165),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_166)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x03, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_166),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_158),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_164)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_159),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_167),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_168),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_169)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_170)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_170),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_171),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_172)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_170),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_171),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_172)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_171),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_170),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_172)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_171),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_170),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_172)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_177),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_176),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_178),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x32, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_178),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_175),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_177),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_176)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x46, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_179),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_180),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_181),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_180),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_181),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_173),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_174),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00E, 0x3C, 0x3C, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_183),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_182),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_187),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_196),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_190),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_189),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_191)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00E, 0x3C, 0x3C, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_185),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_182),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_188),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_194),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_192),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_193)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00E, 0x3C, 0x3C, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_186),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_184),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_192),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_194),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_193)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_00E, 0x46, 0x41, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_185),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_186),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_193),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_192),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_195)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x37, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_202),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_204)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x23, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_202),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_204),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_197),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_201)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x28, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_205),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_198),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_201)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5A, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_197),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_203)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5A, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_203),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_202)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5A, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_199),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_201)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x41, 0x00, [
+	    EnemyPlacementGroup(0x07, EnemyGroup.UNKNOWN_199),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_201)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_199),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_201)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5A, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_201),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_199)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_198),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_200),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_201)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_206)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_211),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_207),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_208),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_210)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_213),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_214),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_212)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_212),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_209),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_213),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_208),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_210)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_218),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_221)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x24, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_216),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_215),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_217),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_218),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_219),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_221),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_216)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x24, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_216),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_215),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_217)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x28, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_219),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_221),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_220)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x28, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_221),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_220)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x46, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_222)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x4B, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_225),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_224),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_223)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x28, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_227),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_226),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_223)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_235),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_234)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_224),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_231),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_230)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x5A, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_230),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_228),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_229)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_229),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_232),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_230),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_233)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x08, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_236),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_237),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_238),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_239)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_240),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_241),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_242),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_244),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_243)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_247),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_248)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_245),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_247),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_248)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_247),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_248),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_246),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_248)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_252),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_256)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x19, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_252),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_257),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_254)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_252),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_249)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_253),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_251),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_249)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x46, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_258),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_259),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_255),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_252)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_260),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_261),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_250),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_249)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_262),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_263),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_264),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_265)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_11A, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_261),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_250),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_249)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_039, 0x00, 0x64, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_271),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_272),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_268),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_269),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_266)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_039, 0x00, 0x64, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_269),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_270),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_271)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_039, 0x00, 0x64, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_267),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_268),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_272),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_266)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_039, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_273),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_274),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_275),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_276),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_277)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_278),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_279),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_280),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_281),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_282)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_283),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_284),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_285),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_286)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_287),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_288)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_289)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_290),
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_291)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_292)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x14, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_293)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_294),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_295),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_296),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_297)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_298)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_299),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_300)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_011, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_303),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_307)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_011, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_304),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_306)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_011, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_310),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_313)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_011, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_309),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_322)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_011, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_309),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_312)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_011, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_309),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_312)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_011, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_323)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_324),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_325)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_326)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_327),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_328),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_329)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_330),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_331)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x00, EnemyGroup.UNKNOWN_332),
+	    EnemyPlacementGroup(0x00, EnemyGroup.UNKNOWN_333),
+	    EnemyPlacementGroup(0x00, EnemyGroup.UNKNOWN_334),
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_335)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x07, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_336),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_337)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_338),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_339),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_340)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_341)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x18, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_342),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_343),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_344)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x28, 0x00, [
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_345),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_346),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_347),
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_348)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x20, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_349),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_350),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_351),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_352)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_353),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_354),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_355),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_356)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x40, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_357),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_358),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_359)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x40, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_360),
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_361)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x40, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_362),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_363)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x18, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_364),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_365),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_366)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_07E, 0x40, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_367),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_368)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_369),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_370),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_371)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x4B, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_372),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_373)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x3C, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_374),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_375)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_376),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_377),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_378)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_379),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_380)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_381),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_382),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_383)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x1E, 0x00, [
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_384),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_385),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_386)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5F, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_387),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_388)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_389),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_390)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x46, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_391),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_392)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_393),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_394)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x05, EnemyGroup.UNKNOWN_395),
+	    EnemyPlacementGroup(0x03, EnemyGroup.UNKNOWN_396)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_397)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_398)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_399)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_400)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x50, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_401),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_402)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x48, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_403),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_404),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_405),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_406),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_407)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x48, 0x00, [
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_408),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_409),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_410),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_411),
+	    EnemyPlacementGroup(0x01, EnemyGroup.UNKNOWN_412)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0A, 0x00, [
+	    EnemyPlacementGroup(0x06, EnemyGroup.UNKNOWN_413),
+	    EnemyPlacementGroup(0x02, EnemyGroup.UNKNOWN_414)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x10, 0x00, [
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_414),
+	    EnemyPlacementGroup(0x04, EnemyGroup.UNKNOWN_415)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_0AF, 0x00, 0x64, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_426)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_0AF, 0x00, 0x08, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_417)
+	]),
+	EnemyPlacementGroups(EventFlag.UNKNOWN_047, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x28, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_421)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x00, 0x00, [
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_423)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x0F, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_424)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x5A, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_425)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_428)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_429)
+	]),
+	EnemyPlacementGroups(EventFlag.None, 0x64, 0x00, [
+	    EnemyPlacementGroup(0x08, EnemyGroup.UNKNOWN_430)
+	])
+];
+
 /// $D0C60D
 immutable BattleEntryPointer[484] BattleEntryPointerTable = [
 	BattleEntryPointer([

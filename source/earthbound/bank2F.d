@@ -22429,6 +22429,14 @@ short DebugCheckViewCharacterMode() {
 	return 1;
 }
 
+/// $EFE759
+short UnknownEFE759() {
+	if ((DebugModeNumber == 2) && (Unknown7EB575 != 0)) {
+		return -1;
+	}
+	return 0;
+}
+
 /// $EFE771
 void SaveReplaySaveSlot() {
 	if (TestSRAMSize() == 0) {

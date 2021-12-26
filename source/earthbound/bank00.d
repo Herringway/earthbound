@@ -328,7 +328,7 @@ void LoadMapAtSector(short x, short y) {
 
 /// $C00AA1
 short LoadSectorAttributes(ushort arg1, ushort arg2) {
-	CurrentSectorAttributes = MapDataPerSectorAttributesTable[((arg2 &0xFF80) >> 2) + (arg1 >> 8)];
+	CurrentSectorAttributes = MapDataPerSectorAttributesTable[(arg2 &0xFF80) >> 7][arg1 >> 8];
 	return CurrentSectorAttributes;
 }
 
@@ -1090,7 +1090,133 @@ short UnknownC0263D(short x, short y) {
 }
 
 /// $C02668
-short UnknownC02668(short, short, short);
+void UnknownC02668(short arg1, short arg2, short arg3) {
+	short x2A;
+	const(BattleGroupEnemy)* x0A;
+	if ((Debug != 0) && (UnknownEFE759() != 0) && (rand() < 16)) {
+		x2A = 0;
+		x0A = &BattleEntryPointerTable[0].enemies[0];
+	} else if ((++Unknown7E4A7A & 0xF) == 0) {
+		short x28 = void;
+		switch (MapDataPerSectorAttributesTable[(arg2 * 8) / 16][(arg1 * 8) / 32] & 7) {
+			case 0:
+				x28 = 2;
+				break;
+			case 1:
+				x28 = 0;
+				break;
+			case 2:
+				x28 = 1;
+				break;
+			case 3:
+				x28 = 0;
+				break;
+			case 4:
+				x28 = 5;
+				break;
+			case 5:
+				x28 = 1;
+				break;
+			default: break;
+		}
+		if ((rand() % 100) >= x28) {
+			return;
+		}
+		x2A = 481;
+		Unknown7E4A72 = 481;
+		x0A = &BattleEntryPointerTable[481].enemies[0];
+	} else if (arg3 != 0) {
+		if (GlobalMapTilesetPaletteData[(arg2 * 8) / 16][(arg1 * 8) / 32] / 8 == Unknown7E436E) {
+			Unknown7E4A6C = arg3;
+			short x26 = EnemyPlacementGroupsPointerTable[arg3].eventFlag;
+			const(EnemyPlacementGroup)* x22 = EnemyPlacementGroupsPointerTable[arg3].groups.ptr;
+			Unknown7E4A70 = EnemyPlacementGroupsPointerTable[arg3].unknown2;
+			short x1C = 0;
+			if ((x26 != 0) && (getEventFlag(x26) != 0)) {
+				Unknown7E4A70 = EnemyPlacementGroupsPointerTable[arg3].unknown3;
+				if (EnemyPlacementGroupsPointerTable[arg3].unknown2 != 0) {
+					x1C = 8;
+				}
+			}
+			if ((PiracyFlag == 0) && (((rand() * 100) >> 8) >= Unknown7E4A70)) {
+				return;
+			}
+			short x1A = rand() & 7 + x1C;
+			short x = 0;
+			while (true) {
+				x += x22[0].unknown0;
+				if (x1A < x) {
+					break;
+				}
+				x22++;
+			}
+			x2A = x22[0].groupID;
+			Unknown7E4A72 = x2A;
+			x0A = &BattleEntryPointerTable[x2A].enemies[0];
+			for (short i = 0; i != 23; i++) {
+				if (EntityScriptTable[i] == -1) {
+					continue;
+				}
+				if (x2A + 0x8000 != EntityTPTEntries[i]) {
+					continue;
+				}
+				if (x1C == UNKNOWN_30X2_TABLE_43[i]) {
+					return;
+				}
+			}
+		}
+	}
+	while ((Unknown7E4A6E = x0A[0].count) != 0) {
+		Unknown7E4A76 = EnemyConfigurationTable[x0A[0].enemyID].name[0];
+		short x26 = EnemyConfigurationTable[x0A[0].enemyID].overworldSprite;
+		Unknown7E4A74 = x26;
+		short x16 = EnemyConfigurationTable[x0A[0].enemyID].eventScript;
+		if (x16 == 0) {
+			x16 = ActionScript.Unknown019;
+		}
+		while (Unknown7E4A6E-- != 0) {
+			if (x0A[0].enemyID == EnemyID.MagicButterfly) {
+				if (MagicButterfly != 0) {
+					continue;
+				}
+			}
+			if (OverworldEnemyCount == Unknown7E4A5E) {
+				Unknown7E4A68++;
+				continue;
+			}
+			Unknown7E4A68 = 0;
+			short x14 = CreateEntity(x26, x16, -1, 0, 0);
+			short x04;
+			short x02;
+			for (short i = 0; i != 20; i++) {
+				x04 = cast(short)((rand() % Unknown7E4A62) * 8 + arg1 * 8);
+				x02 = cast(short)((rand() % Unknown7E4A64) * 8 + arg2 * 8);
+				short x12 = UnknownC05F33(x04, x02, x14);
+				if ((x12 & 0xD0) != 0) {
+					continue;
+				}
+				if (UnknownC05DE7(x12, x14, x0A[0].enemyID) == 0) {
+					goto Unknown28;
+				}
+			}
+			UnknownC02140(x14);
+			continue;
+			Unknown28:
+			EntityAbsXTable[x14] = x04;
+			EntityAbsYTable[x14] = x02;
+			EntityTPTEntries[x14] = x2A + 0x8000;
+			EntityEnemyIDs[x14] = x0A[0].enemyID;
+			UNKNOWN_30X2_TABLE_43[x14] = cast(short)(arg2 * 128 + arg1);
+			UNKNOWN_30X2_TABLE_41[x14] = 0;
+			Unknown7E3186[x14] = rand();
+			OverworldEnemyCount++;
+			if (x0A[0].enemyID == EnemyID.MagicButterfly) {
+				MagicButterfly = 1;
+			}
+		}
+		x0A++;
+	}
+}
 
 /// $C02A6B
 void SpawnHorizontal(short x, short y) {
@@ -2617,6 +2743,28 @@ short UnknownC05CD7(short arg1, short arg2, short arg3, short arg4) {
 		default: break;
 	}
 	return Unknown7E5DA4;
+}
+
+/// $C05DE7
+short UnknownC05DE7(short arg1, short arg2, short arg3) {
+	short x = 0;
+	switch (arg1 & 0xC) {
+		case 0:
+			x = 4;
+			break;
+		case 4:
+			x = 2;
+			break;
+		case 8:
+		case 0xC:
+			x = 1;
+			break;
+		default: break;
+	}
+	if ((EnemyConfigurationTable[arg3].runFlag & x) != 0) {
+		return 0;
+	}
+	return 0x80;
 }
 
 /// $C05F33
