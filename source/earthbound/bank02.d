@@ -1291,7 +1291,7 @@ void UnknownC22A3A(short arg1, short arg2, short arg3) {
 			}
 		}
 	} else {
-		 if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Weapon]) {
+		if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Weapon]) {
 			ChangeEquippedWeapon(x13, 0);
 		} else if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Body]) {
 			ChangeEquippedBody(x13, 0);

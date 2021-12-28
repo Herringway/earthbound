@@ -5153,7 +5153,142 @@ void UnknownC19F29(short arg1) {
 }
 
 /// $C1A1D8
-void UnknownC1A1D8(short arg1);
+void UnknownC1A1D8(short arg1) {
+	arg1--;
+	CreateWindowN(Window.Unknown2d);
+	WindowTickWithoutInstantPrinting();
+	UnknownC10EB4(2);
+	UnknownC438A5(0, 0);
+	PrintString(StatusEquipWindowText8.length, &StatusEquipWindowText8[0]);
+	short x16 = PartyCharacters[arg1].base_offense;
+	if (PartyCharacters[arg1].equipment[EquipmentSlot.Weapon] != 0) {
+		short x14 = 0;
+		if (arg1 == 3) {
+			x14 = 1;
+		}
+		x16 += ItemData[PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Weapon] - 1]].parameters.raw[x14];
+	}
+	Unknown7E5E71 = 1;
+	UnknownC43D75(55, 0);
+	short a;
+	//probably a clamp macro
+	if (0 > x16) {
+		a = 0;
+	} else {
+		if (x16 > 255) {
+			a = 255;
+		} else {
+			a = cast(ubyte)x16;
+		}
+	}
+	PrintNumber(a);
+	Unknown7E5E71 = 0;
+	UnknownC438A5(0, 1);
+	PrintString(StatusEquipWindowText9.length, &StatusEquipWindowText9[0]);
+	x16 = PartyCharacters[arg1].base_defense;
+	if (PartyCharacters[arg1].equipment[EquipmentSlot.Body] != 0) {
+		short x14 = 0;
+		if (arg1 == 3) {
+			x14 = 1;
+		}
+		x16 += ItemData[PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Body] - 1]].parameters.raw[x14];
+	}
+	if (PartyCharacters[arg1].equipment[EquipmentSlot.Arms] != 0) {
+		short x14 = 0;
+		if (arg1 == 3) {
+			x14 = 1;
+		}
+		x16 += ItemData[PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Arms] - 1]].parameters.raw[x14];
+	}
+	if (PartyCharacters[arg1].equipment[EquipmentSlot.Other] != 0) {
+		short x14 = 0;
+		if (arg1 == 3) {
+			x14 = 1;
+		}
+		x16 += ItemData[PartyCharacters[arg1].items[PartyCharacters[arg1].equipment[EquipmentSlot.Other] - 1]].parameters.raw[x14];
+	}
+	Unknown7E5E71 = 1;
+	UnknownC43D75(55, 1);
+	//same as above
+	if (0 > x16) {
+		a = 0;
+	} else {
+		if (x16 > 255) {
+			a = 255;
+		} else {
+			a = cast(ubyte)x16;
+		}
+	}
+	PrintNumber(a);
+	Unknown7E5E71 = 0;
+	if (Unknown7E9CD4 != 0) {
+		UnknownC43D75(76, 0);
+		Win_SetTextColor(1);
+		UnknownC43F77(0x14E);
+		Win_SetTextColor(0);
+		short x14_2 = PartyCharacters[arg1].base_offense;
+		if (Unknown7E9CD0 != 0) {
+			short x16_2 = 0;
+			if (arg1 == 3) {
+				x16_2 = 1;
+			}
+			x14_2 += ItemData[PartyCharacters[arg1].items[Unknown7E9CD0 - 1]].parameters.raw[x16_2];
+		}
+		Unknown7E5E71 = 1;
+		//yes, again
+		if (0 > x14_2) {
+			a = 0;
+		} else {
+			if (x14_2 > 255) {
+				a = 255;
+			} else {
+				a = cast(ubyte)x14_2;
+			}
+		}
+		PrintNumber(a);
+		Unknown7E5E71 = 0;
+		UnknownC43D75(76, 1);
+		Win_SetTextColor(1);
+		UnknownC43F77(0x14E);
+
+		x16 = PartyCharacters[arg1].base_defense;
+		if (Unknown7E9CD1 != 0) {
+			short x14 = 0;
+			if (arg1 == 3) {
+				x14 = 1;
+			}
+			x16 += ItemData[PartyCharacters[arg1].items[Unknown7E9CD1 - 1]].parameters.raw[x14];
+		}
+		if (Unknown7E9CD2 != 0) {
+			short x14 = 0;
+			if (arg1 == 3) {
+				x14 = 1;
+			}
+			x16 += ItemData[PartyCharacters[arg1].items[Unknown7E9CD2 - 1]].parameters.raw[x14];
+		}
+		if (Unknown7E9CD3 != 0) {
+			short x14 = 0;
+			if (arg1 == 3) {
+				x14 = 1;
+			}
+			x16 += ItemData[PartyCharacters[arg1].items[Unknown7E9CD3 - 1]].parameters.raw[x14];
+		}
+		Unknown7E5E71 = 1;
+		//see the pattern yet?
+		if (0 > x16) {
+			a = 0;
+		} else {
+			if (x16 > 255) {
+				a = 255;
+			} else {
+				a = cast(ubyte)x16;
+			}
+		}
+		PrintNumber(a);
+		Unknown7E5E71 = 0;
+	}
+	ClearInstantPrinting();
+}
 
 /// $C1A778
 void UnknownC1A778(short arg1) {
