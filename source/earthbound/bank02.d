@@ -1203,7 +1203,121 @@ void SaveCurrentGame() {
 }
 
 /// $C22A3A
-void UnknownC22A3A(short arg1, short arg2, short arg3);
+void UnknownC22A3A(short arg1, short arg2, short arg3) {
+	arg2--;
+	short x17 = PartyCharacters[arg2].items[arg3 - 1];
+	short x15;
+	for (x15 = arg3; (x15 < 14) && (PartyCharacters[arg2].items[x15] != 0); x15++) {
+		PartyCharacters[arg2].items[x15 - 1] = PartyCharacters[arg2].items[x15];
+	}
+	PartyCharacters[arg2].items[x15 - 1] = 0;
+	GiveItemToCharacter(arg1, cast(ubyte)x17);
+	short x13 = cast(short)(arg2 + 1);
+	ubyte x0E;
+	if (arg1 == x13) {
+		x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Weapon];
+		x17 = x0E;
+		if (arg3 == x17) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Weapon] = cast(ubyte)UnknownC22351(arg1);
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Body];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Body] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Arms];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Arms] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Other];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Other] = cast(ubyte)(x0E - 1);
+			}
+		} else if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Body]) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Body] = cast(ubyte)UnknownC22351(arg1);
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Weapon];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Weapon] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Arms];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Arms] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Other];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Other] = cast(ubyte)(x0E - 1);
+			}
+		} else if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Arms]) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Arms] = cast(ubyte)UnknownC22351(arg1);
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Weapon];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Weapon] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Body];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Body] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Other];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Other] = cast(ubyte)(x0E - 1);
+			}
+		} else if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Other]) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Other] = cast(ubyte)UnknownC22351(arg1);
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Weapon];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Weapon] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Body];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Body] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Arms];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Arms] = cast(ubyte)(x0E - 1);
+			}
+		} else {
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Weapon] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Body];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Body] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Arms];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Arms] = cast(ubyte)(x0E - 1);
+			}
+			x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Other];
+			if (arg3 < x0E) {
+				PartyCharacters[arg2].equipment[EquipmentSlot.Other] = cast(ubyte)(x0E - 1);
+			}
+		}
+	} else {
+		 if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Weapon]) {
+			ChangeEquippedWeapon(x13, 0);
+		} else if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Body]) {
+			ChangeEquippedBody(x13, 0);
+		} else if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Arms]) {
+			ChangeEquippedArms(x13, 0);
+		} else if (arg3 == PartyCharacters[arg2].equipment[EquipmentSlot.Other]) {
+			ChangeEquippedOther(x13, 0);
+		}
+		x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Weapon];
+		if (arg3 < x0E) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Weapon] = cast(ubyte)(x0E - 1);
+		}
+		x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Body];
+		if (arg3 < x0E) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Body] = cast(ubyte)(x0E - 1);
+		}
+		x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Arms];
+		if (arg3 < x0E) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Arms] = cast(ubyte)(x0E - 1);
+		}
+		x0E = PartyCharacters[arg2].equipment[EquipmentSlot.Other];
+		if (arg3 < x0E) {
+			PartyCharacters[arg2].equipment[EquipmentSlot.Other] = cast(ubyte)(x0E - 1);
+		}
+	}
+}
 
 /// $C22F38
 short InitBattleScripted(short arg1) {
