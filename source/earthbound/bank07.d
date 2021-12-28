@@ -736,7 +736,7 @@ immutable ubyte[0] TextAlertConditionCritical;
 immutable ubyte[0] TextBlockC7C802;
 immutable ubyte[0] TextBlockC7C823;
 immutable ubyte[0] TEXT_CANT_RIDE_BIKE_HERE;
-immutable ubyte[0] TEXT_CANNOT_TELEPORT_HERE;
+immutable ubyte[0] TextCannotTeleportHere;
 immutable ubyte[0] TextBlockC7C865;
 immutable ubyte[0] TextBlockC7C8C0;
 immutable ubyte[0] TextBlockC7C8E8;

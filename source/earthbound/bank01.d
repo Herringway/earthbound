@@ -905,6 +905,21 @@ void UnknownC1180D(short arg1, short arg2, short) {
 	PrintMenuItems();
 }
 
+/// $C1181B
+void UnknownC1181B(short arg1, short arg2, short arg3) {
+	UnknownC451FA(arg1, 0, arg2);
+	if (arg3 != -1) {
+		WindowStats[WindowTable[CurrentFocusWindow]].selected_option = arg3;
+		MenuOpt* x = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
+		while (arg3 != 0) {
+			arg3--;
+			x = &MenuOptions[x.next];
+		}
+		WindowStats[WindowTable[CurrentFocusWindow]].menu_page = x.page;
+	}
+	PrintMenuItems();
+}
+
 /// $C11887
 void UnknownC11887(short arg1) {
 	WindowStats[WindowTable[CurrentFocusWindow]].selected_option = arg1;
@@ -1156,6 +1171,207 @@ void UnknownC11F8A() {
 	WindowStats[WindowTable[CurrentFocusWindow]].menu_callback = null;
 }
 
+/// $C11FBC
+short UnknownC11FBC(short arg1, short arg2) {
+	if (arg1 == 0) {
+		return Unknown7EAD5A[arg2];
+	} else {
+		return Unknown7EAD6A[arg2];
+	}
+}
+
+/// $C11FD4
+short UnknownC11FD4(short arg1, short arg2, short arg3) {
+	if ((arg1 == 1) && (BattleActionTable[arg3].type == 1) && (UnknownC2FAD2(arg2) == 0)) {
+		return 0;
+	}
+	return 1;
+}
+
+/// $C12012
+short UnknownC12012(short arg1, short arg2, short arg3) {
+	short x0E;
+	ubyte* x04;
+	if (arg1 == 0) {
+		x0E = Unknown7EAD58;
+		x04 = &Unknown7EAD5A[0];
+	} else {
+		x0E = Unknown7EAD56;
+		x04 = &Unknown7EAD6A[0];
+	}
+	for (short i = 0; i < x0E; i++) {
+		if ((x04++)[0] > arg2) {
+			if (UnknownC11FD4(arg1, i, arg3) != 0) {
+				return i;
+			}
+		}
+	}
+	return -1;
+}
+
+/// $C12070
+short UnknownC12070(short arg1, short arg2, short arg3) {
+	ubyte* x04;
+	short x;
+	if (arg1 == 0) {
+		x = Unknown7EAD56;
+		x04 = &Unknown7EAD5A[x - 1];
+	} else {
+		x = Unknown7EAD58;
+		x04 = &Unknown7EAD6A[x - 1];
+	}
+	for (short i = cast(short)(x - 1); i + 1 != 0; i--) {
+		if ((x04--)[0] < arg2) {
+			if (UnknownC11FD4(arg1, i, arg3) != 0) {
+				return i;
+			}
+		}
+	}
+	return -1;
+}
+
+/// $C120D6
+void UnknownC120D6(short arg1, short arg2) {
+	SetInstantPrinting();
+	CreateWindowN(Window.Unknown31);
+	PrintString(BattleToText.length, &BattleToText[0]);
+	if (arg2 != -1) {
+		UnknownC23E8A(cast(short)(arg1 * Unknown7EAD56 + arg2 + 1));
+		UnknownC3E75D(0);
+		PrintString(0xFF, ReturnBattleAttackerAddress());
+		ubyte* x12 = (arg1 != 0) ? &BattlersTable[Unknown7EAD82[arg2]].afflictions[0] : &BattlersTable[Unknown7EAD7A[arg2]].afflictions[0];
+		UnknownC438A5(0x11, 0);
+		UnknownC43F77(UnknownC223D9(x12, 0));
+	} else {
+		PrintString(13, (arg1 != 0) ? &BattleBackRowText[0] : &BattleFrontRowText[0]);
+	}
+	ClearInstantPrinting();
+}
+
+/// $C121B8
+short UnknownC121B8(short arg1, short arg2) {
+	short x0E;
+	short x18 = 0;
+	short x16 = 0;
+	short x04 = (Unknown7EAD56 != 0) ? 0 : 1;
+	if (CurrentGiygasPhase != 0) {
+		x04 = 1;
+	}
+	outer: while (true) {
+		short x12;
+		short x10;
+		short x14 = UnknownC11FBC(x04, x16);
+		EnemyFlashingOn(x04, x16);
+		if (x18 == 0) {
+			UnknownC120D6(x04, x16);
+		}
+		x18++;
+		WindowTick();
+		Unknown4:
+		UnknownC12E42();
+		if ((((pad_press[0] & PAD_UP) == 0) || (x04 != 0) || (Unknown7EAD58 == 0)) && (((pad_press[0] & PAD_DOWN) == 0) || (x04 != 1) || (Unknown7EAD56 == 0))) {
+			x12 = Sfx.Cursor2;
+			if ((pad_press[0] & PAD_LEFT) != 0) {
+				x10 = UnknownC12070(x04, x14, arg2);
+				if (x10 == -1) {
+					x10 = UnknownC12070(x04 ^ 1, x14, arg2);
+					if (x10 == -1) {
+						continue;
+					}
+				}
+			} else if ((pad_press[0] & PAD_RIGHT) != 0) {
+				x10 = UnknownC12012(x04, x14, arg2);
+				if (x10 == -1) {
+					x10 = UnknownC12012(x04 ^ 1, x14, arg2);
+					if (x10 == -1) {
+						continue;
+					}
+				}
+			} else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+				EnemyFlashingOff();
+				x0E = cast(short)(x04 * Unknown7EAD56 + x16 + 1);
+				PlaySfx(Sfx.Cursor1);
+				break;
+			} else if (((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) && (arg1 == 1)) {
+				EnemyFlashingOff();
+				x0E = 0;
+				PlaySfx(Sfx.Cursor2);
+				break;
+			} else {
+				continue;
+			}
+		} else {
+			x12 = Sfx.Cursor3;
+			x10 = UnknownC12012(x04 ^ 1, cast(short)(x14 - 1), arg2);
+			if (x10 == -1) {
+				x10 = UnknownC12070(x04 ^ 1, x14, arg2);
+				if (x10 == -1) {
+					continue;
+				}
+			}
+		}
+		x18 = 0;
+		ClearInstantPrinting();
+		CreateWindowN(Window.Unknown31);
+		WindowTick();
+		SetInstantPrinting();
+		x16 = x10;
+		PlaySfx(x12);
+	}
+	CloseFocusWindowN();
+	return x0E;
+}
+
+/// $C12362
+short UnknownC12362(short arg1) {
+	short x12 = (Unknown7EAD56 != 0) ? 0 : 1;
+	short x10;
+	short x0E;
+	outer: while (true) {
+		UnknownC43657(x12);
+		ClearInstantPrinting();
+		UnknownC120D6(x12, -1);
+		WindowTick();
+		while (true) {
+			UnknownC12E42();
+			if ((pad_press[0] & PAD_UP) != 0) {
+				x10 = 1;
+				x0E = Sfx.Cursor3;
+			} else if ((pad_press[0] & PAD_DOWN) != 0) {
+				x10 = 0;
+				x0E = Sfx.Cursor3;
+			} else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
+				UnknownC435E4();
+				x10 = cast(short)(x12 + 1);
+				PlaySfx(Sfx.Cursor1);
+				break outer;
+			} else if (((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) && (arg1 == 1)) {
+				UnknownC435E4();
+				x10 = 0;
+				PlaySfx(Sfx.Cursor2);
+				break outer;
+			} else {
+				continue;
+			}
+			if (((x10 != 0) || (Unknown7EAD56 == 0)) && ((x10 != 0) || (Unknown7EAD58 != 0))) {
+				PlaySfx(x0E);
+				x12 = x10;
+			}
+		}
+	}
+	CloseFocusWindowN();
+	return x10;
+}
+
+/// $C1242E
+short UnknownC1242E(short arg1, short arg2, short arg3) {
+	if (arg1 != 0) {
+		return UnknownC12362(arg2);
+	} else {
+		return UnknownC121B8(arg2, arg3);
+	}
+}
+
 /// $C1244C
 short UnknownC1244C(ubyte** arg1, short arg2, short arg3) {
 	short x16;
@@ -1249,10 +1465,6 @@ short UnknownC1244C(ubyte** arg1, short arg2, short arg3) {
 
 /// $C127EF
 short CharSelectPrompt(short arg1, short arg2, void function(short) arg3, short function(short) arg4) {
-	//x30 = arg1
-	//x32 = arg2
-	//x2C = arg4
-	//x28 = arg3
 	short x1E;
 	WinStat* x26 = GetActiveWindowAddress();
 	uint x22 = x26.argument;
@@ -4951,7 +5163,91 @@ void UnknownC1A778(short arg1) {
 }
 
 /// $C1A795
-void UnknownC1A795(short arg1);
+void UnknownC1A795(short arg1) {
+	arg1--;
+	while (true) {
+		UnknownC193E7(4);
+		SetWindowFocus(Window.EquipMenu);
+		short x1C = SelectionMenu(1);
+		UnknownC19437();
+		if (x1C == 0) {
+			break;
+		}
+		CreateWindowN(Window.EquipMenuItemlist);
+		SetWindowTitle(Window.EquipMenuItemlist, cast(short)strlen(cast(const(char)*)&StatusEquipWindowText11[x1C - 1][0]), &StatusEquipWindowText11[x1C - 1][0]);
+		short x04 = 0;
+		short x18 = -1;
+		for (short i = 0; i < 14; i++) {
+			short x16 = PartyCharacters[arg1].items[i];
+			if (x16 == 0) {
+				continue;
+			}
+			if (GetItemType(x16) != 2) {
+				continue;
+			}
+			if (GetItemSubtype(x16) != x1C) {
+				continue;
+			}
+			if (UnknownC3EE14(cast(short)(arg1 + 1), x16) == 0) {
+				continue;
+			}
+			if (CheckItemEquipped(cast(short)(arg1 + 1), cast(short)(i + 1)) != 0) {
+				Unknown7E9C9F = 0x22;
+				memcpy(&Unknown7E9C9F[1], &ItemData[x16].name, Item.name.length);
+				x18 = x04;
+			} else {
+				memcpy(&Unknown7E9C9F[0], &ItemData[x16].name, Item.name.length);
+			}
+			Unknown7E9C9F[Item.name.length] = 0;
+			UnknownC115F4(cast(short)(i + 1), &Unknown7E9C9F[0], null).sfx = Sfx.EquippedItem;
+			x04++;
+		}
+		UnknownC115F4(-1, &StatusEquipWindowText13[0], null);
+		UnknownC1181B(1, 0, x18);
+		Unknown7E9CD6 = cast(ubyte)(arg1 + 1);
+		switch (x1C) {
+			case 1:
+				UnknownC11F5A(&UnknownC22562);
+				break;
+			case 2:
+				UnknownC11F5A(&UnknownC225AC);
+				break;
+			case 3:
+				UnknownC11F5A(&UnknownC2260D);
+				break;
+			case 4:
+				UnknownC11F5A(&UnknownC22673);
+				break;
+			default: break;
+		}
+		Unknown7E9CD4 = 1;
+		UnknownC193E7(1);
+		short x18_2 = SelectionMenu(1);
+		UnknownC19437();
+		UnknownC11F8A();
+		if (x18_2 == -1) {
+			switch (x1C) {
+				case 1:
+					ChangeEquippedWeapon(cast(short)(arg1 + 1), 0);
+					break;
+				case 2:
+					ChangeEquippedBody(cast(short)(arg1 + 1), 0);
+					break;
+				case 3:
+					ChangeEquippedArms(cast(short)(arg1 + 1), 0);
+					break;
+				case 4:
+					ChangeEquippedOther(cast(short)(arg1 + 1), 0);
+					break;
+				default: break;
+			}
+		} else {
+			EquipItem(cast(short)(arg1 + 1), x18_2);
+		}
+		CloseWindow(Window.EquipMenuItemlist);
+		UnknownC1A778(cast(short)(arg1 + 1));
+	}
+}
 
 /// $C1AA18
 void UnknownC1AA18() {
@@ -5076,11 +5372,181 @@ uint UnknownC1AD26() {
 	return Unknown7E9D12;
 }
 
+/// $C1ADB4
+short DetermineTargetting(short arg1, short arg2) {
+	ubyte x16;
+	ubyte x01 = 0xFF;
+	switch (BattleActionTable[arg1].direction) {
+		case 0:
+			x16 = 0x10;
+			switch (BattleActionTable[arg1].target) {
+				case 0:
+					x16 = 0x11;
+					x01 = cast(ubyte)arg2;
+					break;
+				case 1:
+					x16 = 0x11;
+					x01 = cast(ubyte)UnknownC1242E(0, 1, arg1);
+					break;
+				case 2:
+					x16 = 0x11;
+					x01 = cast(ubyte)(randMod(cast(short)(CountChars(1) - 1)) + 1);
+					break;
+				case 3:
+					x16 = 0x12;
+					x01 = cast(ubyte)UnknownC1242E(1, 1, arg1);
+					break;
+				case 4:
+				default:
+					x16 |= 4;
+					break;
+			}
+			break;
+		case 1:
+			x16 = 0x00;
+			switch (BattleActionTable[arg1].target) {
+				case 0:
+					x16 = 1;
+					x01 = cast(ubyte)arg2;
+					break;
+				case 1:
+					x16 = 1;
+					if (gameState.playerControlledPartyMemberCount != 1) {
+						UnknownC193E7(3);
+						x01 = cast(ubyte)CharSelectPrompt(1, 1, null, null);
+						UnknownC19437();
+					} else {
+						x01 = cast(ubyte)arg2;
+					}
+					break;
+				case 2:
+					x16 = 1;
+					x01 = cast(ubyte)gameState.unknown96[randMod(cast(short)(CountChars(0) - 1))];
+					break;
+				case 3:
+				case 4:
+				default:
+					x16 |= 4;
+					break;
+			}
+			break;
+		default: break;
+	}
+	short x02 = x01;
+	return cast(short)((cast(short)x16 << 8) | x02);
+}
+
 /// $C1AF74
 short OverworldUseItem(short arg1, short arg2, short arg3);
 
 /// $C1B5B6
-short UnknownC1B5B6();
+short UnknownC1B5B6() {
+	ubyte x01 = 0xFF;
+	ubyte x00;
+	short x27 = 0;
+	Unknown7E9D18 = 0;
+	while (x27 != 0) {
+		ubyte x26;
+		if (UnknownC1C3B6() == 1) {
+			if (x01 == 0) {
+				break;
+			}
+			x26 = gameState.partyMembers[UnknownC1C373() - 1];
+			UnknownC1C853(x26);
+			Unknown7E9D18 = 1;
+		} else {
+			UnknownC193E7(0);
+			x26 = cast(ubyte)CharSelectPrompt(0, 1, &UnknownC1C853, &UnknownC1C367);
+			UnknownC19437();
+		}
+		Unknown7E9D16 = x26;
+		if (x26 == 0) {
+			break;
+		}
+		x01 = 0xFF;
+		do {
+			SetWindowFocus(Window.TextStandard);
+			if (x01 != 0xFF) {
+				UnknownC1CA72(x01, 0);
+				PrintMenuItems();
+			}
+			UnknownC11F5A(&UnknownC1C8BC);
+			x01 = cast(ubyte)SelectionMenu(1);
+			UnknownC11F8A();
+			if (x01 != 0) {
+				if (Unknown7E9D18 == 0) {
+					UnknownC1CA72(x01, 6);
+				}
+				if (BattleActionTable[PSIAbilityTable[x01].battleAction].ppCost > PartyCharacters[x26 - 1].pp.current.integer) {
+					CreateWindowN(Window.TextBattle);
+					DisplayText(TextNotEnoughPP.ptr);
+					CloseFocusWindowN();
+					x00 = 0;
+				} else {
+					if (PSIAbilityTable[x01].type == 8) {
+						if ((gameState.partyNPC1 != PartyMember.DungeonMan) && (gameState.partyNPC2 != PartyMember.DungeonMan) && (getEventFlag(EventFlag.NPCDelivery) == 0) && (gameState.walkingStyle != WalkingStyle.Ladder) && (gameState.walkingStyle != WalkingStyle.Rope) && (gameState.walkingStyle != WalkingStyle.Escalator) && (gameState.walkingStyle != WalkingStyle.Stairs) && ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.CANNOT_TELEPORT) == 0)) {
+							x00 = cast(ubyte)UnknownC1AAFA();
+						} else {
+							CreateWindowN(Window.TextBattle);
+							DisplayText(TextCannotTeleportHere.ptr);
+							CloseFocusWindowN();
+							x00 = 0;
+						}
+					} else {
+						x00 = cast(ubyte)DetermineTargetting(PSIAbilityTable[x01].battleAction, x26);
+					}
+				}
+			} else {
+				x00 = 1;
+			}
+		} while (x00 == 0);
+		CloseWindow(Window.unknown04);
+		if (x01 == 0) {
+			continue;
+		}
+		UnknownC3ED2C(x26, BattleActionTable[PSIAbilityTable[x01].battleAction].ppCost, 1);
+		if (PSIAbilityTable[x01].type == 8) {
+			SetTeleportState(x00, cast(TeleportStyle)PSIAbilityTable[x01].level);
+		} else {
+			currentAttacker = &BattlersTable[0];
+			BattleInitPlayerStats(x26, currentAttacker);
+			UnknownC1AC4A(&PartyCharacters[x26 - 1].name[0], PartyCharacter.name.length);
+			if (x00 != 0xFF) {
+				UnknownC1ACA1(&PartyCharacters[x00 - 1].name[0], PartyCharacter.name.length);
+			}
+			UnknownC1ACF8(x01);
+			CreateWindowN(Window.TextStandard);
+			DisplayText(BattleActionTable[PSIAbilityTable[x01].battleAction].text.ptr);
+		}
+		if (BattleActionTable[PSIAbilityTable[x01].battleAction].func !is null) {
+			currentTarget = &BattlersTable[1];
+			if (x00 == 0xFF) {
+				for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
+					UnknownC1ACA1(&PartyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.length);
+					BattleInitPlayerStats(gameState.partyMembers[i] - 1, &BattlersTable[1]);
+					BattleActionTable[PSIAbilityTable[x01].battleAction].func();
+					for (short j = 0; AFFLICTION_GROUP_COUNT > j; j++) {
+						version(bugfix) {
+							PartyCharacters[gameState.partyMembers[i] - 1].afflictions[j] = currentTarget.afflictions[j];
+						} else {
+							PartyCharacters[i].afflictions[j] = currentTarget.afflictions[j];
+						}
+					}
+				}
+			} else {
+				BattleInitPlayerStats(x00, currentTarget);
+				BattleActionTable[PSIAbilityTable[x01].battleAction].func();
+				for (short i = 0; AFFLICTION_GROUP_COUNT > i; i++) {
+					PartyCharacters[x00].afflictions[i] = currentTarget.afflictions[i];
+				}
+			}
+			UnknownC3EE4D();
+		}
+		x27 = 1;
+	}
+	CloseWindow(Window.TextStandard);
+	return x27;
+}
 
 /// $C1BB06
 void UnknownC1BB06(short arg1) {
@@ -5339,6 +5805,11 @@ short UnknownC1C32A(short arg1, short arg2, short arg3) {
 	return x04;
 }
 
+/// $C1C367
+short UnknownC1C367(short arg1) {
+	return UnknownC1C32A(arg1, 1, 0xF);
+}
+
 /// $C1C373
 short UnknownC1C373() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
@@ -5434,6 +5905,17 @@ void GeneratePSIList(short arg1, ubyte arg2, ubyte arg3) {
 	ClearInstantPrinting();
 }
 
+/// $C1C853
+void UnknownC1C853(short arg1) {
+	CreateWindowN(Window.TextStandard);
+	WindowTickWithoutInstantPrinting();
+	if (gameState.playerControlledPartyMemberCount != 1) {
+		Unknown7E5E7A = 1;
+	}
+	SetWindowTitle(1, PartyCharacter.name.length, &PartyCharacters[arg1 - 1].name[0]);
+	GeneratePSIList(arg1, 1, 0xF);
+}
+
 /// $C1C8BC
 void UnknownC1C8BC(short arg1) {
 	const(ubyte)* x06;
@@ -5460,6 +5942,22 @@ void UnknownC1C8BC(short arg1) {
 void UnknownC1CA06(short arg1) {
 	GetPSIName(PSIAbilityTable[arg1].name);
 	UnknownC447FB(-1, &PSISuffixes[PSIAbilityTable[arg1].level - 1][0]);
+}
+
+/// $C1CA72
+void UnknownC1CA72(short arg1, short arg2) {
+	SetInstantPrinting();
+	short x0E = WindowStats[WindowTable[CurrentFocusWindow]].text_y;
+	UnknownEF0115(CurrentFocusWindow);
+	WindowTickWithoutInstantPrinting();
+	UnknownC1C853(Unknown7E9D16);
+	PrintMenuItems();
+	WindowStats[WindowTable[CurrentFocusWindow]].text_y = x0E;
+	UnknownC438A5(0, GetTextY());
+	Win_SetTextColor(arg2);
+	GetPSIName(PSIAbilityTable[arg1].name);
+	Win_SetTextColor(0);
+	ClearInstantPrinting();
 }
 
 /// $C1CAF5
@@ -5852,7 +6350,6 @@ void BattleActionSwitchArmor() {
 
 /// $C1E1A5
 short EnemySelectMode(short arg1) {
-	//x22 = arg1
 	short x16;
 	short x24 = arg1;
 	SetInstantPrinting();
@@ -5896,12 +6393,14 @@ short EnemySelectMode(short arg1) {
 				} else {
 					x24 -= x1A * 9;
 				}
+				break;
 			} else if ((pad_held[0] & PAD_DOWN) != 0) {
 				if ((x24 / x1A) % 10 != 0) {
 					x24 -= x1A;
 				} else {
 					x24 += x1A * 9;
 				}
+				break;
 			} else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
 				x16 = x24;
 				break outer;

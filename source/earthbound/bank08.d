@@ -1693,7 +1693,7 @@ immutable ubyte[0] TEXT_MYSTERIOUS_AROMA;
 immutable ubyte[0] TEXT_HEAVEN_RENDING_SOUND;
 immutable ubyte[0] TextBlockC8FA7B;
 immutable ubyte[0] TextBlockC8FA90;
-immutable ubyte[0] TEXT_NOT_ENOUGH_PP;
+immutable ubyte[0] TextNotEnoughPP;
 immutable ubyte[0] TextBattleUsedPSI;
 immutable ubyte[0] TextBlockC8FACA;
 immutable ubyte[0] TextBlockC8FACD;

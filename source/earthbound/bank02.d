@@ -1017,6 +1017,22 @@ short UnknownC22474(ubyte* arg1) {
 	return StatusEquipWindowText3[x0E][arg1[x0E] - 1];
 }
 
+/// $C224E1
+short GetItemSubtype(short arg1) {
+	switch (ItemData[arg1].type & 0xC) {
+		case 0:
+			return 1;
+		case 4:
+			return 2;
+		case 8:
+			return 3;
+		case 0xC:
+			return 4;
+		default: break;
+	}
+	return 0;
+}
+
 /// $C22524
 short GetItemSubtype2(short arg1) {
 	switch (ItemData[arg1].type & 0xC) {
@@ -1026,6 +1042,42 @@ short GetItemSubtype2(short arg1) {
 		case 0x8: return 3;
 		default: return 0;
 	}
+}
+
+/// $C22562
+void UnknownC22562(short arg1) {
+	Unknown7E9CD0 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	Unknown7E9CD1 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Body];
+	Unknown7E9CD2 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Arms];
+	Unknown7E9CD3 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Other];
+	UnknownC1A1D8(Unknown7E9CD6);
+}
+
+/// $C225AC
+void UnknownC225AC(short arg1) {
+	Unknown7E9CD0 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Weapon];
+	Unknown7E9CD1 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	Unknown7E9CD2 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Arms];
+	Unknown7E9CD3 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Other];
+	UnknownC1A1D8(Unknown7E9CD6);
+}
+
+/// $C2260D
+void UnknownC2260D(short arg1) {
+	Unknown7E9CD0 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Weapon];
+	Unknown7E9CD1 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Body];
+	Unknown7E9CD2 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	Unknown7E9CD3 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Other];
+	UnknownC1A1D8(Unknown7E9CD6);
+}
+
+/// $C22673
+void UnknownC22673(short arg1) {
+	Unknown7E9CD0 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Weapon];
+	Unknown7E9CD1 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Body];
+	Unknown7E9CD2 = PartyCharacters[Unknown7E9CD6 - 1].equipment[EquipmentSlot.Arms];
+	Unknown7E9CD3 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	UnknownC1A1D8(Unknown7E9CD6);
 }
 
 /// $C226C5
@@ -1318,6 +1370,26 @@ void UnknownC23E32() {
 	}
 	currentTarget = &BattlersTable[i];
 	FixTargetName();
+}
+
+/// $C23E8A
+void UnknownC23E8A(short arg1) {
+	Unknown7E5E77 = 0;
+	short x02;
+	memset(&Unknown7EA9B9[0], 0, Unknown7EA9B9.length);
+	if (arg1 > Unknown7EAD56) {
+		x02 = Unknown7EAD82[arg1 - Unknown7EAD56 - 1];
+	} else {
+		x02 = Unknown7EAD7A[arg1 - 1];
+	}
+	ubyte* x12 = CopyEnemyName(&EnemyConfigurationTable[BattlersTable[x02].id].name[0], &Unknown7EA9B9[0], Unknown7EA9B9.length);
+	if ((BattlersTable[x02].theFlag != 1) || (UnknownC2B66A(BattlersTable[x02].unknown76) != 2)) {
+		(x12++)[0] = EBChar(' ');
+		(x12++)[0] = cast(ubyte)(EBChar('A') + BattlersTable[x02].theFlag);
+		Unknown7E5E77 = 1;
+	}
+	UnknownC1AC4AF(&Unknown7EA9B9[0], Unknown7EA9B9.length - 1);
+	Unknown7E9658 = BattlersTable[x02].id;
 }
 
 /// $C23F6C
@@ -7132,7 +7204,7 @@ void UnknownC2F917() {
 }
 
 /// $C2FAD8
-short UnknownC2FAD2() {
+short UnknownC2FAD2(short /+unused+/) {
 	return 1;
 }
 

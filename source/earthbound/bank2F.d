@@ -23,6 +23,37 @@ import std;
 immutable ubyte[2048] t = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) >> x[0]) ^ 255)).array;
 immutable ubyte[2048] t2 = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) << x[0]) ^ 255)).array;
 
+/// $EF0000
+void EnemyFlashingOff() {
+	if (Unknown7E89D0 == -1) {
+		return;
+	}
+	if (Unknown7E89D2 != 0) {
+		BattlersTable[Unknown7EAD82[Unknown7E89D0]].unknown74 = 0;
+	} else {
+		BattlersTable[Unknown7EAD7A[Unknown7E89D0]].unknown74 = 0;
+	}
+	Unknown7EADA2 = 0;
+	Unknown7E89D0 = -1;
+	Unknown7E9623 = 1;
+}
+
+/// $EF0052
+void EnemyFlashingOn(short arg1, short arg2) {
+	if (Unknown7E89D0 != -1) {
+		EnemyFlashingOff();
+	}
+	Unknown7E89D0 = arg2;
+	Unknown7E89D2 = arg1;
+	if (arg1 != 0) {
+		BattlersTable[Unknown7EAD82[Unknown7E89D0]].unknown74 = 1;
+	} else {
+		BattlersTable[Unknown7EAD7A[Unknown7E89D0]].unknown74 = 1;
+	}
+	Unknown7EADA2 = 1;
+	Unknown7E9623 = 1;
+}
+
 /// $EF00BB
 void UnknownEF00BB(ushort* arg1, short arg2, short /+unused+/) {
 	arg1[0] &= 0x3FF;

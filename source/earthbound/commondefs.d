@@ -2675,7 +2675,7 @@ enum EventFlag {
 	UNKNOWN_2EF = 0x2EF,
 	UNKNOWN_2F0 = 0x2F0,
 	UNKNOWN_2F1 = 0x2F1,
-	NPC_DELIVERY = 0x2F2,
+	NPCDelivery = 0x2F2,
 	UNKNOWN_2F3 = 0x2F3,
 	UNKNOWN_2F4 = 0x2F4,
 	NEED_TO_PICK_UP_DIAMOND = 0x2F5,
@@ -4417,6 +4417,7 @@ struct Game_State {
 	uint timer;
 	ubyte textFlavour;
 }
+
 struct PartyCharacter {
 	static if (JPN) {
 		ubyte[4] name;
@@ -5062,12 +5063,12 @@ struct Enemy {
 }
 
 struct BattleAction {
-	ubyte direction;
-	ubyte target;
-	ubyte type;
-	ubyte ppCost;
-	const(ubyte)[] text;
-	void function() func;
+	ubyte direction; // 0
+	ubyte target; // 1
+	ubyte type; // 2
+	ubyte ppCost; // 3
+	const(ubyte)[] text; // 4
+	void function() func; // 8
 }
 
 struct UnknownA97D {

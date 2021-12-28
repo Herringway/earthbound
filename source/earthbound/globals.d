@@ -620,17 +620,20 @@ __gshared Game_State gameState; /// $97F5
 __gshared PartyCharacter[TOTAL_PARTY_COUNT] PartyCharacters; /// $99CE
 __gshared ubyte[EVENT_FLAG_COUNT / 8] EventFlags; /// $9C08
 __gshared ushort CurrentInteractingEventFlag; /// $9C88
-
 __gshared WindowTextAttributesCopy Unknown7E9C8A; /// $9C8A
 __gshared ubyte[49] Unknown7E9C9F; /// $9C9F
-
+__gshared ubyte Unknown7E9CD0; /// $9CD0
+__gshared ubyte Unknown7E9CD1; /// $9CD1
+__gshared ubyte Unknown7E9CD2; /// $9CD2
+__gshared ubyte Unknown7E9CD3; /// $9CD3
 __gshared short Unknown7E9CD4; /// $9CD4
-
+__gshared ubyte Unknown7E9CD6; /// $9CD6
 __gshared ubyte[30] Unknown7E9CD7; /// $9CD7
 __gshared ubyte[28] Unknown7E9CF5; /// $9CF5
 __gshared ubyte Unknown7E9D11; /// $9D11
 __gshared uint Unknown7E9D12; /// $9D12
-
+__gshared short Unknown7E9D16; /// $9D16
+__gshared ubyte Unknown7E9D18; /// $9D18
 __gshared short Unknown7E9D19; /// $9D19
 __gshared void function() Unknown7E9D1B; /// $9D1B
 __gshared short RespawnX; /// $9D1F
@@ -865,13 +868,13 @@ __gshared short Unknown7EB4D3; /// $B4D3
 __gshared short Unknown7EB4E3; //$B4E3
 __gshared short Unknown7EB4E5; //$B4E5
 __gshared const(ubyte)* Unknown7EB4E7; //$B4E7
-__gshared const(ubyte)* Unknown7EB4EB; //$B4EB
+__gshared FixedPoint1616 Unknown7EB4EB; //$B4EB
 __gshared short Unknown7EB4EF; //$B4EF
 __gshared short CurPhotoDisplay; //$B4F1
 __gshared short Unknown7EB4F3; //$B4F3
 __gshared short Unknown7EB4F5; //$B4F5
 __gshared short Unknown7EB4F7; //$B4F7
-
+__gshared ubyte[44] Unknown7EB4F9; //$B4F9
 __gshared ushort[11] Unknown7EB525; /// $B525
 
 __gshared short PiracyFlag; /// $B539

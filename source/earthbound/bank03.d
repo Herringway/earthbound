@@ -1015,6 +1015,62 @@ immutable short[8] UnknownC3E158 = [-5, -5, 0, 5, 5, 5, 0, -5];
 /// $C3E168
 immutable short[8] UnknownC3E168 = [Direction.Down, Direction.Down, Direction.Left, Direction.Up, Direction.Up, Direction.Up, Direction.Right, Direction.Down];
 
+/// $C3E178
+immutable short[16][3] MushroomizationDirectionRemapTables = [
+	[
+		0,
+		PAD_DOWN,
+		PAD_UP,
+		PAD_UP | PAD_DOWN,
+		PAD_LEFT,
+		PAD_LEFT | PAD_DOWN,
+		PAD_LEFT | PAD_UP,
+		PAD_LEFT | PAD_UP | PAD_DOWN,
+		PAD_RIGHT,
+		PAD_RIGHT | PAD_DOWN,
+		PAD_RIGHT | PAD_UP,
+		PAD_RIGHT | PAD_UP | PAD_DOWN,
+		PAD_RIGHT | PAD_LEFT,
+		PAD_RIGHT | PAD_LEFT | PAD_DOWN,
+		PAD_RIGHT | PAD_LEFT | PAD_UP,
+		PAD_RIGHT | PAD_LEFT | PAD_UP | PAD_DOWN,
+	], [
+		0,
+		PAD_LEFT,
+		PAD_RIGHT,
+		PAD_RIGHT | PAD_LEFT,
+		PAD_UP,
+		PAD_LEFT | PAD_UP,
+		PAD_RIGHT | PAD_UP,
+		PAD_RIGHT | PAD_LEFT | PAD_UP,
+		PAD_DOWN,
+		PAD_LEFT | PAD_DOWN,
+		PAD_RIGHT | PAD_DOWN,
+		PAD_RIGHT | PAD_LEFT | PAD_DOWN,
+		PAD_UP | PAD_DOWN,
+		PAD_LEFT | PAD_UP | PAD_DOWN,
+		PAD_RIGHT | PAD_UP | PAD_DOWN,
+		PAD_RIGHT | PAD_LEFT | PAD_UP | PAD_DOWN,
+	], [
+		0,
+		PAD_UP,
+		PAD_DOWN,
+		PAD_UP | PAD_DOWN,
+		PAD_RIGHT,
+		PAD_RIGHT | PAD_UP,
+		PAD_RIGHT | PAD_DOWN,
+		PAD_RIGHT | PAD_UP | PAD_DOWN,
+		PAD_LEFT,
+		PAD_LEFT | PAD_UP,
+		PAD_LEFT | PAD_DOWN,
+		PAD_LEFT | PAD_UP | PAD_DOWN,
+		PAD_RIGHT | PAD_LEFT,
+		PAD_RIGHT | PAD_LEFT | PAD_UP,
+		PAD_RIGHT | PAD_LEFT | PAD_DOWN,
+		PAD_RIGHT | PAD_LEFT | PAD_UP | PAD_DOWN,
+	]
+];
+
 /// $C3E1D8
 immutable short[4] UnknownC3E1D8 = [4, 0, 2, 6];
 

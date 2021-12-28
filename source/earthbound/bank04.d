@@ -2072,6 +2072,40 @@ void UnknownC43573(short arg1) {
 	Unknown7E9623 = 1;
 }
 
+/// $C435E4
+void UnknownC435E4() {
+	if (Unknown7E89CE == -1) {
+		return;
+	}
+	for (short i = 0; i < (Unknown7E89CE != 0) ? Unknown7EAD58 : Unknown7EAD56; i++) {
+		if (Unknown7E89CE != 0) {
+			BattlersTable[Unknown7EAD82[i]].unknown74 = 0;
+		} else {
+			BattlersTable[Unknown7EAD7A[i]].unknown74 = 0;
+		}
+	}
+	Unknown7EADA2 = 0;
+	Unknown7E89CE = -1;
+	Unknown7E9623 = 1;
+}
+
+/// $C43657
+void UnknownC43657(short arg1) {
+	if (Unknown7E89CE != -1) {
+		UnknownC435E4();
+	}
+	Unknown7E89CE = arg1;
+	for (short i = 0; i < (Unknown7E89CE != 0) ? Unknown7EAD58 : Unknown7EAD56; i++) {
+		if (Unknown7E89CE != 0) {
+			BattlersTable[Unknown7EAD82[i]].unknown74 = 1;
+		} else {
+			BattlersTable[Unknown7EAD7A[i]].unknown74 = 1;
+		}
+	}
+	Unknown7EADA2 = 1;
+	Unknown7E9623 = 1;
+}
+
 /// $C436D7
 void UnknownC436D7(short arg1, short arg2) {
 	ushort* x0E = &WindowStats[WindowTable[arg1]].tilemapBuffer[WindowStats[WindowTable[arg1]].width * arg2 * 2];
@@ -2844,6 +2878,12 @@ void UnknownC451FA(short arg1, short arg2, short arg3) {
 		MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].option_count].page = 0;
 	 }
 }
+
+/// $C454F2
+immutable ubyte[3] BattleToText = EBString!3("To ");
+
+/// $C454F5
+immutable ubyte[13] BattleFrontRowText = EBString!13("the Front Row");
 
 /// $C45502
 immutable ubyte[13] BattleBackRowText = EBString!13("the Back Row");
@@ -6263,6 +6303,15 @@ void UnknownC4EEE1(short arg1) {
 	}
 }
 
+/// $C4EFC4
+void UnknownC4EFC4(short arg1, short arg2, short arg3, const(ubyte)* arg4) {
+	Unknown7E5156Credits[Unknown7EB4F5].unknown0 = cast(ubyte)arg1;
+	Unknown7E5156Credits[Unknown7EB4F5].unknown1 = arg2;
+	Unknown7E5156Credits[Unknown7EB4F5].unknown3 = arg4;
+	Unknown7E5156Credits[Unknown7EB4F5].unknown7 = arg3;
+	Unknown7EB4F5 = (Unknown7EB4F5 + 1) & 0x7F;
+}
+
 /// $C4F01D
 void UnknownC4F01D() {
 	if (Unknown7EB4F5 == Unknown7EB4F3) {
@@ -6309,7 +6358,7 @@ void UnknownC4F07D() {
 	Unknown7E0030 = 0x18;
 	TM_MIRROR = 0x17;
 	Unknown7EB4E3 = 0;
-	Unknown7EB4EB = null;
+	Unknown7EB4EB.combined = 0;
 	Unknown7EB4E5 = 7;
 	ushort* x06 = &bg2Buffer[0];
 	for (short i = 0; i < 0x200; i++) {
