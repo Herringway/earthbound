@@ -3121,6 +3121,9 @@ void UnknownC45E96() {
 	UnknownC44E44();
 }
 
+/// $C45ECE
+short CheckIfPSIKnown(short arg1, short arg2);
+
 /// $C45F7B
 ushort randMod(ushort arg1) {
 	return cast(ubyte)(rand() % (arg1 + 1));
@@ -4099,6 +4102,22 @@ void UnknownC49EC4(short id) {
 	}
 }
 
+/// $C49FE1
+immutable ubyte[16][10] BattleMenuText = [
+	EBString!16("Bash"),
+	EBString!16("Goods"),
+	EBString!16("Auto Fight"),
+	EBString!16("PSI"),
+	EBString!16("Defend"),
+	EBString!16("Pray"),
+	EBString!16("Shoot"),
+	EBString!16("Spy"),
+	EBString!16("Run Away"),
+	EBString!16("Mirror"),
+];
+
+immutable ubyte[12] BattleMenuTextDoNothing = EBString!12("Do Nothing");
+
 /// $C4A08D
 immutable ushort[33] DeadTargettableActions = [
 	BattleActions.PSILifeupAlpha,
@@ -4135,6 +4154,15 @@ immutable ushort[33] DeadTargettableActions = [
 	BattleActions.Action158,
 	0,
 ];
+
+/// $C4A0CF
+short AutoHealing(short arg1, short arg2);
+
+/// $C4A15D
+short AutoLifeup();
+
+/// $C4A1F2
+immutable ubyte[3] BattleWindows = [ Window.BattleMenuJeff, Window.BattleMenu, Window.Unknown30 ];
 
 /// $C4A1F5
 short CheckIfValidTarget(short arg1) {

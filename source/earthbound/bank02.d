@@ -12,9 +12,11 @@ import earthbound.bank08;
 import earthbound.bank09;
 import earthbound.bank0A;
 import earthbound.bank0B;
+import earthbound.bank0C;
 import earthbound.bank0E;
 import earthbound.bank10;
 import earthbound.bank15;
+import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
 
@@ -1400,7 +1402,368 @@ immutable ConsolationPrize[2] ConsolationItemTable = [
 ];
 
 /// $C2311B
-short BattleSelectionMenu(short, short);
+short BattleSelectionMenu(short arg1, short arg2) {
+	//x04 = arg2
+	//x26 = arg1
+	short x24 = 0;
+	short x20;
+	UnknownC2FEF9(0);
+	PartyCharacter* x22 = &PartyCharacters[arg1 - 1];
+	if ((x22.afflictions[0] == Status0.Paralyzed) || (x22.afflictions[2] == Status2.Immobilized)) {
+		x20 = 2;
+	}
+	short a = x22.equipment[EquipmentSlot.Weapon];
+	if (a != 0) {
+		a = x22.items[a];
+	}
+	if ((a != 0) && ((ItemData[a].type & 3) == 1)) {
+		x20 = 1;
+	} else {
+		x20 = 0;
+	}
+	if (gameState.autoFightEnable != 0) {
+		if ((x22.afflictions[4] == 0) && (x22.afflictions[3] != Status3.Strange) && (x22.afflictions[1] != Status1.Mushroomized) && ((arg1 == PartyMember.Ness) || (arg1 == PartyMember.Poo))) {
+			Unknown7EA97D.unknown4 = 1;
+			Unknown7EA97D.unknown1 = 26;
+			Unknown7EA97D.unknown2 = BattleActions.PSILifeupOmega;
+			if ((CheckIfPSIKnown(arg1, 26) != 0) && (BattleActionTable[BattleActions.PSILifeupOmega].ppCost <= x22.pp.target) && (CountChars(0) >= 2)) {
+					for (short i = 0; i < 6; i++) {
+						if (gameState.partyMembers[i] < 1) {
+							continue;
+						}
+						if (gameState.partyMembers[i] > 4) {
+							continue;
+						}
+						if (PartyCharacters[gameState.partyMembers[i]].maxHP / 4 <= PartyCharacters[gameState.partyMembers[i]].hp.target) {
+							goto Unknown15;
+						}
+					}
+					Unknown7EA97D.unknown4 = 4;
+					goto Unknown21;
+
+					Unknown15:
+			}
+			Unknown7EA97D.unknown1 = 25;
+			Unknown7EA97D.unknown2 = BattleActions.PSILifeupGamma;
+			if ((CheckIfPSIKnown(arg1, 25) != 0) && (BattleActionTable[BattleActions.PSILifeupGamma].ppCost <= x22.pp.target)) {
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoLifeup();
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+			}
+			Unknown7EA97D.unknown1 = 24;
+			Unknown7EA97D.unknown2 = BattleActions.PSILifeupBeta;
+			if ((CheckIfPSIKnown(arg1, 24) != 0) && (BattleActionTable[BattleActions.PSILifeupBeta].ppCost <= x22.pp.target)) {
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoLifeup();
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+			}
+			Unknown7EA97D.unknown1 = 23;
+			Unknown7EA97D.unknown2 = BattleActions.PSILifeupAlpha;
+			if ((CheckIfPSIKnown(arg1, 23) != 0) && (BattleActionTable[BattleActions.PSILifeupAlpha].ppCost <= x22.pp.target)) {
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoLifeup();
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+			}
+			goto Unknown22;
+
+			Unknown21:
+			Unknown7EA97D.unknown0 = cast(ubyte)arg1;
+			return Unknown7EA97D.unknown2;
+
+			Unknown22:
+			Unknown7EA97D.unknown1 = 30;
+			Unknown7EA97D.unknown2 = BattleActions.PSIHealingOmega;
+			if ((CheckIfPSIKnown(arg1, 30) != 0) && (BattleActionTable[BattleActions.PSIHealingOmega].ppCost <= x22.pp.target)) {
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Unconscious);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+			}
+			Unknown7EA97D.unknown1 = 29;
+			Unknown7EA97D.unknown2 = BattleActions.PSIHealingGamma;
+			if ((CheckIfPSIKnown(arg1, 29) != 0) && (BattleActionTable[BattleActions.PSIHealingGamma].ppCost <= x22.pp.target)) {
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Paralyzed);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Diamondized);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Unconscious);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+			}
+			Unknown7EA97D.unknown1 = 28;
+			Unknown7EA97D.unknown2 = BattleActions.PSIHealingBeta;
+			if ((CheckIfPSIKnown(arg1, 28) != 0) && (BattleActionTable[BattleActions.PSIHealingBeta].ppCost <= x22.pp.target)) {
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Poisoned);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Nauseous);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(2, Status2.Crying);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(3, Status3.Strange);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+			}
+			Unknown7EA97D.unknown1 = 27;
+			Unknown7EA97D.unknown2 = BattleActions.PSIHealingAlpha;
+			if ((CheckIfPSIKnown(arg1, 27) != 0) && (BattleActionTable[BattleActions.PSIHealingAlpha].ppCost <= x22.pp.target)) {
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Cold);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(0, Status0.Sunstroke);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+				Unknown7EA97D.unknown5 = cast(ubyte)AutoHealing(2, Status2.Asleep);
+				if (Unknown7EA97D.unknown5 != 0) {
+					goto Unknown21;
+				}
+			}
+		}
+		short x1A;
+		switch (x20) {
+			case 0:
+				x1A = BattleActions.Bash;
+				break;
+			case 1:
+				x1A = BattleActions.Shoot;
+				break;
+			case 2:
+				return BattleActions.UseNoEffect;
+			default: break;
+		}
+		Unknown7EA97D.unknown0 = cast(ubyte)arg1;
+		Unknown7EA97D.unknown1 = 0;
+		Unknown7EA97D.unknown2 = x1A;
+		Unknown7EA97D.unknown4 = 17;
+		Unknown7EA97D.unknown5 = cast(ubyte)(RandLimit(cast(short)(Unknown7EAD56 + Unknown7EAD58)) + 1);
+		return x1A;
+	}
+	UnknownEF0262();
+	short x1A;
+	if ((arg1 == PartyMember.Paula) || (arg1 == PartyMember.Poo)) {
+		x1A = 1;
+	} else {
+		x1A = 0;
+	}
+	if (arg2 == 0) {
+		x1A++;
+	}
+	CreateWindow(BattleWindows[x1A]);
+	SetWindowTitle(BattleWindows[x1A], PartyCharacter.name.length, &PartyCharacters[arg1 - 1].name[0]);
+	switch (x20) {
+		case 0:
+			SelectionMenuItemSetup(1, 0, 0, &BattleMenuText[0][0], null);
+			break;
+		case 1:
+			SelectionMenuItemSetup(1, 0, 0, &BattleMenuText[6][0], null);
+			break;
+		case 2:
+			SelectionMenuItemSetup(1, 0, 0, &BattleMenuTextDoNothing[0], null);
+			break;
+		default: break;
+	}
+	if (x20 != 2) {
+		SelectionMenuItemSetup(2, 6, 0, &BattleMenuText[1][0], null);
+		SelectionMenuItemSetup(5, 6, 1, &BattleMenuText[4][0], null);
+	}
+	if (arg2 == 0) {
+		short x04 = (x1A == 2) ? 16 : 11;
+		if ((arg1 == PartyMember.Paula) || (arg1 == PartyMember.Poo)) {
+			x04 += 2;
+		}
+		SelectionMenuItemSetup(3, x04, 0, &BattleMenuText[4][0], null);
+		SelectionMenuItemSetup(6, x04, 1, &BattleMenuText[8][0], null);
+	}
+	if (arg1 == PartyMember.Jeff) {
+		SelectionMenuItemSetup(4, 0, 1, &BattleMenuText[7][0], null);
+	} else if (x22.afflictions[4] == 0) {
+		SelectionMenuItemSetup(4, 0, 1, &BattleMenuText[3][0], null);
+	}
+	if (arg1 == PartyMember.Paula) {
+		SelectionMenuItemSetup(7, 11, 0, &BattleMenuText[5][0], null);
+	}
+	if (arg1 == PartyMember.Poo) {
+		SelectionMenuItemSetup(7, 13, 0, &BattleMenuText[9][0], null);
+	}
+	short x1E;
+	while (true) {
+		SetWindowFocusF(BattleWindows[x1A]);
+		if (x24 == 0) {
+			PrintMenuItemsF();
+		}
+		x24++;
+		short tmp = SelectionMenuF(1);
+		if (tmp == 0) {
+			if (Debug != 0) {
+				if ((pad_state[0] & (PAD_SELECT | PAD_START)) == (PAD_SELECT | PAD_START)) {
+					ResumeMusic();
+					return -1;
+				} else if ((pad_state[0] & PAD_R) != 0){
+					UnknownE14DE8();
+					continue;
+				}
+			}
+			if (BattleDebug == 0) {
+				if ((pad_state[0] & PAD_L) != 0) {
+					DebugSetCharacterLevel();
+					for (short i = 0; i < 6; i++) {
+						if (gameState.partyMembers[i] == 0) {
+							continue;
+						}
+						if (gameState.partyMembers[i] > 4) {
+							continue;
+						}
+						BattleInitPlayerStats(gameState.partyMembers[i], &BattlersTable[i]);
+					}
+					continue;
+				} else if ((pad_state[0] & PAD_SELECT) != 0) {
+					DebugYButtonGoods();
+					continue;
+				}
+				ResumeMusic();
+				return 0;
+			}
+		}
+		Unknown7EA97C = 0;
+		switch (tmp) {
+			case 1:
+				switch (x20) {
+					case 0:
+						x1E = BattleActions.Bash;
+						break;
+					case 1:
+						x1E = BattleActions.Shoot;
+						break;
+					case 2:
+						x1E = BattleActions.UseNoEffect;
+						break;
+					default: break;
+				}
+				Unknown7EA97D.unknown2 = x1E;
+				Unknown7EA97D.unknown4 = 17;
+				if (x20 != 2) {
+					Unknown7EA97D.unknown5 = cast(ubyte)UnknownC1242EF(0, 1, x1E);
+					if (Unknown7EA97D.unknown5 == 0) {
+						continue;
+					}
+				}
+				break;
+			case 2:
+				Unknown7EA97D.unknown0 = cast(ubyte)arg1;
+				if (UnknownC1CFC6F(&Unknown7EA97D) == 0) {
+					continue;
+				}
+				Unknown7EA97C = cast(ubyte)GetCharacterItem(arg1, Unknown7EA97D.unknown1);
+				x1E = Unknown7EA97D.unknown2;
+				break;
+			case 3:
+				gameState.autoFightEnable = 1;
+				UnknownC20266();
+				x1E = BattleActions.NoEffect;
+				break;
+			case 4:
+				if (arg1 == PartyMember.Jeff) {
+					x1E = BattleActions.Spy;
+					Unknown7EA97D.unknown2 = x1E;
+					Unknown7EA97D.unknown4 = 17;
+					Unknown7EA97D.unknown5 = cast(ubyte)UnknownC1242EF(0, 1, x1E);
+					if (Unknown7EA97D.unknown5 == 0) {
+						continue;
+					}
+				}
+				Unknown7EA97D.unknown0 = cast(ubyte)arg1;
+				if (BattlePSIMenuF(&Unknown7EA97D) == 0) {
+					continue;
+				}
+				Unknown7EA97C = 0;
+				x1E = Unknown7EA97D.unknown2;
+				break;
+			case 5:
+				x1E = BattleActions.Guard;
+				Unknown7EA97D.unknown2 = x1E;
+				Unknown7EA97D.unknown4 = 0;
+				break;
+			case 6:
+				Unknown7EA97D.unknown4 = 1;
+				Unknown7EA97D.unknown5 = cast(ubyte)arg1;
+				x1E = BattleActions.RunAway;
+				Unknown7EA97D.unknown2 = x1E;
+				break;
+			case 7:
+				Unknown7EA97D.unknown4 = 1;
+				Unknown7EA97D.unknown5 = cast(ubyte)arg1;
+				switch (arg1) {
+					case PartyMember.Paula:
+						switch (CurrentGiygasPhase) {
+							case GiygasPhase.StartPraying:
+								x1E = BattleActions.FinalPrayer1;
+								break;
+							case GiygasPhase.Prayer1Used:
+								x1E = BattleActions.FinalPrayer2;
+								break;
+							case GiygasPhase.Prayer2Used:
+								x1E = BattleActions.FinalPrayer3;
+								break;
+							case GiygasPhase.Prayer3Used:
+								x1E = BattleActions.FinalPrayer4;
+								break;
+							case GiygasPhase.Prayer4Used:
+								x1E = BattleActions.FinalPrayer5;
+								break;
+							case GiygasPhase.Prayer5Used:
+								x1E = BattleActions.FinalPrayer6;
+								break;
+							case GiygasPhase.Prayer6Used:
+								x1E = BattleActions.FinalPrayer7;
+								break;
+							case GiygasPhase.Prayer7Used:
+								x1E = BattleActions.FinalPrayer8;
+								break;
+							case GiygasPhase.Prayer8Used:
+								x1E = BattleActions.FinalPrayer9;
+								break;
+							default:
+								x1E = BattleActions.Pray;
+								break;
+						}
+						Unknown7EA97D.unknown2 = x1E;
+						break;
+					case PartyMember.Poo:
+						x1E = BattleActions.Mirror;
+						Unknown7EA97D.unknown2 = x1E;
+						Unknown7EA97D.unknown4 = 17;
+						Unknown7EA97D.unknown5 = cast(ubyte)UnknownC1242EF(0, 1, x1E);
+						if (Unknown7EA97D.unknown5 == 0) {
+							continue;
+						}
+						break;
+					default: break;
+				}
+				break;
+			default: break;
+		}
+		break;
+	}
+	SetWindowFocusF(BattleWindows[x1A]);
+	ResumeMusic();
+	return x1E;
+}
 
 /// $C23B66
 ubyte* CopyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
@@ -6681,7 +7044,136 @@ void UnknownC2E0E7() {
 }
 
 /// $C2E116
-void ShowPSIAnimation(short);
+void ShowPSIAnimation(short arg1) {
+	if (LoadedBGDataLayer1.Bitdepth == 2) {
+		CopyToVram2(0, 0x1000, 0, Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F8000[0]));
+		Unknown7E1BCA = &palettes[3][0];
+	} else {
+		ushort* x06 = cast(ushort*)Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0]);
+		ushort* x0A = cast(ushort*)&Unknown7F8000[0];
+		for (short i = 0; i < 0x100; i++) {
+			(x0A++)[0] = (x06++)[0];
+			(x0A++)[0] = (x06++)[0];
+			(x0A++)[0] = (x06++)[0];
+			x0A[0] = (x06++)[0];
+			ushort* x24 = x06;
+			x06 = x0A;
+			(++x06)[0] = x24[0];
+			x0A = x24;
+			x0A++;
+			x06++;
+			(x06++)[0] = (x0A++)[0];
+			ushort* x20 = x06;
+			x06[0] = x0A[0];
+			x06 = x0A;
+			x06++;
+			ushort* x1C = x06;
+			x06 = x20;
+			x0A = x06;
+			(++x0A)[0] = x1C[0];
+			x06 = x1C;
+			x06++;
+			x0A++;
+			(x0A++)[0] = 0;
+			(x0A++)[0] = 0;
+			(x0A++)[0] = 0;
+			(x0A++)[0] = 0;
+			(x0A++)[0] = 0;
+			(x0A++)[0] = 0;
+			(x0A++)[0] = 0;
+			(x0A++)[0] = 0;
+		}
+		Unknown7E1BCA = &palettes[4][0];
+	}
+	WaitUntilNextFrame();
+	memcpy(&Unknown7E1BAA[0], &PSIAnimationPalettes[arg1][0], 8);
+	Unknown7E1BA1 = &Unknown7F0000[0];
+	Unknown7E1B9E = 1;
+	Unknown7E1B9F = PSIAnimationConfig[arg1].frameDuration;
+	Unknown7E1BA0 = PSIAnimationConfig[arg1].totalFrames;
+	Unknown7E1BA8 = PSIAnimationConfig[arg1].paletteDuration;
+	Unknown7E1BA5 = PSIAnimationConfig[arg1].unknown4;
+	Unknown7E1BA6 = PSIAnimationConfig[arg1].unknown5;
+	Unknown7E1BA7 = 0;
+	Unknown7E1BA9 = 1;
+	Unknown7E1BCC = PSIAnimationConfig[arg1].enemyColourChangeDelay;
+	Unknown7E1BCE = PSIAnimationConfig[arg1].enemyColourChangeDuration;
+	Unknown7E1BD0 = PSIAnimationConfig[arg1].enemyColour & 0x1F;
+	Unknown7E1BD2 = (PSIAnimationConfig[arg1].enemyColour >> 5) & 0x1F;
+	Unknown7E1BD4 = (PSIAnimationConfig[arg1].enemyColour >> 10) & 0x1F;
+	Decomp(&PSIAnimationPointers[arg1][0], &Unknown7F0000[0]);
+	UnknownC2DE0F();
+	memcpy(&palettes[12][0], &palettes[8][0], 0x80);
+	for (short i = 0; i < 4; i++) {
+		Unknown7EAEE7[i] = 0;
+	}
+	if (currentTarget.consciousness == 0) {
+		return;
+	}
+	if (currentTarget.allyOrEnemy != 1) {
+		return;
+	}
+	Unknown7EAD9A = 0;
+	switch (PSIAnimationConfig[arg1].target) {
+		case PSIAnimationTarget.Single:
+		case PSIAnimationTarget.Random:
+			Unknown7EAD9A = 0x80 - currentTarget.spriteX;
+			Unknown7EAD9C = 0x90 - currentTarget.spriteY;
+			if (GetBattleSpriteHeight(currentTarget.sprite) == 8) {
+				Unknown7EAD9C += 16;
+			}
+			currentTarget.unknown75 = 1;
+			Unknown7EAEE7[currentTarget.vramSpriteIndex] = 1;
+			break;
+		case PSIAnimationTarget.Row:
+			Unknown7EAD9C = 0x90 - currentTarget.spriteY;
+			short x1A = 0;
+			for (short i = 8; i < BattlersTable.length; i++) {
+				if (BattlersTable[i].consciousness == 0) {
+					continue;
+				}
+				if (BattlersTable[i].allyOrEnemy != 1) {
+					continue;
+				}
+				if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+					continue;
+				}
+				if (BattlersTable[i].spriteY != currentTarget.spriteY) {
+					continue;
+				}
+				if (GetBattleSpriteHeight(BattlersTable[i].sprite) == 8) {
+					x1A = 1;
+				}
+				BattlersTable[i].unknown75 = 1;
+				Unknown7EAEE7[BattlersTable[i].vramSpriteIndex] = 1;
+			}
+			break;
+		case PSIAnimationTarget.AllEnemies:
+			Unknown7EAD9C = 16;
+			for (short i = 8; i < BattlersTable.length; i++) {
+				if (BattlersTable[i].consciousness == 0) {
+					continue;
+				}
+				if (BattlersTable[i].allyOrEnemy != 1) {
+					continue;
+				}
+				if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+					continue;
+				}
+				BattlersTable[i].unknown75 = 1;
+				Unknown7EAEE7[BattlersTable[i].vramSpriteIndex] = 1;
+			}
+			break;
+		default: break;
+	}
+	if (LoadedBGDataLayer1.Bitdepth == 2) {
+		BG2_X_POS = Unknown7EAD9A;
+		BG2_Y_POS = Unknown7EAD9C;
+	} else {
+		BG1_X_POS = Unknown7EAD9A;
+		BG1_Y_POS = Unknown7EAD9C;
+	}
+}
 
 immutable ubyte[3] UnknownC2E6B3 = [ 0x30, 0, 0 ];
 

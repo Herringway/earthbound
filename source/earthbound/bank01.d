@@ -2228,6 +2228,9 @@ void DebugYButtonGuide() {
 	CloseWindow(Window.FileSelectMenu);
 }
 
+/// $C13E7A
+void DebugSetCharacterLevel();
+
 /// $C13EE7
 void DebugYButtonGoods() {
 	short x04 = 0;
@@ -6117,6 +6120,12 @@ void UnknownC1CAF5(short arg1) {
 	}
 }
 
+/// $C1CBCD
+short BattlePSIMenu(UnknownA97D* arg1);
+
+/// $C1CFC6
+short UnknownC1CFC6(UnknownA97D* arg1);
+
 /// $C1D038 - Get fixed version of an item
 /// Returns: Fixed item id, or 0 if nonexistant
 short UnknownC1D038(short arg1) {
@@ -6130,7 +6139,7 @@ short UnknownC1D038(short arg1) {
 short UnknownC1D08B(short arg1, short arg2, short arg3) {
 	short x0E = cast(short)((arg1 * arg2) - ((arg3 - 2) * 10));
 	short x02 = (x0E <= 0) ? 0 : randMod(3);
-	return cast(short)(((UnknownC3F2B1[(arg1 + 1) % 4] + x02 - 1) * x0E) / 50);
+	return cast(short)(((UnknownC3F2B1[(arg1 + 1) % UnknownC3F2B1.length] + x02 - 1) * x0E) / 50);
 }
 
 /// $C1D109
@@ -6322,7 +6331,41 @@ void ShowHPAlert(short arg1) {
 }
 
 /// $C1D8D0
-void ResetCharLevelOne(short, short, short);
+void ResetCharLevelOne(short arg1, short arg2, short arg3) {
+	PartyCharacters[arg1 - 1].level = 1;
+	PartyCharacters[arg1 - 1].base_offense = 2;
+	PartyCharacters[arg1 - 1].base_defense = 2;
+	PartyCharacters[arg1 - 1].base_speed = 2;
+	PartyCharacters[arg1 - 1].base_guts = 2;
+	PartyCharacters[arg1 - 1].base_luck = 2;
+	PartyCharacters[arg1 - 1].base_vitality = 2;
+	PartyCharacters[arg1 - 1].base_iq = 2;
+	PartyCharacters[arg1 - 1].maxHP = 30;
+	PartyCharacters[arg1 - 1].hp.target = 30;
+	PartyCharacters[arg1 - 1].hp.current.integer = 30;
+	short x10;
+	if (arg1 - 1 != 2) {
+		x10 = 10;
+	} else {
+		x10 = 0;
+	}
+	PartyCharacters[arg1 - 1].maxHP = x10;
+	PartyCharacters[arg1 - 1].hp.target = x10;
+	PartyCharacters[arg1 - 1].hp.current.integer = x10;
+	RecalcCharacterPostmathOffense(arg1);
+	RecalcCharacterPostmathDefense(arg1);
+	RecalcCharacterPostmathSpeed(arg1);
+	RecalcCharacterPostmathGuts(arg1);
+	RecalcCharacterPostmathLuck(arg1);
+	RecalcCharacterPostmathVitality(arg1);
+	RecalcCharacterPostmathIQ(arg1);
+	while (--arg2 != 0) {
+		LevelUpChar(arg1, 0);
+	}
+	if (arg3 != 0) {
+		PartyCharacters[arg1 - 1].exp = EXPTable[arg1 - 1][PartyCharacters[arg1 - 1].level];
+	}
+}
 
 /// $C1DC66
 void DisplayTextWait(const(ubyte)* arg1, int arg2) {
@@ -6380,6 +6423,11 @@ void CreateWindow(short id) {
 	CreateWindowN(id);
 }
 
+/// $C1DD4D
+void SetWindowFocusF(short id) {
+	SetWindowFocus(id);
+}
+
 /// $C1DD59
 void CloseFocusWindow() {
 	CloseFocusWindowN();
@@ -6428,6 +6476,36 @@ ushort RemoveItemFromInventoryF(ushort character, ushort id) {
 /// $C1DDD3
 void UnknownC3E6F8F() {
 	UnknownC3E6F8();
+}
+
+/// $C1DDD3
+void SelectionMenuItemSetup(short arg1, short arg2, short arg3, const(ubyte)* arg4, const(ubyte)* arg5) {
+	UnknownC1153B(arg1, arg2, arg3, arg4, arg5);
+}
+
+/// $C1DE25
+void PrintMenuItemsF() {
+	PrintMenuItems();
+}
+
+/// $C1DE25
+short SelectionMenuF(short id) {
+	return SelectionMenu(id);
+}
+
+/// $C1DE31
+short UnknownC1CFC6F(UnknownA97D* arg1) {
+	return UnknownC1CFC6(arg1);
+}
+
+/// $C1DE37
+short UnknownC1242EF(short arg1, short arg2, short arg3) {
+	return UnknownC1242E(arg1, arg2, arg3);
+}
+
+/// $C1DE3D
+short BattlePSIMenuF(UnknownA97D* arg1) {
+	return BattlePSIMenu(arg1);
 }
 
 /// $C1DE43

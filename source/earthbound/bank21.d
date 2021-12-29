@@ -103,6 +103,9 @@ immutable ubyte[] CompressedPaletteUnknown = cast(immutable(ubyte)[])import("unk
 /// $E1413F
 immutable ubyte[] StaffText;
 
+/// $E14DE8
+void UnknownE14DE8();
+
 /// $E14EC1
 immutable ubyte[] APEArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
 
