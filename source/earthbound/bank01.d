@@ -2229,7 +2229,18 @@ void DebugYButtonGuide() {
 }
 
 /// $C13E7A
-void DebugSetCharacterLevel();
+void DebugSetCharacterLevel() {
+	SetInstantPrinting();
+	CreateWindowN(Window.FileSelectMenu);
+	short x04 = cast(short)NumSelectPrompt(2);
+	short x02 = CharSelectPrompt(1, 1, null, null);
+	if (x02 != 0) {
+		ResetCharLevelOne(x02, x04, 1);
+		RecoverHPAmtPercent(x02, 100, 0);
+		RecoverPPAmtPercent(x02, 100, 0);
+	}
+	CloseWindow(Window.FileSelectMenu);
+}
 
 /// $C13EE7
 void DebugYButtonGoods() {
@@ -5510,6 +5521,26 @@ uint UnknownC1AD26() {
 	return Unknown7E9D12;
 }
 
+/// $C1AD42
+short UnknownC1AD42() {
+	FindNearbyCheckableTPTEntry();
+	if ((CurrentTPTEntry == 0) || (CurrentTPTEntry == -1) || (CurrentTPTEntry == -2)) {
+		return 0;
+	} else {
+		return NPCConfig[CurrentTPTEntry].type;
+	}
+}
+
+/// $C1AD71
+short UnknownC1AD7D() {
+	short x0E = LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
+	if ((getEventFlag(EventFlag.USE_POSTGAME_MUSIC != 0) && ((x0E & 7) == 0))) {
+		return ItemID.Bicycle;
+	} else {
+		return x0E >> 8;
+	}
+}
+
 /// $C1ADB4
 short DetermineTargetting(short arg1, short arg2) {
 	ubyte x16;
@@ -5575,7 +5606,125 @@ short DetermineTargetting(short arg1, short arg2) {
 }
 
 /// $C1AF74
-short OverworldUseItem(short arg1, short arg2, short arg3);
+short OverworldUseItem(short arg1, short arg2, short) {
+	const(ubyte)* x26 = null;
+	short x24 = 0;
+	ubyte x01 = cast(ubyte)GetCharacterItem(arg1, arg2);
+	switch (ItemData[x01].type & (ItemType.Equippable | ItemType.Edible)) {
+		case 0:
+			x24 = 1;
+			x26 = &BattleActionTable[ItemData[x01].battleAction].text[0];
+			break;
+		case ItemType.Equippable:
+			x26 = TextItemCanBeEquipped.ptr;
+			break;
+		case ItemType.Edible:
+			x24 = 1;
+			x26 = &BattleActionTable[ItemData[x01].battleAction].text[0];
+			break;
+		case ItemType.HealingItem:
+			if ((ItemData[x01].flags & ItemUsableFlags[arg1 - 1]) == 0) {
+				x26 = TextCouldNotUseVeryWell.ptr;
+			} else {
+				switch (ItemData[x01].type & 0xC) {
+					case 0:
+						x24 = 1;
+						x26 = &BattleActionTable[ItemData[x01].battleAction].text[0];
+						break;
+					case 4:
+						x26 = TextCantBeUsedHere.ptr;
+						break;
+					case 8:
+						switch(ItemData[x01].type & 3) {
+							case 0:
+							case 1:
+								x24 = 1;
+								x26 = &BattleActionTable[ItemData[x01].battleAction].text[0];
+								break;
+							case 2:
+								if (UnknownC1AD7D() == x01) {
+									if ((x01 == ItemID.Bicycle) && (UnknownC03C4B() != 0)) {
+										x26 = TextCantRideBikeHere.ptr;
+									} else {
+										x24 = 1;
+										x26 = &BattleActionTable[ItemData[x01].battleAction].text[0];
+									}
+								} else {
+									x26 = TextCantBeUsedHere.ptr;
+								}
+								break;
+							case 3:
+								x24 = 1;
+								short tmp = UnknownC1AD42();
+								if ((tmp == 1) || (tmp == 3)) {
+									x26 = &NPCConfig[CurrentTPTEntry].checkText[0];
+								}
+								if (x26 == null) {
+									x26 = &BattleActionTable[ItemData[x01].battleAction].text[0];
+								}
+								break;
+							default: break;
+						}
+						break;
+					default: break;
+				}
+			}
+			break;
+		default: break;
+	}
+	ubyte x00 = cast(ubyte)arg1;
+	if (x24 != 0) {
+		x00 = cast(ubyte)DetermineTargetting(ItemData[x01].battleAction, arg1);
+		if (x00 == 0) {
+			return 0;
+		}
+		if ((ItemData[x01].flags & ItemFlags.ConsumedOnUse) != 0) {
+			RemoveItemFromInventory(arg1, arg2);
+		}
+	}
+	CloseWindow(Window.InventoryMenu);
+	CloseWindow(Window.Inventory);
+	UnknownC1AC4A(&PartyCharacters[arg1 - 1].name[0], PartyCharacter.name.sizeof);
+	UnknownC1ACF8(x01);
+	CreateWindowN(Window.TextStandard);
+	SetArgumentMemory(arg1);
+	if (x00 != 0xFF) {
+		UnknownC1ACA1(&PartyCharacters[x00 - 1].name[0], PartyCharacter.name.sizeof);
+	}
+	if (x26 == null) {
+		x26 = TextCantUseItem.ptr;
+	}
+	if ((x24 != 0) && (BattleActionTable[ItemData[x01].battleAction].func != null)) {
+		currentAttacker = &BattlersTable[0];
+		BattleInitPlayerStats(arg1, currentAttacker);
+		currentAttacker.currentActionArgument = x01;
+		currentAttacker.unknown7 = cast(ubyte)arg2;
+		DisplayText(x26);
+		UnknownC1ACF8(x01);
+		currentTarget = &BattlersTable[1];
+		if (x00 == 0) {
+			for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
+				UnknownC1ACA1(&PartyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.sizeof);
+				BattleInitPlayerStats(gameState.partyMembers[i], currentTarget);
+				BattleActionTable[ItemData[x01].battleAction].func();
+				for (short j = 0; 7 > j; j++) {
+					PartyCharacters[i].afflictions[j] = currentTarget.afflictions[j];
+				}
+			}
+		} else {
+			BattleInitPlayerStats(x00, currentTarget);
+			BattleActionTable[ItemData[x01].battleAction].func();
+			for (short j = 0; PartyCharacter.afflictions.length > j; j++) {
+				PartyCharacters[x00 - 1].afflictions[j] = currentTarget.afflictions[j];
+			}
+		}
+		UnknownC3EE4D();
+	} else {
+		DisplayText(x26);
+	}
+	CloseWindow(Window.TextStandard);
+	return 1;
+}
 
 /// $C1B5B6
 short UnknownC1B5B6() {
@@ -5622,7 +5771,7 @@ short UnknownC1B5B6() {
 					x00 = 0;
 				} else {
 					if (PSIAbilityTable[x01].type == 8) {
-						if ((gameState.partyNPC1 != PartyMember.DungeonMan) && (gameState.partyNPC2 != PartyMember.DungeonMan) && (getEventFlag(EventFlag.NPCDelivery) == 0) && (gameState.walkingStyle != WalkingStyle.Ladder) && (gameState.walkingStyle != WalkingStyle.Rope) && (gameState.walkingStyle != WalkingStyle.Escalator) && (gameState.walkingStyle != WalkingStyle.Stairs) && ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.CANNOT_TELEPORT) == 0)) {
+						if ((gameState.partyNPCs[0] != PartyMember.DungeonMan) && (gameState.partyNPCs[1] != PartyMember.DungeonMan) && (getEventFlag(EventFlag.NPCDelivery) == 0) && (gameState.walkingStyle != WalkingStyle.Ladder) && (gameState.walkingStyle != WalkingStyle.Rope) && (gameState.walkingStyle != WalkingStyle.Escalator) && (gameState.walkingStyle != WalkingStyle.Stairs) && ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.CANNOT_TELEPORT) == 0)) {
 							x00 = cast(ubyte)UnknownC1AAFA();
 						} else {
 							CreateWindowN(Window.TextBattle);
@@ -6120,11 +6269,177 @@ void UnknownC1CAF5(short arg1) {
 	}
 }
 
+/// $C1CB7F
+short UnknownC1CB7F(short arg1, short arg2) {
+	short x0E = void;
+	switch (arg1) {
+		case 1:
+			x0E = UnknownC1C1BA(arg2, 2, 1);
+			break;
+		case 2:
+			x0E = UnknownC1C1BA(arg2, 2, 2);
+			break;
+		case 3:
+			x0E = UnknownC1C1BA(arg2, 2, 4);
+			break;
+		default: break;
+	}
+	return x0E;
+}
+
 /// $C1CBCD
-short BattlePSIMenu(UnknownA97D* arg1);
+short BattlePSIMenu(UnknownA97D* arg1) {
+	short x1E = 0;
+	short x02;
+	short x16;
+	outer: while (true) {
+		CreateWindowN(Window.Unknown10);
+		for (short i = 0; i < 3; i++) {
+			UnknownC115F4(cast(short)(i + 1), &PSICategories[i][0], null);
+		}
+		UnknownC1180D(1, 0, 0);
+		while (true) {
+			SetWindowFocus(Window.Unknown10);
+			if (x1E == 0) {
+				PrintMenuItems();
+			}
+			x1E++;
+			UnknownC11F5A(&UnknownC1CAF5);
+			x02 = SelectionMenu(1);
+			UnknownC11F8A();
+			if (x02 == 0) {
+				break outer;
+			}
+			if (UnknownC1CB7F(x02, arg1.unknown0) == 0) {
+				continue;
+			}
+			short x1C;
+			while (true) {
+				CreateWindowN(Window.TextStandard);
+				UnknownC1CAF5(x02);
+				UnknownC11F5A(&UnknownC1C8BC);
+				x1C = SelectionMenu(1);
+				UnknownC11F8A();
+				if (x1C == 0) {
+					break;
+				}
+				if (BattleActionTable[PSIAbilityTable[x1C].battleAction].ppCost > PartyCharacters[arg1.unknown0 - 1].pp.target) {
+					CreateWindowN(Window.TextBattle);
+					EnableBlinkingTriangle(2);
+					DisplayText(TextNotEnoughPP.ptr);
+					ClearBlinkingPrompt();
+					CloseFocusWindowN();
+					x16 = 0;
+					goto Unknown15;
+				}
+				if ((BattleActionTable[PSIAbilityTable[x1C].battleAction].target == 1) || (BattleActionTable[PSIAbilityTable[x1C].battleAction].target == 3)) {
+					if (BattleActionTable[PSIAbilityTable[x1C].battleAction].direction == 0) {
+						CloseWindow(Window.Unknown10);
+						CloseWindow(Window.unknown04);
+						CloseWindow(Window.TextStandard);
+						CreateWindowN(Window.Unknown26);
+						SetInstantPrinting();
+						Win_SetTextColor(6);
+						UnknownC1CA06(x1C);
+						Win_SetTextColor(0);
+					}
+					x16 = DetermineTargetting(PSIAbilityTable[x1C].battleAction, arg1.unknown0);
+					if (BattleActionTable[PSIAbilityTable[x1C].battleAction].direction == 0) {
+						CloseWindow(Window.Unknown26);
+					} else {
+						CloseWindow(Window.Unknown10);
+						CloseWindow(Window.unknown04);
+						CloseWindow(Window.TextStandard);
+					}
+					if (x16 != 0) {
+						goto Unknown15;
+					}
+				}
+			}
+			x16 = 1;
+			Unknown15:
+			if (x16 == 0) {
+				continue;
+			}
+			CloseWindow(Window.unknown04);
+			if (x1C == 0) {
+				break;
+			}
+			arg1.unknown1 = cast(ubyte)x1C;
+			arg1.unknown2 = PSIAbilityTable[x1C].battleAction;
+			arg1.unknown4 = cast(ubyte)(x16 >> 8);
+			arg1.unknown5 = cast(ubyte)x16;
+			x02 = 1;
+			break outer;
+		}
+	}
+	CloseWindow(Window.TextStandard);
+	CloseWindow(Window.Unknown10);
+	return x02;
+}
+
+/// $C1CE85
+short UnknownC1CE85(UnknownA97D* arg1) {
+	short x02 = 0xFF;
+	arg1.unknown2 = BattleActions.Action002;
+	arg1.unknown4 = 1;
+	arg1.unknown5 = arg1.unknown0;
+	const(Item)* x06 = &ItemData[GetCharacterItem(arg1.unknown0, arg1.unknown1)];
+	short x12 = x06.type;
+	switch (x12 & 0x30) {
+		case 0x10:
+		case 0x20:
+			x02 = DetermineTargetting(x06.battleAction, arg1.unknown0);
+			if (x02 == 0) {
+				return 0;
+			}
+			arg1.unknown2 = x06.battleAction;
+			arg1.unknown4 = cast(ubyte)(x02 >> 8);
+			arg1.unknown5 = cast(ubyte)x02;
+			break;
+		case 0x30:
+			if (((x12 & 0xC) == 0) || ((x12 & 0xC) == 4)) {
+				if ((x06.flags & ItemUsableFlags[arg1.unknown0 - 1]) != 0) {
+					x02 = DetermineTargetting(x06.battleAction, arg1.unknown0);
+					if (x02 == 0) {
+						return 0;
+					}
+					arg1.unknown2 = x06.battleAction;
+					arg1.unknown4 = cast(ubyte)(x02 >> 8);
+					arg1.unknown5 = cast(ubyte)x02;
+				} else {
+					arg1.unknown2 = 3;
+				}
+			}
+			break;
+		default: break;
+	}
+	return x02;
+}
 
 /// $C1CFC6
-short UnknownC1CFC6(UnknownA97D* arg1);
+short UnknownC1CFC6(UnknownA97D* arg1) {
+	short x0E = 0;
+	if (PartyCharacters[arg1.unknown0 - 1].items[0] != 0) {
+		while (true) {
+			CreateWindowN(Window.Inventory);
+			InventoryGetItemName(arg1.unknown0, 2);
+			x0E = SelectionMenu(1);
+			SetInstantPrinting();
+			CloseFocusWindow();
+			if (x0E == 0) {
+				break;
+			}
+			arg1.unknown1 = cast(ubyte)x0E;
+			x0E = UnknownC1CE85(arg1);
+			CloseWindow(Window.Unknown26);
+			if (x0E != 0) {
+				break;
+			}
+		}
+	}
+	return x0E;
+}
 
 /// $C1D038 - Get fixed version of an item
 /// Returns: Fixed item id, or 0 if nonexistant
@@ -6559,6 +6874,11 @@ void BattleActionSwitchArmor() {
 		DisplayText(TextBattleCouldNotEquipAttackAnyway.ptr);
 	}
 	ClearBlinkingPrompt();
+}
+
+/// $C1E1A2
+void NullC1E1A2(Battler* arg1) {
+	//nothing!
 }
 
 /// $C1E1A5

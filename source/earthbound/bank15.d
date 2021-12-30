@@ -507,7 +507,7 @@ immutable Item[254] ItemData = [
 	Item(EBString!25("Temporary goods"), 0x38, 0, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.UseNoEffect, 0x00, 0x00, 0x00, 0x00, TextItem173),
 	Item(EBString!25("Zombie paper"), 0x3A, 0, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.ZOMBIE_PAPER, 0x00, 0x00, 0x00, 0x00, TextItem174),
 	Item(EBString!25("Hawk eye"), 0x3A, 0, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.HAWK_EYE, 0x00, 0x00, 0x00, 0x00, TextItem175),
-	Item(EBString!25("Bicycle"), 0x3A, 0, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.BICYCLE, 0x00, 0x00, 0x00, 0x00, TextItem176),
+	Item(EBString!25("Bicycle"), 0x3A, 0, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.Bicycle, 0x00, 0x00, 0x00, 0x00, TextItem176),
 	Item(EBString!25("ATM card"), 0x3B, 0, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse | ItemFlags.CannotGive | ItemFlags.Unknown, BattleActions.ATM_CARD, 0x00, 0x00, 0x00, 0x00, TextItem177),
 	Item(EBString!25("Show ticket"), 0x3B, 12, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.UseNoEffect, 0x00, 0x00, 0x00, 0x00, TextItem178),
 	Item(EBString!25("Letter from kids"), 0x3B, 0, ItemFlags.NessCanUse | ItemFlags.PaulaCanUse | ItemFlags.JeffCanUse | ItemFlags.PooCanUse, BattleActions.LETTER_FROM_KIDS, 0x00, 0x00, 0x00, 0x00, TextItem179),
@@ -1157,7 +1157,7 @@ immutable BattleAction[318] BattleActionTable = [
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Nothing, 0x00, TEXT_NO_MESSAGE, &BattleActionNull4), //NO_EFFECT
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, TextAction001, &BattleActionNull4), //USE_NO_EFFECT
 	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, TextAction002, &BattleActionNull4), //ACTION_002
-	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, TEXT_TRIED_BUT_COULD_NOT_USE_VERY_WELL, &BattleActionNull4), //ACTION_003
+	BattleAction(ActionDirection.Enemy, ActionTarget.None, ActionType.Item, 0x00, TextTriedButCouldNotUseVeryWell, &BattleActionNull4), //ACTION_003
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Physical, 0x00, TextAction004, &BattleActionBash), //BASH
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.PiercingPhysical, 0x00, TextAction005, &BattleActionShoot), //SHOOT
 	BattleAction(ActionDirection.Party, ActionTarget.One, ActionType.Other, 0x00, TextAction006, &BattleActionSpy), //SPY

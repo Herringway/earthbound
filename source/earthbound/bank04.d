@@ -1028,19 +1028,22 @@ immutable SpriteMap[] EntityOverlayBigRippleFrame2 = [
 ];
 
 ///
-immutable OverlayScript[] EntityOverlaySweating;
+immutable OverlayScript[13] EntityOverlaySweating;
 
 ///
-immutable OverlayScript[] EntityOverlayMushroomized;
+immutable OverlayScript[3] EntityOverlayMushroomized;
 
 ///
-immutable OverlayScript[] EntityOverlayRipple;
+immutable OverlayScript[5] EntityOverlayRipple;
 
 ///
-immutable OverlayScript[] EntityOverlayBigRipple;
+immutable OverlayScript[5] EntityOverlayBigRipple;
 
 /// $C41A9E
-ubyte* Decomp(const(ubyte)*, void*);
+void Decomp(const(ubyte)* data, void* buffer) {
+	//I'm not gonna redo perfectly good work that already exists
+	DecompBlock(data, cast(ubyte*)buffer, 0x10000);
+}
 
 /// $C41EFF
 ushort UnknownC41EFF(short arg1, short arg2, short arg3, short arg4) {
@@ -3122,7 +3125,29 @@ void UnknownC45E96() {
 }
 
 /// $C45ECE
-short CheckIfPSIKnown(short arg1, short arg2);
+short CheckIfPSIKnown(short arg1, short arg2) {
+	ubyte x10;
+	switch (arg1) {
+		case PartyMember.Ness:
+			x10 = PSIAbilityTable[arg2].nessLevel;
+			break;
+		case PartyMember.Paula:
+			x10 = PSIAbilityTable[arg2].paulaLevel;
+			break;
+		case PartyMember.Poo:
+			x10 = PSIAbilityTable[arg2].pooLevel;
+			break;
+		default: break;
+	}
+	if (x10 != 0) {
+		short x0E = 0;
+		if (x10 <= PartyCharacters[arg1 - 1].level) {
+			x0E = 1;
+		}
+		return x0E;
+	}
+	return 0;
+}
 
 /// $C45F7B
 ushort randMod(ushort arg1) {
@@ -4156,10 +4181,59 @@ immutable ushort[33] DeadTargettableActions = [
 ];
 
 /// $C4A0CF
-short AutoHealing(short arg1, short arg2);
+short AutoHealing(short arg1, short arg2) {
+	short x12 = 9999;
+	short x04 = 0;
+	for (short i = 0; i < 6; i++) {
+		if ((gameState.partyMembers[i] < 1) || (gameState.partyMembers[i] > 4)) {
+			continue;
+		}
+		if (PartyCharacters[gameState.partyMembers[i]].unknown94 != 0) {
+			continue;
+		}
+		if (PartyCharacters[gameState.partyMembers[i]].afflictions[arg1] != arg2) {
+			continue;
+		}
+		if (PartyCharacters[gameState.partyMembers[i]].hp.target >= x12) {
+			continue;
+		}
+		x12 = PartyCharacters[gameState.partyMembers[i]].hp.target;
+		x04 = gameState.partyMembers[i];
+	}
+	if (x04 != 0) {
+		PartyCharacters[x04 - 1].unknown94 = 1;
+	}
+	return x04;
+}
 
 /// $C4A15D
-short AutoLifeup();
+short AutoLifeup() {
+	short x14 = 9999;
+	short x04 = 0;
+	for (short i = 0; i < 6; i++) {
+		if ((gameState.partyMembers[i] < 1) || (gameState.partyMembers[i] > 4)) {
+			continue;
+		}
+		if (PartyCharacters[gameState.partyMembers[i]].unknown94 != 0) {
+			continue;
+		}
+		if (PartyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.Unconscious) {
+			continue;
+		}
+		if (PartyCharacters[gameState.partyMembers[i]].hp.target >= PartyCharacters[gameState.partyMembers[i]].maxHP / 4) {
+			continue;
+		}
+		if (PartyCharacters[gameState.partyMembers[i]].hp.target >= x14) {
+			continue;
+		}
+		x14 = PartyCharacters[gameState.partyMembers[i]].hp.target;
+		x04 = gameState.partyMembers[i];
+	}
+	if (x04 != 0) {
+		PartyCharacters[x04 - 1].unknown94 = 1;
+	}
+	return x04;
+}
 
 /// $C4A1F2
 immutable ubyte[3] BattleWindows = [ Window.BattleMenuJeff, Window.BattleMenu, Window.Unknown30 ];
@@ -6958,3 +7032,39 @@ void SetBoundaryBehaviour(short val) {
 	SectorBoundaryBehaviourFlag = val;
 }
 
+shared static this() {
+	EntityOverlaySweating = [
+		OverlayScript.show(EntityOverlaySweatingFrame1.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(EntityOverlaySweatingFrame2.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(cast(const(SpriteMap)*)null),
+		OverlayScript.delay(16),
+		OverlayScript.show(EntityOverlaySweatingFrame3.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(EntityOverlaySweatingFrame4.ptr),
+		OverlayScript.delay(8),
+		OverlayScript.show(cast(const(SpriteMap)*)null),
+		OverlayScript.delay(16),
+		OverlayScript.jump(EntityOverlaySweating.ptr),
+	];
+	EntityOverlayMushroomized = [
+		OverlayScript.show(EntityOverlayMushroomizedFrame1.ptr),
+		OverlayScript.delay(255),
+		OverlayScript.jump(EntityOverlayMushroomized.ptr)
+	];
+	EntityOverlayRipple = [
+		OverlayScript.show(EntityOverlayRippleFrame1.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.show(EntityOverlayRippleFrame2.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.jump(EntityOverlayRipple.ptr)
+	];
+	EntityOverlayBigRipple = [
+		OverlayScript.show(EntityOverlayBigRippleFrame1.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.show(EntityOverlayBigRippleFrame2.ptr),
+		OverlayScript.delay(12),
+		OverlayScript.jump(EntityOverlayBigRipple.ptr)
+	];
+}

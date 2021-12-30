@@ -1361,26 +1361,26 @@ short InitBattleScripted(short arg1) {
 
 /// $C23008
 void UnknownC23008() {
-	gameState.partyNPC1Copy = gameState.partyNPC1;
+	gameState.partyNPC1Copy = gameState.partyNPCs[0];
 	gameState.partyNPC1HPCopy = gameState.partyNPCHP[0];
-	gameState.partyNPC2Copy = gameState.partyNPC2;
+	gameState.partyNPC2Copy = gameState.partyNPCs[1];
 	gameState.partyNPC2HPCopy = gameState.partyNPCHP[1];
-	RemoveCharFromParty(gameState.partyNPC2);
-	RemoveCharFromParty(gameState.partyNPC1);
+	RemoveCharFromParty(gameState.partyNPCs[1]);
+	RemoveCharFromParty(gameState.partyNPCs[0]);
 	gameState.walletBackup = gameState.moneyCarried;
 	gameState.moneyCarried = 0;
 }
 
 /// $C2307B
 void UnknownC2307B() {
-	RemoveCharFromParty(gameState.partyNPC1);
-	RemoveCharFromParty(gameState.partyNPC2);
+	RemoveCharFromParty(gameState.partyNPCs[0]);
+	RemoveCharFromParty(gameState.partyNPCs[1]);
 	if (gameState.partyNPC1Copy != 0) {
-		gameState.partyNPC1 = gameState.partyNPC1Copy;
+		gameState.partyNPCs[0] = gameState.partyNPC1Copy;
 		AddCharToParty(gameState.partyNPC1Copy);
 		gameState.partyNPCHP[0] = gameState.partyNPC1HPCopy;
 		if (gameState.partyNPC2Copy != 0) {
-			gameState.partyNPC2 = gameState.partyNPC2Copy;
+			gameState.partyNPCs[1] = gameState.partyNPC2Copy;
 			AddCharToParty(gameState.partyNPC2Copy);
 			gameState.partyNPCHP[1] = gameState.partyNPC2HPCopy;
 		}
@@ -3663,7 +3663,238 @@ short ReviveTarget(Battler* arg1, short arg2) {
 }
 
 /// $C27550
-void KOTarget(Battler*);
+void KOTarget(Battler* arg1) {
+	//x02 = arg1
+	Unknown7EAA92 = 0;
+	if (arg1.allyOrEnemy == 0) {
+		if (arg1.afflictions[1] == Status1.Possessed) {
+			for (short i = 0; i < 6; i++) {
+				if (BattlersTable[i].consciousness == 0) {
+					continue;
+				}
+				if (BattlersTable[i].npcID != 0) {
+					continue;
+				}
+				if (BattlersTable[i].afflictions[1] != Status1.Possessed) {
+					continue;
+				}
+				if (&BattlersTable[i] !is arg1) {
+					break;
+				}
+				if (BattlersTable[6].npcID != EnemyID.TinyLilGhost) {
+					break;
+				}
+				BattlersTable[6].consciousness = 0;
+				while (i < 6) {
+					if (BattlersTable[i].consciousness == 0) {
+						continue;
+					}
+					if (BattlersTable[i].npcID != 0) {
+						continue;
+					}
+					if (BattlersTable[i].afflictions[1] != Status1.Possessed) {
+						continue;
+					}
+					BattleInitEnemyStats(EnemyID.TinyLilGhost, &BattlersTable[6]);
+					BattlersTable[6].npcID = EnemyID.TinyLilGhost;
+					BattlersTable[6].hasTakenTurn = 1;
+				}
+				break;
+			}
+		}
+		arg1.afflictions[0] = Status0.Unconscious;
+		arg1.afflictions[6] = 0;
+		arg1.afflictions[5] = 0;
+		arg1.afflictions[4] = 0;
+		arg1.afflictions[3] = 0;
+		arg1.afflictions[2] = 0;
+		arg1.afflictions[1] = 0;
+		if (arg1.npcID != 0) {
+			DisplayText(&EnemyConfigurationTable[arg1.id].deathTextPointer[0]);
+			arg1.consciousness = 0;
+			if ((arg1.npcID == PartyMember.TeddyBear) || (arg1.npcID == PartyMember.PlushTeddyBear)) {
+				if (gameState.partyNPCs[arg1.row] == 0) {
+					return;
+				}
+				arg1.consciousness = 1;
+				arg1.afflictions[0] = 0;
+				arg1.hpTarget = gameState.partyNPCHP[arg1.row];
+				arg1.hp = gameState.partyNPCHP[arg1.row];
+				arg1.npcID = gameState.partyNPCs[arg1.row];
+				arg1.id = NPCAITable[gameState.partyNPCs[arg1.row]].enemyID;
+				return;
+			}
+			if (gameState.partyNPCs[0] == 0) {
+				return;
+			}
+			for (short i = 0; BattlersTable.length > i; i++) {
+				if (BattlersTable[i].consciousness == 0) {
+					continue;
+				}
+				if (BattlersTable[i].allyOrEnemy != 0) {
+					continue;
+				}
+				if (BattlersTable[i].npcID != gameState.partyNPCs[0]) {
+					continue;
+				}
+				BattlersTable[i].row = 0;
+				return;
+			}
+			return;
+		}
+		arg1.hpTarget = 0;
+		PartyCharacters[arg1.row].hp.target = 0;
+		PartyCharacters[arg1.row].hp.current.integer = 1;
+		DisplayInBattleText(TextBattleGotHurtAndCollapsed.ptr);
+		return;
+	}
+	if (arg1.id == EnemyID.Giygas2) {
+		return;
+	}
+	if (arg1.id == EnemyID.Giygas3) {
+		return;
+	}
+	if (arg1.id == EnemyID.Giygas5) {
+		return;
+	}
+	if (arg1.id == EnemyID.Giygas6) {
+		return;
+	}
+	if (CountChars(1) == 1) {
+		ResetRolling();
+		for (short i = 0;  i < 6; i++) {
+			if (BattlersTable[i].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[i].allyOrEnemy != 0) {
+				continue;
+			}
+			if (BattlersTable[i].afflictions[0] == Status0.Unconscious) {
+				continue;
+			}
+			if (BattlersTable[i].npcID != 0) {
+				continue;
+			}
+			if (PartyCharacters[BattlersTable[i].row].hp.current.integer != 0) {
+				continue;
+			}
+			PartyCharacters[BattlersTable[i].row].hp.target = 1;
+		}
+	}
+	BattleEXPScratch += arg1.exp;
+	BattleMoneyScratch += arg1.money;
+	if (EnemyConfigurationTable[arg1.id].finalAction != 0) {
+		Unknown7EAA90 = 1;
+		Battler* x1E = currentAttacker;
+		Battler* x16 = currentTarget;
+		uint x12 = BattlerTargetFlags;
+		currentAttacker = arg1;
+		arg1.currentAction = EnemyConfigurationTable[arg1.id].finalAction;
+		arg1.currentActionArgument = EnemyConfigurationTable[arg1.id].finalActionArgument;
+		ChooseTarget(currentAttacker);
+		UnknownC24703(currentAttacker);
+		FixAttackerName(0);
+		UnknownC23E32();
+		DisplayInBattleText(&BattleActionTable[EnemyConfigurationTable[arg1.id].finalAction].text[0]);
+		UnknownC240A4(BattleActionTable[EnemyConfigurationTable[arg1.id].finalAction].func);
+		Unknown7EAA90 = 0;
+		currentAttacker = x1E;
+		currentTarget = x16;
+		BattlerTargetFlags = x12;
+		FixAttackerName(0);
+		FixTargetName();
+		if (Unknown7EAA0E != 0) {
+			return;
+		}
+	}
+	if (Unknown7EAA92 != 0) {
+		return;
+	}
+	DisplayInBattleText(&EnemyConfigurationTable[arg1.id].deathTextPointer[0]);
+	for (short i = 0; i < BattlersTable.length; i++) {
+		BattlersTable[i].unknown75 = 0;
+	}
+	arg1.unknown75 = 1;
+	UnknownC2FAD8(10);
+	for (short i = 1; i < 16; i++) {
+		UnknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), 0x1F, 0x1F, 0x1F);
+	}
+	Wait(10);
+	UnknownC2FAD8(20);
+	for (short i = 1; i < 16; i++) {
+		UnknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), 0, 0, 0);
+	}
+	Wait(20);
+	arg1.afflictions[0] = Status0.Unconscious;
+	arg1.afflictions[6] = 0;
+	arg1.afflictions[5] = 0;
+	arg1.afflictions[4] = 0;
+	arg1.afflictions[3] = 0;
+	arg1.afflictions[2] = 0;
+	arg1.afflictions[1] = 0;
+	arg1.hpTarget = 0;
+	if (EnemyConfigurationTable[arg1.id].deathType != 0) {
+		for (short i = 8; i < BattlersTable.length; i++) {
+			if (BattlersTable[i].consciousness == 0) {
+				continue;
+			}
+			BattlersTable[i].unknown75 = 1;
+		}
+		PlaySfx(Sfx.EnemyDefeated);
+		UnknownC2FAD8(10);
+		for (short i = 1; i < 64; i++) {
+			if ((i & 0xF) == 0) {
+				continue;
+			}
+			UnknownC2FB35(i, 0x1F, 0x1F, 0x1F);
+		}
+		Wait(10);
+		UnknownC2FAD8(20);
+		for (short i = 1; i < 64; i++) {
+			if ((i & 0xF) == 0) {
+				continue;
+			}
+			UnknownC2FB35(i, 0, 0, 0);
+		}
+		Wait(20);
+		for (short i = 8; i < BattlersTable.length; i++) {
+			if (BattlersTable[i].consciousness == 0) {
+				continue;
+			}
+			BattlersTable[i].afflictions[0] = Status0.Unconscious;
+		}
+		Unknown7EAA0E = 2;
+	}
+	if (arg1.npcID == EnemyID.TinyLilGhost) {
+		short x22;
+		for (x22 = 0; x22 < 6; x22++) {
+			if (BattlersTable[x22].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[x22].npcID != 0) {
+				continue;
+			}
+			if (BattlersTable[x22].afflictions[1] != Status1.Possessed) {
+				continue;
+			}
+			BattlersTable[x22].afflictions[1] = 0;
+		}
+		for (; x22 < 6; x22++) {
+			if (BattlersTable[x22].consciousness == 0) {
+				continue;
+			}
+			if (BattlersTable[x22].npcID != 0) {
+				continue;
+			}
+			if (BattlersTable[x22].afflictions[1] != Status1.Possessed) {
+				continue;
+			}
+			BattleInitEnemyStats(EnemyID.TinyLilGhost, &BattlersTable[6]);
+			BattlersTable[6].npcID = EnemyID.TinyLilGhost;
+			BattlersTable[6].hasTakenTurn = 1;
+		}
+	}
+}
 
 /// $C27D28
 void IncreaseOffense16th(Battler* battler) {
@@ -7046,10 +7277,12 @@ void UnknownC2E0E7() {
 /// $C2E116
 void ShowPSIAnimation(short arg1) {
 	if (LoadedBGDataLayer1.Bitdepth == 2) {
-		CopyToVram2(0, 0x1000, 0, Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F8000[0]));
+		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F8000[0]);
+		CopyToVram2(0, 0x1000, 0, &Unknown7F8000[0]);
 		Unknown7E1BCA = &palettes[3][0];
 	} else {
-		ushort* x06 = cast(ushort*)Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0]);
+		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0]);
+		ushort* x06 = cast(ushort*)&Unknown7F0000[0];
 		ushort* x0A = cast(ushort*)&Unknown7F8000[0];
 		for (short i = 0; i < 0x100; i++) {
 			(x0A++)[0] = (x06++)[0];

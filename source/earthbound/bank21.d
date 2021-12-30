@@ -2,6 +2,9 @@
 module earthbound.bank21;
 
 import earthbound.commondefs;
+import earthbound.bank00;
+import earthbound.bank01;
+import earthbound.globals;
 
 /// $E10000
 immutable ubyte* CoffeeSequenceText;
@@ -104,7 +107,44 @@ immutable ubyte[] CompressedPaletteUnknown = cast(immutable(ubyte)[])import("unk
 immutable ubyte[] StaffText;
 
 /// $E14DE8
-void UnknownE14DE8();
+void UnknownE14DE8() {
+	short x12 = 1;
+	short x10 = 0;
+	while (true) {
+		while (BattlersTable[x10].consciousness == 0) {
+			x10 += x12;
+			if (0 > x10) {
+				x10 = BattlersTable.length - 1;
+			}
+			if (BattlersTable.length > x10) {
+				x10 = 0;
+			}
+		}
+		NullC1E1A2(&BattlersTable[x10]);
+		WindowTick();
+		while (true) {
+			WaitUntilNextFrame();
+			if ((pad_held[0] & PAD_RIGHT) != 0) {
+				x12 = 1;
+				break;
+			} else if ((pad_held[0] & PAD_LEFT) != 0) {
+				x12 = -1;
+				break;
+			} else if (pad_press[0] != 0) {
+				CloseFocusWindow();
+				return;
+			}
+		}
+		x10 += x12;
+		if (0 > x10) {
+			x10 = BattlersTable.length - 1;
+		}
+		if (BattlersTable.length <= x10) {
+			x10 = 0;
+		}
+		CloseFocusWindow();
+	}
+}
 
 /// $E14EC1
 immutable ubyte[] APEArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");

@@ -536,7 +536,7 @@ enum ItemID {
 	TEMPORARY_GOODS = 0xAD,
 	ZOMBIE_PAPER = 0xAE,
 	HAWK_EYE = 0xAF,
-	BICYCLE = 0xB0,
+	Bicycle = 0xB0,
 	ATM_CARD = 0xB1,
 	SHOW_TICKET = 0xB2,
 	LETTER_FROM_KIDS = 0xB3,
@@ -650,7 +650,7 @@ enum Sfx {
 	DAMAGE_TAKEN = 30,
 	SMAAAASH = 31,
 	ALLY_FELL = 32,
-	ENEMY_DEFEATED = 33,
+	EnemyDefeated = 33,
 	MISSED = 34,
 	DODGED = 35,
 	RECOVER_HP = 36,
@@ -750,6 +750,7 @@ enum Sfx {
 enum ItemType {
 	TeddyBear = 4,
 	Broken = 8,
+	Equippable = 16,
 	WeaponBash = 16,
 	WeaponShoot = 17,
 	ArmourBody = 20,
@@ -978,7 +979,7 @@ enum BattleActions {
 	ATM_CARD = 197,
 	ZOMBIE_PAPER = 198,
 	HAWK_EYE = 199,
-	BICYCLE = 200,
+	Bicycle = 200,
 	GLORIOUS_LIGHT = 201,
 	ELECTRIC_SHOCK = 202,
 	SCATTER_POLLEN = 203,
@@ -1657,7 +1658,7 @@ enum OverworldSprite {
 	WHITE_DELIVERY_TRUCK = 208,
 	SKY_RUNNER = 209,
 	PHASE_DISTORTER = 210,
-	BICYCLE = 211,
+	Bicycle = 211,
 	SHIP = 212,
 	SIGN = 213,
 	TRASH_CAN = 214,
@@ -4380,8 +4381,7 @@ struct Game_State {
 	uint moneyCarried;
 	uint bankBalance;
 	ubyte partyPSI;
-	ubyte partyNPC1;
-	ubyte partyNPC2;
+	ubyte[2] partyNPCs;
 	ushort[2] partyNPCHP;
 	ubyte partyStatus;
 	ubyte partyNPC1Copy;
@@ -5057,7 +5057,7 @@ struct Enemy {
 	ushort[4] actions; //70
 	ushort finalAction; //78
 	ubyte[4] actionArgs; //80
-	ubyte finalActionArg; //84
+	ubyte finalActionArgument; //84
 	ubyte iq; //85
 	ubyte boss; //86
 	ubyte itemDropRate; //87
@@ -5236,6 +5236,21 @@ struct OverlayScript {
 		ushort frames;
 		const(OverlayScript)* dest;
 		const(SpriteMap)* spriteMap;
+	}
+	static typeof(this) jump(const(OverlayScript)* dest) {
+		auto result = typeof(this)(1);
+		result.dest = dest;
+		return result;
+	}
+	static typeof(this) delay(ushort frames) {
+		auto result = typeof(this)(2);
+		result.frames = frames;
+		return result;
+	}
+	static typeof(this) show(const(SpriteMap)* spriteMap) {
+		auto result = typeof(this)(3);
+		result.spriteMap = spriteMap;
+		return result;
 	}
 }
 
@@ -5802,4 +5817,75 @@ const(ubyte)[] paletteOffsetToPointer(ushort offset) {
 	}
 	const subOffset = (offset - offsetList[$ - 1]) / 0xC0;
 	return MapPalettePointerTable[$ - 1][subOffset * 0xC0 .. (subOffset + 1) * 0xC0];
+}
+
+size_t DecompBlock(const(ubyte)* cdata, ubyte* buffer, int maxlen) {
+	import core.stdc.string: memcpy, memset;
+	ubyte* bpos = buffer;
+	ubyte* bpos2;
+	ubyte tmp;
+
+	while(*cdata != 0xFF) {
+		int cmdtype = *cdata >> 5;
+		int len = (*cdata & 0x1F) + 1;
+		if(cmdtype == 7) {
+			cmdtype = (*cdata & 0x1C) >> 2;
+			len = ((*cdata & 3) << 8) + *(cdata + 1) + 1;
+			cdata++;
+		}
+		if(bpos + len > &buffer[maxlen]) return -1;
+		cdata++;
+		if(cmdtype >= 4) {
+			bpos2 = &buffer[(*cdata << 8) + *(cdata + 1)];
+			if(bpos2 >= &buffer[maxlen]) return -1;
+			cdata += 2;
+		}
+		switch(cmdtype) {
+			case 0:
+				memcpy(bpos, cdata, len);
+				cdata += len;
+				bpos += len;
+				break;
+			case 1:
+				memset(bpos, *cdata++, len);
+				bpos += len;
+				break;
+			case 2:
+				if(bpos + 2 * len > &buffer[maxlen]) return -1;
+				while(len--) {
+					*cast(short *)bpos = *cast(short *)cdata;
+					bpos += 2;
+				}
+				cdata += 2;
+				break;
+			case 3:
+				tmp = *cdata++;
+				while(len--) *bpos++ = tmp++;
+				break;
+			case 4:
+				if(bpos2 + len > &buffer[maxlen]) return -1;
+				memcpy(bpos, bpos2, len);
+				bpos += len;
+				break;
+			case 5:
+				if(bpos2 + len > &buffer[maxlen]) return -1;
+				while(len--) {
+					tmp = *bpos2++;
+					/* reverse the bits */
+					tmp = ((tmp >> 1) & 0x55) | ((tmp << 1) & 0xAA);
+					tmp = ((tmp >> 2) & 0x33) | ((tmp << 2) & 0xCC);
+					tmp = ((tmp >> 4) & 0x0F) | ((tmp << 4) & 0xF0);
+					*bpos++ = tmp;
+				}
+				break;
+			case 6:
+				if(bpos2 - len + 1 < buffer) return -1;
+				while(len--) *bpos++ = *bpos2--;
+				break;
+			case 7:
+				return -1;
+			default: assert(0);
+		}
+	}
+	return bpos - buffer;
 }

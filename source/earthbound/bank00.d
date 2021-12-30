@@ -266,8 +266,8 @@ void LoadMapPalette(short arg1, short arg2) {
 			x16 = &paletteOffsetToPointer(palettes[3][0])[0];
 		}
 	} else {
-		ubyte* x0A = Decomp(&CompressedPaletteUnknown[0], &Unknown7F0000[0]);
-		memcpy(&palettes[2][0], &x0A[PhotographerConfigTable[CurPhotoDisplay].creditsMapPalettesOffset], 0xC0);
+		Decomp(&CompressedPaletteUnknown[0], &Unknown7F0000[0]);
+		memcpy(&palettes[2][0], &Unknown7F0000[PhotographerConfigTable[CurPhotoDisplay].creditsMapPalettesOffset], 0xC0);
 	}
 }
 
@@ -1390,27 +1390,27 @@ void UnknownC032EC() {
 	short y;
 	for (y = 0; (gameState.partyMembers[y] != 0) && (5 > gameState.partyMembers[y]); y++) {}
 	gameState.playerControlledPartyMemberCount = cast(ubyte)y;
-	if (gameState.partyNPC1 != gameState.partyMembers[y]) {
-		if (gameState.partyNPC2 == gameState.partyMembers[y]) {
-			gameState.partyNPC1 = gameState.partyNPC2;
+	if (gameState.partyNPCs[0] != gameState.partyMembers[y]) {
+		if (gameState.partyNPCs[1] == gameState.partyMembers[y]) {
+			gameState.partyNPCs[0] = gameState.partyNPCs[1];
 			gameState.partyNPCHP[0] = gameState.partyNPCHP[1];
-			gameState.partyNPC2 = gameState.partyMembers[y + 1];
+			gameState.partyNPCs[1] = gameState.partyMembers[y + 1];
 			gameState.partyNPCHP[1] = EnemyConfigurationTable[NPCAITable[gameState.partyMembers[y + 1]].enemyID].hp;
-		} else if (gameState.partyNPC1 == gameState.partyMembers[y + 1]) {
-			gameState.partyNPC2 = gameState.partyNPC1;
+		} else if (gameState.partyNPCs[0] == gameState.partyMembers[y + 1]) {
+			gameState.partyNPCs[1] = gameState.partyNPCs[0];
 			gameState.partyNPCHP[1] = gameState.partyNPCHP[0];
-			gameState.partyNPC1 = gameState.partyMembers[y];
+			gameState.partyNPCs[0] = gameState.partyMembers[y];
 			gameState.partyNPCHP[0] = EnemyConfigurationTable[NPCAITable[gameState.partyMembers[y]].enemyID].hp;
 		} else {
-			gameState.partyNPC1 = gameState.partyMembers[y];
+			gameState.partyNPCs[0] = gameState.partyMembers[y];
 			gameState.partyNPCHP[0] = EnemyConfigurationTable[NPCAITable[gameState.partyMembers[y]].enemyID].hp;
-			if (gameState.partyNPC2 != gameState.partyMembers[y + 1]) {
-				gameState.partyNPC2 = gameState.partyMembers[y + 1];
+			if (gameState.partyNPCs[1] != gameState.partyMembers[y + 1]) {
+				gameState.partyNPCs[1] = gameState.partyMembers[y + 1];
 				gameState.partyNPCHP[1] = EnemyConfigurationTable[NPCAITable[gameState.partyMembers[y + 1]].enemyID].hp;
 			}
 		}
-	} else if (gameState.partyNPC2 != gameState.partyMembers[y + 1]) {
-		gameState.partyNPC2 = gameState.partyMembers[y + 1];
+	} else if (gameState.partyNPCs[1] != gameState.partyMembers[y + 1]) {
+		gameState.partyNPCs[1] = gameState.partyMembers[y + 1];
 		gameState.partyNPCHP[1] = EnemyConfigurationTable[NPCAITable[gameState.partyMembers[y + 1]].enemyID].hp;
 	}
 }
@@ -1663,6 +1663,11 @@ void UnknownC03C25() {
 		UnknownC069AF();
 	}
 	Unknown7E5DDA = 0;
+}
+
+/// $C03C4B
+short UnknownC03C4B() {
+	return UnknownC05D8B(gameState.leaderX.integer, gameState.leaderY.integer, 0xC) & 0xC0;
 }
 
 /// $C03C5E
@@ -2932,6 +2937,18 @@ short UnknownC05CD7(short arg1, short arg2, short arg3, short arg4) {
 			break;
 		default: break;
 	}
+	return Unknown7E5DA4;
+}
+
+/// $C05D8B
+short UnknownC05D8B(short arg1, short arg2, short arg3) {
+	short x0E = cast(short)(arg1 - UnknownC42A1F[arg3]);
+	Unknown7E5DAC = x0E;
+	Unknown7E5DAE = cast(short)(arg2 - UnknownC42A41[arg3] + UnknownC42AEB[arg3]);
+	UnknownC05503(x0E, arg3);
+	UnknownC0559C(Unknown7E5DAC, arg3);
+	UnknownC05639(Unknown7E5DAE, arg3);
+	UnknownC056D0(Unknown7E5DAE, arg3);
 	return Unknown7E5DA4;
 }
 
@@ -4861,7 +4878,7 @@ immutable DMATableEntry[6] DMATable = [
 ];
 
 /// $C08FC2
-immutable ubyte[] UNKNOWN_C08FC2 = [ 0x81, 0x39, 0x80, 0x80, 0x39, 0x00, 0x80, 0x3A, 0x80, 0x01, 0x18, 0x81, 0x09, 0x18, 0x81, 0x00, 0x18, 0x01, 0x08, 0x18, 0x01, 0x00, 0x19, 0x81, 0x08, 0x19, 0x81, 0x81, 0x39, 0x81, 0x80, 0x39, 0x01, 0x80, 0x3A, 0x81, 0xEB, 0x98 ];
+immutable ubyte[38] UnknownC08FC2 = [ 0x81, 0x39, 0x80, 0x80, 0x39, 0x00, 0x80, 0x3A, 0x80, 0x01, 0x18, 0x81, 0x09, 0x18, 0x81, 0x00, 0x18, 0x01, 0x08, 0x18, 0x01, 0x00, 0x19, 0x81, 0x08, 0x19, 0x81, 0x81, 0x39, 0x81, 0x80, 0x39, 0x01, 0x80, 0x3A, 0x81, 0xEB, 0x98 ];
 
 /// $C0927C
 void UnknownC0927C() {
