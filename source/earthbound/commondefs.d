@@ -4372,6 +4372,21 @@ enum PSIAnimationTarget {
 	Random = 3,
 }
 
+enum BGLayer {
+	Layer1 = 1,
+	Layer2 = 2,
+	Layer3 = 3,
+	Layer4 = 4,
+}
+
+enum DistortionStyle {
+	None = 0,
+	HorizontalSmooth = 1,
+	HorizontalInterlaced = 2,
+	VerticalSmooth = 3,
+	Unknown = 4,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -5504,6 +5519,27 @@ struct PSIAnimation {
 	ubyte enemyColourChangeDelay;
 	ubyte enemyColourChangeDuration;
 	ushort enemyColour;
+}
+
+struct BackgroundScrollingEntry {
+	short duration;
+	short horizontalVelocity;
+	short verticalVelocity;
+	short horizontalAcceleration;
+	short verticalAcceleration;
+}
+
+struct BackgroundDistortionEntry {
+	short duration;
+	ubyte style;
+	short rippleFrequency;
+	short rippleAmplitude;
+	ubyte speed;
+	short compressionRate;
+	short rippleFrequencyAcceleration;
+	short rippleAmplitudeAcceleration;
+	ubyte speedAcceleration;
+	short compressionRateAcceleration;
 }
 
 //helper funcs not in the original game

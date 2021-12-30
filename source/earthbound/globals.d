@@ -238,6 +238,8 @@ __gshared ubyte Unknown7E1ACB; /// $1ACB
 __gshared short Unknown7E1ACC; /// $1ACC
 __gshared short Unknown7E1ACE; /// $1ACE
 
+__gshared short Unknown7E1AD2; /// $1AD2
+__gshared short Unknown7E1AD4; /// $1AD4
 __gshared short[64] Unknown7E1AD6; /// $1AD6
 
 
@@ -365,10 +367,11 @@ __gshared short Unknown7E3C2A; /// $3C2A
 __gshared short Unknown7E3C2C; /// $3C2C
 __gshared short Unknown7E3C2E; /// $3C2E
 __gshared short Unknown7E3C30; /// $3C30
-__gshared short Unknown7E3C32; /// $3C32
+__gshared ubyte[6] Unknown7E3C32; /// $3C32
 
+__gshared ubyte[6] Unknown7E3C3C; /// $3C3C
 
-__gshared ubyte[896] Unknown7E3C46; /// $3C46
+__gshared ushort[448] Unknown7E3C46; /// $3C46
 __gshared HDMATableEntry[3] Unknown7E3FC6; /// $3FC6
 
 __gshared ubyte[200] Unknown7E3FD0; /// $3FD0

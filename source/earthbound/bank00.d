@@ -6557,8 +6557,44 @@ void UnknownC0AD9F() {
 	BG3VOFS = (BG3_Y_POS >> 8) & 0xFF;
 }
 
+/// $C0ADB2
+void DoBackgroundDMA(short arg1, short arg2, short arg3) {
+	DMAChannels[arg1].BBAD = DMATargetRegisters[arg2];
+	DMAChannels[arg1].DMAP = 0x42;
+	ubyte* a;
+	if (arg3 == 0) {
+		short x = 6;
+		do {
+			Unknown7E3C32[x] = UnknownC0AE26[x];
+			Unknown7E3C32[x + 1] = UnknownC0AE26[x + 1];
+			x -= 2;
+		} while (x >= 0);
+		a = &Unknown7E3C32[0];
+	} else {
+		short x = 6;
+		do {
+			Unknown7E3C3C[x] = UnknownC0AE2D[x];
+			Unknown7E3C3C[x + 1] = UnknownC0AE2D[x + 1];
+			x -= 2;
+		} while (x >= 0);
+		a = &Unknown7E3C3C[0];
+	}
+	DMAChannels[arg1].A1T = a;
+	HDMAEN_MIRROR |= DMAFlags[arg1];
+}
+
 /// $C0AE16
 immutable ubyte[7] DMAFlags = [ 1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6];
+
+/// $C0AE26
+immutable ubyte[7] UnknownC0AE26 = [ 0xE4, 0x46, 0x3C, 0xFC, 0x0E, 0x3D, 0x00 ];
+
+/// $C0AE2D
+immutable ubyte[7] UnknownC0AE2D = [ 0xE4, 0x06, 0x3E, 0xFC, 0xCE, 0x3E, 0x00 ];
+
+/// $C0AE1D
+// WMDATA, BG1HOFS, BG2HOFS, BG3HOFS, BG4HOFS, BG1VOFS, BG2VOFS, BG3VOFS, BG4VOFS
+immutable ubyte[9] DMATargetRegisters = [ 0x80, 0x0D, 0x0F, 0x11, 0x13, 0x0E, 0x10, 0x12, 0x14 ];
 
 /// $C0AE34
 void UnknownC0AE34(short arg1) {
@@ -6567,6 +6603,144 @@ void UnknownC0AE34(short arg1) {
 
 /// $C0AE44
 immutable ubyte[8] UnknownC0AE44 = [0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F];
+
+/// $C0AE4C
+void LoadBackgroundOffsetParameters(short arg1, short arg2, short arg3) {
+	Unknown7E1ACC = arg1;
+	Unknown7E1ACE = arg2;
+	Unknown7E1AD2 = arg3;
+}
+
+/// $C0AE56
+void LoadBackgroundOffsetParameters2(short arg1) {
+	Unknown7E1AD4 = arg1;
+}
+
+/// $C0AE5A
+void PrepareBackgroundOffsetTables(short arg1, short arg2, short arg3) {
+	short x00 = arg1;
+	ubyte x02 = 0;
+	ubyte x03 = cast(ubyte)arg3;
+	short a = 0;
+	short x = 0x1C0;
+	short y;
+	short x05;
+	if (Unknown7E1AD2 != 0) {
+		a = 0x1C0;
+		x = 0x380;
+	}
+	short x07 = a;
+	short x09 = x;
+	if (Unknown7E1ACC >= 2) {
+		if (Unknown7E1ACC == 2) {
+			goto Unknown7;
+		} else {
+			goto Unknown10;
+		}
+	}
+	if (Unknown7E1ACE != 0) {
+		switch (Unknown7E1ACE - 1) {
+			case 0:
+				x03 += BG1_Y_POS;
+				x05 = BG1_X_POS;
+				break;
+			case 1:
+				x03 += BG2_Y_POS;
+				x05 = BG2_X_POS;
+				break;
+			case 2:
+				x03 += BG3_Y_POS;
+				x05 = BG3_X_POS;
+				break;
+			case 3:
+				x03 += BG4_Y_POS;
+				x05 = BG4_X_POS;
+				break;
+			default: break;
+		}
+	} else {
+		x05 = Unknown7E1ACE;
+	}
+	if (Unknown7E1ACC == 0) {
+		y = x07;
+		do {
+			Unknown7E3C46[y / 2] = cast(ushort)(((arg2 * SineLookupTable[x03]) >> 8) + x05);
+			x02 += x00;
+			y -= 2;
+		} while (y < x09);
+		return;
+	} else {
+		y = x07;
+		do {
+			Unknown7E3C46[y / 2] = cast(ushort)(((arg2 * SineLookupTable[x03]) >> 8) + x05);
+			x02 += x00;
+			Unknown7E3C46[y / 2 + 1] = cast(ushort)(x05 - ((arg2 * SineLookupTable[x03]) >> 8));
+			x02 += x00;
+			y -= 4;
+		} while (y < x09);
+		return;
+	}
+	Unknown7:
+	if (Unknown7E1ACE != 0) {
+		switch (Unknown7E1ACE - 1) {
+			case 0:
+				x05 = BG1_Y_POS;
+				break;
+			case 1:
+				x05 = BG2_Y_POS;
+				break;
+			case 2:
+				x05 = BG3_Y_POS;
+				break;
+			case 3:
+				x05 = BG4_Y_POS;
+				break;
+			default: break;
+		}
+	} else {
+		x05 = Unknown7E1ACE;
+	}
+	x05 = cast(ushort)(x05 << 8);
+	y = x07;
+	do {
+		x05 += Unknown7E1AD4;
+		Unknown7E3C46[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((arg2 * SineLookupTable[x03]) >> 8));
+		x02 += x00;
+		y -= 2;
+	} while (y < x09);
+	return;
+	Unknown10:
+	if (Unknown7E1ACE != 0) {
+		switch (Unknown7E1ACE - 1) {
+			case 0:
+				x05 = BG1_Y_POS;
+				break;
+			case 1:
+				x05 = BG2_Y_POS;
+				break;
+			case 2:
+				x05 = BG3_Y_POS;
+				break;
+			case 3:
+				x05 = BG4_Y_POS;
+				break;
+			default: break;
+		}
+	} else {
+		x05 = Unknown7E1ACE;
+	}
+	x05 = cast(ushort)(x05 << 8);
+	y = x07;
+	do {
+		x05 += Unknown7E1AD4;
+		Unknown7E3C46[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((arg2 * SineLookupTable[x03]) >> 8));
+		x05 += Unknown7E1AD4;
+		Unknown7E3C46[y / 2 + 1] = cast(ushort)((cast(ushort)x05 >> 8) - ((arg2 * SineLookupTable[x03]) >> 8));
+		x02 += x00;
+		y -= 4;
+	} while (y < x09);
+	return;
+}
 
 /// $C0AFCD
 void UnknownC0AFCD(short arg1) {

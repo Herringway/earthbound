@@ -6879,7 +6879,142 @@ void LoadEnemyBattleSprites() {
 }
 
 /// $C2C92D
-void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer);
+void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
+	short x19 = arg1.TargetLayer;
+	if (arg1.Unknown2 == 0) {
+		if ((arg1.PaletteChangeDurationLeft != 0) && (--arg1.PaletteChangeDurationLeft == 0)) {
+			switch (arg1.PaletteShiftingStyle) {
+				case 2:
+					short x02 = cast(short)(arg1.PaletteCycle2Last - arg1.PaletteCycle2First + 1);
+					for (short i = 0; i != x02; i++) {
+						short x14;
+						if (i < arg1.PaletteCycle2Step) {
+							x14 = cast(short)(i + x02 - arg1.PaletteCycle2Step);
+						} else {
+							x14 = cast(short)(i - arg1.PaletteCycle2Step);
+						}
+						arg1.PalettePointer[arg1.PaletteCycle2First + i] = arg1.Palette[arg1.PaletteCycle2First + x14];
+					}
+					if (++arg1.PaletteCycle2Step < x02) {
+						arg1.PaletteCycle2Step = 0;
+					}
+					goto case;
+				case 1:
+					short x02 = cast(short)(arg1.PaletteCycle1Last - arg1.PaletteCycle1First + 1);
+					for (short i = 0; i != x02; i++) {
+						short x14;
+						if (i < arg1.PaletteCycle1Step) {
+							x14 = cast(short)(i + x02 - arg1.PaletteCycle1Step);
+						} else {
+							x14 = cast(short)(i - arg1.PaletteCycle1Step);
+						}
+						arg1.PalettePointer[arg1.PaletteCycle1First + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
+					}
+					if (++arg1.PaletteCycle1Step < x02) {
+						arg1.PaletteCycle1Step = 0;
+					}
+					break;
+				case 3:
+					short x10 = cast(short)(arg1.PaletteCycle1Last - arg1.PaletteCycle1First + 1);
+					for (short i = 0; i < x10; i++) {
+						short x14 = cast(short)(arg1.PaletteCycle1Step + i);
+						if (x14 >= x10 * 2) {
+							x14 -= x10 * 2;
+						}
+						if (x14 >= x10) {
+							x14 = cast(short)(x10 * 2 - 1 - x14);
+						}
+						arg1.PalettePointer[x14 + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
+					}
+					arg1.PaletteCycle1Step++;
+					if (arg1.PaletteCycle1Step >= x10 * 2) {
+						arg1.PaletteCycle1Step = 0;
+					}
+					break;
+				default: break;
+			}
+			UnknownC0856B(0x18);
+		}
+		if (CurrentGiygasPhase == GiygasPhase.Defeated) {
+			return;
+		}
+		if ((arg1.ScrollingDurationLeft != 0) && (--arg1.ScrollingDurationLeft == 0)) {
+			arg1.CurrentScrollingMovement = (arg1.CurrentScrollingMovement + 1) & 3;
+			short x10 = arg1.ScrollingMovements[arg1.CurrentScrollingMovement];
+			if (x10 == 0) {
+				arg1.CurrentScrollingMovement = 0;
+				x10 = arg1.ScrollingMovements[0];
+			}
+			if (x10 != 0) {
+				arg1.ScrollingDurationLeft = BackgroundScrollingTable[x10].duration;
+				arg1.HorizontalVelocity = BackgroundScrollingTable[x10].horizontalVelocity;
+				arg1.VerticalVelocity = BackgroundScrollingTable[x10].verticalVelocity;
+				arg1.HorizontalAcceleration = BackgroundScrollingTable[x10].horizontalAcceleration;
+				arg1.VerticalAcceleration = BackgroundScrollingTable[x10].verticalAcceleration;
+			}
+		}
+		arg1.HorizontalVelocity += arg1.HorizontalAcceleration;
+		arg1.HorizontalPosition += arg1.HorizontalVelocity;
+		arg1.VerticalVelocity += arg1.VerticalAcceleration;
+		arg1.VerticalPosition += arg1.VerticalVelocity;
+		switch (x19) {
+			case BGLayer.Layer1:
+				BG1_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
+				BG1_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				break;
+			case BGLayer.Layer2:
+				BG2_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
+				BG2_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				break;
+			case BGLayer.Layer3:
+				BG3_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
+				BG3_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				break;
+			case BGLayer.Layer4:
+				BG4_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
+				BG4_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				break;
+			default: break;
+		}
+	}
+	if ((arg1.DistortionDurationLeft != 0) && (--arg1.DistortionDurationLeft == 0)) {
+		arg1.Unknown101 = (arg1.Unknown101 + 1) & 3;
+		short x10 = arg1.DistortionStyles[arg1.Unknown101];
+		if (x10 == 0) {
+			arg1.Unknown101 = 0;
+			x10 = arg1.DistortionStyles[0];
+		}
+		if (x10 != 0) {
+			arg1.DistortionDurationLeft = BackgroundDistortionTable[x10].duration;
+			arg1.DistortionType = BackgroundDistortionTable[x10].style;
+			arg1.DistortionRippleFrequency = BackgroundDistortionTable[x10].rippleFrequency;
+			arg1.DistortionRippleAmplitude = BackgroundDistortionTable[x10].rippleAmplitude;
+			arg1.DistortionSpeed = BackgroundDistortionTable[x10].speed;
+			arg1.DistortionCompressionRate = BackgroundDistortionTable[x10].compressionRate;
+			arg1.DistortionRippleFrequencyAcceleration = BackgroundDistortionTable[x10].rippleFrequencyAcceleration;
+			arg1.DistortionRippleAmplitudeAcceleration = BackgroundDistortionTable[x10].rippleAmplitudeAcceleration;
+			arg1.DistortionSpeedAcceleration = BackgroundDistortionTable[x10].speedAcceleration;
+			arg1.DistortionCompressionAcceleration = BackgroundDistortionTable[x10].compressionRateAcceleration;
+			if (arg1.DistortionType == DistortionStyle.VerticalSmooth) {
+				DoBackgroundDMA(cast(short)(layer + 5), cast(short)(x19 + 4), layer);
+			} else {
+				DoBackgroundDMA(cast(short)(layer + 5), x19, layer);
+			}
+		}
+	}
+	if (arg1.DistortionType == 0) {
+		return;
+	}
+	arg1.DistortionRippleFrequency += arg1.DistortionRippleFrequencyAcceleration;
+	arg1.DistortionRippleAmplitude += arg1.DistortionRippleAmplitudeAcceleration;
+	arg1.DistortionSpeed += arg1.DistortionSpeedAcceleration;
+	arg1.DistortionCompressionRate += arg1.DistortionCompressionAcceleration;
+	LoadBackgroundOffsetParameters(cast(short)(arg1.DistortionType - 1), x19, layer);
+	LoadBackgroundOffsetParameters2(arg1.DistortionCompressionRate);
+	if (((Unknown7E0002 & 1) == layer) || (Unknown7EADAC == 0)) {
+		PrepareBackgroundOffsetTables(arg1.DistortionRippleFrequency, arg1.DistortionRippleAmplitude, arg1.DistortionSpeed);
+	}
+}
 
 /// $C2CFE5
 void UnknownC2CFE5(LoadedBackgroundData* target, const(AnimatedBackground)* bg) {
