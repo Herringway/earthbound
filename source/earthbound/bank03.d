@@ -1591,11 +1591,11 @@ void NullC3EF23(short) {
 
 /// $C3F054
 immutable FontConfig[5] FontConfigTable = [
-	FontConfig(null, null, 32, 16), //main font
-	FontConfig(null, null, 32, 16), //mr saturn font
-	FontConfig(null, null, 16, 16), //battle font
-	FontConfig(null, null, 8, 8), //tiny font
-	FontConfig(null, null, 32, 16), //large font
+	FontConfig(cast(immutable(ubyte[]))import("fonts/main.bin"), cast(immutable(ubyte[]))import("fonts/main.gfx"), 32, 16), //main font
+	FontConfig(cast(immutable(ubyte[]))import("fonts/mrsaturn.bin"), cast(immutable(ubyte[]))import("fonts/mrsaturn.gfx"), 32, 16), //mr saturn font
+	FontConfig(cast(immutable(ubyte[]))import("fonts/battle.bin"), cast(immutable(ubyte[]))import("fonts/battle.gfx"), 16, 16), //battle font
+	FontConfig(cast(immutable(ubyte[]))import("fonts/tiny.bin"), cast(immutable(ubyte[]))import("fonts/tiny.gfx"), 8, 8), //tiny font
+	FontConfig(cast(immutable(ubyte[]))import("fonts/large.bin"), cast(immutable(ubyte[]))import("fonts/large.gfx"), 32, 16), //large font
 ];
 
 /// $C3F112

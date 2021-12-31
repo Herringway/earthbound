@@ -4842,8 +4842,8 @@ struct SaveDataReplay {
 }
 
 struct FontConfig {
-	const(ubyte)* data;
-	const(ubyte)* graphics;
+	immutable(ubyte)[] data;
+	immutable(ubyte)[] graphics;
 	ushort height;
 	ushort width;
 }
@@ -5578,6 +5578,7 @@ ubyte EBChar(dchar c) {
 	import std.conv : text;
 	import std.utf : toUTF8;
 	switch (c) {
+		case 0: .. case 0x1F: return cast(ubyte)c;
 		case ' ':
 		case '!':
 		case '$':

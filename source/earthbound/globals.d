@@ -642,7 +642,7 @@ __gshared void function() Unknown7E9D1B; /// $9D1B
 __gshared short RespawnX; /// $9D1F
 __gshared short RespawnY; /// $9D21
 // is this the actual size? maybe it's 0x100?
-__gshared ubyte[0x20][8] Unknown7E9D23; /// $9D23
+__gshared ubyte[8][0x20] Unknown7E9D23; /// $9D23
 
 __gshared ushort VWFX; /// $9E23
 deprecated("VWFX") alias Unknown7E9E23 = VWFX;

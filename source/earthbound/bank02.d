@@ -82,7 +82,7 @@ void UnknownC200D9() {
 	Unknown7E5E7A = -1;
 	Unknown7E5E7C = -1;
 	for (short i = 0x380; i != 0; i--) {
-		bg2Buffer[i] = 0;
+		bg2Buffer[0x380 - i] = 0;
 	}
 	for (short i = 0; i != 0x46; i++) {
 		MenuOptions[i].field00 = 0;
@@ -108,7 +108,8 @@ void UnknownC200D9() {
 	Unknown7E5E70 = 0;
 	Unknown7E5E75 = 0;
 	// uhhhhh
-	MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option].pixel_align = 0;
+	//MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option].pixel_align = 0;
+
 	Unknown7E5E71 = 0;
 	Unknown7E5E72 = 0;
 	Unknown7E5E73 = 0;
