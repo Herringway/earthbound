@@ -6894,7 +6894,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						} else {
 							x14 = cast(short)(i - arg1.PaletteCycle2Step);
 						}
-						arg1.PalettePointer[arg1.PaletteCycle2First + i] = arg1.Palette[arg1.PaletteCycle2First + x14];
+						arg1.PalettePointer[0][arg1.PaletteCycle2First + i] = arg1.Palette[arg1.PaletteCycle2First + x14];
 					}
 					if (++arg1.PaletteCycle2Step < x02) {
 						arg1.PaletteCycle2Step = 0;
@@ -6909,7 +6909,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						} else {
 							x14 = cast(short)(i - arg1.PaletteCycle1Step);
 						}
-						arg1.PalettePointer[arg1.PaletteCycle1First + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
+						arg1.PalettePointer[0][arg1.PaletteCycle1First + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
 					}
 					if (++arg1.PaletteCycle1Step < x02) {
 						arg1.PaletteCycle1Step = 0;
@@ -6925,7 +6925,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						if (x14 >= x10) {
 							x14 = cast(short)(x10 * 2 - 1 - x14);
 						}
-						arg1.PalettePointer[x14 + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
+						arg1.PalettePointer[0][x14 + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
 					}
 					arg1.PaletteCycle1Step++;
 					if (arg1.PaletteCycle1Step >= x10 * 2) {
