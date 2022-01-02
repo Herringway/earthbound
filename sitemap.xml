@@ -361,8 +361,10 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC09FAEEntry4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A023.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A039.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A0BB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A0CA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A0E3.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A0FA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A156.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A1AE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0A1CE.html</loc></url>
@@ -1768,7 +1770,9 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/IntegerToBinaryDebugTiles.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/IntegerToDecimalDebugTiles.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/IntegerToHexDebugTiles.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/Kirby.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/LoadGameSlot.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/LoadKirbySprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/LoadReplaySaveSlot.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/MapDataPerSectorTownMapData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/MapDataTileAnimationPointerTable.html</loc></url>
@@ -1830,6 +1834,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEF70.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEF9F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFF1BB.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFF5BB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/ValidateSaveBlockChecksums.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals.html</loc></url>
