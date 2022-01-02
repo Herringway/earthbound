@@ -6036,6 +6036,49 @@ void UnknownC0A039() {
 	//nothing
 }
 
+/// $C0A0BB
+void UnknownC0A0BB() {
+	EntityScreenXTable[ActionScript88 / 2] = EntityAbsXTable[ActionScript88 / 2];
+	EntityScreenYTable[ActionScript88 / 2] = EntityAbsYTable[ActionScript88 / 2];
+}
+
+/// $C0A0CA
+void UnknownC0A0CA(short arg1) {
+	while (arg1 < 0) {}
+	ActionScript88 = cast(ushort)(arg1 * 2);
+	UnknownC0A0E3(ActionScript88, arg1 < 0);
+}
+
+/// $C0A0E3
+void UnknownC0A0E3(short arg1, bool overflowed) {
+	if ((EntitySpriteMapFlags[arg1 / 2] < 0) || overflowed) {
+		return;
+	}
+	ActionScript8C = EntitySpriteMapPointers[arg1 / 2];
+	if (EntityAnimationFrames[arg1 / 2] >= 0) {
+		EntityDrawCallbacks[arg1 / 2](EntityAnimationFrames[arg1 / 2]);
+	}
+}
+
+/// $C0A0FA
+void UnknownC0A0FA(short arg1, short arg2) {
+	Unknown7E000B = ActionScript8E;
+	Unknown7E2400 = EntityDrawPriority[arg2 / 2];
+	UnknownC08C58(&ActionScript8C[arg1], EntityAbsXTable[arg2 / 2], EntityAbsYTable[arg2 / 2]);
+}
+
+/// $C0A11C
+void CheckHardware() {
+	//AntiPiracyScratchSpace = 0x30;
+	//AntiPiracyMirrorTest = 0x31;
+	if (false/*AntiPiracyScratchSpace != AntiPiracyMirrorTest*/) {
+		DisplayAntiPiracyScreen();
+	}
+	if ((STAT78 & 0x10) != 0) {
+		DisplayFaultyGamepakScreen();
+	}
+}
+
 /// $C0A156
 short UnknownC0A156(short x, short y) {
 	if ((x | y) < 0) {
@@ -6106,36 +6149,6 @@ short UnknownC0A21C(short arg1) {
 void UnknownC0A254(short arg1) {
 	EntityScreenXTable[arg1] = cast(short)(EntityAbsXTable[arg1] - BG1_X_POS);
 	EntityScreenYTable[arg1] = cast(short)(EntityAbsYTable[arg1] - BG1_Y_POS);
-}
-
-/// $C0A0E3
-void UnknownC0A0E3(short arg1, bool overflowed) {
-	if ((EntitySpriteMapFlags[arg1 / 2] < 0) || overflowed) {
-		return;
-	}
-	ActionScript8C = EntitySpriteMapPointers[arg1 / 2];
-	if (EntityAnimationFrames[arg1 / 2] >= 0) {
-		EntityDrawCallbacks[arg1 / 2](EntityAnimationFrames[arg1 / 2]);
-	}
-}
-
-/// $C0A0CA
-void UnknownC0A0CA(short arg1) {
-	while (arg1 < 0) {}
-	ActionScript88 = cast(ushort)(arg1 * 2);
-	UnknownC0A0E3(ActionScript88, arg1 < 0);
-}
-
-/// $C0A11C
-void CheckHardware() {
-	//AntiPiracyScratchSpace = 0x30;
-	//AntiPiracyMirrorTest = 0x31;
-	if (false/*AntiPiracyScratchSpace != AntiPiracyMirrorTest*/) {
-		DisplayAntiPiracyScreen();
-	}
-	if ((STAT78 & 0x10) != 0) {
-		DisplayFaultyGamepakScreen();
-	}
 }
 
 /// $C0A3A4
