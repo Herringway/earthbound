@@ -7810,3 +7810,7 @@ void UnknownC1FF99(short arg1, short arg2, ubyte* arg3) {
 	VWFX = cast(ushort)((arg2 *8 - UnknownC43E31(arg3, arg1)) / 2);
 	VWFTile = VWFX / 8;
 }
+
+short SRAMCheckRoutineChecksum(short, ref const(ubyte)*) {
+	return 0;
+}

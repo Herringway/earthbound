@@ -409,6 +409,27 @@ void UnknownEF0D46() {
 	Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]] = TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].deliveryTime;
 }
 
+/// $EF0D73
+void UnknownEF0D73() {
+	if (Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]] != 0) {
+		Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]]--;
+	}
+}
+
+/// $EF0D8D
+void UnknownEF0D8D() {
+	UnknownC064E3(8, QueuedInteractionPtr(&TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].textPointer1[0]));
+}
+
+/// $EF0DFA
+void UnknownEF0DFA();
+
+/// $EF0E67
+void UnknownEF0E67();
+
+/// $EF0E8A
+void UnknownEF0E8A();
+
 /// $EF0EAD
 void GetDeliverySpriteAndPlaceholder(short arg1) {
 	NewEntityVar0 = cast(short)(arg1 - 1);
@@ -429,6 +450,15 @@ void UnknownEF0EE8() {
 		CreateEntity(sprite, ActionScript.Unknown500, -1, 0, 0);
 	}
 }
+
+/// $EF0F60
+void UnknownEF0F60();
+
+/// $EF0FDB
+void UnknownEF0FDB();
+
+/// $EF0FF6
+void UnknownEF0FF6();
 
 /// $EF101B
 immutable ubyte[32] TilesetTable = [
@@ -22332,8 +22362,9 @@ void UnknownEFE175() {
 }
 
 /// $EFE556
-void LoadKirbySprite() {
+short LoadKirbySprite(short, ref const(ubyte)*) {
 	CopyToVram(0, 0x200, 0x4000, &Kirby[0]);
+	return 0;
 }
 
 /// $EFE5D3

@@ -3207,6 +3207,9 @@ void InstantWinHandler() {
 	UnknownC09451();
 }
 
+/// $C2654C
+void UnknownC2654C();
+
 /// $C26634
 short InstantWinCheck() {
 	if (BattleInitiative == Initiative.EnemiesFirst) {
@@ -8294,3 +8297,6 @@ void UnknownC2FEF9(short type) {
 	}
 	UnknownC0856B(16);
 }
+
+/// $C2FF9A
+void UnknownC2FF9A();

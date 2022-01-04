@@ -38,7 +38,7 @@ void DisplayFaultyGamepakScreen() {
 immutable NessPajamaFlag = EventFlag.NessPajamas;
 
 
-immutable ubyte[0] Event0;
+immutable ubyte[49] Event0;
 immutable ubyte[0] Event1;
 immutable ubyte[0] Event2;
 immutable ubyte[0] Event3;
@@ -2308,4 +2308,18 @@ immutable ushort[4] UnknownC3FDB5 = [
 short UnknownC3FDC5() {
 	//nope. not doing this one, sorry
 	return 0;
+}
+
+shared static this() {
+	import std.array : join;
+	Event0 = [
+		EVENT_SET_ANIMATION_POINTER(&UnknownEFF5BB[0]),
+		EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A0BB),
+		EVENT_SET_DRAW_CALLBACK(&UnknownC0A0FA),
+		EVENT_SET_ANIMATION(0x00),
+	//UNKNOWN1:
+		EVENT_PAUSE(0x05),
+		EVENT_CALLROUTINE(&LoadKirbySprite),
+		EVENT_SHORTJUMP(&Event0[5 + (void*).sizeof * 3]),
+	].join;
 }

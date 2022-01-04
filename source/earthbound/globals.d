@@ -205,7 +205,7 @@ __gshared ushort[MAX_ENTITIES] EntitySpriteMapFlags;
 __gshared const(SpriteMap)*[MAX_ENTITIES] EntitySpriteMapPointers;
 
 __gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; /// $11A6
-__gshared void function(short)[MAX_ENTITIES] EntityDrawCallbacks; /// $11E2
+__gshared void function(short, short)[MAX_ENTITIES] EntityDrawCallbacks; /// $11E2
 __gshared void function()[MAX_ENTITIES] EntityMoveCallbacks; /// $121E
 __gshared short[MAX_SCRIPTS] Unknown7E125A; /// $125A
 __gshared short[MAX_SCRIPTS] Unknown7E12E6; /// $12E6
