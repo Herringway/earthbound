@@ -36,8 +36,7 @@ __gshared ubyte Unknown7E0022;
 __gshared ubyte Unknown7E0023;
 __gshared ushort RandA;
 __gshared ushort RandB;
-__gshared ubyte Unknown7E0028;
-__gshared ubyte Unknown7E0029;
+__gshared Unknown7E0028Union Unknown7E0028;
 __gshared byte Unknown7E002A;
 __gshared ubyte Unknown7E002B;
 //the ID of the frame being/about to be displayed, multiplied by 2

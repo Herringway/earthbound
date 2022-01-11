@@ -3,6 +3,7 @@ module earthbound.bank04;
 
 import earthbound.commondefs;
 import earthbound.hardware;
+import earthbound.actionscripts;
 import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
@@ -26,9 +27,6 @@ void UnknownC40015();
 
 /// $C40023
 void UnknownC40023();
-
-/// $C400D4
-immutable ubyte[][895] EventScriptPointers;
 
 /// $C40B51
 void UnknownC40B51() {
@@ -148,6 +146,159 @@ immutable OverlayScript[5] EntityOverlayRipple;
 
 ///
 immutable OverlayScript[5] EntityOverlayBigRipple;
+
+/// $C40F18
+immutable ubyte[0] UnknownC40F18;
+
+/// $C40F4A
+immutable ubyte[0] UnknownC40F4A;
+
+/// $C40F59
+immutable ubyte[0] UnknownC40F59;
+
+immutable ubyte[0] Event502;
+
+immutable ubyte[0] Event503;
+
+immutable ubyte[0] Event504;
+
+immutable ubyte[0] Event505;
+
+immutable ubyte[0] Event506;
+
+immutable ubyte[0] Event507;
+
+immutable ubyte[0] Event508;
+
+immutable ubyte[0] Event509;
+
+immutable ubyte[0] Event510;
+
+immutable ubyte[0] Event511;
+
+immutable ubyte[0] Event512;
+
+immutable ubyte[0] Event513;
+
+immutable ubyte[0] Event514;
+
+immutable ubyte[0] Event515;
+
+immutable ubyte[0] Event516;
+
+immutable ubyte[0] Event517;
+
+immutable ubyte[0] Event518;
+
+immutable ubyte[0] Event519;
+
+immutable ubyte[0] Event520;
+
+immutable ubyte[0] Event521;
+
+immutable ubyte[0] Event522;
+
+immutable ubyte[0] Event523;
+
+immutable ubyte[0] Event524;
+
+immutable ubyte[0] Event525;
+
+immutable ubyte[0] Event526;
+
+immutable ubyte[0] Event527;
+
+immutable ubyte[0] Event528;
+
+immutable ubyte[0] Event529;
+
+immutable ubyte[0] Event530;
+
+immutable ubyte[0] Event534;
+
+/// $C41036
+immutable ubyte[0] UnknownC41036;
+
+/// $C4116C
+immutable ubyte[0] UnknownC4116C;
+
+/// $C4119D
+immutable ubyte[0] UnknownC4119D;
+
+/// $C411EB
+immutable ubyte[0] UnknownC411EB;
+
+/// $C4121F
+immutable ubyte[0] UnknownC4121F;
+
+/// $C41253
+immutable ubyte[0] UnknownC41253;
+
+/// $C41382
+immutable ubyte[0] UnknownC41382;
+
+/// $C413D6
+immutable ubyte[0] UnknownC413D6;
+
+/// $C41402
+immutable ubyte[0] UnknownC41402;
+
+/// $C4144C
+immutable ubyte[0] UnknownC4144C;
+
+/// $C4152A
+immutable ubyte[0] UnknownC4152A;
+
+/// $C4154E
+immutable ubyte[0] UnknownC4154E;
+
+/// $C4158A
+immutable ubyte[0] UnknownC4158A;
+
+/// $C415BA
+immutable ubyte[0] UnknownC415BA;
+
+/// $C415E7
+immutable ubyte[0] UnknownC415E7;
+
+/// $C4160A
+immutable ubyte[0] UnknownC4160A;
+
+/// $C4163F
+immutable ubyte[0] UnknownC4163F;
+
+/// $C416AC
+immutable ubyte[0] UnknownC416AC;
+
+/// $C4170E
+immutable ubyte[0] UnknownC4170E;
+
+/// $C41822
+immutable ubyte[0] UnknownC41822;
+
+/// $C41900
+immutable ubyte[0] UnknownC41900;
+
+/// $C41938
+immutable ubyte[0] UnknownC41938;
+
+/// $C41974
+immutable ubyte[0] UnknownC41974;
+
+/// $C4198D
+immutable ubyte[0] UnknownC4198D;
+
+/// $C419B2
+immutable ubyte[0] UnknownC419B2;
+
+/// $C419BF
+immutable ubyte[0] UnknownC419BF;
+
+/// $C41A2A
+immutable ubyte[0] UnknownC41A2A;
+
+/// $C41A7D
+immutable ubyte[0] UnknownC41A7D;
 
 /// $C41A9E
 void Decomp(const(ubyte)* data, void* buffer) {
@@ -552,6 +703,11 @@ void UnknownC426ED() {
 	}
 	Unknown7E0030 = 0x18;
 }
+
+
+/// $C42828
+immutable ubyte[0] UnknownC42828;
+
 
 /// $C4283F
 void UnknownC4283F(short arg1, short arg2, short arg3) {
@@ -2785,6 +2941,18 @@ void UnknownC474A8() {
 	);
 }
 
+/// $C476A5
+void UnknownC476A5();
+
+/// $C47705
+void UnknownC47705();
+
+/// $C479E9
+void UnknownC479E9();
+
+/// $C47A27
+void UnknownC47A27();
+
 /// $C47C3F
 //definitely need to check this one over
 void LoadWindowGraphics() {
@@ -2865,6 +3033,21 @@ void UndrawFlyoverText() {
 	UnknownC47F87();
 	Unknown7E0030 = 0x18;
 }
+
+/// $C48BDA
+void UnknownC48BDA();
+
+/// $C48BE1
+void UnknownC48BE1();
+
+/// $C48C02
+void UnknownC48C02();
+
+/// $C48C2B
+void UnknownC48C2B();
+
+/// $C48C3E
+void UnknownC48C3E();
 
 /// $C48C59
 immutable short[8] UnknownC48C59 = [ 0x0800, 0x0900, 0x0100, 0x0500, 0x0400, 0x0600, 0x0200, 0x0A00 ];
@@ -3357,7 +3540,7 @@ void CoffeeTeaScene(short id) {
 		}
 	}
 	FadeOut(1, 1);
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		UnknownC49A4B();
 	}
 	UnknownC08726();
@@ -4115,7 +4298,7 @@ void UseSoundStone(short arg1) {
 		}
 	}
 	FadeOut(1, 1);
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		WaitUntilNextFrame();
 	}
 	UnknownC08726();
@@ -5310,7 +5493,7 @@ void UnknownC4D43F(short arg1) {
 void LoadTownMapData(short arg1) {
 	FadeOut(2, 1);
 	Decomp(&TownMapGraphicsPointerTable[arg1][0], &Unknown7F0000[0]);
-	while (Unknown7E0028 != 0) {}
+	while (Unknown7E0028.a != 0) {}
 	memcpy(&palettes[0][0], &Unknown7F0000[0], 0x40);
 	memcpy(&palettes[16][0], &TownMapIconPalette[0], 0x100);
 	SetBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);
@@ -5486,7 +5669,7 @@ short UnknownC4D989(short arg1) {
 		UnknownC4A7B0();
 	}
 	FadeOut(1, 1);
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		UnknownC1004E();
 	}
 	UnknownC2EAAA();
@@ -5588,7 +5771,7 @@ void InitIntro() {
 		x02++;
 	}
 	UnknownC0AC0C(2);
-	Unknown7E0028 = 0;
+	Unknown7E0028.a = 0;
 	if ((INIDISP_MIRROR & 0x80) != 0) {
 		FadeOutWithMosaic(4, 1, 0);
 	}
@@ -5708,6 +5891,9 @@ void UnknownC4E4DA();
 
 /// $C4E4F9
 void UnknownC4E4F9();
+
+/// $C4E51E
+void UnknownC4E51E();
 
 /// $C4E583
 void UnknownC4E583(ubyte* arg1, short arg2, short arg3) {
@@ -6455,6 +6641,7 @@ void SetBoundaryBehaviour(short val) {
 }
 
 shared static this() {
+	import std.array : join;
 	EntityOverlaySweating = [
 		OverlayScript.show(EntityOverlaySweatingFrame1.ptr),
 		OverlayScript.delay(8),
@@ -6488,902 +6675,5 @@ shared static this() {
 		OverlayScript.show(EntityOverlayBigRippleFrame2.ptr),
 		OverlayScript.delay(12),
 		OverlayScript.jump(EntityOverlayBigRipple.ptr)
-	];
-	EventScriptPointers = [
-		Event0[],
-		Event1[],
-		Event2[],
-		Event3[],
-		Event4[],
-		Event5[],
-		Event6_12[],
-		Event7[],
-		Event8[],
-		Event9[],
-		Event10_11[],
-		Event10_11[],
-		Event6_12[],
-		Event13[],
-		Event14[],
-		Event15[],
-		Event16[],
-		Event17[],
-		Event18[],
-		Event19[],
-		Event20[],
-		Event21[],
-		Event22[],
-		Event23[],
-		Event24[],
-		Event25[],
-		Event26[],
-		Event27[],
-		Event28[],
-		Event29[],
-		Event30[],
-		Event31[],
-		Event32[],
-		Event33[],
-		Event34[],
-		Event35[],
-		Event36[],
-		Event37[],
-		Event38[],
-		Event39[],
-		Event40[],
-		Event41[],
-		Event42[],
-		Event43[],
-		Event44[],
-		Event45[],
-		Event46[],
-		Event47[],
-		Event48[],
-		Event49[],
-		Event50[],
-		Event51[],
-		Event52[],
-		Event53[],
-		Event54[],
-		Event55[],
-		Event56[],
-		Event57[],
-		Event58[],
-		Event59[],
-		Event60[],
-		Event61[],
-		Event62[],
-		Event63[],
-		Event64[],
-		Event65[],
-		Event66[],
-		Event67[],
-		Event68[],
-		Event69[],
-		Event70[],
-		Event71[],
-		Event72[],
-		Event73[],
-		Event74[],
-		Event75[],
-		Event76[],
-		Event77[],
-		Event78[],
-		Event79[],
-		Event80[],
-		Event81[],
-		Event82[],
-		Event83[],
-		Event84[],
-		Event85[],
-		Event86[],
-		Event87[],
-		Event88[],
-		Event89[],
-		Event90[],
-		Event91[],
-		Event92[],
-		Event93[],
-		Event94[],
-		Event95[],
-		Event96[],
-		Event97[],
-		Event98[],
-		Event99[],
-		Event100[],
-		Event101[],
-		Event102[],
-		Event103[],
-		Event104[],
-		Event105[],
-		Event106[],
-		Event107[],
-		Event108[],
-		Event109[],
-		Event110[],
-		Event111[],
-		Event112[],
-		Event113[],
-		Event114[],
-		Event115[],
-		Event116[],
-		Event117[],
-		Event118[],
-		Event119[],
-		Event120[],
-		Event121[],
-		Event122[],
-		Event123[],
-		Event124[],
-		Event125[],
-		Event126[],
-		Event127[],
-		Event128[],
-		Event129[],
-		Event130[],
-		Event131[],
-		Event132[],
-		Event133[],
-		Event134[],
-		Event135[],
-		Event136[],
-		Event137[],
-		Event138[],
-		Event139[],
-		Event140[],
-		Event141[],
-		Event142[],
-		Event143[],
-		Event144[],
-		Event145[],
-		Event146[],
-		Event147[],
-		Event148[],
-		Event149[],
-		Event150[],
-		Event151[],
-		Event152[],
-		Event153[],
-		Event154[],
-		Event155[],
-		Event156[],
-		Event157[],
-		Event158[],
-		Event159[],
-		Event160[],
-		Event161[],
-		Event162[],
-		Event163[],
-		Event164[],
-		Event165[],
-		Event166[],
-		Event167[],
-		Event168[],
-		Event169[],
-		Event170[],
-		Event171[],
-		Event172[],
-		Event173[],
-		Event174[],
-		Event175[],
-		Event176[],
-		Event177[],
-		Event178[],
-		Event179[],
-		Event180[],
-		Event181[],
-		Event182[],
-		Event183[],
-		Event184[],
-		Event185[],
-		Event186[],
-		Event187[],
-		Event188[],
-		Event189[],
-		Event190[],
-		Event191[],
-		Event192[],
-		Event193[],
-		Event194[],
-		Event195[],
-		Event196[],
-		Event197[],
-		Event198[],
-		Event199[],
-		Event200[],
-		Event201[],
-		Event202[],
-		Event203[],
-		Event204[],
-		Event205[],
-		Event206[],
-		Event207[],
-		Event208[],
-		Event209[],
-		Event210[],
-		Event211[],
-		Event212[],
-		Event213[],
-		Event214[],
-		Event215[],
-		Event216[],
-		Event217[],
-		Event218[],
-		Event219[],
-		Event220[],
-		Event221[],
-		Event222[],
-		Event223[],
-		Event224[],
-		Event225_226_227[],
-		Event225_226_227[],
-		Event225_226_227[],
-		Event228[],
-		Event229[],
-		Event230[],
-		Event231[],
-		Event232[],
-		Event233_234_235_236_237[],
-		Event233_234_235_236_237[],
-		Event233_234_235_236_237[],
-		Event233_234_235_236_237[],
-		Event233_234_235_236_237[],
-		Event238[],
-		Event239[],
-		Event240[],
-		Event241[],
-		Event242_243[],
-		Event242_243[],
-		Event244[],
-		Event245[],
-		Event246[],
-		Event247_248[],
-		Event247_248[],
-		Event249[],
-		Event250[],
-		Event251[],
-		Event252[],
-		Event253[],
-		Event254[],
-		Event255[],
-		Event256[],
-		Event257[],
-		Event258[],
-		Event259[],
-		Event260[],
-		Event261[],
-		Event262[],
-		Event263[],
-		Event264[],
-		Event265[],
-		Event266[],
-		Event267[],
-		Event268[],
-		Event269[],
-		Event270[],
-		Event271[],
-		Event272[],
-		Event273[],
-		Event274_275_276[],
-		Event274_275_276[],
-		Event274_275_276[],
-		Event277[],
-		Event278[],
-		Event279[],
-		Event280[],
-		Event281[],
-		Event282[],
-		Event283[],
-		Event284[],
-		Event285[],
-		Event286[],
-		Event287[],
-		Event288[],
-		Event289[],
-		Event290[],
-		Event291[],
-		Event292[],
-		Event293[],
-		Event294[],
-		Event295[],
-		Event296[],
-		Event297[],
-		Event298[],
-		Event299[],
-		Event300[],
-		Event301[],
-		Event302[],
-		Event303[],
-		Event304[],
-		Event305[],
-		Event306[],
-		Event307[],
-		Event308[],
-		Event309[],
-		Event310[],
-		Event311[],
-		Event312[],
-		Event313[],
-		Event314[],
-		Event315[],
-		Event316[],
-		Event317[],
-		Event318[],
-		Event319[],
-		Event320[],
-		Event321[],
-		Event322[],
-		Event323[],
-		Event324[],
-		Event325[],
-		Event326[],
-		Event327[],
-		Event328[],
-		Event329[],
-		Event330[],
-		Event331[],
-		Event332[],
-		Event333[],
-		Event334[],
-		Event335[],
-		Event336[],
-		Event337[],
-		Event338[],
-		Event339[],
-		Event340[],
-		Event341[],
-		Event342[],
-		Event343[],
-		Event344[],
-		Event345[],
-		Event346[],
-		Event347[],
-		Event348_349[],
-		Event348_349[],
-		Event350[],
-		Event351[],
-		Event352[],
-		Event353[],
-		Event354[],
-		Event355[],
-		Event356[],
-		Event357[],
-		Event358[],
-		Event359[],
-		Event360[],
-		Event361[],
-		Event362[],
-		Event363[],
-		Event364[],
-		Event365[],
-		Event366[],
-		Event367[],
-		Event368[],
-		Event369[],
-		Event370[],
-		Event371[],
-		Event372[],
-		Event373[],
-		Event374[],
-		Event375_404[],
-		Event376_405[],
-		Event377_406[],
-		Event378_407[],
-		Event379_408[],
-		Event380[],
-		Event381[],
-		Event382[],
-		Event383[],
-		Event384[],
-		Event385[],
-		Event386[],
-		Event387[],
-		Event388[],
-		Event389_393[],
-		Event390_394[],
-		Event391[],
-		Event392[],
-		Event389_393[],
-		Event390_394[],
-		Event395[],
-		Event396[],
-		Event397[],
-		Event398[],
-		Event399[],
-		Event400[],
-		Event401[],
-		Event402[],
-		Event403[],
-		Event375_404[],
-		Event376_405[],
-		Event377_406[],
-		Event378_407[],
-		Event379_408[],
-		Event409[],
-		Event410[],
-		Event411[],
-		Event412[],
-		Event413[],
-		Event414[],
-		Event415[],
-		Event416[],
-		Event417[],
-		Event418[],
-		Event419[],
-		Event420[],
-		Event421[],
-		Event422[],
-		Event423[],
-		Event424[],
-		Event425[],
-		Event426[],
-		Event427[],
-		Event428[],
-		Event429[],
-		Event430[],
-		Event431_432_433_434[],
-		Event431_432_433_434[],
-		Event431_432_433_434[],
-		Event431_432_433_434[],
-		Event435[],
-		Event436[],
-		Event437[],
-		Event438[],
-		Event439[],
-		Event440[],
-		Event441[],
-		Event442[],
-		Event443[],
-		Event444[],
-		Event445[],
-		Event446[],
-		Event447[],
-		Event448[],
-		Event449[],
-		Event450[],
-		Event451[],
-		Event452[],
-		Event453[],
-		Event454[],
-		Event455[],
-		Event456[],
-		Event457[],
-		Event458[],
-		Event459[],
-		Event460[],
-		Event461[],
-		Event462[],
-		Event463[],
-		Event464[],
-		Event465[],
-		Event466[],
-		Event467[],
-		Event468[],
-		Event469[],
-		Event470[],
-		Event471[],
-		Event472[],
-		Event473[],
-		Event474[],
-		Event475[],
-		Event476[],
-		Event477[],
-		Event478[],
-		Event479[],
-		Event480[],
-		Event481[],
-		Event482[],
-		Event483[],
-		Event484[],
-		Event485[],
-		Event486[],
-		Event487[],
-		Event488[],
-		Event489[],
-		Event490[],
-		Event491[],
-		Event492[],
-		Event493[],
-		Event494[],
-		Event495[],
-		Event496[],
-		Event497[],
-		Event498[],
-		Event499[],
-		Event500[],
-		Event501[],
-		Event502[],
-		Event503[],
-		Event504[],
-		Event505[],
-		Event506[],
-		Event507[],
-		Event508[],
-		Event509[],
-		Event510[],
-		Event511[],
-		Event512[],
-		Event513[],
-		Event514[],
-		Event515[],
-		Event516[],
-		Event517[],
-		Event518[],
-		Event519[],
-		Event520[],
-		Event521[],
-		Event522[],
-		Event523[],
-		Event524[],
-		Event525[],
-		Event526[],
-		Event527[],
-		Event528[],
-		Event529[],
-		Event530[],
-		Event531[],
-		Event532[],
-		Event533[],
-		Event534[],
-		Event535[],
-		Event536[],
-		Event537[],
-		Event538[],
-		Event539[],
-		Event540[],
-		Event541[],
-		Event542[],
-		Event543[],
-		Event544[],
-		Event545[],
-		Event546[],
-		Event547[],
-		Event548[],
-		Event549[],
-		Event550[],
-		Event551[],
-		Event552[],
-		Event553[],
-		Event554[],
-		Event555[],
-		Event556[],
-		Event557[],
-		Event558[],
-		Event559[],
-		Event560[],
-		Event561[],
-		Event562[],
-		Event563[],
-		Event564[],
-		Event565[],
-		Event566[],
-		Event567[],
-		Event568[],
-		Event569[],
-		Event570[],
-		Event571[],
-		Event572[],
-		Event573[],
-		Event574[],
-		Event575[],
-		Event576[],
-		Event577[],
-		Event578[],
-		Event579[],
-		Event580[],
-		Event581[],
-		Event582[],
-		Event583[],
-		Event584[],
-		Event585[],
-		Event586[],
-		Event587[],
-		Event588[],
-		Event589[],
-		Event590[],
-		Event591[],
-		Event592[],
-		Event593[],
-		Event594[],
-		Event595[],
-		Event596[],
-		Event597[],
-		Event598[],
-		Event599[],
-		Event600[],
-		Event601[],
-		Event602[],
-		Event603[],
-		Event604[],
-		Event605[],
-		Event606[],
-		Event607[],
-		Event608[],
-		Event609[],
-		Event610[],
-		Event611[],
-		Event612[],
-		Event613[],
-		Event614[],
-		Event615[],
-		Event616[],
-		Event617[],
-		Event618[],
-		Event619[],
-		Event620[],
-		Event621[],
-		Event622[],
-		Event623[],
-		Event624[],
-		Event625[],
-		Event626[],
-		Event627[],
-		Event628[],
-		Event629[],
-		Event630[],
-		Event631[],
-		Event632[],
-		Event633[],
-		Event634[],
-		Event635[],
-		Event636[],
-		Event637[],
-		Event638[],
-		Event639[],
-		Event640[],
-		Event641[],
-		Event642[],
-		Event643[],
-		Event644[],
-		Event645[],
-		Event646[],
-		Event647[],
-		Event648[],
-		Event649[],
-		Event650[],
-		Event651[],
-		Event652[],
-		Event653[],
-		Event654[],
-		Event655[],
-		Event656[],
-		Event657[],
-		Event658[],
-		Event659[],
-		Event660[],
-		Event661[],
-		Event662[],
-		Event663[],
-		Event664[],
-		Event665[],
-		Event666[],
-		Event667[],
-		Event668[],
-		Event669[],
-		Event670[],
-		Event671[],
-		Event672[],
-		Event673[],
-		Event674[],
-		Event675[],
-		Event676[],
-		Event677[],
-		Event678[],
-		Event679[],
-		Event680[],
-		Event681[],
-		Event682[],
-		Event683[],
-		Event684[],
-		Event685[],
-		Event686[],
-		Event687[],
-		Event688[],
-		Event689[],
-		Event690[],
-		Event691[],
-		Event692[],
-		Event693[],
-		Event694[],
-		Event695[],
-		Event696[],
-		Event697[],
-		Event698[],
-		Event699[],
-		Event700[],
-		Event701[],
-		Event702[],
-		Event703[],
-		Event704[],
-		Event705[],
-		Event706[],
-		Event707[],
-		Event708[],
-		Event709[],
-		Event710[],
-		Event711[],
-		Event712[],
-		Event713[],
-		Event714[],
-		Event715[],
-		Event716[],
-		Event717[],
-		Event718[],
-		Event719[],
-		Event720[],
-		Event721[],
-		Event722[],
-		Event723[],
-		Event724[],
-		Event725[],
-		Event726[],
-		Event727[],
-		Event728[],
-		Event729[],
-		Event730[],
-		Event731[],
-		Event732[],
-		Event733[],
-		Event734[],
-		Event735[],
-		Event736[],
-		Event737[],
-		Event738[],
-		Event739[],
-		Event740[],
-		Event741[],
-		Event742[],
-		Event743[],
-		Event744[],
-		Event745[],
-		Event746[],
-		Event747[],
-		Event748[],
-		Event749[],
-		Event750[],
-		Event751[],
-		Event752[],
-		Event753[],
-		Event754[],
-		Event755[],
-		Event756[],
-		Event757[],
-		Event758[],
-		Event759[],
-		Event760[],
-		Event761[],
-		Event762[],
-		Event763[],
-		Event764[],
-		Event765[],
-		Event766[],
-		Event767[],
-		Event768[],
-		Event769[],
-		Event770[],
-		Event771[],
-		Event772[],
-		Event773[],
-		Event774[],
-		Event775[],
-		Event776[],
-		Event777[],
-		Event778[],
-		Event779[],
-		Event780[],
-		Event781[],
-		Event782[],
-		Event783[],
-		Event784[],
-		Event785[],
-		Event786[],
-		Event787[],
-		Event788[],
-		Event789[],
-		Event790[],
-		Event791[],
-		Event792[],
-		Event793[],
-		Event794[],
-		Event795[],
-		Event796[],
-		Event797[],
-		Event798[],
-		Event799[],
-		Event800[],
-		Event801[],
-		Event802[],
-		Event803[],
-		Event804[],
-		Event805[],
-		Event806[],
-		Event807[],
-		Event808[],
-		Event809[],
-		Event810[],
-		Event811[],
-		Event812[],
-		Event813[],
-		Event814[],
-		Event815[],
-		Event816[],
-		Event817[],
-		Event818[],
-		Event819[],
-		Event820[],
-		Event821[],
-		Event822[],
-		Event823[],
-		Event824[],
-		Event825[],
-		Event826[],
-		Event827[],
-		Event828[],
-		Event829[],
-		Event830[],
-		Event831[],
-		Event832[],
-		Event833[],
-		Event834[],
-		Event835[],
-		Event836[],
-		Event837[],
-		Event838[],
-		Event839[],
-		Event840[],
-		Event841[],
-		Event842[],
-		Event843[],
-		Event844[],
-		Event845[],
-		Event846[],
-		Event847[],
-		Event848[],
-		Event849[],
-		Event850[],
-		Event851[],
-		Event852[],
-		Event853[],
-		Event854[],
-		Event855[],
-		Event856[],
-		Event857[],
-		Event858[],
-		Event859[],
-		Event860[],
-		Event861[],
-		Event862[],
-		Event863[],
-		Event864[],
-		Event865[],
-		Event866[],
-		Event867[],
-		Event868[],
-		Event869[],
-		Event870[],
-		Event871[],
-		Event872[],
-		Event873[],
-		Event874[],
-		Event875[],
-		Event876[],
-		Event877[],
-		Event878[],
-		Event879[],
-		Event880[],
-		Event881[],
-		Event882[],
-		Event883[],
-		Event884[],
-		Event885[],
-		Event886[],
-		Event887[],
-		Event888[],
-		Event889[],
-		Event890[],
-		Event891[],
-		Event892[],
-		Event893[],
-		Event894[],
 	];
 }

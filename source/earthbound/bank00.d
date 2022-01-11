@@ -4,6 +4,7 @@ module earthbound.bank00;
 import earthbound.commondefs;
 import earthbound.globals;
 import earthbound.hardware;
+import earthbound.actionscripts;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
@@ -288,14 +289,14 @@ void LoadMapAtSector(short x, short y) {
 	if (x04 != Unknown7E436E) {
 		Unknown7E4372 = TilesetTable[x04];
 		Decomp(&MapDataTilesetPtrTable[TilesetTable[x04]][0], &Unknown7F0000[0]);
-		while (Unknown7E0028 != 0) {}
+		while (Unknown7E0028.a != 0) {}
 		if (Unknown7EB4EF == 0) {
 			CopyToVram2(0, 0x7000, 0, &Unknown7F0000[0]);
 		} else {
 			CopyToVram2(0, 0x4000, 0, &Unknown7F0000[0]);
 		}
 	}
-	while (Unknown7E0028 != 0) {}
+	while (Unknown7E0028.a != 0) {}
 	LoadMapPalette(x04, x18);
 	UnknownC00480();
 	LoadSpecialSpritePalette();
@@ -541,7 +542,7 @@ void ReloadMapAtPosition(short x, short y) {
 	for (short i = -1; i != 31; i++) {
 		UnknownC00E16(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
 	}
-	while (Unknown7E0028 != 0) {}
+	while (Unknown7E0028.a != 0) {}
 	BG2_X_POS = cast(short)(Unknown7E4380 - 0x80);
 	BG1_X_POS = cast(short)(Unknown7E4380 - 0x80);
 	BG2_Y_POS = cast(short)(Unknown7E4382 - 0x70);
@@ -575,7 +576,7 @@ void LoadMapAtPosition(short x, short y) {
 	for (short i = 0; i < 60; i++) {
 		LoadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
 	}
-	while (Unknown7E0028 != 0) {}
+	while (Unknown7E0028.a != 0) {}
 	if (Unknown7EB4EF == 0) {
 		TM_MIRROR = 0x17;
 	}
@@ -2609,6 +2610,18 @@ void UnknownC052D4(short arg1) {
 	}
 }
 
+/// $C0546B
+short UnknownC0546B() {
+	short x10 = 0;
+	for (short i = 0; i != gameState.partyCount; i++) {
+		if (gameState.unknown96[i] > 4) {
+			continue;
+		}
+		x10 += PartyCharacters[gameState.unknown96[i]].level;
+	}
+	return x10;
+}
+
 /// $C054C9
 short UnknownC054C9(short arg1, short arg2) {
 	short y = Unknown7EE000[arg2 & 0x3F][arg1 & 0x3F];
@@ -3091,6 +3104,9 @@ short NPCCollisionCheck(short x, short y, short arg3) {
 
 /// $C06478
 void UnknownC06478();
+
+/// $C064A6
+void UnknownC064A6();
 
 /// $C064D4
 void UnknownC064D4() {
@@ -3802,6 +3818,9 @@ void UnknownC0777A() {
 	Unknown7E9F6B = -1;
 }
 
+/// $C0778A
+void UnknownC0778A();
+
 /// $C0780F
 short UnknownC0780F(short characterID, short walkingStyle, PartyCharacter* character) {
 	short y = 0;
@@ -4127,20 +4146,20 @@ void IRQNMICommon() {
 		MDMAEN = 1;
 		Unknown7E0099 += UnknownC08F98[x - 1].unknown0;
 	}
-	if ((Unknown7E0028 != 0) && (--Unknown7E002A < 0)) {
-		Unknown7E002A = Unknown7E0029;
+	if ((Unknown7E0028.a != 0) && (--Unknown7E002A < 0)) {
+		Unknown7E002A = Unknown7E0028.b;
 		ubyte a = 0;
-		if (((INIDISP_MIRROR & 0xF) + Unknown7E0028) < 0) {
+		if (((INIDISP_MIRROR & 0xF) + Unknown7E0028.a) < 0) {
 			HDMAEN_MIRROR = 0;
 			a = 0x80;
 		} else {
-			if (((INIDISP_MIRROR & 0xF) + Unknown7E0028) < 16) {
-				a = cast(ubyte)(((INIDISP_MIRROR & 0xF) + Unknown7E0028));
+			if (((INIDISP_MIRROR & 0xF) + Unknown7E0028.a) < 16) {
+				a = cast(ubyte)(((INIDISP_MIRROR & 0xF) + Unknown7E0028.a));
 				goto Unknown6;
 			}
 			a = 15;
 		}
-		Unknown7E0028 = 0;
+		Unknown7E0028.a = 0;
 		Unknown6:
 		INIDISP_MIRROR = a;
 	}
@@ -4472,7 +4491,7 @@ void* sbrk(ushort i) {
 void UnknownC08726() {
 	INIDISP_MIRROR = 0x80;
 	HDMAEN_MIRROR = 0;
-	Unknown7E0028 = 0;
+	Unknown7E0028.a = 0;
 	Unknown7E002B = 0;
 	while (Unknown7E002B == 0) {}
 	HDMAEN = 0;
@@ -4524,7 +4543,7 @@ void UnknownC087AB(ubyte arg1) {
 
 /// $C087CE
 void FadeInWithMosaic(short arg1, short arg2, short arg3) {
-	Unknown7E0028 = 0;
+	Unknown7E0028.a = 0;
 	INIDISP_MIRROR = 0;
 	while(true) {
 		MOSAIC_MIRROR = 0;
@@ -4542,7 +4561,7 @@ void FadeInWithMosaic(short arg1, short arg2, short arg3) {
 
 /// $C08814
 void FadeOutWithMosaic(short arg1, short arg2, short arg3) {
-	Unknown7E0028 = 0;
+	Unknown7E0028.a = 0;
 	while (true) {
 		MOSAIC_MIRROR = 0;
 		if ((INIDISP_MIRROR & 0x80) != 0) {
@@ -4566,22 +4585,22 @@ void FadeOutWithMosaic(short arg1, short arg2, short arg3) {
 
 /// $C0886C
 void FadeIn(ubyte arg1, ubyte arg2) {
-	Unknown7E0028 = arg1;
-	Unknown7E0029 = arg2;
+	Unknown7E0028.a = arg1;
+	Unknown7E0028.b = arg2;
 	Unknown7E002A = arg2;
 }
 
 /// $C0887A
 void FadeOut(ubyte arg1, ubyte arg2) {
-	Unknown7E0028 = cast(ubyte)((arg1^0xFF) + 1);
-	Unknown7E0029 = arg2;
+	Unknown7E0028.a = cast(ubyte)((arg1^0xFF) + 1);
+	Unknown7E0028.b = arg2;
 	Unknown7E002A = arg2;
 }
 
 /// $C0888B
 void UnknownC0888B() {
 	while (true) {
-		if (Unknown7E0028 == 0) {
+		if (Unknown7E0028.a == 0) {
 			return;
 		}
 		OAMClear();
@@ -6062,6 +6081,9 @@ void UnknownC09F3BEntry2();
 /// $C09F71
 void UnknownC09F71();
 
+/// $C09F82
+void ChooseRandom(short, ref const(ubyte)* arg1);
+
 /// $C09FA8
 void UnknownC09FA8();
 
@@ -6100,6 +6122,12 @@ void UnknownC09FAEEntry4() {
 	//nothing!
 }
 
+/// $C09FF1
+void UnknownC09FF1();
+
+/// $C0A00C
+void UnknownC0A00C();
+
 /// $C0A023
 void UnknownC0A023() {
 	EntityScreenXTable[ActionScript88 / 2] = cast(short)(EntityAbsXTable[ActionScript88 / 2] - BG1_X_POS);
@@ -6110,6 +6138,15 @@ void UnknownC0A023() {
 void UnknownC0A039() {
 	//nothing
 }
+
+/// $C0A03A
+void UnknownC0A03A();
+
+/// $C0A055
+void UnknownC0A055();
+
+/// $C0A0A0
+void UnknownC0A0A0();
 
 /// $C0A06C
 void UnknownC0A06C();
@@ -6228,6 +6265,18 @@ void UnknownC0A254(short arg1) {
 	EntityScreenXTable[arg1] = cast(short)(EntityAbsXTable[arg1] - BG1_X_POS);
 	EntityScreenYTable[arg1] = cast(short)(EntityAbsYTable[arg1] - BG1_Y_POS);
 }
+
+/// $C0A26B
+void UnknownC0A26B();
+
+/// $C0A360
+void UnknownC0A360();
+
+/// $C0A37A
+void UnknownC0A37A();
+
+/// $C0A384
+void UnknownC0A384();
 
 /// $C0A3A4
 // originally handwirtten assembly, id was actually an offset
@@ -6660,7 +6709,7 @@ void UnknownC0AAD5();
 void UnknownC0AAFD();
 
 /// $C0AA07
-void ActionScriptFadeOutWithMosaic(ref const(ubyte)* arg1) {
+void ActionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
 	short tmp1 = MovementDataRead16(arg1);
 	ActionScript94 = arg1;
 	short tmp2 = MovementDataRead16(arg1);
@@ -7598,19 +7647,70 @@ void UnknownC0C353();
 /// $C0C35D
 void UnknownC0C35D();
 
+/// $C0C3F9
+short UnknownC0C3F9() {
+	short x02 = cast(short)(gameState.leaderX.integer - EntityAbsXTable[CurrentEntitySlot]);
+	short x0E = cast(short)(gameState.leaderY.integer - EntityAbsYTable[CurrentEntitySlot]);
+	short x04 = (0 > x0E) ? (cast(short)-cast(int)x0E) : x0E;
+	x02 = (0 > x02) ? (cast(short)-cast(int)x02) : x02;
+	x0E = cast(short)(x02 + x04);
+	if (x0E > 0x80) {
+		return 3;
+	}
+	if (x0E > 0x50) {
+		return 2;
+	}
+	if (x0E > 0x40) {
+		return 1;
+	}
+	return 0;
+}
+
 /// $C0C48F
 void UnknownC0C48F();
 
 /// $C0C4AF
-void UnknownC0C4AF();
+short UnknownC0C4AF() {
+	if (UNKNOWN_30X2_TABLE_41[CurrentEntitySlot] != 0) {
+		return 0;
+	}
+	if (Unknown7E5D58 == 0) {
+		return UnknownC0C3F9();
+	}
+	return -1;
+}
 
 /// $C0C4F6
 short GetDirectionFromPlayerToEntity() {
 	return GetDirectionTo(EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot], gameState.leaderX.integer, gameState.leaderY.integer);
 }
 
+/// $C0C524
+short UnknownC0C524() {
+	if ((BattleEntryPointerTable[EntityTPTEntries[CurrentEntitySlot] & 0x7FFF].runAwayFlag != 0) && (getEventFlag(BattleEntryPointerTable[EntityTPTEntries[CurrentEntitySlot] & 0x7FFF].runAwayFlag) == BattleEntryPointerTable[EntityTPTEntries[CurrentEntitySlot] & 0x7FFF].runAwayFlagState)) {
+		return 1;
+	}
+	short x0E = UnknownC0546B();
+	if (x0E > EnemyConfigurationTable[EntityEnemyIDs[CurrentEntitySlot]].level * 10) {
+		return 1;
+	}
+	if ((x0E > EnemyConfigurationTable[EntityEnemyIDs[CurrentEntitySlot]].level * 8) && (Unknown7E3186[CurrentEntitySlot] >= 0xC0)) {
+		return 1;
+	}
+	if ((x0E > EnemyConfigurationTable[EntityEnemyIDs[CurrentEntitySlot]].level * 6) && (Unknown7E3186[CurrentEntitySlot] >= 0x80)) {
+		return 1;
+	}
+	return 0;
+}
+
 /// $C0C62B
-void UnknownC0C62B();
+short UnknownC0C62B() {
+	short x02 = 0;
+	if ((EntityTPTEntries[CurrentEntitySlot] < 0) && (UnknownC0C524() != 0)) {
+		x02 = short.min;
+	}
+	return cast(short)(UnknownC41EFF(EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot], EntityScriptVar6Table[CurrentTPTEntry], EntityScriptVar7Table[CurrentEntitySlot]) + x02);
+}
 
 /// $C0C682
 short GetDirectionRotatedClockwise(short arg1) {
@@ -7789,6 +7889,12 @@ void UnknownC0D59B();
 
 /// $C0D5B0
 void UnknownC0D5B0();
+
+/// $C0D7E0
+void UnknownC0D7E0();
+
+/// $C0D7F7
+void UnknownC0D7F7();
 
 /// $C0D77F
 void UnknownC0D77F();
@@ -7974,7 +8080,7 @@ void LoadDadPhone() {
 
 /// $C0DD0F
 void UnknownC0DD0F() {
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		OAMClear();
 		UnknownC09466();
 		UpdateScreen();

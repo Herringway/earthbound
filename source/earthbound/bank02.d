@@ -3014,6 +3014,7 @@ short BattleRoutine() {
 					DisplayInBattleText(TextBattleLostTheBattle.ptr);
 					x23 = 1;
 				}
+				// this should be an else if
 				if (CountChars(1) == 0) {
 					EnemiesAreDead:
 					x17 = 0;
@@ -3083,7 +3084,7 @@ short BattleRoutine() {
 	do {
 		WaitUntilNextFrame();
 		UnknownC2DB3F();
-	} while (Unknown7E0028 != 0);
+	} while (Unknown7E0028.a != 0);
 	UnknownC20293();
 	UnknownC08726();
 	UnknownC1DD5F();
@@ -3340,7 +3341,7 @@ short GetEnemyType(short id) {
 
 /// $C269DE
 void UnknownC269DE() {
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		WindowTick();
 	}
 }

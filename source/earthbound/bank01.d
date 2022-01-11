@@ -7303,7 +7303,7 @@ short FileSelectMenu(short arg1) {
 		Win_SetTextColor(0);
 	} else {
 		CorruptionCheck();
-		while (Unknown7E0028 != 0) {}
+		while (Unknown7E0028.a != 0) {}
 		ChangeMusic(Music.SetupScreen);
 		UnknownC11F5A(&UnknownC1ECD1);
 		CurrentSaveSlot = cast(ubyte)SelectionMenu(1);
