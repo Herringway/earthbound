@@ -712,6 +712,14 @@ void InitializeMap(short x, short y, short direction) {
 	UnknownC069AF();
 }
 
+/// $C019E2
+void UnknownC019E2();
+
+/// $C01A63
+void UnknownC01A63(short x, short y) {
+	UnknownC00E16(x, y);
+}
+
 /// $C01A69
 void InitializeMiscObjectData() {
 	for (short i = 0; i < 0x1E; i++) {
@@ -6062,6 +6070,13 @@ ushort MovementDataRead16(ref const(ubyte)* arg1) {
 	return a;
 }
 
+/// does not exist in original game
+void* MovementDataReadPtr(ref const(ubyte)* arg1) {
+	void* a = *cast(void**)&arg1[ActionScript80];
+	arg1 += (void*).sizeof;
+	return a;
+}
+
 /// $C09D9E
 void JumpToLoadedMovementPtr() {
 	Movement42LoadedPtr();
@@ -6482,10 +6497,16 @@ short SetSurfaceFlags(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A685
-void UnknownC0A685();
+void UnknownC0A685(short, ref const(ubyte)* arg2) {
+	short tmp = MovementDataRead16(arg2);
+	ActionScript94 = arg2;
+	UnknownC0A685Entry2(tmp, arg2);
+}
 
 /// $C0A685
-void UnknownC0A685Entry2();
+void UnknownC0A685Entry2(short arg1, ref const(ubyte)* arg2) {
+	UNKNOWN_30X2_TABLE_35[ActionScript88 / 2] = arg1;
+}
 
 /// $C0A691
 void UnknownC0A691();
@@ -6497,7 +6518,13 @@ void UnknownC0A6A2();
 void UnknownC0A6AD();
 
 /// $C0A6B8
-void UnknownC0A6B8();
+short UnknownC0A6B8() {
+	short tmp = 0;
+	if (EntityCollidedObjects[ActionScript88 / 2] >= 0) {
+		tmp--;
+	}
+	return tmp;
+}
 
 /// $C0A6DA
 short ClearCurrentEntityCollision(short, ref const(ubyte)* arg2) {
@@ -6578,22 +6605,36 @@ void UnknownC0A857();
 void UnknownC0A864();
 
 /// $C0A86F
-void UnknownC0A86F();
+void UnknownC0A86F(short, ref const(ubyte)* arg2) {
+	short tmp = MovementDataRead16(arg2);
+	ActionScript94 = arg2;
+	UnknownC46CC7(tmp);
+}
 
 /// $C0A87A
 void UnknownC0A87A();
 
 /// $C0A88D
-void UnknownC0A88D();
+void UnknownC0A88D(short, ref const(ubyte)* arg2) {
+	const(ubyte)* tmp = cast(const(ubyte)*)MovementDataReadPtr(arg2);
+	ActionScript94 = arg2;
+	UnknownC46E4F(tmp);
+}
 
 /// $C0A8A0
-void UnknownC0A8A0();
+void UnknownC0A8A0(short, ref const(ubyte)* arg2) {
+	const(ubyte)* tmp = cast(const(ubyte)*)MovementDataReadPtr(arg2);
+	ActionScript94 = arg2;
+	UnknownC466F0(tmp);
+}
 
 /// $C0A8B3
 void UnknownC0A8B3();
 
 /// $C0A8C6
-void UnknownC0A8C6();
+short UnknownC0A8C6() {
+	return UnknownC47143(0, 0);
+}
 
 /// $C0A8D1
 void UnknownC0A8D1();
@@ -6688,7 +6729,16 @@ void UnknownC0A9EB();
 void UnknownC0AA23();
 
 /// $C0AA3F
-void UnknownC0AA3F();
+void UnknownC0AA3F(short arg1, ref const(ubyte)* arg2) {
+	short x = (--arg1 == 0) ? 0x33 : 0xB3;
+	Unknown7E9E37 = cast(ubyte)MovementDataRead8(arg2);
+	ActionScript94 = arg2;
+	Unknown7E9E38 = cast(ubyte)MovementDataRead8(arg2);
+	ActionScript94 = arg2;
+	Unknown7E9E39 = cast(ubyte)MovementDataRead8(arg2);
+	ActionScript94 = arg2;
+	UnknownC42439(x);
+}
 
 /// $C0AA6E
 void UnknownC0AA6E();
@@ -8640,31 +8690,74 @@ void UnknownC0EBE0() {
 }
 
 /// $C0EC77
-void UnknownC0EC77();
+void UnknownC0EC77(short arg1) {
+	if (arg1 == 0) {
+		Decomp(&UnknownE1AE83[0], &Unknown7F0000[0]);
+	} else {
+		Decomp(&UnknownE1AEFD[0], &Unknown7F0000[0]);
+	}
+}
 
 /// $C0ECB7
-void UnknownC0ECB7();
+void UnknownC0ECB7() {
+	Unknown7E0030 = 0;
+	Decomp(&TitleScreenPalette[0], &palettes[0][0]);
+	UnknownC496F9();
+	memset(&palettes[0][0], 0, 0x100);
+	UnknownC496E7(0xA5, 0xFF);
+	Unknown7E0030 = 0x18;
+}
 
 /// $C0ED14
-void UnknownC0ED14();
+void UnknownC0ED14() {
+	memset(&palettes[0][0], 0xFF, 0x100);
+	Unknown7E0030 = 0x18;
+}
 
 /// $C0ED39
-void UnknownC0ED39();
+void UnknownC0ED39() {
+	memset(&palettes[0][0], 0, 0x100);
+	Unknown7E0030 = 0x18;
+}
 
 /// $C0ED5C
-void UnknownC0ED5C();
+void UnknownC0ED5C() {
+	Unknown7E0030 = 0;
+	Decomp(&TitleScreenPalette[0], &palettes[0][0]);
+	UnknownC0EC77(0);
+	memcpy(&palettes[8][0], &Unknown7F0000[0x1A0], 0x20);
+	memcpy(&palettes[7][0], &Unknown7F0000[0x260], 0x20);
+	Unknown7E0030 = 0x18;
+}
 
 /// $C0EDD1
-void UnknownC0EDD1();
+void UnknownC0EDD1() {
+	Unknown7E9641 = 2;
+}
 
 /// $C0EDDA
-void UnknownC0EDDA();
+void UnknownC0EDDA() {
+	short x16 = EntityScriptVar0Table[CurrentEntitySlot];
+	short x14 = EntityScriptVar1Table[CurrentEntitySlot];
+	short x02 = EntityScriptVar2Table[CurrentEntitySlot];
+	memcpy(&palettes[x14][0], &Unknown7F0000[x16 * 32], 0x20);
+	short x12 = cast(short)(x16 + 1);
+	if (x12 == x02) {
+		x12 = 0;
+	}
+	EntityScriptVar0Table[CurrentEntitySlot] = x12;
+	Unknown7E0030 = 0x18;
+}
 
 /// $C0EE47
-void UnknownC0EE47();
+void UnknownC0EE47() {
+	TM_MIRROR = 0x13;
+}
 
 /// $C0EE53
-void UnknownC0EE53();
+void UnknownC0EE53() {
+	EntitySpriteMapFlags[CurrentEntitySlot] &= 0x7FFF;
+}
 
 /// $C0EE68
 void LogoScreenLoad(short arg1) {
@@ -8836,10 +8929,16 @@ short GasStation() {
 }
 
 /// $C0F3B2
-void UnknownC0F3B2();
+void UnknownC0F3B2() {
+	Decomp(&GasStationPalette2[0], &palettes[0][0]);
+	UnknownC0856B(0x18);
+}
 
 /// $C0F3E8
-void UnknownC0F3E8();
+void UnknownC0F3E8() {
+	Decomp(&GasStationPalette[0], &palettes[0][0]);
+	UnknownC0856B(0x18);
+}
 
 /// $C0F41E
 void UnknownC0F41E() {

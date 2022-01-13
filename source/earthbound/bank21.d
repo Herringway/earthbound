@@ -203,6 +203,12 @@ immutable ubyte[] NintendoItoiPalette = cast(immutable(ubyte)[])import("intro/at
 /// $E1AE7C
 immutable ubyte[] UnknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
 
+/// $E1AE83
+immutable ubyte[] UnknownE1AE83 = cast(immutable(ubyte)[])import("E1AE83.bin.lzhal");
+
+/// $E1AEFD
+immutable ubyte[] UnknownE1AEFD = cast(immutable(ubyte)[])import("E1AEFD.bin.lzhal");
+
 /// $E1AF7D
 immutable ubyte[] TitleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
 
@@ -211,6 +217,9 @@ immutable ubyte[] TitleScreenGraphics = cast(immutable(ubyte)[])import("intro/ti
 
 /// $E1C6E5
 immutable ubyte[] UnknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
+
+/// $E1CDE1
+immutable ubyte[] TitleScreenPalette = cast(immutable(ubyte)[])import("intro/title_screen.pal.lzhal");
 
 /// $E1CE08
 immutable SpriteMap[][9] UnknownE1CF9D = [

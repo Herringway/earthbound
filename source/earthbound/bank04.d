@@ -11,6 +11,7 @@ import earthbound.bank03;
 import earthbound.bank07;
 import earthbound.bank08;
 import earthbound.bank0A;
+import earthbound.bank0C;
 import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank10;
@@ -565,13 +566,51 @@ short UnknownC4213F(short arg1, short arg2) {
 }
 
 /// $C423DC
-void UnknownC423DC();
+void UnknownC423DC() {
+	WH0 = 0x80;
+	WH2 = 0x80;
+	WH1 = 0x7F;
+	WH3 = 0x7F;
+	CGWSEL = 0x10;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+}
 
 /// $C4240A
-void UnknownC4240A();
+void UnknownC4240A() {
+	WH0 = 0;
+	WH2 = 0;
+	WH1 = 0xFF;
+	WH3 = 0xFF;
+	CGWSEL = 0x20;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+}
+
+/// $C42439
+void UnknownC42439(short arg1) {
+	CGADSUB = cast(ubyte)arg1;
+	FIXED_COLOUR_DATA = Unknown7E9E37 | 0x80;
+	FIXED_COLOUR_DATA = Unknown7E9E38 | 0x40;
+	FIXED_COLOUR_DATA = Unknown7E9E39 | 0x20;
+}
+
+/// $C4245D
+void UnknownC4245D(ubyte* arg1) {
+	DMAChannels[4].DMAP = 1;
+	DMAChannels[4].BBAD = 0x26;
+	DMAChannels[4].A1T = arg1;
+	WOBJSEL = 0xA0;
+	HDMAEN_MIRROR |= 0x10;
+}
 
 /// $C4248A
-void UnknownC4248A();
+void UnknownC4248A() {
+	HDMAEN_MIRROR |= 0x10;
+	WOBJSEL = 0;
+}
 
 /// $C4249A
 void UnknownC4249A(ubyte arg1, ubyte arg2) {
@@ -587,19 +626,63 @@ void UnknownC4249A(ubyte arg1, ubyte arg2) {
 }
 
 /// $C424D1
-void UnknownC424D1();
+void UnknownC424D1() {
+	WOBJSEL = 0x20;
+	WH0 = 0x80;
+	WH1 = 0x7F;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+	CGWSEL = 0x20;
+	CGADSUB = 0xB3;
+	COLDATA = 0xEF;
+}
 
 /// $C4257F
-void UnknownC4257F();
+void UnknownC4257F() {
+	HDMAEN_MIRROR &= ~0x10;
+}
 
 /// $C4258C
-void UnknownC4258C();
+void UnknownC4258C() {
+	WOBJSEL = 0xA0;
+	WH0 = 0x80;
+	WH2 = 0x80;
+	WH1 = 0x7F;
+	WH3 = 0x7F;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+	CGWSEL = 0x20;
+	CGADSUB = 0xB3;
+	COLDATA = 0xEF;
+}
+
+/// $C425CC
+void UnknownC425CC(ubyte* arg1) {
+	DMAChannels[4].DMAP = 1;
+	DMAChannels[4].BBAD = 0x26;
+	DMAChannels[4].A1T = arg1;
+	HDMAEN_MIRROR |= 0x10;
+}
 
 /// $C425F3
-void UnknownC425F3();
+void UnknownC425F3() {
+	HDMAEN_MIRROR &= ~0x10;
+}
+
+/// $C425FD
+void UnknownC425FD(ubyte* arg1) {
+	DMAChannels[5].DMAP = 1;
+	DMAChannels[5].BBAD = 0x28;
+	DMAChannels[5].A1T = arg1;
+	HDMAEN_MIRROR |= 0x20;
+}
 
 /// $C42624
-void UnknownC42624();
+void UnknownC42624() {
+	HDMAEN_MIRROR &= ~0x20;
+}
 
 /// $C42631
 void UnknownC42631(short arg1, short arg2) {
@@ -2777,23 +2860,60 @@ void UnknownC466C1(short arg1) {
 	UnknownC4343E(arg1);
 }
 
+/// $C466F0
+void UnknownC466F0(const(ubyte)* arg1) {
+	DisplayText(arg1);
+}
+
 /// $C46712
-void UnknownC46712();
+void UnknownC46712() {
+	EntityTickCallbackFlags[gameState.unknownA2[0]] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
+	for (short i = 0; i < gameState.partyCount; i++) {
+		EntitySpriteMapFlags[gameState.unknownA2[i]] |= 0x8000;
+	}
+}
 
 /// $C4675C
-void UnknownC4675C();
+void UnknownC4675C() {
+	EntityTickCallbackFlags[gameState.unknownA2[0]] &= 0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+	for (short i = 1; i < gameState.partyCount; i++) {
+		if (gameState.unknown96[i] == 9) {
+			continue;
+		}
+		EntitySpriteMapFlags[gameState.unknownA2[i]] &= 0x7FFF;
+	}
+}
 
 /// $C467B4
-void UnknownC467B4();
+short UnknownC467B4() {
+	return cast(short)((rand() & 0x1F) + 12);
+}
 
 /// $C467C2
-void UnknownC467C2();
+short UnknownC467C2() {
+	return cast(short)((0x100 - EntityScreenYTable[CurrentEntitySlot] / 4) + (rand() & 0x1F));
+}
 
 /// $C467E6
-void UnknownC467E6();
+void UnknownC467E6() {
+	for (short i = 0; i < MAX_ENTITIES; i++) {
+		if (EntityTPTEntrySprites[i] != 0x16F) {
+			continue;
+		}
+		EntityTickCallbackFlags[i] &= 0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+	}
+}
 
 /// $C4681A
-void UnknownC4681A();
+void UnknownC4681A() {
+	if (EntityTPTEntries[CurrentEntitySlot] == -1) {
+		return;
+	}
+	if (NPCConfig[EntityTPTEntries[CurrentEntitySlot]].talkText == null) {
+		return;
+	}
+	UnknownC064E3(8, QueuedInteractionPtr(&NPCConfig[EntityTPTEntries[CurrentEntitySlot]].talkText[0]));
+}
 
 /// $C46881
 void UnknownC46881(const(ubyte)* arg1) {
@@ -2802,49 +2922,151 @@ void UnknownC46881(const(ubyte)* arg1) {
 }
 
 /// $C468A9
-void UnknownC468A9();
+short UnknownC468A9() {
+	return pad_press[0];
+}
 
 /// $C468AF
-void UnknownC468AF();
+short UnknownC468AF() {
+	return pad_state[0];
+}
 
 /// $C468B5
-void UnknownC468B5();
+short UnknownC468B5(short arg1) {
+	short x0E = 0;
+	if (arg1 < EntityAbsXTable[CurrentEntitySlot]) {
+		x0E = 1;
+	}
+	return x0E;
+}
 
 /// $C468DC
-void UnknownC468DC();
+short UnknownC468DC(short arg1) {
+	short x0E = 0;
+	if (arg1 < EntityAbsYTable[CurrentEntitySlot]) {
+		x0E = 1;
+	}
+	return x0E;
+}
 
 /// $C46903
-void UnknownC46903();
+short UnknownC46903(short arg1) {
+	short x = 0;
+	if (arg1 > gameState.leaderY.integer) {
+		x = 1;
+	}
+	return x;
+}
 
 /// $C46914
-void UnknownC46914();
+short UnknownC46914() {
+	if (EntityTPTEntries[CurrentEntitySlot] == -1) {
+		return 4;
+	}
+	return NPCConfig[EntityTPTEntries[CurrentEntitySlot]].direction;
+}
 
 /// $C46957
-void UnknownC46957();
+void UnknownC46957(short arg1) {
+	if (EntityDirections[CurrentEntitySlot] != arg1) {
+		EntityDirections[CurrentEntitySlot] = arg1;
+		UnknownC0A443Entry2(CurrentEntitySlot);
+	}
+}
+
+/// $C46A5E
+immutable short[8] UnknownC46A5E = [
+	1,
+	1,
+	1,
+	5,
+	5,
+	5,
+	5,
+	1,
+];
 
 /// $C46A6E
-void UnknownC46A6E();
+short UnknownC46A6E() {
+	return UnknownC46A5E[gameState.leaderDirection];
+}
+
+/// $C46A7A
+immutable short[8] UnknownC46A7A = [
+	0,
+	2,
+	2,
+	2,
+	4,
+	6,
+	6,
+	6,
+];
+
+/// $C46A8A
+immutable short[8] UnknownC46A8A = [
+	0,
+	0,
+	2,
+	4,
+	4,
+	4,
+	6,
+	0,
+];
 
 /// $C46A9A
-void UnknownC46A9A();
+short UnknownC46A9A(short arg1) {
+	return UnknownC46A7A[arg1];
+}
+
+/// $C46AA3
+short UnknownC46AA3(short arg1) {
+	return UnknownC46A8A[arg1];
+}
 
 /// $C46ADB
-void UnknownC46ADB();
+ushort UnknownC46ADB() {
+	return UnknownC41EFF(EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot], EntityScriptVar6Table[CurrentEntitySlot], EntityScriptVar7Table[CurrentEntitySlot]);
+}
 
 /// $C46B0A
-void UnknownC46B0A();
+short UnknownC46B0A(short arg1) {
+	Unknown7E1A86[CurrentEntitySlot] = cast(short)((arg1 + 0x1000) / 0x2000);
+	return Unknown7E1A86[CurrentEntitySlot];
+}
 
 /// $C46B2D
-void UnknownC46B2D();
+short UnknownC46B2D(short arg1) {
+	return cast(short)(arg1 * 0x2000);
+}
 
 /// $C46B37
-void UnknownC46B37();
+short UnknownC46B37(short arg1) {
+	return (arg1 + 4) & 7;
+}
+
+immutable short[8] UnknownC46B41 = [
+	Direction.Right,
+	Direction.DownRight,
+	Direction.Down,
+	Direction.DownLeft,
+	Direction.Left,
+	Direction.UpLeft,
+	Direction.UpLeft,
+	Direction.UpRight,
+];
 
 /// $C46B51
-void UnknownC46B51();
+short UnknownC46B51(short arg1) {
+	return UnknownC46B41[(arg1 + 0x1000) / 0x2000];
+}
 
 /// $C46B65
-void UnknownC46B65();
+void UnknownC46B65() {
+	EntityScriptVar6Table[CurrentEntitySlot] = gameState.leaderX.integer;
+	EntityScriptVar7Table[CurrentEntitySlot] = gameState.leaderY.integer;
+}
 
 /// $C46BE9
 void GetPositionOfPartyMember(short arg1) {
@@ -2863,16 +3085,37 @@ void GetPositionOfPartyMember(short arg1) {
 }
 
 /// $C46C45
-void UnknownC46C45();
+void UnknownC46C45() {
+	EntityScriptVar0Table[CurrentEntitySlot] = EntityAbsXTable[CurrentEntitySlot];
+	EntityScriptVar1Table[CurrentEntitySlot] = EntityAbsYTable[CurrentEntitySlot];
+}
 
 /// $C46C87
-void UnknownC46C87();
+void UnknownC46C87() {
+	EntityAbsXTable[CurrentEntitySlot] = EntityScriptVar6Table[CurrentEntitySlot];
+	EntityAbsYTable[CurrentEntitySlot] = EntityScriptVar7Table[CurrentEntitySlot];
+}
+
+/// $C46CC7
+void UnknownC46CC7(short arg1) {
+	short x0E = UnknownC46028(arg1);
+	EntityAbsXTable[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityAbsYTable[CurrentEntitySlot] = EntityAbsYTable[x0E];
+}
 
 /// $C46D23
-void UnknownC46D23();
+void UnknownC46D23() {
+	EntityAbsXTable[CurrentEntitySlot] = cast(short)(rand() + BG1_X_POS + 0x70);
+	EntityAbsYTable[CurrentEntitySlot] = BG1_Y_POS;
+}
 
 /// $C46D4B
-void UnknownC46D4B();
+void UnknownC46D4B() {
+	EntityAbsXTable[CurrentEntitySlot] = cast(short)(PhotographerConfigTable[Unknown7E9E35].photographerX * 8);
+	EntityAbsYTable[CurrentEntitySlot] = cast(short)(PhotographerConfigTable[Unknown7E9E35].photographerY * 8);
+	EntityAbsYFractionTable[CurrentEntitySlot] = 0;
+	EntityAbsXFractionTable[CurrentEntitySlot] = 0;
+}
 
 /// $C46DAD
 void PrepareNewEntityAtExistingEntityLocation(short arg1) {
@@ -2906,7 +3149,14 @@ void PrepareNewEntity(short arg1, short arg2, short arg3) {
 }
 
 /// $C46E46
-void UnknownC46E46();
+void UnknownC46E46() {
+	Unknown7E9641 = 1;
+}
+
+/// $C46E4F
+void UnknownC46E4F(const(ubyte)* arg1) {
+	UnknownC064E3(8, QueuedInteractionPtr(arg1));
+}
 
 /// $C46E74
 void UnknownC46E74();
@@ -2915,7 +3165,61 @@ void UnknownC46E74();
 void UnknownC46EF8();
 
 /// $C47044
-void UnknownC47044();
+short UnknownC47044(short arg1) {
+	FixedPoint1616 x0E = UnknownC41FFF(arg1, UNKNOWN_30X2_TABLE_35[CurrentEntitySlot]);
+	short x14 = x0E.integer;
+	if (x14 < 0) {
+		EntityDeltaXTable[CurrentEntitySlot] = x14 >> 8;
+		EntityDeltaXFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) | 0xFF);
+	} else {
+		EntityDeltaXTable[CurrentEntitySlot] = (x14 >> 8) & 0xFF;
+		EntityDeltaXFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) & 0xFF00);
+	}
+	x14 = x0E.fraction;
+	if (x14 < 0) {
+		EntityDeltaYTable[CurrentEntitySlot] = x14 >> 8;
+		EntityDeltaYFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) | 0xFF);
+	} else {
+		EntityDeltaYTable[CurrentEntitySlot] = (x14 >> 8) & 0xFF;
+		EntityDeltaYFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) & 0xFF00);
+	}
+	return arg1;
+}
+
+/// $C47143
+short UnknownC47143(short arg1, short arg2) {
+	short x12 = cast(short)(EntityScriptVar6Table[CurrentEntitySlot] - EntityAbsXTable[CurrentEntitySlot]);
+	if (0 > x12) {
+		x12 = cast(short)-cast(int)x12;
+	} else {
+		x12 = x12; //...ok?
+	}
+	if (x12 < EntityScriptVar5Table[CurrentEntitySlot]) {
+		x12 = cast(short)(EntityScriptVar7Table[CurrentEntitySlot] - EntityAbsYTable[CurrentEntitySlot]);
+		if (0 > x12) {
+			x12 = cast(short)-cast(int)x12;
+		} else {
+			x12 = x12;
+		}
+		if (x12 < EntityScriptVar5Table[CurrentEntitySlot]) {
+			return 1;
+		}
+	}
+	x12 = UnknownC46ADB();
+	UnknownC47044(x12);
+	if (arg2 == 0) {
+		short x10 = UnknownC46B0A(x12);
+		if (arg1 != 0) {
+			x10 = UnknownC46B37(x10);
+		}
+		short x0E = EntityDirections[CurrentEntitySlot];
+		EntityDirections[CurrentEntitySlot] = x10;
+		if (UnknownC46AA3(x0E) != UnknownC46AA3(x10)) {
+			UnknownC0A443Entry2(CurrentEntitySlot);
+		}
+	}
+	return 0;
+}
 
 /// $C4733C
 void UnknownC4733C() {
@@ -2941,17 +3245,99 @@ void UnknownC474A8() {
 	);
 }
 
+/// $C47501
+void UnknownC47501(ubyte* arg1);
+
 /// $C476A5
-void UnknownC476A5();
+void UnknownC476A5() {
+	short x16;
+	if ((EntityScriptVar0Table[CurrentEntitySlot] & 1) != 0) {
+		x16 = 0;
+	} else {
+		x16 = 0x2FE;
+	}
+	UnknownC47501(&Unknown7F0000[x16]);
+	UnknownC425CC(&Unknown7F0000[x16]);
+	EntityScriptVar0Table[CurrentEntitySlot]++;
+}
 
 /// $C47705
-void UnknownC47705();
+void UnknownC47705() {
+	short x16;
+	if ((EntityScriptVar0Table[CurrentEntitySlot] & 1) != 0) {
+		x16 = 0x5FC;
+	} else {
+		x16 = 0x8FA;
+	}
+	UnknownC47501(&Unknown7F0000[x16]);
+	UnknownC425FD(&Unknown7F0000[x16]);
+	EntityScriptVar0Table[CurrentEntitySlot]++;
+}
+
+/// $C47866
+short UnknownC47866(short arg1, short arg2) {
+	short x0E = arg1;
+	if (0 > arg1) {
+		x0E = 0;
+	}
+	if (x0E > arg2) {
+		x0E = arg2;
+	}
+	return x0E;
+}
+
+/// $C4789E
+ubyte* UnknownC4789E(short arg1, short arg2, short arg3, ubyte* arg4) {
+	if (arg1 == 0) {
+		return arg4;
+	}
+	if (arg1 < 0x80) {
+		(arg4++)[0] = cast(ubyte)arg1;
+		(arg4++)[0] = cast(ubyte)arg2;
+		(arg4++)[0] = cast(ubyte)arg3;
+	} else {
+		(arg4++)[0] = 0x7F;
+		(arg4++)[0] = cast(ubyte)arg2;
+		(arg4++)[0] = cast(ubyte)arg3;
+		(arg4++)[0] = cast(ubyte)(arg1 - 0x7F);
+		(arg4++)[0] = cast(ubyte)arg2;
+		(arg4++)[0] = cast(ubyte)arg3;
+	}
+	return arg4;
+}
+
+/// $C47930
+void UnknownC47930(short arg1, short arg2, short arg3, short arg4) {
+	short x1A;
+	if ((Unknown7E9E3A & 1) != 0) {
+		x1A = 0;
+	} else {
+		x1A = 0x2FE;
+	}
+	short x18 = UnknownC47866(arg2, 0xE0);
+	short x16 = UnknownC47866(arg4, 0xE0);
+	short x04 = UnknownC47866(arg1, 0x100);
+	short x02 = UnknownC47866(arg3, 0x100);
+	UnknownC4789E(cast(short)(0xE0 - x16 - 1), 0x80, 0x7F, UnknownC4789E(cast(short)(x16 - x18), x04, x02, UnknownC4789E(x18, 0x80, 0x7F, &Unknown7F0000[x1A])))[0] = 0;
+	UnknownC4245D(&Unknown7F0000[x1A]);
+	Unknown7E9E3A++;
+}
 
 /// $C479E9
-void UnknownC479E9();
+void UnknownC479E9() {
+	short x10 = void; // whoops?
+	short x04 = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS);
+	short x12 = cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS);
+	short x02 = EntityScriptVar0Table[CurrentEntitySlot];
+	UnknownC47930(cast(short)(x04 - x02), x10, cast(short)(x04 + x02), cast(short)(x12 + x02));
+}
 
 /// $C47A27
-void UnknownC47A27();
+void UnknownC47A27() {
+	BG1_Y_POS = cast(short)(EntityAbsYTable[CurrentEntitySlot] - 0x70);
+	short x10 = cast(short)(EntityAbsYTable[gameState.currentPartyMembers] - (EntityAbsYTable[CurrentEntitySlot] - 0x70));
+	UnknownC47930(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
+}
 
 /// $C47C3F
 //definitely need to check this one over
@@ -3035,19 +3421,31 @@ void UndrawFlyoverText() {
 }
 
 /// $C48BDA
-void UnknownC48BDA();
+void UnknownC48BDA() {
+	UnknownC2DB3F();
+}
 
 /// $C48BE1
-void UnknownC48BE1();
+void UnknownC48BE1() {
+	EntityScreenXTable[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS);
+	EntityScreenYTable[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS);
+}
 
 /// $C48C02
-void UnknownC48C02();
+void UnknownC48C02() {
+	EntityScreenXTable[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS + EntityScriptVar0Table[CurrentEntitySlot]);
+	EntityScreenYTable[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + EntityScriptVar1Table[CurrentEntitySlot]);
+}
 
 /// $C48C2B
-void UnknownC48C2B();
+void UnknownC48C2B() {
+	CenterScreen(EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]);
+}
 
 /// $C48C3E
-void UnknownC48C3E();
+void UnknownC48C3E() {
+	CenterScreen(cast(short)(EntityAbsXTable[CurrentEntitySlot] + EntityScriptVar0Table[CurrentEntitySlot]), cast(short)(EntityAbsYTable[CurrentEntitySlot] + EntityScriptVar1Table[CurrentEntitySlot]));
+}
 
 /// $C48C59
 immutable short[8] UnknownC48C59 = [ 0x0800, 0x0900, 0x0100, 0x0500, 0x0400, 0x0600, 0x0200, 0x0A00 ];
@@ -5153,31 +5551,82 @@ short Spawn() {
 }
 
 /// $C47269
-void UnknownC47269();
+short UnknownC47269() {
+	if (EntityAbsXTable[CurrentEntitySlot] < EntityScriptVar0Table[CurrentEntitySlot]) {
+		return 3;
+	}
+	if (EntityAbsXTable[CurrentEntitySlot] > EntityScriptVar1Table[CurrentEntitySlot]) {
+		return 7;
+	}
+	if (EntityAbsYTable[CurrentEntitySlot] < EntityScriptVar2Table[CurrentEntitySlot]) {
+		return 5;
+	}
+	if (EntityAbsYTable[CurrentEntitySlot] > EntityScriptVar3Table[CurrentEntitySlot]) {
+		return 1;
+	}
+	return 0;
+}
 
 /// $C4730E
-void UnknownC4730E();
+void UnknownC4730E() {
+	EntityDeltaYTable[CurrentEntitySlot] /= 2;
+}
 
 /// $C47333
-void UnknownC47333();
+short UnknownC47333() {
+	return gameState.partyCount;
+}
 
 /// $C4734C
-void UnknownC4734C();
+short UnknownC4734C(short arg1) {
+	UnknownC01A63(BG1_X_POS / 8, arg1);
+	return arg1;
+}
 
 /// $C47369
-void UnknownC47369();
+void UnknownC47369() {
+	UnknownC019E2();
+}
+
+/// $C473D0
+void UnknownC473D0(short arg1, short arg2);
+
+/// $C4746B
+void UnknownC4746B(short arg1) {
+	for (short i = 0; i < 16; i++) {
+		UnknownC473D0(i, arg1);
+	}
+	Unknown7E0030 = 0x18;
+}
 
 /// $C47499
-void UnknownC47499();
+void UnknownC47499() {
+	UnknownC4746B(EntityScriptVar0Table[CurrentEntitySlot]);
+}
 
 /// $C47A6B
-void UnknownC47A6B();
+void UnknownC47A6B() {
+	EntityAbsYTable[CurrentEntitySlot] = cast(short)(EntityScriptVar7Table[CurrentEntitySlot] - (EntityAbsYTable[CurrentEntitySlot] - EntityScriptVar7Table[CurrentEntitySlot]));
+}
 
 /// $C47A9E
-void UnknownC47A9E();
+void UnknownC47A9E() {
+	Decomp(&AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].ptr[0], &Unknown7F0000[0]);
+	CopyToVram2(0, AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown4, 0x6000, &Unknown7F0000[0]);
+	memcpy(&palettes[0][0], &Unknown7F0000[AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown4], 8);
+	Unknown7E0030 = 0x18;
+	BG3_Y_POS = 0xFFFF;
+}
 
 /// $C47B77
-void UnknownC47B77();
+short UnknownC47B77() {
+	BG3_Y_POS = 0xFFFF;
+	CopyToVram(0, 0x700, 0x7C00, &Unknown7F0000[8 + AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown4 + EntityScriptVar1Table[CurrentEntitySlot] * 0x700]);
+	if (EntityScriptVar1Table[CurrentEntitySlot] + 1 == AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown6) {
+		return 0;
+	}
+	return AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown7;
+}
 
 /// $C4880C
 void UnknownC4880C();
@@ -5287,25 +5736,56 @@ void UnknownC4C91A(short arg1, short arg2) {
 }
 
 /// $C4978E
-void UnknownC4978E();
+void UnknownC4978E() {
+	memcpy(&Unknown7E4476[0][0], &palettes[0][0], 0x200);
+}
 
 /// $C4981F
-void UnknownC4981F();
+void UnknownC4981F() {
+	CopyToVram(3, 0x800, 0x7C00, &UnknownC40BE8[0]);
+}
 
 /// $C49841
-void UnknownC49841();
+void UnknownC49841() {
+	UnknownC2EA15(1);
+}
 
 /// $C4CB4F
-void UnknownC4CB4F();
+void UnknownC4CB4F() {
+	Unknown7EB4AAEntry* x06 = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++) {
+		EntitySpriteMapFlags[x06.unknown0] &= 0xBFFF;
+		x06++;
+	}
+}
 
 /// $C4CB8F
-void UnknownC4CB8F();
+void UnknownC4CB8F() {
+	Unknown7EB4AAEntry* x06 = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++) {
+		if (x06.unknown4 == 1) {
+			EntityAnimationFrames[x06.unknown0] = 0;
+		}
+		UnknownC0A443Entry2(x06.unknown0);
+		x06++;
+	}
+}
 
 /// $C4CBE3
-void UnknownC4CBE3();
+void UnknownC4CBE3() {
+	Unknown7EB4AAEntry* x06 = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++) {
+		if (x06.unknown4 == 1) {
+			EntityAnimationFrames[x06.unknown0] = -1;
+		}
+		x06++;
+	}
+}
 
 /// $C4CC2C
-void UnknownC4CC2C();
+void UnknownC4CC2C() {
+	// wow. nothing!
+}
 
 /// $C4CC2F
 void UnknownC4CC2F();
@@ -5314,7 +5794,12 @@ void UnknownC4CC2F();
 void UnknownC4CD44();
 
 /// $C4CEB0
-void UnknownC4CEB0();
+void UnknownC4CEB0() {
+	ushort* x06 = cast(ushort*)&Unknown7F0000[0x7F00];
+	for (short i = 0; i < 0x40; i++) {
+		(x06++)[0] = 0;
+	}
+}
 
 /// $C4CED8
 void UnknownC4CED8();

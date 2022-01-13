@@ -6129,6 +6129,13 @@ union Unknown7E0028Union {
 	}
 }
 
+struct AnimationSequence {
+	immutable(ubyte)[] ptr;
+	ushort unknown4;
+	ubyte unknown6;
+	ubyte unknown7;
+}
+
 //helper funcs not in the original game
 
 ubyte[length] EBString(size_t length)(string str) {

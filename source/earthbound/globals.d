@@ -410,8 +410,7 @@ __gshared LoadedAnimatedTiles[8] OverworldTilesetAnim; //$43DC
 __gshared LoadedOverworldPaletteAnimation OverworldPaletteAnim; //$445C
 __gshared short LoadedAnimatedTileCount; /// $4472
 __gshared short Unknown7E4474; /// $4474
-__gshared short[16] Unknown7E4476; /// $4476 - might be more
-
+__gshared short[16][16] Unknown7E4476; /// $4476
 __gshared short Unknown7E4676; /// $4676
 
 __gshared short Unknown7E467A; /// $467A
@@ -656,7 +655,10 @@ __gshared ushort EntityPreparedYCoordinate; /// $9E2F
 __gshared ushort EntityPreparedDirection; /// $9E31
 __gshared ushort Unknown7E9E33; /// $9E33
 __gshared short Unknown7E9E35; /// $9E35
-
+__gshared ubyte Unknown7E9E37; /// $9E37
+__gshared ubyte Unknown7E9E38; /// $9E38
+__gshared ubyte Unknown7E9E39; /// $9E39
+__gshared short Unknown7E9E3A; /// $9E3A
 __gshared OverworldTask[4] OverworldTasks; /// $9E3C
 
 __gshared ushort DadPhoneTimer; /// $9E54
