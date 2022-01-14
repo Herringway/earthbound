@@ -442,7 +442,7 @@ __gshared short Unknown7E4A8E; //$4A8E
 __gshared short Unknown7E4A90; //$4A90
 __gshared short Unknown7E4A92; //$4A92
 __gshared short Unknown7E4A94; //$4A94
-__gshared short Unknown7E4A96; //$4A96
+__gshared VecYX[20][10] Unknown7E4A96; //$4A96
 
 __gshared short TouchedEnemy; /// $4D86
 
@@ -858,12 +858,14 @@ __gshared short Unknown7EB4A6; /// $B4A6
 __gshared short Unknown7EB4A8; /// $B4A8
 __gshared Unknown7EB4AAEntry* Unknown7EB4AA; /// $B4AA
 __gshared short Unknown7EB4AE; /// $B4AE
-
 __gshared short Unknown7EB4B0; /// $B4B0
 __gshared short Unknown7EB4B2; /// $B4B2
 __gshared short Unknown7EB4B4; /// $B4B4
 __gshared ubyte Unknown7EB4B6; /// $B4B6
-
+__gshared ubyte Unknown7EB4B8; /// $B4B8
+__gshared ubyte Unknown7EB4BA; /// $B4BA
+__gshared ubyte Unknown7EB4BC; /// $B4BC
+__gshared short*[8] Unknown7EB4BE; /// $B4BE
 __gshared ubyte Unknown7EB4CE; /// $B4CE
 __gshared short Unknown7EB4CF; /// $B4CF
 __gshared short Unknown7EB4D1; /// $B4D1
@@ -919,11 +921,8 @@ __gshared ubyte[0x800] Unknown7EB800;
 __gshared ubyte[0x2000] Unknown7EC000;
 
 __gshared ubyte[64][64] Unknown7EE000;
-__gshared ushort[16][16] Unknown7EF000;
-__gshared PathCtx Unknown7EF200;
-__gshared ubyte[0xC00] Unknown7EF400;
-__gshared ubyte[0x8000] Unknown7F0000;
-__gshared ubyte[0x8000] Unknown7F8000;
+__gshared Unknown7EF000Stuff Unknown7EF000;
+__gshared ubyte[0x10000] Unknown7F0000;
 __gshared const(ubyte[4][4])*[0x400] TileCollisionBuffer; /// $7FF800
 
 __gshared ubyte[0x8000] IntroBG2Buffer; /// $8000 - this seems to overlap with other stuff...?
@@ -932,6 +931,7 @@ __gshared ubyte[0x8000] IntroBG2Buffer; /// $8000 - this seems to overlap with o
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
 
 __gshared ubyte ActionScript00; /// $00
+__gshared short ActionScript00s; /// $00
 __gshared ubyte ActionScript02; /// $02
 __gshared const(ubyte)* ActionScript02p; /// $02
 __gshared const(OverlayScript)* ActionScript02Overlay; /// $02

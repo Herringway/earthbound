@@ -37,6 +37,12 @@ void DisplayFaultyGamepakScreen() {
 /// $C30186
 immutable NessPajamaFlag = EventFlag.NessPajamas;
 
+/// $C3DFE8
+immutable ubyte[8] UnknownC3DFE8 = [1, 1, 1, 0, 1, 1, 0, 0];
+
+/// $C3DFF0 - unused?
+immutable short[17] UnknownC3DFF0 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
+
 /// $C3E012
 immutable CharacterInitialEntityDataEntry[17] CharacterInitialEntityData = [
 	CharacterInitialEntityDataEntry(OverworldSprite.Ness, OverworldSprite.LilNess, ActionScript.Unknown002, 0x0018),

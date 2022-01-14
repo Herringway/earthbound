@@ -16,6 +16,7 @@ import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank10;
 import earthbound.bank15;
+import earthbound.bank17;
 import earthbound.bank18;
 import earthbound.bank20;
 import earthbound.bank21;
@@ -5383,7 +5384,7 @@ void UnknownC4C2DE() {
 	SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	Decomp(&UnknownE1CFAF[0], &Unknown7F0000[0]);
 	if (gameState.partyMembers[0] == 3) {
-		CopyToVram(0, 0x8000, 0, &Unknown7F8000[0]);
+		CopyToVram(0, 0x8000, 0, &Unknown7F0000[0x8000]);
 	} else {
 		CopyToVram(0, 0x8000, 0, &Unknown7F0000[0]);
 	}
@@ -5566,6 +5567,9 @@ short UnknownC47269() {
 	}
 	return 0;
 }
+
+/// $C472A8
+void UnknownC472A8(short arg1);
 
 /// $C4730E
 void UnknownC4730E() {
@@ -6299,14 +6303,122 @@ void DecompNintendoPresentation() {
 	UnknownC0856B(0x18);
 }
 
+/// $C4DE78
+immutable UnknownC4DE78Entry[8] UnknownC4DE78 = [
+	UnknownC4DE78Entry(151, 48),
+	UnknownC4DE78Entry(387, 1013),
+	UnknownC4DE78Entry(35, 484),
+	UnknownC4DE78Entry(88, 668),
+	UnknownC4DE78Entry(479, 520),
+	UnknownC4DE78Entry(445, 779),
+	UnknownC4DE78Entry(843, 600),
+	UnknownC4DE78Entry(766, 1228),
+];
+
 /// $C4DE98
-void UnknownC4DE98();
+void UnknownC4DE98() {
+	Unknown7EB4B8 = 0;
+	Unknown7EB4BA = 0;
+	Unknown7EB4BC = 0;
+	LoadedAnimatedTileCount = 0;
+	Unknown7E4474 = 0;
+	for (short i = 0; i < 8; i++) {
+		Unknown7EB4BE[i] = null;
+	}
+	TM_MIRROR = 0x10;
+}
 
 /// $C4DED0
-void UnknownC4DED0();
+void UnknownC4DED0() {
+	SetBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0x6000);
+	TM_MIRROR = 0x11;
+}
+
+/// $C4DEE9
+void UnknownC4DEE9(short arg1, short arg2) {
+	UnknownC005E7();
+	memcpy(&palettes[8][0], &SpriteGroupPalettes[0], 0x100);
+	LoadMapPalette(arg1 / 8, arg1 & 7);
+	UnknownC00480();
+	Unknown7E0030 = 0;
+	memcpy(&Unknown7F0000[0x4000 + arg2 * 0x200], &palettes[0][0], 0x100);
+}
+
+/// $C4DF7D
+void UnknownC4DF7D(short arg1, short arg2, short arg3) {
+	arg1 -= 16;
+	arg2 -= 14;
+	memset(&Unknown7EF000.Unknown7EF000Alt[0], 0, 0x800);
+	ushort* x06 = cast(ushort*)&Unknown7F0000[arg3 * 0x800];
+	for (short i = 0; i < MAX_ENTITIES; i++) {
+		for (short j = 0; j < 0x20; j++) {
+			short x0F;
+			if (GlobalMapTilesetPaletteData[(i + arg2) / 16][(j + arg1) / 32] / 8 == Unknown7E436E) {
+				x0F = UnknownC0A156F((j + arg1) / 4, (i + arg2) / 4);
+			} else {
+				x0F = 0;
+			}
+			Unknown7EF000.Unknown7EF000Alt[Unknown7F0000[0x8000 + (((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
+			(x06++)[0] = Unknown7F0000[0x8000 + (((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
+		}
+	}
+}
+
+/// $C4E08C
+void UnknownC4E08C(short arg1) {
+	for (short i = 0; i < 0x400; i++) {
+		if (Unknown7EF000.Unknown7EF000Alt[i] == 0) {
+			continue;
+		}
+		CopyToVram(0, 0x20, (Unknown7EB4B8 * 16 + 0x6000) & 0x7FFF, &Unknown7F0000[0x8000 + i * 32]);
+		Unknown7EF000.Unknown7EF000Alt[i] = Unknown7EB4B8;
+		Unknown7EB4B8++;
+		Unknown7EB4BC++;
+	}
+	ushort* x06 = (cast(ushort*)&Unknown7F0000[0x800 * arg1]);
+	for (short i = 0; i < 0x3C0; i++) {
+		ushort x14 = x06[0];
+		x06[0] = Unknown7EF000.Unknown7EF000Alt[x14 & 0x3FF] | (x14 & 0xFC00);
+		x06++;
+	}
+}
+
+/// $C4E13E
+void UnknownC4E13E(short arg1, short arg2, short arg3) {
+	Unknown7EB4BC = 0;
+	short x1A = GlobalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
+	Unknown7E436E = GlobalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
+	UnknownC4DEE9(x1A, arg3);
+	Decomp(&MapDataTileArrangementPtrTable[TilesetTable[x1A]][0], &Unknown7F0000[0x8000]);
+	UnknownC4DF7D(arg1, arg2, arg3);
+	Decomp(&MapDataTilesetPtrTable[TilesetTable[x1A]][0], &Unknown7F0000[0x8000]);
+	UnknownC4E08C(arg3);
+	Unknown7EB4BA += Unknown7EB4BC;
+}
+
+/// $C4E281
+void UnknownC4E281(short arg1) {
+	if (Unknown7EB4BE[arg1] == null) {
+		UnknownC4E13E(UnknownC4DE78[arg1].unknown0, UnknownC4DE78[arg1].unknown2, arg1);
+	}
+}
 
 /// $C4E2D7
-void UnknownC4E2D7();
+void UnknownC4E2D7(short arg1) {
+	short x02 = arg1 & 7;
+	if (Unknown7EB4BE[x02] == null) {
+		UnknownC4E281(x02);
+		WaitUntilNextFrame();
+	}
+	UnknownC08F8B();
+	CopyToVram(0, 0x780, 0x3800, &Unknown7F0000[x02 * 0x800]);
+	memcpy(&palettes[0][0], &Unknown7F0000[0x4000 + x02 * 0x200], 0x100);
+	Unknown7E0030 = 8;
+	Unknown7E4376 = 0;
+	Unknown7E4374 = 0;
+	BG1_Y_POS = 0;
+	BG1_X_POS = 0;
+}
 
 /// $C4E366 - some debugging code deleted from earthbound
 void UnknownC4E366() {
@@ -6372,13 +6484,29 @@ void UnknownC4E369() {
 }
 
 /// $C4E4DA
-void UnknownC4E4DA();
+void UnknownC4E4DA(short arg1) {
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(arg1 * 8 + BG3_Y_POS);
+}
 
 /// $C4E4F9
-void UnknownC4E4F9();
+short UnknownC4E4F9() {
+	short x0E = 0;
+	if (EntityScriptVar0Table[CurrentEntitySlot] <= BG3_Y_POS) {
+		x0E = 1;
+	}
+	return x0E;
+}
 
 /// $C4E51E
-void UnknownC4E51E();
+void UnknownC4E51E() {
+	ubyte* x06 = &Unknown7F0000[0x7FFE];
+	BG3_Y_POS = EntityAbsYTable[CurrentEntitySlot];
+	if (EntityScriptVar7Table[CurrentEntitySlot] < EntityAbsYTable[CurrentEntitySlot]) {
+		EntityScriptVar7Table[CurrentEntitySlot] += 8;
+		x06[0] = 0;
+		CopyToVram(3, 0x40, cast(ushort)((((BG3_Y_POS / 8) - 1) & 0x1F) * 32 + 0x7C00), x06);
+	}
+}
 
 /// $C4E583
 void UnknownC4E583(ubyte* arg1, short arg2, short arg3) {
@@ -6439,10 +6567,19 @@ void UnknownC4E7AE() {
 }
 
 /// $C4EC6E
-void UnknownC4EC6E();
+void UnknownC4EC6E(short arg1) {
+	memcpy(&palettes[12][0], &Unknown7F0000[0x7000 + arg1 * 32], 0x20);
+	Unknown7E0030 = 0x10;
+}
 
 /// $C4ECE7
-void UnknownC4ECE7();
+short UnknownC4ECE7() {
+	short x0E = 0;
+	if (BG3_Y_POS - 8 < EntityAbsYTable[CurrentEntitySlot]) {
+		x0E = 1;
+	}
+	return x0E;
+}
 
 /// $C4ED0E
 void UnknownC4ED0E() {

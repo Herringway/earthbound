@@ -254,7 +254,7 @@ enum Music {
 	TESSIE = 86,
 	CITY_BUS = 87,
 	FUZZY_PICKLES = 88,
-	DELIVERY = 89,
+	Delivery = 89,
 	RETURN_TO_YOUR_BODY = 90,
 	PHASE_DISTORTER_TIME_TRAVEL = 91,
 	COFFEE_BREAK = 92,
@@ -5313,8 +5313,9 @@ struct TimedDelivery {
 	short unknown6; //6
 	ushort deliveryTime; //8
 	const(ubyte)[] textPointer1; //10
-	const(ubyte)[] textPointer2; //14
-	ubyte[4] unknown18; //18
+	const(ubyte)[] textPointer2; //13
+	short unknown18; //16
+	short unknown20; //18
 }
 
 union ItemParameters {
@@ -6135,6 +6136,21 @@ struct AnimationSequence {
 	ubyte unknown6;
 	ubyte unknown7;
 }
+
+struct UnknownC4DE78Entry {
+	short unknown0;
+	short unknown2;
+}
+
+union Unknown7EF000Stuff {
+	struct {
+		ushort[16][16] Unknown7EF000;
+		PathCtx Unknown7EF200;
+		ubyte[0xC00] Unknown7EF400;
+	}
+	ushort[0x400] Unknown7EF000Alt;
+}
+
 
 //helper funcs not in the original game
 

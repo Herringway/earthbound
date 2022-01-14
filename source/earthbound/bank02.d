@@ -6880,7 +6880,7 @@ void LoadEnemyBattleSprites() {
 	SetBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	SetOAMSize(0x61);
-	CopyToVram(3, 0x800, 0x7C00, &Unknown7F8000[0]);
+	CopyToVram(3, 0x800, 0x7C00, &Unknown7F0000[0x8000]);
 }
 
 /// $C2C92D
@@ -7417,13 +7417,13 @@ void UnknownC2E0E7() {
 /// $C2E116
 void ShowPSIAnimation(short arg1) {
 	if (LoadedBGDataLayer1.Bitdepth == 2) {
-		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F8000[0]);
-		CopyToVram2(0, 0x1000, 0, &Unknown7F8000[0]);
+		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0x8000]);
+		CopyToVram2(0, 0x1000, 0, &Unknown7F0000[0x8000]);
 		Unknown7E1BCA = &palettes[3][0];
 	} else {
 		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0]);
 		ushort* x06 = cast(ushort*)&Unknown7F0000[0];
-		ushort* x0A = cast(ushort*)&Unknown7F8000[0];
+		ushort* x0A = cast(ushort*)&Unknown7F0000[0x8000];
 		for (short i = 0; i < 0x100; i++) {
 			(x0A++)[0] = (x06++)[0];
 			(x0A++)[0] = (x06++)[0];
@@ -7821,7 +7821,7 @@ void UnknownC2EAEA(short arg1) {
 	Unknown7EAAC6[Unknown7EAAB4] = cast(ubyte)x22;
 	Unknown7EAACE[Unknown7EAAB4] = cast(ubyte)x24;
 	Unknown7EAAB4++;
-	ubyte* x1A = &Unknown7F8000[0];
+	ubyte* x1A = &Unknown7F0000[0x8000];
 	Decomp(&BattleSpritePointers[arg1].sprite[0], x1A);
 	short y = cast(short)(x24 * x22);
 	while (--y != 0) {
@@ -8300,4 +8300,9 @@ void UnknownC2FEF9(short type) {
 }
 
 /// $C2FF9A
-void UnknownC2FF9A();
+short UnknownC2FF9A() {
+	if ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) >= 3) {
+		return 1;
+	}
+	return 0;
+}
