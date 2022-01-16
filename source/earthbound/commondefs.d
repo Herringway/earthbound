@@ -6000,8 +6000,8 @@ struct Unknown7EB4AAEntry {
 	short unknown4;
 	short unknown6;
 	short unknown8;
-	short unknown10;
-	short unknown12;
+	ubyte* unknown10;
+	ubyte* unknown12;
 	short unknown14;
 	short unknown16;
 	short unknown18;

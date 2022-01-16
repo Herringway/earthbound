@@ -25,10 +25,16 @@ import earthbound.globals;
 import core.stdc.string;
 
 /// $C40015
-void UnknownC40015();
+short UnknownC40015() {
+	EntityAnimationFrames[ActionScript88 / 2] = 0;
+	UnknownC0A443Entry3();
+	return UnknownC0C6B6();
+}
 
 /// $C40023
-void UnknownC40023();
+void UnknownC40023() {
+	EntitySleepFrames[ActionScript8A / 2] = CurrentEntitySlot & 0xF;
+}
 
 /// $C40B51
 void UnknownC40B51() {
@@ -148,159 +154,6 @@ immutable OverlayScript[5] EntityOverlayRipple;
 
 ///
 immutable OverlayScript[5] EntityOverlayBigRipple;
-
-/// $C40F18
-immutable ubyte[0] UnknownC40F18;
-
-/// $C40F4A
-immutable ubyte[0] UnknownC40F4A;
-
-/// $C40F59
-immutable ubyte[0] UnknownC40F59;
-
-immutable ubyte[0] Event502;
-
-immutable ubyte[0] Event503;
-
-immutable ubyte[0] Event504;
-
-immutable ubyte[0] Event505;
-
-immutable ubyte[0] Event506;
-
-immutable ubyte[0] Event507;
-
-immutable ubyte[0] Event508;
-
-immutable ubyte[0] Event509;
-
-immutable ubyte[0] Event510;
-
-immutable ubyte[0] Event511;
-
-immutable ubyte[0] Event512;
-
-immutable ubyte[0] Event513;
-
-immutable ubyte[0] Event514;
-
-immutable ubyte[0] Event515;
-
-immutable ubyte[0] Event516;
-
-immutable ubyte[0] Event517;
-
-immutable ubyte[0] Event518;
-
-immutable ubyte[0] Event519;
-
-immutable ubyte[0] Event520;
-
-immutable ubyte[0] Event521;
-
-immutable ubyte[0] Event522;
-
-immutable ubyte[0] Event523;
-
-immutable ubyte[0] Event524;
-
-immutable ubyte[0] Event525;
-
-immutable ubyte[0] Event526;
-
-immutable ubyte[0] Event527;
-
-immutable ubyte[0] Event528;
-
-immutable ubyte[0] Event529;
-
-immutable ubyte[0] Event530;
-
-immutable ubyte[0] Event534;
-
-/// $C41036
-immutable ubyte[0] UnknownC41036;
-
-/// $C4116C
-immutable ubyte[0] UnknownC4116C;
-
-/// $C4119D
-immutable ubyte[0] UnknownC4119D;
-
-/// $C411EB
-immutable ubyte[0] UnknownC411EB;
-
-/// $C4121F
-immutable ubyte[0] UnknownC4121F;
-
-/// $C41253
-immutable ubyte[0] UnknownC41253;
-
-/// $C41382
-immutable ubyte[0] UnknownC41382;
-
-/// $C413D6
-immutable ubyte[0] UnknownC413D6;
-
-/// $C41402
-immutable ubyte[0] UnknownC41402;
-
-/// $C4144C
-immutable ubyte[0] UnknownC4144C;
-
-/// $C4152A
-immutable ubyte[0] UnknownC4152A;
-
-/// $C4154E
-immutable ubyte[0] UnknownC4154E;
-
-/// $C4158A
-immutable ubyte[0] UnknownC4158A;
-
-/// $C415BA
-immutable ubyte[0] UnknownC415BA;
-
-/// $C415E7
-immutable ubyte[0] UnknownC415E7;
-
-/// $C4160A
-immutable ubyte[0] UnknownC4160A;
-
-/// $C4163F
-immutable ubyte[0] UnknownC4163F;
-
-/// $C416AC
-immutable ubyte[0] UnknownC416AC;
-
-/// $C4170E
-immutable ubyte[0] UnknownC4170E;
-
-/// $C41822
-immutable ubyte[0] UnknownC41822;
-
-/// $C41900
-immutable ubyte[0] UnknownC41900;
-
-/// $C41938
-immutable ubyte[0] UnknownC41938;
-
-/// $C41974
-immutable ubyte[0] UnknownC41974;
-
-/// $C4198D
-immutable ubyte[0] UnknownC4198D;
-
-/// $C419B2
-immutable ubyte[0] UnknownC419B2;
-
-/// $C419BF
-immutable ubyte[0] UnknownC419BF;
-
-/// $C41A2A
-immutable ubyte[0] UnknownC41A2A;
-
-/// $C41A7D
-immutable ubyte[0] UnknownC41A7D;
 
 /// $C41A9E
 void Decomp(const(ubyte)* data, void* buffer) {
@@ -788,23 +641,18 @@ void UnknownC426ED() {
 	Unknown7E0030 = 0x18;
 }
 
-
-/// $C42828
-immutable ubyte[0] UnknownC42828;
-
-
 /// $C4283F
-void UnknownC4283F(short arg1, short arg2, short arg3) {
+void UnknownC4283F(short arg1, ubyte* arg2, short arg3) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
 	const(ubyte)* x00 = &EntityGraphicsPointers[arg1][SpriteDirectionMappings8Direction[EntityDirections[arg1]] + EntityAnimationFrames[arg1]].data[0];
 	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
 	do {
-		(cast(ushort*)&Unknown7F0000[0])[arg2 + arg3] = (cast(ushort*)x00)[arg3];
+		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00)[arg3];
 	} while (--arg3 > 0);
 }
 
 /// $C42884
-void UnknownC42884(short arg1, short arg2, short arg3) {
+void UnknownC42884(short arg1, ubyte* arg2, short arg3) {
 	OverworldSpriteGraphics* x00 = &EntityGraphicsPointers[arg1][0];
 	if (SpriteDirectionMappings4Direction[EntityDirections[arg1]] != 0) {
 		for (short i = SpriteDirectionMappings4Direction[EntityDirections[arg1]]; i != 0; i--) {
@@ -815,8 +663,64 @@ void UnknownC42884(short arg1, short arg2, short arg3) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
 	const(ubyte)* x00_2 = &x00.data[0];
 	do {
-		(cast(ushort*)&Unknown7F0000[0])[arg2 + arg3] = (cast(ushort*)x00_2)[arg3];
+		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00_2)[arg3];
 	} while (--arg3 > 0);
+}
+
+/// $C428D1
+void UnknownC428D1(ushort* arg1, ushort* arg2, short arg3, short arg4) {
+	short x = cast(short)(arg4 * 2);
+	short y = arg3;
+	do {
+		arg1[y / 2] = arg2[y / 2];
+		y += 16;
+	} while (--x != 0);
+}
+
+/// $C428FC
+void UnknownC428FC(ushort* arg1, ushort* arg2, short arg3, short arg4, short arg5) {
+	ushort x08 = UnknownC42955[arg3 & 7];
+	ushort x0A = 0xFFFF ^ UnknownC42955[arg3 & 7];
+	short y = cast(short)((arg3 & 0xFFF8) * 4);
+	short x0E = arg4 / 8;
+	do {
+		short x = 16;
+		short tmp = y;
+		do {
+			arg1[y / 2] = (arg1[y / 2] & x0A) | (arg2[y / 2] & x08);
+			y += 2;
+		} while (--x != 0);
+		y = cast(short)(tmp + arg5);
+	} while (--x0E != 0);
+}
+
+/// $C42955
+immutable ushort[8] UnknownC42955 = [
+	0b1000000010000000,
+	0b0100000001000000,
+	0b0010000000100000,
+	0b0001000000010000,
+	0b0000100000001000,
+	0b0000010000000100,
+	0b0000001000000010,
+	0b0000000100000001,
+];
+
+/// $C429AE
+void UnknownC429AE(const(void)* arg1, short arg2) {
+	//pushed arg1
+	short x00 = EntityTileHeights[arg2];
+	Unknown7E0091 = 0;
+	DMA_COPY_SIZE = EntityByteWidths[arg2];
+	DMA_COPY_RAM_SRC = arg1;
+	DMA_COPY_VRAM_DEST = EntityVramAddresses[arg2];
+	while (true) {
+		UnknownC0A56E();
+		if (--x00 == 0) {
+			break;
+		}
+		DMA_COPY_RAM_SRC += DMA_COPY_SIZE;
+	}
 }
 
 /// $C429E8
@@ -5845,23 +5749,23 @@ void UnknownC48B3B() {
 
 /// $C4C8A4
 void UnknownC4C8A4() {
-	Unknown7EB4A4 = 0;
+	Unknown7EB4A4 = &Unknown7F0000[0];
 	Unknown7EB4A6 = 0;
 	Unknown7EB4AA = cast(Unknown7EB4AAEntry*)&Unknown7F0000[0x7C00];
 	memset(&Unknown7F0000[0x7C00], 0, 0x400);
 }
 
 /// $C4C8DB
-short UnknownC4C8DB(short arg1) {
-	short result = Unknown7EB4A4;
+ubyte* UnknownC4C8DB(short arg1) {
+	ubyte* result = Unknown7EB4A4;
 	Unknown7EB4A4 += arg1;
 	return result;
 }
 
 /// $C4C8E9
-void UnknownC4C8E9(short arg1, short arg2) {
+void UnknownC4C8E9(ubyte* arg1, short arg2) {
 	while (arg2 != 0) {
-		Unknown7F0000[arg1++] = 0;
+		(arg1++)[0] = 0;
 		arg2--;
 	}
 }
@@ -5897,10 +5801,10 @@ void UnknownC4C91A(short arg1, short arg2) {
 	x1A.unknown14 = cast(short)(EntityTileHeights[arg1] * 8 * UnknownC42A63[EntitySizes[arg1]]);
 	x1A.unknown10 = UnknownC4C8DB(x1A.unknown14);
 	UnknownC4C8E9(x1A.unknown10, x1A.unknown14);
-	x1A.unknown12 += x1A.unknown10;
+	x1A.unknown12 = x1A.unknown10 + x1A.unknown14;
 	x1A.unknown18 = 0;
 	x1A.unknown16 = 0;
-	short x16;
+	ubyte* x16;
 	if ((arg2 == 2) || (arg2 == 3) || (arg2 == 4) || (arg2 == 5)) {
 		x16 = x1A.unknown10;
 	} else {
@@ -6005,10 +5909,66 @@ void UnknownC4CC2C() {
 }
 
 /// $C4CC2F
-void UnknownC4CC2F();
+short UnknownC4CC2F() {
+	short x1E = 0;
+	short x04 = 0;
+	Unknown7EB4AAEntry* x1A = &Unknown7EB4AA[0];
+	for (short i = 0; i < Unknown7EB4A6; i++, x1A++) {
+		if (x1A.unknown4 != 2) {
+			continue;
+		}
+		x04++;
+		if (x1A.unknown18 == 2) {
+			x1E++;
+			continue;
+		}
+		UnknownC428D1(cast(ushort*)x1A.unknown12, cast(ushort*)x1A.unknown10, cast(short)((x1A.unknown6 * 32 *(x1A.unknown16 / 8)) + (x1A.unknown16 % 8) * 2), x1A.unknown6 / 8);
+		UnknownC429AE(x1A.unknown12, x1A.unknown0);
+		if (++x1A.unknown16 >= x1A.unknown8) {
+			x1A.unknown16 = 1;
+			x1A.unknown18++;
+		}
+	}
+	return cast(short)(x04 - x1E);
+}
 
 /// $C4CD44
-void UnknownC4CD44();
+short UnknownC4CD44() {
+	short x1E = 0;
+	short x04 = 0;
+	Unknown7EB4AAEntry* x0A = &Unknown7EB4AA[0];
+	for (short i = 0; i < Unknown7EB4A6; i++, x0A++) {
+		if (x0A.unknown4 != 3) {
+			continue;
+		}
+		x04++;
+		if (x0A.unknown18 == 2) {
+			x1E++;
+			continue;
+		}
+		short x;
+		if (x0A.unknown18 != 0) {
+			if ((x0A.unknown16 & 1) == 0) {
+				x = x0A.unknown16;
+			} else {
+				x = cast(short)(x0A.unknown6 - x0A.unknown16 - 1);
+			}
+		} else {
+			if ((x0A.unknown16 & 1) != 0) {
+				x = x0A.unknown16;
+			} else {
+				x = cast(short)(x0A.unknown6 - x0A.unknown16 - 1);
+			}
+		}
+		UnknownC428FC(cast(ushort*)x0A.unknown12, cast(ushort*)x0A.unknown10, x, x0A.unknown8, cast(short)((x0A.unknown6 / 8) * 32));
+		UnknownC429AE(x0A.unknown12, x0A.unknown0);
+		if (++x0A.unknown16 >= x0A.unknown6) {
+			x0A.unknown18++;
+			x0A.unknown12 = null;
+		}
+	}
+	return cast(short)(x04 - x1E);
+}
 
 /// $C4CEB0
 void UnknownC4CEB0() {

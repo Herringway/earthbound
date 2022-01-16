@@ -853,7 +853,7 @@ __gshared ubyte[3] Unknown7EB49E; /// $B49E
 __gshared ubyte CurrentSaveSlot; /// $B4A1
 __gshared ubyte Unknown7EB4A2; /// $B4A2
 
-__gshared short Unknown7EB4A4; /// $B4A4
+__gshared ubyte* Unknown7EB4A4; /// $B4A4
 __gshared short Unknown7EB4A6; /// $B4A6
 __gshared short Unknown7EB4A8; /// $B4A8
 __gshared Unknown7EB4AAEntry* Unknown7EB4AA; /// $B4AA
