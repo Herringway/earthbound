@@ -410,7 +410,7 @@ __gshared LoadedAnimatedTiles[8] OverworldTilesetAnim; //$43DC
 __gshared LoadedOverworldPaletteAnimation OverworldPaletteAnim; //$445C
 __gshared short LoadedAnimatedTileCount; /// $4472
 __gshared short Unknown7E4474; /// $4474
-__gshared short[16][16] Unknown7E4476; /// $4476
+__gshared ushort[16][16] Unknown7E4476; /// $4476
 __gshared short Unknown7E4676; /// $4676
 
 __gshared short Unknown7E467A; /// $467A
@@ -952,6 +952,8 @@ __gshared ushort* ActionScript8CMemory; /// $8C
 __gshared ubyte ActionScript8E; /// $8E
 
 __gshared short ActionScript90; /// $90
+
+__gshared const(ubyte)* ActionScript92; /// $92
 
 __gshared const(ubyte)* ActionScript94; /// $94
 

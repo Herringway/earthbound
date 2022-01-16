@@ -1047,6 +1047,9 @@ short ShowTitleScreen(short arg1) {
 	return 1;
 }
 
+/// $C3F705
+void UnknownC3F705(short arg1, short arg2, ubyte* arg3);
+
 /// $C3F819
 immutable(Unknown7EAECCEntry)[4] UnknownC3F819 = [
 	Unknown7EAECCEntry(0x3C, 0x00, 0x0080, 0x0070, 0x9800, 0x7F00, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),

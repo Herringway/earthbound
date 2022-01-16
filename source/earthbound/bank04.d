@@ -3091,10 +3091,23 @@ void UnknownC46C45() {
 	EntityScriptVar1Table[CurrentEntitySlot] = EntityAbsYTable[CurrentEntitySlot];
 }
 
+/// $C46C5E
+void UnknownC46C5E(short arg1, short arg2) {
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(arg2 + EntityAbsXTable[CurrentEntitySlot]);
+	EntityScriptVar1Table[CurrentEntitySlot] = cast(short)(arg1 + EntityAbsYTable[CurrentEntitySlot]);
+}
+
 /// $C46C87
 void UnknownC46C87() {
 	EntityAbsXTable[CurrentEntitySlot] = EntityScriptVar6Table[CurrentEntitySlot];
 	EntityAbsYTable[CurrentEntitySlot] = EntityScriptVar7Table[CurrentEntitySlot];
+}
+
+/// $C46C9B
+void UnknownC46C9B(short arg1) {
+	short x0E = UnknownC4608C(arg1);
+	EntityAbsXTable[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityAbsYTable[CurrentEntitySlot] = EntityAbsYTable[x0E];
 }
 
 /// $C46CC7
@@ -3102,6 +3115,14 @@ void UnknownC46CC7(short arg1) {
 	short x0E = UnknownC46028(arg1);
 	EntityAbsXTable[CurrentEntitySlot] = EntityAbsXTable[x0E];
 	EntityAbsYTable[CurrentEntitySlot] = EntityAbsYTable[x0E];
+}
+
+/// $C46CF5
+void UnknownC46CF5(short arg1, short arg2) {
+	EntityAbsXTable[CurrentEntitySlot] = cast(short)(arg2 + BG1_X_POS);
+	EntityAbsYTable[CurrentEntitySlot] = cast(short)(arg1 + BG1_Y_POS);
+	EntityAbsXFractionTable[CurrentEntitySlot] = cast(short)0x8000;
+	EntityAbsYFractionTable[CurrentEntitySlot] = cast(short)0x8000;
 }
 
 /// $C46D23
@@ -3160,10 +3181,56 @@ void UnknownC46E4F(const(ubyte)* arg1) {
 }
 
 /// $C46E74
-void UnknownC46E74();
+short UnknownC46E74() {
+	if (teleportDestination != 0) {
+		return 0;
+	}
+	short x10 = cast(short)(EntityScriptVar0Table[CurrentEntitySlot] - gameState.leaderX.integer);
+	short x0E;
+	if (0 > x10) {
+		x0E = cast(short)-cast(int)x10;
+	} else {
+		x0E = x10;
+	}
+	if (x0E < EntityScriptVar2Table[CurrentEntitySlot]) {
+		x10 = cast(short)(EntityScriptVar1Table[CurrentEntitySlot] - gameState.leaderY.integer);
+		if (0 > x10) {
+			x10 = cast(short)-cast(int)x10;
+		} else {
+			x10 = x10;
+		}
+		if (x10 < EntityScriptVar3Table[CurrentEntitySlot]) {
+			return 1;
+		}
+	}
+	return 0;
+}
 
 /// $C46EF8
-void UnknownC46EF8();
+short UnknownC46EF8() {
+	if (teleportDestination != 0) {
+		return 0;
+	}
+	short x10 = cast(short)(EntityAbsXTable[CurrentEntitySlot] - gameState.leaderX.integer);
+	short x0E;
+	if (0 > x10) {
+		x0E = cast(short)-cast(int)x10;
+	} else {
+		x0E = x10;
+	}
+	if (x0E < EntityScriptVar2Table[CurrentEntitySlot]) {
+		x10 = cast(short)(EntityAbsYTable[CurrentEntitySlot] - gameState.leaderY.integer);
+		if (0 > x10) {
+			x10 = cast(short)-cast(int)x10;
+		} else {
+			x10 = x10;
+		}
+		if (x10 < EntityScriptVar3Table[CurrentEntitySlot]) {
+			return 1;
+		}
+	}
+	return 0;
+}
 
 /// $C47044
 short UnknownC47044(short arg1) {
@@ -5569,7 +5636,18 @@ short UnknownC47269() {
 }
 
 /// $C472A8
-void UnknownC472A8(short arg1);
+void UnknownC472A8(short arg1) {
+	UnknownC47044(EntityScriptVar0Table[CurrentEntitySlot]);
+	short x10 = UnknownC46B51(EntityScriptVar0Table[CurrentEntitySlot]);
+	if (arg1 != 0) {
+		x10 = UnknownC46B37(x10);
+	}
+	short x0E = EntityDirections[CurrentEntitySlot];
+	EntityDirections[CurrentEntitySlot] = x10;
+	if (UnknownC46AA3(x0E) != UnknownC46AA3(x10)) {
+		UnknownC0A443Entry2(CurrentEntitySlot);
+	}
+}
 
 /// $C4730E
 void UnknownC4730E() {
@@ -5592,8 +5670,32 @@ void UnknownC47369() {
 	UnknownC019E2();
 }
 
+/// $C473B2
+ushort UnknownC473B2(ushort arg1) {
+	if (arg1 < 0x8000) {
+		return 0;
+	}
+	if (arg1 >= 31) {
+		return 31;
+	}
+	return arg1 & 0x1F;
+}
+
 /// $C473D0
-void UnknownC473D0(short arg1, short arg2);
+void UnknownC473D0(short arg1, short arg2) {
+	ushort* x16 = &Unknown7E4476[arg1][0];
+	ushort* x18 = &palettes[arg1 + 2][0];
+	for (short i = 0; i < 16; i++) {
+		ushort x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
+		ushort x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
+		ushort x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
+		ushort x0E = UnknownC473B2(x14);
+		ushort x12_2 = UnknownC473B2(x12);
+		ushort x10_2 = UnknownC473B2(x10);
+		x16++;
+		(x18++)[0] = cast(ushort)((x12_2 << 5) | (x10_2 << 10) | x0E);
+	}
+}
 
 /// $C4746B
 void UnknownC4746B(short arg1) {
@@ -5632,17 +5734,114 @@ short UnknownC47B77() {
 	return AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown7;
 }
 
+/// $C4810E
+ushort* UnknownC4810E(short arg1, ushort* arg2);
+
+/// $C4838A
+short UnknownC4838A(short arg1);
+
 /// $C4880C
-void UnknownC4880C();
+void UnknownC4880C() {
+	short y = UnknownC4838A(0);
+	ushort* x06 = cast(ushort*)&Unknown7F0000[0x4000];
+	for (short i = 0; i < 0x1D; i++) {
+		for (short j = 0; j < 8; j++) {
+			(x06++)[0] = 0;
+		}
+	}
+	short x04 = cast(short)(y + 30);
+	short x1E = 0;
+	short x1C;
+	for (x1C = 0; x1C < 4; x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+		x1E++;
+	}
+	short x1A = cast(short)strlen(cast(char*)&PartyCharacters[0].name[0]);
+	if (x1A == 6) {
+		x1A--;
+	}
+	for(x1E = 0; x1A < x1E; x1E++, x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+	}
+	for (x1E = 0; x1E < 6; x1E++, x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+	}
+	for (x1E = 0; x1E < 205; x1E++, x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+	}
+	for (short i = 0; i < 30; i++) {
+		for (short j = 0; j < 8; j++) {
+			(x06++)[0] = 0;
+		}
+	}
+	ushort* x06_2 = cast(ushort*)&Unknown7F0000[0x1000];
+	ushort* x0A = cast(ushort*)&Unknown7F0000[0x4000];
+	for (short i = 0; i < 8; i++) {
+		(x06_2++)[0] = 0x0C10;
+	}
+	for (short i = 0; i < x04 + 0x1E; i++) {
+		for (short j = 0; j < 8; j++) {
+			x06_2[0] = ((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5);
+			//suspicious...
+			x06_2[0] = cast(ushort)(((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5) + 0x0C10);
+			x0A[0] += 0x0C10;
+			x06++;
+			x0A++;
+		}
+	}
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(x04 * 2);
+	Unknown7F0000[0] = 8;
+	Unknown7F0000[1] = 30;
+}
 
 /// $C48A6D
-void UnknownC48A6D();
+short UnknownC48A6D() {
+	ushort* x06;
+	if ((EntityScriptVar1Table[CurrentEntitySlot] & 1) != 0) {
+		x06 = cast(ushort*)&Unknown7F0000[0x4000 + (EntityScriptVar1Table[CurrentEntitySlot] >> 1) * 16];
+	} else {
+		x06 = cast(ushort*)&Unknown7F0000[0x1000 + (EntityScriptVar1Table[CurrentEntitySlot] >> 1) * 16];
+	}
+	ushort* x0A = cast(ushort*)&Unknown7F0000[2];
+	for (short i = 0; i < 8; i++) {
+		for (short j = 0; j < 30; j++) {
+			(x0A++)[0] = x06[0];
+			x06 += 8;
+		}
+		// interesting...
+		x06 += -239;
+	}
+	UnknownC3F705(808, 588, &Unknown7F0000[0]);
+	short x = 0;
+	if (++EntityScriptVar1Table[CurrentEntitySlot] > EntityScriptVar0Table[CurrentEntitySlot]) {
+		x = 1;
+	}
+	return x;
+}
 
 /// $C48B2C
-void UnknownC48B2C();
+void UnknownC48B2C() {
+	teleportStyle = TeleportStyle.Unknown;
+	gameState.leaderDirection = Direction.Right;
+}
 
 /// $C48B3B
-void UnknownC48B3B();
+void UnknownC48B3B() {
+	if ((Unknown7E0002 & 1) != 0) {
+		return;
+	}
+	for (short i = 0; gameState.partyCount > i; i++) {
+		if (16 <= gameState.unknown96[i]) {
+			continue;
+		}
+		short x10 = cast(short)((UnknownC41EFF(EntityAbsXTable[gameState.unknownA2[i]], EntityAbsYTable[gameState.unknownA2[i]], EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]) + 0x1000) / 0x2000);
+		if (EntityDirections[gameState.unknownA2[i]] == x10) {
+			continue;
+		}
+		EntityDirections[gameState.unknownA2[i]] = x10;
+		UnknownC0A780(gameState.unknownA2[i]);
+	}
+}
 
 /// $C4C8A4
 void UnknownC4C8A4() {
@@ -5742,6 +5941,20 @@ void UnknownC4C91A(short arg1, short arg2) {
 /// $C4978E
 void UnknownC4978E() {
 	memcpy(&Unknown7E4476[0][0], &palettes[0][0], 0x200);
+}
+
+/// $C497C0
+void UnknownC497C0(short arg1, short arg2, short arg3) {
+	UnknownC4954C(arg2, &Unknown7E4476[0][0]);
+	UnknownC496E7(arg1, arg2);
+	if (arg1 != 1) {
+		for (short i = 0; i < arg1; i++) {
+			UnknownC426ED();
+			WaitUntilNextFrame();
+		}
+	}
+	UnknownC49740();
+	UnknownC0856B(0x18);
 }
 
 /// $C4981F
