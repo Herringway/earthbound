@@ -36,8 +36,7 @@ __gshared ubyte Unknown7E0022;
 __gshared ubyte Unknown7E0023;
 __gshared ushort RandA;
 __gshared ushort RandB;
-__gshared ubyte Unknown7E0028;
-__gshared ubyte Unknown7E0029;
+__gshared Unknown7E0028Union Unknown7E0028;
 __gshared byte Unknown7E002A;
 __gshared ubyte Unknown7E002B;
 //the ID of the frame being/about to be displayed, multiplied by 2
@@ -205,7 +204,7 @@ __gshared ushort[MAX_ENTITIES] EntitySpriteMapFlags;
 __gshared const(SpriteMap)*[MAX_ENTITIES] EntitySpriteMapPointers;
 
 __gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; /// $11A6
-__gshared void function(short)[MAX_ENTITIES] EntityDrawCallbacks; /// $11E2
+__gshared void function(short, short)[MAX_ENTITIES] EntityDrawCallbacks; /// $11E2
 __gshared void function()[MAX_ENTITIES] EntityMoveCallbacks; /// $121E
 __gshared short[MAX_SCRIPTS] Unknown7E125A; /// $125A
 __gshared short[MAX_SCRIPTS] Unknown7E12E6; /// $12E6
@@ -411,8 +410,7 @@ __gshared LoadedAnimatedTiles[8] OverworldTilesetAnim; //$43DC
 __gshared LoadedOverworldPaletteAnimation OverworldPaletteAnim; //$445C
 __gshared short LoadedAnimatedTileCount; /// $4472
 __gshared short Unknown7E4474; /// $4474
-__gshared short[16] Unknown7E4476; /// $4476 - might be more
-
+__gshared ushort[16][16] Unknown7E4476; /// $4476
 __gshared short Unknown7E4676; /// $4676
 
 __gshared short Unknown7E467A; /// $467A
@@ -444,7 +442,7 @@ __gshared short Unknown7E4A8E; //$4A8E
 __gshared short Unknown7E4A90; //$4A90
 __gshared short Unknown7E4A92; //$4A92
 __gshared short Unknown7E4A94; //$4A94
-__gshared short Unknown7E4A96; //$4A96
+__gshared VecYX[20][10] Unknown7E4A96; //$4A96
 
 __gshared short TouchedEnemy; /// $4D86
 
@@ -657,7 +655,10 @@ __gshared ushort EntityPreparedYCoordinate; /// $9E2F
 __gshared ushort EntityPreparedDirection; /// $9E31
 __gshared ushort Unknown7E9E33; /// $9E33
 __gshared short Unknown7E9E35; /// $9E35
-
+__gshared ubyte Unknown7E9E37; /// $9E37
+__gshared ubyte Unknown7E9E38; /// $9E38
+__gshared ubyte Unknown7E9E39; /// $9E39
+__gshared short Unknown7E9E3A; /// $9E3A
 __gshared OverworldTask[4] OverworldTasks; /// $9E3C
 
 __gshared ushort DadPhoneTimer; /// $9E54
@@ -709,7 +710,7 @@ __gshared short Unknown7E9F7E; /// $9F7E
 __gshared short Unknown7E9F80; /// $9F80
 __gshared short Unknown7E9F82; /// $9F82
 __gshared short Unknown7E9F84; /// $9F84
-__gshared short Unknown7E9F86; /// $9F86
+__gshared ushort* Unknown7E9F86; /// $9F86
 __gshared short Unknown7E9F88; /// $9F88
 __gshared short EnemiesInBattle; /// $9F8A
 __gshared short[16] Unknown7E9F8C; /// $9F8C
@@ -852,17 +853,19 @@ __gshared ubyte[3] Unknown7EB49E; /// $B49E
 __gshared ubyte CurrentSaveSlot; /// $B4A1
 __gshared ubyte Unknown7EB4A2; /// $B4A2
 
-__gshared short Unknown7EB4A4; /// $B4A4
+__gshared ubyte* Unknown7EB4A4; /// $B4A4
 __gshared short Unknown7EB4A6; /// $B4A6
 __gshared short Unknown7EB4A8; /// $B4A8
 __gshared Unknown7EB4AAEntry* Unknown7EB4AA; /// $B4AA
 __gshared short Unknown7EB4AE; /// $B4AE
-
 __gshared short Unknown7EB4B0; /// $B4B0
 __gshared short Unknown7EB4B2; /// $B4B2
 __gshared short Unknown7EB4B4; /// $B4B4
 __gshared ubyte Unknown7EB4B6; /// $B4B6
-
+__gshared ubyte Unknown7EB4B8; /// $B4B8
+__gshared ubyte Unknown7EB4BA; /// $B4BA
+__gshared ubyte Unknown7EB4BC; /// $B4BC
+__gshared short*[8] Unknown7EB4BE; /// $B4BE
 __gshared ubyte Unknown7EB4CE; /// $B4CE
 __gshared short Unknown7EB4CF; /// $B4CF
 __gshared short Unknown7EB4D1; /// $B4D1
@@ -918,11 +921,8 @@ __gshared ubyte[0x800] Unknown7EB800;
 __gshared ubyte[0x2000] Unknown7EC000;
 
 __gshared ubyte[64][64] Unknown7EE000;
-__gshared ushort[16][16] Unknown7EF000;
-__gshared PathCtx Unknown7EF200;
-__gshared ubyte[0xC00] Unknown7EF400;
-__gshared ubyte[0x8000] Unknown7F0000;
-__gshared ubyte[0x8000] Unknown7F8000;
+__gshared Unknown7EF000Stuff Unknown7EF000;
+__gshared ubyte[0x10000] Unknown7F0000;
 __gshared const(ubyte[4][4])*[0x400] TileCollisionBuffer; /// $7FF800
 
 __gshared ubyte[0x8000] IntroBG2Buffer; /// $8000 - this seems to overlap with other stuff...?
@@ -931,6 +931,7 @@ __gshared ubyte[0x8000] IntroBG2Buffer; /// $8000 - this seems to overlap with o
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
 
 __gshared ubyte ActionScript00; /// $00
+__gshared short ActionScript00s; /// $00
 __gshared ubyte ActionScript02; /// $02
 __gshared const(ubyte)* ActionScript02p; /// $02
 __gshared const(OverlayScript)* ActionScript02Overlay; /// $02
@@ -951,6 +952,8 @@ __gshared ushort* ActionScript8CMemory; /// $8C
 __gshared ubyte ActionScript8E; /// $8E
 
 __gshared short ActionScript90; /// $90
+
+__gshared const(ubyte)* ActionScript92; /// $92
 
 __gshared const(ubyte)* ActionScript94; /// $94
 

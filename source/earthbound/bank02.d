@@ -3014,6 +3014,7 @@ short BattleRoutine() {
 					DisplayInBattleText(TextBattleLostTheBattle.ptr);
 					x23 = 1;
 				}
+				// this should be an else if
 				if (CountChars(1) == 0) {
 					EnemiesAreDead:
 					x17 = 0;
@@ -3083,7 +3084,7 @@ short BattleRoutine() {
 	do {
 		WaitUntilNextFrame();
 		UnknownC2DB3F();
-	} while (Unknown7E0028 != 0);
+	} while (Unknown7E0028.a != 0);
 	UnknownC20293();
 	UnknownC08726();
 	UnknownC1DD5F();
@@ -3205,6 +3206,31 @@ void InstantWinHandler() {
 		UnknownC06A07();
 	}
 	UnknownC09451();
+}
+
+/// $C2654C
+void UnknownC2654C() {
+	PlaySfx(Sfx.RecoverHP);
+	for (short i = 0; i < 2; i++) {
+		memcpy(&Unknown7F0000[0], &palettes[0][0], 0x200);
+		for (short j = 0; j < 0x100; j++) {
+			(cast(ushort*)&palettes[0][0])[j] = 0x5D70;
+		}
+		UnknownC496E7(12, -1);
+		for (short j = 0; j < 12; j++) {
+			UnknownC426ED();
+			WaitUntilNextFrame();
+		}
+		UnknownC49740();
+	}
+	for (short i = 0; i < 6; i++) {
+		if ((gameState.partyMembers[i] == 1) || (gameState.partyMembers[i] == 2) || (gameState.partyMembers[i] == 4)) {
+			PartyCharacters[gameState.partyMembers[i]].pp.target += 20;
+			if (PartyCharacters[gameState.partyMembers[i]].pp.target > PartyCharacters[gameState.partyMembers[i]].maxPP) {
+				PartyCharacters[gameState.partyMembers[i]].pp.target = PartyCharacters[gameState.partyMembers[i]].maxPP;
+			}
+		}
+	}
 }
 
 /// $C26634
@@ -3337,7 +3363,7 @@ short GetEnemyType(short id) {
 
 /// $C269DE
 void UnknownC269DE() {
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		WindowTick();
 	}
 }
@@ -6876,7 +6902,7 @@ void LoadEnemyBattleSprites() {
 	SetBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	SetOAMSize(0x61);
-	CopyToVram(3, 0x800, 0x7C00, &Unknown7F8000[0]);
+	CopyToVram(3, 0x800, 0x7C00, &Unknown7F0000[0x8000]);
 }
 
 /// $C2C92D
@@ -7413,13 +7439,13 @@ void UnknownC2E0E7() {
 /// $C2E116
 void ShowPSIAnimation(short arg1) {
 	if (LoadedBGDataLayer1.Bitdepth == 2) {
-		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F8000[0]);
-		CopyToVram2(0, 0x1000, 0, &Unknown7F8000[0]);
+		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0x8000]);
+		CopyToVram2(0, 0x1000, 0, &Unknown7F0000[0x8000]);
 		Unknown7E1BCA = &palettes[3][0];
 	} else {
 		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0]);
 		ushort* x06 = cast(ushort*)&Unknown7F0000[0];
-		ushort* x0A = cast(ushort*)&Unknown7F8000[0];
+		ushort* x0A = cast(ushort*)&Unknown7F0000[0x8000];
 		for (short i = 0; i < 0x100; i++) {
 			(x0A++)[0] = (x06++)[0];
 			(x0A++)[0] = (x06++)[0];
@@ -7817,7 +7843,7 @@ void UnknownC2EAEA(short arg1) {
 	Unknown7EAAC6[Unknown7EAAB4] = cast(ubyte)x22;
 	Unknown7EAACE[Unknown7EAAB4] = cast(ubyte)x24;
 	Unknown7EAAB4++;
-	ubyte* x1A = &Unknown7F8000[0];
+	ubyte* x1A = &Unknown7F0000[0x8000];
 	Decomp(&BattleSpritePointers[arg1].sprite[0], x1A);
 	short y = cast(short)(x24 * x22);
 	while (--y != 0) {
@@ -8293,4 +8319,12 @@ void UnknownC2FEF9(short type) {
 		palettes[(i / 32) + 4][i % 32] = (palettes[i / 32][i % 32] >> 2) & ((7 << 10) | (7 << 5) | 7);
 	}
 	UnknownC0856B(16);
+}
+
+/// $C2FF9A
+short UnknownC2FF9A() {
+	if ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) >= 3) {
+		return 1;
+	}
+	return 0;
 }

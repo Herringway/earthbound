@@ -6,5 +6,6 @@
 	"description": "earthbound",
 	"license": "proprietary",
 	"name": "earthbound",
+	"subPackages": ["actionscriptgen"],
 	"stringImportPaths": ["data"]
 }

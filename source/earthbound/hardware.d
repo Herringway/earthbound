@@ -17,8 +17,8 @@ __gshared ubyte HDMAEN;
 
 __gshared ubyte TIMEUP;
 __gshared ubyte HVBJOY;
-__gshared ubyte JOYPAD_1_DATA;
-__gshared ubyte JOYPAD_2_DATA;
+__gshared ushort JOYPAD_1_DATA;
+__gshared ushort JOYPAD_2_DATA;
 
 __gshared ubyte BG1SC;
 __gshared ubyte BG2SC;

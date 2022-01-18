@@ -7303,7 +7303,7 @@ short FileSelectMenu(short arg1) {
 		Win_SetTextColor(0);
 	} else {
 		CorruptionCheck();
-		while (Unknown7E0028 != 0) {}
+		while (Unknown7E0028.a != 0) {}
 		ChangeMusic(Music.SetupScreen);
 		UnknownC11F5A(&UnknownC1ECD1);
 		CurrentSaveSlot = cast(ubyte)SelectionMenu(1);
@@ -7809,4 +7809,8 @@ short UnknownC1FF6B() {
 void UnknownC1FF99(short arg1, short arg2, ubyte* arg3) {
 	VWFX = cast(ushort)((arg2 *8 - UnknownC43E31(arg3, arg1)) / 2);
 	VWFTile = VWFX / 8;
+}
+
+short SRAMCheckRoutineChecksum(short, ref const(ubyte)*) {
+	return 0;
 }

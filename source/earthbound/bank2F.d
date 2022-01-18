@@ -409,6 +409,33 @@ void UnknownEF0D46() {
 	Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]] = TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].deliveryTime;
 }
 
+/// $EF0D73
+void UnknownEF0D73() {
+	if (Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]] != 0) {
+		Unknown7EB525[EntityScriptVar0Table[CurrentEntitySlot]]--;
+	}
+}
+
+/// $EF0D8D
+void UnknownEF0D8D() {
+	UnknownC064E3(8, QueuedInteractionPtr(&TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].textPointer1[0]));
+}
+
+/// $EF0DFA
+void UnknownEF0DFA() {
+	UnknownC064E3(10, QueuedInteractionPtr(&TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].textPointer2[0]));
+}
+
+/// $EF0E67
+short UnknownEF0E67() {
+	return TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].unknown18;
+}
+
+/// $EF0E8A
+short UnknownEF0E8A() {
+	return TimedDeliveries[EntityScriptVar0Table[CurrentEntitySlot]].unknown20;
+}
+
 /// $EF0EAD
 void GetDeliverySpriteAndPlaceholder(short arg1) {
 	NewEntityVar0 = cast(short)(arg1 - 1);
@@ -427,6 +454,49 @@ void UnknownEF0EE8() {
 			sprite = UnusedForSaleSignSpriteTable[rand()&3];
 		}
 		CreateEntity(sprite, ActionScript.Unknown500, -1, 0, 0);
+	}
+}
+
+/// $EF0F60
+short UnknownEF0F60() {
+	if ((Unknown7E0028.a != 0) || ((INIDISP_MIRROR & 0xF) != 0)) {
+		return 1;
+	}
+	if (window_head != -1) {
+		return 1;
+	}
+	if (Unknown7EB4A8 != -1) {
+		return 1;
+	}
+	if (OverworldStatusSuppression != 0) {
+		return 1;
+	}
+	if ((EntitySpriteMapFlags[gameState.currentPartyMembers] & 0x8000) != 0) {
+		return 1;
+	}
+	if ((gameState.walkingStyle == WalkingStyle.Ladder) || (gameState.walkingStyle == WalkingStyle.Rope) || (gameState.walkingStyle == WalkingStyle.Escalator) || (gameState.walkingStyle == WalkingStyle.Stairs)) {
+		return 1;
+	}
+	return ((EntityTickCallbackFlags[23] & (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED)) != 0) ? 0 : Unknown7E5D9A;
+}
+
+/// $EF0FDB
+void UnknownEF0FDB() {
+	OverworldStatusSuppression = 1;
+	Unknown7E5D9A = 1;
+	UnknownC09F3BEntry2(1);
+	ChangeMusic(Music.Delivery);
+	UnknownC03CFD();
+}
+
+/// $EF0FF6
+void UnknownEF0FF6() {
+	Unknown7E5D9A = 0;
+	OverworldStatusSuppression = getEventFlag(EventFlag.USE_POSTGAME_MUSIC);
+	if (gameState.walkingStyle == WalkingStyle.Bicycle) {
+		ChangeMusic(Music.Bicycle);
+	} else {
+		UnknownC06A07();
 	}
 }
 
@@ -22332,8 +22402,9 @@ void UnknownEFE175() {
 }
 
 /// $EFE556
-void LoadKirbySprite() {
+short LoadKirbySprite(short, ref const(ubyte)*) {
 	CopyToVram(0, 0x200, 0x4000, &Kirby[0]);
+	return 0;
 }
 
 /// $EFE5D3

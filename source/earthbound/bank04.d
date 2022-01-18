@@ -3,6 +3,7 @@ module earthbound.bank04;
 
 import earthbound.commondefs;
 import earthbound.hardware;
+import earthbound.actionscripts;
 import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
@@ -10,10 +11,12 @@ import earthbound.bank03;
 import earthbound.bank07;
 import earthbound.bank08;
 import earthbound.bank0A;
+import earthbound.bank0C;
 import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank10;
 import earthbound.bank15;
+import earthbound.bank17;
 import earthbound.bank18;
 import earthbound.bank20;
 import earthbound.bank21;
@@ -21,904 +24,17 @@ import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
 
-/// $C400D4
-immutable ubyte[][895] EventScriptPointers = [
-	Event0[],
-	Event1[],
-	Event2[],
-	Event3[],
-	Event4[],
-	Event5[],
-	Event6_12[],
-	Event7[],
-	Event8[],
-	Event9[],
-	Event10_11[],
-	Event10_11[],
-	Event6_12[],
-	Event13[],
-	Event14[],
-	Event15[],
-	Event16[],
-	Event17[],
-	Event18[],
-	Event19[],
-	Event20[],
-	Event21[],
-	Event22[],
-	Event23[],
-	Event24[],
-	Event25[],
-	Event26[],
-	Event27[],
-	Event28[],
-	Event29[],
-	Event30[],
-	Event31[],
-	Event32[],
-	Event33[],
-	Event34[],
-	Event35[],
-	Event36[],
-	Event37[],
-	Event38[],
-	Event39[],
-	Event40[],
-	Event41[],
-	Event42[],
-	Event43[],
-	Event44[],
-	Event45[],
-	Event46[],
-	Event47[],
-	Event48[],
-	Event49[],
-	Event50[],
-	Event51[],
-	Event52[],
-	Event53[],
-	Event54[],
-	Event55[],
-	Event56[],
-	Event57[],
-	Event58[],
-	Event59[],
-	Event60[],
-	Event61[],
-	Event62[],
-	Event63[],
-	Event64[],
-	Event65[],
-	Event66[],
-	Event67[],
-	Event68[],
-	Event69[],
-	Event70[],
-	Event71[],
-	Event72[],
-	Event73[],
-	Event74[],
-	Event75[],
-	Event76[],
-	Event77[],
-	Event78[],
-	Event79[],
-	Event80[],
-	Event81[],
-	Event82[],
-	Event83[],
-	Event84[],
-	Event85[],
-	Event86[],
-	Event87[],
-	Event88[],
-	Event89[],
-	Event90[],
-	Event91[],
-	Event92[],
-	Event93[],
-	Event94[],
-	Event95[],
-	Event96[],
-	Event97[],
-	Event98[],
-	Event99[],
-	Event100[],
-	Event101[],
-	Event102[],
-	Event103[],
-	Event104[],
-	Event105[],
-	Event106[],
-	Event107[],
-	Event108[],
-	Event109[],
-	Event110[],
-	Event111[],
-	Event112[],
-	Event113[],
-	Event114[],
-	Event115[],
-	Event116[],
-	Event117[],
-	Event118[],
-	Event119[],
-	Event120[],
-	Event121[],
-	Event122[],
-	Event123[],
-	Event124[],
-	Event125[],
-	Event126[],
-	Event127[],
-	Event128[],
-	Event129[],
-	Event130[],
-	Event131[],
-	Event132[],
-	Event133[],
-	Event134[],
-	Event135[],
-	Event136[],
-	Event137[],
-	Event138[],
-	Event139[],
-	Event140[],
-	Event141[],
-	Event142[],
-	Event143[],
-	Event144[],
-	Event145[],
-	Event146[],
-	Event147[],
-	Event148[],
-	Event149[],
-	Event150[],
-	Event151[],
-	Event152[],
-	Event153[],
-	Event154[],
-	Event155[],
-	Event156[],
-	Event157[],
-	Event158[],
-	Event159[],
-	Event160[],
-	Event161[],
-	Event162[],
-	Event163[],
-	Event164[],
-	Event165[],
-	Event166[],
-	Event167[],
-	Event168[],
-	Event169[],
-	Event170[],
-	Event171[],
-	Event172[],
-	Event173[],
-	Event174[],
-	Event175[],
-	Event176[],
-	Event177[],
-	Event178[],
-	Event179[],
-	Event180[],
-	Event181[],
-	Event182[],
-	Event183[],
-	Event184[],
-	Event185[],
-	Event186[],
-	Event187[],
-	Event188[],
-	Event189[],
-	Event190[],
-	Event191[],
-	Event192[],
-	Event193[],
-	Event194[],
-	Event195[],
-	Event196[],
-	Event197[],
-	Event198[],
-	Event199[],
-	Event200[],
-	Event201[],
-	Event202[],
-	Event203[],
-	Event204[],
-	Event205[],
-	Event206[],
-	Event207[],
-	Event208[],
-	Event209[],
-	Event210[],
-	Event211[],
-	Event212[],
-	Event213[],
-	Event214[],
-	Event215[],
-	Event216[],
-	Event217[],
-	Event218[],
-	Event219[],
-	Event220[],
-	Event221[],
-	Event222[],
-	Event223[],
-	Event224[],
-	Event225_226_227[],
-	Event225_226_227[],
-	Event225_226_227[],
-	Event228[],
-	Event229[],
-	Event230[],
-	Event231[],
-	Event232[],
-	Event233_234_235_236_237[],
-	Event233_234_235_236_237[],
-	Event233_234_235_236_237[],
-	Event233_234_235_236_237[],
-	Event233_234_235_236_237[],
-	Event238[],
-	Event239[],
-	Event240[],
-	Event241[],
-	Event242_243[],
-	Event242_243[],
-	Event244[],
-	Event245[],
-	Event246[],
-	Event247_248[],
-	Event247_248[],
-	Event249[],
-	Event250[],
-	Event251[],
-	Event252[],
-	Event253[],
-	Event254[],
-	Event255[],
-	Event256[],
-	Event257[],
-	Event258[],
-	Event259[],
-	Event260[],
-	Event261[],
-	Event262[],
-	Event263[],
-	Event264[],
-	Event265[],
-	Event266[],
-	Event267[],
-	Event268[],
-	Event269[],
-	Event270[],
-	Event271[],
-	Event272[],
-	Event273[],
-	Event274_275_276[],
-	Event274_275_276[],
-	Event274_275_276[],
-	Event277[],
-	Event278[],
-	Event279[],
-	Event280[],
-	Event281[],
-	Event282[],
-	Event283[],
-	Event284[],
-	Event285[],
-	Event286[],
-	Event287[],
-	Event288[],
-	Event289[],
-	Event290[],
-	Event291[],
-	Event292[],
-	Event293[],
-	Event294[],
-	Event295[],
-	Event296[],
-	Event297[],
-	Event298[],
-	Event299[],
-	Event300[],
-	Event301[],
-	Event302[],
-	Event303[],
-	Event304[],
-	Event305[],
-	Event306[],
-	Event307[],
-	Event308[],
-	Event309[],
-	Event310[],
-	Event311[],
-	Event312[],
-	Event313[],
-	Event314[],
-	Event315[],
-	Event316[],
-	Event317[],
-	Event318[],
-	Event319[],
-	Event320[],
-	Event321[],
-	Event322[],
-	Event323[],
-	Event324[],
-	Event325[],
-	Event326[],
-	Event327[],
-	Event328[],
-	Event329[],
-	Event330[],
-	Event331[],
-	Event332[],
-	Event333[],
-	Event334[],
-	Event335[],
-	Event336[],
-	Event337[],
-	Event338[],
-	Event339[],
-	Event340[],
-	Event341[],
-	Event342[],
-	Event343[],
-	Event344[],
-	Event345[],
-	Event346[],
-	Event347[],
-	Event348_349[],
-	Event348_349[],
-	Event350[],
-	Event351[],
-	Event352[],
-	Event353[],
-	Event354[],
-	Event355[],
-	Event356[],
-	Event357[],
-	Event358[],
-	Event359[],
-	Event360[],
-	Event361[],
-	Event362[],
-	Event363[],
-	Event364[],
-	Event365[],
-	Event366[],
-	Event367[],
-	Event368[],
-	Event369[],
-	Event370[],
-	Event371[],
-	Event372[],
-	Event373[],
-	Event374[],
-	Event375_404[],
-	Event376_405[],
-	Event377_406[],
-	Event378_407[],
-	Event379_408[],
-	Event380[],
-	Event381[],
-	Event382[],
-	Event383[],
-	Event384[],
-	Event385[],
-	Event386[],
-	Event387[],
-	Event388[],
-	Event389_393[],
-	Event390_394[],
-	Event391[],
-	Event392[],
-	Event389_393[],
-	Event390_394[],
-	Event395[],
-	Event396[],
-	Event397[],
-	Event398[],
-	Event399[],
-	Event400[],
-	Event401[],
-	Event402[],
-	Event403[],
-	Event375_404[],
-	Event376_405[],
-	Event377_406[],
-	Event378_407[],
-	Event379_408[],
-	Event409[],
-	Event410[],
-	Event411[],
-	Event412[],
-	Event413[],
-	Event414[],
-	Event415[],
-	Event416[],
-	Event417[],
-	Event418[],
-	Event419[],
-	Event420[],
-	Event421[],
-	Event422[],
-	Event423[],
-	Event424[],
-	Event425[],
-	Event426[],
-	Event427[],
-	Event428[],
-	Event429[],
-	Event430[],
-	Event431_432_433_434[],
-	Event431_432_433_434[],
-	Event431_432_433_434[],
-	Event431_432_433_434[],
-	Event435[],
-	Event436[],
-	Event437[],
-	Event438[],
-	Event439[],
-	Event440[],
-	Event441[],
-	Event442[],
-	Event443[],
-	Event444[],
-	Event445[],
-	Event446[],
-	Event447[],
-	Event448[],
-	Event449[],
-	Event450[],
-	Event451[],
-	Event452[],
-	Event453[],
-	Event454[],
-	Event455[],
-	Event456[],
-	Event457[],
-	Event458[],
-	Event459[],
-	Event460[],
-	Event461[],
-	Event462[],
-	Event463[],
-	Event464[],
-	Event465[],
-	Event466[],
-	Event467[],
-	Event468[],
-	Event469[],
-	Event470[],
-	Event471[],
-	Event472[],
-	Event473[],
-	Event474[],
-	Event475[],
-	Event476[],
-	Event477[],
-	Event478[],
-	Event479[],
-	Event480[],
-	Event481[],
-	Event482[],
-	Event483[],
-	Event484[],
-	Event485[],
-	Event486[],
-	Event487[],
-	Event488[],
-	Event489[],
-	Event490[],
-	Event491[],
-	Event492[],
-	Event493[],
-	Event494[],
-	Event495[],
-	Event496[],
-	Event497[],
-	Event498[],
-	Event499[],
-	Event500[],
-	Event501[],
-	Event502[],
-	Event503[],
-	Event504[],
-	Event505[],
-	Event506[],
-	Event507[],
-	Event508[],
-	Event509[],
-	Event510[],
-	Event511[],
-	Event512[],
-	Event513[],
-	Event514[],
-	Event515[],
-	Event516[],
-	Event517[],
-	Event518[],
-	Event519[],
-	Event520[],
-	Event521[],
-	Event522[],
-	Event523[],
-	Event524[],
-	Event525[],
-	Event526[],
-	Event527[],
-	Event528[],
-	Event529[],
-	Event530[],
-	Event531[],
-	Event532[],
-	Event533[],
-	Event534[],
-	Event535[],
-	Event536[],
-	Event537[],
-	Event538[],
-	Event539[],
-	Event540[],
-	Event541[],
-	Event542[],
-	Event543[],
-	Event544[],
-	Event545[],
-	Event546[],
-	Event547[],
-	Event548[],
-	Event549[],
-	Event550[],
-	Event551[],
-	Event552[],
-	Event553[],
-	Event554[],
-	Event555[],
-	Event556[],
-	Event557[],
-	Event558[],
-	Event559[],
-	Event560[],
-	Event561[],
-	Event562[],
-	Event563[],
-	Event564[],
-	Event565[],
-	Event566[],
-	Event567[],
-	Event568[],
-	Event569[],
-	Event570[],
-	Event571[],
-	Event572[],
-	Event573[],
-	Event574[],
-	Event575[],
-	Event576[],
-	Event577[],
-	Event578[],
-	Event579[],
-	Event580[],
-	Event581[],
-	Event582[],
-	Event583[],
-	Event584[],
-	Event585[],
-	Event586[],
-	Event587[],
-	Event588[],
-	Event589[],
-	Event590[],
-	Event591[],
-	Event592[],
-	Event593[],
-	Event594[],
-	Event595[],
-	Event596[],
-	Event597[],
-	Event598[],
-	Event599[],
-	Event600[],
-	Event601[],
-	Event602[],
-	Event603[],
-	Event604[],
-	Event605[],
-	Event606[],
-	Event607[],
-	Event608[],
-	Event609[],
-	Event610[],
-	Event611[],
-	Event612[],
-	Event613[],
-	Event614[],
-	Event615[],
-	Event616[],
-	Event617[],
-	Event618[],
-	Event619[],
-	Event620[],
-	Event621[],
-	Event622[],
-	Event623[],
-	Event624[],
-	Event625[],
-	Event626[],
-	Event627[],
-	Event628[],
-	Event629[],
-	Event630[],
-	Event631[],
-	Event632[],
-	Event633[],
-	Event634[],
-	Event635[],
-	Event636[],
-	Event637[],
-	Event638[],
-	Event639[],
-	Event640[],
-	Event641[],
-	Event642[],
-	Event643[],
-	Event644[],
-	Event645[],
-	Event646[],
-	Event647[],
-	Event648[],
-	Event649[],
-	Event650[],
-	Event651[],
-	Event652[],
-	Event653[],
-	Event654[],
-	Event655[],
-	Event656[],
-	Event657[],
-	Event658[],
-	Event659[],
-	Event660[],
-	Event661[],
-	Event662[],
-	Event663[],
-	Event664[],
-	Event665[],
-	Event666[],
-	Event667[],
-	Event668[],
-	Event669[],
-	Event670[],
-	Event671[],
-	Event672[],
-	Event673[],
-	Event674[],
-	Event675[],
-	Event676[],
-	Event677[],
-	Event678[],
-	Event679[],
-	Event680[],
-	Event681[],
-	Event682[],
-	Event683[],
-	Event684[],
-	Event685[],
-	Event686[],
-	Event687[],
-	Event688[],
-	Event689[],
-	Event690[],
-	Event691[],
-	Event692[],
-	Event693[],
-	Event694[],
-	Event695[],
-	Event696[],
-	Event697[],
-	Event698[],
-	Event699[],
-	Event700[],
-	Event701[],
-	Event702[],
-	Event703[],
-	Event704[],
-	Event705[],
-	Event706[],
-	Event707[],
-	Event708[],
-	Event709[],
-	Event710[],
-	Event711[],
-	Event712[],
-	Event713[],
-	Event714[],
-	Event715[],
-	Event716[],
-	Event717[],
-	Event718[],
-	Event719[],
-	Event720[],
-	Event721[],
-	Event722[],
-	Event723[],
-	Event724[],
-	Event725[],
-	Event726[],
-	Event727[],
-	Event728[],
-	Event729[],
-	Event730[],
-	Event731[],
-	Event732[],
-	Event733[],
-	Event734[],
-	Event735[],
-	Event736[],
-	Event737[],
-	Event738[],
-	Event739[],
-	Event740[],
-	Event741[],
-	Event742[],
-	Event743[],
-	Event744[],
-	Event745[],
-	Event746[],
-	Event747[],
-	Event748[],
-	Event749[],
-	Event750[],
-	Event751[],
-	Event752[],
-	Event753[],
-	Event754[],
-	Event755[],
-	Event756[],
-	Event757[],
-	Event758[],
-	Event759[],
-	Event760[],
-	Event761[],
-	Event762[],
-	Event763[],
-	Event764[],
-	Event765[],
-	Event766[],
-	Event767[],
-	Event768[],
-	Event769[],
-	Event770[],
-	Event771[],
-	Event772[],
-	Event773[],
-	Event774[],
-	Event775[],
-	Event776[],
-	Event777[],
-	Event778[],
-	Event779[],
-	Event780[],
-	Event781[],
-	Event782[],
-	Event783[],
-	Event784[],
-	Event785[],
-	Event786[],
-	Event787[],
-	Event788[],
-	Event789[],
-	Event790[],
-	Event791[],
-	Event792[],
-	Event793[],
-	Event794[],
-	Event795[],
-	Event796[],
-	Event797[],
-	Event798[],
-	Event799[],
-	Event800[],
-	Event801[],
-	Event802[],
-	Event803[],
-	Event804[],
-	Event805[],
-	Event806[],
-	Event807[],
-	Event808[],
-	Event809[],
-	Event810[],
-	Event811[],
-	Event812[],
-	Event813[],
-	Event814[],
-	Event815[],
-	Event816[],
-	Event817[],
-	Event818[],
-	Event819[],
-	Event820[],
-	Event821[],
-	Event822[],
-	Event823[],
-	Event824[],
-	Event825[],
-	Event826[],
-	Event827[],
-	Event828[],
-	Event829[],
-	Event830[],
-	Event831[],
-	Event832[],
-	Event833[],
-	Event834[],
-	Event835[],
-	Event836[],
-	Event837[],
-	Event838[],
-	Event839[],
-	Event840[],
-	Event841[],
-	Event842[],
-	Event843[],
-	Event844[],
-	Event845[],
-	Event846[],
-	Event847[],
-	Event848[],
-	Event849[],
-	Event850[],
-	Event851[],
-	Event852[],
-	Event853[],
-	Event854[],
-	Event855[],
-	Event856[],
-	Event857[],
-	Event858[],
-	Event859[],
-	Event860[],
-	Event861[],
-	Event862[],
-	Event863[],
-	Event864[],
-	Event865[],
-	Event866[],
-	Event867[],
-	Event868[],
-	Event869[],
-	Event870[],
-	Event871[],
-	Event872[],
-	Event873[],
-	Event874[],
-	Event875[],
-	Event876[],
-	Event877[],
-	Event878[],
-	Event879[],
-	Event880[],
-	Event881[],
-	Event882[],
-	Event883[],
-	Event884[],
-	Event885[],
-	Event886[],
-	Event887[],
-	Event888[],
-	Event889[],
-	Event890[],
-	Event891[],
-	Event892[],
-	Event893[],
-	Event894[],
-];
+/// $C40015
+short UnknownC40015() {
+	EntityAnimationFrames[ActionScript88 / 2] = 0;
+	UnknownC0A443Entry3();
+	return UnknownC0C6B6();
+}
+
+/// $C40023
+void UnknownC40023() {
+	EntitySleepFrames[ActionScript8A / 2] = CurrentEntitySlot & 0xF;
+}
 
 /// $C40B51
 void UnknownC40B51() {
@@ -938,6 +54,20 @@ noreturn UnknownC40B75() {
 	FadeInWithMosaic(1, 1, 0);
 	while (true) {}
 }
+
+/// $C40BD4
+immutable short[10] FootstepSoundTable = [
+	Sfx.None,
+	Sfx.None,
+	Sfx.None,
+	Sfx.None,
+	Sfx.Unknown15,
+	Sfx.Unknown0F,
+	Sfx.None,
+	Sfx.None,
+	Sfx.Unknown14,
+	Sfx.Unknown13,
+];
 
 /// $C40BE8
 immutable ubyte[512] UnknownC40BE8 = [0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
@@ -1303,6 +433,53 @@ short UnknownC4213F(short arg1, short arg2) {
 	return cast(short)((((arg2 & 0xFF00) >> 8) * (arg1 & 0xFF)) + ((arg2 & 0xFF) * (arg1 & 0xFF) >> 8));
 }
 
+/// $C423DC
+void UnknownC423DC() {
+	WH0 = 0x80;
+	WH2 = 0x80;
+	WH1 = 0x7F;
+	WH3 = 0x7F;
+	CGWSEL = 0x10;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+}
+
+/// $C4240A
+void UnknownC4240A() {
+	WH0 = 0;
+	WH2 = 0;
+	WH1 = 0xFF;
+	WH3 = 0xFF;
+	CGWSEL = 0x20;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+}
+
+/// $C42439
+void UnknownC42439(short arg1) {
+	CGADSUB = cast(ubyte)arg1;
+	FIXED_COLOUR_DATA = Unknown7E9E37 | 0x80;
+	FIXED_COLOUR_DATA = Unknown7E9E38 | 0x40;
+	FIXED_COLOUR_DATA = Unknown7E9E39 | 0x20;
+}
+
+/// $C4245D
+void UnknownC4245D(ubyte* arg1) {
+	DMAChannels[4].DMAP = 1;
+	DMAChannels[4].BBAD = 0x26;
+	DMAChannels[4].A1T = arg1;
+	WOBJSEL = 0xA0;
+	HDMAEN_MIRROR |= 0x10;
+}
+
+/// $C4248A
+void UnknownC4248A() {
+	HDMAEN_MIRROR &= ~0x10;
+	WOBJSEL = 0;
+}
+
 /// $C4249A
 void UnknownC4249A(ubyte arg1, ubyte arg2) {
 	CGADSUB = arg1;
@@ -1314,6 +491,73 @@ void UnknownC4249A(ubyte arg1, ubyte arg2) {
 	WOBJLOG = 0;
 	CGWSEL = 0x10;
 	COLDATA = arg2 | 0xE0;
+}
+
+/// $C424D1
+void UnknownC424D1() {
+	WOBJSEL = 0x20;
+	WH0 = 0x80;
+	WH1 = 0x7F;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+	CGWSEL = 0x20;
+	CGADSUB = 0xB3;
+	COLDATA = 0xEF;
+}
+
+/// $C42542
+void UnknownC42542(ubyte* arg1) {
+	DMAChannels[4].DMAP = 1;
+	DMAChannels[4].BBAD = 0x26;
+	DMAChannels[4].A1T = arg1;
+	HDMAEN_MIRROR |= 0x10;
+}
+
+/// $C4257F
+void UnknownC4257F() {
+	HDMAEN_MIRROR &= ~0x10;
+}
+
+/// $C4258C
+void UnknownC4258C() {
+	WOBJSEL = 0xA0;
+	WH0 = 0x80;
+	WH2 = 0x80;
+	WH1 = 0x7F;
+	WH3 = 0x7F;
+	TMW = 0x13;
+	WBGLOG = 0;
+	WOBJLOG = 0;
+	CGWSEL = 0x20;
+	CGADSUB = 0xB3;
+	COLDATA = 0xEF;
+}
+
+/// $C425CC
+void UnknownC425CC(ubyte* arg1) {
+	DMAChannels[4].DMAP = 1;
+	DMAChannels[4].BBAD = 0x26;
+	DMAChannels[4].A1T = arg1;
+	HDMAEN_MIRROR |= 0x10;
+}
+
+/// $C425F3
+void UnknownC425F3() {
+	HDMAEN_MIRROR &= ~0x10;
+}
+
+/// $C425FD
+void UnknownC425FD(ubyte* arg1) {
+	DMAChannels[5].DMAP = 1;
+	DMAChannels[5].BBAD = 0x28;
+	DMAChannels[5].A1T = arg1;
+	HDMAEN_MIRROR |= 0x20;
+}
+
+/// $C42624
+void UnknownC42624() {
+	HDMAEN_MIRROR &= ~0x20;
 }
 
 /// $C42631
@@ -1420,17 +664,17 @@ void UnknownC426ED() {
 }
 
 /// $C4283F
-void UnknownC4283F(short arg1, short arg2, short arg3) {
+void UnknownC4283F(short arg1, ubyte* arg2, short arg3) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
 	const(ubyte)* x00 = &EntityGraphicsPointers[arg1][SpriteDirectionMappings8Direction[EntityDirections[arg1]] + EntityAnimationFrames[arg1]].data[0];
 	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
 	do {
-		(cast(ushort*)&Unknown7F0000[0])[arg2 + arg3] = (cast(ushort*)x00)[arg3];
+		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00)[arg3];
 	} while (--arg3 > 0);
 }
 
 /// $C42884
-void UnknownC42884(short arg1, short arg2, short arg3) {
+void UnknownC42884(short arg1, ubyte* arg2, short arg3) {
 	OverworldSpriteGraphics* x00 = &EntityGraphicsPointers[arg1][0];
 	if (SpriteDirectionMappings4Direction[EntityDirections[arg1]] != 0) {
 		for (short i = SpriteDirectionMappings4Direction[EntityDirections[arg1]]; i != 0; i--) {
@@ -1441,8 +685,75 @@ void UnknownC42884(short arg1, short arg2, short arg3) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
 	const(ubyte)* x00_2 = &x00.data[0];
 	do {
-		(cast(ushort*)&Unknown7F0000[0])[arg2 + arg3] = (cast(ushort*)x00_2)[arg3];
+		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00_2)[arg3];
 	} while (--arg3 > 0);
+}
+
+/// $C428D1
+void UnknownC428D1(ushort* arg1, ushort* arg2, short arg3, short arg4) {
+	short x = cast(short)(arg4 * 2);
+	short y = arg3;
+	do {
+		arg1[y / 2] = arg2[y / 2];
+		y += 16;
+	} while (--x != 0);
+}
+
+/// $C428FC
+void UnknownC428FC(ushort* arg1, ushort* arg2, short arg3, short arg4, short arg5) {
+	ushort x08 = UnknownC42955[arg3 & 7];
+	ushort x0A = 0xFFFF ^ UnknownC42955[arg3 & 7];
+	short y = cast(short)((arg3 & 0xFFF8) * 4);
+	short x0E = arg4 / 8;
+	do {
+		short x = 16;
+		short tmp = y;
+		do {
+			arg1[y / 2] = (arg1[y / 2] & x0A) | (arg2[y / 2] & x08);
+			y += 2;
+		} while (--x != 0);
+		y = cast(short)(tmp + arg5);
+	} while (--x0E != 0);
+}
+
+/// $C428FC
+void UnknownC42965(ushort* arg1, ushort* arg2, short arg3, short arg4) {
+	ushort x08 = UnknownC42955[arg4];
+	ushort x0A = x08 ^ 0xFFFF;
+	ushort x0C = arg2[arg3] & x08;
+	arg1[arg3] = (arg1[arg3] & x0A) | x0C;
+	arg3 += 16;
+	x0C = arg2[arg3] & x08;
+	arg1[arg3] = (arg1[arg3] & x0A) | x0C;
+}
+
+/// $C42955
+immutable ushort[8] UnknownC42955 = [
+	0b1000000010000000,
+	0b0100000001000000,
+	0b0010000000100000,
+	0b0001000000010000,
+	0b0000100000001000,
+	0b0000010000000100,
+	0b0000001000000010,
+	0b0000000100000001,
+];
+
+/// $C429AE
+void UnknownC429AE(const(void)* arg1, short arg2) {
+	//pushed arg1
+	short x00 = EntityTileHeights[arg2];
+	Unknown7E0091 = 0;
+	DMA_COPY_SIZE = EntityByteWidths[arg2];
+	DMA_COPY_RAM_SRC = arg1;
+	DMA_COPY_VRAM_DEST = EntityVramAddresses[arg2];
+	while (true) {
+		UnknownC0A56E();
+		if (--x00 == 0) {
+			break;
+		}
+		DMA_COPY_RAM_SRC += DMA_COPY_SIZE;
+	}
 }
 
 /// $C429E8
@@ -3154,6 +2465,35 @@ ushort randMod(ushort arg1) {
 	return cast(ubyte)(rand() % (arg1 + 1));
 }
 
+immutable ushort[3][3] DirectionMatrix = [
+	[ Direction.UpLeft, Direction.Up, Direction.UpRight ],
+	[ Direction.Left, Direction.Up, Direction.Right ],
+	[ Direction.DownLeft, Direction.Down, Direction.DownRight ],
+];
+
+/// $C45FA8
+short GetDirectionTo(short targetX, short targetY, short fromX, short fromY) {
+	short x02 = cast(short)(fromX - targetX);
+	short x0E = cast(short)(fromY - targetY);
+	short x;
+	if (x02 > 0) {
+		x = 0;
+	} else if (x02 == 0) {
+		x = 1;
+	} else {
+		x = 2;
+	}
+	short x10;
+	if (x0E > 0) {
+		x10 = 0;
+	} else if (x0E == 0) {
+		x10 = 1;
+	} else {
+		x10 = 2;
+	}
+	return DirectionMatrix[x10][x];
+}
+
 /// $C46028
 short UnknownC46028(short arg1) {
 	for (short i = 0; i < MAX_ENTITIES; i++) {
@@ -3365,6 +2705,11 @@ short CreatePreparedEntitySprite(short sprite, short actionScript) {
 	return result;
 }
 
+/// $C46534
+short UnknownC46534(short sprite, short actionScriptID) {
+	return CreateEntity(sprite, actionScriptID, -1, EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]);
+}
+
 /// $C4655E
 void UnknownC4655E(short arg1) {
 	short a = UnknownC4605A(arg1);
@@ -3458,10 +2803,475 @@ void UnknownC466C1(short arg1) {
 	UnknownC4343E(arg1);
 }
 
+/// $C466F0
+void UnknownC466F0(const(ubyte)* arg1) {
+	DisplayText(arg1);
+}
+
+/// $C46712
+void UnknownC46712() {
+	EntityTickCallbackFlags[gameState.unknownA2[0]] |= OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED;
+	for (short i = 0; i < gameState.partyCount; i++) {
+		EntitySpriteMapFlags[gameState.unknownA2[i]] |= 0x8000;
+	}
+}
+
+/// $C4675C
+void UnknownC4675C() {
+	EntityTickCallbackFlags[gameState.unknownA2[0]] &= 0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+	for (short i = 1; i < gameState.partyCount; i++) {
+		if (gameState.unknown96[i] == 9) {
+			continue;
+		}
+		EntitySpriteMapFlags[gameState.unknownA2[i]] &= 0x7FFF;
+	}
+}
+
+/// $C467B4
+short UnknownC467B4() {
+	return cast(short)((rand() & 0x1F) + 12);
+}
+
+/// $C467C2
+short UnknownC467C2() {
+	return cast(short)((0x100 - EntityScreenYTable[CurrentEntitySlot] / 4) + (rand() & 0x1F));
+}
+
+/// $C467E6
+void UnknownC467E6() {
+	for (short i = 0; i < MAX_ENTITIES; i++) {
+		if (EntityTPTEntrySprites[i] != 0x16F) {
+			continue;
+		}
+		EntityTickCallbackFlags[i] &= 0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+	}
+}
+
+/// $C4681A
+void UnknownC4681A() {
+	if (EntityTPTEntries[CurrentEntitySlot] == -1) {
+		return;
+	}
+	if (NPCConfig[EntityTPTEntries[CurrentEntitySlot]].talkText == null) {
+		return;
+	}
+	UnknownC064E3(8, QueuedInteractionPtr(&NPCConfig[EntityTPTEntries[CurrentEntitySlot]].talkText[0]));
+}
+
 /// $C46881
 void UnknownC46881(const(ubyte)* arg1) {
 	UnknownC46594(0xFF);
 	UnknownC064E3(8, QueuedInteractionPtr(arg1));
+}
+
+/// $C468A9
+short UnknownC468A9() {
+	return pad_press[0];
+}
+
+/// $C468AF
+short UnknownC468AF() {
+	return pad_state[0];
+}
+
+/// $C468B5
+short UnknownC468B5(short arg1) {
+	short x0E = 0;
+	if (arg1 < EntityAbsXTable[CurrentEntitySlot]) {
+		x0E = 1;
+	}
+	return x0E;
+}
+
+/// $C468DC
+short UnknownC468DC(short arg1) {
+	short x0E = 0;
+	if (arg1 < EntityAbsYTable[CurrentEntitySlot]) {
+		x0E = 1;
+	}
+	return x0E;
+}
+
+/// $C46903
+short UnknownC46903(short arg1) {
+	short x = 0;
+	if (arg1 > gameState.leaderY.integer) {
+		x = 1;
+	}
+	return x;
+}
+
+/// $C46914
+short UnknownC46914() {
+	if (EntityTPTEntries[CurrentEntitySlot] == -1) {
+		return 4;
+	}
+	return NPCConfig[EntityTPTEntries[CurrentEntitySlot]].direction;
+}
+
+/// $C46957
+void UnknownC46957(short arg1) {
+	if (EntityDirections[CurrentEntitySlot] != arg1) {
+		EntityDirections[CurrentEntitySlot] = arg1;
+		UnknownC0A443Entry2(CurrentEntitySlot);
+	}
+}
+
+/// $C46984
+void UnknownC46984(short arg1) {
+	short x04 = UnknownC4605A(arg1);
+	if (x04 == -1) {
+		return;
+	}
+	short x10 = cast(short)((UnknownC41EFF(EntityAbsXTable[x04], EntityAbsYTable[x04], EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]) + 0x1000) / 0x2000);
+	if (EntityDirections[x04] == x10) {
+		return;
+	}
+	EntityDirections[x04] = x10;
+	UnknownC0A443Entry2(x04);
+}
+
+/// $C469F1
+void UnknownC469F1(short arg1) {
+	short x04 = UnknownC46028(arg1);
+	if (x04 == -1) {
+		return;
+	}
+	short x10 = cast(short)((UnknownC41EFF(EntityAbsXTable[x04], EntityAbsYTable[x04], EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]) + 0x1000) / 0x2000);
+	if (EntityDirections[x04] == x10) {
+		return;
+	}
+	EntityDirections[x04] = x10;
+	UnknownC0A443Entry2(x04);
+}
+
+/// $C46A5E
+immutable short[8] UnknownC46A5E = [
+	1,
+	1,
+	1,
+	5,
+	5,
+	5,
+	5,
+	1,
+];
+
+/// $C46A6E
+short UnknownC46A6E() {
+	return UnknownC46A5E[gameState.leaderDirection];
+}
+
+/// $C46A7A
+immutable short[8] UnknownC46A7A = [
+	0,
+	2,
+	2,
+	2,
+	4,
+	6,
+	6,
+	6,
+];
+
+/// $C46A8A
+immutable short[8] UnknownC46A8A = [
+	0,
+	0,
+	2,
+	4,
+	4,
+	4,
+	6,
+	0,
+];
+
+/// $C46A9A
+short UnknownC46A9A(short arg1) {
+	return UnknownC46A7A[arg1];
+}
+
+/// $C46AA3
+short UnknownC46AA3(short arg1) {
+	return UnknownC46A8A[arg1];
+}
+
+/// $C46ADB
+ushort UnknownC46ADB() {
+	return UnknownC41EFF(EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot], EntityScriptVar6Table[CurrentEntitySlot], EntityScriptVar7Table[CurrentEntitySlot]);
+}
+
+/// $C46B0A
+short UnknownC46B0A(short arg1) {
+	Unknown7E1A86[CurrentEntitySlot] = cast(short)((arg1 + 0x1000) / 0x2000);
+	return Unknown7E1A86[CurrentEntitySlot];
+}
+
+/// $C46B2D
+short UnknownC46B2D(short arg1) {
+	return cast(short)(arg1 * 0x2000);
+}
+
+/// $C46B37
+short UnknownC46B37(short arg1) {
+	return (arg1 + 4) & 7;
+}
+
+/// $C46B41
+immutable short[8] UnknownC46B41 = [
+	Direction.Right,
+	Direction.DownRight,
+	Direction.Down,
+	Direction.DownLeft,
+	Direction.Left,
+	Direction.UpLeft,
+	Direction.UpLeft,
+	Direction.UpRight,
+];
+
+/// $C46B51
+short UnknownC46B51(short arg1) {
+	return UnknownC46B41[(arg1 + 0x1000) / 0x2000];
+}
+
+/// $C46B65
+void UnknownC46B65() {
+	EntityScriptVar6Table[CurrentEntitySlot] = gameState.leaderX.integer;
+	EntityScriptVar7Table[CurrentEntitySlot] = gameState.leaderY.integer;
+}
+
+/// $C46B8D
+void UnknownC46B8D(short arg1) {
+	short x0E = UnknownC4605A(arg1);
+	EntityScriptVar6Table[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityScriptVar7Table[CurrentEntitySlot] = EntityAbsYTable[x0E];
+}
+
+/// $C46BBB
+void UnknownC46BBB(short arg1) {
+	short x0E = UnknownC46028(arg1);
+	EntityScriptVar6Table[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityScriptVar7Table[CurrentEntitySlot] = EntityAbsYTable[x0E];
+}
+
+/// $C46BE9
+void GetPositionOfPartyMember(short arg1) {
+	short x12 = CurrentEntitySlot;
+	short x0E;
+	if (arg1 == 0xFE) {
+		x0E = gameState.unknownA2[gameState.partyCount - 1];
+		if (EntityAbsXTable[x0E] == 0) {
+			x0E = gameState.unknownA2[gameState.partyCount - 2];
+		}
+	} else {
+		x0E = UnknownC4608C(arg1);
+	}
+	EntityScriptVar6Table[x12] = EntityAbsXTable[x0E];
+	EntityScriptVar7Table[x12] = EntityAbsYTable[x0E];
+}
+
+/// $C46C45
+void UnknownC46C45() {
+	EntityScriptVar0Table[CurrentEntitySlot] = EntityAbsXTable[CurrentEntitySlot];
+	EntityScriptVar1Table[CurrentEntitySlot] = EntityAbsYTable[CurrentEntitySlot];
+}
+
+/// $C46C5E
+void UnknownC46C5E(short arg1, short arg2) {
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(arg2 + EntityAbsXTable[CurrentEntitySlot]);
+	EntityScriptVar1Table[CurrentEntitySlot] = cast(short)(arg1 + EntityAbsYTable[CurrentEntitySlot]);
+}
+
+/// $C46C87
+void UnknownC46C87() {
+	EntityAbsXTable[CurrentEntitySlot] = EntityScriptVar6Table[CurrentEntitySlot];
+	EntityAbsYTable[CurrentEntitySlot] = EntityScriptVar7Table[CurrentEntitySlot];
+}
+
+/// $C46C9B
+void UnknownC46C9B(short arg1) {
+	short x0E = UnknownC4608C(arg1);
+	EntityAbsXTable[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityAbsYTable[CurrentEntitySlot] = EntityAbsYTable[x0E];
+}
+
+/// $C46CC7
+void UnknownC46CC7(short arg1) {
+	short x0E = UnknownC46028(arg1);
+	EntityAbsXTable[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityAbsYTable[CurrentEntitySlot] = EntityAbsYTable[x0E];
+}
+
+/// $C46CF5
+void UnknownC46CF5(short arg1, short arg2) {
+	EntityAbsXTable[CurrentEntitySlot] = cast(short)(arg2 + BG1_X_POS);
+	EntityAbsYTable[CurrentEntitySlot] = cast(short)(arg1 + BG1_Y_POS);
+	EntityAbsXFractionTable[CurrentEntitySlot] = cast(short)0x8000;
+	EntityAbsYFractionTable[CurrentEntitySlot] = cast(short)0x8000;
+}
+
+/// $C46D23
+void UnknownC46D23() {
+	EntityAbsXTable[CurrentEntitySlot] = cast(short)(rand() + BG1_X_POS + 0x70);
+	EntityAbsYTable[CurrentEntitySlot] = BG1_Y_POS;
+}
+
+/// $C46D4B
+void UnknownC46D4B() {
+	EntityAbsXTable[CurrentEntitySlot] = cast(short)(PhotographerConfigTable[Unknown7E9E35].photographerX * 8);
+	EntityAbsYTable[CurrentEntitySlot] = cast(short)(PhotographerConfigTable[Unknown7E9E35].photographerY * 8);
+	EntityAbsYFractionTable[CurrentEntitySlot] = 0;
+	EntityAbsXFractionTable[CurrentEntitySlot] = 0;
+}
+
+/// $C46DAD
+void PrepareNewEntityAtExistingEntityLocation(short arg1) {
+	short x0E;
+	switch (arg1) {
+		case 0:
+			x0E = CurrentEntitySlot;
+			break;
+		case 1:
+			x0E = gameState.currentPartyMembers;
+			break;
+		default: break;
+	}
+	EntityPreparedXCoordinate = EntityAbsXTable[x0E];
+	EntityPreparedYCoordinate = EntityAbsYTable[x0E];
+	EntityPreparedDirection = EntityDirections[x0E];
+}
+
+/// $C46DE6
+void PrepareNewEntityAtTeleportDestination(short arg1) {
+	EntityPreparedXCoordinate = cast(ushort)(TeleportDestinationTable[arg1].x * 8);
+	EntityPreparedYCoordinate = cast(ushort)(TeleportDestinationTable[arg1].y * 8);
+	EntityPreparedDirection = cast(ushort)(TeleportDestinationTable[arg1].direction - 1);
+}
+
+/// $C46E37
+void PrepareNewEntity(short arg1, short arg2, short arg3) {
+	EntityPreparedXCoordinate = arg2;
+	EntityPreparedYCoordinate = arg3;
+	EntityPreparedDirection = arg1 & 0xFF;
+}
+
+/// $C46E46
+void UnknownC46E46() {
+	Unknown7E9641 = 1;
+}
+
+/// $C46E4F
+void UnknownC46E4F(const(ubyte)* arg1) {
+	UnknownC064E3(8, QueuedInteractionPtr(arg1));
+}
+
+/// $C46E74
+short UnknownC46E74() {
+	if (teleportDestination != 0) {
+		return 0;
+	}
+	short x10 = cast(short)(EntityScriptVar0Table[CurrentEntitySlot] - gameState.leaderX.integer);
+	short x0E;
+	if (0 > x10) {
+		x0E = cast(short)-cast(int)x10;
+	} else {
+		x0E = x10;
+	}
+	if (x0E < EntityScriptVar2Table[CurrentEntitySlot]) {
+		x10 = cast(short)(EntityScriptVar1Table[CurrentEntitySlot] - gameState.leaderY.integer);
+		if (0 > x10) {
+			x10 = cast(short)-cast(int)x10;
+		} else {
+			x10 = x10;
+		}
+		if (x10 < EntityScriptVar3Table[CurrentEntitySlot]) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+/// $C46EF8
+short UnknownC46EF8() {
+	if (teleportDestination != 0) {
+		return 0;
+	}
+	short x10 = cast(short)(EntityAbsXTable[CurrentEntitySlot] - gameState.leaderX.integer);
+	short x0E;
+	if (0 > x10) {
+		x0E = cast(short)-cast(int)x10;
+	} else {
+		x0E = x10;
+	}
+	if (x0E < EntityScriptVar2Table[CurrentEntitySlot]) {
+		x10 = cast(short)(EntityAbsYTable[CurrentEntitySlot] - gameState.leaderY.integer);
+		if (0 > x10) {
+			x10 = cast(short)-cast(int)x10;
+		} else {
+			x10 = x10;
+		}
+		if (x10 < EntityScriptVar3Table[CurrentEntitySlot]) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+/// $C47044
+short UnknownC47044(short arg1) {
+	FixedPoint1616 x0E = UnknownC41FFF(arg1, UNKNOWN_30X2_TABLE_35[CurrentEntitySlot]);
+	short x14 = x0E.integer;
+	if (x14 < 0) {
+		EntityDeltaXTable[CurrentEntitySlot] = x14 >> 8;
+		EntityDeltaXFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) | 0xFF);
+	} else {
+		EntityDeltaXTable[CurrentEntitySlot] = (x14 >> 8) & 0xFF;
+		EntityDeltaXFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) & 0xFF00);
+	}
+	x14 = x0E.fraction;
+	if (x14 < 0) {
+		EntityDeltaYTable[CurrentEntitySlot] = x14 >> 8;
+		EntityDeltaYFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) | 0xFF);
+	} else {
+		EntityDeltaYTable[CurrentEntitySlot] = (x14 >> 8) & 0xFF;
+		EntityDeltaYFractionTable[CurrentEntitySlot] = cast(short)((x14 << 8) & 0xFF00);
+	}
+	return arg1;
+}
+
+/// $C47143
+short UnknownC47143(short arg1, short arg2) {
+	short x12 = cast(short)(EntityScriptVar6Table[CurrentEntitySlot] - EntityAbsXTable[CurrentEntitySlot]);
+	if (0 > x12) {
+		x12 = cast(short)-cast(int)x12;
+	} else {
+		x12 = x12; //...ok?
+	}
+	if (x12 < EntityScriptVar5Table[CurrentEntitySlot]) {
+		x12 = cast(short)(EntityScriptVar7Table[CurrentEntitySlot] - EntityAbsYTable[CurrentEntitySlot]);
+		if (0 > x12) {
+			x12 = cast(short)-cast(int)x12;
+		} else {
+			x12 = x12;
+		}
+		if (x12 < EntityScriptVar5Table[CurrentEntitySlot]) {
+			return 1;
+		}
+	}
+	x12 = UnknownC46ADB();
+	UnknownC47044(x12);
+	if (arg2 == 0) {
+		short x10 = UnknownC46B0A(x12);
+		if (arg1 != 0) {
+			x10 = UnknownC46B37(x10);
+		}
+		short x0E = EntityDirections[CurrentEntitySlot];
+		EntityDirections[CurrentEntitySlot] = x10;
+		if (UnknownC46AA3(x0E) != UnknownC46AA3(x10)) {
+			UnknownC0A443Entry2(CurrentEntitySlot);
+		}
+	}
+	return 0;
 }
 
 /// $C4733C
@@ -3486,6 +3296,184 @@ void UnknownC474A8() {
 		(0 <= EntityScriptVar0Table[CurrentEntitySlot]) ? 0x33 : 0xB3,
 		cast(ubyte)((0 <= EntityScriptVar0Table[CurrentEntitySlot]) ? EntityScriptVar0Table[CurrentEntitySlot] : cast(short)-cast(int)EntityScriptVar0Table[CurrentEntitySlot])
 	);
+}
+
+/// $C474F6
+immutable ubyte[11] UnknownC474F6 = [ 0x10, 0x10, 0x0F, 0x0F, 0x0E, 0x0D, 0x0C, 0x0B, 0x09, 0x06, 0x03 ];
+
+/// $C47501
+void UnknownC47501(ubyte* arg1) {
+	if (EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 4 >= 0) {
+		(arg1++)[0] = cast(ubyte)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 5);
+		short x12 = cast(short)(EntityAbsXTable[CurrentEntitySlot] + 16 - BG1_X_POS);
+		if (EntityAbsXTable[CurrentEntitySlot] - 16 - BG1_X_POS < 0x100) {
+			(arg1++)[0] = cast(ubyte)(EntityAbsXTable[CurrentEntitySlot] - 16 - BG1_X_POS);
+			if (x12 < 0x100) {
+				(arg1++)[0] = cast(ubyte)x12;
+			} else {
+				(arg1++)[0] = 0xFF;
+			}
+		} else {
+			if (x12 < 0x100) {
+				(arg1++)[0] = 0;
+				(arg1++)[0] = cast(ubyte)x12;
+			} else {
+				(arg1++)[0] = 0x80;
+				(arg1++)[0] = 0x7F;
+			}
+		}
+	}
+	short x04 = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS);
+	if (EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 15 >= 0) {
+		short x02 = (EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 15 < 10) ? cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 15) : 10;
+		const(ubyte)* x0A = &UnknownC474F6[10 - x02];
+		for (short i = 0; i < x02 + 1; i++) {
+			(arg1++)[0] = 1;
+			short x0E = cast(short)(x04 - x0A[0]);
+			short x = cast(short)(x04 + x0A[0] - 1);
+			x0A++;
+			if (x0E < 0x100) {
+				(arg1++)[0] = cast(ubyte)x0E;
+				if (x < 0x100) {
+					(arg1++)[0] = cast(ubyte)x;
+				} else {
+					(arg1++)[0] = 0xFF;
+				}
+			} else {
+				if (x < 0x100) {
+					(arg1++)[0] = 0;
+					(arg1++)[0] = cast(ubyte)x;
+				} else {
+					(arg1++)[0] = 0x80;
+					(arg1++)[0] = 0x7F;
+				}
+			}
+		}
+	}
+	(arg1++)[0] = 1;
+	(arg1++)[0] = 0x80;
+	(arg1++)[0] = 0x7F;
+	(arg1++)[0] = 0;
+}
+
+/// $C476A5
+void UnknownC476A5() {
+	short x16;
+	if ((EntityScriptVar0Table[CurrentEntitySlot] & 1) != 0) {
+		x16 = 0;
+	} else {
+		x16 = 0x2FE;
+	}
+	UnknownC47501(&Unknown7F0000[x16]);
+	UnknownC425CC(&Unknown7F0000[x16]);
+	EntityScriptVar0Table[CurrentEntitySlot]++;
+}
+
+/// $C47705
+void UnknownC47705() {
+	short x16;
+	if ((EntityScriptVar0Table[CurrentEntitySlot] & 1) != 0) {
+		x16 = 0x5FC;
+	} else {
+		x16 = 0x8FA;
+	}
+	UnknownC47501(&Unknown7F0000[x16]);
+	UnknownC425FD(&Unknown7F0000[x16]);
+	EntityScriptVar0Table[CurrentEntitySlot]++;
+}
+
+/// $C47765
+void UnknownC47765(short arg1, short arg2, short arg3) {
+	ubyte* x0A = &Unknown7F0000[0xBF8];
+	short x14 = cast(short)(arg2 - BG1_Y_POS);
+	if (x14 > 0x7F) {
+		x0A[0] = 0x7F;
+		Unknown7F0000[0xBF9] = 0;
+		Unknown7F0000[0xBFA] = 0xFF;
+		x0A = &Unknown7F0000[0xBFB];
+		x14 -= 0x7F;
+	}
+	(x0A++)[0] = cast(ubyte)x14;
+	(x0A++)[0] = 0;
+	(x0A++)[0] = 0xFF;
+	short y = cast(short)(arg1 - BG1_X_POS);
+	short x12 = cast(short)(arg3 - BG1_X_POS);
+	for (short i = 0; i < 16; i++) {
+		(x0A++)[0] = 1;
+		(x0A++)[0] = cast(ubyte)y;
+		(x0A++)[0] = cast(ubyte)x12;
+		x12--;
+	}
+	(x0A++)[0] = 1;
+	(x0A++)[0] = 0x80;
+	(x0A++)[0] = 0x7F;
+	(x0A++)[0] = 0;
+	UnknownC42542(&Unknown7F0000[0xBF8]);
+}
+
+/// $C47866
+short UnknownC47866(short arg1, short arg2) {
+	short x0E = arg1;
+	if (0 > arg1) {
+		x0E = 0;
+	}
+	if (x0E > arg2) {
+		x0E = arg2;
+	}
+	return x0E;
+}
+
+/// $C4789E
+ubyte* UnknownC4789E(short arg1, short arg2, short arg3, ubyte* arg4) {
+	if (arg1 == 0) {
+		return arg4;
+	}
+	if (arg1 < 0x80) {
+		(arg4++)[0] = cast(ubyte)arg1;
+		(arg4++)[0] = cast(ubyte)arg2;
+		(arg4++)[0] = cast(ubyte)arg3;
+	} else {
+		(arg4++)[0] = 0x7F;
+		(arg4++)[0] = cast(ubyte)arg2;
+		(arg4++)[0] = cast(ubyte)arg3;
+		(arg4++)[0] = cast(ubyte)(arg1 - 0x7F);
+		(arg4++)[0] = cast(ubyte)arg2;
+		(arg4++)[0] = cast(ubyte)arg3;
+	}
+	return arg4;
+}
+
+/// $C47930
+void UnknownC47930(short arg1, short arg2, short arg3, short arg4) {
+	short x1A;
+	if ((Unknown7E9E3A & 1) != 0) {
+		x1A = 0;
+	} else {
+		x1A = 0x2FE;
+	}
+	short x18 = UnknownC47866(arg2, 0xE0);
+	short x16 = UnknownC47866(arg4, 0xE0);
+	short x04 = UnknownC47866(arg1, 0x100);
+	short x02 = UnknownC47866(arg3, 0x100);
+	UnknownC4789E(cast(short)(0xE0 - x16 - 1), 0x80, 0x7F, UnknownC4789E(cast(short)(x16 - x18), x04, x02, UnknownC4789E(x18, 0x80, 0x7F, &Unknown7F0000[x1A])))[0] = 0;
+	UnknownC4245D(&Unknown7F0000[x1A]);
+	Unknown7E9E3A++;
+}
+
+/// $C479E9
+void UnknownC479E9() {
+	short x10 = void; // whoops?
+	short x04 = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS);
+	short x12 = cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS);
+	short x02 = EntityScriptVar0Table[CurrentEntitySlot];
+	UnknownC47930(cast(short)(x04 - x02), x10, cast(short)(x04 + x02), cast(short)(x12 + x02));
+}
+
+/// $C47A27
+void UnknownC47A27() {
+	BG1_Y_POS = cast(short)(EntityAbsYTable[CurrentEntitySlot] - 0x70);
+	short x10 = cast(short)(EntityAbsYTable[gameState.currentPartyMembers] - (EntityAbsYTable[CurrentEntitySlot] - 0x70));
+	UnknownC47930(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
 }
 
 /// $C47C3F
@@ -3567,6 +3555,33 @@ void UndrawFlyoverText() {
 	UnknownC44963(2);
 	UnknownC47F87();
 	Unknown7E0030 = 0x18;
+}
+
+/// $C48BDA
+void UnknownC48BDA() {
+	UnknownC2DB3F();
+}
+
+/// $C48BE1
+void UnknownC48BE1() {
+	EntityScreenXTable[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS);
+	EntityScreenYTable[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS);
+}
+
+/// $C48C02
+void UnknownC48C02() {
+	EntityScreenXTable[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS + EntityScriptVar0Table[CurrentEntitySlot]);
+	EntityScreenYTable[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + EntityScriptVar1Table[CurrentEntitySlot]);
+}
+
+/// $C48C2B
+void UnknownC48C2B() {
+	CenterScreen(EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]);
+}
+
+/// $C48C3E
+void UnknownC48C3E() {
+	CenterScreen(cast(short)(EntityAbsXTable[CurrentEntitySlot] + EntityScriptVar0Table[CurrentEntitySlot]), cast(short)(EntityAbsYTable[CurrentEntitySlot] + EntityScriptVar1Table[CurrentEntitySlot]));
 }
 
 /// $C48C59
@@ -4060,7 +4075,7 @@ void CoffeeTeaScene(short id) {
 		}
 	}
 	FadeOut(1, 1);
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		UnknownC49A4B();
 	}
 	UnknownC08726();
@@ -4818,7 +4833,7 @@ void UseSoundStone(short arg1) {
 		}
 	}
 	FadeOut(1, 1);
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		WaitUntilNextFrame();
 	}
 	UnknownC08726();
@@ -5505,7 +5520,7 @@ void UnknownC4C2DE() {
 	SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	Decomp(&UnknownE1CFAF[0], &Unknown7F0000[0]);
 	if (gameState.partyMembers[0] == 3) {
-		CopyToVram(0, 0x8000, 0, &Unknown7F8000[0]);
+		CopyToVram(0, 0x8000, 0, &Unknown7F0000[0x8000]);
 	} else {
 		CopyToVram(0, 0x8000, 0, &Unknown7F0000[0]);
 	}
@@ -5672,25 +5687,386 @@ short Spawn() {
 	return result;
 }
 
+/// $C47225
+void UnknownC47225(short arg1, short arg2) {
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] - arg2);
+	EntityScriptVar1Table[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] + arg2);
+	EntityScriptVar2Table[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] - arg1);
+	EntityScriptVar3Table[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] + arg1);
+}
+
+/// $C47269
+short UnknownC47269() {
+	if (EntityAbsXTable[CurrentEntitySlot] < EntityScriptVar0Table[CurrentEntitySlot]) {
+		return 3;
+	}
+	if (EntityAbsXTable[CurrentEntitySlot] > EntityScriptVar1Table[CurrentEntitySlot]) {
+		return 7;
+	}
+	if (EntityAbsYTable[CurrentEntitySlot] < EntityScriptVar2Table[CurrentEntitySlot]) {
+		return 5;
+	}
+	if (EntityAbsYTable[CurrentEntitySlot] > EntityScriptVar3Table[CurrentEntitySlot]) {
+		return 1;
+	}
+	return 0;
+}
+
+/// $C472A8
+void UnknownC472A8(short arg1) {
+	UnknownC47044(EntityScriptVar0Table[CurrentEntitySlot]);
+	short x10 = UnknownC46B51(EntityScriptVar0Table[CurrentEntitySlot]);
+	if (arg1 != 0) {
+		x10 = UnknownC46B37(x10);
+	}
+	short x0E = EntityDirections[CurrentEntitySlot];
+	EntityDirections[CurrentEntitySlot] = x10;
+	if (UnknownC46AA3(x0E) != UnknownC46AA3(x10)) {
+		UnknownC0A443Entry2(CurrentEntitySlot);
+	}
+}
+
+/// $C4730E
+void UnknownC4730E() {
+	EntityDeltaYTable[CurrentEntitySlot] /= 2;
+}
+
+/// $C47333
+short UnknownC47333() {
+	return gameState.partyCount;
+}
+
+/// $C4734C
+short UnknownC4734C(short arg1) {
+	UnknownC01A63(BG1_X_POS / 8, arg1);
+	return arg1;
+}
+
+/// $C47369
+void UnknownC47369() {
+	UnknownC019E2();
+}
+
+/// $C473B2
+ushort UnknownC473B2(ushort arg1) {
+	if (arg1 < 0x8000) {
+		return 0;
+	}
+	if (arg1 >= 31) {
+		return 31;
+	}
+	return arg1 & 0x1F;
+}
+
+/// $C473D0
+void UnknownC473D0(short arg1, short arg2) {
+	ushort* x16 = &Unknown7E4476[arg1][0];
+	ushort* x18 = &palettes[arg1 + 2][0];
+	for (short i = 0; i < 16; i++) {
+		ushort x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
+		ushort x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
+		ushort x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
+		ushort x0E = UnknownC473B2(x14);
+		ushort x12_2 = UnknownC473B2(x12);
+		ushort x10_2 = UnknownC473B2(x10);
+		x16++;
+		(x18++)[0] = cast(ushort)((x12_2 << 5) | (x10_2 << 10) | x0E);
+	}
+}
+
+/// $C4746B
+void UnknownC4746B(short arg1) {
+	for (short i = 0; i < 16; i++) {
+		UnknownC473D0(i, arg1);
+	}
+	Unknown7E0030 = 0x18;
+}
+
+/// $C47499
+void UnknownC47499() {
+	UnknownC4746B(EntityScriptVar0Table[CurrentEntitySlot]);
+}
+
+/// $C47A6B
+void UnknownC47A6B() {
+	EntityAbsYTable[CurrentEntitySlot] = cast(short)(EntityScriptVar7Table[CurrentEntitySlot] - (EntityAbsYTable[CurrentEntitySlot] - EntityScriptVar7Table[CurrentEntitySlot]));
+}
+
+/// $C47A9E
+void UnknownC47A9E() {
+	Decomp(&AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].ptr[0], &Unknown7F0000[0]);
+	CopyToVram2(0, AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown4, 0x6000, &Unknown7F0000[0]);
+	memcpy(&palettes[0][0], &Unknown7F0000[AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown4], 8);
+	Unknown7E0030 = 0x18;
+	BG3_Y_POS = 0xFFFF;
+}
+
+/// $C47B77
+short UnknownC47B77() {
+	BG3_Y_POS = 0xFFFF;
+	CopyToVram(0, 0x700, 0x7C00, &Unknown7F0000[8 + AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown4 + EntityScriptVar1Table[CurrentEntitySlot] * 0x700]);
+	if (EntityScriptVar1Table[CurrentEntitySlot] + 1 == AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown6) {
+		return 0;
+	}
+	return AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown7;
+}
+
+/// $C48037
+immutable ubyte[215] LumineHallText = EBString!215("I'm ....  It's been a long road getting here...  Soon, I'll be...  Soon, I'll be...  Soon, I'll be...  What will happen to us?  W...what's happening?  My thoughts are being written out on the wall...  or are they?  ");
+
+/// $C4810E
+ushort* UnknownC4810E(short arg1, ushort* arg2) {
+	ubyte* x06 = &Unknown7F0000[0];
+	x06 += (((arg1 & 0xFFF0) * 2) + arg1 & 0xF) * 16;
+	for (ushort i = 6; i < 7; i -= 2) {
+		for (short j = 0; j < 4; j++) {
+			ubyte x00 = x06[0];
+			ubyte x01 = x06[1];
+			ushort x0E = (x00 ^ x01) & x00;
+			x00 = x06[2];
+			x01 = x06[3];
+			ushort x02 = (x00 ^ x01) & x00;
+			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
+			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			x06 += 4;
+		}
+		x06 += 0xF0;
+		for (short j = 0; j < 4; j++) {
+			ubyte x00 = x06[0];
+			ubyte x01 = x06[1];
+			ushort x0E = (x00 ^ x01) & x00;
+			x00 = x06[2];
+			x01 = x06[3];
+			ushort x02 = (x00 ^ x01) & x00;
+			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
+			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			x06 += 4;
+		}
+		x06 -= 0x110;
+	}
+	return arg2;
+}
+
+/// $C4827B
+void UnknownC4827B(short arg1, short arg2) {
+	short x1A = (arg2 - 0x50) & 0x7F;
+	short x18 = FontConfigTable[arg1].height;
+	const(ubyte)* x14 = &FontConfigTable[arg1].graphics[x1A * x18];
+	short x02 = FontConfigTable[arg1].width;
+	short x12 = FontConfigTable[arg1].data[x1A];
+	x12 += Unknown7E5E6D;
+	while (x12 > 8) {
+		RenderText(8, x02, x14);
+		x12 -= 8;
+		x14 += x02;
+	}
+	RenderText(x12, x02, x14);
+}
+
+/// $C4838A
+short UnknownC4838A(short arg1) {
+	short x2E = 0;
+	short x2C = 0;
+	short x2A = 0;
+	VWFTile = 0;
+	VWFX = 0;
+	memset(&VWFBuffer[0][0], 0xFF, 0x400);
+	short x04 = 4;
+	short x28 = cast(short)strlen(cast(char*)&PartyCharacters[0].name[0]);
+	if (x28 > 5) {
+		x28 = 5;
+	}
+	short x26 = 6;
+	ubyte* x06 = &PartyCharacters[0].name[0];
+	for (short i = 0; x04 > i; i++) {
+		UnknownC4827B(arg1, LumineHallText[i]);
+	}
+	for (short i = 0; x28 > i; i++) {
+		UnknownC4827B(arg1, (x06++)[0]);
+	}
+	for (short i = 0; x26 > i; i++) {
+		UnknownC4827B(arg1, LumineHallText[4 + i]);
+	}
+	x26 = cast(short)(VWFX + x2C);
+	x28 = 0;
+	short x20 = 0;
+	for (short i = 0; i < VWFX / 8; i++) {
+		memcpy(&Unknown7F0000[x2A], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+		x20 += 16;
+		memcpy(&Unknown7F0000[x2A + 0x100], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+		x20 += 16;
+		x2A += 16;
+	}
+	x2C = 205;
+	memcpy(&VWFBuffer[0][0], &VWFBuffer[VWFX / 8][0], 0x20);
+	VWFTile = 0;
+	VWFX %= 8;
+	for (short i = 0; x2C > i; i++) {
+		if (x2E > 16) {
+			x2E = 0;
+			x26 += VWFX;
+			x20 = 0;
+			 for (short j = 0; i < VWFX / 8; i++) {
+				memcpy(&Unknown7F0000[x2A], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+				x20 += 16;
+				memcpy(&Unknown7F0000[x2A + 0x100], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+				x20 += 16;
+				x2A += 16;
+				if ((x2A % 0x100) == 0) {
+					x2A += 0x100;
+				}
+			 }
+			 if ((VWFX % 8) != 0) {
+				memcpy(&VWFBuffer[0][0], &VWFBuffer[VWFX / 8][0], 0x20);
+				memset(&VWFBuffer[1][0], 0xFF, 0x1E0);
+				VWFTile = 0;
+				VWFX %= 8;
+			 } else {
+				VWFX = 0;
+				VWFTile = 0;
+				memset(&VWFBuffer[0][0], 0xFF, 0x200);
+			 }
+		}
+		UnknownC4827B(arg1, LumineHallText[10 + i]);
+		x2E++;
+	}
+	x04 = cast(short)(VWFX + x26);
+	x20 = 0;
+	for (short i = 0; i < VWFX + 16; i++) {
+		memcpy(&Unknown7F0000[x2A], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+		short x16 = cast(short)(x20 + 16);
+		memcpy(&Unknown7F0000[x2A + 0x100], &(cast(ubyte*)&VWFBuffer[0][0])[x16], 16);
+		x20 = cast(short)(x16 + 16);
+		x2A += 0x100;
+		if ((x2A % 0x100) == 0) {
+			x2A += 0x100;
+		}
+	}
+	return cast(short)((x04 / 16) * 4);
+}
+
+/// $C4880C
+void UnknownC4880C() {
+	short y = UnknownC4838A(0);
+	ushort* x06 = cast(ushort*)&Unknown7F0000[0x4000];
+	for (short i = 0; i < 0x1D; i++) {
+		for (short j = 0; j < 8; j++) {
+			(x06++)[0] = 0;
+		}
+	}
+	short x04 = cast(short)(y + 30);
+	short x1E = 0;
+	short x1C;
+	for (x1C = 0; x1C < 4; x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+		x1E++;
+	}
+	short x1A = cast(short)strlen(cast(char*)&PartyCharacters[0].name[0]);
+	if (x1A == 6) {
+		x1A--;
+	}
+	for(x1E = 0; x1A < x1E; x1E++, x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+	}
+	for (x1E = 0; x1E < 6; x1E++, x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+	}
+	for (x1E = 0; x1E < 205; x1E++, x1C++) {
+		x06 = UnknownC4810E(x1C, x06);
+	}
+	for (short i = 0; i < 30; i++) {
+		for (short j = 0; j < 8; j++) {
+			(x06++)[0] = 0;
+		}
+	}
+	ushort* x06_2 = cast(ushort*)&Unknown7F0000[0x1000];
+	ushort* x0A = cast(ushort*)&Unknown7F0000[0x4000];
+	for (short i = 0; i < 8; i++) {
+		(x06_2++)[0] = 0x0C10;
+	}
+	for (short i = 0; i < x04 + 0x1E; i++) {
+		for (short j = 0; j < 8; j++) {
+			x06_2[0] = ((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5);
+			//suspicious...
+			x06_2[0] = cast(ushort)(((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5) + 0x0C10);
+			x0A[0] += 0x0C10;
+			x06++;
+			x0A++;
+		}
+	}
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(x04 * 2);
+	Unknown7F0000[0] = 8;
+	Unknown7F0000[1] = 30;
+}
+
+/// $C48A6D
+short UnknownC48A6D() {
+	ushort* x06;
+	if ((EntityScriptVar1Table[CurrentEntitySlot] & 1) != 0) {
+		x06 = cast(ushort*)&Unknown7F0000[0x4000 + (EntityScriptVar1Table[CurrentEntitySlot] >> 1) * 16];
+	} else {
+		x06 = cast(ushort*)&Unknown7F0000[0x1000 + (EntityScriptVar1Table[CurrentEntitySlot] >> 1) * 16];
+	}
+	ushort* x0A = cast(ushort*)&Unknown7F0000[2];
+	for (short i = 0; i < 8; i++) {
+		for (short j = 0; j < 30; j++) {
+			(x0A++)[0] = x06[0];
+			x06 += 8;
+		}
+		// interesting...
+		x06 += -239;
+	}
+	UnknownC3F705(808, 588, cast(ushort*)&Unknown7F0000[0]);
+	short x = 0;
+	if (++EntityScriptVar1Table[CurrentEntitySlot] > EntityScriptVar0Table[CurrentEntitySlot]) {
+		x = 1;
+	}
+	return x;
+}
+
+/// $C48B2C
+void UnknownC48B2C() {
+	teleportStyle = TeleportStyle.Unknown;
+	gameState.leaderDirection = Direction.Right;
+}
+
+/// $C48B3B
+void UnknownC48B3B() {
+	if ((Unknown7E0002 & 1) != 0) {
+		return;
+	}
+	for (short i = 0; gameState.partyCount > i; i++) {
+		if (16 <= gameState.unknown96[i]) {
+			continue;
+		}
+		short x10 = cast(short)((UnknownC41EFF(EntityAbsXTable[gameState.unknownA2[i]], EntityAbsYTable[gameState.unknownA2[i]], EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]) + 0x1000) / 0x2000);
+		if (EntityDirections[gameState.unknownA2[i]] == x10) {
+			continue;
+		}
+		EntityDirections[gameState.unknownA2[i]] = x10;
+		UnknownC0A780(gameState.unknownA2[i]);
+	}
+}
+
 /// $C4C8A4
 void UnknownC4C8A4() {
-	Unknown7EB4A4 = 0;
+	Unknown7EB4A4 = &Unknown7F0000[0];
 	Unknown7EB4A6 = 0;
 	Unknown7EB4AA = cast(Unknown7EB4AAEntry*)&Unknown7F0000[0x7C00];
 	memset(&Unknown7F0000[0x7C00], 0, 0x400);
 }
 
 /// $C4C8DB
-short UnknownC4C8DB(short arg1) {
-	short result = Unknown7EB4A4;
+ubyte* UnknownC4C8DB(short arg1) {
+	ubyte* result = Unknown7EB4A4;
 	Unknown7EB4A4 += arg1;
 	return result;
 }
 
 /// $C4C8E9
-void UnknownC4C8E9(short arg1, short arg2) {
+void UnknownC4C8E9(ubyte* arg1, short arg2) {
 	while (arg2 != 0) {
-		Unknown7F0000[arg1++] = 0;
+		(arg1++)[0] = 0;
 		arg2--;
 	}
 }
@@ -5726,10 +6102,10 @@ void UnknownC4C91A(short arg1, short arg2) {
 	x1A.unknown14 = cast(short)(EntityTileHeights[arg1] * 8 * UnknownC42A63[EntitySizes[arg1]]);
 	x1A.unknown10 = UnknownC4C8DB(x1A.unknown14);
 	UnknownC4C8E9(x1A.unknown10, x1A.unknown14);
-	x1A.unknown12 += x1A.unknown10;
+	x1A.unknown12 = x1A.unknown10 + x1A.unknown14;
 	x1A.unknown18 = 0;
 	x1A.unknown16 = 0;
-	short x16;
+	ubyte* x16;
 	if ((arg2 == 2) || (arg2 == 3) || (arg2 == 4) || (arg2 == 5)) {
 		x16 = x1A.unknown10;
 	} else {
@@ -5765,6 +6141,167 @@ void UnknownC4C91A(short arg1, short arg2) {
 	}
 	EntityScriptVar4Table[Unknown7EB4A8] = cast(short)(EntityScriptVar0Table[Unknown7EB4A8] + EntityScriptVar1Table[Unknown7EB4A8] + EntityScriptVar2Table[Unknown7EB4A8] + EntityScriptVar3Table[Unknown7EB4A8]);
 	Unknown7EB4A6++;
+}
+
+/// $C4978E
+void UnknownC4978E() {
+	memcpy(&Unknown7E4476[0][0], &palettes[0][0], 0x200);
+}
+
+/// $C497C0
+void UnknownC497C0(short arg1, short arg2, short arg3) {
+	UnknownC4954C(arg2, &Unknown7E4476[0][0]);
+	UnknownC496E7(arg1, arg2);
+	if (arg1 != 1) {
+		for (short i = 0; i < arg1; i++) {
+			UnknownC426ED();
+			WaitUntilNextFrame();
+		}
+	}
+	UnknownC49740();
+	UnknownC0856B(0x18);
+}
+
+/// $C4981F
+void UnknownC4981F() {
+	CopyToVram(3, 0x800, 0x7C00, &UnknownC40BE8[0]);
+}
+
+/// $C49841
+void UnknownC49841() {
+	UnknownC2EA15(1);
+}
+
+/// $C4CB4F
+void UnknownC4CB4F() {
+	Unknown7EB4AAEntry* x06 = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++) {
+		EntitySpriteMapFlags[x06.unknown0] &= 0xBFFF;
+		x06++;
+	}
+}
+
+/// $C4CB8F
+void UnknownC4CB8F() {
+	Unknown7EB4AAEntry* x06 = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++) {
+		if (x06.unknown4 == 1) {
+			EntityAnimationFrames[x06.unknown0] = 0;
+		}
+		UnknownC0A443Entry2(x06.unknown0);
+		x06++;
+	}
+}
+
+/// $C4CBE3
+void UnknownC4CBE3() {
+	Unknown7EB4AAEntry* x06 = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++) {
+		if (x06.unknown4 == 1) {
+			EntityAnimationFrames[x06.unknown0] = -1;
+		}
+		x06++;
+	}
+}
+
+/// $C4CC2C
+void UnknownC4CC2C() {
+	// wow. nothing!
+}
+
+/// $C4CC2F
+short UnknownC4CC2F() {
+	short x1E = 0;
+	short x04 = 0;
+	Unknown7EB4AAEntry* x1A = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++, x1A++) {
+		if (x1A.unknown4 != 2) {
+			continue;
+		}
+		x04++;
+		if (x1A.unknown18 == 2) {
+			x1E++;
+			continue;
+		}
+		UnknownC428D1(cast(ushort*)x1A.unknown12, cast(ushort*)x1A.unknown10, cast(short)((x1A.unknown6 * 32 *(x1A.unknown16 / 8)) + (x1A.unknown16 % 8) * 2), x1A.unknown6 / 8);
+		UnknownC429AE(x1A.unknown12, x1A.unknown0);
+		if (++x1A.unknown16 >= x1A.unknown8) {
+			x1A.unknown16 = 1;
+			x1A.unknown18++;
+		}
+	}
+	return cast(short)(x04 - x1E);
+}
+
+/// $C4CD44
+short UnknownC4CD44() {
+	short x1E = 0;
+	short x04 = 0;
+	Unknown7EB4AAEntry* x0A = Unknown7EB4AA;
+	for (short i = 0; i < Unknown7EB4A6; i++, x0A++) {
+		if (x0A.unknown4 != 3) {
+			continue;
+		}
+		x04++;
+		if (x0A.unknown18 == 2) {
+			x1E++;
+			continue;
+		}
+		short x;
+		if (x0A.unknown18 != 0) {
+			if ((x0A.unknown16 & 1) == 0) {
+				x = x0A.unknown16;
+			} else {
+				x = cast(short)(x0A.unknown6 - x0A.unknown16 - 1);
+			}
+		} else {
+			if ((x0A.unknown16 & 1) != 0) {
+				x = x0A.unknown16;
+			} else {
+				x = cast(short)(x0A.unknown6 - x0A.unknown16 - 1);
+			}
+		}
+		UnknownC428FC(cast(ushort*)x0A.unknown12, cast(ushort*)x0A.unknown10, x, x0A.unknown8, cast(short)((x0A.unknown6 / 8) * 32));
+		UnknownC429AE(x0A.unknown12, x0A.unknown0);
+		if (++x0A.unknown16 >= x0A.unknown6) {
+			x0A.unknown18++;
+			x0A.unknown12 = null;
+		}
+	}
+	return cast(short)(x04 - x1E);
+}
+
+/// $C4CEB0
+void UnknownC4CEB0() {
+	ushort* x06 = cast(ushort*)&Unknown7F0000[0x7F00];
+	for (short i = 0; i < 0x40; i++) {
+		(x06++)[0] = 0;
+	}
+}
+
+/// $C4CED8
+void UnknownC4CED8() {
+	Unknown7EB4AAEntry* x0A = Unknown7EB4AA;
+	ushort* x1A = cast(ushort*)&Unknown7F0000[0x7F00];
+	short x18 = rand()&0x3F;
+	while (x1A[x18] != 0) {
+		x18 = (x18 + 1) & 0x3F;
+	}
+	x1A[x18] = 1;
+	short x16 = x18 / 8;
+	short x14 = x18 % 8;
+	for (short i = 0; Unknown7EB4A6 > i; i++, x0A++) {
+		if (x0A.unknown4 != 4) {
+			continue;
+		}
+		for (short j = 0; j < x0A.unknown8 / 8; j++) {
+			for (short k = 0; k < x0A.unknown6 / 8; k++) {
+				x18 = cast(short)((j * x0A.unknown6 * 32) + (x16 * 2) + (k * 32));
+				UnknownC42965(cast(ushort*)x0A.unknown12, cast(ushort*)x0A.unknown10, x18, x14);
+			}
+		}
+		UnknownC429AE(x0A.unknown12, x0A.unknown0);
+	}
 }
 
 /// $C4D00F
@@ -5941,7 +6478,7 @@ void UnknownC4D43F(short arg1) {
 void LoadTownMapData(short arg1) {
 	FadeOut(2, 1);
 	Decomp(&TownMapGraphicsPointerTable[arg1][0], &Unknown7F0000[0]);
-	while (Unknown7E0028 != 0) {}
+	while (Unknown7E0028.a != 0) {}
 	memcpy(&palettes[0][0], &Unknown7F0000[0], 0x40);
 	memcpy(&palettes[16][0], &TownMapIconPalette[0], 0x100);
 	SetBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);
@@ -6117,7 +6654,7 @@ short UnknownC4D989(short arg1) {
 		UnknownC4A7B0();
 	}
 	FadeOut(1, 1);
-	while (Unknown7E0028 != 0) {
+	while (Unknown7E0028.a != 0) {
 		UnknownC1004E();
 	}
 	UnknownC2EAAA();
@@ -6219,7 +6756,7 @@ void InitIntro() {
 		x02++;
 	}
 	UnknownC0AC0C(2);
-	Unknown7E0028 = 0;
+	Unknown7E0028.a = 0;
 	if ((INIDISP_MIRROR & 0x80) != 0) {
 		FadeOutWithMosaic(4, 1, 0);
 	}
@@ -6228,6 +6765,155 @@ void InitIntro() {
 	TM_MIRROR = 1;
 	TD_MIRROR = 0;
 	Unknown7E5DD8 = 0;
+}
+
+/// $C4DCF6
+void UnknownC4DCF6() {
+	ushort* x0A = cast(ushort*)&Unknown7F0000[0];
+	for (short i = 0; i < 0x400; i++) {
+		x0A[i] |= 0x2000;
+	}
+}
+
+/// $C4DD28
+void DecompItoiProduction() {
+	Decomp(&ProducedItoiArrangement[0], &Unknown7F0000[0]);
+	UnknownC4DCF6();
+	CopyToVram(0, 0x800, 0x7C00, &Unknown7F0000[0]);
+	Decomp(&ProducedItoiGraphics[0], &Unknown7F0000[0x800]);
+	CopyToVram(0, 0x400, 0x6000, &Unknown7F0000[0x800]);
+	Decomp(&NintendoItoiPalette[0], &palettes[0][0]);
+	palettes[0][0] = 0;
+	UnknownC0856B(0x18);
+}
+
+/// $C4DDD0
+void DecompNintendoPresentation() {
+	Decomp(&NintendoPresentationArrangement[0], &Unknown7F0000[0]);
+	UnknownC4DCF6();
+	CopyToVram(0, 0x800, 0x7C00, &Unknown7F0000[0]);
+	Decomp(&NintendoPresentationGraphics[0], &Unknown7F0000[0x800]);
+	CopyToVram(0, 0x400, 0x6000, &Unknown7F0000[0x800]);
+	Decomp(&NintendoItoiPalette[0], &palettes[0][0]);
+	palettes[0][0] = 0;
+	UnknownC0856B(0x18);
+}
+
+/// $C4DE78
+immutable UnknownC4DE78Entry[8] UnknownC4DE78 = [
+	UnknownC4DE78Entry(151, 48),
+	UnknownC4DE78Entry(387, 1013),
+	UnknownC4DE78Entry(35, 484),
+	UnknownC4DE78Entry(88, 668),
+	UnknownC4DE78Entry(479, 520),
+	UnknownC4DE78Entry(445, 779),
+	UnknownC4DE78Entry(843, 600),
+	UnknownC4DE78Entry(766, 1228),
+];
+
+/// $C4DE98
+void UnknownC4DE98() {
+	Unknown7EB4B8 = 0;
+	Unknown7EB4BA = 0;
+	Unknown7EB4BC = 0;
+	LoadedAnimatedTileCount = 0;
+	Unknown7E4474 = 0;
+	for (short i = 0; i < 8; i++) {
+		Unknown7EB4BE[i] = null;
+	}
+	TM_MIRROR = 0x10;
+}
+
+/// $C4DED0
+void UnknownC4DED0() {
+	SetBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0x6000);
+	TM_MIRROR = 0x11;
+}
+
+/// $C4DEE9
+void UnknownC4DEE9(short arg1, short arg2) {
+	UnknownC005E7();
+	memcpy(&palettes[8][0], &SpriteGroupPalettes[0], 0x100);
+	LoadMapPalette(arg1 / 8, arg1 & 7);
+	UnknownC00480();
+	Unknown7E0030 = 0;
+	memcpy(&Unknown7F0000[0x4000 + arg2 * 0x200], &palettes[0][0], 0x100);
+}
+
+/// $C4DF7D
+void UnknownC4DF7D(short arg1, short arg2, short arg3) {
+	arg1 -= 16;
+	arg2 -= 14;
+	memset(&Unknown7EF000.Unknown7EF000Alt[0], 0, 0x800);
+	ushort* x06 = cast(ushort*)&Unknown7F0000[arg3 * 0x800];
+	for (short i = 0; i < MAX_ENTITIES; i++) {
+		for (short j = 0; j < 0x20; j++) {
+			short x0F;
+			if (GlobalMapTilesetPaletteData[(i + arg2) / 16][(j + arg1) / 32] / 8 == Unknown7E436E) {
+				x0F = UnknownC0A156F((j + arg1) / 4, (i + arg2) / 4);
+			} else {
+				x0F = 0;
+			}
+			Unknown7EF000.Unknown7EF000Alt[Unknown7F0000[0x8000 + (((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
+			(x06++)[0] = Unknown7F0000[0x8000 + (((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
+		}
+	}
+}
+
+/// $C4E08C
+void UnknownC4E08C(short arg1) {
+	for (short i = 0; i < 0x400; i++) {
+		if (Unknown7EF000.Unknown7EF000Alt[i] == 0) {
+			continue;
+		}
+		CopyToVram(0, 0x20, (Unknown7EB4B8 * 16 + 0x6000) & 0x7FFF, &Unknown7F0000[0x8000 + i * 32]);
+		Unknown7EF000.Unknown7EF000Alt[i] = Unknown7EB4B8;
+		Unknown7EB4B8++;
+		Unknown7EB4BC++;
+	}
+	ushort* x06 = (cast(ushort*)&Unknown7F0000[0x800 * arg1]);
+	for (short i = 0; i < 0x3C0; i++) {
+		ushort x14 = x06[0];
+		x06[0] = Unknown7EF000.Unknown7EF000Alt[x14 & 0x3FF] | (x14 & 0xFC00);
+		x06++;
+	}
+}
+
+/// $C4E13E
+void UnknownC4E13E(short arg1, short arg2, short arg3) {
+	Unknown7EB4BC = 0;
+	short x1A = GlobalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
+	Unknown7E436E = GlobalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
+	UnknownC4DEE9(x1A, arg3);
+	Decomp(&MapDataTileArrangementPtrTable[TilesetTable[x1A]][0], &Unknown7F0000[0x8000]);
+	UnknownC4DF7D(arg1, arg2, arg3);
+	Decomp(&MapDataTilesetPtrTable[TilesetTable[x1A]][0], &Unknown7F0000[0x8000]);
+	UnknownC4E08C(arg3);
+	Unknown7EB4BA += Unknown7EB4BC;
+}
+
+/// $C4E281
+void UnknownC4E281(short arg1) {
+	if (Unknown7EB4BE[arg1] == null) {
+		UnknownC4E13E(UnknownC4DE78[arg1].unknown0, UnknownC4DE78[arg1].unknown2, arg1);
+	}
+}
+
+/// $C4E2D7
+void UnknownC4E2D7(short arg1) {
+	short x02 = arg1 & 7;
+	if (Unknown7EB4BE[x02] == null) {
+		UnknownC4E281(x02);
+		WaitUntilNextFrame();
+	}
+	UnknownC08F8B();
+	CopyToVram(0, 0x780, 0x3800, &Unknown7F0000[x02 * 0x800]);
+	memcpy(&palettes[0][0], &Unknown7F0000[0x4000 + x02 * 0x200], 0x100);
+	Unknown7E0030 = 8;
+	Unknown7E4376 = 0;
+	Unknown7E4374 = 0;
+	BG1_Y_POS = 0;
+	BG1_X_POS = 0;
 }
 
 /// $C4E366 - some debugging code deleted from earthbound
@@ -6293,6 +6979,31 @@ void UnknownC4E369() {
 	UnknownC08744();
 }
 
+/// $C4E4DA
+void UnknownC4E4DA(short arg1) {
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(arg1 * 8 + BG3_Y_POS);
+}
+
+/// $C4E4F9
+short UnknownC4E4F9() {
+	short x0E = 0;
+	if (EntityScriptVar0Table[CurrentEntitySlot] <= BG3_Y_POS) {
+		x0E = 1;
+	}
+	return x0E;
+}
+
+/// $C4E51E
+void UnknownC4E51E() {
+	ubyte* x06 = &Unknown7F0000[0x7FFE];
+	BG3_Y_POS = EntityAbsYTable[CurrentEntitySlot];
+	if (EntityScriptVar7Table[CurrentEntitySlot] < EntityAbsYTable[CurrentEntitySlot]) {
+		EntityScriptVar7Table[CurrentEntitySlot] += 8;
+		x06[0] = 0;
+		CopyToVram(3, 0x40, cast(ushort)((((BG3_Y_POS / 8) - 1) & 0x1F) * 32 + 0x7C00), x06);
+	}
+}
+
 /// $C4E583
 void UnknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	VWFTile = 0;
@@ -6349,6 +7060,74 @@ void UnknownC4E7AE() {
 	memcpy(&x16[0], &PartyCharacters[3].name[0], 5);
 	strcat(cast(char*)&x16[0], cast(immutable(char)*)&CharacterGuardianText[2][0]);
 	UnknownC4E583(&x16[0], CastSequenceFormatting[36].unknown2, CastSequenceFormatting[36].unknown0);
+}
+
+/// $C4EA9C
+void UnknownC4EA9C(short arg1, short arg2, short arg3) {
+	ushort* x06 = cast(ushort*)&Unknown7F0000[0x4000 + arg3];
+	while (arg2-- != 0) {
+		x06[0] = cast(short)(Unknown7EB4D1 + ((arg1 & 0x3F0) * 2) + (arg1 & 0xF));
+		x06[0x40] = cast(short)(x06[0] + 0x10);
+		x06++;
+		arg1++;
+	}
+}
+
+/// $C4EB04
+void UnknownC4EB04(short arg1, short arg2, short arg3) {
+	short x14 = (BG3_Y_POS / 8 + arg2) & 0x1F;
+	short x04 = cast(short)((arg2 * 32) + arg1 + 0x7C00 - (arg3 + 1) / 2);
+	CopyToVram(0, cast(ushort)(arg3 * 2), x04, &Unknown7F0000[0x4000 + arg1 * 2]);
+	short x12;
+	if (x14 != 0x1F) {
+		x12 = cast(short)(x04 + 0x20);
+	} else {
+		x12 = cast(short)(x04 - 0x3E0);
+	}
+	CopyToVram(0, cast(short)(arg3 * 2), x12, &Unknown7F0000[0x4000 + arg1 * 2 + 64]);
+}
+
+/// $C4EBAD
+void UnknownC4EBAD(short arg1, short arg2, short arg3) {
+	UnknownC4EA9C(CastSequenceFormatting[arg1].unknown0, CastSequenceFormatting[arg1].unknown2, arg2);
+	UnknownC4EB04(arg2, arg3, CastSequenceFormatting[arg1].unknown0);
+}
+
+/// $C4EC6E
+void UnknownC4EC6E(short arg1) {
+	memcpy(&palettes[12][0], &Unknown7F0000[0x7000 + arg1 * 32], 0x20);
+	Unknown7E0030 = 0x10;
+}
+
+/// $C4EC05
+void UnknownC4EC05(short arg1, short arg2, short arg3) {
+	if (arg1 != 7) {
+		UnknownC4EA9C(UnknownC3FDB5[arg1 - 1], 6, arg2);
+		UnknownC4EB04(arg2, arg3, 6);
+	} else {
+		UnknownC4EA9C(0x1C0, 6, arg2);
+		UnknownC4EB04(arg2, arg3, 6);
+	}
+}
+
+/// $C4EC52
+void UnknownC4EC52(short arg1, short arg2, short arg3) {
+	UnknownC4EBAD(EntityScriptVar0Table[CurrentEntitySlot], arg2, arg3);
+}
+
+/// $C4ECAD
+short UnknownC4ECAD(short arg1, short arg2) {
+	NewEntityVar0 = Unknown7EB4D3 & 3;
+	return CreateEntity(arg1, arg2, -1, EntityScriptVar0Table[CurrentEntitySlot], cast(short)(EntityScriptVar1Table[CurrentEntitySlot] + BG3_Y_POS));
+}
+
+/// $C4ECE7
+short UnknownC4ECE7() {
+	short x0E = 0;
+	if (BG3_Y_POS - 8 < EntityAbsYTable[CurrentEntitySlot]) {
+		x0E = 1;
+	}
+	return x0E;
 }
 
 /// $C4ED0E
@@ -7033,6 +7812,7 @@ void SetBoundaryBehaviour(short val) {
 }
 
 shared static this() {
+	import std.array : join;
 	EntityOverlaySweating = [
 		OverlayScript.show(EntityOverlaySweatingFrame1.ptr),
 		OverlayScript.delay(8),

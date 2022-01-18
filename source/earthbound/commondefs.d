@@ -254,7 +254,7 @@ enum Music {
 	TESSIE = 86,
 	CITY_BUS = 87,
 	FUZZY_PICKLES = 88,
-	DELIVERY = 89,
+	Delivery = 89,
 	RETURN_TO_YOUR_BODY = 90,
 	PHASE_DISTORTER_TIME_TRAVEL = 91,
 	COFFEE_BREAK = 92,
@@ -632,13 +632,13 @@ enum Sfx {
 	CASH_REGISTER = 12,
 	UNKNOWN0D = 13,
 	UNKNOWN0E = 14,
-	UNKNOWN0F = 15,
+	Unknown0F = 15,
 	PRESENT_OPENED = 16,
 	FALLING = 17,
 	UNKNOWN12 = 18,
-	UNKNOWN13 = 19,
-	UNKNOWN14 = 20,
-	UNKNOWN15 = 21,
+	Unknown13 = 19,
+	Unknown14 = 20,
+	Unknown15 = 21,
 	ONETT_TRUMPET_SOLO = 22,
 	BicycleBell = 23,
 	ALLY_ATTACKS = 24,
@@ -653,8 +653,8 @@ enum Sfx {
 	EnemyDefeated = 33,
 	MISSED = 34,
 	DODGED = 35,
-	RECOVER_HP = 36,
-	RECOVER_STATUS = 37,
+	RecoverHP = 36,
+	RecoverStatus = 37,
 	SHIELD = 38,
 	PSI_SHIELD = 39,
 	STAT_INCREASE = 40,
@@ -1110,340 +1110,901 @@ enum BackgroundLayer {
 }
 
 enum ActionScript {
-	Unknown000 = 0,
-	Unknown001 = 1,
-	Unknown002 = 2,
-	Unknown003 = 3,
-	Unknown004 = 4,
-	Unknown005 = 5,
-	Unknown006 = 6,
-	Unknown007 = 7,
-	Unknown008 = 8,
-	Unknown009 = 9,
-	Unknown010 = 10,
-	Unknown011 = 11,
-	Unknown012 = 12,
-	Unknown013 = 13,
-	Unknown014 = 14,
-	Unknown015 = 15,
-	Unknown016 = 16,
-	Unknown017 = 17,
-	Unknown018 = 18,
-	Unknown019 = 19,
-	Unknown020 = 20,
-	Unknown021 = 21,
-	Unknown022 = 22,
-	Unknown023 = 23,
-	Unknown024 = 24,
-	Unknown025 = 25,
-	Unknown026 = 26,
-	Unknown027 = 27,
-	Unknown028 = 28,
-	Unknown029 = 29,
-	Unknown030 = 30,
-	Unknown031 = 31,
-	Unknown032 = 32,
-	Unknown035 = 35,
-	Unknown037 = 37,
-	Unknown038 = 38,
-	Unknown040 = 40,
-	Unknown045 = 45,
-	Unknown055 = 55,
-	Unknown057 = 57,
-	Unknown058 = 58,
-	Unknown059 = 59,
-	Unknown060 = 60,
-	Unknown077 = 77,
-	Unknown078 = 78,
-	Unknown079 = 79,
-	Unknown080 = 80,
-	Unknown081 = 81,
-	Unknown082 = 82,
-	Unknown083 = 83,
-	Unknown084 = 84,
-	Unknown085 = 85,
-	Unknown086 = 86,
-	Unknown087 = 87,
-	Unknown088 = 88,
-	Unknown089 = 89,
-	Unknown090 = 90,
-	Unknown091 = 91,
-	Unknown092 = 92,
-	Unknown093 = 93,
-	Unknown094 = 94,
-	Unknown095 = 95,
-	Unknown096 = 96,
-	Unknown097 = 97,
-	Unknown098 = 98,
-	Unknown099 = 99,
-	Unknown100 = 100,
-	Unknown101 = 101,
-	Unknown102 = 102,
-	Unknown103 = 103,
-	Unknown104 = 104,
-	Unknown105 = 105,
-	Unknown106 = 106,
-	Unknown107 = 107,
-	Unknown108 = 108,
-	Unknown109 = 109,
-	Unknown110 = 110,
-	Unknown111 = 111,
-	Unknown112 = 112,
-	Unknown113 = 113,
-	Unknown114 = 114,
-	Unknown115 = 115,
-	Unknown116 = 116,
-	Unknown117 = 117,
-	Unknown118 = 118,
-	Unknown119 = 119,
-	Unknown120 = 120,
-	Unknown121 = 121,
-	Unknown122 = 122,
-	Unknown123 = 123,
-	Unknown124 = 124,
-	Unknown125 = 125,
-	Unknown126 = 126,
-	Unknown127 = 127,
-	Unknown128 = 128,
-	Unknown129 = 129,
-	Unknown130 = 130,
-	Unknown131 = 131,
-	Unknown132 = 132,
-	Unknown133 = 133,
-	Unknown134 = 134,
-	Unknown135 = 135,
-	Unknown136 = 136,
-	Unknown137 = 137,
-	Unknown138 = 138,
-	Unknown139 = 139,
-	Unknown140 = 140,
-	Unknown141 = 141,
-	Unknown142 = 142,
-	Unknown143 = 143,
-	Unknown144 = 144,
-	Unknown145 = 145,
-	Unknown146 = 146,
-	Unknown147 = 147,
-	Unknown148 = 148,
-	Unknown149 = 149,
-	Unknown150 = 150,
-	Unknown151 = 151,
-	Unknown152 = 152,
-	Unknown153 = 153,
-	Unknown154 = 154,
-	Unknown155 = 155,
-	Unknown156 = 156,
-	Unknown157 = 157,
-	Unknown158 = 158,
-	Unknown159 = 159,
-	Unknown160 = 160,
-	Unknown161 = 161,
-	Unknown162 = 162,
-	Unknown163 = 163,
-	Unknown164 = 164,
-	Unknown165 = 165,
-	Unknown166 = 166,
-	Unknown167 = 167,
-	Unknown168 = 168,
-	Unknown169 = 169,
-	Unknown170 = 170,
-	Unknown171 = 171,
-	Unknown172 = 172,
-	Unknown173 = 173,
-	Unknown174 = 174,
-	Unknown175 = 175,
-	Unknown176 = 176,
-	Unknown177 = 177,
-	Unknown178 = 178,
-	Unknown179 = 179,
-	Unknown190 = 190,
-	Unknown221 = 221,
-	Unknown240 = 240,
-	Unknown250 = 250,
-	Unknown256 = 256,
-	Unknown257 = 257,
-	Unknown258 = 258,
-	Unknown259 = 259,
-	Unknown260 = 260,
-	Unknown273 = 273,
-	Unknown279 = 279,
-	Unknown280 = 280,
-	Unknown281 = 281,
-	Unknown282 = 282,
-	Unknown283 = 283,
-	Unknown284 = 284,
-	Unknown285 = 285,
-	Unknown286 = 286,
-	Unknown287 = 287,
-	Unknown288 = 288,
-	Unknown289 = 289,
-	Unknown485 = 485,
-	Unknown486 = 486,
-	Unknown498 = 498,
-	Unknown499 = 499,
-	Unknown500 = 500,
-	Unknown502 = 502,
-	Unknown503 = 503,
-	Unknown504 = 504,
-	Unknown505 = 505,
-	Unknown506 = 506,
-	Unknown507 = 507,
-	Unknown508 = 508,
-	Unknown509 = 509,
-	Unknown510 = 510,
-	Unknown511 = 511,
-	Unknown512 = 512,
-	Unknown513 = 513,
-	Unknown514 = 514,
-	Unknown515 = 515,
-	Unknown516 = 516,
-	Unknown517 = 517,
-	Unknown518 = 518,
-	Unknown519 = 519,
-	Unknown520 = 520,
-	Unknown521 = 521,
-	Unknown522 = 522,
-	Unknown523 = 523,
-	Unknown524 = 524,
-	Unknown525 = 525,
-	Unknown526 = 526,
-	Unknown527 = 527,
-	Unknown528 = 528,
-	Unknown529 = 529,
-	Unknown530 = 530,
-	Unknown532 = 532,
-	Unknown533 = 533,
-	Unknown534 = 534,
-	Unknown581 = 581,
-	Unknown582 = 582,
-	Unknown583 = 583,
-	Unknown584 = 584,
-	Unknown585 = 585,
-	Unknown586 = 586,
-	Unknown588 = 588,
-	Unknown589 = 589,
-	Unknown590 = 590,
-	Unknown591 = 591,
-	Unknown592 = 592,
-	Unknown595 = 595,
-	Unknown596 = 596,
-	Unknown597 = 597,
-	Unknown598 = 598,
-	Unknown599 = 599,
-	Unknown600 = 600,
-	Unknown601 = 601,
-	Unknown602 = 602,
-	Unknown603 = 603,
-	Unknown604 = 604,
-	Unknown605 = 605,
-	Unknown606 = 606,
-	Unknown607 = 607,
-	Unknown608 = 608,
-	Unknown609 = 609,
-	Unknown610 = 610,
-	Unknown624 = 624,
-	Unknown627 = 627,
-	Unknown628 = 628,
-	Unknown629 = 629,
-	Unknown630 = 630,
-	Unknown631 = 631,
-	Unknown632 = 632,
-	Unknown633 = 633,
-	Unknown647 = 647,
-	Unknown666 = 666,
-	Unknown672 = 672,
-	Unknown673 = 673,
-	Unknown674 = 674,
-	Unknown683 = 683,
-	Unknown684 = 684,
-	Unknown693 = 693,
-	Unknown694 = 694,
-	Unknown695 = 695,
-	Unknown696 = 696,
-	Unknown697 = 697,
-	Unknown698 = 698,
-	Unknown699 = 699,
-	Unknown700 = 700,
-	Unknown701 = 701,
-	Unknown702 = 702,
-	Unknown703 = 703,
-	Unknown704 = 704,
-	Unknown705 = 705,
-	Unknown706 = 706,
-	Unknown707 = 707,
-	Unknown708 = 708,
-	Unknown709 = 709,
-	Unknown710 = 710,
-	Unknown711 = 711,
-	Unknown712 = 712,
-	Unknown713 = 713,
-	Unknown714 = 714,
-	Unknown715 = 715,
-	Unknown716 = 716,
-	Unknown717 = 717,
-	Unknown718 = 718,
-	Unknown719 = 719,
-	Unknown720 = 720,
-	Unknown721 = 721,
-	Unknown722 = 722,
-	Unknown723 = 723,
-	Unknown724 = 724,
-	Unknown725 = 725,
-	Unknown758 = 758,
-	Unknown767 = 767,
-	Unknown769 = 769,
-	Unknown771 = 771,
-	Unknown784 = 784,
-	Unknown785 = 785,
-	Unknown786 = 786,
-	Unknown787 = 787,
-	TitleScreen1 = 788,
-	TitleScreen2 = 789,
-	TitleScreen3 = 790,
-	TitleScreen4 = 791,
-	TitleScreen5 = 792,
-	TitleScreen6 = 793,
-	TitleScreen7 = 794,
-	TitleScreen8 = 795,
-	TitleScreen9 = 796,
-	TitleScreen10 = 797,
-	TitleScreen11 = 798,
-	Unknown799 = 799,
-	Unknown800 = 800,
-	Unknown801 = 801,
-	Unknown859 = 859,
-	Unknown860 = 860,
-	Unknown861 = 861,
-	Unknown862 = 862,
-	Unknown863 = 863,
-	Unknown864 = 864,
-	Unknown865 = 865,
-	Unknown866 = 866,
-	Unknown867 = 867,
-	Unknown868 = 868,
-	Unknown869 = 869,
-	Unknown870 = 870,
-	Unknown871 = 871,
-	Unknown872 = 872,
-	Unknown873 = 873,
-	Unknown874 = 874,
-	Unknown875 = 875,
-	Unknown876 = 876,
-	Unknown877 = 877,
-	Unknown878 = 878,
-	Unknown879 = 879,
-	Unknown880 = 880,
-	Unknown881 = 881,
-	Unknown882 = 882,
-	Unknown883 = 883,
-	Unknown884 = 884,
-	Unknown885 = 885,
-	Unknown886 = 886,
-	Unknown887 = 887,
-	Unknown888 = 888,
-	Unknown889 = 889,
-	Unknown890 = 890,
-	Unknown891 = 891,
+	Unknown000,
+	Unknown001,
+	Unknown002,
+	Unknown003,
+	Unknown004,
+	Unknown005,
+	Unknown006,
+	Unknown007,
+	Unknown008,
+	Unknown009,
+	Unknown010,
+	Unknown011,
+	Unknown012,
+	Unknown013,
+	Unknown014,
+	Unknown015,
+	Unknown016,
+	Unknown017,
+	Unknown018,
+	Unknown019,
+	Unknown020,
+	Unknown021,
+	Unknown022,
+	Unknown023,
+	Unknown024,
+	Unknown025,
+	Unknown026,
+	Unknown027,
+	Unknown028,
+	Unknown029,
+	Unknown030,
+	Unknown031,
+	Unknown032,
+	Unknown033,
+	Unknown034,
+	Unknown035,
+	Unknown036,
+	Unknown037,
+	Unknown038,
+	Unknown039,
+	Unknown040,
+	Unknown041,
+	Unknown042,
+	Unknown043,
+	Unknown044,
+	Unknown045,
+	Unknown046,
+	Unknown047,
+	Unknown048,
+	Unknown049,
+	Unknown050,
+	Unknown051,
+	Unknown052,
+	Unknown053,
+	Unknown054,
+	Unknown055,
+	Unknown056,
+	Unknown057,
+	Unknown058,
+	Unknown059,
+	Unknown060,
+	Unknown061,
+	Unknown062,
+	Unknown063,
+	Unknown064,
+	Unknown065,
+	Unknown066,
+	Unknown067,
+	Unknown068,
+	Unknown069,
+	Unknown070,
+	Unknown071,
+	Unknown072,
+	Unknown073,
+	Unknown074,
+	Unknown075,
+	Unknown076,
+	Unknown077,
+	Unknown078,
+	Unknown079,
+	Unknown080,
+	Unknown081,
+	Unknown082,
+	Unknown083,
+	Unknown084,
+	Unknown085,
+	Unknown086,
+	Unknown087,
+	Unknown088,
+	Unknown089,
+	Unknown090,
+	Unknown091,
+	Unknown092,
+	Unknown093,
+	Unknown094,
+	Unknown095,
+	Unknown096,
+	Unknown097,
+	Unknown098,
+	Unknown099,
+	Unknown100,
+	Unknown101,
+	Unknown102,
+	Unknown103,
+	Unknown104,
+	Unknown105,
+	Unknown106,
+	Unknown107,
+	Unknown108,
+	Unknown109,
+	Unknown110,
+	Unknown111,
+	Unknown112,
+	Unknown113,
+	Unknown114,
+	Unknown115,
+	Unknown116,
+	Unknown117,
+	Unknown118,
+	Unknown119,
+	Unknown120,
+	Unknown121,
+	Unknown122,
+	Unknown123,
+	Unknown124,
+	Unknown125,
+	Unknown126,
+	Unknown127,
+	Unknown128,
+	Unknown129,
+	Unknown130,
+	Unknown131,
+	Unknown132,
+	Unknown133,
+	Unknown134,
+	Unknown135,
+	Unknown136,
+	Unknown137,
+	Unknown138,
+	Unknown139,
+	Unknown140,
+	Unknown141,
+	Unknown142,
+	Unknown143,
+	Unknown144,
+	Unknown145,
+	Unknown146,
+	Unknown147,
+	Unknown148,
+	Unknown149,
+	Unknown150,
+	Unknown151,
+	Unknown152,
+	Unknown153,
+	Unknown154,
+	Unknown155,
+	Unknown156,
+	Unknown157,
+	Unknown158,
+	Unknown159,
+	Unknown160,
+	Unknown161,
+	Unknown162,
+	Unknown163,
+	Unknown164,
+	Unknown165,
+	Unknown166,
+	Unknown167,
+	Unknown168,
+	Unknown169,
+	Unknown170,
+	Unknown171,
+	Unknown172,
+	Unknown173,
+	Unknown174,
+	Unknown175,
+	Unknown176,
+	Unknown177,
+	Unknown178,
+	Unknown179,
+	Unknown180,
+	Unknown181,
+	Unknown182,
+	Unknown183,
+	Unknown184,
+	Unknown185,
+	Unknown186,
+	Unknown187,
+	Unknown188,
+	Unknown189,
+	Unknown190,
+	Unknown191,
+	Unknown192,
+	Unknown193,
+	Unknown194,
+	Unknown195,
+	Unknown196,
+	Unknown197,
+	Unknown198,
+	Unknown199,
+	Unknown200,
+	Unknown201,
+	Unknown202,
+	Unknown203,
+	Unknown204,
+	Unknown205,
+	Unknown206,
+	Unknown207,
+	Unknown208,
+	Unknown209,
+	Unknown210,
+	Unknown211,
+	Unknown212,
+	Unknown213,
+	Unknown214,
+	Unknown215,
+	Unknown216,
+	Unknown217,
+	Unknown218,
+	Unknown219,
+	Unknown220,
+	Unknown221,
+	Unknown222,
+	Unknown223,
+	Unknown224,
+	Unknown225,
+	Unknown226,
+	Unknown227,
+	Unknown228,
+	Unknown229,
+	Unknown230,
+	Unknown231,
+	Unknown232,
+	Unknown233,
+	Unknown234,
+	Unknown235,
+	Unknown236,
+	Unknown237,
+	Unknown238,
+	Unknown239,
+	Unknown240,
+	Unknown241,
+	Unknown242,
+	Unknown243,
+	Unknown244,
+	Unknown245,
+	Unknown246,
+	Unknown247,
+	Unknown248,
+	Unknown249,
+	Unknown250,
+	Unknown251,
+	Unknown252,
+	Unknown253,
+	Unknown254,
+	Unknown255,
+	Unknown256,
+	Unknown257,
+	Unknown258,
+	Unknown259,
+	Unknown260,
+	Unknown261,
+	Unknown262,
+	Unknown263,
+	Unknown264,
+	Unknown265,
+	Unknown266,
+	Unknown267,
+	Unknown268,
+	Unknown269,
+	Unknown270,
+	Unknown271,
+	Unknown272,
+	Unknown273,
+	Unknown274,
+	Unknown275,
+	Unknown276,
+	Unknown277,
+	Unknown278,
+	Unknown279,
+	Unknown280,
+	Unknown281,
+	Unknown282,
+	Unknown283,
+	Unknown284,
+	Unknown285,
+	Unknown286,
+	Unknown287,
+	Unknown288,
+	Unknown289,
+	Unknown290,
+	Unknown291,
+	Unknown292,
+	Unknown293,
+	Unknown294,
+	Unknown295,
+	Unknown296,
+	Unknown297,
+	Unknown298,
+	Unknown299,
+	Unknown300,
+	Unknown301,
+	Unknown302,
+	Unknown303,
+	Unknown304,
+	Unknown305,
+	Unknown306,
+	Unknown307,
+	Unknown308,
+	Unknown309,
+	Unknown310,
+	Unknown311,
+	Unknown312,
+	Unknown313,
+	Unknown314,
+	Unknown315,
+	Unknown316,
+	Unknown317,
+	Unknown318,
+	Unknown319,
+	Unknown320,
+	Unknown321,
+	Unknown322,
+	Unknown323,
+	Unknown324,
+	Unknown325,
+	Unknown326,
+	Unknown327,
+	Unknown328,
+	Unknown329,
+	Unknown330,
+	Unknown331,
+	Unknown332,
+	Unknown333,
+	Unknown334,
+	Unknown335,
+	Unknown336,
+	Unknown337,
+	Unknown338,
+	Unknown339,
+	Unknown340,
+	Unknown341,
+	Unknown342,
+	Unknown343,
+	Unknown344,
+	Unknown345,
+	Unknown346,
+	Unknown347,
+	Unknown348,
+	Unknown349,
+	Unknown350,
+	Unknown351,
+	Unknown352,
+	Unknown353,
+	Unknown354,
+	Unknown355,
+	Unknown356,
+	Unknown357,
+	Unknown358,
+	Unknown359,
+	Unknown360,
+	Unknown361,
+	Unknown362,
+	Unknown363,
+	Unknown364,
+	Unknown365,
+	Unknown366,
+	Unknown367,
+	Unknown368,
+	Unknown369,
+	Unknown370,
+	Unknown371,
+	Unknown372,
+	Unknown373,
+	Unknown374,
+	Unknown375,
+	Unknown376,
+	Unknown377,
+	Unknown378,
+	Unknown379,
+	Unknown380,
+	Unknown381,
+	Unknown382,
+	Unknown383,
+	Unknown384,
+	Unknown385,
+	Unknown386,
+	Unknown387,
+	Unknown388,
+	Unknown389,
+	Unknown390,
+	Unknown391,
+	Unknown392,
+	Unknown393,
+	Unknown394,
+	Unknown395,
+	Unknown396,
+	Unknown397,
+	Unknown398,
+	Unknown399,
+	Unknown400,
+	Unknown401,
+	Unknown402,
+	Unknown403,
+	Unknown404,
+	Unknown405,
+	Unknown406,
+	Unknown407,
+	Unknown408,
+	Unknown409,
+	Unknown410,
+	Unknown411,
+	Unknown412,
+	Unknown413,
+	Unknown414,
+	Unknown415,
+	Unknown416,
+	Unknown417,
+	Unknown418,
+	Unknown419,
+	Unknown420,
+	Unknown421,
+	Unknown422,
+	Unknown423,
+	Unknown424,
+	Unknown425,
+	Unknown426,
+	Unknown427,
+	Unknown428,
+	Unknown429,
+	Unknown430,
+	Unknown431,
+	Unknown432,
+	Unknown433,
+	Unknown434,
+	Unknown435,
+	Unknown436,
+	Unknown437,
+	Unknown438,
+	Unknown439,
+	Unknown440,
+	Unknown441,
+	Unknown442,
+	Unknown443,
+	Unknown444,
+	Unknown445,
+	Unknown446,
+	Unknown447,
+	Unknown448,
+	Unknown449,
+	Unknown450,
+	Unknown451,
+	Unknown452,
+	Unknown453,
+	Unknown454,
+	Unknown455,
+	Unknown456,
+	Unknown457,
+	Unknown458,
+	Unknown459,
+	Unknown460,
+	Unknown461,
+	Unknown462,
+	Unknown463,
+	Unknown464,
+	Unknown465,
+	Unknown466,
+	Unknown467,
+	Unknown468,
+	Unknown469,
+	Unknown470,
+	Unknown471,
+	Unknown472,
+	Unknown473,
+	Unknown474,
+	Unknown475,
+	Unknown476,
+	Unknown477,
+	Unknown478,
+	Unknown479,
+	Unknown480,
+	Unknown481,
+	Unknown482,
+	Unknown483,
+	Unknown484,
+	Unknown485,
+	Unknown486,
+	Unknown487,
+	Unknown488,
+	Unknown489,
+	Unknown490,
+	Unknown491,
+	Unknown492,
+	Unknown493,
+	Unknown494,
+	Unknown495,
+	Unknown496,
+	Unknown497,
+	Unknown498,
+	Unknown499,
+	Unknown500,
+	Unknown501,
+	Unknown502,
+	Unknown503,
+	Unknown504,
+	Unknown505,
+	Unknown506,
+	Unknown507,
+	Unknown508,
+	Unknown509,
+	Unknown510,
+	Unknown511,
+	Unknown512,
+	Unknown513,
+	Unknown514,
+	Unknown515,
+	Unknown516,
+	Unknown517,
+	Unknown518,
+	Unknown519,
+	Unknown520,
+	Unknown521,
+	Unknown522,
+	Unknown523,
+	Unknown524,
+	Unknown525,
+	Unknown526,
+	Unknown527,
+	Unknown528,
+	Unknown529,
+	Unknown530,
+	Unknown531,
+	Unknown532,
+	Unknown533,
+	Unknown534,
+	Unknown535,
+	Unknown536,
+	Unknown537,
+	Unknown538,
+	Unknown539,
+	Unknown540,
+	Unknown541,
+	Unknown542,
+	Unknown543,
+	Unknown544,
+	Unknown545,
+	Unknown546,
+	Unknown547,
+	Unknown548,
+	Unknown549,
+	Unknown550,
+	Unknown551,
+	Unknown552,
+	Unknown553,
+	Unknown554,
+	Unknown555,
+	Unknown556,
+	Unknown557,
+	Unknown558,
+	Unknown559,
+	Unknown560,
+	Unknown561,
+	Unknown562,
+	Unknown563,
+	Unknown564,
+	Unknown565,
+	Unknown566,
+	Unknown567,
+	Unknown568,
+	Unknown569,
+	Unknown570,
+	Unknown571,
+	Unknown572,
+	Unknown573,
+	Unknown574,
+	Unknown575,
+	Unknown576,
+	Unknown577,
+	Unknown578,
+	Unknown579,
+	Unknown580,
+	Unknown581,
+	Unknown582,
+	Unknown583,
+	Unknown584,
+	Unknown585,
+	Unknown586,
+	Unknown587,
+	Unknown588,
+	Unknown589,
+	Unknown590,
+	Unknown591,
+	Unknown592,
+	Unknown593,
+	Unknown594,
+	Unknown595,
+	Unknown596,
+	Unknown597,
+	Unknown598,
+	Unknown599,
+	Unknown600,
+	Unknown601,
+	Unknown602,
+	Unknown603,
+	Unknown604,
+	Unknown605,
+	Unknown606,
+	Unknown607,
+	Unknown608,
+	Unknown609,
+	Unknown610,
+	Unknown611,
+	Unknown612,
+	Unknown613,
+	Unknown614,
+	Unknown615,
+	Unknown616,
+	Unknown617,
+	Unknown618,
+	Unknown619,
+	Unknown620,
+	Unknown621,
+	Unknown622,
+	Unknown623,
+	Unknown624,
+	Unknown625,
+	Unknown626,
+	Unknown627,
+	Unknown628,
+	Unknown629,
+	Unknown630,
+	Unknown631,
+	Unknown632,
+	Unknown633,
+	Unknown634,
+	Unknown635,
+	Unknown636,
+	Unknown637,
+	Unknown638,
+	Unknown639,
+	Unknown640,
+	Unknown641,
+	Unknown642,
+	Unknown643,
+	Unknown644,
+	Unknown645,
+	Unknown646,
+	Unknown647,
+	Unknown648,
+	Unknown649,
+	Unknown650,
+	Unknown651,
+	Unknown652,
+	Unknown653,
+	Unknown654,
+	Unknown655,
+	Unknown656,
+	Unknown657,
+	Unknown658,
+	Unknown659,
+	Unknown660,
+	Unknown661,
+	Unknown662,
+	Unknown663,
+	Unknown664,
+	Unknown665,
+	Unknown666,
+	Unknown667,
+	Unknown668,
+	Unknown669,
+	Unknown670,
+	Unknown671,
+	Unknown672,
+	Unknown673,
+	Unknown674,
+	Unknown675,
+	Unknown676,
+	Unknown677,
+	Unknown678,
+	Unknown679,
+	Unknown680,
+	Unknown681,
+	Unknown682,
+	Unknown683,
+	Unknown684,
+	Unknown685,
+	Unknown686,
+	Unknown687,
+	Unknown688,
+	Unknown689,
+	Unknown690,
+	Unknown691,
+	Unknown692,
+	Unknown693,
+	Unknown694,
+	Unknown695,
+	Unknown696,
+	Unknown697,
+	Unknown698,
+	Unknown699,
+	Unknown700,
+	Unknown701,
+	Unknown702,
+	Unknown703,
+	Unknown704,
+	Unknown705,
+	Unknown706,
+	Unknown707,
+	Unknown708,
+	Unknown709,
+	Unknown710,
+	Unknown711,
+	Unknown712,
+	Unknown713,
+	Unknown714,
+	Unknown715,
+	Unknown716,
+	Unknown717,
+	Unknown718,
+	Unknown719,
+	Unknown720,
+	Unknown721,
+	Unknown722,
+	Unknown723,
+	Unknown724,
+	Unknown725,
+	Unknown726,
+	Unknown727,
+	Unknown728,
+	Unknown729,
+	Unknown730,
+	Unknown731,
+	Unknown732,
+	Unknown733,
+	Unknown734,
+	Unknown735,
+	Unknown736,
+	Unknown737,
+	Unknown738,
+	Unknown739,
+	Unknown740,
+	Unknown741,
+	Unknown742,
+	Unknown743,
+	Unknown744,
+	Unknown745,
+	Unknown746,
+	Unknown747,
+	Unknown748,
+	Unknown749,
+	Unknown750,
+	Unknown751,
+	Unknown752,
+	Unknown753,
+	Unknown754,
+	Unknown755,
+	Unknown756,
+	Unknown757,
+	Unknown758,
+	Unknown759,
+	Unknown760,
+	Unknown761,
+	Unknown762,
+	Unknown763,
+	Unknown764,
+	Unknown765,
+	Unknown766,
+	Unknown767,
+	Unknown768,
+	Unknown769,
+	Unknown770,
+	Unknown771,
+	Unknown772,
+	Unknown773,
+	Unknown774,
+	Unknown775,
+	Unknown776,
+	Unknown777,
+	Unknown778,
+	Unknown779,
+	Unknown780,
+	Unknown781,
+	Unknown782,
+	Unknown783,
+	Unknown784,
+	Unknown785,
+	Unknown786,
+	Unknown787,
+	TitleScreen1,
+	TitleScreen2,
+	TitleScreen3,
+	TitleScreen4,
+	TitleScreen5,
+	TitleScreen6,
+	TitleScreen7,
+	TitleScreen8,
+	TitleScreen9,
+	TitleScreen10,
+	TitleScreen11,
+	Unknown799,
+	Unknown800,
+	Unknown801,
+	Unknown802,
+	Unknown803,
+	Unknown804,
+	Unknown805,
+	Unknown806,
+	Unknown807,
+	Unknown808,
+	Unknown809,
+	Unknown810,
+	Unknown811,
+	Unknown812,
+	Unknown813,
+	Unknown814,
+	Unknown815,
+	Unknown816,
+	Unknown817,
+	Unknown818,
+	Unknown819,
+	Unknown820,
+	Unknown821,
+	Unknown822,
+	Unknown823,
+	Unknown824,
+	Unknown825,
+	Unknown826,
+	Unknown827,
+	Unknown828,
+	Unknown829,
+	Unknown830,
+	Unknown831,
+	Unknown832,
+	Unknown833,
+	Unknown834,
+	Unknown835,
+	Unknown836,
+	Unknown837,
+	Unknown838,
+	Unknown839,
+	Unknown840,
+	Unknown841,
+	Unknown842,
+	Unknown843,
+	Unknown844,
+	Unknown845,
+	Unknown846,
+	Unknown847,
+	Unknown848,
+	Unknown849,
+	Unknown850,
+	Unknown851,
+	Unknown852,
+	Unknown853,
+	Unknown854,
+	Unknown855,
+	Unknown856,
+	Unknown857,
+	Unknown858,
+	Unknown859,
+	Unknown860,
+	Unknown861,
+	Unknown862,
+	Unknown863,
+	Unknown864,
+	Unknown865,
+	Unknown866,
+	Unknown867,
+	Unknown868,
+	Unknown869,
+	Unknown870,
+	Unknown871,
+	Unknown872,
+	Unknown873,
+	Unknown874,
+	Unknown875,
+	Unknown876,
+	Unknown877,
+	Unknown878,
+	Unknown879,
+	Unknown880,
+	Unknown881,
+	Unknown882,
+	Unknown883,
+	Unknown884,
+	Unknown885,
+	Unknown886,
+	Unknown887,
+	Unknown888,
+	Unknown889,
+	Unknown890,
+	Unknown891,
+	Unknown892,
+	Unknown893,
+	Unknown894,
 }
 
 enum OverworldSprite {
@@ -4387,6 +4948,24 @@ enum DistortionStyle {
 	Unknown = 4,
 }
 
+enum ActionScriptVars : ubyte {
+	V0 = 0,
+	V1 = 1,
+	V2 = 2,
+	V3 = 3,
+	V4 = 4,
+	V5 = 5,
+	V6 = 6,
+	V7 = 7,
+}
+
+enum Binop : ubyte {
+	and = 0,
+	or = 1,
+	add = 2,
+	xor = 3,
+}
+
 struct Game_State {
 	ubyte[12] mother2PlayerName;
 	ubyte[24] earthboundPlayerName;
@@ -4488,8 +5067,7 @@ struct PartyCharacter {
 	ubyte boosted_vitality;
 	ubyte boosted_iq;
 	ubyte boosted_luck;
-	ubyte unknown92;
-	ubyte unknown93;
+	short unknown92;
 	ubyte unknown94;
 }
 struct RollingStat {
@@ -4734,8 +5312,9 @@ struct TimedDelivery {
 	short unknown6; //6
 	ushort deliveryTime; //8
 	const(ubyte)[] textPointer1; //10
-	const(ubyte)[] textPointer2; //14
-	ubyte[4] unknown18; //18
+	const(ubyte)[] textPointer2; //13
+	short unknown18; //16
+	short unknown20; //18
 }
 
 union ItemParameters {
@@ -5420,8 +5999,8 @@ struct Unknown7EB4AAEntry {
 	short unknown4;
 	short unknown6;
 	short unknown8;
-	short unknown10;
-	short unknown12;
+	ubyte* unknown10;
+	ubyte* unknown12;
 	short unknown14;
 	short unknown16;
 	short unknown18;
@@ -5541,6 +6120,36 @@ struct BackgroundDistortionEntry {
 	ubyte speedAcceleration;
 	short compressionRateAcceleration;
 }
+
+union Unknown7E0028Union {
+	short word;
+	struct {
+		ubyte a;
+		ubyte b;
+	}
+}
+
+struct AnimationSequence {
+	immutable(ubyte)[] ptr;
+	ushort unknown4;
+	ubyte unknown6;
+	ubyte unknown7;
+}
+
+struct UnknownC4DE78Entry {
+	short unknown0;
+	short unknown2;
+}
+
+union Unknown7EF000Stuff {
+	struct {
+		ushort[16][16] Unknown7EF000;
+		PathCtx Unknown7EF200;
+		ubyte[0xC00] Unknown7EF400;
+	}
+	ushort[0x400] Unknown7EF000Alt;
+}
+
 
 //helper funcs not in the original game
 
@@ -5925,4 +6534,341 @@ size_t DecompBlock(const(ubyte)* cdata, ubyte* buffer, int maxlen) {
 		}
 	}
 	return bpos - buffer;
+}
+
+ubyte[] allBytes(T...)(T args) {
+    struct X {
+        T stuff;
+    }
+    union Z {
+        X x;
+        ubyte[X.sizeof] bytes;
+    }
+    return Z(X(args)).bytes.dup;
+}
+
+ubyte[] actionCommand(T...)(ubyte command, T args) {
+	return allBytes(command, args);
+}
+
+ubyte[] EVENT_END() {
+	return actionCommand(0x00);
+}
+
+ubyte[] EVENT_LOOP(ubyte count) {
+	return actionCommand(0x01, count);
+}
+
+ubyte[] EVENT_LOOP_END() {
+	return actionCommand(0x02);
+}
+
+ubyte[] EVENT_LONGJUMP(const void* ptr) {
+	return actionCommand(0x03, ptr);
+}
+
+ubyte[] EVENT_LONGCALL(const void* ptr) {
+	return actionCommand(0x04, ptr);
+}
+
+ubyte[] EVENT_LONG_RETURN() {
+	return actionCommand(0x05);
+}
+
+ubyte[] EVENT_PAUSE(ubyte duration) {
+	return actionCommand(0x06, duration);
+}
+
+ubyte[] EVENT_START_TASK(const void* ptr) {
+	return actionCommand(0x07, ptr);
+}
+
+ubyte[] EVENT_SET_TICK_CALLBACK(void function() ptr) {
+	return actionCommand(0x08, ptr);
+}
+
+ubyte[] EVENT_HALT() {
+	return actionCommand(0x09);
+}
+
+ubyte[] EVENT_SHORTCALL_CONDITIONAL(const(void)* ptr) {
+	return actionCommand(0x0A, ptr);
+}
+
+ubyte[] EVENT_SHORTCALL_CONDITIONAL_NOT(const(void)* ptr) {
+	return actionCommand(0x0B, ptr);
+}
+
+ubyte[] EVENT_END_TASK() {
+	return actionCommand(0x0C);
+}
+
+ubyte[] EVENT_SET_VAR(ubyte var, ushort val) {
+	return actionCommand(0x0E, var, val);
+}
+
+ubyte[] EVENT_CLEAR_TICK_CALLBACK() {
+	return actionCommand(0x0F);
+}
+
+ubyte[] EVENT_SWITCH_JUMP_TEMPVAR(T...)(T ptrs) {
+	return actionCommand(0x10, cast(ubyte)ptrs.length, ptrs);
+}
+
+ubyte[] EVENT_SWITCH_CALL_TEMPVAR(T...)(T ptrs) {
+	return actionCommand(0x11, cast(ubyte)ptrs.length, ptrs);
+}
+
+ubyte[] EVENT_WRITE_BYTE_WRAM(void* ptr, ubyte val) {
+	return actionCommand(0x12, ptr, val);
+}
+
+ubyte[] EVENT_END_LAST_TASK() {
+	return actionCommand(0x13);
+}
+
+ubyte[] EVENT_BINOP(ubyte var, ubyte op, ushort value) {
+	return actionCommand(0x14, var, op, value);
+}
+
+ubyte[] EVENT_AND(ubyte var, short value) {
+	return EVENT_BINOP(var, 0, value);
+}
+
+ubyte[] EVENT_OR(ubyte var, short value) {
+	return EVENT_BINOP(var, 1, value);
+}
+
+ubyte[] EVENT_ADD(ubyte var, short value) {
+	return EVENT_BINOP(var, 2, value);
+}
+
+ubyte[] EVENT_XOR(ubyte var, short value) {
+	return EVENT_BINOP(var, 3, value);
+}
+
+ubyte[] EVENT_WRITE_WORD_WRAM(void* ptr, short val) {
+	return actionCommand(0x15, ptr, val);
+}
+
+ubyte[] EVENT_WRITE_DWORD_WRAM(void* ptr, uint val) {
+	return actionCommand(0x15, ptr, cast(short)val) ~ actionCommand(0x15, ptr + 2, cast(short)(val >> 16));
+}
+
+ubyte[] EVENT_WRITE_DWORD_WRAM(void* ptr, void* val) {
+	ubyte[] result;
+	static foreach (i; 0 .. size_t.sizeof / 2) {
+		result ~= actionCommand(0x15, ptr + i * 2, cast(short)((cast(size_t)val) >> 16 * i));
+	}
+	return result;
+}
+
+ubyte[] EVENT_BREAK_IF_FALSE(const(ubyte)* ptr) {
+	return actionCommand(0x16, ptr);
+}
+
+ubyte[] EVENT_BREAK_IF_TRUE(const(ubyte)* ptr) {
+	return actionCommand(0x17, ptr);
+}
+
+ubyte[] EVENT_BINOP_WRAM(void* ptr, ubyte op, ubyte val) {
+	return actionCommand(0x18, ptr, op, val);
+}
+
+ubyte[] EVENT_AND_WRAM(void* ptr, ubyte val) {
+	return EVENT_BINOP_WRAM(ptr, 0, val);
+}
+
+ubyte[] EVENT_OR_WRAM(void* ptr, ubyte val) {
+	return EVENT_BINOP_WRAM(ptr, 1, val);
+}
+
+ubyte[] EVENT_ADD_WRAM(void* ptr, ubyte val) {
+	return EVENT_BINOP_WRAM(ptr, 2, val);
+}
+
+ubyte[] EVENT_XOR_WRAM(void* ptr, ubyte val) {
+	return EVENT_BINOP_WRAM(ptr, 3, val);
+}
+
+ubyte[] EVENT_SHORTJUMP(const void* ptr) {
+	return actionCommand(0x19, ptr);
+}
+
+ubyte[] EVENT_SHORTCALL(const void* ptr) {
+	return actionCommand(0x1A, ptr);
+}
+
+ubyte[] EVENT_SHORT_RETURN() {
+	return actionCommand(0x1B);
+}
+
+ubyte[] EVENT_SET_ANIMATION_POINTER(const(SpriteMap)* ptr) {
+	return actionCommand(0x1C, ptr);
+}
+
+ubyte[] EVENT_WRITE_WORD_TEMPVAR(short var) {
+	return actionCommand(0x1D, var);
+}
+
+ubyte[] EVENT_WRITE_WRAM_TEMPVAR(short* var) {
+	return actionCommand(0x1E, var);
+}
+
+ubyte[] EVENT_WRITE_TEMPVAR_TO_VAR(ubyte var) {
+	return actionCommand(0x1F, var);
+}
+
+ubyte[] EVENT_WRITE_VAR_TO_TEMPVAR(ubyte var) {
+	return actionCommand(0x20, var);
+}
+
+ubyte[] EVENT_WRITE_VAR_TO_WAIT_TIMER(ubyte var) {
+	return actionCommand(0x21, var);
+}
+
+ubyte[] EVENT_SET_DRAW_CALLBACK(void function(short, short) ptr) {
+	return actionCommand(0x22, ptr);
+}
+
+ubyte[] EVENT_SET_POSITION_CHANGE_CALLBACK(void function() ptr) {
+	return actionCommand(0x23, ptr);
+}
+
+ubyte[] EVENT_LOOP_TEMPVAR() {
+	return actionCommand(0x24);
+}
+
+ubyte[] EVENT_SET_PHYSICS_CALLBACK(void function() func) {
+	return actionCommand(0x25, func);
+}
+
+ubyte[] EVENT_SET_ANIMATION_FRAME_VAR(ubyte id) {
+	return actionCommand(0x26, id);
+}
+
+ubyte[] EVENT_BINOP_TEMPVAR(ubyte op, short val) {
+	return actionCommand(0x27, op, val);
+}
+
+ubyte[] EVENT_AND_TEMPVAR(short id) {
+	return EVENT_BINOP_TEMPVAR(0, id);
+}
+
+ubyte[] EVENT_OR_TEMPVAR(short id) {
+	return EVENT_BINOP_TEMPVAR(1, id);
+}
+
+ubyte[] EVENT_ADD_TEMPVAR(short id) {
+	return EVENT_BINOP_TEMPVAR(2, id);
+}
+
+ubyte[] EVENT_XOR_TEMPVAR(short id) {
+	return EVENT_BINOP_TEMPVAR(3, id);
+}
+
+ubyte[] EVENT_SET_X(short id) {
+	return actionCommand(0x28, id);
+}
+
+ubyte[] EVENT_SET_Y(short id) {
+	return actionCommand(0x29, id);
+}
+
+ubyte[] EVENT_SET_Z(short id) {
+	return actionCommand(0x2A, id);
+}
+
+ubyte[] EVENT_SET_X_RELATIVE(short id) {
+	return actionCommand(0x2B, id);
+}
+
+ubyte[] EVENT_SET_Y_RELATIVE(short id) {
+	return actionCommand(0x2C, id);
+}
+
+ubyte[] EVENT_SET_Z_RELATIVE(short id) {
+	return actionCommand(0x2D, id);
+}
+
+ubyte[] EVENT_SET_X_VELOCITY_RELATIVE(short id) {
+	return actionCommand(0x2E, id);
+}
+
+ubyte[] EVENT_SET_Y_VELOCITY_RELATIVE(short id) {
+	return actionCommand(0x2F, id);
+}
+
+ubyte[] EVENT_SET_Z_VELOCITY_RELATIVE(short id) {
+	return actionCommand(0x30, id);
+}
+
+ubyte[] EVENT_SET_VELOCITIES_ZERO() {
+	return actionCommand(0x39);
+}
+
+ubyte[] EVENT_SET_ANIMATION(ubyte id) {
+	return actionCommand(0x3B, id);
+}
+
+ubyte[] EVENT_NEXT_ANIMATION_FRAME() {
+	return actionCommand(0x3C);
+}
+
+ubyte[] EVENT_PREV_ANIMATION_FRAME() {
+	return actionCommand(0x3D);
+}
+
+ubyte[] EVENT_SKIP_N_ANIMATION_FRAMES(ubyte frames) {
+	return actionCommand(0x3E, frames);
+}
+
+ubyte[] EVENT_SET_X_VELOCITY(short velocity) {
+	return actionCommand(0x3F, velocity);
+}
+
+ubyte[] EVENT_SET_Y_VELOCITY(short velocity) {
+	return actionCommand(0x40, velocity);
+}
+
+ubyte[] EVENT_SET_Z_VELOCITY(short velocity) {
+	return actionCommand(0x41, velocity);
+}
+
+ubyte[] EVENT_CALLROUTINE(T...)(short function(short, ref const(ubyte)*) ptr, T args) {
+	return actionCommand(0x42, ptr, args);
+}
+
+ubyte[] EVENT_EX_CALLROUTINE(T...)(ubyte ex, short function(short, ref const(ubyte)*) ptr, T args) {
+	return actionCommand(cast(ubyte)(0xF0 + ex), ptr, args);
+}
+
+ubyte[] EVENT_SET_PRIORITY(ubyte priority) {
+	return actionCommand(0x43, priority);
+}
+
+ubyte[] EVENT_WRITE_TEMPVAR_WAITTIMER() {
+	return actionCommand(0x44);
+}
+
+extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
+
+short fixArgs(alias Func)(short a, ref const(ubyte)* b) {
+	import std.traits : Parameters, ReturnType;
+	static if (is(ReturnType!Func : short) && (Parameters!Func.length > 1)) {
+		return Func(a, b);
+	} else static if (Parameters!Func.length > 1) {
+		Func(a, b);
+		return 0;
+	} else static if (is(ReturnType!Func : short) && (Parameters!Func.length > 0)) {
+		return Func(a);
+	} else static if (is(ReturnType!Func : short)) {
+		return Func();
+	} else static if (Parameters!Func.length > 0) {
+		Func(a);
+		return 0;
+	} else {
+		Func();
+		return 0;
+	}
 }

@@ -3,6 +3,18 @@ module earthbound.bank0C;
 
 import earthbound.commondefs;
 
+/// $CC2DE1
+immutable AnimationSequence[7] AnimationSequencePointers = [
+	AnimationSequence(null, 0x0000, 0x00, 0x00),
+	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/lightning_reflect.anim.lzhal"), 0x1C10, 0x06, 0x03),
+	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/lightning_strike.anim.lzhal"), 0x05A0, 0x07, 0x10),
+	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/starman_jr_teleport.anim.lzhal"), 0x03C0, 0x08, 0x08),
+	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/boom.anim.lzhal"), 0x0AA0, 0x02, 0x10),
+	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/zombies.anim.lzhal"), 0x0040, 0x03, 0x08),
+	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/the_end.anim.lzhal"), 0x0120, 0x02, 0x08),
+];
+
+
 /// $CCAC25
 immutable ubyte[] PSIAnimationGraphicsSet1 = cast(immutable(ubyte)[])import("psianims/gfx/0.gfx.lzhal");
 
