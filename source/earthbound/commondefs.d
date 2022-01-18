@@ -5067,8 +5067,7 @@ struct PartyCharacter {
 	ubyte boosted_vitality;
 	ubyte boosted_iq;
 	ubyte boosted_luck;
-	ubyte unknown92;
-	ubyte unknown93;
+	short unknown92;
 	ubyte unknown94;
 }
 struct RollingStat {

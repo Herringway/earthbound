@@ -462,7 +462,7 @@ void UnknownC4245D(ubyte* arg1) {
 
 /// $C4248A
 void UnknownC4248A() {
-	HDMAEN_MIRROR |= 0x10;
+	HDMAEN_MIRROR &= ~0x10;
 	WOBJSEL = 0;
 }
 
@@ -490,6 +490,14 @@ void UnknownC424D1() {
 	CGWSEL = 0x20;
 	CGADSUB = 0xB3;
 	COLDATA = 0xEF;
+}
+
+/// $C42542
+void UnknownC42542(ubyte* arg1) {
+	DMAChannels[4].DMAP = 1;
+	DMAChannels[4].BBAD = 0x26;
+	DMAChannels[4].A1T = arg1;
+	HDMAEN_MIRROR |= 0x10;
 }
 
 /// $C4257F
@@ -692,6 +700,17 @@ void UnknownC428FC(ushort* arg1, ushort* arg2, short arg3, short arg4, short arg
 		} while (--x != 0);
 		y = cast(short)(tmp + arg5);
 	} while (--x0E != 0);
+}
+
+/// $C428FC
+void UnknownC42965(ushort* arg1, ushort* arg2, short arg3, short arg4) {
+	ushort x08 = UnknownC42955[arg4];
+	ushort x0A = x08 ^ 0xFFFF;
+	ushort x0C = arg2[arg3] & x08;
+	arg1[arg3] = (arg1[arg3] & x0A) | x0C;
+	arg3 += 16;
+	x0C = arg2[arg3] & x08;
+	arg1[arg3] = (arg1[arg3] & x0A) | x0C;
 }
 
 /// $C42955
@@ -2672,6 +2691,11 @@ short CreatePreparedEntitySprite(short sprite, short actionScript) {
 	return result;
 }
 
+/// $C46534
+short UnknownC46534(short sprite, short actionScriptID) {
+	return CreateEntity(sprite, actionScriptID, -1, EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]);
+}
+
 /// $C4655E
 void UnknownC4655E(short arg1) {
 	short a = UnknownC4605A(arg1);
@@ -2879,6 +2903,34 @@ void UnknownC46957(short arg1) {
 	}
 }
 
+/// $C46984
+void UnknownC46984(short arg1) {
+	short x04 = UnknownC4605A(arg1);
+	if (x04 == -1) {
+		return;
+	}
+	short x10 = cast(short)((UnknownC41EFF(EntityAbsXTable[x04], EntityAbsYTable[x04], EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]) + 0x1000) / 0x2000);
+	if (EntityDirections[x04] == x10) {
+		return;
+	}
+	EntityDirections[x04] = x10;
+	UnknownC0A443Entry2(x04);
+}
+
+/// $C469F1
+void UnknownC469F1(short arg1) {
+	short x04 = UnknownC46028(arg1);
+	if (x04 == -1) {
+		return;
+	}
+	short x10 = cast(short)((UnknownC41EFF(EntityAbsXTable[x04], EntityAbsYTable[x04], EntityAbsXTable[CurrentEntitySlot], EntityAbsYTable[CurrentEntitySlot]) + 0x1000) / 0x2000);
+	if (EntityDirections[x04] == x10) {
+		return;
+	}
+	EntityDirections[x04] = x10;
+	UnknownC0A443Entry2(x04);
+}
+
 /// $C46A5E
 immutable short[8] UnknownC46A5E = [
 	1,
@@ -2951,6 +3003,7 @@ short UnknownC46B37(short arg1) {
 	return (arg1 + 4) & 7;
 }
 
+/// $C46B41
 immutable short[8] UnknownC46B41 = [
 	Direction.Right,
 	Direction.DownRight,
@@ -2971,6 +3024,20 @@ short UnknownC46B51(short arg1) {
 void UnknownC46B65() {
 	EntityScriptVar6Table[CurrentEntitySlot] = gameState.leaderX.integer;
 	EntityScriptVar7Table[CurrentEntitySlot] = gameState.leaderY.integer;
+}
+
+/// $C46B8D
+void UnknownC46B8D(short arg1) {
+	short x0E = UnknownC4605A(arg1);
+	EntityScriptVar6Table[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityScriptVar7Table[CurrentEntitySlot] = EntityAbsYTable[x0E];
+}
+
+/// $C46BBB
+void UnknownC46BBB(short arg1) {
+	short x0E = UnknownC46028(arg1);
+	EntityScriptVar6Table[CurrentEntitySlot] = EntityAbsXTable[x0E];
+	EntityScriptVar7Table[CurrentEntitySlot] = EntityAbsYTable[x0E];
 }
 
 /// $C46BE9
@@ -3217,8 +3284,63 @@ void UnknownC474A8() {
 	);
 }
 
+/// $C474F6
+immutable ubyte[11] UnknownC474F6 = [ 0x10, 0x10, 0x0F, 0x0F, 0x0E, 0x0D, 0x0C, 0x0B, 0x09, 0x06, 0x03 ];
+
 /// $C47501
-void UnknownC47501(ubyte* arg1);
+void UnknownC47501(ubyte* arg1) {
+	if (EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 4 >= 0) {
+		(arg1++)[0] = cast(ubyte)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 5);
+		short x12 = cast(short)(EntityAbsXTable[CurrentEntitySlot] + 16 - BG1_X_POS);
+		if (EntityAbsXTable[CurrentEntitySlot] - 16 - BG1_X_POS < 0x100) {
+			(arg1++)[0] = cast(ubyte)(EntityAbsXTable[CurrentEntitySlot] - 16 - BG1_X_POS);
+			if (x12 < 0x100) {
+				(arg1++)[0] = cast(ubyte)x12;
+			} else {
+				(arg1++)[0] = 0xFF;
+			}
+		} else {
+			if (x12 < 0x100) {
+				(arg1++)[0] = 0;
+				(arg1++)[0] = cast(ubyte)x12;
+			} else {
+				(arg1++)[0] = 0x80;
+				(arg1++)[0] = 0x7F;
+			}
+		}
+	}
+	short x04 = cast(short)(EntityAbsXTable[CurrentEntitySlot] - BG1_X_POS);
+	if (EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 15 >= 0) {
+		short x02 = (EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 15 < 10) ? cast(short)(EntityAbsYTable[CurrentEntitySlot] - BG1_Y_POS + 15) : 10;
+		const(ubyte)* x0A = &UnknownC474F6[10 - x02];
+		for (short i = 0; i < x02 + 1; i++) {
+			(arg1++)[0] = 1;
+			short x0E = cast(short)(x04 - x0A[0]);
+			short x = cast(short)(x04 + x0A[0] - 1);
+			x0A++;
+			if (x0E < 0x100) {
+				(arg1++)[0] = cast(ubyte)x0E;
+				if (x < 0x100) {
+					(arg1++)[0] = cast(ubyte)x;
+				} else {
+					(arg1++)[0] = 0xFF;
+				}
+			} else {
+				if (x < 0x100) {
+					(arg1++)[0] = 0;
+					(arg1++)[0] = cast(ubyte)x;
+				} else {
+					(arg1++)[0] = 0x80;
+					(arg1++)[0] = 0x7F;
+				}
+			}
+		}
+	}
+	(arg1++)[0] = 1;
+	(arg1++)[0] = 0x80;
+	(arg1++)[0] = 0x7F;
+	(arg1++)[0] = 0;
+}
 
 /// $C476A5
 void UnknownC476A5() {
@@ -3244,6 +3366,35 @@ void UnknownC47705() {
 	UnknownC47501(&Unknown7F0000[x16]);
 	UnknownC425FD(&Unknown7F0000[x16]);
 	EntityScriptVar0Table[CurrentEntitySlot]++;
+}
+
+/// $C47765
+void UnknownC47765(short arg1, short arg2, short arg3) {
+	ubyte* x0A = &Unknown7F0000[0xBF8];
+	short x14 = cast(short)(arg2 - BG1_Y_POS);
+	if (x14 > 0x7F) {
+		x0A[0] = 0x7F;
+		Unknown7F0000[0xBF9] = 0;
+		Unknown7F0000[0xBFA] = 0xFF;
+		x0A = &Unknown7F0000[0xBFB];
+		x14 -= 0x7F;
+	}
+	(x0A++)[0] = cast(ubyte)x14;
+	(x0A++)[0] = 0;
+	(x0A++)[0] = 0xFF;
+	short y = cast(short)(arg1 - BG1_X_POS);
+	short x12 = cast(short)(arg3 - BG1_X_POS);
+	for (short i = 0; i < 16; i++) {
+		(x0A++)[0] = 1;
+		(x0A++)[0] = cast(ubyte)y;
+		(x0A++)[0] = cast(ubyte)x12;
+		x12--;
+	}
+	(x0A++)[0] = 1;
+	(x0A++)[0] = 0x80;
+	(x0A++)[0] = 0x7F;
+	(x0A++)[0] = 0;
+	UnknownC42542(&Unknown7F0000[0xBF8]);
 }
 
 /// $C47866
@@ -5522,6 +5673,14 @@ short Spawn() {
 	return result;
 }
 
+/// $C47225
+void UnknownC47225(short arg1, short arg2) {
+	EntityScriptVar0Table[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] - arg2);
+	EntityScriptVar1Table[CurrentEntitySlot] = cast(short)(EntityAbsXTable[CurrentEntitySlot] + arg2);
+	EntityScriptVar2Table[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] - arg1);
+	EntityScriptVar3Table[CurrentEntitySlot] = cast(short)(EntityAbsYTable[CurrentEntitySlot] + arg1);
+}
+
 /// $C47269
 short UnknownC47269() {
 	if (EntityAbsXTable[CurrentEntitySlot] < EntityScriptVar0Table[CurrentEntitySlot]) {
@@ -5638,10 +5797,41 @@ short UnknownC47B77() {
 	return AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown7;
 }
 
+/// $C48037
 immutable ubyte[215] LumineHallText = EBString!215("I'm ....  It's been a long road getting here...  Soon, I'll be...  Soon, I'll be...  Soon, I'll be...  What will happen to us?  W...what's happening?  My thoughts are being written out on the wall...  or are they?  ");
 
 /// $C4810E
-ushort* UnknownC4810E(short arg1, ushort* arg2);
+ushort* UnknownC4810E(short arg1, ushort* arg2) {
+	ubyte* x06 = &Unknown7F0000[0];
+	x06 += (((arg1 & 0xFFF0) * 2) + arg1 & 0xF) * 16;
+	for (ushort i = 6; i < 7; i -= 2) {
+		for (short j = 0; j < 4; j++) {
+			ubyte x00 = x06[0];
+			ubyte x01 = x06[1];
+			ushort x0E = (x00 ^ x01) & x00;
+			x00 = x06[2];
+			x01 = x06[3];
+			ushort x02 = (x00 ^ x01) & x00;
+			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
+			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			x06 += 4;
+		}
+		x06 += 0xF0;
+		for (short j = 0; j < 4; j++) {
+			ubyte x00 = x06[0];
+			ubyte x01 = x06[1];
+			ushort x0E = (x00 ^ x01) & x00;
+			x00 = x06[2];
+			x01 = x06[3];
+			ushort x02 = (x00 ^ x01) & x00;
+			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
+			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			x06 += 4;
+		}
+		x06 -= 0x110;
+	}
+	return arg2;
+}
 
 /// $C4827B
 void UnknownC4827B(short arg1, short arg2) {
@@ -6009,7 +6199,7 @@ void UnknownC4CC2C() {
 short UnknownC4CC2F() {
 	short x1E = 0;
 	short x04 = 0;
-	Unknown7EB4AAEntry* x1A = &Unknown7EB4AA[0];
+	Unknown7EB4AAEntry* x1A = Unknown7EB4AA;
 	for (short i = 0; i < Unknown7EB4A6; i++, x1A++) {
 		if (x1A.unknown4 != 2) {
 			continue;
@@ -6033,7 +6223,7 @@ short UnknownC4CC2F() {
 short UnknownC4CD44() {
 	short x1E = 0;
 	short x04 = 0;
-	Unknown7EB4AAEntry* x0A = &Unknown7EB4AA[0];
+	Unknown7EB4AAEntry* x0A = Unknown7EB4AA;
 	for (short i = 0; i < Unknown7EB4A6; i++, x0A++) {
 		if (x0A.unknown4 != 3) {
 			continue;
@@ -6076,7 +6266,29 @@ void UnknownC4CEB0() {
 }
 
 /// $C4CED8
-void UnknownC4CED8();
+void UnknownC4CED8() {
+	Unknown7EB4AAEntry* x0A = Unknown7EB4AA;
+	ushort* x1A = cast(ushort*)&Unknown7F0000[0x7F00];
+	short x18 = rand()&0x3F;
+	while (x1A[x18] != 0) {
+		x18 = (x18 + 1) & 0x3F;
+	}
+	x1A[x18] = 1;
+	short x16 = x18 / 8;
+	short x14 = x18 % 8;
+	for (short i = 0; Unknown7EB4A6 > i; i++, x0A++) {
+		if (x0A.unknown4 != 4) {
+			continue;
+		}
+		for (short j = 0; j < x0A.unknown8 / 8; j++) {
+			for (short k = 0; k < x0A.unknown6 / 8; k++) {
+				x18 = cast(short)((j * x0A.unknown6 * 32) + (x16 * 2) + (k * 32));
+				UnknownC42965(cast(ushort*)x0A.unknown12, cast(ushort*)x0A.unknown10, x18, x14);
+			}
+		}
+		UnknownC429AE(x0A.unknown12, x0A.unknown0);
+	}
+}
 
 /// $C4D00F
 ubyte* UnknownC4D00F(ubyte* arg1, short arg2, short arg3) {
@@ -6836,10 +7048,63 @@ void UnknownC4E7AE() {
 	UnknownC4E583(&x16[0], CastSequenceFormatting[36].unknown2, CastSequenceFormatting[36].unknown0);
 }
 
+/// $C4EA9C
+void UnknownC4EA9C(short arg1, short arg2, short arg3) {
+	ushort* x06 = cast(ushort*)&Unknown7F0000[0x4000 + arg3];
+	while (arg2-- != 0) {
+		x06[0] = cast(short)(Unknown7EB4D1 + ((arg1 & 0x3F0) * 2) + (arg1 & 0xF));
+		x06[0x40] = cast(short)(x06[0] + 0x10);
+		x06++;
+		arg1++;
+	}
+}
+
+/// $C4EB04
+void UnknownC4EB04(short arg1, short arg2, short arg3) {
+	short x14 = (BG3_Y_POS / 8 + arg2) & 0x1F;
+	short x04 = cast(short)((arg2 * 32) + arg1 + 0x7C00 - (arg3 + 1) / 2);
+	CopyToVram(0, cast(ushort)(arg3 * 2), x04, &Unknown7F0000[0x4000 + arg1 * 2]);
+	short x12;
+	if (x14 != 0x1F) {
+		x12 = cast(short)(x04 + 0x20);
+	} else {
+		x12 = cast(short)(x04 - 0x3E0);
+	}
+	CopyToVram(0, cast(short)(arg3 * 2), x12, &Unknown7F0000[0x4000 + arg1 * 2 + 64]);
+}
+
+/// $C4EBAD
+void UnknownC4EBAD(short arg1, short arg2, short arg3) {
+	UnknownC4EA9C(CastSequenceFormatting[arg1].unknown0, CastSequenceFormatting[arg1].unknown2, arg2);
+	UnknownC4EB04(arg2, arg3, CastSequenceFormatting[arg1].unknown0);
+}
+
 /// $C4EC6E
 void UnknownC4EC6E(short arg1) {
 	memcpy(&palettes[12][0], &Unknown7F0000[0x7000 + arg1 * 32], 0x20);
 	Unknown7E0030 = 0x10;
+}
+
+/// $C4EC05
+void UnknownC4EC05(short arg1, short arg2, short arg3) {
+	if (arg1 != 7) {
+		UnknownC4EA9C(UnknownC3FDB5[arg1 - 1], 6, arg2);
+		UnknownC4EB04(arg2, arg3, 6);
+	} else {
+		UnknownC4EA9C(0x1C0, 6, arg2);
+		UnknownC4EB04(arg2, arg3, 6);
+	}
+}
+
+/// $C4EC52
+void UnknownC4EC52(short arg1, short arg2, short arg3) {
+	UnknownC4EBAD(EntityScriptVar0Table[CurrentEntitySlot], arg2, arg3);
+}
+
+/// $C4ECAD
+short UnknownC4ECAD(short arg1, short arg2) {
+	NewEntityVar0 = Unknown7EB4D3 & 3;
+	return CreateEntity(arg1, arg2, -1, EntityScriptVar0Table[CurrentEntitySlot], cast(short)(EntityScriptVar1Table[CurrentEntitySlot] + BG3_Y_POS));
 }
 
 /// $C4ECE7
