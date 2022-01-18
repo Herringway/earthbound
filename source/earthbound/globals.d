@@ -710,7 +710,7 @@ __gshared short Unknown7E9F7E; /// $9F7E
 __gshared short Unknown7E9F80; /// $9F80
 __gshared short Unknown7E9F82; /// $9F82
 __gshared short Unknown7E9F84; /// $9F84
-__gshared short Unknown7E9F86; /// $9F86
+__gshared ushort* Unknown7E9F86; /// $9F86
 __gshared short Unknown7E9F88; /// $9F88
 __gshared short EnemiesInBattle; /// $9F8A
 __gshared short[16] Unknown7E9F8C; /// $9F8C

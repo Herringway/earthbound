@@ -1047,8 +1047,50 @@ short ShowTitleScreen(short arg1) {
 	return 1;
 }
 
+/// $C3F5F9
+void UnknownC3F5F9() {
+	short x04 = 0;
+	short x16 = Unknown7E9F7E;
+	for (short i = 0; i < Unknown7E9F80; i++) {
+		short x12 = cast(short)(Unknown7E9F7C + Unknown7E9F84 + (Unknown7E9F7A & 0x1F));
+		CopyToVram(0, x16, x12, cast(ubyte*)&Unknown7E9F86[x04]);
+		x04 += Unknown7E9F82;
+		if (++Unknown7E9F7C == 0x20) {
+			Unknown7E9F7C = 0;
+		}
+	}
+}
+
 /// $C3F705
-void UnknownC3F705(short arg1, short arg2, ubyte* arg3);
+void UnknownC3F705(short arg1, short arg2, ushort* arg3) {
+	Unknown7E9F86 = &arg3[1];
+	short x12 = arg1 & 0x3F;
+	Unknown7E9F7A = x12;
+	short x10 = arg2 & 0x1F;
+	Unknown7E9F7C = x10;
+	Unknown7E9F84 = ((x12 & 0x1F) != 0) ? 0x3C00 : 0x3800;
+	short x18 = arg3[0] >> 8;
+	Unknown7E9F7E = x18;
+	Unknown7E9F80 = arg3[0] & 0xFF;
+	if ((x12 & 0xFFE0) == ((x12 + x18) & 0xFFE0)) {
+		Unknown7E9F82 = x18;
+		UnknownC3F5F9();
+	} else {
+		do {
+			Unknown7E9F7E = cast(short)(((x18 + x12) & 0xFFE0) - Unknown7E9F7A);
+			Unknown7E9F82 = x18;
+			UnknownC3F5F9();
+			Unknown7E9F84 ^= 0x400;
+			Unknown7E9F86 = &Unknown7E9F86[Unknown7E9F7E];
+			Unknown7E9F7A = 0;
+			Unknown7E9F7C = x10;
+			x18 -= Unknown7E9F7E;
+		} while (x18 >= 0x20);
+		Unknown7E9F7E = x18;
+		Unknown7E9F82 = x18;
+		UnknownC3F5F9();
+	}
+}
 
 /// $C3F819
 immutable(Unknown7EAECCEntry)[4] UnknownC3F819 = [

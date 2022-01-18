@@ -5638,11 +5638,108 @@ short UnknownC47B77() {
 	return AnimationSequencePointers[EntityScriptVar0Table[CurrentEntitySlot]].unknown7;
 }
 
+immutable ubyte[215] LumineHallText = EBString!215("I'm ....  It's been a long road getting here...  Soon, I'll be...  Soon, I'll be...  Soon, I'll be...  What will happen to us?  W...what's happening?  My thoughts are being written out on the wall...  or are they?  ");
+
 /// $C4810E
 ushort* UnknownC4810E(short arg1, ushort* arg2);
 
+/// $C4827B
+void UnknownC4827B(short arg1, short arg2) {
+	short x1A = (arg2 - 0x50) & 0x7F;
+	short x18 = FontConfigTable[arg1].height;
+	const(ubyte)* x14 = &FontConfigTable[arg1].graphics[x1A * x18];
+	short x02 = FontConfigTable[arg1].width;
+	short x12 = FontConfigTable[arg1].data[x1A];
+	x12 += Unknown7E5E6D;
+	while (x12 > 8) {
+		RenderText(8, x02, x14);
+		x12 -= 8;
+		x14 += x02;
+	}
+	RenderText(x12, x02, x14);
+}
+
 /// $C4838A
-short UnknownC4838A(short arg1);
+short UnknownC4838A(short arg1) {
+	short x2E = 0;
+	short x2C = 0;
+	short x2A = 0;
+	VWFTile = 0;
+	VWFX = 0;
+	memset(&VWFBuffer[0][0], 0xFF, 0x400);
+	short x04 = 4;
+	short x28 = cast(short)strlen(cast(char*)&PartyCharacters[0].name[0]);
+	if (x28 > 5) {
+		x28 = 5;
+	}
+	short x26 = 6;
+	ubyte* x06 = &PartyCharacters[0].name[0];
+	for (short i = 0; x04 > i; i++) {
+		UnknownC4827B(arg1, LumineHallText[i]);
+	}
+	for (short i = 0; x28 > i; i++) {
+		UnknownC4827B(arg1, (x06++)[0]);
+	}
+	for (short i = 0; x26 > i; i++) {
+		UnknownC4827B(arg1, LumineHallText[4 + i]);
+	}
+	x26 = cast(short)(VWFX + x2C);
+	x28 = 0;
+	short x20 = 0;
+	for (short i = 0; i < VWFX / 8; i++) {
+		memcpy(&Unknown7F0000[x2A], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+		x20 += 16;
+		memcpy(&Unknown7F0000[x2A + 0x100], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+		x20 += 16;
+		x2A += 16;
+	}
+	x2C = 205;
+	memcpy(&VWFBuffer[0][0], &VWFBuffer[VWFX / 8][0], 0x20);
+	VWFTile = 0;
+	VWFX %= 8;
+	for (short i = 0; x2C > i; i++) {
+		if (x2E > 16) {
+			x2E = 0;
+			x26 += VWFX;
+			x20 = 0;
+			 for (short j = 0; i < VWFX / 8; i++) {
+				memcpy(&Unknown7F0000[x2A], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+				x20 += 16;
+				memcpy(&Unknown7F0000[x2A + 0x100], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+				x20 += 16;
+				x2A += 16;
+				if ((x2A % 0x100) == 0) {
+					x2A += 0x100;
+				}
+			 }
+			 if ((VWFX % 8) != 0) {
+				memcpy(&VWFBuffer[0][0], &VWFBuffer[VWFX / 8][0], 0x20);
+				memset(&VWFBuffer[1][0], 0xFF, 0x1E0);
+				VWFTile = 0;
+				VWFX %= 8;
+			 } else {
+				VWFX = 0;
+				VWFTile = 0;
+				memset(&VWFBuffer[0][0], 0xFF, 0x200);
+			 }
+		}
+		UnknownC4827B(arg1, LumineHallText[10 + i]);
+		x2E++;
+	}
+	x04 = cast(short)(VWFX + x26);
+	x20 = 0;
+	for (short i = 0; i < VWFX + 16; i++) {
+		memcpy(&Unknown7F0000[x2A], &(cast(ubyte*)&VWFBuffer[0][0])[x20], 16);
+		short x16 = cast(short)(x20 + 16);
+		memcpy(&Unknown7F0000[x2A + 0x100], &(cast(ubyte*)&VWFBuffer[0][0])[x16], 16);
+		x20 = cast(short)(x16 + 16);
+		x2A += 0x100;
+		if ((x2A % 0x100) == 0) {
+			x2A += 0x100;
+		}
+	}
+	return cast(short)((x04 / 16) * 4);
+}
 
 /// $C4880C
 void UnknownC4880C() {
@@ -5715,7 +5812,7 @@ short UnknownC48A6D() {
 		// interesting...
 		x06 += -239;
 	}
-	UnknownC3F705(808, 588, &Unknown7F0000[0]);
+	UnknownC3F705(808, 588, cast(ushort*)&Unknown7F0000[0]);
 	short x = 0;
 	if (++EntityScriptVar1Table[CurrentEntitySlot] > EntityScriptVar0Table[CurrentEntitySlot]) {
 		x = 1;

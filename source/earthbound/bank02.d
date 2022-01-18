@@ -3209,7 +3209,29 @@ void InstantWinHandler() {
 }
 
 /// $C2654C
-void UnknownC2654C();
+void UnknownC2654C() {
+	PlaySfx(Sfx.RecoverHP);
+	for (short i = 0; i < 2; i++) {
+		memcpy(&Unknown7F0000[0], &palettes[0][0], 0x200);
+		for (short j = 0; j < 0x100; j++) {
+			(cast(ushort*)&palettes[0][0])[j] = 0x5D70;
+		}
+		UnknownC496E7(12, -1);
+		for (short j = 0; j < 12; j++) {
+			UnknownC426ED();
+			WaitUntilNextFrame();
+		}
+		UnknownC49740();
+	}
+	for (short i = 0; i < 6; i++) {
+		if ((gameState.partyMembers[i] == 1) || (gameState.partyMembers[i] == 2) || (gameState.partyMembers[i] == 4)) {
+			PartyCharacters[gameState.partyMembers[i]].pp.target += 20;
+			if (PartyCharacters[gameState.partyMembers[i]].pp.target > PartyCharacters[gameState.partyMembers[i]].maxPP) {
+				PartyCharacters[gameState.partyMembers[i]].pp.target = PartyCharacters[gameState.partyMembers[i]].maxPP;
+			}
+		}
+	}
+}
 
 /// $C26634
 short InstantWinCheck() {
