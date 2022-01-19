@@ -3841,8 +3841,8 @@ void UnknownC4954C(short arg1, ushort* arg2) {
 void UnknownC4958E(short arg1, short arg2, ushort* arg3) {
 	ushort* x06 = cast(ushort*)&Unknown7F0000[0];
 	memset(&Unknown7F0000[0x200], 0, 0x1000);
-	for (ubyte i = 0; i < 0x100; i += 16) {
-		for (ubyte j = i; i + 16 > j; j++) {
+	for (ushort i = 0; i < 0x100; i += 16) {
+		for (ushort j = i; i + 16 > j; j++) {
 			ubyte x02;
 			if ((arg2 & 1) != 0) {
 				x02 = x06[j] & 0xFF;
@@ -6480,7 +6480,7 @@ void LoadTownMapData(short arg1) {
 	Decomp(&TownMapGraphicsPointerTable[arg1][0], &Unknown7F0000[0]);
 	while (Unknown7E0028.a != 0) {}
 	memcpy(&palettes[0][0], &Unknown7F0000[0], 0x40);
-	memcpy(&palettes[16][0], &TownMapIconPalette[0], 0x100);
+	memcpy(&palettes[8][0], &TownMapIconPalette[0], 0x100);
 	SetBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);
 	SetOAMSize(3);
 	CGADSUB = 0;

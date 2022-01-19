@@ -6910,6 +6910,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 	short x19 = arg1.TargetLayer;
 	if (arg1.Unknown2 == 0) {
 		if ((arg1.PaletteChangeDurationLeft != 0) && (--arg1.PaletteChangeDurationLeft == 0)) {
+			arg1.PaletteChangeDurationLeft = arg1.PaletteChangeSpeed;
 			switch (arg1.PaletteShiftingStyle) {
 				case 2:
 					short x02 = cast(short)(arg1.PaletteCycle2Last - arg1.PaletteCycle2First + 1);
@@ -6922,7 +6923,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						}
 						arg1.PalettePointer[0][arg1.PaletteCycle2First + i] = arg1.Palette[arg1.PaletteCycle2First + x14];
 					}
-					if (++arg1.PaletteCycle2Step < x02) {
+					if (++arg1.PaletteCycle2Step >= x02) {
 						arg1.PaletteCycle2Step = 0;
 					}
 					goto case;
@@ -6937,7 +6938,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						}
 						arg1.PalettePointer[0][arg1.PaletteCycle1First + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
 					}
-					if (++arg1.PaletteCycle1Step < x02) {
+					if (++arg1.PaletteCycle1Step >= x02) {
 						arg1.PaletteCycle1Step = 0;
 					}
 					break;
