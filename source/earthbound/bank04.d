@@ -23,6 +23,7 @@ import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
+import core.thread : Fiber;
 
 /// $C40015
 short UnknownC40015() {
@@ -6480,7 +6481,7 @@ void UnknownC4D43F(short arg1) {
 void LoadTownMapData(short arg1) {
 	FadeOut(2, 1);
 	Decomp(&TownMapGraphicsPointerTable[arg1][0], &Unknown7F0000[0]);
-	while (Unknown7E0028.a != 0) {}
+	while (Unknown7E0028.a != 0) { Fiber.yield(); }
 	memcpy(&palettes[0][0], &Unknown7F0000[0], 0x40);
 	memcpy(&palettes[8][0], &TownMapIconPalette[0], 0x100);
 	SetBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);
@@ -7757,6 +7758,7 @@ immutable ubyte[][169] MusicPackPointerTable = [
 
 /// $C4FBBD
 void ChangeMusic(short track) {
+	return;
 	if (track == CurrentMusicTrack) {
 		return;
 	}
