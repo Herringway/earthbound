@@ -19,150 +19,150 @@ import earthbound.bank2F;
 immutable ubyte[][895] EventScriptPointers;
 
 immutable ubyte[37 + 4 * (const(void)*).sizeof] Event774;
-immutable ubyte[26 + 7 * (const(void)*).sizeof] UnknownC4152A;
-immutable ubyte[9 + 6 * (const(void)*).sizeof] Event0;
+immutable ubyte[26 + 4 * (const(void)*).sizeof] UnknownC4152A;
+immutable ubyte[9 + 5 * (const(void)*).sizeof] Event0;
 immutable ubyte[81 + 10 * (const(void)*).sizeof] Event320_321Common;
-immutable ubyte[47 + 13 * (const(void)*).sizeof] Event478;
+immutable ubyte[47 + 12 * (const(void)*).sizeof] Event478;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event607;
-immutable ubyte[17 + 9 * (const(void)*).sizeof] Event601;
-immutable ubyte[40 + 10 * (const(void)*).sizeof] UnknownC41900;
+immutable ubyte[17 + 8 * (const(void)*).sizeof] Event601;
+immutable ubyte[40 + 6 * (const(void)*).sizeof] UnknownC41900;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] Event332;
 immutable ubyte[89 + 18 * (const(void)*).sizeof] Event561;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event878;
 immutable ubyte[48 + 11 * (const(void)*).sizeof] Event667;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event515;
-immutable ubyte[16 + 7 * (const(void)*).sizeof] Event53;
+immutable ubyte[16 + 6 * (const(void)*).sizeof] Event53;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] Event447;
 immutable ubyte[23 + 7 * (const(void)*).sizeof] Event640;
 immutable ubyte[23 + 5 * (const(void)*).sizeof] Event720;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] Event112;
-immutable ubyte[24 + 7 * (const(void)*).sizeof] Event348_349;
-immutable ubyte[26 + 11 * (const(void)*).sizeof] Event617;
+immutable ubyte[24 + 5 * (const(void)*).sizeof] Event348_349;
+immutable ubyte[26 + 10 * (const(void)*).sizeof] Event617;
 immutable ubyte[14 + 5 * (const(void)*).sizeof] Event244;
-immutable ubyte[24 + 10 * (const(void)*).sizeof] Event181;
+immutable ubyte[24 + 9 * (const(void)*).sizeof] Event181;
 immutable ubyte[65 + 12 * (const(void)*).sizeof] Event136;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event678;
-immutable ubyte[71 + 18 * (const(void)*).sizeof] UnknownC419BF;
+immutable ubyte[71 + 13 * (const(void)*).sizeof] UnknownC419BF;
 immutable ubyte[27 + 6 * (const(void)*).sizeof] Event121;
 immutable ubyte[55 + 13 * (const(void)*).sizeof] Event569;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] Event586;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event572;
-immutable ubyte[62 + 29 * (const(void)*).sizeof] UnknownC3A401;
+immutable ubyte[62 + 25 * (const(void)*).sizeof] UnknownC3A401;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] Event321;
 immutable ubyte[27 + 5 * (const(void)*).sizeof] Event676_677_678_Common2;
-immutable ubyte[25 + 7 * (const(void)*).sizeof] Event805;
+immutable ubyte[25 + 6 * (const(void)*).sizeof] Event805;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event609;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event599;
-immutable ubyte[17 + 4 * (const(void)*).sizeof] UnknownC35FB6;
-immutable ubyte[63 + 15 * (const(void)*).sizeof] Event637;
+immutable ubyte[17 + 3 * (const(void)*).sizeof] UnknownC35FB6;
+immutable ubyte[63 + 14 * (const(void)*).sizeof] Event637;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] Event588;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event868;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event708;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event797;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event797;
 immutable ubyte[123 + 17 * (const(void)*).sizeof] Event318;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event280;
 immutable ubyte[23 + 4 * (const(void)*).sizeof] Event429;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] Event98;
-immutable ubyte[51 + 17 * (const(void)*).sizeof] Event206;
-immutable ubyte[50 + 17 * (const(void)*).sizeof] Event764;
-immutable ubyte[25 + 5 * (const(void)*).sizeof] UnknownC41A7D;
+immutable ubyte[51 + 15 * (const(void)*).sizeof] Event206;
+immutable ubyte[59 + 13 * (const(void)*).sizeof] Event764;
+immutable ubyte[25 + 3 * (const(void)*).sizeof] UnknownC41A7D;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] Event428;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AA82;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AA82;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event212;
 immutable ubyte[29 + 11 * (const(void)*).sizeof] Event475;
-immutable ubyte[149 + 7 * (const(void)*).sizeof] Event675;
+immutable ubyte[149 + 6 * (const(void)*).sizeof] Event675;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event883;
 immutable ubyte[43 + 29 * (const(void)*).sizeof] Event22;
 immutable ubyte[5 + 5 * (const(void)*).sizeof] UnknownC3BAD7;
 immutable ubyte[54 + 8 * (const(void)*).sizeof] Event595;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event359;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event493;
-immutable ubyte[311 + 43 * (const(void)*).sizeof] Event410;
+immutable ubyte[311 + 31 * (const(void)*).sizeof] Event410;
 immutable ubyte[38 + 5 * (const(void)*).sizeof] Event756;
 immutable ubyte[43 + 15 * (const(void)*).sizeof] Event50;
-immutable ubyte[34 + 9 * (const(void)*).sizeof] UnknownC413D6;
-immutable ubyte[29 + 12 * (const(void)*).sizeof] Event643;
+immutable ubyte[34 + 4 * (const(void)*).sizeof] UnknownC413D6;
+immutable ubyte[29 + 11 * (const(void)*).sizeof] Event643;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event819;
 immutable ubyte[57 + 14 * (const(void)*).sizeof] Event68;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] UnknownC30CAF;
-immutable ubyte[51 + 17 * (const(void)*).sizeof] Event38;
+immutable ubyte[51 + 14 * (const(void)*).sizeof] Event38;
 immutable ubyte[34 + 7 * (const(void)*).sizeof] Event328;
 immutable ubyte[46 + 5 * (const(void)*).sizeof] UnknownC3CC24;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event872;
-immutable ubyte[20 + 6 * (const(void)*).sizeof] Event257;
-immutable ubyte[10 + 6 * (const(void)*).sizeof] Event786;
-immutable ubyte[43 + 10 * (const(void)*).sizeof] Event763;
-immutable ubyte[30 + 10 * (const(void)*).sizeof] UnknownC3A12E;
+immutable ubyte[20 + 5 * (const(void)*).sizeof] Event257;
+immutable ubyte[9 + 5 * (const(void)*).sizeof] Event786;
+immutable ubyte[43 + 9 * (const(void)*).sizeof] Event763;
+immutable ubyte[30 + 8 * (const(void)*).sizeof] UnknownC3A12E;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event412;
-immutable ubyte[58 + 5 * (const(void)*).sizeof] Event388;
-immutable ubyte[43 + 10 * (const(void)*).sizeof] UnknownC3C90C;
+immutable ubyte[58 + 4 * (const(void)*).sizeof] Event388;
+immutable ubyte[43 + 9 * (const(void)*).sizeof] UnknownC3C90C;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] Event264;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] UnknownC34A61;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] Event232;
 immutable ubyte[202 + 33 * (const(void)*).sizeof] Event480;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] Event833;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event494;
-immutable ubyte[10 + 6 * (const(void)*).sizeof] Event13_14_15_16_17_Common;
+immutable ubyte[10 + 5 * (const(void)*).sizeof] Event13_14_15_16_17_Common;
 immutable ubyte[103 + 20 * (const(void)*).sizeof] Event201;
 immutable ubyte[8 + 6 * (const(void)*).sizeof] Event597;
-immutable ubyte[21 + 10 * (const(void)*).sizeof] Event775;
-immutable ubyte[55 + 13 * (const(void)*).sizeof] Event706;
+immutable ubyte[21 + 9 * (const(void)*).sizeof] Event775;
+immutable ubyte[55 + 12 * (const(void)*).sizeof] Event706;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event575;
-immutable ubyte[5 + 3 * (const(void)*).sizeof] Event730;
+immutable ubyte[5 + 2 * (const(void)*).sizeof] Event730;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event380;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] Event851;
-immutable ubyte[95 + 49 * (const(void)*).sizeof] Event499_500_Common;
+immutable ubyte[95 + 48 * (const(void)*).sizeof] Event499_500_Common;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event870;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] Event323;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] Event274_275_276;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event391;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] Event817;
 immutable ubyte[8 + 2 * (const(void)*).sizeof] Event131;
-immutable ubyte[129 + 22 * (const(void)*).sizeof] Event712;
-immutable ubyte[15 + 8 * (const(void)*).sizeof] Event18;
+immutable ubyte[129 + 21 * (const(void)*).sizeof] Event712;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] Event18;
 immutable ubyte[17 + 6 * (const(void)*).sizeof] UnknownC3BB73;
 immutable ubyte[17 + 5 * (const(void)*).sizeof] Event84;
-immutable ubyte[59 + 12 * (const(void)*).sizeof] Event171;
+immutable ubyte[59 + 11 * (const(void)*).sizeof] Event171;
 immutable ubyte[33 + 7 * (const(void)*).sizeof] Event823;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] Event430;
 immutable ubyte[36 + 13 * (const(void)*).sizeof] Event804;
-immutable ubyte[16 + 8 * (const(void)*).sizeof] Event707_708_709_710_Common;
+immutable ubyte[16 + 7 * (const(void)*).sizeof] Event707_708_709_710_Common;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] UnknownC42815;
-immutable ubyte[20 + 10 * (const(void)*).sizeof] Event300;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] Event300;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] Event304;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event887;
 immutable ubyte[53 + 10 * (const(void)*).sizeof] Event641;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] UnknownC36A3E;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event570;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] UnknownC30C7F;
-immutable ubyte[46 + 14 * (const(void)*).sizeof] Event159;
+immutable ubyte[46 + 13 * (const(void)*).sizeof] Event159;
 immutable ubyte[11 + 8 * (const(void)*).sizeof] UnknownC3BAA3;
-immutable ubyte[82 + 9 * (const(void)*).sizeof] Event54;
+immutable ubyte[82 + 8 * (const(void)*).sizeof] Event54;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event266;
-immutable ubyte[17 + 5 * (const(void)*).sizeof] Event573;
+immutable ubyte[17 + 4 * (const(void)*).sizeof] Event573;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] Event383;
-immutable ubyte[92 + 8 * (const(void)*).sizeof] Event397;
+immutable ubyte[92 + 7 * (const(void)*).sizeof] Event397;
 immutable ubyte[15 + 4 * (const(void)*).sizeof] Event828;
-immutable ubyte[179 + 55 * (const(void)*).sizeof] Event340;
+immutable ubyte[179 + 54 * (const(void)*).sizeof] Event340;
 immutable ubyte[78 + 13 * (const(void)*).sizeof] Event465;
-immutable ubyte[33 + 11 * (const(void)*).sizeof] Event476;
+immutable ubyte[33 + 10 * (const(void)*).sizeof] Event476;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] Event474;
-immutable ubyte[15 + 8 * (const(void)*).sizeof] Event178;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] Event178;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] Event179;
 immutable ubyte[39 + 11 * (const(void)*).sizeof] Event298;
-immutable ubyte[22 + 5 * (const(void)*).sizeof] Event167;
+immutable ubyte[22 + 4 * (const(void)*).sizeof] Event167;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] Event151;
 immutable ubyte[18 + 6 * (const(void)*).sizeof] Event247_248;
-immutable ubyte[39 + 8 * (const(void)*).sizeof] UnknownC4160A;
-immutable ubyte[38 + 10 * (const(void)*).sizeof] UnknownC4158A;
+immutable ubyte[39 + 5 * (const(void)*).sizeof] UnknownC4160A;
+immutable ubyte[38 + 4 * (const(void)*).sizeof] UnknownC4158A;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event315;
-immutable ubyte[52 + 13 * (const(void)*).sizeof] Event692;
+immutable ubyte[52 + 12 * (const(void)*).sizeof] Event692;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] Event358;
-immutable ubyte[15 + 8 * (const(void)*).sizeof] Event765;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] Event765;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] UnknownC3B431;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3A1CB;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3A1CB;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event501;
-immutable ubyte[25 + 9 * (const(void)*).sizeof] Event289;
+immutable ubyte[25 + 8 * (const(void)*).sizeof] Event289;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event363;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event523;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] Event95;
@@ -171,25 +171,25 @@ immutable ubyte[23 + 9 * (const(void)*).sizeof] UnknownC40F18;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event459;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] Event73;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event16;
-immutable ubyte[253 + 51 * (const(void)*).sizeof] Event365;
-immutable ubyte[9 + 6 * (const(void)*).sizeof] Event581;
+immutable ubyte[253 + 42 * (const(void)*).sizeof] Event365;
+immutable ubyte[9 + 5 * (const(void)*).sizeof] Event581;
 immutable ubyte[50 + 9 * (const(void)*).sizeof] Event482;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event491;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] Event686;
 immutable ubyte[23 + 15 * (const(void)*).sizeof] Event19;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event787;
 immutable ubyte[42 + 10 * (const(void)*).sizeof] Event630;
-immutable ubyte[48 + 15 * (const(void)*).sizeof] UnknownC41402;
+immutable ubyte[48 + 10 * (const(void)*).sizeof] UnknownC41402;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] Event740;
 immutable ubyte[68 + 10 * (const(void)*).sizeof] Event542;
-immutable ubyte[7 + 10 * (const(void)*).sizeof] UnknownC3DFB5;
+immutable ubyte[21 + 4 * (const(void)*).sizeof] UnknownC3DFB5;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event378_407;
-immutable ubyte[10 + 3 * (const(void)*).sizeof] UnknownC37A7C;
+immutable ubyte[10 + 2 * (const(void)*).sizeof] UnknownC37A7C;
 immutable ubyte[113 + 18 * (const(void)*).sizeof] Event700;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] Event781;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] Event758;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AA96;
-immutable ubyte[27 + 25 * (const(void)*).sizeof] Event6_12;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AA96;
+immutable ubyte[52 + 13 * (const(void)*).sizeof] Event6_12;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] Event35;
 immutable ubyte[38 + 7 * (const(void)*).sizeof] Event732;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event168;
@@ -198,8 +198,8 @@ immutable ubyte[28 + 8 * (const(void)*).sizeof] Event886;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event390_394;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] Event550;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] UnknownC33C18;
-immutable ubyte[33 + 14 * (const(void)*).sizeof] Event497;
-immutable ubyte[63 + 17 * (const(void)*).sizeof] Event118;
+immutable ubyte[33 + 13 * (const(void)*).sizeof] Event497;
+immutable ubyte[63 + 16 * (const(void)*).sizeof] Event118;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] UnknownC30C97;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] UnknownC3DFD4_2;
 immutable ubyte[34 + 6 * (const(void)*).sizeof] Event639;
@@ -208,116 +208,116 @@ immutable ubyte[23 + 7 * (const(void)*).sizeof] Event831;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] UnknownC333AA;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] Event808;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event892;
-immutable ubyte[51 + 10 * (const(void)*).sizeof] Event268;
+immutable ubyte[51 + 7 * (const(void)*).sizeof] Event268;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] Event453;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event578;
-immutable ubyte[55 + 18 * (const(void)*).sizeof] Event217;
+immutable ubyte[55 + 16 * (const(void)*).sizeof] Event217;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event374;
-immutable ubyte[61 + 17 * (const(void)*).sizeof] Event117;
+immutable ubyte[61 + 16 * (const(void)*).sizeof] Event117;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] UnknownC3AFA3;
 immutable ubyte[62 + 8 * (const(void)*).sizeof] Event443;
-immutable ubyte[43 + 10 * (const(void)*).sizeof] UnknownC3C94E;
+immutable ubyte[43 + 9 * (const(void)*).sizeof] UnknownC3C94E;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] UnknownC3D913;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] Event527;
-immutable ubyte[43 + 21 * (const(void)*).sizeof] Event672;
+immutable ubyte[52 + 17 * (const(void)*).sizeof] Event672;
 immutable ubyte[5 + 5 * (const(void)*).sizeof] UnknownC3BAC4;
 immutable ubyte[50 + 8 * (const(void)*).sizeof] Event722;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] UnknownC3CC94;
-immutable ubyte[8 + 5 * (const(void)*).sizeof] Event7;
-immutable ubyte[8 + 5 * (const(void)*).sizeof] UnknownC39AC7;
-immutable ubyte[26 + 13 * (const(void)*).sizeof] Event840;
+immutable ubyte[8 + 4 * (const(void)*).sizeof] Event7;
+immutable ubyte[8 + 4 * (const(void)*).sizeof] UnknownC39AC7;
+immutable ubyte[26 + 9 * (const(void)*).sizeof] Event840;
 immutable ubyte[42 + 6 * (const(void)*).sizeof] Event671;
 immutable ubyte[22 + 5 * (const(void)*).sizeof] Event653;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] Event779;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3A1B7;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3A1B7;
 immutable ubyte[32 + 10 * (const(void)*).sizeof] Event270;
-immutable ubyte[41 + 9 * (const(void)*).sizeof] UnknownC4116C;
+immutable ubyte[41 + 3 * (const(void)*).sizeof] UnknownC4116C;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event279;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event508;
 immutable ubyte[33 + 4 * (const(void)*).sizeof] Event262;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] Event422;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] Event647;
-immutable ubyte[13 + 2 * (const(void)*).sizeof] Event470;
+immutable ubyte[13 + 1 * (const(void)*).sizeof] Event470;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event864;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] Event820;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] Event97;
 immutable ubyte[30 + 7 * (const(void)*).sizeof] Event228_229_230_231_232Common;
 immutable ubyte[14 + 4 * (const(void)*).sizeof] Event382;
-immutable ubyte[22 + 6 * (const(void)*).sizeof] Event633;
+immutable ubyte[22 + 5 * (const(void)*).sizeof] Event633;
 immutable ubyte[4 + 4 * (const(void)*).sizeof] UnknownC3A262;
 immutable ubyte[23 + 9 * (const(void)*).sizeof] UnknownC343AE;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event384;
 immutable ubyte[20 + 4 * (const(void)*).sizeof] Event418;
 immutable ubyte[146 + 25 * (const(void)*).sizeof] Event294;
-immutable ubyte[45 + 23 * (const(void)*).sizeof] Event37;
-immutable ubyte[26 + 12 * (const(void)*).sizeof] Event74;
+immutable ubyte[45 + 22 * (const(void)*).sizeof] Event37;
+immutable ubyte[26 + 11 * (const(void)*).sizeof] Event74;
 immutable ubyte[6 + 4 * (const(void)*).sizeof] Event191;
-immutable ubyte[107 + 29 * (const(void)*).sizeof] Event782;
-immutable ubyte[28 + 9 * (const(void)*).sizeof] Event163;
+immutable ubyte[107 + 28 * (const(void)*).sizeof] Event782;
+immutable ubyte[28 + 7 * (const(void)*).sizeof] Event163;
 immutable ubyte[69 + 11 * (const(void)*).sizeof] Event544;
 immutable ubyte[19 + 3 * (const(void)*).sizeof] Event783;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event555;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] Event850;
-immutable ubyte[41 + 15 * (const(void)*).sizeof] Event216;
-immutable ubyte[86 + 28 * (const(void)*).sizeof] Event852;
+immutable ubyte[41 + 14 * (const(void)*).sizeof] Event216;
+immutable ubyte[86 + 27 * (const(void)*).sizeof] Event852;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] UnknownC34964;
-immutable ubyte[22 + 8 * (const(void)*).sizeof] Event39;
-immutable ubyte[24 + 17 * (const(void)*).sizeof] Event467;
+immutable ubyte[22 + 7 * (const(void)*).sizeof] Event39;
+immutable ubyte[33 + 10 * (const(void)*).sizeof] Event467;
 immutable ubyte[55 + 27 * (const(void)*).sizeof] Event21;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] Event450;
 immutable ubyte[12 + 2 * (const(void)*).sizeof] Event347;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event123;
 immutable ubyte[25 + 9 * (const(void)*).sizeof] Event288;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event490;
-immutable ubyte[20 + 7 * (const(void)*).sizeof] Event591;
+immutable ubyte[20 + 6 * (const(void)*).sizeof] Event591;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] UnknownC42802;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event409;
-immutable ubyte[20 + 10 * (const(void)*).sizeof] Event316;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] Event316;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] Event585;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] Event734;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event794;
-immutable ubyte[19 + 9 * (const(void)*).sizeof] Event113;
-immutable ubyte[11 + 4 * (const(void)*).sizeof] UnknownC32138;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event794;
+immutable ubyte[19 + 8 * (const(void)*).sizeof] Event113;
+immutable ubyte[11 + 2 * (const(void)*).sizeof] UnknownC32138;
 immutable ubyte[156 + 30 * (const(void)*).sizeof] Event562;
 immutable ubyte[34 + 9 * (const(void)*).sizeof] Event78;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event414;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] Event114;
 immutable ubyte[61 + 8 * (const(void)*).sizeof] Event261;
-immutable ubyte[51 + 14 * (const(void)*).sizeof] Event711;
+immutable ubyte[51 + 13 * (const(void)*).sizeof] Event711;
 immutable ubyte[19] UnknownC30A1F;
 immutable ubyte[29 + 7 * (const(void)*).sizeof] Event824;
 immutable ubyte[45 + 8 * (const(void)*).sizeof] Event193;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] Event540;
-immutable ubyte[44 + 33 * (const(void)*).sizeof] Event29;
-immutable ubyte[18 + 9 * (const(void)*).sizeof] Event189;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AAEA;
+immutable ubyte[61 + 25 * (const(void)*).sizeof] Event29;
+immutable ubyte[18 + 8 * (const(void)*).sizeof] Event189;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AAEA;
 immutable ubyte[33 + 12 * (const(void)*).sizeof] Event303;
 immutable ubyte[56 + 11 * (const(void)*).sizeof] Event58;
 immutable ubyte[35 + 17 * (const(void)*).sizeof] Event24;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] Event525;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] Event789;
-immutable ubyte[37 + 11 * (const(void)*).sizeof] Event369;
+immutable ubyte[37 + 10 * (const(void)*).sizeof] Event369;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event514;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] Event842;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event704;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event882;
-immutable ubyte[25 + 12 * (const(void)*).sizeof] Event65;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3A1DF;
-immutable ubyte[22 + 8 * (const(void)*).sizeof] UnknownC33549;
+immutable ubyte[25 + 11 * (const(void)*).sizeof] Event65;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3A1DF;
+immutable ubyte[27 + 5 * (const(void)*).sizeof] UnknownC33549;
 immutable ubyte[14 + 6 * (const(void)*).sizeof] Event183;
 immutable ubyte[34 + 8 * (const(void)*).sizeof] Event345;
 immutable ubyte[182 + 30 * (const(void)*).sizeof] Event399;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] UnknownC333BB;
-immutable ubyte[85 + 19 * (const(void)*).sizeof] Event250;
+immutable ubyte[85 + 17 * (const(void)*).sizeof] Event250;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] Event312;
-immutable ubyte[63 + 16 * (const(void)*).sizeof] Event292;
-immutable ubyte[29 + 28 * (const(void)*).sizeof] Event767;
+immutable ubyte[63 + 15 * (const(void)*).sizeof] Event292;
+immutable ubyte[59 + 14 * (const(void)*).sizeof] Event767;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event488;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] Event96;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] Event246;
-immutable ubyte[24 + 8 * (const(void)*).sizeof] Event107;
+immutable ubyte[24 + 7 * (const(void)*).sizeof] Event107;
 immutable ubyte[8 + 4 * (const(void)*).sizeof] Event449;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event793;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event793;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event874;
 immutable ubyte[3 + 1 * (const(void)*).sizeof] UnknownC3A209;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] Event853;
@@ -326,11 +326,11 @@ immutable ubyte[116 + 17 * (const(void)*).sizeof] Event285;
 immutable ubyte[50 + 11 * (const(void)*).sizeof] Event743;
 immutable ubyte[108 + 17 * (const(void)*).sizeof] Event623;
 immutable ubyte[2575 + 321 * (const(void)*).sizeof] Event801;
-immutable ubyte[10 + 7 * (const(void)*).sizeof] Event3;
+immutable ubyte[10 + 6 * (const(void)*).sizeof] Event3;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] UnknownC37545;
 immutable ubyte[25 + 3 * (const(void)*).sizeof] UnknownC427E0;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event17;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AAC2;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AAC2;
 immutable ubyte[19 + 2 * (const(void)*).sizeof] Event228;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] Event337;
 immutable ubyte[1] UnknownC3A272;
@@ -339,7 +339,7 @@ immutable ubyte[36 + 7 * (const(void)*).sizeof] Event615;
 immutable ubyte[53 + 14 * (const(void)*).sizeof] Event568;
 immutable ubyte[26 + 8 * (const(void)*).sizeof] Event699;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] UnknownC415E7;
-immutable ubyte[17 + 6 * (const(void)*).sizeof] UnknownC33BFB;
+immutable ubyte[17 + 5 * (const(void)*).sizeof] UnknownC33BFB;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event507;
 immutable ubyte[8 + 1 * (const(void)*).sizeof] UnknownC3C810;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] Event696;
@@ -347,23 +347,23 @@ immutable ubyte[24 + 5 * (const(void)*).sizeof] Event109;
 immutable ubyte[14 + 4 * (const(void)*).sizeof] Event426;
 immutable ubyte[8 + 3 * (const(void)*).sizeof] UnknownC40F4A;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] Event8Entry2;
-immutable ubyte[15 + 7 * (const(void)*).sizeof] Event453_454_Common;
+immutable ubyte[15 + 6 * (const(void)*).sizeof] Event453_454_Common;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event631;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] Event152;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] UnknownC30295;
-immutable ubyte[55 + 15 * (const(void)*).sizeof] UnknownC41A2A;
-immutable ubyte[19 + 7 * (const(void)*).sizeof] Event33;
+immutable ubyte[55 + 10 * (const(void)*).sizeof] UnknownC41A2A;
+immutable ubyte[19 + 4 * (const(void)*).sizeof] Event33;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event512;
 immutable ubyte[27 + 6 * (const(void)*).sizeof] Event324;
 immutable ubyte[49 + 10 * (const(void)*).sizeof] Event541;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event893;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] Event552;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event676;
-immutable ubyte[60 + 27 * (const(void)*).sizeof] Event23;
+immutable ubyte[65 + 25 * (const(void)*).sizeof] Event23;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event461;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] Event697;
-immutable ubyte[11 + 4 * (const(void)*).sizeof] UnknownC3AB26;
-immutable ubyte[14 + 7 * (const(void)*).sizeof] Event741;
+immutable ubyte[11 + 3 * (const(void)*).sizeof] UnknownC3AB26;
+immutable ubyte[14 + 6 * (const(void)*).sizeof] Event741;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] UnknownC3CEB9;
 immutable ubyte[46 + 5 * (const(void)*).sizeof] UnknownC3CC5C;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] UnknownC3BD03;
@@ -372,11 +372,11 @@ immutable ubyte[135 + 19 * (const(void)*).sizeof] Event717;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event195;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] Event271;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] Event642;
-immutable ubyte[4 + 5 * (const(void)*).sizeof] UnknownC3DFD4;
+immutable ubyte[13 + 1 * (const(void)*).sizeof] UnknownC3DFD4;
 immutable ubyte[211 + 26 * (const(void)*).sizeof] Event760;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] Event400;
-immutable ubyte[9 + 5 * (const(void)*).sizeof] UnknownC36A41;
-immutable ubyte[24 + 10 * (const(void)*).sizeof] Event180;
+immutable ubyte[9 + 4 * (const(void)*).sizeof] UnknownC36A41;
+immutable ubyte[24 + 9 * (const(void)*).sizeof] Event180;
 immutable ubyte[19 + 6 * (const(void)*).sizeof] Event192;
 immutable ubyte[32 + 14 * (const(void)*).sizeof] UnknownC427A1;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] Event846;
@@ -385,65 +385,65 @@ immutable ubyte[12 + 5 * (const(void)*).sizeof] Event354;
 immutable ubyte[81 + 11 * (const(void)*).sizeof] Event536;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event877;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] Event437;
-immutable ubyte[28 + 9 * (const(void)*).sizeof] Event372;
+immutable ubyte[28 + 8 * (const(void)*).sizeof] Event372;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] Event47;
 immutable ubyte[109 + 30 * (const(void)*).sizeof] Event435;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event396;
-immutable ubyte[71 + 8 * (const(void)*).sizeof] Event648;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AAFE;
+immutable ubyte[71 + 7 * (const(void)*).sizeof] Event648;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AAFE;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event871;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] Event52;
-immutable ubyte[60 + 11 * (const(void)*).sizeof] Event352;
+immutable ubyte[60 + 10 * (const(void)*).sizeof] Event352;
 immutable ubyte[32 + 6 * (const(void)*).sizeof] Event857;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event200;
-immutable ubyte[133 + 24 * (const(void)*).sizeof] Event444;
-immutable ubyte[21 + 8 * (const(void)*).sizeof] Event496;
+immutable ubyte[133 + 17 * (const(void)*).sizeof] Event444;
+immutable ubyte[21 + 6 * (const(void)*).sizeof] Event496;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event194;
 immutable ubyte[39 + 13 * (const(void)*).sizeof] Event659;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event710;
-immutable ubyte[19 + 10 * (const(void)*).sizeof] Event169;
-immutable ubyte[50 + 20 * (const(void)*).sizeof] Event63;
+immutable ubyte[19 + 9 * (const(void)*).sizeof] Event169;
+immutable ubyte[50 + 19 * (const(void)*).sizeof] Event63;
 immutable ubyte[59 + 17 * (const(void)*).sizeof] Event560;
-immutable ubyte[31 + 6 * (const(void)*).sizeof] UnknownC415BA;
+immutable ubyte[31 + 5 * (const(void)*).sizeof] UnknownC415BA;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] Event849;
-immutable ubyte[72 + 14 * (const(void)*).sizeof] Event146;
+immutable ubyte[72 + 13 * (const(void)*).sizeof] Event146;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event141;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] Event233_234_235_236_237;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] Event301;
-immutable ubyte[20 + 10 * (const(void)*).sizeof] Event338;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] Event338;
 immutable ubyte[28 + 11 * (const(void)*).sizeof] Event134;
 immutable ubyte[12 + 8 * (const(void)*).sizeof] UnknownC3AB67;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] Event308;
-immutable ubyte[59 + 15 * (const(void)*).sizeof] Event41;
-immutable ubyte[145 + 29 * (const(void)*).sizeof] Event170;
+immutable ubyte[59 + 14 * (const(void)*).sizeof] Event41;
+immutable ubyte[139 + 26 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] Event170;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] Event664;
 immutable ubyte[32 + 8 * (const(void)*).sizeof] UnknownC348C4;
-immutable ubyte[26 + 8 * (const(void)*).sizeof] Event55;
+immutable ubyte[26 + 7 * (const(void)*).sizeof] Event55;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] UnknownC41974;
-immutable ubyte[55 + 18 * (const(void)*).sizeof] Event219;
+immutable ubyte[55 + 16 * (const(void)*).sizeof] Event219;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] Event735;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event520;
 immutable ubyte[36 + 13 * (const(void)*).sizeof] Event658;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] Event94;
-immutable ubyte[473 + 61 * (const(void)*).sizeof] Event385;
-immutable ubyte[29 + 9 * (const(void)*).sizeof] Event539;
+immutable ubyte[473 + 53 * (const(void)*).sizeof] Event385;
+immutable ubyte[29 + 8 * (const(void)*).sizeof] Event539;
 immutable ubyte[47 + 8 * (const(void)*).sizeof] Event744;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] Event587;
-immutable ubyte[28 + 7 * (const(void)*).sizeof] Event64;
+immutable ubyte[28 + 6 * (const(void)*).sizeof] Event64;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] Event361;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] UnknownC30C67;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event176;
-immutable ubyte[59 + 16 * (const(void)*).sizeof] Event256;
+immutable ubyte[59 + 14 * (const(void)*).sizeof] Event256;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] Event311;
 immutable ubyte[44 + 11 * (const(void)*).sizeof] Event834;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] Event553;
 immutable ubyte[91 + 15 * (const(void)*).sizeof] Event241;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] Event685;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event885;
-immutable ubyte[19 + 5 * (const(void)*).sizeof] Event716;
-immutable ubyte[24 + 10 * (const(void)*).sizeof] Event190;
+immutable ubyte[19 + 4 * (const(void)*).sizeof] Event716;
+immutable ubyte[24 + 9 * (const(void)*).sizeof] Event190;
 immutable ubyte[61 + 11 * (const(void)*).sizeof] Event46;
-immutable ubyte[33 + 11 * (const(void)*).sizeof] Event477;
+immutable ubyte[33 + 10 * (const(void)*).sizeof] Event477;
 immutable ubyte[43 + 5 * (const(void)*).sizeof] Event445;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] Event687;
 immutable ubyte[29 + 5 * (const(void)*).sizeof] Event254;
@@ -451,46 +451,46 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] Event148;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] Event614;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event282;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] Event844;
-immutable ubyte[106 + 43 * (const(void)*).sizeof] Event674;
+immutable ubyte[115 + 35 * (const(void)*).sizeof] Event674;
 immutable ubyte[28 + 5 * (const(void)*).sizeof] Event313;
 immutable ubyte[20 + 4 * (const(void)*).sizeof] Event419;
 immutable ubyte[21 + 4 * (const(void)*).sizeof] UnknownC362C0;
 immutable ubyte[66 + 10 * (const(void)*).sizeof] Event557;
 immutable ubyte[31 + 8 * (const(void)*).sizeof] Event690;
-immutable ubyte[7 + 4 * (const(void)*).sizeof] Event755;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event796;
+immutable ubyte[7 + 3 * (const(void)*).sizeof] Event755;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event796;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] Event381;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event707;
-immutable ubyte[50 + 22 * (const(void)*).sizeof] UnknownC3A0D8;
+immutable ubyte[50 + 14 * (const(void)*).sizeof] UnknownC3A0D8;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] Event815;
-immutable ubyte[51 + 12 * (const(void)*).sizeof] Event158;
+immutable ubyte[51 + 11 * (const(void)*).sizeof] Event158;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] UnknownC3AB59;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] Event845;
 immutable ubyte[15 + 4 * (const(void)*).sizeof] Event855;
 immutable ubyte[43 + 10 * (const(void)*).sizeof] UnknownC333DD;
 immutable ubyte[48 + 1 * (const(void)*).sizeof] UnknownC3C871;
-immutable ubyte[187 + 42 * (const(void)*).sizeof] UnknownC41253;
+immutable ubyte[187 + 41 * (const(void)*).sizeof] UnknownC41253;
 immutable ubyte[51 + 7 * (const(void)*).sizeof] Event543;
-immutable ubyte[7 + 4 * (const(void)*).sizeof] Event44;
+immutable ubyte[7 + 3 * (const(void)*).sizeof] Event44;
 immutable ubyte[26 + 4 * (const(void)*).sizeof] Event440;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] Event231;
 immutable ubyte[36 + 6 * (const(void)*).sizeof] Event726;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event505;
-immutable ubyte[90 + 12 * (const(void)*).sizeof] Event713;
-immutable ubyte[12 + 9 * (const(void)*).sizeof] Event2;
+immutable ubyte[90 + 11 * (const(void)*).sizeof] Event713;
+immutable ubyte[12 + 8 * (const(void)*).sizeof] Event2;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event458;
 immutable ubyte[26 + 2 * (const(void)*).sizeof] Event705_706_Common;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event209;
-immutable ubyte[33 + 9 * (const(void)*).sizeof] Event807;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event792;
+immutable ubyte[33 + 5 * (const(void)*).sizeof] Event807;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event792;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] Event255;
-immutable ubyte[69 + 14 * (const(void)*).sizeof] Event162;
+immutable ubyte[69 + 13 * (const(void)*).sizeof] Event162;
 immutable ubyte[95 + 16 * (const(void)*).sizeof] Event184;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] UnknownC3AB8A;
-immutable ubyte[65 + 12 * (const(void)*).sizeof] UnknownC4119D;
-immutable ubyte[63 + 14 * (const(void)*).sizeof] Event622;
+immutable ubyte[65 + 5 * (const(void)*).sizeof] UnknownC4119D;
+immutable ubyte[63 + 12 * (const(void)*).sizeof] Event622;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] Event822;
-immutable ubyte[15 + 8 * (const(void)*).sizeof] Event600;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] Event600;
 immutable ubyte[55 + 21 * (const(void)*).sizeof] Event25;
 immutable ubyte[71 + 12 * (const(void)*).sizeof] Event546;
 immutable ubyte[19 + 3 * (const(void)*).sizeof] Event420;
@@ -500,37 +500,37 @@ immutable ubyte[55 + 7 * (const(void)*).sizeof] Event371;
 immutable ubyte[17 + 4 * (const(void)*).sizeof] Event759;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event519;
 immutable ubyte[9 + 6 * (const(void)*).sizeof] Event500;
-immutable ubyte[131 + 35 * (const(void)*).sizeof] UnknownC41822;
+immutable ubyte[131 + 33 * (const(void)*).sizeof] UnknownC41822;
 immutable ubyte[22 + 5 * (const(void)*).sizeof] Event657;
-immutable ubyte[8 + 6 * (const(void)*).sizeof] Event605;
+immutable ubyte[8 + 5 * (const(void)*).sizeof] Event605;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] Event103;
 immutable ubyte[36 + 7 * (const(void)*).sizeof] Event611;
 immutable ubyte[29 + 15 * (const(void)*).sizeof] Event31;
-immutable ubyte[24 + 7 * (const(void)*).sizeof] Event350;
+immutable ubyte[24 + 5 * (const(void)*).sizeof] Event350;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] Event423;
-immutable ubyte[7 + 5 * (const(void)*).sizeof] Event627;
-immutable ubyte[30 + 9 * (const(void)*).sizeof] Event826;
+immutable ubyte[7 + 4 * (const(void)*).sizeof] Event627;
+immutable ubyte[30 + 8 * (const(void)*).sizeof] Event826;
 immutable ubyte[46 + 10 * (const(void)*).sizeof] Event770;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event610;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event392;
-immutable ubyte[11 + 5 * (const(void)*).sizeof] UnknownC3A0B2;
-immutable ubyte[18 + 5 * (const(void)*).sizeof] UnknownC37439;
-immutable ubyte[13 + 2 * (const(void)*).sizeof] Event471;
+immutable ubyte[11 + 3 * (const(void)*).sizeof] UnknownC3A0B2;
+immutable ubyte[18 + 4 * (const(void)*).sizeof] UnknownC37439;
+immutable ubyte[13 + 1 * (const(void)*).sizeof] Event471;
 immutable ubyte[108 + 19 * (const(void)*).sizeof] Event273;
-immutable ubyte[20 + 11 * (const(void)*).sizeof] Event736;
+immutable ubyte[29 + 7 * (const(void)*).sizeof] Event736;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] Event330;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] Event100;
-immutable ubyte[44 + 13 * (const(void)*).sizeof] Event295;
+immutable ubyte[44 + 11 * (const(void)*).sizeof] Event295;
 immutable ubyte[40 + 8 * (const(void)*).sizeof] Event691;
 immutable ubyte[68 + 12 * (const(void)*).sizeof] Event729;
 immutable ubyte[93 + 14 * (const(void)*).sizeof] Event293;
 immutable ubyte[99 + 20 * (const(void)*).sizeof] Event701;
-immutable ubyte[10 + 3 * (const(void)*).sizeof] UnknownC3AAAA;
+immutable ubyte[10 + 2 * (const(void)*).sizeof] UnknownC3AAAA;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event128;
-immutable ubyte[36 + 12 * (const(void)*).sizeof] Event644;
+immutable ubyte[36 + 11 * (const(void)*).sizeof] Event644;
 immutable ubyte[25 + 9 * (const(void)*).sizeof] Event336;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event364;
-immutable ubyte[42 + 11 * (const(void)*).sizeof] UnknownC4121F;
+immutable ubyte[42 + 4 * (const(void)*).sizeof] UnknownC4121F;
 immutable ubyte[12 + 6 * (const(void)*).sizeof] UnknownC4220E;
 immutable ubyte[65 + 13 * (const(void)*).sizeof] Event60;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event362;
@@ -550,24 +550,24 @@ immutable ubyte[45 + 9 * (const(void)*).sizeof] Event126;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event867;
 immutable ubyte[65 + 9 * (const(void)*).sizeof] UnknownC42235;
 immutable ubyte[15 + 4 * (const(void)*).sizeof] Event856;
-immutable ubyte[34 + 9 * (const(void)*).sizeof] Event784;
-immutable ubyte[34 + 12 * (const(void)*).sizeof] Event806;
+immutable ubyte[41 + 6 * (const(void)*).sizeof] Event784;
+immutable ubyte[34 + 11 * (const(void)*).sizeof] Event806;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] Event307;
 immutable ubyte[60 + 13 * (const(void)*).sizeof] Event719;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] Event79;
 immutable ubyte[72 + 13 * (const(void)*).sizeof] Event537;
-immutable ubyte[6 + 4 * (const(void)*).sizeof] Event861;
+immutable ubyte[6 + 3 * (const(void)*).sizeof] Event861;
 immutable ubyte[41 + 7 * (const(void)*).sizeof] UnknownC41938;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event198;
-immutable ubyte[74 + 15 * (const(void)*).sizeof] Event590;
+immutable ubyte[74 + 14 * (const(void)*).sizeof] Event590;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event185;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] Event565;
-immutable ubyte[29 + 11 * (const(void)*).sizeof] Event694;
+immutable ubyte[29 + 10 * (const(void)*).sizeof] Event694;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] Event105;
 immutable ubyte[36 + 6 * (const(void)*).sizeof] Event727;
 immutable ubyte[39 + 6 * (const(void)*).sizeof] Event132;
 immutable ubyte[17 + 8 * (const(void)*).sizeof] Event242_243;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event798;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event798;
 immutable ubyte[48 + 28 * (const(void)*).sizeof] Event27;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] Event90;
 immutable ubyte[26 + 6 * (const(void)*).sizeof] Event140;
@@ -576,141 +576,141 @@ immutable ubyte[51 + 9 * (const(void)*).sizeof] Event593;
 immutable ubyte[32 + 7 * (const(void)*).sizeof] Event772;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event616;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] Event468;
-immutable ubyte[45 + 12 * (const(void)*).sizeof] UnknownC3B70C;
-immutable ubyte[74 + 29 * (const(void)*).sizeof] Event860;
+immutable ubyte[45 + 11 * (const(void)*).sizeof] UnknownC3B70C;
+immutable ubyte[60 + 29 * (const(void)*).sizeof] Event860;
 immutable ubyte[75 + 12 * (const(void)*).sizeof] Event621;
-immutable ubyte[64 + 23 * (const(void)*).sizeof] Event448;
-immutable ubyte[15 + 4 * (const(void)*).sizeof] UnknownC35FCD;
-immutable ubyte[46 + 22 * (const(void)*).sizeof] UnknownC3A20E;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AAD6;
+immutable ubyte[64 + 22 * (const(void)*).sizeof] Event448;
+immutable ubyte[15 + 3 * (const(void)*).sizeof] UnknownC35FCD;
+immutable ubyte[46 + 15 * (const(void)*).sizeof] UnknownC3A20E;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AAD6;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] UnknownC3C20F;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event377_406;
 immutable ubyte[42 + 5 * (const(void)*).sizeof] Event333;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] Event618;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] Event145;
-immutable ubyte[7 + 4 * (const(void)*).sizeof] UnknownC3AA2B;
-immutable ubyte[13 + 2 * (const(void)*).sizeof] Event469;
+immutable ubyte[7 + 3 * (const(void)*).sizeof] UnknownC3AA2B;
+immutable ubyte[13 + 1 * (const(void)*).sizeof] Event469;
 immutable ubyte[36 + 6 * (const(void)*).sizeof] Event725;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] Event848;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] Event92;
 immutable ubyte[24 + 3 * (const(void)*).sizeof] Event762;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] UnknownC37559;
-immutable ubyte[10 + 6 * (const(void)*).sizeof] UnknownC3DBDB;
-immutable ubyte[104 + 78 * (const(void)*).sizeof] Event32;
-immutable ubyte[40 + 8 * (const(void)*).sizeof] UnknownC31DF4;
-immutable ubyte[9 + 6 * (const(void)*).sizeof] Event4;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AA5A;
+immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3DBDB;
+immutable ubyte[132 + 66 * (const(void)*).sizeof] Event32;
+immutable ubyte[40 + 7 * (const(void)*).sizeof] UnknownC31DF4;
+immutable ubyte[9 + 5 * (const(void)*).sizeof] Event4;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AA5A;
 immutable ubyte[32 + 4 * (const(void)*).sizeof] Event638;
-immutable ubyte[10 + 6 * (const(void)*).sizeof] Event841;
+immutable ubyte[10 + 5 * (const(void)*).sizeof] Event841;
 immutable ubyte[3 + 2 * (const(void)*).sizeof] Event662;
 immutable ubyte[68 + 15 * (const(void)*).sizeof] Event70;
-immutable ubyte[20 + 8 * (const(void)*).sizeof] Event166;
+immutable ubyte[20 + 7 * (const(void)*).sizeof] Event166;
 immutable ubyte[39 + 10 * (const(void)*).sizeof] Event604;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event395;
 immutable ubyte[11 + 1 * (const(void)*).sizeof] UnknownC3CCA8;
 immutable ubyte[91 + 12 * (const(void)*).sizeof] Event839;
-immutable ubyte[6 + 4 * (const(void)*).sizeof] UnknownC3AB37;
+immutable ubyte[6 + 3 * (const(void)*).sizeof] UnknownC3AB37;
 immutable ubyte[27 + 3 * (const(void)*).sizeof] UnknownC34D39;
 immutable ubyte[45 + 10 * (const(void)*).sizeof] Event59;
 immutable ubyte[55 + 14 * (const(void)*).sizeof] Event344;
-immutable ubyte[9 + 4 * (const(void)*).sizeof] UnknownC3A1F3;
+immutable ubyte[9 + 3 * (const(void)*).sizeof] UnknownC3A1F3;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] Event424;
 immutable ubyte[57 + 16 * (const(void)*).sizeof] Event115;
 immutable ubyte[1] UnknownC36BEA;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] Event309;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] Event761;
-immutable ubyte[27 + 11 * (const(void)*).sizeof] Event188;
+immutable ubyte[27 + 10 * (const(void)*).sizeof] Event188;
 immutable ubyte[36 + 6 * (const(void)*).sizeof] Event589;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] Event187;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event379_408;
-immutable ubyte[9 + 6 * (const(void)*).sizeof] Event258;
-immutable ubyte[21 + 5 * (const(void)*).sizeof] Event356;
-immutable ubyte[11 + 8 * (const(void)*).sizeof] Event603;
+immutable ubyte[9 + 5 * (const(void)*).sizeof] Event258;
+immutable ubyte[21 + 4 * (const(void)*).sizeof] Event356;
+immutable ubyte[11 + 7 * (const(void)*).sizeof] Event603;
 immutable ubyte[61 + 14 * (const(void)*).sizeof] Event249;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] Event598;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] Event566;
 immutable ubyte[51 + 10 * (const(void)*).sizeof] Event302;
-immutable ubyte[2 + 9 * (const(void)*).sizeof] UnknownC383BC;
-immutable ubyte[14 + 7 * (const(void)*).sizeof] Event800;
+immutable ubyte[19 + 1 * (const(void)*).sizeof] UnknownC383BC;
+immutable ubyte[14 + 6 * (const(void)*).sizeof] Event800;
 immutable ubyte[91 + 12 * (const(void)*).sizeof] Event838;
-immutable ubyte[16 + 20 * (const(void)*).sizeof] UnknownC3AB9E;
-immutable ubyte[15 + 8 * (const(void)*).sizeof] Event602;
+immutable ubyte[39 + 10 * (const(void)*).sizeof] UnknownC3AB9E;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] Event602;
 immutable ubyte[36 + 9 * (const(void)*).sizeof] Event836;
-immutable ubyte[32 + 7 * (const(void)*).sizeof] Event632;
+immutable ubyte[32 + 5 * (const(void)*).sizeof] Event632;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event528;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] UnknownC34392;
 immutable ubyte[65 + 17 * (const(void)*).sizeof] Event809;
 immutable ubyte[84 + 16 * (const(void)*).sizeof] Event263;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event866;
-immutable ubyte[53 + 13 * (const(void)*).sizeof] Event681;
+immutable ubyte[53 + 11 * (const(void)*).sizeof] Event681;
 immutable ubyte[93 + 18 * (const(void)*).sizeof] Event205;
-immutable ubyte[156 + 36 * (const(void)*).sizeof] UnknownC31EEF;
+immutable ubyte[156 + 34 * (const(void)*).sizeof] UnknownC31EEF;
 immutable ubyte[13 + 7 * (const(void)*).sizeof] Event85;
 immutable ubyte[57 + 11 * (const(void)*).sizeof] Event66;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] UnknownC36BB4;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] Event582;
 immutable ubyte[40 + 6 * (const(void)*).sizeof] Event723;
-immutable ubyte[88 + 7 * (const(void)*).sizeof] Event547;
+immutable ubyte[88 + 6 * (const(void)*).sizeof] Event547;
 immutable ubyte[41 + 5 * (const(void)*).sizeof] Event753;
-immutable ubyte[51 + 11 * (const(void)*).sizeof] Event625;
+immutable ubyte[51 + 10 * (const(void)*).sizeof] Event625;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] Event738;
-immutable ubyte[26 + 11 * (const(void)*).sizeof] Event613;
+immutable ubyte[26 + 10 * (const(void)*).sizeof] Event613;
 immutable ubyte[115 + 15 * (const(void)*).sizeof] Event695;
 immutable ubyte[68 + 10 * (const(void)*).sizeof] Event554;
 immutable ubyte[31 + 9 * (const(void)*).sizeof] Event660;
 immutable ubyte[33 + 6 * (const(void)*).sizeof] Event733;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] Event389_393;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event869;
-immutable ubyte[12 + 5 * (const(void)*).sizeof] Event592;
+immutable ubyte[12 + 4 * (const(void)*).sizeof] Event592;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event879;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event509;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] Event150;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] Event576;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] Event847;
-immutable ubyte[16 + 3 * (const(void)*).sizeof] Event472;
-immutable ubyte[77 + 16 * (const(void)*).sizeof] UnknownC4163F;
+immutable ubyte[16 + 2 * (const(void)*).sizeof] Event472;
+immutable ubyte[77 + 11 * (const(void)*).sizeof] UnknownC4163F;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] Event122;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] Event291;
 immutable ubyte[51 + 17 * (const(void)*).sizeof] Event28;
-immutable ubyte[54 + 12 * (const(void)*).sizeof] Event287;
+immutable ubyte[54 + 11 * (const(void)*).sizeof] Event287;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event15;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] UnknownC35231;
 immutable ubyte[29 + 8 * (const(void)*).sizeof] Event326;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event502;
-immutable ubyte[20 + 7 * (const(void)*).sizeof] Event564;
-immutable ubyte[87 + 20 * (const(void)*).sizeof] Event683;
+immutable ubyte[20 + 6 * (const(void)*).sizeof] Event564;
+immutable ubyte[87 + 19 * (const(void)*).sizeof] Event683;
 immutable ubyte[39 + 8 * (const(void)*).sizeof] Event284;
-immutable ubyte[4 + 3 * (const(void)*).sizeof] Event5;
+immutable ubyte[4 + 2 * (const(void)*).sizeof] Event5;
 immutable ubyte[44 + 12 * (const(void)*).sizeof] Event215;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] Event327;
-immutable ubyte[15 + 4 * (const(void)*).sizeof] Event702;
+immutable ubyte[15 + 3 * (const(void)*).sizeof] Event702;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event574;
-immutable ubyte[62 + 8 * (const(void)*).sizeof] Event679;
+immutable ubyte[62 + 7 * (const(void)*).sizeof] Event679;
 immutable ubyte[66 + 10 * (const(void)*).sizeof] Event556;
-immutable ubyte[20 + 11 * (const(void)*).sizeof] Event628;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AA46;
-immutable ubyte[355 + 62 * (const(void)*).sizeof] Event411;
+immutable ubyte[20 + 8 * (const(void)*).sizeof] Event628;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AA46;
+immutable ubyte[355 + 50 * (const(void)*).sizeof] Event411;
 immutable ubyte[34 + 8 * (const(void)*).sizeof] Event325;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] Event619;
-immutable ubyte[41 + 10 * (const(void)*).sizeof] Event714;
+immutable ubyte[41 + 9 * (const(void)*).sizeof] Event714;
 immutable ubyte[29 + 3 * (const(void)*).sizeof] UnknownC4198D;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event504;
-immutable ubyte[25 + 9 * (const(void)*).sizeof] Event339;
+immutable ubyte[25 + 8 * (const(void)*).sizeof] Event339;
 immutable ubyte[30 + 7 * (const(void)*).sizeof] UnknownC3C1E0;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] UnknownC33C1D;
 immutable ubyte[13 + 6 * (const(void)*).sizeof] Event696_697_698_Common;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AB12;
-immutable ubyte[189 + 37 * (const(void)*).sizeof] UnknownC4170E;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AB12;
+immutable ubyte[189 + 31 * (const(void)*).sizeof] UnknownC4170E;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] Event341;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event402;
-immutable ubyte[68 + 11 * (const(void)*).sizeof] UnknownC41382;
-immutable ubyte[51 + 12 * (const(void)*).sizeof] Event157;
+immutable ubyte[68 + 6 * (const(void)*).sizeof] UnknownC41382;
+immutable ubyte[51 + 11 * (const(void)*).sizeof] Event157;
 immutable ubyte[60 + 18 * (const(void)*).sizeof] Event563;
-immutable ubyte[17 + 4 * (const(void)*).sizeof] UnknownC31ED8;
+immutable ubyte[17 + 2 * (const(void)*).sizeof] UnknownC31ED8;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event487;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event376_405;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event214;
-immutable ubyte[34 + 10 * (const(void)*).sizeof] Event814;
+immutable ubyte[34 + 9 * (const(void)*).sizeof] Event814;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event854;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] Event127;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event521;
@@ -722,11 +722,11 @@ immutable ubyte[38 + 5 * (const(void)*).sizeof] Event748;
 immutable ubyte[28 + 10 * (const(void)*).sizeof] Event82;
 immutable ubyte[21 + 7 * (const(void)*).sizeof] Event48;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event777;
-immutable ubyte[33 + 10 * (const(void)*).sizeof] Event260;
-immutable ubyte[6 + 4 * (const(void)*).sizeof] Event785;
+immutable ubyte[33 + 9 * (const(void)*).sizeof] Event260;
+immutable ubyte[6 + 3 * (const(void)*).sizeof] Event785;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event511;
 immutable ubyte[22 + 10 * (const(void)*).sizeof] Event94_95_98Common;
-immutable ubyte[19 + 6 * (const(void)*).sizeof] Event174;
+immutable ubyte[19 + 5 * (const(void)*).sizeof] Event174;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] Event238;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] Event421;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event196;
@@ -738,7 +738,7 @@ immutable ubyte[9 + 4 * (const(void)*).sizeof] Event780;
 immutable ubyte[73 + 21 * (const(void)*).sizeof] Event669;
 immutable ubyte[38 + 6 * (const(void)*).sizeof] Event835;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event773;
-immutable ubyte[15 + 8 * (const(void)*).sizeof] Event102;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] Event102;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event533;
 immutable ubyte[10 + 1 * (const(void)*).sizeof] UnknownC419B2;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] Event111;
@@ -746,99 +746,99 @@ immutable ubyte[3 + 1 * (const(void)*).sizeof] Event451;
 immutable ubyte[13 + 5 * (const(void)*).sizeof] Event290;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event663;
 immutable ubyte[23 + 7 * (const(void)*).sizeof] Event197;
-immutable ubyte[40 + 8 * (const(void)*).sizeof] UnknownC31E2D;
+immutable ubyte[40 + 7 * (const(void)*).sizeof] UnknownC31E2D;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] Event251;
-immutable ubyte[231 + 36 * (const(void)*).sizeof] Event161;
+immutable ubyte[225 + 33 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] Event161;
 immutable ubyte[75 + 1 * (const(void)*).sizeof] UnknownC3C824;
-immutable ubyte[61 + 17 * (const(void)*).sizeof] Event116;
+immutable ubyte[61 + 16 * (const(void)*).sizeof] Event116;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event827;
 immutable ubyte[33 + 4 * (const(void)*).sizeof] Event718;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event416;
-immutable ubyte[667 + 171 * (const(void)*).sizeof] Event442;
-immutable ubyte[29 + 10 * (const(void)*).sizeof] Event401;
-immutable ubyte[21 + 11 * (const(void)*).sizeof] UnknownC35F8B;
+immutable ubyte[667 + 102 * (const(void)*).sizeof] Event442;
+immutable ubyte[29 + 9 * (const(void)*).sizeof] Event401;
+immutable ubyte[21 + 9 * (const(void)*).sizeof] UnknownC35F8B;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] Event858;
-immutable ubyte[29 + 12 * (const(void)*).sizeof] Event645;
+immutable ubyte[29 + 11 * (const(void)*).sizeof] Event645;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event513;
 immutable ubyte[102 + 14 * (const(void)*).sizeof] Event620;
-immutable ubyte[15 + 6 * (const(void)*).sizeof] Event676_677_678_Common1;
-immutable ubyte[18 + 10 * (const(void)*).sizeof] UnknownC343DB;
-immutable ubyte[17 + 7 * (const(void)*).sizeof] UnknownC3899E;
+immutable ubyte[15 + 5 * (const(void)*).sizeof] Event676_677_678_Common1;
+immutable ubyte[18 + 8 * (const(void)*).sizeof] UnknownC343DB;
+immutable ubyte[17 + 5 * (const(void)*).sizeof] UnknownC3899E;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] Event454;
 immutable ubyte[29 + 7 * (const(void)*).sizeof] Event144;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event220;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event415;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] Event106;
-immutable ubyte[11 + 5 * (const(void)*).sizeof] UnknownC3A0C5;
-immutable ubyte[19 + 6 * (const(void)*).sizeof] Event173;
+immutable ubyte[11 + 3 * (const(void)*).sizeof] UnknownC3A0C5;
+immutable ubyte[19 + 5 * (const(void)*).sizeof] Event173;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] Event225_226_227;
 immutable ubyte[31 + 8 * (const(void)*).sizeof] Event689;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event608;
-immutable ubyte[28 + 7 * (const(void)*).sizeof] Event776;
-immutable ubyte[88 + 15 * (const(void)*).sizeof] Event495;
+immutable ubyte[28 + 6 * (const(void)*).sizeof] Event776;
+immutable ubyte[88 + 14 * (const(void)*).sizeof] Event495;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] Event147;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event880;
-immutable ubyte[77 + 16 * (const(void)*).sizeof] Event684;
+immutable ubyte[77 + 15 * (const(void)*).sizeof] Event684;
 immutable ubyte[34 + 4 * (const(void)*).sizeof] Event538;
-immutable ubyte[24 + 20 * (const(void)*).sizeof] Event13_14_15_16_17_Common2;
+immutable ubyte[47 + 10 * (const(void)*).sizeof] Event13_14_15_16_17_Common2;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event129;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] UnknownC3BEA4;
 immutable ubyte[21 + 4 * (const(void)*).sizeof] UnknownC3D0A4;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] Event88;
-immutable ubyte[11 + 4 * (const(void)*).sizeof] UnknownC31D4F;
-immutable ubyte[42 + 11 * (const(void)*).sizeof] UnknownC411EB;
+immutable ubyte[11 + 3 * (const(void)*).sizeof] UnknownC31D4F;
+immutable ubyte[42 + 4 * (const(void)*).sizeof] UnknownC411EB;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event677;
-immutable ubyte[26 + 12 * (const(void)*).sizeof] Event71;
+immutable ubyte[26 + 11 * (const(void)*).sizeof] Event71;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event803;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event283;
 immutable ubyte[21 + 2 * (const(void)*).sizeof] UnknownC3BED4;
-immutable ubyte[242 + 46 * (const(void)*).sizeof] Event368;
+immutable ubyte[242 + 37 * (const(void)*).sizeof] Event368;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] Event816;
-immutable ubyte[6 + 4 * (const(void)*).sizeof] Event8;
-immutable ubyte[6 + 3 * (const(void)*).sizeof] UnknownC3AAB8;
+immutable ubyte[6 + 3 * (const(void)*).sizeof] Event8;
+immutable ubyte[6 + 2 * (const(void)*).sizeof] UnknownC3AAB8;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] Event825;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] Event142;
 immutable ubyte[11 + 6 * (const(void)*).sizeof] Event1;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event889;
 immutable ubyte[50 + 8 * (const(void)*).sizeof] Event545;
-immutable ubyte[132 + 21 * (const(void)*).sizeof] Event164;
-immutable ubyte[33 + 14 * (const(void)*).sizeof] Event498;
+immutable ubyte[132 + 20 * (const(void)*).sizeof] Event164;
+immutable ubyte[33 + 13 * (const(void)*).sizeof] Event498;
 immutable ubyte[1] UnknownC3A07F;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event612;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] Event253;
-immutable ubyte[47 + 12 * (const(void)*).sizeof] UnknownC4154E;
+immutable ubyte[47 + 5 * (const(void)*).sizeof] UnknownC4154E;
 immutable ubyte[38 + 6 * (const(void)*).sizeof] Event636;
-immutable ubyte[18 + 4 * (const(void)*).sizeof] Event703;
+immutable ubyte[18 + 3 * (const(void)*).sizeof] Event703;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event506;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event124;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] Event709;
 immutable ubyte[24 + 5 * (const(void)*).sizeof] UnknownC3C143;
 immutable ubyte[49 + 9 * (const(void)*).sizeof] Event584;
-immutable ubyte[17 + 4 * (const(void)*).sizeof] UnknownC31EC1;
-immutable ubyte[115 + 15 * (const(void)*).sizeof] Event366;
+immutable ubyte[17 + 2 * (const(void)*).sizeof] UnknownC31EC1;
+immutable ubyte[115 + 10 * (const(void)*).sizeof] Event366;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event518;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] UnknownC3AA1E;
-immutable ubyte[26 + 12 * (const(void)*).sizeof] Event138;
+immutable ubyte[26 + 11 * (const(void)*).sizeof] Event138;
 immutable ubyte[35 + 4 * (const(void)*).sizeof] Event446;
 immutable ubyte[30 + 5 * (const(void)*).sizeof] Event548;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] Event269;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] Event811;
 immutable ubyte[28 + 1 * (const(void)*).sizeof] UnknownC32CD2;
 immutable ubyte[37 + 7 * (const(void)*).sizeof] UnknownC3C35D;
-immutable ubyte[14 + 7 * (const(void)*).sizeof] UnknownC3A15E;
+immutable ubyte[14 + 6 * (const(void)*).sizeof] UnknownC3A15E;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] UnknownC333CC;
 immutable ubyte[55 + 16 * (const(void)*).sizeof] UnknownC3835D;
-immutable ubyte[42 + 9 * (const(void)*).sizeof] Event485;
-immutable ubyte[75 + 14 * (const(void)*).sizeof] Event551;
+immutable ubyte[42 + 8 * (const(void)*).sizeof] Event485;
+immutable ubyte[75 + 13 * (const(void)*).sizeof] Event551;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] Event427;
 immutable ubyte[69 + 23 * (const(void)*).sizeof] Event481;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event486;
-immutable ubyte[63 + 18 * (const(void)*).sizeof] UnknownC416AC;
+immutable ubyte[63 + 13 * (const(void)*).sizeof] UnknownC416AC;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event462;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event125;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] Event360;
 immutable ubyte[24 + 4 * (const(void)*).sizeof] Event747;
-immutable ubyte[8 + 6 * (const(void)*).sizeof] Event606;
+immutable ubyte[8 + 5 * (const(void)*).sizeof] Event606;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event130;
 immutable ubyte[1] UnknownC3A271;
 immutable ubyte[32 + 7 * (const(void)*).sizeof] Event299;
@@ -850,8 +850,8 @@ immutable ubyte[29 + 11 * (const(void)*).sizeof] Event67;
 immutable ubyte[78 + 3 * (const(void)*).sizeof] Event272;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event571;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event13;
-immutable ubyte[52 + 13 * (const(void)*).sizeof] Event34;
-immutable ubyte[56 + 25 * (const(void)*).sizeof] Event26;
+immutable ubyte[52 + 12 * (const(void)*).sizeof] Event34;
+immutable ubyte[56 + 23 * (const(void)*).sizeof] Event26;
 immutable ubyte[26 + 7 * (const(void)*).sizeof] Event843;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] Event668;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] Event754;
@@ -861,47 +861,47 @@ immutable ubyte[22 + 7 * (const(void)*).sizeof] UnknownC38978;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] Event139;
 immutable ubyte[25 + 8 * (const(void)*).sizeof] Event210;
 immutable ubyte[13 + 7 * (const(void)*).sizeof] Event89;
-immutable ubyte[108 + 21 * (const(void)*).sizeof] Event346;
+immutable ubyte[108 + 20 * (const(void)*).sizeof] Event346;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] Event654;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event320;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] UnknownC30C55;
-immutable ubyte[54 + 18 * (const(void)*).sizeof] Event202;
+immutable ubyte[54 + 17 * (const(void)*).sizeof] Event202;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] Event277;
 immutable ubyte[15 + 8 * (const(void)*).sizeof] UnknownC3DF90;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] Event230;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3A17B;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3A17B;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event865;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] Event665;
 immutable ubyte[65 + 28 * (const(void)*).sizeof] Event30;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event413;
-immutable ubyte[8 + 5 * (const(void)*).sizeof] UnknownC34E73;
+immutable ubyte[8 + 4 * (const(void)*).sizeof] UnknownC34E73;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] UnknownC3AB94;
-immutable ubyte[28 + 7 * (const(void)*).sizeof] Event175;
-immutable ubyte[36 + 12 * (const(void)*).sizeof] Event646;
+immutable ubyte[28 + 6 * (const(void)*).sizeof] Event175;
+immutable ubyte[36 + 11 * (const(void)*).sizeof] Event646;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] UnknownC30CC7;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event875;
 immutable ubyte[16 + 4 * (const(void)*).sizeof] Event80;
-immutable ubyte[53 + 18 * (const(void)*).sizeof] Event155;
-immutable ubyte[64 + 15 * (const(void)*).sizeof] Event165;
+immutable ubyte[53 + 16 * (const(void)*).sizeof] Event155;
+immutable ubyte[64 + 13 * (const(void)*).sizeof] Event165;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] Event229;
-immutable ubyte[27 + 5 * (const(void)*).sizeof] Event649;
+immutable ubyte[27 + 3 * (const(void)*).sizeof] Event649;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] Event821;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] Event120;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event580;
-immutable ubyte[60 + 18 * (const(void)*).sizeof] Event455;
+immutable ubyte[60 + 16 * (const(void)*).sizeof] Event455;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event873;
-immutable ubyte[6 + 2 * (const(void)*).sizeof] Event355;
+immutable ubyte[6 + 1 * (const(void)*).sizeof] Event355;
 immutable ubyte[34 + 6 * (const(void)*).sizeof] Event680;
 immutable ubyte[24 + 4 * (const(void)*).sizeof] Event721;
 immutable ubyte[25 + 4 * (const(void)*).sizeof] Event314;
-immutable ubyte[51 + 17 * (const(void)*).sizeof] Event156;
-immutable ubyte[76 + 23 * (const(void)*).sizeof] Event583;
-immutable ubyte[95 + 27 * (const(void)*).sizeof] Event221;
+immutable ubyte[51 + 16 * (const(void)*).sizeof] Event156;
+immutable ubyte[76 + 22 * (const(void)*).sizeof] Event583;
+immutable ubyte[95 + 25 * (const(void)*).sizeof] Event221;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] Event331;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event791;
-immutable ubyte[165 + 38 * (const(void)*).sizeof] Event670;
-immutable ubyte[12 + 5 * (const(void)*).sizeof] Event799;
-immutable ubyte[27 + 10 * (const(void)*).sizeof] Event317;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event791;
+immutable ubyte[165 + 35 * (const(void)*).sizeof] Event670;
+immutable ubyte[12 + 4 * (const(void)*).sizeof] Event799;
+immutable ubyte[27 + 9 * (const(void)*).sizeof] Event317;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event199;
 immutable ubyte[3 + 2 * (const(void)*).sizeof] UnknownC3098B;
 immutable ubyte[14 + 4 * (const(void)*).sizeof] Event425;
@@ -914,74 +914,74 @@ immutable ubyte[25 + 5 * (const(void)*).sizeof] Event655;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event373;
 immutable ubyte[31 + 5 * (const(void)*).sizeof] Event549;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] Event40;
-immutable ubyte[11 + 5 * (const(void)*).sizeof] UnknownC3A09F;
+immutable ubyte[11 + 3 * (const(void)*).sizeof] UnknownC3A09F;
 immutable ubyte[59 + 12 * (const(void)*).sizeof] Event742;
 immutable ubyte[2] Event859;
-immutable ubyte[36 + 15 * (const(void)*).sizeof] Event135;
+immutable ubyte[43 + 11 * (const(void)*).sizeof] Event135;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] UnknownC36D18;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] UnknownC3ABE0;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event862;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] Event656;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3A1A3;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3A1A3;
 immutable ubyte[45 + 7 * (const(void)*).sizeof] Event110;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] Event278;
 immutable ubyte[8 + 5 * (const(void)*).sizeof] UnknownC39E01;
 immutable ubyte[73 + 12 * (const(void)*).sizeof] Event296;
-immutable ubyte[23 + 8 * (const(void)*).sizeof] Event172;
+immutable ubyte[23 + 7 * (const(void)*).sizeof] Event172;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] Event56;
-immutable ubyte[63 + 12 * (const(void)*).sizeof] Event351;
-immutable ubyte[10 + 6 * (const(void)*).sizeof] Event499;
+immutable ubyte[57 + 9 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] Event351;
+immutable ubyte[10 + 5 * (const(void)*).sizeof] Event499;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] Event101;
-immutable ubyte[13 + 6 * (const(void)*).sizeof] Event353;
+immutable ubyte[13 + 5 * (const(void)*).sizeof] Event353;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] Event329;
 immutable ubyte[53 + 15 * (const(void)*).sizeof] Event77;
 immutable ubyte[42 + 5 * (const(void)*).sizeof] Event334;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] UnknownC36834;
 immutable ubyte[34 + 7 * (const(void)*).sizeof] UnknownC3B0B6;
-immutable ubyte[14 + 9 * (const(void)*).sizeof] Event93;
-immutable ubyte[11 + 6 * (const(void)*).sizeof] Event286;
+immutable ubyte[14 + 8 * (const(void)*).sizeof] Event93;
+immutable ubyte[11 + 5 * (const(void)*).sizeof] Event286;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] UnknownC42828;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] Event218;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] UnknownC3C8FD;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] Event534;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] Event149;
 immutable ubyte[142 + 28 * (const(void)*).sizeof] UnknownC4144C;
-immutable ubyte[43 + 21 * (const(void)*).sizeof] Event673;
+immutable ubyte[52 + 17 * (const(void)*).sizeof] Event673;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] Event61;
 immutable ubyte[92 + 22 * (const(void)*).sizeof] Event240;
 immutable ubyte[55 + 27 * (const(void)*).sizeof] Event20;
-immutable ubyte[62 + 18 * (const(void)*).sizeof] Event119;
+immutable ubyte[62 + 17 * (const(void)*).sizeof] Event119;
 immutable ubyte[7 + 2 * (const(void)*).sizeof] Event343;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event208;
-immutable ubyte[35 + 6 * (const(void)*).sizeof] Event436;
-immutable ubyte[35 + 7 * (const(void)*).sizeof] Event626;
-immutable ubyte[115 + 15 * (const(void)*).sizeof] Event367;
+immutable ubyte[35 + 5 * (const(void)*).sizeof] Event436;
+immutable ubyte[35 + 6 * (const(void)*).sizeof] Event626;
+immutable ubyte[115 + 10 * (const(void)*).sizeof] Event367;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event489;
-immutable ubyte[22 + 7 * (const(void)*).sizeof] Event715;
+immutable ubyte[22 + 4 * (const(void)*).sizeof] Event715;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event463;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3AA6E;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3AA6E;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event884;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] Event737_738_739_740Common;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] Event737_738_739_740Common;
 immutable ubyte[34 + 14 * (const(void)*).sizeof] Event51;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] Event439;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] Event310;
-immutable ubyte[194 + 5 * (const(void)*).sizeof] Event36;
+immutable ubyte[194 + 4 * (const(void)*).sizeof] Event36;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] Event457;
-immutable ubyte[16 + 8 * (const(void)*).sizeof] Event43;
-immutable ubyte[22 + 6 * (const(void)*).sizeof] Event634;
+immutable ubyte[16 + 7 * (const(void)*).sizeof] Event43;
+immutable ubyte[22 + 5 * (const(void)*).sizeof] Event634;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event531;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event795;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event795;
 immutable ubyte[61 + 12 * (const(void)*).sizeof] Event203;
 immutable ubyte[31 + 8 * (const(void)*).sizeof] Event688;
-immutable ubyte[53 + 12 * (const(void)*).sizeof] Event154;
-immutable ubyte[24 + 8 * (const(void)*).sizeof] Event357;
-immutable ubyte[46 + 6 * (const(void)*).sizeof] Event370;
+immutable ubyte[53 + 11 * (const(void)*).sizeof] Event154;
+immutable ubyte[24 + 7 * (const(void)*).sizeof] Event357;
+immutable ubyte[46 + 4 * (const(void)*).sizeof] Event370;
 immutable ubyte[4 + 4 * (const(void)*).sizeof] Event42;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] Event319;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] Event739;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] Event818;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] Event810;
-immutable ubyte[29 + 11 * (const(void)*).sizeof] Event693;
+immutable ubyte[29 + 10 * (const(void)*).sizeof] Event693;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] Event375_404;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] Event239;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event532;
@@ -990,95 +990,95 @@ immutable ubyte[10 + 6 * (const(void)*).sizeof] Event730Entry2;
 immutable ubyte[171 + 24 * (const(void)*).sizeof] Event466;
 immutable ubyte[29 + 8 * (const(void)*).sizeof] Event75;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] Event322;
-immutable ubyte[26 + 12 * (const(void)*).sizeof] Event72;
+immutable ubyte[26 + 11 * (const(void)*).sizeof] Event72;
 immutable ubyte[12 + 5 * (const(void)*).sizeof] Event99;
 immutable ubyte[61 + 12 * (const(void)*).sizeof] Event207;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] UnknownC39ABB;
 immutable ubyte[79 + 16 * (const(void)*).sizeof] Event186;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] Event265;
-immutable ubyte[17 + 9 * (const(void)*).sizeof] Event62;
-immutable ubyte[62 + 5 * (const(void)*).sizeof] Event387;
+immutable ubyte[17 + 8 * (const(void)*).sizeof] Event62;
+immutable ubyte[62 + 4 * (const(void)*).sizeof] Event387;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] Event182;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] Event245;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] Event829;
-immutable ubyte[144 + 11 * (const(void)*).sizeof] Event398;
-immutable ubyte[20 + 10 * (const(void)*).sizeof] Event297;
-immutable ubyte[33 + 10 * (const(void)*).sizeof] Event484;
+immutable ubyte[144 + 10 * (const(void)*).sizeof] Event398;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] Event297;
+immutable ubyte[33 + 9 * (const(void)*).sizeof] Event484;
 immutable ubyte[80 + 12 * (const(void)*).sizeof] Event267;
-immutable ubyte[40 + 28 * (const(void)*).sizeof] Event769;
+immutable ubyte[70 + 12 * (const(void)*).sizeof] Event769;
 immutable ubyte[16 + 2 * (const(void)*).sizeof] UnknownC33DBE;
 immutable ubyte[84 + 12 * (const(void)*).sizeof] Event750;
-immutable ubyte[20 + 8 * (const(void)*).sizeof] UnknownC31D2D;
+immutable ubyte[20 + 6 * (const(void)*).sizeof] UnknownC31D2D;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] Event177;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] Event86;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] UnknownC3BB5C;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event417;
-immutable ubyte[70 + 16 * (const(void)*).sizeof] Event483;
+immutable ubyte[70 + 15 * (const(void)*).sizeof] Event483;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] Event81;
-immutable ubyte[10 + 5 * (const(void)*).sizeof] UnknownC3A18F;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] UnknownC3A18F;
 immutable ubyte[44 + 6 * (const(void)*).sizeof] Event596;
 immutable ubyte[41 + 5 * (const(void)*).sizeof] Event751;
-immutable ubyte[15 + 8 * (const(void)*).sizeof] Event108;
-immutable ubyte[21 + 9 * (const(void)*).sizeof] Event766;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] Event108;
+immutable ubyte[21 + 8 * (const(void)*).sizeof] Event766;
 immutable ubyte[57 + 9 * (const(void)*).sizeof] Event558;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] Event650;
 immutable ubyte[35 + 7 * (const(void)*).sizeof] Event224;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event881;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] UnknownC33399;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event890;
-immutable ubyte[29 + 11 * (const(void)*).sizeof] Event335;
+immutable ubyte[29 + 10 * (const(void)*).sizeof] Event335;
 immutable ubyte[6 + 4 * (const(void)*).sizeof] UnknownC36E41;
-immutable ubyte[10 + 3 * (const(void)*).sizeof] UnknownC3AA38;
+immutable ubyte[10 + 2 * (const(void)*).sizeof] UnknownC3AA38;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] Event431_432_433_434;
 immutable ubyte[42 + 11 * (const(void)*).sizeof] Event661;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event503;
-immutable ubyte[192 + 45 * (const(void)*).sizeof] UnknownC41036;
-immutable ubyte[523 + 83 * (const(void)*).sizeof] Event386;
+immutable ubyte[192 + 42 * (const(void)*).sizeof] UnknownC41036;
+immutable ubyte[523 + 75 * (const(void)*).sizeof] Event386;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] Event204;
-immutable ubyte[56 + 14 * (const(void)*).sizeof] Event666;
+immutable ubyte[56 + 13 * (const(void)*).sizeof] Event666;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] Event76;
-immutable ubyte[7 + 5 * (const(void)*).sizeof] Event10_11;
-immutable ubyte[53 + 12 * (const(void)*).sizeof] Event153;
-immutable ubyte[62 + 12 * (const(void)*).sizeof] Event651;
-immutable ubyte[77 + 13 * (const(void)*).sizeof] Event137;
+immutable ubyte[7 + 4 * (const(void)*).sizeof] Event10_11;
+immutable ubyte[53 + 11 * (const(void)*).sizeof] Event153;
+immutable ubyte[62 + 11 * (const(void)*).sizeof] Event651;
+immutable ubyte[77 + 12 * (const(void)*).sizeof] Event137;
 immutable ubyte[52 + 13 * (const(void)*).sizeof] Event788;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] Event473;
-immutable ubyte[16 + 5 * (const(void)*).sizeof] Event635;
+immutable ubyte[16 + 2 * (const(void)*).sizeof] Event635;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] Event91;
-immutable ubyte[26 + 11 * (const(void)*).sizeof] Event306;
+immutable ubyte[26 + 10 * (const(void)*).sizeof] Event306;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] Event222;
 immutable ubyte[70 + 13 * (const(void)*).sizeof] Event501_531_Common;
-immutable ubyte[29 + 10 * (const(void)*).sizeof] Event438;
+immutable ubyte[29 + 9 * (const(void)*).sizeof] Event438;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] Event104;
-immutable ubyte[46 + 9 * (const(void)*).sizeof] Event452;
-immutable ubyte[189 + 51 * (const(void)*).sizeof] Event768;
+immutable ubyte[46 + 8 * (const(void)*).sizeof] Event452;
+immutable ubyte[189 + 50 * (const(void)*).sizeof] Event768;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event516;
 immutable ubyte[17 + 2 * (const(void)*).sizeof] Event223;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] Event14;
-immutable ubyte[62 + 12 * (const(void)*).sizeof] Event83;
+immutable ubyte[62 + 10 * (const(void)*).sizeof] Event83;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] UnknownC3DB7A;
 immutable ubyte[18 + 2 * (const(void)*).sizeof] UnknownC3CEA2;
 immutable ubyte[23 + 4 * (const(void)*).sizeof] Event441;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event403;
 immutable ubyte[29 + 3 * (const(void)*).sizeof] Event752;
-immutable ubyte[203 + 32 * (const(void)*).sizeof] Event629;
+immutable ubyte[203 + 31 * (const(void)*).sizeof] Event629;
 immutable ubyte[22 + 5 * (const(void)*).sizeof] Event652;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] Event863;
-immutable ubyte[46 + 14 * (const(void)*).sizeof] Event160;
+immutable ubyte[46 + 13 * (const(void)*).sizeof] Event160;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] Event830;
 immutable ubyte[8 + 1 * (const(void)*).sizeof] UnknownC3C81A;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] Event87;
-immutable ubyte[25 + 14 * (const(void)*).sizeof] Event757;
+immutable ubyte[25 + 13 * (const(void)*).sizeof] Event757;
 immutable ubyte[49 + 8 * (const(void)*).sizeof] UnknownC34B62;
 immutable ubyte[8 + 3 * (const(void)*).sizeof] UnknownC40F59;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] Event682;
-immutable ubyte[48 + 11 * (const(void)*).sizeof] Event705;
-immutable ubyte[7 + 5 * (const(void)*).sizeof] Event9;
+immutable ubyte[48 + 10 * (const(void)*).sizeof] Event705;
+immutable ubyte[7 + 4 * (const(void)*).sizeof] Event9;
 immutable ubyte[64 + 10 * (const(void)*).sizeof] Event133;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] Event746;
 immutable ubyte[47 + 11 * (const(void)*).sizeof] Event211;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] Event517;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] Event790;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] Event790;
 immutable ubyte[26 + 7 * (const(void)*).sizeof] Event49;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] Event579;
 immutable ubyte[16 + 4 * (const(void)*).sizeof] Event252;
@@ -1092,6 +1092,7 @@ immutable ubyte[2 + 1 * (const(void)*).sizeof] UnknownC40F45;
 
 ubyte[] allBytes(T...)(T args) {
     struct X {
+    	align(1):
         T stuff;
     }
     union Z {
@@ -1203,10 +1204,6 @@ ubyte[] EVENT_XOR(ubyte var, short value) {
 
 ubyte[] EVENT_WRITE_WORD_WRAM(void* ptr, short val) {
 	return actionCommand(0x15, ptr, val);
-}
-
-ubyte[] EVENT_WRITE_DWORD_WRAM(void* ptr, uint val) {
-	return actionCommand(0x15, ptr, cast(short)val) ~ actionCommand(0x15, ptr + 2, cast(short)(val >> 16));
 }
 
 ubyte[] EVENT_WRITE_DWORD_WRAM(void* ptr, void* val) {
@@ -2349,10 +2346,10 @@ UnknownC4152A = [
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4152A[10 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4152A[10]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&UnknownC4152A[21 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4152A[21 + 3 * (const(void)*).sizeof]),
 ].join();
 Event0 = [
 	EVENT_SET_ANIMATION_POINTER(&UnknownEFF5BB[0]),
@@ -2360,8 +2357,8 @@ Event0 = [
 	EVENT_SET_DRAW_CALLBACK(&UnknownC0A0FA),
 	EVENT_SET_ANIMATION(0),
 	EVENT_PAUSE(5),
-	EVENT_CALLROUTINE(&fixArgs!LoadKirbySprite),
-	EVENT_SHORTJUMP(&Event0[5 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!LoadKirbySprite, ),
+	EVENT_SHORTJUMP(&Event0[5 + 3 * (const(void)*).sizeof]),
 ].join();
 Event320_321Common = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -2412,8 +2409,8 @@ Event478 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)7),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_WRITE_WORD_WRAM(&ShowNPCFlag, 0),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -2431,8 +2428,8 @@ Event601 = [
 	EVENT_START_TASK(&UnknownC3A20E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_START_TASK(&UnknownC36D18[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&Event31[12 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&Event31[12 + 5 * (const(void)*).sizeof]),
 ].join();
 UnknownC41900 = [
 	EVENT_SET_X(20),
@@ -2447,12 +2444,12 @@ UnknownC41900 = [
 	EVENT_PAUSE(20),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.UpRight, cast(ubyte)0),
 	EVENT_PAUSE(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)11, &UnknownC41900[19 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)11, &UnknownC41900[19 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(255),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(141),
-	EVENT_SHORTJUMP(&UnknownC41900[10 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC41900[10]),
 ].join();
 Event332 = [
 	EVENT_SET_X(5648),
@@ -2476,20 +2473,20 @@ Event561 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SHORTCALL(&UnknownC348C4[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_START_TASK(&UnknownC34A61[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
@@ -2498,30 +2495,30 @@ Event561 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_VAR(ActionScriptVars.V6, 384),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7624),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event878 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1EF),
-	EVENT_SHORTCALL_CONDITIONAL(&Event878[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event878[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4604),
 	EVENT_SET_VAR(ActionScriptVars.V1, 5276),
 	EVENT_SET_VAR(ActionScriptVars.V2, 28),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event878[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event878[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer16.ptr),
 	EVENT_HALT(),
@@ -2533,22 +2530,22 @@ Event667 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51, ),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_SET_Z_VELOCITY(512),
 	EVENT_LOOP(128),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 4096),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)169),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4730E),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4730E, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, 128),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event515 = [
@@ -2559,7 +2556,7 @@ Event53 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 40),
 	EVENT_SET_VAR(ActionScriptVars.V3, 32),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -2580,19 +2577,19 @@ Event640 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 9),
 	EVENT_START_TASK(&UnknownC3AFA3[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 20),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event720 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5616),
@@ -2610,8 +2607,8 @@ Event112 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event112[14 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event112[14 + 5 * (const(void)*).sizeof]),
 ].join();
 Event348_349 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -2620,12 +2617,12 @@ Event348_349 = [
 	EVENT_SET_Y_VELOCITY(32),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event617 = [
@@ -2641,8 +2638,8 @@ Event617 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)1033),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event617[18 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event617[18 + 7 * (const(void)*).sizeof]),
 ].join();
 Event244 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -2651,7 +2648,7 @@ Event244 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(32),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_END_LAST_TASK(),
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
@@ -2660,14 +2657,14 @@ Event181 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent181.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_HALT(),
 ].join();
 Event136 = [
@@ -2695,7 +2692,7 @@ Event136 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event678 = [
@@ -2724,17 +2721,17 @@ UnknownC419BF = [
 	EVENT_PAUSE(1),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC419BF[33 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC419BF[33 + 3 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(1),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC419BF[49 + (11 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC419BF[49 + 7 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_SHORTJUMP(&UnknownC419BF[60 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC419BF[60 + 10 * (const(void)*).sizeof]),
 ].join();
 Event121 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
@@ -2749,7 +2746,7 @@ Event121 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event569 = [
@@ -2767,14 +2764,14 @@ Event569 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2128),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7056),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event586 = [
@@ -2796,38 +2793,38 @@ Event572 = [
 ].join();
 UnknownC3A401 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[16 + (9 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[16 + 8 * (const(void)*).sizeof]),
 	EVENT_SET_TICK_CALLBACK(&UnknownC0D7F7),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_START_TASK(&UnknownC3A20E[0]),
 	EVENT_SHORT_RETURN(),
 	EVENT_SHORTCALL(&UnknownC3A401[0]),
-	EVENT_START_TASK(&UnknownC3A401[23 + (13 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A401[23 + 12 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 	EVENT_SHORTCALL(&UnknownC3A401[0]),
-	EVENT_START_TASK(&UnknownC3A401[30 + (18 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A401[30 + 17 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC06478),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC05E82),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D5B0),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[37 + (23 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC06478, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC05E82, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D5B0, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[37 + 22 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&UnknownC3A401[23 + (13 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC06478),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC05ECE),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D5B0),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[37 + (23 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC3A401[23 + 12 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC06478, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC05ECE, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D5B0, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[37 + 22 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&UnknownC3A401[30 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC3A401[30 + 17 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D59B),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[37 + (23 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D59B, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A401[37 + 22 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
@@ -2842,14 +2839,14 @@ UnknownC3A401 = [
 ].join();
 Event321 = [
 	EVENT_SHORTCALL(&Event320_321Common[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event676_677_678_Common2 = [
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65531),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47333),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47333, ),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_LOOP(8),
 	EVENT_SET_X_VELOCITY(8),
@@ -2859,8 +2856,8 @@ Event676_677_678_Common2 = [
 	EVENT_LOOP_END(),
 	EVENT_LOOP_END(),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event805 = [
@@ -2868,8 +2865,8 @@ Event805 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_LOOP(11),
 	EVENT_PAUSE(20),
 	EVENT_LOOP_END(),
@@ -2885,7 +2882,7 @@ Event609 = [
 ].join();
 Event599 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)1),
-	EVENT_SHORTJUMP(&Event600[3 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event600[3 + 1 * (const(void)*).sizeof]),
 ].join();
 UnknownC35FB6 = [
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V0),
@@ -2903,7 +2900,7 @@ Event637 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A1B7[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2576),
@@ -2916,16 +2913,16 @@ Event637 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2592),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3984),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)6),
 	EVENT_SET_VAR(ActionScriptVars.V5, 6),
 	EVENT_END_LAST_TASK(),
-	EVENT_START_TASK(&UnknownC3A0D8[22 + (10 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[22 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2440),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3832),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event588 = [
@@ -2941,13 +2938,13 @@ Event868 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event868[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event868[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 604),
 	EVENT_SET_VAR(ActionScriptVars.V1, 3380),
 	EVENT_SET_VAR(ActionScriptVars.V2, 12),
 	EVENT_SET_VAR(ActionScriptVars.V3, 20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event868[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event868[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer06.ptr),
 	EVENT_HALT(),
@@ -2961,7 +2958,7 @@ Event797 = [
 	EVENT_SET_ANIMATION(7),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event797[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event797[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(739),
 	EVENT_SET_X_VELOCITY(-918),
 	EVENT_PAUSE(150),
@@ -3001,20 +2998,20 @@ Event318 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 32768),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51, ),
 	EVENT_LOOP(64),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 4096),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)169),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7, ),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1728),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5544),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event280 = [
@@ -3046,21 +3043,21 @@ Event206 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5464),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9016),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&UnknownC3B431[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent206.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event206[46 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event206[46 + 9 * (const(void)*).sizeof]),
 ].join();
 Event764 = [
 	EVENT_SET_X(1224),
@@ -3072,21 +3069,21 @@ Event764 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1336),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6560),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_START_TASK(&Event764[44 + (9 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event764[44 + 9 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1376),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1544),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, Direction.Down, Direction.Left, Direction.Right, Direction.Up),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)Direction.Down, cast(short)Direction.Left, cast(short)Direction.Right, cast(short)Direction.Up),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTJUMP(&Event764[44 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event764[44 + 9 * (const(void)*).sizeof]),
 ].join();
 UnknownC41A7D = [
 	EVENT_SET_X(24),
@@ -3099,7 +3096,7 @@ UnknownC41A7D = [
 	EVENT_PAUSE(5),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(5),
-	EVENT_SHORTJUMP(&UnknownC41A7D[10 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC41A7D[10]),
 ].join();
 Event428 = [
 	EVENT_SET_X(4720),
@@ -3118,14 +3115,14 @@ Event428 = [
 UnknownC3AA82 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
-	EVENT_START_TASK(&UnknownC3A0D8[11 + (5 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[11 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event212 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 8128),
@@ -3146,9 +3143,9 @@ Event475 = [
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)187),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event475[19 + (5 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event475[19 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTCALL(&UnknownC3C20F[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -3157,7 +3154,7 @@ Event675 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C2B),
-	EVENT_START_TASK(&Event675[79 + (7 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event675[79 + 6 * (const(void)*).sizeof]),
 	EVENT_LOOP(2),
 	EVENT_SET_Y_RELATIVE(-3),
 	EVENT_PAUSE(6),
@@ -3189,7 +3186,7 @@ Event675 = [
 	EVENT_PAUSE(6),
 	EVENT_LOOP_END(),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_LOOP(6),
 	EVENT_SET_X_RELATIVE(3),
@@ -3227,55 +3224,55 @@ Event883 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F4),
-	EVENT_SHORTCALL_CONDITIONAL(&Event883[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event883[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 348),
 	EVENT_SET_VAR(ActionScriptVars.V1, 4464),
 	EVENT_SET_VAR(ActionScriptVars.V2, 20),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event883[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event883[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer21.ptr),
 	EVENT_HALT(),
 ].join();
 Event22 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_LOOP(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_BREAK_IF_FALSE(&Event22[34 + (22 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_BREAK_IF_FALSE(&Event22[34 + 22 * (const(void)*).sizeof]),
 	EVENT_PAUSE(8),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D0D9),
-	EVENT_SHORTCALL_CONDITIONAL(&Event22[24 + (14 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D0D9, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event22[24 + 14 * (const(void)*).sizeof]),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CC11),
-	EVENT_SHORTJUMP(&Event22[6 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC09FA8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CC11, ),
+	EVENT_SHORTJUMP(&Event22[6 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC09FA8, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)64),
-	EVENT_SHORTJUMP(&Event22[6 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event22[6 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_SHORTJUMP(&Event22[6 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event22[6 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event22[32 + (20 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event22[32 + 20 * (const(void)*).sizeof]),
 ].join();
 UnknownC3BAD7 = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SHORTCALL(&UnknownC3BB5C[0]),
 	EVENT_SHORTCALL(&UnknownC3BB73[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventGhosts3.ptr),
@@ -3305,19 +3302,19 @@ Event595 = [
 Event359 = [
 	EVENT_SET_X(6920),
 	EVENT_SET_Y(8512),
-	EVENT_SHORTJUMP(&Event358[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event358[6]),
 ].join();
 Event493 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)252),
 	EVENT_SET_Y_RELATIVE(16),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)252),
 	EVENT_SET_Y_RELATIVE(16),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event493[12 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event493[12 + 4 * (const(void)*).sizeof]),
 ].join();
 Event410 = [
 	EVENT_SET_X(4640),
@@ -3336,7 +3333,7 @@ Event410 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(48),
@@ -3345,20 +3342,20 @@ Event410 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(80),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC31ED8[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
@@ -3472,18 +3469,18 @@ Event756 = [
 ].join();
 Event50 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)197),
 	EVENT_START_TASK(&UnknownC3AFA3[0]),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Up),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_START_TASK(&Event50[34 + (15 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_START_TASK(&Event50[34 + 15 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V5, 4),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
@@ -3509,10 +3506,10 @@ UnknownC413D6 = [
 	EVENT_PAUSE(60),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC413D6[18 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC413D6[18]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(180),
-	EVENT_SHORTJUMP(&UnknownC413D6[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC413D6[14]),
 ].join();
 Event643 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -3529,26 +3526,26 @@ Event643 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)7),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event819 = [
 	EVENT_SHORTCALL(&UnknownC35FCD[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event68 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 816),
 	EVENT_SET_VAR(ActionScriptVars.V7, 8712),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent68.ptr),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -3564,7 +3561,7 @@ Event68 = [
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(140),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC30CAF = [
@@ -3579,25 +3576,25 @@ UnknownC30CAF = [
 Event38 = [
 	EVENT_SET_X(7792),
 	EVENT_SET_Y(344),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_START_TASK(&Event38[37 + (14 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_START_TASK(&Event38[37 + 13 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 24),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent38.ptr),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 	EVENT_LOOP(3),
 	EVENT_PAUSE(8),
@@ -3606,13 +3603,13 @@ Event38 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(30),
-	EVENT_SHORTJUMP(&Event38[37 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event38[37 + 13 * (const(void)*).sizeof]),
 ].join();
 Event328 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(25),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
@@ -3646,13 +3643,13 @@ Event872 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E9),
-	EVENT_SHORTCALL_CONDITIONAL(&Event872[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event872[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 564),
 	EVENT_SET_VAR(ActionScriptVars.V1, 7352),
 	EVENT_SET_VAR(ActionScriptVars.V2, 20),
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event872[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event872[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer10.ptr),
 	EVENT_HALT(),
@@ -3661,12 +3658,12 @@ Event257 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4864),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10000),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event786 = [
@@ -3674,9 +3671,9 @@ Event786 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A26B),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_EX_CALLROUTINE(1, &fixArgs!UnknownC0778A),
-	EVENT_SHORTJUMP(&Event786[7 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_EX_CALLROUTINE(1, &fixArgs!UnknownC0778A, ),
+	EVENT_SHORTJUMP(&Event786[7 + 3 * (const(void)*).sizeof]),
 ].join();
 Event763 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -3693,28 +3690,28 @@ Event763 = [
 	EVENT_PAUSE(120),
 	EVENT_PAUSE(120),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOutWithMosaic, cast(ushort)1, cast(ushort)8, cast(ushort)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3A12E = [
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3A12E[27 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3A12E[27 + 7 * (const(void)*).sizeof]),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_BREAK_IF_FALSE(&UnknownC3A12E[27 + (9 * (const(void)*).sizeof)]),
+	EVENT_BREAK_IF_FALSE(&UnknownC3A12E[27 + 7 * (const(void)*).sizeof]),
 	EVENT_LOOP_END(),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3A12E[27 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3A12E[27 + 7 * (const(void)*).sizeof]),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_BREAK_IF_FALSE(&UnknownC3A12E[27 + (9 * (const(void)*).sizeof)]),
+	EVENT_BREAK_IF_FALSE(&UnknownC3A12E[27 + 7 * (const(void)*).sizeof]),
 	EVENT_LOOP_END(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORTJUMP(&UnknownC3A12E[0]),
 	EVENT_PAUSE(1),
 	EVENT_SHORTJUMP(&UnknownC3A12E[0]),
@@ -3762,7 +3759,7 @@ UnknownC3C90C = [
 	EVENT_SET_Z(-96),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -3786,7 +3783,7 @@ Event264 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(112),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC34A61 = [
@@ -3808,16 +3805,16 @@ Event480 = [
 	EVENT_SET_Z(-64),
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(32),
 	EVENT_PAUSE(128),
 	EVENT_PAUSE(128),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(128),
 	EVENT_PAUSE(128),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)76, cast(ubyte)0),
@@ -3832,7 +3829,7 @@ Event480 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 3464),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)0),
@@ -3861,16 +3858,16 @@ Event480 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 4288),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A03A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_081),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event480[187 + (31 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event480[187 + 31 * (const(void)*).sizeof]),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
 	EVENT_SET_X_VELOCITY(53),
 	EVENT_SET_Y_VELOCITY(32),
 	EVENT_PAUSE(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)16, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(3),
@@ -3880,7 +3877,7 @@ Event480 = [
 	EVENT_PAUSE(128),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_HALT(),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
@@ -3888,7 +3885,7 @@ Event480 = [
 	EVENT_SET_Y_VELOCITY(32),
 	EVENT_PAUSE(255),
 	EVENT_PAUSE(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_HALT(),
 ].join();
@@ -3896,8 +3893,8 @@ Event833 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -3912,24 +3909,24 @@ Event494 = [
 	EVENT_SET_Y_RELATIVE(32),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)252),
 	EVENT_SET_Y_RELATIVE(32),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event494[12 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event494[12 + 4 * (const(void)*).sizeof]),
 ].join();
 Event13_14_15_16_17_Common = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A15E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event201 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)1),
@@ -3949,8 +3946,8 @@ Event201 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Left),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent201.ptr),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -3970,30 +3967,30 @@ Event201 = [
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(140),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event597 = [
 	EVENT_SHORTCALL(&UnknownC3AA2B[0]),
 	EVENT_START_TASK(&UnknownC36D18[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CCCC),
-	EVENT_SHORTJUMP(&Event27[13 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CCCC, ),
+	EVENT_SHORTJUMP(&Event27[13 + 6 * (const(void)*).sizeof]),
 ].join();
 Event775 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_START_TASK(&Event757[21 + (12 * (const(void)*).sizeof)]),
-	EVENT_START_TASK(&Event775[18 + (10 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event757[21 + 11 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&Event775[18 + 9 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(255),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC2EA15),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC2EA15, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC2EACF),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event775[12 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC2EACF, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event775[12 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_PAUSE(125),
 	EVENT_END_TASK(),
@@ -4005,7 +4002,7 @@ Event706 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 4),
 	EVENT_SET_VAR(ActionScriptVars.V3, 7),
 	EVENT_LOOP(3),
@@ -4014,88 +4011,88 @@ Event706 = [
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.PSI_FREEZE_FINISH),
 	EVENT_PAUSE(6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V1, 3),
 	EVENT_LOOP(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77, ),
 	EVENT_PAUSE(10),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 65535),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F),
-	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F, ),
+	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event575 = [
 	EVENT_SET_X(464),
 	EVENT_SET_Y(7624),
-	EVENT_SHORTJUMP(&Event573[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event573[6]),
 ].join();
 Event730 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
 ].join();
 Event380 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C, ),
 	EVENT_SHORTJUMP(&Event381[0]),
 ].join();
 Event851 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(200),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event499_500_Common = [
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D73),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D73, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[0]),
-	EVENT_SHORTJUMP(&Event499_500_Common[12 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0CA7),
-	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[29 + (19 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D23),
+	EVENT_SHORTJUMP(&Event499_500_Common[12 + 6 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0CA7, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[29 + 19 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D23, ),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_PAUSE(60),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0F60),
-	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[15 + (9 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event499_500_Common[5 + (3 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC2FF9A),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[29 + (19 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0F60, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[15 + 9 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event499_500_Common[5 + 3 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC2FF9A, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[29 + 19 * (const(void)*).sizeof]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C19B),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[5 + (3 * (const(void)*).sizeof)]),
-	EVENT_START_TASK(&Event499_500_Common[28 + (18 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C19B, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[5 + 3 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&Event499_500_Common[28 + 18 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FDB),
-	EVENT_SHORTCALL(&Event499_500_Common[32 + (22 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D8D),
-	EVENT_SHORTJUMP(&Event499_500_Common[52 + (28 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event499_500_Common[73 + (41 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FF6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0DFA),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FDB, ),
+	EVENT_SHORTCALL(&Event499_500_Common[32 + 22 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D8D, ),
+	EVENT_SHORTJUMP(&Event499_500_Common[52 + 27 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event499_500_Common[73 + 40 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FF6, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0DFA, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A09F[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 22),
 	EVENT_SET_VAR(ActionScriptVars.V3, 22),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[51 + (28 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46EF8),
-	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[44 + (25 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[51 + 27 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46EF8, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[44 + 24 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(1),
@@ -4103,43 +4100,43 @@ Event499_500_Common = [
 	EVENT_END_LAST_TASK(),
 	EVENT_START_TASK(&UnknownC343DB[0]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C251),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[69 + (38 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0E8A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D98F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[69 + (38 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C251, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[69 + 37 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0E8A, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D98F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[69 + 37 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C87),
-	EVENT_SHORTJUMP(&Event499_500_Common[64 + (33 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C87, ),
+	EVENT_SHORTJUMP(&Event499_500_Common[64 + 32 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FF6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FF6, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0E67),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0E67, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D98F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[88 + (48 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D98F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event499_500_Common[88 + 47 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C87),
-	EVENT_SHORTJUMP(&Event499_500_Common[83 + (43 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C87, ),
+	EVENT_SHORTJUMP(&Event499_500_Common[83 + 42 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(240),
-	EVENT_SHORTJUMP(&Event499_500_Common[88 + (48 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event499_500_Common[88 + 47 * (const(void)*).sizeof]),
 ].join();
 Event870 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E7),
-	EVENT_SHORTCALL_CONDITIONAL(&Event870[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event870[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 5764),
 	EVENT_SET_VAR(ActionScriptVars.V1, 8384),
 	EVENT_SET_VAR(ActionScriptVars.V2, 28),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event870[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event870[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer08.ptr),
 	EVENT_HALT(),
@@ -4167,7 +4164,7 @@ Event274_275_276 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event391 = [
@@ -4183,8 +4180,8 @@ Event817 = [
 	EVENT_SET_PRIORITY(3),
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event131 = [
@@ -4199,7 +4196,7 @@ Event712 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_START_TASK(&UnknownC3AFA3[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
@@ -4233,7 +4230,7 @@ Event712 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V6, 3360),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_X_VELOCITY(352),
 	EVENT_SET_Y_VELOCITY(-64),
@@ -4243,15 +4240,15 @@ Event712 = [
 	EVENT_SET_Y_VELOCITY(-256),
 	EVENT_PAUSE(64),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event18 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_ANIMATION(0),
-	EVENT_START_TASK(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A964, cast(ushort)8, cast(ushort)8),
 	EVENT_SHORTJUMP(&Event13_14_15_16_17_Common2[0]),
@@ -4263,8 +4260,8 @@ UnknownC3BB73 = [
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3BB73[10 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3BB73[10 + 3 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event84 = [
@@ -4273,7 +4270,7 @@ Event84 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_HALT(),
 ].join();
@@ -4283,7 +4280,7 @@ Event171 = [
 	EVENT_SET_Z(0),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_WRITE_WORD_TEMPVAR(6),
@@ -4306,32 +4303,32 @@ Event171 = [
 Event823 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(60),
 	EVENT_PAUSE(60),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(120),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event430 = [
 	EVENT_SHORTCALL(&UnknownC31D4F[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 40),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_HALT(),
 ].join();
 Event804 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V6),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
@@ -4340,42 +4337,42 @@ Event804 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 2048),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C87),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4730E),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
-	EVENT_SHORTJUMP(&Event804[24 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C87, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4730E, ),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
+	EVENT_SHORTJUMP(&Event804[24 + 8 * (const(void)*).sizeof]),
 ].join();
 Event707_708_709_710_Common = [
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event707_708_709_710_Common[5 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event707_708_709_710_Common[5 + 2 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event707_708_709_710_Common[8 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event707_708_709_710_Common[8 + 2 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTJUMP(&Event8Entry2[0]),
 ].join();
 UnknownC42815 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CD44),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CD44, ),
 	EVENT_PAUSE(2),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC42815[0]),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C, ),
 	EVENT_END_TASK(),
 ].join();
 Event300 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
@@ -4385,7 +4382,7 @@ Event300 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(112),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event304 = [
@@ -4393,19 +4390,19 @@ Event304 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 15),
-	EVENT_SHORTJUMP(&Event303[23 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event303[23 + 7 * (const(void)*).sizeof]),
 ].join();
 Event887 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F8),
-	EVENT_SHORTCALL_CONDITIONAL(&Event887[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event887[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 6972),
 	EVENT_SET_VAR(ActionScriptVars.V1, 2884),
 	EVENT_SET_VAR(ActionScriptVars.V2, 36),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event887[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event887[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer25.ptr),
 	EVENT_HALT(),
@@ -4422,12 +4419,12 @@ Event641 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2584),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3976),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2832),
 	EVENT_SET_VAR(ActionScriptVars.V7, 4224),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
@@ -4456,7 +4453,7 @@ Event159 = [
 	EVENT_SET_Z(0),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)4),
 	EVENT_SET_VAR(ActionScriptVars.V5, 4),
 	EVENT_WRITE_WORD_TEMPVAR(6),
@@ -4471,19 +4468,19 @@ Event159 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)188),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3BAA3 = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SHORTCALL(&UnknownC3BB5C[0]),
 	EVENT_SHORTCALL(&UnknownC3BB73[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventGhosts1.ptr),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&UnknownC3BAA3[4 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&UnknownC3BAA3[4 + 5 * (const(void)*).sizeof]),
 ].join();
 Event54 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)197),
@@ -4493,7 +4490,7 @@ Event54 = [
 	EVENT_PAUSE(60),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
 	EVENT_SET_VAR(ActionScriptVars.V1, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC423DC),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC423DC, ),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA3F, cast(ubyte)0, cast(ubyte)16, cast(ubyte)24),
 	EVENT_SET_TICK_CALLBACK(&UnknownC479E9),
@@ -4507,7 +4504,7 @@ Event54 = [
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(120),
 	EVENT_LOOP(13),
 	EVENT_PAUSE(16),
@@ -4519,7 +4516,7 @@ Event54 = [
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 65534),
 	EVENT_LOOP_END(),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4248A),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4248A, ),
 	EVENT_PAUSE(60),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -4530,7 +4527,7 @@ Event266 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 496),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2280),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event573 = [
@@ -4539,8 +4536,8 @@ Event573 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(120),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -4576,7 +4573,7 @@ Event397 = [
 	EVENT_PAUSE(45),
 	EVENT_PAUSE(60),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(30),
 	EVENT_PAUSE(120),
@@ -4596,7 +4593,7 @@ Event397 = [
 	EVENT_END_LAST_TASK(),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(180),
 	EVENT_SHORTJUMP(&Event35[0]),
@@ -4615,29 +4612,29 @@ Event340 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_LOOP(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 3840),
-	EVENT_SHORTCALL_CONDITIONAL(&Event340[30 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event340[30 + 8 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP(10),
 	EVENT_LOOP(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 3840),
-	EVENT_SHORTCALL_CONDITIONAL(&Event340[54 + (13 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event340[54 + 13 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
@@ -4648,55 +4645,55 @@ Event340 = [
 	EVENT_SET_Y(112),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeIn, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BDA),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 3840),
-	EVENT_SHORTCALL_CONDITIONAL(&Event340[97 + (23 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event340[97 + 23 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_SHORTJUMP(&Event340[157 + (47 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_SHORTJUMP(&Event340[157 + 46 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_003),
-	EVENT_SHORTCALL_CONDITIONAL(&Event340[83 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event340[83 + 18 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(2),
 	EVENT_SET_ANIMATION(255),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeIn, cast(ubyte)1, cast(ubyte)1),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event340[157 + (47 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event340[157 + 46 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_005),
-	EVENT_SHORTCALL_CONDITIONAL(&Event340[115 + (30 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event340[115 + 29 * (const(void)*).sizeof]),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4978E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4978E, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)65532, cast(ubyte)0, cast(ubyte)100),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_003),
-	EVENT_SHORTCALL_CONDITIONAL(&Event340[135 + (37 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event340[135 + 36 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event340[157 + (47 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event340[157 + 46 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
-	EVENT_CALLROUTINE(&fixArgs!ReloadMap),
+	EVENT_CALLROUTINE(&fixArgs!ReloadMap, ),
 	EVENT_PAUSE(150),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeIn, cast(ubyte)1, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!ReloadMap),
+	EVENT_CALLROUTINE(&fixArgs!ReloadMap, ),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_004),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event340[169 + (51 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event340[169 + 50 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeIn, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -4713,7 +4710,7 @@ Event465 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7112),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_START_TASK(&UnknownC33DBE[0]),
@@ -4731,7 +4728,7 @@ Event465 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_X(6232),
 	EVENT_SET_Y(7168),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event476 = [
@@ -4750,26 +4747,26 @@ Event476 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)7),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event474 = [
 	EVENT_SHORTCALL(&UnknownC3C1E0[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP(4),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(12),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_END_LAST_TASK(),
 	EVENT_SHORTCALL(&UnknownC3C20F[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event178 = [
@@ -4777,7 +4774,7 @@ Event178 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A1F3[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A964, cast(ushort)24, cast(ushort)24),
 	EVENT_SHORTJUMP(&UnknownC3AB9E[0]),
@@ -4788,14 +4785,14 @@ Event179 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2235),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6560),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event298 = [
@@ -4803,7 +4800,7 @@ Event298 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1248),
@@ -4814,7 +4811,7 @@ Event298 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_WRAM(&Unknown7E438A, 695),
 	EVENT_WRITE_WORD_WRAM(&Unknown7E438C, 886),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event167 = [
@@ -4822,29 +4819,29 @@ Event167 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_SET_Z(200),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(-256),
 	EVENT_PAUSE(100),
 	EVENT_SET_Z_VELOCITY(-128),
 	EVENT_PAUSE(200),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event151 = [
 	EVENT_SHORTCALL(&UnknownC3C94E[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)190),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event247_248 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(32),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_END_LAST_TASK(),
@@ -4867,7 +4864,7 @@ UnknownC4160A = [
 	EVENT_PAUSE(255),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(45),
-	EVENT_SHORTJUMP(&UnknownC4160A[20 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4160A[20 + 2 * (const(void)*).sizeof]),
 ].join();
 UnknownC4158A = [
 	EVENT_SET_X(25),
@@ -4884,10 +4881,10 @@ UnknownC4158A = [
 	EVENT_PAUSE(10),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)5, &UnknownC4158A[22 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)5, &UnknownC4158A[22]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(212),
-	EVENT_SHORTJUMP(&UnknownC4158A[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4158A[14]),
 ].join();
 Event315 = [
 	EVENT_SET_X(5968),
@@ -4896,7 +4893,7 @@ Event315 = [
 ].join();
 Event692 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_START_TASK(&UnknownC3AFA3[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
@@ -4907,17 +4904,17 @@ Event692 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 65535),
 	EVENT_SET_ANIMATION(0),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Left),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 3232),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9912),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event358 = [
@@ -4935,24 +4932,24 @@ Event765 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3B431 = [
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3B431[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_00A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
 	EVENT_END(),
 ].join();
 UnknownC3A1CB = [
 	EVENT_PAUSE(6),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A1CB[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -4973,13 +4970,13 @@ Event289 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event363 = [
 	EVENT_SET_X(6888),
 	EVENT_SET_Y(8520),
-	EVENT_SHORTJUMP(&Event358[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event358[6]),
 ].join();
 Event523 = [
 	EVENT_SHORTCALL(&UnknownC40F59[0]),
@@ -4989,33 +4986,33 @@ Event95 = [
 	EVENT_SHORTJUMP(&Event94_95_98Common[0]),
 ].join();
 Event479 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC467E6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC467E6, ),
 	EVENT_SET_X_RELATIVE(7),
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
 	EVENT_SET_Z(0),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(128),
 	EVENT_PAUSE(64),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_START_TASK(&Event479[61 + (12 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event479[61 + 12 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 600),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3486),
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC),
-	EVENT_SHORTCALL_CONDITIONAL(&Event479[44 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event479[44 + 8 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_SHORTCALL_CONDITIONAL(&Event479[54 + (10 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL_CONDITIONAL(&Event479[54 + 10 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_SET_Z_VELOCITY(128),
 	EVENT_PAUSE(48),
@@ -5028,16 +5025,16 @@ Event479 = [
 UnknownC40F18 = [
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(256),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC40F18[12 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC40F18[12 + 4 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(-12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC40F18[22 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC40F18[22 + 8 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(224),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC, ),
 	EVENT_SHORTCALL_CONDITIONAL(&UnknownC40F18[0]),
 	EVENT_WRITE_WORD_TEMPVAR(-12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC40F18[0]),
 	EVENT_SHORTJUMP(&UnknownC40F45[0]),
 ].join();
@@ -5048,7 +5045,7 @@ Event459 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7736),
 	EVENT_SET_VAR(ActionScriptVars.V7, 8648),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event73 = [
@@ -5060,7 +5057,7 @@ Event73 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)205),
 	EVENT_SHORTCALL(&UnknownC3B70C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event16 = [
@@ -5085,7 +5082,7 @@ Event365 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(48),
@@ -5094,24 +5091,24 @@ Event365 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(80),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC42624),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC42624, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(10),
 	EVENT_SHORTCALL(&UnknownC31ED8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC424D1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC424D1, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA23, cast(ushort)6848, cast(ushort)8560, cast(ushort)6976),
 	EVENT_SET_VAR(ActionScriptVars.V4, 15),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(-68),
 	EVENT_PAUSE(60),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -5159,7 +5156,7 @@ Event365 = [
 	EVENT_PAUSE(90),
 	EVENT_PAUSE(90),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(22),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
@@ -5167,7 +5164,7 @@ Event365 = [
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_Y_VELOCITY(-22),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
@@ -5175,7 +5172,7 @@ Event365 = [
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(-22),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
@@ -5184,16 +5181,16 @@ Event365 = [
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC31EEF[0]),
 	EVENT_PAUSE(22),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4257F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4257F, ),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(180),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event581 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_274),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event606[0]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SHORTJUMP(&Event8Entry2[0]),
@@ -5202,20 +5199,20 @@ Event482 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_START_TASK(&Event482[37 + (9 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event482[37 + 9 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)9),
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC),
-	EVENT_SHORTCALL_CONDITIONAL(&Event482[20 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event482[20 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_SHORTCALL_CONDITIONAL(&Event482[30 + (7 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL_CONDITIONAL(&Event482[30 + 7 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_SET_Z_VELOCITY(-512),
 	EVENT_PAUSE(30),
@@ -5228,47 +5225,47 @@ Event491 = [
 	EVENT_SET_Y_RELATIVE(-8),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)252),
 	EVENT_SET_Y_RELATIVE(-8),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event491[12 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event491[12 + 4 * (const(void)*).sizeof]),
 ].join();
 Event686 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Cursor3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 2),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.and, 7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(6),
-	EVENT_SHORTJUMP(&Event686[7 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event686[7 + 3 * (const(void)*).sizeof]),
 ].join();
 Event19 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event19[14 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event19[14 + 8 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Down),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(8),
-	EVENT_SHORTJUMP(&Event19[6 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_SHORTJUMP(&Event19[6 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event19[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event19[6 + 4 * (const(void)*).sizeof]),
 ].join();
 Event787 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC2DB3F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC2DB3F, ),
 	EVENT_PAUSE(1),
 	EVENT_SHORTJUMP(&Event787[0]),
 ].join();
@@ -5286,11 +5283,11 @@ Event630 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DAMAGE_TAKEN),
 	EVENT_SET_VAR(ActionScriptVars.V0, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(7),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC41402 = [
@@ -5302,20 +5299,20 @@ UnknownC41402 = [
 	EVENT_PAUSE(10),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41402[10 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41402[10]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.UpRight, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)5, &UnknownC41402[21 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)5, &UnknownC41402[21 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(160),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.UpRight, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41402[36 + (10 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&UnknownC41402[21 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41402[36 + 6 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&UnknownC41402[21 + 3 * (const(void)*).sizeof]),
 ].join();
 Event740 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
@@ -5345,20 +5342,20 @@ Event542 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3DFB5 = [
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, 0, 1),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)0, cast(short)1),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3DFD4[0]),
 	EVENT_SET_Z_VELOCITY(-128),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 30, 60, 90, 120),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)30, cast(short)60, cast(short)90, cast(short)120),
 	EVENT_SHORTJUMP(&UnknownC3DFD4_2[0]),
 ].join();
 Event378_407 = [
 	EVENT_SET_X(4776),
 	EVENT_SET_Y(5712),
-	EVENT_SHORTJUMP(&Event375_404[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event375_404[6]),
 ].join();
 UnknownC37A7C = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
@@ -5371,8 +5368,8 @@ UnknownC37A7C = [
 Event700 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_START_TASK(&Event700[107 + (16 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_START_TASK(&Event700[107 + 16 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 5656),
 	EVENT_SET_VAR(ActionScriptVars.V1, 5984),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
@@ -5406,15 +5403,15 @@ Event700 = [
 	EVENT_SET_X_RELATIVE(1),
 	EVENT_PAUSE(4),
 	EVENT_SET_X_RELATIVE(-1),
-	EVENT_SHORTJUMP(&Event700[96 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event700[96 + 15 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A94E, cast(ushort)873),
 	EVENT_PAUSE(3),
-	EVENT_SHORTJUMP(&Event700[107 + (16 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event700[107 + 16 * (const(void)*).sizeof]),
 ].join();
 Event781 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)2),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_HALT(),
@@ -5422,7 +5419,7 @@ Event781 = [
 Event758 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 48),
 	EVENT_SET_VAR(ActionScriptVars.V3, 32),
@@ -5440,40 +5437,40 @@ Event758 = [
 UnknownC3AA96 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
-	EVENT_START_TASK(&UnknownC3A0D8[22 + (10 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[22 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)6),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event6_12 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&UnknownC3A15E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, Direction.Up, Direction.Right, Direction.Down, Direction.Left),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 3, 8, 16, 24),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)Direction.Up, cast(short)Direction.Right, cast(short)Direction.Down, cast(short)Direction.Left),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)3, cast(short)8, cast(short)16, cast(short)24),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 30, 60, 90, 120),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)30, cast(short)60, cast(short)90, cast(short)120),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
-	EVENT_SHORTJUMP(&Event6_12[10 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event6_12[10 + 6 * (const(void)*).sizeof]),
 ].join();
 Event35 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
 	EVENT_END(),
 ].join();
 Event732 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7984),
@@ -5500,7 +5497,7 @@ Event535 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7520),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2880),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!DecompItoiProduction),
+	EVENT_CALLROUTINE(&fixArgs!DecompItoiProduction, ),
 	EVENT_WRITE_BYTE_WRAM(&TM_MIRROR, 23),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7472),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2928),
@@ -5509,20 +5506,20 @@ Event535 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 2928),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8A0, TextEvent535.ptr),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event886 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F7),
-	EVENT_SHORTCALL_CONDITIONAL(&Event886[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event886[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 6092),
 	EVENT_SET_VAR(ActionScriptVars.V1, 2992),
 	EVENT_SET_VAR(ActionScriptVars.V2, 36),
 	EVENT_SET_VAR(ActionScriptVars.V3, 24),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event886[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event886[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer24.ptr),
 	EVENT_HALT(),
@@ -5540,7 +5537,7 @@ Event550 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC33C18 = [
-	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText),
+	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event497 = [
@@ -5548,20 +5545,20 @@ Event497 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)16),
 	EVENT_SET_VAR(ActionScriptVars.V2, 12),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event497[20 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event497[20 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 2048),
-	EVENT_SHORTCALL_CONDITIONAL(&Event497[20 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event497[20 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent497.ptr),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event497[20 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event497[20 + 5 * (const(void)*).sizeof]),
 ].join();
 Event118 = [
 	EVENT_SET_X(7656),
@@ -5581,16 +5578,16 @@ Event118 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V4),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_005),
-	EVENT_SHORTCALL_CONDITIONAL(&Event118[41 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event118[41 + 7 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&Event115_116_117_118_119Common[0]),
 	EVENT_SHORTCALL(&UnknownC3BEA4[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_005),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event118[49 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event118[49 + 11 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3BED4[0]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_006),
@@ -5618,7 +5615,7 @@ Event639 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2536),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3928),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2760),
 	EVENT_SET_VAR(ActionScriptVars.V7, 4152),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
@@ -5631,17 +5628,17 @@ Event894 = [
 Event831 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(90),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 UnknownC333AA = [
@@ -5654,38 +5651,38 @@ UnknownC333AA = [
 Event808 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(-85),
 	EVENT_PAUSE(96),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(20),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(85),
 	EVENT_PAUSE(96),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(20),
-	EVENT_SHORTJUMP(&Event808[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event808[1 + 1 * (const(void)*).sizeof]),
 ].join();
 Event892 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1FD),
-	EVENT_SHORTCALL_CONDITIONAL(&Event892[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event892[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 400),
 	EVENT_SET_VAR(ActionScriptVars.V1, 304),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event892[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event892[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer30.ptr),
 	EVENT_HALT(),
@@ -5733,32 +5730,32 @@ Event217 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1600),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10008),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&UnknownC3B431[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent217.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event217[50 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event217[50 + 10 * (const(void)*).sizeof]),
 ].join();
 Event374 = [
 	EVENT_SET_X(4768),
 	EVENT_SET_Y(5748),
-	EVENT_SHORTJUMP(&Event361[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event361[6]),
 ].join();
 Event117 = [
 	EVENT_SET_X(7656),
@@ -5777,23 +5774,23 @@ Event117 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_004),
-	EVENT_SHORTCALL_CONDITIONAL(&Event117[39 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event117[39 + 7 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&Event115_116_117_118_119Common[0]),
 	EVENT_SHORTCALL(&UnknownC3BEA4[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_004),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event117[47 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event117[47 + 11 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3BED4[0]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_005),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3AFA3 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC48B3B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC48B3B, ),
 	EVENT_PAUSE(3),
 	EVENT_SHORTJUMP(&UnknownC3AFA3[0]),
 ].join();
@@ -5827,7 +5824,7 @@ UnknownC3C94E = [
 	EVENT_SET_Z(-96),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -5854,32 +5851,32 @@ Event527 = [
 	EVENT_SHORTJUMP(&UnknownC419B2[0]),
 ].join();
 Event672 = [
-	EVENT_SHORTCALL(&Event674[43 + (21 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event674[52 + 17 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_20E),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 400, 600, 1200, 1800),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)400, cast(short)600, cast(short)1200, cast(short)1800),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlCountdown),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + 1 * (const(void)*).sizeof]),
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlFlag),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + (1 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + 1 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 248),
 	EVENT_SET_VAR(ActionScriptVars.V3, 248),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event672[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event672[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V2, 4),
 	EVENT_SET_VAR(ActionScriptVars.V3, 4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event672[40 + (17 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event672[49 + 13 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_20E),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent672.ptr),
-	EVENT_SHORTCALL(&Event674[52 + (27 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event672[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event674[61 + 22 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event672[1 + 1 * (const(void)*).sizeof]),
 ].join();
 UnknownC3BAC4 = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SHORTCALL(&UnknownC3BB5C[0]),
 	EVENT_SHORTCALL(&UnknownC3BB73[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventGhosts2.ptr),
@@ -5890,7 +5887,7 @@ Event722 = [
 	EVENT_SET_Y(2712),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5312),
@@ -5923,7 +5920,7 @@ Event7 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTJUMP(&Event8Entry2[0]),
 ].join();
 UnknownC39AC7 = [
@@ -5931,8 +5928,8 @@ UnknownC39AC7 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&UnknownC39ABB[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event840 = [
@@ -5940,18 +5937,18 @@ Event840 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event840[9 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event840[9 + 4 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event671 = [
@@ -5987,7 +5984,7 @@ Event653 = [
 Event779 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_HALT(),
@@ -5995,9 +5992,9 @@ Event779 = [
 UnknownC3A1B7 = [
 	EVENT_PAUSE(9),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(9),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A1B7[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -6010,11 +6007,11 @@ Event270 = [
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 8),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC4116C = [
@@ -6036,7 +6033,7 @@ UnknownC4116C = [
 	EVENT_PAUSE(74),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(60),
-	EVENT_SHORTJUMP(&UnknownC4116C[10 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4116C[10]),
 ].join();
 Event279 = [
 	EVENT_SHORTCALL(&UnknownC30C55[0]),
@@ -6072,7 +6069,7 @@ Event422 = [
 Event647 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1352),
 	EVENT_SET_VAR(ActionScriptVars.V1, 6928),
 	EVENT_SET_VAR(ActionScriptVars.V2, 56),
@@ -6095,13 +6092,13 @@ Event864 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E1),
-	EVENT_SHORTCALL_CONDITIONAL(&Event864[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event864[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1504),
 	EVENT_SET_VAR(ActionScriptVars.V1, 6552),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event864[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event864[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer02.ptr),
 	EVENT_HALT(),
@@ -6109,14 +6106,14 @@ Event864 = [
 Event820 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event97 = [
@@ -6134,9 +6131,9 @@ Event228_229_230_231_232Common = [
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V7),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event382 = [
@@ -6145,7 +6142,7 @@ Event382 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC476A5),
 	EVENT_PAUSE(29),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_HALT(),
 ].join();
@@ -6156,37 +6153,37 @@ Event633 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3A262 = [
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC05E76, cast(ubyte)241, &UnknownC064A6),
-	EVENT_SHORTJUMP(&UnknownC3A262[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC3A262[1 + 1 * (const(void)*).sizeof]),
 ].join();
 UnknownC343AE = [
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(256),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC343AE[12 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC343AE[12 + 4 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(-12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC343AE[22 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC343AE[22 + 8 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(224),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC, ),
 	EVENT_SHORTCALL_CONDITIONAL(&UnknownC343AE[0]),
 	EVENT_WRITE_WORD_TEMPVAR(-12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC343AE[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event384 = [
 	EVENT_SET_X(4768),
 	EVENT_SET_Y(5736),
-	EVENT_SHORTJUMP(&Event383[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event383[6]),
 ].join();
 Event418 = [
 	EVENT_SET_X(4768),
@@ -6216,7 +6213,7 @@ Event294 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 112),
 	EVENT_SET_VAR(ActionScriptVars.V7, 8832),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 184),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9024),
@@ -6228,15 +6225,15 @@ Event294 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 9552),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.SCARABA_REACHED),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event294[74 + (15 * (const(void)*).sizeof)]),
-	EVENT_START_TASK(&Event294[130 + (24 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event294[74 + 15 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&Event294[130 + 24 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 168),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9648),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 208),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9728),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 152),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9832),
@@ -6249,12 +6246,12 @@ Event294 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_WRAM(&Unknown7E438A, 189),
 	EVENT_WRITE_WORD_WRAM(&Unknown7E438C, 483),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(12),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(8),
 	EVENT_LOOP_END(),
 	EVENT_END_TASK(),
@@ -6267,7 +6264,7 @@ Event37 = [
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent37.ptr),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 42),
@@ -6276,18 +6273,18 @@ Event37 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(7728),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event37[34 + (17 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event37[34 + 16 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event37[22 + (12 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event37[22 + 11 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46A9A),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46A9A, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, -6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event37[32 + (15 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event37[22 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event37[32 + 14 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event37[22 + 11 * (const(void)*).sizeof]),
 ].join();
 Event74 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -6297,20 +6294,20 @@ Event74 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(16),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(24),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event191 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)994),
 	EVENT_SHORTCALL(&UnknownC3B70C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event782 = [
@@ -6318,38 +6315,38 @@ Event782 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VAR(ActionScriptVars.V0, 65505),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A98B, cast(ushort)OverworldSprite.NessLyingDown, cast(ushort)ActionScript.Unknown783),
-	EVENT_SHORTCALL(&Event782[41 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event782[41 + 14 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A98B, cast(ushort)OverworldSprite.PAULA_LYING_DOWN, cast(ushort)ActionScript.Unknown783),
-	EVENT_SHORTCALL(&Event782[41 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event782[41 + 14 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A98B, cast(ushort)OverworldSprite.JEFF_LYING_DOWN, cast(ushort)ActionScript.Unknown783),
-	EVENT_SHORTCALL(&Event782[41 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event782[41 + 14 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A98B, cast(ushort)OverworldSprite.POO_LYING_DOWN, cast(ushort)ActionScript.Unknown783),
-	EVENT_SHORTCALL(&Event782[41 + (15 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL(&Event782[41 + 14 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
-	EVENT_SHORTCALL(&Event782[91 + (28 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event782[91 + 27 * (const(void)*).sizeof]),
 	EVENT_PAUSE(179),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
 	EVENT_PAUSE(174),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[59 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event782[75 + (27 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event782[75 + 26 * (const(void)*).sizeof]),
 	EVENT_PAUSE(35),
 	EVENT_SHORT_RETURN(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 22),
 	EVENT_LOOP(12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65534),
 	EVENT_LOOP_END(),
@@ -6357,14 +6354,14 @@ Event782 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
 	EVENT_SHORT_RETURN(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 65505),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
 	EVENT_SHORT_RETURN(),
@@ -6410,7 +6407,7 @@ Event544 = [
 	EVENT_PAUSE(20),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8A0, TextEvent544.ptr),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event783 = [
@@ -6429,25 +6426,25 @@ Event555 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event850 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(200),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event216 = [
@@ -6461,8 +6458,8 @@ Event216 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1784),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10032),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent216.ptr),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -6470,7 +6467,7 @@ Event216 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1608),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10032),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event852 = [
@@ -6478,52 +6475,52 @@ Event852 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(24),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event852[13 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event852[13 + 4 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC34964 = [
@@ -6538,10 +6535,10 @@ Event39 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(-512),
 	EVENT_PAUSE(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntity, cast(ushort)7792, cast(ushort)344, cast(ubyte)6),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -6549,65 +6546,65 @@ Event467 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_LOOP(10),
 	EVENT_PAUSE(3),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
 	EVENT_SHORTCALL_CONDITIONAL(&Event35[0]),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, Direction.Up, Direction.Right, Direction.Down, Direction.Left),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_SHORTJUMP(&Event467[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)Direction.Up, cast(short)Direction.Right, cast(short)Direction.Down, cast(short)Direction.Left),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_SHORTJUMP(&Event467[6 + 3 * (const(void)*).sizeof]),
 ].join();
 Event21 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event21[30 + (16 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC09FA8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event21[30 + 16 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC09FA8, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)32),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event21[30 + (16 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event21[30 + 16 * (const(void)*).sizeof]),
 	EVENT_LOOP(4),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Left),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Right),
 	EVENT_PAUSE(10),
 	EVENT_LOOP_END(),
-	EVENT_SHORTJUMP(&Event21[3 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event21[3 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2),
 	EVENT_PAUSE(15),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_SHORTJUMP(&Event21[43 + (19 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event21[3 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event21[43 + 19 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event21[3 + 3 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event21[41 + (17 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event21[41 + 17 * (const(void)*).sizeof]),
 ].join();
 Event450 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event347 = [
@@ -6616,12 +6613,12 @@ Event347 = [
 	EVENT_PAUSE(8),
 	EVENT_SET_Y_RELATIVE(1),
 	EVENT_PAUSE(8),
-	EVENT_SHORTJUMP(&Event347[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event347[1 + 1 * (const(void)*).sizeof]),
 ].join();
 Event123 = [
 	EVENT_SET_X(5960),
 	EVENT_SET_Y(5968),
-	EVENT_SHORTJUMP(&Event126[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event126[6]),
 ].join();
 Event288 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -6632,8 +6629,8 @@ Event288 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)741),
 	EVENT_SHORTCALL(&UnknownC3B70C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event490 = [
@@ -6645,7 +6642,7 @@ Event591 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 12),
 	EVENT_SET_VAR(ActionScriptVars.V3, 32),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -6654,22 +6651,22 @@ Event591 = [
 	EVENT_HALT(),
 ].join();
 UnknownC42802 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2F, ),
 	EVENT_PAUSE(2),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC42802[0]),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C, ),
 	EVENT_END_TASK(),
 ].join();
 Event409 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SHORTCALL(&UnknownC33399[0]),
-	EVENT_SHORTJUMP(&Event409[5 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event409[5 + 1 * (const(void)*).sizeof]),
 ].join();
 Event316 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
@@ -6679,7 +6676,7 @@ Event316 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(12),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event585 = [
@@ -6697,14 +6694,14 @@ Event585 = [
 Event734 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7936),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3088),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event730Entry2[0]),
 ].join();
 Event794 = [
@@ -6712,7 +6709,7 @@ Event794 = [
 	EVENT_SET_ANIMATION(4),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event794[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event794[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(-21),
 	EVENT_SET_X_VELOCITY(226),
 	EVENT_PAUSE(150),
@@ -6724,10 +6721,10 @@ Event113 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 80),
 	EVENT_SET_VAR(ActionScriptVars.V3, 192),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
@@ -6736,10 +6733,10 @@ Event113 = [
 ].join();
 UnknownC32138 = [
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(23),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -6749,7 +6746,7 @@ Event562 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SHORTCALL(&UnknownC348C4[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_START_TASK(&UnknownC34964[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
@@ -6760,14 +6757,14 @@ Event562 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(50),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_VAR(ActionScriptVars.V6, 384),
@@ -6775,15 +6772,15 @@ Event562 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(50),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_VAR(ActionScriptVars.V6, 400),
@@ -6794,30 +6791,30 @@ Event562 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_PAUSE(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event562[151 + (27 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event562[151 + 27 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event78 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 40),
 	EVENT_SET_VAR(ActionScriptVars.V3, 40),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -6834,7 +6831,7 @@ Event78 = [
 Event414 = [
 	EVENT_SET_X(4728),
 	EVENT_SET_Y(5728),
-	EVENT_SHORTJUMP(&Event412[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event412[6]),
 ].join();
 Event114 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
@@ -6844,7 +6841,7 @@ Event114 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event261 = [
@@ -6855,7 +6852,7 @@ Event261 = [
 	EVENT_SET_Z_VELOCITY(128),
 	EVENT_PAUSE(160),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
@@ -6871,7 +6868,7 @@ Event261 = [
 	EVENT_SET_Z_VELOCITY(-128),
 	EVENT_PAUSE(48),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event711 = [
@@ -6881,7 +6878,7 @@ Event711 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 3456),
 	EVENT_SET_VAR(ActionScriptVars.V1, 3800),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
@@ -6892,12 +6889,12 @@ Event711 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)106),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_20A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event711[31 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event711[31 + 7 * (const(void)*).sizeof]),
 	EVENT_SET_PRIORITY(3),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)106),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event711[45 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event711[45 + 11 * (const(void)*).sizeof]),
 ].join();
 UnknownC30A1F = [
 	EVENT_SET_Z_VELOCITY(512),
@@ -6912,22 +6909,22 @@ UnknownC30A1F = [
 Event824 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(120),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event193 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)1),
@@ -6957,35 +6954,35 @@ Event540 = [
 	EVENT_HALT(),
 ].join();
 Event29 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 3),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)88, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event29[28 + (21 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 8, Direction.Up, Direction.UpRight, Direction.Right, Direction.DownRight, Direction.Down, Direction.DownLeft, Direction.Left, Direction.UpLeft),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event29[45 + 13 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)8, cast(short)Direction.Up, cast(short)Direction.UpRight, cast(short)Direction.Right, cast(short)Direction.DownRight, cast(short)Direction.Down, cast(short)Direction.DownLeft, cast(short)Direction.Left, cast(short)Direction.UpLeft),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6A2, cast(ushort)24),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Left),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Right),
 	EVENT_PAUSE(10),
-	EVENT_SHORTJUMP(&Event29[10 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event29[10 + 4 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
-	EVENT_SHORTJUMP(&Event29[34 + (25 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event29[10 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry3),
+	EVENT_SHORTJUMP(&Event29[51 + 17 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event29[10 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry3, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event29[32 + (23 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event29[49 + 15 * (const(void)*).sizeof]),
 ].join();
 Event189 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
@@ -6996,7 +6993,7 @@ Event189 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)994),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3AAEA = [
@@ -7004,7 +7001,7 @@ UnknownC3AAEA = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A1B7[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -7019,20 +7016,20 @@ Event303 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_003),
-	EVENT_SHORTCALL_CONDITIONAL(&Event303[17 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event303[17 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)254),
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)254),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event303[26 + (9 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event303[26 + 9 * (const(void)*).sizeof]),
 ].join();
 Event58 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 80),
 	EVENT_SET_VAR(ActionScriptVars.V3, 80),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -7041,8 +7038,8 @@ Event58 = [
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_021),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_VAR(ActionScriptVars.V4, 5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -7053,28 +7050,28 @@ Event58 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event24 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
 	EVENT_PAUSE(16),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.None),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event24[15 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event24[15 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_SHORTJUMP(&Event24[26 + (10 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event24[6 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_SHORTJUMP(&Event24[26 + 10 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event24[6 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event24[24 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event24[24 + 8 * (const(void)*).sizeof]),
 ].join();
 Event525 = [
 	EVENT_SHORTCALL(&UnknownC40F59[0]),
@@ -7084,7 +7081,7 @@ Event525 = [
 Event789 = [
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
 	EVENT_SHORTCALL_CONDITIONAL(&UnknownC42235[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0ED5C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0ED5C, ),
 	EVENT_END(),
 ].join();
 Event369 = [
@@ -7097,12 +7094,12 @@ Event369 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C2B),
 	EVENT_SET_VAR(ActionScriptVars.V2, 0),
-	EVENT_START_TASK(&UnknownC31E2D[18 + (7 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC31E2D[18 + 6 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)1),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V2),
-	EVENT_SHORTCALL_CONDITIONAL(&Event369[30 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event369[30 + 6 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent369.ptr),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -7114,15 +7111,15 @@ Event842 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(180),
 	EVENT_LOOP(2),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(20),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(40),
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
@@ -7133,7 +7130,7 @@ Event842 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event704 = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PRIORITY(3),
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
@@ -7141,13 +7138,13 @@ Event882 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F3),
-	EVENT_SHORTCALL_CONDITIONAL(&Event882[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event882[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4576),
 	EVENT_SET_VAR(ActionScriptVars.V1, 3552),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event882[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event882[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer20.ptr),
 	EVENT_HALT(),
@@ -7157,24 +7154,24 @@ Event65 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&UnknownC3B431[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent65.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event65[20 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event65[20 + 5 * (const(void)*).sizeof]),
 ].join();
 UnknownC3A1DF = [
 	EVENT_PAUSE(2),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[22 + (10 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[22 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC33549 = [
@@ -7186,7 +7183,7 @@ UnknownC33549 = [
 	EVENT_PAUSE(2),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(45),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, 0, 12),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)0, cast(short)12),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SHORTJUMP(&UnknownC33549[0]),
 ].join();
@@ -7196,7 +7193,7 @@ Event183 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)373),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event345 = [
@@ -7213,7 +7210,7 @@ Event345 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event399 = [
@@ -7227,8 +7224,8 @@ Event399 = [
 	EVENT_PAUSE(30),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
@@ -7236,13 +7233,13 @@ Event399 = [
 	EVENT_SET_Y_VELOCITY(10),
 	EVENT_PAUSE(120),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
@@ -7252,12 +7249,12 @@ Event399 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
@@ -7266,39 +7263,39 @@ Event399 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(90),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(30),
 	EVENT_PAUSE(180),
@@ -7312,11 +7309,11 @@ UnknownC333BB = [
 	EVENT_SHORT_RETURN(),
 ].join();
 Event250 = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 64),
 	EVENT_SET_VAR(ActionScriptVars.V3, 160),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -7345,7 +7342,7 @@ Event250 = [
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_067),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event312 = [
@@ -7358,7 +7355,7 @@ Event312 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5938),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 9),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_END_LAST_TASK(),
 	EVENT_SHORTJUMP(&Event10_11[0]),
 ].join();
@@ -7374,15 +7371,15 @@ Event292 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 2928),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(115),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)1088),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65535),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47333),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47333, ),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_LOOP(12),
 	EVENT_SET_X_VELOCITY(1),
@@ -7392,31 +7389,31 @@ Event292 = [
 	EVENT_LOOP_END(),
 	EVENT_LOOP_END(),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event767 = [
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, 0, 1),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)0, cast(short)1),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&UnknownC3A15E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, Direction.Up, Direction.Right, Direction.Down, Direction.Left),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 3, 4, 6, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)Direction.Up, cast(short)Direction.Right, cast(short)Direction.Down, cast(short)Direction.Left),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)3, cast(short)4, cast(short)6, cast(short)8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 30, 60, 90, 120),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)30, cast(short)60, cast(short)90, cast(short)120),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
-	EVENT_SHORTJUMP(&Event767[12 + (10 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event767[17 + 7 * (const(void)*).sizeof]),
 ].join();
 Event488 = [
 	EVENT_SET_X(600),
@@ -7443,10 +7440,10 @@ Event107 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&UnknownC3A1F3[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 136),
 	EVENT_SET_VAR(ActionScriptVars.V3, 136),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -7455,11 +7452,11 @@ Event107 = [
 	EVENT_HALT(),
 ].join();
 Event449 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46D4B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46D4B, ),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event793 = [
@@ -7467,7 +7464,7 @@ Event793 = [
 	EVENT_SET_ANIMATION(3),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event793[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event793[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(-181),
 	EVENT_SET_X_VELOCITY(469),
 	EVENT_PAUSE(150),
@@ -7479,13 +7476,13 @@ Event874 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1EB),
-	EVENT_SHORTCALL_CONDITIONAL(&Event874[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event874[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1872),
 	EVENT_SET_VAR(ActionScriptVars.V1, 9384),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 24),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event874[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event874[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer12.ptr),
 	EVENT_HALT(),
@@ -7497,8 +7494,8 @@ UnknownC3A209 = [
 Event853 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(60),
@@ -7506,11 +7503,11 @@ Event853 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3AB44 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event285 = [
@@ -7519,8 +7516,8 @@ Event285 = [
 	EVENT_START_TASK(&UnknownC3AFA3[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
-	EVENT_SHORTCALL(&Event285[16 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL(&Event285[16 + 6 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 432),
 	EVENT_SET_VAR(ActionScriptVars.V7, 4336),
@@ -7560,13 +7557,13 @@ Event285 = [
 Event743 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4440),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3568),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_START_TASK(&Event743[41 + (8 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event743[41 + 8 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4400),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3488),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
@@ -7574,12 +7571,12 @@ Event743 = [
 	EVENT_PAUSE(30),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A94E, cast(ushort)1110),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A959, cast(ushort)89),
 	EVENT_PAUSE(3),
-	EVENT_SHORTJUMP(&Event743[41 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event743[41 + 8 * (const(void)*).sizeof]),
 ].join();
 Event623 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
@@ -7596,8 +7593,8 @@ Event623 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 3808),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(20),
@@ -7613,7 +7610,7 @@ Event623 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(8),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 4),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)2),
@@ -7827,7 +7824,7 @@ Event801 = [
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC35231[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4EC6E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4EC6E, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 96),
 	EVENT_SET_VAR(ActionScriptVars.V1, 248),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A99F, cast(ushort)OverworldSprite.INSANE_CULTIST, cast(ushort)ActionScript.Unknown802),
@@ -7884,7 +7881,7 @@ Event801 = [
 	EVENT_WRITE_WORD_TEMPVAR(3),
 	EVENT_SHORTCALL(&UnknownC35231[0]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4EC6E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4EC6E, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 72),
 	EVENT_SET_VAR(ActionScriptVars.V1, 240),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A99F, cast(ushort)OverworldSprite.Tony, cast(ushort)ActionScript.Unknown802),
@@ -8326,18 +8323,18 @@ Event801 = [
 	EVENT_WRITE_WORD_TEMPVAR(40),
 	EVENT_SHORTCALL(&UnknownC35231[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_END(),
 ].join();
 Event3 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A26B),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF027D),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF027D, ),
 	EVENT_SET_TICK_CALLBACK(&UnknownEF031E),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6E3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6E3, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event3[6 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event3[6 + 4 * (const(void)*).sizeof]),
 ].join();
 UnknownC37545 = [
 	EVENT_LOOP(2),
@@ -8351,14 +8348,14 @@ UnknownC37545 = [
 UnknownC427E0 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 1),
 	EVENT_LOOP(12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CBE3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CBE3, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CB8F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CB8F, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V7),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 1),
 	EVENT_LOOP_END(),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C, ),
 	EVENT_END_TASK(),
 ].join();
 Event17 = [
@@ -8371,7 +8368,7 @@ UnknownC3AAC2 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A18F[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -8381,7 +8378,7 @@ Event228 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 7560),
 	EVENT_SET_VAR(ActionScriptVars.V1, 248),
 	EVENT_SHORTCALL(&Event228_229_230_231_232Common[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event337 = [
@@ -8394,7 +8391,7 @@ UnknownC3A272 = [
 	EVENT_END_TASK(),
 ].join();
 Event115_116_117_118_119Common = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC48B3B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC48B3B, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A94E, cast(ushort)253),
 	EVENT_PAUSE(3),
 	EVENT_SHORTJUMP(&Event115_116_117_118_119Common[0]),
@@ -8412,7 +8409,7 @@ Event615 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_BINOP(ActionScriptVars.V6, Binop.add, 65518),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event568 = [
@@ -8429,15 +8426,15 @@ Event568 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7072),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2128),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7056),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event699 = [
@@ -8450,8 +8447,8 @@ Event699 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event699[15 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event699[15 + 4 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_HALT(),
 ].join();
@@ -8469,13 +8466,13 @@ UnknownC415E7 = [
 UnknownC33BFB = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77, ),
 	EVENT_SHORTCALL_CONDITIONAL(&UnknownC33C18[0]),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 1),
-	EVENT_SHORTJUMP(&UnknownC33BFB[8 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC33BFB[8 + 2 * (const(void)*).sizeof]),
 ].join();
 Event507 = [
 	EVENT_SHORTCALL(&UnknownC40F4A[0]),
@@ -8500,7 +8497,7 @@ Event109 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6744),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event426 = [
@@ -8515,38 +8512,38 @@ Event426 = [
 UnknownC40F4A = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A0BB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAFD),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAFD, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event8Entry2 = [
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
 	EVENT_END(),
 ].join();
 Event453_454_Common = [
 	EVENT_SET_PRIORITY(0),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event631 = [
 	EVENT_SHORTCALL(&UnknownC37439[0]),
-	EVENT_SHORTJUMP(&Event632[3 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event632[3 + 1 * (const(void)*).sizeof]),
 ].join();
 Event152 = [
 	EVENT_SHORTCALL(&UnknownC3C94E[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)186),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC30295 = [
@@ -8569,7 +8566,7 @@ UnknownC41A2A = [
 	EVENT_PAUSE(1),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC41A2A[11 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC41A2A[11 + 3 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(5),
 	EVENT_SET_ANIMATION(255),
@@ -8586,7 +8583,7 @@ UnknownC41A2A = [
 ].join();
 Event33 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D77F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D77F, ),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_LOOP(3),
@@ -8595,8 +8592,8 @@ Event33 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_PAUSE(5),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC09451),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC09451, ),
 	EVENT_END(),
 ].join();
 Event512 = [
@@ -8609,20 +8606,20 @@ Event324 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
 	EVENT_LOOP(2),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(30),
-	EVENT_SHORTJUMP(&Event324[7 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event324[7 + 1 * (const(void)*).sizeof]),
 ].join();
 Event541 = [
 	EVENT_SHORTCALL(&UnknownC34E73[0]),
-	EVENT_START_TASK(&Event541[42 + (8 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event541[42 + 8 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 3216),
@@ -8636,24 +8633,24 @@ Event541 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(5),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event541[42 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event541[42 + 8 * (const(void)*).sizeof]),
 ].join();
 Event893 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1FE),
-	EVENT_SHORTCALL_CONDITIONAL(&Event893[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event893[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 400),
 	EVENT_SET_VAR(ActionScriptVars.V1, 7688),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event893[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event893[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer31.ptr),
 	EVENT_HALT(),
@@ -8681,7 +8678,7 @@ Event552 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 0),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6032),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event676 = [
@@ -8690,18 +8687,18 @@ Event676 = [
 	EVENT_SHORTJUMP(&Event676_677_678_Common2[0]),
 ].join();
 Event23 = [
-	EVENT_START_TASK(&Event23[43 + (26 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&UnknownC3A401[20 + (11 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_START_TASK(&Event23[48 + 24 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&UnknownC3A401[20 + 10 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event23[16 + (14 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, Direction.Up, Direction.Down),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event23[21 + 12 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)Direction.Up, cast(short)Direction.Down),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6A2, cast(ushort)32),
-	EVENT_SHORTJUMP(&Event23[7 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event23[7 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_LOOP(15),
 	EVENT_SET_Y_RELATIVE(-1),
@@ -8710,16 +8707,16 @@ Event23 = [
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
-	EVENT_SHORTJUMP(&Event23[34 + (19 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event23[7 + (5 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_SHORTJUMP(&Event23[39 + 17 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event23[7 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)32),
-	EVENT_SHORTJUMP(&Event23[32 + (17 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event23[37 + 15 * (const(void)*).sizeof]),
 	EVENT_LOOP(16),
 	EVENT_SET_X_VELOCITY_RELATIVE(128),
 	EVENT_PAUSE(1),
@@ -8728,7 +8725,7 @@ Event23 = [
 	EVENT_SET_X_VELOCITY_RELATIVE(-128),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
-	EVENT_SHORTJUMP(&Event23[43 + (26 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event23[48 + 24 * (const(void)*).sizeof]),
 ].join();
 Event461 = [
 	EVENT_SHORTCALL(&UnknownC3DBDB[0]),
@@ -8737,7 +8734,7 @@ Event461 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 6200),
 	EVENT_SET_VAR(ActionScriptVars.V7, 72),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event697 = [
@@ -8749,7 +8746,7 @@ UnknownC3AB26 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A03A),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FF1),
 	EVENT_SET_ANIMATION(0),
-	EVENT_START_TASK(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SHORT_RETURN(),
@@ -8758,12 +8755,12 @@ Event741 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC37545[0]),
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3CEB9 = [
@@ -8792,7 +8789,7 @@ UnknownC3CC5C = [
 ].join();
 UnknownC3BD03 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -8805,8 +8802,8 @@ Event342 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 128),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event342[27 + (7 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event342[27 + 7 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event717 = [
@@ -8814,7 +8811,7 @@ Event717 = [
 	EVENT_SET_Y(8784),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 17),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1600),
@@ -8825,7 +8822,7 @@ Event717 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1688),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SHORTCALL(&UnknownC37559[0]),
@@ -8847,7 +8844,7 @@ Event717 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 16),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
@@ -8857,11 +8854,11 @@ Event717 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event195 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4544),
@@ -8880,12 +8877,12 @@ Event271 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)482),
 	EVENT_SHORTCALL(&UnknownC3B70C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event642 = [
 	EVENT_SHORTCALL(&UnknownC3AAFE[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2048),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7120),
@@ -8897,7 +8894,7 @@ Event642 = [
 ].join();
 UnknownC3DFD4 = [
 	EVENT_SET_Y_VELOCITY(32),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 15, 30, 45, 60),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)15, cast(short)30, cast(short)45, cast(short)60),
 ].join();
 Event760 = [
 	EVENT_SET_X(3072),
@@ -8915,7 +8912,7 @@ Event760 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(8),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_LOOP(2),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(8),
@@ -8935,7 +8932,7 @@ Event760 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 1024),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(100),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V6, 3088),
 	EVENT_SET_VAR(ActionScriptVars.V7, 1024),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
@@ -8968,23 +8965,23 @@ Event760 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(4),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 31),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(30),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(7),
 	EVENT_LOOP_END(),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(2),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event400 = [
@@ -9018,8 +9015,8 @@ Event180 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)320),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event180[16 + (7 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event180[16 + 6 * (const(void)*).sizeof]),
 ].join();
 Event192 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -9028,45 +9025,45 @@ Event192 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)994),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65535),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC427A1 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC09F3BEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC09F3BEntry2, ),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC427A1[5 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC427A1[5 + 2 * (const(void)*).sizeof]),
 	EVENT_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CB4F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CB4F, ),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[10 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[10 + 5 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&UnknownC427E0[0]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[14 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[14 + 7 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&UnknownC42802[0]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V2),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[18 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[18 + 9 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&UnknownC42815[0]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V3),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[22 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC427A1[22 + 11 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&UnknownC42828[0]),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC427A1[22 + (11 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC09F71),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC427A1[22 + 11 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC09F71, ),
 	EVENT_WRITE_WORD_WRAM(&Unknown7EB4A8, -1),
 	EVENT_END(),
 ].join();
 Event846 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(180),
 	EVENT_PAUSE(30),
 	EVENT_SHORTJUMP(&UnknownC36834[0]),
 ].join();
 Event213 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5696),
@@ -9082,7 +9079,7 @@ Event354 = [
 	EVENT_WRITE_WORD_TEMPVAR(4),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event536 = [
@@ -9114,20 +9111,20 @@ Event536 = [
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event877 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1EE),
-	EVENT_SHORTCALL_CONDITIONAL(&Event877[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event877[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 3240),
 	EVENT_SET_VAR(ActionScriptVars.V1, 4304),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event877[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event877[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer15.ptr),
 	EVENT_HALT(),
@@ -9164,7 +9161,7 @@ Event47 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event435 = [
@@ -9245,7 +9242,7 @@ Event648 = [
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_Z(32),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.FALLING),
 	EVENT_SET_Y_VELOCITY(146),
@@ -9267,7 +9264,7 @@ Event648 = [
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.TOOK_DAMAGE),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3AAFE = [
@@ -9275,7 +9272,7 @@ UnknownC3AAFE = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A1CB[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -9283,13 +9280,13 @@ Event871 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E8),
-	EVENT_SHORTCALL_CONDITIONAL(&Event871[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event871[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 6484),
 	EVENT_SET_VAR(ActionScriptVars.V1, 312),
 	EVENT_SET_VAR(ActionScriptVars.V2, 20),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event871[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event871[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer09.ptr),
 	EVENT_HALT(),
@@ -9302,17 +9299,17 @@ Event52 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)45),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event52[18 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event52[18 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7112),
 	EVENT_SET_VAR(ActionScriptVars.V7, 872),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_Z_VELOCITY(-256),
 	EVENT_PAUSE(16),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event352 = [
@@ -9320,29 +9317,29 @@ Event352 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(9),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(12),
 	EVENT_LOOP_END(),
 	EVENT_LOOP(9),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(12),
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event352[58 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event352[58 + 8 * (const(void)*).sizeof]),
 	EVENT_LOOP(9),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(12),
 	EVENT_LOOP_END(),
 	EVENT_LOOP(9),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(12),
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event352[6 + (1 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL_CONDITIONAL(&Event352[6]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event857 = [
@@ -9362,7 +9359,7 @@ Event857 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event200 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4416),
@@ -9404,26 +9401,26 @@ Event444 = [
 	EVENT_PAUSE(15),
 	EVENT_SET_X_VELOCITY(-66),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(15),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(15),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
 	EVENT_PAUSE(16),
@@ -9437,21 +9434,21 @@ Event444 = [
 ].join();
 Event496 = [
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!rand),
+	EVENT_CALLROUTINE(&fixArgs!rand, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 127),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SET_PRIORITY(0),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46D23),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46D23, ),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTCALL(&Event495[14 + (7 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTCALL(&Event495[14 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event194 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5688),
@@ -9466,23 +9463,23 @@ Event659 = [
 	EVENT_SHORTCALL(&UnknownC37A7C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(100),
 	EVENT_PAUSE(90),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(12),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(40),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event710 = [
@@ -9497,10 +9494,10 @@ Event169 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(48),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event63 = [
@@ -9509,32 +9506,32 @@ Event63 = [
 	EVENT_START_TASK(&UnknownC3A09F[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(48),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(45),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(48),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(134),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(32),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event560 = [
@@ -9543,33 +9540,33 @@ Event560 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SHORTCALL(&UnknownC348C4[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(3),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_HALT(),
 ].join();
@@ -9586,13 +9583,13 @@ UnknownC415BA = [
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&UnknownC415BA[26 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC415BA[26 + 4 * (const(void)*).sizeof]),
 ].join();
 Event849 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(80),
 	EVENT_PAUSE(120),
 	EVENT_SHORTJUMP(&UnknownC36834[0]),
@@ -9604,7 +9601,7 @@ Event146 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A00C),
 	EVENT_SET_Z(0),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(64),
 	EVENT_PAUSE(200),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
@@ -9634,7 +9631,7 @@ Event146 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)188),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event141 = [
@@ -9644,7 +9641,7 @@ Event141 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7824),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2896),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event233_234_235_236_237 = [
@@ -9656,7 +9653,7 @@ Event233_234_235_236_237 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event301 = [
@@ -9670,18 +9667,18 @@ Event301 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event301[17 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event301[17 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5704),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5640),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorOpen),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event338 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
@@ -9691,13 +9688,13 @@ Event338 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(48),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event134 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 40),
 	EVENT_SET_VAR(ActionScriptVars.V3, 40),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -9708,19 +9705,19 @@ Event134 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3AB67 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B37),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B37, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8D1),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3AB67[6 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8D1, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3AB67[6 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -9731,14 +9728,14 @@ Event308 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 3736),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9696),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event41 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(1),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.PHONE_RING),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(24),
@@ -9760,7 +9757,7 @@ Event41 = [
 	EVENT_PAUSE(6),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(6),
-	EVENT_SHORTJUMP(&Event41[5 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event41[5 + 2 * (const(void)*).sizeof]),
 ].join();
 Event170 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -9770,7 +9767,7 @@ Event170 = [
 	EVENT_SET_Z(192),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_WRITE_WORD_TEMPVAR(6),
@@ -9786,7 +9783,7 @@ Event170 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5368),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3088),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_Z_VELOCITY(-48),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5056),
@@ -9794,15 +9791,15 @@ Event170 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
 	EVENT_SET_Z_VELOCITY(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V0, 65528),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V2, 2),
 	EVENT_SET_VAR(ActionScriptVars.V3, 3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V3, 6),
@@ -9817,7 +9814,7 @@ Event170 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_DWORD_WRAM(&Unknown7E9D1B, &UndrawFlyoverText),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event664 = [
@@ -9826,27 +9823,27 @@ Event664 = [
 	EVENT_SET_Y_RELATIVE(32),
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_HALT(),
 ].join();
 UnknownC348C4 = [
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(20),
 	EVENT_LOOP(3),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(14),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(14),
 	EVENT_LOOP_END(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(20),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -9855,7 +9852,7 @@ Event55 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A17B[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2128),
 	EVENT_SET_VAR(ActionScriptVars.V1, 128),
 	EVENT_SET_VAR(ActionScriptVars.V2, 12),
@@ -9872,7 +9869,7 @@ UnknownC41974 = [
 	EVENT_PAUSE(4),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(4),
-	EVENT_SHORTJUMP(&UnknownC41974[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC41974[6]),
 ].join();
 Event219 = [
 	EVENT_SET_X(1240),
@@ -9881,27 +9878,27 @@ Event219 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1432),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10032),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&UnknownC3B431[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent219.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event219[50 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event219[50 + 10 * (const(void)*).sizeof]),
 ].join();
 Event735 = [
 	EVENT_SET_X(7728),
@@ -9916,7 +9913,7 @@ Event735 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 3080),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event520 = [
@@ -9929,20 +9926,20 @@ Event658 = [
 	EVENT_PAUSE(32),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(32),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(120),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event94 = [
@@ -9960,10 +9957,10 @@ Event385 = [
 	EVENT_SET_Y_VELOCITY(-34),
 	EVENT_LOOP(2),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(30),
 	EVENT_LOOP_END(),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -9989,7 +9986,7 @@ Event385 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(15),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(60),
 	EVENT_PAUSE(30),
 	EVENT_PAUSE(120),
@@ -10072,7 +10069,7 @@ Event385 = [
 	EVENT_PAUSE(15),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(15),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
@@ -10095,7 +10092,7 @@ Event385 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
@@ -10105,11 +10102,11 @@ Event385 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
@@ -10121,7 +10118,7 @@ Event385 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
@@ -10133,7 +10130,7 @@ Event385 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(75),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
@@ -10160,13 +10157,13 @@ Event539 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event744 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC37545[0]),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 16),
@@ -10180,7 +10177,7 @@ Event744 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event587 = [
@@ -10203,7 +10200,7 @@ Event64 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2408),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7144),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event65[0]),
 ].join();
 Event361 = [
@@ -10228,14 +10225,14 @@ Event176 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event256 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_090),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event8[0]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_START_TASK(&Event8Entry2[0]),
 	EVENT_SET_ANIMATION(255),
@@ -10246,19 +10243,19 @@ Event256 = [
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent256.ptr),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2, ),
 	EVENT_SET_X(4928),
 	EVENT_SET_Y(10000),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5008),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10000),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event311 = [
@@ -10275,8 +10272,8 @@ Event311 = [
 Event834 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_WRITE_WORD_TEMPVAR(3),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -10284,13 +10281,13 @@ Event834 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 32768),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51, ),
 	EVENT_LOOP(64),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 4096),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)169),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7, ),
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A98B, cast(ushort)OverworldSprite.STAR_MASTER_GUY, cast(ushort)ActionScript.Unknown835),
 	EVENT_SHORTJUMP(&Event35[0]),
@@ -10318,7 +10315,7 @@ Event553 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 0),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6016),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event241 = [
@@ -10340,7 +10337,7 @@ Event241 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7040),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)0),
 	EVENT_PAUSE(4),
@@ -10355,33 +10352,33 @@ Event241 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)254),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event685 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Cursor3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 2),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.and, 7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(4),
-	EVENT_SHORTJUMP(&Event685[7 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event685[7 + 3 * (const(void)*).sizeof]),
 ].join();
 Event885 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event885[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event885[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 7120),
 	EVENT_SET_VAR(ActionScriptVars.V1, 9092),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event885[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event885[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer23.ptr),
 	EVENT_HALT(),
@@ -10395,7 +10392,7 @@ Event716 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event190 = [
@@ -10403,14 +10400,14 @@ Event190 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent190.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_HALT(),
 ].join();
 Event46 = [
@@ -10435,7 +10432,7 @@ Event46 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2088),
 	EVENT_SET_VAR(ActionScriptVars.V7, 296),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event477 = [
@@ -10454,8 +10451,8 @@ Event477 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)7),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event445 = [
@@ -10480,15 +10477,15 @@ Event445 = [
 Event687 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Cursor3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 2),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.and, 7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(5),
-	EVENT_SHORTJUMP(&Event687[7 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event687[7 + 3 * (const(void)*).sizeof]),
 ].join();
 Event254 = [
 	EVENT_SET_X_RELATIVE(7),
@@ -10504,13 +10501,13 @@ Event254 = [
 	EVENT_SET_Z_VELOCITY(-128),
 	EVENT_PAUSE(64),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event148 = [
 	EVENT_SHORTCALL(&UnknownC3C90C[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)191),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event614 = [
@@ -10524,7 +10521,7 @@ Event614 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5984),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event282 = [
@@ -10540,73 +10537,73 @@ Event844 = [
 	EVENT_PAUSE(72),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event674 = [
-	EVENT_SHORTCALL(&Event674[43 + (21 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event674[52 + 17 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_210),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 400, 600, 1200, 1800),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)400, cast(short)600, cast(short)1200, cast(short)1800),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlCountdown),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + 1 * (const(void)*).sizeof]),
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlFlag),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + (1 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + 1 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 248),
 	EVENT_SET_VAR(ActionScriptVars.V3, 248),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event674[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event674[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V2, 4),
 	EVENT_SET_VAR(ActionScriptVars.V3, 4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event674[40 + (17 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event674[49 + 13 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_210),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextHotSpringEnergized.ptr),
-	EVENT_SHORTCALL(&Event674[52 + (27 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event674[1 + (1 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_SHORTCALL(&Event674[61 + 22 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event674[1 + 1 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&Event8Entry2[0]),
 	EVENT_SHORT_RETURN(),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2),
-	EVENT_START_TASK(&Event674[95 + (38 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2, ),
+	EVENT_START_TASK(&Event674[104 + 32 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.SPRAY),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(180),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(8),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(4),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[95 + (38 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[104 + 32 * (const(void)*).sizeof]),
 ].join();
 Event313 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -10667,33 +10664,33 @@ Event557 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7616),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event690 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_SHORTCALL(&UnknownC383BC[0]),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 2),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.and, 7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(5),
 	EVENT_LOOP_END(),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
 	EVENT_SHORTCALL(&UnknownC3835D[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Cursor4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event755 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
 	EVENT_SHORTCALL(&UnknownC37545[0]),
 	EVENT_HALT(),
 ].join();
@@ -10702,7 +10699,7 @@ Event796 = [
 	EVENT_SET_ANIMATION(6),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event796[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event796[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(539),
 	EVENT_SET_X_VELOCITY(-612),
 	EVENT_PAUSE(150),
@@ -10723,36 +10720,36 @@ Event707 = [
 UnknownC3A0D8 = [
 	EVENT_PAUSE(9),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(9),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[0]),
 	EVENT_PAUSE(6),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(6),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[11 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[11 + 3 * (const(void)*).sizeof]),
 	EVENT_PAUSE(2),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(2),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[22 + (10 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[22 + 6 * (const(void)*).sizeof]),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[41 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[41 + 11 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_SHORTJUMP(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_SHORTJUMP(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 ].join();
 Event815 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
@@ -10776,7 +10773,7 @@ Event158 = [
 	EVENT_SET_Z(192),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)4),
 	EVENT_SET_VAR(ActionScriptVars.V5, 4),
 	EVENT_WRITE_WORD_TEMPVAR(2),
@@ -10796,16 +10793,16 @@ Event158 = [
 UnknownC3AB59 = [
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3AB59[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3AB59[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event845 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(80),
 	EVENT_SHORTJUMP(&UnknownC36834[0]),
 ].join();
@@ -10877,7 +10874,7 @@ UnknownC41253 = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41253[12 + (0 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41253[12]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)1),
@@ -10890,7 +10887,7 @@ UnknownC41253 = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41253[45 + (7 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41253[45 + 7 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)1),
 	EVENT_PAUSE(5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
@@ -10937,13 +10934,13 @@ UnknownC41253 = [
 	EVENT_WRITE_WORD_WRAM(&Unknown7EB4B4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41253[157 + (31 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41253[157 + 31 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41253[174 + (37 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&UnknownC41253[57 + (11 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41253[174 + 36 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&UnknownC41253[57 + 11 * (const(void)*).sizeof]),
 ].join();
 Event543 = [
 	EVENT_SHORTCALL(&UnknownC34E73[0]),
@@ -10960,20 +10957,20 @@ Event543 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_Y_VELOCITY(1),
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event44 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event440 = [
@@ -10987,7 +10984,7 @@ Event440 = [
 	EVENT_SET_X_RELATIVE(-6),
 	EVENT_SET_Y_RELATIVE(-8),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event440[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event440[14 + 2 * (const(void)*).sizeof]),
 ].join();
 Event231 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7544),
@@ -11002,7 +10999,7 @@ Event726 = [
 	EVENT_SET_Y(7056),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -11042,31 +11039,31 @@ Event713 = [
 	EVENT_PAUSE(6),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)106),
 	EVENT_SET_Y_RELATIVE(-24),
 	EVENT_SET_X_RELATIVE(-8),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_20A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event713[61 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event713[61 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_PRIORITY(3),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)106),
 	EVENT_SET_Y_RELATIVE(-24),
 	EVENT_SET_X_RELATIVE(8),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event713[78 + (10 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event713[78 + 9 * (const(void)*).sizeof]),
 ].join();
 Event2 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A26B),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03DAA),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC04EF0),
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03DAA, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC04EF0, ),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision, ),
 	EVENT_SET_TICK_CALLBACK(&UnknownC04D78),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6E3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6E3, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event2[8 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event2[8 + 6 * (const(void)*).sizeof]),
 ].join();
 Event458 = [
 	EVENT_SHORTCALL(&UnknownC3DBDB[0]),
@@ -11075,24 +11072,24 @@ Event458 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 4544),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10008),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event705_706_Common = [
 	EVENT_LOOP(11),
 	EVENT_SET_VAR(ActionScriptVars.V0, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2),
 	EVENT_PAUSE(4),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
 	EVENT_END_TASK(),
 ].join();
 Event209 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 3112),
@@ -11111,8 +11108,8 @@ Event807 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_LOOP(3),
 	EVENT_SET_ANIMATION(0),
 	EVENT_PAUSE(10),
@@ -11127,7 +11124,7 @@ Event792 = [
 	EVENT_SET_ANIMATION(2),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event792[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event792[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(-341),
 	EVENT_SET_X_VELOCITY(711),
 	EVENT_PAUSE(150),
@@ -11139,8 +11136,8 @@ Event255 = [
 	EVENT_SET_X_RELATIVE(7),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event162 = [
@@ -11151,7 +11148,7 @@ Event162 = [
 	EVENT_SET_Z(0),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(32),
 	EVENT_PAUSE(240),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -11179,11 +11176,11 @@ Event162 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)187),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event184 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
@@ -11223,7 +11220,7 @@ Event184 = [
 ].join();
 UnknownC3AB8A = [
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
 	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3AB8A[0]),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -11250,12 +11247,12 @@ UnknownC4119D = [
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4119D[16 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4119D[16]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(255),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(169),
-	EVENT_SHORTJUMP(&UnknownC4119D[4 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4119D[4]),
 ].join();
 Event622 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)1),
@@ -11265,40 +11262,40 @@ Event622 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_LOOP(4),
 	EVENT_SET_VAR(ActionScriptVars.V0, 13),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(7),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(7),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 3),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V2, 6),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V1, 6),
 	EVENT_SET_VAR(ActionScriptVars.V2, 2),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F),
-	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F, ),
+	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event822 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event600 = [
@@ -11309,13 +11306,13 @@ Event600 = [
 	EVENT_START_TASK(&UnknownC3A20E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_START_TASK(&UnknownC36D18[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&Event20[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&Event20[6 + 4 * (const(void)*).sizeof]),
 ].join();
 Event25 = [
-	EVENT_START_TASK(&Event25[38 + (20 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&UnknownC3A401[20 + (11 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_START_TASK(&Event25[38 + 20 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&UnknownC3A401[20 + 10 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -11323,21 +11320,21 @@ Event25 = [
 	EVENT_PAUSE(16),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.None),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event25[17 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event25[17 + 7 * (const(void)*).sizeof]),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_SHORTJUMP(&Event25[29 + (13 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event25[7 + (5 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_SHORTJUMP(&Event25[29 + 13 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event25[7 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)32),
-	EVENT_SHORTJUMP(&Event25[27 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event25[27 + 11 * (const(void)*).sizeof]),
 	EVENT_LOOP(16),
 	EVENT_SET_X_VELOCITY_RELATIVE(64),
 	EVENT_PAUSE(1),
@@ -11346,7 +11343,7 @@ Event25 = [
 	EVENT_SET_X_VELOCITY_RELATIVE(-64),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
-	EVENT_SHORTJUMP(&Event25[38 + (20 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event25[38 + 20 * (const(void)*).sizeof]),
 ].join();
 Event546 = [
 	EVENT_SHORTCALL(&UnknownC34E73[0]),
@@ -11356,7 +11353,7 @@ Event546 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 312),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(50),
-	EVENT_CALLROUTINE(&fixArgs!DecompNintendoPresentation),
+	EVENT_CALLROUTINE(&fixArgs!DecompNintendoPresentation, ),
 	EVENT_WRITE_BYTE_WRAM(&TM_MIRROR, 23),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1128),
 	EVENT_SET_VAR(ActionScriptVars.V7, 336),
@@ -11369,15 +11366,15 @@ Event546 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(40),
 	EVENT_WRITE_WORD_TEMPVAR(3),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(40),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event420 = [
@@ -11402,35 +11399,35 @@ Event460 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1512),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10008),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(80),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event832 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_LOOP(3),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(50),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(14),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(14),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(14),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
@@ -11441,7 +11438,7 @@ Event832 = [
 ].join();
 Event371 = [
 	EVENT_SHORTCALL(&UnknownC31D4F[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(80),
 	EVENT_SET_VAR(ActionScriptVars.V4, 40),
@@ -11463,14 +11460,14 @@ Event371 = [
 	EVENT_PAUSE(8),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(90),
-	EVENT_SHORTJUMP(&Event370[32 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event370[32 + 2 * (const(void)*).sizeof]),
 ].join();
 Event759 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_HALT(),
@@ -11482,10 +11479,10 @@ Event519 = [
 Event500 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A643, cast(ushort)1311),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0C87),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[12 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0C87, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event499_500_Common[12 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event499_500_Common[0]),
 ].join();
 UnknownC41822 = [
@@ -11497,7 +11494,7 @@ UnknownC41822 = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41822[12 + (0 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41822[12]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
@@ -11506,7 +11503,7 @@ UnknownC41822 = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41822[35 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41822[35 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(20),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
@@ -11521,28 +11518,28 @@ UnknownC41822 = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[70 + (14 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[70 + 12 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[82 + (18 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[82 + 16 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[94 + (22 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[94 + 20 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[106 + (26 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[106 + 24 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[118 + (30 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&UnknownC41822[52 + (10 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41822[118 + 28 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&UnknownC41822[52 + 10 * (const(void)*).sizeof]),
 ].join();
 Event657 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -11561,13 +11558,13 @@ Event605 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&UnknownC36E41[0]),
 	EVENT_SHORTJUMP(&Event8Entry2[0]),
 ].join();
 Event103 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 104),
 	EVENT_SET_VAR(ActionScriptVars.V3, 96),
 	EVENT_SHORTCALL(&UnknownC3BD03[0]),
@@ -11580,12 +11577,12 @@ Event103 = [
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65512),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_13A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event103[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event103[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6656),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event103[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event103[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_HALT(),
@@ -11603,30 +11600,30 @@ Event611 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_BINOP(ActionScriptVars.V6, Binop.add, 65518),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event31 = [
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Down),
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)16, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event31[12 + (5 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event31[19 + (10 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event31[12 + (5 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event31[12 + 5 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event31[19 + 10 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event31[12 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
 	EVENT_PAUSE(60),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(12),
-	EVENT_SHORTJUMP(&Event31[17 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event31[17 + 8 * (const(void)*).sizeof]),
 ].join();
 Event350 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -11635,12 +11632,12 @@ Event350 = [
 	EVENT_SET_X_VELOCITY(-32),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event423 = [
@@ -11658,8 +11655,8 @@ Event627 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTJUMP(&UnknownC3A17B[0]),
 ].join();
 Event826 = [
@@ -11668,8 +11665,8 @@ Event826 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_LOOP(2),
 	EVENT_SHORTCALL(&UnknownC362C0[0]),
 	EVENT_SET_X_RELATIVE(8),
@@ -11689,7 +11686,7 @@ Event770 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 24),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)254),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
@@ -11700,7 +11697,7 @@ Event770 = [
 	EVENT_END_LAST_TASK(),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event610 = [
@@ -11720,18 +11717,18 @@ Event392 = [
 UnknownC3A0B2 = [
 	EVENT_PAUSE(24),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(24),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORTJUMP(&UnknownC3A0B2[0]),
 ].join();
 UnknownC37439 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5654),
@@ -11748,7 +11745,7 @@ Event471 = [
 ].join();
 Event273 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_VAR(ActionScriptVars.V0, 5824),
 	EVENT_SET_VAR(ActionScriptVars.V1, 1232),
@@ -11764,7 +11761,7 @@ Event273 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 7),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
@@ -11772,7 +11769,7 @@ Event273 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5824),
 	EVENT_SET_VAR(ActionScriptVars.V7, 1288),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -11792,16 +11789,16 @@ Event273 = [
 Event736 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_LOOP(6),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, Direction.Down, Direction.Right, Direction.Left, Direction.Down),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)Direction.Down, cast(short)Direction.Right, cast(short)Direction.Left, cast(short)Direction.Down),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(50),
 	EVENT_LOOP_END(),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event330 = [
@@ -11832,10 +11829,10 @@ Event295 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VAR(ActionScriptVars.V4, 9),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.SCARABA_REACHED),
-	EVENT_SHORTCALL_CONDITIONAL(&Event295[23 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event295[23 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 16),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
@@ -11843,15 +11840,15 @@ Event295 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event295[34 + (9 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event295[34 + 7 * (const(void)*).sizeof]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event691 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_SET_VAR(ActionScriptVars.V2, 10),
 	EVENT_SHORTCALL(&UnknownC383BC[0]),
@@ -11859,15 +11856,15 @@ Event691 = [
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 2),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.and, 7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Cursor4),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V2),
 	EVENT_BINOP(ActionScriptVars.V2, Binop.add, 2),
 	EVENT_LOOP_END(),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
 	EVENT_SHORTCALL(&UnknownC3835D[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event729 = [
@@ -11875,7 +11872,7 @@ Event729 = [
 	EVENT_SET_Y(3032),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -11889,7 +11886,7 @@ Event729 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7728),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Unknown61),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Unknown61),
 	EVENT_PAUSE(40),
@@ -11932,13 +11929,13 @@ Event293 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7216),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3304),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event701 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5616),
@@ -11949,7 +11946,7 @@ Event701 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5596),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5984),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 20),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
@@ -11958,7 +11955,7 @@ Event701 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 5992),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
@@ -11970,11 +11967,11 @@ Event701 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5544),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3AAAA = [
@@ -11988,7 +11985,7 @@ UnknownC3AAAA = [
 Event128 = [
 	EVENT_SET_X(5440),
 	EVENT_SET_Y(5856),
-	EVENT_SHORTJUMP(&Event131[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event131[6]),
 ].join();
 Event644 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -12006,8 +12003,8 @@ Event644 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)7),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event336 = [
@@ -12019,14 +12016,14 @@ Event336 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)741),
 	EVENT_SHORTCALL(&UnknownC3B70C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event364 = [
 	EVENT_SET_X(6936),
 	EVENT_SET_Y(8520),
-	EVENT_SHORTJUMP(&Event358[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event358[6]),
 ].join();
 UnknownC4121F = [
 	EVENT_SET_ANIMATION(255),
@@ -12045,36 +12042,36 @@ UnknownC4121F = [
 	EVENT_PAUSE(10),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4121F[20 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4121F[20]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(122),
-	EVENT_SHORTJUMP(&UnknownC4121F[4 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4121F[4]),
 ].join();
 UnknownC4220E = [
 	EVENT_SET_ANIMATION_POINTER(&UnknownE1CF9D[0][0]),
 	EVENT_SET_DRAW_CALLBACK(&UnknownC0A0FA),
 	EVENT_SET_PRIORITY(1),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A0BB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0EE53),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0EE53, ),
 	EVENT_SHORT_RETURN(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0ED14),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0ED14, ),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0ED39),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0ED39, ),
 	EVENT_END_TASK(),
 ].join();
 Event60 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 24),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent60.ptr),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_VAR(ActionScriptVars.V4, 5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -12093,13 +12090,13 @@ Event60 = [
 Event362 = [
 	EVENT_SET_X(6928),
 	EVENT_SET_Y(8560),
-	EVENT_SHORTJUMP(&Event361[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event361[6]),
 ].join();
 Event57 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 80),
 	EVENT_SET_VAR(ActionScriptVars.V3, 80),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -12108,8 +12105,8 @@ Event57 = [
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_020),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_VAR(ActionScriptVars.V4, 5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -12128,12 +12125,12 @@ Event492 = [
 	EVENT_SET_Y_RELATIVE(8),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)252),
 	EVENT_SET_Y_RELATIVE(8),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event492[12 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event492[12 + 4 * (const(void)*).sizeof]),
 ].join();
 Event594 = [
 	EVENT_SET_X(5424),
@@ -12141,12 +12138,12 @@ Event594 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(90),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(15),
 	EVENT_SET_VAR(ActionScriptVars.V4, 5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -12162,7 +12159,7 @@ Event259 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)254),
 	EVENT_SET_X_RELATIVE(-8),
 	EVENT_SET_Y_RELATIVE(-8),
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2, ),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
 	EVENT_START_TASK(&UnknownC3AFA3[0]),
@@ -12175,23 +12172,23 @@ Event259 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_BINOP(ActionScriptVars.V6, Binop.add, 17),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)795),
 	EVENT_BINOP(ActionScriptVars.V6, Binop.add, 65528),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 8),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65520),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.MenuOpenClose),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event305 = [
@@ -12202,11 +12199,11 @@ Event305 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 4944),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3A47C = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
 	EVENT_END(),
 ].join();
 Event745 = [
@@ -12218,7 +12215,7 @@ Event698 = [
 	EVENT_SHORTJUMP(&Event696_697_698_Common[0]),
 ].join();
 UnknownC3C227 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC48B3B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC48B3B, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A94E, cast(ushort)839),
 	EVENT_PAUSE(3),
 	EVENT_SHORTJUMP(&UnknownC3C227[0]),
@@ -12254,15 +12251,15 @@ Event464 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5480),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9000),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(80),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event524 = [
@@ -12273,16 +12270,16 @@ Event524 = [
 Event126 = [
 	EVENT_SET_X(6024),
 	EVENT_SET_Y(5992),
-	EVENT_SHORTCALL(&Event126[8 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event126[8 + 2 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event126[18 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event126[18 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -12295,13 +12292,13 @@ Event867 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E4),
-	EVENT_SHORTCALL_CONDITIONAL(&Event867[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event867[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2228),
 	EVENT_SET_VAR(ActionScriptVars.V1, 6552),
 	EVENT_SET_VAR(ActionScriptVars.V2, 28),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event867[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event867[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer05.ptr),
 	EVENT_HALT(),
@@ -12309,34 +12306,34 @@ Event867 = [
 UnknownC42235 = [
 	EVENT_PAUSE(150),
 	EVENT_PAUSE(30),
-	EVENT_START_TASK(&UnknownC4220E[7 + (4 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC4220E[7 + 4 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0EC77),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0EC77, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_SET_VAR(ActionScriptVars.V1, 8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 14),
 	EVENT_LOOP(14),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0EDDA),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0EDDA, ),
 	EVENT_PAUSE(2),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(32),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0ECB7),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0ECB7, ),
 	EVENT_LOOP(165),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC426ED),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC426ED, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49740),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49740, ),
 	EVENT_WRITE_WORD_TEMPVAR(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0EC77),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0EC77, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_SET_VAR(ActionScriptVars.V1, 7),
 	EVENT_SET_VAR(ActionScriptVars.V2, 20),
 	EVENT_LOOP(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0EDDA),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0EDDA, ),
 	EVENT_PAUSE(8),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0EDD1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0EDD1, ),
 	EVENT_PAUSE(133),
 	EVENT_END(),
 ].join();
@@ -12356,7 +12353,7 @@ Event784 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&Event8Entry2[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 3, 60, 120, 180),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)3, cast(short)60, cast(short)120, cast(short)180),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SET_X_VELOCITY(32),
 	EVENT_PAUSE(128),
@@ -12369,7 +12366,7 @@ Event784 = [
 	EVENT_PAUSE(20),
 	EVENT_SET_X_VELOCITY(32),
 	EVENT_PAUSE(128),
-	EVENT_SHORTJUMP(&Event784[13 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event784[20 + 5 * (const(void)*).sizeof]),
 ].join();
 Event806 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A055),
@@ -12377,21 +12374,21 @@ Event806 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_Y_RELATIVE(3),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_LOOP(2),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event806[12 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event806[12 + 4 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event307 = [
@@ -12401,16 +12398,16 @@ Event307 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 3616),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9680),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event719 = [
 	EVENT_SET_X(1912),
 	EVENT_SET_Y(8808),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
-	EVENT_START_TASK(&Event719[51 + (10 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event719[51 + 10 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -12425,17 +12422,17 @@ Event719 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A959, cast(ushort)145),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A959, cast(ushort)146),
 	EVENT_PAUSE(3),
-	EVENT_SHORTJUMP(&Event719[51 + (10 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event719[51 + 10 * (const(void)*).sizeof]),
 ].join();
 Event79 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 56),
 	EVENT_SET_VAR(ActionScriptVars.V3, 56),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -12456,7 +12453,7 @@ Event537 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6048),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7592),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AACD),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AACD, ),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6096),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7544),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
@@ -12472,20 +12469,20 @@ Event537 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8A0, TextEvent537.ptr),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event537[54 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event537[54 + 9 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(-1),
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event861 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTJUMP(&UnknownC3A1F3[0]),
 ].join();
 UnknownC41938 = [
@@ -12497,17 +12494,17 @@ UnknownC41938 = [
 	EVENT_PAUSE(4),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC41938[12 + (0 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC41938[12]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_SHORTJUMP(&UnknownC41938[30 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC41938[30 + 4 * (const(void)*).sizeof]),
 ].join();
 Event198 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6200),
@@ -12519,8 +12516,8 @@ Event198 = [
 ].join();
 Event590 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_135),
-	EVENT_SHORTCALL_CONDITIONAL(&Event590[9 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_SHORTCALL_CONDITIONAL(&Event590[9 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SHORTJUMP(&Event8Entry2[0]),
@@ -12549,7 +12546,7 @@ Event590 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event185 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7888),
@@ -12563,14 +12560,14 @@ Event565 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_HALT(),
 ].join();
@@ -12578,8 +12575,8 @@ Event694 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(16),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
@@ -12588,12 +12585,12 @@ Event694 = [
 	EVENT_PAUSE(16),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event694[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event694[6 + 3 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event105 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 56),
 	EVENT_SET_VAR(ActionScriptVars.V3, 96),
 	EVENT_SHORTCALL(&UnknownC3BD03[0]),
@@ -12606,12 +12603,12 @@ Event105 = [
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65504),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_13A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event105[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event105[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(7296),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event105[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event105[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_HALT(),
@@ -12621,7 +12618,7 @@ Event727 = [
 	EVENT_SET_Y(7056),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 14),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -12635,8 +12632,8 @@ Event727 = [
 Event132 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -12648,19 +12645,19 @@ Event132 = [
 	EVENT_PAUSE(4),
 	EVENT_SET_X_RELATIVE(-1),
 	EVENT_PAUSE(4),
-	EVENT_SHORTJUMP(&Event132[28 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event132[28 + 5 * (const(void)*).sizeof]),
 ].join();
 Event242_243 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46A6E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46A6E, ),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(44),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_END_LAST_TASK(),
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
@@ -12669,7 +12666,7 @@ Event798 = [
 	EVENT_SET_ANIMATION(8),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event798[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event798[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(939),
 	EVENT_SET_X_VELOCITY(-1223),
 	EVENT_PAUSE(150),
@@ -12681,37 +12678,37 @@ Event27 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V3, 448),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Up),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CCCC),
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CCCC, ),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event27[24 + (12 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event27[24 + 12 * (const(void)*).sizeof]),
 	EVENT_LOOP(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CD50),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CD50, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
-	EVENT_SHORTJUMP(&Event27[13 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CD50),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
+	EVENT_SHORTJUMP(&Event27[13 + 6 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CD50, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V4),
-	EVENT_SHORTJUMP(&Event27[36 + (20 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event27[36 + (20 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event27[36 + 20 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event27[36 + 20 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CCCC),
-	EVENT_SHORTJUMP(&Event27[13 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CEBE),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CCCC, ),
+	EVENT_SHORTJUMP(&Event27[13 + 6 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CEBE, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event27[29 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event27[29 + 15 * (const(void)*).sizeof]),
 ].join();
 Event90 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_13B),
@@ -12725,24 +12722,24 @@ Event140 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_LOOP(5),
 	EVENT_LOOP(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 160),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event140[21 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event140[21 + 4 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_009),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event837 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -12775,7 +12772,7 @@ Event837 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(40),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_SHORTJUMP(&Event837[10 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event837[10 + 3 * (const(void)*).sizeof]),
 ].join();
 Event593 = [
 	EVENT_SET_X(5392),
@@ -12783,12 +12780,12 @@ Event593 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VAR(ActionScriptVars.V4, 5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -12802,18 +12799,18 @@ Event593 = [
 ].join();
 Event772 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2337),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2667),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2343),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2674),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event616 = [
@@ -12823,7 +12820,7 @@ Event616 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7088),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9584),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event468 = [
@@ -12842,16 +12839,16 @@ UnknownC3B70C = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65535),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3B70C[21 + (9 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3B70C[21 + 8 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47333),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47333, ),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_LOOP(12),
 	EVENT_SET_X_VELOCITY(1),
@@ -12864,55 +12861,55 @@ UnknownC3B70C = [
 	EVENT_SHORT_RETURN(),
 ].join();
 Event860 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2, ),
 	EVENT_PAUSE(15),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(100),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2, ),
 	EVENT_PAUSE(15),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(80),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2, ),
 	EVENT_PAUSE(15),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2, ),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(40),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2, ),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3B2, ),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(20),
-	EVENT_EX_CALLROUTINE(5, &fixArgs!UnknownC0F3B2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_EX_CALLROUTINE(5, &fixArgs!UnknownC0F3B2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(15),
-	EVENT_EX_CALLROUTINE(5, &fixArgs!UnknownC0F3B2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_EX_CALLROUTINE(5, &fixArgs!UnknownC0F3B2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(10),
-	EVENT_EX_CALLROUTINE(3, &fixArgs!UnknownC0F3B2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8),
+	EVENT_EX_CALLROUTINE(3, &fixArgs!UnknownC0F3B2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0F3E8, ),
 	EVENT_PAUSE(8),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2),
-	EVENT_EX_CALLROUTINE(6, &fixArgs!UnknownC0F3E8),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2),
-	EVENT_EX_CALLROUTINE(4, &fixArgs!UnknownC0F3E8),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2),
-	EVENT_EX_CALLROUTINE(3, &fixArgs!UnknownC0F3E8),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3E8),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3E8),
-	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2, ),
+	EVENT_EX_CALLROUTINE(6, &fixArgs!UnknownC0F3E8, ),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2, ),
+	EVENT_EX_CALLROUTINE(4, &fixArgs!UnknownC0F3E8, ),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2, ),
+	EVENT_EX_CALLROUTINE(3, &fixArgs!UnknownC0F3E8, ),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2, ),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3E8, ),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2, ),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3E8, ),
+	EVENT_EX_CALLROUTINE(2, &fixArgs!UnknownC0F3B2, ),
 	EVENT_END(),
 ].join();
 Event621 = [
-	EVENT_SHORTCALL(&Event621[3 + (3 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL(&Event621[3 + 3 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)5),
@@ -12942,46 +12939,46 @@ Event621 = [
 ].join();
 Event448 = [
 	EVENT_SET_PRIORITY(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46D4B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46D4B, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A03A),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A00C),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_START_TASK(&Event448[55 + (19 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_START_TASK(&Event448[55 + 18 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_Z(168),
 	EVENT_SET_Z_VELOCITY(-384),
 	EVENT_PAUSE(26),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(85),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_END_LAST_TASK(),
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
-	EVENT_START_TASK(&Event448[55 + (19 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event448[55 + 18 * (const(void)*).sizeof]),
 	EVENT_SET_Z_VELOCITY(512),
 	EVENT_PAUSE(64),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(3),
-	EVENT_SHORTJUMP(&Event448[55 + (19 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event448[55 + 18 * (const(void)*).sizeof]),
 ].join();
 UnknownC35FCD = [
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
@@ -12995,32 +12992,32 @@ UnknownC35FCD = [
 ].join();
 UnknownC3A20E = [
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_SWITCH_CALL_TEMPVAR(&UnknownC3A20E[10 + (10 * (const(void)*).sizeof)], &UnknownC3A20E[15 + (12 * (const(void)*).sizeof)], &UnknownC3A20E[21 + (14 * (const(void)*).sizeof)], &UnknownC3A20E[32 + (18 * (const(void)*).sizeof)], &UnknownC3A20E[43 + (22 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A20E[3 + (2 * (const(void)*).sizeof)]),
+	EVENT_SWITCH_CALL_TEMPVAR(&UnknownC3A20E[10 + 9 * (const(void)*).sizeof], &UnknownC3A20E[15 + 10 * (const(void)*).sizeof], &UnknownC3A20E[21 + 11 * (const(void)*).sizeof], &UnknownC3A20E[32 + 13 * (const(void)*).sizeof], &UnknownC3A20E[43 + 15 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A20E[3 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&UnknownC3A47C[0]),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORT_RETURN(),
 	EVENT_PAUSE(4),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(4),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORT_RETURN(),
 	EVENT_PAUSE(32),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(32),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORT_RETURN(),
 	EVENT_PAUSE(16),
 	EVENT_SHORT_RETURN(),
@@ -13030,7 +13027,7 @@ UnknownC3AAD6 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A1A3[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -13045,7 +13042,7 @@ UnknownC3C20F = [
 Event377_406 = [
 	EVENT_SET_X(4720),
 	EVENT_SET_Y(5704),
-	EVENT_SHORTJUMP(&Event375_404[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event375_404[6]),
 ].join();
 Event333 = [
 	EVENT_SET_X(5744),
@@ -13075,7 +13072,7 @@ Event618 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7024),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event145 = [
@@ -13086,7 +13083,7 @@ Event145 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)623),
 	EVENT_SHORTCALL(&UnknownC3B70C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3AA2B = [
@@ -13111,7 +13108,7 @@ Event725 = [
 	EVENT_SET_Y(7056),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -13125,8 +13122,8 @@ Event725 = [
 Event848 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(80),
 	EVENT_PAUSE(90),
 	EVENT_SHORTJUMP(&UnknownC36834[0]),
@@ -13134,7 +13131,7 @@ Event848 = [
 Event92 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A87A, cast(ushort)0, cast(ushort)144),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_138),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event92[12 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event92[12 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X_RELATIVE(256),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SHORTCALL(&UnknownC3BB73[0]),
@@ -13172,70 +13169,70 @@ UnknownC3DBDB = [
 ].join();
 Event32 = [
 	EVENT_SHORTCALL(&UnknownC3A401[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
-	EVENT_START_TASK(&Event32[86 + (67 * (const(void)*).sizeof)]),
-	EVENT_START_TASK(&Event32[28 + (13 * (const(void)*).sizeof)]),
-	EVENT_START_TASK(&Event32[60 + (42 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event32[114 + 55 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&Event32[28 + 13 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&Event32[74 + 36 * (const(void)*).sizeof]),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[16 + (9 * (const(void)*).sizeof)], &Event32[16 + (9 * (const(void)*).sizeof)], &Event32[10 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL(&Event32[23 + (12 * (const(void)*).sizeof)]),
+	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[16 + 9 * (const(void)*).sizeof], &Event32[16 + 9 * (const(void)*).sizeof], &Event32[10 + 6 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event32[23 + 12 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
-	EVENT_SHORTJUMP(&Event32[10 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[10 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V1, 1),
-	EVENT_SHORTJUMP(&Event32[10 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[10 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[32 + (16 * (const(void)*).sizeof)], &Event32[50 + (31 * (const(void)*).sizeof)], &Event32[54 + (41 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, 0, 1),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event32[41 + (23 * (const(void)*).sizeof)]),
+	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[32 + 16 * (const(void)*).sizeof], &Event32[64 + 25 * (const(void)*).sizeof], &Event32[68 + 35 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)0, cast(short)1),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event32[46 + 21 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Left),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(-256),
-	EVENT_SHORTJUMP(&Event32[47 + (25 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[52 + 23 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Right),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(256),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 30, 60, 90, 120),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)30, cast(short)60, cast(short)90, cast(short)120),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
-	EVENT_SHORTJUMP(&Event32[28 + (13 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[32 + (16 * (const(void)*).sizeof)], &Event32[34 + (20 * (const(void)*).sizeof)], &Event32[34 + (20 * (const(void)*).sizeof)], &Event32[34 + (20 * (const(void)*).sizeof)], &Event32[32 + (16 * (const(void)*).sizeof)], &Event32[41 + (23 * (const(void)*).sizeof)], &Event32[41 + (23 * (const(void)*).sizeof)], &Event32[41 + (23 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event32[32 + (16 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[28 + 13 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[32 + 16 * (const(void)*).sizeof], &Event32[39 + 18 * (const(void)*).sizeof], &Event32[39 + 18 * (const(void)*).sizeof], &Event32[39 + 18 * (const(void)*).sizeof], &Event32[32 + 16 * (const(void)*).sizeof], &Event32[46 + 21 * (const(void)*).sizeof], &Event32[46 + 21 * (const(void)*).sizeof], &Event32[46 + 21 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event32[32 + 16 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_PAUSE(10),
-	EVENT_SHORTJUMP(&Event32[28 + (13 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[28 + 13 * (const(void)*).sizeof]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[64 + (45 * (const(void)*).sizeof)], &Event32[76 + (56 * (const(void)*).sizeof)], &Event32[80 + (66 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, 0, 1),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event32[70 + (50 * (const(void)*).sizeof)]),
+	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[78 + 39 * (const(void)*).sizeof], &Event32[104 + 44 * (const(void)*).sizeof], &Event32[108 + 54 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)0, cast(short)1),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event32[89 + 42 * (const(void)*).sizeof]),
 	EVENT_SET_Y_VELOCITY(-256),
-	EVENT_SHORTJUMP(&Event32[73 + (50 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[92 + 42 * (const(void)*).sizeof]),
 	EVENT_SET_Y_VELOCITY(256),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 15, 30, 45, 60),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)15, cast(short)30, cast(short)45, cast(short)60),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
-	EVENT_SHORTJUMP(&Event32[60 + (42 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[70 + (50 * (const(void)*).sizeof)], &Event32[70 + (50 * (const(void)*).sizeof)], &Event32[64 + (45 * (const(void)*).sizeof)], &Event32[66 + (49 * (const(void)*).sizeof)], &Event32[66 + (49 * (const(void)*).sizeof)], &Event32[66 + (49 * (const(void)*).sizeof)], &Event32[64 + (45 * (const(void)*).sizeof)], &Event32[70 + (50 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event32[64 + (45 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[74 + 36 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_SWITCH_JUMP_TEMPVAR(&Event32[89 + 42 * (const(void)*).sizeof], &Event32[89 + 42 * (const(void)*).sizeof], &Event32[78 + 39 * (const(void)*).sizeof], &Event32[85 + 41 * (const(void)*).sizeof], &Event32[85 + 41 * (const(void)*).sizeof], &Event32[85 + 41 * (const(void)*).sizeof], &Event32[78 + 39 * (const(void)*).sizeof], &Event32[89 + 42 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event32[78 + 39 * (const(void)*).sizeof]),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_PAUSE(10),
-	EVENT_SHORTJUMP(&Event32[60 + (42 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC06478),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC05ECE),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D5B0),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event32[93 + (72 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event32[74 + 36 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC06478, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC05ECE, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D5B0, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event32[121 + 60 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event32[86 + (67 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D77F),
+	EVENT_SHORTJUMP(&Event32[114 + 55 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D77F, ),
 	EVENT_SET_VAR(ActionScriptVars.V1, 2),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D7B3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D7B3, ),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent32.ptr),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
 	EVENT_END(),
 ].join();
 UnknownC31DF4 = [
@@ -13244,17 +13241,17 @@ UnknownC31DF4 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C2B),
 	EVENT_SET_VAR(ActionScriptVars.V2, 0),
-	EVENT_START_TASK(&UnknownC31DF4[18 + (7 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC31DF4[18 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V2),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31DF4[12 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31DF4[12 + 5 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V1),
 	EVENT_LOOP(15),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V1),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V2, 1),
@@ -13265,16 +13262,16 @@ Event4 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A09F[0]),
 	EVENT_WRITE_WRAM_TEMPVAR(&EntityDirections[1]),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(30),
-	EVENT_SHORTJUMP(&Event4[4 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event4[4 + 2 * (const(void)*).sizeof]),
 ].join();
 UnknownC3AA5A = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A0C5[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -13290,7 +13287,7 @@ Event638 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 3824),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event841 = [
@@ -13298,16 +13295,16 @@ Event841 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&Event840[9 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&Event840[9 + 4 * (const(void)*).sizeof]),
 ].join();
 Event662 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
 Event70 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4896),
@@ -13325,8 +13322,8 @@ Event70 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5472),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9016),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent70.ptr),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -13334,7 +13331,7 @@ Event70 = [
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(80),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event166 = [
@@ -13342,31 +13339,31 @@ Event166 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_SET_Z(200),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(-256),
 	EVENT_PAUSE(160),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event604 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_20A),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event604[17 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event604[17 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7896),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7928),
-	EVENT_SHORTJUMP(&Event604[25 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event604[25 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7864),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7896),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_END_LAST_TASK(),
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
@@ -13390,8 +13387,8 @@ Event839 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -13424,7 +13421,7 @@ Event839 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(40),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_SHORTJUMP(&Event839[10 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event839[10 + 3 * (const(void)*).sizeof]),
 ].join();
 UnknownC3AB37 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
@@ -13445,14 +13442,14 @@ UnknownC34D39 = [
 	EVENT_PAUSE(2),
 	EVENT_SET_Z_RELATIVE(1),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event59 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 80),
 	EVENT_SET_VAR(ActionScriptVars.V3, 80),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -13472,7 +13469,7 @@ Event344 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC34B62[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 6),
@@ -13493,15 +13490,15 @@ Event344 = [
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(32),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3A1F3 = [
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A1F3[0]),
 ].join();
 Event424 = [
@@ -13535,15 +13532,15 @@ Event115 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event115[36 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event115[36 + 8 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3BEA4[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event115[43 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event115[43 + 11 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3BED4[0]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_003),
@@ -13561,7 +13558,7 @@ Event309 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 3672),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9632),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event761 = [
@@ -13586,8 +13583,8 @@ Event188 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)960),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event188[19 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event188[19 + 7 * (const(void)*).sizeof]),
 ].join();
 Event589 = [
 	EVENT_SHORTCALL(&UnknownC36A41[0]),
@@ -13610,25 +13607,25 @@ Event187 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 3496),
 	EVENT_SET_VAR(ActionScriptVars.V7, 4128),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event379_408 = [
 	EVENT_SET_X(4740),
 	EVENT_SET_Y(5704),
-	EVENT_SHORTJUMP(&Event375_404[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event375_404[6]),
 ].join();
 Event258 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_090),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event8[0]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SHORTJUMP(&Event8Entry2[0]),
@@ -13640,10 +13637,10 @@ Event356 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(15),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_PAUSE(10),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event603 = [
@@ -13652,18 +13649,18 @@ Event603 = [
 	EVENT_START_TASK(&UnknownC3A20E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_START_TASK(&UnknownC36D18[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)2),
-	EVENT_SHORTJUMP(&Event28[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event28[6 + 4 * (const(void)*).sizeof]),
 ].join();
 Event249 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event249[6 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event249[6 + 3 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2640),
@@ -13676,20 +13673,20 @@ Event249 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2608),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(32),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2544),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3880),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event598 = [
 	EVENT_SHORTCALL(&UnknownC3AA2B[0]),
 	EVENT_START_TASK(&UnknownC36D18[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
-	EVENT_SHORTJUMP(&Event21[3 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event21[3 + 3 * (const(void)*).sizeof]),
 ].join();
 Event566 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -13701,14 +13698,14 @@ Event566 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_HALT(),
 ].join();
@@ -13729,14 +13726,14 @@ Event302 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(25),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(35),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC383BC = [
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 8, 10, 11, 12, 13, 14, 15, 16, 17),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)8, cast(short)10, cast(short)11, cast(short)12, cast(short)13, cast(short)14, cast(short)15, cast(short)16, cast(short)17),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event800 = [
@@ -13747,16 +13744,16 @@ Event800 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Down),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E0099),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event800[10 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAAC),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event800[10 + 3 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAAC, ),
 	EVENT_HALT(),
 ].join();
 Event838 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -13789,20 +13786,20 @@ Event838 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(60),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_SHORTJUMP(&Event838[10 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event838[10 + 3 * (const(void)*).sizeof]),
 ].join();
 UnknownC3AB9E = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47269),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3AB9E[7 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47269, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3AB9E[7 + 3 * (const(void)*).sizeof]),
 	EVENT_BINOP_TEMPVAR(Binop.add, -1),
-	EVENT_SHORTJUMP(&UnknownC3AB9E[8 + (8 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, Direction.Up, Direction.Right, Direction.Down, Direction.Left),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, 8, 16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E),
+	EVENT_SHORTJUMP(&UnknownC3AB9E[17 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)Direction.Up, cast(short)Direction.Right, cast(short)Direction.Down, cast(short)Direction.Left),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)8, cast(short)16),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E, ),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 30, 60, 90, 120),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)30, cast(short)60, cast(short)90, cast(short)120),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SHORTJUMP(&UnknownC3AB9E[0]),
 ].join();
@@ -13814,23 +13811,23 @@ Event602 = [
 	EVENT_START_TASK(&UnknownC3A20E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_START_TASK(&UnknownC36D18[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&Event29[10 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&Event29[10 + 4 * (const(void)*).sizeof]),
 ].join();
 Event836 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(50),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
@@ -13853,7 +13850,7 @@ Event632 = [
 	EVENT_PAUSE(240),
 	EVENT_SET_X(3209),
 	EVENT_SET_ANIMATION(0),
-	EVENT_SHORTJUMP(&Event632[3 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event632[3 + 1 * (const(void)*).sizeof]),
 ].join();
 Event528 = [
 	EVENT_SHORTCALL(&UnknownC40F59[0]),
@@ -13873,37 +13870,37 @@ UnknownC34392 = [
 Event809 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(12),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(12),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(12),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(6),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_SET_X_VELOCITY(512),
 	EVENT_HALT(),
@@ -13932,15 +13929,15 @@ Event263 = [
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_137),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.FALLING),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4733C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4733C, ),
 	EVENT_WRITE_WORD_TEMPVAR(41),
 	EVENT_LOOP(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4734C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4734C, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, 1),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47369),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47369, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
@@ -13948,20 +13945,20 @@ Event263 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(16),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event866 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E3),
-	EVENT_SHORTCALL_CONDITIONAL(&Event866[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event866[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 5824),
 	EVENT_SET_VAR(ActionScriptVars.V1, 1280),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event866[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event866[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer04.ptr),
 	EVENT_HALT(),
@@ -13971,7 +13968,7 @@ Event681 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A0C5[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5845),
@@ -13984,17 +13981,17 @@ Event681 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 18),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5840),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7128),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event205 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 688),
@@ -14020,8 +14017,8 @@ Event205 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2464),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7144),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent205.ptr),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -14029,7 +14026,7 @@ Event205 = [
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(200),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC31EEF = [
@@ -14044,7 +14041,7 @@ UnknownC31EEF = [
 	EVENT_PAUSE(23),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SET_X_VELOCITY(-91),
@@ -14058,7 +14055,7 @@ UnknownC31EEF = [
 	EVENT_PAUSE(23),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SET_Y_VELOCITY(-45),
@@ -14072,7 +14069,7 @@ UnknownC31EEF = [
 	EVENT_PAUSE(23),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SET_Y_VELOCITY(45),
@@ -14086,7 +14083,7 @@ UnknownC31EEF = [
 	EVENT_PAUSE(23),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SET_ANIMATION(255),
@@ -14094,7 +14091,7 @@ UnknownC31EEF = [
 	EVENT_SET_Y_VELOCITY(-45),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(67),
 	EVENT_SET_Y_VELOCITY(133),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
@@ -14117,7 +14114,7 @@ Event85 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event66 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -14141,7 +14138,7 @@ Event66 = [
 ].join();
 UnknownC36BB4 = [
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V3),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC36BB4[11 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC36BB4[11 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_Y_RELATIVE(-1),
 	EVENT_PAUSE(2),
 	EVENT_SET_Y_RELATIVE(1),
@@ -14150,15 +14147,15 @@ UnknownC36BB4 = [
 ].join();
 Event582 = [
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_SHORTJUMP(&Event583[4 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_SHORTJUMP(&Event583[4 + 1 * (const(void)*).sizeof]),
 ].join();
 Event723 = [
 	EVENT_SET_X(5240),
 	EVENT_SET_Y(2808),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5368),
@@ -14168,7 +14165,7 @@ Event723 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 2760),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event547 = [
@@ -14178,7 +14175,7 @@ Event547 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C3E),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
-	EVENT_START_TASK(&Event547[62 + (7 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event547[62 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(10),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_LOOP(2),
@@ -14198,7 +14195,7 @@ Event547 = [
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
 	EVENT_LOOP_END(),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_WRITE_WORD_TEMPVAR(10),
 	EVENT_LOOP_TEMPVAR(),
@@ -14254,7 +14251,7 @@ Event625 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(3),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event738 = [
@@ -14274,8 +14271,8 @@ Event613 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)906),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event613[18 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event613[18 + 7 * (const(void)*).sizeof]),
 ].join();
 Event695 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -14317,7 +14314,7 @@ Event695 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 600),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event554 = [
@@ -14343,7 +14340,7 @@ Event554 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 0),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6040),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(180),
 ].join();
 Event660 = [
@@ -14353,22 +14350,22 @@ Event660 = [
 	EVENT_PAUSE(32),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(32),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event733 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7976),
@@ -14393,13 +14390,13 @@ Event869 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event869[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event869[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1608),
 	EVENT_SET_VAR(ActionScriptVars.V1, 3536),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event869[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event869[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer07.ptr),
 	EVENT_HALT(),
@@ -14409,21 +14406,21 @@ Event592 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event592[7 + (2 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event592[7 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event879 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F0),
-	EVENT_SHORTCALL_CONDITIONAL(&Event879[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event879[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 3568),
 	EVENT_SET_VAR(ActionScriptVars.V1, 3968),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event879[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event879[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer17.ptr),
 	EVENT_HALT(),
@@ -14435,7 +14432,7 @@ Event509 = [
 Event150 = [
 	EVENT_SHORTCALL(&UnknownC3C94E[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)192),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event576 = [
@@ -14444,8 +14441,8 @@ Event576 = [
 Event847 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(180),
 	EVENT_PAUSE(60),
 	EVENT_SHORTJUMP(&UnknownC36834[0]),
@@ -14458,7 +14455,7 @@ Event472 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC4163F = [
@@ -14494,36 +14491,36 @@ UnknownC4163F = [
 	EVENT_PAUSE(255),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(45),
-	EVENT_SHORTJUMP(&UnknownC4163F[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4163F[14]),
 ].join();
 Event122 = [
 	EVENT_SET_X(5928),
 	EVENT_SET_Y(5992),
-	EVENT_SHORTCALL(&Event126[8 + (2 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_SHORTCALL(&Event126[8 + 2 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event291 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(150),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event28 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event28[11 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event28[11 + 4 * (const(void)*).sizeof]),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_LOOP(4),
 	EVENT_SET_Y_RELATIVE(-1),
@@ -14533,20 +14530,20 @@ Event28 = [
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
-	EVENT_SHORTJUMP(&Event28[37 + (11 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event28[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event28[37 + 11 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C4AF, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event28[6 + 4 * (const(void)*).sizeof]),
 	EVENT_LOOP(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(8),
 	EVENT_LOOP_END(),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(8),
-	EVENT_SHORTJUMP(&Event28[35 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event28[35 + 9 * (const(void)*).sizeof]),
 ].join();
 Event287 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_086),
@@ -14555,8 +14552,8 @@ Event287 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
@@ -14573,7 +14570,7 @@ Event287 = [
 	EVENT_SET_X_RELATIVE(2),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_HALT(),
 ].join();
@@ -14583,10 +14580,10 @@ Event15 = [
 	EVENT_SHORTJUMP(&Event13_14_15_16_17_Common2[0]),
 ].join();
 UnknownC35231 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4E4DA),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4E4DA, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4E4F9),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC35231[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4E4F9, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC35231[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event326 = [
@@ -14594,18 +14591,18 @@ Event326 = [
 	EVENT_SET_Y(8704),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
-	EVENT_SHORTJUMP(&Event326[14 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event326[14 + 3 * (const(void)*).sizeof]),
 ].join();
 Event502 = [
 	EVENT_SHORTCALL(&UnknownC40F4A[0]),
@@ -14619,8 +14616,8 @@ Event564 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC3D0A4[0]),
 	EVENT_SHORTCALL(&UnknownC3D0A4[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
@@ -14629,48 +14626,48 @@ Event683 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V1, 7356),
 	EVENT_SET_VAR(ActionScriptVars.V2, 20),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_VAR(ActionScriptVars.V0, 492),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event683[46 + (10 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event683[46 + 9 * (const(void)*).sizeof]),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
 	EVENT_BINOP_TEMPVAR(Binop.add, -7),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event683[79 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event683[79 + 17 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent683.ptr),
 	EVENT_PAUSE(2),
-	EVENT_SHORTJUMP(&Event683[75 + (18 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event683[56 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event683[75 + 17 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event683[56 + 13 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(1),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL(&Event683[79 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event683[79 + 17 * (const(void)*).sizeof]),
 	EVENT_BINOP_TEMPVAR(Binop.add, -1),
-	EVENT_SHORTCALL_CONDITIONAL(&Event683[75 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event683[75 + 17 * (const(void)*).sizeof]),
 	EVENT_BINOP_TEMPVAR(Binop.add, -1),
-	EVENT_SHORTCALL_CONDITIONAL(&Event683[75 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event683[75 + 17 * (const(void)*).sizeof]),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 65533),
-	EVENT_SHORTJUMP(&Event683[79 + (18 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event683[79 + 17 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event683[22 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event683[22 + 3 * (const(void)*).sizeof]),
 ].join();
 Event284 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 432),
 	EVENT_SET_VAR(ActionScriptVars.V1, 4264),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
@@ -14681,23 +14678,23 @@ Event284 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 11),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
-	EVENT_SHORTCALL(&Event285[16 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event285[16 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event5 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_ANIMATION(0),
-	EVENT_SHORTJUMP(&UnknownC3A401[37 + (23 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC3A401[37 + 22 * (const(void)*).sizeof]),
 ].join();
 Event215 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2488),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5104),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent215.ptr),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -14708,14 +14705,14 @@ Event215 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2664),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5040),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event327 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
@@ -14728,7 +14725,7 @@ Event702 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(64),
 	EVENT_PAUSE(144),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -14738,7 +14735,7 @@ Event702 = [
 Event574 = [
 	EVENT_SET_X(320),
 	EVENT_SET_Y(7592),
-	EVENT_SHORTJUMP(&Event573[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event573[6]),
 ].join();
 Event679 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -14746,12 +14743,12 @@ Event679 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A03A),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FF1),
 	EVENT_SET_ANIMATION(0),
-	EVENT_START_TASK(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_Z(9),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_Z_VELOCITY(512),
 	EVENT_PAUSE(8),
@@ -14768,7 +14765,7 @@ Event679 = [
 	EVENT_PAUSE(8),
 	EVENT_SET_Z_VELOCITY(-512),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event556 = [
@@ -14794,7 +14791,7 @@ Event556 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7624),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event628 = [
@@ -14802,15 +14799,15 @@ Event628 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(24),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(48),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event628[7 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event628[7 + 3 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3AA46 = [
@@ -14818,7 +14815,7 @@ UnknownC3AA46 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A0B2[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -14839,7 +14836,7 @@ Event411 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(48),
@@ -14848,23 +14845,23 @@ Event411 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(80),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC42624),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC42624, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC31ED8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC424D1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC424D1, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA23, cast(ushort)4640, cast(ushort)5744, cast(ushort)4832),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
@@ -14881,7 +14878,7 @@ Event411 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
@@ -14894,7 +14891,7 @@ Event411 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
@@ -14906,7 +14903,7 @@ Event411 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
@@ -14917,13 +14914,13 @@ Event411 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(90),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(180),
 	EVENT_PAUSE(45),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(90),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(45),
 	EVENT_SET_X(4712),
 	EVENT_SET_Y(5736),
@@ -14937,7 +14934,7 @@ Event411 = [
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_SHORTCALL(&UnknownC333BB[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(45),
 	EVENT_SET_X(4744),
@@ -14952,38 +14949,38 @@ Event411 = [
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_SHORTCALL(&UnknownC333BB[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(135),
 	EVENT_SET_X(4752),
 	EVENT_SET_Y(5736),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(90),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(90),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(90),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(79),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(11),
 	EVENT_PAUSE(90),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(45),
 	EVENT_SET_Y_VELOCITY(-45),
 	EVENT_SHORTCALL(&UnknownC333BB[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(90),
 	EVENT_PAUSE(90),
 	EVENT_PAUSE(90),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4257F),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4257F, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event325 = [
@@ -14991,21 +14988,21 @@ Event325 = [
 	EVENT_SET_Y(8656),
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_LOOP(2),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(30),
-	EVENT_SHORTJUMP(&Event325[14 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event325[14 + 3 * (const(void)*).sizeof]),
 ].join();
 Event619 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
@@ -15017,7 +15014,7 @@ Event619 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 216),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event714 = [
@@ -15034,12 +15031,12 @@ Event714 = [
 	EVENT_SET_X_RELATIVE(16),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_20A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event714[14 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event714[14 + 4 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)106),
 	EVENT_SET_Y_RELATIVE(-16),
 	EVENT_SET_X_RELATIVE(-16),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event714[29 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event714[29 + 7 * (const(void)*).sizeof]),
 ].join();
 UnknownC4198D = [
 	EVENT_SET_X(-40),
@@ -15052,7 +15049,7 @@ UnknownC4198D = [
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&UnknownC4198D[23 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4198D[23 + 1 * (const(void)*).sizeof]),
 ].join();
 Event504 = [
 	EVENT_SHORTCALL(&UnknownC40F59[0]),
@@ -15069,7 +15066,7 @@ Event339 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 4992),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3808),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3C1E0 = [
@@ -15084,15 +15081,15 @@ UnknownC3C1E0 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 UnknownC33C1D = [
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V2),
 	EVENT_LOOP_TEMPVAR(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77),
-	EVENT_BREAK_IF_FALSE(&UnknownC33C1D[13 + (2 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77, ),
+	EVENT_BREAK_IF_FALSE(&UnknownC33C1D[13 + 2 * (const(void)*).sizeof]),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V3),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 1),
 	EVENT_LOOP_END(),
@@ -15104,7 +15101,7 @@ Event696_697_698_Common = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3AB12 = [
@@ -15112,7 +15109,7 @@ UnknownC3AB12 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A1DF[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)6),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -15125,7 +15122,7 @@ UnknownC4170E = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4170E[12 + (0 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4170E[12]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
@@ -15136,7 +15133,7 @@ UnknownC4170E = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4170E[40 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4170E[40 + 6 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownLeft, cast(ubyte)1),
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
@@ -15147,7 +15144,7 @@ UnknownC4170E = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4170E[68 + (12 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4170E[68 + 12 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(6),
 	EVENT_SET_ANIMATION(255),
@@ -15164,7 +15161,7 @@ UnknownC4170E = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4170E[108 + (20 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4170E[108 + 16 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)1),
@@ -15185,14 +15182,14 @@ UnknownC4170E = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4170E[162 + (30 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC4170E[162 + 26 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(255),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(43),
-	EVENT_SHORTJUMP(&UnknownC4170E[84 + (17 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4170E[84 + 16 * (const(void)*).sizeof]),
 ].join();
 Event341 = [
 	EVENT_SET_X(4840),
@@ -15203,21 +15200,21 @@ Event341 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 4880),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3864),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4840),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3880),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event402 = [
 	EVENT_SET_X(4704),
 	EVENT_SET_Y(5748),
-	EVENT_SHORTJUMP(&Event361[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event361[6]),
 ].join();
 UnknownC41382 = [
 	EVENT_SET_X(24),
@@ -15244,10 +15241,10 @@ UnknownC41382 = [
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41382[18 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41382[18]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(180),
-	EVENT_SHORTJUMP(&UnknownC41382[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC41382[14]),
 ].join();
 Event157 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -15257,7 +15254,7 @@ Event157 = [
 	EVENT_SET_Z(192),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)4),
 	EVENT_SET_VAR(ActionScriptVars.V5, 4),
 	EVENT_WRITE_WORD_TEMPVAR(6),
@@ -15280,20 +15277,20 @@ Event563 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SHORTCALL(&UnknownC348C4[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_WRITE_WORD_TEMPVAR(3),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC34B62[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V3, 6),
 	EVENT_SHORTCALL(&UnknownC34B62[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 4),
@@ -15301,7 +15298,7 @@ Event563 = [
 	EVENT_SET_VAR(ActionScriptVars.V3, 2),
 	EVENT_SHORTCALL(&UnknownC34B62[0]),
 	EVENT_SHORTCALL(&UnknownC34B62[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V3, 1),
 	EVENT_SHORTCALL(&UnknownC34B62[0]),
 	EVENT_SHORTCALL(&UnknownC34B62[0]),
@@ -15311,10 +15308,10 @@ UnknownC31ED8 = [
 	EVENT_PAUSE(48),
 	EVENT_SET_X_VELOCITY(-64),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SHORT_RETURN(),
@@ -15327,10 +15324,10 @@ Event487 = [
 Event376_405 = [
 	EVENT_SET_X(4752),
 	EVENT_SET_Y(5704),
-	EVENT_SHORTJUMP(&Event375_404[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event375_404[6]),
 ].join();
 Event214 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6320),
@@ -15345,34 +15342,34 @@ Event814 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
 	EVENT_START_TASK(&UnknownC35F8B[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(5),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event854 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event127 = [
 	EVENT_SET_X(5416),
 	EVENT_SET_Y(5864),
 	EVENT_SHORTCALL(&UnknownC3C35D[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event521 = [
@@ -15391,13 +15388,13 @@ Event888 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F9),
-	EVENT_SHORTCALL_CONDITIONAL(&Event888[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event888[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1496),
 	EVENT_SET_VAR(ActionScriptVars.V1, 4240),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event888[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event888[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer26.ptr),
 	EVENT_HALT(),
@@ -15405,8 +15402,8 @@ Event888 = [
 Event802 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event748 = [
@@ -15430,14 +15427,14 @@ Event82 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6928),
 	EVENT_SET_VAR(ActionScriptVars.V7, 872),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(24),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Unknown61),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event48 = [
@@ -15450,7 +15447,7 @@ Event48 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)254),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event777 = [
@@ -15461,7 +15458,7 @@ Event260 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_START_TASK(&Event8Entry2[0]),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)64),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 32),
@@ -15471,13 +15468,13 @@ Event260 = [
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_152),
-	EVENT_SHORTJUMP(&Event260[18 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event260[18 + 4 * (const(void)*).sizeof]),
 ].join();
 Event785 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A26B),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_HALT(),
 ].join();
 Event511 = [
@@ -15485,17 +15482,17 @@ Event511 = [
 	EVENT_SHORTJUMP(&UnknownC4144C[0]),
 ].join();
 Event94_95_98Common = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SHORTCALL(&UnknownC3BB5C[0]),
 	EVENT_SHORTCALL(&UnknownC3BB73[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventGhosts1.ptr),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event94_95_98Common[17 + (9 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event94_95_98Common[17 + 9 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_SHORTJUMP(&Event94_95_98Common[20 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event94_95_98Common[20 + 9 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_HALT(),
@@ -15509,9 +15506,9 @@ Event174 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&Event172[18 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&Event172[18 + 4 * (const(void)*).sizeof]),
 ].join();
 Event238 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
@@ -15523,7 +15520,7 @@ Event238 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 216),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event421 = [
@@ -15536,7 +15533,7 @@ Event421 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event196 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7736),
@@ -15571,7 +15568,7 @@ Event143 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7968),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2912),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event749 = [
@@ -15587,7 +15584,7 @@ Event749 = [
 	EVENT_HALT(),
 ].join();
 Event69 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 688),
@@ -15617,8 +15614,8 @@ Event69 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2464),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7144),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent69.ptr),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -15626,13 +15623,13 @@ Event69 = [
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(160),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event780 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_HALT(),
@@ -15643,26 +15640,26 @@ Event669 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1416),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9792),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 40),
 	EVENT_SET_VAR(ActionScriptVars.V3, 48),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event669[29 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event669[29 + 9 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1376),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9856),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 96),
 	EVENT_SET_VAR(ActionScriptVars.V3, 32),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event669[53 + (17 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event669[53 + 17 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionFromPlayerToEntity, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1264),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9960),
@@ -15694,7 +15691,7 @@ Event835 = [
 Event773 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
 Event102 = [
@@ -15702,7 +15699,7 @@ Event102 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A09F[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A964, cast(ushort)24, cast(ushort)24),
 	EVENT_SHORTJUMP(&UnknownC3AB9E[0]),
@@ -15729,8 +15726,8 @@ Event111 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)231),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event111[14 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event111[14 + 5 * (const(void)*).sizeof]),
 ].join();
 Event451 = [
 	EVENT_SET_PRIORITY(0),
@@ -15742,7 +15739,7 @@ Event290 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event663 = [
@@ -15751,7 +15748,7 @@ Event663 = [
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
 Event197 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)4),
 	EVENT_SET_VAR(ActionScriptVars.V5, 4),
@@ -15767,18 +15764,18 @@ UnknownC31E2D = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C2B),
 	EVENT_SET_VAR(ActionScriptVars.V2, 0),
-	EVENT_START_TASK(&UnknownC31E2D[18 + (7 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC31E2D[18 + 6 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V2),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31E2D[12 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31E2D[12 + 5 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 65521),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V1),
 	EVENT_LOOP(15),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V1),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V2, 1),
@@ -15788,14 +15785,14 @@ Event251 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)9),
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 20),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event161 = [
@@ -15806,8 +15803,8 @@ Event161 = [
 	EVENT_START_TASK(&UnknownC3CEA2[0]),
 	EVENT_SET_ANIMATION(0),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(-512),
 	EVENT_SET_Y_VELOCITY(256),
 	EVENT_PAUSE(80),
@@ -15851,7 +15848,7 @@ Event161 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 8488),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_Y_VELOCITY(-96),
 	EVENT_PAUSE(60),
@@ -15863,15 +15860,15 @@ Event161 = [
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(4),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V0, 65528),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V2, 2),
 	EVENT_SET_VAR(ActionScriptVars.V3, 3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V3, 6),
@@ -15887,7 +15884,7 @@ Event161 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_DWORD_WRAM(&Unknown7E9D1B, &UndrawFlyoverText),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3C824 = [
@@ -15944,16 +15941,16 @@ Event116 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_003),
-	EVENT_SHORTCALL_CONDITIONAL(&Event116[39 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event116[39 + 7 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&Event115_116_117_118_119Common[0]),
 	EVENT_SHORTCALL(&UnknownC3BEA4[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_003),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event116[47 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event116[47 + 11 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3BED4[0]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_004),
@@ -15962,8 +15959,8 @@ Event116 = [
 Event827 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event718 = [
@@ -15971,7 +15968,7 @@ Event718 = [
 	EVENT_SET_Y(8784),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1600),
@@ -15983,159 +15980,159 @@ Event718 = [
 Event416 = [
 	EVENT_SET_X(4736),
 	EVENT_SET_Y(5728),
-	EVENT_SHORTJUMP(&Event412[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event412[6]),
 ].join();
 Event442 = [
 	EVENT_SET_X(4736),
 	EVENT_SET_Y(5736),
 	EVENT_SHORTCALL(&UnknownC31D4F[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4258C, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(94),
 	EVENT_PAUSE(94),
 	EVENT_SET_TICK_CALLBACK(&UnknownC476A5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(94),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(31),
 	EVENT_SET_X_VELOCITY(33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(32),
 	EVENT_PAUSE(31),
 	EVENT_SET_X_VELOCITY(33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(32),
 	EVENT_PAUSE(31),
 	EVENT_SET_X_VELOCITY(33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(32),
 	EVENT_PAUSE(31),
 	EVENT_SET_X_VELOCITY(33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(32),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(31),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_X_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_SET_X_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_SET_X_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_SET_X_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(32),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_Y_VELOCITY(33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(31),
@@ -16143,57 +16140,57 @@ Event442 = [
 	EVENT_PAUSE(94),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(63),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(31),
@@ -16201,72 +16198,72 @@ Event442 = [
 	EVENT_PAUSE(94),
 	EVENT_SET_Y_VELOCITY(33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_Y_VELOCITY(33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(63),
 	EVENT_SET_Y_VELOCITY(33),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(47),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_SET_X_VELOCITY(-33),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(47),
 	EVENT_SET_X_VELOCITY(-33),
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(15),
 	EVENT_SET_X_VELOCITY(-32),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(16),
 	EVENT_SET_X_VELOCITY(-33),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(16),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(15),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(16),
 	EVENT_PAUSE(47),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_X_VELOCITY(-130),
 	EVENT_SET_VAR(ActionScriptVars.V4, 12),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
@@ -16281,61 +16278,61 @@ Event442 = [
 	EVENT_PAUSE(94),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_SET_X_VELOCITY(33),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_LOOP(11),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_SET_X_VELOCITY(33),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(31),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(94),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_LOOP(8),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_SET_Y_VELOCITY(-33),
 	EVENT_PAUSE(31),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(63),
 	EVENT_LOOP_END(),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(31),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(63),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(94),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(188),
 	EVENT_SET_VAR(ActionScriptVars.V4, 20),
 	EVENT_SET_X_VELOCITY(-64),
@@ -16349,7 +16346,7 @@ Event401 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C2B),
 	EVENT_SET_VAR(ActionScriptVars.V0, 65521),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4736),
@@ -16361,23 +16358,23 @@ Event401 = [
 UnknownC35F8B = [
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V3),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC35F8B[8 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC35F8B[8 + 2 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC35F8B[20 + (10 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7, ),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC35F8B[20 + 8 * (const(void)*).sizeof]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC35F8B[18 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC35F8B[18 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC35F8B[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event858 = [
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A06C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A06C, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A0BB),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
@@ -16399,8 +16396,8 @@ Event645 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)7),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event513 = [
@@ -16436,16 +16433,16 @@ Event620 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 32768),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51, ),
 	EVENT_LOOP(64),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 4096),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7, ),
 	EVENT_LOOP_END(),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event676_677_678_Common1 = [
@@ -16461,28 +16458,28 @@ Event676_677_678_Common1 = [
 UnknownC343DB = [
 	EVENT_PAUSE(8),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC343DB[8 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC343DB[8 + 2 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC343DB[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FF6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0FF6, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC3899E = [
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(1),
 	EVENT_SHORTJUMP(&UnknownC3899E[0]),
 ].join();
@@ -16503,7 +16500,7 @@ Event144 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7968),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2912),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event220 = [
@@ -16520,10 +16517,10 @@ Event220 = [
 Event415 = [
 	EVENT_SET_X(4712),
 	EVENT_SET_Y(5728),
-	EVENT_SHORTJUMP(&Event412[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event412[6]),
 ].join();
 Event106 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 96),
 	EVENT_SET_VAR(ActionScriptVars.V3, 96),
 	EVENT_SHORTCALL(&UnknownC3BD03[0]),
@@ -16536,12 +16533,12 @@ Event106 = [
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 32),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_13A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event106[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event106[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(7680),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event106[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event106[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_HALT(),
@@ -16549,10 +16546,10 @@ Event106 = [
 UnknownC3A0C5 = [
 	EVENT_PAUSE(12),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(12),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORTJUMP(&UnknownC3A0C5[0]),
 ].join();
 Event173 = [
@@ -16564,9 +16561,9 @@ Event173 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&Event172[18 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&Event172[18 + 4 * (const(void)*).sizeof]),
 ].join();
 Event225_226_227 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -16578,26 +16575,26 @@ Event225_226_227 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)75),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event225_226_227[14 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event225_226_227[14 + 5 * (const(void)*).sizeof]),
 ].join();
 Event689 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_SHORTCALL(&UnknownC383BC[0]),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 2),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.and, 7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(6),
 	EVENT_LOOP_END(),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
 	EVENT_SHORTCALL(&UnknownC3835D[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Cursor4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event608 = [
@@ -16614,7 +16611,7 @@ Event776 = [
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V2, 2),
 	EVENT_SET_VAR(ActionScriptVars.V3, 120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.MISSED),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
@@ -16623,17 +16620,17 @@ Event495 = [
 	EVENT_SET_PRIORITY(0),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46D23),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46D23, ),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_START_TASK(&Event495[74 + (12 * (const(void)*).sizeof)]),
-	EVENT_SHORTCALL(&Event495[14 + (7 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_START_TASK(&Event495[74 + 11 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&Event495[14 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46D23),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46D23, ),
 	EVENT_SET_X_VELOCITY(-1024),
 	EVENT_SET_Y_VELOCITY(1024),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC467B4),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC467B4, ),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SET_X_VELOCITY(-768),
 	EVENT_SET_Y_VELOCITY(0),
@@ -16652,15 +16649,15 @@ Event495 = [
 	EVENT_PAUSE(4),
 	EVENT_SET_X_VELOCITY(-1024),
 	EVENT_SET_Y_VELOCITY(1024),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC467C2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC467C2, ),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_158),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event495[14 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event495[14 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_WORD_TEMPVAR(3120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46903),
-	EVENT_SHORTCALL_CONDITIONAL(&Event495[74 + (12 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46903, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event495[74 + 11 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_158),
 	EVENT_HALT(),
@@ -16668,20 +16665,20 @@ Event495 = [
 Event147 = [
 	EVENT_SHORTCALL(&UnknownC3C90C[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)189),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event880 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F1),
-	EVENT_SHORTCALL_CONDITIONAL(&Event880[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event880[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4540),
 	EVENT_SET_VAR(ActionScriptVars.V1, 6188),
 	EVENT_SET_VAR(ActionScriptVars.V2, 12),
 	EVENT_SET_VAR(ActionScriptVars.V3, 20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event880[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event880[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer18.ptr),
 	EVENT_HALT(),
@@ -16690,37 +16687,37 @@ Event684 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V1, 136),
 	EVENT_SET_VAR(ActionScriptVars.V2, 12),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_VAR(ActionScriptVars.V0, 288),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event684[46 + (10 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event684[46 + 9 * (const(void)*).sizeof]),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 1),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
 	EVENT_BINOP_TEMPVAR(Binop.add, -7),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event684[69 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event684[69 + 13 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent684.ptr),
 	EVENT_PAUSE(2),
-	EVENT_SHORTJUMP(&Event684[65 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event684[65 + 13 * (const(void)*).sizeof]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL(&Event684[69 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event684[69 + 13 * (const(void)*).sizeof]),
 	EVENT_BINOP_TEMPVAR(Binop.add, -1),
-	EVENT_SHORTCALL_CONDITIONAL(&Event684[65 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event684[65 + 13 * (const(void)*).sizeof]),
 	EVENT_BINOP_TEMPVAR(Binop.add, -1),
-	EVENT_SHORTCALL_CONDITIONAL(&Event684[65 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event684[65 + 13 * (const(void)*).sizeof]),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 65533),
-	EVENT_SHORTJUMP(&Event684[69 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event684[69 + 13 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event684[22 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event684[22 + 3 * (const(void)*).sizeof]),
 ].join();
 Event538 = [
 	EVENT_SET_X(6048),
@@ -16738,25 +16735,25 @@ Event538 = [
 ].join();
 Event13_14_15_16_17_Common2 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47269),
-	EVENT_SHORTCALL_CONDITIONAL(&Event13_14_15_16_17_Common2[11 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47269, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event13_14_15_16_17_Common2[11 + 3 * (const(void)*).sizeof]),
 	EVENT_BINOP_TEMPVAR(Binop.add, -1),
-	EVENT_SHORTJUMP(&Event13_14_15_16_17_Common2[12 + (8 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, Direction.Up, Direction.Right, Direction.Down, Direction.Left),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 2, 8, 16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E),
+	EVENT_SHORTJUMP(&Event13_14_15_16_17_Common2[21 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)Direction.Up, cast(short)Direction.Right, cast(short)Direction.Down, cast(short)Direction.Left),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)2, cast(short)8, cast(short)16),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CA4E, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 30, 60, 90, 120),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)30, cast(short)60, cast(short)90, cast(short)120),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SHORTJUMP(&Event13_14_15_16_17_Common2[0]),
 ].join();
 Event129 = [
 	EVENT_SET_X(5464),
 	EVENT_SET_Y(5864),
-	EVENT_SHORTJUMP(&Event131[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event131[6]),
 ].join();
 UnknownC3BEA4 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
@@ -16770,7 +16767,7 @@ UnknownC3BEA4 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 UnknownC3D0A4 = [
@@ -16797,7 +16794,7 @@ UnknownC31D4F = [
 	EVENT_START_TASK(&UnknownC31D2D[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 24),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 UnknownC411EB = [
@@ -16815,12 +16812,12 @@ UnknownC411EB = [
 	EVENT_PAUSE(20),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC411EB[16 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC411EB[16]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(255),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(169),
-	EVENT_SHORTJUMP(&UnknownC411EB[4 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC411EB[4]),
 ].join();
 Event677 = [
 	EVENT_SHORTCALL(&Event676_677_678_Common1[0]),
@@ -16835,21 +16832,21 @@ Event71 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(48),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(48),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event803 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event283 = [
@@ -16882,7 +16879,7 @@ Event368 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(48),
@@ -16891,21 +16888,21 @@ Event368 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(80),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC425F3, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SHORTCALL(&UnknownC31EC1[0]),
 	EVENT_PAUSE(10),
 	EVENT_SET_VAR(ActionScriptVars.V4, 15),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(68),
 	EVENT_PAUSE(60),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -16953,7 +16950,7 @@ Event368 = [
 	EVENT_PAUSE(90),
 	EVENT_PAUSE(90),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(-22),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
@@ -16961,7 +16958,7 @@ Event368 = [
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_Y_VELOCITY(-22),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
@@ -16969,7 +16966,7 @@ Event368 = [
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(22),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
 	EVENT_SHORTCALL(&UnknownC32138[0]),
@@ -16985,17 +16982,17 @@ Event368 = [
 Event816 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(20),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(20),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -17008,8 +17005,8 @@ Event8 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 ].join();
 UnknownC3AAB8 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
@@ -17021,8 +17018,8 @@ UnknownC3AAB8 = [
 Event825 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(20),
@@ -17039,31 +17036,31 @@ Event142 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 2888),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event1 = [
-	EVENT_CALLROUTINE(&fixArgs!SRAMCheckRoutineChecksum),
-	EVENT_SHORTCALL_CONDITIONAL(&Event1[3 + (3 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!DisplayAntiPiracyScreen),
+	EVENT_CALLROUTINE(&fixArgs!SRAMCheckRoutineChecksum, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event1[3 + 3 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!DisplayAntiPiracyScreen, ),
 	EVENT_SET_TICK_CALLBACK(&UnknownC05200),
 	EVENT_LOOP(6),
 	EVENT_PAUSE(200),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!inflictSunstrokeCheck),
-	EVENT_SHORTJUMP(&Event1[4 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!inflictSunstrokeCheck, ),
+	EVENT_SHORTJUMP(&Event1[4 + 4 * (const(void)*).sizeof]),
 ].join();
 Event889 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1FA),
-	EVENT_SHORTCALL_CONDITIONAL(&Event889[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event889[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1792),
 	EVENT_SET_VAR(ActionScriptVars.V1, 4900),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event889[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event889[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer27.ptr),
 	EVENT_HALT(),
@@ -17086,7 +17083,7 @@ Event545 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event164 = [
@@ -17147,20 +17144,20 @@ Event498 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)16),
 	EVENT_SET_VAR(ActionScriptVars.V2, 12),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event498[20 + (6 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event498[20 + 5 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 2048),
-	EVENT_SHORTCALL_CONDITIONAL(&Event498[20 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event498[20 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent498.ptr),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event498[20 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event498[20 + 5 * (const(void)*).sizeof]),
 ].join();
 UnknownC3A07F = [
 	EVENT_HALT(),
@@ -17172,7 +17169,7 @@ Event612 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 6080),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6888),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event253 = [
@@ -17183,7 +17180,7 @@ Event253 = [
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC4154E = [
@@ -17203,12 +17200,12 @@ UnknownC4154E = [
 	EVENT_PAUSE(10),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)5, &UnknownC4154E[22 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)5, &UnknownC4154E[22]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(255),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(137),
-	EVENT_SHORTJUMP(&UnknownC4154E[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC4154E[14]),
 ].join();
 Event636 = [
 	EVENT_SHORTCALL(&UnknownC3AAFE[0]),
@@ -17224,21 +17221,21 @@ Event636 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 3888),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.MenuOpenClose),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event703 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_LOOP(8),
 	EVENT_SET_Y_VELOCITY(-256),
 	EVENT_PAUSE(4),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(16),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event506 = [
@@ -17248,7 +17245,7 @@ Event506 = [
 Event124 = [
 	EVENT_SET_X(5976),
 	EVENT_SET_Y(5992),
-	EVENT_SHORTJUMP(&Event126[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event126[6]),
 ].join();
 Event709 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_29A),
@@ -17285,16 +17282,16 @@ Event584 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1760),
 	EVENT_SET_VAR(ActionScriptVars.V7, 1496),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_SHORTJUMP(&Event584[12 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event584[12 + 4 * (const(void)*).sizeof]),
 ].join();
 UnknownC31EC1 = [
 	EVENT_PAUSE(48),
 	EVENT_SET_X_VELOCITY(64),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(10),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SHORT_RETURN(),
@@ -17355,26 +17352,26 @@ Event518 = [
 	EVENT_SHORTJUMP(&UnknownC415BA[0]),
 ].join();
 UnknownC3AA1E = [
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event138 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 2),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent137_138.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent138.ptr),
-	EVENT_SHORTJUMP(&Event137[25 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event137[25 + 10 * (const(void)*).sizeof]),
 ].join();
 Event446 = [
 	EVENT_SET_X(4840),
@@ -17419,14 +17416,14 @@ Event269 = [
 Event811 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
-	EVENT_SHORTJUMP(&Event811[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event811[1 + 1 * (const(void)*).sizeof]),
 ].join();
 UnknownC32CD2 = [
 	EVENT_SET_Y_VELOCITY(0),
@@ -17447,12 +17444,12 @@ UnknownC32CD2 = [
 UnknownC3C35D = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3C35D[10 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC3C35D[10 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -17462,15 +17459,15 @@ UnknownC3C35D = [
 	EVENT_SHORT_RETURN(),
 ].join();
 UnknownC3A15E = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40023),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40023, ),
 	EVENT_PAUSE(8),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A15E[9 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A15E[9 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A15E[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A15E[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC333CC = [
@@ -17481,7 +17478,7 @@ UnknownC333CC = [
 	EVENT_SHORT_RETURN(),
 ].join();
 UnknownC3835D = [
-	EVENT_SWITCH_JUMP_TEMPVAR(&UnknownC3835D[3 + (8 * (const(void)*).sizeof)], &UnknownC3835D[3 + (8 * (const(void)*).sizeof)], &UnknownC3835D[16 + (10 * (const(void)*).sizeof)], &UnknownC3835D[16 + (10 * (const(void)*).sizeof)], &UnknownC3835D[29 + (12 * (const(void)*).sizeof)], &UnknownC3835D[29 + (12 * (const(void)*).sizeof)], &UnknownC3835D[42 + (14 * (const(void)*).sizeof)], &UnknownC3835D[42 + (14 * (const(void)*).sizeof)]),
+	EVENT_SWITCH_JUMP_TEMPVAR(&UnknownC3835D[3 + 8 * (const(void)*).sizeof], &UnknownC3835D[3 + 8 * (const(void)*).sizeof], &UnknownC3835D[16 + 10 * (const(void)*).sizeof], &UnknownC3835D[16 + 10 * (const(void)*).sizeof], &UnknownC3835D[29 + 12 * (const(void)*).sizeof], &UnknownC3835D[29 + 12 * (const(void)*).sizeof], &UnknownC3835D[42 + 14 * (const(void)*).sizeof], &UnknownC3835D[42 + 14 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_20A),
@@ -17510,7 +17507,7 @@ Event485 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_START_TASK(&UnknownC3A1F3[0]),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 672),
 	EVENT_SET_VAR(ActionScriptVars.V1, 3440),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
@@ -17521,13 +17518,13 @@ Event485 = [
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_159),
-	EVENT_SHORTJUMP(&Event485[27 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event485[27 + 3 * (const(void)*).sizeof]),
 ].join();
 Event551 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_PRIORITY(0),
 	EVENT_SET_X(184),
@@ -17551,7 +17548,7 @@ Event551 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 0),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6032),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event427 = [
@@ -17569,10 +17566,10 @@ Event481 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SET_Z(28),
-	EVENT_START_TASK(&Event481[60 + (21 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event481[60 + 21 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(32),
 	EVENT_PAUSE(128),
 	EVENT_PAUSE(128),
@@ -17580,30 +17577,30 @@ Event481 = [
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_WRITE_WORD_TEMPVAR(-1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46957),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46957, ),
 	EVENT_PAUSE(3),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL(&Event481[32 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event481[32 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_002),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event481[47 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event481[47 + 14 * (const(void)*).sizeof]),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A03A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46957),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46957, ),
 	EVENT_PAUSE(3),
-	EVENT_SHORTJUMP(&Event481[54 + (17 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event481[54 + 17 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)252),
 	EVENT_SET_Y_RELATIVE(-2),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event481[60 + (21 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event481[60 + 21 * (const(void)*).sizeof]),
 ].join();
 Event486 = [
 	EVENT_SET_X(600),
@@ -17623,22 +17620,22 @@ UnknownC416AC = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC416AC[18 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC416AC[18]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(5),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC416AC[30 + (7 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)3, &UnknownC416AC[30 + 4 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(2),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)1),
 	EVENT_PAUSE(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)7, &UnknownC416AC[42 + (11 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)7, &UnknownC416AC[42 + 8 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(255),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(189),
-	EVENT_SHORTJUMP(&UnknownC416AC[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC416AC[14]),
 ].join();
 Event462 = [
 	EVENT_SHORTCALL(&UnknownC3DBDB[0]),
@@ -17647,13 +17644,13 @@ Event462 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2584),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7688),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event125 = [
 	EVENT_SET_X(6000),
 	EVENT_SET_Y(5960),
-	EVENT_SHORTJUMP(&Event126[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event126[6]),
 ].join();
 Event360 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -17672,22 +17669,22 @@ Event747 = [
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_END_LAST_TASK(),
 	EVENT_PAUSE(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event606 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&UnknownC36E41[0]),
 	EVENT_SHORTJUMP(&UnknownC3A18F[0]),
 ].join();
 Event130 = [
 	EVENT_SET_X(5488),
 	EVENT_SET_Y(5848),
-	EVENT_SHORTJUMP(&Event131[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event131[6]),
 ].join();
 UnknownC3A271 = [
 	EVENT_END_TASK(),
@@ -17698,34 +17695,34 @@ Event299 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5560),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7088),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event891 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1FC),
-	EVENT_SHORTCALL_CONDITIONAL(&Event891[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event891[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 5256),
 	EVENT_SET_VAR(ActionScriptVars.V1, 7660),
 	EVENT_SET_VAR(ActionScriptVars.V2, 8),
 	EVENT_SET_VAR(ActionScriptVars.V3, 36),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event891[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event891[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer29.ptr),
 	EVENT_HALT(),
 ].join();
 Event45 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 7792),
 	EVENT_SET_VAR(ActionScriptVars.V1, 336),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
@@ -17737,18 +17734,18 @@ Event45 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_HALT(),
 ].join();
 Event456 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2280),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5080),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event724 = [
@@ -17756,13 +17753,13 @@ Event724 = [
 	EVENT_SET_Y(7120),
 	EVENT_SHORTCALL(&UnknownC31D4F[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 14),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2024),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7120),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SHORTCALL(&UnknownC37559[0]),
@@ -17780,7 +17777,7 @@ Event724 = [
 	EVENT_PAUSE(160),
 	EVENT_SET_X_RELATIVE(256),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2096),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7088),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
@@ -17789,14 +17786,14 @@ Event724 = [
 	EVENT_HALT(),
 ].join();
 Event67 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7880),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10208),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_047),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event67[25 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event67[25 + 8 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)61),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent67_1.ptr),
 	EVENT_HALT(),
@@ -17816,7 +17813,7 @@ Event272 = [
 	EVENT_SET_Y_RELATIVE(2),
 	EVENT_PAUSE(3),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_LOOP(10),
 	EVENT_SET_X_RELATIVE(2),
@@ -17836,7 +17833,7 @@ Event272 = [
 	EVENT_SET_Y_RELATIVE(-2),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_Y_VELOCITY(-512),
 	EVENT_PAUSE(80),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -17859,10 +17856,10 @@ Event34 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 6),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_Z(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D7C7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D7C7, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.MAGIC_BUTTERFLY),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
@@ -17875,64 +17872,64 @@ Event34 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
 	EVENT_PAUSE(60),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC2654C),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC2654C, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event26 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
 	EVENT_SET_TICK_CALLBACK(&UnknownC0D7E0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Up),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event26[11 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event26[11 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)64),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D0E6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event26[36 + (16 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D0E6, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event26[36 + 16 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision, ),
 	EVENT_PAUSE(60),
-	EVENT_SHORTJUMP(&Event26[11 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event26[11 + 5 * (const(void)*).sizeof]),
 ].join();
 Event843 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(180),
 	EVENT_LOOP(2),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(20),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(40),
 	EVENT_LOOP_END(),
 	EVENT_HALT(),
@@ -17946,7 +17943,7 @@ Event668 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7600),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6792),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event754 = [
@@ -17962,20 +17959,20 @@ Event754 = [
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event876 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1ED),
-	EVENT_SHORTCALL_CONDITIONAL(&Event876[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event876[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 5656),
 	EVENT_SET_VAR(ActionScriptVars.V1, 9984),
 	EVENT_SET_VAR(ActionScriptVars.V2, 40),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event876[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event876[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer14.ptr),
 	EVENT_HALT(),
@@ -17984,8 +17981,8 @@ Event812 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
@@ -17997,21 +17994,21 @@ Event812 = [
 	EVENT_PAUSE(50),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 UnknownC38978 = [
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC38978[15 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC38978[15 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_20A),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC38978[11 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC38978[11 + 4 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_SHORTJUMP(&UnknownC38978[18 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC38978[18 + 5 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_SHORTJUMP(&UnknownC38978[18 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC38978[18 + 5 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(1),
 	EVENT_SHORTJUMP(&UnknownC38978[0]),
 ].join();
@@ -18024,13 +18021,13 @@ Event139 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event210 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6864),
@@ -18065,26 +18062,26 @@ Event346 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 8),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAAC),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAAC, ),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4DE98),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4DE98, ),
 	EVENT_WRITE_WORD_TEMPVAR(7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4E2D7),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4E2D7, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4DED0),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4DED0, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V1, 6),
 	EVENT_LOOP(7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4E2D7),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4E2D7, ),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 65535),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
-	EVENT_START_TASK(&Event346[99 + (17 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event346[99 + 16 * (const(void)*).sizeof]),
 	EVENT_LOOP(7),
 	EVENT_PAUSE(70),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
@@ -18095,17 +18092,17 @@ Event346 = [
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, -4),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event346[89 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event346[89 + 14 * (const(void)*).sizeof]),
 	EVENT_END_LAST_TASK(),
 	EVENT_HALT(),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V0),
 	EVENT_WRITE_WORD_TEMPVAR(1),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAAC),
-	EVENT_SHORTJUMP(&Event346[99 + (17 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAAC, ),
+	EVENT_SHORTJUMP(&Event346[99 + 16 * (const(void)*).sizeof]),
 ].join();
 Event654 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -18127,7 +18124,7 @@ UnknownC30C55 = [
 	EVENT_SHORTCALL(&UnknownC3AA2B[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORT_RETURN(),
 ].join();
 Event202 = [
@@ -18141,21 +18138,21 @@ Event202 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5552),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9000),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&UnknownC3B431[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent202.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event202[49 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event202[49 + 11 * (const(void)*).sizeof]),
 ].join();
 Event277 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
@@ -18164,20 +18161,20 @@ Event277 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(32),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3DF90 = [
 	EVENT_START_TASK(&UnknownC3DFB5[0]),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Right),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(64),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3DF90[7 + (3 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC09451),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3DF90[7 + 3 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC09451, ),
 	EVENT_END(),
 ].join();
 Event230 = [
@@ -18191,9 +18188,9 @@ Event230 = [
 UnknownC3A17B = [
 	EVENT_PAUSE(24),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(48),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A17B[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -18201,13 +18198,13 @@ Event865 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E2),
-	EVENT_SHORTCALL_CONDITIONAL(&Event865[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event865[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4920),
 	EVENT_SET_VAR(ActionScriptVars.V1, 1128),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event865[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event865[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer03.ptr),
 	EVENT_HALT(),
@@ -18229,17 +18226,17 @@ Event665 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event30 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_SET_VAR(ActionScriptVars.V3, 512),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Down),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
 	EVENT_PAUSE(8),
-	EVENT_SWITCH_JUMP_TEMPVAR(&Event30[22 + (10 * (const(void)*).sizeof)], &Event30[22 + (10 * (const(void)*).sizeof)], &Event30[9 + (4 * (const(void)*).sizeof)], &Event30[9 + (4 * (const(void)*).sizeof)]),
+	EVENT_SWITCH_JUMP_TEMPVAR(&Event30[22 + 10 * (const(void)*).sizeof], &Event30[22 + 10 * (const(void)*).sizeof], &Event30[9 + 4 * (const(void)*).sizeof], &Event30[9 + 4 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_LOOP(4),
@@ -18249,27 +18246,27 @@ Event30 = [
 	EVENT_PAUSE(2),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B2D),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B2D, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V4),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
-	EVENT_SHORTJUMP(&Event30[53 + (20 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SWITCH_JUMP_TEMPVAR(&Event30[53 + (20 * (const(void)*).sizeof)], &Event30[53 + (20 * (const(void)*).sizeof)], &Event30[9 + (4 * (const(void)*).sizeof)], &Event30[9 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0CEBE),
+	EVENT_SHORTJUMP(&Event30[53 + 20 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SWITCH_JUMP_TEMPVAR(&Event30[53 + 20 * (const(void)*).sizeof], &Event30[53 + 20 * (const(void)*).sizeof], &Event30[9 + 4 * (const(void)*).sizeof], &Event30[9 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0CEBE, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event30[50 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event30[50 + 15 * (const(void)*).sizeof]),
 ].join();
 Event413 = [
 	EVENT_SET_X(4728),
 	EVENT_SET_Y(5728),
-	EVENT_SHORTJUMP(&Event412[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event412[6]),
 ].join();
 UnknownC34E73 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -18281,7 +18278,7 @@ UnknownC34E73 = [
 ].join();
 UnknownC3AB94 = [
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3AB94[0]),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -18294,13 +18291,13 @@ Event175 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_X_VELOCITY(-128),
 	EVENT_PAUSE(32),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(40),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event646 = [
@@ -18319,8 +18316,8 @@ Event646 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)7),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49EC4, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC30CC7 = [
@@ -18337,13 +18334,13 @@ Event875 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1EC),
-	EVENT_SHORTCALL_CONDITIONAL(&Event875[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event875[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 3736),
 	EVENT_SET_VAR(ActionScriptVars.V1, 9624),
 	EVENT_SET_VAR(ActionScriptVars.V2, 8),
 	EVENT_SET_VAR(ActionScriptVars.V3, 16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event875[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event875[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer13.ptr),
 	EVENT_HALT(),
@@ -18364,7 +18361,7 @@ Event155 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A00C),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_WRITE_WORD_TEMPVAR(6),
@@ -18382,7 +18379,7 @@ Event155 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)188),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event165 = [
@@ -18393,7 +18390,7 @@ Event165 = [
 	EVENT_SET_Z(0),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(240),
 	EVENT_PAUSE(60),
 	EVENT_SET_ANIMATION(0),
@@ -18419,7 +18416,7 @@ Event165 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)187),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event229 = [
@@ -18436,7 +18433,7 @@ Event649 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_Y_VELOCITY(146),
 	EVENT_SET_X_VELOCITY(-219),
@@ -18449,13 +18446,13 @@ Event649 = [
 Event821 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event120 = [
@@ -18466,7 +18463,7 @@ Event120 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(48),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_HALT(),
@@ -18489,33 +18486,33 @@ Event455 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2528),
 	EVENT_SET_VAR(ActionScriptVars.V7, 5080),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&UnknownC3B431[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent455.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_SHORTCALL(&UnknownC3AB94[0]),
-	EVENT_SHORTJUMP(&Event455[55 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event455[55 + 10 * (const(void)*).sizeof]),
 ].join();
 Event873 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1EA),
-	EVENT_SHORTCALL_CONDITIONAL(&Event873[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event873[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 5600),
 	EVENT_SET_VAR(ActionScriptVars.V1, 9148),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event873[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event873[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer11.ptr),
 	EVENT_HALT(),
@@ -18534,7 +18531,7 @@ Event680 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 3460),
 	EVENT_SET_VAR(ActionScriptVars.V7, 4133),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 3460),
 	EVENT_SET_VAR(ActionScriptVars.V7, 4112),
@@ -18544,7 +18541,7 @@ Event680 = [
 Event721 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5432),
@@ -18572,7 +18569,7 @@ Event156 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A00C),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_WRITE_WORD_TEMPVAR(2),
@@ -18589,54 +18586,54 @@ Event156 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)187),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event583 = [
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4240A),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4240A, ),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA3F, cast(ubyte)24, cast(ubyte)24, cast(ubyte)24),
 	EVENT_SET_TICK_CALLBACK(&UnknownC47A27),
-	EVENT_START_TASK(&Event583[71 + (20 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event583[71 + 19 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)0),
 	EVENT_LOOP(64),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, 6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(150),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_END_LAST_TASK(),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A6B),
-	EVENT_START_TASK(&Event583[71 + (20 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A6B, ),
+	EVENT_START_TASK(&Event583[71 + 19 * (const(void)*).sizeof]),
 	EVENT_PAUSE(150),
 	EVENT_LOOP(64),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, -6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_LOOP_END(),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4248A),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4248A, ),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA3F, cast(ubyte)0, cast(ubyte)0, cast(ubyte)0),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event583[71 + (20 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event583[71 + 19 * (const(void)*).sizeof]),
 ].join();
 Event221 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_00C),
@@ -18645,7 +18642,7 @@ Event221 = [
 	EVENT_SHORTCALL_CONDITIONAL(&Event8[0]),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SET_VAR(ActionScriptVars.V0, 6800),
 	EVENT_SET_VAR(ActionScriptVars.V1, 7776),
@@ -18655,7 +18652,7 @@ Event221 = [
 	EVENT_SET_X(6888),
 	EVENT_SET_Y(7784),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!ClearCurrentEntityCollision2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_PAUSE(1),
@@ -18670,7 +18667,7 @@ Event221 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_START_TASK(&UnknownC3A09F[0]),
@@ -18681,8 +18678,8 @@ Event221 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event221[88 + (24 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event221[88 + 22 * (const(void)*).sizeof]),
 ].join();
 Event331 = [
 	EVENT_SET_X(5728),
@@ -18703,7 +18700,7 @@ Event791 = [
 	EVENT_SET_ANIMATION(1),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event791[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event791[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(-501),
 	EVENT_SET_X_VELOCITY(947),
 	EVENT_PAUSE(150),
@@ -18716,7 +18713,7 @@ Event670 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A0D8[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
@@ -18725,8 +18722,8 @@ Event670 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)0),
 	EVENT_START_TASK(&UnknownC3A0B2[0]),
@@ -18734,17 +18731,17 @@ Event670 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1200),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10032),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_START_TASK(&UnknownC3A09F[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 5),
-	EVENT_START_TASK(&Event670[142 + (31 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event670[142 + 30 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1488),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10032),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(240),
-	EVENT_START_TASK(&Event670[154 + (33 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event670[154 + 32 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
@@ -18760,33 +18757,33 @@ Event670 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1200),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1264),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9928),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_WRITE_WORD_WRAM(&teleportDestination, 14),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC48B2C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC48B2C, ),
 	EVENT_HALT(),
 	EVENT_LOOP(15),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, 64),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_LOOP_END(),
 	EVENT_END_TASK(),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V0),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V0),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event670[154 + (33 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event670[154 + 32 * (const(void)*).sizeof]),
 ].join();
 Event799 = [
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V0),
@@ -18795,21 +18792,21 @@ Event799 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Down),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event317 = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_LOOP(180),
 	EVENT_LOOP(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468A9, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 3840),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468AF),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468AF, ),
 	EVENT_BINOP_TEMPVAR(Binop.and, 3840),
-	EVENT_SHORTCALL_CONDITIONAL(&Event317[21 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event317[21 + 6 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
@@ -18818,7 +18815,7 @@ Event317 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event199 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2584),
@@ -18830,7 +18827,7 @@ Event199 = [
 ].join();
 UnknownC3098B = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event425 = [
@@ -18882,7 +18879,7 @@ Event559 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7608),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event655 = [
@@ -18903,7 +18900,7 @@ Event655 = [
 Event373 = [
 	EVENT_SET_X(4704),
 	EVENT_SET_Y(5748),
-	EVENT_SHORTJUMP(&Event361[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event361[6]),
 ].join();
 Event549 = [
 	EVENT_SET_X(4224),
@@ -18917,7 +18914,7 @@ Event549 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 4224),
 	EVENT_SET_VAR(ActionScriptVars.V7, 917),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event40 = [
@@ -18928,10 +18925,10 @@ Event40 = [
 UnknownC3A09F = [
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(8),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_SHORTJUMP(&UnknownC3A09F[0]),
 ].join();
 Event742 = [
@@ -18939,7 +18936,7 @@ Event742 = [
 	EVENT_SET_Y(3528),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 11),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4560),
@@ -18947,7 +18944,7 @@ Event742 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(10),
 	EVENT_SHORTCALL(&UnknownC37545[0]),
-	EVENT_START_TASK(&Event742[53 + (10 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event742[53 + 10 * (const(void)*).sizeof]),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4408),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
@@ -18957,11 +18954,11 @@ Event742 = [
 	EVENT_PAUSE(30),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A94E, cast(ushort)1110),
 	EVENT_PAUSE(3),
-	EVENT_SHORTJUMP(&Event742[53 + (10 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event742[53 + 10 * (const(void)*).sizeof]),
 ].join();
 Event859 = [
 	EVENT_PAUSE(2),
@@ -18971,11 +18968,11 @@ Event135 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A12E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 3, 20, 40, 60),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)3, cast(short)20, cast(short)40, cast(short)60),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 7),
 	EVENT_SET_VAR(ActionScriptVars.V5, 18),
@@ -18984,16 +18981,16 @@ Event135 = [
 	EVENT_LOOP(60),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
 	EVENT_LOOP_END(),
-	EVENT_SHORTJUMP(&Event135[9 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event135[9 + 5 * (const(void)*).sizeof]),
 ].join();
 UnknownC36D18 = [
 	EVENT_PAUSE(4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D15C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D15C, ),
 	EVENT_SHORTCALL_CONDITIONAL(&UnknownC36D18[0]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4681A),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4681A, ),
 	EVENT_END_TASK(),
 ].join();
 UnknownC3ABE0 = [
@@ -19007,13 +19004,13 @@ Event862 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1DF),
-	EVENT_SHORTCALL_CONDITIONAL(&Event862[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event862[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2640),
 	EVENT_SET_VAR(ActionScriptVars.V1, 392),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event862[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event862[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer00.ptr),
 	EVENT_HALT(),
@@ -19036,9 +19033,9 @@ Event656 = [
 UnknownC3A1A3 = [
 	EVENT_PAUSE(12),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(12),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A1A3[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -19058,7 +19055,7 @@ Event110 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
 	EVENT_WRITE_WORD_WRAM(&Unknown7E5D9A, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event278 = [
@@ -19068,14 +19065,14 @@ Event278 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(32),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC39E01 = [
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlCountdown),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC39E01[5 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC39E01[5 + 4 * (const(void)*).sizeof]),
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlFlag),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC39E01[5 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC39E01[5 + 4 * (const(void)*).sizeof]),
 	EVENT_SHORT_RETURN(),
 	EVENT_PAUSE(1),
 	EVENT_SHORTJUMP(&UnknownC39E01[0]),
@@ -19107,7 +19104,7 @@ Event296 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 3912),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event172 = [
@@ -19119,11 +19116,11 @@ Event172 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
 	EVENT_WRITE_WORD_TEMPVAR(4),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event172[18 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event172[18 + 4 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event56 = [
@@ -19133,7 +19130,7 @@ Event56 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7528),
 	EVENT_SET_VAR(ActionScriptVars.V7, 1248),
 	EVENT_SHORTCALL(&UnknownC3AB67[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event351 = [
@@ -19141,8 +19138,8 @@ Event351 = [
 	EVENT_PAUSE(15),
 	EVENT_SET_VAR(ActionScriptVars.V0, 16),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_START_TASK(&Event351[54 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_START_TASK(&Event351[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
 	EVENT_LOOP(15),
 	EVENT_PAUSE(32),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
@@ -19153,29 +19150,29 @@ Event351 = [
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 1),
 	EVENT_LOOP_END(),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, -7),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event351[35 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event351[35 + 2 * (const(void)*).sizeof]),
 	EVENT_END_LAST_TASK(),
 	EVENT_PAUSE(16),
 	EVENT_WRITE_DWORD_WRAM(&Unknown7E9D1B, &UndrawFlyoverText),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V0),
 	EVENT_WRITE_WORD_TEMPVAR(-1),
-	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4E2D7),
-	EVENT_SHORTJUMP(&Event351[54 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!GetDirectionRotatedClockwise, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4E2D7, ),
+	EVENT_SHORTJUMP(&Event351[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
 ].join();
 Event499 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A643, cast(ushort)1311),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0C97),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0C97, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownEF0D46, ),
 ].join();
 Event101 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -19185,19 +19182,19 @@ Event101 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event353 = [
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4880C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4880C, ),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_PAUSE(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC48A6D),
-	EVENT_SHORTCALL_CONDITIONAL(&Event353[7 + (2 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC48A6D, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event353[7 + 1 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event329 = [
@@ -19216,8 +19213,8 @@ Event329 = [
 ].join();
 Event77 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 112),
 	EVENT_SET_VAR(ActionScriptVars.V3, 72),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -19227,7 +19224,7 @@ Event77 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 8976),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 32),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -19237,7 +19234,7 @@ Event77 = [
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event334 = [
@@ -19263,24 +19260,24 @@ UnknownC36834 = [
 ].join();
 UnknownC3B0B6 = [
 	EVENT_LOOP(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, 256),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_PAUSE(32),
 	EVENT_LOOP_END(),
 	EVENT_LOOP(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, -256),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_PAUSE(32),
 	EVENT_LOOP_END(),
 	EVENT_LOOP(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, 256),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_PAUSE(32),
 	EVENT_LOOP_END(),
-	EVENT_SHORTJUMP(&UnknownC3B0B6[11 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC3B0B6[11 + 2 * (const(void)*).sizeof]),
 ].join();
 Event93 = [
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
@@ -19288,33 +19285,33 @@ Event93 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(96),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event286 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.USE_POSTGAME_MUSIC),
 	EVENT_SHORTCALL_CONDITIONAL(&Event8[0]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(10),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC42828 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CEB0),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CEB0, ),
 	EVENT_LOOP(64),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CED8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CED8, ),
 	EVENT_PAUSE(2),
 	EVENT_LOOP_END(),
 	EVENT_BINOP(ActionScriptVars.V4, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4CC2C, ),
 	EVENT_END_TASK(),
 ].join();
 Event218 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 432),
@@ -19326,7 +19323,7 @@ Event218 = [
 UnknownC3C8FD = [
 	EVENT_SHORTCALL(&UnknownC3C94E[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)195),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event534 = [
@@ -19335,12 +19332,12 @@ Event534 = [
 	EVENT_PAUSE(20),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.UpRight, cast(ubyte)0),
 	EVENT_PAUSE(20),
-	EVENT_SHORTJUMP(&Event534[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event534[1 + 1 * (const(void)*).sizeof]),
 ].join();
 Event149 = [
 	EVENT_SHORTCALL(&UnknownC3C90C[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)193),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 UnknownC4144C = [
@@ -19352,7 +19349,7 @@ UnknownC4144C = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4144C[12 + (0 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC4144C[12]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(10),
 	EVENT_SET_X_VELOCITY(0),
@@ -19361,7 +19358,7 @@ UnknownC4144C = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC4144C[35 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC4144C[35 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(60),
 	EVENT_SET_X_VELOCITY(-256),
@@ -19398,33 +19395,33 @@ UnknownC4144C = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC4144C[129 + (23 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&UnknownC4144C[79 + (13 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC4144C[129 + 23 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&UnknownC4144C[79 + 13 * (const(void)*).sizeof]),
 ].join();
 Event673 = [
-	EVENT_SHORTCALL(&Event674[43 + (21 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event674[52 + 17 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_20F),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 400, 600, 1200, 1800),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)400, cast(short)600, cast(short)1200, cast(short)1800),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlCountdown),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + 1 * (const(void)*).sizeof]),
 	EVENT_WRITE_WRAM_TEMPVAR(&BattleSwirlFlag),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + (1 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event674[1 + 1 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 248),
 	EVENT_SET_VAR(ActionScriptVars.V3, 248),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event673[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event673[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V2, 4),
 	EVENT_SET_VAR(ActionScriptVars.V3, 4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event673[40 + (17 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event673[49 + 13 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_20F),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent673.ptr),
-	EVENT_SHORTCALL(&Event674[52 + (27 * (const(void)*).sizeof)]),
-	EVENT_SHORTJUMP(&Event673[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event674[61 + 22 * (const(void)*).sizeof]),
+	EVENT_SHORTJUMP(&Event673[1 + 1 * (const(void)*).sizeof]),
 ].join();
 Event61 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
@@ -19436,13 +19433,13 @@ Event61 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 24),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(64),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_HALT(),
@@ -19450,88 +19447,88 @@ Event61 = [
 Event240 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 7009),
 	EVENT_SET_VAR(ActionScriptVars.V1, 9800),
 	EVENT_SET_VAR(ActionScriptVars.V2, 56),
 	EVENT_SET_VAR(ActionScriptVars.V3, 24),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
 	EVENT_PAUSE(4),
-	EVENT_SHORTCALL_CONDITIONAL(&Event240[19 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event240[19 + 2 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(9798),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event240[32 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468DC, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event240[32 + 6 * (const(void)*).sizeof]),
 	EVENT_SET_Y_VELOCITY(128),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V6),
 	EVENT_BINOP_TEMPVAR(Binop.add, 4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event240[58 + (13 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event240[58 + 13 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(-128),
 	EVENT_WRITE_WORD_TEMPVAR(6968),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event240[82 + (19 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event240[82 + 19 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
-	EVENT_SHORTJUMP(&Event240[85 + (20 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event240[85 + 20 * (const(void)*).sizeof]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V6),
 	EVENT_BINOP_TEMPVAR(Binop.add, -4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event240[85 + (20 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event240[85 + 20 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_X_VELOCITY(128),
 	EVENT_WRITE_WORD_TEMPVAR(7048),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event240[82 + (19 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event240[82 + 19 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
-	EVENT_SHORTJUMP(&Event240[85 + (20 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event240[85 + 20 * (const(void)*).sizeof]),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event240[23 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event240[23 + 4 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event240[3 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event240[3 + 2 * (const(void)*).sizeof]),
 ].join();
 Event20 = [
-	EVENT_SHORTCALL(&UnknownC3A401[17 + (9 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8),
+	EVENT_SHORTCALL(&UnknownC3A401[17 + 8 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6B8, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A47C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event20[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event20[6 + 4 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_PAUSE(10),
-	EVENT_SHORTJUMP(&Event20[28 + (13 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event20[6 + (4 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C35D),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event20[42 + (20 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event20[28 + 13 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C48F, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event20[6 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C35D, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event20[42 + 20 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(8),
-	EVENT_SHORTJUMP(&Event20[26 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event20[26 + 11 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B65, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C62B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A6AD, cast(ushort)8),
-	EVENT_SHORTJUMP(&Event20[26 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event20[26 + 11 * (const(void)*).sizeof]),
 ].join();
 Event119 = [
 	EVENT_SET_X(7656),
@@ -19550,20 +19547,20 @@ Event119 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_WRITE_WORD_TEMPVAR(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A857, cast(ushort)EventFlag.UNKNOWN_002),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_006),
-	EVENT_SHORTCALL_CONDITIONAL(&Event119[45 + (9 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event119[45 + 8 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&Event115_116_117_118_119Common[0]),
 	EVENT_SHORTCALL(&UnknownC3BEA4[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_006),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event119[53 + (13 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event119[53 + 12 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC3BED4[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event343 = [
@@ -19572,7 +19569,7 @@ Event343 = [
 	EVENT_HALT(),
 ].join();
 Event208 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5584),
@@ -19589,8 +19586,8 @@ Event436 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_CALLROUTINE(&fixArgs!SetSurfaceFlags, cast(ubyte)3),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(121),
 	EVENT_PAUSE(236),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -19616,7 +19613,7 @@ Event626 = [
 	EVENT_PAUSE(4),
 	EVENT_SET_Y_RELATIVE(10),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event367 = [
@@ -19676,12 +19673,12 @@ Event489 = [
 	EVENT_SHORTJUMP(&Event10_11[0]),
 ].join();
 Event715 = [
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_PRIORITY(3),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(32),
 	EVENT_LOOP(8),
 	EVENT_SET_ANIMATION(255),
@@ -19698,7 +19695,7 @@ Event463 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 4416),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10184),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC3AA6E = [
@@ -19706,7 +19703,7 @@ UnknownC3AA6E = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A0D8[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)96, cast(ubyte)1),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -19714,13 +19711,13 @@ Event884 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event884[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event884[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 4536),
 	EVENT_SET_VAR(ActionScriptVars.V1, 2760),
 	EVENT_SET_VAR(ActionScriptVars.V2, 40),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event884[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event884[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer22.ptr),
 	EVENT_HALT(),
@@ -19729,32 +19726,32 @@ Event737_738_739_740Common = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event51 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
 	EVENT_START_TASK(&UnknownC3B0B6[0]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)1),
 	EVENT_SET_Z(16),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47044),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47044, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B51, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 2048),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4730E),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
-	EVENT_SHORTJUMP(&Event51[21 + (9 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8E7, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4730E, ),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
+	EVENT_SHORTJUMP(&Event51[21 + 9 * (const(void)*).sizeof]),
 ].join();
 Event439 = [
 	EVENT_SET_X(4736),
@@ -19851,7 +19848,7 @@ Event36 = [
 	EVENT_SET_Y_RELATIVE(-1),
 	EVENT_PAUSE(2),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event457 = [
@@ -19861,20 +19858,20 @@ Event457 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5696),
 	EVENT_SET_VAR(ActionScriptVars.V7, 3400),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event43 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_START_TASK(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&Event6_12[10 + (7 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&Event6_12[10 + 6 * (const(void)*).sizeof]),
 ].join();
 Event634 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -19883,10 +19880,10 @@ Event634 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(8),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event531 = [
@@ -19900,7 +19897,7 @@ Event795 = [
 	EVENT_SET_ANIMATION(5),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event795[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event795[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(339),
 	EVENT_SET_X_VELOCITY(-305),
 	EVENT_PAUSE(150),
@@ -19909,7 +19906,7 @@ Event795 = [
 	EVENT_HALT(),
 ].join();
 Event203 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5392),
@@ -19935,21 +19932,21 @@ Event203 = [
 ].join();
 Event688 = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A673, ),
 	EVENT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.V1),
 	EVENT_SHORTCALL(&UnknownC383BC[0]),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 2),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.and, 7),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V1),
 	EVENT_SHORTCALL(&UnknownC3835D[0]),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.Cursor4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event154 = [
@@ -19959,7 +19956,7 @@ Event154 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A00C),
 	EVENT_SET_Z(192),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_WRITE_WORD_TEMPVAR(2),
@@ -20007,10 +20004,10 @@ Event370 = [
 	EVENT_PAUSE(90),
 	EVENT_LOOP(38),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(22),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(23),
 	EVENT_LOOP_END(),
 	EVENT_HALT(),
@@ -20018,8 +20015,8 @@ Event370 = [
 Event42 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_START_TASK(&UnknownC3A262[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_SHORTJUMP(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_SHORTJUMP(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 ].join();
 Event319 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -20027,12 +20024,12 @@ Event319 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)98),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 16),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event739 = [
@@ -20043,28 +20040,28 @@ Event818 = [
 	EVENT_SET_PRIORITY(0),
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event810 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
-	EVENT_SHORTJUMP(&Event810[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event810[1 + 1 * (const(void)*).sizeof]),
 ].join();
 Event693 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
@@ -20073,8 +20070,8 @@ Event693 = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event693[6 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event693[6 + 3 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event375_404 = [
@@ -20094,7 +20091,7 @@ Event239 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event532 = [
@@ -20108,7 +20105,7 @@ Event728 = [
 	EVENT_SET_Y(7056),
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.DoorClose),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
@@ -20117,15 +20114,15 @@ Event728 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event730Entry2 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)182),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46ADB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46B0A, ),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(4),
 	EVENT_SHORTJUMP(&Event730Entry2[0]),
 ].join();
@@ -20137,7 +20134,7 @@ Event466 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 6176),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7144),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
@@ -20148,7 +20145,7 @@ Event466 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
@@ -20167,7 +20164,7 @@ Event466 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7112),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V0),
-	EVENT_SHORTCALL_CONDITIONAL(&Event466[61 + (10 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event466[61 + 10 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(28),
@@ -20197,7 +20194,7 @@ Event466 = [
 	EVENT_SET_Y(7144),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event75 = [
@@ -20211,7 +20208,7 @@ Event75 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event322 = [
@@ -20236,14 +20233,14 @@ Event72 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(32),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(48),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event99 = [
@@ -20251,12 +20248,12 @@ Event99 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)16),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SHORTCALL(&UnknownC3BB73[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_HALT(),
 ].join();
 Event207 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6248),
@@ -20282,12 +20279,12 @@ Event207 = [
 ].join();
 UnknownC39ABB = [
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C6B6, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC39ABB[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event186 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4944),
@@ -20304,8 +20301,8 @@ Event186 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 5504),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9368),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtSelf, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent186.ptr),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48B3B),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
@@ -20319,7 +20316,7 @@ Event186 = [
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event265 = [
@@ -20335,10 +20332,10 @@ Event62 = [
 	EVENT_SET_TICK_CALLBACK(&UnknownC48BE1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)32, cast(ubyte)0),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
 	EVENT_PAUSE(64),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event387 = [
@@ -20379,7 +20376,7 @@ Event182 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)373),
 	EVENT_SHORTCALL(&UnknownC3B70C[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event245 = [
@@ -20400,8 +20397,8 @@ Event829 = [
 	EVENT_PAUSE(117),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event829[11 + (3 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4ECE7, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event829[11 + 3 * (const(void)*).sizeof]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event398 = [
@@ -20431,7 +20428,7 @@ Event398 = [
 	EVENT_PAUSE(45),
 	EVENT_PAUSE(60),
 	EVENT_PAUSE(60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC42624),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC42624, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(30),
 	EVENT_SET_X(4704),
@@ -20449,10 +20446,10 @@ Event398 = [
 	EVENT_END_LAST_TASK(),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC42624),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC42624, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_PAUSE(3),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC424D1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC424D1, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA23, cast(ushort)4640, cast(ushort)5744, cast(ushort)4832),
 	EVENT_PAUSE(120),
 	EVENT_PAUSE(120),
@@ -20475,12 +20472,12 @@ Event398 = [
 	EVENT_PAUSE(120),
 	EVENT_PAUSE(120),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4257F),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4257F, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event297 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
@@ -20490,11 +20487,11 @@ Event297 = [
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(112),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event484 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4675C),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4675C, ),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A039),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
@@ -20507,7 +20504,7 @@ Event484 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 864),
 	EVENT_SET_VAR(ActionScriptVars.V7, 4240),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event267 = [
@@ -20520,12 +20517,12 @@ Event267 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 2280),
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTCALL_CONDITIONAL(&Event267[20 + (5 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event267[20 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_PAUSE(20),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.FALLING),
 	EVENT_SET_Y_VELOCITY(256),
@@ -20544,41 +20541,41 @@ Event267 = [
 	EVENT_PAUSE(12),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.TOOK_DAMAGE),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event769 = [
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 10, 0, 4, 8, 12, 16, 20, 24, 28, 32, 36),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)10, cast(short)0, cast(short)4, cast(short)8, cast(short)12, cast(short)16, cast(short)20, cast(short)24, cast(short)28, cast(short)32, cast(short)36),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A03A),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FF1),
 	EVENT_START_TASK(&UnknownC3A12E[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Down),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, 4, 0, 2, 4, 6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!ChooseRandom, cast(ubyte)4, cast(short)0, cast(short)2, cast(short)4, cast(short)6),
 	EVENT_WRITE_TEMPVAR_WAITTIMER(),
 	EVENT_SET_Z(96),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Z_VELOCITY(-768),
 	EVENT_PAUSE(32),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 4),
 	EVENT_CALLROUTINE(&fixArgs!SetDirection8, cast(ubyte)Direction.Up),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(8),
-	EVENT_SHORTJUMP(&Event769[7 + (15 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event769[28 + 5 * (const(void)*).sizeof]),
 ].join();
 UnknownC33DBE = [
 	EVENT_LOOP(28),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A691, ),
 	EVENT_BINOP_TEMPVAR(Binop.add, 64),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685Entry2, ),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
 	EVENT_END_TASK(),
@@ -20614,19 +20611,19 @@ Event750 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7624),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 UnknownC31D2D = [
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31D2D[17 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31D2D[17 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V4),
 	EVENT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.V4),
-	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31D2D[17 + (7 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&UnknownC31D2D[17 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.V4),
 	EVENT_SHORTJUMP(&UnknownC31D2D[0]),
 	EVENT_PAUSE(6),
@@ -20634,14 +20631,14 @@ UnknownC31D2D = [
 ].join();
 Event177 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event86 = [
@@ -20653,8 +20650,8 @@ Event86 = [
 ].join();
 UnknownC3BB5C = [
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 80),
 	EVENT_SET_VAR(ActionScriptVars.V3, 80),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -20663,7 +20660,7 @@ UnknownC3BB5C = [
 Event417 = [
 	EVENT_SET_X(4720),
 	EVENT_SET_Y(5728),
-	EVENT_SHORTJUMP(&Event412[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event412[6]),
 ].join();
 Event483 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -20678,9 +20675,9 @@ Event483 = [
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 65514),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_081),
-	EVENT_SHORTCALL_CONDITIONAL(&Event483[50 + (11 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event483[50 + 10 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47333),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47333, ),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_LOOP(12),
 	EVENT_SET_X_VELOCITY(1),
@@ -20691,15 +20688,15 @@ Event483 = [
 	EVENT_LOOP_END(),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46712),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46712, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)252),
 	EVENT_SET_X_RELATIVE(-8),
 	EVENT_SET_Y_RELATIVE(-22),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event483[58 + (14 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event483[58 + 13 * (const(void)*).sizeof]),
 ].join();
 Event81 = [
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
@@ -20715,18 +20712,18 @@ Event81 = [
 UnknownC3A18F = [
 	EVENT_PAUSE(24),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(24),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40015),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40015, ),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&UnknownC3A18F[0]),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event596 = [
 	EVENT_SHORTCALL(&UnknownC3AB26[0]),
-	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2),
+	EVENT_CALLROUTINE(&fixArgs!DisableCurrentEntityCollision2, ),
 	EVENT_SET_Z(0),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_LOOP(10),
 	EVENT_SET_Z_RELATIVE(1),
 	EVENT_PAUSE(2),
@@ -20737,13 +20734,13 @@ Event596 = [
 	EVENT_SET_Z_RELATIVE(-2),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_Z_VELOCITY(1536),
 	EVENT_PAUSE(16),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
 	EVENT_END(),
 ].join();
 Event751 = [
@@ -20768,7 +20765,7 @@ Event108 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_START_TASK(&UnknownC3A1F3[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A964, cast(ushort)8, cast(ushort)8),
 	EVENT_SHORTJUMP(&UnknownC3AB9E[0]),
@@ -20777,12 +20774,12 @@ Event766 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4978E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4978E, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)0, cast(ubyte)100),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)50, cast(ubyte)60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event558 = [
@@ -20805,7 +20802,7 @@ Event558 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 7600),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event650 = [
@@ -20816,7 +20813,7 @@ Event650 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V7, 6904),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event224 = [
@@ -20826,27 +20823,27 @@ Event224 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 216),
 	EVENT_SHORTCALL(&UnknownC30295[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_WRAM(&Unknown7E5D9A, 0),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7632),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_END_LAST_TASK(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Left, cast(ubyte)0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event881 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1F2),
-	EVENT_SHORTCALL_CONDITIONAL(&Event881[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event881[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 6848),
 	EVENT_SET_VAR(ActionScriptVars.V1, 8320),
 	EVENT_SET_VAR(ActionScriptVars.V2, 32),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event881[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event881[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer19.ptr),
 	EVENT_HALT(),
@@ -20862,13 +20859,13 @@ Event890 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1FB),
-	EVENT_SHORTCALL_CONDITIONAL(&Event890[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event890[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1304),
 	EVENT_SET_VAR(ActionScriptVars.V1, 5344),
 	EVENT_SET_VAR(ActionScriptVars.V2, 56),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event890[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event890[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer28.ptr),
 	EVENT_HALT(),
@@ -20878,11 +20875,11 @@ Event335 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_START_TASK(&Event8Entry2[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_085),
-	EVENT_SHORTCALL_CONDITIONAL(&Event335[7 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event335[7 + 4 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
@@ -20891,16 +20888,16 @@ Event335 = [
 	EVENT_HALT(),
 ].join();
 UnknownC36E41 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC40023),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46914),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46957),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC40023, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46914, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46957, ),
 	EVENT_PAUSE(80),
-	EVENT_SHORTJUMP(&UnknownC36E41[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC36E41[1 + 1 * (const(void)*).sizeof]),
 ].join();
 UnknownC3AA38 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
-	EVENT_START_TASK(&UnknownC3A0D8[33 + (15 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&UnknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SHORT_RETURN(),
@@ -20908,7 +20905,7 @@ UnknownC3AA38 = [
 Event431_432_433_434 = [
 	EVENT_SHORTCALL(&UnknownC31D4F[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 40),
-	EVENT_SHORTJUMP(&Event430[6 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event430[6 + 2 * (const(void)*).sizeof]),
 ].join();
 Event661 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -20916,23 +20913,23 @@ Event661 = [
 	EVENT_SHORTCALL(&UnknownC37A7C[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(100),
 	EVENT_PAUSE(90),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(12),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(16),
 	EVENT_WRITE_WORD_TEMPVAR(5),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_WRITE_WORD_TEMPVAR(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C83B, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_HALT(),
 ].join();
 Event503 = [
@@ -20948,7 +20945,7 @@ UnknownC41036 = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(8),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41036[12 + (0 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41036[12]),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)0),
@@ -20959,7 +20956,7 @@ UnknownC41036 = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41036[40 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41036[40 + 6 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(180),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)1),
@@ -20982,14 +20979,14 @@ UnknownC41036 = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41036[96 + (19 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)2, &UnknownC41036[96 + 18 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_WRAM(&Unknown7EB4B4, 1),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(20),
 	EVENT_WRITE_WORD_WRAM(&Unknown7EB4B4, 0),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41036[108 + (23 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)1, &UnknownC41036[108 + 22 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)1),
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)1),
@@ -21002,7 +20999,7 @@ UnknownC41036 = [
 	EVENT_PAUSE(10),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)1),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41036[145 + (33 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAD5, cast(ubyte)8, &UnknownC41036[145 + 31 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Up, cast(ubyte)0),
 	EVENT_PAUSE(90),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.UpRight, cast(ubyte)1),
@@ -21017,7 +21014,7 @@ UnknownC41036 = [
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(60),
-	EVENT_SHORTJUMP(&UnknownC41036[40 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&UnknownC41036[40 + 6 * (const(void)*).sizeof]),
 ].join();
 Event386 = [
 	EVENT_SHORTCALL(&UnknownC31D4F[0]),
@@ -21028,19 +21025,19 @@ Event386 = [
 	EVENT_PAUSE(120),
 	EVENT_PAUSE(105),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(15),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Y_VELOCITY(-34),
 	EVENT_LOOP(2),
 	EVENT_SET_ANIMATION(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry1, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_PAUSE(30),
 	EVENT_LOOP_END(),
 	EVENT_SET_VELOCITIES_ZERO(),
@@ -21062,8 +21059,8 @@ Event386 = [
 	EVENT_SET_Y_VELOCITY(-68),
 	EVENT_PAUSE(15),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(136),
 	EVENT_SET_Y_VELOCITY(-34),
 	EVENT_PAUSE(30),
@@ -21071,112 +21068,112 @@ Event386 = [
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_PAUSE(30),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(60),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 20),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Y_VELOCITY(-136),
 	EVENT_PAUSE(45),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(136),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_PAUSE(120),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(0),
 	EVENT_SET_Y_VELOCITY(136),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(-218),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_PAUSE(75),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(136),
 	EVENT_SET_Y_VELOCITY(0),
 	EVENT_PAUSE(60),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(90),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(60),
 	EVENT_SET_Y_VELOCITY(-34),
 	EVENT_PAUSE(120),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(34),
 	EVENT_SET_Y_VELOCITY(34),
 	EVENT_PAUSE(120),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(90),
 	EVENT_SET_Y_VELOCITY(-34),
 	EVENT_PAUSE(120),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(10),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_X_VELOCITY(34),
 	EVENT_SET_Y_VELOCITY(34),
 	EVENT_PAUSE(120),
@@ -21186,26 +21183,26 @@ Event386 = [
 	EVENT_SET_Y_VELOCITY(34),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_Y_VELOCITY(-34),
 	EVENT_PAUSE(60),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_Y_VELOCITY(34),
 	EVENT_PAUSE(30),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(90),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_ANIMATION(255),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_SET_X_VELOCITY(-68),
@@ -21213,8 +21210,8 @@ Event386 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_ANIMATION(255),
@@ -21226,8 +21223,8 @@ Event386 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_ANIMATION(255),
@@ -21239,8 +21236,8 @@ Event386 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(30),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
 	EVENT_SET_ANIMATION(255),
@@ -21260,18 +21257,18 @@ Event386 = [
 	EVENT_PAUSE(30),
 	EVENT_SET_VAR(ActionScriptVars.V4, 30),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(120),
 	EVENT_PAUSE(120),
 	EVENT_PAUSE(120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(30),
 	EVENT_PAUSE(180),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event204 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 5944),
@@ -21287,8 +21284,8 @@ Event666 = [
 	EVENT_START_TASK(&Event8Entry2[0]),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 64),
 	EVENT_SET_VAR(ActionScriptVars.V3, 64),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
@@ -21315,15 +21312,15 @@ Event76 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A938, cast(ushort)243),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event10_11 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SHORTJUMP(&UnknownC3A1F3[0]),
 ].join();
 Event153 = [
@@ -21333,7 +21330,7 @@ Event153 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A00C),
 	EVENT_SET_Z(192),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)3),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_WRITE_WORD_TEMPVAR(6),
@@ -21358,7 +21355,7 @@ Event651 = [
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.V0, Binop.add, 65535),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47499),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47499, ),
 	EVENT_PAUSE(9),
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.OUCH),
@@ -21366,31 +21363,31 @@ Event651 = [
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V2, 2),
 	EVENT_SET_VAR(ActionScriptVars.V3, 4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V2, 3),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
 	EVENT_PAUSE(10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F),
-	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F, ),
+	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event137 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A37A),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8B3, cast(ushort)0, cast(ushort)8),
 	EVENT_SET_VAR(ActionScriptVars.V2, 24),
 	EVENT_SET_VAR(ActionScriptVars.V3, 2),
 	EVENT_SHORTCALL(&UnknownC3AB8A[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent137_138.ptr),
-	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader),
+	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtPartyLeader, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEvent137.ptr),
 	EVENT_LOOP(10),
@@ -21411,16 +21408,16 @@ Event137 = [
 	EVENT_SET_Y_RELATIVE(-2),
 	EVENT_PAUSE(4),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_Y_VELOCITY(-512),
 	EVENT_PAUSE(80),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_HALT(),
 ].join();
 Event788 = [
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event788[4 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event788[4 + 2 * (const(void)*).sizeof]),
 	EVENT_PAUSE(60),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC09E71, cast(ushort)ActionScript.TitleScreen2),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC09E71, cast(ushort)ActionScript.TitleScreen3),
@@ -21440,15 +21437,15 @@ Event788 = [
 	EVENT_PAUSE(161),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(29),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event473 = [
 	EVENT_SHORTCALL(&UnknownC3C1E0[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SHORTCALL(&UnknownC3C20F[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event635 = [
@@ -21466,14 +21463,14 @@ Event635 = [
 Event91 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A87A, cast(ushort)0, cast(ushort)80),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_138),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event91[15 + (5 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event91[15 + 5 * (const(void)*).sizeof]),
 	EVENT_SET_X_RELATIVE(256),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)15),
-	EVENT_SHORTJUMP(&Event91[17 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event91[17 + 6 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)18),
 	EVENT_SHORTCALL(&UnknownC3AA38[0]),
 	EVENT_SHORTCALL(&UnknownC3BB73[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_HALT(),
 ].join();
@@ -21490,21 +21487,21 @@ Event306 = [
 	EVENT_PAUSE(1),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A92D, cast(ushort)866),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
-	EVENT_SHORTJUMP(&Event306[18 + (8 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
+	EVENT_SHORTJUMP(&Event306[18 + 7 * (const(void)*).sizeof]),
 ].join();
 Event222 = [
 	EVENT_WRITE_WORD_WRAM(&Unknown7E5D9A, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 6928),
 	EVENT_SET_VAR(ActionScriptVars.V7, 392),
 	EVENT_SHORTCALL(&UnknownC30295[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event501_531_Common = [
 	EVENT_SET_X(-8),
 	EVENT_SET_Y(40),
-	EVENT_START_TASK(&Event501_531_Common[61 + (12 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event501_531_Common[61 + 12 * (const(void)*).sizeof]),
 	EVENT_LOOP(4),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Right, cast(ubyte)0),
 	EVENT_PAUSE(8),
@@ -21527,12 +21524,12 @@ Event501_531_Common = [
 	EVENT_PAUSE(8),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.DownRight, cast(ubyte)0),
 	EVENT_PAUSE(8),
-	EVENT_SHORTJUMP(&Event501_531_Common[20 + (3 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event501_531_Common[20 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X_VELOCITY(128),
 	EVENT_PAUSE(64),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(240),
-	EVENT_SHORTJUMP(&Event501_531_Common[67 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event501_531_Common[67 + 12 * (const(void)*).sizeof]),
 ].join();
 Event438 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -21540,7 +21537,7 @@ Event438 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C2B),
 	EVENT_SET_VAR(ActionScriptVars.V0, 65521),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC474A8, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4736),
@@ -21550,7 +21547,7 @@ Event438 = [
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event104 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46C45, ),
 	EVENT_SET_VAR(ActionScriptVars.V2, 80),
 	EVENT_SET_VAR(ActionScriptVars.V3, 96),
 	EVENT_SHORTCALL(&UnknownC3BD03[0]),
@@ -21563,12 +21560,12 @@ Event104 = [
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_BINOP(ActionScriptVars.V7, Binop.add, 24),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8C6, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_13A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event104[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event104[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(7296),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5),
-	EVENT_SHORTCALL_CONDITIONAL(&Event104[26 + (6 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC468B5, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event104[26 + 6 * (const(void)*).sizeof]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_HALT(),
@@ -21577,98 +21574,98 @@ Event452 = [
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_VAR(ActionScriptVars.V0, 1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_PAUSE(5),
 	EVENT_CALLROUTINE(&fixArgs!PlaySfx, cast(ushort)Sfx.UNKNOWN0D),
 	EVENT_SET_VAR(ActionScriptVars.V1, 5),
 	EVENT_LOOP(6),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77, ),
 	EVENT_PAUSE(3),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 65535),
 	EVENT_LOOP_END(),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_LOOP(5),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47B77, ),
 	EVENT_PAUSE(3),
 	EVENT_BINOP(ActionScriptVars.V1, Binop.add, 1),
 	EVENT_LOOP_END(),
-	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event768 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4978E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4978E, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)46, cast(ubyte)60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)44, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)42, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)40, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)38, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)36, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)34, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)32, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)30, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)28, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)26, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)24, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)22, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)20, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)18, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)16, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)14, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)12, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)10, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)8, cast(ubyte)1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)57340, cast(ubyte)0, cast(ubyte)120),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)8192, cast(ubyte)90, cast(ubyte)60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAB5, cast(ushort)8192, cast(ubyte)49, cast(ubyte)60),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event516 = [
@@ -21681,7 +21678,7 @@ Event223 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7960),
 	EVENT_SET_VAR(ActionScriptVars.V7, 104),
 	EVENT_SHORTCALL(&UnknownC30295[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event14 = [
@@ -21711,12 +21708,12 @@ Event83 = [
 	EVENT_SET_VAR(ActionScriptVars.V5, 17),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_HALT(),
 ].join();
 UnknownC3DB7A = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 4168),
@@ -21746,12 +21743,12 @@ Event441 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A86F, cast(ushort)165),
 	EVENT_SET_X_RELATIVE(3),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event441[14 + (2 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event441[14 + 2 * (const(void)*).sizeof]),
 ].join();
 Event403 = [
 	EVENT_SET_X(4768),
 	EVENT_SET_Y(5748),
-	EVENT_SHORTJUMP(&Event361[6 + (0 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event361[6]),
 ].join();
 Event752 = [
 	EVENT_SET_X(360),
@@ -21769,8 +21766,8 @@ Event752 = [
 Event629 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC0A360),
 	EVENT_SET_ANIMATION(0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_START_TASK(&UnknownC3A15E[0]),
 	EVENT_START_TASK(&UnknownC3A262[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
@@ -21779,7 +21776,7 @@ Event629 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 242),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(6),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_PAUSE(60),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2152),
@@ -21793,21 +21790,21 @@ Event629 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(60),
 	EVENT_SET_VAR(ActionScriptVars.V7, 242),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(30),
-	EVENT_SHORTCALL(&Event629[141 + (27 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event629[141 + 26 * (const(void)*).sizeof]),
 	EVENT_PAUSE(30),
-	EVENT_SHORTCALL(&Event629[141 + (27 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event629[141 + 26 * (const(void)*).sizeof]),
 	EVENT_PAUSE(60),
 	EVENT_SET_VAR(ActionScriptVars.V7, 248),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2114),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_WRITE_WORD_TEMPVAR(0),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
 	EVENT_PAUSE(60),
 	EVENT_LOOP(2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2135),
@@ -21824,13 +21821,13 @@ Event629 = [
 	EVENT_SET_VAR(ActionScriptVars.V7, 242),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(60),
-	EVENT_SHORTCALL(&Event629[141 + (27 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&Event629[141 + 26 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2136),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_PAUSE(2),
 	EVENT_SET_VAR(ActionScriptVars.V7, 242),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_SHORTJUMP(&Event629[23 + (8 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event629[23 + 7 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_SET_Y_VELOCITY(-336),
@@ -21851,13 +21848,13 @@ Event629 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SHORT_RETURN(),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0D15C),
-	EVENT_SHORTCALL_CONDITIONAL(&Event629[187 + (28 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4681A),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0D15C, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event629[187 + 27 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4681A, ),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2136),
 	EVENT_SET_VAR(ActionScriptVars.V7, 241),
 	EVENT_PAUSE(120),
-	EVENT_SHORTJUMP(&Event629[187 + (28 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event629[187 + 27 * (const(void)*).sizeof]),
 ].join();
 Event652 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
@@ -21876,13 +21873,13 @@ Event863 = [
 	EVENT_SHORTCALL(&UnknownC39AC7[0]),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_1E0),
-	EVENT_SHORTCALL_CONDITIONAL(&Event863[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL(&Event863[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SET_VAR(ActionScriptVars.V0, 7544),
 	EVENT_SET_VAR(ActionScriptVars.V1, 1500),
 	EVENT_SET_VAR(ActionScriptVars.V2, 16),
 	EVENT_SET_VAR(ActionScriptVars.V3, 4),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74),
-	EVENT_SHORTCALL_CONDITIONAL(&Event863[1 + (1 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E74, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event863[1 + 1 * (const(void)*).sizeof]),
 	EVENT_SHORTCALL(&UnknownC39E01[0]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A88D, TextEventWanderingPhotographer01.ptr),
 	EVENT_HALT(),
@@ -21893,7 +21890,7 @@ Event160 = [
 	EVENT_SET_Z(0),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_TICK_CALLBACK(&UnknownC48C02),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)4),
 	EVENT_SET_VAR(ActionScriptVars.V5, 4),
 	EVENT_WRITE_WORD_TEMPVAR(2),
@@ -21908,14 +21905,14 @@ Event160 = [
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptFadeOut, cast(ubyte)1, cast(ubyte)1),
 	EVENT_SHORTCALL(&UnknownC3ABE0[0]),
 	EVENT_CALLROUTINE(&fixArgs!ActionScriptPrepareNewEntityAtTeleportDestination, cast(ubyte)187),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event830 = [
 	EVENT_SHORTCALL(&UnknownC35FB6[0]),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_PAUSE(140),
 	EVENT_PAUSE(140),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A98B, cast(ushort)OverworldSprite.Poo, cast(ushort)ActionScript.Unknown802),
@@ -21936,22 +21933,22 @@ Event87 = [
 Event757 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A864, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
-	EVENT_START_TASK(&Event757[21 + (12 * (const(void)*).sizeof)]),
+	EVENT_START_TASK(&Event757[21 + 11 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(255),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC49841),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC49841, ),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_20A),
-	EVENT_SHORTCALL_CONDITIONAL(&Event757[8 + (5 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC2EA74),
+	EVENT_SHORTCALL_CONDITIONAL(&Event757[8 + 4 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC2EA74, ),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC2EACF),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event757[15 + (8 * (const(void)*).sizeof)]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC2EACF, ),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event757[15 + 7 * (const(void)*).sizeof]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4A7B0),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4A7B0, ),
 	EVENT_PAUSE(1),
-	EVENT_SHORTJUMP(&Event757[21 + (12 * (const(void)*).sizeof)]),
+	EVENT_SHORTJUMP(&Event757[21 + 11 * (const(void)*).sizeof]),
 ].join();
 UnknownC34B62 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)1),
@@ -21983,7 +21980,7 @@ UnknownC34B62 = [
 UnknownC40F59 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry2),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A0BB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAFD),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0AAFD, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 0),
 	EVENT_SHORT_RETURN(),
 ].join();
@@ -21996,7 +21993,7 @@ Event682 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 7896),
 	EVENT_SET_VAR(ActionScriptVars.V7, 9168),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event705 = [
@@ -22009,7 +22006,7 @@ Event705 = [
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SET_VAR(ActionScriptVars.V2, 4),
 	EVENT_SET_VAR(ActionScriptVars.V3, 7),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC47A9E, ),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
 	EVENT_SET_VAR(ActionScriptVars.V1, 0),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
@@ -22017,8 +22014,8 @@ Event705 = [
 	EVENT_SET_VAR(ActionScriptVars.V2, 7),
 	EVENT_SET_VAR(ActionScriptVars.V3, 8),
 	EVENT_SHORTCALL(&UnknownC33C1D[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F),
-	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC4981F, ),
+	EVENT_CALLROUTINE(&fixArgs!UndrawFlyoverText, ),
 	EVENT_PAUSE(1),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
@@ -22026,19 +22023,19 @@ Event9 = [
 	EVENT_SET_PHYSICS_CALLBACK(&UnknownC09FAEEntry4),
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_VELOCITIES_ZERO(),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0C353),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C7DB, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0C353, ),
 	EVENT_SHORTJUMP(&Event8Entry2[0]),
 ].join();
 Event133 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 14),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443Entry3, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 19),
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)255),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 1),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1472),
@@ -22063,7 +22060,7 @@ Event746 = [
 	EVENT_SHORTJUMP(&Event8[0]),
 ].join();
 Event211 = [
-	EVENT_SHORTCALL(&UnknownC3DBDB[2 + (1 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL(&UnknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)128, cast(ubyte)2),
 	EVENT_SET_VAR(ActionScriptVars.V5, 3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 1320),
@@ -22074,15 +22071,15 @@ Event211 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 1536),
 	EVENT_SET_VAR(ActionScriptVars.V7, 10032),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC03F1E, ),
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A023),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(1),
 	EVENT_WRITE_WORD_TEMPVAR(2),
 	EVENT_SHORTCALL(&UnknownC3AA1E[0]),
 	EVENT_PAUSE(112),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event517 = [
@@ -22094,7 +22091,7 @@ Event790 = [
 	EVENT_SET_ANIMATION(0),
 	EVENT_SET_Y(100),
 	EVENT_WRITE_WRAM_TEMPVAR(&Unknown7E9F75),
-	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event790[17 + (4 * (const(void)*).sizeof)]),
+	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event790[17 + 3 * (const(void)*).sizeof]),
 	EVENT_SET_X(-661),
 	EVENT_SET_X_VELOCITY(1186),
 	EVENT_PAUSE(150),
@@ -22110,11 +22107,11 @@ Event49 = [
 	EVENT_CALLROUTINE(&fixArgs!GetPositionOfPartyMember, cast(ubyte)9),
 	EVENT_SHORTCALL(&UnknownC3AB44[0]),
 	EVENT_PAUSE(1),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC),
-	EVENT_SHORTCALL_CONDITIONAL(&Event49[15 + (4 * (const(void)*).sizeof)]),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A8DC, ),
+	EVENT_SHORTCALL_CONDITIONAL(&Event49[15 + 4 * (const(void)*).sizeof]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_VAR(ActionScriptVars.V4, 0),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event579 = [
@@ -22129,7 +22126,7 @@ Event252 = [
 	EVENT_PAUSE(30),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0AA6E, cast(ubyte)Direction.Down, cast(ubyte)0),
 	EVENT_PAUSE(30),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event567 = [
@@ -22144,14 +22141,14 @@ Event567 = [
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 1),
 	EVENT_WRITE_WORD_TEMPVAR(4),
-	EVENT_CALLROUTINE(&fixArgs!SetDirection),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!SetDirection, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_PAUSE(3),
 	EVENT_SET_VAR(ActionScriptVars.V6, 2128),
 	EVENT_SET_VAR(ActionScriptVars.V7, 7056),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_SHORTJUMP(&Event35[0]),
 ].join();
 Event510 = [
@@ -22162,7 +22159,7 @@ Event771 = [
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A84C, cast(ushort)EventFlag.UNKNOWN_28B),
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&Event10_11[0]),
 	EVENT_SHORTCALL(&UnknownC3AAB8[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_SET_VAR(ActionScriptVars.V0, 2336),
 	EVENT_SET_VAR(ActionScriptVars.V1, 2688),
 	EVENT_SET_VAR(ActionScriptVars.V2, 8),
@@ -22176,13 +22173,13 @@ Event771 = [
 	EVENT_SET_VAR(ActionScriptVars.V6, 2344),
 	EVENT_SET_VAR(ActionScriptVars.V7, 2667),
 	EVENT_SHORTCALL(&UnknownC3AB59[0]),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC46E46, ),
 	EVENT_HALT(),
 ].join();
 Event731 = [
 	EVENT_SHORTCALL(&UnknownC3AAAA[0]),
 	EVENT_SET_VAR(ActionScriptVars.V4, 10),
-	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC0A443MovementEntry2, ),
 	EVENT_CALLROUTINE(&fixArgs!UnknownC0A685, cast(ubyte)64, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.V5, 2),
 	EVENT_SET_VAR(ActionScriptVars.V6, 7928),
@@ -22206,7 +22203,7 @@ Event813 = [
 	EVENT_HALT(),
 ].join();
 UnknownC40F45 = [
-	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1),
+	EVENT_CALLROUTINE(&fixArgs!UnknownC020F1, ),
 	EVENT_END(),
 ].join();
 }
