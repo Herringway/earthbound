@@ -14,3 +14,9 @@ earthbound-test-*
 *.obj
 *.lst
 data
+*.rom
+*.spc
+*.sfc
+dub.selections.json
+*.dll
+.vs
