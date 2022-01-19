@@ -7,5 +7,9 @@
 	"license": "proprietary",
 	"name": "earthbound",
 	"subPackages": ["actionscriptgen"],
-	"stringImportPaths": ["data"]
+	"stringImportPaths": ["data"],
+	"dependencies": {
+		"bindbc-sdl": "~>1.0.1"
+	},
+	"buildRequirements": ["allowWarnings"]
 }
