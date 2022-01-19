@@ -148,7 +148,7 @@ struct EventCommand {
 			case CommandType.writeWordWRAM:
 				return 3;
 			case CommandType.writeDwordWRAM:
-				return 6;
+				return 0;
 			case CommandType.breakIfFalse:
 				return 1;
 			case CommandType.breakIfTrue:
@@ -222,7 +222,7 @@ struct EventCommand {
 			case CommandType.callRoutine:
 				return RoutineArgs(target, args).length + 1;
 			case CommandType.exCallRoutine:
-				return RoutineArgs(target, args).length + 2;
+				return RoutineArgs(target, args).length + 1;
 			case CommandType.setPriority:
 				return 2;
 			case CommandType.writeTempvarWaittimer:
@@ -280,7 +280,7 @@ struct EventCommand {
 			case CommandType.writeWordWRAM:
 				return 1;
 			case CommandType.writeDwordWRAM:
-				return 2;
+				return 0;
 			case CommandType.breakIfFalse:
 				return 1;
 			case CommandType.breakIfTrue:
@@ -338,7 +338,7 @@ struct EventCommand {
 			case CommandType.setVelocitiesZero:
 				return 0;
 			case CommandType.setAnimation:
-				return 1;
+				return 0;
 			case CommandType.nextAnimationFrame:
 				return 0;
 			case CommandType.prevAnimationFrame:
@@ -364,6 +364,12 @@ struct EventCommand {
 			case CommandType.nonlocallabel:
 				return 0;
 		}
+	}
+	size_t dPtrSize() const {
+		if (type == CommandType.writeDwordWRAM) {
+			return 1;
+		}
+		return 0;
 	}
 	void toString(Writer)(scope ref Writer sink) const {
 		final switch (type) {
@@ -674,9 +680,9 @@ struct RoutineArgs {
 				varLen = 0;
 				break;
 			case "CHOOSE_RANDOM":
-				sink.formattedWrite!"%s, %-(%s, %)"(args.length, args.map!(x => printTyped(x.as!string)));
-				len = 0;
-				varLen = args.length;
+				sink.formattedWrite!"cast(ubyte)%s, %-(cast(short)%s, %)"(args.length, args.map!(x => printTyped(x.as!string)));
+				len = args.length * 2 + 1;
+				varLen = 0;
 				break;
 			case "LOAD_KIRBY_SPRITE":
 			case "UNKNOWN_C0A443_MOVEMENT_ENTRY_1":
@@ -875,13 +881,15 @@ string fixTarget(string input, string current) {
 	if (input.startsWith("@")) {
 		size_t size;
 		size_t varSize;
+		size_t dPtrSize;
 		assert(current in actionScripts, "Not found");
 		foreach (scrLine; actionScripts[current]) {
 			if ((scrLine.type == CommandType.locallabel) && (scrLine.labelName == input[1 .. $])) {
-				return format!"&%s[%s + (%s * (const(void)*).sizeof)]"(tryRemappingSymbol(current), size, varSize);
+				return format!"&%s[%s]"(tryRemappingSymbol(current), computeLengthOffset(size, varSize, dPtrSize));
 			}
 			size += scrLine.size;
 			varSize += scrLine.ptrSize;
+			dPtrSize += scrLine.dPtrSize;
 		}
 	} else {
 		auto currentCopy = currentScript;
@@ -892,17 +900,23 @@ string fixTarget(string input, string current) {
 			currentScript = label;
 			size_t size;
 			size_t varSize;
+			size_t dPtrSize;
 			foreach (scrLine; script) {
 				if ((scrLine.type == CommandType.nonlocallabel) && (scrLine.labelName == input)) {
-					return format!"&%s[%s + (%s * (const(void)*).sizeof)]"(tryRemappingSymbol(label), size, varSize);
+					return format!"&%s[%s]"(tryRemappingSymbol(label), computeLengthOffset(size, varSize, dPtrSize));
 				}
 				size += scrLine.size;
 				varSize += scrLine.ptrSize;
+				dPtrSize += scrLine.dPtrSize;
 			}
 		}
 	}
 	assert(0, current~","~input);
 	//return input;
+}
+
+string computeLengthOffset(size_t fixed, size_t pointers, size_t dsize) {
+	return format!"%s%s%s"(fixed, (pointers != 0) ? format!" + %s * (const(void)*).sizeof"(pointers) : "", (dsize != 0) ? format!" + %s * 3 * (const(void)*).sizeof / 2 + %s * (const(void)*).sizeof * (const(void)*).sizeof / 2"(dsize, dsize) : "");
 }
 
 string tryRemappingSymbol(string input) {
@@ -927,15 +941,20 @@ void main() {
     }
     foreach (label, scripts; actionScripts) {
     	currentScript = label;
-    	const size = scripts.map!(x => x.size).sum;
-    	const ptrSize = scripts.map!(x => x.ptrSize).sum;
-    	writefln!"immutable ubyte[%s%s] %s;"(size, (ptrSize != 0) ? format!" + %s * (const(void)*).sizeof"(ptrSize) : "", tryRemappingSymbol(label));
+		size_t size;
+		size_t ptrSize;
+		size_t dPtrSize;
+		foreach (scr; scripts) {
+			ptrSize += scr.ptrSize;
+			dPtrSize += scr.dPtrSize;
+			size += scr.size;
+			debug (printsizes) writefln!"%s, %s, %s - %s, %s, %s"(ptrSize, size, dPtrSize, scr.ptrSize, scr.size, scr.dPtrSize);
+		}
+		writefln!"immutable ubyte[%s] %s;"(computeLengthOffset(size, ptrSize, dPtrSize), tryRemappingSymbol(label));
     }
     writeln("shared static this() {");
     foreach (label, scripts; actionScripts) {
     	currentScript = label;
-    	const size = scripts.map!(x => x.size).sum;
-    	const ptrSize = scripts.map!(x => x.ptrSize).sum;
     	writefln!"%s = ["(tryRemappingSymbol(label));
     	foreach (scriptLine; scripts) {
     		if ((scriptLine.type != CommandType.locallabel) && (scriptLine.type != CommandType.nonlocallabel)) {
