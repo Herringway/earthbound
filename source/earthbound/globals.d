@@ -129,7 +129,7 @@ __gshared ubyte Unknown7E00D1;
 __gshared ubyte Unknown7E00D2;
 __gshared short Unknown7E00D3;
 
-__gshared ushort[16][32] palettes; /// $0200
+__gshared ushort[16][16] palettes; /// $0200
 __gshared DMAQueueEntry[30] DMAQueue; /// $0400
 
 auto ref CurrentTextPalette() { return palettes[0]; }
@@ -366,9 +366,9 @@ __gshared short Unknown7E3C2A; /// $3C2A
 __gshared short Unknown7E3C2C; /// $3C2C
 __gshared short Unknown7E3C2E; /// $3C2E
 __gshared short Unknown7E3C30; /// $3C30
-__gshared ubyte[6] Unknown7E3C32; /// $3C32
+__gshared ubyte[7] Unknown7E3C32; /// $3C32
 
-__gshared ubyte[6] Unknown7E3C3C; /// $3C3C
+__gshared ubyte[7] Unknown7E3C3C; /// $3C3C
 
 __gshared ushort[448] Unknown7E3C46; /// $3C46
 __gshared HDMATableEntry[3] Unknown7E3FC6; /// $3FC6

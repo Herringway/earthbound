@@ -4435,6 +4435,7 @@ void IRQNMICommon() {
 	WH2 = UNUSED_WH2_MIRROR;
 	for (short i = Unknown7E0001; i != DMAQueueIndex; i++) {
 		DMAChannels[0].DMAP = DMATable[DMAQueue[i].mode].unknown0;
+		DMAChannels[0].BBAD = DMATable[DMAQueue[i].mode].unknown1;
 		VMAIN = DMATable[DMAQueue[i].mode].unknown2;
 		DMAChannels[0].DAS = DMAQueue[i].size;
 		DMAChannels[0].A1T = DMAQueue[i].source;
@@ -4483,7 +4484,7 @@ void IRQNMICommon() {
 		}
 	}
 	NextFrameDisplayID = 0;
-	if ((INIDISP_MIRROR & 0x80) != 0) {
+	if ((INIDISP_MIRROR & 0x80) == 0) {
 		TM = TM_MIRROR;
 		TD = TD_MIRROR;
 		HDMAEN = HDMAEN_MIRROR;
@@ -4813,7 +4814,7 @@ void FadeInWithMosaic(short arg1, short arg2, short arg3) {
 	INIDISP_MIRROR = 0;
 	while(true) {
 		MOSAIC_MIRROR = 0;
-		if (INIDISP_MIRROR + arg1 >= 0x15) {
+		if (INIDISP_MIRROR + arg1 >= 0x0F) {
 			break;
 		}
 		SetINIDISP(cast(ubyte)(INIDISP_MIRROR + arg1));
@@ -5317,7 +5318,7 @@ short InitEntity(short actionScript, short x, short y) {
 	EntityDeltaYTable[newEntity / 2] = 0;
 	EntityDeltaZFractionTable[newEntity / 2] = 0;
 	EntityDeltaZTable[newEntity / 2] = 0;
-	return UnknownC092F5Unknown4(&EventScriptPointers[EntityScriptTable[actionScript]][0], newEntity);
+	return UnknownC092F5Unknown4(&EventScriptPointers[actionScript][0], newEntity);
 }
 
 short InitEntityUnknown1(const(ubyte)* pc, short entityID) {
@@ -7678,17 +7679,17 @@ void DoBackgroundDMA(short arg1, short arg2, short arg3) {
 	if (arg3 == 0) {
 		short x = 6;
 		do {
+			// The original game code does 16-bit copy here, which copies
+			// one byte too many. Do one byte at a time instead.
 			Unknown7E3C32[x] = UnknownC0AE26[x];
-			Unknown7E3C32[x + 1] = UnknownC0AE26[x + 1];
-			x -= 2;
+			x -= 1;
 		} while (x >= 0);
 		a = &Unknown7E3C32[0];
 	} else {
 		short x = 6;
 		do {
 			Unknown7E3C3C[x] = UnknownC0AE2D[x];
-			Unknown7E3C3C[x + 1] = UnknownC0AE2D[x + 1];
-			x -= 2;
+			x -= 1;
 		} while (x >= 0);
 		a = &Unknown7E3C3C[0];
 	}
@@ -7779,7 +7780,7 @@ void PrepareBackgroundOffsetTables(short arg1, short arg2, short arg3) {
 		do {
 			Unknown7E3C46[y / 2] = cast(ushort)(((arg2 * SineLookupTable[x03]) >> 8) + x05);
 			x02 += x00;
-			y -= 2;
+			y += 2;
 		} while (y < x09);
 		return;
 	} else {
@@ -7789,7 +7790,7 @@ void PrepareBackgroundOffsetTables(short arg1, short arg2, short arg3) {
 			x02 += x00;
 			Unknown7E3C46[y / 2 + 1] = cast(ushort)(x05 - ((arg2 * SineLookupTable[x03]) >> 8));
 			x02 += x00;
-			y -= 4;
+			y += 4;
 		} while (y < x09);
 		return;
 	}
@@ -7819,7 +7820,7 @@ void PrepareBackgroundOffsetTables(short arg1, short arg2, short arg3) {
 		x05 += Unknown7E1AD4;
 		Unknown7E3C46[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((arg2 * SineLookupTable[x03]) >> 8));
 		x02 += x00;
-		y -= 2;
+		y += 2;
 	} while (y < x09);
 	return;
 	Unknown10:
@@ -7850,7 +7851,7 @@ void PrepareBackgroundOffsetTables(short arg1, short arg2, short arg3) {
 		x05 += Unknown7E1AD4;
 		Unknown7E3C46[y / 2 + 1] = cast(ushort)((cast(ushort)x05 >> 8) - ((arg2 * SineLookupTable[x03]) >> 8));
 		x02 += x00;
-		y -= 4;
+		y += 4;
 	} while (y < x09);
 	return;
 }
@@ -8062,7 +8063,7 @@ void FileSelectInit() {
 	OverworldSetupVRAM();
 	UnknownC432B1();
 	UnknownC005E7();
-	memcpy(&palettes[16][0], SpriteGroupPalettes.ptr, 0x100);
+	memcpy(&palettes[8][0], SpriteGroupPalettes.ptr, 0x100);
 	UnknownC200D9();
 	CopyToVram(3, 0x800, 0x7C00, Unknown7F0000.ptr);
 	Decomp(TextWindowGraphics.ptr, Unknown7F0000.ptr);
