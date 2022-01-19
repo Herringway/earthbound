@@ -18,6 +18,7 @@ import earthbound.bank2F;
 import earthbound.globals;
 
 import core.stdc.string;
+import core.thread : Fiber;
 
 /// $C10000
 void UnknownC10000() {
@@ -7304,7 +7305,7 @@ short FileSelectMenu(short arg1) {
 		Win_SetTextColor(0);
 	} else {
 		CorruptionCheck();
-		while (Unknown7E0028.a != 0) {}
+		while (Unknown7E0028.a != 0) { Fiber.yield(); }
 		ChangeMusic(Music.SetupScreen);
 		UnknownC11F5A(&UnknownC1ECD1);
 		CurrentSaveSlot = cast(ubyte)SelectionMenu(0);
