@@ -23,6 +23,10 @@ import earthbound.bank21;
 import earthbound.bank2F;
 import core.stdc.string;
 import core.bitop;
+import core.thread : Fiber;
+import std.stdio;
+import std.format;
+import sfcdma;
 
 /// $C00000
 short* ClearEntityDrawSortingTable() {
@@ -290,14 +294,14 @@ void LoadMapAtSector(short x, short y) {
 	if (x04 != Unknown7E436E) {
 		Unknown7E4372 = TilesetTable[x04];
 		Decomp(&MapDataTilesetPtrTable[TilesetTable[x04]][0], &Unknown7F0000[0]);
-		while (Unknown7E0028.a != 0) {}
+		while (Unknown7E0028.a != 0) { Fiber.yield(); }
 		if (Unknown7EB4EF == 0) {
 			CopyToVram2(0, 0x7000, 0, &Unknown7F0000[0]);
 		} else {
 			CopyToVram2(0, 0x4000, 0, &Unknown7F0000[0]);
 		}
 	}
-	while (Unknown7E0028.a != 0) {}
+	while (Unknown7E0028.a != 0) { Fiber.yield(); }
 	LoadMapPalette(x04, x18);
 	UnknownC00480();
 	LoadSpecialSpritePalette();
@@ -543,7 +547,7 @@ void ReloadMapAtPosition(short x, short y) {
 	for (short i = -1; i != 31; i++) {
 		UnknownC00E16(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
 	}
-	while (Unknown7E0028.a != 0) {}
+	while (Unknown7E0028.a != 0) { Fiber.yield(); }
 	BG2_X_POS = cast(short)(Unknown7E4380 - 0x80);
 	BG1_X_POS = cast(short)(Unknown7E4380 - 0x80);
 	BG2_Y_POS = cast(short)(Unknown7E4382 - 0x70);
@@ -577,7 +581,7 @@ void LoadMapAtPosition(short x, short y) {
 	for (short i = 0; i < 60; i++) {
 		LoadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
 	}
-	while (Unknown7E0028.a != 0) {}
+	while (Unknown7E0028.a != 0) { Fiber.yield(); }
 	if (Unknown7EB4EF == 0) {
 		TM_MIRROR = 0x17;
 	}
@@ -4397,21 +4401,22 @@ void IRQNMICommon() {
 		DMAChannels[0].A1T = ((NextFrameDisplayID - 1) != 0) ? (&OAM2) : (&OAM1);
 		DMAChannels[0].DAS = 0x220;
 		MDMAEN = 1;
+		handleDma();
 		Unknown7E0099 += 0x220;
 	}
 	if (Unknown7E0030 != 0) {
-		ushort x = Unknown7E0030 / UnknownC08F98Entry.sizeof;
-		//TODO: fix this?
-		//DMAChannels[0].A1T = UnknownC08F98[x - 1].unknown2;
-		CGADD = UnknownC08F98[x - 1].unknown4 & 0xFF;
-		CGDATA = UnknownC08F98[x - 1].unknown4 >> 8;
+		// In the original game's source code, we would only DMA part of
+		// the palette to save cycles. With the power of modern computers,
+		// we can afford to copy 512 bytes always instead of only 256.
+		DMAChannels[0].A1T = &palettes;
+		CGADD = 0;
 		DMAChannels[0].DMAP = 0x00;
 		DMAChannels[0].BBAD = 0x22;
-		//DMAChannels[0].A1B = 0;
 		Unknown7E0030 = 0;
-		DMAChannels[0].DAS = UnknownC08F98[x - 1].unknown0;
+		DMAChannels[0].DAS = 0x0200;
 		MDMAEN = 1;
-		Unknown7E0099 += UnknownC08F98[x - 1].unknown0;
+		handleDma();
+		Unknown7E0099 += 0x0200;
 	}
 	if ((Unknown7E0028.a != 0) && (--Unknown7E002A < 0)) {
 		Unknown7E002A = Unknown7E0028.b;
@@ -4443,6 +4448,7 @@ void IRQNMICommon() {
 		//DMAChannels[0].A1B = DMAQueue[i].source bank;
 		VMADDL = DMAQueue[i].destination;
 		MDMAEN = 1;
+		handleDma();
 	}
 	Unknown7E0001 = DMAQueueIndex;
 	if (NextFrameDisplayID != 0) {
@@ -4673,13 +4679,13 @@ void UnknownC0856B(short arg1) {
 /// $C085B7 - Copy data to VRAM in chunks of 0x1200
 void CopyToVram2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	DMA_COPY_MODE = mode;
-	while (Unknown7E0099 != 0) {}
+	while (Unknown7E0099 != 0) { Fiber.yield(); }
 	DMA_COPY_RAM_SRC = data;
 	DMA_COPY_VRAM_DEST = address;
 	if (count >= 0x1201) {
 		DMA_COPY_SIZE = 0x1200;
 		while (count >= 0x1201) {
-			while (Unknown7E0099 != 0) {}
+			while (Unknown7E0099 != 0) { Fiber.yield(); }
 			CopyToVramCommon();
 			DMA_COPY_RAM_SRC += 0x1200;
 			DMA_COPY_VRAM_DEST += 0x900;
@@ -4687,9 +4693,9 @@ void CopyToVram2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 		}
 	}
 	DMA_COPY_SIZE = count;
-	while (Unknown7E0099 != 0) {}
+	while (Unknown7E0099 != 0) { Fiber.yield(); }
 	CopyToVramCommon();
-	while (Unknown7E0099 != 0) {}
+	while (Unknown7E0099 != 0) { Fiber.yield(); }
 }
 
 /// $C08616 - Copy data to VRAM
@@ -4711,23 +4717,25 @@ void CopyToVramCommon() {
 
 /// $C0865F
 void CopyToVramInternal() {
-	if ((INIDISP_MIRROR & 0x80) != 0) {
-		ushort tmp92 = cast(ushort)(DMA_COPY_SIZE + Unknown7E0099);
-		if (tmp92 >= 0x1201) {
-			while (Unknown7E0099 != 0) {}
-			tmp92 = DMA_COPY_SIZE;
-		}
-		Unknown7E0099 = tmp92;
-		Unknown7E00A5 = Unknown7E0001;
-		DMAQueue[DMAQueueIndex].mode = DMA_COPY_MODE;
-		DMAQueue[DMAQueueIndex].size = DMA_COPY_SIZE;
-		DMAQueue[DMAQueueIndex].source = DMA_COPY_RAM_SRC;
-		DMAQueue[DMAQueueIndex].destination = DMA_COPY_VRAM_DEST;
-		if (DMAQueueIndex + 1 == Unknown7E00A5) {
-			while (DMAQueueIndex + 1 == Unknown7E0001) {}
-		}
-		DMAQueueIndex++;
-	} else {
+	// if ((INIDISP_MIRROR & 0x80) != 0) {
+	// 	ushort tmp92 = cast(ushort)(DMA_COPY_SIZE + Unknown7E0099);
+	// 	if (tmp92 >= 0x1201) {
+	// 		while (Unknown7E0099 != 0) { Fiber.yield(); }
+	// 		tmp92 = DMA_COPY_SIZE;
+	// 	}
+	// 	Unknown7E0099 = tmp92;
+	// 	Unknown7E00A5 = Unknown7E0001;
+	// 	DMAQueue[DMAQueueIndex].mode = DMA_COPY_MODE;
+	// 	DMAQueue[DMAQueueIndex].size = DMA_COPY_SIZE;
+	// 	DMAQueue[DMAQueueIndex].source = DMA_COPY_RAM_SRC;
+	// 	DMAQueue[DMAQueueIndex].destination = DMA_COPY_VRAM_DEST;
+	// 	if (DMAQueueIndex + 1 == Unknown7E00A5) {
+	// 		while (DMAQueueIndex + 1 == Unknown7E0001) {}
+	// 	}
+	// 	DMAQueueIndex++;
+	// } else {
+		// Since we send a complete image of VRAM to the console every frame, we
+		// can just overwrite our local VRAM copy - no need to delay
 		DMAChannels[1].DMAP = DMATable[DMA_COPY_MODE].unknown0;
 		//original assembly relied on DMAP1+BBAD1 being adjacent for a 16-bit write, but we probably shouldn't do that
 		DMAChannels[1].BBAD = DMATable[DMA_COPY_MODE].unknown1;
@@ -4737,9 +4745,10 @@ void CopyToVramInternal() {
 		//A1B1 is not really relevant without segmented addressing
 		VMADDL = DMA_COPY_VRAM_DEST;
 		MDMAEN = 2;
+		handleDma();
 		CurrentHeapAddress = HeapBaseAddress;
 		DMATransferFlag = 0;
-	}
+	// }
 }
 
 /// $C086DE
@@ -4750,7 +4759,7 @@ void* sbrk(ushort i) {
 			CurrentHeapAddress += i;
 			return result;
 		}
-		while (Unknown7E002B == 0) {}
+		while (Unknown7E002B != 0) { Fiber.yield(); }
 		Unknown7E002B = 0;
 	}
 }
@@ -4761,7 +4770,7 @@ void UnknownC08726() {
 	HDMAEN_MIRROR = 0;
 	Unknown7E0028.a = 0;
 	Unknown7E002B = 0;
-	while (Unknown7E002B == 0) {}
+	while (Unknown7E002B != 0) { Fiber.yield(); }
 	HDMAEN = 0;
 }
 
@@ -4769,7 +4778,7 @@ void UnknownC08726() {
 void UnknownC08744() {
 	INIDISP_MIRROR = 0x80;
 	Unknown7E002B = 0;
-	while (Unknown7E002B == 0) {}
+	while (Unknown7E002B != 0) { Fiber.yield(); }
 }
 
 /// $C08715
@@ -4780,13 +4789,14 @@ void EnableNMIJoypad() {
 
 /// $C08756
 void WaitUntilNextFrame() {
-	if ((Unknown7E001E & 0xB0) != 0) {
-		while (Unknown7E002B == 0) {}
-		Unknown7E002B = 0;
-	} else {
-		while (HVBJOY < 0) {}
-		while (HVBJOY >= 0) {}
-	}
+	// if ((Unknown7E001E & 0xB0) != 0) {
+	// 	while (Unknown7E002B == 0) {}
+	// 	Unknown7E002B = 0;
+	// } else {
+	// 	while (HVBJOY < 0) {}
+	// 	while (HVBJOY >= 0) {}
+	// }
+	Fiber.yield();
 	Unknown7E002B = 0;
 	UnknownC08496();
 }
@@ -4847,7 +4857,7 @@ void FadeOutWithMosaic(short arg1, short arg2, short arg3) {
 	SetINIDISP(0x80);
 	HDMAEN_MIRROR = 0;
 	Unknown7E002B = 0;
-	while (Unknown7E002B == 0) {}
+	while (Unknown7E002B != 0) { Fiber.yield(); }
 	HDMAEN = 0;
 }
 
@@ -5429,11 +5439,14 @@ void UnknownC09506() {
 		EntitySleepFrames[ActionScript8A / 2]--;
 		return;
 	}
-	const(ubyte)* y = EntityProgramCounters[ActionScript8A / 2];
+	writeln(format("Entity %2d(%2d): wake up", CurrentEntitySlot, ActionScript8A / 2));
+	const(ubyte)* ystart, y = EntityProgramCounters[ActionScript8A / 2];
 	//ActionScript82 = EntityProgramCounterBanks[ActionScript8A / 2];
 	ActionScript84 = &Unknown7E15A2[ActionScript8A / 2][0];
 	do {
+		ystart = y;
 		ubyte a = (y++)[ActionScript80];
+		writeln(format("Script %2d(%03d): %02x", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a));
 		if (a < 0x70) {
 			y = MovementControlCodesPointerTable[a](y);
 		} else {
@@ -5442,6 +5455,7 @@ void UnknownC09506() {
 			y = MovementControlCodesPointerTable[0x45 + ((ActionScript90 & 0x70) >> 4)](y);
 		}
 	} while (EntitySleepFrames[ActionScript8A / 2] == 0);
+	writeln(format("Entity %2d(%2d): sleep for %3d frames", CurrentEntitySlot, ActionScript8A / 2, EntitySleepFrames[ActionScript8A / 2]));
 	EntityProgramCounters[ActionScript8A / 2] = y;
 	//EntityProgramCounterBanks[ActionScript8A / 2] = ActionScript82;
 	EntitySleepFrames[ActionScript8A / 2]--;
@@ -5529,6 +5543,7 @@ immutable const(ubyte)* function(const(ubyte)*)[77] MovementControlCodesPointerT
 
 /// $C095F2 - [00] - End
 const(ubyte)* MovementCode00(const(ubyte)* y) {
+	writeln(format("Script %2d(%03d): End", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]));
 	UnknownC09C3B(ActionScript88);
 	EntitySleepFrames[ActionScript8A / 2] = -1;
 	Unknown7E0A58 = -1;
@@ -5540,6 +5555,7 @@ const(ubyte)* MovementCode01(const(ubyte)* y) {
 	return MovementCode0124Common(y[ActionScript80], ActionScript8A, y + 1);
 }
 const(ubyte)* MovementCode0124Common(short a, short x, const(ubyte)* y) {
+	writeln(format("Script %2d(%03d): Start loop, %3d times", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a));
 	ActionScript90 = a;
 	ActionScript94 = y;
 	ActionScript84[Unknown7E12E6[x / 2] / 3].pc = y;
@@ -5557,9 +5573,11 @@ const(ubyte)* MovementCode24(const(ubyte)* y) {
 const(ubyte)* MovementCode02(const(ubyte)* y) {
 	ActionScript94 = y;
 	if (--ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].counter == 0) {
+		writeln(format("Script %2d(%03d): Finish loop", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]));
 		Unknown7E12E6[ActionScript8A / 2] -= 3;
 		return ActionScript94;
 	}
+	writeln(format("Script %2d(%03d): Loop", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]));
 	return ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].pc;
 }
 
@@ -7497,6 +7515,7 @@ void ActionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
 
 /// $C0ABA8
 void WaitForSPC700() {
+	return; // SPC not currently implemented
 	APUIO2 = 0;
 	APUIO0 = 0;
 	do {
@@ -7507,6 +7526,7 @@ void WaitForSPC700() {
 
 /// $C0ABC6
 void StopMusic() {
+	return; // SPC not currently implemented
 	APUIO0 = 0;
 	while (UnknownC0AC20() != 0) {}
 	CurrentMusicTrack = 0xFFFF;
@@ -7520,6 +7540,7 @@ void UnknownC0ABBD(short arg1) {
 /// $C0ABC6
 //original version had separate bank/addr parameters
 void LoadSPC700Data(const(ubyte)* data) {
+	return; // SPC not currently implemented
 	SPC_DATA_PTR = data;
 	//Unknown7E00C8 = bank;
 	ushort y = 0;
