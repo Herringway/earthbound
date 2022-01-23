@@ -7758,36 +7758,39 @@ immutable ubyte[][169] MusicPackPointerTable = [
 
 /// $C4FBBD
 void ChangeMusic(short track) {
-	return;
-	if (track == CurrentMusicTrack) {
+	version(audio) {
+		if (track == CurrentMusicTrack) {
+			return;
+		}
+		if (Unknown7EB4B6 == 0) {
+			PlaySfxUnknown();
+		}
+		if ((track < Music.SoundstoneRecordingGiantStep) || (track > Music.SoundstoneRecordingFireSpring)) {
+			UnknownC0AC0C(1);
+			StopMusic();
+		}
+		CurrentMusicTrack = track;
+		const(MusicDataset)* dataset = &MusicDatasetTable[track - 1];
+		if ((dataset.primarySamplePack != CurrentPrimarySamplePack) || (dataset.primarySamplePack != 0xFF)) {
+			CurrentPrimarySamplePack = dataset.primarySamplePack;
+			// not using segmented addressing...
+			//LoadSPC700Data(MusicPackPointerTable[dataset.primarySamplePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.primarySamplePack].bank));
+			LoadSPC700Data(&MusicPackPointerTable[dataset.primarySamplePack][0]);
+		}
+		if ((dataset.secondarySamplePack != CurrentSecondarySamplePack) || (dataset.secondarySamplePack != 0xFF)) {
+			CurrentSecondarySamplePack = dataset.secondarySamplePack;
+			//LoadSPC700Data(MusicPackPointerTable[dataset.secondarySamplePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.secondarySamplePack].bank));
+			LoadSPC700Data(&MusicPackPointerTable[dataset.secondarySamplePack][0]);
+		}
+		if ((dataset.sequencePack != CurrentSequencePack) || (dataset.sequencePack != 0xFF)) {
+			CurrentSequencePack = dataset.sequencePack;
+			//LoadSPC700Data(MusicPackPointerTable[dataset.sequencePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.sequencePack].bank));
+			LoadSPC700Data(&MusicPackPointerTable[dataset.sequencePack][0]);
+		}
+		UnknownC0ABBD(track);
+	} else {
 		return;
 	}
-	if (Unknown7EB4B6 == 0) {
-		PlaySfxUnknown();
-	}
-	if ((track < Music.SoundstoneRecordingGiantStep) || (track > Music.SoundstoneRecordingFireSpring)) {
-		UnknownC0AC0C(1);
-		StopMusic();
-	}
-	CurrentMusicTrack = track;
-	const(MusicDataset)* dataset = &MusicDatasetTable[track - 1];
-	if ((dataset.primarySamplePack != CurrentPrimarySamplePack) || (dataset.primarySamplePack != 0xFF)) {
-		CurrentPrimarySamplePack = dataset.primarySamplePack;
-		// not using segmented addressing...
-		//LoadSPC700Data(MusicPackPointerTable[dataset.primarySamplePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.primarySamplePack].bank));
-		LoadSPC700Data(&MusicPackPointerTable[dataset.primarySamplePack][0]);
-	}
-	if ((dataset.secondarySamplePack != CurrentSecondarySamplePack) || (dataset.secondarySamplePack != 0xFF)) {
-		CurrentSecondarySamplePack = dataset.secondarySamplePack;
-		//LoadSPC700Data(MusicPackPointerTable[dataset.secondarySamplePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.secondarySamplePack].bank));
-		LoadSPC700Data(&MusicPackPointerTable[dataset.secondarySamplePack][0]);
-	}
-	if ((dataset.sequencePack != CurrentSequencePack) || (dataset.sequencePack != 0xFF)) {
-		CurrentSequencePack = dataset.sequencePack;
-		//LoadSPC700Data(MusicPackPointerTable[dataset.sequencePack].addr & Unknown7EB547, UnknownC4FB42(MusicPackPointerTable[dataset.sequencePack].bank));
-		LoadSPC700Data(&MusicPackPointerTable[dataset.sequencePack][0]);
-	}
-	UnknownC0ABBD(track);
 }
 
 /// $C4FB58
