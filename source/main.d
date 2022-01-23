@@ -1,6 +1,7 @@
 import std.stdio;
 import std.experimental.logger;
 import std.file : exists;
+import std.getopt;
 import std.string : fromStringz, format;
 import core.thread : Fiber;
 
@@ -21,7 +22,18 @@ void saveGraphicsStateToFile(string filename) {
     file.rawWrite([g_frameData]);
 }
 
-void main() {
+void main(string[] args) {
+    bool verbose;
+    auto help = getopt(args,
+        "verbose|v", "Print extra information", &verbose
+    );
+    if (help.helpWanted) {
+        defaultGetoptPrinter("Earthbound.", help.options);
+        return;
+    }
+    if (!verbose) {
+        sharedLog = new FileLogger(stdout, LogLevel.info);
+    }
     if(!loadSnesDrawFrame()) {
         info("Can't load SnesDrawFrame!");
         return;
