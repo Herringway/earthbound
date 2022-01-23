@@ -236,15 +236,28 @@ immutable ubyte[3] UnknownEF05A6 = [1 << 0, 1 << 1, 1 << 2];
 
 /// $EF05A9
 void EraseSaveBlock(short id) {
-	memset(&sram.saves[id], 0, SaveBlock.sizeof);
-	memcpy(&sram.saves[id].signature[0], &SRAMSignature[0], strlen(&SRAMSignature[0]));
+	version(savememory) {
+		memset(&sram.saves[id], 0, SaveBlock.sizeof);
+		memcpy(&sram.saves[id].signature[0], &SRAMSignature[0], strlen(&SRAMSignature[0]));
+	} else {
+		import std.file : remove;
+		remove(saveFileName(id));
+	}
 }
 
 /// $EF0630
 short CheckBlockSignature(short id) {
-	if (strcmp(&SRAMSignature[0], &sram.saves[id].signature[0]) != 0) {
-		EraseSaveBlock(id);
-		return 1;
+	version(savememory) {
+		if (strcmp(&SRAMSignature[0], &sram.saves[id].signature[0]) != 0) {
+			EraseSaveBlock(id);
+			return 1;
+		}
+	} else {
+		SaveBlock block = readSaveFile(id);
+		if (strcmp(&SRAMSignature[0], &block.signature[0]) != 0) {
+			EraseSaveBlock(id);
+			return 1;
+		}
 	}
 	return 0;
 }
@@ -258,14 +271,24 @@ void CheckAllBlocksSignature() {
 
 /// $EF06A2
 void CopySaveBlock(short to, short from) {
-	memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
+	version(savememory) {
+		memcpy(&sram.saves[to], &sram.saves[from], SaveBlock.sizeof);
+	} else {
+		auto block = readSaveFile(from);
+		writeSaveFile(to, block);
+	}
 }
 
 /// $EF0734
 ushort CalcSaveBlockAddChecksum(short id) {
-	ubyte* x06 = &sram.saves[id].rawData[0];
+	version(savememory) {
+		ubyte* x06 = &sram.saves[id].rawData[0];
+	} else {
+		auto block = readSaveFile(id);
+		ubyte* x06 = &block.rawData[0];
+	}
 	ushort checksum;
-	for (short i = 0; i < sram.saves[id].rawData.sizeof; i++) {
+	for (short i = 0; i < SaveBlock.rawData.sizeof; i++) {
 		checksum += x06[0];
 		x06++;
 	}
@@ -274,9 +297,14 @@ ushort CalcSaveBlockAddChecksum(short id) {
 
 /// $EF077B
 ushort CalcSaveBlockXORChecksum(short id) {
-	ushort* x06 = cast(ushort*)&sram.saves[id].rawData[0];
+	version(savememory) {
+		ubyte* x06 = &sram.saves[id].rawData[0];
+	} else {
+		auto block = readSaveFile(id);
+		ubyte* x06 = &block.rawData[0];
+	}
 	ushort checksum;
-	for (short i = 0; i < sram.saves[id].rawData.sizeof / 2; i++) {
+	for (short i = 0; i < SaveBlock.rawData.sizeof / 2; i++) {
 		checksum ^= x06[0];
 		x06++;
 	}
@@ -285,8 +313,15 @@ ushort CalcSaveBlockXORChecksum(short id) {
 
 /// $EF07C0
 short ValidateSaveBlockChecksums(short id) {
-	if ((CalcSaveBlockAddChecksum(id) == sram.saves[id].checksum) && (CalcSaveBlockXORChecksum(id) == sram.saves[id].checksumComplement)) {
-		return 0;
+	version(savememory) {
+		if ((CalcSaveBlockAddChecksum(id) == sram.saves[id].checksum) && (CalcSaveBlockXORChecksum(id) == sram.saves[id].checksumComplement)) {
+			return 0;
+		}
+	} else {
+		auto block = readSaveFile(id);
+		if ((CalcSaveBlockAddChecksum(id) == block.checksum) && (CalcSaveBlockXORChecksum(id) == block.checksumComplement)) {
+			return 0;
+		}
 	}
 	return -1;
 }
@@ -313,16 +348,32 @@ void CheckSaveCorruption(short id) {
 void SaveGameBlock(short id) {
 	gameState.timer = Timer;
 	Retry:
-	memcpy(&sram.saves[id].saveData.gameState, &gameState, Game_State.sizeof);
-	memcpy(&sram.saves[id].saveData.partyCharacters, &PartyCharacters[0], (PartyCharacter[6]).sizeof);
-	memcpy(&sram.saves[id].saveData.eventFlags, &EventFlags[0], EventFlags.sizeof);
-	sram.saves[id].checksum = CalcSaveBlockAddChecksum(id);
-	if (sram.saves[id].checksum != CalcSaveBlockAddChecksum(id)) {
-		goto Retry;
-	}
-	sram.saves[id].checksumComplement = CalcSaveBlockXORChecksum(id);
-	if (sram.saves[id].checksumComplement != CalcSaveBlockXORChecksum(id)) {
-		goto Retry;
+	version(savememory) {
+		memcpy(&sram.saves[id].saveData.gameState, &gameState, Game_State.sizeof);
+		memcpy(&sram.saves[id].saveData.partyCharacters, &PartyCharacters[0], (PartyCharacter[6]).sizeof);
+		memcpy(&sram.saves[id].saveData.eventFlags, &EventFlags[0], EventFlags.sizeof);
+		sram.saves[id].checksum = CalcSaveBlockAddChecksum(id);
+		if (sram.saves[id].checksum != CalcSaveBlockAddChecksum(id)) {
+			goto Retry;
+		}
+		sram.saves[id].checksumComplement = CalcSaveBlockXORChecksum(id);
+		if (sram.saves[id].checksumComplement != CalcSaveBlockXORChecksum(id)) {
+			goto Retry;
+		}
+	} else {
+		SaveBlock block;
+		memcpy(&block.saveData.gameState, &gameState, Game_State.sizeof);
+		memcpy(&block.saveData.partyCharacters, &PartyCharacters[0], (PartyCharacter[6]).sizeof);
+		memcpy(&block.saveData.eventFlags, &EventFlags[0], EventFlags.sizeof);
+		block.checksum = CalcSaveBlockAddChecksum(id);
+		if (block.checksum != CalcSaveBlockAddChecksum(id)) {
+			goto Retry;
+		}
+		block.checksumComplement = CalcSaveBlockXORChecksum(id);
+		if (block.checksumComplement != CalcSaveBlockXORChecksum(id)) {
+			goto Retry;
+		}
+		writeSaveFile(id, block);
 	}
 }
 
@@ -334,24 +385,33 @@ void SaveGameSlot(short id) {
 
 /// $EF0A68
 void LoadGameSlot(short id) {
-	memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, Game_State.sizeof);
-	memcpy(&PartyCharacters[0], &sram.saves[id * 2].saveData.partyCharacters, (PartyCharacter[6]).sizeof);
-	memcpy(&EventFlags[0], &sram.saves[id * 2].saveData.eventFlags, EventFlags.sizeof);
+	version (savememory) {
+		memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, Game_State.sizeof);
+		memcpy(&PartyCharacters[0], &sram.saves[id * 2].saveData.partyCharacters, (PartyCharacter[6]).sizeof);
+		memcpy(&EventFlags[0], &sram.saves[id * 2].saveData.eventFlags, EventFlags.sizeof);
+	} else {
+		SaveBlock block = readSaveFile(cast(short)(id * 2));
+		memcpy(&gameState, &block.saveData.gameState, Game_State.sizeof);
+		memcpy(&PartyCharacters[0], &block.saveData.partyCharacters, (PartyCharacter[6]).sizeof);
+		memcpy(&EventFlags[0], &block.saveData.eventFlags, EventFlags.sizeof);
+	}
 	Timer = gameState.timer;
 }
 
 /// $EF0B9E
 void CheckSRAMIntegrity() {
 	Unknown7E9F77 = 0x493;
-	if (sram.signature != 0x493) {
-		memset(&sram, 0, 0x2000);
+	version(savememory) {
+		if (sram.signature != 0x493) {
+			memset(&sram, 0, 0x2000);
+		}
+		CheckAllBlocksSignature();
+		Unknown7E9F79 = 0;
+		for (short i = 0; i < 3; i++) {
+			CheckSaveCorruption(i);
+		}
+		sram.signature = Unknown7E9F77;
 	}
-	CheckAllBlocksSignature();
-	Unknown7E9F79 = 0;
-	for (short i = 0; i < 3; i++) {
-		CheckSaveCorruption(i);
-	}
-	sram.signature = Unknown7E9F77;
 }
 
 /// $EF0BFA
