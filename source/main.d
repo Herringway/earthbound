@@ -14,7 +14,6 @@ import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
 import snesdrawframe;
 import snesdrawframedata;
 
-SDL_GameController* controller;
 private enum WindowScale = 1;
 
 void saveGraphicsStateToFile(string filename) {
@@ -158,9 +157,17 @@ void main() {
                         static foreach (button, mapping; gamepadMap) {
                             case button:
                                 if (event.cbutton.type == SDL_CONTROLLERBUTTONDOWN) {
-                                    JOYPAD_1_DATA |= mapping;
+                                    if (SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.cbutton.which)) == 1) {
+                                        JOYPAD_1_DATA |= mapping;
+                                    } else {
+                                        JOYPAD_2_DATA |= mapping;
+                                    }
                                 } else {
-                                    JOYPAD_1_DATA &= cast(ushort)~cast(uint)mapping;
+                                    if (SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.cbutton.which)) == 1) {
+                                        JOYPAD_1_DATA &= cast(ushort)~cast(uint)mapping;
+                                    } else {
+                                        JOYPAD_2_DATA &= cast(ushort)~cast(uint)mapping;
+                                    }
                                 }
                                 break buttons;
                         }
@@ -249,7 +256,8 @@ enum ushort[SDL_Scancode] keyboardMap = [
 
 void connectGamepad(int id) {
     if (SDL_IsGameController(id)) {
-        if (SDL_GameControllerOpen(id)) {
+        if (auto controller = SDL_GameControllerOpen(id)) {
+            SDL_GameControllerSetPlayerIndex(controller, 1);
             const(char)* name = SDL_GameControllerNameForIndex(id);
             infof("Initialized controller: %s", name.fromStringz);
         } else {
@@ -258,10 +266,9 @@ void connectGamepad(int id) {
     }
 }
 void disconnectGamepad(int id) {
-    if (SDL_GameControllerFromInstanceID(id) is controller) {
-        infof("Joystick #%d disconnected", id);
+    if (auto controller = SDL_GameControllerFromInstanceID(id)) {
+        infof("Controller disconnected: %s", SDL_GameControllerName(controller).fromStringz);
         SDL_GameControllerClose(controller);
-        controller = null;
     }
 }
 
