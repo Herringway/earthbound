@@ -11,6 +11,6 @@
 	"dependencies": {
 		"bindbc-sdl": "~>1.0.1"
 	},
-	"versions": ["sdl", "SDL_205"],
+	"versions": ["sdl", "SDL_2012"],
 	"buildRequirements": ["allowWarnings"]
 }
