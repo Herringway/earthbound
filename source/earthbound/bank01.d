@@ -934,18 +934,18 @@ void UnknownC11887(short arg1) {
 
 /// $C118E7 - Get target X/Y window positions after menu cursor movement
 /// Returns: low byte = X, high byte = Y
-short MoveCursor(short arg1, short arg2, short arg3, short arg4, short arg5, short arg6, short arg7) {
-	short x12 = UnknownC20B65(arg1, arg2, arg3, arg4, -1);
+short MoveCursor(short curX, short curY, short deltaX, short deltaY, short sfx, short wrapX, short wrapY) {
+	short x12 = UnknownC20B65(curX, curY, deltaX, deltaY, -1);
 	if (x12 == -1) {
-		x12 = UnknownC20B65(arg6, arg7, arg3, arg4, -1);
-		if ((arg3 == 0) && (((x12 >> 8) & 0xFF) != arg2)) {
+		x12 = UnknownC20B65(wrapX, wrapY, deltaX, deltaY, -1);
+		if ((deltaX == 0) && (((x12 >> 8) & 0xFF) != curY)) {
 			x12 = -1;
-		} else if ((x12 & 0xFF) != arg1) {
+		} else if ((x12 & 0xFF) != curX) {
 			x12 = -1;
 		}
 	}
 	if (x12 != -1) {
-		PlaySfx(arg5);
+		PlaySfx(sfx);
 	}
 	return x12;
 }

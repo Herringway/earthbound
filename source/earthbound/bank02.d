@@ -433,23 +433,23 @@ void UnknownC20ABC(WindowTextAttributesCopy* buf) {
 }
 
 /// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
-short UnknownC20B65(short arg1, short arg2, short arg3, short arg4, short arg5) {
-	short x0E = arg2;
-	short x02 = arg1;
-	if (arg3 != 0) {
-		for (x0E = cast(short)(x0E + arg3); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += arg3) {
+short UnknownC20B65(short curX, short curY, short deltaX, short deltaY, short sfx) {
+	short x0E = curY;
+	short x02 = curX;
+	if (deltaX != 0) {
+		for (x0E = cast(short)(x0E + deltaX); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += deltaX) {
 			if (UnknownC208B8(x02, x0E) == 0x2F) {
 				goto Unknown27;
 			}
 		}
-		for (x0E = cast(short)(arg2 + arg3); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += arg3) {
+		for (x0E = cast(short)(x0E + deltaX); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += deltaX) {
 			for (x02 = cast(short)(x02 - 1); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02--) {
 				if (UnknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
 				}
 			}
 		}
-		for (x0E = cast(short)(arg2 + arg3); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += arg3) {
+		for (x0E = cast(short)(x0E + deltaX); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += deltaX) {
 			for (x02 = cast(short)(x02 + 1); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02++) {
 				if (UnknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
@@ -457,19 +457,19 @@ short UnknownC20B65(short arg1, short arg2, short arg3, short arg4, short arg5) 
 			}
 		}
 	} else {
-		for (x02 = cast(short)(x02 + arg4); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += arg4) {
+		for (x02 = cast(short)(x02 + deltaY); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += deltaY) {
 			if (UnknownC208B8(x02, x0E) == 0x2F) {
 				goto Unknown27;
 			}
 		}
-		for (x02 = cast(short)(arg1 + arg4); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += arg4) {
+		for (x02 = cast(short)(x02 + deltaY); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += deltaY) {
 			for (x0E = cast(short)(x0E - 1); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E--) {
 				if (UnknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
 				}
 			}
 		}
-		for (x02 = cast(short)(arg1 + arg4); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += arg4) {
+		for (x02 = cast(short)(x02 + deltaY); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += deltaY) {
 			for (x0E = cast(short)(x0E + 1); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E++) {
 				if (UnknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
@@ -479,8 +479,8 @@ short UnknownC20B65(short arg1, short arg2, short arg3, short arg4, short arg5) 
 		return -1;
 	}
 	Unknown27:
-	if (arg5 != -1) {
-		PlaySfx(arg5);
+	if (sfx != -1) {
+		PlaySfx(sfx);
 	}
 	return cast(short)(((x0E << 8) & 0xFF00) + x02);
 }
