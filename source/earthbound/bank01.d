@@ -302,11 +302,11 @@ void CreateWindowN(short id) {
 			x10.next = -1;
 		}
 		x10.window_id = id;
-		WindowStats[id].next = x0E;
+		WindowTable[id] = x0E;
 		x10.x = WindowConfigurationTable[id].x;
 		x10.y = WindowConfigurationTable[id].y;
-		x10.width = WindowConfigurationTable[id].width;
-		x10.height = WindowConfigurationTable[id].height;
+		x10.width = cast(short)(WindowConfigurationTable[id].width - 2);
+		x10.height = cast(short)(WindowConfigurationTable[id].height - 2);
 		x10.tilemapBuffer = &Unknown7E5E7E[x0E][0];
 		CurrentFocusWindow = id;
 	}
@@ -389,7 +389,7 @@ void UnknownC107AF(short windowID) {
 		(x18++)[0] = 0x7C13;
 	}
 	x18 += 32 - x1C - 2;
-	for (short i = x1A; i != 0; i++) {
+	for (short i = x1A; i != 0; i--) {
 		(x18++)[0] = 0x3C12;
 		for (short j = x1C; j != 0; j--) {
 			(x18++)[0] = cast(ushort)((x1E++)[0] + 0x2000);
@@ -676,10 +676,10 @@ void ChangeCurrentWindowFont(short arg1) {
 
 /// $C10FEA - Sets the text color for the focused window
 void Win_SetTextColor(short window_id) {
-	if (window_id == -1) {
+	if (CurrentFocusWindow == -1) {
 		return;
 	}
-	WindowStats[WindowTable[window_id]].tileAttributes = cast(ushort)(window_id * 0x400);
+	WindowStats[WindowTable[CurrentFocusWindow]].tileAttributes = cast(ushort)(window_id * 0x400);
 }
 deprecated alias UnknownC10FEA = Win_SetTextColor;
 
@@ -845,7 +845,7 @@ MenuOpt* UnknownC11596(short arg1, short x, short y, const(ubyte)* arg4, const(u
 MenuOpt* UnknownC115F4(short arg1, const(ubyte)* arg2, const(ubyte)* arg3) {
 	MenuOpt* x = UnknownC113D1(arg2, arg3);
 	x.userdata = arg1;
-	x.next = 2;
+	x.field00 = 2;
 	return x;
 }
 

@@ -222,7 +222,7 @@ immutable ubyte[] UnknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_sc
 immutable ubyte[] TitleScreenPalette = cast(immutable(ubyte)[])import("intro/title_screen.pal.lzhal");
 
 /// $E1CE08
-immutable SpriteMap[][9] UnknownE1CF9D = [
+immutable SpriteMap*[9] UnknownE1CF9D = [
 	[
 		SpriteMap(0x10, 0x3052, 0x04, 0x00),
 		SpriteMap(0x08, 0x3042, 0x04, 0x00),

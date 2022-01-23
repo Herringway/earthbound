@@ -4921,9 +4921,13 @@ void UpdateScreen() {
 	if (false /+Actually tests if the DBR is 0xFF, which should never happen+/) while(true) {}
 	ubyte Unknown7E000Atmp = Unknown7E000A;
 	if (Unknown7E000Atmp != 0x80) {
-		do {
+		// Shift right by two until a bit carries out
+		// ...or, shift right by two until a bit is in position 2,
+		// then do an extra shift after (so the bit in spot 2 shifts out)
+		while ((Unknown7E000Atmp & 2) == 0) {
 			Unknown7E000Atmp >>= 2;
-		} while ((Unknown7E000Atmp & 2) == 0);
+		}
+		Unknown7E000Atmp >>= 2;
 	}
 	*OAMHighTableAddr = Unknown7E000Atmp;
 	BG1_X_POS_BUF[NextFrameBufferID - 1] = BG1_X_POS;
@@ -4943,28 +4947,28 @@ void UnknownC08B8E() {
 	if (Unknown7E2402 == 0) {
 		UnknownC08C53();
 	}
-	for (short i =0 ; i < Unknown7E2504; i++) {
+	for (short i =0 ; i < Unknown7E2504 / 2; i++) {
 		Unknown7E000B = Unknown7E24C4[i];
 		UnknownC08CD5(Unknown7E2404[i], Unknown7E2444[i], Unknown7E2484[i]);
 	}
 	if (Unknown7E2402 == 1) {
 		UnknownC08C53();
 	}
-	for (short i =0 ; i < Unknown7E2606; i++) {
+	for (short i =0 ; i < Unknown7E2606 / 2; i++) {
 		Unknown7E000B = Unknown7E25C6[i];
 		UnknownC08CD5(Unknown7E2506[i], Unknown7E2546[i], Unknown7E2586[i]);
 	}
 	if (Unknown7E2402 == 2) {
 		UnknownC08C53();
 	}
-	for (short i =0 ; i < Unknown7E2708; i++) {
+	for (short i =0 ; i < Unknown7E2708 / 2; i++) {
 		Unknown7E000B = Unknown7E26C8[i];
 		UnknownC08CD5(Unknown7E2608[i], Unknown7E2648[i], Unknown7E2688[i]);
 	}
 	if (Unknown7E2402 == 3) {
 		UnknownC08C53();
 	}
-	for (short i =0 ; i < Unknown7E280A; i++) {
+	for (short i =0 ; i < Unknown7E280A / 2; i++) {
 		Unknown7E000B = Unknown7E27CA[i];
 		UnknownC08CD5(Unknown7E270A[i], Unknown7E274A[i], Unknown7E278A[i]);
 	}
@@ -5029,72 +5033,60 @@ void UnknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
 	Unknown7E280A += 2;
 }
 
-/// $C08CD5
-void UnknownC08CD5(const(SpriteMap)* arg1, short arg2, short arg3) {
-	ushort a;
+/// $C08CD5 - Draw a SpriteMap list into the OAM buffer
+void UnknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
+	short xpos, ypos;
+	ubyte abyte;
 	bool carry;
 	const(SpriteMap)* y = arg1;
-	Unknown7E009B = arg2;
-	Unknown7E009D = arg3;
 	OAMEntry* x = OAMAddr;
 	if (x >= OAMEndAddr) {
 		return;
 	}
 	//some DBR manipulation was here
-	goto Unknown3;
-	Unknown1:
-	y = y.unknown1ptr;
-	goto Unknown3;
-	Unknown2:
-	y++;
-	Unknown3:
-	a = y.unknown0;
-	if (a >= 0x80) {
-		if (a == 0x80) {
-			goto Unknown1;
+	for(;;y++){
+		ypos = cast(byte)y.unknown0;
+		if (ypos == -0x80) {
+			// This is -1 since we do y++ due to continue
+			y = y.unknown1ptr - 1;
+			continue;
 		}
-		a |= 0xFF00;
-	}
-	a += Unknown7E009D - 1;
-	if ((a >= 0xE0) || (a < 0xFFE0)) {
-		Unknown5:
-		a = y.unknown4;
-		if (a > 0) {
-			goto Unknown2;
+		ypos += ybase - 1;
+		if ((ypos >= 0xE0) || (ypos < -0x20)) {
+			if (y.unknown4 >= 0x80) {
+				break;
+			}
+			continue;
 		}
-		goto Unknown10;
-	}
-	Unknown7E009F = a;
-	x.startingTile = y.unknown10;
-	x.flags = y.unknown11;
-	a = y.unknown3;
-	if (a >= 0x80) {
-		a |= 0xFF00;
-	}
-	a += Unknown7E009B;
-	x.xCoord = cast(byte)a;
-	a = ((a << 8) & 0xFF00) | ((a >> 8) & 0xFF);
-	if (((a & 0xFF) == 0) && (a != 0xFF)) {
-		goto Unknown5;
-	}
-	ROL(a, carry);
-	Unknown7E000A = ROR(Unknown7E000A, carry);
-	a = y.unknown4;
-	ROR(a, carry);
-	Unknown7E000A = ROR(Unknown7E000A, carry);
-	if (carry) {
-		OAMHighTableAddr[0] = Unknown7E000A;
-		OAMHighTableAddr++;
-		Unknown7E000A = 0x80;
-	}
-	x.yCoord = cast(byte)Unknown7E009F;
-	x++;
-	if (y.unknown4 >= 0) {
-		if (x < OAMEndAddr) {
-			goto Unknown2;
+		Unknown7E009F = ypos;
+		x.startingTile = y.unknown10;
+		x.flags = y.unknown11;
+		xpos = cast(byte)y.unknown3;
+		xpos += xbase;
+		x.xCoord = cast(byte)xpos;
+		if (xpos >= 0x100 || xpos < -0x100) {
+			if (y.unknown4 >= 0x80) {
+				break;
+			}
+			continue;
+		}
+		abyte = cast(ubyte)(xpos>>8);
+		ROL(abyte, carry);
+		Unknown7E000A = ROR(Unknown7E000A, carry);
+		abyte = y.unknown4;
+		ROR(abyte, carry);
+		Unknown7E000A = ROR(Unknown7E000A, carry);
+		if (carry) {
+			OAMHighTableAddr[0] = Unknown7E000A;
+			OAMHighTableAddr++;
+			Unknown7E000A = 0x80;
+		}
+		x.yCoord = cast(byte)Unknown7E009F;
+		x++;
+		if (y.unknown4 >= 0x80 || x >= OAMEndAddr) {
+			break;
 		}
 	}
-	Unknown10:
 	OAMAddr = x;
 }
 
@@ -5206,30 +5198,30 @@ void UnknownC0927C() {
 	Unknown7E125A[69] = -1;
 	Unknown7E0A52 = 0;
 	Unknown7E0A54 = 0;
-	ushort x = 0x38;
+	short x = 0x38;
 	do {
 		EntityNextEntityTable[x / 2] = cast(short)(x + 2);
 		x -= 2;
-	} while (x > 0);
+	} while (x >= 0);
 
 	x = 0x88;
 	do {
 		Unknown7E125A[x / 2] = cast(short)(x + 2);
 		x -= 2;
-	} while (x > 0);
+	} while (x >= 0);
 
 	x = 0x3A;
 	do {
 		EntityScriptTable[x / 2] = -1;
 		x -= 2;
-	} while (x > 0);
+	} while (x >= 0);
 
 	x = 0x3A;
 	do {
 		EntitySpriteMapFlags[x / 2] = 0;
 		EntityTickCallbacks[x / 2] = null;
 		x -= 2;
-	} while (x > 0);
+	} while (x >= 0);
 
 	x = 6;
 	do {
@@ -5243,7 +5235,7 @@ void UnknownC0927C() {
 		Unknown7E1A0A[x / 2] = 0;
 		EntityDrawPriority[x / 2] = 0;
 		x -= 2;
-	} while (x > 0);
+	} while (x >= 0);
 	ClearEntityDrawSortingTable();
 	Unknown7E0A60 = 0;
 }
@@ -5294,9 +5286,9 @@ short InitEntity(short actionScript, short x, short y) {
 	EntityScriptVar6Table[newEntity / 2] = NewEntityVar6;
 	EntityScriptVar7Table[newEntity / 2] = NewEntityVar7;
 	EntityDrawPriority[newEntity / 2] = NewEntityPriority;
-	EntityAbsXFractionTable[newEntity / 2] = -32768;
-	EntityAbsYFractionTable[newEntity / 2] = -32768;
-	EntityAbsZFractionTable[newEntity / 2] = -32768;
+	EntityAbsXFractionTable[newEntity / 2] = 0x8000;
+	EntityAbsYFractionTable[newEntity / 2] = 0x8000;
+	EntityAbsZFractionTable[newEntity / 2] = 0x8000;
 	EntityScreenXTable[newEntity / 2] = x;
 	EntityAbsXTable[newEntity / 2] = x;
 	EntityScreenYTable[newEntity / 2] = y;
@@ -5338,9 +5330,9 @@ short InitEntityUnknown2(const(ubyte)* pc, short entityIndex) {
 
 short UnknownC092F5Unknown4(const(ubyte)* pc, short entityIndex) {
 	ClearSpriteTickCallback(entityIndex);
-	EntityProgramCounters[EntityScriptIndexTable[entityIndex / 2]] = pc;
-	EntitySleepFrames[EntityScriptIndexTable[entityIndex / 2]] = 0;
-	Unknown7E12E6[EntityScriptIndexTable[entityIndex / 2]] = 0;
+	EntityProgramCounters[EntityScriptIndexTable[entityIndex / 2] / 2] = pc;
+	EntitySleepFrames[EntityScriptIndexTable[entityIndex / 2] / 2] = 0;
+	Unknown7E12E6[EntityScriptIndexTable[entityIndex / 2] / 2] = 0;
 	return entityIndex / 2;
 }
 //actually part of the previous function normally, but whatever
@@ -5382,24 +5374,25 @@ void UnknownC09466() {
 	}
 	ActionScript80 = 0;
 	ActionScript86 = 0;
+	short x = FirstEntity;
 	do {
-		ActionScript88 = FirstEntity;
-		CurrentEntityOffset = FirstEntity;
-		CurrentEntitySlot = FirstEntity;
+		ActionScript88 = x;
+		CurrentEntityOffset = x;
+		CurrentEntitySlot = x;
 		CurrentEntitySlot /= 2;
 		Unknown7E0A56 = EntityNextEntityTable[CurrentEntitySlot];
-		UnknownC094D0(Unknown7E0A56,FirstEntity);
-	} while (Unknown7E0A56 >= 0);
+		UnknownC094D0(Unknown7E0A56,x);
+	} while ((x = Unknown7E0A56) >= 0);
 	if (FirstEntity < 0) {
 		Unknown7E0A60 = 0;
 		return;
 	}
-	short x = FirstEntity;
+	x = FirstEntity;
 	do {
 		CurrentEntitySlot = x;
 		CurrentEntitySlot /= 2;
 		ActionScript88 = x;
-		if ((0 & EntityTickCallbackFlags[CurrentEntitySlot] & OBJECT_MOVE_DISABLED) != 0) {
+		if ((EntityTickCallbackFlags[CurrentEntitySlot] & OBJECT_MOVE_DISABLED) == 0) {
 			EntityMoveCallbacks[CurrentEntitySlot]();
 		}
 		EntityScreenPositionCallbacks[CurrentEntitySlot]();
@@ -5411,7 +5404,7 @@ void UnknownC09466() {
 
 /// $C09466
 void UnknownC094D0(short a, short x) {
-	if ((0 & EntityTickCallbackFlags[x / 2] & OBJECT_MOVE_DISABLED) != 0) {
+	if ((EntityTickCallbackFlags[x / 2] & OBJECT_MOVE_DISABLED) == 0) {
 		short y = EntityScriptIndexTable[x / 2];
 		do {
 			ActionScript8A = y;
@@ -5445,7 +5438,7 @@ void UnknownC09506() {
 		} else {
 			ActionScript90 = a;
 			EntitySleepFrames[ActionScript8A / 2] = a & 0xF;
-			y = MovementControlCodesPointerTable[45 + (ActionScript90 & 0x70) >> 3](y);
+			y = MovementControlCodesPointerTable[0x45 + ((ActionScript90 & 0x70) >> 4)](y);
 		}
 	} while (EntitySleepFrames[ActionScript8A / 2] == 0);
 	EntityProgramCounters[ActionScript8A / 2] = y;
@@ -5562,7 +5555,7 @@ const(ubyte)* MovementCode24(const(ubyte)* y) {
 /// $C09627 - [02] - Loop End
 const(ubyte)* MovementCode02(const(ubyte)* y) {
 	ActionScript94 = y;
-	if (--ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].counter != 0) {
+	if (--ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].counter == 0) {
 		Unknown7E12E6[ActionScript8A / 2] -= 3;
 		return ActionScript94;
 	}
@@ -5582,7 +5575,7 @@ const(ubyte)* MovementCode03(const(ubyte)* y) {
 /// $C09658 - [1A NEARPTR] - Short Call
 const(ubyte)* MovementCode1A(const(ubyte)* y) {
 	ActionScript8CScript = *cast(const(ubyte)**)&y[ActionScript80];
-	ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].pc = y + (const(ubyte)*).sizeof;
+	ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3].pc = y + (const(ubyte)*).sizeof;
 	Unknown7E12E6[ActionScript8A / 2] += 3;
 	return ActionScript8CScript;
 }
@@ -5600,7 +5593,7 @@ const(ubyte)* MovementCode1B(const(ubyte)* y) {
 /// $C09685 - [04 PTR] - Long Call
 const(ubyte)* MovementCode04(const(ubyte)* y) {
 	ActionScript8CScript = *cast(const(ubyte)**)&y[ActionScript80];
-	ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].pc = y + (const(ubyte)*).sizeof;
+	ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3].pc = y + (const(ubyte)*).sizeof;
 	Unknown7E12E6[ActionScript8A / 2] += 3;
 	return ActionScript8CScript;
 }
@@ -5630,21 +5623,21 @@ const(ubyte)* MovementCode3B45(const(ubyte)* y) {
 /// $C096E3 - [28 XXXX] - Set X
 const(ubyte)* MovementCode28(const(ubyte)* y) {
 	EntityAbsXTable[ActionScript88 / 2] = *cast(short*)&y[ActionScript80];
-	EntityAbsXFractionTable[ActionScript88 / 2] = short.min;
+	EntityAbsXFractionTable[ActionScript88 / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C096F3 - [29 XXXX] - Set Y
 const(ubyte)* MovementCode29(const(ubyte)* y) {
 	EntityAbsYTable[ActionScript88 / 2] = *cast(short*)&y[ActionScript80];
-	EntityAbsYFractionTable[ActionScript88 / 2] = short.min;
+	EntityAbsYFractionTable[ActionScript88 / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C09703 - [2A XXXX] - Set Z
 const(ubyte)* MovementCode2A(const(ubyte)* y) {
 	EntityAbsZTable[ActionScript88 / 2] = *cast(short*)&y[ActionScript80];
-	EntityAbsZFractionTable[ActionScript88 / 2] = short.min;
+	EntityAbsZFractionTable[ActionScript88 / 2] = 0x8000;
 	return y + 2;
 }
 
@@ -5652,8 +5645,8 @@ const(ubyte)* MovementCode2A(const(ubyte)* y) {
 const(ubyte)* MovementCode3F49(const(ubyte)* y) {
 	ActionScript90 = *cast(short*)&y[ActionScript80];
 	y += 2;
-	EntityDeltaXFractionTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0xFF) << 8);
-	EntityDeltaXTable[ActionScript88 / 2] = (ActionScript90 & 0xFF00) >> 8;
+	EntityDeltaXFractionTable[ActionScript88 / 2] = cast(ushort)(ActionScript90 << 8);
+	EntityDeltaXTable[ActionScript88 / 2] = ActionScript90 >> 8;
 	return y;
 }
 
@@ -5661,8 +5654,8 @@ const(ubyte)* MovementCode3F49(const(ubyte)* y) {
 const(ubyte)* MovementCode404A(const(ubyte)* y) {
 	ActionScript90 = *cast(short*)&y[ActionScript80];
 	y += 2;
-	EntityDeltaYFractionTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0xFF) << 8);
-	EntityDeltaYTable[ActionScript88 / 2] = (ActionScript90 & 0xFF00) >> 8;
+	EntityDeltaYFractionTable[ActionScript88 / 2] = cast(ushort)(ActionScript90 << 8);
+	EntityDeltaYTable[ActionScript88 / 2] = ActionScript90 >> 8;
 	return y;
 }
 
@@ -5670,32 +5663,44 @@ const(ubyte)* MovementCode404A(const(ubyte)* y) {
 const(ubyte)* MovementCode414B(const(ubyte)* y) {
 	ActionScript90 = *cast(short*)&y[ActionScript80];
 	y += 2;
-	EntityDeltaZFractionTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0xFF) << 8);
-	EntityDeltaZTable[ActionScript88 / 2] = (ActionScript90 & 0xFF00) >> 8;
+	EntityDeltaZFractionTable[ActionScript88 / 2] = cast(ushort)(ActionScript90 << 8);
+	EntityDeltaZTable[ActionScript88 / 2] = ActionScript90 >> 8;
 	return y;
 }
 
 /// $C0976D
 const(ubyte)* MovementCode2E(const(ubyte)* y) {
 	ActionScript90 = *cast(short*)&y[ActionScript80];
-	EntityDeltaXFractionTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0xFF) << 8);
-	EntityDeltaXTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0x8000) ? ((ActionScript90 & 0xFF00) | 0xFF) : (ActionScript90 & 0xFF00));
+	auto i = ActionScript88 / 2;
+	auto param = FixedPoint1616(cast(ushort)(ActionScript90 << 8), cast(short)(ActionScript90 >> 8));
+	auto prev = FixedPoint1616(EntityDeltaXFractionTable[i], EntityDeltaXTable[i]);
+	prev.combined += param.combined;
+	EntityDeltaXFractionTable[i] = prev.fraction;
+	EntityDeltaXTable[i] = prev.integer;
 	return y + 2;
 }
 
 /// $C09792
 const(ubyte)* MovementCode2F(const(ubyte)* y) {
 	ActionScript90 = *cast(short*)&y[ActionScript80];
-	EntityDeltaYFractionTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0xFF) << 8);
-	EntityDeltaYTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0x8000) ? ((ActionScript90 & 0xFF00) | 0xFF) : (ActionScript90 & 0xFF00));
+	auto i = ActionScript88 / 2;
+	auto param = FixedPoint1616(cast(ushort)(ActionScript90 << 8), cast(short)(ActionScript90 >> 8));
+	auto prev = FixedPoint1616(EntityDeltaYFractionTable[i], EntityDeltaYTable[i]);
+	prev.combined += param.combined;
+	EntityDeltaYFractionTable[i] = prev.fraction;
+	EntityDeltaYTable[i] = prev.integer;
 	return y + 2;
 }
 
 /// $C097B7
 const(ubyte)* MovementCode30(const(ubyte)* y) {
 	ActionScript90 = *cast(short*)&y[ActionScript80];
-	EntityDeltaZFractionTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0xFF) << 8);
-	EntityDeltaZTable[ActionScript88 / 2] = cast(short)((ActionScript90 & 0x8000) ? ((ActionScript90 & 0xFF00) | 0xFF) : (ActionScript90 & 0xFF00));
+	auto i = ActionScript88 / 2;
+	auto param = FixedPoint1616(cast(ushort)(ActionScript90 << 8), cast(short)(ActionScript90 >> 8));
+	auto prev = FixedPoint1616(EntityDeltaZFractionTable[i], EntityDeltaZTable[i]);
+	prev.combined += param.combined;
+	EntityDeltaZFractionTable[i] = prev.fraction;
+	EntityDeltaZTable[i] = prev.integer;
 	return y + 2;
 }
 
@@ -5753,19 +5758,19 @@ const(ubyte)* MovementCode36(const(ubyte)* y) {
 
 /// $C098A0
 const(ubyte)* MovementCode2B(const(ubyte)* y) {
-	EntityAbsYTable[ActionScript88 / 2] = *cast(short*)&y[ActionScript80];
+	EntityAbsXTable[ActionScript88 / 2] += *cast(short*)&y[ActionScript80];
 	return y + 2;
 }
 
 /// $C098AE
 const(ubyte)* MovementCode2C(const(ubyte)* y) {
-	EntityAbsYTable[ActionScript88 / 2] = *cast(short*)&y[ActionScript80];
+	EntityAbsYTable[ActionScript88 / 2] += *cast(short*)&y[ActionScript80];
 	return y + 2;
 }
 
 /// $C098BC
 const(ubyte)* MovementCode2D(const(ubyte)* y) {
-	EntityAbsZTable[ActionScript88 / 2] = *cast(short*)&y[ActionScript80];
+	EntityAbsZTable[ActionScript88 / 2] += *cast(short*)&y[ActionScript80];
 	return y + 2;
 }
 
@@ -5821,7 +5826,7 @@ const(ubyte)* MovementCode43(const(ubyte)* y) {
 
 /// $C0993D
 const(ubyte)* MovementCode424C(const(ubyte)* y) {
-	alias Func = short function(short a, const(ubyte)* y);
+	alias Func = short function(short a, ref const(ubyte)* y);
 	Func f = *cast(Func*)&y[ActionScript80];
 	ActionScript94 = y + Func.sizeof;
 	EntityTempvars[ActionScript8A / 2] = f(EntityTempvars[ActionScript8A / 2], ActionScript94);
@@ -5874,9 +5879,9 @@ const(ubyte)* MovementCode0C(const(ubyte)* y) {
 	return MovementCode0C13Common(ActionScript8A);
 }
 const(ubyte)* MovementCode0C13Common(short y) {
-	ushort regY = UnknownC09D12(y, ActionScript88);
+	ushort regY = UnknownC09D12(ActionScript88, y);
 	EntitySleepFrames[regY / 2] = -1;
-	if (EntityScriptIndexTable[ActionScript88 / 2] >= 0) {
+	if (EntityScriptIndexTable[ActionScript88 / 2] < 0) {
 		MovementCode00(null);
 	}
 	return ActionScript94;
@@ -6064,8 +6069,10 @@ const(ubyte)* MovementCode17(const(ubyte)* y) {
 
 /// $C09B4D - [1C PTR] - Set Spritemap
 const(ubyte)* MovementCode1C(const(ubyte)* y) {
-	EntitySpriteMapPointers[ActionScript88 / 2] = *cast(const(SpriteMap)**)&y[ActionScript80];
-	y += (const(SpriteMap)*).sizeof;
+	// The only stuff that uses this command uses a double pointer for its spritemaps
+	EntitySpriteMapPointers[ActionScript88 / 2] = null;
+	EntitySpriteMapPointersDptr[ActionScript88 / 2] = *cast(const(SpriteMap*)**)&y[ActionScript80];
+	y += (const(SpriteMap*)*).sizeof;
 	return y;
 }
 
@@ -6140,14 +6147,14 @@ const(ubyte)* MovementCode25(const(ubyte)* y) {
 short UnknownC09C02(out bool flag) {
 	if (Unknown7E0A54 < 0) {
 		flag = true;
-		return 0; //actually just whatever was in the Y register when called
+		return -1; //actually just whatever was in the X register when called
 	}
 	if (Unknown7E0A52 < 0) {
 		flag = true;
-		return -1;
+		return -1; //actually just whatever was in the X register when called
 	}
 	short x = Unknown7E0A52;
-	short y;
+	short y = -1;
 	do {
 		if ((x >= EntityAllocationMinSlot) && (x < EntityAllocationMaxSlot)) {
 			break;
@@ -6157,11 +6164,11 @@ short UnknownC09C02(out bool flag) {
 	if (y >= 0) {
 		EntityNextEntityTable[y / 2] = EntityNextEntityTable[x / 2];
 		flag = false;
-		return y;
+		return x;
 	} else {
 		Unknown7E0A52 = EntityNextEntityTable[x / 2];
 		flag = false;
-		return y;
+		return x;
 	}
 }
 
@@ -6187,8 +6194,9 @@ void UnknownC09C3B(short arg1) {
 short UnknownC09C57(short index) {
 	EntityNextEntityTable[index / 2] = -1;
 	if (FirstEntity >= 0) {
-		while (EntityNextEntityTable[FirstEntity / 2] >= 0) {} //uh oh
-		EntityNextEntityTable[FirstEntity / 2] = index;
+		short x, y = FirstEntity;
+		while ((x = EntityNextEntityTable[y / 2]) >= 0) { y = x; }
+		EntityNextEntityTable[y / 2] = index;
 		return index;
 	} else {
 		FirstEntity = index;
@@ -6222,10 +6230,14 @@ short UnknownC09C99(short index) {
 		return index;
 	}
 	short Unknown7E0A54Copy = Unknown7E0A54;
-	short a = EntityScriptIndexTable[index / 2];
+	short x = index;
+	short a = EntityScriptIndexTable[x / 2];
 	Unknown7E0A54 = a;
-	while((a = Unknown7E125A[a / 2]) > 0) {}
-	Unknown7E125A[a / 2] = Unknown7E0A54;
+	do {
+		x = a;
+		a = Unknown7E125A[x / 2];
+	} while(a >= 0);
+	Unknown7E125A[x / 2] = Unknown7E0A54Copy;
 	return index;
 }
 
@@ -6268,7 +6280,7 @@ void UnknownC09CD7() {
 /// $C09D03 - allocates a script slot
 short UnknownC09D03(out bool flag) {
 	short result = Unknown7E0A54;
-	if (result <= 0) {
+	if (result < 0) {
 		flag = true;
 		return result;
 	}
@@ -6455,10 +6467,20 @@ void UnknownC09FAEEntry2() {
 
 /// $C09FB0
 void UnknownC09FAEEntry3(short arg1) {
-	EntityAbsXFractionTable[arg1 / 2] += EntityDeltaXFractionTable[arg1 / 2];
-	EntityAbsXTable[arg1 / 2] += EntityDeltaXTable[arg1 / 2];
-	EntityAbsYFractionTable[arg1 / 2] += EntityDeltaYFractionTable[arg1 / 2];
-	EntityAbsYTable[arg1 / 2] += EntityDeltaYTable[arg1 / 2];
+	short i = arg1 / 2;
+	FixedPoint1616 pos, delta;
+
+	pos = FixedPoint1616(EntityAbsXFractionTable[i], EntityAbsXTable[i]);
+	delta = FixedPoint1616(EntityDeltaXFractionTable[i], EntityDeltaXTable[i]);
+	pos.combined += delta.combined;
+	EntityAbsXTable[i] = cast(short)pos.integer;
+	EntityAbsXFractionTable[i] = pos.fraction;
+
+	pos = FixedPoint1616(EntityAbsYFractionTable[i], EntityAbsYTable[i]);
+	delta = FixedPoint1616(EntityDeltaYFractionTable[i], EntityDeltaYTable[i]);
+	pos.combined += delta.combined;
+	EntityAbsYTable[i] = cast(short)pos.integer;
+	EntityAbsYFractionTable[i] = pos.fraction;
 }
 
 /// $C09FAE
@@ -6553,7 +6575,9 @@ void UnknownC0A0E3(short arg1, bool overflowed) {
 void UnknownC0A0FA(short arg1, short arg2) {
 	Unknown7E000B = ActionScript8E;
 	Unknown7E2400 = EntityDrawPriority[arg2 / 2];
-	UnknownC08C58(&ActionScript8C[arg1], EntityAbsXTable[arg2 / 2], EntityAbsYTable[arg2 / 2]);
+	// This uses a double pointer to the spritemap, indexed by the animation frame.
+	// Don't use the value in 8C!
+	UnknownC08C58(EntitySpriteMapPointersDptr[arg2 / 2][arg1], EntityAbsXTable[arg2 / 2], EntityAbsYTable[arg2 / 2]);
 }
 
 /// $C0A11C
@@ -9948,6 +9972,7 @@ void UnknownC0ED5C() {
 	Decomp(&TitleScreenPalette[0], &palettes[0][0]);
 	UnknownC0EC77(0);
 	memcpy(&palettes[8][0], &Unknown7F0000[0x1A0], 0x20);
+	UnknownC0EC77(1);
 	memcpy(&palettes[7][0], &Unknown7F0000[0x260], 0x20);
 	Unknown7E0030 = 0x18;
 }
