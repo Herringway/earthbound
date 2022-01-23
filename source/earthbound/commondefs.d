@@ -6548,4 +6548,33 @@ size_t DecompBlock(const(ubyte)* cdata, ubyte* buffer, int maxlen) {
 	return bpos - buffer;
 }
 
+SaveBlock readSaveFile(short id) {
+	import std.experimental.logger : tracef;
+	import std.stdio : File;
+	import std.file : exists;
+	SaveBlock[1] data;
+	tracef("Reading save: %s", saveFileName(id));
+	if (saveFileName(id).exists) {
+		File(saveFileName(id), "r").rawRead(data[]);
+	}
+	return data[0];
+}
+
+void writeSaveFile(short id, SaveBlock block) {
+	import std.experimental.logger : tracef;
+	import std.stdio : File;
+	SaveBlock[1] data = [block];
+	tracef("Saving file: %s", saveFileName(id));
+	File(saveFileName(id), "w").rawWrite(data[]);
+}
+
+string saveFileName(short id) {
+	import std.format : format;
+	if (id % 1 == 0) {
+		return format!"%s.ebsave"(id / 2);
+	} else {
+		return format!"%s.ebsave.bak"(id / 2);
+	}
+}
+
 extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
