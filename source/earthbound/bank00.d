@@ -7512,21 +7512,27 @@ void ActionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
 
 /// $C0ABA8
 void WaitForSPC700() {
-	return; // SPC not currently implemented
-	APUIO2 = 0;
-	APUIO0 = 0;
-	do {
-		APUIO0 = 0xFF;
-		APUIO1 = 0x00;
-	} while ((APUIO0 != 0xAA) || (APUIO1 != 0xBB));
+	version(audio) {
+		APUIO2 = 0;
+		APUIO0 = 0;
+		do {
+			APUIO0 = 0xFF;
+			APUIO1 = 0x00;
+		} while ((APUIO0 != 0xAA) || (APUIO1 != 0xBB));
+	} else {
+		return; // SPC not currently implemented
+	}
 }
 
 /// $C0ABC6
 void StopMusic() {
-	return; // SPC not currently implemented
-	APUIO0 = 0;
-	while (UnknownC0AC20() != 0) {}
-	CurrentMusicTrack = 0xFFFF;
+	version(audio) {
+		APUIO0 = 0;
+		while (UnknownC0AC20() != 0) {}
+		CurrentMusicTrack = 0xFFFF;
+	} else {
+		return; // SPC not currently implemented
+	}
 }
 
 /// $C0ABBD
@@ -7537,7 +7543,7 @@ void UnknownC0ABBD(short arg1) {
 /// $C0ABC6
 //original version had separate bank/addr parameters
 void LoadSPC700Data(const(ubyte)* data) {
-	return; // SPC not currently implemented
+	version(audio) {
 	SPC_DATA_PTR = data;
 	//Unknown7E00C8 = bank;
 	ushort y = 0;
@@ -7592,6 +7598,9 @@ void LoadSPC700Data(const(ubyte)* data) {
 		while (APUIO0 != 0 || APUIO1 != 0) {}
 		Unknown7E001E |= 0x80;
 		NMITIMEN = Unknown7E001E;
+	} else {
+		return; // SPC not currently implemented
+	}
 }
 
 /// $C0ABE0 - Play a sound effect
