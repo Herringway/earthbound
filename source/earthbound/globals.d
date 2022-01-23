@@ -960,6 +960,6 @@ __gshared const(ubyte)* ActionScript94; /// $94
 
 // Other hardware stuff
 
-__gshared SRAM sram; //$306000
+version(savememory) __gshared SRAM sram; //$306000
 __gshared SaveDataReplay replaySRAM; //$316000
 __gshared Unknown7E007DEntry[0] sram3; //$326000
