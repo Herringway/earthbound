@@ -24,7 +24,7 @@ import earthbound.bank2F;
 import core.stdc.string;
 import core.bitop;
 import core.thread : Fiber;
-import std.stdio;
+import std.experimental.logger;
 import std.format;
 import sfcdma;
 
@@ -5439,14 +5439,14 @@ void UnknownC09506() {
 		EntitySleepFrames[ActionScript8A / 2]--;
 		return;
 	}
-	writeln(format("Entity %2d(%2d): wake up", CurrentEntitySlot, ActionScript8A / 2));
+	tracef("Entity %2d(%2d): wake up", CurrentEntitySlot, ActionScript8A / 2);
 	const(ubyte)* ystart, y = EntityProgramCounters[ActionScript8A / 2];
 	//ActionScript82 = EntityProgramCounterBanks[ActionScript8A / 2];
 	ActionScript84 = &Unknown7E15A2[ActionScript8A / 2][0];
 	do {
 		ystart = y;
 		ubyte a = (y++)[ActionScript80];
-		writeln(format("Script %2d(%03d): %02x", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a));
+		tracef("Script %2d(%03d): %02x", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a);
 		if (a < 0x70) {
 			y = MovementControlCodesPointerTable[a](y);
 		} else {
@@ -5455,7 +5455,7 @@ void UnknownC09506() {
 			y = MovementControlCodesPointerTable[0x45 + ((ActionScript90 & 0x70) >> 4)](y);
 		}
 	} while (EntitySleepFrames[ActionScript8A / 2] == 0);
-	writeln(format("Entity %2d(%2d): sleep for %3d frames", CurrentEntitySlot, ActionScript8A / 2, EntitySleepFrames[ActionScript8A / 2]));
+	tracef("Entity %2d(%2d): sleep for %3d frames", CurrentEntitySlot, ActionScript8A / 2, EntitySleepFrames[ActionScript8A / 2]);
 	EntityProgramCounters[ActionScript8A / 2] = y;
 	//EntityProgramCounterBanks[ActionScript8A / 2] = ActionScript82;
 	EntitySleepFrames[ActionScript8A / 2]--;
@@ -5543,7 +5543,7 @@ immutable const(ubyte)* function(const(ubyte)*)[77] MovementControlCodesPointerT
 
 /// $C095F2 - [00] - End
 const(ubyte)* MovementCode00(const(ubyte)* y) {
-	writeln(format("Script %2d(%03d): End", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]));
+	tracef("Script %2d(%03d): End", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]);
 	UnknownC09C3B(ActionScript88);
 	EntitySleepFrames[ActionScript8A / 2] = -1;
 	Unknown7E0A58 = -1;
@@ -5555,7 +5555,7 @@ const(ubyte)* MovementCode01(const(ubyte)* y) {
 	return MovementCode0124Common(y[ActionScript80], ActionScript8A, y + 1);
 }
 const(ubyte)* MovementCode0124Common(short a, short x, const(ubyte)* y) {
-	writeln(format("Script %2d(%03d): Start loop, %3d times", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a));
+	tracef("Script %2d(%03d): Start loop, %3d times", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a);
 	ActionScript90 = a;
 	ActionScript94 = y;
 	ActionScript84[Unknown7E12E6[x / 2] / 3].pc = y;
@@ -5573,11 +5573,11 @@ const(ubyte)* MovementCode24(const(ubyte)* y) {
 const(ubyte)* MovementCode02(const(ubyte)* y) {
 	ActionScript94 = y;
 	if (--ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].counter == 0) {
-		writeln(format("Script %2d(%03d): Finish loop", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]));
+		tracef("Script %2d(%03d): Finish loop", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]);
 		Unknown7E12E6[ActionScript8A / 2] -= 3;
 		return ActionScript94;
 	}
-	writeln(format("Script %2d(%03d): Loop", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]));
+	tracef("Script %2d(%03d): Loop", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot]);
 	return ActionScript84[Unknown7E12E6[ActionScript8A / 2] / 3 - 1].pc;
 }
 
