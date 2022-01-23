@@ -608,57 +608,54 @@ void UnknownC426C7() {
 	}
 }
 
-/// $C426ED
+/// $C426ED - Palette animation
 void UnknownC426ED() {
-	for (short i = 0; i != 0x200; i += 2) {
-		Unknown7F0000[0x800 + i] += Unknown7F0000[0x200 + i];
-		Unknown7F0000[0x800 + i + 1] += Unknown7F0000[0x200 + i + 1];
-		ushort a = (cast(ushort*)&Unknown7F0000[0x800 + i])[0];
+	// Use ushort addition instead of byte addition since we need carrying
+	// At that point, it's easier to just use 7F0000 as ushort everywhere
+	ushort* Word7F0000 = cast(ushort*)(&Unknown7F0000[0]);
+	for (short i = 0; i < 0x100; i += 1) {
+		// Red channel
+		Word7F0000[0x400 + i] += Word7F0000[0x100 + i];
+		ushort a = Word7F0000[0x400 + i];
 		if ((a & 0x8000) != 0) {
-			Unknown7F0000[0x200 + i] = 0;
-			Unknown7F0000[0x200 + i + 1] = 0;
+			Word7F0000[0x100 + i] = 0;
 			a = 0;
 		} else {
 			a &= 0x1F00;
 			if (a == 0x1F00) {
-				Unknown7F0000[0x200 + i] = 0;
-				Unknown7F0000[0x200 + i + 1] = 0;
-				a = 0x1F00;
+				Word7F0000[0x100 + i] = 0;
 			}
 		}
-		a = ((a & 0xFF) << 8) | ((a >> 8) & 0xFF);
-		Unknown7F0000[0xA00 + i] += Unknown7F0000[0x400 + i];
-		Unknown7F0000[0xA00 + i + 1] += Unknown7F0000[0x400 + i + 1];
-		ushort a2 = (cast(ushort*)&Unknown7F0000[0xA00 + i])[0];
+		a = (a >> 8) & 0x1F;
+		// Green channel
+		Word7F0000[0x500 + i] += Word7F0000[0x200 + i];
+		ushort a2 = Word7F0000[0x500 + i];
 		if ((a2 & 0x8000) != 0) {
-			Unknown7F0000[0x400 + i] = 0;
-			Unknown7F0000[0x400 + i + 1] = 0;
+			Word7F0000[0x200 + i] = 0;
 			a2 = 0;
 		} else {
 			a2 &= 0x1F00;
 			if (a2 == 0x1F00) {
-				Unknown7F0000[0x400 + i] = 0;
-				Unknown7F0000[0x400 + i + 1] = 0;
-				a2 = 0x1F00;
+				Word7F0000[0x200 + i] = 0;
 			}
 		}
 		a = cast(ushort)((a2 >> 3) | a);
-		Unknown7F0000[0xC00 + i] += Unknown7F0000[0x600 + i];
-		Unknown7F0000[0xC00 + i + 1] += Unknown7F0000[0x600 + i + 1];
-		a2 = (cast(ushort*)&Unknown7F0000[0xC00 + i])[0];
+		// Blue channel
+		Word7F0000[0x600 + i] += Word7F0000[0x300 + i];
+		a2 = Word7F0000[0x600 + i];
 		if ((a2 & 0x8000) != 0) {
-			Unknown7F0000[0x400 + i] = 0;
-			Unknown7F0000[0x400 + i + 1] = 0;
+			// Vanilla bug: we set the slope for the green channel to 0 instead of blue channel.
+			// Word7F0000[0x200 + i] = 0;
+			// Intended behaviour:
+			Word7F0000[0x300 + i] = 0;
 			a2 = 0;
 		} else {
 			a2 &= 0x1F00;
 			if (a2 == 0x1F00) {
-				Unknown7F0000[0x600 + i] = 0;
-				Unknown7F0000[0x600 + i + 1] = 0;
-				a2 = 0x1F00;
+				Word7F0000[0x300 + i] = 0;
 			}
 		}
-		(cast(ushort*)&palettes)[i / 2] = cast(ushort)((a2 << 2) | a);
+		(cast(ushort*)&palettes)[i] = cast(ushort)((a2 << 2) | a);
 	}
 	Unknown7E0030 = 0x18;
 }
@@ -2151,8 +2148,8 @@ void UnknownC451FA(short arg1, short arg2, short arg3) {
 	}
 	short x22 = 0;
 	short x1C = 1;
-	short x1A = WindowStats[WindowTable[CurrentFocusWindow]].text_y;
 	outermost: while (true) {
+		short x1A = WindowStats[WindowTable[CurrentFocusWindow]].text_y;
 		for (short x2A = x1E; x2A != 0; x2A--) {
 			for (short x18 = arg1; x18 != 0; x18--) {
 				if (arg3 != 0) {
@@ -2181,7 +2178,7 @@ void UnknownC451FA(short arg1, short arg2, short arg3) {
 		}
 		x1C++;
 	}
-	 if (((arg1 + UnknownC1138DF(WindowStats[WindowTable[CurrentFocusWindow]].current_option) - 1) / arg1) > WindowStats[WindowTable[CurrentFocusWindow]].height / 2) {
+	if (((arg1 + UnknownC1138DF(WindowStats[WindowTable[CurrentFocusWindow]].current_option) - 1) / arg1) > WindowStats[WindowTable[CurrentFocusWindow]].height / 2) {
 		MenuOpt* x = &MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].current_option];
 		x20 = cast(short)(arg1 - 1);
 		while (x20 != 0) {
@@ -2190,7 +2187,7 @@ void UnknownC451FA(short arg1, short arg2, short arg3) {
 		}
 		UnknownC10BFE(0, 0, WindowStats[WindowTable[CurrentFocusWindow]].height / 2 - 1, &UnknownC3E44C[0], null);
 		MenuOptions[WindowStats[WindowTable[CurrentFocusWindow]].option_count].page = 0;
-	 }
+	}
 }
 
 /// $C454F2
@@ -3531,9 +3528,14 @@ void LoadWindowGraphics() {
 
 /// $C47F87
 void UnknownC47F87() {
-	switch(ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
-		case 0:
+	ubyte affliction = 0;
+	// Normally the game just indexes the playerControlledPartyMembers array out of bounds - not the best idea.
+	if (gameState.playerControlledPartyMemberCount > 0) {
+		affliction = ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
+	}
+	switch(affliction) {
 		case 1:
+		case 2:
 			if (Unknown7EB4B6 != 0) {
 				goto default;
 			}
@@ -3750,7 +3752,7 @@ short UnknownC490EE() {
 
 /// $C491EE
 ushort UnknownC491EE(ushort arg1, ushort arg2, short arg3) {
-	return cast(ushort)((arg2 - arg1) / arg3);
+	return cast(ushort)(((arg2 - arg1) << 8) / arg3);
 }
 
 /// $C49209
@@ -3843,19 +3845,19 @@ void UnknownC4958E(short arg1, short arg2, ushort* arg3) {
 	memset(&Unknown7F0000[0x200], 0, 0x1000);
 	for (ushort i = 0; i < 0x100; i += 16) {
 		for (ushort j = i; i + 16 > j; j++) {
-			ubyte x02;
+			ushort x02;
 			if ((arg2 & 1) != 0) {
-				x02 = x06[j] & 0xFF;
+				x02 = x06[j];
 			} else {
-				x02 = arg3[j] & 0xFF;
+				x02 = arg3[j];
 				x06[j] = x02;
 			}
-			x06[0x200 + j] = UnknownC491EE(arg3[j] & 0x1F, x02 & 0x1F, arg1);
-			x06[0x400 + j] = UnknownC491EE((arg3[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
-			x06[0x600 + j] = UnknownC491EE((arg3[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
+			x06[0x100 + j] = UnknownC491EE(arg3[j] & 0x1F, x02 & 0x1F, arg1);
+			x06[0x200 + j] = UnknownC491EE((arg3[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
+			x06[0x300 + j] = UnknownC491EE((arg3[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
 		}
 		for (short j = i; j < i + 16; j++) {
-			x06[0x400 + j] = ((arg3[j] & 0x1F) << 8) & 0xFF00;
+			x06[0x400 + j] = (arg3[j] & 0x1F) << 8;
 			x06[0x500 + j] = (arg3[j] & 0x3E0) << 3;
 			x06[0x600 + j] = (arg3[j] & 0x7C00) >> 2;
 		}

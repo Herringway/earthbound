@@ -172,15 +172,15 @@ __gshared short[MAX_ENTITIES] EntityScreenYTable; /// $0B52
 __gshared short[MAX_ENTITIES] EntityAbsXTable; /// $0B8E
 __gshared short[MAX_ENTITIES] EntityAbsYTable; /// $0BCA
 __gshared short[MAX_ENTITIES] EntityAbsZTable; /// $0C06
-__gshared short[MAX_ENTITIES] EntityAbsXFractionTable; /// $0C42
-__gshared short[MAX_ENTITIES] EntityAbsYFractionTable; /// $0C7E
-__gshared short[MAX_ENTITIES] EntityAbsZFractionTable; /// $0CBA
+__gshared ushort[MAX_ENTITIES] EntityAbsXFractionTable; /// $0C42
+__gshared ushort[MAX_ENTITIES] EntityAbsYFractionTable; /// $0C7E
+__gshared ushort[MAX_ENTITIES] EntityAbsZFractionTable; /// $0CBA
 __gshared short[MAX_ENTITIES] EntityDeltaXTable; /// $0CF6
 __gshared short[MAX_ENTITIES] EntityDeltaYTable; /// $0D32
 __gshared short[MAX_ENTITIES] EntityDeltaZTable; /// $0D6E
-__gshared short[MAX_ENTITIES] EntityDeltaXFractionTable; /// $0DAA
-__gshared short[MAX_ENTITIES] EntityDeltaYFractionTable; /// $0DE6
-__gshared short[MAX_ENTITIES] EntityDeltaZFractionTable; /// $0E22
+__gshared ushort[MAX_ENTITIES] EntityDeltaXFractionTable; /// $0DAA
+__gshared ushort[MAX_ENTITIES] EntityDeltaYFractionTable; /// $0DE6
+__gshared ushort[MAX_ENTITIES] EntityDeltaZFractionTable; /// $0E22
 __gshared short[MAX_ENTITIES] EntityScriptVar0Table; /// $0E5E
 __gshared short[MAX_ENTITIES] EntityScriptVar1Table; /// $0E9A
 __gshared short[MAX_ENTITIES] EntityScriptVar2Table; /// $0ED6
@@ -202,6 +202,7 @@ __gshared short[MAX_ENTITIES] EntityAnimationFrames; /// $10F2
 
 __gshared ushort[MAX_ENTITIES] EntitySpriteMapFlags;
 __gshared const(SpriteMap)*[MAX_ENTITIES] EntitySpriteMapPointers;
+__gshared const(SpriteMap*)*[MAX_ENTITIES] EntitySpriteMapPointersDptr;
 
 __gshared void function()[MAX_ENTITIES] EntityScreenPositionCallbacks; /// $11A6
 __gshared void function(short, short)[MAX_ENTITIES] EntityDrawCallbacks; /// $11E2

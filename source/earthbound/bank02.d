@@ -71,7 +71,7 @@ void UnknownC200D9() {
 	window_head = -1;
 	window_tail = -1;
 	for (short i = 0; i != 8; i++) {
-		WindowStats[i].next = -1;
+		WindowStats[i].window_id = -1;
 	}
 	for (short i = 0; i != 0x35; i++) {
 		WindowTable[i] = -1;
@@ -89,7 +89,7 @@ void UnknownC200D9() {
 	}
 	for (short i = 0; i < 8; i++) {
 		for (short j = 0; j < 0x20; j++) {
-			Unknown7E9D23[i][j] = 0xFF;
+			Unknown7E9D23[j][i] = 0xFF;
 		}
 	}
 	Unknown7E9E29 = 0;
@@ -334,14 +334,14 @@ void UnknownC2087C() {
 	if (Unknown7E89C9 != 0) {
 		UnknownC2077D();
 	}
-	if (window_head == 0xFFFF) {
+	if (window_head == -1) {
 		return;
 	}
 	short x0E = window_head;
 	do {
 		UnknownC107AF(x0E);
 		x0E = WindowStats[x0E].next;
-	} while(x0E != 0xFFFF);
+	} while(x0E != -1);
 }
 
 /// $C208B8

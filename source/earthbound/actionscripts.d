@@ -1254,7 +1254,7 @@ ubyte[] EVENT_SHORT_RETURN() {
 	return actionCommand(0x1B);
 }
 
-ubyte[] EVENT_SET_ANIMATION_POINTER(const(SpriteMap)* ptr) {
+ubyte[] EVENT_SET_ANIMATION_POINTER(const(SpriteMap*)* ptr) {
 	return actionCommand(0x1C, ptr);
 }
 
@@ -12048,7 +12048,7 @@ UnknownC4121F = [
 	EVENT_SHORTJUMP(&UnknownC4121F[4]),
 ].join();
 UnknownC4220E = [
-	EVENT_SET_ANIMATION_POINTER(&UnknownE1CF9D[0][0]),
+	EVENT_SET_ANIMATION_POINTER(&UnknownE1CF9D[0]),
 	EVENT_SET_DRAW_CALLBACK(&UnknownC0A0FA),
 	EVENT_SET_PRIORITY(1),
 	EVENT_SET_POSITION_CHANGE_CALLBACK(&UnknownC0A0BB),

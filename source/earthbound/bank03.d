@@ -1002,7 +1002,7 @@ short ShowTitleScreen(short arg1) {
 		memset(&palettes[0][0], 0, 0x200);
 		UnknownC496E7(0x3C, 0x100);
 		Unknown7E0030 = 0x18;
-		for (short i = 0; 0x3C < i; i++) {
+		for (short i = 0; 0x3C > i; i++) {
 			UnknownC426ED();
 			UnknownC1004E();
 		}
