@@ -1,4 +1,6 @@
 import std.stdio;
+import std.experimental.logger;
+import std.file : exists;
 import std.string : fromStringz, format;
 import core.thread : Fiber;
 
@@ -6,11 +8,13 @@ import bindbc.loader;
 import bindbc.sdl;
 
 import earthbound.bank00 : start, NMI;
+import earthbound.commondefs;
 import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
 
 import snesdrawframe;
 import snesdrawframedata;
 
+SDL_GameController* controller;
 private enum WindowScale = 1;
 
 void saveGraphicsStateToFile(string filename) {
@@ -18,41 +22,22 @@ void saveGraphicsStateToFile(string filename) {
     file.rawWrite([g_frameData]);
 }
 
-void setJoypad() {
-    auto state = SDL_GetKeyboardState(null);
-    ushort joy1 = 0;
-    if (state[SDL_Scancode.SDL_SCANCODE_S]) joy1 |= 0x8000; // B
-    if (state[SDL_Scancode.SDL_SCANCODE_A]) joy1 |= 0x4000; // Y
-    if (state[SDL_Scancode.SDL_SCANCODE_X]) joy1 |= 0x2000; // Select
-    if (state[SDL_Scancode.SDL_SCANCODE_Z]) joy1 |= 0x1000; // Start
-    if (state[SDL_Scancode.SDL_SCANCODE_UP]) joy1 |= 0x0800; // Up
-    if (state[SDL_Scancode.SDL_SCANCODE_DOWN]) joy1 |= 0x0400; // Down
-    if (state[SDL_Scancode.SDL_SCANCODE_LEFT]) joy1 |= 0x0200; // Left
-    if (state[SDL_Scancode.SDL_SCANCODE_RIGHT]) joy1 |= 0x0100; // Right
-    if (state[SDL_Scancode.SDL_SCANCODE_D]) joy1 |= 0x0080; // A
-    if (state[SDL_Scancode.SDL_SCANCODE_W]) joy1 |= 0x0040; // X
-    if (state[SDL_Scancode.SDL_SCANCODE_Q]) joy1 |= 0x0020; // L
-    if (state[SDL_Scancode.SDL_SCANCODE_E]) joy1 |= 0x0010; // R
-    JOYPAD_1_DATA = joy1;
-    JOYPAD_2_DATA = 0;
-}
-
 void main() {
     if(!loadSnesDrawFrame()) {
-        writeln("Can't load SnesDrawFrame!");
+        info("Can't load SnesDrawFrame!");
         return;
     }
     if(loadSDL() < sdlSupport) {
-        writeln("Can't load SDL!");
+        info("Can't load SDL!");
         return;
     }
     if(!initSnesDrawFrame()) {
-        writeln("Error initializing SnesDrawFrame!");
+        info("Error initializing SnesDrawFrame!");
         return;
     }
 
     if(SDL_Init(SDL_INIT_VIDEO) != 0) {
-        writeln("Error initializing SDL: ", fromStringz(SDL_GetError()));
+        SDLError("Error initializing SDL: %s");
         return;
     }
     scope(exit) {
@@ -69,7 +54,7 @@ void main() {
         windowFlags
     );
     if(appWin is null) {
-        writeln("Error creating SDL window: ", fromStringz(SDL_GetError()));
+        SDLError("Error creating SDL window: %s");
         return;
     }
     scope(exit) {
@@ -84,7 +69,7 @@ void main() {
         appWin, -1, rendererFlags
     );
     if(renderer is null) {
-        writeln("Error creating SDL renderer: ", fromStringz(SDL_GetError()));
+        SDLError("Error creating SDL renderer: %s");
         return;
     }
     scope(exit) {
@@ -93,6 +78,7 @@ void main() {
             SDL_DestroyRenderer(renderer);
         }
     }
+    info("SDL video & renderer subsystem initialized");
 
     SDL_Texture* drawTexture = SDL_CreateTexture(
         renderer,
@@ -102,7 +88,7 @@ void main() {
         ImgH
     );
     if(drawTexture is null) {
-        writeln("Error creating SDL texture: ", fromStringz(SDL_GetError()));
+        SDLError("Error creating SDL texture: %s");
         return;
     }
     scope(exit) {
@@ -111,6 +97,19 @@ void main() {
             SDL_DestroyTexture(drawTexture);
         }
     }
+    if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0) {
+        SDLError("Couldn't initialise controller SDL subsystem: %s");
+        return;
+    }
+    if ("gamecontrollerdb.txt".exists) {
+        if (SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt") < 0) {
+            SDLError("Error loading game controller database");
+        } else {
+            info("Successfully loaded game controller database");
+        }
+    }
+    SDL_GameControllerEventState(SDL_ENABLE);
+    info("SDL game controller subsystem initialized");
 
     bool run = true, dumpVram = false, pause = false, step = false;
     int dumpVramCount = 0;
@@ -121,22 +120,62 @@ void main() {
         step = !pause;
         SDL_Event event;
         while(SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                run = false;
-            }
-            if (event.type == SDL_EventType.SDL_KEYDOWN) {
-                switch (event.key.keysym.scancode) {
-                    case SDL_Scancode.SDL_SCANCODE_0:
-                        dumpVram = true;
-                        break;
-                    case SDL_Scancode.SDL_SCANCODE_P:
-                        pause = !pause;
-                        break;
-                    case SDL_Scancode.SDL_SCANCODE_BACKSLASH:
-                        step = true;
-                        break;
-                    default: break;
-                }
+            switch (event.type) {
+                case SDL_EventType.SDL_QUIT:
+                    run = false;
+                    break;
+                case SDL_EventType.SDL_KEYDOWN:
+                    switch (event.key.keysym.scancode) {
+                        case SDL_Scancode.SDL_SCANCODE_0:
+                            dumpVram = true;
+                            break;
+                        case SDL_Scancode.SDL_SCANCODE_P:
+                            pause = !pause;
+                            break;
+                        case SDL_Scancode.SDL_SCANCODE_BACKSLASH:
+                            step = true;
+                            break;
+                        default: break;
+                    }
+                    goto case;
+                case SDL_EventType.SDL_KEYUP:
+                    keys: switch (event.key.keysym.scancode) {
+                        static foreach (key, mapping; keyboardMap) {
+                            case key:
+                                if (event.type == SDL_KEYDOWN) {
+                                    JOYPAD_1_DATA |= mapping;
+                                } else {
+                                    JOYPAD_1_DATA &= cast(ushort)~cast(uint)mapping;
+                                }
+                                break keys;
+                        }
+                        default: break;
+                    }
+                    break;
+                case SDL_CONTROLLERBUTTONUP:
+                case SDL_CONTROLLERBUTTONDOWN:
+                    buttons: switch (event.cbutton.button) {
+                        static foreach (button, mapping; gamepadMap) {
+                            case button:
+                                if (event.cbutton.type == SDL_CONTROLLERBUTTONDOWN) {
+                                    JOYPAD_1_DATA |= mapping;
+                                } else {
+                                    JOYPAD_1_DATA &= cast(ushort)~cast(uint)mapping;
+                                }
+                                break buttons;
+                        }
+                        default:
+                            break;
+                    }
+                    break;
+                case SDL_CONTROLLERDEVICEADDED:
+                    connectGamepad(event.jdevice.which);
+                    break;
+
+                case SDL_CONTROLLERDEVICEREMOVED:
+                    disconnectGamepad(event.jdevice.which);
+                    break;
+                default: break;
             }
         }
         auto kbdstate = SDL_GetKeyboardState(null);
@@ -149,10 +188,9 @@ void main() {
         SDL_LockTexture(drawTexture, null, cast(void**)&drawBuffer, &drawPitch);
 
         if (step) {
-            setJoypad();
             Throwable t = game.call(Fiber.Rethrow.no);
             if(t) {
-                writeln(t);
+                error(t);
                 throw t;
             }
             NMI();
@@ -177,4 +215,56 @@ void main() {
             SDL_Delay(16 - drawTime);
         }
     }
+}
+
+enum ushort[SDL_GameControllerButton] gamepadMap = [
+    SDL_CONTROLLER_BUTTON_X : PAD_X,
+    SDL_CONTROLLER_BUTTON_A : PAD_A,
+    SDL_CONTROLLER_BUTTON_B : PAD_B,
+    SDL_CONTROLLER_BUTTON_Y : PAD_Y,
+    SDL_CONTROLLER_BUTTON_START : PAD_START,
+    SDL_CONTROLLER_BUTTON_BACK : PAD_SELECT,
+    SDL_CONTROLLER_BUTTON_LEFTSHOULDER : PAD_L,
+    SDL_CONTROLLER_BUTTON_RIGHTSHOULDER : PAD_R,
+    SDL_CONTROLLER_BUTTON_DPAD_UP : PAD_UP,
+    SDL_CONTROLLER_BUTTON_DPAD_DOWN : PAD_DOWN,
+    SDL_CONTROLLER_BUTTON_DPAD_LEFT : PAD_LEFT,
+    SDL_CONTROLLER_BUTTON_DPAD_RIGHT : PAD_RIGHT,
+];
+
+enum ushort[SDL_Scancode] keyboardMap = [
+    SDL_Scancode.SDL_SCANCODE_S: PAD_B,
+    SDL_Scancode.SDL_SCANCODE_A: PAD_Y,
+    SDL_Scancode.SDL_SCANCODE_X: PAD_SELECT,
+    SDL_Scancode.SDL_SCANCODE_Z: PAD_START,
+    SDL_Scancode.SDL_SCANCODE_UP: PAD_UP,
+    SDL_Scancode.SDL_SCANCODE_DOWN: PAD_DOWN,
+    SDL_Scancode.SDL_SCANCODE_LEFT: PAD_LEFT,
+    SDL_Scancode.SDL_SCANCODE_RIGHT: PAD_RIGHT,
+    SDL_Scancode.SDL_SCANCODE_D: PAD_A,
+    SDL_Scancode.SDL_SCANCODE_W: PAD_X,
+    SDL_Scancode.SDL_SCANCODE_Q: PAD_L,
+    SDL_Scancode.SDL_SCANCODE_E: PAD_R,
+];
+
+void connectGamepad(int id) {
+    if (SDL_IsGameController(id)) {
+        if (SDL_GameControllerOpen(id)) {
+            const(char)* name = SDL_GameControllerNameForIndex(id);
+            infof("Initialized controller: %s", name.fromStringz);
+        } else {
+            SDLError("Error opening controller: %s");
+        }
+    }
+}
+void disconnectGamepad(int id) {
+    if (SDL_GameControllerFromInstanceID(id) is controller) {
+        infof("Joystick #%d disconnected", id);
+        SDL_GameControllerClose(controller);
+        controller = null;
+    }
+}
+
+void SDLError(string fmt) {
+    errorf(fmt, SDL_GetError().fromStringz);
 }
