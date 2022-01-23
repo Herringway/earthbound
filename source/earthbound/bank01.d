@@ -1029,7 +1029,7 @@ label2:
 		UnknownC12E42();
 
 		if (pad_press[0] & PAD_UP) {
-			dp1C = MoveCursor(dp04.text_x, dp04.text_y, -1, 0, Sfx.Cursor3, dp04.text_x, dp24.height);
+			dp1C = MoveCursor(dp04.text_x, dp04.text_y, -1, 0, Sfx.Cursor3, dp04.text_x, dp24.height / 2);
 			goto label3;
 		}
 

@@ -434,8 +434,8 @@ void UnknownC20ABC(WindowTextAttributesCopy* buf) {
 
 /// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 short UnknownC20B65(short curX, short curY, short deltaX, short deltaY, short sfx) {
-	short x0E = curY;
-	short x02 = curX;
+	ushort x0E = curY;
+	ushort x02 = curX;
 	if (deltaX != 0) {
 		for (x0E = cast(short)(x0E + deltaX); x0E < WindowStats[WindowTable[CurrentFocusWindow]].height / 2; x0E += deltaX) {
 			if (UnknownC208B8(x02, x0E) == 0x2F) {
@@ -456,6 +456,7 @@ short UnknownC20B65(short curX, short curY, short deltaX, short deltaY, short sf
 				}
 			}
 		}
+		return -1;
 	} else {
 		for (x02 = cast(short)(x02 + deltaY); x02 < WindowStats[WindowTable[CurrentFocusWindow]].width; x02 += deltaY) {
 			if (UnknownC208B8(x02, x0E) == 0x2F) {
