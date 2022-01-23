@@ -8260,11 +8260,10 @@ void GameInit() {
 	CheckHardware();
 	WaitUntilNextFrame();
 	WaitUntilNextFrame();
-	version(DebugBuild) {
+	debug {
 		if ((pad_state[0] & (PAD_DOWN | PAD_L)) != 0) {
 			Debug = 1;
 			DebugMenuLoad();
-			return;
 		}
 	}
 	Debug = 0;
