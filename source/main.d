@@ -210,7 +210,6 @@ void main(string[] args) {
         if (step) {
             Throwable t = game.call(Fiber.Rethrow.no);
             if(t) {
-                error(t);
                 throw t;
             }
             NMI();
