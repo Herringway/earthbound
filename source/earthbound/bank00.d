@@ -894,9 +894,9 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 	}
 	short x02 = UnknownC01DED(sprite);
 	short x21 = UnknownC01C52(Unknown7E467A, Unknown7E467C, index);
-	while (x21 <= 0) {}
+	while (x21 < 0) {}
 	short x1F = FindFree7E4682(UnknownC42B0D[x02].unknown0 * 10);
-	while (x1F <= 0) {}
+	while (x1F < 0) {}
 	NewEntityPriority = 1;
 	UnknownC01D38(x1F, x21, SpriteGroupingPointers[sprite].unknown3, &UnknownC42B0D[x02]);
 	if (index != -1) {
@@ -923,12 +923,12 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 	if ((Unknown7E467C & 1) != 0) {
 		EntityVramAddresses[result] += 0x100;
 	}
-	EntitySizes[result] = SpriteGroupingPointers[sprite + 1].height;
+	EntitySizes[result] = SpriteGroupingPointers[sprite].unknown2;
 	Unknown7E3366[result] = SpriteGroupingPointers[sprite].unknown4;
 	Unknown7E33A2[result] = SpriteGroupingPointers[sprite].unknown5;
 	Unknown7E33DE[result] = SpriteGroupingPointers[sprite].unknown6;
 	Unknown7E1A4A[result] = SpriteGroupingPointers[sprite].unknown7;
-	Unknown7E332A[result] = UnknownC42AEB[SpriteGroupingPointers[sprite + 1].width];
+	Unknown7E332A[result] = UnknownC42AEB[SpriteGroupingPointers[sprite].unknown2 << 1];
 	UNKNOWN_30X2_TABLE_38[result] = cast(ushort)((UnknownC42B0D[x02].unknown1 <<8) | (UnknownC42B0D[x02].unknown0 - UnknownC42B0D[x02].unknown1));
 	UNKNOWN_30X2_TABLE_43[result] = 0xFFFF;
 	EntityEnemyIDs[result] = -1;
@@ -7978,17 +7978,21 @@ void UnknownC0B0B8(short arg1, const(ubyte)* arg2) {
 }
 
 /// $C0B0EF
-void UnknownC0B0EF(ubyte arg1, ubyte arg2) {
-	Unknown7E3FC6[0].count = 0x64 | 0x80;
-	Unknown7E3FC6[0].ptr = &Unknown7E3FD0[0];
-	Unknown7E3FC6[1].count = 0x7C | 0x80;
-	Unknown7E3FC6[2].count = 0;
+void EnableAttractModeWindowHDMA(ubyte arg1, ubyte arg2) {
+	// Write the table entry for the first 100 lines of window data
+	AttractModeWindowHDMATable[0].count = 100 | 0x80;
+	AttractModeWindowHDMATable[0].ptr = &AttractModeWindowHDMAData[0];
+	// Write the table entry for the 124 remaining lines of window data
+	AttractModeWindowHDMATable[1].count = 124 | 0x80;
+	AttractModeWindowHDMATable[2].count = 0;
 	//DMAChannels[arg1].A1B = 0x7E;
 	//DMAChannels[arg1].DASB = 0x7E;
 	DMAChannels[arg1].BBAD = 0x26;
 	DMAChannels[arg1].DMAP = arg2;
-	Unknown7E3FC6[1].ptr = ((arg2 & 4) != 0) ? (&Unknown7E4160[0]) : (&Unknown7E4098[0]);
-	DMAChannels[arg1].A1T = &Unknown7E3FC6;
+	// Depending on whether we are writing to windows 1 and 2 (4 bytes) or just window 1 (2 bytes),
+	// skip ahead in the buffer by 400 or 200 bytes (100 lines)
+	AttractModeWindowHDMATable[1].ptr = ((arg2 & 4) != 0) ? (&AttractModeWindowHDMAData[400]) : (&AttractModeWindowHDMAData[200]);
+	DMAChannels[arg1].A1T = &AttractModeWindowHDMATable;
 	HDMAEN_MIRROR |= DMAFlags[arg1];
 }
 
@@ -7999,7 +8003,7 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
 		short a = cast(short)(arg2 - arg4);
 		if (a > 0) {
 			do {
-				*cast(ushort*)Unknown7E3FD0[y] = 0xFF;
+				*cast(ushort*)&AttractModeWindowHDMAData[y] = 0xFF;
 				y += 2;
 			} while(--a != 0);
 			a = 0;
@@ -8023,10 +8027,10 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
 					a = cast(ushort)(x0C << 8) | cast(ubyte)a;
 				}
 			}
-			*cast(ushort*)&Unknown7E3FD0[y] = a;
+			*cast(ushort*)&AttractModeWindowHDMAData[y] = a;
 			x0C = cast(short)(x0A * 4);
 			if (y + x0C < 0x1C0) {
-				*cast(ushort*)&Unknown7E3FD0[y + x0C] = a;
+				*cast(ushort*)&AttractModeWindowHDMAData[y + x0C] = a;
 			}
 			y += 2;
 			if (--x0A < 0) {
@@ -8038,7 +8042,7 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
 		if (y < 0x1C0) {
 			a = 0xFF;
 			do {
-				*cast(ushort*)Unknown7E3FD0[y] = 0xFF;
+				*cast(ushort*)&AttractModeWindowHDMAData[y] = 0xFF;
 				y += 2;
 			} while (y < 0x1C0);
 		}
@@ -8048,7 +8052,7 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
 		a = cast(short)(a - arg2 - arg4);
 		if (a > 0) {
 			do {
-				*cast(ushort*)Unknown7E3FD0[y] = 0xFF;
+				*cast(ushort*)&AttractModeWindowHDMAData[y] = 0xFF;
 				y -= 2;
 			} while (--a != 0);
 			a = 0;
@@ -8072,10 +8076,10 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
 					a = cast(ushort)(x0C << 8) | cast(ubyte)a;
 				}
 			}
-			*cast(ushort*)&Unknown7E3FD0[y] = a;
+			*cast(ushort*)&AttractModeWindowHDMAData[y] = a;
 			x0C = cast(short)(x0A * 4);
 			if (y - x0C >= 0) {
-				*cast(ushort*)&Unknown7E3FD0[y - x0C] = a;
+				*cast(ushort*)&AttractModeWindowHDMAData[y - x0C] = a;
 			}
 			y -= 2;
 			if (--x0A < 0) {
@@ -8086,7 +8090,7 @@ void UnknownC0B149(short arg1, short arg2, short arg3, short arg4) {
 		y = cast(short)(a - arg4 - arg4);
 		if (y >= 0) {
 			do {
-				Unknown7E3FD0[y] = 0xFF;
+				AttractModeWindowHDMAData[y] = 0xFF;
 				y -= 2;
 			} while (y >= 0);
 		}
