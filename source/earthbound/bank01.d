@@ -7579,7 +7579,8 @@ short OpenFlavourMenu() {
 void FileMenuLoop() {
 	outermost: while (true) {
 		SetInstantPrinting();
-		if (Unknown7EB49E[FileSelectMenu(0) - 1] != 0) {
+		const fileMenuResult = FileSelectMenu(0);
+		if ((fileMenuResult == 0) || (Unknown7EB49E[fileMenuResult - 1] != 0)) {
 			ValidFileSelected:
 			switch (UnknownC1F07E()) {
 				case 0: //B pressed
@@ -7776,6 +7777,9 @@ void FileMenuLoop() {
 short UnknownC1FF2C() {
 	short result;
 	ubyte xX = 0;
+	if (ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] == null){
+		return 1;
+	}
 	switch(ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
 		case 1:
 		case 2:

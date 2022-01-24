@@ -3564,6 +3564,9 @@ void LoadWindowGraphics() {
 	Decomp(&TextWindowGraphics[0], &Unknown7F0000[0]);
 	memcpy(&Unknown7F0000[0x2000], &Unknown7F0000[0x1000], 0x2A00);
 	memset(&Unknown7F0000[0x3200], 0, 0x600);
+	if (gameState.textFlavour == 0) {
+		gameState.textFlavour = 1;
+	}
 	if (TextWindowProperties[gameState.textFlavour - 1].unknown == 8) {
 		Decomp(&FlavouredTextGraphics[0], &Unknown7F0000[0x100]);
 	}
@@ -3616,7 +3619,9 @@ void UnknownC47F87() {
 	ubyte affliction = 0;
 	// Normally the game just indexes the playerControlledPartyMembers array out of bounds - not the best idea.
 	if (gameState.playerControlledPartyMemberCount > 0) {
-		affliction = ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
+		if (ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] != null){
+			affliction = ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
+		}
 	}
 	switch(affliction) {
 		case 1:
