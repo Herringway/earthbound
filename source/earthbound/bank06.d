@@ -167,7 +167,7 @@ immutable ubyte[0] TextBlockC62A61;
 immutable ubyte[0] TextBlockC62A66;
 immutable ubyte[0] TextBlockC62A75;
 immutable ubyte[0] TextBlockC62A9B;
-immutable ubyte[0] TEXT_LEARNED_PSI_TELEPORT_ALPHA;
+immutable ubyte[0] TextLearnedPSITeleportAlpha;
 immutable ubyte[0] TextBlockC62B6F;
 immutable ubyte[0] TextNPC0771;
 immutable ubyte[0] TextNPC0798;

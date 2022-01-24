@@ -10,6 +10,7 @@ import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank05;
+import earthbound.bank06;
 import earthbound.bank07;
 import earthbound.bank0F;
 import earthbound.bank10;
@@ -9911,7 +9912,7 @@ void TeleportMainLoop() {
 			UnknownC0DD79();
 			UnknownC0E897();
 			if (teleportStyle == TeleportStyle.Unknown) {
-				//UnknownC46881(TextLearnedPSITeleportAlpha);
+				UnknownC46881(TextLearnedPSITeleportAlpha.ptr);
 			}
 			break;
 		case 2:
