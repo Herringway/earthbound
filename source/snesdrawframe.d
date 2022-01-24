@@ -7,7 +7,7 @@ public enum ImgH = 480;
 
 extern(C) @nogc nothrow {
     alias plibsfcppu_init = bool function();
-    alias plibsfcppu_drawFrame = ushort * function(const SnesDrawFrameData* d);
+    alias plibsfcppu_drawFrame = ushort * function(const(SnesDrawFrameData)* d);
 }
 
 __gshared {
@@ -51,13 +51,15 @@ bool loadDynamicLibrary(const(char)* libName)
 
 
 public bool initSnesDrawFrame() {
+    assert(libsfcppu_init, "libsfcppu not loaded?");
     return libsfcppu_init();
 }
 
-public void drawFrame(ushort* buffer, int pitch, const SnesDrawFrameData* d) {
+public void drawFrame(ushort* buffer, int pitch, const(SnesDrawFrameData)* d) {
     assert(ImgW == 512);
     assert(ImgH == 480);
     assert(pitch == 1024);
+    assert(libsfcppu_drawFrame, "libsfcppu not loaded?");
     ushort * rawdata = libsfcppu_drawFrame(d);
     buffer[0..ImgW*ImgH] = rawdata[0..ImgW*ImgH];
 }
