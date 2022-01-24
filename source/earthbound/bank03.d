@@ -380,27 +380,28 @@ void CloseWindow(short arg1) {
 		WindowStats[x12].next = x14;
 	}
 	WindowStats[WindowTable[arg1]].window_id = -1;
+	short x10 = WindowTable[arg1];
 	WindowTable[arg1] = -1;
-	ushort* x0E = &bg2Buffer[WindowStats[WindowTable[arg1]].y * 32 + WindowStats[WindowTable[arg1]].x];
-	ushort* x14_2 = WindowStats[WindowTable[arg1]].tilemapBuffer;
-	for (short i = 0; i < WindowStats[WindowTable[arg1]].width * WindowStats[WindowTable[arg1]].height; i++) {
+	ushort* x0E = &bg2Buffer[WindowStats[x10].y * 32 + WindowStats[x10].x];
+	ushort* x14_2 = WindowStats[x10].tilemapBuffer;
+	for (short i = 0; i < WindowStats[x10].width * WindowStats[x10].height; i++) {
 		if ((x14_2[0] == 0x40) || (x14_2[0] == 0)) {
 			UnknownC44AF7(x14_2[0]);
 		}
 		x14_2[0] = 0x40;
 		x14_2++;
 	}
-	for (short i = 0; i != WindowStats[WindowTable[arg1]].height + 2; i++) {
-		for (short j = 0; j != WindowStats[WindowTable[arg1]].width + 2; j++) {
+	for (short i = 0; i != WindowStats[x10].height + 2; i++) {
+		for (short j = 0; j != WindowStats[x10].width + 2; j++) {
 			*(x0E++) = 0;
 		}
-		x0E += 32 - WindowStats[WindowTable[arg1]].width - 2;
+		x0E += 32 - WindowStats[x10].width - 2;
 	}
 	UnknownC45E96();
-	if (WindowStats[WindowTable[arg1]].title_id != 0) {
-		Unknown7E894E[WindowStats[WindowTable[arg1]].title_id - 1] = -1;
+	if (WindowStats[x10].title_id != 0) {
+		Unknown7E894E[WindowStats[x10].title_id - 1] = -1;
 	}
-	WindowStats[WindowTable[arg1]].title_id = 0;
+	WindowStats[x10].title_id = 0;
 	Unknown7E9623 = 1;
 	if (Unknown7E5E7A == arg1) {
 		Unknown7E5E7A = -1;

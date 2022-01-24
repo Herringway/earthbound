@@ -192,21 +192,21 @@ void DrawHPPPWindow(short id) {
 	} else {
 		x18 = 19;
 	}
-	ushort* x = &bg2Buffer[10 - gameState.playerControlledPartyMemberCount / 2 + id + x18 * 64];
+	ushort* x = &bg2Buffer[16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (id * 7) + x18 * 32];
 	x[0] = cast(ushort)(x1E + 0x2004);
 	x++;
-	for (short i = 6; i != 0; i--) {
+	for (short i = 5; i != 0; i--) {
 		x[0] = cast(ushort)(x1E + 0x2005);
 		x++;
 	}
 	x[0] = cast(ushort)(x1E + 0x6004);
 	x++;
-	x += 24;
+	x += 25;
 
-	x[0] = cast(ushort)(x1E + 0x2006);
+	(x++)[0] = cast(ushort)(x1E + 0x2006);
 	short x14 = (gameState.partyMembers[id] - 1) * 4 + 0x22A0;
 	short x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
-	for (short i = 0; i != 5; i++) {
+	for (short i = 0; i != 4; i++) {
 		if (x12 != 0) {
 			x[0] = cast(ushort)(x14 + x1C);
 			x++;
@@ -220,13 +220,14 @@ void DrawHPPPWindow(short id) {
 	x[0] = cast(ushort)(x1C + x20 + 0x2000);
 	x++;
 	x[0] = cast(ushort)(x1E + 0x6006);
-	x += 24;
+	x++;
+	x += 25;
 
 	x[0] = cast(ushort)(x1E + 0x2006);
 	x++;
 	x14 = ((gameState.partyMembers[id] - 1) * 4) + 0x22B0;
 	x12 = cast(short)((strlen(cast(char*)&character.name[0]) * 6 + 9) / 8);
-	for (short i =0 ; i != 5; i++) {
+	for (short i =0 ; i != 4; i++) {
 		if (x12 != 0) {
 			x[0] = cast(ushort)(x14 + x1C);
 			x++;
@@ -241,7 +242,7 @@ void DrawHPPPWindow(short id) {
 	x++;
 	x[0] = cast(ushort)(x1E + 0x6006);
 	x++;
-	x+= 24;
+	x+= 25;
 
 	FillCharacterHPTileBuffer(id, character.hp.current.integer, character.hp.current.fraction);
 	const(ubyte)* x06 = &UnknownC3E3F8[0];
@@ -254,14 +255,14 @@ void DrawHPPPWindow(short id) {
 			x06++;
 			x++;
 		}
-		for (short j = 4; j != 0; j--) {
+		for (short j = 3; j != 0; j--) {
 			x[0] = y[0];
 			y++;
 			x++;
 		}
 		x[0] = cast(ushort)(x1E + 0x6006);
 		x++;
-		x += 24;
+		x += 25;
 	}
 
 	FillCharacterPPTileBuffer(id, &character.afflictions[0], character.pp.current.integer, character.pp.current.fraction);
@@ -274,18 +275,18 @@ void DrawHPPPWindow(short id) {
 			x06++;
 			x++;
 		}
-		for (short j = 4; j != 0; j--) {
+		for (short j = 3; j != 0; j--) {
 			x[0] = y[0];
 			y++;
 			x++;
 		}
 		x[0] = cast(ushort)(x1E + 0x6006);
 		x++;
-		x += 24;
+		x += 25;
 	}
 	x[0] = cast(ushort)(x1E + 0xA004);
 	x++;
-	for (short i = 6; i != 0; i--) {
+	for (short i = 5; i != 0; i--) {
 		x[0] = cast(ushort)(x1E + 0xA005);
 		x++;
 	}
@@ -1773,7 +1774,7 @@ ubyte* CopyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
 		if (arg1[0] == 0) {
 			break;
 		}
-		if (arg1[0] == EBChar('|')) {
+		if (arg1[0] == EBChar('♪')) {
 			for (short i = 0; i < PartyCharacter.name.length; i++) {
 				(arg2++)[0] = PartyCharacters[0].name[i];
 			}

@@ -1627,7 +1627,7 @@ void UnknownC03A24() {
 		if (gameState.partyMembers[i] == 0) {
 			break;
 		}
-		UnknownC0369B(i);
+		UnknownC0369B(gameState.partyMembers[i]);
 	}
 	Unknown7E5D7E = 0;
 	FootstepSoundID = gameState.unknown92;
