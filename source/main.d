@@ -46,6 +46,7 @@ void main(string[] args) {
         info("Error initializing SnesDrawFrame!");
         return;
     }
+    info("SnesDrawFrame initialized");
 
     if(SDL_Init(SDL_INIT_VIDEO) != 0) {
         SDLError("Error initializing SDL: %s");
