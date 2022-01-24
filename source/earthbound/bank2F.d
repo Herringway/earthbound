@@ -22471,7 +22471,7 @@ void DebugHandleCursorMovement() {
 			DebugMenuCursorPosition = 0;
 		}
 	}
-	EntityAbsXTable[Unknown7EB553] = cast(short)((DebugMenuCursorPosition * 24) + 0x34);
+	EntityAbsYTable[Unknown7EB553] = cast(short)((DebugMenuCursorPosition * 24) + 0x34);
 	Unknown7EB557 = pad_press[0] & (PAD_B | PAD_START | PAD_A | PAD_L);
 }
 
