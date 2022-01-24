@@ -8284,14 +8284,19 @@ void GameInit() {
 	CheckHardware();
 	WaitUntilNextFrame();
 	WaitUntilNextFrame();
-	debug {
-		if ((pad_state[0] & (PAD_DOWN | PAD_L)) != 0) {
-			Debug = 1;
-			DebugMenuLoad();
+	debug(alwaysdebugmenu) {
+		Debug = 1;
+		DebugMenuLoad();
+	} else {
+		debug {
+			if ((pad_state[0] & (PAD_DOWN | PAD_L)) != 0) {
+				Debug = 1;
+				DebugMenuLoad();
+			}
 		}
+		Debug = 0;
+		ebMain();
 	}
-	Debug = 0;
-	ebMain();
 }
 
 /// $C0B9BC
