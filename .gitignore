@@ -20,3 +20,6 @@ data
 dub.selections.json
 *.dll
 .vs
+*.ebsave
+*.ebsave.bak
+gamecontrollerdb.txt
