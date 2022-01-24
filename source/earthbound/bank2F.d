@@ -22455,7 +22455,7 @@ void DebugProcessCommandSelection() {
 	FadeIn(1, 1);
 }
 
-/// $EFE689
+/// $EFE578
 void DebugHandleCursorMovement() {
 	if ((pad_held[0] & PAD_UP) != 0) {
 		if (DebugMenuCursorPosition != 0) {
