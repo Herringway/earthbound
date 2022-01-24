@@ -4627,7 +4627,7 @@ void UnknownC4A7B0() {
 			Unknown7EAECC = null;
 		}
 		UnknownC0B149(Unknown7EAED0, Unknown7EAED2, (Unknown7EAED4 >> 8) & 0xFF, (Unknown7EAED6 >> 8) & 0xFF);
-		UnknownC0B0EF(3, 0x41);
+		EnableAttractModeWindowHDMA(3, 0x41);
 		SetWindowMask(Unknown7EAEC8, (Unknown7EAEC6 >> 8) & 0xFF);
 		return;
 	}

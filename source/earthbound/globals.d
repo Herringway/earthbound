@@ -372,11 +372,13 @@ __gshared ubyte[7] Unknown7E3C32; /// $3C32
 __gshared ubyte[7] Unknown7E3C3C; /// $3C3C
 
 __gshared ushort[448] Unknown7E3C46; /// $3C46
-__gshared HDMATableEntry[3] Unknown7E3FC6; /// $3FC6
+__gshared HDMATableEntry[3] AttractModeWindowHDMATable; /// $3FC6
 
-__gshared ubyte[200] Unknown7E3FD0; /// $3FD0
-__gshared ubyte[200] Unknown7E4098; /// $4098
-__gshared ubyte[200] Unknown7E4160; /// $4160
+//based on our known RAM maps, this has 924 bytes of space allocated
+//but only a maximum of 896 bytes (4 bytes * 224 lines) can be
+//displayed to the screen
+//however, only 448 bytes are used by the final game
+__gshared ubyte[924] AttractModeWindowHDMAData; /// $3FD0
 
 __gshared short Debug; /// $436C
 __gshared short Unknown7E436E; /// $436E
