@@ -1017,12 +1017,12 @@ label2:
 	short dp1A = dp02;
 
 	// x=field06, text_x=field0E, text_y=field10, y=field08
-	short dp1E = cast(short)((dp24.x + dp24.text_x) + ((dp24.text_y * 2) + (dp24.y * 32)) + 0x7C20);
+	short dp1E = cast(short)((dp24.x + dp24.text_x) + ((dp24.text_y * 2 + dp24.y) * 32) + 0x7C20);
 	dp02 = dp1A; // The addition above used dp02 as an intermediary value
 
 	// dp18 = dp02 * 2;
-	CopyToVram(0*3, 2, cast(ushort)dp1E, cast(ubyte*)(arrC3E406.ptr + dp02)); // Implied (dp02 * 2), because arrC3E406 is an array of ushort
-	CopyToVram(0*3, 2, cast(ushort)(dp1E+32), cast(ubyte*)(arrC3E40A.ptr + dp02)); // Implied (dp02 * 2), because arrC3E40A is an array of ushort
+	CopyToVram(0, 2, cast(ushort)dp1E, cast(ubyte*)&arrC3E406[dp02]); // Implied (dp02 * 2), because arrC3E406 is an array of ushort
+	CopyToVram(0, 2, cast(ushort)(dp1E+32), cast(ubyte*)&arrC3E40A[dp02]); // Implied (dp02 * 2), because arrC3E40A is an array of ushort
 
 	short dp1C;
 	for (dp1E = 0; dp1E < 10; dp1E++) {
