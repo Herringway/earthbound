@@ -6150,6 +6150,12 @@ union Unknown7EF000Stuff {
 	ushort[0x400] Unknown7EF000Alt;
 }
 
+struct Unknown7E9652Data {
+	ushort unknown0;
+	ushort unknown2;
+	ushort unknown4;
+}
+
 
 //helper funcs not in the original game
 

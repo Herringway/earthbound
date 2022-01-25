@@ -36,6 +36,47 @@ void UnknownC40023() {
 	EntitySleepFrames[ActionScript8A / 2] = CurrentEntitySlot & 0xF;
 }
 
+/// $C4002F
+void UnknownC4002F(short arg1, ushort arg2, ushort arg3) {
+	DMA_COPY_RAM_SRC = &VWFBuffer[arg1][0];
+	Unknown7E0091 = 0;
+	DMA_COPY_SIZE = 16;
+	//lol segmented addressing
+	//DMA_COPY_RAM_SRC = 0x7E
+	DMA_COPY_VRAM_DEST = cast(ushort)((arg2 * 8) + 0x6000);
+	CopyToVramCommon();
+	DMA_COPY_RAM_SRC += 0x10;
+	DMA_COPY_VRAM_DEST = cast(ushort)((arg3 * 8) + 0x6000);
+	CopyToVramCommon();
+	DMATransferFlag = (INIDISP_MIRROR & 0x80) ^ 0x80;
+}
+
+/// $C40085
+short UnknownC40085() {
+	ushort y = 8;
+	short a = -1;
+	while (a == Unknown7E1AD6[y / 2]) {
+		y += 2;
+		if (y != 0x40) {
+			continue;
+		}
+		UnknownC10000();
+		UnknownC1008E();
+		UnknownC09451();
+		//longjmp(&jmpbuf2);
+	}
+	ushort x = 30;
+	a = Unknown7E1AD6[y / 2];
+	while (a < 0) {
+		x -= 2;
+		a <<= 1;
+	}
+	Unknown7E1AD6[y / 2] |= PowersOfTwo16Bit[x / 2];
+	Unknown7E288E = x;
+	Unknown7E288E >>= 1;
+	return cast(short)(Unknown7E288E + y * 8);
+}
+
 /// $C40B51
 void UnknownC40B51() {
 	StopMusic();
@@ -1533,8 +1574,8 @@ void UnknownC43CAA() {
 	} else {
 		VWFX = cast(ushort)(VWFTile * 8);
 	}
-	Unknown7E9654 = 0;
-	Unknown7E9652 = VWFX;
+	Unknown7E9652.unknown2 = 0;
+	Unknown7E9652.unknown0 = VWFX;
 }
 
 /// $C43CD2 - Set text position on focused window (for menu options)
@@ -1705,8 +1746,8 @@ short UnknownC442AC(short arg1, short arg2, short arg3) {
 	VWFTile = 0;
 	VWFX = 0;
 	memset(&VWFBuffer[0][0], 0xFF, 0x340);
-	Unknown7E9654 = 0;
-	Unknown7E9652 = 0;
+	Unknown7E9652.unknown2 = 0;
+	Unknown7E9652.unknown0 = 0;
 	if (arg3 == -1) {
 		if (Unknown7E9662 == 0) {
 			return 1;
@@ -1960,6 +2001,26 @@ void RenderText(short width, short sizeof_tile, const(ubyte)* gfx_data) {
 	}
 }
 
+/// $C44C6C
+immutable ushort[16] PowersOfTwo16Bit = [
+	1<<0,
+	1<<1,
+	1<<2,
+	1<<3,
+	1<<4,
+	1<<5,
+	1<<6,
+	1<<7,
+	1<<8,
+	1<<9,
+	1<<10,
+	1<<11,
+	1<<12,
+	1<<13,
+	1<<14,
+	1<<15,
+];
+
 deprecated("RenderText") alias UnknownC44B3A = RenderText;
 
 /// $C44C8C
@@ -2014,10 +2075,32 @@ void UnknownC44C8C(short arg1, short arg2) {
 	WindowStats[WindowTable[CurrentFocusWindow]].text_y = x12;
 }
 
+/// $C44DCA
+void UnknownC44DCA() {
+	short x12 = VWFX / 8;
+	short x02 = Unknown7E9652.unknown0 / 8;
+	short x10 = Unknown7E9652.unknown2;
+	if (x10 != 0) {
+		UnknownC4002F(x02, x10, Unknown7E9652.unknown4);
+	} else {
+		x02--;
+	}
+	while (x02 != x12) {
+		short x0E = UnknownC40085();
+		Unknown7E9652.unknown2 = x0E;
+		short x04 = UnknownC40085();
+		Unknown7E9652.unknown4 = x04;
+		x02 = (x02 + 1 == 52) ? 0 : cast(short)(x02 + 1);
+		UnknownC4002F(x02, x0E, x04);
+		UnknownC44C8C(x0E, x04);
+	}
+	Unknown7E9652.unknown0 = VWFX;
+}
+
 /// $C44E44
 void UnknownC44E44() {
-	Unknown7E9654 = 0;
-	Unknown7E9652 = 0;
+	Unknown7E9652.unknown2 = 0;
+	Unknown7E9652.unknown0 = 0;
 }
 
 /// $C44E4D
@@ -2063,6 +2146,7 @@ void UnknownC44E61(short arg1, short arg2) {
 			}
 		}
 		RenderText(x12, FontConfigTable[arg1].width, x14);
+		UnknownC44DCA();
 	}
 }
 
@@ -3487,8 +3571,8 @@ void LoadWindowGraphics() {
 		VWFTile = 0;
 		VWFX = 0;
 		memset(&VWFBuffer[0][0], 0xFF, 0x340);
-		Unknown7E9654 = 0;
-		Unknown7E9652 = 0;
+		Unknown7E9652.unknown2 = 0;
+		Unknown7E9652.unknown0 = 0;
 		ubyte* x0A = &PartyCharacters[i].name[0];
 		VWFX = 2;
 		for (short j = 0; x0A[0] != 0; j++) {
@@ -7011,8 +7095,8 @@ void UnknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	VWFTile = 0;
 	VWFX = 0;
 	memset(&VWFBuffer[0][0], 0xFF, 0x340);
-	Unknown7E9654 = 0;
-	Unknown7E9652 = 0;
+	Unknown7E9652.unknown2 = 0;
+	Unknown7E9652.unknown0 = 0;
 	UnknownC1FF99(-1, arg2, arg1);
 	for (short i = 0; arg1[0] != 0; arg1++, i++) {
 		const(ubyte)* x0A = &FontConfigTable[0].graphics[FontConfigTable[0].width * (arg1[0] - EBChar(' ') & 0x7F)];
