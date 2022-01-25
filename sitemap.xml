@@ -1561,6 +1561,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/Path_sbrk.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/PhoneCallText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/PlayCredits.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/PowersOfTwo16Bit.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/PowersOfTwo32Bit.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/PowersOfTwo8Bit.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/PrepareNewEntity.html</loc></url>
@@ -1589,6 +1590,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/UndrawFlyoverText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC40015.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC40023.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC4002F.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC40085.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC40B51.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC40B75.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC40BE8.html</loc></url>
@@ -1673,6 +1676,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44AD7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44AF7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44C8C.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44DCA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44E44.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44E4D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44E61.html</loc></url>
@@ -2578,7 +2582,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E964B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9651.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9652.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9654.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9658.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E965A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E9660.html</loc></url>
