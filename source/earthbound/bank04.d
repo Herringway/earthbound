@@ -3668,7 +3668,7 @@ void UnknownC47F87() {
 			memcpy(palettes.ptr, TextWindowDeathPalette.ptr, 0x40);
 			break;
 		default:
-			memcpy(palettes.ptr, (cast(void*)TextWindowFlavourPalettes.ptr) + TextWindowProperties[gameState.textFlavour].offset, 0x40);
+			memcpy(palettes.ptr, (cast(void*)TextWindowFlavourPalettes.ptr) + TextWindowProperties[gameState.textFlavour - 1].offset, 0x40);
 			break;
 	}
 	CurrentTextPalette[0] = 0;
