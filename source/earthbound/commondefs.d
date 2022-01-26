@@ -6581,3 +6581,15 @@ string saveFileName(short id) {
 }
 
 extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
+
+ubyte[] allBytes(T...)(T args) {
+    struct X {
+		align(1):
+        T stuff;
+    }
+    union Z {
+        X x;
+        ubyte[X.sizeof] bytes;
+    }
+    return Z(X(args)).bytes.dup;
+}
