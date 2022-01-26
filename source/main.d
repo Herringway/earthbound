@@ -5,6 +5,8 @@ import std.getopt;
 import std.string : fromStringz, format;
 import core.thread : Fiber;
 
+import siryul;
+
 import bindbc.loader;
 import bindbc.sdl;
 
@@ -17,12 +19,21 @@ import snesdrawframedata;
 
 private enum WindowScale = 1;
 
+struct Settings {
+    Controller[SDL_GameControllerButton] gamepadMapping;
+    Controller[SDL_Scancode] keyboardMapping;
+}
+
 void saveGraphicsStateToFile(string filename) {
     File file = File(filename, "wb");
     file.rawWrite([g_frameData]);
 }
 
 void main(string[] args) {
+    if (!"settings.yml".exists) {
+        getDefaultSettings().toFile!YAML("settings.yml");
+    }
+    const settings = fromFile!(Settings, YAML)("settings.yml");
     bool verbose;
     auto help = getopt(args,
         "verbose|v", "Print extra information", &verbose
@@ -123,8 +134,81 @@ void main(string[] args) {
     SDL_GameControllerEventState(SDL_ENABLE);
     info("SDL game controller subsystem initialized");
 
-    bool run = true, dumpVram = false, pause = false, step = false;
+    bool run = true, dumpVram = false, pause = false, step = false, fastForward = false;
     int dumpVramCount = 0;
+
+    void handleSNESButton(ushort val, bool pressed, uint playerID) {
+        if (pressed) {
+            if (playerID == 1) {
+                JOYPAD_1_DATA |= val;
+            } else {
+                JOYPAD_2_DATA |= val;
+            }
+        } else {
+            if (playerID == 1) {
+                JOYPAD_1_DATA &= cast(ushort)~cast(uint)val;
+            } else {
+                JOYPAD_2_DATA &= cast(ushort)~cast(uint)val;
+            }
+        }
+    }
+    void handleButton(Controller button, bool pressed, uint playerID) {
+        final switch (button) {
+            case Controller.up:
+                handleSNESButton(PAD_UP, pressed, playerID);
+                break;
+            case Controller.down:
+                handleSNESButton(PAD_DOWN, pressed, playerID);
+                break;
+            case Controller.left:
+                handleSNESButton(PAD_LEFT, pressed, playerID);
+                break;
+            case Controller.right:
+                handleSNESButton(PAD_RIGHT, pressed, playerID);
+                break;
+            case Controller.l:
+                handleSNESButton(PAD_L, pressed, playerID);
+                break;
+            case Controller.r:
+                handleSNESButton(PAD_R, pressed, playerID);
+                break;
+            case Controller.select:
+                handleSNESButton(PAD_SELECT, pressed, playerID);
+                break;
+            case Controller.start:
+                handleSNESButton(PAD_START, pressed, playerID);
+                break;
+            case Controller.a:
+                handleSNESButton(PAD_A, pressed, playerID);
+                break;
+            case Controller.b:
+                handleSNESButton(PAD_B, pressed, playerID);
+                break;
+            case Controller.x:
+                handleSNESButton(PAD_X, pressed, playerID);
+                break;
+            case Controller.y:
+                handleSNESButton(PAD_Y, pressed, playerID);
+                break;
+            case Controller.fastForward:
+                fastForward = pressed;
+                break;
+            case Controller.pause:
+                if (pressed) {
+                    pause = !pause;
+                }
+                break;
+            case Controller.dumpVRAM:
+                dumpVram = pressed;
+                break;
+            case Controller.skipFrame:
+                step = pressed;
+                break;
+            case Controller.exit:
+                run = pressed;
+                break;
+        }
+    }
 
     int lastTime;
     auto game = new Fiber(&start);
@@ -137,69 +221,27 @@ void main(string[] args) {
                     run = false;
                     break;
                 case SDL_EventType.SDL_KEYDOWN:
-                    switch (event.key.keysym.scancode) {
-                        case SDL_Scancode.SDL_SCANCODE_0:
-                            dumpVram = true;
-                            break;
-                        case SDL_Scancode.SDL_SCANCODE_P:
-                            pause = !pause;
-                            break;
-                        case SDL_Scancode.SDL_SCANCODE_BACKSLASH:
-                            step = true;
-                            break;
-                        default: break;
-                    }
-                    goto case;
                 case SDL_EventType.SDL_KEYUP:
-                    keys: switch (event.key.keysym.scancode) {
-                        static foreach (key, mapping; keyboardMap) {
-                            case key:
-                                if (event.type == SDL_KEYDOWN) {
-                                    JOYPAD_1_DATA |= mapping;
-                                } else {
-                                    JOYPAD_1_DATA &= cast(ushort)~cast(uint)mapping;
-                                }
-                                break keys;
-                        }
-                        default: break;
+                    if (auto button = event.key.keysym.scancode in settings.keyboardMapping) {
+                        handleButton(*button, event.type == SDL_KEYDOWN, 1);
                     }
                     break;
                 case SDL_CONTROLLERBUTTONUP:
                 case SDL_CONTROLLERBUTTONDOWN:
-                    buttons: switch (event.cbutton.button) {
-                        static foreach (button, mapping; gamepadMap) {
-                            case button:
-                                if (event.cbutton.type == SDL_CONTROLLERBUTTONDOWN) {
-                                    if (SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.cbutton.which)) == 1) {
-                                        JOYPAD_1_DATA |= mapping;
-                                    } else {
-                                        JOYPAD_2_DATA |= mapping;
-                                    }
-                                } else {
-                                    if (SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.cbutton.which)) == 1) {
-                                        JOYPAD_1_DATA &= cast(ushort)~cast(uint)mapping;
-                                    } else {
-                                        JOYPAD_2_DATA &= cast(ushort)~cast(uint)mapping;
-                                    }
-                                }
-                                break buttons;
-                        }
-                        default:
-                            break;
+                    if (auto button = cast(SDL_GameControllerButton)event.cbutton.button in settings.gamepadMapping) {
+                        handleButton(*button, event.type == SDL_CONTROLLERBUTTONDOWN, SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.cbutton.which)));
                     }
                     break;
                 case SDL_CONTROLLERDEVICEADDED:
-                    connectGamepad(event.jdevice.which);
+                    connectGamepad(event.cdevice.which);
                     break;
 
                 case SDL_CONTROLLERDEVICEREMOVED:
-                    disconnectGamepad(event.jdevice.which);
+                    disconnectGamepad(event.cdevice.which);
                     break;
                 default: break;
             }
         }
-        auto kbdstate = SDL_GetKeyboardState(null);
-
 
         lastTime = SDL_GetTicks();
 
@@ -230,41 +272,71 @@ void main(string[] args) {
         SDL_RenderPresent(renderer);
 
         int drawTime = SDL_GetTicks() - lastTime;
-        if(!(kbdstate[SDL_Scancode.SDL_SCANCODE_GRAVE]) && drawTime < 16) {
+        if(!fastForward && drawTime < 16) {
             SDL_Delay(16 - drawTime);
         }
     }
 }
 
-enum ushort[SDL_GameControllerButton] gamepadMap = [
-    SDL_CONTROLLER_BUTTON_X : PAD_X,
-    SDL_CONTROLLER_BUTTON_A : PAD_A,
-    SDL_CONTROLLER_BUTTON_B : PAD_B,
-    SDL_CONTROLLER_BUTTON_Y : PAD_Y,
-    SDL_CONTROLLER_BUTTON_START : PAD_START,
-    SDL_CONTROLLER_BUTTON_BACK : PAD_SELECT,
-    SDL_CONTROLLER_BUTTON_LEFTSHOULDER : PAD_L,
-    SDL_CONTROLLER_BUTTON_RIGHTSHOULDER : PAD_R,
-    SDL_CONTROLLER_BUTTON_DPAD_UP : PAD_UP,
-    SDL_CONTROLLER_BUTTON_DPAD_DOWN : PAD_DOWN,
-    SDL_CONTROLLER_BUTTON_DPAD_LEFT : PAD_LEFT,
-    SDL_CONTROLLER_BUTTON_DPAD_RIGHT : PAD_RIGHT,
-];
+enum Controller {
+    up,
+    down,
+    left,
+    right,
+    l,
+    r,
+    select,
+    start,
+    a,
+    b,
+    x,
+    y,
+    fastForward,
+    pause,
+    dumpVRAM,
+    skipFrame,
+    exit
+}
 
-enum ushort[SDL_Scancode] keyboardMap = [
-    SDL_Scancode.SDL_SCANCODE_S: PAD_B,
-    SDL_Scancode.SDL_SCANCODE_A: PAD_Y,
-    SDL_Scancode.SDL_SCANCODE_X: PAD_SELECT,
-    SDL_Scancode.SDL_SCANCODE_Z: PAD_START,
-    SDL_Scancode.SDL_SCANCODE_UP: PAD_UP,
-    SDL_Scancode.SDL_SCANCODE_DOWN: PAD_DOWN,
-    SDL_Scancode.SDL_SCANCODE_LEFT: PAD_LEFT,
-    SDL_Scancode.SDL_SCANCODE_RIGHT: PAD_RIGHT,
-    SDL_Scancode.SDL_SCANCODE_D: PAD_A,
-    SDL_Scancode.SDL_SCANCODE_W: PAD_X,
-    SDL_Scancode.SDL_SCANCODE_Q: PAD_L,
-    SDL_Scancode.SDL_SCANCODE_E: PAD_R,
-];
+Settings getDefaultSettings() {
+    Settings defaults;
+    defaults.gamepadMapping = [
+        SDL_CONTROLLER_BUTTON_X : Controller.y,
+        SDL_CONTROLLER_BUTTON_A : Controller.b,
+        SDL_CONTROLLER_BUTTON_B : Controller.a,
+        SDL_CONTROLLER_BUTTON_Y : Controller.x,
+        SDL_CONTROLLER_BUTTON_START : Controller.start,
+        SDL_CONTROLLER_BUTTON_BACK : Controller.select,
+        SDL_CONTROLLER_BUTTON_LEFTSHOULDER : Controller.l,
+        SDL_CONTROLLER_BUTTON_RIGHTSHOULDER : Controller.r,
+        SDL_CONTROLLER_BUTTON_DPAD_UP : Controller.up,
+        SDL_CONTROLLER_BUTTON_DPAD_DOWN : Controller.down,
+        SDL_CONTROLLER_BUTTON_DPAD_LEFT : Controller.left,
+        SDL_CONTROLLER_BUTTON_DPAD_RIGHT : Controller.right,
+    ];
+
+    defaults.keyboardMapping = [
+        SDL_Scancode.SDL_SCANCODE_S: Controller.b,
+        SDL_Scancode.SDL_SCANCODE_A: Controller.y,
+        SDL_Scancode.SDL_SCANCODE_X: Controller.select,
+        SDL_Scancode.SDL_SCANCODE_Z: Controller.start,
+        SDL_Scancode.SDL_SCANCODE_UP: Controller.up,
+        SDL_Scancode.SDL_SCANCODE_DOWN: Controller.down,
+        SDL_Scancode.SDL_SCANCODE_LEFT: Controller.left,
+        SDL_Scancode.SDL_SCANCODE_RIGHT: Controller.right,
+        SDL_Scancode.SDL_SCANCODE_D: Controller.a,
+        SDL_Scancode.SDL_SCANCODE_W: Controller.x,
+        SDL_Scancode.SDL_SCANCODE_Q: Controller.l,
+        SDL_Scancode.SDL_SCANCODE_E: Controller.r,
+        SDL_Scancode.SDL_SCANCODE_0: Controller.dumpVRAM,
+        SDL_Scancode.SDL_SCANCODE_P: Controller.pause,
+        SDL_Scancode.SDL_SCANCODE_BACKSLASH: Controller.skipFrame,
+        SDL_Scancode.SDL_SCANCODE_GRAVE: Controller.fastForward,
+        SDL_Scancode.SDL_SCANCODE_ESCAPE: Controller.exit,
+    ];
+    return defaults;
+}
+
 
 void connectGamepad(int id) {
     if (SDL_IsGameController(id)) {
