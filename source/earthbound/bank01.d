@@ -328,7 +328,7 @@ void CreateWindowN(short id) {
 	x10.menu_columns = 1;
 	x10.menu_page = 1;
 	x10.menu_callback = null;
-	for (short i = cast(short)(x10.height * x10.width); i != 0; i--) {
+	for (short i = cast(short)(x10.height * x10.width - 1); i >= 0; i--) {
 		if (x10.tilemapBuffer[i] != 0) {
 			UnknownC44E4D(x10.tilemapBuffer[i]);
 		}
