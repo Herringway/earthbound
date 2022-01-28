@@ -5315,7 +5315,7 @@ short InitEntity(short actionScript, short x, short y) {
 }
 
 short InitEntityUnknown1(const(ubyte)* pc, short entityID) {
-	return InitEntityUnknown1(pc, cast(short)(entityID * 2));
+	return InitEntityUnknown2(pc, cast(short)(entityID * 2));
 }
 short InitEntityUnknown2(const(ubyte)* pc, short entityIndex) {
 	if (EntityScriptTable[entityIndex / 2] < 0) {
@@ -6812,18 +6812,18 @@ void UnknownC0A3A4(short, short id) {
 	}
 	ActionScript00 = 0x30;
 	ActionScript02 = 0x30;
-	if ((EntitySurfaceFlags[id /2] & 1) != 0) {
+	if ((EntitySurfaceFlags[id / 2] & 1) != 0) {
 		ActionScript02 = 0x20;
 	}
 	if ((EntitySurfaceFlags[id / 2] & 2) != 0) {
 		ActionScript00 = 0x20;
 	}
-	short y = 50;
-	for (short i = UNKNOWN_30X2_TABLE_38[id / 2] & 0xFF; i >= 0; i--) {
+	byte y = -1;
+	for (ubyte i = UNKNOWN_30X2_TABLE_38[id / 2] >> 8; (--i & 0x80) == 0; ) {
 		y++;
 		(cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | (ActionScript00 & 0xFF);
 	}
-	for (short i = UNKNOWN_30X2_TABLE_38[ActionScript88 / 2]; i >= 0; i--) {
+	for (ubyte i = UNKNOWN_30X2_TABLE_38[ActionScript88 / 2] & 0xFF; (--i & 0x80) == 0; ) {
 		y++;
 		(cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | (ActionScript02 & 0xFF);
 	}
