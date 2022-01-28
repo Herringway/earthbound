@@ -1513,8 +1513,8 @@ void UnknownC43B15() {
 	for (x0E = cast(ushort)(x12.width - 1); y[x0E] == 0x40; x0E--) {}
 	ushort x12_2 = x12.text_x;
 	ushort* x = &y[x12_2];
-	while (x12_2 < x0E) {
-		x[0] &= (x[0] & 0x3FF) | x12.tileAttributes;
+	while (x12_2 < (x0E + 1)) {
+		x[0] = (x[0] & 0x3FF) | x12.tileAttributes;
 		x[x12.width] = (x[x12.width] & 0x3FF) | x12.tileAttributes;
 		x++;
 		x12_2++;
@@ -1650,7 +1650,9 @@ void UnknownC43F77(short arg1) {
 	if (CurrentFocusWindow == -1) {
 		return;
 	}
-	ushort* x0E = &WindowStats[WindowTable[CurrentFocusWindow]].tilemapBuffer[WindowStats[WindowTable[CurrentFocusWindow]].text_x * WindowStats[WindowTable[CurrentFocusWindow]].text_y];
+	int tilemapOffset = WindowStats[WindowTable[CurrentFocusWindow]].text_x +
+	                    WindowStats[WindowTable[CurrentFocusWindow]].text_y * WindowStats[WindowTable[CurrentFocusWindow]].width * 2;
+	ushort* x0E = &WindowStats[WindowTable[CurrentFocusWindow]].tilemapBuffer[tilemapOffset];
 	UnknownC44E4D(x0E[0]);
 	UnknownC44E4D(x0E[WindowStats[WindowTable[CurrentFocusWindow]].width]);
 	if (arg1 == 0x2F) {
