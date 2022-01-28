@@ -805,6 +805,7 @@ MenuOpt* UnknownC113D1(const(ubyte)* label, const(ubyte)* selectedText) {
 	MenuOptions[x10].next = -1;
 	MenuOptions[x10].field00 = 1;
 	MenuOptions[x10].script = selectedText;
+	MenuOptions[x10].page = 1;
 	MenuOptions[x10].sfx = Sfx.Cursor1;
 	ubyte* x = &MenuOptions[x10].label[0];
 	do {
@@ -7306,7 +7307,7 @@ short FileSelectMenu(short arg1) {
 		while (Unknown7E0028.a != 0) {}
 		ChangeMusic(Music.SetupScreen);
 		UnknownC11F5A(&UnknownC1ECD1);
-		CurrentSaveSlot = cast(ubyte)SelectionMenu(1);
+		CurrentSaveSlot = cast(ubyte)SelectionMenu(0);
 		UnknownC11F8A();
 	}
 	LoadGameSlot(cast(short)(CurrentSaveSlot - 1));
@@ -7653,7 +7654,7 @@ void FileMenuLoop() {
 									goto Unknown16;
 								}
 								DisplayAnimatedNamingSprite(i);
-								if (ThingsToName.Dog <= i) {
+								if (i < ThingsToName.Dog) {
 									if (NameACharacter(PartyCharacter.name.length, &PartyCharacters[i].name[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
 										x20 = -1;
 										continue;
