@@ -385,9 +385,11 @@ void CloseWindow(short arg1) {
 	ushort* x0E = &bg2Buffer[WindowStats[x10].y * 32 + WindowStats[x10].x];
 	ushort* x14_2 = WindowStats[x10].tilemapBuffer;
 	for (short i = 0; i < WindowStats[x10].width * WindowStats[x10].height; i++) {
-		if ((x14_2[0] == 0x40) || (x14_2[0] == 0)) {
+		// Wack vanilla code.. the body of this if statement always runs
+		/+ if ((x14_2[0] != 0x40) || (x14_2[0] != 0)) { +/
+			// Deallocate VWF tiles
 			UnknownC44AF7(x14_2[0]);
-		}
+		/+ } +/
 		x14_2[0] = 0x40;
 		x14_2++;
 	}
