@@ -5177,7 +5177,7 @@ ubyte rand() {
 /// $C08F8B
 void UnknownC08F8B() {
 	ubyte a = DMAQueueIndex;
-	while (Unknown7E0001 != a) {}
+	while (Unknown7E0001 != a) { Fiber.yield(); }
 }
 
 /// $C08F98

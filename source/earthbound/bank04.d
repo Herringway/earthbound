@@ -2506,7 +2506,7 @@ immutable ubyte[6] HomesicknessProbabilities = [
 
 /// $C45E96
 void UnknownC45E96() {
-	while (DMATransferFlag != 0) {}
+	while (DMATransferFlag != 0) { Fiber.yield(); }
 	for (short i = 0; i < 0x20; i++) {
 		Unknown7E9D23[i][0] = 0xFF;
 	}
@@ -3893,7 +3893,7 @@ void UnknownC4939C(ubyte arg1, ubyte arg2, ubyte arg3) {
 		UnknownC00480();
 		LoadSpecialSpritePalette();
 		UnknownC0856B(0x18);
-		while (Unknown7E0030 != 0) {}
+		while (Unknown7E0030 != 0) { Fiber.yield(); }
 	}
 }
 
