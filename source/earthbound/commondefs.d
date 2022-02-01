@@ -5935,8 +5935,8 @@ struct CC1C01Entry {
 
 struct EntityOverlaySprite {
 	ushort spriteID;
-	byte unknown2;
-	byte unknown3;
+	ubyte unknown2;
+	ubyte unknown3;
 }
 
 struct CastSequenceFormattingEntry {

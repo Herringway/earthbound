@@ -13745,7 +13745,27 @@ immutable ubyte[10][6] CommandWindowText = [
 immutable ubyte[0] StatusWindowText;
 
 
-__gshared SpriteGrouping[463] SpriteGroupingPointers = [
+__gshared SpriteGrouping[464] SpriteGroupingPointers = [
+	// Sprite 0 is a clone of Ness - in the original game they both point to Ness' data
+	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	[
+		OverworldSpriteGraphics(Sprite0096),
+		OverworldSpriteGraphics(Sprite0096, 1),
+		OverworldSpriteGraphics(Sprite0097, 1),
+		OverworldSpriteGraphics(Sprite0098, 1),
+		OverworldSpriteGraphics(Sprite0095),
+		OverworldSpriteGraphics(Sprite0103),
+		OverworldSpriteGraphics(Sprite0097),
+		OverworldSpriteGraphics(Sprite0098),
+		OverworldSpriteGraphics(Sprite0101, 1),
+		OverworldSpriteGraphics(Sprite0102, 1),
+		OverworldSpriteGraphics(Sprite0099, 1),
+		OverworldSpriteGraphics(Sprite0100, 1),
+		OverworldSpriteGraphics(Sprite0099),
+		OverworldSpriteGraphics(Sprite0100),
+		OverworldSpriteGraphics(Sprite0101),
+		OverworldSpriteGraphics(Sprite0102)
+	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(Sprite0096),

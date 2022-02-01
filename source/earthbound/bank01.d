@@ -1634,7 +1634,7 @@ void WindowTick() {
 		return;
 	}
 	if (Unknown7E9623 == 0) {
-		if (window_head != 0xFFFF) {
+		if (window_head != -1) {
 			UnknownC107AF(window_tail);
 		}
 	} else {
@@ -6994,7 +6994,8 @@ short UnknownC1E4BE(short arg1, short arg2, short arg3) {
 	UnknownC441B7(x10);
 	UnknownC438A5(0, WindowStats[WindowTable[CurrentFocusWindow]].text_y);
 	short x12 = (arg3 == 6) ? 0 : cast(short)(arg3 + 1);
-	for (short i = 0; dontCareNames[arg2][x12][i] != 0; i++) {
+	// Huh. The vanilla game happily just indexes out of bounds here.
+	for (short i = 0; i < dontCareNames[arg2][x12].length && dontCareNames[arg2][x12][i] != 0; i++) {
 		UnknownC442AC(arg1, x10, dontCareNames[arg2][x12][i]);
 	}
 	SetWindowFocus(Window.FileSelectNamingKeyboard);
@@ -7096,7 +7097,7 @@ short TextInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 										return 1;
 									}
 									continue l1;
-								case 19: //OK
+								case 25: //OK
 									PlaySfx(Sfx.Unknown5E);
 									goto Unknown42;
 								default: break;
