@@ -153,8 +153,8 @@ ubyte[] EBTEXT_SHOW_WALLET_WINDOW() {
 
 
 
-ubyte[] EBTEXT_LOAD_STRING_TO_MEMORY() {
-	return textSubCommand(0x19, 0x02);
+ubyte[] EBTEXT_LOAD_STRING_TO_MEMORY(string str) {
+	return textSubCommand(0x19, 0x02, EBString(str), 0x02);
 }
 
 ubyte[] EBTEXT_CLEAR_LOADED_STRINGS() {
