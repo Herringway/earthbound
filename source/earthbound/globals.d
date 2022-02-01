@@ -347,7 +347,7 @@ __gshared short[MAX_ENTITIES] Unknown7E332A; /// $332A
 __gshared short[MAX_ENTITIES] Unknown7E3366; /// $3366
 __gshared short[MAX_ENTITIES] Unknown7E33A2; /// $33A2
 __gshared short[MAX_ENTITIES] Unknown7E33DE; /// $33DE
-__gshared short[MAX_ENTITIES] Unknown7E341A; /// $331A
+__gshared const(OverworldSpriteGraphics)*[MAX_ENTITIES] Unknown7E341A; /// $331A
 __gshared short[MAX_ENTITIES] Unknown7E3456; /// $3356
 __gshared ubyte[32][52] VWFBuffer; /// $3492
 

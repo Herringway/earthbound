@@ -135,9 +135,9 @@ immutable ubyte EntityOverlayCount = 4;
 /// $C40E32
 immutable EntityOverlaySprite[4] EntityOverlaySprites = [
 	EntityOverlaySprite(OverworldSprite.Sweat, 0, 1),
-	EntityOverlaySprite(OverworldSprite.LittleMushroom, 0, -1),
-	EntityOverlaySprite(OverworldSprite.WaterRipple, 0, -1),
-	EntityOverlaySprite(OverworldSprite.BigWaterRipple, 0, -1),
+	EntityOverlaySprite(OverworldSprite.LittleMushroom, 0, 0xFF),
+	EntityOverlaySprite(OverworldSprite.WaterRipple, 0, 0xFF),
+	EntityOverlaySprite(OverworldSprite.BigWaterRipple, 0, 0xFF),
 ];
 
 ///
@@ -2959,8 +2959,9 @@ short UnknownC468AF() {
 
 /// $C468B5
 short UnknownC468B5(short arg1) {
+	// Favorite food naming hangs unless these comparisons are unsigned
 	short x0E = 0;
-	if (arg1 < EntityAbsXTable[CurrentEntitySlot]) {
+	if (cast(ushort)arg1 < cast(ushort)EntityAbsXTable[CurrentEntitySlot]) {
 		x0E = 1;
 	}
 	return x0E;
@@ -2969,7 +2970,7 @@ short UnknownC468B5(short arg1) {
 /// $C468DC
 short UnknownC468DC(short arg1) {
 	short x0E = 0;
-	if (arg1 < EntityAbsYTable[CurrentEntitySlot]) {
+	if (cast(ushort)arg1 < cast(ushort)EntityAbsYTable[CurrentEntitySlot]) {
 		x0E = 1;
 	}
 	return x0E;
@@ -4931,18 +4932,18 @@ void UseSoundStone(short arg1) {
 }
 
 /// $C4B1B8
-short UnknownC4B1B8(short arg1, short arg2, short arg3) {
+ushort UnknownC4B1B8(ushort arg1, ushort arg2, ushort arg3) {
 	if (arg3 == 0xFF) {
 		return arg1;
 	}
 	CopyToVram(0, SpriteGroupingPointers[arg2].width * 2, arg1, &SpriteGroupingPointers[arg2].sprites[arg3].data[0]);
 	CopyToVram(0, SpriteGroupingPointers[arg2].width * 2, cast(ushort)(arg1 + 0x100), &SpriteGroupingPointers[arg2].sprites[arg3].data[SpriteGroupingPointers[arg2].width]);
-	return cast(short)(arg1 + SpriteGroupingPointers[arg2].width);
+	return cast(ushort)(arg1 + SpriteGroupingPointers[arg2].width);
 }
 
 /// $C4B26B
 void LoadOverlaySprites() {
-	short x12 = 0x5600;
+	ushort x12 = 0x5600;
 	for (short i = 0; i < EntityOverlayCount; i++) {
 		short x10 = UnknownC4B1B8(x12, EntityOverlaySprites[i].spriteID, EntityOverlaySprites[i].unknown2);
 		x12 = UnknownC4B1B8(x10, EntityOverlaySprites[i].spriteID, EntityOverlaySprites[i].unknown3);

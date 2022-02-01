@@ -792,7 +792,7 @@ void UnknownC01B15(const(SpriteMap)* arg1) {
 	short x10 = cast(short)(arg1 - &SpriteTable7E467E[0]);
 	short i = 0;
 	while(i < 2) {
-		ubyte y = SpriteTable7E467E[x10 / SpriteTable7E467E.sizeof].unknown4;
+		ubyte y = SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown4;
 		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown0 = 0xFF;
 		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown10 = 0xFF;
 		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown11 = 0xFF;
@@ -828,7 +828,7 @@ short UnknownC01B96(short arg1, short arg2) {
 /// $C01C11
 void AllocSpriteMem(short arg1, ubyte arg2) {
 	for (short i = 0; i < 0x58; i++) {
-		if (((Unknown7E4A00[i] & 0xFF) == (arg1 | 0x80)) || (arg1 == short.min)) {
+		if (((Unknown7E4A00[i] & 0xFF) == ((arg1 & 0xFF) | 0x80)) || (arg1 == short.min)) {
 			Unknown7E4A00[i] = arg2;
 		}
 	}
@@ -858,7 +858,7 @@ short UnknownC01C52(short arg1, short arg2, short arg3) {
 /// $C01D38
 void UnknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)* arg4) {
 	// why???
-	SpriteMap* x10 = &SpriteTable7E467E.ptr[arg1 / 5];
+	SpriteMap* x10 = &SpriteTable7E467E.ptr[arg1];
 	const(UnknownC42B0DSubEntry)* x06 = &arg4.unknown2[0][0];
 	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < arg4.unknown0; j++) {
@@ -909,7 +909,7 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 	EntityUnknown2916[result] = UnknownC42B0D[x02].unknown0 * 5;
 	EntityUnknown2952[result] = x21;
 	EntityVramAddresses[result] = cast(ushort)(UnknownC42F8C[x21] + 0x4000);
-	EntityByteWidths[result] = SpriteGroupingPointers[sprite].width;
+	EntityByteWidths[result] = SpriteGroupingPointers[sprite].width * 2;
 	EntityTileHeights[result] = SpriteGroupingPointers[sprite].height;
 	//UNKNOWN_30X2_TABLE_31[result] = SpriteGroupingPointers[sprite].spriteBank;
 	EntityTPTEntrySprites[result] = sprite;
@@ -5325,7 +5325,7 @@ short InitEntityUnknown2(const(ubyte)* pc, short entityIndex) {
 	bool __ignored;
 	short newScript = UnknownC09D03(__ignored);
 	EntityScriptIndexTable[entityIndex / 2] = newScript;
-	Unknown7E125A[newScript / 2] = 0;
+	Unknown7E125A[newScript / 2] = -1;
 	return UnknownC092F5Unknown4(pc, entityIndex);
 }
 
@@ -6608,7 +6608,7 @@ short UnknownC0A156(short x, short y) {
 	}
 	Unknown7E2888 = x;
 	Unknown7E288A = y;
-	return UnknownC0A1AE[y & 7](MapDataTileTableChunksTable[(y & 4) != 0 ? 10 : 9][(((y / 8) & 0xFF) << 8) | x], y & 7, cast(short)((((y / 8) & 0xFF) << 8) | x));
+	return UnknownC0A1AE[y & 7](MapDataTileTableChunksTable[(y & 4) != 0 ? 9 : 8][(((y / 8) & 0xFF) << 8) | x], y & 7, cast(short)((((y / 8) & 0xFF) << 8) | x));
 }
 
 /// $C0A1AE
@@ -6807,7 +6807,7 @@ void UnknownC0A384() {
 /// $C0A3A4
 // originally handwritten assembly, id was actually an offset
 void UnknownC0A3A4(short, short id) {
-	if ((Unknown7E341A[id / 2] & 1) != 0) {
+	if ((Unknown7E341A[id / 2].lsb & 1) != 0) {
 		ActionScript8C += EntityUnknown2916[id / 2] / 5;
 	}
 	ActionScript00 = 0x30;
@@ -6821,11 +6821,11 @@ void UnknownC0A3A4(short, short id) {
 	byte y = -1;
 	for (ubyte i = UNKNOWN_30X2_TABLE_38[id / 2] >> 8; (--i & 0x80) == 0; ) {
 		y++;
-		(cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | (ActionScript00 & 0xFF);
+		(cast()ActionScript8C[y]).unknown11 = (ActionScript8C[y].unknown11 & 0xCF) | (ActionScript00 & 0xFF);
 	}
 	for (ubyte i = UNKNOWN_30X2_TABLE_38[ActionScript88 / 2] & 0xFF; (--i & 0x80) == 0; ) {
 		y++;
-		(cast()ActionScript8C[y]).unknown3 = (ActionScript8C[y].unknown3 & 0xCF) | (ActionScript02 & 0xFF);
+		(cast()ActionScript8C[y]).unknown11 = (ActionScript8C[y].unknown11 & 0xCF) | (ActionScript02 & 0xFF);
 	}
 	Unknown7E000B = ActionScript8E;
 	Unknown7E2400 = EntityDrawPriority[ActionScript88 / 2];
@@ -6894,38 +6894,35 @@ void UnknownC0A443Entry4(short arg1) {
 	DMA_COPY_SIZE = EntityByteWidths[arg1 / 2];
 	DMA_COPY_VRAM_DEST = EntityVramAddresses[arg1 / 2];
 	//x04 = EnttiyGraphicsPointerHigh[arg1 / 2]
-	ubyte* x02 = cast(ubyte*)EntityGraphicsPointers[arg1 / 2];
+	OverworldSpriteGraphics* x02 = EntityGraphicsPointers[arg1 / 2];
 	if (SpriteDirectionMappings4Direction[EntityDirections[arg1 / 2]] != 0) {
 		for (short i = SpriteDirectionMappings4Direction[EntityDirections[arg1 / 2]]; i > 0; i--) {
-			x02 += 4;
+			x02 += 2;
 		}
 	}
 	if (Unknown7E2892 != 0) {
-		x02 += 2;
+		x02 += 1;
 	}
-	if (*x02 != 0) {
-		return;
-	}
-	if ((EntitySurfaceFlags[arg1 / 2] & 8) != 0) {
-		return;
-	}
-	Unknown7E0091 = 3;
-	DMA_COPY_RAM_SRC = &UnknownC40BE8;
-	UnknownC0A56E();
-	if (--ActionScript00 == 0) {
-		return;
-	}
-	if ((ActionScript06 & 0x4) != 0) {
+	if (((x02.lsb & 2) == 0) && (EntitySurfaceFlags[arg1 / 2] & 8) != 0) {
+		Unknown7E0091 = 3;
+		DMA_COPY_RAM_SRC = &UnknownC40BE8;
 		UnknownC0A56E();
 		if (--ActionScript00 == 0) {
 			return;
 		}
+		if ((ActionScript06 & 0x4) != 0) {
+			UnknownC0A56E();
+			if (--ActionScript00 == 0) {
+				return;
+			}
+		}
 	}
-	Unknown7E341A[ActionScript08 / 2] = *x02;
-	//TODO: rework this
+	Unknown7E341A[ActionScript08 / 2] = x02;
+	//Original code:
 	//DMA_COPY_RAM_SRC = cast(void*)((*x02) & 0xFFF0);
-	Unknown7E0091 = 0;
 	//DMA_COPY_RAM_SRC + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
+	DMA_COPY_RAM_SRC = x02.data.ptr;
+	Unknown7E0091 = 0;
 	while (true) {
 		UnknownC0A56E();
 		if (--ActionScript00 == 0) {
@@ -7133,8 +7130,8 @@ void UnknownC0A794() {
 	ushort x00 = EntityTileHeights[Unknown7E2896 / 2];
 	DMA_COPY_SIZE = EntityByteWidths[Unknown7E2896 / 2];
 	DMA_COPY_VRAM_DEST = EntityVramAddresses[Unknown7E2896 / 2];
-	const(ubyte)* x02 = cast(const(ubyte)*)(EntityGraphicsPointers[Unknown7E2896 / 2] + SpriteDirectionMappings8Direction[EntityDirections[Unknown7E2896 / 2] / 2] * 4 + EntityAnimationFrames[Unknown7E2896 / 2]);
-	if (((*x02 & 2) == 0) && ((EntitySurfaceFlags[Unknown7E2896 / 2] & 8) != 0)) {
+	const(OverworldSpriteGraphics)* x02 = (EntityGraphicsPointers[Unknown7E2896 / 2] + SpriteDirectionMappings8Direction[EntityDirections[Unknown7E2896 / 2] / 2] * 2 + EntityAnimationFrames[Unknown7E2896 / 2] / 2);
+	if (((x02.lsb & 2) == 0) && ((EntitySurfaceFlags[Unknown7E2896 / 2] & 8) != 0)) {
 		Unknown7E0091 = 3;
 		DMA_COPY_RAM_SRC = &UnknownC40BE8;
 		UnknownC0A56E();
@@ -7147,11 +7144,12 @@ void UnknownC0A794() {
 			return;
 		}
 	}
-	Unknown7E341A[Unknown7E2896 / 2] = *x02;
+	Unknown7E341A[Unknown7E2896 / 2] = x02;
 	//TODO: figure this out too
 	//DMA_COPY_RAM_SRC = (*x02) & 0xFFFE;
 	Unknown7E0091 = 0;
 	//DMA_COPY_RAM_SRC + 2= UNKNOWN_30X2_TABLE_31[Unknown7E2896 / 2];
+	DMA_COPY_RAM_SRC = x02.data.ptr;
 	while (true) {
 		UnknownC0A56E();
 		if (--x00 == 0) {
