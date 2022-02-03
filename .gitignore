@@ -24,3 +24,4 @@ dub.selections.json
 *.ebsave.bak
 gamecontrollerdb.txt
 data
+settings.yml
