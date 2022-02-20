@@ -5016,7 +5016,7 @@ struct Game_State {
 	const(ubyte)*[2] unknownCC;
 	PhotoState[32] savedPhotoStates;
 	uint timer;
-	ubyte textFlavour;
+	ubyte textFlavour = 1;
 }
 
 struct PartyCharacter {

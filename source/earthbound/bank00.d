@@ -345,6 +345,12 @@ void UnknownC00AC5(short x, short y) {
 	x = x16 & 0xF;
 	Unknown7E4390[x] = cast(byte)x16;
 	Unknown7E43A0[y & 0xF] = cast(byte)y;
+	if (x16 < 0) {
+		x16 = 0;
+	}
+	if (y < 0) {
+		y = 0;
+	}
 	ubyte x12 = GlobalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
 	ushort* x14 = cast(ushort*)&Unknown7EF000.Unknown7EF000[y & 0xF];
 	if (y < 0x140) {
@@ -1842,6 +1848,9 @@ void UnknownC03F1E() {
 		x += 255;
 	}
 	for (short i = 0; i < gameState.partyCount; i++) {
+		if (ChosenFourPtrs[gameState.playerControlledPartyMembers[i]] is null) {
+			continue;
+		}
 		ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].position_index = 0;
 		ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
 		ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
