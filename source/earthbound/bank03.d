@@ -595,7 +595,7 @@ void UnknownC3EAD0(short arg1) {
 void UnknownC3EB1C(short arg1) {
 	short x14 = 0;
 	for (; (TimedItemTransformationTable[x14].sfx != 0) && (TimedItemTransformationTable[x14].item != arg1); x14++) {}
-	UnknownC48F98(arg1);
+	UnknownC48F98(x14);
 	for (short x12 = 0; x12 < gameState.playerControlledPartyMemberCount; x12++) {
 		for (short x10 = 0; (x10 < 14) && (PartyCharacters[gameState.partyMembers[x12] - 1].items[x10] != 0); x10++) {
 			if (PartyCharacters[gameState.partyMembers[x12] - 1].items[x10] != arg1) {

@@ -22349,74 +22349,74 @@ void UnknownEFE175() {
 			}
 			UnknownC08744();
 			FadeInWithMosaic(4, 1, 0);
-			if (DebugModeNumber == 2) {
-				if ((pad_held[1] & PAD_UP) != 0) {
-					if (x1C != 0x14D) {
-						x1C++;
-					} else {
-						x1C = 0;
-					}
-				} else if ((pad_held[1] & PAD_DOWN) != 0) {
-					if (x1C != 0) {
-						x1C--;
-					} else {
-						x1C = 0x144;
-					}
+		}
+		if (DebugModeNumber == 2) {
+			if ((pad_held[1] & PAD_UP) != 0) {
+				if (x1C != 0x14D) {
+					x1C++;
+				} else {
+					x1C = 0;
 				}
-				if ((pad_press[1] & PAD_X) != 0) {
-					EntityTickCallbackFlags[x1A] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
-					EntitySpriteMapFlags[x1A] |= 0x8000;
-				}
-				if ((pad_press[1] & PAD_Y) != 0) {
-					EntityTickCallbackFlags[x1A] &= (0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED));
-					EntitySpriteMapFlags[x1A] &= 0x7FFF;
-				}
-				if (DebugUnknownB565 != x1C) {
-					UnknownC02140(x1A);
-					EntityTPTEntries[CreateEntity(x1C, ActionScript.Unknown004, x1A, 0x20, 0x20)] = 0;
-				}
-				if (((pad_press[1] & PAD_A) != 0) && ((EntityTickCallbackFlags[x1A] & OBJECT_TICK_DISABLED) == 0)) {
-					EntityTPTEntries[CreateEntity(x1C, ActionScript.Unknown006, -1, cast(short)(BG1_X_POS + 0x20), cast(short)(BG1_Y_POS + 0x20))] = 0;
-				}
-				if ((pad_press[1] & PAD_B) != 0) {
-					for (short i = 0; i < 0x1E; i++) {
-						if (EntityScriptTable[i] != -1) {
-							UNKNOWN_30X2_TABLE_41[i] = 0;
-						}
-					}
-					UNKNOWN_30X2_TABLE_41[CreateEntity(0x8A, ActionScript.Unknown499, -1, BG1_X_POS, BG1_Y_POS)] = 0xFFFF;
-					UnknownC0BD96();
+			} else if ((pad_held[1] & PAD_DOWN) != 0) {
+				if (x1C != 0) {
+					x1C--;
+				} else {
+					x1C = 0x144;
 				}
 			}
-			UnknownC09466();
-			if ((pad_state[0] & (PAD_START | PAD_SELECT)) == (PAD_START | PAD_SELECT)) {
-				DebugStartPositionX = EntityAbsXTable[24];
-				DebugStartPositionY = EntityAbsYTable[24];
-				DebugUnknownB565 = x1C;
-			} else {
-				if ((pad_press[0] & PAD_Y) != 0) {
-					DebugYButtonMenu();
-				}
-				if (DebugModeNumber == 3) {
-					BG3_X_POS = BG1_X_POS;
-					BG3_Y_POS = BG1_Y_POS;
-					if ((pad_press[0] & PAD_SELECT) != 0) {
-						if (++Unknown7EB55F == 4) {
-							Unknown7EB55F = 0;
-						}
-						UnknownEFE133(gameState.leaderX.integer, gameState.leaderY.integer);
+			if ((pad_press[1] & PAD_X) != 0) {
+				EntityTickCallbackFlags[x1A] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+				EntitySpriteMapFlags[x1A] |= 0x8000;
+			}
+			if ((pad_press[1] & PAD_Y) != 0) {
+				EntityTickCallbackFlags[x1A] &= (0xFFFF ^ (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED));
+				EntitySpriteMapFlags[x1A] &= 0x7FFF;
+			}
+			if (DebugUnknownB565 != x1C) {
+				UnknownC02140(x1A);
+				EntityTPTEntries[CreateEntity(x1C, ActionScript.Unknown004, x1A, 0x20, 0x20)] = 0;
+			}
+			if (((pad_press[1] & PAD_A) != 0) && ((EntityTickCallbackFlags[x1A] & OBJECT_TICK_DISABLED) == 0)) {
+				EntityTPTEntries[CreateEntity(x1C, ActionScript.Unknown006, -1, cast(short)(BG1_X_POS + 0x20), cast(short)(BG1_Y_POS + 0x20))] = 0;
+			}
+			if ((pad_press[1] & PAD_B) != 0) {
+				for (short i = 0; i < 0x1E; i++) {
+					if (EntityScriptTable[i] != -1) {
+						UNKNOWN_30X2_TABLE_41[i] = 0;
 					}
 				}
-				if ((DebugModeNumber == 1) && ((pad_press[0] & PAD_B) != 0)) {
-					OpenMenuButton();
-				}
-				if ((CurrentQueuedInteraction - NextQueuedInteraction) != 0) {
-					ProcessQueuedInteractions();
-				}
-				UpdateScreen();
-				WaitUntilNextFrame();
-				InitBattleOverworld();
+				UNKNOWN_30X2_TABLE_41[CreateEntity(0x8A, ActionScript.Unknown499, -1, BG1_X_POS, BG1_Y_POS)] = 0xFFFF;
+				UnknownC0BD96();
 			}
+		}
+		UnknownC09466();
+		if ((pad_state[0] & (PAD_START | PAD_SELECT)) == (PAD_START | PAD_SELECT)) {
+			DebugStartPositionX = EntityAbsXTable[24];
+			DebugStartPositionY = EntityAbsYTable[24];
+			DebugUnknownB565 = x1C;
+		} else {
+			if ((pad_press[0] & PAD_Y) != 0) {
+				DebugYButtonMenu();
+			}
+			if (DebugModeNumber == 3) {
+				BG3_X_POS = BG1_X_POS;
+				BG3_Y_POS = BG1_Y_POS;
+				if ((pad_press[0] & PAD_SELECT) != 0) {
+					if (++Unknown7EB55F == 4) {
+						Unknown7EB55F = 0;
+					}
+					UnknownEFE133(gameState.leaderX.integer, gameState.leaderY.integer);
+				}
+			}
+			if ((DebugModeNumber == 1) && ((pad_press[0] & PAD_B) != 0)) {
+				OpenMenuButton();
+			}
+			if ((CurrentQueuedInteraction - NextQueuedInteraction) != 0) {
+				ProcessQueuedInteractions();
+			}
+			UpdateScreen();
+			WaitUntilNextFrame();
+			InitBattleOverworld();
 		}
 	} while(true);
 }

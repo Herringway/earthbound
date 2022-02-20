@@ -5348,8 +5348,8 @@ void UnknownC0943C() {
 	}
 	auto x = FirstEntity;
 	do {
-		EntityTickCallbackFlags[x] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
-		x = EntityNextEntityTable[x];
+		EntityTickCallbackFlags[x / 2] |= (OBJECT_TICK_DISABLED | OBJECT_MOVE_DISABLED);
+		x = EntityNextEntityTable[x / 2];
 	} while(x >= 0);
 }
 
@@ -6156,12 +6156,17 @@ short UnknownC09C02(out bool flag) {
 	}
 	short x = Unknown7E0A52;
 	short y = -1;
-	do {
+	while (true) {
 		if ((x >= EntityAllocationMinSlot) && (x < EntityAllocationMaxSlot)) {
 			break;
 		}
 		y = x;
-	} while((x = EntityNextEntityTable[x / 2]) >= 0);
+		if (EntityNextEntityTable[x / 2] < 0) {
+			flag = true;
+			return x;
+		}
+		x = EntityNextEntityTable[x / 2];
+	}
 	if (y >= 0) {
 		EntityNextEntityTable[y / 2] = EntityNextEntityTable[x / 2];
 		flag = false;
@@ -6269,7 +6274,7 @@ void UnknownC09CD7() {
 	x = 0x3A;
 	short y = -1;
 	do {
-		if (EntityNextEntityTable[x / 2] == 0x8000) {
+		if (EntityNextEntityTable[x / 2] == -32768) {
 			EntityNextEntityTable[x / 2] = y;
 			y = x;
 		}
