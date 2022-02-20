@@ -22557,6 +22557,7 @@ void DebugHandleCursorMovement() {
 
 /// $EFE689
 noreturn DebugMenuLoad() {
+	UnknownC43317();
 	DebugStartPositionX = 0;
 	DebugStartPositionY = 0x70;
 	DebugUnknownB565 = 0x94;
