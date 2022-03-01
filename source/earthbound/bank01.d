@@ -330,7 +330,7 @@ void CreateWindowN(short id) {
 	x10.menu_callback = null;
 	for (short i = cast(short)(x10.height * x10.width - 1); i >= 0; i--) {
 		if (x10.tilemapBuffer[i] != 0) {
-			UnknownC44E4D(x10.tilemapBuffer[i]);
+			FreeTileSafe(x10.tilemapBuffer[i]);
 		}
 		x10.tilemapBuffer[i] = 0x40;
 	}
@@ -646,7 +646,7 @@ void UnknownC10F40(short window) {
 	ushort* x0E = &WindowStats[WindowTable[window]].tilemapBuffer[0];
 	for (short i = cast(short)(WindowStats[WindowTable[window]].height * WindowStats[WindowTable[window]].width); i != 0; i--) {
 		if (x0E[0] != 0) {
-			UnknownC44E4D(x0E[0]);
+			FreeTileSafe(x0E[0]);
 		}
 		x0E[0] = 0x40;
 		x0E++;

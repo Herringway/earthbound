@@ -72,7 +72,7 @@ void UnknownEF0115(short arg1) {
 	ushort x0E = cast(ushort)(WindowStats[WindowTable[arg1]].height * WindowStats[WindowTable[arg1]].width);
 	while (x0E != 0) {
 		if (*x10 != 0) {
-			UnknownC44E4D(*x10);
+			FreeTileSafe(*x10);
 		}
 		*x10 = 0x0040;
 		x10++;

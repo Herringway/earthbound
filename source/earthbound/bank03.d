@@ -388,7 +388,7 @@ void CloseWindow(short arg1) {
 		// Wack vanilla code.. the body of this if statement always runs
 		/+ if ((x14_2[0] != 0x40) || (x14_2[0] != 0)) { +/
 			// Deallocate VWF tiles
-			UnknownC44AF7(x14_2[0]);
+			FreeTile(x14_2[0]);
 		/+ } +/
 		x14_2[0] = 0x40;
 		x14_2++;
