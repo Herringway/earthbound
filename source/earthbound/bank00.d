@@ -3735,7 +3735,7 @@ void UnknownC06E6E(ushort arg1, short arg2, short arg3) {
 		gameState.walkingStyle = WalkingStyle.Normal;
 		MiscDebugFlags = 3;
 		x04 = cast(short)((arg2 * 8) + UnknownC06E02[Unknown7E5DC6 >> 8]);
-		short x1A = UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8));
+		short x1A = CalcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8));
 		UnknownC48E6B(UnknownC06E12[Unknown7E5DC6 >> 8], 16);
 		ScheduleOverworldTask(cast(short)(x1A + 1), &UnknownC06E4A);
 		UnknownC48E95();
@@ -3750,7 +3750,7 @@ void UnknownC06E6E(ushort arg1, short arg2, short arg3) {
 		gameState.leaderDirection = UnknownC06E12[arg1 >> 8];
 		MiscDebugFlags = 3;
 		x04 = cast(short)((arg2 * 8) + UnknownC06E02[arg1 >> 8]);
-		ScheduleOverworldTask(UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8)), &UnknownC06E2C);
+		ScheduleOverworldTask(CalcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8)), &UnknownC06E2C);
 		UnknownC48E95();
 	}
 	Unknown7E5DD0 = x04;
@@ -3859,7 +3859,7 @@ void UnknownC070CB(ushort arg1, short arg2, short arg3) {
 		Unknown7E5DC4 = cast(short)(arg1 & 0xFF00);
 		x16 = cast(short)((arg2 * 8) + UnknownC3E210[arg1 >> 8]);
 		x0E = cast(short)((arg3 * 8) + UnknownC3E218[arg1 >> 8]);
-		short x14 = UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
+		short x14 = CalcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
 		if (x14 == 0) {
 			x14++;
 		}
@@ -3868,7 +3868,7 @@ void UnknownC070CB(ushort arg1, short arg2, short arg3) {
 	} else {
 		x16 = cast(short)((arg2 * 8) + UnknownC3E220[arg1 >> 8]);
 		x0E = cast(short)((arg3 * 8) + UnknownC3E228[arg1 >> 8]);
-		short x14 = UnknownC48D58(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
+		short x14 = CalcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
 		if (x14 == 0) {
 			x14++;
 		}

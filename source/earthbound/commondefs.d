@@ -5511,7 +5511,7 @@ struct AnimatedBackground {
 struct LoadedBackgroundData {
 	ubyte TargetLayer; //0
 	ubyte Bitdepth; //1
-	ubyte Unknown2; //2
+	ubyte FreezePaletteScrolling; //2
 	ubyte PaletteShiftingStyle; //3
 	ubyte PaletteCycle1First; //4
 	ubyte PaletteCycle1Last; //5
@@ -5534,7 +5534,7 @@ struct LoadedBackgroundData {
 	short HorizontalAcceleration; //93
 	short VerticalAcceleration; //95
 	ubyte[4] DistortionStyles; //97
-	ubyte Unknown101; //101
+	ubyte CurrentDistortionIndex; //101
 	short DistortionDurationLeft; //102
 	ubyte DistortionType; //104
 	short DistortionRippleFrequency; //105

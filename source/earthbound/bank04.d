@@ -3738,7 +3738,7 @@ void UnknownC48C97(short arg1) {
 }
 
 /// $C48D58
-short UnknownC48D58(short arg1, short arg2, short arg3, short arg4) {
+short CalcFramesToReachDestination(short arg1, short arg2, short arg3, short arg4) {
 	FixedPoint1616 x10 = { fraction: arg1 };
 	FixedPoint1616 x14 = { fraction: arg2 };
 	short result = 0;

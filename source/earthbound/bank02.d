@@ -6910,7 +6910,7 @@ void LoadEnemyBattleSprites() {
 /// $C2C92D
 void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 	short x19 = arg1.TargetLayer;
-	if (arg1.Unknown2 == 0) {
+	if (arg1.FreezePaletteScrolling == 0) {
 		if ((arg1.PaletteChangeDurationLeft != 0) && (--arg1.PaletteChangeDurationLeft == 0)) {
 			arg1.PaletteChangeDurationLeft = arg1.PaletteChangeSpeed;
 			switch (arg1.PaletteShiftingStyle) {
@@ -7008,10 +7008,10 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 		}
 	}
 	if ((arg1.DistortionDurationLeft != 0) && (--arg1.DistortionDurationLeft == 0)) {
-		arg1.Unknown101 = (arg1.Unknown101 + 1) & 3;
-		short x10 = arg1.DistortionStyles[arg1.Unknown101];
+		arg1.CurrentDistortionIndex = (arg1.CurrentDistortionIndex + 1) & 3;
+		short x10 = arg1.DistortionStyles[arg1.CurrentDistortionIndex];
 		if (x10 == 0) {
-			arg1.Unknown101 = 0;
+			arg1.CurrentDistortionIndex = 0;
 			x10 = arg1.DistortionStyles[0];
 		}
 		if (x10 != 0) {
@@ -7174,7 +7174,7 @@ void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 				Unknown7EADB0 = 0x14;
 			} else {
 				UnknownC2CFE5(&LoadedBGDataLayer2, &animatedBackgrounds[layer2]);
-				LoadedBGDataLayer2.Unknown2 = 1;
+				LoadedBGDataLayer2.FreezePaletteScrolling = 1;
 				LoadedBGDataLayer2.TargetLayer = 2;
 			}
 		}
