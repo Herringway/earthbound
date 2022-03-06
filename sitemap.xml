@@ -1485,6 +1485,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/BattleMenuText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/BattleToText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/BattleWindows.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/CalcFramesToReachDestination.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/CC1C01Table.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/ChangeEquippedArms.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/ChangeEquippedBody.html</loc></url>
@@ -1529,6 +1530,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/FloatingSpriteTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/FlyoverTextPointers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/FootstepSoundTable.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/FreeTile.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/FreeTileSafe.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/GetCharacterAtCursorPosition.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/GetDirectionTo.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/GetPositionOfPartyMember.html</loc></url>
@@ -1546,6 +1549,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/LoadOverlaySprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/LoadTownMapData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/LoadWindowGraphics.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/LockedTiles.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/LumineHallText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/MapDataTileTableChunksTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/MiscTargetText.html</loc></url>
@@ -1651,7 +1655,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC437B8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC43874.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC438A5.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC43915.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC43B15.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC43BB9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC43CAA.html</loc></url>
@@ -1674,11 +1677,9 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC4487C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44963.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44AD7.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44AF7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44C8C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44DCA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44E44.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44E4D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44E61.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC44FF3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC4507A.html</loc></url>
@@ -1801,7 +1802,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC48C59.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC48C69.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC48C97.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/UnknownC48D58.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC48E6B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC48E95.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/UnknownC48F98.html</loc></url>
