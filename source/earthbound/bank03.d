@@ -16,7 +16,16 @@ import earthbound.globals;
 import core.stdc.string;
 
 //$C30000
-immutable ushort[16][8] SpriteGroupPalettes;
+immutable ushort[16][8] SpriteGroupPalettes = [
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/0.pal")),
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/1.pal")),
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/2.pal")),
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/3.pal")),
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/4.pal")),
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/5.pal")),
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/6.pal")),
+	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/7.pal")),
+];
 
 /// $C30100
 void DisplayAntiPiracyScreen() {

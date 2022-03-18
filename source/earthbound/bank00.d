@@ -2688,7 +2688,7 @@ void UnknownC05503(short arg1, short arg2) {
 	ushort x10 = cast(ushort)(Unknown7EE000[(Unknown7E5DAE / 8) & 0x3F][(arg1 / 8) & 0x3F] | Unknown7E5DA4);
 	short x14 = (arg1 + 7) / 8;
 	for (short i = 0; i < UnknownC42AA7[arg2]; i++) {
-		x10 |= Unknown7EE000[Unknown7E5DAE / 8][x14 & 0x3F];
+		x10 |= Unknown7EE000[(Unknown7E5DAE / 8) & 0x3F][x14 & 0x3F];
 		x14++;
 	}
 	Unknown7E5DA4 = x10;
@@ -8203,7 +8203,7 @@ void InitBattleOverworld() {
 //$C0B7D8
 void ebMain() {
 	UnknownC43317();
-	//setjmp(&jmpbuf1);
+	RestartGame:
 	InitIntro();
 	FileSelectInit();
 	UnknownC0B67F();
@@ -8272,7 +8272,7 @@ void ebMain() {
 			}
 		}
 		if (UnknownC04FFE() && !Spawn()) {
-			//longjmp(&jmpbuf1, 0);
+			goto RestartGame;
 		}
 		if (Debug && ((pad_state[0] & PAD_START) != 0) && ((pad_state[0] & PAD_SELECT) == 0)) {
 			break;

@@ -6392,10 +6392,15 @@ T[] convert(T)(const(ubyte)[] input) {
 	foreach (idx; 0 .. input.length / T.sizeof) {
 		T val;
 		static foreach (i; 0 .. T.sizeof) {
-			val += input[idx + i] << (i * 8);
+			val += input[idx * T.sizeof + i] << (i * 8);
 		}
 		output ~= val;
 	}
+	return output;
+}
+
+ushort[16] convertPalette(const(ubyte)[] input) {
+	ushort[16] output = convert!ushort(input)[0 .. 16];
 	return output;
 }
 
