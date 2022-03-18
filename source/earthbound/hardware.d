@@ -6,6 +6,21 @@ struct OAMEntry {
 	byte yCoord; //1
 	ubyte startingTile; //2
 	ubyte flags; //3
+	bool flipVertical() const {
+		return !!(flags & 0b10000000);
+	}
+	bool flipHorizontal() const {
+		return !!(flags & 0b01000000);
+	}
+	ubyte priority() const {
+		return (flags & 0b00110000) >> 4;
+	}
+	ubyte palette() const {
+		return (flags & 0b00001110) >> 1;
+	}
+	bool nameTable() const {
+		return !!(flags & 0b00000001);
+	}
 }
 
 __gshared ubyte APUIO0;

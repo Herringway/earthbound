@@ -60,9 +60,52 @@ align:
     ushort[0x100] cgram;
     OAMEntry[128] oam1;
     ubyte[32] oam2;
-    
+
     ushort numHdmaWrites;
     HDMAWrite[4*8*240] hdmaData;
+    void toString(T)(T sink) const {
+        import std.format : formattedWrite;
+        import std.range : chunks, enumerate, put;
+        static immutable sprite1Widths = [8, 8, 8, 16, 16, 32, 16, 16];
+        static immutable sprite1Heights = [8, 8, 8, 16, 16, 32, 32, 32];
+        static immutable sprite2Widths = [16, 32, 64, 32, 64, 64, 32, 32];
+        static immutable sprite2Heights = [16, 32, 64, 32, 64, 64, 64, 32];
+        sink.formattedWrite!"Display: Mode %s, screen %s (brightness: %s)\n"(BGMODE & 0b00000111, INIDISP & 0b10000000 ? "Enabled" : "Disabled", INIDISP & 0b00001111);
+        sink.formattedWrite!"BG1 - Tilemap: $%04X, Tiles: $%04X, Tile size: %s\n"((BG1SC & 0b11111100) << 9, (BG12NBA & 0b00001111) << 13, !!(BGMODE & 0b10000000) ? "8x8" : "16x16");
+        sink.formattedWrite!"BG2 - Tilemap: $%04X, Tiles: $%04X, Tile size: %s\n"((BG2SC & 0b11111100) << 9, (BG12NBA & 0b11110000) << 9, !!(BGMODE & 0b01000000) ? "8x8" : "16x16");
+        sink.formattedWrite!"BG3 - Tilemap: $%04X, Tiles: $%04X, Tile size: %s\n"((BG3SC & 0b11111100) << 9, (BG34NBA & 0b00001111) << 13, !!(BGMODE & 0b00100000) ? "8x8" : "16x16");
+        sink.formattedWrite!"BG4 - Tilemap: $%04X, Tiles: $%04X, Tile size: %s\n"((BG4SC & 0b11111100) << 9, (BG34NBA & 0b11110000) << 9, !!(BGMODE & 0b00010000) ? "8x8" : "16x16");
+        sink.formattedWrite!"OAM: $%04X (name %s), table: $%04X (priority: %s), Sprite sizes: %sx%s, %sx%s\n"(
+            (OBSEL & 0b00000111) << 14,
+            (OBSEL & 0b00011000) >> 3,
+            OAMADDR & 0b0000000111111111,
+            !!(OAMADDR & 0b1000000000000000),
+            sprite1Widths[(OBSEL & 0b11100000) >> 5],
+            sprite1Heights[(OBSEL & 0b11100000) >> 5],
+            sprite2Widths[(OBSEL & 0b11100000) >> 5],
+            sprite2Heights[(OBSEL & 0b11100000) >> 5]
+        );
+        sink.formattedWrite!"OAM Table: \n"();
+        foreach (id, entry; oam1) {
+            if (entry.yCoord >= 0) {
+                sink.formattedWrite!"\t% d: %s (%d, %d) palette: %s, flip vertical: %s, flip horizontal: %s, priority: %s\n"(id, entry.startingTile, entry.xCoord, entry.yCoord, entry.palette, entry.flipVertical, entry.flipHorizontal, entry.priority);
+            }
+        }
+        foreach (idx, palette; cgram[].chunks(16).enumerate) {
+            if (idx >= 8) {
+                sink.formattedWrite!"Sprite palette %s "(idx - 8);
+            } else {
+                sink.formattedWrite!"BG palette %s "(idx);
+            }
+            foreach (colour; palette) {
+                ubyte red = cast(ubyte)(((colour >> 0) & 0x1F) * 8);
+                ubyte green = cast(ubyte)(((colour >> 5) & 0x1F) * 8);
+                ubyte blue = cast(ubyte)(((colour >> 10) & 0x1F) * 8);
+                sink.formattedWrite("\x1B[38;2;%d;%d;%dm█\x1B[0m", red, green, blue);
+            }
+            put(sink, "\n");
+        }
+    }
 }
 
 public __gshared SnesDrawFrameData g_frameData;

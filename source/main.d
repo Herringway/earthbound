@@ -134,7 +134,7 @@ void main(string[] args) {
     SDL_GameControllerEventState(SDL_ENABLE);
     info("SDL game controller subsystem initialized");
 
-    bool run = true, dumpVram = false, pause = false, step = false, fastForward = false;
+    bool run = true, dumpVram = false, pause = false, step = false, fastForward = false, printRegisters = false;
     int dumpVramCount = 0;
 
     void handleSNESButton(ushort val, bool pressed, uint playerID) {
@@ -201,6 +201,9 @@ void main(string[] args) {
             case Controller.dumpVRAM:
                 dumpVram = pressed;
                 break;
+            case Controller.printRegisters:
+                printRegisters = pressed;
+                break;
             case Controller.skipFrame:
                 step = pressed;
                 break;
@@ -263,6 +266,10 @@ void main(string[] args) {
             dumpVram = false;
             dumpVramCount += 1;
         }
+        if (printRegisters) {
+            writeln(g_frameData);
+            printRegisters = false;
+        }
 
         SDL_UnlockTexture(drawTexture);
 
@@ -295,6 +302,7 @@ enum Controller {
     pause,
     dumpVRAM,
     skipFrame,
+    printRegisters,
     exit
 }
 
@@ -328,6 +336,7 @@ Settings getDefaultSettings() {
         SDL_Scancode.SDL_SCANCODE_W: Controller.x,
         SDL_Scancode.SDL_SCANCODE_Q: Controller.l,
         SDL_Scancode.SDL_SCANCODE_E: Controller.r,
+        SDL_Scancode.SDL_SCANCODE_9: Controller.printRegisters,
         SDL_Scancode.SDL_SCANCODE_0: Controller.dumpVRAM,
         SDL_Scancode.SDL_SCANCODE_P: Controller.pause,
         SDL_Scancode.SDL_SCANCODE_BACKSLASH: Controller.skipFrame,
