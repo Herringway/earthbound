@@ -362,6 +362,7 @@ void SaveGameBlock(short id) {
 		}
 	} else {
 		SaveBlock block;
+		memcpy(&block.signature[0], &SRAMSignature[0], strlen(&SRAMSignature[0]));
 		memcpy(&block.saveData.gameState, &gameState, Game_State.sizeof);
 		memcpy(&block.saveData.partyCharacters, &PartyCharacters[0], (PartyCharacter[6]).sizeof);
 		memcpy(&block.saveData.eventFlags, &EventFlags[0], EventFlags.sizeof);
