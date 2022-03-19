@@ -6159,6 +6159,9 @@ struct Unknown7E9652Data {
 
 //helper funcs not in the original game
 
+void function() waitForInterrupt = () {};
+void function() handleDma = () {};
+
 ubyte[length] EBString(size_t length)(string str) {
 	ubyte[length] result = 0;
 	size_t idx;

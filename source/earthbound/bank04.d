@@ -23,7 +23,6 @@ import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
-import core.thread : Fiber;
 
 /// $C40015
 short UnknownC40015() {
@@ -2539,7 +2538,7 @@ immutable ubyte[6] HomesicknessProbabilities = [
 
 /// $C45E96
 void UnknownC45E96() {
-	while (DMATransferFlag != 0) { Fiber.yield(); }
+	while (DMATransferFlag != 0) { waitForInterrupt(); }
 	for (short i = 0; i < 0x20; i++) {
 		Unknown7E9D23[i][0] = 0xFF;
 	}
@@ -3654,10 +3653,14 @@ void LoadWindowGraphics() {
 void UnknownC47F87() {
 	ubyte affliction = 0;
 	// Normally the game just indexes the playerControlledPartyMembers array out of bounds - not the best idea.
-	if (gameState.playerControlledPartyMemberCount > 0) {
-		if (ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] != null){
-			affliction = ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
+	version(bugfix) {
+		if (gameState.playerControlledPartyMemberCount > 0) {
+			if (ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] != null){
+				affliction = ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
+			}
 		}
+	} else {
+		affliction = ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0];
 	}
 	switch(affliction) {
 		case 1:
@@ -3927,7 +3930,7 @@ void UnknownC4939C(ubyte arg1, ubyte arg2, ubyte arg3) {
 		UnknownC00480();
 		LoadSpecialSpritePalette();
 		UnknownC0856B(0x18);
-		while (Unknown7E0030 != 0) { Fiber.yield(); }
+		while (Unknown7E0030 != 0) { waitForInterrupt(); }
 	}
 }
 
@@ -6606,7 +6609,7 @@ void UnknownC4D43F(short arg1) {
 void LoadTownMapData(short arg1) {
 	FadeOut(2, 1);
 	Decomp(&TownMapGraphicsPointerTable[arg1][0], &Unknown7F0000[0]);
-	while (Unknown7E0028.a != 0) { Fiber.yield(); }
+	while (Unknown7E0028.a != 0) { waitForInterrupt(); }
 	memcpy(&palettes[0][0], &Unknown7F0000[0], 0x40);
 	memcpy(&palettes[8][0], &TownMapIconPalette[0], 0x100);
 	SetBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);

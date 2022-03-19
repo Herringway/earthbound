@@ -18,7 +18,6 @@ import earthbound.bank2F;
 import earthbound.globals;
 
 import core.stdc.string;
-import core.thread : Fiber;
 
 /// $C10000
 void UnknownC10000() {
@@ -7306,7 +7305,7 @@ short FileSelectMenu(short arg1) {
 		Win_SetTextColor(0);
 	} else {
 		CorruptionCheck();
-		while (Unknown7E0028.a != 0) { Fiber.yield(); }
+		while (Unknown7E0028.a != 0) { waitForInterrupt(); }
 		ChangeMusic(Music.SetupScreen);
 		UnknownC11F5A(&UnknownC1ECD1);
 		CurrentSaveSlot = cast(ubyte)SelectionMenu(0);
@@ -7562,8 +7561,10 @@ short OpenFlavourMenu() {
 	UnknownC114B1(0, 4, &FileSelectTextFlavorStrawberry[0], null);
 	UnknownC114B1(0, 5, &FileSelectTextFlavorBanana[0], null);
 	UnknownC114B1(0, 6, &FileSelectTextFlavorPeanut[0], null);
-	if (gameState.textFlavour == 0) {
-		gameState.textFlavour = 1;
+	version(bugfix) {
+		if (gameState.textFlavour == 0) {
+			gameState.textFlavour = 1;
+		}
 	}
 	UnknownC11887(gameState.textFlavour - 1);
 	UnknownC11F5A(&UnknownC1EC8F);
@@ -7779,8 +7780,10 @@ void FileMenuLoop() {
 short UnknownC1FF2C() {
 	short result;
 	ubyte xX = 0;
-	if (ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] == null){
-		return 1;
+	version(bugfix) {
+		if (ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] == null){
+			return 1;
+		}
 	}
 	switch(ChosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
 		case 1:

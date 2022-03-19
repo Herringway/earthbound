@@ -6,11 +6,20 @@
 	"description": "earthbound",
 	"license": "proprietary",
 	"name": "earthbound",
-	"subPackages": ["actionscriptgen"],
-	"stringImportPaths": ["data"],
-	"dependencies": {
-		"bindbc-sdl": "~>1.0.1",
-		"siryul": "~>0.6"
-	},
-	"versions": ["sdl", "SDL_2012"]
+	"subPackages": [
+		"actionscriptgen",
+		"sdl"
+	],
+	"configurations": [
+		{
+			"name": "standard"
+		},
+		{
+			"name": "bugfix",
+			"versions": [
+				"bugfix"
+			]
+		}
+	],
+	"stringImportPaths": ["data"]
 }

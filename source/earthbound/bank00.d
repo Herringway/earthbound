@@ -23,10 +23,7 @@ import earthbound.bank21;
 import earthbound.bank2F;
 import core.stdc.string;
 import core.bitop;
-import core.thread : Fiber;
 import std.experimental.logger;
-import std.format;
-import sfcdma;
 
 /// $C00000
 short* ClearEntityDrawSortingTable() {
@@ -294,14 +291,14 @@ void LoadMapAtSector(short x, short y) {
 	if (x04 != Unknown7E436E) {
 		Unknown7E4372 = TilesetTable[x04];
 		Decomp(&MapDataTilesetPtrTable[TilesetTable[x04]][0], &Unknown7F0000[0]);
-		while (Unknown7E0028.a != 0) { Fiber.yield(); }
+		while (Unknown7E0028.a != 0) { waitForInterrupt(); }
 		if (Unknown7EB4EF == 0) {
 			CopyToVram2(0, 0x7000, 0, &Unknown7F0000[0]);
 		} else {
 			CopyToVram2(0, 0x4000, 0, &Unknown7F0000[0]);
 		}
 	}
-	while (Unknown7E0028.a != 0) { Fiber.yield(); }
+	while (Unknown7E0028.a != 0) { waitForInterrupt(); }
 	LoadMapPalette(x04, x18);
 	UnknownC00480();
 	LoadSpecialSpritePalette();
@@ -345,11 +342,13 @@ void UnknownC00AC5(short x, short y) {
 	x = x16 & 0xF;
 	Unknown7E4390[x] = cast(byte)x16;
 	Unknown7E43A0[y & 0xF] = cast(byte)y;
-	if (x16 < 0) {
-		x16 = 0;
-	}
-	if (y < 0) {
-		y = 0;
+	version(bugfix) {
+		if (x16 < 0) {
+			x16 = 0;
+		}
+		if (y < 0) {
+			y = 0;
+		}
 	}
 	ubyte x12 = GlobalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
 	ushort* x14 = cast(ushort*)&Unknown7EF000.Unknown7EF000[y & 0xF];
@@ -553,7 +552,7 @@ void ReloadMapAtPosition(short x, short y) {
 	for (short i = -1; i != 31; i++) {
 		UnknownC00E16(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
 	}
-	while (Unknown7E0028.a != 0) { Fiber.yield(); }
+	while (Unknown7E0028.a != 0) { waitForInterrupt(); }
 	BG2_X_POS = cast(short)(Unknown7E4380 - 0x80);
 	BG1_X_POS = cast(short)(Unknown7E4380 - 0x80);
 	BG2_Y_POS = cast(short)(Unknown7E4382 - 0x70);
@@ -587,7 +586,7 @@ void LoadMapAtPosition(short x, short y) {
 	for (short i = 0; i < 60; i++) {
 		LoadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
 	}
-	while (Unknown7E0028.a != 0) { Fiber.yield(); }
+	while (Unknown7E0028.a != 0) { waitForInterrupt(); }
 	if (Unknown7EB4EF == 0) {
 		TM_MIRROR = 0x17;
 	}
@@ -1848,8 +1847,10 @@ void UnknownC03F1E() {
 		x += 255;
 	}
 	for (short i = 0; i < gameState.partyCount; i++) {
-		if (ChosenFourPtrs[gameState.playerControlledPartyMembers[i]] is null) {
-			continue;
+		version(bugfix) {
+			if (ChosenFourPtrs[gameState.playerControlledPartyMembers[i]] is null) {
+				continue;
+			}
 		}
 		ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].position_index = 0;
 		ChosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
@@ -4688,13 +4689,13 @@ void UnknownC0856B(short arg1) {
 /// $C085B7 - Copy data to VRAM in chunks of 0x1200
 void CopyToVram2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 	DMA_COPY_MODE = mode;
-	while (Unknown7E0099 != 0) { Fiber.yield(); }
+	while (Unknown7E0099 != 0) { waitForInterrupt(); }
 	DMA_COPY_RAM_SRC = data;
 	DMA_COPY_VRAM_DEST = address;
 	if (count >= 0x1201) {
 		DMA_COPY_SIZE = 0x1200;
 		while (count >= 0x1201) {
-			while (Unknown7E0099 != 0) { Fiber.yield(); }
+			while (Unknown7E0099 != 0) { waitForInterrupt(); }
 			CopyToVramCommon();
 			DMA_COPY_RAM_SRC += 0x1200;
 			DMA_COPY_VRAM_DEST += 0x900;
@@ -4702,9 +4703,9 @@ void CopyToVram2(ubyte mode, ushort count, ushort address, const(ubyte)* data) {
 		}
 	}
 	DMA_COPY_SIZE = count;
-	while (Unknown7E0099 != 0) { Fiber.yield(); }
+	while (Unknown7E0099 != 0) { waitForInterrupt(); }
 	CopyToVramCommon();
-	while (Unknown7E0099 != 0) { Fiber.yield(); }
+	while (Unknown7E0099 != 0) { waitForInterrupt(); }
 }
 
 /// $C08616 - Copy data to VRAM
@@ -4729,7 +4730,7 @@ void CopyToVramInternal() {
 	// if ((INIDISP_MIRROR & 0x80) != 0) {
 	// 	ushort tmp92 = cast(ushort)(DMA_COPY_SIZE + Unknown7E0099);
 	// 	if (tmp92 >= 0x1201) {
-	// 		while (Unknown7E0099 != 0) { Fiber.yield(); }
+	// 		while (Unknown7E0099 != 0) { waitForInterrupt(); }
 	// 		tmp92 = DMA_COPY_SIZE;
 	// 	}
 	// 	Unknown7E0099 = tmp92;
@@ -4768,7 +4769,7 @@ void* sbrk(ushort i) {
 			CurrentHeapAddress += i;
 			return result;
 		}
-		while (Unknown7E002B != 0) { Fiber.yield(); }
+		while (Unknown7E002B != 0) { waitForInterrupt(); }
 		Unknown7E002B = 0;
 	}
 }
@@ -4779,7 +4780,7 @@ void UnknownC08726() {
 	HDMAEN_MIRROR = 0;
 	Unknown7E0028.a = 0;
 	Unknown7E002B = 0;
-	while (Unknown7E002B != 0) { Fiber.yield(); }
+	while (Unknown7E002B != 0) { waitForInterrupt(); }
 	HDMAEN = 0;
 }
 
@@ -4787,7 +4788,7 @@ void UnknownC08726() {
 void UnknownC08744() {
 	INIDISP_MIRROR = 0x80;
 	Unknown7E002B = 0;
-	while (Unknown7E002B != 0) { Fiber.yield(); }
+	while (Unknown7E002B != 0) { waitForInterrupt(); }
 }
 
 /// $C08715
@@ -4805,7 +4806,7 @@ void WaitUntilNextFrame() {
 	// 	while (HVBJOY < 0) {}
 	// 	while (HVBJOY >= 0) {}
 	// }
-	Fiber.yield();
+	waitForInterrupt();
 	Unknown7E002B = 0;
 	UnknownC08496();
 }
@@ -4866,7 +4867,7 @@ void FadeOutWithMosaic(short arg1, short arg2, short arg3) {
 	SetINIDISP(0x80);
 	HDMAEN_MIRROR = 0;
 	Unknown7E002B = 0;
-	while (Unknown7E002B != 0) { Fiber.yield(); }
+	while (Unknown7E002B != 0) { waitForInterrupt(); }
 	HDMAEN = 0;
 }
 
@@ -5186,7 +5187,7 @@ ubyte rand() {
 /// $C08F8B
 void UnknownC08F8B() {
 	ubyte a = DMAQueueIndex;
-	while (Unknown7E0001 != a) { Fiber.yield(); }
+	while (Unknown7E0001 != a) { waitForInterrupt(); }
 }
 
 /// $C08F98
@@ -7531,8 +7532,6 @@ void WaitForSPC700() {
 			APUIO0 = 0xFF;
 			APUIO1 = 0x00;
 		} while ((APUIO0 != 0xAA) || (APUIO1 != 0xBB));
-	} else {
-		return; // SPC not currently implemented
 	}
 }
 
@@ -7542,8 +7541,6 @@ void StopMusic() {
 		APUIO0 = 0;
 		while (UnknownC0AC20() != 0) {}
 		CurrentMusicTrack = 0xFFFF;
-	} else {
-		return; // SPC not currently implemented
 	}
 }
 
@@ -7556,62 +7553,60 @@ void UnknownC0ABBD(short arg1) {
 //original version had separate bank/addr parameters
 void LoadSPC700Data(const(ubyte)* data) {
 	version(audio) {
-	SPC_DATA_PTR = data;
-	//Unknown7E00C8 = bank;
-	ushort y = 0;
-	ubyte b;
-	if ((APUIO0 != 0xAA) || (APUIO1 != 0xBB)) {
-		WaitForSPC700();
-	}
-	Unknown7E001E &= 0x7F;
-	NMITIMEN = Unknown7E001E;
-	ubyte a = 0xCC;
-	ushort x;
-	// proceed at your own peril.
-	// definitely going to have to triple check this one later
-	goto l7;
-	l1:
-		b = SPC_DATA_PTR[y++];
-		a = 0;
-		goto l4;
-	l2:
-		b = SPC_DATA_PTR[y++];
-		while (APUIO0 != a) {}
-		a++;
-	l4:
-		APUIO0 = a;
-		APUIO1 = b;
-		if (--x != 0) {
-			goto l2;
+		SPC_DATA_PTR = data;
+		//Unknown7E00C8 = bank;
+		ushort y = 0;
+		ubyte b;
+		if ((APUIO0 != 0xAA) || (APUIO1 != 0xBB)) {
+			WaitForSPC700();
 		}
-		while(APUIO0 != a) {}
-		while((a += 3) == 0) {}
-	l7:
-		ubyte tmpA = a;
-		x = cast(ushort)(a | (b << 8));
-		if (SPC_DATA_PTR[y] != 0) {
-			a = 0;
-			b = 5;
-		} else {
-			y += 2;
-			a = SPC_DATA_PTR[y];
-			b = SPC_DATA_PTR[y + 1];
-			y += 2;
-		}
-		APUIO2 = a;
-		APUIO3 = b;
-		APUIO1 = x < 1;
-		a = tmpA;
-		APUIO0 = a;
-		while (APUIO0 != a) {}
-		if (x < 1) {
-			goto l1;
-		}
-		while (APUIO0 != 0 || APUIO1 != 0) {}
-		Unknown7E001E |= 0x80;
+		Unknown7E001E &= 0x7F;
 		NMITIMEN = Unknown7E001E;
-	} else {
-		return; // SPC not currently implemented
+		ubyte a = 0xCC;
+		ushort x;
+		// proceed at your own peril.
+		// definitely going to have to triple check this one later
+		goto l7;
+		l1:
+			b = SPC_DATA_PTR[y++];
+			a = 0;
+			goto l4;
+		l2:
+			b = SPC_DATA_PTR[y++];
+			while (APUIO0 != a) {}
+			a++;
+		l4:
+			APUIO0 = a;
+			APUIO1 = b;
+			if (--x != 0) {
+				goto l2;
+			}
+			while(APUIO0 != a) {}
+			while((a += 3) == 0) {}
+		l7:
+			ubyte tmpA = a;
+			x = cast(ushort)(a | (b << 8));
+			if (SPC_DATA_PTR[y] != 0) {
+				a = 0;
+				b = 5;
+			} else {
+				y += 2;
+				a = SPC_DATA_PTR[y];
+				b = SPC_DATA_PTR[y + 1];
+				y += 2;
+			}
+			APUIO2 = a;
+			APUIO3 = b;
+			APUIO1 = x < 1;
+			a = tmpA;
+			APUIO0 = a;
+			while (APUIO0 != a) {}
+			if (x < 1) {
+				goto l1;
+			}
+			while (APUIO0 != 0 || APUIO1 != 0) {}
+			Unknown7E001E |= 0x80;
+			NMITIMEN = Unknown7E001E;
 	}
 }
 
