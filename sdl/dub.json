@@ -1,0 +1,13 @@
+{
+	"name": "sdl",
+	"description": "SDL port",
+	"dependencies": {
+		"bindbc-sdl": "~>1.0.1",
+		"siryul": "~>0.6",
+		"earthbound": "*"
+	},
+	"subConfigurations": {
+		"earthbound": "bugfix"
+	},
+	"versions": ["sdl", "SDL_2012"]
+}
