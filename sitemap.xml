@@ -2062,6 +2062,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/DebugCheckViewCharacterMode.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/DebugDisplayMenuOptions.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/DebugHandleCursorMovement.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank2F/DebugMenuFont.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/DebugMenuLoad.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/DebugMenuText2Line1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/DebugProcessCommandSelection.html</loc></url>
@@ -2143,7 +2144,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEAC8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEB1D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEB2A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEB5F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEF70.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFEF9F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank2F/UnknownEFF1BB.html</loc></url>
