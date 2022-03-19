@@ -6400,7 +6400,8 @@ T[] convert(T)(const(ubyte)[] input) {
 }
 
 ushort[16] convertPalette(const(ubyte)[] input) {
-	ushort[16] output = convert!ushort(input)[0 .. 16];
+	ushort[16] output;
+	output[0 .. input.length / 2] = convert!ushort(input);
 	return output;
 }
 
