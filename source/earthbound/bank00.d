@@ -8242,7 +8242,11 @@ void InitBattleOverworld() {
 void ebMain() {
 	UnknownC43317();
 	RestartGame:
-	InitIntro();
+	debug(nointro) {
+		Unknown7EB4B6 = 1;
+	} else {
+		InitIntro();
+	}
 	FileSelectInit();
 	UnknownC0B67F();
 	FadeIn(1, 1);
