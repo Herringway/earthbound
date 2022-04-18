@@ -8923,7 +8923,7 @@ short UnknownC0D0E6() {
 		return -1;
 	}
 	UnknownC09EFF();
-	if ((UnknownC05CD7(Unknown7E2848, Unknown7E284A, CurrentEntitySlot, 4) & 0xC0) != 0) {
+	if ((UnknownC05CD7(Unknown7E2848, Unknown7E284A, CurrentEntitySlot, Direction.Down) & 0xC0) != 0) {
 		UNKNOWN_30X2_TABLE_35[CurrentEntitySlot] -= 0x1000;
 		return 0;
 	}

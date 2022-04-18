@@ -1343,12 +1343,12 @@ void UnknownC43344(short arg1) {
 }
 
 /// $C4334A
-void UnknownC4334A(short arg1) {
-	short x10 = cast(short)(UnknownC3E230[arg1] + gameState.leaderX.integer / 8);
-	short x04 = cast(short)((arg1 == 4) ? (UnknownC3E240[arg1] + (gameState.leaderY.integer + 1) / 8) :(UnknownC3E240[arg1] + gameState.leaderY.integer / 8));
-	if ((UnknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.currentPartyMembers, arg1) & 0x82) == 0x82) {
-		x10 += UnknownC3E230[arg1];
-		x04 += UnknownC3E240[arg1];
+void UnknownC4334A(short direction) {
+	short x10 = cast(short)(UnknownC3E230[direction] + gameState.leaderX.integer / 8);
+	short x04 = cast(short)((direction == 4) ? (UnknownC3E240[direction] + (gameState.leaderY.integer + 1) / 8) :(UnknownC3E240[direction] + gameState.leaderY.integer / 8));
+	if ((UnknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.currentPartyMembers, direction) & 0x82) == 0x82) {
+		x10 += UnknownC3E230[direction];
+		x04 += UnknownC3E240[direction];
 	}
 	short x = UnknownC07477(x10, x04);
 	if (x == 0xFF) {
