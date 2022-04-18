@@ -4981,6 +4981,15 @@ enum Binop : ubyte {
 	add = 2,
 	xor = 3,
 }
+enum StatusGroups {
+	PersistentEasyHeal = 0,
+	PersistentHardHeal = 1,
+	Temporary = 2,
+	Strangeness = 3,
+	Concentration = 4,
+	Homesickness = 5,
+	Shield = 6,
+}
 ///
 enum AnimationFlags : ubyte {
 	none = 0,

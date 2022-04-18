@@ -6,16 +6,14 @@ import earthbound.bank00;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
-import earthbound.bank05;
-import earthbound.bank07;
 import earthbound.bank08;
-import earthbound.bank09;
 import earthbound.bank0F;
 import earthbound.bank10;
 import earthbound.bank15;
 import earthbound.bank20;
 import earthbound.bank2F;
 import earthbound.globals;
+import earthbound.text;
 
 import core.stdc.string;
 import std.experimental.logger;

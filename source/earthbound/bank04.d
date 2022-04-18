@@ -8,7 +8,6 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
-import earthbound.bank07;
 import earthbound.bank08;
 import earthbound.bank0A;
 import earthbound.bank0C;
@@ -22,6 +21,7 @@ import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
+import earthbound.text;
 import core.stdc.string;
 
 import std.experimental.logger;

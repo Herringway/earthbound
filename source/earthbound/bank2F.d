@@ -24,10 +24,6 @@ import std;
 immutable ubyte[2048] t = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) >> x[0]) ^ 255)).array;
 immutable ubyte[2048] t2 = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) << x[0]) ^ 255)).array;
 
-mixin(import("text_data/6.decs.d"));
-
-mixin(import("text_data/7.decs.d"));
-
 /// $EF0000
 void enemyFlashingOff() {
 	if (unknown7E89D0 == -1) {
@@ -13218,11 +13214,6 @@ immutable TilesetAnimation[20] mapDataWeirdTileAnimationPointerTable = [
 		AnimatedTiles(0x06, 0x14, 0x01E0, 0x0020, 0x0010),
 	]),
 ];
-
-shared static this() {
-	mixin(import("text_data/6.d"));
-	mixin(import("text_data/7.d"));
-}
 
 /// $EFA37A
 immutable ubyte[10][6] commandWindowText = [

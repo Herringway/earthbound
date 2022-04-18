@@ -3,15 +3,6 @@ module earthbound.bank08;
 
 import earthbound.commondefs;
 import earthbound.text;
-import std.array;
-
-mixin(import("text_data/3.decs.d"));
-
-mixin(import("text_data/4.decs.d"));
-
-shared static this() {
-	mixin(import("text_data/3.d"));
-}
 
 /// $C8CDED
 immutable ubyte[][256][3] compressedText = [
@@ -788,7 +779,3 @@ immutable ubyte[][256][3] compressedText = [
 	ebString("spi"),
 ]
 ];
-
-shared static this() {
-	mixin(import("text_data/4.d"));
-}

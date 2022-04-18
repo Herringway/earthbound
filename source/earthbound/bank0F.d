@@ -2,12 +2,7 @@
 module earthbound.bank0F;
 
 import earthbound.commondefs;
-import earthbound.bank05;
-import earthbound.bank06;
-import earthbound.bank07;
-import earthbound.bank08;
-import earthbound.bank09;
-import earthbound.bank2F;
+import earthbound.text;
 
 /// $CF0000
 immutable SectorDoors[32][40] doorConfig = [

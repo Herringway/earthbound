@@ -6,7 +6,7 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank04;
-import earthbound.bank05;
+import earthbound.text;
 import earthbound.bank15;
 import earthbound.bank18;
 import earthbound.bank20;

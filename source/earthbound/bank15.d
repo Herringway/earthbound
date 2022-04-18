@@ -10,6 +10,7 @@ import earthbound.bank07;
 import earthbound.bank08;
 import earthbound.bank09;
 import earthbound.bank2F;
+import earthbound.text;
 
 //TONY_IN_BED
 immutable ubyte[] sprite1028 = cast(immutable(ubyte)[])import("overworld_sprites/1028.gfx");

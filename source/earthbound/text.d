@@ -3,6 +3,8 @@ module earthbound.text;
 import earthbound.actionscripts;
 import earthbound.commondefs;
 
+import std.array : join;
+
 ubyte[] textCommand(T...)(ubyte command, T args) {
 	return allBytes(command, args);
 }
@@ -135,7 +137,7 @@ ubyte[] EBTEXT_CLEAR_WINDOW() {
 	return textSubCommand(0x18, 0x06);
 }
 
-ubyte[] EBTEXT_CHECK_FOR_INEQUALITY(const(ubyte)* arg, ubyte arg2) {
+ubyte[] EBTEXT_CHECK_FOR_INEQUALITY(ubyte arg, ubyte arg2) {
 	return textSubCommand(0x18, 0x07, arg, arg2);
 }
 
@@ -225,7 +227,7 @@ ubyte[] EBTEXT_GET_DIRECTION_OF_OBJECT_FROM_CHARACTER(ubyte arg, ubyte arg2, sho
 	return textSubCommand(0x19, 0x22, arg, arg2, arg3);
 }
 
-ubyte[] EBTEXT_GET_DIRECTION_OF_OBJECT_FROM_NPC(short arg, short arg2, ubyte arg3) {
+ubyte[] EBTEXT_GET_DIRECTION_OF_OBJECT_FROM_NPC(short arg, ushort arg2, ubyte arg3) {
 	return textSubCommand(0x19, 0x23, arg, arg2, arg3);
 }
 
@@ -847,4 +849,23 @@ ubyte[] EBTEXT_CREATE_FLOATING_SPRITE_NEAR_ENTITY(short arg, ubyte arg2) {
 
 ubyte[] EBTEXT_DELETE_FLOATING_SPRITE_NEAR_ENTITY(short arg) {
 	return textSubCommand(0x1F, 0xF4, arg);
+}
+
+mixin(import("text_data/0.decs.d"));
+mixin(import("text_data/1.decs.d"));
+mixin(import("text_data/2.decs.d"));
+mixin(import("text_data/3.decs.d"));
+mixin(import("text_data/4.decs.d"));
+mixin(import("text_data/5.decs.d"));
+mixin(import("text_data/6.decs.d"));
+mixin(import("text_data/7.decs.d"));
+
+shared static this() {
+	mixin(import("text_data/1.d"));
+	mixin(import("text_data/2.d"));
+	mixin(import("text_data/3.d"));
+	mixin(import("text_data/4.d"));
+	mixin(import("text_data/5.d"));
+	mixin(import("text_data/6.d"));
+	mixin(import("text_data/7.d"));
 }
