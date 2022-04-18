@@ -3004,33 +3004,33 @@ short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
 }
 
 /// $C05CD7
-short UnknownC05CD7(short arg1, short arg2, short arg3, short arg4) {
+short UnknownC05CD7(short arg1, short arg2, short arg3, short direction) {
 	Unknown7E5DA4 = 0;
 	Unknown7E5DAC = cast(short)(arg1 - UnknownC42A1F[EntitySizes[arg3]]);
 	Unknown7E5DAE = cast(short)(arg2 - UnknownC42A41[EntitySizes[arg3]] + UnknownC42AEB[EntitySizes[arg3]]);
-	switch(arg4) {
-		case 1:
+	switch(direction) {
+		case Direction.UpRight:
 			UnknownC056D0(Unknown7E5DAE, EntitySizes[arg3]);
 			goto case;
-		case 0:
+		case Direction.Up:
 			UnknownC05503(Unknown7E5DAC, EntitySizes[arg3]);
 			break;
-		case 3:
+		case Direction.DownRight:
 			UnknownC0559C(Unknown7E5DAC, EntitySizes[arg3]);
 			goto case;
-		case 2:
+		case Direction.Right:
 			UnknownC056D0(Unknown7E5DAE, EntitySizes[arg3]);
 			break;
-		case 5:
+		case Direction.DownLeft:
 			UnknownC05639(Unknown7E5DAE, EntitySizes[arg3]);
 			goto case;
-		case 4:
+		case Direction.Down:
 			UnknownC0559C(Unknown7E5DAC, EntitySizes[arg3]);
 			break;
-		case 7:
+		case Direction.UpLeft:
 			UnknownC05503(Unknown7E5DAC, EntitySizes[arg3]);
 			goto case;
-		case 6:
+		case Direction.Left:
 			UnknownC05639(Unknown7E5DAE, EntitySizes[arg3]);
 			break;
 		default: break;
