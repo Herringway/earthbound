@@ -5298,6 +5298,10 @@ union FixedPoint1616 {
 		short integer;
 	}
 	uint combined;
+	//for debugging
+	double asDouble() const {
+		return cast(double)cast(int)combined / 65536.0;
+	}
 }
 
 struct OverworldTask {

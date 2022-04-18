@@ -135,7 +135,7 @@ void main(string[] args) {
     SDL_GameControllerEventState(SDL_ENABLE);
     info("SDL game controller subsystem initialized");
 
-    bool run = true, dumpVram = false, pause = false, step = false, fastForward = false, printRegisters = false;
+    bool run = true, dumpVram = false, pause = false, step = false, fastForward = false, printRegisters = false, dumpEntities = false;
     int dumpVramCount = 0;
 
     void handleSNESButton(ushort val, bool pressed, uint playerID) {
@@ -205,6 +205,9 @@ void main(string[] args) {
             case Controller.printRegisters:
                 printRegisters = pressed;
                 break;
+            case Controller.dumpEntities:
+                dumpEntities = pressed;
+                break;
             case Controller.skipFrame:
                 step = pressed;
                 break;
@@ -273,6 +276,61 @@ void main(string[] args) {
             writeln(g_frameData);
             printRegisters = false;
         }
+        if (dumpEntities) {
+            import earthbound.globals;
+            auto entityEntry = FirstEntity;
+            while (entityEntry >= 0) {
+                const entity = entityEntry / 2;
+                writefln!"Entity %d"(entity);
+                writefln!"\tVars: [%d, %d, %d, %d, %d, %d, %d, %d]"(EntityScriptVar0Table[entity], EntityScriptVar1Table[entity], EntityScriptVar2Table[entity], EntityScriptVar3Table[entity], EntityScriptVar4Table[entity], EntityScriptVar5Table[entity], EntityScriptVar6Table[entity], EntityScriptVar7Table[entity]);
+                writeln("\tScript: ", cast(ActionScript)EntityScriptTable[entity]);
+                writeln("\tScript index: ", EntityScriptIndexTable[entity]);
+                writefln!"\tScreen coords: (%d, %d)"(EntityScreenXTable[entity], EntityScreenYTable[entity]);
+                writefln!"\tAbsolute coords: (%s, %s, %s)"(FixedPoint1616(EntityAbsXFractionTable[entity], EntityAbsXTable[entity]).asDouble, FixedPoint1616(EntityAbsYFractionTable[entity], EntityAbsYTable[entity]).asDouble, FixedPoint1616(EntityAbsZFractionTable[entity], EntityAbsZTable[entity]).asDouble);
+                writefln!"\tDelta coords: (%s, %s, %s)"(FixedPoint1616(EntityDeltaXFractionTable[entity], EntityDeltaXTable[entity]).asDouble, FixedPoint1616(EntityDeltaYFractionTable[entity], EntityDeltaYTable[entity]).asDouble, FixedPoint1616(EntityDeltaZFractionTable[entity], EntityDeltaZTable[entity]).asDouble);
+                writeln("\tDirection: ", cast(Direction)EntityDirections[entity]);
+                writeln("\tSize: ", EntitySizes[entity]);
+                writeln("\tDraw Priority: ", EntityDrawPriority[entity]);
+                writefln!"\tTick callback flags: %016b"(EntityTickCallbackFlags[entity]);
+                writefln!"\tAnimation frame: %s"(EntityAnimationFrames[entity]);
+                writefln!"\tSpritemap flags: %016b"(EntitySpriteMapFlags[entity]);
+                writefln!"\tCollided objects: %s"(EntityCollidedObjects[entity]);
+                writefln!"\tObstacle flags: %016b"(EntityObstacleFlags[entity]);
+                writefln!"\tVRAM address: $%04X"(EntityVramAddresses[entity]);
+                writefln!"\tSurface flags: %016b"(EntitySurfaceFlags[entity]);
+                writefln!"\tTPT entry: %s"(EntityTPTEntries[entity]);
+                writefln!"\tTPT entry sprite: %s"(cast(OverworldSprite)EntityTPTEntrySprites[entity]);
+                writefln!"\tEnemy ID: %s"(EntityEnemyIDs[entity]);
+                writeln("\tSleep frames: ", EntitySleepFrames[entity]);
+                writefln!"\tUnknown7E1A4A: %s"(Unknown7E1A4A[entity]);
+                writefln!"\tUnknown7E1A86: %s"(Unknown7E1A86[entity]);
+                writefln!"\tUnknown7E284C: %s"(EntityUnknown284C[entity]);
+                writefln!"\tUnknown7E2916: %s"(EntityUnknown2916[entity]);
+                writefln!"\tUnknown7E2952: %s"(EntityUnknown2952[entity]);
+                writefln!"\tUnknown7E2B32: %s"(UNKNOWN_30X2_TABLE_35[entity]);
+                writefln!"\tUnknown7E2BE6: %s"(UNKNOWN_30X2_TABLE_38[entity]);
+                writefln!"\tUnknown7E2C22: %s"(UNKNOWN_30X2_TABLE_40[entity]);
+                writefln!"\tUnknown7E2C5E: %s"(UNKNOWN_30X2_TABLE_41[entity]);
+                writefln!"\tUnknown7E2D4E: %s"(UNKNOWN_30X2_TABLE_43[entity]);
+                writefln!"\tUnknown7E2D8A: %s"(UNKNOWN_30X2_TABLE_44[entity]);
+                writefln!"\tUnknown7E2DC6: %s"(UNKNOWN_30X2_TABLE_45[entity]);
+                writefln!"\tUnknown7E2E3E: %s"(Unknown7E2E3E[entity]);
+                writefln!"\tUnknown7E2E7A: %s"(Unknown7E2E7A[entity]);
+                writefln!"\tUnknown7E2EF2: %s"(Unknown7E2EF2[entity]);
+                writefln!"\tUnknown7E2FA6: %s"(Unknown7E2FA6[entity]);
+                writefln!"\tUnknown7E305A: %s"(Unknown7E305A[entity]);
+                writefln!"\tUnknown7E310E: %s"(Unknown7E310E[entity]);
+                writefln!"\tUnknown7E3186: %s"(Unknown7E3186[entity]);
+                writefln!"\tUnknown7E332A: %s"(Unknown7E332A[entity]);
+                writefln!"\tUnknown7E3366: %s"(Unknown7E3366[entity]);
+                writefln!"\tUnknown7E33A2: %s"(Unknown7E33A2[entity]);
+                writefln!"\tUnknown7E33DE: %s"(Unknown7E33DE[entity]);
+                writefln!"\tUnknown7E3456: %s"(Unknown7E3456[entity]);
+                entityEntry = EntityNextEntityTable[entity];
+            }
+            writeln("----");
+            dumpEntities = false;
+        }
 
         SDL_UnlockTexture(drawTexture);
 
@@ -304,6 +362,7 @@ enum Controller {
     fastForward,
     pause,
     dumpVRAM,
+    dumpEntities,
     skipFrame,
     printRegisters,
     exit
