@@ -9526,7 +9526,7 @@ void UnknownC0DF22(ushort arg1) {
 			} else {
 				FixedPoint1616 x06;
 				x06.combined = Unknown7E9F45.combined;
-				x06.fraction += 0x1999;
+				x06.fraction -= 0x1999;
 				if (x06.fraction >= 0x10000 - 0x1999) {
 					x06.integer--;
 				}
