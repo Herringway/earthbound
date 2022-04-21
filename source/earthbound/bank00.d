@@ -9562,25 +9562,25 @@ void UnknownC0DF22(ushort arg1) {
 		Unknown7E9F4D.combined = x0E.combined;
 	}
 	switch (arg1) { //this is hard to read. were the cases rearranged to dedupe code?
-		case 0:
+		case Direction.Up:
 			Unknown7E9F4D.combined = -Unknown7E9F4D.combined;
 			goto case;
-		case 4:
+		case Direction.Down:
 			Unknown7E9F49.combined = 0;
 			break;
-		case 6:
+		case Direction.Left:
 			Unknown7E9F49.combined = -Unknown7E9F49.combined;
 			goto case;
-		case 2:
+		case Direction.Right:
 			Unknown7E9F4D.combined = 0;
 			break;
-		case 1:
+		case Direction.UpRight:
 			Unknown7E9F4D.combined = -Unknown7E9F4D.combined;
 			break;
-		case 7:
+		case Direction.UpLeft:
 			Unknown7E9F4D.combined = -Unknown7E9F4D.combined;
 			goto case;
-		case 5:
+		case Direction.DownLeft:
 			Unknown7E9F49.combined = -Unknown7E9F49.combined;
 			break;
 		default: break;
