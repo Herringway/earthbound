@@ -45,6 +45,8 @@ void main(string[] args) {
     }
     if (!verbose) {
         sharedLog = new FileLogger(stdout, LogLevel.info);
+    } else {
+        sharedLog = new FileLogger(stdout, LogLevel.trace);
     }
     if(!loadSnesDrawFrame()) {
         info("Can't load SnesDrawFrame!");
