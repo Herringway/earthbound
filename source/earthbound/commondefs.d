@@ -5858,7 +5858,7 @@ struct TilesetAnimation {
 }
 
 struct AnimatedTiles {
-	ubyte unknown0;
+	ubyte frameCount;
 	ubyte frameDelay;
 	ushort copySize;
 	ushort sourceOffset;
@@ -5866,13 +5866,13 @@ struct AnimatedTiles {
 }
 
 struct LoadedAnimatedTiles {
-	short unknown0; //0
+	short frameCount; //0
 	short frameDelay; //2
 	short copySize; //4
 	short sourceOffset; //6
 	short destinationAddress; //8
 	short framesUntilUpdate; //10
-	short destinationAddress2; //12
+	short frameCounter; //12
 	short sourceOffset2; //14
 }
 

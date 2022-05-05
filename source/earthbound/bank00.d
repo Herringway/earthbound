@@ -58,14 +58,14 @@ void LoadTilesetAnim() {
 	Decomp(&MapDataTileAnimationPointerTable[Unknown7E4372][0], &Unknown7EC000[0]);
 	LoadedAnimatedTileCount = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].count;
 	for (short i = 0; i < LoadedAnimatedTileCount; i++) {
-		OverworldTilesetAnim[i].unknown0 = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].unknown0;
+		OverworldTilesetAnim[i].frameCount = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].frameCount;
 		OverworldTilesetAnim[i].framesUntilUpdate = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].frameDelay;
 		OverworldTilesetAnim[i].frameDelay = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].frameDelay;
 		OverworldTilesetAnim[i].copySize = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].copySize;
 		OverworldTilesetAnim[i].sourceOffset = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].sourceOffset;
 		OverworldTilesetAnim[i].sourceOffset2 = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].sourceOffset;
 		OverworldTilesetAnim[i].destinationAddress = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].destinationAddress;
-		OverworldTilesetAnim[i].destinationAddress2 = MapDataWeirdTileAnimationPointerTable[Unknown7E4372].animations[i].destinationAddress;
+		OverworldTilesetAnim[i].frameCounter = 0;
 	}
 }
 
@@ -76,13 +76,13 @@ void AnimateTileset() {
 			continue;
 		}
 		OverworldTilesetAnim[i].framesUntilUpdate = OverworldTilesetAnim[i].frameDelay;
-		if (OverworldTilesetAnim[i].destinationAddress2 == OverworldTilesetAnim[i].unknown0) {
-			OverworldTilesetAnim[i].destinationAddress2 = 0;
+		if (OverworldTilesetAnim[i].frameCounter == OverworldTilesetAnim[i].frameCount) {
+			OverworldTilesetAnim[i].frameCounter = 0;
 			OverworldTilesetAnim[i].sourceOffset2 = OverworldTilesetAnim[i].sourceOffset;
 		}
 		CopyToVram(0, OverworldTilesetAnim[i].copySize, OverworldTilesetAnim[i].destinationAddress, &Unknown7EC000[OverworldTilesetAnim[i].sourceOffset2]);
 		OverworldTilesetAnim[i].sourceOffset2 += OverworldTilesetAnim[i].copySize;
-		OverworldTilesetAnim[i].destinationAddress2++;
+		OverworldTilesetAnim[i].frameCounter++;
 	}
 }
 
