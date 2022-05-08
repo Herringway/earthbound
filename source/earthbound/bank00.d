@@ -1219,6 +1219,12 @@ void UnknownC02668(short arg1, short arg2, short arg3) {
 			}
 		}
 	}
+	version(bugfix) {
+		if (x0A is null) {
+			return;
+		}
+	}
+	assert(x0A);
 	while ((Unknown7E4A6E = x0A[0].count) != 0) {
 		Unknown7E4A76 = EnemyConfigurationTable[x0A[0].enemyID].name[0];
 		short x26 = EnemyConfigurationTable[x0A[0].enemyID].overworldSprite;
