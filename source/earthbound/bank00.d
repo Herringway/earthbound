@@ -891,6 +891,7 @@ short UnknownC01DED(short arg1) {
 
 /// $C01E49
 short CreateEntity(short sprite, short actionScript, short index, short x, short y) {
+	tracef("Creating new '%s' entity with script '%s', at %s,%s, index %s", cast(OverworldSprite)sprite, cast(ActionScript)actionScript, x, y, index);
 	short result;
 	if (Debug != 0) {
 		if (sprite == -1) {
@@ -5301,6 +5302,7 @@ short InitEntity(short actionScript, short x, short y) {
 	if (allocationFailed) {
 		return 0;
 	}
+	tracef("Initializing entity slot %s with %s at %s,%s", newEntity, cast(ActionScript)actionScript, x, y);
 	bool __ignored;
 	short newScript = UnknownC09D03(__ignored);
 	EntityScriptIndexTable[newEntity / 2] = newScript;
@@ -5459,14 +5461,14 @@ void UnknownC09506() {
 		EntitySleepFrames[ActionScript8A / 2]--;
 		return;
 	}
-	tracef("Entity %2d(%2d): wake up", CurrentEntitySlot, ActionScript8A / 2);
+	//tracef("Entity %2d(%2d): wake up", CurrentEntitySlot, ActionScript8A / 2);
 	const(ubyte)* ystart, y = EntityProgramCounters[ActionScript8A / 2];
 	//ActionScript82 = EntityProgramCounterBanks[ActionScript8A / 2];
 	ActionScript84 = &Unknown7E15A2[ActionScript8A / 2][0];
 	do {
 		ystart = y;
 		ubyte a = (y++)[ActionScript80];
-		tracef("Script %2d(%03d): %02x", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a);
+		//tracef("Script %2d(%03d): %02x", ActionScript8A / 2, EntityScriptTable[CurrentEntitySlot], a);
 		if (a < 0x70) {
 			y = MovementControlCodesPointerTable[a](y);
 		} else {
@@ -5475,7 +5477,7 @@ void UnknownC09506() {
 			y = MovementControlCodesPointerTable[0x45 + ((ActionScript90 & 0x70) >> 4)](y);
 		}
 	} while (EntitySleepFrames[ActionScript8A / 2] == 0);
-	tracef("Entity %2d(%2d): sleep for %3d frames", CurrentEntitySlot, ActionScript8A / 2, EntitySleepFrames[ActionScript8A / 2]);
+	//tracef("Entity %2d(%2d): sleep for %3d frames", CurrentEntitySlot, ActionScript8A / 2, EntitySleepFrames[ActionScript8A / 2]);
 	EntityProgramCounters[ActionScript8A / 2] = y;
 	//EntityProgramCounterBanks[ActionScript8A / 2] = ActionScript82;
 	EntitySleepFrames[ActionScript8A / 2]--;
