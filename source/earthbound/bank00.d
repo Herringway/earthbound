@@ -89,18 +89,18 @@ void AnimateTileset() {
 /// $C0023F
 void LoadPaletteAnim() {
 	Unknown7E4474 = 0;
-	if (palettes[10][0] == 0) {
+	if (palettes[5][0] == 0) {
 		return;
 	}
-	if (MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].count == 0) {
+	if (MapDataPaletteAnimationPointerTable[palettes[5][0] - 1].count == 0) {
 		return;
 	}
-	Decomp(&MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].ptr[0], &Unknown7EB800[0]);
+	Decomp(&MapDataPaletteAnimationPointerTable[palettes[5][0] - 1].ptr[0], &Unknown7EB800[0]);
 	for (short i = 0; i < OverworldPaletteAnim.delays.length; i++) {
 		OverworldPaletteAnim.delays[i] = 0;
 	}
-	for (short i = 0; i < MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].count; i++) {
-		OverworldPaletteAnim.delays[i] = MapDataPaletteAnimationPointerTable[palettes[10][0] - 1].entries[i];
+	for (short i = 0; i < MapDataPaletteAnimationPointerTable[palettes[5][0] - 1].count; i++) {
+		OverworldPaletteAnim.delays[i] = MapDataPaletteAnimationPointerTable[palettes[5][0] - 1].entries[i];
 	}
 	OverworldPaletteAnim.timer = OverworldPaletteAnim.delays[0];
 	Unknown7E4474 = 1;
