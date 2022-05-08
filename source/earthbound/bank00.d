@@ -1131,6 +1131,11 @@ void UnknownC025CF(short x, short y) {
 
 /// $C0263D
 short UnknownC0263D(short x, short y) {
+	version(bugfix) {
+		if ((x < 0) || (y < 0)) {
+			return 0;
+		}
+	}
 	if ((x >= 128) || (y >= 160)) {
 		return 0;
 	}
