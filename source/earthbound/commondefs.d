@@ -5826,6 +5826,7 @@ struct UnknownC08F98Entry {
 	ushort unknown0; //0
 	ushort unknown2; //2
 	ushort unknown4; //4
+	ushort unknown6; //6
 }
 
 struct OverlayScript {
