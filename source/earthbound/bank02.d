@@ -1908,7 +1908,7 @@ short GetShieldTargetting(short arg1, Battler* battler) {
 /// $C24009
 void FeelingStrangeRetargetting() {
 	BattlerTargetFlags = 0;
-	switch (currentAttacker.unknown9 & 7) {
+	switch (currentAttacker.actionTargetting & 7) {
 		case 1:
 			TargetAll();
 			BattlerTargetFlags = RandomTargetting(BattlerTargetFlags);
@@ -2104,19 +2104,19 @@ void ChooseTarget(Battler* arg1) {
 	Unknown4:
 	if (BattleActionTable[arg1.currentAction].direction == ActionDirection.Party) {
 		if (arg1.allyOrEnemy == 1) {
-			arg1.unknown9 = 0;
+			arg1.actionTargetting = 0;
 		} else {
-			arg1.unknown9 = 16;
+			arg1.actionTargetting = 16;
 		}
 	} else {
 		if (arg1.allyOrEnemy == 1) {
-			arg1.unknown9 = 16;
+			arg1.actionTargetting = 16;
 		} else {
-			arg1.unknown9 = 0;
+			arg1.actionTargetting = 0;
 		}
 		switch (BattleActionTable[arg1.currentAction].target) {
 			case ActionTarget.None:
-				arg1.unknown9 |= 1;
+				arg1.actionTargetting |= 1;
 				if (arg1.allyOrEnemy == 1) {
 					UnknownC4A228(arg1, cast(short)((arg1 - &BattlersTable[0]) / Battler.sizeof));
 				} else {
@@ -2125,7 +2125,7 @@ void ChooseTarget(Battler* arg1) {
 				break;
 			case ActionTarget.One:
 			case ActionTarget.Random:
-				arg1.unknown9 |= 1;
+				arg1.actionTargetting |= 1;
 				if (arg1.allyOrEnemy == 1) {
 					if (BattleActionTable[arg1.currentAction].direction == ActionDirection.Party) {
 						arg1.currentTarget = cast(ubyte)FindTargettableNPC();
@@ -2161,7 +2161,7 @@ void ChooseTarget(Battler* arg1) {
 				}
 				break;
 			case ActionTarget.Row:
-				arg1.unknown9 |= 2;
+				arg1.actionTargetting |= 2;
 				if (arg1.allyOrEnemy == 1) {
 					arg1.currentTarget = 1;
 				} else if (Unknown7EAD56 == 0) {
@@ -2173,7 +2173,7 @@ void ChooseTarget(Battler* arg1) {
 				}
 				break;
 			case ActionTarget.All:
-				arg1.unknown9 |= 4;
+				arg1.actionTargetting |= 4;
 				arg1.currentTarget = 1;
 				break;
 			default: break;
@@ -2184,7 +2184,7 @@ void ChooseTarget(Battler* arg1) {
 /// $C24703
 void UnknownC24703(Battler* battler) {
 	BattlerTargetFlags = 0;
-	switch (battler.unknown9) {
+	switch (battler.actionTargetting) {
 		case 1:
 			TargetBattler(battler.currentTarget - 1);
 			break;
@@ -2575,7 +2575,7 @@ short BattleRoutine() {
 							BattlersTable[j].actionItemSlot = 0;
 							BattlersTable[j].currentActionArgument = Unknown7EA97D.unknown1;
 						}
-						BattlersTable[j].unknown9 = Unknown7EA97D.unknown4;
+						BattlersTable[j].actionTargetting = Unknown7EA97D.unknown4;
 						BattlersTable[j].currentTarget = Unknown7EA97D.unknown5;
 						if (Unknown7EA97D.unknown4 == 1) {
 							for (short k = 0; k < 6; k++) {
@@ -2797,10 +2797,10 @@ short BattleRoutine() {
 						currentAttacker.actionItemSlot = 0;
 					}
 					if ((BattleActionTable[currentAttacker.currentAction].direction == ActionDirection.Enemy) && (BattleActionTable[currentAttacker.currentAction].target == 0)) {
-						currentAttacker.unknown9 = 1;
+						currentAttacker.actionTargetting = 1;
 						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &BattlersTable[0]) / Battler.sizeof);
 					} else {
-						currentAttacker.unknown9 = 17;
+						currentAttacker.actionTargetting = 17;
 						UnknownC4A228(currentAttacker, cast(short)((currentAttacker - &BattlersTable[0]) / Battler.sizeof));
 					}
 					x2F = 0;

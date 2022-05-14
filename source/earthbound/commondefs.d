@@ -5209,7 +5209,8 @@ struct Battler {
 	ubyte actionOrderVar; //6
 	ubyte actionItemSlot; //7
 	ubyte currentActionArgument; //8
-	ubyte unknown9; //9
+	// used for retargetting
+	ubyte actionTargetting; //9
 	ubyte currentTarget; //10
 	ubyte theFlag; //11
 	ubyte consciousness; //12
