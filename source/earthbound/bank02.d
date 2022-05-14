@@ -1995,7 +1995,7 @@ ubyte FindStealableItems() {
 			if (BattlersTable[j].npcID != 0) {
 				continue;
 			}
-			x10 = BattlersTable[i].unknown7;
+			x10 = BattlersTable[i].actionItemSlot;
 		}
 		for (short j = 0; j < 14; j++) {
 			if (j + 1 == x10) {
@@ -2064,19 +2064,19 @@ void UnknownC2437E() {
 	if (currentAttacker.npcID != 0) {
 		return;
 	}
-	if (currentAttacker.unknown7 == 0) {
+	if (currentAttacker.actionItemSlot == 0) {
 		return;
 	}
-	if (PartyCharacters[currentAttacker.id].items[currentAttacker.unknown7] != currentAttacker.currentActionArgument) {
+	if (PartyCharacters[currentAttacker.id].items[currentAttacker.actionItemSlot] != currentAttacker.currentActionArgument) {
 		return;
 	}
-	if ((ItemData[PartyCharacters[currentAttacker.id].items[currentAttacker.unknown7]].flags & ItemFlags.ConsumedOnUse) == 0) {
+	if ((ItemData[PartyCharacters[currentAttacker.id].items[currentAttacker.actionItemSlot]].flags & ItemFlags.ConsumedOnUse) == 0) {
 		return;
 	}
 	if (UnknownC3EE14(currentAttacker.id, currentAttacker.currentActionArgument) == 0) {
 		return;
 	}
-	RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.unknown7);
+	RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.actionItemSlot);
 }
 
 /// $C24434
@@ -2569,10 +2569,10 @@ short BattleRoutine() {
 						}
 						BattlersTable[j].currentAction = x1F;
 						if (Unknown7EA97C != 0) {
-							BattlersTable[j].unknown7 = Unknown7EA97D.unknown1;
+							BattlersTable[j].actionItemSlot = Unknown7EA97D.unknown1;
 							BattlersTable[j].currentActionArgument = Unknown7EA97C;
 						} else {
-							BattlersTable[j].unknown7 = 0;
+							BattlersTable[j].actionItemSlot = 0;
 							BattlersTable[j].currentActionArgument = Unknown7EA97D.unknown1;
 						}
 						BattlersTable[j].unknown9 = Unknown7EA97D.unknown4;
@@ -2782,19 +2782,19 @@ short BattleRoutine() {
 					}
 					if ((currentAttacker.afflictions[2] == Status2.Asleep) && (currentAttacker.currentAction != 0)) {
 						currentAttacker.currentAction = BattleActions.Action253;
-						currentAttacker.unknown7 = 0;
+						currentAttacker.actionItemSlot = 0;
 					}
 					if ((currentAttacker.afflictions[2] == Status2.Solidified) && (currentAttacker.currentAction != 0)) {
 						currentAttacker.currentAction = BattleActions.Action255;
 						currentAttacker.afflictions[2] = 0;
-						currentAttacker.unknown7 = 0;
+						currentAttacker.actionItemSlot = 0;
 					}
 					if ((currentAttacker.afflictions[4] != 0) && (BattleActionTable[currentAttacker.currentAction].type == ActionType.PSI) && (currentAttacker.currentAction != 0)) {
 						currentAttacker.currentAction = BattleActions.Action256;
 					}
 					if ((currentAttacker.afflictions[5] == Status5.Homesick) && (currentAttacker.currentAction != 0) && ((rand() & 7) == 0)) {
 						currentAttacker.currentAction = BattleActions.Action251;
-						currentAttacker.unknown7 = 0;
+						currentAttacker.actionItemSlot = 0;
 					}
 					if ((BattleActionTable[currentAttacker.currentAction].direction == ActionDirection.Enemy) && (BattleActionTable[currentAttacker.currentAction].target == 0)) {
 						currentAttacker.unknown9 = 1;
@@ -5948,7 +5948,7 @@ short BossBattleCheck() {
 void BattleActionTeleportBox() {
 	if ((LoadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 0x80) == 0) {
 		if ((BattleModeFlag == 0) || ((RandLimit(100) < ItemData[currentAttacker.currentActionArgument].parameters.strength) && (BossBattleCheck() != 0))) {
-			RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.unknown7);
+			RemoveItemFromInventoryF(currentAttacker.id, currentAttacker.actionItemSlot);
 			DisplayInBattleText(TextBattleTeleportBoxExploded.ptr);
 			SetTeleportState(gameState.unknownC3, TeleportStyle.Instant);
 			Unknown7EAA0E = 1;

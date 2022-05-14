@@ -5699,7 +5699,7 @@ short OverworldUseItem(short arg1, short arg2, short) {
 		currentAttacker = &BattlersTable[0];
 		BattleInitPlayerStats(arg1, currentAttacker);
 		currentAttacker.currentActionArgument = x01;
-		currentAttacker.unknown7 = cast(ubyte)arg2;
+		currentAttacker.actionItemSlot = cast(ubyte)arg2;
 		DisplayText(x26);
 		UnknownC1ACF8(x01);
 		currentTarget = &BattlersTable[1];
@@ -6830,7 +6830,7 @@ void BattleActionSwitchWeapons() {
 	if (UnknownC3EE14(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
 		short x18 = cast(short)(currentAttacker.offense - currentAttacker.baseOffense);
 		short x04 = cast(short)(currentAttacker.guts - currentAttacker.baseGuts);
-		EquipItem(currentAttacker.id, currentAttacker.unknown7);
+		EquipItem(currentAttacker.id, currentAttacker.actionItemSlot);
 		currentAttacker.baseOffense = PartyCharacters[currentAttacker.id - 1].offense;
 		currentAttacker.offense = cast(short)(currentAttacker.baseOffense + x18);
 		currentAttacker.baseGuts = PartyCharacters[currentAttacker.id - 1].guts;
@@ -6857,7 +6857,7 @@ void BattleActionSwitchArmor() {
 		short x16 = cast(short)(currentAttacker.defense - currentAttacker.baseDefense);
 		short x04 = cast(short)(currentAttacker.speed - currentAttacker.baseSpeed);
 		short x02 = cast(short)(currentAttacker.luck - currentAttacker.baseLuck);
-		EquipItem(currentAttacker.id, currentAttacker.unknown7);
+		EquipItem(currentAttacker.id, currentAttacker.actionItemSlot);
 		DisplayText(TextBattleEquipXInstead.ptr);
 		currentAttacker.baseDefense = PartyCharacters[currentAttacker.id - 1].defense;
 		currentAttacker.defense = cast(short)(currentAttacker.baseDefense + x16);

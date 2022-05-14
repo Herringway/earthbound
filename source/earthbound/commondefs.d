@@ -5207,7 +5207,7 @@ struct Battler {
 	ubyte unknown3; //3
 	ushort currentAction; //4
 	ubyte actionOrderVar; //6
-	ubyte unknown7; //7
+	ubyte actionItemSlot; //7
 	ubyte currentActionArgument; //8
 	ubyte unknown9; //9
 	ubyte currentTarget; //10
