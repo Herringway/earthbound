@@ -1,0 +1,28 @@
+---
+eventFlags: []
+items: []
+movements: []
+musicTracks: []
+partyMembers: []
+sfx: []
+sprites: []
+statusGroups: []
+windows: []
+directions: []
+genders: []
+enemyTypes: []
+itemFlags: []
+enemyGroups: []
+enums:
+  eventFlags: EventFlag
+  windows: Window
+  partyMembers: PartyMember
+  partyMembersText: PartyMemberText
+  items: ItemID
+  sprites: OverworldSprite
+  statusGroups: StatusGroups
+  musicTracks: Music
+  sfx: Sfx
+  movements: ActionScript
+  enemyGroups: EnemyGroup
+...
