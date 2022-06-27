@@ -2179,10 +2179,10 @@ void UnknownC0449B() {
 	} else {
 		gameState.unknown90 = 0;
 	}
-	if (((Unknown7E0002 & 1) == 0) && (Unknown7E5E3C[0].unknown0 != 0)) {
+	if (((Unknown7E0002 & 1) == 0) && (ActiveHotspots[0].mode != 0)) {
 		UnknownC073C0(0);
 	}
-	if (((Unknown7E0002 & 1) != 0) && (Unknown7E5E3C[1].unknown0 != 0)) {
+	if (((Unknown7E0002 & 1) != 0) && (ActiveHotspots[1].mode != 0)) {
 		UnknownC073C0(1);
 	}
 	if ((gameState.walkingStyle == WalkingStyle.Ladder) || (gameState.walkingStyle == WalkingStyle.Rope)) {
@@ -3908,7 +3908,7 @@ void UnknownC070CB(ushort arg1, short arg2, short arg3) {
 
 /// $C071E5
 void UnknownC071E5(short arg1) {
-	Unknown7E5E3C[arg1 - 1].unknown0 = 0;
+	ActiveHotspots[arg1 - 1].mode = 0;
 	gameState.unknownC8[arg1 - 1] = 0;
 }
 
@@ -3918,12 +3918,12 @@ void UnknownC07213() {
 		if (gameState.unknownC8[i] == 0) {
 			continue;
 		}
-		Unknown7E5E3C[i].unknown0 = gameState.unknownC8[i];
-		Unknown7E5E3C[i].unknown2 = MapHotspots[gameState.unknownCA[i]].unknown0;
-		Unknown7E5E3C[i].unknown6 = MapHotspots[gameState.unknownCA[i]].unknown4;
-		Unknown7E5E3C[i].unknown4 = MapHotspots[gameState.unknownCA[i]].unknown2;
-		Unknown7E5E3C[i].unknown8 = MapHotspots[gameState.unknownCA[i]].unknown6;
-		Unknown7E5E3C[i].unknown10 = gameState.unknownCC[i];
+		ActiveHotspots[i].mode = gameState.unknownC8[i];
+		ActiveHotspots[i].x1 = MapHotspots[gameState.unknownCA[i]].unknown0;
+		ActiveHotspots[i].y1 = MapHotspots[gameState.unknownCA[i]].unknown4;
+		ActiveHotspots[i].x2 = MapHotspots[gameState.unknownCA[i]].unknown2;
+		ActiveHotspots[i].y2 = MapHotspots[gameState.unknownCA[i]].unknown6;
+		ActiveHotspots[i].pointer = gameState.unknownCC[i];
 	}
 }
 
@@ -3935,12 +3935,12 @@ void UnknownC072CF(short arg1, short arg2, const(ubyte)* arg3) {
 	} else {
 		x = 2;
 	}
-	Unknown7E5E3C[arg1 - 1].unknown0 = x;
-	Unknown7E5E3C[arg1 - 1].unknown2 = MapHotspots[arg1 - 1].unknown0;
-	Unknown7E5E3C[arg1 - 1].unknown6 = MapHotspots[arg1 - 1].unknown4;
-	Unknown7E5E3C[arg1 - 1].unknown4 = MapHotspots[arg1 - 1].unknown2;
-	Unknown7E5E3C[arg1 - 1].unknown8 = MapHotspots[arg1 - 1].unknown6;
-	Unknown7E5E3C[arg1 - 1].unknown10 = arg3;
+	ActiveHotspots[arg1 - 1].mode = x;
+	ActiveHotspots[arg1 - 1].x1 = MapHotspots[arg1 - 1].unknown0;
+	ActiveHotspots[arg1 - 1].y1 = MapHotspots[arg1 - 1].unknown4;
+	ActiveHotspots[arg1 - 1].x2 = MapHotspots[arg1 - 1].unknown2;
+	ActiveHotspots[arg1 - 1].y2 = MapHotspots[arg1 - 1].unknown6;
+	ActiveHotspots[arg1 - 1].pointer = arg3;
 	gameState.unknownC8[arg1 - 1] = cast(ubyte)x;
 	gameState.unknownCA[arg1 - 1] = cast(ubyte)arg2;
 	gameState.unknownCC[arg1 - 1] = arg3;
@@ -3955,18 +3955,18 @@ void UnknownC073C0(short arg1) {
 	if (teleportDestination != 0) {
 		return;
 	}
-	short x12 = Unknown7E5E3C[arg1].unknown0;
+	short x12 = ActiveHotspots[arg1].mode;
 	if (x12 == 1) {
-		if ((gameState.leaderX.integer >= Unknown7E5E3C[arg1].unknown2) && (gameState.leaderX.integer < Unknown7E5E3C[arg1].unknown6) && (gameState.leaderY.integer >= Unknown7E5E3C[arg1].unknown4) && (gameState.leaderY.integer < Unknown7E5E3C[arg1].unknown8)) {
+		if ((gameState.leaderX.integer >= ActiveHotspots[arg1].x1) && (gameState.leaderX.integer < ActiveHotspots[arg1].x2) && (gameState.leaderY.integer >= ActiveHotspots[arg1].y1) && (gameState.leaderY.integer < ActiveHotspots[arg1].y2)) {
 			return;
 		}
 	} else {
-		if ((gameState.leaderX.integer <= Unknown7E5E3C[arg1].unknown2) || (gameState.leaderX.integer >= Unknown7E5E3C[arg1].unknown6) || (gameState.leaderY.integer <= Unknown7E5E3C[arg1].unknown4) || (gameState.leaderY.integer >= Unknown7E5E3C[arg1].unknown8)) {
+		if ((gameState.leaderX.integer <= ActiveHotspots[arg1].x1) || (gameState.leaderX.integer >= ActiveHotspots[arg1].x2) || (gameState.leaderY.integer <= ActiveHotspots[arg1].y1) || (gameState.leaderY.integer >= ActiveHotspots[arg1].y2)) {
 			return;
 		}
 	}
-	Unknown7E5E3C[arg1].unknown0 = 0;
-	UnknownC064E3(9, QueuedInteractionPtr(Unknown7E5E3C[arg1].unknown10));
+	ActiveHotspots[arg1].mode = 0;
+	UnknownC064E3(9, QueuedInteractionPtr(ActiveHotspots[arg1].pointer));
 	gameState.unknownC8[arg1] = 0;
 }
 

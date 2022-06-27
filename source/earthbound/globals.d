@@ -527,7 +527,7 @@ __gshared Unknown7E5E06Entry[24] Unknown7E5E06; /// $5E06
 
 __gshared short Unknown7E5E36; /// $5E36
 __gshared const(OverworldEventMusic)* Unknown7E5E38; /// $5E38
-__gshared Unknown7E5E3CEntry[2] Unknown7E5E3C; /// $5E3C
+__gshared ActiveHotspot[2] ActiveHotspots; /// $5E3C
 __gshared QueuedInteractionPtr[5] Unknown7E5E58; /// $5E58
 __gshared ubyte Unknown7E5E6C; /// $5E6C
 __gshared ubyte Unknown7E5E6D; /// $5E6D

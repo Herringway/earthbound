@@ -5983,13 +5983,13 @@ struct PSIAbility {
 	const(ubyte)[] text; //11
 }
 
-struct Unknown7E5E3CEntry {
-	short unknown0;
-	short unknown2;
-	short unknown4;
-	short unknown6;
-	short unknown8;
-	const(ubyte)* unknown10;
+struct ActiveHotspot {
+	short mode;
+	short x1;
+	short y1;
+	short x2;
+	short y2;
+	const(ubyte)* pointer;
 }
 
 struct FloatingSpriteTableEntry {
