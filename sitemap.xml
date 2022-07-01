@@ -10,6 +10,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/ActionScriptPrepareNewEntityAtPartyLeader.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ActionScriptPrepareNewEntityAtSelf.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ActionScriptPrepareNewEntityAtTeleportDestination.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/ActivateHotspot.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/AdjustPositionHorizontal.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/AdjustPositionVertical.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/AllocSpriteMem.html</loc></url>
@@ -32,6 +33,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/DefaultIRQCallback.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/DisableCurrentEntityCollision.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/DisableCurrentEntityCollision2.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/DisableHotspot.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/DMAFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/DMATable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/DMATargetRegisters.html</loc></url>
@@ -170,6 +172,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/rand.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ReadJoypad.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/RefreshMapAtPosition.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/ReloadHotspots.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ReloadMap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ReloadMapAtPosition.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ResetIRQCallback.html</loc></url>
@@ -326,9 +329,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC06FED.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0705F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC070CB.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC071E5.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC07213.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC072CF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC073C0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC07477.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC07526.html</loc></url>
@@ -2171,6 +2171,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/ActionScript90.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/ActionScript92.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/ActionScript94.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/ActiveHotspots.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/AttackerNameAdjustScratch.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/AttractModeWindowHDMAData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/AttractModeWindowHDMATable.html</loc></url>
@@ -2542,7 +2543,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E5E06.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E5E36.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E5E38.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/Unknown7E5E3C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E5E58.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E5E6C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/Unknown7E5E6D.html</loc></url>
