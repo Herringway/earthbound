@@ -3645,7 +3645,7 @@ void* CC1F66(DisplayTextState* arg1, ushort arg2) {
 		CCArgumentStorage[CCArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &CC1F66;
 	}
-	UnknownC072CF(cast(ubyte)(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : GetArgumentMemory()), cast(ubyte)(CCArgumentStorage[1] != 0 ? CCArgumentStorage[1] : GetWorkingMemory().integer), cast(const(ubyte)*)
+	ActivateHotspot(cast(ubyte)(CCArgumentStorage[0] != 0 ? CCArgumentStorage[0] : GetArgumentMemory()), cast(ubyte)(CCArgumentStorage[1] != 0 ? CCArgumentStorage[1] : GetWorkingMemory().integer), cast(const(ubyte)*)
 		((cast(size_t)arg2 << (((const(ubyte)*).sizeof - 1) * 8)) |
 		(*cast(size_t*)(&CCArgumentStorage[2])) & ~(cast(size_t)0xFF << (((const(ubyte)*).sizeof - 1) * 8))));
 	return null;
@@ -3653,7 +3653,7 @@ void* CC1F66(DisplayTextState* arg1, ushort arg2) {
 
 /// $C17233
 void* CC1F67(DisplayTextState* arg1, ushort arg2) {
-	UnknownC071E5(cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory()));
+	DisableHotspot(cast(short)(arg2 != 0 ? arg2 : GetArgumentMemory()));
 	return null;
 }
 
@@ -7591,7 +7591,7 @@ void FileMenuLoop() {
 					continue;
 				case 1: //Start Game
 					UnknownC064D4();
-					UnknownC07213();
+					ReloadHotspots();
 					RespawnX = gameState.leaderX.integer;
 					RespawnY = gameState.leaderY.integer;
 					break outermost;

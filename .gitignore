@@ -25,3 +25,5 @@ dub.selections.json
 gamecontrollerdb.txt
 data
 settings.yml
+*.pdb
+*.bin

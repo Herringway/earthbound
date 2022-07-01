@@ -5011,9 +5011,9 @@ struct Game_State {
 	ubyte soundSetting;
 	ubyte unknownC3;
 	uint unknownC4;
-	ubyte[2] unknownC8;
-	ubyte[2] unknownCA;
-	const(ubyte)*[2] unknownCC;
+	ubyte[2] activeHotspotModes;
+	ubyte[2] activeHotspotIDs;
+	const(ubyte)*[2] activeHotspotPointers;
 	PhotoState[32] savedPhotoStates;
 	uint timer;
 	ubyte textFlavour = 1;
@@ -6070,10 +6070,10 @@ struct Unknown7EB37EStruct {
 }
 
 struct Hotspot {
-	short unknown0;
-	short unknown2;
-	short unknown4;
-	short unknown6;
+	short x1;
+	short y1;
+	short x2;
+	short y2;
 }
 
 struct CommandWindowSpacing {

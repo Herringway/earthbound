@@ -3907,43 +3907,43 @@ void UnknownC070CB(ushort arg1, short arg2, short arg3) {
 }
 
 /// $C071E5
-void UnknownC071E5(short arg1) {
+void DisableHotspot(short arg1) {
 	ActiveHotspots[arg1 - 1].mode = 0;
-	gameState.unknownC8[arg1 - 1] = 0;
+	gameState.activeHotspotModes[arg1 - 1] = 0;
 }
 
 /// $C07213
-void UnknownC07213() {
+void ReloadHotspots() {
 	for (short i = 0; i < 2; i++) {
-		if (gameState.unknownC8[i] == 0) {
+		if (gameState.activeHotspotModes[i] == 0) {
 			continue;
 		}
-		ActiveHotspots[i].mode = gameState.unknownC8[i];
-		ActiveHotspots[i].x1 = MapHotspots[gameState.unknownCA[i]].unknown0;
-		ActiveHotspots[i].y1 = MapHotspots[gameState.unknownCA[i]].unknown4;
-		ActiveHotspots[i].x2 = MapHotspots[gameState.unknownCA[i]].unknown2;
-		ActiveHotspots[i].y2 = MapHotspots[gameState.unknownCA[i]].unknown6;
-		ActiveHotspots[i].pointer = gameState.unknownCC[i];
+		ActiveHotspots[i].mode = gameState.activeHotspotModes[i];
+		ActiveHotspots[i].x1 = MapHotspots[gameState.activeHotspotIDs[i]].x1;
+		ActiveHotspots[i].y1 = MapHotspots[gameState.activeHotspotIDs[i]].y1;
+		ActiveHotspots[i].x2 = MapHotspots[gameState.activeHotspotIDs[i]].x2;
+		ActiveHotspots[i].y2 = MapHotspots[gameState.activeHotspotIDs[i]].y2;
+		ActiveHotspots[i].pointer = gameState.activeHotspotPointers[i];
 	}
 }
 
 /// $C072CF
-void UnknownC072CF(short arg1, short arg2, const(ubyte)* arg3) {
+void ActivateHotspot(short arg1, short arg2, const(ubyte)* arg3) {
 	short x;
-	if ((gameState.leaderX.integer > MapHotspots[arg1 - 1].unknown0) && (gameState.leaderX.integer < MapHotspots[arg1 - 1].unknown4) && (gameState.leaderY.integer > MapHotspots[arg1 - 1].unknown2) && (gameState.leaderY.integer < MapHotspots[arg1 - 1].unknown6)) {
+	if ((gameState.leaderX.integer > MapHotspots[arg1 - 1].x1) && (gameState.leaderX.integer < MapHotspots[arg1 - 1].x2) && (gameState.leaderY.integer > MapHotspots[arg1 - 1].y1) && (gameState.leaderY.integer < MapHotspots[arg1 - 1].y2)) {
 		x = 1;
 	} else {
 		x = 2;
 	}
 	ActiveHotspots[arg1 - 1].mode = x;
-	ActiveHotspots[arg1 - 1].x1 = MapHotspots[arg1 - 1].unknown0;
-	ActiveHotspots[arg1 - 1].y1 = MapHotspots[arg1 - 1].unknown4;
-	ActiveHotspots[arg1 - 1].x2 = MapHotspots[arg1 - 1].unknown2;
-	ActiveHotspots[arg1 - 1].y2 = MapHotspots[arg1 - 1].unknown6;
+	ActiveHotspots[arg1 - 1].x1 = MapHotspots[arg1 - 1].x1;
+	ActiveHotspots[arg1 - 1].y1 = MapHotspots[arg1 - 1].y1;
+	ActiveHotspots[arg1 - 1].x2 = MapHotspots[arg1 - 1].x2;
+	ActiveHotspots[arg1 - 1].y2 = MapHotspots[arg1 - 1].y2;
 	ActiveHotspots[arg1 - 1].pointer = arg3;
-	gameState.unknownC8[arg1 - 1] = cast(ubyte)x;
-	gameState.unknownCA[arg1 - 1] = cast(ubyte)arg2;
-	gameState.unknownCC[arg1 - 1] = arg3;
+	gameState.activeHotspotModes[arg1 - 1] = cast(ubyte)x;
+	gameState.activeHotspotIDs[arg1 - 1] = cast(ubyte)arg2;
+	gameState.activeHotspotPointers[arg1 - 1] = arg3;
 }
 
 /// $C073C0
@@ -3967,7 +3967,7 @@ void UnknownC073C0(short arg1) {
 	}
 	ActiveHotspots[arg1].mode = 0;
 	UnknownC064E3(9, QueuedInteractionPtr(ActiveHotspots[arg1].pointer));
-	gameState.unknownC8[arg1] = 0;
+	gameState.activeHotspotModes[arg1] = 0;
 }
 
 /// $C07477
