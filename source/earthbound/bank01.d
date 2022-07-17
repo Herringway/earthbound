@@ -158,14 +158,14 @@ void CC1314(short arg1, short arg2) {
 		}
 	} else {
 		outer: while (true) {
-			CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].height + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[0]);
+			CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].y + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[0]);
 			for (short i = 15; i != 0; i--) {
 				if ((pad_press[0] & (PAD_B | PAD_SELECT | PAD_A | PAD_L)) != 0) {
 					break outer;
 				}
 				UnknownC12E42();
 			}
-			CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].height + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[1]);
+			CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].y + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[1]);
 			for (short i = 10; i != 0; i--) {
 				if ((pad_press[0] & (PAD_B | PAD_SELECT | PAD_A | PAD_L)) != 0) {
 					break outer;
@@ -173,7 +173,7 @@ void CC1314(short arg1, short arg2) {
 				UnknownC12E42();
 			}
 		}
-		CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].height + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[2]);
+		CopyToVram(0, 2, cast(short)(0x7C20 + WindowStats[WindowTable[CurrentFocusWindow]].width + WindowStats[WindowTable[CurrentFocusWindow]].x + (WindowStats[WindowTable[CurrentFocusWindow]].y + WindowStats[WindowTable[CurrentFocusWindow]].height) * 32), cast(const(ubyte)*)&BlinkingTriangleTiles[2]);
 	}
 	ResumeMusic();
 }
