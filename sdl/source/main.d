@@ -26,8 +26,10 @@ struct Settings {
 }
 
 void saveGraphicsStateToFile(string filename) {
-    File file = File(filename, "wb");
-    file.rawWrite([g_frameData]);
+    File(filename~".vram", "wb").rawWrite(g_frameData.vram);
+    File(filename~".cgram", "wb").rawWrite(g_frameData.cgram);
+    File(filename~".oam", "wb").rawWrite(g_frameData.oam1);
+    File(filename~".oam2", "wb").rawWrite(g_frameData.oam2);
 }
 
 void main(string[] args) {
@@ -270,7 +272,7 @@ void main(string[] args) {
         }
         drawFrame(drawBuffer, drawPitch, &g_frameData);
         if (dumpVram) {
-            saveGraphicsStateToFile(format!"gfxstate%03d.bin"(dumpVramCount));
+            saveGraphicsStateToFile(format!"gfxstate%03d"(dumpVramCount));
             dumpVram = false;
             dumpVramCount += 1;
         }
