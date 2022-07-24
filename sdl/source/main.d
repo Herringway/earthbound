@@ -300,7 +300,7 @@ void main(string[] args) {
                 writefln!"\tSpritemap flags: %016b"(EntitySpriteMapFlags[entity]);
                 writefln!"\tCollided objects: %s"(EntityCollidedObjects[entity]);
                 writefln!"\tObstacle flags: %016b"(EntityObstacleFlags[entity]);
-                writefln!"\tVRAM address: $%04X"(EntityVramAddresses[entity]);
+                writefln!"\tVRAM address: $%04X"(EntityVramAddresses[entity] * 2);
                 writefln!"\tSurface flags: %016b"(EntitySurfaceFlags[entity]);
                 writefln!"\tTPT entry: %s"(EntityTPTEntries[entity]);
                 writefln!"\tTPT entry sprite: %s"(cast(OverworldSprite)EntityTPTEntrySprites[entity]);
