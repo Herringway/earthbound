@@ -74,7 +74,7 @@ void main(string[] args) {
 
     const windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
     SDL_Window* appWin = SDL_CreateWindow(
-        "SDL Window",
+        "Earthbound",
         SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
         ImgW * WindowScale,
