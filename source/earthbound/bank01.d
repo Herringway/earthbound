@@ -1194,10 +1194,10 @@ short UnknownC12012(short arg1, short arg2, short arg3) {
 	short x0E;
 	ubyte* x04;
 	if (arg1 == 0) {
-		x0E = Unknown7EAD58;
+		x0E = NumBattlersInFrontRow;
 		x04 = &Unknown7EAD5A[0];
 	} else {
-		x0E = Unknown7EAD56;
+		x0E = NumBattlersInBackRow;
 		x04 = &Unknown7EAD6A[0];
 	}
 	for (short i = 0; i < x0E; i++) {
@@ -1215,10 +1215,10 @@ short UnknownC12070(short arg1, short arg2, short arg3) {
 	ubyte* x04;
 	short x;
 	if (arg1 == 0) {
-		x = Unknown7EAD56;
+		x = NumBattlersInBackRow;
 		x04 = &Unknown7EAD5A[x - 1];
 	} else {
-		x = Unknown7EAD58;
+		x = NumBattlersInFrontRow;
 		x04 = &Unknown7EAD6A[x - 1];
 	}
 	for (short i = cast(short)(x - 1); i + 1 != 0; i--) {
@@ -1237,10 +1237,10 @@ void UnknownC120D6(short arg1, short arg2) {
 	CreateWindowN(Window.Unknown31);
 	PrintString(BattleToText.length, &BattleToText[0]);
 	if (arg2 != -1) {
-		UnknownC23E8A(cast(short)(arg1 * Unknown7EAD56 + arg2 + 1));
+		UnknownC23E8A(cast(short)(arg1 * NumBattlersInBackRow + arg2 + 1));
 		UnknownC3E75D(0);
 		PrintString(0xFF, ReturnBattleAttackerAddress());
-		ubyte* x12 = (arg1 != 0) ? &BattlersTable[Unknown7EAD82[arg2]].afflictions[0] : &BattlersTable[Unknown7EAD7A[arg2]].afflictions[0];
+		ubyte* x12 = (arg1 != 0) ? &BattlersTable[FrontRowBattlers[arg2]].afflictions[0] : &BattlersTable[BackRowBattlers[arg2]].afflictions[0];
 		UnknownC438A5(0x11, 0);
 		UnknownC43F77(UnknownC223D9(x12, 0));
 	} else {
@@ -1254,7 +1254,7 @@ short UnknownC121B8(short arg1, short arg2) {
 	short x0E;
 	short x18 = 0;
 	short x16 = 0;
-	short x04 = (Unknown7EAD56 != 0) ? 0 : 1;
+	short x04 = (NumBattlersInBackRow != 0) ? 0 : 1;
 	if (CurrentGiygasPhase != 0) {
 		x04 = 1;
 	}
@@ -1270,7 +1270,7 @@ short UnknownC121B8(short arg1, short arg2) {
 		WindowTick();
 		Unknown4:
 		UnknownC12E42();
-		if ((((pad_press[0] & PAD_UP) == 0) || (x04 != 0) || (Unknown7EAD58 == 0)) && (((pad_press[0] & PAD_DOWN) == 0) || (x04 != 1) || (Unknown7EAD56 == 0))) {
+		if ((((pad_press[0] & PAD_UP) == 0) || (x04 != 0) || (NumBattlersInFrontRow == 0)) && (((pad_press[0] & PAD_DOWN) == 0) || (x04 != 1) || (NumBattlersInBackRow == 0))) {
 			x12 = Sfx.Cursor2;
 			if ((pad_press[0] & PAD_LEFT) != 0) {
 				x10 = UnknownC12070(x04, x14, arg2);
@@ -1290,7 +1290,7 @@ short UnknownC121B8(short arg1, short arg2) {
 				}
 			} else if ((pad_press[0] & (PAD_A | PAD_L)) != 0) {
 				EnemyFlashingOff();
-				x0E = cast(short)(x04 * Unknown7EAD56 + x16 + 1);
+				x0E = cast(short)(x04 * NumBattlersInBackRow + x16 + 1);
 				PlaySfx(Sfx.Cursor1);
 				break;
 			} else if (((pad_press[0] & (PAD_B | PAD_SELECT)) != 0) && (arg1 == 1)) {
@@ -1325,7 +1325,7 @@ short UnknownC121B8(short arg1, short arg2) {
 
 /// $C12362
 short UnknownC12362(short arg1) {
-	short x12 = (Unknown7EAD56 != 0) ? 0 : 1;
+	short x12 = (NumBattlersInBackRow != 0) ? 0 : 1;
 	short x10;
 	short x0E;
 	outer: while (true) {
@@ -1354,7 +1354,7 @@ short UnknownC12362(short arg1) {
 			} else {
 				continue;
 			}
-			if (((x10 != 0) || (Unknown7EAD56 == 0)) && ((x10 != 0) || (Unknown7EAD58 != 0))) {
+			if (((x10 != 0) || (NumBattlersInBackRow == 0)) && ((x10 != 0) || (NumBattlersInFrontRow != 0))) {
 				PlaySfx(x0E);
 				x12 = x10;
 			}
@@ -1643,7 +1643,7 @@ void WindowTick() {
 	}
 	HPPPRoller();
 	Unknown7E9624 = 1;
-	UnknownC213AC();
+	UpdateHPPPMeterTiles();
 	if (Unknown7EB4B6 == 0) {
 		if (UnknownC1FF2C() != 0) {
 			UnknownC47F87();
@@ -1662,7 +1662,7 @@ void UnknownC12E42() {
 		Unknown7E9649 = 0;
 		Unknown7E9624 = 1;
 	}
-	UnknownC213AC();
+	UpdateHPPPMeterTiles();
 	UnknownC1004E();
 }
 

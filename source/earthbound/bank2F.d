@@ -29,9 +29,9 @@ void EnemyFlashingOff() {
 		return;
 	}
 	if (Unknown7E89D2 != 0) {
-		BattlersTable[Unknown7EAD82[Unknown7E89D0]].unknown74 = 0;
+		BattlersTable[FrontRowBattlers[Unknown7E89D0]].unknown74 = 0;
 	} else {
-		BattlersTable[Unknown7EAD7A[Unknown7E89D0]].unknown74 = 0;
+		BattlersTable[BackRowBattlers[Unknown7E89D0]].unknown74 = 0;
 	}
 	Unknown7EADA2 = 0;
 	Unknown7E89D0 = -1;
@@ -46,9 +46,9 @@ void EnemyFlashingOn(short arg1, short arg2) {
 	Unknown7E89D0 = arg2;
 	Unknown7E89D2 = arg1;
 	if (arg1 != 0) {
-		BattlersTable[Unknown7EAD82[Unknown7E89D0]].unknown74 = 1;
+		BattlersTable[FrontRowBattlers[Unknown7E89D0]].unknown74 = 1;
 	} else {
-		BattlersTable[Unknown7EAD7A[Unknown7E89D0]].unknown74 = 1;
+		BattlersTable[BackRowBattlers[Unknown7E89D0]].unknown74 = 1;
 	}
 	Unknown7EADA2 = 1;
 	Unknown7E9623 = 1;

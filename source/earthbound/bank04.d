@@ -1429,11 +1429,11 @@ void UnknownC435E4() {
 	if (Unknown7E89CE == -1) {
 		return;
 	}
-	for (short i = 0; i < (Unknown7E89CE != 0) ? Unknown7EAD58 : Unknown7EAD56; i++) {
+	for (short i = 0; i < (Unknown7E89CE != 0) ? NumBattlersInFrontRow : NumBattlersInBackRow; i++) {
 		if (Unknown7E89CE != 0) {
-			BattlersTable[Unknown7EAD82[i]].unknown74 = 0;
+			BattlersTable[FrontRowBattlers[i]].unknown74 = 0;
 		} else {
-			BattlersTable[Unknown7EAD7A[i]].unknown74 = 0;
+			BattlersTable[BackRowBattlers[i]].unknown74 = 0;
 		}
 	}
 	Unknown7EADA2 = 0;
@@ -1447,11 +1447,11 @@ void UnknownC43657(short arg1) {
 		UnknownC435E4();
 	}
 	Unknown7E89CE = arg1;
-	for (short i = 0; i < (Unknown7E89CE != 0) ? Unknown7EAD58 : Unknown7EAD56; i++) {
+	for (short i = 0; i < (Unknown7E89CE != 0) ? NumBattlersInFrontRow : NumBattlersInBackRow; i++) {
 		if (Unknown7E89CE != 0) {
-			BattlersTable[Unknown7EAD82[i]].unknown74 = 1;
+			BattlersTable[FrontRowBattlers[i]].unknown74 = 1;
 		} else {
-			BattlersTable[Unknown7EAD7A[i]].unknown74 = 1;
+			BattlersTable[BackRowBattlers[i]].unknown74 = 1;
 		}
 	}
 	Unknown7EADA2 = 1;
@@ -4397,18 +4397,18 @@ short CheckIfValidTarget(short arg1) {
 
 /// $C4A228
 void UnknownC4A228(Battler* battler, short arg2) {
-	for (short i = 0; i < Unknown7EAD56; i++) {
-		if (Unknown7EAD7A[i] != arg2) {
+	for (short i = 0; i < NumBattlersInBackRow; i++) {
+		if (BackRowBattlers[i] != arg2) {
 			continue;
 		}
 		battler.currentTarget = cast(ubyte)(arg2 + 1);
 		return;
 	}
-	for (short i = 0; i < Unknown7EAD58; i++) {
-		if (Unknown7EAD82[i] != arg2) {
+	for (short i = 0; i < NumBattlersInFrontRow; i++) {
+		if (FrontRowBattlers[i] != arg2) {
 			continue;
 		}
-		battler.currentTarget = cast(ubyte)(i + Unknown7EAD56 + 1);
+		battler.currentTarget = cast(ubyte)(i + NumBattlersInBackRow + 1);
 		return;
 	}
 }
