@@ -476,7 +476,7 @@ __gshared short CurrentTPTEntry; /// $5D62
 __gshared short Unknown7E5D64; /// $5D64
 __gshared short[6] Unknown7E5D66; /// $5D66
 __gshared short Unknown7E5D72; /// $5D72
-__gshared short Unknown7E5D74; /// $5D74
+__gshared short InputDisableFrameCounter; /// $5D74
 __gshared short Unknown7E5D76; /// $5D76
 __gshared short Unknown7E5D78; /// $5D78
 __gshared short Unknown7E5D7A; /// $5D7A
@@ -864,9 +864,9 @@ __gshared short Unknown7EB4B2; /// $B4B2
 __gshared short Unknown7EB4B4; /// $B4B4
 __gshared ubyte Unknown7EB4B6; /// $B4B6
 __gshared ubyte Unknown7EB4B8; /// $B4B8
-__gshared ubyte Unknown7EB4BA; /// $B4BA
-__gshared ubyte Unknown7EB4BC; /// $B4BC
-__gshared short*[8] Unknown7EB4BE; /// $B4BE
+__gshared ubyte TotalYourSanctuaryLoadedTilesetTiles; /// $B4BA
+__gshared ubyte YourSanctuaryLoadedTilesetTiles; /// $B4BC
+__gshared ushort[8] LoadedYourSanctuaryLocations; /// $B4BE
 __gshared ubyte Unknown7EB4CE; /// $B4CE
 __gshared short Unknown7EB4CF; /// $B4CF
 __gshared short Unknown7EB4D1; /// $B4D1

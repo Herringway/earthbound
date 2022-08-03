@@ -1015,7 +1015,7 @@ short ShowTitleScreen(short arg1) {
 		UnknownC496E7(0x3C, 0x100);
 		Unknown7E0030 = 0x18;
 		for (short i = 0; 0x3C > i; i++) {
-			UnknownC426ED();
+			UpdateMapPaletteAnimation();
 			UnknownC1004E();
 		}
 	} else {

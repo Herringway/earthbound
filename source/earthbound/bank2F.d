@@ -21993,7 +21993,7 @@ void UnknownEFD6D4(ushort arg1) {
 			UnknownEFD5D9(arg1);
 		}
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UnknownEFD56F(18, 10, Unknown7EB54B);
 		UnknownEFD56F(18, 12, Unknown7EB54D);
 		UnknownEFD56F(18, 14, Unknown7EB54F);
@@ -22450,7 +22450,7 @@ void UnknownEFE175() {
 				UnknownC0BD96();
 			}
 		}
-		UnknownC09466();
+		RunActionscriptFrame();
 		if ((pad_state[0] & (PAD_START | PAD_SELECT)) == (PAD_START | PAD_SELECT)) {
 			DebugStartPositionX = EntityAbsXTable[24];
 			DebugStartPositionY = EntityAbsYTable[24];
@@ -22571,7 +22571,7 @@ noreturn DebugMenuLoad() {
 		OAMClear();
 		DebugHandleCursorMovement();
 		DebugProcessCommandSelection();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		WaitUntilNextFrame();
 	}

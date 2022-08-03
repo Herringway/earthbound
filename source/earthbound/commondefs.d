@@ -6142,9 +6142,9 @@ struct AnimationSequence {
 	ubyte unknown7;
 }
 
-struct UnknownC4DE78Entry {
-	short unknown0;
-	short unknown2;
+struct YourSanctuaryLocation {
+	short x;
+	short y;
 }
 
 union Unknown7EF000Stuff {

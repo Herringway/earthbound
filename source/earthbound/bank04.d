@@ -650,7 +650,7 @@ void UnknownC426C7() {
 }
 
 /// $C426ED - Palette animation
-void UnknownC426ED() {
+void UpdateMapPaletteAnimation() {
 	// Use ushort addition instead of byte addition since we need carrying
 	// At that point, it's easier to just use 7F0000 as ushort everywhere
 	ushort* Word7F0000 = cast(ushort*)(&Unknown7F0000[0]);
@@ -3846,7 +3846,7 @@ void ProcessItemTransformations() {
 }
 
 /// $C490EE
-short UnknownC490EE() {
+short GetDistanceToMagicTruffle() {
 	short x04 = UnknownC46028(0x178);
 	if (x04 == -1) {
 		return 0;
@@ -5716,7 +5716,7 @@ void UnknownC4C58F(short arg1) {
 	UnknownC4954C(0x64, &palettes[0][0]);
 	UnknownC496E7(arg1, -1);
 	for (short i = 0; i < arg1; i++) {
-		UnknownC426ED();
+		UpdateMapPaletteAnimation();
 		WaitUntilNextFrame();
 	}
 	memset(&palettes[0][0], 0xFF, 0x200);
@@ -5728,9 +5728,9 @@ void UnknownC4C58F(short arg1) {
 void UnknownC4C60E(short arg1) {
 	UnknownC496E7(arg1, -1);
 	for (short i = 0; i < arg1; i++) {
-		UnknownC426ED();
+		UpdateMapPaletteAnimation();
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		WaitUntilNextFrame();
 	}
@@ -6285,7 +6285,7 @@ void UnknownC497C0(short arg1, short arg2, short arg3) {
 	UnknownC496E7(arg1, arg2);
 	if (arg1 != 1) {
 		for (short i = 0; i < arg1; i++) {
-			UnknownC426ED();
+			UpdateMapPaletteAnimation();
 			WaitUntilNextFrame();
 		}
 	}
@@ -6931,38 +6931,38 @@ void DecompNintendoPresentation() {
 }
 
 /// $C4DE78
-immutable UnknownC4DE78Entry[8] UnknownC4DE78 = [
-	UnknownC4DE78Entry(151, 48),
-	UnknownC4DE78Entry(387, 1013),
-	UnknownC4DE78Entry(35, 484),
-	UnknownC4DE78Entry(88, 668),
-	UnknownC4DE78Entry(479, 520),
-	UnknownC4DE78Entry(445, 779),
-	UnknownC4DE78Entry(843, 600),
-	UnknownC4DE78Entry(766, 1228),
+immutable YourSanctuaryLocation[8] YourSanctuaryLocations = [
+	YourSanctuaryLocation(151, 48),
+	YourSanctuaryLocation(387, 1013),
+	YourSanctuaryLocation(35, 484),
+	YourSanctuaryLocation(88, 668),
+	YourSanctuaryLocation(479, 520),
+	YourSanctuaryLocation(445, 779),
+	YourSanctuaryLocation(843, 600),
+	YourSanctuaryLocation(766, 1228),
 ];
 
 /// $C4DE98
-void UnknownC4DE98() {
+void InitializeYourSanctuaryDisplay() {
 	Unknown7EB4B8 = 0;
-	Unknown7EB4BA = 0;
-	Unknown7EB4BC = 0;
+	TotalYourSanctuaryLoadedTilesetTiles = 0;
+	YourSanctuaryLoadedTilesetTiles = 0;
 	LoadedAnimatedTileCount = 0;
 	Unknown7E4474 = 0;
 	for (short i = 0; i < 8; i++) {
-		Unknown7EB4BE[i] = null;
+		LoadedYourSanctuaryLocations[i] = 0;
 	}
 	TM_MIRROR = 0x10;
 }
 
 /// $C4DED0
-void UnknownC4DED0() {
+void EnableYourSanctuaryDisplay() {
 	SetBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0x6000);
 	TM_MIRROR = 0x11;
 }
 
 /// $C4DEE9
-void UnknownC4DEE9(short arg1, short arg2) {
+void PrepareYourSanctuaryLocationPaletteData(short arg1, short arg2) {
 	UnknownC005E7();
 	memcpy(&palettes[8][0], &SpriteGroupPalettes[0], 0x100);
 	LoadMapPalette(arg1 / 8, arg1 & 7);
@@ -6972,7 +6972,7 @@ void UnknownC4DEE9(short arg1, short arg2) {
 }
 
 /// $C4DF7D
-void UnknownC4DF7D(short arg1, short arg2, short arg3) {
+void PrepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, short arg3) {
 	arg1 -= 16;
 	arg2 -= 14;
 	memset(&Unknown7EF000.Unknown7EF000Alt[0], 0, 0x800);
@@ -6992,7 +6992,7 @@ void UnknownC4DF7D(short arg1, short arg2, short arg3) {
 }
 
 /// $C4E08C
-void UnknownC4E08C(short arg1) {
+void PrepareYourSanctuaryLocationTilesetData(short arg1) {
 	for (short i = 0; i < 0x400; i++) {
 		if (Unknown7EF000.Unknown7EF000Alt[i] == 0) {
 			continue;
@@ -7000,7 +7000,7 @@ void UnknownC4E08C(short arg1) {
 		CopyToVram(0, 0x20, (Unknown7EB4B8 * 16 + 0x6000) & 0x7FFF, &Unknown7F0000[0x8000 + i * 32]);
 		Unknown7EF000.Unknown7EF000Alt[i] = Unknown7EB4B8;
 		Unknown7EB4B8++;
-		Unknown7EB4BC++;
+		YourSanctuaryLoadedTilesetTiles++;
 	}
 	ushort* x06 = (cast(ushort*)&Unknown7F0000[0x800 * arg1]);
 	for (short i = 0; i < 0x3C0; i++) {
@@ -7011,30 +7011,31 @@ void UnknownC4E08C(short arg1) {
 }
 
 /// $C4E13E
-void UnknownC4E13E(short arg1, short arg2, short arg3) {
-	Unknown7EB4BC = 0;
+void LoadYourSanctuaryLocationData(short arg1, short arg2, short arg3) {
+	YourSanctuaryLoadedTilesetTiles = 0;
 	short x1A = GlobalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	Unknown7E436E = GlobalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
-	UnknownC4DEE9(x1A, arg3);
+	PrepareYourSanctuaryLocationPaletteData(x1A, arg3);
 	Decomp(&MapDataTileArrangementPtrTable[TilesetTable[x1A]][0], &Unknown7F0000[0x8000]);
-	UnknownC4DF7D(arg1, arg2, arg3);
+	PrepareYourSanctuaryLocationTileArrangementData(arg1, arg2, arg3);
 	Decomp(&MapDataTilesetPtrTable[TilesetTable[x1A]][0], &Unknown7F0000[0x8000]);
-	UnknownC4E08C(arg3);
-	Unknown7EB4BA += Unknown7EB4BC;
+	PrepareYourSanctuaryLocationTilesetData(arg3);
+	TotalYourSanctuaryLoadedTilesetTiles += YourSanctuaryLoadedTilesetTiles;
 }
 
 /// $C4E281
-void UnknownC4E281(short arg1) {
-	if (Unknown7EB4BE[arg1] == null) {
-		UnknownC4E13E(UnknownC4DE78[arg1].unknown0, UnknownC4DE78[arg1].unknown2, arg1);
+void LoadYourSanctuaryLocation(short arg1) {
+	if (LoadedYourSanctuaryLocations[arg1] == 0) {
+		LoadYourSanctuaryLocationData(YourSanctuaryLocations[arg1].x, YourSanctuaryLocations[arg1].y, arg1);
+		LoadedYourSanctuaryLocations[arg1] = 1;
 	}
 }
 
 /// $C4E2D7
-void UnknownC4E2D7(short arg1) {
+void DisplayYourSanctuaryLocation(short arg1) {
 	short x02 = arg1 & 7;
-	if (Unknown7EB4BE[x02] == null) {
-		UnknownC4E281(x02);
+	if (LoadedYourSanctuaryLocations[x02] == 0) {
+		LoadYourSanctuaryLocation(x02);
 		WaitUntilNextFrame();
 	}
 	UnknownC08F8B();
@@ -7048,9 +7049,9 @@ void UnknownC4E2D7(short arg1) {
 }
 
 /// $C4E366 - some debugging code deleted from earthbound
-void UnknownC4E366() {
+void TestYourSanctuaryDisplay() {
 	version(JPN) {
-		UnknownC4DE98();
+		InitializeYourSanctuaryDisplay();
 		short x0E = 0;
 		while (true) {
 			BG1_X_POS = 0;
@@ -7058,8 +7059,8 @@ void UnknownC4E366() {
 			UpdateScreen();
 			WaitUntilNextFrame();
 			if ((pad_state[0] & PAD_R) == 0) {
-				UnknownC4E2D7(x0E, x0E);
-				UnknownC4DED0();
+				DisplayYourSanctuaryLocation(x0E, x0E);
+				EnableYourSanctuaryDisplay();
 				if (++x0E == 8) {
 					x0E = 0;
 				}
@@ -7465,7 +7466,7 @@ void PlayCredits() {
 		if (UnknownC4F264(i) != 0) {
 			UnknownC496E7(64, -1);
 			for (short j = 0x40; j != 0; j--) {
-				UnknownC426ED();
+				UpdateMapPaletteAnimation();
 				UnknownC4F01D();
 				UnknownC1004E();
 			}
@@ -7478,7 +7479,7 @@ void PlayCredits() {
 			memset(&Unknown7F0000[32], 0, 0x1E0);
 			UnknownC496E7(64, -1);
 			for (short j = 0; j < 64; j++) {
-				UnknownC426ED();
+				UpdateMapPaletteAnimation();
 				UnknownC4F01D();
 				UnknownC1004E();
 			}

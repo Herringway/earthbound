@@ -1756,7 +1756,7 @@ void GetOnBicycle() {
 	SetBoundaryBehaviour(0);
 	gameState.unknown90 = 1;
 	Unknown7E5DBA = 1;
-	Unknown7E5D74 = 2;
+	InputDisableFrameCounter = 2;
 }
 
 /// $C03CFD
@@ -1775,7 +1775,7 @@ void UnknownC03CFD() {
 	gameState.unknown88 = 0;
 	if (Unknown7E5D9A == 0) {
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		WaitUntilNextFrame();
 	}
@@ -1792,7 +1792,7 @@ void UnknownC03CFD() {
 	WaitUntilNextFrame();
 	UnknownC0A780(0x18);
 	Unknown7E5DBA = 0;
-	Unknown7E5D74 = 2;
+	InputDisableFrameCounter = 2;
 }
 
 /// $C03E5A
@@ -3471,11 +3471,11 @@ void ScreenTransition(short arg1, short arg2) {
 			if (Unknown7E0030 != 0) {
 				WaitUntilNextFrame();
 			}
-			UnknownC426ED();
+			UpdateMapPaletteAnimation();
 			OAMClear();
 			UnknownC4268A();
 			UnknownC426C7();
-			UnknownC09466();
+			RunActionscriptFrame();
 			UpdateScreen();
 			UnknownC4A7B0();
 			WaitUntilNextFrame();
@@ -3504,10 +3504,10 @@ void ScreenTransition(short arg1, short arg2) {
 				if (Unknown7E0030 != 0) {
 					WaitUntilNextFrame();
 				}
-				UnknownC426ED();
+				UpdateMapPaletteAnimation();
 			}
 			OAMClear();
-			UnknownC09466();
+			RunActionscriptFrame();
 			UnknownC4A7B0();
 			UpdateScreen();
 			WaitUntilNextFrame();
@@ -5395,7 +5395,7 @@ void UnknownC09451() {
 }
 
 /// $C09466
-void UnknownC09466() {
+void RunActionscriptFrame() {
 	if (Unknown7E0A60 != 0) {
 		return;
 	}
@@ -8184,7 +8184,7 @@ void UnknownC0B67F() {
 	AllocSpriteMem(short.min, 0);
 	InitializeMiscObjectData();
 	BattleDebug = 0;
-	Unknown7E5D74 = 0;
+	InputDisableFrameCounter = 0;
 	Unknown7E4A58 = 1;
 	Unknown7E4A5A = -1;
 	Unknown7E4A5E = 10;
@@ -8267,17 +8267,17 @@ void ebMain() {
 	UnknownC43F53();
 	while (1) {
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		UnknownC4A7B0();
 		WaitUntilNextFrame();
 		if (((CurrentQueuedInteraction - NextQueuedInteraction) != 0) && !BattleSwirlCountdown && !BattleSwirlFlag && !BattleDebug) {
 			ProcessQueuedInteractions();
-			Unknown7E5D74++;
+			InputDisableFrameCounter++;
 		} else if ((gameState.unknownB0 != 2) && (gameState.walkingStyle != WalkingStyle.Escalator) && !BattleSwirlCountdown) {
 			if (!BattleDebug) {
 				InitBattleOverworld();
-				Unknown7E5D74++;
+				InputDisableFrameCounter++;
 			} else if (((pad_press[0] & (PAD_A | PAD_L)) != 0) || (gameState.walkingStyle == WalkingStyle.Bicycle)) {
 				UnknownC0943C();
 				GetOffBicycle();
@@ -8290,10 +8290,10 @@ void ebMain() {
 					continue;
 				}
 				if ((pad_press[1] & PAD_A) != 0) {
-					UnknownC490EE();
+					GetDistanceToMagicTruffle();
 				}
 				if ((pad_press[1] & PAD_B) != 0) {
-					UnknownC4E366();
+					TestYourSanctuaryDisplay();
 				}
 			}
 			if (BattleSwirlCountdown) {
@@ -8302,8 +8302,8 @@ void ebMain() {
 			if (BattleSwirlFlag) {
 				continue;
 			}
-			if (Unknown7E5D74) {
-				Unknown7E5D74--;
+			if (InputDisableFrameCounter) {
+				InputDisableFrameCounter--;
 			} else if (!Unknown7E5D9A) {
 				if ((pad_press[0] & PAD_A) != 0 ) {
 					OpenMenuButton();
@@ -9441,7 +9441,7 @@ void LoadDadPhone() {
 void UnknownC0DD0F() {
 	while (Unknown7E0028.a != 0) {
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		WaitUntilNextFrame();
 	}
@@ -9451,7 +9451,7 @@ void UnknownC0DD0F() {
 void UnknownC0DD2C(short arg1) {
 	for (short i = arg1; i != 0; i--) {
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		WaitUntilNextFrame();
 	}
@@ -9872,7 +9872,7 @@ void UnknownC0E897() {
 	FadeIn(1, 4);
 	while (Unknown7E9F45.integer != 0) {
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		WaitUntilNextFrame();
 	}
@@ -9901,7 +9901,7 @@ void UnknownC0E9BA() {
 	gameState.partyStatus = 1;
 	for (short i = 0; i < 0xB4; i++) {
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		UpdateScreen();
 		WaitUntilNextFrame();
 	}
@@ -9957,7 +9957,7 @@ void TeleportMainLoop() {
 		ChangeMusic(Music.TeleportOut);
 	} else do {
 		OAMClear();
-		UnknownC09466();
+		RunActionscriptFrame();
 		TeleportFreezeObjects2();
 		UpdateScreen();
 		WaitUntilNextFrame();
@@ -10183,7 +10183,7 @@ short UnknownC0F21E() {
 			return 1;
 		}
 		memcpy(&Unknown7E4476[0], &palettes[2][0], 0x20);
-		UnknownC426ED();
+		UpdateMapPaletteAnimation();
 		Unknown7E0030 = 0;
 		UnknownC2DB14();
 		memcpy(&palettes[2][0], &Unknown7E4476[0], 0x20);
@@ -10202,7 +10202,7 @@ short UnknownC0F21E() {
 	ChangeMusic(Music.GasStation2);
 	short x12 = InitEntityWipe(ActionScript.Unknown860, 0, 0);
 	while (EntityScriptTable[x12] != -1) {
-		UnknownC09466();
+		RunActionscriptFrame();
 		WaitUntilNextFrame();
 		if (pad_press[0] != 0) {
 			UnknownC09C35(x12);
@@ -10226,7 +10226,7 @@ short GasStation() {
 		if (pad_press[0] != 0) {
 			return 1;
 		}
-		UnknownC426ED();
+		UpdateMapPaletteAnimation();
 		WaitUntilNextFrame();
 	}
 	TM_MIRROR = 0;

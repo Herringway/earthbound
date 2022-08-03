@@ -3117,7 +3117,7 @@ void InstantWinHandler() {
 	memcpy(&Unknown7F0000[0], &Unknown7F0000[0x2000], 0x200);
 	UnknownC496E7(6, -1);
 	for (short i = 0; i < 6; i++) {
-		UnknownC426ED();
+		UpdateMapPaletteAnimation();
 		WaitUntilNextFrame();
 	}
 	UnknownC49740();
@@ -3220,7 +3220,7 @@ void UnknownC2654C() {
 		}
 		UnknownC496E7(12, -1);
 		for (short j = 0; j < 12; j++) {
-			UnknownC426ED();
+			UpdateMapPaletteAnimation();
 			WaitUntilNextFrame();
 		}
 		UnknownC49740();

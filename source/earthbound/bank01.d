@@ -63,7 +63,7 @@ void UnknownC1004E() {
 		UnknownC43568();
 	}
 	OAMClear();
-	UnknownC09466();
+	RunActionscriptFrame();
 	UpdateScreen();
 	WaitUntilNextFrame();
 }
@@ -4350,7 +4350,7 @@ void* CC1FTree(DisplayTextState* arg1, ushort arg2) {
 		case 0xD0:
 			return &CC1FD0;
 		case 0xD1:
-			SetWorkingMemory(WorkingMemory(UnknownC490EE()));
+			SetWorkingMemory(WorkingMemory(GetDistanceToMagicTruffle()));
 			break;
 		case 0xD2:
 			return &CC1FD2;
