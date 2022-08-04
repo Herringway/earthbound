@@ -8151,7 +8151,9 @@ void FileSelectInit() {
 	memcpy(&Unknown7F0000[0x2000], &Unknown7F0000[0x1000], 0x2A00);
 	UnknownC44963(1);
 	memcpy(&palettes[0][0], TextWindowFlavourPalettes.ptr, 0x40);
-	LoadBackgroundAnimation(BackgroundLayer.FileSelect, 0);
+	debug(nofileselect) {} else {
+		LoadBackgroundAnimation(BackgroundLayer.FileSelect, 0);
+	}
 	EntityAllocationMinSlot = 0x17;
 	EntityAllocationMaxSlot = 0x18;
 	InitEntity(ActionScript.Unknown787, 0, 0);

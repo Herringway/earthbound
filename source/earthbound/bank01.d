@@ -7588,188 +7588,232 @@ short OpenFlavourMenu() {
 
 /// $C1F805
 void FileMenuLoop() {
-	outermost: while (true) {
-		SetInstantPrinting();
-		const fileMenuResult = FileSelectMenu(0);
-		if ((fileMenuResult == 0) || (Unknown7EB49E[fileMenuResult - 1] != 0)) {
-			ValidFileSelected:
-			switch (UnknownC1F07E()) {
-				case 0: //B pressed
-					CloseFocusWindow();
-					continue;
-				case 1: //Start Game
-					UnknownC064D4();
-					ReloadHotspots();
-					RespawnX = gameState.leaderX.integer;
-					RespawnY = gameState.leaderY.integer;
-					break outermost;
-				case 2: //Copy
-					if (UnknownC1F14F() == 0) {
-						goto ValidFileSelected;
-					}
-					break;
-				case 3: //Delete
-					if (UnknownC1F2A8() == 0) {
-						goto ValidFileSelected;
-					}
-					break;
-				case 4: //Setup
-					OpenTextSpeedMenu();
-					while (true) {
-						if (UnknownC1F497(0) == 0) {
-							CloseWindow(0x18);
+	debug(nofileselect) {
+		gameState.textSpeed = 1;
+		foreach (idx, ref character; PartyCharacters) {
+			character.name = dontCareNames[idx][0][0 .. character.name.length];
+		}
+		gameState.petName = dontCareNames[4][0];
+		gameState.favouriteFood = dontCareNames[5][0];
+		gameState.favouriteThing[0 .. 6] = dontCareNames[6][0];
+		UnknownC021E6();
+		for (short i = 0; 4 > i; i++) {
+			ResetCharLevelOne(cast(short)(i + 1), InitialStats[i].level, 0);
+			if (InitialStats[i].exp != 0) {
+				GainEXP(cast(short)(i + 1), 0, InitialStats[i].exp);
+			}
+			PartyCharacters[i].hp.target = PartyCharacters[i].hp.current.integer = PartyCharacters[i].maxHP;
+			PartyCharacters[i].pp.target = PartyCharacters[i].pp.current.integer = PartyCharacters[i].maxPP;
+			PartyCharacters[i].pp.current.fraction = 0;
+			PartyCharacters[i].hp.current.fraction = 0;
+			memset(&PartyCharacters[i].items[0], 0, PartyCharacter.items.length);
+			memcpy(&PartyCharacters[i].items[0], &InitialStats[i].items[0], PartyCharacter.items.length);
+			PartyCharacters[i].hp_pp_window_options = 0x400;
+		}
+		gameState.moneyCarried = InitialStats[0].money;
+		UnknownC0B65F(InitialStats[0].unknown0, InitialStats[0].unknown2);
+		gameState.favouriteThing[0] = EBChar('P');
+		gameState.favouriteThing[1] = EBChar('S');
+		gameState.favouriteThing[2] = EBChar('I');
+		gameState.favouriteThing[3] = EBChar(' ');
+		for (short i = 4; gameState.favouriteThing.length - 1 > i; i++) {
+			if (gameState.favouriteThing[i] == 0) {
+				gameState.favouriteThing[i] = EBChar(' ');
+				break;
+			}
+		}
+		gameState.unknownC3 = 1;
+		RespawnX = gameState.leaderX.integer;
+		RespawnY = gameState.leaderY.integer;
+		UnknownC064D4();
+		UnknownC0B65F(0x840, 0x6E8);
+		UnknownC46881(TextFileSelectScreen1.ptr);
+		setEventFlag(EventFlag.UNKNOWN_00B, 1);
+		ShowNPCFlag = 1;
+	} else {
+		outermost: while (true) {
+			SetInstantPrinting();
+			const fileMenuResult = FileSelectMenu(0);
+			if ((fileMenuResult == 0) || (Unknown7EB49E[fileMenuResult - 1] != 0)) {
+				ValidFileSelected:
+				switch (UnknownC1F07E()) {
+					case 0: //B pressed
+						CloseFocusWindow();
+						continue;
+					case 1: //Start Game
+						UnknownC064D4();
+						ReloadHotspots();
+						RespawnX = gameState.leaderX.integer;
+						RespawnY = gameState.leaderY.integer;
+						break outermost;
+					case 2: //Copy
+						if (UnknownC1F14F() == 0) {
 							goto ValidFileSelected;
 						}
-						OpenSoundMenu();
-						while (true) {
-							if (UnknownC1F616(0) == 0) {
-								CloseWindow(0x19);
-								break;
-							}
-							if (OpenFlavourMenu() == 0) {
-								CloseWindow(0x32);
-							}
-						}
-					}
-					break;
-				default: break;
-			}
-			UnknownC1008E();
-		} else {
-			OpenTextSpeedMenu();
-			while (true) {
-				if (UnknownC1F497(0) == 0) {
-					CloseWindow(0x18);
-					break;
-				}
-				OpenSoundMenu();
-				while (true) {
-					if (UnknownC1F616(0) == 0) {
-						CloseWindow(0x19);
 						break;
-					}
-					Unknown16:
-					if (OpenFlavourMenu() == 0) {
-						CloseWindow(0x32);
-					} else {
-						ChangeMusic(Music.NamingScreen);
-						nameLoop: while (true) {
-							UnknownC1008E();
-							short x20;
-							for (short i = 0; 7 > i; UnknownC4D830(i), i += x20) {
-								if (i == -1) {
-									UnknownC1008E();
-									FileSelectMenu(1);
-									UnknownC1F497(1);
-									UnknownC1F616(1);
-									ChangeMusic(Music.SetupScreen);
-									goto Unknown16;
-								}
-								DisplayAnimatedNamingSprite(i);
-								if (i < ThingsToName.Dog) {
-									if (NameACharacter(PartyCharacter.name.length, &PartyCharacters[i].name[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-										x20 = -1;
-										continue;
-									}
-									x20 = 1;
-									continue;
-								}
-								if (i == ThingsToName.Dog) {
-									if (NameACharacter(gameState.petName.length, &gameState.petName[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-										x20 = -1;
-										continue;
-									}
-									x20 = 1;
-									continue;
-								}
-								if (i == ThingsToName.FavoriteFood) {
-									if (NameACharacter(gameState.favouriteFood.length, &gameState.favouriteFood[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-										x20 = -1;
-										continue;
-									}
-									x20 = 1;
-									continue;
-								}
-								if (i == ThingsToName.FavoriteThing) {
-									if (NameACharacter(gameState.favouriteThing.length, &gameState.favouriteThing[4], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
-										x20 = -1;
-										continue;
-									}
-									x20 = 1;
-									continue;
-								}
+					case 3: //Delete
+						if (UnknownC1F2A8() == 0) {
+							goto ValidFileSelected;
+						}
+						break;
+					case 4: //Setup
+						OpenTextSpeedMenu();
+						while (true) {
+							if (UnknownC1F497(0) == 0) {
+								CloseWindow(0x18);
+								goto ValidFileSelected;
 							}
-							UnknownC1008E();
-							SetInstantPrinting();
-							for (short i = 0; 4 > i; i++, UnknownC1931B(i)) {
-								CreateWindowN(cast(short)(Window.FileSelectNamingConfirmationNess + i));
-							}
-							CreateWindowN(Window.FileSelectNamingConfirmationKing);
-							UnknownC1931B(7);
-							CreateWindowN(Window.FileSelectNamingConfirmationFood);
-							PrintString(FileSelectTextFavoriteFood.length, &FileSelectTextFavoriteFood[0]);
-							short x = UnknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
-							UnknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - WindowStats[WindowTable[Window.FileSelectNamingConfirmationFood]].width), 1);
-							PrintString(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), &gameState.favouriteFood[0]);
-
-							CreateWindowN(Window.FileSelectNamingConfirmationThing);
-							PrintString(FileSelectTextCoolestThing.length, &FileSelectTextCoolestThing[0]);
-							x = UnknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
-							UnknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - WindowStats[WindowTable[Window.FileSelectNamingConfirmationThing]].width), 1);
-							PrintString(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), &gameState.favouriteThing[4]);
-
-							CreateWindowN(Window.FileSelectNamingConfirmationMessage);
-							PrintString(FileSelectTextAreYouSure.length, &FileSelectTextAreYouSure[0]);
-
-							UnknownC1153B(1, 14, 0, &FileSelectTextAreYouSureYep[0], null);
-							UnknownC1153B(0, 18, 0, &FileSelectTextAreYouSureNope[0], null);
-							PrintMenuItems();
-							UnknownC4D8FA();
-							Unknown7E5E6E = 0xFF;
-							if (SelectionMenu(1) == 0) {
-								UnknownC021E6();
-								continue nameLoop;
-							}
-							ChangeMusic(Music.NameConfirmation);
-							WindowTick();
-							for (short i = 0; 180 > i; i++) {
-								UnknownC1004E();
-							}
-							UnknownC021E6();
-							for (short i = 0; 4 > i; i++) {
-								ResetCharLevelOne(cast(short)(i + 1), InitialStats[i].level, 0);
-								if (InitialStats[i].exp != 0) {
-									GainEXP(cast(short)(i + 1), 0, InitialStats[i].exp);
-								}
-								PartyCharacters[i].hp.target = PartyCharacters[i].hp.current.integer = PartyCharacters[i].maxHP;
-								PartyCharacters[i].pp.target = PartyCharacters[i].pp.current.integer = PartyCharacters[i].maxPP;
-								PartyCharacters[i].pp.current.fraction = 0;
-								PartyCharacters[i].hp.current.fraction = 0;
-								memset(&PartyCharacters[i].items[0], 0, PartyCharacter.items.length);
-								memcpy(&PartyCharacters[i].items[0], &InitialStats[i].items[0], PartyCharacter.items.length);
-								PartyCharacters[i].hp_pp_window_options = 0x400;
-							}
-							gameState.moneyCarried = InitialStats[0].money;
-							UnknownC0B65F(InitialStats[0].unknown0, InitialStats[0].unknown2);
-							gameState.favouriteThing[0] = EBChar('P');
-							gameState.favouriteThing[1] = EBChar('S');
-							gameState.favouriteThing[2] = EBChar('I');
-							gameState.favouriteThing[3] = EBChar(' ');
-							for (short i = 4; gameState.favouriteThing.length - 1 > i; i++) {
-								if (gameState.favouriteThing[i] == 0) {
-									gameState.favouriteThing[i] = EBChar(' ');
+							OpenSoundMenu();
+							while (true) {
+								if (UnknownC1F616(0) == 0) {
+									CloseWindow(0x19);
 									break;
 								}
+								if (OpenFlavourMenu() == 0) {
+									CloseWindow(0x32);
+								}
 							}
-							gameState.unknownC3 = 1;
-							RespawnX = gameState.leaderX.integer;
-							RespawnY = gameState.leaderY.integer;
-							UnknownC064D4();
-							UnknownC0B65F(0x840, 0x6E8);
-							UnknownC46881(TextFileSelectScreen1.ptr);
-							setEventFlag(EventFlag.UNKNOWN_00B, 1);
-							ShowNPCFlag = 1;
-							break outermost;
+						}
+						break;
+					default: break;
+				}
+				UnknownC1008E();
+			} else {
+				OpenTextSpeedMenu();
+				while (true) {
+					if (UnknownC1F497(0) == 0) {
+						CloseWindow(0x18);
+						break;
+					}
+					OpenSoundMenu();
+					while (true) {
+						if (UnknownC1F616(0) == 0) {
+							CloseWindow(0x19);
+							break;
+						}
+						Unknown16:
+						if (OpenFlavourMenu() == 0) {
+							CloseWindow(0x32);
+						} else {
+							ChangeMusic(Music.NamingScreen);
+							nameLoop: while (true) {
+								UnknownC1008E();
+								short x20;
+								for (short i = 0; 7 > i; UnknownC4D830(i), i += x20) {
+									if (i == -1) {
+										UnknownC1008E();
+										FileSelectMenu(1);
+										UnknownC1F497(1);
+										UnknownC1F616(1);
+										ChangeMusic(Music.SetupScreen);
+										goto Unknown16;
+									}
+									DisplayAnimatedNamingSprite(i);
+									if (i < ThingsToName.Dog) {
+										if (NameACharacter(PartyCharacter.name.length, &PartyCharacters[i].name[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+											x20 = -1;
+											continue;
+										}
+										x20 = 1;
+										continue;
+									}
+									if (i == ThingsToName.Dog) {
+										if (NameACharacter(gameState.petName.length, &gameState.petName[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+											x20 = -1;
+											continue;
+										}
+										x20 = 1;
+										continue;
+									}
+									if (i == ThingsToName.FavoriteFood) {
+										if (NameACharacter(gameState.favouriteFood.length, &gameState.favouriteFood[0], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+											x20 = -1;
+											continue;
+										}
+										x20 = 1;
+										continue;
+									}
+									if (i == ThingsToName.FavoriteThing) {
+										if (NameACharacter(gameState.favouriteThing.length, &gameState.favouriteThing[4], i, &FileSelectTextPleaseNameThemStrings[i][0], 40) != 0) {
+											x20 = -1;
+											continue;
+										}
+										x20 = 1;
+										continue;
+									}
+								}
+								UnknownC1008E();
+								SetInstantPrinting();
+								for (short i = 0; 4 > i; i++, UnknownC1931B(i)) {
+									CreateWindowN(cast(short)(Window.FileSelectNamingConfirmationNess + i));
+								}
+								CreateWindowN(Window.FileSelectNamingConfirmationKing);
+								UnknownC1931B(7);
+								CreateWindowN(Window.FileSelectNamingConfirmationFood);
+								PrintString(FileSelectTextFavoriteFood.length, &FileSelectTextFavoriteFood[0]);
+								short x = UnknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
+								UnknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - WindowStats[WindowTable[Window.FileSelectNamingConfirmationFood]].width), 1);
+								PrintString(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), &gameState.favouriteFood[0]);
+
+								CreateWindowN(Window.FileSelectNamingConfirmationThing);
+								PrintString(FileSelectTextCoolestThing.length, &FileSelectTextCoolestThing[0]);
+								x = UnknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
+								UnknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - WindowStats[WindowTable[Window.FileSelectNamingConfirmationThing]].width), 1);
+								PrintString(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), &gameState.favouriteThing[4]);
+
+								CreateWindowN(Window.FileSelectNamingConfirmationMessage);
+								PrintString(FileSelectTextAreYouSure.length, &FileSelectTextAreYouSure[0]);
+
+								UnknownC1153B(1, 14, 0, &FileSelectTextAreYouSureYep[0], null);
+								UnknownC1153B(0, 18, 0, &FileSelectTextAreYouSureNope[0], null);
+								PrintMenuItems();
+								UnknownC4D8FA();
+								Unknown7E5E6E = 0xFF;
+								if (SelectionMenu(1) == 0) {
+									UnknownC021E6();
+									continue nameLoop;
+								}
+								ChangeMusic(Music.NameConfirmation);
+								WindowTick();
+								for (short i = 0; 180 > i; i++) {
+									UnknownC1004E();
+								}
+								UnknownC021E6();
+								for (short i = 0; 4 > i; i++) {
+									ResetCharLevelOne(cast(short)(i + 1), InitialStats[i].level, 0);
+									if (InitialStats[i].exp != 0) {
+										GainEXP(cast(short)(i + 1), 0, InitialStats[i].exp);
+									}
+									PartyCharacters[i].hp.target = PartyCharacters[i].hp.current.integer = PartyCharacters[i].maxHP;
+									PartyCharacters[i].pp.target = PartyCharacters[i].pp.current.integer = PartyCharacters[i].maxPP;
+									PartyCharacters[i].pp.current.fraction = 0;
+									PartyCharacters[i].hp.current.fraction = 0;
+									memset(&PartyCharacters[i].items[0], 0, PartyCharacter.items.length);
+									memcpy(&PartyCharacters[i].items[0], &InitialStats[i].items[0], PartyCharacter.items.length);
+									PartyCharacters[i].hp_pp_window_options = 0x400;
+								}
+								gameState.moneyCarried = InitialStats[0].money;
+								UnknownC0B65F(InitialStats[0].unknown0, InitialStats[0].unknown2);
+								gameState.favouriteThing[0] = EBChar('P');
+								gameState.favouriteThing[1] = EBChar('S');
+								gameState.favouriteThing[2] = EBChar('I');
+								gameState.favouriteThing[3] = EBChar(' ');
+								for (short i = 4; gameState.favouriteThing.length - 1 > i; i++) {
+									if (gameState.favouriteThing[i] == 0) {
+										gameState.favouriteThing[i] = EBChar(' ');
+										break;
+									}
+								}
+								gameState.unknownC3 = 1;
+								RespawnX = gameState.leaderX.integer;
+								RespawnY = gameState.leaderY.integer;
+								UnknownC064D4();
+								UnknownC0B65F(0x840, 0x6E8);
+								UnknownC46881(TextFileSelectScreen1.ptr);
+								setEventFlag(EventFlag.UNKNOWN_00B, 1);
+								ShowNPCFlag = 1;
+								break outermost;
+							}
 						}
 					}
 				}
