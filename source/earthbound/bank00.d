@@ -934,7 +934,7 @@ short CreateEntity(short sprite, short actionScript, short index, short x, short
 	Unknown7E33A2[result] = SpriteGroupingPointers[sprite].unknown5;
 	Unknown7E33DE[result] = SpriteGroupingPointers[sprite].unknown6;
 	Unknown7E1A4A[result] = SpriteGroupingPointers[sprite].unknown7;
-	Unknown7E332A[result] = UnknownC42AEB[SpriteGroupingPointers[sprite].unknown2 << 1];
+	Unknown7E332A[result] = UnknownC42AEB[SpriteGroupingPointers[sprite].unknown2];
 	UNKNOWN_30X2_TABLE_38[result] = cast(ushort)((UnknownC42B0D[x02].unknown1 <<8) | (UnknownC42B0D[x02].unknown0 - UnknownC42B0D[x02].unknown1));
 	UNKNOWN_30X2_TABLE_43[result] = 0xFFFF;
 	EntityEnemyIDs[result] = -1;
