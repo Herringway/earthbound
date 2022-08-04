@@ -24,6 +24,8 @@ import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
 
+import std.experimental.logger;
+
 /// $C40015
 short UnknownC40015() {
 	EntityAnimationFrames[ActionScript88 / 2] = 0;

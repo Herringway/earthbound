@@ -563,6 +563,7 @@ void ReloadMapAtPosition(short x, short y) {
 
 /// $C013F6
 void LoadMapAtPosition(short x, short y) {
+	tracef("Loading map at %s,%s", x, y);
 	UnknownC02194();
 	Unknown7E4380 = x;
 	Unknown7E437C = x;
@@ -3403,6 +3404,7 @@ void UnknownC064E3(short arg1, QueuedInteractionPtr arg2) {
 	if (arg1 == CurrentQueuedInteractionType) {
 		return;
 	}
+	tracef("Adding interaction of type %s", arg1);
 	QueuedInteractions[NextQueuedInteraction].type = arg1;
 	QueuedInteractions[NextQueuedInteraction].ptr = arg2;
 	NextQueuedInteraction = (NextQueuedInteraction + 1) & 3;
@@ -4035,6 +4037,7 @@ void ProcessQueuedInteractions() {
 	CurrentQueuedInteraction = (CurrentQueuedInteraction + 1) & 3;
 	Unknown7E5D58 &= 0xFFFE;
 	UnknownC07C5B();
+	tracef("Processing interaction of type %s", CurrentQueuedInteractionType);
 	switch(CurrentQueuedInteractionType) {
 		case 2:
 			DoorTransition(ptr.door_ptr);
@@ -8169,6 +8172,7 @@ void FileSelectInit() {
 
 /// $C0B65F
 void UnknownC0B65F(short arg1, short arg2) {
+	tracef("Setting coordinates to %s, %s", arg1, arg2);
 	gameState.leaderX.integer = arg1;
 	gameState.leaderY.integer = arg2;
 	gameState.leaderDirection = 2;

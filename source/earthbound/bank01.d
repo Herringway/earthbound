@@ -18,6 +18,7 @@ import earthbound.bank2F;
 import earthbound.globals;
 
 import core.stdc.string;
+import std.experimental.logger;
 
 /// $C10000
 void UnknownC10000() {
@@ -4432,7 +4433,13 @@ const(ubyte)* DisplayText(const(ubyte)* script_ptr) {
 	if (x12 is null) {
 		return null;
 	}
+	size_t waitBytes = 0;
 	loop: while (true) {
+		if (waitBytes-- == 0) {
+			auto str = getFullCC(x12.textptr);
+			tracef("Next text: [%(%02X %)]", str);
+			waitBytes = str.length - 1;
+		}
 		if ((Unknown7E5E6E != 0) && (x1E is null)) {
 			if (Unknown7E9660 == 0) {
 				UnknownC445E1(x12, x1A);
@@ -6648,6 +6655,7 @@ void ShowHPAlert(short arg1) {
 
 /// $C1D8D0
 void ResetCharLevelOne(short arg1, short arg2, short arg3) {
+	tracef("Setting char %s level to %s", arg1, arg2);
 	PartyCharacters[arg1 - 1].level = 1;
 	PartyCharacters[arg1 - 1].base_offense = 2;
 	PartyCharacters[arg1 - 1].base_defense = 2;

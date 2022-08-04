@@ -6587,3 +6587,246 @@ string saveFileName(short id) {
 }
 
 extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
+
+const(ubyte)[] getFullCC(const(ubyte)* script) {
+	enum ptrSize = (void*).sizeof;
+	ubyte f = script[0];
+	if (f < 0x20) {
+		switch (f) {
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 16:
+				return script[0 .. 2];
+			case 4:
+			case 5:
+			case 7:
+				return script[0 .. 3];
+			case 6:
+				return script[0 .. 3 + ptrSize];
+			case 8:
+			case 10:
+				return script[0 .. 1 + ptrSize];
+			case 9:
+				return script[0 .. 2 + ptrSize * script[1]];
+			case 24:
+				switch (script[1]) {
+					case 1:
+					case 3:
+					case 8:
+					case 9:
+						return script[0 .. 3];
+					case 5:
+					case 13:
+						return script[0 .. 4];
+					case 7:
+						return script[0 .. 7];
+					default:
+						return script[0 .. 2];
+				}
+			case 25:
+				switch (script[1]) {
+					case 16:
+					case 17:
+					case 24:
+					case 26:
+					case 27:
+					case 33:
+					case 37:
+					case 38:
+					case 39:
+					case 40:
+						return script[0 .. 3];
+					case 22:
+					case 25:
+					case 28:
+					case 29:
+						return script[0 .. 4];
+					case 5:
+						return script[0 .. 5];
+					case 34:
+						return script[0 .. 6];
+					case 35:
+					case 36:
+						return script[0 .. 7];
+					default:
+						return script[0 .. 2];
+				}
+			case 26:
+				switch (script[1]) {
+					case 0:
+					case 1:
+						return script[0 .. 3 + ptrSize * 4];
+					case 6:
+						return script[0 .. 3];
+					case 5:
+						return script[0 .. 4];
+					default:
+						return script[0 .. 2];
+				}
+			case 27:
+				switch (script[1]) {
+					case 2:
+					case 3:
+						return script[0 .. 2 + ptrSize];
+					default:
+						return script[0 .. 2];
+				}
+			case 28:
+				switch (script[1]) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+					case 9:
+					case 12:
+					case 17:
+					case 18:
+					case 20:
+					case 21:
+						return script[0 .. 3];
+					case 19:
+						return script[0 .. 4];
+					case 10:
+					case 11:
+						return script[0 .. 6];
+					default:
+						return script[0 .. 2];
+				}
+			case 29:
+				switch (script[1]) {
+					case 2:
+					case 3:
+					case 10:
+					case 11:
+					case 24:
+					case 25:
+					case 33:
+					case 35:
+					case 36:
+						return script[0 .. 3];
+					case 0:
+					case 1:
+					case 4:
+					case 5:
+					case 8:
+					case 9:
+					case 12:
+					case 14:
+					case 15:
+					case 16:
+					case 17:
+					case 18:
+					case 19:
+					case 21:
+						return script[0 .. 4];
+					case 13:
+						return script[0 .. 5];
+					case 6:
+					case 7:
+					case 20:
+					case 23:
+						return script[0 .. 6];
+					default:
+						return script[0 .. 2];
+				}
+			case 30:
+				switch (script[1]) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+					case 10:
+					case 11:
+					case 12:
+					case 13:
+					case 14:
+						return script[0 .. 4];
+					case 9:
+						return script[0 .. 7];
+					default:
+						return script[0 .. 2];
+				}
+			case 31:
+				switch (script[1]) {
+					case 1:
+					case 2:
+					case 4:
+					case 7:
+					case 17:
+					case 18:
+					case 20:
+					case 29:
+					case 33:
+					case 65:
+					case 82:
+					case 96:
+					case 98:
+					case 103:
+					case 208:
+					case 210:
+					case 211:
+					case 229:
+					case 232:
+						return script[0 .. 3];
+					case 0:
+					case 19:
+					case 27:
+					case 28:
+					case 32:
+					case 35:
+					case 113:
+					case 129:
+					case 131:
+					case 230:
+					case 231:
+					case 233:
+					case 234:
+					case 235:
+					case 236:
+					case 238:
+					case 239:
+					case 244:
+						return script[0 .. 4];
+					case 22:
+					case 26:
+					case 30:
+					case 31:
+					case 225:
+					case 228:
+					case 243:
+						return script[0 .. 5];
+					case 241:
+					case 242:
+						return script[0 .. 6];
+					case 21:
+					case 23:
+						return script[0 .. 7];
+					case 24:
+					case 25:
+						return script[0 .. 9];
+					case 99:
+						return script[0 .. 2 + ptrSize];
+					case 102:
+						return script[0 .. 4 + ptrSize];
+					case 192:
+						return script[0 .. 3 + ptrSize * script[2]];
+					default:
+						return script[0 .. 2];
+				}
+			default:
+				return script[0 .. 1];
+		}
+	}
+	return script[0 .. 1];
+}

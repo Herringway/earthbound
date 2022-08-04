@@ -21,6 +21,7 @@ import earthbound.bank2F;
 import earthbound.globals;
 
 import core.stdc.string;
+import std.experimental.logger;
 
 /// $C20000
 void inflictSunstrokeCheck() {
@@ -735,6 +736,7 @@ short getEventFlag(short flag) {
 
 /// $C2165E
 short setEventFlag(short flag, short value) {
+	tracef("Setting event flag %s: %s", flag, value);
 	flag--;
 	if (value == 1) {
 		EventFlags[flag / 8] |= PowersOfTwo8Bit[flag % 8];
