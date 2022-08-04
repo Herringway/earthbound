@@ -7061,7 +7061,7 @@ void TestYourSanctuaryDisplay() {
 			UpdateScreen();
 			WaitUntilNextFrame();
 			if ((pad_state[0] & PAD_R) == 0) {
-				DisplayYourSanctuaryLocation(x0E, x0E);
+				DisplayYourSanctuaryLocation(x0E);
 				EnableYourSanctuaryDisplay();
 				if (++x0E == 8) {
 					x0E = 0;
