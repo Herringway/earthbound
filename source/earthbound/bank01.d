@@ -3397,7 +3397,7 @@ void* CC1F15(DisplayTextState* arg1, ushort arg2) {
 	if (arg2 == 0xFF) {
 		UnknownC06578(cast(short)(CCArgumentStorage[1] << 8 | CCArgumentStorage[0]), cast(short)(CCArgumentStorage[3] << 8 | CCArgumentStorage[2]));
 	} else {
-		UnknownC4C91A(CreatePreparedEntityNPC(cast(short)(CCArgumentStorage[1] << 8 | CCArgumentStorage[0]), cast(short)(CCArgumentStorage[3] << 8 | CCArgumentStorage[2])), arg2);
+		UnknownC4C91A(CreatePreparedEntitySprite(cast(short)(CCArgumentStorage[1] << 8 | CCArgumentStorage[0]), cast(short)(CCArgumentStorage[3] << 8 | CCArgumentStorage[2])), arg2);
 	}
 	return null;
 }
