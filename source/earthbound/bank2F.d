@@ -200,7 +200,7 @@ void UnknownEF031E() {
 /// $EF04DC
 short UnknownEF04DC() {
 	short x04 = 0;
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC0927C();
 	UnknownC0EBE0();
 	TM_MIRROR = 0x11;
@@ -22125,7 +22125,7 @@ void UnknownEFD9F3() {
 
 /// $EFDA05
 void UnknownEFDA05() {
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	TM_MIRROR = 0x17;
 	Unknown7E000B = 0x2F;
 	Unknown7EB55D = 0;
@@ -22338,7 +22338,7 @@ void UnknownEFE133(short x, short y) {
 void UnknownEFE175() {
 	short x1A;
 	*(cast(ushort*)&Unknown7F0000[0]) = 0;
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC0927C();
 	UnknownC01A86();
 	AllocSpriteMem(short.min, 0);
@@ -22383,7 +22383,7 @@ void UnknownEFE175() {
 		UnknownEFEAC8();
 	}
 	SetIRQCallback(&ProcessOverworldTasks);
-	UnknownC08744();
+	SetForceBlank();
 	FadeIn(1, 1);
 	do {
 		OAMClear();
@@ -22400,7 +22400,7 @@ void UnknownEFE175() {
 			Unknown7E4370 = -1;
 			Unknown7E436E = -1;
 			Unknown7E4380 &= 0xFFF8;
-			UnknownC08726();
+			PrepareForImmediateDMA();
 			LoadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 			UnknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
 			UnknownEFD95E();
@@ -22408,7 +22408,7 @@ void UnknownEFE175() {
 			if (DebugModeNumber == 5) {
 				UnknownEFEAC8();
 			}
-			UnknownC08744();
+			SetForceBlank();
 			FadeInWithMosaic(4, 1, 0);
 		}
 		if (DebugModeNumber == 2) {

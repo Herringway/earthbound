@@ -694,7 +694,7 @@ void ReloadMap() {
 	Unknown7E436E = -1;
 	Unknown7E4380 &= 0xFFF8;
 	Unknown7E4382 &= 0xFFF8;
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	Unknown7E5DD4 = -1;
 	UnknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
 	UnknownC08D79(9);
@@ -712,7 +712,7 @@ void ReloadMap() {
 	if (Debug != 0) {
 		UnknownEFD9F3();
 	}
-	UnknownC08744();
+	SetForceBlank();
 }
 
 /// $C019B2
@@ -3483,7 +3483,7 @@ void ScreenTransition(short arg1, short arg2) {
 			WaitUntilNextFrame();
 		}
 		if (ScreenTransitionConfigTable[arg1].fadeStyle <= 50) {
-			UnknownC08726();
+			PrepareForImmediateDMA();
 		} else {
 			memset(&palettes[0][0], 0xFF, 0x200);
 			UnknownC0856B(0x18);
@@ -4790,7 +4790,7 @@ void* sbrk(ushort i) {
 }
 
 /// $C08726
-void UnknownC08726() {
+void PrepareForImmediateDMA() {
 	INIDISP_MIRROR = 0x80;
 	HDMAEN_MIRROR = 0;
 	Unknown7E0028.a = 0;
@@ -4800,7 +4800,7 @@ void UnknownC08726() {
 }
 
 /// $C08744
-void UnknownC08744() {
+void SetForceBlank() {
 	INIDISP_MIRROR = 0x80;
 	Unknown7E002B = 0;
 	while (Unknown7E002B != 0) { waitForInterrupt(); }
@@ -4827,7 +4827,7 @@ void WaitUntilNextFrame() {
 }
 
 /// $C0878B
-void UnknownC0878B(ubyte arg1) {
+void WaitNFrames(ubyte arg1) {
 	do {
 		NextFrameDisplayID++;
 		WaitUntilNextFrame();
@@ -4857,7 +4857,7 @@ void FadeInWithMosaic(short arg1, short arg2, short arg3) {
 		if (arg3 != 0) {
 			UnknownC087AB(cast(ubyte)arg3);
 		}
-		UnknownC0878B(cast(ubyte)arg2);
+		WaitNFrames(cast(ubyte)arg2);
 	}
 	SetINIDISP(0xF);
 }
@@ -4877,7 +4877,7 @@ void FadeOutWithMosaic(short arg1, short arg2, short arg3) {
 		if (arg3 != 0) {
 			UnknownC087AB(cast(ubyte)arg3);
 		}
-		UnknownC0878B(cast(ubyte)arg2);
+		WaitNFrames(cast(ubyte)arg2);
 	}
 	SetINIDISP(0x80);
 	HDMAEN_MIRROR = 0;
@@ -5200,7 +5200,7 @@ ubyte rand() {
 }
 
 /// $C08F8B
-void UnknownC08F8B() {
+void WaitDMAFinished() {
 	ubyte a = DMAQueueIndex;
 	while (Unknown7E0001 != a) { waitForInterrupt(); }
 }
@@ -8134,7 +8134,7 @@ short CosineSine(short arg1, short arg2) {
 
 /// $C0B525
 void FileSelectInit() {
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC0927C();
 	OAMClear();
 	UpdateScreen();

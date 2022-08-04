@@ -973,7 +973,7 @@ immutable ushort[8][17] PartyCharacterGraphicsTable = [
 short ShowTitleScreen(short arg1) {
 	Unknown7E9F75 = arg1;
 	short x04 = 0;
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC0927C();
 	if (0) { //interesting... this is unreachable and the entry statement seems to have been optimized out, but the body, condition and post-body statement remain
 		for (short i = 0; i < 30; i++) {
@@ -1005,7 +1005,7 @@ short ShowTitleScreen(short arg1) {
 	if (Unknown7E9F75 == 0) {
 		memset(&palettes[0][0], 0, 0x200);
 		Unknown7E0030 = 0x18;
-		UnknownC08744();
+		SetForceBlank();
 		INIDISP_MIRROR = 0xF;
 		WaitUntilNextFrame();
 		Unknown7E0030 = 0;
@@ -1050,7 +1050,7 @@ short ShowTitleScreen(short arg1) {
 		}
 		EntitySpriteMapFlags[i] &= 0x7FFF;
 	}
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	ReloadMap();
 	UndrawFlyoverText();
 	TM_MIRROR = 0x17;

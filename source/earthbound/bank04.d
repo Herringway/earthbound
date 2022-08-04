@@ -85,7 +85,7 @@ void UnknownC40B51() {
 	UnknownC08D79(1);
 	SetBG3VRAMLocation(BGTileMapSize.normal, 0x4000, 0);
 	TM_MIRROR = 4;
-	UnknownC08726();
+	PrepareForImmediateDMA();
 }
 
 /// $C40B75
@@ -3400,12 +3400,12 @@ void UnknownC4733C() {
 
 /// $C47370
 void LoadBackgroundAnimation(short bg, short arg2) {
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC08D79(9);
 	SetBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0x0000);
 	SetBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	LoadBattleBG(bg, arg2, 4);
-	UnknownC08744();
+	SetForceBlank();
 }
 
 /// $C474A8
@@ -4073,7 +4073,7 @@ void UnknownC49A4B() {
 
 /// $C49A56
 void UnknownC49A56() {
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	SetBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	CopyToVram(3, 0x3800, 0x6000, &Unknown7F0000[0]);
 	memcpy(&palettes[0][0], &MovementTextStringPalette[0], 8);
@@ -4101,7 +4101,7 @@ void UnknownC49A56() {
 	Unknown7E3C16 = 0;
 	Unknown7E9F2F = 0;
 	Unknown7E9F31 = 0;
-	UnknownC08744();
+	SetForceBlank();
 }
 
 /// $C49B6E
@@ -4130,7 +4130,7 @@ void UnknownC49C56(short arg1) {
 	if (Unknown7E9F2D >= 0x20) {
 		Unknown7E9F2D -= 0x20;
 	}
-	UnknownC08F8B();
+	WaitDMAFinished();
 	memset(&VWFBuffer[0][0], 0xFF, 0x680);
 	Unknown7E3C16 &= 7;
 	Unknown7E9F2F = 0;
@@ -4211,16 +4211,16 @@ void CoffeeTeaScene(short id) {
 	while (Unknown7E0028.a != 0) {
 		UnknownC49A4B();
 	}
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	ReloadMap();
 	ushort* y = &bg2Buffer[0];
 	for (short i = 0x380; i != 0; i--) {
 		*(y++) = 0;
 	}
 	Unknown7E5E6E = 0xFF;
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UndrawFlyoverText();
-	UnknownC08744();
+	SetForceBlank();
 	FadeIn(1, 1);
 }
 
@@ -4249,10 +4249,10 @@ void UnknownC49EC4(short id) {
 					*(buf++) = 0;
 				}
 				Unknown7E5E6E = 0xFF;
-				UnknownC08726();
+				PrepareForImmediateDMA();
 				UndrawFlyoverText();
 				EntityTickCallbackFlags[23] = x02;
-				UnknownC08744();
+				SetForceBlank();
 				return;
 			case 2:
 				Unknown7E9F2D = *(x06++);
@@ -4836,7 +4836,7 @@ immutable ushort[8] SoundStoneMelodyFlags = [
 /// $C4ACCE
 void UseSoundStone(short arg1) {
 	//x34 = arg1
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	StopMusic();
 	LoadEnemyBattleSprites();
 	Decomp(&SoundStoneGraphics[0], &Unknown7F0000[0]);
@@ -4863,7 +4863,7 @@ void UseSoundStone(short arg1) {
 		Unknown7EB37E[i].unknown2 = 1;
 		Unknown7EB37E[i].unknown6 = 0;
 	}
-	UnknownC08744();
+	SetForceBlank();
 	FadeIn(1, 1);
 	short x2E = 0xF;
 	short x30 = 0;
@@ -4969,7 +4969,7 @@ void UseSoundStone(short arg1) {
 	while (Unknown7E0028.a != 0) {
 		WaitUntilNextFrame();
 	}
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC0AFCD(1);
 	ReloadMap();
 	FadeIn(1, 1);
@@ -7040,7 +7040,7 @@ void DisplayYourSanctuaryLocation(short arg1) {
 		LoadYourSanctuaryLocation(x02);
 		WaitUntilNextFrame();
 	}
-	UnknownC08F8B();
+	WaitDMAFinished();
 	CopyToVram(0, 0x780, 0x3800, &Unknown7F0000[x02 * 0x800]);
 	memcpy(&palettes[0][0], &Unknown7F0000[0x4000 + x02 * 0x200], 0x100);
 	Unknown7E0030 = 8;
@@ -7075,7 +7075,7 @@ void TestYourSanctuaryDisplay() {
 void UnknownC4E369() {
 	Unknown7E9F2A = 0;
 	FadeOutWithMosaic(1, 1, 0);
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC021E6();
 	for (short i = 0; i < MAX_ENTITIES; i++) {
 		if (EntityScriptTable[i] == -1) {
@@ -7110,7 +7110,7 @@ void UnknownC4E369() {
 	TM_MIRROR = 0x14;
 	Unknown7EB4CF = 0;
 	Unknown7EB4D1 = 0;
-	UnknownC08744();
+	SetForceBlank();
 }
 
 /// $C4E4DA
@@ -7286,7 +7286,7 @@ void UnknownC4ED0E() {
 	InitEntity(0, 0, ActionScript.Unknown001);
 	UnknownC02D29();
 	UnknownC03A24();
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UndrawFlyoverText();
 	TM_MIRROR = 0x17;
 }
@@ -7338,7 +7338,7 @@ void UnknownC4F01D() {
 
 /// $C4F07D
 void UnknownC4F07D() {
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC021E6();
 	Unknown7EB4F7 = 0;
 	Unknown7EB4F5 = 0;
@@ -7380,7 +7380,7 @@ void UnknownC4F07D() {
 		*(x06++) = 0;
 	}
 	Unknown7EB4E7 = &StaffText[0];
-	UnknownC08744();
+	SetForceBlank();
 }
 
 /// $C4F264
@@ -7502,7 +7502,7 @@ void PlayCredits() {
 	}
 	FadeOutWithMosaic(1, 2, 0);
 	UnknownC4249A(0xB3, 0);
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	OverworldSetupVRAM();
 	UnknownC021E6();
 	EntityAllocationMinSlot = 0x17;

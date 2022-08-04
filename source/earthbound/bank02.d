@@ -2272,7 +2272,7 @@ short BattleRoutine() {
 		x25 = 0;
 		BattleMoneyScratch = 0;
 		BattleEXPScratch = 0;
-		UnknownC08726();
+		PrepareForImmediateDMA();
 		UnknownC2E0E7();
 		LoadEnemyBattleSprites();
 		LoadWindowGraphics();
@@ -2309,7 +2309,7 @@ short BattleRoutine() {
 		UnknownC0856B(0x18);
 		BattleModeFlag = 1;
 		ChangeMusic(EnemyConfigurationTable[Unknown7E9F8C[0]].music);
-		UnknownC08744();
+		SetForceBlank();
 		FadeIn(1, 1);
 		if (BattleDebug == 0) {
 			UnknownC1DCCB(x35);
@@ -3090,7 +3090,7 @@ short BattleRoutine() {
 		UnknownC2DB3F();
 	} while (Unknown7E0028.a != 0);
 	UnknownC20293();
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	UnknownC1DD5F();
 	UnknownC2E0E7();
 	return x17;
@@ -6638,7 +6638,7 @@ void UnknownC2C21F(short group, short music) {
 		}
 	}
 	CurrentBattleGroup = group;
-	UnknownC08726();
+	PrepareForImmediateDMA();
 	LoadEnemyBattleSprites();
 	LoadWindowGraphics();
 	UnknownC44963(1);
@@ -6650,7 +6650,7 @@ void UnknownC2C21F(short group, short music) {
 	if (music != 0) {
 		ChangeMusic(music);
 	}
-	UnknownC08744();
+	SetForceBlank();
 	if (x10 != 0) {
 		FadeIn(1, 4);
 		UnknownC269DE();

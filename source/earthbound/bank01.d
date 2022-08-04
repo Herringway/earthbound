@@ -6967,7 +6967,7 @@ short EnemySelectMode(short arg1) {
 			}
 			x06++;
 		}
-		UnknownC08726();
+		PrepareForImmediateDMA();
 		UnknownC2EEE7();
 		for (short i = 8; i < BattlersTable.length; i++) {
 			memset(&BattlersTable[i], 0, Battler.sizeof);
@@ -6977,7 +6977,7 @@ short EnemySelectMode(short arg1) {
 		}
 		UnknownC2F121();
 		UnknownC0856B(0x18);
-		UnknownC08744();
+		SetForceBlank();
 		FadeIn(1, 1);
 	}
 	SetWindowFocus(Window.TextBattle);
@@ -7180,7 +7180,7 @@ short EnterYourNamePlease(short arg1) {
 	} else {
 		UnknownC438A5(0, 0);
 		PrintString(26, &NameRegistryRequestString[0]);
-		UnknownC08F8B();
+		WaitDMAFinished();
 		UnknownC438A5(0, 1);
 		UnknownC441B7(24);
 		UnknownC438A5(0, 1);
