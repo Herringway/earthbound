@@ -2632,7 +2632,7 @@ short UnknownC4605A(short arg1) {
 
 /// $C4608C
 short UnknownC4608C(short arg1) {
-	if (arg1 == 0) {
+	if (arg1 == 255) {
 		return gameState.currentPartyMembers;
 	}
 	for (short i = 0; i < 6; i++) {
