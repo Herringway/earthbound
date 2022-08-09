@@ -4573,7 +4573,7 @@ void UnknownC4A67E(short arg1, short arg2) {
 	}
 	Unknown7EAEC9 = 0;
 	Unknown7EAECA = 0;
-	Unknown7EAEC8 = 1;
+	Unknown7EAECB = 1;
 	if ((arg2 & 0x80) != 0) {
 		Unknown7EAEE4 = cast(ubyte)arg1;
 		Unknown7EAEC3 = 4;
