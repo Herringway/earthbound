@@ -166,6 +166,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/OverworldSetupVRAM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/PlaySfx.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/PrepareBackgroundOffsetTables.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/PrepareForImmediateDMA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ProcessOverworldTasks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ProcessQueuedInteractions.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/ProcessSfxQueue.html</loc></url>
@@ -188,6 +189,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/SetColourAddSubMode.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/SetDirection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/SetDirection8.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/SetForceBlank.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/SetINIDISP.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/SetIRQCallback.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/SetOAMSize.html</loc></url>
@@ -350,9 +352,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08456.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08496.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0856B.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08726.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08744.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0878B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC087AB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0888B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC088A5.html</loc></url>
@@ -368,7 +367,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08CBB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08CD5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08D79.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08F8B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08F98.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC08FC2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC09279.html</loc></url>
@@ -589,7 +587,9 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/UnknownC0F41E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UpdateParty.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/UpdateScreen.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/WaitDMAFinished.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/WaitForSPC700.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/WaitNFrames.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/WaitUntilNextFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/AttemptHomesickness.html</loc></url>
