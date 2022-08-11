@@ -3,7 +3,12 @@ module earthbound.text;
 import earthbound.actionscripts;
 import earthbound.commondefs;
 
-import std.array : join;
+const(ubyte)* getTextBlock(string label) {
+	import std.experimental.logger : tracef;
+	tracef("Looking for text: %s", label);
+	static immutable ubyte[1] r = [2];
+	return &r[0];
+}
 
 ubyte[] textCommand(T...)(ubyte command, T args) {
 	return allBytes(command, args);
@@ -156,7 +161,7 @@ ubyte[] EBTEXT_SHOW_WALLET_WINDOW() {
 
 
 ubyte[] EBTEXT_LOAD_STRING_TO_MEMORY(string str) {
-	return textSubCommand(0x19, 0x02, EBString(str), 0x02);
+	return textSubCommand(0x19, 0x02, ebString(str), 0x02);
 }
 
 ubyte[] EBTEXT_CLEAR_LOADED_STRINGS() {
@@ -849,23 +854,4 @@ ubyte[] EBTEXT_CREATE_FLOATING_SPRITE_NEAR_ENTITY(short arg, ubyte arg2) {
 
 ubyte[] EBTEXT_DELETE_FLOATING_SPRITE_NEAR_ENTITY(short arg) {
 	return textSubCommand(0x1F, 0xF4, arg);
-}
-
-mixin(import("text_data/0.decs.d"));
-mixin(import("text_data/1.decs.d"));
-mixin(import("text_data/2.decs.d"));
-mixin(import("text_data/3.decs.d"));
-mixin(import("text_data/4.decs.d"));
-mixin(import("text_data/5.decs.d"));
-mixin(import("text_data/6.decs.d"));
-mixin(import("text_data/7.decs.d"));
-
-shared static this() {
-	mixin(import("text_data/1.d"));
-	mixin(import("text_data/2.d"));
-	mixin(import("text_data/3.d"));
-	mixin(import("text_data/4.d"));
-	mixin(import("text_data/5.d"));
-	mixin(import("text_data/6.d"));
-	mixin(import("text_data/7.d"));
 }

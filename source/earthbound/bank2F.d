@@ -481,12 +481,12 @@ void unknownEF0D73() {
 
 /// $EF0D8D
 void unknownEF0D8D() {
-	unknownC064E3(8, QueuedInteractionPtr(&timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1[0]));
+	unknownC064E3(8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
 }
 
 /// $EF0DFA
 void unknownEF0DFA() {
-	unknownC064E3(10, QueuedInteractionPtr(&timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2[0]));
+	unknownC064E3(10, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
 }
 
 /// $EF0E67

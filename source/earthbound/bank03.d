@@ -1467,17 +1467,17 @@ immutable FileSelectSummarySpriteConfigEntry[5] fileSelectSummarySpriteConfig = 
 ];
 
 /// $C3FD8D
-immutable ubyte[][10] attractModeText = [
-	textAttractMode0,
-	textAttractMode1,
-	textAttractMode2,
-	textAttractMode3,
-	textAttractMode4,
-	textAttractMode5,
-	textAttractMode6,
-	textAttractMode7,
-	textAttractMode8,
-	textAttractMode9,
+immutable string[10] attractModeText = [
+	"textAttractMode0",
+	"textAttractMode1",
+	"textAttractMode2",
+	"textAttractMode3",
+	"textAttractMode4",
+	"textAttractMode5",
+	"textAttractMode6",
+	"textAttractMode7",
+	"textAttractMode8",
+	"textAttractMode9",
 ];
 
 /// $C3FDBD

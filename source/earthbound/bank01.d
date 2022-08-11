@@ -1697,16 +1697,16 @@ void debugYButtonMenu() {
 				respawnY = gameState.leaderY.integer;
 				break;
 			case 4:
-				x1A = textDebugAppleMenu.ptr;
+				x1A = getTextBlock("textDebugAppleMenu");
 				break;
 			case 5:
-				x1A = textDebugBananaMenu.ptr;
+				x1A = getTextBlock("textDebugBananaMenu");
 				break;
 			case 6:
-				x1A = textDebugUnknownMenu.ptr;
+				x1A = getTextBlock("textDebugUnknownMenu");
 				break;
 			case 7:
-				x1A = textDebugUnknownMenu2.ptr;
+				x1A = getTextBlock("textDebugUnknownMenu2");
 				break;
 			case 8:
 				for (short i = 0; i < 30; i++) {
@@ -1765,10 +1765,10 @@ void debugYButtonMenu() {
 				unknownEFEA4A();
 				goto Unknown56;
 			case 22:
-				x1A = textBattleGiygasPrayer91.ptr;
+				x1A = getTextBlock("textBattleGiygasPrayer91");
 				break;
 			case 23:
-				x1A = textEndOfGamePickyEvent.ptr;
+				x1A = getTextBlock("textEndOfGamePickyEvent");
 				unknownC1008E();
 				hideHPPPWindows();
 				displayText(x1A);
@@ -1802,12 +1802,12 @@ const(ubyte)* talkTo() {
 		return null;
 	}
 	if (currentTPTEntry == -2) {
-		x0A = unknown7E5DDE;
+		x0A = getTextBlock(unknown7E5DDE);
 	} else {
 		switch (npcConfig[currentTPTEntry].type) {
 			case NPCType.person:
 				unknownC042C2(unknown7E5D64);
-				x0A = &npcConfig[currentTPTEntry].talkText[0];
+				x0A = getTextBlock(npcConfig[currentTPTEntry].talkText);
 				break;
 			case NPCType.itemBox:
 			case NPCType.object:
@@ -1828,7 +1828,7 @@ const(ubyte)* check() {
 		return null;
 	}
 	if (currentTPTEntry == -2) {
-		return unknown7E5DDE;
+		return getTextBlock(unknown7E5DDE);
 	}
 	switch (npcConfig[currentTPTEntry].type) {
 		case NPCType.person:
@@ -1841,9 +1841,9 @@ const(ubyte)* check() {
 				setArgumentMemory(npcConfig[currentTPTEntry].item - 0x100);
 			}
 			currentInteractingEventFlag = npcConfig[currentTPTEntry].eventFlag;
-			return &npcConfig[currentTPTEntry].talkText[0];
+			return getTextBlock(npcConfig[currentTPTEntry].talkText);
 		case NPCType.object:
-			return &npcConfig[currentTPTEntry].talkText[0];
+			return getTextBlock(npcConfig[currentTPTEntry].talkText);
 		default: break;
 	}
 	return null;
@@ -1889,7 +1889,7 @@ void openMenuButton() {
 			case MainMenuOptions.talkTo:
 				const(ubyte)* textPtr = talkTo();
 				if (textPtr == null) {
-					textPtr = textWhoAreYouTalkingTo.ptr;
+					textPtr = getTextBlock("textWhoAreYouTalkingTo");
 				}
 				displayText(textPtr);
 				break mainLoop;
@@ -1972,7 +1972,7 @@ void openMenuButton() {
 									unknownC10F40(2);
 									unknown7E5E79 = 0xFF;
 									createWindowN(Window.textStandard);
-									displayText(&itemData[getCharacterItem(cast(short)x1F, x1D)].helpText[0]);
+									displayText(getTextBlock(itemData[getCharacterItem(cast(short)x1F, x1D)].helpText));
 									closeWindow(Window.textStandard);
 									setWindowFocus(0);
 									unknown7E5E6C = 1;
@@ -1997,7 +1997,7 @@ void openMenuButton() {
 										createWindowN(Window.textStandard);
 										setWorkingMemory(WorkingMemory(x1F));
 										setArgumentMemory(x1D);
-										displayText(textOnlyOneWhoShouldCarryThis.ptr);
+										displayText(getTextBlock("textOnlyOneWhoShouldCarryThis"));
 										closeWindow(Window.textStandard);
 										x1A = 0;
 										continue;
@@ -2021,39 +2021,39 @@ void openMenuButton() {
 									getActiveWindowAddress().argument = x1D;
 									switch (x16) {
 										case 0: //give to self, alive
-											displayText(textRearrangedOwnItems.ptr);
+											displayText(getTextBlock("textRearrangedOwnItems"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 1: //give to other, alive, inventory full
-											displayText(textCouldntGiveAliveInventoryFull.ptr);
+											displayText(getTextBlock("textCouldntGiveAliveInventoryFull"));
 											break;
 										case 2: //give to other, dead, inventory full
-											displayText(textCouldntGiveDeadInventoryFull.ptr);
+											displayText(getTextBlock("textCouldntGiveDeadInventoryFull"));
 											break;
 										case 3: //give to other, alive
-											displayText(textGaveItemAlive.ptr);
+											displayText(getTextBlock("textGaveItemAlive"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 4: //give to other, dead
-											displayText(textGaveItemDead.ptr);
+											displayText(getTextBlock("textGaveItemDead"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 5: //give to self, dead
-											displayText(textRearrangedOwnItemsDead.ptr);
+											displayText(getTextBlock("textRearrangedOwnItemsDead"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 6: //give to other, self dead, other alive, inventory full
-											displayText(textCouldntTakeFromCharInventoryFull.ptr);
+											displayText(getTextBlock("textCouldntTakeFromCharInventoryFull"));
 											break;
 										case 7: //give to other, self dead, other dead, inventory full
-											displayText(textCouldntGiveToCharInventoryFull.ptr);
+											displayText(getTextBlock("textCouldntGiveToCharInventoryFull"));
 											break;
 										case 8: //give to other, self dead, other alive
-											displayText(textTookItemFromDead.ptr);
+											displayText(getTextBlock("textTookItemFromDead"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 9: //give to other, self dead, other dead
-											displayText(textTookItemFromDeadGaveToDead.ptr);
+											displayText(getTextBlock("textTookItemFromDeadGaveToDead"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										default: //invalid
@@ -2067,7 +2067,7 @@ void openMenuButton() {
 									createWindowN(Window.textStandard);
 									setWorkingMemory(WorkingMemory(x1F));
 									setArgumentMemory(x1D);
-									displayText(textGotRidOfOwnItem.ptr);
+									displayText(getTextBlock("textGotRidOfOwnItem"));
 									closeWindow(Window.textStandard);
 									closeWindow(Window.inventoryMenu);
 									closeWindow(Window.inventory);
@@ -2104,7 +2104,7 @@ void openMenuButton() {
 			case MainMenuOptions.check:
 				const(ubyte)* textPtr = check();
 				if (textPtr == null) {
-					textPtr = textNoProblemHere.ptr;
+					textPtr = getTextBlock("textNoProblemHere");
 				}
 				displayText(textPtr);
 				break mainLoop;
@@ -2135,7 +2135,7 @@ void openMenuButtonCheckTalk() {
 	if (textPtr is null) {
 		textPtr = check();
 		if (textPtr is null) {
-			textPtr = textNoProblemHere.ptr;
+			textPtr = getTextBlock("textNoProblemHere");
 		}
 	}
 	displayText(textPtr);
@@ -4896,7 +4896,7 @@ void unknownC1952F(short arg1) {
 	createWindowN(Window.statusMenu);
 	windowTickWithoutInstantPrinting();
 	unknown7E5E71 = 1;
-	displayText(statusWindowText.ptr);
+	displayText(getTextBlock("statusWindowText"));
 	unknown7E5E71 = 0;
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		unknown7E5E7A = 8;
@@ -5488,7 +5488,7 @@ ushort unknownC1AAFA() {
 ushort unknownC1AC00() {
 	ushort x12 = unknownC19441();
 	if (x12 != 0) {
-		displayText(&telephoneContacts[x12].text[0]);
+		displayText(getTextBlock(telephoneContacts[x12].text));
 	}
 	return x12;
 }
@@ -5629,54 +5629,54 @@ short overworldUseItem(short arg1, short arg2, short) {
 	switch (itemData[x01].type & (ItemType.equippable | ItemType.edible)) {
 		case 0:
 			x24 = 1;
-			x26 = &battleActionTable[itemData[x01].battleAction].text[0];
+			x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 			break;
 		case ItemType.equippable:
-			x26 = textItemCanBeEquipped.ptr;
+			x26 = getTextBlock("textItemCanBeEquipped");
 			break;
 		case ItemType.edible:
 			x24 = 1;
-			x26 = &battleActionTable[itemData[x01].battleAction].text[0];
+			x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 			break;
 		case ItemType.healingItem:
 			if ((itemData[x01].flags & itemUsableFlags[arg1 - 1]) == 0) {
-				x26 = textCouldNotUseVeryWell.ptr;
+				x26 = getTextBlock("textCouldNotUseVeryWell");
 			} else {
 				switch (itemData[x01].type & 0xC) {
 					case 0:
 						x24 = 1;
-						x26 = &battleActionTable[itemData[x01].battleAction].text[0];
+						x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 						break;
 					case 4:
-						x26 = textCantBeUsedHere.ptr;
+						x26 = getTextBlock("textCantBeUsedHere");
 						break;
 					case 8:
 						switch(itemData[x01].type & 3) {
 							case 0:
 							case 1:
 								x24 = 1;
-								x26 = &battleActionTable[itemData[x01].battleAction].text[0];
+								x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 								break;
 							case 2:
 								if (unknownC1AD7D() == x01) {
 									if ((x01 == ItemID.bicycle) && (unknownC03C4B() != 0)) {
-										x26 = textCantRideBikeHere.ptr;
+										x26 = getTextBlock("textCantRideBikeHere");
 									} else {
 										x24 = 1;
-										x26 = &battleActionTable[itemData[x01].battleAction].text[0];
+										x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 									}
 								} else {
-									x26 = textCantBeUsedHere.ptr;
+									x26 = getTextBlock("textCantBeUsedHere");
 								}
 								break;
 							case 3:
 								x24 = 1;
 								short tmp = unknownC1AD42();
 								if ((tmp == 1) || (tmp == 3)) {
-									x26 = &npcConfig[currentTPTEntry].checkText[0];
+									x26 = getTextBlock(npcConfig[currentTPTEntry].checkText);
 								}
 								if (x26 == null) {
-									x26 = &battleActionTable[itemData[x01].battleAction].text[0];
+									x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 								}
 								break;
 							default: break;
@@ -5708,7 +5708,7 @@ short overworldUseItem(short arg1, short arg2, short) {
 		unknownC1ACA1(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.sizeof);
 	}
 	if (x26 == null) {
-		x26 = textCantUseItem.ptr;
+		x26 = getTextBlock("textCantUseItem");
 	}
 	if ((x24 != 0) && (battleActionTable[itemData[x01].battleAction].func != null)) {
 		currentAttacker = &battlersTable[0];
@@ -5782,7 +5782,7 @@ short unknownC1B5B6() {
 				}
 				if (battleActionTable[psiAbilityTable[x01].battleAction].ppCost > partyCharacters[x26 - 1].pp.current.integer) {
 					createWindowN(Window.textBattle);
-					displayText(textNotEnoughPP.ptr);
+					displayText(getTextBlock("textNotEnoughPP"));
 					closeFocusWindowN();
 					x00 = 0;
 				} else {
@@ -5791,7 +5791,7 @@ short unknownC1B5B6() {
 							x00 = cast(ubyte)unknownC1AAFA();
 						} else {
 							createWindowN(Window.textBattle);
-							displayText(textCannotTeleportHere.ptr);
+							displayText(getTextBlock("textCannotTeleportHere"));
 							closeFocusWindowN();
 							x00 = 0;
 						}
@@ -5819,7 +5819,7 @@ short unknownC1B5B6() {
 			}
 			unknownC1ACF8(x01);
 			createWindowN(Window.textStandard);
-			displayText(battleActionTable[psiAbilityTable[x01].battleAction].text.ptr);
+			displayText(getTextBlock(battleActionTable[psiAbilityTable[x01].battleAction].text));
 		}
 		if (battleActionTable[psiAbilityTable[x01].battleAction].func !is null) {
 			currentTarget = &battlersTable[1];
@@ -5858,7 +5858,7 @@ void unknownC1BB06(short arg1) {
 		createWindowN(Window.unknown2f);
 		windowTickWithoutInstantPrinting();
 		unknown7E9D19 = arg1;
-		displayText(&psiAbilityTable[arg1].text[0]);
+		displayText(getTextBlock(psiAbilityTable[arg1].text));
 		clearInstantPrinting();
 	}
 }
@@ -5979,7 +5979,7 @@ short attemptHomesickness() {
 void getOffBicycle() {
 	createWindowN(Window.textStandard);
 	setWorkingMemory(WorkingMemory(1));
-	displayText(textGotOffBike.ptr);
+	displayText(getTextBlock("textGotOffBike"));
 	closeFocusWindowN();
 	windowTick();
 	unknownC03CFD();
@@ -6342,7 +6342,7 @@ short battlePSIMenu(UnknownA97D* arg1) {
 				if (battleActionTable[psiAbilityTable[x1C].battleAction].ppCost > partyCharacters[arg1.unknown0 - 1].pp.target) {
 					createWindowN(Window.textBattle);
 					enableBlinkingTriangle(2);
-					displayText(textNotEnoughPP.ptr);
+					displayText(getTextBlock("textNotEnoughPP"));
 					clearBlinkingPrompt();
 					closeFocusWindowN();
 					x16 = 0;
@@ -6482,7 +6482,7 @@ void levelUpChar(short arg1, short arg2) {
 		enableBlinkingTriangle(1);
 		unknownC1ACA1(&partyCharacters[arg1].name[0], 5);
 		unknownC1AD0A(partyCharacters[arg1].level);
-		displayText(textLevelIsNowX.ptr);
+		displayText(getTextBlock("textLevelIsNowX"));
 		enableBlinkingTriangle(2);
 	}
 	short x02 = unknownC1D08B(x16, statsGrowthVars[arg2].offense, partyCharacters[arg1].baseOffense);
@@ -6491,7 +6491,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathOffense(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(textLevelUpOffense.ptr);
+			displayText(getTextBlock("textLevelUpOffense"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].defense, partyCharacters[arg1].baseDefense);
@@ -6500,7 +6500,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathDefense(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(textLevelUpDefense.ptr);
+			displayText(getTextBlock("textLevelUpDefense"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].speed, partyCharacters[arg1].baseSpeed);
@@ -6509,7 +6509,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathSpeed(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(textLevelUpSpeed.ptr);
+			displayText(getTextBlock("textLevelUpSpeed"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].guts, partyCharacters[arg1].baseGuts);
@@ -6518,7 +6518,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathGuts(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(textLevelUpGuts.ptr);
+			displayText(getTextBlock("textLevelUpGuts"));
 		}
 	}
 	if (10 > x16) {
@@ -6531,7 +6531,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathVitality(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(textLevelUpVitality.ptr);
+			displayText(getTextBlock("textLevelUpVitality"));
 		}
 	}
 	if (10 > x16) {
@@ -6544,7 +6544,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathIQ(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(textLevelUpIQ.ptr);
+			displayText(getTextBlock("textLevelUpIQ"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].luck, partyCharacters[arg1].baseLuck);
@@ -6553,7 +6553,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathLuck(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(textLevelUpLuck.ptr);
+			displayText(getTextBlock("textLevelUpLuck"));
 		}
 	}
 	short x14 = cast(short)(partyCharacters[arg1].vitality * 15 - partyCharacters[arg1].maxHP);
@@ -6562,7 +6562,7 @@ void levelUpChar(short arg1, short arg2) {
 	partyCharacters[arg1].hp.target += x02;
 	if (arg2 != 0) {
 		unknownC1AD0A(x02);
-		displayText(textLevelUpMaxHP.ptr);
+		displayText(getTextBlock("textLevelUpMaxHP"));
 	}
 	if (arg1 != 2) {
 		short x12 = ((arg1 == 0) && (getEventFlag(EventFlag.magicantCompleted) != 0)) ? partyCharacters[arg1].iq * 2 : partyCharacters[arg1].iq;
@@ -6573,7 +6573,7 @@ void levelUpChar(short arg1, short arg2) {
 			partyCharacters[arg1].pp.target += x14;
 			if (arg2 != 0) {
 				unknownC1AD0A(x14);
-				displayText(textLevelUpMaxPP.ptr);
+				displayText(getTextBlock("textLevelUpMaxPP"));
 			}
 		}
 		if (arg2 != 0) {
@@ -6584,7 +6584,7 @@ void levelUpChar(short arg1, short arg2) {
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].nessLevel == x02) {
 							unknownC1ACF8(i);
-							displayText(textLevelUpPSILearned.ptr);
+							displayText(getTextBlock("textLevelUpPSILearned"));
 						}
 					}
 					break;
@@ -6592,7 +6592,7 @@ void levelUpChar(short arg1, short arg2) {
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].paulaLevel == x02) {
 							unknownC1ACF8(i);
-							displayText(textLevelUpPSILearned.ptr);
+							displayText(getTextBlock("textLevelUpPSILearned"));
 						}
 					}
 					break;
@@ -6600,7 +6600,7 @@ void levelUpChar(short arg1, short arg2) {
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].pooLevel == x02) {
 							unknownC1ACF8(i);
-							displayText(textLevelUpPSILearned.ptr);
+							displayText(getTextBlock("textLevelUpPSILearned"));
 						}
 					}
 					break;
@@ -6654,7 +6654,7 @@ void showHPAlert(short arg1) {
 	unknownC0943C();
 	createWindowN(Window.textStandard);
 	unknownC1AC4A(&partyCharacters[arg1].name[0], 5);
-	displayText(textAlertConditionCritical.ptr);
+	displayText(getTextBlock("textAlertConditionCritical"));
 	closeFocusWindowN();
 	windowTick();
 	unknownC09451();
@@ -6851,16 +6851,16 @@ void battleActionSwitchWeapons() {
 		currentAttacker.offense = cast(short)(currentAttacker.baseOffense + x18);
 		currentAttacker.baseGuts = partyCharacters[currentAttacker.id - 1].guts;
 		currentAttacker.guts = cast(short)(currentAttacker.baseGuts + x04);
-		displayText(textBattleEquipXInstead.ptr);
+		displayText(getTextBlock("textBattleEquipXInstead"));
 	} else {
-		displayText(textBattleCouldNotEquipAttackAnyway.ptr);
+		displayText(getTextBlock("textBattleCouldNotEquipAttackAnyway"));
 	}
 	short tmp = partyCharacters[currentAttacker.id - 1].items[partyCharacters[currentAttacker.id - 1].equipment[EquipmentSlot.weapon] - 1];
 	if ((tmp != 0) && ((itemData[tmp].type & 3) == 1)) {
-		displayText(&battleActionTable[5].text[0]);
+		displayText(getTextBlock(battleActionTable[5].text));
 		battleActionTable[5].func();
 	} else {
-		displayText(&battleActionTable[4].text[0]);
+		displayText(getTextBlock(battleActionTable[4].text));
 		battleActionTable[4].func();
 	}
 	clearBlinkingPrompt();
@@ -6874,7 +6874,7 @@ void battleActionSwitchArmor() {
 		short x04 = cast(short)(currentAttacker.speed - currentAttacker.baseSpeed);
 		short x02 = cast(short)(currentAttacker.luck - currentAttacker.baseLuck);
 		equipItem(currentAttacker.id, currentAttacker.actionItemSlot);
-		displayText(textBattleEquipXInstead.ptr);
+		displayText(getTextBlock("textBattleEquipXInstead"));
 		currentAttacker.baseDefense = partyCharacters[currentAttacker.id - 1].defense;
 		currentAttacker.defense = cast(short)(currentAttacker.baseDefense + x16);
 		currentAttacker.baseSpeed = partyCharacters[currentAttacker.id - 1].speed;
@@ -6888,7 +6888,7 @@ void battleActionSwitchArmor() {
 		currentAttacker.hypnosisResist = calcPSIResistanceModifiers(partyCharacters[currentAttacker.id - 1].hypnosisBrainshockResist);
 		currentAttacker.brainshockResist = calcPSIResistanceModifiers(cast(ubyte)(3 - partyCharacters[currentAttacker.id - 1].hypnosisBrainshockResist));
 	} else {
-		displayText(textBattleCouldNotEquipAttackAnyway.ptr);
+		displayText(getTextBlock("textBattleCouldNotEquipAttackAnyway"));
 	}
 	clearBlinkingPrompt();
 }
@@ -7260,7 +7260,7 @@ void corruptionCheck() {
 			continue;
 		}
 		unknownC1AD0A(i + 1);
-		displayText(textSaveFileLost.ptr);
+		displayText(getTextBlock("textSaveFileLost"));
 	}
 	closeFocusWindowN();
 	unknown7E9F79 = 0;
@@ -7832,7 +7832,7 @@ void fileMenuLoop() {
 								respawnY = gameState.leaderY.integer;
 								unknownC064D4();
 								unknownC0B65F(0x840, 0x6E8);
-								unknownC46881(textFileSelectScreen1.ptr);
+								unknownC46881(getTextBlock("textFileSelectScreen1"));
 								setEventFlag(EventFlag.unknown00B, 1);
 								showNPCFlag = 1;
 								break outermost;
@@ -7848,7 +7848,7 @@ void fileMenuLoop() {
 	selectedTextSpeed = cast(ushort)(gameState.textSpeed - 1);
 	unknown7E964B = (gameState.textSpeed == 3) ? 0 : 30;
 	unknown7E5DBA = 0;
-	displayText(textFileSelectScreen2.ptr);
+	displayText(getTextBlock("textFileSelectScreen2"));
 }
 
 /// $C1FF2C

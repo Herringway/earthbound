@@ -3490,7 +3490,7 @@ void unknownC065C2(short direction) {
 		//unknown7E5DDE = doorData[unknown7E5DBC & 0x7FFF]
 
 		//not sure if this is the correct type...
-		unknown7E5DDE = &unknown7E5DBC.entryA.textPtr[0];
+		unknown7E5DDE = unknown7E5DBC.entryA.textPtr;
 		currentTPTEntry = -2;
 	}
 }
@@ -3630,7 +3630,7 @@ void unknownC06A07() {
 /// $C06A1B
 void unknownC06A1B(const(DoorEntryB)* arg1) {
 	if (getEventFlag(arg1.eventFlag & 0x7FFF) == (arg1.eventFlag > eventFlagUnset) ? 1 : 0) {
-		unknownC064E3(0, QueuedInteractionPtr(&arg1.textPtr[0]));
+		unknownC064E3(0, QueuedInteractionPtr(getTextBlock(arg1.textPtr)));
 		unknown7E5DAA = 0;
 		unknown7E5DA8 = 0;
 	}
@@ -3682,7 +3682,7 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 
 /// $C06B21
 void spawnBuzzBuzz() {
-	displayText(textSpawnBuzzBuzz.ptr);
+	displayText(getTextBlock("textSpawnBuzzBuzz"));
 	unknownEF0EE8();
 }
 
@@ -3704,7 +3704,7 @@ void unknownC06B3D() {
 /// $C06BFF
 void doorTransition(const(DoorEntryA)* arg1) {
 	if (arg1.textPtr !is null) {
-		unknownC10004(&arg1.textPtr[0]);
+		unknownC10004(getTextBlock(arg1.textPtr));
 	}
 	unknown7E5DAA = 0;
 	unknown7E5DA8 = 0;
@@ -4103,7 +4103,7 @@ void processQueuedInteractions() {
 			break;
 		case 10:
 			unknownC10004(ptr.textPtr);
-			if (ptr.textPtr is textDadCalls.ptr) {
+			if (ptr.textPtr == getTextBlock("textDadCalls")) {
 				dadPhoneTimer = 0x697;
 				unknown7E9E56 = 0;
 			}
@@ -6466,6 +6466,13 @@ void* movementDataReadPtr(ref const(ubyte)* arg1) {
 	return a;
 }
 
+/// does not exist in original game
+string movementDataReadString(ref const(ubyte)* arg1) {
+	string a = *cast(string*)&arg1[actionScriptVar80];
+	arg1 += string.sizeof;
+	return a;
+}
+
 /// $C09D9E
 void jumpToLoadedMovementPtr() {
 	movement42LoadedPtr();
@@ -7330,16 +7337,16 @@ void unknownC0A87A(short, ref const(ubyte)* arg2) {
 
 /// $C0A88D
 void unknownC0A88D(short, ref const(ubyte)* arg2) {
-	const(ubyte)* tmp = cast(const(ubyte)*)movementDataReadPtr(arg2);
+	string tmp = movementDataReadString(arg2);
 	actionScriptVar94 = arg2;
-	unknownC46E4F(tmp);
+	unknownC46E4F(getTextBlock(tmp));
 }
 
 /// $C0A8A0
 void unknownC0A8A0(short, ref const(ubyte)* arg2) {
-	const(ubyte)* tmp = cast(const(ubyte)*)movementDataReadPtr(arg2);
+	string tmp = movementDataReadString(arg2);
 	actionScriptVar94 = arg2;
-	unknownC466F0(tmp);
+	unknownC466F0(getTextBlock(tmp));
 }
 
 /// $C0A8B3
@@ -9517,7 +9524,7 @@ void loadDadPhone() {
 	if (getEventFlag(EventFlag.unknown307) != 0) {
 		return;
 	}
-	unknownC064E3(10, QueuedInteractionPtr(textDadCalls.ptr));
+	unknownC064E3(10, QueuedInteractionPtr(getTextBlock("textDadCalls")));
 	unknown7E9E56 = 1;
 }
 
@@ -10053,7 +10060,7 @@ void teleportMainLoop() {
 			unknownC0DD79();
 			unknownC0E897();
 			if (teleportStyle == TeleportStyle.unknown) {
-				unknownC46881(textLearnedPSITeleportAlpha.ptr);
+				unknownC46881(getTextBlock("textLearnedPSITeleportAlpha"));
 			}
 			break;
 		case 2:

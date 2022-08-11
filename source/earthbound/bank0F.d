@@ -1329,42 +1329,42 @@ immutable SectorDoors[32][40] doorConfig = [
 	]
 ];
 
-immutable DoorEntryA doorEntry0 = DoorEntryA(textDoor000, EventFlag.unknown279 | eventFlagUnset, 0xC09A, 0x03B1, 0x04);
-immutable DoorEntryA doorEntry1 = DoorEntryA(textDoor001, EventFlag.none, 0x010B, 0x0087, 0x01);
+immutable DoorEntryA doorEntry0 = DoorEntryA("textDoor000", EventFlag.unknown279 | eventFlagUnset, 0xC09A, 0x03B1, 0x04);
+immutable DoorEntryA doorEntry1 = DoorEntryA("textDoor001", EventFlag.none, 0x010B, 0x0087, 0x01);
 immutable DoorEntryA doorEntry2 = DoorEntryA(null, EventFlag.none, 0x03EF, 0x0119, 0x01);
 immutable DoorEntryA doorEntry3 = DoorEntryA(null, EventFlag.none, 0x83FC, 0x00F3, 0x01);
-immutable DoorEntryA doorEntry4 = DoorEntryA(textDoor004, EventFlag.none, 0xC434, 0x0158, 0x01);
+immutable DoorEntryA doorEntry4 = DoorEntryA("textDoor004", EventFlag.none, 0xC434, 0x0158, 0x01);
 immutable DoorEntryA doorEntry5 = DoorEntryA(null, EventFlag.none, 0x80B9, 0x0367, 0x01);
-immutable DoorEntryA doorEntry6 = DoorEntryA(textDoor006, EventFlag.unknown06C | eventFlagUnset, 0xC0BA, 0x0375, 0x04);
-immutable DoorEntryA doorEntry7 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC0A9, 0x03F0, 0x01);
-immutable DoorEntryA doorEntry8 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC0BD, 0x03DC, 0x06);
-immutable DoorEntryA doorEntry9 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC03D, 0x03BC, 0x06);
-immutable DoorEntryA doorEntry10 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC02D, 0x03FC, 0x04);
-immutable DoorEntryA doorEntry11 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC04D, 0x03B8, 0x04);
-immutable DoorEntryA doorEntry12 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC06A, 0x03B1, 0x04);
-immutable DoorEntryA doorEntry13 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC04D, 0x03EC, 0x01);
-immutable DoorEntryA doorEntry14 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC0BD, 0x03FC, 0x01);
-immutable DoorEntryA doorEntry15 = DoorEntryA(textDoor015, EventFlag.unknown2EA | eventFlagUnset, 0xC0BA, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry16 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC07D, 0x039C, 0x01);
-immutable DoorEntryA doorEntry17 = DoorEntryA(textDoor000, EventFlag.unknown278, 0x0056, 0x03D1, 0x04);
-immutable DoorEntryA doorEntry18 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC059, 0x03E4, 0x06);
-immutable DoorEntryA doorEntry19 = DoorEntryA(textDoor019, EventFlag.unknown278, 0xC031, 0x0384, 0x01);
-immutable DoorEntryA doorEntry20 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC0AD, 0x0398, 0x06);
-immutable DoorEntryA doorEntry21 = DoorEntryA(textDoor021, EventFlag.unknown1D4, 0xC06D, 0x0398, 0x04);
-immutable DoorEntryA doorEntry22 = DoorEntryA(textDoor022, EventFlag.unknown1DA, 0xC02A, 0x03CD, 0x04);
-immutable DoorEntryA doorEntry23 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC03D, 0x03F4, 0x01);
-immutable DoorEntryA doorEntry24 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC07A, 0x0371, 0x04);
-immutable DoorEntryA doorEntry25 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC09D, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry26 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC08A, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry27 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC09D, 0x0378, 0x04);
-immutable DoorEntryA doorEntry28 = DoorEntryA(textDoor028, EventFlag.unknown154 | eventFlagUnset, 0xC02A, 0x03CD, 0x00);
-immutable DoorEntryA doorEntry29 = DoorEntryA(textDoor000, EventFlag.unknown278, 0xC0AD, 0x03B4, 0x04);
-immutable DoorEntryA doorEntry30 = DoorEntryA(textDoor030, EventFlag.none, 0x02E6, 0x008B, 0x01);
+immutable DoorEntryA doorEntry6 = DoorEntryA("textDoor006", EventFlag.unknown06C | eventFlagUnset, 0xC0BA, 0x0375, 0x04);
+immutable DoorEntryA doorEntry7 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC0A9, 0x03F0, 0x01);
+immutable DoorEntryA doorEntry8 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC0BD, 0x03DC, 0x06);
+immutable DoorEntryA doorEntry9 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC03D, 0x03BC, 0x06);
+immutable DoorEntryA doorEntry10 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC02D, 0x03FC, 0x04);
+immutable DoorEntryA doorEntry11 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC04D, 0x03B8, 0x04);
+immutable DoorEntryA doorEntry12 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC06A, 0x03B1, 0x04);
+immutable DoorEntryA doorEntry13 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC04D, 0x03EC, 0x01);
+immutable DoorEntryA doorEntry14 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC0BD, 0x03FC, 0x01);
+immutable DoorEntryA doorEntry15 = DoorEntryA("textDoor015", EventFlag.unknown2EA | eventFlagUnset, 0xC0BA, 0x03B9, 0x04);
+immutable DoorEntryA doorEntry16 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC07D, 0x039C, 0x01);
+immutable DoorEntryA doorEntry17 = DoorEntryA("textDoor000", EventFlag.unknown278, 0x0056, 0x03D1, 0x04);
+immutable DoorEntryA doorEntry18 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC059, 0x03E4, 0x06);
+immutable DoorEntryA doorEntry19 = DoorEntryA("textDoor019", EventFlag.unknown278, 0xC031, 0x0384, 0x01);
+immutable DoorEntryA doorEntry20 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC0AD, 0x0398, 0x06);
+immutable DoorEntryA doorEntry21 = DoorEntryA("textDoor021", EventFlag.unknown1D4, 0xC06D, 0x0398, 0x04);
+immutable DoorEntryA doorEntry22 = DoorEntryA("textDoor022", EventFlag.unknown1DA, 0xC02A, 0x03CD, 0x04);
+immutable DoorEntryA doorEntry23 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC03D, 0x03F4, 0x01);
+immutable DoorEntryA doorEntry24 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC07A, 0x0371, 0x04);
+immutable DoorEntryA doorEntry25 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC09D, 0x03F8, 0x04);
+immutable DoorEntryA doorEntry26 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC08A, 0x03B9, 0x04);
+immutable DoorEntryA doorEntry27 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC09D, 0x0378, 0x04);
+immutable DoorEntryA doorEntry28 = DoorEntryA("textDoor028", EventFlag.unknown154 | eventFlagUnset, 0xC02A, 0x03CD, 0x00);
+immutable DoorEntryA doorEntry29 = DoorEntryA("textDoor000", EventFlag.unknown278, 0xC0AD, 0x03B4, 0x04);
+immutable DoorEntryA doorEntry30 = DoorEntryA("textDoor030", EventFlag.none, 0x02E6, 0x008B, 0x01);
 immutable DoorEntryA doorEntry31 = DoorEntryA(null, EventFlag.none, 0x0048, 0x03D1, 0x07);
 immutable DoorEntryA doorEntry32 = DoorEntryA(null, EventFlag.none, 0xC0AD, 0x03D8, 0x07);
 immutable DoorEntryA doorEntry33 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x03FC, 0x07);
 immutable DoorEntryA doorEntry34 = DoorEntryA(null, EventFlag.unknown026, 0x800D, 0x03E3, 0x07);
-immutable DoorEntryA doorEntry35 = DoorEntryA(textDoor035, EventFlag.none, 0x80BD, 0x03E3, 0x01);
+immutable DoorEntryA doorEntry35 = DoorEntryA("textDoor035", EventFlag.none, 0x80BD, 0x03E3, 0x01);
 immutable DoorEntryA doorEntry36 = DoorEntryA(null, EventFlag.none, 0x806D, 0x03C3, 0x0F);
 immutable DoorEntryA doorEntry37 = DoorEntryA(null, EventFlag.none, 0xC01A, 0x03B9, 0x07);
 immutable DoorEntryA doorEntry38 = DoorEntryA(null, EventFlag.none, 0x8031, 0x0363, 0x01);
@@ -1372,12 +1372,12 @@ immutable DoorEntryA doorEntry39 = DoorEntryA(null, EventFlag.none, 0xC00D, 0x03
 immutable DoorEntryA doorEntry40 = DoorEntryA(null, EventFlag.none, 0x00D6, 0x00FC, 0x01);
 immutable DoorEntryA doorEntry41 = DoorEntryA(null, EventFlag.none, 0x807D, 0x03A3, 0x0F);
 immutable DoorEntryA doorEntry42 = DoorEntryA(null, EventFlag.none, 0x008E, 0x00D9, 0x0C);
-immutable DoorEntryA doorEntry43 = DoorEntryA(textDoor043, EventFlag.unknown1D3, 0x002B, 0x014B, 0x0A);
+immutable DoorEntryA doorEntry43 = DoorEntryA("textDoor043", EventFlag.unknown1D3, 0x002B, 0x014B, 0x0A);
 immutable DoorEntryA doorEntry44 = DoorEntryA(null, EventFlag.none, 0xC08D, 0x037C, 0x07);
 immutable DoorEntryA doorEntry45 = DoorEntryA(null, EventFlag.none, 0xC0AD, 0x037C, 0x07);
 immutable DoorEntryA doorEntry46 = DoorEntryA(null, EventFlag.none, 0x805D, 0x0363, 0x0F);
 immutable DoorEntryA doorEntry47 = DoorEntryA(null, EventFlag.none, 0x00A1, 0x009A, 0x0A);
-immutable DoorEntryA doorEntry48 = DoorEntryA(textDoor048, EventFlag.none, 0x006D, 0x010A, 0x01);
+immutable DoorEntryA doorEntry48 = DoorEntryA("textDoor048", EventFlag.none, 0x006D, 0x010A, 0x01);
 immutable DoorEntryA doorEntry49 = DoorEntryA(null, EventFlag.none, 0x806D, 0x0363, 0x0F);
 immutable DoorEntryA doorEntry50 = DoorEntryA(null, EventFlag.none, 0xC06D, 0x03FC, 0x07);
 immutable DoorEntryA doorEntry51 = DoorEntryA(null, EventFlag.none, 0x803D, 0x03C3, 0x0F);
@@ -1392,15 +1392,15 @@ immutable DoorEntryA doorEntry59 = DoorEntryA(null, EventFlag.none, 0x00A7, 0x00
 immutable DoorEntryA doorEntry60 = DoorEntryA(null, EventFlag.none, 0x00DA, 0x00C5, 0x0C);
 immutable DoorEntryA doorEntry61 = DoorEntryA(null, EventFlag.none, 0x804D, 0x0363, 0x0F);
 immutable DoorEntryA doorEntry62 = DoorEntryA(null, EventFlag.none, 0x008C, 0x0121, 0x0A);
-immutable DoorEntryA doorEntry63 = DoorEntryA(textDoor063, EventFlag.none, 0x002C, 0x012B, 0x0A);
+immutable DoorEntryA doorEntry63 = DoorEntryA("textDoor063", EventFlag.none, 0x002C, 0x012B, 0x0A);
 immutable DoorEntryA doorEntry64 = DoorEntryA(null, EventFlag.none, 0xC09D, 0x0398, 0x07);
 immutable DoorEntryA doorEntry65 = DoorEntryA(null, EventFlag.none, 0x00D3, 0x008F, 0x01);
 immutable DoorEntryA doorEntry66 = DoorEntryA(null, EventFlag.none, 0x80BD, 0x0383, 0x0F);
 immutable DoorEntryA doorEntry67 = DoorEntryA(null, EventFlag.none, 0x00BC, 0x0085, 0x0A);
 immutable DoorEntryA doorEntry68 = DoorEntryA(null, EventFlag.none, 0xC05D, 0x03BC, 0x07);
-immutable DoorEntryA doorEntry69 = DoorEntryA(textDoor069, EventFlag.none, 0x802A, 0x03A6, 0x0F);
+immutable DoorEntryA doorEntry69 = DoorEntryA("textDoor069", EventFlag.none, 0x802A, 0x03A6, 0x0F);
 immutable DoorEntryA doorEntry70 = DoorEntryA(null, EventFlag.none, 0x808A, 0x03E6, 0x07);
-immutable DoorEntryA doorEntry71 = DoorEntryA(textDoor071, EventFlag.none, 0x801D, 0x03C3, 0x0F);
+immutable DoorEntryA doorEntry71 = DoorEntryA("textDoor071", EventFlag.none, 0x801D, 0x03C3, 0x0F);
 immutable DoorEntryA doorEntry72 = DoorEntryA(null, EventFlag.none, 0x804D, 0x03C3, 0x07);
 immutable DoorEntryA doorEntry73 = DoorEntryA(null, EventFlag.none, 0x00BC, 0x0389, 0x07);
 immutable DoorEntryA doorEntry74 = DoorEntryA(null, EventFlag.none, 0x0058, 0x0371, 0x07);
@@ -1411,10 +1411,10 @@ immutable DoorEntryA doorEntry78 = DoorEntryA(null, EventFlag.none, 0x00B8, 0x03
 immutable DoorEntryA doorEntry79 = DoorEntryA(null, EventFlag.none, 0x0078, 0x0392, 0x07);
 immutable DoorEntryA doorEntry80 = DoorEntryA(null, EventFlag.none, 0x00B0, 0x0141, 0x0A);
 immutable DoorEntryA doorEntry81 = DoorEntryA(null, EventFlag.none, 0x0010, 0x00E5, 0x0A);
-immutable DoorEntryA doorEntry82 = DoorEntryA(textDoor004, EventFlag.unknown01F, 0x0361, 0x01F4, 0x01);
+immutable DoorEntryA doorEntry82 = DoorEntryA("textDoor004", EventFlag.unknown01F, 0x0361, 0x01F4, 0x01);
 immutable DoorEntryA doorEntry83 = DoorEntryA(null, EventFlag.none, 0x0048, 0x03E1, 0x07);
 immutable DoorEntryA doorEntry84 = DoorEntryA(null, EventFlag.none, 0x00BC, 0x0391, 0x07);
-immutable DoorEntryA doorEntry85 = DoorEntryA(textDoor085, EventFlag.none, 0xC07D, 0x03BC, 0x07);
+immutable DoorEntryA doorEntry85 = DoorEntryA("textDoor085", EventFlag.none, 0xC07D, 0x03BC, 0x07);
 immutable DoorEntryA doorEntry86 = DoorEntryA(null, EventFlag.none, 0x008C, 0x012D, 0x0A);
 immutable DoorEntryA doorEntry87 = DoorEntryA(null, EventFlag.none, 0x0038, 0x03D9, 0x07);
 immutable DoorEntryA doorEntry88 = DoorEntryA(null, EventFlag.none, 0x4043, 0x00B5, 0x01);
@@ -1430,7 +1430,7 @@ immutable DoorEntryA doorEntry97 = DoorEntryA(null, EventFlag.none, 0x008E, 0x00
 immutable DoorEntryA doorEntry98 = DoorEntryA(null, EventFlag.none, 0x0053, 0x00FC, 0x01);
 immutable DoorEntryA doorEntry99 = DoorEntryA(null, EventFlag.none, 0xC089, 0x0388, 0x07);
 immutable DoorEntryA doorEntry100 = DoorEntryA(null, EventFlag.none, 0xC00D, 0x03CC, 0x01);
-immutable DoorEntryA doorEntry101 = DoorEntryA(textDoor101, EventFlag.none, 0x00B2, 0x00FF, 0x01);
+immutable DoorEntryA doorEntry101 = DoorEntryA("textDoor101", EventFlag.none, 0x00B2, 0x00FF, 0x01);
 immutable DoorEntryA doorEntry102 = DoorEntryA(null, EventFlag.none, 0x0008, 0x03BD, 0x07);
 immutable DoorEntryA doorEntry103 = DoorEntryA(null, EventFlag.none, 0xC139, 0x02F5, 0x01);
 immutable DoorEntryA doorEntry104 = DoorEntryA(null, EventFlag.none, 0x003B, 0x0085, 0x01);
@@ -1438,13 +1438,13 @@ immutable DoorEntryA doorEntry105 = DoorEntryA(null, EventFlag.none, 0x003A, 0x0
 immutable DoorEntryA doorEntry106 = DoorEntryA(null, EventFlag.none, 0xC2D9, 0x01D5, 0x01);
 immutable DoorEntryA doorEntry107 = DoorEntryA(null, EventFlag.none, 0xC2B9, 0x01D9, 0x01);
 immutable DoorEntryA doorEntry108 = DoorEntryA(null, EventFlag.none, 0xC279, 0x01F5, 0x01);
-immutable DoorEntryA doorEntry109 = DoorEntryA(textDoor109, EventFlag.none, 0x003F, 0x00B1, 0x01);
+immutable DoorEntryA doorEntry109 = DoorEntryA("textDoor109", EventFlag.none, 0x003F, 0x00B1, 0x01);
 immutable DoorEntryA doorEntry110 = DoorEntryA(null, EventFlag.none, 0x0427, 0x0129, 0x01);
 immutable DoorEntryA doorEntry111 = DoorEntryA(null, EventFlag.none, 0x8430, 0x00E7, 0x01);
 immutable DoorEntryA doorEntry112 = DoorEntryA(null, EventFlag.none, 0x0413, 0x013D, 0x01);
 immutable DoorEntryA doorEntry113 = DoorEntryA(null, EventFlag.none, 0xC139, 0x008C, 0x01);
 immutable DoorEntryA doorEntry114 = DoorEntryA(null, EventFlag.none, 0x03F3, 0x00FD, 0x01);
-immutable DoorEntryA doorEntry115 = DoorEntryA(textDoor115, EventFlag.defeatedSanctuaryBoss1 | eventFlagUnset, 0x0027, 0x0089, 0x01);
+immutable DoorEntryA doorEntry115 = DoorEntryA("textDoor115", EventFlag.defeatedSanctuaryBoss1 | eventFlagUnset, 0x0027, 0x0089, 0x01);
 immutable DoorEntryA doorEntry116 = DoorEntryA(null, EventFlag.none, 0x8138, 0x02E7, 0x01);
 immutable DoorEntryA doorEntry117 = DoorEntryA(null, EventFlag.none, 0x409A, 0x03AC, 0x01);
 immutable DoorEntryA doorEntry118 = DoorEntryA(null, EventFlag.none, 0xC139, 0x02BC, 0x01);
@@ -1453,53 +1453,53 @@ immutable DoorEntryA doorEntry120 = DoorEntryA(null, EventFlag.none, 0xC109, 0x0
 immutable DoorEntryA doorEntry121 = DoorEntryA(null, EventFlag.none, 0x82E9, 0x01E3, 0x01);
 immutable DoorEntryA doorEntry122 = DoorEntryA(null, EventFlag.none, 0x813B, 0x02A3, 0x01);
 immutable DoorEntryA doorEntry123 = DoorEntryA(null, EventFlag.none, 0xC109, 0x0189, 0x01);
-immutable DoorEntryA doorEntry124 = DoorEntryA(textDoor124, EventFlag.unknown154 | eventFlagUnset, 0x0075, 0x0092, 0x00);
-immutable DoorEntryA doorEntry125 = DoorEntryA(textDoor125, EventFlag.unknown154 | eventFlagUnset, 0x0085, 0x00B2, 0x00);
-immutable DoorEntryA doorEntry126 = DoorEntryA(textDoor126, EventFlag.unknown154 | eventFlagUnset, 0x00A2, 0x007F, 0x00);
-immutable DoorEntryA doorEntry127 = DoorEntryA(textDoor127, EventFlag.unknown154 | eventFlagUnset, 0x00DA, 0x00B4, 0x00);
-immutable DoorEntryC doorEntry128 = DoorEntryC(textDoor128);
-immutable DoorEntryC doorEntry129 = DoorEntryC(textDoor129);
-immutable DoorEntryC doorEntry130 = DoorEntryC(textDoor130);
-immutable DoorEntryC doorEntry131 = DoorEntryC(textDoor131);
-immutable DoorEntryC doorEntry132 = DoorEntryC(textDoor132);
-immutable DoorEntryC doorEntry133 = DoorEntryC(textDoor133);
-immutable DoorEntryC doorEntry134 = DoorEntryC(textDoor134);
-immutable DoorEntryC doorEntry135 = DoorEntryC(textDoor135);
-immutable DoorEntryC doorEntry136 = DoorEntryC(textDoor136);
-immutable DoorEntryC doorEntry137 = DoorEntryC(textDoor137);
-immutable DoorEntryC doorEntry138 = DoorEntryC(textDoor138);
-immutable DoorEntryA doorEntry139 = DoorEntryA(textDoor139, EventFlag.unknown154 | eventFlagUnset, 0x00A0, 0x0151, 0x00);
-immutable DoorEntryA doorEntry140 = DoorEntryA(textDoor140, EventFlag.unknown154 | eventFlagUnset, 0x00D8, 0x0121, 0x00);
-immutable DoorEntryA doorEntry141 = DoorEntryA(textDoor141, EventFlag.unknown154 | eventFlagUnset, 0x00B2, 0x010B, 0x00);
-immutable DoorEntryA doorEntry142 = DoorEntryA(textDoor142, EventFlag.unknown154 | eventFlagUnset, 0x00AE, 0x0117, 0x00);
-immutable DoorEntryC doorEntry143 = DoorEntryC(textDoor143);
-immutable DoorEntryC doorEntry144 = DoorEntryC(textDoor144);
-immutable DoorEntryC doorEntry145 = DoorEntryC(textDoor145);
-immutable DoorEntryC doorEntry146 = DoorEntryC(textDoor146);
-immutable DoorEntryC doorEntry147 = DoorEntryC(textDoor147);
-immutable DoorEntryC doorEntry148 = DoorEntryC(textDoor148);
-immutable DoorEntryC doorEntry149 = DoorEntryC(textDoor149);
-immutable DoorEntryC doorEntry150 = DoorEntryC(textDoor150);
-immutable DoorEntryA doorEntry151 = DoorEntryA(textDoor151, EventFlag.unknown154 | eventFlagUnset, 0x000C, 0x03E9, 0x00);
-immutable DoorEntryA doorEntry152 = DoorEntryA(textDoor152, EventFlag.unknown154 | eventFlagUnset, 0x000C, 0x03F1, 0x00);
-immutable DoorEntryA doorEntry153 = DoorEntryA(textDoor153, EventFlag.unknown154 | eventFlagUnset, 0x0058, 0x0379, 0x00);
-immutable DoorEntryA doorEntry154 = DoorEntryA(textDoor154, EventFlag.unknown154 | eventFlagUnset, 0x0058, 0x037D, 0x00);
-immutable DoorEntryC doorEntry155 = DoorEntryC(textDoor155);
-immutable DoorEntryC doorEntry156 = DoorEntryC(textDoor156);
-immutable DoorEntryC doorEntry157 = DoorEntryC(textDoor157);
-immutable DoorEntryC doorEntry158 = DoorEntryC(textDoor157);
-immutable DoorEntryC doorEntry159 = DoorEntryC(textDoor157);
-immutable DoorEntryC doorEntry160 = DoorEntryC(textDoor160);
-immutable DoorEntryC doorEntry161 = DoorEntryC(textDoor157);
-immutable DoorEntryC doorEntry162 = DoorEntryC(textDoor157);
-immutable DoorEntryC doorEntry163 = DoorEntryC(textDoor163);
+immutable DoorEntryA doorEntry124 = DoorEntryA("textDoor124", EventFlag.unknown154 | eventFlagUnset, 0x0075, 0x0092, 0x00);
+immutable DoorEntryA doorEntry125 = DoorEntryA("textDoor125", EventFlag.unknown154 | eventFlagUnset, 0x0085, 0x00B2, 0x00);
+immutable DoorEntryA doorEntry126 = DoorEntryA("textDoor126", EventFlag.unknown154 | eventFlagUnset, 0x00A2, 0x007F, 0x00);
+immutable DoorEntryA doorEntry127 = DoorEntryA("textDoor127", EventFlag.unknown154 | eventFlagUnset, 0x00DA, 0x00B4, 0x00);
+immutable DoorEntryC doorEntry128 = DoorEntryC("textDoor128");
+immutable DoorEntryC doorEntry129 = DoorEntryC("textDoor129");
+immutable DoorEntryC doorEntry130 = DoorEntryC("textDoor130");
+immutable DoorEntryC doorEntry131 = DoorEntryC("textDoor131");
+immutable DoorEntryC doorEntry132 = DoorEntryC("textDoor132");
+immutable DoorEntryC doorEntry133 = DoorEntryC("textDoor133");
+immutable DoorEntryC doorEntry134 = DoorEntryC("textDoor134");
+immutable DoorEntryC doorEntry135 = DoorEntryC("textDoor135");
+immutable DoorEntryC doorEntry136 = DoorEntryC("textDoor136");
+immutable DoorEntryC doorEntry137 = DoorEntryC("textDoor137");
+immutable DoorEntryC doorEntry138 = DoorEntryC("textDoor138");
+immutable DoorEntryA doorEntry139 = DoorEntryA("textDoor139", EventFlag.unknown154 | eventFlagUnset, 0x00A0, 0x0151, 0x00);
+immutable DoorEntryA doorEntry140 = DoorEntryA("textDoor140", EventFlag.unknown154 | eventFlagUnset, 0x00D8, 0x0121, 0x00);
+immutable DoorEntryA doorEntry141 = DoorEntryA("textDoor141", EventFlag.unknown154 | eventFlagUnset, 0x00B2, 0x010B, 0x00);
+immutable DoorEntryA doorEntry142 = DoorEntryA("textDoor142", EventFlag.unknown154 | eventFlagUnset, 0x00AE, 0x0117, 0x00);
+immutable DoorEntryC doorEntry143 = DoorEntryC("textDoor143");
+immutable DoorEntryC doorEntry144 = DoorEntryC("textDoor144");
+immutable DoorEntryC doorEntry145 = DoorEntryC("textDoor145");
+immutable DoorEntryC doorEntry146 = DoorEntryC("textDoor146");
+immutable DoorEntryC doorEntry147 = DoorEntryC("textDoor147");
+immutable DoorEntryC doorEntry148 = DoorEntryC("textDoor148");
+immutable DoorEntryC doorEntry149 = DoorEntryC("textDoor149");
+immutable DoorEntryC doorEntry150 = DoorEntryC("textDoor150");
+immutable DoorEntryA doorEntry151 = DoorEntryA("textDoor151", EventFlag.unknown154 | eventFlagUnset, 0x000C, 0x03E9, 0x00);
+immutable DoorEntryA doorEntry152 = DoorEntryA("textDoor152", EventFlag.unknown154 | eventFlagUnset, 0x000C, 0x03F1, 0x00);
+immutable DoorEntryA doorEntry153 = DoorEntryA("textDoor153", EventFlag.unknown154 | eventFlagUnset, 0x0058, 0x0379, 0x00);
+immutable DoorEntryA doorEntry154 = DoorEntryA("textDoor154", EventFlag.unknown154 | eventFlagUnset, 0x0058, 0x037D, 0x00);
+immutable DoorEntryC doorEntry155 = DoorEntryC("textDoor155");
+immutable DoorEntryC doorEntry156 = DoorEntryC("textDoor156");
+immutable DoorEntryC doorEntry157 = DoorEntryC("textDoor157");
+immutable DoorEntryC doorEntry158 = DoorEntryC("textDoor157");
+immutable DoorEntryC doorEntry159 = DoorEntryC("textDoor157");
+immutable DoorEntryC doorEntry160 = DoorEntryC("textDoor160");
+immutable DoorEntryC doorEntry161 = DoorEntryC("textDoor157");
+immutable DoorEntryC doorEntry162 = DoorEntryC("textDoor157");
+immutable DoorEntryC doorEntry163 = DoorEntryC("textDoor163");
 immutable DoorEntryA doorEntry164 = DoorEntryA(null, EventFlag.none, 0x418F, 0x0098, 0x01);
 immutable DoorEntryA doorEntry165 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x0358, 0x04);
 immutable DoorEntryA doorEntry166 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x0398, 0x04);
 immutable DoorEntryA doorEntry167 = DoorEntryA(null, EventFlag.none, 0xC38D, 0x03C4, 0x01);
 immutable DoorEntryA doorEntry168 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x0378, 0x06);
 immutable DoorEntryA doorEntry169 = DoorEntryA(null, EventFlag.none, 0xC3AB, 0x038A, 0x06);
-immutable DoorEntryA doorEntry170 = DoorEntryA(textDoor170, EventFlag.threedReached, 0xC39D, 0x03BC, 0x04);
+immutable DoorEntryA doorEntry170 = DoorEntryA("textDoor170", EventFlag.threedReached, 0xC39D, 0x03BC, 0x04);
 immutable DoorEntryA doorEntry171 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x03D8, 0x04);
 immutable DoorEntryA doorEntry172 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x03D4, 0x04);
 immutable DoorEntryA doorEntry173 = DoorEntryA(null, EventFlag.none, 0xC3DD, 0x03D8, 0x04);
@@ -1510,22 +1510,22 @@ immutable DoorEntryA doorEntry177 = DoorEntryA(null, EventFlag.none, 0xC3FD, 0x0
 immutable DoorEntryA doorEntry178 = DoorEntryA(null, EventFlag.none, 0xC3CD, 0x03F8, 0x04);
 immutable DoorEntryA doorEntry179 = DoorEntryA(null, EventFlag.none, 0xC44D, 0x03EC, 0x01);
 immutable DoorEntryA doorEntry180 = DoorEntryA(null, EventFlag.none, 0xC38D, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry181 = DoorEntryA(textDoor004, EventFlag.none, 0x84E9, 0x0363, 0x01);
-immutable DoorEntryA doorEntry182 = DoorEntryA(textDoor182, EventFlag.none, 0x84FC, 0x02E4, 0x01);
-immutable DoorEntryA doorEntry183 = DoorEntryA(textDoor183, EventFlag.none, 0xC378, 0x01C4, 0x01);
+immutable DoorEntryA doorEntry181 = DoorEntryA("textDoor004", EventFlag.none, 0x84E9, 0x0363, 0x01);
+immutable DoorEntryA doorEntry182 = DoorEntryA("textDoor182", EventFlag.none, 0x84FC, 0x02E4, 0x01);
+immutable DoorEntryA doorEntry183 = DoorEntryA("textDoor183", EventFlag.none, 0xC378, 0x01C4, 0x01);
 immutable DoorEntryA doorEntry184 = DoorEntryA(null, EventFlag.none, 0x84EB, 0x03A3, 0x01);
 immutable DoorEntryA doorEntry185 = DoorEntryA(null, EventFlag.none, 0xC4E9, 0x037C, 0x01);
 immutable DoorEntryA doorEntry186 = DoorEntryA(null, EventFlag.none, 0x0119, 0x0216, 0x01);
 immutable DoorEntryA doorEntry187 = DoorEntryA(null, EventFlag.none, 0xC459, 0x03C8, 0x07);
 immutable DoorEntryA doorEntry188 = DoorEntryA(null, EventFlag.none, 0xC415, 0x03B8, 0x01);
-immutable DoorEntryA doorEntry189 = DoorEntryA(textDoor189, EventFlag.none, 0x032F, 0x00AB, 0x01);
-immutable DoorEntryA doorEntry190 = DoorEntryA(textDoor190, EventFlag.none, 0x032F, 0x00BC, 0x0C);
+immutable DoorEntryA doorEntry189 = DoorEntryA("textDoor189", EventFlag.none, 0x032F, 0x00AB, 0x01);
+immutable DoorEntryA doorEntry190 = DoorEntryA("textDoor190", EventFlag.none, 0x032F, 0x00BC, 0x0C);
 immutable DoorEntryA doorEntry191 = DoorEntryA(null, EventFlag.none, 0x033B, 0x0133, 0x0A);
 immutable DoorEntryA doorEntry192 = DoorEntryA(null, EventFlag.none, 0x03DC, 0x0369, 0x07);
 immutable DoorEntryA doorEntry193 = DoorEntryA(null, EventFlag.none, 0x0448, 0x03D1, 0x07);
-immutable DoorEntryA doorEntry194 = DoorEntryA(textDoor194, EventFlag.none, 0x0332, 0x00D2, 0x0C);
+immutable DoorEntryA doorEntry194 = DoorEntryA("textDoor194", EventFlag.none, 0x0332, 0x00D2, 0x0C);
 immutable DoorEntryA doorEntry195 = DoorEntryA(null, EventFlag.none, 0x03DC, 0x0371, 0x07);
-immutable DoorEntryA doorEntry196 = DoorEntryA(textDoor196, EventFlag.none, 0x0373, 0x0109, 0x0A);
+immutable DoorEntryA doorEntry196 = DoorEntryA("textDoor196", EventFlag.none, 0x0373, 0x0109, 0x0A);
 immutable DoorEntryA doorEntry197 = DoorEntryA(null, EventFlag.none, 0xC3CD, 0x035C, 0x07);
 immutable DoorEntryA doorEntry198 = DoorEntryA(null, EventFlag.none, 0x038F, 0x00F7, 0x0A);
 immutable DoorEntryA doorEntry199 = DoorEntryA(null, EventFlag.none, 0x0377, 0x011F, 0x0A);
@@ -1561,65 +1561,65 @@ immutable DoorEntryA doorEntry228 = DoorEntryA(null, EventFlag.none, 0x030E, 0x0
 immutable DoorEntryA doorEntry229 = DoorEntryA(null, EventFlag.none, 0x03E8, 0x0351, 0x07);
 immutable DoorEntryA doorEntry230 = DoorEntryA(null, EventFlag.unknown135, 0xC435, 0x0378, 0x07);
 immutable DoorEntryA doorEntry231 = DoorEntryA(null, EventFlag.none, 0xC3BD, 0x03BC, 0x07);
-immutable DoorEntryA doorEntry232 = DoorEntryA(textDoor232, EventFlag.none, 0x0331, 0x0116, 0x0A);
+immutable DoorEntryA doorEntry232 = DoorEntryA("textDoor232", EventFlag.none, 0x0331, 0x0116, 0x0A);
 immutable DoorEntryA doorEntry233 = DoorEntryA(null, EventFlag.none, 0x839D, 0x03A3, 0x07);
-immutable DoorEntryA doorEntry234 = DoorEntryA(textDoor234, EventFlag.none, 0x8431, 0x034B, 0x07);
-immutable DoorEntryA doorEntry235 = DoorEntryA(textDoor235, EventFlag.unknown073 | eventFlagUnset, 0xC3AD, 0x03FC, 0x07);
+immutable DoorEntryA doorEntry234 = DoorEntryA("textDoor234", EventFlag.none, 0x8431, 0x034B, 0x07);
+immutable DoorEntryA doorEntry235 = DoorEntryA("textDoor235", EventFlag.unknown073 | eventFlagUnset, 0xC3AD, 0x03FC, 0x07);
 immutable DoorEntryA doorEntry236 = DoorEntryA(null, EventFlag.none, 0x0398, 0x03B1, 0x07);
-immutable DoorEntryA doorEntry237 = DoorEntryA(textDoor237, EventFlag.unknown2F9, 0xC442, 0x009F, 0x01);
-immutable DoorEntryA doorEntry238 = DoorEntryA(textDoor238, EventFlag.threedReached | eventFlagUnset, 0x849B, 0x0231, 0x01);
-immutable DoorEntryA doorEntry239 = DoorEntryA(textDoor239, EventFlag.unknown154 | eventFlagUnset, 0x0347, 0x012A, 0x00);
-immutable DoorEntryA doorEntry240 = DoorEntryA(textDoor240, EventFlag.unknown154 | eventFlagUnset, 0x03A3, 0x010D, 0x00);
-immutable DoorEntryC doorEntry241 = DoorEntryC(textDoor241);
-immutable DoorEntryC doorEntry242 = DoorEntryC(textDoor242);
-immutable DoorEntryC doorEntry243 = DoorEntryC(textDoor243);
-immutable DoorEntryC doorEntry244 = DoorEntryC(textDoor244);
-immutable DoorEntryC doorEntry245 = DoorEntryC(textDoor245);
-immutable DoorEntryC doorEntry246 = DoorEntryC(textDoor246);
-immutable DoorEntryC doorEntry247 = DoorEntryC(textDoor247);
-immutable DoorEntryC doorEntry248 = DoorEntryC(textDoor248);
-immutable DoorEntryA doorEntry249 = DoorEntryA(textDoor004, EventFlag.none, 0xC139, 0x029C, 0x01);
-immutable DoorEntryA doorEntry250 = DoorEntryA(textDoor004, EventFlag.none, 0xC1A9, 0x021C, 0x01);
+immutable DoorEntryA doorEntry237 = DoorEntryA("textDoor237", EventFlag.unknown2F9, 0xC442, 0x009F, 0x01);
+immutable DoorEntryA doorEntry238 = DoorEntryA("textDoor238", EventFlag.threedReached | eventFlagUnset, 0x849B, 0x0231, 0x01);
+immutable DoorEntryA doorEntry239 = DoorEntryA("textDoor239", EventFlag.unknown154 | eventFlagUnset, 0x0347, 0x012A, 0x00);
+immutable DoorEntryA doorEntry240 = DoorEntryA("textDoor240", EventFlag.unknown154 | eventFlagUnset, 0x03A3, 0x010D, 0x00);
+immutable DoorEntryC doorEntry241 = DoorEntryC("textDoor241");
+immutable DoorEntryC doorEntry242 = DoorEntryC("textDoor242");
+immutable DoorEntryC doorEntry243 = DoorEntryC("textDoor243");
+immutable DoorEntryC doorEntry244 = DoorEntryC("textDoor244");
+immutable DoorEntryC doorEntry245 = DoorEntryC("textDoor245");
+immutable DoorEntryC doorEntry246 = DoorEntryC("textDoor246");
+immutable DoorEntryC doorEntry247 = DoorEntryC("textDoor247");
+immutable DoorEntryC doorEntry248 = DoorEntryC("textDoor248");
+immutable DoorEntryA doorEntry249 = DoorEntryA("textDoor004", EventFlag.none, 0xC139, 0x029C, 0x01);
+immutable DoorEntryA doorEntry250 = DoorEntryA("textDoor004", EventFlag.none, 0xC1A9, 0x021C, 0x01);
 immutable DoorEntryA doorEntry251 = DoorEntryA(null, EventFlag.none, 0xC0DD, 0x037C, 0x04);
 immutable DoorEntryA doorEntry252 = DoorEntryA(null, EventFlag.none, 0xC10D, 0x03BC, 0x04);
-immutable DoorEntryA doorEntry253 = DoorEntryA(textDoor253, EventFlag.threedReached, 0xC122, 0x03F1, 0x04);
-immutable DoorEntryA doorEntry254 = DoorEntryA(textDoor004, EventFlag.none, 0x80D1, 0x0187, 0x01);
-immutable DoorEntryA doorEntry255 = DoorEntryA(textDoor255, EventFlag.saturnValleyReached | eventFlagUnset, 0xC101, 0x03F0, 0x04);
+immutable DoorEntryA doorEntry253 = DoorEntryA("textDoor253", EventFlag.threedReached, 0xC122, 0x03F1, 0x04);
+immutable DoorEntryA doorEntry254 = DoorEntryA("textDoor004", EventFlag.none, 0x80D1, 0x0187, 0x01);
+immutable DoorEntryA doorEntry255 = DoorEntryA("textDoor255", EventFlag.saturnValleyReached | eventFlagUnset, 0xC101, 0x03F0, 0x04);
 immutable DoorEntryA doorEntry256 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x037C, 0x04);
 immutable DoorEntryA doorEntry257 = DoorEntryA(null, EventFlag.none, 0xC0DD, 0x03BC, 0x04);
 immutable DoorEntryA doorEntry258 = DoorEntryA(null, EventFlag.none, 0x80CD, 0x03A3, 0x0F);
-immutable DoorEntryA doorEntry259 = DoorEntryA(textDoor101, EventFlag.none, 0x03F8, 0x01CA, 0x0A);
+immutable DoorEntryA doorEntry259 = DoorEntryA("textDoor101", EventFlag.none, 0x03F8, 0x01CA, 0x0A);
 immutable DoorEntryA doorEntry260 = DoorEntryA(null, EventFlag.none, 0x03B8, 0x0202, 0x0A);
 immutable DoorEntryA doorEntry261 = DoorEntryA(null, EventFlag.none, 0x80CD, 0x0363, 0x0F);
 immutable DoorEntryA doorEntry262 = DoorEntryA(null, EventFlag.none, 0x03EC, 0x0202, 0x0A);
 immutable DoorEntryA doorEntry263 = DoorEntryA(null, EventFlag.none, 0x03C3, 0x01D7, 0x0A);
 immutable DoorEntryA doorEntry264 = DoorEntryA(null, EventFlag.none, 0x03E4, 0x01B9, 0x0A);
 immutable DoorEntryA doorEntry265 = DoorEntryA(null, EventFlag.none, 0x80F2, 0x03A6, 0x0F);
-immutable DoorEntryA doorEntry266 = DoorEntryA(textDoor266, EventFlag.none, 0x8122, 0x03AE, 0x07);
+immutable DoorEntryA doorEntry266 = DoorEntryA("textDoor266", EventFlag.none, 0x8122, 0x03AE, 0x07);
 immutable DoorEntryA doorEntry267 = DoorEntryA(null, EventFlag.none, 0x80DA, 0x03E6, 0x0F);
-immutable DoorEntryA doorEntry268 = DoorEntryA(textDoor268, EventFlag.none, 0xC0DA, 0x03F9, 0x07);
-immutable DoorEntryA doorEntry269 = DoorEntryA(textDoor269, EventFlag.none, 0x03DC, 0x01DF, 0x0A);
+immutable DoorEntryA doorEntry268 = DoorEntryA("textDoor268", EventFlag.none, 0xC0DA, 0x03F9, 0x07);
+immutable DoorEntryA doorEntry269 = DoorEntryA("textDoor269", EventFlag.none, 0x03DC, 0x01DF, 0x0A);
 immutable DoorEntryA doorEntry270 = DoorEntryA(null, EventFlag.none, 0x00C5, 0x02E9, 0x01);
-immutable DoorEntryA doorEntry271 = DoorEntryA(textDoor271, EventFlag.none, 0x83B4, 0x01BA, 0x01);
+immutable DoorEntryA doorEntry271 = DoorEntryA("textDoor271", EventFlag.none, 0x83B4, 0x01BA, 0x01);
 immutable DoorEntryA doorEntry272 = DoorEntryA(null, EventFlag.none, 0x008A, 0x02E6, 0x01);
 immutable DoorEntryA doorEntry273 = DoorEntryA(null, EventFlag.none, 0x03B8, 0x01F7, 0x01);
-immutable DoorEntryC doorEntry274 = DoorEntryC(textDoor274);
-immutable DoorEntryC doorEntry275 = DoorEntryC(textDoor275);
+immutable DoorEntryC doorEntry274 = DoorEntryC("textDoor274");
+immutable DoorEntryC doorEntry275 = DoorEntryC("textDoor275");
 immutable DoorEntryA doorEntry276 = DoorEntryA(null, EventFlag.none, 0x81A9, 0x01E3, 0x01);
 immutable DoorEntryA doorEntry277 = DoorEntryA(null, EventFlag.none, 0xC4CD, 0x0374, 0x04);
-immutable DoorEntryA doorEntry278 = DoorEntryA(textDoor004, EventFlag.none, 0x8139, 0x0263, 0x01);
-immutable DoorEntryA doorEntry279 = DoorEntryA(textDoor004, EventFlag.none, 0xC4E9, 0x03DC, 0x01);
+immutable DoorEntryA doorEntry278 = DoorEntryA("textDoor004", EventFlag.none, 0x8139, 0x0263, 0x01);
+immutable DoorEntryA doorEntry279 = DoorEntryA("textDoor004", EventFlag.none, 0xC4E9, 0x03DC, 0x01);
 immutable DoorEntryA doorEntry280 = DoorEntryA(null, EventFlag.none, 0x009A, 0x02D7, 0x0A);
-immutable DoorEntryA doorEntry281 = DoorEntryA(textDoor281, EventFlag.defeatedSanctuaryBoss2 | eventFlagUnset, 0x03F5, 0x0182, 0x01);
+immutable DoorEntryA doorEntry281 = DoorEntryA("textDoor281", EventFlag.defeatedSanctuaryBoss2 | eventFlagUnset, 0x03F5, 0x0182, 0x01);
 immutable DoorEntryA doorEntry282 = DoorEntryA(null, EventFlag.none, 0xC3C4, 0x020C, 0x01);
-immutable DoorEntryA doorEntry283 = DoorEntryA(textDoor001, EventFlag.none, 0x008B, 0x01F1, 0x01);
-immutable DoorEntryA doorEntry284 = DoorEntryA(textDoor004, EventFlag.none, 0x0401, 0x023C, 0x01);
+immutable DoorEntryA doorEntry283 = DoorEntryA("textDoor001", EventFlag.none, 0x008B, 0x01F1, 0x01);
+immutable DoorEntryA doorEntry284 = DoorEntryA("textDoor004", EventFlag.none, 0x0401, 0x023C, 0x01);
 immutable DoorEntryA doorEntry285 = DoorEntryA(null, EventFlag.none, 0x04B1, 0x033C, 0x01);
 immutable DoorEntryA doorEntry286 = DoorEntryA(null, EventFlag.none, 0xC4CD, 0x03F8, 0x04);
 immutable DoorEntryA doorEntry287 = DoorEntryA(null, EventFlag.none, 0xC48D, 0x035C, 0x04);
 immutable DoorEntryA doorEntry288 = DoorEntryA(null, EventFlag.none, 0xC4EF, 0x03FA, 0x01);
 immutable DoorEntryA doorEntry289 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x03B8, 0x04);
-immutable DoorEntryA doorEntry290 = DoorEntryA(textDoor290, EventFlag.none, 0xC4FC, 0x03DB, 0x01);
+immutable DoorEntryA doorEntry290 = DoorEntryA("textDoor290", EventFlag.none, 0xC4FC, 0x03DB, 0x01);
 immutable DoorEntryA doorEntry291 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x0374, 0x04);
 immutable DoorEntryA doorEntry292 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x03FC, 0x06);
 immutable DoorEntryA doorEntry293 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x0374, 0x06);
@@ -1627,16 +1627,16 @@ immutable DoorEntryA doorEntry294 = DoorEntryA(null, EventFlag.none, 0xC4DD, 0x0
 immutable DoorEntryA doorEntry295 = DoorEntryA(null, EventFlag.none, 0xC4DD, 0x03F8, 0x06);
 immutable DoorEntryA doorEntry296 = DoorEntryA(null, EventFlag.none, 0xC4DA, 0x0379, 0x04);
 immutable DoorEntryA doorEntry297 = DoorEntryA(null, EventFlag.none, 0xC4DA, 0x03B5, 0x04);
-immutable DoorEntryA doorEntry298 = DoorEntryA(textDoor004, EventFlag.none, 0x84FC, 0x0224, 0x01);
+immutable DoorEntryA doorEntry298 = DoorEntryA("textDoor004", EventFlag.none, 0x84FC, 0x0224, 0x01);
 immutable DoorEntryA doorEntry299 = DoorEntryA(null, EventFlag.none, 0xC489, 0x0388, 0x07);
 immutable DoorEntryA doorEntry300 = DoorEntryA(null, EventFlag.none, 0xC48D, 0x03E4, 0x01);
-immutable DoorEntryA doorEntry301 = DoorEntryA(textDoor101, EventFlag.none, 0x0462, 0x02B3, 0x0A);
+immutable DoorEntryA doorEntry301 = DoorEntryA("textDoor101", EventFlag.none, 0x0462, 0x02B3, 0x0A);
 immutable DoorEntryA doorEntry302 = DoorEntryA(null, EventFlag.none, 0x04DC, 0x03C9, 0x07);
 immutable DoorEntryA doorEntry303 = DoorEntryA(null, EventFlag.none, 0x048E, 0x029C, 0x0C);
 immutable DoorEntryA doorEntry304 = DoorEntryA(null, EventFlag.none, 0x0488, 0x0351, 0x07);
 immutable DoorEntryA doorEntry305 = DoorEntryA(null, EventFlag.none, 0x04DC, 0x03D1, 0x07);
 immutable DoorEntryA doorEntry306 = DoorEntryA(null, EventFlag.none, 0x0488, 0x03CD, 0x07);
-immutable DoorEntryA doorEntry307 = DoorEntryA(textDoor307, EventFlag.none, 0xC49D, 0x03BC, 0x07);
+immutable DoorEntryA doorEntry307 = DoorEntryA("textDoor307", EventFlag.none, 0xC49D, 0x03BC, 0x07);
 immutable DoorEntryA doorEntry308 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x03FC, 0x07);
 immutable DoorEntryA doorEntry309 = DoorEntryA(null, EventFlag.none, 0x848D, 0x0343, 0x01);
 immutable DoorEntryA doorEntry310 = DoorEntryA(null, EventFlag.none, 0x0488, 0x03D5, 0x07);
@@ -1669,46 +1669,46 @@ immutable DoorEntryA doorEntry336 = DoorEntryA(null, EventFlag.none, 0x0125, 0x0
 immutable DoorEntryA doorEntry337 = DoorEntryA(null, EventFlag.none, 0xC2A5, 0x01FC, 0x01);
 immutable DoorEntryA doorEntry338 = DoorEntryA(null, EventFlag.none, 0x0430, 0x02F0, 0x01);
 immutable DoorEntryA doorEntry339 = DoorEntryA(null, EventFlag.none, 0xC4E5, 0x0358, 0x07);
-immutable DoorEntryA doorEntry340 = DoorEntryA(textDoor340, EventFlag.unknown21D | eventFlagUnset, 0x84BD, 0x0322, 0x07);
+immutable DoorEntryA doorEntry340 = DoorEntryA("textDoor340", EventFlag.unknown21D | eventFlagUnset, 0x84BD, 0x0322, 0x07);
 immutable DoorEntryA doorEntry341 = DoorEntryA(null, EventFlag.none, 0xC49B, 0x032E, 0x01);
-immutable DoorEntryA doorEntry342 = DoorEntryA(textDoor342, EventFlag.unknown2F9, 0x83C2, 0x0140, 0x01);
+immutable DoorEntryA doorEntry342 = DoorEntryA("textDoor342", EventFlag.unknown2F9, 0x83C2, 0x0140, 0x01);
 immutable DoorEntryA doorEntry343 = DoorEntryA(null, EventFlag.none, 0xC4FC, 0x02BB, 0x01);
 immutable DoorEntryA doorEntry344 = DoorEntryA(null, EventFlag.none, 0x800C, 0x0304, 0x01);
 immutable DoorEntryA doorEntry345 = DoorEntryA(null, EventFlag.none, 0xC3C2, 0x0187, 0x01);
-immutable DoorEntryA doorEntry346 = DoorEntryA(textDoor346, EventFlag.none, 0x84E6, 0x0032, 0x01);
-immutable DoorEntryC doorEntry347 = DoorEntryC(textDoor347);
-immutable DoorEntryC doorEntry348 = DoorEntryC(textDoor348);
-immutable DoorEntryA doorEntry349 = DoorEntryA(textDoor349, EventFlag.unknown154 | eventFlagUnset, 0x0452, 0x02C1, 0x00);
-immutable DoorEntryA doorEntry350 = DoorEntryA(textDoor350, EventFlag.unknown154 | eventFlagUnset, 0x0455, 0x02F5, 0x00);
-immutable DoorEntryA doorEntry351 = DoorEntryA(textDoor351, EventFlag.unknown154 | eventFlagUnset, 0x0449, 0x0305, 0x00);
-immutable DoorEntryA doorEntry352 = DoorEntryA(textDoor352, EventFlag.unknown154 | eventFlagUnset, 0x047C, 0x026D, 0x00);
-immutable DoorEntryA doorEntry353 = DoorEntryA(textDoor353, EventFlag.unknown154 | eventFlagUnset, 0x047A, 0x02D3, 0x00);
-immutable DoorEntryA doorEntry354 = DoorEntryA(textDoor354, EventFlag.unknown154 | eventFlagUnset, 0x0462, 0x030D, 0x00);
-immutable DoorEntryA doorEntry355 = DoorEntryA(textDoor355, EventFlag.unknown154 | eventFlagUnset, 0x0487, 0x02DF, 0x00);
-immutable DoorEntryC doorEntry356 = DoorEntryC(textDoor356);
-immutable DoorEntryC doorEntry357 = DoorEntryC(textDoor357);
-immutable DoorEntryC doorEntry358 = DoorEntryC(textDoor358);
-immutable DoorEntryC doorEntry359 = DoorEntryC(textDoor359);
-immutable DoorEntryC doorEntry360 = DoorEntryC(textDoor360);
-immutable DoorEntryC doorEntry361 = DoorEntryC(textDoor361);
-immutable DoorEntryC doorEntry362 = DoorEntryC(textDoor362);
-immutable DoorEntryC doorEntry363 = DoorEntryC(textDoor363);
-immutable DoorEntryC doorEntry364 = DoorEntryC(textDoor364);
+immutable DoorEntryA doorEntry346 = DoorEntryA("textDoor346", EventFlag.none, 0x84E6, 0x0032, 0x01);
+immutable DoorEntryC doorEntry347 = DoorEntryC("textDoor347");
+immutable DoorEntryC doorEntry348 = DoorEntryC("textDoor348");
+immutable DoorEntryA doorEntry349 = DoorEntryA("textDoor349", EventFlag.unknown154 | eventFlagUnset, 0x0452, 0x02C1, 0x00);
+immutable DoorEntryA doorEntry350 = DoorEntryA("textDoor350", EventFlag.unknown154 | eventFlagUnset, 0x0455, 0x02F5, 0x00);
+immutable DoorEntryA doorEntry351 = DoorEntryA("textDoor351", EventFlag.unknown154 | eventFlagUnset, 0x0449, 0x0305, 0x00);
+immutable DoorEntryA doorEntry352 = DoorEntryA("textDoor352", EventFlag.unknown154 | eventFlagUnset, 0x047C, 0x026D, 0x00);
+immutable DoorEntryA doorEntry353 = DoorEntryA("textDoor353", EventFlag.unknown154 | eventFlagUnset, 0x047A, 0x02D3, 0x00);
+immutable DoorEntryA doorEntry354 = DoorEntryA("textDoor354", EventFlag.unknown154 | eventFlagUnset, 0x0462, 0x030D, 0x00);
+immutable DoorEntryA doorEntry355 = DoorEntryA("textDoor355", EventFlag.unknown154 | eventFlagUnset, 0x0487, 0x02DF, 0x00);
+immutable DoorEntryC doorEntry356 = DoorEntryC("textDoor356");
+immutable DoorEntryC doorEntry357 = DoorEntryC("textDoor357");
+immutable DoorEntryC doorEntry358 = DoorEntryC("textDoor358");
+immutable DoorEntryC doorEntry359 = DoorEntryC("textDoor359");
+immutable DoorEntryC doorEntry360 = DoorEntryC("textDoor360");
+immutable DoorEntryC doorEntry361 = DoorEntryC("textDoor361");
+immutable DoorEntryC doorEntry362 = DoorEntryC("textDoor362");
+immutable DoorEntryC doorEntry363 = DoorEntryC("textDoor363");
+immutable DoorEntryC doorEntry364 = DoorEntryC("textDoor364");
 immutable DoorEntryA doorEntry365 = DoorEntryA(null, EventFlag.none, 0xC141, 0x03E8, 0x04);
 immutable DoorEntryA doorEntry366 = DoorEntryA(null, EventFlag.none, 0xC13D, 0x03B8, 0x04);
-immutable DoorEntryA doorEntry367 = DoorEntryA(textDoor367, EventFlag.none, 0xC0F8, 0x03CB, 0x01);
-immutable DoorEntryA doorEntry368 = DoorEntryA(textDoor367, EventFlag.none, 0xC0D8, 0x038B, 0x01);
-immutable DoorEntryA doorEntry369 = DoorEntryA(textDoor367, EventFlag.none, 0xC0D8, 0x03CB, 0x01);
-immutable DoorEntryA doorEntry370 = DoorEntryA(textDoor367, EventFlag.none, 0xC0F8, 0x038B, 0x01);
-immutable DoorEntryA doorEntry371 = DoorEntryA(textDoor001, EventFlag.none, 0xC014, 0x0280, 0x01);
-immutable DoorEntryA doorEntry372 = DoorEntryA(textDoor004, EventFlag.none, 0x801C, 0x0267, 0x01);
-immutable DoorEntryA doorEntry373 = DoorEntryA(textDoor373, EventFlag.none, 0xC1B8, 0x00F8, 0x01);
-immutable DoorEntryA doorEntry374 = DoorEntryA(textDoor004, EventFlag.none, 0x81D0, 0x008B, 0x01);
+immutable DoorEntryA doorEntry367 = DoorEntryA("textDoor367", EventFlag.none, 0xC0F8, 0x03CB, 0x01);
+immutable DoorEntryA doorEntry368 = DoorEntryA("textDoor367", EventFlag.none, 0xC0D8, 0x038B, 0x01);
+immutable DoorEntryA doorEntry369 = DoorEntryA("textDoor367", EventFlag.none, 0xC0D8, 0x03CB, 0x01);
+immutable DoorEntryA doorEntry370 = DoorEntryA("textDoor367", EventFlag.none, 0xC0F8, 0x038B, 0x01);
+immutable DoorEntryA doorEntry371 = DoorEntryA("textDoor001", EventFlag.none, 0xC014, 0x0280, 0x01);
+immutable DoorEntryA doorEntry372 = DoorEntryA("textDoor004", EventFlag.none, 0x801C, 0x0267, 0x01);
+immutable DoorEntryA doorEntry373 = DoorEntryA("textDoor373", EventFlag.none, 0xC1B8, 0x00F8, 0x01);
+immutable DoorEntryA doorEntry374 = DoorEntryA("textDoor004", EventFlag.none, 0x81D0, 0x008B, 0x01);
 immutable DoorEntryA doorEntry375 = DoorEntryA(null, EventFlag.none, 0xC169, 0x03F8, 0x04);
-immutable DoorEntryA doorEntry376 = DoorEntryA(textDoor004, EventFlag.none, 0xC26C, 0x035C, 0x01);
-immutable DoorEntryA doorEntry377 = DoorEntryA(textDoor004, EventFlag.none, 0x01C5, 0x036C, 0x01);
-immutable DoorEntryA doorEntry378 = DoorEntryA(textDoor367, EventFlag.none, 0xC2E8, 0x020B, 0x01);
-immutable DoorEntryC doorEntry379 = DoorEntryC(textDoor379);
+immutable DoorEntryA doorEntry376 = DoorEntryA("textDoor004", EventFlag.none, 0xC26C, 0x035C, 0x01);
+immutable DoorEntryA doorEntry377 = DoorEntryA("textDoor004", EventFlag.none, 0x01C5, 0x036C, 0x01);
+immutable DoorEntryA doorEntry378 = DoorEntryA("textDoor367", EventFlag.none, 0xC2E8, 0x020B, 0x01);
+immutable DoorEntryC doorEntry379 = DoorEntryC("textDoor379");
 immutable DoorEntryA doorEntry380 = DoorEntryA(null, EventFlag.none, 0x0124, 0x0057, 0x0A);
 immutable DoorEntryA doorEntry381 = DoorEntryA(null, EventFlag.none, 0x013C, 0x03DA, 0x07);
 immutable DoorEntryA doorEntry382 = DoorEntryA(null, EventFlag.none, 0x013C, 0x03D1, 0x07);
@@ -1718,26 +1718,26 @@ immutable DoorEntryA doorEntry385 = DoorEntryA(null, EventFlag.none, 0x017C, 0x0
 immutable DoorEntryA doorEntry386 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x03D8, 0x07);
 immutable DoorEntryA doorEntry387 = DoorEntryA(null, EventFlag.none, 0xC0CD, 0x0394, 0x07);
 immutable DoorEntryA doorEntry388 = DoorEntryA(null, EventFlag.none, 0x8181, 0x03C7, 0x0F);
-immutable DoorEntryA doorEntry389 = DoorEntryA(textDoor389, EventFlag.none, 0x0112, 0x003E, 0x0A);
+immutable DoorEntryA doorEntry389 = DoorEntryA("textDoor389", EventFlag.none, 0x0112, 0x003E, 0x0A);
 immutable DoorEntryA doorEntry390 = DoorEntryA(null, EventFlag.none, 0x0263, 0x0028, 0x0A);
 immutable DoorEntryA doorEntry391 = DoorEntryA(null, EventFlag.none, 0x80F0, 0x0364, 0x0F);
 immutable DoorEntryA doorEntry392 = DoorEntryA(null, EventFlag.none, 0xC0ED, 0x03D8, 0x07);
 immutable DoorEntryA doorEntry393 = DoorEntryA(null, EventFlag.none, 0xC0ED, 0x0398, 0x07);
 immutable DoorEntryA doorEntry394 = DoorEntryA(null, EventFlag.none, 0x8141, 0x03C7, 0x0F);
-immutable DoorEntryA doorEntry395 = DoorEntryA(textDoor395, EventFlag.none, 0x01A3, 0x002B, 0x01);
-immutable DoorEntryA doorEntry396 = DoorEntryA(textDoor395, EventFlag.none, 0x01A7, 0x0033, 0x01);
-immutable DoorEntryA doorEntry397 = DoorEntryA(textDoor395, EventFlag.none, 0x01A3, 0x0047, 0x01);
-immutable DoorEntryA doorEntry398 = DoorEntryA(textDoor395, EventFlag.none, 0x018F, 0x0063, 0x01);
-immutable DoorEntryA doorEntry399 = DoorEntryA(textDoor101, EventFlag.none, 0x015B, 0x0043, 0x01);
+immutable DoorEntryA doorEntry395 = DoorEntryA("textDoor395", EventFlag.none, 0x01A3, 0x002B, 0x01);
+immutable DoorEntryA doorEntry396 = DoorEntryA("textDoor395", EventFlag.none, 0x01A7, 0x0033, 0x01);
+immutable DoorEntryA doorEntry397 = DoorEntryA("textDoor395", EventFlag.none, 0x01A3, 0x0047, 0x01);
+immutable DoorEntryA doorEntry398 = DoorEntryA("textDoor395", EventFlag.none, 0x018F, 0x0063, 0x01);
+immutable DoorEntryA doorEntry399 = DoorEntryA("textDoor101", EventFlag.none, 0x015B, 0x0043, 0x01);
 immutable DoorEntryA doorEntry400 = DoorEntryA(null, EventFlag.none, 0x0245, 0x0061, 0x01);
-immutable DoorEntryA doorEntry401 = DoorEntryA(textDoor401, EventFlag.none, 0x024A, 0x0055, 0x01);
-immutable DoorEntryA doorEntry402 = DoorEntryA(textDoor402, EventFlag.none, 0x0215, 0x0035, 0x01);
-immutable DoorEntryA doorEntry403 = DoorEntryA(textDoor403, EventFlag.defeatedSanctuaryBoss4 | eventFlagUnset, 0x01E1, 0x0019, 0x01);
+immutable DoorEntryA doorEntry401 = DoorEntryA("textDoor401", EventFlag.none, 0x024A, 0x0055, 0x01);
+immutable DoorEntryA doorEntry402 = DoorEntryA("textDoor402", EventFlag.none, 0x0215, 0x0035, 0x01);
+immutable DoorEntryA doorEntry403 = DoorEntryA("textDoor403", EventFlag.defeatedSanctuaryBoss4 | eventFlagUnset, 0x01E1, 0x0019, 0x01);
 immutable DoorEntryA doorEntry404 = DoorEntryA(null, EventFlag.none, 0x8434, 0x0167, 0x01);
 immutable DoorEntryA doorEntry405 = DoorEntryA(null, EventFlag.none, 0xC034, 0x0298, 0x01);
 immutable DoorEntryA doorEntry406 = DoorEntryA(null, EventFlag.none, 0x826C, 0x0307, 0x01);
 immutable DoorEntryA doorEntry407 = DoorEntryA(null, EventFlag.none, 0xC438, 0x01BC, 0x01);
-immutable DoorEntryA doorEntry408 = DoorEntryA(textDoor408, EventFlag.none, 0x0261, 0x0051, 0x01);
+immutable DoorEntryA doorEntry408 = DoorEntryA("textDoor408", EventFlag.none, 0x0261, 0x0051, 0x01);
 immutable DoorEntryA doorEntry409 = DoorEntryA(null, EventFlag.none, 0x422A, 0x002A, 0x01);
 immutable DoorEntryA doorEntry410 = DoorEntryA(null, EventFlag.none, 0x82E5, 0x0322, 0x01);
 immutable DoorEntryA doorEntry411 = DoorEntryA(null, EventFlag.none, 0xC1D4, 0x0378, 0x01);
@@ -1761,8 +1761,8 @@ immutable DoorEntryA doorEntry428 = DoorEntryA(null, EventFlag.none, 0x8251, 0x0
 immutable DoorEntryA doorEntry429 = DoorEntryA(null, EventFlag.none, 0xC2FD, 0x03DC, 0x07);
 immutable DoorEntryA doorEntry430 = DoorEntryA(null, EventFlag.none, 0x82FD, 0x03C3, 0x07);
 immutable DoorEntryA doorEntry431 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x0358, 0x07);
-immutable DoorEntryA doorEntry432 = DoorEntryA(textDoor004, EventFlag.none, 0x819B, 0x03A3, 0x01);
-immutable DoorEntryA doorEntry433 = DoorEntryA(textDoor004, EventFlag.none, 0x02C1, 0x01FC, 0x01);
+immutable DoorEntryA doorEntry432 = DoorEntryA("textDoor004", EventFlag.none, 0x819B, 0x03A3, 0x01);
+immutable DoorEntryA doorEntry433 = DoorEntryA("textDoor004", EventFlag.none, 0x02C1, 0x01FC, 0x01);
 immutable DoorEntryA doorEntry434 = DoorEntryA(null, EventFlag.none, 0x82D9, 0x01E3, 0x07);
 immutable DoorEntryA doorEntry435 = DoorEntryA(null, EventFlag.none, 0x0021, 0x031C, 0x01);
 immutable DoorEntryA doorEntry436 = DoorEntryA(null, EventFlag.none, 0x8299, 0x01E3, 0x07);
@@ -1775,34 +1775,34 @@ immutable DoorEntryA doorEntry442 = DoorEntryA(null, EventFlag.none, 0xC2B1, 0x0
 immutable DoorEntryA doorEntry443 = DoorEntryA(null, EventFlag.none, 0x82CD, 0x0147, 0x07);
 immutable DoorEntryA doorEntry444 = DoorEntryA(null, EventFlag.none, 0x8379, 0x03A3, 0x01);
 immutable DoorEntryA doorEntry445 = DoorEntryA(null, EventFlag.none, 0x02CB, 0x0110, 0x01);
-immutable DoorEntryA doorEntry446 = DoorEntryA(textDoor446, EventFlag.defeatedSanctuaryBoss3 | eventFlagUnset, 0x0295, 0x004E, 0x01);
-immutable DoorEntryA doorEntry447 = DoorEntryA(textDoor447, EventFlag.none, 0x02BD, 0x0066, 0x01);
+immutable DoorEntryA doorEntry446 = DoorEntryA("textDoor446", EventFlag.defeatedSanctuaryBoss3 | eventFlagUnset, 0x0295, 0x004E, 0x01);
+immutable DoorEntryA doorEntry447 = DoorEntryA("textDoor447", EventFlag.none, 0x02BD, 0x0066, 0x01);
 immutable DoorEntryA doorEntry448 = DoorEntryA(null, EventFlag.none, 0x0391, 0x0045, 0x01);
-immutable DoorEntryA doorEntry449 = DoorEntryA(textDoor447, EventFlag.none, 0x0295, 0x001E, 0x01);
+immutable DoorEntryA doorEntry449 = DoorEntryA("textDoor447", EventFlag.none, 0x0295, 0x001E, 0x01);
 immutable DoorEntryA doorEntry450 = DoorEntryA(null, EventFlag.none, 0x024F, 0x022E, 0x01);
 immutable DoorEntryA doorEntry451 = DoorEntryA(null, EventFlag.none, 0x0395, 0x0035, 0x01);
 immutable DoorEntryA doorEntry452 = DoorEntryA(null, EventFlag.none, 0xC279, 0x03B9, 0x01);
-immutable DoorEntryA doorEntry453 = DoorEntryA(textDoor001, EventFlag.none, 0x011F, 0x0395, 0x01);
+immutable DoorEntryA doorEntry453 = DoorEntryA("textDoor001", EventFlag.none, 0x011F, 0x0395, 0x01);
 immutable DoorEntryA doorEntry454 = DoorEntryA(null, EventFlag.none, 0x810C, 0x036B, 0x01);
 immutable DoorEntryA doorEntry455 = DoorEntryA(null, EventFlag.none, 0x8199, 0x0343, 0x01);
 immutable DoorEntryA doorEntry456 = DoorEntryA(null, EventFlag.none, 0x0055, 0x034D, 0x01);
 immutable DoorEntryA doorEntry457 = DoorEntryA(null, EventFlag.none, 0x81B9, 0x0343, 0x01);
 immutable DoorEntryA doorEntry458 = DoorEntryA(null, EventFlag.none, 0xC199, 0x03BD, 0x01);
 immutable DoorEntryA doorEntry459 = DoorEntryA(null, EventFlag.none, 0xC199, 0x03FC, 0x01);
-immutable DoorEntryA doorEntry460 = DoorEntryA(textDoor460, EventFlag.none, 0x03E2, 0x0019, 0x01);
-immutable DoorEntryA doorEntry461 = DoorEntryA(textDoor461, EventFlag.unknown154 | eventFlagUnset, 0x0021, 0x031C, 0x01);
-immutable DoorEntryC doorEntry462 = DoorEntryC(textDoor462);
+immutable DoorEntryA doorEntry460 = DoorEntryA("textDoor460", EventFlag.none, 0x03E2, 0x0019, 0x01);
+immutable DoorEntryA doorEntry461 = DoorEntryA("textDoor461", EventFlag.unknown154 | eventFlagUnset, 0x0021, 0x031C, 0x01);
+immutable DoorEntryC doorEntry462 = DoorEntryC("textDoor462");
 immutable DoorEntryA doorEntry463 = DoorEntryA(null, EventFlag.none, 0xC3E9, 0x03CB, 0x04);
-immutable DoorEntryA doorEntry464 = DoorEntryA(textDoor004, EventFlag.none, 0xC1A9, 0x0350, 0x01);
-immutable DoorEntryA doorEntry465 = DoorEntryA(textDoor004, EventFlag.none, 0x0281, 0x018C, 0x01);
-immutable DoorEntryA doorEntry466 = DoorEntryA(textDoor004, EventFlag.none, 0x828D, 0x0183, 0x01);
-immutable DoorEntryA doorEntry467 = DoorEntryA(textDoor004, EventFlag.none, 0xC379, 0x03F9, 0x01);
+immutable DoorEntryA doorEntry464 = DoorEntryA("textDoor004", EventFlag.none, 0xC1A9, 0x0350, 0x01);
+immutable DoorEntryA doorEntry465 = DoorEntryA("textDoor004", EventFlag.none, 0x0281, 0x018C, 0x01);
+immutable DoorEntryA doorEntry466 = DoorEntryA("textDoor004", EventFlag.none, 0x828D, 0x0183, 0x01);
+immutable DoorEntryA doorEntry467 = DoorEntryA("textDoor004", EventFlag.none, 0xC379, 0x03F9, 0x01);
 immutable DoorEntryA doorEntry468 = DoorEntryA(null, EventFlag.none, 0xC3E9, 0x032B, 0x04);
 immutable DoorEntryA doorEntry469 = DoorEntryA(null, EventFlag.none, 0xC3E9, 0x038B, 0x04);
-immutable DoorEntryA doorEntry470 = DoorEntryA(textDoor004, EventFlag.none, 0xC1B9, 0x035C, 0x01);
-immutable DoorEntryA doorEntry471 = DoorEntryA(textDoor004, EventFlag.none, 0xC28D, 0x019C, 0x01);
-immutable DoorEntryA doorEntry472 = DoorEntryA(textDoor004, EventFlag.none, 0x8279, 0x0383, 0x01);
-immutable DoorEntryA doorEntry473 = DoorEntryA(textDoor101, EventFlag.none, 0x03CC, 0x001B, 0x0A);
+immutable DoorEntryA doorEntry470 = DoorEntryA("textDoor004", EventFlag.none, 0xC1B9, 0x035C, 0x01);
+immutable DoorEntryA doorEntry471 = DoorEntryA("textDoor004", EventFlag.none, 0xC28D, 0x019C, 0x01);
+immutable DoorEntryA doorEntry472 = DoorEntryA("textDoor004", EventFlag.none, 0x8279, 0x0383, 0x01);
+immutable DoorEntryA doorEntry473 = DoorEntryA("textDoor101", EventFlag.none, 0x03CC, 0x001B, 0x0A);
 immutable DoorEntryA doorEntry474 = DoorEntryA(null, EventFlag.none, 0x03C4, 0x0037, 0x0A);
 immutable DoorEntryA doorEntry475 = DoorEntryA(null, EventFlag.none, 0x03A0, 0x001B, 0x0A);
 immutable DoorEntryA doorEntry476 = DoorEntryA(null, EventFlag.none, 0x03A7, 0x0018, 0x01);
@@ -1810,18 +1810,18 @@ immutable DoorEntryA doorEntry477 = DoorEntryA(null, EventFlag.none, 0x03B0, 0x0
 immutable DoorEntryA doorEntry478 = DoorEntryA(null, EventFlag.none, 0x03AA, 0x002D, 0x01);
 immutable DoorEntryA doorEntry479 = DoorEntryA(null, EventFlag.none, 0x03AC, 0x0025, 0x01);
 immutable DoorEntryA doorEntry480 = DoorEntryA(null, EventFlag.none, 0xC10D, 0x03D8, 0x01);
-immutable DoorEntryA doorEntry481 = DoorEntryA(textDoor004, EventFlag.none, 0xC00C, 0x035B, 0x01);
+immutable DoorEntryA doorEntry481 = DoorEntryA("textDoor004", EventFlag.none, 0xC00C, 0x035B, 0x01);
 immutable DoorEntryA doorEntry482 = DoorEntryA(null, EventFlag.none, 0xC0ED, 0x03F4, 0x01);
-immutable DoorEntryA doorEntry483 = DoorEntryA(textDoor004, EventFlag.none, 0x81AC, 0x02C4, 0x01);
-immutable DoorEntryA doorEntry484 = DoorEntryA(textDoor004, EventFlag.none, 0x81AC, 0x02C4, 0x01);
-immutable DoorEntryA doorEntry485 = DoorEntryA(textDoor004, EventFlag.none, 0xC35A, 0x03F8, 0x01);
-immutable DoorEntryA doorEntry486 = DoorEntryA(textDoor004, EventFlag.none, 0x0413, 0x0031, 0x01);
-immutable DoorEntryA doorEntry487 = DoorEntryA(textDoor004, EventFlag.none, 0x0291, 0x03B8, 0x01);
-immutable DoorEntryA doorEntry488 = DoorEntryA(textDoor004, EventFlag.none, 0x843C, 0x03C4, 0x01);
-immutable DoorEntryA doorEntry489 = DoorEntryA(textDoor004, EventFlag.none, 0xC43C, 0x03FB, 0x01);
-immutable DoorEntryC doorEntry490 = DoorEntryC(textDoor490);
-immutable DoorEntryA doorEntry491 = DoorEntryA(textDoor346, EventFlag.none, 0x04B4, 0x01B3, 0x01);
-immutable DoorEntryA doorEntry492 = DoorEntryA(textDoor346, EventFlag.none, 0x04DC, 0x00AF, 0x01);
+immutable DoorEntryA doorEntry483 = DoorEntryA("textDoor004", EventFlag.none, 0x81AC, 0x02C4, 0x01);
+immutable DoorEntryA doorEntry484 = DoorEntryA("textDoor004", EventFlag.none, 0x81AC, 0x02C4, 0x01);
+immutable DoorEntryA doorEntry485 = DoorEntryA("textDoor004", EventFlag.none, 0xC35A, 0x03F8, 0x01);
+immutable DoorEntryA doorEntry486 = DoorEntryA("textDoor004", EventFlag.none, 0x0413, 0x0031, 0x01);
+immutable DoorEntryA doorEntry487 = DoorEntryA("textDoor004", EventFlag.none, 0x0291, 0x03B8, 0x01);
+immutable DoorEntryA doorEntry488 = DoorEntryA("textDoor004", EventFlag.none, 0x843C, 0x03C4, 0x01);
+immutable DoorEntryA doorEntry489 = DoorEntryA("textDoor004", EventFlag.none, 0xC43C, 0x03FB, 0x01);
+immutable DoorEntryC doorEntry490 = DoorEntryC("textDoor490");
+immutable DoorEntryA doorEntry491 = DoorEntryA("textDoor346", EventFlag.none, 0x04B4, 0x01B3, 0x01);
+immutable DoorEntryA doorEntry492 = DoorEntryA("textDoor346", EventFlag.none, 0x04DC, 0x00AF, 0x01);
 immutable DoorEntryA doorEntry493 = DoorEntryA(null, EventFlag.none, 0x0283, 0x038D, 0x01);
 immutable DoorEntryA doorEntry494 = DoorEntryA(null, EventFlag.none, 0x02A3, 0x03F5, 0x01);
 immutable DoorEntryA doorEntry495 = DoorEntryA(null, EventFlag.none, 0x0293, 0x0305, 0x01);
@@ -1833,7 +1833,7 @@ immutable DoorEntryA doorEntry500 = DoorEntryA(null, EventFlag.none, 0x42EC, 0x0
 immutable DoorEntryA doorEntry501 = DoorEntryA(null, EventFlag.none, 0x42A8, 0x0375, 0x01);
 immutable DoorEntryA doorEntry502 = DoorEntryA(null, EventFlag.none, 0x02CA, 0x03D5, 0x01);
 immutable DoorEntryA doorEntry503 = DoorEntryA(null, EventFlag.none, 0x4304, 0x0379, 0x01);
-immutable DoorEntryA doorEntry504 = DoorEntryA(textDoor346, EventFlag.none, 0x04B6, 0x01C9, 0x01);
+immutable DoorEntryA doorEntry504 = DoorEntryA("textDoor346", EventFlag.none, 0x04B6, 0x01C9, 0x01);
 immutable DoorEntryA doorEntry505 = DoorEntryA(null, EventFlag.none, 0x44BC, 0x00C1, 0x01);
 immutable DoorEntryA doorEntry506 = DoorEntryA(null, EventFlag.unknown2E9 | eventFlagUnset, 0xC2A9, 0x0310, 0x01);
 immutable DoorEntryA doorEntry507 = DoorEntryA(null, EventFlag.none, 0xC2C9, 0x0310, 0x01);
@@ -1877,36 +1877,36 @@ immutable DoorEntryA doorEntry544 = DoorEntryA(null, EventFlag.none, 0x02E8, 0x0
 immutable DoorEntryA doorEntry545 = DoorEntryA(null, EventFlag.unknown204 | eventFlagUnset, 0xC351, 0x03B4, 0x01);
 immutable DoorEntryA doorEntry546 = DoorEntryA(null, EventFlag.none, 0x8319, 0x0343, 0x01);
 immutable DoorEntryA doorEntry547 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x03E5, 0x01);
-immutable DoorEntryA doorEntry548 = DoorEntryA(textDoor548, EventFlag.none, 0xC4E6, 0x02CD, 0x01);
-immutable DoorEntryA doorEntry549 = DoorEntryA(textDoor549, EventFlag.none, 0x827E, 0x0118, 0x01);
+immutable DoorEntryA doorEntry548 = DoorEntryA("textDoor548", EventFlag.none, 0xC4E6, 0x02CD, 0x01);
+immutable DoorEntryA doorEntry549 = DoorEntryA("textDoor549", EventFlag.none, 0x827E, 0x0118, 0x01);
 immutable DoorEntryA doorEntry550 = DoorEntryA(null, EventFlag.none, 0xC4E6, 0x020D, 0x01);
 immutable DoorEntryA doorEntry551 = DoorEntryA(null, EventFlag.none, 0x84E6, 0x0232, 0x01);
 immutable DoorEntryA doorEntry552 = DoorEntryA(null, EventFlag.none, 0xC30D, 0x02DC, 0x01);
 immutable DoorEntryA doorEntry553 = DoorEntryA(null, EventFlag.none, 0x8339, 0x02A7, 0x04);
-immutable DoorEntryA doorEntry554 = DoorEntryA(textDoor554, EventFlag.none, 0xC35D, 0x02FC, 0x04);
-immutable DoorEntryA doorEntry555 = DoorEntryA(textDoor555, EventFlag.none, 0xC2A5, 0x02C8, 0x01);
-immutable DoorEntryA doorEntry556 = DoorEntryA(textDoor556, EventFlag.unknown092 | eventFlagUnset, 0xC357, 0x0296, 0x06);
-immutable DoorEntryA doorEntry557 = DoorEntryA(textDoor001, EventFlag.none, 0x0184, 0x01BB, 0x01);
+immutable DoorEntryA doorEntry554 = DoorEntryA("textDoor554", EventFlag.none, 0xC35D, 0x02FC, 0x04);
+immutable DoorEntryA doorEntry555 = DoorEntryA("textDoor555", EventFlag.none, 0xC2A5, 0x02C8, 0x01);
+immutable DoorEntryA doorEntry556 = DoorEntryA("textDoor556", EventFlag.unknown092 | eventFlagUnset, 0xC357, 0x0296, 0x06);
+immutable DoorEntryA doorEntry557 = DoorEntryA("textDoor001", EventFlag.none, 0x0184, 0x01BB, 0x01);
 immutable DoorEntryA doorEntry558 = DoorEntryA(null, EventFlag.none, 0xC2B5, 0x027C, 0x04);
 immutable DoorEntryA doorEntry559 = DoorEntryA(null, EventFlag.none, 0xC2FD, 0x02FC, 0x01);
 immutable DoorEntryA doorEntry560 = DoorEntryA(null, EventFlag.none, 0xC2AD, 0x0238, 0x06);
-immutable DoorEntryA doorEntry561 = DoorEntryA(textDoor561, EventFlag.none, 0xC1AC, 0x0317, 0x01);
+immutable DoorEntryA doorEntry561 = DoorEntryA("textDoor561", EventFlag.none, 0xC1AC, 0x0317, 0x01);
 immutable DoorEntryA doorEntry562 = DoorEntryA(null, EventFlag.none, 0x8209, 0x02A3, 0x04);
 immutable DoorEntryA doorEntry563 = DoorEntryA(null, EventFlag.none, 0x0308, 0x02B2, 0x07);
 immutable DoorEntryA doorEntry564 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02C9, 0x07);
 immutable DoorEntryA doorEntry565 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02D1, 0x07);
-immutable DoorEntryA doorEntry566 = DoorEntryA(textDoor566, EventFlag.unknown15E, 0x82A5, 0x02AB, 0x0D);
+immutable DoorEntryA doorEntry566 = DoorEntryA("textDoor566", EventFlag.unknown15E, 0x82A5, 0x02AB, 0x0D);
 immutable DoorEntryA doorEntry567 = DoorEntryA(null, EventFlag.none, 0xC281, 0x02C0, 0x07);
 immutable DoorEntryA doorEntry568 = DoorEntryA(null, EventFlag.none, 0xC2C1, 0x02C8, 0x07);
 immutable DoorEntryA doorEntry569 = DoorEntryA(null, EventFlag.none, 0x0327, 0x02ED, 0x07);
 immutable DoorEntryA doorEntry570 = DoorEntryA(null, EventFlag.none, 0xC28D, 0x0298, 0x07);
 immutable DoorEntryA doorEntry571 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02A9, 0x07);
 immutable DoorEntryA doorEntry572 = DoorEntryA(null, EventFlag.none, 0x02DB, 0x02B1, 0x07);
-immutable DoorEntryA doorEntry573 = DoorEntryA(textDoor573, EventFlag.none, 0x830C, 0x0224, 0x07);
+immutable DoorEntryA doorEntry573 = DoorEntryA("textDoor573", EventFlag.none, 0x830C, 0x0224, 0x07);
 immutable DoorEntryA doorEntry574 = DoorEntryA(null, EventFlag.none, 0xC28D, 0x02F8, 0x07);
 immutable DoorEntryA doorEntry575 = DoorEntryA(null, EventFlag.none, 0xC2AD, 0x0298, 0x07);
 immutable DoorEntryA doorEntry576 = DoorEntryA(null, EventFlag.none, 0x0268, 0x02ED, 0x07);
-immutable DoorEntryA doorEntry577 = DoorEntryA(textDoor577, EventFlag.unknown15E, 0x832D, 0x02E3, 0x0D);
+immutable DoorEntryA doorEntry577 = DoorEntryA("textDoor577", EventFlag.unknown15E, 0x832D, 0x02E3, 0x0D);
 immutable DoorEntryA doorEntry578 = DoorEntryA(null, EventFlag.none, 0x026B, 0x02AE, 0x07);
 immutable DoorEntryA doorEntry579 = DoorEntryA(null, EventFlag.none, 0x0288, 0x0290, 0x07);
 immutable DoorEntryA doorEntry580 = DoorEntryA(null, EventFlag.none, 0xC32B, 0x029A, 0x07);
@@ -1915,15 +1915,15 @@ immutable DoorEntryA doorEntry582 = DoorEntryA(null, EventFlag.none, 0x82ED, 0x0
 immutable DoorEntryA doorEntry583 = DoorEntryA(null, EventFlag.none, 0xC2AD, 0x02F8, 0x07);
 immutable DoorEntryA doorEntry584 = DoorEntryA(null, EventFlag.none, 0xC2CD, 0x0298, 0x07);
 immutable DoorEntryA doorEntry585 = DoorEntryA(null, EventFlag.none, 0x828D, 0x0283, 0x07);
-immutable DoorEntryA doorEntry586 = DoorEntryA(textDoor586, EventFlag.unknown15E, 0xC32D, 0x02F8, 0x0D);
-immutable DoorEntryA doorEntry587 = DoorEntryA(textDoor587, EventFlag.none, 0x0278, 0x0285, 0x0D);
-immutable DoorEntryA doorEntry588 = DoorEntryA(textDoor588, EventFlag.none, 0x0203, 0x01B0, 0x01);
+immutable DoorEntryA doorEntry586 = DoorEntryA("textDoor586", EventFlag.unknown15E, 0xC32D, 0x02F8, 0x0D);
+immutable DoorEntryA doorEntry587 = DoorEntryA("textDoor587", EventFlag.none, 0x0278, 0x0285, 0x0D);
+immutable DoorEntryA doorEntry588 = DoorEntryA("textDoor588", EventFlag.none, 0x0203, 0x01B0, 0x01);
 immutable DoorEntryA doorEntry589 = DoorEntryA(null, EventFlag.none, 0x02A8, 0x028A, 0x07);
 immutable DoorEntryA doorEntry590 = DoorEntryA(null, EventFlag.none, 0x8341, 0x0226, 0x07);
 immutable DoorEntryA doorEntry591 = DoorEntryA(null, EventFlag.none, 0xC2CD, 0x02F8, 0x07);
 immutable DoorEntryA doorEntry592 = DoorEntryA(null, EventFlag.none, 0xC2ED, 0x02F8, 0x07);
 immutable DoorEntryA doorEntry593 = DoorEntryA(null, EventFlag.none, 0x02A8, 0x0290, 0x07);
-immutable DoorEntryA doorEntry594 = DoorEntryA(textDoor594, EventFlag.unknown15E, 0xC30D, 0x02F8, 0x0D);
+immutable DoorEntryA doorEntry594 = DoorEntryA("textDoor594", EventFlag.unknown15E, 0xC30D, 0x02F8, 0x0D);
 immutable DoorEntryA doorEntry595 = DoorEntryA(null, EventFlag.none, 0x826D, 0x02E3, 0x07);
 immutable DoorEntryA doorEntry596 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x02F8, 0x07);
 immutable DoorEntryA doorEntry597 = DoorEntryA(null, EventFlag.none, 0x026B, 0x02C1, 0x07);
@@ -1933,13 +1933,13 @@ immutable DoorEntryA doorEntry600 = DoorEntryA(null, EventFlag.none, 0x830D, 0x0
 immutable DoorEntryA doorEntry601 = DoorEntryA(null, EventFlag.none, 0x02C8, 0x0290, 0x07);
 immutable DoorEntryA doorEntry602 = DoorEntryA(null, EventFlag.none, 0x02F8, 0x02F1, 0x07);
 immutable DoorEntryA doorEntry603 = DoorEntryA(null, EventFlag.none, 0x82B1, 0x0223, 0x0F);
-immutable DoorEntryA doorEntry604 = DoorEntryA(textDoor604, EventFlag.unknown08F | eventFlagUnset, 0x82ED, 0x02E3, 0x07);
+immutable DoorEntryA doorEntry604 = DoorEntryA("textDoor604", EventFlag.unknown08F | eventFlagUnset, 0x82ED, 0x02E3, 0x07);
 immutable DoorEntryA doorEntry605 = DoorEntryA(null, EventFlag.unknown298 | eventFlagUnset, 0xC209, 0x02BC, 0x0F);
 immutable DoorEntryA doorEntry606 = DoorEntryA(null, EventFlag.unknown16A | eventFlagUnset, 0x02EC, 0x02C2, 0x07);
 immutable DoorEntryA doorEntry607 = DoorEntryA(null, EventFlag.none, 0x82CD, 0x0283, 0x07);
 immutable DoorEntryA doorEntry608 = DoorEntryA(null, EventFlag.none, 0xC2D9, 0x02E8, 0x07);
 immutable DoorEntryA doorEntry609 = DoorEntryA(null, EventFlag.none, 0xC31D, 0x02CC, 0x01);
-immutable DoorEntryA doorEntry610 = DoorEntryA(textDoor101, EventFlag.none, 0xC24B, 0x0142, 0x01);
+immutable DoorEntryA doorEntry610 = DoorEntryA("textDoor101", EventFlag.none, 0xC24B, 0x0142, 0x01);
 immutable DoorEntryA doorEntry611 = DoorEntryA(null, EventFlag.none, 0xC27D, 0x02FC, 0x07);
 immutable DoorEntryA doorEntry612 = DoorEntryA(null, EventFlag.none, 0xC27D, 0x0238, 0x07);
 immutable DoorEntryA doorEntry613 = DoorEntryA(null, EventFlag.none, 0x832D, 0x02A3, 0x0F);
@@ -1948,7 +1948,7 @@ immutable DoorEntryA doorEntry615 = DoorEntryA(null, EventFlag.none, 0xC35D, 0x0
 immutable DoorEntryA doorEntry616 = DoorEntryA(null, EventFlag.none, 0xC1C9, 0x0173, 0x01);
 immutable DoorEntryA doorEntry617 = DoorEntryA(null, EventFlag.none, 0x82FD, 0x02E3, 0x01);
 immutable DoorEntryA doorEntry618 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x02DC, 0x07);
-immutable DoorEntryA doorEntry619 = DoorEntryA(textDoor587, EventFlag.none, 0x02D8, 0x0285, 0x0D);
+immutable DoorEntryA doorEntry619 = DoorEntryA("textDoor587", EventFlag.none, 0x02D8, 0x0285, 0x0D);
 immutable DoorEntryA doorEntry620 = DoorEntryA(null, EventFlag.none, 0x032C, 0x02C5, 0x07);
 immutable DoorEntryA doorEntry621 = DoorEntryA(null, EventFlag.none, 0x829D, 0x02E3, 0x07);
 immutable DoorEntryA doorEntry622 = DoorEntryA(null, EventFlag.none, 0x830D, 0x02A3, 0x0F);
@@ -1956,27 +1956,27 @@ immutable DoorEntryA doorEntry623 = DoorEntryA(null, EventFlag.none, 0xC31D, 0x0
 immutable DoorEntryA doorEntry624 = DoorEntryA(null, EventFlag.none, 0xC34D, 0x02DC, 0x07);
 immutable DoorEntryA doorEntry625 = DoorEntryA(null, EventFlag.none, 0x0318, 0x02B1, 0x07);
 immutable DoorEntryA doorEntry626 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x02CC, 0x07);
-immutable DoorEntryA doorEntry627 = DoorEntryA(textDoor587, EventFlag.none, 0x0298, 0x0285, 0x0D);
-immutable DoorEntryA doorEntry628 = DoorEntryA(textDoor628, EventFlag.unknown08E | eventFlagUnset, 0x02B8, 0x0285, 0x0D);
+immutable DoorEntryA doorEntry627 = DoorEntryA("textDoor587", EventFlag.none, 0x0298, 0x0285, 0x0D);
+immutable DoorEntryA doorEntry628 = DoorEntryA("textDoor628", EventFlag.unknown08E | eventFlagUnset, 0x02B8, 0x0285, 0x0D);
 immutable DoorEntryA doorEntry629 = DoorEntryA(null, EventFlag.none, 0xC2BD, 0x02FC, 0x07);
-immutable DoorEntryA doorEntry630 = DoorEntryA(textDoor630, EventFlag.none, 0xC218, 0x01C2, 0x0C);
+immutable DoorEntryA doorEntry630 = DoorEntryA("textDoor630", EventFlag.none, 0xC218, 0x01C2, 0x0C);
 immutable DoorEntryA doorEntry631 = DoorEntryA(null, EventFlag.none, 0x032C, 0x02D1, 0x07);
 immutable DoorEntryA doorEntry632 = DoorEntryA(null, EventFlag.none, 0x0318, 0x02BD, 0x07);
-immutable DoorEntryA doorEntry633 = DoorEntryA(textDoor633, EventFlag.unknown154 | eventFlagUnset, 0x035E, 0x02BE, 0x00);
+immutable DoorEntryA doorEntry633 = DoorEntryA("textDoor633", EventFlag.unknown154 | eventFlagUnset, 0x035E, 0x02BE, 0x00);
 immutable DoorEntryA doorEntry634 = DoorEntryA(null, EventFlag.unknown03A | eventFlagUnset, 0xC35D, 0x02BC, 0x07);
 immutable DoorEntryA doorEntry635 = DoorEntryA(null, EventFlag.none, 0x835D, 0x02E2, 0x01);
-immutable DoorEntryA doorEntry636 = DoorEntryA(textDoor636, EventFlag.none, 0xC2DD, 0x026C, 0x07);
+immutable DoorEntryA doorEntry636 = DoorEntryA("textDoor636", EventFlag.none, 0xC2DD, 0x026C, 0x07);
 immutable DoorEntryA doorEntry637 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x023C, 0x07);
-immutable DoorEntryA doorEntry638 = DoorEntryA(textDoor638, EventFlag.none, 0x823E, 0x0179, 0x0A);
+immutable DoorEntryA doorEntry638 = DoorEntryA("textDoor638", EventFlag.none, 0x823E, 0x0179, 0x0A);
 immutable DoorEntryA doorEntry639 = DoorEntryA(null, EventFlag.unknown176 | eventFlagUnset, 0xC34D, 0x02BC, 0x07);
-immutable DoorEntryA doorEntry640 = DoorEntryA(textDoor640, EventFlag.none, 0x02A8, 0x0259, 0x07);
-immutable DoorEntryA doorEntry641 = DoorEntryA(textDoor641, EventFlag.none, 0xC1E2, 0x0142, 0x0A);
-immutable DoorEntryA doorEntry642 = DoorEntryA(textDoor642, EventFlag.none, 0x82DD, 0x0233, 0x07);
-immutable DoorEntryA doorEntry643 = DoorEntryA(textDoor004, EventFlag.none, 0x0044, 0x0283, 0x01);
+immutable DoorEntryA doorEntry640 = DoorEntryA("textDoor640", EventFlag.none, 0x02A8, 0x0259, 0x07);
+immutable DoorEntryA doorEntry641 = DoorEntryA("textDoor641", EventFlag.none, 0xC1E2, 0x0142, 0x0A);
+immutable DoorEntryA doorEntry642 = DoorEntryA("textDoor642", EventFlag.none, 0x82DD, 0x0233, 0x07);
+immutable DoorEntryA doorEntry643 = DoorEntryA("textDoor004", EventFlag.none, 0x0044, 0x0283, 0x01);
 immutable DoorEntryA doorEntry644 = DoorEntryA(null, EventFlag.none, 0x8299, 0x0227, 0x07);
 immutable DoorEntryA doorEntry645 = DoorEntryA(null, EventFlag.none, 0x82AB, 0x024D, 0x07);
 immutable DoorEntryA doorEntry646 = DoorEntryA(null, EventFlag.none, 0xC297, 0x027B, 0x01);
-immutable DoorEntryA doorEntry647 = DoorEntryA(textDoor647, EventFlag.none, 0x0217, 0x0192, 0x0A);
+immutable DoorEntryA doorEntry647 = DoorEntryA("textDoor647", EventFlag.none, 0x0217, 0x0192, 0x0A);
 immutable DoorEntryA doorEntry648 = DoorEntryA(null, EventFlag.none, 0x01D9, 0x01B0, 0x0A);
 immutable DoorEntryA doorEntry649 = DoorEntryA(null, EventFlag.none, 0x82F1, 0x02AB, 0x0F);
 immutable DoorEntryA doorEntry650 = DoorEntryA(null, EventFlag.none, 0xC0B2, 0x001D, 0x01);
@@ -1998,31 +1998,31 @@ immutable DoorEntryA doorEntry665 = DoorEntryA(null, EventFlag.none, 0x819A, 0x0
 immutable DoorEntryA doorEntry666 = DoorEntryA(null, EventFlag.none, 0x01AC, 0x039D, 0x07);
 immutable DoorEntryA doorEntry667 = DoorEntryA(null, EventFlag.none, 0xC1B6, 0x03FD, 0x01);
 immutable DoorEntryA doorEntry668 = DoorEntryA(null, EventFlag.none, 0xC1BA, 0x03FD, 0x01);
-immutable DoorEntryA doorEntry669 = DoorEntryA(textDoor669, EventFlag.none, 0x4200, 0x01ED, 0x01);
+immutable DoorEntryA doorEntry669 = DoorEntryA("textDoor669", EventFlag.none, 0x4200, 0x01ED, 0x01);
 immutable DoorEntryA doorEntry670 = DoorEntryA(null, EventFlag.none, 0xC26C, 0x021B, 0x07);
 immutable DoorEntryA doorEntry671 = DoorEntryA(null, EventFlag.none, 0x0194, 0x01A9, 0x07);
-immutable DoorEntryC doorEntry672 = DoorEntryC(textDoor672);
-immutable DoorEntryC doorEntry673 = DoorEntryC(textDoor673);
-immutable DoorEntryC doorEntry674 = DoorEntryC(textDoor674);
-immutable DoorEntryA doorEntry675 = DoorEntryA(textDoor675, EventFlag.unknown154 | eventFlagUnset, 0x02DB, 0x02B9, 0x00);
-immutable DoorEntryC doorEntry676 = DoorEntryC(textDoor676);
-immutable DoorEntryC doorEntry677 = DoorEntryC(textDoor677);
-immutable DoorEntryC doorEntry678 = DoorEntryC(textDoor678);
-immutable DoorEntryC doorEntry679 = DoorEntryC(textDoor679);
-immutable DoorEntryC doorEntry680 = DoorEntryC(textDoor680);
-immutable DoorEntryC doorEntry681 = DoorEntryC(textDoor681);
+immutable DoorEntryC doorEntry672 = DoorEntryC("textDoor672");
+immutable DoorEntryC doorEntry673 = DoorEntryC("textDoor673");
+immutable DoorEntryC doorEntry674 = DoorEntryC("textDoor674");
+immutable DoorEntryA doorEntry675 = DoorEntryA("textDoor675", EventFlag.unknown154 | eventFlagUnset, 0x02DB, 0x02B9, 0x00);
+immutable DoorEntryC doorEntry676 = DoorEntryC("textDoor676");
+immutable DoorEntryC doorEntry677 = DoorEntryC("textDoor677");
+immutable DoorEntryC doorEntry678 = DoorEntryC("textDoor678");
+immutable DoorEntryC doorEntry679 = DoorEntryC("textDoor679");
+immutable DoorEntryC doorEntry680 = DoorEntryC("textDoor680");
+immutable DoorEntryC doorEntry681 = DoorEntryC("textDoor681");
 immutable DoorEntryA doorEntry682 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x035C, 0x04);
-immutable DoorEntryA doorEntry683 = DoorEntryA(textDoor367, EventFlag.none, 0xC478, 0x03AB, 0x04);
+immutable DoorEntryA doorEntry683 = DoorEntryA("textDoor367", EventFlag.none, 0xC478, 0x03AB, 0x04);
 immutable DoorEntryA doorEntry684 = DoorEntryA(null, EventFlag.none, 0xC47D, 0x035C, 0x04);
-immutable DoorEntryA doorEntry685 = DoorEntryA(textDoor685, EventFlag.haveStoicClubReservation | eventFlagUnset, 0xC47A, 0x03D9, 0x01);
-immutable DoorEntryA doorEntry686 = DoorEntryA(textDoor686, EventFlag.none, 0xC4AD, 0x037C, 0x04);
+immutable DoorEntryA doorEntry685 = DoorEntryA("textDoor685", EventFlag.haveStoicClubReservation | eventFlagUnset, 0xC47A, 0x03D9, 0x01);
+immutable DoorEntryA doorEntry686 = DoorEntryA("textDoor686", EventFlag.none, 0xC4AD, 0x037C, 0x04);
 immutable DoorEntryA doorEntry687 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x035C, 0x04);
 immutable DoorEntryA doorEntry688 = DoorEntryA(null, EventFlag.none, 0xC4CD, 0x03D4, 0x04);
-immutable DoorEntryA doorEntry689 = DoorEntryA(textDoor367, EventFlag.none, 0xC4AD, 0x035C, 0x04);
-immutable DoorEntryA doorEntry690 = DoorEntryA(textDoor367, EventFlag.none, 0xC4A9, 0x0390, 0x04);
-immutable DoorEntryA doorEntry691 = DoorEntryA(textDoor367, EventFlag.none, 0xC4A9, 0x03D0, 0x04);
-immutable DoorEntryA doorEntry692 = DoorEntryA(textDoor367, EventFlag.none, 0xC4CD, 0x0354, 0x04);
-immutable DoorEntryA doorEntry693 = DoorEntryA(textDoor367, EventFlag.none, 0xC4CD, 0x0394, 0x04);
+immutable DoorEntryA doorEntry689 = DoorEntryA("textDoor367", EventFlag.none, 0xC4AD, 0x035C, 0x04);
+immutable DoorEntryA doorEntry690 = DoorEntryA("textDoor367", EventFlag.none, 0xC4A9, 0x0390, 0x04);
+immutable DoorEntryA doorEntry691 = DoorEntryA("textDoor367", EventFlag.none, 0xC4A9, 0x03D0, 0x04);
+immutable DoorEntryA doorEntry692 = DoorEntryA("textDoor367", EventFlag.none, 0xC4CD, 0x0354, 0x04);
+immutable DoorEntryA doorEntry693 = DoorEntryA("textDoor367", EventFlag.none, 0xC4CD, 0x0394, 0x04);
 immutable DoorEntryA doorEntry694 = DoorEntryA(null, EventFlag.none, 0x04BC, 0x03C9, 0x07);
 immutable DoorEntryA doorEntry695 = DoorEntryA(null, EventFlag.none, 0x04BC, 0x03D1, 0x07);
 immutable DoorEntryA doorEntry696 = DoorEntryA(null, EventFlag.none, 0xC4BD, 0x0398, 0x07);
@@ -2033,59 +2033,59 @@ immutable DoorEntryA doorEntry700 = DoorEntryA(null, EventFlag.none, 0xC46D, 0x0
 immutable DoorEntryA doorEntry701 = DoorEntryA(null, EventFlag.none, 0xC46D, 0x03D4, 0x07);
 immutable DoorEntryA doorEntry702 = DoorEntryA(null, EventFlag.none, 0x84BD, 0x0343, 0x0F);
 immutable DoorEntryA doorEntry703 = DoorEntryA(null, EventFlag.none, 0x84AD, 0x03A3, 0x0F);
-immutable DoorEntryA doorEntry704 = DoorEntryA(textDoor704, EventFlag.none, 0x84AD, 0x0362, 0x01);
+immutable DoorEntryA doorEntry704 = DoorEntryA("textDoor704", EventFlag.none, 0x84AD, 0x0362, 0x01);
 immutable DoorEntryA doorEntry705 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x039C, 0x07);
 immutable DoorEntryA doorEntry706 = DoorEntryA(null, EventFlag.none, 0xC470, 0x03F3, 0x0F);
 immutable DoorEntryA doorEntry707 = DoorEntryA(null, EventFlag.none, 0xC478, 0x03FB, 0x0F);
 immutable DoorEntryA doorEntry708 = DoorEntryA(null, EventFlag.none, 0xC49D, 0x03DC, 0x07);
 immutable DoorEntryA doorEntry709 = DoorEntryA(null, EventFlag.none, 0x849D, 0x0343, 0x0F);
 immutable DoorEntryA doorEntry710 = DoorEntryA(null, EventFlag.none, 0x0154, 0x0297, 0x0A);
-immutable DoorEntryA doorEntry711 = DoorEntryA(textDoor711, EventFlag.none, 0x0154, 0x0268, 0x0A);
+immutable DoorEntryA doorEntry711 = DoorEntryA("textDoor711", EventFlag.none, 0x0154, 0x0268, 0x0A);
 immutable DoorEntryA doorEntry712 = DoorEntryA(null, EventFlag.none, 0x0155, 0x02C2, 0x0F);
 immutable DoorEntryA doorEntry713 = DoorEntryA(null, EventFlag.none, 0x8449, 0x038B, 0x0F);
 immutable DoorEntryA doorEntry714 = DoorEntryA(null, EventFlag.none, 0x845C, 0x0384, 0x0F);
 immutable DoorEntryA doorEntry715 = DoorEntryA(null, EventFlag.none, 0xC45C, 0x03BB, 0x0F);
-immutable DoorEntryA doorEntry716 = DoorEntryA(textDoor716, EventFlag.none, 0x0155, 0x0237, 0x0A);
+immutable DoorEntryA doorEntry716 = DoorEntryA("textDoor716", EventFlag.none, 0x0155, 0x0237, 0x0A);
 immutable DoorEntryA doorEntry717 = DoorEntryA(null, EventFlag.none, 0x0448, 0x0398, 0x07);
 immutable DoorEntryA doorEntry718 = DoorEntryA(null, EventFlag.none, 0x0448, 0x03A8, 0x07);
-immutable DoorEntryA doorEntry719 = DoorEntryA(textDoor711, EventFlag.none, 0x0163, 0x0362, 0x0A);
+immutable DoorEntryA doorEntry719 = DoorEntryA("textDoor711", EventFlag.none, 0x0163, 0x0362, 0x0A);
 immutable DoorEntryA doorEntry720 = DoorEntryA(null, EventFlag.none, 0xC457, 0x0379, 0x01);
-immutable DoorEntryA doorEntry721 = DoorEntryA(textDoor647, EventFlag.none, 0x0152, 0x02EE, 0x0A);
-immutable DoorEntryA doorEntry722 = DoorEntryA(textDoor711, EventFlag.none, 0x0163, 0x0376, 0x0A);
+immutable DoorEntryA doorEntry721 = DoorEntryA("textDoor647", EventFlag.none, 0x0152, 0x02EE, 0x0A);
+immutable DoorEntryA doorEntry722 = DoorEntryA("textDoor711", EventFlag.none, 0x0163, 0x0376, 0x0A);
 immutable DoorEntryA doorEntry723 = DoorEntryA(null, EventFlag.none, 0x84AD, 0x03E3, 0x07);
 immutable DoorEntryA doorEntry724 = DoorEntryA(null, EventFlag.none, 0x8455, 0x0347, 0x0F);
-immutable DoorEntryA doorEntry725 = DoorEntryA(textDoor725, EventFlag.none, 0x0163, 0x0382, 0x0A);
+immutable DoorEntryA doorEntry725 = DoorEntryA("textDoor725", EventFlag.none, 0x0163, 0x0382, 0x0A);
 immutable DoorEntryA doorEntry726 = DoorEntryA(null, EventFlag.none, 0x04A8, 0x03AD, 0x07);
-immutable DoorEntryA doorEntry727 = DoorEntryA(textDoor711, EventFlag.none, 0x0163, 0x0396, 0x0A);
-immutable DoorEntryA doorEntry728 = DoorEntryA(textDoor711, EventFlag.none, 0x0163, 0x03A2, 0x0A);
+immutable DoorEntryA doorEntry727 = DoorEntryA("textDoor711", EventFlag.none, 0x0163, 0x0396, 0x0A);
+immutable DoorEntryA doorEntry728 = DoorEntryA("textDoor711", EventFlag.none, 0x0163, 0x03A2, 0x0A);
 immutable DoorEntryA doorEntry729 = DoorEntryA(null, EventFlag.none, 0x015B, 0x036A, 0x0A);
-immutable DoorEntryC doorEntry730 = DoorEntryC(textDoor730);
-immutable DoorEntryC doorEntry731 = DoorEntryC(textDoor731);
-immutable DoorEntryC doorEntry732 = DoorEntryC(textDoor732);
-immutable DoorEntryC doorEntry733 = DoorEntryC(textDoor733);
-immutable DoorEntryC doorEntry734 = DoorEntryC(textDoor734);
-immutable DoorEntryC doorEntry735 = DoorEntryC(textDoor735);
-immutable DoorEntryC doorEntry736 = DoorEntryC(textDoor736);
-immutable DoorEntryC doorEntry737 = DoorEntryC(textDoor737);
-immutable DoorEntryA doorEntry738 = DoorEntryA(textDoor738, EventFlag.unknown154 | eventFlagUnset, 0x015B, 0x038B, 0x00);
-immutable DoorEntryA doorEntry739 = DoorEntryA(textDoor739, EventFlag.unknown154 | eventFlagUnset, 0x015B, 0x03AB, 0x00);
-immutable DoorEntryC doorEntry740 = DoorEntryC(textDoor740);
-immutable DoorEntryC doorEntry741 = DoorEntryC(textDoor741);
-immutable DoorEntryC doorEntry742 = DoorEntryC(textDoor742);
+immutable DoorEntryC doorEntry730 = DoorEntryC("textDoor730");
+immutable DoorEntryC doorEntry731 = DoorEntryC("textDoor731");
+immutable DoorEntryC doorEntry732 = DoorEntryC("textDoor732");
+immutable DoorEntryC doorEntry733 = DoorEntryC("textDoor733");
+immutable DoorEntryC doorEntry734 = DoorEntryC("textDoor734");
+immutable DoorEntryC doorEntry735 = DoorEntryC("textDoor735");
+immutable DoorEntryC doorEntry736 = DoorEntryC("textDoor736");
+immutable DoorEntryC doorEntry737 = DoorEntryC("textDoor737");
+immutable DoorEntryA doorEntry738 = DoorEntryA("textDoor738", EventFlag.unknown154 | eventFlagUnset, 0x015B, 0x038B, 0x00);
+immutable DoorEntryA doorEntry739 = DoorEntryA("textDoor739", EventFlag.unknown154 | eventFlagUnset, 0x015B, 0x03AB, 0x00);
+immutable DoorEntryC doorEntry740 = DoorEntryC("textDoor740");
+immutable DoorEntryC doorEntry741 = DoorEntryC("textDoor741");
+immutable DoorEntryC doorEntry742 = DoorEntryC("textDoor742");
 immutable DoorEntryA doorEntry743 = DoorEntryA(null, EventFlag.none, 0xC411, 0x03F8, 0x01);
-immutable DoorEntryA doorEntry744 = DoorEntryA(textDoor367, EventFlag.none, 0xC3C9, 0x0370, 0x01);
-immutable DoorEntryA doorEntry745 = DoorEntryA(textDoor367, EventFlag.none, 0xC3F9, 0x03B4, 0x01);
-immutable DoorEntryA doorEntry746 = DoorEntryA(textDoor367, EventFlag.none, 0xC3E9, 0x0370, 0x01);
-immutable DoorEntryA doorEntry747 = DoorEntryA(textDoor367, EventFlag.none, 0xC3D9, 0x03B0, 0x01);
-immutable DoorEntryA doorEntry748 = DoorEntryA(textDoor004, EventFlag.unknown28C | eventFlagUnset, 0xC396, 0x021C, 0x01);
-immutable DoorEntryA doorEntry749 = DoorEntryA(textDoor001, EventFlag.none, 0x82B1, 0x0103, 0x01);
-immutable DoorEntryA doorEntry750 = DoorEntryA(textDoor711, EventFlag.none, 0x01D4, 0x0220, 0x01);
-immutable DoorEntryA doorEntry751 = DoorEntryA(textDoor711, EventFlag.none, 0x01E4, 0x0250, 0x01);
-immutable DoorEntryA doorEntry752 = DoorEntryA(textDoor711, EventFlag.none, 0x01F4, 0x0228, 0x01);
-immutable DoorEntryA doorEntry753 = DoorEntryA(textDoor711, EventFlag.none, 0x01EC, 0x0218, 0x01);
+immutable DoorEntryA doorEntry744 = DoorEntryA("textDoor367", EventFlag.none, 0xC3C9, 0x0370, 0x01);
+immutable DoorEntryA doorEntry745 = DoorEntryA("textDoor367", EventFlag.none, 0xC3F9, 0x03B4, 0x01);
+immutable DoorEntryA doorEntry746 = DoorEntryA("textDoor367", EventFlag.none, 0xC3E9, 0x0370, 0x01);
+immutable DoorEntryA doorEntry747 = DoorEntryA("textDoor367", EventFlag.none, 0xC3D9, 0x03B0, 0x01);
+immutable DoorEntryA doorEntry748 = DoorEntryA("textDoor004", EventFlag.unknown28C | eventFlagUnset, 0xC396, 0x021C, 0x01);
+immutable DoorEntryA doorEntry749 = DoorEntryA("textDoor001", EventFlag.none, 0x82B1, 0x0103, 0x01);
+immutable DoorEntryA doorEntry750 = DoorEntryA("textDoor711", EventFlag.none, 0x01D4, 0x0220, 0x01);
+immutable DoorEntryA doorEntry751 = DoorEntryA("textDoor711", EventFlag.none, 0x01E4, 0x0250, 0x01);
+immutable DoorEntryA doorEntry752 = DoorEntryA("textDoor711", EventFlag.none, 0x01F4, 0x0228, 0x01);
+immutable DoorEntryA doorEntry753 = DoorEntryA("textDoor711", EventFlag.none, 0x01EC, 0x0218, 0x01);
 immutable DoorEntryA doorEntry754 = DoorEntryA(null, EventFlag.none, 0x8411, 0x03C7, 0x01);
 immutable DoorEntryA doorEntry755 = DoorEntryA(null, EventFlag.none, 0xC411, 0x0368, 0x01);
-immutable DoorEntryA doorEntry756 = DoorEntryA(textDoor101, EventFlag.none, 0x01BA, 0x0239, 0x01);
+immutable DoorEntryA doorEntry756 = DoorEntryA("textDoor101", EventFlag.none, 0x01BA, 0x0239, 0x01);
 immutable DoorEntryA doorEntry757 = DoorEntryA(null, EventFlag.none, 0x023A, 0x024E, 0x05);
 immutable DoorEntryA doorEntry758 = DoorEntryA(null, EventFlag.none, 0xC436, 0x023C, 0x01);
 immutable DoorEntryA doorEntry759 = DoorEntryA(null, EventFlag.none, 0x020A, 0x021D, 0x01);
@@ -2094,25 +2094,25 @@ immutable DoorEntryA doorEntry761 = DoorEntryA(null, EventFlag.none, 0x0437, 0x0
 immutable DoorEntryA doorEntry762 = DoorEntryA(null, EventFlag.none, 0x0397, 0x01F1, 0x05);
 immutable DoorEntryA doorEntry763 = DoorEntryA(null, EventFlag.none, 0x02B7, 0x012E, 0x05);
 immutable DoorEntryA doorEntry764 = DoorEntryA(null, EventFlag.none, 0x8399, 0x01E7, 0x01);
-immutable DoorEntryA doorEntry765 = DoorEntryA(textDoor765, EventFlag.defeatedSanctuaryBoss6 | eventFlagUnset, 0x0306, 0x01C5, 0x01);
+immutable DoorEntryA doorEntry765 = DoorEntryA("textDoor765", EventFlag.defeatedSanctuaryBoss6 | eventFlagUnset, 0x0306, 0x01C5, 0x01);
 immutable DoorEntryA doorEntry766 = DoorEntryA(null, EventFlag.none, 0x047A, 0x0216, 0x05);
 immutable DoorEntryA doorEntry767 = DoorEntryA(null, EventFlag.none, 0xC42D, 0x03E8, 0x01);
-immutable DoorEntryA doorEntry768 = DoorEntryA(textDoor367, EventFlag.none, 0xC3D9, 0x0334, 0x01);
+immutable DoorEntryA doorEntry768 = DoorEntryA("textDoor367", EventFlag.none, 0xC3D9, 0x0334, 0x01);
 immutable DoorEntryA doorEntry769 = DoorEntryA(null, EventFlag.none, 0xC3B9, 0x0334, 0x01);
 immutable DoorEntryA doorEntry770 = DoorEntryA(null, EventFlag.none, 0xC36B, 0x03E6, 0x01);
-immutable DoorEntryA doorEntry771 = DoorEntryA(textDoor367, EventFlag.none, 0xC3F9, 0x0334, 0x01);
-immutable DoorEntryA doorEntry772 = DoorEntryA(textDoor004, EventFlag.none, 0x8139, 0x02C7, 0x01);
-immutable DoorEntryA doorEntry773 = DoorEntryA(textDoor773, EventFlag.unknown2F4, 0xC1A9, 0x033C, 0x01);
-immutable DoorEntryC doorEntry774 = DoorEntryC(textDoor774);
-immutable DoorEntryB doorEntry775 = DoorEntryB(EventFlag.scarabaReached | eventFlagUnset, textDoor775);
-immutable DoorEntryB doorEntry776 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, textDoor776);
-immutable DoorEntryB doorEntry777 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, textDoor777);
-immutable DoorEntryB doorEntry778 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, textDoor778);
-immutable DoorEntryB doorEntry779 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, textDoor779);
-immutable DoorEntryA doorEntry780 = DoorEntryA(textDoor780, EventFlag.none, 0x0205, 0x0099, 0x01);
+immutable DoorEntryA doorEntry771 = DoorEntryA("textDoor367", EventFlag.none, 0xC3F9, 0x0334, 0x01);
+immutable DoorEntryA doorEntry772 = DoorEntryA("textDoor004", EventFlag.none, 0x8139, 0x02C7, 0x01);
+immutable DoorEntryA doorEntry773 = DoorEntryA("textDoor773", EventFlag.unknown2F4, 0xC1A9, 0x033C, 0x01);
+immutable DoorEntryC doorEntry774 = DoorEntryC("textDoor774");
+immutable DoorEntryB doorEntry775 = DoorEntryB(EventFlag.scarabaReached | eventFlagUnset, "textDoor775");
+immutable DoorEntryB doorEntry776 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, "textDoor776");
+immutable DoorEntryB doorEntry777 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, "textDoor777");
+immutable DoorEntryB doorEntry778 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, "textDoor778");
+immutable DoorEntryB doorEntry779 = DoorEntryB(EventFlag.unknown098 | eventFlagUnset, "textDoor779");
+immutable DoorEntryA doorEntry780 = DoorEntryA("textDoor780", EventFlag.none, 0x0205, 0x0099, 0x01);
 immutable DoorEntryA doorEntry781 = DoorEntryA(null, EventFlag.none, 0x0200, 0x00CC, 0x01);
-immutable DoorEntryA doorEntry782 = DoorEntryA(textDoor711, EventFlag.none, 0x01F8, 0x00B8, 0x01);
-immutable DoorEntryA doorEntry783 = DoorEntryA(textDoor711, EventFlag.none, 0x0204, 0x00AC, 0x01);
+immutable DoorEntryA doorEntry782 = DoorEntryA("textDoor711", EventFlag.none, 0x01F8, 0x00B8, 0x01);
+immutable DoorEntryA doorEntry783 = DoorEntryA("textDoor711", EventFlag.none, 0x0204, 0x00AC, 0x01);
 immutable DoorEntryA doorEntry784 = DoorEntryA(null, EventFlag.none, 0x01F8, 0x00A4, 0x01);
 immutable DoorEntryA doorEntry785 = DoorEntryA(null, EventFlag.none, 0x0263, 0x00DF, 0x01);
 immutable DoorEntryA doorEntry786 = DoorEntryA(null, EventFlag.none, 0x80BD, 0x0023, 0x01);
@@ -2136,24 +2136,24 @@ immutable DoorEntryA doorEntry803 = DoorEntryA(null, EventFlag.none, 0x8429, 0x0
 immutable DoorEntryA doorEntry804 = DoorEntryA(null, EventFlag.none, 0xC279, 0x0214, 0x01);
 immutable DoorEntryA doorEntry805 = DoorEntryA(null, EventFlag.unknown1B3 | eventFlagUnset, 0x8299, 0x0207, 0x01);
 immutable DoorEntryA doorEntry806 = DoorEntryA(null, EventFlag.none, 0xC45D, 0x0218, 0x01);
-immutable DoorEntryA doorEntry807 = DoorEntryA(textDoor807, EventFlag.unknown15C | eventFlagUnset, 0x81BD, 0x0283, 0x01);
+immutable DoorEntryA doorEntry807 = DoorEntryA("textDoor807", EventFlag.unknown15C | eventFlagUnset, 0x81BD, 0x0283, 0x01);
 immutable DoorEntryA doorEntry808 = DoorEntryA(null, EventFlag.none, 0xC2B9, 0x0214, 0x01);
 immutable DoorEntryA doorEntry809 = DoorEntryA(null, EventFlag.none, 0x82D9, 0x0203, 0x01);
 immutable DoorEntryA doorEntry810 = DoorEntryA(null, EventFlag.none, 0xC1A9, 0x02AC, 0x01);
 immutable DoorEntryA doorEntry811 = DoorEntryA(null, EventFlag.none, 0x02F9, 0x020A, 0x05);
 immutable DoorEntryA doorEntry812 = DoorEntryA(null, EventFlag.none, 0x81BD, 0x02E3, 0x01);
 immutable DoorEntryA doorEntry813 = DoorEntryA(null, EventFlag.none, 0xC2F9, 0x0210, 0x01);
-immutable DoorEntryA doorEntry814 = DoorEntryA(textDoor814, EventFlag.none, 0x02AC, 0x00D7, 0x01);
+immutable DoorEntryA doorEntry814 = DoorEntryA("textDoor814", EventFlag.none, 0x02AC, 0x00D7, 0x01);
 immutable ushort doorEntry815 = 0x015B;
-immutable DoorEntryC doorEntry816 = DoorEntryC(textDoor816);
-immutable DoorEntryC doorEntry817 = DoorEntryC(textDoor817);
+immutable DoorEntryC doorEntry816 = DoorEntryC("textDoor816");
+immutable DoorEntryC doorEntry817 = DoorEntryC("textDoor817");
 immutable DoorEntryA doorEntry818 = DoorEntryA(null, EventFlag.none, 0x4048, 0x0025, 0x01);
 immutable DoorEntryA doorEntry819 = DoorEntryA(null, EventFlag.none, 0x004A, 0x0035, 0x01);
 immutable DoorEntryA doorEntry820 = DoorEntryA(null, EventFlag.none, 0x004A, 0x002D, 0x01);
 immutable DoorEntryA doorEntry821 = DoorEntryA(null, EventFlag.none, 0x4048, 0x003D, 0x01);
 immutable DoorEntryA doorEntry822 = DoorEntryA(null, EventFlag.none, 0xC34A, 0x02F8, 0x01);
 immutable DoorEntryA doorEntry823 = DoorEntryA(null, EventFlag.none, 0x8055, 0x020B, 0x01);
-immutable DoorEntryA doorEntry824 = DoorEntryA(textDoor824, EventFlag.unknown154 | eventFlagUnset, 0x0270, 0x00A7, 0x01);
+immutable DoorEntryA doorEntry824 = DoorEntryA("textDoor824", EventFlag.unknown154 | eventFlagUnset, 0x0270, 0x00A7, 0x01);
 immutable DoorEntryA doorEntry825 = DoorEntryA(null, EventFlag.none, 0x0002, 0x0227, 0x01);
 immutable DoorEntryA doorEntry826 = DoorEntryA(null, EventFlag.none, 0x0003, 0x022D, 0x01);
 immutable DoorEntryA doorEntry827 = DoorEntryA(null, EventFlag.none, 0x0002, 0x0233, 0x01);
@@ -2168,53 +2168,53 @@ immutable DoorEntryA doorEntry835 = DoorEntryA(null, EventFlag.none, 0x0075, 0x0
 immutable DoorEntryA doorEntry836 = DoorEntryA(null, EventFlag.none, 0x0317, 0x01F5, 0x01);
 immutable DoorEntryA doorEntry837 = DoorEntryA(null, EventFlag.none, 0x0324, 0x020A, 0x05);
 immutable DoorEntryA doorEntry838 = DoorEntryA(null, EventFlag.none, 0x0328, 0x01FA, 0x05);
-immutable DoorEntryA doorEntry839 = DoorEntryA(textDoor839, EventFlag.unknown154 | eventFlagUnset, 0x000A, 0x0251, 0x00);
-immutable DoorEntryC doorEntry840 = DoorEntryC(textDoor840);
-immutable DoorEntryC doorEntry841 = DoorEntryC(textDoor841);
-immutable DoorEntryC doorEntry842 = DoorEntryC(textDoor842);
-immutable DoorEntryC doorEntry843 = DoorEntryC(textDoor843);
-immutable DoorEntryC doorEntry844 = DoorEntryC(textDoor844);
-immutable DoorEntryC doorEntry845 = DoorEntryC(textDoor845);
-immutable DoorEntryC doorEntry846 = DoorEntryC(textDoor846);
-immutable DoorEntryC doorEntry847 = DoorEntryC(textDoor847);
-immutable DoorEntryC doorEntry848 = DoorEntryC(textDoor848);
-immutable DoorEntryC doorEntry849 = DoorEntryC(textDoor849);
-immutable DoorEntryC doorEntry850 = DoorEntryC(textDoor850);
-immutable DoorEntryC doorEntry851 = DoorEntryC(textDoor851);
-immutable DoorEntryC doorEntry852 = DoorEntryC(textDoor852);
-immutable DoorEntryC doorEntry853 = DoorEntryC(textDoor853);
-immutable DoorEntryC doorEntry854 = DoorEntryC(textDoor854);
-immutable DoorEntryC doorEntry855 = DoorEntryC(textDoor855);
-immutable DoorEntryC doorEntry856 = DoorEntryC(textDoor856);
-immutable DoorEntryC doorEntry857 = DoorEntryC(textDoor857);
-immutable DoorEntryC doorEntry858 = DoorEntryC(textDoor858);
-immutable DoorEntryC doorEntry859 = DoorEntryC(textDoor859);
-immutable DoorEntryC doorEntry860 = DoorEntryC(textDoor860);
-immutable DoorEntryC doorEntry861 = DoorEntryC(textDoor861);
-immutable DoorEntryC doorEntry862 = DoorEntryC(textDoor862);
-immutable DoorEntryC doorEntry863 = DoorEntryC(textDoor863);
-immutable DoorEntryC doorEntry864 = DoorEntryC(textDoor864);
-immutable DoorEntryC doorEntry865 = DoorEntryC(textDoor865);
-immutable DoorEntryC doorEntry866 = DoorEntryC(textDoor866);
-immutable DoorEntryC doorEntry867 = DoorEntryC(textDoor867);
-immutable DoorEntryC doorEntry868 = DoorEntryC(textDoor868);
-immutable DoorEntryC doorEntry869 = DoorEntryC(textDoor869);
-immutable DoorEntryC doorEntry870 = DoorEntryC(textDoor870);
-immutable DoorEntryC doorEntry871 = DoorEntryC(textDoor871);
-immutable DoorEntryC doorEntry872 = DoorEntryC(textDoor872);
-immutable DoorEntryC doorEntry873 = DoorEntryC(textDoor873);
-immutable DoorEntryC doorEntry874 = DoorEntryC(textDoor874);
-immutable DoorEntryC doorEntry875 = DoorEntryC(textDoor875);
-immutable DoorEntryC doorEntry876 = DoorEntryC(textDoor876);
-immutable DoorEntryC doorEntry877 = DoorEntryC(textDoor877);
-immutable DoorEntryC doorEntry878 = DoorEntryC(textDoor878);
-immutable DoorEntryC doorEntry879 = DoorEntryC(textDoor879);
-immutable DoorEntryC doorEntry880 = DoorEntryC(textDoor880);
-immutable DoorEntryC doorEntry881 = DoorEntryC(textDoor881);
-immutable DoorEntryC doorEntry882 = DoorEntryC(textDoor882);
-immutable DoorEntryC doorEntry883 = DoorEntryC(textDoor883);
-immutable DoorEntryA doorEntry884 = DoorEntryA(textDoor884, EventFlag.none, 0xC00E, 0x0054, 0x01);
-immutable DoorEntryA doorEntry885 = DoorEntryA(textDoor885, EventFlag.defeatedSanctuaryBoss7 | eventFlagUnset, 0x0257, 0x0392, 0x05);
+immutable DoorEntryA doorEntry839 = DoorEntryA("textDoor839", EventFlag.unknown154 | eventFlagUnset, 0x000A, 0x0251, 0x00);
+immutable DoorEntryC doorEntry840 = DoorEntryC("textDoor840");
+immutable DoorEntryC doorEntry841 = DoorEntryC("textDoor841");
+immutable DoorEntryC doorEntry842 = DoorEntryC("textDoor842");
+immutable DoorEntryC doorEntry843 = DoorEntryC("textDoor843");
+immutable DoorEntryC doorEntry844 = DoorEntryC("textDoor844");
+immutable DoorEntryC doorEntry845 = DoorEntryC("textDoor845");
+immutable DoorEntryC doorEntry846 = DoorEntryC("textDoor846");
+immutable DoorEntryC doorEntry847 = DoorEntryC("textDoor847");
+immutable DoorEntryC doorEntry848 = DoorEntryC("textDoor848");
+immutable DoorEntryC doorEntry849 = DoorEntryC("textDoor849");
+immutable DoorEntryC doorEntry850 = DoorEntryC("textDoor850");
+immutable DoorEntryC doorEntry851 = DoorEntryC("textDoor851");
+immutable DoorEntryC doorEntry852 = DoorEntryC("textDoor852");
+immutable DoorEntryC doorEntry853 = DoorEntryC("textDoor853");
+immutable DoorEntryC doorEntry854 = DoorEntryC("textDoor854");
+immutable DoorEntryC doorEntry855 = DoorEntryC("textDoor855");
+immutable DoorEntryC doorEntry856 = DoorEntryC("textDoor856");
+immutable DoorEntryC doorEntry857 = DoorEntryC("textDoor857");
+immutable DoorEntryC doorEntry858 = DoorEntryC("textDoor858");
+immutable DoorEntryC doorEntry859 = DoorEntryC("textDoor859");
+immutable DoorEntryC doorEntry860 = DoorEntryC("textDoor860");
+immutable DoorEntryC doorEntry861 = DoorEntryC("textDoor861");
+immutable DoorEntryC doorEntry862 = DoorEntryC("textDoor862");
+immutable DoorEntryC doorEntry863 = DoorEntryC("textDoor863");
+immutable DoorEntryC doorEntry864 = DoorEntryC("textDoor864");
+immutable DoorEntryC doorEntry865 = DoorEntryC("textDoor865");
+immutable DoorEntryC doorEntry866 = DoorEntryC("textDoor866");
+immutable DoorEntryC doorEntry867 = DoorEntryC("textDoor867");
+immutable DoorEntryC doorEntry868 = DoorEntryC("textDoor868");
+immutable DoorEntryC doorEntry869 = DoorEntryC("textDoor869");
+immutable DoorEntryC doorEntry870 = DoorEntryC("textDoor870");
+immutable DoorEntryC doorEntry871 = DoorEntryC("textDoor871");
+immutable DoorEntryC doorEntry872 = DoorEntryC("textDoor872");
+immutable DoorEntryC doorEntry873 = DoorEntryC("textDoor873");
+immutable DoorEntryC doorEntry874 = DoorEntryC("textDoor874");
+immutable DoorEntryC doorEntry875 = DoorEntryC("textDoor875");
+immutable DoorEntryC doorEntry876 = DoorEntryC("textDoor876");
+immutable DoorEntryC doorEntry877 = DoorEntryC("textDoor877");
+immutable DoorEntryC doorEntry878 = DoorEntryC("textDoor878");
+immutable DoorEntryC doorEntry879 = DoorEntryC("textDoor879");
+immutable DoorEntryC doorEntry880 = DoorEntryC("textDoor880");
+immutable DoorEntryC doorEntry881 = DoorEntryC("textDoor881");
+immutable DoorEntryC doorEntry882 = DoorEntryC("textDoor882");
+immutable DoorEntryC doorEntry883 = DoorEntryC("textDoor883");
+immutable DoorEntryA doorEntry884 = DoorEntryA("textDoor884", EventFlag.none, 0xC00E, 0x0054, 0x01);
+immutable DoorEntryA doorEntry885 = DoorEntryA("textDoor885", EventFlag.defeatedSanctuaryBoss7 | eventFlagUnset, 0x0257, 0x0392, 0x05);
 immutable DoorEntryA doorEntry886 = DoorEntryA(null, EventFlag.none, 0x010B, 0x01C9, 0x01);
 immutable DoorEntryA doorEntry887 = DoorEntryA(null, EventFlag.none, 0x0107, 0x01E1, 0x01);
 immutable DoorEntryA doorEntry888 = DoorEntryA(null, EventFlag.none, 0x0139, 0x018C, 0x05);
@@ -2232,19 +2232,19 @@ immutable DoorEntryA doorEntry899 = DoorEntryA(null, EventFlag.none, 0x404C, 0x0
 immutable DoorEntryA doorEntry900 = DoorEntryA(null, EventFlag.none, 0x4068, 0x018D, 0x01);
 immutable DoorEntryA doorEntry901 = DoorEntryA(null, EventFlag.none, 0x4074, 0x01CF, 0x01);
 immutable DoorEntryA doorEntry902 = DoorEntryA(null, EventFlag.none, 0x4044, 0x01E3, 0x01);
-immutable DoorEntryA doorEntry903 = DoorEntryA(textDoor903, EventFlag.none, 0x0090, 0x018F, 0x21);
-immutable DoorEntryA doorEntry904 = DoorEntryA(textDoor904, EventFlag.none, 0x0371, 0x0232, 0x01);
+immutable DoorEntryA doorEntry903 = DoorEntryA("textDoor903", EventFlag.none, 0x0090, 0x018F, 0x21);
+immutable DoorEntryA doorEntry904 = DoorEntryA("textDoor904", EventFlag.none, 0x0371, 0x0232, 0x01);
 immutable DoorEntryA doorEntry905 = DoorEntryA(null, EventFlag.unknown099 | eventFlagUnset, 0x0142, 0x0093, 0x01);
 immutable DoorEntryA doorEntry906 = DoorEntryA(null, EventFlag.none, 0x4030, 0x0013, 0x01);
-immutable DoorEntryA doorEntry907 = DoorEntryA(textDoor907, EventFlag.unknown289 | eventFlagUnset, 0xC072, 0x01F4, 0x01);
+immutable DoorEntryA doorEntry907 = DoorEntryA("textDoor907", EventFlag.unknown289 | eventFlagUnset, 0xC072, 0x01F4, 0x01);
 immutable DoorEntryA doorEntry908 = DoorEntryA(null, EventFlag.none, 0xC4BA, 0x0310, 0x01);
 immutable DoorEntryA doorEntry909 = DoorEntryA(null, EventFlag.none, 0x800E, 0x0037, 0x01);
-immutable DoorEntryC doorEntry910 = DoorEntryC(textDoor910);
-immutable DoorEntryC doorEntry911 = DoorEntryC(textDoor911);
-immutable DoorEntryC doorEntry912 = DoorEntryC(textDoor912);
+immutable DoorEntryC doorEntry910 = DoorEntryC("textDoor910");
+immutable DoorEntryC doorEntry911 = DoorEntryC("textDoor911");
+immutable DoorEntryC doorEntry912 = DoorEntryC("textDoor912");
 immutable DoorEntryA doorEntry913 = DoorEntryA(null, EventFlag.none, 0xC011, 0x02F4, 0x01);
-immutable DoorEntryA doorEntry914 = DoorEntryA(textDoor004, EventFlag.none, 0x8351, 0x0167, 0x01);
-immutable DoorEntryA doorEntry915 = DoorEntryA(textDoor915, EventFlag.defeatedSanctuaryBoss8 | eventFlagUnset, 0x04D3, 0x0319, 0x01);
+immutable DoorEntryA doorEntry914 = DoorEntryA("textDoor004", EventFlag.none, 0x8351, 0x0167, 0x01);
+immutable DoorEntryA doorEntry915 = DoorEntryA("textDoor915", EventFlag.defeatedSanctuaryBoss8 | eventFlagUnset, 0x04D3, 0x0319, 0x01);
 immutable DoorEntryA doorEntry916 = DoorEntryA(null, EventFlag.none, 0x813A, 0x0343, 0x01);
 immutable DoorEntryA doorEntry917 = DoorEntryA(null, EventFlag.none, 0x82AA, 0x0203, 0x01);
 immutable DoorEntryA doorEntry918 = DoorEntryA(null, EventFlag.none, 0xC2AA, 0x020C, 0x01);
@@ -2272,26 +2272,26 @@ immutable DoorEntryA doorEntry939 = DoorEntryA(null, EventFlag.none, 0xC332, 0x0
 immutable DoorEntryA doorEntry940 = DoorEntryA(null, EventFlag.none, 0x832E, 0x01B3, 0x01);
 immutable DoorEntryA doorEntry941 = DoorEntryA(null, EventFlag.none, 0x031B, 0x01A1, 0x01);
 immutable DoorEntryA doorEntry942 = DoorEntryA(null, EventFlag.none, 0x0149, 0x00F7, 0x01);
-immutable DoorEntryA doorEntry943 = DoorEntryA(textDoor943, EventFlag.none, 0x40FE, 0x0211, 0x01);
+immutable DoorEntryA doorEntry943 = DoorEntryA("textDoor943", EventFlag.none, 0x40FE, 0x0211, 0x01);
 immutable DoorEntryA doorEntry944 = DoorEntryA(null, EventFlag.none, 0x03B8, 0x006C, 0x0E);
 immutable DoorEntryA doorEntry945 = DoorEntryA(null, EventFlag.none, 0x02EC, 0x0054, 0x0E);
 immutable DoorEntryA doorEntry946 = DoorEntryA(null, EventFlag.none, 0x031C, 0x0034, 0x0E);
 immutable DoorEntryA doorEntry947 = DoorEntryA(null, EventFlag.none, 0x0398, 0x0070, 0x0E);
 immutable DoorEntryA doorEntry948 = DoorEntryA(null, EventFlag.none, 0x02F4, 0x0018, 0x01);
 immutable DoorEntryA doorEntry949 = DoorEntryA(null, EventFlag.none, 0xC3FA, 0x03F5, 0x04);
-immutable DoorEntryA doorEntry950 = DoorEntryA(textDoor367, EventFlag.none, 0xC3EA, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry951 = DoorEntryA(textDoor367, EventFlag.none, 0xC3DA, 0x03F9, 0x04);
-immutable DoorEntryA doorEntry952 = DoorEntryA(textDoor367, EventFlag.none, 0xC3CA, 0x03B9, 0x04);
-immutable DoorEntryA doorEntry953 = DoorEntryA(textDoor711, EventFlag.none, 0x824C, 0x02FD, 0x0A);
-immutable DoorEntryA doorEntry954 = DoorEntryA(textDoor711, EventFlag.none, 0x8248, 0x02ED, 0x0A);
-immutable DoorEntryA doorEntry955 = DoorEntryA(textDoor101, EventFlag.none, 0x8250, 0x0281, 0x0A);
-immutable DoorEntryA doorEntry956 = DoorEntryA(textDoor711, EventFlag.none, 0x020C, 0x0291, 0x0A);
-immutable DoorEntryC doorEntry957 = DoorEntryC(textDoor957);
-immutable DoorEntryC doorEntry958 = DoorEntryC(textDoor958);
-immutable DoorEntryC doorEntry959 = DoorEntryC(textDoor959);
-immutable DoorEntryC doorEntry960 = DoorEntryC(textDoor960);
-immutable DoorEntryC doorEntry961 = DoorEntryC(textDoor961);
-immutable DoorEntryC doorEntry962 = DoorEntryC(textDoor962);
+immutable DoorEntryA doorEntry950 = DoorEntryA("textDoor367", EventFlag.none, 0xC3EA, 0x03B9, 0x04);
+immutable DoorEntryA doorEntry951 = DoorEntryA("textDoor367", EventFlag.none, 0xC3DA, 0x03F9, 0x04);
+immutable DoorEntryA doorEntry952 = DoorEntryA("textDoor367", EventFlag.none, 0xC3CA, 0x03B9, 0x04);
+immutable DoorEntryA doorEntry953 = DoorEntryA("textDoor711", EventFlag.none, 0x824C, 0x02FD, 0x0A);
+immutable DoorEntryA doorEntry954 = DoorEntryA("textDoor711", EventFlag.none, 0x8248, 0x02ED, 0x0A);
+immutable DoorEntryA doorEntry955 = DoorEntryA("textDoor101", EventFlag.none, 0x8250, 0x0281, 0x0A);
+immutable DoorEntryA doorEntry956 = DoorEntryA("textDoor711", EventFlag.none, 0x020C, 0x0291, 0x0A);
+immutable DoorEntryC doorEntry957 = DoorEntryC("textDoor957");
+immutable DoorEntryC doorEntry958 = DoorEntryC("textDoor958");
+immutable DoorEntryC doorEntry959 = DoorEntryC("textDoor959");
+immutable DoorEntryC doorEntry960 = DoorEntryC("textDoor960");
+immutable DoorEntryC doorEntry961 = DoorEntryC("textDoor961");
+immutable DoorEntryC doorEntry962 = DoorEntryC("textDoor962");
 immutable DoorEntryA doorEntry963 = DoorEntryA(null, EventFlag.none, 0x8269, 0x0327, 0x04);
 immutable DoorEntryA doorEntry964 = DoorEntryA(null, EventFlag.none, 0xC2DD, 0x033C, 0x04);
 immutable DoorEntryA doorEntry965 = DoorEntryA(null, EventFlag.none, 0xC26D, 0x03B8, 0x04);
@@ -2302,11 +2302,11 @@ immutable DoorEntryA doorEntry969 = DoorEntryA(null, EventFlag.none, 0x026C, 0x0
 immutable DoorEntryA doorEntry970 = DoorEntryA(null, EventFlag.none, 0xC1DE, 0x0396, 0x0A);
 immutable DoorEntryA doorEntry971 = DoorEntryA(null, EventFlag.none, 0x82D9, 0x0327, 0x07);
 immutable DoorEntryA doorEntry972 = DoorEntryA(null, EventFlag.none, 0xC32D, 0x0334, 0x07);
-immutable DoorEntryA doorEntry973 = DoorEntryA(textDoor101, EventFlag.none, 0x01DC, 0x03DC, 0x0A);
+immutable DoorEntryA doorEntry973 = DoorEntryA("textDoor101", EventFlag.none, 0x01DC, 0x03DC, 0x0A);
 immutable DoorEntryA doorEntry974 = DoorEntryA(null, EventFlag.none, 0x0207, 0x03DA, 0x0A);
-immutable DoorEntryC doorEntry975 = DoorEntryC(textDoor975);
-immutable DoorEntryC doorEntry976 = DoorEntryC(textDoor976);
-immutable DoorEntryC doorEntry977 = DoorEntryC(textNoProblemHere);
+immutable DoorEntryC doorEntry975 = DoorEntryC("textDoor975");
+immutable DoorEntryC doorEntry976 = DoorEntryC("textDoor976");
+immutable DoorEntryC doorEntry977 = DoorEntryC("textNoProblemHere");
 
 /// $CF58EF
 immutable OverworldEventMusic[][165] overworldEventMusicPointerTable = [
@@ -7920,1589 +7920,1589 @@ immutable SpritePlacementEntry spritePlacementEntry626 = SpritePlacementEntry(21
 ]);
 
 /// $CF8985
-immutable NPC[1584] NPCConfig = [
-	NPC(NPCType.Person, OverworldSprite.Ness, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Down, ActionScript.Unknown605, EventFlag.FLG_ONET_GUARDSHARK_DISAPPEAR, NPCConfigFlagStyle.ShowIfOff, TextNPC0001, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Right, ActionScript.Unknown598, EventFlag.FLG_ONET_SHARK_C_DISAPPEAR, NPCConfigFlagStyle.ShowIfOff, TextNPC0002, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0003, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0004, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0005, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0006, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Up, ActionScript.Unknown598, EventFlag.UNKNOWN_2B9, NPCConfigFlagStyle.ShowIfOff, TextNPC0007, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0008, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0009, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0010, null),
-	NPC(NPCType.Person, OverworldSprite.DOG, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0011, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.MOM, Direction.Down, ActionScript.Unknown037, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOn, TextNPC0014, null),
-	NPC(NPCType.Person, OverworldSprite.MOM, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0015, null),
-	NPC(NPCType.Person, OverworldSprite.NessDogSleeping, Direction.Down, ActionScript.Unknown627, EventFlag.UNKNOWN_013, NPCConfigFlagStyle.ShowIfOff, TextNPC0016, null),
-	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_12D, NPCConfigFlagStyle.ShowIfOn, TextNPC0017, null),
-	NPC(NPCType.Person, OverworldSprite.King, Direction.Right, ActionScript.Unknown018, EventFlag.UNKNOWN_130, NPCConfigFlagStyle.ShowIfOn, TextNPC0016, null),
-	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Down, ActionScript.Unknown045, EventFlag.UNKNOWN_136, NPCConfigFlagStyle.ShowIfOn, TextNPC0017, null),
-	NPC(NPCType.Person, OverworldSprite.TRACY, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_213, NPCConfigFlagStyle.ShowIfOn, TextNPC0020, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown040, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0021, null),
-	NPC(NPCType.Object, OverworldSprite.KNOCKING_ON_DOOR, Direction.Left, ActionScript.Unknown038, EventFlag.UNKNOWN_127, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.DRAPES_CLOSED, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.DRAPES_CLOSED, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.TRACY, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_1D9, NPCConfigFlagStyle.ShowIfOn, TextNPC0025, null),
-	NPC(NPCType.Object, OverworldSprite.NESS_SLEEPING, Direction.Down, ActionScript.Unknown624, EventFlag.UNKNOWN_1DD, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.ZZZS, Direction.Down, ActionScript.Unknown628, EventFlag.UNKNOWN_1DD, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.DRAPES_CLOSED, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_CLOSED, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.TRACY, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_212, NPCConfigFlagStyle.ShowIfOff, TextNPC0030, null),
-	NPC(NPCType.Object, OverworldSprite.DRAPES_CLOSED, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_CLOSED, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.WAITRESS, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0033, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_SHOPPING_LADY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0034, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_PONYTAIL_GIRL, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0035, null),
-	NPC(NPCType.Person, OverworldSprite.FRANK, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0036, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0037, null),
-	NPC(NPCType.Person, OverworldSprite.FRANK, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.HINT_GUY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_2F0, NPCConfigFlagStyle.ShowIfOff, TextNPC0039, null),
-	NPC(NPCType.Person, OverworldSprite.BAKER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0040, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_SHOPPING_LADY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0041, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0042, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0043, null),
-	NPC(NPCType.Person, OverworldSprite.ALOYSIUS_MINCH, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_025, NPCConfigFlagStyle.ShowIfOn, TextNPC0044, null),
-	NPC(NPCType.Person, OverworldSprite.LARDNA_MINCH, Direction.Up, ActionScript.Unknown013, EventFlag.UNKNOWN_2E6, NPCConfigFlagStyle.ShowIfOn, TextNPC0045, null),
-	NPC(NPCType.Person, OverworldSprite.FLY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_12F, NPCConfigFlagStyle.ShowIfOn, TextNPC0046, null),
-	NPC(NPCType.Person, OverworldSprite.Picky, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0047, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0048, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_OPEN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_OPEN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_OPEN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_023, NPCConfigFlagStyle.ShowIfOn, TextNPC0052, null),
-	NPC(NPCType.Person, OverworldSprite.Picky, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_022, NPCConfigFlagStyle.ShowIfOn, TextNPC0053, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_OPEN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_OPEN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_OPEN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.YELLOW_DRAPES_CLOSED, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0058, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0059, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_06A, NPCConfigFlagStyle.ShowIfOff, TextNPC0062, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_06A, NPCConfigFlagStyle.ShowIfOff, TextNPC0063, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Left, ActionScript.Unknown010, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, TextNPC0064, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_06A, NPCConfigFlagStyle.ShowIfOn, TextNPC0065, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_06A, NPCConfigFlagStyle.ShowIfOn, TextNPC0066, null),
-	NPC(NPCType.Person, OverworldSprite.CAPTAIN_STRONG, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_1C2, NPCConfigFlagStyle.ShowIfOff, TextNPC0067, null),
-	NPC(NPCType.Person, OverworldSprite.THICK_GLASSES_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0068, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0069, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Left, ActionScript.Unknown605, EventFlag.UNKNOWN_027, NPCConfigFlagStyle.ShowIfOn, TextNPC0070, null),
-	NPC(NPCType.Person, OverworldSprite.CAPTAIN_STRONG, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_1C1, NPCConfigFlagStyle.ShowIfOn, TextNPC0067, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0072, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_121, NPCConfigFlagStyle.ShowIfOff, TextNPC0073, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_122, NPCConfigFlagStyle.ShowIfOff, TextNPC0074, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_123, NPCConfigFlagStyle.ShowIfOff, TextNPC0075, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_124, NPCConfigFlagStyle.ShowIfOff, TextNPC0076, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_125, NPCConfigFlagStyle.ShowIfOff, TextNPC0077, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0078, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0079, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0080, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0081, null),
-	NPC(NPCType.Person, OverworldSprite.BRUNETTE_SHOPPING_LADY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0082, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0083, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0084, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0085, null),
-	NPC(NPCType.Person, OverworldSprite.MAYOR_PIRKLE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0086, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0087, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Left, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0088, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0089, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_PONYTAIL_GIRL, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0090, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0091, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_DERBY_HAT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0092, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_DARK_HAIRED_GIRL, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0093, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE_NO_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0094, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_200, NPCConfigFlagStyle.ShowIfOff, TextNPC0095, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0096, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0097, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0098, TextNPC0098_ALT),
-	NPC(NPCType.Person, OverworldSprite.OLD_FAT_GUY_WITH_HAT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0099, null),
-	NPC(NPCType.Person, OverworldSprite.SHY_GUY, Direction.Right, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0100, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Up, ActionScript.Unknown250, EventFlag.UNKNOWN_067, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0102, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0103, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_BLUE_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0104, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_DARK_HAIRED_GIRL, Direction.Up, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0105, TextNPC0105_ALT),
-	NPC(NPCType.Person, OverworldSprite.SOME_BRUNETTE_KID, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextDoor681, TextNPC0106_ALT),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0107, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0108, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0109, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0110, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0111, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_SMILE_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0112, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0113, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0114, null),
-	NPC(NPCType.Person, OverworldSprite.SOME_BRUNETTE_KID, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0115, null),
-	NPC(NPCType.Person, OverworldSprite.HAPPY_GIRL_IN_RED, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0116, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0117, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0118, null),
-	NPC(NPCType.Person, OverworldSprite.LIER_X_AGERATE, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_01F, NPCConfigFlagStyle.ShowIfOn, TextNPC0119, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_DERBY_HAT, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0120, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_DETECTIVE_HAT, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0121, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_BASEBALL_HELMET, Direction.Left, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0122, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown863, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.PickySitting, Direction.Left, ActionScript.Unknown055, EventFlag.UNKNOWN_1D2, NPCConfigFlagStyle.ShowIfOn, TextNPC0124, null),
-	NPC(NPCType.Person, OverworldSprite.LIER_X_AGERATE, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_068, NPCConfigFlagStyle.ShowIfOff, TextNPC0125, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_024, NPCConfigFlagStyle.ShowIfOn, TextNPC0126, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Left, ActionScript.Unknown607, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0127, null),
-	NPC(NPCType.Person, OverworldSprite.TRAVELLING_ENTERTAINER, Direction.Down, ActionScript.Unknown608, EventFlag.UNKNOWN_04E, NPCConfigFlagStyle.ShowIfOff, TextNPC0128, TextNPC0128_ALT),
-	NPC(NPCType.Person, OverworldSprite.YELLOW_CLOTHES_BLONDE, Direction.Right, ActionScript.Unknown607, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0129, null),
-	NPC(NPCType.Person, OverworldSprite.HELPFUL_MOLE, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_278, NPCConfigFlagStyle.ShowIfOff, TextNPC0130, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Left, ActionScript.Unknown607, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0131, null),
-	NPC(NPCType.Person, OverworldSprite.JamaicanGuy, Direction.Right, ActionScript.Unknown607, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0132, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Right, ActionScript.Unknown608, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0133, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Left, ActionScript.Unknown609, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0134, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_BLUE_SUIT, Direction.Right, ActionScript.Unknown609, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0135, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_SHOPPING_LADY, Direction.Left, ActionScript.Unknown609, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0136, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Down, ActionScript.Unknown607, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0137, null),
-	NPC(NPCType.Person, OverworldSprite.DOG, Direction.Down, ActionScript.Unknown608, EventFlag.UNKNOWN_177, NPCConfigFlagStyle.ShowIfOn, TextNPC0138, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Down, ActionScript.Unknown610, EventFlag.UNKNOWN_063, NPCConfigFlagStyle.ShowIfOff, TextNPC0139, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Right, ActionScript.Unknown607, EventFlag.UNKNOWN_063, NPCConfigFlagStyle.ShowIfOn, TextNPC0140, null),
-	NPC(NPCType.Person, OverworldSprite.TRUMPET_PERSON, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_278, NPCConfigFlagStyle.ShowIfOff, TextNPC0141, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_16B, NPCConfigFlagStyle.ShowIfOff, TextNPC0142, null),
-	NPC(NPCType.Person, OverworldSprite.SkatePunk, Direction.Up, ActionScript.Unknown609, EventFlag.UNKNOWN_16C, NPCConfigFlagStyle.ShowIfOff, TextNPC0143, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Up, ActionScript.Unknown606, EventFlag.TWOSON_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0144, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown606, EventFlag.TWOSON_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0145, null),
-	NPC(NPCType.Person, OverworldSprite.FRANK, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_084, NPCConfigFlagStyle.ShowIfOff, TextNPC0146, null),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown007, EventFlag.UNKNOWN_06C, NPCConfigFlagStyle.ShowIfOff, TextDoor006, TextNPC0147_ALT),
-	NPC(NPCType.Person, OverworldSprite.MOM, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1DA, NPCConfigFlagStyle.ShowIfOn, TextNPC0148, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0149, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0150, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0151, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0152, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0153, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0154, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0155, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0156, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0157, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0158, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Left, ActionScript.Unknown605, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0159, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0160, null),
-	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Up, ActionScript.Unknown629, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, TextNPC0161, null),
-	NPC(NPCType.Person, OverworldSprite.TRAVELLING_ENTERTAINER, Direction.Right, ActionScript.Unknown608, EventFlag.UNKNOWN_04E, NPCConfigFlagStyle.ShowIfOff, TextNPC0162, TextNPC0128_ALT),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Right, ActionScript.Unknown012, EventFlag.FLG_WIN_FRANK, NPCConfigFlagStyle.ShowIfOff, TextNPC0163, null),
-	NPC(NPCType.Person, OverworldSprite.CAPTAIN_STRONG, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.HAPPY_GIRL_IN_RED, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_069, NPCConfigFlagStyle.ShowIfOff, TextNPC0166, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_069, NPCConfigFlagStyle.ShowIfOff, TextNPC0167, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.WHITE_DELIVERY_TRUCK, Direction.Left, ActionScript.Unknown585, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.DELIVERY_TRUCK, Direction.Left, ActionScript.Unknown586, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_069, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_069, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_069, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_069, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown862, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.DONT_ENTER_SIGN, Direction.Down, ActionScript.Unknown007, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0185, null),
-	NPC(NPCType.Object, OverworldSprite.REAL_TAXI, Direction.Right, ActionScript.Unknown584, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1DC, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1DC, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_BARRIER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.HOTEL_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0191, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0192, null),
-	NPC(NPCType.Object, OverworldSprite.OVAL_CLOUD, Direction.Down, ActionScript.Unknown784, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.OVAL_CLOUD, Direction.Down, ActionScript.Unknown784, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.OVAL_CLOUD, Direction.Down, ActionScript.Unknown784, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.OVAL_CLOUD, Direction.Down, ActionScript.Unknown784, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.OVAL_CLOUD, Direction.Down, ActionScript.Unknown784, EventFlag.UNKNOWN_1A6, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.METEOR, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextDoor150, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_CAR, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_CAR, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.POLICE_CAR, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_1D5, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.FRANKYSTEIN_MK_II, Direction.Down, ActionScript.Unknown008, EventFlag.FLG_WIN_FRANK, NPCConfigFlagStyle.ShowIfOff, TextNPC0202, null),
-	NPC(NPCType.Person, OverworldSprite.LIER_X_AGERATE, Direction.Right, ActionScript.Unknown057, EventFlag.UNKNOWN_020, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.LIER_X_AGERATE, Direction.Right, ActionScript.Unknown058, EventFlag.UNKNOWN_021, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.LIER_X_AGERATE, Direction.Right, ActionScript.Unknown059, EventFlag.UNKNOWN_132, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.LIER_X_AGERATE, Direction.Right, ActionScript.Unknown060, EventFlag.UNKNOWN_133, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.LIER_X_AGERATE, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_134, NPCConfigFlagStyle.ShowIfOn, TextNPC0207, null),
-	NPC(NPCType.Object, OverworldSprite.EVIL_MANI_MANI, Direction.Down, ActionScript.Unknown010, EventFlag.TWOSON_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0208, null),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_1, NPCConfigFlagStyle.ShowIfOff, TextNPC0209, null),
-	NPC(NPCType.Person, OverworldSprite.KING_IN_THE_FLASHBACK, Direction.Right, ActionScript.Unknown699, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.PAST_BABY_CRADLE, Direction.Down, ActionScript.Unknown694, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.PUNK_GUY, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0212, null),
-	NPC(NPCType.Person, OverworldSprite.PAULAS_MOTHER, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0213, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_PONYTAIL_GIRL, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0214, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_BASEBALL_HELMET, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0215, null),
-	NPC(NPCType.Person, OverworldSprite.HAPPY_GIRL_IN_RED, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0216, null),
-	NPC(NPCType.Person, OverworldSprite.PAULAS_FATHER, Direction.Right, ActionScript.Unknown221, EventFlag.UNKNOWN_076, NPCConfigFlagStyle.ShowIfOff, TextNPC0217, null),
-	NPC(NPCType.Person, OverworldSprite.CAT, Direction.Right, ActionScript.Unknown013, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0218, null),
-	NPC(NPCType.Person, OverworldSprite.Paula, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_27E, NPCConfigFlagStyle.ShowIfOn, TextNPC0219, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_KID, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_02A, NPCConfigFlagStyle.ShowIfOff, TextNPC0220, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KID, Direction.Right, ActionScript.Unknown014, EventFlag.UNKNOWN_153, NPCConfigFlagStyle.ShowIfOff, TextNPC0221, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KIDS_MOUSE, Direction.Down, ActionScript.Unknown014, EventFlag.UNKNOWN_153, NPCConfigFlagStyle.ShowIfOff, TextNPC0222, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.TOOLS, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.CAN_TENDA_VILLAGE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_029, NPCConfigFlagStyle.ShowIfOff, TextNPC0226, TextNPC0226_ALT),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Right, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0227, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_029, NPCConfigFlagStyle.ShowIfOn, TextNPC0228, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_135, NPCConfigFlagStyle.ShowIfOn, TextNPC0229, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Right, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0230, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Left, ActionScript.Unknown108, EventFlag.UNKNOWN_02B, NPCConfigFlagStyle.ShowIfOn, TextNPC0229, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0232, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_DETECTIVE_HAT, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0233, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0234, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0235, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0236, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_SHOPPING_LADY, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0237, null),
-	NPC(NPCType.Person, OverworldSprite.BRUNETTE_SHOPPING_LADY, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0238, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0239, null),
-	NPC(NPCType.Person, OverworldSprite.DRINKING_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0240, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0241, null),
-	NPC(NPCType.Person, OverworldSprite.JamaicanGuy, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0242, null),
-	NPC(NPCType.Person, OverworldSprite.NEW_AGE_RETRO_HIPPIE, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0243, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0244, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Left, ActionScript.Unknown605, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0245, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_2EF, NPCConfigFlagStyle.ShowIfOff, TextNPC0246, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_02B, NPCConfigFlagStyle.ShowIfOff, TextNPC0247, null),
-	NPC(NPCType.Person, OverworldSprite.GORGEOUS, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_077, NPCConfigFlagStyle.ShowIfOff, TextNPC0248, TextNPC0248_ALT),
-	NPC(NPCType.Person, OverworldSprite.LUCKY, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_077, NPCConfigFlagStyle.ShowIfOff, TextNPC0249, TextNPC0249_ALT),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_DRUMMER, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_077, NPCConfigFlagStyle.ShowIfOff, TextNPC0250, TextNPC0250_ALT),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_BASS_PLAYER, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_077, NPCConfigFlagStyle.ShowIfOff, TextNPC0251, TextNPC0251_ALT),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_SAX_PLAYER, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_077, NPCConfigFlagStyle.ShowIfOff, TextNPC0252, TextNPC0252_ALT),
-	NPC(NPCType.Person, OverworldSprite.POOCHYFUD, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0253, TextNPC0253_ALT),
-	NPC(NPCType.Person, OverworldSprite.EVERDRED, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_270, NPCConfigFlagStyle.ShowIfOn, TextNPC0254, null),
-	NPC(NPCType.Person, OverworldSprite.GIRL_IN_STRIPED_APRON, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0255, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0256, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0257, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Right, ActionScript.Unknown605, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, TextNPC0260, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0261, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0262, null),
-	NPC(NPCType.Object, OverworldSprite.LittleMushroom, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0264, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0265, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0266, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0267, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0268, TextNPC0268_ALT),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Up, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0269, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0270, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0271, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0272, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0273, null),
-	NPC(NPCType.Person, OverworldSprite.BUS_DRIVER, Direction.Left, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0274, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.VENUS_MOTHER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0277, null),
-	NPC(NPCType.Person, OverworldSprite.HINT_GUY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_2F0, NPCConfigFlagStyle.ShowIfOff, TextNPC0278, null),
-	NPC(NPCType.Person, OverworldSprite.LITTLE_KID_IN_BLUE, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0279, null),
-	NPC(NPCType.Person, OverworldSprite.LITTLE_KID_IN_BLUE, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOn, TextNPC0279, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOn, TextNPC0281, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOn, TextNPC0282, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_PONYTAIL_GIRL, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0283, null),
-	NPC(NPCType.Person, OverworldSprite.CAT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0218, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0285, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.THICK_GLASSES_LADY, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0288, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0289, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Right, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0290, null),
-	NPC(NPCType.Person, OverworldSprite.WAITRESS, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0291, null),
-	NPC(NPCType.Person, OverworldSprite.BAKER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0292, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0293, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Left, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0294, null),
-	NPC(NPCType.Person, OverworldSprite.THICK_GLASSES_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0295, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0296, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_DARK_HAIRED_GIRL, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0297, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_BLUE_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0298, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0299, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Right, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0300, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Right, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0301, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0303, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0304, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_DETECTIVE_HAT, Direction.Left, ActionScript.Unknown017, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0305, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Left, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0306, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Left, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0307, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0308, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0309, null),
-	NPC(NPCType.Person, OverworldSprite.DOG, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0310, null),
-	NPC(NPCType.Person, OverworldSprite.JamaicanGuy, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0311, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0312, null),
-	NPC(NPCType.Person, OverworldSprite.SHY_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0313, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0314, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Left, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0315, null),
-	NPC(NPCType.Person, OverworldSprite.BAKER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0316, null),
-	NPC(NPCType.Person, OverworldSprite.ARAB_MR_T, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0317, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0318, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_KID, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_02A, NPCConfigFlagStyle.ShowIfOn, TextNPC0319, null),
-	NPC(NPCType.Person, OverworldSprite.GORGEOUS, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_135, NPCConfigFlagStyle.ShowIfOn, TextNPC0320, null),
-	NPC(NPCType.Person, OverworldSprite.PAULAS_FATHER, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_076, NPCConfigFlagStyle.ShowIfOn, TextNPC0217, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_225, NPCConfigFlagStyle.ShowIfOff, TextNPC0322, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_263, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Left, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0324, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0325, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_225, NPCConfigFlagStyle.ShowIfOff, TextNPC0326, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_225, NPCConfigFlagStyle.ShowIfOff, TextNPC0327, null),
-	NPC(NPCType.Person, OverworldSprite.GORGEOUS, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_225, NPCConfigFlagStyle.ShowIfOff, TextNPC0328, null),
-	NPC(NPCType.Person, OverworldSprite.LUCKY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_225, NPCConfigFlagStyle.ShowIfOff, TextNPC0329, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Right, ActionScript.Unknown605, EventFlag.THREED_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0330, null),
-	NPC(NPCType.Person, OverworldSprite.SOME_BRUNETTE_KID, Direction.Right, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0331, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, TextNPC0332, null),
-	NPC(NPCType.Person, OverworldSprite.YELLOW_CLOTHES_BLONDE, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, TextNPC0333, null),
-	NPC(NPCType.Person, OverworldSprite.EVERDRED, Direction.Right, ActionScript.Unknown647, EventFlag.UNKNOWN_264, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KIDS_MOUSE, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_02A, NPCConfigFlagStyle.ShowIfOn, TextNPC0335, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KID, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_02A, NPCConfigFlagStyle.ShowIfOn, TextNPC0336, null),
-	NPC(NPCType.Person, OverworldSprite.CAT_ASLEEP, Direction.Down, ActionScript.Unknown008, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.NEW_AGE_RETRO_HIPPIE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0338, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0339, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Left, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0340, null),
-	NPC(NPCType.Person, OverworldSprite.LITTLE_KID_IN_BLUE, Direction.Down, ActionScript.Unknown016, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, TextNPC0341, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0342, null),
-	NPC(NPCType.Person, OverworldSprite.HELPFUL_MOLE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0343, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Left, ActionScript.Unknown087, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Left, ActionScript.Unknown088, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Left, ActionScript.Unknown089, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Left, ActionScript.Unknown090, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Left, ActionScript.Unknown085, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Left, ActionScript.Unknown086, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BUS_STOP_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0352, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.CROSSROAD_SIGNS, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0356, null),
-	NPC(NPCType.Person, OverworldSprite.GUY_IN_COOL_RED_CAR, Direction.Right, ActionScript.Unknown588, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0357, null),
-	NPC(NPCType.Object, OverworldSprite.WHITE_DELIVERY_TRUCK, Direction.Right, ActionScript.Unknown589, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.Bicycle, Direction.Down, ActionScript.Unknown864, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.REAL_TAXI, Direction.Right, ActionScript.Unknown590, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.APPLE_KID_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0361, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.ORANGE_KID_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0365, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown867, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.HOTEL_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0367, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BURGLIN_PARK_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0369, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BANANAS, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BANANAS, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.RUNAWAY_5_BUS, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_135, NPCConfigFlagStyle.ShowIfOn, TextNPC0373, null),
-	NPC(NPCType.Object, OverworldSprite.RUNAWAY_5_BUS, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_077, NPCConfigFlagStyle.ShowIfOff, TextNPC0373, null),
-	NPC(NPCType.Object, OverworldSprite.EVIL_MANI_MANI, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0375, null),
-	NPC(NPCType.Person, OverworldSprite.MR_CARPAINTER, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0376, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0377, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0378, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0379, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0380, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0381, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0382, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0383, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0384, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_15F, NPCConfigFlagStyle.ShowIfOff, TextNPC0385, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_160, NPCConfigFlagStyle.ShowIfOff, TextNPC0386, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_161, NPCConfigFlagStyle.ShowIfOff, TextNPC0387, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_162, NPCConfigFlagStyle.ShowIfOff, TextNPC0388, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown281, EventFlag.UNKNOWN_163, NPCConfigFlagStyle.ShowIfOff, TextNPC0389, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown283, EventFlag.UNKNOWN_164, NPCConfigFlagStyle.ShowIfOff, TextNPC0390, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown282, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0391, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown280, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0392, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown279, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0393, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOn, TextNPC0394, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOn, TextNPC0395, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOn, TextNPC0396, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0397, null),
-	NPC(NPCType.Person, OverworldSprite.JamaicanGuy, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0398, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0399, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0400, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0401, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0402, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0403, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0404, null),
-	NPC(NPCType.Person, OverworldSprite.VENUS_MOTHER, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0405, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0408, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0409, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0410, null),
-	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_02C, NPCConfigFlagStyle.ShowIfOn, TextNPC0411, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_043, NPCConfigFlagStyle.ShowIfOff, TextNPC0412, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0413, null),
-	NPC(NPCType.Person, OverworldSprite.NEW_AGE_RETRO_HIPPIE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0414, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0415, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0416, null),
-	NPC(NPCType.Person, OverworldSprite.TRUMPET_PERSON, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0417, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0418, null),
-	NPC(NPCType.Person, OverworldSprite.BLUE_COW, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0419, TextNPC0419_ALT),
-	NPC(NPCType.Person, OverworldSprite.YELLOW_CLOTHES_BLONDE, Direction.Up, ActionScript.Unknown134, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0420, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Right, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0421, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0422, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0423, null),
-	NPC(NPCType.Person, OverworldSprite.SHY_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0424, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0265, null),
-	NPC(NPCType.Person, OverworldSprite.MR_CARPAINTER, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0426, null),
-	NPC(NPCType.Person, OverworldSprite.HELPFUL_MOLE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0427, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.Bicycle, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0432, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0433, null),
-	NPC(NPCType.Object, OverworldSprite.BANANAS, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0435, null),
-	NPC(NPCType.Person, OverworldSprite.CELL_DOOR, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_00D, NPCConfigFlagStyle.ShowIfOff, TextNPC0436, TextNPC0436_ALT),
-	NPC(NPCType.Person, OverworldSprite.Paula, Direction.Down, ActionScript.Unknown240, EventFlag.UNKNOWN_00D, NPCConfigFlagStyle.ShowIfOff, TextNPC0436, null),
-	NPC(NPCType.Object, OverworldSprite.TeddyBearParty, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_00D, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Up, ActionScript.Unknown273, EventFlag.UNKNOWN_02D, NPCConfigFlagStyle.ShowIfOn, TextNPC0439, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_02D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.INSANE_CULTIST, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_02D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.SPITEFUL_CROW, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_02D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOff, TextNPC0443, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_DARK_HAIRED_GIRL, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0444, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_044, NPCConfigFlagStyle.ShowIfOn, TextNPC0445, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown865, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown866, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.HELPFUL_MOLE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0448, null),
-	NPC(NPCType.Object, OverworldSprite.CROSSROAD_SIGNS, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0449, null),
-	NPC(NPCType.Object, OverworldSprite.PENCIL_STATUE, Direction.Down, ActionScript.Unknown107, EventFlag.UNKNOWN_11C, NPCConfigFlagStyle.ShowIfOff, TextNPC0450, TextNPC0450_ALT),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_2, NPCConfigFlagStyle.ShowIfOff, TextNPC0451, null),
-	NPC(NPCType.Person, OverworldSprite.NessLyingDown, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Paula, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Jeff, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Poo, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOff, TextNPC0456, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_305, NPCConfigFlagStyle.ShowIfOff, TextNPC0457, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOff, TextNPC0458, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_305, NPCConfigFlagStyle.ShowIfOff, TextNPC0459, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0460, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0461, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0462, null),
-	NPC(NPCType.Person, OverworldSprite.ZombieLyingDown, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0463, null),
-	NPC(NPCType.Person, OverworldSprite.ZombieLyingDown, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0464, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_GLUED_TO_FLOOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0460, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_GLUED_TO_FLOOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0461, null),
-	NPC(NPCType.Person, OverworldSprite.ZombieLyingDown, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0463, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_GLUED_TO_FLOOR, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0463, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_GLUED_TO_FLOOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0462, null),
-	NPC(NPCType.Person, OverworldSprite.ZombieLyingDown, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0470, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_GLUED_TO_FLOOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0471, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_GLUED_TO_FLOOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0472, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_GLUED_TO_FLOOR, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0463, null),
-	NPC(NPCType.Person, OverworldSprite.ZombieLyingDown, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0474, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_00E, NPCConfigFlagStyle.ShowIfOn, TextNPC0475, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_00E, NPCConfigFlagStyle.ShowIfOn, TextNPC0476, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_030, NPCConfigFlagStyle.ShowIfOn, TextNPC0477, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_030, NPCConfigFlagStyle.ShowIfOn, TextNPC0478, null),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_21D, NPCConfigFlagStyle.ShowIfOff, TextDoor340, TextNPC0479_ALT),
-	NPC(NPCType.Object, OverworldSprite.SHADOW, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_030, NPCConfigFlagStyle.ShowIfOn, TextNPC0480, null),
-	NPC(NPCType.Object, OverworldSprite.BROKEN_PHASE_DISTORTER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_02F, NPCConfigFlagStyle.ShowIfOn, TextNPC0481, null),
-	NPC(NPCType.Object, OverworldSprite.SKY_RUNNER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_030, NPCConfigFlagStyle.ShowIfOn, TextNPC0480, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Down, ActionScript.Unknown605, EventFlag.ZOMBIE_LADY_ACTIVE, NPCConfigFlagStyle.ShowIfOff, TextNPC0483, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_LADY, Direction.Right, ActionScript.Unknown078, EventFlag.UNKNOWN_128, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0485, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0486, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_LADY, Direction.Right, ActionScript.Unknown079, EventFlag.UNKNOWN_129, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Left, ActionScript.Unknown010, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, TextNPC0490, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_24D, NPCConfigFlagStyle.ShowIfOn, TextNPC0491, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_LADY, Direction.Right, ActionScript.Unknown080, EventFlag.UNKNOWN_12A, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Down, ActionScript.Unknown080, EventFlag.UNKNOWN_12A, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Right, ActionScript.Unknown080, EventFlag.UNKNOWN_12A, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Right, ActionScript.Unknown080, EventFlag.UNKNOWN_12A, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Right, ActionScript.Unknown080, EventFlag.UNKNOWN_12A, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_DOG, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_12A, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0498, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0499, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0500, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0501, null),
-	NPC(NPCType.Person, OverworldSprite.SHY_GUY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0502, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0503, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0504, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0505, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.GIRL_IN_STRIPED_APRON, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0255, null),
-	NPC(NPCType.Person, OverworldSprite.BAKER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0509, null),
-	NPC(NPCType.Person, OverworldSprite.HINT_GUY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_2F0, NPCConfigFlagStyle.ShowIfOff, TextNPC0510, null),
-	NPC(NPCType.Person, OverworldSprite.LITTLE_KID_IN_BLUE, Direction.Down, ActionScript.Unknown012, EventFlag.FOURSIDE_REACHED, NPCConfigFlagStyle.ShowIfOn, TextNPC0511, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0512, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Down, ActionScript.Unknown012, EventFlag.FOURSIDE_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0513, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown012, EventFlag.FOURSIDE_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0514, null),
-	NPC(NPCType.Person, OverworldSprite.SHY_GUY, Direction.Right, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0515, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0516, null),
-	NPC(NPCType.Person, OverworldSprite.SOME_BRUNETTE_KID, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_2E4, NPCConfigFlagStyle.ShowIfOff, TextNPC0517, null),
-	NPC(NPCType.Person, OverworldSprite.YELLOW_CLOTHES_BLONDE, Direction.Up, ActionScript.Unknown016, EventFlag.UNKNOWN_2E4, NPCConfigFlagStyle.ShowIfOff, TextNPC0518, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Up, ActionScript.Unknown013, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOff, TextNPC0519, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_BLUE_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_16E, NPCConfigFlagStyle.ShowIfOff, TextNPC0520, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Up, ActionScript.Unknown012, EventFlag.UNKNOWN_00E, NPCConfigFlagStyle.ShowIfOn, TextNPC0521, null),
-	NPC(NPCType.Person, OverworldSprite.LITTLE_KID_IN_BLUE, Direction.Down, ActionScript.Unknown012, EventFlag.FOURSIDE_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0522, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KIDS_MOUSE, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0523, null),
-	NPC(NPCType.Person, OverworldSprite.DOG, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0524, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Left, ActionScript.Unknown013, EventFlag.UNKNOWN_2E4, NPCConfigFlagStyle.ShowIfOff, TextNPC0525, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_FAT_GUY_WITH_HAT, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0526, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_00E, NPCConfigFlagStyle.ShowIfOn, TextNPC0527, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_DARK_HAIRED_GIRL, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0528, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0529, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0530, null),
-	NPC(NPCType.Person, OverworldSprite.BOOGY_TENT_EYE, Direction.Down, ActionScript.Unknown592, EventFlag.BOOGEY_TENT_ACTIVE, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.BOOGY_TENT_EYE, Direction.Right, ActionScript.Unknown592, EventFlag.BOOGEY_TENT_ACTIVE, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.BOOGY_TENT_MOUTH, Direction.Down, ActionScript.Unknown591, EventFlag.BOOGEY_TENT_ACTIVE, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Right, ActionScript.Unknown758, EventFlag.UNKNOWN_12C, NPCConfigFlagStyle.ShowIfOff, TextNPC0534, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_12C, NPCConfigFlagStyle.ShowIfOff, TextNPC0535, null),
-	NPC(NPCType.Person, OverworldSprite.HIDDEN_ARMS_DEALER, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_2E4, NPCConfigFlagStyle.ShowIfOff, TextNPC0536, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_02E, NPCConfigFlagStyle.ShowIfOn, TextNPC0537, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_LADY, Direction.Down, ActionScript.Unknown077, EventFlag.UNKNOWN_02E, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0539, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0540, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0541, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_07D, NPCConfigFlagStyle.ShowIfOn, TextNPC0542, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0470, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0471, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0474, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_DOG, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_12C, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_12C, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_24C, NPCConfigFlagStyle.ShowIfOff, TextNPC0551, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0552, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0553, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0554, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0555, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0556, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_BLUE_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0557, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0558, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0559, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_BASEBALL_HELMET, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0560, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0561, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0562, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_262, NPCConfigFlagStyle.ShowIfOn, TextNPC0563, null),
-	NPC(NPCType.Person, OverworldSprite.PUNK_GUY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_26F, NPCConfigFlagStyle.ShowIfOn, TextNPC0564, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Right, ActionScript.Unknown666, EventFlag.UNKNOWN_272, NPCConfigFlagStyle.ShowIfOn, TextNPC0475, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Left, ActionScript.Unknown666, EventFlag.UNKNOWN_272, NPCConfigFlagStyle.ShowIfOn, TextNPC0476, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown870, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown873, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.DONT_ENTER_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0185, null),
-	NPC(NPCType.Object, OverworldSprite.BUS_STOP_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0570, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BUS_STOP_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0580, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown707, EventFlag.UNKNOWN_29D, NPCConfigFlagStyle.ShowIfOn, TextNPC0582, null),
-	NPC(NPCType.Object, OverworldSprite.HOTEL_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0583, null),
-	NPC(NPCType.Object, OverworldSprite.CITY_BUS, Direction.Right, ActionScript.Unknown595, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Down, ActionScript.Unknown094, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Down, ActionScript.Unknown095, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Down, ActionScript.Unknown096, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Down, ActionScript.Unknown097, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_POSSESSOR, Direction.Down, ActionScript.Unknown098, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0344, null),
-	NPC(NPCType.Person, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_25B, NPCConfigFlagStyle.ShowIfOff, TextNPC0590, null),
-	NPC(NPCType.Person, OverworldSprite.TonyInBed, Direction.Down, ActionScript.Unknown113, EventFlag.TONY_JOINED_YOU, NPCConfigFlagStyle.ShowIfOff, TextNPC0591, null),
-	NPC(NPCType.Person, OverworldSprite.JeffInBed, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_080, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.TOOLS, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0594, null),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0595, TextNPC0595_ALT),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0595, TextNPC0596_ALT),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0595, TextNPC0597_ALT),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0595, TextNPC0598_ALT),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0595, TextNPC0599_ALT),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0600, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_BLUE_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0601, null),
-	NPC(NPCType.Person, OverworldSprite.SOME_BRUNETTE_KID, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0602, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0603, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0604, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0605, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0606, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0607, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0608, null),
-	NPC(NPCType.Person, OverworldSprite.BubbleMonkey, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_14E, NPCConfigFlagStyle.ShowIfOff, TextNPC0609, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0610, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0612, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0613, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0610, null),
-	NPC(NPCType.Person, OverworldSprite.DR_ANDONUTS, Direction.Down, ActionScript.Unknown178, EventFlag.UNKNOWN_17B, NPCConfigFlagStyle.ShowIfOff, TextNPC0615, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KIDS_MOUSE, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_26C, NPCConfigFlagStyle.ShowIfOn, TextNPC0616, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Up, ActionScript.Unknown008, EventFlag.UNKNOWN_26D, NPCConfigFlagStyle.ShowIfOn, TextNPC0617, null),
-	NPC(NPCType.Person, OverworldSprite.BubbleMonkey, Direction.Up, ActionScript.Unknown013, EventFlag.UNKNOWN_26D, NPCConfigFlagStyle.ShowIfOn, TextNPC0618, null),
-	NPC(NPCType.Person, OverworldSprite.CAVE_BOY, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_00E, NPCConfigFlagStyle.ShowIfOn, TextNPC0619, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0610, null),
-	NPC(NPCType.Object, OverworldSprite.SHADOW, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2EC, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.INSTANT_REVITALIZING_DEVICE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0622, null),
-	NPC(NPCType.Object, OverworldSprite.SKY_RUNNER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2EC, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.SOME_BRUNETTE_KID, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOff, TextNPC0624, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Right, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOff, TextNPC0625, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Up, ActionScript.Unknown012, EventFlag.UNKNOWN_034, NPCConfigFlagStyle.ShowIfOn, TextNPC0626, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0627, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0628, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_034, NPCConfigFlagStyle.ShowIfOff, TextNPC0629, null),
-	NPC(NPCType.Person, OverworldSprite.BubbleMonkey, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_276, NPCConfigFlagStyle.ShowIfOn, TextNPC0630, null),
-	NPC(NPCType.Person, OverworldSprite.BRICK_ROAD, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_032, NPCConfigFlagStyle.ShowIfOn, TextNPC0631, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Right, ActionScript.Unknown284, EventFlag.UNKNOWN_016, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Up, ActionScript.Unknown012, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, TextNPC0633, null),
-	NPC(NPCType.Person, OverworldSprite.TONY_KNEELING, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_14F, NPCConfigFlagStyle.ShowIfOn, TextNPC0634, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0635, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0636, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_26E, NPCConfigFlagStyle.ShowIfOn, TextNPC0637, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0638, null),
-	NPC(NPCType.Person, OverworldSprite.Tony, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0639, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown883, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown868, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_158, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_158, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_158, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.PENCIL_STATUE, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_261, NPCConfigFlagStyle.ShowIfOff, TextNPC0450, TextNPC0645_ALT),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0646, null),
-	NPC(NPCType.Object, OverworldSprite.UNDERWATER_NPC, Direction.Down, ActionScript.Unknown769, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNDERWATER_NPC, Direction.Down, ActionScript.Unknown769, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNDERWATER_NPC, Direction.Down, ActionScript.Unknown769, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNDERWATER_NPC, Direction.Down, ActionScript.Unknown769, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNDERWATER_NPC, Direction.Down, ActionScript.Unknown769, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNDERWATER_NPC, Direction.Down, ActionScript.Unknown769, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNDERWATER_NPC, Direction.Down, ActionScript.Unknown769, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_158, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.TESSIE_WATER_RIPPLES_TOP, Direction.Down, ActionScript.Unknown485, EventFlag.UNKNOWN_158, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.TESSIE_WATER_RIPPLES_BOTTOM, Direction.Down, ActionScript.Unknown486, EventFlag.UNKNOWN_158, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KID, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, TextNPC0657, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KID, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_033, NPCConfigFlagStyle.ShowIfOn, TextNPC0658, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, TextNPC0659, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_033, NPCConfigFlagStyle.ShowIfOn, TextNPC0660, null),
-	NPC(NPCType.Person, OverworldSprite.Tony, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, TextNPC0661, null),
-	NPC(NPCType.Person, OverworldSprite.Tony, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_033, NPCConfigFlagStyle.ShowIfOn, TextNPC0662, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.TESSIE_WATCHER, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_033, NPCConfigFlagStyle.ShowIfOn, TextNPC0664, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_033, NPCConfigFlagStyle.ShowIfOn, TextNPC0665, null),
-	NPC(NPCType.Person, OverworldSprite.NEW_AGE_RETRO_HIPPIE, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_033, NPCConfigFlagStyle.ShowIfOn, TextNPC0666, null),
-	NPC(NPCType.Person, OverworldSprite.DR_ANDONUTS, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.DR_ANDONUTS, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_033, NPCConfigFlagStyle.ShowIfOn, TextNPC0668, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, TextNPC0669, null),
-	NPC(NPCType.Person, OverworldSprite.NEW_AGE_RETRO_HIPPIE, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_046, NPCConfigFlagStyle.ShowIfOff, TextNPC0670, null),
-	NPC(NPCType.Object, OverworldSprite.ERASER_STATUE, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_12B, NPCConfigFlagStyle.ShowIfOff, TextNPC0671, TextNPC0671_ALT),
-	NPC(NPCType.Person, OverworldSprite.STARMAN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1B2, NPCConfigFlagStyle.ShowIfOff, TextNPC0672, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE_NO_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0673, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_200, NPCConfigFlagStyle.ShowIfOff, TextNPC0095, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0096, null),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_4, NPCConfigFlagStyle.ShowIfOff, TextNPC0676, null),
-	NPC(NPCType.Object, OverworldSprite.ROPE, Direction.Down, ActionScript.Unknown260, EventFlag.UNKNOWN_137, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.MAD_DUCK, Direction.Left, ActionScript.Unknown598, EventFlag.MAD_DUCK_1_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC0678, null),
-	NPC(NPCType.Person, OverworldSprite.MAD_DUCK, Direction.Right, ActionScript.Unknown598, EventFlag.MAD_DUCK_2_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC0679, null),
-	NPC(NPCType.Person, OverworldSprite.GiftBox, Direction.Up, ActionScript.Unknown601, EventFlag.WORTHLESS_PROTOPLASM_1_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC0680, null),
-	NPC(NPCType.Person, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown601, EventFlag.WORTHLESS_PROTOPLASM_2_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC0681, null),
-	NPC(NPCType.Person, OverworldSprite.ROWDY_MOUSE, Direction.Right, ActionScript.Unknown600, EventFlag.ROWDY_MOUSE_1_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC0682, null),
-	NPC(NPCType.Person, OverworldSprite.ROWDY_MOUSE, Direction.Up, ActionScript.Unknown600, EventFlag.ROWDY_MOUSE_2_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC0683, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0610, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0685, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0686, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0687, null),
-	NPC(NPCType.Person, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_16E, NPCConfigFlagStyle.ShowIfOff, TextNPC0688, null),
-	NPC(NPCType.Person, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0689, null),
-	NPC(NPCType.Person, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0690, null),
-	NPC(NPCType.Person, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_16F, NPCConfigFlagStyle.ShowIfOff, TextNPC0691, null),
-	NPC(NPCType.Person, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_170, NPCConfigFlagStyle.ShowIfOff, TextNPC0692, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0693, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0694, null),
-	NPC(NPCType.Object, OverworldSprite.JAR_OF_FLY_HONEY, Direction.Down, ActionScript.Unknown631, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.JAR_OF_FLY_HONEY, Direction.Down, ActionScript.Unknown632, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.MASTER_BELCH, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOff, TextNPC0697, null),
-	NPC(NPCType.Object, OverworldSprite.MR_SATURN_BALL_AND_CHAIN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MR_SATURN_BALL_AND_CHAIN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.NessLyingDown, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Paula, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Jeff, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Poo, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.FOUNTAIN_OF_HEALING_MINI, Direction.Down, ActionScript.Unknown693, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_3, NPCConfigFlagStyle.ShowIfOff, TextNPC0705, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0706, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_24E, NPCConfigFlagStyle.ShowIfOn, TextNPC0707, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_FAT_GUY_WITH_HAT, Direction.Down, ActionScript.Unknown606, EventFlag.SATURN_VALLEY_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC0708, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown871, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0710, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0712, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0713, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown012, EventFlag.MAGICANT_COMPLETED, NPCConfigFlagStyle.ShowIfOn, TextNPC0714, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0715, null),
-	NPC(NPCType.Object, OverworldSprite.SATURN_VALLEY_ATM, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, TextNPC0718, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, TextNPC0719, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0720, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, TextNPC0721, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOff, TextNPC0722, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0723, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0724, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown013, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0725, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown013, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0726, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KID, Direction.Right, ActionScript.Unknown008, EventFlag.UNDERWORLD_REACHED, NPCConfigFlagStyle.ShowIfOn, TextNPC0727, null),
-	NPC(NPCType.Person, OverworldSprite.DR_ANDONUTS, Direction.Up, ActionScript.Unknown010, EventFlag.UNDERWORLD_REACHED, NPCConfigFlagStyle.ShowIfOn, TextNPC0728, TextNPC0728_ALT),
-	NPC(NPCType.Person, OverworldSprite.MINER, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_28B, NPCConfigFlagStyle.ShowIfOn, TextNPC0729, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown013, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0730, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown008, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0731, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_047, NPCConfigFlagStyle.ShowIfOn, TextNPC0732, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KIDS_MOUSE, Direction.Right, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0733, null),
-	NPC(NPCType.Person, OverworldSprite.Jeff, Direction.Down, ActionScript.Unknown581, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0734, TextNPC0734_ALT),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown872, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0737, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0738, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0739, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0740, null),
-	NPC(NPCType.Object, OverworldSprite.PHASE_DISTORTER, Direction.Down, ActionScript.Unknown286, EventFlag.MAGICANT_COMPLETED, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.SPA_SIGN, Direction.Down, ActionScript.Unknown683, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0742, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0743, null),
-	NPC(NPCType.Object, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown708, EventFlag.UNKNOWN_274, NPCConfigFlagStyle.ShowIfOn, TextNPC0744, null),
-	NPC(NPCType.Object, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown709, EventFlag.UNKNOWN_274, NPCConfigFlagStyle.ShowIfOn, TextNPC0745, null),
-	NPC(NPCType.Object, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown710, EventFlag.UNKNOWN_274, NPCConfigFlagStyle.ShowIfOn, TextNPC0746, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0747, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0748, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0749, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Person, OverworldSprite.MINERS_BROTHER, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0752, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Up, ActionScript.Unknown013, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, TextNPC0754, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, TextNPC0755, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Left, ActionScript.Unknown605, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, TextNPC0756, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, TextNPC0757, null),
-	NPC(NPCType.Person, OverworldSprite.PALM_TAN_GUY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0758, null),
-	NPC(NPCType.Person, OverworldSprite.SUN_BATHING_GIRL, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0759, null),
-	NPC(NPCType.Person, OverworldSprite.MINER, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_037, NPCConfigFlagStyle.ShowIfOff, TextNPC0760, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, TextNPC0761, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_BLONDE_GIRL, Direction.Down, ActionScript.Unknown606, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, TextNPC0762, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Down, ActionScript.Unknown606, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, TextNPC0763, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Down, ActionScript.Unknown606, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, TextNPC0764, null),
-	NPC(NPCType.Person, OverworldSprite.MEXICAN_GUY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0765, null),
-	NPC(NPCType.Person, OverworldSprite.MEXICAN_GUY, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0766, null),
-	NPC(NPCType.Person, OverworldSprite.MEXICAN_GUY, Direction.Up, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0767, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0768, null),
-	NPC(NPCType.Person, OverworldSprite.HIDDEN_ARMS_DEALER, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0769, null),
-	NPC(NPCType.Person, OverworldSprite.MINERS_BROTHER, Direction.Down, ActionScript.Unknown258, EventFlag.UNKNOWN_110, NPCConfigFlagStyle.ShowIfOn, TextNPC0770, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0771, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_266, NPCConfigFlagStyle.ShowIfOn, TextNPC0772, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_267, NPCConfigFlagStyle.ShowIfOn, TextNPC0773, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown606, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, TextNPC0774, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, TextNPC0775, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown876, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown875, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0778, null),
-	NPC(NPCType.Object, OverworldSprite.SLOT_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0779, null),
-	NPC(NPCType.Object, OverworldSprite.PILE_OF_BONES, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0780, null),
-	NPC(NPCType.Object, OverworldSprite.PILE_OF_BONES, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0781, null),
-	NPC(NPCType.Person, OverworldSprite.UNKNOWN3, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0782, null),
-	NPC(NPCType.Person, OverworldSprite.SESAME_SEED, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0783, null),
-	NPC(NPCType.Person, OverworldSprite.GUY_IN_COOL_RED_CAR, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, TextNPC0784, null),
-	NPC(NPCType.Object, OverworldSprite.REAL_TAXI, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.RED_TRUCK, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.WHITE_TRUCK, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAGIC_TART_STAND, Direction.Down, ActionScript.Unknown008, EventFlag.MINE_EXPANDED, NPCConfigFlagStyle.ShowIfOn, TextNPC0788, null),
-	NPC(NPCType.Object, OverworldSprite.DELIVERY_TRUCK, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_088, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.BUS_STOP_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0790, null),
-	NPC(NPCType.Object, OverworldSprite.BUS_STOP_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0791, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0792, null),
-	NPC(NPCType.Object, OverworldSprite.BIG_DIRT_SCOOPER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_14D, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.CONTACT_LENSES, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_181, NPCConfigFlagStyle.ShowIfOff, TextNPC0794, null),
-	NPC(NPCType.Object, OverworldSprite.BIG_DIRT_SCOOPER, Direction.Down, ActionScript.Unknown256, EventFlag.UNKNOWN_110, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.BIG_DIRT_SCOOPER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_14D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.TALAH_RAMA, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_2E9, NPCConfigFlagStyle.ShowIfOff, TextNPC0797, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_2E9, NPCConfigFlagStyle.ShowIfOff, TextNPC0798, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C4, NPCConfigFlagStyle.ShowIfOff, TextNPC0799, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C3, NPCConfigFlagStyle.ShowIfOff, TextNPC0800, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C4, NPCConfigFlagStyle.ShowIfOn, TextNPC0799, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C3, NPCConfigFlagStyle.ShowIfOn, TextNPC0800, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C6, NPCConfigFlagStyle.ShowIfOff, TextNPC0803, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C5, NPCConfigFlagStyle.ShowIfOff, TextNPC0804, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C6, NPCConfigFlagStyle.ShowIfOn, TextNPC0803, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C5, NPCConfigFlagStyle.ShowIfOn, TextNPC0804, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CA, NPCConfigFlagStyle.ShowIfOff, TextNPC0807, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C9, NPCConfigFlagStyle.ShowIfOff, TextNPC0808, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CA, NPCConfigFlagStyle.ShowIfOn, TextNPC0807, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C9, NPCConfigFlagStyle.ShowIfOn, TextNPC0808, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CF, NPCConfigFlagStyle.ShowIfOff, TextNPC0811, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CF, NPCConfigFlagStyle.ShowIfOn, TextNPC0811, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C8, NPCConfigFlagStyle.ShowIfOff, TextNPC0813, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C7, NPCConfigFlagStyle.ShowIfOff, TextNPC0814, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C8, NPCConfigFlagStyle.ShowIfOn, TextNPC0813, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1C7, NPCConfigFlagStyle.ShowIfOn, TextNPC0814, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CE, NPCConfigFlagStyle.ShowIfOff, TextNPC0817, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CD, NPCConfigFlagStyle.ShowIfOff, TextNPC0818, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CE, NPCConfigFlagStyle.ShowIfOn, TextNPC0817, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CD, NPCConfigFlagStyle.ShowIfOn, TextNPC0818, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Right, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0821, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CC, NPCConfigFlagStyle.ShowIfOff, TextNPC0822, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CB, NPCConfigFlagStyle.ShowIfOff, TextNPC0823, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CC, NPCConfigFlagStyle.ShowIfOn, TextNPC0822, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1CB, NPCConfigFlagStyle.ShowIfOn, TextNPC0823, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0826, null),
-	NPC(NPCType.Object, OverworldSprite.PENCIL_STATUE, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_204, NPCConfigFlagStyle.ShowIfOff, TextNPC0450, TextNPC0827_ALT),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Right, ActionScript.Unknown013, EventFlag.UNKNOWN_265, NPCConfigFlagStyle.ShowIfOff, TextNPC0828, null),
-	NPC(NPCType.Person, OverworldSprite.TALAH_RAMA, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0829, null),
-	NPC(NPCType.Person, OverworldSprite.MINER, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_036, NPCConfigFlagStyle.ShowIfOn, TextNPC0830, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_DIGGER, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_115, NPCConfigFlagStyle.ShowIfOff, TextNPC0831, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_DIGGER, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_116, NPCConfigFlagStyle.ShowIfOff, TextNPC0832, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_DIGGER, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_117, NPCConfigFlagStyle.ShowIfOff, TextNPC0833, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE_NO_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0834, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_200, NPCConfigFlagStyle.ShowIfOff, TextNPC0095, null),
-	NPC(NPCType.Person, OverworldSprite.EXIT_MOUSE, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0096, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_DIGGER, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_118, NPCConfigFlagStyle.ShowIfOff, TextNPC0837, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_DIGGER, Direction.Down, ActionScript.Unknown600, EventFlag.UNKNOWN_119, NPCConfigFlagStyle.ShowIfOff, TextNPC0838, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0839, TextNPC0839_ALT),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_176, NPCConfigFlagStyle.ShowIfOff, TextNPC0840, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_176, NPCConfigFlagStyle.ShowIfOn, TextNPC0841, null),
-	NPC(NPCType.Person, OverworldSprite.VENUS, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_093, NPCConfigFlagStyle.ShowIfOn, TextNPC0842, null),
-	NPC(NPCType.Person, OverworldSprite.GORGEOUS, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_093, NPCConfigFlagStyle.ShowIfOff, TextNPC0843, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_BASS_PLAYER, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_093, NPCConfigFlagStyle.ShowIfOff, TextNPC0844, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_DRUMMER, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_093, NPCConfigFlagStyle.ShowIfOff, TextNPC0845, null),
-	NPC(NPCType.Person, OverworldSprite.LUCKY, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_093, NPCConfigFlagStyle.ShowIfOff, TextNPC0846, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_SAX_PLAYER, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_093, NPCConfigFlagStyle.ShowIfOff, TextNPC0847, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0848, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_038, NPCConfigFlagStyle.ShowIfOff, TextNPC0849, TextNPC0849_ALT),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_038, NPCConfigFlagStyle.ShowIfOn, TextNPC0850, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_2F7, NPCConfigFlagStyle.ShowIfOn, TextNPC0851, null),
-	NPC(NPCType.Person, OverworldSprite.BEACH_LADY, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2F7, NPCConfigFlagStyle.ShowIfOn, TextNPC0852, null),
-	NPC(NPCType.Person, OverworldSprite.BAKER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0853, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_SHOPPING_LADY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0854, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0855, TextNPC0855_ALT),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Left, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0856, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0857, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0858, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0859, null),
-	NPC(NPCType.Person, OverworldSprite.MONOTOLI, Direction.Right, ActionScript.Unknown605, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0860, null),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.BODYGUARD, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0862, null),
-	NPC(NPCType.Person, OverworldSprite.BODYGUARD, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0863, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Left, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0864, null),
-	NPC(NPCType.Person, OverworldSprite.PokeyRich, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_08F, NPCConfigFlagStyle.ShowIfOff, TextNPC0865, null),
-	NPC(NPCType.Person, OverworldSprite.BODYGUARD, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_08F, NPCConfigFlagStyle.ShowIfOff, TextNPC0866, null),
-	NPC(NPCType.Person, OverworldSprite.BODYGUARD, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_08F, NPCConfigFlagStyle.ShowIfOff, TextNPC0867, null),
-	NPC(NPCType.Person, OverworldSprite.ALOYSIUS_MINCH, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_08F, NPCConfigFlagStyle.ShowIfOff, TextNPC0868, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Left, ActionScript.Unknown605, EventFlag.UNKNOWN_08E, NPCConfigFlagStyle.ShowIfOn, TextNPC0869, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Left, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0870, null),
-	NPC(NPCType.Person, OverworldSprite.ELECTRA, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0871, null),
-	NPC(NPCType.Person, OverworldSprite.MONOTOLI, Direction.Up, ActionScript.Unknown700, EventFlag.UNKNOWN_298, NPCConfigFlagStyle.ShowIfOff, TextNPC0872, null),
-	NPC(NPCType.Person, OverworldSprite.Paula, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_00F, NPCConfigFlagStyle.ShowIfOff, TextNPC0873, null),
-	NPC(NPCType.Person, OverworldSprite.MONOTOLI, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2E5, NPCConfigFlagStyle.ShowIfOn, TextNPC0872, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0875, null),
-	NPC(NPCType.Object, OverworldSprite.MIGHTY_BEAR, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0876, null),
-	NPC(NPCType.Object, OverworldSprite.SECRET_DOOR_IN_MONOTOLI_BUILDING, Direction.Down, ActionScript.Unknown704, EventFlag.UNKNOWN_298, NPCConfigFlagStyle.ShowIfOff, TextNPC0877, null),
-	NPC(NPCType.Object, OverworldSprite.SECRET_DOOR_IN_MONOTOLI_BUILDING, Direction.Down, ActionScript.Unknown007, EventFlag.UNKNOWN_298, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.SENTRY_ROBOT, Direction.Down, ActionScript.Unknown602, EventFlag.UNKNOWN_165, NPCConfigFlagStyle.ShowIfOff, TextNPC0879, null),
-	NPC(NPCType.Person, OverworldSprite.SENTRY_ROBOT, Direction.Left, ActionScript.Unknown602, EventFlag.UNKNOWN_166, NPCConfigFlagStyle.ShowIfOff, TextNPC0880, null),
-	NPC(NPCType.Person, OverworldSprite.SENTRY_ROBOT, Direction.Left, ActionScript.Unknown602, EventFlag.UNKNOWN_167, NPCConfigFlagStyle.ShowIfOff, TextNPC0881, null),
-	NPC(NPCType.Person, OverworldSprite.SENTRY_ROBOT, Direction.Right, ActionScript.Unknown602, EventFlag.UNKNOWN_168, NPCConfigFlagStyle.ShowIfOff, TextNPC0882, null),
-	NPC(NPCType.Person, OverworldSprite.CLUMSY_ROBOT, Direction.Down, ActionScript.Unknown602, EventFlag.UNKNOWN_16A, NPCConfigFlagStyle.ShowIfOff, TextNPC0883, null),
-	NPC(NPCType.Person, OverworldSprite.GORGEOUS, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_13E, NPCConfigFlagStyle.ShowIfOn, TextNPC0884, null),
-	NPC(NPCType.Person, OverworldSprite.LUCKY, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_13E, NPCConfigFlagStyle.ShowIfOn, TextNPC0885, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_DRUMMER, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_13E, NPCConfigFlagStyle.ShowIfOn, TextNPC0886, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_BASS_PLAYER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_13E, NPCConfigFlagStyle.ShowIfOn, TextNPC0887, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_SAX_PLAYER, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_13E, NPCConfigFlagStyle.ShowIfOn, TextNPC0888, null),
-	NPC(NPCType.Person, OverworldSprite.SENTRY_ROBOT, Direction.Right, ActionScript.Unknown602, EventFlag.UNKNOWN_169, NPCConfigFlagStyle.ShowIfOff, TextNPC0889, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0890, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0891, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0894, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Left, ActionScript.Unknown008, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, TextNPC0895, null),
-	NPC(NPCType.Person, OverworldSprite.JACKIE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0896, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_SMILE_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_08B, NPCConfigFlagStyle.ShowIfOff, TextNPC0897, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_SMILE_LADY, Direction.Left, ActionScript.Unknown605, EventFlag.UNKNOWN_08B, NPCConfigFlagStyle.ShowIfOn, TextNPC0898, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0899, null),
-	NPC(NPCType.Person, OverworldSprite.DRINKING_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0900, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOff, TextNPC0901, null),
-	NPC(NPCType.Person, OverworldSprite.ALOYSIUS_MINCH, Direction.Down, ActionScript.Unknown606, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, TextNPC0902, null),
-	NPC(NPCType.Object, OverworldSprite.JUKEBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0903, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KIDS_MOUSE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0904, null),
-	NPC(NPCType.Object, OverworldSprite.BROKEN_MANI_MANI_STATUE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0905, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0906, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.FOURSIDE_MUSEUM_GUY, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_03A, NPCConfigFlagStyle.ShowIfOff, TextNPC0908, TextNPC0908_ALT),
-	NPC(NPCType.Person, OverworldSprite.FOURSIDE_MUSEUM_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_03A, NPCConfigFlagStyle.ShowIfOn, TextNPC0909, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0910, null),
-	NPC(NPCType.Person, OverworldSprite.PIGTAIL_DARK_HAIRED_GIRL, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0911, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0912, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown878, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0914, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0915, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0916, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0917, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0918, null),
-	NPC(NPCType.Person, OverworldSprite.LITTLE_KID_IN_BLUE, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0919, null),
-	NPC(NPCType.Person, OverworldSprite.THICK_GLASSES_LADY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0920, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0921, null),
-	NPC(NPCType.Person, OverworldSprite.ELEVATOR_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0922, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0923, null),
-	NPC(NPCType.Person, OverworldSprite.BODYGUARD, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0924, null),
-	NPC(NPCType.Person, OverworldSprite.WAITRESS, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0925, null),
-	NPC(NPCType.Person, OverworldSprite.GIRL_IN_STRIPED_APRON, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0926, null),
-	NPC(NPCType.Person, OverworldSprite.BRUNETTE_SHOPPING_LADY, Direction.Right, ActionScript.Unknown013, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0927, null),
-	NPC(NPCType.Person, OverworldSprite.YELLOW_CLOTHES_BLONDE, Direction.Right, ActionScript.Unknown016, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0928, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_BASEBALL_HELMET, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0929, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Up, ActionScript.Unknown013, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0930, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KIDS_MOUSE, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0931, null),
-	NPC(NPCType.Person, OverworldSprite.BAKER, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0932, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0933, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0934, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown880, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.HIDDEN_ARMS_DEALER, Direction.Down, ActionScript.Unknown013, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, TextNPC0936, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Object, OverworldSprite.MAGIC_TART_STAND, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.DEPT_STORE_MOOK, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_039, NPCConfigFlagStyle.ShowIfOn, TextNPC0941, null),
-	NPC(NPCType.Person, OverworldSprite.GuyInBlueClothes, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0942, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_BLUE_DRESS, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0943, null),
-	NPC(NPCType.Person, OverworldSprite.TRUMPET_PERSON, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0944, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0945, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0946, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0947, null),
-	NPC(NPCType.Person, OverworldSprite.DRINKING_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0948, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0949, null),
-	NPC(NPCType.Person, OverworldSprite.COP_IN_SUNGLASSES, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0950, null),
-	NPC(NPCType.Person, OverworldSprite.ELECTRA, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_03B, NPCConfigFlagStyle.ShowIfOn, TextNPC0951, null),
-	NPC(NPCType.Person, OverworldSprite.EverdredLyingDown, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_03C, NPCConfigFlagStyle.ShowIfOn, TextNPC0952, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_03C, NPCConfigFlagStyle.ShowIfOn, TextNPC0953, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_03C, NPCConfigFlagStyle.ShowIfOn, TextNPC0954, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Up, ActionScript.Unknown606, EventFlag.UNKNOWN_03C, NPCConfigFlagStyle.ShowIfOn, TextNPC0955, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Up, ActionScript.Unknown605, EventFlag.UNKNOWN_03C, NPCConfigFlagStyle.ShowIfOn, TextNPC0956, null),
-	NPC(NPCType.Person, OverworldSprite.BRUNETTE_SHOPPING_LADY, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_03C, NPCConfigFlagStyle.ShowIfOn, TextNPC0957, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_SHOPPING_LADY, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_03C, NPCConfigFlagStyle.ShowIfOn, TextNPC0958, null),
-	NPC(NPCType.Person, OverworldSprite.PUNK_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0959, null),
-	NPC(NPCType.Person, OverworldSprite.GORGEOUS, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_13D, NPCConfigFlagStyle.ShowIfOn, TextNPC0960, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0961, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Right, ActionScript.Unknown605, EventFlag.UNKNOWN_092, NPCConfigFlagStyle.ShowIfOff, TextNPC0962, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Up, ActionScript.Unknown013, EventFlag.UNKNOWN_092, NPCConfigFlagStyle.ShowIfOff, TextNPC0963, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_252, NPCConfigFlagStyle.ShowIfOn, TextNPC0964, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Down, ActionScript.Unknown605, EventFlag.DEFEATED_SANCTUARY_BOSS_5, NPCConfigFlagStyle.ShowIfOff, TextNPC0965, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Right, ActionScript.Unknown605, EventFlag.DEFEATED_SANCTUARY_BOSS_5, NPCConfigFlagStyle.ShowIfOff, TextNPC0966, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Right, ActionScript.Unknown008, EventFlag.UNKNOWN_24F, NPCConfigFlagStyle.ShowIfOn, TextNPC0967, null),
-	NPC(NPCType.Person, OverworldSprite.HUMAN_CHARRED, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_250, NPCConfigFlagStyle.ShowIfOn, TextNPC0968, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0969, null),
-	NPC(NPCType.Person, OverworldSprite.HINT_MAN, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_2F0, NPCConfigFlagStyle.ShowIfOff, TextNPC0970, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown879, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BUS_STOP_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0972, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREETLIGHT, Direction.Down, ActionScript.Unknown877, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.STREET_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAGNET_HILL, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.CAN_TENDA_VILLAGE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.HELICOPTER, Direction.Down, ActionScript.Unknown711, EventFlag.UNKNOWN_2A0, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.HELICOPTER_BLADE, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2A0, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.HELICOPTER_BACK, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2A0, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.SHADOW, Direction.Down, ActionScript.Unknown704, EventFlag.UNKNOWN_2A0, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.HOTEL_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0993, null),
-	NPC(NPCType.Object, OverworldSprite.RUNAWAY_5_BUS, Direction.Down, ActionScript.Unknown190, EventFlag.UNKNOWN_13D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_5, NPCConfigFlagStyle.ShowIfOff, TextNPC0995, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0996, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0997, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0998, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0999, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1000, null),
-	NPC(NPCType.Person, OverworldSprite.WAITRESS, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1001, null),
-	NPC(NPCType.Person, OverworldSprite.MAGIC_CAKE_LADY, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_269, NPCConfigFlagStyle.ShowIfOff, TextNPC1002, null),
-	NPC(NPCType.Person, OverworldSprite.SHIP_CREWMAN, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1003, null),
-	NPC(NPCType.Person, OverworldSprite.SHIP_CREWMAN, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1004, null),
-	NPC(NPCType.Person, OverworldSprite.JamaicanGuy, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1005, null),
-	NPC(NPCType.Person, OverworldSprite.TRUMPET_PERSON, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1006, null),
-	NPC(NPCType.Person, OverworldSprite.DOG, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1007, null),
-	NPC(NPCType.Person, OverworldSprite.SHIP_CAPTAIN, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1008, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1011, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1012, null),
-	NPC(NPCType.Person, OverworldSprite.BEACH_LADY, Direction.Right, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1013, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1016, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1017, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_SHOPPING_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1018, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Left, ActionScript.Unknown008, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, TextNPC1019, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1020, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1021, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Person, OverworldSprite.YOUNG_BLONDE_GUY_IN_BLUE, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1024, null),
-	NPC(NPCType.Person, OverworldSprite.BAKER, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1025, null),
-	NPC(NPCType.Person, OverworldSprite.WAITRESS, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1026, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1027, null),
-	NPC(NPCType.Person, OverworldSprite.BRUNETTE_SHOPPING_LADY, Direction.Down, ActionScript.Unknown606, EventFlag.ONETT_REACHED, NPCConfigFlagStyle.ShowIfOn, TextNPC1028, null),
-	NPC(NPCType.Person, OverworldSprite.FAT_GUY_IN_RED_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1029, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_LADY_WITH_CANE, Direction.Down, ActionScript.Unknown606, EventFlag.ONETT_REACHED, NPCConfigFlagStyle.ShowIfOn, TextNPC1030, null),
-	NPC(NPCType.Person, OverworldSprite.DRINKING_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.ONETT_REACHED, NPCConfigFlagStyle.ShowIfOn, TextNPC1031, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown885, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_2AF, NPCConfigFlagStyle.ShowIfOff, TextNPC1033, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1034, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1035, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1036, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_15A, NPCConfigFlagStyle.ShowIfOff, TextNPC1037, TextNPC1037_ALT),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_15A, NPCConfigFlagStyle.ShowIfOn, TextNPC1038, null),
-	NPC(NPCType.Object, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown599, EventFlag.UNKNOWN_259, NPCConfigFlagStyle.ShowIfOff, TextNPC1039, null),
-	NPC(NPCType.Object, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown599, EventFlag.UNKNOWN_25A, NPCConfigFlagStyle.ShowIfOff, TextNPC1040, null),
-	NPC(NPCType.Object, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.PHARAOH_CASKET, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.PHARAOH_CASKET, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.PHARAOH_CASKET, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1047, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1048, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1049, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1050, null),
-	NPC(NPCType.Person, OverworldSprite.WEIRDO_GUY_IN_SWIM_TRUNKS, Direction.Left, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1051, null),
-	NPC(NPCType.Person, OverworldSprite.GIRL_IN_BIKINI, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1052, null),
-	NPC(NPCType.Person, OverworldSprite.GUY_IN_SWIMMING_SUIT, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1053, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1054, null),
-	NPC(NPCType.Person, OverworldSprite.WEIRDO_GUY_IN_SWIM_TRUNKS, Direction.Left, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1055, null),
-	NPC(NPCType.Person, OverworldSprite.ZOMBIE_LADY, Direction.Left, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1056, null),
-	NPC(NPCType.Person, OverworldSprite.BEACH_LADY, Direction.Down, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1057, null),
-	NPC(NPCType.Person, OverworldSprite.WEIRDO_GUY_IN_SWIM_TRUNKS, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1058, null),
-	NPC(NPCType.Person, OverworldSprite.I_LOVE_QOWGA_SHIRT_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1059, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1060, null),
-	NPC(NPCType.Person, OverworldSprite.MEXICAN_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1061, null),
-	NPC(NPCType.Person, OverworldSprite.BIRD_ON_PERCH, Direction.Left, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1062, null),
-	NPC(NPCType.Person, OverworldSprite.SHIP_CAPTAIN, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1063, null),
-	NPC(NPCType.Person, OverworldSprite.SHIP_CREWMAN, Direction.Left, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1064, null),
-	NPC(NPCType.Person, OverworldSprite.SHIP_CAPTAIN, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1065, null),
-	NPC(NPCType.Person, OverworldSprite.PALM_TAN_GUY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1066, null),
-	NPC(NPCType.Person, OverworldSprite.CAT, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1067, null),
-	NPC(NPCType.Person, OverworldSprite.CAT, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1068, null),
-	NPC(NPCType.Person, OverworldSprite.MAGIC_CAKE_LADY, Direction.Down, ActionScript.Unknown605, EventFlag.UNKNOWN_269, NPCConfigFlagStyle.ShowIfOn, TextNPC1069, null),
-	NPC(NPCType.Person, OverworldSprite.SUN_BATHING_GIRL, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1070, null),
-	NPC(NPCType.Person, OverworldSprite.HINT_MAN, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_2F0, NPCConfigFlagStyle.ShowIfOff, TextNPC1071, null),
-	NPC(NPCType.Person, OverworldSprite.LUCKY, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.GORGEOUS, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.RUNAWAY_FIVE_DRUMMER, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.GIRL_IN_BIKINI, Direction.Up, ActionScript.Unknown010, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown887, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.OLD_FAT_GUY_WITH_HAT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1077, null),
-	NPC(NPCType.Object, OverworldSprite.MAGIC_TART_STAND, Direction.Down, ActionScript.Unknown886, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0788, null),
-	NPC(NPCType.Object, OverworldSprite.REAL_TAXI, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.GUY_IN_COOL_RED_CAR, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1080, null),
-	NPC(NPCType.Object, OverworldSprite.DELIVERY_TRUCK, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.Bicycle, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.TREE_IN_POT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.TREE_IN_POT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAGIC_TART_STAND, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0788, null),
-	NPC(NPCType.Object, OverworldSprite.HOTEL_SIGN, Direction.Down, ActionScript.Unknown884, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1086, null),
-	NPC(NPCType.Object, OverworldSprite.RUNAWAY_5_BUS, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.SHIP, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.POOS_MASTER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1089, null),
-	NPC(NPCType.Person, OverworldSprite.DALAAMESE_SERVANT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1090, null),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE_HEAD_GUY, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1091, null),
-	NPC(NPCType.Person, OverworldSprite.Poo, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_27D, NPCConfigFlagStyle.ShowIfOn, TextNPC1092, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown881, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.CHINESE_GIRL, Direction.Right, ActionScript.Unknown016, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1094, null),
-	NPC(NPCType.Person, OverworldSprite.CHINESE_MONK_GUY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1095, null),
-	NPC(NPCType.Person, OverworldSprite.CHINESE_GIRL, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1096, null),
-	NPC(NPCType.Person, OverworldSprite.DALAAMESE_SERVANT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1097, null),
-	NPC(NPCType.Person, OverworldSprite.CHINESE_MONK_GUY, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1098, null),
-	NPC(NPCType.Person, OverworldSprite.DALAAMESE_SERVANT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1099, null),
-	NPC(NPCType.Person, OverworldSprite.PREET_PROOT_GUY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1100, null),
-	NPC(NPCType.Person, OverworldSprite.DALAAMESE_SERVANT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1101, null),
-	NPC(NPCType.Person, OverworldSprite.DALAAM_GIRL, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1102, null),
-	NPC(NPCType.Person, OverworldSprite.STAR_MASTER_GUY, Direction.Left, ActionScript.Unknown010, EventFlag.UNKNOWN_253, NPCConfigFlagStyle.ShowIfOff, TextNPC1103, null),
-	NPC(NPCType.Person, OverworldSprite.DALAAM_GIRL, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1104, null),
-	NPC(NPCType.Person, OverworldSprite.CHINESE_GIRL, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1105, null),
-	NPC(NPCType.Person, OverworldSprite.CHINESE_GIRL, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1106, null),
-	NPC(NPCType.Object, OverworldSprite.RABBIT, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_28C, NPCConfigFlagStyle.ShowIfOff, TextNPC1107, TextNPC1107_ALT),
-	NPC(NPCType.Object, OverworldSprite.RABBIT, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_28C, NPCConfigFlagStyle.ShowIfOff, TextNPC1107, TextNPC1107_ALT),
-	NPC(NPCType.Object, OverworldSprite.RABBIT, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_28C, NPCConfigFlagStyle.ShowIfOff, TextNPC1107, TextNPC1107_ALT),
-	NPC(NPCType.Person, OverworldSprite.DALAAM_GIRL, Direction.Up, ActionScript.Unknown008, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.DALAAM_GIRL, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1112, null),
-	NPC(NPCType.Object, OverworldSprite.ORNAMENTS_ON_POOS_TEMPLE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.ORNAMENTS_ON_POOS_TEMPLE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.ORNAMENTS_ON_POOS_TEMPLE, Direction.Down, ActionScript.Unknown882, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.ORNAMENTS_ON_POOS_TEMPLE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1117, null),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_6, NPCConfigFlagStyle.ShowIfOff, TextNPC1118, null),
-	NPC(NPCType.Person, OverworldSprite.NessLyingDown, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Paula, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Jeff, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Poo, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1123, null),
-	NPC(NPCType.Person, OverworldSprite.HAPPY_TURBAN_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1124, null),
-	NPC(NPCType.Person, OverworldSprite.HIDDEN_ARMS_DEALER, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1125, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Down, ActionScript.Unknown008, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, TextNPC1126, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Person, OverworldSprite.LADY_IN_VEIL, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1129, null),
-	NPC(NPCType.Person, OverworldSprite.OldGuyWithCane, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1130, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1131, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1132, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1133, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1134, null),
-	NPC(NPCType.Person, OverworldSprite.HAPPY_TURBAN_GUY, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1135, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1136, null),
-	NPC(NPCType.Person, OverworldSprite.LADY_IN_VEIL, Direction.Up, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1137, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_NOSE_ARAB_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1138, null),
-	NPC(NPCType.Person, OverworldSprite.ARAB_MR_T, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1139, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1140, null),
-	NPC(NPCType.Person, OverworldSprite.HAPPY_TURBAN_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1141, null),
-	NPC(NPCType.Person, OverworldSprite.PREET_PROOT_GUY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1142, null),
-	NPC(NPCType.Object, OverworldSprite.PYRAMID_DOOR, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_156, NPCConfigFlagStyle.ShowIfOff, TextNPC1143, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1144, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_NOSE_ARAB_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1145, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_NOSE_ARAB_GUY, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1146, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1147, null),
-	NPC(NPCType.Person, OverworldSprite.PREET_PROOT_GUY, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1148, null),
-	NPC(NPCType.Person, OverworldSprite.TRIBAL_WARRIOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1BD, NPCConfigFlagStyle.ShowIfOff, TextNPC1149, null),
-	NPC(NPCType.Object, OverworldSprite.DungeonMan, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_03E, NPCConfigFlagStyle.ShowIfOff, TextNPC1150, TextNPC1150_ALT),
-	NPC(NPCType.Person, OverworldSprite.TRIBAL_WARRIOR, Direction.Down, ActionScript.Unknown010, EventFlag.UNKNOWN_1BD, NPCConfigFlagStyle.ShowIfOn, TextNPC1151, null),
-	NPC(NPCType.Person, OverworldSprite.DungeonMan, Direction.Down, ActionScript.Unknown498, EventFlag.UNKNOWN_112, NPCConfigFlagStyle.ShowIfOn, TextEvent498, null),
-	NPC(NPCType.Person, OverworldSprite.HINT_MAN, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_2F0, NPCConfigFlagStyle.ShowIfOff, TextNPC1153, null),
-	NPC(NPCType.Object, OverworldSprite.PYRAMID_DOOR, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_156, NPCConfigFlagStyle.ShowIfOff, TextNPC1143, null),
-	NPC(NPCType.Person, OverworldSprite.MUSTACHE_ARAB_TURBAN_GUY, Direction.Right, ActionScript.Unknown606, EventFlag.DEEP_DARKNESS_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC1155, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_NOSE_ARAB_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1156, null),
-	NPC(NPCType.Person, OverworldSprite.PREET_PROOT_GUY, Direction.Down, ActionScript.Unknown888, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1157, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown889, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown890, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.CAMEL, Direction.Left, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.CAMEL, Direction.Left, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN3, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1162, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN3, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1162, null),
-	NPC(NPCType.Object, OverworldSprite.HOTEL_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1164, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1165, null),
-	NPC(NPCType.Object, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_188, NPCConfigFlagStyle.ShowIfOff, TextNPC1168, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_189, NPCConfigFlagStyle.ShowIfOff, TextNPC1169, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_197, NPCConfigFlagStyle.ShowIfOff, TextNPC1170, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_198, NPCConfigFlagStyle.ShowIfOff, TextNPC1171, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_18A, NPCConfigFlagStyle.ShowIfOff, TextNPC1172, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_18B, NPCConfigFlagStyle.ShowIfOff, TextNPC1173, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_18C, NPCConfigFlagStyle.ShowIfOff, TextNPC1174, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_199, NPCConfigFlagStyle.ShowIfOff, TextNPC1175, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_18D, NPCConfigFlagStyle.ShowIfOff, TextNPC1176, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_19A, NPCConfigFlagStyle.ShowIfOff, TextNPC1177, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_18E, NPCConfigFlagStyle.ShowIfOff, TextNPC1178, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_19B, NPCConfigFlagStyle.ShowIfOff, TextNPC1179, null),
-	NPC(NPCType.Object, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1B3, NPCConfigFlagStyle.ShowIfOff, TextNPC1180, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_18F, NPCConfigFlagStyle.ShowIfOff, TextNPC1181, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_190, NPCConfigFlagStyle.ShowIfOff, TextNPC1182, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_191, NPCConfigFlagStyle.ShowIfOff, TextNPC1183, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_19C, NPCConfigFlagStyle.ShowIfOff, TextNPC1184, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_192, NPCConfigFlagStyle.ShowIfOff, TextNPC1185, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_193, NPCConfigFlagStyle.ShowIfOff, TextNPC1186, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_19D, NPCConfigFlagStyle.ShowIfOff, TextNPC1187, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_194, NPCConfigFlagStyle.ShowIfOff, TextNPC1188, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_195, NPCConfigFlagStyle.ShowIfOff, TextNPC1189, null),
-	NPC(NPCType.Person, OverworldSprite.GUARDIAN_HIEROGLYPH, Direction.Left, ActionScript.Unknown599, EventFlag.UNKNOWN_196, NPCConfigFlagStyle.ShowIfOff, TextNPC1190, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_19E, NPCConfigFlagStyle.ShowIfOff, TextNPC1191, null),
-	NPC(NPCType.Person, OverworldSprite.LETHAL_ASP_HIEROGLYPH, Direction.Right, ActionScript.Unknown599, EventFlag.UNKNOWN_19F, NPCConfigFlagStyle.ShowIfOff, TextNPC1192, null),
-	NPC(NPCType.Object, OverworldSprite.PHARAOH_CASKET, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15B, NPCConfigFlagStyle.ShowIfOff, TextNPC1193, null),
-	NPC(NPCType.Object, OverworldSprite.PHARAOH_CASKET, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15B, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.HAWKS_EYE, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15C, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.BRICK_ROAD_HEAD, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1196, null),
-	NPC(NPCType.Object, OverworldSprite.SUBMARINE, Direction.Down, ActionScript.Unknown008, EventFlag.DEEP_DARKNESS_REACHED, NPCConfigFlagStyle.ShowIfOff, TextNPC1197, null),
-	NPC(NPCType.Object, OverworldSprite.Bicycle, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.REAL_TAXI, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1200, null),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Object, OverworldSprite.TREE_IN_POT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.PAY_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0013, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1204, null),
-	NPC(NPCType.Object, OverworldSprite.TREE_IN_POT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Object, OverworldSprite.INSTANT_REVITALIZING_DEVICE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0622, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1208, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1209, null),
-	NPC(NPCType.Object, OverworldSprite.BENCH, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1210, null),
-	NPC(NPCType.Object, OverworldSprite.MAD_DUCK, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAD_DUCK, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAD_DUCK, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.SLIMY_LITTLE_PILE, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.GRUFF_GOAT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.GRUFF_GOAT, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2FA, NPCConfigFlagStyle.ShowIfOff, TextNPC1219, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_2FA, NPCConfigFlagStyle.ShowIfOn, TextNPC1219, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1221, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1133, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1132, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1131, null),
-	NPC(NPCType.Object, OverworldSprite.TREE_IN_POT, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Left, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1226, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1227, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1228, null),
-	NPC(NPCType.Person, OverworldSprite.MASTER_BARF, Direction.Right, ActionScript.Unknown010, EventFlag.UNKNOWN_114, NPCConfigFlagStyle.ShowIfOff, TextNPC1229, null),
-	NPC(NPCType.Person, OverworldSprite.BIRD_ON_PERCH, Direction.Right, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1230, null),
-	NPC(NPCType.Person, OverworldSprite.UNKNOWN4, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_120, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Person, OverworldSprite.HIDDEN_ARMS_DEALER, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1232, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1233, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Right, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1234, null),
-	NPC(NPCType.Person, OverworldSprite.DEEP_DARKNESS_PHONE, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1235, null),
-	NPC(NPCType.Person, OverworldSprite.ATM_GUY_UNDERWATER, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1236, null),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown891, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.FEMALE_MONKEY, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1238, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Right, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1239, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1B7, NPCConfigFlagStyle.ShowIfOff, TextNPC1240, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1B8, NPCConfigFlagStyle.ShowIfOff, TextNPC1241, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1B9, NPCConfigFlagStyle.ShowIfOff, TextNPC1242, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1BA, NPCConfigFlagStyle.ShowIfOff, TextNPC1243, null),
-	NPC(NPCType.Object, OverworldSprite.UNKNOWN2, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_1BB, NPCConfigFlagStyle.ShowIfOff, TextNPC1244, null),
-	NPC(NPCType.Object, OverworldSprite.BROKEN_HELICOPTER, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1245, null),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_7, NPCConfigFlagStyle.ShowIfOff, TextNPC1246, null),
-	NPC(NPCType.Person, OverworldSprite.TALKING_STONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1247, null),
-	NPC(NPCType.Person, OverworldSprite.TALKING_STONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1248, null),
-	NPC(NPCType.Person, OverworldSprite.TALKING_STONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1249, null),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1250, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1251, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA_CHIEF, Direction.Left, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1252, TextNPC1252_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1253, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1254, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1255, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1256, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1257, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1258, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1259, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TALKING_STONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1260, null),
-	NPC(NPCType.Person, OverworldSprite.TENDA, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1261, TextNPC1250_ALT),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Object, OverworldSprite.ROCK, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_099, NPCConfigFlagStyle.ShowIfOff, null, null),
-	NPC(NPCType.Object, OverworldSprite.CAN_TENDA_VILLAGE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.MAILBOX, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.WEIRD_JUNK, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.SPA_SIGN, Direction.Down, ActionScript.Unknown684, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1267, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Left, ActionScript.Unknown606, EventFlag.UNKNOWN_17E, NPCConfigFlagStyle.ShowIfOn, TextNPC1268, null),
-	NPC(NPCType.Person, OverworldSprite.DR_ANDONUTS, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_148, NPCConfigFlagStyle.ShowIfOn, TextNPC1269, null),
-	NPC(NPCType.Person, OverworldSprite.DR_ANDONUTS, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_14B, NPCConfigFlagStyle.ShowIfOn, TextNPC1270, null),
-	NPC(NPCType.Person, OverworldSprite.APPLE_KID, Direction.Down, ActionScript.Unknown767, EventFlag.UNKNOWN_149, NPCConfigFlagStyle.ShowIfOn, TextNPC1271, null),
-	NPC(NPCType.Person, OverworldSprite.MR_SATURN, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_14A, NPCConfigFlagStyle.ShowIfOn, TextNPC1272, null),
-	NPC(NPCType.Object, OverworldSprite.BROKEN_PHASE_DISTORTER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_04B, NPCConfigFlagStyle.ShowIfOn, TextNPC1273, null),
-	NPC(NPCType.Object, OverworldSprite.PHASE_DISTORTER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_14C, NPCConfigFlagStyle.ShowIfOn, TextNPC1274, null),
-	NPC(NPCType.Object, OverworldSprite.PHASE_DISTORTER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_147, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.YOUR_SANCTUARY_POINT_BOSS, Direction.Down, ActionScript.Unknown693, EventFlag.DEFEATED_SANCTUARY_BOSS_8, NPCConfigFlagStyle.ShowIfOff, TextNPC1276, null),
-	NPC(NPCType.Person, OverworldSprite.NessLyingDown, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Paula, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Jeff, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.Poo, Direction.Left, ActionScript.Unknown008, EventFlag.UNKNOWN_15D, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.FLAME, Direction.Down, ActionScript.Unknown693, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1282, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown771, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1283, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1284, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1285, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1286, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1287, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1288, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Left, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1289, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1290, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1291, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TALKING_STONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1292, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1293, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1294, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TOUCAN_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1295, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TOUCAN_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1295, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TOUCAN_PHONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1295, null),
-	NPC(NPCType.Person, OverworldSprite.LIL_TENDA, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1298, null),
-	NPC(NPCType.Object, OverworldSprite.WOOD_BOX, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_28B, NPCConfigFlagStyle.ShowIfOff, null, TextNPC1299_ALT),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1300, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1301, null),
-	NPC(NPCType.Object, OverworldSprite.SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1301, null),
-	NPC(NPCType.Object, OverworldSprite.BAD_PALETTE_FOUNTAIN, Direction.Down, ActionScript.Unknown672, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.RED_FOUNTAIN_LOST_UNDERWORLD, Direction.Down, ActionScript.Unknown673, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.BAD_PALETTE_FOUNTAIN, Direction.Down, ActionScript.Unknown674, EventFlag.None, NPCConfigFlagStyle.ShowAlways, null, null),
-	NPC(NPCType.Object, OverworldSprite.ROBOT_BROKEN, Direction.Right, ActionScript.Unknown008, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.ROBOT_BROKEN, Direction.Left, ActionScript.Unknown008, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.ROBOT_BROKEN, Direction.Left, ActionScript.Unknown008, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.LyingDownRobotNess, Direction.Right, ActionScript.Unknown008, EventFlag.USE_POSTGAME_MUSIC, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Object, OverworldSprite.PHASE_DISTORTER, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_174, NPCConfigFlagStyle.ShowIfOn, TextNPC1274, null),
-	NPC(NPCType.Person, OverworldSprite.None, Direction.Down, ActionScript.Unknown000, EventFlag.UNKNOWN_154, NPCConfigFlagStyle.ShowIfOn, null, null),
-	NPC(NPCType.Person, OverworldSprite.WEIRD_HORNED_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1312, null),
-	NPC(NPCType.Person, OverworldSprite.FlyingMan, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_019, NPCConfigFlagStyle.ShowIfOff, TextNPC1313, null),
-	NPC(NPCType.Person, OverworldSprite.FlyingMan, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_01A, NPCConfigFlagStyle.ShowIfOff, TextNPC1314, null),
-	NPC(NPCType.Person, OverworldSprite.FlyingMan, Direction.Right, ActionScript.Unknown012, EventFlag.UNKNOWN_01B, NPCConfigFlagStyle.ShowIfOff, TextNPC1315, null),
-	NPC(NPCType.Person, OverworldSprite.FlyingMan, Direction.Up, ActionScript.Unknown012, EventFlag.UNKNOWN_01C, NPCConfigFlagStyle.ShowIfOff, TextNPC1316, null),
-	NPC(NPCType.Person, OverworldSprite.FlyingMan, Direction.Right, ActionScript.Unknown606, EventFlag.UNKNOWN_01D, NPCConfigFlagStyle.ShowIfOff, TextNPC1317, null),
-	NPC(NPCType.Person, OverworldSprite.WEIRD_HORNED_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1318, null),
-	NPC(NPCType.Person, OverworldSprite.CHICK, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1319, null),
-	NPC(NPCType.Object, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0012, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.INVISIBLE_2, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Person, OverworldSprite.RABBIT, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1322, null),
-	NPC(NPCType.Person, OverworldSprite.LITTLE_KID_IN_BLUE, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1323, null),
-	NPC(NPCType.Person, OverworldSprite.URBAN_ZOMBIE, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1324, null),
-	NPC(NPCType.Person, OverworldSprite.MASTER_BELCH, Direction.Right, ActionScript.Unknown013, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1325, null),
-	NPC(NPCType.Person, OverworldSprite.MANLY_FISH, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1326, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_BASEBALL_HELMET, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1327, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_DERBY_HAT, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1328, null),
-	NPC(NPCType.Person, OverworldSprite.HAPPY_GIRL_IN_RED, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1329, null),
-	NPC(NPCType.Person, OverworldSprite.Picky, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1330, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_PONYTAIL_GIRL, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1331, null),
-	NPC(NPCType.Person, OverworldSprite.MONKEY, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1332, null),
-	NPC(NPCType.Person, OverworldSprite.KID_IN_DETECTIVE_HAT, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1333, null),
-	NPC(NPCType.Person, OverworldSprite.RABBIT, Direction.Right, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1334, null),
-	NPC(NPCType.Person, OverworldSprite.Ness, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1335, null),
-	NPC(NPCType.Person, OverworldSprite.CHICK, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1336, null),
-	NPC(NPCType.Person, OverworldSprite.FLOWER, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1337, null),
-	NPC(NPCType.Person, OverworldSprite.FLOWER, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1337, null),
-	NPC(NPCType.Person, OverworldSprite.FLOWER, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1337, null),
-	NPC(NPCType.Person, OverworldSprite.STAR_MASTER_GUY, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1340, null),
-	NPC(NPCType.Person, OverworldSprite.STAR_MASTER_GUY, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1341, null),
-	NPC(NPCType.Person, OverworldSprite.MOM, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1342, null),
-	NPC(NPCType.Person, OverworldSprite.TRACY, Direction.Right, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1343, null),
-	NPC(NPCType.Person, OverworldSprite.King, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1344, null),
-	NPC(NPCType.Person, OverworldSprite.Pokey, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1345, null),
-	NPC(NPCType.Person, OverworldSprite.EVERDRED, Direction.Down, ActionScript.Unknown606, EventFlag.UNKNOWN_27F, NPCConfigFlagStyle.ShowIfOff, TextNPC1346, null),
-	NPC(NPCType.Object, OverworldSprite.CROSS_GRAVESTONE, Direction.Down, ActionScript.Unknown008, EventFlag.FlyingMan1Dead, NPCConfigFlagStyle.ShowIfOn, TextNPC1347, null),
-	NPC(NPCType.Object, OverworldSprite.CROSS_GRAVESTONE, Direction.Down, ActionScript.Unknown008, EventFlag.FlyingMan2Dead, NPCConfigFlagStyle.ShowIfOn, TextNPC1348, null),
-	NPC(NPCType.Object, OverworldSprite.CROSS_GRAVESTONE, Direction.Down, ActionScript.Unknown008, EventFlag.FlyingMan3Dead, NPCConfigFlagStyle.ShowIfOn, TextNPC1349, null),
-	NPC(NPCType.Object, OverworldSprite.CROSS_GRAVESTONE, Direction.Down, ActionScript.Unknown008, EventFlag.FlyingMan4Dead, NPCConfigFlagStyle.ShowIfOn, TextNPC1350, null),
-	NPC(NPCType.Object, OverworldSprite.CROSS_GRAVESTONE, Direction.Down, ActionScript.Unknown008, EventFlag.FlyingMan5Dead, NPCConfigFlagStyle.ShowIfOn, TextNPC1351, null),
-	NPC(NPCType.Object, OverworldSprite.CROSS_GRAVESTONE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1352, null),
-	NPC(NPCType.Object, OverworldSprite.WEIRD_TAIL_THING, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1353, null),
-	NPC(NPCType.Person, OverworldSprite.KRAKEN, Direction.Right, ActionScript.Unknown602, EventFlag.UNKNOWN_1B4, NPCConfigFlagStyle.ShowIfOff, TextNPC1354, null),
-	NPC(NPCType.Person, OverworldSprite.KRAKEN, Direction.Left, ActionScript.Unknown602, EventFlag.UNKNOWN_1B5, NPCConfigFlagStyle.ShowIfOff, TextNPC1355, null),
-	NPC(NPCType.Person, OverworldSprite.KRAKEN, Direction.Right, ActionScript.Unknown602, EventFlag.UNKNOWN_1B6, NPCConfigFlagStyle.ShowIfOff, TextNPC1356, null),
-	NPC(NPCType.Object, OverworldSprite.WEIRD_TAIL_THING, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1357, null),
-	NPC(NPCType.Object, OverworldSprite.EVIL_MANI_MANI, Direction.Down, ActionScript.Unknown010, EventFlag.MAGICANT_COMPLETED, NPCConfigFlagStyle.ShowIfOff, TextNPC1358, TextNPC1358_ALT),
-	NPC(NPCType.Person, OverworldSprite.JACKIE, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1359, null),
-	NPC(NPCType.Person, OverworldSprite.BIG_SMILE_LADY, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1360, null),
-	NPC(NPCType.Person, OverworldSprite.DRINKING_GUY, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1361, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_LADY_RED_DRESS, Direction.Up, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1362, null),
-	NPC(NPCType.Person, OverworldSprite.ROBO_PUMP, Direction.Up, ActionScript.Unknown597, EventFlag.ROBO_PUMP_1_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC1363, null),
-	NPC(NPCType.Person, OverworldSprite.NURSE, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1364, null),
-	NPC(NPCType.Person, OverworldSprite.DOCTOR, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1365, null),
-	NPC(NPCType.Person, OverworldSprite.ABSTRACT_ART, Direction.Right, ActionScript.Unknown597, EventFlag.ABSTRACT_ART_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC1366, null),
-	NPC(NPCType.Person, OverworldSprite.HEALER, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1367, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_HAPPY_LADY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1368, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Up, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1369, null),
-	NPC(NPCType.Person, OverworldSprite.FOURSIDE_MUSEUM_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1370, null),
-	NPC(NPCType.Person, OverworldSprite.ROBO_PUMP, Direction.Up, ActionScript.Unknown597, EventFlag.ROBO_PUMP_2_FOUGHT, NPCConfigFlagStyle.ShowIfOff, TextNPC1371, null),
-	NPC(NPCType.Person, OverworldSprite.SORTA_BALD_GUY_IN_SUIT, Direction.Down, ActionScript.Unknown605, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1372, null),
-	NPC(NPCType.Person, OverworldSprite.HOTEL_ATTENDANT, Direction.Down, ActionScript.Unknown008, EventFlag.JUST_RESTED, NPCConfigFlagStyle.ShowIfOn, TextNPC1373, null),
-	NPC(NPCType.Person, OverworldSprite.PUNK_GUY, Direction.Down, ActionScript.Unknown606, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1374, null),
-	NPC(NPCType.Object, OverworldSprite.ATM_MACHINE, Direction.Right, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1375, TextNPC0012_ALT),
-	NPC(NPCType.Person, OverworldSprite.TELEPHONE, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC0060, null),
-	NPC(NPCType.Person, OverworldSprite.MrT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1377, null),
-	NPC(NPCType.Person, OverworldSprite.BAD_PALETTE_GUY_ONETT_NIGHT, Direction.Down, ActionScript.Unknown012, EventFlag.UNKNOWN_0A5, NPCConfigFlagStyle.ShowIfOff, TextNPC1378, null),
-	NPC(NPCType.Person, OverworldSprite.SNEAKY_GUY_WITH_A_HAT, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1379, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1380, null),
-	NPC(NPCType.Person, OverworldSprite.BEACH_LADY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1381, null),
-	NPC(NPCType.Person, OverworldSprite.TOUGH_GUY_W__SUNGLASSES, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1382, null),
-	NPC(NPCType.Person, OverworldSprite.DARK_HAIRED_GUY_IN_A_SUIT, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1383, null),
-	NPC(NPCType.Person, OverworldSprite.UNASSUMING_LOCAL_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1384, null),
-	NPC(NPCType.Person, OverworldSprite.NERDY_RED_HAIRED_GUY, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1385, null),
-	NPC(NPCType.Person, OverworldSprite.SCUZZY_GUY, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1386, null),
-	NPC(NPCType.Person, OverworldSprite.CHINESE_GIRL, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1387, null),
-	NPC(NPCType.Person, OverworldSprite.PUNK_GUY, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1388, null),
-	NPC(NPCType.Person, OverworldSprite.BODYGUARD, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1389, null),
-	NPC(NPCType.Person, OverworldSprite.SHY_GUY, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1390, null),
-	NPC(NPCType.Person, OverworldSprite.BLONDE_GUY_IN_A_SUIT, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1391, null),
-	NPC(NPCType.Person, OverworldSprite.ORANGE_HAIRED_NERD_KID, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1392, null),
-	NPC(NPCType.Person, OverworldSprite.RED_CLOTHES_PERSON, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1393, null),
-	NPC(NPCType.Person, OverworldSprite.JamaicanGuy, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1394, null),
-	NPC(NPCType.Person, OverworldSprite.MONOTOLI, Direction.Up, ActionScript.Unknown008, EventFlag.UNKNOWN_277, NPCConfigFlagStyle.ShowIfOff, TextNPC1395, null),
-	NPC(NPCType.Person, OverworldSprite.SHIP_CAPTAIN, Direction.Down, ActionScript.Unknown008, EventFlag.UNKNOWN_03F, NPCConfigFlagStyle.ShowIfOff, TextNPC1396, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1397, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1398, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Left, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1398, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Right, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1398, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1401, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1402, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Down, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1403, null),
-	NPC(NPCType.Person, OverworldSprite.SURFER, Direction.Up, ActionScript.Unknown012, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1404, null),
-	NPC(NPCType.Object, OverworldSprite.HOTEL_SIGN, Direction.Down, ActionScript.Unknown008, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1405, null),
-	NPC(NPCType.Object, OverworldSprite.EVIL_MANI_MANI, Direction.Down, ActionScript.Unknown010, EventFlag.None, NPCConfigFlagStyle.ShowAlways, TextNPC1406, TextNPC1358_ALT),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_320, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x67, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_321, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x5A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_322, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x5A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_323, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x00, 0x01, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_324, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x6A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_325, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x11, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_326, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x5A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_327, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_328, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x6F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_329, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_32A, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x02, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_32B, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x04, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_32C, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_32D, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x66, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_32E, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x75, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_32F, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x4D, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_330, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x66, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_331, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x36, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_332, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x93, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_333, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_334, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x62, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_335, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x37, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_336, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x66, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_337, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x95, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_338, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x02, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_339, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x00, 0x01, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_33A, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0xE0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.CASKET, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_33B, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0xE1, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.CASKET, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_33C, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0x42, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_33D, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x58, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_33E, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x58, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_33F, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x58, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_340, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x58, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_341, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x58, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_342, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x58, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_343, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x58, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_344, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x0A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_345, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x09, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_346, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x25, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_347, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x95, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_348, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x66, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_349, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x67, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_34A, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x40, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_34B, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x90, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_34C, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x5A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_34D, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x0E, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_34E, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x72, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_34F, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x0F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_350, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x62, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_351, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x46, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_352, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_353, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x73, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_354, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xF4, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_355, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x08, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_356, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x93, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_357, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x87, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_358, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x74, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_359, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0xBF, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_35A, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x71, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_35B, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x51, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_35C, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x6C, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_35D, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x93, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_35E, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x90, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_35F, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x96, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_360, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x9F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_361, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x8F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_362, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x07, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_363, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x3A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_364, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x0C, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_365, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0xA0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_366, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0xC3, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_367, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x64, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_368, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_369, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x5F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_36A, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x7F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_36B, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x5F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_36C, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x8C, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_36D, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x5A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_36E, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x6C, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_36F, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x5A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_370, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x5D, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_371, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x5A, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_372, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x91, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_373, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE9, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_374, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE9, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_375, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_376, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE1, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_377, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x62, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_378, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE8, 0x04, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_379, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x9F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_37A, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x62, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_37B, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xD8, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_37C, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x71, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_37D, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x72, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_37E, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x75, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_37F, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x52, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_380, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x81, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_381, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x02, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_382, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x94, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_383, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x91, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_384, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x66, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_385, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xBF, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_386, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x5D, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_387, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x93, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_388, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0xFD, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_389, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x9F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_38A, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x74, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_38B, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x3C, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_38C, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x9B, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_38D, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xE9, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_38E, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x6C, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_38F, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x81, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_390, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x97, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_391, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x0D, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_392, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x07, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_393, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x66, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_394, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x09, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_395, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0xA0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_396, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0x73, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_397, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0xC8, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_398, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0x45, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_399, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.PETRIFIED_ROYAL_GUARD, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_39A, NPCConfigFlagStyle.ShowAlways, TextNPC1434, [0x3B, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_39B, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_39C, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xDB, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_39D, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x9F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_39E, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x62, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_39F, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xEE, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A0, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x5F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A1, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x03, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A2, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xC7, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A3, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x0A, 0x01, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A4, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x71, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A5, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x7F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A6, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x05, 0x01, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A7, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x64, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A8, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3A9, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0xC9, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3AA, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x6E, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3AB, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0xEC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3AC, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x7E, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.DALAAM_PRESENT, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3AD, NPCConfigFlagStyle.ShowAlways, TextNPC1474, [0x6E, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3AE, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x65, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3AF, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x9F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B0, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x49, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B1, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x56, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B2, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x65, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B3, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x71, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B4, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B5, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xBE, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B6, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xF2, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B7, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x39, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B8, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xFC, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3B9, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x65, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3BA, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x57, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3BB, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x75, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3BC, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xF5, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3BD, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x71, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3BE, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xF6, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3BF, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x94, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.TRASH_CAN, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C0, NPCConfigFlagStyle.ShowAlways, TextNPC1408, [0x2D, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.LilGiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C1, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x64, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.LilGiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C2, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x82, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.LilGiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C3, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x3D, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.LilGiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C4, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x72, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.LilGiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C5, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x3F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C6, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x2F, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C7, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x82, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C8, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x47, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3C9, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xA0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3CA, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x73, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3CB, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xA0, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3CC, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x62, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3CD, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x48, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3CE, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x18, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3CF, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0xCF, 0x00, 0x00, 0x00]),
-	NPC(NPCType.ItemBox, OverworldSprite.GiftBox, Direction.Down, ActionScript.Unknown009, EventFlag.UNKNOWN_3D0, NPCConfigFlagStyle.ShowAlways, TextNPC1407, [0x19, 0x00, 0x00, 0x00]),
+immutable NPC[1584] npcConfig = [
+	NPC(NPCType.person, OverworldSprite.ness, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.down, ActionScript.unknown605, EventFlag.onetGuardsharkDisappear, NPCConfigFlagStyle.showIfOff, "textNPC0001", null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.right, ActionScript.unknown598, EventFlag.onetSharkCDisappear, NPCConfigFlagStyle.showIfOff, "textNPC0002", null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0003", null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0004", null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0005", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0006", null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.up, ActionScript.unknown598, EventFlag.unknown2B9, NPCConfigFlagStyle.showIfOff, "textNPC0007", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0008", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0009", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0010", null),
+	NPC(NPCType.person, OverworldSprite.dog, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0011", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.mom, Direction.down, ActionScript.unknown037, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOn, "textNPC0014", null),
+	NPC(NPCType.person, OverworldSprite.mom, Direction.right, ActionScript.unknown012, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0015", null),
+	NPC(NPCType.person, OverworldSprite.nessDogSleeping, Direction.down, ActionScript.unknown627, EventFlag.unknown013, NPCConfigFlagStyle.showIfOff, "textNPC0016", null),
+	NPC(NPCType.person, OverworldSprite.pokey, Direction.left, ActionScript.unknown010, EventFlag.unknown12D, NPCConfigFlagStyle.showIfOn, "textNPC0017", null),
+	NPC(NPCType.person, OverworldSprite.king, Direction.right, ActionScript.unknown018, EventFlag.unknown130, NPCConfigFlagStyle.showIfOn, "textNPC0016", null),
+	NPC(NPCType.person, OverworldSprite.pokey, Direction.down, ActionScript.unknown045, EventFlag.unknown136, NPCConfigFlagStyle.showIfOn, "textNPC0017", null),
+	NPC(NPCType.person, OverworldSprite.tracy, Direction.right, ActionScript.unknown012, EventFlag.unknown213, NPCConfigFlagStyle.showIfOn, "textNPC0020", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown040, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0021", null),
+	NPC(NPCType.object, OverworldSprite.knockingOnDoor, Direction.left, ActionScript.unknown038, EventFlag.unknown127, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.drapesClosed, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.drapesClosed, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.tracy, Direction.left, ActionScript.unknown012, EventFlag.unknown1D9, NPCConfigFlagStyle.showIfOn, "textNPC0025", null),
+	NPC(NPCType.object, OverworldSprite.nessSleeping, Direction.down, ActionScript.unknown624, EventFlag.unknown1DD, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.zzz, Direction.down, ActionScript.unknown628, EventFlag.unknown1DD, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.drapesClosed, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesClosed, Direction.left, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.tracy, Direction.down, ActionScript.unknown012, EventFlag.unknown212, NPCConfigFlagStyle.showIfOff, "textNPC0030", null),
+	NPC(NPCType.object, OverworldSprite.drapesClosed, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesClosed, Direction.right, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.waitress, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0033", null),
+	NPC(NPCType.person, OverworldSprite.blondeShoppingLady, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0034", null),
+	NPC(NPCType.person, OverworldSprite.blondePonytailGirl, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0035", null),
+	NPC(NPCType.person, OverworldSprite.frank, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0036", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0037", null),
+	NPC(NPCType.person, OverworldSprite.frank, Direction.right, ActionScript.unknown008, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.hintGuy, Direction.down, ActionScript.unknown605, EventFlag.unknown2F0, NPCConfigFlagStyle.showIfOff, "textNPC0039", null),
+	NPC(NPCType.person, OverworldSprite.baker, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0040", null),
+	NPC(NPCType.person, OverworldSprite.blondeShoppingLady, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0041", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0042", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0043", null),
+	NPC(NPCType.person, OverworldSprite.aloysiusMinch, Direction.down, ActionScript.unknown605, EventFlag.unknown025, NPCConfigFlagStyle.showIfOn, "textNPC0044", null),
+	NPC(NPCType.person, OverworldSprite.lardnaMinch, Direction.up, ActionScript.unknown013, EventFlag.unknown2E6, NPCConfigFlagStyle.showIfOn, "textNPC0045", null),
+	NPC(NPCType.person, OverworldSprite.fly, Direction.down, ActionScript.unknown010, EventFlag.unknown12F, NPCConfigFlagStyle.showIfOn, "textNPC0046", null),
+	NPC(NPCType.person, OverworldSprite.picky, Direction.down, ActionScript.unknown012, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0047", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0048", null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesOpen, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesOpen, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesOpen, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.pokey, Direction.left, ActionScript.unknown012, EventFlag.unknown023, NPCConfigFlagStyle.showIfOn, "textNPC0052", null),
+	NPC(NPCType.person, OverworldSprite.picky, Direction.up, ActionScript.unknown606, EventFlag.unknown022, NPCConfigFlagStyle.showIfOn, "textNPC0053", null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesOpen, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesOpen, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesOpen, Direction.down, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.yellowDrapesClosed, Direction.left, ActionScript.unknown008, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0058", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0059", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.down, ActionScript.unknown010, EventFlag.unknown06A, NPCConfigFlagStyle.showIfOff, "textNPC0062", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.left, ActionScript.unknown012, EventFlag.unknown06A, NPCConfigFlagStyle.showIfOff, "textNPC0063", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.left, ActionScript.unknown010, EventFlag.justRested, NPCConfigFlagStyle.showIfOn, "textNPC0064", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.right, ActionScript.unknown012, EventFlag.unknown06A, NPCConfigFlagStyle.showIfOn, "textNPC0065", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.left, ActionScript.unknown012, EventFlag.unknown06A, NPCConfigFlagStyle.showIfOn, "textNPC0066", null),
+	NPC(NPCType.person, OverworldSprite.captainStrong, Direction.down, ActionScript.unknown605, EventFlag.unknown1C2, NPCConfigFlagStyle.showIfOff, "textNPC0067", null),
+	NPC(NPCType.person, OverworldSprite.thickGlassesLady, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0068", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0069", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.left, ActionScript.unknown605, EventFlag.unknown027, NPCConfigFlagStyle.showIfOn, "textNPC0070", null),
+	NPC(NPCType.person, OverworldSprite.captainStrong, Direction.right, ActionScript.unknown605, EventFlag.unknown1C1, NPCConfigFlagStyle.showIfOn, "textNPC0067", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0072", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown008, EventFlag.unknown121, NPCConfigFlagStyle.showIfOff, "textNPC0073", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.left, ActionScript.unknown008, EventFlag.unknown122, NPCConfigFlagStyle.showIfOff, "textNPC0074", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown008, EventFlag.unknown123, NPCConfigFlagStyle.showIfOff, "textNPC0075", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.right, ActionScript.unknown008, EventFlag.unknown124, NPCConfigFlagStyle.showIfOff, "textNPC0076", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.right, ActionScript.unknown008, EventFlag.unknown125, NPCConfigFlagStyle.showIfOff, "textNPC0077", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0078", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0079", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0080", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0081", null),
+	NPC(NPCType.person, OverworldSprite.brunetteShoppingLady, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0082", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0083", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0084", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0085", null),
+	NPC(NPCType.person, OverworldSprite.mayorPirkle, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0086", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0087", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.left, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0088", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0089", null),
+	NPC(NPCType.person, OverworldSprite.blondePonytailGirl, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0090", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0091", null),
+	NPC(NPCType.person, OverworldSprite.kidInDerbyHat, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0092", null),
+	NPC(NPCType.person, OverworldSprite.pigtailDarkHairedGirl, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0093", null),
+	NPC(NPCType.person, OverworldSprite.exitMouseNoSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0094", null),
+	NPC(NPCType.person, OverworldSprite.exitMouse, Direction.right, ActionScript.unknown012, EventFlag.unknown200, NPCConfigFlagStyle.showIfOff, "textNPC0095", null),
+	NPC(NPCType.person, OverworldSprite.exitMouse, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0096", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0097", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0098", "textNPC0098Alt"),
+	NPC(NPCType.person, OverworldSprite.oldFatGuyWithHat, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0099", null),
+	NPC(NPCType.person, OverworldSprite.shyGuy, Direction.right, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0100", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.up, ActionScript.unknown250, EventFlag.unknown067, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0102", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0103", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInBlueSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0104", null),
+	NPC(NPCType.person, OverworldSprite.pigtailDarkHairedGirl, Direction.up, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0105", "textNPC0105Alt"),
+	NPC(NPCType.person, OverworldSprite.someBrunetteKid, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textDoor681", "textNPC0106Alt"),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0107", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0108", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0109", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0110", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0111", null),
+	NPC(NPCType.person, OverworldSprite.bigSmileLady, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0112", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0113", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0114", null),
+	NPC(NPCType.person, OverworldSprite.someBrunetteKid, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0115", null),
+	NPC(NPCType.person, OverworldSprite.happyGirlInRed, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0116", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0117", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0118", null),
+	NPC(NPCType.person, OverworldSprite.lierXAgerate, Direction.right, ActionScript.unknown008, EventFlag.unknown01F, NPCConfigFlagStyle.showIfOn, "textNPC0119", null),
+	NPC(NPCType.person, OverworldSprite.kidInDerbyHat, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0120", null),
+	NPC(NPCType.person, OverworldSprite.kidInDetectiveHat, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0121", null),
+	NPC(NPCType.person, OverworldSprite.kidInBaseballHelmet, Direction.left, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0122", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown863, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.pickySitting, Direction.left, ActionScript.unknown055, EventFlag.unknown1D2, NPCConfigFlagStyle.showIfOn, "textNPC0124", null),
+	NPC(NPCType.person, OverworldSprite.lierXAgerate, Direction.down, ActionScript.unknown008, EventFlag.unknown068, NPCConfigFlagStyle.showIfOff, "textNPC0125", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown010, EventFlag.unknown024, NPCConfigFlagStyle.showIfOn, "textNPC0126", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.left, ActionScript.unknown607, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0127", null),
+	NPC(NPCType.person, OverworldSprite.travellingEntertainer, Direction.down, ActionScript.unknown608, EventFlag.unknown04E, NPCConfigFlagStyle.showIfOff, "textNPC0128", "textNPC0128Alt"),
+	NPC(NPCType.person, OverworldSprite.yellowClothesBlonde, Direction.right, ActionScript.unknown607, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0129", null),
+	NPC(NPCType.person, OverworldSprite.helpfulMole, Direction.down, ActionScript.unknown606, EventFlag.unknown278, NPCConfigFlagStyle.showIfOff, "textNPC0130", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.left, ActionScript.unknown607, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0131", null),
+	NPC(NPCType.person, OverworldSprite.jamaicanGuy, Direction.right, ActionScript.unknown607, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0132", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.right, ActionScript.unknown608, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0133", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.left, ActionScript.unknown609, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0134", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInBlueSuit, Direction.right, ActionScript.unknown609, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0135", null),
+	NPC(NPCType.person, OverworldSprite.blondeShoppingLady, Direction.left, ActionScript.unknown609, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0136", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.down, ActionScript.unknown607, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0137", null),
+	NPC(NPCType.person, OverworldSprite.dog, Direction.down, ActionScript.unknown608, EventFlag.unknown177, NPCConfigFlagStyle.showIfOn, "textNPC0138", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.down, ActionScript.unknown610, EventFlag.unknown063, NPCConfigFlagStyle.showIfOff, "textNPC0139", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.right, ActionScript.unknown607, EventFlag.unknown063, NPCConfigFlagStyle.showIfOn, "textNPC0140", null),
+	NPC(NPCType.person, OverworldSprite.trumpetPerson, Direction.left, ActionScript.unknown606, EventFlag.unknown278, NPCConfigFlagStyle.showIfOff, "textNPC0141", null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.down, ActionScript.unknown606, EventFlag.unknown16B, NPCConfigFlagStyle.showIfOff, "textNPC0142", null),
+	NPC(NPCType.person, OverworldSprite.skatePunk, Direction.up, ActionScript.unknown609, EventFlag.unknown16C, NPCConfigFlagStyle.showIfOff, "textNPC0143", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.up, ActionScript.unknown606, EventFlag.twosonReached, NPCConfigFlagStyle.showIfOff, "textNPC0144", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown606, EventFlag.twosonReached, NPCConfigFlagStyle.showIfOff, "textNPC0145", null),
+	NPC(NPCType.person, OverworldSprite.frank, Direction.down, ActionScript.unknown013, EventFlag.unknown084, NPCConfigFlagStyle.showIfOff, "textNPC0146", null),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown007, EventFlag.unknown06C, NPCConfigFlagStyle.showIfOff, "textDoor006", "textNPC0147Alt"),
+	NPC(NPCType.person, OverworldSprite.mom, Direction.down, ActionScript.unknown008, EventFlag.unknown1DA, NPCConfigFlagStyle.showIfOn, "textNPC0148", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.left, ActionScript.unknown606, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0149", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.right, ActionScript.unknown008, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0150", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.up, ActionScript.unknown605, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0151", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.down, ActionScript.unknown013, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0152", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown012, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0153", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown606, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0154", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown606, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0155", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown606, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0156", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown606, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0157", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.up, ActionScript.unknown606, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0158", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.left, ActionScript.unknown605, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0159", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.up, ActionScript.unknown606, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0160", null),
+	NPC(NPCType.person, OverworldSprite.pokey, Direction.up, ActionScript.unknown629, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, "textNPC0161", null),
+	NPC(NPCType.person, OverworldSprite.travellingEntertainer, Direction.right, ActionScript.unknown608, EventFlag.unknown04E, NPCConfigFlagStyle.showIfOff, "textNPC0162", "textNPC0128Alt"),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.right, ActionScript.unknown012, EventFlag.winFrank, NPCConfigFlagStyle.showIfOff, "textNPC0163", null),
+	NPC(NPCType.person, OverworldSprite.captainStrong, Direction.left, ActionScript.unknown008, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.up, ActionScript.unknown010, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.happyGirlInRed, Direction.up, ActionScript.unknown606, EventFlag.unknown069, NPCConfigFlagStyle.showIfOff, "textNPC0166", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.left, ActionScript.unknown606, EventFlag.unknown069, NPCConfigFlagStyle.showIfOff, "textNPC0167", null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.whiteDeliveryTruck, Direction.left, ActionScript.unknown585, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.deliveryTruck, Direction.left, ActionScript.unknown586, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown069, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown069, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown069, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown069, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown862, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.dontEnterSign, Direction.down, ActionScript.unknown007, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0185", null),
+	NPC(NPCType.object, OverworldSprite.realTaxi, Direction.right, ActionScript.unknown584, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown1DC, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown1DC, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.policeBarrier, Direction.down, ActionScript.unknown008, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.hotelSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0191", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0192", null),
+	NPC(NPCType.object, OverworldSprite.ovalCloud, Direction.down, ActionScript.unknown784, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.ovalCloud, Direction.down, ActionScript.unknown784, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.ovalCloud, Direction.down, ActionScript.unknown784, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.ovalCloud, Direction.down, ActionScript.unknown784, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.ovalCloud, Direction.down, ActionScript.unknown784, EventFlag.unknown1A6, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.meteor, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textDoor150", null),
+	NPC(NPCType.object, OverworldSprite.policeCar, Direction.right, ActionScript.unknown010, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.policeCar, Direction.left, ActionScript.unknown010, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.policeCar, Direction.right, ActionScript.unknown010, EventFlag.unknown1D5, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.frankysteinMarkII, Direction.down, ActionScript.unknown008, EventFlag.winFrank, NPCConfigFlagStyle.showIfOff, "textNPC0202", null),
+	NPC(NPCType.person, OverworldSprite.lierXAgerate, Direction.right, ActionScript.unknown057, EventFlag.unknown020, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.lierXAgerate, Direction.right, ActionScript.unknown058, EventFlag.unknown021, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.lierXAgerate, Direction.right, ActionScript.unknown059, EventFlag.unknown132, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.lierXAgerate, Direction.right, ActionScript.unknown060, EventFlag.unknown133, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.lierXAgerate, Direction.up, ActionScript.unknown605, EventFlag.unknown134, NPCConfigFlagStyle.showIfOn, "textNPC0207", null),
+	NPC(NPCType.object, OverworldSprite.evilManiMani, Direction.down, ActionScript.unknown010, EventFlag.twosonReached, NPCConfigFlagStyle.showIfOff, "textNPC0208", null),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss1, NPCConfigFlagStyle.showIfOff, "textNPC0209", null),
+	NPC(NPCType.person, OverworldSprite.kingInTheFlashback, Direction.right, ActionScript.unknown699, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.pastBabyCradle, Direction.down, ActionScript.unknown694, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.punkGuy, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0212", null),
+	NPC(NPCType.person, OverworldSprite.paulasMother, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0213", null),
+	NPC(NPCType.person, OverworldSprite.blondePonytailGirl, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0214", null),
+	NPC(NPCType.person, OverworldSprite.kidInBaseballHelmet, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0215", null),
+	NPC(NPCType.person, OverworldSprite.happyGirlInRed, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0216", null),
+	NPC(NPCType.person, OverworldSprite.paulasFather, Direction.right, ActionScript.unknown221, EventFlag.unknown076, NPCConfigFlagStyle.showIfOff, "textNPC0217", null),
+	NPC(NPCType.person, OverworldSprite.cat, Direction.right, ActionScript.unknown013, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0218", null),
+	NPC(NPCType.person, OverworldSprite.paula, Direction.right, ActionScript.unknown012, EventFlag.unknown27E, NPCConfigFlagStyle.showIfOn, "textNPC0219", null),
+	NPC(NPCType.person, OverworldSprite.orangeKid, Direction.down, ActionScript.unknown008, EventFlag.unknown02A, NPCConfigFlagStyle.showIfOff, "textNPC0220", null),
+	NPC(NPCType.person, OverworldSprite.appleKid, Direction.right, ActionScript.unknown014, EventFlag.unknown153, NPCConfigFlagStyle.showIfOff, "textNPC0221", null),
+	NPC(NPCType.person, OverworldSprite.appleKidsMouse, Direction.down, ActionScript.unknown014, EventFlag.unknown153, NPCConfigFlagStyle.showIfOff, "textNPC0222", null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.tools, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.can, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.down, ActionScript.unknown605, EventFlag.unknown029, NPCConfigFlagStyle.showIfOff, "textNPC0226", "textNPC0226Alt"),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.right, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0227", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.down, ActionScript.unknown605, EventFlag.unknown029, NPCConfigFlagStyle.showIfOn, "textNPC0228", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.right, ActionScript.unknown008, EventFlag.unknown135, NPCConfigFlagStyle.showIfOn, "textNPC0229", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.right, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0230", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.left, ActionScript.unknown108, EventFlag.unknown02B, NPCConfigFlagStyle.showIfOn, "textNPC0229", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.up, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0232", null),
+	NPC(NPCType.person, OverworldSprite.kidInDetectiveHat, Direction.right, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0233", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.up, ActionScript.unknown605, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0234", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.up, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0235", null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.right, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0236", null),
+	NPC(NPCType.person, OverworldSprite.blondeShoppingLady, Direction.up, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0237", null),
+	NPC(NPCType.person, OverworldSprite.brunetteShoppingLady, Direction.up, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0238", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.left, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0239", null),
+	NPC(NPCType.person, OverworldSprite.drinkingGuy, Direction.down, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0240", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.right, ActionScript.unknown605, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0241", null),
+	NPC(NPCType.person, OverworldSprite.jamaicanGuy, Direction.left, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0242", null),
+	NPC(NPCType.person, OverworldSprite.newAgeRetroHippie, Direction.left, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0243", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.down, ActionScript.unknown606, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0244", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.left, ActionScript.unknown605, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0245", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.right, ActionScript.unknown605, EventFlag.unknown2EF, NPCConfigFlagStyle.showIfOff, "textNPC0246", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.up, ActionScript.unknown010, EventFlag.unknown02B, NPCConfigFlagStyle.showIfOff, "textNPC0247", null),
+	NPC(NPCType.person, OverworldSprite.gorgeous, Direction.down, ActionScript.unknown606, EventFlag.unknown077, NPCConfigFlagStyle.showIfOff, "textNPC0248", "textNPC0248Alt"),
+	NPC(NPCType.person, OverworldSprite.lucky, Direction.left, ActionScript.unknown606, EventFlag.unknown077, NPCConfigFlagStyle.showIfOff, "textNPC0249", "textNPC0249Alt"),
+	NPC(NPCType.person, OverworldSprite.runawayFiveDrummer, Direction.right, ActionScript.unknown012, EventFlag.unknown077, NPCConfigFlagStyle.showIfOff, "textNPC0250", "textNPC0250Alt"),
+	NPC(NPCType.person, OverworldSprite.runawayFiveBassPlayer, Direction.down, ActionScript.unknown606, EventFlag.unknown077, NPCConfigFlagStyle.showIfOff, "textNPC0251", "textNPC0251Alt"),
+	NPC(NPCType.person, OverworldSprite.runawayFiveSaxPlayer, Direction.right, ActionScript.unknown606, EventFlag.unknown077, NPCConfigFlagStyle.showIfOff, "textNPC0252", "textNPC0252Alt"),
+	NPC(NPCType.person, OverworldSprite.poochyfud, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0253", "textNPC0253Alt"),
+	NPC(NPCType.person, OverworldSprite.everdred, Direction.left, ActionScript.unknown012, EventFlag.unknown270, NPCConfigFlagStyle.showIfOn, "textNPC0254", null),
+	NPC(NPCType.person, OverworldSprite.girlInStripedApron, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0255", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0256", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0257", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.right, ActionScript.unknown605, EventFlag.justRested, NPCConfigFlagStyle.showIfOn, "textNPC0260", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0261", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0262", null),
+	NPC(NPCType.object, OverworldSprite.littleMushroom, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0264", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0265", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0266", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0267", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0268", "textNPC0268Alt"),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.up, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0269", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0270", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0271", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0272", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0273", null),
+	NPC(NPCType.person, OverworldSprite.busDriver, Direction.left, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0274", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.venusMother, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0277", null),
+	NPC(NPCType.person, OverworldSprite.hintGuy, Direction.down, ActionScript.unknown605, EventFlag.unknown2F0, NPCConfigFlagStyle.showIfOff, "textNPC0278", null),
+	NPC(NPCType.person, OverworldSprite.littleKidInBlue, Direction.left, ActionScript.unknown012, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0279", null),
+	NPC(NPCType.person, OverworldSprite.littleKidInBlue, Direction.left, ActionScript.unknown012, EventFlag.unknown044, NPCConfigFlagStyle.showIfOn, "textNPC0279", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.down, ActionScript.unknown012, EventFlag.unknown044, NPCConfigFlagStyle.showIfOn, "textNPC0281", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.down, ActionScript.unknown012, EventFlag.unknown044, NPCConfigFlagStyle.showIfOn, "textNPC0282", null),
+	NPC(NPCType.person, OverworldSprite.blondePonytailGirl, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0283", null),
+	NPC(NPCType.person, OverworldSprite.cat, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0218", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0285", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.thickGlassesLady, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0288", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0289", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.right, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0290", null),
+	NPC(NPCType.person, OverworldSprite.waitress, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0291", null),
+	NPC(NPCType.person, OverworldSprite.baker, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0292", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0293", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.left, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0294", null),
+	NPC(NPCType.person, OverworldSprite.thickGlassesLady, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0295", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0296", null),
+	NPC(NPCType.person, OverworldSprite.pigtailDarkHairedGirl, Direction.down, ActionScript.unknown013, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0297", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInBlueSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0298", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0299", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.right, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0300", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.right, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0301", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0303", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0304", null),
+	NPC(NPCType.person, OverworldSprite.kidInDetectiveHat, Direction.left, ActionScript.unknown017, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0305", null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.left, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0306", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.left, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0307", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0308", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0309", null),
+	NPC(NPCType.person, OverworldSprite.dog, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0310", null),
+	NPC(NPCType.person, OverworldSprite.jamaicanGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0311", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0312", null),
+	NPC(NPCType.person, OverworldSprite.shyGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0313", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0314", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.left, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0315", null),
+	NPC(NPCType.person, OverworldSprite.baker, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0316", null),
+	NPC(NPCType.person, OverworldSprite.arabMrT, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0317", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0318", null),
+	NPC(NPCType.person, OverworldSprite.orangeKid, Direction.down, ActionScript.unknown008, EventFlag.unknown02A, NPCConfigFlagStyle.showIfOn, "textNPC0319", null),
+	NPC(NPCType.person, OverworldSprite.gorgeous, Direction.down, ActionScript.unknown606, EventFlag.unknown135, NPCConfigFlagStyle.showIfOn, "textNPC0320", null),
+	NPC(NPCType.person, OverworldSprite.paulasFather, Direction.down, ActionScript.unknown010, EventFlag.unknown076, NPCConfigFlagStyle.showIfOn, "textNPC0217", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.right, ActionScript.unknown606, EventFlag.unknown225, NPCConfigFlagStyle.showIfOff, "textNPC0322", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.right, ActionScript.unknown008, EventFlag.unknown263, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.left, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0324", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0325", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.up, ActionScript.unknown606, EventFlag.unknown225, NPCConfigFlagStyle.showIfOff, "textNPC0326", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.right, ActionScript.unknown605, EventFlag.unknown225, NPCConfigFlagStyle.showIfOff, "textNPC0327", null),
+	NPC(NPCType.person, OverworldSprite.gorgeous, Direction.right, ActionScript.unknown605, EventFlag.unknown225, NPCConfigFlagStyle.showIfOff, "textNPC0328", null),
+	NPC(NPCType.person, OverworldSprite.lucky, Direction.down, ActionScript.unknown605, EventFlag.unknown225, NPCConfigFlagStyle.showIfOff, "textNPC0329", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.right, ActionScript.unknown605, EventFlag.threedReached, NPCConfigFlagStyle.showIfOff, "textNPC0330", null),
+	NPC(NPCType.person, OverworldSprite.someBrunetteKid, Direction.right, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0331", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.left, ActionScript.unknown606, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, "textNPC0332", null),
+	NPC(NPCType.person, OverworldSprite.yellowClothesBlonde, Direction.right, ActionScript.unknown606, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, "textNPC0333", null),
+	NPC(NPCType.person, OverworldSprite.everdred, Direction.right, ActionScript.unknown647, EventFlag.unknown264, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.appleKidsMouse, Direction.down, ActionScript.unknown012, EventFlag.unknown02A, NPCConfigFlagStyle.showIfOn, "textNPC0335", null),
+	NPC(NPCType.person, OverworldSprite.appleKid, Direction.down, ActionScript.unknown606, EventFlag.unknown02A, NPCConfigFlagStyle.showIfOn, "textNPC0336", null),
+	NPC(NPCType.person, OverworldSprite.catAsleep, Direction.down, ActionScript.unknown008, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.newAgeRetroHippie, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0338", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0339", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.left, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0340", null),
+	NPC(NPCType.person, OverworldSprite.littleKidInBlue, Direction.down, ActionScript.unknown016, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, "textNPC0341", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0342", null),
+	NPC(NPCType.person, OverworldSprite.helpfulMole, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0343", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.left, ActionScript.unknown087, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.left, ActionScript.unknown088, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.left, ActionScript.unknown089, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.left, ActionScript.unknown090, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.left, ActionScript.unknown085, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.left, ActionScript.unknown086, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.busStopSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0352", null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.crossroadSigns, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0356", null),
+	NPC(NPCType.person, OverworldSprite.guyInCoolRedCar, Direction.right, ActionScript.unknown588, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0357", null),
+	NPC(NPCType.object, OverworldSprite.whiteDeliveryTruck, Direction.right, ActionScript.unknown589, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bicycle, Direction.down, ActionScript.unknown864, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.realTaxi, Direction.right, ActionScript.unknown590, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.appleKidSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0361", null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.orangeKidSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0365", null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown867, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.hotelSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0367", null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.burglinParkSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0369", null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bananas, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bananas, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.runaway5Bus, Direction.left, ActionScript.unknown008, EventFlag.unknown135, NPCConfigFlagStyle.showIfOn, "textNPC0373", null),
+	NPC(NPCType.object, OverworldSprite.runaway5Bus, Direction.down, ActionScript.unknown008, EventFlag.unknown077, NPCConfigFlagStyle.showIfOff, "textNPC0373", null),
+	NPC(NPCType.object, OverworldSprite.evilManiMani, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0375", null),
+	NPC(NPCType.person, OverworldSprite.mrCarpainter, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0376", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0377", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0378", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0379", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0380", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0381", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0382", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0383", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0384", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown15F, NPCConfigFlagStyle.showIfOff, "textNPC0385", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown160, NPCConfigFlagStyle.showIfOff, "textNPC0386", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown161, NPCConfigFlagStyle.showIfOff, "textNPC0387", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown010, EventFlag.unknown162, NPCConfigFlagStyle.showIfOff, "textNPC0388", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown281, EventFlag.unknown163, NPCConfigFlagStyle.showIfOff, "textNPC0389", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown283, EventFlag.unknown164, NPCConfigFlagStyle.showIfOff, "textNPC0390", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown282, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0391", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown280, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0392", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown279, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0393", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown012, EventFlag.unknown044, NPCConfigFlagStyle.showIfOn, "textNPC0394", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.right, ActionScript.unknown012, EventFlag.unknown044, NPCConfigFlagStyle.showIfOn, "textNPC0395", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown012, EventFlag.unknown044, NPCConfigFlagStyle.showIfOn, "textNPC0396", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0397", null),
+	NPC(NPCType.person, OverworldSprite.jamaicanGuy, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0398", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.up, ActionScript.unknown606, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0399", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.up, ActionScript.unknown606, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0400", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.down, ActionScript.unknown605, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0401", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0402", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0403", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0404", null),
+	NPC(NPCType.person, OverworldSprite.venusMother, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0405", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0408", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0409", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0410", null),
+	NPC(NPCType.person, OverworldSprite.pokey, Direction.down, ActionScript.unknown008, EventFlag.unknown02C, NPCConfigFlagStyle.showIfOn, "textNPC0411", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.up, ActionScript.unknown605, EventFlag.unknown043, NPCConfigFlagStyle.showIfOff, "textNPC0412", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0413", null),
+	NPC(NPCType.person, OverworldSprite.newAgeRetroHippie, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0414", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0415", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0416", null),
+	NPC(NPCType.person, OverworldSprite.trumpetPerson, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0417", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0418", null),
+	NPC(NPCType.person, OverworldSprite.blueCow, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0419", "textNPC0419Alt"),
+	NPC(NPCType.person, OverworldSprite.yellowClothesBlonde, Direction.up, ActionScript.unknown134, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0420", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.right, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0421", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0422", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0423", null),
+	NPC(NPCType.person, OverworldSprite.shyGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0424", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0265", null),
+	NPC(NPCType.person, OverworldSprite.mrCarpainter, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0426", null),
+	NPC(NPCType.person, OverworldSprite.helpfulMole, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0427", null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bicycle, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0432", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0433", null),
+	NPC(NPCType.object, OverworldSprite.bananas, Direction.down, ActionScript.unknown008, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0435", null),
+	NPC(NPCType.person, OverworldSprite.cellDoor, Direction.down, ActionScript.unknown008, EventFlag.unknown00D, NPCConfigFlagStyle.showIfOff, "textNPC0436", "textNPC0436Alt"),
+	NPC(NPCType.person, OverworldSprite.paula, Direction.down, ActionScript.unknown240, EventFlag.unknown00D, NPCConfigFlagStyle.showIfOff, "textNPC0436", null),
+	NPC(NPCType.object, OverworldSprite.teddyBearParty, Direction.right, ActionScript.unknown008, EventFlag.unknown00D, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.pokey, Direction.up, ActionScript.unknown273, EventFlag.unknown02D, NPCConfigFlagStyle.showIfOn, "textNPC0439", null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.up, ActionScript.unknown010, EventFlag.unknown02D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.insaneCultist, Direction.up, ActionScript.unknown010, EventFlag.unknown02D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.spitefulCrow, Direction.up, ActionScript.unknown010, EventFlag.unknown02D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.left, ActionScript.unknown606, EventFlag.unknown044, NPCConfigFlagStyle.showIfOff, "textNPC0443", null),
+	NPC(NPCType.person, OverworldSprite.pigtailDarkHairedGirl, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0444", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.right, ActionScript.unknown606, EventFlag.unknown044, NPCConfigFlagStyle.showIfOn, "textNPC0445", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown865, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown866, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.helpfulMole, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0448", null),
+	NPC(NPCType.object, OverworldSprite.crossroadSigns, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0449", null),
+	NPC(NPCType.object, OverworldSprite.pencilStatue, Direction.down, ActionScript.unknown107, EventFlag.unknown11C, NPCConfigFlagStyle.showIfOff, "textNPC0450", "textNPC0450Alt"),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss2, NPCConfigFlagStyle.showIfOff, "textNPC0451", null),
+	NPC(NPCType.person, OverworldSprite.nessLyingDown, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.paula, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.jeff, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.poo, Direction.left, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.down, ActionScript.unknown606, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOff, "textNPC0456", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.right, ActionScript.unknown605, EventFlag.unknown305, NPCConfigFlagStyle.showIfOff, "textNPC0457", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.up, ActionScript.unknown605, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOff, "textNPC0458", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.left, ActionScript.unknown606, EventFlag.unknown305, NPCConfigFlagStyle.showIfOff, "textNPC0459", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.down, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0460", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.down, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0461", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.right, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0462", null),
+	NPC(NPCType.person, OverworldSprite.zombieLyingDown, Direction.down, ActionScript.unknown008, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0463", null),
+	NPC(NPCType.person, OverworldSprite.zombieLyingDown, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0464", null),
+	NPC(NPCType.person, OverworldSprite.zombieGluedToFloor, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0460", null),
+	NPC(NPCType.person, OverworldSprite.zombieGluedToFloor, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0461", null),
+	NPC(NPCType.person, OverworldSprite.zombieLyingDown, Direction.down, ActionScript.unknown008, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0463", null),
+	NPC(NPCType.person, OverworldSprite.zombieGluedToFloor, Direction.down, ActionScript.unknown008, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0463", null),
+	NPC(NPCType.person, OverworldSprite.zombieGluedToFloor, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0462", null),
+	NPC(NPCType.person, OverworldSprite.zombieLyingDown, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0470", null),
+	NPC(NPCType.person, OverworldSprite.zombieGluedToFloor, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0471", null),
+	NPC(NPCType.person, OverworldSprite.zombieGluedToFloor, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0472", null),
+	NPC(NPCType.person, OverworldSprite.zombieGluedToFloor, Direction.down, ActionScript.unknown008, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0463", null),
+	NPC(NPCType.person, OverworldSprite.zombieLyingDown, Direction.down, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0474", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.right, ActionScript.unknown606, EventFlag.unknown00E, NPCConfigFlagStyle.showIfOn, "textNPC0475", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown012, EventFlag.unknown00E, NPCConfigFlagStyle.showIfOn, "textNPC0476", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.up, ActionScript.unknown606, EventFlag.unknown030, NPCConfigFlagStyle.showIfOn, "textNPC0477", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.right, ActionScript.unknown606, EventFlag.unknown030, NPCConfigFlagStyle.showIfOn, "textNPC0478", null),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.unknown21D, NPCConfigFlagStyle.showIfOff, "textDoor340", "textNPC0479Alt"),
+	NPC(NPCType.object, OverworldSprite.shadow, Direction.down, ActionScript.unknown008, EventFlag.unknown030, NPCConfigFlagStyle.showIfOn, "textNPC0480", null),
+	NPC(NPCType.object, OverworldSprite.brokenPhaseDistorter, Direction.down, ActionScript.unknown008, EventFlag.unknown02F, NPCConfigFlagStyle.showIfOn, "textNPC0481", null),
+	NPC(NPCType.object, OverworldSprite.skyRunner, Direction.down, ActionScript.unknown008, EventFlag.unknown030, NPCConfigFlagStyle.showIfOn, "textNPC0480", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.down, ActionScript.unknown605, EventFlag.zombieLadyActive, NPCConfigFlagStyle.showIfOff, "textNPC0483", null),
+	NPC(NPCType.person, OverworldSprite.zombieLady, Direction.right, ActionScript.unknown078, EventFlag.unknown128, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.left, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0485", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0486", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.zombieLady, Direction.right, ActionScript.unknown079, EventFlag.unknown129, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.left, ActionScript.unknown010, EventFlag.justRested, NPCConfigFlagStyle.showIfOn, "textNPC0490", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.down, ActionScript.unknown010, EventFlag.unknown24D, NPCConfigFlagStyle.showIfOn, "textNPC0491", null),
+	NPC(NPCType.person, OverworldSprite.zombieLady, Direction.right, ActionScript.unknown080, EventFlag.unknown12A, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.down, ActionScript.unknown080, EventFlag.unknown12A, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.right, ActionScript.unknown080, EventFlag.unknown12A, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.right, ActionScript.unknown080, EventFlag.unknown12A, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.right, ActionScript.unknown080, EventFlag.unknown12A, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.zombieDog, Direction.right, ActionScript.unknown008, EventFlag.unknown12A, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0498", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0499", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0500", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0501", null),
+	NPC(NPCType.person, OverworldSprite.shyGuy, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0502", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0503", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0504", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0505", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.girlInStripedApron, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0255", null),
+	NPC(NPCType.person, OverworldSprite.baker, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0509", null),
+	NPC(NPCType.person, OverworldSprite.hintGuy, Direction.down, ActionScript.unknown605, EventFlag.unknown2F0, NPCConfigFlagStyle.showIfOff, "textNPC0510", null),
+	NPC(NPCType.person, OverworldSprite.littleKidInBlue, Direction.down, ActionScript.unknown012, EventFlag.foursideReached, NPCConfigFlagStyle.showIfOn, "textNPC0511", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0512", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.down, ActionScript.unknown012, EventFlag.foursideReached, NPCConfigFlagStyle.showIfOff, "textNPC0513", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown012, EventFlag.foursideReached, NPCConfigFlagStyle.showIfOff, "textNPC0514", null),
+	NPC(NPCType.person, OverworldSprite.shyGuy, Direction.right, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0515", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.right, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0516", null),
+	NPC(NPCType.person, OverworldSprite.someBrunetteKid, Direction.right, ActionScript.unknown012, EventFlag.unknown2E4, NPCConfigFlagStyle.showIfOff, "textNPC0517", null),
+	NPC(NPCType.person, OverworldSprite.yellowClothesBlonde, Direction.up, ActionScript.unknown016, EventFlag.unknown2E4, NPCConfigFlagStyle.showIfOff, "textNPC0518", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.up, ActionScript.unknown013, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOff, "textNPC0519", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInBlueSuit, Direction.down, ActionScript.unknown012, EventFlag.unknown16E, NPCConfigFlagStyle.showIfOff, "textNPC0520", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.up, ActionScript.unknown012, EventFlag.unknown00E, NPCConfigFlagStyle.showIfOn, "textNPC0521", null),
+	NPC(NPCType.person, OverworldSprite.littleKidInBlue, Direction.down, ActionScript.unknown012, EventFlag.foursideReached, NPCConfigFlagStyle.showIfOff, "textNPC0522", null),
+	NPC(NPCType.person, OverworldSprite.appleKidsMouse, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0523", null),
+	NPC(NPCType.person, OverworldSprite.dog, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0524", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.left, ActionScript.unknown013, EventFlag.unknown2E4, NPCConfigFlagStyle.showIfOff, "textNPC0525", null),
+	NPC(NPCType.person, OverworldSprite.oldFatGuyWithHat, Direction.right, ActionScript.unknown605, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0526", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.down, ActionScript.unknown013, EventFlag.unknown00E, NPCConfigFlagStyle.showIfOn, "textNPC0527", null),
+	NPC(NPCType.person, OverworldSprite.pigtailDarkHairedGirl, Direction.right, ActionScript.unknown605, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0528", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.down, ActionScript.unknown606, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0529", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.up, ActionScript.unknown606, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0530", null),
+	NPC(NPCType.person, OverworldSprite.boogeyTentEye, Direction.down, ActionScript.unknown592, EventFlag.boogeyTentActive, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.boogeyTentEye, Direction.right, ActionScript.unknown592, EventFlag.boogeyTentActive, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.boogeyTentMouth, Direction.down, ActionScript.unknown591, EventFlag.boogeyTentActive, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.right, ActionScript.unknown758, EventFlag.unknown12C, NPCConfigFlagStyle.showIfOff, "textNPC0534", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.up, ActionScript.unknown605, EventFlag.unknown12C, NPCConfigFlagStyle.showIfOff, "textNPC0535", null),
+	NPC(NPCType.person, OverworldSprite.hiddenArmsDealer, Direction.right, ActionScript.unknown010, EventFlag.unknown2E4, NPCConfigFlagStyle.showIfOff, "textNPC0536", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.right, ActionScript.unknown606, EventFlag.unknown02E, NPCConfigFlagStyle.showIfOn, "textNPC0537", null),
+	NPC(NPCType.person, OverworldSprite.zombieLady, Direction.down, ActionScript.unknown077, EventFlag.unknown02E, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.right, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0539", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.right, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0540", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.up, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0541", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.left, ActionScript.unknown010, EventFlag.unknown07D, NPCConfigFlagStyle.showIfOn, "textNPC0542", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0470", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.right, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0471", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.left, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0474", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.down, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.runawayDog, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.unknown12C, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.unknown12C, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.down, ActionScript.unknown012, EventFlag.unknown24C, NPCConfigFlagStyle.showIfOff, "textNPC0551", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown010, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0552", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.down, ActionScript.unknown010, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0553", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.up, ActionScript.unknown010, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0554", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.up, ActionScript.unknown010, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0555", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.down, ActionScript.unknown606, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0556", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInBlueSuit, Direction.down, ActionScript.unknown012, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0557", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.left, ActionScript.unknown010, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0558", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.up, ActionScript.unknown010, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0559", null),
+	NPC(NPCType.person, OverworldSprite.kidInBaseballHelmet, Direction.left, ActionScript.unknown012, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0560", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.down, ActionScript.unknown012, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0561", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0562", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.down, ActionScript.unknown010, EventFlag.unknown262, NPCConfigFlagStyle.showIfOn, "textNPC0563", null),
+	NPC(NPCType.person, OverworldSprite.punkGuy, Direction.down, ActionScript.unknown010, EventFlag.unknown26F, NPCConfigFlagStyle.showIfOn, "textNPC0564", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.right, ActionScript.unknown666, EventFlag.unknown272, NPCConfigFlagStyle.showIfOn, "textNPC0475", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.left, ActionScript.unknown666, EventFlag.unknown272, NPCConfigFlagStyle.showIfOn, "textNPC0476", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown870, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown873, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.dontEnterSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0185", null),
+	NPC(NPCType.object, OverworldSprite.busStopSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0570", null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.busStopSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0580", null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.trashCan, Direction.down, ActionScript.unknown707, EventFlag.unknown29D, NPCConfigFlagStyle.showIfOn, "textNPC0582", null),
+	NPC(NPCType.object, OverworldSprite.hotelSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0583", null),
+	NPC(NPCType.object, OverworldSprite.cityBus, Direction.right, ActionScript.unknown595, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.down, ActionScript.unknown094, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.down, ActionScript.unknown095, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.down, ActionScript.unknown096, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.down, ActionScript.unknown097, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.zombiePossessor, Direction.down, ActionScript.unknown098, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0344", null),
+	NPC(NPCType.person, OverworldSprite.slimyLittlePile, Direction.left, ActionScript.unknown599, EventFlag.unknown25B, NPCConfigFlagStyle.showIfOff, "textNPC0590", null),
+	NPC(NPCType.person, OverworldSprite.tonyInBed, Direction.down, ActionScript.unknown113, EventFlag.tonyJoinedYou, NPCConfigFlagStyle.showIfOff, "textNPC0591", null),
+	NPC(NPCType.person, OverworldSprite.jeffInBed, Direction.down, ActionScript.unknown008, EventFlag.unknown080, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.tools, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0594", null),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0595", "textNPC0595Alt"),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0595", "textNPC0596Alt"),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0595", "textNPC0597Alt"),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0595", "textNPC0598Alt"),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0595", "textNPC0599Alt"),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0600", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInBlueSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0601", null),
+	NPC(NPCType.person, OverworldSprite.someBrunetteKid, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0602", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0603", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0604", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0605", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0606", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0607", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0608", null),
+	NPC(NPCType.person, OverworldSprite.bubbleMonkey, Direction.left, ActionScript.unknown010, EventFlag.unknown14E, NPCConfigFlagStyle.showIfOff, "textNPC0609", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0610", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0612", null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0613", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0610", null),
+	NPC(NPCType.person, OverworldSprite.drAndonuts, Direction.down, ActionScript.unknown178, EventFlag.unknown17B, NPCConfigFlagStyle.showIfOff, "textNPC0615", null),
+	NPC(NPCType.person, OverworldSprite.appleKidsMouse, Direction.down, ActionScript.unknown012, EventFlag.unknown26C, NPCConfigFlagStyle.showIfOn, "textNPC0616", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.up, ActionScript.unknown008, EventFlag.unknown26D, NPCConfigFlagStyle.showIfOn, "textNPC0617", null),
+	NPC(NPCType.person, OverworldSprite.bubbleMonkey, Direction.up, ActionScript.unknown013, EventFlag.unknown26D, NPCConfigFlagStyle.showIfOn, "textNPC0618", null),
+	NPC(NPCType.person, OverworldSprite.caveBoy, Direction.down, ActionScript.unknown606, EventFlag.unknown00E, NPCConfigFlagStyle.showIfOn, "textNPC0619", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0610", null),
+	NPC(NPCType.object, OverworldSprite.shadow, Direction.down, ActionScript.unknown008, EventFlag.unknown2EC, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.instantRevitalizingDevice, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0622", null),
+	NPC(NPCType.object, OverworldSprite.skyRunner, Direction.down, ActionScript.unknown008, EventFlag.unknown2EC, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.someBrunetteKid, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOff, "textNPC0624", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.right, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOff, "textNPC0625", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.up, ActionScript.unknown012, EventFlag.unknown034, NPCConfigFlagStyle.showIfOn, "textNPC0626", null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0627", null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0628", null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.left, ActionScript.unknown012, EventFlag.unknown034, NPCConfigFlagStyle.showIfOff, "textNPC0629", null),
+	NPC(NPCType.person, OverworldSprite.bubbleMonkey, Direction.down, ActionScript.unknown010, EventFlag.unknown276, NPCConfigFlagStyle.showIfOn, "textNPC0630", null),
+	NPC(NPCType.person, OverworldSprite.brickRoad, Direction.left, ActionScript.unknown008, EventFlag.unknown032, NPCConfigFlagStyle.showIfOn, "textNPC0631", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.right, ActionScript.unknown284, EventFlag.unknown016, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.up, ActionScript.unknown012, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, "textNPC0633", null),
+	NPC(NPCType.person, OverworldSprite.tonyKneeling, Direction.down, ActionScript.unknown008, EventFlag.unknown14F, NPCConfigFlagStyle.showIfOn, "textNPC0634", null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0635", null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0636", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.down, ActionScript.unknown606, EventFlag.unknown26E, NPCConfigFlagStyle.showIfOn, "textNPC0637", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0638", null),
+	NPC(NPCType.person, OverworldSprite.tony, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0639", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown883, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown868, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.unknown, Direction.down, ActionScript.unknown008, EventFlag.unknown158, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.unknown, Direction.down, ActionScript.unknown008, EventFlag.unknown158, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.unknown, Direction.down, ActionScript.unknown008, EventFlag.unknown158, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.pencilStatue, Direction.down, ActionScript.unknown010, EventFlag.unknown261, NPCConfigFlagStyle.showIfOff, "textNPC0450", "textNPC0645Alt"),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0646", null),
+	NPC(NPCType.object, OverworldSprite.underwaterNPC, Direction.down, ActionScript.unknown769, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.underwaterNPC, Direction.down, ActionScript.unknown769, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.underwaterNPC, Direction.down, ActionScript.unknown769, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.underwaterNPC, Direction.down, ActionScript.unknown769, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.underwaterNPC, Direction.down, ActionScript.unknown769, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.underwaterNPC, Direction.down, ActionScript.unknown769, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.underwaterNPC, Direction.down, ActionScript.unknown769, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.unknown, Direction.down, ActionScript.unknown008, EventFlag.unknown158, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.tessieWaterRipplesTop, Direction.down, ActionScript.unknown485, EventFlag.unknown158, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.tessieWaterRipplesBottom, Direction.down, ActionScript.unknown486, EventFlag.unknown158, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.appleKid, Direction.down, ActionScript.unknown008, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, "textNPC0657", null),
+	NPC(NPCType.person, OverworldSprite.appleKid, Direction.right, ActionScript.unknown010, EventFlag.unknown033, NPCConfigFlagStyle.showIfOn, "textNPC0658", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown008, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, "textNPC0659", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown012, EventFlag.unknown033, NPCConfigFlagStyle.showIfOn, "textNPC0660", null),
+	NPC(NPCType.person, OverworldSprite.tony, Direction.down, ActionScript.unknown008, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, "textNPC0661", null),
+	NPC(NPCType.person, OverworldSprite.tony, Direction.down, ActionScript.unknown010, EventFlag.unknown033, NPCConfigFlagStyle.showIfOn, "textNPC0662", null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.down, ActionScript.unknown008, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.tessieWatcher, Direction.down, ActionScript.unknown010, EventFlag.unknown033, NPCConfigFlagStyle.showIfOn, "textNPC0664", null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.right, ActionScript.unknown012, EventFlag.unknown033, NPCConfigFlagStyle.showIfOn, "textNPC0665", null),
+	NPC(NPCType.person, OverworldSprite.newAgeRetroHippie, Direction.down, ActionScript.unknown010, EventFlag.unknown033, NPCConfigFlagStyle.showIfOn, "textNPC0666", null),
+	NPC(NPCType.person, OverworldSprite.drAndonuts, Direction.down, ActionScript.unknown008, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.drAndonuts, Direction.down, ActionScript.unknown012, EventFlag.unknown033, NPCConfigFlagStyle.showIfOn, "textNPC0668", null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.down, ActionScript.unknown008, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, "textNPC0669", null),
+	NPC(NPCType.person, OverworldSprite.newAgeRetroHippie, Direction.down, ActionScript.unknown008, EventFlag.unknown046, NPCConfigFlagStyle.showIfOff, "textNPC0670", null),
+	NPC(NPCType.object, OverworldSprite.eraserStatue, Direction.down, ActionScript.unknown010, EventFlag.unknown12B, NPCConfigFlagStyle.showIfOff, "textNPC0671", "textNPC0671Alt"),
+	NPC(NPCType.person, OverworldSprite.starman, Direction.down, ActionScript.unknown008, EventFlag.unknown1B2, NPCConfigFlagStyle.showIfOff, "textNPC0672", null),
+	NPC(NPCType.person, OverworldSprite.exitMouseNoSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0673", null),
+	NPC(NPCType.person, OverworldSprite.exitMouse, Direction.right, ActionScript.unknown012, EventFlag.unknown200, NPCConfigFlagStyle.showIfOff, "textNPC0095", null),
+	NPC(NPCType.person, OverworldSprite.exitMouse, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0096", null),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss4, NPCConfigFlagStyle.showIfOff, "textNPC0676", null),
+	NPC(NPCType.object, OverworldSprite.rope, Direction.down, ActionScript.unknown260, EventFlag.unknown137, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.madDuck, Direction.left, ActionScript.unknown598, EventFlag.madDuck1Fought, NPCConfigFlagStyle.showIfOff, "textNPC0678", null),
+	NPC(NPCType.person, OverworldSprite.madDuck, Direction.right, ActionScript.unknown598, EventFlag.madDuck2Fought, NPCConfigFlagStyle.showIfOff, "textNPC0679", null),
+	NPC(NPCType.person, OverworldSprite.giftBox, Direction.up, ActionScript.unknown601, EventFlag.worthlessProtoplasm1Fought, NPCConfigFlagStyle.showIfOff, "textNPC0680", null),
+	NPC(NPCType.person, OverworldSprite.giftBox, Direction.down, ActionScript.unknown601, EventFlag.worthlessProtoplasm2Fought, NPCConfigFlagStyle.showIfOff, "textNPC0681", null),
+	NPC(NPCType.person, OverworldSprite.rowdyMouse, Direction.right, ActionScript.unknown600, EventFlag.rowdyMouse1Fought, NPCConfigFlagStyle.showIfOff, "textNPC0682", null),
+	NPC(NPCType.person, OverworldSprite.rowdyMouse, Direction.up, ActionScript.unknown600, EventFlag.rowdyMouse2Fought, NPCConfigFlagStyle.showIfOff, "textNPC0683", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0610", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0685", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0686", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0687", null),
+	NPC(NPCType.person, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown600, EventFlag.unknown16E, NPCConfigFlagStyle.showIfOff, "textNPC0688", null),
+	NPC(NPCType.person, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0689", null),
+	NPC(NPCType.person, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0690", null),
+	NPC(NPCType.person, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown600, EventFlag.unknown16F, NPCConfigFlagStyle.showIfOff, "textNPC0691", null),
+	NPC(NPCType.person, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown600, EventFlag.unknown170, NPCConfigFlagStyle.showIfOff, "textNPC0692", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0693", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0694", null),
+	NPC(NPCType.object, OverworldSprite.jarOfFlyHoney, Direction.down, ActionScript.unknown631, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.jarOfFlyHoney, Direction.down, ActionScript.unknown632, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.masterBelch, Direction.right, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOff, "textNPC0697", null),
+	NPC(NPCType.object, OverworldSprite.mrSaturnBallAndChain, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mrSaturnBallAndChain, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.nessLyingDown, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.paula, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.jeff, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.poo, Direction.left, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.fountainOfHealingMini, Direction.down, ActionScript.unknown693, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss3, NPCConfigFlagStyle.showIfOff, "textNPC0705", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown606, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0706", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown606, EventFlag.unknown24E, NPCConfigFlagStyle.showIfOn, "textNPC0707", null),
+	NPC(NPCType.person, OverworldSprite.oldFatGuyWithHat, Direction.down, ActionScript.unknown606, EventFlag.saturnValleyReached, NPCConfigFlagStyle.showIfOff, "textNPC0708", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown871, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0710", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0712", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0713", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown012, EventFlag.magicantCompleted, NPCConfigFlagStyle.showIfOn, "textNPC0714", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0715", null),
+	NPC(NPCType.object, OverworldSprite.saturnValleyATM, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown013, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, "textNPC0718", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown606, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, "textNPC0719", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown012, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0720", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown010, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, "textNPC0721", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown012, EventFlag.unknown174, NPCConfigFlagStyle.showIfOff, "textNPC0722", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown606, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0723", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0724", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown013, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0725", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown013, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0726", null),
+	NPC(NPCType.person, OverworldSprite.appleKid, Direction.right, ActionScript.unknown008, EventFlag.underworldReached, NPCConfigFlagStyle.showIfOn, "textNPC0727", null),
+	NPC(NPCType.person, OverworldSprite.drAndonuts, Direction.up, ActionScript.unknown010, EventFlag.underworldReached, NPCConfigFlagStyle.showIfOn, "textNPC0728", "textNPC0728Alt"),
+	NPC(NPCType.person, OverworldSprite.miner, Direction.right, ActionScript.unknown008, EventFlag.unknown28B, NPCConfigFlagStyle.showIfOn, "textNPC0729", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown013, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0730", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown008, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0731", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.down, ActionScript.unknown010, EventFlag.unknown047, NPCConfigFlagStyle.showIfOn, "textNPC0732", null),
+	NPC(NPCType.person, OverworldSprite.appleKidsMouse, Direction.right, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0733", null),
+	NPC(NPCType.person, OverworldSprite.jeff, Direction.down, ActionScript.unknown581, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0734", "textNPC0734Alt"),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown010, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown872, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0737", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0738", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0739", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0740", null),
+	NPC(NPCType.object, OverworldSprite.phaseDistorter, Direction.down, ActionScript.unknown286, EventFlag.magicantCompleted, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.spaSign, Direction.down, ActionScript.unknown683, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0742", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0743", null),
+	NPC(NPCType.object, OverworldSprite.giftBox, Direction.down, ActionScript.unknown708, EventFlag.unknown274, NPCConfigFlagStyle.showIfOn, "textNPC0744", null),
+	NPC(NPCType.object, OverworldSprite.giftBox, Direction.down, ActionScript.unknown709, EventFlag.unknown274, NPCConfigFlagStyle.showIfOn, "textNPC0745", null),
+	NPC(NPCType.object, OverworldSprite.giftBox, Direction.down, ActionScript.unknown710, EventFlag.unknown274, NPCConfigFlagStyle.showIfOn, "textNPC0746", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0747", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0748", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0749", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.person, OverworldSprite.minersBrother, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0752", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.up, ActionScript.unknown013, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, "textNPC0754", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.right, ActionScript.unknown606, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, "textNPC0755", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.left, ActionScript.unknown605, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, "textNPC0756", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.down, ActionScript.unknown012, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, "textNPC0757", null),
+	NPC(NPCType.person, OverworldSprite.palmTanGuy, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0758", null),
+	NPC(NPCType.person, OverworldSprite.sunBathingGirl, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0759", null),
+	NPC(NPCType.person, OverworldSprite.miner, Direction.down, ActionScript.unknown010, EventFlag.unknown037, NPCConfigFlagStyle.showIfOff, "textNPC0760", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown606, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, "textNPC0761", null),
+	NPC(NPCType.person, OverworldSprite.pigtailBlondeGirl, Direction.down, ActionScript.unknown606, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, "textNPC0762", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.down, ActionScript.unknown606, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, "textNPC0763", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.down, ActionScript.unknown606, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, "textNPC0764", null),
+	NPC(NPCType.person, OverworldSprite.mexicanGuy, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0765", null),
+	NPC(NPCType.person, OverworldSprite.mexicanGuy, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0766", null),
+	NPC(NPCType.person, OverworldSprite.mexicanGuy, Direction.up, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0767", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0768", null),
+	NPC(NPCType.person, OverworldSprite.hiddenArmsDealer, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0769", null),
+	NPC(NPCType.person, OverworldSprite.minersBrother, Direction.down, ActionScript.unknown258, EventFlag.unknown110, NPCConfigFlagStyle.showIfOn, "textNPC0770", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0771", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown008, EventFlag.unknown266, NPCConfigFlagStyle.showIfOn, "textNPC0772", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown008, EventFlag.unknown267, NPCConfigFlagStyle.showIfOn, "textNPC0773", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown606, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, "textNPC0774", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.down, ActionScript.unknown606, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, "textNPC0775", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown876, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown875, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0778", null),
+	NPC(NPCType.object, OverworldSprite.slotMachine, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0779", null),
+	NPC(NPCType.object, OverworldSprite.pileOfBones, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0780", null),
+	NPC(NPCType.object, OverworldSprite.pileOfBones, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0781", null),
+	NPC(NPCType.person, OverworldSprite.unknown3, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0782", null),
+	NPC(NPCType.person, OverworldSprite.sesameSeed, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0783", null),
+	NPC(NPCType.person, OverworldSprite.guyInCoolRedCar, Direction.down, ActionScript.unknown008, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, "textNPC0784", null),
+	NPC(NPCType.object, OverworldSprite.realTaxi, Direction.right, ActionScript.unknown008, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.redTruck, Direction.down, ActionScript.unknown008, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.whiteTruck, Direction.down, ActionScript.unknown008, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.magicTartStand, Direction.down, ActionScript.unknown008, EventFlag.mineExpanded, NPCConfigFlagStyle.showIfOn, "textNPC0788", null),
+	NPC(NPCType.object, OverworldSprite.deliveryTruck, Direction.down, ActionScript.unknown008, EventFlag.unknown088, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.busStopSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0790", null),
+	NPC(NPCType.object, OverworldSprite.busStopSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0791", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0792", null),
+	NPC(NPCType.object, OverworldSprite.bigDirtScooper, Direction.down, ActionScript.unknown008, EventFlag.unknown14D, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.contactLenses, Direction.down, ActionScript.unknown010, EventFlag.unknown181, NPCConfigFlagStyle.showIfOff, "textNPC0794", null),
+	NPC(NPCType.object, OverworldSprite.bigDirtScooper, Direction.down, ActionScript.unknown256, EventFlag.unknown110, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.bigDirtScooper, Direction.down, ActionScript.unknown008, EventFlag.unknown14D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.talahRama, Direction.down, ActionScript.unknown010, EventFlag.unknown2E9, NPCConfigFlagStyle.showIfOff, "textNPC0797", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown012, EventFlag.unknown2E9, NPCConfigFlagStyle.showIfOff, "textNPC0798", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C4, NPCConfigFlagStyle.showIfOff, "textNPC0799", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C3, NPCConfigFlagStyle.showIfOff, "textNPC0800", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C4, NPCConfigFlagStyle.showIfOn, "textNPC0799", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C3, NPCConfigFlagStyle.showIfOn, "textNPC0800", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C6, NPCConfigFlagStyle.showIfOff, "textNPC0803", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C5, NPCConfigFlagStyle.showIfOff, "textNPC0804", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C6, NPCConfigFlagStyle.showIfOn, "textNPC0803", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C5, NPCConfigFlagStyle.showIfOn, "textNPC0804", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CA, NPCConfigFlagStyle.showIfOff, "textNPC0807", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C9, NPCConfigFlagStyle.showIfOff, "textNPC0808", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CA, NPCConfigFlagStyle.showIfOn, "textNPC0807", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C9, NPCConfigFlagStyle.showIfOn, "textNPC0808", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CF, NPCConfigFlagStyle.showIfOff, "textNPC0811", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CF, NPCConfigFlagStyle.showIfOn, "textNPC0811", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C8, NPCConfigFlagStyle.showIfOff, "textNPC0813", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C7, NPCConfigFlagStyle.showIfOff, "textNPC0814", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C8, NPCConfigFlagStyle.showIfOn, "textNPC0813", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1C7, NPCConfigFlagStyle.showIfOn, "textNPC0814", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CE, NPCConfigFlagStyle.showIfOff, "textNPC0817", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CD, NPCConfigFlagStyle.showIfOff, "textNPC0818", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CE, NPCConfigFlagStyle.showIfOn, "textNPC0817", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CD, NPCConfigFlagStyle.showIfOn, "textNPC0818", null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.right, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0821", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CC, NPCConfigFlagStyle.showIfOff, "textNPC0822", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CB, NPCConfigFlagStyle.showIfOff, "textNPC0823", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CC, NPCConfigFlagStyle.showIfOn, "textNPC0822", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown010, EventFlag.unknown1CB, NPCConfigFlagStyle.showIfOn, "textNPC0823", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0826", null),
+	NPC(NPCType.object, OverworldSprite.pencilStatue, Direction.down, ActionScript.unknown010, EventFlag.unknown204, NPCConfigFlagStyle.showIfOff, "textNPC0450", "textNPC0827Alt"),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.right, ActionScript.unknown013, EventFlag.unknown265, NPCConfigFlagStyle.showIfOff, "textNPC0828", null),
+	NPC(NPCType.person, OverworldSprite.talahRama, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0829", null),
+	NPC(NPCType.person, OverworldSprite.miner, Direction.down, ActionScript.unknown013, EventFlag.unknown036, NPCConfigFlagStyle.showIfOn, "textNPC0830", null),
+	NPC(NPCType.person, OverworldSprite.guardianDigger, Direction.down, ActionScript.unknown600, EventFlag.unknown115, NPCConfigFlagStyle.showIfOff, "textNPC0831", null),
+	NPC(NPCType.person, OverworldSprite.guardianDigger, Direction.down, ActionScript.unknown600, EventFlag.unknown116, NPCConfigFlagStyle.showIfOff, "textNPC0832", null),
+	NPC(NPCType.person, OverworldSprite.guardianDigger, Direction.down, ActionScript.unknown600, EventFlag.unknown117, NPCConfigFlagStyle.showIfOff, "textNPC0833", null),
+	NPC(NPCType.person, OverworldSprite.exitMouseNoSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0834", null),
+	NPC(NPCType.person, OverworldSprite.exitMouse, Direction.right, ActionScript.unknown012, EventFlag.unknown200, NPCConfigFlagStyle.showIfOff, "textNPC0095", null),
+	NPC(NPCType.person, OverworldSprite.exitMouse, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0096", null),
+	NPC(NPCType.person, OverworldSprite.guardianDigger, Direction.down, ActionScript.unknown600, EventFlag.unknown118, NPCConfigFlagStyle.showIfOff, "textNPC0837", null),
+	NPC(NPCType.person, OverworldSprite.guardianDigger, Direction.down, ActionScript.unknown600, EventFlag.unknown119, NPCConfigFlagStyle.showIfOff, "textNPC0838", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0839", "textNPC0839Alt"),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.right, ActionScript.unknown008, EventFlag.unknown176, NPCConfigFlagStyle.showIfOff, "textNPC0840", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.right, ActionScript.unknown008, EventFlag.unknown176, NPCConfigFlagStyle.showIfOn, "textNPC0841", null),
+	NPC(NPCType.person, OverworldSprite.venus, Direction.up, ActionScript.unknown605, EventFlag.unknown093, NPCConfigFlagStyle.showIfOn, "textNPC0842", null),
+	NPC(NPCType.person, OverworldSprite.gorgeous, Direction.right, ActionScript.unknown606, EventFlag.unknown093, NPCConfigFlagStyle.showIfOff, "textNPC0843", null),
+	NPC(NPCType.person, OverworldSprite.runawayFiveBassPlayer, Direction.right, ActionScript.unknown606, EventFlag.unknown093, NPCConfigFlagStyle.showIfOff, "textNPC0844", null),
+	NPC(NPCType.person, OverworldSprite.runawayFiveDrummer, Direction.down, ActionScript.unknown012, EventFlag.unknown093, NPCConfigFlagStyle.showIfOff, "textNPC0845", null),
+	NPC(NPCType.person, OverworldSprite.lucky, Direction.left, ActionScript.unknown606, EventFlag.unknown093, NPCConfigFlagStyle.showIfOff, "textNPC0846", null),
+	NPC(NPCType.person, OverworldSprite.runawayFiveSaxPlayer, Direction.down, ActionScript.unknown606, EventFlag.unknown093, NPCConfigFlagStyle.showIfOff, "textNPC0847", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0848", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.down, ActionScript.unknown606, EventFlag.unknown038, NPCConfigFlagStyle.showIfOff, "textNPC0849", "textNPC0849Alt"),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.down, ActionScript.unknown606, EventFlag.unknown038, NPCConfigFlagStyle.showIfOn, "textNPC0850", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.right, ActionScript.unknown606, EventFlag.unknown2F7, NPCConfigFlagStyle.showIfOn, "textNPC0851", null),
+	NPC(NPCType.person, OverworldSprite.beachLady, Direction.down, ActionScript.unknown008, EventFlag.unknown2F7, NPCConfigFlagStyle.showIfOn, "textNPC0852", null),
+	NPC(NPCType.person, OverworldSprite.baker, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0853", null),
+	NPC(NPCType.person, OverworldSprite.blondeShoppingLady, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0854", null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0855", "textNPC0855Alt"),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.left, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0856", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0857", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0858", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0859", null),
+	NPC(NPCType.person, OverworldSprite.monotoli, Direction.right, ActionScript.unknown605, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0860", null),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.bodyguard, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0862", null),
+	NPC(NPCType.person, OverworldSprite.bodyguard, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0863", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.left, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0864", null),
+	NPC(NPCType.person, OverworldSprite.pokeyRich, Direction.down, ActionScript.unknown605, EventFlag.unknown08F, NPCConfigFlagStyle.showIfOff, "textNPC0865", null),
+	NPC(NPCType.person, OverworldSprite.bodyguard, Direction.down, ActionScript.unknown605, EventFlag.unknown08F, NPCConfigFlagStyle.showIfOff, "textNPC0866", null),
+	NPC(NPCType.person, OverworldSprite.bodyguard, Direction.down, ActionScript.unknown605, EventFlag.unknown08F, NPCConfigFlagStyle.showIfOff, "textNPC0867", null),
+	NPC(NPCType.person, OverworldSprite.aloysiusMinch, Direction.right, ActionScript.unknown012, EventFlag.unknown08F, NPCConfigFlagStyle.showIfOff, "textNPC0868", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.left, ActionScript.unknown605, EventFlag.unknown08E, NPCConfigFlagStyle.showIfOn, "textNPC0869", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.left, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0870", null),
+	NPC(NPCType.person, OverworldSprite.electra, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0871", null),
+	NPC(NPCType.person, OverworldSprite.monotoli, Direction.up, ActionScript.unknown700, EventFlag.unknown298, NPCConfigFlagStyle.showIfOff, "textNPC0872", null),
+	NPC(NPCType.person, OverworldSprite.paula, Direction.right, ActionScript.unknown008, EventFlag.unknown00F, NPCConfigFlagStyle.showIfOff, "textNPC0873", null),
+	NPC(NPCType.person, OverworldSprite.monotoli, Direction.down, ActionScript.unknown008, EventFlag.unknown2E5, NPCConfigFlagStyle.showIfOn, "textNPC0872", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0875", null),
+	NPC(NPCType.object, OverworldSprite.mightyBear, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0876", null),
+	NPC(NPCType.object, OverworldSprite.secretDoorInMonotoliBuilding, Direction.down, ActionScript.unknown704, EventFlag.unknown298, NPCConfigFlagStyle.showIfOff, "textNPC0877", null),
+	NPC(NPCType.object, OverworldSprite.secretDoorInMonotoliBuilding, Direction.down, ActionScript.unknown007, EventFlag.unknown298, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.sentryRobot, Direction.down, ActionScript.unknown602, EventFlag.unknown165, NPCConfigFlagStyle.showIfOff, "textNPC0879", null),
+	NPC(NPCType.person, OverworldSprite.sentryRobot, Direction.left, ActionScript.unknown602, EventFlag.unknown166, NPCConfigFlagStyle.showIfOff, "textNPC0880", null),
+	NPC(NPCType.person, OverworldSprite.sentryRobot, Direction.left, ActionScript.unknown602, EventFlag.unknown167, NPCConfigFlagStyle.showIfOff, "textNPC0881", null),
+	NPC(NPCType.person, OverworldSprite.sentryRobot, Direction.right, ActionScript.unknown602, EventFlag.unknown168, NPCConfigFlagStyle.showIfOff, "textNPC0882", null),
+	NPC(NPCType.person, OverworldSprite.clumsyRobot, Direction.down, ActionScript.unknown602, EventFlag.unknown16A, NPCConfigFlagStyle.showIfOff, "textNPC0883", null),
+	NPC(NPCType.person, OverworldSprite.gorgeous, Direction.right, ActionScript.unknown606, EventFlag.unknown13E, NPCConfigFlagStyle.showIfOn, "textNPC0884", null),
+	NPC(NPCType.person, OverworldSprite.lucky, Direction.right, ActionScript.unknown606, EventFlag.unknown13E, NPCConfigFlagStyle.showIfOn, "textNPC0885", null),
+	NPC(NPCType.person, OverworldSprite.runawayFiveDrummer, Direction.up, ActionScript.unknown606, EventFlag.unknown13E, NPCConfigFlagStyle.showIfOn, "textNPC0886", null),
+	NPC(NPCType.person, OverworldSprite.runawayFiveBassPlayer, Direction.down, ActionScript.unknown008, EventFlag.unknown13E, NPCConfigFlagStyle.showIfOn, "textNPC0887", null),
+	NPC(NPCType.person, OverworldSprite.runawayFiveSaxPlayer, Direction.left, ActionScript.unknown606, EventFlag.unknown13E, NPCConfigFlagStyle.showIfOn, "textNPC0888", null),
+	NPC(NPCType.person, OverworldSprite.sentryRobot, Direction.right, ActionScript.unknown602, EventFlag.unknown169, NPCConfigFlagStyle.showIfOff, "textNPC0889", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0890", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0891", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0894", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.left, ActionScript.unknown008, EventFlag.justRested, NPCConfigFlagStyle.showIfOn, "textNPC0895", null),
+	NPC(NPCType.person, OverworldSprite.jackie, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0896", null),
+	NPC(NPCType.person, OverworldSprite.bigSmileLady, Direction.down, ActionScript.unknown606, EventFlag.unknown08B, NPCConfigFlagStyle.showIfOff, "textNPC0897", null),
+	NPC(NPCType.person, OverworldSprite.bigSmileLady, Direction.left, ActionScript.unknown605, EventFlag.unknown08B, NPCConfigFlagStyle.showIfOn, "textNPC0898", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0899", null),
+	NPC(NPCType.person, OverworldSprite.drinkingGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0900", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOff, "textNPC0901", null),
+	NPC(NPCType.person, OverworldSprite.aloysiusMinch, Direction.down, ActionScript.unknown606, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, "textNPC0902", null),
+	NPC(NPCType.object, OverworldSprite.jukebox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0903", null),
+	NPC(NPCType.person, OverworldSprite.appleKidsMouse, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0904", null),
+	NPC(NPCType.object, OverworldSprite.brokenManiManiStatue, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0905", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0906", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.foursideMuseumGuy, Direction.right, ActionScript.unknown008, EventFlag.unknown03A, NPCConfigFlagStyle.showIfOff, "textNPC0908", "textNPC0908Alt"),
+	NPC(NPCType.person, OverworldSprite.foursideMuseumGuy, Direction.down, ActionScript.unknown012, EventFlag.unknown03A, NPCConfigFlagStyle.showIfOn, "textNPC0909", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0910", null),
+	NPC(NPCType.person, OverworldSprite.pigtailDarkHairedGirl, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0911", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0912", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown878, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0914", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0915", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0916", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0917", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0918", null),
+	NPC(NPCType.person, OverworldSprite.littleKidInBlue, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0919", null),
+	NPC(NPCType.person, OverworldSprite.thickGlassesLady, Direction.down, ActionScript.unknown605, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0920", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.down, ActionScript.unknown605, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0921", null),
+	NPC(NPCType.person, OverworldSprite.elevatorLady, Direction.down, ActionScript.unknown606, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0922", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.left, ActionScript.unknown012, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0923", null),
+	NPC(NPCType.person, OverworldSprite.bodyguard, Direction.down, ActionScript.unknown013, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0924", null),
+	NPC(NPCType.person, OverworldSprite.waitress, Direction.down, ActionScript.unknown606, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0925", null),
+	NPC(NPCType.person, OverworldSprite.girlInStripedApron, Direction.down, ActionScript.unknown606, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0926", null),
+	NPC(NPCType.person, OverworldSprite.brunetteShoppingLady, Direction.right, ActionScript.unknown013, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0927", null),
+	NPC(NPCType.person, OverworldSprite.yellowClothesBlonde, Direction.right, ActionScript.unknown016, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0928", null),
+	NPC(NPCType.person, OverworldSprite.kidInBaseballHelmet, Direction.up, ActionScript.unknown606, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0929", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.up, ActionScript.unknown013, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0930", null),
+	NPC(NPCType.person, OverworldSprite.appleKidsMouse, Direction.down, ActionScript.unknown013, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0931", null),
+	NPC(NPCType.person, OverworldSprite.baker, Direction.down, ActionScript.unknown012, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0932", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.down, ActionScript.unknown606, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0933", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.right, ActionScript.unknown012, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0934", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown880, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.hiddenArmsDealer, Direction.down, ActionScript.unknown013, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, "textNPC0936", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.object, OverworldSprite.magicTartStand, Direction.down, ActionScript.unknown008, EventFlag.unknown039, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.deptStoreMook, Direction.down, ActionScript.unknown010, EventFlag.unknown039, NPCConfigFlagStyle.showIfOn, "textNPC0941", null),
+	NPC(NPCType.person, OverworldSprite.guyInBlueClothes, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0942", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyBlueDress, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0943", null),
+	NPC(NPCType.person, OverworldSprite.trumpetPerson, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0944", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0945", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0946", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0947", null),
+	NPC(NPCType.person, OverworldSprite.drinkingGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0948", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0949", null),
+	NPC(NPCType.person, OverworldSprite.copInSunglasses, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0950", null),
+	NPC(NPCType.person, OverworldSprite.electra, Direction.down, ActionScript.unknown010, EventFlag.unknown03B, NPCConfigFlagStyle.showIfOn, "textNPC0951", null),
+	NPC(NPCType.person, OverworldSprite.everdredLyingDown, Direction.down, ActionScript.unknown008, EventFlag.unknown03C, NPCConfigFlagStyle.showIfOn, "textNPC0952", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.right, ActionScript.unknown606, EventFlag.unknown03C, NPCConfigFlagStyle.showIfOn, "textNPC0953", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.up, ActionScript.unknown606, EventFlag.unknown03C, NPCConfigFlagStyle.showIfOn, "textNPC0954", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.up, ActionScript.unknown606, EventFlag.unknown03C, NPCConfigFlagStyle.showIfOn, "textNPC0955", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.up, ActionScript.unknown605, EventFlag.unknown03C, NPCConfigFlagStyle.showIfOn, "textNPC0956", null),
+	NPC(NPCType.person, OverworldSprite.brunetteShoppingLady, Direction.right, ActionScript.unknown606, EventFlag.unknown03C, NPCConfigFlagStyle.showIfOn, "textNPC0957", null),
+	NPC(NPCType.person, OverworldSprite.blondeShoppingLady, Direction.right, ActionScript.unknown606, EventFlag.unknown03C, NPCConfigFlagStyle.showIfOn, "textNPC0958", null),
+	NPC(NPCType.person, OverworldSprite.punkGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0959", null),
+	NPC(NPCType.person, OverworldSprite.gorgeous, Direction.down, ActionScript.unknown008, EventFlag.unknown13D, NPCConfigFlagStyle.showIfOn, "textNPC0960", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0961", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.right, ActionScript.unknown605, EventFlag.unknown092, NPCConfigFlagStyle.showIfOff, "textNPC0962", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.up, ActionScript.unknown013, EventFlag.unknown092, NPCConfigFlagStyle.showIfOff, "textNPC0963", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.down, ActionScript.unknown012, EventFlag.unknown252, NPCConfigFlagStyle.showIfOn, "textNPC0964", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.down, ActionScript.unknown605, EventFlag.defeatedSanctuaryBoss5, NPCConfigFlagStyle.showIfOff, "textNPC0965", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.right, ActionScript.unknown605, EventFlag.defeatedSanctuaryBoss5, NPCConfigFlagStyle.showIfOff, "textNPC0966", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.right, ActionScript.unknown008, EventFlag.unknown24F, NPCConfigFlagStyle.showIfOn, "textNPC0967", null),
+	NPC(NPCType.person, OverworldSprite.humanCharred, Direction.down, ActionScript.unknown008, EventFlag.unknown250, NPCConfigFlagStyle.showIfOn, "textNPC0968", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0969", null),
+	NPC(NPCType.person, OverworldSprite.hintMan, Direction.down, ActionScript.unknown606, EventFlag.unknown2F0, NPCConfigFlagStyle.showIfOff, "textNPC0970", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown879, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.busStopSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0972", null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetLight, Direction.down, ActionScript.unknown877, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.streetSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.magnetHill, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.can, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.helicopter, Direction.down, ActionScript.unknown711, EventFlag.unknown2A0, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.helicopterBlade, Direction.down, ActionScript.unknown008, EventFlag.unknown2A0, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.helicopterBack, Direction.down, ActionScript.unknown008, EventFlag.unknown2A0, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.shadow, Direction.down, ActionScript.unknown704, EventFlag.unknown2A0, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.hotelSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0993", null),
+	NPC(NPCType.object, OverworldSprite.runaway5Bus, Direction.down, ActionScript.unknown190, EventFlag.unknown13D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss5, NPCConfigFlagStyle.showIfOff, "textNPC0995", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0996", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0997", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0998", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0999", null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1000", null),
+	NPC(NPCType.person, OverworldSprite.waitress, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1001", null),
+	NPC(NPCType.person, OverworldSprite.magicCakeLady, Direction.left, ActionScript.unknown606, EventFlag.unknown269, NPCConfigFlagStyle.showIfOff, "textNPC1002", null),
+	NPC(NPCType.person, OverworldSprite.shipCrewman, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1003", null),
+	NPC(NPCType.person, OverworldSprite.shipCrewman, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1004", null),
+	NPC(NPCType.person, OverworldSprite.jamaicanGuy, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1005", null),
+	NPC(NPCType.person, OverworldSprite.trumpetPerson, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1006", null),
+	NPC(NPCType.person, OverworldSprite.dog, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1007", null),
+	NPC(NPCType.person, OverworldSprite.shipCaptain, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1008", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1011", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1012", null),
+	NPC(NPCType.person, OverworldSprite.beachLady, Direction.right, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1013", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1016", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1017", null),
+	NPC(NPCType.person, OverworldSprite.blondeShoppingLady, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1018", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.left, ActionScript.unknown008, EventFlag.justRested, NPCConfigFlagStyle.showIfOn, "textNPC1019", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1020", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1021", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.person, OverworldSprite.youngBlondeGuyInBlue, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1024", null),
+	NPC(NPCType.person, OverworldSprite.baker, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1025", null),
+	NPC(NPCType.person, OverworldSprite.waitress, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1026", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1027", null),
+	NPC(NPCType.person, OverworldSprite.brunetteShoppingLady, Direction.down, ActionScript.unknown606, EventFlag.onettReached, NPCConfigFlagStyle.showIfOn, "textNPC1028", null),
+	NPC(NPCType.person, OverworldSprite.fatguyInRedSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1029", null),
+	NPC(NPCType.person, OverworldSprite.oldLadyWithCane, Direction.down, ActionScript.unknown606, EventFlag.onettReached, NPCConfigFlagStyle.showIfOn, "textNPC1030", null),
+	NPC(NPCType.person, OverworldSprite.drinkingGuy, Direction.down, ActionScript.unknown606, EventFlag.onettReached, NPCConfigFlagStyle.showIfOn, "textNPC1031", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown885, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.down, ActionScript.unknown605, EventFlag.unknown2AF, NPCConfigFlagStyle.showIfOff, "textNPC1033", null),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1034", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1035", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1036", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.down, ActionScript.unknown605, EventFlag.unknown15A, NPCConfigFlagStyle.showIfOff, "textNPC1037", "textNPC1037Alt"),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.down, ActionScript.unknown606, EventFlag.unknown15A, NPCConfigFlagStyle.showIfOn, "textNPC1038", null),
+	NPC(NPCType.object, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown599, EventFlag.unknown259, NPCConfigFlagStyle.showIfOff, "textNPC1039", null),
+	NPC(NPCType.object, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown599, EventFlag.unknown25A, NPCConfigFlagStyle.showIfOff, "textNPC1040", null),
+	NPC(NPCType.object, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.pharaohCasket, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.pharaohCasket, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.pharaohCasket, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1047", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1048", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1049", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1050", null),
+	NPC(NPCType.person, OverworldSprite.weirdoGuyInSwimTrunks, Direction.left, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1051", null),
+	NPC(NPCType.person, OverworldSprite.girlInBikini, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1052", null),
+	NPC(NPCType.person, OverworldSprite.guyInSwimmingSuit, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1053", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1054", null),
+	NPC(NPCType.person, OverworldSprite.weirdoGuyInSwimTrunks, Direction.left, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1055", null),
+	NPC(NPCType.person, OverworldSprite.zombieLady, Direction.left, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1056", null),
+	NPC(NPCType.person, OverworldSprite.beachLady, Direction.down, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1057", null),
+	NPC(NPCType.person, OverworldSprite.weirdoGuyInSwimTrunks, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1058", null),
+	NPC(NPCType.person, OverworldSprite.iLoveQowgaShirtGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1059", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1060", null),
+	NPC(NPCType.person, OverworldSprite.mexicanGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1061", null),
+	NPC(NPCType.person, OverworldSprite.birdOnPerch, Direction.left, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1062", null),
+	NPC(NPCType.person, OverworldSprite.shipCaptain, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1063", null),
+	NPC(NPCType.person, OverworldSprite.shipCrewman, Direction.left, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1064", null),
+	NPC(NPCType.person, OverworldSprite.shipCaptain, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1065", null),
+	NPC(NPCType.person, OverworldSprite.palmTanGuy, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1066", null),
+	NPC(NPCType.person, OverworldSprite.cat, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1067", null),
+	NPC(NPCType.person, OverworldSprite.cat, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1068", null),
+	NPC(NPCType.person, OverworldSprite.magicCakeLady, Direction.down, ActionScript.unknown605, EventFlag.unknown269, NPCConfigFlagStyle.showIfOn, "textNPC1069", null),
+	NPC(NPCType.person, OverworldSprite.sunBathingGirl, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1070", null),
+	NPC(NPCType.person, OverworldSprite.hintMan, Direction.down, ActionScript.unknown606, EventFlag.unknown2F0, NPCConfigFlagStyle.showIfOff, "textNPC1071", null),
+	NPC(NPCType.person, OverworldSprite.lucky, Direction.left, ActionScript.unknown008, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.gorgeous, Direction.down, ActionScript.unknown008, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.runawayFiveDrummer, Direction.down, ActionScript.unknown010, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.girlInBikini, Direction.up, ActionScript.unknown010, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown887, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.oldFatGuyWithHat, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1077", null),
+	NPC(NPCType.object, OverworldSprite.magicTartStand, Direction.down, ActionScript.unknown886, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0788", null),
+	NPC(NPCType.object, OverworldSprite.realTaxi, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.guyInCoolRedCar, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1080", null),
+	NPC(NPCType.object, OverworldSprite.deliveryTruck, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bicycle, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.treeInPot, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.treeInPot, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.magicTartStand, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0788", null),
+	NPC(NPCType.object, OverworldSprite.hotelSign, Direction.down, ActionScript.unknown884, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1086", null),
+	NPC(NPCType.object, OverworldSprite.runaway5Bus, Direction.down, ActionScript.unknown008, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.ship, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.starMaster, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1089", null),
+	NPC(NPCType.person, OverworldSprite.dalaameseServant, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1090", null),
+	NPC(NPCType.person, OverworldSprite.telephoneHeadGuy, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1091", null),
+	NPC(NPCType.person, OverworldSprite.poo, Direction.down, ActionScript.unknown012, EventFlag.unknown27D, NPCConfigFlagStyle.showIfOn, "textNPC1092", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown881, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.chineseGirl, Direction.right, ActionScript.unknown016, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1094", null),
+	NPC(NPCType.person, OverworldSprite.chineseMonkGuy, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1095", null),
+	NPC(NPCType.person, OverworldSprite.chineseGirl, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1096", null),
+	NPC(NPCType.person, OverworldSprite.dalaameseServant, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1097", null),
+	NPC(NPCType.person, OverworldSprite.chineseMonkGuy, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1098", null),
+	NPC(NPCType.person, OverworldSprite.dalaameseServant, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1099", null),
+	NPC(NPCType.person, OverworldSprite.preetProotGuy, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1100", null),
+	NPC(NPCType.person, OverworldSprite.dalaameseServant, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1101", null),
+	NPC(NPCType.person, OverworldSprite.dalaamGirl, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1102", null),
+	NPC(NPCType.person, OverworldSprite.starMaster, Direction.left, ActionScript.unknown010, EventFlag.unknown253, NPCConfigFlagStyle.showIfOff, "textNPC1103", null),
+	NPC(NPCType.person, OverworldSprite.dalaamGirl, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1104", null),
+	NPC(NPCType.person, OverworldSprite.chineseGirl, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1105", null),
+	NPC(NPCType.person, OverworldSprite.chineseGirl, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1106", null),
+	NPC(NPCType.object, OverworldSprite.rabbit, Direction.down, ActionScript.unknown008, EventFlag.unknown28C, NPCConfigFlagStyle.showIfOff, "textNPC1107", "textNPC1107Alt"),
+	NPC(NPCType.object, OverworldSprite.rabbit, Direction.down, ActionScript.unknown008, EventFlag.unknown28C, NPCConfigFlagStyle.showIfOff, "textNPC1107", "textNPC1107Alt"),
+	NPC(NPCType.object, OverworldSprite.rabbit, Direction.down, ActionScript.unknown008, EventFlag.unknown28C, NPCConfigFlagStyle.showIfOff, "textNPC1107", "textNPC1107Alt"),
+	NPC(NPCType.person, OverworldSprite.dalaamGirl, Direction.up, ActionScript.unknown008, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.dalaamGirl, Direction.left, ActionScript.unknown008, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1112", null),
+	NPC(NPCType.object, OverworldSprite.ornamentsOnPoosTemple, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.ornamentsOnPoosTemple, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.ornamentsOnPoosTemple, Direction.down, ActionScript.unknown882, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.ornamentsOnPoosTemple, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1117", null),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss6, NPCConfigFlagStyle.showIfOff, "textNPC1118", null),
+	NPC(NPCType.person, OverworldSprite.nessLyingDown, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.paula, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.jeff, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.poo, Direction.left, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1123", null),
+	NPC(NPCType.person, OverworldSprite.happyTurbanGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1124", null),
+	NPC(NPCType.person, OverworldSprite.hiddenArmsDealer, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1125", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.down, ActionScript.unknown008, EventFlag.justRested, NPCConfigFlagStyle.showIfOn, "textNPC1126", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.person, OverworldSprite.ladyInVeil, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1129", null),
+	NPC(NPCType.person, OverworldSprite.oldGuyWithCane, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1130", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1131", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1132", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1133", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1134", null),
+	NPC(NPCType.person, OverworldSprite.happyTurbanGuy, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1135", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1136", null),
+	NPC(NPCType.person, OverworldSprite.ladyInVeil, Direction.up, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1137", null),
+	NPC(NPCType.person, OverworldSprite.bigNoseArabGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1138", null),
+	NPC(NPCType.person, OverworldSprite.arabMrT, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1139", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1140", null),
+	NPC(NPCType.person, OverworldSprite.happyTurbanGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1141", null),
+	NPC(NPCType.person, OverworldSprite.preetProotGuy, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1142", null),
+	NPC(NPCType.object, OverworldSprite.pyramidDoor, Direction.down, ActionScript.unknown008, EventFlag.unknown156, NPCConfigFlagStyle.showIfOff, "textNPC1143", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1144", null),
+	NPC(NPCType.person, OverworldSprite.bigNoseArabGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1145", null),
+	NPC(NPCType.person, OverworldSprite.bigNoseArabGuy, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1146", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1147", null),
+	NPC(NPCType.person, OverworldSprite.preetProotGuy, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1148", null),
+	NPC(NPCType.person, OverworldSprite.tribalWarrior, Direction.down, ActionScript.unknown010, EventFlag.unknown1BD, NPCConfigFlagStyle.showIfOff, "textNPC1149", null),
+	NPC(NPCType.object, OverworldSprite.dungeonMan, Direction.down, ActionScript.unknown008, EventFlag.unknown03E, NPCConfigFlagStyle.showIfOff, "textNPC1150", "textNPC1150Alt"),
+	NPC(NPCType.person, OverworldSprite.tribalWarrior, Direction.down, ActionScript.unknown010, EventFlag.unknown1BD, NPCConfigFlagStyle.showIfOn, "textNPC1151", null),
+	NPC(NPCType.person, OverworldSprite.dungeonMan, Direction.down, ActionScript.unknown498, EventFlag.unknown112, NPCConfigFlagStyle.showIfOn, "textEvent498", null),
+	NPC(NPCType.person, OverworldSprite.hintMan, Direction.down, ActionScript.unknown606, EventFlag.unknown2F0, NPCConfigFlagStyle.showIfOff, "textNPC1153", null),
+	NPC(NPCType.object, OverworldSprite.pyramidDoor, Direction.down, ActionScript.unknown008, EventFlag.unknown156, NPCConfigFlagStyle.showIfOff, "textNPC1143", null),
+	NPC(NPCType.person, OverworldSprite.mustacheArabTurbanGuy, Direction.right, ActionScript.unknown606, EventFlag.deepDarknessReached, NPCConfigFlagStyle.showIfOff, "textNPC1155", null),
+	NPC(NPCType.person, OverworldSprite.bigNoseArabGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1156", null),
+	NPC(NPCType.person, OverworldSprite.preetProotGuy, Direction.down, ActionScript.unknown888, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1157", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown889, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown890, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.camel, Direction.left, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.camel, Direction.left, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.unknown3, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1162", null),
+	NPC(NPCType.object, OverworldSprite.unknown3, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1162", null),
+	NPC(NPCType.object, OverworldSprite.hotelSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1164", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1165", null),
+	NPC(NPCType.object, OverworldSprite.guardianHieroglyph, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.guardianHieroglyph, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown188, NPCConfigFlagStyle.showIfOff, "textNPC1168", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown189, NPCConfigFlagStyle.showIfOff, "textNPC1169", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown197, NPCConfigFlagStyle.showIfOff, "textNPC1170", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown198, NPCConfigFlagStyle.showIfOff, "textNPC1171", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown18A, NPCConfigFlagStyle.showIfOff, "textNPC1172", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown18B, NPCConfigFlagStyle.showIfOff, "textNPC1173", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown18C, NPCConfigFlagStyle.showIfOff, "textNPC1174", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown199, NPCConfigFlagStyle.showIfOff, "textNPC1175", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown18D, NPCConfigFlagStyle.showIfOff, "textNPC1176", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown19A, NPCConfigFlagStyle.showIfOff, "textNPC1177", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown18E, NPCConfigFlagStyle.showIfOff, "textNPC1178", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown19B, NPCConfigFlagStyle.showIfOff, "textNPC1179", null),
+	NPC(NPCType.object, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown008, EventFlag.unknown1B3, NPCConfigFlagStyle.showIfOff, "textNPC1180", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown18F, NPCConfigFlagStyle.showIfOff, "textNPC1181", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown190, NPCConfigFlagStyle.showIfOff, "textNPC1182", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown191, NPCConfigFlagStyle.showIfOff, "textNPC1183", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown19C, NPCConfigFlagStyle.showIfOff, "textNPC1184", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown192, NPCConfigFlagStyle.showIfOff, "textNPC1185", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown193, NPCConfigFlagStyle.showIfOff, "textNPC1186", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown19D, NPCConfigFlagStyle.showIfOff, "textNPC1187", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown194, NPCConfigFlagStyle.showIfOff, "textNPC1188", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown195, NPCConfigFlagStyle.showIfOff, "textNPC1189", null),
+	NPC(NPCType.person, OverworldSprite.guardianHieroglyph, Direction.left, ActionScript.unknown599, EventFlag.unknown196, NPCConfigFlagStyle.showIfOff, "textNPC1190", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown19E, NPCConfigFlagStyle.showIfOff, "textNPC1191", null),
+	NPC(NPCType.person, OverworldSprite.lethalAspHieroglyph, Direction.right, ActionScript.unknown599, EventFlag.unknown19F, NPCConfigFlagStyle.showIfOff, "textNPC1192", null),
+	NPC(NPCType.object, OverworldSprite.pharaohCasket, Direction.down, ActionScript.unknown008, EventFlag.unknown15B, NPCConfigFlagStyle.showIfOff, "textNPC1193", null),
+	NPC(NPCType.object, OverworldSprite.pharaohCasket, Direction.down, ActionScript.unknown008, EventFlag.unknown15B, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.hawksEye, Direction.down, ActionScript.unknown008, EventFlag.unknown15C, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.brickRoadHead, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1196", null),
+	NPC(NPCType.object, OverworldSprite.submarine, Direction.down, ActionScript.unknown008, EventFlag.deepDarknessReached, NPCConfigFlagStyle.showIfOff, "textNPC1197", null),
+	NPC(NPCType.object, OverworldSprite.bicycle, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.realTaxi, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1200", null),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.object, OverworldSprite.treeInPot, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.payPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0013", null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1204", null),
+	NPC(NPCType.object, OverworldSprite.treeInPot, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.object, OverworldSprite.instantRevitalizingDevice, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0622", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1208", null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1209", null),
+	NPC(NPCType.object, OverworldSprite.bench, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1210", null),
+	NPC(NPCType.object, OverworldSprite.madDuck, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.madDuck, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.madDuck, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.slimyLittlePile, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.gruffGoat, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.gruffGoat, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.unknown2FA, NPCConfigFlagStyle.showIfOff, "textNPC1219", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.unknown2FA, NPCConfigFlagStyle.showIfOn, "textNPC1219", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1221", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1133", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1132", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1131", null),
+	NPC(NPCType.object, OverworldSprite.treeInPot, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.left, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1226", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1227", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1228", null),
+	NPC(NPCType.person, OverworldSprite.masterBarf, Direction.right, ActionScript.unknown010, EventFlag.unknown114, NPCConfigFlagStyle.showIfOff, "textNPC1229", null),
+	NPC(NPCType.person, OverworldSprite.birdOnPerch, Direction.right, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1230", null),
+	NPC(NPCType.person, OverworldSprite.unknown4, Direction.down, ActionScript.unknown008, EventFlag.unknown120, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.person, OverworldSprite.hiddenArmsDealer, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1232", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1233", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.right, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1234", null),
+	NPC(NPCType.person, OverworldSprite.deepDarknessPhone, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1235", null),
+	NPC(NPCType.person, OverworldSprite.atmGuyUnderwater, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1236", null),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown891, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.femaleMonkey, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1238", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.right, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1239", null),
+	NPC(NPCType.object, OverworldSprite.unknown2, Direction.down, ActionScript.unknown008, EventFlag.unknown1B7, NPCConfigFlagStyle.showIfOff, "textNPC1240", null),
+	NPC(NPCType.object, OverworldSprite.unknown2, Direction.down, ActionScript.unknown008, EventFlag.unknown1B8, NPCConfigFlagStyle.showIfOff, "textNPC1241", null),
+	NPC(NPCType.object, OverworldSprite.unknown2, Direction.down, ActionScript.unknown008, EventFlag.unknown1B9, NPCConfigFlagStyle.showIfOff, "textNPC1242", null),
+	NPC(NPCType.object, OverworldSprite.unknown2, Direction.down, ActionScript.unknown008, EventFlag.unknown1BA, NPCConfigFlagStyle.showIfOff, "textNPC1243", null),
+	NPC(NPCType.object, OverworldSprite.unknown2, Direction.down, ActionScript.unknown008, EventFlag.unknown1BB, NPCConfigFlagStyle.showIfOff, "textNPC1244", null),
+	NPC(NPCType.object, OverworldSprite.brokenHelicopter, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1245", null),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss7, NPCConfigFlagStyle.showIfOff, "textNPC1246", null),
+	NPC(NPCType.person, OverworldSprite.talkingStone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1247", null),
+	NPC(NPCType.person, OverworldSprite.talkingStone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1248", null),
+	NPC(NPCType.person, OverworldSprite.talkingStone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1249", null),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1250", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1251", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tendaChief, Direction.left, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1252", "textNPC1252Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1253", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1254", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1255", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1256", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1257", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1258", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1259", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.talkingStone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1260", null),
+	NPC(NPCType.person, OverworldSprite.tenda, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1261", "textNPC1250Alt"),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.object, OverworldSprite.rock, Direction.down, ActionScript.unknown008, EventFlag.unknown099, NPCConfigFlagStyle.showIfOff, null, null),
+	NPC(NPCType.object, OverworldSprite.can, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.mailbox, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.weirdJunk, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.spaSign, Direction.down, ActionScript.unknown684, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1267", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.left, ActionScript.unknown606, EventFlag.unknown17E, NPCConfigFlagStyle.showIfOn, "textNPC1268", null),
+	NPC(NPCType.person, OverworldSprite.drAndonuts, Direction.down, ActionScript.unknown008, EventFlag.unknown148, NPCConfigFlagStyle.showIfOn, "textNPC1269", null),
+	NPC(NPCType.person, OverworldSprite.drAndonuts, Direction.left, ActionScript.unknown008, EventFlag.unknown14B, NPCConfigFlagStyle.showIfOn, "textNPC1270", null),
+	NPC(NPCType.person, OverworldSprite.appleKid, Direction.down, ActionScript.unknown767, EventFlag.unknown149, NPCConfigFlagStyle.showIfOn, "textNPC1271", null),
+	NPC(NPCType.person, OverworldSprite.mrSaturn, Direction.right, ActionScript.unknown606, EventFlag.unknown14A, NPCConfigFlagStyle.showIfOn, "textNPC1272", null),
+	NPC(NPCType.object, OverworldSprite.brokenPhaseDistorter, Direction.down, ActionScript.unknown008, EventFlag.unknown04B, NPCConfigFlagStyle.showIfOn, "textNPC1273", null),
+	NPC(NPCType.object, OverworldSprite.phaseDistorter, Direction.down, ActionScript.unknown008, EventFlag.unknown14C, NPCConfigFlagStyle.showIfOn, "textNPC1274", null),
+	NPC(NPCType.object, OverworldSprite.phaseDistorter, Direction.down, ActionScript.unknown008, EventFlag.unknown147, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.yourSanctuaryPointBoss, Direction.down, ActionScript.unknown693, EventFlag.defeatedSanctuaryBoss8, NPCConfigFlagStyle.showIfOff, "textNPC1276", null),
+	NPC(NPCType.person, OverworldSprite.nessLyingDown, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.paula, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.jeff, Direction.down, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.poo, Direction.left, ActionScript.unknown008, EventFlag.unknown15D, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.flame, Direction.down, ActionScript.unknown693, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1282", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown771, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1283", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1284", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1285", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1286", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1287", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1288", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.left, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1289", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1290", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1291", null),
+	NPC(NPCType.person, OverworldSprite.lilTalkingStone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1292", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1293", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1294", null),
+	NPC(NPCType.person, OverworldSprite.lilToucanPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1295", null),
+	NPC(NPCType.person, OverworldSprite.lilToucanPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1295", null),
+	NPC(NPCType.person, OverworldSprite.lilToucanPhone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1295", null),
+	NPC(NPCType.person, OverworldSprite.lilTenda, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1298", null),
+	NPC(NPCType.object, OverworldSprite.woodBox, Direction.down, ActionScript.unknown008, EventFlag.unknown28B, NPCConfigFlagStyle.showIfOff, null, "textNPC1299Alt"),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1300", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1301", null),
+	NPC(NPCType.object, OverworldSprite.sign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1301", null),
+	NPC(NPCType.object, OverworldSprite.badPaletteFountain, Direction.down, ActionScript.unknown672, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.redFountainLostUnderworld, Direction.down, ActionScript.unknown673, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.badPaletteFountain, Direction.down, ActionScript.unknown674, EventFlag.none, NPCConfigFlagStyle.showAlways, null, null),
+	NPC(NPCType.object, OverworldSprite.robotBroken, Direction.right, ActionScript.unknown008, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.robotBroken, Direction.left, ActionScript.unknown008, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.robotBroken, Direction.left, ActionScript.unknown008, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.lyingDownRobotNess, Direction.right, ActionScript.unknown008, EventFlag.usePostgameMusic, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.object, OverworldSprite.phaseDistorter, Direction.down, ActionScript.unknown008, EventFlag.unknown174, NPCConfigFlagStyle.showIfOn, "textNPC1274", null),
+	NPC(NPCType.person, OverworldSprite.none, Direction.down, ActionScript.unknown000, EventFlag.unknown154, NPCConfigFlagStyle.showIfOn, null, null),
+	NPC(NPCType.person, OverworldSprite.weirdHornedGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1312", null),
+	NPC(NPCType.person, OverworldSprite.flyingMan, Direction.right, ActionScript.unknown012, EventFlag.unknown019, NPCConfigFlagStyle.showIfOff, "textNPC1313", null),
+	NPC(NPCType.person, OverworldSprite.flyingMan, Direction.down, ActionScript.unknown606, EventFlag.unknown01A, NPCConfigFlagStyle.showIfOff, "textNPC1314", null),
+	NPC(NPCType.person, OverworldSprite.flyingMan, Direction.right, ActionScript.unknown012, EventFlag.unknown01B, NPCConfigFlagStyle.showIfOff, "textNPC1315", null),
+	NPC(NPCType.person, OverworldSprite.flyingMan, Direction.up, ActionScript.unknown012, EventFlag.unknown01C, NPCConfigFlagStyle.showIfOff, "textNPC1316", null),
+	NPC(NPCType.person, OverworldSprite.flyingMan, Direction.right, ActionScript.unknown606, EventFlag.unknown01D, NPCConfigFlagStyle.showIfOff, "textNPC1317", null),
+	NPC(NPCType.person, OverworldSprite.weirdHornedGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1318", null),
+	NPC(NPCType.person, OverworldSprite.chick, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1319", null),
+	NPC(NPCType.object, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0012", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.invisible2, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.person, OverworldSprite.rabbit, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1322", null),
+	NPC(NPCType.person, OverworldSprite.littleKidInBlue, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1323", null),
+	NPC(NPCType.person, OverworldSprite.urbanZombie, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1324", null),
+	NPC(NPCType.person, OverworldSprite.masterBelch, Direction.right, ActionScript.unknown013, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1325", null),
+	NPC(NPCType.person, OverworldSprite.manlyFish, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1326", null),
+	NPC(NPCType.person, OverworldSprite.kidInBaseballHelmet, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1327", null),
+	NPC(NPCType.person, OverworldSprite.kidInDerbyHat, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1328", null),
+	NPC(NPCType.person, OverworldSprite.happyGirlInRed, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1329", null),
+	NPC(NPCType.person, OverworldSprite.picky, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1330", null),
+	NPC(NPCType.person, OverworldSprite.blondePonytailGirl, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1331", null),
+	NPC(NPCType.person, OverworldSprite.monkey, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1332", null),
+	NPC(NPCType.person, OverworldSprite.kidInDetectiveHat, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1333", null),
+	NPC(NPCType.person, OverworldSprite.rabbit, Direction.right, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1334", null),
+	NPC(NPCType.person, OverworldSprite.ness, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1335", null),
+	NPC(NPCType.person, OverworldSprite.chick, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1336", null),
+	NPC(NPCType.person, OverworldSprite.flower, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1337", null),
+	NPC(NPCType.person, OverworldSprite.flower, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1337", null),
+	NPC(NPCType.person, OverworldSprite.flower, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1337", null),
+	NPC(NPCType.person, OverworldSprite.starMasterGuy, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1340", null),
+	NPC(NPCType.person, OverworldSprite.starMasterGuy, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1341", null),
+	NPC(NPCType.person, OverworldSprite.mom, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1342", null),
+	NPC(NPCType.person, OverworldSprite.tracy, Direction.right, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1343", null),
+	NPC(NPCType.person, OverworldSprite.king, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1344", null),
+	NPC(NPCType.person, OverworldSprite.pokey, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1345", null),
+	NPC(NPCType.person, OverworldSprite.everdred, Direction.down, ActionScript.unknown606, EventFlag.unknown27F, NPCConfigFlagStyle.showIfOff, "textNPC1346", null),
+	NPC(NPCType.object, OverworldSprite.crossGravestone, Direction.down, ActionScript.unknown008, EventFlag.flyingMan1Dead, NPCConfigFlagStyle.showIfOn, "textNPC1347", null),
+	NPC(NPCType.object, OverworldSprite.crossGravestone, Direction.down, ActionScript.unknown008, EventFlag.flyingMan2Dead, NPCConfigFlagStyle.showIfOn, "textNPC1348", null),
+	NPC(NPCType.object, OverworldSprite.crossGravestone, Direction.down, ActionScript.unknown008, EventFlag.flyingMan3Dead, NPCConfigFlagStyle.showIfOn, "textNPC1349", null),
+	NPC(NPCType.object, OverworldSprite.crossGravestone, Direction.down, ActionScript.unknown008, EventFlag.flyingMan4Dead, NPCConfigFlagStyle.showIfOn, "textNPC1350", null),
+	NPC(NPCType.object, OverworldSprite.crossGravestone, Direction.down, ActionScript.unknown008, EventFlag.flyingMan5Dead, NPCConfigFlagStyle.showIfOn, "textNPC1351", null),
+	NPC(NPCType.object, OverworldSprite.crossGravestone, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1352", null),
+	NPC(NPCType.object, OverworldSprite.weirdTailThing, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1353", null),
+	NPC(NPCType.person, OverworldSprite.kraken, Direction.right, ActionScript.unknown602, EventFlag.unknown1B4, NPCConfigFlagStyle.showIfOff, "textNPC1354", null),
+	NPC(NPCType.person, OverworldSprite.kraken, Direction.left, ActionScript.unknown602, EventFlag.unknown1B5, NPCConfigFlagStyle.showIfOff, "textNPC1355", null),
+	NPC(NPCType.person, OverworldSprite.kraken, Direction.right, ActionScript.unknown602, EventFlag.unknown1B6, NPCConfigFlagStyle.showIfOff, "textNPC1356", null),
+	NPC(NPCType.object, OverworldSprite.weirdTailThing, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1357", null),
+	NPC(NPCType.object, OverworldSprite.evilManiMani, Direction.down, ActionScript.unknown010, EventFlag.magicantCompleted, NPCConfigFlagStyle.showIfOff, "textNPC1358", "textNPC1358Alt"),
+	NPC(NPCType.person, OverworldSprite.jackie, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1359", null),
+	NPC(NPCType.person, OverworldSprite.bigSmileLady, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1360", null),
+	NPC(NPCType.person, OverworldSprite.drinkingGuy, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1361", null),
+	NPC(NPCType.person, OverworldSprite.blondeLadyRedDress, Direction.up, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1362", null),
+	NPC(NPCType.person, OverworldSprite.roboPump, Direction.up, ActionScript.unknown597, EventFlag.roboPump1Fought, NPCConfigFlagStyle.showIfOff, "textNPC1363", null),
+	NPC(NPCType.person, OverworldSprite.nurse, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1364", null),
+	NPC(NPCType.person, OverworldSprite.doctor, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1365", null),
+	NPC(NPCType.person, OverworldSprite.abstractArt, Direction.right, ActionScript.unknown597, EventFlag.abstractArtFought, NPCConfigFlagStyle.showIfOff, "textNPC1366", null),
+	NPC(NPCType.person, OverworldSprite.healer, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1367", null),
+	NPC(NPCType.person, OverworldSprite.blondeHappyLady, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1368", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.up, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1369", null),
+	NPC(NPCType.person, OverworldSprite.foursideMuseumGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1370", null),
+	NPC(NPCType.person, OverworldSprite.roboPump, Direction.up, ActionScript.unknown597, EventFlag.roboPump2Fought, NPCConfigFlagStyle.showIfOff, "textNPC1371", null),
+	NPC(NPCType.person, OverworldSprite.sortaBaldGuyInSuit, Direction.down, ActionScript.unknown605, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1372", null),
+	NPC(NPCType.person, OverworldSprite.hotelAttendant, Direction.down, ActionScript.unknown008, EventFlag.justRested, NPCConfigFlagStyle.showIfOn, "textNPC1373", null),
+	NPC(NPCType.person, OverworldSprite.punkGuy, Direction.down, ActionScript.unknown606, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1374", null),
+	NPC(NPCType.object, OverworldSprite.atm, Direction.right, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1375", "textNPC0012Alt"),
+	NPC(NPCType.person, OverworldSprite.telephone, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC0060", null),
+	NPC(NPCType.person, OverworldSprite.mrT, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1377", null),
+	NPC(NPCType.person, OverworldSprite.badPaletteGuyOnettNight, Direction.down, ActionScript.unknown012, EventFlag.unknown0A5, NPCConfigFlagStyle.showIfOff, "textNPC1378", null),
+	NPC(NPCType.person, OverworldSprite.sneakyGuyWithAHat, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1379", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1380", null),
+	NPC(NPCType.person, OverworldSprite.beachLady, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1381", null),
+	NPC(NPCType.person, OverworldSprite.toughGuyWithSunglasses, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1382", null),
+	NPC(NPCType.person, OverworldSprite.darkHairedGuyInSuit, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1383", null),
+	NPC(NPCType.person, OverworldSprite.unassumingLocalGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1384", null),
+	NPC(NPCType.person, OverworldSprite.nerdyRedHairedGuy, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1385", null),
+	NPC(NPCType.person, OverworldSprite.scuzzyGuy, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1386", null),
+	NPC(NPCType.person, OverworldSprite.chineseGirl, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1387", null),
+	NPC(NPCType.person, OverworldSprite.punkGuy, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1388", null),
+	NPC(NPCType.person, OverworldSprite.bodyguard, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1389", null),
+	NPC(NPCType.person, OverworldSprite.shyGuy, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1390", null),
+	NPC(NPCType.person, OverworldSprite.blondeGuyInASuit, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1391", null),
+	NPC(NPCType.person, OverworldSprite.orangeHairedNerdKid, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1392", null),
+	NPC(NPCType.person, OverworldSprite.redClothesPerson, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1393", null),
+	NPC(NPCType.person, OverworldSprite.jamaicanGuy, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1394", null),
+	NPC(NPCType.person, OverworldSprite.monotoli, Direction.up, ActionScript.unknown008, EventFlag.unknown277, NPCConfigFlagStyle.showIfOff, "textNPC1395", null),
+	NPC(NPCType.person, OverworldSprite.shipCaptain, Direction.down, ActionScript.unknown008, EventFlag.unknown03F, NPCConfigFlagStyle.showIfOff, "textNPC1396", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1397", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1398", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.left, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1398", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.right, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1398", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1401", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1402", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.down, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1403", null),
+	NPC(NPCType.person, OverworldSprite.surfer, Direction.up, ActionScript.unknown012, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1404", null),
+	NPC(NPCType.object, OverworldSprite.hotelSign, Direction.down, ActionScript.unknown008, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1405", null),
+	NPC(NPCType.object, OverworldSprite.evilManiMani, Direction.down, ActionScript.unknown010, EventFlag.none, NPCConfigFlagStyle.showAlways, "textNPC1406", "textNPC1358Alt"),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown320, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x67, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown321, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x5A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown322, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x5A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown323, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x00, 0x01, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown324, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x6A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown325, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x11, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown326, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x5A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown327, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown328, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x6F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown329, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown32A, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x02, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown32B, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x04, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown32C, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown32D, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x66, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown32E, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x75, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown32F, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x4D, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown330, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x66, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown331, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x36, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown332, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x93, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown333, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown334, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x62, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown335, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x37, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown336, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x66, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown337, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x95, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown338, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x02, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown339, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x00, 0x01, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown33A, NPCConfigFlagStyle.showAlways, "textNPC1408", [0xE0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.casket, Direction.down, ActionScript.unknown009, EventFlag.unknown33B, NPCConfigFlagStyle.showAlways, "textNPC1434", [0xE1, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.casket, Direction.down, ActionScript.unknown009, EventFlag.unknown33C, NPCConfigFlagStyle.showAlways, "textNPC1434", [0x42, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown33D, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x58, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown33E, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x58, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown33F, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x58, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown340, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x58, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown341, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x58, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown342, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x58, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown343, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x58, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown344, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x0A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown345, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x09, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown346, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x25, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown347, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x95, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown348, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x66, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown349, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x67, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown34A, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x40, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown34B, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x90, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown34C, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x5A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown34D, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x0E, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown34E, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x72, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown34F, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x0F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown350, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x62, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown351, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x46, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown352, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown353, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x73, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown354, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xF4, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown355, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x08, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown356, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x93, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown357, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x87, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown358, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x74, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown359, NPCConfigFlagStyle.showAlways, "textNPC1408", [0xBF, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown35A, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x71, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown35B, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x51, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown35C, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x6C, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown35D, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x93, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown35E, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x90, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown35F, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x96, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown360, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x9F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown361, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x8F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown362, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x07, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown363, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x3A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown364, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x0C, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown365, NPCConfigFlagStyle.showAlways, "textNPC1474", [0xA0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown366, NPCConfigFlagStyle.showAlways, "textNPC1408", [0xC3, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown367, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x64, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown368, NPCConfigFlagStyle.showAlways, "textNPC1474", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown369, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x5F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown36A, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x7F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown36B, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x5F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown36C, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x8C, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown36D, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x5A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown36E, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x6C, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown36F, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x5A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown370, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x5D, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown371, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x5A, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown372, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x91, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown373, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE9, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown374, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE9, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown375, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown376, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE1, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown377, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x62, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown378, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE8, 0x04, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown379, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x9F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown37A, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x62, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown37B, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xD8, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown37C, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x71, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown37D, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x72, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown37E, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x75, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown37F, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x52, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown380, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x81, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown381, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x02, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown382, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x94, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown383, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x91, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown384, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x66, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown385, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xBF, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown386, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x5D, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown387, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x93, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown388, NPCConfigFlagStyle.showAlways, "textNPC1474", [0xFD, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown389, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x9F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown38A, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x74, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown38B, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x3C, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown38C, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x9B, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown38D, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xE9, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown38E, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x6C, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown38F, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x81, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown390, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x97, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown391, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x0D, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown392, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x07, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown393, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x66, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown394, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x09, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown009, EventFlag.unknown395, NPCConfigFlagStyle.showAlways, "textNPC1434", [0xA0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown009, EventFlag.unknown396, NPCConfigFlagStyle.showAlways, "textNPC1434", [0x73, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown009, EventFlag.unknown397, NPCConfigFlagStyle.showAlways, "textNPC1434", [0xC8, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown009, EventFlag.unknown398, NPCConfigFlagStyle.showAlways, "textNPC1434", [0x45, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown009, EventFlag.unknown399, NPCConfigFlagStyle.showAlways, "textNPC1434", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.petrifiedRoyalGuard, Direction.down, ActionScript.unknown009, EventFlag.unknown39A, NPCConfigFlagStyle.showAlways, "textNPC1434", [0x3B, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown39B, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown39C, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xDB, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown39D, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x9F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown39E, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x62, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown39F, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xEE, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3A0, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x5F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3A1, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x03, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3A2, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xC7, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3A3, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x0A, 0x01, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3A4, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x71, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3A5, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x7F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3A6, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x05, 0x01, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown3A7, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x64, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown3A8, NPCConfigFlagStyle.showAlways, "textNPC1474", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown3A9, NPCConfigFlagStyle.showAlways, "textNPC1474", [0xC9, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown3AA, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x6E, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown3AB, NPCConfigFlagStyle.showAlways, "textNPC1474", [0xEC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown3AC, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x7E, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.dalaamPresent, Direction.down, ActionScript.unknown009, EventFlag.unknown3AD, NPCConfigFlagStyle.showAlways, "textNPC1474", [0x6E, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3AE, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x65, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3AF, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x9F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B0, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x49, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B1, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x56, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B2, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x65, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B3, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x71, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B4, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B5, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xBE, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B6, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xF2, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B7, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x39, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B8, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xFC, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3B9, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x65, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3BA, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x57, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3BB, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x75, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3BC, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xF5, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3BD, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x71, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3BE, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xF6, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3BF, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x94, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.trashCan, Direction.down, ActionScript.unknown009, EventFlag.unknown3C0, NPCConfigFlagStyle.showAlways, "textNPC1408", [0x2D, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.lilGiftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C1, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x64, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.lilGiftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C2, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x82, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.lilGiftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C3, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x3D, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.lilGiftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C4, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x72, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.lilGiftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C5, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x3F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C6, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x2F, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C7, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x82, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C8, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x47, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3C9, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xA0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3CA, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x73, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3CB, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xA0, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3CC, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x62, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3CD, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x48, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3CE, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x18, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3CF, NPCConfigFlagStyle.showAlways, "textNPC1407", [0xCF, 0x00, 0x00, 0x00]),
+	NPC(NPCType.itemBox, OverworldSprite.giftBox, Direction.down, ActionScript.unknown009, EventFlag.unknown3D0, NPCConfigFlagStyle.showAlways, "textNPC1407", [0x19, 0x00, 0x00, 0x00]),
 ];

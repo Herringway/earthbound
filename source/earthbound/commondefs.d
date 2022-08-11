@@ -5357,8 +5357,8 @@ struct TimedDelivery {
 	short unknown4; ///4
 	short unknown6; ///6
 	ushort deliveryTime; ///8
-	const(ubyte)[] textPointer1; ///10
-	const(ubyte)[] textPointer2; ///13
+	string textPointer1; ///10
+	string textPointer2; ///13
 	short unknown18; ///16
 	short unknown20; ///18
 }
@@ -5380,9 +5380,9 @@ struct Item {
 	ubyte flags; ///
 	ushort battleAction; ///
 	ItemParameters parameters; ///
-	const(ubyte)[] helpText; ///
+	string helpText; ///
 	///
-	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, const(ubyte)[] helpText ) {
+	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, string helpText ) {
 		this.name = name;
 		this.type = type;
 		this.cost = cost;
@@ -5493,14 +5493,13 @@ struct NPC {
 	ushort actionScript; ///
 	ushort eventFlag; ///
 	ubyte appearanceStyle; ///
-	const(ubyte)[] talkText; ///
+	string talkText; ///
 	union {
-		const(ubyte)[] checkText; ///
+		string checkText; ///
 		uint item; ///
-		ubyte[4] somethingElse; ///
 	}
 	///
-	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, const(ubyte)[] tt, const(ubyte)[] ct) {
+	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, string tt, string ct) {
 		type = t;
 		sprite = s;
 		direction = d;
@@ -5511,7 +5510,7 @@ struct NPC {
 		checkText = ct;
 	}
 	///
-	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, const(ubyte)[] tt, ubyte[4] se) {
+	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, string tt, uint se) {
 		type = t;
 		sprite = s;
 		direction = d;
@@ -5519,7 +5518,7 @@ struct NPC {
 		eventFlag = ef;
 		appearanceStyle = ast;
 		talkText = tt;
-		somethingElse = se;
+		item = se;
 	}
 }
 ///
@@ -5690,8 +5689,8 @@ struct Enemy {
 	uint exp; ///37
 	ushort money; ///41
 	ushort eventScript; ///43
-	const(ubyte)[] encounterTextPointer; ///45
-	const(ubyte)[] deathTextPointer; ///49
+	string encounterTextPointer; ///45
+	string deathTextPointer; ///49
 	ubyte battleSpritePalette; ///53
 	ubyte level; ///54
 	ubyte music; ///55
@@ -5727,7 +5726,7 @@ struct BattleAction {
 	ubyte target; /// 1
 	ubyte type; /// 2
 	ubyte ppCost; /// 3
-	const(ubyte)[] text; /// 4
+	string text; /// 4
 	void function() func; /// 8
 }
 ///
@@ -5785,7 +5784,7 @@ struct DisplayTextState {
 }
 ///
 struct DoorEntryA {
-	const(ubyte)[] textPtr; /// 0
+	string textPtr; /// 0
 	ushort eventFlag; /// 4
 	ushort unknown6; /// 6
 	ushort unknown8; /// 8
@@ -5794,11 +5793,11 @@ struct DoorEntryA {
 ///
 struct DoorEntryB {
 	ushort eventFlag; ///
-	const(ubyte)[] textPtr; ///
+	string textPtr; ///
 }
 ///
 struct DoorEntryC {
-	const(ubyte)[] textPtr; ///
+	string textPtr; ///
 }
 ///
 struct SectorDoors {
@@ -6028,7 +6027,7 @@ struct Unknown7EAEFCEntry {
 struct TelephoneContact {
 	ubyte[25] title; ///
 	ushort eventFlag; ///
-	const(ubyte)[] text; ///
+	string text; ///
 }
 ///
 struct PSIAbility {
@@ -6042,7 +6041,7 @@ struct PSIAbility {
 	ubyte pooLevel; ///8
 	ubyte menuX; ///9
 	ubyte menuY; ///10
-	const(ubyte)[] text; ///11
+	string text; ///11
 }
 ///
 struct ActiveHotspot {
@@ -7003,4 +7002,15 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 		}
 	}
 	return script[0 .. 1];
+}
+ubyte[] allBytes(T...)(T args) {
+    struct X {
+    	align(1):
+        T stuff;
+    }
+    union Z {
+        X x;
+        ubyte[X.sizeof] bytes;
+    }
+    return Z(X(args)).bytes.dup;
 }

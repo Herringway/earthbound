@@ -508,7 +508,7 @@ __gshared short nextMapMusicTrack; /// $5DD6
 __gshared short unknown7E5DD8; /// $5DD8
 __gshared short unknown7E5DDA; /// $5DDA
 __gshared short unknown7E5DDC; /// $5DDC
-__gshared const(ubyte)* unknown7E5DDE; /// $5DDE
+__gshared string unknown7E5DDE; /// $5DDE
 
 __gshared QueuedInteraction[4] queuedInteractions; /// $5DEA
 __gshared short currentQueuedInteraction; /// $5E02
