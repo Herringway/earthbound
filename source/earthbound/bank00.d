@@ -618,8 +618,8 @@ void RefreshMapAtPosition(short x, short y) {
 	BG1_X_POS = x;
 	BG2_Y_POS = y;
 	BG1_Y_POS = y;
-	ushort x04 = cast(short)(((x & 0x8000) != 0) ? ((x / 8) | 0xE000) : (x / 8));
-	ushort x02 = cast(short)(((y & 0x8000) != 0) ? ((y / 8) | 0xE000) : (y / 8));
+	short x04 = x / 8;
+	short x02 = y / 8;
 	while ((Unknown7E4374 - x04) != 0) {
 		if (((Unknown7E4374 - x04) < 0) != 0) {
 			Unknown7E4374++;
