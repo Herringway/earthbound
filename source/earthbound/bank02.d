@@ -7766,7 +7766,7 @@ void UnknownC2EAEA(short arg1) {
 		x26[i].unknown0 = 0xE0;
 		//weird. why is it done like this?
 		x26[i].unknown10 = cast(ubyte)((UnknownC3F8B1[i + Unknown7EAAB2]));
-		x26[i].unknown11 = cast(ubyte)((UnknownC3F8B1[i + Unknown7EAAB2] >> 8) + (Unknown7EAAB4 * 2) + 32);
+		x26[i].flags = cast(ubyte)((UnknownC3F8B1[i + Unknown7EAAB2] >> 8) + (Unknown7EAAB4 * 2) + 32);
 		x26[i].unknown3 = 0xF0;
 		x26[i].unknown4 = 1;
 	}
@@ -7843,7 +7843,7 @@ void UnknownC2EAEA(short arg1) {
 	x26[(x24 * x22) - 1].unknown4 = 0x81;
 	memcpy(&Unknown7EAC16[Unknown7EAAB4][0], &Unknown7EAAD6[Unknown7EAAB4][0], 80);
 	for (short i = 0; i < 16; i++) {
-		Unknown7EAC16[Unknown7EAAB4][0].unknown11 += 8;
+		Unknown7EAC16[Unknown7EAAB4][0].flags += 8;
 	}
 	Unknown7EAAC6[Unknown7EAAB4] = cast(ubyte)x22;
 	Unknown7EAACE[Unknown7EAAB4] = cast(ubyte)x24;

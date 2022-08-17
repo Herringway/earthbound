@@ -5481,7 +5481,7 @@ struct NPC {
 struct UnknownC42B0DEntry {
 	ubyte unknown0;
 	ubyte unknown1;
-	UnknownC42B0DSubEntry[2][] unknown2;
+	SpriteMap[2][] unknown2;
 }
 struct UnknownC42B0DSubEntry {
 	ubyte unknown0;
@@ -5584,7 +5584,7 @@ struct SpriteMap {
 		SpriteMap* unknown1ptr;
 		struct {
 			ubyte unknown10;
-			ubyte unknown11;
+			ubyte flags;
 		}
 	}
 	ubyte unknown3;

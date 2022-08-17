@@ -805,7 +805,7 @@ void UnknownC01B15(const(SpriteMap)* arg1) {
 		ubyte y = SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown4;
 		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown0 = 0xFF;
 		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown10 = 0xFF;
-		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown11 = 0xFF;
+		SpriteTable7E467E[x10 / SpriteMap.sizeof].flags = 0xFF;
 		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown3 = 0xFF;
 		SpriteTable7E467E[x10 / SpriteMap.sizeof].unknown4 = 0xFF;
 		x10 += SpriteMap.sizeof;
@@ -869,12 +869,12 @@ short UnknownC01C52(short arg1, short arg2, short arg3) {
 void UnknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)* arg4) {
 	// why???
 	SpriteMap* x10 = &SpriteTable7E467E.ptr[arg1];
-	const(UnknownC42B0DSubEntry)* x06 = &arg4.unknown2[0][0];
+	const(SpriteMap)* x06 = &arg4.unknown2[0][0];
 	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < arg4.unknown0; j++) {
 			x10.unknown0 = x06.unknown0;
 			x10.unknown10 = cast(ubyte)UnknownC4303C[arg2 + j];
-			x10.unknown11 = cast(ubyte)((x06.unknown2 & 0xFE) | ((UnknownC4303C[arg2 + j] >> 8) & 0xFF) | arg3);
+			x10.flags = cast(ubyte)((x06.flags & 0xFE) | ((UnknownC4303C[arg2 + j] >> 8) & 0xFF) | arg3);
 			x10.unknown3 = x06.unknown3;
 			x10.unknown4 = x06.unknown4;
 			x10++;
@@ -5096,7 +5096,7 @@ void UnknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 		}
 		Unknown7E009F = ypos;
 		x.startingTile = y.unknown10;
-		x.flags = y.unknown11;
+		x.flags = y.flags;
 		xpos = cast(byte)y.unknown3;
 		xpos += xbase;
 		x.xCoord = cast(byte)xpos;
@@ -6869,11 +6869,11 @@ void UnknownC0A3A4(short, short id) {
 	byte y = -1;
 	for (ubyte i = UNKNOWN_30X2_TABLE_38[id / 2] >> 8; (--i & 0x80) == 0; ) {
 		y++;
-		(cast()ActionScript8C[y]).unknown11 = (ActionScript8C[y].unknown11 & 0xCF) | (ActionScript00 & 0xFF);
+		(cast()ActionScript8C[y]).flags = (ActionScript8C[y].flags & 0xCF) | (ActionScript00 & 0xFF);
 	}
 	for (ubyte i = UNKNOWN_30X2_TABLE_38[ActionScript88 / 2] & 0xFF; (--i & 0x80) == 0; ) {
 		y++;
-		(cast()ActionScript8C[y]).unknown11 = (ActionScript8C[y].unknown11 & 0xCF) | (ActionScript02 & 0xFF);
+		(cast()ActionScript8C[y]).flags = (ActionScript8C[y].flags & 0xCF) | (ActionScript02 & 0xFF);
 	}
 	Unknown7E000B = ActionScript8E;
 	Unknown7E2400 = EntityDrawPriority[ActionScript88 / 2];

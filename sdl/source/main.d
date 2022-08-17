@@ -336,7 +336,7 @@ void main(string[] args) {
             }
             writeln("----");
             foreach (sprMap; chain(Unknown7E2404[], Unknown7E2506[], Unknown7E2608[], Unknown7E270A[]).filter!(x => x != null)) {
-                writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.unknown0, sprMap.unknown10, sprMap.unknown11, sprMap.unknown3, sprMap.unknown4);
+                writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.unknown0, sprMap.unknown10, sprMap.flags, sprMap.unknown3, sprMap.unknown4);
             }
             dumpEntities = false;
         }
