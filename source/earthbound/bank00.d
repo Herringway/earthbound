@@ -2164,9 +2164,11 @@ void UnknownC0449B() {
 	short x02_2 = 1;
 	NPCCollisionCheck(x12.integer, x16.integer, gameState.currentPartyMembers);
 	if (EntityCollidedObjects[23] != -1) {
+		tracef("Couldn't move due to collision");
 		x02_2 = 0;
 	}
 	if ((x04 & 0xC0) != 0) {
+		tracef("Couldn't move due to tile type");
 		x02_2 = 0;
 	}
 	if (Unknown7E5DA8 != -1) {
@@ -5305,7 +5307,7 @@ short InitEntity(short actionScript, short x, short y) {
 	if (allocationFailed) {
 		return 0;
 	}
-	tracef("Initializing entity slot %s with %s at %s,%s", newEntity, cast(ActionScript)actionScript, x, y);
+	tracef("Initializing entity slot %s with %s at %s,%s", newEntity / 2, cast(ActionScript)actionScript, x, y);
 	bool __ignored;
 	short newScript = UnknownC09D03(__ignored);
 	EntityScriptIndexTable[newEntity / 2] = newScript;
