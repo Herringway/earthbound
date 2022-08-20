@@ -1708,7 +1708,7 @@ void UnknownC03A94(short arg1) {
 	Unknown7E5DA8 = 0xFFFF;
 	short x02 = Unknown7E5D9A;
 	Unknown7E5D9A = 0;
-	UnknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers, 4);
+	UnknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers, Direction.Down);
 	Unknown7E5D9A = x02;
 	if (Unknown7E5DA8 != -1) {
 		UnknownC07526(Unknown7E5DA8, Unknown7E5DAA);
@@ -2943,23 +2943,23 @@ short UnknownC059EF() {
 }
 
 /// $C05B4E
-short UnknownC05B4E(short arg1) {
+short UnknownC05B4E(short direction) {
 	Unknown7E5DA4 = 0;
 	Unknown7E5DB4++;
-	return (UnknownC05769(UnknownC200D1[arg1 / 2]) != 0) ? -256 : arg1;
+	return (UnknownC05769(UnknownC200D1[direction / 2]) != 0) ? -256 : direction;
 }
 
 /// $C05B7B
-short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
+short UnknownC05B7B(short arg1, short arg2, short arg3, short direction) {
 	Unknown7E5DB8 = 0;
 	Unknown7E5DB4 = 0;
 	Unknown7E5DA4 = 0;
-	Unknown7E5DA6 = arg4;
-	Unknown7E5DA2 = arg4;
+	Unknown7E5DA6 = direction;
+	Unknown7E5DA2 = direction;
 	Unknown7E5DAC = arg1;
 	Unknown7E5DAE = arg2;
 	short x12;
-	switch (arg4) {
+	switch (direction) {
 		case Direction.Up:
 			x12 = UnknownC057E8();
 			if (x12 != -1) {
@@ -3000,9 +3000,9 @@ short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
 		case Direction.UpRight:
 		case Direction.DownLeft:
 		case Direction.DownRight:
-			x12 = UnknownC05B4E(arg4);
+			x12 = UnknownC05B4E(direction);
 			if (x12 != -256) {
-				x12 = arg4;
+				x12 = direction;
 			}
 			break;
 		default: break;
@@ -3013,7 +3013,7 @@ short UnknownC05B7B(short arg1, short arg2, short arg3, short arg4) {
 	if ((x12 == -1) || (x12 == -256)) {
 		return Unknown7E5DA4;
 	}
-	Unknown7E5DB8 = (x12 != arg4) ? 1 : 0;
+	Unknown7E5DB8 = (x12 != direction) ? 1 : 0;
 	Unknown7E5DA6 = x12;
 	return Unknown7E5DA4 & 0x3F;
 }
