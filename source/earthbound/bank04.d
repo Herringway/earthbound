@@ -4353,13 +4353,13 @@ void UnknownC4A377() {
 	}
 	CopyToVram(0, 0x800, 0x7C00, &Unknown7F0000[0]);
 	UnknownC2CFE5(&LoadedBGDataLayer1, &animatedBackgrounds[295]);
-	LoadedBGDataLayer1.PalettePointer = &palettes[2];
-	memcpy(&LoadedBGDataLayer1.Palette[0], &BattleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
-	memcpy(&LoadedBGDataLayer1.Palette2[0], &BattleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
-	memcpy(&LoadedBGDataLayer1.PalettePointer[0], &LoadedBGDataLayer1.Palette[0], 0x20);
-	LoadedBGDataLayer1.TargetLayer = 2;
+	LoadedBGDataLayer1.palettePointer = &palettes[2];
+	memcpy(&LoadedBGDataLayer1.palette[0], &BattleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
+	memcpy(&LoadedBGDataLayer1.palette2[0], &BattleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
+	memcpy(&LoadedBGDataLayer1.palettePointer[0], &LoadedBGDataLayer1.palette[0], 0x20);
+	LoadedBGDataLayer1.targetLayer = 2;
 	GenerateBattleBGFrame(&LoadedBGDataLayer1, 0);
-	LoadedBGDataLayer2.TargetLayer = 0;
+	LoadedBGDataLayer2.targetLayer = 0;
 }
 
 /// $C4A591

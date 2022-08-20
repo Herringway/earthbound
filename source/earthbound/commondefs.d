@@ -5521,42 +5521,42 @@ struct AnimatedBackground {
 }
 
 struct LoadedBackgroundData {
-	ubyte TargetLayer; //0
-	ubyte Bitdepth; //1
-	ubyte FreezePaletteScrolling; //2
+	ubyte targetLayer; //0
+	ubyte bitDepth; //1
+	ubyte freezePaletteScrolling; //2
 	PaletteShiftingStyle paletteShiftingStyle; //3
-	ubyte PaletteCycle1First; //4
-	ubyte PaletteCycle1Last; //5
-	ubyte PaletteCycle2First; //6
-	ubyte PaletteCycle2Last; //7
-	ubyte PaletteCycle1Step; //8
-	ubyte PaletteCycle2Step; //9
-	ubyte PaletteChangeSpeed; //10
-	ubyte PaletteChangeDurationLeft; //11
-	ushort[16] Palette; //12
-	ushort[16] Palette2; //44
-	ushort[16]* PalettePointer; //76
-	ubyte[4] ScrollingMovements; //78
-	ubyte CurrentScrollingMovement; //82
-	short ScrollingDurationLeft; //83
-	short HorizontalPosition; //85
-	short VerticalPosition; //87
-	short HorizontalVelocity; //89
-	short VerticalVelocity; //91
-	short HorizontalAcceleration; //93
-	short VerticalAcceleration; //95
-	ubyte[4] DistortionStyles; //97
-	ubyte CurrentDistortionIndex; //101
-	short DistortionDurationLeft; //102
-	ubyte DistortionType; //104
-	short DistortionRippleFrequency; //105
-	short DistortionRippleAmplitude; //107
-	ubyte DistortionSpeed; //109
-	short DistortionCompressionRate; //110
-	short DistortionRippleFrequencyAcceleration; //112
-	short DistortionRippleAmplitudeAcceleration; //114
-	ubyte DistortionSpeedAcceleration; //116
-	short DistortionCompressionAcceleration; //117
+	ubyte paletteCycle1First; //4
+	ubyte paletteCycle1Last; //5
+	ubyte paletteCycle2First; //6
+	ubyte paletteCycle2Last; //7
+	ubyte paletteCycle1Step; //8
+	ubyte paletteCycle2Step; //9
+	ubyte paletteChangeSpeed; //10
+	ubyte paletteChangeDurationLeft; //11
+	ushort[16] palette; //12
+	ushort[16] palette2; //44
+	ushort[16]* palettePointer; //76
+	ubyte[4] scrollingMovements; //78
+	ubyte currentScrollingMovement; //82
+	short scrollingDurationLeft; //83
+	short horizontalPosition; //85
+	short verticalPosition; //87
+	short horizontalVelocity; //89
+	short verticalVelocity; //91
+	short horizontalAcceleration; //93
+	short verticalAcceleration; //95
+	ubyte[4] distortionStyles; //97
+	ubyte currentDistortionIndex; //101
+	short distortionDurationLeft; //102
+	ubyte distortionType; //104
+	short distortionRippleFrequency; //105
+	short distortionRippleAmplitude; //107
+	ubyte distortionSpeed; //109
+	short distortionCompressionRate; //110
+	short distortionRippleFrequencyAcceleration; //112
+	short distortionRippleAmplitudeAcceleration; //114
+	ubyte distortionSpeedAcceleration; //116
+	short distortionCompressionAcceleration; //117
 }
 
 struct HDMAWordTransfer {

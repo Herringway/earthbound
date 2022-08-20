@@ -6911,56 +6911,56 @@ void LoadEnemyBattleSprites() {
 
 /// $C2C92D
 void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
-	short x19 = arg1.TargetLayer;
-	if (arg1.FreezePaletteScrolling == 0) {
-		if ((arg1.PaletteChangeDurationLeft != 0) && (--arg1.PaletteChangeDurationLeft == 0)) {
-			arg1.PaletteChangeDurationLeft = arg1.PaletteChangeSpeed;
+	short x19 = arg1.targetLayer;
+	if (arg1.freezePaletteScrolling == 0) {
+		if ((arg1.paletteChangeDurationLeft != 0) && (--arg1.paletteChangeDurationLeft == 0)) {
+			arg1.paletteChangeDurationLeft = arg1.paletteChangeSpeed;
 			switch (arg1.paletteShiftingStyle) {
 				case PaletteShiftingStyle.Unknown2:
-					short x02 = cast(short)(arg1.PaletteCycle2Last - arg1.PaletteCycle2First + 1);
+					short x02 = cast(short)(arg1.paletteCycle2Last - arg1.paletteCycle2First + 1);
 					for (short i = 0; i != x02; i++) {
 						short x14;
-						if (i < arg1.PaletteCycle2Step) {
-							x14 = cast(short)(i + x02 - arg1.PaletteCycle2Step);
+						if (i < arg1.paletteCycle2Step) {
+							x14 = cast(short)(i + x02 - arg1.paletteCycle2Step);
 						} else {
-							x14 = cast(short)(i - arg1.PaletteCycle2Step);
+							x14 = cast(short)(i - arg1.paletteCycle2Step);
 						}
-						arg1.PalettePointer[0][arg1.PaletteCycle2First + i] = arg1.Palette[arg1.PaletteCycle2First + x14];
+						arg1.palettePointer[0][arg1.paletteCycle2First + i] = arg1.palette[arg1.paletteCycle2First + x14];
 					}
-					if (++arg1.PaletteCycle2Step >= x02) {
-						arg1.PaletteCycle2Step = 0;
+					if (++arg1.paletteCycle2Step >= x02) {
+						arg1.paletteCycle2Step = 0;
 					}
 					goto case;
 				case PaletteShiftingStyle.Unknown1:
-					short x02 = cast(short)(arg1.PaletteCycle1Last - arg1.PaletteCycle1First + 1);
+					short x02 = cast(short)(arg1.paletteCycle1Last - arg1.paletteCycle1First + 1);
 					for (short i = 0; i != x02; i++) {
 						short x14;
-						if (i < arg1.PaletteCycle1Step) {
-							x14 = cast(short)(i + x02 - arg1.PaletteCycle1Step);
+						if (i < arg1.paletteCycle1Step) {
+							x14 = cast(short)(i + x02 - arg1.paletteCycle1Step);
 						} else {
-							x14 = cast(short)(i - arg1.PaletteCycle1Step);
+							x14 = cast(short)(i - arg1.paletteCycle1Step);
 						}
-						arg1.PalettePointer[0][arg1.PaletteCycle1First + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
+						arg1.palettePointer[0][arg1.paletteCycle1First + i] = arg1.palette[arg1.paletteCycle1First + x14];
 					}
-					if (++arg1.PaletteCycle1Step >= x02) {
-						arg1.PaletteCycle1Step = 0;
+					if (++arg1.paletteCycle1Step >= x02) {
+						arg1.paletteCycle1Step = 0;
 					}
 					break;
 				case PaletteShiftingStyle.Unknown3:
-					short x10 = cast(short)(arg1.PaletteCycle1Last - arg1.PaletteCycle1First + 1);
+					short x10 = cast(short)(arg1.paletteCycle1Last - arg1.paletteCycle1First + 1);
 					for (short i = 0; i < x10; i++) {
-						short x14 = cast(short)(arg1.PaletteCycle1Step + i);
+						short x14 = cast(short)(arg1.paletteCycle1Step + i);
 						if (x14 >= x10 * 2) {
 							x14 -= x10 * 2;
 						}
 						if (x14 >= x10) {
 							x14 = cast(short)(x10 * 2 - 1 - x14);
 						}
-						arg1.PalettePointer[0][x14 + i] = arg1.Palette[arg1.PaletteCycle1First + x14];
+						arg1.palettePointer[0][x14 + i] = arg1.palette[arg1.paletteCycle1First + x14];
 					}
-					arg1.PaletteCycle1Step++;
-					if (arg1.PaletteCycle1Step >= x10 * 2) {
-						arg1.PaletteCycle1Step = 0;
+					arg1.paletteCycle1Step++;
+					if (arg1.paletteCycle1Step >= x10 * 2) {
+						arg1.paletteCycle1Step = 0;
 					}
 					break;
 				default: break;
@@ -6970,99 +6970,99 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 		if (CurrentGiygasPhase == GiygasPhase.Defeated) {
 			return;
 		}
-		if ((arg1.ScrollingDurationLeft != 0) && (--arg1.ScrollingDurationLeft == 0)) {
-			arg1.CurrentScrollingMovement = (arg1.CurrentScrollingMovement + 1) & 3;
-			short x10 = arg1.ScrollingMovements[arg1.CurrentScrollingMovement];
+		if ((arg1.scrollingDurationLeft != 0) && (--arg1.scrollingDurationLeft == 0)) {
+			arg1.currentScrollingMovement = (arg1.currentScrollingMovement + 1) & 3;
+			short x10 = arg1.scrollingMovements[arg1.currentScrollingMovement];
 			if (x10 == 0) {
-				arg1.CurrentScrollingMovement = 0;
-				x10 = arg1.ScrollingMovements[0];
+				arg1.currentScrollingMovement = 0;
+				x10 = arg1.scrollingMovements[0];
 			}
 			if (x10 != 0) {
-				arg1.ScrollingDurationLeft = BackgroundScrollingTable[x10].duration;
-				arg1.HorizontalVelocity = BackgroundScrollingTable[x10].horizontalVelocity;
-				arg1.VerticalVelocity = BackgroundScrollingTable[x10].verticalVelocity;
-				arg1.HorizontalAcceleration = BackgroundScrollingTable[x10].horizontalAcceleration;
-				arg1.VerticalAcceleration = BackgroundScrollingTable[x10].verticalAcceleration;
+				arg1.scrollingDurationLeft = BackgroundScrollingTable[x10].duration;
+				arg1.horizontalVelocity = BackgroundScrollingTable[x10].horizontalVelocity;
+				arg1.verticalVelocity = BackgroundScrollingTable[x10].verticalVelocity;
+				arg1.horizontalAcceleration = BackgroundScrollingTable[x10].horizontalAcceleration;
+				arg1.verticalAcceleration = BackgroundScrollingTable[x10].verticalAcceleration;
 			}
 		}
-		arg1.HorizontalVelocity += arg1.HorizontalAcceleration;
-		arg1.HorizontalPosition += arg1.HorizontalVelocity;
-		arg1.VerticalVelocity += arg1.VerticalAcceleration;
-		arg1.VerticalPosition += arg1.VerticalVelocity;
+		arg1.horizontalVelocity += arg1.horizontalAcceleration;
+		arg1.horizontalPosition += arg1.horizontalVelocity;
+		arg1.verticalVelocity += arg1.verticalAcceleration;
+		arg1.verticalPosition += arg1.verticalVelocity;
 		switch (x19) {
 			case BGLayer.Layer1:
-				BG1_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
-				BG1_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				BG1_X_POS = cast(short)((arg1.horizontalPosition >> 8) + Unknown7EAD96);
+				BG1_Y_POS = cast(short)((arg1.verticalPosition >> 8) + Unknown7EAD98);
 				break;
 			case BGLayer.Layer2:
-				BG2_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
-				BG2_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				BG2_X_POS = cast(short)((arg1.horizontalPosition >> 8) + Unknown7EAD96);
+				BG2_Y_POS = cast(short)((arg1.verticalPosition >> 8) + Unknown7EAD98);
 				break;
 			case BGLayer.Layer3:
-				BG3_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
-				BG3_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				BG3_X_POS = cast(short)((arg1.horizontalPosition >> 8) + Unknown7EAD96);
+				BG3_Y_POS = cast(short)((arg1.verticalPosition >> 8) + Unknown7EAD98);
 				break;
 			case BGLayer.Layer4:
-				BG4_X_POS = cast(short)((arg1.HorizontalPosition >> 8) + Unknown7EAD96);
-				BG4_Y_POS = cast(short)((arg1.VerticalPosition >> 8) + Unknown7EAD98);
+				BG4_X_POS = cast(short)((arg1.horizontalPosition >> 8) + Unknown7EAD96);
+				BG4_Y_POS = cast(short)((arg1.verticalPosition >> 8) + Unknown7EAD98);
 				break;
 			default: break;
 		}
 	}
-	if ((arg1.DistortionDurationLeft != 0) && (--arg1.DistortionDurationLeft == 0)) {
-		arg1.CurrentDistortionIndex = (arg1.CurrentDistortionIndex + 1) & 3;
-		short x10 = arg1.DistortionStyles[arg1.CurrentDistortionIndex];
+	if ((arg1.distortionDurationLeft != 0) && (--arg1.distortionDurationLeft == 0)) {
+		arg1.currentDistortionIndex = (arg1.currentDistortionIndex + 1) & 3;
+		short x10 = arg1.distortionStyles[arg1.currentDistortionIndex];
 		if (x10 == 0) {
-			arg1.CurrentDistortionIndex = 0;
-			x10 = arg1.DistortionStyles[0];
+			arg1.currentDistortionIndex = 0;
+			x10 = arg1.distortionStyles[0];
 		}
 		if (x10 != 0) {
-			arg1.DistortionDurationLeft = BackgroundDistortionTable[x10].duration;
-			arg1.DistortionType = BackgroundDistortionTable[x10].style;
-			arg1.DistortionRippleFrequency = BackgroundDistortionTable[x10].rippleFrequency;
-			arg1.DistortionRippleAmplitude = BackgroundDistortionTable[x10].rippleAmplitude;
-			arg1.DistortionSpeed = BackgroundDistortionTable[x10].speed;
-			arg1.DistortionCompressionRate = BackgroundDistortionTable[x10].compressionRate;
-			arg1.DistortionRippleFrequencyAcceleration = BackgroundDistortionTable[x10].rippleFrequencyAcceleration;
-			arg1.DistortionRippleAmplitudeAcceleration = BackgroundDistortionTable[x10].rippleAmplitudeAcceleration;
-			arg1.DistortionSpeedAcceleration = BackgroundDistortionTable[x10].speedAcceleration;
-			arg1.DistortionCompressionAcceleration = BackgroundDistortionTable[x10].compressionRateAcceleration;
-			if (arg1.DistortionType == DistortionStyle.VerticalSmooth) {
+			arg1.distortionDurationLeft = BackgroundDistortionTable[x10].duration;
+			arg1.distortionType = BackgroundDistortionTable[x10].style;
+			arg1.distortionRippleFrequency = BackgroundDistortionTable[x10].rippleFrequency;
+			arg1.distortionRippleAmplitude = BackgroundDistortionTable[x10].rippleAmplitude;
+			arg1.distortionSpeed = BackgroundDistortionTable[x10].speed;
+			arg1.distortionCompressionRate = BackgroundDistortionTable[x10].compressionRate;
+			arg1.distortionRippleFrequencyAcceleration = BackgroundDistortionTable[x10].rippleFrequencyAcceleration;
+			arg1.distortionRippleAmplitudeAcceleration = BackgroundDistortionTable[x10].rippleAmplitudeAcceleration;
+			arg1.distortionSpeedAcceleration = BackgroundDistortionTable[x10].speedAcceleration;
+			arg1.distortionCompressionAcceleration = BackgroundDistortionTable[x10].compressionRateAcceleration;
+			if (arg1.distortionType == DistortionStyle.VerticalSmooth) {
 				DoBackgroundDMA(cast(short)(layer + 5), cast(short)(x19 + 4), layer);
 			} else {
 				DoBackgroundDMA(cast(short)(layer + 5), x19, layer);
 			}
 		}
 	}
-	if (arg1.DistortionType == 0) {
+	if (arg1.distortionType == 0) {
 		return;
 	}
-	arg1.DistortionRippleFrequency += arg1.DistortionRippleFrequencyAcceleration;
-	arg1.DistortionRippleAmplitude += arg1.DistortionRippleAmplitudeAcceleration;
-	arg1.DistortionSpeed += arg1.DistortionSpeedAcceleration;
-	arg1.DistortionCompressionRate += arg1.DistortionCompressionAcceleration;
-	LoadBackgroundOffsetParameters(cast(short)(arg1.DistortionType - 1), x19, layer);
-	LoadBackgroundOffsetParameters2(arg1.DistortionCompressionRate);
+	arg1.distortionRippleFrequency += arg1.distortionRippleFrequencyAcceleration;
+	arg1.distortionRippleAmplitude += arg1.distortionRippleAmplitudeAcceleration;
+	arg1.distortionSpeed += arg1.distortionSpeedAcceleration;
+	arg1.distortionCompressionRate += arg1.distortionCompressionAcceleration;
+	LoadBackgroundOffsetParameters(cast(short)(arg1.distortionType - 1), x19, layer);
+	LoadBackgroundOffsetParameters2(arg1.distortionCompressionRate);
 	if (((Unknown7E0002 & 1) == layer) || (Unknown7EADAC == 0)) {
-		PrepareBackgroundOffsetTables(arg1.DistortionRippleFrequency, arg1.DistortionRippleAmplitude, arg1.DistortionSpeed);
+		PrepareBackgroundOffsetTables(arg1.distortionRippleFrequency, arg1.distortionRippleAmplitude, arg1.distortionSpeed);
 	}
 }
 
 /// $C2CFE5
 void UnknownC2CFE5(LoadedBackgroundData* target, const(AnimatedBackground)* bg) {
 	memset(target, 0, LoadedBackgroundData.sizeof);
-	target.Bitdepth = bg.bitsPerPixel;
+	target.bitDepth = bg.bitsPerPixel;
 	target.paletteShiftingStyle = bg.paletteShiftingStyle;
-	target.PaletteCycle1First = bg.paletteCycle1First;
-	target.PaletteCycle1Last = bg.paletteCycle1Last;
-	target.PaletteCycle2First = bg.paletteCycle2First;
-	target.PaletteCycle2Last = bg.paletteCycle2Last;
-	target.PaletteChangeSpeed = bg.paletteChangeSpeed;
-	memcpy(&target.ScrollingMovements[0], &bg.scrollingMovements[0], LoadedBackgroundData.ScrollingMovements.sizeof);
-	memcpy(&target.DistortionStyles[0], &bg.distortionStyles[0], LoadedBackgroundData.DistortionStyles.sizeof);
-	target.ScrollingDurationLeft = 1;
-	target.DistortionDurationLeft = 1;
-	target.PaletteChangeDurationLeft = 1;
+	target.paletteCycle1First = bg.paletteCycle1First;
+	target.paletteCycle1Last = bg.paletteCycle1Last;
+	target.paletteCycle2First = bg.paletteCycle2First;
+	target.paletteCycle2Last = bg.paletteCycle2Last;
+	target.paletteChangeSpeed = bg.paletteChangeSpeed;
+	memcpy(&target.scrollingMovements[0], &bg.scrollingMovements[0], LoadedBackgroundData.scrollingMovements.sizeof);
+	memcpy(&target.distortionStyles[0], &bg.distortionStyles[0], LoadedBackgroundData.distortionStyles.sizeof);
+	target.scrollingDurationLeft = 1;
+	target.distortionDurationLeft = 1;
+	target.paletteChangeDurationLeft = 1;
 }
 
 /// $C2D0AC
@@ -7143,13 +7143,13 @@ void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		}
 		CopyToVram(0, 0x800, 0x5C00, &Unknown7F0000[0]);
 		UnknownC2CFE5(&LoadedBGDataLayer1, &animatedBackgrounds[layer1]);
-		LoadedBGDataLayer1.PalettePointer = &palettes[2];
-		memcpy(&LoadedBGDataLayer1.Palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
-		memcpy(&LoadedBGDataLayer1.Palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
-		memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], 32);
-		LoadedBGDataLayer1.TargetLayer = 2;
+		LoadedBGDataLayer1.palettePointer = &palettes[2];
+		memcpy(&LoadedBGDataLayer1.palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(&LoadedBGDataLayer1.palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(LoadedBGDataLayer1.palettePointer, &LoadedBGDataLayer1.palette[0], 32);
+		LoadedBGDataLayer1.targetLayer = 2;
 		GenerateBattleBGFrame(&LoadedBGDataLayer1, 0);
-		LoadedBGDataLayer2.TargetLayer = 0;
+		LoadedBGDataLayer2.targetLayer = 0;
 		Unknown7EAD8A = 1;
 		UnknownC0AFCD(Unknown7EAD8A);
 		Unknown7EADAE = 0x17;
@@ -7166,18 +7166,18 @@ void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 				}
 				CopyToVram(0, 0x800, 0x5800, &Unknown7F0000[0]);
 				UnknownC2CFE5(&LoadedBGDataLayer2, &animatedBackgrounds[layer2]);
-				LoadedBGDataLayer2.PalettePointer = &palettes[4];
-				LoadedBGDataLayer2.TargetLayer = 1;
-				memcpy(&LoadedBGDataLayer2.Palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
-				memcpy(&LoadedBGDataLayer2.Palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
-				memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], 32);
+				LoadedBGDataLayer2.palettePointer = &palettes[4];
+				LoadedBGDataLayer2.targetLayer = 1;
+				memcpy(&LoadedBGDataLayer2.palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
+				memcpy(&LoadedBGDataLayer2.palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
+				memcpy(LoadedBGDataLayer2.palettePointer, &LoadedBGDataLayer2.palette[0], 32);
 				GenerateBattleBGFrame(&LoadedBGDataLayer2, 1);
 				Unknown7EADAE = 0x215;
 				Unknown7EADB0 = 0x14;
 			} else {
 				UnknownC2CFE5(&LoadedBGDataLayer2, &animatedBackgrounds[layer2]);
-				LoadedBGDataLayer2.FreezePaletteScrolling = 1;
-				LoadedBGDataLayer2.TargetLayer = 2;
+				LoadedBGDataLayer2.freezePaletteScrolling = 1;
+				LoadedBGDataLayer2.targetLayer = 2;
 			}
 		}
 	} else {
@@ -7191,11 +7191,11 @@ void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		}
 		CopyToVram(0, 0x800, 0x5C00, &Unknown7F0000[0]);
 		UnknownC2CFE5(&LoadedBGDataLayer1, &animatedBackgrounds[layer1]);
-		LoadedBGDataLayer1.PalettePointer = &palettes[4];
-		memcpy(&LoadedBGDataLayer1.Palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
-		memcpy(&LoadedBGDataLayer1.Palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
-		memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], 32);
-		LoadedBGDataLayer1.TargetLayer = 3;
+		LoadedBGDataLayer1.palettePointer = &palettes[4];
+		memcpy(&LoadedBGDataLayer1.palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(&LoadedBGDataLayer1.palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
+		memcpy(LoadedBGDataLayer1.palettePointer, &LoadedBGDataLayer1.palette[0], 32);
+		LoadedBGDataLayer1.targetLayer = 3;
 		if (layer2 != 0) {
 			Unknown7EAD8A = 3;
 			UnknownC0AFCD(Unknown7EAD8A);
@@ -7208,19 +7208,19 @@ void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			}
 			CopyToVram(0, 0x800, 0xC00, &Unknown7F0000[0]);
 			UnknownC2CFE5(&LoadedBGDataLayer2 ,&animatedBackgrounds[layer2]);
-			LoadedBGDataLayer2.PalettePointer = &palettes[6];
-			memcpy(&LoadedBGDataLayer2.Palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
-			memcpy(&LoadedBGDataLayer2.Palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
-			memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], 32);
-			LoadedBGDataLayer2.TargetLayer = 4;
+			LoadedBGDataLayer2.palettePointer = &palettes[6];
+			memcpy(&LoadedBGDataLayer2.palette[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
+			memcpy(&LoadedBGDataLayer2.palette2[0], &BattleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
+			memcpy(LoadedBGDataLayer2.palettePointer, &LoadedBGDataLayer2.palette[0], 32);
+			LoadedBGDataLayer2.targetLayer = 4;
 		} else {
-			LoadedBGDataLayer2.TargetLayer = 0;
+			LoadedBGDataLayer2.targetLayer = 0;
 		}
 		Unknown7EADAE = 0x817;
 		Unknown7EADB0 = 0x13;
 	}
 	Unknown7EADAC = 0;
-	if ((LoadedBGDataLayer2.TargetLayer != 0) && (LoadedBGDataLayer2.DistortionStyles[0] != 0)) {
+	if ((LoadedBGDataLayer2.targetLayer != 0) && (LoadedBGDataLayer2.distortionStyles[0] != 0)) {
 		Unknown7EADAC = 1;
 	}
 	UnknownC2D0AC();
@@ -7232,16 +7232,16 @@ void LoadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 
 /// $C2DAE3
 void UnknownC2DAE3() {
-	ubyte x0E = LoadedBGDataLayer1.DistortionStyles[0];
-	LoadedBGDataLayer1.DistortionStyles[0] = LoadedBGDataLayer1.DistortionStyles[3];
-	LoadedBGDataLayer1.DistortionStyles[1] = 0;
-	LoadedBGDataLayer1.DistortionDurationLeft = 1;
-	LoadedBGDataLayer1.DistortionStyles[3] = x0E;
+	ubyte x0E = LoadedBGDataLayer1.distortionStyles[0];
+	LoadedBGDataLayer1.distortionStyles[0] = LoadedBGDataLayer1.distortionStyles[3];
+	LoadedBGDataLayer1.distortionStyles[1] = 0;
+	LoadedBGDataLayer1.distortionDurationLeft = 1;
+	LoadedBGDataLayer1.distortionStyles[3] = x0E;
 }
 
 /// $C2DB14
 void UnknownC2DB14() {
-	memcpy(&LoadedBGDataLayer1.Palette[0], LoadedBGDataLayer1.PalettePointer, LoadedBGDataLayer1.Palette[0].sizeof);
+	memcpy(&LoadedBGDataLayer1.palette[0], LoadedBGDataLayer1.palettePointer, LoadedBGDataLayer1.palette[0].sizeof);
 }
 
 /// $C2DB3F
@@ -7306,7 +7306,7 @@ void UnknownC2DB3F() {
 			default: break;
 		}
 	}
-	if (LoadedBGDataLayer1.Bitdepth == 2) {
+	if (LoadedBGDataLayer1.bitDepth == 2) {
 		BG1_X_POS = Unknown7EAD96;
 		BG1_Y_POS = Unknown7EAD98;
 	} else if (BattleModeFlag != 0) {
@@ -7320,7 +7320,7 @@ void UnknownC2DB3F() {
 		UnknownC2F8F9();
 	}
 	GenerateBattleBGFrame(&LoadedBGDataLayer1, 0);
-	if (LoadedBGDataLayer2.TargetLayer != 0) {
+	if (LoadedBGDataLayer2.targetLayer != 0) {
 		GenerateBattleBGFrame(&LoadedBGDataLayer2, 1);
 	}
 	UnknownC2E6B6();
@@ -7373,42 +7373,42 @@ void UnknownC2DB3F() {
 /// $C2DE0F
 void UnknownC2DE0F() {
 	for (short i = 0; i < 16; i++) {
-		LoadedBGDataLayer1.Palette[i] = (LoadedBGDataLayer1.Palette[i] / 2) & 0x3DEF;
-		LoadedBGDataLayer2.Palette[i] = (LoadedBGDataLayer2.Palette[i] / 2) & 0x3DEF;
+		LoadedBGDataLayer1.palette[i] = (LoadedBGDataLayer1.palette[i] / 2) & 0x3DEF;
+		LoadedBGDataLayer2.palette[i] = (LoadedBGDataLayer2.palette[i] / 2) & 0x3DEF;
 	}
-	memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], LoadedBGDataLayer1.Palette.sizeof);
-	if (LoadedBGDataLayer2.TargetLayer != 0) {
-		memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], LoadedBGDataLayer2.Palette.sizeof);
+	memcpy(LoadedBGDataLayer1.palettePointer, &LoadedBGDataLayer1.palette[0], LoadedBGDataLayer1.palette.sizeof);
+	if (LoadedBGDataLayer2.targetLayer != 0) {
+		memcpy(LoadedBGDataLayer2.palettePointer, &LoadedBGDataLayer2.palette[0], LoadedBGDataLayer2.palette.sizeof);
 	}
 }
 
 /// $C2DE96
 void UnknownC2DE96() {
-	memcpy(&LoadedBGDataLayer1.Palette[0], &LoadedBGDataLayer1.Palette2[0], LoadedBGDataLayer1.Palette.sizeof);
-	memcpy(&LoadedBGDataLayer2.Palette[0], &LoadedBGDataLayer2.Palette2[0], LoadedBGDataLayer2.Palette.sizeof);
-	memcpy(LoadedBGDataLayer1.PalettePointer, &LoadedBGDataLayer1.Palette[0], LoadedBGDataLayer1.Palette.sizeof);
-	memcpy(LoadedBGDataLayer2.PalettePointer, &LoadedBGDataLayer2.Palette[0], LoadedBGDataLayer2.Palette.sizeof);
+	memcpy(&LoadedBGDataLayer1.palette[0], &LoadedBGDataLayer1.palette2[0], LoadedBGDataLayer1.palette.sizeof);
+	memcpy(&LoadedBGDataLayer2.palette[0], &LoadedBGDataLayer2.palette2[0], LoadedBGDataLayer2.palette.sizeof);
+	memcpy(LoadedBGDataLayer1.palettePointer, &LoadedBGDataLayer1.palette[0], LoadedBGDataLayer1.palette.sizeof);
+	memcpy(LoadedBGDataLayer2.palettePointer, &LoadedBGDataLayer2.palette[0], LoadedBGDataLayer2.palette.sizeof);
 }
 
 /// $C2DF2E
 void UnknownC2DF2E(LoadedBackgroundData* arg1, short arg2, short arg3) {
 	if ((arg2 == -1) || (arg2 == 0)) {
-		arg1.Palette[arg3] = arg2;
-		(*arg1.PalettePointer)[arg3] = arg2;
+		arg1.palette[arg3] = arg2;
+		(*arg1.palettePointer)[arg3] = arg2;
 	} else if (arg2 == 0x100) {
-		arg1.Palette[arg3] = arg1.Palette2[arg3];
-		(*arg1.PalettePointer)[arg3] = arg1.Palette2[arg3];
+		arg1.palette[arg3] = arg1.palette2[arg3];
+		(*arg1.palettePointer)[arg3] = arg1.palette2[arg3];
 	} else {
-		short x12 = arg1.Palette2[arg3] & 0x1F;
-		short x10 = (arg1.Palette2[arg3] >> 5) & 0x1F;
-		short x16 = (arg1.Palette2[arg3] >> 10) & 0x1F;
+		short x12 = arg1.palette2[arg3] & 0x1F;
+		short x10 = (arg1.palette2[arg3] >> 5) & 0x1F;
+		short x16 = (arg1.palette2[arg3] >> 10) & 0x1F;
 		x12 = cast(short)((arg2 * x12) >> 8);
 		x10 = cast(short)((arg2 * x10) >> 8);
 		x16 = cast(short)((arg2 * x16) >> 8);
-		arg1.Palette[arg3] = cast(ushort)((x16 << 10) | (x10 << 5) | (x12));
-		if ((arg1.paletteShiftingStyle != PaletteShiftingStyle.Unknown2) || (arg1.PaletteCycle2First > arg3) || (arg1.PaletteCycle2Last < arg3)) {
-			if ((arg1.paletteShiftingStyle == PaletteShiftingStyle.Unknown0) || (arg1.PaletteCycle1First > arg3) || (arg1.PaletteCycle1Last < arg3)) {
-				(*arg1.PalettePointer)[arg3] = arg1.Palette[arg3];
+		arg1.palette[arg3] = cast(ushort)((x16 << 10) | (x10 << 5) | (x12));
+		if ((arg1.paletteShiftingStyle != PaletteShiftingStyle.Unknown2) || (arg1.paletteCycle2First > arg3) || (arg1.paletteCycle2Last < arg3)) {
+			if ((arg1.paletteShiftingStyle == PaletteShiftingStyle.Unknown0) || (arg1.paletteCycle1First > arg3) || (arg1.paletteCycle1Last < arg3)) {
+				(*arg1.palettePointer)[arg3] = arg1.palette[arg3];
 			}
 		}
 	}
@@ -7416,7 +7416,7 @@ void UnknownC2DF2E(LoadedBackgroundData* arg1, short arg2, short arg3) {
 
 /// $C2E08E
 void UnknownC2E08E(short arg1) {
-	if (LoadedBGDataLayer1.Bitdepth == 4) {
+	if (LoadedBGDataLayer1.bitDepth == 4) {
 		for (short i = 1; i < 16; i++) {
 			UnknownC2DF2E(&LoadedBGDataLayer1, arg1, i);
 		}
@@ -7443,7 +7443,7 @@ void UnknownC2E0E7() {
 
 /// $C2E116
 void ShowPSIAnimation(short arg1) {
-	if (LoadedBGDataLayer1.Bitdepth == 2) {
+	if (LoadedBGDataLayer1.bitDepth == 2) {
 		Decomp(&PSIAnimationConfig[arg1].graphics[0], &Unknown7F0000[0x8000]);
 		CopyToVram2(0, 0x1000, 0, &Unknown7F0000[0x8000]);
 		Unknown7E1BCA = &palettes[3][0];
@@ -7566,7 +7566,7 @@ void ShowPSIAnimation(short arg1) {
 			break;
 		default: break;
 	}
-	if (LoadedBGDataLayer1.Bitdepth == 2) {
+	if (LoadedBGDataLayer1.bitDepth == 2) {
 		BG2_X_POS = Unknown7EAD9A;
 		BG2_Y_POS = Unknown7EAD9C;
 	} else {
