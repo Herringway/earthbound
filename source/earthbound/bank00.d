@@ -2760,7 +2760,7 @@ void UnknownC056D0(short arg1, short arg2) {
 short UnknownC05769(short arg1) {
 	short x02 = 0;
 	short x12 = 0;
-	for (short i = 0; i < 6; i++, x02 >>= 2, arg1 >>= 2) {
+	for (short i = 0; i < 6; i++, x02 >>= 2, arg1 >>= 1) {
 		if ((arg1 & 1) == 0) {
 			continue;
 		}
