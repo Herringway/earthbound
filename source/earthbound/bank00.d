@@ -4375,12 +4375,13 @@ void start() {
 	CGADSUB = 0;
 	FIXED_COLOUR_DATA = 0xE0;
 	SETINI = 0;
-	WRMPYA = 0xFF;
-	WRMPYA = 0;
-	WRMPYB = 0;
-	WRDIVL = 0;
-	WRDIVH = 0;
-	WRDIVB = 0;
+	//not used
+	//WRMPYA = 0xFF;
+	//WRMPYA = 0;
+	//WRMPYB = 0;
+	//WRDIVL = 0;
+	//WRDIVH = 0;
+	//WRDIVB = 0;
 	HTIMEL = 0;
 	HTIMEH = 0;
 	VTIMEL = 0;
