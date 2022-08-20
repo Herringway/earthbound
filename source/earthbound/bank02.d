@@ -55,7 +55,7 @@ immutable short[6] UnknownC200B9 = [-8, 0, 7, -8, 0, 7];
 immutable short[6] UnknownC200C5 = [0, 0, 0, 7, 7, 7];
 
 /// $C200D1
-immutable ushort[4] UnknownC200D1 = [30, 51, 30, 51];
+immutable ushort[4] UnknownC200D1 = [0b11110, 0b110011, 0b11110, 0b110011];
 
 /// $C200D9
 void UnknownC200D9() {
@@ -6915,8 +6915,8 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 	if (arg1.FreezePaletteScrolling == 0) {
 		if ((arg1.PaletteChangeDurationLeft != 0) && (--arg1.PaletteChangeDurationLeft == 0)) {
 			arg1.PaletteChangeDurationLeft = arg1.PaletteChangeSpeed;
-			switch (arg1.PaletteShiftingStyle) {
-				case 2:
+			switch (arg1.paletteShiftingStyle) {
+				case PaletteShiftingStyle.Unknown2:
 					short x02 = cast(short)(arg1.PaletteCycle2Last - arg1.PaletteCycle2First + 1);
 					for (short i = 0; i != x02; i++) {
 						short x14;
@@ -6931,7 +6931,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						arg1.PaletteCycle2Step = 0;
 					}
 					goto case;
-				case 1:
+				case PaletteShiftingStyle.Unknown1:
 					short x02 = cast(short)(arg1.PaletteCycle1Last - arg1.PaletteCycle1First + 1);
 					for (short i = 0; i != x02; i++) {
 						short x14;
@@ -6946,7 +6946,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						arg1.PaletteCycle1Step = 0;
 					}
 					break;
-				case 3:
+				case PaletteShiftingStyle.Unknown3:
 					short x10 = cast(short)(arg1.PaletteCycle1Last - arg1.PaletteCycle1First + 1);
 					for (short i = 0; i < x10; i++) {
 						short x14 = cast(short)(arg1.PaletteCycle1Step + i);
@@ -7052,7 +7052,7 @@ void GenerateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 void UnknownC2CFE5(LoadedBackgroundData* target, const(AnimatedBackground)* bg) {
 	memset(target, 0, LoadedBackgroundData.sizeof);
 	target.Bitdepth = bg.bitsPerPixel;
-	target.PaletteShiftingStyle = bg.paletteShiftingStyle;
+	target.paletteShiftingStyle = bg.paletteShiftingStyle;
 	target.PaletteCycle1First = bg.paletteCycle1First;
 	target.PaletteCycle1Last = bg.paletteCycle1Last;
 	target.PaletteCycle2First = bg.paletteCycle2First;
@@ -7406,8 +7406,8 @@ void UnknownC2DF2E(LoadedBackgroundData* arg1, short arg2, short arg3) {
 		x10 = cast(short)((arg2 * x10) >> 8);
 		x16 = cast(short)((arg2 * x16) >> 8);
 		arg1.Palette[arg3] = cast(ushort)((x16 << 10) | (x10 << 5) | (x12));
-		if ((arg1.PaletteShiftingStyle != 2) || (arg1.PaletteCycle2First > arg3) || (arg1.PaletteCycle2Last < arg3)) {
-			if ((arg1.PaletteShiftingStyle == 0) || (arg1.PaletteCycle1First > arg3) || (arg1.PaletteCycle1Last < arg3)) {
+		if ((arg1.paletteShiftingStyle != PaletteShiftingStyle.Unknown2) || (arg1.PaletteCycle2First > arg3) || (arg1.PaletteCycle2Last < arg3)) {
+			if ((arg1.paletteShiftingStyle == PaletteShiftingStyle.Unknown0) || (arg1.PaletteCycle1First > arg3) || (arg1.PaletteCycle1Last < arg3)) {
 				(*arg1.PalettePointer)[arg3] = arg1.Palette[arg3];
 			}
 		}

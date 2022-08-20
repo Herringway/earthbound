@@ -4948,6 +4948,13 @@ enum DistortionStyle {
 	Unknown = 4,
 }
 
+enum PaletteShiftingStyle : ubyte {
+	Unknown0 = 0,
+	Unknown1 = 1,
+	Unknown2 = 2,
+	Unknown3 = 3,
+}
+
 enum ActionScriptVars : ubyte {
 	V0 = 0,
 	V1 = 1,
@@ -5503,7 +5510,7 @@ struct AnimatedBackground {
 	ubyte graphics;
 	ubyte palette;
 	ubyte bitsPerPixel;
-	ubyte paletteShiftingStyle;
+	PaletteShiftingStyle paletteShiftingStyle;
 	ubyte paletteCycle1First;
 	ubyte paletteCycle1Last;
 	ubyte paletteCycle2First;
@@ -5517,7 +5524,7 @@ struct LoadedBackgroundData {
 	ubyte TargetLayer; //0
 	ubyte Bitdepth; //1
 	ubyte FreezePaletteScrolling; //2
-	ubyte PaletteShiftingStyle; //3
+	PaletteShiftingStyle paletteShiftingStyle; //3
 	ubyte PaletteCycle1First; //4
 	ubyte PaletteCycle1Last; //5
 	ubyte PaletteCycle2First; //6
