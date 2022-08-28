@@ -999,9 +999,9 @@ short UnknownC223D9(ubyte* arg1, short arg2) {
 	}
 	lx:
 	if (arg2 != 0) {
-		return StatusEquipWindowText[x0E][arg2 - 1];
+		return StatusEquipWindowText[x0E][arg1[x0E] - 1];
 	} else {
-		return StatusEquipWindowText2[x0E][arg2 - 1];
+		return StatusEquipWindowText2[x0E][arg1[x0E] - 1];
 	}
 }
 
