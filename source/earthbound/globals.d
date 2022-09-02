@@ -611,7 +611,7 @@ __gshared ubyte wramScriptSecMemory; /// $97D4
 __gshared short unknown7E97D5; /// $97D5
 __gshared ubyte[3] unknown7E97D7; /// $97D7
 
-__gshared Game_State gameState; /// $97F5
+__gshared GameState gameState; /// $97F5
 __gshared PartyCharacter[totalPartyCount] partyCharacters; /// $99CE
 __gshared ubyte[eventFlagCount / 8] eventFlags; /// $9C08
 __gshared ushort currentInteractingEventFlag; /// $9C88

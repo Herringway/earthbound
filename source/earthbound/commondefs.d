@@ -4978,7 +4978,7 @@ enum Binop : ubyte {
 	xor = 3,
 }
 ///
-struct Game_State {
+struct GameState {
 	ubyte[12] mother2PlayerName; ///
 	ubyte[24] earthboundPlayerName; ///
 	ubyte[6] petName; ///
@@ -5049,36 +5049,36 @@ struct PartyCharacter {
 	ubyte luck; ///
 	ubyte vitality; ///
 	ubyte iq; ///
-	ubyte base_offense; ///
-	ubyte base_defense; ///
-	ubyte base_speed; ///
-	ubyte base_guts; ///
-	ubyte base_luck; ///
-	ubyte base_vitality; ///
-	ubyte base_iq; ///
+	ubyte baseOffense; ///
+	ubyte baseDefense; ///
+	ubyte baseSpeed; ///
+	ubyte baseGuts; ///
+	ubyte baseLuck; ///
+	ubyte baseVitality; ///
+	ubyte baseIQ; ///
 	ubyte[14] items; ///
 	ubyte[4] equipment; ///
 	ushort unknown53; ///
 	ushort unknown55; ///
 	ushort unknown57; ///
 	ushort unknown59; ///
-	ushort position_index; ///
+	ushort positionIndex; ///
 	ushort unknown63; ///
 	ushort unknown65; ///
 	RollingStat hp; ///
 	RollingStat pp; ///
-	ushort hp_pp_window_options; ///
-	ubyte miss_rate; ///
+	ushort hpPPWindowOptions; ///
+	ubyte missRate; ///
 	ubyte fireResist; ///
 	ubyte freezeResist; ///
 	ubyte flashResist; ///
 	ubyte paralysisResist; ///
 	ubyte hypnosisBrainshockResist; ///
-	ubyte boosted_speed; ///
-	ubyte boosted_guts; ///
-	ubyte boosted_vitality; ///
-	ubyte boosted_iq; ///
-	ubyte boosted_luck; ///
+	ubyte boostedSpeed; ///
+	ubyte boostedGuts; ///
+	ubyte boostedVitality; ///
+	ubyte boostedIQ; ///
+	ubyte boostedLuck; ///
 	short unknown92; ///
 	ubyte unknown94; ///
 }
@@ -5096,30 +5096,30 @@ struct PhotoState {
 struct WinStat {
 	short next; /// [00]
 	short prev; /// [02]
-	short window_id; /// [04]
+	short windowID; /// [04]
 	short x; /// [06]
 	short y; /// [08]
 	short width; /// [0A]
 	short height; /// [0C]
-	short text_x; /// [0E]
-	short text_y; /// [10]
-	ubyte num_padding; /// [12]
+	short textX; /// [0E]
+	short textY; /// [10]
+	ubyte numPadding; /// [12]
 	ushort tileAttributes; /// [13]
 	short font; /// [15]
 	WorkingMemory result; /// [17]
 	uint argument; /// [1B]
 	ushort counter; /// [1F]
-	WorkingMemory result_bak; /// [21]
-	uint argument_bak; /// [25]
-	ushort counter_bak; /// [29]
-	short current_option; /// [2B]
-	short option_count; /// [2D]
-	short selected_option; /// [2F]
-	short menu_columns; /// [31]
-	short menu_page; /// [33]
+	WorkingMemory resultBak; /// [21]
+	uint argumentBak; /// [25]
+	ushort counterBak; /// [29]
+	short currentOption; /// [2B]
+	short optionCount; /// [2D]
+	short selectedOption; /// [2F]
+	short menuColumns; /// [31]
+	short menuPage; /// [33]
 	ushort* tilemapBuffer; /// [35] 16-bit pointer
-	void function(short) menu_callback; /// [37] 32-bit pointer
-	ubyte title_id; /// [3B]
+	void function(short) menuCallback; /// [37] 32-bit pointer
+	ubyte titleID; /// [3B]
 	ubyte[32] title; /// [3C]
 }
 ///
@@ -5128,13 +5128,13 @@ struct MenuOpt {
 	short next; /// [02]
 	short prev; /// [04]
 	short page; /// [06]
-	short text_x; /// [08]
-	short text_y; /// [0A]
+	short textX; /// [08]
+	short textY; /// [0A]
 	short userdata; /// [0C]
 	ubyte sfx; /// [0E]
 	const(ubyte)* script; /// [0F]
 	ubyte[25] label; /// [13]
-	ubyte pixel_align; /// [2C]
+	ubyte pixelAlign; /// [2C]
 }
 ///
 struct VecYX {
@@ -5143,29 +5143,29 @@ struct VecYX {
 }
 ///
 struct Pather {
-	short from_offscreen; /// [00] Starts off-screen flag
+	short fromOffscreen; /// [00] Starts off-screen flag
 	VecYX hitbox; /// [02] ??? some sort of hitbox??? (Old notes, I have no idea why I labeled this "hitbox")
 	VecYX origin; /// [06] Origin point in the collision map?
 	short field0A; /// [0A] ??? unknown index
 	VecYX* points; /// [0C] Goal points
-	short point_count; /// [0E] Amount of goal points
-	short obj_index; /// [10] Object index
+	short pointCount; /// [0E] Amount of goal points
+	short objIndex; /// [10] Object index
 }
 ///
 struct PathCtx {
 	ubyte[120] unknown0; ///unused??
 	VecYX radius; /// [78] Pathfinder radius
-	VecYX[8] targets_pos; /// [7C] Positions for all targets (row, col)
-	short target_count; /// [9C] Amount of targets
-	short pather_count; /// [9E] Amount of pathers
+	VecYX[8] targetsPos; /// [7C] Positions for all targets (row, col)
+	short targetCount; /// [9C] Amount of targets
+	short patherCount; /// [9E] Amount of pathers
 	Pather[8] pathers; /// [A0] Data for all pathers
 }
 ///
 struct PlayerPositionBufferEntry {
-	short x_coord; ///
-	short y_coord; ///
-	short tile_flags; ///
-	short walking_style; ///
+	short xCoord; ///
+	short yCoord; ///
+	short tileFlags; ///
+	short walkingStyle; ///
 	short direction; ///
 	short unknown10; ///
 }
@@ -5187,8 +5187,8 @@ struct MovementSpeeds {
 }
 ///
 union QueuedInteractionPtr {
-	const(ubyte)* text_ptr; ///
-	const(DoorEntryA)* door_ptr; ///
+	const(ubyte)* textPtr; ///
+	const(DoorEntryA)* doorPtr; ///
 }
 ///
 struct QueuedInteraction {
@@ -5387,10 +5387,10 @@ struct CondimentTableEntry {
 ///
 struct WindowTextAttributesCopy {
 	short id; ///
-	short text_x; ///
-	short text_y; ///
-	ubyte number_padding; ///
-	short curr_tile_attributes; ///
+	short textX; ///
+	short textY; ///
+	ubyte numberPadding; ///
+	short currTileAttributes; ///
 	short font; ///
 	ubyte[10] unknown11; ///
 }
@@ -5430,13 +5430,13 @@ struct SaveBlock {
 }
 ///
 struct SaveData {
-	Game_State gameState; ///
+	GameState gameState; ///
 	PartyCharacter[6] partyCharacters; ///
 	ubyte[eventFlagCount / 8] eventFlags; ///
 }
 ///
 struct SaveDataReplay {
-	Game_State gameState; ///
+	GameState gameState; ///
 	PartyCharacter[6] partyCharacters; ///
 	ubyte[eventFlagCount / 8] eventFlags; ///
 	uint timer; ///
@@ -5939,7 +5939,7 @@ struct CreditsPhotograph {
 	byte slideDistance; ///9
 	short photographerX; ///10
 	short photographerY; ///12
-	Coordinates[6] party_config; ///14
+	Coordinates[6] partyConfig; ///14
 	PhotographerConfigEntryObject[4] objectConfig; ///38
 }
 ///

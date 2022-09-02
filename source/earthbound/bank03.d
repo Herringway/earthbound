@@ -357,7 +357,7 @@ void windowTickWithoutInstantPrinting() {
 /// $C3E4EF
 short unknownC3E4EF() {
 	for (short i = 0; i != 8; i++) {
-		if (windowStats[i].window_id == -1) {
+		if (windowStats[i].windowID == -1) {
 			return i;
 		}
 	}
@@ -388,7 +388,7 @@ void closeWindow(short arg1) {
 	} else {
 		windowStats[x12].next = x14;
 	}
-	windowStats[windowTable[arg1]].window_id = -1;
+	windowStats[windowTable[arg1]].windowID = -1;
 	short x10 = windowTable[arg1];
 	windowTable[arg1] = -1;
 	ushort* x0E = &bg2Buffer[windowStats[x10].y * 32 + windowStats[x10].x];
@@ -409,10 +409,10 @@ void closeWindow(short arg1) {
 		x0E += 32 - windowStats[x10].width - 2;
 	}
 	unknownC45E96();
-	if (windowStats[x10].title_id != 0) {
-		unknown7E894E[windowStats[x10].title_id - 1] = -1;
+	if (windowStats[x10].titleID != 0) {
+		unknown7E894E[windowStats[x10].titleID - 1] = -1;
 	}
-	windowStats[x10].title_id = 0;
+	windowStats[x10].titleID = 0;
 	unknown7E9623 = 1;
 	if (unknown7E5E7A == arg1) {
 		unknown7E5E7A = -1;
@@ -476,10 +476,10 @@ void unknownC3E7E3(short arg1) {
 	if (arg1 == -1) {
 		return;
 	}
-	if (windowStats[windowTable[arg1]].current_option == -1) {
+	if (windowStats[windowTable[arg1]].currentOption == -1) {
 		return;
 	}
-	MenuOpt* x = &menuOptions[windowStats[windowTable[arg1]].current_option];
+	MenuOpt* x = &menuOptions[windowStats[windowTable[arg1]].currentOption];
 	while (true) {
 		x.field00 = 0;
 		if (x.next == -1) {
@@ -487,11 +487,11 @@ void unknownC3E7E3(short arg1) {
 		}
 		x++;
 	}
-	windowStats[windowTable[arg1]].selected_option = -1;
-	windowStats[windowTable[arg1]].option_count = -1;
-	windowStats[windowTable[arg1]].current_option = -1;
-	windowStats[windowTable[arg1]].menu_columns = 1;
-	windowStats[windowTable[arg1]].menu_page = 1;
+	windowStats[windowTable[arg1]].selectedOption = -1;
+	windowStats[windowTable[arg1]].optionCount = -1;
+	windowStats[windowTable[arg1]].currentOption = -1;
+	windowStats[windowTable[arg1]].menuColumns = 1;
+	windowStats[windowTable[arg1]].menuPage = 1;
 }
 
 /// $C3E84E

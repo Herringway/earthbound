@@ -1484,7 +1484,7 @@ void updateParty() {
 	short[6] local4;
 	short partyCount = gameState.partyCount;
 	for (short i = 0; i < partyCount; i++) {
-		local1[i] = partyCharacters[gameState.playerControlledPartyMembers[i]].position_index;
+		local1[i] = partyCharacters[gameState.playerControlledPartyMembers[i]].positionIndex;
 	}
 	for (short i = 0; i < partyCount; i++) {
 		short local9 = gameState.unknown96[i];
@@ -1520,7 +1520,7 @@ void updateParty() {
 		gameState.unknown96[i] = cast(ubyte)local2[i];
 		gameState.unknownA2[i] = cast(ubyte)local3[i];
 		gameState.playerControlledPartyMembers[i] = cast(ubyte)local4[i];
-		partyCharacters[i].position_index = local1[i];
+		partyCharacters[i].positionIndex = local1[i];
 		entityScriptVar5Table[i] = gameState.unknownA2[i];
 	}
 	gameState.currentPartyMembers = gameState.unknownA2[0];
@@ -1577,23 +1577,23 @@ short unknownC0369B(short id) {
 	newEntityVar1 = cast(short)(x1A_2 - 0x18);
 	gameState.playerControlledPartyMembers[x18] = cast(ubyte)newEntityVar1;
 	if (gameState.partyCount == 1) {
-		partyCharacters[newEntityVar1].position_index = gameState.unknown88;
+		partyCharacters[newEntityVar1].positionIndex = gameState.unknown88;
 	} else {
-		short x16 = (x18 == 0) ? gameState.unknown88 : partyCharacters[entityScriptVar1Table[gameState.unknownA2[x18 - 1]]].position_index;
-		partyCharacters[newEntityVar1].position_index = x16;
+		short x16 = (x18 == 0) ? gameState.unknown88 : partyCharacters[entityScriptVar1Table[gameState.unknownA2[x18 - 1]]].positionIndex;
+		partyCharacters[newEntityVar1].positionIndex = x16;
 	}
-	short x = (partyCharacters[newEntityVar1].position_index != 0) ? cast(short)(partyCharacters[newEntityVar1].position_index - 1) : 0xFF;
+	short x = (partyCharacters[newEntityVar1].positionIndex != 0) ? cast(short)(partyCharacters[newEntityVar1].positionIndex - 1) : 0xFF;
 	short x18_2 = (gameState.unknown92 != 3) ? characterInitialEntityData[id - 1].overworldSprite : characterInitialEntityData[id - 1].lostUnderworldSprite;
-	createEntity(x18_2, characterInitialEntityData[id - 1].actionScript, x1A_2, playerPositionBuffer[x].x_coord, playerPositionBuffer[x].y_coord);
-	entityScreenXTable[x1A_2] = cast(short)(playerPositionBuffer[x].x_coord - bg1XPosition);
-	entityScreenYTable[x1A_2] = cast(short)(playerPositionBuffer[x].y_coord - bg1YPosition);
+	createEntity(x18_2, characterInitialEntityData[id - 1].actionScript, x1A_2, playerPositionBuffer[x].xCoord, playerPositionBuffer[x].yCoord);
+	entityScreenXTable[x1A_2] = cast(short)(playerPositionBuffer[x].xCoord - bg1XPosition);
+	entityScreenYTable[x1A_2] = cast(short)(playerPositionBuffer[x].yCoord - bg1YPosition);
 	gameState.currentPartyMembers = characterInitialEntityData[gameState.unknown96[0] - 1].unknown6;
 	unknownC09CD7();
 	unknownC032EC();
 	gameState.currentPartyMembers = gameState.unknownA2[0];
 	updateParty();
-	entityPreparedXCoordinate = playerPositionBuffer[x].x_coord;
-	entityPreparedYCoordinate = playerPositionBuffer[x].y_coord;
+	entityPreparedXCoordinate = playerPositionBuffer[x].xCoord;
+	entityPreparedYCoordinate = playerPositionBuffer[x].yCoord;
 	entityPreparedDirection = entityDirections[x1A_2];
 	return x1A_2;
 }
@@ -1612,7 +1612,7 @@ void unknownC03903(short id) {
 		gameState.playerControlledPartyMembers[j] = gameState.playerControlledPartyMembers[j + 1];
 	}
 	if (i == 0) {
-		partyCharacters[gameState.playerControlledPartyMembers[0]].position_index = entityScriptVar1Table[gameState.unknownA2[i]];
+		partyCharacters[gameState.playerControlledPartyMembers[0]].positionIndex = entityScriptVar1Table[gameState.unknownA2[i]];
 	}
 	gameState.unknown96[j] = 0;
 	gameState.partyCount--;
@@ -1745,7 +1745,7 @@ void getOnBicycle() {
 	unknownC02140(0x18);
 	gameState.unknown92 = 6;
 	gameState.walkingStyle = WalkingStyle.bicycle;
-	partyCharacters[0].position_index = 0;
+	partyCharacters[0].positionIndex = 0;
 	gameState.unknown88 = 0;
 	newEntityVar0 = 0;
 	newEntityVar1 = 0;
@@ -1772,7 +1772,7 @@ void unknownC03CFD() {
 	unknownC02140(0x18);
 	gameState.unknown92 = 0;
 	gameState.walkingStyle = 0;
-	partyCharacters[0].position_index = 0;
+	partyCharacters[0].positionIndex = 0;
 	gameState.unknown88 = 0;
 	if (unknown7E5D9A == 0) {
 		oamClear();
@@ -1803,16 +1803,16 @@ short unknownC03E5A(short arg1) {
 	if (x == 0) {
 		return -1;
 	}
-	return chosenFourPtrs[entityScriptVar1Table[gameState.unknownA2[x - 1]]].position_index;
+	return chosenFourPtrs[entityScriptVar1Table[gameState.unknownA2[x - 1]]].positionIndex;
 }
 
 /// $C03E9D
 short unknownC03E9D(short arg1) {
 	short x0E = unknownC03E5A(arg1);
-	if (x0E < unknown7E4DC6.position_index) {
+	if (x0E < unknown7E4DC6.positionIndex) {
 		x0E += 0x100;
 	}
-	return cast(short)(x0E - unknown7E4DC6.position_index);
+	return cast(short)(x0E - unknown7E4DC6.positionIndex);
 }
 
 /// $C03EC3
@@ -1850,11 +1850,11 @@ void unknownC03F1E() {
 	PlayerPositionBufferEntry* x = &playerPositionBuffer[0];
 	short y = 2;
 	while (--y != 0) {
-		x.x_coord = gameState.leaderX.integer;
-		x.y_coord = gameState.leaderY.integer;
+		x.xCoord = gameState.leaderX.integer;
+		x.yCoord = gameState.leaderY.integer;
 		x.direction = gameState.leaderDirection;
-		x.walking_style = gameState.walkingStyle;
-		x.tile_flags = gameState.troddenTileType;
+		x.walkingStyle = gameState.walkingStyle;
+		x.tileFlags = gameState.troddenTileType;
 		miscDebugFlags = 0;
 		x.unknown10 = 0;
 		x += 255;
@@ -1865,7 +1865,7 @@ void unknownC03F1E() {
 				continue;
 			}
 		}
-		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].position_index = 0;
+		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].positionIndex = 0;
 		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
 		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
 		entityAbsXTable[gameState.unknownA2[i]] = gameState.leaderX.integer;
@@ -2330,7 +2330,7 @@ void unknownC04AAD() {
 				continue;
 			}
 			unknown7E4DC6 = &partyCharacters[entityScriptVar1Table[i]];
-			if ((playerPositionBuffer[unknown7E4DC6.position_index].walking_style == WalkingStyle.rope) || (playerPositionBuffer[unknown7E4DC6.position_index].walking_style == WalkingStyle.ladder)) {
+			if ((playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle == WalkingStyle.rope) || (playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle == WalkingStyle.ladder)) {
 				continue;
 			}
 			entityDirections[i] = x10;
@@ -2382,7 +2382,7 @@ void unknownC04C45() {
 	if ((debugging != 0) && ((padState[0] & Pad.x) != 0) && ((unknown7E0002 & 0xF) != 0)) {
 		return;
 	}
-	chosenFourPtrs[entityScriptVar1Table[gameState.currentPartyMembers]].position_index = gameState.unknown88;
+	chosenFourPtrs[entityScriptVar1Table[gameState.currentPartyMembers]].positionIndex = gameState.unknown88;
 	if (gameState.unknownB0 != 0) {
 		unknownC04B53();
 	} else {
@@ -2402,16 +2402,16 @@ void unknownC04C45() {
 	PlayerPositionBufferEntry* x10 = &playerPositionBuffer[gameState.unknown88];
 	gameState.troddenTileType = unknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
 	if (gameState.unknown90 != 0) {
-		x10.x_coord = gameState.leaderX.integer;
-		x10.y_coord = gameState.leaderY.integer;
+		x10.xCoord = gameState.leaderX.integer;
+		x10.yCoord = gameState.leaderY.integer;
 		gameState.unknown88 = cast(short)(x12 + 1);
 		centerScreen(gameState.leaderX.integer, gameState.leaderY.integer);
 		unknown7E4DD4 = 1;
 	} else {
 		unknown7E4DD4 = 0;
 	}
-	x10.tile_flags = gameState.troddenTileType;
-	x10.walking_style = gameState.walkingStyle;
+	x10.tileFlags = gameState.troddenTileType;
+	x10.walkingStyle = gameState.walkingStyle;
 	x10.direction = gameState.leaderDirection;
 	footstepSoundIDOverride = 0;
 	if ((gameState.troddenTileType & 8) != 0) {
@@ -2438,20 +2438,20 @@ void unknownC04D78() {
 		return;
 	}
 	unknown7E4DC6 = chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]];
-	entityDirections[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.position_index].direction;
-	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.position_index].tile_flags;
-	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[unknown7E4DC6.position_index].walking_style, currentEntitySlot);
+	entityDirections[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].direction;
+	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].tileFlags;
+	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle, currentEntitySlot);
 	if (gameState.unknown90 == 0) {
-		if (playerPositionBuffer[unknown7E4DC6.position_index].walking_style != WalkingStyle.escalator) {
+		if (playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle != WalkingStyle.escalator) {
 			return;
 		}
 	}
-	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.position_index].x_coord;
-	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.position_index].y_coord;
+	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].xCoord;
+	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].yCoord;
 	short x1C = 0;
 	short x12 = void;
 	if (entityScriptVar0Table[currentEntitySlot] != gameState.unknown96[0]) {
-		switch (playerPositionBuffer[unknown7E4DC6.position_index].walking_style) {
+		switch (playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle) {
 			case WalkingStyle.ladder:
 			case WalkingStyle.rope:
 				x12 = 0x1E;
@@ -2475,24 +2475,24 @@ void unknownC04D78() {
 				break;
 		}
 	}
-	unknown7E4DC6.unknown65 = playerPositionBuffer[unknown7E4DC6.position_index].walking_style;
+	unknown7E4DC6.unknown65 = playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle;
 	short x1A;
 	if ((entityScriptVar0Table[currentEntitySlot] + 1 != gameState.unknown96[0]) && (x1C == 0)) {
 		//uh oh, x12 may not have been initialized
-		x1A = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], cast(short)(characterSizes[entityScriptVar0Table[currentEntitySlot]] + x12), unknown7E4DC6.position_index, 2);
+		x1A = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], cast(short)(characterSizes[entityScriptVar0Table[currentEntitySlot]] + x12), unknown7E4DC6.positionIndex, 2);
 	} else {
-		x1A = cast(short)(unknown7E4DC6.position_index + 1);
+		x1A = cast(short)(unknown7E4DC6.positionIndex + 1);
 		entityScriptVar7Table[currentEntitySlot] &= (0xFFFF ^ (1 << 12));
 	}
-	unknown7E4DC6.position_index = x1A;
+	unknown7E4DC6.positionIndex = x1A;
 }
 
 /// $C04EF0
 void unknownC04EF0() {
 	unknown7E4DC6 = chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]];
-	entityDirections[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.position_index].direction;
-	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.position_index].tile_flags;
-	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[unknown7E4DC6.position_index].walking_style, currentEntitySlot);
+	entityDirections[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].direction;
+	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].tileFlags;
+	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle, currentEntitySlot);
 }
 
 /// $C04F47
@@ -2669,23 +2669,23 @@ void unknownC052D4(short arg1) {
 	short x1C = 0x100;
 	while(x1C != 0) {
 		x1C--;
-		playerPositionBuffer[x1C].x_coord = x24;
-		playerPositionBuffer[x1C].y_coord = x22;
-		playerPositionBuffer[x1C].tile_flags = x20;
-		playerPositionBuffer[x1C].walking_style = x1E;
+		playerPositionBuffer[x1C].xCoord = x24;
+		playerPositionBuffer[x1C].yCoord = x22;
+		playerPositionBuffer[x1C].tileFlags = x20;
+		playerPositionBuffer[x1C].walkingStyle = x1E;
 		playerPositionBuffer[x1C].direction = arg1;
 		playerPositionBuffer[x1C].unknown10 = 0;
 		x24 += x12.integer;
 		x22 += x16.integer;
 	}
 	for (short i = 0; i < gameState.partyCount; i++) {
-		partyCharacters[gameState.playerControlledPartyMembers[i]].position_index = x26;
+		partyCharacters[gameState.playerControlledPartyMembers[i]].positionIndex = x26;
 		partyCharacters[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
 		partyCharacters[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
-		entityAbsXTable[gameState.unknownA2[i]] = playerPositionBuffer[x26].x_coord;
-		entityAbsYTable[gameState.unknownA2[i]] = playerPositionBuffer[x26].y_coord;
+		entityAbsXTable[gameState.unknownA2[i]] = playerPositionBuffer[x26].xCoord;
+		entityAbsYTable[gameState.unknownA2[i]] = playerPositionBuffer[x26].yCoord;
 		entityDirections[gameState.unknownA2[i]] = playerPositionBuffer[x26].direction;
-		entitySurfaceFlags[gameState.unknownA2[i]] = playerPositionBuffer[x26].tile_flags;
+		entitySurfaceFlags[gameState.unknownA2[i]] = playerPositionBuffer[x26].tileFlags;
 		x26 -= 16;
 	}
 }
@@ -3636,7 +3636,7 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 		return;
 	}
 	unknown7E5DC2 = 1;
-	QueuedInteractionPtr ptr = { door_ptr: arg1 };
+	QueuedInteractionPtr ptr = { doorPtr: arg1 };
 	unknownC064E3(2, cast(QueuedInteractionPtr)ptr);
 	unknownC07C5B();
 }
@@ -3656,8 +3656,8 @@ void unknownC06B3D() {
 		}
 		unknown7E5E58[i] = unknownC0654E();
 	}
-	unknown7E5E58[i].text_ptr = null;
-	for (short j = 0; unknown7E5E58[j].text_ptr !is null; j++) {
+	unknown7E5E58[i].textPtr = null;
+	for (short j = 0; unknown7E5E58[j].textPtr !is null; j++) {
 		unknownC064E3(10, unknown7E5E58[j]);
 	}
 }
@@ -4042,11 +4042,11 @@ void processQueuedInteractions() {
 	tracef("Processing interaction of type %s", currentQueuedInteractionType);
 	switch(currentQueuedInteractionType) {
 		case 2:
-			doorTransition(ptr.door_ptr);
+			doorTransition(ptr.doorPtr);
 			break;
 		case 10:
-			unknownC10004(ptr.text_ptr);
-			if (ptr.text_ptr is textDadCalls.ptr) {
+			unknownC10004(ptr.textPtr);
+			if (ptr.textPtr is textDadCalls.ptr) {
 				dadPhoneTimer = 0x697;
 				unknown7E9E56 = 0;
 			}
@@ -4054,7 +4054,7 @@ void processQueuedInteractions() {
 		case 0:
 		case 8:
 		case 9:
-			unknownC10004(ptr.text_ptr);
+			unknownC10004(ptr.textPtr);
 			break;
 		default: break;
 	}
@@ -4265,14 +4265,14 @@ void unknownC07A56(short arg1, short arg2, short arg3) {
 
 /// $C07B52
 void unknownC07B52() {
-	ushort x14 = partyCharacters[0].position_index;
+	ushort x14 = partyCharacters[0].positionIndex;
 	for (ushort x12 = 0x18; x12 < 0x1E; x12++) {
 		ushort x04 = x12;
 		ushort x10 = x12;
 		if (entityScriptTable[x04] != -1) {
 			entityTickCallbackFlags[x04] |= (objectTickDisabled | objectMoveDisabled);
 			unknown7E4DC6 = &partyCharacters[entityScriptVar1Table[x04]];
-			if ((gameState.currentPartyMembers == x12) || (unknown7E4DC6.position_index == x14)) {
+			if ((gameState.currentPartyMembers == x12) || (unknown7E4DC6.positionIndex == x14)) {
 				unknownC07A56(entityScriptVar0Table[x12], gameState.walkingStyle, x12);
 				entityAbsXTable[x12] = gameState.leaderX.integer;
 				entityAbsYTable[x12] = gameState.leaderY.integer;
@@ -4280,10 +4280,10 @@ void unknownC07B52() {
 					entityDirections[x12] = gameState.leaderDirection;
 				}
 			} else {
-				unknownC07A56(entityScriptVar0Table[x12], playerPositionBuffer[unknown7E4DC6.position_index].walking_style, x12);
-				entityAbsXTable[x10] = playerPositionBuffer[unknown7E4DC6.position_index].x_coord;
-				entityAbsYTable[x10] = playerPositionBuffer[unknown7E4DC6.position_index].y_coord;
-				entityDirections[x10] = playerPositionBuffer[unknown7E4DC6.position_index].direction;
+				unknownC07A56(entityScriptVar0Table[x12], playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle, x12);
+				entityAbsXTable[x10] = playerPositionBuffer[unknown7E4DC6.positionIndex].xCoord;
+				entityAbsYTable[x10] = playerPositionBuffer[unknown7E4DC6.positionIndex].yCoord;
+				entityDirections[x10] = playerPositionBuffer[unknown7E4DC6.positionIndex].direction;
 			}
 			entityScreenXTable[x12] = cast(short)(entityAbsXTable[x12] - bg1XPosition);
 			entityScreenYTable[x12] = cast(short)(entityAbsYTable[x12] - bg1YPosition);
@@ -8369,15 +8369,15 @@ void gameInit() {
 /// $C0B9BC
 void unknownC0B9BC(PathCtx* arg1, short arg2, short arg3, short arg4) {
 	for (short i = 0; i < arg2; i++) {
-		arg1.targets_pos[i].x = ((entityAbsXTable[entitySizes[gameState.unknownA2[i]]] - unknownC42A1F[entitySizes[gameState.unknownA2[i]]]) / 8 - arg3) & 0x3F;
-		arg1.targets_pos[i].y = ((entityAbsYTable[entitySizes[gameState.unknownA2[i]]] - unknownC42A41[entitySizes[gameState.unknownA2[i]]] + unknownC42AEB[entitySizes[gameState.unknownA2[i]]]) / 8 - arg4) & 0x3F;
+		arg1.targetsPos[i].x = ((entityAbsXTable[entitySizes[gameState.unknownA2[i]]] - unknownC42A1F[entitySizes[gameState.unknownA2[i]]]) / 8 - arg3) & 0x3F;
+		arg1.targetsPos[i].y = ((entityAbsYTable[entitySizes[gameState.unknownA2[i]]] - unknownC42A41[entitySizes[gameState.unknownA2[i]]] + unknownC42AEB[entitySizes[gameState.unknownA2[i]]]) / 8 - arg4) & 0x3F;
 	}
 }
 
 /// $C0BA35
 short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg5, short arg6, short arg7) {
 	ubyte* x06 = &unknown7F0000[0x3000];
-	arg1.target_count = arg2;
+	arg1.targetCount = arg2;
 	for (short i = 0; i != arg1.radius.x; i++) {
 		for (short j = 0; j != arg1.radius.y; j++) {
 			if ((unknown7EE000[(i + arg7) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
@@ -8396,16 +8396,16 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		if (entityUnknown2C5E[i] == -1) {
 			continue;
 		}
-		arg1.pathers[x26].obj_index = i;
-		arg1.pathers[x26].from_offscreen = arg6;
+		arg1.pathers[x26].objIndex = i;
+		arg1.pathers[x26].fromOffscreen = arg6;
 		arg1.pathers[x26].hitbox.x = unknownC42AA7[entitySizes[i]];
 		arg1.pathers[x26].hitbox.y = unknownC42AC9[entitySizes[i]];
 		arg1.pathers[x26].origin.x = ((entityAbsXTable[i] - unknownC42A1F[entitySizes[i]]) / 8 - arg3) & 0x3F;
 		arg1.pathers[x26].origin.y = ((entityAbsYTable[i] - unknownC42A41[entitySizes[i]] + unknownC42AEB[entitySizes[i]]) / 8 - arg3) & 0x3F;
 		x26++;
 	}
-	arg1.pather_count = x26;
-	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &unknown7F0000[0x3000], 4, arg2, &arg1.targets_pos[0], x26, &arg1.pathers[0], -1, arg5, arg6);
+	arg1.patherCount = x26;
+	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &unknown7F0000[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg5, arg6);
 	while (pathGetHeapSize() > 0xC00) {}
 	if (x28 == 0) {
 		for (short i = 0; i != maxEntities; i++) {
@@ -8417,7 +8417,7 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		return -1;
 	} else {
 		for (short i = 0; i < x26; i++) {
-			short x22 = arg1.pathers[i].obj_index;
+			short x22 = arg1.pathers[i].objIndex;
 			if (arg1.pathers[i].field0A != 0) {
 				entityUnknown2E02[x22] = arg1.pathers[i].points;
 				entityUnknown2E3E[x22] = arg1.pathers[i].field0A;
@@ -8460,10 +8460,10 @@ short unknownC0BD96() {
 	unknownC0B9BC(x28, 1, x04, x02);
 	short result = unknownC0BA35(x28, 1, x04, x02, 1, 0xFC, 0x32);
 	if (result == 0) {
-		entityAbsXTable[unknown7EF000.unknown7EF200.pathers[0].obj_index] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[unknown7EF000.unknown7EF200.pathers[0].obj_index]] + ((unknown7E4A8E - unknown7E4A92) * 8));
-		entityAbsYTable[unknown7EF000.unknown7EF200.pathers[0].obj_index] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[unknown7EF000.unknown7EF200.pathers[0].obj_index]] + unknownC42A41[entitySizes[unknown7EF000.unknown7EF200.pathers[0].obj_index]] + ((unknown7E4A90 - unknown7E4A94) * 8));
-		entityUnknown2E02[unknown7EF000.unknown7EF200.pathers[0].obj_index]++;
-		entityUnknown2E3E[unknown7EF000.unknown7EF200.pathers[0].obj_index]--;
+		entityAbsXTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((unknown7E4A8E - unknown7E4A92) * 8));
+		entityAbsYTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + unknownC42A41[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((unknown7E4A90 - unknown7E4A94) * 8));
+		entityUnknown2E02[unknown7EF000.unknown7EF200.pathers[0].objIndex]++;
+		entityUnknown2E3E[unknown7EF000.unknown7EF200.pathers[0].objIndex]--;
 	}
 	return result;
 }
@@ -8480,8 +8480,8 @@ short unknownC0BF72() {
 	unknown7E4A90 = (entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8;
 	short x = cast(short)((entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8 - x04);
 	short x28 = cast(short)((entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8 - x04);
-	unknown7EF000.unknown7EF200.targets_pos[0].x = x04 & 0x3F;
-	unknown7EF000.unknown7EF200.targets_pos[0].y = unknown7E4A94 & 0x3F;
+	unknown7EF000.unknown7EF200.targetsPos[0].x = x04 & 0x3F;
+	unknown7EF000.unknown7EF200.targetsPos[0].y = unknown7E4A94 & 0x3F;
 	return unknownC0BA35(x26, 1, x, x28, 1, 0xFC, 0x32);
 }
 
@@ -9048,8 +9048,8 @@ void unknownC0D19B() {
 			short x1A = battleEntryPointerTable[currentBattleGroup].enemies[i].enemyID;
 			if (x1A != 0) {
 				short x18 = 0;
-				for (short j = 0; j < unknown7EF000.unknown7EF200.pather_count; j++) {
-					if (unknown7EF000.unknown7EF200.pathers[j].obj_index == x1A) {
+				for (short j = 0; j < unknown7EF000.unknown7EF200.patherCount; j++) {
+					if (unknown7EF000.unknown7EF200.pathers[j].objIndex == x1A) {
 						x18++;
 					}
 				}
@@ -9057,19 +9057,19 @@ void unknownC0D19B() {
 					for (short j = cast(short)(x18 - x14); j-- != 0;) {
 						short x10 = -1;
 						short x1C = 0;
-						for (short k = 0; k < unknown7EF000.unknown7EF200.pather_count; k++) {
-							if (entityEnemyIDs[unknown7EF000.unknown7EF200.pathers[k].obj_index] != x1A) {
+						for (short k = 0; k < unknown7EF000.unknown7EF200.patherCount; k++) {
+							if (entityEnemyIDs[unknown7EF000.unknown7EF200.pathers[k].objIndex] != x1A) {
 								continue;
 							}
-							if (unknown7EF000.unknown7EF200.pathers[k].point_count <= x1C) {
+							if (unknown7EF000.unknown7EF200.pathers[k].pointCount <= x1C) {
 								continue;
 							}
 							x10 = x18;
-							x1C = entityEnemyIDs[unknown7EF000.unknown7EF200.pathers[k].point_count];
+							x1C = entityEnemyIDs[unknown7EF000.unknown7EF200.pathers[k].pointCount];
 						}
-						if (unknown7EF000.unknown7EF200.pathers[x10].obj_index != x20) {
-							unknown7EF000.unknown7EF200.pathers[x10].point_count = 0;
-							entityUnknown2C5E[unknown7EF000.unknown7EF200.pathers[x10].obj_index] = 0;
+						if (unknown7EF000.unknown7EF200.pathers[x10].objIndex != x20) {
+							unknown7EF000.unknown7EF200.pathers[x10].pointCount = 0;
+							entityUnknown2C5E[unknown7EF000.unknown7EF200.pathers[x10].objIndex] = 0;
 						}
 					}
 				}
@@ -9631,10 +9631,10 @@ short unknownC0DED9(short arg1, short arg2, short arg3, short arg4, short) {
 
 /// $C0E196
 void unknownC0E196() {
-	playerPositionBuffer[gameState.unknown88].x_coord = gameState.leaderX.integer;
-	playerPositionBuffer[gameState.unknown88].y_coord = gameState.leaderY.integer;
-	playerPositionBuffer[gameState.unknown88].tile_flags =unknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
-	playerPositionBuffer[gameState.unknown88].walking_style = 0;
+	playerPositionBuffer[gameState.unknown88].xCoord = gameState.leaderX.integer;
+	playerPositionBuffer[gameState.unknown88].yCoord = gameState.leaderY.integer;
+	playerPositionBuffer[gameState.unknown88].tileFlags =unknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+	playerPositionBuffer[gameState.unknown88].walkingStyle = 0;
 	playerPositionBuffer[gameState.unknown88].direction = gameState.leaderDirection;
 	gameState.unknown88++;
 	//uh... yeah, sure
@@ -9703,12 +9703,12 @@ void unknownC0E28F() {
 /// $C0E3C1
 void unknownC0E3C1() {
 	unknown7E4DC6 = &partyCharacters[entityScriptVar1Table[currentEntitySlot]];
-	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].walking_style, currentEntitySlot);
-	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].x_coord;
-	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].y_coord;
-	entityDirections[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].direction;
-	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].tile_flags;
-	unknown7E4DC6.position_index = cast(ubyte)unknownC0E214(entityScriptVar0Table[currentEntitySlot], partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index);
+	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
+	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord;
+	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord;
+	entityDirections[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].direction;
+	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].tileFlags;
+	unknown7E4DC6.positionIndex = cast(ubyte)unknownC0E214(entityScriptVar0Table[currentEntitySlot], partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex);
 }
 
 /// $C0E44D

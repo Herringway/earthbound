@@ -72,7 +72,7 @@ void unknownC200D9() {
 	windowHead = -1;
 	windowTail = -1;
 	for (short i = 0; i != 8; i++) {
-		windowStats[i].window_id = -1;
+		windowStats[i].windowID = -1;
 	}
 	for (short i = 0; i != 0x35; i++) {
 		windowTable[i] = -1;
@@ -109,7 +109,7 @@ void unknownC200D9() {
 	unknown7E5E70 = 0;
 	unknown7E5E75 = 0;
 	// uhhhhh
-	//menuOptions[windowStats[windowTable[currentFocusWindow]].current_option].pixel_align = 0;
+	//menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].pixelAlign = 0;
 
 	unknown7E5E71 = 0;
 	unknown7E5E72 = 0;
@@ -138,7 +138,7 @@ void unknownC20293() {
 
 /// $C202AC
 void unknownC202AC(short arg1) {
-	if (windowStats[windowTable[arg1]].title_id == 0) {
+	if (windowStats[windowTable[arg1]].titleID == 0) {
 		short i;
 		for (i = 0; i != 5; i++) {
 			if (unknown7E894E[i] == -1) {
@@ -148,9 +148,9 @@ void unknownC202AC(short arg1) {
 		return;
 		Unknown2:
 		unknown7E894E[i] = windowTable[arg1];
-		windowStats[windowTable[arg1]].title_id = cast(ubyte)(i + 1);
+		windowStats[windowTable[arg1]].titleID = cast(ubyte)(i + 1);
 	}
-	unknownC444FB(&windowStats[windowTable[arg1]].title[0], cast(ushort)(0x7700 + (windowStats[windowTable[arg1]].title_id - 1) * 128));
+	unknownC444FB(&windowStats[windowTable[arg1]].title[0], cast(ushort)(0x7700 + (windowStats[windowTable[arg1]].titleID - 1) * 128));
 }
 
 /// $C2032B
@@ -175,7 +175,7 @@ void drawHPPPWindow(short id) {
 	short x22 = unknownC223D9(&character.afflictions[0], 1);
 	short x04 = unknownC223D9(&character.afflictions[0], 1);
 	short x20 = cast(short)((x22 & 0xFFF0) + x04);
-	ushort x1E = character.hp_pp_window_options;
+	ushort x1E = character.hpPPWindowOptions;
 	short x18;
 	short x1A;
 	short x1C;
@@ -411,10 +411,10 @@ void unknownC20A20(WindowTextAttributesCopy* buf) {
 	if (currentFocusWindow == 0xFFFF) {
 		return;
 	}
-	buf.text_x = windowStats[windowTable[currentFocusWindow]].text_x;
-	buf.text_y = windowStats[windowTable[currentFocusWindow]].text_y;
-	buf.number_padding = windowStats[windowTable[currentFocusWindow]].num_padding;
-	buf.curr_tile_attributes = windowStats[windowTable[currentFocusWindow]].tileAttributes;
+	buf.textX = windowStats[windowTable[currentFocusWindow]].textX;
+	buf.textY = windowStats[windowTable[currentFocusWindow]].textY;
+	buf.numberPadding = windowStats[windowTable[currentFocusWindow]].numPadding;
+	buf.currTileAttributes = windowStats[windowTable[currentFocusWindow]].tileAttributes;
 	buf.font = windowStats[windowTable[currentFocusWindow]].font;
 }
 
@@ -427,10 +427,10 @@ void unknownC20ABC(WindowTextAttributesCopy* buf) {
 		return;
 	}
 	currentFocusWindow = buf.id;
-	windowStats[windowTable[currentFocusWindow]].text_x = buf.text_x;
-	windowStats[windowTable[currentFocusWindow]].text_y = buf.text_y;
-	windowStats[windowTable[currentFocusWindow]].num_padding = buf.number_padding;
-	windowStats[windowTable[currentFocusWindow]].tileAttributes = buf.curr_tile_attributes;
+	windowStats[windowTable[currentFocusWindow]].textX = buf.textX;
+	windowStats[windowTable[currentFocusWindow]].textY = buf.textY;
+	windowStats[windowTable[currentFocusWindow]].numPadding = buf.numberPadding;
+	windowStats[windowTable[currentFocusWindow]].tileAttributes = buf.currTileAttributes;
 	windowStats[windowTable[currentFocusWindow]].font = buf.font;
 }
 
@@ -795,7 +795,7 @@ void unknownC216DB() {
 
 /// $C21857
 void recalcCharacterPostmathOffense(short id) {
-	short total = partyCharacters[id - 1].base_offense;
+	short total = partyCharacters[id - 1].baseOffense;
 	if (partyCharacters[id - 1].equipment[EquipmentSlot.weapon] != 0) {
 		total += itemData[partyCharacters[id - 1].items[partyCharacters[id - 1].equipment[EquipmentSlot.weapon] - 1]].parameters.raw[((id - 1) == 3) ? 1 : 0];
 	}
@@ -811,7 +811,7 @@ void recalcCharacterPostmathOffense(short id) {
 
 /// $C2192B
 void recalcCharacterPostmathDefense(short id) {
-	short total = partyCharacters[id - 1].base_defense;
+	short total = partyCharacters[id - 1].baseDefense;
 	if (partyCharacters[id - 1].equipment[EquipmentSlot.body] != 0) {
 		total += itemData[partyCharacters[id - 1].items[partyCharacters[id - 1].equipment[EquipmentSlot.body] - 1]].parameters.raw[((id - 1) == 3) ? 1 : 0];
 	}
@@ -833,11 +833,11 @@ void recalcCharacterPostmathDefense(short id) {
 
 /// $C21AEB
 void recalcCharacterPostmathSpeed(short id) {
-	short total = partyCharacters[id - 1].base_speed;
+	short total = partyCharacters[id - 1].baseSpeed;
 	if (partyCharacters[id - 1].equipment[EquipmentSlot.body] != 0) {
 		total += itemData[partyCharacters[id - 1].items[partyCharacters[id - 1].equipment[EquipmentSlot.body] - 1]].parameters.ep;
 	}
-	total += partyCharacters[id - 1].boosted_speed;
+	total += partyCharacters[id - 1].boostedSpeed;
 	if (0 >= total) {
 		total = 0;
 	} else { //why would they explicitly do this...?
@@ -848,11 +848,11 @@ void recalcCharacterPostmathSpeed(short id) {
 
 /// $C21BA4
 void recalcCharacterPostmathGuts(short id) {
-	short total = partyCharacters[id - 1].base_guts;
+	short total = partyCharacters[id - 1].baseGuts;
 	if (partyCharacters[id - 1].equipment[EquipmentSlot.weapon] != 0) {
 		total += itemData[partyCharacters[id - 1].items[partyCharacters[id - 1].equipment[EquipmentSlot.weapon] - 1]].parameters.ep;
 	}
-	total += partyCharacters[id - 1].boosted_guts;
+	total += partyCharacters[id - 1].boostedGuts;
 	if (0 >= total) {
 		total = 0;
 	} else { //why would they explicitly do this...?
@@ -863,14 +863,14 @@ void recalcCharacterPostmathGuts(short id) {
 
 /// $C21C5D
 void recalcCharacterPostmathLuck(short id) {
-	short total = partyCharacters[id - 1].base_luck;
+	short total = partyCharacters[id - 1].baseLuck;
 	if (partyCharacters[id - 1].equipment[EquipmentSlot.arms] != 0) {
 		total += itemData[partyCharacters[id - 1].items[partyCharacters[id - 1].equipment[EquipmentSlot.arms] - 1]].parameters.ep;
 	}
 	if (partyCharacters[id - 1].equipment[EquipmentSlot.other] != 0) {
 		total += itemData[partyCharacters[id - 1].items[partyCharacters[id - 1].equipment[EquipmentSlot.other] - 1]].parameters.ep;
 	}
-	total += partyCharacters[id - 1].boosted_luck;
+	total += partyCharacters[id - 1].boostedLuck;
 	if (0 >= total) {
 		total = 0;
 	} else { //why would they explicitly do this...?
@@ -881,17 +881,17 @@ void recalcCharacterPostmathLuck(short id) {
 
 /// $C21D65
 void recalcCharacterPostmathVitality(short id) {
-	partyCharacters[id - 1].vitality = cast(ubyte)(partyCharacters[id - 1].base_vitality + partyCharacters[id - 1].boosted_vitality);
+	partyCharacters[id - 1].vitality = cast(ubyte)(partyCharacters[id - 1].baseVitality + partyCharacters[id - 1].boostedVitality);
 }
 
 /// $C21D7D
 void recalcCharacterPostmathIQ(short id) {
-	partyCharacters[id - 1].iq = cast(ubyte)(partyCharacters[id - 1].base_iq + partyCharacters[id - 1].boosted_iq);
+	partyCharacters[id - 1].iq = cast(ubyte)(partyCharacters[id - 1].baseIQ + partyCharacters[id - 1].boostedIQ);
 }
 
 /// $C21D7D
 void recalcCharacterMissRate(short id) {
-	partyCharacters[id - 1].miss_rate = cast(ubyte)((partyCharacters[id - 1].equipment[EquipmentSlot.weapon] != 0) ? itemData[partyCharacters[id - 1].equipment[EquipmentSlot.weapon] - 1].parameters.special : 0);
+	partyCharacters[id - 1].missRate = cast(ubyte)((partyCharacters[id - 1].equipment[EquipmentSlot.weapon] != 0) ? itemData[partyCharacters[id - 1].equipment[EquipmentSlot.weapon] - 1].parameters.special : 0);
 }
 
 /// $C21E03
@@ -999,9 +999,9 @@ short unknownC223D9(ubyte* arg1, short arg2) {
 	}
 	lx:
 	if (arg2 != 0) {
-		return StatusEquipWindowText[x0E][arg1[x0E] - 1];
+		return statusEquipWindowText[x0E][arg1[x0E] - 1];
 	} else {
-		return StatusEquipWindowText2[x0E][arg1[x0E] - 1];
+		return statusEquipWindowText2[x0E][arg1[x0E] - 1];
 	}
 }
 
@@ -6179,35 +6179,35 @@ void eatFood() {
 		case 4:
 		BoostIQ:
 			currentTarget.iq += cast(ubyte)x16;
-			partyCharacters[x1C - 1].boosted_iq += cast(ubyte)x16;
+			partyCharacters[x1C - 1].boostedIQ += cast(ubyte)x16;
 			recalcCharacterPostmathIQ(x1C);
 			displayTextWait(textBattleIQWentUp.ptr, x16);
 			break;
 		case 5:
 		BoostGuts:
 			currentTarget.guts += x16;
-			partyCharacters[x1C - 1].boosted_guts += cast(ubyte)x16;
+			partyCharacters[x1C - 1].boostedGuts += cast(ubyte)x16;
 			recalcCharacterPostmathGuts(x1C);
 			displayTextWait(textBattleGutsWentUp.ptr, x16);
 			break;
 		case 6:
 		BoostSpeed:
 			currentTarget.speed += x16;
-			partyCharacters[x1C - 1].boosted_speed += cast(ubyte)x16;
+			partyCharacters[x1C - 1].boostedSpeed += cast(ubyte)x16;
 			recalcCharacterPostmathSpeed(x1C);
 			displayTextWait(textBattleSpeedWentUp.ptr, x16);
 			break;
 		case 7:
 		BoostVitality:
 			currentTarget.vitality += cast(ubyte)x16;
-			partyCharacters[x1C - 1].boosted_vitality += cast(ubyte)x16;
+			partyCharacters[x1C - 1].boostedVitality += cast(ubyte)x16;
 			recalcCharacterPostmathVitality(x1C);
 			displayTextWait(textBattleVitalityWentUp.ptr, x16);
 			break;
 		case 8:
 		BoostLuck:
 			currentTarget.luck += x16;
-			partyCharacters[x1C - 1].boosted_luck += cast(ubyte)x16;
+			partyCharacters[x1C - 1].boostedLuck += cast(ubyte)x16;
 			recalcCharacterPostmathLuck(x1C);
 			displayTextWait(textBattleLuckWentUp.ptr, x16);
 			break;

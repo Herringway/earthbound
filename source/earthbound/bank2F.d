@@ -84,17 +84,17 @@ void unknownEF0115(short arg1) {
 
 /// $EF016F
 void unknownEF016F() {
-	unknown7E9684 = menuOptions[windowStats[windowTable[currentFocusWindow]].current_option + windowStats[windowTable[currentFocusWindow]].selected_option].text_x;
-	unknown7E9686 = menuOptions[windowStats[windowTable[currentFocusWindow]].current_option + windowStats[windowTable[currentFocusWindow]].selected_option].text_y;
-	unknown7E9688 = windowStats[windowTable[currentFocusWindow]].current_option;
-	unknown7E968A = windowStats[windowTable[currentFocusWindow]].selected_option;
+	unknown7E9684 = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textX;
+	unknown7E9686 = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textY;
+	unknown7E9688 = windowStats[windowTable[currentFocusWindow]].currentOption;
+	unknown7E968A = windowStats[windowTable[currentFocusWindow]].selectedOption;
 }
 
 /// $EF01D2
 void unknownEF01D2(short arg1) {
 	short x0E = (arg1 - ebChar(' ')) & 0x7F;
 	arg1 = fontConfigTable[0].data[x0E] + unknown7E5E6D;
-	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].text_x - 1) * 8 + (vwfX & 7) + x0E) {
+	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].textX - 1) * 8 + (vwfX & 7) + x0E) {
 		printNewLineF();
 		unknown7E5E75 = 1;
 	}
@@ -121,8 +121,8 @@ void unknownEF027D() {
 	unknown7E9F33 = 0;
 	unknown7E9F35 = 30;
 	entityScriptVar3Table[currentEntitySlot] = 4;
-	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].position_index].x_coord = gameState.leaderX.integer;
-	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].position_index].y_coord = gameState.leaderY.integer;
+	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord = gameState.leaderX.integer;
+	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord = gameState.leaderY.integer;
 }
 
 /// $EF02C4
@@ -143,26 +143,26 @@ void unknownEF02C4(short arg1) {
 /// $EF031E
 void unknownEF031E() {
 	unknown7E4DC6 = &partyCharacters[entityScriptVar1Table[currentEntitySlot]];
-	short x16 = partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index;
-	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].x_coord;
-	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].y_coord;
-	if (playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].walking_style != 0) {
-		unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].walking_style, currentEntitySlot);
-		unknown7E4DC6.position_index = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0x1E, partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index, 2);
+	short x16 = partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex;
+	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord;
+	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord;
+	if (playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle != 0) {
+		unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
+		unknown7E4DC6.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0x1E, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
 	}
 	switch (unknown7E9F33) {
 		case 0:
 		case 2:
-			unknown7E4DC6.position_index = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index, 2);
-			if ((x16 == unknown7E4DC6.position_index) || (x16 + 1 == unknown7E4DC6.position_index)) {
-				unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].walking_style, currentEntitySlot);
+			unknown7E4DC6.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
+			if ((x16 == unknown7E4DC6.positionIndex) || (x16 + 1 == unknown7E4DC6.positionIndex)) {
+				unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
 				if (gameState.unknown90 == 0) {
 					break;
 				}
 			} else {
 				unknownC07A56(entityScriptVar0Table[currentEntitySlot], 14, currentEntitySlot);
 			}
-			entityDirections[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].direction;
+			entityDirections[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].direction;
 			entityScriptVar7Table[currentEntitySlot] &= 0x1FFF;
 			break;
 		case 1:
@@ -195,7 +195,7 @@ void unknownEF031E() {
 			unknown7E9F35 = 60;
 		}
 	}
-	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].position_index].tile_flags;
+	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].tileFlags;
 }
 
 /// $EF04DC
@@ -350,7 +350,7 @@ void saveGameBlock(short id) {
 	gameState.timer = timer;
 	Retry:
 	version(savememory) {
-		memcpy(&sram.saves[id].saveData.gameState, &gameState, Game_State.sizeof);
+		memcpy(&sram.saves[id].saveData.gameState, &gameState, GameState.sizeof);
 		memcpy(&sram.saves[id].saveData.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
 		memcpy(&sram.saves[id].saveData.eventFlags, &eventFlags[0], eventFlags.sizeof);
 		sram.saves[id].checksum = calcSaveBlockAddChecksum(id);
@@ -364,7 +364,7 @@ void saveGameBlock(short id) {
 	} else {
 		SaveBlock block;
 		memcpy(&block.signature[0], &sramSignature[0], strlen(&sramSignature[0]));
-		memcpy(&block.saveData.gameState, &gameState, Game_State.sizeof);
+		memcpy(&block.saveData.gameState, &gameState, GameState.sizeof);
 		memcpy(&block.saveData.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
 		memcpy(&block.saveData.eventFlags, &eventFlags[0], eventFlags.sizeof);
 		block.checksum = calcSaveBlockAddChecksum(id);
@@ -388,12 +388,12 @@ void saveGameSlot(short id) {
 /// $EF0A68
 void loadGameSlot(short id) {
 	version (savememory) {
-		memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, Game_State.sizeof);
+		memcpy(&gameState, &sram.saves[id * 2].saveData.gameState, GameState.sizeof);
 		memcpy(&partyCharacters[0], &sram.saves[id * 2].saveData.partyCharacters, (PartyCharacter[6]).sizeof);
 		memcpy(&eventFlags[0], &sram.saves[id * 2].saveData.eventFlags, eventFlags.sizeof);
 	} else {
 		SaveBlock block = readSaveFile(cast(short)(id * 2));
-		memcpy(&gameState, &block.saveData.gameState, Game_State.sizeof);
+		memcpy(&gameState, &block.saveData.gameState, GameState.sizeof);
 		memcpy(&partyCharacters[0], &block.saveData.partyCharacters, (PartyCharacter[6]).sizeof);
 		memcpy(&eventFlags[0], &block.saveData.eventFlags, eventFlags.sizeof);
 	}
@@ -22633,7 +22633,7 @@ void saveReplaySaveSlot() {
 	if (testSRAMSize() == 0) {
 		return;
 	}
-	memcpy(&replaySRAM.gameState, &gameState, Game_State.sizeof);
+	memcpy(&replaySRAM.gameState, &gameState, GameState.sizeof);
 	memcpy(&replaySRAM.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
 	memcpy(&replaySRAM.eventFlags, &eventFlags[0], eventFlags.sizeof);
 	memcpy(&replaySRAM.timer, &timer, timer.sizeof);
@@ -22655,7 +22655,7 @@ void loadReplaySaveSlot() {
 	if (testSRAMSize() == 0) {
 		return;
 	}
-	memcpy(&gameState, &replaySRAM.gameState, Game_State.sizeof);
+	memcpy(&gameState, &replaySRAM.gameState, GameState.sizeof);
 	memcpy(&partyCharacters[0], &replaySRAM.partyCharacters, (PartyCharacter[6]).sizeof);
 	memcpy(&eventFlags[0], &replaySRAM.eventFlags, eventFlags.sizeof);
 	memcpy(&timer, &replaySRAM.timer, timer.sizeof);
