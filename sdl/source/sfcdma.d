@@ -20,8 +20,8 @@ void handleDma() {
     auto channels = MDMAEN;
     for(auto i = 0; i < 8; i += 1) {
         if (((channels >> i) & 1) == 0) continue;
-        auto dmap = DMAChannels[i].DMAP;
-        auto bbad = DMAChannels[i].BBAD;
+        auto dmap = dmaChannels[i].DMAP;
+        auto bbad = dmaChannels[i].BBAD;
         assert((dmap & 0x80) == 0); // Can't go from B bus to A bus
         assert((dmap & 0x10) == 0); // Can't decrement pointer
         ubyte* dest, wrapAt, wrapTo;
@@ -60,8 +60,8 @@ void handleDma() {
         // If the "Fixed Transfer" bit is set, transfer same data repeatedly
         if ((dmap & 0x08) != 0) srcAdjust = -transferSize;
         // Perform actual copy
-        dmaCopy(cast(const(ubyte)*)DMAChannels[i].A1T, dest, wrapAt, wrapTo,
-                DMAChannels[i].DAS, transferSize, srcAdjust, dstAdjust);
+        dmaCopy(cast(const(ubyte)*)dmaChannels[i].A1T, dest, wrapAt, wrapTo,
+                dmaChannels[i].DAS, transferSize, srcAdjust, dstAdjust);
     }
     MDMAEN = 0;
 }

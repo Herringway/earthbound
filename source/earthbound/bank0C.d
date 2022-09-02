@@ -4,7 +4,7 @@ module earthbound.bank0C;
 import earthbound.commondefs;
 
 /// $CC2DE1
-immutable AnimationSequence[7] AnimationSequencePointers = [
+immutable AnimationSequence[7] animationSequencePointers = [
 	AnimationSequence(null, 0x0000, 0x00, 0x00),
 	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/lightning_reflect.anim.lzhal"), 0x1C10, 0x06, 0x03),
 	AnimationSequence(cast(immutable(ubyte)[])import("graphics/animations/lightning_strike.anim.lzhal"), 0x05A0, 0x07, 0x10),
@@ -16,57 +16,57 @@ immutable AnimationSequence[7] AnimationSequencePointers = [
 
 
 /// $CCAC25
-immutable ubyte[] PSIAnimationGraphicsSet1 = cast(immutable(ubyte)[])import("psianims/gfx/0.gfx.lzhal");
+immutable ubyte[] psiAnimationGraphicsSet1 = cast(immutable(ubyte)[])import("psianims/gfx/0.gfx.lzhal");
 
 /// $CCB613
-immutable ubyte[] PSIAnimationGraphicsSet2 = cast(immutable(ubyte)[])import("psianims/gfx/1.gfx.lzhal");
+immutable ubyte[] psiAnimationGraphicsSet2 = cast(immutable(ubyte)[])import("psianims/gfx/1.gfx.lzhal");
 
 /// $CCDB27
-immutable ubyte[] PSIAnimationGraphicsSet3 = cast(immutable(ubyte)[])import("psianims/gfx/2.gfx.lzhal");
+immutable ubyte[] psiAnimationGraphicsSet3 = cast(immutable(ubyte)[])import("psianims/gfx/2.gfx.lzhal");
 
 /// $CCE31D
-immutable ubyte[] PSIAnimationGraphicsSet4 = cast(immutable(ubyte)[])import("psianims/gfx/3.gfx.lzhal");
+immutable ubyte[] psiAnimationGraphicsSet4 = cast(immutable(ubyte)[])import("psianims/gfx/3.gfx.lzhal");
 
 /// $CCF04D
-immutable PSIAnimation[34] PSIAnimationConfig = [
-	PSIAnimation(PSIAnimationGraphicsSet3, 5, 3, 1, 2, 47, PSIAnimationTarget.AllEnemies, 0, 0, RGB(0, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 4, 3, 1, 3, 29, PSIAnimationTarget.Single, 50, 80, RGB(18, 6, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 4, 3, 1, 3, 47, PSIAnimationTarget.AllEnemies, 90, 160, RGB(16, 6, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 3, 3, 1, 3, 33, PSIAnimationTarget.Single, 0, 0, RGB(0, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 5, 3, 1, 3, 28, PSIAnimationTarget.Single, 40, 70, RGB(0, 0, 10).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 5, 3, 1, 3, 33, PSIAnimationTarget.AllEnemies, 40, 70, RGB(0, 0, 10).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet2, 5, 2, 1, 3, 13, PSIAnimationTarget.Row, 40, 70, RGB(31, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet2, 5, 2, 1, 3, 16, PSIAnimationTarget.Row, 50, 80, RGB(31, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet2, 5, 3, 1, 3, 17, PSIAnimationTarget.Row, 50, 80, RGB(31, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet2, 5, 3, 1, 3, 27, PSIAnimationTarget.Row, 80, 130, RGB(31, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 5, 3, 1, 2, 6, PSIAnimationTarget.AllEnemies, 10, 40, RGB(29, 29, 29).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 5, 3, 1, 2, 10, PSIAnimationTarget.AllEnemies, 20, 50, RGB(29, 29, 29).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 2, 1, 3, 19, PSIAnimationTarget.AllEnemies, 30, 60, RGB(29, 29, 29).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet2, 4, 2, 1, 3, 33, PSIAnimationTarget.AllEnemies, 76, 125, RGB(29, 29, 29).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 3, 1, 3, 23, PSIAnimationTarget.Single, 50, 80, RGB(0, 0, 31).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 3, 1, 3, 22, PSIAnimationTarget.Single, 50, 80, RGB(0, 0, 31).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 3, 1, 3, 23, PSIAnimationTarget.Single, 50, 80, RGB(0, 0, 31).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 3, 1, 3, 35, PSIAnimationTarget.Single, 60, 135, RGB(0, 0, 31).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet4, 3, 2, 1, 3, 31, PSIAnimationTarget.AllEnemies, 63, 92, RGB(26, 14, 14).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet4, 3, 2, 1, 3, 48, PSIAnimationTarget.AllEnemies, 114, 143, RGB(26, 14, 14).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet4, 3, 2, 1, 3, 54, PSIAnimationTarget.AllEnemies, 132, 161, RGB(26, 14, 14).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet4, 4, 2, 1, 3, 64, PSIAnimationTarget.AllEnemies, 141, 255, RGB(26, 14, 14).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 5, 3, 1, 3, 26, PSIAnimationTarget.Single, 60, 90, RGB(0, 10, 4).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 5, 3, 1, 3, 26, PSIAnimationTarget.AllEnemies, 60, 90, RGB(0, 10, 4).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 3, 3, 1, 3, 34, PSIAnimationTarget.Single, 45, 75, RGB(18, 18, 18).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 3, 3, 1, 3, 26, PSIAnimationTarget.AllEnemies, 45, 75, RGB(18, 18, 18).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 7, 4, 1, 2, 17, PSIAnimationTarget.AllEnemies, 0, 0, RGB(0, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 5, 3, 1, 3, 11, PSIAnimationTarget.Single, 0, 0, RGB(0, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 5, 3, 1, 3, 17, PSIAnimationTarget.AllEnemies, 0, 0, RGB(0, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet3, 3, 3, 1, 3, 33, PSIAnimationTarget.AllEnemies, 0, 0, RGB(0, 0, 0).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 2, 1, 3, 33, PSIAnimationTarget.AllEnemies, 80, 131, RGB(18, 18, 31).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 2, 1, 3, 46, PSIAnimationTarget.AllEnemies, 121, 183, RGB(18, 18, 31).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 3, 1, 3, 15, PSIAnimationTarget.Random, 25, 54, RGB(31, 31, 11).bgr555),
-	PSIAnimation(PSIAnimationGraphicsSet1, 4, 3, 1, 3, 19, PSIAnimationTarget.Random, 49, 75, RGB(31, 31, 11).bgr555),
+immutable PSIAnimation[34] psiAnimationConfig = [
+	PSIAnimation(psiAnimationGraphicsSet3, 5, 3, 1, 2, 47, PSIAnimationTarget.allEnemies, 0, 0, RGB(0, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 4, 3, 1, 3, 29, PSIAnimationTarget.single, 50, 80, RGB(18, 6, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 4, 3, 1, 3, 47, PSIAnimationTarget.allEnemies, 90, 160, RGB(16, 6, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 3, 3, 1, 3, 33, PSIAnimationTarget.single, 0, 0, RGB(0, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 5, 3, 1, 3, 28, PSIAnimationTarget.single, 40, 70, RGB(0, 0, 10).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 5, 3, 1, 3, 33, PSIAnimationTarget.allEnemies, 40, 70, RGB(0, 0, 10).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet2, 5, 2, 1, 3, 13, PSIAnimationTarget.row, 40, 70, RGB(31, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet2, 5, 2, 1, 3, 16, PSIAnimationTarget.row, 50, 80, RGB(31, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet2, 5, 3, 1, 3, 17, PSIAnimationTarget.row, 50, 80, RGB(31, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet2, 5, 3, 1, 3, 27, PSIAnimationTarget.row, 80, 130, RGB(31, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 5, 3, 1, 2, 6, PSIAnimationTarget.allEnemies, 10, 40, RGB(29, 29, 29).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 5, 3, 1, 2, 10, PSIAnimationTarget.allEnemies, 20, 50, RGB(29, 29, 29).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 2, 1, 3, 19, PSIAnimationTarget.allEnemies, 30, 60, RGB(29, 29, 29).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet2, 4, 2, 1, 3, 33, PSIAnimationTarget.allEnemies, 76, 125, RGB(29, 29, 29).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 3, 1, 3, 23, PSIAnimationTarget.single, 50, 80, RGB(0, 0, 31).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 3, 1, 3, 22, PSIAnimationTarget.single, 50, 80, RGB(0, 0, 31).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 3, 1, 3, 23, PSIAnimationTarget.single, 50, 80, RGB(0, 0, 31).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 3, 1, 3, 35, PSIAnimationTarget.single, 60, 135, RGB(0, 0, 31).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet4, 3, 2, 1, 3, 31, PSIAnimationTarget.allEnemies, 63, 92, RGB(26, 14, 14).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet4, 3, 2, 1, 3, 48, PSIAnimationTarget.allEnemies, 114, 143, RGB(26, 14, 14).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet4, 3, 2, 1, 3, 54, PSIAnimationTarget.allEnemies, 132, 161, RGB(26, 14, 14).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet4, 4, 2, 1, 3, 64, PSIAnimationTarget.allEnemies, 141, 255, RGB(26, 14, 14).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 5, 3, 1, 3, 26, PSIAnimationTarget.single, 60, 90, RGB(0, 10, 4).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 5, 3, 1, 3, 26, PSIAnimationTarget.allEnemies, 60, 90, RGB(0, 10, 4).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 3, 3, 1, 3, 34, PSIAnimationTarget.single, 45, 75, RGB(18, 18, 18).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 3, 3, 1, 3, 26, PSIAnimationTarget.allEnemies, 45, 75, RGB(18, 18, 18).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 7, 4, 1, 2, 17, PSIAnimationTarget.allEnemies, 0, 0, RGB(0, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 5, 3, 1, 3, 11, PSIAnimationTarget.single, 0, 0, RGB(0, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 5, 3, 1, 3, 17, PSIAnimationTarget.allEnemies, 0, 0, RGB(0, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet3, 3, 3, 1, 3, 33, PSIAnimationTarget.allEnemies, 0, 0, RGB(0, 0, 0).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 2, 1, 3, 33, PSIAnimationTarget.allEnemies, 80, 131, RGB(18, 18, 31).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 2, 1, 3, 46, PSIAnimationTarget.allEnemies, 121, 183, RGB(18, 18, 31).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 3, 1, 3, 15, PSIAnimationTarget.random, 25, 54, RGB(31, 31, 11).bgr555),
+	PSIAnimation(psiAnimationGraphicsSet1, 4, 3, 1, 3, 19, PSIAnimationTarget.random, 49, 75, RGB(31, 31, 11).bgr555),
 ];
 
 /// $CCF47F
-immutable ubyte[][34] PSIAnimationPalettes = [
+immutable ubyte[][34] psiAnimationPalettes = [
 	cast(immutable(ubyte)[])import("psianims/palettes/00.bin"),
 	cast(immutable(ubyte)[])import("psianims/palettes/01.bin"),
 	cast(immutable(ubyte)[])import("psianims/palettes/02.bin"),
@@ -104,7 +104,7 @@ immutable ubyte[][34] PSIAnimationPalettes = [
 ];
 
 /// $CCF58F
-immutable ubyte[][34] PSIAnimationPointers = [
+immutable ubyte[][34] psiAnimationPointers = [
 	cast(immutable(ubyte)[])import("psianims/arrangements/0.arr.lzhal"),
 	cast(immutable(ubyte)[])import("psianims/arrangements/1.arr.lzhal"),
 	cast(immutable(ubyte)[])import("psianims/arrangements/2.arr.lzhal"),

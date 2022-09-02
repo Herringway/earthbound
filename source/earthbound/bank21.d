@@ -7,13 +7,13 @@ import earthbound.bank01;
 import earthbound.globals;
 
 /// $E10000
-immutable ubyte* CoffeeSequenceText;
+immutable ubyte* coffeeSequenceText;
 
 /// $E10652
-immutable ubyte* TeaSequenceText;
+immutable ubyte* teaSequenceText;
 
 /// $E12EFA
-immutable CastSequenceFormattingEntry[48] CastSequenceFormatting = [
+immutable CastSequenceFormattingEntry[48] castSequenceFormatting = [
 	CastSequenceFormattingEntry(0x0030, 0x00),
 	CastSequenceFormattingEntry(0x0030, 0x08),
 	CastSequenceFormattingEntry(0x0038, 0x08),
@@ -65,164 +65,164 @@ immutable CastSequenceFormattingEntry[48] CastSequenceFormatting = [
 ];
 
 /// $E12F8A
-immutable CreditsPhotograph[32] PhotographerConfigTable = [
-	CreditsPhotograph(EventFlag.UNKNOWN_2BA, 332, 43, 0x0000, 0x00, 0x00, 329, 56, [ Coordinates(331, 45), Coordinates(329, 44), Coordinates(333, 44), Coordinates(335, 43), Coordinates(327, 44), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2BB, 944, 186, 0x00C0, 0x28, 0x55, 938, 190, [ Coordinates(944, 188), Coordinates(942, 189), Coordinates(947, 189), Coordinates(949, 190), Coordinates(939, 188), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2BC, 185, 814, 0x0180, 0x18, 0x55, 186, 824, [ Coordinates(190, 818), Coordinates(188, 818), Coordinates(191, 816), Coordinates(183, 818), Coordinates(185, 819), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2BD, 617, 145, 0x0240, 0x38, 0x55, 619, 149, [ Coordinates(616, 142), Coordinates(614, 143), Coordinates(613, 141), Coordinates(609, 143), Coordinates(612, 144), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2BE, 729, 155, 0x0240, 0x30, 0x55, 731, 166, [ Coordinates(728, 158), Coordinates(730, 157), Coordinates(726, 156), Coordinates(724, 155), Coordinates(732, 156), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2BF, 276, 814, 0x0180, 0x28, 0x55, 277, 824, [ Coordinates(275, 818), Coordinates(273, 819), Coordinates(270, 818), Coordinates(278, 818), Coordinates(280, 819), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(286, 818, OverworldSprite.GORGEOUS), PhotographerConfigEntryObject(288, 816, OverworldSprite.LUCKY), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C0, 73, 424, 0x0300, 0x08, 0x55, 83, 426, [ Coordinates(75, 422), Coordinates(80, 423), Coordinates(73, 421), Coordinates(71, 422), Coordinates(77, 421), Coordinates(69, 420) ], [ PhotographerConfigEntryObject(82, 419, OverworldSprite.TESSIE_WATCHER), PhotographerConfigEntryObject(67, 416, OverworldSprite.TESSIE_WATCHER), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C1, 195, 442, 0x03C0, 0x10, 0x55, 197, 450, [ Coordinates(197, 441), Coordinates(200, 441), Coordinates(196, 440), Coordinates(201, 440), Coordinates(202, 441), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(190, 447, OverworldSprite.MAD_DUCK), PhotographerConfigEntryObject(186, 441, OverworldSprite.ROWDY_MOUSE), PhotographerConfigEntryObject(205, 444, OverworldSprite.ROWDY_MOUSE), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C2, 721, 1052, 0x0480, 0x38, 0x55, 714, 1054, [ Coordinates(721, 1048), Coordinates(719, 1048), Coordinates(717, 1047), Coordinates(715, 1048), Coordinates(717, 1049), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(714, 1056, OverworldSprite.ZOMBIE_POSSESSOR), PhotographerConfigEntryObject(725, 1057, OverworldSprite.ZOMBIE_POSSESSOR), PhotographerConfigEntryObject(724, 1046, OverworldSprite.ZOMBIE_POSSESSOR), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C3, 801, 32, 0x0540, 0x10, 0x55, 816, 45, [ Coordinates(807, 36), Coordinates(809, 37), Coordinates(811, 38), Coordinates(810, 40), Coordinates(813, 40), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C4, 70, 920, 0x0600, 0x18, 0x55, 72, 929, [ Coordinates(70, 920), Coordinates(72, 920), Coordinates(73, 918), Coordinates(68, 923), Coordinates(74, 922), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C5, 700, 1138, 0x0480, 0x28, 0x55, 697, 1152, [ Coordinates(699, 1145), Coordinates(701, 1145), Coordinates(697, 1144), Coordinates(703, 1144), Coordinates(705, 1142), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(691, 1142, OverworldSprite.LITTLE_KID_IN_BLUE), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C6, 255, 1115, 0x06C0, 0x18, 0x55, 254, 1127, [ Coordinates(253, 1117), Coordinates(255, 1116), Coordinates(257, 1117), Coordinates(259, 1118), Coordinates(251, 1118), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(264, 1121, OverworldSprite.CRESTED_BOOKA), PhotographerConfigEntryObject(263, 1112, OverworldSprite.SMILIN_SPHERE), PhotographerConfigEntryObject(247, 1123, OverworldSprite.SKELPION), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C7, 465, 1203, 0x06C0, 0x38, 0x55, 462, 1210, [ Coordinates(465, 1203), Coordinates(467, 1204), Coordinates(469, 1205), Coordinates(462, 1204), Coordinates(471, 1204), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(459, 1197, OverworldSprite.MINERS_BROTHER), PhotographerConfigEntryObject(466, 1213, OverworldSprite.BIG_DIRT_SCOOPER), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C8, 708, 1250, 0x06C0, 0x28, 0x55, 713, 1255, [ Coordinates(708, 1250), Coordinates(710, 1249), Coordinates(706, 1249), Coordinates(712, 1248), Coordinates(704, 1248), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2C9, 399, 532, 0x0780, 0x18, 0x55, 411, 547, [ Coordinates(404, 538), Coordinates(406, 539), Coordinates(408, 538), Coordinates(410, 536), Coordinates(409, 540), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2CA, 583, 655, 0x0840, 0x30, 0x55, 578, 667, [ Coordinates(582, 658), Coordinates(584, 658), Coordinates(586, 658), Coordinates(588, 659), Coordinates(585, 660), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2CB, 448, 494, 0x0780, 0x08, 0x55, 440, 504, [ Coordinates(447, 496), Coordinates(446, 495), Coordinates(448, 494), Coordinates(449, 492), Coordinates(449, 490), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2CC, 566, 769, 0x0900, 0x38, 0x55, 562, 777, [ Coordinates(568, 771), Coordinates(570, 772), Coordinates(566, 771), Coordinates(564, 772), Coordinates(571, 771), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2CD, 856, 1037, 0x09C0, 0x18, 0x55, 860, 1046, [ Coordinates(857, 1041), Coordinates(858, 1039), Coordinates(854, 1039), Coordinates(856, 1037), Coordinates(859, 1037), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2CE, 576, 436, 0x0A80, 0x28, 0x55, 573, 451, [ Coordinates(574, 443), Coordinates(576, 444), Coordinates(578, 443), Coordinates(571, 443), Coordinates(579, 442), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2CF, 39, 552, 0x0300, 0x38, 0x55, 43, 562, [ Coordinates(42, 556), Coordinates(44, 554), Coordinates(39, 554), Coordinates(43, 550), Coordinates(46, 555), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(33, 549, OverworldSprite.CAVE_BOY), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D0, 565, 343, 0x0B40, 0x10, 0x55, 559, 352, [ Coordinates(565, 344), Coordinates(567, 344), Coordinates(569, 344), Coordinates(571, 344), Coordinates(563, 344), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D1, 888, 1134, 0x0C00, 0x38, 0x55, 890, 1143, [ Coordinates(886, 1135), Coordinates(888, 1135), Coordinates(890, 1135), Coordinates(892, 1138), Coordinates(889, 1136), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(898, 1134, OverworldSprite.DRINKING_GUY), PhotographerConfigEntryObject(882, 1134, OverworldSprite.BRUNETTE_SHOPPING_LADY), PhotographerConfigEntryObject(890, 1142, OverworldSprite.OLD_LADY_WITH_CANE), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D2, 760, 370, 0x0B40, 0x30, 0x55, 757, 380, [ Coordinates(759, 374), Coordinates(761, 373), Coordinates(763, 374), Coordinates(762, 370), Coordinates(757, 367), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D3, 868, 362, 0x0B40, 0x08, 0x55, 866, 371, [ Coordinates(866, 358), Coordinates(868, 357), Coordinates(872, 357), Coordinates(874, 358), Coordinates(863, 358), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D4, 186, 529, 0x0CC0, 0x10, 0x55, 190, 536, [ Coordinates(185, 530), Coordinates(187, 529), Coordinates(189, 531), Coordinates(191, 532), Coordinates(182, 532), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D5, 224, 611, 0x0CC0, 0x18, 0x55, 229, 615, [ Coordinates(226, 614), Coordinates(227, 612), Coordinates(224, 613), Coordinates(229, 613), Coordinates(220, 613), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(223, 611, OverworldSprite.PYRAMID_DOOR), PhotographerConfigEntryObject(225, 611, OverworldSprite.PYRAMID_DOOR), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D6, 160, 669, 0x0CC0, 0x30, 0x55, 165, 677, [ Coordinates(164, 672), Coordinates(162, 671), Coordinates(160, 671), Coordinates(158, 670), Coordinates(160, 668), Coordinates(166, 671) ], [ PhotographerConfigEntryObject(171, 611, OverworldSprite.DungeonMan), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D7, 657, 958, 0x0D80, 0x38, 0x55, 652, 964, [ Coordinates(658, 960), Coordinates(656, 958), Coordinates(657, 956), Coordinates(660, 957), Coordinates(661, 959), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D8, 49, 39, 0x0E40, 0x10, 0x55, 51, 47, [ Coordinates(50, 38), Coordinates(48, 37), Coordinates(53, 36), Coordinates(46, 36), Coordinates(51, 35), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None), PhotographerConfigEntryObject(0, 0, OverworldSprite.None) ]),
-	CreditsPhotograph(EventFlag.UNKNOWN_2D9, 48, 955, 0x0600, 0x00, 0x00, 49, 969, [ Coordinates(48, 953), Coordinates(52, 952), Coordinates(50, 950), Coordinates(46, 951), Coordinates(0, 0), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(49, 956, OverworldSprite.DR_ANDONUTS), PhotographerConfigEntryObject(44, 955, OverworldSprite.APPLE_KID), PhotographerConfigEntryObject(53, 955, OverworldSprite.MR_SATURN), PhotographerConfigEntryObject(42, 951, OverworldSprite.MINER) ]),
+immutable CreditsPhotograph[32] photographerConfigTable = [
+	CreditsPhotograph(EventFlag.unknown2BA, 332, 43, 0x0000, 0x00, 0x00, 329, 56, [ Coordinates(331, 45), Coordinates(329, 44), Coordinates(333, 44), Coordinates(335, 43), Coordinates(327, 44), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2BB, 944, 186, 0x00C0, 0x28, 0x55, 938, 190, [ Coordinates(944, 188), Coordinates(942, 189), Coordinates(947, 189), Coordinates(949, 190), Coordinates(939, 188), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2BC, 185, 814, 0x0180, 0x18, 0x55, 186, 824, [ Coordinates(190, 818), Coordinates(188, 818), Coordinates(191, 816), Coordinates(183, 818), Coordinates(185, 819), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2BD, 617, 145, 0x0240, 0x38, 0x55, 619, 149, [ Coordinates(616, 142), Coordinates(614, 143), Coordinates(613, 141), Coordinates(609, 143), Coordinates(612, 144), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2BE, 729, 155, 0x0240, 0x30, 0x55, 731, 166, [ Coordinates(728, 158), Coordinates(730, 157), Coordinates(726, 156), Coordinates(724, 155), Coordinates(732, 156), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2BF, 276, 814, 0x0180, 0x28, 0x55, 277, 824, [ Coordinates(275, 818), Coordinates(273, 819), Coordinates(270, 818), Coordinates(278, 818), Coordinates(280, 819), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(286, 818, OverworldSprite.gorgeous), PhotographerConfigEntryObject(288, 816, OverworldSprite.lucky), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C0, 73, 424, 0x0300, 0x08, 0x55, 83, 426, [ Coordinates(75, 422), Coordinates(80, 423), Coordinates(73, 421), Coordinates(71, 422), Coordinates(77, 421), Coordinates(69, 420) ], [ PhotographerConfigEntryObject(82, 419, OverworldSprite.tessieWatcher), PhotographerConfigEntryObject(67, 416, OverworldSprite.tessieWatcher), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C1, 195, 442, 0x03C0, 0x10, 0x55, 197, 450, [ Coordinates(197, 441), Coordinates(200, 441), Coordinates(196, 440), Coordinates(201, 440), Coordinates(202, 441), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(190, 447, OverworldSprite.madDuck), PhotographerConfigEntryObject(186, 441, OverworldSprite.rowdyMouse), PhotographerConfigEntryObject(205, 444, OverworldSprite.rowdyMouse), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C2, 721, 1052, 0x0480, 0x38, 0x55, 714, 1054, [ Coordinates(721, 1048), Coordinates(719, 1048), Coordinates(717, 1047), Coordinates(715, 1048), Coordinates(717, 1049), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(714, 1056, OverworldSprite.zombiePossessor), PhotographerConfigEntryObject(725, 1057, OverworldSprite.zombiePossessor), PhotographerConfigEntryObject(724, 1046, OverworldSprite.zombiePossessor), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C3, 801, 32, 0x0540, 0x10, 0x55, 816, 45, [ Coordinates(807, 36), Coordinates(809, 37), Coordinates(811, 38), Coordinates(810, 40), Coordinates(813, 40), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C4, 70, 920, 0x0600, 0x18, 0x55, 72, 929, [ Coordinates(70, 920), Coordinates(72, 920), Coordinates(73, 918), Coordinates(68, 923), Coordinates(74, 922), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C5, 700, 1138, 0x0480, 0x28, 0x55, 697, 1152, [ Coordinates(699, 1145), Coordinates(701, 1145), Coordinates(697, 1144), Coordinates(703, 1144), Coordinates(705, 1142), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(691, 1142, OverworldSprite.littleKidInBlue), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C6, 255, 1115, 0x06C0, 0x18, 0x55, 254, 1127, [ Coordinates(253, 1117), Coordinates(255, 1116), Coordinates(257, 1117), Coordinates(259, 1118), Coordinates(251, 1118), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(264, 1121, OverworldSprite.crestedBooka), PhotographerConfigEntryObject(263, 1112, OverworldSprite.smilinSphere), PhotographerConfigEntryObject(247, 1123, OverworldSprite.skelpion), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C7, 465, 1203, 0x06C0, 0x38, 0x55, 462, 1210, [ Coordinates(465, 1203), Coordinates(467, 1204), Coordinates(469, 1205), Coordinates(462, 1204), Coordinates(471, 1204), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(459, 1197, OverworldSprite.minersBrother), PhotographerConfigEntryObject(466, 1213, OverworldSprite.bigDirtScooper), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C8, 708, 1250, 0x06C0, 0x28, 0x55, 713, 1255, [ Coordinates(708, 1250), Coordinates(710, 1249), Coordinates(706, 1249), Coordinates(712, 1248), Coordinates(704, 1248), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2C9, 399, 532, 0x0780, 0x18, 0x55, 411, 547, [ Coordinates(404, 538), Coordinates(406, 539), Coordinates(408, 538), Coordinates(410, 536), Coordinates(409, 540), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2CA, 583, 655, 0x0840, 0x30, 0x55, 578, 667, [ Coordinates(582, 658), Coordinates(584, 658), Coordinates(586, 658), Coordinates(588, 659), Coordinates(585, 660), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2CB, 448, 494, 0x0780, 0x08, 0x55, 440, 504, [ Coordinates(447, 496), Coordinates(446, 495), Coordinates(448, 494), Coordinates(449, 492), Coordinates(449, 490), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2CC, 566, 769, 0x0900, 0x38, 0x55, 562, 777, [ Coordinates(568, 771), Coordinates(570, 772), Coordinates(566, 771), Coordinates(564, 772), Coordinates(571, 771), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2CD, 856, 1037, 0x09C0, 0x18, 0x55, 860, 1046, [ Coordinates(857, 1041), Coordinates(858, 1039), Coordinates(854, 1039), Coordinates(856, 1037), Coordinates(859, 1037), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2CE, 576, 436, 0x0A80, 0x28, 0x55, 573, 451, [ Coordinates(574, 443), Coordinates(576, 444), Coordinates(578, 443), Coordinates(571, 443), Coordinates(579, 442), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2CF, 39, 552, 0x0300, 0x38, 0x55, 43, 562, [ Coordinates(42, 556), Coordinates(44, 554), Coordinates(39, 554), Coordinates(43, 550), Coordinates(46, 555), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(33, 549, OverworldSprite.caveBoy), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D0, 565, 343, 0x0B40, 0x10, 0x55, 559, 352, [ Coordinates(565, 344), Coordinates(567, 344), Coordinates(569, 344), Coordinates(571, 344), Coordinates(563, 344), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D1, 888, 1134, 0x0C00, 0x38, 0x55, 890, 1143, [ Coordinates(886, 1135), Coordinates(888, 1135), Coordinates(890, 1135), Coordinates(892, 1138), Coordinates(889, 1136), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(898, 1134, OverworldSprite.drinkingGuy), PhotographerConfigEntryObject(882, 1134, OverworldSprite.brunetteShoppingLady), PhotographerConfigEntryObject(890, 1142, OverworldSprite.oldLadyWithCane), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D2, 760, 370, 0x0B40, 0x30, 0x55, 757, 380, [ Coordinates(759, 374), Coordinates(761, 373), Coordinates(763, 374), Coordinates(762, 370), Coordinates(757, 367), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D3, 868, 362, 0x0B40, 0x08, 0x55, 866, 371, [ Coordinates(866, 358), Coordinates(868, 357), Coordinates(872, 357), Coordinates(874, 358), Coordinates(863, 358), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D4, 186, 529, 0x0CC0, 0x10, 0x55, 190, 536, [ Coordinates(185, 530), Coordinates(187, 529), Coordinates(189, 531), Coordinates(191, 532), Coordinates(182, 532), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D5, 224, 611, 0x0CC0, 0x18, 0x55, 229, 615, [ Coordinates(226, 614), Coordinates(227, 612), Coordinates(224, 613), Coordinates(229, 613), Coordinates(220, 613), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(223, 611, OverworldSprite.pyramidDoor), PhotographerConfigEntryObject(225, 611, OverworldSprite.pyramidDoor), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D6, 160, 669, 0x0CC0, 0x30, 0x55, 165, 677, [ Coordinates(164, 672), Coordinates(162, 671), Coordinates(160, 671), Coordinates(158, 670), Coordinates(160, 668), Coordinates(166, 671) ], [ PhotographerConfigEntryObject(171, 611, OverworldSprite.dungeonMan), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D7, 657, 958, 0x0D80, 0x38, 0x55, 652, 964, [ Coordinates(658, 960), Coordinates(656, 958), Coordinates(657, 956), Coordinates(660, 957), Coordinates(661, 959), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D8, 49, 39, 0x0E40, 0x10, 0x55, 51, 47, [ Coordinates(50, 38), Coordinates(48, 37), Coordinates(53, 36), Coordinates(46, 36), Coordinates(51, 35), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none), PhotographerConfigEntryObject(0, 0, OverworldSprite.none) ]),
+	CreditsPhotograph(EventFlag.unknown2D9, 48, 955, 0x0600, 0x00, 0x00, 49, 969, [ Coordinates(48, 953), Coordinates(52, 952), Coordinates(50, 950), Coordinates(46, 951), Coordinates(0, 0), Coordinates(0, 0) ], [ PhotographerConfigEntryObject(49, 956, OverworldSprite.drAndonuts), PhotographerConfigEntryObject(44, 955, OverworldSprite.appleKid), PhotographerConfigEntryObject(53, 955, OverworldSprite.mrSaturn), PhotographerConfigEntryObject(42, 951, OverworldSprite.miner) ]),
 ];
 
 /// $E1374A
-immutable ubyte[] CompressedPaletteUnknown = cast(immutable(ubyte)[])import("unknown_palette.pal.lzhal");
+immutable ubyte[] compressedPaletteUnknown = cast(immutable(ubyte)[])import("unknown_palette.pal.lzhal");
 
 /// $E1413F
-immutable ubyte[] StaffText;
+immutable ubyte[] staffText;
 
 /// $E14DE8
-void UnknownE14DE8() {
+void unknownE14DE8() {
 	short x12 = 1;
 	short x10 = 0;
 	while (true) {
-		while (BattlersTable[x10].consciousness == 0) {
+		while (battlersTable[x10].consciousness == 0) {
 			x10 += x12;
 			if (0 > x10) {
-				x10 = BattlersTable.length - 1;
+				x10 = battlersTable.length - 1;
 			}
-			if (BattlersTable.length > x10) {
+			if (battlersTable.length > x10) {
 				x10 = 0;
 			}
 		}
-		NullC1E1A2(&BattlersTable[x10]);
-		WindowTick();
+		nullC1E1A2(&battlersTable[x10]);
+		windowTick();
 		while (true) {
-			WaitUntilNextFrame();
-			if ((pad_held[0] & PAD_RIGHT) != 0) {
+			waitUntilNextFrame();
+			if ((padHeld[0] & Pad.right) != 0) {
 				x12 = 1;
 				break;
-			} else if ((pad_held[0] & PAD_LEFT) != 0) {
+			} else if ((padHeld[0] & Pad.left) != 0) {
 				x12 = -1;
 				break;
-			} else if (pad_press[0] != 0) {
-				CloseFocusWindow();
+			} else if (padPress[0] != 0) {
+				closeFocusWindow();
 				return;
 			}
 		}
 		x10 += x12;
 		if (0 > x10) {
-			x10 = BattlersTable.length - 1;
+			x10 = battlersTable.length - 1;
 		}
-		if (BattlersTable.length <= x10) {
+		if (battlersTable.length <= x10) {
 			x10 = 0;
 		}
-		CloseFocusWindow();
+		closeFocusWindow();
 	}
 }
 
 /// $E14EC1
-immutable ubyte[] APEArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
+immutable ubyte[] apeArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
 
 /// $E14F2A
-immutable ubyte[] APEGraphics = cast(immutable(ubyte)[])import("intro/logos/ape.gfx.lzhal");
+immutable ubyte[] apeGraphics = cast(immutable(ubyte)[])import("intro/logos/ape.gfx.lzhal");
 
 /// $E15130
-immutable ubyte[] APEPalette = cast(immutable(ubyte)[])import("intro/logos/ape.pal.lzhal");
+immutable ubyte[] apePalette = cast(immutable(ubyte)[])import("intro/logos/ape.pal.lzhal");
 
 /// $E15174
-immutable ubyte[] HALKENArrangement = cast(immutable(ubyte)[])import("intro/logos/halken.arr.lzhal");
+immutable ubyte[] halkenArrangement = cast(immutable(ubyte)[])import("intro/logos/halken.arr.lzhal");
 
 /// $E151E8
-immutable ubyte[] HALKENGraphics = cast(immutable(ubyte)[])import("intro/logos/halken.gfx.lzhal");
+immutable ubyte[] halkenGraphics = cast(immutable(ubyte)[])import("intro/logos/halken.gfx.lzhal");
 
 /// $E153B8
-immutable ubyte[] HALKENPalette = cast(immutable(ubyte)[])import("intro/logos/halken.pal.lzhal");
+immutable ubyte[] halkenPalette = cast(immutable(ubyte)[])import("intro/logos/halken.pal.lzhal");
 
 /// $E15455
-immutable ubyte[] NintendoArrangement = cast(immutable(ubyte)[])import("intro/logos/nintendo.arr.lzhal");
+immutable ubyte[] nintendoArrangement = cast(immutable(ubyte)[])import("intro/logos/nintendo.arr.lzhal");
 
 /// $E1549E
-immutable ubyte[] NintendoGraphics = cast(immutable(ubyte)[])import("intro/logos/nintendo.gfx.lzhal");
+immutable ubyte[] nintendoGraphics = cast(immutable(ubyte)[])import("intro/logos/nintendo.gfx.lzhal");
 
 /// $E1558F
-immutable ubyte[] NintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
+immutable ubyte[] nintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
 
 /// $E155D3
-immutable ubyte[] GasStationArrangement = cast(immutable(ubyte)[])import("intro/gas_station.arr.lzhal");
+immutable ubyte[] gasStationArrangement = cast(immutable(ubyte)[])import("intro/gas_station.arr.lzhal");
 
 /// $E15B33
-immutable ubyte[] GasStationGraphics = cast(immutable(ubyte)[])import("intro/gas_station.gfx.lzhal");
+immutable ubyte[] gasStationGraphics = cast(immutable(ubyte)[])import("intro/gas_station.gfx.lzhal");
 
 /// $E1A9B7
-immutable ubyte[] GasStationPalette = cast(immutable(ubyte)[])import("intro/gas_station.pal.lzhal");
+immutable ubyte[] gasStationPalette = cast(immutable(ubyte)[])import("intro/gas_station.pal.lzhal");
 
 /// $E1AA5D
-immutable ubyte[] GasStationPalette2 = cast(immutable(ubyte)[])import("intro/gas_station2.pal.lzhal");
+immutable ubyte[] gasStationPalette2 = cast(immutable(ubyte)[])import("intro/gas_station2.pal.lzhal");
 
 /// $E1AADF
-immutable ubyte[] ProducedItoiArrangement = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.arr.lzhal");
+immutable ubyte[] producedItoiArrangement = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.arr.lzhal");
 
 /// $E1AB4B
-immutable ubyte[] ProducedItoiGraphics = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.gfx.lzhal");
+immutable ubyte[] producedItoiGraphics = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.gfx.lzhal");
 
 /// $E1AD01
-immutable ubyte[] NintendoPresentationArrangement = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.arr.lzhal");
+immutable ubyte[] nintendoPresentationArrangement = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.arr.lzhal");
 
 /// $E1AD4E
-immutable ubyte[] NintendoPresentationGraphics = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.gfx.lzhal");
+immutable ubyte[] nintendoPresentationGraphics = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.gfx.lzhal");
 
 /// $E1AE6F
-immutable ubyte[] NintendoItoiPalette = cast(immutable(ubyte)[])import("intro/attract/nintendo_itoi.pal.lzhal");
+immutable ubyte[] nintendoItoiPalette = cast(immutable(ubyte)[])import("intro/attract/nintendo_itoi.pal.lzhal");
 
 /// $E1AE7C
-immutable ubyte[] UnknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
+immutable ubyte[] unknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
 
 /// $E1AE83
-immutable ubyte[] UnknownE1AE83 = cast(immutable(ubyte)[])import("E1AE83.bin.lzhal");
+immutable ubyte[] unknownE1AE83 = cast(immutable(ubyte)[])import("E1AE83.bin.lzhal");
 
 /// $E1AEFD
-immutable ubyte[] UnknownE1AEFD = cast(immutable(ubyte)[])import("E1AEFD.bin.lzhal");
+immutable ubyte[] unknownE1AEFD = cast(immutable(ubyte)[])import("E1AEFD.bin.lzhal");
 
 /// $E1AF7D
-immutable ubyte[] TitleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
+immutable ubyte[] titleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
 
 /// $E1B211
-immutable ubyte[] TitleScreenGraphics = cast(immutable(ubyte)[])import("intro/title_screen.gfx.lzhal");
+immutable ubyte[] titleScreenGraphics = cast(immutable(ubyte)[])import("intro/title_screen.gfx.lzhal");
 
 /// $E1C6E5
-immutable ubyte[] UnknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
+immutable ubyte[] unknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
 
 /// $E1CDE1
-immutable ubyte[] TitleScreenPalette = cast(immutable(ubyte)[])import("intro/title_screen.pal.lzhal");
+immutable ubyte[] titleScreenPalette = cast(immutable(ubyte)[])import("intro/title_screen.pal.lzhal");
 
 /// $E1CE08
-immutable SpriteMap*[9] UnknownE1CF9D = [
+immutable SpriteMap*[9] unknownE1CF9D = [
 	[
 		SpriteMap(0x10, 0x3052, 0x04, 0x00),
 		SpriteMap(0x08, 0x3042, 0x04, 0x00),
@@ -325,49 +325,49 @@ immutable SpriteMap*[9] UnknownE1CF9D = [
 ];
 
 /// $E1CFAF
-immutable ubyte[] UnknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
+immutable ubyte[] unknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
 
 /// $E1D4F4
-immutable ubyte[] UnknownE1D4F4 = cast(immutable(ubyte)[])import("E1D4F4.pal.lzhal");
+immutable ubyte[] unknownE1D4F4 = cast(immutable(ubyte)[])import("E1D4F4.pal.lzhal");
 
 /// $E1D5E8
-immutable ubyte[] UnknownE1D5E8 = cast(immutable(ubyte)[])import("E1D5E8.arr.lzhal");
+immutable ubyte[] unknownE1D5E8 = cast(immutable(ubyte)[])import("E1D5E8.arr.lzhal");
 
 /// $E1D6E1
-immutable ubyte[] UnknownE1D6E1 = cast(immutable(ubyte)[])import("E1D6E1.gfx.lzhal");
+immutable ubyte[] unknownE1D6E1 = cast(immutable(ubyte)[])import("E1D6E1.gfx.lzhal");
 
 /// $E1D815
-immutable ubyte[] UnknownE1D815 = [0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10];
+immutable ubyte[] unknownE1D815 = [0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10];
 
 /// $E1D835
-immutable ubyte[] CastNamesGraphics = cast(immutable(ubyte)[])import("ending/cast_names.gfx.lzhal");
+immutable ubyte[] castNamesGraphics = cast(immutable(ubyte)[])import("ending/cast_names.gfx.lzhal");
 
 /// $E1E4E6
-immutable ubyte[] UnknownE1E4E6 = cast(immutable(ubyte)[])import("ending/cast_names.pal.lzhal");
+immutable ubyte[] unknownE1E4E6 = cast(immutable(ubyte)[])import("ending/cast_names.pal.lzhal");
 
 /// $E1E528
-immutable ubyte[] StaffCreditsFontGraphics = cast(immutable(ubyte)[])import("ending/credits_font.gfx.lzhal");
+immutable ubyte[] staffCreditsFontGraphics = cast(immutable(ubyte)[])import("ending/credits_font.gfx.lzhal");
 
 /// $E1E914
-immutable ubyte[] StaffCreditsFontPalette = cast(immutable(ubyte)[])import("ending/credits_font.pal");
+immutable ubyte[] staffCreditsFontPalette = cast(immutable(ubyte)[])import("ending/credits_font.pal");
 
 /// $E1E924
-immutable ubyte[] UnknownE1E924 = [ 0x04, 0x00, 0x7F, 0x1F, 0x58, 0x32 ];
+immutable ubyte[] unknownE1E924 = [ 0x04, 0x00, 0x7F, 0x1F, 0x58, 0x32 ];
 
 /// $E1E92A
-immutable ubyte[] UnknownE1E92A = [ 0x1F, 0x3D, 0xFF, 0x7F, 0xE0, 0x07, 0x86, 0x10, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xDF, 0x57, 0xE0, 0x07, 0x55, 0x25, 0x00, 0x00 ];
+immutable ubyte[] unknownE1E92A = [ 0x1F, 0x3D, 0xFF, 0x7F, 0xE0, 0x07, 0x86, 0x10, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xE0, 0x07, 0xDF, 0x57, 0xE0, 0x07, 0x55, 0x25, 0x00, 0x00 ];
 
 /// $E1E94A
-immutable ubyte[] UnknownE1E94A = [ 0xE8, 0x62, 0x0C, 0x24, 0x00, 0x0D, 0x57, 0x24, 0x0E, 0x02, 0x24, 0x0D, 0x64, 0x45, 0x0C, 0x24, 0x00, 0x0F, 0x57, 0x24, 0x00, 0x02, 0x24, 0x0F, 0xE4, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF2, 0x7F, 0x00, 0xFA, 0x45, 0x0C, 0x24, 0x01, 0x0D, 0xA4, 0x57, 0x0E, 0xE4, 0x01, 0x0D, 0xE4, 0xE8, 0x62, 0x0C, 0x24, 0x3F, 0x00, 0x03, 0x3C, 0x3C, 0x7E, 0x42, 0x43, 0xFF, 0x99, 0x01, 0x7E, 0x42, 0xD1, 0x07, 0x21, 0x0F, 0x1C, 0x1C, 0x3C, 0x34, 0x7C, 0x44, 0x7C, 0x64, 0x3C, 0x24, 0xFF, 0xE7, 0xFF, 0x81, 0xFF, 0xFF, 0x2F, 0x00, 0x84, 0x07, 0x20, 0x06, 0xB9, 0x7F, 0x79, 0x7E, 0x42, 0xFE, 0x9E, 0x98, 0x07, 0x4C, 0x04, 0x99, 0x7E, 0x72, 0x7F, 0x79, 0x95, 0x07, 0x2A, 0x0F, 0x06, 0x06, 0x0E, 0x0A, 0x1E, 0x12, 0x3E, 0x22, 0x7F, 0x53, 0xFF, 0x81, 0xFF, 0xF3, 0x0E, 0x0E, 0x2F, 0x00, 0x22, 0xFF, 0x04, 0x81, 0xFE, 0x9E, 0xFE, 0x82, 0x97, 0x07, 0x88, 0x07, 0x3E, 0x3E, 0x7E, 0x42, 0xFC, 0x9C, 0xFE, 0x82, 0x97, 0x07, 0x28, 0x83, 0x07, 0xC0, 0x03, 0xFF, 0x99, 0xFE, 0xF2, 0x42, 0x3C, 0x24, 0x91, 0x07, 0x2E, 0x86, 0x07, 0x80, 0x00, 0x42, 0x97, 0x07, 0x28, 0x87, 0x07, 0x20, 0x07, 0x7F, 0x41, 0x3F, 0x39, 0x7E, 0x42, 0x7C, 0x7C, 0x31, 0x00, 0x83, 0x07, 0xA0, 0x07, 0x1C, 0x14, 0x38, 0x28, 0x70, 0x50, 0x60, 0x60, 0x31, 0x00, 0x3F, 0xFF, 0x2B, 0x00, 0x03, 0x03, 0x00, 0x02, 0x01, 0x2B, 0xFF, 0x03, 0xFC, 0xFC, 0xFD, 0xFD, 0xCC, 0x08, 0xAB, 0xCE, 0x08, 0xA1, 0x83, 0x08, 0xCD, 0x47, 0x02, 0x01, 0x2F, 0xFD, 0xFF ];
+immutable ubyte[] unknownE1E94A = [ 0xE8, 0x62, 0x0C, 0x24, 0x00, 0x0D, 0x57, 0x24, 0x0E, 0x02, 0x24, 0x0D, 0x64, 0x45, 0x0C, 0x24, 0x00, 0x0F, 0x57, 0x24, 0x00, 0x02, 0x24, 0x0F, 0xE4, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF2, 0x7F, 0x00, 0xFA, 0x45, 0x0C, 0x24, 0x01, 0x0D, 0xA4, 0x57, 0x0E, 0xE4, 0x01, 0x0D, 0xE4, 0xE8, 0x62, 0x0C, 0x24, 0x3F, 0x00, 0x03, 0x3C, 0x3C, 0x7E, 0x42, 0x43, 0xFF, 0x99, 0x01, 0x7E, 0x42, 0xD1, 0x07, 0x21, 0x0F, 0x1C, 0x1C, 0x3C, 0x34, 0x7C, 0x44, 0x7C, 0x64, 0x3C, 0x24, 0xFF, 0xE7, 0xFF, 0x81, 0xFF, 0xFF, 0x2F, 0x00, 0x84, 0x07, 0x20, 0x06, 0xB9, 0x7F, 0x79, 0x7E, 0x42, 0xFE, 0x9E, 0x98, 0x07, 0x4C, 0x04, 0x99, 0x7E, 0x72, 0x7F, 0x79, 0x95, 0x07, 0x2A, 0x0F, 0x06, 0x06, 0x0E, 0x0A, 0x1E, 0x12, 0x3E, 0x22, 0x7F, 0x53, 0xFF, 0x81, 0xFF, 0xF3, 0x0E, 0x0E, 0x2F, 0x00, 0x22, 0xFF, 0x04, 0x81, 0xFE, 0x9E, 0xFE, 0x82, 0x97, 0x07, 0x88, 0x07, 0x3E, 0x3E, 0x7E, 0x42, 0xFC, 0x9C, 0xFE, 0x82, 0x97, 0x07, 0x28, 0x83, 0x07, 0xC0, 0x03, 0xFF, 0x99, 0xFE, 0xF2, 0x42, 0x3C, 0x24, 0x91, 0x07, 0x2E, 0x86, 0x07, 0x80, 0x00, 0x42, 0x97, 0x07, 0x28, 0x87, 0x07, 0x20, 0x07, 0x7F, 0x41, 0x3F, 0x39, 0x7E, 0x42, 0x7C, 0x7C, 0x31, 0x00, 0x83, 0x07, 0xA0, 0x07, 0x1C, 0x14, 0x38, 0x28, 0x70, 0x50, 0x60, 0x60, 0x31, 0x00, 0x3F, 0xFF, 0x2B, 0x00, 0x03, 0x03, 0x00, 0x02, 0x01, 0x2B, 0xFF, 0x03, 0xFC, 0xFC, 0xFD, 0xFD, 0xCC, 0x08, 0xAB, 0xCE, 0x08, 0xA1, 0x83, 0x08, 0xCD, 0x47, 0x02, 0x01, 0x2F, 0xFD, 0xFF ];
 
 /// $E1EA50
-immutable ubyte[] TownMapLabelGfx = cast(immutable(ubyte)[])import("town_maps/label.gfx.lzhal");
+immutable ubyte[] townMapLabelGfx = cast(immutable(ubyte)[])import("town_maps/label.gfx.lzhal");
 
 /// $E1F1C3
-immutable ubyte[] TownMapIconPalette = cast(immutable(ubyte)[])import("town_maps/icon.pal");
+immutable ubyte[] townMapIconPalette = cast(immutable(ubyte)[])import("town_maps/icon.pal");
 
 /// $E1F44C
-immutable SpriteMap[][23] UnknownE1F44C = [
+immutable SpriteMap[][23] unknownE1F44C = [
 	[
 		SpriteMap(0x00, 0x320C, 0x00, 0x01),
 		SpriteMap(0x00, 0x320E, 0x10, 0x01),
@@ -532,68 +532,68 @@ immutable SpriteMap[][23] UnknownE1F44C = [
 ];
 
 /// $E1F47A
-immutable ubyte[23] UnknownE1F47A = [0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
+immutable ubyte[23] unknownE1F47A = [0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00];
 
 /// $E1F491
-immutable TownMapIconPlacement[][6] TownMapIconPlacementTable = [
+immutable TownMapIconPlacement[][6] townMapIconPlacementTable = [
 	[
-		TownMapIconPlacement(0x55, 0x5B, 0x06, EventFlag.UNKNOWN_22E),
-		TownMapIconPlacement(0x6A, 0x5E, 0x01, EventFlag.UNKNOWN_22F),
-		TownMapIconPlacement(0x8C, 0x7B, 0x03, EventFlag.UNKNOWN_230),
-		TownMapIconPlacement(0x1D, 0x9E, 0x05, EventFlag.UNKNOWN_231),
-		TownMapIconPlacement(0x75, 0xA6, 0x02, EventFlag.UNKNOWN_232),
-		TownMapIconPlacement(0x60, 0xBE, 0x09, EventFlag.UNKNOWN_233),
-		TownMapIconPlacement(0xBB, 0x5E, 0x10, EventFlag.UNKNOWN_2A9 | EVENT_FLAG_UNSET),
+		TownMapIconPlacement(0x55, 0x5B, 0x06, EventFlag.unknown22E),
+		TownMapIconPlacement(0x6A, 0x5E, 0x01, EventFlag.unknown22F),
+		TownMapIconPlacement(0x8C, 0x7B, 0x03, EventFlag.unknown230),
+		TownMapIconPlacement(0x1D, 0x9E, 0x05, EventFlag.unknown231),
+		TownMapIconPlacement(0x75, 0xA6, 0x02, EventFlag.unknown232),
+		TownMapIconPlacement(0x60, 0xBE, 0x09, EventFlag.unknown233),
+		TownMapIconPlacement(0xBB, 0x5E, 0x10, EventFlag.unknown2A9 | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x48, 0x2A, 0x03, EventFlag.UNKNOWN_234),
-		TownMapIconPlacement(0x70, 0x2E, 0x07, EventFlag.UNKNOWN_235),
-		TownMapIconPlacement(0x20, 0x30, 0x0A, EventFlag.UNKNOWN_236),
-		TownMapIconPlacement(0xD0, 0x9A, 0x08, EventFlag.UNKNOWN_237),
-		TownMapIconPlacement(0xB8, 0x09, 0x05, EventFlag.UNKNOWN_238),
-		TownMapIconPlacement(0x78, 0xB8, 0x0B, EventFlag.UNKNOWN_239),
-		TownMapIconPlacement(0x60, 0x70, 0x02, EventFlag.UNKNOWN_2A1),
-		TownMapIconPlacement(0xD0, 0x3D, 0x10, EventFlag.UNKNOWN_2AA | EVENT_FLAG_UNSET),
+		TownMapIconPlacement(0x48, 0x2A, 0x03, EventFlag.unknown234),
+		TownMapIconPlacement(0x70, 0x2E, 0x07, EventFlag.unknown235),
+		TownMapIconPlacement(0x20, 0x30, 0x0A, EventFlag.unknown236),
+		TownMapIconPlacement(0xD0, 0x9A, 0x08, EventFlag.unknown237),
+		TownMapIconPlacement(0xB8, 0x09, 0x05, EventFlag.unknown238),
+		TownMapIconPlacement(0x78, 0xB8, 0x0B, EventFlag.unknown239),
+		TownMapIconPlacement(0x60, 0x70, 0x02, EventFlag.unknown2A1),
+		TownMapIconPlacement(0xD0, 0x3D, 0x10, EventFlag.unknown2AA | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x48, 0x6B, 0x06, EventFlag.UNKNOWN_23A),
-		TownMapIconPlacement(0x70, 0x3B, 0x03, EventFlag.UNKNOWN_23B),
-		TownMapIconPlacement(0x8C, 0x67, 0x02, EventFlag.UNKNOWN_23D),
-		TownMapIconPlacement(0x7E, 0x6B, 0x05, EventFlag.UNKNOWN_23E),
-		TownMapIconPlacement(0x18, 0x8E, 0x0C, EventFlag.UNKNOWN_282),
-		TownMapIconPlacement(0xB0, 0x8E, 0x0D, EventFlag.UNKNOWN_281),
-		TownMapIconPlacement(0x6C, 0x5D, 0x08, EventFlag.UNKNOWN_2A4),
-		TownMapIconPlacement(0x73, 0x61, 0x08, EventFlag.UNKNOWN_2A5),
-		TownMapIconPlacement(0xD7, 0x0A, 0x10, EventFlag.UNKNOWN_2AB | EVENT_FLAG_UNSET),
+		TownMapIconPlacement(0x48, 0x6B, 0x06, EventFlag.unknown23A),
+		TownMapIconPlacement(0x70, 0x3B, 0x03, EventFlag.unknown23B),
+		TownMapIconPlacement(0x8C, 0x67, 0x02, EventFlag.unknown23D),
+		TownMapIconPlacement(0x7E, 0x6B, 0x05, EventFlag.unknown23E),
+		TownMapIconPlacement(0x18, 0x8E, 0x0C, EventFlag.unknown282),
+		TownMapIconPlacement(0xB0, 0x8E, 0x0D, EventFlag.unknown281),
+		TownMapIconPlacement(0x6C, 0x5D, 0x08, EventFlag.unknown2A4),
+		TownMapIconPlacement(0x73, 0x61, 0x08, EventFlag.unknown2A5),
+		TownMapIconPlacement(0xD7, 0x0A, 0x10, EventFlag.unknown2AB | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x74, 0x0A, 0x05, EventFlag.UNKNOWN_23F),
-		TownMapIconPlacement(0xC2, 0x28, 0x07, EventFlag.UNKNOWN_240),
-		TownMapIconPlacement(0xAC, 0x84, 0x02, EventFlag.UNKNOWN_241),
-		TownMapIconPlacement(0x40, 0x7B, 0x03, EventFlag.UNKNOWN_242),
-		TownMapIconPlacement(0x10, 0xC0, 0x0E, EventFlag.UNKNOWN_280),
-		TownMapIconPlacement(0x3E, 0xC8, 0x08, EventFlag.UNKNOWN_2A6),
-		TownMapIconPlacement(0x58, 0x77, 0x10, EventFlag.UNKNOWN_2AC | EVENT_FLAG_UNSET),
+		TownMapIconPlacement(0x74, 0x0A, 0x05, EventFlag.unknown23F),
+		TownMapIconPlacement(0xC2, 0x28, 0x07, EventFlag.unknown240),
+		TownMapIconPlacement(0xAC, 0x84, 0x02, EventFlag.unknown241),
+		TownMapIconPlacement(0x40, 0x7B, 0x03, EventFlag.unknown242),
+		TownMapIconPlacement(0x10, 0xC0, 0x0E, EventFlag.unknown280),
+		TownMapIconPlacement(0x3E, 0xC8, 0x08, EventFlag.unknown2A6),
+		TownMapIconPlacement(0x58, 0x77, 0x10, EventFlag.unknown2AC | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x80, 0x1B, 0x03, EventFlag.UNKNOWN_243),
-		TownMapIconPlacement(0x88, 0x09, 0x05, EventFlag.UNKNOWN_244),
-		TownMapIconPlacement(0xB0, 0x12, 0x06, EventFlag.UNKNOWN_245),
-		TownMapIconPlacement(0xAC, 0x2E, 0x02, EventFlag.UNKNOWN_2A2),
-		TownMapIconPlacement(0x8D, 0x5E, 0x10, EventFlag.UNKNOWN_2AE | EVENT_FLAG_UNSET),
+		TownMapIconPlacement(0x80, 0x1B, 0x03, EventFlag.unknown243),
+		TownMapIconPlacement(0x88, 0x09, 0x05, EventFlag.unknown244),
+		TownMapIconPlacement(0xB0, 0x12, 0x06, EventFlag.unknown245),
+		TownMapIconPlacement(0xAC, 0x2E, 0x02, EventFlag.unknown2A2),
+		TownMapIconPlacement(0x8D, 0x5E, 0x10, EventFlag.unknown2AE | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	],
 	[
-		TownMapIconPlacement(0x40, 0x04, 0x03, EventFlag.UNKNOWN_246),
-		TownMapIconPlacement(0x71, 0x04, 0x04, EventFlag.UNKNOWN_247),
-		TownMapIconPlacement(0xA5, 0x04, 0x06, EventFlag.UNKNOWN_248),
-		TownMapIconPlacement(0x61, 0x6C, 0x05, EventFlag.UNKNOWN_249),
-		TownMapIconPlacement(0xA0, 0x72, 0x06, EventFlag.UNKNOWN_24A),
-		TownMapIconPlacement(0x48, 0x6C, 0x10, EventFlag.UNKNOWN_2AD | EVENT_FLAG_UNSET),
+		TownMapIconPlacement(0x40, 0x04, 0x03, EventFlag.unknown246),
+		TownMapIconPlacement(0x71, 0x04, 0x04, EventFlag.unknown247),
+		TownMapIconPlacement(0xA5, 0x04, 0x06, EventFlag.unknown248),
+		TownMapIconPlacement(0x61, 0x6C, 0x05, EventFlag.unknown249),
+		TownMapIconPlacement(0xA0, 0x72, 0x06, EventFlag.unknown24A),
+		TownMapIconPlacement(0x48, 0x6C, 0x10, EventFlag.unknown2AD | eventFlagUnset),
 		TownMapIconPlacement(0xFF)
 	]
 ];

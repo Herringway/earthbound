@@ -12,7 +12,7 @@ import siryul;
 import bindbc.loader;
 import bindbc.sdl;
 
-import earthbound.bank00 : start, NMI;
+import earthbound.bank00 : start, nmi;
 import earthbound.commondefs;
 import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
 
@@ -162,40 +162,40 @@ void main(string[] args) {
     void handleButton(Controller button, bool pressed, uint playerID) {
         final switch (button) {
             case Controller.up:
-                handleSNESButton(PAD_UP, pressed, playerID);
+                handleSNESButton(Pad.up, pressed, playerID);
                 break;
             case Controller.down:
-                handleSNESButton(PAD_DOWN, pressed, playerID);
+                handleSNESButton(Pad.down, pressed, playerID);
                 break;
             case Controller.left:
-                handleSNESButton(PAD_LEFT, pressed, playerID);
+                handleSNESButton(Pad.left, pressed, playerID);
                 break;
             case Controller.right:
-                handleSNESButton(PAD_RIGHT, pressed, playerID);
+                handleSNESButton(Pad.right, pressed, playerID);
                 break;
             case Controller.l:
-                handleSNESButton(PAD_L, pressed, playerID);
+                handleSNESButton(Pad.l, pressed, playerID);
                 break;
             case Controller.r:
-                handleSNESButton(PAD_R, pressed, playerID);
+                handleSNESButton(Pad.r, pressed, playerID);
                 break;
             case Controller.select:
-                handleSNESButton(PAD_SELECT, pressed, playerID);
+                handleSNESButton(Pad.select, pressed, playerID);
                 break;
             case Controller.start:
-                handleSNESButton(PAD_START, pressed, playerID);
+                handleSNESButton(Pad.start, pressed, playerID);
                 break;
             case Controller.a:
-                handleSNESButton(PAD_A, pressed, playerID);
+                handleSNESButton(Pad.a, pressed, playerID);
                 break;
             case Controller.b:
-                handleSNESButton(PAD_B, pressed, playerID);
+                handleSNESButton(Pad.b, pressed, playerID);
                 break;
             case Controller.x:
-                handleSNESButton(PAD_X, pressed, playerID);
+                handleSNESButton(Pad.x, pressed, playerID);
                 break;
             case Controller.y:
-                handleSNESButton(PAD_Y, pressed, playerID);
+                handleSNESButton(Pad.y, pressed, playerID);
                 break;
             case Controller.fastForward:
                 fastForward = pressed;
@@ -269,7 +269,7 @@ void main(string[] args) {
             if(t) {
                 throw t;
             }
-            NMI();
+            nmi();
             copyGlobalsToFrameData();
         }
         drawFrame(drawBuffer, drawPitch, &g_frameData);
@@ -284,58 +284,58 @@ void main(string[] args) {
         }
         if (dumpEntities) {
             import earthbound.globals;
-            auto entityEntry = FirstEntity;
+            auto entityEntry = firstEntity;
             while (entityEntry >= 0) {
                 const entity = entityEntry / 2;
                 writefln!"Entity %d"(entity);
-                writefln!"\tVars: [%d, %d, %d, %d, %d, %d, %d, %d]"(EntityScriptVar0Table[entity], EntityScriptVar1Table[entity], EntityScriptVar2Table[entity], EntityScriptVar3Table[entity], EntityScriptVar4Table[entity], EntityScriptVar5Table[entity], EntityScriptVar6Table[entity], EntityScriptVar7Table[entity]);
-                writeln("\tScript: ", cast(ActionScript)EntityScriptTable[entity]);
-                writeln("\tScript index: ", EntityScriptIndexTable[entity]);
-                writefln!"\tScreen coords: (%d, %d)"(EntityScreenXTable[entity], EntityScreenYTable[entity]);
-                writefln!"\tAbsolute coords: (%s, %s, %s)"(FixedPoint1616(EntityAbsXFractionTable[entity], EntityAbsXTable[entity]).asDouble, FixedPoint1616(EntityAbsYFractionTable[entity], EntityAbsYTable[entity]).asDouble, FixedPoint1616(EntityAbsZFractionTable[entity], EntityAbsZTable[entity]).asDouble);
-                writefln!"\tDelta coords: (%s, %s, %s)"(FixedPoint1616(EntityDeltaXFractionTable[entity], EntityDeltaXTable[entity]).asDouble, FixedPoint1616(EntityDeltaYFractionTable[entity], EntityDeltaYTable[entity]).asDouble, FixedPoint1616(EntityDeltaZFractionTable[entity], EntityDeltaZTable[entity]).asDouble);
-                writeln("\tDirection: ", cast(Direction)EntityDirections[entity]);
-                writeln("\tSize: ", EntitySizes[entity]);
-                writeln("\tDraw Priority: ", EntityDrawPriority[entity]);
-                writefln!"\tTick callback flags: %016b"(EntityTickCallbackFlags[entity]);
-                writefln!"\tAnimation frame: %s"(EntityAnimationFrames[entity]);
-                writefln!"\tSpritemap flags: %016b"(EntitySpriteMapFlags[entity]);
-                writefln!"\tCollided objects: %s"(EntityCollidedObjects[entity]);
-                writefln!"\tObstacle flags: %016b"(EntityObstacleFlags[entity]);
-                writefln!"\tVRAM address: $%04X"(EntityVramAddresses[entity] * 2);
-                writefln!"\tSurface flags: %016b"(EntitySurfaceFlags[entity]);
-                writefln!"\tTPT entry: %s"(EntityTPTEntries[entity]);
-                writefln!"\tTPT entry sprite: %s"(cast(OverworldSprite)EntityTPTEntrySprites[entity]);
-                writefln!"\tEnemy ID: %s"(EntityEnemyIDs[entity]);
-                writeln("\tSleep frames: ", EntitySleepFrames[entity]);
-                writefln!"\tUnknown7E1A4A: %s"(Unknown7E1A4A[entity]);
-                writefln!"\tUnknown7E1A86: %s"(Unknown7E1A86[entity]);
-                writefln!"\tUnknown7E284C: %s"(EntityUnknown284C[entity]);
-                writefln!"\tUnknown7E2916: %s"(EntityUnknown2916[entity]);
-                writefln!"\tUnknown7E2952: %s"(EntityUnknown2952[entity]);
-                writefln!"\tUnknown7E2B32: %s"(UNKNOWN_30X2_TABLE_35[entity]);
-                writefln!"\tUnknown7E2BE6: %s"(UNKNOWN_30X2_TABLE_38[entity]);
-                writefln!"\tUnknown7E2C22: %s"(UNKNOWN_30X2_TABLE_40[entity]);
-                writefln!"\tUnknown7E2C5E: %s"(UNKNOWN_30X2_TABLE_41[entity]);
-                writefln!"\tUnknown7E2D4E: %s"(UNKNOWN_30X2_TABLE_43[entity]);
-                writefln!"\tUnknown7E2D8A: %s"(UNKNOWN_30X2_TABLE_44[entity]);
-                writefln!"\tUnknown7E2DC6: %s"(UNKNOWN_30X2_TABLE_45[entity]);
-                writefln!"\tUnknown7E2E3E: %s"(Unknown7E2E3E[entity]);
-                writefln!"\tUnknown7E2E7A: %s"(Unknown7E2E7A[entity]);
-                writefln!"\tUnknown7E2EF2: %s"(Unknown7E2EF2[entity]);
-                writefln!"\tUnknown7E2FA6: %s"(Unknown7E2FA6[entity]);
-                writefln!"\tUnknown7E305A: %s"(Unknown7E305A[entity]);
-                writefln!"\tUnknown7E310E: %s"(Unknown7E310E[entity]);
-                writefln!"\tUnknown7E3186: %s"(Unknown7E3186[entity]);
-                writefln!"\tUnknown7E332A: %s"(Unknown7E332A[entity]);
-                writefln!"\tUnknown7E3366: %s"(Unknown7E3366[entity]);
-                writefln!"\tUnknown7E33A2: %s"(Unknown7E33A2[entity]);
-                writefln!"\tUnknown7E33DE: %s"(Unknown7E33DE[entity]);
-                writefln!"\tUnknown7E3456: %s"(Unknown7E3456[entity]);
-                entityEntry = EntityNextEntityTable[entity];
+                writefln!"\tVars: [%d, %d, %d, %d, %d, %d, %d, %d]"(entityScriptVar0Table[entity], entityScriptVar1Table[entity], entityScriptVar2Table[entity], entityScriptVar3Table[entity], entityScriptVar4Table[entity], entityScriptVar5Table[entity], entityScriptVar6Table[entity], entityScriptVar7Table[entity]);
+                writeln("\tScript: ", cast(ActionScript)entityScriptTable[entity]);
+                writeln("\tScript index: ", entityScriptIndexTable[entity]);
+                writefln!"\tScreen coords: (%d, %d)"(entityScreenXTable[entity], entityScreenYTable[entity]);
+                writefln!"\tAbsolute coords: (%s, %s, %s)"(FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]).asDouble, FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]).asDouble, FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]).asDouble);
+                writefln!"\tDelta coords: (%s, %s, %s)"(FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]).asDouble, FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]).asDouble, FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]).asDouble);
+                writeln("\tDirection: ", cast(Direction)entityDirections[entity]);
+                writeln("\tSize: ", entitySizes[entity]);
+                writeln("\tDraw Priority: ", entityDrawPriority[entity]);
+                writefln!"\tTick callback flags: %016b"(entityTickCallbackFlags[entity]);
+                writefln!"\tAnimation frame: %s"(entityAnimationFrames[entity]);
+                writefln!"\tSpritemap flags: %016b"(entitySpriteMapFlags[entity]);
+                writefln!"\tCollided objects: %s"(entityCollidedObjects[entity]);
+                writefln!"\tObstacle flags: %016b"(entityObstacleFlags[entity]);
+                writefln!"\tVRAM address: $%04X"(entityVramAddresses[entity] * 2);
+                writefln!"\tSurface flags: %016b"(entitySurfaceFlags[entity]);
+                writefln!"\tTPT entry: %s"(entityTPTEntries[entity]);
+                writefln!"\tTPT entry sprite: %s"(cast(OverworldSprite)entityTPTEntrySprites[entity]);
+                writefln!"\tEnemy ID: %s"(entityEnemyIDs[entity]);
+                writeln("\tSleep frames: ", entityScriptSleepFrames[entity]);
+                writefln!"\tUnknown7E1A4A: %s"(entityUnknown1A4A[entity]);
+                writefln!"\tUnknown7E1A86: %s"(entityUnknown1A86[entity]);
+                writefln!"\tUnknown7E284C: %s"(entityUnknown284C[entity]);
+                writefln!"\tUnknown7E2916: %s"(entityUnknown2916[entity]);
+                writefln!"\tUnknown7E2952: %s"(entityUnknown2952[entity]);
+                writefln!"\tUnknown7E2B32: %s"(entityUnknown2B32[entity]);
+                writefln!"\tUnknown7E2BE6: %s"(entityUnknown2BE6[entity]);
+                writefln!"\tUnknown7E2C22: %s"(entityUnknown2C22[entity]);
+                writefln!"\tUnknown7E2C5E: %s"(entityUnknown2C5E[entity]);
+                writefln!"\tUnknown7E2D4E: %s"(entityUnknown2D4E[entity]);
+                writefln!"\tUnknown7E2D8A: %s"(entityUnknown2D8A[entity]);
+                writefln!"\tUnknown7E2DC6: %s"(entityUnknown2DC6[entity]);
+                writefln!"\tUnknown7E2E3E: %s"(entityUnknown2E3E[entity]);
+                writefln!"\tUnknown7E2E7A: %s"(entityUnknown2E7A[entity]);
+                writefln!"\tUnknown7E2EF2: %s"(entityUnknown2EF2[entity]);
+                writefln!"\tUnknown7E2FA6: %s"(entityUnknown2FA6[entity]);
+                writefln!"\tUnknown7E305A: %s"(entityUnknown305A[entity]);
+                writefln!"\tUnknown7E310E: %s"(entityUnknown310E[entity]);
+                writefln!"\tUnknown7E3186: %s"(entityUnknown3186[entity]);
+                writefln!"\tUnknown7E332A: %s"(entityUnknown332A[entity]);
+                writefln!"\tUnknown7E3366: %s"(entityUnknown3366[entity]);
+                writefln!"\tUnknown7E33A2: %s"(entityUnknown33A2[entity]);
+                writefln!"\tUnknown7E33DE: %s"(entityUnknown33DE[entity]);
+                writefln!"\tUnknown7E3456: %s"(entityUnknown3456[entity]);
+                entityEntry = entityNextEntityTable[entity];
             }
             writeln("----");
-            foreach (sprMap; chain(Unknown7E2404[], Unknown7E2506[], Unknown7E2608[], Unknown7E270A[]).filter!(x => x != null)) {
+            foreach (sprMap; chain(unknown7E2404[], unknown7E2506[], unknown7E2608[], unknown7E270A[]).filter!(x => x != null)) {
                 writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.unknown0, sprMap.unknown10, sprMap.flags, sprMap.unknown3, sprMap.unknown4);
             }
             dumpEntities = false;

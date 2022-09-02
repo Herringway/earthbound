@@ -4,7 +4,7 @@ module earthbound.bank0E;
 import earthbound.commondefs;
 
 /// $CE62EE
-immutable BattleSpritePointer[110] BattleSpritePointers = [
+immutable BattleSpritePointer[110] battleSpritePointers = [
 	BattleSpritePointer(cast(immutable(ubyte)[])import("battle_sprites/0.gfx.lzhal"), BattleSpriteSize._32X32),
 	BattleSpritePointer(cast(immutable(ubyte)[])import("battle_sprites/1.gfx.lzhal"), BattleSpriteSize._32X32),
 	BattleSpritePointer(cast(immutable(ubyte)[])import("battle_sprites/2.gfx.lzhal"), BattleSpriteSize._32X32),
@@ -118,7 +118,7 @@ immutable BattleSpritePointer[110] BattleSpritePointers = [
 ];
 
 /// $CE6514
-immutable ushort[][32] BattleSpritePalettes = [
+immutable ushort[][32] battleSpritePalettes = [
 	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/0.pal")),
 	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/1.pal")),
 	convert!ushort(cast(immutable(ubyte)[])import("battle_sprites/palettes/2.pal")),
@@ -154,7 +154,7 @@ immutable ushort[][32] BattleSpritePalettes = [
 ];
 
 /// $CEDC45
-immutable ubyte[][126] SwirlPointerTable = [
+immutable ubyte[][126] swirlPointerTable = [
 	cast(immutable(ubyte)[])import("swirls/0.swirl"),
 	cast(immutable(ubyte)[])import("swirls/1.swirl"),
 	cast(immutable(ubyte)[])import("swirls/2.swirl"),
@@ -284,7 +284,7 @@ immutable ubyte[][126] SwirlPointerTable = [
 ];
 
 /// $CEDD41
-immutable ubyte[4][7] SwirlPrimaryTable = [
+immutable ubyte[4][7] swirlPrimaryTable = [
 	[ 0x00, 0x00, 0x00, 0x00 ],
 	[ 0x02, 0x00, 0x17, 0x00 ],
 	[ 0x04, 0x17, 0x0F, 0x00 ],
@@ -295,7 +295,7 @@ immutable ubyte[4][7] SwirlPrimaryTable = [
 ];
 
 /// $CEDD5D
-immutable ubyte[] SoundStoneGraphics = cast(immutable(ubyte)[])import("graphics/sound_stone.gfx.lzhal");
+immutable ubyte[] soundStoneGraphics = cast(immutable(ubyte)[])import("graphics/sound_stone.gfx.lzhal");
 
 /// $CEF806
-immutable ubyte[] SoundStonePalette = cast(immutable(ubyte)[])import("sound_stone.pal");
+immutable ubyte[] soundStonePalette = cast(immutable(ubyte)[])import("sound_stone.pal");
