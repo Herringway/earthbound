@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Struct Battler</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">earthbound
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank00.html">bank00</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank01.html">bank01</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank02.html">bank02</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank03.html">bank03</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank04.html">bank04</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank05.html">bank05</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank06.html">bank06</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank07.html">bank07</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank08.html">bank08</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank09.html">bank09</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0A.html">bank0A</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0B.html">bank0B</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0C.html">bank0C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0E.html">bank0E</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0F.html">bank0F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank10.html">bank10</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank11.html">bank11</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank12.html">bank12</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank13.html">bank13</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank14.html">bank14</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank15.html">bank15</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank17.html">bank17</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank18.html">bank18</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank1C.html">bank1C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank1F.html">bank1F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank20.html">bank20</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank21.html">bank21</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank2F.html">bank2F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../earthbound/commondefs.html">commondefs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/globals.html">globals</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/hardware.html">hardware</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Struct Battler</h1><p></p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">struct</span> <span class="typ">Battler</span>
+			<span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			
+			<section><h2>Fields</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.actionItemSlot.html" class="public"><code>actionItemSlot</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>7
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.actionOrderVar.html" class="public"><code>actionOrderVar</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.actionTargetting.html" class="public"><code>actionTargetting</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>9
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.afflictions.html" class="public"><code>afflictions</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">7</span><span class="pun">]</span></code></td><td>29
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.allyOrEnemy.html" class="public"><code>allyOrEnemy</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>14
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.baseDefense.html" class="public"><code>baseDefense</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.baseGuts.html" class="public"><code>baseGuts</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.baseLuck.html" class="public"><code>baseLuck</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.baseOffense.html" class="public"><code>baseOffense</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.baseSpeed.html" class="public"><code>baseSpeed</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.brainshockResist.html" class="public"><code>brainshockResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.consciousness.html" class="public"><code>consciousness</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>12
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.currentAction.html" class="public"><code>currentAction</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>4
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.currentActionArgument.html" class="public"><code>currentActionArgument</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>8
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.currentTarget.html" class="public"><code>currentTarget</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>10
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.defense.html" class="public"><code>defense</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.exp.html" class="public"><code>exp</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">uint</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.fireResist.html" class="public"><code>fireResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.flashResist.html" class="public"><code>flashResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.freezeResist.html" class="public"><code>freezeResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.guarding.html" class="public"><code>guarding</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>36
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.guts.html" class="public"><code>guts</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.hasTakenTurn.html" class="public"><code>hasTakenTurn</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>13
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.hp.html" class="public"><code>hp</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>17
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.hpMax.html" class="public"><code>hpMax</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>21
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.hpTarget.html" class="public"><code>hpTarget</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>19
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.hypnosisResist.html" class="public"><code>hypnosisResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.id.html" class="public"><code>id</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">short</span></code></td><td>0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.id2.html" class="public"><code>id2</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.initiative.html" class="public"><code>initiative</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.iq.html" class="public"><code>iq</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.luck.html" class="public"><code>luck</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.money.html" class="public"><code>money</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.npcID.html" class="public"><code>npcID</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>15
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.offense.html" class="public"><code>offense</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.paralysisResist.html" class="public"><code>paralysisResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.pp.html" class="public"><code>pp</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>23
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.ppMax.html" class="public"><code>ppMax</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>27
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.ppTarget.html" class="public"><code>ppTarget</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>25
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.row.html" class="public"><code>row</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>16
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.shieldHP.html" class="public"><code>shieldHP</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>37
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.speed.html" class="public"><code>speed</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.sprite.html" class="public"><code>sprite</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>2
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.spriteX.html" class="public"><code>spriteX</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.spriteY.html" class="public"><code>spriteY</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.theFlag.html" class="public"><code>theFlag</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>11
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.unknown3.html" class="public"><code>unknown3</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>3
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.unknown71.html" class="public"><code>unknown71</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.unknown72.html" class="public"><code>unknown72</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.unknown73.html" class="public"><code>unknown73</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.unknown74.html" class="public"><code>unknown74</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.unknown75.html" class="public"><code>unknown75</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.unknown76.html" class="public"><code>unknown76</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.vitality.html" class="public"><code>vitality</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Battler.vramSpriteIndex.html" class="public"><code>vramSpriteIndex</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td></td>
+					</tr>
+				</table>
+			</section>
+			
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

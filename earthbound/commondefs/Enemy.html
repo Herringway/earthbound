@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Struct Enemy</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">earthbound
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank00.html">bank00</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank01.html">bank01</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank02.html">bank02</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank03.html">bank03</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank04.html">bank04</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank05.html">bank05</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank06.html">bank06</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank07.html">bank07</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank08.html">bank08</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank09.html">bank09</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0A.html">bank0A</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0B.html">bank0B</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0C.html">bank0C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0E.html">bank0E</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank0F.html">bank0F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank10.html">bank10</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank11.html">bank11</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank12.html">bank12</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank13.html">bank13</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank14.html">bank14</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank15.html">bank15</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank17.html">bank17</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank18.html">bank18</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank1C.html">bank1C</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank1F.html">bank1F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank20.html">bank20</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank21.html">bank21</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/bank2F.html">bank2F</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../earthbound/commondefs.html">commondefs</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/globals.html">globals</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../earthbound/hardware.html">hardware</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Struct Enemy</h1><p></p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">struct</span> <span class="typ">Enemy</span>
+			<span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			
+			<section><h2>Fields</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.actionArgs.html" class="public"><code>actionArgs</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span></code></td><td>80
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.actionOrder.html" class="public"><code>actionOrder</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>69
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.actions.html" class="public"><code>actions</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span><span class="pun">[</span><span class="lit">4</span><span class="pun">]</span></code></td><td>70
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.battleSprite.html" class="public"><code>battleSprite</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>28
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.battleSpritePalette.html" class="public"><code>battleSpritePalette</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>53
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.boss.html" class="public"><code>boss</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>86
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.deathTextPointer.html" class="public"><code>deathTextPointer</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code></td><td>49
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.deathType.html" class="public"><code>deathType</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>90
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.defense.html" class="public"><code>defense</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>58
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.encounterTextPointer.html" class="public"><code>encounterTextPointer</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">[]</span></code></td><td>45
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.eventScript.html" class="public"><code>eventScript</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>43
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.exp.html" class="public"><code>exp</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">uint</span></code></td><td>37
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.finalAction.html" class="public"><code>finalAction</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>78
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.finalActionArgument.html" class="public"><code>finalActionArgument</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>84
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.fireResist.html" class="public"><code>fireResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>63
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.flashResist.html" class="public"><code>flashResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>65
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.freezeResist.html" class="public"><code>freezeResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>64
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.gender.html" class="public"><code>gender</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../../earthbound/commondefs/Gender.html"><span class="typ">Gender</span></a></code></td><td>26
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.guts.html" class="public"><code>guts</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>61
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.hp.html" class="public"><code>hp</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>33
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.hypnosisBrainshockResist.html" class="public"><code>hypnosisBrainshockResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>67
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.initialStatus.html" class="public"><code>initialStatus</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>89
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.iq.html" class="public"><code>iq</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>85
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.itemDropped.html" class="public"><code>itemDropped</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>88
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.itemDropRate.html" class="public"><code>itemDropRate</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>87
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.level.html" class="public"><code>level</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>54
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.luck.html" class="public"><code>luck</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>62
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.maxCalled.html" class="public"><code>maxCalled</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>92
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.mirrorSuccess.html" class="public"><code>mirrorSuccess</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>93
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.missRate.html" class="public"><code>missRate</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>68
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.money.html" class="public"><code>money</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>41
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.music.html" class="public"><code>music</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>55
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.name.html" class="public"><code>name</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">25</span><span class="pun">]</span></code></td><td>1
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.offense.html" class="public"><code>offense</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>56
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.overworldSprite.html" class="public"><code>overworldSprite</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>30
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.paralysisResist.html" class="public"><code>paralysisResist</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>66
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.pp.html" class="public"><code>pp</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ushort</span></code></td><td>35
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.row.html" class="public"><code>row</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>91
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.runFlag.html" class="public"><code>runFlag</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>32
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.speed.html" class="public"><code>speed</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>60
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.theFlag.html" class="public"><code>theFlag</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>0
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/Enemy.type.html" class="public"><code>type</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../../earthbound/commondefs/EnemyType.html"><span class="typ">EnemyType</span></a></code></td><td>27
+</td>
+					</tr>
+				</table>
+			</section>
+			
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
