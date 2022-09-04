@@ -6659,35 +6659,35 @@ short unknownC0A156(short x, short y) {
 	}
 	unknown7E2888 = x;
 	unknown7E288A = y;
-	return unknownC0A1AE[y & 7](mapDataTileTableChunksTable[(y & 4) != 0 ? 9 : 8][(((y / 8) & 0xFF) << 8) | x], y & 7, cast(short)((((y / 8) & 0xFF) << 8) | x));
-}
 
-/// $C0A1AE
-short function(short, short, short)[8] unknownC0A1AE = [
-	&unknownC0A1CE4,
-	&unknownC0A1CE3,
-	&unknownC0A1CE2,
-	&unknownC0A1CE,
-	&unknownC0A1CE4,
-	&unknownC0A1CE3,
-	&unknownC0A1CE2,
-	&unknownC0A1CE,
-];
-
-/// $C0A1CE
-short unknownC0A1CE(short arg1, short xreg, short yreg) {
-	return unknownC0A1CE2(arg1 / 4, xreg, yreg);
-}
-short unknownC0A1CE2(short arg1, short xreg, short yreg) {
-	return unknownC0A1CE3(arg1 / 4, xreg, yreg);
-}
-short unknownC0A1CE3(short arg1, short xreg, short yreg) {
-	return unknownC0A1CE4(arg1 / 4, xreg, yreg);
-}
-short unknownC0A1CE4(short arg1, short xreg, short yreg) {
-	short x08 = (arg1 & 3) << 8;
-	unknown7E288C = mapDataTileTableChunksTable[xreg][yreg] | x08;
+	ushort tmp1 = mapDataTileTableChunksTable[8 + !!(y & 4)][((y / 8) * 256) | x];
+	ushort x08;
+	switch (y & 7) {
+		case 3:
+		case 7:
+			tmp1 /= 4;
+			goto case;
+		case 2:
+		case 6:
+			tmp1 /= 4;
+			goto case;
+		case 1:
+		case 5:
+			tmp1 /= 4;
+			goto case;
+		case 0:
+		case 4:
+			x08 = (tmp1 & 3) * 256;
+			break;
+		default: assert(0);
+	}
+	ushort tmp = mapDataTileTableChunksTable[y & 7][((y / 8) * 256) | x];
+	unknown7E288C = (cast(ubyte)tmp) | x08;
 	return unknown7E288C;
+}
+
+unittest {
+	assert(unknownC0A156(0xF8, 0x2C) == 0xA7);
 }
 
 /// $C0A1F2
