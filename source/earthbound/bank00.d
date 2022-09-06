@@ -802,13 +802,13 @@ void unknownC01B15(const(SpriteMap)* arg1) {
 	short x10 = cast(short)(arg1 - &spriteTable7E467E[0]);
 	short i = 0;
 	while(i < 2) {
-		ubyte y = spriteTable7E467E[x10 / SpriteMap.sizeof].unknown4;
-		spriteTable7E467E[x10 / SpriteMap.sizeof].unknown0 = 0xFF;
-		spriteTable7E467E[x10 / SpriteMap.sizeof].unknown10 = 0xFF;
-		spriteTable7E467E[x10 / SpriteMap.sizeof].flags = 0xFF;
-		spriteTable7E467E[x10 / SpriteMap.sizeof].unknown3 = 0xFF;
-		spriteTable7E467E[x10 / SpriteMap.sizeof].unknown4 = 0xFF;
-		x10 += SpriteMap.sizeof;
+		ubyte y = spriteTable7E467E[x10].unknown4;
+		spriteTable7E467E[x10].unknown0 = 0xFF;
+		spriteTable7E467E[x10].unknown10 = 0xFF;
+		spriteTable7E467E[x10].flags = 0xFF;
+		spriteTable7E467E[x10].unknown3 = 0xFF;
+		spriteTable7E467E[x10].unknown4 = 0xFF;
+		x10 += 1;
 		if ((y & 0x80) != 0) {
 			i++;
 		}
@@ -4764,10 +4764,10 @@ void copyToVRAMInternal() {
 	// } else {
 		// Since we send a complete image of VRAM to the console every frame, we
 		// can just overwrite our local VRAM copy - no need to delay
-		dmaChannels[1].DMAP = dmaTable[dmaCopyMode].unknown0;
+		dmaChannels[1].DMAP = dmaTable[dmaCopyMode / 3].unknown0;
 		//original assembly relied on DMAP1+BBAD1 being adjacent for a 16-bit write, but we probably shouldn't do that
-		dmaChannels[1].BBAD = dmaTable[dmaCopyMode].unknown1;
-		VMAIN = dmaTable[dmaCopyMode].unknown2;
+		dmaChannels[1].BBAD = dmaTable[dmaCopyMode / 3].unknown1;
+		VMAIN = dmaTable[dmaCopyMode / 3].unknown2;
 		dmaChannels[1].DAS = dmaCopySize;
 		dmaChannels[1].A1T = dmaCopyRAMSource;
 		//A1B1 is not really relevant without segmented addressing
@@ -7183,7 +7183,7 @@ void unknownC0A794() {
 	ushort x00 = entityTileHeights[unknown7E2896 / 2];
 	dmaCopySize = entityByteWidths[unknown7E2896 / 2];
 	dmaCopyVRAMDestination = entityVramAddresses[unknown7E2896 / 2];
-	const(OverworldSpriteGraphics)* x02 = (entityGraphicsPointers[unknown7E2896 / 2] + spriteDirectionMappings8Direction[entityDirections[unknown7E2896 / 2] / 2] * 2 + entityAnimationFrames[unknown7E2896 / 2] / 2);
+	const(OverworldSpriteGraphics)* x02 = (entityGraphicsPointers[unknown7E2896 / 2] + spriteDirectionMappings8Direction[entityDirections[unknown7E2896 / 2]] * 2 + entityAnimationFrames[unknown7E2896 / 2] / 2);
 	if (((x02.lsb & 2) == 0) && ((entitySurfaceFlags[unknown7E2896 / 2] & 8) != 0)) {
 		unknown7E0091 = 3;
 		dmaCopyRAMSource = &unknownC40BE8;
@@ -7483,8 +7483,9 @@ void unknownC0AA6E(short, ref const(ubyte)* arg2) {
 	} else {
 		entityDirections[actionScript88 / 2] = cast(ubyte)movementDataRead8(arg2);
 		actionScript94 = arg2;
-		unknown7E2892 = entityAnimationFrames[actionScript88 / 2] = cast(ubyte)(movementDataRead8(arg2) * 2);
+		entityAnimationFrames[actionScript88 / 2] = cast(ubyte)(movementDataRead8(arg2) * 2);
 		actionScript94 = arg2;
+		unknown7E2896 = actionScript88;
 		unknownC0A794();
 	}
 }
