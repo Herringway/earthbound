@@ -6687,7 +6687,9 @@ short unknownC0A156(short x, short y) {
 }
 
 unittest {
-	assert(unknownC0A156(0xF8, 0x2C) == 0xA7);
+	if (mapDataTileTableChunksTable[0] != []) {
+		assert(unknownC0A156(0xF8, 0x2C) == 0xA7);
+	}
 }
 
 /// $C0A1F2
