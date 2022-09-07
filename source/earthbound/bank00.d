@@ -276,6 +276,7 @@ void loadMapPalette(short arg1, short arg2) {
 
 /// $C008C3
 void loadMapAtSector(short x, short y) {
+	tracef("Loading map sector %d, %d", x, y);
 	if ((unknown7E438A | unknown7E438C) != 0) {
 		x = unknown7E438A / 32;
 		y = unknown7E438C / 16;
@@ -283,6 +284,7 @@ void loadMapAtSector(short x, short y) {
 	ubyte x1A = globalMapTilesetPaletteData[y][x];
 	ubyte x18 = x1A & 7;
 	ubyte x04 = x1A >> 3;
+	tracef("Loading map tileset %d, palette %d", x04, x18);
 	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x04]][0], &unknown7F0000[0x8000]);
 	loadCollisionData(tilesetTable[x04]);
 	unknownC006F2(tilesetTable[x04]);
