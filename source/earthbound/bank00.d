@@ -342,23 +342,30 @@ void unknownC00AC5(short x, short y) {
 	x = x16 & 0xF;
 	unknown7E4390[x] = cast(byte)x16;
 	unknown7E43A0[y & 0xF] = cast(byte)y;
+	ubyte x12;
 	version(bugfix) {
-		if (x16 < 0) {
-			x16 = 0;
-		}
-		if (y < 0) {
-			y = 0;
-		}
+		// Set currentSectorPalette to invalid value unused in original game -
+		// this is to show it hasn't been set yet
+		x12 = 0xFE;
+	} else {
+		x12 = globalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
 	}
-	ubyte x12 = globalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
 	ushort* x14 = cast(ushort*)&unknown7EF000.unknown7EF000[y & 0xF];
-	if (y < 0x140) {
+	if (cast(ushort)y < 0x140) {
 		short x10 = x;
 		for (short i = 0; i < 16; i++) {
-			if ((x16 & 8) == 0) {
-				x12 = globalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
+			version(bugfix) {
+				// Set x12 only if coordinates are in range, and only if it needs
+				// to be set (it was never set, or beginning new sector)
+				if ((cast(ushort)x16 < 0x100) && ((x12 == 0xFE) || ((x16 & 8) == 0))) {
+					x12 = globalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
+				}
+			} else {
+				if ((x16 & 8) == 0) {
+					x12 = globalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
+				}
 			}
-			if ((x16 < 0x100) && (unknown7E436E == x12)) {
+			if ((cast(ushort)x16 < 0x100) && (unknown7E436E == x12)) {
 				x14[x10] = unknownC0A156(x16, y);
 			} else {
 				x14[x10] = 0;
@@ -366,9 +373,10 @@ void unknownC00AC5(short x, short y) {
 			x10 = (x10 + 1) & 0xF;
 			x16++;
 		}
-	}
-	for (short i = 0; i < 16; i++) {
-		x14[i] = 0;
+	} else {
+		for (short i = 0; i < 16; i++) {
+			x14[i] = 0;
+		}
 	}
 }
 
