@@ -24,8 +24,15 @@ public bool loadSnesDrawFrame() {
         const(char)[][1] libNames = [
             "libsfcppu.dll",
         ];
-    }
-    else static assert(0, "libsfcppu is not yet supported on this platform.");
+    } else version(osx) {
+        const(char)[][1] libNames = [
+            "libsfcppu.dylib",
+        ];
+    } else version(Posix) {
+        const(char)[][1] libNames = [
+            "libsfcppu.so",
+        ];
+    } else static assert(0, "libsfcppu is not yet supported on this platform.");
 
     bool ret;
     foreach(name; libNames) {
