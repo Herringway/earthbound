@@ -3366,7 +3366,10 @@
 <url><loc>http://127.0.0.1/earthbound/globals/overworldTilesetAnim.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/padHeld.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/padPress.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/padRaw.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/padState.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/padTemp.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/padTimer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pajamaFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/palettes.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/partyCharacters.html</loc></url>
@@ -3437,9 +3440,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0030.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0061.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0063.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E0071.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E0075.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E0077.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E007B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E007D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E007F.html</loc></url>
