@@ -4577,8 +4577,8 @@ void unknownC083E3(Unknown7E007DEntry* arg1) {
 	unknown7E0081 = arg1.unknown0;
 	unknown7E0083 = arg1.unknown1;
 	unknown7E007D = arg1;
-	unknown7E0077[0] = arg1.unknown1;
-	unknown7E0077[1] = arg1.unknown1;
+	padRaw[0] = arg1.unknown1;
+	padRaw[1] = arg1.unknown1;
 	unknown7E007B |= 0x4000;
 }
 
@@ -4605,16 +4605,16 @@ void readJoypad() {
 		goto l0;
 	}
 	unknown7E0081 = unknown7E007D[0].unknown0;
-	unknown7E0077[0] = unknown7E007D[0].unknown1;
-	unknown7E0077[1] = unknown7E007D[0].unknown1;
+	padRaw[0] = unknown7E007D[0].unknown1;
+	padRaw[1] = unknown7E007D[0].unknown1;
 	return;
 
 	l0:
 	unknown7E007B &= 0xBFFF;
 
 	l1:
-	unknown7E0077[1] = JOYPAD_2_DATA;
-	unknown7E0077[0] = JOYPAD_1_DATA;
+	padRaw[1] = JOYPAD_2_DATA;
+	padRaw[0] = JOYPAD_1_DATA;
 }
 
 /// $C08456
@@ -4622,7 +4622,7 @@ void unknownC08456() {
 	if ((unknown7E007B & 0x8000) == 0) {
 		return;
 	}
-	if ((unknown7E0077[0] | unknown7E0077[1]) == unknown7E008B) {
+	if ((padRaw[0] | padRaw[1]) == unknown7E008B) {
 		unknown7E0089++;
 		if (unknown7E0089 != 0xFF) {
 			return;
@@ -4631,7 +4631,7 @@ void unknownC08456() {
 	unknown7E0085.unknown0 = cast(ubyte)unknown7E0089;
 	unknown7E0085.unknown1 = unknown7E008B;
 	unknown7E0085++;
-	unknown7E008B = unknown7E0077[0] | unknown7E0077[1];
+	unknown7E008B = padRaw[0] | padRaw[1];
 	unknown7E0089 = 0;
 	unknown7E0089++;
 	unknown7E0085.unknown0 = 0;
@@ -4646,35 +4646,33 @@ void unknownC08496() {
 	while ((HVBJOY & 1) == 1) {}
 	readJoypad();
 	unknownC08456();
+
+	// tracef("padTimer: %d", padTimer[0]);
 	short x = 1;
+	while (x >= 0) {
+		padTemp = padRaw[x] & 0xFFF0;
 
-	l1:
-	unknown7E0075 = unknown7E0077[x] & 0xFFF0;
-	padPress[x] = (padState[x] ^ 0xFFFF) & unknown7E0075;
-	bool eq = padState[x] == unknown7E0075;
-	padState[x] = unknown7E0075;
-	if (eq) {
-		goto l2;
+		padPress[x] = (padState[x] ^ 0xFFFF) & padTemp;
+
+		bool eq = (padTemp == padState[x]);
+		padState[x] = padTemp;
+
+		if (!eq) {
+			padHeld[x] = padPress[x];
+			padTimer[x] = 20;
+		} else {
+			if (padTimer[x] != 0) {
+				padTimer[x]--;
+				padHeld[x] = 0;
+			} else {
+				padHeld[x] = padState[x];
+				padTimer[x] = 3;
+			}
+		}
+
+		x--;
 	}
-	padHeld[x] = padPress[x];
-	unknown7E0071[x] = 0x14;
-	goto l4;
 
-	l2:
-	if (unknown7E0071[x] == 0) {
-		goto l3;
-	}
-	padHeld[x] = 0;
-	goto l4;
-
-	l3:
-	padHeld[x] = unknown7E0075;
-	unknown7E0071[x] = 3;
-
-	l4:
-	if (x-- > 0) {
-		goto l1;
-	}
 	if (debugging == 0) {
 		padState[0] |= padState[1];
 		padHeld[0] |= padHeld[1];
