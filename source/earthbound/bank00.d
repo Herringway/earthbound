@@ -4647,7 +4647,6 @@ void unknownC08496() {
 	readJoypad();
 	unknownC08456();
 
-	// tracef("padTimer: %d", padTimer[0]);
 	short x = 1;
 	while (x >= 0) {
 		padTemp = padRaw[x] & 0xFFF0;
