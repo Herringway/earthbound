@@ -69,9 +69,9 @@ __gshared ushort unknown7E0063; /// $0063
 __gshared ushort[2] padState; /// $0065
 __gshared ushort[2] padHeld; /// $0069 - Held buttons on Controllers
 __gshared ushort[2] padPress; /// $006D - Pressed buttons on Controllers
-__gshared ushort[2] unknown7E0071; /// $0071
-__gshared ushort unknown7E0075; /// $0065
-__gshared ushort[2] unknown7E0077; /// $0077
+__gshared ushort[2] padTimer; /// $0071 - Timer for Controller auto-repeat
+__gshared ushort padTemp; /// $0075 - Temp var, used only when reading Controllers
+__gshared ushort[2] padRaw; /// $0077 - Controller "raw" state (how exactly is this different from padState?)
 __gshared ushort unknown7E007B; /// $007B
 __gshared Unknown7E007DEntry* unknown7E007D; /// $007D
 __gshared ubyte unknown7E007F; /// $007F
