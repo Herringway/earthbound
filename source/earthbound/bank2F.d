@@ -22457,6 +22457,7 @@ void unknownEFE175() {
 			debugStartPositionX = entityAbsXTable[24];
 			debugStartPositionY = entityAbsYTable[24];
 			debugUnknownB565 = x1C;
+			return;
 		} else {
 			if ((padPress[0] & Pad.y) != 0) {
 				debugYButtonMenu();
