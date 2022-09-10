@@ -3405,6 +3405,7 @@ var symbols = [
 {name: 'earthbound.globals.teleportStyle', kind: "variabledeclaration", path: './earthbound/globals/teleportStyle.html', attributes: []},
 {name: 'earthbound.globals.tempDividend', kind: "variabledeclaration", path: './earthbound/globals/tempDividend.html', attributes: []},
 {name: 'earthbound.globals.textSoundMode', kind: "variabledeclaration", path: './earthbound/globals/textSoundMode.html', attributes: []},
+{name: 'earthbound.globals.tileArrangementBuffer', kind: "variabledeclaration", path: './earthbound/globals/tileArrangementBuffer.html', attributes: []},
 {name: 'earthbound.globals.tileCollisionBuffer', kind: "variabledeclaration", path: './earthbound/globals/tileCollisionBuffer.html', attributes: []},
 {name: 'earthbound.globals.timer', kind: "variabledeclaration", path: './earthbound/globals/timer.html', attributes: []},
 {name: 'earthbound.globals.totalYourSanctuaryLoadedTilesetTiles', kind: "variabledeclaration", path: './earthbound/globals/totalYourSanctuaryLoadedTilesetTiles.html', attributes: []},
