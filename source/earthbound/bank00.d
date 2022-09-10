@@ -474,11 +474,11 @@ void unknownC00E16(short x, short y) {
 		x16 = (x16 + 1) & 0x3F;
 		x++;
 	}
-	copyToVRAM(0, 0x3800 + ((y & 0x1F) * 32), 0x40, cast(ubyte*)&x1E[0]);
-	copyToVRAM(0, 0x3C00 + ((y & 0x1F) * 32), 0x40, cast(ubyte*)&x1E[0x20]);
+	copyToVRAM(0, 0x40, 0x3800 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0]);
+	copyToVRAM(0, 0x40, 0x3C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0x20]);
 	if (unknown7EB4EF == 0) {
-		copyToVRAM(0, 0x5800 + ((y & 0x1F) * 32), 0x40, cast(ubyte*)&x1C[0]);
-		copyToVRAM(0, 0x5C00 + ((y & 0x1F) * 32), 0x40, cast(ubyte*)&x1C[0x20]);
+		copyToVRAM(0, 0x40, 0x5800 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0]);
+		copyToVRAM(0, 0x40, 0x5C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0x20]);
 	}
 }
 
@@ -509,11 +509,11 @@ void unknownC00FCB(short x, short y) {
 		y++;
 	}
 	if ((x & 0x3F) <= 0x1F) {
-		copyToVRAM(0x1B, 0x3800 + (x & 0x3F), 0x40, cast(ubyte*)x1E);
-		copyToVRAM(0x1B, 0x5800 + (x & 0x3F), 0x40, cast(ubyte*)x1C);
+		copyToVRAM(0x1B, 0x40, 0x3800 + (x & 0x3F), cast(ubyte*)x1E);
+		copyToVRAM(0x1B, 0x40, 0x5800 + (x & 0x3F), cast(ubyte*)x1C);
 	} else {
-		copyToVRAM(0x1B, 0x3C00 + (x & 0x1F), 0x40, cast(ubyte*)x1E);
-		copyToVRAM(0x1B, 0x5C00 + (x & 0x1F), 0x40, cast(ubyte*)x1C);
+		copyToVRAM(0x1B, 0x40, 0x3C00 + (x & 0x1F), cast(ubyte*)x1E);
+		copyToVRAM(0x1B, 0x40, 0x5C00 + (x & 0x1F), cast(ubyte*)x1C);
 	}
 }
 
