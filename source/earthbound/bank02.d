@@ -439,20 +439,20 @@ short unknownC20B65(short curX, short curY, short deltaX, short deltaY, short sf
 	ushort x0E = curY;
 	ushort x02 = curX;
 	if (deltaX != 0) {
-		for (x0E = cast(short)(x0E + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
-			if (unknownC208B8(x02, x0E) == 0x2F) {
+		for (x0E = cast(short)(curY + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
+			if (unknownC208B8(curX, x0E) == 0x2F) {
 				goto Unknown27;
 			}
 		}
-		for (x0E = cast(short)(x0E + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
-			for (x02 = cast(short)(x02 - 1); x02 < windowStats[windowTable[currentFocusWindow]].width; x02--) {
+		for (x0E = cast(short)(curY + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
+			for (x02 = cast(short)(curX - 1); x02 < windowStats[windowTable[currentFocusWindow]].width; x02--) {
 				if (unknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
 				}
 			}
 		}
-		for (x0E = cast(short)(x0E + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
-			for (x02 = cast(short)(x02 + 1); x02 < windowStats[windowTable[currentFocusWindow]].width; x02++) {
+		for (x0E = cast(short)(curY + deltaX); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E += deltaX) {
+			for (x02 = cast(short)(curX + 1); x02 < windowStats[windowTable[currentFocusWindow]].width; x02++) {
 				if (unknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
 				}
@@ -460,20 +460,20 @@ short unknownC20B65(short curX, short curY, short deltaX, short deltaY, short sf
 		}
 		return -1;
 	} else {
-		for (x02 = cast(short)(x02 + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
+		for (x02 = cast(short)(curX + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
 			if (unknownC208B8(x02, x0E) == 0x2F) {
 				goto Unknown27;
 			}
 		}
-		for (x02 = cast(short)(x02 + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
-			for (x0E = cast(short)(x0E - 1); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E--) {
+		for (x02 = cast(short)(curX + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
+			for (x0E = cast(short)(curY - 1); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E--) {
 				if (unknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
 				}
 			}
 		}
-		for (x02 = cast(short)(x02 + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
-			for (x0E = cast(short)(x0E + 1); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E++) {
+		for (x02 = cast(short)(curX + deltaY); x02 < windowStats[windowTable[currentFocusWindow]].width; x02 += deltaY) {
+			for (x0E = cast(short)(curY + 1); x0E < windowStats[windowTable[currentFocusWindow]].height / 2; x0E++) {
 				if (unknownC208B8(x02, x0E) == 0x2F) {
 					goto Unknown27;
 				}
