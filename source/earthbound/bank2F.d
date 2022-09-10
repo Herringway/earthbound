@@ -22561,7 +22561,7 @@ void debugHandleCursorMovement() {
 /// $EFE689
 noreturn debugMenuLoad() {
 	unknownC43317();
-	debugStartPositionX = 0;
+	debugStartPositionX = 0x80;
 	debugStartPositionY = 0x70;
 	debugUnknownB565 = 0x94;
 	dadPhoneTimer = 0xFFFF;
