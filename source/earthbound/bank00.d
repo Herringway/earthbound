@@ -122,7 +122,7 @@ void animatePalette() {
 
 /// $C0035B
 ushort unknownC0035B(ushort a, ushort x, ushort y) {
-	return unknown7F0000[0x8000 + a * 32 + x * 2 + y * 8];
+	return tileArrangementBuffer[a * 16 + x + y * 4];
 }
 
 /// $C00391
@@ -213,8 +213,8 @@ void loadCollisionData(short tileset) {
 
 /// $C0067E
 void function14(short index1, short index2) {
-	ushort* x0A = cast(ushort*)&unknown7F0000[0x8000 + index1 * 32];
-	ushort* x06 = cast(ushort*)&unknown7F0000[0x8000 + index2 * 32];
+	ushort* x0A = &tileArrangementBuffer[index1 * 16];
+	ushort* x06 = &tileArrangementBuffer[index2 * 16];
 	for (short i = 0; i < 16; i++) {
 		*(x0A++) = *(x06++);
 	}
@@ -285,7 +285,7 @@ void loadMapAtSector(short x, short y) {
 	ubyte x18 = x1A & 7;
 	ubyte x04 = x1A >> 3;
 	tracef("Loading map tileset %d, palette %d", x04, x18);
-	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x04]][0], &unknown7F0000[0x8000]);
+	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x04]][0], &tileArrangementBuffer[0]);
 	loadCollisionData(tilesetTable[x04]);
 	unknownC006F2(tilesetTable[x04]);
 	unknownC005E7();
@@ -462,7 +462,7 @@ void unknownC00E16(short x, short y) {
 		if ((x & 3) == 0) {
 			x18 = cast(ushort)((unknown7EF000.unknown7EF000[((y / 4) & 0xF)][(x / 4) & 0xF] * 16) + ((y & 3) * 4));
 		}
-		ushort x12 = (cast(ushort*)&unknown7F0000)[0x8000 + x18];
+		ushort x12 = tileArrangementBuffer[x18];
 		x1E[x16] = x12;
 		x18++;
 		if ((x12 & 0x3FF) < 0x180) {
@@ -496,7 +496,7 @@ void unknownC00FCB(short x, short y) {
 		if ((y & 3) == 0) {
 			x18 = cast(ushort)((unknown7EF000.unknown7EF000[((y / 4) & 0xF)][(x / 4) & 0xF] * 16) + (x & 3));
 		}
-		ushort x12 = (cast(ushort*)&unknown7F0000)[0x8000 + x18];
+		ushort x12 = tileArrangementBuffer[x18];
 		x1E[x16] = x12;
 		if ((x12 & 0x3FF) < 0x180) {
 			x12 |= 0x2000;

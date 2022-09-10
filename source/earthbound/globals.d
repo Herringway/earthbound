@@ -915,6 +915,7 @@ __gshared ubyte[0x2000] unknown7EC000; /// $C000
 __gshared ubyte[64][64] unknown7EE000; /// $E000
 __gshared Unknown7EF000Stuff unknown7EF000; /// $F000
 __gshared ubyte[0x10000] unknown7F0000; /// $7F0000
+__gshared ushort[0x3C00] tileArrangementBuffer; /// $7F8000
 __gshared const(ubyte[4][4])*[0x400] tileCollisionBuffer; /// $7FF800
 
 __gshared ubyte[0x8000] introBG2Buffer; /// $8000 - this seems to overlap with other stuff...?
