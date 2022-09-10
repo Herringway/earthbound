@@ -7069,35 +7069,35 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 					unknownC1004E();
 					if ((padPress[0] & Pad.up) != 0) {
 						x16 = moveCursor(x20, x22, -1, 0, Sfx.unknown7C, x20, windowStats[windowTable[currentFocusWindow]].height / 2);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padPress[0] & Pad.left) != 0) {
 						x16 = moveCursor(x20, x22, 0, -1, Sfx.unknown7B, windowStats[windowTable[currentFocusWindow]].width, x22);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padPress[0] & Pad.down) != 0) {
 						x16 = moveCursor(x20, x22, 1, 0, Sfx.unknown7C, x20, -1);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padPress[0] & Pad.right) != 0) {
 						x16 = moveCursor(x20, x22, 0, 1, Sfx.unknown7B, -1, x22);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padHeld[0] & Pad.up) != 0) {
 						x16 = unknownC20B65(x20, x22, -1, 0, Sfx.unknown7C);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padHeld[0] & Pad.down) != 0) {
 						x16 = unknownC20B65(x20, x22, 1, 0, Sfx.unknown7C);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padHeld[0] & Pad.left) != 0) {
 						x16 = unknownC20B65(x20, x22, 0, -1, Sfx.unknown7B);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padHeld[0] & Pad.right) != 0) {
 						x16 = unknownC20B65(x20, x22, 0, 1, Sfx.unknown7B);
-						goto Unknown40;
+						break l2;
 					}
 					if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
 						if (x22 == 6) {
@@ -7143,7 +7143,6 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 					}
 				}
 			}
-			Unknown40:
 			unknownC438A5(x20, x22);
 			unknownC10D60(0x2F);
 			if (x16 != -1) {
