@@ -4546,8 +4546,15 @@ void irqNMICommon() {
 		executeIRQCallback();
 		unknown7E0022 = 0;
 	}
-	heapBaseAddress = (&heap[0] == heapBaseAddress) ? (&heap[1][0]) : &heap[0][0];
-	currentHeapAddress = (&heap[0] == heapBaseAddress) ? (&heap[1][0]) : &heap[0][0];
+
+	if (heapBaseAddress == &heap[0]) {
+		heapBaseAddress = &heap[1][0];
+		currentHeapAddress = &heap[1][0];
+	} else {
+		heapBaseAddress = &heap[0][0];
+		currentHeapAddress = &heap[0][0];
+	}
+
 	dmaTransferFlag = 0;
 	unknown7E00AB = 0;
 	timer++;
