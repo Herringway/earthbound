@@ -6831,8 +6831,8 @@ void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, sho
 			} else {
 				x0F = 0;
 			}
-			unknown7EF000.unknown7EF000Alt[unknown7F0000[0x8000 + (((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
-			(x06++)[0] = unknown7F0000[0x8000 + (((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
+			unknown7EF000.unknown7EF000Alt[tileArrangementBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
+			(x06++)[0] = tileArrangementBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
 		}
 	}
 }
@@ -6843,7 +6843,7 @@ void prepareYourSanctuaryLocationTilesetData(short arg1) {
 		if (unknown7EF000.unknown7EF000Alt[i] == 0) {
 			continue;
 		}
-		copyToVRAM(0, 0x20, (unknown7EB4B8 * 16 + 0x6000) & 0x7FFF, &unknown7F0000[0x8000 + i * 32]);
+		copyToVRAM(0, 0x20, (unknown7EB4B8 * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tileArrangementBuffer[i * 16]);
 		unknown7EF000.unknown7EF000Alt[i] = unknown7EB4B8;
 		unknown7EB4B8++;
 		yourSanctuaryLoadedTilesetTiles++;
