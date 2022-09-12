@@ -148,27 +148,27 @@ void getColorAverage(ushort* ptr) {
 }
 
 /// $C00434
-ushort unknownC00434(ushort arg1, ushort arg2) {
-	if (arg1 == arg2) {
-		return arg2;
-	} else if (arg1 > arg2) {
-		if (arg1 - arg2 > 0) {
-			return cast(ushort)(arg1 - 6);
+ushort unknownC00434(ushort original, ushort modified) {
+	if (original == modified) {
+		return modified;
+	} else if (original > modified) {
+		if (original - modified > 6) {
+			return cast(ushort)(original - 6);
 		} else {
-			return arg2;
+			return modified;
 		}
-	} else if (arg2 - arg1 > 6) {
-		return cast(ushort)(arg1 + 6);
+	} else if (modified - original > 6) {
+		return cast(ushort)(original + 6);
 	}
-	return arg2;
+	return modified;
 }
 
 /// $C00480
 void unknownC00480() {
 	getColorAverage(&palettes[2][0]);
-	ushort x20 = cast(ushort)((unknown7E43D0 / unknown7E43D6) << 8);
-	ushort x1E = cast(ushort)((unknown7E43D2 / unknown7E43D8) << 8);
-	ushort x1C = cast(ushort)((unknown7E43D4 / unknown7E43DA) << 8);
+	ushort x20 = cast(ushort)((unknown7E43D0 << 8) / unknown7E43D6);
+	ushort x1E = cast(ushort)((unknown7E43D2 << 8) / unknown7E43D8);
+	ushort x1C = cast(ushort)((unknown7E43D4 << 8) / unknown7E43DA);
 	ushort x1A = (x20 + x1E + x1C) / 3;
 	if ((x20 <= 0x100) && (x1E <= 0x100) && (x1C <= 0x100)) {
 		for (short i = 0x80; i < 0x100; i++) {
@@ -1708,9 +1708,9 @@ void unknownC03A94(short arg1) {
 		unknown7E9F73 = gameState.unknownA2[i];
 		short x12;
 		if (gameState.unknown92 != 3) {
-			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 0, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.unknown96[i] - 1, gameState.leaderX.integer, gameState.leaderY.integer);
+			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 0, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.unknownA2[i], gameState.leaderX.integer, gameState.leaderY.integer);
 		} else {
-			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 10, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.unknown96[i] - 1, gameState.leaderX.integer, gameState.leaderY.integer);
+			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 10, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.unknownA2[i], gameState.leaderX.integer, gameState.leaderY.integer);
 		}
 		entitySpriteMapFlags[gameState.unknownA2[i]] = x14;
 		entityTickCallbackFlags[gameState.unknownA2[i]] = x1A_2;
@@ -7222,6 +7222,7 @@ void unknownC0A794() {
 	unknown7E0091 = 0;
 	//dmaCopyRAMSource + 2= UNKNOWN_30X2_TABLE_31[unknown7E2896 / 2];
 	dmaCopyRAMSource = x02.data.ptr;
+	dmaCopyMode = 0;
 	while (true) {
 		unknownC0A56E();
 		if (--x00 == 0) {
