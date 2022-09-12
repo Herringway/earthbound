@@ -2178,8 +2178,8 @@ void unknownC0449B() {
 	gameState.troddenTileType = x04;
 	short x02_2 = 1;
 	npcCollisionCheck(x12.integer, x16.integer, gameState.currentPartyMembers);
-	if (entityCollidedObjects[23] != -1) {
-		tracef("Couldn't move due to collision");
+	if (entityCollidedObjects[23] != 0xFFFF) {
+		tracef("Couldn't move due to collision with %s", entityCollidedObjects[23]);
 		x02_2 = 0;
 	}
 	if ((x04 & 0xC0) != 0) {
