@@ -4768,6 +4768,7 @@ void copyToVRAMCommon() {
 
 /// $C0865F
 void copyToVRAMInternal() {
+	debug(printVRAMDMA) tracef("Copying %s bytes to $%04X, mode %s", dmaCopySize, dmaCopyVRAMDestination, dmaCopyMode);
 	// if ((mirrorINIDISP & 0x80) != 0) {
 	// 	ushort tmp92 = cast(ushort)(dmaCopySize + unknown7E0099);
 	// 	if (tmp92 >= 0x1201) {
