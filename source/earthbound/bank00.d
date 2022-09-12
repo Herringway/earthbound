@@ -4011,7 +4011,11 @@ byte unknownC07477(short arg1, short arg2) {
 
 /// $C07526
 short unknownC07526(short arg1, short arg2) {
-	short x0E;
+	version(bugfix) {
+		short x0E = 1;
+	} else {
+		short x0E = void;
+	}
 	switch (unknownC07477(arg1, arg2)) {
 		case DoorType.switch_:
 			unknownC06A1B(unknown7E5DBC.entryB);
