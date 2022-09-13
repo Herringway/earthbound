@@ -855,3 +855,100 @@ ubyte[] EBTEXT_CREATE_FLOATING_SPRITE_NEAR_ENTITY(short arg, ubyte arg2) {
 ubyte[] EBTEXT_DELETE_FLOATING_SPRITE_NEAR_ENTITY(short arg) {
 	return textSubCommand(0x1F, 0xF4, arg);
 }
+
+T getCCParameters(T)(ubyte lastValue) {
+	import earthbound.globals : ccArgumentStorage;
+	static assert(T.sizeof - 1 <= ccArgumentStorage.length);
+	union Raw {
+		ubyte[T.sizeof] raw;
+		T structure;
+	}
+	Raw raw;
+	raw.raw[0 .. $ - 1] = ccArgumentStorage[T.sizeof - 1];
+	raw.raw[$- 1] = lastValue;
+	return raw.structure;
+}
+
+T useVariableIfZero(T,U)(T value, U variable) {
+	return value == 0 ? (cast(T)variable) : value;
+}
+
+enum ReadParameters(T)  = "
+	alias ArgType = "~T.stringof~";
+	if (ArgType.sizeof - 1 < ccArgumentGatheringLoopCounter) {
+		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+		return &mixin(__FUNCTION__);
+	}";
+
+align(1) struct CC1805Arguments {
+	align(1):
+	ubyte alignment;
+	ubyte unused;
+}
+
+align(1) struct CC1807Arguments {
+	align(1):
+	uint value;
+	ubyte register;
+}
+
+align(1) struct CC180DArguments {
+	align(1):
+	ubyte character;
+	ubyte unknown;
+}
+
+align(1) struct CC1905Arguments {
+	align(1):
+	ubyte character;
+	ubyte statusGroup;
+	ubyte status;
+}
+
+align(1) struct CC1916Arguments {
+	align(1):
+	ubyte character;
+	ubyte statusGroup;
+}
+
+align(1) struct CC1A00Arguments {
+	align(1):
+	ubyte*[4] partyScripts;
+	ubyte display;
+}
+
+align(1) struct CC1A05Arguments {
+	align(1):
+	ubyte character;
+	ubyte window;
+}
+
+align(1) struct CC1D00Arguments {
+	align(1):
+	ubyte character;
+	ubyte item;
+}
+
+align(1) struct CC1EArguments {
+	align(1):
+	ubyte character;
+	ubyte amount;
+}
+
+align(1) struct CC1E09Arguments {
+	align(1):
+	ubyte character;
+	uint amount;
+}
+
+align(1) struct CC1F00Arguments {
+	align(1):
+	ubyte track;
+	ubyte unused;
+}
+
+align(1) struct CC1F20Arguments {
+	align(1):
+	ubyte p1;
+	ubyte p2;
+}
