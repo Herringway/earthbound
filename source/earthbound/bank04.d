@@ -41,7 +41,7 @@ void unknownC40023() {
 /// $C4002F
 void unknownC4002F(short arg1, ushort arg2, ushort arg3) {
 	dmaCopyRAMSource = &vwfBuffer[arg1][0];
-	unknown7E0091 = 0;
+	dmaCopyMode = 0;
 	dmaCopySize = 16;
 	//lol segmented addressing
 	//dmaCopyRAMSource = 0x7E
@@ -783,7 +783,7 @@ immutable ushort[8] unknownC42955 = [
 void unknownC429AE(const(void)* arg1, short arg2) {
 	//pushed arg1
 	short x00 = entityTileHeights[arg2];
-	unknown7E0091 = 0;
+	dmaCopyMode = 0;
 	dmaCopySize = entityByteWidths[arg2];
 	dmaCopyRAMSource = arg1;
 	dmaCopyVRAMDestination = entityVramAddresses[arg2];

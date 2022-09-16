@@ -84,10 +84,9 @@ __gshared short unknown7E0089; /// $0089
 __gshared short unknown7E008B; /// $008B
 __gshared short unknown7E008D; /// $008D
 __gshared short unknown7E008F; /// $008F
-__gshared ubyte unknown7E0091; /// $0091
-__gshared ubyte dmaCopyMode; /// $0092
-__gshared ushort dmaCopySize; /// $0093
-__gshared const(void)* dmaCopyRAMSource; /// $0095
+__gshared ubyte dmaCopyMode; /// $0091
+__gshared ushort dmaCopySize; /// $0092
+__gshared const(void)* dmaCopyRAMSource; /// $0094
 __gshared ushort dmaCopyVRAMDestination; /// $0097
 __gshared short unknown7E0099; /// $0099
 __gshared short unknown7E009B; /// $009B
