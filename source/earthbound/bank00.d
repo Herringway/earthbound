@@ -236,6 +236,10 @@ void unknownC006F2(short arg1) {
 				function14(x06_2.tile1, x06_2.tile2);
 				x06_2++;
 			}
+			// Normally, x06 and x06_2 are the same variable in the SNES ver.
+			// meaning that x06 would be advanced by the above code.
+			// Since that's not the case here, we advance it manually.
+			x06++;
 		} else {
 			x06++;
 		}
@@ -358,7 +362,7 @@ void unknownC00AC5(short x, short y) {
 			version(bugfix) {
 				// Set x12 only if coordinates are in range, and only if it needs
 				// to be set (it was never set, or beginning new sector)
-				if ((cast(ushort)x16 < 0x100) && (!x12Set || ((x16 & 8) == 0))) {
+				if ((cast(ushort)x16 < 0x100) && (!x12Set || ((x16 & 7) == 0))) {
 					x12 = globalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
 					x12Set = true;
 				}
@@ -455,7 +459,7 @@ void loadCollisionRow(short x, short y) {
 
 /// $C00D7E
 void loadCollisionColumn(short x, short y) {
-	ushort* x02 = &unknown7EF000.unknown7EF000[0][(x / 4) & 0xF];
+	ushort* x02 = &unknown7EF000.unknown7EF000[0][(x >> 2) & 0xF];
 	ubyte* x10 = &unknown7EE000[0][x & 0x3F];
 	for (short i = 0; i < 16; i++) {
 		const(ubyte[4][4])* x12 = tileCollisionBuffer[*x02];
@@ -476,11 +480,11 @@ void unknownC00E16(short x, short y) {
 	ushort* x1E = cast(ushort*)sbrk(0x100);
 	ushort* x1C = &x1E[0x40];
 	x--;
-	ushort x18 = cast(ushort)((unknown7EF000.unknown7EF000[((y / 4) & 0xF)][(x / 4) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
+	ushort x18 = cast(ushort)((unknown7EF000.unknown7EF000[((y >> 2) & 0xF)][(x >> 2) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
 	short x16 = x & 0x3F;
 	for (short i = 0; i < 34; i++) {
 		if ((x & 3) == 0) {
-			x18 = cast(ushort)((unknown7EF000.unknown7EF000[((y / 4) & 0xF)][(x / 4) & 0xF] * 16) + ((y & 3) * 4));
+			x18 = cast(ushort)((unknown7EF000.unknown7EF000[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + ((y & 3) * 4));
 		}
 		ushort x12 = tileArrangementBuffer[x18];
 		x1E[x16] = x12;
@@ -510,11 +514,11 @@ void unknownC00FCB(short x, short y) {
 	ushort* x1E = cast(ushort*)sbrk(0x80);
 	ushort* x1C = &x1E[0x20];
 	y--;
-	ushort x18 = cast(ushort)((unknown7EF000.unknown7EF000[((y / 4) & 0xF)][(x / 4) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
+	ushort x18 = cast(ushort)((unknown7EF000.unknown7EF000[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
 	short x16 = y & 0x1F;
 	for (short i = 0; i < 30; i++) {
 		if ((y & 3) == 0) {
-			x18 = cast(ushort)((unknown7EF000.unknown7EF000[((y / 4) & 0xF)][(x / 4) & 0xF] * 16) + (x & 3));
+			x18 = cast(ushort)((unknown7EF000.unknown7EF000[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + (x & 3));
 		}
 		ushort x12 = tileArrangementBuffer[x18];
 		x1E[x16] = x12;
@@ -6999,7 +7003,7 @@ void unknownC0A443Entry4(short arg1) {
 		x02 += 1;
 	}
 	if (((x02.lsb & 2) == 0) && (entitySurfaceFlags[arg1 / 2] & 8) != 0) {
-		unknown7E0091 = 3;
+		dmaCopyMode = 3;
 		dmaCopyRAMSource = &unknownC40BE8;
 		unknownC0A56E();
 		if (--actionScript00 == 0) {
@@ -7017,7 +7021,7 @@ void unknownC0A443Entry4(short arg1) {
 	//dmaCopyRAMSource = cast(void*)((*x02) & 0xFFF0);
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
 	dmaCopyRAMSource = x02.data.ptr;
-	unknown7E0091 = 0;
+	dmaCopyMode = 0;
 	while (true) {
 		unknownC0A56E();
 		if (--actionScript00 == 0) {
@@ -7227,7 +7231,7 @@ void unknownC0A794() {
 	dmaCopyVRAMDestination = entityVramAddresses[unknown7E2896 / 2];
 	const(OverworldSpriteGraphics)* x02 = (entityGraphicsPointers[unknown7E2896 / 2] + spriteDirectionMappings8Direction[entityDirections[unknown7E2896 / 2]] * 2 + entityAnimationFrames[unknown7E2896 / 2] / 2);
 	if (((x02.lsb & 2) == 0) && ((entitySurfaceFlags[unknown7E2896 / 2] & 8) != 0)) {
-		unknown7E0091 = 3;
+		dmaCopyMode = 3;
 		dmaCopyRAMSource = &unknownC40BE8;
 		unknownC0A56E();
 		if (--x00 == 0) {
@@ -7240,10 +7244,9 @@ void unknownC0A794() {
 		}
 	}
 	entityUnknown341A[unknown7E2896 / 2] = x02;
-	//TODO: figure this out too
+	//Original code:
 	//dmaCopyRAMSource = (*x02) & 0xFFFE;
-	unknown7E0091 = 0;
-	//dmaCopyRAMSource + 2= UNKNOWN_30X2_TABLE_31[unknown7E2896 / 2];
+	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[unknown7E2896 / 2];
 	dmaCopyRAMSource = x02.data.ptr;
 	dmaCopyMode = 0;
 	while (true) {
