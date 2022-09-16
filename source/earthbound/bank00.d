@@ -395,20 +395,40 @@ void unknownC00BDC(short x, short y) {
 	unknown7E43B0[x18] = cast(byte)x;
 	short x16 = y & 0xF;
 	unknown7E43C0[x16] = cast(byte)y;
-	short x14 = globalMapTilesetPaletteData[y / 4][x / 8] / 8;
-	ushort* x12 = &unknown7EF000.unknown7EF000[x18][0];
-	if (x < 0x100) {
+	ubyte x14;
+	version(bugfix) {
+		// Use a boolean to track that x14 hasn't been set yet
+		bool x14Set = false;
+	} else {
+		x14 = globalMapTilesetPaletteData[y / 4][x / 8] / 8;
+	}
+	ushort* x12 = &unknown7EF000.unknown7EF000[0][x18];
+	if (cast(ushort)x < 0x100) {
 		short x10 = cast(short)(x16 * 16);
 		for (short i = 0; i < 16; i++) {
-			if ((y & 3) == 0) {
-				x14 = globalMapTilesetPaletteData[y / 4][x / 8] / 8;
-			}
-			if ((y < 0x140) && (unknown7E436E == x14)) {
-				x12[x10] = unknownC0A156(x, y);
+			version(bugfix) {
+				// Set x14 only if coordinates are in range, and only if it needs
+				// to be set (it was never set, or beginning new sector)
+				if ((cast(ushort)y < 0x140) && (!x14Set || ((y & 3) == 0))) {
+					x14 = globalMapTilesetPaletteData[y / 4][x / 8] / 8;
+					x14Set = true;
+				}
+				if ((cast(ushort)y < 0x140) && x14Set && (unknown7E436E == x14)) {
+					x12[x10] = unknownC0A156(x, y);
+				} else {
+					x12[x10] = 0;
+				}
 			} else {
-				x12[x10] = 0;
+				if ((y & 3) == 0) {
+					x14 = globalMapTilesetPaletteData[y / 4][x / 8] / 8;
+				}
+				if ((cast(ushort)y < 0x140) && (unknown7E436E == x14)) {
+					x12[x10] = unknownC0A156(x, y);
+				} else {
+					x12[x10] = 0;
+				}
 			}
-			x10 += 16;
+			x10 = (x10 + 16) & 0xFF;
 			y++;
 		}
 	} else {
@@ -3219,7 +3239,7 @@ short npcCollisionCheck(short x, short y, short arg3) {
 			if (entityAbsXTable[i] - yReg - x18 * 2 >= x) {
 				continue;
 			}
-			if (entityAbsXTable[i] - yReg + yReg * 2 <= y) {
+			if (entityAbsXTable[i] - yReg + yReg * 2 <= x) {
 				continue;
 			}
 			result = i;

@@ -794,7 +794,7 @@ immutable ubyte[2 + 2 * (const(void)*).sizeof] event283;
 immutable ubyte[21 + 2 * (const(void)*).sizeof] unknownC3BED4;
 immutable ubyte[242 + 37 * (const(void)*).sizeof] event368;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] event816;
-immutable ubyte[6 + 3 * (const(void)*).sizeof] event8;
+immutable ubyte[7 + 4 * (const(void)*).sizeof] event8;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] unknownC3AAB8;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] event825;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] event142;
@@ -17007,6 +17007,7 @@ event8 = [
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0C7DB),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A443MovementEntry2),
+	EVENT_SHORTJUMP(&event8Entry2[0]),
 ].join();
 unknownC3AAB8 = [
 	EVENT_SET_PHYSICS_CALLBACK(&unknownC0A37A),

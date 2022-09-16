@@ -47,6 +47,18 @@ void handleDma() {
                 transferSize = 1;
                 dstAdjust = 1; // skip byte when copying
             }
+            // Handle VMAIN
+            auto addrIncrementAmount = [1, 32, 128, 256][VMAIN & 0x03];
+            // Skip ahead by addrIncrementAmount words, less the word we just
+            // dealt with by setting transferSize and dstAdjust.
+            dstAdjust += (addrIncrementAmount - 1) * 2;
+            // Address mapping is not implemented.
+            assert((VMAIN & 0x0C) == 0);
+            // Address increment is only supported for the used cases:
+            // - writing word value and increment after writing $2119
+            // - writing byte to $2119 and increment after writing $2119
+            // - writing byte to $2118 and increment after writing $2118
+            assert((VMAIN & 0x80) || (!hibyte && transferSize == 1));
             wrapTo = cast(ubyte *)(&g_frameData.vram);
             dest = wrapTo + ((VMADDL | VMADDH << 8) << 1 + (hibyte ? 1 : 0));
             wrapAt = wrapTo + 0x10000;
