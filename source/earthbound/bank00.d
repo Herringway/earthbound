@@ -653,7 +653,7 @@ void refreshMapAtPosition(short x, short y) {
 		}
 	}
 	while ((unknown7E4376 - x02) != 0) {
-		if (((unknown7E4376 - 0x02) < 0) != 0) {
+		if (((unknown7E4376 - x02) < 0) != 0) {
 			unknown7E4376++;
 			unknownC00AC5(cast(short)(x04 - 16), cast(short)(unknown7E4376 + 41));
 			loadCollisionRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 + 41));
@@ -2186,14 +2186,14 @@ void unknownC0449B() {
 		tracef("Couldn't move due to tile type");
 		x02_2 = 0;
 	}
-	if (unknown7E5DA8 != -1) {
+	if (unknown7E5DA8 != 0xffff) {
 		x02_2 = unknownC07526(unknown7E5DA8, unknown7E5DAA);
 	} else if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
 		gameState.walkingStyle = WalkingStyle.normal;
 	}
 	if (x02_2 != 0) {
 		gameState.leaderX = x12;
-		gameState.leaderY = x12;
+		gameState.leaderY = x16;
 	} else {
 		gameState.unknown90 = 0;
 	}
@@ -2419,7 +2419,7 @@ void unknownC04C45() {
 	if (gameState.unknown90 != 0) {
 		x10.xCoord = gameState.leaderX.integer;
 		x10.yCoord = gameState.leaderY.integer;
-		gameState.unknown88 = cast(short)(x12 + 1);
+		gameState.unknown88 = (x12 + 1) & 0xFF;
 		centerScreen(gameState.leaderX.integer, gameState.leaderY.integer);
 		unknown7E4DD4 = 1;
 	} else {
@@ -4500,39 +4500,25 @@ void irqNMICommon() {
 	unknown7E0001 = dmaQueueIndex;
 	if (nextFrameDisplayID != 0) {
 		if (nextFrameDisplayID - 1 == 0) {
-			BG1HOFS = bg1XPositionBuffer[0] & 0xFF;
-			BG1HOFS = bg1XPositionBuffer[0] >> 8;
-			BG1VOFS = bg1YPositionBuffer[0] & 0xFF;
-			BG1VOFS = bg1YPositionBuffer[0] >> 8;
-			BG2HOFS = bg2XPositionBuffer[0] & 0xFF;
-			BG2HOFS = bg2XPositionBuffer[0] >> 8;
-			BG2VOFS = bg2YPositionBuffer[0] & 0xFF;
-			BG2VOFS = bg2YPositionBuffer[0] >> 8;
-			BG3HOFS = bg3XPositionBuffer[0] & 0xFF;
-			BG3HOFS = bg3XPositionBuffer[0] >> 8;
-			BG3VOFS = bg3YPositionBuffer[0] & 0xFF;
-			BG3VOFS = bg3YPositionBuffer[0] >> 8;
-			BG4HOFS = bg4XPositionBuffer[0] & 0xFF;
-			BG4HOFS = bg4XPositionBuffer[0] >> 8;
-			BG4VOFS = bg4YPositionBuffer[0] & 0xFF;
-			BG4VOFS = bg4YPositionBuffer[0] >> 8;
-		} else{
-			BG1HOFS = bg1XPositionBuffer[1] & 0xFF;
-			BG1HOFS = bg1XPositionBuffer[1] >> 8;
-			BG1VOFS = bg1YPositionBuffer[1] & 0xFF;
-			BG1VOFS = bg1YPositionBuffer[1] >> 8;
-			BG2HOFS = bg2XPositionBuffer[1] & 0xFF;
-			BG2HOFS = bg2XPositionBuffer[1] >> 8;
-			BG2VOFS = bg2YPositionBuffer[1] & 0xFF;
-			BG2VOFS = bg2YPositionBuffer[1] >> 8;
-			BG3HOFS = bg3XPositionBuffer[1] & 0xFF;
-			BG3HOFS = bg3XPositionBuffer[1] >> 8;
-			BG3VOFS = bg3YPositionBuffer[1] & 0xFF;
-			BG3VOFS = bg3YPositionBuffer[1] >> 8;
-			BG4HOFS = bg4XPositionBuffer[1] & 0xFF;
-			BG4HOFS = bg4XPositionBuffer[1] >> 8;
-			BG4VOFS = bg4YPositionBuffer[1] & 0xFF;
-			BG4VOFS = bg4YPositionBuffer[1] >> 8;
+			// On the SNES these each take two 8-bit writes to the same address.
+			// libsfcppu takes the whole 16-bit value at once for simplicity.
+			BG1HOFS = bg1XPositionBuffer[0];
+			BG1VOFS = bg1YPositionBuffer[0];
+			BG2HOFS = bg2XPositionBuffer[0];
+			BG2VOFS = bg2YPositionBuffer[0];
+			BG3HOFS = bg3XPositionBuffer[0];
+			BG3VOFS = bg3YPositionBuffer[0];
+			BG4HOFS = bg4XPositionBuffer[0];
+			BG4VOFS = bg4YPositionBuffer[0];
+		} else {
+			BG1HOFS = bg1XPositionBuffer[1];
+			BG1VOFS = bg1YPositionBuffer[1];
+			BG2HOFS = bg2XPositionBuffer[1];
+			BG2VOFS = bg2YPositionBuffer[1];
+			BG3HOFS = bg3XPositionBuffer[1];
+			BG3VOFS = bg3YPositionBuffer[1];
+			BG4HOFS = bg4XPositionBuffer[1];
+			BG4VOFS = bg4YPositionBuffer[1];
 			unknown7E0061 = bg1XPosition;
 			unknown7E0063 = bg1YPosition;
 		}

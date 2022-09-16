@@ -1147,8 +1147,9 @@ void velocityStore() {
 		horizontalMovementSpeeds[i].up.combined = 0;
 		verticalMovementSpeeds[i].left.combined = 0;
 		verticalMovementSpeeds[i].right.combined = 0;
-		verticalMovementSpeeds[i].down.combined = 0;
-		horizontalMovementSpeeds[i].right.combined = 0;
+
+		verticalMovementSpeeds[i].down.combined = defaultMovementSpeeds[i].combined;
+		horizontalMovementSpeeds[i].right.combined = defaultMovementSpeeds[i].combined;
 
 		verticalMovementSpeeds[i].up.combined = -defaultMovementSpeeds[i].combined;
 		horizontalMovementSpeeds[i].left.combined = -defaultMovementSpeeds[i].combined;
