@@ -349,7 +349,7 @@ void unknownC00AC5(short x, short y) {
 	unknown7E4390[x] = cast(byte)x16;
 	unknown7E43A0[y & 0xF] = cast(byte)y;
 	ubyte x12;
-	version(bugfix) {
+	version(noUndefinedBehaviour) {
 		// Use a boolean to track that x12 hasn't been set yet
 		bool x12Set = false;
 	} else {
@@ -359,7 +359,7 @@ void unknownC00AC5(short x, short y) {
 	if (cast(ushort)y < 0x140) {
 		short x10 = x;
 		for (short i = 0; i < 16; i++) {
-			version(bugfix) {
+			version(noUndefinedBehaviour) {
 				// Set x12 only if coordinates are in range, and only if it needs
 				// to be set (it was never set, or beginning new sector)
 				if ((cast(ushort)x16 < 0x100) && (!x12Set || ((x16 & 7) == 0))) {
@@ -400,7 +400,7 @@ void unknownC00BDC(short x, short y) {
 	short x16 = y & 0xF;
 	unknown7E43C0[x16] = cast(byte)y;
 	ubyte x14;
-	version(bugfix) {
+	version(noUndefinedBehaviour) {
 		// Use a boolean to track that x14 hasn't been set yet
 		bool x14Set = false;
 	} else {
@@ -410,7 +410,7 @@ void unknownC00BDC(short x, short y) {
 	if (cast(ushort)x < 0x100) {
 		short x10 = cast(short)(x16 * 16);
 		for (short i = 0; i < 16; i++) {
-			version(bugfix) {
+			version(noUndefinedBehaviour) {
 				// Set x14 only if coordinates are in range, and only if it needs
 				// to be set (it was never set, or beginning new sector)
 				if ((cast(ushort)y < 0x140) && (!x14Set || ((y & 3) == 0))) {
@@ -1172,7 +1172,7 @@ void unknownC025CF(short x, short y) {
 
 /// $C0263D
 short unknownC0263D(short x, short y) {
-	version(bugfix) {
+	version(noUndefinedBehaviour) {
 		if ((x < 0) || (y < 0)) {
 			return 0;
 		}
@@ -1260,12 +1260,11 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			}
 		}
 	}
-	version(bugfix) {
+	version(noUndefinedBehaviour) {
 		if (x0A is null) {
 			return;
 		}
 	}
-	assert(x0A);
 	while ((unknown7E4A6E = x0A[0].count) != 0) {
 		unknown7E4A76 = enemyConfigurationTable[x0A[0].enemyID].name[0];
 		short x26 = enemyConfigurationTable[x0A[0].enemyID].overworldSprite;
@@ -4035,7 +4034,7 @@ byte unknownC07477(short arg1, short arg2) {
 
 /// $C07526
 short unknownC07526(short arg1, short arg2) {
-	version(bugfix) {
+	version(noUndefinedBehaviour) {
 		short x0E = 1;
 	} else {
 		short x0E = void;

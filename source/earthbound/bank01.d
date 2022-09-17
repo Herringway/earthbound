@@ -700,6 +700,7 @@ int numSelectPrompt(short arg1) {
 		ubyte* x04 = &unknown7E895A[7 - x02];
 		short x16;
 		for (x16 = arg1; x16 > x02; x16--) {
+			// These weren't updated for EB's new number range
 			version(bugfix) {
 				unknownC43F77((x16 == x1C) ? 0x10 : ebChar('0'));
 			} else {
@@ -6907,6 +6908,7 @@ short enemySelectMode(short arg1) {
 		short x02 = unknownC10D7C(x24);
 		ubyte* x18 = &unknown7E895A[7 - x02];
 		for (short i = 3; i > x02; i--) {
+			// in EB's final build, these still refer to Mother 2's number characters
 			version(bugfix) {
 				printLetter((i == x1C) ? ebChar('0') : ebChar('0'));
 			} else {
