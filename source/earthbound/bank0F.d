@@ -2272,7 +2272,8 @@ immutable DoorEntryC doorEntry976 = DoorEntryC(textDoor976);
 immutable DoorEntryC doorEntry977 = DoorEntryC(textNoProblemHere);
 
 /// $CF58EF
-immutable OverworldEventMusic[][164] overworldEventMusicPointerTable = [
+immutable OverworldEventMusic[][165] overworldEventMusicPointerTable = [
+	[],
 	[
 		OverworldEventMusic(0, Music.none2),
 	],
