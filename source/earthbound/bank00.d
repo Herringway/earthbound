@@ -3582,13 +3582,16 @@ void unknownC068F4(short arg1, short arg2) {
 	if (unknown7E5DD8 != 0) {
 		return;
 	}
+	tracef("Using overworld music entry %s", mapDataPerSectorMusic[arg2 / 128][(arg1 >> 8) & 0xFF]);
 	const(OverworldEventMusic)* x0A = &overworldEventMusicPointerTable[mapDataPerSectorMusic[arg2 / 128][(arg1 >> 8) & 0xFF]][0];
 	while (x0A.flag != 0) {
+		tracef("Trying flag %s for %s", cast(EventFlag)(x0A.flag & 0x7FFF), cast(Music)x0A.music);
 		if (getEventFlag(x0A.flag & 0x7FFF) == (x0A.flag > 0x8000) ? 1 : 0) {
 			break;
 		}
 		x0A++;
 	}
+	tracef("Selected music track: %s", cast(Music)x0A.music);
 	unknown7E5E38 = x0A;
 	unknown7E5DD6 = x0A.music;
 	if ((unknown7E5DDA == 0) && (x0A.music != unknown7E5DD4)) {
