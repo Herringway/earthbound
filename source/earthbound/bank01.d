@@ -7136,6 +7136,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 								}
 							}
 							unknownC1E48D(arg1, arg2, getCharacterAtCursorPosition(x20 / 2, x22, arg4));
+							continue l1;
 						}
 					} else if ((padPress[0] & (Pad.b | Pad.select)) != 0) {
 						playSfx(Sfx.unknown7D);
