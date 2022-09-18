@@ -1691,7 +1691,7 @@ void unknownC03A24() {
 		unknownC0369B(gameState.partyMembers[i]);
 	}
 	unknown7E5D7E = 0;
-	footstepSoundID = gameState.unknown92;
+	footstepSoundID = cast(short)(gameState.unknown92 * 2);
 	footstepSoundIDOverride = 0;
 }
 
@@ -7197,7 +7197,7 @@ void unknownC0A6E3() {
 	if (actionScript88 == unknown7E2898) {
 		goto Unknown5;
 	}
-	a = footstepSoundTable[(footstepSoundIDOverride == 0) ? footstepSoundID : footstepSoundIDOverride];
+	a = footstepSoundTable[(footstepSoundIDOverride == 0) ? (footstepSoundID / 2) : (footstepSoundIDOverride / 2)];
 	if ((a != 0) && (unknown7EB4B6 == 0)) {
 		playSfx(a);
 	}
