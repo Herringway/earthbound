@@ -3,11 +3,13 @@ module earthbound.text;
 import earthbound.actionscripts;
 import earthbound.commondefs;
 
+const(ubyte)*[string] textData;
+
 const(ubyte)* getTextBlock(string label) {
 	import std.experimental.logger : tracef;
 	tracef("Looking for text: %s", label);
 	static immutable ubyte[1] r = [2];
-	return &r[0];
+	return textData.get(label, &r[0]);
 }
 
 ubyte[] textCommand(T...)(ubyte command, T args) {
