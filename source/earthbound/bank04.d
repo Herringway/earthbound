@@ -1656,15 +1656,15 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 		short j;
 		for (j = unknown7E1B6E[i]; j >= 8; j -= 8) {
 			renderText(8, fontConfigTable[0].width, x06);
-			x06 +=fontConfigTable[0].width;
+			x06 += fontConfigTable[0].width;
 		}
-		renderText(fontConfigTable[0].width, j, x06);
+		renderText(j, fontConfigTable[0].width, x06);
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 	ushort x04 = 0x7700;
 	for (short i = 0; i < windowStats[windowTable[currentFocusWindow]].width + 1; i++) {
 		copyToVRAM(0, 0x10, x04, &vwfBuffer[i][0]);
-		copyToVRAM(0, 0x10, cast(ushort)(x04 + 8), &vwfBuffer[i + 1][0]);
+		copyToVRAM(0, 0x10, cast(ushort)(x04 + 8), &vwfBuffer[i][16]);
 		x04 += 16;
 	}
 	dmaTransferFlag = 1;
