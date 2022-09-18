@@ -28,7 +28,7 @@ T getCCParameters(T)(ubyte lastValue) {
 		T structure;
 	}
 	Raw raw;
-	raw.raw[0 .. $ - 1] = ccArgumentStorage[T.sizeof - 1];
+	raw.raw[0 .. $ - 1] = ccArgumentStorage[0 .. T.sizeof - 1];
 	raw.raw[$- 1] = lastValue;
 	return raw.structure;
 }
@@ -39,8 +39,8 @@ T useVariableIfZero(T,U)(T value, U variable) {
 
 enum ReadParameters(T)  = "
 	alias ArgType = "~T.stringof~";
-	if (ArgType.sizeof - 1 < ccArgumentGatheringLoopCounter) {
-		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
+	if (ArgType.sizeof - 1 > ccArgumentGatheringLoopCounter) {
+		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = arg2;
 		return &mixin(__FUNCTION__);
 	}";
 
