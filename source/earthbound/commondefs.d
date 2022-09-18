@@ -6628,6 +6628,9 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 			case 13:
 			case 14:
 			case 16:
+			case 21:
+			case 22:
+			case 23:
 				return script[0 .. 2];
 			case 4:
 			case 5:

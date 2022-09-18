@@ -4440,7 +4440,7 @@ const(ubyte)* displayText(const(ubyte)* script_ptr) {
 	size_t waitBytes = 0;
 	loop: while (true) {
 		if (waitBytes-- == 0) {
-			auto str = getFullCC(x12.textptr);
+			auto str = getFullCC(x1A[0] ? x1A : x12.textptr);
 			tracef("Next text: [%(%02X %)]", str);
 			waitBytes = str.length - 1;
 		}
@@ -4468,18 +4468,21 @@ const(ubyte)* displayText(const(ubyte)* script_ptr) {
 				x12.textptr++;
 				x14 = tmp[0];
 				tmp++;
+				x1A = tmp;
 				break;
 			case 0x16:
 				const(ubyte)* tmp = &compressedText[1][x12.textptr[0]][0];
 				x12.textptr++;
 				x14 = tmp[0];
 				tmp++;
+				x1A = tmp;
 				break;
 			case 0x17:
 				const(ubyte)* tmp = &compressedText[2][x12.textptr[0]][0];
 				x12.textptr++;
 				x14 = tmp[0];
 				tmp++;
+				x1A = tmp;
 				break;
 			default: break;
 		}
