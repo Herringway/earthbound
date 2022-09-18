@@ -1060,7 +1060,7 @@ align(1) struct CC1F66Arguments {
 	align(1):
 	ubyte arg1;
 	ubyte arg2;
-	const(ubyte)* arg3;
+	string arg3;
 }
 
 align(1) struct CC1FEBArguments {
