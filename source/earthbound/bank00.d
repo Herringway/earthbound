@@ -8716,7 +8716,7 @@ short unknownC0C6B6() {
 /// $C0C711
 short unknownC0C711() {
 	//weird...
-	if (((entityScreenXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) | (entityScreenYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]]) | (currentEntitySlot + 8) & 0xFF00) == 0) {
+	if ((((entityScreenXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) | (entityScreenYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]]) | (currentEntitySlot + 8)) & 0xFF00) == 0) {
 		return -1;
 	} else {
 		return 0;
