@@ -2618,7 +2618,7 @@ void* cc1D09(DisplayTextState* arg1, ushort arg2) {
 
 /// $C149B6
 void* cc1E00(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E00;
 	}
@@ -2628,7 +2628,7 @@ void* cc1E00(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14A03
 void* cc1E01(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E01;
 	}
@@ -2638,7 +2638,7 @@ void* cc1E01(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14A50
 void* cc1E02(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E02;
 	}
@@ -2648,7 +2648,7 @@ void* cc1E02(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14A9D
 void* cc1E03(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E03;
 	}
@@ -2658,7 +2658,7 @@ void* cc1E03(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14AEA
 void* cc1E04(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E04;
 	}
@@ -2668,7 +2668,7 @@ void* cc1E04(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14B37
 void* cc1E05(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E05;
 	}
@@ -2678,7 +2678,7 @@ void* cc1E05(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14B84
 void* cc1E06(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E06;
 	}
@@ -2688,7 +2688,7 @@ void* cc1E06(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14BD1
 void* cc1E07(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1E07;
 	}
@@ -2698,7 +2698,7 @@ void* cc1E07(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14C1E
 void* cc1D00(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1D00;
 	}
@@ -2708,7 +2708,7 @@ void* cc1D00(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14C86
 void* cc1D01(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1D01;
 	}
@@ -2724,7 +2724,7 @@ void* cc1D03(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14D24
 void* cc1D04(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1D04;
 	}
@@ -2734,7 +2734,7 @@ void* cc1D04(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14D93
 void* cc1D05(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1D05;
 	}
@@ -2744,7 +2744,7 @@ void* cc1D05(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14DFB
 void* cc1F20(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1F20;
 	}
@@ -2788,7 +2788,7 @@ void* cc1D0B(DisplayTextState* arg1, ushort arg2) {
 
 /// $C14F6F
 void* cc1F81(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1F81;
 	}
@@ -2808,7 +2808,7 @@ void* cc1C02(DisplayTextState* arg1, ushort arg2) {
 
 /// $C15007
 void* cc1916(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1916;
 	}
@@ -2818,7 +2818,7 @@ void* cc1916(DisplayTextState* arg1, ushort arg2) {
 
 /// $C1506F
 void* cc1905(DisplayTextState* arg1, ushort arg2) {
-	if (2 < ccArgumentGatheringLoopCounter) {
+	if (2 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1905;
 	}
@@ -2828,7 +2828,7 @@ void* cc1905(DisplayTextState* arg1, ushort arg2) {
 
 /// $C150E4
 void* cc1D0D(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1D0D;
 	}
@@ -2939,7 +2939,7 @@ void* cc1F60(DisplayTextState* arg1, ushort arg2) {
 
 /// $C1549E
 void* cc1A05(DisplayTextState* arg1, ushort arg2) {
-	if (1 < ccArgumentGatheringLoopCounter) {
+	if (1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1A05;
 	}
