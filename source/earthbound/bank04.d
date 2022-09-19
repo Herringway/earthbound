@@ -329,29 +329,32 @@ immutable ushort[16] unknownC41FDF = [
 
 /// $C41FFF
 FixedPoint1616 unknownC41FFF(short arg1, short arg2) {
+	short arg1Modified = ((arg1 >> 8) & 0xFC) >> 1;
 	short a;
-	if (unknownC4205D[((arg1 >> 8) & 0xFC) >> 2] == 0x100) {
+	if (unknownC41FFFSineTable[arg1Modified / 2] == 0x100) {
 		a = arg2;
 	} else {
-		a = unknownC4213F(unknownC4205D[((arg1 >> 8) & 0xFC) >> 2], arg2);
+		a = unknownC4213F(unknownC41FFFSineTable[arg1Modified / 2], arg2);
 	}
 	short a2;
-	if (unknownC420BD[((arg1 >> 8) & 0xFC)] == 0x100) {
+	if (unknownC41FFFSineTable[arg1Modified / 2 + 48] == 0x100) {
 		a2 = arg2;
 	} else {
-		a2 = unknownC4213F(unknownC420BD[((arg1 >> 8) & 0xFC)], arg2);
+		a2 = unknownC4213F(unknownC41FFFSineTable[arg1Modified / 2 + 48], arg2);
 	}
-	if ((((arg1 >> 8) & 0xFC) < 0x20) || (((arg1 >> 8) & 0xFC) >= 0x62)) {
+	if ((arg1Modified < 0x20) || (arg1Modified >= 0x62)) {
 		a2 = cast(short)-cast(int)a2;
 	}
-	if ((((arg1 >> 8) & 0xFC) >= 0x4C) && (((arg1 >> 8) & 0xFC) < 0x80)) {
+	if ((arg1Modified >= 0x42) && (arg1Modified < 0x80)) {
 		a = cast(short)-cast(int)a;
 	}
+	// a  =  sin(arg1) * arg2
+	// a2 = -cos(arg1) * arg2
 	return FixedPoint1616(a2, a);
 }
 
-/// $C4205D
-immutable ushort[48] unknownC4205D = [
+/// $C4205D and $C420BD
+immutable ushort[113] unknownC41FFFSineTable = [
 	0x0000,
 	0x0019,
 	0x0032,
@@ -400,11 +403,7 @@ immutable ushort[48] unknownC4205D = [
 	0x00F5,
 	0x00FB,
 	0x00FE,
-];
-
-/// $C420BD
-immutable ushort[65] unknownC420BD = [
-	0x0100,
+	0x0100, // Start of data used for cosine
 	0x00FE,
 	0x00FB,
 	0x00F5,
@@ -420,7 +419,7 @@ immutable ushort[65] unknownC420BD = [
 	0x004B,
 	0x0032,
 	0x0019,
-	0x0000,
+	0x0000, // End of data used for sine
 	0x0019,
 	0x0032,
 	0x004A,
@@ -2967,7 +2966,7 @@ ushort unknownC46ADB() {
 
 /// $C46B0A
 short unknownC46B0A(short arg1) {
-	entityUnknown1A86[currentEntitySlot] = cast(short)((arg1 + 0x1000) / 0x2000);
+	entityUnknown1A86[currentEntitySlot] = cast(short)(cast(ushort)(arg1 + 0x1000) / 0x2000);
 	return entityUnknown1A86[currentEntitySlot];
 }
 

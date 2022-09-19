@@ -408,7 +408,7 @@ immutable ubyte[4][2] thethe = [
 /// $C20A20
 void unknownC20A20(WindowTextAttributesCopy* buf) {
 	buf.id = currentFocusWindow;
-	if (currentFocusWindow == 0xFFFF) {
+	if (currentFocusWindow == -1) {
 		return;
 	}
 	buf.textX = windowStats[windowTable[currentFocusWindow]].textX;
@@ -420,10 +420,10 @@ void unknownC20A20(WindowTextAttributesCopy* buf) {
 
 /// $C20ABC
 void unknownC20ABC(WindowTextAttributesCopy* buf) {
-	if (buf.id == 0xFFFF) {
+	if (buf.id == -1) {
 		return;
 	}
-	if (windowTable[buf.id] == 0xFFFF) {
+	if (windowTable[buf.id] == -1) {
 		return;
 	}
 	currentFocusWindow = buf.id;

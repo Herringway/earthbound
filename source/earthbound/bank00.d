@@ -8336,7 +8336,7 @@ void ebMain() {
 			processQueuedInteractions();
 			inputDisableFrameCounter++;
 		} else if ((gameState.unknownB0 != 2) && (gameState.walkingStyle != WalkingStyle.escalator) && !battleSwirlCountdown) {
-			if (!battleDebug) {
+			if (battleDebug) {
 				initBattleOverworld();
 				inputDisableFrameCounter++;
 			} else if (((padPress[0] & (Pad.a | Pad.l)) != 0) || (gameState.walkingStyle == WalkingStyle.bicycle)) {
@@ -8386,7 +8386,7 @@ void ebMain() {
 				}
 			}
 		}
-		if (unknownC04FFE() && !spawn()) {
+		if (!unknownC04FFE() && spawn()) {
 			goto RestartGame;
 		}
 		if (debugging && ((padState[0] & Pad.start) != 0) && ((padState[0] & Pad.select) == 0)) {
