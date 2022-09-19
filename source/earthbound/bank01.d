@@ -2169,7 +2169,7 @@ void openHPPPDisplay() {
 
 /// $C13CE5
 void showTownMap() {
-	if (findItemInInventory(0xFF, ItemID.townMap) == 0) {
+	if (findItemInInventory2(0xFF, ItemID.townMap) == 0) {
 		return;
 	}
 	unknownC0943C();

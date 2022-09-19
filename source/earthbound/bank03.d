@@ -329,9 +329,9 @@ immutable ubyte[4] unknownC3E44C = ebString!4("そのた"); //tx6 in EB
 void unknownC3E450() {
 	const(RGB)* x06;
 	if ((unknown7E0002 & 4) != 0) {
-		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour].offset / 0x40][4];
+		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][4];
 	} else {
-		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour].offset / 0x40][20];
+		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20];
 	}
 	memcpy(&palettes[1][4], x06, 8);
 	unknown7E0030 = 0x18;
