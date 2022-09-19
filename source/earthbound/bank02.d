@@ -4020,8 +4020,14 @@ short calcDamage(Battler* target, short damage) {
 	}
 	if (target.allyOrEnemy == 0) {
 		if ((target.hpTarget == 0) && (x02 > 1)) {
-			if (success500((target.guts < 25) ? 25 : target.guts) != 0) {
-				setHP(target, 1);
+			version(bugfix) {
+				if (success500((target.guts < 25) ? 25 : target.guts) != 0) {
+					setHP(target, 1);
+				}
+			} else {
+				if (success500((currentAttacker.guts < 25) ? 25 : currentAttacker.guts) != 0) {
+					setHP(target, 1);
+				}
 			}
 		}
 		if ((unknown7EAA90 != 0) && (countChars(1) == 1) && (countChars(0) == 1)) {
