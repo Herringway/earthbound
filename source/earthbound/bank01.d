@@ -7765,13 +7765,13 @@ void fileMenuLoop() {
 								createWindowN(Window.fileSelectNamingConfirmationFood);
 								printString(fileSelectTextFavoriteFood.length, &fileSelectTextFavoriteFood[0]);
 								short x = unknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
-								unknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - windowStats[windowTable[Window.fileSelectNamingConfirmationFood]].width), 1);
+								unknownC438A5(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationFood]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), &gameState.favouriteFood[0]);
 
 								createWindowN(Window.fileSelectNamingConfirmationThing);
 								printString(fileSelectTextCoolestThing.length, &fileSelectTextCoolestThing[0]);
 								x = unknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
-								unknownC438A5(cast(short)((((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8)) - windowStats[windowTable[Window.fileSelectNamingConfirmationThing]].width), 1);
+								unknownC438A5(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationThing]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), &gameState.favouriteThing[4]);
 
 								createWindowN(Window.fileSelectNamingConfirmationMessage);
