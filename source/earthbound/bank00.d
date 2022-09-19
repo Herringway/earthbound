@@ -7681,6 +7681,7 @@ void loadSPC700Data(const(ubyte)* data) {
 
 /// $C0ABE0 - Play a sound effect
 void playSfx(short sfx) {
+	tracef("Queuing sound effect %s", cast(Sfx)sfx);
 	if (sfx != 0) {
 		soundEffectQueue[soundEffectQueueEndIndex] = cast(ubyte)(sfx | unknown7E1ACA);
 		soundEffectQueueEndIndex = (soundEffectQueueEndIndex + 1) & 7;
