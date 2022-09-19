@@ -1371,15 +1371,15 @@ void unknownC43B15() {
 }
 
 /// $C43874
-void unknownC43874(short arg1, short arg2, short arg3) {
+void unknownC43874(short arg1, short x, short y) {
 	unknownC43CAA();
-	windowStats[windowTable[arg1]].textX = arg2;
-	windowStats[windowTable[arg1]].textY = arg3;
+	windowStats[windowTable[arg1]].textX = x;
+	windowStats[windowTable[arg1]].textY = y;
 }
 
 /// $C438A5
-void unknownC438A5(short arg1, short arg2) {
-	unknownC43874(currentFocusWindow, arg1, arg2);
+void unknownC438A5(short x, short y) {
+	unknownC43874(currentFocusWindow, x, y);
 }
 
 /// $C43915
