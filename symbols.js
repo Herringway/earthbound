@@ -2184,6 +2184,7 @@ var symbols = [
 {name: 'earthbound.commondefs.AnimatedTiles.frameCount', kind: "variabledeclaration", path: './earthbound/commondefs/AnimatedTiles.frameCount.html', attributes: []},
 {name: 'earthbound.commondefs.AnimatedTiles.frameDelay', kind: "variabledeclaration", path: './earthbound/commondefs/AnimatedTiles.frameDelay.html', attributes: []},
 {name: 'earthbound.commondefs.AnimatedTiles.sourceOffset', kind: "variabledeclaration", path: './earthbound/commondefs/AnimatedTiles.sourceOffset.html', attributes: []},
+{name: 'earthbound.commondefs.AnimationFlags', kind: "enumdeclaration", path: './earthbound/commondefs/AnimationFlags.html', attributes: []},
 {name: 'earthbound.commondefs.AnimationSequence', kind: "structdeclaration", path: './earthbound/commondefs/AnimationSequence.html', attributes: []},
 {name: 'earthbound.commondefs.AnimationSequence.ptr', kind: "variabledeclaration", path: './earthbound/commondefs/AnimationSequence.ptr.html', attributes: []},
 {name: 'earthbound.commondefs.AnimationSequence.unknown4', kind: "variabledeclaration", path: './earthbound/commondefs/AnimationSequence.unknown4.html', attributes: []},
