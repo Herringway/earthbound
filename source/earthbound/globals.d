@@ -205,7 +205,7 @@ __gshared short[maxScripts] entityScriptUnknown125A; /// $125A
 __gshared short[maxScripts] entityScriptUnknown12E6; /// $12E6
 __gshared short[maxScripts] entityScriptSleepFrames; /// $1372
 
-__gshared const(ubyte)*[maxEntities] entityProgramCounters; /// $13FE and $148A
+__gshared const(ubyte)*[maxScripts] entityProgramCounters; /// $13FE and $148A
 
 __gshared short[maxScripts] entityTempvars; /// $1516
 
