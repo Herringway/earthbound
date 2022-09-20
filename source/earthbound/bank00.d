@@ -3710,7 +3710,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	}
 	unknown7E5DAA = 0;
 	unknown7E5DA8 = 0;
-	if (getEventFlag(arg1.eventFlag & 0x7FFF) != (arg1.eventFlag > eventFlagUnset) ? 1 : 0) {
+	if ((arg1.eventFlag != 0) && (getEventFlag(arg1.eventFlag & 0x7FFF) != (arg1.eventFlag > eventFlagUnset) ? 1 : 0)) {
 		unknown7E5DC2 = 0;
 		return;
 	}
