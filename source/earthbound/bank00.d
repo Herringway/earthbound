@@ -4031,6 +4031,7 @@ byte unknownC07477(short arg1, short arg2) {
 		}
 		unknown7E5DBC = x06.doorPtr;
 		unknown7E5DBE = x06.type;
+		return x06.type;
 	}
 	return -1;
 }
