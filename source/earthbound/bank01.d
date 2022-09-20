@@ -2355,7 +2355,7 @@ void* cc1C00(DisplayTextState* arg1, ubyte arg2) {
 /// $C14103
 void* cc0A(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	arg1.textptr = getTextBlock(getCCParameters!ArgType(cast(ubyte)arg2));
+	arg1.textptr = getTextBlock(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -2374,14 +2374,14 @@ void* cc09(DisplayTextState* arg1, ubyte arg2) {
 /// $C14265
 void* cc04(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setEventFlag(getCCParameters!ArgType(cast(ubyte)arg2), 1);
+	setEventFlag(getCCParameters!ArgType(arg2), 1);
 	return null;
 }
 
 /// $C142AD - [05 XX XX] clear flag
 void* cc05(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setEventFlag(getCCParameters!ArgType(cast(ubyte)arg2), 0);
+	setEventFlag(getCCParameters!ArgType(arg2), 0);
 	return null;
 }
 
@@ -2402,7 +2402,7 @@ void* cc06(DisplayTextState* arg1, ubyte arg2) {
 /// $C1435F - [07 XX XX] get event flag
 void* cc07(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setWorkingMemory(WorkingMemory(getEventFlag(getCCParameters!ArgType(cast(ubyte)arg2))));
+	setWorkingMemory(WorkingMemory(getEventFlag(getCCParameters!ArgType(arg2))));
 	return null;
 }
 
@@ -2427,7 +2427,7 @@ void* cc1803(DisplayTextState* arg1, ubyte arg2) {
 /// $C143D6 - [08 ptr] call
 void* cc08(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	displayText(getTextBlock(getCCParameters!ArgType(cast(ubyte)arg2)));
+	displayText(getTextBlock(getCCParameters!ArgType(arg2)));
 	return null;
 }
 
@@ -2447,9 +2447,9 @@ void* cc1F52(DisplayTextState* arg1, ubyte arg2) {
 void* cc1805(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1805Arguments);
 	if (unknown7E5E71 != 0) {
-		unknownC43D75(getCCParameters!ArgType(cast(ubyte)arg2).alignment, arg2);
+		unknownC43D75(getCCParameters!ArgType(arg2).alignment, arg2);
 	} else {
-		unknownC438A5(getCCParameters!ArgType(cast(ubyte)arg2).alignment, arg2);
+		unknownC438A5(getCCParameters!ArgType(arg2).alignment, arg2);
 	}
 	return null;
 }
@@ -2487,14 +2487,14 @@ void* cc0E(DisplayTextState* arg1, ubyte arg2) {
 /// $C1463B
 void* cc1A00(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1A00Arguments);
-	setWorkingMemory(WorkingMemory(unknownC1244C(&getCCParameters!ArgType(cast(ubyte)arg2).partyScripts[0], getCCParameters!ArgType(cast(ubyte)arg2).display, 0)));
+	setWorkingMemory(WorkingMemory(unknownC1244C(&getCCParameters!ArgType(arg2).partyScripts[0], getCCParameters!ArgType(arg2).display, 0)));
 	return null;
 }
 
 /// $C1467D
 void* cc1A01(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1A00Arguments);
-	setWorkingMemory(WorkingMemory(unknownC1244C(&getCCParameters!ArgType(cast(ubyte)arg2).partyScripts[0], getCCParameters!ArgType(cast(ubyte)arg2).display, 1)));
+	setWorkingMemory(WorkingMemory(unknownC1244C(&getCCParameters!ArgType(arg2).partyScripts[0], getCCParameters!ArgType(arg2).display, 1)));
 	return null;
 }
 
@@ -2519,7 +2519,7 @@ void* cc1910(DisplayTextState* arg1, ubyte arg2) {
 /// $C14751
 void* cc1F00(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F00Arguments);
-	unknownC216AD(getCCParameters!ArgType(cast(ubyte)arg2).unused.useVariableIfZero(getArgumentMemory()), getCCParameters!ArgType(cast(ubyte)arg2).track);
+	unknownC216AD(getCCParameters!ArgType(arg2).unused.useVariableIfZero(getArgumentMemory()), getCCParameters!ArgType(arg2).track);
 	return null;
 }
 
@@ -2562,14 +2562,14 @@ void* cc1D02(DisplayTextState* arg1, ubyte arg2) {
 /// $C148E9
 void* cc1D08(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setWorkingMemory(WorkingMemory(increaseWalletBalance(getCCParameters!ArgType(cast(ubyte)arg2).useVariableIfZero(getArgumentMemory()))));
+	setWorkingMemory(WorkingMemory(increaseWalletBalance(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()))));
 	return null;
 }
 
 /// $C1494A
 void* cc1D09(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!short);
-	setWorkingMemory(WorkingMemory(decreaseWalletBalance(getCCParameters!ArgType(cast(ubyte)arg2).useVariableIfZero(getArgumentMemory()))));
+	setWorkingMemory(WorkingMemory(decreaseWalletBalance(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()))));
 	return null;
 }
 
@@ -2577,8 +2577,8 @@ void* cc1D09(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E00(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	recoverHPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		0
 	);
 	return null;
@@ -2588,8 +2588,8 @@ void* cc1E00(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E01(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	reduceHPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		0
 	);
 	return null;
@@ -2598,8 +2598,8 @@ void* cc1E01(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E02(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	recoverHPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		1
 	);
 	return null;
@@ -2609,8 +2609,8 @@ void* cc1E02(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E03(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	reduceHPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		1
 	);
 	return null;
@@ -2620,8 +2620,8 @@ void* cc1E03(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E04(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	recoverPPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		0
 	);
 	return null;
@@ -2631,8 +2631,8 @@ void* cc1E04(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E05(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	reducePPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		0
 	);
 	return null;
@@ -2642,8 +2642,8 @@ void* cc1E05(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E06(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	recoverPPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		1
 	);
 	return null;
@@ -2653,8 +2653,8 @@ void* cc1E06(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E07(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
 	reducePPAmtPercent(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).amount,
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).amount,
 		1
 	);
 	return null;
@@ -2664,8 +2664,8 @@ void* cc1E07(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D00(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	setWorkingMemory(WorkingMemory(giveItemToCharacter(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	)));
 	return null;
 }
@@ -2674,8 +2674,8 @@ void* cc1D00(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D01(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	setWorkingMemory(WorkingMemory(takeItemFromCharacter(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	)));
 	return null;
 }
@@ -2690,8 +2690,8 @@ void* cc1D03(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D04(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	setWorkingMemory(WorkingMemory(unknownC3E9F7(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	)));
 	return null;
 }
@@ -2700,8 +2700,8 @@ void* cc1D04(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D05(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	setWorkingMemory(WorkingMemory(findItemInInventory2(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	)));
 	return null;
 }
@@ -2710,8 +2710,8 @@ void* cc1D05(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F20(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F20Arguments);
 	setTeleportState(
-		getCCParameters!ArgType(cast(ubyte)arg2).p1.useVariableIfZero(getWorkingMemory().integer),
-		cast(TeleportStyle)getCCParameters!ArgType(cast(ubyte)arg2).p2.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).p1.useVariableIfZero(getWorkingMemory().integer),
+		cast(TeleportStyle)getCCParameters!ArgType(arg2).p2.useVariableIfZero(getArgumentMemory())
 	);
 	return null;
 }
@@ -2754,8 +2754,8 @@ void* cc1D0B(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F81(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	setWorkingMemory(WorkingMemory(unknownC3EE14(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	)));
 	return null;
 }
@@ -2774,8 +2774,8 @@ void* cc1C02(DisplayTextState* arg1, ubyte arg2) {
 void* cc1916(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1916Arguments);
 	setWorkingMemory(WorkingMemory(checkStatusGroup(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).statusGroup.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).statusGroup.useVariableIfZero(getArgumentMemory())
 	)));
 	return null;
 }
@@ -2784,9 +2784,9 @@ void* cc1916(DisplayTextState* arg1, ubyte arg2) {
 void* cc1905(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1905Arguments);
 	setWorkingMemory(WorkingMemory(inflictStatusNonBattle(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).statusGroup.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).status
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).statusGroup.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).status
 	)));
 	return null;
 }
@@ -2795,8 +2795,8 @@ void* cc1905(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D0D(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1905Arguments);
 	setWorkingMemory(WorkingMemory(checkStatusGroup(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).statusGroup.useVariableIfZero(getArgumentMemory())) == getCCParameters!ArgType(cast(ubyte)arg2).status ? 1 : 0));
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).statusGroup.useVariableIfZero(getArgumentMemory())) == getCCParameters!ArgType(arg2).status ? 1 : 0));
 	return null;
 }
 
@@ -2861,8 +2861,8 @@ void* cc1C15(DisplayTextState* arg1, ubyte arg2) {
 /// $C1528D - [18 07 XX XX XX XX YY]
 void* cc1807(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1807Arguments);
-	uint x0A = getCCParameters!ArgType(cast(ubyte)arg2).value;
-	uint x06 = (getCCParameters!ArgType(cast(ubyte)arg2).register == 0) ? getWorkingMemory().integer : (getCCParameters!ArgType(cast(ubyte)arg2).register == 1) ? getArgumentMemory() : getSecondaryMemory;
+	uint x0A = getCCParameters!ArgType(arg2).value;
+	uint x06 = (getCCParameters!ArgType(arg2).register == 0) ? getWorkingMemory().integer : (getCCParameters!ArgType(arg2).register == 1) ? getArgumentMemory() : getSecondaryMemory;
 	short tmp;
 	if (x06 < x0A) {
 		tmp = 0;
@@ -2878,7 +2878,7 @@ void* cc1807(DisplayTextState* arg1, ubyte arg2) {
 /// $C153AF
 void* cc1C0A(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
-	printNumber(getCCParameters!ArgType(cast(ubyte)arg2).useVariableIfZero(getArgumentMemory()));
+	printNumber(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()));
 	return null;
 }
 
@@ -2904,7 +2904,7 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 		unknownC20A20(&arg1.savedTextAttributes);
 		unknown7E5E71 = 0;
 	}
-	inventoryGetItemName(getCCParameters!ArgType(cast(ubyte)arg2).character, getCCParameters!ArgType(cast(ubyte)arg2).window.useVariableIfZero(getArgumentMemory()));
+	inventoryGetItemName(getCCParameters!ArgType(arg2).character, getCCParameters!ArgType(arg2).window.useVariableIfZero(getArgumentMemory()));
 	return null;
 }
 
@@ -2923,7 +2923,7 @@ void* cc1809(DisplayTextState* arg1, ubyte arg2) {
 /// $C15573
 void* cc1C0B(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
-	unknownC4507A(getCCParameters!ArgType(cast(ubyte)arg2).useVariableIfZero(getArgumentMemory()));
+	unknownC4507A(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()));
 	return null;
 }
 
@@ -2931,8 +2931,8 @@ void* cc1C0B(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D0E(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	short x12 = giveItemToCharacter(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	);
 	setArgumentMemory(unknownC22351(x12));
 	setWorkingMemory(WorkingMemory(x12));
@@ -2942,8 +2942,8 @@ void* cc1D0E(DisplayTextState* arg1, ubyte arg2) {
 /// $C156DB
 void* cc1D0F(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	short x02 = getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer);
-	short x12 = getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory());
+	short x02 = getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer);
+	short x12 = getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory());
 	setArgumentMemory(getCharacterItem(x02, x12));
 	setWorkingMemory(WorkingMemory(removeItemFromInventory(x02, x12)));
 	return null;
@@ -2953,8 +2953,8 @@ void* cc1D0F(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D10(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	setWorkingMemory(WorkingMemory(checkItemEquipped(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	)));
 	return null;
 }
@@ -2962,8 +2962,8 @@ void* cc1D10(DisplayTextState* arg1, ubyte arg2) {
 /// $C157CD
 void* cc1D11(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	short x02 = getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer);
-	setWorkingMemory(WorkingMemory(unknownC3EE14(x02, getCharacterItem(x02, getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())))));
+	short x02 = getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer);
+	setWorkingMemory(WorkingMemory(unknownC3EE14(x02, getCharacterItem(x02, getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())))));
 	return null;
 }
 
@@ -2971,8 +2971,8 @@ void* cc1D11(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F83(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	setArgumentMemory(equipItem(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	));
 	return null;
 }
@@ -2981,8 +2981,8 @@ void* cc1F83(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D12(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	escargoExpressMove(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	);
 	return null;
 }
@@ -2991,8 +2991,8 @@ void* cc1D12(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D13(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	short x12 = unknownC191F8(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	);
 	setArgumentMemory(unknownC22351(x12));
 	setWorkingMemory(WorkingMemory(x12));
@@ -3002,8 +3002,8 @@ void* cc1D13(DisplayTextState* arg1, ubyte arg2) {
 /// $C1597F
 void* cc1919(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	short x02 = getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer);
-	setArgumentMemory(getCharacterItem(x02, getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory())));
+	short x02 = getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer);
+	setArgumentMemory(getCharacterItem(x02, getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())));
 	setWorkingMemory(WorkingMemory(x02));
 	return null;
 }
@@ -3011,7 +3011,7 @@ void* cc1919(DisplayTextState* arg1, ubyte arg2) {
 /// $C159F9
 void* cc1D14(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
-	uint x06 = getCCParameters!ArgType(cast(ubyte)arg2);
+	uint x06 = getCCParameters!ArgType(arg2);
 	setWorkingMemory(WorkingMemory((x06.useVariableIfZero(getArgumentMemory()) < gameState.moneyCarried) ? 1 : 0));
 	return null;
 }
@@ -3025,8 +3025,8 @@ void* cc191A(DisplayTextState* arg1, ubyte arg2) {
 /// $C15B46 - [18 0D XX YY] print character status info
 void* cc180D(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC180DArguments);
-	short tmp = getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer);
-	switch (getCCParameters!ArgType(cast(ubyte)arg2).unknown) {
+	short tmp = getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer);
+	switch (getCCParameters!ArgType(arg2).unknown) {
 		case 1:
 			unknownC1952F(tmp);
 			break;
@@ -3047,7 +3047,7 @@ void* cc1C0C(DisplayTextState* arg1, ubyte arg2) {
 /// $C15BCA
 void* cc1D15(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	setWorkingMemory(WorkingMemory(getCCParameters!ArgType(cast(ubyte)arg2).useVariableIfZero(getArgumentMemory()) * unknownC226F0()));
+	setWorkingMemory(WorkingMemory(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()) * unknownC226F0()));
 	return null;
 }
 
@@ -3060,14 +3060,14 @@ void* cc191B(DisplayTextState* arg1, ubyte arg2) {
 /// $C15C58
 void* cc1F71(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	learnSpecialPSI(getCCParameters!ArgType(cast(ubyte)arg2));
+	learnSpecialPSI(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C15C85
 void* cc1D06(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
-	uint x06 = getCCParameters!ArgType(cast(ubyte)arg2);
+	uint x06 = getCCParameters!ArgType(arg2);
 	depositIntoATM((x06 == 0) ? getArgumentMemory() : x06);
 	return null;
 }
@@ -3075,7 +3075,7 @@ void* cc1D06(DisplayTextState* arg1, ubyte arg2) {
 /// $C15D6B
 void* cc1D07(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
-	uint x06 = getCCParameters!ArgType(cast(ubyte)arg2);
+	uint x06 = getCCParameters!ArgType(arg2);
 	uint amount = (x06 == 0) ? getArgumentMemory() : x06;
 	withdrawFromATM(amount);
 	setWorkingMemory(WorkingMemory(amount));
@@ -3085,7 +3085,7 @@ void* cc1D07(DisplayTextState* arg1, ubyte arg2) {
 /// $C15E5C
 void* cc1D17(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
-	uint x06 = getCCParameters!ArgType(cast(ubyte)arg2);
+	uint x06 = getCCParameters!ArgType(arg2);
 	setWorkingMemory(WorkingMemory(gameState.bankBalance > x06 ? 0 : 1));
 	return null;
 }
@@ -3116,8 +3116,8 @@ void unknownC15FB1(short arg1, short arg2) {
 /// $C15FF7
 void* cc191C(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC191CArguments);
-	short x04 = getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer);
-	short x0E = getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory());
+	short x04 = getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer);
+	short x0E = getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory());
 	short x02;
 	if (x04 == 0xFF) {
 		x02 = unknownC191B0(x0E);
@@ -3132,10 +3132,10 @@ void* cc191C(DisplayTextState* arg1, ubyte arg2) {
 /// $C16080
 void* cc191D(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC191DArguments);
-	short tmp = getCCParameters!ArgType(cast(ubyte)arg2).queuedItem.useVariableIfZero(getWorkingMemory().integer) - 1;
+	short tmp = getCCParameters!ArgType(arg2).queuedItem.useVariableIfZero(getWorkingMemory().integer) - 1;
 	setWorkingMemory(WorkingMemory(gameState.unknownB8[tmp]));
 	setArgumentMemory(gameState.unknownB6[tmp]);
-	if (getCCParameters!ArgType(cast(ubyte)arg2).remove != 0) {
+	if (getCCParameters!ArgType(arg2).remove != 0) {
 		gameState.unknownB6[tmp] = 0;
 		gameState.unknownB8[tmp] = 0;
 	}
@@ -3175,7 +3175,7 @@ void* cc1D21(DisplayTextState* arg1, ubyte arg2) {
 /// $C1621F
 void* unknownC1621F(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	displayText(getTextBlock(getCCParameters!ArgType(cast(ubyte)arg2)));
+	displayText(getTextBlock(getCCParameters!ArgType(arg2)));
 	arg1.textptr += unknown7E97D5 * string.sizeof;
 	return null;
 }
@@ -3205,8 +3205,8 @@ void* cc1FD0(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F13(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F13Arguments);
 	unknownC46363(
-		getCCParameters!ArgType(cast(ubyte)arg2).arg1.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).arg2.useVariableIfZero(getArgumentMemory()) - 1
+		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).arg2.useVariableIfZero(getArgumentMemory()) - 1
 	);
 	return null;
 }
@@ -3221,8 +3221,8 @@ void* cc1F14(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F16(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F16Arguments);
 	unknownC462FF(
-		getCCParameters!ArgType(cast(ubyte)arg2).arg1.useVariableIfZero(getWorkingMemory().integer),
-		cast(short)(getCCParameters!ArgType(cast(ubyte)arg2).arg1.useVariableIfZero(getArgumentMemory()) - 1)
+		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getWorkingMemory().integer),
+		cast(short)(getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getArgumentMemory()) - 1)
 	);
 	return null;
 }
@@ -3232,10 +3232,10 @@ void* cc1F17(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F17Arguments);
 	unknownC4C91A(
 		createPreparedEntityNPC(
-			getCCParameters!ArgType(cast(ubyte)arg2).arg1,
-			getCCParameters!ArgType(cast(ubyte)arg2).arg2
+			getCCParameters!ArgType(arg2).arg1,
+			getCCParameters!ArgType(arg2).arg2
 		),
-		getCCParameters!ArgType(cast(ubyte)arg2).arg3);
+		getCCParameters!ArgType(arg2).arg3);
 	return null;
 }
 
@@ -3255,8 +3255,8 @@ void* cc1F19(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F1A(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1AArguments);
 	unknownC4B524(
-		getCCParameters!ArgType(cast(ubyte)arg2).tpt,
-		getCCParameters!ArgType(cast(ubyte)arg2).sprite
+		getCCParameters!ArgType(arg2).tpt,
+		getCCParameters!ArgType(arg2).sprite
 	);
 	return null;
 }
@@ -3264,7 +3264,7 @@ void* cc1F1A(DisplayTextState* arg1, ubyte arg2) {
 /// $C1662A
 void* cc1F1B(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC4B53F(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC4B53F(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3272,8 +3272,8 @@ void* cc1F1B(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F1C(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1CArguments);
 	unknownC4B4FE(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		cast(short)(getCCParameters!ArgType(cast(ubyte)arg2).sprite.useVariableIfZero(getArgumentMemory()) - 1)
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		cast(short)(getCCParameters!ArgType(arg2).sprite.useVariableIfZero(getArgumentMemory()) - 1)
 	);
 	return null;
 }
@@ -3288,9 +3288,9 @@ void* cc1F1D(DisplayTextState* arg1, ubyte arg2) {
 void* cc1FE1(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FE1Arguments);
 	unknownC4939C(
-		getCCParameters!ArgType(cast(ubyte)arg2).tileset,
-		getCCParameters!ArgType(cast(ubyte)arg2).palette,
-		getCCParameters!ArgType(cast(ubyte)arg2).speed
+		getCCParameters!ArgType(arg2).tileset,
+		getCCParameters!ArgType(arg2).palette,
+		getCCParameters!ArgType(arg2).speed
 	);
 	return null;
 }
@@ -3298,18 +3298,18 @@ void* cc1FE1(DisplayTextState* arg1, ubyte arg2) {
 /// $C16744
 void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F15Arguments);
-	if (getCCParameters!ArgType(cast(ubyte)arg2).style == 0xFF) {
+	if (getCCParameters!ArgType(arg2).style == 0xFF) {
 		unknownC06578(
-			getCCParameters!ArgType(cast(ubyte)arg2).sprite,
-			getCCParameters!ArgType(cast(ubyte)arg2).actionScript
+			getCCParameters!ArgType(arg2).sprite,
+			getCCParameters!ArgType(arg2).actionScript
 		);
 	} else {
 		unknownC4C91A(
 			createPreparedEntitySprite(
-				getCCParameters!ArgType(cast(ubyte)arg2).sprite,
-				getCCParameters!ArgType(cast(ubyte)arg2).actionScript
+				getCCParameters!ArgType(arg2).sprite,
+				getCCParameters!ArgType(arg2).actionScript
 			),
-			getCCParameters!ArgType(cast(ubyte)arg2).style
+			getCCParameters!ArgType(arg2).style
 		);
 	}
 	return null;
@@ -3318,16 +3318,16 @@ void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 /// $C167D6
 void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
-	unknownC4C91A(unknownC4605A(getCCParameters!ArgType(cast(ubyte)arg2).tpt), getCCParameters!ArgType(cast(ubyte)arg2).style);
-	unknownC460CE(getCCParameters!ArgType(cast(ubyte)arg2).tpt, getCCParameters!ArgType(cast(ubyte)arg2).style);
+	unknownC4C91A(unknownC4605A(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
+	unknownC460CE(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
 
 /// $C1683B
 void* cc1F1F(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
-	unknownC4C91A(unknownC46028(getCCParameters!ArgType(cast(ubyte)arg2).tpt), getCCParameters!ArgType(cast(ubyte)arg2).style);
-	unknownC46125(getCCParameters!ArgType(cast(ubyte)arg2).tpt, getCCParameters!ArgType(cast(ubyte)arg2).style);
+	unknownC4C91A(unknownC46028(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
+	unknownC46125(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
 
@@ -3336,9 +3336,9 @@ void* cc1922(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1922Arguments);
 	setArgumentMemory(
 		unknownC462E4(
-			getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-			getCCParameters!ArgType(cast(ubyte)arg2).type - 1,
-			getCCParameters!ArgType(cast(ubyte)arg2).target.useVariableIfZero(getArgumentMemory())
+			getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+			getCCParameters!ArgType(arg2).type - 1,
+			getCCParameters!ArgType(arg2).target.useVariableIfZero(getArgumentMemory())
 		) + 1
 	);
 	return null;
@@ -3349,9 +3349,9 @@ void* cc1923(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1923Arguments);
 	setArgumentMemory(
 		unknownC462AE(
-			getCCParameters!ArgType(cast(ubyte)arg2).npc.useVariableIfZero(getWorkingMemory().integer),
-			getCCParameters!ArgType(cast(ubyte)arg2).type - 1,
-			getCCParameters!ArgType(cast(ubyte)arg2).target.useVariableIfZero(getArgumentMemory())
+			getCCParameters!ArgType(arg2).npc.useVariableIfZero(getWorkingMemory().integer),
+			getCCParameters!ArgType(arg2).type - 1,
+			getCCParameters!ArgType(arg2).target.useVariableIfZero(getArgumentMemory())
 		) + 1
 	);
 	return null;
@@ -3367,8 +3367,8 @@ void* cc1F62(DisplayTextState* arg1, ubyte arg2) {
 void* cc1E08(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1E08Arguments);
 	resetCharLevelOne(
-		getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).level.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).level.useVariableIfZero(getArgumentMemory()),
 		1
 	);
 	return null;
@@ -3379,9 +3379,9 @@ void* cc1924(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1924Arguments);
 	setArgumentMemory(
 		unknownC462C9(
-			getCCParameters!ArgType(cast(ubyte)arg2).entity.useVariableIfZero(getWorkingMemory().integer),
-			getCCParameters!ArgType(cast(ubyte)arg2).type - 1,
-			getCCParameters!ArgType(cast(ubyte)arg2).target.useVariableIfZero(getArgumentMemory())
+			getCCParameters!ArgType(arg2).entity.useVariableIfZero(getWorkingMemory().integer),
+			getCCParameters!ArgType(arg2).type - 1,
+			getCCParameters!ArgType(arg2).target.useVariableIfZero(getArgumentMemory())
 		) + 1
 	);
 	return null;
@@ -3391,8 +3391,8 @@ void* cc1924(DisplayTextState* arg1, ubyte arg2) {
 void* cc1FE4(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FE4Arguments);
 	unknownC46331(
-		getCCParameters!ArgType(cast(ubyte)arg2).arg1.useVariableIfZero(getWorkingMemory().integer),
-		getCCParameters!ArgType(cast(ubyte)arg2).arg2.useVariableIfZero(getArgumentMemory())
+		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getWorkingMemory().integer),
+		getCCParameters!ArgType(arg2).arg2.useVariableIfZero(getArgumentMemory())
 	);
 	return null;
 }
@@ -3406,14 +3406,14 @@ void* cc1FE5(DisplayTextState* arg1, ubyte arg2) {
 /// $C16BAF
 void* cc1FE6(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC4655E(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC4655E(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C16BF2
 void* cc1FE7(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC46579(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC46579(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3426,44 +3426,44 @@ void* cc1FE8(DisplayTextState* arg1, ubyte arg2) {
 /// $C16C40
 void* cc1FE9(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC465FB(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC465FB(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C16C83
 void* cc1FEA(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC46616(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC46616(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C16CC6
 void* cc1FEB(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FEBArguments);
-	unknownC4C91A(unknownC4608C(getCCParameters!ArgType(cast(ubyte)arg2).arg1), getCCParameters!ArgType(cast(ubyte)arg2).arg2);
-	unknownC463F4(getCCParameters!ArgType(cast(ubyte)arg2).arg1);
+	unknownC4C91A(unknownC4608C(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
+	unknownC463F4(getCCParameters!ArgType(arg2).arg1);
 	return null;
 }
 
 /// $C16D14
 void* cc1FEC(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FECArguments);
-	unknownC4C91A(unknownC4608C(getCCParameters!ArgType(cast(ubyte)arg2).arg1), getCCParameters!ArgType(cast(ubyte)arg2).arg2);
-	unknownC4645A(getCCParameters!ArgType(cast(ubyte)arg2).arg1);
+	unknownC4C91A(unknownC4608C(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
+	unknownC4645A(getCCParameters!ArgType(arg2).arg1);
 	return null;
 }
 
 /// $C16D62
 void* cc1FEE(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC46698(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC46698(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C16DA5
 void* cc1FEF(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC466A8(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC466A8(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3471,21 +3471,21 @@ void* cc1FEF(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F63(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
 	unknownC46594(0xFF);
-	unknownC064E3(10, QueuedInteractionPtr(getTextBlock(getCCParameters!ArgType(cast(ubyte)arg2))));
+	unknownC064E3(10, QueuedInteractionPtr(getTextBlock(getCCParameters!ArgType(arg2))));
 	return null;
 }
 
 /// $C16EBF
 void* cc1FF1(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF1Arguments);
-	unknownC4617C(getCCParameters!ArgType(cast(ubyte)arg2).arg1, getCCParameters!ArgType(cast(ubyte)arg2).arg2);
+	unknownC4617C(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
 /// $C16F2F
 void* cc1FF2(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF2Arguments);
-	unknownC461CC(getCCParameters!ArgType(cast(ubyte)arg2).arg1, getCCParameters!ArgType(cast(ubyte)arg2).arg2);
+	unknownC461CC(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
@@ -3498,7 +3498,7 @@ void* cc1925(DisplayTextState* arg1, ubyte arg2) {
 /// $C16FD1
 void* cc1F23(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	setWorkingMemory(WorkingMemory(initBattleScripted(getCCParameters!ArgType(cast(ubyte)arg2).useVariableIfZero(getArgumentMemory()))));
+	setWorkingMemory(WorkingMemory(initBattleScripted(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()))));
 	return null;
 }
 
@@ -3511,7 +3511,7 @@ void* cc1926(DisplayTextState* arg1, ubyte arg2) {
 /// $C17058
 void* cc1D0C(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D0CArguments);
-	setWorkingMemory(WorkingMemory((unknownC190F1() != 0 ? 2 : 0) | ((itemData[partyCharacters[getCCParameters!ArgType(cast(ubyte)arg2).item.useVariableIfZero(getArgumentMemory()) - 1].items[getCCParameters!ArgType(cast(ubyte)arg2).character.useVariableIfZero(getWorkingMemory().integer)]].flags & ItemFlags.unknown) != 0 ? 1 : 0)));
+	setWorkingMemory(WorkingMemory((unknownC190F1() != 0 ? 2 : 0) | ((itemData[partyCharacters[getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory()) - 1].items[getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer)]].flags & ItemFlags.unknown) != 0 ? 1 : 0)));
 	return null;
 }
 
@@ -3519,9 +3519,9 @@ void* cc1D0C(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F66(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F66Arguments);
 	activateHotspot(
-		getCCParameters!ArgType(cast(ubyte)arg2).arg1.useVariableIfZero(getArgumentMemory()),
-		getCCParameters!ArgType(cast(ubyte)arg2).arg2.useVariableIfZero(getWorkingMemory().integer),
-		getTextBlock(getCCParameters!ArgType(cast(ubyte)arg2).arg3)
+		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getArgumentMemory()),
+		getCCParameters!ArgType(arg2).arg2.useVariableIfZero(getWorkingMemory().integer),
+		getTextBlock(getCCParameters!ArgType(arg2).arg3)
 	);
 	return null;
 }
@@ -3568,14 +3568,14 @@ void* cc1FD2(DisplayTextState* arg1, ubyte arg2) {
 /// $C17325
 void* cc1FF3(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF3Arguments);
-	unknownC4B54A(getCCParameters!ArgType(cast(ubyte)arg2).arg1, getCCParameters!ArgType(cast(ubyte)arg2).arg2);
+	unknownC4B54A(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
 /// $C1737D
 void* cc1FF4(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC4B565(getCCParameters!ArgType(cast(ubyte)arg2));
+	unknownC4B565(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3586,8 +3586,8 @@ void* cc1C13(DisplayTextState* arg1, ubyte arg2) {
 		setWorkingMemory(
 			WorkingMemory(
 				unknownC3FAC9(
-					cast(short)(getCCParameters!ArgType(cast(ubyte)arg2).allyAnimation - 1),
-					cast(short)(getCCParameters!ArgType(cast(ubyte)arg2).enemyAnimation - 1)
+					cast(short)(getCCParameters!ArgType(arg2).allyAnimation - 1),
+					cast(short)(getCCParameters!ArgType(arg2).enemyAnimation - 1)
 				)
 			)
 		);
@@ -3610,47 +3610,47 @@ void* cc1FD3(DisplayTextState* arg1, ubyte arg2) {
 /// $C1744B
 void* cc1E09(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1E09Arguments);
-	gainEXP(getCCParameters!ArgType(cast(ubyte)arg2).character, 1, getCCParameters!ArgType(cast(ubyte)arg2).amount);
+	gainEXP(getCCParameters!ArgType(arg2).character, 1, getCCParameters!ArgType(arg2).amount);
 	return null;
 }
 
 /// $C17523
 void* cc1E0A(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
-	partyCharacters[getCCParameters!ArgType(cast(ubyte)arg2).character - 1].boostedIQ += getCCParameters!ArgType(cast(ubyte)arg2).amount;
-	recalcCharacterPostmathIQ(getCCParameters!ArgType(cast(ubyte)arg2).character);
+	partyCharacters[getCCParameters!ArgType(arg2).character - 1].boostedIQ += getCCParameters!ArgType(arg2).amount;
+	recalcCharacterPostmathIQ(getCCParameters!ArgType(arg2).character);
 	return null;
 }
 
 /// $C17584
 void* cc1E0B(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
-	partyCharacters[getCCParameters!ArgType(cast(ubyte)arg2).character - 1].boostedGuts += getCCParameters!ArgType(cast(ubyte)arg2).amount;
-	recalcCharacterPostmathGuts(getCCParameters!ArgType(cast(ubyte)arg2).character);
+	partyCharacters[getCCParameters!ArgType(arg2).character - 1].boostedGuts += getCCParameters!ArgType(arg2).amount;
+	recalcCharacterPostmathGuts(getCCParameters!ArgType(arg2).character);
 	return null;
 }
 
 /// $C175E5
 void* cc1E0C(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
-	partyCharacters[getCCParameters!ArgType(cast(ubyte)arg2).character - 1].boostedSpeed += getCCParameters!ArgType(cast(ubyte)arg2).amount;
-	recalcCharacterPostmathSpeed(getCCParameters!ArgType(cast(ubyte)arg2).character);
+	partyCharacters[getCCParameters!ArgType(arg2).character - 1].boostedSpeed += getCCParameters!ArgType(arg2).amount;
+	recalcCharacterPostmathSpeed(getCCParameters!ArgType(arg2).character);
 	return null;
 }
 
 /// $C17646
 void* cc1E0D(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
-	partyCharacters[getCCParameters!ArgType(cast(ubyte)arg2).character - 1].boostedVitality += getCCParameters!ArgType(cast(ubyte)arg2).amount;
-	recalcCharacterPostmathVitality(getCCParameters!ArgType(cast(ubyte)arg2).character);
+	partyCharacters[getCCParameters!ArgType(arg2).character - 1].boostedVitality += getCCParameters!ArgType(arg2).amount;
+	recalcCharacterPostmathVitality(getCCParameters!ArgType(arg2).character);
 	return null;
 }
 
 /// $C176A7
 void* cc1E0E(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1EArguments);
-	partyCharacters[getCCParameters!ArgType(cast(ubyte)arg2).character - 1].boostedLuck += getCCParameters!ArgType(cast(ubyte)arg2).amount;
-	recalcCharacterPostmathLuck(getCCParameters!ArgType(cast(ubyte)arg2).character);
+	partyCharacters[getCCParameters!ArgType(arg2).character - 1].boostedLuck += getCCParameters!ArgType(arg2).amount;
+	recalcCharacterPostmathLuck(getCCParameters!ArgType(arg2).character);
 	return null;
 }
 
@@ -3683,7 +3683,7 @@ void* cc1927(DisplayTextState* arg1, ubyte arg2) {
 /// $C17796
 void* unknownC17796(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	unknownC113D1(&unknown7E97D7[0], getTextBlock(getCCParameters!ArgType(cast(ubyte)arg2)));
+	unknownC113D1(&unknown7E97D7[0], getTextBlock(getCCParameters!ArgType(arg2)));
 	return null;
 }
 
