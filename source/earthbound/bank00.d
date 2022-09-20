@@ -940,9 +940,9 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 	}
 	short x02 = unknownC01DED(sprite);
 	short x21 = unknownC01C52(unknown7E467A, unknown7E467C, index);
-	while (x21 < 0) {}
+	assert(x21 >= 0);
 	short x1F = findFree7E4682(unknownC42B0D[x02].unknown0 * 10);
-	while (x1F < 0) {}
+	assert(x1F >= 0);
 	newEntityPriority = 1;
 	unknownC01D38(x1F, x21, spriteGroupingPointers[sprite].unknown3, &unknownC42B0D[x02]);
 	if (index != -1) {
