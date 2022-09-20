@@ -6545,8 +6545,9 @@ void unknownC09F71() {
 short chooseRandom(short, ref const(ubyte)* arg1) {
 	actionScript90 = arg1[actionScript80];
 	actionScript94 = arg1 + 1;
+	const tmp = actionScript94;
 	actionScript94 += actionScript90 * 2;
-	return (cast(const(short)*)arg1)[rand() % actionScript90];
+	return (cast(const(short)*)tmp)[rand() % actionScript90];
 }
 
 /// $C09FA8
