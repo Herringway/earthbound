@@ -5405,9 +5405,7 @@ short initEntityUnknown1(const(ubyte)* pc, short entityID) {
 	return initEntityUnknown2(pc, cast(short)(entityID * 2));
 }
 short initEntityUnknown2(const(ubyte)* pc, short entityIndex) {
-	if (entityScriptTable[entityIndex / 2] < 0) {
-		while(true) {} //oh no
-	}
+	assert (entityScriptTable[entityIndex / 2] >= 0);
 	entityIndex = unknownC09C99(entityIndex);
 	bool __ignored;
 	short newScript = unknownC09D03(__ignored);
@@ -6657,7 +6655,7 @@ void unknownC0A0BB() {
 
 /// $C0A0CA
 void unknownC0A0CA(short arg1) {
-	while (arg1 < 0) {}
+	assert(arg1 >= 0);
 	actionScript88 = cast(ushort)(arg1 * 2);
 	unknownC0A0E3(actionScript88, arg1 < 0);
 }

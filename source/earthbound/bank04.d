@@ -3583,7 +3583,7 @@ void unknownC48C97(short arg1) {
 			unknown7E9E58[unknown7E9F18].unknown0++;
 		} else {
 			if (++unknown7E9F18 == 0x40) {
-				while (true) {}
+				assert(0);
 			} else {
 				unknown7E9E58[unknown7E9F18].unknown1 = arg1;
 				unknown7E9E58[unknown7E9F18].unknown0 = 1;

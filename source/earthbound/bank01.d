@@ -2056,7 +2056,7 @@ void openMenuButton() {
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										default: //invalid
-											while (true) {}
+											assert(0);
 									}
 									closeWindow(Window.textStandard);
 									closeWindow(Window.inventoryMenu);
