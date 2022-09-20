@@ -6638,7 +6638,7 @@ void unknownC2C21F(short group, short music) {
 		x10 = 1;
 	}
 	if (x10 == 0) {
-		unknownC2E8C4(6, 1, 30);
+		unknownC2E8C4(6, AnimationFlags.unknown0, 30);
 		while (unknownC2E9C8() != 0) {
 			windowTick();
 		}
@@ -6666,7 +6666,7 @@ void unknownC2C21F(short group, short music) {
 	if (group == 483) {
 		return;
 	}
-	unknownC2E8C4(6, 0, 5);
+	unknownC2E8C4(6, AnimationFlags.none, 5);
 	while (unknownC2E9C8() != 0) {
 		windowTick();
 	}
@@ -6895,7 +6895,7 @@ void battleActionGiygasPrayer9() {
 	wait(10 * 60);
 	playSfx(Sfx.psiThunderDamage);
 	stopMusic();
-	unknownC2E8C4(5, 0, 5);
+	unknownC2E8C4(5, AnimationFlags.none, 5);
 	while (unknownC2E9C8() != 0) {
 		windowTick();
 	}
@@ -7649,35 +7649,35 @@ void battleSwirlSequence() {
 	switch (battleInitiative) {
 		case Initiative.normal:
 			swirlMusic = Music.battleSwirl4;
-			x0E = 14;
+			x0E = AnimationFlags.unknown3 | AnimationFlags.unknown2 | AnimationFlags.unknown1;
 			break;
 		case Initiative.partyFirst:
 			swirlMusic = Music.battleSwirl4;
 			swirlRed = 28;
 			swirlGreen = 5;
 			swirlBlue = 12;
-			x0E = 6;
+			x0E = AnimationFlags.unknown2 | AnimationFlags.unknown1;
 			break;
 		case Initiative.enemiesFirst:
 			swirlMusic = Music.battleSwirl2;
 			swirlRed = 0;
 			swirlGreen = 31;
 			swirlBlue = 31;
-			x0E = 6;
+			x0E = AnimationFlags.unknown2 | AnimationFlags.unknown1;
 			break;
 		default: break;
 	}
 	if (currentBattleGroup >= EnemyGroup.bossFrank) {
 		x16 = 3;
-		x0E = 14;
+		x0E = AnimationFlags.unknown3 | AnimationFlags.unknown2 | AnimationFlags.unknown1;
 		swirlMusic = Music.battleSwirl1;
 	}
 	changeMusic(swirlMusic);
 	unknownC04F47();
-	if ((x0E & 4) != 0) {
+	if ((x0E & AnimationFlags.unknown2) != 0) {
 		setColData(cast(ubyte)swirlRed, cast(ubyte)swirlGreen, cast(ubyte)swirlBlue);
 	}
-	if ((x0E & 8) != 0) {
+	if ((x0E & AnimationFlags.unknown3) != 0) {
 		setColourAddSubMode(
 			CGWSELFlags.ColourMathEnableMathWin | CGWSELFlags.MainScreenBlackNever | CGWSELFlags.SubscreenBGOBJDisable | CGWSELFlags.UsePalette,
 			CGADSUBFlags.ColourMathAddsub | CGADSUBFlags.ColourMathDiv2 | CGADSUBFlags.ColourMathMainIsBackdrop | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBG4 | CGADSUBFlags.ColourMathMainIsBG3 | CGADSUBFlags.ColourMathMainIsBG2 | CGADSUBFlags.ColourMathMainIsBG1
@@ -7716,7 +7716,7 @@ void unknownC2E9ED() {
 /// $C2EA15
 void unknownC2EA15(short arg1) {
 	unknown7EAEEF = cast(ubyte)arg1;
-	unknownC4A67E(0, 0);
+	unknownC4A67E(0, AnimationFlags.none);
 	unknown7EAEC8 = 0x13;
 	switch (arg1) {
 		case 2:
@@ -7733,7 +7733,7 @@ void unknownC2EA15(short arg1) {
 
 /// $C2EA74
 void unknownC2EA74() {
-	unknownC4A67E(0, 0);
+	unknownC4A67E(0, AnimationFlags.none);
 	unknown7EAEC8 = 0x13;
 	if (unknown7EAEEF != 0) {
 		unknown7EAECC = &unknownC4A652[0];

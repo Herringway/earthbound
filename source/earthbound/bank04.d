@@ -4391,17 +4391,17 @@ immutable Unknown7EAECCEntry[2] unknownC4A652 = [
 
 /// $C4A67E
 void unknownC4A67E(short arg1, short arg2) {
-	if ((arg2 & 2) != 0) {
+	if ((arg2 & AnimationFlags.unknown1) != 0) {
 		unknown7EAEC6 = 1;
 	} else {
 		unknown7EAEC6 = 0;
 	}
-	if ((arg2 & 1) != 0) {
+	if ((arg2 & AnimationFlags.unknown0) != 0) {
 		unknown7EAEC7 = 1;
 	} else {
 		unknown7EAEC7 = 0;
 	}
-	if ((arg2 & 4) != 0) {
+	if ((arg2 & AnimationFlags.unknown2) != 0) {
 		unknown7EAEC8 = 32;
 	} else {
 		unknown7EAEC8 = 31;
@@ -4420,7 +4420,7 @@ void unknownC4A67E(short arg1, short arg2) {
 	unknown7EAEC9 = 0;
 	unknown7EAECA = 0;
 	unknown7EAECB = 1;
-	if ((arg2 & 0x80) != 0) {
+	if ((arg2 & AnimationFlags.unknown7) != 0) {
 		unknown7EAEE4 = cast(ubyte)arg1;
 		unknown7EAEC3 = 4;
 		unknown7EAEE5 = 0;

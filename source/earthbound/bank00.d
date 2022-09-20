@@ -3505,7 +3505,7 @@ void screenTransition(short arg1, short arg2) {
 		unknownC0943C();
 		unknownC0DD2C(2);
 		if (screenTransitionConfigTable[arg1].animationID != 0) {
-			unknownC4A67E(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags + 2);
+			unknownC4A67E(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags | AnimationFlags.unknown1);
 		}
 		unknownC4954C(screenTransitionConfigTable[arg1].fadeStyle, &palettes[0][0]);
 		unknownC496E7(x02, -1);

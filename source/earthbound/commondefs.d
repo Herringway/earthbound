@@ -4978,6 +4978,19 @@ enum Binop : ubyte {
 	xor = 3,
 }
 ///
+enum AnimationFlags : ubyte {
+	none = 0,
+	unknown0 = 1 << 0,
+	unknown1 = 1 << 1,
+	unknown2 = 1 << 2,
+	unknown3 = 1 << 3,
+	unknown4 = 1 << 4,
+	unknown5 = 1 << 5,
+	unknown6 = 1 << 6,
+	unknown7 = 1 << 7,
+}
+
+///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
 	ubyte[24] earthboundPlayerName; ///
