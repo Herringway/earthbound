@@ -4017,7 +4017,7 @@ void unknownC073C0(short arg1) {
 
 /// $C07477
 byte unknownC07477(short arg1, short arg2) {
-	const(SectorDoors)* x0A = &doorConfig[(arg1 / 32) + (arg2 & 0xFFE0)];
+	const(SectorDoors)* x0A = &doorConfig[arg2 / 32][arg1 / 32];
 	if (x0A.length == 0) {
 		return -1;
 	}
