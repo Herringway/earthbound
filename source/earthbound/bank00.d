@@ -8821,6 +8821,7 @@ void unknownC0CA4E(short arg1) {
 			x0A = x12;
 		}
 	}
+	assert(x0A.combined != 0);
 	entityScriptSleepFrames[currentScriptSlot] = cast(short)((arg1 << 16) / x0A.combined);
 }
 
