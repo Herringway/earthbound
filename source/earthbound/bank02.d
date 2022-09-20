@@ -322,12 +322,12 @@ void undrawHPPPWindow(short arg1) {
 	} else {
 		x0E = 19;
 	}
-	ushort* x = &bg2Buffer[(x0E * 32) + (16 - ((gameState.playerControlledPartyMemberCount * 7) / 2) + (arg1 * 7)) * 2];
-	for (short i = 8; i != 0; i--) {
-		for (short j = 7; j != 0; j--) {
+	ushort* x = &bg2Buffer[(x0E * 32) + (16 - ((gameState.playerControlledPartyMemberCount * hpPPWindowWidth) / 2) + (arg1 * hpPPWindowWidth))];
+	for (short i = hpPPWindowHeight; i != 0; i--) {
+		for (short j = hpPPWindowWidth; j != 0; j--) {
 			(x++)[0] = 0;
 		}
-		x += 32 - 7;
+		x += 32 - hpPPWindowWidth;
 	}
 }
 

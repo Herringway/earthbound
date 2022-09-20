@@ -46,6 +46,8 @@ enum nonplayerCharCount = 2; ///
 enum totalPartyCount = playerCharCount + nonplayerCharCount; ///
 enum firstEnemyIndex = totalPartyCount + 2; ///the +2 might be space for bad "party members" like the tiny lil ghost. unsure.
 
+enum hpPPWindowWidth = 7;
+enum hpPPWindowHeight = 8;
 
 enum objectTickDisabled = 0x8000; ///
 enum objectMoveDisabled = 0x4000; ///
