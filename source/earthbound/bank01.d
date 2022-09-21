@@ -2158,7 +2158,7 @@ void openHPPPDisplay() {
 			openMenuButton();
 			return;
 		}
-	} while ((padPress[0] & (Pad.b | Pad.select)) != 0);
+	} while ((padPress[0] & (Pad.b | Pad.select)) == 0);
 	playSfx(Sfx.cursor2);
 	clearInstantPrinting();
 	hideHPPPWindows();
