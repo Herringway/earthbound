@@ -574,6 +574,7 @@ short unknownC10D7C(uint arg1) {
 		arg1 /= 10;
 		result++;
 	}
+	x[0] = cast(ubyte)arg1;
 	return result;
 }
 
