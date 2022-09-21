@@ -8339,7 +8339,7 @@ void ebMain() {
 			if (battleDebug) {
 				initBattleOverworld();
 				inputDisableFrameCounter++;
-			} else if (((padPress[0] & (Pad.a | Pad.l)) != 0) || (gameState.walkingStyle == WalkingStyle.bicycle)) {
+			} else if (((padPress[0] & (Pad.a | Pad.l)) != 0) && (gameState.walkingStyle == WalkingStyle.bicycle)) {
 				unknownC0943C();
 				getOffBicycle();
 				unknownC09451();
