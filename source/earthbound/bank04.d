@@ -1348,8 +1348,9 @@ void printNewLine() {
 	}
 	if (windowStats[windowTable[currentFocusWindow]].textY != (windowStats[windowTable[currentFocusWindow]].height / 2) - 1) {
 		windowStats[windowTable[currentFocusWindow]].textY++;
+	} else {
+		unknownC437B8(currentFocusWindow);
 	}
-	unknownC437B8(currentFocusWindow);
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 }
 
@@ -1713,7 +1714,7 @@ void unknownC444FB(ubyte* arg1, ushort arg2) {
 
 /// $C445E1
 void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
-	short x18 = 0;
+	short nextWordLength = 0;
 	const(ubyte)* x14 = arg1.textptr;
 	if (currentFocusWindow == -1) {
 		return;
@@ -1739,9 +1740,15 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 			break;
 		}
 		unknown7E9660++;
-		 x18 += (a == 0x2F) ? 8 : cast(ubyte)(fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 	}
-	if ((windowStats[windowTable[currentFocusWindow]].width * 8) < ((windowStats[windowTable[currentFocusWindow]].textX != 0) ? ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x18) : ((vwfX & 7) + x18))) {
+	short newLineLength;
+	if (windowStats[windowTable[currentFocusWindow]].textX != 0) {
+		newLineLength = cast(short)((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + nextWordLength);
+	} else {
+		newLineLength = cast(short)((vwfX & 7) + nextWordLength);
+	}
+	if ((windowStats[windowTable[currentFocusWindow]].width * 8) < newLineLength) {
 		printNewLineF();
 		unknown7E5E75 = 1;
 	}
@@ -2012,9 +2019,8 @@ void unknownC44E61(short arg1, short arg2) {
 			windowStats[windowTable[currentFocusWindow]].textX = 0;
 			if (arg2 != ebChar('@')) {
 				unknownC43D75(6, windowStats[windowTable[currentFocusWindow]].textY);
-			} else {
-				unknown7E5E75 = 0;
 			}
+			unknown7E5E75 = 0;
 		}
 		unknown7E5E76 = cast(ubyte)arg2;
 		const(ubyte)* x14 = &fontConfigTable[arg1].graphics[(arg2 - ebChar(' ')) * fontConfigTable[arg1].height];

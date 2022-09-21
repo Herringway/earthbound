@@ -551,7 +551,7 @@ void printLetter(short arg1) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
-		for (short i = selectedTextSpeed; i != 0; i--) {
+		for (short i = cast(short)(selectedTextSpeed + 1); i != 0; i--) {
 			windowTick();
 		}
 	}
