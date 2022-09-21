@@ -1860,7 +1860,7 @@ void unknownC133A7(short arg1) {
 
 /// $C133B0
 void unknownC133B0() {
-	if (unknown7E5E6C == -1) {
+	if (unknown7E5E6C == 0) {
 		for (short i = 1; i < 7; i++) {
 			if ((i == 3) && (unknownC1C373() == 0)) {
 				continue;
