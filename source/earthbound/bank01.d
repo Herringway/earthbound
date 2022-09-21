@@ -7303,7 +7303,8 @@ short fileSelectMenu(short arg1) {
 			unknown7E9C9F[6] = 0;
 			unknownC438A5(9, i);
 			printString(0x20, &unknown7E9C9F[0]);
-			unknown7E9C9F[0] = cast(ubyte)(unknown7E895A[7 - unknownC10D7C(partyCharacters[0].level)] + ebChar('0'));
+			const levelCharsPrinted = unknownC10D7C(partyCharacters[0].level);
+			unknown7E9C9F[0] = (levelCharsPrinted == 1) ? ebChar(' ') : (cast(ubyte)(unknown7E895A[7 - levelCharsPrinted] + ebChar('0')));
 			unknown7E9C9F[1] = cast(ubyte)(unknown7E895A[6] + ebChar('0'));
 			unknown7E9C9F[2] = 0;
 			unknownC438A5(13, i);
