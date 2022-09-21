@@ -6115,7 +6115,7 @@ short unknownC1C367(short arg1) {
 /// $C1C373
 short unknownC1C373() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-		if (unknownC1C32A(gameState.partyMembers[i], 1, 0xF) == 0) {
+		if (unknownC1C32A(gameState.partyMembers[i], 1, 0xF) != 0) {
 			return cast(short)(i + 1);
 		}
 	}
