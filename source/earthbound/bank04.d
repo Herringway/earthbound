@@ -1741,7 +1741,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 		unknown7E9660++;
 		 x18 += (a == 0x2F) ? 8 : cast(ubyte)(fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 	}
-	if (windowStats[windowTable[currentFocusWindow]].width * 8 < (windowStats[windowTable[currentFocusWindow]].textX != 0) ? ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x18) : ((vwfX & 7) + x18)) {
+	if ((windowStats[windowTable[currentFocusWindow]].width * 8) < ((windowStats[windowTable[currentFocusWindow]].textX != 0) ? ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x18) : ((vwfX & 7) + x18))) {
 		printNewLineF();
 		unknown7E5E75 = 1;
 	}
