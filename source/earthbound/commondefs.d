@@ -6213,6 +6213,31 @@ void function() waitForInterrupt = () {};
 ///
 void function() handleDma = () {};
 ///
+ubyte[] flyoverString(string str) {
+	ubyte[] result = new ubyte[](str.length);
+	size_t idx;
+	bool verbatim;
+	foreach (dchar c; str) {
+		if (verbatim) {
+			result[idx++] = cast(ubyte)c;
+			verbatim = false;
+		} else {
+			switch (c) {
+				case 0x01:
+				case 0x02:
+				case 0x08:
+				case 0x09:
+					result[idx++] = cast(ubyte)c;
+					verbatim = true;
+					break;
+				default:
+					result[idx++] = ebChar(c);
+			}
+		}
+	}
+	return result;
+}
+///
 ubyte[length] ebString(size_t length)(string str) {
 	ubyte[length] result = 0;
 	size_t idx;

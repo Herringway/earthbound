@@ -7,10 +7,10 @@ import earthbound.bank01;
 import earthbound.globals;
 
 /// $E10000
-immutable ubyte* coffeeSequenceText;
+immutable ubyte[] coffeeSequenceText = flyoverString(import("coffee.flyover"));
 
 /// $E10652
-immutable ubyte* teaSequenceText;
+immutable ubyte[] teaSequenceText = flyoverString(import("tea.flyover"));
 
 /// $E12EFA
 immutable CastSequenceFormattingEntry[48] castSequenceFormatting = [

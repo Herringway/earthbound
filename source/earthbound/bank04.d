@@ -4029,7 +4029,7 @@ void coffeeTeaScene(short id) {
 	fadeIn(1, 1);
 	unknown7E9F2D = 0x1C;
 	short x04 = 0;
-	const(ubyte)* x06 = (id == 0) ? coffeeSequenceText : teaSequenceText;
+	const(ubyte)* x06 = (id == 0) ? &coffeeSequenceText[0] : &teaSequenceText[0];
 	unknown7E5E6E = 0;
 	parseLoop: while (true) {
 		switch ((x06++)[0]) {
@@ -4075,14 +4075,23 @@ void coffeeTeaScene(short id) {
 }
 
 /// $C49EA4
-immutable ubyte*[8] flyoverTextPointers;
+immutable ubyte[][8] flyoverTextPointers = [
+	flyoverString(import("onett1.flyover")),
+	flyoverString(import("onett2.flyover")),
+	flyoverString(import("onett3.flyover")),
+	flyoverString(import("winters1.flyover")),
+	flyoverString(import("winters2.flyover")),
+	flyoverString(import("dalaam1.flyover")),
+	flyoverString(import("dalaam2.flyover")),
+	flyoverString(import("laterthatnight.flyover")),
+];
 
 /// $C49EC4
 void unknownC49EC4(short id) {
 	ushort x02 = entityTickCallbackFlags[23];
 	entityTickCallbackFlags[23] |= 0xC000;
 	unknownC49A56();
-	immutable(ubyte)* x06 = flyoverTextPointers[id];
+	immutable(ubyte)* x06 = &flyoverTextPointers[id][0];
 	unknown7E5E6E = 0;
 	while (true) {
 		switch(*(x06++)) {
