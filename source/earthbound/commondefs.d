@@ -6465,6 +6465,87 @@ ubyte ebChar(dchar c) {
 		default: assert(0, ("unhandled character: '"d ~ c ~ "'"d).toUTF8);
 	}
 }
+string printable(const(ubyte)* str, size_t maxLength = size_t.max) {
+	import std.format : format;
+	string result;
+	while ((maxLength-- > 0) && (str[0] != 0)) {
+		const chr = (str++)[0];
+		switch (chr) {
+			case ebChar(' '):
+			case ebChar('!'):
+			case ebChar('$'):
+			case ebChar('('):
+			case ebChar(')'):
+			case ebChar('\''):
+			case ebChar(','):
+			case ebChar('-'):
+			case ebChar('.'):
+			case ebChar('0'): .. case ebChar('9'):
+			case ebChar('A'): .. case ebChar('Z'):
+			case ebChar('a'): .. case ebChar('z'):
+				result ~= cast(char)(chr - 0x30);
+				break;
+			case ebChar('{'):
+				result ~= '{';
+				break;
+			case ebChar('/'):
+				result ~= '/';
+				break;
+			case ebChar(':'):
+				result ~= ':';
+				break;
+			case ebChar('?'):
+				result ~= '?';
+				break;
+			case ebChar('@'):
+				result ~= '@';
+				break;
+			case ebChar('~'):
+				result ~= '~';
+				break;
+			case ebChar('^'):
+				result ~= '^';
+				break;
+			case ebChar('['):
+				result ~= '[';
+				break;
+			case ebChar(']'):
+				result ~= ']';
+				break;
+			case ebChar('#'):
+				result ~= '#';
+				break;
+			case ebChar('_'):
+				result ~= '_';
+				break;
+			case ebChar('♪'):
+				result ~= '♪';
+				break;
+			case ebChar('α'):
+				result ~= 'α';
+				break;
+			case ebChar('β'):
+				result ~= 'β';
+				break;
+			case ebChar('γ'):
+				result ~= 'γ';
+				break;
+			case ebChar('Σ'):
+				result ~= 'Σ';
+				break;
+			case ebChar('Ω'):
+				result ~= 'Ω';
+				break;
+			case ebChar('ー'):
+				result ~= 'ー';
+				break;
+			default:
+				result ~= format!"\\x%02X"(chr);
+				break;
+		}
+	}
+	return result;
+}
 ///
 T[] convert(T)(const(ubyte)[] input) {
 	T[] output;
