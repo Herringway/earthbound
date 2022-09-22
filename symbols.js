@@ -2465,6 +2465,7 @@ var symbols = [
 {name: 'earthbound.commondefs.FloatingSpriteTableEntry.unknown2', kind: "variabledeclaration", path: './earthbound/commondefs/FloatingSpriteTableEntry.unknown2.html', attributes: []},
 {name: 'earthbound.commondefs.FloatingSpriteTableEntry.unknown3', kind: "variabledeclaration", path: './earthbound/commondefs/FloatingSpriteTableEntry.unknown3.html', attributes: []},
 {name: 'earthbound.commondefs.FloatingSpriteTableEntry.unknown4', kind: "variabledeclaration", path: './earthbound/commondefs/FloatingSpriteTableEntry.unknown4.html', attributes: []},
+{name: 'earthbound.commondefs.flyoverString', kind: "functiondeclaration", path: './earthbound/commondefs/flyoverString.html', attributes: []},
 {name: 'earthbound.commondefs.Font', kind: "enumdeclaration", path: './earthbound/commondefs/Font.html', attributes: []},
 {name: 'earthbound.commondefs.FontConfig', kind: "structdeclaration", path: './earthbound/commondefs/FontConfig.html', attributes: []},
 {name: 'earthbound.commondefs.FontConfig.data', kind: "variabledeclaration", path: './earthbound/commondefs/FontConfig.data.html', attributes: []},
