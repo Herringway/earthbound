@@ -1475,7 +1475,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 	short x1E;
 	WinStat* x26 = getActiveWindowAddress();
 	uint x22 = x26.argument;
-	if (arg1 == 0) {
+	if (arg1 == 1) {
 		unknownC20A20(&unknown7E9C8A);
 		short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.unknown33 : cast(short)(Window.unknown28 + gameState.playerControlledPartyMemberCount);
 		createWindowN(x20);
@@ -4910,13 +4910,13 @@ void unknownC1952F(short arg1) {
 	unknownC43D75(94, 3);
 	printNumber(partyCharacters[arg1].hp.current.integer);
 	unknownC43D75(114, 3);
-	printLetter(ebChar('\\'));
+	printLetter(ebChar('/'));
 	unknownC43D75(121, 3);
 	printNumber(partyCharacters[arg1].maxHP);
 	unknownC43D75(94, 4);
 	printNumber(partyCharacters[arg1].pp.current.integer);
 	unknownC43D75(114, 4);
-	printLetter(ebChar('\\'));
+	printLetter(ebChar('/'));
 	unknownC43D75(121, 4);
 	printNumber(partyCharacters[arg1].maxPP);
 	unknownC43D75(199, 0);
@@ -4937,7 +4937,7 @@ void unknownC1952F(short arg1) {
 	unknownC43D75(97, 5);
 	printNumber((partyCharacters[arg1].exp > 9_999_999) ? 9_999_999 : partyCharacters[arg1].exp);
 	unknownC43D75(10, 6);
-	printNumber(getRequiredEXP(arg1));
+	printNumber(getRequiredEXP(cast(short)(arg1 + 1)));
 	unknown7E5E71 = 0;
 	loop: for (short i = 0; i < 7; i++) {
 		ubyte x12 = partyCharacters[arg1].afflictions[i];
@@ -5879,7 +5879,7 @@ void unknownC1BB71() {
 		short x02 = 0;
 		createWindowN(Window.unknown2e);
 		for (short i = 0; i < 4; i++) {
-			unknownC115F4(cast(short)(i + 1), &psiCategories[i + 1][0], null);
+			unknownC115F4(cast(short)(i + 1), &psiCategories[i][0], null);
 		}
 		unknownC1180D(1, 0, 0);
 		while (true) {
