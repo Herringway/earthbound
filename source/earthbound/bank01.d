@@ -1496,7 +1496,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 		unknown7E5E7C = 0;
 		short x20 = 10;
 		while (true) {
-			if (arg2 == 0) {
+			if (arg1 == 0) {
 				unknownC43573(x04);
 			}
 			clearInstantPrinting();
