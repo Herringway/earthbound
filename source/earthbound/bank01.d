@@ -594,8 +594,8 @@ void printNumber(uint arg1) {
 	}
 	short x14 = unknownC10D7C(arg1);
 	ubyte* x12 = &unknown7E895A[7 - x14];
-	short x16 = windowStats[windowTable[currentFocusWindow]].numPadding;
-	if (x16 == 0) {
+	byte x16 = windowStats[windowTable[currentFocusWindow]].numPadding;
+	if (x16 >= 0) {
 		short a = (x16 & 0xF) + 1;
 		if (a < x14) {
 			a = x14;
