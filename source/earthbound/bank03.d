@@ -323,7 +323,11 @@ immutable ushort[][4] unknownC3E41CPointerTable = [
 ];
 
 /// $C3E44C
-immutable ubyte[4] unknownC3E44C = ebString!4("そのた"); //tx6 in EB
+version(bugfix) {
+	immutable ubyte[5] unknownC3E44C = ebString!5("Next"); //tx6 in EB
+} else {
+	immutable ubyte[4] unknownC3E44C = ebString!4("そのた"); //tx6 in EB
+}
 
 /// $C3E450
 void unknownC3E450() {
