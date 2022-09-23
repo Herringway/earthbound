@@ -2786,6 +2786,7 @@ var symbols = [
 {name: 'earthbound.commondefs.PlayerPositionBufferEntry.walkingStyle', kind: "variabledeclaration", path: './earthbound/commondefs/PlayerPositionBufferEntry.walkingStyle.html', attributes: []},
 {name: 'earthbound.commondefs.PlayerPositionBufferEntry.xCoord', kind: "variabledeclaration", path: './earthbound/commondefs/PlayerPositionBufferEntry.xCoord.html', attributes: []},
 {name: 'earthbound.commondefs.PlayerPositionBufferEntry.yCoord', kind: "variabledeclaration", path: './earthbound/commondefs/PlayerPositionBufferEntry.yCoord.html', attributes: []},
+{name: 'earthbound.commondefs.playSFX', kind: "variabledeclaration", path: './earthbound/commondefs/playSFX.html', attributes: []},
 {name: 'earthbound.commondefs.PSIAbility', kind: "structdeclaration", path: './earthbound/commondefs/PSIAbility.html', attributes: []},
 {name: 'earthbound.commondefs.PSIAbility.battleAction', kind: "variabledeclaration", path: './earthbound/commondefs/PSIAbility.battleAction.html', attributes: []},
 {name: 'earthbound.commondefs.PSIAbility.level', kind: "variabledeclaration", path: './earthbound/commondefs/PSIAbility.level.html', attributes: []},
