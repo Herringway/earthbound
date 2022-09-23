@@ -2,6 +2,7 @@ import std.stdio;
 import std.experimental.logger;
 import std.file : exists;
 import std.algorithm : filter;
+import std.format : sformat;
 import std.range : chain;
 import std.getopt;
 import std.string : fromStringz, format;
@@ -352,6 +353,9 @@ void main(string[] args) {
         if(!fastForward && drawTime < 16) {
             SDL_Delay(16 - drawTime);
         }
+        char[30] buffer = 0;
+        sformat(buffer, "Earthbound: %s FPS", cast(uint)(1000.0 / (SDL_GetTicks() - lastTime)));
+        SDL_SetWindowTitle(appWin, &buffer[0]);
     }
 }
 
