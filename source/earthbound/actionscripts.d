@@ -1091,15 +1091,15 @@ immutable ubyte[19 + 4 * (const(void)*).sizeof] event813;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC40F45;
 
 ubyte[] allBytes(T...)(T args) {
-    struct X {
-    	align(1):
-        T stuff;
-    }
-    union Z {
-        X x;
-        ubyte[X.sizeof] bytes;
-    }
-    return Z(X(args)).bytes.dup;
+	struct X {
+		align(1):
+		T stuff;
+	}
+	union Z {
+		X x;
+		ubyte[X.sizeof] bytes;
+	}
+	return Z(X(args)).bytes.dup;
 }
 
 ubyte[] actionCommand(T...)(ubyte command, T args) {

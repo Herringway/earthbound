@@ -1533,7 +1533,7 @@ void unknownC43F77(short arg1) {
 		return;
 	}
 	int tilemapOffset = windowStats[windowTable[currentFocusWindow]].textX +
-	                    windowStats[windowTable[currentFocusWindow]].textY * windowStats[windowTable[currentFocusWindow]].width * 2;
+		windowStats[windowTable[currentFocusWindow]].textY * windowStats[windowTable[currentFocusWindow]].width * 2;
 	ushort* x0E = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[tilemapOffset];
 	freeTileSafe(x0E[0]);
 	freeTileSafe(x0E[windowStats[windowTable[currentFocusWindow]].width]);

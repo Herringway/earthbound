@@ -935,12 +935,12 @@ void f() {
 EventCommand[][string] actionScripts;
 string currentScript;
 void main() {
-    auto doc = Loader.fromFile("actionscripts.yml").load();
-    foreach(string key, Node node; doc) {
-        actionScripts[key] = readCommands(node);
-    }
-    foreach (label, scripts; actionScripts) {
-    	currentScript = label;
+	auto doc = Loader.fromFile("actionscripts.yml").load();
+	foreach(string key, Node node; doc) {
+		actionScripts[key] = readCommands(node);
+	}
+	foreach (label, scripts; actionScripts) {
+		currentScript = label;
 		size_t size;
 		size_t ptrSize;
 		size_t dPtrSize;
@@ -951,37 +951,37 @@ void main() {
 			debug (printsizes) writefln!"%s, %s, %s - %s, %s, %s"(ptrSize, size, dPtrSize, scr.ptrSize, scr.size, scr.dPtrSize);
 		}
 		writefln!"immutable ubyte[%s] %s;"(computeLengthOffset(size, ptrSize, dPtrSize), tryRemappingSymbol(label));
-    }
-    writeln("shared static this() {");
-    foreach (label, scripts; actionScripts) {
-    	currentScript = label;
-    	writefln!"%s = ["(tryRemappingSymbol(label));
-    	foreach (scriptLine; scripts) {
-    		if ((scriptLine.type != CommandType.locallabel) && (scriptLine.type != CommandType.nonlocallabel)) {
-	    		writeln("\t", scriptLine, ",");
-	    	}
-    	}
-    	writeln("].join();");
-    }
-    writeln("}");
+	}
+	writeln("shared static this() {");
+	foreach (label, scripts; actionScripts) {
+		currentScript = label;
+		writefln!"%s = ["(tryRemappingSymbol(label));
+		foreach (scriptLine; scripts) {
+			if ((scriptLine.type != CommandType.locallabel) && (scriptLine.type != CommandType.nonlocallabel)) {
+				writeln("\t", scriptLine, ",");
+			}
+		}
+		writeln("].join();");
+	}
+	writeln("}");
 }
 
 EventCommand[] readCommands(Node node) {
 	EventCommand[] output;
-    foreach (Node entry; node) {
-    	EventCommand command = readCommand(entry);
-    	if (command.type != CommandType.invalid) {
-    		output ~= command;
-    	}
-    }
+	foreach (Node entry; node) {
+		EventCommand command = readCommand(entry);
+		if (command.type != CommandType.invalid) {
+			output ~= command;
+		}
+	}
 	return output;
 }
 
 EventCommand readCommand(Node node) {
 	EventCommand command;
-    switch (node["type"].as!string) {
+	switch (node["type"].as!string) {
 		case "EVENT_END":
-    		command.type = CommandType.end;
+			command.type = CommandType.end;
 			break;
 		case "EVENT_LOOP":
 			command.type = CommandType.loop;
@@ -1280,10 +1280,10 @@ EventCommand readCommand(Node node) {
 			command.type = CommandType.nonlocallabel;
 			command.labelName = node["name"].as!string;
 			break;
-    	default:
-    		assert(0);
-    }
-    return command;
+		default:
+			assert(0);
+	}
+	return command;
 }
 
 enum Direction {
