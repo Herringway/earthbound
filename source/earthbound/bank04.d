@@ -1697,11 +1697,12 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 /// $C444FB
 void unknownC444FB(ubyte* arg1, ushort arg2) {
 	unknownC43CAA();
+	ushort x18 = vwfTile;
 	ubyte* x0A = arg1;
 	for (short i = 0; arg1[0] != 0; i++) {
-		renderText(6, fontConfigTable[3].width, &fontConfigTable[3].graphics[(((arg1++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[3].height]);
+		renderText(6, fontConfigTable[Font.tiny].width, &fontConfigTable[Font.tiny].graphics[(((arg1++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
 	}
-	for (short i = vwfTile; *(x0A++) != 0; i++) {
+	for (short i = x18; (x0A++)[0] != 0; i++) {
 		copyToVRAM(0, 0x10, arg2, &vwfBuffer[i][0]);
 		arg2 += 8;
 		if (i == 0x33) {
