@@ -3481,7 +3481,7 @@ void loadWindowGraphics() {
 		for (short j = 0; j < 8; j++) {
 			x24[0] = (x24[0] & 0xFF00) | ((x24[0] >> 8) ^ 0xFF) | x1A[0];
 			x24++;
-			x1A++;
+			x1A += 2;
 		}
 	}
 	ushort* x16 = cast(ushort*)&unknown7F0000[0x2C00];
