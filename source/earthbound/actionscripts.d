@@ -22256,4 +22256,25 @@ unknownC40F45 = [
 	EVENT_CALLROUTINE(&fixArgs!unknownC020F1),
 	EVENT_END(),
 ].join();
+	foreach (idx, script; eventScriptPointers) {
+		verify(idx, script);
+	}
+
+}
+bool isTerminatedProperly(const ubyte[] script) {
+	import std.algorithm : among;
+	if (script[$ - 1].among(0x00, 0x09)) {
+		return true;
+	}
+	if (script.length > (void*).sizeof) {
+		if (script[$ - (void*).sizeof - 1].among(0x19)) {
+			return true;
+		}
+	}
+	return false;
+}
+void verify(size_t idx, const ubyte[] script) {
+	import std.conv : text;
+	assert(script.length > 0, text("Script ", idx, " is empty"));
+	assert(script.isTerminatedProperly, text("Script ", idx, " is not terminated properly"));
 }
