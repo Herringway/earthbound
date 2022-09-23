@@ -9,5 +9,5 @@
 	"subConfigurations": {
 		"earthbound": "bugfix"
 	},
-	"versions": ["sdl", "SDL_2012"]
+	"versions": ["sdl", "SDL_2012", "SDL_Mixer"]
 }

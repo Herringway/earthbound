@@ -6213,6 +6213,8 @@ void function() waitForInterrupt = () {};
 ///
 void function() handleDma = () {};
 ///
+void function(ubyte) playSFX = (ubyte) {};
+///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
 	size_t idx;

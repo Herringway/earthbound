@@ -1,17 +1,20 @@
 import std.stdio;
 import std.experimental.logger;
-import std.file : exists;
+import std.file : dirEntries, exists, SpanMode;
+import std.conv : to;
+import std.path : baseName, stripExtension;
 import std.algorithm : filter;
 import std.format : sformat;
 import std.range : chain;
 import std.getopt;
-import std.string : fromStringz, format;
+import std.string : fromStringz, format, toStringz;
 import core.thread : Fiber;
 
 import siryul;
 
 import bindbc.loader;
 import bindbc.sdl;
+import bindbc.sdl.mixer;
 
 import earthbound.bank00 : start, nmi;
 import earthbound.commondefs;
@@ -24,6 +27,11 @@ import snesdrawframedata;
 private enum WindowScale = 1;
 
 struct Settings {
+	static struct AudioSettings {
+	    uint sampleRate = 44100;
+	    ubyte channels = 2;
+	}
+    AudioSettings audio;
     Controller[SDL_GameControllerButton] gamepadMapping;
     Controller[SDL_Scancode] keyboardMapping;
 }
@@ -34,6 +42,22 @@ void saveGraphicsStateToFile(string filename) {
     File(filename~".oam", "wb").rawWrite(g_frameData.oam1);
     File(filename~".oam2", "wb").rawWrite(g_frameData.oam2);
 }
+
+bool initAudio(ubyte channels, uint sampleRate) {
+    return Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) != -1;
+}
+
+void playSFX(ubyte id) {
+	if (auto sound = id in loadedSFX) {
+	    if(Mix_PlayChannel(-1, *sound, 0) == -1) {
+	        SDLError("Could not play sound effect");
+	    }
+	} else {
+		tracef("Sound effect %s not loaded, skipping playback", id);
+	}
+}
+
+Mix_Chunk*[uint] loadedSFX;
 
 void main(string[] args) {
     if (!"settings.yml".exists) {
@@ -59,6 +83,10 @@ void main(string[] args) {
     }
     if(loadSDL() < sdlSupport) {
         info("Can't load SDL!");
+        return;
+    }
+    if(loadSDLMixer() < sdlMixerSupport) {
+        info("Can't load SDL_Mixer!");
         return;
     }
     if(!initSnesDrawFrame()) {
@@ -94,6 +122,12 @@ void main(string[] args) {
             SDL_DestroyWindow(appWin);
         }
     }
+    // Prepare to play music
+    if (!initAudio(settings.audio.channels, settings.audio.sampleRate)) {
+        SDLError("Error initializing audio");
+        return;
+    }
+    info("SDL audio subsystem initialized");
 
     const rendererFlags = SDL_RENDERER_ACCELERATED;
     SDL_Renderer* renderer = SDL_CreateRenderer(
@@ -141,6 +175,17 @@ void main(string[] args) {
     }
     SDL_GameControllerEventState(SDL_ENABLE);
     info("SDL game controller subsystem initialized");
+
+	if ("data/sfx/".exists) {
+		foreach (sfxFile; dirEntries("data/sfx", "*.wav", SpanMode.depth)) {
+			try {
+				const id = sfxFile.baseName.stripExtension.to!uint;
+				loadedSFX[id] = Mix_LoadWAV(sfxFile.name.toStringz);
+			} catch (Exception e) {
+				errorf("Could not load %s: %s", sfxFile, e.msg);
+			}
+		}
+	}
 
     bool run = true, dumpVram = false, pause = false, step = false, fastForward = false, printRegisters = false, dumpEntities = false;
     int dumpVramCount = 0;
@@ -227,6 +272,7 @@ void main(string[] args) {
     int lastTime;
     waitForInterrupt = () { Fiber.yield(); };
     earthbound.commondefs.handleDma = &sfcdma.handleDma;
+    earthbound.commondefs.playSFX = &playSFX;
     auto game = new Fiber(&start);
     while(run) {
         step = !pause;
