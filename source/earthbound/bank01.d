@@ -1903,7 +1903,7 @@ void openMenuButton() {
 						if (getCharacterItem(gameState.partyMembers[0], 1) == 0) {
 							continue mainLoop;
 						}
-						inventoryGetItemName(gameState.partyMembers[0], 2);
+						inventoryGetItemName(gameState.partyMembers[0], Window.inventory);
 						x1F = gameState.partyMembers[0];
 						unknownC43573(0);
 					} else {
@@ -1979,7 +1979,7 @@ void openMenuButton() {
 									setWindowFocus(0);
 									unknown7E5E6C = 1;
 									unknownC133B0();
-									inventoryGetItemName(cast(short)x1F, 2);
+									inventoryGetItemName(cast(short)x1F, Window.inventory);
 									closeWindow(Window.inventoryMenu);
 									setWindowFocus(Window.inventory);
 									break L4;
@@ -2298,7 +2298,7 @@ void debugYButtonGoods() {
 			x04 = x02;
 		}
 	}
-	closeWindow(0x14);
+	closeWindow(Window.fileSelectMenu);
 }
 
 /// $C14012
@@ -6441,7 +6441,7 @@ short unknownC1CFC6(UnknownA97D* arg1) {
 	if (partyCharacters[arg1.unknown0 - 1].items[0] != 0) {
 		while (true) {
 			createWindowN(Window.inventory);
-			inventoryGetItemName(arg1.unknown0, 2);
+			inventoryGetItemName(arg1.unknown0, Window.inventory);
 			x0E = selectionMenu(1);
 			setInstantPrinting();
 			closeFocusWindow();
@@ -7229,7 +7229,7 @@ short nameACharacter(short arg1, ubyte* arg2, short arg3, const(ubyte)* arg4, sh
 	windowTickWithoutInstantPrinting();
 	printString(arg5, arg4);
 	cc1314(1, 0);
-	short x14 = textInputDialog(0x1A, arg1, arg2, 0, arg3);
+	short x14 = textInputDialog(Window.fileSelectNamingNameBox, arg1, arg2, 0, arg3);
 	closeWindow(Window.fileSelectNamingKeyboard);
 	return x14;
 }
@@ -7677,17 +7677,17 @@ void fileMenuLoop() {
 						openTextSpeedMenu();
 						while (true) {
 							if (unknownC1F497(0) == 0) {
-								closeWindow(0x18);
+								closeWindow(Window.fileSelectTextSpeed);
 								goto ValidFileSelected;
 							}
 							openSoundMenu();
 							while (true) {
 								if (unknownC1F616(0) == 0) {
-									closeWindow(0x19);
+									closeWindow(Window.fileSelectMusicMode);
 									break;
 								}
 								if (openFlavourMenu() == 0) {
-									closeWindow(0x32);
+									closeWindow(Window.fileSelectFlavourChoice);
 								}
 							}
 						}
@@ -7699,18 +7699,18 @@ void fileMenuLoop() {
 				openTextSpeedMenu();
 				while (true) {
 					if (unknownC1F497(0) == 0) {
-						closeWindow(0x18);
+						closeWindow(Window.fileSelectTextSpeed);
 						break;
 					}
 					openSoundMenu();
 					while (true) {
 						if (unknownC1F616(0) == 0) {
-							closeWindow(0x19);
+							closeWindow(Window.fileSelectMusicMode);
 							break;
 						}
 						Unknown16:
 						if (openFlavourMenu() == 0) {
-							closeWindow(0x32);
+							closeWindow(Window.fileSelectFlavourChoice);
 						} else {
 							changeMusic(Music.namingScreen);
 							nameLoop: while (true) {

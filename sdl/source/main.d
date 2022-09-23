@@ -48,12 +48,18 @@ bool initAudio(ubyte channels, uint sampleRate) {
 }
 
 void playSFX(ubyte id) {
-	if (auto sound = id in loadedSFX) {
-		if(Mix_PlayChannel(-1, *sound, 0) == -1) {
-			SDLError("Could not play sound effect");
+	if (id == 0) {
+		if(Mix_FadeOutChannel(0, 0) == -1) {
+			SDLError("Could not fade out");
 		}
 	} else {
-		tracef("Sound effect %s not loaded, skipping playback", id);
+		if (auto sound = id in loadedSFX) {
+			if(Mix_PlayChannel(0, *sound, 0) == -1) {
+				SDLError("Could not play sound effect");
+			}
+		} else {
+			tracef("Sound effect %s not loaded, skipping playback", id);
+		}
 	}
 }
 

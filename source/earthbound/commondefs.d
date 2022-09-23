@@ -122,6 +122,7 @@ enum Window {
 	fileSelectFlavourChoice = 0x32,
 	unknown33 = 0x33,
 	unknown34 = 0x34,
+	invalid = -1,
 }
 ///
 enum TeleportStyle : ubyte {

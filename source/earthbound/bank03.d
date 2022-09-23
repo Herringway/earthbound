@@ -370,7 +370,7 @@ short unknownC3E4EF() {
 
 /// $C3E521
 void closeWindow(short arg1) {
-	if (arg1 == -1) {
+	if (arg1 == Window.invalid) {
 		return;
 	}
 	if (windowTable[arg1] == -1) {
