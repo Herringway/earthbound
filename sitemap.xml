@@ -1412,6 +1412,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/nameRegistryRequestString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/nessPajamaFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/nullC3EF23.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/paginationArrowTiles.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/partyCharacterGraphicsTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/ppCostText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/psiSuffixes.html</loc></url>
@@ -1435,7 +1436,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E240.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E3F8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E40E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E41CPointerTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E44C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E450.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E4EF.html</loc></url>
