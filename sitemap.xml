@@ -1582,6 +1582,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/printNewLine.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/processItemTransformations.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/randMod.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/renderSmallTextToVRAM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/renderText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setBoundaryBehaviour.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setPartyTickCallbacks.html</loc></url>
@@ -1678,7 +1679,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC441B7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4424A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC442AC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC444FB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC445E1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC447FB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4487C.html</loc></url>
