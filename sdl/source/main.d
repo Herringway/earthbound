@@ -63,7 +63,7 @@ void main(string[] args) {
 	if (!"settings.yml".exists) {
 		getDefaultSettings().toFile!YAML("settings.yml");
 	}
-	const settings = fromFile!(Settings, YAML)("settings.yml");
+	const settings = fromFile!(Settings, YAML, DeSiryulize.optionalByDefault)("settings.yml");
 	bool verbose;
 	auto help = getopt(args,
 		"verbose|v", "Print extra information", &verbose
