@@ -1421,7 +1421,7 @@ short unknownC1244C(ubyte** arg1, short arg2, short arg3) {
 			short y;
 			l2: while (true) {
 				if ((unknown7E5E7A != -1) && (windowTable[unknown7E5E7A] != -1)) {
-					copyToVRAM(0, 8, cast(ushort)((x1A.y * 32) + x1A.x + x1A.width - 3 + 0x7C00), cast(ubyte*)&unknownC3E41CPointerTable[unknown7E5E7C]);
+					copyToVRAM(0, 8, cast(ushort)((x1A.y * 32) + x1A.x + x1A.width - 3 + 0x7C00), cast(ubyte*)&unknownC3E41CPointerTable[unknown7E5E7C][0]);
 				}
 				for (x16 = 0; x16 < x1C; x16++) {
 					unknownC12E42();
@@ -1509,7 +1509,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 			short x16;
 			l2: while (true) {
 				if ((unknown7E5E7A != -1) && (windowTable[unknown7E5E7A] != -1)) {
-					copyToVRAM(0, 8, cast(ushort)((x18.y * 32) + x18.x + x18.width - 3 + 0x7C00), cast(ubyte*)&unknownC3E41CPointerTable[unknown7E5E7C]);
+					copyToVRAM(0, 8, cast(ushort)((x18.y * 32) + x18.x + x18.width - 3 + 0x7C00), cast(ubyte*)&unknownC3E41CPointerTable[unknown7E5E7C][0]);
 				}
 				for (x1E = 0; x1E < x20; x1E++) {
 					unknownC12E42();
