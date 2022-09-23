@@ -6465,86 +6465,60 @@ ubyte ebChar(dchar c) {
 		default: assert(0, ("unhandled character: '"d ~ c ~ "'"d).toUTF8);
 	}
 }
+string printable(const ubyte[] str) {
+	string result;
+	foreach (chr; str) {
+		if (chr == 0) {
+			break;
+		}
+		result ~= nativeStr(chr);
+	}
+	return result;
+}
 string printable(const(ubyte)* str, size_t maxLength = size_t.max) {
-	import std.format : format;
 	string result;
 	while ((maxLength-- > 0) && (str[0] != 0)) {
 		const chr = (str++)[0];
-		switch (chr) {
-			case ebChar(' '):
-			case ebChar('!'):
-			case ebChar('$'):
-			case ebChar('('):
-			case ebChar(')'):
-			case ebChar('\''):
-			case ebChar(','):
-			case ebChar('-'):
-			case ebChar('.'):
-			case ebChar('0'): .. case ebChar('9'):
-			case ebChar('A'): .. case ebChar('Z'):
-			case ebChar('a'): .. case ebChar('z'):
-				result ~= cast(char)(chr - 0x30);
-				break;
-			case ebChar('{'):
-				result ~= '{';
-				break;
-			case ebChar('/'):
-				result ~= '/';
-				break;
-			case ebChar(':'):
-				result ~= ':';
-				break;
-			case ebChar('?'):
-				result ~= '?';
-				break;
-			case ebChar('@'):
-				result ~= '@';
-				break;
-			case ebChar('~'):
-				result ~= '~';
-				break;
-			case ebChar('^'):
-				result ~= '^';
-				break;
-			case ebChar('['):
-				result ~= '[';
-				break;
-			case ebChar(']'):
-				result ~= ']';
-				break;
-			case ebChar('#'):
-				result ~= '#';
-				break;
-			case ebChar('_'):
-				result ~= '_';
-				break;
-			case ebChar('♪'):
-				result ~= '♪';
-				break;
-			case ebChar('α'):
-				result ~= 'α';
-				break;
-			case ebChar('β'):
-				result ~= 'β';
-				break;
-			case ebChar('γ'):
-				result ~= 'γ';
-				break;
-			case ebChar('Σ'):
-				result ~= 'Σ';
-				break;
-			case ebChar('Ω'):
-				result ~= 'Ω';
-				break;
-			case ebChar('ー'):
-				result ~= 'ー';
-				break;
-			default:
-				result ~= format!"\\x%02X"(chr);
-				break;
-		}
+		result ~= nativeStr(chr);
 	}
 	return result;
+}
+string nativeStr(ubyte b) {
+	import std.format : format;
+	switch (b) {
+		case ebChar(' '):
+		case ebChar('!'):
+		case ebChar('$'):
+		case ebChar('('):
+		case ebChar(')'):
+		case ebChar('\''):
+		case ebChar(','):
+		case ebChar('-'):
+		case ebChar('.'):
+		case ebChar('0'): .. case ebChar('9'):
+		case ebChar('A'): .. case ebChar('Z'):
+		case ebChar('a'): .. case ebChar('z'): return [cast(char)(b - 0x30)];
+		case ebChar('{'): return "{";
+		case ebChar('/'): return "/";
+		case ebChar(':'): return ":";
+		case ebChar('?'): return "?";
+		case ebChar('@'): return "@";
+		case ebChar('~'): return "~";
+		case ebChar('^'): return "^";
+		case ebChar('['): return "[";
+		case ebChar(']'): return "]";
+		case ebChar('#'): return "#";
+		case ebChar('_'): return "_";
+		case ebChar('♪'): return "♪";
+		case ebChar('α'): return "α";
+		case ebChar('β'): return "β";
+		case ebChar('γ'): return "γ";
+		case ebChar('Σ'): return "Σ";
+		case ebChar('Ω'): return "Ω";
+		case ebChar('ー'): return "ー";
+		default:
+			return format!"\\x%02X"(b);
+	}
 }
 ///
 T[] convert(T)(const(ubyte)[] input) {
