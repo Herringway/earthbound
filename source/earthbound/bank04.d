@@ -1695,7 +1695,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 }
 
 /// $C444FB
-void unknownC444FB(ubyte* arg1, ushort arg2) {
+void renderSmallTextToVRAM(ubyte* arg1, ushort arg2) {
 	unknownC43CAA();
 	ushort x18 = vwfTile;
 	ubyte* x0A = arg1;

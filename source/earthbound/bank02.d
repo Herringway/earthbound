@@ -150,7 +150,7 @@ void unknownC202AC(short arg1) {
 		unknown7E894E[i] = windowTable[arg1];
 		windowStats[windowTable[arg1]].titleID = cast(ubyte)(i + 1);
 	}
-	unknownC444FB(&windowStats[windowTable[arg1]].title[0], cast(ushort)(0x7700 + (windowStats[windowTable[arg1]].titleID - 1) * 128));
+	renderSmallTextToVRAM(&windowStats[windowTable[arg1]].title[0], cast(ushort)(0x7700 + (windowStats[windowTable[arg1]].titleID - 1) * 128));
 }
 
 /// $C2032B
