@@ -347,7 +347,7 @@ void createWindowN(short id) {
 
 /// $C1078D
 void unknownC1078D() {
-	copyToVRAMAlt(0, 0x240, 0x7E40, cast(ubyte*)&unknown7E827E[0]);
+	copyToVRAMAlt(0, 0x240, 0x7E40, cast(ubyte*)&bg2Buffer[0x240]);
 }
 
 /// $C107AF - Draws a window

@@ -541,8 +541,6 @@ __gshared ushort[0x1F8][8] unknown7E5E7E; /// $5E7E
 
 __gshared ushort[0x380] bg2Buffer; /// $7DFE
 
-__gshared ushort[0x100] unknown7E827E; /// $827E
-__gshared ushort[192] unknown7E847E; /// $847E
 __gshared WinStat unknown7E85FE; /// $85FE
 __gshared WinStat[9] windowStats; /// $8650
 __gshared short windowHead; /// $88E0 - Head of the window linked list

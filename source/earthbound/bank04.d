@@ -1265,8 +1265,8 @@ void unknownC43573(short arg1) {
 	}
 	battleMenuCurrentCharacterID = arg1;
 	waitUntilNextFrame();
-	ushort* x = &unknown7E847E[16 - ((gameState.playerControlledPartyMemberCount * 7) / 2) + (arg1 * 7)];
-	for (short i = 7; i != 0; i--) {
+	ushort* x = &bg2Buffer[0x340 + 16 - ((gameState.playerControlledPartyMemberCount * 7) / 2) + (arg1 * 7)];
+	for (short i = hpPPWindowWidth; i != 0; i--) {
 		*(x++) = 0;
 	}
 	unknown7E9623 = 1;

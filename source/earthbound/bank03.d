@@ -435,8 +435,8 @@ void unknownC3E6F8() {
 	}
 	waitUntilNextFrame();
 
-	ushort* y = &unknown7E827E[0x10 - (battleMenuCurrentCharacterID * 7) + (gameState.playerControlledPartyMemberCount * 7) / 2];
-	for (short i = 7; i != 0; i--) {
+	ushort* y = &bg2Buffer[0x240 + (16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (battleMenuCurrentCharacterID * 7))];
+	for (short i = hpPPWindowWidth; i != 0; i--) {
 		*y = 0;
 		y++;
 	}

@@ -125,7 +125,7 @@ void unknownC200D9() {
 /// $C20266
 void unknownC20266() {
 	for (short i = 0; i < 4; i++) {
-		unknown7E827E[i] = unknownC3E40E[i];
+		bg2Buffer[0x240 + i] = unknownC3E40E[i];
 	}
 }
 
