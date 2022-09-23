@@ -70,7 +70,8 @@ immutable ubyte[23 + 6 * (const(void)*).sizeof] event428;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA82;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] event212;
 immutable ubyte[29 + 11 * (const(void)*).sizeof] event475;
-immutable ubyte[149 + 6 * (const(void)*).sizeof] event675;
+immutable ubyte[79 + 6 * (const(void)*).sizeof] event675;
+immutable ubyte[70] event675Task;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] event883;
 immutable ubyte[43 + 29 * (const(void)*).sizeof] event22;
 immutable ubyte[5 + 5 * (const(void)*).sizeof] unknownC3BAD7;
@@ -106,7 +107,8 @@ immutable ubyte[21 + 6 * (const(void)*).sizeof] event494;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] event13_14_15_16_17_Common;
 immutable ubyte[103 + 20 * (const(void)*).sizeof] event201;
 immutable ubyte[8 + 6 * (const(void)*).sizeof] event597;
-immutable ubyte[21 + 9 * (const(void)*).sizeof] event775;
+immutable ubyte[18 + 9 * (const(void)*).sizeof] event775;
+immutable ubyte[3] event775Task;
 immutable ubyte[55 + 12 * (const(void)*).sizeof] event706;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] event575;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] event730;
@@ -167,14 +169,16 @@ immutable ubyte[25 + 8 * (const(void)*).sizeof] event289;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] event363;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] event523;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] event95;
-immutable ubyte[79 + 12 * (const(void)*).sizeof] event479;
+immutable ubyte[61 + 12 * (const(void)*).sizeof] event479;
+immutable ubyte[18] event479Task;
 immutable ubyte[23 + 9 * (const(void)*).sizeof] unknownC40F18;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] event459;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] event73;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] event16;
 immutable ubyte[253 + 42 * (const(void)*).sizeof] event365;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] event581;
-immutable ubyte[50 + 9 * (const(void)*).sizeof] event482;
+immutable ubyte[37 + 9 * (const(void)*).sizeof] event482;
+immutable ubyte[13] event482Task;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] event491;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] event686;
 immutable ubyte[23 + 15 * (const(void)*).sizeof] event19;
@@ -210,7 +214,7 @@ immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC333AA;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] event808;
 immutable ubyte[28 + 8 * (const(void)*).sizeof] event892;
 immutable ubyte[51 + 7 * (const(void)*).sizeof] event268;
-immutable ubyte[9 + 1 * (const(void)*).sizeof] event453;
+immutable ubyte[10 + 2 * (const(void)*).sizeof] event453;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] event578;
 immutable ubyte[55 + 16 * (const(void)*).sizeof] event217;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] event374;
@@ -254,7 +258,11 @@ immutable ubyte[16 + 1 * (const(void)*).sizeof] event294Task;
 immutable ubyte[45 + 22 * (const(void)*).sizeof] event37;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] event74;
 immutable ubyte[6 + 4 * (const(void)*).sizeof] event191;
-immutable ubyte[107 + 28 * (const(void)*).sizeof] event782;
+immutable ubyte[41 + 14 * (const(void)*).sizeof] event782;
+immutable ubyte[18 + 11 * (const(void)*).sizeof] event782UnknownRoutine;
+immutable ubyte[16 + 1 * (const(void)*).sizeof] event782UnknownRoutine2;
+immutable ubyte[16 + 1 * (const(void)*).sizeof] event782UnknownRoutine3;
+immutable ubyte[16 + 1 * (const(void)*).sizeof] event782UnknownRoutine4;
 immutable ubyte[28 + 7 * (const(void)*).sizeof] event163;
 immutable ubyte[69 + 11 * (const(void)*).sizeof] event544;
 immutable ubyte[19 + 3 * (const(void)*).sizeof] event783;
@@ -582,7 +590,8 @@ immutable ubyte[19 + 4 * (const(void)*).sizeof] event616;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] event468;
 immutable ubyte[45 + 11 * (const(void)*).sizeof] unknownC3B70C;
 immutable ubyte[60 + 29 * (const(void)*).sizeof] event860;
-immutable ubyte[75 + 12 * (const(void)*).sizeof] event621;
+immutable ubyte[3 + 3 * (const(void)*).sizeof] event621;
+immutable ubyte[72 + 9 * (const(void)*).sizeof] event621UnknownRoutine;
 immutable ubyte[64 + 22 * (const(void)*).sizeof] event448;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] unknownC35FCD;
 immutable ubyte[46 + 15 * (const(void)*).sizeof] unknownC3A20E;
@@ -654,13 +663,14 @@ immutable ubyte[57 + 11 * (const(void)*).sizeof] event66;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC36BB4;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] event582;
 immutable ubyte[40 + 6 * (const(void)*).sizeof] event723;
-immutable ubyte[88 + 6 * (const(void)*).sizeof] event547;
+immutable ubyte[62 + 6 * (const(void)*).sizeof] event547;
+immutable ubyte[26] event547Task;
 immutable ubyte[41 + 5 * (const(void)*).sizeof] event753;
 immutable ubyte[51 + 10 * (const(void)*).sizeof] event625;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] event738;
 immutable ubyte[26 + 10 * (const(void)*).sizeof] event613;
 immutable ubyte[115 + 15 * (const(void)*).sizeof] event695;
-immutable ubyte[68 + 10 * (const(void)*).sizeof] event554;
+immutable ubyte[69 + 11 * (const(void)*).sizeof] event554;
 immutable ubyte[31 + 9 * (const(void)*).sizeof] event660;
 immutable ubyte[33 + 6 * (const(void)*).sizeof] event733;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] event389_393;
@@ -920,7 +930,7 @@ immutable ubyte[31 + 5 * (const(void)*).sizeof] event549;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] event40;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A09F;
 immutable ubyte[59 + 12 * (const(void)*).sizeof] event742;
-immutable ubyte[2] event859;
+immutable ubyte[3 + 1 * (const(void)*).sizeof] event859;
 immutable ubyte[43 + 11 * (const(void)*).sizeof] event135;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] unknownC36D18;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] unknownC3ABE0;
@@ -3158,7 +3168,7 @@ event675 = [
 	EVENT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry2),
 	EVENT_SET_ANIMATION(255),
 	EVENT_SET_TICK_CALLBACK(&unknownC48C2B),
-	EVENT_START_TASK(&event675[79 + 6 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&event675Task[0]),
 	EVENT_LOOP(2),
 	EVENT_SET_Y_RELATIVE(-3),
 	EVENT_PAUSE(6),
@@ -3192,6 +3202,8 @@ event675 = [
 	EVENT_CLEAR_TICK_CALLBACK(),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_SHORTJUMP(&event35[0]),
+].join();
+event675Task = [
 	EVENT_LOOP(6),
 	EVENT_SET_X_RELATIVE(3),
 	EVENT_PAUSE(2),
@@ -3988,7 +4000,7 @@ event775 = [
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A864, cast(ubyte)255),
 	EVENT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	EVENT_START_TASK(&event757[21 + 11 * (const(void)*).sizeof]),
-	EVENT_START_TASK(&event775[18 + 9 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&event775Task[0]),
 	EVENT_SET_VELOCITIES_ZERO(),
 	EVENT_SET_ANIMATION(255),
 	EVENT_WRITE_WORD_TEMPVAR(2),
@@ -3998,6 +4010,8 @@ event775 = [
 	EVENT_SHORTCALL_CONDITIONAL_NOT(&event775[12 + 5 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_SHORTJUMP(&event35[0]),
+].join();
+event775Task = [
 	EVENT_PAUSE(125),
 	EVENT_END_TASK(),
 ].join();
@@ -5004,7 +5018,7 @@ event479 = [
 	EVENT_SET_Z_VELOCITY(128),
 	EVENT_PAUSE(64),
 	EVENT_SET_VAR(ActionScriptVars.v0, 0),
-	EVENT_START_TASK(&event479[61 + 12 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&event479Task[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A685, cast(ubyte)192, cast(ubyte)0),
 	EVENT_SET_VAR(ActionScriptVars.v5, 1),
 	EVENT_SET_VAR(ActionScriptVars.v6, 600),
@@ -5020,6 +5034,8 @@ event479 = [
 	EVENT_SHORTCALL_CONDITIONAL(&event479[54 + 10 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_HALT(),
+].join();
+event479Task = [
 	EVENT_SET_Z_VELOCITY(128),
 	EVENT_PAUSE(48),
 	EVENT_SET_Z_VELOCITY(-128),
@@ -5205,7 +5221,7 @@ event482 = [
 	EVENT_SHORTCALL(&unknownC3AB26[0]),
 	EVENT_SET_VAR(ActionScriptVars.v4, 1),
 	EVENT_SET_VAR(ActionScriptVars.v0, 0),
-	EVENT_START_TASK(&event482[37 + 9 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&event482Task[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A685, cast(ubyte)0, cast(ubyte)1),
 	EVENT_SET_VAR(ActionScriptVars.v5, 1),
 	EVENT_CALLROUTINE(&fixArgs!actionScriptGetPositionOfPartyMember, cast(ubyte)9),
@@ -5220,6 +5236,8 @@ event482 = [
 	EVENT_SHORTCALL_CONDITIONAL(&event482[30 + 7 * (const(void)*).sizeof]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_HALT(),
+].join();
+event482Task = [
 	EVENT_SET_Z_VELOCITY(-512),
 	EVENT_PAUSE(30),
 	EVENT_SET_Z_VELOCITY(0),
@@ -5723,6 +5741,8 @@ event453 = [
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A86F, cast(ushort)205),
 	EVENT_SET_X_RELATIVE(-16),
 	EVENT_SET_Y_RELATIVE(-16),
+	//fallthrough
+	EVENT_SHORTJUMP(&event454[0]),
 ].join();
 event578 = [
 	EVENT_SET_X(420),
@@ -6328,30 +6348,34 @@ event782 = [
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_PAUSE(1),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A98B, cast(ushort)OverworldSprite.nessLyingDown, cast(ushort)ActionScript.unknown783),
-	EVENT_SHORTCALL(&event782[41 + 14 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&event782UnknownRoutine[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A98B, cast(ushort)OverworldSprite.paulaLyingDown, cast(ushort)ActionScript.unknown783),
-	EVENT_SHORTCALL(&event782[41 + 14 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&event782UnknownRoutine[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A98B, cast(ushort)OverworldSprite.jeffLyingDown, cast(ushort)ActionScript.unknown783),
-	EVENT_SHORTCALL(&event782[41 + 14 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&event782UnknownRoutine[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A98B, cast(ushort)OverworldSprite.pooLyingDown, cast(ushort)ActionScript.unknown783),
-	EVENT_SHORTCALL(&event782[41 + 14 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&event782UnknownRoutine[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_SHORTJUMP(&event35[0]),
-	EVENT_SHORTCALL(&event782[91 + 27 * (const(void)*).sizeof]),
+].join();
+event782UnknownRoutine = [
+	EVENT_SHORTCALL(&event782UnknownRoutine4[0]),
 	EVENT_PAUSE(179),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
 	EVENT_PAUSE(174),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[59 + 25 * (const(void)*).sizeof]),
-	EVENT_SHORTCALL(&event782[75 + 26 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine2[0]),
+	EVENT_SHORTCALL(&event782UnknownRoutine3[0]),
 	EVENT_PAUSE(35),
 	EVENT_SHORT_RETURN(),
+].join();
+event782UnknownRoutine2 = [
 	EVENT_SET_VAR(ActionScriptVars.v0, 22),
 	EVENT_LOOP(12),
 	EVENT_CALLROUTINE(&fixArgs!unknownC474A8),
@@ -6359,6 +6383,8 @@ event782 = [
 	EVENT_BINOP(ActionScriptVars.v0, Binop.add, 65534),
 	EVENT_LOOP_END(),
 	EVENT_SHORT_RETURN(),
+].join();
+event782UnknownRoutine3 = [
 	EVENT_SET_VAR(ActionScriptVars.v0, 0),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.v0, Binop.add, 65535),
@@ -6366,6 +6392,8 @@ event782 = [
 	EVENT_PAUSE(1),
 	EVENT_LOOP_END(),
 	EVENT_SHORT_RETURN(),
+].join();
+event782UnknownRoutine4 = [
 	EVENT_SET_VAR(ActionScriptVars.v0, 65505),
 	EVENT_LOOP(31),
 	EVENT_BINOP(ActionScriptVars.v0, Binop.add, 1),
@@ -12920,9 +12948,11 @@ event860 = [
 	EVENT_END(),
 ].join();
 event621 = [
-	EVENT_SHORTCALL(&event621[3 + 3 * (const(void)*).sizeof]),
+	EVENT_SHORTCALL(&event621UnknownRoutine[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_SHORTJUMP(&event35[0]),
+].join();
+event621UnknownRoutine = [
 	EVENT_SHORTCALL(&unknownC3AA38[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A685, cast(ubyte)0, cast(ubyte)5),
 	EVENT_SET_VAR(ActionScriptVars.v5, 5),
@@ -14188,7 +14218,7 @@ event547 = [
 	EVENT_SET_TICK_CALLBACK(&unknownC48C3E),
 	EVENT_SET_VAR(ActionScriptVars.v0, 0),
 	EVENT_SET_VAR(ActionScriptVars.v1, 0),
-	EVENT_START_TASK(&event547[62 + 6 * (const(void)*).sizeof]),
+	EVENT_START_TASK(&event547Task[0]),
 	EVENT_WRITE_WORD_TEMPVAR(10),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_LOOP(2),
@@ -14210,6 +14240,8 @@ event547 = [
 	EVENT_LOOP_END(),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_SHORTJUMP(&event35[0]),
+].join();
+event547Task = [
 	EVENT_WRITE_WORD_TEMPVAR(10),
 	EVENT_LOOP_TEMPVAR(),
 	EVENT_LOOP(12),
@@ -14355,6 +14387,8 @@ event554 = [
 	EVENT_SHORTCALL(&unknownC3AB59[0]),
 	EVENT_CALLROUTINE(&fixArgs!unknownC46E46),
 	EVENT_PAUSE(180),
+	///fallthrough
+	EVENT_SHORTJUMP(&event555[0]),
 ].join();
 event660 = [
 	EVENT_CALLROUTINE(&fixArgs!unknownC0A864, cast(ubyte)255),
@@ -18976,6 +19010,8 @@ event742 = [
 ].join();
 event859 = [
 	EVENT_PAUSE(2),
+	//fallthrough
+	EVENT_SHORTJUMP(&unknownC427A1[0]),
 ].join();
 event135 = [
 	EVENT_SET_PHYSICS_CALLBACK(&unknownC0A360),
