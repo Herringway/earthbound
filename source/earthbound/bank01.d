@@ -4444,7 +4444,7 @@ const(ubyte)* displayText(const(ubyte)* script_ptr) {
 	loop: while (true) {
 		if (waitBytes-- == 0) {
 			auto str = getFullCC(x1A[0] ? x1A : x12.textptr);
-			tracef("Next text: [%(%02X %)]", str);
+			debug(printTextTrace) tracef("Next text: [%(%02X %)]", str);
 			waitBytes = str.length - 1;
 		}
 		if ((unknown7E5E6E != 0) && (x1E is null)) {
