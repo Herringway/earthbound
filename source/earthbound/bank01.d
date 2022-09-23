@@ -4984,7 +4984,7 @@ void inventoryGetItemName(short arg1, short arg2) {
 	setWindowTitle(arg2, PartyCharacter.name.length, &partyCharacters[arg1].name[0]);
 	for (short i = 0; PartyCharacter.items.length > i; i++) {
 		short x16 = partyCharacters[arg1].items[i];
-		if (checkItemEquipped(cast(short)(arg1 + 1), i) != 0) {
+		if (checkItemEquipped(cast(short)(arg1 + 1), cast(short)(i + 1)) != 0) {
 			unknown7E9C9F[0] = 0x22;
 			memcpy(&unknown7E9C9F[1], &itemData[x16].name[0], Item.name.length);
 		} else {
