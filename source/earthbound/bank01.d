@@ -1449,14 +1449,15 @@ short unknownC1244C(ubyte** arg1, short arg2, short arg3) {
 				unknown7E5E7C = (unknown7E5E7C == 0) ? 1 : 0;
 				x1C = 10;
 			}
-			if (gameState.playerControlledPartyMemberCount > x16) {
+			if (gameState.playerControlledPartyMemberCount <= x16) {
 				x16 = 0;
 			}
-			if (0 <= x16) {
+			if (0 > x16) {
 				x16 = gameState.playerControlledPartyMemberCount - 1;
 			}
 			if (x16 != x04) {
 				playSfx(y);
+				x04 = x16;
 				if (unknown7E9631[gameState.partyMembers[x16] - 1] != null) {
 					displayText(unknown7E9631[gameState.partyMembers[x16] - 1]);
 				}
@@ -1540,9 +1541,9 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 			x20 = cast(short)(x1A - x04);
 			Unknown33:
 			x1E = gameState.playerControlledPartyMemberCount;
-			if (x1E > x1A) {
+			if (x1E <= x1A) {
 				x1A = 0;
-			} else if (0 <= x1A) {
+			} else if (0 > x1A) {
 				x1A = cast(short)(x1E - 1);
 			}
 			if (arg4 != null) {
@@ -1553,6 +1554,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 			}
 			if (x1A != x04) {
 				playSfx(x16);
+				x04 = x1A;
 				if (arg3 != null) {
 					arg3(gameState.partyMembers[x04]);
 				}
