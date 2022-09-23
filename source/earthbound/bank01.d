@@ -367,7 +367,7 @@ void unknownC107AF(short windowID) {
 		(x18++)[0] = 0x3C16;
 		short x12 = cast(short)(x1C - 1);
 		for (short i = cast(short)(((strlen(cast(char*)&windowStats[windowID].title[0]) * 6) + 7) / 8); i != 0; i--) {
-			(x18++)[0] = cast(ushort)(x02 + 0x2000);
+			(x18++)[0] = cast(ushort)(x02++ + 0x2000);
 			x12--;
 		}
 		(x18++)[0] = 0x7C16;
