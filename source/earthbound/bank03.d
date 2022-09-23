@@ -315,7 +315,7 @@ immutable ushort[4] unknownC3E40E = [ 0x3A69, 0x3A6A, 0x3A6B, 0x3A6C ];
 immutable ushort[3] blinkingTriangleTiles = [ 0x3C14, 0x3C15, 0xBC11 ];
 
 /// $C3E43C
-immutable ushort[][4] unknownC3E41CPointerTable = [
+immutable ushort[][4] paginationArrowTiles = [
 	[0x3C16, 0x2E6D, 0x2E6E, 0x7C16],
 	[0x3C16, 0x2E7D, 0x2E7E, 0x7C16],
 	[0x3C16, 0x2E6D, 0x2C40, 0x7C16],
