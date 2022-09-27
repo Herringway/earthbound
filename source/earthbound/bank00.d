@@ -1052,7 +1052,7 @@ void unknownC021E6() {
 }
 
 /// $C0222B
-void unknownC0222B(short x, short y) {
+void trySpawnNPCs(short x, short y) {
 	if (x >= 0x20) {
 		return;
 	}
@@ -1140,7 +1140,7 @@ void unknownC0255C(short x, short y) {
 		if (x12 == x14) {
 			continue;
 		}
-		unknownC0222B(x12, x10);
+		trySpawnNPCs(x12, x10);
 		x14 = x12;
 	}
 }
@@ -1165,7 +1165,7 @@ void unknownC025CF(short x, short y) {
 		if (x12 == x_) {
 			continue;
 		}
-		unknownC0222B(x0E, x12);
+		trySpawnNPCs(x0E, x12);
 		x_ = x12;
 	}
 }
