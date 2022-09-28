@@ -8155,7 +8155,7 @@ void unknownC2F917() {
 		if (battlersTable[i].allyOrEnemy != 1) {
 			continue;
 		}
-		if (battlersTable[i].row == 0) {
+		if (battlersTable[i].row != 0) {
 			numBattlersInFrontRow++;
 		} else {
 			numBattlersInBackRow++;
@@ -8163,7 +8163,7 @@ void unknownC2F917() {
 	}
 	short x10 = 0;
 	for (short i = 0; i < numBattlersInBackRow; i++) {
-		short x04 = -1;
+		ushort x04 = 0xFFFF;
 		for (short j = 8; j < battlersTable.length; j++) {
 			if (battlersTable[j].consciousness == 0) {
 				continue;
@@ -8177,7 +8177,7 @@ void unknownC2F917() {
 			if (battlersTable[j].row != 0) {
 				continue;
 			}
-			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX < x04)) {
+			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX <= x04)) {
 				x0E = j;
 				x04 = battlersTable[j].spriteX;
 			}
@@ -8189,7 +8189,7 @@ void unknownC2F917() {
 	}
 	x10 = 0;
 	for (short i = 0; i < numBattlersInFrontRow; i++) {
-		short x04 = -1;
+		ushort x04 = 0xFFFF;
 		for (short j = 8; j < battlersTable.length; j++) {
 			if (battlersTable[j].consciousness == 0) {
 				continue;
@@ -8203,7 +8203,7 @@ void unknownC2F917() {
 			if (battlersTable[j].row == 0) {
 				continue;
 			}
-			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX < x04)) {
+			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX <= x04)) {
 				x0E = j;
 				x04 = battlersTable[j].spriteX;
 			}
