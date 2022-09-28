@@ -5649,7 +5649,7 @@ short spawn() {
 	unknownC0AC0C(2);
 	mirrorTM = 0x17;
 	unknown7E436E = -1;
-	unknown7E5DD4 = -1;
+	currentMapMusicTrack = -1;
 	currentMusicTrack = 0xFFFF;
 	unknown7E4676 = 1;
 	waitUntilNextFrame();
@@ -6516,7 +6516,7 @@ short displayTownMap() {
 	}
 	unknown7E5DD8 = 1;
 	reloadMap();
-	unknown7E5DD4 = unknown7E5DD6;
+	currentMapMusicTrack = nextMapMusicTrack;
 	undrawFlyoverText();
 	unknown7E5DD8 = 0;
 	mirrorTM = 0x17;

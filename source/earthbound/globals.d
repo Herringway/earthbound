@@ -505,8 +505,8 @@ __gshared short unknown7E5DCC; /// $5DCC
 __gshared short unknown7E5DCE; /// $5DCE
 __gshared short unknown7E5DD0; /// $5DD0
 __gshared short unknown7E5DD2; /// $5DD2
-__gshared short unknown7E5DD4; /// $5DD4
-__gshared short unknown7E5DD6; /// $5DD6
+__gshared short currentMapMusicTrack; /// $5DD4
+__gshared short nextMapMusicTrack; /// $5DD6
 __gshared short unknown7E5DD8; /// $5DD8
 __gshared short unknown7E5DDA; /// $5DDA
 __gshared short unknown7E5DDC; /// $5DDC
@@ -518,7 +518,7 @@ __gshared short nextQueuedInteraction; /// $5E04
 __gshared Unknown7E5E06Entry[24] unknown7E5E06; /// $5E06
 
 __gshared short unknown7E5E36; /// $5E36
-__gshared const(OverworldEventMusic)* unknown7E5E38; /// $5E38
+__gshared const(OverworldEventMusic)* loadedMapMusicEntry; /// $5E38
 __gshared ActiveHotspot[2] activeHotspots; /// $5E3C
 __gshared QueuedInteractionPtr[5] unknown7E5E58; /// $5E58
 __gshared ubyte unknown7E5E6C; /// $5E6C

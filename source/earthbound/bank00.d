@@ -734,7 +734,7 @@ void reloadMap() {
 	unknown7E4380 &= 0xFFF8;
 	unknown7E4382 &= 0xFFF8;
 	prepareForImmediateDMA();
-	unknown7E5DD4 = -1;
+	currentMapMusicTrack = -1;
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	unknownC08D79(9);
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
@@ -745,7 +745,7 @@ void reloadMap() {
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);
 	} else {
-		unknownC069AF();
+		changeMapMusic();
 	}
 	mirrorTM = 0x17;
 	if (debugging != 0) {
@@ -759,7 +759,7 @@ void initializeMap(short x, short y, short direction) {
 	loadSectorMusic(x, y);
 	loadMapAtPosition(x, y);
 	unknownC03FA9(x, y, direction);
-	unknownC069AF();
+	changeMapMusic();
 }
 
 /// $C019E2
@@ -1757,9 +1757,9 @@ void unknownC03A94(short arg1) {
 void unknownC03C25() {
 	unknown7E5DDA = 1;
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
-	if (unknown7E5DD6 != unknown7E5DD4) {
+	if (nextMapMusicTrack != currentMapMusicTrack) {
 		waitUntilNextFrame();
-		unknownC069AF();
+		changeMapMusic();
 	}
 	unknown7E5DDA = 0;
 }
@@ -1883,7 +1883,7 @@ void unknownC03DAA() {
 }
 
 /// $C03F1E
-void unknownC03F1E() {
+void movePartyToLeaderPosition() {
 	gameState.unknown88 = 0;
 	PlayerPositionBufferEntry* x = &playerPositionBuffer[0];
 	short y = 2;
@@ -1920,7 +1920,7 @@ void unknownC03FA9(short x, short y, short direction) {
 	gameState.leaderDirection = direction;
 	gameState.troddenTileType = unknownC05F33(x, y, gameState.currentPartyMembers);
 	unknownC03A94(direction);
-	unknownC03F1E();
+	movePartyToLeaderPosition();
 	for (short i = 0; i < 6; i++) {
 		entityUnknown3456[i + 24] = -1;
 	}
@@ -3592,41 +3592,41 @@ void loadSectorMusic(short x, short y) {
 		x0A++;
 	}
 	tracef("Selected music track: %s", cast(Music)x0A.music);
-	unknown7E5E38 = x0A;
-	unknown7E5DD6 = x0A.music;
-	if ((unknown7E5DDA == 0) && (x0A.music != unknown7E5DD4)) {
+	loadedMapMusicEntry = x0A;
+	nextMapMusicTrack = x0A.music;
+	if ((unknown7E5DDA == 0) && (x0A.music != currentMapMusicTrack)) {
 		unknownC0AC0C(2);
 	}
 }
 
 /// $C069AF
-void unknownC069AF() {
+void changeMapMusic() {
 	if (unknown7E5DD8 != 0) {
 		return;
 	}
-	if (unknown7E5DD6 == unknown7E5DD4) {
+	if (nextMapMusicTrack == currentMapMusicTrack) {
 		return;
 	}
-	unknown7E5DD4 = unknown7E5DD6;
-	changeMusic(unknown7E5DD6);
-	unknownC0AC0C(unknown7E5E38.unknown3);
+	currentMapMusicTrack = nextMapMusicTrack;
+	changeMusic(nextMapMusicTrack);
+	unknownC0AC0C(loadedMapMusicEntry.unknown3);
 }
 
 /// $C069ED
-void changeMusic5DD6() {
-	changeMusic(unknown7E5DD6);
+void changeMapMusicImmediately() {
+	changeMusic(nextMapMusicTrack);
 }
 
 /// $C069F7
 short unknownC069F7() {
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
-	return unknown7E5DD6;
+	return nextMapMusicTrack;
 }
 
 /// $C06A07
 void unknownC06A07() {
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
-	changeMusic(unknown7E5DD6);
+	changeMusic(nextMapMusicTrack);
 }
 
 /// $C06A1B
@@ -3747,7 +3747,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	if ((debugging != 0) && (unknown7EB567 == 0)) {
 		saveReplaySaveSlot();
 	}
-	unknownC069AF();
+	changeMapMusic();
 	unknownC065A3();
 	playSfx(getScreenTransitionSoundEffect(arg1.unknown10, 0));
 	if (unknown7EB4B6 != 0) {
@@ -9541,7 +9541,7 @@ void unknownC0DD79() {
 	if (teleportStyle != TeleportStyle.instant) {
 		x02 += 0x13C;
 	}
-	unknown7E5DD4 = -1;
+	currentMapMusicTrack = -1;
 	unknown7E4370 = -1;
 	unknown7E436E = -1;
 	initializeMap(x02, x0E, 6);
@@ -9675,7 +9675,7 @@ void unknownC0DE7C() {
 		unknown7E4DC6.unknown55 = 0xFFFF;
 		unknown7E4DC6++;
 	}
-	changeMusic5DD6();
+	changeMapMusicImmediately();
 }
 
 /// $C0DED9

@@ -749,8 +749,8 @@ short setEventFlag(short flag, short value) {
 /// $C216AD
 void unknownC216AD(short arg1, short) {
 	changeMusic(arg1);
-	unknown7E5DD4 = arg1;
-	unknown7E5DD6 = arg1;
+	currentMapMusicTrack = arg1;
+	nextMapMusicTrack = arg1;
 }
 
 /// $C216C9
@@ -6687,7 +6687,7 @@ void unknownC2C37A(short arg1, short arg2, const(ubyte)* arg3) {
 	fadeOut(1, 4);
 	unknownC269DE();
 	battleModeFlag = 0;
-	unknown7E5DD4 = 0;
+	currentMapMusicTrack = 0;
 	unknownC1DD5F();
 	displayInBattleText(arg3);
 	fadeOut(1, 2);

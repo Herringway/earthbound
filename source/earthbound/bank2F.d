@@ -435,7 +435,7 @@ void unknownEF0C3D() {
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
-	unknownC069AF();
+	changeMapMusic();
 	fadeIn(1, 1);
 }
 
