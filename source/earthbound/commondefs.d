@@ -4355,6 +4355,7 @@ enum WarpStyle {
 }
 ///
 enum SurfaceFlags {
+	none = 0,
 	obscureLowerBody = 1<<0,
 	obscureUpperBody = 1<<1,
 	causesSunstroke = 1<<2,

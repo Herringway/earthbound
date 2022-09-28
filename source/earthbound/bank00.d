@@ -7438,7 +7438,7 @@ void unknownC0A964(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A977
-short movementLoadBattleBG(short, ref const(ubyte)* arg1) {
+short actionScriptLoadBattleBG(short, ref const(ubyte)* arg1) {
 	short tmp = movementDataRead16(arg1);
 	actionScriptVar94 = arg1;
 	short tmp2 = movementDataRead16(arg1);
