@@ -5944,7 +5944,7 @@ void teleport(short arg1) {
 	if ((teleportDestinationTable[arg1].direction & 0x80) != 0) {
 		unknownC052D4(cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
 	}
-	unknownC068F4(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8));
+	loadSectorMusic(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8));
 	unknownC069AF();
 	if (unknown7E9D1B !is null) {
 		unknown7E9D1B();

@@ -735,7 +735,7 @@ void reloadMap() {
 	unknown7E4382 &= 0xFFF8;
 	prepareForImmediateDMA();
 	unknown7E5DD4 = -1;
-	unknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	unknownC08D79(9);
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
 	setBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
@@ -756,7 +756,7 @@ void reloadMap() {
 
 /// $C019B2
 void initializeMap(short x, short y, short direction) {
-	unknownC068F4(x, y);
+	loadSectorMusic(x, y);
 	loadMapAtPosition(x, y);
 	unknownC03FA9(x, y, direction);
 	unknownC069AF();
@@ -1756,7 +1756,7 @@ void unknownC03A94(short arg1) {
 /// $C03C25
 void unknownC03C25() {
 	unknown7E5DDA = 1;
-	unknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	if (unknown7E5DD6 != unknown7E5DD4) {
 		waitUntilNextFrame();
 		unknownC069AF();
@@ -3578,12 +3578,12 @@ short getScreenTransitionSoundEffect(short transition, short getStart) {
 }
 
 /// $C068F4
-void unknownC068F4(short arg1, short arg2) {
+void loadSectorMusic(short x, short y) {
 	if (unknown7E5DD8 != 0) {
 		return;
 	}
-	tracef("Using overworld music entry %s", mapDataPerSectorMusic[arg2 / 128][(arg1 >> 8) & 0xFF]);
-	const(OverworldEventMusic)* x0A = &overworldEventMusicPointerTable[mapDataPerSectorMusic[arg2 / 128][(arg1 >> 8) & 0xFF]][0];
+	tracef("Using overworld music entry %s", mapDataPerSectorMusic[y / 128][(x >> 8) & 0xFF]);
+	const(OverworldEventMusic)* x0A = &overworldEventMusicPointerTable[mapDataPerSectorMusic[y / 128][(x >> 8) & 0xFF]][0];
 	while (x0A.flag != 0) {
 		tracef("Trying flag %s for %s", cast(EventFlag)(x0A.flag & 0x7FFF), cast(Music)x0A.music);
 		if (getEventFlag(x0A.flag & 0x7FFF) == (x0A.flag > 0x8000) ? 1 : 0) {
@@ -3619,13 +3619,13 @@ void changeMusic5DD6() {
 
 /// $C069F7
 short unknownC069F7() {
-	unknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	return unknown7E5DD6;
 }
 
 /// $C06A07
 void unknownC06A07() {
-	unknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	changeMusic(unknown7E5DD6);
 }
 
@@ -3732,13 +3732,13 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	}
 	if (debugging != 0) {
 		if (debugModeNumber != 6) {
-			unknownC068F4(x02, x04);
+			loadSectorMusic(x02, x04);
 		}
 		if (unknown7EB567 == 0) {
 			unknownEFE895(arg1.unknown10);
 		}
 	} else {
-		unknownC068F4(x02, x04);
+		loadSectorMusic(x02, x04);
 	}
 	loadMapAtPosition(x02, x04);
 	unknown7E2890 = 0;

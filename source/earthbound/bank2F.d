@@ -432,7 +432,7 @@ void copySaveSlot(short to, short from) {
 void unknownEF0C3D() {
 	loadGameSlot(3);
 	fadeOut(1, 1);
-	unknownC068F4(gameState.leaderX.integer, gameState.leaderY.integer);
+	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
 	unknownC069AF();
