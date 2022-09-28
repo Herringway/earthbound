@@ -596,8 +596,8 @@ void reloadMapAtPosition(short x, short y) {
 	bg1XPosition = cast(short)(unknown7E4380 - 0x80);
 	bg2YPosition = cast(short)(unknown7E4382 - 0x70);
 	bg1YPosition = cast(short)(unknown7E4382 - 0x70);
-	unknown7E4374 = cast(short)(x14 - 16);
-	unknown7E4376 = cast(short)(x02 - 14);
+	screenLeftX = cast(short)(x14 - 16);
+	screenTopY = cast(short)(x02 - 14);
 }
 
 /// $C013F6
@@ -647,8 +647,8 @@ void loadMapAtPosition(short x, short y) {
 	if (unknown7E4A58 != 0) {
 		unknown7E4A58 = -1;
 	}
-	unknown7E4374 = cast(short)(x02 - 16);
-	unknown7E4376 = cast(short)(x12 - 14);
+	screenLeftX = cast(short)(x02 - 16);
+	screenTopY = cast(short)(x12 - 14);
 }
 
 /// $C01558
@@ -659,38 +659,38 @@ void refreshMapAtPosition(short x, short y) {
 	bg1YPosition = y;
 	short x04 = x / 8;
 	short x02 = y / 8;
-	while ((unknown7E4374 - x04) != 0) {
-		if (((unknown7E4374 - x04) < 0) != 0) {
-			unknown7E4374++;
-			loadMapColumn(cast(short)(unknown7E4374 + 41), cast(short)(x02 - 16));
-			loadCollisionColumn(cast(short)(unknown7E4374 + 41), cast(short)(x02 - 16));
-			loadMapColumnVRAM(cast(short)(unknown7E4374 + 32), x02);
-			spawnNPCsColumn(cast(short)(unknown7E4374 + 34), cast(short)(x02 - 1));
-			spawnEnemiesColumn(cast(short)(unknown7E4374 + 40), cast(short)(x02 - 8));
+	while ((screenLeftX - x04) != 0) {
+		if (((screenLeftX - x04) < 0) != 0) {
+			screenLeftX++;
+			loadMapColumn(cast(short)(screenLeftX + 41), cast(short)(x02 - 16));
+			loadCollisionColumn(cast(short)(screenLeftX + 41), cast(short)(x02 - 16));
+			loadMapColumnVRAM(cast(short)(screenLeftX + 32), x02);
+			spawnNPCsColumn(cast(short)(screenLeftX + 34), cast(short)(x02 - 1));
+			spawnEnemiesColumn(cast(short)(screenLeftX + 40), cast(short)(x02 - 8));
 		} else {
-			unknown7E4374--;
-			loadMapColumn(cast(short)(unknown7E4374 - 16), cast(short)(x02 - 16));
-			loadCollisionColumn(cast(short)(unknown7E4374 - 16), cast(short)(x02 - 16));
-			loadMapColumnVRAM(cast(short)(unknown7E4374 - 1), x02);
-			spawnNPCsColumn(cast(short)(unknown7E4374 - 3), cast(short)(x02 - 1));
-			spawnEnemiesColumn(cast(short)(unknown7E4374 - 8), cast(short)(x02 - 8));
+			screenLeftX--;
+			loadMapColumn(cast(short)(screenLeftX - 16), cast(short)(x02 - 16));
+			loadCollisionColumn(cast(short)(screenLeftX - 16), cast(short)(x02 - 16));
+			loadMapColumnVRAM(cast(short)(screenLeftX - 1), x02);
+			spawnNPCsColumn(cast(short)(screenLeftX - 3), cast(short)(x02 - 1));
+			spawnEnemiesColumn(cast(short)(screenLeftX - 8), cast(short)(x02 - 8));
 		}
 	}
-	while ((unknown7E4376 - x02) != 0) {
-		if (((unknown7E4376 - x02) < 0) != 0) {
-			unknown7E4376++;
-			loadMapRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 + 41));
-			loadCollisionRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 + 41));
-			loadMapRowVRAM(x04, cast(short)(unknown7E4376 + 28));
-			spawnNPCsRow(x04, cast(short)(unknown7E4376 + 29));
-			spawnEnemiesRow(cast(short)(x04 - 8), cast(short)(unknown7E4376 + 36));
+	while ((screenTopY - x02) != 0) {
+		if (((screenTopY - x02) < 0) != 0) {
+			screenTopY++;
+			loadMapRow(cast(short)(x04 - 16), cast(short)(screenTopY + 41));
+			loadCollisionRow(cast(short)(x04 - 16), cast(short)(screenTopY + 41));
+			loadMapRowVRAM(x04, cast(short)(screenTopY + 28));
+			spawnNPCsRow(x04, cast(short)(screenTopY + 29));
+			spawnEnemiesRow(cast(short)(x04 - 8), cast(short)(screenTopY + 36));
 		} else {
-			unknown7E4376--;
-			loadMapRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 - 16));
-			loadCollisionRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 - 16));
-			loadMapRowVRAM(x04, cast(short)(unknown7E4376 - 1));
-			spawnNPCsRow(x04, cast(short)(unknown7E4376 - 1));
-			spawnEnemiesRow(cast(short)(x04 - 8), cast(short)(unknown7E4376 - 8));
+			screenTopY--;
+			loadMapRow(cast(short)(x04 - 16), cast(short)(screenTopY - 16));
+			loadCollisionRow(cast(short)(x04 - 16), cast(short)(screenTopY - 16));
+			loadMapRowVRAM(x04, cast(short)(screenTopY - 1));
+			spawnNPCsRow(x04, cast(short)(screenTopY - 1));
+			spawnEnemiesRow(cast(short)(x04 - 8), cast(short)(screenTopY - 8));
 		}
 	}
 	unknown7E4386 = x;
@@ -705,22 +705,22 @@ void unknownC01731(short x, short y) {
 	bg1YPosition = y;
 	short x0E = x / 8;
 	short x02 = y / 8;
-	while (unknown7E4374 - x0E != 0) {
-		if (unknown7E4374 - x0E < 0) {
-			unknown7E4374++;
-			unknownC0122A(cast(short)(unknown7E4374 + 0x20), x02);
+	while (screenLeftX - x0E != 0) {
+		if (screenLeftX - x0E < 0) {
+			screenLeftX++;
+			unknownC0122A(cast(short)(screenLeftX + 0x20), x02);
 		} else {
-			unknown7E4374--;
-			unknownC0122A(cast(short)(unknown7E4374 - 1), x02);
+			screenLeftX--;
+			unknownC0122A(cast(short)(screenLeftX - 1), x02);
 		}
 	}
-	while (unknown7E4376 - x02 != 0) {
-		if (unknown7E4376 - x02 < 0) {
-			unknown7E4376++;
-			unknownC01181(x0E, cast(short)(unknown7E4376 + 0x1C));
+	while (screenTopY - x02 != 0) {
+		if (screenTopY - x02 < 0) {
+			screenTopY++;
+			unknownC01181(x0E, cast(short)(screenTopY + 0x1C));
 		} else {
-			unknown7E4376--;
-			unknownC01181(x0E, cast(short)(unknown7E4376 - 1));
+			screenTopY--;
+			unknownC01181(x0E, cast(short)(screenTopY - 1));
 		}
 	}
 	unknown7E4386 = x;

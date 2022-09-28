@@ -6904,8 +6904,8 @@ void displayYourSanctuaryLocation(short arg1) {
 	copyToVRAM(0, 0x780, 0x3800, &unknown7F0000[x02 * 0x800]);
 	memcpy(&palettes[0][0], &unknown7F0000[0x4000 + x02 * 0x200], 0x100);
 	unknown7E0030 = 8;
-	unknown7E4376 = 0;
-	unknown7E4374 = 0;
+	screenTopY = 0;
+	screenLeftX = 0;
 	bg1YPosition = 0;
 	bg1XPosition = 0;
 }

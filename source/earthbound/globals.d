@@ -376,8 +376,8 @@ __gshared short debugging; /// $436C
 __gshared short unknown7E436E; /// $436E
 __gshared short unknown7E4370; /// $4370
 __gshared short unknown7E4372; /// $4372
-__gshared short unknown7E4374; /// $4374
-__gshared short unknown7E4376; /// $4376
+__gshared short screenLeftX; /// $4374
+__gshared short screenTopY; /// $4376
 
 __gshared short unknown7E437C; /// $437C
 __gshared short unknown7E437E; /// $437E
