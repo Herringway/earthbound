@@ -28,14 +28,14 @@ import std.experimental.logger;
 
 /// $C40015
 short unknownC40015() {
-	entityAnimationFrames[actionScript88 / 2] = 0;
+	entityAnimationFrames[actionScriptVar88 / 2] = 0;
 	unknownC0A443Entry3();
 	return unknownC0C6B6();
 }
 
 /// $C40023
 void unknownC40023() {
-	entityScriptSleepFrames[actionScript8A / 2] = currentEntitySlot & 0xF;
+	entityScriptSleepFrames[actionScriptVar8A / 2] = currentEntitySlot & 0xF;
 }
 
 /// $C4002F
@@ -2505,7 +2505,7 @@ void unknownC460CE(short arg1, short arg2) {
 	entityPreparedXCoordinate = entityAbsXTable[x12];
 	entityPreparedYCoordinate = entityAbsYTable[x12];
 	entityPreparedDirection = entityDirections[x12];
-	initEntityUnknown1((arg2 != 6) ? &unknownC3A209.ptr[0] : &event35.ptr[0], x12);
+	initEntityUnknown1((arg2 != 6) ? &unknownC3A209.ptr[0] : &actionScript35.ptr[0], x12);
 }
 
 /// $C46125
@@ -2517,7 +2517,7 @@ void unknownC46125(short arg1, short arg2) {
 	entityPreparedXCoordinate = entityAbsXTable[x12];
 	entityPreparedYCoordinate = entityAbsYTable[x12];
 	entityPreparedDirection = entityDirections[x12];
-	initEntityUnknown1((arg2 != 6) ? &unknownC3A209.ptr[0] : &event35.ptr[0], x12);
+	initEntityUnknown1((arg2 != 6) ? &unknownC3A209.ptr[0] : &actionScript35.ptr[0], x12);
 }
 
 /// $C4617C
@@ -2526,7 +2526,7 @@ void unknownC4617C(short arg1, short arg2) {
 	if (x == -1) {
 		return;
 	}
-	initEntityUnknown1(&eventScriptPointers[arg2][0], x);
+	initEntityUnknown1(&actionScriptScriptPointers[arg2][0], x);
 }
 
 /// $C461CC
@@ -2535,7 +2535,7 @@ void unknownC461CC(short arg1, short arg2) {
 	if (x == -1) {
 		return;
 	}
-	initEntityUnknown1(&eventScriptPointers[arg2][0], x);
+	initEntityUnknown1(&actionScriptScriptPointers[arg2][0], x);
 }
 
 /// $C4621C
@@ -6580,7 +6580,7 @@ void unknownC4D830(short arg1) {
 		if (x == -1) {
 			continue;
 		}
-		initEntityUnknown1(&eventScriptPointers[x06.script][0], x);
+		initEntityUnknown1(&actionScriptScriptPointers[x06.script][0], x);
 	}
 	while (true) {
 		short* y = &entityScriptTable[0];

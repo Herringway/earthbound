@@ -920,32 +920,32 @@ __gshared ubyte[0x8000] introBG2Buffer; /// $8000 - this seems to overlap with o
 
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
 
-__gshared ubyte actionScript00; /// $00
-__gshared short actionScript00s; /// $00
-__gshared ubyte actionScript02; /// $02
-__gshared const(ubyte)* actionScript02p; /// $02
-__gshared const(OverlayScript)* actionScript02Overlay; /// $02
+__gshared ubyte actionScriptVar00; /// $00
+__gshared short actionScriptVar00s; /// $00
+__gshared ubyte actionScriptVar02; /// $02
+__gshared const(ubyte)* actionScriptVar02p; /// $02
+__gshared const(OverlayScript)* actionScriptVar02Overlay; /// $02
 
-__gshared ushort actionScript04; /// $04
-__gshared ushort actionScript06; /// $06
-__gshared ushort actionScript08; /// $08
+__gshared ushort actionScriptVar04; /// $04
+__gshared ushort actionScriptVar06; /// $06
+__gshared ushort actionScriptVar08; /// $08
 
-__gshared ushort actionScript80; /// $80
+__gshared ushort actionScriptVar80; /// $80
 
-__gshared ActionLoopCallState* actionScript84; /// $84
-__gshared ushort actionScript86; /// $86
-__gshared ushort actionScript88; /// $88
-__gshared ushort actionScript8A; /// $8A
-__gshared const(SpriteMap)* actionScript8C; /// $8C
-__gshared const(ubyte)* actionScript8CScript; /// $8C
-__gshared ushort* actionScript8CMemory; /// $8C
-__gshared ubyte actionScript8E; /// $8E
+__gshared ActionLoopCallState* actionScriptVar84; /// $84
+__gshared ushort actionScriptVar86; /// $86
+__gshared ushort actionScriptVar88; /// $88
+__gshared ushort actionScriptVar8A; /// $8A
+__gshared const(SpriteMap)* actionScriptVar8C; /// $8C
+__gshared const(ubyte)* actionScriptVar8CScript; /// $8C
+__gshared ushort* actionScriptVar8CMemory; /// $8C
+__gshared ubyte actionScriptVar8E; /// $8E
 
-__gshared short actionScript90; /// $90
+__gshared short actionScriptVar90; /// $90
 
-__gshared const(ubyte)* actionScript92; /// $92
+__gshared const(ubyte)* actionScriptVar92; /// $92
 
-__gshared const(ubyte)* actionScript94; /// $94
+__gshared const(ubyte)* actionScriptVar94; /// $94
 
 // Other hardware stuff
 
