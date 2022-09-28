@@ -3604,7 +3604,7 @@ void unknownC069AF() {
 	if (unknown7E5DD8 != 0) {
 		return;
 	}
-	if (unknown7E5DD6 == unknown7E4DD4) {
+	if (unknown7E5DD6 == unknown7E5DD4) {
 		return;
 	}
 	unknown7E5DD4 = unknown7E5DD6;
