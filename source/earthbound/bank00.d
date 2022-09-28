@@ -342,7 +342,7 @@ short loadSectorAttributes(ushort arg1, ushort arg2) {
 }
 
 /// $C00AC5
-void unknownC00AC5(short x, short y) {
+void loadMapRow(short x, short y) {
 	y /= 4;
 	short x16 = x / 4;
 	x = x16 & 0xF;
@@ -392,7 +392,7 @@ void unknownC00AC5(short x, short y) {
 }
 
 /// $C00BDC
-void unknownC00BDC(short x, short y) {
+void loadMapColumn(short x, short y) {
 	x /= 4;
 	y /= 4;
 	short x18 = x & 0xF;
@@ -473,7 +473,7 @@ void loadCollisionColumn(short x, short y) {
 }
 
 /// $C00E16
-void unknownC00E16(short x, short y) {
+void loadMapRowVRAM(short x, short y) {
 	if (debugging != 0) {
 		unknownEFDFC4(x, y);
 	}
@@ -507,7 +507,7 @@ void unknownC00E16(short x, short y) {
 }
 
 /// $C00FCB
-void unknownC00FCB(short x, short y) {
+void loadMapColumnVRAM(short x, short y) {
 	if (debugging != 0) {
 		unknownEFE07C(x, y);
 	}
@@ -583,13 +583,13 @@ void reloadMapAtPosition(short x, short y) {
 		unknown7E4390[i] = -1;
 	}
 	for (short i = 0; i < 60; i++) {
-		unknownC00AC5(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
+		loadMapRow(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
 	}
 	for (short i = 0; i < 60; i++) {
 		loadCollisionRow(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
 	}
 	for (short i = -1; i != 31; i++) {
-		unknownC00E16(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
+		loadMapRowVRAM(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
 	}
 	while (unknown7E0028.a != 0) { waitForInterrupt(); }
 	bg2XPosition = cast(short)(unknown7E4380 - 0x80);
@@ -621,7 +621,7 @@ void loadMapAtPosition(short x, short y) {
 		unknown7E4390[i] = -1;
 	}
 	for (short i = 0; i < 60; i++) {
-		unknownC00AC5(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
+		loadMapRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
 	}
 	for (short i = 0; i < 60; i++) {
 		loadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
@@ -638,11 +638,11 @@ void loadMapAtPosition(short x, short y) {
 	bg2YPosition = cast(short)(unknown7E4382 - 0x70);
 	bg1YPosition = cast(short)(unknown7E4382 - 0x70);
 	for (short i = -1; i != 31; i++) {
-		unknownC00E16(cast(short)(x02 - 16), cast(short)(x12 - 14 + i));
-		unknownC0255C(cast(short)(x02 - 16), cast(short)(x12 - 14 + i));
+		loadMapRowVRAM(cast(short)(x02 - 16), cast(short)(x12 - 14 + i));
+		spawnNPCsRow(cast(short)(x02 - 16), cast(short)(x12 - 14 + i));
 	}
 	for (short i = -8; i != 40; i++) {
-		spawnHorizontal(cast(short)(x02 - 16), cast(short)(x12 + i));
+		spawnEnemiesRow(cast(short)(x02 - 16), cast(short)(x12 + i));
 	}
 	if (unknown7E4A58 != 0) {
 		unknown7E4A58 = -1;
@@ -662,35 +662,35 @@ void refreshMapAtPosition(short x, short y) {
 	while ((unknown7E4374 - x04) != 0) {
 		if (((unknown7E4374 - x04) < 0) != 0) {
 			unknown7E4374++;
-			unknownC00BDC(cast(short)(unknown7E4374 + 41), cast(short)(x02 - 16));
+			loadMapColumn(cast(short)(unknown7E4374 + 41), cast(short)(x02 - 16));
 			loadCollisionColumn(cast(short)(unknown7E4374 + 41), cast(short)(x02 - 16));
-			unknownC00FCB(cast(short)(unknown7E4374 + 32), x02);
-			unknownC025CF(cast(short)(unknown7E4374 + 34), cast(short)(x02 - 1));
-			spawnVertical(cast(short)(unknown7E4374 + 40), cast(short)(x02 - 8));
+			loadMapColumnVRAM(cast(short)(unknown7E4374 + 32), x02);
+			spawnNPCsColumn(cast(short)(unknown7E4374 + 34), cast(short)(x02 - 1));
+			spawnEnemiesColumn(cast(short)(unknown7E4374 + 40), cast(short)(x02 - 8));
 		} else {
 			unknown7E4374--;
-			unknownC00BDC(cast(short)(unknown7E4374 - 16), cast(short)(x02 - 16));
+			loadMapColumn(cast(short)(unknown7E4374 - 16), cast(short)(x02 - 16));
 			loadCollisionColumn(cast(short)(unknown7E4374 - 16), cast(short)(x02 - 16));
-			unknownC00FCB(cast(short)(unknown7E4374 - 1), x02);
-			unknownC025CF(cast(short)(unknown7E4374 - 3), cast(short)(x02 - 1));
-			spawnVertical(cast(short)(unknown7E4374 - 8), cast(short)(x02 - 8));
+			loadMapColumnVRAM(cast(short)(unknown7E4374 - 1), x02);
+			spawnNPCsColumn(cast(short)(unknown7E4374 - 3), cast(short)(x02 - 1));
+			spawnEnemiesColumn(cast(short)(unknown7E4374 - 8), cast(short)(x02 - 8));
 		}
 	}
 	while ((unknown7E4376 - x02) != 0) {
 		if (((unknown7E4376 - x02) < 0) != 0) {
 			unknown7E4376++;
-			unknownC00AC5(cast(short)(x04 - 16), cast(short)(unknown7E4376 + 41));
+			loadMapRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 + 41));
 			loadCollisionRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 + 41));
-			unknownC00E16(x04, cast(short)(unknown7E4376 + 28));
-			unknownC0255C(x04, cast(short)(unknown7E4376 + 29));
-			spawnHorizontal(cast(short)(x04 - 8), cast(short)(unknown7E4376 + 36));
+			loadMapRowVRAM(x04, cast(short)(unknown7E4376 + 28));
+			spawnNPCsRow(x04, cast(short)(unknown7E4376 + 29));
+			spawnEnemiesRow(cast(short)(x04 - 8), cast(short)(unknown7E4376 + 36));
 		} else {
 			unknown7E4376--;
-			unknownC00AC5(cast(short)(x04 - 16), cast(short)(unknown7E4376 - 16));
+			loadMapRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 - 16));
 			loadCollisionRow(cast(short)(x04 - 16), cast(short)(unknown7E4376 - 16));
-			unknownC00E16(x04, cast(short)(unknown7E4376 - 1));
-			unknownC0255C(x04, cast(short)(unknown7E4376 - 1));
-			spawnHorizontal(cast(short)(x04 - 8), cast(short)(unknown7E4376 - 8));
+			loadMapRowVRAM(x04, cast(short)(unknown7E4376 - 1));
+			spawnNPCsRow(x04, cast(short)(unknown7E4376 - 1));
+			spawnEnemiesRow(cast(short)(x04 - 8), cast(short)(unknown7E4376 - 8));
 		}
 	}
 	unknown7E4386 = x;
@@ -773,7 +773,7 @@ void unknownC019E2() {
 	short x04 = (bg1XPosition - 0x80) /8;
 	short x10 = (bg1YPosition - 0x80) /8;
 	for (short i = 0; i < 60; i++) {
-		unknownC00AC5(x04, cast(short)(x10 + i));
+		loadMapRow(x04, cast(short)(x10 + i));
 	}
 	for (short i = 0; i < 60; i++) {
 		loadCollisionRow(x04, cast(short)(x10 + i));
@@ -782,7 +782,7 @@ void unknownC019E2() {
 
 /// $C01A63
 void unknownC01A63(short x, short y) {
-	unknownC00E16(x, y);
+	loadMapRowVRAM(x, y);
 }
 
 /// $C01A69
@@ -1122,7 +1122,7 @@ void trySpawnNPCs(short x, short y) {
 }
 
 /// $C0255C
-void unknownC0255C(short x, short y) {
+void spawnNPCsRow(short x, short y) {
 	short x12 = void;
 	short x14 = short.min;
 	if (unknown7E4A58 == 0) {
@@ -1146,7 +1146,7 @@ void unknownC0255C(short x, short y) {
 }
 
 /// $C025CF
-void unknownC025CF(short x, short y) {
+void spawnNPCsColumn(short x, short y) {
 	short x10 = void;
 	short x_ = short.min;
 	if (unknown7E4A58 == 0) {
@@ -1318,7 +1318,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 }
 
 /// $C02A6B
-void spawnHorizontal(short x, short y) {
+void spawnEnemiesRow(short x, short y) {
 	if (getEventFlag(EventFlag.unknown00B) != 0) {
 		return;
 	}
@@ -1358,7 +1358,7 @@ void spawnHorizontal(short x, short y) {
 }
 
 /// $C02B55
-void spawnVertical(short x, short y) {
+void spawnEnemiesColumn(short x, short y) {
 	if (getEventFlag(EventFlag.unknown00B) != 0) {
 		return;
 	}
