@@ -7696,7 +7696,11 @@ void playSfx(short sfx) {
 	}
 }
 void playSfxUnknown() {
-	APUIO3 = 0x57;
+	version(original) {
+		APUIO3 = 0x57;
+	} else {
+		playSFX(0);
+	}
 }
 
 /// $C0AC0C
