@@ -7606,47 +7606,55 @@ short openFlavourMenu() {
 /// $C1F805
 void fileMenuLoop() {
 	debug(nofileselect) {
-		gameState.textSpeed = 1;
-		foreach (idx, ref character; partyCharacters) {
-			character.name = dontCareNames[idx][0][0 .. character.name.length];
-		}
-		gameState.petName = dontCareNames[4][0];
-		gameState.favouriteFood = dontCareNames[5][0];
-		gameState.favouriteThing[0 .. 6] = dontCareNames[6][0];
-		unknownC021E6();
-		for (short i = 0; 4 > i; i++) {
-			resetCharLevelOne(cast(short)(i + 1), initialStats[i].level, 0);
-			if (initialStats[i].exp != 0) {
-				gainEXP(cast(short)(i + 1), 0, initialStats[i].exp);
+		loadGameSlot(0);
+		if (gameState.favouriteThing[1] != 0) {
+			unknownC064D4();
+			reloadHotspots();
+			respawnX = gameState.leaderX.integer;
+			respawnY = gameState.leaderY.integer;
+		} else {
+			gameState.textSpeed = 1;
+			foreach (idx, ref character; partyCharacters) {
+				character.name = dontCareNames[idx][0][0 .. character.name.length];
 			}
-			partyCharacters[i].hp.target = partyCharacters[i].hp.current.integer = partyCharacters[i].maxHP;
-			partyCharacters[i].pp.target = partyCharacters[i].pp.current.integer = partyCharacters[i].maxPP;
-			partyCharacters[i].pp.current.fraction = 0;
-			partyCharacters[i].hp.current.fraction = 0;
-			memset(&partyCharacters[i].items[0], 0, PartyCharacter.items.length);
-			memcpy(&partyCharacters[i].items[0], &initialStats[i].items[0], PartyCharacter.items.length);
-			partyCharacters[i].hpPPWindowOptions = 0x400;
-		}
-		gameState.moneyCarried = initialStats[0].money;
-		unknownC0B65F(initialStats[0].unknown0, initialStats[0].unknown2);
-		gameState.favouriteThing[0] = ebChar('P');
-		gameState.favouriteThing[1] = ebChar('S');
-		gameState.favouriteThing[2] = ebChar('I');
-		gameState.favouriteThing[3] = ebChar(' ');
-		for (short i = 4; gameState.favouriteThing.length - 1 > i; i++) {
-			if (gameState.favouriteThing[i] == 0) {
-				gameState.favouriteThing[i] = ebChar(' ');
-				break;
+			gameState.petName = dontCareNames[4][0];
+			gameState.favouriteFood = dontCareNames[5][0];
+			gameState.favouriteThing[0 .. 6] = dontCareNames[6][0];
+			unknownC021E6();
+			for (short i = 0; 4 > i; i++) {
+				resetCharLevelOne(cast(short)(i + 1), initialStats[i].level, 0);
+				if (initialStats[i].exp != 0) {
+					gainEXP(cast(short)(i + 1), 0, initialStats[i].exp);
+				}
+				partyCharacters[i].hp.target = partyCharacters[i].hp.current.integer = partyCharacters[i].maxHP;
+				partyCharacters[i].pp.target = partyCharacters[i].pp.current.integer = partyCharacters[i].maxPP;
+				partyCharacters[i].pp.current.fraction = 0;
+				partyCharacters[i].hp.current.fraction = 0;
+				memset(&partyCharacters[i].items[0], 0, PartyCharacter.items.length);
+				memcpy(&partyCharacters[i].items[0], &initialStats[i].items[0], PartyCharacter.items.length);
+				partyCharacters[i].hpPPWindowOptions = 0x400;
 			}
+			gameState.moneyCarried = initialStats[0].money;
+			unknownC0B65F(initialStats[0].unknown0, initialStats[0].unknown2);
+			gameState.favouriteThing[0] = ebChar('P');
+			gameState.favouriteThing[1] = ebChar('S');
+			gameState.favouriteThing[2] = ebChar('I');
+			gameState.favouriteThing[3] = ebChar(' ');
+			for (short i = 4; gameState.favouriteThing.length - 1 > i; i++) {
+				if (gameState.favouriteThing[i] == 0) {
+					gameState.favouriteThing[i] = ebChar(' ');
+					break;
+				}
+			}
+			gameState.unknownC3 = 1;
+			respawnX = gameState.leaderX.integer;
+			respawnY = gameState.leaderY.integer;
+			unknownC064D4();
+			unknownC0B65F(0x840, 0x6E8);
+			unknownC46881(textFileSelectScreen1.ptr);
+			setEventFlag(EventFlag.unknown00B, 1);
+			showNPCFlag = 1;
 		}
-		gameState.unknownC3 = 1;
-		respawnX = gameState.leaderX.integer;
-		respawnY = gameState.leaderY.integer;
-		unknownC064D4();
-		unknownC0B65F(0x840, 0x6E8);
-		unknownC46881(textFileSelectScreen1.ptr);
-		setEventFlag(EventFlag.unknown00B, 1);
-		showNPCFlag = 1;
 	} else {
 		outermost: while (true) {
 			setInstantPrinting();
