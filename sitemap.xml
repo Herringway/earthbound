@@ -1558,7 +1558,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/lumineHallText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/mapDataTileTableChunksTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/miscTargetText.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/musicDatasetTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/pathC4B859.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/pathC4B923.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/pathC4BAF6.html</loc></url>
@@ -2793,6 +2792,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/PlayerPositionBufferEntry.walkingStyle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PlayerPositionBufferEntry.xCoord.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PlayerPositionBufferEntry.yCoord.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/playMusicExternal.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/playSFX.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PSIAbility.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/PSIAbility.battleAction.html</loc></url>
@@ -2926,6 +2926,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Status4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Status5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Status6.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/stopMusicExternal.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SurfaceFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TelephoneContact.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TelephoneContact.eventFlag.html</loc></url>
