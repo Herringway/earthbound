@@ -3719,7 +3719,13 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	}
 	unknownC06B3D();
 	unknownC07C5B();
-	playSfx(getScreenTransitionSoundEffect(arg1.unknown10, 1));
+	version(bugfix) {
+		if (auto sfx = getScreenTransitionSoundEffect(arg1.unknown10, 1)) {
+			playSfx(sfx);
+		}
+	} else {
+		playSfx(getScreenTransitionSoundEffect(arg1.unknown10, 1));
+	}
 	if (unknown7EB4B6 != 0) {
 		fadeOut(1, 1);
 	} else {
@@ -3749,7 +3755,14 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	}
 	changeMapMusic();
 	unknownC065A3();
-	playSfx(getScreenTransitionSoundEffect(arg1.unknown10, 0));
+	unknownC07C5B();
+	version(bugfix) {
+		if (auto sfx = getScreenTransitionSoundEffect(arg1.unknown10, 0)) {
+			playSfx(sfx);
+		}
+	} else {
+		playSfx(getScreenTransitionSoundEffect(arg1.unknown10, 0));
+	}
 	if (unknown7EB4B6 != 0) {
 		fadeIn(1, 1);
 	} else {
