@@ -1592,7 +1592,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 		if ((arg1 == PartyMember.paula) || (arg1 == PartyMember.poo)) {
 			x04 += 2;
 		}
-		selectionMenuItemSetup(3, x04, 0, &battleMenuText[4][0], null);
+		selectionMenuItemSetup(3, x04, 0, &battleMenuText[2][0], null);
 		selectionMenuItemSetup(6, x04, 1, &battleMenuText[8][0], null);
 	}
 	if (arg1 == PartyMember.jeff) {
