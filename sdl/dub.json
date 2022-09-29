@@ -4,7 +4,11 @@
 	"dependencies": {
 		"bindbc-sdl": "~>1.0.1",
 		"siryul": "~>0.6",
-		"earthbound": "*"
+		"earthbound": "*",
+		"nspcplay": {
+			"repository": "git+https://github.com/Herringway/nspcplay.git",
+			"version": "19c4b5e575825c38b37dc84f1f1f9482b0d0220d"
+		}
 	},
 	"subConfigurations": {
 		"earthbound": "bugfix"

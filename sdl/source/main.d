@@ -1,6 +1,6 @@
 import std.stdio;
 import std.experimental.logger;
-import std.file : dirEntries, exists, SpanMode;
+import std.file : dirEntries, exists, read, SpanMode;
 import std.conv : to;
 import std.path : baseName, stripExtension;
 import std.algorithm : filter;
@@ -20,6 +20,7 @@ import earthbound.bank00 : start, nmi;
 import earthbound.commondefs;
 import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
 
+import nspc;
 import sfcdma;
 import snesdrawframe;
 import snesdrawframedata;
@@ -44,7 +45,21 @@ void saveGraphicsStateToFile(string filename) {
 }
 
 bool initAudio(ubyte channels, uint sampleRate) {
-	return Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) != -1;
+	auto result = Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) != -1;
+	Mix_HookMusic(&nspcFillBuffer, &nspcplayer);
+	return result;
+}
+
+void stopMusic() {
+	nspcplayer.stop();
+}
+
+void playMusic(ushort track) {
+	nspcplayer.stop();
+	if (auto trackData = track in loadedSongs) {
+		nspcplayer.loadNSPCFile(*trackData);
+		nspcplayer.play();
+	}
 }
 
 void playSFX(ubyte id) {
@@ -64,6 +79,18 @@ void playSFX(ubyte id) {
 }
 
 Mix_Chunk*[uint] loadedSFX;
+ubyte[][uint] loadedSongs;
+__gshared NSPCPlayer nspcplayer;
+
+extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
+	import std.exception : assumeWontThrow;
+    try {
+        (cast(NSPCPlayer*)user).fillBuffer(cast(short[2][])(buf[0 .. bufSize]));
+    } catch (Error e) {
+        assumeWontThrow(writeln(e));
+        throw e;
+    }
+}
 
 void main(string[] args) {
 	if (!"settings.yml".exists) {
@@ -133,7 +160,7 @@ void main(string[] args) {
 		SDLError("Error initializing audio");
 		return;
 	}
-	info("SDL audio subsystem initialized");
+	infof("SDL audio subsystem initialized (%s)", SDL_GetCurrentAudioDriver().fromStringz);
 
 	const rendererFlags = SDL_RENDERER_ACCELERATED;
 	SDL_Renderer* renderer = SDL_CreateRenderer(
@@ -189,6 +216,24 @@ void main(string[] args) {
 				loadedSFX[id] = Mix_LoadWAV(sfxFile.name.toStringz);
 			} catch (Exception e) {
 				errorf("Could not load %s: %s", sfxFile, e.msg);
+			}
+		}
+	}
+
+	int finalSampleRate;
+	int finalChannels;
+	ushort finalFormat;
+	Mix_QuerySpec(&finalSampleRate, &finalFormat, &finalChannels);
+
+	nspcplayer.initialize(finalSampleRate);
+
+	if ("data/songs/".exists) {
+		foreach (songFile; dirEntries("data/songs", "*.nspc", SpanMode.depth)) {
+			try {
+				const id = songFile.baseName.stripExtension.to!uint;
+				loadedSongs[id] = cast(ubyte[])read(songFile.name);
+			} catch (Exception e) {
+				errorf("Could not load %s: %s", songFile, e.msg);
 			}
 		}
 	}
@@ -279,6 +324,8 @@ void main(string[] args) {
 	waitForInterrupt = () { Fiber.yield(); };
 	earthbound.commondefs.handleDma = &sfcdma.handleDma;
 	earthbound.commondefs.playSFX = &playSFX;
+	playMusicExternal = &playMusic;
+	stopMusicExternal = &stopMusic;
 	auto game = new Fiber(&start);
 	while(run) {
 		step = !pause;

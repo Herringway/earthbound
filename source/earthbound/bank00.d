@@ -7595,7 +7595,7 @@ void actionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
 
 /// $C0ABA8
 void waitForSPC700() {
-	version(audio) {
+	version(original) {
 		APUIO2 = 0;
 		APUIO0 = 0;
 		do {
@@ -7607,11 +7607,13 @@ void waitForSPC700() {
 
 /// $C0ABC6
 void stopMusic() {
-	version(audio) {
+	version(original) {
 		APUIO0 = 0;
 		while (unknownC0AC20() != 0) {}
-		currentMusicTrack = 0xFFFF;
+	} else {
+		stopMusicExternal();
 	}
+	currentMusicTrack = 0xFFFF;
 }
 
 /// $C0ABBD
@@ -7622,7 +7624,7 @@ void unknownC0ABBD(short arg1) {
 /// $C0ABC6
 //original version had separate bank/addr parameters
 void loadSPC700Data(const(ubyte)* data) {
-	version(audio) {
+	version(original) {
 		spcDataPointer = data;
 		//unknown7E00C8 = bank;
 		ushort y = 0;

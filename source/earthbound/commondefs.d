@@ -6217,6 +6217,10 @@ void function() handleDma = () {};
 ///
 void function(ubyte) playSFX = (ubyte) {};
 ///
+void function(ushort) playMusicExternal = (ushort) {};
+///
+void function() stopMusicExternal = () {};
+///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
 	size_t idx;
