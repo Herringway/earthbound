@@ -13032,6 +13032,12 @@ dumpEntries:
   size: 25
   extension: flyover
   compressed: false
+- subdir: songs
+  name: ''
+  offset: 0x4F70A
+  size: 573
+  extension: nspc
+  compressed: false
 textTable:
   0: 0
 flyoverTextTable:
@@ -13139,3 +13145,7 @@ romIdentifier: 'EARTH BOUND          '
 dontUseTextTable: false
 multibyteFlyovers: false
 d: true
+music:
+  packPointerTable: 0x4F947
+  songPointerTable: 0x26298C
+  numPacks: 0xA9
