@@ -8318,7 +8318,7 @@ void unknownC2FD99() {
 
 /// $C2FEF9
 void unknownC2FEF9(short type) {
-	if (type - 1 != 0) {
+	if (type != 0) {
 		memcpy(&palettes[8][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[13][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[14][0], &unknownC3F8F1[type - 1][0], 32);
@@ -8326,8 +8326,8 @@ void unknownC2FEF9(short type) {
 		unknownC0856B(16);
 		return;
 	}
-	for (short i = 32 * 4; i < 32 * 6; i++) {
-		palettes[(i / 32) + 4][i % 32] = (palettes[i / 32][i % 32] >> 2) & ((7 << 10) | (7 << 5) | 7);
+	for (short i = 16 * 8; i < 16 * 12; i++) {
+		palettes[(i / 16) + 4][i % 16] = (palettes[i / 16][i % 16] >> 2) & ((7 << 10) | (7 << 5) | 7);
 	}
 	unknownC0856B(16);
 }
