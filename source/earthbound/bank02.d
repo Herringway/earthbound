@@ -2546,11 +2546,10 @@ short battleRoutine() {
 							continue infiniteBattleLoop;
 						}
 						if (x1F == 0) {
-							if (i == 0) {
-								continue;
+							if (x19 != 0) {
+								x19--;
+								i = unknown7EAA66[x19];
 							}
-							x19--;
-							i = unknown7EAA66[x19];
 							continue;
 						}
 						unknown7EAA66[x19] = i;
