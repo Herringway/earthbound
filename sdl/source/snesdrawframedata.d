@@ -64,7 +64,7 @@ align:
 	ushort numHdmaWrites;
 	HDMAWrite[4*8*240] hdmaData;
 	void toString(T)(T sink) const {
-		import std.format : formattedWrite;
+		import std.format : format, formattedWrite;
 		import std.range : chunks, enumerate, put;
 		static immutable sprite1Widths = [8, 8, 8, 16, 16, 32, 16, 16];
 		static immutable sprite1Heights = [8, 8, 8, 16, 16, 32, 32, 32];
@@ -75,20 +75,22 @@ align:
 		sink.formattedWrite!"BG2 - Tilemap: $%04X, Tiles: $%04X, Tile size: %s\n"((BG2SC & 0b11111100) << 9, (BG12NBA & 0b11110000) << 9, !!(BGMODE & 0b01000000) ? "8x8" : "16x16");
 		sink.formattedWrite!"BG3 - Tilemap: $%04X, Tiles: $%04X, Tile size: %s\n"((BG3SC & 0b11111100) << 9, (BG34NBA & 0b00001111) << 13, !!(BGMODE & 0b00100000) ? "8x8" : "16x16");
 		sink.formattedWrite!"BG4 - Tilemap: $%04X, Tiles: $%04X, Tile size: %s\n"((BG4SC & 0b11111100) << 9, (BG34NBA & 0b11110000) << 9, !!(BGMODE & 0b00010000) ? "8x8" : "16x16");
-		sink.formattedWrite!"OAM: $%04X (name %s), table: $%04X (priority: %s), Sprite sizes: %sx%s, %sx%s\n"(
+		string spriteSize1 = format!"%sx%s"(sprite1Widths[(OBSEL & 0b11100000) >> 5], sprite1Heights[(OBSEL & 0b11100000) >> 5]);
+		string spriteSize2 = format!"%sx%s"(sprite2Widths[(OBSEL & 0b11100000) >> 5], sprite2Heights[(OBSEL & 0b11100000) >> 5]);
+		sink.formattedWrite!"OAM: $%04X (name $%04X), table: $%04X (priority: %s), Sprite sizes: %s, %s\n"(
 			(OBSEL & 0b00000111) << 14,
 			(OBSEL & 0b00011000) >> 3,
 			OAMADDR & 0b0000000111111111,
 			!!(OAMADDR & 0b1000000000000000),
-			sprite1Widths[(OBSEL & 0b11100000) >> 5],
-			sprite1Heights[(OBSEL & 0b11100000) >> 5],
-			sprite2Widths[(OBSEL & 0b11100000) >> 5],
-			sprite2Heights[(OBSEL & 0b11100000) >> 5]
+			spriteSize1,
+			spriteSize2
 		);
 		sink.formattedWrite!"OAM Table: \n"();
 		foreach (id, entry; oam1) {
+			const uint upperX = !!(oam2[id/4] & (1 << ((id % 4) * 2)));
+			const size = !!(oam2[id/4] & (1 << ((id % 4) * 2 + 1)));
 			if (entry.yCoord >= 0) {
-				sink.formattedWrite!"\t% d: %s (%d, %d) palette: %s, flip vertical: %s, flip horizontal: %s, priority: %s\n"(id, entry.startingTile, entry.xCoord, entry.yCoord, entry.palette, entry.flipVertical, entry.flipHorizontal, entry.priority);
+				sink.formattedWrite!"\t% d: %s (%d, %d) palette: %s, flip vertical: %s, flip horizontal: %s, priority: %s, nametable: %s, size: %s\n"(id, entry.startingTile, entry.xCoord + (upperX << 8), entry.yCoord, entry.palette, entry.flipVertical, entry.flipHorizontal, entry.priority, entry.nameTable, size ? spriteSize2 : spriteSize1);
 			}
 		}
 		foreach (idx, palette; cgram[].chunks(16).enumerate) {
