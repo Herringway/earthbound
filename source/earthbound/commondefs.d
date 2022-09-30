@@ -6565,6 +6565,17 @@ T ROR(T)(T val, ref bool carry) {
 	carry = LSB;
 	return val;
 }
+unittest {
+	static immutable bool[] carries = [true, false, false, false, false, false, false, false];
+	static immutable ubyte[] vals = [0, 128, 64, 32, 16, 8, 4, 2];
+	ubyte f = 1;
+	bool carry;
+	foreach(idx; 0 .. 8) {
+		f = ROR(f, carry);
+		assert(carry == carries[idx]);
+		assert(f == vals[idx]);
+	}
+}
 ///
 T ROL(T)(T val, ref bool carry) {
 	bool MSB = !!(val & (1 << ((T.sizeof * 8) - 1)));
@@ -6572,6 +6583,17 @@ T ROL(T)(T val, ref bool carry) {
 	val |= carry;
 	carry = MSB;
 	return val;
+}
+unittest {
+	static immutable bool[] carries = [false, false, false, false, false, false, false, true];
+	static immutable ubyte[] vals = [2, 4, 8, 16, 32, 64, 128, 0];
+	ubyte f = 1;
+	bool carry;
+	foreach(idx; 0 .. 8) {
+		f = ROL(f, carry);
+		assert(carry == carries[idx]);
+		assert(f == vals[idx]);
+	}
 }
 ///
 void XBA(T)(ref T val) {
