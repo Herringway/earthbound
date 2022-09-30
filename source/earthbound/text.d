@@ -12,7 +12,7 @@ const(ubyte)* getTextBlock(string label) {
 	return cast(const(ubyte)*)textData.get(label, &r[0]);
 }
 
-void loadText(StructuredText[] script, string label) {
+void loadText(const StructuredText[] script, const string label) {
 	import std.algorithm.comparison : among;
 	ubyte[] data;
 	foreach (cc; script) {
