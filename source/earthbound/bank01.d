@@ -6683,9 +6683,9 @@ void resetCharLevelOne(short arg1, short arg2, short arg3) {
 	} else {
 		x10 = 0;
 	}
-	partyCharacters[arg1 - 1].maxHP = x10;
-	partyCharacters[arg1 - 1].hp.target = x10;
-	partyCharacters[arg1 - 1].hp.current.integer = x10;
+	partyCharacters[arg1 - 1].maxPP = x10;
+	partyCharacters[arg1 - 1].pp.target = x10;
+	partyCharacters[arg1 - 1].pp.current.integer = x10;
 	recalcCharacterPostmathOffense(arg1);
 	recalcCharacterPostmathDefense(arg1);
 	recalcCharacterPostmathSpeed(arg1);
