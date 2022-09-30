@@ -2477,6 +2477,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.graphics.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.height.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.width.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/FullOAMTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.activeHotspotIDs.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.activeHotspotModes.html</loc></url>
@@ -3359,9 +3360,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/numBattlersInBackRow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/numBattlersInFrontRow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/oam1.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/oam1HighTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/oam2.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/oam2HighTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/oamAddr.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/oamEndAddr.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/oamHighTableAddr.html</loc></url>
