@@ -4,12 +4,6 @@ module earthbound.bank15;
 import earthbound.commondefs;
 import earthbound.bank01;
 import earthbound.bank02;
-import earthbound.bank05;
-import earthbound.bank06;
-import earthbound.bank07;
-import earthbound.bank08;
-import earthbound.bank09;
-import earthbound.bank2F;
 import earthbound.text;
 
 //TONY_IN_BED
