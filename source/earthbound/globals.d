@@ -133,11 +133,9 @@ __gshared DMAQueueEntry[30] dmaQueue; /// $0400
 
 
 //OAM data for every odd frame
-__gshared OAMEntry[128] oam1; /// $0500
-__gshared ubyte[32] oam1HighTable; /// $0700
+__gshared FullOAMTable oam1; /// $0500
 // Same as OAM1, but used for every other frame
-__gshared OAMEntry[128] oam2; /// $0800
-__gshared ubyte[32] oam2HighTable; /// $0A00
+__gshared FullOAMTable oam2; /// $0800
 
 __gshared short unknown7E0A34; /// $0A34
 __gshared short unknown7E0A36; /// $0A36

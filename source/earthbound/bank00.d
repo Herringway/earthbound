@@ -4972,20 +4972,20 @@ void oamClear() {
 	unknown7E2708 = 0;
 	unknown7E280A = 0;
 	if (nextFrameBufferID - 1 == 0) {
-		oamAddr = &oam1[0];
-		oamEndAddr = oam1.ptr + 128;
-		oamHighTableAddr = &oam1HighTable[0];
+		oamAddr = &oam1.mainTable[0];
+		oamEndAddr = &oam1.mainTable.ptr[128];
+		oamHighTableAddr = &oam1.highTable[0];
 		unknown7E000A = 0x80;
 		for (short i = 0; i < 128; i++) { //original code has this loop unrolled
-			oam1[i].yCoord = -32;
+			oam1.mainTable[i].yCoord = -32;
 		}
 	} else {
-		oamAddr = &oam2[0];
-		oamEndAddr = oam2.ptr + 128;
-		oamHighTableAddr = &oam2HighTable[0];
+		oamAddr = &oam2.mainTable[0];
+		oamEndAddr = &oam2.mainTable.ptr[128];
+		oamHighTableAddr = &oam2.highTable[0];
 		unknown7E000A = 0x80;
 		for (short i = 0; i < 128; i++) { //original code has this loop unrolled
-			oam2[i].yCoord = -32;
+			oam2.mainTable[i].yCoord = -32;
 		}
 	}
 }

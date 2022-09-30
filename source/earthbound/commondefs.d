@@ -5635,6 +5635,13 @@ struct SpriteMap {
 	}
 }
 ///
+struct FullOAMTable {
+	import earthbound.hardware : OAMEntry;
+	align(1):
+	OAMEntry[128] mainTable;
+	ubyte[32] highTable;
+}
+///
 struct TownMapData {
 	ubyte unknown0; ///
 	ubyte unknown1; ///
