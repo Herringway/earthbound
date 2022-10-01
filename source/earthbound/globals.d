@@ -604,7 +604,7 @@ __gshared WorkingMemory wramScriptWorkMemory; /// $97CC
 __gshared uint wramScriptArgMemory; /// $97D0
 __gshared ubyte wramScriptSecMemory; /// $97D4
 __gshared short unknown7E97D5; /// $97D5
-__gshared ubyte[3] unknown7E97D7; /// $97D7
+__gshared ubyte[30] unknown7E97D7; /// $97D7
 
 __gshared GameState gameState; /// $97F5
 __gshared PartyCharacter[totalPartyCount] partyCharacters; /// $99CE
