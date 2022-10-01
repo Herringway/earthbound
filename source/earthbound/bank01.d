@@ -7490,7 +7490,7 @@ void fileMenuLoop() {
 			respawnY = gameState.leaderY.integer;
 			unknownC064D4();
 			unknownC0B65F(0x840, 0x6E8);
-			unknownC46881(textFileSelectScreen1.ptr);
+			unknownC46881(getTextBlock("textFileSelectScreen1"));
 			setEventFlag(EventFlag.unknown00B, 1);
 			showNPCFlag = 1;
 		}
