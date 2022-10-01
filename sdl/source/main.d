@@ -229,6 +229,7 @@ void main(string[] args) {
 			}
 		}
 	}
+	tracef("Loaded text");
 
 	int finalSampleRate;
 	int finalChannels;

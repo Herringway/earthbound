@@ -13038,8 +13038,147 @@ dumpEntries:
   size: 573
   extension: nspc
   compressed: false
+- subdir: text_data
+  name: '0'
+  offset: 0x50000
+  size: 65516
+  extension: ebtxt
+  compressed: false
+- subdir: text_data
+  name: '1'
+  offset: 0x60000
+  size: 65507
+  extension: ebtxt
+  compressed: false
+- subdir: text_data
+  name: '2'
+  offset: 0x70000
+  size: 65344
+  extension: ebtxt
+  compressed: false
+- subdir: text_data
+  name: '3'
+  offset: 0x80000
+  size: 48173
+  extension: ebtxt
+  compressed: false
+- subdir: text_data
+  name: '4'
+  offset: 0x8D9ED
+  size: 9747
+  extension: ebtxt
+  compressed: false
+- subdir: text_data
+  name: '5'
+  offset: 0x90000
+  size: 65327
+  extension: ebtxt
+  compressed: false
+- subdir: text_data
+  name: '6'
+  offset: 0x2F4E20
+  size: 21850
+  extension: ebtxt
+  compressed: false
+- subdir: text_data
+  name: '7'
+  offset: 0x2FA6EB
+  size: 36
+  extension: ebtxt
+  compressed: false
 textTable:
-  0: 0
+  0x50: ' '
+  0x51: '!'
+  0x52: '&'
+  0x53: '{'
+  0x54: $
+  0x55: '%'
+  0x56: '}'
+  0x57: ''''
+  0x58: (
+  0x59: )
+  0x5A: '*'
+  0x5C: ','
+  0x5D: '-'
+  0x5E: .
+  0x60: '0'
+  0x61: '1'
+  0x62: '2'
+  0x63: '3'
+  0x64: '4'
+  0x65: '5'
+  0x66: '6'
+  0x67: '7'
+  0x68: '8'
+  0x69: '9'
+  0x6A: ':'
+  0x6B: ;
+  0x6C: <
+  0x6D: '='
+  0x6E: '>'
+  0x6F: '?'
+  0x70: '@'
+  0x71: A
+  0x72: B
+  0x73: C
+  0x74: D
+  0x75: E
+  0x76: F
+  0x77: G
+  0x78: H
+  0x79: I
+  0x7A: J
+  0x7B: K
+  0x7C: L
+  0x7D: M
+  0x7E: 'N'
+  0x7F: O
+  0x80: P
+  0x81: Q
+  0x82: R
+  0x83: S
+  0x84: T
+  0x85: U
+  0x86: V
+  0x87: W
+  0x88: X
+  0x89: 'Y'
+  0x8A: Z
+  0x8B: '~'
+  0x8C: ^
+  0x8D: '['
+  0x8E: ']'
+  0x8F: '#'
+  0x90: _
+  0x91: a
+  0x92: b
+  0x93: c
+  0x94: d
+  0x95: e
+  0x96: f
+  0x97: g
+  0x98: h
+  0x99: i
+  0x9A: j
+  0x9B: k
+  0x9C: l
+  0x9D: m
+  0x9E: 'n'
+  0x9F: o
+  0xA0: p
+  0xA1: q
+  0xA2: r
+  0xA3: s
+  0xA4: t
+  0xA5: u
+  0xA6: v
+  0xA7: w
+  0xA8: x
+  0xA9: 'y'
+  0xAA: z
+  0xAB: '['
+  0xAC: '|'
+  0xAD: ']'
 flyoverTextTable:
   0x50: ' '
   0x51: '!'
@@ -13133,13 +13272,3870 @@ flyoverTextTable:
   0xAB: '['
   0xAC: '|'
   0xAD: ']'
+forceTextLabels:
+- 0xC54A08
+- 0xC54E20
+- 0xC5689F
+- 0xC56B97
+- 0xC56BA0
+- 0xC56BA9
+- 0xC56BB2
+- 0xC56FFB
+- 0xC57067
+- 0xC5749A
+- 0xC57584
+- 0xC57878
+- 0xC57955
+- 0xC57C6F
+- 0xC57D85
+- 0xC58000
+- 0xC58103
+- 0xC5812F
+- 0xC58148
+- 0xC581E7
+- 0xC581EE
+- 0xC58214
+- 0xC5824B
+- 0xC58250
+- 0xC58262
+- 0xC582F8
+- 0xC58358
+- 0xC58364
+- 0xC58369
+- 0xC584B4
+- 0xC58555
+- 0xC58567
+- 0xC58597
+- 0xC58599
+- 0xC585A7
+- 0xC585BE
+- 0xC585C4
+- 0xC585C7
+- 0xC585DB
+- 0xC585F2
+- 0xC5860E
+- 0xC58614
+- 0xC58624
+- 0xC58636
+- 0xC5863C
+- 0xC58659
+- 0xC5865B
+- 0xC58669
+- 0xC58680
+- 0xC5869B
+- 0xC587EE
+- 0xC587F3
+- 0xC58813
+- 0xC589E6
+- 0xC58A61
+- 0xC58A8D
+- 0xC58AD7
+- 0xC58B6C
+- 0xC58B88
+- 0xC58BA0
+- 0xC58C2A
+- 0xC58C5F
+- 0xC58C69
+- 0xC58C73
+- 0xC58C7D
+- 0xC58D46
+- 0xC58D58
+- 0xC58D70
+- 0xC58D80
+- 0xC58D96
+- 0xC58DA9
+- 0xC58DBF
+- 0xC58E31
+- 0xC58E4A
+- 0xC58E73
+- 0xC58E9F
+- 0xC59894
+- 0xC599D0
+- 0xC5A512
+- 0xC5A525
+- 0xC5A578
+- 0xC5B3BA
+- 0xC5CF67
+- 0xC5D89E
+- 0xC5D8D0
+- 0xC5D8DA
+- 0xC5D905
+- 0xC5DED3
+- 0xC5DEEF
+- 0xC5DF3A
+- 0xC5DF56
+- 0xC5DF61
+- 0xC5DF7F
+- 0xC5DF89
+- 0xC5DFA7
+- 0xC5DFB1
+- 0xC5DFBA
+- 0xC5DFEF
+- 0xC5DFFA
+- 0xC5E013
+- 0xC5E038
+- 0xC5E08D
+- 0xC5E0CC
+- 0xC5E0DE
+- 0xC5E136
+- 0xC5E17E
+- 0xC5E188
+- 0xC5E18B
+- 0xC5E1AD
+- 0xC5E1B7
+- 0xC5E1D6
+- 0xC5E1E0
+- 0xC5E1EF
+- 0xC5E22C
+- 0xC5E236
+- 0xC5E241
+- 0xC5E24B
+- 0xC5E269
+- 0xC5E2B0
+- 0xC5E2E3
+- 0xC5E314
+- 0xC5E34A
+- 0xC5E433
+- 0xC5E453
+- 0xC5E455
+- 0xC5E48E
+- 0xC5E4F9
+- 0xC5E579
+- 0xC5EAA3
+- 0xC5EABF
+- 0xC5EACF
+- 0xC5EB0B
+- 0xC5EDD4
+- 0xC5EE13
+- 0xC5F2AD
+- 0xC5F39D
+- 0xC5F3D2
+- 0xC5F4F4
+- 0xC5F551
+- 0xC5F575
+- 0xC5F639
+- 0xC5F914
+- 0xC5F984
+- 0xC5F9DD
+- 0xC5FA72
+- 0xC60400
+- 0xC6044C
+- 0xC6050B
+- 0xC605D9
+- 0xC6070C
+- 0xC6078B
+- 0xC6081D
+- 0xC60829
+- 0xC60844
+- 0xC6085F
+- 0xC6087A
+- 0xC6088E
+- 0xC6089A
+- 0xC608B5
+- 0xC608D0
+- 0xC608EB
+- 0xC608FF
+- 0xC6090B
+- 0xC60985
+- 0xC60A0D
+- 0xC60A97
+- 0xC60B13
+- 0xC60B69
+- 0xC60B71
+- 0xC60FF3
+- 0xC61082
+- 0xC615E8
+- 0xC61696
+- 0xC6179B
+- 0xC618C2
+- 0xC619EF
+- 0xC61ADD
+- 0xC61C0F
+- 0xC61D50
+- 0xC61E81
+- 0xC61F97
+- 0xC6206B
+- 0xC6219A
+- 0xC622DC
+- 0xC62394
+- 0xC623A9
+- 0xC623BE
+- 0xC628A1
+- 0xC62A75
+- 0xC62D8A
+- 0xC62D91
+- 0xC62DF3
+- 0xC62E3B
+- 0xC62E6D
+- 0xC62EEF
+- 0xC62F1A
+- 0xC62F49
+- 0xC62F72
+- 0xC62F99
+- 0xC62FC5
+- 0xC63004
+- 0xC63032
+- 0xC63042
+- 0xC6307C
+- 0xC630A8
+- 0xC6311E
+- 0xC63146
+- 0xC6315A
+- 0xC631A1
+- 0xC631E3
+- 0xC632C7
+- 0xC632E2
+- 0xC6333C
+- 0xC63352
+- 0xC63382
+- 0xC63388
+- 0xC633C9
+- 0xC63407
+- 0xC63415
+- 0xC63494
+- 0xC634B4
+- 0xC634EA
+- 0xC6372D
+- 0xC63756
+- 0xC63790
+- 0xC6379F
+- 0xC637E8
+- 0xC63848
+- 0xC63888
+- 0xC638D4
+- 0xC638F8
+- 0xC63916
+- 0xC6393E
+- 0xC63958
+- 0xC639C9
+- 0xC63F1F
+- 0xC63F74
+- 0xC63F80
+- 0xC63FA2
+- 0xC63FFD
+- 0xC6400A
+- 0xC64066
+- 0xC64078
+- 0xC640A1
+- 0xC640F1
+- 0xC64116
+- 0xC64179
+- 0xC64192
+- 0xC6419C
+- 0xC641A6
+- 0xC641B0
+- 0xC6427C
+- 0xC642FC
+- 0xC64339
+- 0xC6436A
+- 0xC643A7
+- 0xC643DE
+- 0xC6441D
+- 0xC6449F
+- 0xC6451A
+- 0xC64671
+- 0xC64687
+- 0xC64698
+- 0xC646BB
+- 0xC647BD
+- 0xC647EF
+- 0xC6480C
+- 0xC64823
+- 0xC6483C
+- 0xC64865
+- 0xC648DA
+- 0xC648E3
+- 0xC648FC
+- 0xC64916
+- 0xC6491E
+- 0xC64983
+- 0xC64996
+- 0xC649E8
+- 0xC649FB
+- 0xC64A47
+- 0xC64A92
+- 0xC64AA0
+- 0xC64AB8
+- 0xC64ACF
+- 0xC64AE6
+- 0xC64B0B
+- 0xC64B59
+- 0xC64C0A
+- 0xC64C42
+- 0xC64C52
+- 0xC64C6A
+- 0xC64C9E
+- 0xC64CC9
+- 0xC64CF8
+- 0xC64DEE
+- 0xC64DF8
+- 0xC64E69
+- 0xC64E6E
+- 0xC64E86
+- 0xC64EA4
+- 0xC64ECA
+- 0xC64F66
+- 0xC64F73
+- 0xC64F9F
+- 0xC64FB3
+- 0xC64FDE
+- 0xC650AC
+- 0xC650C2
+- 0xC650D6
+- 0xC650EB
+- 0xC65105
+- 0xC6511C
+- 0xC652F1
+- 0xC6534A
+- 0xC653A5
+- 0xC6545D
+- 0xC65468
+- 0xC65496
+- 0xC654DE
+- 0xC654F3
+- 0xC6550E
+- 0xC65527
+- 0xC65544
+- 0xC65566
+- 0xC6564D
+- 0xC65671
+- 0xC656F5
+- 0xC65751
+- 0xC657AC
+- 0xC65858
+- 0xC65863
+- 0xC65892
+- 0xC658D4
+- 0xC658E8
+- 0xC65900
+- 0xC65923
+- 0xC6593E
+- 0xC65962
+- 0xC65975
+- 0xC65D81
+- 0xC66175
+- 0xC66392
+- 0xC664BA
+- 0xC664F2
+- 0xC66523
+- 0xC6653B
+- 0xC665E7
+- 0xC66B97
+- 0xC66BF6
+- 0xC66CC1
+- 0xC66E9F
+- 0xC6729B
+- 0xC6739F
+- 0xC67412
+- 0xC67763
+- 0xC678ED
+- 0xC679CD
+- 0xC67A4D
+- 0xC67AEB
+- 0xC67C7D
+- 0xC68264
+- 0xC684CE
+- 0xC685DA
+- 0xC685FA
+- 0xC68650
+- 0xC686C8
+- 0xC687A5
+- 0xC6899A
+- 0xC689FB
+- 0xC68B7D
+- 0xC69394
+- 0xC693BE
+- 0xC6A012
+- 0xC6A9A9
+- 0xC6AE07
+- 0xC6B027
+- 0xC6B063
+- 0xC6B28C
+- 0xC6B2A3
+- 0xC6B2CA
+- 0xC6B300
+- 0xC6B317
+- 0xC6B329
+- 0xC6B492
+- 0xC6B4FE
+- 0xC6B516
+- 0xC6B523
+- 0xC6B56E
+- 0xC6BC9B
+- 0xC6BD9D
+- 0xC6C118
+- 0xC6C129
+- 0xC6C13A
+- 0xC6C6EB
+- 0xC6D391
+- 0xC6D6A1
+- 0xC6D817
+- 0xC6D822
+- 0xC6D852
+- 0xC6DA37
+- 0xC6DA6D
+- 0xC6DB0A
+- 0xC6DBD5
+- 0xC6DD1D
+- 0xC6DEFA
+- 0xC6DF83
+- 0xC6E2AB
+- 0xC6E33A
+- 0xC6E36D
+- 0xC6E426
+- 0xC6E45A
+- 0xC6E57D
+- 0xC6E5A1
+- 0xC6E71E
+- 0xC6E7E9
+- 0xC6E884
+- 0xC6E90F
+- 0xC6E982
+- 0xC6E9D6
+- 0xC6EB2C
+- 0xC6ED74
+- 0xC6EE2E
+- 0xC701F6
+- 0xC70329
+- 0xC70511
+- 0xC70974
+- 0xC712EC
+- 0xC7246A
+- 0xC72709
+- 0xC72CAC
+- 0xC72CEE
+- 0xC72EF1
+- 0xC73039
+- 0xC73138
+- 0xC73296
+- 0xC732E1
+- 0xC735B3
+- 0xC7363A
+- 0xC73B87
+- 0xC73D5E
+- 0xC73F6C
+- 0xC74046
+- 0xC7407E
+- 0xC7410C
+- 0xC74403
+- 0xC744D7
+- 0xC74545
+- 0xC74802
+- 0xC74A4B
+- 0xC74B4A
+- 0xC74C49
+- 0xC752A3
+- 0xC7531D
+- 0xC7542C
+- 0xC7546F
+- 0xC7552D
+- 0xC755FB
+- 0xC75695
+- 0xC757CD
+- 0xC75910
+- 0xC75929
+- 0xC75E1C
+- 0xC75E6D
+- 0xC75EBC
+- 0xC7601A
+- 0xC76080
+- 0xC760B7
+- 0xC761CC
+- 0xC76357
+- 0xC76391
+- 0xC76AA7
+- 0xC76D3D
+- 0xC7719C
+- 0xC77208
+- 0xC7728E
+- 0xC7735D
+- 0xC774C6
+- 0xC78000
+- 0xC780B2
+- 0xC7814B
+- 0xC781CE
+- 0xC78306
+- 0xC78433
+- 0xC784AC
+- 0xC784EE
+- 0xC78536
+- 0xC786E7
+- 0xC78734
+- 0xC78806
+- 0xC78852
+- 0xC788C3
+- 0xC789D0
+- 0xC789DE
+- 0xC78B4E
+- 0xC78C71
+- 0xC78C7F
+- 0xC78D81
+- 0xC78D8F
+- 0xC78DFF
+- 0xC78E11
+- 0xC78E98
+- 0xC794B1
+- 0xC7970B
+- 0xC79796
+- 0xC798BF
+- 0xC79997
+- 0xC7A63E
+- 0xC7A6EA
+- 0xC7A72F
+- 0xC7A754
+- 0xC7AC3A
+- 0xC7AC42
+- 0xC7B1D8
+- 0xC7B3C0
+- 0xC7B935
+- 0xC7B941
+- 0xC7B94D
+- 0xC7B959
+- 0xC7B965
+- 0xC7BECF
+- 0xC7BF1E
+- 0xC7BF94
+- 0xC7BFE8
+- 0xC7C058
+- 0xC7C0C0
+- 0xC7C17B
+- 0xC7C1F7
+- 0xC7C258
+- 0xC7C2C5
+- 0xC7C317
+- 0xC7C38A
+- 0xC7C3C2
+- 0xC7C412
+- 0xC7C478
+- 0xC7C4C9
+- 0xC7C53A
+- 0xC7CBBA
+- 0xC7CCEC
+- 0xC7CE73
+- 0xC7D36E
+- 0xC7D3F5
+- 0xC7D526
+- 0xC7D6AA
+- 0xC7DC41
+- 0xC7DC76
+- 0xC7DC7E
+- 0xC7DC85
+- 0xC7DC97
+- 0xC7DCB5
+- 0xC7DD4D
+- 0xC7DD4F
+- 0xC7DDE7
+- 0xC7DE2A
+- 0xC7DEE0
+- 0xC7DF3C
+- 0xC7E613
+- 0xC7E62E
+- 0xC7E656
+- 0xC7E67F
+- 0xC7E69A
+- 0xC7E6E1
+- 0xC7E70E
+- 0xC7E77F
+- 0xC7E796
+- 0xC7E7CC
+- 0xC7EA71
+- 0xC7EA80
+- 0xC7EABD
+- 0xC7EAE1
+- 0xC7EB16
+- 0xC7EB38
+- 0xC7EE3E
+- 0xC7EF67
+- 0xC7F0E2
+- 0xC7F2B1
+- 0xC7F459
+- 0xC7F54C
+- 0xC7F71E
+- 0xC7FB89
+- 0xC7FC26
+- 0xC7FC32
+- 0xC7FC3E
+- 0xC7FD8E
+- 0xC7FE2F
+- 0xC7FEFA
+- 0xC80027
+- 0xC800C1
+- 0xC8015A
+- 0xC803AC
+- 0xC8042B
+- 0xC8054D
+- 0xC805BA
+- 0xC807AC
+- 0xC807BA
+- 0xC80CD4
+- 0xC80EC3
+- 0xC8125D
+- 0xC812D1
+- 0xC812E6
+- 0xC81318
+- 0xC8153D
+- 0xC8159F
+- 0xC81751
+- 0xC81789
+- 0xC817DC
+- 0xC8180C
+- 0xC81848
+- 0xC818A2
+- 0xC818B9
+- 0xC818F1
+- 0xC81913
+- 0xC81934
+- 0xC81945
+- 0xC81E38
+- 0xC821B2
+- 0xC8259F
+- 0xC826C8
+- 0xC828B3
+- 0xC82945
+- 0xC82BBC
+- 0xC838B9
+- 0xC8392F
+- 0xC83957
+- 0xC83B5A
+- 0xC83BC3
+- 0xC83BFC
+- 0xC83FE6
+- 0xC862F7
+- 0xC86E58
+- 0xC870A4
+- 0xC88000
+- 0xC88386
+- 0xC884D0
+- 0xC885E0
+- 0xC88650
+- 0xC88761
+- 0xC89078
+- 0xC89160
+- 0xC891B7
+- 0xC89238
+- 0xC89580
+- 0xC89758
+- 0xC89BC5
+- 0xC8A39B
+- 0xC8A792
+- 0xC8A805
+- 0xC8A8E7
+- 0xC8A9EC
+- 0xC8B137
+- 0xC8B568
+- 0xC8B57E
+- 0xC8B680
+- 0xC8B6D5
+- 0xC8B77B
+- 0xC8B7B4
+- 0xC8B8C0
+- 0xC8BA12
+- 0xC8DEF6
+- 0xC8EA6A
+- 0xC8EBDD
+- 0xC8F64D
+- 0xC8F75E
+- 0xC8FACA
+- 0xC8FACD
+- 0xC90025
+- 0xC900B7
+- 0xC90165
+- 0xC9023D
+- 0xC90365
+- 0xC903BF
+- 0xC904BA
+- 0xC905FD
+- 0xC906B0
+- 0xC90748
+- 0xC90861
+- 0xC90872
+- 0xC90894
+- 0xC90999
+- 0xC90B53
+- 0xC90C90
+- 0xC90D6D
+- 0xC90DBA
+- 0xC90E22
+- 0xC90EBF
+- 0xC90F61
+- 0xC90F7D
+- 0xC90F90
+- 0xC90FB1
+- 0xC91041
+- 0xC91058
+- 0xC91099
+- 0xC910C1
+- 0xC910C9
+- 0xC910E7
+- 0xC910FB
+- 0xC91113
+- 0xC91140
+- 0xC9115D
+- 0xC91213
+- 0xC91222
+- 0xC91233
+- 0xC91245
+- 0xC91259
+- 0xC9128D
+- 0xC9132E
+- 0xC9146D
+- 0xC91581
+- 0xC91584
+- 0xC915B8
+- 0xC915BE
+- 0xC915F6
+- 0xC91625
+- 0xC9162B
+- 0xC9162E
+- 0xC9165A
+- 0xC91674
+- 0xC9181F
+- 0xC91838
+- 0xC918BE
+- 0xC918F7
+- 0xC91905
+- 0xC9191E
+- 0xC9199E
+- 0xC919B5
+- 0xC919CE
+- 0xC919EF
+- 0xC91A51
+- 0xC91A95
+- 0xC91ABA
+- 0xC91B24
+- 0xC91B71
+- 0xC91BA6
+- 0xC91BAC
+- 0xC923B4
+- 0xC925D0
+- 0xC92686
+- 0xC9271B
+- 0xC927E2
+- 0xC92AB9
+- 0xC92D92
+- 0xC92E9E
+- 0xC92F88
+- 0xC92FC0
+- 0xC92FD3
+- 0xC92FDA
+- 0xC93060
+- 0xC93097
+- 0xC930C7
+- 0xC930F0
+- 0xC931B7
+- 0xC9329B
+- 0xC934E4
+- 0xC93625
+- 0xC93679
+- 0xC93696
+- 0xC936CA
+- 0xC93891
+- 0xC93EBA
+- 0xC93FD8
+- 0xC9403E
+- 0xC94143
+- 0xC9419F
+- 0xC94231
+- 0xC94402
+- 0xC94B15
+- 0xC94F49
+- 0xC94FE8
+- 0xC95019
+- 0xC95257
+- 0xC9564F
+- 0xC957FF
+- 0xC959E2
+- 0xC95AA0
+- 0xC95DC6
+- 0xC9623F
+- 0xC9633E
+- 0xC968F6
+- 0xC96C9C
+- 0xC96FAA
+- 0xC9701A
+- 0xC970EC
+- 0xC9737F
+- 0xC975F1
+- 0xC97990
+- 0xC97A1D
+- 0xC97CB0
+- 0xC97CC9
+- 0xC98000
+- 0xC980C1
+- 0xC981C6
+- 0xC989C5
+- 0xC98A27
+- 0xC98AB2
+- 0xC98DF9
+- 0xC98FB9
+- 0xC9966E
+- 0xC99C76
+- 0xC99E1B
+- 0xC99E8B
+- 0xC9A142
+- 0xC9A49C
+- 0xC9A766
+- 0xC9B60F
+- 0xC9B8DD
+- 0xC9B8FF
+- 0xC9B9D0
+- 0xC9BA0A
+- 0xC9BA78
+- 0xC9BF2C
+- 0xC9BFCD
+- 0xC9C128
+- 0xC9C15F
+- 0xC9C19B
+- 0xC9C98A
+- 0xC9C991
+- 0xC9CD58
+- 0xC9CD74
+- 0xC9CF70
+- 0xC9D425
+- 0xC9D70B
+- 0xC9D735
+- 0xC9D8DE
+- 0xC9D95E
+- 0xC9DB1E
+- 0xC9DB38
+- 0xC9DB4A
+- 0xC9DBBB
+- 0xC9DBE2
+- 0xC9DC08
+- 0xC9DDC0
+- 0xC9E041
+- 0xC9E406
+- 0xC9E4EB
+- 0xC9E985
+- 0xC9EA20
+- 0xC9EADB
+- 0xC9EB28
+- 0xC9EB5D
+- 0xC9EE68
+- 0xC9F72F
+- 0xC9F750
+- 0xC9F756
+- 0xC9F75F
+- 0xC9F780
+- 0xC9F786
+- 0xC9F7B5
+- 0xC9F7BB
+- 0xC9F7C4
+- 0xC9F7E5
+- 0xC9F7EB
+- 0xC9F804
+- 0xC9F80D
+- 0xC9F82E
+- 0xC9F834
+- 0xC9F84D
+- 0xEF61CB
+- 0xEF6569
+- 0xEF679A
+- 0xEF6B54
+- 0xEF6B75
+- 0xEF721E
+- 0xEF7221
+- 0xEF79E6
+- 0xEF79EF
+- 0xEF7A14
+- 0xEF7A28
+- 0xEF7B9D
+- 0xEF7BBC
+- 0xEF7BDC
+- 0xEF7C89
+- 0xEF7CB4
+- 0xEF7CED
+- 0xEF7CF8
+- 0xEF7D83
+- 0xEF7DD5
+- 0xEF8444
+- 0xEF8568
+- 0xEF857E
+- 0xEF8CDD
+- 0xEF95A3
+- 0xEF976B
+- 0xEF98AD
+- 0xEFA2D5
+- 0xEFA3B6
 staffTextTable:
   0: 0
 flyoverLabels:
   0: ""
 renameLabels:
-  0: ""
-compressedTextStrings: []
+  0xC50000: storeTextWelcome
+  0xC50198: storeTextGoodbyeThanks
+  0xC50330: storeTextGoodbyeNoBuy
+  0xC504C8: storeTextBuyIntro
+  0xC50660: storeTextConfirmBuy
+  0xC507F8: storeTextWhoReceivesItem
+  0xC50990: storeTextEquipNow
+  0xC50A72: storeTextBuyOldItem
+  0xC50B54: storeTextEquippableCantEquip
+  0xC50C36: storeTextDontWantItem
+  0xC50DCE: storeTextNotEnoughMoney
+  0xC50F66: storeTextCantCarryAnyMore
+  0xC510FE: storeTextSellIntro
+  0xC511E0: storeTextConfirmSell
+  0xC512C2: storeTextCancelSale
+  0xC513A4: storeTextNothingToSell
+  0xC51486: storeTextCantSellItem
+  0xC51568: storeTextSaleComplete
+  0xC51700: storeTextSellMore
+  0xC51898: storeTextBuyMore
+  0xC5197A: storeTextCarryingTooMuchAlready
+  0xC53711: textItem001
+  0xC53750: textItem002
+  0xC53761: textItem003
+  0xC53772: textItem004
+  0xC537BC: textItem005
+  0xC53809: textItem006
+  0xC5382A: textItem007
+  0xC5384D: textItem008
+  0xC53870: textItem009
+  0xC53897: textItem010
+  0xC538BC: textItem011
+  0xC538E0: textItem012
+  0xC53908: textItem013
+  0xC53929: textItem014
+  0xC53960: textItem015
+  0xC5398E: textItem016
+  0xC539C4: textItem000
+  0xC539D4: textItem018
+  0xC539E4: textItem019
+  0xC539F4: textItem020
+  0xC53A04: textItem021
+  0xC53A14: textItem022
+  0xC53A47: textItem023
+  0xC53A57: textItem024
+  0xC53A67: textItem025
+  0xC53A77: textItem026
+  0xC53A9F: textItem027
+  0xC53AE6: textItem028
+  0xC53AF6: textItem029
+  0xC53B06: textItem030
+  0xC53B16: textItem031
+  0xC53B26: textItem032
+  0xC53B36: textItem033
+  0xC53B46: textItem034
+  0xC53B56: textItem035
+  0xC53B76: textItem036
+  0xC53B86: textItem037
+  0xC53B96: textItem038
+  0xC53BA6: textItem039
+  0xC53BB6: textItem040
+  0xC53BC6: textItem041
+  0xC53BD6: textItem042
+  0xC53BE6: textItem043
+  0xC53BF6: textItem044
+  0xC53C06: textItem045
+  0xC53C16: textItem046
+  0xC53C26: textItem047
+  0xC53C36: textItem048
+  0xC53C46: textItem049
+  0xC53C5F: textItem050
+  0xC53C7A: textItem051
+  0xC53C95: textItem052
+  0xC53CAF: textItem053
+  0xC53CC8: textItem054
+  0xC53CD8: textItem055
+  0xC53D00: textItem056
+  0xC53D21: textItem057
+  0xC53D46: textItem058
+  0xC53D6A: textItem059
+  0xC53D8F: textItem060
+  0xC53DB8: textItem061
+  0xC53DE8: textItem062
+  0xC53E23: textItem063
+  0xC53E4F: textItem064
+  0xC53E5F: textItem065
+  0xC53E6F: textItem066
+  0xC53E7F: textItem067
+  0xC53E8F: textItem068
+  0xC53E9F: textItem069
+  0xC53EAF: textItem070
+  0xC53EC6: textItem071
+  0xC53EDD: textItem072
+  0xC53EF4: textItem073
+  0xC53F58: textItem074
+  0xC53F89: textItem075
+  0xC53FC9: textItem076
+  0xC5400A: textItem077
+  0xC54055: textItem078
+  0xC54065: textItem079
+  0xC54075: textItem080
+  0xC54085: textItem081
+  0xC54095: textItem082
+  0xC540A5: textItem083
+  0xC540B5: textItem084
+  0xC540C5: textItem085
+  0xC540D5: textItem086
+  0xC540E5: textItem087
+  0xC54106: textItem088
+  0xC5411C: textItem089
+  0xC54133: textItem090
+  0xC54156: textItem091
+  0xC5416D: textItem092
+  0xC54197: textItem093
+  0xC541CB: textItem094
+  0xC54321: textItem095
+  0xC54339: textItem096
+  0xC543A4: textItem097
+  0xC543DA: textItem098
+  0xC543F5: textItem099
+  0xC54451: textItem100
+  0xC54471: textItem101
+  0xC544AF: textItem102
+  0xC544C6: textItem103
+  0xC544DD: textItem104
+  0xC5453E: textItem105
+  0xC545A1: textItem106
+  0xC545B7: textItem107
+  0xC54660: textItem108
+  0xC546BC: textItem109
+  0xC54733: textItem110
+  0xC5475A: textItem111
+  0xC54789: textItem112
+  0xC547B0: textItem113
+  0xC547CB: textItem114
+  0xC547E8: textItem115
+  0xC54806: textItem116
+  0xC54826: textItem117
+  0xC54842: textItem118
+  0xC54852: textItem119
+  0xC54862: textItem120
+  0xC54872: textItem121
+  0xC54882: textItem122
+  0xC54892: textItem123
+  0xC548A2: textItem124
+  0xC548B2: textItem125
+  0xC548FC: textItem126
+  0xC54952: textItem127
+  0xC54979: textItem128
+  0xC549C3: textItem129
+  0xC549FF: textItem130
+  0xC54A3A: textItem131
+  0xC54A6C: textItem132
+  0xC54AA1: textItem133
+  0xC54AF5: textItem134
+  0xC54B67: textItem135
+  0xC54BB0: textItem136
+  0xC54BFA: textItem137
+  0xC54C32: textItem138
+  0xC54C6D: textItem139
+  0xC54CEB: textItem140
+  0xC54D10: textItem141
+  0xC54D99: textItem142
+  0xC54DDC: textItem143
+  0xC54E01: textItem144
+  0xC54E20: textItem145
+  0xC54E54: textItem146
+  0xC54EA7: textItem147
+  0xC54EF7: textItem148
+  0xC54F6A: textItem149
+  0xC54FA2: textItem150
+  0xC54FF0: textItem151
+  0xC55057: textItem152
+  0xC5509E: textItem153
+  0xC550E3: textItem154
+  0xC55105: textItem155
+  0xC5514F: textItem156
+  0xC5519F: textItem157
+  0xC551CD: textItem158
+  0xC551EA: textItem159
+  0xC55230: textItem160
+  0xC5528D: textItem161
+  0xC552C4: textItem162
+  0xC553D7: textItem163
+  0xC55409: textItem164
+  0xC55433: textItem165
+  0xC5546C: textItem166
+  0xC55496: textItem167
+  0xC554B3: textItem168
+  0xC554CF: textItem169
+  0xC554F6: textItem170
+  0xC5551D: textItem171
+  0xC55546: textItem172
+  0xC5558A: textItem173
+  0xC555B8: textItem174
+  0xC55602: textItem175
+  0xC55627: textItem176
+  0xC5566B: textItem177
+  0xC5569C: textItem178
+  0xC556C1: textItem179
+  0xC556E3: textItem180
+  0xC5570B: textItem181
+  0xC55740: textItem182
+  0xC5576A: textItem183
+  0xC55794: textItem184
+  0xC557E7: textItem185
+  0xC55831: textItem186
+  0xC5587E: textItem187
+  0xC55897: textItem188
+  0xC558CA: textItem189
+  0xC55915: textItem190
+  0xC5592C: textItem191
+  0xC55943: textItem192
+  0xC55957: textItem193
+  0xC559A8: textItem194
+  0xC559D9: textItem195
+  0xC55AD5: textItem196
+  0xC55B21: textItem197
+  0xC55B79: textItem198
+  0xC55BC1: textItem199
+  0xC55C03: textItem200
+  0xC55C46: textItem201
+  0xC55CCE: textItem202
+  0xC55D2E: textItem203
+  0xC55D46: textItem204
+  0xC55D82: textItem205
+  0xC55DA1: textItem206
+  0xC55DC8: textItem207
+  0xC55DE0: textItem208
+  0xC55DFE: textItem209
+  0xC55E28: textItem210
+  0xC55E77: textItem211
+  0xC55EAB: textItem212
+  0xC55EBB: textItem213
+  0xC55EF6: textItem214
+  0xC55F06: textItem215
+  0xC55F16: textItem216
+  0xC55F36: textItem218
+  0xC55F5D: textItem219
+  0xC55F84: textItem220
+  0xC55FCC: textItem221
+  0xC55FDC: textItem222
+  0xC55FEC: textItem223
+  0xC56011: textItem224
+  0xC56054: textItem225
+  0xC56097: textItem226
+  0xC560D3: textItem227
+  0xC5610F: textItem228
+  0xC5614B: textItem229
+  0xC56187: textItem230
+  0xC561C3: textItem231
+  0xC561FF: textItem232
+  0xC56230: textItem233
+  0xC56253: textItem234
+  0xC5629B: textItem235
+  0xC562DD: textItem236
+  0xC5630A: textItem237
+  0xC563A9: textItem238
+  0xC56417: textItem239
+  0xC5645D: textItem240
+  0xC564D1: textItem241
+  0xC564FF: textItem242
+  0xC565BC: textItem243
+  0xC565D4: textItem244
+  0xC566B7: textItem245
+  0xC5678D: textItem246
+  0xC567DC: textItem247
+  0xC567F4: textItem248
+  0xC56804: textItem249
+  0xC5682E: textItem250
+  0xC5687B: textItem251
+  0xC56892: textItem252
+  0xC5689F: textItem253
+  0xC56DF3: textNPC1123
+  0xC56DF9: textNPC1125
+  0xC56DFF: textNPC1129
+  0xC56E2C: textNPC1130
+  0xC56E5B: textNPC1131
+  0xC56E61: textNPC1132
+  0xC56E67: textNPC1134
+  0xC56ECA: textNPC1135
+  0xC56EFD: textNPC1136
+  0xC56F32: textNPC1137
+  0xC56F80: textNPC1138
+  0xC5711A: textNPC1139
+  0xC57120: textNPC1140
+  0xC57126: textNPC1141
+  0xC571B9: textNPC1142
+  0xC5730D: textNPC1144
+  0xC57361: textNPC1145
+  0xC574F6: textNPC1148
+  0xC5762C: textNPC1149
+  0xC57730: textNPC1150
+  0xC57760: textNPC1150Alt
+  0xC577D8: textNPC1151
+  0xC57947: textNPC1196
+  0xC57B04: textNPC1219
+  0xC57B5C: textNPC1200
+  0xC57B7C: textNPC1204
+  0xC57B9C: textNPC1209
+  0xC57BBC: textNPC1210
+  0xC57C2C: textNPC1197
+  0xC57C96: textNPC1155
+  0xC57CD4: textNPC1162
+  0xC57DC6: textNPC1165
+  0xC57DEA: textNPC1221
+  0xC58000: textDebugAppleMenu
+  0xC58DBF: textDebugUnknownMenu
+  0xC58ED1: textDebugBananaMenu
+  0xC5D389: textNPC0714
+  0xC5D40D: textNPC0933
+  0xC5D419: textNPC0934
+  0xC5D425: textNPC0925
+  0xC5D48B: textNPC1061
+  0xC5D539: textNPC1147
+  0xC5D55D: textNPC1232
+  0xC5D56F: textNPC1282
+  0xC5D5AB: STOREOPENITEMLIST
+  0xC5D742: STOREOPENITEMLISTONETTDRUGSTOREEQUIPMENT
+  0xC5D746: STOREOPENITEMLISTONETTDRUGSTOREPHARMACIST
+  0xC5D844: textDelivery4
+  0xC5D858: textDelivery5
+  0xC5D86C: textDelivery6
+  0xC5D880: textDelivery7
+  0xC5DDF1: textDelivery42
+  0xC5E5BC: textAttractMode0
+  0xC5E5DF: textEvent535
+  0xC5E5EB: textAttractMode1
+  0xC5E605: textAttractMode2
+  0xC5E62C: textEvent537
+  0xC5E633: textAttractMode3
+  0xC5E655: textAttractMode4
+  0xC5E675: textAttractMode5
+  0xC5E691: textAttractMode6
+  0xC5E6AE: textAttractMode7
+  0xC5E6CB: textEvent544
+  0xC5E6D7: textAttractMode8
+  0xC5E6F4: textAttractMode9
+  0xC5E70B: textFileSelectScreen1
+  0xC5E79F: textEvent37
+  0xC5E7AC: textEvent38
+  0xC5E820: textEvent45
+  0xC5E840: textDoor028
+  0xC5E8A0: textNPC0124
+  0xC5E9A8: textEvent55
+  0xC5EA35: textSpawnBuzzBuzz
+  0xC5EA45: textEvent53
+  0xC5EF3E: textNPC0044
+  0xC5F1FB: textNPC0046
+  0xC5F643: textEvent59
+  0xC5F650: textEvent250
+  0xC5F828: textNPC0088
+  0xC5F914: textNPC0073
+  0xC5F984: textNPC0074
+  0xC5F9DD: textNPC0075
+  0xC5FA72: textNPC0076
+  0xC5FD72: textNPC0352
+  0xC5FDEA: textNPC0570
+  0xC5FE4B: textNPC0580
+  0xC60000: textNPC0747
+  0xC6002C: textNPC0752
+  0xC600D5: textNPC0754
+  0xC60100: textNPC0755
+  0xC60140: textNPC0756
+  0xC60180: textNPC0757
+  0xC601C0: textNPC0758
+  0xC60239: textNPC0759
+  0xC6026C: textNPC0778
+  0xC60349: textNPC0760
+  0xC605DB: textNPC0761
+  0xC60633: textNPC0762
+  0xC60678: textNPC0763
+  0xC60696: textNPC0764
+  0xC606D8: textNPC0779
+  0xC60B8A: textNPC0765
+  0xC60B9B: textNPC0766
+  0xC60BAE: textNPC0767
+  0xC60BBF: textNPC0780
+  0xC60BE3: textNPC0781
+  0xC60C1B: textNPC0782
+  0xC60CD8: textNPC0783
+  0xC60D6C: textNPC0794
+  0xC60DC4: textNPC0768
+  0xC60E2A: textNPC0769
+  0xC60E30: textNPC0829
+  0xC61228: textNPC0830
+  0xC612D2: textNPC0831
+  0xC612FF: textNPC0832
+  0xC6132C: textNPC0833
+  0xC61359: textNPC0837
+  0xC61386: textNPC0838
+  0xC61616: textNPC0800
+  0xC61715: textNPC0799
+  0xC61817: textNPC0804
+  0xC61966: textNPC0803
+  0xC61A88: textNPC0814
+  0xC61B85: textNPC0813
+  0xC61CAC: textNPC0808
+  0xC61DDB: textNPC0807
+  0xC61F07: textNPC0823
+  0xC62026: textNPC0822
+  0xC620F7: textNPC0818
+  0xC62257: textNPC0817
+  0xC623BF: textNPC0811
+  0xC62578: textNPC0821
+  0xC6271A: textNPC0826
+  0xC6279F: textNPC0828
+  0xC6283D: textNPC0772
+  0xC62865: textEvent669
+  0xC62886: textNPC0773
+  0xC62AE7: textLearnedPsiTeleportAlpha
+  0xC62B87: textNPC0771
+  0xC62C50: textNPC0798
+  0xC62CF5: textNPC0797
+  0xC62CF9: textNPC0792
+  0xC62D23: textDoor490
+  0xC62D30: textNPC1375
+  0xC63043: textNPC1274
+  0xC63229: textPhoneDad
+  0xC636E5: textPhoneEscargoExpress
+  0xC63EB0: textDelivery3
+  0xC642A3: textDelivery2
+  0xC64515: textDelivery22
+  0xC6451A: textDelivery32
+  0xC64A1C: textPhoneMachPizza
+  0xC64BBF: textDelivery1
+  0xC64CF8: textDelivery12
+  0xC6500F: textNPC1146
+  0xC6501B: textNPC0404
+  0xC65021: textNPC0715
+  0xC65027: textNPC0749
+  0xC6502D: textNPC0338
+  0xC65033: textNPC1156
+  0xC65039: textNPC1157
+  0xC6503F: textNPC0775
+  0xC65045: textNPC1098
+  0xC6504B: textNPC0619
+  0xC65051: textNPC1374
+  0xC65057: textNPC0788
+  0xC659C9: textNPC0133
+  0xC65A18: textNPC0134
+  0xC65A4C: textNPC0135
+  0xC65AE9: textNPC0136
+  0xC65C01: textNPC0137
+  0xC65C89: textNPC0138
+  0xC65CEC: textNPC0139
+  0xC65E08: textNPC0140
+  0xC65E46: textNPC0141
+  0xC65EA3: textNPC0142
+  0xC65EFC: textNPC0143
+  0xC65F5C: textNPC0145
+  0xC66002: textNPC0144
+  0xC660A6: textNPC0146
+  0xC6653B: textNPC0036
+  0xC66670: textNPC0209
+  0xC666EA: textEvent60
+  0xC66762: textNPC0207
+  0xC66A83: textNPC0208
+  0xC66AA4: textNPC0030
+  0xC66B97: textNPC0025
+  0xC66D3E: textNPC0015
+  0xC66E40: textNPC0148
+  0xC66F20: textNPC0153
+  0xC66F4A: textNPC0152
+  0xC66F90: textNPC0150
+  0xC66FE2: textNPC0151
+  0xC67026: textNPC0149
+  0xC67089: textNPC0154
+  0xC670E6: textNPC0155
+  0xC67194: textNPC0156
+  0xC671AD: textNPC0157
+  0xC67229: textNPC0158
+  0xC67237: textNPC0159
+  0xC672EB: textNPC0160
+  0xC67349: textNPC0161
+  0xC673F9: textNPC0047
+  0xC676D4: textNPC0094
+  0xC67820: textNPC0095
+  0xC67836: textNPC0096
+  0xC67859: textNPC0834
+  0xC67938: textNPC0673
+  0xC67A1C: textNPC0115
+  0xC67AA0: textNPC0116
+  0xC67ADD: textNPC0117
+  0xC67B67: textNPC0192
+  0xC67B91: textNPC0202
+  0xC67BAD: textNPC0185
+  0xC67BB9: textNPC0166
+  0xC67C0C: textNPC0167
+  0xC67C40: textDoor163
+  0xC68008: textNPC1034
+  0xC68017: textNPC0060
+  0xC6803D: textNPC0013
+  0xC68091: textNPC0610
+  0xC680A6: textNPC0012
+  0xC680C2: textNPC0012Alt
+  0xC6880B: textEventWanderingPhotographer00
+  0xC68815: textEventWanderingPhotographer01
+  0xC6881F: textEventWanderingPhotographer02
+  0xC68829: textEventWanderingPhotographer03
+  0xC68833: textEventWanderingPhotographer04
+  0xC6883D: textEventWanderingPhotographer05
+  0xC68847: textEventWanderingPhotographer06
+  0xC68851: textEventWanderingPhotographer07
+  0xC68858: textEventWanderingPhotographer08
+  0xC68862: textEventWanderingPhotographer09
+  0xC6886C: textEventWanderingPhotographer10
+  0xC68876: textEventWanderingPhotographer11
+  0xC68880: textEventWanderingPhotographer12
+  0xC68887: textEventWanderingPhotographer13
+  0xC68891: textEventWanderingPhotographer14
+  0xC6889B: textEventWanderingPhotographer15
+  0xC688A5: textEventWanderingPhotographer16
+  0xC688AF: textEventWanderingPhotographer17
+  0xC688B9: textEventWanderingPhotographer18
+  0xC688C3: textEventWanderingPhotographer19
+  0xC688CD: textEventWanderingPhotographer20
+  0xC688D7: textEventWanderingPhotographer21
+  0xC688E1: textEventWanderingPhotographer22
+  0xC688EB: textEventWanderingPhotographer23
+  0xC688F5: textEventWanderingPhotographer24
+  0xC688FF: textEventWanderingPhotographer25
+  0xC68909: textEventWanderingPhotographer26
+  0xC68913: textEventWanderingPhotographer27
+  0xC6891D: textEventWanderingPhotographer28
+  0xC68927: textEventWanderingPhotographer29
+  0xC68931: textEventWanderingPhotographer30
+  0xC6893B: textEventWanderingPhotographer31
+  0xC68DE4: textNPC0646
+  0xC68E0C: textNPC0877
+  0xC68F74: textNPC1358Alt
+  0xC69007: textNPC0419Alt
+  0xC69038: textNPC0734Alt
+  0xC690C5: textNPC1080
+  0xC690FF: textNPC0784
+  0xC69121: textNPC0261
+  0xC6943A: textDelivery9
+  0xC694F4: textDelivery10
+  0xC695AC: textDelivery92
+  0xC695B3: textDelivery102
+  0xC695D8: textNPC0299
+  0xC69651: textNPC0043
+  0xC6971E: textNPC0037
+  0xC697BA: textNPC0405
+  0xC69861: textNPC0740
+  0xC698CA: textNPC0300
+  0xC69928: textNPC0011
+  0xC69C03: textNPC0107
+  0xC69CB5: textNPC0104
+  0xC69D8E: textNPC0102
+  0xC69E74: textNPC0109
+  0xC69FA9: textNPC0130
+  0xC6A1BC: textNPC0427
+  0xC6A286: textNPC0112
+  0xC6A3DE: textNPC1099
+  0xC6A458: textNPC0342
+  0xC6A4F2: textNPC0097
+  0xC6A551: textNPC0301
+  0xC6A5E0: textNPC0285
+  0xC6A666: textNPC0007
+  0xC6A725: textEvent32
+  0xC6A755: textNPC0191
+  0xC6A77B: textNPC0367
+  0xC6A7A5: textNPC0583
+  0xC6A7D2: textNPC1086
+  0xC6A800: textNPC0993
+  0xC6A861: textNPC1405
+  0xC6A895: textNPC1164
+  0xC6A8D4: textNPC0706
+  0xC6A90C: textNPC0743
+  0xC6A937: textNPC0919
+  0xC6A950: textNPC0918
+  0xC6A9F9: textNPC0591
+  0xC6AA2F: textNPC0594
+  0xC6AD68: textNPC0606
+  0xC6AD6E: textNPC0607
+  0xC6AF23: textNPC0608
+  0xC6AF6C: textNPC0609
+  0xC6AFE1: textNPC0612
+  0xC6B0FA: textNPC0613
+  0xC6B18D: textNPC0615
+  0xC6B7D0: textNPC0626
+  0xC6B8EB: textNPC0627
+  0xC6BA5F: textNPC0628
+  0xC6BB60: textNPC0629
+  0xC6BBF9: textNPC0630
+  0xC6BC80: textNPC0631
+  0xC6BDD3: textNPC0633
+  0xC6BE74: textNPC0676
+  0xC6BEF9: textNPC0463
+  0xC6BF0C: textNPC0658
+  0xC6C035: textNPC0660
+  0xC6C099: textNPC0662
+  0xC6C1C3: textNPC0664
+  0xC6C236: textNPC0665
+  0xC6C287: textNPC0666
+  0xC6C2DB: textNPC0635
+  0xC6C3A9: textNPC0636
+  0xC6C42C: textNPC0600
+  0xC6C479: textNPC0601
+  0xC6C4D5: textNPC0602
+  0xC6C52E: textNPC0603
+  0xC6C565: textNPC0604
+  0xC6C606: textNPC0624
+  0xC6C68F: textNPC0625
+  0xC6C7D9: textNPC0616
+  0xC6C942: textNPC0733
+  0xC6C970: textNPC0637
+  0xC6CB97: textNPC0617
+  0xC6CC31: textNPC0618
+  0xC6CD2A: textNPC0605
+  0xC6CDCD: textNPC0622
+  0xC6CE34: textNPC0668
+  0xC6CEBC: textNPC0638
+  0xC6CF2D: textNPC0639
+  0xC6D067: textDoor379
+  0xC6D082: textNPC0670
+  0xC6D0B1: textNPC0657
+  0xC6D0DB: textNPC0669
+  0xC6D0F0: textNPC0659
+  0xC6D133: textNPC0661
+  0xC6D19C: textNPC0839
+  0xC6D37E: textNPC0839Alt
+  0xC6D50A: textNPC0840
+  0xC6D695: textNPC0841
+  0xC6D6A1: textNPC0842
+  0xC6D86D: textNPC0843
+  0xC6D93F: textNPC0844
+  0xC6D97A: textNPC0845
+  0xC6D993: textNPC0846
+  0xC6D9CA: textNPC0847
+  0xC6DA0B: textNPC0848
+  0xC6DAF5: textNPC0849
+  0xC6DBCE: textNPC0849Alt
+  0xC6DC62: textNPC0850
+  0xC6DC8D: textNPC0853
+  0xC6DC93: textNPC0854
+  0xC6DCE7: textNPC0855
+  0xC6DD0A: textNPC0855Alt
+  0xC6DE7B: textNPC0856
+  0xC6DF83: textNPC0857
+  0xC6DFE7: textNPC0858
+  0xC6E088: textNPC0859
+  0xC6E0E3: textNPC0862
+  0xC6E192: textNPC0863
+  0xC6E220: textNPC0864
+  0xC6E2A4: textNPC0865
+  0xC6E557: textNPC0868
+  0xC6E69C: textNPC0869
+  0xC6E7F6: textNPC0866
+  0xC6E806: textNPC0867
+  0xC6E81A: textNPC0870
+  0xC6E982: textNPC0871
+  0xC6EA34: textNPC0872
+  0xC6EE94: textNPC0876
+  0xC6EEB4: textNPC0873
+  0xC6EF24: textNPC0879
+  0xC6EF47: textNPC0880
+  0xC6EF6A: textNPC0881
+  0xC6EF8D: textNPC0882
+  0xC6EFB0: textNPC0889
+  0xC6EFD3: textNPC0883
+  0xC6F0B5: textNPC0891
+  0xC6F112: textNPC0894
+  0xC6F175: textNPC0896
+  0xC6F225: textNPC0897
+  0xC6F27C: textNPC0898
+  0xC6F374: textNPC0899
+  0xC6F659: textNPC0900
+  0xC6F757: textNPC0901
+  0xC6F881: textNPC0875
+  0xC6F8BF: textNPC0903
+  0xC6F8D9: textNPC0595
+  0xC6F8E6: textNPC0595Alt
+  0xC6F913: textNPC0599Alt
+  0xC6F940: textNPC0596Alt
+  0xC6F96D: textNPC0597Alt
+  0xC6F99A: textNPC0598Alt
+  0xC6FAE5: textDoor340
+  0xC6FB02: textNPC0479Alt
+  0xC6FB6D: textAction281
+  0xC6FBB5: textAction282
+  0xC6FC1A: textAction283
+  0xC6FC6D: textAction284
+  0xC6FC94: textAction287
+  0xC6FDBE: textAction288
+  0xC6FED6: textAction289
+  0xC6FF9B: textAction285
+  0xC6FFBB: textAction286
+  0xC70144: textNPC0039
+  0xC7014F: textNPC0278
+  0xC7015A: textNPC0510
+  0xC70165: textNPC0970
+  0xC70176: textNPC1071
+  0xC70187: textNPC1153
+  0xC72709: textNPC0078
+  0xC72765: textNPC0079
+  0xC727A8: textNPC0080
+  0xC727CF: textNPC0081
+  0xC72822: textNPC0082
+  0xC72910: textNPC0083
+  0xC7298C: textNPC0084
+  0xC729FF: textNPC0085
+  0xC72AF8: textNPC0086
+  0xC72F7B: textNPC0087
+  0xC72FF8: textNPC0089
+  0xC73024: textNPC0090
+  0xC730F6: textNPC0091
+  0xC7316F: textNPC0092
+  0xC731F0: textNPC0093
+  0xC73236: textNPC0098
+  0xC7343F: textNPC0098Alt
+  0xC734DE: textNPC0099
+  0xC73550: textNPC0100
+  0xC73698: textNPC0105
+  0xC736C0: textNPC0105Alt
+  0xC7370E: textNPC0103
+  0xC73796: textDoor681
+  0xC737B0: textNPC0106Alt
+  0xC737FC: textNPC0108
+  0xC73882: textNPC0110
+  0xC73888: textNPC0113
+  0xC7388E: textNPC0114
+  0xC738B6: textNPC0118
+  0xC73940: textNPC0119
+  0xC73C28: textNPC0120
+  0xC73DB0: textNPC0121
+  0xC73F0F: textNPC0122
+  0xC74180: textNPC0125
+  0xC743B0: textNPC0126
+  0xC74475: textNPC0127
+  0xC745B9: textNPC0162
+  0xC74646: textNPC0128Alt
+  0xC74690: textNPC0128
+  0xC747ED: textNPC0129
+  0xC748D8: textNPC0343
+  0xC749C7: textNPC0131
+  0xC74A3D: textNPC0132
+  0xC74BA9: textNPC0163
+  0xC74C07: textNPC0001
+  0xC74C8A: textNPC0002
+  0xC74CF7: textNPC0003
+  0xC74D5E: textNPC0004
+  0xC74D9F: textNPC0005
+  0xC74E14: textNPC0006
+  0xC74E83: textNPC0009
+  0xC74E89: textNPC0008
+  0xC74E8F: textNPC0010
+  0xC74F56: textNPC0014
+  0xC75717: textNPC0016
+  0xC75909: textNPC0021
+  0xC75C33: textNPC0017
+  0xC76112: textNPC0020
+  0xC763A3: textNPC0033
+  0xC763E9: textNPC0034
+  0xC7640B: textNPC0035
+  0xC76443: textNPC0040
+  0xC76449: textNPC0041
+  0xC7661B: textNPC0042
+  0xC76663: textNPC0045
+  0xC7678A: textNPC0048
+  0xC76804: textNPC0052
+  0xC7683A: textNPC0053
+  0xC7689E: textNPC0059
+  0xC768F4: textNPC0062
+  0xC76924: textNPC0063
+  0xC7695F: textNPC0065
+  0xC76980: textNPC0066
+  0xC7699E: textNPC0067
+  0xC76B87: textNPC0068
+  0xC76C29: textNPC0069
+  0xC76CA1: textNPC0070
+  0xC76E92: textNPC0072
+  0xC76EC5: textNPC0077
+  0xC76F20: textNPC1312
+  0xC76F26: textNPC1313
+  0xC76F42: textNPC1314
+  0xC76F5E: textNPC1315
+  0xC76F7A: textNPC1316
+  0xC76F96: textNPC1317
+  0xC7719E: textNPC1318
+  0xC77251: textNPC1342
+  0xC772FF: textNPC1343
+  0xC7735D: textNPC1344
+  0xC7739F: textNPC1319
+  0xC773F4: textNPC1322
+  0xC7743D: textNPC1323
+  0xC7749D: textNPC1324
+  0xC774C6: textNPC1325
+  0xC774EC: textNPC1326
+  0xC77511: textNPC1327
+  0xC77529: textNPC1328
+  0xC77544: textNPC1329
+  0xC77572: textNPC1330
+  0xC7758A: textNPC1331
+  0xC77592: textNPC1332
+  0xC7759C: textNPC1333
+  0xC775BF: textNPC1334
+  0xC775FD: textNPC1335
+  0xC7768F: textNPC1336
+  0xC776C8: textNPC1337
+  0xC776EE: textNPC1347
+  0xC77713: textNPC1348
+  0xC7774B: textNPC1349
+  0xC7777E: textNPC1350
+  0xC77790: textNPC1351
+  0xC7779E: textNPC1352
+  0xC777F2: textNPC1340
+  0xC7786E: textNPC1341
+  0xC7794C: textNPC1358
+  0xC77C5B: textDoor959
+  0xC77C84: textDoor960
+  0xC77CB8: textDoor961
+  0xC77CD0: textDoor962
+  0xC77CDF: textNPC1345
+  0xC77D3A: textNPC1346
+  0xC77D9F: textNPC1353
+  0xC77DA5: textNPC1357
+  0xC77DCE: textAction001
+  0xC77DF0: textAction002
+  0xC77E11: textBattleEquipXInstead
+  0xC77E33: textBattleCouldNotEquipAttackAnyway
+  0xC77EB6: textTriedButCouldNotUseVeryWell
+  0xC77EE8: textCouldNotUseVeryWell
+  0xC77EFF: textNoMessage
+  0xC78033: textEvent65
+  0xC7827C: textEvent66
+  0xC78290: textEvent671
+  0xC782A9: textEvent672
+  0xC782BD: textEvent70
+  0xC78360: textEvent69
+  0xC78394: textEvent68
+  0xC7847E: textEvent202
+  0xC78595: textEvent203
+  0xC785A9: textEvent204
+  0xC785BD: textEvent205
+  0xC78628: textNPC0790
+  0xC78689: textEvent217
+  0xC78748: textNPC0791
+  0xC787A9: textEvent219
+  0xC78866: textEvent206
+  0xC78943: textEvent207
+  0xC78957: textEvent208
+  0xC78968: textEvent209
+  0xC78979: textEventC3d913
+  0xC78A1B: textEvent220
+  0xC78A2C: textEvent212219
+  0xC78A3D: textEvent213
+  0xC78A4E: textEvent214
+  0xC78A5F: textEvent215
+  0xC78A9E: textNPC0972
+  0xC78AF3: textEvent455
+  0xC78CC0: textEvent218
+  0xC78F12: textEventGhosts1
+  0xC78F4A: textEventGhosts2
+  0xC78FCA: textEventGhosts3
+  0xC7905A: textEvent134
+  0xC79088: textNPC0450
+  0xC790C4: textNPC0450Alt
+  0xC790E4: textNPC0827Alt
+  0xC79101: textNPC0645Alt
+  0xC79287: textEvent357
+  0xC792DC: textEvent369
+  0xC793BE: textNPC0236
+  0xC793F3: textNPC0237
+  0xC7944E: textNPC0238
+  0xC7949E: textEvent273
+  0xC794B1: textNPC0439
+  0xC795C1: textNPC0436Alt
+  0xC79707: textEvent221
+  0xC79B98: textEvent181
+  0xC79BFF: textEvent184
+  0xC79C1E: textEvent1842
+  0xC79C32: textEvent185
+  0xC79C46: textEvent186
+  0xC79D66: textEvent77
+  0xC7A04A: textEvent113
+  0xC7A22A: textNPC0634
+  0xC7A542: textDelivery8
+  0xC7A7D9: textDelivery82
+  0xC7AB3F: textC466c1
+  0xC7B4FB: textEvent647
+  0xC7B550: textNPC0967
+  0xC7B576: textNPC0968
+  0xC7B7C9: textEvent672
+  0xC7B82D: textEvent673
+  0xC7B892: textHotSpringEnergized
+  0xC7B96C: textEvent684
+  0xC7B9A1: textBattleGiygasPrayer7
+  0xC7BA2C: textBattleGiygasPrayer2
+  0xC7BAC7: textBattleGiygasPrayer3
+  0xC7BB38: textBattleGiygasPrayer4
+  0xC7BBF3: textBattleGiygasPrayer5
+  0xC7BC56: textBattleGiygasPrayer6
+  0xC7BC96: textBattleGiygasPrayer1
+  0xC7BD89: textEvent711
+  0xC7C588: textWhoAreYouTalkingTo
+  0xC7C59E: textNoProblemHere
+  0xC7C609: textGotRidOfOwnItem
+  0xC7C6B6: textCantUseItem
+  0xC7C6C9: textOnlyOneWhoShouldCarryThis
+  0xC7C6F1: textCantBeUsedHere
+  0xC7C742: textItemCanBeEquipped
+  0xC7C7AF: textAlertConditionCritical
+  0xC7C833: textCantRideBikeHere
+  0xC7C850: textCannotTeleportHere
+  0xC7C95E: textGotOffBike
+  0xC7C973: textSaveFileLost
+  0xC7C9A8: textPhoneStoicClub
+  0xC7CB5F: textPhoneMom
+  0xC7D33E: textDadCalls
+  0xC7D84F: textNPC1407
+  0xC7D85B: textNPC1408
+  0xC7D867: textNPC1474
+  0xC7D873: textNPC1434
+  0xC7DACB: textNPC0582
+  0xC7DB3F: textNPC0744
+  0xC7DB8D: textNPC0745
+  0xC7DBDB: textNPC0746
+  0xC7DE2B: textFileSelectScreen2
+  0xC7DE7D: textGameOver
+  0xC7E3FA: textRearrangedOwnItems
+  0xC7E42C: textCouldntGiveAliveInventoryFull
+  0xC7E468: textCouldntGiveDeadInventoryFull
+  0xC7E4A4: textGaveItemAlive
+  0xC7E4C3: textGaveItemDead
+  0xC7E4E9: textRearrangedOwnItemsDead
+  0xC7E51C: textCouldntTakeFromCharInventoryFull
+  0xC7E559: textCouldntGiveToCharInventoryFull
+  0xC7E5A1: textTookItemFromDead
+  0xC7E5C2: textTookItemFromDeadGaveToDead
+  0xC7E797: textNPC0710
+  0xC7E80D: textNPC0712
+  0xC7E813: textNPC0713
+  0xC7E819: textNPC0718
+  0xC7E8AE: textNPC0719
+  0xC7E96C: textNPC0720
+  0xC7EA00: textNPC0737
+  0xC7EB4C: textNPC0738
+  0xC7EBF9: textNPC0721
+  0xC7EC6C: textNPC0722
+  0xC7ECE9: textNPC0739
+  0xC7EDF1: textNPC0723
+  0xC7EE7B: textNPC0724
+  0xC7EEDE: textNPC0725
+  0xC7EF0D: textNPC0726
+  0xC7EF3B: textNPC0727
+  0xC7F165: textNPC0728
+  0xC7F29E: textNPC0728Alt
+  0xC7F710: textNPC0729
+  0xC7F8AB: textNPC0742
+  0xC7F8C7: textNPC0730
+  0xC7F921: textNPC0731
+  0xC7FB3E: textNPC0734
+  0xC7FE02: textNPC0707
+  0xC7FE61: textNPC0732
+  0xC7FEB1: textEvent683
+  0xC80000: textNPC0212
+  0xC804D1: textNPC0213
+  0xC80939: textNPC0341
+  0xC809BA: textNPC0214
+  0xC80A7E: textNPC0215
+  0xC80B7F: textNPC0216
+  0xC80C31: textNPC0217
+  0xC81122: textNPC0220
+  0xC81676: textNPC0221
+  0xC81934: textNPC0222
+  0xC81A88: textNPC0226
+  0xC81B0C: textNPC0226Alt
+  0xC81BB8: textNPC0228
+  0xC81BE2: textNPC0227
+  0xC81C56: textNPC0340
+  0xC81C91: textNPC0335
+  0xC81CD6: textNPC0229
+  0xC81DF1: textNPC0232
+  0xC81E0F: textNPC0233
+  0xC81EEE: textNPC0234
+  0xC81F2A: textNPC0235
+  0xC81F56: textNPC0336
+  0xC82105: textNPC0906
+  0xC822D2: textNPC0908
+  0xC8258C: textNPC0908Alt
+  0xC826BC: textNPC0909
+  0xC82730: textNPC0910
+  0xC82785: textNPC0911
+  0xC827AF: textNPC0912
+  0xC827CF: textNPC0914
+  0xC827D5: textNPC0916
+  0xC827DB: textNPC0917
+  0xC82874: textNPC0920
+  0xC8287A: textNPC0921
+  0xC829F8: textNPC0922
+  0xC829FE: textNPC0923
+  0xC82A04: textNPC0924
+  0xC82A63: textNPC0932
+  0xC82A69: textNPC0926
+  0xC82A6F: textNPC0927
+  0xC82B06: textNPC0928
+  0xC82B59: textNPC0929
+  0xC82C11: textNPC0930
+  0xC82C6B: textNPC0941
+  0xC82D6C: textNPC0942
+  0xC82E26: textNPC0943
+  0xC82EF8: textNPC0944
+  0xC82FA9: textNPC0945
+  0xC83002: textNPC0946
+  0xC83082: textNPC0947
+  0xC83158: textNPC0948
+  0xC832BF: textNPC0949
+  0xC833B1: textNPC0950
+  0xC834E1: textNPC0951
+  0xC8361C: textNPC0952
+  0xC839F7: textNPC0953
+  0xC83A45: textNPC0954
+  0xC83A89: textNPC0955
+  0xC83AEE: textNPC0956
+  0xC83C94: textNPC0957
+  0xC83CDD: textNPC0958
+  0xC83D18: textNPC0936
+  0xC83D1E: textNPC0959
+  0xC83D24: textNPC0995
+  0xC83D9E: textNPC0961
+  0xC83E7F: textNPC0962
+  0xC83E97: textNPC0963
+  0xC83ECD: textNPC0964
+  0xC83EFD: textNPC0965
+  0xC83F3C: textNPC0966
+  0xC83F5F: textNPC0904
+  0xC83FCF: textNPC0860
+  0xC84079: textNPC0902
+  0xC84111: textNPC0851
+  0xC84168: textNPC0852
+  0xC841B3: textNPC0969
+  0xC842F9: textNPC0064
+  0xC849ED: textNPC0260
+  0xC84FD8: textNPC0490
+  0xC8567B: textNPC0895
+  0xC85BD4: textNPC1019
+  0xC85F76: textNPC1126
+  0xC861DD: textNPC1373
+  0xC86279: textDoor150
+  0xC8634C: textDoor128
+  0xC86399: textDoor129
+  0xC863DA: textDoor131
+  0xC86419: textDoor133
+  0xC86431: textDoor135
+  0xC86467: textDoor136
+  0xC86477: textDoor137
+  0xC86483: textDoor138
+  0xC864A7: textDoor144
+  0xC864E6: textDoor145
+  0xC86511: textDoor148
+  0xC8652A: textDoor149
+  0xC86554: textDoor274
+  0xC86568: textDoor275
+  0xC865CB: textDoor241
+  0xC8661B: textDoor245
+  0xC86663: textDoor246
+  0xC86689: textDoor247
+  0xC866AB: textNPC0365
+  0xC866C4: textNPC0361
+  0xC866DD: textDoor364
+  0xC866F3: textDoor363
+  0xC8672D: textDoor356
+  0xC86787: textDoor360
+  0xC867C5: textDoor361
+  0xC86813: textDoor358
+  0xC8683D: textDoor347
+  0xC868AD: textDoor672
+  0xC86900: textDoor673
+  0xC86961: textDoor674
+  0xC86995: textDoor976
+  0xC869BE: textDoor957
+  0xC869CB: textDoor958
+  0xC869DD: textDoor741
+  0xC86A25: textDoor676
+  0xC86AB2: textDoor677
+  0xC86AB3: textDoor678
+  0xC86AD7: textDoor155
+  0xC86B10: textDoor156
+  0xC86CB4: textDoor737
+  0xC86CF4: textDoor348
+  0xC86D59: textDoor248
+  0xC86DA8: textDoor679
+  0xC86DFB: textDoor680
+  0xC86E3D: textDoor736
+  0xC87155: textDoor730
+  0xC87176: textDoor731
+  0xC87194: textDoor734
+  0xC871B2: textDoor732
+  0xC871CD: textDoor733
+  0xC871E9: textDoor735
+  0xC87202: textDoor774
+  0xC872A6: textDoor840
+  0xC872E6: textDoor841
+  0xC87313: textDoor842
+  0xC8734B: textDoor843
+  0xC8737F: textDoor844
+  0xC873AB: textDoor845
+  0xC873DD: textDoor846
+  0xC87411: textDoor847
+  0xC87444: textDoor848
+  0xC87474: textDoor849
+  0xC874A2: textDoor850
+  0xC874D4: textDoor851
+  0xC87511: textDoor852
+  0xC87546: textDoor853
+  0xC8757D: textDoor854
+  0xC875B0: textDoor855
+  0xC875DB: textDoor856
+  0xC87617: textDoor857
+  0xC87632: textDoor858
+  0xC87664: textDoor859
+  0xC8768C: textDoor860
+  0xC876B6: textDoor861
+  0xC876D6: textDoor863
+  0xC876F9: textDoor864
+  0xC8773B: textDoor865
+  0xC8776E: textDoor866
+  0xC87798: textDoor867
+  0xC877C4: textDoor868
+  0xC877F1: textDoor869
+  0xC87811: textDoor870
+  0xC8783F: textDoor871
+  0xC87881: textDoor872
+  0xC878B9: textDoor873
+  0xC878E2: textDoor874
+  0xC8791A: textDoor875
+  0xC87941: textDoor876
+  0xC87961: textDoor877
+  0xC87995: textDoor878
+  0xC879C5: textDoor879
+  0xC879FE: textDoor880
+  0xC87A1D: textDoor881
+  0xC87A50: textDoor882
+  0xC87A6F: textDoor883
+  0xC87A9A: textNPC0685
+  0xC87ABA: textNPC0686
+  0xC87AEB: textNPC0687
+  0xC87B0B: textDoor462
+  0xC87B33: textDoor910
+  0xC87B40: textNPC1267
+  0xC87B56: textDoor911
+  0xC87B60: textDoor912
+  0xC87B70: textDoor130
+  0xC87B9E: textDoor132
+  0xC87BCF: textDoor134
+  0xC87BF5: textDoor143
+  0xC87C1D: textDoor146
+  0xC87C57: textDoor147
+  0xC87C8C: textDoor242
+  0xC87CB8: textDoor243
+  0xC87CD9: textDoor244
+  0xC87D1F: textDoor357
+  0xC87D94: textDoor359
+  0xC87DB4: textDoor362
+  0xC87DFF: textDoor157
+  0xC87E37: textDoor160
+  0xC87EBC: textDoor862
+  0xC87EEE: textNPC1208
+  0xC882BD: textEvent284
+  0xC88332: textEvent137138
+  0xC88387: textEvent137
+  0xC88739: textEvent591
+  0xC8888D: textEvent317
+  0xC888AF: textEvent210
+  0xC888C0: textEvent216
+  0xC889C7: VENUSCONCERTMAIN
+  0xC88A3B: VENUSCONCERTCLEANUP
+  0xC88E0A: textEvent372
+  0xC88EFE: textEvent400
+  0xC89036: textEvent256
+  0xC8905C: textNPC0770
+  0xC892C3: textEvent401
+  0xC89498: textEvent437
+  0xC8972A: textNPC0931
+  0xC8989F: textNPC0884
+  0xC898BC: textNPC0885
+  0xC898D4: textNPC0887
+  0xC89902: textNPC0888
+  0xC89922: textNPC0886
+  0xC8995A: textEvent700
+  0xC89B32: textNPC0960
+  0xC89BC5: textEvent190
+  0xC89C1D: textEvent193
+  0xC89C2E: textEvent194
+  0xC89C3F: textEvent195
+  0xC89C50: textEvent196
+  0xC89C61: textEvent197
+  0xC89C72: textEvent198
+  0xC89C83: textEvent199
+  0xC89C94: textEvent200
+  0xC89CA5: textEvent201
+  0xC89E1B: textNPC0996
+  0xC89EA8: textNPC0997
+  0xC89EF8: textNPC0998
+  0xC89F2D: textNPC0999
+  0xC8A056: textNPC1000
+  0xC8A11C: textNPC1001
+  0xC8A1A0: textNPC1003
+  0xC8A1E1: textNPC1004
+  0xC8A24C: textNPC1005
+  0xC8A2F9: textNPC1006
+  0xC8A333: textNPC1007
+  0xC8A34B: textNPC1008
+  0xC8A351: textNPC1011
+  0xC8A357: textNPC1012
+  0xC8A394: textNPC1013
+  0xC8A43D: textNPC1016
+  0xC8A49E: textNPC1017
+  0xC8A4A9: textNPC1018
+  0xC8A50D: textNPC1024
+  0xC8A595: textNPC1021
+  0xC8A5CE: textNPC1025
+  0xC8A5D4: textNPC1026
+  0xC8A5FC: textNPC1027
+  0xC8A691: textNPC1028
+  0xC8A6BF: textNPC1029
+  0xC8A6F9: textNPC1030
+  0xC8A737: textNPC1033
+  0xC8A8BF: textNPC1037
+  0xC8A976: textNPC1037Alt
+  0xC8AAE6: textNPC1038
+  0xC8AD69: textNPC1035
+  0xC8AEC1: textNPC1036
+  0xC8AF57: textNPC1047
+  0xC8AF5D: textNPC1049
+  0xC8AF63: textNPC1050
+  0xC8AFAD: textNPC1051
+  0xC8B008: textNPC1052
+  0xC8B038: textNPC1053
+  0xC8B07F: textNPC1054
+  0xC8B0D4: textNPC1055
+  0xC8B130: textNPC1056
+  0xC8B191: textNPC1069
+  0xC8B2BC: textNPC1057
+  0xC8B2F8: textNPC1058
+  0xC8B342: textNPC1059
+  0xC8B39D: textNPC1060
+  0xC8B3C6: textNPC1062
+  0xC8B3F8: textNPC1063
+  0xC8B4C9: textNPC1064
+  0xC8B52A: textNPC1065
+  0xC8B8C0: textNPC1067
+  0xC8B8CD: textNPC1068
+  0xC8B8D5: textNPC1002
+  0xC8BA82: textNPC1066
+  0xC8BAB9: textNPC1070
+  0xC8BAE0: textNPC1031
+  0xC8BB5B: textNPC1077
+  0xC8BB91: textDoor740
+  0xC8BBD2: textDoor742
+  0xC8D9ED: textNPC0456
+  0xC8DAA0: textNPC0542
+  0xC8DB32: textNPC0457
+  0xC8DBF8: textNPC0540
+  0xC8DC4F: textNPC0458
+  0xC8DCD6: textNPC0541
+  0xC8DD35: textNPC0459
+  0xC8DE4A: textNPC0539
+  0xC8DF51: textNPC0477
+  0xC8DF8A: textNPC0478
+  0xC8DFC1: textNPC0498
+  0xC8E044: textNPC0499
+  0xC8E04A: textNPC0500
+  0xC8E0AD: textNPC0502
+  0xC8E132: textNPC0503
+  0xC8E138: textNPC0504
+  0xC8E13E: textNPC0505
+  0xC8E144: textNPC0509
+  0xC8E14A: textNPC0515
+  0xC8E1BD: textNPC0516
+  0xC8E275: textNPC0517
+  0xC8E2EA: textNPC0518
+  0xC8E388: textNPC0519
+  0xC8E467: textNPC0520
+  0xC8E515: textNPC0521
+  0xC8E5B1: textNPC0522
+  0xC8E62C: textNPC0511
+  0xC8E6A9: textNPC0523
+  0xC8E6E3: textNPC0524
+  0xC8E6ED: textNPC0525
+  0xC8E734: textNPC0526
+  0xC8E804: textNPC0527
+  0xC8EA8B: textNPC0528
+  0xC8EACE: textNPC0529
+  0xC8EB2C: textNPC0530
+  0xC8EBE4: textNPC0534
+  0xC8EC0F: textEvent758
+  0xC8EC90: textNPC0535
+  0xC8ECB4: textNPC0536
+  0xC8ECBA: textNPC0537
+  0xC8ED1E: textNPC0513
+  0xC8EE02: textNPC0514
+  0xC8EEE5: textNPC0512
+  0xC8EF99: textNPC0551
+  0xC8EFB9: textNPC0475
+  0xC8F11B: textNPC0476
+  0xC8F240: textNPC0491
+  0xC8F2B7: textNPC0552
+  0xC8F2EF: textNPC0553
+  0xC8F324: textNPC0554
+  0xC8F344: textNPC0555
+  0xC8F392: textNPC0556
+  0xC8F3EB: textNPC0557
+  0xC8F41F: textNPC0558
+  0xC8F42A: textNPC0559
+  0xC8F43F: textNPC0560
+  0xC8F448: textNPC0561
+  0xC8F450: textNPC0485
+  0xC8F48A: textNPC0486
+  0xC8F535: textNPC0562
+  0xC8F5D0: textNPC0563
+  0xC8F66A: textNPC0464
+  0xC8F69D: textNPC0460
+  0xC8F6B5: textNPC0461
+  0xC8F6CA: textNPC0462
+  0xC8F6E2: textNPC0470
+  0xC8F701: textNPC0471
+  0xC8F715: textNPC0472
+  0xC8F725: textNPC0474
+  0xC8F75E: textNPC0481
+  0xC8F77D: textBattleOffenseWentUp
+  0xC8F79A: textBattleDefenseWentUp
+  0xC8F7B8: textBattleIqWentUp
+  0xC8F7D2: textBattleGutsWentUp
+  0xC8F7EE: textBattleGutsWentDown
+  0xC8F80A: textBattleGutsBecame
+  0xC8F82F: textBattleSpeedWentUp
+  0xC8F84C: textBattleVitalityWentUp
+  0xC8F86B: textBattleLuckWentUp
+  0xC8F885: textBattleOffenseWentDown
+  0xC8F8A2: textBattleDefenseWentDown
+  0xC8F8C0: textBattleFlyHoneyBelch
+  0xC8F8FD: textBattleFlyHoneyNormal
+  0xC8F935: textMysteriousLight
+  0xC8F956: textWarmLight
+  0xC8F973: textDazzlingLightEnveloped
+  0xC8F992: textHeavyAir
+  0xC8F9B3: textDazzlingLightChased
+  0xC8F9CE: textSubtleLight
+  0xC8F9F0: textGoldenLight
+  0xC8FA0D: textRainbowLight
+  0xC8FA2F: textMysteriousAroma
+  0xC8FA51: textHeavenRendingSound
+  0xC8FAAA: textNotEnoughPp
+  0xC8FAB8: textBattleUsedPsi
+  0xC8FAF6: textBattleItDidntHitAnyone
+  0xC8FB05: textBattleDoesNotHaveAnyPp
+  0xC8FB1B: textAction275
+  0xC8FC2E: textPokeySpeech3
+  0xC8FD11: textPokeySpeech4
+  0xC8FF31: textBattlePokeyFlees
+  0xC90010: textNPC0409
+  0xC9009D: textNPC0410
+  0xC90339: textNPC0058
+  0xC90393: textNPC0256
+  0xC9067D: textNPC0483
+  0xC906F1: textNPC0748
+  0xC9083A: textNPC0890
+  0xC908BC: textNPC1020
+  0xC90A9B: textNPC1124
+  0xC90C38: textNPC1372
+  0xC90E4A: textNPC1298
+  0xC916A3: textNPC0111
+  0xC916AF: textNPC0265
+  0xC916BB: textNPC0501
+  0xC916C7: textNPC0774
+  0xC916D3: textNPC0915
+  0xC916DF: textNPC1048
+  0xC916EB: textNPC1133
+  0xC916F7: textNPC1367
+  0xC91C3A: textNPC0480
+  0xC91FFD: textEvent138
+  0xC929AE: textNPC1103
+  0xC92FC0: textDoor775
+  0xC93029: textDoor778
+  0xC93067: textDoor776
+  0xC9309E: textDoor779
+  0xC930CE: textDoor777
+  0xC9310D: textNPC1143
+  0xC9312E: textDoor816
+  0xC93181: textDoor817
+  0xC9323B: textNPC1193
+  0xC93378: textEvent497
+  0xC9344F: textEvent498
+  0xC936E6: textNPC1258
+  0xC93853: textNPC0303
+  0xC93A00: textNPC0304
+  0xC93A2E: textNPC0305
+  0xC93AED: textNPC0306
+  0xC93B60: textNPC0307
+  0xC93CA7: textNPC0308
+  0xC93D31: textNPC0309
+  0xC93DA9: textNPC0310
+  0xC93E16: textNPC0311
+  0xC93E1C: textNPC0312
+  0xC93FA0: textNPC0313
+  0xC940E3: textNPC0314
+  0xC942C7: textNPC0315
+  0xC94479: textNPC0316
+  0xC9447F: textNPC0317
+  0xC94503: textNPC0318
+  0xC94509: textNPC0319
+  0xC94560: textNPC0344
+  0xC94594: textNPC0356
+  0xC945A9: textNPC0324
+  0xC9461F: textNPC0325
+  0xC946B1: textNPC0326
+  0xC946E6: textNPC0327
+  0xC94730: textNPC0322
+  0xC94769: textNPC0373
+  0xC9477D: textNPC0328
+  0xC94883: textNPC0329
+  0xC94A63: textNPC0230
+  0xC94ABC: textNPC0320
+  0xC94B57: textNPC0331
+  0xC94BC9: textNPC0332
+  0xC94C6D: textNPC0333
+  0xC94D7A: textNPC0268
+  0xC94E44: textNPC0268Alt
+  0xC94ED9: textNPC0269
+  0xC94F42: textNPC0270
+  0xC95019: textNPC0330
+  0xC950B2: textNPC0219
+  0xC950E8: textNPC0239
+  0xC9514F: textNPC0240
+  0xC951B7: textNPC0241
+  0xC9522B: textNPC0242
+  0xC9527C: textNPC0243
+  0xC952B2: textNPC0244
+  0xC95306: textNPC0245
+  0xC95324: textNPC0246
+  0xC95365: textNPC0369
+  0xC95393: textNPC0357
+  0xC953BF: textNPC0247
+  0xC953F7: textNPC0248
+  0xC954E1: textNPC0248Alt
+  0xC95532: textNPC0249
+  0xC956D6: textNPC0249Alt
+  0xC9571E: textNPC0250
+  0xC95786: textNPC0250Alt
+  0xC957CB: textNPC0252
+  0xC958D7: textNPC0252Alt
+  0xC9594D: textNPC0251
+  0xC959A5: textNPC0251Alt
+  0xC959DB: textNPC0253
+  0xC95A8D: textNPC0253Alt
+  0xC95C0E: textNPC0254
+  0xC96124: textNPC0255
+  0xC962C8: textNPC0257
+  0xC96304: textNPC0262
+  0xC963EA: textNPC0264
+  0xC963F0: textNPC0266
+  0xC963F6: textNPC0267
+  0xC96425: textNPC0339
+  0xC9649A: textNPC0271
+  0xC9650F: textNPC0272
+  0xC96552: textNPC0273
+  0xC965A4: textNPC0274
+  0xC96675: textNPC0277
+  0xC9675A: textNPC0279
+  0xC967E7: textNPC0281
+  0xC967FB: textNPC0282
+  0xC9684F: textNPC0283
+  0xC968AE: textNPC0218
+  0xC968B6: textNPC0288
+  0xC968BC: textNPC0289
+  0xC969E5: textNPC0290
+  0xC96A72: textNPC0291
+  0xC96A78: textNPC0292
+  0xC96A7E: textNPC0293
+  0xC96B37: textNPC0294
+  0xC96BAF: textNPC0296
+  0xC96BB5: textNPC0295
+  0xC96BBB: textNPC0297
+  0xC96BF2: textNPC0298
+  0xC96D10: textNPC1379
+  0xC96D4F: textNPC1359
+  0xC96D6A: textNPC1360
+  0xC96D8A: textNPC1361
+  0xC96DB2: textNPC1362
+  0xC96DEC: textNPC1380
+  0xC96E07: textNPC1397
+  0xC96E22: textNPC1398
+  0xC96E3D: textNPC1401
+  0xC96E58: textNPC1402
+  0xC96E7E: textNPC1403
+  0xC96E99: textNPC1404
+  0xC96EB4: textNPC1381
+  0xC96F0A: textNPC1382
+  0xC96F5D: textNPC1368
+  0xC96FE2: textNPC1383
+  0xC9707C: textNPC1384
+  0xC970C8: textNPC1385
+  0xC9712E: textNPC1394
+  0xC97187: textNPC1386
+  0xC972E7: textNPC1387
+  0xC9734A: textNPC1388
+  0xC973B1: textNPC1389
+  0xC973E4: textNPC1390
+  0xC9740A: textNPC1391
+  0xC9743D: textNPC1392
+  0xC9749E: textNPC1393
+  0xC974F4: textNPC1377
+  0xC975CC: textNPC1378
+  0xC97823: textNPC1396
+  0xC9794B: textNPC1406
+  0xC97990: textNPC0905
+  0xC979E5: textNPC1369
+  0xC97A51: textNPC1370
+  0xC97B06: textNPC1364
+  0xC97B0C: textNPC1365
+  0xC97B12: textNPC1395
+  0xC97B35: textDoor975
+  0xC97B6B: textAction135
+  0xC97C7B: textAction250
+  0xC97C9D: textBattleItWasPrettyGood
+  0xC97CB1: textBattleItDidntTasteVeryGood
+  0xC97CCA: textAction177
+  0xC97D21: textAction178
+  0xC97D43: textAction175
+  0xC97D75: textAction169
+  0xC97DA3: textAction170
+  0xC97DDC: textAction163
+  0xC97DF5: textAction164
+  0xC97E24: textAction165
+  0xC97E9E: textAction310
+  0xC97EB7: textAction167
+  0xC97ED1: textAction171
+  0xC97EFA: textAction174
+  0xC97F56: textAction162
+  0xC97F72: textAction188
+  0xC97F8A: textAction268
+  0xC98000: textNPC0375
+  0xC98024: textNPC0376
+  0xC982F2: textNPC0377
+  0xC98374: textNPC0378
+  0xC98424: textNPC0379
+  0xC9847F: textNPC0380
+  0xC98517: textNPC0381
+  0xC98598: textNPC0382
+  0xC98602: textNPC0383
+  0xC9864B: textNPC0384
+  0xC986CC: textNPC0385
+  0xC9873B: textNPC0386
+  0xC98785: textNPC0387
+  0xC987CF: textNPC0388
+  0xC9881E: textNPC0389
+  0xC9886F: textNPC0390
+  0xC988CB: textNPC0391
+  0xC988F1: textNPC0392
+  0xC98913: textNPC0393
+  0xC9894E: textNPC0420
+  0xC98B24: textNPC0402
+  0xC98B68: textNPC0403
+  0xC98B6E: textNPC0423
+  0xC98BEF: textNPC0424
+  0xC98CD3: textNPC0411
+  0xC98D78: textNPC0412
+  0xC98E8D: textNPC0433
+  0xC98EDE: textNPC0413
+  0xC98F37: textNPC0397
+  0xC99018: textNPC0414
+  0xC990B3: textNPC0398
+  0xC99120: textNPC0415
+  0xC991C7: textNPC0416
+  0xC99282: textNPC0417
+  0xC992FA: textNPC0418
+  0xC993A5: textNPC0419
+  0xC994CB: textNPC0432
+  0xC994F5: textNPC0408
+  0xC994FB: textNPC0445
+  0xC99582: textNPC0421
+  0xC996AA: textNPC0422
+  0xC99703: textNPC0394
+  0xC99720: textNPC0395
+  0xC99757: textNPC0396
+  0xC99776: textNPC0399
+  0xC997AE: textNPC0400
+  0xC997EE: textNPC0401
+  0xC9985A: textNPC0426
+  0xC998C1: textNPC0435
+  0xC99930: textDoor085
+  0xC9995D: textDoor069
+  0xC999A1: textDoor021
+  0xC99A6B: textDoor063
+  0xC99A8F: textDoor048
+  0xC99A93: textDoor019
+  0xC99ACC: textDoor170
+  0xC99B3F: textDoor401
+  0xC99B5C: textDoor408
+  0xC99B60: textDoor373
+  0xC99B66: textDoor035
+  0xC99B6A: textDoor015
+  0xC99B75: textDoor043
+  0xC99C31: textDoor030
+  0xC99C4B: textDoor238
+  0xC99C4F: textDoor460
+  0xC99C53: textDoor549
+  0xC99C68: textDoor548
+  0xC99C76: textDoor561
+  0xC99C83: textDoor884
+  0xC99C98: textDoor904
+  0xC99CBC: textDoor907
+  0xC99CCD: textDoor903
+  0xC99CF6: textDoor109
+  0xC99D05: textDoor183
+  0xC99D24: textDoor232
+  0xC99D3C: textDoor638
+  0xC99D3D: textDoor636
+  0xC99D6A: textDoor642
+  0xC99D8B: textDoor640
+  0xC99D92: textDoor194
+  0xC99DA6: textDoor189
+  0xC99DCE: textDoor196
+  0xC99E8B: textDoor389
+  0xC99E9B: textDoor346
+  0xC99EB8: textDoor342
+  0xC99EB9: textDoor182
+  0xC99EC9: textDoor290
+  0xC99ED9: textDoor237
+  0xC99F91: textDoor235
+  0xC99FE0: textDoor234
+  0xC99FFA: textDoor556
+  0xC9A01A: textDoor630
+  0xC9A030: textDoor573
+  0xC9A08B: textDoor633
+  0xC9A09D: textDoor641
+  0xC9A0B6: textDoor190
+  0xC9A0B7: textDoor255
+  0xC9A123: textDoor269
+  0xC9A139: textDoor253
+  0xC9A1A3: textDoor268
+  0xC9A1A7: textDoor266
+  0xC9A1B2: textDoor271
+  0xC9A1B6: textDoor124
+  0xC9A270: textDoor125
+  0xC9A2AC: textDoor126
+  0xC9A306: textDoor127
+  0xC9A336: textDoor139
+  0xC9A381: textDoor140
+  0xC9A3C5: textDoor141
+  0xC9A432: textDoor142
+  0xC9A56A: textDoor239
+  0xC9A604: textDoor240
+  0xC9A783: textDoor349
+  0xC9A7E4: textDoor350
+  0xC9A83D: textDoor351
+  0xC9A89B: textDoor352
+  0xC9A8B2: textDoor353
+  0xC9A8E0: textDoor354
+  0xC9A930: textNPC0564
+  0xC9AA1C: textDoor355
+  0xC9AA7F: textDoor461
+  0xC9AAF0: textDoor447
+  0xC9AB01: textDoor738
+  0xC9ABBD: textDoor739
+  0xC9ABCF: textDoor675
+  0xC9ABE6: textDoor151
+  0xC9AC22: textDoor152
+  0xC9AC4D: textDoor153
+  0xC9AC6F: textDoor154
+  0xC9ACAE: textDoor839
+  0xC9AD26: textDoor628
+  0xC9AD7B: textDoor604
+  0xC9ADA2: textDoor588
+  0xC9ADC7: textDoor555
+  0xC9ADD7: textDoor554
+  0xC9ADEE: textDoor647
+  0xC9ADF2: textDoor307
+  0xC9AE01: textDoor071
+  0xC9AE16: textDoor395
+  0xC9AE58: textDoor402
+  0xC9AE59: textDoor780
+  0xC9AE73: textDoor814
+  0xC9AED7: textDoor773
+  0xC9AF16: textDoor807
+  0xC9AF3A: textDoor943
+  0xC9AF4A: textDoor824
+  0xC9AF82: textDoor001
+  0xC9AF8B: textDoor115
+  0xC9AFB6: textDoor281
+  0xC9AFE1: textDoor403
+  0xC9B00C: textDoor446
+  0xC9B037: textDoor669
+  0xC9B062: textDoor765
+  0xC9B08D: textDoor885
+  0xC9B0B2: textDoor915
+  0xC9B0D7: textDoor566
+  0xC9B0E3: textDoor577
+  0xC9B0EF: textDoor586
+  0xC9B0FB: textDoor594
+  0xC9B107: textDoor587
+  0xC9B10B: textDoor004
+  0xC9B11E: textDoor101
+  0xC9B12A: textDoor716
+  0xC9B12E: textDoor725
+  0xC9B13F: textDoor686
+  0xC9B15F: textDoor704
+  0xC9B17D: textDoor685
+  0xC9B20E: textDoor000
+  0xC9B21D: textDoor367
+  0xC9B221: textDoor711
+  0xC9B225: textDoor022
+  0xC9B900: textEvent287
+  0xC9BBD3: textEvent335
+  0xC9BD35: textNPC1269
+  0xC9BD69: textNPC1270
+  0xC9C262: textNPC1271
+  0xC9C27E: textNPC1272
+  0xC9C6B8: textEvent771
+  0xC9C7FA: textEndOfGamePickyEvent
+  0xC9C991: textNPC1089
+  0xC9CC13: textNPC1090
+  0xC9CCF5: textNPC1091
+  0xC9CD4F: textNPC1094
+  0xC9CE2C: textNPC1095
+  0xC9CE9B: textNPC1096
+  0xC9CEF7: textNPC1097
+  0xC9D011: textNPC1100
+  0xC9D02D: textNPC1101
+  0xC9D125: textNPC1102
+  0xC9D1B7: textNPC1112
+  0xC9D2BA: textNPC1118
+  0xC9D334: textNPC1104
+  0xC9D3E0: textNPC1105
+  0xC9D4D3: textNPC1106
+  0xC9D5C4: textNPC1092
+  0xC9D621: textNPC1107
+  0xC9D656: textNPC1107Alt
+  0xC9D6CE: textNPC1117
+  0xC9D6F8: textNPC1250Alt
+  0xC9D72E: textNPC1250
+  0xC9D779: textNPC1251
+  0xC9D77F: textNPC1252
+  0xC9D940: textNPC1252Alt
+  0xC9DB12: textNPC1253
+  0xC9DB2C: textNPC1254
+  0xC9DB3E: textNPC1255
+  0xC9DBAF: textNPC1256
+  0xC9DBD6: textNPC1257
+  0xC9DC2C: textNPC1261
+  0xC9DDB4: textNPC1259
+  0xC9DDC6: textNPC1247
+  0xC9DDD1: textNPC1248
+  0xC9DDF8: textNPC1249
+  0xC9DE0E: textNPC1292
+  0xC9E27B: textNPC1246
+  0xC9E2F5: textNPC1260
+  0xC9E37E: textNPC1226
+  0xC9E578: textNPC1227
+  0xC9E613: textNPC1228
+  0xC9E619: textNPC1229
+  0xC9E763: textNPC1230
+  0xC9E79F: textNPC1240
+  0xC9E7B8: textNPC1241
+  0xC9E7D1: textNPC1242
+  0xC9E7EA: textNPC1243
+  0xC9E803: textNPC1244
+  0xC9E865: textNPC1234
+  0xC9E87D: textNPC1233
+  0xC9EC74: textNPC1236
+  0xC9EC7A: textNPC1245
+  0xC9ED29: textNPC1235
+  0xC9ED3C: textNPC1238
+  0xC9ED95: textNPC1239
+  0xC9EE2F: textAction308
+  0xC9EE68: textAction312
+  0xC9F0B8: textAction291
+  0xC9F134: textAction292
+  0xC9F196: textAction293
+  0xC9F1FD: textAction294
+  0xC9F25E: textAction295
+  0xC9F2BC: textAction296
+  0xC9F325: textAction297
+  0xC9F389: textAction298
+  0xC9F3EC: textAction299
+  0xC9F6DE: textBattleGiygasPrayer8
+  0xC9F70C: textBattleGiygasPrayer91
+  0xC9F7BB: textBattleGiygasPrayer92
+  0xC9F804: textBattleGiygasPrayer93
+  0xC9F84D: textBattleGiygasPrayer94
+  0xC9F86A: textBattleGiygasDefensesUnstable
+  0xC9F897: textAction190
+  0xC9F9F3: textAction191
+  0xC9FB61: textAction192
+  0xC9FB8B: textAction193
+  0xC9FB9F: textAction194
+  0xC9FBF2: textAction197
+  0xC9FC48: textAction198
+  0xC9FC6F: textAction199
+  0xC9FC9E: textNPC0671
+  0xC9FCD5: textNPC0671Alt
+  0xC9FD2E: textAction200
+  0xC9FD82: textAction186
+  0xC9FDBB: textAction187
+  0xC9FDFB: textAction195
+  0xC9FE1B: textAction196
+  0xC9FE41: textBattleTeleportBoxExploded
+  0xC9FE9D: textBattleTeleportBoxFailed
+  0xC9FEE3: textBattleTeleportBoxCannotBeUsedHere
+  0xC9FEFD: textAction258
+  0xEF4E20: textPsiRockinAlphaDesc
+  0xEF4E38: textPsiRockinBetaDesc
+  0xEF4E51: textPsiRockinGammaDesc
+  0xEF4E6A: textPsiRockinOmegaDesc
+  0xEF4E83: textPsiFireAlphaDesc
+  0xEF4E99: textPsiFireBetaDesc
+  0xEF4EB0: textPsiFireGammaDesc
+  0xEF4EC7: textPsiFireOmegaDesc
+  0xEF4EDE: textPsiFreezeAlphaDesc
+  0xEF4F06: textPsiFreezeBetaDesc
+  0xEF4F2E: textPsiFreezeGammaDesc
+  0xEF4F56: textPsiFreezeOmegaDesc
+  0xEF4F7E: textPsiThunderAlphaDesc
+  0xEF4FA6: textPsiThunderBetaDesc
+  0xEF4FDC: textPsiThunderGammaDesc
+  0xEF5013: textPsiThunderOmegaDesc
+  0xEF5049: textPsiFlashAlphaDesc
+  0xEF506B: textPsiFlashBetaDesc
+  0xEF50AF: textPsiFlashGammaDesc
+  0xEF50E1: textPsiFlashOmegaDesc
+  0xEF5131: textPsiStarstormAlphaDesc
+  0xEF5152: textPsiStarstormOmegaDesc
+  0xEF5173: textPsiLifeupAlphaDesc
+  0xEF5189: textPsiLifeupBetaDesc
+  0xEF519F: textPsiLifeupGammaDesc
+  0xEF51BB: textPsiLifeupOmegaDesc
+  0xEF51CF: textPsiHealingAlphaDesc
+  0xEF51F0: textPsiHealingBetaDesc
+  0xEF5239: textPsiHealingGammaDesc
+  0xEF52A5: textPsiHealingOmegaDesc
+  0xEF5301: textShieldAlphaDesc
+  0xEF5361: textShieldSigmaDesc
+  0xEF53C0: textShieldBetaDesc
+  0xEF5428: textShieldOmegaDesc
+  0xEF548F: textPsiShieldAlphaDesc
+  0xEF54E6: textPsiShieldSigmaDesc
+  0xEF553C: textPsiShieldBetaDesc
+  0xEF55A0: textPsiShieldOmegaDesc
+  0xEF5603: textPsiOffenseUpAlphaDesc
+  0xEF562E: textPsiOffenseUpOmegaDesc
+  0xEF5658: textPsiDefenseDownAlphaDesc
+  0xEF5687: textPsiDefenseDownOmegaDesc
+  0xEF56B9: textPsiHypnosisAlphaDesc
+  0xEF56D0: textPsiHypnosisOmegaDesc
+  0xEF56EB: textPsiMagnetAlphaDesc
+  0xEF5712: textPsiMagnetOmegaDesc
+  0xEF5739: textPsiParalysisAlphaDesc
+  0xEF574E: textPsiParalysisOmegaDesc
+  0xEF5766: textPsiBrainshockAlphaDesc
+  0xEF5777: textPsiBrainshockOmegaDesc
+  0xEF578B: textPsiTeleportAlphaDesc
+  0xEF57AE: textPsiTeleportBetaDesc
+  0xEF57EB: textNPC1276
+  0xEF5864: textNPC1268
+  0xEF58C7: textNPC1273
+  0xEF5A3E: textNPC1283
+  0xEF5AED: textNPC1284
+  0xEF5BE6: textNPC1285
+  0xEF5C98: textNPC1286
+  0xEF5D16: textNPC1287
+  0xEF5E94: textNPC1288
+  0xEF5F7D: textNPC1289
+  0xEF5FDF: textNPC1290
+  0xEF6049: textNPC1291
+  0xEF604F: textNPC1293
+  0xEF6084: textNPC1294
+  0xEF60F2: textNPC1295
+  0xEF610C: textNPC1299Alt
+  0xEF610D: textNPC1300
+  0xEF6157: textNPC1301
+  0xEF617B: textNPC0688
+  0xEF6276: textNPC0689
+  0xEF62B1: textNPC0690
+  0xEF62F5: textNPC0691
+  0xEF63B5: textNPC0692
+  0xEF6400: textNPC0693
+  0xEF6419: textNPC0694
+  0xEF6446: textNPC0697
+  0xEF679A: textNPC0705
+  0xEF6814: textNPC0708
+  0xEF69A1: textBattleHpAreMaxedOut
+  0xEF69BA: textBattleRecoveredHp
+  0xEF69D2: textBattleRecoveredPp
+  0xEF69EA: textBattleSpyOffense
+  0xEF69FF: textBattleSpyDefense
+  0xEF6A0D: textBattleSpyVulnerableToFire
+  0xEF6A24: textBattleSpyVulnerableToIce
+  0xEF6A3C: textBattleSpyVulnerableToFlash
+  0xEF6A54: textBattleSpyVulnerableToParalysis
+  0xEF6A6C: textBattleSpyVulnerableToHypnosis
+  0xEF6A7F: textBattleSpyVulnerableToBrainshock
+  0xEF6A99: textBattleTurnedIntoEnemy
+  0xEF6AB3: textBattleDidntTurnIntoEnemy
+  0xEF6AC7: textBattleWasDiamondized
+  0xEF6AE0: textBattleBecameNumb
+  0xEF6AFB: textBattleFeltNauseous
+  0xEF6B18: textBattleGotPoisoned
+  0xEF6B2F: textBattleCaughtCold
+  0xEF6B81: textBattleBeganToFeelStrangeMushroomized
+  0xEF6B98: textBattleWasPossessed
+  0xEF6BBB: textBattleCouldNotStopCrying
+  0xEF6BD3: textBattleSuddenlyCouldntMove
+  0xEF6BEF: textBattleBodySolidified
+  0xEF6C0B: textBattleWasNotAbleToConcentrate
+  0xEF6C3A: textBattleFeltALittleStrange
+  0xEF6C55: textBattleFellAsleep
+  0xEF6C6B: textBattleGotHurtAndCollapsed
+  0xEF6E19: textBattleTurnedBackToNormal
+  0xEF6E4A: textBattleBodyReturnedToNormal
+  0xEF6E67: textBattleNumbnessGone
+  0xEF6E81: textBattleFeltMuchBetter
+  0xEF6E97: textBattlePoisonWasRemoved
+  0xEF6EBC: textBattleGotOverCold
+  0xEF6ED1: textBattleStoppedCrying
+  0xEF6EED: textBattleBodyAgainMovedFreely
+  0xEF6F0B: textBattleAbleToMove
+  0xEF6F1E: textBattleBackToNormal
+  0xEF6F38: textBattleSunstrokeCured
+  0xEF6F54: textBattleWokeUp
+  0xEF6F64: textBattleAbleToConcentrate
+  0xEF6F7C: textBattleRevived
+  0xEF6F8E: textBattleReviveDidntWork
+  0xEF6F9A: textBattleProtectedByShield
+  0xEF6FBD: textBattleShieldGotStronger
+  0xEF6FD3: textBattleProtectedByPowerShield
+  0xEF6FF4: textBattlePowerShieldGotStronger
+  0xEF700C: textBattleProtectedByPsychicShield
+  0xEF7032: textBattlePsychicShieldGotStronger
+  0xEF7050: textBattleProtectedByPsychicPowerShield
+  0xEF707A: textBattlePsychicPowerShieldGotStronger
+  0xEF7099: textBattleShieldDisappeared
+  0xEF70B1: textBattlePowerShieldDeflected
+  0xEF70D2: textBattlePsychicPowerShieldDeflected
+  0xEF70FA: textBattlePsychicPowerShieldBlocked
+  0xEF7123: textBattleEffectsOfPsiAreGone
+  0xEF7142: textBattleReturnedOriginalForm
+  0xEF7160: textBattleFranklinBadgeDeflected
+  0xEF7192: textAction252
+  0xEF71DF: textAction253
+  0xEF71F6: textAction254
+  0xEF720C: textAction256
+  0xEF725A: textAction257
+  0xEF727F: textAction251
+  0xEF72F6: textAction243
+  0xEF72F7: textBattleBlackSmokePouredOut
+  0xEF733D: textBattleRunawayFiveDefeatClumsyrobot
+  0xEF7415: textAction244
+  0xEF743B: textBattlePooUsedNewPowerStarstorm
+  0xEF745F: textAction260
+  0xEF749D: textAction261
+  0xEF74B0: textAction262
+  0xEF74C9: textAction263
+  0xEF7569: textAction264
+  0xEF7579: textAction265
+  0xEF7591: textAction266
+  0xEF7593: textAction267
+  0xEF75AB: textBattleXHpOfDamageTaken4
+  0xEF75C2: textBattleXHpOfDamageTaken
+  0xEF75D9: textBattleXHpOfDamageTaken3
+  0xEF75F0: textBattleXHpOfDamageTaken2
+  0xEF7607: textBattleTookMortalDamage
+  0xEF7624: textBattleSmaaaash
+  0xEF7630: textBattleSmaaaashReceived
+  0xEF763C: textBattleDodgedShoot
+  0xEF7655: textBattleDodged
+  0xEF766E: textBattleItDidntWorkOnX
+  0xEF7696: textBattleNoVisibleEffect
+  0xEF76C7: textBattleJustMissed
+  0xEF76D8: textBattleNarrowlyMissed
+  0xEF76FD: textBattleWasAlreadyGone
+  0xEF7710: textBattleDrainedOwnHp
+  0xEF7729: textBattleDrainedHp
+  0xEF773F: textBattleDrainedPp
+  0xEF7755: textBattleDrainedPp2
+  0xEF7768: textBattleFeltSickAndTookDamage
+  0xEF7787: textBattleFeltPainFromPoison
+  0xEF77B1: textBattleFeltDizzyAndWeak
+  0xEF77DB: textBattleSneezedAndReceivedDamage
+  0xEF77FD: textBattleJoinedBattle
+  0xEF7810: textBattleStartedGrowing
+  0xEF7824: textBattleNobodyCame
+  0xEF7830: textBattleSeedSproutFailure
+  0xEF7843: textBattleTimeStartedAgain
+  0xEF7858: textBattleEnemyAttacked
+  0xEF788B: textBattleEnemyTrappedYou
+  0xEF78D8: textBattleSurpriseOpeningAttack
+  0xEF78F7: textBattleEnemysOpeningAttack
+  0xEF79D7: textBattleYouWonBoss
+  0xEF7A14: textBattleYouWon
+  0xEF7A28: textBattleYouWonInstant
+  0xEF7A4D: textBattleLostTheBattle
+  0xEF7A66: textLevelIsNowX
+  0xEF7A7D: textLevelUpOffense
+  0xEF7A97: textLevelUpDefense
+  0xEF7AB1: textLevelUpSpeed
+  0xEF7AC9: textLevelUpGuts
+  0xEF7AE0: textLevelUpVitality
+  0xEF7AFB: textLevelUpIq
+  0xEF7B11: textLevelUpLuck
+  0xEF7B28: textLevelUpMaxHp
+  0xEF7B46: textLevelUpMaxPp
+  0xEF7B64: textLevelUpPsiLearned
+  0xEF7BDF: textBattleEnemyLeftPresent
+  0xEF7DD5: textBattleSpyFoundItem
+  0xEF7E25: textAction095
+  0xEF7E3E: textAction096
+  0xEF7E55: textAction097
+  0xEF7E70: textAction098
+  0xEF7E88: textAction099
+  0xEF7EAC: textAction100
+  0xEF7ED5: textAction101
+  0xEF7F02: textAction102
+  0xEF7F1E: textAction103
+  0xEF7F32: textAction104
+  0xEF7F5A: textAction105
+  0xEF7F7B: textAction106
+  0xEF7F9A: textAction107
+  0xEF7FC3: textAction108
+  0xEF7FE0: textAction109
+  0xEF7FFC: textAction110
+  0xEF8010: textAction111
+  0xEF8026: textAction112
+  0xEF804B: textAction113
+  0xEF806D: textAction114
+  0xEF808D: textAction115
+  0xEF80AC: textAction116
+  0xEF80C4: textAction117
+  0xEF80E4: textAction118
+  0xEF8109: textAction119
+  0xEF812B: textAction120
+  0xEF814F: textAction121
+  0xEF8167: textAction124
+  0xEF8186: textAction123
+  0xEF81A5: textAction122
+  0xEF81C4: textAction125
+  0xEF81D7: textAction126
+  0xEF81F1: textAction127
+  0xEF8211: textAction128
+  0xEF8226: textAction129
+  0xEF8239: textAction130
+  0xEF825C: textAction131
+  0xEF8281: textAction132
+  0xEF8299: textAction133
+  0xEF82BC: textAction134
+  0xEF82D7: textAction201
+  0xEF82F7: textAction202
+  0xEF8317: textAction203
+  0xEF833E: textAction204
+  0xEF835C: textAction205
+  0xEF838A: textAction206
+  0xEF83A8: textAction207
+  0xEF83CA: textAction208
+  0xEF83ED: textAction209
+  0xEF8413: textAction210
+  0xEF843F: textBattleFallenAsleepIndirect
+  0xEF8444: textBattleStoppedBeingAbleToConcentrate
+  0xEF8445: textBattleActingALittleStrange
+  0xEF845D: textBattleActingABitUnusual
+  0xEF8477: textBattleFeelingFunky
+  0xEF848C: textAction004
+  0xEF84B6: textAction005
+  0xEF84C6: textAction008
+  0xEF84D4: textAction280
+  0xEF84F3: textBattleRunSuccess
+  0xEF8511: textBattleRunFailure
+  0xEF8530: textAction006
+  0xEF8543: textAction010
+  0xEF8814: textBattleThunderHit
+  0xEF8823: textBattleThunderStrongerHit
+  0xEF8837: textBattleThunderMiss
+  0xEF89E0: textAction007
+  0xEF89FE: textAction211
+  0xEF8A18: textAction212
+  0xEF8A33: textAction213
+  0xEF8A52: textAction214
+  0xEF8A6F: textAction215
+  0xEF8A8C: textAction216
+  0xEF8AA3: textAction217
+  0xEF8AC2: textAction218
+  0xEF8ADD: textAction219
+  0xEF8AF8: textAction220
+  0xEF8B11: textAction221
+  0xEF8B2F: textAction222
+  0xEF8B4A: textAction223
+  0xEF8B65: textAction224
+  0xEF8B89: textAction225
+  0xEF8BA8: textAction226
+  0xEF8BC0: textAction227
+  0xEF8BE8: textAction228
+  0xEF8BFB: textAction229
+  0xEF8C1D: textAction230
+  0xEF8C3A: textAction231
+  0xEF8C58: textAction232
+  0xEF8C75: textAction233
+  0xEF8C92: textAction234
+  0xEF8CAC: textAction235
+  0xEF8CC7: textAction236
+  0xEF8CDD: textAction314
+  0xEF8CFB: textAction315
+  0xEF8D17: textAction316
+  0xEF8D2F: textAction317
+  0xEF8D4C: textAction313
+  0xEF8D72: textAction241
+  0xEF8D9F: textAction248
+  0xEF8DC1: textAction242
+  0xEF8DDE: textAction290
+  0xEF8E27: textAction140
+  0xEF8E3C: textAction159
+  0xEF8E5E: textAction161
+  0xEF8E7E: textAction176
+  0xEF8E9E: textAction160
+  0xEF8EBE: textAction273
+  0xEF8EE2: textAction302
+  0xEF8F17: textAction274
+  0xEF8F4A: textAction305
+  0xEF8F91: textAction309
+  0xEF8FE4: textNPC1363
+  0xEF9003: textNPC1371
+  0xEF9022: textNPC1366
+  0xEF907F: textNPC1168
+  0xEF909E: textNPC1169
+  0xEF90BD: textNPC1172
+  0xEF90DC: textNPC1173
+  0xEF90F9: textNPC1174
+  0xEF9118: textNPC1176
+  0xEF9137: textNPC1178
+  0xEF9156: textNPC1181
+  0xEF9175: textNPC1182
+  0xEF9194: textNPC1183
+  0xEF91B3: textNPC1185
+  0xEF91D2: textNPC1186
+  0xEF91F1: textNPC1188
+  0xEF9210: textNPC1189
+  0xEF922F: textNPC1190
+  0xEF924E: textNPC1170
+  0xEF926D: textNPC1171
+  0xEF928C: textNPC1175
+  0xEF92AB: textNPC1177
+  0xEF92CA: textNPC1179
+  0xEF92E9: textNPC1184
+  0xEF9308: textNPC1187
+  0xEF9327: textNPC1191
+  0xEF9346: textNPC1192
+  0xEF9365: textNPC0678
+  0xEF9384: textNPC0679
+  0xEF93A3: textNPC0680
+  0xEF93C2: textNPC0681
+  0xEF93E1: textNPC0682
+  0xEF9400: textNPC0683
+  0xEF941F: textNPC0672
+  0xEF9448: textNPC1180
+  0xEF9467: textNPC1354
+  0xEF9486: textNPC1355
+  0xEF94A5: textNPC1356
+  0xEF94C4: textNPC1039
+  0xEF94E3: textNPC1040
+  0xEF9502: textNPC0590
+  0xEF952E: textNPC0436
+  0xEF9785: textNPC0449
+  0xEF97A2: textNPC0451
+  0xEF981C: textNPC0444
+  0xEF9822: textNPC0443
+  0xEF9857: textNPC0448
+  0xEF9A47: textAction062
+  0xEF9A5E: textAction063
+  0xEF9A7E: textAction064
+  0xEF9A9E: textAction065
+  0xEF9ABB: textAction066
+  0xEF9B02: textAction067
+  0xEF9B20: textAction068
+  0xEF9B43: textAction069
+  0xEF9B73: textAction070
+  0xEF9B96: textAction071
+  0xEF9BC3: textAction072
+  0xEF9BE6: textAction073
+  0xEF9C02: textAction074
+  0xEF9C30: textAction075
+  0xEF9C51: textAction076
+  0xEF9C7E: textAction077
+  0xEF9CAD: textAction078
+  0xEF9CD1: textAction079
+  0xEF9CF1: textAction080
+  0xEF9D14: textAction081
+  0xEF9D3E: textAction082
+  0xEF9D62: textAction083
+  0xEF9D81: textAction084
+  0xEF9DA1: textAction085
+  0xEF9DBD: textAction086
+  0xEF9DDA: textAction087
+  0xEF9E05: textAction088
+  0xEF9E22: textAction089
+  0xEF9E47: textAction090
+  0xEF9E69: textAction091
+  0xEF9E92: textAction092
+  0xEF9EB4: textAction093
+  0xEF9ED7: textAction094
+  0xEF9EF4: textAction259
+  0xEFA0DC: textAction270
+  0xEFA2AB: textAction271
+  0xEFA2C9: textDoor006
+  0xEFA2D6: textNPC0147Alt
+  0xEFA6EC: textDebugUnknownMenu2
+compressedTextStrings:
+- '                '
+- ' in the '
+- ' that '
+- '...'
+- ' and '
+- ' this '
+- ' to the '
+- ' about '
+- ' just '
+- ' of the '
+- ' something '
+- ' going to '
+- ' to '
+- ' you have '
+- ' your '
+- ' for '
+- ' you''re '
+- '@You '
+- ' really '
+- ' don''t '
+- '@The '
+- 'e the '
+- 'e you '
+- '... '
+- ' the '
+- ' will '
+- '   ...Brick Road'
+- 'ing '
+- ' some '
+- '              '
+- '@Do you want to '
+- ' like '
+- 'ou don''t have '
+- ' is '
+- ' you '
+- ' you'
+- ' anything else'
+- ' the'
+- ' you want to '
+- ' for the '
+- ' friend'
+- ' at the '
+- 'ould you like '
+- ' from '
+- ' would '
+- he Runaway Five
+- ' with '
+- ' want to '
+- '@If you '
+- ' you don''t '
+- 's the '
+- 'ed to '
+- e...
+- ' something'
+- 't the '
+- '@...'
+- '@Please '
+- '''s '
+- ' of your '
+- '@It''s '
+- '@Thank you '
+- '@I '
+- ' here.'
+- ' in '
+- '@Do you '
+- ' I''ll '
+- ' have '
+- 'e of '
+- 'd you '
+- '@I''m '
+- 'me to '
+- '@I don''t '
+- '@Well, '
+- '@This is '
+- 'ed the '
+- '@You''re '
+- ' for a '
+- ' anything'
+- ing
+- ' of '
+- ' you should '
+- ' I '
+- ' from the '
+- s...
+- ' it''s '
+- ' time'
+- 'e to '
+- 'ed '
+- 'e of the '
+- ' to you'
+- 'n''t you '
+- ' again'
+- ' for you.'
+- 'other '
+- ation
+- ' little '
+- 'ing to '
+- ' can''t '
+- ' much'
+- ' someone '
+- ' on the '
+- ' looks like'
+- ' don''t you '
+- ' very '
+- 'the '
+- ' can '
+- you
+- ' that you '
+- ' it'
+- ' you want'
+- 'ou can''t '
+- ' able to '
+- ' already '
+- ' give you '
+- understand
+- '       '
+- ' my '
+- ' you can '
+- ' that'
+- ' what '
+- 'here''s '
+- ' there '
+- 'n the '
+- '@What '
+- Thank you
+- ' I can''t '
+- one
+- '@The'
+- ' thought'
+- ' not '
+- You should
+- ou know
+- ' has '
+- ' back'
+- ' of'
+- 've been '
+- ' I''m '
+- ' there'
+- ' with you'
+- '@I heard '
+- ' in'
+- ' here '
+- ' Fourside'
+- 'I wonder '
+- ' to'
+- ' could '
+- ' think '
+- ' out'
+- ' good '
+- '  the '
+- '  You '
+- ' too much'
+- ome back
+- t...
+- ' here'
+- thing
+- 'come '
+- 'ly '
+- ent
+- ' strong'
+- ' money.'
+- '@I''ll '
+- 'an '
+- 'ou must '
+- ' are you '
+- ' with the'
+- ' on your '
+- 'too many '
+- ' you.'
+- know
+- ' to be '
+- ' around '
+- ' if you '
+- '@Are you '
+- ome again
+- 'e and '
+- ' more '
+- think
+- 'e your '
+- '@Don''t '
+- 'nd the '
+- 't to '
+- rea
+- ' he'
+- ' me'
+- ' strange'
+- ' for you'
+- ight
+- ' a '
+- ' be'
+- ther
+- 'all '
+- ' cannot '
+- 'here is '
+- You have
+- Monotoli
+- ' was '
+- 'll you '
+- 'hat '
+- ', but '
+- ' stuff'
+- eep
+- ' it '
+- ' didn''t '
+- ' like th'
+- ll right
+- ' should'
+- ' over'
+- '@Oh, '
+- ' hear'
+- ' every'
+- 'I''m not '
+- ' about t'
+- ' zombies'
+- ' damage'
+- 'his is '
+- all
+- ' some'
+- '@It '
+- ' attack'
+- ' right '
+- 'ally '
+- orry
+- ess
+- 'er '
+- '@That''s '
+- carry it
+- ake
+- 't was '
+- ', the '
+- 'n you '
+- 'sn''t '
+- ' help'
+- 'king '
+- ear
+- ing the
+- '  It''s '
+- very
+- ' talking'
+- 'ou''ve '
+- 'that''s '
+- ' to me'
+- '@Hello'
+- ' enemy'
+- ' you are'
+- ' by '
+- ' IBNT'
+- 'ight '
+- 'on''t '
+- est
+- ick
+- ' power '
+- 's that '
+- 's are '
+- ' call'
+- 't is '
+- ' is'
+- age
+- ', and '
+- ' great '
+- '@Thanks'
+- ' people'
+- ter
+- not
+- ill
+- ness
+- '@This '
+- ' into '
+- ' ha'
+- ' I can '
+- 't your '
+- ' before'
+- ' things'
+- tion
+- ' for'
+- 'be '
+- ' this'
+- Happy
+- '  You'
+- out
+- enough
+- '  I''m '
+- '@You'
+- ' go'
+- for
+- ' all th'
+- ' though'
+- ing you
+- e you
+- 'ring '
+- 'one '
+- get
+- 't you '
+- '@I''m s'
+- ' the s'
+- 'e''s '
+- port
+- d...
+- ' out '
+- '@What'
+- ' get '
+- 'I have '
+- looking
+- 'n this '
+- ' of my '
+- ' have a'
+- 'ent '
+- ' do'
+- 'd of '
+- ting
+- ncrease
+- ' Twoson'
+- through
+- 's your '
+- 'ou''ll '
+- ' place'
+- ' right'
+- ' Onett'
+- '     '
+- ' our '
+- ' too'
+- ater
+- ' be '
+- ain
+- ing.
+- 'take '
+- 'e is '
+- the
+- ' please'
+- ' do you'
+- need
+- use
+- ' now.'
+- ' got '
+- '   '
+- 'and '
+- ning
+- ' sta'
+- ' the t'
+- 'I was '
+- 'y the '
+- his
+- appe
+- con
+- ' ho'
+- 'hat''s '
+- Threed
+- 'get '
+- 's of '
+- inter
+- talk
+- ' man'
+- day
+- ove
+- ' ha ha'
+- inally
+- monkey
+- 's and '
+- ate
+- see
+- town
+- side
+- 'y to '
+- 'ever '
+- equip
+- ' than'
+- ' who'
+- long
+- care
+- room
+- 'e are '
+- ard
+- end
+- ', you '
+- ' the b'
+- I know
+- 'think '
+- 's you '
+- time
+- ment
+- ' so'
+- '!  '
+- 'I''ve '
+- ell
+- ' wa'
+- ious
+- reat
+- live
+- ange
+- ' we'
+- ble
+- '@.....'
+- ecover
+- ' only '
+- 'thing '
+- er...
+- 'Mr. '
+- ough
+- ' now'
+- '  I'
+- wor
+- 'to '
+- ed.
+- '  I '
+- '''re '
+- ' give '
+- 'ing a '
+- return
+- better
+- 'ince '
+- ' well'
+- ' one '
+- still
+- 'ying '
+- me...
+- sta
+- 'ust '
+- per
+- lease
+- 'ling '
+- point
+- ect
+- ast
+- pretty
+- Giygas
+- ecause
+- member
+- 'carry '
+- ' used '
+- elieve
+- ' money'
+- pres
+- way
+- ' di'
+- ' even'
+- 'ound '
+- 's to '
+- 'ting '
+- 'ted '
+- oing
+- ' and'
+- ine
+- '  T'
+- sure
+- ' on '
+- '@...I'
+- while
+- '@but '
+- '@We'
+- ice
+- 'se '
+- 'ive '
+- ' rea'
+- ' com'
+- 'est '
+- have
+- ' but'
+- away
+- here
+- ' must'
+- ' but '
+- ' want'
+- ready
+- I'm
+- carr
+- 'my '
+- ay...
+- ' are '
+- '@Hey,'
+- world
+- ing a
+- ' happ'
+- ' seem'
+- ' his '
+- nder
+- ' se'
+- ant
+- item
+- '@But'
+- ' sho'
+- 'in a '
+- 'made '
+- night
+- 'et''s '
+- ' like'
+- '  The'
+- che
+- ' de'
+- ful
+- hat
+- and
+- self
+- ould
+- '@No'
+- car
+- ' tr'
+- ' good'
+- ' stor'
+- ombie
+- '@Oh'
+- '@It'
+- 's a '
+- vent
+- 'ant '
+- ' so '
+- olla
+- ree
+- 'Your '
+- 'make '
+- ' work'
+- power
+- ' home'
+- also
+- ance
+- '@How'
+- h...
+- '@If'
+- ple
+- buy
+- 'e, '
+- n't
+- oke
+- 'n''t '
+- more
+- Good
+- 't a '
+- ' all'
+- take
+- round
+- ' when'
+- ' name'
+- being
+- attle
+- ite
+- ack
+- y...
+- '@Whe'
+- with
+- 'al '
+- 'have '
+- ' look'
+- 't of '
+- aster
+- ' a lo'
+- ' feel'
+- 'here '
+- count
+- monst
+- now
+- ark
+- ous
+- '''ll'
+- ' bus'
+- head
+- ' any '
+- t you
+- erson
+- after
+- ummer
+- ' hard'
+- 'ful '
+- ever
+- ' kid'
+- ' a b'
+- kay
+- tra
+- pla
+- ook
+- ome
+- eat
+- '@Wel'
+- ' off'
+- turn
+- I am
+- oney
+- ' any'
+- ave
+- 'any '
+- enem
+- ' con'
+- ' me '
+- red
+- 'en '
+- ' bo'
+- ' re'
+- 'ell '
+- sell
+- what
+- next
+- ure
+- ' bu'
+- pro
+- ' on'
+- res
+- 'es '
+- ' lo'
+- our
+- 'use '
+- iste
+- ood
+- ' no'
+- ope
+- ock
+- row
+- '@He'
+- how
+- ' may'
+- ' as '
+- stor
+- ' are'
+- 'ost '
+- mean
+- '  We'
+- '  He'
+- '@An'
+- 'it '
+- 'in '
+- ound
+- one.
+- come
+- blue
+- way,
+- ' or '
+- ' mo'
+- '.  '
+- each
+- some
+- '@(Th'
+- otel
+- hand
+- came
+- ' ca'
+- ame
+- '@Hey'
+- 'een '
+- spec
+- 'red '
+- ing!
+- ' ...'
+- hose
+- 'ind '
+- 'ice '
+- ver
+- '  W'
+- min
+- 'et '
+- 'on '
+- ace
+- er.
+- 'are '
+- nter
+- o...
+- were
+- help
+- 'old '
+- ' it.'
+- hear
+- stop
+- look
+- com
+- '@Do'
+- ' her'
+- ' pro'
+- chin
+- 'ble '
+- 'e a '
+- girl
+- luck
+- '  B'
+- act
+- ike
+- down
+- part
+- ' see'
+- ' use'
+- 'uch '
+- from
+- just
+- llow
+- '@Her'
+- ' at '
+- '@So,'
+- ' ye'
+- ser
+- ying
+- ring
+- eave
+- 'big '
+- ried
+- ' was'
+- ' say'
+- ' su'
+- her
+- it.
+- Man
+- kin
+- ' up'
+- ers
+- '@Why'
+- p...
+- cour
+- ' him'
+- agic
+- any
+- fin
+- eal
+- 'he '
+- ide
+- oor
+- ity
+- got
+- ens
+- ish
+- ive
+- ' sa'
+- oon
+- fee
+- s a
+- nce
+- '  D'
+- uck
+- ass
+- man
+- a p
+- '@(I'
+- '@Wh'
+- ' gu'
+- '  ('
+- bus
+- los
+- 'ts '
+- ' ba'
+- '  S'
+- ' if'
+- '@Ha'
+- ' ma'
+- unn
+- 'ay '
+- ner
+- '@A '
+- 'or '
+- stu
+- ust
+- kya
+- shi
+- pos
+- '  A'
+- int
+- ' le'
+- ary
+- ven
+- ' ch'
+- own
+- ' hu'
+- '@My'
+- '@So'
+- ' sp'
+- ' sh'
+- wan
+- ool
+- '  Y'
+- old
+- eas
+- ', I'
+- iki
+- '@Ky'
+- '@Ye'
+- spi
 defaultDumpPath: data/
 romIdentifier: 'EARTH BOUND          '
 dontUseTextTable: false

@@ -6308,9 +6308,16 @@ ubyte ebChar(dchar c) {
 		case '0': .. case '9':
 		case 'A': .. case 'Z':
 		case 'a': .. case 'z': return cast(ubyte)(c + 0x30);
+		case '&': return 0x52;
 		case '{': return 0x53;
+		case '%': return 0x55;
+		case '}': return 0x56;
+		case '*': return 0x5A;
 		case '/': return 0x5F;
 		case ':': return 0x6A;
+		case ';': return 0x6B;
+		case '<': return 0x6C;
+		case '>': return 0x6E;
 		case '?': return 0x6F;
 		case '@': return 0x70;
 		case '~': return 0x8B;
@@ -6319,6 +6326,7 @@ ubyte ebChar(dchar c) {
 		case ']': return 0x8E;
 		case '#': return 0x8F;
 		case '_': return 0x90;
+		case '|': return 0xAC;
 		case '♪': return 0xAC;
 		case 'α': return 0x2A;
 		case 'β': return 0x2B;

@@ -87,6 +87,7 @@ void loadText(const StructuredText[] script, const string label) {
 							data ~= cast(ubyte)cc.window.get;
 							break;
 						case SubCC18.setTextAlignment:
+						case SubCC18.printCharacterStatus:
 							assert(cc.byteValues.length == 2, "Missing arguments!");
 							data ~= cc.byteValues[0 .. 2];
 							break;
@@ -95,10 +96,6 @@ void loadText(const StructuredText[] script, const string label) {
 							assert(cc.byteValues.length == 1, "Missing byte argument!");
 							data ~= allBytes(cc.intValues[0]);
 							data ~= cc.byteValues;
-							break;
-						case SubCC18.printCharacterStatus:
-							assert(cc.byteValues.length == 2, "Missing arguments!");
-							data ~= cc.byteValues[0 .. 2];
 							break;
 					}
 					break;
@@ -130,6 +127,7 @@ void loadText(const StructuredText[] script, const string label) {
 						case SubCC19.returnCharacterNumber:
 						case SubCC19.returnCharacterLetter:
 						case SubCC19.returnCharacterEXPNeeded:
+						case SubCC19.returnEscargoExpressItem:
 						case SubCC19.returnMenuItemCount:
 						case SubCC19.returnFoodCategory:
 						case SubCC19.returnMatchingCondimentID:
@@ -141,7 +139,6 @@ void loadText(const StructuredText[] script, const string label) {
 							break;
 						case SubCC19.returnCharacterStatusByte:
 						case SubCC19.returnCharacterInventoryItem:
-						case SubCC19.returnEscargoExpressItem:
 						case SubCC19.queueItemForDelivery:
 						case SubCC19.getQueuedItem:
 							assert(cc.byteValues.length == 2, "Must specify two byte values!");
@@ -746,7 +743,7 @@ enum SubCC18 : ubyte {
 }
 
 enum SubCC19 : ubyte {
-	loadString = 0x00,
+	loadString = 0x02,
 	clearStrings = 0x04,
 	inflictStatus = 0x05,
 	returnCharacterNumber = 0x10,
