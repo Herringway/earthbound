@@ -34,12 +34,12 @@ void loadText(const StructuredText[] script, const string label) {
 				case MainCC.setFlag:
 				case MainCC.clearFlag:
 				case MainCC.getFlag:
-					assert(cc.labels.length <= ubyte.max, "No flag specified!");
+					assert(cc.eventFlag.get() <= 0x400, "Invalid event flag!");
 					data ~= allBytes(cast(ushort)cc.eventFlag.get());
 					break;
 				case MainCC.jumpIfFlagSet:
-					assert(cc.labels.length <= ubyte.max, "No flag specified!");
-					assert(cc.labels.length <= ubyte.max, "No label specified!");
+					assert(cc.eventFlag.get() <= 0x400, "No flag specified!");
+					assert(cc.labels.length == 1, "No label specified!");
 					data ~= allBytes(cast(ushort)cc.eventFlag.get());
 					data ~= allBytes(cc.labels[0]);
 					break;
