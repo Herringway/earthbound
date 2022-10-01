@@ -6767,7 +6767,7 @@ string saveFileName(short id) {
 private extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
 ///
 const(ubyte)[] getFullCC(const(ubyte)* script) {
-	enum ptrSize = (void*).sizeof;
+	enum ptrSize = string.sizeof;
 	ubyte f = script[0];
 	if (f < 0x20) {
 		switch (f) {
