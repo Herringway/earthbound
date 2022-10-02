@@ -2533,6 +2533,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/getFullCC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GiygasPhase.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/handleDma.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/handleHDMA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/HDMAWordTransfer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/HDMAWordTransfer.scanlines.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/HDMAWordTransfer.value.html</loc></url>

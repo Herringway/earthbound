@@ -2527,6 +2527,7 @@ var symbols = [
 {name: 'earthbound.commondefs.getFullCC', kind: "functiondeclaration", path: './earthbound/commondefs/getFullCC.html', attributes: []},
 {name: 'earthbound.commondefs.GiygasPhase', kind: "enumdeclaration", path: './earthbound/commondefs/GiygasPhase.html', attributes: []},
 {name: 'earthbound.commondefs.handleDma', kind: "variabledeclaration", path: './earthbound/commondefs/handleDma.html', attributes: []},
+{name: 'earthbound.commondefs.handleHDMA', kind: "variabledeclaration", path: './earthbound/commondefs/handleHDMA.html', attributes: []},
 {name: 'earthbound.commondefs.HDMAWordTransfer', kind: "structdeclaration", path: './earthbound/commondefs/HDMAWordTransfer.html', attributes: []},
 {name: 'earthbound.commondefs.HDMAWordTransfer.scanlines', kind: "variabledeclaration", path: './earthbound/commondefs/HDMAWordTransfer.scanlines.html', attributes: []},
 {name: 'earthbound.commondefs.HDMAWordTransfer.value', kind: "variabledeclaration", path: './earthbound/commondefs/HDMAWordTransfer.value.html', attributes: []},
