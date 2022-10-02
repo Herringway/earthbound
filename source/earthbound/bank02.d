@@ -6961,7 +6961,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 						if (x14 >= x10) {
 							x14 = cast(short)(x10 * 2 - 1 - x14);
 						}
-						arg1.palettePointer[0][x14 + i] = arg1.palette[arg1.paletteCycle1First + x14];
+						arg1.palettePointer[0][arg1.paletteCycle1First + i] = arg1.palette[arg1.paletteCycle1First + x14];
 					}
 					arg1.paletteCycle1Step++;
 					if (arg1.paletteCycle1Step >= x10 * 2) {
