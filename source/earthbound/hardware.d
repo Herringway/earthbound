@@ -226,3 +226,10 @@ enum BGR555Mask {
 	Green = 0x3E0,
 	Blue = 0x7C00,
 }
+
+align(1) struct HDMAIndirectTableEntry {
+	align(1):
+	ubyte lines;
+	const(ubyte)* address;
+}
+

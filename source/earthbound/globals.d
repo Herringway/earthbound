@@ -357,12 +357,12 @@ __gshared short unknown7E3C2A; /// $3C2A
 __gshared short unknown7E3C2C; /// $3C2C
 __gshared short unknown7E3C2E; /// $3C2E
 __gshared short unknown7E3C30; /// $3C30
-__gshared ubyte[7] unknown7E3C32; /// $3C32
+__gshared ubyte[HDMAIndirectTableEntry.sizeof * 2 + 1] unknown7E3C32; /// $3C32
 
-__gshared ubyte[7] unknown7E3C3C; /// $3C3C
+__gshared ubyte[HDMAIndirectTableEntry.sizeof * 2 + 1] unknown7E3C3C; /// $3C3C
 
 __gshared ushort[448] unknown7E3C46; /// $3C46
-__gshared HDMATableEntry[3] attractModeWindowHDMATable; /// $3FC6
+__gshared HDMAIndirectTableEntry[3] attractModeWindowHDMATable; /// $3FC6
 
 //based on our known RAM maps, this has 924 bytes of space allocated
 //but only a maximum of 896 bytes (4 bytes * 224 lines) can be

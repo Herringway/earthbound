@@ -7833,18 +7833,18 @@ void doBackgroundDMA(short arg1, short arg2, short arg3) {
 	dmaChannels[arg1].DMAP = 0x42;
 	ubyte* a;
 	if (arg3 == 0) {
-		short x = 6;
+		short x = HDMAIndirectTableEntry.sizeof * 2;
 		do {
 			// The original game code does 16-bit copy here, which copies
 			// one byte too many. Do one byte at a time instead.
-			unknown7E3C32[x] = unknownC0AE26[x];
+			unknown7E3C32[x] = (cast(immutable(ubyte)*)&unknownC0AE26)[x];
 			x -= 1;
 		} while (x >= 0);
 		a = &unknown7E3C32[0];
 	} else {
-		short x = 6;
+		short x = HDMAIndirectTableEntry.sizeof * 2;
 		do {
-			unknown7E3C3C[x] = unknownC0AE2D[x];
+			unknown7E3C3C[x] = (cast(immutable(ubyte)*)&unknownC0AE2D)[x];
 			x -= 1;
 		} while (x >= 0);
 		a = &unknown7E3C3C[0];
@@ -7857,10 +7857,23 @@ void doBackgroundDMA(short arg1, short arg2, short arg3) {
 immutable ubyte[7] dmaFlags = [ 1 << 0, 1 << 1, 1 << 2, 1 << 3, 1 << 4, 1 << 5, 1 << 6];
 
 /// $C0AE26
-immutable ubyte[7] unknownC0AE26 = [ 0xE4, 0x46, 0x3C, 0xFC, 0x0E, 0x3D, 0x00 ];
+const HDMAIndirectTableEntry[3] unknownC0AE26;
 
 /// $C0AE2D
-immutable ubyte[7] unknownC0AE2D = [ 0xE4, 0x06, 0x3E, 0xFC, 0xCE, 0x3E, 0x00 ];
+const HDMAIndirectTableEntry[3] unknownC0AE2D;
+
+shared static this() {
+	unknownC0AE26 = [
+		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&unknown7E3C46[0]),
+		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&unknown7E3C46[100]),
+		HDMAIndirectTableEntry(0x00),
+	];
+	unknownC0AE2D = [
+		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&unknown7E3C46[324]),
+		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&unknown7E3C46[424]),
+		HDMAIndirectTableEntry(0x00),
+	];
+}
 
 /// $C0AE1D
 // WMDATA, BG1HOFS, BG2HOFS, BG3HOFS, BG4HOFS, BG1VOFS, BG2VOFS, BG3VOFS, BG4VOFS
@@ -8078,18 +8091,18 @@ void unknownC0B0B8(short arg1, const(ubyte)* arg2) {
 /// $C0B0EF
 void enableAttractModeWindowHDMA(ubyte arg1, ubyte arg2) {
 	// Write the table entry for the first 100 lines of window data
-	attractModeWindowHDMATable[0].count = 100 | 0x80;
-	attractModeWindowHDMATable[0].ptr = &attractModeWindowHDMAData[0];
+	attractModeWindowHDMATable[0].lines = 100 | 0x80;
+	attractModeWindowHDMATable[0].address = &attractModeWindowHDMAData[0];
 	// Write the table entry for the 124 remaining lines of window data
-	attractModeWindowHDMATable[1].count = 124 | 0x80;
-	attractModeWindowHDMATable[2].count = 0;
+	attractModeWindowHDMATable[1].lines = 124 | 0x80;
+	attractModeWindowHDMATable[2].lines = 0;
 	//dmaChannels[arg1].A1B = 0x7E;
 	//dmaChannels[arg1].DASB = 0x7E;
 	dmaChannels[arg1].BBAD = 0x26;
 	dmaChannels[arg1].DMAP = arg2;
 	// Depending on whether we are writing to windows 1 and 2 (4 bytes) or just window 1 (2 bytes),
 	// skip ahead in the buffer by 400 or 200 bytes (100 lines)
-	attractModeWindowHDMATable[1].ptr = ((arg2 & 4) != 0) ? (&attractModeWindowHDMAData[400]) : (&attractModeWindowHDMAData[200]);
+	attractModeWindowHDMATable[1].address = ((arg2 & 4) != 0) ? (&attractModeWindowHDMAData[400]) : (&attractModeWindowHDMAData[200]);
 	dmaChannels[arg1].A1T = &attractModeWindowHDMATable;
 	mirrorHDMAEN |= dmaFlags[arg1];
 }

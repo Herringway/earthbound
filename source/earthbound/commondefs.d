@@ -5425,11 +5425,6 @@ struct DMATableEntry {
 	ubyte unknown2; ///
 }
 ///
-struct HDMATableEntry {
-	ubyte count; ///
-	const(ubyte)* ptr; ///
-}
-///
 struct SRAM {
 	SaveBlock[6] saves; ///
 	ubyte[0x1FE] unknown; ///
@@ -5589,7 +5584,8 @@ struct LoadedBackgroundData {
 	short distortionCompressionAcceleration; ///117
 }
 ///
-struct HDMAWordTransfer {
+align(1) struct HDMAWordTransfer {
+	align(1):
 	ubyte scanlines; ///
 	ushort value; ///
 }
