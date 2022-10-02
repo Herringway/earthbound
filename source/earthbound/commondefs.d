@@ -6218,6 +6218,8 @@ void function() waitForInterrupt = () {};
 ///
 void function() handleDma = () {};
 ///
+void function() handleHDMA = () {};
+///
 void function(ubyte) playSFX = (ubyte) {};
 ///
 void function(ushort) playMusicExternal = (ushort) {};

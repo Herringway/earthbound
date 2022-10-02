@@ -323,6 +323,7 @@ void main(string[] args) {
 	int lastTime;
 	waitForInterrupt = () { Fiber.yield(); };
 	earthbound.commondefs.handleDma = &sfcdma.handleDma;
+	earthbound.commondefs.handleHDMA = &sfcdma.handleHDMA;
 	earthbound.commondefs.playSFX = &playSFX;
 	playMusicExternal = &playMusic;
 	stopMusicExternal = &stopMusic;

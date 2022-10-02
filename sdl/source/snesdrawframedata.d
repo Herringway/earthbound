@@ -4,8 +4,8 @@ import earthbound.hardware;
 
 public struct HDMAWrite {
 	ushort vcounter;
-	byte addr;
-	byte value;
+	ubyte addr;
+	ubyte value;
 }
 
 public struct SnesDrawFrameData {

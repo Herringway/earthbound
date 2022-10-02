@@ -232,4 +232,3 @@ align(1) struct HDMAIndirectTableEntry {
 	ubyte lines;
 	const(ubyte)* address;
 }
-

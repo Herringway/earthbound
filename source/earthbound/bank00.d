@@ -4568,6 +4568,7 @@ void irqNMICommon() {
 		TM = mirrorTM;
 		TD = mirrorTD;
 		HDMAEN = mirrorHDMAEN;
+		handleHDMA();
 	}
 	processSfxQueue();
 	unknown7E0099 = 0;
