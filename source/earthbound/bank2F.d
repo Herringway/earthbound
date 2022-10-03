@@ -62,8 +62,8 @@ void unknownEF00BB(ushort* arg1, short arg2, short /+unused+/) {
 
 /// $EF00E6
 void unknownEF00E6(ushort* arg1, short arg2, short arg3) {
-	arg1[0] = (arg1[0] & 0x3FF) || arg3;
-	arg1[arg2] = (arg1[arg2] & 0x3FF) || arg3;
+	arg1[0] = (arg1[0] & 0x3FF) | arg3;
+	arg1[arg2] = (arg1[arg2] & 0x3FF) | arg3;
 }
 
 /// $EF0115 - Clear the focused window and do something unknown?
