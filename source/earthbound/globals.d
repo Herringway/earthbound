@@ -910,6 +910,13 @@ __gshared ubyte[0x2000] unknown7EC000; /// $C000
 __gshared ubyte[64][64] unknown7EE000; /// $E000
 __gshared Unknown7EF000Stuff unknown7EF000; /// $F000
 __gshared ubyte[0x10000] unknown7F0000; /// $7F0000
+ref ushort[0x80] paletteAnimTargetPalette() { return (cast(ushort*)&unknown7F0000[0x7800])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimRedSlope() { return (cast(ushort*)&unknown7F0000[0x7900])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimGreenSlope() { return (cast(ushort*)&unknown7F0000[0x7A00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimBlueSlope() { return (cast(ushort*)&unknown7F0000[0x7B00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimRedAccum() { return (cast(ushort*)&unknown7F0000[0x7C00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimGreenAccum() { return (cast(ushort*)&unknown7F0000[0x7D00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimBlueAccum() { return (cast(ushort*)&unknown7F0000[0x7E00])[0 .. 0x80]; }
 __gshared ushort[0x3C00] tileArrangementBuffer; /// $7F8000
 __gshared const(ubyte[4][4])*[0x400] tileCollisionBuffer; /// $7FF800
 

@@ -3392,7 +3392,7 @@ void* cc1FE1(DisplayTextState* arg1, ushort arg2) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1FE1;
 	}
-	unknownC4939C(ccArgumentStorage[0], ccArgumentStorage[1], cast(ubyte)arg2);
+	changeMapPalette(ccArgumentStorage[0], ccArgumentStorage[1], cast(ubyte)arg2);
 	return null;
 }
 
