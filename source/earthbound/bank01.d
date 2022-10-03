@@ -609,7 +609,7 @@ void printNumber(uint arg1) {
 }
 
 /// $C10EB4
-void unknownC10EB4(short arg1) {
+void setCurrentWindowPadding(short arg1) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
@@ -2186,7 +2186,7 @@ void debugYButtonFlag() {
 	while (true) {
 		setInstantPrinting();
 		createWindowN(Window.fileSelectMenu);
-		unknownC10EB4(3);
+		setCurrentWindowPadding(3);
 		printNumber(x02);
 		unknownC43F77(0x20);
 		unknownC43CAA();
@@ -2227,7 +2227,7 @@ void debugYButtonGuide() {
 	}
 	setInstantPrinting();
 	createWindowN(Window.fileSelectMenu);
-	unknownC10EB4(3);
+	setCurrentWindowPadding(3);
 	printNumber(x14);
 	clearInstantPrinting();
 	windowTick();
@@ -2257,12 +2257,12 @@ void debugYButtonGoods() {
 	outer: while (true) {
 		setInstantPrinting();
 		createWindowN(Window.fileSelectMenu);
-		unknownC10EB4(0x02);
-		unknownC10EB4(0x82);
+		setCurrentWindowPadding(0x02);
+		setCurrentWindowPadding(0x82);
 		unknownC438A5(0, 0);
 		printNumber(x04);
 		unknownC438A5(3, 0);
-		unknownC19216(x04);
+		printItemName(x04);
 		clearInstantPrinting();
 		windowTick();
 		short x02 = x04;
@@ -2344,7 +2344,7 @@ void* cc1C11(DisplayTextState* arg1, ushort arg2) {
 
 /// $C140EF
 void* cc1C09(DisplayTextState* arg1, ushort arg2) {
-	unknownC10EB4(arg2);
+	setCurrentWindowPadding(arg2);
 	return null;
 }
 
@@ -2537,7 +2537,7 @@ void* cc1A01(DisplayTextState* arg1, ushort arg2) {
 
 /// $C146BF
 void* cc1C05(DisplayTextState* arg1, ushort arg2) {
-	unknownC19216(arg2 == 0 ? cast(short)getArgumentMemory() : arg2);
+	printItemName(arg2 == 0 ? cast(short)getArgumentMemory() : arg2);
 	return null;
 }
 
@@ -4809,7 +4809,7 @@ short giveStoredItemToCharacter(short character, short itemSlot) {
 }
 
 /// $C19216
-void unknownC19216(short arg1) {
+void printItemName(short arg1) {
 	unknownC4487C(Item.name.length, &itemData[arg1].name[0]);
 }
 
@@ -4905,10 +4905,10 @@ void unknownC1952F(short arg1) {
 	}
 	setWindowTitle(8, PartyCharacter.name.length, &partyCharacters[arg1].name[0]);
 	unknown7E5E71 = 1;
-	unknownC10EB4(1);
+	setCurrentWindowPadding(1);
 	unknownC43D75(38, 0);
 	printNumber(partyCharacters[arg1].level);
-	unknownC10EB4(2);
+	setCurrentWindowPadding(2);
 	unknownC43D75(94, 3);
 	printNumber(partyCharacters[arg1].hp.current.integer);
 	unknownC43D75(114, 3);
@@ -4935,7 +4935,7 @@ void unknownC1952F(short arg1) {
 	printNumber(partyCharacters[arg1].iq);
 	unknownC43D75(199, 6);
 	printNumber(partyCharacters[arg1].luck);
-	unknownC10EB4(6);
+	setCurrentWindowPadding(6);
 	unknownC43D75(97, 5);
 	printNumber((partyCharacters[arg1].exp > 9_999_999) ? 9_999_999 : partyCharacters[arg1].exp);
 	unknownC43D75(10, 6);
@@ -5092,7 +5092,7 @@ ushort unknownC19DB5(short arg1) {
 	setInstantPrinting();
 	unknownC20A20(&unknown7E9C8A);
 	createWindowN(Window.unknown0c);
-	unknownC10EB4(5);
+	setCurrentWindowPadding(5);
 	for (short i = 0; i < 7; i++) {
 		short x1A = storeTable[arg1][i];
 		if (x1A == ItemID.none) {
@@ -5189,7 +5189,7 @@ void unknownC1A1D8(short arg1) {
 	arg1--;
 	createWindowN(Window.unknown2d);
 	windowTickWithoutInstantPrinting();
-	unknownC10EB4(2);
+	setCurrentWindowPadding(2);
 	unknownC438A5(0, 0);
 	printString(statusEquipWindowText8.length, &statusEquipWindowText8[0]);
 	short x16 = partyCharacters[arg1].baseOffense;
@@ -5420,7 +5420,7 @@ void unknownC1A795(short arg1) {
 void unknownC1AA18() {
 	unknownC20A20(&unknown7E9C8A);
 	createWindowN(Window.carriedMoney);
-	unknownC10EB4(5);
+	setCurrentWindowPadding(5);
 	setInstantPrinting();
 	clearFocusWindow();
 	unknownC4507A(gameState.moneyCarried);
@@ -6237,7 +6237,7 @@ void unknownC1C8BC(short arg1) {
 	unknownC438A5(0, 1);
 	printString(ppCostText.length, &ppCostText[0]);
 	printLetter(ebChar(' '));
-	unknownC10EB4(0x81);
+	setCurrentWindowPadding(0x81);
 	unknownC43D75(0x28, 0x1);
 	printNumber(battleActionTable[psiAbilityTable[arg1].battleAction].ppCost);
 	clearInstantPrinting();
@@ -7477,7 +7477,7 @@ short unknownC1F14F() {
 short unknownC1F2A8() {
 	createWindowN(Window.fileSelectDeleteConfirmation);
 	setInstantPrinting();
-	unknownC10EB4(0);
+	setCurrentWindowPadding(0);
 	unknownC438A5(0, 0);
 	printString(fileSelectTextAreYouSureDelete.length, &fileSelectTextAreYouSureDelete[0]);
 	unknownC43D75(0, 1);
