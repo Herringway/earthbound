@@ -5285,7 +5285,7 @@ struct Battler {
 	ubyte unknown72; ///
 	ubyte unknown73; ///
 	ubyte unknown74; ///
-	ubyte unknown75; ///
+	ubyte useAltSpritemap; ///
 	ubyte unknown76; ///
 	ubyte id2; ///
 }

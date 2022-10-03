@@ -4992,9 +4992,9 @@ void oamClear() {
 }
 
 /// $C088A5
-ushort unknownC088A5(ushort arg1) {
-	ushort tmp = unknown7E000B;
-	unknown7E000B = arg1;
+ushort setSpritemapBank(ushort arg1) {
+	ushort tmp = spritemapBank;
+	spritemapBank = arg1;
 	return tmp;
 }
 
@@ -5038,28 +5038,28 @@ void unknownC08B8E() {
 		unknownC08C53();
 	}
 	for (short i =0 ; i < unknown7E2504 / 2; i++) {
-		unknown7E000B = unknown7E24C4[i];
+		spritemapBank = unknown7E24C4[i];
 		unknownC08CD5(unknown7E2404[i], unknown7E2444[i], unknown7E2484[i]);
 	}
 	if (unknown7E2402 == 1) {
 		unknownC08C53();
 	}
 	for (short i =0 ; i < unknown7E2606 / 2; i++) {
-		unknown7E000B = unknown7E25C6[i];
+		spritemapBank = unknown7E25C6[i];
 		unknownC08CD5(unknown7E2506[i], unknown7E2546[i], unknown7E2586[i]);
 	}
 	if (unknown7E2402 == 2) {
 		unknownC08C53();
 	}
 	for (short i =0 ; i < unknown7E2708 / 2; i++) {
-		unknown7E000B = unknown7E26C8[i];
+		spritemapBank = unknown7E26C8[i];
 		unknownC08CD5(unknown7E2608[i], unknown7E2648[i], unknown7E2688[i]);
 	}
 	if (unknown7E2402 == 3) {
 		unknownC08C53();
 	}
 	for (short i =0 ; i < unknown7E280A / 2; i++) {
-		unknown7E000B = unknown7E27CA[i];
+		spritemapBank = unknown7E27CA[i];
 		unknownC08CD5(unknown7E270A[i], unknown7E274A[i], unknown7E278A[i]);
 	}
 }
@@ -5092,7 +5092,7 @@ void unknownC08C6D(const(SpriteMap)* arg1, short arg2, short arg3) {
 	unknown7E2404[unknown7E2504 / 2] = arg1;
 	unknown7E2444[unknown7E2504 / 2] = arg2;
 	unknown7E2484[unknown7E2504 / 2] = arg3;
-	unknown7E24C4[unknown7E2504 / 2] = unknown7E000B;
+	unknown7E24C4[unknown7E2504 / 2] = spritemapBank;
 	unknown7E2504 += 2;
 }
 
@@ -5101,7 +5101,7 @@ void unknownC08C87(const(SpriteMap)* arg1, short arg2, short arg3) {
 	unknown7E2506[unknown7E2606 / 2] = arg1;
 	unknown7E2546[unknown7E2606 / 2] = arg2;
 	unknown7E2586[unknown7E2606 / 2] = arg3;
-	unknown7E25C6[unknown7E2606 / 2] = unknown7E000B;
+	unknown7E25C6[unknown7E2606 / 2] = spritemapBank;
 	unknown7E2606 += 2;
 }
 
@@ -5110,7 +5110,7 @@ void unknownC08CA1(const(SpriteMap)* arg1, short arg2, short arg3) {
 	unknown7E2608[unknown7E2708 / 2] = arg1;
 	unknown7E2648[unknown7E2708 / 2] = arg2;
 	unknown7E2688[unknown7E2708 / 2] = arg3;
-	unknown7E26C8[unknown7E2708 / 2] = unknown7E000B;
+	unknown7E26C8[unknown7E2708 / 2] = spritemapBank;
 	unknown7E2708 += 2;
 }
 
@@ -5119,7 +5119,7 @@ void unknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
 	unknown7E270A[unknown7E280A / 2] = arg1;
 	unknown7E274A[unknown7E280A / 2] = arg2;
 	unknown7E278A[unknown7E280A / 2] = arg3;
-	unknown7E27CA[unknown7E280A / 2] = unknown7E000B;
+	unknown7E27CA[unknown7E280A / 2] = spritemapBank;
 	unknown7E280A += 2;
 }
 
@@ -6688,7 +6688,7 @@ void unknownC0A0E3(short arg1, bool overflowed) {
 
 /// $C0A0FA
 void unknownC0A0FA(short arg1, short arg2) {
-	unknown7E000B = actionScriptVar8E;
+	spritemapBank = actionScriptVar8E;
 	unknown7E2400 = entityDrawPriority[arg2 / 2];
 	// This uses a double pointer to the spritemap, indexed by the animation frame.
 	// Don't use the value in 8C!
@@ -6943,7 +6943,7 @@ void unknownC0A3A4(short, short id) {
 		y++;
 		(cast()actionScriptVar8C[y]).flags = (actionScriptVar8C[y].flags & 0xCF) | (actionScriptVar02 & 0xFF);
 	}
-	unknown7E000B = actionScriptVar8E;
+	spritemapBank = actionScriptVar8E;
 	unknown7E2400 = entityDrawPriority[actionScriptVar88 / 2];
 	short unknown7E2400Copy = unknown7E2400;
 	if ((unknown7E2400 & 0x8000) != 0) {
@@ -6953,7 +6953,7 @@ void unknownC0A3A4(short, short id) {
 		}
 	}
 	unknownC0AC43();
-	unknown7E000B = actionScriptVar8E;
+	spritemapBank = actionScriptVar8E;
 	unknownC08C58(actionScriptVar8C, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 }
 
@@ -7743,7 +7743,7 @@ void unknownC0AC3A(short arg1) {
 
 /// $C0AC43
 void unknownC0AC43() {
-	unknown7E000B = 0xC4;
+	spritemapBank = 0xC4;
 	actionScriptVar04 = 0xC4;
 	actionScriptVar00 = ((entitySurfaceFlags[actionScriptVar88 / 2] & 1) != 0) ? 5 : 0;
 	switch (entitySurfaceFlags[actionScriptVar88 / 2] & 0xC) {

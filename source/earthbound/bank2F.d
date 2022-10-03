@@ -22142,7 +22142,7 @@ void unknownEFD9F3() {
 void unknownEFDA05() {
 	prepareForImmediateDMA();
 	mirrorTM = 0x17;
-	unknown7E000B = 0x2F;
+	spritemapBank = 0x2F;
 	unknown7EB55D = 0;
 	unknown7EB557 = 0;
 	debugMenuCursorPosition = 0;

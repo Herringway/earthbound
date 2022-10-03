@@ -12,7 +12,7 @@ __gshared OAMEntry* oamEndAddr; /// $0005
 __gshared ubyte* oamHighTableAddr; /// $0007
 __gshared ubyte unknown7E0009; /// $0009
 __gshared ubyte unknown7E000A; /// $000A
-__gshared ushort unknown7E000B; /// $000B
+__gshared ushort spritemapBank; /// $000B
 __gshared ubyte mirrorINIDISP; /// $000D
 __gshared ubyte mirrorOBSEL; /// $000E
 __gshared ubyte unknown7E000F; /// $000F
@@ -741,8 +741,8 @@ __gshared ubyte[8] unknown7EAAB6; /// $AAB6
 __gshared ushort[4] unknown7EAABE; /// $AABE
 __gshared ubyte[8] unknown7EAAC6; /// $AAC6
 __gshared ubyte[8] unknown7EAACE; /// $AACE
-__gshared SpriteMap[16][4] unknown7EAAD6; /// $AAD6
-__gshared SpriteMap[16][4] unknown7EAC16; /// $AC16
+__gshared SpriteMap[16][4] battleSpritemaps; /// $AAD6
+__gshared SpriteMap[16][4] altBattleSpritemaps; /// $AC16
 __gshared ushort numBattlersInBackRow; /// $AD56
 __gshared ushort numBattlersInFrontRow; /// $AD58
 __gshared ubyte[8] unknown7EAD5A; /// $AD5A

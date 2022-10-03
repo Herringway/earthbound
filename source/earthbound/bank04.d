@@ -4785,7 +4785,7 @@ void useSoundStone(short arg1) {
 			}
 		}
 		oamClear();
-		unknownC088A5(0x7E);
+		//setSpritemapBank(0x7E);
 		for (short i = 0; i < 8; i++) {
 			switch (unknown7EB37E[i].unknown0) {
 				case 1:
@@ -6442,7 +6442,7 @@ void unknownC4D2F0() {
 void unknownC4D43F(short arg1) {
 	unknown7E2400 = 0;
 	//not used - segmented addressing stuff
-	//ubyte savedBank = unknownC088A5(bankbyte(&unknownE1F44C[0]));
+	//ubyte savedBank = setSpritemapBank(bankbyte(&unknownE1F44C[0]));
 	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[arg1][0]; x06.unknown0 != 0xFF; x06++) {
 		short x14 = 1;
 		if ((unknownE1F47A[x06.unknown2] != 0) && (unknown7EB4AE < 10)) {
@@ -6465,7 +6465,7 @@ void unknownC4D43F(short arg1) {
 		unknown7EB4AE = 0x3C;
 	}
 	// see above
-	//unknownC088A5(savedBank);
+	//setSpritemapBank(savedBank);
 	unknownC4D2A8();
 }
 
