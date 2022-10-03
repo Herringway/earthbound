@@ -3765,6 +3765,7 @@ void unknownC492D2() {
 		x12[0] = ((buf[0x3E00 + i] >> 8) & 0x1F) | (((buf[0x3E80 + i] >> 8) & 0x1F) << 5) | (((buf[0x3F00 + i] >> 8) & 0x1F) << 10);
 		x12++;
 	}
+	unknownC0856B(8);
 }
 
 /// $C4939C
@@ -3780,7 +3781,7 @@ void unknownC4939C(ubyte arg1, ubyte arg2, ubyte arg3) {
 			unknownC492D2();
 		}
 		memcpy(&palettes[2][0], &mapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
-		memcpy(&palettes[0][0], &spriteGroupPalettes[0], 0x100);
+		memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 		unknownC00480();
 		loadSpecialSpritePalette();
 		unknownC0856B(0x18);
