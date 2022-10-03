@@ -5037,8 +5037,8 @@ struct GameState {
 	ushort unknownB0; ///
 	ushort unknownB2; ///
 	ushort unknownB4; ///
-	ubyte[3] unknownB6; ///
-	ubyte[3] unknownB8; ///
+	ubyte[3] deliveryQueueItem; ///
+	ubyte[3] deliveryQueueCharacter; ///
 	ubyte autoFightEnable; ///
 	ushort exitMouseXCoordinate; ///
 	ushort exitMouseYCoordinate; ///

@@ -959,10 +959,10 @@ const(ubyte)* getPartyCharacterName(short arg1) {
 }
 
 /// $C22351
-short unknownC22351(short arg1) {
-	arg1--;
+short getInventoryCount(short character) {
+	character--;
 	short x0E;
-	for (x0E = 0; (14 > x0E) && (partyCharacters[arg1].items[x0E] != 0); x0E++) {}
+	for (x0E = 0; (14 > x0E) && (partyCharacters[character].items[x0E] != 0); x0E++) {}
 	return x0E;
 }
 
@@ -1225,7 +1225,7 @@ void unknownC22A3A(short arg1, short arg2, short arg3) {
 		x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
 		x17 = x0E;
 		if (arg3 == x17) {
-			partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)unknownC22351(arg1);
+			partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)getInventoryCount(arg1);
 			x0E = partyCharacters[arg2].equipment[EquipmentSlot.body];
 			if (arg3 < x0E) {
 				partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)(x0E - 1);
@@ -1239,7 +1239,7 @@ void unknownC22A3A(short arg1, short arg2, short arg3) {
 				partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
 			}
 		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.body]) {
-			partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)unknownC22351(arg1);
+			partyCharacters[arg2].equipment[EquipmentSlot.body] = cast(ubyte)getInventoryCount(arg1);
 			x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
 			if (arg3 < x0E) {
 				partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);
@@ -1253,7 +1253,7 @@ void unknownC22A3A(short arg1, short arg2, short arg3) {
 				partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
 			}
 		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.arms]) {
-			partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)unknownC22351(arg1);
+			partyCharacters[arg2].equipment[EquipmentSlot.arms] = cast(ubyte)getInventoryCount(arg1);
 			x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
 			if (arg3 < x0E) {
 				partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);
@@ -1267,7 +1267,7 @@ void unknownC22A3A(short arg1, short arg2, short arg3) {
 				partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)(x0E - 1);
 			}
 		} else if (arg3 == partyCharacters[arg2].equipment[EquipmentSlot.other]) {
-			partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)unknownC22351(arg1);
+			partyCharacters[arg2].equipment[EquipmentSlot.other] = cast(ubyte)getInventoryCount(arg1);
 			x0E = partyCharacters[arg2].equipment[EquipmentSlot.weapon];
 			if (arg3 < x0E) {
 				partyCharacters[arg2].equipment[EquipmentSlot.weapon] = cast(ubyte)(x0E - 1);

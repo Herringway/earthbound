@@ -2286,7 +2286,7 @@ void debugYButtonGoods() {
 					if (getItemType(x04) != 2) {
 						break outer;
 					}
-					equipItem(x16, unknownC22351(x16));
+					equipItem(x16, getInventoryCount(x16));
 				}
 			} else if ((padPress[0] & (Pad.b | Pad.select)) != 0) {
 				break outer;
@@ -2987,7 +2987,7 @@ void* cc1D0E(DisplayTextState* arg1, ushort arg2) {
 		return &cc1D0E;
 	}
 	short x12 = giveItemToCharacter(ccArgumentStorage[0] == 0 ? cast(short)getWorkingMemory().integer : ccArgumentStorage[0], cast(ubyte)(arg2 != 0 ? arg2 : getArgumentMemory()));
-	setArgumentMemory(unknownC22351(x12));
+	setArgumentMemory(getInventoryCount(x12));
 	setWorkingMemory(WorkingMemory(x12));
 	return null;
 }
@@ -3052,8 +3052,8 @@ void* cc1D13(DisplayTextState* arg1, ushort arg2) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
 		return &cc1D13;
 	}
-	short x12 = unknownC191F8(ccArgumentStorage[0] == 0 ? cast(short)getWorkingMemory().integer : ccArgumentStorage[0], cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
-	setArgumentMemory(unknownC22351(x12));
+	short x12 = giveStoredItemToCharacter(ccArgumentStorage[0] == 0 ? cast(short)getWorkingMemory().integer : ccArgumentStorage[0], cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
+	setArgumentMemory(getInventoryCount(x12));
 	setWorkingMemory(WorkingMemory(x12));
 	return null;
 }
@@ -3186,13 +3186,13 @@ void* cc1F12(DisplayTextState* arg1, ushort arg2) {
 }
 
 /// $C15FB1
-void unknownC15FB1(short arg1, short arg2) {
+void queueItemForDelivery(short character, short item) {
 	for (short i = 0; i < 3; i++) {
-		if (gameState.unknownB6[i] != 0) {
+		if (gameState.deliveryQueueItem[i] != 0) {
 			continue;
 		}
-		gameState.unknownB6[i] = cast(ubyte)arg2;
-		gameState.unknownB8[i] = cast(ubyte)arg1;
+		gameState.deliveryQueueItem[i] = cast(ubyte)item;
+		gameState.deliveryQueueCharacter[i] = cast(ubyte)character;
 	}
 }
 
@@ -3206,12 +3206,12 @@ void* cc191C(DisplayTextState* arg1, ushort arg2) {
 	short x0E = arg2 != 0 ? arg2 : cast(short)getArgumentMemory();
 	short x02;
 	if (x04 == 0xFF) {
-		x02 = unknownC191B0(x0E);
+		x02 = escargoExpressRemove(x0E);
 	} else {
 		x02 = getCharacterItem(x04, x0E);
 		removeItemFromInventory(x04, x0E);
 	}
-	unknownC15FB1(x04, x02);
+	queueItemForDelivery(x04, x02);
 	return null;
 }
 
@@ -3222,11 +3222,11 @@ void* cc191D(DisplayTextState* arg1, ushort arg2) {
 		return &cc191D;
 	}
 	short tmp = cast(short)((ccArgumentStorage[0] != 0 ? ccArgumentStorage[0] : cast(short)getWorkingMemory().integer) - 1);
-	setWorkingMemory(WorkingMemory(gameState.unknownB8[tmp]));
-	setArgumentMemory(gameState.unknownB6[tmp]);
+	setWorkingMemory(WorkingMemory(gameState.deliveryQueueCharacter[tmp]));
+	setArgumentMemory(gameState.deliveryQueueItem[tmp]);
 	if (arg2 != 0) {
-		gameState.unknownB6[tmp] = 0;
-		gameState.unknownB8[tmp] = 0;
+		gameState.deliveryQueueItem[tmp] = 0;
+		gameState.deliveryQueueCharacter[tmp] = 0;
 	}
 	return null;
 }
@@ -4759,7 +4759,7 @@ short unknownC190E6(short arg1) {
 short unknownC190F1() {
 	short x0E = 36;
 	for (short i = 0; i < 3; i++) {
-		if (gameState.unknownB6[i] != 0) {
+		if (gameState.deliveryQueueItem[i] != 0) {
 			x0E--;
 		}
 	}
@@ -4792,7 +4792,7 @@ short escargoExpressMove(short arg1, short arg2) {
 }
 
 /// $C191B0
-short unknownC191B0(short arg1) {
+short escargoExpressRemove(short arg1) {
 	arg1--;
 	ubyte x01 = gameState.escargoExpressItems[arg1];
 	while ((gameState.escargoExpressItems[arg1 + 1] != 0) && (arg1++ < gameState.escargoExpressItems.length)) {
@@ -4803,9 +4803,9 @@ short unknownC191B0(short arg1) {
 }
 
 /// $C191F8
-short unknownC191F8(short arg1, short arg2) {
-	giveItemToCharacter(arg1, cast(ubyte)unknownC191B0(arg2));
-	return arg1;
+short giveStoredItemToCharacter(short character, short itemSlot) {
+	giveItemToCharacter(character, cast(ubyte)escargoExpressRemove(itemSlot));
+	return character;
 }
 
 /// $C19216
