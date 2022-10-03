@@ -6,6 +6,7 @@ import std.path : baseName, stripExtension;
 import std.algorithm : filter;
 import std.format : sformat;
 import std.range : chain;
+import std.typecons : Nullable;
 import std.getopt;
 import std.string : fromStringz, format, toStringz;
 import core.thread : Fiber;
@@ -35,6 +36,7 @@ struct Settings {
 	AudioSettings audio;
 	Controller[SDL_GameControllerButton] gamepadMapping;
 	Controller[SDL_Scancode] keyboardMapping;
+	GameConfig game;
 }
 
 void saveGraphicsStateToFile(string filename) {
@@ -92,14 +94,25 @@ extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
     }
 }
 
+void handleNullableOption(alias var)(string, string value) {
+	infof("%s", value);
+	var = value.to!(typeof(var.get));
+}
+
 void main(string[] args) {
 	if (!"settings.yml".exists) {
 		getDefaultSettings().toFile!YAML("settings.yml");
 	}
 	const settings = fromFile!(Settings, YAML, DeSiryulize.optionalByDefault)("settings.yml");
 	bool verbose;
+	Nullable!bool noIntro;
+	Nullable!ubyte autoLoadFile;
+	Nullable!bool debugMenu;
 	auto help = getopt(args,
-		"verbose|v", "Print extra information", &verbose
+		"verbose|v", "Print extra information", &verbose,
+		"nointro|n", "Skip intro scenes", &handleNullableOption!noIntro,
+		"autoload|a", "Auto-load specified file. Will be created if nonexistent", &handleNullableOption!autoLoadFile,
+		"debug|d", "Always boot to debug menu (debug builds only)", &handleNullableOption!debugMenu,
 	);
 	if (help.helpWanted) {
 		defaultGetoptPrinter("Earthbound.", help.options);
@@ -327,6 +340,16 @@ void main(string[] args) {
 	earthbound.commondefs.playSFX = &playSFX;
 	playMusicExternal = &playMusic;
 	stopMusicExternal = &stopMusic;
+	earthbound.commondefs.config = settings.game;
+	if (!autoLoadFile.isNull) {
+		earthbound.commondefs.config.autoLoadFile = autoLoadFile;
+	}
+	debug if (!debugMenu.isNull) {
+		earthbound.commondefs.config.loadDebugMenu = debugMenu.get();
+	}
+	if (!noIntro.isNull) {
+		earthbound.commondefs.config.noIntro = noIntro.get();
+	}
 	auto game = new Fiber(&start);
 	while(run) {
 		step = !pause;

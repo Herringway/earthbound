@@ -8244,7 +8244,7 @@ void fileSelectInit() {
 	memcpy(&unknown7F0000[0x2000], &unknown7F0000[0x1000], 0x2A00);
 	unknownC44963(1);
 	memcpy(&palettes[0][0], textWindowFlavourPalettes.ptr, 0x40);
-	debug(nofileselect) {} else {
+	if (!config.noIntro) {
 		loadBackgroundAnimation(BackgroundLayer.fileSelect, 0);
 	}
 	entityAllocationMinSlot = 0x17;
@@ -8353,7 +8353,7 @@ void initBattleOverworld() {
 void ebMain() {
 	unknownC43317();
 	RestartGame:
-	debug(nointro) {
+	if (config.noIntro) {
 		unknown7EB4B6 = 1;
 	} else {
 		initIntro();
@@ -8441,19 +8441,14 @@ void gameInit() {
 	checkHardware();
 	waitUntilNextFrame();
 	waitUntilNextFrame();
-	debug(alwaysdebugmenu) {
-		debugging = 1;
-		debugMenuLoad();
-	} else {
-		debug {
-			if ((padState[0] & (Pad.down | Pad.l)) != 0) {
-				debugging = 1;
-				debugMenuLoad();
-			}
+	debug {
+		if (config.loadDebugMenu || ((padState[0] & (Pad.down | Pad.l)) != 0)) {
+			debugging = 1;
+			debugMenuLoad();
 		}
-		debugging = 0;
-		ebMain();
 	}
+	debugging = 0;
+	ebMain();
 }
 
 /// $C0B9BC

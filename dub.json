@@ -15,10 +15,11 @@
 			"name": "standard"
 		},
 		{
-			"name": "bugfix",
+			"name": "extra",
 			"versions": [
 				"bugfix",
-				"noUndefinedBehaviour"
+				"noUndefinedBehaviour",
+				"configurable"
 			]
 		}
 	],

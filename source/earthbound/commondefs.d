@@ -6993,3 +6993,20 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 	}
 	return script[0 .. 1];
 }
+
+version(configurable) {
+	struct GameConfig {
+		import std.typecons : Nullable;
+		bool noIntro;
+		Nullable!ubyte autoLoadFile;
+		debug bool loadDebugMenu;
+	}
+} else {
+	struct GameConfig {
+		import std.typecons : Nullable;
+		enum noIntro = false;
+		enum autoLoadFile = Nullable!ubyte.init;
+		debug enum loadDebugMenu = false;
+	}
+}
+GameConfig config;

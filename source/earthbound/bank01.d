@@ -7605,8 +7605,8 @@ short openFlavourMenu() {
 
 /// $C1F805
 void fileMenuLoop() {
-	debug(nofileselect) {
-		loadGameSlot(0);
+	if (!config.autoLoadFile.isNull) {
+		loadGameSlot(config.autoLoadFile.get);
 		if (gameState.favouriteThing[1] != 0) {
 			unknownC064D4();
 			reloadHotspots();

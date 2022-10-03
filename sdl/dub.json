@@ -11,7 +11,7 @@
 		}
 	},
 	"subConfigurations": {
-		"earthbound": "bugfix"
+		"earthbound": "extra"
 	},
 	"versions": ["sdl", "SDL_2012", "SDL_Mixer"]
 }
