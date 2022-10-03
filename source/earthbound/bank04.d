@@ -3742,13 +3742,14 @@ void unknownC49208(short arg1) {
 	ushort* buf = cast(ushort*)(&unknown7F0000[0]);
 	ushort* x06 = &buf[0x3C00];
 	for (short i = 0; i < 0x60; i++) {
-		buf[0x3C80 + i] = unknownC491EE(palettes[2][i] & 0x1F, x06[0] & 0x1F, arg1);
-		buf[0x3D00 + i] = unknownC491EE((palettes[2][i] & 0x3E0) >> 5, (x06[0] & 0x3E0) >> 5, arg1);
-		buf[0x3D80 + i] = unknownC491EE((palettes[2][i] & 0x7C00) >> 10, (x06[0] & 0x7C00) >> 10, arg1);
+		ushort sourceColour = (&palettes[2][0])[i];
+		buf[0x3C80 + i] = unknownC491EE(sourceColour & 0x1F, x06[0] & 0x1F, arg1);
+		buf[0x3D00 + i] = unknownC491EE((sourceColour & 0x3E0) >> 5, (x06[0] & 0x3E0) >> 5, arg1);
+		buf[0x3D80 + i] = unknownC491EE((sourceColour & 0x7C00) >> 10, (x06[0] & 0x7C00) >> 10, arg1);
 
-		buf[0x3E00 + i] = ((palettes[2][i] & 0x1F) << 8) & 0xFF00;
-		buf[0x3E80 + i] = (palettes[2][i] & 0x3E0) << 3;
-		buf[0x3F00 + i] = (palettes[2][i] & 0x7C00) >> 2;
+		buf[0x3E00 + i] = ((sourceColour & 0x1F) << 8) & 0xFF00;
+		buf[0x3E80 + i] = (sourceColour & 0x3E0) << 3;
+		buf[0x3F00 + i] = (sourceColour & 0x7C00) >> 2;
 		x06++;
 	}
 }
@@ -3758,12 +3759,13 @@ void unknownC492D2() {
 	ushort* x12 = &palettes[2][0];
 	ushort* buf = cast(ushort*)&unknown7F0000[0];
 	for (short i = 0; i < 0x60; i++) {
-		buf[0x3E00 + i * 2] += buf[0x3C80 + i * 2];
-		buf[0x3E80 + i * 2] += buf[0x3D00 + i * 2];
-		buf[0x3F00 + i * 2] += buf[0x3D80 + i * 2];
-		x12[0] = ((buf[0x3E00 + i * 2] >> 8) & 0x1F) | (((buf[0x3E80 + i * 2] >> 8) & 0x1F) << 5) | (((buf[0x3F00 + i * 2] >> 8) & 0x1F) << 10);
+		buf[0x3E00 + i] += buf[0x3C80 + i];
+		buf[0x3E80 + i] += buf[0x3D00 + i];
+		buf[0x3F00 + i] += buf[0x3D80 + i];
+		x12[0] = ((buf[0x3E00 + i] >> 8) & 0x1F) | (((buf[0x3E80 + i] >> 8) & 0x1F) << 5) | (((buf[0x3F00 + i] >> 8) & 0x1F) << 10);
 		x12++;
 	}
+	unknownC0856B(8);
 }
 
 /// $C4939C
@@ -3779,7 +3781,7 @@ void unknownC4939C(ubyte arg1, ubyte arg2, ubyte arg3) {
 			unknownC492D2();
 		}
 		memcpy(&palettes[2][0], &mapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
-		memcpy(&palettes[0][0], &spriteGroupPalettes[0], 0x100);
+		memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 		unknownC00480();
 		loadSpecialSpritePalette();
 		unknownC0856B(0x18);
