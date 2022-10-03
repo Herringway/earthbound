@@ -3251,7 +3251,7 @@ void* cc1D19(DisplayTextState* arg1, ushort arg2) {
 
 /// $C161D1
 void* cc1C12(DisplayTextState* arg1, ushort arg2) {
-	unknownC1CA06(arg2 != 0 ? arg2 : cast(short)getArgumentMemory());
+	printPSIName(arg2 != 0 ? arg2 : cast(short)getArgumentMemory());
 	return null;
 }
 
@@ -6244,9 +6244,9 @@ void unknownC1C8BC(short arg1) {
 }
 
 /// $C1CA06
-void unknownC1CA06(short arg1) {
-	getPSIName(psiAbilityTable[arg1].name);
-	printWrappableString(-1, &psiSuffixes[psiAbilityTable[arg1].level - 1][0]);
+void printPSIName(short id) {
+	getPSIName(psiAbilityTable[id].name);
+	printWrappableString(-1, &psiSuffixes[psiAbilityTable[id].level - 1][0]);
 }
 
 /// $C1CA72
@@ -6358,7 +6358,7 @@ short battlePSIMenu(UnknownA97D* arg1) {
 						createWindowN(Window.unknown26);
 						setInstantPrinting();
 						windowSetTextColor(6);
-						unknownC1CA06(x1C);
+						printPSIName(x1C);
 						windowSetTextColor(0);
 					}
 					x16 = determineTargetting(psiAbilityTable[x1C].battleAction, arg1.unknown0);
