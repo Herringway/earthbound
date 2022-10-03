@@ -868,7 +868,7 @@ void printMenuItems() {
 			if (x02.page == 0) {
 				windowSetTextColor(0);
 				unknownC43F77(0x14F);
-				unknownC43CAA();
+				nextVWFTile();
 				windowSetTextColor(0);
 				ubyte* y = &windowStats[windowTable[currentFocusWindow]].title[0];
 				if (y[0] != 0) {
@@ -880,9 +880,9 @@ void printMenuItems() {
 					(x++)[0] = cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('0'));
 					(x++)[0] = ebChar(')');
 					x[0] = 0;
-					unknownC43CAA();
+					nextVWFTile();
 					setWindowTitle(currentFocusWindow, -1, &unknown7E9C9F[0]);
-					unknownC43CAA();
+					nextVWFTile();
 					printString(cast(short)(strlen(cast(char*)&unknown7E9C9F[0]) - 2), &unknown7E9C9F[0]);
 					printLetter((windowStats[windowTable[currentFocusWindow]].menuPage == menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].prev].page) ? ebChar('1') : cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('1')));
 					printLetter(ebChar(')'));
@@ -2189,7 +2189,7 @@ void debugYButtonFlag() {
 		setCurrentWindowPadding(3);
 		printNumber(x02);
 		unknownC43F77(0x20);
-		unknownC43CAA();
+		nextVWFTile();
 		printString(0x100, (getEventFlag(x02) != 0) ? &debugOnText[0] : &debugOffText[0]);
 		clearInstantPrinting();
 		windowTick();

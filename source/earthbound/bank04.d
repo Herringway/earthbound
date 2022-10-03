@@ -1372,7 +1372,7 @@ void unknownC43B15() {
 
 /// $C43874
 void unknownC43874(short arg1, short x, short y) {
-	unknownC43CAA();
+	nextVWFTile();
 	windowStats[windowTable[arg1]].textX = x;
 	windowStats[windowTable[arg1]].textY = y;
 }
@@ -1449,7 +1449,7 @@ void unknownC43BB9(short maxLength, short highlighted, ubyte* text) {
 }
 
 /// $C43CAA
-void unknownC43CAA() {
+void nextVWFTile() {
 	if (++vwfTile > 0x33) {
 		vwfTile = 0;
 		vwfX = 0;
@@ -1480,7 +1480,7 @@ void unknownC43D95(short arg1) {
 void unknownC43DDB(MenuOpt* menuEntry) {
 	unknownC438A5F(menuEntry.textX, menuEntry.textY);
 	unknownC43F77(0x2F);
-	unknownC43CAA();
+	nextVWFTile();
 	if (menuEntry.pixelAlign != 0) {
 		unknownC43CD2(menuEntry, menuEntry.textX, menuEntry.textY);
 	}
@@ -1696,7 +1696,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 
 /// $C444FB
 void renderSmallTextToVRAM(ubyte* arg1, ushort arg2) {
-	unknownC43CAA();
+	nextVWFTile();
 	ushort x18 = vwfTile;
 	ubyte* x0A = arg1;
 	for (short i = 0; arg1[0] != 0; i++) {
@@ -2010,7 +2010,7 @@ void unknownC44E61(short arg1, short arg2) {
 	}
 	if ((arg2 == 0x2F) || (arg2 == 0x22) || (arg2 == 0x20)) {
 		unknownC43F77(arg2);
-		unknownC43CAA();
+		nextVWFTile();
 	} else {
 		if (arg2 == ebChar(' ')) {
 			if (unknown7E5E75 != 0) {
