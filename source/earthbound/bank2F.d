@@ -22109,7 +22109,7 @@ immutable char[17][8] debugMenuText2Lines = [
 
 /// $EFD95E
 void unknownEFD95E() {
-	unknownC200D9();
+	initializeTextSystem();
 	waitUntilNextFrame();
 	if (debugModeNumber == 1) {
 		prepareWindowGraphics();

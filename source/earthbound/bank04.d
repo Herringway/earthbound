@@ -5525,7 +5525,7 @@ void unknownC4C2DE() {
 	memcpy(&palettes[7][0], &palettes[0][0], 0x20);
 	memset(&palettes[1][0], 0, 0xC0);
 	memcpy(&palettes[2][0], &palettes[7][0], 0x20);
-	unknownC200D9();
+	initializeTextSystem();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	unknownC47F87();
@@ -6664,7 +6664,7 @@ void initIntro() {
 	unknown7EB4B6 = 1;
 	unknownC0AC0C(2);
 	unknownC0927C();
-	unknownC200D9();
+	initializeTextSystem();
 	unknownC432B1();
 	unknown7E5DD8 = 1;
 	bg3XPosition = 0;

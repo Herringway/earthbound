@@ -6730,7 +6730,7 @@ void displayInBattleText(const(ubyte)* ptr) {
 
 /// $C1DCCB
 void unknownC1DCCB(short arg1) {
-	unknownC200D9();
+	initializeTextSystem();
 	battleModeFlag = 1;
 	for (short i = 1; i <= 4; i++) {
 		resetCharLevelOne(i, arg1, 1);

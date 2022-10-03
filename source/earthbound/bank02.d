@@ -58,7 +58,7 @@ immutable short[6] unknownC200C5 = [0, 0, 0, 7, 7, 7];
 immutable ushort[4] unknownC200D1 = [0b11110, 0b110011, 0b11110, 0b110011];
 
 /// $C200D9
-void unknownC200D9() {
+void initializeTextSystem() {
 	unknown7E89C9 = 0;
 	unknown7E89D2 = -1;
 	unknown7E89D0 = -1;

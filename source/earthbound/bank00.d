@@ -8238,7 +8238,7 @@ void fileSelectInit() {
 	unknownC432B1();
 	unknownC005E7();
 	memcpy(&palettes[8][0], spriteGroupPalettes.ptr, 0x100);
-	unknownC200D9();
+	initializeTextSystem();
 	copyToVRAM(3, 0x800, 0x7C00, unknown7F0000.ptr);
 	decomp(textWindowGraphics.ptr, unknown7F0000.ptr);
 	memcpy(&unknown7F0000[0x2000], &unknown7F0000[0x1000], 0x2A00);
