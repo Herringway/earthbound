@@ -1419,7 +1419,7 @@ immutable ubyte[0x400] lockedTiles = [
 ];
 
 /// $C43BB9 - Unknown, but looks like it prints optionally highlighted text
-void unknownC43BB9(short maxLength, short highlighted, ubyte* text) {
+void unknownC43BB9(ushort maxLength, short highlighted, ubyte* text) {
 	if (windowTable[currentFocusWindow] == -1) {
 		return;
 	}

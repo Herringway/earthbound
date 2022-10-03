@@ -986,7 +986,7 @@ short selectionMenu(short cancelable) {
 
 		setInstantPrinting();
 		unknownC43CD2(dp04, dp04.textX, dp04.textY); // field08, field0A
-		unknownC43BB9(-1, 0, dp04.label.ptr); // field13
+		unknownC43BB9(0xFFFF, 0, dp04.label.ptr); // field13
 	} else {
 		dp20 = 0;
 		dp04 = &menuOptions[dp24.currentOption]; // field2B
@@ -1090,7 +1090,7 @@ label2:
 							unknownC43BB9(4, 1, dp04.label.ptr); // field13
 						}
 					} else {
-						unknownC43BB9(-1, 1, dp04.label.ptr); // field13;
+						unknownC43BB9(0xFFFF, 1, dp04.label.ptr); // field13;
 					}
 				} else {
 					unknownC43B15();
@@ -7526,7 +7526,7 @@ short unknownC1F497(short arg1) {
 		}
 		windowSetTextColor(6);
 		unknownC438A5(cast(short)(x14.textX + 1), x14.textY);
-		unknownC43BB9(-1, 1, &x14.label[0]);
+		unknownC43BB9(0xFFFF, 1, &x14.label[0]);
 		windowSetTextColor(0);
 		x12 = gameState.textSpeed;
 	} else {
@@ -7563,7 +7563,7 @@ short unknownC1F616(short arg1) {
 		}
 		windowSetTextColor(6);
 		unknownC438A5(cast(short)(x14.textX + 1), x14.textY);
-		unknownC43BB9(-1, 1, &x14.label[0]);
+		unknownC43BB9(0xFFFF, 1, &x14.label[0]);
 		windowSetTextColor(0);
 		x12 = gameState.soundSetting;
 	} else {
