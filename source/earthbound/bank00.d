@@ -8244,7 +8244,7 @@ void fileSelectInit() {
 	memcpy(&unknown7F0000[0x2000], &unknown7F0000[0x1000], 0x2A00);
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	memcpy(&palettes[0][0], textWindowFlavourPalettes.ptr, 0x40);
-	if (!config.noIntro) {
+	if (config.autoLoadFile.isNull) {
 		loadBackgroundAnimation(BackgroundLayer.fileSelect, 0);
 	}
 	entityAllocationMinSlot = 0x17;
