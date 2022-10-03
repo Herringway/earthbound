@@ -201,6 +201,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/setINIDISP.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setIRQCallback.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setOAMSize.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/setSpritemapBank.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setSurfaceFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setTeleportState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setWindowMask.html</loc></url>
@@ -355,7 +356,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0856B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC087AB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0888B.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC088A5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC08B19.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC08B8E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC08C53.html</loc></url>
@@ -1186,6 +1186,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/decreaseWalletBalance.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/depositIntoATM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/determineDodge.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/drawBattleSprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/drawHPPPWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/eatFood.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/failAttackOnNPCs.html</loc></url>
@@ -1233,6 +1234,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/learnSpecialPSI.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/lifeupCommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loadBattleBG.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/loadBattleSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loadEnemyBattleSprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loseHPStatus.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/missCalc.html</loc></url>
@@ -1266,6 +1268,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/removeNPCTargetting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/removeStatusUntargettableTargets.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/removeTarget.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/renderBattleSpriteRow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/resetPostBattleStats.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/resetRolling.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/reviveTarget.html</loc></url>
@@ -1368,13 +1371,10 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2EA74.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2EAAA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2EACF.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC2EAEA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2EEE7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F09F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F0D1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F121.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F724.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F8F9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F917.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2FAD2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2FAD8.html</loc></url>
@@ -2280,8 +2280,8 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown72.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown73.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown74.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown75.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown76.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/Battler.useAltSpritemap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.vitality.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.vramSpriteIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleSpritePointer.html</loc></url>
@@ -3133,6 +3133,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/actionScriptVar92.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/actionScriptVar94.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/activeHotspots.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/altBattleSpritemaps.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attackerNameAdjustScratch.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attractModeWindowHDMAData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attractModeWindowHDMATable.html</loc></url>
@@ -3145,6 +3146,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/battleMoneyScratch.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battlersTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battlerTargetFlags.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/battleSpritemaps.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battleSwirlCountdown.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battleSwirlFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/bg1XPosition.html</loc></url>
@@ -3410,6 +3412,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/soundEffectQueueEndIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/soundEffectQueueIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/spcDataPointer.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/spritemapBank.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/spriteTable7E467E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/sram3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/targetNameAdjustScratch.html</loc></url>
@@ -3426,7 +3429,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0002.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0009.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E000A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E000B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E000F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0011.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0012.html</loc></url>
@@ -3829,8 +3831,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAABE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAAC6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAACE.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EAAD6.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EAC16.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAD5A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAD62.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAD6A.html</loc></url>
