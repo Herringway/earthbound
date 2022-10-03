@@ -8266,7 +8266,7 @@ void fileSelectInit() {
 }
 
 /// $C0B65F
-void unknownC0B65F(short arg1, short arg2) {
+void setLeaderLocation(short arg1, short arg2) {
 	tracef("Setting coordinates to %s, %s", arg1, arg2);
 	gameState.leaderX.integer = arg1;
 	gameState.leaderY.integer = arg2;

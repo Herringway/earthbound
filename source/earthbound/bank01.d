@@ -7635,7 +7635,7 @@ void fileMenuLoop() {
 				partyCharacters[i].hpPPWindowOptions = 0x400;
 			}
 			gameState.moneyCarried = initialStats[0].money;
-			unknownC0B65F(initialStats[0].unknown0, initialStats[0].unknown2);
+			setLeaderLocation(initialStats[0].unknown0, initialStats[0].unknown2);
 			gameState.favouriteThing[0] = ebChar('P');
 			gameState.favouriteThing[1] = ebChar('S');
 			gameState.favouriteThing[2] = ebChar('I');
@@ -7650,7 +7650,7 @@ void fileMenuLoop() {
 			respawnX = gameState.leaderX.integer;
 			respawnY = gameState.leaderY.integer;
 			unknownC064D4();
-			unknownC0B65F(0x840, 0x6E8);
+			setLeaderLocation(0x840, 0x6E8);
 			unknownC46881(textFileSelectScreen1.ptr);
 			setEventFlag(EventFlag.unknown00B, 1);
 			showNPCFlag = 1;
@@ -7818,7 +7818,7 @@ void fileMenuLoop() {
 									partyCharacters[i].hpPPWindowOptions = 0x400;
 								}
 								gameState.moneyCarried = initialStats[0].money;
-								unknownC0B65F(initialStats[0].unknown0, initialStats[0].unknown2);
+								setLeaderLocation(initialStats[0].unknown0, initialStats[0].unknown2);
 								gameState.favouriteThing[0] = ebChar('P');
 								gameState.favouriteThing[1] = ebChar('S');
 								gameState.favouriteThing[2] = ebChar('I');
@@ -7833,7 +7833,7 @@ void fileMenuLoop() {
 								respawnX = gameState.leaderX.integer;
 								respawnY = gameState.leaderY.integer;
 								unknownC064D4();
-								unknownC0B65F(0x840, 0x6E8);
+								setLeaderLocation(0x840, 0x6E8);
 								unknownC46881(textFileSelectScreen1.ptr);
 								setEventFlag(EventFlag.unknown00B, 1);
 								showNPCFlag = 1;

@@ -6620,7 +6620,7 @@ short unknownC4D989(short arg1) {
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMembers[i] = 0;
 	}
-	unknownC0B65F(0x1D60, 0xB08);
+	setLeaderLocation(0x1D60, 0xB08);
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);
 	overworldInitialize();
