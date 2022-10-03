@@ -3733,54 +3733,56 @@ short getDistanceToMagicTruffle() {
 
 
 /// $C491EE
-ushort unknownC491EE(ushort arg1, ushort arg2, short arg3) {
+ushort getColourFadeSlope(ushort arg1, ushort arg2, short arg3) {
 	return cast(ushort)(((arg2 - arg1) << 8) / arg3);
 }
 
-/// $C49209
-void unknownC49208(short arg1) {
-	ushort* buf = cast(ushort*)(&unknown7F0000[0]);
-	ushort* x06 = &buf[0x3C00];
+/// $C49208
+void initializeMapPaletteFade(short arg1) {
+	ushort* endColorPtr = &paletteAnimTargetPalette()[0];
 	for (short i = 0; i < 0x60; i++) {
-		ushort sourceColour = (&palettes[2][0])[i];
-		buf[0x3C80 + i] = unknownC491EE(sourceColour & 0x1F, x06[0] & 0x1F, arg1);
-		buf[0x3D00 + i] = unknownC491EE((sourceColour & 0x3E0) >> 5, (x06[0] & 0x3E0) >> 5, arg1);
-		buf[0x3D80 + i] = unknownC491EE((sourceColour & 0x7C00) >> 10, (x06[0] & 0x7C00) >> 10, arg1);
+		ushort endColor = endColorPtr[0];
+		ushort startColor = (&palettes[2][0])[i];
+		paletteAnimRedSlope()[i] = getColourFadeSlope(startColor & 0x1F, endColor & 0x1F, arg1);
+		paletteAnimGreenSlope()[i] = getColourFadeSlope((startColor & 0x3E0) >> 5, (endColor & 0x3E0) >> 5, arg1);
+		paletteAnimBlueSlope()[i] = getColourFadeSlope((startColor & 0x7C00) >> 10, (endColor & 0x7C00) >> 10, arg1);
 
-		buf[0x3E00 + i] = ((sourceColour & 0x1F) << 8) & 0xFF00;
-		buf[0x3E80 + i] = (sourceColour & 0x3E0) << 3;
-		buf[0x3F00 + i] = (sourceColour & 0x7C00) >> 2;
-		x06++;
+		paletteAnimRedAccum()[i] = ((startColor & 0x1F) << 8) & 0xFF00;
+		paletteAnimGreenAccum()[i] = (startColor & 0x3E0) << 3;
+		paletteAnimBlueAccum()[i] = (startColor & 0x7C00) >> 2;
+		endColorPtr++;
 	}
 }
 
 /// $C492D2
-void unknownC492D2() {
-	ushort* x12 = &palettes[2][0];
-	ushort* buf = cast(ushort*)&unknown7F0000[0];
+void stepMapPaletteFade() {
+	ushort* outputPtr = &palettes[2][0];
 	for (short i = 0; i < 0x60; i++) {
-		buf[0x3E00 + i] += buf[0x3C80 + i];
-		buf[0x3E80 + i] += buf[0x3D00 + i];
-		buf[0x3F00 + i] += buf[0x3D80 + i];
-		x12[0] = ((buf[0x3E00 + i] >> 8) & 0x1F) | (((buf[0x3E80 + i] >> 8) & 0x1F) << 5) | (((buf[0x3F00 + i] >> 8) & 0x1F) << 10);
-		x12++;
+		paletteAnimRedAccum()[i] += paletteAnimRedSlope()[i];
+		paletteAnimGreenAccum()[i] += paletteAnimGreenSlope()[i];
+		paletteAnimBlueAccum()[i] += paletteAnimBlueSlope()[i];
+		ushort redBits = ((paletteAnimRedAccum()[i] >> 8) & 0x1F);
+		ushort greenBits = ((paletteAnimGreenAccum()[i] >> 8) & 0x1F) << 5;
+		ushort blueBits = ((paletteAnimBlueAccum()[i] >> 8) & 0x1F) << 10;
+		outputPtr[0] = redBits | greenBits | blueBits;
+		outputPtr++;
 	}
 	unknownC0856B(8);
 }
 
 /// $C4939C
-void unknownC4939C(ubyte arg1, ubyte arg2, ubyte arg3) {
+void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 	unknown7E4474 = 0;
-	if (arg3 == 0) {
-		memcpy(&palettes[2][0], &mapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
+	if (fadeDuration == 0) {
+		memcpy(&palettes[2][0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
 	} else {
-		memcpy(&unknown7F0000[0x7800], &mapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
-		unknownC49208(arg3);
-		for (short i = 0; i < arg3; i++) {
+		memcpy(&paletteAnimTargetPalette()[0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
+		initializeMapPaletteFade(fadeDuration);
+		for (short i = 0; i < fadeDuration; i++) {
 			waitUntilNextFrame();
-			unknownC492D2();
+			stepMapPaletteFade();
 		}
-		memcpy(&palettes[2][0], &mapPalettePointerTable[arg1][arg2 * 0xC0], 0xC0);
+		memcpy(&palettes[2][0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
 		memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 		unknownC00480();
 		loadSpecialSpritePalette();
@@ -3836,9 +3838,9 @@ void unknownC4958E(short arg1, short arg2, ushort* arg3) {
 				x02 = arg3[j];
 				x06[j] = x02;
 			}
-			x06[0x100 + j] = unknownC491EE(arg3[j] & 0x1F, x02 & 0x1F, arg1);
-			x06[0x200 + j] = unknownC491EE((arg3[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
-			x06[0x300 + j] = unknownC491EE((arg3[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
+			x06[0x100 + j] = getColourFadeSlope(arg3[j] & 0x1F, x02 & 0x1F, arg1);
+			x06[0x200 + j] = getColourFadeSlope((arg3[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
+			x06[0x300 + j] = getColourFadeSlope((arg3[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
 		}
 		for (short j = i; j < i + 16; j++) {
 			x06[0x400 + j] = (arg3[j] & 0x1F) << 8;
@@ -5541,25 +5543,29 @@ void unknownC4C2DE() {
 }
 
 /// $C4C45F
-void unknownC4C45F(short arg1) {
-	memcpy(&unknown7F0000[0x7800], &palettes[2][0], 0xC0);
-	memcpy(&unknown7F0000[0x7800 + (arg1 << 5)], &palettes[7][0], 0x20);
-	memcpy(&unknown7F0000[0x7800 + ((arg1 - 1) << 5)], &palettes[6][0], 0x20);
+void setGameOverFadeTargetPalette(short animFrame) {
+	ushort* paletteBuf = &paletteAnimTargetPalette()[0];
+	// Initialize with current palettes
+	memcpy(paletteBuf, &palettes[2][0], 0xC0);
+	// Set the target for the current animation frame to the actual palette
+	memcpy(paletteBuf + (animFrame * 16), &palettes[7][0], 0x20);
+	// Set the target for the previous animation frame to black
+	memcpy(paletteBuf + ((animFrame - 1) * 16), &palettes[6][0], 0x20);
 }
 
 /// $C4C519
-short unknownC4C519(short arg1, short arg2) {
-	unknownC4C45F(arg1);
-	unknownC49208(arg2);
-	while (arg2 != 0) {
+short doGameOverPaletteFade(short animFrame, short fadeDuration) {
+	setGameOverFadeTargetPalette(animFrame);
+	initializeMapPaletteFade(fadeDuration);
+	while (fadeDuration != 0) {
 		if (padPress[0] != 0) {
 			return -1;
 		}
-		unknownC492D2();
+		stepMapPaletteFade();
 		waitUntilNextFrame();
-		arg2--;
+		fadeDuration--;
 	}
-	memcpy(&palettes[2][0], &unknown7F0000[0x7800], 0xC0);
+	memcpy(&palettes[2][0], &paletteAnimTargetPalette()[0], 0xC0);
 	return 0;
 }
 
@@ -5613,25 +5619,25 @@ short unknownC4C64D() {
 	if (skippablePause(0x3C) != 0) {
 		return 0;
 	}
-	if (unknownC4C519(1, 0x5A) != 0) {
+	if (doGameOverPaletteFade(1, 0x5A) != 0) {
 		return 0;
 	}
 	if (skippablePause(1) != 0) {
 		return 0;
 	}
-	if (unknownC4C519(2, 0x5A) != 0) {
+	if (doGameOverPaletteFade(2, 0x5A) != 0) {
 		return 0;
 	}
 	if (skippablePause(1) != 0) {
 		return 0;
 	}
-	if (unknownC4C519(3, 0x5A) != 0) {
+	if (doGameOverPaletteFade(3, 0x5A) != 0) {
 		return 0;
 	}
 	if (skippablePause(1) != 0) {
 		return 0;
 	}
-	if (unknownC4C519(4, 8) != 0) {
+	if (doGameOverPaletteFade(4, 8) != 0) {
 		return 0;
 	}
 	return 0;
