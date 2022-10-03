@@ -2490,7 +2490,7 @@ short unknownC4608C(short arg1) {
 	}
 	for (short i = 0; i < 6; i++) {
 		if (arg1 == gameState.unknown96[i]) {
-			return gameState.unknownA2[i];
+			return gameState.partyEntities[i];
 		}
 	}
 	return -1;
@@ -2620,7 +2620,7 @@ void unknownC46397(short arg1) {
 		if (16 <= gameState.unknown96[i]) {
 			continue;
 		}
-		short x0E = gameState.unknownA2[i];
+		short x0E = gameState.partyEntities[i];
 		if (entityDirections[x0E] == arg1) {
 			continue;
 		}
@@ -2640,7 +2640,7 @@ void unknownC463F4(short arg1) {
 		}
 	} else {
 		for (short i = 0; i < gameState.partyCount; i++) {
-			entitySpriteMapFlags[gameState.unknownA2[i]] |= 0x8000;
+			entitySpriteMapFlags[gameState.partyEntities[i]] |= 0x8000;
 		}
 	}
 }
@@ -2654,7 +2654,7 @@ void unknownC4645A(short arg1) {
 		}
 	} else {
 		for (short i = 0; i < gameState.partyCount; i++) {
-			entitySpriteMapFlags[gameState.unknownA2[i]] &= 0x7FFF;
+			entitySpriteMapFlags[gameState.partyEntities[i]] &= 0x7FFF;
 		}
 	}
 }
@@ -2707,7 +2707,7 @@ void unknownC46594(short arg1) {
 	}
 	entityTickCallbackFlags[23] |= (objectTickDisabled | objectMoveDisabled);
 	for (short i = 0; i < gameState.partyCount; i++) {
-		entityTickCallbackFlags[gameState.unknownA2[i]] |= (objectTickDisabled | objectMoveDisabled);
+		entityTickCallbackFlags[gameState.partyEntities[i]] |= (objectTickDisabled | objectMoveDisabled);
 	}
 }
 
@@ -2741,7 +2741,7 @@ void unknownC46631(short arg1) {
 	}
 	entityTickCallbackFlags[23] &= 0x3FFF;
 	for (short i = 0; i < gameState.partyCount; i++) {
-		entityTickCallbackFlags[gameState.unknownA2[i]] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+		entityTickCallbackFlags[gameState.partyEntities[i]] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
 	}
 }
 
@@ -2779,20 +2779,20 @@ void unknownC466F0(const(ubyte)* arg1) {
 
 /// $C46712
 void unknownC46712() {
-	entityTickCallbackFlags[gameState.unknownA2[0]] |= objectTickDisabled | objectMoveDisabled;
+	entityTickCallbackFlags[gameState.partyEntities[0]] |= objectTickDisabled | objectMoveDisabled;
 	for (short i = 0; i < gameState.partyCount; i++) {
-		entitySpriteMapFlags[gameState.unknownA2[i]] |= 0x8000;
+		entitySpriteMapFlags[gameState.partyEntities[i]] |= 0x8000;
 	}
 }
 
 /// $C4675C
 void unknownC4675C() {
-	entityTickCallbackFlags[gameState.unknownA2[0]] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
+	entityTickCallbackFlags[gameState.partyEntities[0]] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
 	for (short i = 1; i < gameState.partyCount; i++) {
 		if (gameState.unknown96[i] == 9) {
 			continue;
 		}
-		entitySpriteMapFlags[gameState.unknownA2[i]] &= 0x7FFF;
+		entitySpriteMapFlags[gameState.partyEntities[i]] &= 0x7FFF;
 	}
 }
 
@@ -3029,9 +3029,9 @@ void getPositionOfPartyMember(short arg1) {
 	short x12 = currentEntitySlot;
 	short x0E;
 	if (arg1 == 0xFE) {
-		x0E = gameState.unknownA2[gameState.partyCount - 1];
+		x0E = gameState.partyEntities[gameState.partyCount - 1];
 		if (entityAbsXTable[x0E] == 0) {
-			x0E = gameState.unknownA2[gameState.partyCount - 2];
+			x0E = gameState.partyEntities[gameState.partyCount - 2];
 		}
 	} else {
 		x0E = unknownC4608C(arg1);
@@ -6034,12 +6034,12 @@ void unknownC48B3B() {
 		if (16 <= gameState.unknown96[i]) {
 			continue;
 		}
-		short x10 = cast(short)((unknownC41EFF(entityAbsXTable[gameState.unknownA2[i]], entityAbsYTable[gameState.unknownA2[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
-		if (entityDirections[gameState.unknownA2[i]] == x10) {
+		short x10 = cast(short)((unknownC41EFF(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+		if (entityDirections[gameState.partyEntities[i]] == x10) {
 			continue;
 		}
-		entityDirections[gameState.unknownA2[i]] = x10;
-		unknownC0A780(gameState.unknownA2[i]);
+		entityDirections[gameState.partyEntities[i]] = x10;
+		unknownC0A780(gameState.partyEntities[i]);
 	}
 }
 

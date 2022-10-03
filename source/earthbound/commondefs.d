@@ -5031,7 +5031,7 @@ struct GameState {
 	ushort currentPartyMembers; ///
 	ubyte[6] unknown96; ///
 	ubyte[6] playerControlledPartyMembers; ///
-	ubyte[12] unknownA2; ///
+	ubyte[12] partyEntities; ///
 	ubyte partyCount; ///
 	ubyte playerControlledPartyMemberCount; ///
 	ushort unknownB0; ///

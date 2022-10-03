@@ -1529,13 +1529,13 @@ void updateParty() {
 		if (local9 >= 5) {
 			local9 += 0x300;
 		} else {
-			short x = partyCharacters[entityScriptVar1Table[gameState.unknownA2[i]]].afflictions[0];
+			short x = partyCharacters[entityScriptVar1Table[gameState.partyEntities[i]]].afflictions[0];
 			if ((x == Status0.unconscious) || (x == Status0.diamondized)) {
 				local9 += 0x100;
 			}
 		}
 		local2[i] = local9;
-		local3[i] = gameState.unknownA2[i];
+		local3[i] = gameState.partyEntities[i];
 		local4[i] = gameState.playerControlledPartyMembers[i];
 	}
 	for (short i = 0; partyCount - 1 > i; i++) {
@@ -1556,12 +1556,12 @@ void updateParty() {
 	}
 	for (short i = 0; i < partyCount; i++) {
 		gameState.unknown96[i] = cast(ubyte)local2[i];
-		gameState.unknownA2[i] = cast(ubyte)local3[i];
+		gameState.partyEntities[i] = cast(ubyte)local3[i];
 		gameState.playerControlledPartyMembers[i] = cast(ubyte)local4[i];
 		partyCharacters[i].positionIndex = local1[i];
-		entityScriptVar5Table[i] = gameState.unknownA2[i];
+		entityScriptVar5Table[i] = gameState.partyEntities[i];
 	}
-	gameState.currentPartyMembers = gameState.unknownA2[0];
+	gameState.currentPartyMembers = gameState.partyEntities[0];
 	unknownC032EC();
 	unknownC02C3E();
 	unknownC47F87();
@@ -1600,7 +1600,7 @@ short unknownC0369B(short id) {
 	if (gameState.unknown96[x18] != 0) {
 		for (short i = 5; i != x18 - 1; i--) {
 			gameState.unknown96[i] = gameState.unknown96[i - 1];
-			gameState.unknownA2[i] = gameState.unknownA2[i - 1];
+			gameState.partyEntities[i] = gameState.partyEntities[i - 1];
 			gameState.playerControlledPartyMembers[i] = gameState.playerControlledPartyMembers[i - 1];
 		}
 	}
@@ -1611,13 +1611,13 @@ short unknownC0369B(short id) {
 	if (entityScriptTable[x1A_2] != -1) {
 		x1A_2++;
 	}
-	gameState.unknownA2[x18] = cast(ubyte)x1A_2;
+	gameState.partyEntities[x18] = cast(ubyte)x1A_2;
 	newEntityVar1 = cast(short)(x1A_2 - 0x18);
 	gameState.playerControlledPartyMembers[x18] = cast(ubyte)newEntityVar1;
 	if (gameState.partyCount == 1) {
 		partyCharacters[newEntityVar1].positionIndex = gameState.unknown88;
 	} else {
-		short x16 = (x18 == 0) ? gameState.unknown88 : partyCharacters[entityScriptVar1Table[gameState.unknownA2[x18 - 1]]].positionIndex;
+		short x16 = (x18 == 0) ? gameState.unknown88 : partyCharacters[entityScriptVar1Table[gameState.partyEntities[x18 - 1]]].positionIndex;
 		partyCharacters[newEntityVar1].positionIndex = x16;
 	}
 	short x = (partyCharacters[newEntityVar1].positionIndex != 0) ? cast(short)(partyCharacters[newEntityVar1].positionIndex - 1) : 0xFF;
@@ -1628,7 +1628,7 @@ short unknownC0369B(short id) {
 	gameState.currentPartyMembers = characterInitialEntityData[gameState.unknown96[0] - 1].unknown6;
 	unknownC09CD7();
 	unknownC032EC();
-	gameState.currentPartyMembers = gameState.unknownA2[0];
+	gameState.currentPartyMembers = gameState.partyEntities[0];
 	updateParty();
 	entityPreparedXCoordinate = playerPositionBuffer[x].xCoord;
 	entityPreparedYCoordinate = playerPositionBuffer[x].yCoord;
@@ -1646,31 +1646,31 @@ void unknownC03903(short id) {
 	short j;
 	for (j = i; j < 5; j++) {
 		gameState.unknown96[j] = gameState.unknown96[j + 1];
-		gameState.unknownA2[j] = gameState.unknownA2[j + 1];
+		gameState.partyEntities[j] = gameState.partyEntities[j + 1];
 		gameState.playerControlledPartyMembers[j] = gameState.playerControlledPartyMembers[j + 1];
 	}
 	if (i == 0) {
-		partyCharacters[gameState.playerControlledPartyMembers[0]].positionIndex = entityScriptVar1Table[gameState.unknownA2[i]];
+		partyCharacters[gameState.playerControlledPartyMembers[0]].positionIndex = entityScriptVar1Table[gameState.partyEntities[i]];
 	}
 	gameState.unknown96[j] = 0;
 	gameState.partyCount--;
-	entityAbsXTable[gameState.unknownA2[i]] = entityPreparedXCoordinate;
-	entityAbsYTable[gameState.unknownA2[i]] = entityPreparedYCoordinate;
-	entityDirections[gameState.unknownA2[i]] = entityPreparedDirection;
-	unknownC02140(gameState.unknownA2[i]);
+	entityAbsXTable[gameState.partyEntities[i]] = entityPreparedXCoordinate;
+	entityAbsYTable[gameState.partyEntities[i]] = entityPreparedYCoordinate;
+	entityDirections[gameState.partyEntities[i]] = entityPreparedDirection;
+	unknownC02140(gameState.partyEntities[i]);
 	unknownC032EC();
 	updateParty();
 }
 
 /// $C039E5
-void unknownC039E5() {
+void setFollowerEntityLocationToLeaderPosition() {
 	for (short i = 0; i < 6; i++) {
 		if (gameState.unknown96[i] == 0) {
 			continue;
 		}
-		entityAbsXTable[gameState.unknownA2[i]] = gameState.leaderX.integer;
-		entityAbsYTable[gameState.unknownA2[i]] = gameState.leaderY.integer;
-		unknownC0A254(gameState.unknownA2[i]);
+		entityAbsXTable[gameState.partyEntities[i]] = gameState.leaderX.integer;
+		entityAbsYTable[gameState.partyEntities[i]] = gameState.leaderY.integer;
+		recalculateEntityScreenPosition(gameState.partyEntities[i]);
 	}
 }
 
@@ -1681,7 +1681,7 @@ void unknownC03A24() {
 	for (short i = 0; i < 6; i++) {
 		gameState.unknown96[i] = 0;
 		gameState.playerControlledPartyMembers[i] = 0;
-		gameState.unknownA2[i] = 0;
+		gameState.partyEntities[i] = 0;
 	}
 	unknown7E5D7E = 1;
 	for (short i = 0; i < 6; i++) {
@@ -1722,27 +1722,27 @@ void unknownC03A94(short arg1) {
 		if (gameState.unknown96[i] == 0) {
 			continue;
 		}
-		newEntityVar0 = entityScriptVar0Table[gameState.unknownA2[i]];
-		newEntityVar1 = entityScriptVar1Table[gameState.unknownA2[i]];
+		newEntityVar0 = entityScriptVar0Table[gameState.partyEntities[i]];
+		newEntityVar1 = entityScriptVar1Table[gameState.partyEntities[i]];
 		newEntityVar5 = cast(short)(i * 2);
-		short x14 = entitySpriteMapFlags[gameState.unknownA2[i]];
-		short x1A_2 = entityTickCallbackFlags[gameState.unknownA2[i]];
-		unknownC02140(gameState.unknownA2[i]);
-		unknown7E9F73 = gameState.unknownA2[i];
+		short x14 = entitySpriteMapFlags[gameState.partyEntities[i]];
+		short x1A_2 = entityTickCallbackFlags[gameState.partyEntities[i]];
+		unknownC02140(gameState.partyEntities[i]);
+		unknown7E9F73 = gameState.partyEntities[i];
 		short x12;
 		if (gameState.unknown92 != 3) {
-			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 0, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.unknownA2[i], gameState.leaderX.integer, gameState.leaderY.integer);
+			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 0, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.partyEntities[i], gameState.leaderX.integer, gameState.leaderY.integer);
 		} else {
-			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 10, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.unknownA2[i], gameState.leaderX.integer, gameState.leaderY.integer);
+			x12 = createEntity(unknownC0780F(gameState.unknown96[i] - 1, 10, &partyCharacters[i]), characterInitialEntityData[gameState.unknown96[i] - 1].actionScript, gameState.partyEntities[i], gameState.leaderX.integer, gameState.leaderY.integer);
 		}
-		entitySpriteMapFlags[gameState.unknownA2[i]] = x14;
-		entityTickCallbackFlags[gameState.unknownA2[i]] = x1A_2;
-		entityDirections[gameState.unknownA2[i]] = arg1;
-		entityAnimationFrames[gameState.unknownA2[i]] = 0;
+		entitySpriteMapFlags[gameState.partyEntities[i]] = x14;
+		entityTickCallbackFlags[gameState.partyEntities[i]] = x1A_2;
+		entityDirections[gameState.partyEntities[i]] = arg1;
+		entityAnimationFrames[gameState.partyEntities[i]] = 0;
 		unknownC0A780(x12);
 	}
 	currentEntitySlot = x18;
-	unknownC039E5();
+	setFollowerEntityLocationToLeaderPosition();
 	unknown7E5DA8 = 0xFFFF;
 	short x02 = unknown7E5D9A;
 	unknown7E5D9A = 0;
@@ -1841,7 +1841,7 @@ short unknownC03E5A(short arg1) {
 	if (x == 0) {
 		return -1;
 	}
-	return chosenFourPtrs[entityScriptVar1Table[gameState.unknownA2[x - 1]]].positionIndex;
+	return chosenFourPtrs[entityScriptVar1Table[gameState.partyEntities[x - 1]]].positionIndex;
 }
 
 /// $C03E9D
@@ -1906,10 +1906,10 @@ void movePartyToLeaderPosition() {
 		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].positionIndex = 0;
 		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
 		chosenFourPtrs[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
-		entityAbsXTable[gameState.unknownA2[i]] = gameState.leaderX.integer;
-		entityAbsYTable[gameState.unknownA2[i]] = gameState.leaderY.integer;
-		entityDirections[gameState.unknownA2[i]] = gameState.leaderDirection;
-		entitySurfaceFlags[gameState.unknownA2[i]] = gameState.troddenTileType;
+		entityAbsXTable[gameState.partyEntities[i]] = gameState.leaderX.integer;
+		entityAbsYTable[gameState.partyEntities[i]] = gameState.leaderY.integer;
+		entityDirections[gameState.partyEntities[i]] = gameState.leaderDirection;
+		entitySurfaceFlags[gameState.partyEntities[i]] = gameState.troddenTileType;
 	}
 }
 
@@ -2720,10 +2720,10 @@ void unknownC052D4(short arg1) {
 		partyCharacters[gameState.playerControlledPartyMembers[i]].positionIndex = x26;
 		partyCharacters[gameState.playerControlledPartyMembers[i]].unknown65 = 0xFFFF;
 		partyCharacters[gameState.playerControlledPartyMembers[i]].unknown55 = 0xFFFF;
-		entityAbsXTable[gameState.unknownA2[i]] = playerPositionBuffer[x26].xCoord;
-		entityAbsYTable[gameState.unknownA2[i]] = playerPositionBuffer[x26].yCoord;
-		entityDirections[gameState.unknownA2[i]] = playerPositionBuffer[x26].direction;
-		entitySurfaceFlags[gameState.unknownA2[i]] = playerPositionBuffer[x26].tileFlags;
+		entityAbsXTable[gameState.partyEntities[i]] = playerPositionBuffer[x26].xCoord;
+		entityAbsYTable[gameState.partyEntities[i]] = playerPositionBuffer[x26].yCoord;
+		entityDirections[gameState.partyEntities[i]] = playerPositionBuffer[x26].direction;
+		entitySurfaceFlags[gameState.partyEntities[i]] = playerPositionBuffer[x26].tileFlags;
 		x26 -= 16;
 	}
 }
@@ -6781,7 +6781,7 @@ short unknownC0A21C(short arg1) {
 }
 
 /// $C0A254
-void unknownC0A254(short arg1) {
+void recalculateEntityScreenPosition(short arg1) {
 	entityScreenXTable[arg1] = cast(short)(entityAbsXTable[arg1] - bg1XPosition);
 	entityScreenYTable[arg1] = cast(short)(entityAbsYTable[arg1] - bg1YPosition);
 }
@@ -8307,7 +8307,7 @@ void unknownC0B67F() {
 	spawnBuzzBuzz();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all);
-	unknownC039E5();
+	setFollowerEntityLocationToLeaderPosition();
 }
 
 /// $C0B731
@@ -8454,8 +8454,8 @@ void gameInit() {
 /// $C0B9BC
 void unknownC0B9BC(PathCtx* arg1, short arg2, short arg3, short arg4) {
 	for (short i = 0; i < arg2; i++) {
-		arg1.targetsPos[i].x = ((entityAbsXTable[entitySizes[gameState.unknownA2[i]]] - unknownC42A1F[entitySizes[gameState.unknownA2[i]]]) / 8 - arg3) & 0x3F;
-		arg1.targetsPos[i].y = ((entityAbsYTable[entitySizes[gameState.unknownA2[i]]] - unknownC42A41[entitySizes[gameState.unknownA2[i]]] + unknownC42AEB[entitySizes[gameState.unknownA2[i]]]) / 8 - arg4) & 0x3F;
+		arg1.targetsPos[i].x = ((entityAbsXTable[entitySizes[gameState.partyEntities[i]]] - unknownC42A1F[entitySizes[gameState.partyEntities[i]]]) / 8 - arg3) & 0x3F;
+		arg1.targetsPos[i].y = ((entityAbsYTable[entitySizes[gameState.partyEntities[i]]] - unknownC42A41[entitySizes[gameState.partyEntities[i]]] + unknownC42AEB[entitySizes[gameState.partyEntities[i]]]) / 8 - arg4) & 0x3F;
 	}
 }
 
