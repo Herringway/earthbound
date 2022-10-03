@@ -468,9 +468,9 @@ void unknownC3E75D(short arg1) {
 	}
 	if (enemyConfigurationTable[a].theFlag != 0) {
 		if (unknown7E5E76 == ebChar('@')) {
-			unknownC447FB(4, &thethe[0][0]);
+			printWrappableString(thethe[0].length, &thethe[0][0]);
 		} else {
-			unknownC447FB(4, &thethe[1][0]);
+			printWrappableString(thethe[1].length, &thethe[1][0]);
 		}
 	}
 }

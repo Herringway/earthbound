@@ -1756,7 +1756,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 }
 
 /// $C447FB
-void unknownC447FB(short length, const(ubyte)* text) {
+void printWrappableString(short length, const(ubyte)* text) {
 	short x12 = unknownC43E31(text, length);
 	if ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x12 < (windowStats[windowTable[currentFocusWindow]].width * 8)) {
 		printNewLineF();
@@ -1780,7 +1780,7 @@ void unknownC4487C(short arg1, const(ubyte)* arg2) {
 				x15[x00++] = ebChar(' ');
 			}
 			x15[x00] = 0;
-			unknownC447FB(-1, x15);
+			printWrappableString(-1, x15);
 			x00 = 0;
 			x15 = &unknown7E9664[0];
 		} else {

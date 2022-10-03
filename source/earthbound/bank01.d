@@ -2543,7 +2543,7 @@ void* cc1C05(DisplayTextState* arg1, ushort arg2) {
 
 /// $C146DE
 void* cc1C06(DisplayTextState* arg1, ushort arg2) {
-	unknownC447FB(PSITeleportDestination.name.length, &psiTeleportDestinationTable[arg2 == 0 ? cast(short)getArgumentMemory() : arg2].name[0]);
+	printWrappableString(PSITeleportDestination.name.length, &psiTeleportDestinationTable[arg2 == 0 ? cast(short)getArgumentMemory() : arg2].name[0]);
 	return null;
 }
 
@@ -4087,11 +4087,11 @@ void* cc1CTree(DisplayTextState* arg1, ushort arg2) {
 			return &cc1C15;
 		case 0x0D:
 			unknownC3E75D(0);
-			unknownC447FB(0x50, returnBattleAttackerAddress());
+			printWrappableString(0x50, returnBattleAttackerAddress());
 			break;
 		case 0x0E:
 			unknownC3E75D(1);
-			unknownC447FB(0x50, returnBattleTargetAddress());
+			printWrappableString(0x50, returnBattleTargetAddress());
 			break;
 		case 0x0F:
 			printNumber(unknownC1AD26());
@@ -4828,7 +4828,7 @@ void unknownC19249(short arg1) {
 				break;
 		}
 	} else {
-		unknownC447FB(cc1C01Table[arg1].size, cast(ubyte*)cc1C01Table[arg1].address);
+		printWrappableString(cc1C01Table[arg1].size, cast(ubyte*)cc1C01Table[arg1].address);
 	}
 }
 
@@ -4839,16 +4839,16 @@ void unknownC1931B(short arg1) {
 			if (unknown7EB49D != 0) {
 				printString(gameState.petName.length, &gameState.petName[0]);
 			} else {
-				unknownC447FB(gameState.petName.length, &gameState.petName[0]);
+				printWrappableString(gameState.petName.length, &gameState.petName[0]);
 			}
 		} else {
-			unknownC447FB(Enemy.name.length, &enemyConfigurationTable[npcAITable[arg1].enemyID].name[0]);
+			printWrappableString(Enemy.name.length, &enemyConfigurationTable[npcAITable[arg1].enemyID].name[0]);
 		}
 	} else {
 		if (unknown7EB49D != 0) {
 			printString(PartyCharacter.name.length, &partyCharacters[arg1 -1].name[0]);
 		} else {
-			unknownC447FB(PartyCharacter.name.length, &partyCharacters[arg1 - 1].name[0]);
+			printWrappableString(PartyCharacter.name.length, &partyCharacters[arg1 - 1].name[0]);
 		}
 	}
 }
@@ -6144,7 +6144,7 @@ void getPSIName(short arg1) {
 	} else {
 		x06 = &psiNameTable[arg1 - 1][0];
 	}
-	unknownC447FB(-1, x06);
+	printWrappableString(-1, x06);
 }
 
 /// $C1C452
@@ -6246,7 +6246,7 @@ void unknownC1C8BC(short arg1) {
 /// $C1CA06
 void unknownC1CA06(short arg1) {
 	getPSIName(psiAbilityTable[arg1].name);
-	unknownC447FB(-1, &psiSuffixes[psiAbilityTable[arg1].level - 1][0]);
+	printWrappableString(-1, &psiSuffixes[psiAbilityTable[arg1].level - 1][0]);
 }
 
 /// $C1CA72
