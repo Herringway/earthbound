@@ -8242,7 +8242,7 @@ void fileSelectInit() {
 	copyToVRAM(3, 0x800, 0x7C00, unknown7F0000.ptr);
 	decomp(textWindowGraphics.ptr, unknown7F0000.ptr);
 	memcpy(&unknown7F0000[0x2000], &unknown7F0000[0x1000], 0x2A00);
-	unknownC44963(1);
+	loadWindowGraphics(WindowGraphicsToLoad.all);
 	memcpy(&palettes[0][0], textWindowFlavourPalettes.ptr, 0x40);
 	if (!config.noIntro) {
 		loadBackgroundAnimation(BackgroundLayer.fileSelect, 0);
@@ -8305,8 +8305,8 @@ void unknownC0B67F() {
 	overworldInitialize();
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 	spawnBuzzBuzz();
-	loadWindowGraphics();
-	unknownC44963(1);
+	prepareWindowGraphics();
+	loadWindowGraphics(WindowGraphicsToLoad.all);
 	unknownC039E5();
 }
 

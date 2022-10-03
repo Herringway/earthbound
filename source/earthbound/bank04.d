@@ -1790,27 +1790,27 @@ void unknownC4487C(short arg1, const(ubyte)* arg2) {
 }
 
 /// $C44963
-void unknownC44963(short arg1) {
+void loadWindowGraphics(short arg1) {
 	switch (arg1) {
-		case 1:
-			copyToVRAM(0, 0x1800, 0x7000, &unknown7F0000[0x2000]);
+		case WindowGraphicsToLoad.all: // reload all window graphics in VRAM
+			copyToVRAM(0, 0x1800, 0x7000, &unknown7F0000[0x2000]); // HP/PP meter tiles, special text graphics
 			goto case;
-		case 0:
-			copyToVRAM(0, 0x450, 0x6000, &unknown7F0000[0]);
-			copyToVRAM(0, 0x60, 0x6278, &unknown7F0000[0x4F0]);
-			copyToVRAM(0, 0xB0, 0x62F8, &unknown7F0000[0x5F0]);
-			copyToVRAM(0, 0xA0, 0x6380, &unknown7F0000[0x700]);
-			copyToVRAM(0, 0x10, 0x6400, &unknown7F0000[0x800]);
-			copyToVRAM(0, 0x10, 0x6480, &unknown7F0000[0x900]);
+		case WindowGraphicsToLoad.allButMeter: // same as 1, but no meter or special text
+			copyToVRAM(0, 0x450, 0x6000, &unknown7F0000[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(0, 0x60, 0x6278, &unknown7F0000[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(0, 0xB0, 0x62F8, &unknown7F0000[0x5F0]); // upper halves of normal digits
+			copyToVRAM(0, 0xA0, 0x6380, &unknown7F0000[0x700]); // lower halves of normal digits
+			copyToVRAM(0, 0x10, 0x6400, &unknown7F0000[0x800]); // upper half of bullet character
+			copyToVRAM(0, 0x10, 0x6480, &unknown7F0000[0x900]); // lower half of bullet character
 			break;
-		case 2:
-			copyToVRAM(0, 0x450, 0x6000, &unknown7F0000[0]);
-			copyToVRAM(0, 0x60, 0x6278, &unknown7F0000[0x4F0]);
-			copyToVRAM(0, 0xB0, 0x62F8, &unknown7F0000[0x5F0]);
-			copyToVRAM(0, 0xA0, 0x6380, &unknown7F0000[0x700]);
-			copyToVRAM(0, 0x10, 0x6400, &unknown7F0000[0x800]);
-			copyToVRAM(0, 0x10, 0x6480, &unknown7F0000[0x900]);
-			copyToVRAM(0, 0x1800, 0x7000, &unknown7F0000[0x2000]);
+		case WindowGraphicsToLoad.all2: // this seems to be a copy of 1, for some reason
+			copyToVRAM(0, 0x450, 0x6000, &unknown7F0000[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(0, 0x60, 0x6278, &unknown7F0000[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(0, 0xB0, 0x62F8, &unknown7F0000[0x5F0]); // upper halves of normal digits
+			copyToVRAM(0, 0xA0, 0x6380, &unknown7F0000[0x700]); // lower halves of normal digits
+			copyToVRAM(0, 0x10, 0x6400, &unknown7F0000[0x800]); // upper half of bullet character
+			copyToVRAM(0, 0x10, 0x6480, &unknown7F0000[0x900]); // lower half of bullet character
+			copyToVRAM(0, 0x1800, 0x7000, &unknown7F0000[0x2000]); // HP/PP meter tiles, special text graphics
 			break;
 		default: break;
 	}
@@ -3448,7 +3448,7 @@ void unknownC47A27() {
 
 /// $C47C3F
 //definitely need to check this one over
-void loadWindowGraphics() {
+void prepareWindowGraphics() {
 	decomp(&textWindowGraphics[0], &unknown7F0000[0]);
 	memcpy(&unknown7F0000[0x2000], &unknown7F0000[0x1000], 0x2A00);
 	memset(&unknown7F0000[0x3200], 0, 0x600);
@@ -3535,8 +3535,8 @@ void unknownC47F87() {
 void undrawFlyoverText() {
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	unknownC2038B();
-	loadWindowGraphics();
-	unknownC44963(2);
+	prepareWindowGraphics();
+	loadWindowGraphics(WindowGraphicsToLoad.all2);
 	unknownC47F87();
 	unknown7E0030 = 0x18;
 }
@@ -5526,8 +5526,8 @@ void unknownC4C2DE() {
 	memset(&palettes[1][0], 0, 0xC0);
 	memcpy(&palettes[2][0], &palettes[7][0], 0x20);
 	unknownC200D9();
-	loadWindowGraphics();
-	unknownC44963(1);
+	prepareWindowGraphics();
+	loadWindowGraphics(WindowGraphicsToLoad.all);
 	unknownC47F87();
 	unknownC0856B(0x18);
 	mirrorTM = 5;

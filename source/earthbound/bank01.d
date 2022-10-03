@@ -7238,8 +7238,8 @@ short nameACharacter(short arg1, ubyte* arg2, short arg3, const(ubyte)* arg4, sh
 void unknownC1EC8F(short arg1) {
 	ubyte x00 = gameState.textFlavour;
 	gameState.textFlavour = cast(ubyte)arg1;
-	loadWindowGraphics();
-	unknownC44963(2);
+	prepareWindowGraphics();
+	loadWindowGraphics(WindowGraphicsToLoad.all2);
 	unknownC47F87();
 	unknown7E0030 = 0x18;
 	gameState.textFlavour = x00;

@@ -22112,8 +22112,8 @@ void unknownEFD95E() {
 	unknownC200D9();
 	waitUntilNextFrame();
 	if (debugModeNumber == 1) {
-		loadWindowGraphics();
-		unknownC44963(1);
+		prepareWindowGraphics();
+		loadWindowGraphics(WindowGraphicsToLoad.all);
 		unknownC47F87();
 	} else {
 		copyToVRAM(0, 0x1000, 0x6100, &debugMenuFont[0]);

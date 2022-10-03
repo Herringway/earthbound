@@ -4993,6 +4993,12 @@ enum AnimationFlags : ubyte {
 	unknown6 = 1 << 6,
 	unknown7 = 1 << 7,
 }
+/// How much of the window graphics should be loaded to VRAM
+enum WindowGraphicsToLoad {
+	allButMeter = 0, /// loads everything except for HP/PP meter tiles and special text
+	all = 1, /// Loads all window graphics
+	all2 = 2, /// Same as all
+}
 
 ///
 struct GameState {

@@ -2275,8 +2275,8 @@ short battleRoutine() {
 		prepareForImmediateDMA();
 		unknownC2E0E7();
 		loadEnemyBattleSprites();
-		loadWindowGraphics();
-		unknownC44963(1);
+		prepareWindowGraphics();
+		loadWindowGraphics(WindowGraphicsToLoad.all);
 		loadBattleBG(x2D, x2B, x29);
 		unknownC2EEE7();
 		for (short i = 0; i < battlersTable.length; i++) {
@@ -6645,8 +6645,8 @@ void unknownC2C21F(short group, short music) {
 	currentBattleGroup = group;
 	prepareForImmediateDMA();
 	loadEnemyBattleSprites();
-	loadWindowGraphics();
-	unknownC44963(1);
+	prepareWindowGraphics();
+	loadWindowGraphics(WindowGraphicsToLoad.all);
 	loadBattleBG(battleEntryBGTable[currentBattleGroup].layer1, battleEntryBGTable[currentBattleGroup].layer2, cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle);
 	unknownC2EEE7();
 	unknownC0856B(0x18);
