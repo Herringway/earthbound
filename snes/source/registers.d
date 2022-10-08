@@ -1,5 +1,5 @@
-/// snes hardware layer
-module earthbound.hardware;
+/// SNES Hardware
+module hardware;
 
 ///
 struct OAMEntry {
@@ -29,31 +29,31 @@ struct OAMEntry {
 	}
 }
 
-__gshared ubyte APUIO0; ///
-__gshared ubyte APUIO1; ///
-__gshared ubyte APUIO2; ///
-__gshared ubyte APUIO3; ///
+__gshared ubyte* APUIO0; ///
+__gshared ubyte* APUIO1; ///
+__gshared ubyte* APUIO2; ///
+__gshared ubyte* APUIO3; ///
 
-__gshared ubyte HDMAEN; ///
+__gshared ubyte* HDMAEN; ///
 
-__gshared ubyte TIMEUP; ///
-__gshared ubyte HVBJOY; ///
-__gshared ushort JOYPAD_1_DATA; ///
-__gshared ushort JOYPAD_2_DATA; ///
+__gshared ubyte* TIMEUP; ///
+__gshared ubyte* HVBJOY; ///
+__gshared ushort* JOYPAD_1_DATA; ///
+__gshared ushort* JOYPAD_2_DATA; ///
 
-__gshared ubyte BG1SC; ///
-__gshared ubyte BG2SC; ///
-__gshared ubyte BG3SC; ///
-__gshared ubyte BG4SC; ///
-__gshared ubyte BG12NBA; ///
-__gshared ubyte BG34NBA; ///
+__gshared ubyte* BG1SC; ///
+__gshared ubyte* BG2SC; ///
+__gshared ubyte* BG3SC; ///
+__gshared ubyte* BG4SC; ///
+__gshared ubyte* BG12NBA; ///
+__gshared ubyte* BG34NBA; ///
 
-__gshared ubyte BGMODE; ///
+__gshared ubyte* BGMODE; ///
 
-__gshared ubyte CGADSUB; ///
-__gshared ubyte CGWSEL; ///
+__gshared ubyte* CGADSUB; ///
+__gshared ubyte* CGWSEL; ///
 
-__gshared ubyte OBSEL; ///
+__gshared ubyte* OBSEL; ///
 
 
 ///
@@ -108,49 +108,56 @@ struct DMAChannel {
 
 __gshared DMAChannel[8] dmaChannels; ///
 
-__gshared ubyte NMITIMEN; ///
-__gshared ubyte INIDISP; ///
-__gshared ubyte OAMADDL; ///
-__gshared ubyte OAMADDH; ///
-__gshared ubyte MOSAIC; ///
-__gshared ushort BG1HOFS; ///
-__gshared ushort BG1VOFS; ///
-__gshared ushort BG2HOFS; ///
-__gshared ushort BG2VOFS; ///
-__gshared ushort BG3HOFS; ///
-__gshared ushort BG3VOFS; ///
-__gshared ushort BG4HOFS; ///
-__gshared ushort BG4VOFS; ///
-__gshared ubyte M7SEL; ///
-__gshared ubyte M7A; ///
-__gshared ubyte M7B; ///
-__gshared ubyte M7C; ///
-__gshared ubyte M7D; ///
-__gshared ubyte M7X; ///
-__gshared ubyte M7Y; ///
-__gshared ubyte CGDATA; ///
-__gshared ubyte W12SEL; ///
-__gshared ubyte W34SEL; ///
-__gshared ubyte WOBJSEL; ///
-__gshared ubyte WH0; ///
-__gshared ubyte WH1; ///
-__gshared ubyte WH2; ///
-__gshared ubyte WH3; ///
-__gshared ubyte WBGLOG; ///
-__gshared ubyte WOBJLOG; ///
-__gshared ubyte TM; ///
-__gshared ubyte TD; ///
-__gshared ubyte TMW; ///
-__gshared ubyte TSW; ///
-__gshared ubyte FIXED_COLOUR_DATA; ///
-__gshared ubyte SETINI; ///
-__gshared ubyte HTIMEL; ///
-__gshared ubyte HTIMEH; ///
-__gshared ubyte VTIMEL; ///
-__gshared ubyte VTIMEH; ///
-__gshared ubyte MEMSEL; ///
-__gshared ubyte STAT78; ///
-__gshared ubyte COLDATA; ///
+__gshared ubyte* VMAIN; ///
+
+__gshared ushort* VMADDL; ///
+__gshared ubyte* MDMAEN; ///
+
+__gshared ubyte* NMITIMEN; ///
+__gshared ubyte* INIDISP; ///
+__gshared ubyte* OAMADDL; ///
+__gshared ubyte* OAMADDH; ///
+__gshared ubyte* MOSAIC; ///
+__gshared ushort* BG1HOFS; ///
+__gshared ushort* BG1VOFS; ///
+__gshared ushort* BG2HOFS; ///
+__gshared ushort* BG2VOFS; ///
+__gshared ushort* BG3HOFS; ///
+__gshared ushort* BG3VOFS; ///
+__gshared ushort* BG4HOFS; ///
+__gshared ushort* BG4VOFS; ///
+__gshared ubyte* VMADDH; ///
+__gshared ubyte* M7SEL; ///
+__gshared ubyte* M7A; ///
+__gshared ubyte* M7B; ///
+__gshared ubyte* M7C; ///
+__gshared ubyte* M7D; ///
+__gshared ubyte* M7X; ///
+__gshared ubyte* M7Y; ///
+__gshared ubyte* CGADD; ///
+__gshared ubyte* CGDATA; ///
+__gshared ubyte* W12SEL; ///
+__gshared ubyte* W34SEL; ///
+__gshared ubyte* WOBJSEL; ///
+__gshared ubyte* WH0; ///
+__gshared ubyte* WH1; ///
+__gshared ubyte* WH2; ///
+__gshared ubyte* WH3; ///
+__gshared ubyte* WBGLOG; ///
+__gshared ubyte* WOBJLOG; ///
+__gshared ubyte* TM; ///
+__gshared ubyte* TD; ///
+__gshared ubyte* TMW; ///
+__gshared ubyte* TSW; ///
+__gshared ubyte* FIXED_COLOUR_DATA; ///
+__gshared ubyte* SETINI; ///
+__gshared ubyte* HTIMEL; ///
+__gshared ubyte* HTIMEH; ///
+__gshared ubyte* VTIMEL; ///
+__gshared ubyte* VTIMEH; ///
+__gshared ubyte* MEMSEL; ///
+__gshared ubyte* STAT78; ///
+__gshared ubyte* COLDATA; ///
 
 ///
 struct SNESHeader {
