@@ -2532,8 +2532,10 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Gender.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/getFullCC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GiygasPhase.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/handleDma.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/handleCGRAMDMA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/handleHDMA.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/handleOAMDMA.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/handleVRAMDMA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/HDMAWordTransfer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/HDMAWordTransfer.scanlines.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/HDMAWordTransfer.value.html</loc></url>
@@ -3981,7 +3983,6 @@
 <url><loc>http://127.0.0.1/earthbound/hardware/BG4VOFS.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BGMODE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BGR555Mask.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/CGADD.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/CGADSUB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/CGADSUBFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/CGDATA.html</loc></url>
@@ -4021,7 +4022,6 @@
 <url><loc>http://127.0.0.1/earthbound/hardware/M7SEL.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/M7X.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/M7Y.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/MDMAEN.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/MEMSEL.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/MOSAIC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/NMITIMEN.html</loc></url>
@@ -4075,9 +4075,6 @@
 <url><loc>http://127.0.0.1/earthbound/hardware/TM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/TMW.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/TSW.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/VMADDH.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/VMADDL.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/VMAIN.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/VTIMEH.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/VTIMEL.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/W12SEL.html</loc></url>
