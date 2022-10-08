@@ -108,10 +108,10 @@ struct DMAChannel {
 
 __gshared DMAChannel[8] dmaChannels; ///
 
-__gshared ubyte VMAIN; ///
+//__gshared ubyte VMAIN; ///
 
-__gshared ushort VMADDL; ///
-__gshared ubyte MDMAEN; ///
+//__gshared ushort VMADDL; ///
+//__gshared ubyte MDMAEN; ///
 
 __gshared ubyte NMITIMEN; ///
 __gshared ubyte INIDISP; ///
@@ -126,7 +126,7 @@ __gshared ushort BG3HOFS; ///
 __gshared ushort BG3VOFS; ///
 __gshared ushort BG4HOFS; ///
 __gshared ushort BG4VOFS; ///
-__gshared ubyte VMADDH; ///
+//__gshared ubyte VMADDH; ///
 __gshared ubyte M7SEL; ///
 __gshared ubyte M7A; ///
 __gshared ubyte M7B; ///
@@ -134,7 +134,7 @@ __gshared ubyte M7C; ///
 __gshared ubyte M7D; ///
 __gshared ubyte M7X; ///
 __gshared ubyte M7Y; ///
-__gshared ubyte CGADD; ///
+//__gshared ubyte CGADD; ///
 __gshared ubyte CGDATA; ///
 __gshared ubyte W12SEL; ///
 __gshared ubyte W34SEL; ///

@@ -4399,9 +4399,9 @@ void start() {
 	BG4HOFS = 0;
 	BG4VOFS = 0;
 	BG4VOFS = 0;
-	VMAIN = 0x80;
-	VMADDL = 0;
-	VMADDH = 0;
+	//VMAIN = 0x80;
+	//VMADDL = 0;
+	//VMADDH = 0;
 	M7SEL = 0;
 	//yep, repeating again. kinda
 	M7A = 0;
@@ -4416,7 +4416,7 @@ void start() {
 	M7X = 0;
 	M7Y = 0;
 	M7Y = 0;
-	CGADD = 0;
+	//CGADD = 0;
 	W12SEL = 0;
 	W34SEL = 0;
 	WOBJSEL = 0;
@@ -4480,17 +4480,15 @@ void irqNMICommon() {
 	unknown7E002B++;
 	unknown7E0002++;
 	if (nextFrameDisplayID != 0) {
-		OAMADDL = 0;
-		handleDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220);
+		handleOAMDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220, 0);
 		unknown7E0099 += 0x220;
 	}
 	if (unknown7E0030 != 0) {
 		// In the original game's source code, we would only DMA part of
 		// the palette to save cycles. With the power of modern computers,
 		// we can afford to copy 512 bytes always instead of only 256.
-		CGADD = 0;
 		unknown7E0030 = 0;
-		handleDMA(0, 0x22, &palettes, 0x200);
+		handleCGRAMDMA(0, 0x22, &palettes, 0x200, 0);
 		unknown7E0099 += 0x0200;
 	}
 	if ((unknown7E0028.a != 0) && (--unknown7E002A < 0)) {
@@ -4515,9 +4513,7 @@ void irqNMICommon() {
 	BG12NBA = mirrorBG12NBA;
 	WH2 = mirrorWH2;
 	for (short i = unknown7E0001; i != dmaQueueIndex; i++) {
-		VMAIN = dmaTable[dmaQueue[i].mode].unknown2;
-		VMADDL = dmaQueue[i].destination;
-		handleDMA(dmaTable[dmaQueue[i].mode].unknown0, dmaTable[dmaQueue[i].mode].unknown1, dmaQueue[i].source, dmaQueue[i].size);
+		handleVRAMDMA(dmaTable[dmaQueue[i].mode].unknown0, dmaTable[dmaQueue[i].mode].unknown1, dmaQueue[i].source, dmaQueue[i].size, dmaQueue[i].destination, dmaTable[dmaQueue[i].mode].unknown2);
 	}
 	unknown7E0001 = dmaQueueIndex;
 	if (nextFrameDisplayID != 0) {
@@ -4797,9 +4793,7 @@ void copyToVRAMInternal() {
 	// } else {
 		// Since we send a complete image of VRAM to the console every frame, we
 		// can just overwrite our local VRAM copy - no need to delay
-		VMAIN = dmaTable[dmaCopyMode / 3].unknown2;
-		VMADDL = dmaCopyVRAMDestination;
-		handleDMA(dmaTable[dmaCopyMode / 3].unknown0, dmaTable[dmaCopyMode / 3].unknown1, dmaCopyRAMSource, dmaCopySize);
+		handleVRAMDMA(dmaTable[dmaCopyMode / 3].unknown0, dmaTable[dmaCopyMode / 3].unknown1, dmaCopyRAMSource, dmaCopySize, dmaCopyVRAMDestination, dmaTable[dmaCopyMode / 3].unknown2);
 		currentHeapAddress = heapBaseAddress;
 		dmaTransferFlag = 0;
 	// }
