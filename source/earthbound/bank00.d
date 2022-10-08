@@ -3977,10 +3977,10 @@ void reloadHotspots() {
 			continue;
 		}
 		activeHotspots[i].mode = gameState.activeHotspotModes[i];
-		activeHotspots[i].x1 = mapHotspots[gameState.activeHotspotIDs[i]].x1;
-		activeHotspots[i].y1 = mapHotspots[gameState.activeHotspotIDs[i]].y1;
-		activeHotspots[i].x2 = mapHotspots[gameState.activeHotspotIDs[i]].x2;
-		activeHotspots[i].y2 = mapHotspots[gameState.activeHotspotIDs[i]].y2;
+		activeHotspots[i].x1 = cast(ushort)(mapHotspots[gameState.activeHotspotIDs[i]].x1 * 8);
+		activeHotspots[i].y1 = cast(ushort)(mapHotspots[gameState.activeHotspotIDs[i]].y1 * 8);
+		activeHotspots[i].x2 = cast(ushort)(mapHotspots[gameState.activeHotspotIDs[i]].x2 * 8);
+		activeHotspots[i].y2 = cast(ushort)(mapHotspots[gameState.activeHotspotIDs[i]].y2 * 8);
 		activeHotspots[i].pointer = gameState.activeHotspotPointers[i];
 	}
 }
@@ -3994,10 +3994,10 @@ void activateHotspot(short arg1, short arg2, const(ubyte)* arg3) {
 		x = 2;
 	}
 	activeHotspots[arg1 - 1].mode = x;
-	activeHotspots[arg1 - 1].x1 = mapHotspots[arg1 - 1].x1;
-	activeHotspots[arg1 - 1].y1 = mapHotspots[arg1 - 1].y1;
-	activeHotspots[arg1 - 1].x2 = mapHotspots[arg1 - 1].x2;
-	activeHotspots[arg1 - 1].y2 = mapHotspots[arg1 - 1].y2;
+	activeHotspots[arg1 - 1].x1 = cast(ushort)(mapHotspots[arg1 - 1].x1 * 8);
+	activeHotspots[arg1 - 1].y1 = cast(ushort)(mapHotspots[arg1 - 1].y1 * 8);
+	activeHotspots[arg1 - 1].x2 = cast(ushort)(mapHotspots[arg1 - 1].x2 * 8);
+	activeHotspots[arg1 - 1].y2 = cast(ushort)(mapHotspots[arg1 - 1].y2 * 8);
 	activeHotspots[arg1 - 1].pointer = arg3;
 	gameState.activeHotspotModes[arg1 - 1] = cast(ubyte)x;
 	gameState.activeHotspotIDs[arg1 - 1] = cast(ubyte)arg2;
