@@ -6222,7 +6222,7 @@ struct Unknown7E9652Data {
 ///
 void function() waitForInterrupt = () {};
 ///
-void function() handleDma = () {};
+void function(ubyte, ubyte, const(void)*, ushort) handleDMA = (ubyte, ubyte, const(void)*, ushort) {};
 ///
 void function() handleHDMA = () {};
 ///

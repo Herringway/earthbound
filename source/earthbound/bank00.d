@@ -4445,7 +4445,6 @@ void start() {
 	HTIMEH = 0;
 	VTIMEL = 0;
 	VTIMEH = 0;
-	MDMAEN = 0;
 	HDMAEN = 0;
 	MEMSEL = 1;
 
@@ -4482,27 +4481,16 @@ void irqNMICommon() {
 	unknown7E0002++;
 	if (nextFrameDisplayID != 0) {
 		OAMADDL = 0;
-		dmaChannels[0].DMAP = 0;
-		dmaChannels[0].A1T = null;
-		dmaChannels[0].BBAD = 4;
-		dmaChannels[0].A1T = ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1);
-		dmaChannels[0].DAS = 0x220;
-		MDMAEN = 1;
-		handleDma();
+		handleDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220);
 		unknown7E0099 += 0x220;
 	}
 	if (unknown7E0030 != 0) {
 		// In the original game's source code, we would only DMA part of
 		// the palette to save cycles. With the power of modern computers,
 		// we can afford to copy 512 bytes always instead of only 256.
-		dmaChannels[0].A1T = &palettes;
 		CGADD = 0;
-		dmaChannels[0].DMAP = 0x00;
-		dmaChannels[0].BBAD = 0x22;
 		unknown7E0030 = 0;
-		dmaChannels[0].DAS = 0x0200;
-		MDMAEN = 1;
-		handleDma();
+		handleDMA(0, 0x22, &palettes, 0x200);
 		unknown7E0099 += 0x0200;
 	}
 	if ((unknown7E0028.a != 0) && (--unknown7E002A < 0)) {
@@ -4527,15 +4515,9 @@ void irqNMICommon() {
 	BG12NBA = mirrorBG12NBA;
 	WH2 = mirrorWH2;
 	for (short i = unknown7E0001; i != dmaQueueIndex; i++) {
-		dmaChannels[0].DMAP = dmaTable[dmaQueue[i].mode].unknown0;
-		dmaChannels[0].BBAD = dmaTable[dmaQueue[i].mode].unknown1;
 		VMAIN = dmaTable[dmaQueue[i].mode].unknown2;
-		dmaChannels[0].DAS = dmaQueue[i].size;
-		dmaChannels[0].A1T = dmaQueue[i].source;
-		//dmaChannels[0].A1B = dmaQueue[i].source bank;
 		VMADDL = dmaQueue[i].destination;
-		MDMAEN = 1;
-		handleDma();
+		handleDMA(dmaTable[dmaQueue[i].mode].unknown0, dmaTable[dmaQueue[i].mode].unknown1, dmaQueue[i].source, dmaQueue[i].size);
 	}
 	unknown7E0001 = dmaQueueIndex;
 	if (nextFrameDisplayID != 0) {
@@ -4815,16 +4797,9 @@ void copyToVRAMInternal() {
 	// } else {
 		// Since we send a complete image of VRAM to the console every frame, we
 		// can just overwrite our local VRAM copy - no need to delay
-		dmaChannels[1].DMAP = dmaTable[dmaCopyMode / 3].unknown0;
-		//original assembly relied on DMAP1+BBAD1 being adjacent for a 16-bit write, but we probably shouldn't do that
-		dmaChannels[1].BBAD = dmaTable[dmaCopyMode / 3].unknown1;
 		VMAIN = dmaTable[dmaCopyMode / 3].unknown2;
-		dmaChannels[1].DAS = dmaCopySize;
-		dmaChannels[1].A1T = dmaCopyRAMSource;
-		//A1B1 is not really relevant without segmented addressing
 		VMADDL = dmaCopyVRAMDestination;
-		MDMAEN = 2;
-		handleDma();
+		handleDMA(dmaTable[dmaCopyMode / 3].unknown0, dmaTable[dmaCopyMode / 3].unknown1, dmaCopyRAMSource, dmaCopySize);
 		currentHeapAddress = heapBaseAddress;
 		dmaTransferFlag = 0;
 	// }
