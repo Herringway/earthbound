@@ -6651,7 +6651,7 @@ void unknownC0A0CA(short arg1) {
 
 /// $C0A0E3
 void unknownC0A0E3(short arg1, bool overflowed) {
-	if ((entitySpriteMapFlags[arg1 / 2] < 0) || overflowed) {
+	if (((entitySpriteMapFlags[arg1 / 2] & 0x8000) != 0) || overflowed) {
 		return;
 	}
 	actionScriptVar8C = entitySpriteMapPointers[arg1 / 2];
