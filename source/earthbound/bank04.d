@@ -3972,6 +3972,7 @@ void unknownC49B6E(short arg1) {
 			copyToVRAM(0, cast(short)(0x3400 - unknown7E9F2D * 0x1A0), cast(ushort)(0xD0 * unknown7E9F2D + 0x6150), &vwfBuffer[0][0]);
 		}
 		if (unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400 != 0) {
+			assert(0, "Not yet implemented");
 			//copyToVRAM(0, unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400, 0x6150, 0x6892 - unknown7E9F2D * 0x1A0);
 		}
 	} else {
