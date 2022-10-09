@@ -1342,6 +1342,11 @@ void printNewLine() {
 	if (currentFocusWindow == -1) {
 		return;
 	}
+	version(bugfix) { ///ensures that even at hyperspeed, text will render
+		if (selectedTextSpeed == 0) {
+			windowTick();
+		}
+	}
 	unknownC45E96();
 	if (windowStats[windowTable[currentFocusWindow]].font != 0) {
 		unknownC45E96();
@@ -1559,7 +1564,7 @@ void unknownC43F77(short arg1) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
-		for (short i = cast(short)(selectedTextSpeed + 1); i != 0; i--) {
+		for (short i = cast(short)(selectedTextSpeed + (config.instantSpeedText ? 0 : 1)); i != 0; i--) {
 			windowTick();
 		}
 	}
@@ -1688,7 +1693,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	if ((x != 0) && (instantPrinting == 0) && (arg3 != 0x20)) {
 		playSfx(Sfx.textPrint);
 	}
-	for (short i = cast(short)(selectedTextSpeed + 1); i != 0; i--) {
+	for (short i = cast(short)(selectedTextSpeed + (config.instantSpeedText ? 0 : 1)); i != 0; i--) {
 		windowTick();
 	}
 	return 0;
@@ -5440,11 +5445,20 @@ immutable ubyte[6] fileSelectTextLevel = ebString("Level:");
 
 immutable ubyte[11] fileSelectTextTextSpeed = ebString("Text Speed:");
 
-immutable ubyte[7][3] fileSelectTextTextSpeedStrings = [
-	ebString!7("Fast"),
-	ebString!7("Medium"),
-	ebString!7("Slow"),
-];
+version(configurable) {
+	immutable ubyte[8][4] fileSelectTextTextSpeedStrings = [
+		ebString!8("Instant"),
+		ebString!8("Fast"),
+		ebString!8("Medium"),
+		ebString!8("Slow"),
+	];
+} else {
+	immutable ubyte[7][3] fileSelectTextTextSpeedStrings = [
+		ebString!7("Fast"),
+		ebString!7("Medium"),
+		ebString!7("Slow"),
+	];
+}
 
 immutable ubyte[9] fileSelectTextContinue = ebStringz("Continue");
 

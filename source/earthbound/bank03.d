@@ -242,6 +242,13 @@ immutable short[8] unknownC3E230 = [0, 1, 1, 1, 0, -1, -1, -1];
 /// $C3E240
 immutable short[8] unknownC3E240 = [-1, -1, 0, 1, 1, 1, 0, -1];
 
+version(configurable) {
+	enum textSpeedWindow = WindowConfig(0x0003, 0x000E, 0x0010, 0x000C);
+} else {
+	enum textSpeedWindow = WindowConfig(0x0003, 0x000E, 0x0010, 0x000A);
+
+}
+
 /// $C3E250
 immutable WindowConfig[53] windowConfigurationTable = [
 	WindowConfig(0x0001, 0x0001, 0x000D, 0x0008),
@@ -268,7 +275,7 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	WindowConfig(0x000A, 0x0010, 0x000C, 0x0008), // Copy Menu (2 choices)
 	WindowConfig(0x000A, 0x0010, 0x000C, 0x0006), // Copy Menu (1 choice)
 	WindowConfig(0x0006, 0x0011, 0x0015, 0x000A), // Delete confirmation
-	WindowConfig(0x0003, 0x000E, 0x0010, 0x000A), // Text Speed
+	textSpeedWindow, // Text Speed
 	WindowConfig(0x0008, 0x000F, 0x0012, 0x0008), // Music Mode
 	WindowConfig(0x0005, 0x0004, 0x0008, 0x0004), // Naming Box
 	WindowConfig(0x000D, 0x0004, 0x0011, 0x0004), // "Name This Friend"

@@ -549,7 +549,7 @@ void printLetter(short arg1) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
-		for (short i = cast(short)(selectedTextSpeed + 1); i != 0; i--) {
+		for (short i = cast(short)(selectedTextSpeed + (config.instantSpeedText ? 0 : 1)); i != 0; i--) {
 			windowTick();
 		}
 	}
@@ -7152,7 +7152,12 @@ short fileSelectMenu(short arg1) {
 			printString(0x20, &unknown7E9C9F[0]);
 			memcpy(&unknown7E9C9F[0], &fileSelectTextTextSpeed[0], fileSelectTextTextSpeed.length);
 			unknown7E9C9F[11] = ebChar(' ');
-			memcpy(&unknown7E9C9F[12], &fileSelectTextTextSpeedStrings[gameState.textSpeed - 1][0], fileSelectTextTextSpeedStrings[gameState.textSpeed - 1].length);
+			version(configurable) {
+				const ubyte nameOffset = !config.instantSpeedText;
+			} else {
+				enum nameOffset = 0;
+			}
+			memcpy(&unknown7E9C9F[12], &fileSelectTextTextSpeedStrings[gameState.textSpeed + nameOffset - 1][0], fileSelectTextTextSpeedStrings[gameState.textSpeed + nameOffset - 1].length);
 			unknownC438A5(16, i);
 			printString(0x20, &unknown7E9C9F[0]);
 		}
@@ -7346,9 +7351,19 @@ void openTextSpeedMenu() {
 	createWindowN(Window.fileSelectTextSpeed);
 	setInstantPrinting();
 	printString(fileSelectTextSelectTextSpeed.length, &fileSelectTextSelectTextSpeed[0]);
-	unknownC114B1(0, 1, &fileSelectTextTextSpeedStrings[0][0], null);
-	unknownC114B1(0, 2, &fileSelectTextTextSpeedStrings[1][0], null);
-	unknownC114B1(0, 3, &fileSelectTextTextSpeedStrings[2][0], null);
+	version(configurable) {
+		const ubyte nameOffset = !config.instantSpeedText;
+	} else {
+		enum nameOffset = 0;
+	}
+	unknownC114B1(0, 1, &fileSelectTextTextSpeedStrings[0 + nameOffset][0], null);
+	unknownC114B1(0, 2, &fileSelectTextTextSpeedStrings[1 + nameOffset][0], null);
+	unknownC114B1(0, 3, &fileSelectTextTextSpeedStrings[2 + nameOffset][0], null);
+	version(configurable) {
+		if (config.instantSpeedText) {
+			unknownC114B1(0, 4, &fileSelectTextTextSpeedStrings[3][0], null);
+		}
+	}
 	unknownC11887(gameState.textSpeed != 0 ? gameState.textSpeed - 1 : 1);
 }
 

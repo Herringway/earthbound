@@ -7025,6 +7025,7 @@ version(configurable) {
 		bool noIntro;
 		Nullable!ubyte autoLoadFile;
 		debug bool loadDebugMenu;
+		bool instantSpeedText;
 	}
 } else {
 	struct GameConfig {
@@ -7032,6 +7033,7 @@ version(configurable) {
 		enum noIntro = false;
 		enum autoLoadFile = Nullable!ubyte.init;
 		debug enum loadDebugMenu = false;
+		enum instantSpeedText = false;
 	}
 }
 GameConfig config;
