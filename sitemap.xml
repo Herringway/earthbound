@@ -166,6 +166,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/movementDataRead16Copy.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/movementDataRead8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/movementDataReadPtr.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/movementDataReadString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/movePartyToLeaderPosition.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/mushroomizationMovementSwap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/npcCollisionCheck.html</loc></url>
@@ -1910,12 +1911,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/useSoundStone.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/velocityStore.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/yourSanctuaryLocations.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank05.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank06.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank07.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank08.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank08/compressedText.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank09.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0A/animatedBackgrounds.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0A/backgroundDistortionTable.html</loc></url>
@@ -2679,7 +2676,6 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.direction.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.eventFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.item.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/NPC.somethingElse.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.sprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.talkText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.this.html</loc></url>
