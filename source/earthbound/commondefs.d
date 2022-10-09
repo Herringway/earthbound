@@ -4981,6 +4981,15 @@ enum Binop : ubyte {
 	add = 2,
 	xor = 3,
 }
+enum StatusGroups {
+	PersistentEasyHeal = 0,
+	PersistentHardHeal = 1,
+	Temporary = 2,
+	Strangeness = 3,
+	Concentration = 4,
+	Homesickness = 5,
+	Shield = 6,
+}
 ///
 enum AnimationFlags : ubyte {
 	none = 0,
@@ -5354,8 +5363,8 @@ struct TimedDelivery {
 	short unknown4; ///4
 	short unknown6; ///6
 	ushort deliveryTime; ///8
-	const(ubyte)[] textPointer1; ///10
-	const(ubyte)[] textPointer2; ///13
+	string textPointer1; ///10
+	string textPointer2; ///13
 	short unknown18; ///16
 	short unknown20; ///18
 }
@@ -5377,9 +5386,9 @@ struct Item {
 	ubyte flags; ///
 	ushort battleAction; ///
 	ItemParameters parameters; ///
-	const(ubyte)[] helpText; ///
+	string helpText; ///
 	///
-	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, const(ubyte)[] helpText ) {
+	this(ubyte[25] name, ubyte type, ushort cost, ubyte flags, ushort battleAction, byte parameter1, byte parameter2, ubyte parameter3, ubyte parameter4, string helpText ) {
 		this.name = name;
 		this.type = type;
 		this.cost = cost;
@@ -5485,14 +5494,13 @@ struct NPC {
 	ushort actionScript; ///
 	ushort eventFlag; ///
 	ubyte appearanceStyle; ///
-	const(ubyte)[] talkText; ///
+	string talkText; ///
 	union {
-		const(ubyte)[] checkText; ///
+		string checkText; ///
 		uint item; ///
-		ubyte[4] somethingElse; ///
 	}
 	///
-	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, const(ubyte)[] tt, const(ubyte)[] ct) {
+	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, string tt, string ct) {
 		type = t;
 		sprite = s;
 		direction = d;
@@ -5503,7 +5511,7 @@ struct NPC {
 		checkText = ct;
 	}
 	///
-	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, const(ubyte)[] tt, ubyte[4] se) {
+	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, string tt, uint se) {
 		type = t;
 		sprite = s;
 		direction = d;
@@ -5511,7 +5519,7 @@ struct NPC {
 		eventFlag = ef;
 		appearanceStyle = ast;
 		talkText = tt;
-		somethingElse = se;
+		item = se;
 	}
 }
 ///
@@ -5683,8 +5691,8 @@ struct Enemy {
 	uint exp; ///37
 	ushort money; ///41
 	ushort eventScript; ///43
-	const(ubyte)[] encounterTextPointer; ///45
-	const(ubyte)[] deathTextPointer; ///49
+	string encounterTextPointer; ///45
+	string deathTextPointer; ///49
 	ubyte battleSpritePalette; ///53
 	ubyte level; ///54
 	ubyte music; ///55
@@ -5720,7 +5728,7 @@ struct BattleAction {
 	ubyte target; /// 1
 	ubyte type; /// 2
 	ubyte ppCost; /// 3
-	const(ubyte)[] text; /// 4
+	string text; /// 4
 	void function() func; /// 8
 }
 ///
@@ -5778,7 +5786,7 @@ struct DisplayTextState {
 }
 ///
 struct DoorEntryA {
-	const(ubyte)[] textPtr; /// 0
+	string textPtr; /// 0
 	ushort eventFlag; /// 4
 	ushort unknown6; /// 6
 	ushort unknown8; /// 8
@@ -5787,11 +5795,11 @@ struct DoorEntryA {
 ///
 struct DoorEntryB {
 	ushort eventFlag; ///
-	const(ubyte)[] textPtr; ///
+	string textPtr; ///
 }
 ///
 struct DoorEntryC {
-	const(ubyte)[] textPtr; ///
+	string textPtr; ///
 }
 ///
 struct SectorDoors {
@@ -6021,7 +6029,7 @@ struct Unknown7EAEFCEntry {
 struct TelephoneContact {
 	ubyte[25] title; ///
 	ushort eventFlag; ///
-	const(ubyte)[] text; ///
+	string text; ///
 }
 ///
 struct PSIAbility {
@@ -6035,7 +6043,7 @@ struct PSIAbility {
 	ubyte pooLevel; ///8
 	ubyte menuX; ///9
 	ubyte menuY; ///10
-	const(ubyte)[] text; ///11
+	string text; ///11
 }
 ///
 struct ActiveHotspot {
@@ -6308,9 +6316,16 @@ ubyte ebChar(dchar c) {
 		case '0': .. case '9':
 		case 'A': .. case 'Z':
 		case 'a': .. case 'z': return cast(ubyte)(c + 0x30);
+		case '&': return 0x52;
 		case '{': return 0x53;
+		case '%': return 0x55;
+		case '}': return 0x56;
+		case '*': return 0x5A;
 		case '/': return 0x5F;
 		case ':': return 0x6A;
+		case ';': return 0x6B;
+		case '<': return 0x6C;
+		case '>': return 0x6E;
 		case '?': return 0x6F;
 		case '@': return 0x70;
 		case '~': return 0x8B;
@@ -6319,6 +6334,7 @@ ubyte ebChar(dchar c) {
 		case ']': return 0x8E;
 		case '#': return 0x8F;
 		case '_': return 0x90;
+		case '|': return 0xAC;
 		case '♪': return 0xAC;
 		case 'α': return 0x2A;
 		case 'β': return 0x2B;
@@ -6759,7 +6775,7 @@ string saveFileName(short id) {
 private extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
 ///
 const(ubyte)[] getFullCC(const(ubyte)* script) {
-	enum ptrSize = (void*).sizeof;
+	enum ptrSize = string.sizeof;
 	ubyte f = script[0];
 	if (f < 0x20) {
 		switch (f) {
@@ -7003,7 +7019,6 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 	}
 	return script[0 .. 1];
 }
-
 version(configurable) {
 	struct GameConfig {
 		import std.typecons : Nullable;
@@ -7020,3 +7035,14 @@ version(configurable) {
 	}
 }
 GameConfig config;
+ubyte[] allBytes(T...)(T args) {
+    struct X {
+    	align(1):
+        T stuff;
+    }
+    union Z {
+        X x;
+        ubyte[X.sizeof] bytes;
+    }
+    return Z(X(args)).bytes.dup;
+}

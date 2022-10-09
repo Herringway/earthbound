@@ -7,11 +7,7 @@ import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
-import earthbound.bank05;
-import earthbound.bank06;
-import earthbound.bank07;
-import earthbound.bank08;
-import earthbound.bank09;
+import earthbound.text;
 import earthbound.bank21;
 import earthbound.bank2F;
 
@@ -28,18 +24,18 @@ immutable ubyte[17 + 8 * (const(void)*).sizeof] actionScript601;
 immutable ubyte[40 + 6 * (const(void)*).sizeof] unknownC41900;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript332;
 immutable ubyte[89 + 18 * (const(void)*).sizeof] actionScript561;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript878;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript878;
 immutable ubyte[48 + 11 * (const(void)*).sizeof] actionScript667;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript515;
-immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript53;
-immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript447;
+immutable ubyte[16 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript53;
+immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScript447;
 immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript640;
 immutable ubyte[23 + 5 * (const(void)*).sizeof] actionScript720;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] actionScript112;
 immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScript348_349;
 immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScript617;
 immutable ubyte[14 + 5 * (const(void)*).sizeof] actionScript244;
-immutable ubyte[24 + 9 * (const(void)*).sizeof] actionScript181;
+immutable ubyte[24 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript181;
 immutable ubyte[65 + 12 * (const(void)*).sizeof] actionScript136;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript678;
 immutable ubyte[71 + 13 * (const(void)*).sizeof] unknownC419BF;
@@ -56,25 +52,25 @@ immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript599;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] unknownC35FB6;
 immutable ubyte[63 + 14 * (const(void)*).sizeof] actionScript637;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript588;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript868;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript868;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript708;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript797;
 immutable ubyte[123 + 17 * (const(void)*).sizeof] actionScript318;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript280;
 immutable ubyte[23 + 4 * (const(void)*).sizeof] actionScript429;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript98;
-immutable ubyte[51 + 15 * (const(void)*).sizeof] actionScript206;
+immutable ubyte[51 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScript206;
 immutable ubyte[59 + 13 * (const(void)*).sizeof] actionScript764;
 immutable ubyte[25 + 3 * (const(void)*).sizeof] unknownC41A7D;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] actionScript428;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA82;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript212;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript212;
 immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScript475;
 immutable ubyte[79 + 6 * (const(void)*).sizeof] actionScript675;
 immutable ubyte[70] actionScript675Task;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript883;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript883;
 immutable ubyte[43 + 29 * (const(void)*).sizeof] actionScript22;
-immutable ubyte[5 + 5 * (const(void)*).sizeof] unknownC3BAD7;
+immutable ubyte[5 + 4 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAD7;
 immutable ubyte[54 + 8 * (const(void)*).sizeof] actionScript595;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript359;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript493;
@@ -85,12 +81,12 @@ immutable ubyte[9] actionScript50Task;
 immutable ubyte[34 + 4 * (const(void)*).sizeof] unknownC413D6;
 immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScript643;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript819;
-immutable ubyte[57 + 14 * (const(void)*).sizeof] actionScript68;
+immutable ubyte[57 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript68;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30CAF;
-immutable ubyte[51 + 14 * (const(void)*).sizeof] actionScript38;
+immutable ubyte[51 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript38;
 immutable ubyte[34 + 7 * (const(void)*).sizeof] actionScript328;
 immutable ubyte[46 + 5 * (const(void)*).sizeof] unknownC3CC24;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript872;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript872;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript257;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript786;
 immutable ubyte[43 + 9 * (const(void)*).sizeof] actionScript763;
@@ -105,7 +101,7 @@ immutable ubyte[202 + 33 * (const(void)*).sizeof] actionScript480;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScript833;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript494;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript13_14_15_16_17_Common;
-immutable ubyte[103 + 20 * (const(void)*).sizeof] actionScript201;
+immutable ubyte[103 + 19 * (const(void)*).sizeof + 1 * string.sizeof] actionScript201;
 immutable ubyte[8 + 6 * (const(void)*).sizeof] actionScript597;
 immutable ubyte[18 + 9 * (const(void)*).sizeof] actionScript775;
 immutable ubyte[3] actionScript775Task;
@@ -115,7 +111,7 @@ immutable ubyte[5 + 2 * (const(void)*).sizeof] actionScript730;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript380;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript851;
 immutable ubyte[95 + 48 * (const(void)*).sizeof] actionScript499_500_Common;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript870;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript870;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript323;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript274_275_276;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript391;
@@ -133,13 +129,13 @@ immutable ubyte[16 + 7 * (const(void)*).sizeof] actionScript707_708_709_710_Comm
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC42815;
 immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScript300;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript304;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript887;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript887;
 immutable ubyte[53 + 10 * (const(void)*).sizeof] actionScript641;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] unknownC36A3E;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript570;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30C7F;
 immutable ubyte[46 + 13 * (const(void)*).sizeof] actionScript159;
-immutable ubyte[11 + 8 * (const(void)*).sizeof] unknownC3BAA3;
+immutable ubyte[11 + 7 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAA3;
 immutable ubyte[82 + 8 * (const(void)*).sizeof] actionScript54;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript266;
 immutable ubyte[17 + 4 * (const(void)*).sizeof] actionScript573;
@@ -190,20 +186,20 @@ immutable ubyte[68 + 10 * (const(void)*).sizeof] actionScript542;
 immutable ubyte[21 + 4 * (const(void)*).sizeof] unknownC3DFB5;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript378_407;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] unknownC37A7C;
-immutable ubyte[113 + 18 * (const(void)*).sizeof] actionScript700;
+immutable ubyte[113 + 17 * (const(void)*).sizeof + 1 * string.sizeof] actionScript700;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript781;
-immutable ubyte[38 + 10 * (const(void)*).sizeof] actionScript758;
+immutable ubyte[38 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript758;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA96;
 immutable ubyte[52 + 13 * (const(void)*).sizeof] actionScript6_12;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] actionScript35;
 immutable ubyte[38 + 7 * (const(void)*).sizeof] actionScript732;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript168;
-immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript535;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript886;
+immutable ubyte[41 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript535;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript886;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript390_394;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript550;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC33C18;
-immutable ubyte[33 + 13 * (const(void)*).sizeof] actionScript497;
+immutable ubyte[33 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript497;
 immutable ubyte[63 + 16 * (const(void)*).sizeof] actionScript118;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30C97;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC3DFD4_2;
@@ -212,20 +208,20 @@ immutable ubyte[4 + 1 * (const(void)*).sizeof] actionScript894;
 immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript831;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC333AA;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] actionScript808;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript892;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript892;
 immutable ubyte[51 + 7 * (const(void)*).sizeof] actionScript268;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] actionScript453;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript578;
-immutable ubyte[55 + 16 * (const(void)*).sizeof] actionScript217;
+immutable ubyte[55 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScript217;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript374;
 immutable ubyte[61 + 16 * (const(void)*).sizeof] actionScript117;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] unknownC3AFA3;
 immutable ubyte[62 + 8 * (const(void)*).sizeof] actionScript443;
 immutable ubyte[43 + 9 * (const(void)*).sizeof] unknownC3C94E;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] unknownC3D913;
+immutable ubyte[2 + 1 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3D913;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScript527;
-immutable ubyte[52 + 17 * (const(void)*).sizeof] actionScript672;
-immutable ubyte[5 + 5 * (const(void)*).sizeof] unknownC3BAC4;
+immutable ubyte[52 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScript672;
+immutable ubyte[5 + 4 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAC4;
 immutable ubyte[50 + 8 * (const(void)*).sizeof] actionScript722;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] unknownC3CC94;
 immutable ubyte[8 + 4 * (const(void)*).sizeof] actionScript7;
@@ -241,9 +237,9 @@ immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript279;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript508;
 immutable ubyte[33 + 4 * (const(void)*).sizeof] actionScript262;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] actionScript422;
-immutable ubyte[23 + 6 * (const(void)*).sizeof] actionScript647;
+immutable ubyte[23 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript647;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] actionScript470;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript864;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript864;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript820;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript97;
 immutable ubyte[30 + 7 * (const(void)*).sizeof] actionScript228_229_230_231_232Common;
@@ -255,7 +251,7 @@ immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript384;
 immutable ubyte[20 + 4 * (const(void)*).sizeof] actionScript418;
 immutable ubyte[130 + 24 * (const(void)*).sizeof] actionScript294;
 immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript294Task;
-immutable ubyte[45 + 22 * (const(void)*).sizeof] actionScript37;
+immutable ubyte[45 + 21 * (const(void)*).sizeof + 1 * string.sizeof] actionScript37;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScript74;
 immutable ubyte[6 + 4 * (const(void)*).sizeof] actionScript191;
 immutable ubyte[41 + 14 * (const(void)*).sizeof] actionScript782;
@@ -264,11 +260,11 @@ immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript782UnknownRoutine2;
 immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript782UnknownRoutine3;
 immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript782UnknownRoutine4;
 immutable ubyte[28 + 7 * (const(void)*).sizeof] actionScript163;
-immutable ubyte[69 + 11 * (const(void)*).sizeof] actionScript544;
+immutable ubyte[69 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript544;
 immutable ubyte[19 + 3 * (const(void)*).sizeof] actionScript783;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript555;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript850;
-immutable ubyte[41 + 14 * (const(void)*).sizeof] actionScript216;
+immutable ubyte[41 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript216;
 immutable ubyte[86 + 27 * (const(void)*).sizeof] actionScript852;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] unknownC34964;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript39;
@@ -279,24 +275,24 @@ immutable ubyte[12 + 2 * (const(void)*).sizeof] actionScript347;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript123;
 immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScript288;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript490;
-immutable ubyte[20 + 6 * (const(void)*).sizeof] actionScript591;
+immutable ubyte[20 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript591;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC42802;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript409;
 immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScript316;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript585;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScript734;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript794;
-immutable ubyte[19 + 8 * (const(void)*).sizeof] actionScript113;
+immutable ubyte[19 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript113;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC32138;
 immutable ubyte[156 + 30 * (const(void)*).sizeof] actionScript562;
 immutable ubyte[34 + 9 * (const(void)*).sizeof] actionScript78;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript414;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] actionScript114;
 immutable ubyte[61 + 8 * (const(void)*).sizeof] actionScript261;
-immutable ubyte[51 + 13 * (const(void)*).sizeof] actionScript711;
+immutable ubyte[51 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript711;
 immutable ubyte[19] unknownC30A1F;
 immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScript824;
-immutable ubyte[45 + 8 * (const(void)*).sizeof] actionScript193;
+immutable ubyte[45 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript193;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScript540;
 immutable ubyte[61 + 25 * (const(void)*).sizeof] actionScript29;
 immutable ubyte[18 + 8 * (const(void)*).sizeof] actionScript189;
@@ -306,19 +302,19 @@ immutable ubyte[56 + 11 * (const(void)*).sizeof] actionScript58;
 immutable ubyte[35 + 17 * (const(void)*).sizeof] actionScript24;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScript525;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] actionScript789;
-immutable ubyte[37 + 10 * (const(void)*).sizeof] actionScript369;
+immutable ubyte[37 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript369;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript514;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScript842;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript704;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript882;
-immutable ubyte[25 + 11 * (const(void)*).sizeof] actionScript65;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript882;
+immutable ubyte[25 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript65;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1DF;
 immutable ubyte[27 + 5 * (const(void)*).sizeof] unknownC33549;
 immutable ubyte[14 + 6 * (const(void)*).sizeof] actionScript183;
 immutable ubyte[34 + 8 * (const(void)*).sizeof] actionScript345;
 immutable ubyte[182 + 30 * (const(void)*).sizeof] actionScript399;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC333BB;
-immutable ubyte[85 + 17 * (const(void)*).sizeof] actionScript250;
+immutable ubyte[85 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScript250;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript312;
 immutable ubyte[63 + 15 * (const(void)*).sizeof] actionScript292;
 immutable ubyte[59 + 14 * (const(void)*).sizeof] actionScript767;
@@ -328,7 +324,7 @@ immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript246;
 immutable ubyte[24 + 7 * (const(void)*).sizeof] actionScript107;
 immutable ubyte[8 + 4 * (const(void)*).sizeof] actionScript449;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript793;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript874;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript874;
 immutable ubyte[3 + 1 * (const(void)*).sizeof] unknownC3A209;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript853;
 immutable ubyte[6 + 5 * (const(void)*).sizeof] unknownC3AB44;
@@ -367,7 +363,7 @@ immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript33;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript512;
 immutable ubyte[27 + 6 * (const(void)*).sizeof] actionScript324;
 immutable ubyte[49 + 10 * (const(void)*).sizeof] actionScript541;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript893;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript893;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] actionScript552;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript676;
 immutable ubyte[65 + 25 * (const(void)*).sizeof] actionScript23;
@@ -380,36 +376,36 @@ immutable ubyte[46 + 5 * (const(void)*).sizeof] unknownC3CC5C;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] unknownC3BD03;
 immutable ubyte[28 + 7 * (const(void)*).sizeof] actionScript342;
 immutable ubyte[135 + 19 * (const(void)*).sizeof] actionScript717;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript195;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript195;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScript271;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript642;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] unknownC3DFD4;
 immutable ubyte[211 + 26 * (const(void)*).sizeof] actionScript760;
-immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript400;
+immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScript400;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] unknownC36A41;
 immutable ubyte[24 + 9 * (const(void)*).sizeof] actionScript180;
 immutable ubyte[19 + 6 * (const(void)*).sizeof] actionScript192;
 immutable ubyte[32 + 14 * (const(void)*).sizeof] unknownC427A1;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript846;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript213;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript213;
 immutable ubyte[12 + 5 * (const(void)*).sizeof] actionScript354;
 immutable ubyte[81 + 11 * (const(void)*).sizeof] actionScript536;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript877;
-immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript437;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript372;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript877;
+immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScript437;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript372;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScript47;
 immutable ubyte[109 + 30 * (const(void)*).sizeof] actionScript435;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript396;
 immutable ubyte[71 + 7 * (const(void)*).sizeof] actionScript648;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAFE;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript871;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript871;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript52;
 immutable ubyte[60 + 10 * (const(void)*).sizeof] actionScript352;
 immutable ubyte[32 + 6 * (const(void)*).sizeof] actionScript857;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript200;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript200;
 immutable ubyte[133 + 17 * (const(void)*).sizeof] actionScript444;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript496;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript194;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript194;
 immutable ubyte[39 + 13 * (const(void)*).sizeof] actionScript659;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript710;
 immutable ubyte[19 + 9 * (const(void)*).sizeof] actionScript169;
@@ -422,16 +418,16 @@ immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript141;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScript233_234_235_236_237;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript301;
 immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScript338;
-immutable ubyte[28 + 11 * (const(void)*).sizeof] actionScript134;
+immutable ubyte[28 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript134;
 immutable ubyte[12 + 8 * (const(void)*).sizeof] unknownC3AB67;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript308;
 immutable ubyte[59 + 14 * (const(void)*).sizeof] actionScript41;
 immutable ubyte[139 + 26 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScript170;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScript664;
 immutable ubyte[32 + 8 * (const(void)*).sizeof] unknownC348C4;
-immutable ubyte[26 + 7 * (const(void)*).sizeof] actionScript55;
+immutable ubyte[26 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScript55;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] unknownC41974;
-immutable ubyte[55 + 16 * (const(void)*).sizeof] actionScript219;
+immutable ubyte[55 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScript219;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript735;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript520;
 immutable ubyte[36 + 13 * (const(void)*).sizeof] actionScript658;
@@ -444,15 +440,15 @@ immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScript64;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] actionScript361;
 immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30C67;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript176;
-immutable ubyte[59 + 14 * (const(void)*).sizeof] actionScript256;
+immutable ubyte[59 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript256;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript311;
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript834;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] actionScript553;
 immutable ubyte[91 + 15 * (const(void)*).sizeof] actionScript241;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript685;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript885;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript885;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript716;
-immutable ubyte[24 + 9 * (const(void)*).sizeof] actionScript190;
+immutable ubyte[24 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript190;
 immutable ubyte[61 + 11 * (const(void)*).sizeof] actionScript46;
 immutable ubyte[33 + 10 * (const(void)*).sizeof] actionScript477;
 immutable ubyte[43 + 5 * (const(void)*).sizeof] actionScript445;
@@ -462,7 +458,7 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScript148;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript614;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript282;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript844;
-immutable ubyte[115 + 35 * (const(void)*).sizeof] actionScript674;
+immutable ubyte[115 + 34 * (const(void)*).sizeof + 1 * string.sizeof] actionScript674;
 immutable ubyte[28 + 5 * (const(void)*).sizeof] actionScript313;
 immutable ubyte[20 + 4 * (const(void)*).sizeof] actionScript419;
 immutable ubyte[21 + 4 * (const(void)*).sizeof] unknownC362C0;
@@ -491,12 +487,12 @@ immutable ubyte[90 + 11 * (const(void)*).sizeof] actionScript713;
 immutable ubyte[12 + 8 * (const(void)*).sizeof] actionScript2;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript458;
 immutable ubyte[26 + 2 * (const(void)*).sizeof] actionScript705_706_Common;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript209;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript209;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript807;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript792;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScript255;
 immutable ubyte[69 + 13 * (const(void)*).sizeof] actionScript162;
-immutable ubyte[95 + 16 * (const(void)*).sizeof] actionScript184;
+immutable ubyte[95 + 14 * (const(void)*).sizeof + 2 * string.sizeof] actionScript184;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] unknownC3AB8A;
 immutable ubyte[65 + 5 * (const(void)*).sizeof] unknownC4119D;
 immutable ubyte[63 + 12 * (const(void)*).sizeof] actionScript622;
@@ -527,7 +523,7 @@ immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript392;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A0B2;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] unknownC37439;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] actionScript471;
-immutable ubyte[108 + 19 * (const(void)*).sizeof] actionScript273;
+immutable ubyte[108 + 18 * (const(void)*).sizeof + 1 * string.sizeof] actionScript273;
 immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScript736;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript330;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript100;
@@ -543,7 +539,7 @@ immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScript336;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript364;
 immutable ubyte[42 + 4 * (const(void)*).sizeof] unknownC4121F;
 immutable ubyte[12 + 6 * (const(void)*).sizeof] unknownC4220E;
-immutable ubyte[65 + 13 * (const(void)*).sizeof] actionScript60;
+immutable ubyte[65 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript60;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript362;
 immutable ubyte[56 + 11 * (const(void)*).sizeof] actionScript57;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript526;
@@ -559,7 +555,7 @@ immutable ubyte[97 + 21 * (const(void)*).sizeof] actionScript464;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript524;
 immutable ubyte[8 + 2 * (const(void)*).sizeof] actionScript126;
 immutable ubyte[37 + 7 * (const(void)*).sizeof] actionScript126UnknownRoutine;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript867;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript867;
 immutable ubyte[65 + 9 * (const(void)*).sizeof] unknownC42235;
 immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScript856;
 immutable ubyte[41 + 6 * (const(void)*).sizeof] actionScript784;
@@ -567,12 +563,12 @@ immutable ubyte[34 + 11 * (const(void)*).sizeof] actionScript806;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript307;
 immutable ubyte[60 + 13 * (const(void)*).sizeof] actionScript719;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript79;
-immutable ubyte[72 + 13 * (const(void)*).sizeof] actionScript537;
+immutable ubyte[72 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript537;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] actionScript861;
 immutable ubyte[41 + 7 * (const(void)*).sizeof] unknownC41938;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript198;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript198;
 immutable ubyte[74 + 14 * (const(void)*).sizeof] actionScript590;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript185;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript185;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript565;
 immutable ubyte[29 + 10 * (const(void)*).sizeof] actionScript694;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript105;
@@ -609,14 +605,14 @@ immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScript92;
 immutable ubyte[24 + 3 * (const(void)*).sizeof] actionScript762;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC37559;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] unknownC3DBDB;
-immutable ubyte[132 + 66 * (const(void)*).sizeof] actionScript32;
+immutable ubyte[132 + 65 * (const(void)*).sizeof + 1 * string.sizeof] actionScript32;
 immutable ubyte[40 + 7 * (const(void)*).sizeof] unknownC31DF4;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript4;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA5A;
 immutable ubyte[32 + 4 * (const(void)*).sizeof] actionScript638;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript841;
 immutable ubyte[3 + 2 * (const(void)*).sizeof] actionScript662;
-immutable ubyte[68 + 15 * (const(void)*).sizeof] actionScript70;
+immutable ubyte[68 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScript70;
 immutable ubyte[20 + 7 * (const(void)*).sizeof] actionScript166;
 immutable ubyte[39 + 10 * (const(void)*).sizeof] actionScript604;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript395;
@@ -624,7 +620,7 @@ immutable ubyte[11 + 1 * (const(void)*).sizeof] unknownC3CCA8;
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript839;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] unknownC3AB37;
 immutable ubyte[27 + 3 * (const(void)*).sizeof] unknownC34D39;
-immutable ubyte[45 + 10 * (const(void)*).sizeof] actionScript59;
+immutable ubyte[45 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript59;
 immutable ubyte[55 + 14 * (const(void)*).sizeof] actionScript344;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1F3;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScript424;
@@ -654,12 +650,12 @@ immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript528;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] unknownC34392;
 immutable ubyte[65 + 17 * (const(void)*).sizeof] actionScript809;
 immutable ubyte[84 + 16 * (const(void)*).sizeof] actionScript263;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript866;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript866;
 immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScript681;
-immutable ubyte[93 + 18 * (const(void)*).sizeof] actionScript205;
+immutable ubyte[93 + 17 * (const(void)*).sizeof + 1 * string.sizeof] actionScript205;
 immutable ubyte[156 + 34 * (const(void)*).sizeof] unknownC31EEF;
 immutable ubyte[13 + 7 * (const(void)*).sizeof] actionScript85;
-immutable ubyte[57 + 11 * (const(void)*).sizeof] actionScript66;
+immutable ubyte[57 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript66;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC36BB4;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] actionScript582;
 immutable ubyte[40 + 6 * (const(void)*).sizeof] actionScript723;
@@ -674,9 +670,9 @@ immutable ubyte[69 + 11 * (const(void)*).sizeof] actionScript554;
 immutable ubyte[31 + 9 * (const(void)*).sizeof] actionScript660;
 immutable ubyte[33 + 6 * (const(void)*).sizeof] actionScript733;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript389_393;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript869;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript869;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] actionScript592;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript879;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript879;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript509;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScript150;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript576;
@@ -686,16 +682,16 @@ immutable ubyte[77 + 11 * (const(void)*).sizeof] unknownC4163F;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript122;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript291;
 immutable ubyte[51 + 17 * (const(void)*).sizeof] actionScript28;
-immutable ubyte[54 + 11 * (const(void)*).sizeof] actionScript287;
+immutable ubyte[54 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript287;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript15;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] unknownC35231;
 immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScript326;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript502;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] actionScript564;
-immutable ubyte[87 + 19 * (const(void)*).sizeof] actionScript683;
-immutable ubyte[39 + 8 * (const(void)*).sizeof] actionScript284;
+immutable ubyte[87 + 18 * (const(void)*).sizeof + 1 * string.sizeof] actionScript683;
+immutable ubyte[39 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript284;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript5;
-immutable ubyte[44 + 12 * (const(void)*).sizeof] actionScript215;
+immutable ubyte[44 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScript215;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScript327;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScript702;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript574;
@@ -723,14 +719,14 @@ immutable ubyte[60 + 18 * (const(void)*).sizeof] actionScript563;
 immutable ubyte[17 + 2 * (const(void)*).sizeof] unknownC31ED8;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript487;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript376_405;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript214;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript214;
 immutable ubyte[34 + 9 * (const(void)*).sizeof] actionScript814;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript854;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript127;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript521;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript522;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript778;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript888;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript888;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript802;
 immutable ubyte[38 + 5 * (const(void)*).sizeof] actionScript748;
 immutable ubyte[28 + 10 * (const(void)*).sizeof] actionScript82;
@@ -739,17 +735,17 @@ immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript777;
 immutable ubyte[33 + 9 * (const(void)*).sizeof] actionScript260;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] actionScript785;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript511;
-immutable ubyte[22 + 10 * (const(void)*).sizeof] actionScript94_95_98Common;
+immutable ubyte[22 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript94_95_98Common;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript174;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScript238;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] actionScript421;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript196;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript196;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript530;
 immutable ubyte[55 + 11 * (const(void)*).sizeof] actionScript143;
 immutable ubyte[23 + 3 * (const(void)*).sizeof] actionScript749;
-immutable ubyte[107 + 20 * (const(void)*).sizeof] actionScript69;
+immutable ubyte[107 + 19 * (const(void)*).sizeof + 1 * string.sizeof] actionScript69;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript780;
-immutable ubyte[73 + 21 * (const(void)*).sizeof] actionScript669;
+immutable ubyte[73 + 20 * (const(void)*).sizeof + 1 * string.sizeof] actionScript669;
 immutable ubyte[38 + 6 * (const(void)*).sizeof] actionScript835;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript773;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript102;
@@ -759,7 +755,7 @@ immutable ubyte[22 + 8 * (const(void)*).sizeof] actionScript111;
 immutable ubyte[3 + 1 * (const(void)*).sizeof] actionScript451;
 immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScript290;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript663;
-immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript197;
+immutable ubyte[23 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScript197;
 immutable ubyte[40 + 7 * (const(void)*).sizeof] unknownC31E2D;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScript251;
 immutable ubyte[225 + 33 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScript161;
@@ -769,7 +765,7 @@ immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript827;
 immutable ubyte[33 + 4 * (const(void)*).sizeof] actionScript718;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript416;
 immutable ubyte[667 + 102 * (const(void)*).sizeof] actionScript442;
-immutable ubyte[29 + 9 * (const(void)*).sizeof] actionScript401;
+immutable ubyte[29 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript401;
 immutable ubyte[21 + 9 * (const(void)*).sizeof] unknownC35F8B;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] actionScript858;
 immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScript645;
@@ -780,7 +776,7 @@ immutable ubyte[18 + 8 * (const(void)*).sizeof] unknownC343DB;
 immutable ubyte[17 + 5 * (const(void)*).sizeof] unknownC3899E;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] actionScript454;
 immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScript144;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript220;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript220;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript415;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript106;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A0C5;
@@ -791,8 +787,8 @@ immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript608;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScript776;
 immutable ubyte[88 + 14 * (const(void)*).sizeof] actionScript495;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScript147;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript880;
-immutable ubyte[77 + 15 * (const(void)*).sizeof] actionScript684;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript880;
+immutable ubyte[77 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScript684;
 immutable ubyte[34 + 4 * (const(void)*).sizeof] actionScript538;
 immutable ubyte[47 + 10 * (const(void)*).sizeof] actionScript13_14_15_16_17_Common2;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript129;
@@ -813,10 +809,10 @@ immutable ubyte[6 + 2 * (const(void)*).sizeof] unknownC3AAB8;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript825;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] actionScript142;
 immutable ubyte[11 + 6 * (const(void)*).sizeof] actionScript1;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript889;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript889;
 immutable ubyte[50 + 8 * (const(void)*).sizeof] actionScript545;
 immutable ubyte[132 + 20 * (const(void)*).sizeof] actionScript164;
-immutable ubyte[33 + 13 * (const(void)*).sizeof] actionScript498;
+immutable ubyte[33 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript498;
 immutable ubyte[1] unknownC3A07F;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript612;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript253;
@@ -832,7 +828,7 @@ immutable ubyte[17 + 2 * (const(void)*).sizeof] unknownC31EC1;
 immutable ubyte[115 + 10 * (const(void)*).sizeof] actionScript366;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript518;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] unknownC3AA1E;
-immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScript138;
+immutable ubyte[26 + 9 * (const(void)*).sizeof + 2 * string.sizeof] actionScript138;
 immutable ubyte[35 + 4 * (const(void)*).sizeof] actionScript446;
 immutable ubyte[30 + 5 * (const(void)*).sizeof] actionScript548;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] actionScript269;
@@ -856,11 +852,11 @@ immutable ubyte[8 + 5 * (const(void)*).sizeof] actionScript606;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript130;
 immutable ubyte[1] unknownC3A271;
 immutable ubyte[32 + 7 * (const(void)*).sizeof] actionScript299;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript891;
-immutable ubyte[38 + 9 * (const(void)*).sizeof] actionScript45;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript891;
+immutable ubyte[38 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript45;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript456;
 immutable ubyte[92 + 14 * (const(void)*).sizeof] actionScript724;
-immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScript67;
+immutable ubyte[29 + 9 * (const(void)*).sizeof + 2 * string.sizeof] actionScript67;
 immutable ubyte[78 + 3 * (const(void)*).sizeof] actionScript272;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript571;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript13;
@@ -869,22 +865,22 @@ immutable ubyte[56 + 23 * (const(void)*).sizeof] actionScript26;
 immutable ubyte[26 + 7 * (const(void)*).sizeof] actionScript843;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript668;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript754;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript876;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript876;
 immutable ubyte[36 + 8 * (const(void)*).sizeof] actionScript812;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] unknownC38978;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScript139;
-immutable ubyte[25 + 8 * (const(void)*).sizeof] actionScript210;
+immutable ubyte[25 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript210;
 immutable ubyte[13 + 7 * (const(void)*).sizeof] actionScript89;
 immutable ubyte[108 + 20 * (const(void)*).sizeof] actionScript346;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript654;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript320;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] unknownC30C55;
-immutable ubyte[54 + 17 * (const(void)*).sizeof] actionScript202;
+immutable ubyte[54 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScript202;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScript277;
 immutable ubyte[15 + 8 * (const(void)*).sizeof] unknownC3DF90;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] actionScript230;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A17B;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript865;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript865;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript665;
 immutable ubyte[65 + 28 * (const(void)*).sizeof] actionScript30;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript413;
@@ -893,7 +889,7 @@ immutable ubyte[5 + 2 * (const(void)*).sizeof] unknownC3AB94;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScript175;
 immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScript646;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30CC7;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript875;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript875;
 immutable ubyte[16 + 4 * (const(void)*).sizeof] actionScript80;
 immutable ubyte[53 + 16 * (const(void)*).sizeof] actionScript155;
 immutable ubyte[64 + 13 * (const(void)*).sizeof] actionScript165;
@@ -902,21 +898,21 @@ immutable ubyte[27 + 3 * (const(void)*).sizeof] actionScript649;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScript821;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScript120;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript580;
-immutable ubyte[60 + 16 * (const(void)*).sizeof] actionScript455;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript873;
+immutable ubyte[60 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScript455;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript873;
 immutable ubyte[6 + 1 * (const(void)*).sizeof] actionScript355;
 immutable ubyte[34 + 6 * (const(void)*).sizeof] actionScript680;
 immutable ubyte[24 + 4 * (const(void)*).sizeof] actionScript721;
 immutable ubyte[25 + 4 * (const(void)*).sizeof] actionScript314;
 immutable ubyte[51 + 16 * (const(void)*).sizeof] actionScript156;
 immutable ubyte[76 + 22 * (const(void)*).sizeof] actionScript583;
-immutable ubyte[95 + 25 * (const(void)*).sizeof] actionScript221;
+immutable ubyte[95 + 24 * (const(void)*).sizeof + 1 * string.sizeof] actionScript221;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript331;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript791;
 immutable ubyte[165 + 35 * (const(void)*).sizeof] actionScript670;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] actionScript799;
-immutable ubyte[27 + 9 * (const(void)*).sizeof] actionScript317;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript199;
+immutable ubyte[27 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript317;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript199;
 immutable ubyte[3 + 2 * (const(void)*).sizeof] unknownC3098B;
 immutable ubyte[14 + 4 * (const(void)*).sizeof] actionScript425;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript577;
@@ -934,7 +930,7 @@ immutable ubyte[3 + 1 * (const(void)*).sizeof] actionScript859;
 immutable ubyte[43 + 11 * (const(void)*).sizeof] actionScript135;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] unknownC36D18;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] unknownC3ABE0;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript862;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript862;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript656;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1A3;
 immutable ubyte[45 + 7 * (const(void)*).sizeof] actionScript110;
@@ -948,25 +944,25 @@ immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript499;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript101;
 immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScript353;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript329;
-immutable ubyte[53 + 15 * (const(void)*).sizeof] actionScript77;
+immutable ubyte[53 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScript77;
 immutable ubyte[42 + 5 * (const(void)*).sizeof] actionScript334;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] unknownC36834;
 immutable ubyte[34 + 7 * (const(void)*).sizeof] unknownC3B0B6;
 immutable ubyte[14 + 8 * (const(void)*).sizeof] actionScript93;
 immutable ubyte[11 + 5 * (const(void)*).sizeof] actionScript286;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] unknownC42828;
-immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript218;
+immutable ubyte[19 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScript218;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] unknownC3C8FD;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] actionScript534;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScript149;
 immutable ubyte[142 + 28 * (const(void)*).sizeof] unknownC4144C;
-immutable ubyte[52 + 17 * (const(void)*).sizeof] actionScript673;
+immutable ubyte[52 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScript673;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript61;
 immutable ubyte[92 + 22 * (const(void)*).sizeof] actionScript240;
 immutable ubyte[55 + 27 * (const(void)*).sizeof] actionScript20;
 immutable ubyte[62 + 17 * (const(void)*).sizeof] actionScript119;
 immutable ubyte[7 + 2 * (const(void)*).sizeof] actionScript343;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript208;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript208;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript436;
 immutable ubyte[35 + 6 * (const(void)*).sizeof] actionScript626;
 immutable ubyte[115 + 10 * (const(void)*).sizeof] actionScript367;
@@ -974,7 +970,7 @@ immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript489;
 immutable ubyte[22 + 4 * (const(void)*).sizeof] actionScript715;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript463;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA6E;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript884;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript884;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] actionScript737_738_739_740Common;
 immutable ubyte[34 + 14 * (const(void)*).sizeof] actionScript51;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScript439;
@@ -985,10 +981,10 @@ immutable ubyte[16 + 7 * (const(void)*).sizeof] actionScript43;
 immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript634;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript531;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript795;
-immutable ubyte[61 + 12 * (const(void)*).sizeof] actionScript203;
+immutable ubyte[61 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScript203;
 immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScript688;
 immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScript154;
-immutable ubyte[24 + 7 * (const(void)*).sizeof] actionScript357;
+immutable ubyte[24 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScript357;
 immutable ubyte[46 + 4 * (const(void)*).sizeof] actionScript370;
 immutable ubyte[4 + 4 * (const(void)*).sizeof] actionScript42;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScript319;
@@ -1006,9 +1002,9 @@ immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScript75;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript322;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScript72;
 immutable ubyte[12 + 5 * (const(void)*).sizeof] actionScript99;
-immutable ubyte[61 + 12 * (const(void)*).sizeof] actionScript207;
+immutable ubyte[61 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScript207;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] unknownC39ABB;
-immutable ubyte[79 + 16 * (const(void)*).sizeof] actionScript186;
+immutable ubyte[79 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScript186;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScript265;
 immutable ubyte[17 + 8 * (const(void)*).sizeof] actionScript62;
 immutable ubyte[62 + 4 * (const(void)*).sizeof] actionScript387;
@@ -1037,10 +1033,10 @@ immutable ubyte[21 + 8 * (const(void)*).sizeof] actionScript766;
 immutable ubyte[57 + 9 * (const(void)*).sizeof] actionScript558;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScript650;
 immutable ubyte[35 + 7 * (const(void)*).sizeof] actionScript224;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript881;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript881;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC33399;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript890;
-immutable ubyte[29 + 10 * (const(void)*).sizeof] actionScript335;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript890;
+immutable ubyte[29 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript335;
 immutable ubyte[6 + 4 * (const(void)*).sizeof] unknownC36E41;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] unknownC3AA38;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] actionScript431_432_433_434;
@@ -1048,13 +1044,13 @@ immutable ubyte[42 + 11 * (const(void)*).sizeof] actionScript661;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript503;
 immutable ubyte[192 + 42 * (const(void)*).sizeof] unknownC41036;
 immutable ubyte[523 + 75 * (const(void)*).sizeof] actionScript386;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript204;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript204;
 immutable ubyte[56 + 13 * (const(void)*).sizeof] actionScript666;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript76;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScript10_11;
 immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScript153;
 immutable ubyte[62 + 11 * (const(void)*).sizeof] actionScript651;
-immutable ubyte[77 + 12 * (const(void)*).sizeof] actionScript137;
+immutable ubyte[77 + 10 * (const(void)*).sizeof + 2 * string.sizeof] actionScript137;
 immutable ubyte[52 + 13 * (const(void)*).sizeof] actionScript788;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] actionScript473;
 immutable ubyte[16 + 2 * (const(void)*).sizeof] actionScript635;
@@ -1062,7 +1058,7 @@ immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScript91;
 immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScript306;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScript222;
 immutable ubyte[70 + 13 * (const(void)*).sizeof] actionScript501_531_Common;
-immutable ubyte[29 + 9 * (const(void)*).sizeof] actionScript438;
+immutable ubyte[29 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript438;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript104;
 immutable ubyte[46 + 8 * (const(void)*).sizeof] actionScript452;
 immutable ubyte[189 + 50 * (const(void)*).sizeof] actionScript768;
@@ -1070,14 +1066,14 @@ immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript516;
 immutable ubyte[17 + 2 * (const(void)*).sizeof] actionScript223;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript14;
 immutable ubyte[62 + 10 * (const(void)*).sizeof] actionScript83;
-immutable ubyte[21 + 6 * (const(void)*).sizeof] unknownC3DB7A;
+immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3DB7A;
 immutable ubyte[18 + 2 * (const(void)*).sizeof] unknownC3CEA2;
 immutable ubyte[23 + 4 * (const(void)*).sizeof] actionScript441;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript403;
 immutable ubyte[29 + 3 * (const(void)*).sizeof] actionScript752;
 immutable ubyte[203 + 31 * (const(void)*).sizeof] actionScript629;
 immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript652;
-immutable ubyte[28 + 8 * (const(void)*).sizeof] actionScript863;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript863;
 immutable ubyte[46 + 13 * (const(void)*).sizeof] actionScript160;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScript830;
 immutable ubyte[8 + 1 * (const(void)*).sizeof] unknownC3C81A;
@@ -1098,23 +1094,11 @@ immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript579;
 immutable ubyte[16 + 4 * (const(void)*).sizeof] actionScript252;
 immutable ubyte[47 + 11 * (const(void)*).sizeof] actionScript567;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript510;
-immutable ubyte[45 + 11 * (const(void)*).sizeof] actionScript771;
+immutable ubyte[45 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript771;
 immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScript731;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript529;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript813;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC40F45;
-
-ubyte[] allBytes(T...)(T args) {
-	struct X {
-		align(1):
-		T stuff;
-	}
-	union Z {
-		X x;
-		ubyte[X.sizeof] bytes;
-	}
-	return Z(X(args)).bytes.dup;
-}
 
 ubyte[] actionCommand(T...)(ubyte command, T args) {
 	return allBytes(command, args);
@@ -1552,11 +1536,11 @@ ubyte[] ACTIONSCRIPT_C0AAB5(ushort arg1, ubyte arg2, ubyte arg3) {
 	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0AAB5, arg1, arg2, arg3);
 }
 
-ubyte[] ACTIONSCRIPT_C0A88D(const(ubyte)* text) {
+ubyte[] ACTIONSCRIPT_C0A88D(string text) {
 	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A88D, text);
 }
 
-ubyte[] ACTIONSCRIPT_C0A8A0(const(ubyte)* text) {
+ubyte[] ACTIONSCRIPT_C0A8A0(string text) {
 	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A8A0, text);
 }
 
@@ -3411,7 +3395,7 @@ actionScript878 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript878[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer16.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer16"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript667 = [
@@ -3451,7 +3435,7 @@ actionScript53 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 40),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 32),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent53.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent53"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript447 = [
@@ -3461,7 +3445,7 @@ actionScript447 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 20),
 	ACTIONSCRIPT_SHORTCALL(&unknownC31E2D[0]),
-	ACTIONSCRIPT_C0A88D(venusConcertCleanup.ptr),
+	ACTIONSCRIPT_C0A88D("venusConcertCleanup"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript640 = [
@@ -3554,7 +3538,7 @@ actionScript181 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent181.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent181"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_HALT(),
 ].join();
@@ -3837,7 +3821,7 @@ actionScript868 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript868[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer06.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer06"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript708 = [
@@ -3945,7 +3929,7 @@ actionScript206 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent206.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent206"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript206[46 + 9 * (const(void)*).sizeof]),
@@ -4020,7 +4004,7 @@ actionScript212 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8672),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(208),
-	ACTIONSCRIPT_C0A88D(textEvent212_219.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent212_219"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript475 = [
@@ -4125,7 +4109,7 @@ actionScript883 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript883[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer21.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer21"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript22 = [
@@ -4168,7 +4152,7 @@ unknownC3BAD7 = [
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB5C[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB73[0]),
-	ACTIONSCRIPT_C0A88D(textEventGhosts3.ptr),
+	ACTIONSCRIPT_C0A88D("textEventGhosts3"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript595 = [
@@ -4441,7 +4425,7 @@ actionScript68 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent68.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent68"),
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -4486,7 +4470,7 @@ actionScript38 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
-	ACTIONSCRIPT_C0A88D(textEvent38.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent38"),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.up),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0A443ME2(),
@@ -4546,7 +4530,7 @@ actionScript872 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript872[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer10.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer10"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript257 = [
@@ -4843,7 +4827,7 @@ actionScript201 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent201.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent201"),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48B3B),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -5035,7 +5019,7 @@ actionScript870 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript870[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer08.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer08"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript323 = [
@@ -5301,7 +5285,7 @@ actionScript887 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript887[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer25.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer25"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript641 = [
@@ -5372,7 +5356,7 @@ unknownC3BAA3 = [
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB5C[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB73[0]),
-	ACTIONSCRIPT_C0A88D(textEventGhosts1.ptr),
+	ACTIONSCRIPT_C0A88D("textEventGhosts1"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(255),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -6282,7 +6266,7 @@ actionScript700 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 5632),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 6016),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB67[0]),
-	ACTIONSCRIPT_C0A88D(textEvent700.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent700"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 9),
 	ACTIONSCRIPT_C0A685(96, 1),
@@ -6330,7 +6314,7 @@ actionScript758 = [
 	ACTIONSCRIPT_C0AA6E(Direction.left, 0),
 	ACTIONSCRIPT_PAUSE(15),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent758.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent758"),
 	ACTIONSCRIPT_PAUSE(30),
 	ACTIONSCRIPT_C0AA6E(Direction.right, 0),
 	ACTIONSCRIPT_HALT(),
@@ -6406,7 +6390,7 @@ actionScript535 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7280),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 2928),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A8A0(textEvent535.ptr),
+	ACTIONSCRIPT_C0A8A0("textEvent535"),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
@@ -6422,7 +6406,7 @@ actionScript886 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript886[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer24.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer24"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript390_394 = [
@@ -6457,7 +6441,7 @@ actionScript497 = [
 	ACTIONSCRIPT_C468A9(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.and, 2048),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript497[20 + 5 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_C0A88D(textEvent497.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent497"),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript497[20 + 5 * (const(void)*).sizeof]),
 ].join();
@@ -6585,7 +6569,7 @@ actionScript892 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript892[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer30.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer30"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript268 = [
@@ -6650,7 +6634,7 @@ actionScript217 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent217.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent217"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript217[50 + 10 * (const(void)*).sizeof]),
@@ -6745,7 +6729,7 @@ unknownC3C94E = [
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
 unknownC3D913 = [
-	ACTIONSCRIPT_C0A88D(textEventC3D913.ptr),
+	ACTIONSCRIPT_C0A88D("textEventC3D913"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript527 = [
@@ -6774,7 +6758,7 @@ actionScript672 = [
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript672[49 + 13 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(1),
 	ACTIONSCRIPT_C0A857(EventFlag.unknown20E),
-	ACTIONSCRIPT_C0A88D(textEvent672.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent672"),
 	ACTIONSCRIPT_SHORTCALL(&actionScript674[61 + 22 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript672[1 + 1 * (const(void)*).sizeof]),
 ].join();
@@ -6782,7 +6766,7 @@ unknownC3BAC4 = [
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB5C[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB73[0]),
-	ACTIONSCRIPT_C0A88D(textEventGhosts2.ptr),
+	ACTIONSCRIPT_C0A88D("textEventGhosts2"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript722 = [
@@ -6979,7 +6963,7 @@ actionScript647 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 32),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent647.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent647"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript470 = [
@@ -7003,7 +6987,7 @@ actionScript864 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript864[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer02.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer02"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript820 = [
@@ -7170,7 +7154,7 @@ actionScript37 = [
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_C0A443ME2(),
-	ACTIONSCRIPT_C0A88D(textEvent37.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent37"),
 	ACTIONSCRIPT_C0A685(0, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 42),
 	ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(1),
@@ -7318,7 +7302,7 @@ actionScript544 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3928),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PAUSE(20),
-	ACTIONSCRIPT_C0A8A0(textEvent544.ptr),
+	ACTIONSCRIPT_C0A8A0("textEvent544"),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
@@ -7373,7 +7357,7 @@ actionScript216 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent216.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent216"),
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -7560,7 +7544,7 @@ actionScript591 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 32),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent591.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent591"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC42802 = [
@@ -7641,7 +7625,7 @@ actionScript113 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 80),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 192),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
-	ACTIONSCRIPT_C0A88D(textEvent113.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent113"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC32138 = [
@@ -7797,7 +7781,7 @@ actionScript711 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent711.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent711"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A86F(106),
 	ACTIONSCRIPT_PAUSE(1),
@@ -7854,7 +7838,7 @@ actionScript193 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 5080),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(75),
-	ACTIONSCRIPT_C0A88D(textEvent193.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent193"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript540 = [
@@ -8013,7 +7997,7 @@ actionScript369 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v2),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript369[30 + 6 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_C0A88D(textEvent369.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent369"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript514 = [
@@ -8059,7 +8043,7 @@ actionScript882 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript882[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer20.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer20"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript65 = [
@@ -8073,7 +8057,7 @@ actionScript65 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent65.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent65"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript65[20 + 5 * (const(void)*).sizeof]),
@@ -8241,7 +8225,7 @@ actionScript250 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6944),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 744),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A88D(textEvent250.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent250"),
 	ACTIONSCRIPT_START_TASK(&unknownC3AFA3[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7104),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
@@ -8397,7 +8381,7 @@ actionScript874 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript874[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer12.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer12"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC3A209 = [
@@ -9567,7 +9551,7 @@ actionScript893 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript893[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer31.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer31"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript552 = [
@@ -9780,7 +9764,7 @@ actionScript195 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10008),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(211),
-	ACTIONSCRIPT_C0A88D(textEvent195.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent195"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript271 = [
@@ -9906,7 +9890,7 @@ actionScript400 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 20),
 	ACTIONSCRIPT_SHORTCALL(&unknownC31E2D[0]),
-	ACTIONSCRIPT_C0A88D(textEvent400.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent400"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC36A41 = [
@@ -9985,7 +9969,7 @@ actionScript213 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10032),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(209),
-	ACTIONSCRIPT_C0A88D(textEvent213.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent213"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript354 = [
@@ -10041,7 +10025,7 @@ actionScript877 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript877[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer15.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer15"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript437 = [
@@ -10051,7 +10035,7 @@ actionScript437 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 20),
 	ACTIONSCRIPT_SHORTCALL(&unknownC31E2D[0]),
-	ACTIONSCRIPT_C0A88D(textEvent437.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent437"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript372 = [
@@ -10065,7 +10049,7 @@ actionScript372 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 4736),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 5744),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A88D(textEvent372.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent372"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript47 = [
@@ -10203,7 +10187,7 @@ actionScript871 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript871[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer09.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer09"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript52 = [
@@ -10281,7 +10265,7 @@ actionScript200 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10184),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(69),
-	ACTIONSCRIPT_C0A88D(textEvent200.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent200"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript444 = [
@@ -10370,7 +10354,7 @@ actionScript194 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3400),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(210),
-	ACTIONSCRIPT_C0A88D(textEvent194.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent194"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript659 = [
@@ -10614,7 +10598,7 @@ actionScript134 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 40),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent134.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent134"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A685(0, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 17),
@@ -10774,7 +10758,7 @@ actionScript55 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 48),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent55.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent55"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC41974 = [
@@ -10810,7 +10794,7 @@ actionScript219 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent219.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent219"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript219[50 + 10 * (const(void)*).sizeof]),
@@ -11156,7 +11140,7 @@ actionScript256 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 8),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 40),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent256.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent256"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_CLEAR_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SET_X(4928),
@@ -11295,7 +11279,7 @@ actionScript885 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript885[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer23.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer23"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript716 = [
@@ -11321,7 +11305,7 @@ actionScript190 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent190.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent190"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_HALT(),
 ].join();
@@ -11477,7 +11461,7 @@ actionScript674 = [
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript674[49 + 13 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(1),
 	ACTIONSCRIPT_C0A857(EventFlag.unknown210),
-	ACTIONSCRIPT_C0A88D(textHotSpringEnergized.ptr),
+	ACTIONSCRIPT_C0A88D("textHotSpringEnergized"),
 	ACTIONSCRIPT_SHORTCALL(&actionScript674[61 + 22 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript674[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -12011,7 +11995,7 @@ actionScript209 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7704),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(207),
-	ACTIONSCRIPT_C0A88D(textEvent209.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent209"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript807 = [
@@ -12112,7 +12096,7 @@ actionScript184 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 2352),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 6568),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB67[0]),
-	ACTIONSCRIPT_C0A88D(textEvent184.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent184"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 2280),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 6600),
@@ -12130,7 +12114,7 @@ actionScript184 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8728),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(60),
-	ACTIONSCRIPT_C0A88D(textEvent184_2.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent184_2"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC3AB8A = [
@@ -12667,7 +12651,7 @@ actionScript273 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 16),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
-	ACTIONSCRIPT_C0A88D(textEvent273.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent273"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_START_TASK(&unknownC3AFA3[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 14),
@@ -12982,7 +12966,7 @@ actionScript60 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 24),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent60.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent60"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
@@ -13217,7 +13201,7 @@ actionScript867 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript867[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer05.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer05"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC42235 = [
@@ -13383,7 +13367,7 @@ actionScript537 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6120),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7840),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A8A0(textEvent537.ptr),
+	ACTIONSCRIPT_C0A8A0("textEvent537"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.unknown002),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript537[54 + 9 * (const(void)*).sizeof]),
@@ -13428,7 +13412,7 @@ actionScript198 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 72),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(212),
-	ACTIONSCRIPT_C0A88D(textEvent198.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent198"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript590 = [
@@ -13470,7 +13454,7 @@ actionScript185 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10208),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(63),
-	ACTIONSCRIPT_C0A88D(textEvent185.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent185"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript565 = [
@@ -14150,7 +14134,7 @@ actionScript32 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_C0D7B3(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent32.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent32"),
 	ACTIONSCRIPT_C020F1(),
 	ACTIONSCRIPT_END(),
 ].join();
@@ -14243,7 +14227,7 @@ actionScript70 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent70.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent70"),
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -14372,7 +14356,7 @@ actionScript59 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 80),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 80),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent59.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent59"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
 	ACTIONSCRIPT_PAUSE(8),
@@ -14880,7 +14864,7 @@ actionScript866 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript866[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer04.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer04"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript681 = [
@@ -14939,7 +14923,7 @@ actionScript205 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB67[0]),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent205.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent205"),
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -15053,7 +15037,7 @@ actionScript66 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8728),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(60),
-	ACTIONSCRIPT_C0A88D(textEvent66.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent66"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC36BB4 = [
@@ -15322,7 +15306,7 @@ actionScript869 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript869[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer07.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer07"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript592 = [
@@ -15346,7 +15330,7 @@ actionScript879 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript879[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer17.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer17"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript509 = [
@@ -15482,7 +15466,7 @@ actionScript287 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent287.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent287"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_LOOP(10),
 	ACTIONSCRIPT_SET_X_RELATIVE(2),
@@ -15564,7 +15548,7 @@ actionScript683 = [
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.add, -7),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL_NOT(&actionScript683[79 + 17 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_C0A88D(textEvent683.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent683"),
 	ACTIONSCRIPT_PAUSE(2),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript683[75 + 17 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C0C6B6(),
@@ -15597,7 +15581,7 @@ actionScript284 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 16),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 24),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
-	ACTIONSCRIPT_C0A88D(textEvent284.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent284"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 11),
 	ACTIONSCRIPT_C0A685(32, 1),
@@ -15619,7 +15603,7 @@ actionScript215 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent215.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent215"),
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -16258,7 +16242,7 @@ actionScript214 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3424),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(76),
-	ACTIONSCRIPT_C0A88D(textEvent214.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent214"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript814 = [
@@ -16320,7 +16304,7 @@ actionScript888 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript888[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer26.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer26"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript802 = [
@@ -16409,7 +16393,7 @@ actionScript94_95_98Common = [
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB5C[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3BB73[0]),
-	ACTIONSCRIPT_C0A88D(textEventGhosts1.ptr),
+	ACTIONSCRIPT_C0A88D("textEventGhosts1"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A685(192, 1),
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v6),
@@ -16464,7 +16448,7 @@ actionScript196 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8648),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(73),
-	ACTIONSCRIPT_C0A88D(textEvent196.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent196"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript530 = [
@@ -16540,7 +16524,7 @@ actionScript69 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB67[0]),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent69.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent69"),
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -16591,7 +16575,7 @@ actionScript669 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1232),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10000),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A88D(textEvent669.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent669"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript835 = [
@@ -16680,7 +16664,7 @@ actionScript197 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10008),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(71),
-	ACTIONSCRIPT_C0A88D(textEvent197.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent197"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC31E2D = [
@@ -17276,7 +17260,7 @@ actionScript401 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 4736),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 5744),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A88D(textEvent401.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent401"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC35F8B = [
@@ -17435,7 +17419,7 @@ actionScript220 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10032),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(74),
-	ACTIONSCRIPT_C0A88D(textEvent220.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent220"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript415 = [
@@ -17604,7 +17588,7 @@ actionScript880 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript880[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer18.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer18"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript684 = [
@@ -17625,7 +17609,7 @@ actionScript684 = [
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.add, -7),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL_NOT(&actionScript684[69 + 13 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_C0A88D(textEvent684.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent684"),
 	ACTIONSCRIPT_PAUSE(2),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript684[65 + 13 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
@@ -17987,7 +17971,7 @@ actionScript889 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript889[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer27.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer27"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript545 = [
@@ -18080,7 +18064,7 @@ actionScript498 = [
 	ACTIONSCRIPT_C468A9(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.and, 2048),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript498[20 + 5 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_C0A88D(textEvent498.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent498"),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript498[20 + 5 * (const(void)*).sizeof]),
 ].join();
@@ -18292,10 +18276,10 @@ actionScript138 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 2),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent137_138.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent137_138"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_C0A88D(textEvent138.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent138"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript137[25 + 10 * (const(void)*).sizeof]),
 ].join();
 actionScript446 = [
@@ -18642,7 +18626,7 @@ actionScript891 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript891[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer29.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer29"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript45 = [
@@ -18653,7 +18637,7 @@ actionScript45 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 16),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent45.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent45"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A685(0, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 17),
@@ -18720,10 +18704,10 @@ actionScript67 = [
 	ACTIONSCRIPT_C0A84C(EventFlag.unknown047),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL_NOT(&actionScript67[25 + 8 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(61),
-	ACTIONSCRIPT_C0A88D(textEvent67_1.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent67_1"),
 	ACTIONSCRIPT_HALT(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(63),
-	ACTIONSCRIPT_C0A88D(textEvent67_2.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent67_2"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript272 = [
@@ -18899,7 +18883,7 @@ actionScript876 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript876[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer14.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer14"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript812 = [
@@ -18961,7 +18945,7 @@ actionScript210 = [
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(72),
 	ACTIONSCRIPT_C0A84C(EventFlag.unknown088),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL_NOT(&unknownC3D913[0]),
-	ACTIONSCRIPT_C0A88D(textEvent210.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent210"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript89 = [
@@ -19074,7 +19058,7 @@ actionScript202 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent202.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent202"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript202[49 + 11 * (const(void)*).sizeof]),
@@ -19131,7 +19115,7 @@ actionScript865 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript865[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer03.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer03"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript665 = [
@@ -19267,7 +19251,7 @@ actionScript875 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript875[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer13.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer13"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript80 = [
@@ -19422,7 +19406,7 @@ actionScript455 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent455.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent455"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript455[55 + 10 * (const(void)*).sizeof]),
@@ -19439,7 +19423,7 @@ actionScript873 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript873[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer11.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer11"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript355 = [
@@ -19581,7 +19565,7 @@ actionScript221 = [
 	ACTIONSCRIPT_C0AA6E(Direction.left, 0),
 	ACTIONSCRIPT_PLAY_SFX(Sfx.doorClose),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_C0A88D(textEvent221.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent221"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A685(0, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
@@ -19736,7 +19720,7 @@ actionScript317 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_LOOP_END(),
-	ACTIONSCRIPT_C0A88D(textEvent317.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent317"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript199 = [
@@ -19747,7 +19731,7 @@ actionScript199 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7688),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(213),
-	ACTIONSCRIPT_C0A88D(textEvent199.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent199"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC3098B = [
@@ -19939,7 +19923,7 @@ actionScript862 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript862[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer00.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer00"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript656 = [
@@ -20156,7 +20140,7 @@ actionScript77 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 32),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent77.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent77"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(0),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
@@ -20244,7 +20228,7 @@ actionScript218 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 432),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10008),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A88D(textEvent218.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent218"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC3C8FD = [
@@ -20346,7 +20330,7 @@ actionScript673 = [
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript673[49 + 13 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(1),
 	ACTIONSCRIPT_C0A857(EventFlag.unknown20F),
-	ACTIONSCRIPT_C0A88D(textEvent673.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent673"),
 	ACTIONSCRIPT_SHORTCALL(&actionScript674[61 + 22 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript673[1 + 1 * (const(void)*).sizeof]),
 ].join();
@@ -20503,7 +20487,7 @@ actionScript208 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10208),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(206),
-	ACTIONSCRIPT_C0A88D(textEvent208.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent208"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript436 = [
@@ -20646,7 +20630,7 @@ actionScript884 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript884[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer22.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer22"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript737_738_739_740Common = [
@@ -20854,7 +20838,7 @@ actionScript203 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 9416),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(62),
-	ACTIONSCRIPT_C0A88D(textEvent203.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent203"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript688 = [
@@ -20911,7 +20895,7 @@ actionScript357 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6912),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8560),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A88D(textEvent357.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent357"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript370 = [
@@ -21201,7 +21185,7 @@ actionScript207 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 9432),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(70),
-	ACTIONSCRIPT_C0A88D(textEvent207.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent207"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC39ABB = [
@@ -21230,7 +21214,7 @@ actionScript186 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF(),
-	ACTIONSCRIPT_C0A88D(textEvent186.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent186"),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48B3B),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A023),
 	ACTIONSCRIPT_PAUSE(1),
@@ -21772,7 +21756,7 @@ actionScript881 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript881[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer19.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer19"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC33399 = [
@@ -21794,7 +21778,7 @@ actionScript890 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript890[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer28.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer28"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript335 = [
@@ -21811,7 +21795,7 @@ actionScript335 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent335.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent335"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC36E41 = [
@@ -22202,7 +22186,7 @@ actionScript204 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10184),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(61),
-	ACTIONSCRIPT_C0A88D(textEvent204.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent204"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript666 = [
@@ -22313,10 +22297,10 @@ actionScript137 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 24),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 2),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
-	ACTIONSCRIPT_C0A88D(textEvent137_138.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent137_138"),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_C0A88D(textEvent137.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent137"),
 	ACTIONSCRIPT_LOOP(10),
 	ACTIONSCRIPT_SET_X_RELATIVE(2),
 	ACTIONSCRIPT_PAUSE(4),
@@ -22470,7 +22454,7 @@ actionScript438 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 4736),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 5744),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
-	ACTIONSCRIPT_C0A88D(venusConcertMain.ptr),
+	ACTIONSCRIPT_C0A88D("venusConcertMain"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript104 = [
@@ -22647,7 +22631,7 @@ unknownC3DB7A = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10032),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(208),
-	ACTIONSCRIPT_C0A88D(textEvent212_219.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent212_219"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC3CEA2 = [
@@ -22808,7 +22792,7 @@ actionScript863 = [
 	ACTIONSCRIPT_C46E74(),
 	ACTIONSCRIPT_SHORTCALL_CONDITIONAL(&actionScript863[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEventWanderingPhotographer01.ptr),
+	ACTIONSCRIPT_C0A88D("textEventWanderingPhotographer01"),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript160 = [
@@ -23093,7 +23077,7 @@ actionScript771 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 4),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
-	ACTIONSCRIPT_C0A88D(textEvent771.ptr),
+	ACTIONSCRIPT_C0A88D("textEvent771"),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A685(64, 0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),

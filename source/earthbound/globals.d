@@ -508,7 +508,7 @@ __gshared short nextMapMusicTrack; /// $5DD6
 __gshared short unknown7E5DD8; /// $5DD8
 __gshared short unknown7E5DDA; /// $5DDA
 __gshared short unknown7E5DDC; /// $5DDC
-__gshared const(ubyte)* unknown7E5DDE; /// $5DDE
+__gshared string unknown7E5DDE; /// $5DDE
 
 __gshared QueuedInteraction[4] queuedInteractions; /// $5DEA
 __gshared short currentQueuedInteraction; /// $5E02
@@ -598,7 +598,7 @@ __gshared short[4] unknown7E969A; /// $969A
 __gshared short[4] unknown7E96A2; /// $96A2
 __gshared DisplayTextState[10] displayTextStates; /// $96AA
 __gshared ushort unknown7E97B8; /// $97B8
-__gshared ubyte[10] ccArgumentStorage; /// $97BA
+__gshared ubyte[33] ccArgumentStorage; /// $97BA
 __gshared ushort ccArgumentGatheringLoopCounter; /// $97CA
 __gshared WorkingMemory wramScriptWorkMemory; /// $97CC
 __gshared uint wramScriptArgMemory; /// $97D0

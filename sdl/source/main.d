@@ -20,6 +20,7 @@ import bindbc.sdl.mixer;
 import earthbound.bank00 : start, nmi;
 import earthbound.commondefs;
 import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
+import earthbound.text;
 
 import nspc;
 import sfcdma;
@@ -232,6 +233,16 @@ void main(string[] args) {
 			}
 		}
 	}
+
+	if ("data/text/".exists) {
+		foreach (textDocFile; dirEntries("data/text", "*.yaml", SpanMode.depth)) {
+			const textData = fromFile!(StructuredText[][string], YAML, DeSiryulize.optionalByDefault)(textDocFile);
+			foreach (label, script; textData) {
+				loadText(script, label);
+			}
+		}
+	}
+	tracef("Loaded text");
 
 	int finalSampleRate;
 	int finalChannels;

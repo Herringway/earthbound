@@ -8,7 +8,6 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
-import earthbound.bank07;
 import earthbound.bank08;
 import earthbound.bank0A;
 import earthbound.bank0C;
@@ -22,6 +21,7 @@ import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
+import earthbound.text;
 import core.stdc.string;
 
 import std.experimental.logger;
@@ -1209,7 +1209,7 @@ void unknownC4334A(short direction) {
 		unknown7E5DDC = unknown7E5DBE;
 		//unknown7E5DDE = doorData[unknown7E5DBC & 0x7FFF]
 
-		unknown7E5DDE = &unknown7E5DBC.entryA.textPtr[0];
+		unknown7E5DDE = unknown7E5DBC.entryA.textPtr;
 		currentTPTEntry = -2;
 	}
 }
@@ -2768,7 +2768,7 @@ void unknownC466C1(short arg1) {
 	unknownC07C5B();
 	unknown7E5D58 = 0;
 	unknown7E9E35 = cast(short)(arg1 - 1);
-	displayText(textC466C1.ptr);
+	displayText(getTextBlock("textC466C1"));
 	unknownC4343E(arg1);
 }
 
@@ -2824,7 +2824,7 @@ void unknownC4681A() {
 	if (npcConfig[entityTPTEntries[currentEntitySlot]].talkText == null) {
 		return;
 	}
-	unknownC064E3(8, QueuedInteractionPtr(&npcConfig[entityTPTEntries[currentEntitySlot]].talkText[0]));
+	unknownC064E3(8, QueuedInteractionPtr(getTextBlock(npcConfig[entityTPTEntries[currentEntitySlot]].talkText)));
 }
 
 /// $C46881
@@ -5610,7 +5610,7 @@ void unknownC4C60E(short arg1) {
 /// $C4C64D
 short unknownC4C64D() {
 	skippablePause(0x3C);
-	displayText(textGameOver.ptr);
+	displayText(getTextBlock("textGameOver"));
 	unknownC1DD5F();
 	if (getEventFlag(EventFlag.noContinueSelected) == 0) {
 		skippablePause(0x3C);
@@ -6636,7 +6636,7 @@ short unknownC4D989(short arg1) {
 	unknown7E9641 = 0;
 	short x12 = 0;
 	short x14 = 0;
-	displayText(&attractModeText[arg1][0]);
+	displayText(getTextBlock(attractModeText[arg1]));
 	while (unknown7E9641 == 0) {
 		unknownC4A7B0();
 		if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
