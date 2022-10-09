@@ -3931,7 +3931,7 @@ void unknownC49A4B() {
 	unknownC2DB3F();
 }
 
-/// $C49A56
+/// $C49A56 - prepares flyover text graphics
 void unknownC49A56() {
 	prepareForImmediateDMA();
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
@@ -3944,7 +3944,7 @@ void unknownC49A56() {
 		bg2Buffer[i * 32] = 0;
 		bg2Buffer[i * 32 + 1] = 0;
 		bg2Buffer[i * 32 + 2] = 0;
-		for (short j = 0; j < 0x1D; j++) {
+		for (short j = 3; j < 0x1D; j++) {
 			bg2Buffer[i * 32 + j] = cast(ushort)(0x2000 + y);
 			y++;
 		}
