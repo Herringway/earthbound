@@ -3942,15 +3942,15 @@ void unknownC49A56() {
 	ushort y = 0x10;
 	for (short i = 0; i < 0x20; i++) {
 		bg2Buffer[i * 32] = 0;
+		bg2Buffer[i * 32 + 1] = 0;
 		bg2Buffer[i * 32 + 2] = 0;
-		bg2Buffer[i * 32 + 4] = 0;
 		for (short j = 0; j < 0x1D; j++) {
 			bg2Buffer[i * 32 + j] = cast(ushort)(0x2000 + y);
 			y++;
 		}
-		bg2Buffer[i * 32 + 58] = 0;
-		bg2Buffer[i * 32 + 60] = 0;
-		bg2Buffer[i * 32 + 62] = 0;
+		bg2Buffer[i * 32 + 29] = 0;
+		bg2Buffer[i * 32 + 30] = 0;
+		bg2Buffer[i * 32 + 31] = 0;
 	}
 	copyToVRAM(0, 0x800, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
 	unknown7E3C18 = 0x1A;
