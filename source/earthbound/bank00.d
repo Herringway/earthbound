@@ -2078,7 +2078,7 @@ short unknownC042EF(short direction) {
 	unknown7E5D58 = 1;
 	while (true) {
 		short x10 = npcCollisionCheck(x14, x04, gameState.currentPartyMembers);
-		if (x10 > 0) {
+		if (x10 >= 0) {
 			currentTPTEntry = entityTPTEntries[x10];
 			unknown7E5D64 = x10;
 			break;
@@ -2110,17 +2110,17 @@ short unknownC043BC() {
 	gameState.leaderDirection = (((gameState.leaderDirection & 0xFFFE) + 2) & 7);
 	a = unknownC042EF(gameState.leaderDirection);
 	if ((a != -1) && (a != 0)) {
-		return gameState.leaderDirection;
+		return cast(short)(gameState.leaderDirection & 0xFFFE);
 	}
 	gameState.leaderDirection = ((gameState.leaderDirection + 4) & 7);
 	a = unknownC042EF(gameState.leaderDirection);
 	if ((a != -1) && (a != 0)) {
-		return gameState.leaderDirection;
+		return cast(short)(gameState.leaderDirection & 0xFFFE);
 	}
 	gameState.leaderDirection = ((gameState.leaderDirection - 2) & 7);
 	a = unknownC042EF(gameState.leaderDirection);
 	if ((a != -1) && (a != 0)) {
-		return gameState.leaderDirection;
+		return cast(short)(gameState.leaderDirection & 0xFFFE);
 	}
 	gameState.leaderDirection = x10;
 	return -1;
