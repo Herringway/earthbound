@@ -4491,13 +4491,12 @@ void irqNMICommon() {
 	}
 	if ((unknown7E0028.a != 0) && (--unknown7E002A < 0)) {
 		unknown7E002A = unknown7E0028.b;
-		ubyte a = 0;
-		if (((mirrorINIDISP & 0xF) + unknown7E0028.a) < 0) {
+		ubyte a = cast(byte)((mirrorINIDISP & 0xF) + unknown7E0028.a);
+		if ((a & 0x80) != 0) {
 			mirrorHDMAEN = 0;
 			a = 0x80;
 		} else {
-			if (((mirrorINIDISP & 0xF) + unknown7E0028.a) < 16) {
-				a = cast(ubyte)(((mirrorINIDISP & 0xF) + unknown7E0028.a));
+			if (a < 16) {
 				goto Unknown6;
 			}
 			a = 15;
