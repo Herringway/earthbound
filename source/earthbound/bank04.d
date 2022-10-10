@@ -3884,11 +3884,11 @@ void unknownC4984B() {
 /// $C49875
 void unknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData) {
 	ubyte* x02 = &buf[unknown7E9F31];
-	ubyte* x12 = x02;
-	ubyte* x06 = buf;
-	for (short i = 0; 2 > i; i++) {
+	ubyte x14 = cast(ubyte)(unknown7E9F2F % 8);
+	const(ubyte)* x06 = fontData;
+	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < 8; j++) {
-			*(x02 + 1) &= ((x06[0] ^ 0xFF) >> (unknown7E9F2F % 8)) ^ 0xFF;
+			*(x02 + 1) &= ((x06[0] ^ 0xFF) >> x14) ^ 0xFF;
 			*x02 = *(x02 + 1);
 			x02 += 2;
 			x06++;
@@ -3899,16 +3899,17 @@ void unknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData)
 	if (unknown7E9F2F / 8 == unknown7E9F31) {
 		return;
 	}
-	arg1 = cast(ubyte)((unknown7E9F2F / 8) * 16);
-	unknown7E9F31 = arg1;
-	for (short i = 0; 2 > i; i++) {
+	unknown7E9F31 = cast(ushort)((unknown7E9F2F / 8) * 16);
+	x06 = fontData;
+	x02 = &buf[unknown7E9F31];
+	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < 8; j++) {
-			*(x02 + 1) &= ((x06[0] ^ 0xFF) << (8 - (unknown7E9F2F % 8))) ^ 0xFF;
+			*(x02 + 1) &= ((x06[0] ^ 0xFF) << (8 - x14)) ^ 0xFF;
 			*x02 = *(x02 + 1);
 			x02 += 2;
 			x06++;
 		}
-		x02 = &buf[arg1 + 0x1A0];
+		x02 = &buf[unknown7E9F31 + 0x1A0];
 	}
 }
 
