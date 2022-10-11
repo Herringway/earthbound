@@ -5312,7 +5312,7 @@ void unknownC09279() {
 	assert(0, "Not used");
 }
 
-/// $C09321
+/// $C092F5
 short initEntityWipe(short actionScript, short x, short y) {
 	newEntityPosZ = 0;
 	newEntityVar0 = 0;
@@ -5329,6 +5329,7 @@ short initEntityWipe(short actionScript, short x, short y) {
 	return initEntity(actionScript, x, y);
 }
 
+/// $C09321
 short initEntity(short actionScript, short x, short y) {
 	entityAllocationMinSlot *= 2;
 	entityAllocationMaxSlot *= 2;
