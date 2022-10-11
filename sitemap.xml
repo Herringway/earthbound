@@ -2206,6 +2206,8 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/BackgroundScrollingEntry.horizontalVelocity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BackgroundScrollingEntry.verticalAcceleration.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BackgroundScrollingEntry.verticalVelocity.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/baseNumberSelectorCharacter1.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/baseNumberSelectorCharacter2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleAction.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleAction.direction.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleAction.func.html</loc></url>
