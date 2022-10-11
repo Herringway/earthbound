@@ -6749,17 +6749,23 @@ short enemySelectMode(short arg1) {
 	createWindowN(Window.textBattle);
 	short x1C = 1;
 	short x1A = 1;
+	short savedX = windowStats[windowTable[Window.textBattle]].textX;
+	short savedY = windowStats[windowTable[Window.textBattle]].textY;
 	outer: while (true) {
 		setInstantPrinting();
-		unknownC438A5(windowStats[windowTable[Window.textBattle]].textX, windowStats[windowTable[Window.textBattle]].textY);
+		unknownC438A5(savedX, savedY);
 		short x02 = unknownC10D7C(x24);
 		ubyte* x18 = &unknown7E895A[7 - x02];
+			version(bugfix) {
+				alias printLetterFunc = unknownC43F77;
+			} else {
+				alias printLetterFunc = printLetter;
+			}
 		for (short i = 3; i > x02; i--) {
-			// in EB's final build, these still refer to Mother 2's number characters
-			printLetter((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
+			printLetterFunc((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
 		}
 		for (short i = x02; i != 0; i--) {
-			printLetter(((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2) + (x18++)[0]);
+			printLetterFunc(((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2) + (x18++)[0]);
 		}
 		clearInstantPrinting();
 		windowTick();
@@ -6768,11 +6774,11 @@ short enemySelectMode(short arg1) {
 			if (((padPress[0] & Pad.left) != 0) && (x1C < 3)) {
 				x1C++;
 				x1A *= 10;
-				continue;
+				continue outer;
 			} else if (((padPress[0] & Pad.right) != 0) && (x1C > 1)) {
 				x1C--;
 				x1A /= 10;
-				continue;
+				continue outer;
 			} else if ((padHeld[0] & Pad.up) != 0) {
 				if ((x24 / x1A) % 10 != 9) {
 					x24 += x1A;
@@ -6790,7 +6796,7 @@ short enemySelectMode(short arg1) {
 			} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
 				x16 = x24;
 				break outer;
-			} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
+			} else if ((padPress[0] & (Pad.b | Pad.select)) != 0) {
 				x16 = arg1;
 				break outer;
 			}
