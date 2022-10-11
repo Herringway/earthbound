@@ -55,6 +55,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/findNearbyCheckableTPTEntry.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/findNearbyTalkableTPTEntry.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/findPathToParty.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/freezeEntities.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/function14.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/gameInit.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/gasStation.html</loc></url>
@@ -226,6 +227,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/teleportMainLoop.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/testSRAMSize.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/trySpawnNPCs.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/unfreezeEntities.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0035B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC00434.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC00480.html</loc></url>
@@ -376,8 +378,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC08FE6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09279.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0927C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC0943C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC09451.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC094D0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09506.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09907.html</loc></url>
@@ -769,6 +769,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/check.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/clearBlinkingPrompt.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/clearFocusWindow.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/closeAllWindows.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/closeFocusWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/closeFocusWindowN.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/corruptionCheck.html</loc></url>
@@ -872,7 +873,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC10000.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC10004.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1004E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC1008E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC100D6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC100FE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC102D0.html</loc></url>
