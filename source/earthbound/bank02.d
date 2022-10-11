@@ -2073,7 +2073,7 @@ void unknownC2437E() {
 	if ((itemData[partyCharacters[currentAttacker.id].items[currentAttacker.actionItemSlot]].flags & ItemFlags.consumedOnUse) == 0) {
 		return;
 	}
-	if (unknownC3EE14(currentAttacker.id, currentAttacker.currentActionArgument) == 0) {
+	if (canCharacterEquip(currentAttacker.id, currentAttacker.currentActionArgument) == 0) {
 		return;
 	}
 	removeItemFromInventoryF(currentAttacker.id, currentAttacker.actionItemSlot);

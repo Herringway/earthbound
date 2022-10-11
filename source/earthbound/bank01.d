@@ -2278,7 +2278,7 @@ void debugYButtonGoods() {
 				short x16 = charSelectPrompt(1, 1, null, null);
 				if ((x16 != 0) && (findInventorySpace2(x16) != 0)) {
 					giveItemToCharacter(x16, cast(ubyte)x04);
-					if (unknownC3EE14(x16, x04) == 0) {
+					if (canCharacterEquip(x16, x04) == 0) {
 						break outer;
 					}
 					if (getItemType(x04) != 2) {
@@ -2753,7 +2753,7 @@ void* cc1D0B(DisplayTextState* arg1, ubyte arg2) {
 /// $C14F6F
 void* cc1F81(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
-	setWorkingMemory(WorkingMemory(unknownC3EE14(
+	setWorkingMemory(WorkingMemory(canCharacterEquip(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
 		getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())
 	)));
@@ -2963,7 +2963,7 @@ void* cc1D10(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D11(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1D00Arguments);
 	short x02 = getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer);
-	setWorkingMemory(WorkingMemory(unknownC3EE14(x02, getCharacterItem(x02, getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())))));
+	setWorkingMemory(WorkingMemory(canCharacterEquip(x02, getCharacterItem(x02, getCCParameters!ArgType(arg2).item.useVariableIfZero(getArgumentMemory())))));
 	return null;
 }
 
@@ -4877,7 +4877,7 @@ ushort unknownC19A43() {
 void setHPPPWindowModeItem(short arg1) {
 	short x10;
 	for (short i = 0; i < 4; i++) {
-		if (unknownC3EE14(cast(short)(i +1), arg1) == 0) {
+		if (canCharacterEquip(cast(short)(i +1), arg1) == 0) {
 			x10 = 0xC00;
 		} else if (getItemType(arg1) != 2) {
 			x10 = 0x400;
@@ -5194,7 +5194,7 @@ void unknownC1A795(short arg1) {
 			if (getItemSubtype(x16) != x1C) {
 				continue;
 			}
-			if (unknownC3EE14(cast(short)(arg1 + 1), x16) == 0) {
+			if (canCharacterEquip(cast(short)(arg1 + 1), x16) == 0) {
 				continue;
 			}
 			if (checkItemEquipped(cast(short)(arg1 + 1), cast(short)(i + 1)) != 0) {
@@ -6684,7 +6684,7 @@ short battlePSIMenuF(UnknownA97D* arg1) {
 /// $C1DE43
 void battleActionSwitchWeapons() {
 	enableBlinkingTriangle(1);
-	if (unknownC3EE14(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
+	if (canCharacterEquip(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
 		short x18 = cast(short)(currentAttacker.offense - currentAttacker.baseOffense);
 		short x04 = cast(short)(currentAttacker.guts - currentAttacker.baseGuts);
 		equipItem(currentAttacker.id, currentAttacker.actionItemSlot);
@@ -6710,7 +6710,7 @@ void battleActionSwitchWeapons() {
 /// $C1E00F
 void battleActionSwitchArmor() {
 	enableBlinkingTriangle(1);
-	if (unknownC3EE14(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
+	if (canCharacterEquip(currentAttacker.id, currentAttacker.currentActionArgument) != 0) {
 		short x16 = cast(short)(currentAttacker.defense - currentAttacker.baseDefense);
 		short x04 = cast(short)(currentAttacker.speed - currentAttacker.baseSpeed);
 		short x02 = cast(short)(currentAttacker.luck - currentAttacker.baseLuck);
