@@ -318,6 +318,18 @@ void main(string[] args) {
 			case Controller.y:
 				handleSNESButton(Pad.y, pressed, playerID);
 				break;
+			case Controller.extra1:
+				handleSNESButton(Pad.extra1, pressed, playerID);
+				break;
+			case Controller.extra2:
+				handleSNESButton(Pad.extra2, pressed, playerID);
+				break;
+			case Controller.extra3:
+				handleSNESButton(Pad.extra3, pressed, playerID);
+				break;
+			case Controller.extra4:
+				handleSNESButton(Pad.extra4, pressed, playerID);
+				break;
 			case Controller.fastForward:
 				fastForward = pressed;
 				break;
@@ -508,6 +520,10 @@ enum Controller {
 	b,
 	x,
 	y,
+	extra1,
+	extra2,
+	extra3,
+	extra4,
 	fastForward,
 	pause,
 	dumpVRAM,

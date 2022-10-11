@@ -7,6 +7,10 @@ enum maxScripts = 70; ///
 enum partyLeaderEntityIndex = 24; ///
 
 enum Pad {
+	extra4 = 0x0001, ///The SNES controller doesn't actually have a button like this
+	extra3 = 0x0002, ///The SNES controller doesn't actually have a button like this
+	extra2 = 0x0004, ///The SNES controller doesn't actually have a button like this
+	extra1 = 0x0008, ///The SNES controller doesn't actually have a button like this
 	r = 0x0010, ///
 	l = 0x0020, ///
 	x = 0x0040, ///
@@ -7026,6 +7030,7 @@ version(configurable) {
 		Nullable!ubyte autoLoadFile;
 		debug bool loadDebugMenu;
 		bool instantSpeedText;
+		bool debugMenuButton;
 	}
 } else {
 	struct GameConfig {
@@ -7034,6 +7039,7 @@ version(configurable) {
 		enum autoLoadFile = Nullable!ubyte.init;
 		debug enum loadDebugMenu = false;
 		enum instantSpeedText = false;
+		enum debugMenuButton = false;
 	}
 }
 GameConfig config;

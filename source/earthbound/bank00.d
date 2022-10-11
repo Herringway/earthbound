@@ -4662,7 +4662,11 @@ void unknownC08496() {
 
 	short x = 1;
 	while (x >= 0) {
-		padTemp = padRaw[x] & 0xFFF0;
+		version(configurable) {
+			padTemp = padRaw[x];
+		} else {
+			padTemp = padRaw[x] & 0xFFF0; //mask off the nonexistent buttons
+		}
 
 		padPress[x] = (padState[x] ^ 0xFFFF) & padTemp;
 
@@ -8386,6 +8390,24 @@ void ebMain() {
 					showTownMap();
 				} else if ((padPress[0] & Pad.l) != 0) {
 					openMenuButtonCheckTalk();
+				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra1) != 0)) {
+					unknownC0943C();
+					playSfx(Sfx.cursor1);
+					createWindowN(Window.textStandard);
+					displayText(getTextBlock("textDebugAppleMenu"));
+					clearInstantPrinting();
+					hideHPPPWindows();
+					unknownC1008E();
+					unknownC09451();
+				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra2) != 0)) {
+					unknownC0943C();
+					playSfx(Sfx.cursor1);
+					createWindowN(Window.textStandard);
+					displayText(getTextBlock("textDebugBananaMenu"));
+					clearInstantPrinting();
+					hideHPPPWindows();
+					unknownC1008E();
+					unknownC09451();
 				}
 			}
 			if (teleportDestination) {
