@@ -2362,11 +2362,11 @@ void* cc0A(DisplayTextState* arg1, ubyte arg2) {
 /// $C141D0
 void* cc09(DisplayTextState* arg1, ubyte arg2) {
 	if ((getWorkingMemory().integer != 0) && (getWorkingMemory().integer < arg2)) {
-		arg1.textptr = getTextBlock((cast(string*)arg1.textptr)[getWorkingMemory().integer - 1]);
+		arg1.textptr += string.sizeof * (getWorkingMemory().integer - 1);
 		ccArgumentGatheringLoopCounter = 0;
-		return &cc09;
+		return &cc0A;
 	} else {
-		arg1.textptr = getTextBlock((cast(string*)arg1.textptr)[arg2]);
+		arg1.textptr += string.sizeof * arg2;
 		return null;
 	}
 }
