@@ -66,6 +66,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/getScreenTransitionSoundEffect.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initBattleCommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initBattleOverworld.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/initEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initEntityWipe.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initializeMap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/initializeMiscObjectData.html</loc></url>
@@ -1394,6 +1395,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/arrC3E40A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/attractModeText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/blinkingTriangleTiles.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/canCharacterEquip.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/characterInitialEntityData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/characterSizes.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/checkItemEquipped.html</loc></url>
@@ -1453,7 +1455,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3EC8B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3ED2C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3ED98.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank03/unknownC3EE14.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3EE4D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3EE7A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3F1EC.html</loc></url>
