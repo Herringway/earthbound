@@ -4284,7 +4284,13 @@ const(ubyte)* displayText(const(ubyte)* script_ptr) {
 		if (waitBytes-- == 0) {
 			auto str = getFullCC(x1A[0] ? x1A : x12.textptr);
 			debug(printTextTrace) tracef("Next text: [%(%02X %)]", str);
-			waitBytes = str.length - 1;
+			if ((str[0] == 0x06) || (str[0] == 0x09) || (str[0] == 0x0A)) {
+				waitBytes = 0;
+			} else if ((str[0] == 0x1B) && ((str[1] == 0x02) || (str[1] == 0x03))) {
+				waitBytes = 0;
+			} else {
+				waitBytes = str.length - 1;
+			}
 		}
 		if ((unknown7E5E6E != 0) && (x1E is null)) {
 			if (unknown7E9660 == 0) {
