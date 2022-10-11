@@ -7854,7 +7854,7 @@ void loadBattleSprite(short arg1) {
 	ubyte* x1A = &unknown7F0000[0x8000];
 	decomp(&battleSpritePointers[arg1].sprite[0], x1A);
 	short y = cast(short)(x24 * x22);
-	while (--y != 0) {
+	while (y-- != 0) {
 		ubyte* x0A = &unknown7F0000[unknownC3F871[unknown7EAAB2++]];
 		for (short i = 0; i < 4; i++) {
 			ubyte* x16 = x0A;
