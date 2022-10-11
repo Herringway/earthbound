@@ -3120,7 +3120,7 @@ void instantWinHandler() {
 		waitUntilNextFrame();
 	}
 	unknownC49740();
-	unknownC0943C();
+	freezeEntities();
 	createWindow(Window.textBattle);
 	battleMoneyScratch = 0;
 	for (short i = 0; i < enemiesInBattle; i++) {
@@ -3206,7 +3206,7 @@ void instantWinHandler() {
 	} else {
 		unknownC06A07();
 	}
-	unknownC09451();
+	unfreezeEntities();
 }
 
 /// $C2654C

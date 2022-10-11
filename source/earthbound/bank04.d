@@ -63,8 +63,8 @@ short unknownC40085() {
 			continue;
 		}
 		unknownC10000();
-		unknownC1008E();
-		unknownC09451();
+		closeAllWindows();
+		unfreezeEntities();
 		//longjmp(&jmpbuf2);
 	}
 	ushort x = 30;
@@ -5661,12 +5661,12 @@ short unknownC4C64D() {
 
 /// $C4C718
 short spawn() {
-	unknownC0943C();
+	freezeEntities();
 	unknownC4C2DE();
 	short result = unknownC4C64D();
 	if (result != 0) {
 		fadeOutWithMosaic(2, 1, 0);
-		unknownC09451();
+		unfreezeEntities();
 		return result;
 	}
 	unknownC4C58F(0x20);
@@ -5699,7 +5699,7 @@ short spawn() {
 	unknown7E5D58 = 0;
 	spawnBuzzBuzz();
 	oamClear();
-	unknownC09451();
+	unfreezeEntities();
 	unknownC4C60E(0x20);
 	return result;
 }

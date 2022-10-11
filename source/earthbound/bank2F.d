@@ -22109,9 +22109,9 @@ void unknownEFEA4A() {
 	fadeOut(1, 1);
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, 0);
-	unknownC09451();
+	unfreezeEntities();
 	screenTransition(unknown7EB573, 0);
-	unknownC0943C();
+	freezeEntities();
 }
 
 /// $EFEA9E

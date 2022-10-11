@@ -2637,7 +2637,7 @@ ushort unknownC04FFE() {
 		unknown7E4DC4 = 0;
 		updateParty();
 		unknownC07B52();
-		unknownC09451();
+		unfreezeEntities();
 	}
 	return result;
 }
@@ -3500,7 +3500,7 @@ void screenTransition(short arg1, short arg2) {
 	short x02 = screenTransitionConfigTable[arg1].duration == 0xFF ? 900 : screenTransitionConfigTable[arg1].duration;
 	unknownC42631(screenTransitionConfigTable[arg1].unknown5, screenTransitionConfigTable[arg1].direction * 4);
 	if (arg2 == 1) {
-		unknownC0943C();
+		freezeEntities();
 		unknownC0DD2C(2);
 		if (screenTransitionConfigTable[arg1].animationID != 0) {
 			unknownC4A67E(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags | AnimationFlags.unknown1);
@@ -3528,7 +3528,7 @@ void screenTransition(short arg1, short arg2) {
 			waitUntilNextFrame();
 			unknown7E4676 = 1;
 		}
-		unknownC09451();
+		unfreezeEntities();
 	} else {
 		short x1D = (screenTransitionConfigTable[arg1].fadeStyle <= 50) ? 1 : 0;
 		if (x1D != 0) {
@@ -3552,7 +3552,7 @@ void screenTransition(short arg1, short arg2) {
 			updateScreen();
 			waitUntilNextFrame();
 			if (i == 1) {
-				unknownC0943C();
+				freezeEntities();
 			}
 		}
 		if (x1D == 0) {
@@ -3562,7 +3562,7 @@ void screenTransition(short arg1, short arg2) {
 	if (currentGiygasPhase < GiygasPhase.startPraying) {
 		unknownC2EAAA();
 	}
-	unknownC09451();
+	unfreezeEntities();
 	unknown7E5DAA = 0;
 	unknown7E5DA8 = 0;
 }
@@ -5412,7 +5412,7 @@ void movementNOP() {
 }
 
 /// $C0943C
-void unknownC0943C() {
+void freezeEntities() {
 	if (firstEntity < 0) {
 		return;
 	}
@@ -5424,7 +5424,7 @@ void unknownC0943C() {
 }
 
 /// $C09451
-void unknownC09451() {
+void unfreezeEntities() {
 	short x = firstEntity;
 	while (x >= 0) {
 		entityTickCallbackFlags[x / 2] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
@@ -8322,7 +8322,7 @@ void initBattleOverworld() {
 		entitySpriteMapFlags[i] &= 0x7FFF;
 	}
 	overworldStatusSuppression = 0;
-	unknownC09451();
+	unfreezeEntities();
 	unknown7E5D58 = 0x78;
 	touchedEnemy = -1;
 }
@@ -8356,9 +8356,9 @@ void ebMain() {
 				initBattleOverworld();
 				inputDisableFrameCounter++;
 			} else if (((padPress[0] & (Pad.a | Pad.l)) != 0) && (gameState.walkingStyle == WalkingStyle.bicycle)) {
-				unknownC0943C();
+				freezeEntities();
 				getOffBicycle();
-				unknownC09451();
+				unfreezeEntities();
 				continue;
 			}
 			if (debugging) {
@@ -8391,23 +8391,23 @@ void ebMain() {
 				} else if ((padPress[0] & Pad.l) != 0) {
 					openMenuButtonCheckTalk();
 				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra1) != 0)) {
-					unknownC0943C();
+					freezeEntities();
 					playSfx(Sfx.cursor1);
 					createWindowN(Window.textStandard);
 					displayText(getTextBlock("textDebugAppleMenu"));
 					clearInstantPrinting();
 					hideHPPPWindows();
-					unknownC1008E();
-					unknownC09451();
+					closeAllWindows();
+					unfreezeEntities();
 				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra2) != 0)) {
-					unknownC0943C();
+					freezeEntities();
 					playSfx(Sfx.cursor1);
 					createWindowN(Window.textStandard);
 					displayText(getTextBlock("textDebugBananaMenu"));
 					clearInstantPrinting();
 					hideHPPPWindows();
-					unknownC1008E();
-					unknownC09451();
+					closeAllWindows();
+					unfreezeEntities();
 				}
 			}
 			if (teleportDestination) {
@@ -10071,7 +10071,7 @@ void teleportMainLoop() {
 	}
 	setPartyTickCallbacks(0x17, &unknownC05200, &unknownC04D78);
 	unknownC0DE7C();
-	unknownC09451();
+	unfreezeEntities();
 	unknown7E5DBA = 0;
 	unknown7E9F45.fraction = 0;
 	unknown7E9F45.integer = 0;

@@ -25,12 +25,12 @@ void unknownC10000() {
 
 /// $C10004
 void unknownC10004(const(ubyte)* arg1) {
-	unknownC0943C();
+	freezeEntities();
 	displayText(arg1);
 	do {
 		windowTick();
 	} while (unknown7EB4A8 != -1);
-	unknownC09451();
+	unfreezeEntities();
 }
 
 /// $C10036
@@ -78,7 +78,7 @@ void closeFocusWindowN() {
 }
 
 /// $C1008E
-void unknownC1008E() {
+void closeAllWindows() {
 	unknown7E5E70 = 1;
 	while (windowTail != -1) {
 		closeWindow(windowStats[windowTail].windowID);
@@ -1674,7 +1674,7 @@ void unknownC12E42() {
 
 /// $C12E63
 void debugYButtonMenu() {
-	unknownC0943C();
+	freezeEntities();
 	playSfx(Sfx.cursor1);
 	showHPPPWindows();
 	const(ubyte)* x1A = null;
@@ -1769,7 +1769,7 @@ void debugYButtonMenu() {
 				break;
 			case 23:
 				x1A = getTextBlock("textEndOfGamePickyEvent");
-				unknownC1008E();
+				closeAllWindows();
 				hideHPPPWindows();
 				displayText(x1A);
 				goto Unknown56;
@@ -1782,12 +1782,12 @@ void debugYButtonMenu() {
 	createWindowN(Window.textStandard);
 	displayText(x1A);
 	Unknown56:
-	unknownC1008E();
+	closeAllWindows();
 	hideHPPPWindows();
 	do {
 		windowTick();
 	} while (unknown7EB4A8 != -1);
-	unknownC09451();
+	unfreezeEntities();
 }
 
 /// $C13187
@@ -1876,7 +1876,7 @@ void unknownC133B0() {
 
 /// $C134A7
 void openMenuButton() {
-	unknownC0943C();
+	freezeEntities();
 	playSfx(Sfx.cursor1);
 	createWindowN(Window.unknown00);
 	unknown7E5E6C = 0;
@@ -2119,16 +2119,16 @@ void openMenuButton() {
 	}
 	clearInstantPrinting();
 	hideHPPPWindows();
-	unknownC1008E();
+	closeAllWindows();
 	do {
 		windowTick();
 	} while (unknown7EB4A8 != -1);
-	unknownC09451();
+	unfreezeEntities();
 }
 
 /// $C13---
 void openMenuButtonCheckTalk() {
-	unknownC0943C();
+	freezeEntities();
 	playSfx(Sfx.cursor1);
 	const(ubyte)* textPtr;
 	textPtr = talkTo();
@@ -2141,16 +2141,16 @@ void openMenuButtonCheckTalk() {
 	displayText(textPtr);
 	clearInstantPrinting();
 	hideHPPPWindows();
-	unknownC1008E();
+	closeAllWindows();
 	do {
 		windowTick();
 	} while (unknown7EB4A8 != -1);
-	unknownC09451();
+	unfreezeEntities();
 }
 
 /// $C13CA1
 void openHPPPDisplay() {
-	unknownC0943C();
+	freezeEntities();
 	playSfx(Sfx.cursor1);
 	openHpAndWallet();
 	do {
@@ -2163,9 +2163,9 @@ void openHPPPDisplay() {
 	playSfx(Sfx.cursor2);
 	clearInstantPrinting();
 	hideHPPPWindows();
-	unknownC1008E();
+	closeAllWindows();
 	windowTick();
-	unknownC09451();
+	unfreezeEntities();
 }
 
 /// $C13CE5
@@ -2173,9 +2173,9 @@ void showTownMap() {
 	if (findItemInInventory2(0xFF, ItemID.townMap) == 0) {
 		return;
 	}
-	unknownC0943C();
+	freezeEntities();
 	displayTownMap();
-	unknownC09451();
+	unfreezeEntities();
 }
 
 /// $C13D03
@@ -3719,7 +3719,7 @@ void* cc18Tree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x03:
 			return &cc1803;
 		case 0x04:
-			unknownC1008E();
+			closeAllWindows();
 			hideHPPPWindows();
 			windowTick();
 			break;
@@ -6498,13 +6498,13 @@ void showHPAlert(short arg1) {
 	battler.allyOrEnemy = 0;
 	battler.id = cast(ubyte)arg1;
 	currentAttacker = &battler;
-	unknownC0943C();
+	freezeEntities();
 	createWindowN(Window.textStandard);
 	unknownC1AC4A(&partyCharacters[arg1].name[0], 5);
 	displayText(getTextBlock("textAlertConditionCritical"));
 	closeFocusWindowN();
 	windowTick();
-	unknownC09451();
+	unfreezeEntities();
 	currentAttacker = x02;
 }
 
@@ -6614,7 +6614,7 @@ void closeFocusWindow() {
 
 /// $C1DD5F
 void unknownC1DD5F() {
-	unknownC1008E();
+	closeAllWindows();
 	windowTick();
 	hideHPPPWindows();
 	windowTick();
@@ -7562,7 +7562,7 @@ void fileMenuLoop() {
 						break;
 					default: break;
 				}
-				unknownC1008E();
+				closeAllWindows();
 			} else {
 				openTextSpeedMenu();
 				while (true) {
@@ -7582,11 +7582,11 @@ void fileMenuLoop() {
 						} else {
 							changeMusic(Music.namingScreen);
 							nameLoop: while (true) {
-								unknownC1008E();
+								closeAllWindows();
 								short x20;
 								for (short i = 0; 7 > i; unknownC4D830(i), i += x20) {
 									if (i == -1) {
-										unknownC1008E();
+										closeAllWindows();
 										fileSelectMenu(1);
 										unknownC1F497(1);
 										unknownC1F616(1);
@@ -7627,7 +7627,7 @@ void fileMenuLoop() {
 										continue;
 									}
 								}
-								unknownC1008E();
+								closeAllWindows();
 								setInstantPrinting();
 								for (short i = 0; 4 > i; i++, unknownC1931B(i)) {
 									createWindowN(cast(short)(Window.fileSelectNamingConfirmationNess + i));
@@ -7705,7 +7705,7 @@ void fileMenuLoop() {
 			}
 		}
 	}
-	unknownC1008E();
+	closeAllWindows();
 	unknown7E9627 = unknownC3FB1F[gameState.textSpeed - 1];
 	selectedTextSpeed = cast(ushort)(gameState.textSpeed - 1);
 	unknown7E964B = (gameState.textSpeed == 3) ? 0 : 30;

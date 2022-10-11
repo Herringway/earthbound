@@ -710,7 +710,7 @@ void unknownC3EE4D() {
 	updateParty();
 	unknownC07B52();
 	unknownC1004E();
-	unknownC0943C();
+	freezeEntities();
 	if (unknown7EB4A8 == -1) {
 		return;
 	}
