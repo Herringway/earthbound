@@ -699,19 +699,10 @@ int numSelectPrompt(short arg1) {
 		ubyte* x04 = &unknown7E895A[7 - x02];
 		short x16;
 		for (x16 = arg1; x16 > x02; x16--) {
-			// These weren't updated for EB's new number range
-			version(bugfix) {
-				unknownC43F77((x16 == x1C) ? 0x10 : ebChar('0'));
-			} else {
-				unknownC43F77((x16 == x1C) ? 0x10 : 0x30);
-			}
+			unknownC43F77((x16 == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
 		}
 		for (; x16 != 0; x16--) {
-			version(bugfix) {
-				unknownC43F77((x04++)[0] + ((x16 == x1C) ? 0x10 : ebChar('0')));
-			 } else {
-				unknownC43F77((x04++)[0] + ((x16 == x1C) ? 0x10 : 0x30));
-			 }
+			unknownC43F77((x04++)[0] + ((x16 == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2));
 		}
 		clearInstantPrinting();
 		windowTick();
@@ -721,24 +712,28 @@ int numSelectPrompt(short arg1) {
 				playSfx(Sfx.cursor2);
 				x1C++;
 				x18 *= 10;
+				continue outer;
 			} else if (((padPress[0] & Pad.right) != 0) && (x1C > 1)) {
 				playSfx(Sfx.cursor2);
 				x1C--;
 				x18 /= 10;
+				continue outer;
 			} else if ((padHeld[0] & Pad.up) != 0) {
 				playSfx(Sfx.cursor3);
-				if ((x1E / x18) % 10 == 9) {
+				if ((x1E / x18) % 10 != 9) {
 					x1E += x18;
 				} else {
 					x1E -= x18 * 9;
 				}
+				continue outer;
 			} else if ((padHeld[0] & Pad.down) != 0) {
 				playSfx(Sfx.cursor3);
-				if ((x1E / x18) % 10 == 0) {
+				if ((x1E / x18) % 10 != 0) {
 					x1E -= x18;
 				} else {
 					x1E += x18 * 9;
 				}
+				continue outer;
 			} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
 				playSfx(Sfx.cursor1);
 				return x1E;
@@ -748,6 +743,7 @@ int numSelectPrompt(short arg1) {
 			}
 		}
 	}
+	assert(0, "This should never be reached");
 }
 
 /// $C1134B - Opens the HP/PP and wallet windows
@@ -6760,18 +6756,10 @@ short enemySelectMode(short arg1) {
 		ubyte* x18 = &unknown7E895A[7 - x02];
 		for (short i = 3; i > x02; i--) {
 			// in EB's final build, these still refer to Mother 2's number characters
-			version(bugfix) {
-				printLetter((i == x1C) ? ebChar('0') : ebChar('0'));
-			} else {
-				printLetter((i == x1C) ? 0x10 : 0x30);
-			}
+			printLetter((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
 		}
 		for (short i = x02; i != 0; i--) {
-			version(bugfix) {
-				printLetter(((i == x1C) ? ebChar('0') : ebChar('0')) + (x18++)[0]);
-			} else {
-				printLetter(((i == x1C) ? 0x10 : 0x30) + (x18++)[0]);
-			}
+			printLetter(((i == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2) + (x18++)[0]);
 		}
 		clearInstantPrinting();
 		windowTick();

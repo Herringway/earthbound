@@ -55,6 +55,11 @@ enum hpPPWindowHeight = 8;
 
 enum objectTickDisabled = 0x8000; ///
 enum objectMoveDisabled = 0x4000; ///
+
+///
+enum ubyte baseNumberSelectorCharacter1 = 0x10;
+///
+enum ubyte baseNumberSelectorCharacter2 = 0x30;
 ///
 enum WalkingStyle {
 	normal = 0,
