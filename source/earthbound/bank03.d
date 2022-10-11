@@ -698,7 +698,7 @@ void unknownC3ED98(short arg1, short arg2, short arg3) {
 
 /// $C3EE14
 short unknownC3EE14(short arg1, short arg2) {
-	if ((itemData[arg2].flags & itemUsableFlags[arg1]) != 0) {
+	if ((itemData[arg2].flags & itemUsableFlags[arg1 - 1]) != 0) {
 		return 1;
 	} else {
 		return 0;
