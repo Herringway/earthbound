@@ -4739,7 +4739,7 @@ void unknownC1952F(short arg1) {
 	createWindowN(Window.statusMenu);
 	windowTickWithoutInstantPrinting();
 	unknown7E5E71 = 1;
-	displayText(getTextBlock("statusWindowText"));
+	displayText(&statusWindowText[0]);
 	unknown7E5E71 = 0;
 	if (gameState.playerControlledPartyMemberCount != 1) {
 		unknown7E5E7A = 8;
