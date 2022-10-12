@@ -7696,7 +7696,7 @@ void battleSwirlSequence() {
 
 /// $C2E9C8
 short unknownC2E9C8() {
-	if ((unknown7EAEC2 != 0) && (4 > unknown7EAECA)) {
+	if ((unknown7EAEC2 != 0) && (unknown7EAECA > 4)) {
 		return 1;
 	}
 	return 0;
