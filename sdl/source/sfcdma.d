@@ -149,14 +149,13 @@ void queueHDMA(ubyte channelID) {
 		do {
 			if (increment) {
 				lineChunk = chunk[line * numBytes .. line * numBytes + numBytes];
-				line++;
 			}
 			foreach (o; 0 .. numBytes) {
 				const addr = cast(ubyte)(baseAddr + o / (1 + shortSized));
 				buffer[0] = HDMAWrite(lineBase, addr, chunk[o]);
 				buffer = buffer[1 .. $];
 			}
-		} while (always && line < lines); //always bit means value is written EVERY line
+		} while (always && ++line < lines); //always bit means value is written EVERY line
 		count = line * numBytes;
 	}
 	assert(channelID < 8);
@@ -170,12 +169,10 @@ void queueHDMA(ubyte channelID) {
 	ubyte lineBase = 0;
 	ubyte dest = channel.BBAD;
 	HDMAWrite[] buffer = g_frameData.hdmaData[g_frameData.numHdmaWrites .. $];
-	ubyte lineByte;
 	ubyte increment = 1;
 	if (!indirect) {
 		auto data = cast(const(ubyte)*)channel.A1T;
 		while (data[0] != 0) {
-			lineByte = data[0];
 			const lines = (data[0] == 0x80) ? 128 : (data[0] & 0x7F);
 			const always = !!(data[0] & 0x80);
 			size_t offset;
