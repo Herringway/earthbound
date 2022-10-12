@@ -5495,6 +5495,9 @@ struct MusicPackPointer {
 	//ubyte bank;
 	const(ubyte)* addr; ///
 }
+struct Money {
+	uint val;
+}
 ///
 struct NPC {
 	ubyte type; ///
@@ -5529,6 +5532,17 @@ struct NPC {
 		appearanceStyle = ast;
 		talkText = tt;
 		item = se;
+	}
+	///
+	this(ubyte t, ushort s, ubyte d, ushort as, ushort ef, ubyte ast, string tt, Money money) {
+		type = t;
+		sprite = s;
+		direction = d;
+		actionScript = ast;
+		eventFlag = ef;
+		appearanceStyle = ast;
+		talkText = tt;
+		item = money.val + 0x100;
 	}
 }
 ///
