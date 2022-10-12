@@ -5480,7 +5480,7 @@ void unknownC094D0(short a, short x) {
 		do {
 			actionScriptVar8A = y;
 			currentScriptOffset = y;
-			currentScriptSlot = y;
+			currentScriptSlot = y / 2;
 			unknown7E0A58 = entityScriptUnknown125A[y / 2];
 			unknownC09506();
 			y = unknown7E0A58;
