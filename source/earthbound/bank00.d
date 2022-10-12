@@ -8719,7 +8719,7 @@ short unknownC0C62B() {
 	if ((entityTPTEntries[currentEntitySlot] < 0) && (unknownC0C524() != 0)) {
 		x02 = short.min;
 	}
-	return cast(short)(unknownC41EFF(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], entityScriptVar6Table[currentTPTEntry], entityScriptVar7Table[currentEntitySlot]) + x02);
+	return cast(short)(unknownC41EFF(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], entityScriptVar6Table[currentEntitySlot], entityScriptVar7Table[currentEntitySlot]) + x02);
 }
 
 /// $C0C682
