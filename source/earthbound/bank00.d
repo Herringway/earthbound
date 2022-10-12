@@ -6856,16 +6856,11 @@ void unknownC0A360() {
 		if ((entityObstacleFlags[actionScriptVar88 / 2] & 0xD0) != 0) {
 			movementCode39(null);
 			return;
-		} else {
-			if (entityCollidedObjects[actionScriptVar88 / 2] >= 0) {
-				return;
-			} else {
-				return unknownC0A37ACommon(actionScriptVar88);
-			}
+		} else if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
+			return;
 		}
-	} else {
-		return unknownC0A37ACommon(actionScriptVar88);
 	}
+	unknownC0A37ACommon(actionScriptVar88);
 }
 
 /// $C0A37A
@@ -6883,11 +6878,9 @@ void unknownC0A384() {
 	if (entityUnknown2C5E[actionScriptVar88 / 2] <= 0) {
 		if ((entityObstacleFlags[actionScriptVar88 / 2] & 0xD0) != 0) {
 			movementCode39(null);
-		} else {
-			if (entityCollidedObjects[actionScriptVar88 / 2] <= 0) {
-				return;
-				//some unreachable code here
-			}
+		} else if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
+			return;
+			//some unreachable code here
 		}
 	}
 	unknownC09FAEEntry3(actionScriptVar88);
@@ -7131,7 +7124,7 @@ void unknownC0A6AD(short, ref const(ubyte)* arg2) {
 /// $C0A6B8
 short unknownC0A6B8() {
 	short tmp = 0;
-	if (entityCollidedObjects[actionScriptVar88 / 2] >= 0) {
+	if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
 		tmp--;
 	}
 	return tmp;
