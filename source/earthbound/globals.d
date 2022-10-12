@@ -170,12 +170,30 @@ __gshared short[maxEntities] entityAbsZTable; /// $0C06
 __gshared ushort[maxEntities] entityAbsXFractionTable; /// $0C42
 __gshared ushort[maxEntities] entityAbsYFractionTable; /// $0C7E
 __gshared ushort[maxEntities] entityAbsZFractionTable; /// $0CBA
+const(FixedPoint1616) fullEntityAbsX(size_t idx) {
+	return FixedPoint1616(entityAbsXFractionTable[idx], entityAbsXTable[idx]);
+}
+const(FixedPoint1616) fullEntityAbsY(size_t idx) {
+	return FixedPoint1616(entityAbsYFractionTable[idx], entityAbsYTable[idx]);
+}
+const(FixedPoint1616) fullEntityAbsZ(size_t idx) {
+	return FixedPoint1616(entityAbsZFractionTable[idx], entityAbsZTable[idx]);
+}
 __gshared short[maxEntities] entityDeltaXTable; /// $0CF6
 __gshared short[maxEntities] entityDeltaYTable; /// $0D32
 __gshared short[maxEntities] entityDeltaZTable; /// $0D6E
 __gshared ushort[maxEntities] entityDeltaXFractionTable; /// $0DAA
 __gshared ushort[maxEntities] entityDeltaYFractionTable; /// $0DE6
 __gshared ushort[maxEntities] entityDeltaZFractionTable; /// $0E22
+const(FixedPoint1616) fullEntityDeltaX(size_t idx) {
+	return FixedPoint1616(entityDeltaXFractionTable[idx], entityDeltaXTable[idx]);
+}
+const(FixedPoint1616) fullEntityDeltaY(size_t idx) {
+	return FixedPoint1616(entityDeltaYFractionTable[idx], entityDeltaYTable[idx]);
+}
+const(FixedPoint1616) fullEntityDeltaZ(size_t idx) {
+	return FixedPoint1616(entityDeltaZFractionTable[idx], entityDeltaZTable[idx]);
+}
 __gshared short[maxEntities] entityScriptVar0Table; /// $0E5E
 __gshared short[maxEntities] entityScriptVar1Table; /// $0E9A
 __gshared short[maxEntities] entityScriptVar2Table; /// $0ED6

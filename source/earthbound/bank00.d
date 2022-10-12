@@ -6484,13 +6484,11 @@ short unknownC09EFFEntry2(short arg1) {
 //note: arg1 was X register originally
 short unknownC09EFFCommon(short arg1) {
 	short y = 0;
-	//entityAbsXFractionTable[arg1 / 2] + entityDeltaXFractionTable[arg1 / 2]
-	unknown7E2848 = cast(short)(entityAbsXTable[arg1 / 2] + entityDeltaXTable[arg1 / 2]);
+	unknown7E2848 = cast(short)((fullEntityAbsX(arg1 / 2).combined + fullEntityDeltaX(arg1 / 2).combined) >> 16);
 	if (unknown7E2848 != entityAbsXTable[arg1 / 2]) {
 		y++;
 	}
-	//entityAbsYFractionTable[arg1 / 2] + entityDeltaYFractionTable[arg1 / 2]
-	unknown7E284A = cast(short)(entityAbsYTable[arg1 / 2] + entityDeltaYTable[arg1 / 2]);
+	unknown7E284A = cast(short)((fullEntityAbsY(arg1 / 2).combined + fullEntityDeltaY(arg1 / 2).combined) >> 16);
 	if (unknown7E284A != entityAbsYTable[arg1 / 2]) {
 		y++;
 	}
@@ -6561,19 +6559,16 @@ void unknownC09FAEEntry2() {
 /// $C09FB0
 void unknownC09FAEEntry3(short arg1) {
 	short i = arg1 / 2;
-	FixedPoint1616 pos, delta;
+	FixedPoint1616 newPosition;
 
-	pos = FixedPoint1616(entityAbsXFractionTable[i], entityAbsXTable[i]);
-	delta = FixedPoint1616(entityDeltaXFractionTable[i], entityDeltaXTable[i]);
-	pos.combined += delta.combined;
-	entityAbsXTable[i] = cast(short)pos.integer;
-	entityAbsXFractionTable[i] = pos.fraction;
+	tracef("%s: (%s, %s) + (%s, %s)", i, fullEntityAbsX(i).asDouble, fullEntityAbsY(i).asDouble, fullEntityDeltaX(i).asDouble, fullEntityDeltaY(i).asDouble);
+	newPosition.combined = fullEntityAbsX(i).combined + fullEntityDeltaX(i).combined;
+	entityAbsXTable[i] = newPosition.integer;
+	entityAbsXFractionTable[i] = newPosition.fraction;
 
-	pos = FixedPoint1616(entityAbsYFractionTable[i], entityAbsYTable[i]);
-	delta = FixedPoint1616(entityDeltaYFractionTable[i], entityDeltaYTable[i]);
-	pos.combined += delta.combined;
-	entityAbsYTable[i] = cast(short)pos.integer;
-	entityAbsYFractionTable[i] = pos.fraction;
+	newPosition.combined = fullEntityAbsY(i).combined + fullEntityDeltaY(i).combined;
+	entityAbsYTable[i] = newPosition.integer;
+	entityAbsYFractionTable[i] = newPosition.fraction;
 }
 
 /// $C09FAE
