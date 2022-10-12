@@ -22127,7 +22127,7 @@ void unknownEFEAC8() {
 	TMW = 0x13;
 	CGWSEL = 0x10;
 	CGADSUB = 0x93;
-	COLDATA = 0xEF;
+	setFixedColourData(0xEF);
 	dmaChannels[4].DMAP = 1;
 	dmaChannels[4].BBAD = 0x26;
 	dmaChannels[4].A1T = &unknownEFEB1D;

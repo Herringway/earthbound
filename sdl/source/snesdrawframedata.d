@@ -51,9 +51,9 @@ align:
 	ubyte TSW;
 	ubyte CGWSEL;
 	ubyte CGADSUB;
-	ubyte FIXED_COLOR_DATA_R;
-	ubyte FIXED_COLOR_DATA_G;
-	ubyte FIXED_COLOR_DATA_B;
+	ubyte FIXED_COLOUR_DATA_R;
+	ubyte FIXED_COLOUR_DATA_G;
+	ubyte FIXED_COLOUR_DATA_B;
 	ubyte SETINI;
 
 	ushort[0x8000] vram;
@@ -155,4 +155,17 @@ void copyGlobalsToFrameData() {
 	g_frameData.CGWSEL = CGWSEL;
 	g_frameData.CGADSUB = CGADSUB;
 	g_frameData.SETINI = SETINI;
+}
+
+void setFixedColourData(ubyte val) {
+	const intensity = val & 0x1F;
+	if (val & 0x80) {
+		g_frameData.FIXED_COLOUR_DATA_B = intensity;
+	}
+	if (val & 0x40) {
+		g_frameData.FIXED_COLOUR_DATA_G = intensity;
+	}
+	if (val & 0x20) {
+		g_frameData.FIXED_COLOUR_DATA_R = intensity;
+	}
 }

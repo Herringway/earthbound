@@ -149,7 +149,6 @@ __gshared ubyte* TM; ///
 __gshared ubyte* TD; ///
 __gshared ubyte* TMW; ///
 __gshared ubyte* TSW; ///
-__gshared ubyte* FIXED_COLOUR_DATA; ///
 __gshared ubyte* SETINI; ///
 __gshared ubyte* HTIMEL; ///
 __gshared ubyte* HTIMEH; ///

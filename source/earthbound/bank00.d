@@ -4430,7 +4430,7 @@ void start() {
 	TSW = 0;
 	CGWSEL = 0;
 	CGADSUB = 0;
-	FIXED_COLOUR_DATA = 0xE0;
+	setFixedColourData(0xE0);
 	SETINI = 0;
 	//not used
 	//WRMPYA = 0xFF;
@@ -8013,9 +8013,9 @@ immutable ubyte[10] unknownC0B010 = [0x00, 0x00, 0x24, 0x64, 0xA4, 0xE4, 0x21, 0
 
 /// $C0B01A
 void setColData(ubyte red, ubyte green, ubyte blue) {
-	FIXED_COLOUR_DATA = (red & 0x1F) | 0x20;
-	FIXED_COLOUR_DATA = (green & 0x1F) | 0x40;
-	FIXED_COLOUR_DATA = (blue & 0x1F) | 0x80;
+	setFixedColourData((red & 0x1F) | 0x20);
+	setFixedColourData((green & 0x1F) | 0x40);
+	setFixedColourData((blue & 0x1F) | 0x80);
 }
 
 /// $C0B039

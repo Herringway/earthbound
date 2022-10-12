@@ -502,9 +502,9 @@ void unknownC4240A() {
 /// $C42439
 void unknownC42439(short arg1) {
 	CGADSUB = cast(ubyte)arg1;
-	FIXED_COLOUR_DATA = unknown7E9E37 | 0x80;
-	FIXED_COLOUR_DATA = unknown7E9E38 | 0x40;
-	FIXED_COLOUR_DATA = unknown7E9E39 | 0x20;
+	setFixedColourData(unknown7E9E37 | 0x80);
+	setFixedColourData(unknown7E9E38 | 0x40);
+	setFixedColourData(unknown7E9E39 | 0x20);
 }
 
 /// $C4245D
@@ -532,7 +532,7 @@ void unknownC4249A(ubyte arg1, ubyte arg2) {
 	WBGLOG = 0;
 	WOBJLOG = 0;
 	CGWSEL = 0x10;
-	COLDATA = arg2 | 0xE0;
+	setFixedColourData(arg2 | 0xE0);
 }
 
 /// $C424D1
@@ -545,7 +545,7 @@ void unknownC424D1() {
 	WOBJLOG = 0;
 	CGWSEL = 0x20;
 	CGADSUB = 0xB3;
-	COLDATA = 0xEF;
+	setFixedColourData(0xEF);
 }
 
 /// $C42542
@@ -573,7 +573,7 @@ void unknownC4258C() {
 	WOBJLOG = 0;
 	CGWSEL = 0x20;
 	CGADSUB = 0xB3;
-	COLDATA = 0xEF;
+	setFixedColourData(0xEF);
 }
 
 /// $C425CC

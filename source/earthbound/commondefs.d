@@ -6247,6 +6247,8 @@ void function(ubyte, ubyte, const(void)*, ushort, ushort, ubyte) handleVRAMDMA =
 ///
 void function() handleHDMA = () {};
 ///
+void function(ubyte) setFixedColourData = (ubyte) {};
+///
 void function(ubyte) playSFX = (ubyte) {};
 ///
 void function(ushort) playMusicExternal = (ushort) {};
