@@ -9030,7 +9030,7 @@ short unknownC0D15C() {
 	if (entityCollidedObjects[23] == currentEntitySlot) {
 		return -1;
 	}
-	if ((entityCollidedObjects[currentEntitySlot] < 0) || (entityCollidedObjects[currentEntitySlot] < 0x17)) {
+	if (((entityCollidedObjects[currentEntitySlot] & 0x8000) != 0) || (entityCollidedObjects[currentEntitySlot] < 0x17)) {
 		return 0;
 	}
 	return -1;
