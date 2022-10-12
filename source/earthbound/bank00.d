@@ -8068,22 +8068,22 @@ void unknownC0B0B8(short arg1, const(ubyte)* arg2) {
 }
 
 /// $C0B0EF
-void enableAttractModeWindowHDMA(ubyte arg1, ubyte arg2) {
+void enableAttractModeWindowHDMA(ubyte channel, ubyte flags) {
 	// Write the table entry for the first 100 lines of window data
 	attractModeWindowHDMATable[0].lines = 100 | 0x80;
 	attractModeWindowHDMATable[0].address = &attractModeWindowHDMAData[0];
 	// Write the table entry for the 124 remaining lines of window data
 	attractModeWindowHDMATable[1].lines = 124 | 0x80;
 	attractModeWindowHDMATable[2].lines = 0;
-	//dmaChannels[arg1].A1B = 0x7E;
-	//dmaChannels[arg1].DASB = 0x7E;
-	dmaChannels[arg1].BBAD = 0x26;
-	dmaChannels[arg1].DMAP = arg2;
+	//dmaChannels[channel].A1B = 0x7E;
+	//dmaChannels[channel].DASB = 0x7E;
+	dmaChannels[channel].BBAD = 0x26;
+	dmaChannels[channel].DMAP = flags;
 	// Depending on whether we are writing to windows 1 and 2 (4 bytes) or just window 1 (2 bytes),
 	// skip ahead in the buffer by 400 or 200 bytes (100 lines)
-	attractModeWindowHDMATable[1].address = ((arg2 & 4) != 0) ? (&attractModeWindowHDMAData[400]) : (&attractModeWindowHDMAData[200]);
-	dmaChannels[arg1].A1T = &attractModeWindowHDMATable;
-	mirrorHDMAEN |= dmaFlags[arg1];
+	attractModeWindowHDMATable[1].address = ((flags & 4) != 0) ? (&attractModeWindowHDMAData[400]) : (&attractModeWindowHDMAData[200]);
+	dmaChannels[channel].A1T = &attractModeWindowHDMATable;
+	mirrorHDMAEN |= dmaFlags[channel];
 }
 
 /// $C0B149
