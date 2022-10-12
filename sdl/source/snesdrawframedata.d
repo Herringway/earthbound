@@ -124,21 +124,6 @@ void copyGlobalsToFrameData() {
 	g_frameData.BG4SC = BG4SC;
 	g_frameData.BG12NBA = BG12NBA;
 	g_frameData.BG34NBA = BG34NBA;
-	g_frameData.BG1HOFS = BG1HOFS;
-	g_frameData.BG1VOFS = BG1VOFS;
-	g_frameData.BG2HOFS = BG2HOFS;
-	g_frameData.BG2VOFS = BG2VOFS;
-	g_frameData.BG3HOFS = BG3HOFS;
-	g_frameData.BG3VOFS = BG3VOFS;
-	g_frameData.BG4HOFS = BG4HOFS;
-	g_frameData.BG4VOFS = BG4VOFS;
-	g_frameData.M7SEL = M7SEL;
-	g_frameData.M7A = M7A;
-	g_frameData.M7B = M7B;
-	g_frameData.M7C = M7C;
-	g_frameData.M7D = M7D;
-	g_frameData.M7X = M7X;
-	g_frameData.M7Y = M7Y;
 	g_frameData.W12SEL = W12SEL;
 	g_frameData.W34SEL = W34SEL;
 	g_frameData.WOBJSEL = WOBJSEL;
@@ -167,5 +152,40 @@ void setFixedColourData(ubyte val) {
 	}
 	if (val & 0x20) {
 		g_frameData.FIXED_COLOUR_DATA_R = intensity;
+	}
+}
+
+void setBGOffsetX(ubyte layer, ushort x) {
+	switch (layer) {
+		case 1:
+			g_frameData.BG1HOFS = x;
+			break;
+		case 2:
+			g_frameData.BG2HOFS = x;
+			break;
+		case 3:
+			g_frameData.BG3HOFS = x;
+			break;
+		case 4:
+			g_frameData.BG4HOFS = x;
+			break;
+		default: assert(0);
+	}
+}
+void setBGOffsetY(ubyte layer, ushort y) {
+	switch (layer) {
+		case 1:
+			g_frameData.BG1VOFS = y;
+			break;
+		case 2:
+			g_frameData.BG2VOFS = y;
+			break;
+		case 3:
+			g_frameData.BG3VOFS = y;
+			break;
+		case 4:
+			g_frameData.BG4VOFS = y;
+			break;
+		default: assert(0);
 	}
 }

@@ -305,6 +305,8 @@ void main(string[] args) {
 	earthbound.commondefs.handleVRAMDMA = &sfcdma.handleVRAMDMA;
 	earthbound.commondefs.handleHDMA = &sfcdma.handleHDMA;
 	earthbound.commondefs.setFixedColourData = &snesdrawframedata.setFixedColourData;
+	earthbound.commondefs.setBGOffsetX = &snesdrawframedata.setBGOffsetX;
+	earthbound.commondefs.setBGOffsetY = &snesdrawframedata.setBGOffsetY;
 	earthbound.commondefs.playSFX = &playSFX;
 	playMusicExternal = &playMusic;
 	stopMusicExternal = &stopMusic;

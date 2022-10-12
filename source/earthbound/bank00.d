@@ -4361,90 +4361,10 @@ void unknownC07C5B() {
 
 /// $C08000
 void start() {
-	// emulation mode? never heard of it
-	NMITIMEN = 0;
 	dmaQueueIndex = 0;
-
-	// stack setup would happen here
 
 	INIDISP = 0x80;
 	mirrorINIDISP = 0x80;
-	OBSEL = 0;
-	OAMADDL = 0;
-	OAMADDH = 0;
-	BGMODE = 0;
-	MOSAIC = 0;
-	BG1SC = 0;
-	BG2SC = 0;
-	BG3SC = 0;
-	BG4SC = 0;
-	BG12NBA = 0;
-	BG34NBA = 0;
-	//yes these are meant to be repeated
-	BG1HOFS = 0;
-	BG1HOFS = 0;
-	BG1VOFS = 0;
-	BG1VOFS = 0;
-	BG2HOFS = 0;
-	BG2HOFS = 0;
-	BG2VOFS = 0;
-	BG2VOFS = 0;
-	BG3HOFS = 0;
-	BG3HOFS = 0;
-	BG3VOFS = 0;
-	BG3VOFS = 0;
-	BG4HOFS = 0;
-	BG4HOFS = 0;
-	BG4VOFS = 0;
-	BG4VOFS = 0;
-	//VMAIN = 0x80;
-	//VMADDL = 0;
-	//VMADDH = 0;
-	M7SEL = 0;
-	//yep, repeating again. kinda
-	M7A = 0;
-	M7A = 1;
-	M7B = 0;
-	M7B = 0;
-	M7C = 0;
-	M7C = 0;
-	M7D = 0;
-	M7D = 1;
-	M7X = 0;
-	M7X = 0;
-	M7Y = 0;
-	M7Y = 0;
-	//CGADD = 0;
-	W12SEL = 0;
-	W34SEL = 0;
-	WOBJSEL = 0;
-	WH0 = 0;
-	WH1 = 0;
-	WH2 = 0;
-	WH3 = 0;
-	WBGLOG = 0;
-	WOBJLOG = 0;
-	TM = 0x1F;
-	TD = 0;
-	TMW = 0;
-	TSW = 0;
-	CGWSEL = 0;
-	CGADSUB = 0;
-	setFixedColourData(0xE0);
-	SETINI = 0;
-	//not used
-	//WRMPYA = 0xFF;
-	//WRMPYA = 0;
-	//WRMPYB = 0;
-	//WRDIVL = 0;
-	//WRDIVH = 0;
-	//WRDIVB = 0;
-	HTIMEL = 0;
-	HTIMEH = 0;
-	VTIMEL = 0;
-	VTIMEH = 0;
-	HDMAEN = 0;
-	MEMSEL = 1;
 
 	// clearing the heap would happen here
 
@@ -4515,25 +4435,23 @@ void irqNMICommon() {
 	unknown7E0001 = dmaQueueIndex;
 	if (nextFrameDisplayID != 0) {
 		if (nextFrameDisplayID - 1 == 0) {
-			// On the SNES these each take two 8-bit writes to the same address.
-			// libsfcppu takes the whole 16-bit value at once for simplicity.
-			BG1HOFS = bg1XPositionBuffer[0];
-			BG1VOFS = bg1YPositionBuffer[0];
-			BG2HOFS = bg2XPositionBuffer[0];
-			BG2VOFS = bg2YPositionBuffer[0];
-			BG3HOFS = bg3XPositionBuffer[0];
-			BG3VOFS = bg3YPositionBuffer[0];
-			BG4HOFS = bg4XPositionBuffer[0];
-			BG4VOFS = bg4YPositionBuffer[0];
+			setBGOffsetX(1, bg1XPositionBuffer[0]);
+			setBGOffsetY(1, bg1YPositionBuffer[0]);
+			setBGOffsetX(2, bg2XPositionBuffer[0]);
+			setBGOffsetY(2, bg2YPositionBuffer[0]);
+			setBGOffsetX(3, bg3XPositionBuffer[0]);
+			setBGOffsetY(3, bg3YPositionBuffer[0]);
+			setBGOffsetX(4, bg4XPositionBuffer[0]);
+			setBGOffsetY(4, bg4YPositionBuffer[0]);
 		} else {
-			BG1HOFS = bg1XPositionBuffer[1];
-			BG1VOFS = bg1YPositionBuffer[1];
-			BG2HOFS = bg2XPositionBuffer[1];
-			BG2VOFS = bg2YPositionBuffer[1];
-			BG3HOFS = bg3XPositionBuffer[1];
-			BG3VOFS = bg3YPositionBuffer[1];
-			BG4HOFS = bg4XPositionBuffer[1];
-			BG4VOFS = bg4YPositionBuffer[1];
+			setBGOffsetX(1, bg1XPositionBuffer[1]);
+			setBGOffsetY(1, bg1YPositionBuffer[1]);
+			setBGOffsetX(2, bg2XPositionBuffer[1]);
+			setBGOffsetY(2, bg2YPositionBuffer[1]);
+			setBGOffsetX(3, bg3XPositionBuffer[1]);
+			setBGOffsetY(3, bg3YPositionBuffer[1]);
+			setBGOffsetX(4, bg4XPositionBuffer[1]);
+			setBGOffsetY(4, bg4YPositionBuffer[1]);
 			unknown7E0061 = bg1XPosition;
 			unknown7E0063 = bg1YPosition;
 		}
@@ -7789,8 +7707,7 @@ const(OverlayScript)* unknownC0AD56(const(SpriteMap)** arg1, out ushort frames) 
 
 /// $C0AD9F
 void unknownC0AD9F() {
-	BG3VOFS = bg3YPosition & 0xFF;
-	BG3VOFS = (bg3YPosition >> 8) & 0xFF;
+	setBGOffsetY(3, bg3YPosition);
 }
 
 /// $C0ADB2

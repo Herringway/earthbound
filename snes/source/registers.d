@@ -1,5 +1,5 @@
 /// SNES Hardware
-module hardware;
+module registers;
 
 ///
 struct OAMEntry {
@@ -113,19 +113,25 @@ __gshared ubyte* VMAIN; ///
 __gshared ushort* VMADDL; ///
 __gshared ubyte* MDMAEN; ///
 
-__gshared ubyte* NMITIMEN; ///
+__gshared ubyte* NMITIMEN = cast(ubyte*)0x4200; ///
+__gshared ubyte* WRIO = cast(ubyte*)0x4201; ///
+__gshared ubyte* WRMPYA = cast(ubyte*)0x4202; ///
+__gshared ubyte* WRMPYB = cast(ubyte*)0x4203; ///
+__gshared ubyte* WRDIVL = cast(ubyte*)0x4204; ///
+__gshared ubyte* WRDIVH = cast(ubyte*)0x4205; ///
+__gshared ubyte* WRDIVB = cast(ubyte*)0x4206; ///
 __gshared ubyte* INIDISP; ///
 __gshared ubyte* OAMADDL; ///
 __gshared ubyte* OAMADDH; ///
 __gshared ubyte* MOSAIC; ///
-__gshared ushort* BG1HOFS; ///
-__gshared ushort* BG1VOFS; ///
-__gshared ushort* BG2HOFS; ///
-__gshared ushort* BG2VOFS; ///
-__gshared ushort* BG3HOFS; ///
-__gshared ushort* BG3VOFS; ///
-__gshared ushort* BG4HOFS; ///
-__gshared ushort* BG4VOFS; ///
+__gshared ubyte* BG1HOFS = cast(ubyte*)0x210D; ///
+__gshared ubyte* BG1VOFS = cast(ubyte*)0x210E; ///
+__gshared ubyte* BG2HOFS = cast(ubyte*)0x210F; ///
+__gshared ubyte* BG2VOFS = cast(ubyte*)0x2110; ///
+__gshared ubyte* BG3HOFS = cast(ubyte*)0x2111; ///
+__gshared ubyte* BG3VOFS = cast(ubyte*)0x2112; ///
+__gshared ubyte* BG4HOFS = cast(ubyte*)0x2113; ///
+__gshared ubyte* BG4VOFS = cast(ubyte*)0x2114; ///
 __gshared ubyte* VMADDH; ///
 __gshared ubyte* M7SEL; ///
 __gshared ubyte* M7A; ///
@@ -156,7 +162,7 @@ __gshared ubyte* VTIMEL; ///
 __gshared ubyte* VTIMEH; ///
 __gshared ubyte* MEMSEL; ///
 __gshared ubyte* STAT78; ///
-__gshared ubyte* COLDATA; ///
+__gshared ubyte* COLDATA = cast(ubyte*)0x2132; ///
 
 ///
 struct SNESHeader {

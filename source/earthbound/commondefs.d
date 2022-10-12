@@ -6249,6 +6249,10 @@ void function() handleHDMA = () {};
 ///
 void function(ubyte) setFixedColourData = (ubyte) {};
 ///
+void function(ubyte, ushort) setBGOffsetX = (ubyte, ushort) {};
+///
+void function(ubyte, ushort) setBGOffsetY = (ubyte, ushort) {};
+///
 void function(ubyte) playSFX = (ubyte) {};
 ///
 void function(ushort) playMusicExternal = (ushort) {};
