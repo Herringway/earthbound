@@ -2683,6 +2683,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.talkText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.this.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.this.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/NPC.this.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPC.type.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPCAI.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/NPCAI.enemyID.html</loc></url>
@@ -2876,6 +2877,9 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/SectorDoors.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SectorDoors.doors.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SectorDoors.length.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/setBGOffsetX.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/setBGOffsetY.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/setFixedColourData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Sfx.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/ShallowWaterSpeed.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SkipSandwichSpeed.html</loc></url>
@@ -3967,19 +3971,11 @@
 <url><loc>http://127.0.0.1/earthbound/hardware/APUIO2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/APUIO3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BG12NBA.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG1HOFS.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BG1SC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG1VOFS.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG2HOFS.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BG2SC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG2VOFS.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BG34NBA.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG3HOFS.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BG3SC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG3VOFS.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG4HOFS.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BG4SC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/BG4VOFS.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BGMODE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/BGR555Mask.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/CGADSUB.html</loc></url>
@@ -3987,7 +3983,6 @@
 <url><loc>http://127.0.0.1/earthbound/hardware/CGDATA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/CGWSEL.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/CGWSELFlags.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/COLDATA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/DMAChannel.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/DMAChannel.A1B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/DMAChannel.A1T.html</loc></url>
@@ -4006,7 +4001,6 @@
 <url><loc>http://127.0.0.1/earthbound/hardware/DMAChannel.NTLR.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/dmaChannels.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/DMATransferUnit.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/FIXED_COLOUR_DATA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/HDMAEN.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/HTIMEH.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/HTIMEL.html</loc></url>
@@ -4014,13 +4008,6 @@
 <url><loc>http://127.0.0.1/earthbound/hardware/INIDISP.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/JOYPAD_1_DATA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/JOYPAD_2_DATA.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/M7A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/M7B.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/M7C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/M7D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/M7SEL.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/M7X.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/hardware/M7Y.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/MEMSEL.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/MOSAIC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/hardware/NMITIMEN.html</loc></url>
