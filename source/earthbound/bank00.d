@@ -3254,7 +3254,7 @@ short npcCollisionCheck(short x, short y, short arg3) {
 
 /// $C0613C
 void unknownC0613C(short arg1, short arg2, short arg3) {
-	short x1A;
+	ushort x1A = 0xFFFF;
 	if (entityUnknown332A[arg3] != 0) {
 		short x18;
 		short x04;
