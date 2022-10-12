@@ -4523,9 +4523,9 @@ void unknownC4A7B0() {
 			unknown7EAEC9++;
 			unknown7EAEC9 &= 1;
 			if (unknown7EAEC7 == 0) {
-				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[unknown7EAEC5 + 1][0]);
+				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[unknown7EAEC5++][0]);
 			} else {
-				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[unknown7EAEC5 - 1][0]);
+				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[--unknown7EAEC5][0]);
 			}
 			setWindowMask(unknown7EAEC8, unknown7EAEC6);
 			unknown7EAEC4--;
