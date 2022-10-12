@@ -6561,7 +6561,6 @@ void unknownC09FAEEntry3(short arg1) {
 	short i = arg1 / 2;
 	FixedPoint1616 newPosition;
 
-	tracef("%s: (%s, %s) + (%s, %s)", i, fullEntityAbsX(i).asDouble, fullEntityAbsY(i).asDouble, fullEntityDeltaX(i).asDouble, fullEntityDeltaY(i).asDouble);
 	newPosition.combined = fullEntityAbsX(i).combined + fullEntityDeltaX(i).combined;
 	entityAbsXTable[i] = newPosition.integer;
 	entityAbsXFractionTable[i] = newPosition.fraction;
