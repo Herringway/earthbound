@@ -158,6 +158,7 @@ void main(string[] args) {
 		SDLError("Error initializing SDL: %s");
 		return;
 	}
+	infof("SDL video subsystem initialized (%s)", SDL_GetCurrentVideoDriver().fromStringz);
 	scope(exit) {
 	  SDL_Quit();
 	}
@@ -213,7 +214,9 @@ void main(string[] args) {
 			SDL_DestroyRenderer(renderer);
 		}
 	}
-	info("SDL video & renderer subsystem initialized");
+	SDL_RendererInfo renderInfo;
+	SDL_GetRendererInfo(renderer, &renderInfo);
+	infof("SDL renderer subsystem initialized (%s)", renderInfo.name.fromStringz);
 
 	SDL_Texture* drawTexture = SDL_CreateTexture(
 		renderer,
