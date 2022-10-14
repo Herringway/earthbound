@@ -38,6 +38,7 @@ enum WindowMode {
 struct VideoSettings {
 	WindowMode windowMode;
 	uint zoom = 1;
+	bool keepAspectRatio = true;
 }
 
 struct Settings {
@@ -207,7 +208,9 @@ void main(string[] args) {
 		SDLError("Error creating SDL renderer: %s");
 		return;
 	}
-	SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
+	if (settings.video.keepAspectRatio) {
+		SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
+	}
 	scope(exit) {
 		// Close and destroy the renderer
 		if (renderer !is null) {
