@@ -3,7 +3,7 @@ import bindbc.loader;
 import snesdrawframedata;
 
 public enum ImgW = 512;
-public enum ImgH = 480;
+public enum ImgH = 448;
 
 extern(C) @nogc nothrow {
 	alias plibsfcppu_init = bool function();
@@ -64,9 +64,9 @@ public bool initSnesDrawFrame() {
 
 public void drawFrame(ushort* buffer, int pitch, const(SnesDrawFrameData)* d) {
 	assert(ImgW == 512);
-	assert(ImgH == 480);
+	assert(ImgH == 448);
 	assert(pitch == 1024);
 	assert(libsfcppu_drawFrame, "libsfcppu not loaded?");
 	ushort * rawdata = libsfcppu_drawFrame(d);
-	buffer[0..ImgW*ImgH] = rawdata[0..ImgW*ImgH];
+	buffer[0..ImgW*ImgH] = rawdata[ImgW * 16..ImgW*(ImgH + 16)];
 }
