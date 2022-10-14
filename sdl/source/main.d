@@ -458,7 +458,7 @@ void main(string[] args) {
 
 		SDL_UnlockTexture(drawTexture);
 
-		SDL_SetRenderDrawColor(renderer, 120, 140, 230, 255);
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 		SDL_RenderClear(renderer);
 		SDL_RenderCopy(renderer, drawTexture, null, null);
 		SDL_RenderPresent(renderer);
