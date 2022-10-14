@@ -29,7 +29,16 @@ import sfcdma;
 import snesdrawframe;
 import snesdrawframedata;
 
-private enum WindowScale = 1;
+enum WindowMode {
+	windowed,
+	fullscreen,
+	fullscreenExclusive,
+}
+
+struct VideoSettings {
+	WindowMode windowMode;
+	uint zoom = 1;
+}
 
 struct Settings {
 	static struct AudioSettings {
@@ -37,6 +46,7 @@ struct Settings {
 		ubyte channels = 2;
 	}
 	AudioSettings audio;
+	VideoSettings video;
 	Controller[SDL_GameControllerButton] gamepadMapping;
 	Controller[SDL_Scancode] keyboardMapping;
 	GameConfig game;
@@ -157,10 +167,20 @@ void main(string[] args) {
 		"Earthbound",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		ImgW * WindowScale,
-		ImgH * WindowScale,
+		ImgW * settings.video.zoom,
+		ImgH * settings.video.zoom,
 		windowFlags
 	);
+	final switch (settings.video.windowMode) {
+		case WindowMode.windowed:
+			break;
+		case WindowMode.fullscreen:
+			SDL_SetWindowFullscreen(appWin, SDL_WINDOW_FULLSCREEN_DESKTOP);
+			break;
+		case WindowMode.fullscreenExclusive:
+			SDL_SetWindowFullscreen(appWin, SDL_WINDOW_FULLSCREEN);
+			break;
+	}
 	if(appWin is null) {
 		SDLError("Error creating SDL window: %s");
 		return;
@@ -186,6 +206,7 @@ void main(string[] args) {
 		SDLError("Error creating SDL renderer: %s");
 		return;
 	}
+	SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
 	scope(exit) {
 		// Close and destroy the renderer
 		if (renderer !is null) {
