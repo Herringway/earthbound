@@ -60,6 +60,8 @@ void handleNullableOption(alias var)(string, string value) {
 }
 
 void main(string[] args) {
+	uint frameTotal;
+	uint frameCounter;
 	if (!"settings.yml".exists) {
 		getDefaultSettings().toFile!YAML("settings.yml");
 	}
@@ -226,8 +228,13 @@ void main(string[] args) {
 		endFrame();
 
 		const renderTime = waitForNextFrame(!fastForward);
-		char[30] buffer = 0;
-		setTitle(sformat(buffer, "Earthbound: %s FPS", cast(uint)(1000.0 / timeSinceFrameStart.total!"msecs")));
+		frameTotal += timeSinceFrameStart.total!"msecs";
+		if (frameCounter++ == 60) {
+			char[30] buffer = 0;
+			setTitle(sformat(buffer, "Earthbound: %.4s FPS", 1000.0 / (cast(double)frameTotal / 60.0)));
+			frameCounter = 0;
+			frameTotal = 0;
+		}
 		if (dumpVram) {
 			saveGraphicsStateToFile(format!"gfxstate%03d"(dumpVramCount));
 			dumpVram = false;
