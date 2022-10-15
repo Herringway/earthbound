@@ -202,12 +202,10 @@ void main(string[] args) {
 
 	loadAudioData();
 
-	if ("data/text/".exists) {
-		foreach (textDocFile; getDataFiles("data/text", "*.yaml", SpanMode.depth)) {
-			const textData = fromFile!(StructuredText[][string], YAML, DeSiryulize.optionalByDefault)(textDocFile);
-			foreach (label, script; textData) {
-				loadText(script, label);
-			}
+	foreach (textDocFile; getDataFiles("text", "*.yaml")) {
+		const textData = fromFile!(StructuredText[][string], YAML, DeSiryulize.optionalByDefault)(textDocFile);
+		foreach (label, script; textData) {
+			loadText(script, label);
 		}
 	}
 	tracef("Loaded text");

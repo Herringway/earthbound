@@ -73,24 +73,20 @@ extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 }
 
 void loadAudioData() {
-	if ("data/sfx/".exists) {
-		foreach (sfxFile; getDataFiles("sfx", "*.wav")) {
-			try {
-				const id = sfxFile.baseName.stripExtension.to!uint;
-				loadedSFX[id] = Mix_LoadWAV(sfxFile.toStringz);
-			} catch (Exception e) {
-				errorf("Could not load %s: %s", sfxFile, e.msg);
-			}
+	foreach (sfxFile; getDataFiles("sfx", "*.wav")) {
+		try {
+			const id = sfxFile.baseName.stripExtension.to!uint;
+			loadedSFX[id] = Mix_LoadWAV(sfxFile.toStringz);
+		} catch (Exception e) {
+			errorf("Could not load %s: %s", sfxFile, e.msg);
 		}
 	}
-	if ("data/songs/".exists) {
-		foreach (songFile; dirEntries("data/songs", "*.nspc", SpanMode.depth)) {
-			try {
-				const id = songFile.baseName.stripExtension.to!uint;
-				loadedSongs[id] = cast(ubyte[])read(songFile.name);
-			} catch (Exception e) {
-				errorf("Could not load %s: %s", songFile, e.msg);
-			}
+	foreach (songFile; getDataFiles("songs", "*.nspc")) {
+		try {
+			const id = songFile.baseName.stripExtension.to!uint;
+			loadedSongs[id] = cast(ubyte[])read(songFile);
+		} catch (Exception e) {
+			errorf("Could not load %s: %s", songFile, e.msg);
 		}
 	}
 }
