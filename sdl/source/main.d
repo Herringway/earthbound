@@ -15,14 +15,13 @@ import siryul;
 
 import bindbc.loader;
 import bindbc.sdl;
-import bindbc.sdl.mixer;
 
 import earthbound.bank00 : start, nmi;
 import earthbound.commondefs;
 import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
 import earthbound.text;
 
-import nspc;
+import audio;
 import gamepad;
 import misc;
 import sfcdma;
@@ -60,53 +59,6 @@ void saveGraphicsStateToFile(string filename) {
 	File(filename~".oam2", "wb").rawWrite(g_frameData.oam2);
 }
 
-bool initAudio(ubyte channels, uint sampleRate) {
-	auto result = Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) != -1;
-	Mix_HookMusic(&nspcFillBuffer, &nspcplayer);
-	return result;
-}
-
-void stopMusic() {
-	nspcplayer.stop();
-}
-
-void playMusic(ushort track) {
-	nspcplayer.stop();
-	if (auto trackData = track in loadedSongs) {
-		nspcplayer.loadNSPCFile(*trackData);
-		nspcplayer.play();
-	}
-}
-
-void playSFX(ubyte id) {
-	if (id == 0) {
-		if(Mix_FadeOutChannel(0, 0) == -1) {
-			SDLError("Could not fade out");
-		}
-	} else {
-		if (auto sound = id in loadedSFX) {
-			if(Mix_PlayChannel(0, *sound, 0) == -1) {
-				SDLError("Could not play sound effect");
-			}
-		} else {
-			tracef("Sound effect %s not loaded, skipping playback", id);
-		}
-	}
-}
-
-Mix_Chunk*[uint] loadedSFX;
-ubyte[][uint] loadedSongs;
-__gshared NSPCPlayer nspcplayer;
-
-extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
-	import std.exception : assumeWontThrow;
-    try {
-        (cast(NSPCPlayer*)user).fillBuffer(cast(short[2][])(buf[0 .. bufSize]));
-    } catch (Error e) {
-        assumeWontThrow(writeln(e));
-        throw e;
-    }
-}
 
 void handleNullableOption(alias var)(string, string value) {
 	infof("%s", value);
@@ -143,10 +95,6 @@ void main(string[] args) {
 	}
 	if(loadSDL() < sdlSupport) {
 		info("Can't load SDL!");
-		return;
-	}
-	if(loadSDLMixer() < sdlMixerSupport) {
-		info("Can't load SDL_Mixer!");
 		return;
 	}
 	if(!initSnesDrawFrame()) {
@@ -252,19 +200,10 @@ void main(string[] args) {
 	SDL_GameControllerEventState(SDL_ENABLE);
 	info("SDL game controller subsystem initialized");
 
-	if ("data/sfx/".exists) {
-		foreach (sfxFile; dirEntries("data/sfx", "*.wav", SpanMode.depth)) {
-			try {
-				const id = sfxFile.baseName.stripExtension.to!uint;
-				loadedSFX[id] = Mix_LoadWAV(sfxFile.name.toStringz);
-			} catch (Exception e) {
-				errorf("Could not load %s: %s", sfxFile, e.msg);
-			}
-		}
-	}
+	loadAudioData();
 
 	if ("data/text/".exists) {
-		foreach (textDocFile; dirEntries("data/text", "*.yaml", SpanMode.depth)) {
+		foreach (textDocFile; getDataFiles("data/text", "*.yaml", SpanMode.depth)) {
 			const textData = fromFile!(StructuredText[][string], YAML, DeSiryulize.optionalByDefault)(textDocFile);
 			foreach (label, script; textData) {
 				loadText(script, label);
@@ -272,24 +211,6 @@ void main(string[] args) {
 		}
 	}
 	tracef("Loaded text");
-
-	int finalSampleRate;
-	int finalChannels;
-	ushort finalFormat;
-	Mix_QuerySpec(&finalSampleRate, &finalFormat, &finalChannels);
-
-	nspcplayer.initialize(finalSampleRate);
-
-	if ("data/songs/".exists) {
-		foreach (songFile; dirEntries("data/songs", "*.nspc", SpanMode.depth)) {
-			try {
-				const id = songFile.baseName.stripExtension.to!uint;
-				loadedSongs[id] = cast(ubyte[])read(songFile.name);
-			} catch (Exception e) {
-				errorf("Could not load %s: %s", songFile, e.msg);
-			}
-		}
-	}
 
 	bool run = true, dumpVram = false, pause = false, step = false, fastForward = false, printRegisters = false, dumpEntities = false;
 	int dumpVramCount = 0;
@@ -334,9 +255,9 @@ void main(string[] args) {
 	earthbound.commondefs.setFixedColourData = &snesdrawframedata.setFixedColourData;
 	earthbound.commondefs.setBGOffsetX = &snesdrawframedata.setBGOffsetX;
 	earthbound.commondefs.setBGOffsetY = &snesdrawframedata.setBGOffsetY;
-	earthbound.commondefs.playSFX = &playSFX;
-	playMusicExternal = &playMusic;
-	stopMusicExternal = &stopMusic;
+	earthbound.commondefs.playSFX = &audio.playSFX;
+	playMusicExternal = &audio.playMusic;
+	stopMusicExternal = &audio.stopMusic;
 	earthbound.commondefs.config = settings.game;
 	if (!autoLoadFile.isNull) {
 		earthbound.commondefs.config.autoLoadFile = autoLoadFile;
