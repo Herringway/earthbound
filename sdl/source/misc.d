@@ -9,6 +9,12 @@ import std.string;
 
 import bindbc.sdl;
 
+enum WindowMode {
+	windowed,
+	fullscreen,
+	fullscreenExclusive,
+}
+
 void SDLError(string fmt) {
 	errorf(fmt, SDL_GetError().fromStringz);
 }

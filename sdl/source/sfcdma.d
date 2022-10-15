@@ -1,5 +1,5 @@
 module sfcdma;
-import snesdrawframedata;
+import rendering;
 import earthbound.commondefs;
 import earthbound.hardware;
 import std.experimental.logger;

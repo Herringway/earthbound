@@ -1,6 +1,15 @@
-module snesdrawframedata;
+module rendering;
+
+import core.time;
+import std.experimental.logger;
+import std.string;
+
+import bindbc.sdl;
 
 import earthbound.hardware;
+
+import misc;
+import snesdrawframe;
 
 public struct HDMAWrite {
 	ushort vcounter;
@@ -111,6 +120,135 @@ align:
 }
 
 public __gshared SnesDrawFrameData g_frameData;
+private SDL_Window* appWin;
+private SDL_Renderer* renderer;
+private SDL_Texture* drawTexture;
+private int lastTime;
+
+bool loadRenderer() {
+	if(loadSDL() < sdlSupport) {
+		info("Can't load SDL!");
+		return false;
+	}
+	if(!loadSnesDrawFrame()) {
+		info("Can't load SnesDrawFrame!");
+		return false;
+	}
+	if(!initSnesDrawFrame()) {
+		info("Error initializing SnesDrawFrame!");
+		return false;
+	}
+	info("SnesDrawFrame initialized");
+	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
+		SDLError("Error initializing SDL: %s");
+		return false;
+	}
+	infof("SDL video subsystem initialized (%s)", SDL_GetCurrentVideoDriver().fromStringz);
+	return true;
+}
+void unloadRenderer() {
+	SDL_Quit();
+}
+
+bool initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
+	enum windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
+	appWin = SDL_CreateWindow(
+		"Earthbound",
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		ImgW * zoom,
+		ImgH * zoom,
+		windowFlags
+	);
+	final switch (mode) {
+		case WindowMode.windowed:
+			break;
+		case WindowMode.fullscreen:
+			SDL_SetWindowFullscreen(appWin, SDL_WINDOW_FULLSCREEN_DESKTOP);
+			break;
+		case WindowMode.fullscreenExclusive:
+			SDL_SetWindowFullscreen(appWin, SDL_WINDOW_FULLSCREEN);
+			break;
+	}
+	if(appWin is null) {
+		SDLError("Error creating SDL window: %s");
+		return false;
+	}
+	const rendererFlags = SDL_RENDERER_ACCELERATED;
+	renderer = SDL_CreateRenderer(
+		appWin, -1, rendererFlags
+	);
+	if(renderer is null) {
+		SDLError("Error creating SDL renderer: %s");
+		return false;
+	}
+	if (keepAspectRatio) {
+		SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
+	}
+	SDL_RendererInfo renderInfo;
+	SDL_GetRendererInfo(renderer, &renderInfo);
+	infof("SDL renderer subsystem initialized (%s)", renderInfo.name.fromStringz);
+	drawTexture = SDL_CreateTexture(
+		renderer,
+		SDL_PIXELFORMAT_RGB555,
+		SDL_TEXTUREACCESS_STREAMING,
+		ImgW,
+		ImgH
+	);
+	if(drawTexture is null) {
+		SDLError("Error creating SDL texture: %s");
+		return false;
+	}
+	return true;
+}
+
+void uninitializeRenderer() {
+	// Close and destroy the window
+	if (appWin !is null) {
+		SDL_DestroyWindow(appWin);
+	}
+	// Close and destroy the renderer
+	if (renderer !is null) {
+		SDL_DestroyRenderer(renderer);
+	}
+	// Close and destroy the texture
+	if (drawTexture !is null) {
+		SDL_DestroyTexture(drawTexture);
+	}
+}
+
+void startFrame() {
+	lastTime = SDL_GetTicks();
+}
+
+void endFrame() {
+	ushort* drawBuffer;
+	int drawPitch;
+	SDL_LockTexture(drawTexture, null, cast(void**)&drawBuffer, &drawPitch);
+	snesdrawframe.drawFrame(drawBuffer, drawPitch, &g_frameData);
+	SDL_UnlockTexture(drawTexture);
+
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderClear(renderer);
+	SDL_RenderCopy(renderer, drawTexture, null, null);
+	SDL_RenderPresent(renderer);
+}
+
+Duration waitForNextFrame(bool lockFramerate) {
+	int drawTime = SDL_GetTicks() - lastTime;
+	if(lockFramerate && (drawTime < 16)) {
+		SDL_Delay(16 - drawTime);
+	}
+	return drawTime.msecs;
+}
+
+Duration timeSinceFrameStart() {
+	return (SDL_GetTicks() - lastTime).msecs;
+}
+
+void setTitle(scope const char[] title) {
+	SDL_SetWindowTitle(appWin, title.toStringz);
+}
 
 void copyGlobalsToFrameData() {
 	g_frameData.INIDISP = INIDISP;

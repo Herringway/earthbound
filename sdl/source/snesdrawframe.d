@@ -1,6 +1,6 @@
 module snesdrawframe;
 import bindbc.loader;
-import snesdrawframedata;
+import rendering;
 
 public enum ImgW = 512;
 public enum ImgH = 448;

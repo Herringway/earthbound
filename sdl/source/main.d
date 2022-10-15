@@ -26,13 +26,7 @@ import gamepad;
 import misc;
 import sfcdma;
 import snesdrawframe;
-import snesdrawframedata;
-
-enum WindowMode {
-	windowed,
-	fullscreen,
-	fullscreenExclusive,
-}
+import rendering;
 
 struct VideoSettings {
 	WindowMode windowMode;
@@ -89,57 +83,18 @@ void main(string[] args) {
 	} else {
 		sharedLog = new FileLogger(stdout, LogLevel.trace);
 	}
-	if(!loadSnesDrawFrame()) {
-		info("Can't load SnesDrawFrame!");
-		return;
-	}
-	if(loadSDL() < sdlSupport) {
-		info("Can't load SDL!");
-		return;
-	}
-	if(!initSnesDrawFrame()) {
-		info("Error initializing SnesDrawFrame!");
-		return;
-	}
-	info("SnesDrawFrame initialized");
 
-	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
-		SDLError("Error initializing SDL: %s");
-		return;
-	}
-	infof("SDL video subsystem initialized (%s)", SDL_GetCurrentVideoDriver().fromStringz);
-	scope(exit) {
-	  SDL_Quit();
-	}
-
-	const windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
-	SDL_Window* appWin = SDL_CreateWindow(
-		"Earthbound",
-		SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED,
-		ImgW * settings.video.zoom,
-		ImgH * settings.video.zoom,
-		windowFlags
-	);
-	final switch (settings.video.windowMode) {
-		case WindowMode.windowed:
-			break;
-		case WindowMode.fullscreen:
-			SDL_SetWindowFullscreen(appWin, SDL_WINDOW_FULLSCREEN_DESKTOP);
-			break;
-		case WindowMode.fullscreenExclusive:
-			SDL_SetWindowFullscreen(appWin, SDL_WINDOW_FULLSCREEN);
-			break;
-	}
-	if(appWin is null) {
-		SDLError("Error creating SDL window: %s");
+	if (!loadRenderer()) {
 		return;
 	}
 	scope(exit) {
-		// Close and destroy the window
-		if (appWin !is null) {
-			SDL_DestroyWindow(appWin);
-		}
+	  unloadRenderer();
+	}
+	if (!initializeRenderer(settings.video.zoom, settings.video.windowMode, settings.video.keepAspectRatio)) {
+		return;
+	}
+	scope(exit) {
+		uninitializeRenderer();
 	}
 	// Prepare to play music
 	if (!initAudio(settings.audio.channels, settings.audio.sampleRate)) {
@@ -148,44 +103,6 @@ void main(string[] args) {
 	}
 	infof("SDL audio subsystem initialized (%s)", SDL_GetCurrentAudioDriver().fromStringz);
 
-	const rendererFlags = SDL_RENDERER_ACCELERATED;
-	SDL_Renderer* renderer = SDL_CreateRenderer(
-		appWin, -1, rendererFlags
-	);
-	if(renderer is null) {
-		SDLError("Error creating SDL renderer: %s");
-		return;
-	}
-	if (settings.video.keepAspectRatio) {
-		SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
-	}
-	scope(exit) {
-		// Close and destroy the renderer
-		if (renderer !is null) {
-			SDL_DestroyRenderer(renderer);
-		}
-	}
-	SDL_RendererInfo renderInfo;
-	SDL_GetRendererInfo(renderer, &renderInfo);
-	infof("SDL renderer subsystem initialized (%s)", renderInfo.name.fromStringz);
-
-	SDL_Texture* drawTexture = SDL_CreateTexture(
-		renderer,
-		SDL_PIXELFORMAT_RGB555,
-		SDL_TEXTUREACCESS_STREAMING,
-		ImgW,
-		ImgH
-	);
-	if(drawTexture is null) {
-		SDLError("Error creating SDL texture: %s");
-		return;
-	}
-	scope(exit) {
-		// Close and destroy the texture
-		if (drawTexture !is null) {
-			SDL_DestroyTexture(drawTexture);
-		}
-	}
 	if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0) {
 		SDLError("Couldn't initialise controller SDL subsystem: %s");
 		return;
@@ -244,15 +161,14 @@ void main(string[] args) {
 		}
 	}
 
-	int lastTime;
 	waitForInterrupt = () { Fiber.yield(); };
 	earthbound.commondefs.handleOAMDMA = &sfcdma.handleOAMDMA;
 	earthbound.commondefs.handleCGRAMDMA = &sfcdma.handleCGRAMDMA;
 	earthbound.commondefs.handleVRAMDMA = &sfcdma.handleVRAMDMA;
 	earthbound.commondefs.handleHDMA = &sfcdma.handleHDMA;
-	earthbound.commondefs.setFixedColourData = &snesdrawframedata.setFixedColourData;
-	earthbound.commondefs.setBGOffsetX = &snesdrawframedata.setBGOffsetX;
-	earthbound.commondefs.setBGOffsetY = &snesdrawframedata.setBGOffsetY;
+	earthbound.commondefs.setFixedColourData = &rendering.setFixedColourData;
+	earthbound.commondefs.setBGOffsetX = &rendering.setBGOffsetX;
+	earthbound.commondefs.setBGOffsetY = &rendering.setBGOffsetY;
 	earthbound.commondefs.playSFX = &audio.playSFX;
 	playMusicExternal = &audio.playMusic;
 	stopMusicExternal = &audio.stopMusic;
@@ -297,12 +213,7 @@ void main(string[] args) {
 				default: break;
 			}
 		}
-
-		lastTime = SDL_GetTicks();
-
-		ushort* drawBuffer;
-		int drawPitch;
-		SDL_LockTexture(drawTexture, null, cast(void**)&drawBuffer, &drawPitch);
+		startFrame();
 
 		if (step) {
 			Throwable t = game.call(Fiber.Rethrow.no);
@@ -312,7 +223,11 @@ void main(string[] args) {
 			nmi();
 			copyGlobalsToFrameData();
 		}
-		drawFrame(drawBuffer, drawPitch, &g_frameData);
+		endFrame();
+
+		const renderTime = waitForNextFrame(!fastForward);
+		char[30] buffer = 0;
+		setTitle(sformat(buffer, "Earthbound: %s FPS", cast(uint)(1000.0 / timeSinceFrameStart.total!"msecs")));
 		if (dumpVram) {
 			saveGraphicsStateToFile(format!"gfxstate%03d"(dumpVramCount));
 			dumpVram = false;
@@ -380,21 +295,6 @@ void main(string[] args) {
 			}
 			dumpEntities = false;
 		}
-
-		SDL_UnlockTexture(drawTexture);
-
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-		SDL_RenderClear(renderer);
-		SDL_RenderCopy(renderer, drawTexture, null, null);
-		SDL_RenderPresent(renderer);
-
-		int drawTime = SDL_GetTicks() - lastTime;
-		if(!fastForward && drawTime < 16) {
-			SDL_Delay(16 - drawTime);
-		}
-		char[30] buffer = 0;
-		sformat(buffer, "Earthbound: %s FPS", cast(uint)(1000.0 / (SDL_GetTicks() - lastTime)));
-		SDL_SetWindowTitle(appWin, &buffer[0]);
 	}
 }
 
