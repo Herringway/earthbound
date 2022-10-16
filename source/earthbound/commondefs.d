@@ -5527,7 +5527,7 @@ struct NPC {
 		type = t;
 		sprite = s;
 		direction = d;
-		actionScript = ast;
+		actionScript = as;
 		eventFlag = ef;
 		appearanceStyle = ast;
 		talkText = tt;
@@ -5538,7 +5538,7 @@ struct NPC {
 		type = t;
 		sprite = s;
 		direction = d;
-		actionScript = ast;
+		actionScript = as;
 		eventFlag = ef;
 		appearanceStyle = ast;
 		talkText = tt;
