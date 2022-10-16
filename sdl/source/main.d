@@ -100,10 +100,12 @@ void main(string[] args) {
 	}
 	// Prepare to play music
 	if (!initAudio(settings.audio.channels, settings.audio.sampleRate)) {
-		SDLError("Error initializing audio");
 		return;
 	}
 	infof("SDL audio subsystem initialized (%s)", SDL_GetCurrentAudioDriver().fromStringz);
+	scope(exit) {
+		uninitializeAudio();
+	}
 
 	if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0) {
 		SDLError("Couldn't initialise controller SDL subsystem: %s");

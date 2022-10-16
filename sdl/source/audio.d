@@ -14,10 +14,11 @@ import misc;
 
 bool initAudio(ubyte channels, uint sampleRate) {
 	if(loadSDLMixer() < sdlMixerSupport) {
-		info("Can't load SDL_Mixer!");
+		error("Can't load SDL_Mixer!");
 		return false;
 	}
 	if (Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) == -1) {
+		SDLError("Error initializing audio");
 		return false;
 	}
 	Mix_HookMusic(&nspcFillBuffer, &nspcplayer);
@@ -28,6 +29,10 @@ bool initAudio(ubyte channels, uint sampleRate) {
 
 	nspcplayer.initialize(finalSampleRate);
 	return true;
+}
+
+void uninitializeAudio() {
+	Mix_CloseAudio();
 }
 
 void stopMusic() {
