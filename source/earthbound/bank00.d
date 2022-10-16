@@ -7747,13 +7747,13 @@ const HDMAIndirectTableEntry[3] unknownC0AE2D;
 
 shared static this() {
 	unknownC0AE26 = [
-		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&unknown7E3C46[0]),
-		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&unknown7E3C46[100]),
+		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&backgroundHDMABuffer[0]),
+		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&backgroundHDMABuffer[100]),
 		HDMAIndirectTableEntry(0x00),
 	];
 	unknownC0AE2D = [
-		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&unknown7E3C46[324]),
-		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&unknown7E3C46[424]),
+		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&backgroundHDMABuffer[324]),
+		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&backgroundHDMABuffer[424]),
 		HDMAIndirectTableEntry(0x00),
 	];
 }
@@ -7772,140 +7772,136 @@ immutable ubyte[8] unknownC0AE44 = [0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x
 
 /// $C0AE4C
 void loadBackgroundOffsetParameters(short arg1, short arg2, short arg3) {
-	unknown7E1ACC = arg1;
-	unknown7E1ACE = arg2;
-	unknown7E1AD2 = arg3;
+	backgroundDistortionStyle = arg1;
+	backgroundDistortionTargetLayer = arg2;
+	backgroundDistortSecondLayer = arg3;
 }
 
 /// $C0AE56
 void loadBackgroundOffsetParameters2(short arg1) {
-	unknown7E1AD4 = arg1;
+	backgroundDistortionCompressionRate = arg1;
 }
 
 /// $C0AE5A
-void prepareBackgroundOffsetTables(short arg1, short arg2, short arg3) {
-	short x00 = arg1;
+void prepareBackgroundOffsetTables(short rippleFrequency, short rippleAmplitude, short distortionSpeed) {
 	ubyte x02 = 0;
-	ubyte x03 = cast(ubyte)arg3;
+	ubyte x03 = cast(ubyte)distortionSpeed;
 	short a = 0;
 	short x = 0x1C0;
 	short y;
 	short x05;
-	if (unknown7E1AD2 != 0) {
+	if (backgroundDistortSecondLayer != 0) {
 		a = 0x1C0;
 		x = 0x380;
 	}
 	short x07 = a;
 	short x09 = x;
-	if (unknown7E1ACC >= 2) {
-		if (unknown7E1ACC == 2) {
-			goto Unknown7;
+	if (backgroundDistortionStyle < (DistortionStyle.verticalSmooth - 1)) {
+		if (backgroundDistortionTargetLayer != 0) {
+			switch (backgroundDistortionTargetLayer - 1) {
+				case 0:
+					x03 += bg1YPosition;
+					x05 = bg1XPosition;
+					break;
+				case 1:
+					x03 += bg2YPosition;
+					x05 = bg2XPosition;
+					break;
+				case 2:
+					x03 += bg3YPosition;
+					x05 = bg3XPosition;
+					break;
+				case 3:
+					x03 += bg4YPosition;
+					x05 = bg4XPosition;
+					break;
+				default: break;
+			}
 		} else {
-			goto Unknown10;
+			x05 = backgroundDistortionTargetLayer;
 		}
 	}
-	if (unknown7E1ACE != 0) {
-		switch (unknown7E1ACE - 1) {
-			case 0:
-				x03 += bg1YPosition;
-				x05 = bg1XPosition;
-				break;
-			case 1:
-				x03 += bg2YPosition;
-				x05 = bg2XPosition;
-				break;
-			case 2:
-				x03 += bg3YPosition;
-				x05 = bg3XPosition;
-				break;
-			case 3:
-				x03 += bg4YPosition;
-				x05 = bg4XPosition;
-				break;
-			default: break;
-		}
-	} else {
-		x05 = unknown7E1ACE;
+	switch(backgroundDistortionStyle) {
+		case DistortionStyle.horizontalSmooth - 1:
+			y = x07;
+			do {
+				backgroundHDMABuffer[y / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03]) >> 8) + x05);
+				x02 += rippleFrequency;
+				y += 2;
+			} while (y < x09);
+			break;
+		case DistortionStyle.horizontalInterlaced - 1:
+			y = x07;
+			do {
+				backgroundHDMABuffer[y / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03]) >> 8) + x05);
+				x02 += rippleFrequency;
+				backgroundHDMABuffer[y / 2 + 1] = cast(ushort)(x05 - ((rippleAmplitude * sineLookupTable[x03]) >> 8));
+				x02 += rippleFrequency;
+				y += 4;
+			} while (y < x09);
+			break;
+		case DistortionStyle.verticalSmooth - 1:
+			if (backgroundDistortionTargetLayer != 0) {
+				switch (backgroundDistortionTargetLayer - 1) {
+					case 0:
+						x05 = bg1YPosition;
+						break;
+					case 1:
+						x05 = bg2YPosition;
+						break;
+					case 2:
+						x05 = bg3YPosition;
+						break;
+					case 3:
+						x05 = bg4YPosition;
+						break;
+					default: break;
+				}
+			} else {
+				x05 = backgroundDistortionTargetLayer;
+			}
+			x05 = cast(ushort)(x05 << 8);
+			y = x07;
+			do {
+				x05 += backgroundDistortionCompressionRate;
+				backgroundHDMABuffer[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((rippleAmplitude * sineLookupTable[x03]) >> 8));
+				x02 += rippleFrequency;
+				y += 2;
+			} while (y < x09);
+			break;
+		case DistortionStyle.unknown - 1:
+		default:
+			if (backgroundDistortionTargetLayer != 0) {
+				switch (backgroundDistortionTargetLayer - 1) {
+					case 0:
+						x05 = bg1YPosition;
+						break;
+					case 1:
+						x05 = bg2YPosition;
+						break;
+					case 2:
+						x05 = bg3YPosition;
+						break;
+					case 3:
+						x05 = bg4YPosition;
+						break;
+					default: break;
+				}
+			} else {
+				x05 = backgroundDistortionTargetLayer;
+			}
+			x05 = cast(ushort)(x05 << 8);
+			y = x07;
+			do {
+				x05 += backgroundDistortionCompressionRate;
+				backgroundHDMABuffer[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((rippleAmplitude * sineLookupTable[x03]) >> 8));
+				x05 += backgroundDistortionCompressionRate;
+				backgroundHDMABuffer[y / 2 + 1] = cast(ushort)((cast(ushort)x05 >> 8) - ((rippleAmplitude * sineLookupTable[x03]) >> 8));
+				x02 += rippleFrequency;
+				y += 4;
+			} while (y < x09);
+			break;
 	}
-	if (unknown7E1ACC == 0) {
-		y = x07;
-		do {
-			unknown7E3C46[y / 2] = cast(ushort)(((arg2 * sineLookupTable[x03]) >> 8) + x05);
-			x02 += x00;
-			y += 2;
-		} while (y < x09);
-		return;
-	} else {
-		y = x07;
-		do {
-			unknown7E3C46[y / 2] = cast(ushort)(((arg2 * sineLookupTable[x03]) >> 8) + x05);
-			x02 += x00;
-			unknown7E3C46[y / 2 + 1] = cast(ushort)(x05 - ((arg2 * sineLookupTable[x03]) >> 8));
-			x02 += x00;
-			y += 4;
-		} while (y < x09);
-		return;
-	}
-	Unknown7:
-	if (unknown7E1ACE != 0) {
-		switch (unknown7E1ACE - 1) {
-			case 0:
-				x05 = bg1YPosition;
-				break;
-			case 1:
-				x05 = bg2YPosition;
-				break;
-			case 2:
-				x05 = bg3YPosition;
-				break;
-			case 3:
-				x05 = bg4YPosition;
-				break;
-			default: break;
-		}
-	} else {
-		x05 = unknown7E1ACE;
-	}
-	x05 = cast(ushort)(x05 << 8);
-	y = x07;
-	do {
-		x05 += unknown7E1AD4;
-		unknown7E3C46[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((arg2 * sineLookupTable[x03]) >> 8));
-		x02 += x00;
-		y += 2;
-	} while (y < x09);
-	return;
-	Unknown10:
-	if (unknown7E1ACE != 0) {
-		switch (unknown7E1ACE - 1) {
-			case 0:
-				x05 = bg1YPosition;
-				break;
-			case 1:
-				x05 = bg2YPosition;
-				break;
-			case 2:
-				x05 = bg3YPosition;
-				break;
-			case 3:
-				x05 = bg4YPosition;
-				break;
-			default: break;
-		}
-	} else {
-		x05 = unknown7E1ACE;
-	}
-	x05 = cast(ushort)(x05 << 8);
-	y = x07;
-	do {
-		x05 += unknown7E1AD4;
-		unknown7E3C46[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((arg2 * sineLookupTable[x03]) >> 8));
-		x05 += unknown7E1AD4;
-		unknown7E3C46[y / 2 + 1] = cast(ushort)((cast(ushort)x05 >> 8) - ((arg2 * sineLookupTable[x03]) >> 8));
-		x02 += x00;
-		y += 4;
-	} while (y < x09);
-	return;
 }
 
 /// $C0AFCD

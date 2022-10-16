@@ -243,11 +243,11 @@ __gshared short[maxEntities] entityUnknown1A86; /// $1A86
 __gshared ubyte[8] soundEffectQueue; /// $1AC2
 __gshared ubyte unknown7E1ACA; /// $1ACA
 __gshared ubyte unknown7E1ACB; /// $1ACB
-__gshared short unknown7E1ACC; /// $1ACC
-__gshared short unknown7E1ACE; /// $1ACE
+__gshared short backgroundDistortionStyle; /// $1ACC
+__gshared short backgroundDistortionTargetLayer; /// $1ACE
 
-__gshared short unknown7E1AD2; /// $1AD2
-__gshared short unknown7E1AD4; /// $1AD4
+__gshared short backgroundDistortSecondLayer; /// $1AD2
+__gshared short backgroundDistortionCompressionRate; /// $1AD4
 __gshared short[64] unknown7E1AD6; /// $1AD6
 
 
@@ -379,7 +379,7 @@ __gshared ubyte[HDMAIndirectTableEntry.sizeof * 2 + 1] unknown7E3C32; /// $3C32
 
 __gshared ubyte[HDMAIndirectTableEntry.sizeof * 2 + 1] unknown7E3C3C; /// $3C3C
 
-__gshared ushort[448] unknown7E3C46; /// $3C46
+__gshared ushort[448] backgroundHDMABuffer; /// $3C46
 __gshared HDMAIndirectTableEntry[3] attractModeWindowHDMATable; /// $3FC6
 
 //based on our known RAM maps, this has 924 bytes of space allocated
