@@ -124,80 +124,7 @@ void main(string[] args) {
 	}
 	tracef("Loaded text");
 
-	bool run = true, dumpVram = false, pause = false, step = false, fastForward = false, printRegisters = false, dumpEntities = false;
 	int dumpVramCount = 0;
-
-	void handleButton(Controller button, bool pressed, uint playerID) {
-		final switch (button) {
-			case Controller.up, Controller.down, Controller.left, Controller.right, Controller.l, Controller.r, Controller.select, Controller.start, Controller.a, Controller.b, Controller.x, Controller.y, Controller.extra1, Controller.extra2, Controller.extra3, Controller.extra4:
-				handleSNESButton(cast(ushort)controllerToPad(button), pressed, playerID);
-				break;
-			case Controller.fastForward:
-				fastForward = pressed;
-				break;
-			case Controller.pause:
-				if (pressed) {
-					pause = !pause;
-				}
-				break;
-			case Controller.dumpVRAM:
-				dumpVram = pressed;
-				break;
-			case Controller.printRegisters:
-				printRegisters = pressed;
-				break;
-			case Controller.dumpEntities:
-				dumpEntities = pressed;
-				break;
-			case Controller.skipFrame:
-				step = pressed;
-				break;
-			case Controller.exit:
-				run = pressed;
-				break;
-		}
-	}
-	void handleAxis(uint playerID, AxisMapping axis, short value) {
-		enum upper = short.max / 2;
-		enum lower = short.min / 2;
-		const pressed = (value >= upper) || (value <= lower);
-		final switch (axis) {
-			case AxisMapping.upDown:
-				handleSNESButton(cast(ushort)controllerToPad(Controller.down), value >= upper, playerID);
-				handleSNESButton(cast(ushort)controllerToPad(Controller.up), value <= lower, playerID);
-				break;
-			case AxisMapping.leftRight:
-				handleSNESButton(cast(ushort)controllerToPad(Controller.right), value >= upper, playerID);
-				handleSNESButton(cast(ushort)controllerToPad(Controller.left), value <= lower, playerID);
-				break;
-			case AxisMapping.l, AxisMapping.r, AxisMapping.select, AxisMapping.start, AxisMapping.a, AxisMapping.b, AxisMapping.x, AxisMapping.y, AxisMapping.extra1, AxisMapping.extra2, AxisMapping.extra3, AxisMapping.extra4:
-				handleSNESButton(cast(ushort)controllerAxisToPad(axis), pressed, playerID);
-				break;
-			case AxisMapping.fastForward:
-				fastForward = pressed;
-				break;
-			case AxisMapping.pause:
-				if (pressed) {
-					pause = !pause;
-				}
-				break;
-			case AxisMapping.dumpVRAM:
-				dumpVram = pressed;
-				break;
-			case AxisMapping.printRegisters:
-				printRegisters = pressed;
-				break;
-			case AxisMapping.dumpEntities:
-				dumpEntities = pressed;
-				break;
-			case AxisMapping.skipFrame:
-				step = pressed;
-				break;
-			case AxisMapping.exit:
-				run = pressed;
-				break;
-		}
-	}
 
 	waitForInterrupt = () { Fiber.yield(); };
 	earthbound.commondefs.handleOAMDMA = &sfcdma.handleOAMDMA;
@@ -221,14 +148,13 @@ void main(string[] args) {
 		earthbound.commondefs.config.noIntro = noIntro.get();
 	}
 	auto game = new Fiber(&start);
-	while(run) {
-		step = !pause;
+	bool paused;
+	gameLoop: while(true) {
 		SDL_Event event;
 		while(SDL_PollEvent(&event)) {
 			switch (event.type) {
 				case SDL_EventType.SDL_QUIT:
-					run = false;
-					break;
+					break gameLoop;
 				case SDL_EventType.SDL_KEYDOWN:
 				case SDL_EventType.SDL_KEYUP:
 					if (auto button = event.key.keysym.scancode in settings.keyboardMapping) {
@@ -256,9 +182,14 @@ void main(string[] args) {
 				default: break;
 			}
 		}
+		if (input.exit) {
+			break gameLoop;
+		}
+		JOYPAD_1_DATA = input.gameInput[0];
+		JOYPAD_2_DATA = input.gameInput[1];
 		startFrame();
 
-		if (step) {
+		if (!paused || input.step) {
 			Throwable t = game.call(Fiber.Rethrow.no);
 			if(t) {
 				throw t;
@@ -268,7 +199,7 @@ void main(string[] args) {
 		}
 		endFrame();
 
-		const renderTime = waitForNextFrame(!fastForward);
+		const renderTime = waitForNextFrame(!input.fastForward);
 		frameTotal += timeSinceFrameStart.total!"msecs";
 		if (frameCounter++ == 60) {
 			char[30] buffer = 0;
@@ -276,72 +207,22 @@ void main(string[] args) {
 			frameCounter = 0;
 			frameTotal = 0;
 		}
-		if (dumpVram) {
+		if (input.dumpVram) {
 			saveGraphicsStateToFile(format!"gfxstate%03d"(dumpVramCount));
-			dumpVram = false;
+			input.dumpVram = false;
 			dumpVramCount += 1;
 		}
-		if (printRegisters) {
+		if (input.printRegisters) {
 			writeln(g_frameData);
-			printRegisters = false;
+			input.printRegisters = false;
 		}
-		if (dumpEntities) {
-			import earthbound.globals;
-			auto entityEntry = firstEntity;
-			while (entityEntry >= 0) {
-				const entity = entityEntry / 2;
-				writefln!"Entity %d"(entity);
-				writefln!"\tVars: [%d, %d, %d, %d, %d, %d, %d, %d]"(entityScriptVar0Table[entity], entityScriptVar1Table[entity], entityScriptVar2Table[entity], entityScriptVar3Table[entity], entityScriptVar4Table[entity], entityScriptVar5Table[entity], entityScriptVar6Table[entity], entityScriptVar7Table[entity]);
-				writeln("\tScript: ", cast(ActionScript)entityScriptTable[entity]);
-				writeln("\tScript index: ", entityScriptIndexTable[entity]);
-				writefln!"\tScreen coords: (%d, %d)"(entityScreenXTable[entity], entityScreenYTable[entity]);
-				writefln!"\tAbsolute coords: (%s, %s, %s)"(FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]).asDouble, FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]).asDouble, FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]).asDouble);
-				writefln!"\tDelta coords: (%s, %s, %s)"(FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]).asDouble, FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]).asDouble, FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]).asDouble);
-				writeln("\tDirection: ", cast(Direction)entityDirections[entity]);
-				writeln("\tSize: ", entitySizes[entity]);
-				writeln("\tDraw Priority: ", entityDrawPriority[entity]);
-				writefln!"\tTick callback flags: %016b"(entityTickCallbackFlags[entity]);
-				writefln!"\tAnimation frame: %s"(entityAnimationFrames[entity]);
-				writefln!"\tSpritemap flags: %016b"(entitySpriteMapFlags[entity]);
-				writefln!"\tCollided objects: %s"(entityCollidedObjects[entity]);
-				writefln!"\tObstacle flags: %016b"(entityObstacleFlags[entity]);
-				writefln!"\tVRAM address: $%04X"(entityVramAddresses[entity] * 2);
-				writefln!"\tSurface flags: %016b"(entitySurfaceFlags[entity]);
-				writefln!"\tTPT entry: %s"(entityTPTEntries[entity]);
-				writefln!"\tTPT entry sprite: %s"(cast(OverworldSprite)entityTPTEntrySprites[entity]);
-				writefln!"\tEnemy ID: %s"(entityEnemyIDs[entity]);
-				writeln("\tSleep frames: ", entityScriptSleepFrames[entity]);
-				writefln!"\tUnknown7E1A4A: %s"(entityUnknown1A4A[entity]);
-				writefln!"\tUnknown7E1A86: %s"(entityUnknown1A86[entity]);
-				writefln!"\tUnknown7E284C: %s"(entityUnknown284C[entity]);
-				writefln!"\tUnknown7E2916: %s"(entityUnknown2916[entity]);
-				writefln!"\tUnknown7E2952: %s"(entityUnknown2952[entity]);
-				writefln!"\tUnknown7E2B32: %s"(entityUnknown2B32[entity]);
-				writefln!"\tUnknown7E2BE6: %s"(entityUnknown2BE6[entity]);
-				writefln!"\tUnknown7E2C22: %s"(entityUnknown2C22[entity]);
-				writefln!"\tUnknown7E2C5E: %s"(entityUnknown2C5E[entity]);
-				writefln!"\tUnknown7E2D4E: %s"(entityUnknown2D4E[entity]);
-				writefln!"\tUnknown7E2D8A: %s"(entityUnknown2D8A[entity]);
-				writefln!"\tUnknown7E2DC6: %s"(entityUnknown2DC6[entity]);
-				writefln!"\tUnknown7E2E3E: %s"(entityUnknown2E3E[entity]);
-				writefln!"\tUnknown7E2E7A: %s"(entityUnknown2E7A[entity]);
-				writefln!"\tUnknown7E2EF2: %s"(entityUnknown2EF2[entity]);
-				writefln!"\tUnknown7E2FA6: %s"(entityUnknown2FA6[entity]);
-				writefln!"\tUnknown7E305A: %s"(entityUnknown305A[entity]);
-				writefln!"\tUnknown7E310E: %s"(entityUnknown310E[entity]);
-				writefln!"\tUnknown7E3186: %s"(entityUnknown3186[entity]);
-				writefln!"\tUnknown7E332A: %s"(entityUnknown332A[entity]);
-				writefln!"\tUnknown7E3366: %s"(entityUnknown3366[entity]);
-				writefln!"\tUnknown7E33A2: %s"(entityUnknown33A2[entity]);
-				writefln!"\tUnknown7E33DE: %s"(entityUnknown33DE[entity]);
-				writefln!"\tUnknown7E3456: %s"(entityUnknown3456[entity]);
-				entityEntry = entityNextEntityTable[entity];
-			}
-			writeln("----");
-			foreach (sprMap; chain(unknown7E2404[], unknown7E2506[], unknown7E2608[], unknown7E270A[]).filter!(x => x != null)) {
-				writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.unknown0, sprMap.unknown10, sprMap.flags, sprMap.unknown3, sprMap.unknown4);
-			}
-			dumpEntities = false;
+		if (input.dumpEntities) {
+			printEntities();
+			input.dumpEntities = false;
+		}
+		if (input.pause) {
+			paused = !paused;
+			input.pause = false;
 		}
 	}
 }
@@ -352,4 +233,62 @@ Settings getDefaultSettings() {
 	defaults.gamepadAxisMapping = getDefaultGamepadAxisMapping();
 	defaults.keyboardMapping = getDefaultKeyboardMapping();
 	return defaults;
+}
+
+void printEntities() {
+	import earthbound.globals;
+	auto entityEntry = firstEntity;
+	while (entityEntry >= 0) {
+		const entity = entityEntry / 2;
+		writefln!"Entity %d"(entity);
+		writefln!"\tVars: [%d, %d, %d, %d, %d, %d, %d, %d]"(entityScriptVar0Table[entity], entityScriptVar1Table[entity], entityScriptVar2Table[entity], entityScriptVar3Table[entity], entityScriptVar4Table[entity], entityScriptVar5Table[entity], entityScriptVar6Table[entity], entityScriptVar7Table[entity]);
+		writeln("\tScript: ", cast(ActionScript)entityScriptTable[entity]);
+		writeln("\tScript index: ", entityScriptIndexTable[entity]);
+		writefln!"\tScreen coords: (%d, %d)"(entityScreenXTable[entity], entityScreenYTable[entity]);
+		writefln!"\tAbsolute coords: (%s, %s, %s)"(FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]).asDouble, FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]).asDouble, FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]).asDouble);
+		writefln!"\tDelta coords: (%s, %s, %s)"(FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]).asDouble, FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]).asDouble, FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]).asDouble);
+		writeln("\tDirection: ", cast(Direction)entityDirections[entity]);
+		writeln("\tSize: ", entitySizes[entity]);
+		writeln("\tDraw Priority: ", entityDrawPriority[entity]);
+		writefln!"\tTick callback flags: %016b"(entityTickCallbackFlags[entity]);
+		writefln!"\tAnimation frame: %s"(entityAnimationFrames[entity]);
+		writefln!"\tSpritemap flags: %016b"(entitySpriteMapFlags[entity]);
+		writefln!"\tCollided objects: %s"(entityCollidedObjects[entity]);
+		writefln!"\tObstacle flags: %016b"(entityObstacleFlags[entity]);
+		writefln!"\tVRAM address: $%04X"(entityVramAddresses[entity] * 2);
+		writefln!"\tSurface flags: %016b"(entitySurfaceFlags[entity]);
+		writefln!"\tTPT entry: %s"(entityTPTEntries[entity]);
+		writefln!"\tTPT entry sprite: %s"(cast(OverworldSprite)entityTPTEntrySprites[entity]);
+		writefln!"\tEnemy ID: %s"(entityEnemyIDs[entity]);
+		writeln("\tSleep frames: ", entityScriptSleepFrames[entity]);
+		writefln!"\tUnknown7E1A4A: %s"(entityUnknown1A4A[entity]);
+		writefln!"\tUnknown7E1A86: %s"(entityUnknown1A86[entity]);
+		writefln!"\tUnknown7E284C: %s"(entityUnknown284C[entity]);
+		writefln!"\tUnknown7E2916: %s"(entityUnknown2916[entity]);
+		writefln!"\tUnknown7E2952: %s"(entityUnknown2952[entity]);
+		writefln!"\tUnknown7E2B32: %s"(entityUnknown2B32[entity]);
+		writefln!"\tUnknown7E2BE6: %s"(entityUnknown2BE6[entity]);
+		writefln!"\tUnknown7E2C22: %s"(entityUnknown2C22[entity]);
+		writefln!"\tUnknown7E2C5E: %s"(entityUnknown2C5E[entity]);
+		writefln!"\tUnknown7E2D4E: %s"(entityUnknown2D4E[entity]);
+		writefln!"\tUnknown7E2D8A: %s"(entityUnknown2D8A[entity]);
+		writefln!"\tUnknown7E2DC6: %s"(entityUnknown2DC6[entity]);
+		writefln!"\tUnknown7E2E3E: %s"(entityUnknown2E3E[entity]);
+		writefln!"\tUnknown7E2E7A: %s"(entityUnknown2E7A[entity]);
+		writefln!"\tUnknown7E2EF2: %s"(entityUnknown2EF2[entity]);
+		writefln!"\tUnknown7E2FA6: %s"(entityUnknown2FA6[entity]);
+		writefln!"\tUnknown7E305A: %s"(entityUnknown305A[entity]);
+		writefln!"\tUnknown7E310E: %s"(entityUnknown310E[entity]);
+		writefln!"\tUnknown7E3186: %s"(entityUnknown3186[entity]);
+		writefln!"\tUnknown7E332A: %s"(entityUnknown332A[entity]);
+		writefln!"\tUnknown7E3366: %s"(entityUnknown3366[entity]);
+		writefln!"\tUnknown7E33A2: %s"(entityUnknown33A2[entity]);
+		writefln!"\tUnknown7E33DE: %s"(entityUnknown33DE[entity]);
+		writefln!"\tUnknown7E3456: %s"(entityUnknown3456[entity]);
+		entityEntry = entityNextEntityTable[entity];
+	}
+	writeln("----");
+	foreach (sprMap; chain(unknown7E2404[], unknown7E2506[], unknown7E2608[], unknown7E270A[]).filter!(x => x != null)) {
+		writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.unknown0, sprMap.unknown10, sprMap.flags, sprMap.unknown3, sprMap.unknown4);
+	}
 }

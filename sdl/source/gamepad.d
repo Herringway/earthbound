@@ -9,7 +9,6 @@ import std.string;
 import bindbc.sdl;
 
 import earthbound.commondefs;
-import earthbound.hardware;
 
 bool initializeGamepad() {
 	if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0) {
@@ -34,17 +33,9 @@ void uninitializeGamepad() {
 
 void handleSNESButton(ushort val, bool pressed, uint playerID) {
 	if (pressed) {
-		if (playerID == 1) {
-			JOYPAD_1_DATA |= val;
-		} else {
-			JOYPAD_2_DATA |= val;
-		}
+		input.gameInput[playerID - 1] |= val;
 	} else {
-		if (playerID == 1) {
-			JOYPAD_1_DATA &= cast(ushort)~cast(uint)val;
-		} else {
-			JOYPAD_2_DATA &= cast(ushort)~cast(uint)val;
-		}
+		input.gameInput[playerID - 1] &= cast(ushort)~val;
 	}
 }
 
@@ -201,3 +192,85 @@ Pad controllerAxisToPad(AxisMapping mapping) @safe pure {
 		default: assert(0, "No mapping available for this button");
 	}
 }
+
+
+void handleButton(Controller button, bool pressed, uint playerID) {
+	final switch (button) {
+		case Controller.up, Controller.down, Controller.left, Controller.right, Controller.l, Controller.r, Controller.select, Controller.start, Controller.a, Controller.b, Controller.x, Controller.y, Controller.extra1, Controller.extra2, Controller.extra3, Controller.extra4:
+			handleSNESButton(cast(ushort)controllerToPad(button), pressed, playerID);
+			break;
+		case Controller.fastForward:
+			input.fastForward = pressed;
+			break;
+		case Controller.pause:
+			input.pause = pressed;
+			break;
+		case Controller.dumpVRAM:
+			input.dumpVram = pressed;
+			break;
+		case Controller.printRegisters:
+			input.printRegisters = pressed;
+			break;
+		case Controller.dumpEntities:
+			input.dumpEntities = pressed;
+			break;
+		case Controller.skipFrame:
+			input.step = pressed;
+			break;
+		case Controller.exit:
+			input.exit = pressed;
+			break;
+	}
+}
+void handleAxis(uint playerID, AxisMapping axis, short value) {
+	enum upper = short.max / 2;
+	enum lower = short.min / 2;
+	const pressed = (value >= upper) || (value <= lower);
+	final switch (axis) {
+		case AxisMapping.upDown:
+			handleSNESButton(cast(ushort)controllerToPad(Controller.down), value >= upper, playerID);
+			handleSNESButton(cast(ushort)controllerToPad(Controller.up), value <= lower, playerID);
+			break;
+		case AxisMapping.leftRight:
+			handleSNESButton(cast(ushort)controllerToPad(Controller.right), value >= upper, playerID);
+			handleSNESButton(cast(ushort)controllerToPad(Controller.left), value <= lower, playerID);
+			break;
+		case AxisMapping.l, AxisMapping.r, AxisMapping.select, AxisMapping.start, AxisMapping.a, AxisMapping.b, AxisMapping.x, AxisMapping.y, AxisMapping.extra1, AxisMapping.extra2, AxisMapping.extra3, AxisMapping.extra4:
+			handleSNESButton(cast(ushort)controllerAxisToPad(axis), pressed, playerID);
+			break;
+		case AxisMapping.fastForward:
+			input.fastForward = pressed;
+			break;
+		case AxisMapping.pause:
+			input.pause = pressed;
+			break;
+		case AxisMapping.dumpVRAM:
+			input.dumpVram = pressed;
+			break;
+		case AxisMapping.printRegisters:
+			input.printRegisters = pressed;
+			break;
+		case AxisMapping.dumpEntities:
+			input.dumpEntities = pressed;
+			break;
+		case AxisMapping.skipFrame:
+			input.step = pressed;
+			break;
+		case AxisMapping.exit:
+			input.exit = pressed;
+			break;
+	}
+}
+
+struct Input {
+	ushort[2] gameInput;
+	bool exit;
+	bool dumpVram;
+	bool pause;
+	bool step;
+	bool fastForward;
+	bool printRegisters;
+	bool dumpEntities;
+}
+
+Input input;
