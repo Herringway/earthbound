@@ -1237,6 +1237,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/koTarget.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/learnSpecialPSI.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/lifeupCommon.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/loadBackgroundAnimationInfo.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loadBattleBG.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loadBattleSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loadEnemyBattleSprites.html</loc></url>
@@ -1355,7 +1356,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2C32C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2C37A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2C41F.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC2CFE5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2D0AC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2DAE3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2DB14.html</loc></url>
@@ -3143,6 +3143,11 @@
 <url><loc>http://127.0.0.1/earthbound/globals/attackerNameAdjustScratch.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attractModeWindowHDMAData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attractModeWindowHDMATable.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/backgroundDistortionCompressionRate.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/backgroundDistortionStyle.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/backgroundDistortionTargetLayer.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/backgroundDistortSecondLayer.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/backgroundHDMABuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/backRowBattlers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battleDebug.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battleEXPScratch.html</loc></url>
@@ -3515,10 +3520,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1A3A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1ACA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1ACB.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E1ACC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E1ACE.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E1AD2.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E1AD4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1AD6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1B56.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1B6E.html</loc></url>
@@ -3589,7 +3590,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E3C30.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E3C32.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E3C3C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E3C46.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E436E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E4370.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E4372.html</loc></url>
