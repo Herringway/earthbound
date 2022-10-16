@@ -3,12 +3,34 @@ module gamepad;
 import misc;
 
 import std.experimental.logger;
+import std.file;
 import std.string;
 
 import bindbc.sdl;
 
 import earthbound.commondefs;
 import earthbound.hardware;
+
+bool initializeGamepad() {
+	if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0) {
+		SDLError("Couldn't initialise controller SDL subsystem: %s");
+		return false;
+	}
+	if ("gamecontrollerdb.txt".exists) {
+		if (SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt") < 0) {
+			SDLError("Error loading game controller database");
+		} else {
+			info("Successfully loaded game controller database");
+		}
+	}
+	SDL_GameControllerEventState(SDL_ENABLE);
+	info("SDL game controller subsystem initialized");
+	return true;
+}
+
+void uninitializeGamepad() {
+	//nothing to do here
+}
 
 void handleSNESButton(ushort val, bool pressed, uint playerID) {
 	if (pressed) {
@@ -45,6 +67,12 @@ void disconnectGamepad(int id) {
 	}
 }
 
+auto getDefaultGamepadAxisMapping() pure @safe {
+	return [
+		SDL_CONTROLLER_AXIS_LEFTX: AxisMapping.leftRight,
+		SDL_CONTROLLER_AXIS_LEFTY: AxisMapping.upDown,
+	];
+}
 auto getDefaultGamepadMapping() pure @safe {
 	return [
 		SDL_CONTROLLER_BUTTON_X : Controller.y,
@@ -110,6 +138,30 @@ enum Controller {
 	exit
 }
 
+enum AxisMapping {
+	upDown,
+	leftRight,
+	l,
+	r,
+	select,
+	start,
+	a,
+	b,
+	x,
+	y,
+	extra1,
+	extra2,
+	extra3,
+	extra4,
+	fastForward,
+	pause,
+	dumpVRAM,
+	dumpEntities,
+	skipFrame,
+	printRegisters,
+	exit,
+}
+
 Pad controllerToPad(Controller button) @safe pure {
 	switch (button) {
 		case Controller.up: return Pad.up;
@@ -128,6 +180,24 @@ Pad controllerToPad(Controller button) @safe pure {
 		case Controller.extra2: return Pad.extra2;
 		case Controller.extra3: return Pad.extra3;
 		case Controller.extra4: return Pad.extra4;
+		default: assert(0, "No mapping available for this button");
+	}
+}
+
+Pad controllerAxisToPad(AxisMapping mapping) @safe pure {
+	switch (mapping) {
+		case AxisMapping.l: return Pad.l;
+		case AxisMapping.r: return Pad.r;
+		case AxisMapping.select: return Pad.select;
+		case AxisMapping.start: return Pad.start;
+		case AxisMapping.a: return Pad.a;
+		case AxisMapping.b: return Pad.b;
+		case AxisMapping.x: return Pad.x;
+		case AxisMapping.y: return Pad.y;
+		case AxisMapping.extra1: return Pad.extra1;
+		case AxisMapping.extra2: return Pad.extra2;
+		case AxisMapping.extra3: return Pad.extra3;
+		case AxisMapping.extra4: return Pad.extra4;
 		default: assert(0, "No mapping available for this button");
 	}
 }

@@ -42,6 +42,7 @@ struct Settings {
 	AudioSettings audio;
 	VideoSettings video;
 	Controller[SDL_GameControllerButton] gamepadMapping;
+	AxisMapping[SDL_GameControllerAxis] gamepadAxisMapping;
 	Controller[SDL_Scancode] keyboardMapping;
 	GameConfig game;
 }
@@ -52,7 +53,6 @@ void saveGraphicsStateToFile(string filename) {
 	File(filename~".oam", "wb").rawWrite(g_frameData.oam1);
 	File(filename~".oam2", "wb").rawWrite(g_frameData.oam2);
 }
-
 
 void handleNullableOption(alias var)(string, string value) {
 	infof("%s", value);
@@ -107,19 +107,12 @@ void main(string[] args) {
 		uninitializeAudio();
 	}
 
-	if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0) {
-		SDLError("Couldn't initialise controller SDL subsystem: %s");
+	if (!initializeGamepad()) {
 		return;
 	}
-	if ("gamecontrollerdb.txt".exists) {
-		if (SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt") < 0) {
-			SDLError("Error loading game controller database");
-		} else {
-			info("Successfully loaded game controller database");
-		}
+	scope(exit) {
+		uninitializeGamepad();
 	}
-	SDL_GameControllerEventState(SDL_ENABLE);
-	info("SDL game controller subsystem initialized");
 
 	loadAudioData();
 
@@ -164,6 +157,47 @@ void main(string[] args) {
 				break;
 		}
 	}
+	void handleAxis(uint playerID, AxisMapping axis, short value) {
+		enum upper = short.max / 2;
+		enum lower = short.min / 2;
+		const pressed = (value >= upper) || (value <= lower);
+		final switch (axis) {
+			case AxisMapping.upDown:
+				handleSNESButton(cast(ushort)controllerToPad(Controller.down), value >= upper, playerID);
+				handleSNESButton(cast(ushort)controllerToPad(Controller.up), value <= lower, playerID);
+				break;
+			case AxisMapping.leftRight:
+				handleSNESButton(cast(ushort)controllerToPad(Controller.right), value >= upper, playerID);
+				handleSNESButton(cast(ushort)controllerToPad(Controller.left), value <= lower, playerID);
+				break;
+			case AxisMapping.l, AxisMapping.r, AxisMapping.select, AxisMapping.start, AxisMapping.a, AxisMapping.b, AxisMapping.x, AxisMapping.y, AxisMapping.extra1, AxisMapping.extra2, AxisMapping.extra3, AxisMapping.extra4:
+				handleSNESButton(cast(ushort)controllerAxisToPad(axis), pressed, playerID);
+				break;
+			case AxisMapping.fastForward:
+				fastForward = pressed;
+				break;
+			case AxisMapping.pause:
+				if (pressed) {
+					pause = !pause;
+				}
+				break;
+			case AxisMapping.dumpVRAM:
+				dumpVram = pressed;
+				break;
+			case AxisMapping.printRegisters:
+				printRegisters = pressed;
+				break;
+			case AxisMapping.dumpEntities:
+				dumpEntities = pressed;
+				break;
+			case AxisMapping.skipFrame:
+				step = pressed;
+				break;
+			case AxisMapping.exit:
+				run = pressed;
+				break;
+		}
+	}
 
 	waitForInterrupt = () { Fiber.yield(); };
 	earthbound.commondefs.handleOAMDMA = &sfcdma.handleOAMDMA;
@@ -201,17 +235,22 @@ void main(string[] args) {
 						handleButton(*button, event.type == SDL_KEYDOWN, 1);
 					}
 					break;
-				case SDL_CONTROLLERBUTTONUP:
-				case SDL_CONTROLLERBUTTONDOWN:
+				case SDL_EventType.SDL_CONTROLLERAXISMOTION:
+					if (auto axis = cast(SDL_GameControllerAxis)event.caxis.axis in settings.gamepadAxisMapping) {
+						handleAxis(SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.caxis.which)), *axis, event.caxis.value);
+					}
+					break;
+				case SDL_EventType.SDL_CONTROLLERBUTTONUP:
+				case SDL_EventType.SDL_CONTROLLERBUTTONDOWN:
 					if (auto button = cast(SDL_GameControllerButton)event.cbutton.button in settings.gamepadMapping) {
 						handleButton(*button, event.type == SDL_CONTROLLERBUTTONDOWN, SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.cbutton.which)));
 					}
 					break;
-				case SDL_CONTROLLERDEVICEADDED:
+				case SDL_EventType.SDL_CONTROLLERDEVICEADDED:
 					connectGamepad(event.cdevice.which);
 					break;
 
-				case SDL_CONTROLLERDEVICEREMOVED:
+				case SDL_EventType.SDL_CONTROLLERDEVICEREMOVED:
 					disconnectGamepad(event.cdevice.which);
 					break;
 				default: break;
@@ -307,10 +346,10 @@ void main(string[] args) {
 	}
 }
 
-
 Settings getDefaultSettings() {
 	Settings defaults;
 	defaults.gamepadMapping = getDefaultGamepadMapping();
+	defaults.gamepadAxisMapping = getDefaultGamepadAxisMapping();
 	defaults.keyboardMapping = getDefaultKeyboardMapping();
 	return defaults;
 }
