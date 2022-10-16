@@ -4191,7 +4191,7 @@ enum BattleBGLayer : ushort{
 	unknown292 = 292,
 	unknown293 = 293,
 	unknown294 = 294,
-	unknown295 = 295,
+	introGiygas = 295,
 	unknown296 = 296,
 	unknown297 = 297,
 	unknown298 = 298,

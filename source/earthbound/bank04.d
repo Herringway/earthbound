@@ -4370,17 +4370,17 @@ void unknownC4A377() {
 	unknownC08D79(3);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	decomp(&battleBGGraphicsPointers[animatedBackgrounds[295].graphics][0], &unknown7F0000[0]);
+	decomp(&battleBGGraphicsPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &unknown7F0000[0]);
 	copyToVRAM(0, 0x2000, 0x6000, &unknown7F0000[0]);
-	decomp(&battleBGArrangementPointers[animatedBackgrounds[295].graphics][0], &unknown7F0000[0]);
+	decomp(&battleBGArrangementPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &unknown7F0000[0]);
 	for (short i = 0; i < 0x800; i += 2) {
 		unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 8;
 	}
 	copyToVRAM(0, 0x800, 0x7C00, &unknown7F0000[0]);
-	unknownC2CFE5(&loadedBGDataLayer1, &animatedBackgrounds[295]);
+	loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[BattleBGLayer.introGiygas]);
 	loadedBGDataLayer1.palettePointer = &palettes[2];
-	memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
-	memcpy(&loadedBGDataLayer1.palette2[0], &battleBGPalettePointers[animatedBackgrounds[295].palette][0], 0x20);
+	memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
+	memcpy(&loadedBGDataLayer1.palette2[0], &battleBGPalettePointers[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
 	memcpy(&loadedBGDataLayer1.palettePointer[0], &loadedBGDataLayer1.palette[0], 0x20);
 	loadedBGDataLayer1.targetLayer = 2;
 	generateBattleBGFrame(&loadedBGDataLayer1, 0);

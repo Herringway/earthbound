@@ -7052,7 +7052,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 }
 
 /// $C2CFE5
-void unknownC2CFE5(LoadedBackgroundData* target, const(AnimatedBackground)* bg) {
+void loadBackgroundAnimationInfo(LoadedBackgroundData* target, const(AnimatedBackground)* bg) {
 	memset(target, 0, LoadedBackgroundData.sizeof);
 	target.bitDepth = bg.bitsPerPixel;
 	target.paletteShiftingStyle = bg.paletteShiftingStyle;
@@ -7145,7 +7145,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 8;
 		}
 		copyToVRAM(0, 0x800, 0x5C00, &unknown7F0000[0]);
-		unknownC2CFE5(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
+		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[2];
 		memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
 		memcpy(&loadedBGDataLayer1.palette2[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
@@ -7168,7 +7168,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 					unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 8;
 				}
 				copyToVRAM(0, 0x800, 0x5800, &unknown7F0000[0]);
-				unknownC2CFE5(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
+				loadBackgroundAnimationInfo(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
 				loadedBGDataLayer2.palettePointer = &palettes[4];
 				loadedBGDataLayer2.targetLayer = 1;
 				memcpy(&loadedBGDataLayer2.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
@@ -7178,7 +7178,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 				unknown7EADAE = 0x215;
 				unknown7EADB0 = 0x14;
 			} else {
-				unknownC2CFE5(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
+				loadBackgroundAnimationInfo(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
 				loadedBGDataLayer2.freezePaletteScrolling = 1;
 				loadedBGDataLayer2.targetLayer = 2;
 			}
@@ -7193,7 +7193,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			unknown7F0000[i + 1] = unknown7F0000[i + 1] & 0xDF;
 		}
 		copyToVRAM(0, 0x800, 0x5C00, &unknown7F0000[0]);
-		unknownC2CFE5(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
+		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[4];
 		memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
 		memcpy(&loadedBGDataLayer1.palette2[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
@@ -7210,7 +7210,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 				unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF);
 			}
 			copyToVRAM(0, 0x800, 0xC00, &unknown7F0000[0]);
-			unknownC2CFE5(&loadedBGDataLayer2 ,&animatedBackgrounds[layer2]);
+			loadBackgroundAnimationInfo(&loadedBGDataLayer2 ,&animatedBackgrounds[layer2]);
 			loadedBGDataLayer2.palettePointer = &palettes[6];
 			memcpy(&loadedBGDataLayer2.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
 			memcpy(&loadedBGDataLayer2.palette2[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
