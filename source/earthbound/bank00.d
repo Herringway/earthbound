@@ -7784,122 +7784,97 @@ void loadBackgroundOffsetParameters2(short arg1) {
 
 /// $C0AE5A
 void prepareBackgroundOffsetTables(short rippleFrequency, short rippleAmplitude, short distortionSpeed) {
-	ubyte x02 = 0;
-	ubyte x03 = cast(ubyte)distortionSpeed;
-	short a = 0;
-	short x = 0x1C0;
-	short y;
-	short x05;
+	ushort x03 = cast(ushort)((distortionSpeed & 0xFF) << 8);
+	short startOffset = 0;
+	short endOffset = 0x1C0;
+	short bufferPosition;
+	ushort x05;
 	if (backgroundDistortSecondLayer != 0) {
-		a = 0x1C0;
-		x = 0x380;
+		startOffset = 0x1C0;
+		endOffset = 0x380;
 	}
-	short x07 = a;
-	short x09 = x;
-	if (backgroundDistortionStyle < (DistortionStyle.verticalSmooth - 1)) {
-		if (backgroundDistortionTargetLayer != 0) {
+	if (backgroundDistortionTargetLayer != 0) {
+		if (backgroundDistortionStyle < (DistortionStyle.verticalSmooth - 1)) {
 			switch (backgroundDistortionTargetLayer - 1) {
 				case 0:
-					x03 += bg1YPosition;
-					x05 = bg1XPosition;
+					x03 += cast(ushort)(bg1YPosition << 8);
+					x05 += cast(ushort)(bg1XPosition << 8);
 					break;
 				case 1:
-					x03 += bg2YPosition;
-					x05 = bg2XPosition;
+					x03 += cast(ushort)(bg2YPosition << 8);
+					x05 += cast(ushort)(bg2XPosition << 8);
 					break;
 				case 2:
-					x03 += bg3YPosition;
-					x05 = bg3XPosition;
+					x03 += cast(ushort)(bg3YPosition << 8);
+					x05 += cast(ushort)(bg3XPosition << 8);
 					break;
 				case 3:
-					x03 += bg4YPosition;
-					x05 = bg4XPosition;
+					x03 += cast(ushort)(bg4YPosition << 8);
+					x05 += cast(ushort)(bg4XPosition << 8);
 					break;
 				default: break;
 			}
 		} else {
-			x05 = backgroundDistortionTargetLayer;
+			switch (backgroundDistortionTargetLayer - 1) {
+				case 0:
+					x05 = cast(ushort)(bg1YPosition << 8);
+					break;
+				case 1:
+					x05 = cast(ushort)(bg2YPosition << 8);
+					break;
+				case 2:
+					x05 = cast(ushort)(bg3YPosition << 8);
+					break;
+				case 3:
+					x05 = cast(ushort)(bg4YPosition << 8);
+					break;
+				default: break;
+			}
 		}
+	} else {
+		x05 = 0;
 	}
 	switch(backgroundDistortionStyle) {
 		case DistortionStyle.horizontalSmooth - 1:
-			y = x07;
+			bufferPosition = startOffset;
 			do {
-				backgroundHDMABuffer[y / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03]) >> 8) + x05);
-				x02 += rippleFrequency;
-				y += 2;
-			} while (y < x09);
+				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + x05);
+				x03 += rippleFrequency;
+				bufferPosition += 2;
+			} while (bufferPosition < endOffset);
 			break;
 		case DistortionStyle.horizontalInterlaced - 1:
-			y = x07;
+			bufferPosition = startOffset;
 			do {
-				backgroundHDMABuffer[y / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03]) >> 8) + x05);
-				x02 += rippleFrequency;
-				backgroundHDMABuffer[y / 2 + 1] = cast(ushort)(x05 - ((rippleAmplitude * sineLookupTable[x03]) >> 8));
-				x02 += rippleFrequency;
-				y += 4;
-			} while (y < x09);
+				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + x05);
+				x03 += rippleFrequency;
+				backgroundHDMABuffer[bufferPosition / 2 + 1] = cast(ushort)(x05 - ((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8));
+				x03 += rippleFrequency;
+				bufferPosition += 4;
+			} while (bufferPosition < endOffset);
 			break;
 		case DistortionStyle.verticalSmooth - 1:
-			if (backgroundDistortionTargetLayer != 0) {
-				switch (backgroundDistortionTargetLayer - 1) {
-					case 0:
-						x05 = bg1YPosition;
-						break;
-					case 1:
-						x05 = bg2YPosition;
-						break;
-					case 2:
-						x05 = bg3YPosition;
-						break;
-					case 3:
-						x05 = bg4YPosition;
-						break;
-					default: break;
-				}
-			} else {
-				x05 = backgroundDistortionTargetLayer;
-			}
 			x05 = cast(ushort)(x05 << 8);
-			y = x07;
+			bufferPosition = startOffset;
 			do {
 				x05 += backgroundDistortionCompressionRate;
-				backgroundHDMABuffer[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((rippleAmplitude * sineLookupTable[x03]) >> 8));
-				x02 += rippleFrequency;
-				y += 2;
-			} while (y < x09);
+				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + (x05 / 256));
+				x03 += rippleFrequency;
+				bufferPosition += 2;
+			} while (bufferPosition < endOffset);
 			break;
 		case DistortionStyle.unknown - 1:
 		default:
-			if (backgroundDistortionTargetLayer != 0) {
-				switch (backgroundDistortionTargetLayer - 1) {
-					case 0:
-						x05 = bg1YPosition;
-						break;
-					case 1:
-						x05 = bg2YPosition;
-						break;
-					case 2:
-						x05 = bg3YPosition;
-						break;
-					case 3:
-						x05 = bg4YPosition;
-						break;
-					default: break;
-				}
-			} else {
-				x05 = backgroundDistortionTargetLayer;
-			}
 			x05 = cast(ushort)(x05 << 8);
-			y = x07;
+			bufferPosition = startOffset;
 			do {
 				x05 += backgroundDistortionCompressionRate;
-				backgroundHDMABuffer[y / 2] = cast(ushort)((cast(ushort)x05 >> 8) + ((rippleAmplitude * sineLookupTable[x03]) >> 8));
+				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + (x05 / 256));
 				x05 += backgroundDistortionCompressionRate;
-				backgroundHDMABuffer[y / 2 + 1] = cast(ushort)((cast(ushort)x05 >> 8) - ((rippleAmplitude * sineLookupTable[x03]) >> 8));
-				x02 += rippleFrequency;
-				y += 4;
-			} while (y < x09);
+				backgroundHDMABuffer[bufferPosition / 2 + 1] = cast(ushort)((x05 / 256) - ((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8));
+				x03 += rippleFrequency;
+				bufferPosition += 4;
+			} while (bufferPosition < endOffset);
 			break;
 	}
 }
