@@ -243,7 +243,7 @@ void drawHPPPWindow(short id) {
 	x++;
 	x+= 25;
 
-	fillCharacterHPTileBuffer(id, character.hp.current.integer, character.hp.current.fraction);
+	fillCharacterHPTileBuffer(id, cast(short)character.hp.current.value, cast(short)(cast(uint)character.hp.current.value >> 16));
 	const(ubyte)* x06 = &unknownC3E3F8[0];
 	ushort* y = &hpPPWindowBuffer[id][0];
 	for (short i = 2; i != 0; i--) {
@@ -264,7 +264,7 @@ void drawHPPPWindow(short id) {
 		x += 25;
 	}
 
-	fillCharacterPPTileBuffer(id, &character.afflictions[0], character.pp.current.integer, character.pp.current.fraction);
+	fillCharacterPPTileBuffer(id, &character.afflictions[0], cast(short)character.pp.current.value, cast(short)(cast(uint)character.pp.current.value >> 16));
 	y = &hpPPWindowBuffer[id][6];
 	for (short i = 2; i != 0; i--) {
 		x[0] = cast(ushort)(x1E + 0x2006);
@@ -553,9 +553,9 @@ void fillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short integer, sh
 }
 
 /// $C20F58
-uint unknownC20F58() {
+FixedPoint32 unknownC20F58() {
 	if (unknown7E9695 != 0) {
-		return unknown7E9627 >> 1;
+		return unknown7E9627 / 2.0;
 	} else {
 		return unknown7E9627;
 	}
@@ -564,14 +564,14 @@ uint unknownC20F58() {
 /// $C20F9A
 void resetRolling() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-		if ((partyCharacters[gameState.partyMembers[i] - 1].afflictions[0] != 1) && (partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer == 0)) {
+		if ((partyCharacters[gameState.partyMembers[i] - 1].afflictions[0] != 1) && (cast(short)partyCharacters[gameState.partyMembers[i] - 1].hp.current.value == 0)) {
 			partyCharacters[gameState.partyMembers[i] - 1].hp.target = 1;
 		}
-		if ((partyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction != 0) && (partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer > partyCharacters[gameState.partyMembers[i] - 1].hp.target)) {
-			partyCharacters[gameState.partyMembers[i] - 1].hp.target = partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer;
+		if (partyCharacters[gameState.partyMembers[i] - 1].hp.current.value > partyCharacters[gameState.partyMembers[i] - 1].hp.target) {
+			partyCharacters[gameState.partyMembers[i] - 1].hp.target = cast(short)partyCharacters[gameState.partyMembers[i] - 1].hp.current.value;
 		}
-		if ((partyCharacters[gameState.partyMembers[i] - 1].pp.current.fraction != 0) && (partyCharacters[gameState.partyMembers[i] - 1].pp.current.integer > partyCharacters[gameState.partyMembers[i] - 1].pp.target)) {
-			partyCharacters[gameState.partyMembers[i] - 1].pp.target = partyCharacters[gameState.partyMembers[i] - 1].pp.current.integer;
+		if (partyCharacters[gameState.partyMembers[i] - 1].pp.current.value > partyCharacters[gameState.partyMembers[i] - 1].pp.target) {
+			partyCharacters[gameState.partyMembers[i] - 1].pp.target = cast(short)partyCharacters[gameState.partyMembers[i] - 1].pp.current.value;
 		}
 	}
 	unknown7E9696 = 1;
@@ -580,10 +580,8 @@ void resetRolling() {
 /// $C21034
 short unknownC21034() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-		if ((partyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction != 0)
-			|| (partyCharacters[gameState.partyMembers[i] - 1].pp.current.fraction != 0)
-			|| (partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer != partyCharacters[gameState.partyMembers[i] - 1].hp.target)
-			|| (partyCharacters[gameState.partyMembers[i] - 1].pp.current.integer != partyCharacters[gameState.partyMembers[i] - 1].pp.target)) {
+		if ((partyCharacters[gameState.partyMembers[i] - 1].hp.current.value != partyCharacters[gameState.partyMembers[i] - 1].hp.target)
+			|| (partyCharacters[gameState.partyMembers[i] - 1].pp.current.value != partyCharacters[gameState.partyMembers[i] - 1].pp.target)) {
 			return 0;
 		}
 	}
@@ -611,59 +609,59 @@ void hpPPRoller() {
 		return;
 	}
 	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[unknown7E0002 & 3]];
-	if ((unknown7E9698 == 0) && ((x10.hp.current.fraction & 1) != 0)) {
-		if (x10.hp.current.integer < x10.hp.target) {
-			x10.hp.current.combined += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? 0x64000 : unknownC20F58();
-			if (x10.hp.current.integer >= x10.hp.target) {
-				x10.hp.current.integer = x10.hp.target;
-				x10.hp.current.fraction = 1;
+	if ((unknown7E9698 == 0) && ((x10.hp.current.flag & 1) != 0)) {
+		if (cast(short)x10.hp.current.value < x10.hp.target) {
+			x10.hp.current.value += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? FixedPoint32(6.25) : unknownC20F58();
+			if (cast(short)x10.hp.current.value >= x10.hp.target) {
+				x10.hp.current.value = x10.hp.target;
+				x10.hp.current.flag = 1;
 			}
-		} else if ((x10.hp.current.integer == x10.hp.target) && (x10.hp.current.fraction == 1)) {
-			x10.hp.current.fraction = 0;
+		} else if ((cast(short)x10.hp.current.value == x10.hp.target) && (x10.hp.current.flag == 1)) {
+			x10.hp.current.flag = 0;
 		} else {
-			x10.hp.current.combined += (unknown7E9698 != 0) ? 0x64000 : unknownC20F58();
-			if ((x10.hp.current.integer < x10.hp.target) || (x10.hp.current.integer > 0x1000)) {
-				x10.hp.current.integer = x10.hp.target;
-				x10.hp.current.fraction = 1;
+			x10.hp.current.value += (unknown7E9698 != 0) ? FixedPoint32(6.25) : unknownC20F58();
+			if ((cast(short)x10.hp.current.value < x10.hp.target) || (cast(short)x10.hp.current.value > 0x1000)) {
+				x10.hp.current.value = x10.hp.target;
+				x10.hp.current.flag = 1;
 			}
 		}
-	} else if ((x10.hp.current.fraction & 1) == 1) {
-		if (x10.hp.current.integer != x10.hp.target) {
-			x10.hp.current.fraction = 1;
+	} else if ((x10.hp.current.flag & 1) == 1) {
+		if (cast(short)x10.hp.current.value != x10.hp.target) {
+			x10.hp.current.flag = 1;
 		}
 	}
-	if ((unknown7E9698 == 0) && ((x10.pp.current.fraction & 1) != 0)) {
-		if (x10.pp.current.integer < x10.pp.target) {
-			x10.pp.current.combined += (unknown7E9698 != 0) ? 0x64000 : 0x19000;
-			if (x10.pp.current.integer >= x10.pp.target) {
-				x10.pp.current.integer = x10.pp.target;
-				x10.hp.current.fraction = 1;
+	if ((unknown7E9698 == 0) && ((x10.pp.current.flag & 1) != 0)) {
+		if (cast(short)x10.pp.current.value < x10.pp.target) {
+			x10.pp.current.value += (unknown7E9698 != 0) ? 6.25 : 1.5625;
+			if (cast(short)x10.pp.current.value >= x10.pp.target) {
+				x10.pp.current.value = x10.pp.target;
+				x10.pp.current.flag = 1;
 			}
-		} else if ((x10.pp.current.integer == x10.pp.target) && (x10.pp.current.fraction == 1)) {
-			x10.pp.current.fraction = 0;
+		} else if ((cast(short)x10.pp.current.value == x10.pp.target) && (x10.pp.current.flag == 1)) {
+			x10.pp.current.flag = 0;
 		} else {
-			x10.pp.current.combined += (unknown7E9698 != 0) ? 0x64000 : 0x19000;
-			if ((x10.pp.current.integer < x10.pp.target) || (x10.pp.current.integer > 0x1000)) {
-				x10.pp.current.integer = x10.pp.target;
-				x10.pp.current.fraction = 1;
+			x10.pp.current.value += (unknown7E9698 != 0) ? 6.25 : 1.5625;
+			if ((cast(short)x10.pp.current.value < x10.pp.target) || (cast(short)x10.pp.current.value > 0x1000)) {
+				x10.pp.current.value = x10.pp.target;
+				x10.pp.current.flag = 1;
 			}
 		}
-	} else if ((x10.pp.current.fraction) == 0) {
-		if (x10.pp.current.integer != x10.pp.target) {
-			x10.pp.current.fraction = 1;
+	} else if (x10.pp.current.flag == 0) {
+		if (cast(short)x10.pp.current.value != x10.pp.target) {
+			x10.pp.current.flag = 1;
 		}
 	}
 	if (unknown7E9698 == 0) {
 		return;
 	}
-	if (x10.hp.current.integer == 999) {
+	if (cast(short)x10.hp.current.value == 999) {
 		x10.hp.target = 1;
-	} else if (x10.hp.current.integer == 1) {
+	} else if (cast(short)x10.hp.current.value == 1) {
 		x10.hp.target = 999;
 	}
-	if (x10.pp.current.integer == 999) {
+	if (cast(short)x10.pp.current.value == 999) {
 		x10.pp.target = 0;
-	} else if (x10.pp.current.integer == 0) {
+	} else if (cast(short)x10.pp.current.value == 0) {
 		x10.pp.target = 999;
 	}
 }
@@ -685,8 +683,8 @@ void updateHPPPMeterTiles() {
 	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + unknown7E0002 & 3;
 	ushort* x1A = &bg2Buffer[x1C];
 	//x1C = 0x7C00[x1C];
-	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction & 1) != 0) {
-		fillCharacterHPTileBuffer(unknown7E0002 & 3, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction);
+	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.flag & 1) != 0) {
+		fillCharacterHPTileBuffer(unknown7E0002 & 3, cast(short)partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.value, cast(ushort)(cast(uint)partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.value >> 16));
 		if (unknown7E9624 == 0) {
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][0]);
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[(unknown7E0002 & 3) + 1][0]);
@@ -703,8 +701,8 @@ void updateHPPPMeterTiles() {
 	} else {
 		x1A += 64;
 	}
-	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction & 1) != 0) {
-		fillCharacterPPTileBuffer(unknown7E0002 & 3, &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction);
+	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.flag & 1) != 0) {
+		fillCharacterPPTileBuffer(unknown7E0002 & 3, &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].afflictions[0], cast(short)partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.value, cast(ushort)(cast(uint)partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.value >> 16));
 		if (unknown7E9624 == 0) {
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[(unknown7E0002 & 3) + 2][0]);
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[(unknown7E0002 & 3) + 3][0]);
@@ -1394,8 +1392,8 @@ void unknownC2307B() {
 /// $C230F3
 void setTeleportBoxDestination(short arg1) {
 	gameState.unknownC3 = cast(ubyte)arg1;
-	respawnX = gameState.leaderX.integer;
-	respawnY = gameState.leaderY.integer;
+	respawnX = cast(short)gameState.leaderX;
+	respawnY = cast(short)gameState.leaderY;
 }
 
 /// $C23109
@@ -3666,7 +3664,7 @@ short reviveTarget(Battler* arg1, short arg2) {
 	setHP(arg1, arg2);
 	if ((arg1.allyOrEnemy == 0) && (arg1.npcID == 0)) {
 		partyCharacters[arg1.row].hp.target = arg2;
-		partyCharacters[arg1.row].hp.current.integer = arg2;
+		partyCharacters[arg1.row].hp.current.value = arg2;
 	}
 	if ((arg1.allyOrEnemy == 1) && (arg1.npcID == 0)) {
 		for (short i = 0; i < battlersTable.length; i++) {
@@ -3772,7 +3770,7 @@ void koTarget(Battler* arg1) {
 		}
 		arg1.hpTarget = 0;
 		partyCharacters[arg1.row].hp.target = 0;
-		partyCharacters[arg1.row].hp.current.integer = 1;
+		partyCharacters[arg1.row].hp.current.value = 1;
 		displayInBattleText(getTextBlock("textBattleGotHurtAndCollapsed"));
 		return;
 	}
@@ -3803,7 +3801,7 @@ void koTarget(Battler* arg1) {
 			if (battlersTable[i].npcID != 0) {
 				continue;
 			}
-			if (partyCharacters[battlersTable[i].row].hp.current.integer != 0) {
+			if (cast(short)partyCharacters[battlersTable[i].row].hp.current.value != 0) {
 				continue;
 			}
 			partyCharacters[battlersTable[i].row].hp.target = 1;
@@ -4139,7 +4137,7 @@ short calcResistDamage(short damage, short arg2) {
 			default: break;
 		}
 	}
-	if ((currentTarget.allyOrEnemy == 0) && (currentTarget.npcID == 0) && (partyCharacters[currentTarget.row].hp.current.integer == 0)) {
+	if ((currentTarget.allyOrEnemy == 0) && (currentTarget.npcID == 0) && (cast(short)partyCharacters[currentTarget.row].hp.current.value == 0)) {
 		return damage;
 	}
 	if ((currentTarget.afflictions[2] == Status2.asleep) && (success255(128) != 0)) {
@@ -5951,7 +5949,7 @@ short bossBattleCheck() {
 
 /// $C2AB71
 void battleActionTeleportBox() {
-	if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 0x80) == 0) {
+	if ((loadSectorAttributes(cast(short)gameState.leaderX, cast(short)gameState.leaderY) & 0x80) == 0) {
 		if ((battleModeFlag == 0) || ((randLimit(100) < itemData[currentAttacker.currentActionArgument].parameters.strength) && (bossBattleCheck() != 0))) {
 			removeItemFromInventoryF(currentAttacker.id, currentAttacker.actionItemSlot);
 			displayInBattleText(getTextBlock("textBattleTeleportBoxExploded"));
@@ -6337,10 +6335,10 @@ void battleInitPlayerStats(short arg1, Battler* battler) {
 	battler.consciousness = 1;
 	battler.allyOrEnemy = 0;
 	battler.npcID = 0;
-	battler.hp = partyCharacters[arg1 - 1].hp.current.integer;
+	battler.hp = cast(short)partyCharacters[arg1 - 1].hp.current.value;
 	battler.hpTarget = partyCharacters[arg1 - 1].hp.target;
 	battler.hpMax = partyCharacters[arg1 - 1].maxHP;
-	battler.pp = partyCharacters[arg1 - 1].pp.current.integer;
+	battler.pp = cast(short)partyCharacters[arg1 - 1].pp.current.value;
 	battler.ppTarget = partyCharacters[arg1 - 1].pp.target;
 	battler.ppMax = partyCharacters[arg1 - 1].maxPP;
 	memcpy(&battler.afflictions[0], &partyCharacters[arg1 - 1].afflictions[0], battler.afflictions.length);
@@ -6393,9 +6391,9 @@ void checkDeadPlayers() {
 		if (battlersTable[i].npcID != 0) {
 			continue;
 		}
-		battlersTable[i].hp = partyCharacters[battlersTable[i].row].hp.current.integer;
-		battlersTable[i].pp = partyCharacters[battlersTable[i].row].pp.current.integer;
-		if ((partyCharacters[battlersTable[i].row].hp.current.integer == 0) && (battlersTable[i].afflictions[0] != Status0.unconscious)) {
+		battlersTable[i].hp = cast(short)partyCharacters[battlersTable[i].row].hp.current.value;
+		battlersTable[i].pp = cast(short)partyCharacters[battlersTable[i].row].pp.current.value;
+		if ((cast(short)partyCharacters[battlersTable[i].row].hp.current.value == 0) && (battlersTable[i].afflictions[0] != Status0.unconscious)) {
 			currentTarget = &battlersTable[i];
 			currentTarget.afflictions[0] = Status0.unconscious;
 			currentTarget.afflictions[6] = 0;
@@ -8331,7 +8329,7 @@ void unknownC2FEF9(short type) {
 
 /// $C2FF9A
 short unknownC2FF9A() {
-	if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) >= 3) {
+	if ((loadSectorAttributes(cast(short)gameState.leaderX, cast(short)gameState.leaderY) & 7) >= 3) {
 		return 1;
 	}
 	return 0;

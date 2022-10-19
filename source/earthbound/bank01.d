@@ -426,10 +426,8 @@ void hideHPPPWindows() {
 	if (battleModeFlag == 0) {
 		for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
 			undrawHPPPWindow(i);
-			partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer = partyCharacters[gameState.partyMembers[i] - 1].hp.target;
-			partyCharacters[gameState.partyMembers[i] - 1].pp.current.integer = partyCharacters[gameState.partyMembers[i] - 1].pp.target;
-			partyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction = 0;
-			partyCharacters[gameState.partyMembers[i] - 1].pp.current.fraction = 0;
+			partyCharacters[gameState.partyMembers[i] - 1].hp.current.value = partyCharacters[gameState.partyMembers[i] - 1].hp.target;
+			partyCharacters[gameState.partyMembers[i] - 1].pp.current.value = partyCharacters[gameState.partyMembers[i] - 1].pp.target;
 		}
 	}
 	unknown7E9623 = 1;
@@ -1608,10 +1606,10 @@ void unknownC12D17(short arg1) {
 		for (short i = 0; 4 > i; i++) {
 			unknown7E969A[i] = partyCharacters[i].hp.target;
 			partyCharacters[i].hp.target = 999;
-			partyCharacters[i].hp.current.integer = 999;
+			partyCharacters[i].hp.current.value = 999;
 			unknown7E96A2[i] = partyCharacters[i].pp.target;
 			partyCharacters[i].pp.target = 0;
-			partyCharacters[i].pp.current.integer = 0;
+			partyCharacters[i].pp.current.value = 0;
 		}
 	} else {
 		if ((unknown7E9698 != 0) && (arg1 == 0)) {
@@ -1689,8 +1687,8 @@ void debugYButtonMenu() {
 				break;
 			case 3:
 				saveCurrentGame();
-				respawnX = gameState.leaderX.integer;
-				respawnY = gameState.leaderY.integer;
+				respawnX = cast(short)gameState.leaderX;
+				respawnY = cast(short)gameState.leaderY;
 				break;
 			case 4:
 				x1A = getTextBlock("textDebugAppleMenu");
@@ -4006,7 +4004,7 @@ void* cc1DTree(DisplayTextState* arg1, ubyte arg2) {
 			return &cc1D21;
 		case 0x22:
 			short x14 = 0;
-			if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) == 2) {
+			if ((loadSectorAttributes(cast(short)gameState.leaderX, cast(short)gameState.leaderY) & 7) == 2) {
 				x14 = 1;
 			}
 			setWorkingMemory(WorkingMemory(x14));
@@ -4152,8 +4150,8 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x67:
 			return &cc1F67;
 		case 0x68:
-			gameState.exitMouseXCoordinate = gameState.leaderX.integer;
-			gameState.exitMouseYCoordinate = gameState.leaderY.integer;
+			gameState.exitMouseXCoordinate = cast(short)gameState.leaderX;
+			gameState.exitMouseYCoordinate = cast(short)gameState.leaderY;
 			break;
 		case 0x69:
 			for (short i = 1; i <= 10; i++) {
@@ -4751,13 +4749,13 @@ void unknownC1952F(short arg1) {
 	printNumber(partyCharacters[arg1].level);
 	setCurrentWindowPadding(2);
 	unknownC43D75(94, 3);
-	printNumber(partyCharacters[arg1].hp.current.integer);
+	printNumber(cast(short)partyCharacters[arg1].hp.current.value);
 	unknownC43D75(114, 3);
 	printLetter(ebChar('/'));
 	unknownC43D75(121, 3);
 	printNumber(partyCharacters[arg1].maxHP);
 	unknownC43D75(94, 4);
-	printNumber(partyCharacters[arg1].pp.current.integer);
+	printNumber(cast(short)partyCharacters[arg1].pp.current.value);
 	unknownC43D75(114, 4);
 	printLetter(ebChar('/'));
 	unknownC43D75(121, 4);
@@ -5392,7 +5390,7 @@ short unknownC1AD42() {
 
 /// $C1AD71
 short unknownC1AD7D() {
-	short x0E = loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
+	short x0E = loadSectorAttributes(cast(short)gameState.leaderX, cast(short)gameState.leaderY);
 	if ((getEventFlag(EventFlag.usePostgameMusic != 0) && ((x0E & 7) == 0))) {
 		return ItemID.bicycle;
 	} else {
@@ -5623,14 +5621,14 @@ short unknownC1B5B6() {
 				if (unknown7E9D18 == 0) {
 					unknownC1CA72(x01, 6);
 				}
-				if (battleActionTable[psiAbilityTable[x01].battleAction].ppCost > partyCharacters[x26 - 1].pp.current.integer) {
+				if (battleActionTable[psiAbilityTable[x01].battleAction].ppCost > cast(short)partyCharacters[x26 - 1].pp.current.value) {
 					createWindowN(Window.textBattle);
 					displayText(getTextBlock("textNotEnoughPP"));
 					closeFocusWindowN();
 					x00 = 0;
 				} else {
 					if (psiAbilityTable[x01].type == 8) {
-						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.npcDelivery) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0)) {
+						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.npcDelivery) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(cast(short)gameState.leaderX, cast(short)gameState.leaderY) & MapSectorConfig.cannotTeleport) == 0)) {
 							x00 = cast(ubyte)unknownC1AAFA();
 						} else {
 							createWindowN(Window.textBattle);
@@ -6517,7 +6515,7 @@ void resetCharLevelOne(short arg1, short arg2, short arg3) {
 	partyCharacters[arg1 - 1].baseIQ = 2;
 	partyCharacters[arg1 - 1].maxHP = 30;
 	partyCharacters[arg1 - 1].hp.target = 30;
-	partyCharacters[arg1 - 1].hp.current.integer = 30;
+	partyCharacters[arg1 - 1].hp.current.value = 30;
 	short x10;
 	if (arg1 - 1 != 2) {
 		x10 = 10;
@@ -6526,7 +6524,7 @@ void resetCharLevelOne(short arg1, short arg2, short arg3) {
 	}
 	partyCharacters[arg1 - 1].maxPP = x10;
 	partyCharacters[arg1 - 1].pp.target = x10;
-	partyCharacters[arg1 - 1].pp.current.integer = x10;
+	partyCharacters[arg1 - 1].pp.current.value = x10;
 	recalcCharacterPostmathOffense(arg1);
 	recalcCharacterPostmathDefense(arg1);
 	recalcCharacterPostmathSpeed(arg1);
@@ -6577,8 +6575,8 @@ void unknownC1DCCB(short arg1) {
 		resetCharLevelOne(i, arg1, 1);
 		recoverHPAmtPercent(i, 100, 0);
 		recoverPPAmtPercent(i, 100, 0);
-		partyCharacters[i - 1].hp.current.integer = partyCharacters[i - 1].hp.target;
-		partyCharacters[i - 1].pp.current.integer = partyCharacters[i - 1].pp.target;
+		partyCharacters[i - 1].hp.current.value = partyCharacters[i - 1].hp.target;
+		partyCharacters[i - 1].pp.current.value = partyCharacters[i - 1].pp.target;
 		memset(&partyCharacters[i - 1].afflictions[0], 0, PartyCharacter.afflictions.length);
 	}
 }
@@ -7464,8 +7462,8 @@ void fileMenuLoop() {
 		if (gameState.favouriteThing[1] != 0) {
 			unknownC064D4();
 			reloadHotspots();
-			respawnX = gameState.leaderX.integer;
-			respawnY = gameState.leaderY.integer;
+			respawnX = cast(short)gameState.leaderX;
+			respawnY = cast(short)gameState.leaderY;
 		} else {
 			gameState.textSpeed = 1;
 			foreach (idx, ref character; partyCharacters) {
@@ -7480,10 +7478,10 @@ void fileMenuLoop() {
 				if (initialStats[i].exp != 0) {
 					gainEXP(cast(short)(i + 1), 0, initialStats[i].exp);
 				}
-				partyCharacters[i].hp.target = partyCharacters[i].hp.current.integer = partyCharacters[i].maxHP;
-				partyCharacters[i].pp.target = partyCharacters[i].pp.current.integer = partyCharacters[i].maxPP;
-				partyCharacters[i].pp.current.fraction = 0;
-				partyCharacters[i].hp.current.fraction = 0;
+				partyCharacters[i].hp.target = partyCharacters[i].maxHP;
+				partyCharacters[i].pp.target = partyCharacters[i].maxPP;
+				partyCharacters[i].hp.current.value = partyCharacters[i].maxHP;
+				partyCharacters[i].pp.current.value = partyCharacters[i].maxPP;
 				memset(&partyCharacters[i].items[0], 0, PartyCharacter.items.length);
 				memcpy(&partyCharacters[i].items[0], &initialStats[i].items[0], PartyCharacter.items.length);
 				partyCharacters[i].hpPPWindowOptions = 0x400;
@@ -7501,8 +7499,8 @@ void fileMenuLoop() {
 				}
 			}
 			gameState.unknownC3 = 1;
-			respawnX = gameState.leaderX.integer;
-			respawnY = gameState.leaderY.integer;
+			respawnX = cast(short)gameState.leaderX;
+			respawnY = cast(short)gameState.leaderY;
 			unknownC064D4();
 			setLeaderLocation(0x840, 0x6E8);
 			unknownC46881(getTextBlock("textFileSelectScreen1"));
@@ -7522,8 +7520,8 @@ void fileMenuLoop() {
 					case 1: //Start Game
 						unknownC064D4();
 						reloadHotspots();
-						respawnX = gameState.leaderX.integer;
-						respawnY = gameState.leaderY.integer;
+						respawnX = cast(short)gameState.leaderX;
+						respawnY = cast(short)gameState.leaderY;
 						break outermost;
 					case 2: //Copy
 						if (unknownC1F14F() == 0) {
@@ -7663,10 +7661,10 @@ void fileMenuLoop() {
 									if (initialStats[i].exp != 0) {
 										gainEXP(cast(short)(i + 1), 0, initialStats[i].exp);
 									}
-									partyCharacters[i].hp.target = partyCharacters[i].hp.current.integer = partyCharacters[i].maxHP;
-									partyCharacters[i].pp.target = partyCharacters[i].pp.current.integer = partyCharacters[i].maxPP;
-									partyCharacters[i].pp.current.fraction = 0;
-									partyCharacters[i].hp.current.fraction = 0;
+									partyCharacters[i].hp.target = partyCharacters[i].maxHP;
+									partyCharacters[i].pp.target = partyCharacters[i].maxPP;
+									partyCharacters[i].hp.current.value = partyCharacters[i].maxHP;
+									partyCharacters[i].pp.current.value = partyCharacters[i].maxPP;
 									memset(&partyCharacters[i].items[0], 0, PartyCharacter.items.length);
 									memcpy(&partyCharacters[i].items[0], &initialStats[i].items[0], PartyCharacter.items.length);
 									partyCharacters[i].hpPPWindowOptions = 0x400;
@@ -7684,8 +7682,8 @@ void fileMenuLoop() {
 									}
 								}
 								gameState.unknownC3 = 1;
-								respawnX = gameState.leaderX.integer;
-								respawnY = gameState.leaderY.integer;
+								respawnX = cast(short)gameState.leaderX;
+								respawnY = cast(short)gameState.leaderY;
 								unknownC064D4();
 								setLeaderLocation(0x840, 0x6E8);
 								unknownC46881(getTextBlock("textFileSelectScreen1"));

@@ -122,8 +122,8 @@ void unknownEF027D() {
 	unknown7E9F33 = 0;
 	unknown7E9F35 = 30;
 	entityScriptVar3Table[currentEntitySlot] = 4;
-	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord = gameState.leaderX.integer;
-	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord = gameState.leaderY.integer;
+	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord = cast(short)gameState.leaderX;
+	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord = cast(short)gameState.leaderY;
 }
 
 /// $EF02C4
@@ -433,9 +433,9 @@ void copySaveSlot(short to, short from) {
 void unknownEF0C3D() {
 	loadGameSlot(3);
 	fadeOut(1, 1);
-	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
-	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
-	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
+	loadSectorMusic(cast(short)gameState.leaderX, cast(short)gameState.leaderY);
+	loadMapAtPosition(cast(short)gameState.leaderX, cast(short)gameState.leaderY);
+	unknownC03FA9(cast(short)gameState.leaderX, cast(short)gameState.leaderY, gameState.leaderDirection);
 	changeMapMusic();
 	fadeIn(1, 1);
 }
@@ -21659,22 +21659,22 @@ ushort* integerToBinaryDebugTiles(short arg1) {
 
 /// $EFDCBC
 void displayCheckPositionDebugOverlay() {
-	copyToVRAMAlt(0, 8, 0x7F44, cast(ubyte*)integerToHexDebugTiles((gameState.leaderX.integer >> 8) & 0xFF));
-	copyToVRAMAlt(0, 8, 0x7F4A, cast(ubyte*)integerToHexDebugTiles((gameState.leaderY.integer >> 8) & 0xFF));
-	copyToVRAMAlt(0, 8, 0x7F24, cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 8));
-	copyToVRAMAlt(0, 8, 0x7F2A, cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 8));
-	copyToVRAMAlt(0, 8, 0x7F04, cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer & 0xFF));
-	copyToVRAMAlt(0, 8, 0x7F0A, cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer & 0xFF));
-	copyToVRAMAlt(0, 4, 0x7C42, cast(ubyte*)integerToHexDebugTiles(mapDataPerSectorMusic[gameState.leaderY.integer / 128][gameState.leaderX.integer >> 8]));
+	copyToVRAMAlt(0, 8, 0x7F44, cast(ubyte*)integerToHexDebugTiles((cast(short)gameState.leaderX / 256) & 0xFF));
+	copyToVRAMAlt(0, 8, 0x7F4A, cast(ubyte*)integerToHexDebugTiles((cast(short)gameState.leaderY / 256) & 0xFF));
+	copyToVRAMAlt(0, 8, 0x7F24, cast(ubyte*)integerToHexDebugTiles(cast(short)gameState.leaderX / 8));
+	copyToVRAMAlt(0, 8, 0x7F2A, cast(ubyte*)integerToHexDebugTiles(cast(short)gameState.leaderY / 8));
+	copyToVRAMAlt(0, 8, 0x7F04, cast(ubyte*)integerToHexDebugTiles(cast(short)gameState.leaderX & 0xFF));
+	copyToVRAMAlt(0, 8, 0x7F0A, cast(ubyte*)integerToHexDebugTiles(cast(short)gameState.leaderY & 0xFF));
+	copyToVRAMAlt(0, 4, 0x7C42, cast(ubyte*)integerToHexDebugTiles(mapDataPerSectorMusic[cast(short)gameState.leaderY / 128][cast(short)gameState.leaderX / 256]));
 	copyToVRAMAlt(0, 16, 0x7C62, cast(ubyte*)integerToBinaryDebugTiles(currentSectorAttributes));
 	copyToVRAMAlt(0, 16, 0x7C82, cast(ubyte*)integerToBinaryDebugTiles(gameState.troddenTileType));
 }
 
 /// $EFDE1A
 void displayViewCharacterDebugOverlay() {
-	copyToVRAMAlt(0, 8, 0x7F24, cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 0x40));
-	copyToVRAMAlt(0, 8, 0x7F2A, cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 0x40));
-	copyToVRAMAlt(0, 8, 0x7F35, cast(ubyte*)integerToDecimalDebugTiles(unknownC0263D(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
+	copyToVRAMAlt(0, 8, 0x7F24, cast(ubyte*)integerToHexDebugTiles(cast(short)gameState.leaderX / 64));
+	copyToVRAMAlt(0, 8, 0x7F2A, cast(ubyte*)integerToHexDebugTiles(cast(short)gameState.leaderY / 64));
+	copyToVRAMAlt(0, 8, 0x7F35, cast(ubyte*)integerToDecimalDebugTiles(unknownC0263D(cast(short)gameState.leaderX / 64, cast(short)gameState.leaderY / 64)));
 	copyToVRAMAlt(0, 8, 0x7F3A, cast(ubyte*)integerToDecimalDebugTiles(unknown7E4A68));
 	if (battleSwirlCountdown == 0) {
 		return;
@@ -21781,8 +21781,8 @@ void unknownEFE175() {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	newEntityPriority = 3;
-	gameState.leaderX.integer = debugStartPositionX;
-	gameState.leaderY.integer = debugStartPositionY;
+	gameState.leaderX = debugStartPositionX;
+	gameState.leaderY = debugStartPositionY;
 	initEntity(ActionScript.unknown001, 0, 0);
 	unknownC02D29();
 	for (short i = 0; i < 6; i++) {
@@ -21835,8 +21835,8 @@ void unknownEFE175() {
 			unknown7E436E = -1;
 			unknown7E4380 &= 0xFFF8;
 			prepareForImmediateDMA();
-			loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
-			unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
+			loadMapAtPosition(cast(short)gameState.leaderX, cast(short)gameState.leaderY);
+			unknownC03FA9(cast(short)gameState.leaderX, cast(short)gameState.leaderY, gameState.leaderDirection);
 			unknownEFD95E();
 			unknown7EB575 = 0;
 			if (debugModeNumber == 5) {
@@ -21886,8 +21886,8 @@ void unknownEFE175() {
 		}
 		runActionscriptFrame();
 		if ((padState[0] & (Pad.start | Pad.select)) == (Pad.start | Pad.select)) {
-			debugStartPositionX = entityAbsXTable[24];
-			debugStartPositionY = entityAbsYTable[24];
+			debugStartPositionX = cast(short)entityAbsXTable[24];
+			debugStartPositionY = cast(short)entityAbsYTable[24];
 			debugUnknownB565 = x1C;
 			return;
 		} else {
@@ -21901,7 +21901,7 @@ void unknownEFE175() {
 					if (++unknown7EB55F == 4) {
 						unknown7EB55F = 0;
 					}
-					unknownEFE133(gameState.leaderX.integer, gameState.leaderY.integer);
+					unknownEFE133(cast(short)gameState.leaderX, cast(short)gameState.leaderY);
 				}
 			}
 			if ((debugModeNumber == 1) && ((padPress[0] & Pad.b) != 0)) {
@@ -22107,8 +22107,8 @@ void unknownEFEA4A() {
 	unknown7EB567 = 1;
 	loadReplaySaveSlot();
 	fadeOut(1, 1);
-	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
-	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, 0);
+	loadMapAtPosition(cast(short)gameState.leaderX, cast(short)gameState.leaderY);
+	unknownC03FA9(cast(short)gameState.leaderX, cast(short)gameState.leaderY, 0);
 	unfreezeEntities();
 	screenTransition(unknown7EB573, 0);
 	freezeEntities();

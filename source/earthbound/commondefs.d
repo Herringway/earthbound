@@ -4376,9 +4376,9 @@ enum SurfaceFlags {
 	solid = 1<<7,
 }
 
-enum ShallowWaterSpeed = FixedPoint1616(0x8000, 0x0000); ///0.5x
-enum DeepWaterSpeed = FixedPoint1616(0x547A, 0x0000); ///0.33x
-enum SkipSandwichSpeed = FixedPoint1616(0x8000, 0x0001); ///1.5x
+enum FixedPoint32 ShallowWaterSpeed = 0.5;
+enum FixedPoint32 DeepWaterSpeed = 1.0 / 3.0;
+enum FixedPoint32 SkipSandwichSpeed = 1.5;
 ///
 enum CC1C01Type {
 	string = 0,
@@ -5038,8 +5038,8 @@ struct GameState {
 	uint walletBackup; ///
 	ubyte[36] escargoExpressItems; ///
 	ubyte[6] partyMembers; ///
-	FixedPoint1616 leaderX; ///
-	FixedPoint1616 leaderY; ///
+	FixedPoint32 leaderX; ///
+	FixedPoint32 leaderY; ///
 	ushort unknown88; ///
 	ushort leaderDirection; ///
 	ushort troddenTileType; ///
@@ -5125,7 +5125,14 @@ struct PartyCharacter {
 }
 ///
 struct RollingStat {
-	FixedPoint1616 current; ///
+	static union MeterFP {
+		FixedPoint32 value;
+		struct {
+			ushort flag;
+			ushort unused;
+		}
+	}
+	MeterFP current; ///
 	ushort target; ///
 }
 ///
@@ -5214,16 +5221,16 @@ struct PlayerPositionBufferEntry {
 struct MovementSpeeds {
 	union {
 		struct {
-			FixedPoint1616 up; ///0
-			FixedPoint1616 upRight; ///4
-			FixedPoint1616 right; ///8
-			FixedPoint1616 downRight; ///12
-			FixedPoint1616 down; ///16
-			FixedPoint1616 downLeft; ///20
-			FixedPoint1616 left; ///24
-			FixedPoint1616 upLeft; ///28
+			FixedPoint32 up; ///0
+			FixedPoint32 upRight; ///4
+			FixedPoint32 right; ///8
+			FixedPoint32 downRight; ///12
+			FixedPoint32 down; ///16
+			FixedPoint32 downLeft; ///20
+			FixedPoint32 left; ///24
+			FixedPoint32 upLeft; ///28
 		}
-		FixedPoint1616[8] directionSpeeds; ///
+		FixedPoint32[8] directionSpeeds; ///
 	}
 }
 ///
@@ -5347,17 +5354,102 @@ struct Unknown7E007DEntry {
 	ubyte unknown0; ///
 	ushort unknown1; ///
 }
+alias FixedPoint16 = FixedPoint!16;
+alias FixedPoint32 = FixedPoint!32;
 ///
-union FixedPoint1616 {
+union FixedPoint(size_t size) {
+	import std.algorithm : among;
+	import std.math : log2;
+	import std.meta : AliasSeq;
+	import std.traits : isFloatingPoint, isIntegral, Signed, Unsigned;
+	alias Integrals = AliasSeq!(byte, short, int, long);
+	alias UnderlyingType = Unsigned!(Integrals[cast(size_t)log2(size / 8)]);
+	alias IntegerType = Integrals[cast(size_t)log2(size / 8) - 1];
+	alias FractionType = Unsigned!IntegerType;
+	enum double fractionOf = cast(double)FractionType.max + 1;
+	private alias supportedOps = AliasSeq!("+", "-", "/", "*", "%");
 	struct {
-		ushort fraction; ///
-		short integer; ///
+		private ushort fraction; ///
+		IntegerType integer; ///
 	}
-	uint combined; ///
-	//for debugging
+	private uint combined; ///
 	///
-	double asDouble() const {
-		return cast(double)cast(int)combined / 65536.0;
+	private this(ushort fraction, IntegerType integer) @safe pure {
+		this.fraction = fraction;
+		this.integer = integer;
+	}
+	///
+	this(double value) @safe pure {
+		combined = cast(uint)(value * fractionOf);
+	}
+	///
+	this(size_t n)(FixedPoint!n value) @safe pure {
+		static if (n > size) {
+			this(value.fraction << ((size - n) / 2), value.integer);
+		} else {
+			this(value.fraction >> ((size - n) / 2), value.integer);
+		}
+	}
+	///
+	T opCast(T)() const @safe pure if(isFloatingPoint!T) {
+		return cast(T)(cast(Signed!UnderlyingType)combined) / fractionOf;
+	}
+	///
+	FixedPoint opBinary(string op, T)(T value) const if (op.among(supportedOps) && (isFloatingPoint!T || isIntegral!T)) {
+		return FixedPoint(mixin("cast(T)this", op, "value"));
+	}
+	///
+	FixedPoint opBinary(string op, size_t n)(FixedPoint!n value) const if (op.among(supportedOps)) {
+		return FixedPoint(mixin("cast(double)this", op, "cast(double)value"));
+	}
+	///
+	FixedPoint opUnary(string op : "-")() const {
+		return FixedPoint(-cast(double)this);
+	}
+	///
+	int opCmp(size_t n)(FixedPoint!n value) const @safe pure {
+		return cast(Signed!UnderlyingType)combined - cast(Signed!(value.UnderlyingType))value.combined;
+	}
+	///
+	int opCmp(double value) const @safe pure {
+		import std.math.operations : cmp;
+		return cmp(cast(double)this, value);
+	}
+	///
+	int opEquals(FixedPoint value) const @safe pure {
+		return combined == value.combined;
+	}
+	///
+	int opEquals(double value) const @safe pure {
+		return cast(double)this == value;
+	}
+	///
+	FixedPoint opAssign(double value) @safe pure {
+		combined = cast(UnderlyingType)(value * fractionOf);
+		return this;
+	}
+	///
+	FixedPoint opOpAssign(string op)(double value) @safe pure  if (op.among(supportedOps)) {
+		combined = opBinary!op(value).combined;
+		return this;
+	}
+	///
+	FixedPoint opOpAssign(string op)(FixedPoint value) @safe pure  if (op.among(supportedOps)) {
+		combined = opBinary!op(value).combined;
+		return this;
+	}
+	///
+	short opCast(T: IntegerType)() const @safe pure {
+		return integer;
+	}
+	///
+	UnderlyingType opCast(T: UnderlyingType)() const @safe pure {
+		return combined;
+	}
+	///
+	void toString(S)(ref S sink) const {
+		import std.format : formattedWrite;
+		sink.formattedWrite!"%s"(this.asDouble);
 	}
 }
 ///
@@ -6248,6 +6340,10 @@ struct Unknown7E9652Data {
 	ushort unknown4; ///
 }
 
+struct C41FFFResult {
+	short unknown0;
+	short unknown1;
+}
 
 //helper funcs not in the original game
 ///

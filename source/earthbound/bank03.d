@@ -14,6 +14,7 @@ import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
+import std.math;
 
 //$C30000
 immutable ushort[16][8] spriteGroupPalettes = [
@@ -95,37 +96,37 @@ immutable ushort[17] characterSizes = [
 ];
 
 /// $C3E0BC
-immutable FixedPoint1616[14] defaultMovementSpeeds = [
-	FixedPoint1616(0x6000, 1), //NORMAL
-	FixedPoint1616(0x6000, 1), //UNKNOWN_01
-	FixedPoint1616(0x6000, 1), //UNKNOWN_02
-	FixedPoint1616(0xCCCC, 1), //BICYCLE
-	FixedPoint1616(0x0000, 1), //GHOST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_05
-	FixedPoint1616(0x0000, 1), //SLOWER
-	FixedPoint1616(0xCCCC, 0), //LADDER
-	FixedPoint1616(0xCCCC, 0), //ROPE
-	FixedPoint1616(0x0000, 0), //UNKNOWN_09
-	FixedPoint1616(0x8000, 0), //SLOWEST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_0B
-	FixedPoint1616(0xCCCC, 0), //ESCALATOR
-	FixedPoint1616(0xCCCC, 0), //STAIRS
+immutable FixedPoint32[14] defaultMovementSpeeds = [
+	1.375, //NORMAL
+	1.375, //UNKNOWN_01
+	1.375, //UNKNOWN_02
+	1.8, //BICYCLE
+	1.0, //GHOST
+	0.0, //UNKNOWN_05
+	1.0, //SLOWER
+	0.8, //LADDER
+	0.8, //ROPE
+	0.0, //UNKNOWN_09
+	0.5, //SLOWEST
+	0.0, //UNKNOWN_0B
+	0.8, //ESCALATOR
+	0.8, //STAIRS
 ];
-immutable FixedPoint1616[14] defaultMovementSpeedsDiagonal = [
-	FixedPoint1616(0xF8E6, 0), //NORMAL
-	FixedPoint1616(0xF8E6, 0), //UNKNOWN_01
-	FixedPoint1616(0xF8E6, 0), //UNKNOWN_02
-	FixedPoint1616(0x45D5, 1), //BICYCLE
-	FixedPoint1616(0xB505, 0), //GHOST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_05
-	FixedPoint1616(0xB505, 0), //SLOWER
-	FixedPoint1616(0x90D0, 0), //LADDER
-	FixedPoint1616(0x90D0, 0), //ROPE
-	FixedPoint1616(0x0000, 0), //UNKNOWN_09
-	FixedPoint1616(0x5A82, 0), //SLOWEST
-	FixedPoint1616(0x0000, 0), //UNKNOWN_0B
-	FixedPoint1616(0x90D0, 0), //ESCALATOR
-	FixedPoint1616(0x90D0, 0), //STAIRS
+immutable FixedPoint32[14] defaultMovementSpeedsDiagonal = [
+	defaultMovementSpeeds[0] * (sqrt(2.0) / 2.0), //NORMAL
+	defaultMovementSpeeds[1] * (sqrt(2.0) / 2.0), //UNKNOWN_01
+	defaultMovementSpeeds[2] * (sqrt(2.0) / 2.0), //UNKNOWN_02
+	defaultMovementSpeeds[3] * (sqrt(2.0) / 2.0), //BICYCLE
+	defaultMovementSpeeds[4] * (sqrt(2.0) / 2.0), //GHOST
+	defaultMovementSpeeds[5] * (sqrt(2.0) / 2.0), //UNKNOWN_05
+	defaultMovementSpeeds[6] * (sqrt(2.0) / 2.0), //SLOWER
+	defaultMovementSpeeds[7] * (sqrt(2.0) / 2.0), //LADDER
+	defaultMovementSpeeds[8] * (sqrt(2.0) / 2.0), //ROPE
+	defaultMovementSpeeds[9] * (sqrt(2.0) / 2.0), //UNKNOWN_09
+	defaultMovementSpeeds[10] * (sqrt(2.0) / 2.0), //SLOWEST
+	defaultMovementSpeeds[11] * (sqrt(2.0) / 2.0), //UNKNOWN_0B
+	defaultMovementSpeeds[12] * (sqrt(2.0) / 2.0), //ESCALATOR
+	defaultMovementSpeeds[13] * (sqrt(2.0) / 2.0), //STAIRS
 ];
 
 /// $C3E12C
@@ -660,8 +661,8 @@ void unknownC3EC8B(short arg1, short arg2, short arg3) {
 		arg2 = cast(short)((arg2 * partyCharacters[arg1 - 1].maxHP) / 100);
 	}
 	partyCharacters[arg1 - 1].hp.target += arg2;
-	if (partyCharacters[arg1 - 1].hp.current.integer == 0) {
-		partyCharacters[arg1 - 1].hp.current.integer = 1;
+	if (cast(short)partyCharacters[arg1 - 1].hp.current.value == 0) {
+		partyCharacters[arg1 - 1].hp.current.value = 1;
 	}
 	if (partyCharacters[arg1 - 1].hp.target > partyCharacters[arg1 - 1].maxHP) {
 		partyCharacters[arg1 - 1].hp.target = partyCharacters[arg1 - 1].maxHP;

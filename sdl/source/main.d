@@ -245,8 +245,8 @@ void printEntities() {
 		writeln("\tScript: ", cast(ActionScript)entityScriptTable[entity]);
 		writeln("\tScript index: ", entityScriptIndexTable[entity]);
 		writefln!"\tScreen coords: (%d, %d)"(entityScreenXTable[entity], entityScreenYTable[entity]);
-		writefln!"\tAbsolute coords: (%s, %s, %s)"(FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]).asDouble, FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]).asDouble, FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]).asDouble);
-		writefln!"\tDelta coords: (%s, %s, %s)"(FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]).asDouble, FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]).asDouble, FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]).asDouble);
+		writefln!"\tAbsolute coords: (%s, %s, %s)"(entityAbsXTable[entity], entityAbsYTable[entity], entityAbsZTable[entity]);
+		writefln!"\tDelta coords: (%s, %s, %s)"(entityDeltaXTable[entity], entityDeltaYTable[entity], entityDeltaZTable[entity]);
 		writeln("\tDirection: ", cast(Direction)entityDirections[entity]);
 		writeln("\tSize: ", entitySizes[entity]);
 		writeln("\tDraw Priority: ", entityDrawPriority[entity]);
