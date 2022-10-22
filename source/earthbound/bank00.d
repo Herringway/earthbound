@@ -7837,44 +7837,44 @@ void prepareBackgroundOffsetTables(short rippleFrequency, short rippleAmplitude,
 	switch(backgroundDistortionStyle) {
 		case DistortionStyle.horizontalSmooth - 1:
 			bufferPosition = startOffset;
-			do {
+			while (bufferPosition < endOffset) {
 				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + x05);
 				x03 += rippleFrequency;
 				bufferPosition += 2;
-			} while (bufferPosition < endOffset);
+			}
 			break;
 		case DistortionStyle.horizontalInterlaced - 1:
 			bufferPosition = startOffset;
-			do {
+			while (bufferPosition < endOffset) {
 				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + x05);
 				x03 += rippleFrequency;
 				backgroundHDMABuffer[bufferPosition / 2 + 1] = cast(ushort)(x05 - ((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8));
 				x03 += rippleFrequency;
 				bufferPosition += 4;
-			} while (bufferPosition < endOffset);
+			}
 			break;
 		case DistortionStyle.verticalSmooth - 1:
 			x05 = cast(ushort)(x05 << 8);
 			bufferPosition = startOffset;
-			do {
+			while (bufferPosition < endOffset) {
 				x05 += backgroundDistortionCompressionRate;
 				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + (x05 / 256));
 				x03 += rippleFrequency;
 				bufferPosition += 2;
-			} while (bufferPosition < endOffset);
+			}
 			break;
 		case DistortionStyle.unknown - 1:
 		default:
 			x05 = cast(ushort)(x05 << 8);
 			bufferPosition = startOffset;
-			do {
+			while (bufferPosition < endOffset) {
 				x05 += backgroundDistortionCompressionRate;
 				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + (x05 / 256));
 				x05 += backgroundDistortionCompressionRate;
 				backgroundHDMABuffer[bufferPosition / 2 + 1] = cast(ushort)((x05 / 256) - ((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8));
 				x03 += rippleFrequency;
 				bufferPosition += 4;
-			} while (bufferPosition < endOffset);
+			}
 			break;
 	}
 }
