@@ -5241,7 +5241,7 @@ struct SpriteGrouping {
 	ubyte height; ///
 	ubyte width; ///
 	ubyte unknown2; ///
-	ubyte unknown3; ///
+	ubyte spritemapFlags; ///
 	ubyte unknown4; ///
 	ubyte unknown5; ///
 	ubyte unknown6; ///

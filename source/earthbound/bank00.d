@@ -942,7 +942,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 	short x1F = findFree7E4682(unknownC42B0D[x02].unknown0 * 10);
 	assert(x1F >= 0);
 	newEntityPriority = 1;
-	unknownC01D38(x1F, x21, spriteGroupingPointers[sprite].unknown3, &unknownC42B0D[x02]);
+	unknownC01D38(x1F, x21, spriteGroupingPointers[sprite].spritemapFlags, &unknownC42B0D[x02]);
 	if (index != -1) {
 		entityAllocationMinSlot = index;
 		entityAllocationMaxSlot = cast(short)(index + 1);
