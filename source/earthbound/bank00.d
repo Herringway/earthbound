@@ -807,7 +807,7 @@ short findFree7E4682(ushort arg1) {
 	unknown7E4A6A = cast(short)(arg1 * 5);
 	Unknown1:
 	while (x10 < spriteTable7E467E.length) {
-		if (spriteTable7E467E[x10].unknown4 == 0xFF) {
+		if (spriteTable7E467E[x10].specialFlags == 0xFF) {
 			goto Found;
 		}
 		x10++;
@@ -816,7 +816,7 @@ short findFree7E4682(ushort arg1) {
 	Found:
 	if ((x10 + arg1) < spriteTable7E467E.length) {
 		for (short i = x10; i < x10 + arg1; i++) {
-			if (spriteTable7E467E[i].unknown4 == 0xFF) {
+			if (spriteTable7E467E[i].specialFlags == 0xFF) {
 				continue;
 			}
 			x10 = cast(short)(i + 1);
@@ -839,14 +839,14 @@ void unknownC01B15(const(SpriteMap)* arg1) {
 	short x10 = cast(short)(arg1 - &spriteTable7E467E[0]);
 	short i = 0;
 	while(i < 2) {
-		ubyte y = spriteTable7E467E[x10].unknown4;
-		spriteTable7E467E[x10].unknown0 = 0xFF;
+		ubyte y = spriteTable7E467E[x10].specialFlags;
+		spriteTable7E467E[x10].yOffset = 0xFF;
 		spriteTable7E467E[x10].firstTile = 0xFF;
 		spriteTable7E467E[x10].flags = 0xFF;
-		spriteTable7E467E[x10].unknown3 = 0xFF;
-		spriteTable7E467E[x10].unknown4 = 0xFF;
+		spriteTable7E467E[x10].xOffset = 0xFF;
+		spriteTable7E467E[x10].specialFlags = 0xFF;
 		x10 += 1;
-		if ((y & 0x80) != 0) {
+		if ((y & 0x80) != 0) { //if this wasn't a terminating entry, clear the next one too
 			i++;
 		}
 	}
@@ -909,11 +909,11 @@ void unknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)
 	const(SpriteMap)* x06 = &arg4.unknown2[0][0];
 	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < arg4.unknown0; j++) {
-			x10.unknown0 = x06.unknown0;
+			x10.yOffset = x06.yOffset;
 			x10.firstTile = cast(ubyte)unknownC4303C[arg2 + j];
 			x10.flags = cast(ubyte)((x06.flags & 0xFE) | ((unknownC4303C[arg2 + j] >> 8) & 0xFF) | arg3);
-			x10.unknown3 = x06.unknown3;
-			x10.unknown4 = x06.unknown4;
+			x10.xOffset = x06.xOffset;
+			x10.specialFlags = x06.specialFlags;
 			x10++;
 			x06++;
 		}
@@ -5023,7 +5023,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 	}
 	//some DBR manipulation was here
 	for(;;y++){
-		ypos = cast(byte)y.unknown0;
+		ypos = cast(byte)y.yOffset;
 		if (ypos == -0x80) {
 			// This is -1 since we do y++ due to continue
 			y = y.nextMap - 1;
@@ -5031,7 +5031,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 		}
 		ypos += ybase - 1;
 		if ((ypos >= 0xE0) || (ypos < -0x20)) {
-			if (y.unknown4 >= 0x80) {
+			if (y.specialFlags >= 0x80) {
 				break;
 			}
 			continue;
@@ -5039,11 +5039,11 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 		unknown7E009F = ypos;
 		x.startingTile = y.firstTile;
 		x.flags = y.flags;
-		xpos = cast(byte)y.unknown3;
+		xpos = cast(byte)y.xOffset;
 		xpos += xbase;
 		x.xCoord = cast(byte)xpos;
 		if (xpos >= 0x100 || xpos < -0x100) {
-			if (y.unknown4 >= 0x80) {
+			if (y.specialFlags >= 0x80) {
 				break;
 			}
 			continue;
@@ -5051,7 +5051,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 		abyte = cast(ubyte)(xpos>>8);
 		ROL(abyte, carry);
 		unknown7E000A = ROR(unknown7E000A, carry);
-		abyte = y.unknown4;
+		abyte = y.specialFlags;
 		ROR(abyte, carry);
 		unknown7E000A = ROR(unknown7E000A, carry);
 		if (carry) {
@@ -5061,7 +5061,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 		}
 		x.yCoord = cast(byte)unknown7E009F;
 		x++;
-		if (y.unknown4 >= 0x80 || x >= oamEndAddr) {
+		if (y.specialFlags >= 0x80 || x >= oamEndAddr) {
 			break;
 		}
 	}

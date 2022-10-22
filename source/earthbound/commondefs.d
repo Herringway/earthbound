@@ -4386,8 +4386,8 @@ enum CC1C01Type {
 }
 ///
 enum SpritemapOrientation {
-	vertical = 0x8000,
-	horizontal = 0x4000,
+	vertical = 0x80,
+	horizontal = 0x40,
 }
 ///
 enum PSILevel {
@@ -5648,23 +5648,23 @@ struct TownMapIconPlacement {
 }
 ///
 struct SpriteMap {
-	ubyte unknown0; ///
+	ubyte yOffset; ///
 	union {
-		ushort unknown1; ///
 		SpriteMap* nextMap; ///Implemented, but unused
 		struct {
 			ubyte firstTile; ///
 			ubyte flags; ///
 		}
 	}
-	ubyte unknown3; ///
-	ubyte unknown4; ///
+	ubyte xOffset; ///
+	ubyte specialFlags; ///
 	///
-	this (ubyte u0, ushort u1, ubyte u3, ubyte u4) {
-		unknown0 = u0;
-		unknown1 = u1;
-		unknown3 = u3;
-		unknown4 = u4;
+	this (ubyte u0, ubyte ftile, ubyte flags, ubyte u3, ubyte u4) {
+		this.yOffset = u0;
+		this.firstTile = ftile;
+		this.flags = flags;
+		this.xOffset = u3;
+		this.specialFlags = u4;
 	}
 }
 ///
