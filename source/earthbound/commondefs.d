@@ -5651,9 +5651,9 @@ struct SpriteMap {
 	ubyte unknown0; ///
 	union {
 		ushort unknown1; ///
-		SpriteMap* unknown1ptr; ///
+		SpriteMap* nextMap; ///Implemented, but unused
 		struct {
-			ubyte unknown10; ///
+			ubyte firstTile; ///
 			ubyte flags; ///
 		}
 	}

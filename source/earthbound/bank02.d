@@ -7768,7 +7768,7 @@ void loadBattleSprite(short arg1) {
 	for (short i = 0; i < 16; i++) {
 		x26[i].unknown0 = 0xE0;
 		//weird. why is it done like this?
-		x26[i].unknown10 = cast(ubyte)((unknownC3F8B1[i + unknown7EAAB2]));
+		x26[i].firstTile = cast(ubyte)((unknownC3F8B1[i + unknown7EAAB2]));
 		x26[i].flags = cast(ubyte)((unknownC3F8B1[i + unknown7EAAB2] >> 8) + (unknown7EAAB4 * 2) + 32);
 		x26[i].unknown3 = 0xF0;
 		x26[i].unknown4 = 1;

@@ -841,7 +841,7 @@ void unknownC01B15(const(SpriteMap)* arg1) {
 	while(i < 2) {
 		ubyte y = spriteTable7E467E[x10].unknown4;
 		spriteTable7E467E[x10].unknown0 = 0xFF;
-		spriteTable7E467E[x10].unknown10 = 0xFF;
+		spriteTable7E467E[x10].firstTile = 0xFF;
 		spriteTable7E467E[x10].flags = 0xFF;
 		spriteTable7E467E[x10].unknown3 = 0xFF;
 		spriteTable7E467E[x10].unknown4 = 0xFF;
@@ -910,7 +910,7 @@ void unknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)
 	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < arg4.unknown0; j++) {
 			x10.unknown0 = x06.unknown0;
-			x10.unknown10 = cast(ubyte)unknownC4303C[arg2 + j];
+			x10.firstTile = cast(ubyte)unknownC4303C[arg2 + j];
 			x10.flags = cast(ubyte)((x06.flags & 0xFE) | ((unknownC4303C[arg2 + j] >> 8) & 0xFF) | arg3);
 			x10.unknown3 = x06.unknown3;
 			x10.unknown4 = x06.unknown4;
@@ -5026,7 +5026,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 		ypos = cast(byte)y.unknown0;
 		if (ypos == -0x80) {
 			// This is -1 since we do y++ due to continue
-			y = y.unknown1ptr - 1;
+			y = y.nextMap - 1;
 			continue;
 		}
 		ypos += ybase - 1;
@@ -5037,7 +5037,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 			continue;
 		}
 		unknown7E009F = ypos;
-		x.startingTile = y.unknown10;
+		x.startingTile = y.firstTile;
 		x.flags = y.flags;
 		xpos = cast(byte)y.unknown3;
 		xpos += xbase;

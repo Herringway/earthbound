@@ -289,6 +289,6 @@ void printEntities() {
 	}
 	writeln("----");
 	foreach (sprMap; chain(unknown7E2404[], unknown7E2506[], unknown7E2608[], unknown7E270A[]).filter!(x => x != null)) {
-		writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.unknown0, sprMap.unknown10, sprMap.flags, sprMap.unknown3, sprMap.unknown4);
+		writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.unknown0, sprMap.firstTile, sprMap.flags, sprMap.unknown3, sprMap.unknown4);
 	}
 }

@@ -4798,7 +4798,7 @@ void useSoundStone(short arg1) {
 		for (short i = 0; i < 8; i++) {
 			switch (unknown7EB37E[i].unknown0) {
 				case 1:
-					unknown7EB3EE.unknown10 = soundStoneUnknown3[i];
+					unknown7EB3EE.firstTile = soundStoneUnknown3[i];
 					unknown7EB3EE.flags = 0x30;
 					unknownC08CD5(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
 					break;
@@ -4809,13 +4809,13 @@ void useSoundStone(short arg1) {
 						unknown7EB37E[i].unknown8 = unknownC4AC57[i][unknown7EB37E[i].unknown6++];
 						unknown7EB37E[i].unknown4 = cast(short)(2 - unknown7EB37E[i].unknown4);
 					}
-					unknown7EB3F3.unknown10 = cast(ubyte)(soundStoneUnknown5[i] + unknown7EB37E[i].unknown4);
+					unknown7EB3F3.firstTile = cast(ubyte)(soundStoneUnknown5[i] + unknown7EB37E[i].unknown4);
 					unknown7EB3F3.flags = cast(ubyte)(soundStoneUnknown6[i] + 0x31);
 					if (unknown7EB37E[i].unknown8 != 0) {
 						unknownC08CD5(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)));
 						unknownC08CD5(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))));
 					}
-					unknown7EB3EE.unknown10 = cast(ubyte)(soundStoneUnknown3[i] + 0x80);
+					unknown7EB3EE.firstTile = cast(ubyte)(soundStoneUnknown3[i] + 0x80);
 					unknown7EB3EE.flags = cast(ubyte)(soundStoneUnknown4[i] + 0x30);
 					unknownC08CD5(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
 					break;
@@ -4826,7 +4826,7 @@ void useSoundStone(short arg1) {
 			x2E = 0xF;
 			x30 = (x30 + 1) & 3;
 		}
-		unknown7EB3F3.unknown10 = cast(ubyte)(x30 + 0x40);
+		unknown7EB3F3.firstTile = cast(ubyte)(x30 + 0x40);
 		unknown7EB3F3.flags = 0x3B;
 		unknownC08CD5(&unknown7EB3F3, 0x80, 0x70);
 		updateScreen();
