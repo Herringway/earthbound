@@ -1264,7 +1264,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		}
 	}
 	while ((unknown7E4A6E = x0A[0].count) != 0xFF) {
-		unknown7E4A76 = enemyConfigurationTable[x0A[0].enemyID].name[0];
+		unknown7E4A76 = &enemyConfigurationTable[x0A[0].enemyID].name[0];
 		short x26 = enemyConfigurationTable[x0A[0].enemyID].overworldSprite;
 		unknown7E4A74 = x26;
 		short x16 = enemyConfigurationTable[x0A[0].enemyID].eventScript;

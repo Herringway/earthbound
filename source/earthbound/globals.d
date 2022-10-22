@@ -444,7 +444,7 @@ __gshared short unknown7E4A6E; /// $4A6E
 __gshared short unknown7E4A70; /// $4A70
 __gshared short unknown7E4A72; /// $4A72
 __gshared short unknown7E4A74; /// $4A74
-__gshared int unknown7E4A76; /// $4A76
+__gshared const(ubyte)* unknown7E4A76; /// $4A76
 __gshared short unknown7E4A7A; /// $4A7A
 __gshared short[4] unknown7E4A7C; /// $4A7C
 __gshared short[4] unknown7E4A84; /// $4A84
