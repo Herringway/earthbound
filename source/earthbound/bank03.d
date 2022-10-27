@@ -1322,7 +1322,7 @@ void unknownC3F981(short arg1) {
 
 /// $C3FB09
 short unknownC3FB09() {
-	if (currentAttacker.allyOrEnemy == 0) {
+	if (currentAttacker.side == BattleSide.friends) {
 		return 0;
 	}
 	return 1;
@@ -1366,7 +1366,7 @@ short unknownC3FAC9(short arg1, short arg2) {
 	if (currentTarget.npcID == EnemyID.tinyLilGhost) {
 		return 1;
 	}
-	if (currentTarget.allyOrEnemy == 0) {
+	if (currentTarget.side == BattleSide.friends) {
 		unknownC3F981(arg1);
 		return 0;
 	}

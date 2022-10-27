@@ -2799,7 +2799,7 @@ void* cc1D0D(DisplayTextState* arg1, ubyte arg2) {
 /// $C1516B
 void* cc1C14(DisplayTextState* arg1, ubyte arg2) {
 	ushort a;
-	if (currentAttacker.allyOrEnemy == 1) {
+	if (currentAttacker.side == BattleSide.foes) {
 		if (arg2 != 1) {
 			if (enemiesInBattle > 3) {
 				a = 3;
@@ -2828,7 +2828,7 @@ void* cc1C14(DisplayTextState* arg1, ubyte arg2) {
 /// $C151FC
 void* cc1C15(DisplayTextState* arg1, ubyte arg2) {
 	ushort a;
-	if (currentTarget.allyOrEnemy == 1) {
+	if (currentTarget.side == BattleSide.foes) {
 		if (arg2 != 1) {
 			if (enemiesInBattle > 3) {
 				a = 3;
@@ -5418,7 +5418,7 @@ short determineTargetting(short arg1, short arg2) {
 					break;
 				case 2:
 					x16 = 0x11;
-					x01 = cast(ubyte)(randMod(cast(short)(countChars(1) - 1)) + 1);
+					x01 = cast(ubyte)(randMod(cast(short)(countChars(BattleSide.foes) - 1)) + 1);
 					break;
 				case 3:
 					x16 = 0x12;
@@ -5449,7 +5449,7 @@ short determineTargetting(short arg1, short arg2) {
 					break;
 				case 2:
 					x16 = 1;
-					x01 = cast(ubyte)gameState.unknown96[randMod(cast(short)(countChars(0) - 1))];
+					x01 = cast(ubyte)gameState.unknown96[randMod(cast(short)(countChars(BattleSide.friends) - 1))];
 					break;
 				case 3:
 				case 4:
@@ -6491,7 +6491,7 @@ short findCondiment(short item) {
 void showHPAlert(short arg1) {
 	Battler battler;
 	Battler* x02 = currentAttacker;
-	battler.allyOrEnemy = 0;
+	battler.side = BattleSide.friends;
 	battler.id = cast(ubyte)arg1;
 	currentAttacker = &battler;
 	freezeEntities();

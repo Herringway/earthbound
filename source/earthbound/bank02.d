@@ -1429,7 +1429,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 			unknown7EA97D.unknown4 = 1;
 			unknown7EA97D.unknown1 = 26;
 			unknown7EA97D.unknown2 = BattleActions.psiLifeupOmega;
-			if ((checkIfPSIKnown(arg1, 26) != 0) && (battleActionTable[BattleActions.psiLifeupOmega].ppCost <= x22.pp.target) && (countChars(0) >= 2)) {
+			if ((checkIfPSIKnown(arg1, 26) != 0) && (battleActionTable[BattleActions.psiLifeupOmega].ppCost <= x22.pp.target) && (countChars(BattleSide.friends) >= 2)) {
 					for (short i = 0; i < 6; i++) {
 						if (gameState.partyMembers[i] < 1) {
 							continue;
@@ -1791,9 +1791,9 @@ ubyte* copyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
 void fixAttackerName(short arg1) {
 	unknown7E5E77 = 0;
 	memset(&attackerNameAdjustScratch[0], 0, 28);
-	if ((currentAttacker.allyOrEnemy == 1) || (currentAttacker.npcID != 0)) {
+	if ((currentAttacker.side == BattleSide.foes) || (currentAttacker.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentAttacker.id].name[0], &attackerNameAdjustScratch[0], 25);
-		if ((currentAttacker.allyOrEnemy == 1) && (arg1 == 0)) {
+		if ((currentAttacker.side == BattleSide.foes) && (arg1 == 0)) {
 			if ((currentAttacker.theFlag != 1) || (unknownC2B66A(currentAttacker.unknown76) != 2)) {
 				x14[0] = ebChar(' ');
 				unknown7E5E77 = 1;
@@ -1817,9 +1817,9 @@ void fixAttackerName(short arg1) {
 void fixTargetName() {
 	unknown7E5E78 = 0;
 	memset(&targetNameAdjustScratch[0], 0, targetNameAdjustScratch.length);
-	if ((currentTarget.allyOrEnemy == 1) || (currentTarget.npcID != 0)) {
+	if ((currentTarget.side == BattleSide.foes) || (currentTarget.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentTarget.id].name[0], &targetNameAdjustScratch[0], 25);
-		if ((currentTarget.allyOrEnemy == 1) && ((currentTarget.theFlag != 1) ||(unknownC2B66A(currentTarget.unknown76) != 2))) {
+		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.theFlag != 1) ||(unknownC2B66A(currentTarget.unknown76) != 2))) {
 			x14[0] = ebChar(' ');
 			unknown7E5E78 = 1;
 			x14[1] = cast(ubyte)(currentTarget.theFlag + 0x70);
@@ -1922,7 +1922,7 @@ void feelingStrangeRetargetting() {
 			} else {
 				targetAllEnemies();
 			}
-			if ((getShieldTargetting(currentAttacker.currentAction, currentAttacker) == 0) && (currentAttacker.allyOrEnemy == 0)) {
+			if ((getShieldTargetting(currentAttacker.currentAction, currentAttacker) == 0) && (currentAttacker.side == BattleSide.friends)) {
 				removeNPCTargetting();
 			}
 			break;
@@ -2058,7 +2058,7 @@ short unknownC24348(short arg1) {
 
 /// $C2437E
 void unknownC2437E() {
-	if (currentAttacker.allyOrEnemy != 0) {
+	if (currentAttacker.side != BattleSide.friends) {
 		return;
 	}
 	if (currentAttacker.npcID != 0) {
@@ -2103,13 +2103,13 @@ void chooseTarget(Battler* arg1) {
 	unknownC2F917();
 	Unknown4:
 	if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
-		if (arg1.allyOrEnemy == 1) {
+		if (arg1.side == BattleSide.foes) {
 			arg1.actionTargetting = 0;
 		} else {
 			arg1.actionTargetting = 16;
 		}
 	} else {
-		if (arg1.allyOrEnemy == 1) {
+		if (arg1.side == BattleSide.foes) {
 			arg1.actionTargetting = 16;
 		} else {
 			arg1.actionTargetting = 0;
@@ -2117,7 +2117,7 @@ void chooseTarget(Battler* arg1) {
 		switch (battleActionTable[arg1.currentAction].target) {
 			case ActionTarget.none:
 				arg1.actionTargetting |= 1;
-				if (arg1.allyOrEnemy == 1) {
+				if (arg1.side == BattleSide.foes) {
 					unknownC4A228(arg1, cast(short)((arg1 - &battlersTable[0]) / Battler.sizeof));
 				} else {
 					arg1.currentTarget = cast(ubyte)(((arg1 - &battlersTable[0]) / Battler.sizeof) + 1);
@@ -2126,7 +2126,7 @@ void chooseTarget(Battler* arg1) {
 			case ActionTarget.one:
 			case ActionTarget.random:
 				arg1.actionTargetting |= 1;
-				if (arg1.allyOrEnemy == 1) {
+				if (arg1.side == BattleSide.foes) {
 					if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
 						arg1.currentTarget = cast(ubyte)findTargettableNPC();
 						if (arg1.currentTarget != 0) {
@@ -2162,7 +2162,7 @@ void chooseTarget(Battler* arg1) {
 				break;
 			case ActionTarget.row:
 				arg1.actionTargetting |= 2;
-				if (arg1.allyOrEnemy == 1) {
+				if (arg1.side == BattleSide.foes) {
 					arg1.currentTarget = 1;
 				} else if (numBattlersInBackRow == 0) {
 					arg1.currentTarget = 2;
@@ -2191,7 +2191,7 @@ void unknownC24703(Battler* battler) {
 		case 2:
 		case 4:
 			targetAllies();
-			if ((getShieldTargetting(battler.currentAction, battler) == 0) && (battler.allyOrEnemy == 0)) {
+			if ((getShieldTargetting(battler.currentAction, battler) == 0) && (battler.side == BattleSide.friends)) {
 				removeNPCTargetting();
 			}
 			removeStatusUntargettableTargets();
@@ -2223,7 +2223,7 @@ void unknownC24703(Battler* battler) {
 			break;
 		case 14:
 			targetAllEnemies();
-			if (battler.allyOrEnemy == 0) {
+			if (battler.side == BattleSide.friends) {
 				removeNPCTargetting();
 			}
 			removeStatusUntargettableTargets();
@@ -2287,7 +2287,7 @@ short battleRoutine() {
 				battleInitPlayerStats(gameState.partyMembers[i], &battlersTable[i]);
 			} else if (gameState.partyMembers[i] >= 5) {
 				battleInitEnemyStats(npcAITable[gameState.partyMembers[i]].enemyID, &battlersTable[i]);
-				battlersTable[i].allyOrEnemy = 0;
+				battlersTable[i].side = BattleSide.friends;
 				battlersTable[i].npcID = gameState.partyMembers[i];
 				battlersTable[i].row = cast(ubyte)x23;
 				battlersTable[i].hpTarget = gameState.partyNPCHP[x23];
@@ -2323,7 +2323,7 @@ short battleRoutine() {
 						battlersTable[i].hp = gameState.partyNPCHP[x02];
 						battlersTable[i].ppTarget = 0;
 						battlersTable[i].pp = 0;
-						battlersTable[i].allyOrEnemy = 0;
+						battlersTable[i].side = BattleSide.friends;
 						battlersTable[i].npcID = gameState.partyMembers[i];
 					}
 				}
@@ -2394,7 +2394,7 @@ short battleRoutine() {
 		if (getEventFlag(EventFlag.buzzBuzzInParty) != 0) {
 			battleInitEnemyStats(EnemyID.buzzBuzz, &battlersTable[6]);
 			battlersTable[6].row = 1;
-			battlersTable[6].allyOrEnemy = 0;
+			battlersTable[6].side = BattleSide.friends;
 			battlersTable[6].npcID = EnemyID.buzzBuzz;
 		}
 		for (short i = 0; i < 6; i++) {
@@ -2510,7 +2510,7 @@ short battleRoutine() {
 			for (short i = 0; i < 6; i++) {
 				short x1F;
 				checkDeadPlayers();
-				if (countChars(0) == 0) {
+				if (countChars(BattleSide.friends) == 0) {
 					createWindow(Window.textBattle);
 					goto Unknown225;
 				}
@@ -2556,7 +2556,7 @@ short battleRoutine() {
 						if (battlersTable[j].consciousness == 0) {
 							continue;
 						}
-						if (battlersTable[j].allyOrEnemy == 0) {
+						if (battlersTable[j].side == BattleSide.friends) {
 							continue;
 						}
 						if (gameState.partyMembers[i] == battlersTable[j].id) {
@@ -2594,7 +2594,7 @@ short battleRoutine() {
 				}
 			}
 			for (short i = 0; i < battlersTable.length; i++) {
-				if (((battlersTable[i].consciousness == 0) || (battlersTable[i].allyOrEnemy != 1)) && (battlersTable[i].npcID == 0)) {
+				if (((battlersTable[i].consciousness == 0) || (battlersTable[i].side != BattleSide.foes)) && (battlersTable[i].npcID == 0)) {
 					if (battlersTable[i].id != 4) {
 						continue;
 					}
@@ -2602,17 +2602,17 @@ short battleRoutine() {
 						continue;
 					}
 				}
-				if (((x1D != Initiative.partyFirst) || (x1D != Initiative.runningAlwaysSuccessful)) && (battlersTable[i].allyOrEnemy == 1)) {
+				if (((x1D != Initiative.partyFirst) || (x1D != Initiative.runningAlwaysSuccessful)) && (battlersTable[i].side == BattleSide.foes)) {
 					battlersTable[i].currentAction = 0;
 					continue;
 				}
-				if ((x1D == 2) && (battlersTable[i].allyOrEnemy == 0)) {
+				if ((x1D == 2) && (battlersTable[i].side == BattleSide.friends)) {
 					battlersTable[i].currentAction = 0;
 					continue;
 				}
 				while (true) {
 					const(Enemy)* x06;
-					if ((battlersTable[i].allyOrEnemy == 0) && (battlersTable[i].id == 4)) {
+					if ((battlersTable[i].side == BattleSide.friends) && (battlersTable[i].id == 4)) {
 						x06 = &enemyConfigurationTable[mirrorEnemy];
 					} else {
 						x06 = &enemyConfigurationTable[battlersTable[i].id];
@@ -2654,7 +2654,7 @@ short battleRoutine() {
 					if (battlersTable[i].currentAction != BattleActions.enemyExtender) {
 						break;
 					}
-					if ((battlersTable[i].allyOrEnemy == 0) && (battlersTable[i].id == 4)) {
+					if ((battlersTable[i].side == BattleSide.friends) && (battlersTable[i].id == 4)) {
 						mirrorEnemy = battlersTable[i].currentActionArgument;
 						continue;
 					}
@@ -2685,7 +2685,7 @@ short battleRoutine() {
 					if (battlersTable[i].npcID != 0) {
 						continue;
 					}
-					if (battlersTable[i].allyOrEnemy == 1) {
+					if (battlersTable[i].side == BattleSide.foes) {
 						if (enemyConfigurationTable[battlersTable[i].id].boss == 0) {
 							goto RunFailure;
 						}
@@ -2729,7 +2729,7 @@ short battleRoutine() {
 			x1D = 0;
 			while (x23 == 0) {
 				checkDeadPlayers();
-				if ((countChars(0) != 0) && (countChars(1) != 0)) {
+				if ((countChars(BattleSide.friends) != 0) && (countChars(BattleSide.foes) != 0)) {
 					short x04 = -1;
 					short x = 0;
 					for (short i = 0; i < battlersTable.length; i++) {
@@ -2824,22 +2824,22 @@ short battleRoutine() {
 					loseHPStatus(currentAttacker, x2F);
 					if (currentAttacker.hp == 0) {
 						koTarget(currentAttacker);
-						if (countChars(0) == 0) {
+						if (countChars(BattleSide.friends) == 0) {
 							goto Unknown225;
 						}
-						if (countChars(1) != 0) {
+						if (countChars(BattleSide.foes) != 0) {
 							continue;
 						}
 						goto Unknown225;
 					}
-					if (currentAttacker.allyOrEnemy == 1) {
+					if (currentAttacker.side == BattleSide.foes) {
 						chooseTarget(currentAttacker);
 						if (currentAttacker.currentAction == BattleActions.steal) {
 							currentAttacker.currentActionArgument = selectStealableItem();
 						}
 					}
 					unknownC24703(currentAttacker);
-					if ((currentAttacker.allyOrEnemy == 0) && (battleActionTable[currentAttacker.currentAction].direction == 0)) {
+					if ((currentAttacker.side == BattleSide.friends) && (battleActionTable[currentAttacker.currentAction].direction == 0)) {
 						removeStatusUntargettableTargets();
 						if (battlerTargetFlags == 0) {
 							chooseTarget(currentAttacker);
@@ -2865,7 +2865,7 @@ short battleRoutine() {
 					fixAttackerName(0);
 					unknownC1ACF8F(currentAttacker.currentActionArgument);
 					unknownC23E32();
-					if ((currentAttacker.allyOrEnemy == 0) && (currentAttacker.id <= 4)) {
+					if ((currentAttacker.side == BattleSide.friends) && (currentAttacker.id <= 4)) {
 						for (short i = 0; i < 6; i++) {
 							if (gameState.partyMembers[i] == currentAttacker.id) {
 								unknownC43573F(i);
@@ -2881,7 +2881,7 @@ short battleRoutine() {
 							unknownC2BCB9(currentAttacker, battleActionTable[currentAttacker.currentAction].ppCost);
 						}
 					}
-					if ((currentAttacker.allyOrEnemy == 1) && (currentAttacker.currentAction != 0)) {
+					if ((currentAttacker.side == BattleSide.foes) && (currentAttacker.currentAction != 0)) {
 						switch (battleActionTable[currentAttacker.currentAction].type) {
 							case ActionType.physical:
 							case ActionType.piercingPhysical:
@@ -2938,7 +2938,7 @@ short battleRoutine() {
 							battleActionTable[currentAttacker.currentAction].func();
 							checkDeadPlayers();
 							unknown7E9623 = 1;
-							if ((countChars(0) == 0) || (countChars(1) == 0)) {
+							if ((countChars(BattleSide.friends) == 0) || (countChars(BattleSide.foes) == 0)) {
 								unknownC2437E();
 								goto Unknown225;
 							}
@@ -2961,7 +2961,7 @@ short battleRoutine() {
 						}
 					}
 					Unknown215:
-					if (currentAttacker.allyOrEnemy == 0) {
+					if (currentAttacker.side == BattleSide.friends) {
 						unknownC2437E();
 						if ((mirrorEnemy != 0) && (currentAttacker.id == 4) && (--mirrorTurnTimer == 0)) {
 							mirrorEnemy = 0;
@@ -3005,14 +3005,14 @@ short battleRoutine() {
 					showHPPPWindowsF();
 				}
 				Unknown225:
-				if (countChars(0) == 0) {
+				if (countChars(BattleSide.friends) == 0) {
 					x17 = 1;
 					resetRolling();
 					displayInBattleText(getTextBlock("textBattleLostTheBattle"));
 					x23 = 1;
 				}
 				// this should be an else if
-				if (countChars(1) == 0) {
+				if (countChars(BattleSide.foes) == 0) {
 					EnemiesAreDead:
 					x17 = 0;
 					resetRolling();
@@ -3020,8 +3020,8 @@ short battleRoutine() {
 					unknown7EADD0 = 0;
 					depositIntoATM(battleMoneyScratch);
 					gameState.unknownC4 += battleMoneyScratch;
-					battleEXPScratch += countChars(0) - 1;
-					battleEXPScratch /= countChars(0); //Bug! if party is dead, this is division by 0
+					battleEXPScratch += countChars(BattleSide.friends) - 1;
+					battleEXPScratch /= countChars(BattleSide.friends); //Bug! if party is dead, this is division by 0
 					if (currentBattleGroup >= 0x1C0) {
 						displayTextWait(getTextBlock("textBattleYouWonBoss"), battleEXPScratch);
 					} else {
@@ -3035,7 +3035,7 @@ short battleRoutine() {
 						if (battlersTable[i].consciousness == 0) {
 							continue;
 						}
-						if (battlersTable[i].allyOrEnemy != 0) {
+						if (battlersTable[i].side != BattleSide.friends) {
 							continue;
 						}
 						if (battlersTable[i].npcID != 0) {
@@ -3059,7 +3059,7 @@ short battleRoutine() {
 				if (battlersTable[i].consciousness == 0) {
 					continue;
 				}
-				if (battlersTable[i].allyOrEnemy != 0) {
+				if (battlersTable[i].side != BattleSide.friends) {
 					continue;
 				}
 				if (battlersTable[i].id != 4) {
@@ -3139,14 +3139,14 @@ void instantWinHandler() {
 	for (short i = 0; i < enemiesInBattle; i++) {
 		battleEXPScratch += enemyConfigurationTable[unknown7E9F8C[i]].exp;
 	}
-	battleEXPScratch += countChars(0) - 1;
-	battleEXPScratch /= countChars(0);
+	battleEXPScratch += countChars(BattleSide.friends) - 1;
+	battleEXPScratch /= countChars(BattleSide.friends);
 	displayTextWait(getTextBlock("textBattleYouWonInstant"), battleEXPScratch);
 	for (short i = 0; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 0) {
+		if (battlersTable[i].side != BattleSide.friends) {
 			continue;
 		}
 		if (battlersTable[i].npcID != 0) {
@@ -3445,7 +3445,7 @@ short success500(short arg) {
 void targetAllies() {
 	battlerTargetFlags = 0;
 	for (short i = 0; i < battlersTable.length; i++) {
-		if ((battlersTable[i].consciousness != 0) && ((battlersTable[i].allyOrEnemy == 0) || (battlersTable[i].npcID != 0))) {
+		if ((battlersTable[i].consciousness != 0) && ((battlersTable[i].side == BattleSide.friends) || (battlersTable[i].npcID != 0))) {
 			battlerTargetFlags |= powersOfTwo32Bit[i];
 		}
 	}
@@ -3458,7 +3458,7 @@ void targetAllEnemies() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		battlerTargetFlags |= powersOfTwo32Bit[i];
@@ -3474,13 +3474,13 @@ void targetRow(ubyte arg1) {
 		}
 		switch (arg1) {
 			case 0:
-				if (battlersTable[i].allyOrEnemy == 0) {
+				if (battlersTable[i].side == BattleSide.friends) {
 					battlerTargetFlags |= powersOfTwo32Bit[i];
 				}
 				break;
 			case 1:
 			case 2:
-				if ((battlersTable[i].allyOrEnemy == 1) && (battlersTable[i].row == arg1)) {
+				if ((battlersTable[i].side == BattleSide.foes) && (battlersTable[i].row == arg1)) {
 					battlerTargetFlags |= powersOfTwo32Bit[i];
 				}
 				break;
@@ -3563,7 +3563,7 @@ void removeDeadTargetting() {
 /// $C27126
 void setHP(Battler* battler, short arg2) {
 	ushort x10 = (arg2 > battler.hpMax) ? battler.hpMax : arg2;
-	if (battler.allyOrEnemy == 0) {
+	if (battler.side == BattleSide.friends) {
 		if (battler.npcID == 0) {
 			battler.hpTarget = x10;
 			partyCharacters[battler.row].hp.target = x10;
@@ -3581,7 +3581,7 @@ void setHP(Battler* battler, short arg2) {
 /// $C27191
 void setPP(Battler* battler, short arg2) {
 	ushort x10 = (arg2 > battler.ppMax) ? battler.ppMax : arg2;
-	if (battler.allyOrEnemy == 0) {
+	if (battler.side == BattleSide.friends) {
 		if (battler.npcID == 0) {
 			battler.ppTarget = x10;
 			partyCharacters[battler.row].pp.target = x10;
@@ -3660,11 +3660,11 @@ short reviveTarget(Battler* arg1, short arg2) {
 	arg1.currentAction = 0;
 	arg1.hasTakenTurn = 1;
 	setHP(arg1, arg2);
-	if ((arg1.allyOrEnemy == 0) && (arg1.npcID == 0)) {
+	if ((arg1.side == BattleSide.friends) && (arg1.npcID == 0)) {
 		partyCharacters[arg1.row].hp.target = arg2;
 		partyCharacters[arg1.row].hp.current.integer = arg2;
 	}
-	if ((arg1.allyOrEnemy == 1) && (arg1.npcID == 0)) {
+	if ((arg1.side == BattleSide.foes) && (arg1.npcID == 0)) {
 		for (short i = 0; i < battlersTable.length; i++) {
 			battlersTable[i].useAltSpritemap = 0;
 		}
@@ -3690,7 +3690,7 @@ short reviveTarget(Battler* arg1, short arg2) {
 void koTarget(Battler* arg1) {
 	//x02 = arg1
 	unknown7EAA92 = 0;
-	if (arg1.allyOrEnemy == 0) {
+	if (arg1.side == BattleSide.friends) {
 		if (arg1.afflictions[1] == Status1.possessed) {
 			for (short i = 0; i < 6; i++) {
 				if (battlersTable[i].consciousness == 0) {
@@ -3755,7 +3755,7 @@ void koTarget(Battler* arg1) {
 				if (battlersTable[i].consciousness == 0) {
 					continue;
 				}
-				if (battlersTable[i].allyOrEnemy != 0) {
+				if (battlersTable[i].side != BattleSide.friends) {
 					continue;
 				}
 				if (battlersTable[i].npcID != gameState.partyNPCs[0]) {
@@ -3784,13 +3784,13 @@ void koTarget(Battler* arg1) {
 	if (arg1.id == EnemyID.giygas6) {
 		return;
 	}
-	if (countChars(1) == 1) {
+	if (countChars(BattleSide.foes) == 1) {
 		resetRolling();
 		for (short i = 0;  i < 6; i++) {
 			if (battlersTable[i].consciousness == 0) {
 				continue;
 			}
-			if (battlersTable[i].allyOrEnemy != 0) {
+			if (battlersTable[i].side != BattleSide.friends) {
 				continue;
 			}
 			if (battlersTable[i].afflictions[0] == Status0.unconscious) {
@@ -3995,7 +3995,7 @@ short calcDamage(Battler* target, short damage) {
 		displayInBattleText(getTextBlock("textBattleItDidntWorkOnX"));
 		return 0;
 	}
-	if ((target.allyOrEnemy == 1) && (target.id == EnemyID.giygas2)) {
+	if ((target.side == BattleSide.foes) && (target.id == EnemyID.giygas2)) {
 		x18 = 1;
 		x16 = currentTarget;
 		do {
@@ -4008,10 +4008,10 @@ short calcDamage(Battler* target, short damage) {
 		wait(1 * 30);
 	}
 	short x02 = target.hpTarget;
-	if ((target.allyOrEnemy == 0) || ((target.id != EnemyID.masterBelch1) && (target.id != EnemyID.masterBelch3) && (target.id != EnemyID.giygas2) && (target.id != EnemyID.giygas3) && (target.id != EnemyID.giygas5) && (target.id != EnemyID.giygas6))) {
+	if ((target.side == BattleSide.friends) || ((target.id != EnemyID.masterBelch1) && (target.id != EnemyID.masterBelch3) && (target.id != EnemyID.giygas2) && (target.id != EnemyID.giygas3) && (target.id != EnemyID.giygas5) && (target.id != EnemyID.giygas6))) {
 		reduceHP(target, damage);
 	}
-	if (target.allyOrEnemy == 0) {
+	if (target.side == BattleSide.friends) {
 		if ((target.hpTarget == 0) && (x02 > 1)) {
 			version(bugfix) {
 				if (success500((target.guts < 25) ? 25 : target.guts) != 0) {
@@ -4023,11 +4023,11 @@ short calcDamage(Battler* target, short damage) {
 				}
 			}
 		}
-		if ((unknown7EAA90 != 0) && (countChars(1) == 1) && (countChars(0) == 1)) {
+		if ((unknown7EAA90 != 0) && (countChars(BattleSide.foes) == 1) && (countChars(BattleSide.friends) == 1)) {
 			setHP(target, 1);
 		}
 	}
-	if (target.allyOrEnemy == 1) {
+	if (target.side == BattleSide.foes) {
 		if ((target.id == EnemyID.giygas3) || (target.id == EnemyID.giygas4) || (target.id == EnemyID.giygas5) || (target.id == EnemyID.giygas6)) {
 			unknown7EADAA = 16;
 		}
@@ -4135,7 +4135,7 @@ short calcResistDamage(short damage, short arg2) {
 			default: break;
 		}
 	}
-	if ((currentTarget.allyOrEnemy == 0) && (currentTarget.npcID == 0) && (partyCharacters[currentTarget.row].hp.current.integer == 0)) {
+	if ((currentTarget.side == BattleSide.friends) && (currentTarget.npcID == 0) && (partyCharacters[currentTarget.row].hp.current.integer == 0)) {
 		return damage;
 	}
 	if ((currentTarget.afflictions[2] == Status2.asleep) && (success255(128) != 0)) {
@@ -4149,7 +4149,7 @@ short calcResistDamage(short damage, short arg2) {
 /// $C282F8
 short missCalc(short arg1) {
 	short x12;
-	if ((currentAttacker.allyOrEnemy == 0) && (currentAttacker.npcID == 0)) {
+	if ((currentAttacker.side == BattleSide.friends) && (currentAttacker.npcID == 0)) {
 		if (partyCharacters[currentAttacker.row].equipment[0] != 0) {
 			x12 = itemData[partyCharacters[currentAttacker.row].items[partyCharacters[currentAttacker.row].equipment[0] - 1]].parameters.special;
 		} else {
@@ -4179,13 +4179,13 @@ short missCalc(short arg1) {
 short smaaaash() {
 	unknown7EAA8E = 0;
 	short guts = currentAttacker.guts;
-	if ((currentAttacker.allyOrEnemy == 0) && (guts < 25)) {
+	if ((currentAttacker.side == BattleSide.friends) && (guts < 25)) {
 		guts = 25;
 	}
 	if (success500(guts) == 0) {
 		return 0;
 	}
-	if (currentAttacker.allyOrEnemy == 0) {
+	if (currentAttacker.side == BattleSide.friends) {
 		greenFlashDuration = 60;
 		displayInBattleText(getTextBlock("textBattleSmaaaash"));
 	} else {
@@ -4359,7 +4359,7 @@ void battleActionSpy() {
 	if (currentTarget.brainshockResist == 0xFF) {
 		displayInBattleText(getTextBlock("textBattleSpyVulnerableToBrainshock"));
 	}
-	if ((currentTarget.allyOrEnemy == 1) && (findInventorySpace2(3) != 0) && (itemDropped != 0)) {
+	if ((currentTarget.side == BattleSide.foes) && (findInventorySpace2(3) != 0) && (itemDropped != 0)) {
 		unknownC1ACF8F(itemDropped);
 		displayInBattleText(getTextBlock("textBattleSpyFoundItem"));
 		itemDropped = 0;
@@ -4373,13 +4373,13 @@ void battleActionNull() {
 
 /// $C2889E
 void battleActionSteal() {
-	if (currentTarget.allyOrEnemy == 1) {
+	if (currentTarget.side == BattleSide.foes) {
 		return;
 	}
 	if (currentTarget.npcID != 0) {
 		return;
 	}
-	if ((mirrorEnemy == 0) || (currentAttacker.allyOrEnemy != 0) || (currentAttacker.id != 4)) {
+	if ((mirrorEnemy == 0) || (currentAttacker.side != BattleSide.friends) || (currentAttacker.id != 4)) {
 		if (currentAttacker.currentActionArgument != 0) {
 			takeItemFromCharacter(0xFF, currentAttacker.currentActionArgument);
 		}
@@ -4497,7 +4497,7 @@ void battleActionPossess() {
 	if (failAttackOnNPCs() == 0) {
 		return;
 	}
-	if ((currentTarget.allyOrEnemy == 0) && (inflictStatusBattle(currentTarget, 1, Status1.possessed) != 0)) {
+	if ((currentTarget.side == BattleSide.friends) && (inflictStatusBattle(currentTarget, 1, Status1.possessed) != 0)) {
 		displayInBattleText(getTextBlock("textBattleWasPossessed"));
 		if (battlersTable[6].consciousness == 0) {
 			battleInitEnemyStats(EnemyID.tinyLilGhost, &battlersTable[6]);
@@ -4745,7 +4745,7 @@ void unknownC290C6() {
 			if (battlersTable[i].consciousness == 0) {
 				continue;
 			}
-			if (battlersTable[i].allyOrEnemy != 0) {
+			if (battlersTable[i].side != BattleSide.friends) {
 				continue;
 			}
 			if (battlersTable[i].id != 4) {
@@ -4852,7 +4852,7 @@ void battleActionMasterBarfDeath() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		currentTarget = &battlersTable[i];
@@ -5040,7 +5040,7 @@ void psiThunderCommon(short baseDamage, short strikes) {
 				windowTick();
 			}
 			currentTarget.useAltSpritemap = 0;
-			if ((currentTarget.allyOrEnemy == 0) && (findItemInInventory2(currentTarget.row, ItemID.franklinBadge) != 0)) {
+			if ((currentTarget.side == BattleSide.friends) && (findItemInInventory2(currentTarget.row, ItemID.franklinBadge) != 0)) {
 				displayInBattleText(getTextBlock("textBattleFranklinBadgeDeflected"));
 				unknown7EAA96 = 1;
 				swapAttackerWithTarget();
@@ -5056,10 +5056,10 @@ void psiThunderCommon(short baseDamage, short strikes) {
 			displayInBattleText(getTextBlock("textBattleThunderMiss"));
 			displayInBattleText(getTextBlock("textBattleItDidntHitAnyone"));
 		}
-		if (countChars(0) == 0) {
+		if (countChars(BattleSide.friends) == 0) {
 			break;
 		}
-		if (countChars(1) == 0) {
+		if (countChars(BattleSide.foes) == 0) {
 			break;
 		}
 	}
@@ -5477,7 +5477,7 @@ void battleActionPSIMagnetAlpha() {
 
 /// $C29FE1
 void battleActionPSIMagnetOmega() {
-	if ((currentTarget.allyOrEnemy != 0) || (currentTarget.id != 3)) {
+	if ((currentTarget.side != BattleSide.friends) || (currentTarget.id != 3)) {
 		battleActionPSIMagnetAlpha();
 	}
 }
@@ -5773,7 +5773,7 @@ void bombCommon(short baseDamage) {
 	Battler* x18 = null;
 	Battler* x04 = null;
 	calcResistDamage(fiftyPercentVariance(baseDamage), 0xFF);
-	if (currentTarget.allyOrEnemy == 0) {
+	if (currentTarget.side == BattleSide.friends) {
 		short x16;
 		for (x16 = 0; x16 < 6; x16++) {
 			if (currentTarget.id == gameState.partyMembers[x16]) {
@@ -5791,7 +5791,7 @@ void bombCommon(short baseDamage) {
 			if (&battlersTable[i] is currentTarget) {
 				continue;
 			}
-			if (battlersTable[i].allyOrEnemy != 1) {
+			if (battlersTable[i].side != BattleSide.foes) {
 				continue;
 			}
 			if (battlersTable[i].row != currentTarget.row) {
@@ -5868,7 +5868,7 @@ void battleActionBagOfDragonite() {
 
 /// $C2A9BD
 void insectSprayCommon(short baseDamage) {
-	if ((successLuck80() != 0) && (currentTarget.allyOrEnemy == 1) && (getEnemyType(currentTarget.id) == EnemyType.insect)) {
+	if ((successLuck80() != 0) && (currentTarget.side == BattleSide.foes) && (getEnemyType(currentTarget.id) == EnemyType.insect)) {
 		calcResistDamage(fiftyPercentVariance(baseDamage), 0xFF);
 	} else {
 		displayInBattleText(getTextBlock("textBattleItDidntWorkOnX"));
@@ -5887,7 +5887,7 @@ void battleActionXterminatorSpray() {
 
 /// $C2AA1E
 void rustSprayCommon(short baseDamage) {
-	if ((successLuck80() != 0) && (currentTarget.allyOrEnemy == 1) && (getEnemyType(currentTarget.id) == EnemyType.metal)) {
+	if ((successLuck80() != 0) && (currentTarget.side == BattleSide.foes) && (getEnemyType(currentTarget.id) == EnemyType.metal)) {
 		calcResistDamage(fiftyPercentVariance(baseDamage), 0xFF);
 	} else {
 		displayInBattleText(getTextBlock("textBattleItDidntWorkOnX"));
@@ -5934,7 +5934,7 @@ short bossBattleCheck() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		if (enemyConfigurationTable[battlersTable[i].id].boss == 0) {
@@ -6087,7 +6087,7 @@ void copyMirrorData(Battler* arg1, Battler* arg2) {
 	short x32 = arg1.ppTarget;
 	short x2C = arg1.hpMax;
 	short x26 = arg1.ppMax;
-	ubyte x04 = arg1.allyOrEnemy;
+	BattleSide x04 = arg1.side;
 	ubyte x02 = arg1.row;
 	short x18 = arg1.id;
 	ubyte x16 = arg1.hasTakenTurn;
@@ -6100,7 +6100,7 @@ void copyMirrorData(Battler* arg1, Battler* arg2) {
 	arg1.ppTarget = x32;
 	arg1.hpMax = x2C;
 	arg1.ppMax = x26;
-	arg1.allyOrEnemy = x04;
+	arg1.side = x04;
 	arg1.row = x02;
 	arg1.id = x18;
 	arg1.hasTakenTurn = x16;
@@ -6108,7 +6108,7 @@ void copyMirrorData(Battler* arg1, Battler* arg2) {
 
 /// $C2B0A1
 void battleActionMirror() {
-	if ((currentTarget.allyOrEnemy != 0) && (currentTarget.npcID == 0) && (randLimit(100) < enemyConfigurationTable[currentTarget.id].mirrorSuccess)) {
+	if ((currentTarget.side != BattleSide.friends) && (currentTarget.npcID == 0) && (randLimit(100) < enemyConfigurationTable[currentTarget.id].mirrorSuccess)) {
 		mirrorEnemy = currentTarget.id;
 		mirrorTurnTimer = 16;
 		memcpy(&unknown7EAA14, currentAttacker, Battler.sizeof);
@@ -6251,7 +6251,7 @@ ubyte unknownC2B66A(short arg1) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		if (battlersTable[i].id2 != arg1) {
@@ -6279,7 +6279,7 @@ void battleInitEnemyStats(short arg1, Battler* battler) {
 	battler.sprite = cast(ubyte)enemyConfigurationTable[arg1].battleSprite;
 	battler.theFlag = unknownC2B66A(arg1);
 	battler.consciousness = 1;
-	battler.allyOrEnemy = 1;
+	battler.side = BattleSide.foes;
 	battler.npcID = 0;
 	battler.row = enemyConfigurationTable[arg1].row;
 	battler.hp = battler.hpTarget = battler.hpMax = enemyConfigurationTable[arg1].hp;
@@ -6331,7 +6331,7 @@ void battleInitPlayerStats(short arg1, Battler* battler) {
 	battler.id = cast(ubyte)arg1;
 	battler.sprite = 0;
 	battler.consciousness = 1;
-	battler.allyOrEnemy = 0;
+	battler.side = BattleSide.friends;
 	battler.npcID = 0;
 	battler.hp = partyCharacters[arg1 - 1].hp.current.integer;
 	battler.hpTarget = partyCharacters[arg1 - 1].hp.target;
@@ -6357,13 +6357,13 @@ void battleInitPlayerStats(short arg1, Battler* battler) {
 }
 
 /// $C2BAC5
-short countChars(short arg1) {
+short countChars(BattleSide arg1) {
 	short result = 0;
 	for (short i = 0; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != arg1) {
+		if (battlersTable[i].side != arg1) {
 			continue;
 		}
 		if (battlersTable[i].npcID != 0) {
@@ -6383,7 +6383,7 @@ void checkDeadPlayers() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 0) {
+		if (battlersTable[i].side != BattleSide.friends) {
 			continue;
 		}
 		if (battlersTable[i].npcID != 0) {
@@ -6424,7 +6424,7 @@ void resetPostBattleStats() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 0) {
+		if (battlersTable[i].side != BattleSide.friends) {
 			continue;
 		}
 		if (battlersTable[i].npcID != 0) {
@@ -6461,7 +6461,7 @@ short unknownC2BD13() {
 
 /// $C2BD5E
 void callForHelpCommon(short sowingSeeds) {
-	if (currentAttacker.allyOrEnemy != 0) {
+	if (currentAttacker.side != BattleSide.friends) {
 		const(BattleGroupEnemy)* x06 = &battleEntryPointerTable[currentBattleGroup].enemies[0];
 		while (x06.count != 0xFF) {
 			if (x06.enemyID == currentAttacker.currentActionArgument) {
@@ -6613,7 +6613,7 @@ void battleActionFlyHoney() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		if ((battlersTable[i].id == EnemyID.masterBelch3) || (battlersTable[i].id == EnemyID.masterBelch1)) {
@@ -7509,7 +7509,7 @@ void showPSIAnimation(short arg1) {
 	if (currentTarget.consciousness == 0) {
 		return;
 	}
-	if (currentTarget.allyOrEnemy != 1) {
+	if (currentTarget.side != BattleSide.foes) {
 		return;
 	}
 	unknown7EAD9A = 0;
@@ -7531,7 +7531,7 @@ void showPSIAnimation(short arg1) {
 				if (battlersTable[i].consciousness == 0) {
 					continue;
 				}
-				if (battlersTable[i].allyOrEnemy != 1) {
+				if (battlersTable[i].side != BattleSide.foes) {
 					continue;
 				}
 				if (battlersTable[i].afflictions[0] == Status0.unconscious) {
@@ -7553,7 +7553,7 @@ void showPSIAnimation(short arg1) {
 				if (battlersTable[i].consciousness == 0) {
 					continue;
 				}
-				if (battlersTable[i].allyOrEnemy != 1) {
+				if (battlersTable[i].side != BattleSide.foes) {
 					continue;
 				}
 				if (battlersTable[i].afflictions[0] == Status0.unconscious) {
@@ -7940,7 +7940,7 @@ short unknownC2F121() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		battlersTable[i].vramSpriteIndex = unknownC2F09F(battlersTable[i].id);
@@ -7970,7 +7970,7 @@ short unknownC2F121() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		if (battlersTable[i].row != battlersTable[8].row) {
@@ -8002,7 +8002,7 @@ short unknownC2F121() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		if (battlersTable[i].row == battlersTable[8].row) {
@@ -8028,7 +8028,7 @@ short unknownC2F121() {
 			if (battlersTable[i].consciousness == 0) {
 				continue;
 			}
-			if (battlersTable[i].allyOrEnemy != 1) {
+			if (battlersTable[i].side != BattleSide.foes) {
 				continue;
 			}
 			battlersTable[i].row = 0;
@@ -8045,7 +8045,7 @@ short unknownC2F121() {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		battlersTable[i].spriteX = cast(ubyte)((battlersTable[i].spriteX + x1B) * 8);
@@ -8100,7 +8100,7 @@ void renderBattleSpriteRow(short arg1) {
 		if (battlersTable[i].afflictions[0] == Status0.unconscious) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		if (battlersTable[i].row != arg1) {
@@ -8145,7 +8145,7 @@ void unknownC2F917() {
 		if (battlersTable[i].afflictions[0] == 1) {
 			continue;
 		}
-		if (battlersTable[i].allyOrEnemy != 1) {
+		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
 		if (battlersTable[i].row != 0) {
@@ -8164,7 +8164,7 @@ void unknownC2F917() {
 			if (battlersTable[j].afflictions[0] == 1) {
 				continue;
 			}
-			if (battlersTable[j].allyOrEnemy != 1) {
+			if (battlersTable[j].side != BattleSide.foes) {
 				continue;
 			}
 			if (battlersTable[j].row != 0) {
@@ -8190,7 +8190,7 @@ void unknownC2F917() {
 			if (battlersTable[j].afflictions[0] == 1) {
 				continue;
 			}
-			if (battlersTable[j].allyOrEnemy != 1) {
+			if (battlersTable[j].side != BattleSide.foes) {
 				continue;
 			}
 			if (battlersTable[j].row == 0) {

@@ -5018,6 +5018,11 @@ enum WindowGraphicsToLoad {
 	all2 = 2, /// Same as all
 }
 
+enum BattleSide : ubyte{
+	friends = 0,
+	foes = 1,
+}
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
@@ -5269,7 +5274,7 @@ struct Battler {
 	ubyte theFlag; ///11
 	ubyte consciousness; ///12
 	ubyte hasTakenTurn; ///13
-	ubyte allyOrEnemy; ///14
+	BattleSide side; ///14
 	ubyte npcID; ///15
 	ubyte row; ///16
 	ushort hp; ///17
