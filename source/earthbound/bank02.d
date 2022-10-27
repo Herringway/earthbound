@@ -2196,7 +2196,7 @@ void unknownC24703(Battler* battler) {
 			}
 			removeStatusUntargettableTargets();
 			break;
-		case 11:
+		case 17:
 			if (battler.currentTarget > numBattlersInBackRow) {
 				targetBattler(frontRowBattlers[battler.currentTarget - numBattlersInBackRow - 1]);
 			} else {
@@ -2216,12 +2216,12 @@ void unknownC24703(Battler* battler) {
 				}
 			}
 			break;
-		case 12:
+		case 18:
 			targetRow(battler.currentTarget);
 			removeNPCTargetting();
 			removeStatusUntargettableTargets();
 			break;
-		case 14:
+		case 20:
 			targetAllEnemies();
 			if (battler.side == BattleSide.friends) {
 				removeNPCTargetting();
