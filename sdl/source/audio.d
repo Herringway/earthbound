@@ -42,7 +42,7 @@ void stopMusic() {
 void playMusic(ushort track) {
 	nspcplayer.stop();
 	if (auto trackData = track in loadedSongs) {
-		nspcplayer.loadNSPCFile(*trackData);
+		nspcplayer.loadSong(loadNSPCFile(*trackData));
 		nspcplayer.play();
 	}
 }
