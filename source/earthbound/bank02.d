@@ -2556,10 +2556,10 @@ short battleRoutine() {
 						if (battlersTable[j].consciousness == 0) {
 							continue;
 						}
-						if (battlersTable[j].side == BattleSide.friends) {
+						if (battlersTable[j].side != BattleSide.friends) {
 							continue;
 						}
-						if (gameState.partyMembers[i] == battlersTable[j].id) {
+						if (gameState.partyMembers[i] != battlersTable[j].id) {
 							continue;
 						}
 						battlersTable[j].currentAction = x1F;
@@ -2602,11 +2602,11 @@ short battleRoutine() {
 						continue;
 					}
 				}
-				if (((x1D != Initiative.partyFirst) || (x1D != Initiative.runningAlwaysSuccessful)) && (battlersTable[i].side == BattleSide.foes)) {
+				if (((x1D == Initiative.partyFirst) || (x1D == Initiative.runningAlwaysSuccessful)) && (battlersTable[i].side == BattleSide.foes)) {
 					battlersTable[i].currentAction = 0;
 					continue;
 				}
-				if ((x1D == 2) && (battlersTable[i].side == BattleSide.friends)) {
+				if ((x1D == Initiative.enemiesFirst) && (battlersTable[i].side == BattleSide.friends)) {
 					battlersTable[i].currentAction = 0;
 					continue;
 				}
