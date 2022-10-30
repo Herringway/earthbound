@@ -12,24 +12,28 @@ const(ubyte)* getTextBlock(string label) {
 	return cast(const(ubyte)*)textData.get(label, &r[0]);
 }
 
-void loadText(const StructuredText[] script, const string label) {
+void loadText(const StructuredText[] script, const string label, const string nextLabel) {
 	import std.algorithm.comparison : among;
 	ubyte[] data;
+	bool properlyTerminated;
 	foreach (cc; script) {
+		properlyTerminated = false;
 		if (cc.mainCC.isNull) {
 			data ~= ebString(cc.text);
 		} else {
 			data ~= cc.mainCC.get();
 			final switch (cc.mainCC.get()) {
-				case MainCC.lineBreak: //these have no arguments
-				case MainCC.startBlankLine:
 				case MainCC.halt:
-				case MainCC.incrementSecondaryMemory:
-				case MainCC.createMenu:
-				case MainCC.clearLine:
 				case MainCC.haltWithoutTriangle:
 				case MainCC.haltWithPrompt:
 				case MainCC.haltVariablePrompt:
+					properlyTerminated = true;
+					break;
+				case MainCC.lineBreak: //these have no arguments
+				case MainCC.startBlankLine:
+				case MainCC.incrementSecondaryMemory:
+				case MainCC.createMenu:
+				case MainCC.clearLine:
 					break;
 				case MainCC.setFlag:
 				case MainCC.clearFlag:
@@ -43,8 +47,10 @@ void loadText(const StructuredText[] script, const string label) {
 					data ~= allBytes(cast(ushort)cc.eventFlag.get());
 					data ~= allBytes(cc.labels[0]);
 					break;
-				case MainCC.call:
 				case MainCC.jump:
+					properlyTerminated = true;
+					goto case;
+				case MainCC.call:
 					assert(cc.labels.length <= ubyte.max, "No label specified!");
 					data ~= allBytes(cc.labels[0]);
 					break;
@@ -451,6 +457,10 @@ void loadText(const StructuredText[] script, const string label) {
 					break;
 			}
 		}
+	}
+	if (!properlyTerminated) {
+		assert(nextLabel != "", "No label specified!");
+		data ~= allBytes(MainCC.jump, nextLabel);
 	}
 	textData[label] = &data[0];
 }
