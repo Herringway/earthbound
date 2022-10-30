@@ -2114,70 +2114,70 @@ void chooseTarget(Battler* arg1) {
 		} else {
 			arg1.actionTargetting = 0;
 		}
-		switch (battleActionTable[arg1.currentAction].target) {
-			case ActionTarget.none:
-				arg1.actionTargetting |= 1;
-				if (arg1.side == BattleSide.foes) {
-					unknownC4A228(arg1, cast(short)((arg1 - &battlersTable[0]) / Battler.sizeof));
-				} else {
-					arg1.currentTarget = cast(ubyte)(((arg1 - &battlersTable[0]) / Battler.sizeof) + 1);
-				}
-				break;
-			case ActionTarget.one:
-			case ActionTarget.random:
-				arg1.actionTargetting |= 1;
-				if (arg1.side == BattleSide.foes) {
-					if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
-						arg1.currentTarget = cast(ubyte)findTargettableNPC();
-						if (arg1.currentTarget != 0) {
-							return;
-						}
-						while (true) {
-							arg1.currentTarget = (rand() & 7) + 1;
-							if (checkIfValidTarget(arg1.currentTarget - 1) != 0) {
-								return;
-							}
-						}
-					} else {
-						while (true) {
-							if (checkIfValidTarget(unknownC24434(arg1)) != 0) {
-								return;
-							}
-						}
+	}
+	switch (battleActionTable[arg1.currentAction].target) {
+		case ActionTarget.none:
+			arg1.actionTargetting |= 1;
+			if (arg1.side == BattleSide.foes) {
+				unknownC4A228(arg1, cast(short)((arg1 - &battlersTable[0]) / Battler.sizeof));
+			} else {
+				arg1.currentTarget = cast(ubyte)(((arg1 - &battlersTable[0]) / Battler.sizeof) + 1);
+			}
+			break;
+		case ActionTarget.one:
+		case ActionTarget.random:
+			arg1.actionTargetting |= 1;
+			if (arg1.side == BattleSide.foes) {
+				if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
+					arg1.currentTarget = cast(ubyte)findTargettableNPC();
+					if (arg1.currentTarget != 0) {
+						return;
 					}
-				} else {
-					if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
-						while (true) {
-							if (checkIfValidTarget(unknownC24434(arg1)) != 0) {
-								return;
-							}
-						}
-					} else {
+					while (true) {
 						arg1.currentTarget = (rand() & 7) + 1;
 						if (checkIfValidTarget(arg1.currentTarget - 1) != 0) {
 							return;
 						}
 					}
-				}
-				break;
-			case ActionTarget.row:
-				arg1.actionTargetting |= 2;
-				if (arg1.side == BattleSide.foes) {
-					arg1.currentTarget = 1;
-				} else if (numBattlersInBackRow == 0) {
-					arg1.currentTarget = 2;
-				} else if (numBattlersInFrontRow == 0) {
-					arg1.currentTarget = 1;
 				} else {
-					arg1.currentTarget = (rand() & 1) + 1;
+					while (true) {
+						if (checkIfValidTarget(unknownC24434(arg1)) != 0) {
+							return;
+						}
+					}
 				}
-				break;
-			case ActionTarget.all:
-				arg1.actionTargetting |= 4;
+			} else {
+				if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
+					while (true) {
+						if (checkIfValidTarget(unknownC24434(arg1)) != 0) {
+							return;
+						}
+					}
+				} else {
+					arg1.currentTarget = (rand() & 7) + 1;
+					if (checkIfValidTarget(arg1.currentTarget - 1) != 0) {
+						return;
+					}
+				}
+			}
+			break;
+		case ActionTarget.row:
+			arg1.actionTargetting |= 2;
+			if (arg1.side == BattleSide.foes) {
 				arg1.currentTarget = 1;
-				break;
-			default: break;
-		}
+			} else if (numBattlersInBackRow == 0) {
+				arg1.currentTarget = 2;
+			} else if (numBattlersInFrontRow == 0) {
+				arg1.currentTarget = 1;
+			} else {
+				arg1.currentTarget = (rand() & 1) + 1;
+			}
+			break;
+		case ActionTarget.all:
+			arg1.actionTargetting |= 4;
+			arg1.currentTarget = 1;
+			break;
+		default: break;
 	}
 }
 
