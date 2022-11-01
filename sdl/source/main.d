@@ -16,7 +16,7 @@ import siryul;
 import bindbc.loader;
 import bindbc.sdl;
 
-import earthbound.bank00 : start, nmi;
+import earthbound.bank00 : start, irqNMICommon;
 import earthbound.commondefs;
 import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
 import earthbound.text;
@@ -141,6 +141,9 @@ void main(string[] args) {
 	earthbound.commondefs.setBGOffsetX = &rendering.setBGOffsetX;
 	earthbound.commondefs.setBGOffsetY = &rendering.setBGOffsetY;
 	earthbound.commondefs.playSFX = &audio.playSFX;
+	earthbound.commondefs.setAudioChannels = &audio.setAudioChannels;
+	earthbound.commondefs.doMusicEffect = &audio.doMusicEffect;
+	earthbound.commondefs.setStatic = &audio.setStatic;
 	playMusicExternal = &audio.playMusic;
 	stopMusicExternal = &audio.stopMusic;
 	earthbound.commondefs.config = settings.game;
@@ -200,7 +203,7 @@ void main(string[] args) {
 			if(t) {
 				throw t;
 			}
-			nmi();
+			irqNMICommon();
 			copyGlobalsToFrameData();
 		}
 		endFrame();

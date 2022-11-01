@@ -6877,7 +6877,7 @@ void battleActionGiygasPrayer9() {
 			verticalShakeDuration = 1 * 60;
 		}
 		unknownC2DAE3();
-		unknownC0AC3A(x14);
+		setStatic(x14);
 		if (x14 == 2) {
 			x14 = 1;
 		} else {

@@ -1,3 +1,23 @@
+module spc;
+
+import earthbound.globals : unknown7E001E;
+
+import registers;
+
+__gshared const(ubyte)* spcDataPointer; /// $00C6
+
+__gshared ubyte soundEffectQueueEndIndex; /// $00CA
+__gshared ubyte soundEffectQueueIndex; /// $00CB
+
+__gshared ubyte[8] soundEffectQueue; /// $1AC2
+__gshared ubyte unknown7E1ACA; /// $1ACA
+__gshared ubyte unknown7E1ACB; /// $1ACB
+
+__gshared ushort currentPrimarySamplePack; /// $B53D
+__gshared ushort currentSecondarySamplePack; /// $B53F
+__gshared ushort currentSequencePack; /// $B541
+__gshared short unknown7EB543; /// $B543
+
 ///
 struct MusicDataset {
 	ubyte primarySamplePack; ///
@@ -9,6 +29,168 @@ struct MusicPackPointer {
 	//ubyte bank;
 	const(ubyte)* addr; ///
 }
+
+void initialize() {
+	currentSequencePack = 0xFFFF;
+	currentPrimarySamplePack = 0xFFFF;
+	unknown7EB543 = musicDatasetTable[0].sequencePack;
+	currentSecondarySamplePack = musicDatasetTable[0].sequencePack;
+	//loadSPC700Data(musicPackPointerTable[musicDatasetTable[0].sequencePack].addr & unknown7EB547, unknownC4FB42(musicPackPointerTable[musicDatasetTable[0].sequencePack].bank));
+	loadSPC700Data(&musicPackPointerTable[musicDatasetTable[0].sequencePack][0]);
+}
+
+
+/// $C0ABA8
+void waitForSPC700() {
+	*APUIO2 = 0;
+	*APUIO0 = 0;
+	do {
+		*APUIO0 = 0xFF;
+		*APUIO1 = 0x00;
+	} while ((*APUIO0 != 0xAA) || (*APUIO1 != 0xBB));
+}
+
+
+/// $C0ABC6
+void stopMusic() {
+	*APUIO0 = 0;
+	while (unknownC0AC20() != 0) {}
+}
+
+void doMusicEffect(short effect) {
+	*APUIO1 = cast(ubyte)(effect | unknown7E1ACB);
+	unknown7E1ACB ^= 0x80;
+}
+
+
+/// $C0AC20
+ubyte unknownC0AC20() {
+	return *APUIO0;
+}
+
+/// $C0AC2C
+immutable ubyte[14] stereoMonoData = [
+	0x01, 0x00, 0x31, 0x04, 0x00, 0x00, 0x00,
+	0x01, 0x00, 0x31, 0x04, 0x01, 0x00, 0x00,
+];
+
+/// $C0AC3A
+void setStatic(short arg1) {
+	*APUIO2 = cast(ubyte)arg1;
+}
+
+/// $C0ABE0 - Play a sound effect
+void playSfx(short sfx) {
+	if (sfx != 0) {
+		soundEffectQueue[soundEffectQueueEndIndex] = cast(ubyte)(sfx | unknown7E1ACA);
+		soundEffectQueueEndIndex = (soundEffectQueueEndIndex + 1) & 7;
+		unknown7E1ACA ^= 0x80;
+		return;
+	}
+	playSfxUnknown();
+}
+void playSfxUnknown() {
+	*APUIO3 = 0x57;
+}
+
+/// $C08501
+void processSfxQueue() {
+	if (soundEffectQueueIndex == soundEffectQueueEndIndex) {
+		return;
+	}
+	*APUIO3 = soundEffectQueue[soundEffectQueueIndex];
+	soundEffectQueueIndex = (soundEffectQueueIndex + 1) & 7;
+}
+
+/// $C0ABBD
+void unknownC0ABBD(short arg1) {
+	*APUIO0 = cast(ubyte)arg1;
+}
+
+void setMusicChannels(ushort channels) {
+	if (channels == 0) {
+		loadSPC700Data(&stereoMonoData[7]);
+	} else {
+		loadSPC700Data(&stereoMonoData[0]);
+	}
+}
+
+/// $C0ABC6
+//original version had separate bank/addr parameters
+void loadSPC700Data(const(ubyte)* data) {
+	spcDataPointer = data;
+	//unknown7E00C8 = bank;
+	ushort y = 0;
+	ubyte b;
+	if ((*APUIO0 != 0xAA) || (*APUIO1 != 0xBB)) {
+		waitForSPC700();
+	}
+	unknown7E001E &= 0x7F;
+	*NMITIMEN = unknown7E001E;
+	ubyte a = 0xCC;
+	ushort x;
+	// proceed at your own peril.
+	// definitely going to have to triple check this one later
+	goto l7;
+	l1:
+		b = spcDataPointer[y++];
+		a = 0;
+		goto l4;
+	l2:
+		b = spcDataPointer[y++];
+		while (*APUIO0 != a) {}
+		a++;
+	l4:
+		*APUIO0 = a;
+		*APUIO1 = b;
+		if (--x != 0) {
+			goto l2;
+		}
+		while(*APUIO0 != a) {}
+		while((a += 3) == 0) {}
+	l7:
+		ubyte tmpA = a;
+		x = cast(ushort)(a | (b << 8));
+		if (spcDataPointer[y] != 0) {
+			a = 0;
+			b = 5;
+		} else {
+			y += 2;
+			a = spcDataPointer[y];
+			b = spcDataPointer[y + 1];
+			y += 2;
+		}
+		*APUIO2 = a;
+		*APUIO3 = b;
+		*APUIO1 = x < 1;
+		a = tmpA;
+		*APUIO0 = a;
+		while (*APUIO0 != a) {}
+		if (x < 1) {
+			goto l1;
+		}
+		while (*APUIO0 != 0 || *APUIO1 != 0) {}
+		unknown7E001E |= 0x80;
+		*NMITIMEN = unknown7E001E;
+}
+
+void playMusic(ushort track) {
+	const(MusicDataset)* dataset = &musicDatasetTable[track - 1];
+	if ((dataset.primarySamplePack != currentPrimarySamplePack) || (dataset.primarySamplePack != 0xFF)) {
+		currentPrimarySamplePack = dataset.primarySamplePack;
+		loadSPC700Data(&musicPackPointerTable[dataset.primarySamplePack][0]);
+	}
+	if ((dataset.secondarySamplePack != currentSecondarySamplePack) || (dataset.secondarySamplePack != 0xFF)) {
+		currentSecondarySamplePack = dataset.secondarySamplePack;
+		loadSPC700Data(&musicPackPointerTable[dataset.secondarySamplePack][0]);
+	}
+	if ((dataset.sequencePack != currentSequencePack) || (dataset.sequencePack != 0xFF)) {
+		currentSequencePack = dataset.sequencePack;
+		loadSPC700Data(&musicPackPointerTable[dataset.sequencePack][0]);
+	}
+	unknownC0ABBD(track);
+}
+
 /// $C4F70D
 immutable MusicDataset[191] musicDatasetTable = [
 	MusicDataset(0x00, 0xFF, 0x01),

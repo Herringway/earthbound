@@ -4379,17 +4379,6 @@ void start() {
 	gameInit();
 }
 
-/// $C0814F
-void irq() {
-	if (TIMEUP & 0x80) {
-		irqNMICommon();
-	}
-}
-
-void nmi() {
-	irqNMICommon();
-}
-
 void irqNMICommon() {
 	// a read from RDNMI is required on real hardware during NMI, apparently
 	//ubyte __unused = RDNMI;
@@ -4463,7 +4452,6 @@ void irqNMICommon() {
 		HDMAEN = mirrorHDMAEN;
 		handleHDMA();
 	}
-	processSfxQueue();
 	unknown7E0099 = 0;
 	if (unknown7E0022 == 0) {
 		unknown7E0022++;
@@ -4615,15 +4603,6 @@ void unknownC08496() {
 	if (padPress[0] != 0) {
 		unknown7E0A34++;
 	}
-}
-
-/// $C08501
-void processSfxQueue() {
-	if (soundEffectQueueIndex == soundEffectQueueEndIndex) {
-		return;
-	}
-	APUIO3 = soundEffectQueue[soundEffectQueueIndex];
-	soundEffectQueueIndex = (soundEffectQueueIndex + 1) & 7;
 }
 
 /// $C08518
@@ -7490,138 +7469,23 @@ void actionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
 	fadeOutWithMosaic(tmp1, tmp2, tmp3);
 }
 
-/// $C0ABA8
-void waitForSPC700() {
-	version(original) {
-		APUIO2 = 0;
-		APUIO0 = 0;
-		do {
-			APUIO0 = 0xFF;
-			APUIO1 = 0x00;
-		} while ((APUIO0 != 0xAA) || (APUIO1 != 0xBB));
-	}
-}
-
 /// $C0ABC6
 void stopMusic() {
-	version(original) {
-		APUIO0 = 0;
-		while (unknownC0AC20() != 0) {}
-	} else {
-		stopMusicExternal();
-	}
+	stopMusicExternal();
 	currentMusicTrack = 0xFFFF;
-}
-
-/// $C0ABBD
-void unknownC0ABBD(short arg1) {
-	APUIO0 = cast(ubyte)arg1;
-}
-
-/// $C0ABC6
-//original version had separate bank/addr parameters
-void loadSPC700Data(const(ubyte)* data) {
-	version(original) {
-		spcDataPointer = data;
-		//unknown7E00C8 = bank;
-		ushort y = 0;
-		ubyte b;
-		if ((APUIO0 != 0xAA) || (APUIO1 != 0xBB)) {
-			waitForSPC700();
-		}
-		unknown7E001E &= 0x7F;
-		NMITIMEN = unknown7E001E;
-		ubyte a = 0xCC;
-		ushort x;
-		// proceed at your own peril.
-		// definitely going to have to triple check this one later
-		goto l7;
-		l1:
-			b = spcDataPointer[y++];
-			a = 0;
-			goto l4;
-		l2:
-			b = spcDataPointer[y++];
-			while (APUIO0 != a) {}
-			a++;
-		l4:
-			APUIO0 = a;
-			APUIO1 = b;
-			if (--x != 0) {
-				goto l2;
-			}
-			while(APUIO0 != a) {}
-			while((a += 3) == 0) {}
-		l7:
-			ubyte tmpA = a;
-			x = cast(ushort)(a | (b << 8));
-			if (spcDataPointer[y] != 0) {
-				a = 0;
-				b = 5;
-			} else {
-				y += 2;
-				a = spcDataPointer[y];
-				b = spcDataPointer[y + 1];
-				y += 2;
-			}
-			APUIO2 = a;
-			APUIO3 = b;
-			APUIO1 = x < 1;
-			a = tmpA;
-			APUIO0 = a;
-			while (APUIO0 != a) {}
-			if (x < 1) {
-				goto l1;
-			}
-			while (APUIO0 != 0 || APUIO1 != 0) {}
-			unknown7E001E |= 0x80;
-			NMITIMEN = unknown7E001E;
-	}
 }
 
 /// $C0ABE0 - Play a sound effect
 void playSfx(short sfx) {
-	version(original) {
-		tracef("Queuing sound effect %s", cast(Sfx)sfx);
-		if (sfx != 0) {
-			soundEffectQueue[soundEffectQueueEndIndex] = cast(ubyte)(sfx | unknown7E1ACA);
-			soundEffectQueueEndIndex = (soundEffectQueueEndIndex + 1) & 7;
-			unknown7E1ACA ^= 0x80;
-			return;
-		}
-		playSfxUnknown();
-	} else {
-		playSFX(cast(ubyte)sfx);
-	}
+	playSFX(cast(ubyte)sfx);
 }
 void playSfxUnknown() {
-	version(original) {
-		APUIO3 = 0x57;
-	} else {
-		playSFX(0);
-	}
+	playSFX(0);
 }
 
 /// $C0AC0C
 void unknownC0AC0C(short arg1) {
-	APUIO1 = cast(ubyte)(arg1 | unknown7E1ACB);
-	unknown7E1ACB ^= 0x80;
-}
-
-/// $C0AC20
-ubyte unknownC0AC20() {
-	return APUIO0;
-}
-
-/// $C0AC2C
-immutable ubyte[14] stereoMonoData = [
-	0x01, 0x00, 0x31, 0x04, 0x00, 0x00, 0x00,
-	0x01, 0x00, 0x31, 0x04, 0x01, 0x00, 0x00,
-];
-
-/// $C0AC3A
-void unknownC0AC3A(short arg1) {
-	APUIO2 = cast(ubyte)arg1;
+	doMusicEffect(arg1);
 }
 
 /// $C0AC43
@@ -10312,21 +10176,3 @@ void unknownC0F41E() {
 	bg3YPosition = unknown7EB4EB.integer;
 	unknownC0AD9F();
 }
-
-immutable SNESHeader header = {
-	makerCode: "01",
-	gameCode: "MB  ",
-	title: "EARTH BOUND          ",
-	mapMode: 0x31,
-	romType: 0x02,
-	romSize: 0x0C,
-	sramSize: 0x03,
-	destinationCode: 0x01,
-	licenseeCode: 0x33,
-	version_: 0,
-	checksumComplement: 0xBFB7,
-	checksum: 0x4048,
-	nativeNMI: &nmi,
-	nativeIRQ: &irq,
-	emulationRESET: &start,
-};

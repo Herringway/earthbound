@@ -21468,7 +21468,6 @@ void unknownEFD6D4(ushort arg1) {
 				waitUntilNextFrame();
 				//did the header have an incorrect definition for this function...?
 				//unknownC0AC20(currentMusicTrack);
-				unknownC0AC20();
 				changeMusic(unknown7EB54B);
 			}
 		} else if (x02 == 1) {

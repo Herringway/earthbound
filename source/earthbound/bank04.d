@@ -7418,46 +7418,17 @@ void changeMusic(short track) {
 		stopMusic();
 	}
 	currentMusicTrack = track;
-	version(original) {
-		const(MusicDataset)* dataset = &musicDatasetTable[track - 1];
-		if ((dataset.primarySamplePack != currentPrimarySamplePack) || (dataset.primarySamplePack != 0xFF)) {
-			currentPrimarySamplePack = dataset.primarySamplePack;
-			loadSPC700Data(&musicPackPointerTable[dataset.primarySamplePack][0]);
-		}
-		if ((dataset.secondarySamplePack != currentSecondarySamplePack) || (dataset.secondarySamplePack != 0xFF)) {
-			currentSecondarySamplePack = dataset.secondarySamplePack;
-			loadSPC700Data(&musicPackPointerTable[dataset.secondarySamplePack][0]);
-		}
-		if ((dataset.sequencePack != currentSequencePack) || (dataset.sequencePack != 0xFF)) {
-			currentSequencePack = dataset.sequencePack;
-			loadSPC700Data(&musicPackPointerTable[dataset.sequencePack][0]);
-		}
-		unknownC0ABBD(track);
-	} else {
-		playMusicExternal(track);
-	}
+	playMusicExternal(track);
 }
 
 /// $C4FB58
 void initializeSPC700() {
-	version(original) {
-		currentSequencePack = 0xFFFF;
-		currentPrimarySamplePack = 0xFFFF;
-		unknown7EB543 = musicDatasetTable[0].sequencePack;
-		currentSecondarySamplePack = musicDatasetTable[0].sequencePack;
-		//loadSPC700Data(musicPackPointerTable[musicDatasetTable[0].sequencePack].addr & unknown7EB547, unknownC4FB42(musicPackPointerTable[musicDatasetTable[0].sequencePack].bank));
-		loadSPC700Data(&musicPackPointerTable[musicDatasetTable[0].sequencePack][0]);
-	}
 	sectorBoundaryBehaviourFlag = 1;
 }
 
 /// $C4FD18
 void unknownC4FD18(short arg1) {
-	if (arg1 == 0) {
-		loadSPC700Data(&stereoMonoData[7]);
-	} else {
-		loadSPC700Data(&stereoMonoData[0]);
-	}
+	setAudioChannels(arg1);
 }
 
 /// $C4FD45

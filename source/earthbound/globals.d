@@ -117,10 +117,7 @@ __gshared short unknown7E00BE; /// $00BE
 __gshared short unknown7E00C0; /// $00C0
 
 __gshared short unknown7E00C4; /// $00C4
-__gshared const(ubyte)* spcDataPointer; /// $00C6
 __gshared short unknown7E00C8; /// $00C8
-__gshared ubyte soundEffectQueueEndIndex; /// $00CA
-__gshared ubyte soundEffectQueueIndex; /// $00CB
 __gshared short unknown7E00CC; /// $00CC
 __gshared ubyte unknown7E00CE; /// $00CE
 __gshared short unknown7E00CF; /// $00CF
@@ -240,9 +237,6 @@ __gshared short currentScriptSlot; /// $1A46
 __gshared short currentScriptOffset; /// $1A48
 __gshared short[maxEntities] entityUnknown1A4A; /// $1A4A
 __gshared short[maxEntities] entityUnknown1A86; /// $1A86
-__gshared ubyte[8] soundEffectQueue; /// $1AC2
-__gshared ubyte unknown7E1ACA; /// $1ACA
-__gshared ubyte unknown7E1ACB; /// $1ACB
 __gshared short backgroundDistortionStyle; /// $1ACC
 __gshared short backgroundDistortionTargetLayer; /// $1ACE
 
@@ -890,10 +884,6 @@ __gshared ushort[11] unknown7EB525; /// $B525
 
 __gshared short piracyFlag; /// $B539
 __gshared ushort currentMusicTrack; /// $B53B
-__gshared ushort currentPrimarySamplePack; /// $B53D
-__gshared ushort currentSecondarySamplePack; /// $B53F
-__gshared ushort currentSequencePack; /// $B541
-__gshared short unknown7EB543; /// $B543
 __gshared short unknown7EB545; /// $B545
 __gshared short unknown7EB547; /// $B547
 __gshared ushort sectorBoundaryBehaviourFlag; /// $B549

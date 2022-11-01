@@ -31,6 +31,18 @@ bool initAudio(ubyte channels, uint sampleRate) {
 	return true;
 }
 
+void setAudioChannels(ushort count) {
+	info("Setting audio channels not yet implemented");
+}
+
+void doMusicEffect(short count) {
+	info("Music effects not yet implemented");
+}
+
+void setStatic(short count) {
+	info("Static not yet implemented");
+}
+
 void uninitializeAudio() {
 	Mix_CloseAudio();
 }

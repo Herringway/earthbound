@@ -253,7 +253,7 @@ void setTitle(scope const char[] title) {
 void copyGlobalsToFrameData() {
 	g_frameData.INIDISP = INIDISP;
 	g_frameData.OBSEL = OBSEL;
-	g_frameData.OAMADDR = OAMADDL | OAMADDH << 8;
+	//g_frameData.OAMADDR = OAMADDL | OAMADDH << 8;
 	g_frameData.BGMODE = BGMODE;
 	g_frameData.MOSAIC = MOSAIC;
 	g_frameData.BG1SC = BG1SC;
@@ -277,7 +277,7 @@ void copyGlobalsToFrameData() {
 	g_frameData.TSW = TSW;
 	g_frameData.CGWSEL = CGWSEL;
 	g_frameData.CGADSUB = CGADSUB;
-	g_frameData.SETINI = SETINI;
+	//g_frameData.SETINI = SETINI;
 }
 
 void setFixedColourData(ubyte val) {

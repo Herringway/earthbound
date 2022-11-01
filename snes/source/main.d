@@ -1,10 +1,15 @@
 import registers;
+import spc;
 import ppu;
 import earthbound.globals;
+import earthbound.bank00;
 
-void main() {}
+void main() {
+	initHardware();
+	start();
+}
 
-void start() {
+void initHardware() {
 	exitEmulationMode();
 	*NMITIMEN = 0;
 	dmaQueueIndex = 0;
@@ -84,3 +89,38 @@ void start() {
 void exitEmulationMode() {
 	// figure out how to do this if the time comes
 }
+
+/// $C0814F
+void irq() {
+	if (*TIMEUP & 0x80) {
+		serviceInterrupt();
+	}
+}
+
+void nmi() {
+	serviceInterrupt();
+}
+
+void serviceInterrupt() {
+	irqNMICommon();
+	processSfxQueue();
+}
+
+
+immutable SNESHeader header = {
+	makerCode: "01",
+	gameCode: "MB  ",
+	title: "EARTH BOUND          ",
+	mapMode: 0x31,
+	romType: 0x02,
+	romSize: 0x0C,
+	sramSize: 0x03,
+	destinationCode: 0x01,
+	licenseeCode: 0x33,
+	version_: 0,
+	checksumComplement: 0xBFB7,
+	checksum: 0x4048,
+	nativeNMI: &nmi,
+	nativeIRQ: &irq,
+	emulationRESET: &start,
+};

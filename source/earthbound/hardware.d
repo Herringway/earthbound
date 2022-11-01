@@ -29,14 +29,8 @@ struct OAMEntry {
 	}
 }
 
-__gshared ubyte APUIO0; ///
-__gshared ubyte APUIO1; ///
-__gshared ubyte APUIO2; ///
-__gshared ubyte APUIO3; ///
-
 __gshared ubyte HDMAEN; ///
 
-__gshared ubyte TIMEUP; ///
 __gshared ubyte HVBJOY; ///
 __gshared ushort JOYPAD_1_DATA; ///
 __gshared ushort JOYPAD_2_DATA; ///
@@ -110,10 +104,7 @@ __gshared DMAChannel[8] dmaChannels; ///
 
 __gshared ubyte NMITIMEN; ///
 __gshared ubyte INIDISP; ///
-__gshared ubyte OAMADDL; ///
-__gshared ubyte OAMADDH; ///
 __gshared ubyte MOSAIC; ///
-__gshared ubyte CGDATA; ///
 __gshared ubyte W12SEL; ///
 __gshared ubyte W34SEL; ///
 __gshared ubyte WOBJSEL; ///
@@ -127,12 +118,6 @@ __gshared ubyte TM; ///
 __gshared ubyte TD; ///
 __gshared ubyte TMW; ///
 __gshared ubyte TSW; ///
-__gshared ubyte SETINI; ///
-__gshared ubyte HTIMEL; ///
-__gshared ubyte HTIMEH; ///
-__gshared ubyte VTIMEL; ///
-__gshared ubyte VTIMEH; ///
-__gshared ubyte MEMSEL; ///
 __gshared ubyte STAT78; ///
 
 ///

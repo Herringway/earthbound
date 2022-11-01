@@ -6267,6 +6267,12 @@ void function(ushort) playMusicExternal = (ushort) {};
 ///
 void function() stopMusicExternal = () {};
 ///
+void function(ushort) setAudioChannels = (ushort) {};
+///
+void function(short) doMusicEffect = (short) {};
+///
+void function(short) setStatic = (short) {};
+///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
 	size_t idx;
