@@ -42,7 +42,7 @@ void stopMusic() {
 void playMusic(ushort track) {
 	nspcplayer.stop();
 	if (auto trackData = track in loadedSongs) {
-		nspcplayer.loadSong(loadNSPCFile(*trackData));
+		nspcplayer.loadSong(*trackData);
 		nspcplayer.play();
 	}
 }
@@ -64,7 +64,7 @@ void playSFX(ubyte id) {
 }
 
 private Mix_Chunk*[uint] loadedSFX;
-private ubyte[][uint] loadedSongs;
+private Song[uint] loadedSongs;
 private __gshared NSPCPlayer nspcplayer;
 
 extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
@@ -89,7 +89,7 @@ void loadAudioData() {
 	foreach (songFile; getDataFiles("songs", "*.nspc")) {
 		try {
 			const id = songFile.baseName.stripExtension.to!uint;
-			loadedSongs[id] = cast(ubyte[])read(songFile);
+			loadedSongs[id] = loadNSPCFile(cast(ubyte[])read(songFile));
 		} catch (Exception e) {
 			errorf("Could not load %s: %s", songFile, e.msg);
 		}
