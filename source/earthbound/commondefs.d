@@ -5489,17 +5489,6 @@ struct FontConfig {
 	ushort height; ///
 	ushort width; ///
 }
-///
-struct MusicDataset {
-	ubyte primarySamplePack; ///
-	ubyte secondarySamplePack; ///
-	ubyte sequencePack; ///
-}
-///
-struct MusicPackPointer {
-	//ubyte bank;
-	const(ubyte)* addr; ///
-}
 struct Money {
 	uint val;
 }
