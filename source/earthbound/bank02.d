@@ -4217,7 +4217,7 @@ short determineDodge() {
 	if (0 > currentTarget.speed * 2 - currentAttacker.speed) {
 		return 0;
 	}
-	if (success500(cast(short)(currentTarget.speed * 2 - currentAttacker.speed)) == 0) {
+	if (success500(cast(short)(currentTarget.speed * 2 - currentAttacker.speed)) != 0) {
 		return 1;
 	}
 	return 0;
