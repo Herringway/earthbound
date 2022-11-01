@@ -16433,10 +16433,10 @@ renameLabels:
   0xEF7579: textAction265
   0xEF7591: textAction266
   0xEF7593: textAction267
-  0xEF75AB: textBattleXHpOfDamageTaken4
-  0xEF75C2: textBattleXHpOfDamageTaken
-  0xEF75D9: textBattleXHpOfDamageTaken3
-  0xEF75F0: textBattleXHpOfDamageTaken2
+  0xEF75AB: textBattleXHPOfDamageTaken4
+  0xEF75C2: textBattleXHPOfDamageTaken
+  0xEF75D9: textBattleXHPOfDamageTaken3
+  0xEF75F0: textBattleXHPOfDamageTaken2
   0xEF7607: textBattleTookMortalDamage
   0xEF7624: textBattleSmaaaash
   0xEF7630: textBattleSmaaaashReceived
