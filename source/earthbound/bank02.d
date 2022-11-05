@@ -610,8 +610,8 @@ void hpPPRoller() {
 	if (gameState.partyMembers[unknown7E0002 & 3] > 4) {
 		return;
 	}
-	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[unknown7E0002 & 3]];
-	if ((unknown7E9698 == 0) && ((x10.hp.current.fraction & 1) != 0)) {
+	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1];
+	if ((unknown7E9698 != 0) || ((x10.hp.current.fraction & 1) != 0)) {
 		if (x10.hp.current.integer < x10.hp.target) {
 			x10.hp.current.combined += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? 0x64000 : unknownC20F58();
 			if (x10.hp.current.integer >= x10.hp.target) {
@@ -621,18 +621,16 @@ void hpPPRoller() {
 		} else if ((x10.hp.current.integer == x10.hp.target) && (x10.hp.current.fraction == 1)) {
 			x10.hp.current.fraction = 0;
 		} else {
-			x10.hp.current.combined += (unknown7E9698 != 0) ? 0x64000 : unknownC20F58();
+			x10.hp.current.combined -= (unknown7E9698 != 0) ? 0x64000 : unknownC20F58();
 			if ((x10.hp.current.integer < x10.hp.target) || (x10.hp.current.integer > 0x1000)) {
 				x10.hp.current.integer = x10.hp.target;
 				x10.hp.current.fraction = 1;
 			}
 		}
-	} else if ((x10.hp.current.fraction & 1) == 1) {
-		if (x10.hp.current.integer != x10.hp.target) {
-			x10.hp.current.fraction = 1;
-		}
+	} else if (x10.hp.current.integer != x10.hp.target) {
+		x10.hp.current.fraction = 1;
 	}
-	if ((unknown7E9698 == 0) && ((x10.pp.current.fraction & 1) != 0)) {
+	if ((unknown7E9698 != 0) || ((x10.pp.current.fraction & 1) != 0)) {
 		if (x10.pp.current.integer < x10.pp.target) {
 			x10.pp.current.combined += (unknown7E9698 != 0) ? 0x64000 : 0x19000;
 			if (x10.pp.current.integer >= x10.pp.target) {
@@ -642,16 +640,14 @@ void hpPPRoller() {
 		} else if ((x10.pp.current.integer == x10.pp.target) && (x10.pp.current.fraction == 1)) {
 			x10.pp.current.fraction = 0;
 		} else {
-			x10.pp.current.combined += (unknown7E9698 != 0) ? 0x64000 : 0x19000;
+			x10.pp.current.combined -= (unknown7E9698 != 0) ? 0x64000 : 0x19000;
 			if ((x10.pp.current.integer < x10.pp.target) || (x10.pp.current.integer > 0x1000)) {
 				x10.pp.current.integer = x10.pp.target;
 				x10.pp.current.fraction = 1;
 			}
 		}
-	} else if ((x10.pp.current.fraction) == 0) {
-		if (x10.pp.current.integer != x10.pp.target) {
-			x10.pp.current.fraction = 1;
-		}
+	} else if (x10.pp.current.integer != x10.pp.target) {
+		x10.pp.current.fraction = 1;
 	}
 	if (unknown7E9698 == 0) {
 		return;
@@ -682,7 +678,7 @@ void updateHPPPMeterTiles() {
 	if ((unknown7E9647 >> (unknown7E0002 & 3) & 1) == 0) {
 		return;
 	}
-	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + unknown7E0002 & 3;
+	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + (unknown7E0002 & 3);
 	ushort* x1A = &bg2Buffer[x1C];
 	//x1C = 0x7C00[x1C];
 	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction & 1) != 0) {
