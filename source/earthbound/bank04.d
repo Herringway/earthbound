@@ -1763,7 +1763,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 /// $C447FB
 void printWrappableString(short length, const(ubyte)* text) {
 	short x12 = unknownC43E31(text, length);
-	if ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x12 < (windowStats[windowTable[currentFocusWindow]].width * 8)) {
+	if ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x12 >= (windowStats[windowTable[currentFocusWindow]].width * 8)) {
 		printNewLineF();
 		unknown7E5E75 = 1;
 	}
