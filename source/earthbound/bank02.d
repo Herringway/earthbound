@@ -3042,6 +3042,7 @@ short battleRoutine() {
 						}
 						gainEXP(battlersTable[i].id, 1, battleEXPScratch);
 					}
+					x23 = 1;
 				}
 			}
 			closeFocusWindow();
