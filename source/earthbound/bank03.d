@@ -147,13 +147,40 @@ immutable ushort[] allowedInputDirections = [
 ];
 
 /// $C3E148
-immutable short[8] unknownC3E148 = [0, 0, 10, 0, 0, 0, -10, 0];
+immutable short[8] unknownC3E148 = [
+	Direction.up: 0,
+	Direction.upRight: 0,
+	Direction.right: 10,
+	Direction.downRight: 0,
+	Direction.down: 0,
+	Direction.downLeft: 0,
+	Direction.left: -10,
+	Direction.upLeft: 0
+];
 
 /// $C3E158
-immutable short[8] unknownC3E158 = [-5, -5, 0, 5, 5, 5, 0, -5];
+immutable short[8] unknownC3E158 = [
+	Direction.up: -5,
+	Direction.upRight: -5,
+	Direction.right: 0,
+	Direction.downRight: 5,
+	Direction.down: 5,
+	Direction.downLeft: 5,
+	Direction.left: 0,
+	Direction.upLeft: -5
+];
 
 /// $C3E168
-immutable short[8] oppositeCardinals = [Direction.down, Direction.down, Direction.left, Direction.up, Direction.up, Direction.up, Direction.right, Direction.down];
+immutable short[8] oppositeCardinals = [
+	Direction.up: Direction.down,
+	Direction.upRight: Direction.down,
+	Direction.right: Direction.left,
+	Direction.downRight: Direction.up,
+	Direction.down: Direction.up,
+	Direction.downLeft: Direction.up,
+	Direction.left: Direction.right,
+	Direction.upLeft: Direction.down
+];
 
 /// $C3E178
 immutable short[16][3] mushroomizationDirectionRemapTables = [
@@ -237,10 +264,28 @@ immutable short[4] unknownC3E220 = [8, 0, 8, 0];
 immutable short[4] unknownC3E228 = [8, 8, 0, 0];
 
 /// $C3E230
-immutable short[8] unknownC3E230 = [0, 1, 1, 1, 0, -1, -1, -1];
+immutable short[8] unknownC3E230 = [
+	Direction.up: 0,
+	Direction.upRight: 1,
+	Direction.right: 1,
+	Direction.downRight: 1,
+	Direction.down: 0,
+	Direction.downLeft: -1,
+	Direction.left: -1,
+	Direction.upLeft: -1
+];
 
 /// $C3E240
-immutable short[8] unknownC3E240 = [-1, -1, 0, 1, 1, 1, 0, -1];
+immutable short[8] unknownC3E240 = [
+	Direction.up: -1,
+	Direction.upRight: -1,
+	Direction.right: 0,
+	Direction.downRight: 1,
+	Direction.down: 1,
+	Direction.downLeft: 1,
+	Direction.left: 0,
+	Direction.upLeft: -1
+];
 
 version(configurable) {
 	enum textSpeedWindow = WindowConfig(0x0003, 0x000E, 0x0010, 0x000C);
@@ -251,63 +296,71 @@ version(configurable) {
 
 /// $C3E250
 immutable WindowConfig[53] windowConfigurationTable = [
-	WindowConfig(0x0001, 0x0001, 0x000D, 0x0008),
-	WindowConfig(0x000C, 0x0001, 0x0013, 0x0008), // Out-of-battle text
-	WindowConfig(0x0007, 0x0001, 0x0018, 0x0010), // Main inventory window
-	WindowConfig(0x0001, 0x0001, 0x0006, 0x000A), // Inventory menu
-	WindowConfig(0x0001, 0x0003, 0x000B, 0x0006),
-	WindowConfig(0x0014, 0x0001, 0x000B, 0x0010), // Phone menu
-	WindowConfig(0x0008, 0x0001, 0x0014, 0x000A), // Equip menu
-	WindowConfig(0x0012, 0x0001, 0x000D, 0x0010), // Item list for equip menu
-	WindowConfig(0x0001, 0x0001, 0x001E, 0x0012), // Status menu
-	WindowConfig(0x000C, 0x0001, 0x0013, 0x0012), // Used by status screen?
-	WindowConfig(0x0001, 0x000A, 0x0008, 0x0004), // Carried money window
-	WindowConfig(0x0001, 0x000F, 0x000B, 0x0004), // Used by status screen?
-	WindowConfig(0x000C, 0x0001, 0x0013, 0x0010),
-	WindowConfig(0x0007, 0x0001, 0x0018, 0x0010),
-	WindowConfig(0x0004, 0x0001, 0x0018, 0x0006), // In-battle text
-	WindowConfig(0x0001, 0x0001, 0x0015, 0x0006), // Normal battle menu
-	WindowConfig(0x0004, 0x0001, 0x0008, 0x0008),
-	WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
-	WindowConfig(0x0001, 0x0001, 0x000E, 0x0006), // Jeff' s Battle menu
-	WindowConfig(0x0001, 0x0002, 0x001E, 0x0008), // File Select
-	WindowConfig(0x0005, 0x0009, 0x0016, 0x0004), // Overworld Menu
-	WindowConfig(0x000A, 0x0010, 0x000C, 0x0008), // Copy Menu (2 choices)
-	WindowConfig(0x000A, 0x0010, 0x000C, 0x0006), // Copy Menu (1 choice)
-	WindowConfig(0x0006, 0x0011, 0x0015, 0x000A), // Delete confirmation
-	textSpeedWindow, // Text Speed
-	WindowConfig(0x0008, 0x000F, 0x0012, 0x0008), // Music Mode
-	WindowConfig(0x0005, 0x0004, 0x0008, 0x0004), // Naming Box
-	WindowConfig(0x000D, 0x0004, 0x0011, 0x0004), // "Name This Friend"
-	WindowConfig(0x0001, 0x0009, 0x001E, 0x0010), // Name input box
-	WindowConfig(0x0007, 0x0003, 0x0007, 0x0004), // Ness's Name
-	WindowConfig(0x0007, 0x0007, 0x0007, 0x0004), // Paula's Name
-	WindowConfig(0x0007, 0x000B, 0x0007, 0x0004), // Jeff's Name
-	WindowConfig(0x0007, 0x000F, 0x0007, 0x0004), // Poo's Name
-	WindowConfig(0x0014, 0x0003, 0x0008, 0x0004), // King's Name
-	WindowConfig(0x000F, 0x0007, 0x000D, 0x0006), // Favourite Food
-	WindowConfig(0x000F, 0x000D, 0x000D, 0x0006), // Favourite Thing
-	WindowConfig(0x0004, 0x0015, 0x0018, 0x0004), // "Are you sure?"
-	WindowConfig(0x0012, 0x0006, 0x000D, 0x0008),
-	WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
-	WindowConfig(0x0003, 0x0003, 0x001A, 0x0006),
-	WindowConfig(0x0001, 0x0001, 0x0007, 0x0004),
-	WindowConfig(0x0010, 0x0008, 0x000F, 0x0004),
-	WindowConfig(0x000A, 0x0008, 0x0015, 0x0004),
-	WindowConfig(0x0004, 0x0008, 0x001B, 0x0004),
-	WindowConfig(0x0008, 0x0002, 0x0018, 0x0010),
-	WindowConfig(0x0003, 0x000B, 0x000F, 0x0006),
-	WindowConfig(0x0004, 0x0001, 0x0008, 0x000A),
-	WindowConfig(0x0001, 0x0009, 0x001E, 0x000A),
-	WindowConfig(0x0001, 0x0001, 0x001C, 0x0006),
-	WindowConfig(0x000A, 0x0004, 0x0014, 0x0004),
-	WindowConfig(0x000E, 0x000B, 0x000F, 0x0010), // File select: flavour selection
-	WindowConfig(0x0016, 0x0008, 0x0009, 0x0004),
-	WindowConfig(0x0007, 0x0009, 0x0012, 0x0012),
+	Window.unknown00: WindowConfig(0x0001, 0x0001, 0x000D, 0x0008),
+	Window.textStandard: WindowConfig(0x000C, 0x0001, 0x0013, 0x0008),
+	Window.inventory: WindowConfig(0x0007, 0x0001, 0x0018, 0x0010),
+	Window.inventoryMenu: WindowConfig(0x0001, 0x0001, 0x0006, 0x000A),
+	Window.unknown04: WindowConfig(0x0001, 0x0003, 0x000B, 0x0006),
+	Window.phoneMenu: WindowConfig(0x0014, 0x0001, 0x000B, 0x0010),
+	Window.equipMenu: WindowConfig(0x0008, 0x0001, 0x0014, 0x000A),
+	Window.equipMenuItemlist: WindowConfig(0x0012, 0x0001, 0x000D, 0x0010),
+	Window.statusMenu: WindowConfig(0x0001, 0x0001, 0x001E, 0x0012),
+	Window.unknown09: WindowConfig(0x000C, 0x0001, 0x0013, 0x0012), // Used by status screen?
+	Window.carriedMoney: WindowConfig(0x0001, 0x000A, 0x0008, 0x0004),
+	Window.unknown0b: WindowConfig(0x0001, 0x000F, 0x000B, 0x0004), // Used by status screen?
+	Window.unknown0c: WindowConfig(0x000C, 0x0001, 0x0013, 0x0010),
+	Window.unknown0d: WindowConfig(0x0007, 0x0001, 0x0018, 0x0010),
+	Window.textBattle: WindowConfig(0x0004, 0x0001, 0x0018, 0x0006),
+	Window.battleMenu: WindowConfig(0x0001, 0x0001, 0x0015, 0x0006),
+	Window.unknown10: WindowConfig(0x0004, 0x0001, 0x0008, 0x0008),
+	Window.unknown11: WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
+	Window.battleMenuJeff: WindowConfig(0x0001, 0x0001, 0x000E, 0x0006),
+	Window.fileSelectMain: WindowConfig(0x0001, 0x0002, 0x001E, 0x0008),
+	Window.fileSelectMenu: WindowConfig(0x0005, 0x0009, 0x0016, 0x0004),
+	Window.fileSelectCopyMenuTwoFiles: WindowConfig(0x000A, 0x0010, 0x000C, 0x0008),
+	Window.fileSelectCopyMenuOneFile: WindowConfig(0x000A, 0x0010, 0x000C, 0x0006),
+	Window.fileSelectDeleteConfirmation: WindowConfig(0x0006, 0x0011, 0x0015, 0x000A),
+	Window.fileSelectTextSpeed: textSpeedWindow,
+	Window.fileSelectMusicMode: WindowConfig(0x0008, 0x000F, 0x0012, 0x0008),
+	Window.fileSelectNamingNameBox: WindowConfig(0x0005, 0x0004, 0x0008, 0x0004),
+	Window.fileSelectNamingMessage: WindowConfig(0x000D, 0x0004, 0x0011, 0x0004),
+	Window.fileSelectNamingKeyboard: WindowConfig(0x0001, 0x0009, 0x001E, 0x0010),
+	Window.fileSelectNamingConfirmationNess: WindowConfig(0x0007, 0x0003, 0x0007, 0x0004),
+	Window.fileSelectNamingConfirmationPaula: WindowConfig(0x0007, 0x0007, 0x0007, 0x0004),
+	Window.fileSelectNamingConfirmationJeff: WindowConfig(0x0007, 0x000B, 0x0007, 0x0004),
+	Window.fileSelectNamingConfirmationPoo: WindowConfig(0x0007, 0x000F, 0x0007, 0x0004),
+	Window.fileSelectNamingConfirmationKing: WindowConfig(0x0014, 0x0003, 0x0008, 0x0004),
+	Window.fileSelectNamingConfirmationFood: WindowConfig(0x000F, 0x0007, 0x000D, 0x0006),
+	Window.fileSelectNamingConfirmationThing: WindowConfig(0x000F, 0x000D, 0x000D, 0x0006),
+	Window.fileSelectNamingConfirmationMessage: WindowConfig(0x0004, 0x0015, 0x0018, 0x0004),
+	Window.unknown25: WindowConfig(0x0012, 0x0006, 0x000D, 0x0008),
+	Window.unknown26: WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
+	Window.unknown27: WindowConfig(0x0003, 0x0003, 0x001A, 0x0006),
+	Window.unknown28: WindowConfig(0x0001, 0x0001, 0x0007, 0x0004),
+	Window.unknown29: WindowConfig(0x0010, 0x0008, 0x000F, 0x0004),
+	Window.unknown2a: WindowConfig(0x000A, 0x0008, 0x0015, 0x0004),
+	Window.unknown2b: WindowConfig(0x0004, 0x0008, 0x001B, 0x0004),
+	Window.unknown2c: WindowConfig(0x0008, 0x0002, 0x0018, 0x0010),
+	Window.unknown2d: WindowConfig(0x0003, 0x000B, 0x000F, 0x0006),
+	Window.unknown2e: WindowConfig(0x0004, 0x0001, 0x0008, 0x000A),
+	Window.unknown2f: WindowConfig(0x0001, 0x0009, 0x001E, 0x000A),
+	Window.unknown30: WindowConfig(0x0001, 0x0001, 0x001C, 0x0006),
+	Window.unknown31: WindowConfig(0x000A, 0x0004, 0x0014, 0x0004),
+	Window.fileSelectFlavourChoice: WindowConfig(0x000E, 0x000B, 0x000F, 0x0010),
+	Window.unknown33: WindowConfig(0x0016, 0x0008, 0x0009, 0x0004),
+	Window.unknown34: WindowConfig(0x0007, 0x0009, 0x0012, 0x0012),
 ];
 
 /// $C3E3F8
-immutable ubyte[14] unknownC3E3F8 = [0x08, 0x09, 0x18, 0x19, 0x0A, 0x09, 0x1A, 0x19, 0x15, 0x24, 0x16, 0x24, 0x15, 0x64];
+immutable ubyte[14] unknownC3E3F8 = [
+	0x08, 0x09,
+	0x18, 0x19,
+	0x0A, 0x09,
+	0x1A, 0x19,
+	0x15, 0x24,
+	0x16, 0x24,
+	0x15, 0x64
+];
 
 /// $C3E406
 immutable ushort[2] arrC3E406 = [ 0x2441, 0x268D ];
