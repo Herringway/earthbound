@@ -1802,7 +1802,7 @@ const(ubyte)* talkTo() {
 	} else {
 		switch (npcConfig[currentTPTEntry].type) {
 			case NPCType.person:
-				unknownC042C2(unknown7E5D64);
+				faceOppositeLeader(unknown7E5D64);
 				x0A = getTextBlock(npcConfig[currentTPTEntry].talkText);
 				break;
 			case NPCType.itemBox:
