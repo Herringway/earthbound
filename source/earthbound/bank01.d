@@ -599,10 +599,10 @@ void printNumber(uint arg1) {
 			a = x14;
 		}
 		unknownC43D95(cast(short)((a - x14) * 6));
-		while (x14 != 0) {
-			printLetter(*(x12++) + ebChar('0'));
-			x14--;
-		}
+	}
+	while (x14 != 0) {
+		printLetter(*(x12++) + ebChar('0'));
+		x14--;
 	}
 }
 
