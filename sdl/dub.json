@@ -10,6 +10,17 @@
 			"version": "fa268a22c48fb14262e3df700a0b1965470bf736"
 		}
 	},
+	"configurations": [
+		{
+			"name": "standard",
+			"targetType": "executable"
+		},
+		{
+			"name": "full",
+			"targetType": "executable",
+			"sourceFiles-windows": ["earthbound.res"]
+		}
+	],
 	"subConfigurations": {
 		"earthbound": "extra"
 	},

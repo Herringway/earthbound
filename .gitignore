@@ -31,3 +31,5 @@ settings.yml
 *.oam
 *.oam2
 *.vram
+*.res
+*.lib
