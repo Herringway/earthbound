@@ -2050,7 +2050,7 @@ short unknownC041E3() {
 
 /// $C042C2
 void faceOppositeLeader(short arg1) {
-	entityDirections[arg1] = unknownC3E168[gameState.leaderDirection];
+	entityDirections[arg1] = oppositeCardinals[gameState.leaderDirection];
 	unknownC09907(arg1);
 	unknownC0A443Entry2(arg1);
 }

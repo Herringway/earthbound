@@ -153,7 +153,7 @@ immutable short[8] unknownC3E148 = [0, 0, 10, 0, 0, 0, -10, 0];
 immutable short[8] unknownC3E158 = [-5, -5, 0, 5, 5, 5, 0, -5];
 
 /// $C3E168
-immutable short[8] unknownC3E168 = [Direction.down, Direction.down, Direction.left, Direction.up, Direction.up, Direction.up, Direction.right, Direction.down];
+immutable short[8] oppositeCardinals = [Direction.down, Direction.down, Direction.left, Direction.up, Direction.up, Direction.up, Direction.right, Direction.down];
 
 /// $C3E178
 immutable short[16][3] mushroomizationDirectionRemapTables = [
