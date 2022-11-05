@@ -6273,6 +6273,8 @@ void function(short) doMusicEffect = (short) {};
 ///
 void function(short) setStatic = (short) {};
 ///
+ushort function(ushort) getControllerState = (ushort) { return cast(ushort)0; };
+///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
 	size_t idx;

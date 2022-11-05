@@ -31,6 +31,10 @@ void uninitializeGamepad() {
 	//nothing to do here
 }
 
+ushort getControllerState(ushort id) {
+	return input.gameInput[id];
+}
+
 void handleSNESButton(ushort val, bool pressed, uint playerID) {
 	if (pressed) {
 		input.gameInput[playerID - 1] |= val;

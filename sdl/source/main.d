@@ -18,7 +18,6 @@ import bindbc.sdl;
 
 import earthbound.bank00 : start, irqNMICommon;
 import earthbound.commondefs;
-import earthbound.hardware : JOYPAD_1_DATA, JOYPAD_2_DATA;
 import earthbound.text;
 
 import audio;
@@ -144,6 +143,7 @@ void main(string[] args) {
 	earthbound.commondefs.setAudioChannels = &audio.setAudioChannels;
 	earthbound.commondefs.doMusicEffect = &audio.doMusicEffect;
 	earthbound.commondefs.setStatic = &audio.setStatic;
+	earthbound.commondefs.getControllerState = &gamepad.getControllerState;
 	playMusicExternal = &audio.playMusic;
 	stopMusicExternal = &audio.stopMusic;
 	earthbound.commondefs.config = settings.game;
@@ -194,8 +194,6 @@ void main(string[] args) {
 		if (input.exit) {
 			break gameLoop;
 		}
-		JOYPAD_1_DATA = input.gameInput[0];
-		JOYPAD_2_DATA = input.gameInput[1];
 		startFrame();
 
 		if (!paused || input.step) {

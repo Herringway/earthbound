@@ -4532,8 +4532,8 @@ void readJoypad() {
 	unknown7E007B &= 0xBFFF;
 
 	l1:
-	padRaw[1] = JOYPAD_2_DATA;
-	padRaw[0] = JOYPAD_1_DATA;
+	padRaw[1] = getControllerState(1);
+	padRaw[0] = getControllerState(0);
 }
 
 /// $C08456

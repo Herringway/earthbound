@@ -32,8 +32,6 @@ struct OAMEntry {
 __gshared ubyte HDMAEN; ///
 
 __gshared ubyte HVBJOY; ///
-__gshared ushort JOYPAD_1_DATA; ///
-__gshared ushort JOYPAD_2_DATA; ///
 
 __gshared ubyte BG1SC; ///
 __gshared ubyte BG2SC; ///
@@ -120,38 +118,6 @@ __gshared ubyte TMW; ///
 __gshared ubyte TSW; ///
 __gshared ubyte STAT78; ///
 
-///
-struct SNESHeader {
-	char[2] makerCode; ///
-	char[4] gameCode; ///
-	ushort[5] padding; ///
-	char[21] title; ///
-	ubyte mapMode; ///
-	ubyte romType; ///
-	ubyte romSize; ///
-	ubyte sramSize; ///
-	ubyte destinationCode; ///
-	ubyte licenseeCode = 0x33; ///
-	ubyte version_; ///
-	ushort checksumComplement; ///
-	ushort checksum; ///
-	void function() unusedNativeVector0; ///
-	void function() unusedNativeVector1; ///
-	void function() nativeCOP; ///
-	void function() nativeBRK; ///
-	void function() nativeABORT; ///
-	void function() nativeNMI; ///
-	void function() unusedNativeVector6; ///
-	void function() nativeIRQ; ///
-	void function() unusedEmulationVector0; ///
-	void function() unusedEmulationVector1; ///
-	void function() emulationCOP; ///
-	void function() unusedEmulationVector3; ///
-	void function() emulationABORT; ///
-	void function() emulationNMI; ///
-	void function() emulationRESET; ///
-	void function() emulationIRQBRK; ///
-}
 
 ///
 enum CGWSELFlags {
