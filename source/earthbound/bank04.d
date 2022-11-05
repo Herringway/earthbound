@@ -4434,11 +4434,11 @@ void unknownC4A67E(short arg1, short arg2) {
 		unknown7EAEC8 = 31;
 	}
 	unknown7EAEC2 = 1;
-	unknown7EAEC3 = swirlPrimaryTable[arg1].unknown0;
-	unknown7EAEC4 = swirlPrimaryTable[arg1].unknown2;
+	framesUntilNextSwirlFrame = swirlPrimaryTable[arg1].timeBetweenFrames;
+	swirlFramesLeft = swirlPrimaryTable[arg1].swirlFrames;
 	swirlHDMATableID = swirlPrimaryTable[arg1].startingHDMATableID;
 	if (unknown7EAEC7 != 0) {
-		swirlHDMATableID += unknown7EAEC4;
+		swirlHDMATableID += swirlFramesLeft;
 	}
 	unknown7EAECC = null;
 	if (arg1 == 0) {
@@ -4449,7 +4449,7 @@ void unknownC4A67E(short arg1, short arg2) {
 	unknown7EAECB = 1;
 	if ((arg2 & AnimationFlags.unknown7) != 0) {
 		unknown7EAEE4 = cast(ubyte)arg1;
-		unknown7EAEC3 = 4;
+		framesUntilNextSwirlFrame = 4;
 		unknown7EAEE5 = 0;
 		unknown7EAEE6 = 6;
 	} else {
@@ -4517,8 +4517,8 @@ void unknownC4A7B0() {
 		return;
 	}
 	while (true) { //pretty weird but I'm not sure how else to express this mass of branches
-		if (unknown7EAEC4 != 0) {
-			unknown7EAEC2 = unknown7EAEC3;
+		if (swirlFramesLeft != 0) {
+			unknown7EAEC2 = framesUntilNextSwirlFrame;
 			unknownC0AE34(unknown7EAEC9 + 3);
 			unknown7EAEC9++;
 			unknown7EAEC9 &= 1;
@@ -4528,31 +4528,31 @@ void unknownC4A7B0() {
 				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[--swirlHDMATableID][0]);
 			}
 			setWindowMask(unknown7EAEC8, unknown7EAEC6);
-			unknown7EAEC4--;
+			swirlFramesLeft--;
 			return;
 		}
 		if (unknown7EAEE4 != 0) {
 			if (--unknown7EAEE6 != 0) {
-				unknown7EAEC4 = swirlPrimaryTable[unknown7EAEE4].unknown2;
+				swirlFramesLeft = swirlPrimaryTable[unknown7EAEE4].swirlFrames;
 				unknown7EAEE6 = swirlPrimaryTable[unknown7EAEE4].startingHDMATableID;
 				if (unknown7EAEC7 == 0) {
 					continue;
 				}
-				unknown7EAEE6 += unknown7EAEC4;
+				unknown7EAEE6 += swirlFramesLeft;
 				continue;
 			}
 			switch (++unknown7EAEE5) {
 				case 1:
 					unknown7EAEE6 = 7;
-					unknown7EAEC3 = 3;
+					framesUntilNextSwirlFrame = 3;
 					break;
 				case 2:
 					unknown7EAEE6 = 6;
-					unknown7EAEC3 = 2;
+					framesUntilNextSwirlFrame = 2;
 					break;
 				case 3:
 					unknown7EAEE6 = 12;
-					unknown7EAEC3 = 1;
+					framesUntilNextSwirlFrame = 1;
 					break;
 				default: break;
 			}
