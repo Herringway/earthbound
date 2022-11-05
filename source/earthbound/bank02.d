@@ -1339,7 +1339,7 @@ short initBattleScripted(short arg1) {
 		unknownC4A7B0();
 	}
 	short x10 = initBattleCommon();
-	if (teleportDestination != 0) {
+	if (teleportDestination == 0) {
 		if (x10 != 0) {
 			return 1;
 		}
