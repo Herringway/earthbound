@@ -797,7 +797,7 @@ __gshared LoadedBackgroundData loadedBGDataLayer2; /// $AE4B
 __gshared ubyte unknown7EAEC2; /// $AEC2
 __gshared ubyte unknown7EAEC3; /// $AEC3
 __gshared ubyte unknown7EAEC4; /// $AEC4
-__gshared ubyte unknown7EAEC5; /// $AEC5
+__gshared ubyte swirlHDMATableID; /// $AEC5
 __gshared ubyte unknown7EAEC6; /// $AEC6
 __gshared ubyte unknown7EAEC7; /// $AEC7
 __gshared ubyte unknown7EAEC8; /// $AEC8

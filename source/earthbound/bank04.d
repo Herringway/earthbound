@@ -4434,11 +4434,11 @@ void unknownC4A67E(short arg1, short arg2) {
 		unknown7EAEC8 = 31;
 	}
 	unknown7EAEC2 = 1;
-	unknown7EAEC3 = swirlPrimaryTable[arg1][0];
-	unknown7EAEC4 = swirlPrimaryTable[arg1][2];
-	unknown7EAEC5 = swirlPrimaryTable[arg1][1];
+	unknown7EAEC3 = swirlPrimaryTable[arg1].unknown0;
+	unknown7EAEC4 = swirlPrimaryTable[arg1].unknown2;
+	swirlHDMATableID = swirlPrimaryTable[arg1].startingHDMATableID;
 	if (unknown7EAEC7 != 0) {
-		unknown7EAEC5 += unknown7EAEC4;
+		swirlHDMATableID += unknown7EAEC4;
 	}
 	unknown7EAECC = null;
 	if (arg1 == 0) {
@@ -4523,9 +4523,9 @@ void unknownC4A7B0() {
 			unknown7EAEC9++;
 			unknown7EAEC9 &= 1;
 			if (unknown7EAEC7 == 0) {
-				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[unknown7EAEC5++][0]);
+				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[swirlHDMATableID++][0]);
 			} else {
-				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[--unknown7EAEC5][0]);
+				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[--swirlHDMATableID][0]);
 			}
 			setWindowMask(unknown7EAEC8, unknown7EAEC6);
 			unknown7EAEC4--;
@@ -4533,8 +4533,8 @@ void unknownC4A7B0() {
 		}
 		if (unknown7EAEE4 != 0) {
 			if (--unknown7EAEE6 != 0) {
-				unknown7EAEC4 = swirlPrimaryTable[unknown7EAEE4][2];
-				unknown7EAEE6 = swirlPrimaryTable[unknown7EAEE4][1];
+				unknown7EAEC4 = swirlPrimaryTable[unknown7EAEE4].unknown2;
+				unknown7EAEE6 = swirlPrimaryTable[unknown7EAEE4].startingHDMATableID;
 				if (unknown7EAEC7 == 0) {
 					continue;
 				}

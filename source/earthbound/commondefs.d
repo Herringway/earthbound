@@ -6241,7 +6241,13 @@ struct Unknown7E9652Data {
 	ushort unknown2; ///
 	ushort unknown4; ///
 }
-
+///
+struct BattleSwirlConfig {
+	ubyte unknown0;
+	ubyte startingHDMATableID;
+	ubyte unknown2;
+	ubyte unknown3;
+}
 
 //helper funcs not in the original game
 ///
