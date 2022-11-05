@@ -1186,9 +1186,11 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 	short x2A;
 	const(BattleGroupEnemy)* x0A;
 	if ((debugging != 0) && (unknownEFE759() != 0) && (rand() < 16)) {
+		tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
 		x2A = 0;
 		x0A = &battleEntryPointerTable[0].enemies[0];
 	} else if ((++unknown7E4A7A & 0xF) == 0) {
+		tracef("Trying to spawn a magic butterfly: %s, %s, %s", arg1, arg2, arg3);
 		short x28 = void;
 		switch (mapDataPerSectorAttributesTable[(arg2 * 8) / 16][(arg1 * 8) / 32] & 7) {
 			case 0:
@@ -1218,6 +1220,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		unknown7E4A72 = 481;
 		x0A = &battleEntryPointerTable[481].enemies[0];
 	} else if (arg3 != 0) {
+		tracef("Trying to spawn an enemy: %s, %s, %s", arg1, arg2, arg3);
 		if (globalMapTilesetPaletteData[(arg2 * 8) / 16][(arg1 * 8) / 32] / 8 == unknown7E436E) {
 			unknown7E4A6C = arg3;
 			short x26 = enemyPlacementGroupsPointerTable[arg3].eventFlag;
@@ -1264,6 +1267,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		}
 	}
 	while ((unknown7E4A6E = x0A[0].count) != 0xFF) {
+		tracef("Trying to spawn %sx %s", x0A[0].count, cast(EnemyID)x0A[0].enemyID);
 		unknown7E4A76 = &enemyConfigurationTable[x0A[0].enemyID].name[0];
 		short x26 = enemyConfigurationTable[x0A[0].enemyID].overworldSprite;
 		unknown7E4A74 = x26;
