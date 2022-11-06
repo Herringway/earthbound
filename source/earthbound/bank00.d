@@ -4849,7 +4849,7 @@ void oamClear() {
 		oamHighTableAddr = &oam1.highTable[0];
 		unknown7E000A = 0x80;
 		for (short i = 0; i < 128; i++) { //original code has this loop unrolled
-			oam1.mainTable[i].yCoord = -32;
+			oam1.mainTable[i].yCoord = 224;
 		}
 	} else {
 		oamAddr = &oam2.mainTable[0];
@@ -4857,7 +4857,7 @@ void oamClear() {
 		oamHighTableAddr = &oam2.highTable[0];
 		unknown7E000A = 0x80;
 		for (short i = 0; i < 128; i++) { //original code has this loop unrolled
-			oam2.mainTable[i].yCoord = -32;
+			oam2.mainTable[i].yCoord = 224;
 		}
 	}
 }
@@ -4996,7 +4996,8 @@ void unknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
 
 /// $C08CD5 - Draw a SpriteMap list into the OAM buffer
 void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
-	short xpos, ypos;
+	short xpos;
+	ubyte ypos;
 	ubyte abyte;
 	bool carry;
 	const(SpriteMap)* y = arg1;
@@ -5006,20 +5007,19 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 	}
 	//some DBR manipulation was here
 	for(;;y++){
-		ypos = cast(byte)y.yOffset;
-		if (ypos == -0x80) {
+		ypos = y.yOffset;
+		if (ypos == 0x80) {
 			// This is -1 since we do y++ due to continue
 			y = y.nextMap - 1;
 			continue;
 		}
 		ypos += ybase - 1;
-		if ((ypos >= 0xE0) || (ypos < -0x20)) {
+		if (ypos >= 0xE0) {
 			if (y.specialFlags >= 0x80) {
 				break;
 			}
 			continue;
 		}
-		unknown7E009F = ypos;
 		x.startingTile = y.firstTile;
 		x.flags = y.flags;
 		xpos = cast(byte)y.xOffset;
@@ -5042,7 +5042,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 			oamHighTableAddr++;
 			unknown7E000A = 0x80;
 		}
-		x.yCoord = cast(byte)unknown7E009F;
+		x.yCoord = ypos;
 		x++;
 		if (y.specialFlags >= 0x80 || x >= oamEndAddr) {
 			break;

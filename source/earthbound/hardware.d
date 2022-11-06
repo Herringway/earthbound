@@ -3,8 +3,8 @@ module earthbound.hardware;
 
 ///
 struct OAMEntry {
-	byte xCoord; ///
-	byte yCoord; ///
+	ubyte xCoord; ///
+	ubyte yCoord; ///
 	ubyte startingTile; ///
 	ubyte flags; ///
 	///

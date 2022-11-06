@@ -98,7 +98,7 @@ align:
 		foreach (id, entry; oam1) {
 			const uint upperX = !!(oam2[id/4] & (1 << ((id % 4) * 2)));
 			const size = !!(oam2[id/4] & (1 << ((id % 4) * 2 + 1)));
-			if (entry.yCoord >= 0) {
+			if (entry.yCoord < 0xE0) {
 				sink.formattedWrite!"\t% d: %s (%d, %d) palette: %s, flip vertical: %s, flip horizontal: %s, priority: %s, nametable: %s, size: %s\n"(id, entry.startingTile, entry.xCoord + (upperX << 8), entry.yCoord, entry.palette, entry.flipVertical, entry.flipHorizontal, entry.priority, entry.nameTable, size ? spriteSize2 : spriteSize1);
 			}
 		}
