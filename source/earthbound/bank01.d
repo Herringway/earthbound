@@ -60,6 +60,7 @@ void unknownC1004E() {
 	}
 	if (battleModeFlag != 0) {
 		unknownC43568();
+		return;
 	}
 	oamClear();
 	runActionscriptFrame();
