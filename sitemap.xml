@@ -2280,6 +2280,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleSpritePointer.size.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleSpritePointer.sprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BattleSpriteSize.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/BattleSwirlConfig.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BGLayer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/BGTileMapSize.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Binop.html</loc></url>
@@ -3301,6 +3302,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/firstEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/footstepSoundID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/footstepSoundIDOverride.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/framesUntilNextSwirlFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/frontRowBattlers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/gameState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/greenFlashDuration.html</loc></url>
@@ -3408,6 +3410,8 @@
 <url><loc>http://127.0.0.1/earthbound/globals/spritemapBank.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/spriteTable7E467E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/sram3.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/swirlFramesLeft.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/swirlHDMATableID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/targetNameAdjustScratch.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/teleportDestination.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/teleportStyle.html</loc></url>
@@ -3842,9 +3846,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADD0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADD2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAEC2.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EAEC3.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EAEC4.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EAEC5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAEC6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAEC7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EAEC8.html</loc></url>
