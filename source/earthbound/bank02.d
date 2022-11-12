@@ -3018,7 +3018,7 @@ short battleRoutine() {
 					gameState.unknownC4 += battleMoneyScratch;
 					battleEXPScratch += countChars(BattleSide.friends) - 1;
 					battleEXPScratch /= countChars(BattleSide.friends); //Bug! if party is dead, this is division by 0
-					if (currentBattleGroup >= 0x1C0) {
+					if (currentBattleGroup < 0x1C0) {
 						displayTextWait(getTextBlock("textBattleYouWonBoss"), battleEXPScratch);
 					} else {
 						displayTextWait(getTextBlock("textBattleYouWon"), battleEXPScratch);
