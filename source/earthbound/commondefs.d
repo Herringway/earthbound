@@ -5660,6 +5660,10 @@ struct SpriteMap {
 		this.xOffset = u3;
 		this.specialFlags = u4;
 	}
+	void toString(S)(ref S sink) const {
+		import std.format : formattedWrite;
+		sink.formattedWrite!"coords: %s, %s, first tile: %s, flags: %08b, special flags: %08b"(xOffset, yOffset, firstTile, flags, specialFlags);
+	}
 }
 ///
 struct FullOAMTable {
@@ -7086,4 +7090,13 @@ ubyte[] allBytes(T...)(T args) {
         ubyte[X.sizeof] bytes;
     }
     return Z(X(args)).bytes.dup;
+}
+
+void printTrace() {
+	import std.stdio : writeln;
+	import core.runtime : defaultTraceHandler;
+	auto trace = defaultTraceHandler(null);
+	foreach (line; trace) {
+		writeln(line);
+	}
 }
