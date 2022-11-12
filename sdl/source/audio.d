@@ -6,7 +6,7 @@ import std.file;
 import std.path;
 import std.string;
 
-import nspc;
+import nspcplay;
 import bindbc.sdl;
 import bindbc.sdl.mixer;
 
