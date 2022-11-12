@@ -8309,7 +8309,7 @@ void unknownC2FD99() {
 /// $C2FEF9
 void unknownC2FEF9(short type) {
 	if (type != 0) {
-		memcpy(&palettes[8][0], &unknownC3F8F1[type - 1][0], 32);
+		memcpy(&palettes[12][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[13][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[14][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[15][0], &unknownC3F8F1[type - 1][0], 32);
