@@ -1,19 +1,17 @@
-import std.stdio;
-import std.experimental.logger;
-import std.file : dirEntries, exists, read, SpanMode;
-import std.conv : to;
-import std.path : baseName, stripExtension;
 import std.algorithm : filter;
+import std.conv : to;
+import std.experimental.logger;
+import std.file : exists;
 import std.format : sformat;
-import std.range : chain;
-import std.typecons : Nullable;
 import std.getopt;
-import std.string : fromStringz, format, toStringz;
+import std.range : chain;
+import std.stdio : File, writefln, writeln;
+import std.string : fromStringz, format;
+import std.typecons : Nullable;
 import core.thread : Fiber;
 
 import siryul;
 
-import bindbc.loader;
 import bindbc.sdl;
 
 import earthbound.bank00 : start, irqNMICommon;
@@ -24,7 +22,6 @@ import audio;
 import gamepad;
 import misc;
 import sfcdma;
-import snesdrawframe;
 import rendering;
 
 struct VideoSettings {
