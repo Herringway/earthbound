@@ -76,10 +76,8 @@ void main(string[] args) {
 		defaultGetoptPrinter("Earthbound.", help.options);
 		return;
 	}
-	if (!verbose) {
-		sharedLog = new FileLogger(stdout, LogLevel.info);
-	} else {
-		sharedLog = new FileLogger(stdout, LogLevel.trace);
+	if (verbose) {
+		(cast()sharedLog).logLevel = LogLevel.trace;
 	}
 
 	if (!loadRenderer()) {
