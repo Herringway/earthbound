@@ -2995,7 +2995,7 @@ short battleRoutine() {
 						}
 					}
 					for (short i = 0; i < battlersTable.length; i++) {
-						battlersTable[i].id2 = 0;
+						battlersTable[i].useAltSpritemap = 0;
 					}
 					checkDeadPlayers();
 					showHPPPWindowsF();
