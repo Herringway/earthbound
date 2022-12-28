@@ -6545,7 +6545,7 @@ void unknownC0A0BB() {
 void unknownC0A0CA(short arg1) {
 	assert(arg1 >= 0);
 	actionScriptVar88 = cast(ushort)(arg1 * 2);
-	unknownC0A0E3(actionScriptVar88, arg1 < 0);
+	unknownC0A0E3(actionScriptVar88, (arg1 * 2) < 0);
 }
 
 /// $C0A0E3
