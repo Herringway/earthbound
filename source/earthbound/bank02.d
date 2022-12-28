@@ -2226,6 +2226,7 @@ void unknownC24703(Battler* battler) {
 			break;
 		default: break;
 	}
+	tracef("Target flags: %032b", battlerTargetFlags);
 }
 
 /// $C24821
@@ -2834,6 +2835,7 @@ short battleRoutine() {
 							currentAttacker.currentActionArgument = selectStealableItem();
 						}
 					}
+					tracef("Current turn: %s/%s - using %s/%s on %s", x04, unknown7E9CD7.printable, cast(BattleActions)currentAttacker.currentAction, currentAttacker.currentActionArgument, currentAttacker.actionTargetting);
 					unknownC24703(currentAttacker);
 					if ((currentAttacker.side == BattleSide.friends) && (battleActionTable[currentAttacker.currentAction].direction == 0)) {
 						removeStatusUntargettableTargets();
@@ -3047,10 +3049,12 @@ short battleRoutine() {
 			}
 			closeFocusWindow();
 		}
+		tracef("Cleaning up HP/PP");
 		resetRolling();
 		do {
 			windowTick();
 		} while (unknownC2108C() == 0);
+		tracef("Cleaning up mirror");
 		if (mirrorEnemy != 0) {
 			for (short i = 0; i < battlersTable.length; i++) {
 				if (battlersTable[i].consciousness == 0) {
@@ -3070,10 +3074,12 @@ short battleRoutine() {
 				break;
 			}
 		}
+		tracef("Cleaning up battle state");
 		resetPostBattleStats();
 		gameState.autoFightEnable = 0;
 		battleModeFlag = 0;
 	} while (battleDebug == 0);
+	tracef("Bailing");
 	fadeOut(1, 1);
 	do {
 		waitUntilNextFrame();
@@ -6974,6 +6980,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 				x10 = arg1.scrollingMovements[0];
 			}
 			if (x10 != 0) {
+				tracef("Switching to scrolling movement %s", backgroundScrollingTable[x10]);
 				arg1.scrollingDurationLeft = backgroundScrollingTable[x10].duration;
 				arg1.horizontalVelocity = backgroundScrollingTable[x10].horizontalVelocity;
 				arg1.verticalVelocity = backgroundScrollingTable[x10].verticalVelocity;
@@ -7013,6 +7020,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 			x10 = arg1.distortionStyles[0];
 		}
 		if (x10 != 0) {
+			tracef("Switching to distortion %s", backgroundDistortionTable[x10]);
 			arg1.distortionDurationLeft = backgroundDistortionTable[x10].duration;
 			arg1.distortionType = backgroundDistortionTable[x10].style;
 			arg1.distortionRippleFrequency = backgroundDistortionTable[x10].rippleFrequency;
@@ -7224,6 +7232,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		unknownC429E8(2);
 	}
 	unknownC2E9ED();
+	tracef("Loaded battle bg: %s/%s", loadedBGDataLayer1, loadedBGDataLayer2);
 }
 
 /// $C2DAE3

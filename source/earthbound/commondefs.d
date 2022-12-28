@@ -5613,6 +5613,12 @@ struct LoadedBackgroundData {
 	short distortionRippleAmplitudeAcceleration; ///114
 	ubyte distortionSpeedAcceleration; ///116
 	short distortionCompressionAcceleration; ///117
+	void toString(W)(ref W writer) {
+		import std.format : formattedWrite;
+		writer.formattedWrite!"layer %s (%s bpp)"(targetLayer, bitDepth);
+		writer.formattedWrite!" Palette shifting style: %s (%s - %s [step %s], %s - %s [step %s], speed %s, duration %s)"(paletteShiftingStyle, paletteCycle1First, paletteCycle1Last, paletteCycle2First, paletteCycle2Last, paletteCycle1Step, paletteCycle2Step, paletteChangeSpeed, paletteChangeDurationLeft);
+		writer.formattedWrite!" scrolling: %s, distortion: %s"(scrollingMovements, distortionStyles);
+	}
 }
 ///
 align(1) struct HDMAWordTransfer {
@@ -6196,6 +6202,10 @@ struct BackgroundScrollingEntry {
 	short verticalVelocity; ///
 	short horizontalAcceleration; ///
 	short verticalAcceleration; ///
+	void toString(W)(W writer) const {
+		import std.format : formattedWrite;
+		writer.formattedWrite!"duration: %s, h velocity: %s, v velocity: %s, h accel: %s, v accel: %s"(this.tupleof);
+	}
 }
 ///
 struct BackgroundDistortionEntry {
@@ -6209,6 +6219,10 @@ struct BackgroundDistortionEntry {
 	short rippleAmplitudeAcceleration; ///
 	ubyte speedAcceleration; ///
 	short compressionRateAcceleration; ///
+	void toString(W)(W writer) const {
+		import std.format : formattedWrite;
+		writer.formattedWrite!"duration: %s, style: %s, ripple freq: %s, ripple ampl: %s, speed: %s, compression rate: %s, ripple freq accel: %s, ripple ampl accel: %s, speed accel: %s, compression accel: %s"(this.tupleof);
+	}
 }
 ///
 union Unknown7E0028Union {
