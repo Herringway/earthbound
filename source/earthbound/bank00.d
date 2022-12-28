@@ -5250,8 +5250,8 @@ short initEntity(short actionScript, short x, short y) {
 	short newScript = unknownC09D03(__ignored);
 	entityScriptIndexTable[newEntity / 2] = newScript;
 	entityScriptUnknown125A[newScript / 2] = -1;
-	entityMoveCallbacks[newEntity / 2] = &unknownC09FAEEntry2;
-	entityScreenPositionCallbacks[newEntity / 2] = &unknownC0A023;
+	entityMoveCallbacks[newEntity / 2] = &updateActiveEntityPosition2D;
+	entityScreenPositionCallbacks[newEntity / 2] = &updateScreenPositionBG12D;
 	entityDrawCallbacks[newEntity / 2] = &unknownC0A3A4;
 	entityScriptVar0Table[newEntity / 2] = newEntityVar0;
 	entityScriptVar1Table[newEntity / 2] = newEntityVar1;
@@ -6455,12 +6455,12 @@ void actionScriptFadeIn(short, ref const(ubyte)* arg1) {
 }
 
 /// $C09FAE
-void unknownC09FAEEntry2() {
-	unknownC09FAEEntry3(actionScriptVar88);
+void updateActiveEntityPosition2D() {
+	updateEntityPosition2D(actionScriptVar88);
 }
 
 /// $C09FB0
-void unknownC09FAEEntry3(short arg1) {
+void updateEntityPosition2D(short arg1) {
 	short i = arg1 / 2;
 	FixedPoint1616 newPosition;
 
@@ -6486,22 +6486,22 @@ void unknownC09FAEEntry4() {
 }
 
 /// $C09FF1
-void unknownC09FF1() {
-	unknownC09FAEEntry2();
+void updateEntityPosition3D() {
+	updateActiveEntityPosition2D();
 	entityAbsZFractionTable[actionScriptVar88 / 2] += entityDeltaZFractionTable[actionScriptVar88 / 2];
 	entityAbsZTable[actionScriptVar88 / 2] += entityDeltaZTable[actionScriptVar88 / 2];
 	unknownC0C7DB();
 }
 
 /// $C0A00C
-void unknownC0A00C() {
-	unknownC09FAEEntry2();
+void updateEntityPosition3DIgnoreSurface() {
+	updateActiveEntityPosition2D();
 	entityAbsZFractionTable[actionScriptVar88 / 2] += entityDeltaZFractionTable[actionScriptVar88 / 2];
 	entityAbsZTable[actionScriptVar88 / 2] += entityDeltaZTable[actionScriptVar88 / 2];
 }
 
 /// $C0A023
-void unknownC0A023() {
+void updateScreenPositionBG12D() {
 	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg1XPosition);
 	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg1YPosition);
 }
@@ -6512,19 +6512,19 @@ void unknownC0A039() {
 }
 
 /// $C0A03A
-void unknownC0A03A() {
+void updateScreenPositionBG13D() {
 	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg1XPosition);
 	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg1YPosition - entityAbsZTable[actionScriptVar88 / 2]);
 }
 
 /// $C0A055
-void unknownC0A055() {
+void updateScreenPositionBG32D() {
 	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
 	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg3YPosition);
 }
 
 /// $C0A06C
-void unknownC0A06C() {
+void moveRelativeToBG3() {
 	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
 	entityAbsXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
 	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg3YPosition);
@@ -6532,13 +6532,13 @@ void unknownC0A06C() {
 }
 
 /// $C0A0A0
-void unknownC0A0A0() {
+void updateScreenPositionBG13DDupe() {
 	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
 	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg3YPosition - entityAbsZTable[actionScriptVar88 / 2]);
 }
 
 /// $C0A0BB
-void unknownC0A0BB() {
+void updateEntityPositionAbsolute() {
 	entityScreenXTable[actionScriptVar88 / 2] = entityAbsXTable[actionScriptVar88 / 2];
 	entityScreenYTable[actionScriptVar88 / 2] = entityAbsYTable[actionScriptVar88 / 2];
 }
@@ -6771,7 +6771,7 @@ void unknownC0A37A() {
 }
 
 void unknownC0A37ACommon(short arg1) {
-	unknownC09FAEEntry3(arg1);
+	updateEntityPosition2D(arg1);
 	unknownC0C7DB();
 }
 
@@ -6785,7 +6785,7 @@ void unknownC0A384() {
 			//some unreachable code here
 		}
 	}
-	unknownC09FAEEntry3(actionScriptVar88);
+	updateEntityPosition2D(actionScriptVar88);
 }
 
 /// $C0A3A4
