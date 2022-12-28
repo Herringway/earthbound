@@ -7082,6 +7082,10 @@ version(configurable) {
 		debug bool loadDebugMenu;
 		bool instantSpeedText;
 		bool debugMenuButton;
+		Coordinates spawnCoordinates;
+		bool overrideSpawn() const @safe pure nothrow {
+			return (spawnCoordinates.x != 0) && (spawnCoordinates.y != 0);
+		}
 	}
 } else {
 	struct GameConfig {
@@ -7091,6 +7095,8 @@ version(configurable) {
 		debug enum loadDebugMenu = false;
 		enum instantSpeedText = false;
 		enum debugMenuButton = false;
+		enum Coordinates spawnCoordinates = Coordinates.init;
+		enum bool overrideSpawn = false;
 	}
 }
 GameConfig config;

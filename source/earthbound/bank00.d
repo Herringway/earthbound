@@ -8026,6 +8026,10 @@ void unknownC0B67F() {
 	memset(&palettes[0][0], 0, 0x200);
 	unknownC47F87();
 	overworldInitialize();
+	if (config.overrideSpawn) {
+		gameState.leaderX.integer = config.spawnCoordinates.x;
+		gameState.leaderY.integer = config.spawnCoordinates.y;
+	}
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 	spawnBuzzBuzz();
 	prepareWindowGraphics();
