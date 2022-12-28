@@ -1789,7 +1789,7 @@ void getOnBicycle() {
 	gameState.unknown88 = 0;
 	newEntityVar0 = 0;
 	newEntityVar1 = 0;
-	createEntity(OverworldSprite.nessBicycle, ActionScript.unknown002, 0x18, entityAbsXTable[24], entityAbsYTable[24]);
+	createEntity(OverworldSprite.nessBicycle, ActionScript.partyMemberFollowing, 0x18, entityAbsXTable[24], entityAbsYTable[24]);
 	entityTickCallbackFlags[24] |= 0x8000;
 	entityScriptVar7Table[24] |= 0x3000;
 	entityAnimationFrames[24] = 0;
@@ -1822,7 +1822,7 @@ void unknownC03CFD() {
 	}
 	newEntityVar0 = 0;
 	newEntityVar1 = 0;
-	createEntity(OverworldSprite.ness, ActionScript.unknown002, 0x18, entityAbsXTable[24], entityAbsYTable[24]);
+	createEntity(OverworldSprite.ness, ActionScript.partyMemberFollowing, 0x18, entityAbsXTable[24], entityAbsYTable[24]);
 	entityAnimationFrames[24] = 0;
 	entityDirections[24] = gameState.leaderDirection;
 	entityScriptVar7Table[24] |= 0x9000;
@@ -8018,7 +8018,7 @@ void unknownC0B67F() {
 	unknown7EB4A8 = -1;
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
-	initEntity(ActionScript.unknown001, 0, 0);
+	initEntity(ActionScript.partyMemberLeading, 0, 0);
 	unknownC02D29();
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);

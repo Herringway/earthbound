@@ -1126,24 +1126,24 @@ enum BackgroundLayer {
 ///
 enum ActionScript {
 	unknown000,
-	unknown001,
-	unknown002,
-	unknown003,
-	unknown004,
+	partyMemberLeading, //1
+	partyMemberFollowing, //2
+	partyMemberFollowingBubbleMonkey, //3
+	characterViewer, //4
 	unknown005,
 	unknown006,
 	unknown007,
-	unknown008,
+	noMovement, //8
 	unknown009,
-	unknown010,
+	mediumRangeWander, //10
 	unknown011,
-	unknown012,
+	shortRangeWander, //12
 	unknown013,
 	unknown014,
 	unknown015,
 	unknown016,
 	unknown017,
-	unknown018,
+	king1, //18
 	unknown019,
 	unknown020,
 	unknown021,
@@ -1162,15 +1162,15 @@ enum ActionScript {
 	unknown034,
 	unknown035,
 	unknown036,
-	unknown037,
-	unknown038,
+	mom1, //37
+	doorKnock, //38
 	unknown039,
-	unknown040,
+	homeTelephone, //40
 	unknown041,
 	unknown042,
 	unknown043,
 	unknown044,
-	unknown045,
+	pokey1, //45
 	unknown046,
 	unknown047,
 	unknown048,
@@ -1723,15 +1723,15 @@ enum ActionScript {
 	unknown595,
 	unknown596,
 	unknown597,
-	unknown598,
+	walkTowardsPlayer, //598
 	unknown599,
 	unknown600,
 	unknown601,
 	unknown602,
 	unknown603,
 	unknown604,
-	unknown605,
-	unknown606,
+	standFacingForward, //605
+	walkInPlaceUpwards, //606
 	unknown607,
 	unknown608,
 	unknown609,
@@ -1749,11 +1749,11 @@ enum ActionScript {
 	unknown621,
 	unknown622,
 	unknown623,
-	unknown624,
+	sleepingNess, //624
 	unknown625,
 	unknown626,
-	unknown627,
-	unknown628,
+	sleepingDog, //627
+	sleepEmote, //628
 	unknown629,
 	unknown630,
 	unknown631,
@@ -1913,17 +1913,17 @@ enum ActionScript {
 	unknown785,
 	unknown786,
 	unknown787,
-	titleScreen1,
-	titleScreen2,
-	titleScreen3,
-	titleScreen4,
-	titleScreen5,
-	titleScreen6,
-	titleScreen7,
-	titleScreen8,
-	titleScreen9,
-	titleScreen10,
-	titleScreen11,
+	titleScreen1, //788
+	titleScreen2, //789
+	titleScreen3, //790
+	titleScreen4, //791
+	titleScreen5, //792
+	titleScreen6, //793
+	titleScreen7, //794
+	titleScreen8, //795
+	titleScreen9, //796
+	titleScreen10, //797
+	titleScreen11, //798
 	unknown799,
 	unknown800,
 	unknown801,

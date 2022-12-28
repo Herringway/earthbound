@@ -21782,7 +21782,7 @@ void unknownEFE175() {
 	newEntityPriority = 3;
 	gameState.leaderX.integer = debugStartPositionX;
 	gameState.leaderY.integer = debugStartPositionY;
-	initEntity(ActionScript.unknown001, 0, 0);
+	initEntity(ActionScript.partyMemberLeading, 0, 0);
 	unknownC02D29();
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMembers[i] = 0;
@@ -21796,7 +21796,7 @@ void unknownEFE175() {
 	entityScreenXTable[24] = 0x80;
 	entityScreenYTable[24] = 0x70;
 	if (debugModeNumber == 2) {
-		x1A = createEntity(debugUnknownB565, ActionScript.unknown004, -1, 0x20, 0x20);
+		x1A = createEntity(debugUnknownB565, ActionScript.characterViewer, -1, 0x20, 0x20);
 		entityTickCallbackFlags[x1A] |= (objectTickDisabled | objectMoveDisabled);
 		entitySpriteMapFlags[x1A] |= 0x8000;
 	}
@@ -21868,7 +21868,7 @@ void unknownEFE175() {
 			}
 			if (debugUnknownB565 != x1C) {
 				unknownC02140(x1A);
-				entityTPTEntries[createEntity(x1C, ActionScript.unknown004, x1A, 0x20, 0x20)] = 0;
+				entityTPTEntries[createEntity(x1C, ActionScript.characterViewer, x1A, 0x20, 0x20)] = 0;
 			}
 			if (((padPress[1] & Pad.a) != 0) && ((entityTickCallbackFlags[x1A] & objectTickDisabled) == 0)) {
 				entityTPTEntries[createEntity(x1C, ActionScript.unknown006, -1, cast(short)(bg1XPosition + 0x20), cast(short)(bg1YPosition + 0x20))] = 0;

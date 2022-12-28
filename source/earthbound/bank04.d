@@ -7167,7 +7167,7 @@ void unknownC4ED0E() {
 	}
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
-	initEntity(0, 0, ActionScript.unknown001);
+	initEntity(0, 0, ActionScript.partyMemberLeading);
 	unknownC02D29();
 	unknownC03A24();
 	prepareForImmediateDMA();
@@ -7391,7 +7391,7 @@ void playCredits() {
 	unknownC021E6();
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
-	initEntity(ActionScript.unknown001, 0, 0);
+	initEntity(ActionScript.partyMemberLeading, 0, 0);
 	unknownC02D29();
 	unknownC03A24();
 	ushort* x06 = &bg2Buffer[0];
