@@ -130,6 +130,11 @@ enum Controller {
 	dumpEntities,
 	skipFrame,
 	printRegisters,
+	sprToggle,
+	layer4Toggle,
+	layer3Toggle,
+	layer2Toggle,
+	layer1Toggle,
 	exit
 }
 
@@ -218,6 +223,9 @@ void handleButton(Controller button, bool pressed, uint playerID) {
 		case Controller.dumpEntities:
 			input.dumpEntities = pressed;
 			break;
+		case Controller.layer1Toggle, Controller.layer2Toggle, Controller.layer3Toggle, Controller.layer4Toggle, Controller.sprToggle:
+			input.layerTogglePressed[button - Controller.sprToggle] = pressed;
+			break;
 		case Controller.skipFrame:
 			input.step = pressed;
 			break;
@@ -275,6 +283,7 @@ struct Input {
 	bool fastForward;
 	bool printRegisters;
 	bool dumpEntities;
+	bool[5] layerTogglePressed;
 }
 
 Input input;

@@ -11,6 +11,8 @@ import earthbound.hardware;
 import misc;
 import snesdrawframe;
 
+ubyte layersDisabled;
+
 public struct HDMAWrite {
 	ushort vcounter;
 	ubyte addr;
@@ -271,7 +273,7 @@ void copyGlobalsToFrameData() {
 	g_frameData.WH3 = WH3;
 	g_frameData.WBGLOG = WBGLOG;
 	g_frameData.WOBJLOG = WOBJLOG;
-	g_frameData.TM = TM;
+	g_frameData.TM = TM ^ layersDisabled;
 	g_frameData.TS = TD;
 	g_frameData.TMW = TMW;
 	g_frameData.TSW = TSW;

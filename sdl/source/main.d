@@ -226,6 +226,10 @@ void main(string[] args) {
 			paused = !paused;
 			input.pause = false;
 		}
+		foreach (idx, ref layer; input.layerTogglePressed) {
+			layersDisabled ^= layer << (4 - idx);
+			layer = false;
+		}
 	}
 }
 
