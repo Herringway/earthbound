@@ -1404,11 +1404,11 @@ enum ActionScript {
 	unknown276,
 	unknown277,
 	unknown278,
-	unknown279,
-	unknown280,
-	unknown281,
-	unknown282,
-	unknown283,
+	circleCultistNorthwest, //279
+	circleCultistNortheast, //280
+	circleCultistEast, //281
+	circleCultistSouth, //282
+	circleCultistWest, //283
 	unknown284,
 	unknown285,
 	unknown286,
