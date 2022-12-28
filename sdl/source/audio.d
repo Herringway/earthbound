@@ -90,6 +90,7 @@ extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 }
 
 void loadAudioData() {
+	import std.parallelism : parallel;
 	foreach (sfxFile; getDataFiles("sfx", "*.wav")) {
 		try {
 			const id = sfxFile.baseName.stripExtension.to!uint;
@@ -98,7 +99,7 @@ void loadAudioData() {
 			errorf("Could not load %s: %s", sfxFile, e.msg);
 		}
 	}
-	foreach (songFile; getDataFiles("songs", "*.nspc")) {
+	foreach (songFile; parallel(getDataFiles("songs", "*.nspc"))) {
 		try {
 			const id = songFile.baseName.stripExtension.to!uint;
 			loadedSongs[id] = loadNSPCFile(cast(ubyte[])read(songFile));
