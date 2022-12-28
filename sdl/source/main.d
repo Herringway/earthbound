@@ -5,6 +5,7 @@ import std.file : exists;
 import std.format : sformat;
 import std.getopt;
 import std.range : chain;
+import std.parallelism : parallel;
 import std.stdio : File, writefln, writeln;
 import std.string : fromStringz, format;
 import std.typecons : Nullable;
@@ -110,7 +111,7 @@ void main(string[] args) {
 
 	loadAudioData();
 
-	foreach (textDocFile; getDataFiles("text", "*.yaml")) {
+	foreach (textDocFile; parallel(getDataFiles("text", "*.yaml"))) {
 		const textData = fromFile!(StructuredText[][string][], YAML, DeSiryulize.optionalByDefault)(textDocFile);
 		foreach (idx, scriptData; textData) {
 			string nextLabel;
