@@ -2756,7 +2756,7 @@ short unknownC054C9(short arg1, short arg2) {
 void unknownC05503(short arg1, short arg2) {
 	ushort x10 = cast(ushort)(unknown7EE000[(unknown7E5DAE / 8) & 0x3F][(arg1 / 8) & 0x3F] | unknown7E5DA4);
 	short x14 = (arg1 + 7) / 8;
-	for (short i = 0; i < unknownC42AA7[arg2]; i++) {
+	for (short i = 0; i < hitboxWidths[arg2]; i++) {
 		x10 |= unknown7EE000[(unknown7E5DAE / 8) & 0x3F][x14 & 0x3F];
 		x14++;
 	}
@@ -2765,10 +2765,10 @@ void unknownC05503(short arg1, short arg2) {
 
 /// $C0559C
 void unknownC0559C(short arg1, short arg2) {
-	ushort y = cast(ushort)(unknown7EE000[((((unknownC42AC9[arg2] * 8) + unknown7E5DAE - 1) / 8) & 0x3F)][(arg1 / 8) & 0x3F] | unknown7E5DA4);
+	ushort y = cast(ushort)(unknown7EE000[((((hitboxHeights[arg2] * 8) + unknown7E5DAE - 1) / 8) & 0x3F)][(arg1 / 8) & 0x3F] | unknown7E5DA4);
 	short x12 = (arg1 + 7) / 8;
-	for (short i = 0; i < unknownC42AA7[arg2]; i++) {
-		y |= unknown7EE000[(((unknownC42AC9[arg2] * 8) + unknown7E5DAE - 1) / 8) & 0x3F][x12 & 0x3F];
+	for (short i = 0; i < hitboxWidths[arg2]; i++) {
+		y |= unknown7EE000[(((hitboxHeights[arg2] * 8) + unknown7E5DAE - 1) / 8) & 0x3F][x12 & 0x3F];
 		x12++;
 	}
 	unknown7E5DA4 = y;
@@ -2778,7 +2778,7 @@ void unknownC0559C(short arg1, short arg2) {
 void unknownC05639(short arg1, short arg2) {
 	ushort x10 = cast(ushort)(unknown7EE000[(arg1 / 8) & 0x3F][(unknown7E5DAC / 8) & 0x3F] | unknown7E5DA4);
 	short x12 = (arg1 + 7) / 8;
-	for (short i = 0; i < unknownC42AC9[arg2]; i++) {
+	for (short i = 0; i < hitboxHeights[arg2]; i++) {
 		x10 |= unknown7EE000[x12 & 0x3F][(unknown7E5DAC / 8) & 0x3F];
 		x12++;
 	}
@@ -2787,10 +2787,10 @@ void unknownC05639(short arg1, short arg2) {
 
 /// $C056D0
 void unknownC056D0(short arg1, short arg2) {
-	ushort y = cast(ushort)(unknown7EE000[(arg1 / 8) & 0x3F][(((unknownC42AA7[arg2] * 8) + unknown7E5DAC - 1) / 8) & 0x3F] | unknown7E5DA4);
+	ushort y = cast(ushort)(unknown7EE000[(arg1 / 8) & 0x3F][(((hitboxWidths[arg2] * 8) + unknown7E5DAC - 1) / 8) & 0x3F] | unknown7E5DA4);
 	short x12 = (arg1 + 7) / 8;
-	for (short i = 0; i < unknownC42AC9[arg2]; i++) {
-		y |= unknown7EE000[x12 & 0x3F][(((unknownC42AA7[arg2] * 8) + unknown7E5DAC - 1) / 8) & 0x3F];
+	for (short i = 0; i < hitboxHeights[arg2]; i++) {
+		y |= unknown7EE000[x12 & 0x3F][(((hitboxWidths[arg2] * 8) + unknown7E5DAC - 1) / 8) & 0x3F];
 		x12++;
 	}
 	unknown7E5DA4 = y;
@@ -8222,8 +8222,8 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		}
 		arg1.pathers[x26].objIndex = i;
 		arg1.pathers[x26].fromOffscreen = arg6;
-		arg1.pathers[x26].hitbox.x = unknownC42AA7[entitySizes[i]];
-		arg1.pathers[x26].hitbox.y = unknownC42AC9[entitySizes[i]];
+		arg1.pathers[x26].hitbox.x = hitboxWidths[entitySizes[i]];
+		arg1.pathers[x26].hitbox.y = hitboxHeights[entitySizes[i]];
 		arg1.pathers[x26].origin.x = ((entityAbsXTable[i] - unknownC42A1F[entitySizes[i]]) / 8 - arg3) & 0x3F;
 		arg1.pathers[x26].origin.y = ((entityAbsYTable[i] - unknownC42A41[entitySizes[i]] + unknownC42AEB[entitySizes[i]]) / 8 - arg3) & 0x3F;
 		x26++;

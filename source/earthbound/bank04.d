@@ -871,7 +871,7 @@ immutable short[17] unknownC42A63 = [
 ];
 
 /// $C42AA7
-immutable short[17] unknownC42AA7 = [
+immutable short[17] hitboxWidths = [
 	0x0002,
 	0x0000,
 	0x0002,
@@ -913,7 +913,7 @@ immutable short[17] unknownC42AEB = [
 ];
 
 /// $C42AC9
-immutable short[17] unknownC42AC9 = [
+immutable short[17] hitboxHeights = [
 	0x0001,
 	0x0000,
 	0x0001,
