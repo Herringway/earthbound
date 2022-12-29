@@ -4875,17 +4875,20 @@ short psiShieldNullify() {
 	if (battleActionTable[currentAttacker.currentAction].type != ActionType.psi) {
 		return 0;
 	}
-	if (currentTarget.afflictions[6] != Status6.psiShieldPower) {
-		displayInBattleText(getTextBlock("textBattlePsychicPowerShieldDeflected"));
-		unknown7EAA96 = 1;
-		swapAttackerWithTarget();
-	} else if (currentTarget.afflictions[6] != Status6.psiShield) {
-		displayInBattleText(getTextBlock("textBattlePsychicPowerShieldBlocked"));
-		if (--currentTarget.shieldHP == 0) {
-			currentTarget.afflictions[6] = 0;
-			displayInBattleText(getTextBlock("textBattleShieldDisappeared"));
-		}
-		return 1;
+	switch(currentTarget.afflictions[6]) {
+		case Status6.psiShieldPower:
+			displayInBattleText(getTextBlock("textBattlePsychicPowerShieldDeflected"));
+			unknown7EAA96 = 1;
+			swapAttackerWithTarget();
+			break;
+		case Status6.psiShield:
+			displayInBattleText(getTextBlock("textBattlePsychicPowerShieldBlocked"));
+			if (--currentTarget.shieldHP == 0) {
+				currentTarget.afflictions[6] = 0;
+				displayInBattleText(getTextBlock("textBattleShieldDisappeared"));
+			}
+			return 1;
+		default: break;
 	}
 	return 0;
 }
