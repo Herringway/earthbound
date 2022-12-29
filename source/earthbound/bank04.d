@@ -328,7 +328,11 @@ immutable ushort[16] unknownC41FDF = [
 ];
 
 /// $C41FFF
-FixedPoint1616 unknownC41FFF(short arg1, short arg2) {
+auto unknownC41FFF(short arg1, short arg2) {
+	static struct Result {
+		short y;
+		short x;
+	}
 	short arg1Modified = ((arg1 >> 8) & 0xFC) >> 1;
 	short a;
 	if (unknownC41FFFSineTable[arg1Modified / 2] == 0x100) {
@@ -350,7 +354,14 @@ FixedPoint1616 unknownC41FFF(short arg1, short arg2) {
 	}
 	// a  =  sin(arg1) * arg2
 	// a2 = -cos(arg1) * arg2
-	return FixedPoint1616(a2, a);
+	return Result(a2, a);
+}
+
+unittest {
+	with(unknownC41FFF(0x3800, 0xC0)) {
+		assert(y == -37);
+		assert(x == 188);
+	}
 }
 
 /// $C4205D and $C420BD
@@ -3194,8 +3205,8 @@ short unknownC46EF8() {
 
 /// $C47044
 short unknownC47044(short arg1) {
-	FixedPoint1616 x0E = unknownC41FFF(arg1, entityUnknown2B32[currentEntitySlot]);
-	short x14 = x0E.integer;
+	auto x0E = unknownC41FFF(arg1, entityUnknown2B32[currentEntitySlot]);
+	short x14 = x0E.x;
 	if (x14 < 0) {
 		entityDeltaXTable[currentEntitySlot] = x14 >> 8;
 		entityDeltaXFractionTable[currentEntitySlot] = cast(short)((x14 << 8) | 0xFF);
@@ -3203,7 +3214,7 @@ short unknownC47044(short arg1) {
 		entityDeltaXTable[currentEntitySlot] = (x14 >> 8) & 0xFF;
 		entityDeltaXFractionTable[currentEntitySlot] = cast(short)((x14 << 8) & 0xFF00);
 	}
-	x14 = x0E.fraction;
+	x14 = x0E.y;
 	if (x14 < 0) {
 		entityDeltaYTable[currentEntitySlot] = x14 >> 8;
 		entityDeltaYFractionTable[currentEntitySlot] = cast(short)((x14 << 8) | 0xFF);
@@ -7323,14 +7334,14 @@ short countPhotoFlags() {
 
 /// $C4F46F
 void unknownC4F46F(short arg1) {
-	FixedPoint1616 x0A = unknownC41FFF(cast(short)(photographerConfigTable[arg1].slideDirection * 0x400), 0x100);
+	auto x0A = unknownC41FFF(cast(short)(photographerConfigTable[arg1].slideDirection * 0x400), 0x100);
 	short x18 = bg1XPosition;
 	short x16 = bg1YPosition;
 	short x02 = 0;
 	short x04 = 0;
 	for (short i = 0; i < (photographerConfigTable[arg1].slideDistance << 8) / 0x100; i++) {
-		x02 += x0A.integer;
-		x04 += x0A.fraction;
+		x02 += x0A.x;
+		x04 += x0A.y;
 		bg1XPosition = cast(ushort)((x02 / 0x100) + x18);
 		bg1YPosition = cast(ushort)((x04 / 0x100) + x16);
 		bg2XPosition = cast(ushort)(x02 / 0x100);

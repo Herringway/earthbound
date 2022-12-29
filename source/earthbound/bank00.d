@@ -4175,9 +4175,9 @@ void unknownC0778A() {
 		entityAnimationFrames[currentEntitySlot] = -1;
 		return;
 	}
-	FixedPoint1616 x0E = unknownC41FFF(unknown7E9F6D, 0x3000);
-	entityAbsXTable[currentEntitySlot] = cast(short)(gameState.leaderX.integer + (x0E.integer >> 8));
-	entityAbsYTable[currentEntitySlot] = cast(short)(gameState.leaderY.integer - 8 + (x0E.fraction >> 10));
+	auto x0E = unknownC41FFF(unknown7E9F6D, 0x3000);
+	entityAbsXTable[currentEntitySlot] = cast(short)(gameState.leaderX.integer + (x0E.x >> 8));
+	entityAbsYTable[currentEntitySlot] = cast(short)(gameState.leaderY.integer - 8 + (x0E.y >> 10));
 	unknown7E9F6D += 0x300;
 	entityAnimationFrames[currentEntitySlot] = 0;
 }
@@ -8652,11 +8652,11 @@ short unknownC0CD50() {
 		x02 = cast(short)(entityScriptVar4Table[currentEntitySlot] - entityScriptVar5Table[currentEntitySlot]);
 	}
 	entityScriptVar4Table[currentEntitySlot] = x02;
-	FixedPoint1616 x0E = unknownC41FFF(x02, 0x1000);
+	auto x0E = unknownC41FFF(x02, 0x1000);
 	FixedPoint1616 x1E;
 	FixedPoint1616 x1A;
-	x1A.integer = x0E.fraction;
-	x1E.integer = x0E.integer;
+	x1A.integer = x0E.y;
+	x1E.integer = x0E.x;
 	x1A.combined >>= 8;
 	x1E.combined >>= 8;
 	FixedPoint1616 x22;
@@ -9602,9 +9602,9 @@ void unknownC0E48A() {
 void unknownC0E516() {
 	gameState.unknown90 = 1;
 	unknownC0E44D();
-	FixedPoint1616 x12 = unknownC41FFF(unknown7E9F61, unknown7E9F63);
-	unknown7E9F51.integer = x12.integer >> 8 + unknown7E9F67;
-	unknown7E9F55.integer = x12.integer >> 8 + unknown7E9F69;
+	auto x12 = unknownC41FFF(unknown7E9F61, unknown7E9F63);
+	unknown7E9F51.integer = x12.x >> 8 + unknown7E9F67;
+	unknown7E9F55.integer = x12.x >> 8 + unknown7E9F69;
 	if (teleportStyle != TeleportStyle.psiBetter) {
 		if ((unknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, unknown7E9F51.integer, unknown7E9F55.integer, gameState.leaderDirection) & 0xC0) != 0) {
 			unknown7E9F43 = 2;
