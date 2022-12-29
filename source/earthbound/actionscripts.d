@@ -87,7 +87,7 @@ immutable ubyte[34 + 4 * (const(void)*).sizeof] unknownC413D6;
 immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScript643;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript819;
 immutable ubyte[57 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript68;
-immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30CAF;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30CAF;
 immutable ubyte[51 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript38;
 immutable ubyte[34 + 7 * (const(void)*).sizeof] actionScript328;
 immutable ubyte[46 + 5 * (const(void)*).sizeof] unknownC3CC24;
@@ -138,7 +138,7 @@ immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[53 + 10 * (const(void)*).sizeof] actionScript641;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] unknownC36A3E;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript570;
-immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30C7F;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30C7F;
 immutable ubyte[46 + 13 * (const(void)*).sizeof] actionScript159;
 immutable ubyte[11 + 7 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAA3;
 immutable ubyte[82 + 8 * (const(void)*).sizeof] actionScript54;
@@ -206,7 +206,7 @@ immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript550;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC33C18;
 immutable ubyte[33 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript497;
 immutable ubyte[63 + 16 * (const(void)*).sizeof] actionScript118;
-immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30C97;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30C97;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC3DFD4_2;
 immutable ubyte[34 + 6 * (const(void)*).sizeof] actionScript639;
 immutable ubyte[4 + 1 * (const(void)*).sizeof] actionScript894;
@@ -442,7 +442,7 @@ immutable ubyte[47 + 8 * (const(void)*).sizeof] actionScript744;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript587;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScript64;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] actionScript361;
-immutable ubyte[20 + 2 * (const(void)*).sizeof] unknownC30C67;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30C67;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript176;
 immutable ubyte[59 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript256;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript311;
@@ -4656,6 +4656,7 @@ unknownC30CAF = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7616),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 2352),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
+	ACTIONSCRIPT_SHORTJUMP(&unknownC30CC7[0]),
 ].join();
 actionScript38 = [
 	ACTIONSCRIPT_SET_X(7792),
@@ -5532,6 +5533,7 @@ unknownC30C7F = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7776),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 2360),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
+	ACTIONSCRIPT_SHORTJUMP(&unknownC30C97[0]),
 ].join();
 actionScript159 = [
 	ACTIONSCRIPT_C0A864(-1),
@@ -6691,6 +6693,7 @@ unknownC30C97 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7712),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 2416),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
+	ACTIONSCRIPT_SHORTJUMP(&unknownC30CAF[0]),
 ].join();
 unknownC3DFD4_2 = [
 	ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER(),
@@ -11319,6 +11322,7 @@ unknownC30C67 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7736),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 2288),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
+	ACTIONSCRIPT_SHORTJUMP(&unknownC30C7F[0]),
 ].join();
 actionScript176 = [
 	ACTIONSCRIPT_SET_X(6704),
