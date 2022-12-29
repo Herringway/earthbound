@@ -249,7 +249,7 @@ void loadSpecialSpritePalette() {
 	if (palettes[4][0] == 0) {
 		return;
 	}
-	ushort* x10 = &palettes[palettes[4][0] / 2][0];
+	ushort* x10 = &palettes[palettes[4][0]][0];
 	for (short i = 0; i < 0x10; i++) {
 		palettes[12][i] = *(x10++);
 	}
