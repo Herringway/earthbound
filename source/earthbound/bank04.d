@@ -280,7 +280,7 @@ ushort unknownC41EFF(short arg1, short arg2, short arg3, short arg4) {
 	}
 	a *= 2;
 	XBA(a);
-	return cast(ushort)(a + unknownC41FC5[x08]);
+	return cast(ushort)(a + unknownC41FC5[x08 / 2]);
 }
 
 unittest {
@@ -288,6 +288,7 @@ unittest {
 	assert(unknownC41EFF(0x818,0x5D8,0x8F0,0x5D8) == 0x4000);
 	assert(unknownC41EFF(0x718,0x6E8,0x570,0x6E8) == 0xC000);
 	assert(unknownC41EFF(0x56F,0x694,0x575,0x6E3) == 0x7C00);
+	assert(unknownC41EFF(0x1DE8,0x8F0,0x1E10,0x8E8) == 0x3800);
 }
 
 /// $C41FC5
