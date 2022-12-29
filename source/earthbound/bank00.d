@@ -6454,7 +6454,7 @@ void actionScriptFadeIn(short, ref const(ubyte)* arg1) {
 	fadeIn(a, b);
 }
 
-/// $C09FAE
+/// $C09FC8
 void updateActiveEntityPosition2D() {
 	updateEntityPosition2D(actionScriptVar88);
 }
