@@ -4315,8 +4315,8 @@ void unknownC07A56(short arg1, short arg2, short arg3) {
 			unknown7E4DC6.unknown55 = x16;
 			entityScriptVar7Table[x04] |= 1<<15;
 		}
-		if ((gameState.unknown90 != 0) || (x16 != 0xC)) {
-			entityScriptVar7Table[x04] ^= (1 << 15 | 1 << 14 | 1 << 13);
+		if ((gameState.unknown90 != 0) && (x16 != 0xC)) {
+			entityScriptVar7Table[x04] &= ~(1 << 15 | 1 << 14 | 1 << 13);
 		} else {
 			entityScriptVar7Table[x04] |= (1 << 14 | 1 << 13);
 		}
