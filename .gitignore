@@ -33,3 +33,5 @@ settings.yml
 *.vram
 *.res
 *.lib
+*.srm
+*.sym
