@@ -2178,7 +2178,7 @@ void chooseTarget(Battler* arg1) {
 }
 
 /// $C24703
-void unknownC24703(Battler* battler) {
+void resolveTargetting(Battler* battler) {
 	battlerTargetFlags = 0;
 	switch (battler.actionTargetting) {
 		case 1:
@@ -2836,12 +2836,12 @@ short battleRoutine() {
 						}
 					}
 					tracef("Current turn: %s/%s - using %s/%s on %s", x04, unknown7E9CD7.printable, cast(BattleActions)currentAttacker.currentAction, currentAttacker.currentActionArgument, currentAttacker.actionTargetting);
-					unknownC24703(currentAttacker);
+					resolveTargetting(currentAttacker);
 					if ((currentAttacker.side == BattleSide.friends) && (battleActionTable[currentAttacker.currentAction].direction == 0)) {
 						removeStatusUntargettableTargets();
 						if (battlerTargetFlags == 0) {
 							chooseTarget(currentAttacker);
-							unknownC24703(currentAttacker);
+							resolveTargetting(currentAttacker);
 							removeStatusUntargettableTargets();
 						}
 					}
@@ -3819,7 +3819,7 @@ void koTarget(Battler* arg1) {
 		arg1.currentAction = enemyConfigurationTable[arg1.id].finalAction;
 		arg1.currentActionArgument = enemyConfigurationTable[arg1.id].finalActionArgument;
 		chooseTarget(currentAttacker);
-		unknownC24703(currentAttacker);
+		resolveTargetting(currentAttacker);
 		fixAttackerName(0);
 		unknownC23E32();
 		displayInBattleText(getTextBlock(battleActionTable[enemyConfigurationTable[arg1.id].finalAction].text));
