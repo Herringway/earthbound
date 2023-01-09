@@ -4258,6 +4258,15 @@ enum ActionTarget {
 	all = 4,
 }
 ///
+enum Targetted {
+	allies = 0,
+	single = 1,
+	row = 2,
+	all = 4,
+	enemies = 16
+}
+
+///
 enum NPCTargettability {
 	untargettable = 1,
 	forced = 6,

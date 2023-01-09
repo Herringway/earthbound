@@ -2181,18 +2181,18 @@ void chooseTarget(Battler* arg1) {
 void resolveTargetting(Battler* battler) {
 	battlerTargetFlags = 0;
 	switch (battler.actionTargetting) {
-		case 1:
+		case Targetted.allies | Targetted.single:
 			targetBattler(battler.currentTarget - 1);
 			break;
-		case 2:
-		case 4:
+		case Targetted.allies | Targetted.row:
+		case Targetted.allies | Targetted.all:
 			targetAllies();
 			if ((getShieldTargetting(battler.currentAction, battler) == 0) && (battler.side == BattleSide.friends)) {
 				removeNPCTargetting();
 			}
 			removeStatusUntargettableTargets();
 			break;
-		case 17:
+		case Targetted.enemies | Targetted.single:
 			if (battler.currentTarget > numBattlersInBackRow) {
 				targetBattler(frontRowBattlers[battler.currentTarget - numBattlersInBackRow - 1]);
 			} else {
@@ -2212,12 +2212,12 @@ void resolveTargetting(Battler* battler) {
 				}
 			}
 			break;
-		case 18:
+		case Targetted.enemies | Targetted.row:
 			targetRow(battler.currentTarget);
 			removeNPCTargetting();
 			removeStatusUntargettableTargets();
 			break;
-		case 20:
+		case Targetted.enemies | Targetted.all:
 			targetAllEnemies();
 			if (battler.side == BattleSide.friends) {
 				removeNPCTargetting();
@@ -2789,11 +2789,11 @@ short battleRoutine() {
 						currentAttacker.actionItemSlot = 0;
 					}
 					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.enemy) && (battleActionTable[currentAttacker.currentAction].target == 0)) {
-						currentAttacker.actionTargetting = 1;
-						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof);
-					} else {
-						currentAttacker.actionTargetting = 17;
+						currentAttacker.actionTargetting = Targetted.enemies | Targetted.single;
 						unknownC4A228(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
+					} else {
+						currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
+						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof);
 					}
 					x2F = 0;
 					currentTarget = currentAttacker;
