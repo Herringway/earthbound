@@ -1268,6 +1268,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/renderBattleSpriteRow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/resetPostBattleStats.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/resetRolling.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/resolveTargetting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/reviveTarget.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/rustSprayCommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/saveCurrentGame.html</loc></url>
@@ -1336,7 +1337,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC24348.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2437E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC24434.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC24703.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC26189.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2654C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC269DE.html</loc></url>
@@ -2922,6 +2922,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Status6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/stopMusicExternal.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SurfaceFlags.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/Targetted.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TelephoneContact.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TelephoneContact.eventFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TelephoneContact.text.html</loc></url>
