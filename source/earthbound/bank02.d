@@ -1402,8 +1402,6 @@ immutable ConsolationPrize[2] consolationItemTable = [
 
 /// $C2311B
 short battleSelectionMenu(short arg1, short arg2) {
-	//x04 = arg2
-	//x26 = arg1
 	short x24 = 0;
 	short x20;
 	unknownC2FEF9(0);
@@ -1422,7 +1420,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 	}
 	if (gameState.autoFightEnable != 0) {
 		if ((x22.afflictions[4] == 0) && (x22.afflictions[3] != Status3.strange) && (x22.afflictions[1] != Status1.mushroomized) && ((arg1 == PartyMember.ness) || (arg1 == PartyMember.poo))) {
-			unknown7EA97D.unknown4 = 1;
+			unknown7EA97D.unknown4 = Targetted.allies | Targetted.single;
 			unknown7EA97D.unknown1 = 26;
 			unknown7EA97D.unknown2 = BattleActions.psiLifeupOmega;
 			if ((checkIfPSIKnown(arg1, 26) != 0) && (battleActionTable[BattleActions.psiLifeupOmega].ppCost <= x22.pp.target) && (countChars(BattleSide.friends) >= 2)) {
@@ -1437,7 +1435,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 							goto Unknown15;
 						}
 					}
-					unknown7EA97D.unknown4 = 4;
+					unknown7EA97D.unknown4 = Targetted.allies | Targetted.all;
 					goto Unknown21;
 
 					Unknown15:
@@ -1549,7 +1547,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 		unknown7EA97D.unknown0 = cast(ubyte)arg1;
 		unknown7EA97D.unknown1 = 0;
 		unknown7EA97D.unknown2 = x1A;
-		unknown7EA97D.unknown4 = 17;
+		unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
 		unknown7EA97D.unknown5 = cast(ubyte)(randLimit(cast(short)(numBattlersInBackRow + numBattlersInFrontRow)) + 1);
 		return x1A;
 	}
@@ -1655,7 +1653,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 					default: break;
 				}
 				unknown7EA97D.unknown2 = x1E;
-				unknown7EA97D.unknown4 = 17;
+				unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
 				if (x20 != 2) {
 					unknown7EA97D.unknown5 = cast(ubyte)unknownC1242EF(0, 1, x1E);
 					if (unknown7EA97D.unknown5 == 0) {
@@ -1680,7 +1678,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 				if (arg1 == PartyMember.jeff) {
 					x1E = BattleActions.spy;
 					unknown7EA97D.unknown2 = x1E;
-					unknown7EA97D.unknown4 = 17;
+					unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
 					unknown7EA97D.unknown5 = cast(ubyte)unknownC1242EF(0, 1, x1E);
 					if (unknown7EA97D.unknown5 == 0) {
 						continue;
@@ -1696,16 +1694,16 @@ short battleSelectionMenu(short arg1, short arg2) {
 			case 5:
 				x1E = BattleActions.guard;
 				unknown7EA97D.unknown2 = x1E;
-				unknown7EA97D.unknown4 = 0;
+				unknown7EA97D.unknown4 = Targetted.allies;
 				break;
 			case 6:
-				unknown7EA97D.unknown4 = 1;
+				unknown7EA97D.unknown4 = Targetted.allies | Targetted.single;
 				unknown7EA97D.unknown5 = cast(ubyte)arg1;
 				x1E = BattleActions.runAway;
 				unknown7EA97D.unknown2 = x1E;
 				break;
 			case 7:
-				unknown7EA97D.unknown4 = 1;
+				unknown7EA97D.unknown4 = Targetted.allies | Targetted.single;
 				unknown7EA97D.unknown5 = cast(ubyte)arg1;
 				switch (arg1) {
 					case PartyMember.paula:
@@ -1746,7 +1744,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 					case PartyMember.poo:
 						x1E = BattleActions.mirror;
 						unknown7EA97D.unknown2 = x1E;
-						unknown7EA97D.unknown4 = 17;
+						unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
 						unknown7EA97D.unknown5 = cast(ubyte)unknownC1242EF(0, 1, x1E);
 						if (unknown7EA97D.unknown5 == 0) {
 							continue;
@@ -1904,15 +1902,15 @@ short getShieldTargetting(short arg1, Battler* battler) {
 /// $C24009
 void feelingStrangeRetargetting() {
 	battlerTargetFlags = 0;
-	switch (currentAttacker.actionTargetting & 7) {
-		case 1:
+	switch (currentAttacker.actionTargetting & (Targetted.single | Targetted.row | Targetted.all)) {
+		case Targetted.single:
 			targetAll();
 			battlerTargetFlags = randomTargetting(battlerTargetFlags);
 			break;
-		case 2:
+		case Targetted.row:
 			targetRow(rand() % 3);
 			break;
-		case 4:
+		case Targetted.all:
 			if ((rand() & 1) != 0) {
 				targetAllies();
 			} else {
@@ -2100,20 +2098,20 @@ void chooseTarget(Battler* arg1) {
 	Unknown4:
 	if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
 		if (arg1.side == BattleSide.foes) {
-			arg1.actionTargetting = 0;
+			arg1.actionTargetting = Targetted.allies;
 		} else {
-			arg1.actionTargetting = 16;
+			arg1.actionTargetting = Targetted.enemies;
 		}
 	} else {
 		if (arg1.side == BattleSide.foes) {
-			arg1.actionTargetting = 16;
+			arg1.actionTargetting = Targetted.enemies;
 		} else {
-			arg1.actionTargetting = 0;
+			arg1.actionTargetting = Targetted.allies;
 		}
 	}
 	switch (battleActionTable[arg1.currentAction].target) {
 		case ActionTarget.none:
-			arg1.actionTargetting |= 1;
+			arg1.actionTargetting |= Targetted.single;
 			if (arg1.side == BattleSide.foes) {
 				unknownC4A228(arg1, cast(short)((arg1 - &battlersTable[0]) / Battler.sizeof));
 			} else {
@@ -2122,7 +2120,7 @@ void chooseTarget(Battler* arg1) {
 			break;
 		case ActionTarget.one:
 		case ActionTarget.random:
-			arg1.actionTargetting |= 1;
+			arg1.actionTargetting |= Targetted.single;
 			if (arg1.side == BattleSide.foes) {
 				if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
 					arg1.currentTarget = cast(ubyte)findTargettableNPC();
@@ -2158,7 +2156,7 @@ void chooseTarget(Battler* arg1) {
 			}
 			break;
 		case ActionTarget.row:
-			arg1.actionTargetting |= 2;
+			arg1.actionTargetting |= Targetted.row;
 			if (arg1.side == BattleSide.foes) {
 				arg1.currentTarget = 1;
 			} else if (numBattlersInBackRow == 0) {
@@ -2170,7 +2168,7 @@ void chooseTarget(Battler* arg1) {
 			}
 			break;
 		case ActionTarget.all:
-			arg1.actionTargetting |= 4;
+			arg1.actionTargetting |= Targetted.all;
 			arg1.currentTarget = 1;
 			break;
 		default: break;
@@ -2569,7 +2567,7 @@ short battleRoutine() {
 						}
 						battlersTable[j].actionTargetting = unknown7EA97D.unknown4;
 						battlersTable[j].currentTarget = unknown7EA97D.unknown5;
-						if (unknown7EA97D.unknown4 == 1) {
+						if (unknown7EA97D.unknown4 == (Targetted.allies | Targetted.single)) {
 							for (short k = 0; k < 6; k++) {
 								if (battlersTable[k].consciousness == 0) {
 									continue;
