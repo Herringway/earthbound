@@ -5935,7 +5935,7 @@ struct OverlayScript {
 	}
 	///
 	static typeof(this) jump(const(OverlayScript)* dest) {
-		auto result = typeof(this)(1);
+		auto result = typeof(this)(3);
 		result.dest = dest;
 		return result;
 	}
@@ -5947,7 +5947,7 @@ struct OverlayScript {
 	}
 	///
 	static typeof(this) show(const(SpriteMap)* spriteMap) {
-		auto result = typeof(this)(3);
+		auto result = typeof(this)(1);
 		result.spriteMap = spriteMap;
 		return result;
 	}

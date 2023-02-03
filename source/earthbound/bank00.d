@@ -7498,7 +7498,7 @@ void unknownC0AC0C(short arg1) {
 void unknownC0AC43() {
 	spritemapBank = 0xC4;
 	actionScriptVar04 = 0xC4;
-	actionScriptVar00 = ((entitySurfaceFlags[actionScriptVar88 / 2] & 1) != 0) ? 5 : 0;
+	actionScriptVar00 = ((entitySurfaceFlags[actionScriptVar88 / 2] & 1) != 0) ? 1 : 0;
 	switch (entitySurfaceFlags[actionScriptVar88 / 2] & 0xC) {
 		default:
 			if (entityByteWidths[actionScriptVar88 / 2] == 0x40) {
@@ -7563,7 +7563,7 @@ const(OverlayScript)* unknownC0AD56(const(SpriteMap)** arg1, out ushort frames) 
 	ushort y = 0;
 	NextCommand:
 	if (actionScriptVar02Overlay[y].command == 1) {
-		arg1[actionScriptVar88 / 2] = actionScriptVar02Overlay[y++].spriteMap;
+		arg1[0] = actionScriptVar02Overlay[y++].spriteMap;
 		goto NextCommand;
 	}
 	if (actionScriptVar02Overlay[y].command == 3) {
