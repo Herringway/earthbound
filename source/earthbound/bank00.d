@@ -1864,7 +1864,7 @@ short unknownC03EC3(short arg1, short arg2, short arg3, short arg4) {
 		arg3++;
 		entityScriptVar7Table[currentEntitySlot] &= 0xEFFF;
 	} else if (tmp > arg2) {
-		arg3 += arg3;
+		arg3 += arg4;
 		entityScriptVar7Table[currentEntitySlot] |= 0x1000;
 	}
 	return arg3;
@@ -6683,7 +6683,7 @@ short unknownC0A2B7(short arg1) {
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
-	a -= unknownC0A2AB[entityScriptVar5Table[actionScriptVar88 / 2]];
+	a -= unknownC0A2AB[entityScriptVar5Table[actionScriptVar88 / 2] / 2];
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6703,7 +6703,7 @@ short unknownC0A2E1(short arg1) {
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
-	a -= unknownC0A2AB[entityScriptVar5Table[actionScriptVar88 / 2]];
+	a -= unknownC0A2AB[entityScriptVar5Table[actionScriptVar88 / 2] / 2];
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6723,7 +6723,7 @@ short unknownC0A317(short arg1) {
 		a = cast(short)-cast(int)a;
 	}
 	actionScriptVar00s = a;
-	if (actionScriptVar00s < unknownC0A30B[entityScriptVar5Table[actionScriptVar88 / 2]]) {
+	if (actionScriptVar00s < unknownC0A30B[entityScriptVar5Table[actionScriptVar88 / 2] / 2]) {
 		return actionScriptVar00s;
 	}
 	a = cast(short)(entityAbsYTable[arg1 / 2] - entityAbsYTable[actionScriptVar88 / 2]);
