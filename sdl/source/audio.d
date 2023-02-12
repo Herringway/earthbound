@@ -96,6 +96,7 @@ void loadAudioData() {
 		try {
 			const id = sfxFile.baseName.stripExtension.to!uint;
 			loadedSFX[id] = Mix_LoadWAV(sfxFile.toStringz);
+			tracef("Loaded sound effect %02X - %s", id, sfxFile);
 		} catch (Exception e) {
 			errorf("Could not load %s: %s", sfxFile, e.msg);
 		}
@@ -104,6 +105,7 @@ void loadAudioData() {
 		try {
 			const id = songFile.baseName.stripExtension.to!uint;
 			loadedSongs[id] = loadNSPCFile(cast(ubyte[])read(songFile));
+			tracef("Loaded song %02X - %s", id, songFile);
 		} catch (Exception e) {
 			errorf("Could not load %s: %s", songFile, e.msg);
 		}

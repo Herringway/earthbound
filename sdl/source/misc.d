@@ -37,5 +37,6 @@ auto getDataFiles(string type, string pattern) {
 	bool filterFunc(string name) {
 		return globMatch(baseName(name), pattern);
 	}
+	tracef("Looking for %s (%s) in %s", type, pattern, path);
 	return Result(path.exists ? dirEntries(path, SpanMode.depth) : DirIterator.init, path.exists).map!(x => x.name).filter!filterFunc;
 }

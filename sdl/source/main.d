@@ -122,6 +122,7 @@ void main(string[] args) {
 			auto script = scriptData.values[0];
 			loadText(script, label, nextLabel);
 		}
+		tracef("Loaded text %s", textDocFile);
 	}
 	tracef("Loaded text");
 
