@@ -27,7 +27,7 @@ bool initAudio(ubyte channels, uint sampleRate) {
 	ushort finalFormat;
 	Mix_QuerySpec(&finalSampleRate, &finalFormat, &finalChannels);
 
-	nspcplayer.initialize(finalSampleRate);
+	nspcplayer = NSPCPlayer(finalSampleRate);
 	return true;
 }
 
@@ -55,6 +55,7 @@ void playMusic(ushort track) {
 	nspcplayer.stop();
 	if (auto trackData = track in loadedSongs) {
 		nspcplayer.loadSong(*trackData);
+		nspcplayer.initialize();
 		nspcplayer.play();
 	}
 }
