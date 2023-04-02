@@ -3591,7 +3591,7 @@ immutable short[8] unknownC48C59 = [ 0x0800, 0x0900, 0x0100, 0x0500, 0x0400, 0x0
 /// $C48C69
 void unknownC48C69() {
 	unknown7E9F18 = 0;
-	for (short i = 0; i < 0x40; i++) {
+	for (short i = 0; i < unknown7E9E58.length; i++) {
 		unknown7E9E58[i].unknown1 = 0;
 		unknown7E9E58[i].unknown0 = 0;
 	}
