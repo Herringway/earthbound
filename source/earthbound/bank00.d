@@ -4999,7 +4999,7 @@ void unknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
 /// $C08CD5 - Draw a SpriteMap list into the OAM buffer
 void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 	short xpos;
-	ubyte ypos;
+	short ypos;
 	ubyte abyte;
 	bool carry;
 	const(SpriteMap)* y = arg1;
@@ -5009,14 +5009,15 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 	}
 	//some DBR manipulation was here
 	for(;;y++){
-		ypos = y.yOffset;
+		assert(y, "Null sprite?");
+		ypos = cast(byte)y.yOffset;
 		if (ypos == 0x80) {
 			// This is -1 since we do y++ due to continue
 			y = y.nextMap - 1;
 			continue;
 		}
 		ypos += ybase - 1;
-		if (ypos >= 0xE0) {
+		if ((ypos >= 0xE0) || (ypos < -32)) {
 			if (y.specialFlags >= 0x80) {
 				break;
 			}
@@ -5044,7 +5045,7 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 			oamHighTableAddr++;
 			unknown7E000A = 0x80;
 		}
-		x.yCoord = ypos;
+		x.yCoord = cast(ubyte)ypos;
 		x++;
 		if (y.specialFlags >= 0x80 || x >= oamEndAddr) {
 			break;
