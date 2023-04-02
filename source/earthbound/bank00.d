@@ -1323,10 +1323,10 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 
 /// $C02A6B
 void spawnEnemiesRow(short x, short y) {
-	if (getEventFlag(EventFlag.unknown00B) != 0) {
+	if (getEventFlag(EventFlag.sysMonsterOff) != 0) {
 		return;
 	}
-	if (getEventFlag(EventFlag.usePostgameMusic) != 0) {
+	if (getEventFlag(EventFlag.winGiegu) != 0) {
 		return;
 	}
 	if (unknown7E4A5A == 0) {
@@ -1363,10 +1363,10 @@ void spawnEnemiesRow(short x, short y) {
 
 /// $C02B55
 void spawnEnemiesColumn(short x, short y) {
-	if (getEventFlag(EventFlag.unknown00B) != 0) {
+	if (getEventFlag(EventFlag.sysMonsterOff) != 0) {
 		return;
 	}
-	if (getEventFlag(EventFlag.usePostgameMusic) != 0) {
+	if (getEventFlag(EventFlag.winGiegu) != 0) {
 		return;
 	}
 	if (unknown7E4A5A == 0) {
@@ -9270,7 +9270,7 @@ void loadDadPhone() {
 	if (unknown7E9E56 != 0) {
 		return;
 	}
-	if (getEventFlag(EventFlag.unknown307) != 0) {
+	if (getEventFlag(EventFlag.sysDis2HPapa) != 0) {
 		return;
 	}
 	unknownC064E3(10, QueuedInteractionPtr(getTextBlock("textDadCalls")));

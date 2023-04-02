@@ -555,7 +555,7 @@ void unknownEF0FDB() {
 /// $EF0FF6
 void unknownEF0FF6() {
 	unknown7E5D9A = 0;
-	overworldStatusSuppression = getEventFlag(EventFlag.usePostgameMusic);
+	overworldStatusSuppression = getEventFlag(EventFlag.winGiegu);
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);
 	} else {

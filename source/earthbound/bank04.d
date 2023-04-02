@@ -4707,14 +4707,14 @@ immutable short[5] soundStoneUnknown8 = [
 
 /// $C4AC83
 immutable ushort[8] soundStoneMelodyFlags = [
-	EventFlag.soundStoneMelody1,
-	EventFlag.soundStoneMelody2,
-	EventFlag.soundStoneMelody3,
-	EventFlag.soundStoneMelody4,
-	EventFlag.soundStoneMelody5,
-	EventFlag.soundStoneMelody6,
-	EventFlag.soundStoneMelody7,
-	EventFlag.soundStoneMelody8,
+	EventFlag.powrGian,
+	EventFlag.powrLlpt,
+	EventFlag.powrMlky,
+	EventFlag.powrRain,
+	EventFlag.powrMgnt,
+	EventFlag.powrPink,
+	EventFlag.powrLumi,
+	EventFlag.powrFire,
 ];
 
 /// $C4ACCE
@@ -5641,7 +5641,7 @@ short unknownC4C64D() {
 	skippablePause(0x3C);
 	displayText(getTextBlock("textGameOver"));
 	unknownC1DD5F();
-	if (getEventFlag(EventFlag.noContinueSelected) == 0) {
+	if (getEventFlag(EventFlag.sysComeBack) == 0) {
 		skippablePause(0x3C);
 		return -1;
 	}

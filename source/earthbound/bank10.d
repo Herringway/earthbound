@@ -46,12 +46,12 @@ immutable MapTileEvent[][20] eventControlPointerTable = [
 [
 	MapTileEvent(0)
 ], [
-	MapTileEvent(EventFlag.unknown068 | eventFlagUnset, 3, [
+	MapTileEvent(EventFlag.onetAmbrami | eventFlagUnset, 3, [
 		MapTilePair(0x0001, 0x0004),
 		MapTilePair(0x0002, 0x0005),
 		MapTilePair(0x0003, 0x0006),
 	]),
-	MapTileEvent(EventFlag.unknown068 | eventFlagUnset, 3, [
+	MapTileEvent(EventFlag.onetAmbrami | eventFlagUnset, 3, [
 		MapTilePair(0x0326, 0x0000),
 		MapTilePair(0x0327, 0x0000),
 		MapTilePair(0x0328, 0x0000),
@@ -60,13 +60,13 @@ immutable MapTileEvent[][20] eventControlPointerTable = [
 ], [
 	MapTileEvent(0)
 ], [
-	MapTileEvent(EventFlag.unknown00E, 4, [
+	MapTileEvent(EventFlag.jeff, 4, [
 		MapTilePair(0x001F, 0x0023),
 		MapTilePair(0x0020, 0x0024),
 		MapTilePair(0x0021, 0x0025),
 		MapTilePair(0x0022, 0x0026),
 	]),
-	MapTileEvent(EventFlag.boogeyTentActive, 24, [
+	MapTileEvent(EventFlag.thrkMaTentAppear, 24, [
 		MapTilePair(0x0001, 0x0019),
 		MapTilePair(0x0002, 0x0019),
 		MapTilePair(0x0003, 0x0019),
@@ -98,11 +98,11 @@ immutable MapTileEvent[][20] eventControlPointerTable = [
 ], [
 	MapTileEvent(0)
 ], [
-	MapTileEvent(EventFlag.unknown047, 2, [
+	MapTileEvent(EventFlag.winGeppu, 2, [
 		MapTilePair(0x0001, 0x0003),
 		MapTilePair(0x0002, 0x0004),
 	]),
-	MapTileEvent(EventFlag.unknown044 | eventFlagUnset, 8, [
+	MapTileEvent(EventFlag.winCarpainter | eventFlagUnset, 8, [
 		MapTilePair(0x0005, 0x000D),
 		MapTilePair(0x0006, 0x000E),
 		MapTilePair(0x0007, 0x000E),
@@ -116,7 +116,7 @@ immutable MapTileEvent[][20] eventControlPointerTable = [
 ], [
 	MapTileEvent(0)
 ], [
-	MapTileEvent(EventFlag.mineExpanded, 26, [
+	MapTileEvent(EventFlag.dsrtSwitch, 26, [
 		MapTilePair(0x0001, 0x001B),
 		MapTilePair(0x0002, 0x001C),
 		MapTilePair(0x0003, 0x001D),
@@ -154,7 +154,7 @@ immutable MapTileEvent[][20] eventControlPointerTable = [
 ], [
 	MapTileEvent(0)
 ], [
-	MapTileEvent(EventFlag.unknown137 | eventFlagUnset, 3, [
+	MapTileEvent(EventFlag.winsRopeSwitch | eventFlagUnset, 3, [
 		MapTilePair(0x0001, 0x0004),
 		MapTilePair(0x0002, 0x0005),
 		MapTilePair(0x0003, 0x0006),
@@ -165,7 +165,7 @@ immutable MapTileEvent[][20] eventControlPointerTable = [
 ], [
 	MapTileEvent(0)
 ], [
-	MapTileEvent(EventFlag.unknown044 | eventFlagUnset, 84, [
+	MapTileEvent(EventFlag.winCarpainter | eventFlagUnset, 84, [
 		MapTilePair(0x0001, 0x0055),
 		MapTilePair(0x0002, 0x0055),
 		MapTilePair(0x0003, 0x0055),
@@ -439,7 +439,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 	EnemyPlacementGroups(EventFlag.none, 0x64, 0x00, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown000)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown084, 0x05, 0x08, [
+	EnemyPlacementGroups(EventFlag.infoXyz, 0x05, 0x08, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown001),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown002),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown003),
@@ -448,7 +448,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown006),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown007)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown084, 0x07, 0x08, [
+	EnemyPlacementGroups(EventFlag.infoXyz, 0x07, 0x08, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown001),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown002),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown003),
@@ -457,7 +457,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown006),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown007)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown084, 0x05, 0x08, [
+	EnemyPlacementGroups(EventFlag.infoXyz, 0x05, 0x08, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown001),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown002),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown003),
@@ -466,7 +466,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown006),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown007)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown084, 0x05, 0x08, [
+	EnemyPlacementGroups(EventFlag.infoXyz, 0x05, 0x08, [
 		EnemyPlacementGroup(0x06, EnemyGroup.unknown003),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown002),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown004),
@@ -474,7 +474,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown006),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown007)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown084, 0x64, 0x64, [
+	EnemyPlacementGroups(EventFlag.infoXyz, 0x64, 0x64, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown001),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown002),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown003),
@@ -483,12 +483,12 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown006),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown007)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown084, 0x05, 0x00, [
+	EnemyPlacementGroups(EventFlag.infoXyz, 0x05, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown002),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown001),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown003)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown084, 0x14, 0x00, [
+	EnemyPlacementGroups(EventFlag.infoXyz, 0x14, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown001),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown003)
 	]),
@@ -498,13 +498,13 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown010),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown011)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00F, 0x00, 0x64, [
+	EnemyPlacementGroups(EventFlag.pola1, 0x00, 0x64, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown015),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown016),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown017),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown018)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00F, 0x64, 0x64, [
+	EnemyPlacementGroups(EventFlag.pola1, 0x64, 0x64, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown012),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown013),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown014),
@@ -513,7 +513,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown017),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown018)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00F, 0x64, 0x64, [
+	EnemyPlacementGroups(EventFlag.pola1, 0x64, 0x64, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown012),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown013),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown014),
@@ -522,17 +522,17 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown017),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown018)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00F, 0x64, 0x64, [
+	EnemyPlacementGroups(EventFlag.pola1, 0x64, 0x64, [
 		EnemyPlacementGroup(0x00, EnemyGroup.unknown019),
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown020),
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown025)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00F, 0x64, 0x64, [
+	EnemyPlacementGroups(EventFlag.pola1, 0x64, 0x64, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown020),
 		EnemyPlacementGroup(0x00, EnemyGroup.unknown023),
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown025)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00F, 0x5A, 0x5A, [
+	EnemyPlacementGroups(EventFlag.pola1, 0x5A, 0x5A, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown026),
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown027),
 		EnemyPlacementGroup(0x00, EnemyGroup.unknown028),
@@ -615,13 +615,13 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown043),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown052)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown0AF, 0x00, 0x0A, [
+	EnemyPlacementGroups(EventFlag.happySwitch, 0x00, 0x0A, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown054)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown0AF, 0x00, 0x07, [
+	EnemyPlacementGroups(EventFlag.happySwitch, 0x00, 0x07, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown055)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown0AF, 0x00, 0x07, [
+	EnemyPlacementGroups(EventFlag.happySwitch, 0x00, 0x07, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown055)
 	]),
 	EnemyPlacementGroups(EventFlag.none, 0x1E, 0x00, [
@@ -646,7 +646,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 	EnemyPlacementGroups(EventFlag.none, 0x10, 0x00, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown060)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x08, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x08, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown061),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown063),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown062),
@@ -654,7 +654,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown065),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown427)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x08, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x08, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown061),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown063),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown064),
@@ -662,32 +662,32 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown062),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown427)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x0F, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x0F, 0x00, [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown066),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown067),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown068),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown069)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x0F, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x0F, 0x00, [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown070),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown071),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown072),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown073),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown074)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x5F, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x5F, 0x00, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown075)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x14, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x14, 0x00, [
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown076),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown077)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x14, 0x0F, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x14, 0x0F, [
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown084),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown085),
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown099)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x0F, 0x0F, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x0F, 0x0F, [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown078),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown081),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown079),
@@ -696,7 +696,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown095),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown093)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x0F, 0x0F, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x0F, 0x0F, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown080),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown083),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown081),
@@ -705,7 +705,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown094),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown101)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x28, 0x28, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x28, 0x28, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown086),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown082),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown089),
@@ -715,7 +715,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown102),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown094)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x28, 0x28, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x28, 0x28, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown090),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown089),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown087),
@@ -924,7 +924,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown174),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown425)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00E, 0x3C, 0x3C, [
+	EnemyPlacementGroups(EventFlag.jeff, 0x3C, 0x3C, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown183),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown182),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown187),
@@ -933,7 +933,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown189),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown191)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00E, 0x3C, 0x3C, [
+	EnemyPlacementGroups(EventFlag.jeff, 0x3C, 0x3C, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown185),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown182),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown188),
@@ -941,14 +941,14 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown192),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown193)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00E, 0x3C, 0x3C, [
+	EnemyPlacementGroups(EventFlag.jeff, 0x3C, 0x3C, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown186),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown184),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown192),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown194),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown193)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown00E, 0x46, 0x41, [
+	EnemyPlacementGroups(EventFlag.jeff, 0x46, 0x41, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown185),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown186),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown193),
@@ -1020,64 +1020,64 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown208),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown210)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x14, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x14, 0x00, [
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown218),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown221)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x24, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x24, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown216),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown215),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown217),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown425)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x14, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x14, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown218),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown219),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown221),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown216)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x24, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x24, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown216),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown215),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown217)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x28, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x28, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown219),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown221),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown220)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x28, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x28, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown221),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown220)
 	]),
 	EnemyPlacementGroups(EventFlag.none, 0x46, 0x00, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown222)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x4B, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x4B, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown225),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown224),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown223)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x28, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x28, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown227),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown226),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown223)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x5F, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x5F, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown235),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown234)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown224),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown231),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown230)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x5A, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x5A, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown230),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown228),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown229)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x50, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x50, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown229),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown232),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown230),
@@ -1111,66 +1111,66 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown246),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown248)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x1E, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x1E, 0x00, [
 		EnemyPlacementGroup(0x06, EnemyGroup.unknown252),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown256)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x19, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x19, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown252),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown257),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown254)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x1E, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x1E, 0x00, [
 		EnemyPlacementGroup(0x06, EnemyGroup.unknown252),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown249)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x1E, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x1E, 0x00, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown253),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown251),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown249)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x46, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x46, 0x00, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown258),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown259),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown255),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown252)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x5F, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x5F, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown260),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown261),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown250),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown249)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x64, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x64, 0x00, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown262),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown263),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown264),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown265)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown11A, 0x1E, 0x00, [
+	EnemyPlacementGroups(EventFlag.dsrtDungeonOK, 0x1E, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown261),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown250),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown249)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown039, 0x00, 0x64, [
+	EnemyPlacementGroups(EventFlag.fourDeptBossAppear, 0x00, 0x64, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown271),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown272),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown268),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown269),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown266)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown039, 0x00, 0x64, [
+	EnemyPlacementGroups(EventFlag.fourDeptBossAppear, 0x00, 0x64, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown269),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown270),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown271)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown039, 0x00, 0x64, [
+	EnemyPlacementGroups(EventFlag.fourDeptBossAppear, 0x00, 0x64, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown267),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown268),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown272),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown266)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown039, 0x00, 0x00, [
+	EnemyPlacementGroups(EventFlag.fourDeptBossAppear, 0x00, 0x00, [
 	]),
 	EnemyPlacementGroups(EventFlag.none, 0x1E, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown273),
@@ -1222,31 +1222,31 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown299),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown300)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown011, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.pu0, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown303),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown307)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown011, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.pu0, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown304),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown306)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown011, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.pu0, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown310),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown313)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown011, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.pu0, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown309),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown322)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown011, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.pu0, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown309),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown312)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown011, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.pu0, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown309),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown312)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown011, 0x00, 0x00, [
+	EnemyPlacementGroups(EventFlag.pu0, 0x00, 0x00, [
 	]),
 	EnemyPlacementGroups(EventFlag.none, 0x07, 0x00, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown323)
@@ -1288,51 +1288,51 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown339),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown340)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x64, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x64, 0x00, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown341)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x18, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x18, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown342),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown343),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown344)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x28, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x28, 0x00, [
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown345),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown346),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown347),
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown348)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x20, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x20, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown349),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown350),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown351),
 		EnemyPlacementGroup(0x01, EnemyGroup.unknown352)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x3C, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x3C, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown353),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown354),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown355),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown356)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x40, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x40, 0x00, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown357),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown358),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown359)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x40, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x40, 0x00, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown360),
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown361)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x40, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x40, 0x00, [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown362),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown363)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x18, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x18, 0x00, [
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown364),
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown365),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown366)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown07E, 0x40, 0x00, [
+	EnemyPlacementGroups(EventFlag.capsuleOK, 0x40, 0x00, [
 		EnemyPlacementGroup(0x05, EnemyGroup.unknown367),
 		EnemyPlacementGroup(0x03, EnemyGroup.unknown368)
 	]),
@@ -1426,13 +1426,13 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown414),
 		EnemyPlacementGroup(0x04, EnemyGroup.unknown415)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown0AF, 0x00, 0x64, [
+	EnemyPlacementGroups(EventFlag.happySwitch, 0x00, 0x64, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown426)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown0AF, 0x00, 0x08, [
+	EnemyPlacementGroups(EventFlag.happySwitch, 0x00, 0x08, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown417)
 	]),
-	EnemyPlacementGroups(EventFlag.unknown047, 0x00, 0x00, [
+	EnemyPlacementGroups(EventFlag.winGeppu, 0x00, 0x00, [
 	]),
 	EnemyPlacementGroups(EventFlag.none, 0x28, 0x00, [
 		EnemyPlacementGroup(0x08, EnemyGroup.unknown421)

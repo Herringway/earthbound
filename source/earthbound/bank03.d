@@ -44,7 +44,7 @@ void displayFaultyGamepakScreen() {
 }
 
 /// $C30186
-immutable nessPajamaFlag = EventFlag.nessPajamas;
+immutable nessPajamaFlag = EventFlag.myHomeNesChange;
 
 /// $C3DFE8
 immutable ubyte[8] unknownC3DFE8 = [1, 1, 1, 0, 1, 1, 0, 0];

@@ -2386,7 +2386,7 @@ short battleRoutine() {
 			}
 			changeMusic(enemyConfigurationTable[unknown7E9F8C[0]].music);
 		}
-		if (getEventFlag(EventFlag.buzzBuzzInParty) != 0) {
+		if (getEventFlag(EventFlag.bunbun) != 0) {
 			battleInitEnemyStats(EnemyID.buzzBuzz, &battlersTable[6]);
 			battlersTable[6].row = 1;
 			battlersTable[6].side = BattleSide.friends;

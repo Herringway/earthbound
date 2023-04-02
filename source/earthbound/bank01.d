@@ -2177,7 +2177,7 @@ void showTownMap() {
 
 /// $C13D03
 void debugYButtonFlag() {
-	short x02 = EventFlag.unknownDebug001;
+	short x02 = EventFlag.temp0;
 	while (true) {
 		setInstantPrinting();
 		createWindowN(Window.fileSelectMenu);
@@ -5394,7 +5394,7 @@ short unknownC1AD42() {
 /// $C1AD71
 short unknownC1AD7D() {
 	short x0E = loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
-	if ((getEventFlag(EventFlag.usePostgameMusic != 0) && ((x0E & 7) == 0))) {
+	if ((getEventFlag(EventFlag.winGiegu != 0) && ((x0E & 7) == 0))) {
 		return ItemID.bicycle;
 	} else {
 		return x0E >> 8;
@@ -5631,7 +5631,7 @@ short unknownC1B5B6() {
 					x00 = 0;
 				} else {
 					if (psiAbilityTable[x01].type == 8) {
-						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.npcDelivery) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0)) {
+						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.sysDistlpt) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0)) {
 							x00 = cast(ubyte)unknownC1AAFA();
 						} else {
 							createWindowN(Window.textBattle);
@@ -5848,7 +5848,7 @@ short unknownC1BEFC(short arg1) {
 			unknownC43344(1);
 			break;
 		case 6:
-			unknownC43344(getEventFlag(EventFlag.usePostgameMusic));
+			unknownC43344(getEventFlag(EventFlag.winGiegu));
 			break;
 		case 7:
 			return displayTownMap();
@@ -6409,7 +6409,7 @@ void levelUpChar(short arg1, short arg2) {
 		displayText(getTextBlock("textLevelUpMaxHP"));
 	}
 	if (arg1 != 2) {
-		short x12 = ((arg1 == 0) && (getEventFlag(EventFlag.magicantCompleted) != 0)) ? partyCharacters[arg1].iq * 2 : partyCharacters[arg1].iq;
+		short x12 = ((arg1 == 0) && (getEventFlag(EventFlag.winOscar) != 0)) ? partyCharacters[arg1].iq * 2 : partyCharacters[arg1].iq;
 		x14 = cast(short)(x12 * 5 - partyCharacters[arg1].maxPP);
 		x14 = (x14 > 1) ? x14 : (randMod(2));
 		if (x14 != 0) {
@@ -7507,7 +7507,7 @@ void fileMenuLoop() {
 			unknownC064D4();
 			setLeaderLocation(0x840, 0x6E8);
 			unknownC46881(getTextBlock("textFileSelectScreen1"));
-			setEventFlag(EventFlag.unknown00B, 1);
+			setEventFlag(EventFlag.sysMonsterOff, 1);
 			showNPCFlag = 1;
 		}
 	} else {
@@ -7690,7 +7690,7 @@ void fileMenuLoop() {
 								unknownC064D4();
 								setLeaderLocation(0x840, 0x6E8);
 								unknownC46881(getTextBlock("textFileSelectScreen1"));
-								setEventFlag(EventFlag.unknown00B, 1);
+								setEventFlag(EventFlag.sysMonsterOff, 1);
 								showNPCFlag = 1;
 								break outermost;
 							}
