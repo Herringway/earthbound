@@ -2526,7 +2526,7 @@ void unknownC04D78() {
 		x1A = cast(short)(unknown7E4DC6.positionIndex + 1);
 		entityScriptVar7Table[currentEntitySlot] &= (0xFFFF ^ (1 << 12));
 	}
-	unknown7E4DC6.positionIndex = x1A;
+	unknown7E4DC6.positionIndex = x1A & 0xFF;
 }
 
 /// $C04EF0
