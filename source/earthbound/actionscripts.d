@@ -22839,7 +22839,7 @@ unknownC3CEA2 = [
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.skyRunnerElectricThingies, ActionScript.unknown163),
+	ACTIONSCRIPT_C0A98B(OverworldSprite.skyRunnerElectricThingies, ActionScript.animSwWinsShadowA),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),

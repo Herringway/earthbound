@@ -1125,794 +1125,794 @@ enum BackgroundLayer {
 }
 ///
 enum ActionScript {
-	unknown000,
+	unknown000, //0
 	partyMemberLeading, //1
 	partyMemberFollowing, //2
 	partyMemberFollowingBubbleMonkey, //3
 	characterViewer, //4
-	unknown005,
-	unknown006,
-	unknown007,
-	noMovement, //8
-	unknown009,
-	mediumRangeWander, //10
-	unknown011,
-	shortRangeWander, //12
-	unknown013,
-	unknown014,
-	unknown015,
-	unknown016,
-	unknown017,
+	unknown005, //5
+	unknown006, //6
+	animBillboard, //7
+	animMapObjStill, //8
+	unknown009, //9
+	animPeopleWalk0, //10
+	animPeopleWalk0A, //11
+	animPeopleWalk1, //12
+	animPeopleWalk1Narrow, //13
+	unknown014, //14
+	unknown015, //15
+	unknown016, //16
+	unknown017, //17
 	king1, //18
-	unknown019,
-	unknown020,
-	unknown021,
-	unknown022,
-	unknown023,
-	unknown024,
-	unknown025,
-	unknown026,
-	unknown027,
-	unknown028,
-	unknown029,
-	unknown030,
-	unknown031,
-	unknown032,
-	unknown033,
-	unknown034,
-	unknown035,
-	unknown036,
+	unknown019, //19
+	unknown020, //20
+	unknown021, //21
+	unknown022, //22
+	unknown023, //23
+	unknown024, //24
+	unknown025, //25
+	unknown026, //26
+	unknown027, //27
+	unknown028, //28
+	unknown029, //29
+	unknown030, //30
+	unknown031, //31
+	unknown032, //32
+	animMagicButterflyOut, //33
+	animMagicButterflyApproach, //34
+	unknown035, //35
+	animNesHomeYure, //36
 	mom1, //37
-	doorKnock, //38
-	unknown039,
+	animKnockDoor, //38
+	animNessTobinoku,
 	homeTelephone, //40
-	unknown041,
-	unknown042,
-	unknown043,
-	unknown044,
+	animTelRing, //41
+	animPeopleWalk0Live, //42
+	animPeopleWalk1Live, //43
+	animMapObjStillLive, //44
 	pokey1, //45
-	unknown046,
-	unknown047,
-	unknown048,
-	unknown049,
-	unknown050,
-	unknown051,
-	unknown052,
-	unknown053,
-	unknown054,
-	unknown055,
-	unknown056,
-	unknown057,
-	unknown058,
-	unknown059,
-	unknown060,
-	unknown061,
-	unknown062,
-	unknown063,
-	unknown064,
-	unknown065,
-	unknown066,
-	unknown067,
-	unknown068,
-	unknown069,
-	unknown070,
-	unknown071,
-	unknown072,
-	unknown073,
-	unknown074,
-	unknown075,
-	unknown076,
-	unknown077,
-	unknown078,
-	unknown079,
-	unknown080,
-	unknown081,
-	unknown082,
-	unknown083,
-	unknown084,
-	unknown085,
-	unknown086,
-	unknown087,
-	unknown088,
-	unknown089,
-	unknown090,
-	unknown091,
-	unknown092,
-	unknown093,
-	unknown094,
-	unknown095,
-	unknown096,
-	unknown097,
-	unknown098,
-	unknown099,
-	unknown100,
-	unknown101,
-	unknown102,
-	unknown103,
-	unknown104,
-	unknown105,
-	unknown106,
-	unknown107,
-	unknown108,
-	unknown109,
-	unknown110,
-	unknown111,
-	unknown112,
-	unknown113,
-	unknown114,
-	unknown115,
-	unknown116,
-	unknown117,
-	unknown118,
-	unknown119,
-	unknown120,
-	unknown121,
-	unknown122,
-	unknown123,
-	unknown124,
-	unknown125,
-	unknown126,
-	unknown127,
-	unknown128,
-	unknown129,
-	unknown130,
-	unknown131,
-	unknown132,
-	unknown133,
-	unknown134,
-	unknown135,
-	unknown136,
-	unknown137,
-	unknown138,
-	unknown139,
-	unknown140,
-	unknown141,
-	unknown142,
-	unknown143,
-	unknown144,
-	unknown145,
-	unknown146,
-	unknown147,
-	unknown148,
-	unknown149,
-	unknown150,
-	unknown151,
-	unknown152,
-	unknown153,
-	unknown154,
-	unknown155,
-	unknown156,
-	unknown157,
-	unknown158,
-	unknown159,
-	unknown160,
-	unknown161,
-	unknown162,
-	unknown163,
-	unknown164,
-	unknown165,
-	unknown166,
-	unknown167,
-	unknown168,
-	unknown169,
-	unknown170,
-	unknown171,
-	unknown172,
-	unknown173,
-	unknown174,
-	unknown175,
-	unknown176,
-	unknown177,
-	unknown178,
-	unknown179,
-	unknown180,
-	unknown181,
-	unknown182,
-	unknown183,
-	unknown184,
-	unknown185,
-	unknown186,
-	unknown187,
-	unknown188,
-	unknown189,
-	unknown190,
-	unknown191,
-	unknown192,
-	unknown193,
-	unknown194,
-	unknown195,
-	unknown196,
-	unknown197,
-	unknown198,
-	unknown199,
-	unknown200,
-	unknown201,
-	unknown202,
-	unknown203,
-	unknown204,
-	unknown205,
-	unknown206,
-	unknown207,
-	unknown208,
-	unknown209,
-	unknown210,
-	unknown211,
-	unknown212,
-	unknown213,
-	unknown214,
-	unknown215,
-	unknown216,
-	unknown217,
-	unknown218,
-	unknown219,
-	unknown220,
-	unknown221,
-	unknown222,
-	unknown223,
-	unknown224,
-	unknown225,
-	unknown226,
-	unknown227,
-	unknown228,
-	unknown229,
-	unknown230,
-	unknown231,
-	unknown232,
-	unknown233,
-	unknown234,
-	unknown235,
-	unknown236,
-	unknown237,
-	unknown238,
-	unknown239,
-	unknown240,
-	unknown241,
-	unknown242,
-	unknown243,
-	unknown244,
-	unknown245,
-	unknown246,
-	unknown247,
-	unknown248,
-	unknown249,
-	unknown250,
-	unknown251,
-	unknown252,
-	unknown253,
-	unknown254,
-	unknown255,
-	unknown256,
-	unknown257,
-	unknown258,
-	unknown259,
-	unknown260,
-	unknown261,
-	unknown262,
-	unknown263,
-	unknown264,
-	unknown265,
-	unknown266,
-	unknown267,
-	unknown268,
-	unknown269,
-	unknown270,
-	unknown271,
-	unknown272,
-	unknown273,
-	unknown274,
-	unknown275,
-	unknown276,
-	unknown277,
-	unknown278,
+	animReturnDog, //46
+	animAddParty, //47
+	animAddPartyViaLeader, //48
+	animAddPartyBMonkey, //49
+	animBunbunAppear, //50
+	animBunbuun, //51
+	animBunbunDie, //52
+	unknown053, //53
+	animBunbuunBeam, //54
+	unknown055, //55
+	animMizunoA, //56
+	unknown057, //57
+	unknown058, //58
+	unknown059, //59
+	unknown060, //60
+	animHallMayorC, //61
+	animGetOutHallMayor, //62
+	unknown063, //63
+	animBusTwsnThrkIn, //64
+	unknown065, //65
+	unknown066, //66
+	animBusTwsnTunnel, //67
+	animBusReturnTwsn, //68
+	animBusReturnTwsnB, //69
+	animBusIntoThrk, //70
+	animOutBusR, //71
+	animOutBusL, //72
+	animIntoBus, //73
+	animOutTBusR, //74
+	animOutTBusGorgeous, //75
+	animIntoTBusGorgeous, //76
+	unknown077, //77
+	unknown078, //78
+	unknown079, //79
+	unknown080, //80
+	animOshiokiPokey, //81
+	animOshiokiPickey, //82
+	animOshiokiMince, //83
+	AnimLardnaKee, //84
+	unknown085, //85
+	unknown086, //86
+	unknown087, //87
+	unknown088, //88
+	unknown089, //89
+	unknown090, //90
+	animGhostPlus1, //91
+	animGhostPlus2, //92
+	animRetGhostTunnel, //93
+	unknown094, //94
+	unknown095, //95
+	unknown096, //96
+	unknown097, //97
+	unknown098, //98
+	animGhostThrkPlus1, //99
+	animGhostThrkPlus2, //100
+	animMouseDoor, //101
+	unknown102, //102
+	unknown103, //103
+	unknown104, //104
+	unknown105, //105
+	unknown106, //106
+	unknown107, //107
+	unknown108, //108
+	animMichikoIntoRoom, //109
+	animMichikoIntoRoomB, //110
+	animFollowToMichiko, //111
+	animFollowToMichikoB, //112
+	unknown113, //113
+	animWakeUpTony, //114
+	animGorgeousFree, //115
+	animLuckyFree, //116
+	animNiceFree, //117
+	animOKFree, //118
+	animGrooveFree, //119
+	animMogiriToRight, //120
+	animMogiriToDown, //121
+	animMonotoryOutAGorgeous, //122
+	animMonotoryOutALucky, //123
+	animMonotoryOutANice, //124
+	animMonotoryOutAOK, //125
+	animMonotoryOutAGroove, //126
+	unknown127, //127
+	unknown128, //128
+	unknown129, //129
+	unknown130, //130
+	unknown131, //131
+	unknown132, //132
+	animGiantStepCop, //133
+	unknown134, //134
+	animKifuyaTukimatou, //135
+	animFatherCallPaula, //136
+	animSwWins, //137
+	animSw2Wins, //138
+	animNearAndoughnut, //139
+	animAndoughnutMessage, //140
+	animWinsNearKanai, //141
+	animWinsNearBMonkey, //142
+	animWinsAwayKanai, //143
+	animWinsAwayBMonkey, //144
+	animIntoSwWins, //145
+	animSwWinsA, //146
+	animSwSkyA, //147
+	animSwSkyB, //148
+	animSwSkyC, //149
+	animSwSkyD, //150
+	animSwSkyE, //151
+	animSwSkyF, //152
+	animSwFourA, //153
+	animSwFourB, //154
+	animSwFourShadowA, //155
+	animSwFourShadowB, //156
+	animSwDsrtA, //157
+	animSwDsrtB, //158
+	animSwDsrtShadowA, //159
+	animSwDsrtShadowB, //160
+	animSwThrkA, //161
+	animSwThrkB, //162
+	animSwWinsShadowA, //163
+	animSwThrkShadowA, //164
+	animSwThrkShadowB, //165
+	animSwWinsLand, //166
+	animSwWinsLand2, //167
+	animWinsSkywalkerShadow, //168
+	animOutSkywalker, //169
+	animSwSumsA, //170
+	animSwSumsShadowA, //171
+	animSwSplinter1, //172
+	animSwSplinter2, //173
+	animSwSplinter3, //174
+	animOdorokiNesPola, //175
+	animKurokogeJeff, //176
+	animJeffAddParty, //177
+	unknown178, //178
+	animGorgeousChaous, //179
+	animToGorgeousChaous, //180
+	animTonzuraBusChaous, //181
+	animIntoTonzuraBusChaous, //182
+	animGorgeousChaousRide, //183
+	animTonzuraBusToThrk, //184
+	animTBusToThrkTunnel, //185
+	animTBusIntoThrk, //186
+	animGorgeousMono, //187
+	unknown188, //188
+	animTBusRideMono, //189
+	unknown190, //190
+	animIntoTonzuraBusMono, //191
+	animGorgeousMonoRide, //192
+	animTBusToFourTunnel, //193
+	animTBusFourTunnel, //194
+	animTBusTunnelBrdg, //195
+	animTBusBrdgTunnel, //196
+	animTBusTunnelDsrt, //197
+	animTBusDsrtTunnel, //198
+	animTBusTunnelHwayL, //199
+	animTBusHwayTunnelL, //200
+	animTBusTunnelThrkL, //201
+	animBusThrkTwsnIn, //202
+	animBusToThrkTunnel, //203
+	animBusThrkTunnel, //204
+	animBusTunnelTwsn, //205
+	animBusThrkDsrtIn, //206
+	animBusThrkToDsrt, //207
+	animBusThrkTunnelR, //208
+	animBusTunnelHwayR, //209
+	animBusHwayTunnelR, //210
+	animBusTunnelDsrtR, //211
+	animBusDsrtTunnelR, //212
+	animBusTunnelBrdgR, //213
+	animBusBrdgTunnelR, //214
+	animBusTunnelFour, //215
+	animBusTunnelDsrtRJ, //216
+	animBusDsrtThrkIn, //217
+	animBusDsrtToThrk, //218
+	animBusDsrtFourIn, //219
+	animBusDsrtToFour, //220
+	unknown221, //221
+	animSyochoA, //222
+	animSyochoB, //223
+	animSyochoC, //224
+	animFollowToSyochoA, //225
+	animFollowToSyochoB, //226
+	animFollowToSyochoC, //227
+	animCop5A, //228
+	animCop5B, //229
+	animCop5C, //230
+	animCop5D, //231
+	animCop5E, //232
+	animCop5ToNessA, //233
+	animCop5ToNessB, //234
+	animCop5ToNessC, //235
+	animCop5ToNessD, //236
+	animCop5ToNessE, //237
+	animCop5Escape, //238
+	animSyochoToNess, //239
+	unknown240, //240
+	animGrfdPolaAddParty, //241
+	animTopolloHallA, //242
+	animMuseumKomorita, //243
+	animFrsdFieldO, //244
+	animFrsdFieldL, //245
+	animFrsdFieldM, //246
+	animFrsdFieldP, //247
+	animFrsdFieldQ, //248
+	animTonchiki, //249
+	unknown250, //250
+	animTacyNearBMonkey, //251
+	animBMonkeyGum, //252
+	animBMonkeyGum1, //253
+	animBMonkeyFly, //254
+	animBMonkeyFlyS, //255
+	unknown256, //256
+	animYunboBack, //257
+	unknown258, //258
+	animSigeYunboMove, //259
+	unknown260, //260
+	animBMonkeyFope, //261
+	animBMonkeyRopeS, //262
+	animBMonkeyRopeOrosu, //263
+	animBMonkeyRopeDown, //264
+	animBMonkeyRopeGood, //265
+	animDashTony, //266
+	animJumpJef, //267
+	animJumpJefS, //268
+	animOutTony, //269
+	animJefIntoSwThrk, //270
+	animIntoSwThrk, //271
+	animSwToSums1, //272
+	unknown273, //273
+	animKoyaHH1, //274
+	animKoyaHH2, //275
+	animKoyaKarasu, //276
+	animCarpDungL, //277
+	animCarpDungR, //278
 	circleCultistNorthwest, //279
 	circleCultistNortheast, //280
 	circleCultistEast, //281
 	circleCultistSouth, //282
 	circleCultistWest, //283
-	unknown284,
-	unknown285,
-	unknown286,
-	unknown287,
-	unknown288,
-	unknown289,
-	unknown290,
-	unknown291,
-	unknown292,
-	unknown293,
-	unknown294,
-	unknown295,
-	unknown296,
-	unknown297,
-	unknown298,
-	unknown299,
-	unknown300,
-	unknown301,
-	unknown302,
-	unknown303,
-	unknown304,
-	unknown305,
-	unknown306,
-	unknown307,
-	unknown308,
-	unknown309,
-	unknown310,
-	unknown311,
-	unknown312,
-	unknown313,
-	unknown314,
-	unknown315,
-	unknown316,
-	unknown317,
-	unknown318,
-	unknown319,
-	unknown320,
-	unknown321,
-	unknown322,
-	unknown323,
-	unknown324,
-	unknown325,
-	unknown326,
-	unknown327,
-	unknown328,
-	unknown329,
-	unknown330,
-	unknown331,
-	unknown332,
-	unknown333,
-	unknown334,
-	unknown335,
-	unknown336,
-	unknown337,
-	unknown338,
-	unknown339,
-	unknown340,
-	unknown341,
-	unknown342,
-	unknown343,
-	unknown344,
-	unknown345,
-	unknown346,
-	unknown347,
-	unknown348,
-	unknown349,
-	unknown350,
-	unknown351,
-	unknown352,
-	unknown353,
-	unknown354,
-	unknown355,
-	unknown356,
-	unknown357,
-	unknown358,
-	unknown359,
-	unknown360,
-	unknown361,
-	unknown362,
-	unknown363,
-	unknown364,
-	unknown365,
-	unknown366,
-	unknown367,
-	unknown368,
-	unknown369,
-	unknown370,
-	unknown371,
-	unknown372,
-	unknown373,
-	unknown374,
-	unknown375,
-	unknown376,
-	unknown377,
-	unknown378,
-	unknown379,
-	unknown380,
-	unknown381,
-	unknown382,
-	unknown383,
-	unknown384,
-	unknown385,
-	unknown386,
-	unknown387,
-	unknown388,
-	unknown389,
-	unknown390,
-	unknown391,
-	unknown392,
-	unknown393,
-	unknown394,
-	unknown395,
-	unknown396,
-	unknown397,
-	unknown398,
-	unknown399,
-	unknown400,
-	unknown401,
-	unknown402,
-	unknown403,
-	unknown404,
-	unknown405,
-	unknown406,
-	unknown407,
-	unknown408,
-	unknown409,
-	unknown410,
-	unknown411,
-	unknown412,
-	unknown413,
-	unknown414,
-	unknown415,
-	unknown416,
-	unknown417,
-	unknown418,
-	unknown419,
-	unknown420,
-	unknown421,
-	unknown422,
-	unknown423,
-	unknown424,
-	unknown425,
-	unknown426,
-	unknown427,
-	unknown428,
-	unknown429,
-	unknown430,
-	unknown431,
-	unknown432,
-	unknown433,
-	unknown434,
-	unknown435,
-	unknown436,
-	unknown437,
-	unknown438,
-	unknown439,
-	unknown440,
-	unknown441,
-	unknown442,
-	unknown443,
-	unknown444,
-	unknown445,
-	unknown446,
-	unknown447,
-	unknown448,
-	unknown449,
-	unknown450,
-	unknown451,
-	unknown452,
-	unknown453,
-	unknown454,
-	unknown455,
-	unknown456,
-	unknown457,
-	unknown458,
-	unknown459,
-	unknown460,
-	unknown461,
-	unknown462,
-	unknown463,
-	unknown464,
-	unknown465,
-	unknown466,
-	unknown467,
-	unknown468,
-	unknown469,
-	unknown470,
-	unknown471,
-	unknown472,
-	unknown473,
-	unknown474,
-	unknown475,
-	unknown476,
-	unknown477,
-	unknown478,
-	unknown479,
-	unknown480,
-	unknown481,
-	unknown482,
-	unknown483,
-	unknown484,
-	unknown485,
-	unknown486,
-	unknown487,
-	unknown488,
-	unknown489,
-	unknown490,
-	unknown491,
-	unknown492,
-	unknown493,
-	unknown494,
-	unknown495,
-	unknown496,
-	unknown497,
-	unknown498,
-	unknown499,
-	unknown500,
-	unknown501,
-	unknown502,
-	unknown503,
-	unknown504,
-	unknown505,
-	unknown506,
-	unknown507,
-	unknown508,
-	unknown509,
-	unknown510,
-	unknown511,
-	unknown512,
-	unknown513,
-	unknown514,
-	unknown515,
-	unknown516,
-	unknown517,
-	unknown518,
-	unknown519,
-	unknown520,
-	unknown521,
-	unknown522,
-	unknown523,
-	unknown524,
-	unknown525,
-	unknown526,
-	unknown527,
-	unknown528,
-	unknown529,
-	unknown530,
-	unknown531,
-	unknown532,
-	unknown533,
-	unknown534,
-	unknown535,
-	unknown536,
-	unknown537,
-	unknown538,
-	unknown539,
-	unknown540,
-	unknown541,
-	unknown542,
-	unknown543,
-	unknown544,
-	unknown545,
-	unknown546,
-	unknown547,
-	unknown548,
-	unknown549,
-	unknown550,
-	unknown551,
-	unknown552,
-	unknown553,
-	unknown554,
-	unknown555,
-	unknown556,
-	unknown557,
-	unknown558,
-	unknown559,
-	unknown560,
-	unknown561,
-	unknown562,
-	unknown563,
-	unknown564,
-	unknown565,
-	unknown566,
-	unknown567,
-	unknown568,
-	unknown569,
-	unknown570,
-	unknown571,
-	unknown572,
-	unknown573,
-	unknown574,
-	unknown575,
-	unknown576,
-	unknown577,
-	unknown578,
-	unknown579,
-	unknown580,
-	unknown581,
-	unknown582,
-	unknown583,
-	unknown584,
-	unknown585,
-	unknown586,
-	unknown587,
-	unknown588,
-	unknown589,
-	unknown590,
-	unknown591,
-	unknown592,
-	unknown593,
-	unknown594,
-	unknown595,
-	unknown596,
-	unknown597,
+	unknown284, //284
+	animBMonkeyBye, //285
+	unknown286, //286
+	animDoseSpaceTunnel, //287
+	animIntoStKurokoge, //288
+	animOutStKurokoge, //289
+	animAndDose, //290
+	animIntoShip, //291
+	animToSailor, //292
+	animShipToSkrb1, //293
+	animShipSmall, //294
+	animEvtKrakenApproach, //295
+	animShipToSkrb2, //296
+	animOutShip, //297
+	animSubmarine1, //298
+	animSubmarine2, //299
+	animOutSubmarine, //300
+	animGuardA1, //301
+	animGuardA2, //302
+	animGuardB1, //303
+	animGuardB2, //304
+	animGuard3, //305
+	animToGuard, //306
+	animMochi1, //307
+	animMochiYunbo, //308
+	animMochi2, //309
+	animStSt3, //310
+	animDoseiSt3, //311
+	animAndSt31, //312
+	animAndSt32, //313
+	animKidSt3, //314
+	animAndNearSt3, //315
+	animOutSt3, //316
+	animGeppuPass, //317
+	animMaboroshiIn, //318
+	animPooToOldman, //319
+	animMaboroshiOut1, //320
+	animMaboroshiOut2, //321
+	animHoihoiA, //322
+	animHoihoiB, //323
+	animHoihoiC, //324
+	animHoihoiD, //325
+	animHoihoiE, //326
+	animHoihoiF, //327
+	animHoihoiG, //328
+	animHoihoiH, //329
+	animHoihoiI, //330
+	animHoihoiJ, //331
+	animHoihoiK, //332
+	animHoihoiL, //333
+	animHoihoiM, //334
+	unknown335, //335
+	animIntoSt2, //336
+	animChkaSt2Still, //337
+	animOutSt2, //338
+	animPooSyugyou1, //339
+	animPooSyugyou2, //340
+	animMessenger, //341
+	animSenzo1, //342
+	animSenzo2, //343
+	animPooTeleport, //344
+	animSyugyouAddPoo, //345
+	animKaitenNess, //346
+	animNessAwake, //347
+	animTalkPaula, //348
+	animTalkJeff, //349
+	animTalkPoo, //350
+	animBGChange, //351
+	animPowspot, //352
+	animKoke, //353
+	animMonoRMan, //354
+	animStageParty, //355
+	animStageFadeout, //356
+	animTStage1Scr1, //357
+	animTStage1Thank, //358
+	animTStage1OK, //359
+	unknown360, //360
+	animTStage1MikeL, //361
+	animTStage1MikeR, //362
+	animTStage1Nice, //363
+	animTStage1Groove, //364
+	animTStage1Gorgeous, //365
+	animTStage1LuckyDance, //366
+	animTStage1GorgeousDance, //367
+	animTStage1Lucky, //368
+	animTStage1Scr2, //369
+	animTStage1Flip, //370
+	animTStage1FlipTurn, //371
+	animTStage2Scr1, //372
+	animTStage2MikeL, //373
+	animTStage2MikeR, //374
+	animTStage2Thank, //375
+	animTStage2OK, //376
+	animTStage2Nice, //377
+	animTStage2Groove, //378
+	animTStage2HighHat, //379
+	animTStage2SpotInitPlayer, //380
+	animTStage2Player, //381
+	animTStage2Spotlight, //382
+	animTStage2Gorgeous, //383
+	animTStage2Lucky, //384
+	animTStage2GorgeousWalk, //385
+	animTStage2LuckyWalk, //386
+	animTStage2GorgeousDance, //387
+	animTStage2LuckyDance, //388
+	animTStage2GorgeousDance3, //389
+	animTStage2LuckyDance3, //390
+	animTStage2GorgeousDance4, //391
+	animTStage2LuckyDance4, //392
+	animTStage2GorgeousDance5, //393
+	animTStage2LuckyDance5, //394
+	animTStage2GorgeousDance6, //395
+	animTStage2LuckyDance6, //396
+	animTStage2SpotA, //397
+	animTStage2SpotB, //398
+	animTStage2GrooveAdlib, //399
+	animTStage2Scr2, //400
+	animTStage3Scr1, //401
+	animTStage3MikeL, //402
+	animTStage3MikeR, //403
+	animTStage3Thank, //404
+	animTStage3OK, //405
+	animTStage3Nice, //406
+	animTStage3Groove, //407
+	animTStage3HighHat, //408
+	animTStage3Band, //409
+	animTStage3Lucky1, //410
+	animTStage3Gorgeous1, //411
+	animTStage3Lucky2, //412
+	animTStage3Gorgeous2, //413
+	animTStage3Lucky3, //414
+	animTStage3Gorgeous3, //415
+	animTStage3Lucky4, //416
+	animTStage3Gorgeous4, //417
+	animTStage3Lucky5, //418
+	animTStage3Torgeous5, //419
+	animTStage3Lucky6, //420
+	animTStage3Gorgeous6, //421
+	animTStage3Lucky7, //422
+	animTStage3Gorgeous7, //423
+	animTStage3Lucky8, //424
+	animTStage3Gorgeous8, //425
+	animTStage3Lucky9, //426
+	animTStage3Gorgeous9, //427
+	animTStage3Lucky10, //428
+	animTStage3Gorgeous10, //429
+	animTStage3Thank3, //430
+	animTStage3OK3, //431
+	animTStage3Nice3, //432
+	animTStage3Groove3, //433
+	animTStage3HighHat3, //434
+	animTStage3Venus, //435
+	animTStage3TBus, //436
+	unknown437, //437
+	animVStage1Scr1, //438
+	animVStage1VenusStill, //439
+	animVStage1VenusLight1, //440
+	animVStage1VenusLight2, //441
+	animVStage1Venus, //442
+	animVStage1KomoritaCross, //443
+	animVStage1KomoritaAppear, //444
+	animVStage1BodyguardL, //445
+	animVStage1BodyguardR, //446
+	animVStage1Scr2, //447
+	animPhotographer, //448
+	animPhotographerS, //449
+	animNesPeace, //450
+	animNesPeaceSaikyou, //451
+	animCameraEye, //452
+	animBusDriverL, //453
+	animBusDriverR, //454
+	animBusFourThrkIn, //455
+	animBusFourThrkGo, //456
+	animBusFourTunnel, //457
+	animBusTunnelBrdgL, //458
+	animBusBrdgTunnelL, //459
+	animBusDunnelDsrtL, //460
+	animBusDsrtTunnelL, //461
+	animBusTunnelHwayL, //462
+	animBusHwayTunnelL, //463
+	animBusTunnelThrkL, //464
+	animTeleportFail, //465
+	animTeleportSuccess, //466
+	unknown467, //467
+	animGorgeousFree2A, //468
+	animLuckyFree2A, //469
+	animNiceFree2A, //470
+	animOKFree2A, //471
+	animGrooveFree2A, //472
+	animTonzuraFree2B, //473
+	animGrooveFree2B, //474
+	animGorgeousFree2C, //475
+	animProloguePokey1, //476
+	animProloguePokey2, //477
+	animProloguePokey3, //478
+	animBMonkeyTassi1A, //479
+	animTassi1, //480
+	animBMonkeyTassi1B, //481
+	animBMonkeyTassi1C, //482
+	animRideTassi1, //483
+	animOutTassi1, //484
+	animUzu1, //485
+	animUzu2, //486
+	animTacyMask1, //487
+	animTacyMask2, //488
+	animTacyMask3, //489
+	animTacyMask4, //490
+	animUzu1TassiBye, //491
+	animUzu2TassiBye, //492
+	animUzu3TassiByeU, //493
+	animUzu3TassiByeL, //494
+	animLeaf1, //495
+	animLeaf2, //496
+	unknown497, //497
+	unknown498, //498
+	unknown499, //499
+	unknown500, //500
+	unknown501, //501
+	unknown502, //502
+	unknown503, //503
+	unknown504, //504
+	unknown505, //505
+	unknown506, //506
+	unknown507, //507
+	unknown508, //508
+	unknown509, //509
+	unknown510, //510
+	unknown511, //511
+	unknown512, //512
+	unknown513, //513
+	unknown514, //514
+	unknown515, //515
+	unknown516, //516
+	unknown517, //517
+	unknown518, //518
+	unknown519, //519
+	unknown520, //520
+	unknown521, //521
+	unknown522, //522
+	unknown523, //523
+	unknown524, //524
+	unknown525, //525
+	unknown526, //526
+	unknown527, //527
+	unknown528, //528
+	unknown529, //529
+	unknown530, //530
+	unknown531, //531
+	unknown532, //532
+	unknown533, //533
+	unknown534, //534
+	animMdToto, //535
+	animMdThrk, //536
+	animMdMakyo, //537
+	animMdMakyoRafuresia, //538
+	animMdHashiBus, //539
+	animMdHashiYunbo, //540
+	animMdDung, //541
+	animMdTwsn, //542
+	animMdSkrb, //543
+	animMdFrsd, //544
+	animMdSums, //545
+	animMdOnet, //546
+	animLastBattle, //547
+	animNesFace, //548
+	animLastBattlePokey, //549
+	unknown550, //550
+	animSpiritReturnNes, //551
+	animSpiritReturnPola, //552
+	animSpiritReturnJef, //553
+	animSpiritReturnPoo, //554
+	animWhiteout, //555
+	animSpiritReturnNes2, //556
+	animSpiritReturnPola2, //557
+	animSpiritReturnJef2, //558
+	animSpiritReturnPoo2, //559
+	animComeBackNes, //560
+	animComeBackPola, //561
+	animComeBackJef, //562
+	animComeBackPoo, //563
+	animPooExplosion, //564
+	animDoseAndonutEnd, //565
+	animDoseDoseiEnd, //566
+	animPolaPolastarReturn, //567
+	animPolaPolastarReturnL, //568
+	animPolaPolastarReturnR, //569
+	animPresentBoxFall1, //570
+	animPresentBoxFall2, //571
+	animPresentBoxFall3, //572
+	animPresentBoxShadow1, //573
+	animPresentBoxShadow2, //574
+	animPresentBoxShadow3, //575
+	unknown576, //576
+	animDoseiNesDown, //577
+	animDoseiPolaDown, //578
+	animDoseiJefDown, //579
+	animDoseiPooDown, //580
+	unknown581, //581
+	animElevaterUp, //582
+	animElevaterDown, //583
+	unknown584, //584
+	unknown585, //585
+	unknown586, //586
+	unknown587, //587
+	unknown588, //588
+	unknown589, //589
+	unknown590, //590
+	unknown591, //591
+	unknown592, //592
+	animMatentAwayZombi1, //593
+	animMatentAwayZombi2, //594
+	unknown595, //595
+	animGumiStoneRise, //596
+	unknown597, //597
 	walkTowardsPlayer, //598
-	unknown599,
-	unknown600,
-	unknown601,
-	unknown602,
-	unknown603,
-	unknown604,
-	standFacingForward, //605
-	walkInPlaceUpwards, //606
-	unknown607,
-	unknown608,
-	unknown609,
-	unknown610,
-	unknown611,
-	unknown612,
-	unknown613,
-	unknown614,
-	unknown615,
-	unknown616,
-	unknown617,
-	unknown618,
-	unknown619,
-	unknown620,
-	unknown621,
-	unknown622,
-	unknown623,
+	unknown599, //599
+	unknown600, //600
+	unknown601, //601
+	unknown602, //602
+	unknown603, //603
+	animApplemouseStepback, //604
+	animMapObjTBack, //605
+	animPeopleTBack, //606
+	unknown607, //607
+	unknown608, //608
+	unknown609, //609
+	unknown610, //610
+	animFourMuseumBilk, //611
+	animFourMuseumRid, //612
+	animFourFollowMuseumA, //613
+	animFourMuseumReturn, //614
+	animSumsMuseumBilk, //615
+	animSumsMuseumRid, //616
+	animSumsFollowMuseumA, //617
+	animSumsMuseumReturn, //618
+	animSyochoEscape, //619
+	animSaiteiMaboroshiIn, //620
+	animSaiteiMaboroshiOut, //621
+	animInsekiStarman, //622
+	animAkanbePokey, //623
 	sleepingNess, //624
-	unknown625,
-	unknown626,
-	sleepingDog, //627
+	animMouseAddParty, //625
+	animInsekiWakeupWalk, //626
+	animPeopleSleep, //627
 	sleepEmote, //628
-	unknown629,
-	unknown630,
-	unknown631,
-	unknown632,
-	unknown633,
-	unknown634,
-	unknown635,
-	unknown636,
-	unknown637,
-	unknown638,
-	unknown639,
-	unknown640,
-	unknown641,
-	unknown642,
-	unknown643,
-	unknown644,
-	unknown645,
-	unknown646,
-	unknown647,
-	unknown648,
-	unknown649,
-	unknown650,
-	unknown651,
-	unknown652,
-	unknown653,
-	unknown654,
-	unknown655,
-	unknown656,
-	unknown657,
-	unknown658,
-	unknown659,
-	unknown660,
-	unknown661,
-	unknown662,
-	unknown663,
-	unknown664,
-	unknown665,
-	unknown666,
-	unknown667,
-	unknown668,
-	unknown669,
-	unknown670,
-	unknown671,
-	unknown672,
-	unknown673,
-	unknown674,
-	unknown675,
-	unknown676,
-	unknown677,
-	unknown678,
-	unknown679,
-	unknown680,
-	unknown681,
-	unknown682,
-	unknown683,
-	unknown684,
-	unknown685,
-	unknown686,
-	unknown687,
-	unknown688,
-	unknown689,
-	unknown690,
-	unknown691,
-	unknown692,
-	unknown693,
-	unknown694,
-	unknown695,
-	unknown696,
-	unknown697,
-	unknown698,
-	unknown699,
-	unknown700,
-	unknown701,
-	unknown702,
-	unknown703,
-	unknown704,
-	unknown705,
-	unknown706,
-	unknown707,
-	unknown708,
-	unknown709,
-	unknown710,
-	unknown711,
-	unknown712,
-	unknown713,
-	unknown714,
-	unknown715,
-	unknown716,
-	unknown717,
-	unknown718,
-	unknown719,
-	unknown720,
-	unknown721,
-	unknown722,
-	unknown723,
-	unknown724,
-	unknown725,
-	unknown726,
-	unknown727,
-	unknown728,
-	unknown729,
-	unknown730,
-	unknown731,
-	unknown732,
-	unknown733,
-	unknown734,
-	unknown735,
-	unknown736,
-	unknown737,
-	unknown738,
-	unknown739,
-	unknown740,
-	unknown741,
-	unknown742,
-	unknown743,
-	unknown744,
-	unknown745,
-	unknown746,
-	unknown747,
-	unknown748,
-	unknown749,
-	unknown750,
-	unknown751,
-	unknown752,
-	unknown753,
-	unknown754,
-	unknown755,
-	unknown756,
-	unknown757,
-	unknown758,
-	unknown759,
-	unknown760,
-	unknown761,
-	unknown762,
-	unknown763,
-	unknown764,
-	unknown765,
-	unknown766,
-	unknown767,
-	unknown768,
-	unknown769,
-	unknown770,
-	unknown771,
-	unknown772,
-	unknown773,
-	unknown774,
-	unknown775,
-	unknown776,
-	unknown777,
-	unknown778,
-	unknown779,
-	unknown780,
-	unknown781,
-	unknown782,
-	unknown783,
-	unknown784,
-	unknown785,
-	unknown786,
-	unknown787,
+	unknown629, //629
+	animLardnaSlapBunbuun, //630
+	unknown631, //631
+	unknown632, //632
+	animIntoNight, //633
+	animBlackout, //634
+	animBlinkSuicide, //635
+	animButukarizaru, //636
+	animLeaveButukarizaru, //637
+	animUkkariCarrier, //638
+	animLeaveUkkariCarrier, //639
+	animApproachContScript, //640
+	animEavesMaid, //641
+	unknown642, //642
+	animPanningWinters1, //643
+	animPanningWinters2, //644
+	animPanningRamma1, //645
+	animPanningRamma2, //646
+	unknown647, //647
+	animJumpTonchiki, //648
+	animJumpTonchikiShadow, //649
+	animTonchikiEnterHouse, //650
+	animStrikeNess, //651
+	animTakeNessKatacomb1A, //652
+	animTakeNessKatacomb1B, //653
+	animTakeNessKatacomb1C, //654
+	animTakeNessKatacomb2A, //655
+	animTakeNessKatacomb2B, //656
+	animTakeNessKatacomb2C, //657
+	animNessFollowZombi1, //658
+	animNessFollowZombi2, //659
+	animPaulaFollowZombi1, //660
+	animPaulaFollowZombi2, //661
+	animNessStill, //662
+	animPaulaStill, //663
+	animBikiniLookNess, //664
+	animAyasii, //665
+	unknown666, //666
+	animMuMaboroshiOut, //667
+	animLeaveSarusensei, //668
+	animLeadSarusensei, //669
+	animTeleportSarusensei, //670
+	animReturnSarusensei, //671
+	unknown672, //672
+	unknown673, //673
+	unknown674, //674
+	animChiteiQuake, //675
+	animToFountainA, //676
+	animToFountainB, //677
+	animToFountainC, //678
+	animLiftByFountain, //679
+	animMaidIntoBuilding, //680
+	animMakyoDoctorApproach, //681
+	animGoOutCakeWife, //682
+	unknown683, //683
+	unknown684, //684
+	animSlotBrosRotateL, //685
+	animSlotBrosRotateM, //686
+	animSlotBrosRotateN, //687
+	animSlotBrosStopL, //688
+	animSlotBrosStopM, //689
+	animSlotBrosStopN, //690
+	animSlotBrosStopNReach, //691
+	animSlotBrosPresent, //692
+	unknown693, //693
+	unknown694, //694
+	animEvtIntoPsychoMyHome, //695
+	animEvtPsychoMyHome1f, //696
+	animEvtPsychoMyHomeRouka, //697
+	animEvtPsychoMyRoom, //698
+	unknown699, //699
+	unknown700, //700
+	animEvtMonotolyGoSwitch, //701
+	animEvtMonokumaMove, //702
+	animEvtMonokabeMove, //703
+	unknown704, //704
+	animCarpainterThunder, //705
+	animCarpainterThunderhead, //706
+	unknown707, //707
+	unknown708, //708
+	unknown709, //709
+	unknown710, //710
+	unknown711, //711
+	animEvtMonoHeliBoatman, //712
+	animEvtHeliFWingStart, //713
+	animEvtHeliRWingStart, //714
+	animEvtMonoHeliShadow, //715
+	animHeliPokeyFace, //716
+	animEvtPray1Mama, //717
+	animEvtPray1Tracy, //718
+	animEvtPray1Dog, //719
+	animEvtPray2Bikini, //720
+	animEvtPray2Nice, //721
+	animEvtPray2Okay, //722
+	animEvtPray2Groovy, //723
+	animEvtPray3Polapapa, //724
+	animEvtPray3Polamama, //725
+	animEvtPray3Childa, //726
+	animEvtPray3Childb, //727
+	animEvtPray3Childd, //728
+	animEvtPray4Tony, //729
+	animEvtPray4GazeTony, //730
+	animEvtPray4PupilA, //731
+	animEvtPray4PupilB, //732
+	animEvtPray4PupilC, //733
+	animEvtPray4PupilD, //734
+	animEvtPray4Gaus, //735
+	animEvtPray4Explain, //736
+	animEvtPray4DirDown, //737
+	animEvtPray4DirLeft, //738
+	animEvtPray4DirRight, //739
+	unknown740, //740
+	animEvtPray5GirlA, //741
+	animEvtPray5GirlB, //742
+	animEvtPray5GirlC, //743
+	animEvtPray6Frank, //744
+	unknown745, //745
+	animEvtPray7STunnel, //746
+	animEvtPray7Andoughnut, //747
+	animEvtPray7Andoughnut2, //748
+	animEvtPray7Applekid, //749
+	animEvtPray7Dosei, //750
+	animEvtPray7DoseiA, //751
+	animEvtPray7DoseiB, //752
+	animEvtPray7DoseiC, //753
+	animEvtPray7DoseiD, //754
+	animEvtPray7Kyorokyoro, //755
+	animEvtPray7Motchy, //756
+	animEvtPrayOvalWindow, //757
+	unknown758, //758
+	animBlockZombiB, //759
+	animEndPhotoman, //760
+	animEndShadow, //761
+	animEndCamera, //762
+	animEvtEatMagicCake, //763
+	animEvtPoolaaa, //764
+	animKanjiAtTheNight, //765
+	animEvtFeelDiggy, //766
+	unknown767, //767
+	animEvtFluctuateMagicant, //768
+	unknown769, //769
+	animOmarGiveHierogriph, //770
+	unknown771, //771
+	animOpenGateGumi, //772
+	animPossessPCAllStill, //773
+	animTracyAppear, //774
+	animToBeContOvalClose, //775
+	animToBeContTitle, //776
+	animForbidControl, //777
+	animPermitControl, //778
+	animSealPCAllDirLeft, //779
+	animSealPCAllDirDown, //780
+	animSealPCPaulaDirDown, //781
+	animRemodelOperation, //782
+	unknown783, //783
+	unknown784, //784
+	unknown785, //785
+	unknown786, //786
+	unknown787, //787
 	titleScreen1, //788
 	titleScreen2, //789
 	titleScreen3, //790
@@ -1924,102 +1924,102 @@ enum ActionScript {
 	titleScreen9, //796
 	titleScreen10, //797
 	titleScreen11, //798
-	unknown799,
-	unknown800,
-	unknown801,
-	unknown802,
-	unknown803,
-	unknown804,
-	unknown805,
-	unknown806,
-	unknown807,
-	unknown808,
-	unknown809,
-	unknown810,
-	unknown811,
-	unknown812,
-	unknown813,
-	unknown814,
-	unknown815,
-	unknown816,
-	unknown817,
-	unknown818,
-	unknown819,
-	unknown820,
-	unknown821,
-	unknown822,
-	unknown823,
-	unknown824,
-	unknown825,
-	unknown826,
-	unknown827,
-	unknown828,
-	unknown829,
-	unknown830,
-	unknown831,
-	unknown832,
-	unknown833,
-	unknown834,
-	unknown835,
-	unknown836,
-	unknown837,
-	unknown838,
-	unknown839,
-	unknown840,
-	unknown841,
-	unknown842,
-	unknown843,
-	unknown844,
-	unknown845,
-	unknown846,
-	unknown847,
-	unknown848,
-	unknown849,
-	unknown850,
-	unknown851,
-	unknown852,
-	unknown853,
-	unknown854,
-	unknown855,
-	unknown856,
-	unknown857,
-	unknown858,
-	unknown859,
-	unknown860,
-	unknown861,
-	unknown862,
-	unknown863,
-	unknown864,
-	unknown865,
-	unknown866,
-	unknown867,
-	unknown868,
-	unknown869,
-	unknown870,
-	unknown871,
-	unknown872,
-	unknown873,
-	unknown874,
-	unknown875,
-	unknown876,
-	unknown877,
-	unknown878,
-	unknown879,
-	unknown880,
-	unknown881,
-	unknown882,
-	unknown883,
-	unknown884,
-	unknown885,
-	unknown886,
-	unknown887,
-	unknown888,
-	unknown889,
-	unknown890,
-	unknown891,
-	unknown892,
-	unknown893,
-	unknown894,
+	unknown799, //799
+	unknown800, //800
+	unknown801, //801
+	unknown802, //802
+	unknown803, //803
+	unknown804, //804
+	unknown805, //805
+	unknown806, //806
+	unknown807, //807
+	unknown808, //808
+	unknown809, //809
+	unknown810, //810
+	unknown811, //811
+	unknown812, //812
+	unknown813, //813
+	unknown814, //814
+	unknown815, //815
+	unknown816, //816
+	unknown817, //817
+	unknown818, //818
+	unknown819, //819
+	unknown820, //820
+	unknown821, //821
+	unknown822, //822
+	unknown823, //823
+	unknown824, //824
+	unknown825, //825
+	unknown826, //826
+	unknown827, //827
+	unknown828, //828
+	unknown829, //829
+	unknown830, //830
+	unknown831, //831
+	unknown832, //832
+	unknown833, //833
+	unknown834, //834
+	unknown835, //835
+	unknown836, //836
+	unknown837, //837
+	unknown838, //838
+	unknown839, //839
+	unknown840, //840
+	unknown841, //841
+	unknown842, //842
+	unknown843, //843
+	unknown844, //844
+	unknown845, //845
+	unknown846, //846
+	unknown847, //847
+	unknown848, //848
+	unknown849, //849
+	unknown850, //850
+	unknown851, //851
+	unknown852, //852
+	unknown853, //853
+	unknown854, //854
+	unknown855, //855
+	unknown856, //856
+	unknown857, //857
+	unknown858, //858
+	unknown859, //859
+	unknown860, //860
+	unknown861, //861
+	unknown862, //862
+	unknown863, //863
+	unknown864, //864
+	unknown865, //865
+	unknown866, //866
+	unknown867, //867
+	unknown868, //868
+	unknown869, //869
+	unknown870, //870
+	unknown871, //871
+	unknown872, //872
+	unknown873, //873
+	unknown874, //874
+	unknown875, //875
+	unknown876, //876
+	unknown877, //877
+	unknown878, //878
+	unknown879, //879
+	unknown880, //880
+	unknown881, //881
+	unknown882, //882
+	unknown883, //883
+	unknown884, //884
+	unknown885, //885
+	unknown886, //886
+	unknown887, //887
+	unknown888, //888
+	unknown889, //889
+	unknown890, //890
+	unknown891, //891
+	unknown892, //892
+	unknown893, //893
+	unknown894, //894
 }
 ///
 enum OverworldSprite {
