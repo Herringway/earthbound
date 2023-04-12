@@ -4948,7 +4948,9 @@ void unknownC08C58F(const(SpriteMap)* arg1, short arg2, short arg3) {
 }
 
 /// $C08C58
-void unknownC08C58(const(SpriteMap)* arg1, short arg2, short arg3) {
+void unknownC08C58(const(SpriteMap)* arg1, short arg2, short arg3)
+	in(arg1 !is null, "Spritemap must not be null")
+{
 	unknownC08C65[unknown7E2400](arg1, arg2, arg3);
 }
 
@@ -4970,7 +4972,9 @@ void unknownC08C6D(const(SpriteMap)* arg1, short arg2, short arg3) {
 }
 
 /// $C08C87
-void unknownC08C87(const(SpriteMap)* arg1, short arg2, short arg3) {
+void unknownC08C87(const(SpriteMap)* arg1, short arg2, short arg3)
+	in(arg1 !is null, "Trying to add a null spritemap")
+{
 	unknown7E2506[unknown7E2606 / 2] = arg1;
 	unknown7E2546[unknown7E2606 / 2] = arg2;
 	unknown7E2586[unknown7E2606 / 2] = arg3;
