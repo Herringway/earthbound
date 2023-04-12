@@ -24,11 +24,11 @@ void loadText(const StructuredText[] script, const string label, const string ne
 			data ~= cc.mainCC.get();
 			final switch (cc.mainCC.get()) {
 				case MainCC.halt:
+					properlyTerminated = true;
+					break;
 				case MainCC.haltWithoutTriangle:
 				case MainCC.haltWithPrompt:
 				case MainCC.haltVariablePrompt:
-					properlyTerminated = true;
-					break;
 				case MainCC.lineBreak: //these have no arguments
 				case MainCC.startBlankLine:
 				case MainCC.incrementSecondaryMemory:
