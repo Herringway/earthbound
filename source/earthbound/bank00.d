@@ -2193,24 +2193,24 @@ void unknownC0449B() {
 	unknown7E2890++;
 	gameState.unknown90++;
 	short x22 = gameState.troddenTileType;
-	FixedPoint1616 x12 = { combined: adjustPositionHorizontal(x02, gameState.leaderX.combined, x22) };
-	FixedPoint1616 x16 = { combined: adjustPositionVertical(x02, gameState.leaderY.combined, x22) };
+	FixedPoint1616 newX = { combined: adjustPositionHorizontal(x02, gameState.leaderX.combined, x22) };
+	FixedPoint1616 newY = { combined: adjustPositionVertical(x02, gameState.leaderY.combined, x22) };
 	unknown7E5DA8 = 0xFFFF;
 	short x04;
 	if ((miscDebugFlags & 2) == 0) {
-		x04 = unknownC05B7B(x12.integer, x16.integer, gameState.currentPartyMembers, x02);
+		x04 = unknownC05B7B(newX.integer, newY.integer, gameState.currentPartyMembers, x02);
 		if (x02 != unknown7E5DA6) {
-			x12.combined = adjustPositionHorizontal(unknown7E5DA6, gameState.leaderX.combined, x22);
-			x16.combined = adjustPositionVertical(unknown7E5DA6, gameState.leaderY.combined, x22);
+			newX.combined = adjustPositionHorizontal(unknown7E5DA6, gameState.leaderX.combined, x22);
+			newY.combined = adjustPositionVertical(unknown7E5DA6, gameState.leaderY.combined, x22);
 		}
 	} else if (demoFramesLeft == 0) {
-		x04 = unknownC05FD1(x12.integer, x16.integer, gameState.currentPartyMembers) & 0x3F;
+		x04 = unknownC05FD1(newX.integer, newY.integer, gameState.currentPartyMembers) & 0x3F;
 	} else {
 		x04 = 0;
 	}
 	gameState.troddenTileType = x04;
 	short x02_2 = 1;
-	npcCollisionCheck(x12.integer, x16.integer, gameState.currentPartyMembers);
+	npcCollisionCheck(newX.integer, newY.integer, gameState.currentPartyMembers);
 	if (entityCollidedObjects[23] != 0xFFFF) {
 		tracef("Couldn't move due to collision with %s", entityCollidedObjects[23]);
 		x02_2 = 0;
@@ -2225,8 +2225,8 @@ void unknownC0449B() {
 		gameState.walkingStyle = WalkingStyle.normal;
 	}
 	if (x02_2 != 0) {
-		gameState.leaderX = x12;
-		gameState.leaderY = x16;
+		gameState.leaderX = newX;
+		gameState.leaderY = newY;
 	} else {
 		gameState.unknown90 = 0;
 	}
