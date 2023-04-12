@@ -4988,19 +4988,19 @@ void printEquipment(short arg1) {
 		switch (i) {
 			case 0:
 				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[i].equipment[EquipmentSlot.weapon];
+				x18 = partyCharacters[arg1].equipment[EquipmentSlot.weapon];
 				break;
 			case 1:
 				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[i].equipment[EquipmentSlot.body];
+				x18 = partyCharacters[arg1].equipment[EquipmentSlot.body];
 				break;
 			case 2:
 				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[i].equipment[EquipmentSlot.arms];
+				x18 = partyCharacters[arg1].equipment[EquipmentSlot.arms];
 				break;
 			case 3:
 				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
-				x18 = partyCharacters[i].equipment[EquipmentSlot.other];
+				x18 = partyCharacters[arg1].equipment[EquipmentSlot.other];
 				break;
 			default: break;
 		}
