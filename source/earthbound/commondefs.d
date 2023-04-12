@@ -5045,8 +5045,8 @@ struct GameState {
 	ubyte[6] petName; ///
 	ubyte[6] favouriteFood; ///
 	ubyte[12] favouriteThing; ///
-	uint moneyCarried; ///
-	uint bankBalance; ///
+	int moneyCarried; ///
+	int bankBalance; ///
 	ubyte partyPSI; ///
 	ubyte[2] partyNPCs; ///
 	ushort[2] partyNPCHP; ///
