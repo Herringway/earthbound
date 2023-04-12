@@ -4519,7 +4519,7 @@ ushort takeItemFromSpecificCharacter(ushort character, ushort item) {
 
 /// $C18EAD
 ushort takeItemFromCharacter(ushort character, ushort item) {
-	if (character != 0xFF) {
+	if (character == 0xFF) {
 		for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
 			if (takeItemFromSpecificCharacter(gameState.partyMembers[i], item) == 0) {
 				continue;
