@@ -5250,7 +5250,7 @@ void unknownC1A795(short arg1) {
 					break;
 				default: break;
 			}
-		} else {
+		} else if (x18_2 != 0) {
 			equipItem(cast(short)(arg1 + 1), x18_2);
 		}
 		closeWindow(Window.equipMenuItemlist);
