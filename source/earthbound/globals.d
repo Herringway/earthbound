@@ -76,7 +76,7 @@ __gshared ushort unknown7E007B; /// $007B
 __gshared Unknown7E007DEntry* unknown7E007D; /// $007D
 __gshared ubyte unknown7E007F; /// $007F
 __gshared ubyte unknown7E0080; /// $0080
-__gshared short unknown7E0081; /// $0081
+__gshared short demoFramesLeft; /// $0081
 __gshared short unknown7E0083; /// $0083
 __gshared Unknown7E007DEntry* unknown7E0085; /// $0085
 __gshared short unknown7E0087; /// $0087

@@ -1427,7 +1427,7 @@ void mushroomizationMovementSwap() {
 	if (mushroomizationModifier == 0) {
 		return;
 	}
-	if (unknown7E0081 != 0) {
+	if (demoFramesLeft != 0) {
 		return;
 	}
 	padPress[0] = (padPress[0] & 0xF0FF) | mushroomizationDirectionRemapTables[mushroomizationModifier - 1][(padPress[0] >> 8) & 0xF];
@@ -1462,7 +1462,7 @@ uint adjustPositionHorizontal(short arg1, uint arg2, short arg3) {
 		case SurfaceFlags.deepWater:
 			return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * DeepWaterSpeed.combined) / 256) + arg2;
 		default:
-			if (unknown7E0081 != 0) {
+			if (demoFramesLeft != 0) {
 				return horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
 			} else if ((gameState.partyStatus == 3) && (gameState.walkingStyle == 0)) {
 				return (((horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * SkipSandwichSpeed.combined) / 256) + arg2;
@@ -1479,7 +1479,7 @@ uint adjustPositionVertical(short arg1, uint arg2, short arg3) {
 		case SurfaceFlags.deepWater:
 			return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * DeepWaterSpeed.combined) / 256) + arg2;
 		default:
-			if (unknown7E0081 != 0) {
+			if (demoFramesLeft != 0) {
 				return verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined + arg2;
 			} else if ((gameState.partyStatus == 3) && (gameState.walkingStyle == 0)) {
 				return (((verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[arg1].combined / 256) * SkipSandwichSpeed.combined) / 256) + arg2;
@@ -2203,7 +2203,7 @@ void unknownC0449B() {
 			x12.combined = adjustPositionHorizontal(unknown7E5DA6, gameState.leaderX.combined, x22);
 			x16.combined = adjustPositionVertical(unknown7E5DA6, gameState.leaderY.combined, x22);
 		}
-	} else if (unknown7E0081 == 0) {
+	} else if (demoFramesLeft == 0) {
 		x04 = unknownC05FD1(x12.integer, x16.integer, gameState.currentPartyMembers) & 0x3F;
 	} else {
 		x04 = 0;
@@ -3210,7 +3210,7 @@ short unknownC05FD1(short arg1, short arg2, short arg3) {
 /// $C05FF6
 short npcCollisionCheck(short x, short y, short arg3) {
 	short result = -1;
-	if ((entityUnknown332A[arg3] != 0) && ((miscDebugFlags & 2) == 0) && (gameState.walkingStyle != WalkingStyle.escalator) && (unknown7E0081 == 0)) {
+	if ((entityUnknown332A[arg3] != 0) && ((miscDebugFlags & 2) == 0) && (gameState.walkingStyle != WalkingStyle.escalator) && (demoFramesLeft == 0)) {
 		short x18;
 		short x04;
 		if ((entityDirections[arg3] == Direction.right) || (entityDirections[arg3] == Direction.left)) {
@@ -3817,7 +3817,7 @@ void unknownC06E4A() {
 
 /// $C06E6E
 void unknownC06E6E(ushort arg1, short arg2, short arg3) {
-	if (unknown7E0081 != 0) {
+	if (demoFramesLeft != 0) {
 		return;
 	}
 	unknownC48C69();
@@ -3936,7 +3936,7 @@ short unknownC0705F(ushort arg1) {
 
 /// $C070CB
 void unknownC070CB(ushort arg1, short arg2, short arg3) {
-	if (unknown7E0081 != 0) {
+	if (demoFramesLeft != 0) {
 		return;
 	}
 	unknownC48C69();
@@ -4505,7 +4505,7 @@ void unknownC083E3(Unknown7E007DEntry* arg1) {
 	if (arg1.unknown0 == 0) {
 		unknownC083B8();
 	}
-	unknown7E0081 = arg1.unknown0;
+	demoFramesLeft = arg1.unknown0;
 	unknown7E0083 = arg1.unknown1;
 	unknown7E007D = arg1;
 	padRaw[0] = arg1.unknown1;
@@ -4528,14 +4528,14 @@ void readJoypad() {
 	if ((unknown7E007B & 0x4000) == 0) {
 		goto l1;
 	}
-	if (--unknown7E0081 != 0) {
+	if (--demoFramesLeft != 0) {
 		return;
 	}
 	unknown7E007D++;
 	if (unknown7E007D[0].unknown0 == 0) {
 		goto l0;
 	}
-	unknown7E0081 = unknown7E007D[0].unknown0;
+	demoFramesLeft = unknown7E007D[0].unknown0;
 	padRaw[0] = unknown7E007D[0].unknown1;
 	padRaw[1] = unknown7E007D[0].unknown1;
 	return;
