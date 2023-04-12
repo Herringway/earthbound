@@ -1183,7 +1183,12 @@ void removeCharFromParty(short id) {
 		if (gameState.partyMembers[i] != id) {
 			continue;
 		}
-		while (6 > i) {
+		version(bugfix) { // vanilla game has an off-by-one error here, but it normally goes unnoticed
+			enum limit = gameState.partyMembers.length - 1;
+		} else {
+			enum limit = gameState.partyMembers.length;
+		}
+		while (i < limit) {
 			gameState.partyMembers[i] = gameState.partyMembers[i + 1];
 			i++;
 		}
