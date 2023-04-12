@@ -7509,7 +7509,7 @@ void unknownC0AC43() {
 			if (entityByteWidths[actionScriptVar88 / 2] == 0x40) {
 				actionScriptVar02Overlay = entityRippleOverlayPtrs[actionScriptVar88 / 2];
 				if (entityUnknown305A[actionScriptVar88 / 2] == 0) {
-					entityRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown3096[0], entityUnknown305A[actionScriptVar88 / 2]);
+					entityRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown3096[actionScriptVar88 / 2], entityUnknown305A[actionScriptVar88 / 2]);
 				}
 				entityUnknown305A[actionScriptVar88 / 2]--;
 				actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
@@ -7517,7 +7517,7 @@ void unknownC0AC43() {
 			} else {
 				actionScriptVar02Overlay = entityBigRippleOverlayPtrs[actionScriptVar88 / 2];
 				if (entityUnknown310E[actionScriptVar88 / 2] == 0) {
-					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown314A[0], entityUnknown310E[actionScriptVar88 / 2]);
+					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown314A[actionScriptVar88 /2], entityUnknown310E[actionScriptVar88 / 2]);
 				}
 				entityUnknown310E[actionScriptVar88 / 2]--;
 				actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
@@ -7538,7 +7538,7 @@ void unknownC0AC43() {
 			}
 			actionScriptVar02Overlay = entitySweatingOverlayPtrs[actionScriptVar88 / 2];
 			if (entityUnknown2FA6[actionScriptVar88 / 2] == 0) {
-				entitySweatingOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2FE2[0], entityUnknown2FA6[actionScriptVar88 / 2]);
+				entitySweatingOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2FE2[actionScriptVar88 / 2], entityUnknown2FA6[actionScriptVar88 / 2]);
 			}
 			entityUnknown2FA6[actionScriptVar88 / 2]--;
 			actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
@@ -7556,7 +7556,7 @@ void unknownC0AC43() {
 	}
 	actionScriptVar02Overlay = entityMushroomizedOverlayPtrs[actionScriptVar88 / 2];
 	if (entityUnknown2EF2[actionScriptVar88 / 2] == 0) {
-		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2F2E[0], entityUnknown2EF2[actionScriptVar88 / 2]);
+		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2F2E[actionScriptVar88 / 2], entityUnknown2EF2[actionScriptVar88 / 2]);
 	}
 	entityUnknown2EF2[actionScriptVar88 / 2]--;
 	actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
