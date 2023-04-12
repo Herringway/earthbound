@@ -256,7 +256,7 @@ short checkBlockSignature(short id) {
 		}
 	} else {
 		SaveBlock block = readSaveFile(id);
-		if (strcmp(&sramSignature[0], &block.signature[0]) != 0) {
+		if (strcmp(&sramSignature[0], cast(char*)&block.signature[0]) != 0) {
 			eraseSaveBlock(id);
 			return 1;
 		}

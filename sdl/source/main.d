@@ -228,6 +228,17 @@ void main(string[] args) {
 			paused = !paused;
 			input.pause = false;
 		}
+		if (input.dumpSave) {
+			import earthbound.globals;
+			import earthbound.bank2F;
+			import core.stdc.string;
+			SaveData block;
+			memcpy(&block.gameState, &gameState, GameState.sizeof);
+			memcpy(&block.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
+			memcpy(&block.eventFlags, &eventFlags[0], eventFlags.sizeof);
+			block.toFile!YAML("save.yaml");
+			input.dumpSave = false;
+		}
 		foreach (idx, ref layer; input.layerTogglePressed) {
 			layersDisabled ^= layer << (4 - idx);
 			layer = false;

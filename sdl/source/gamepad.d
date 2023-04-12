@@ -135,6 +135,7 @@ enum Controller {
 	layer3Toggle,
 	layer2Toggle,
 	layer1Toggle,
+	saveDump,
 	exit
 }
 
@@ -207,6 +208,9 @@ void handleButton(Controller button, bool pressed, uint playerID) {
 	final switch (button) {
 		case Controller.up, Controller.down, Controller.left, Controller.right, Controller.l, Controller.r, Controller.select, Controller.start, Controller.a, Controller.b, Controller.x, Controller.y, Controller.extra1, Controller.extra2, Controller.extra3, Controller.extra4:
 			handleSNESButton(cast(ushort)controllerToPad(button), pressed, playerID);
+			break;
+		case Controller.saveDump:
+			input.dumpSave = true;
 			break;
 		case Controller.fastForward:
 			input.fastForward = pressed;
@@ -283,6 +287,7 @@ struct Input {
 	bool fastForward;
 	bool printRegisters;
 	bool dumpEntities;
+	bool dumpSave;
 	bool[5] layerTogglePressed;
 }
 

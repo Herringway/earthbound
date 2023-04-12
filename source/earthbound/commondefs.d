@@ -5034,6 +5034,12 @@ enum BattleSide : ubyte{
 
 ///
 struct GameState {
+	version(Have_siryul) {
+		import siryul : Skip;
+		alias skip = Skip;
+	} else {
+		enum skip = 0;
+	}
 	ubyte[12] mother2PlayerName; ///
 	ubyte[24] earthboundPlayerName; ///
 	ubyte[6] petName; ///
@@ -5080,7 +5086,7 @@ struct GameState {
 	uint unknownC4; ///
 	ubyte[2] activeHotspotModes; ///
 	ubyte[2] activeHotspotIDs; ///
-	const(ubyte)*[2] activeHotspotPointers; ///
+	@skip const(ubyte)*[2] activeHotspotPointers; ///
 	PhotoState[32] savedPhotoStates; ///
 	uint timer; ///
 	ubyte textFlavour = 1; ///
@@ -5372,6 +5378,12 @@ union FixedPoint1616 {
 	///
 	double asDouble() const {
 		return cast(double)cast(int)combined / 65536.0;
+	}
+	double toSiryulType()() const {
+		return asDouble();
+	}
+	static FixedPoint1616 fromSiryulType()(double val) {
+		return FixedPoint1616(cast(uint)(65536 * val));
 	}
 }
 ///
