@@ -5300,10 +5300,10 @@ short initEntity(short actionScript, short x, short y) {
 	return unknownC092F5Unknown4(&actionScriptScriptPointers[actionScript][0], newEntity);
 }
 
-short initEntityUnknown1(const(ubyte)* pc, short entityID) {
-	return initEntityUnknown2(pc, cast(short)(entityID * 2));
+short setEntityActionScript(const(ubyte)* pc, short entityID) {
+	return setEntityActionScriptByOffset(pc, cast(short)(entityID * 2));
 }
-short initEntityUnknown2(const(ubyte)* pc, short entityIndex) {
+short setEntityActionScriptByOffset(const(ubyte)* pc, short entityIndex) {
 	assert (entityScriptTable[entityIndex / 2] >= 0);
 	entityIndex = unknownC09C99(entityIndex);
 	bool __ignored;
