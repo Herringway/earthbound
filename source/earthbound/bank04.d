@@ -2522,6 +2522,7 @@ void unknownC460CE(short arg1, short arg2) {
 	entityPreparedXCoordinate = entityAbsXTable[x12];
 	entityPreparedYCoordinate = entityAbsYTable[x12];
 	entityPreparedDirection = entityDirections[x12];
+	tracef("Changing entity %s script to unknownC3A209? %s", x12, arg2 != 6);
 	setEntityActionScript((arg2 != 6) ? &unknownC3A209.ptr[0] : &actionScript35.ptr[0], x12);
 }
 
@@ -2534,6 +2535,7 @@ void unknownC46125(short arg1, short arg2) {
 	entityPreparedXCoordinate = entityAbsXTable[x12];
 	entityPreparedYCoordinate = entityAbsYTable[x12];
 	entityPreparedDirection = entityDirections[x12];
+	tracef("Changing entity %s script to unknownC3A209? %s", x12, arg2 != 6);
 	setEntityActionScript((arg2 != 6) ? &unknownC3A209.ptr[0] : &actionScript35.ptr[0], x12);
 }
 
@@ -2543,6 +2545,7 @@ void unknownC4617C(short arg1, short arg2) {
 	if (x == -1) {
 		return;
 	}
+	tracef("Changing entity %s script to %s", x, cast(ActionScript)arg2);
 	setEntityActionScript(&actionScriptScriptPointers[arg2][0], x);
 }
 
@@ -2552,6 +2555,7 @@ void unknownC461CC(short arg1, short arg2) {
 	if (x == -1) {
 		return;
 	}
+	tracef("Changing entity %s script to %s", x, cast(ActionScript)arg2);
 	setEntityActionScript(&actionScriptScriptPointers[arg2][0], x);
 }
 
@@ -6617,6 +6621,7 @@ void unknownC4D830(short arg1) {
 		if (x == -1) {
 			continue;
 		}
+		tracef("Changing entity %s script to %s", x, cast(ActionScript)x06.script);
 		setEntityActionScript(&actionScriptScriptPointers[x06.script][0], x);
 	}
 	while (true) {
