@@ -123,7 +123,7 @@ enum Window {
 	unknown2a = 0x2A,
 	unknown2b = 0x2B,
 	unknown2c = 0x2C,
-	unknown2d = 0x2D,
+	equipMenuStats = 0x2D,
 	unknown2e = 0x2E,
 	unknown2f = 0x2F,
 	unknown30 = 0x30,
@@ -5838,7 +5838,7 @@ struct DoorEntryA {
 	ushort eventFlag; /// 4
 	ushort unknown6; /// 6
 	ushort unknown8; /// 8
-	ubyte unknown10; /// 10
+	ubyte transitionStyle; /// 10
 }
 ///
 struct DoorEntryB {

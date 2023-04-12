@@ -1051,7 +1051,7 @@ void unknownC22562(short arg1) {
 	unknown7E9CD1 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.body];
 	unknown7E9CD2 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.arms];
 	unknown7E9CD3 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.other];
-	unknownC1A1D8(unknown7E9CD6);
+	printEquipmentStats(unknown7E9CD6);
 }
 
 /// $C225AC
@@ -1060,7 +1060,7 @@ void unknownC225AC(short arg1) {
 	unknown7E9CD1 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
 	unknown7E9CD2 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.arms];
 	unknown7E9CD3 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.other];
-	unknownC1A1D8(unknown7E9CD6);
+	printEquipmentStats(unknown7E9CD6);
 }
 
 /// $C2260D
@@ -1069,7 +1069,7 @@ void unknownC2260D(short arg1) {
 	unknown7E9CD1 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.body];
 	unknown7E9CD2 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
 	unknown7E9CD3 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.other];
-	unknownC1A1D8(unknown7E9CD6);
+	printEquipmentStats(unknown7E9CD6);
 }
 
 /// $C22673
@@ -1078,7 +1078,7 @@ void unknownC22673(short arg1) {
 	unknown7E9CD1 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.body];
 	unknown7E9CD2 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.arms];
 	unknown7E9CD3 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
-	unknownC1A1D8(unknown7E9CD6);
+	printEquipmentStats(unknown7E9CD6);
 }
 
 /// $C226C5

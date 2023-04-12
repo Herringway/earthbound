@@ -22075,8 +22075,8 @@ void saveReplaySaveSlot() {
 /// $EFE895
 void unknownEFE895(short arg1) {
 	if (testSRAMSize != 0) {
-		unknown7EB56D = randA;
-		unknown7EB56F = randB;
+		randABackup = randA;
+		randBBackup = randB;
 		unknown7EB571 = unknown7E0002;
 		unknown7EB573 = arg1;
 	}
@@ -22092,8 +22092,8 @@ void loadReplaySaveSlot() {
 	memcpy(&eventFlags[0], &replaySRAM.eventFlags, eventFlags.sizeof);
 	memcpy(&timer, &replaySRAM.timer, timer.sizeof);
 	unknown7E0002 = cast(ubyte)unknown7EB571;
-	randA = unknown7EB56D;
-	randB = unknown7EB56F;
+	randA = randABackup;
+	randB = randBBackup;
 	unknownC083B8();
 	unknownC083E3(sram3.ptr);
 }

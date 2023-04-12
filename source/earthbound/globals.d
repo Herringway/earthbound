@@ -879,9 +879,9 @@ __gshared short currentPhotoDisplay; /// $B4F1
 __gshared short unknown7EB4F3; /// $B4F3
 __gshared short unknown7EB4F5; /// $B4F5
 __gshared short unknown7EB4F7; /// $B4F7
-__gshared ubyte[44] unknown7EB4F9; /// $B4F9
-__gshared ushort[11] unknown7EB525; /// $B525
-
+__gshared ubyte[24] creditsPlayerNameBuffer; /// $B4F9
+__gshared short[10] unknown7EB511; /// $B511
+__gshared ushort[10] unknown7EB525; /// $B525
 __gshared short piracyFlag; /// $B539
 __gshared ushort currentMusicTrack; /// $B53B
 __gshared short unknown7EB545; /// $B545
@@ -896,7 +896,6 @@ __gshared ushort debugMenuCursorPosition; /// $B555
 __gshared ushort unknown7EB557; /// $B557
 __gshared ushort debugModeNumber; /// $B559
 
-__gshared short[38] unknown7EB511; /// $B511
 
 __gshared ushort unknown7EB55D; /// $B55D
 __gshared ushort unknown7EB55F; /// $B55F
@@ -906,8 +905,8 @@ __gshared ushort debugUnknownB565; /// $B565
 __gshared ushort unknown7EB567; /// $B567
 __gshared ushort unknown7EB569; /// $B569
 __gshared ushort unknown7EB56B; /// $B56B
-__gshared ushort unknown7EB56D; /// $B56D
-__gshared ushort unknown7EB56F; /// $B56F
+__gshared ushort randABackup; /// $B56D
+__gshared ushort randBBackup; /// $B56F
 __gshared ushort unknown7EB571; /// $B571
 __gshared ushort unknown7EB573; /// $B573
 __gshared ushort unknown7EB575; /// $B575

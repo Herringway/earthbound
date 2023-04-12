@@ -4974,7 +4974,7 @@ short getItemType(short arg1) {
 }
 
 /// $C19F29
-void unknownC19F29(short arg1) {
+void printEquipment(short arg1) {
 	arg1--;
 	createWindowN(Window.equipMenu);
 	windowTickWithoutInstantPrinting();
@@ -5027,9 +5027,9 @@ void unknownC19F29(short arg1) {
 }
 
 /// $C1A1D8
-void unknownC1A1D8(short arg1) {
+void printEquipmentStats(short arg1) {
 	arg1--;
-	createWindowN(Window.unknown2d);
+	createWindowN(Window.equipMenuStats);
 	windowTickWithoutInstantPrinting();
 	setCurrentWindowPadding(2);
 	unknownC438A5(0, 0);
@@ -5167,8 +5167,8 @@ void unknownC1A1D8(short arg1) {
 /// $C1A778
 void unknownC1A778(short arg1) {
 	unknown7E9CD4 = 0;
-	unknownC19F29(arg1);
-	unknownC1A1D8(arg1);
+	printEquipment(arg1);
+	printEquipmentStats(arg1);
 }
 
 /// $C1A795
@@ -5294,7 +5294,7 @@ short unknownC1AA5D() {
 			break;
 		}
 	}
-	closeWindow(Window.unknown2d);
+	closeWindow(Window.equipMenuStats);
 	closeWindow(Window.equipMenu);
 	unknownC20ABC(&unknown7E9C8A);
 	return x16;

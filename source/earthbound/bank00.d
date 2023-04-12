@@ -3730,16 +3730,16 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	unknownC06B3D();
 	unknownC07C5B();
 	version(bugfix) {
-		if (auto sfx = getScreenTransitionSoundEffect(arg1.unknown10, 1)) {
+		if (auto sfx = getScreenTransitionSoundEffect(arg1.transitionStyle, 1)) {
 			playSfx(sfx);
 		}
 	} else {
-		playSfx(getScreenTransitionSoundEffect(arg1.unknown10, 1));
+		playSfx(getScreenTransitionSoundEffect(arg1.transitionStyle, 1));
 	}
 	if (unknown7EB4B6 != 0) {
 		fadeOut(1, 1);
 	} else {
-		screenTransition(arg1.unknown10, 1);
+		screenTransition(arg1.transitionStyle, 1);
 	}
 	short x02 = cast(short)(arg1.unknown8 * 8);
 	short x04 = cast(short)((arg1.unknown6 & 0x3FFF) * 8);
@@ -3751,7 +3751,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 			loadSectorMusic(x02, x04);
 		}
 		if (unknown7EB567 == 0) {
-			unknownEFE895(arg1.unknown10);
+			unknownEFE895(arg1.transitionStyle);
 		}
 	} else {
 		loadSectorMusic(x02, x04);
@@ -3767,16 +3767,16 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	unknownC065A3();
 	unknownC07C5B();
 	version(bugfix) {
-		if (auto sfx = getScreenTransitionSoundEffect(arg1.unknown10, 0)) {
+		if (auto sfx = getScreenTransitionSoundEffect(arg1.transitionStyle, 0)) {
 			playSfx(sfx);
 		}
 	} else {
-		playSfx(getScreenTransitionSoundEffect(arg1.unknown10, 0));
+		playSfx(getScreenTransitionSoundEffect(arg1.transitionStyle, 0));
 	}
 	if (unknown7EB4B6 != 0) {
 		fadeIn(1, 1);
 	} else {
-		screenTransition(arg1.unknown10, 0);
+		screenTransition(arg1.transitionStyle, 0);
 	}
 	unknown7E5DC4 = -1;
 	unknown7E0A34 = -1;
@@ -10147,14 +10147,14 @@ void unknownC0F41E() {
 					for (short i = 0; x15_2[0] != 0; i++) {
 						short x13 = x15_2[0];
 						switch (x13) {
-							case 0xAC:
-								unknown7EB4F9[i] = 0x7C;
+							case ebChar('♪'):
+								creditsPlayerNameBuffer[i] = 0x7C;
 								break;
-							case 0xAE:
-								unknown7EB4F9[i] = 0x7E;
+							case 0xAE: //tilde
+								creditsPlayerNameBuffer[i] = 0x7E;
 								break;
-							case 0xAF:
-								unknown7EB4F9[i] = 0x7F;
+							case 0xAF: //tall o
+								creditsPlayerNameBuffer[i] = 0x7F;
 								break;
 							default:
 								if (x13 > 0x90) {
@@ -10162,15 +10162,15 @@ void unknownC0F41E() {
 								} else {
 									x13 -= 0x30;
 								}
-								unknown7EB4F9[i] = cast(ubyte)x13;
+								creditsPlayerNameBuffer[i] = cast(ubyte)x13;
 								break;
 						}
 						x15_2++;
 					}
 					unknown7EB4E3 += 16;
-					for (short i = 0; (unknown7EB4F9[i] != 0) && (i < 24); i++) {
-						(x17++)[0] = cast(ushort)(unknown7EB4F9[i] & 0xF0 + unknown7EB4F9[i] + 0x2400);
-						(x0A++)[0] = cast(ushort)(unknown7EB4F9[i] & 0xF0 + unknown7EB4F9[i] + 0x2410);
+					for (short i = 0; (creditsPlayerNameBuffer[i] != 0) && (i < 24); i++) {
+						(x17++)[0] = cast(ushort)(creditsPlayerNameBuffer[i] & 0xF0 + creditsPlayerNameBuffer[i] + 0x2400);
+						(x0A++)[0] = cast(ushort)(creditsPlayerNameBuffer[i] & 0xF0 + creditsPlayerNameBuffer[i] + 0x2410);
 					}
 					unknownC4EFC4(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
 					if (x04 != 0x1F) {
