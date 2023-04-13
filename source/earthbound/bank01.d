@@ -7474,7 +7474,7 @@ void fileMenuLoop() {
 			}
 			gameState.petName = dontCareNames[4][0];
 			gameState.favouriteFood = dontCareNames[5][0];
-			gameState.favouriteThing[0 .. 6] = dontCareNames[6][0];
+			gameState.favouriteThing[4 .. 10] = dontCareNames[6][0];
 			unknownC021E6();
 			for (short i = 0; 4 > i; i++) {
 				resetCharLevelOne(cast(short)(i + 1), initialStats[i].level, 0);
