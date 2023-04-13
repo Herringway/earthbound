@@ -5592,7 +5592,7 @@ short unknownC1B5B6() {
 	ubyte x00;
 	short x27 = 0;
 	unknown7E9D18 = 0;
-	while (x27 != 0) {
+	while (true) {
 		ubyte x26;
 		if (unknownC1C3B6() == 1) {
 			if (x01 == 0) {
@@ -5909,11 +5909,11 @@ short unknownC1C165(short arg1) {
 }
 
 /// $C1C1BA
-short unknownC1C1BA(short arg1, short arg2, short arg3) {
-	if (arg1 == 3) {
+short unknownC1C1BA(short character, ushort categories, ushort types) {
+	if (character == 3) {
 		return 0;
 	}
-	short x13 = cast(short)(arg2 - 1);
+	short x13 = cast(short)(character - 1);
 	for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 		ubyte x10 = 0;
 		switch (x13) {
@@ -5928,16 +5928,16 @@ short unknownC1C1BA(short arg1, short arg2, short arg3) {
 				break;
 			default: break;
 		}
-		if ((x10 != 0) && ((psiAbilityTable[i].target & arg3) != 0) && (x10 <= partyCharacters[x13].level)) {
-			if ((psiAbilityTable[i].type & arg3) != 0) {
+		if ((x10 != 0) && ((psiAbilityTable[i].target & categories) != 0) && (x10 <= partyCharacters[x13].level)) {
+			if ((psiAbilityTable[i].type & types) != 0) {
 				return 1;
 			}
 		}
 	}
-	if ((x13 == 0) && ((arg3 & 1) != 0) && ((gameState.partyPSI & 1) != 0) && ((arg3 & 8) != 0)) {
+	if ((x13 == 0) && ((categories & 1) != 0) && ((gameState.partyPSI & 1) != 0) && ((types & 8) != 0)) {
 		return 1;
 	}
-	if ((x13 == 3) && ((arg3 & 2) != 0) && ((gameState.partyPSI & 6) != 0) && ((arg3 & 1) != 0)) {
+	if ((x13 == 3) && ((categories & 2) != 0) && ((gameState.partyPSI & 6) != 0) && ((types & 1) != 0)) {
 		return 1;
 	}
 	return 0;
