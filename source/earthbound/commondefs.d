@@ -118,7 +118,8 @@ enum Window {
 	unknown25 = 0x25,
 	unknown26 = 0x26,
 	unknown27 = 0x27,
-	unknown28 = 0x28,
+	equipSelectItem = 0x28,
+	characterSelectBase = 0x28,
 	unknown29 = 0x29,
 	unknown2a = 0x2A,
 	unknown2b = 0x2B,
@@ -129,7 +130,7 @@ enum Window {
 	unknown30 = 0x30,
 	unknown31 = 0x31,
 	fileSelectFlavourChoice = 0x32,
-	unknown33 = 0x33,
+	singleCharacterSelect = 0x33,
 	unknown34 = 0x34,
 	invalid = -1,
 }
@@ -5193,7 +5194,7 @@ struct MenuOpt {
 	short textY; /// [0A]
 	short userdata; /// [0C]
 	ubyte sfx; /// [0E]
-	const(ubyte)* script; /// [0F]
+	string script; /// [0F]
 	ubyte[25] label; /// [13]
 	ubyte pixelAlign; /// [2C]
 }

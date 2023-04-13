@@ -559,7 +559,7 @@ align(1) struct CC1924Arguments {
 
 align(1) struct CC1A00Arguments {
 	align(1):
-	ubyte*[4] partyScripts;
+	string[4] partyScripts;
 	ubyte display;
 }
 

@@ -482,7 +482,7 @@ void cc12() {
 }
 
 /// $C10BFE
-MenuOpt* unknownC10BFE(short arg1, short x, short y, const(ubyte)* label, const(ubyte)* selectedText) {
+MenuOpt* unknownC10BFE(short arg1, short x, short y, const(ubyte)* label, string selectedText) {
 	return unknownC1153B(arg1, x, y, label, selectedText);
 }
 
@@ -781,7 +781,7 @@ short unknownC1138D(short arg1) {
 }
 
 /// $C113D1
-MenuOpt* unknownC113D1(const(ubyte)* label, const(ubyte)* selectedText) {
+MenuOpt* unknownC113D1(const(ubyte)* label, string selectedText) {
 	if (currentFocusWindow == -1) {
 		return &menuOptions[$ - 1];
 	}
@@ -811,7 +811,7 @@ MenuOpt* unknownC113D1(const(ubyte)* label, const(ubyte)* selectedText) {
 }
 
 /// $C114B1
-MenuOpt* unknownC114B1(short x, short y, const(ubyte)* label, const(ubyte)* selectedText) {
+MenuOpt* unknownC114B1(short x, short y, const(ubyte)* label, string selectedText) {
 	MenuOpt* x16 = unknownC113D1(label, selectedText);
 	x16.pixelAlign = 0;
 	if (unknown7E5E71 != 0) {
@@ -824,7 +824,7 @@ MenuOpt* unknownC114B1(short x, short y, const(ubyte)* label, const(ubyte)* sele
 }
 
 /// $C1153B
-MenuOpt* unknownC1153B(short arg1, short x, short y, const(ubyte)* label, const(ubyte)* selectedText) {
+MenuOpt* unknownC1153B(short arg1, short x, short y, const(ubyte)* label, string selectedText) {
 	MenuOpt* X = unknownC114B1(x, y, label, selectedText);
 	X.userdata = arg1;
 	X.field00 = 2;
@@ -832,14 +832,14 @@ MenuOpt* unknownC1153B(short arg1, short x, short y, const(ubyte)* label, const(
 }
 
 /// $C11596
-MenuOpt* unknownC11596(short arg1, short x, short y, const(ubyte)* arg4, const(ubyte)* arg5, ubyte arg6) {
+MenuOpt* unknownC11596(short arg1, short x, short y, const(ubyte)* arg4, string arg5, ubyte arg6) {
 	MenuOpt* X = unknownC1153B(arg1, x, y, arg4, arg5);
 	X.sfx = arg6;
 	return X;
 }
 
 /// $C115F4
-MenuOpt* unknownC115F4(short arg1, const(ubyte)* arg2, const(ubyte)* arg3) {
+MenuOpt* unknownC115F4(short arg1, const(ubyte)* arg2, string arg3) {
 	MenuOpt* x = unknownC113D1(arg2, arg3);
 	x.userdata = arg1;
 	x.field00 = 2;
@@ -992,7 +992,7 @@ label1:
 	dp22 = 0;
 	if (dp04.script) { // field0F
 		setInstantPrinting();
-		displayText(dp04.script); // field0F
+		displayText(getTextBlock(dp04.script)); // field0F
 	}
 
 	if (dp24.menuCallback) { // field37
@@ -1375,13 +1375,13 @@ short unknownC1242E(short arg1, short arg2, short arg3) {
 }
 
 /// $C1244C
-short unknownC1244C(ubyte** arg1, short arg2, short arg3) {
+short unknownC1244C(string* arg1, short arg2, short arg3) {
 	short x16;
 	WinStat* x22 = getActiveWindowAddress();
 	uint x1E = x22.argument;
 	if (arg2 == 1) {
 		unknownC20A20(&unknown7E9C8A);
-		short x1C = gameState.playerControlledPartyMemberCount == 1 ? Window.unknown33 : cast(short)(gameState.playerControlledPartyMemberCount + Window.unknown28 - 1);
+		short x1C = gameState.playerControlledPartyMemberCount == 1 ? Window.singleCharacterSelect : cast(short)(gameState.playerControlledPartyMemberCount + Window.characterSelectBase - 1);
 		createWindowN(x1C);
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 			memcpy(&unknown7E9C9F[0], getPartyCharacterName(gameState.partyMembers[i]), 6);
@@ -1397,9 +1397,9 @@ short unknownC1244C(ubyte** arg1, short arg2, short arg3) {
 			unknown7E9631[i] = arg1[i];
 		}
 		short x04 = (battleMenuCurrentCharacterID == -1) ? 0 : battleMenuCurrentCharacterID;
-		const(ubyte)* x06 = unknown7E9631[gameState.partyMembers[x04] - 1];
+		string x06 = unknown7E9631[gameState.partyMembers[x04] - 1];
 		if (x06 != null) {
-			displayText(x06);
+			displayText(getTextBlock(x06));
 		}
 		unknown7E5E7C = 0;
 		short x1C = 10;
@@ -1454,7 +1454,7 @@ short unknownC1244C(ubyte** arg1, short arg2, short arg3) {
 				playSfx(y);
 				x04 = x16;
 				if (unknown7E9631[gameState.partyMembers[x16] - 1] != null) {
-					displayText(unknown7E9631[gameState.partyMembers[x16] - 1]);
+					displayText(getTextBlock(unknown7E9631[gameState.partyMembers[x16] - 1]));
 				}
 			}
 			x1C = 4;
@@ -1473,7 +1473,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 	uint x22 = x26.argument;
 	if (arg1 == 1) {
 		unknownC20A20(&unknown7E9C8A);
-		short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.unknown33 : cast(short)(Window.unknown28 + gameState.playerControlledPartyMemberCount);
+		short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.singleCharacterSelect : cast(short)(Window.characterSelectBase + gameState.playerControlledPartyMemberCount);
 		createWindowN(x20);
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 			memcpy(&unknown7E9C9F[0], getPartyCharacterName(gameState.partyMembers[i]), 6);
@@ -1902,23 +1902,23 @@ void openMenuButton() {
 						x1F = gameState.partyMembers[0];
 						unknownC43573(0);
 					} else {
-						unknownC193E7(0);
+						openEquipSelectWindow(0);
 						x1F = charSelectPrompt(0, 1, &unknownC1339E, null);
 					}
 					if (x1F == 0) {
 						closeWindow(Window.inventory);
-						unknownC19437();
+						closeEquipSelectWindow();
 						continue mainLoop;
 					}
 					if (getCharacterItem(cast(short)x1F, 1) == 0) {
 						continue;
 					}
 					while (true) {
-						unknownC193E7(1);
+						openEquipSelectWindow(1);
 						setWindowFocus(Window.inventory);
 						short x1D = selectionMenu(1);
 						unknownEF016F();
-						unknownC19437();
+						closeEquipSelectWindow();
 						if (x1D == 0) {
 							if (gameState.playerControlledPartyMemberCount != 1) {
 								continue L2;
@@ -1982,9 +1982,9 @@ void openMenuButton() {
 									setWindowFocus(Window.inventory);
 									clearFocusWindow();
 									x02 = 1;
-									unknownC193E7(3);
+									openEquipSelectWindow(3);
 									short x18 = charSelectPrompt(2, 1, &unknownC133A7, null);
-									unknownC19437();
+									closeEquipSelectWindow();
 									closeWindow(Window.unknown2c);
 									if (x18 == 0) {
 										x1A = 1;
@@ -2901,7 +2901,7 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 		unknownC20A20(&arg1.savedTextAttributes);
 		unknown7E5E71 = 0;
 	}
-	inventoryGetItemName(getCCParameters!ArgType(arg2).character, getCCParameters!ArgType(arg2).window.useVariableIfZero(getArgumentMemory()));
+	inventoryGetItemName(getCCParameters!ArgType(arg2).window, getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()));
 	return null;
 }
 
@@ -3181,7 +3181,7 @@ void* unknownC1621F(DisplayTextState* arg1, ubyte arg2) {
 void* cc1FC0(DisplayTextState* arg1, ubyte arg2) {
 	if ((getWorkingMemory().integer != 0) && (getWorkingMemory().integer < arg2)) {
 		unknown7E97D5 = cast(short)(arg2 - cast(short)getWorkingMemory().integer);
-		arg1.textptr += (cast(short)getWorkingMemory().integer - 1) * (const(ubyte)*).sizeof;
+		arg1.textptr += (cast(short)getWorkingMemory().integer - 1) * string.sizeof;
 		ccArgumentGatheringLoopCounter = 0;
 		return &unknownC1621F;
 	} else {
@@ -3680,7 +3680,7 @@ void* cc1927(DisplayTextState* arg1, ubyte arg2) {
 /// $C17796
 void* unknownC17796(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	unknownC113D1(&unknown7E97D7[0], getTextBlock(getCCParameters!ArgType(arg2)));
+	unknownC113D1(&unknown7E97D7[0], getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -4696,18 +4696,18 @@ void unknownC1931B(short arg1) {
 }
 
 /// $C193E7
-void unknownC193E7(short arg1) {
+void openEquipSelectWindow(short arg1) {
 	unknownC20A20(&unknown7E9C8A);
 	setInstantPrinting();
-	createWindowN(Window.unknown28);
+	createWindowN(Window.equipSelectItem);
 	printString(10, &miscTargetText[arg1][0]);
 	clearInstantPrinting();
 	unknownC20ABC(&unknown7E9C8A);
 }
 
 /// $C19437
-void unknownC19437() {
-	closeWindow(Window.unknown28);
+void closeEquipSelectWindow() {
+	closeWindow(Window.equipSelectItem);
 }
 
 /// $C19441
@@ -5175,10 +5175,10 @@ void unknownC1A778(short arg1) {
 void unknownC1A795(short arg1) {
 	arg1--;
 	while (true) {
-		unknownC193E7(4);
+		openEquipSelectWindow(4);
 		setWindowFocus(Window.equipMenu);
 		short x1C = selectionMenu(1);
-		unknownC19437();
+		closeEquipSelectWindow();
 		if (x1C == 0) {
 			break;
 		}
@@ -5230,9 +5230,9 @@ void unknownC1A795(short arg1) {
 			default: break;
 		}
 		unknown7E9CD4 = 1;
-		unknownC193E7(1);
+		openEquipSelectWindow(1);
 		short x18_2 = selectionMenu(1);
-		unknownC19437();
+		closeEquipSelectWindow();
 		unknownC11F8A();
 		if (x18_2 == -1) {
 			switch (x1C) {
@@ -5279,9 +5279,9 @@ short unknownC1AA5D() {
 			unknownC1A778(x16);
 		}
 		if (gameState.playerControlledPartyMemberCount != 1) {
-			unknownC193E7(0);
+			openEquipSelectWindow(0);
 			x16 = charSelectPrompt(0, 1, &unknownC1A778, null);
-			unknownC19437();
+			closeEquipSelectWindow();
 		} else {
 			x16 = gameState.partyMembers[0];
 			unknownC43573(0);
@@ -5303,7 +5303,7 @@ short unknownC1AA5D() {
 /// $C1AAFA
 ushort unknownC1AAFA() {
 	short x02 = 0;
-	unknownC193E7(2);
+	openEquipSelectWindow(2);
 	unknownC20A20(&unknown7E9C8A);
 	createWindowN(Window.phoneMenu);
 	setWindowTitle(5, 3, &statusEquipWindowText14[0]);
@@ -5323,7 +5323,7 @@ ushort unknownC1AAFA() {
 		x02 = cast(short)selectionMenu(1);
 	}
 	closeFocusWindowN();
-	unknownC19437();
+	closeEquipSelectWindow();
 	unknownC20ABC(&unknown7E9C8A);
 	return x02;
 }
@@ -5441,9 +5441,9 @@ short determineTargetting(short arg1, short arg2) {
 				case 1:
 					x16 = 1;
 					if (gameState.playerControlledPartyMemberCount != 1) {
-						unknownC193E7(3);
+						openEquipSelectWindow(3);
 						x01 = cast(ubyte)charSelectPrompt(1, 1, null, null);
-						unknownC19437();
+						closeEquipSelectWindow();
 					} else {
 						x01 = cast(ubyte)arg2;
 					}
@@ -5602,9 +5602,9 @@ short unknownC1B5B6() {
 			unknownC1C853(x26);
 			unknown7E9D18 = 1;
 		} else {
-			unknownC193E7(0);
+			openEquipSelectWindow(0);
 			x26 = cast(ubyte)charSelectPrompt(0, 1, &unknownC1C853, &unknownC1C367);
-			unknownC19437();
+			closeEquipSelectWindow();
 		}
 		unknown7E9D16 = x26;
 		if (x26 == 0) {
@@ -6655,7 +6655,7 @@ void unknownC3E6F8F() {
 }
 
 /// $C1DDD3
-void selectionMenuItemSetup(short arg1, short arg2, short arg3, const(ubyte)* arg4, const(ubyte)* arg5) {
+void selectionMenuItemSetup(short arg1, short arg2, short arg3, const(ubyte)* arg4, string arg5) {
 	unknownC1153B(arg1, arg2, arg3, arg4, arg5);
 }
 

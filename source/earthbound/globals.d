@@ -578,7 +578,7 @@ __gshared ubyte unknown7E9624; /// $9624
 __gshared ushort selectedTextSpeed; /// $9625
 __gshared uint unknown7E9627; /// $9627
 
-__gshared const(ubyte)*[4] unknown7E9631; /// $9631
+__gshared string[4] unknown7E9631; /// $9631
 __gshared short unknown7E9641; /// $9641
 __gshared short battleModeFlag; /// $9643
 __gshared short inputLockFlag; /// $9645
@@ -610,7 +610,7 @@ __gshared short[4] unknown7E969A; /// $969A
 __gshared short[4] unknown7E96A2; /// $96A2
 __gshared DisplayTextState[10] displayTextStates; /// $96AA
 __gshared ushort unknown7E97B8; /// $97B8
-__gshared ubyte[33] ccArgumentStorage; /// $97BA
+__gshared ubyte[65] ccArgumentStorage; /// $97BA
 __gshared ushort ccArgumentGatheringLoopCounter; /// $97CA
 __gshared WorkingMemory wramScriptWorkMemory; /// $97CC
 __gshared uint wramScriptArgMemory; /// $97D0
