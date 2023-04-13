@@ -678,14 +678,14 @@ void updateHPPPMeterTiles() {
 	if ((unknown7E9647 >> (unknown7E0002 & 3) & 1) == 0) {
 		return;
 	}
-	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + (unknown7E0002 & 3);
+	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + ((unknown7E0002 & 3) * 7);
 	ushort* x1A = &bg2Buffer[x1C];
 	//x1C = 0x7C00[x1C];
 	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction & 1) != 0) {
 		fillCharacterHPTileBuffer(unknown7E0002 & 3, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction);
 		if (unknown7E9624 == 0) {
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][0]);
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[(unknown7E0002 & 3) + 1][0]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][3]);
 		}
 		ushort* y = &hpPPWindowBuffer[unknown7E0002 & 3][0];
 		for (short i = 0; i != 3; i++) {
@@ -702,10 +702,10 @@ void updateHPPPMeterTiles() {
 	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction & 1) != 0) {
 		fillCharacterPPTileBuffer(unknown7E0002 & 3, &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction);
 		if (unknown7E9624 == 0) {
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[(unknown7E0002 & 3) + 2][0]);
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[(unknown7E0002 & 3) + 3][0]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][6]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][9]);
 		}
-		ushort* x12 = &hpPPWindowBuffer[(unknown7E0002 & 3) + 2][0];
+		ushort* x12 = &hpPPWindowBuffer[unknown7E0002 & 3][6];
 		for (short i = 0; i != 3; i++) {
 			(x1A++)[0] = (x12++)[0];
 		}
