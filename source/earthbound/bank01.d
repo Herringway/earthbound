@@ -1467,7 +1467,7 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 }
 
 /// $C127EF
-short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short function(short) arg4) {
+short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short function(short) checkCharacterValid) {
 	short x1E;
 	WinStat* x26 = getActiveWindowAddress();
 	uint x22 = x26.argument;
@@ -1541,9 +1541,9 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 			} else if (0 > x1A) {
 				x1A = cast(short)(x1E - 1);
 			}
-			if (arg4 != null) {
-				if (arg4(gameState.partyMembers[x1A]) == 0) {
-					x1A -= x20;
+			if (checkCharacterValid != null) {
+				if (checkCharacterValid(gameState.partyMembers[x1A]) == 0) {
+					x1A += x20;
 					goto Unknown33;
 				}
 			}
