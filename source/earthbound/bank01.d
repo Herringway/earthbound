@@ -5913,7 +5913,7 @@ short unknownC1C1BA(short arg1, short arg2, short arg3) {
 	if (arg1 == 3) {
 		return 0;
 	}
-	short x13 = cast(short)(arg3 - 1);
+	short x13 = cast(short)(arg2 - 1);
 	for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 		ubyte x10 = 0;
 		switch (x13) {
@@ -5928,16 +5928,16 @@ short unknownC1C1BA(short arg1, short arg2, short arg3) {
 				break;
 			default: break;
 		}
-		if ((x10 != 0) && ((psiAbilityTable[i].target & arg2) != 0) && (x10 <= partyCharacters[x13].level)) {
+		if ((x10 != 0) && ((psiAbilityTable[i].target & arg3) != 0) && (x10 <= partyCharacters[x13].level)) {
 			if ((psiAbilityTable[i].type & arg3) != 0) {
 				return 1;
 			}
 		}
 	}
-	if ((x13 == 0) && ((arg2 & 1) != 0) && ((gameState.partyPSI & 1) != 0) && ((arg3 & 8) != 0)) {
+	if ((x13 == 0) && ((arg3 & 1) != 0) && ((gameState.partyPSI & 1) != 0) && ((arg3 & 8) != 0)) {
 		return 1;
 	}
-	if ((x13 == 3) && ((arg2 & 2) != 0) && ((gameState.partyPSI & 6) != 0) && ((arg3 & 1) != 0)) {
+	if ((x13 == 3) && ((arg3 & 2) != 0) && ((gameState.partyPSI & 6) != 0) && ((arg3 & 1) != 0)) {
 		return 1;
 	}
 	return 0;
