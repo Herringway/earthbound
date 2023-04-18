@@ -18,9 +18,6 @@ import core.stdc.string;
 
 import std;
 
-immutable ubyte[2048] t = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) >> x[0]) ^ 255)).array;
-immutable ubyte[2048] t2 = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) << x[0]) ^ 255)).array;
-
 /// $EF0000
 void enemyFlashingOff() {
 	if (unknown7E89D0 == -1) {
