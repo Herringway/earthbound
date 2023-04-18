@@ -6852,6 +6852,9 @@ string saveFileName(short id) {
 private extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
 ///
 const(ubyte)[] getFullCC(const(ubyte)* script) {
+	return getFullCC(script[0 .. size_t.max]);
+}
+const(ubyte)[] getFullCC(const(ubyte)[] script) @safe pure {
 	enum ptrSize = string.sizeof;
 	ubyte f = script[0];
 	if (f < 0x20) {
@@ -6916,6 +6919,15 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 					case 35:
 					case 36:
 						return script[0 .. 7];
+					case 2:
+						foreach (idx, v; script[2 .. $]) {
+							if (v == 1) {
+								return script[0 .. idx + ptrSize + 3];
+							} else if (v == 2) {
+								return script[0 .. idx + 3];
+							}
+						}
+						assert(0, "Invalid CC [19 02]");
 					default:
 						return script[0 .. 2];
 				}
@@ -7096,6 +7108,13 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 	}
 	return script[0 .. 1];
 }
+
+unittest {
+	assert(getFullCC([0x19, 0x02, 0x50, 0x50, 0x50, 0x02, 0x00]) == [0x19, 0x02, 0x50, 0x50, 0x50, 0x02]);
+	const emptyPointer = new ubyte[](string.sizeof);
+	assert(getFullCC(cast(ubyte[])[0x19, 0x02, 0x50, 0x50, 0x50, 0x01] ~ emptyPointer ~ cast(ubyte[])[0x00]) == cast(ubyte[])[0x19, 0x02, 0x50, 0x50, 0x50, 0x01] ~ emptyPointer);
+}
+
 version(configurable) {
 	struct GameConfig {
 		import std.typecons : Nullable;

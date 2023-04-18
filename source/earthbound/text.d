@@ -3,13 +3,273 @@ module earthbound.text;
 import earthbound.actionscripts;
 import earthbound.commondefs;
 
-const(void)*[string] textData;
+const(void)[][string] textData;
+
+private struct CacheEntry {
+	uint keyLength;
+	uint valueLength;
+	uint keyOffset;
+	uint valueOffset;
+}
+
+void loadTextCache(string path) {
+	import std.file : read;
+	auto data = cast(const(ubyte)[])read(path);
+	const entryCount = (cast(const(uint)[])(data[0 .. uint.sizeof]))[0];
+	const entries = cast(const(CacheEntry)[])(data[uint.sizeof .. entryCount * CacheEntry.sizeof + uint.sizeof]);
+	textData = null;
+	foreach (entry; entries) {
+		const key = cast(const(char)[])data[entry.keyOffset .. entry.keyOffset + entry.keyLength];
+		const value = data[entry.valueOffset .. entry.valueOffset + entry.valueLength];
+		textData[key] = value.fromBytes;
+	}
+}
+
+void saveTextCache(string path) {
+	import std.stdio : File;
+	const(ubyte)[] data;
+	CacheEntry[] entries;
+	entries.reserve(textData.length);
+	const baseOffset = (textData.length * CacheEntry.sizeof) + uint.sizeof;
+
+	foreach (key, value; textData) {
+		CacheEntry entry;
+		const currentOffset = baseOffset + data.length;
+		const converted = value.asBytes;
+		entry.keyLength = cast(uint)key.length;
+		entry.valueLength = cast(uint)converted.length;
+		entry.keyOffset = cast(uint)currentOffset;
+		entry.valueOffset = cast(uint)(currentOffset + key.length);
+		data ~= key;
+		data ~= converted;
+		entries ~= entry;
+	}
+
+	assert(textData.length < uint.max, "Too many text entries for cache");
+	auto writer = File(path, "w").lockingBinaryWriter;
+	writer.put(cast(uint)entries.length);
+	writer.put(entries);
+	writer.put(data);
+}
+
+const(ubyte)[] asBytes(const(void)[] textChunk) {
+	import std.algorithm.searching : countUntil;
+	const(ubyte)[] readLabel(const(ubyte)[] label) {
+		auto str = (cast(const(char[])[])(label[0 .. (const(char)[]).sizeof]))[0];
+		uint[1] strLength = cast(uint)str.length;
+		return cast(ubyte[])strLength[] ~ cast(const(ubyte)[])str;
+	}
+	const(ubyte)[] data;
+	while(textChunk.length > 0) {
+		const cc = getFullCC(cast(const(ubyte)[])textChunk);
+		textChunk = textChunk[cc.length .. $];
+		switch (cc[0]) {
+			case MainCC.jumpIfFlagSet:
+				data ~= cc[0 .. 3];
+				data ~= readLabel(cc[3 .. $]);
+				break;
+			case MainCC.jump:
+			case MainCC.call:
+				data ~= cc[0] ~ readLabel(cc[1 .. $]);
+				break;
+			case MainCC.jumpSwitch:
+				data ~= cc[0 .. 2];
+				size_t offset = 2;
+				foreach(i; 0 .. cc[1]) {
+					const label = readLabel(cc[offset .. $]);
+					offset += string.sizeof;
+					data ~= label;
+				}
+				break;
+			case MainCC.misc19:
+				switch (cc[1]) {
+					case SubCC19.loadString:
+						const text = cc[2 .. 2 + cc[2 .. $].countUntil(1, 2)];
+						const type = cc[text.length + 2];
+						data ~= cc[0 .. 2] ~ text ~ type;
+						if (type == 1) {
+							data ~= readLabel(cc[text.length + uint.sizeof + 3 .. $]);
+						}
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			case MainCC.menus:
+				switch (cc[1]) {
+					case SubCC1A.cc00:
+					case SubCC1A.cc01:
+						data ~= cc[0 .. 2];
+						size_t offset = 2;
+						foreach (i; 0 .. 4) {
+							const label = readLabel(cc[offset .. $]);
+							data ~= label;
+							offset += string.sizeof;
+						}
+						data ~= cc[$ - 1 .. $];
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			case MainCC.memory:
+				switch (cc[1]) {
+					case SubCC1B.cc02:
+					case SubCC1B.cc03:
+						data ~= cc[0 .. 2] ~ readLabel(cc[2 .. $]);
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			case MainCC.misc1F:
+				switch (cc[1]) {
+					case SubCC1F.cc63:
+						data ~= cc[0 .. 2] ~ readLabel(cc[2 .. $]);
+						break;
+					case SubCC1F.cc66:
+						data ~= cc[0 .. 4] ~ readLabel(cc[4 .. $]);
+						break;
+					case SubCC1F.ccC0:
+						data ~= cc[0 .. 3];
+						size_t offset = 3;
+						foreach(i; 0 .. cc[2]) {
+							const label = readLabel(cc[offset .. $]);
+							offset += string.sizeof;
+							data ~= label;
+						}
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			default:
+				data ~= cc;
+				break;
+		}
+	}
+	return data;
+}
+
+const(void)[] fromBytes(const(ubyte)[] textChunk) {
+	import std.algorithm.searching : countUntil;
+	static const(ubyte)[] readLabelLength(const(ubyte)[] label, out uint length) {
+		length = (cast(const(uint)[])(label[0 .. uint.sizeof]))[0];
+		string str = (cast(const(char)[])label[uint.sizeof .. uint.sizeof + length]).idup;
+		return allBytes(str);
+	}
+	static const(ubyte)[] readLabel(const(ubyte)[] label) {
+		uint _;
+		return readLabelLength(label, _);
+	}
+	const(void)[] data;
+	while(textChunk.length > 0) {
+		const cc = getCachedFullCC(textChunk);
+		textChunk = textChunk[cc.length .. $];
+		switch (cc[0]) {
+			case MainCC.jumpIfFlagSet:
+				data ~= cc[0 .. 3];
+				data ~= readLabel(cc[3 .. $]);
+				break;
+			case MainCC.jump:
+			case MainCC.call:
+				data ~= cc[0] ~ readLabel(cc[1 .. $]);
+				break;
+			case MainCC.jumpSwitch:
+				data ~= cc[0 .. 2];
+				size_t offset = 2;
+				foreach(i; 0 .. cc[1]) {
+					uint length;
+					const label = readLabelLength(cc[offset .. $], length);
+					offset += length + uint.sizeof;
+					data ~= label;
+				}
+				break;
+			case MainCC.misc19:
+				switch (cc[1]) {
+					case SubCC19.loadString:
+						const text = cc[2 .. 2 + cc[2 .. $].countUntil(1, 2)];
+						const type = cc[text.length + 2];
+						data ~= cc[0 .. 2] ~ text ~ type;
+						if (type == 1) {
+							data ~= readLabel(cc[text.length + uint.sizeof + 3 .. $]);
+						}
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			case MainCC.menus:
+				switch (cc[1]) {
+					case SubCC1A.cc00:
+					case SubCC1A.cc01:
+						data ~= cc[0 .. 2];
+						size_t offset = 2;
+						foreach (i; 0 .. 4) {
+							uint length;
+							const label = readLabelLength(cc[offset .. $], length);
+							offset += length + uint.sizeof;
+							data ~= label;
+						}
+						data ~= cc[$ - 1 .. $];
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			case MainCC.memory:
+				switch (cc[1]) {
+					case SubCC1B.cc02:
+					case SubCC1B.cc03:
+						data ~= cc[0 .. 2] ~ readLabel(cc[2 .. $]);
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			case MainCC.misc1F:
+				switch (cc[1]) {
+					case SubCC1F.cc63:
+						data ~= cc[0 .. 2] ~ readLabel(cc[2 .. $]);
+						break;
+					case SubCC1F.cc66:
+						data ~= cc[0 .. 4] ~ readLabel(cc[4 .. $]);
+						break;
+					case SubCC1F.ccC0:
+						data ~= cc[0 .. 3];
+						size_t offset = 3;
+						foreach(i; 0 .. cc[2]) {
+							uint length;
+							const label = readLabelLength(cc[offset .. $], length);
+							offset += length + uint.sizeof;
+							data ~= label;
+						}
+						break;
+					default:
+						data ~= cc;
+						break;
+				}
+				break;
+			default:
+				data ~= cc;
+				break;
+		}
+	}
+	return data;
+}
 
 const(ubyte)* getTextBlock(string label) {
 	import std.experimental.logger : tracef;
 	tracef("Looking for text: %s", label);
 	static immutable ubyte[1] r = [2];
-	return cast(const(ubyte)*)textData.get(label, &r[0]);
+	return cast(const(ubyte)*)&(textData.get(label, r[]))[0];
 }
 
 void loadText(const StructuredText[] script, const string label, const string nextLabel) {
@@ -462,7 +722,7 @@ void loadText(const StructuredText[] script, const string label, const string ne
 		assert(nextLabel != "", "No label specified!");
 		data ~= allBytes(MainCC.jump, nextLabel);
 	}
-	textData[label] = &data[0];
+	textData[label] = data;
 }
 
 ubyte[] textCommand(T...)(ubyte command, T args) {
@@ -971,4 +1231,274 @@ struct StructuredText {
 	uint[] intValues;
 	Nullable!CC0DArgument cc0DArgument;
 	Nullable!Window window;
+}
+
+
+const(ubyte)[] getCachedFullCC(const(ubyte)[] script) @safe pure {
+	static size_t textSize(const ubyte[] script) {
+		return (cast(const(uint)[])(script[0 .. uint.sizeof]))[0] + uint.sizeof;
+	}
+	ubyte f = script[0];
+	if (f < 0x20) {
+		switch (f) {
+			case 11:
+			case 12:
+			case 13:
+			case 14:
+			case 16:
+			case 21:
+			case 22:
+			case 23:
+				return script[0 .. 2];
+			case 4:
+			case 5:
+			case 7:
+				return script[0 .. 3];
+			case 6:
+				return script[0 .. 3 + textSize(script[3 .. $])];
+			case 8:
+			case 10:
+				return script[0 .. 1 + textSize(script[1 .. $])];
+			case 9:
+				size_t offset = 2;
+				foreach (i; 0 .. script[1]) {
+					offset += textSize(script[offset .. $]);
+				}
+				return script[0 .. offset];
+			case 24:
+				switch (script[1]) {
+					case 1:
+					case 3:
+					case 8:
+					case 9:
+						return script[0 .. 3];
+					case 5:
+					case 13:
+						return script[0 .. 4];
+					case 7:
+						return script[0 .. 7];
+					default:
+						return script[0 .. 2];
+				}
+			case 25:
+				switch (script[1]) {
+					case 16:
+					case 17:
+					case 24:
+					case 26:
+					case 27:
+					case 33:
+					case 37:
+					case 38:
+					case 39:
+					case 40:
+						return script[0 .. 3];
+					case 22:
+					case 25:
+					case 28:
+					case 29:
+						return script[0 .. 4];
+					case 5:
+						return script[0 .. 5];
+					case 34:
+						return script[0 .. 6];
+					case 35:
+					case 36:
+						return script[0 .. 7];
+					case 2:
+						foreach (idx, v; script[2 .. $]) {
+							if (v == 1) {
+								return script[0 .. idx + textSize(script[idx .. $]) + 3];
+							} else if (v == 2) {
+								return script[0 .. idx + 3];
+							}
+						}
+						assert(0, "Invalid CC [19 02]");
+					default:
+						return script[0 .. 2];
+				}
+			case 26:
+				switch (script[1]) {
+					case 0:
+					case 1:
+						size_t offset = 2;
+						foreach (i; 0 .. 4) {
+							offset += textSize(script[offset .. $]);
+						}
+						return script[0 .. offset];
+					case 6:
+						return script[0 .. 3];
+					case 5:
+						return script[0 .. 4];
+					default:
+						return script[0 .. 2];
+				}
+			case 27:
+				switch (script[1]) {
+					case 2:
+					case 3:
+						return script[0 .. 2 + textSize(script[2 .. $])];
+					default:
+						return script[0 .. 2];
+				}
+			case 28:
+				switch (script[1]) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+					case 9:
+					case 12:
+					case 17:
+					case 18:
+					case 20:
+					case 21:
+						return script[0 .. 3];
+					case 19:
+						return script[0 .. 4];
+					case 10:
+					case 11:
+						return script[0 .. 6];
+					default:
+						return script[0 .. 2];
+				}
+			case 29:
+				switch (script[1]) {
+					case 2:
+					case 3:
+					case 10:
+					case 11:
+					case 24:
+					case 25:
+					case 33:
+					case 35:
+					case 36:
+						return script[0 .. 3];
+					case 0:
+					case 1:
+					case 4:
+					case 5:
+					case 8:
+					case 9:
+					case 12:
+					case 14:
+					case 15:
+					case 16:
+					case 17:
+					case 18:
+					case 19:
+					case 21:
+						return script[0 .. 4];
+					case 13:
+						return script[0 .. 5];
+					case 6:
+					case 7:
+					case 20:
+					case 23:
+						return script[0 .. 6];
+					default:
+						return script[0 .. 2];
+				}
+			case 30:
+				switch (script[1]) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+					case 7:
+					case 8:
+					case 10:
+					case 11:
+					case 12:
+					case 13:
+					case 14:
+						return script[0 .. 4];
+					case 9:
+						return script[0 .. 7];
+					default:
+						return script[0 .. 2];
+				}
+			case 31:
+				switch (script[1]) {
+					case 1:
+					case 2:
+					case 4:
+					case 7:
+					case 17:
+					case 18:
+					case 20:
+					case 29:
+					case 33:
+					case 65:
+					case 82:
+					case 96:
+					case 98:
+					case 103:
+					case 208:
+					case 210:
+					case 211:
+					case 229:
+					case 232:
+						return script[0 .. 3];
+					case 0:
+					case 19:
+					case 27:
+					case 28:
+					case 32:
+					case 35:
+					case 113:
+					case 129:
+					case 131:
+					case 230:
+					case 231:
+					case 233:
+					case 234:
+					case 235:
+					case 236:
+					case 238:
+					case 239:
+					case 244:
+						return script[0 .. 4];
+					case 22:
+					case 26:
+					case 30:
+					case 31:
+					case 225:
+					case 228:
+					case 243:
+						return script[0 .. 5];
+					case 241:
+					case 242:
+						return script[0 .. 6];
+					case 21:
+					case 23:
+						return script[0 .. 7];
+					case 24:
+					case 25:
+						return script[0 .. 9];
+					case 99:
+						return script[0 .. 2 + textSize(script[2 .. $])];
+					case 102:
+						return script[0 .. 4 + textSize(script[4 .. $])];
+					case 192:
+						size_t offset = 3;
+						foreach (i; 0 .. script[2]) {
+							offset += textSize(script[offset .. $]);
+						}
+						return script[0 .. offset];
+					default:
+						return script[0 .. 2];
+				}
+			default:
+				return script[0 .. 1];
+		}
+	}
+	return script[0 .. 1];
 }

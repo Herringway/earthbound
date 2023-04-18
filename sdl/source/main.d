@@ -1,7 +1,8 @@
 import std.algorithm : filter;
 import std.conv : to;
+import std.datetime : SysTime;
 import std.experimental.logger;
-import std.file : exists;
+import std.file : exists, getTimes;
 import std.format : sformat;
 import std.getopt;
 import std.range : chain;
@@ -24,6 +25,8 @@ import gamepad;
 import misc;
 import sfcdma;
 import rendering;
+
+enum textCacheFile = "text.cache";
 
 struct VideoSettings {
 	WindowMode windowMode;
@@ -64,6 +67,7 @@ void main(string[] args) {
 	}
 	const settings = fromFile!(Settings, YAML, DeSiryulize.optionalByDefault)("settings.yml");
 	bool verbose;
+	bool forceCacheRebuild;
 	Nullable!bool noIntro;
 	Nullable!ubyte autoLoadFile;
 	Nullable!bool debugMenu;
@@ -72,6 +76,7 @@ void main(string[] args) {
 		"nointro|n", "Skip intro scenes", &handleNullableOption!noIntro,
 		"autoload|a", "Auto-load specified file. Will be created if nonexistent", &handleNullableOption!autoLoadFile,
 		"debug|d", "Always boot to debug menu (debug builds only)", &handleNullableOption!debugMenu,
+		"forcecacherebuild|t", "Force a text cache rebuild", &forceCacheRebuild,
 	);
 	if (help.helpWanted) {
 		defaultGetoptPrinter("Earthbound.", help.options);
@@ -111,20 +116,44 @@ void main(string[] args) {
 
 	loadAudioData();
 
-	foreach (textDocFile; parallel(getDataFiles("text", "*.yaml"))) {
-		const textData = fromFile!(StructuredText[][string][], YAML, DeSiryulize.optionalByDefault)(textDocFile);
-		foreach (idx, scriptData; textData) {
-			string nextLabel;
-			if (idx + 1 < textData.length) {
-				nextLabel = textData[idx + 1].keys[0];
-			}
-			string label = scriptData.keys[0];
-			auto script = scriptData.values[0];
-			loadText(script, label, nextLabel);
-		}
-		tracef("Loaded text %s", textDocFile);
+	SysTime _, textCacheTime;
+	if (textCacheFile.exists) {
+		getTimes(textCacheFile, _, textCacheTime);
 	}
-	tracef("Loaded text");
+	bool loadCachedText = true;
+
+	foreach (textDocFile; getDataFiles("text", "*.yaml")) {
+		SysTime textTime;
+		getTimes(textDocFile, _, textTime);
+		if (forceCacheRebuild || (textTime > textCacheTime)) {
+			tracef("%s is newer than cache, rebuilding", textDocFile);
+			loadCachedText = false;
+			break;
+		}
+	}
+	if (!loadCachedText) {
+		infof("Text files newer than cache, rebuilding...");
+		foreach (textDocFile; parallel(getDataFiles("text", "*.yaml"))) {
+			const textData = fromFile!(StructuredText[][string][], YAML, DeSiryulize.optionalByDefault)(textDocFile);
+			foreach (idx, scriptData; textData) {
+				string nextLabel;
+				if (idx + 1 < textData.length) {
+					nextLabel = textData[idx + 1].keys[0];
+				}
+				string label = scriptData.keys[0];
+				auto script = scriptData.values[0];
+				loadText(script, label, nextLabel);
+			}
+			tracef("Loaded text %s", textDocFile);
+		}
+		tracef("Loaded text, saving cache");
+		saveTextCache(textCacheFile);
+		tracef("Saved text cache");
+	} else {
+		tracef("Loading text from cache");
+		loadTextCache(textCacheFile);
+	}
+
 
 	int dumpVramCount = 0;
 
