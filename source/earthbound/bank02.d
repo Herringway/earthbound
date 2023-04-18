@@ -3630,8 +3630,8 @@ void recoverHP(Battler* battler, short amount) {
 	}
 	if (battler.afflictions[0] != Status0.unconscious) {
 		setHP(battler, cast(short)(amount + battler.hpTarget));
-		if (battler.hpMax >= amount + battler.hpTarget) {
-			displayInBattleText(getTextBlock("textBattleHPAreMaxedOut"));
+		if (battler.hpMax <= amount + battler.hpTarget) {
+			displayInBattleText(getTextBlock("textBattleHpAreMaxedOut"));
 		} else {
 			displayTextWait(getTextBlock("textBattleRecoveredHP"), amount);
 		}
