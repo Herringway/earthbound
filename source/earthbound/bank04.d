@@ -1104,7 +1104,7 @@ void setPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
 	entityTickCallbacks[leaderEntityID] = leaderCallback;
 	entityTickCallbackFlags[leaderEntityID] = 0;
 	for (int i = 6; i > 0; i--) {
-		entityTickCallbacks[leaderEntityID++] = partyCallback;
+		entityTickCallbacks[++leaderEntityID] = partyCallback;
 		entityTickCallbackFlags[leaderEntityID] = 0;
 	}
 }
