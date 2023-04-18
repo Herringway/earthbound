@@ -1102,8 +1102,10 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 /// $C42F45
 void setPartyTickCallbacks(short leaderEntityID, void function() leaderCallback, void function() partyCallback) {
 	entityTickCallbacks[leaderEntityID] = leaderCallback;
+	entityTickCallbackFlags[leaderEntityID] = 0;
 	for (int i = 6; i > 0; i--) {
 		entityTickCallbacks[leaderEntityID++] = partyCallback;
+		entityTickCallbackFlags[leaderEntityID] = 0;
 	}
 }
 

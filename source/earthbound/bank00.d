@@ -5205,6 +5205,7 @@ void unknownC0927C() {
 	do {
 		entitySpriteMapFlags[x / 2] = 0;
 		entityTickCallbacks[x / 2] = null;
+		entityTickCallbackFlags[x / 2] = 0;
 		x -= 2;
 	} while (x >= 0);
 
@@ -5911,6 +5912,7 @@ const(ubyte)* movementCode13(const(ubyte)* y) {
 /// $C09A1A
 const(ubyte)* movementCode08(const(ubyte)* y) {
 	entityTickCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
+	entityTickCallbackFlags[actionScriptVar88 / 2] = 0;
 	y += (const(ubyte)*).sizeof;
 	//banks!
 	return y;
@@ -6369,6 +6371,7 @@ void jumpToLoadedMovementPtr() {
 /// $C09DA1
 void clearSpriteTickCallback(short index) {
 	entityTickCallbacks[index / 2] = &movementNOP;
+	entityTickCallbackFlags[index / 2] = 0;
 }
 
 /// $C09E71
