@@ -207,7 +207,7 @@ enum Window {
 	invalid = -1,
 }
 ///
-enum TeleportStyle : ubyte {
+enum TeleportStyle : short {
 	none = 0,
 	psiAlpha = 1,
 	psiBeta = 2,
