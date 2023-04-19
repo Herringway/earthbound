@@ -5,9 +5,9 @@ import std.experimental.logger;
 import std.file : exists, getTimes;
 import std.format : sformat;
 import std.getopt;
-import std.range : chain;
+import std.range : chain, drop, front, repeat, zip;
 import std.parallelism : parallel;
-import std.stdio : File, writefln, writeln;
+import std.stdio : File, write, writef, writefln, writeln;
 import std.string : fromStringz, format;
 import std.typecons : Nullable;
 import core.thread : Fiber;
@@ -283,60 +283,112 @@ Settings getDefaultSettings() {
 	return defaults;
 }
 
+void printBorder(string chars, int[] paddings) {
+	write(chars.front);
+	const connector = chars.drop(1).front;
+	foreach (idx, padding; paddings) {
+		writef!"%-(%s%)"("─".repeat(padding));
+		if (idx != paddings.length - 1) {
+			write(connector);
+		}
+	}
+	writeln(chars.drop(2).front);
+}
+void printEntry(int[] paddings, string[] strs...) {
+	foreach (pair; zip(paddings, strs)) {
+		writef!"│%*s"(-pair[0], pair[1]);
+	}
+	writeln("│");
+}
 void printEntities() {
 	import earthbound.globals;
-	auto entityEntry = firstEntity;
+	short entityEntry = firstEntity;
+	int[] paddings = [2, 20, 30, 6, 6, 6, 6, 6, 6, 6, 6, 12, 18, 4, 9, 3, 5, 5, 3, 3, 5, 17, 9, 50, 5];
+	printBorder("┌┬┐", paddings);
+	printEntry(paddings, "ID", "Sprite", "Script", "Var 0", "Var 1", "Var 2", "Var 3", "Var 4", "Var 5", "Var 6", "Var 7", "Scrn Coords", "Abs Coords", "Size", "Direction", "Pri", "VRAM", "Frame", "NPC", "NME", "Colsn", "Tick flags", "Spr Flags", "Surface Flags", "Sleep");
+	printBorder("├┼┤", paddings);
 	while (entityEntry >= 0) {
 		const entity = entityEntry / 2;
-		writefln!"Entity %d"(entity);
-		writefln!"\tVars: [%d, %d, %d, %d, %d, %d, %d, %d]"(entityScriptVar0Table[entity], entityScriptVar1Table[entity], entityScriptVar2Table[entity], entityScriptVar3Table[entity], entityScriptVar4Table[entity], entityScriptVar5Table[entity], entityScriptVar6Table[entity], entityScriptVar7Table[entity]);
-		writeln("\tScript: ", cast(ActionScript)entityScriptTable[entity]);
-		writeln("\tScript index: ", entityScriptIndexTable[entity]);
-		writefln!"\tScreen coords: (%d, %d)"(entityScreenXTable[entity], entityScreenYTable[entity]);
-		writefln!"\tAbsolute coords: (%s, %s, %s)"(FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]).asDouble, FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]).asDouble, FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]).asDouble);
-		writefln!"\tDelta coords: (%s, %s, %s)"(FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]).asDouble, FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]).asDouble, FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]).asDouble);
-		writeln("\tDirection: ", cast(Direction)entityDirections[entity]);
-		writeln("\tSize: ", entitySizes[entity]);
-		writeln("\tDraw Priority: ", entityDrawPriority[entity]);
-		writefln!"\tTick callback flags: %016b"(entityTickCallbackFlags[entity]);
-		writefln!"\tAnimation frame: %s"(entityAnimationFrames[entity]);
-		writefln!"\tSpritemap flags: %016b"(entitySpriteMapFlags[entity]);
-		writefln!"\tCollided objects: %s"(entityCollidedObjects[entity]);
-		writefln!"\tObstacle flags: %016b"(entityObstacleFlags[entity]);
-		writefln!"\tVRAM address: $%04X"(entityVramAddresses[entity] * 2);
-		writefln!"\tSurface flags: %016b"(entitySurfaceFlags[entity]);
-		writefln!"\tTPT entry: %s"(entityTPTEntries[entity]);
-		writefln!"\tTPT entry sprite: %s"(cast(OverworldSprite)entityTPTEntrySprites[entity]);
-		writefln!"\tEnemy ID: %s"(entityEnemyIDs[entity]);
-		writeln("\tSleep frames: ", entityScriptSleepFrames[entity]);
-		writefln!"\tUnknown7E1A4A: %s"(entityUnknown1A4A[entity]);
-		writefln!"\tUnknown7E1A86: %s"(entityUnknown1A86[entity]);
-		writefln!"\tUnknown7E284C: %s"(entityUnknown284C[entity]);
-		writefln!"\tUnknown7E2916: %s"(entityUnknown2916[entity]);
-		writefln!"\tUnknown7E2952: %s"(entityUnknown2952[entity]);
-		writefln!"\tUnknown7E2B32: %s"(entityUnknown2B32[entity]);
-		writefln!"\tUnknown7E2BE6: %s"(entityUnknown2BE6[entity]);
-		writefln!"\tUnknown7E2C22: %s"(entityUnknown2C22[entity]);
-		writefln!"\tUnknown7E2C5E: %s"(entityUnknown2C5E[entity]);
-		writefln!"\tUnknown7E2D4E: %s"(entityUnknown2D4E[entity]);
-		writefln!"\tUnknown7E2D8A: %s"(entityUnknown2D8A[entity]);
-		writefln!"\tUnknown7E2DC6: %s"(entityUnknown2DC6[entity]);
-		writefln!"\tUnknown7E2E3E: %s"(entityUnknown2E3E[entity]);
-		writefln!"\tUnknown7E2E7A: %s"(entityUnknown2E7A[entity]);
-		writefln!"\tUnknown7E2EF2: %s"(entityUnknown2EF2[entity]);
-		writefln!"\tUnknown7E2FA6: %s"(entityUnknown2FA6[entity]);
-		writefln!"\tUnknown7E305A: %s"(entityUnknown305A[entity]);
-		writefln!"\tUnknown7E310E: %s"(entityUnknown310E[entity]);
-		writefln!"\tUnknown7E3186: %s"(entityUnknown3186[entity]);
-		writefln!"\tUnknown7E332A: %s"(entityUnknown332A[entity]);
-		writefln!"\tUnknown7E3366: %s"(entityUnknown3366[entity]);
-		writefln!"\tUnknown7E33A2: %s"(entityUnknown33A2[entity]);
-		writefln!"\tUnknown7E33DE: %s"(entityUnknown33DE[entity]);
-		writefln!"\tUnknown7E3456: %s"(entityUnknown3456[entity]);
+		printEntry(paddings,
+			format!"%s"(entity),
+			format!"%s"(cast(OverworldSprite)entityTPTEntrySprites[entity]),
+			format!"%s"(cast(ActionScript)entityScriptTable[entity]),
+			format!"%s"(entityScriptVar0Table[entity]),
+			format!"%s"(entityScriptVar1Table[entity]),
+			format!"%s"(entityScriptVar2Table[entity]),
+			format!"%s"(entityScriptVar3Table[entity]),
+			format!"%s"(entityScriptVar4Table[entity]),
+			format!"%s"(entityScriptVar5Table[entity]),
+			format!"%s"(entityScriptVar6Table[entity]),
+			format!"%s"(entityScriptVar7Table[entity]),
+			format!"%s, %s"(entityScreenXTable[entity], entityScreenYTable[entity]),
+			format!"%s, %s, %s"(FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]).asDouble, FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]).asDouble, FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]).asDouble),
+			format!"%s"(entitySizes[entity]),
+			format!"%s"(cast(Direction)entityDirections[entity]),
+			format!"%s"(entityDrawPriority[entity]),
+			format!"$%04X"(entityVramAddresses[entity] * 2),
+			format!"%s"(entityAnimationFrames[entity]),
+			format!"%s"(cast(short)entityTPTEntries[entity]),
+			format!"%s"(entityEnemyIDs[entity]),
+			format!"%s"(entityCollidedObjects[entity]),
+			format!"%s"(printableFlags(cast(EntityTickFlags)(entityTickCallbackFlags[entity] & 0xC000))),
+			format!"%s"(printableFlags(cast(SpriteMapFlags)(entitySpriteMapFlags[entity] & 0x8000))),
+			format!"%s"(printableFlags(cast(SurfaceFlags)entitySurfaceFlags[entity])),
+			format!"%s"(entityScriptSleepFrames[entity]),
+		);
 		entityEntry = entityNextEntityTable[entity];
 	}
-	writeln("----");
-	foreach (sprMap; chain(unknown7E2404[], unknown7E2506[], unknown7E2608[], unknown7E270A[]).filter!(x => x != null)) {
-		writefln!"Sprite: %s,%s,%s,%s,%s"(sprMap.yOffset, sprMap.firstTile, sprMap.flags, sprMap.xOffset, sprMap.specialFlags);
+	printBorder("└┴┘", paddings);
+	int[] paddingsExtra = [2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 9];
+	printBorder("┌┬┐", paddingsExtra);
+	printEntry(paddingsExtra, "ID", "1A4A", "1A86", "284C", "2916", "2952", "2B32", "2BE6", "2C22", "2C5E", "2D4E", "2D8A", "2DC6", "2E3E", "2E7A", "2EF2", "2FA6", "305A", "310E", "3186", "332A", "3366", "33A2", "33DE", "3456", "P Buf Idx");
+	printBorder("├┼┤", paddingsExtra);
+	entityEntry = firstEntity;
+	while (entityEntry >= 0) {
+		const entity = entityEntry / 2;
+		printEntry(paddingsExtra,
+			format!"%s"(entity),
+			format!"%s"(entityUnknown1A4A[entity]),
+			format!"%s"(entityUnknown1A86[entity]),
+			format!"%s"(entityUnknown284C[entity]),
+			format!"%s"(entityUnknown2916[entity]),
+			format!"%s"(entityUnknown2952[entity]),
+			format!"%s"(entityUnknown2B32[entity]),
+			format!"%s"(entityUnknown2BE6[entity]),
+			format!"%s"(entityUnknown2C22[entity]),
+			format!"%s"(entityUnknown2C5E[entity]),
+			format!"%s"(entityUnknown2D4E[entity]),
+			format!"%s"(entityUnknown2D8A[entity]),
+			format!"%s"(entityUnknown2DC6[entity]),
+			format!"%s"(entityUnknown2E3E[entity]),
+			format!"%s"(entityUnknown2E7A[entity]),
+			format!"%s"(entityUnknown2EF2[entity]),
+			format!"%s"(entityUnknown2FA6[entity]),
+			format!"%s"(entityUnknown305A[entity]),
+			format!"%s"(entityUnknown310E[entity]),
+			format!"%s"(entityUnknown3186[entity]),
+			format!"%s"(entityUnknown332A[entity]),
+			format!"%s"(entityUnknown3366[entity]),
+			format!"%s"(entityUnknown33A2[entity]),
+			format!"%s"(entityUnknown33DE[entity]),
+			format!"%s"(entityUnknown3456[entity]),
+			format!"%s"(partyCharacters[entityScriptVar1Table[entity] % 4].positionIndex),
+		);
+		entityEntry = entityNextEntityTable[entity];
 	}
+	printBorder("└┴┘", paddingsExtra);
+	int[] paddingsSprites = [5, 5, 10, 8, 8];
+	printBorder("┌┬┐", paddingsSprites);
+	printEntry(paddingsSprites, "X", "Y", "First Tile", "Flags", "Special");
+	printBorder("├┼┤", paddingsSprites);
+	foreach (sprMap; chain(unknown7E2404[], unknown7E2506[], unknown7E2608[], unknown7E270A[]).filter!(x => x != null)) {
+		printEntry(paddingsSprites,
+			format!"%s"(sprMap.xOffset),
+			format!"%s"(sprMap.yOffset),
+			format!"%s"(sprMap.firstTile),
+			format!"%08b"(sprMap.flags),
+			format!"%08b"(sprMap.specialFlags),
+		);
+	}
+	printBorder("└┴┘", paddingsSprites);
 }

@@ -1847,7 +1847,11 @@ void unknownC03CFD() {
 /// $C03E5A
 short unknownC03E5A(short arg1) {
 	short x;
-	for (x = 0; gameState.unknown96[x] != arg1 + 1; x++) {}
+	version(bugfix) {
+		for (x = 0; (x < gameState.unknown96.length) && (gameState.unknown96[x] != arg1 + 1); x++) {}
+	} else {
+		for (x = 0; gameState.unknown96[x] != arg1 + 1; x++) {}
+	}
 	if (x == 0) {
 		return -1;
 	}

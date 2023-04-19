@@ -56,6 +56,78 @@ enum hpPPWindowHeight = 8;
 enum objectTickDisabled = 0x8000; ///
 enum objectMoveDisabled = 0x4000; ///
 
+enum EntityTickFlags {
+	moveDisabled = 0x4000,
+	tickDisabled = 0x8000,
+	fullyDisabled = moveDisabled | tickDisabled,
+}
+
+enum SpriteMapFlags {
+	unknown = 0x8000,
+}
+
+enum EntityObstacleFlags {
+	unknown0 = 1 << 0,
+	unknown1 = 1 << 1,
+	unknown2 = 1 << 2,
+	unknown3 = 1 << 3,
+	unknown4 = 1 << 4,
+	unknown5 = 1 << 5,
+	unknown6 = 1 << 6,
+	unknown7 = 1 << 7,
+}
+
+auto printableFlags(EntityTickFlags flags) @safe pure {
+	static struct Result {
+		EntityTickFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Callback disabled".only.take(flags & EntityTickFlags.tickDisabled),
+				"Script disabled".only.take(flags & EntityTickFlags.moveDisabled),
+				"Enabled".only.take(flags == cast(EntityTickFlags)0),
+			));
+		}
+	}
+	return Result(flags);
+}
+auto printableFlags(SpriteMapFlags flags) @safe pure {
+	static struct Result {
+		SpriteMapFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Unknown".only.take(flags & SpriteMapFlags.unknown),
+				"None".only.take(flags == cast(SpriteMapFlags)0),
+			));
+		}
+	}
+	return Result(flags);
+}
+auto printableFlags(EntityObstacleFlags flags) @safe pure {
+	static struct Result {
+		EntityObstacleFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Unknown 0".only.take(flags & EntityObstacleFlags.unknown0),
+				"Unknown 1".only.take(flags & EntityObstacleFlags.unknown1),
+				"Unknown 2".only.take(flags & EntityObstacleFlags.unknown2),
+				"Unknown 3".only.take(flags & EntityObstacleFlags.unknown3),
+				"Unknown 4".only.take(flags & EntityObstacleFlags.unknown4),
+				"Unknown 5".only.take(flags & EntityObstacleFlags.unknown5),
+				"Unknown 6".only.take(flags & EntityObstacleFlags.unknown6),
+				"Unknown 7".only.take(flags & EntityObstacleFlags.unknown7),
+				"None".only.take(flags == cast(EntityObstacleFlags)0),
+			));
+		}
+	}
+	return Result(flags);
+}
+
 ///
 enum ubyte baseNumberSelectorCharacter1 = 0x10;
 ///
@@ -4385,7 +4457,28 @@ enum SurfaceFlags {
 	unknown2 = 1<<6,
 	solid = 1<<7,
 }
-
+auto printableFlags(SurfaceFlags flags) @safe pure {
+	static struct Result {
+		SurfaceFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Obscures lower body".only.take(flags & SurfaceFlags.obscureLowerBody),
+				"Obscures upper body".only.take(flags & SurfaceFlags.obscureUpperBody),
+				"Deep water".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.deepWater),
+				"Shallow water".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.shallowWater),
+				"Causes sunstroke".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.causesSunstroke),
+				"Ladder/stairs".only.take(flags & SurfaceFlags.ladderOrStairs),
+				"unknown1".only.take(flags & SurfaceFlags.unknown1),
+				"unknown2".only.take(flags & SurfaceFlags.unknown2),
+				"Solid".only.take(flags & SurfaceFlags.solid),
+				"None".only.take(flags == SurfaceFlags.none),
+			));
+		}
+	}
+	return Result(flags);
+}
 enum ShallowWaterSpeed = FixedPoint1616(0x8000, 0x0000); ///0.5x
 enum DeepWaterSpeed = FixedPoint1616(0x547A, 0x0000); ///0.33x
 enum SkipSandwichSpeed = FixedPoint1616(0x8000, 0x0001); ///1.5x
