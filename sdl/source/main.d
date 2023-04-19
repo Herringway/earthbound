@@ -167,6 +167,7 @@ void main(string[] args) {
 	earthbound.commondefs.setFixedColourData = &rendering.setFixedColourData;
 	earthbound.commondefs.setBGOffsetX = &rendering.setBGOffsetX;
 	earthbound.commondefs.setBGOffsetY = &rendering.setBGOffsetY;
+	earthbound.commondefs.drawRect = &rendering.drawRect;
 	earthbound.commondefs.playSFX = &audio.playSFX;
 	earthbound.commondefs.setAudioChannels = &audio.setAudioChannels;
 	earthbound.commondefs.doMusicEffect = &audio.doMusicEffect;

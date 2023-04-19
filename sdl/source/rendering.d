@@ -187,6 +187,7 @@ bool initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
 	if (keepAspectRatio) {
 		SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
 	}
+	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_RendererInfo renderInfo;
 	SDL_GetRendererInfo(renderer, &renderInfo);
 	infof("SDL renderer subsystem initialized (%s)", renderInfo.name.fromStringz);
@@ -233,6 +234,10 @@ void endFrame() {
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, drawTexture, null, null);
+	foreach (rectangle; overlayRectangles) {
+		renderRectangle(rectangle);
+	}
+	overlayRectangles = [];
 	SDL_RenderPresent(renderer);
 }
 
@@ -328,4 +333,21 @@ void setBGOffsetY(ubyte layer, ushort y) {
 			break;
 		default: assert(0);
 	}
+}
+
+struct ColouredRectangle {
+	short x, y;
+	short w, h;
+	ubyte r, g, b, a;
+}
+
+ColouredRectangle[] overlayRectangles;
+
+void drawRect(short x1, short y1, short x2, short y2, ubyte r, ubyte g, ubyte b, ubyte a) {
+	overlayRectangles ~= ColouredRectangle(x1, y1, cast(short)(x2 - x1), cast(short)(y2 - y1), r, g, b, a);
+}
+void renderRectangle(const ColouredRectangle rect) {
+	const dim = SDL_Rect(rect.x * 2, rect.y * 2, rect.w * 2, rect.h * 2);
+	assert(SDL_SetRenderDrawColor(renderer, rect.r, rect.g, rect.b, rect.a) >= 0);
+	assert(SDL_RenderFillRect(renderer, &dim) >= 0);
 }

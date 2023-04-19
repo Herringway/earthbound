@@ -6414,6 +6414,8 @@ void function(short) setStatic = (short) {};
 ///
 ushort function(ushort) getControllerState = (ushort) { return cast(ushort)0; };
 ///
+void function(short, short, short, short, ubyte, ubyte, ubyte, ubyte) drawRect = (short, short, short, short, ubyte, ubyte, ubyte, ubyte) {};
+///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
 	size_t idx;
