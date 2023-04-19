@@ -117,10 +117,12 @@ void main(string[] args) {
 	loadAudioData();
 
 	SysTime _, textCacheTime;
+	bool loadCachedText = true;
 	if (textCacheFile.exists) {
 		getTimes(textCacheFile, _, textCacheTime);
+	} else {
+		loadCachedText = false;
 	}
-	bool loadCachedText = true;
 
 	foreach (textDocFile; getDataFiles("text", "*.yaml")) {
 		SysTime textTime;
