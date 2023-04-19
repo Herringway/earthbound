@@ -3792,7 +3792,7 @@ void koTarget(Battler* arg1) {
 	}
 	if (countChars(BattleSide.foes) == 1) {
 		resetRolling();
-		for (short i = 0;  i < 6; i++) {
+		for (short i = 0; i < 6; i++) {
 			if (battlersTable[i].consciousness == 0) {
 				continue;
 			}

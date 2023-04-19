@@ -90,7 +90,7 @@ void main(string[] args) {
 		return;
 	}
 	scope(exit) {
-	  unloadRenderer();
+		unloadRenderer();
 	}
 	if (!initializeRenderer(settings.video.zoom, settings.video.windowMode, settings.video.keepAspectRatio)) {
 		return;

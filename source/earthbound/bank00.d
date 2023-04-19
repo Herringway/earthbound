@@ -8622,9 +8622,9 @@ void unknownC0CA4E(short arg1) {
 /// $C0CC11
 void unknownC0CC11() {
 	short x12 = cast(short)(entityScriptVar6Table[currentEntitySlot] - entityAbsXTable[currentEntitySlot]);
-	short y =  (0 > x12) ? (cast(short)-cast(int)x12) : x12;
+	short y = (0 > x12) ? (cast(short)-cast(int)x12) : x12;
 	x12 = cast(short)(entityScriptVar7Table[currentEntitySlot] - entityAbsYTable[currentEntitySlot]);
-	short x02 =  (0 > x12) ? (cast(short)-cast(int)x12) : x12;
+	short x02 = (0 > x12) ? (cast(short)-cast(int)x12) : x12;
 	FixedPoint1616 x0E;
 	if (y > x02) {
 		x12 = y;

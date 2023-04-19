@@ -7235,15 +7235,15 @@ version(configurable) {
 }
 GameConfig config;
 ubyte[] allBytes(T...)(T args) {
-    struct X {
-    	align(1):
-        T stuff;
-    }
-    union Z {
-        X x;
-        ubyte[X.sizeof] bytes;
-    }
-    return Z(X(args)).bytes.dup;
+	struct X {
+		align(1):
+		T stuff;
+	}
+	union Z {
+		X x;
+		ubyte[X.sizeof] bytes;
+	}
+	return Z(X(args)).bytes.dup;
 }
 
 void printTrace() {

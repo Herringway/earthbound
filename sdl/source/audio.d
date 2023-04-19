@@ -82,12 +82,12 @@ private __gshared NSPCPlayer nspcplayer;
 
 extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 	import std.exception : assumeWontThrow;
-    try {
-        (cast(NSPCPlayer*)user).fillBuffer(cast(short[2][])(buf[0 .. bufSize]));
-    } catch (Error e) {
-        assumeWontThrow(errorf("%s", e));
-        throw e;
-    }
+	try {
+		(cast(NSPCPlayer*)user).fillBuffer(cast(short[2][])(buf[0 .. bufSize]));
+	} catch (Error e) {
+		assumeWontThrow(errorf("%s", e));
+		throw e;
+	}
 }
 
 void loadAudioData() {

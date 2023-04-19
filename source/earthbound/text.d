@@ -750,7 +750,7 @@ T useVariableIfZero(T,U)(T value, U variable) {
 	return value == 0 ? (cast(T)variable) : value;
 }
 
-enum ReadParameters(T)  = "
+enum ReadParameters(T) = "
 	alias ArgType = "~T.stringof~";
 	if (ArgType.sizeof - 1 > ccArgumentGatheringLoopCounter) {
 		ccArgumentStorage[ccArgumentGatheringLoopCounter++] = arg2;

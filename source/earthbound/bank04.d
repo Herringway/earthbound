@@ -353,7 +353,7 @@ auto unknownC41FFF(short arg1, short arg2) {
 	if ((arg1Modified >= 0x42) && (arg1Modified < 0x80)) {
 		a = cast(short)-cast(int)a;
 	}
-	// a  =  sin(arg1) * arg2
+	// a = sin(arg1) * arg2
 	// a2 = -cos(arg1) * arg2
 	return Result(a2, a);
 }
