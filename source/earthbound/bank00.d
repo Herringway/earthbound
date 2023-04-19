@@ -2502,7 +2502,7 @@ void unknownC04D78() {
 	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].yCoord;
 	short x1C = 0;
 	short x12 = void;
-	if (entityScriptVar0Table[currentEntitySlot] != gameState.unknown96[0]) {
+	if (entityScriptVar0Table[currentEntitySlot] + 1 != gameState.unknown96[0]) {
 		switch (playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle) {
 			case WalkingStyle.ladder:
 			case WalkingStyle.rope:
