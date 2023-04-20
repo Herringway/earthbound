@@ -37,3 +37,4 @@ settings.yml
 *.sym
 text.cache
 save.yaml
+dump
