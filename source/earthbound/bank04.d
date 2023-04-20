@@ -6467,9 +6467,9 @@ void unknownC4D43F(short arg1) {
 	unknown7E2400 = 0;
 	//not used - segmented addressing stuff
 	//ubyte savedBank = setSpritemapBank(bankbyte(&unknownE1F44C[0]));
-	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[arg1][0]; x06.unknown0 != 0xFF; x06++) {
+	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[arg1][0]; x06.x != 0xFF; x06++) {
 		short x14 = 1;
-		if ((unknownE1F47A[x06.unknown2] != 0) && (unknown7EB4AE < 10)) {
+		if ((unknownE1F47A[x06.sprite] != 0) && (unknown7EB4AE < 10)) {
 			x14 = 0;
 		}
 		short x12 = 0;
@@ -6482,7 +6482,7 @@ void unknownC4D43F(short arg1) {
 		if (x14 == 0) {
 			continue;
 		}
-		unknownC08C58F(&unknownE1F44C[x06.unknown2][0], x06.unknown0, x06.unknown1);
+		unknownC08C58F(&unknownE1F44C[x06.sprite][0], x06.x, x06.y);
 	}
 	unknownC4D2F0();
 	if (--unknown7EB4AE == 0) {

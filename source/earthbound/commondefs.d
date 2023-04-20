@@ -5766,9 +5766,9 @@ struct OverworldEventMusic {
 }
 ///
 struct TownMapIconPlacement {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
-	ubyte unknown2; ///
+	ubyte x; ///
+	ubyte y; ///
+	ubyte sprite; ///
 	ushort eventFlag; ///
 }
 ///
