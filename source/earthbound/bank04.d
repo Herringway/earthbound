@@ -2841,13 +2841,13 @@ void unknownC4681A() {
 	if (npcConfig[entityTPTEntries[currentEntitySlot]].talkText == null) {
 		return;
 	}
-	unknownC064E3(8, QueuedInteractionPtr(getTextBlock(npcConfig[entityTPTEntries[currentEntitySlot]].talkText)));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(npcConfig[entityTPTEntries[currentEntitySlot]].talkText)));
 }
 
 /// $C46881
 void unknownC46881(const(ubyte)* arg1) {
 	disableEntityByCharacterOrParty(0xFF);
-	unknownC064E3(8, QueuedInteractionPtr(arg1));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(arg1));
 }
 
 /// $C468A9
@@ -3149,7 +3149,7 @@ void unknownC46E46() {
 
 /// $C46E4F
 void unknownC46E4F(const(ubyte)* arg1) {
-	unknownC064E3(8, QueuedInteractionPtr(arg1));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(arg1));
 }
 
 /// $C46E74

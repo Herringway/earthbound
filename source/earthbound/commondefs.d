@@ -5178,6 +5178,20 @@ enum MusicEffect {
 	unknown31 = 31,
 }
 
+enum InteractionType {
+	unknown0,
+	unknown1,
+	unknown2,
+	unknown3,
+	unknown4,
+	unknown5,
+	unknown6,
+	unknown7,
+	unknown8,
+	unknown9,
+	unknown10,
+}
+
 ///
 struct GameState {
 	version(Have_siryul) {

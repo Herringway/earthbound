@@ -494,12 +494,12 @@ void unknownEF0D73() {
 
 /// $EF0D8D
 void unknownEF0D8D() {
-	unknownC064E3(8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
 }
 
 /// $EF0DFA
 void unknownEF0DFA() {
-	unknownC064E3(10, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
+	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
 }
 
 /// $EF0E67
@@ -553,13 +553,13 @@ short unknownEF0F60() {
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope) || (gameState.walkingStyle == WalkingStyle.escalator) || (gameState.walkingStyle == WalkingStyle.stairs)) {
 		return 1;
 	}
-	return ((entityTickCallbackFlags[23] & (objectTickDisabled | objectMoveDisabled)) != 0) ? 0 : unknown7E5D9A;
+	return ((entityTickCallbackFlags[23] & (objectTickDisabled | objectMoveDisabled)) != 0) ? 0 : pendingInteractions;
 }
 
 /// $EF0FDB
 void unknownEF0FDB() {
 	overworldStatusSuppression = 1;
-	unknown7E5D9A = 1;
+	pendingInteractions = 1;
 	unknownC09F3BEntry2(1);
 	changeMusic(Music.delivery);
 	unknownC03CFD();
@@ -567,7 +567,7 @@ void unknownEF0FDB() {
 
 /// $EF0FF6
 void unknownEF0FF6() {
-	unknown7E5D9A = 0;
+	pendingInteractions = 0;
 	overworldStatusSuppression = getEventFlag(EventFlag.winGiegu);
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);

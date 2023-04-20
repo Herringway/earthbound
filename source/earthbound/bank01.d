@@ -24,7 +24,7 @@ void unknownC10000() {
 }
 
 /// $C10004
-void unknownC10004(const(ubyte)* arg1) {
+void displayInteractionText(const(ubyte)* arg1) {
 	freezeEntities();
 	displayText(arg1);
 	do {
@@ -3463,7 +3463,7 @@ void* cc1FEF(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F63(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
 	disableEntityByCharacterOrParty(0xFF);
-	unknownC064E3(10, QueuedInteractionPtr(getTextBlock(getCCParameters!ArgType(arg2))));
+	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock(getCCParameters!ArgType(arg2))));
 	return null;
 }
 

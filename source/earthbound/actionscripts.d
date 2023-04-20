@@ -9594,7 +9594,7 @@ actionScript696 = [
 ].join();
 actionScript109 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA5A[0]),
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6768),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8584),
@@ -16493,7 +16493,7 @@ actionScript522 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41900[0]),
 ].join();
 actionScript778 = [
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 0),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 0),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript888 = [
@@ -16563,7 +16563,7 @@ actionScript48 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript777 = [
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript260 = [
@@ -20166,7 +20166,7 @@ actionScript110 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7512),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 0),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 0),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
@@ -21937,7 +21937,7 @@ actionScript224 = [
 	ACTIONSCRIPT_C0AA6E(Direction.right, 0),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 0),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7632),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
@@ -22603,7 +22603,7 @@ actionScript306 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript306[18 + 7 * (const(void)*).sizeof]),
 ].join();
 actionScript222 = [
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6928),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 392),
 	ACTIONSCRIPT_SHORTCALL(&unknownC30295[0]),

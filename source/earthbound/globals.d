@@ -487,7 +487,7 @@ __gshared short unknown7E5D7E; /// $5D7E
 
 __gshared short[6] unknown7E5D8C; /// $5D8C
 __gshared short overworldStatusSuppression; /// $5D98
-__gshared short unknown7E5D9A; /// $5D9A
+__gshared short pendingInteractions; /// $5D9A
 __gshared ushort mushroomizationTimer; /// $5D9C - Time left until next direction swap in frames
 __gshared ushort mushroomizationModifier; /// $5D9E - Which set of swapped directions to use
 __gshared ushort mushroomizedWalkingFlag; /// $5DA0 - Whether or not to use mushroomized movement logic
