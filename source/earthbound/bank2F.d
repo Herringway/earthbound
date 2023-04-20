@@ -21285,13 +21285,13 @@ immutable char[14][6] debugSoundModeMenuText = [
 void renderDebugDigit(short x, short y, ushort amount) {
 	ushort* buf = cast(ushort*)sbrk(2 * ushort.sizeof);
 	ushort a = (amount >> 4);
-	if (a < 10) {
+	if (a >= 10) {
 		a += 7;
 	}
 	buf[0] = cast(ushort)(a + 0x2030);
 
 	a = amount & 0xF;
-	if (a < 10) {
+	if (a >= 10) {
 		a += 7;
 	}
 	buf[1] = cast(ushort)(a + 0x2030);
