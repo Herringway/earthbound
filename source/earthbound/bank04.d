@@ -2718,10 +2718,12 @@ void disableEntityByCharacterOrParty(short arg1) {
 		if (a == -1) {
 			return;
 		}
-	}
-	entityTickCallbackFlags[23] |= (objectTickDisabled | objectMoveDisabled);
-	for (short i = 0; i < gameState.partyCount; i++) {
-		entityTickCallbackFlags[gameState.partyEntities[i]] |= (objectTickDisabled | objectMoveDisabled);
+		entityTickCallbackFlags[a] |= (objectTickDisabled | objectMoveDisabled);
+	} else {
+		entityTickCallbackFlags[23] |= (objectTickDisabled | objectMoveDisabled);
+		for (short i = 0; i < gameState.partyCount; i++) {
+			entityTickCallbackFlags[gameState.partyEntities[i]] |= (objectTickDisabled | objectMoveDisabled);
+		}
 	}
 }
 
