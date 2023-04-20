@@ -1918,10 +1918,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank0C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0C/animationSequencePointers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationConfig.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationGraphicsSet1.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationGraphicsSet2.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationGraphicsSet3.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationGraphicsSet4.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationGraphicsSets.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationPalettes.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0C/psiAnimationPointers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank0E.html</loc></url>
@@ -2173,7 +2170,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/AnimatedTiles.sourceOffset.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/AnimationFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/AnimationSequence.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/AnimationSequence.ptr.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/AnimationSequence.id.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/AnimationSequence.unknown4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/AnimationSequence.unknown6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/AnimationSequence.unknown7.html</loc></url>
@@ -2376,6 +2373,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/DoorPtr.entryC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/DoorPtr.unknown3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/DoorType.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/drawRect.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/ebChar.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/ebString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/ebString.html</loc></url>
@@ -2464,8 +2462,8 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/flyoverString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Font.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.data.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.graphics.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.dataID.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.graphicsID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.height.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/FontConfig.width.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/FullOAMTable.html</loc></url>
@@ -2693,7 +2691,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/OverworldEventMusic.unknown3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/OverworldSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/OverworldSpriteGraphics.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/OverworldSpriteGraphics.data.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/OverworldSpriteGraphics.id.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/OverworldSpriteGraphics.lsb.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/OverworldTask.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/OverworldTask.framesLeft.html</loc></url>
