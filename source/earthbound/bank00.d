@@ -12,6 +12,7 @@ import earthbound.bank04;
 import earthbound.text;
 import earthbound.bank0F;
 import earthbound.bank10;
+import earthbound.bank11;
 import earthbound.bank15;
 import earthbound.bank17;
 import earthbound.bank1C;
@@ -6923,7 +6924,7 @@ void unknownC0A443Entry4(short arg1) {
 	//Original code:
 	//dmaCopyRAMSource = cast(void*)((*x02) & 0xFFF0);
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
-	dmaCopyRAMSource = x02.data.ptr;
+	dmaCopyRAMSource = sprites[x02.id].ptr;
 	dmaCopyMode = 0;
 	while (true) {
 		unknownC0A56E();
@@ -7150,7 +7151,7 @@ void unknownC0A794() {
 	//Original code:
 	//dmaCopyRAMSource = (*x02) & 0xFFFE;
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[unknown7E2896 / 2];
-	dmaCopyRAMSource = x02.data.ptr;
+	dmaCopyRAMSource = sprites[x02.id].ptr;
 	dmaCopyMode = 0;
 	while (true) {
 		unknownC0A56E();
@@ -7643,6 +7644,16 @@ shared static this() {
 		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&backgroundHDMABuffer[324]),
 		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&backgroundHDMABuffer[424]),
 		HDMAIndirectTableEntry(0x00),
+	];
+	unknownC0A20C = [
+		&unknown7EB800[0],
+		&unknown7EB800[0xC0],
+		&unknown7EB800[0x180],
+		&unknown7EB800[0x240],
+		&unknown7EB800[0x300],
+		&unknown7EB800[0x3C0],
+		&unknown7EB800[0x480],
+		&unknown7EB800[0x540],
 	];
 }
 

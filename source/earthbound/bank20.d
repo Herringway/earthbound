@@ -4,10 +4,12 @@ module earthbound.bank20;
 import earthbound.commondefs;
 
 /// $E00000
-immutable ubyte[] textWindowGraphics = cast(immutable(ubyte)[])import("graphics/text_window.gfx.lzhal");
+@ROMSource(0x200000, 1876)
+immutable(ubyte)[] textWindowGraphics;
 
 /// $E00751
-immutable ubyte[] flavouredTextGraphics = cast(immutable(ubyte)[])import("graphics/flavoured_text.gfx.lzhal");
+@ROMSource(0x200754, 76)
+immutable(ubyte)[] flavouredTextGraphics;
 
 /// $E01FB9
 immutable TextWindowPropertiesEntry[5] textWindowProperties = [
@@ -261,11 +263,5 @@ immutable RGB[32] textWindowDeathPalette =[
 ];
 
 /// $E02190
-immutable ubyte[][6] townMapGraphicsPointerTable = [
-	cast(immutable(ubyte)[])import("town_maps/0.bin.lzhal"), //onett
-	cast(immutable(ubyte)[])import("town_maps/1.bin.lzhal"), //twoson
-	cast(immutable(ubyte)[])import("town_maps/2.bin.lzhal"), //threed
-	cast(immutable(ubyte)[])import("town_maps/3.bin.lzhal"), //fourside
-	cast(immutable(ubyte)[])import("town_maps/4.bin.lzhal"), //scaraba
-	cast(immutable(ubyte)[])import("town_maps/5.bin.lzhal"), //summers
-];
+@([ROMSource(0x2021A8, 10104), ROMSource(0x204920, 7681), ROMSource(0x206721, 7256), ROMSource(0x208379, 10811), ROMSource(0x20ADB4, 6717), ROMSource(0x20C7F1, 9490)])
+immutable(ubyte[])[] townMapGraphicsPointerTable;

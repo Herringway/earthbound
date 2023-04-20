@@ -7,10 +7,12 @@ import earthbound.bank01;
 import earthbound.globals;
 
 /// $E10000
-immutable ubyte[] coffeeSequenceText = flyoverString(import("coffee.flyover"));
+@ROMSource(0x210000, 1618)
+immutable(ubyte)[] coffeeSequenceText;
 
 /// $E10652
-immutable ubyte[] teaSequenceText = flyoverString(import("tea.flyover"));
+@ROMSource(0x210652, 1332)
+immutable(ubyte)[] teaSequenceText;
 
 /// $E12EFA
 immutable CastSequenceFormattingEntry[48] castSequenceFormatting = [
@@ -101,7 +103,8 @@ immutable CreditsPhotograph[32] photographerConfigTable = [
 ];
 
 /// $E1374A
-immutable ubyte[] compressedPaletteUnknown = cast(immutable(ubyte)[])import("unknown_palette.pal.lzhal");
+@ROMSource(0x21374A, 2549)
+immutable(ubyte)[] compressedPaletteUnknown;
 
 /// $E1413F
 immutable ubyte[] staffText;
@@ -147,79 +150,104 @@ void unknownE14DE8() {
 }
 
 /// $E14EC1
-immutable ubyte[] apeArrangement = cast(immutable(ubyte)[])import("intro/logos/ape.arr.lzhal");
+@ROMSource(0x214EC1, 105)
+immutable(ubyte)[] apeArrangement;
 
 /// $E14F2A
-immutable ubyte[] apeGraphics = cast(immutable(ubyte)[])import("intro/logos/ape.gfx.lzhal");
+@ROMSource(0x214F2A, 518)
+immutable(ubyte)[] apeGraphics;
 
 /// $E15130
-immutable ubyte[] apePalette = cast(immutable(ubyte)[])import("intro/logos/ape.pal.lzhal");
+@ROMSource(0x215130, 68)
+immutable(ubyte)[] apePalette;
 
 /// $E15174
-immutable ubyte[] halkenArrangement = cast(immutable(ubyte)[])import("intro/logos/halken.arr.lzhal");
+@ROMSource(0x215174, 116)
+immutable(ubyte)[] halkenArrangement;
 
 /// $E151E8
-immutable ubyte[] halkenGraphics = cast(immutable(ubyte)[])import("intro/logos/halken.gfx.lzhal");
+@ROMSource(0x2151E8, 464)
+immutable(ubyte)[] halkenGraphics;
 
 /// $E153B8
-immutable ubyte[] halkenPalette = cast(immutable(ubyte)[])import("intro/logos/halken.pal.lzhal");
+@ROMSource(0x2153B8, 157)
+immutable(ubyte)[] halkenPalette;
 
 /// $E15455
-immutable ubyte[] nintendoArrangement = cast(immutable(ubyte)[])import("intro/logos/nintendo.arr.lzhal");
+@ROMSource(0x215455, 73)
+immutable(ubyte)[] nintendoArrangement;
 
 /// $E1549E
-immutable ubyte[] nintendoGraphics = cast(immutable(ubyte)[])import("intro/logos/nintendo.gfx.lzhal");
+@ROMSource(0x21549E, 241)
+immutable(ubyte)[] nintendoGraphics;
 
 /// $E1558F
-immutable ubyte[] nintendoPalette = cast(immutable(ubyte)[])import("intro/logos/nintendo.pal.lzhal");
+@ROMSource(0x21558F, 68)
+immutable(ubyte)[] nintendoPalette;
 
 /// $E155D3
-immutable ubyte[] gasStationArrangement = cast(immutable(ubyte)[])import("intro/gas_station.arr.lzhal");
+@ROMSource(0x2155D3, 1376)
+immutable(ubyte)[] gasStationArrangement;
 
 /// $E15B33
-immutable ubyte[] gasStationGraphics = cast(immutable(ubyte)[])import("intro/gas_station.gfx.lzhal");
+@ROMSource(0x215B33, 20100)
+immutable(ubyte)[] gasStationGraphics;
 
 /// $E1A9B7
-immutable ubyte[] gasStationPalette = cast(immutable(ubyte)[])import("intro/gas_station.pal.lzhal");
+@ROMSource(0x21A9B7, 166)
+immutable(ubyte)[] gasStationPalette;
 
 /// $E1AA5D
-immutable ubyte[] gasStationPalette2 = cast(immutable(ubyte)[])import("intro/gas_station2.pal.lzhal");
+@ROMSource(0x21AA5D, 130)
+immutable(ubyte)[] gasStationPalette2;
 
 /// $E1AADF
-immutable ubyte[] producedItoiArrangement = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.arr.lzhal");
+@ROMSource(0x21AADF, 108)
+immutable(ubyte)[] producedItoiArrangement;
 
 /// $E1AB4B
-immutable ubyte[] producedItoiGraphics = cast(immutable(ubyte)[])import("intro/attract/produced_by_itoi.gfx.lzhal");
+@ROMSource(0x21AB4B, 438)
+immutable(ubyte)[] producedItoiGraphics;
 
 /// $E1AD01
-immutable ubyte[] nintendoPresentationArrangement = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.arr.lzhal");
+@ROMSource(0x21AD01, 77)
+immutable(ubyte)[] nintendoPresentationArrangement;
 
 /// $E1AD4E
-immutable ubyte[] nintendoPresentationGraphics = cast(immutable(ubyte)[])import("intro/attract/nintendo_presentation.gfx.lzhal");
+@ROMSource(0x21AD4E, 289)
+immutable(ubyte)[] nintendoPresentationGraphics;
 
 /// $E1AE6F
-immutable ubyte[] nintendoItoiPalette = cast(immutable(ubyte)[])import("intro/attract/nintendo_itoi.pal.lzhal");
+@ROMSource(0x21AE6F, 13)
+immutable(ubyte)[] nintendoItoiPalette;
 
 /// $E1AE7C
-immutable ubyte[] unknownE1AE7C = cast(immutable(ubyte)[])import("E1AE7C.bin.lzhal");
+@ROMSource(0x21AE7C, 7)
+immutable(ubyte)[] unknownE1AE7C;
 
 /// $E1AE83
-immutable ubyte[] unknownE1AE83 = cast(immutable(ubyte)[])import("E1AE83.bin.lzhal");
+@ROMSource(0x21AE83, 122)
+immutable(ubyte)[] unknownE1AE83;
 
 /// $E1AEFD
-immutable ubyte[] unknownE1AEFD = cast(immutable(ubyte)[])import("E1AEFD.bin.lzhal");
+@ROMSource(0x21AEFD, 128)
+immutable(ubyte)[] unknownE1AEFD;
 
 /// $E1AF7D
-immutable ubyte[] titleScreenArrangement = cast(immutable(ubyte)[])import("intro/title_screen.arr.lzhal");
+@ROMSource(0x21AF7D, 660)
+immutable(ubyte)[] titleScreenArrangement;
 
 /// $E1B211
-immutable ubyte[] titleScreenGraphics = cast(immutable(ubyte)[])import("intro/title_screen.gfx.lzhal");
+@ROMSource(0x21B211, 5332)
+immutable(ubyte)[] titleScreenGraphics;
 
 /// $E1C6E5
-immutable ubyte[] unknownE1C6E5 = cast(immutable(ubyte)[])import("intro/title_screen_letters.gfx.lzhal");
+@ROMSource(0x21C6E5, 1788)
+immutable(ubyte)[] unknownE1C6E5;
 
 /// $E1CDE1
-immutable ubyte[] titleScreenPalette = cast(immutable(ubyte)[])import("intro/title_screen.pal.lzhal");
+@ROMSource(0x21CDE1, 39)
+immutable(ubyte)[] titleScreenPalette;
 
 /// $E1CE08
 immutable SpriteMap*[9] unknownE1CF9D = [
@@ -325,31 +353,39 @@ immutable SpriteMap*[9] unknownE1CF9D = [
 ];
 
 /// $E1CFAF
-immutable ubyte[] unknownE1CFAF = cast(immutable(ubyte)[])import("E1CFAF.gfx.lzhal");
+@ROMSource(0x21CFAF, 1349)
+immutable(ubyte)[] unknownE1CFAF;
 
 /// $E1D4F4
-immutable ubyte[] unknownE1D4F4 = cast(immutable(ubyte)[])import("E1D4F4.pal.lzhal");
+@ROMSource(0x21D4F4, 244)
+immutable(ubyte)[] unknownE1D4F4;
 
 /// $E1D5E8
-immutable ubyte[] unknownE1D5E8 = cast(immutable(ubyte)[])import("E1D5E8.arr.lzhal");
+@ROMSource(0x21D5E8, 249)
+immutable(ubyte)[] unknownE1D5E8;
 
 /// $E1D6E1
-immutable ubyte[] unknownE1D6E1 = cast(immutable(ubyte)[])import("E1D6E1.gfx.lzhal");
+@ROMSource(0x21D6E1, 308)
+immutable(ubyte)[] unknownE1D6E1;
 
 /// $E1D815
 immutable ubyte[] unknownE1D815 = [0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10, 0x00, 0x00, 0xFF, 0x7F, 0x1E, 0x38, 0x86, 0x10];
 
 /// $E1D835
-immutable ubyte[] castNamesGraphics = cast(immutable(ubyte)[])import("ending/cast_names.gfx.lzhal");
+@ROMSource(0x21D835, 3249)
+immutable(ubyte)[] castNamesGraphics;
 
 /// $E1E4E6
-immutable ubyte[] unknownE1E4E6 = cast(immutable(ubyte)[])import("ending/cast_names.pal.lzhal");
+@ROMSource(0x21E4E6, 66)
+immutable(ubyte)[] unknownE1E4E6;
 
 /// $E1E528
-immutable ubyte[] staffCreditsFontGraphics = cast(immutable(ubyte)[])import("ending/credits_font.gfx.lzhal");
+@ROMSource(0x21E528, 1004)
+immutable(ubyte)[] staffCreditsFontGraphics;
 
 /// $E1E914
-immutable ubyte[] staffCreditsFontPalette = cast(immutable(ubyte)[])import("ending/credits_font.pal");
+@ROMSource(0x21E914, 16)
+immutable(ubyte)[] staffCreditsFontPalette;
 
 /// $E1E924
 immutable ubyte[] unknownE1E924 = [ 0x04, 0x00, 0x7F, 0x1F, 0x58, 0x32 ];
@@ -361,10 +397,12 @@ immutable ubyte[] unknownE1E92A = [ 0x1F, 0x3D, 0xFF, 0x7F, 0xE0, 0x07, 0x86, 0x
 immutable ubyte[] unknownE1E94A = [ 0xE8, 0x62, 0x0C, 0x24, 0x00, 0x0D, 0x57, 0x24, 0x0E, 0x02, 0x24, 0x0D, 0x64, 0x45, 0x0C, 0x24, 0x00, 0x0F, 0x57, 0x24, 0x00, 0x02, 0x24, 0x0F, 0xE4, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF0, 0x3F, 0x00, 0xFA, 0xF2, 0x7F, 0x00, 0xFA, 0x45, 0x0C, 0x24, 0x01, 0x0D, 0xA4, 0x57, 0x0E, 0xE4, 0x01, 0x0D, 0xE4, 0xE8, 0x62, 0x0C, 0x24, 0x3F, 0x00, 0x03, 0x3C, 0x3C, 0x7E, 0x42, 0x43, 0xFF, 0x99, 0x01, 0x7E, 0x42, 0xD1, 0x07, 0x21, 0x0F, 0x1C, 0x1C, 0x3C, 0x34, 0x7C, 0x44, 0x7C, 0x64, 0x3C, 0x24, 0xFF, 0xE7, 0xFF, 0x81, 0xFF, 0xFF, 0x2F, 0x00, 0x84, 0x07, 0x20, 0x06, 0xB9, 0x7F, 0x79, 0x7E, 0x42, 0xFE, 0x9E, 0x98, 0x07, 0x4C, 0x04, 0x99, 0x7E, 0x72, 0x7F, 0x79, 0x95, 0x07, 0x2A, 0x0F, 0x06, 0x06, 0x0E, 0x0A, 0x1E, 0x12, 0x3E, 0x22, 0x7F, 0x53, 0xFF, 0x81, 0xFF, 0xF3, 0x0E, 0x0E, 0x2F, 0x00, 0x22, 0xFF, 0x04, 0x81, 0xFE, 0x9E, 0xFE, 0x82, 0x97, 0x07, 0x88, 0x07, 0x3E, 0x3E, 0x7E, 0x42, 0xFC, 0x9C, 0xFE, 0x82, 0x97, 0x07, 0x28, 0x83, 0x07, 0xC0, 0x03, 0xFF, 0x99, 0xFE, 0xF2, 0x42, 0x3C, 0x24, 0x91, 0x07, 0x2E, 0x86, 0x07, 0x80, 0x00, 0x42, 0x97, 0x07, 0x28, 0x87, 0x07, 0x20, 0x07, 0x7F, 0x41, 0x3F, 0x39, 0x7E, 0x42, 0x7C, 0x7C, 0x31, 0x00, 0x83, 0x07, 0xA0, 0x07, 0x1C, 0x14, 0x38, 0x28, 0x70, 0x50, 0x60, 0x60, 0x31, 0x00, 0x3F, 0xFF, 0x2B, 0x00, 0x03, 0x03, 0x00, 0x02, 0x01, 0x2B, 0xFF, 0x03, 0xFC, 0xFC, 0xFD, 0xFD, 0xCC, 0x08, 0xAB, 0xCE, 0x08, 0xA1, 0x83, 0x08, 0xCD, 0x47, 0x02, 0x01, 0x2F, 0xFD, 0xFF ];
 
 /// $E1EA50
-immutable ubyte[] townMapLabelGfx = cast(immutable(ubyte)[])import("town_maps/label.gfx.lzhal");
+@ROMSource(0x21EA50, 1907)
+immutable(ubyte)[] townMapLabelGfx;
 
 /// $E1F1C3
-immutable ubyte[] townMapIconPalette = cast(immutable(ubyte)[])import("town_maps/icon.pal");
+@ROMSource(0x21F1C3, 64)
+immutable(ubyte)[] townMapIconPalette;
 
 /// $E1F44C
 immutable SpriteMap[][23] unknownE1F44C = [

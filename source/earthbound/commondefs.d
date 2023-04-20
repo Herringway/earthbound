@@ -5365,7 +5365,7 @@ struct SpriteGrouping {
 }
 ///
 struct OverworldSpriteGraphics {
-	const(ubyte)[] data; ///
+	size_t id; ///
 	ubyte lsb; ///
 }
 ///
@@ -5599,8 +5599,8 @@ struct SaveDataReplay {
 }
 ///
 struct FontConfig {
-	immutable(ubyte)[] data; ///
-	immutable(ubyte)[] graphics; ///
+	ubyte dataID; ///
+	ubyte graphicsID; ///
 	ushort height; ///
 	ushort width; ///
 }
@@ -5903,7 +5903,7 @@ struct BattleGroupEnemy {
 }
 ///
 struct BattleSpritePointer {
-	immutable(ubyte)[] sprite; ///
+	ubyte sprite; ///
 	ubyte size; ///
 }
 ///
@@ -6299,7 +6299,7 @@ struct EnemyPlacementGroup {
 }
 ///
 struct PSIAnimation {
-	immutable(ubyte)[] graphics; ///
+	ubyte graphics; ///
 	ubyte frameDuration; ///
 	ubyte paletteDuration; ///
 	ubyte unknown4; ///
@@ -6349,7 +6349,7 @@ union Unknown7E0028Union {
 }
 ///
 struct AnimationSequence {
-	immutable(ubyte)[] ptr; ///
+	ubyte id; ///
 	ushort unknown4; ///
 	ubyte unknown6; ///
 	ubyte unknown7; ///
@@ -6459,7 +6459,7 @@ ubyte[] ebString(string str) {
 	return result;
 }
 ///
-ubyte[] ebStringz(string str) {
+ubyte[] ebStringz(string str) @safe pure {
 	ubyte[] result = new ubyte[](str.length + 1);
 	size_t idx;
 	foreach (dchar c; str) {
@@ -6471,7 +6471,7 @@ ubyte[] ebStringz(string str) {
 
 static assert(ebString!4("Null") == [0x7E, 0xA5, 0x9C, 0x9C]);
 ///
-ubyte ebChar(dchar c) {
+ubyte ebChar(dchar c) @safe pure {
 	import std.conv : text;
 	import std.utf : toUTF8;
 	switch (c) {
@@ -7255,4 +7255,9 @@ void printTrace() {
 	foreach (line; trace) {
 		writeln(line);
 	}
+}
+
+struct ROMSource {
+	uint offset;
+	uint length;
 }

@@ -14,6 +14,7 @@ import earthbound.bank0C;
 import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank10;
+import earthbound.bank11;
 import earthbound.bank15;
 import earthbound.bank17;
 import earthbound.bank18;
@@ -717,7 +718,7 @@ void updateMapPaletteAnimation() {
 /// $C4283F
 void unknownC4283F(short arg1, ubyte* arg2, short arg3) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
-	const(ubyte)* x00 = &entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].data[0];
+	const(ubyte)* x00 = &sprites[entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].id][0];
 	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
 	do {
 		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00)[arg3];
@@ -734,7 +735,7 @@ void unknownC42884(short arg1, ubyte* arg2, short arg3) {
 	}
 	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
-	const(ubyte)* x00_2 = &x00.data[0];
+	const(ubyte)* x00_2 = &sprites[x00.id][0];
 	do {
 		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00_2)[arg3];
 	} while (--arg3 > 0);
@@ -1110,18 +1111,8 @@ void setPartyTickCallbacks(short leaderEntityID, void function() leaderCallback,
 }
 
 /// $C42F64
-immutable ubyte[][10] mapDataTileTableChunksTable = [
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_01.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_02.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_03.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_04.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_05.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_06.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_07.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_08.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_09.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_10.bin"),
-];
+@([ROMSource(0x160000, 10240), ROMSource(0x162800, 10240), ROMSource(0x165000, 12288), ROMSource(0x168000, 10240), ROMSource(0x16A800, 10240), ROMSource(0x16D000, 12288), ROMSource(0x170000, 10240), ROMSource(0x172800, 10240), ROMSource(0x175000, 12288), ROMSource(0x178000, 10240)])
+immutable(ubyte[])[] mapDataTileTableChunksTable;
 
 /// $C42F8C
 immutable ushort[88] unknownC42F8C = [
@@ -1528,7 +1519,7 @@ short unknownC43E31(const(ubyte)* arg1, short arg2) {
 	short x12 = 0;
 	while ((arg1[0] != 0) && (arg2 != 0)) {
 		arg2--;
-		x12 += unknown7E5E6D + (unknown7EB4CE != 0) ? fontConfigTable[0].data[((arg1++)[0] - ebChar(' ')) & 0x7F] : fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[((arg1++)[0] - ebChar(' ')) & 0x7F];
+		x12 += unknown7E5E6D + (unknown7EB4CE != 0) ? fontData[fontConfigTable[0].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F] : fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F];
 	}
 	return x12;
 }
@@ -1596,7 +1587,7 @@ void unknownC440B5(ubyte* arg1, short arg2) {
 	for (i = 0; (arg1[i] != 0) && (i < arg2); i++, arg1++) {
 		unknown7E1B86[i] = arg1[0];
 		unknown7E1B56[i] = (arg1[0] - ebChar(' ')) & 0x7F;
-		unknown7E1B6E[i] = cast(ubyte)(fontConfigTable[0].data[(arg1[0] - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1[0] - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 		unknownC44E61(0, arg1[0]);
 	}
 	unknown7E9662 = i;
@@ -1627,7 +1618,7 @@ void unknownC441B7(short arg1) {
 	unknown7E1B56[0] = 0x20;
 	for (short i = 1; i < arg1; i++) {
 		unknown7E1B56[i] = cast(ubyte)x02;
-		unknown7E1B6E[i] = cast(ubyte)(fontConfigTable[0].data[x02] + unknown7E5E6D);
+		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + unknown7E5E6D);
 		unknownC44E61(0, 0x53);
 	}
 }
@@ -1640,7 +1631,7 @@ void unknownC4424A(short arg1) {
 		unknown7E1B86[unknown7E9662] = cast(ubyte)arg1;
 	}
 	unknown7E1B56[unknown7E9662] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
-	unknown7E1B6E[unknown7E9662] = cast(ubyte)(fontConfigTable[0].data[(arg1 - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+	unknown7E1B6E[unknown7E9662] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 }
 
 /// $C442AC
@@ -1671,7 +1662,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 	for (short i = 0; i < arg2; i++) {
-		const(ubyte)* x06 = &fontConfigTable[0].graphics[fontConfigTable[0].height * unknown7E1B56[i]];
+		const(ubyte)* x06 = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * unknown7E1B56[i]];
 		short j;
 		for (j = unknown7E1B6E[i]; j >= 8; j -= 8) {
 			renderText(8, fontConfigTable[0].width, x06);
@@ -1719,7 +1710,7 @@ void renderSmallTextToVRAM(ubyte* arg1, ushort arg2) {
 	ushort x18 = vwfTile;
 	ubyte* x0A = arg1;
 	for (short i = 0; arg1[0] != 0; i++) {
-		renderText(6, fontConfigTable[Font.tiny].width, &fontConfigTable[Font.tiny].graphics[(((arg1++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
+		renderText(6, fontConfigTable[Font.tiny].width, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((arg1++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
 	}
 	for (short i = x18; (x0A++)[0] != 0; i++) {
 		copyToVRAM(0, 0x10, arg2, &vwfBuffer[i][0]);
@@ -1760,7 +1751,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 			break;
 		}
 		unknown7E9660++;
-		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 	}
 	short newLineLength;
 	if (windowStats[windowTable[currentFocusWindow]].textX != 0) {
@@ -2043,8 +2034,8 @@ void unknownC44E61(short arg1, short arg2) {
 			unknown7E5E75 = 0;
 		}
 		unknown7E5E76 = cast(ubyte)arg2;
-		const(ubyte)* x14 = &fontConfigTable[arg1].graphics[(arg2 - ebChar(' ')) * fontConfigTable[arg1].height];
-		short x12 = fontConfigTable[arg1].data[arg2 - ebChar(' ')] + unknown7E5E6D;
+		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(arg2 - ebChar(' ')) * fontConfigTable[arg1].height];
+		short x12 = fontData[fontConfigTable[arg1].dataID][arg2 - ebChar(' ')] + unknown7E5E6D;
 		if (x12 > 8) {
 			while (x12 > 8) {
 				renderText(8, fontConfigTable[arg1].width, x14);
@@ -2061,7 +2052,7 @@ void unknownC44E61(short arg1, short arg2) {
 short unknownC44FF3(short arg1, short fontID, ubyte* arg3) {
 	short result;
 	for (short i = 0; i < arg1; i++) {
-		result += cast(short)(unknown7E5E6D + fontConfigTable[fontID].data[(*(arg3++) - 0x50) & 0x7F] + i);
+		result += cast(short)(unknown7E5E6D + fontData[fontConfigTable[fontID].dataID][(*(arg3++) - 0x50) & 0x7F] + i);
 	}
 	return result;
 }
@@ -2079,7 +2070,7 @@ void unknownC4507A(uint arg1) {
 	ubyte* x20 = x22;
 	short x1E = windowStats[windowTable[currentFocusWindow]].textX;
 	short x1C = windowStats[windowTable[currentFocusWindow]].textY;
-	short x04 = unknown7E5E6D + fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[4];
+	short x04 = unknown7E5E6D + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][4];
 
 	for (short i = 0; i < x24; i++) {
 		x12[i] = cast(ubyte)(*x22 + 0x60);
@@ -3491,7 +3482,7 @@ void prepareWindowGraphics() {
 		ubyte* x0A = &partyCharacters[i].name[0];
 		vwfX = 2;
 		for (short j = 0; x0A[0] != 0; j++) {
-			renderText(6, fontConfigTable[Font.battle].width, &fontConfigTable[Font.battle].graphics[fontConfigTable[Font.battle].height * ((*x0A - 0x50) & 0x7F)]);
+			renderText(6, fontConfigTable[Font.battle].width, &fontGraphics[fontConfigTable[Font.battle].graphicsID][fontConfigTable[Font.battle].height * ((*x0A - 0x50) & 0x7F)]);
 			x0A++;
 		}
 		for (short j = 0; j < 4; j++) {
@@ -3934,8 +3925,8 @@ void unknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData)
 /// $C4999B
 void unknownC4999B(ubyte arg1) {
 	arg1 = (arg1 - 0x50) & 0x7F;
-	const(ubyte)* x06 = &fontConfigTable[Font.large].graphics[arg1 * fontConfigTable[Font.large].height];
-	ubyte x02 = cast(ubyte)(fontConfigTable[Font.large].data[arg1] + 1);
+	const(ubyte)* x06 = &fontGraphics[fontConfigTable[Font.large].graphicsID][arg1 * fontConfigTable[Font.large].height];
+	ubyte x02 = cast(ubyte)(fontData[fontConfigTable[Font.large].dataID][arg1] + 1);
 	while (x02 > 8) {
 		unknownC49875(8, fontConfigTable[Font.large].width, &vwfBuffer[0][0], x06);
 		x02 -= 8;
@@ -4105,16 +4096,8 @@ void coffeeTeaScene(short id) {
 }
 
 /// $C49EA4
-immutable ubyte[][8] flyoverTextPointers = [
-	flyoverString(import("onett1.flyover")),
-	flyoverString(import("onett2.flyover")),
-	flyoverString(import("onett3.flyover")),
-	flyoverString(import("winters1.flyover")),
-	flyoverString(import("winters2.flyover")),
-	flyoverString(import("dalaam1.flyover")),
-	flyoverString(import("dalaam2.flyover")),
-	flyoverString(import("laterthatnight.flyover")),
-];
+@([ROMSource(0x210B86, 22), ROMSource(0x210B9C, 38), ROMSource(0x210BC2, 16), ROMSource(0x210BD2, 43), ROMSource(0x210BFD, 30), ROMSource(0x210C1B, 29), ROMSource(0x210C38, 41), ROMSource(0x210C61, 25)])
+immutable(ubyte[])[] flyoverTextPointers;
 
 /// $C49EC4
 void unknownC49EC4(short id) {
@@ -4870,8 +4853,8 @@ ushort unknownC4B1B8(ushort arg1, ushort arg2, ushort arg3) {
 	if (arg3 == 0xFF) {
 		return arg1;
 	}
-	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, arg1, &spriteGroupingPointers[arg2].sprites[arg3].data[0]);
-	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, cast(ushort)(arg1 + 0x100), &spriteGroupingPointers[arg2].sprites[arg3].data[spriteGroupingPointers[arg2].width]);
+	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, arg1, &sprites[spriteGroupingPointers[arg2].sprites[arg3].id][0]);
+	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, cast(ushort)(arg1 + 0x100), &sprites[spriteGroupingPointers[arg2].sprites[arg3].id][spriteGroupingPointers[arg2].width]);
 	return cast(ushort)(arg1 + spriteGroupingPointers[arg2].width);
 }
 
@@ -5830,7 +5813,7 @@ void unknownC47A6B() {
 
 /// $C47A9E
 void unknownC47A9E() {
-	decomp(&animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].ptr[0], &unknown7F0000[0]);
+	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &unknown7F0000[0]);
 	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &unknown7F0000[0]);
 	memcpy(&palettes[0][0], &unknown7F0000[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
 	unknown7E0030 = 0x18;
@@ -5887,9 +5870,9 @@ ushort* unknownC4810E(short arg1, ushort* arg2) {
 void unknownC4827B(short arg1, short arg2) {
 	short x1A = (arg2 - 0x50) & 0x7F;
 	short x18 = fontConfigTable[arg1].height;
-	const(ubyte)* x14 = &fontConfigTable[arg1].graphics[x1A * x18];
+	const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][x1A * x18];
 	short x02 = fontConfigTable[arg1].width;
-	short x12 = fontConfigTable[arg1].data[x1A];
+	short x12 = fontData[fontConfigTable[arg1].dataID][x1A];
 	x12 += unknown7E5E6D;
 	while (x12 > 8) {
 		renderText(8, x02, x14);
@@ -7051,8 +7034,8 @@ void unknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	unknown7E9652.unknown0 = 0;
 	unknownC1FF99(-1, arg2, arg1);
 	for (short i = 0; arg1[0] != 0; arg1++, i++) {
-		const(ubyte)* x0A = &fontConfigTable[0].graphics[fontConfigTable[0].width * (arg1[0] - ebChar(' ') & 0x7F)];
-		short x1E = fontConfigTable[0].data[arg1[0] - ebChar(' ') & 0x7F] + unknown7E5E6D;
+		const(ubyte)* x0A = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].width * (arg1[0] - ebChar(' ') & 0x7F)];
+		short x1E = fontData[fontConfigTable[0].dataID][arg1[0] - ebChar(' ') & 0x7F] + unknown7E5E6D;
 		while (x1E > 8) {
 			renderText(x1E, fontConfigTable[0].width, x0A);
 			x1E -= 8;

@@ -7455,11 +7455,11 @@ void unknownC2E0E7() {
 /// $C2E116
 void showPSIAnimation(short arg1) {
 	if (loadedBGDataLayer1.bitDepth == 2) {
-		decomp(&psiAnimationConfig[arg1].graphics[0], &unknown7F0000[0x8000]);
+		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &unknown7F0000[0x8000]);
 		copyToVRAM2(0, 0x1000, 0, &unknown7F0000[0x8000]);
 		unknown7E1BCA = &palettes[3][0];
 	} else {
-		decomp(&psiAnimationConfig[arg1].graphics[0], &unknown7F0000[0]);
+		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &unknown7F0000[0]);
 		ushort* x06 = cast(ushort*)&unknown7F0000[0];
 		ushort* x0A = cast(ushort*)&unknown7F0000[0x8000];
 		for (short i = 0; i < 0x100; i++) {
@@ -7860,7 +7860,7 @@ void loadBattleSprite(short arg1) {
 	unknown7EAACE[unknown7EAAB4] = cast(ubyte)x24;
 	unknown7EAAB4++;
 	ubyte* x1A = &unknown7F0000[0x8000];
-	decomp(&battleSpritePointers[arg1].sprite[0], x1A);
+	decomp(&battleSpriteGraphics[battleSpritePointers[arg1].sprite][0], x1A);
 	short y = cast(short)(x24 * x22);
 	while (y-- != 0) {
 		ubyte* x0A = &unknown7F0000[unknownC3F871[unknown7EAAB2++]];

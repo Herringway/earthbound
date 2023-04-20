@@ -2,7 +2,8 @@ import std.algorithm : filter;
 import std.conv : to;
 import std.datetime : SysTime;
 import std.experimental.logger;
-import std.file : exists, getTimes;
+import std.exception;
+import std.file : exists, getTimes, mkdirRecurse, read;
 import std.format : sformat;
 import std.getopt;
 import std.range : chain, drop, front, repeat, zip;
@@ -18,6 +19,7 @@ import bindbc.sdl;
 
 import earthbound.bank00 : start, irqNMICommon;
 import earthbound.commondefs;
+import dataloader;
 import earthbound.text;
 
 import audio;
@@ -113,30 +115,24 @@ void main(string[] args) {
 	scope(exit) {
 		uninitializeGamepad();
 	}
+	enforce("earthbound.sfc".exists, "Earthbound ROM not found - Place earthbound.sfc in the current directory");
+	const rom = cast(ubyte[])read("earthbound.sfc");
+	loadROMData(rom);
+
+	if (!"data/songs".exists) {
+		mkdirRecurse("data/songs");
+		buildNSPCFiles(rom);
+	}
 
 	loadAudioData();
 
-	SysTime _, textCacheTime;
-	bool loadCachedText = true;
-	if (textCacheFile.exists) {
-		getTimes(textCacheFile, _, textCacheTime);
-	} else {
-		loadCachedText = false;
-	}
+	bool loadCachedText = !forceCacheRebuild && textCacheFile.exists;
 
-	foreach (textDocFile; getDataFiles("text", "*.yaml")) {
-		SysTime textTime;
-		getTimes(textDocFile, _, textTime);
-		if (forceCacheRebuild || (textTime > textCacheTime)) {
-			tracef("%s is newer than cache, rebuilding", textDocFile);
-			loadCachedText = false;
-			break;
-		}
-	}
 	if (!loadCachedText) {
-		infof("Text files newer than cache, rebuilding...");
-		foreach (textDocFile; parallel(getDataFiles("text", "*.yaml"))) {
-			const textData = fromFile!(StructuredText[][string][], YAML, DeSiryulize.optionalByDefault)(textDocFile);
+		const extractInfo = fromFile!(ExtractInfo, YAML)("extract.yaml");
+		infof("Building text cache...");
+		foreach (textDocFile; extractInfo.text) {
+			const textData = parseTextData(rom[textDocFile.offset .. textDocFile.offset + textDocFile.size], textDocFile.offset, extractInfo.renameLabels, extractInfo.text);
 			foreach (idx, scriptData; textData) {
 				string nextLabel;
 				if (idx + 1 < textData.length) {
@@ -146,7 +142,8 @@ void main(string[] args) {
 				auto script = scriptData.values[0];
 				loadText(script, label, nextLabel);
 			}
-			tracef("Loaded text %s", textDocFile);
+			debug(dumpText) textData.toFile!(YAML, Siryulize.omitInits)(format!"dump/%s.yaml"(textDocFile.name));
+			tracef("Loaded text %s", textDocFile.name);
 		}
 		tracef("Loaded text, saving cache");
 		saveTextCache(textCacheFile);
@@ -394,4 +391,52 @@ void printEntities() {
 		);
 	}
 	printBorder("└┴┘", paddingsSprites);
+}
+
+struct ExtractInfo {
+	string[size_t][string] renameLabels;
+	DumpInfo[] text;
+}
+
+void buildNSPCFiles(const ubyte[] data) {
+	import nspcplay : NSPCWriter, parsePacks, ReleaseTable, VolumeTable;
+	import std.algorithm.iteration : map;
+	import std.path : buildPath;
+	static align(1) struct PackPointer {
+		align(1):
+		ubyte bank;
+		ushort addr;
+		uint full() const {
+			return addr + ((cast(uint)bank) << 16);
+		}
+	}
+	enum NUM_SONGS = 0xBF;
+	enum NUM_PACKS = 0xA9;
+	enum packPointerTable = 0x4F947;
+	enum packTableOffset = 0x4F70A;
+	auto packs = (cast(PackPointer[])(data[packPointerTable .. packPointerTable + NUM_PACKS * PackPointer.sizeof]))
+		.map!(x => parsePacks(data[x.full - 0xC00000 .. $]));
+	enum SONG_POINTER_TABLE = 0x294A;
+	auto bgmPacks = cast(ubyte[3][])data[packTableOffset .. packTableOffset + (ubyte[3]).sizeof * NUM_SONGS];
+	auto songPointers = cast(ushort[])packs[1][2].data[SONG_POINTER_TABLE .. SONG_POINTER_TABLE + ushort.sizeof * NUM_SONGS];
+	foreach (idx, songPacks; bgmPacks) {
+		NSPCWriter writer;
+		writer.header.songBase = songPointers[idx];
+		writer.header.instrumentBase = 0x6E00;
+		writer.header.sampleBase = 0x6C00;
+		writer.header.volumeTable = VolumeTable.hal1;
+		writer.header.releaseTable = ReleaseTable.hal1;
+		if (songPacks[2] == 0xFF) {
+			writer.packs ~= packs[1];
+		}
+		foreach (pack; songPacks) {
+			if (pack == 0xFF) {
+				continue;
+			}
+			writer.packs ~= packs[pack];
+		}
+		tracef("Writing %03X.nspc", idx);
+		auto file = File(buildPath("data/songs", format!"%03s.nspc"(idx + 1)), "w").lockingBinaryWriter;
+		writer.toBytes(file);
+	}
 }
