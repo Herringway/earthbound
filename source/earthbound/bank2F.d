@@ -21282,25 +21282,25 @@ immutable char[14][6] debugSoundModeMenuText = [
 ];
 
 /// $EFD56F
-void unknownEFD56F(short arg1, short arg2, ushort arg3) {
-	ushort* x = cast(ushort*)sbrk(2 * ushort.sizeof);
-	ushort a = (arg3 >> 4);
+void renderDebugDigit(short x, short y, ushort amount) {
+	ushort* buf = cast(ushort*)sbrk(2 * ushort.sizeof);
+	ushort a = (amount >> 4);
 	if (a < 10) {
 		a += 7;
 	}
-	x[0] = cast(ushort)(a + 0x2030);
+	buf[0] = cast(ushort)(a + 0x2030);
 
-	a = arg3 & 0xF;
+	a = amount & 0xF;
 	if (a < 10) {
 		a += 7;
 	}
-	x[1] = cast(ushort)(a + 0x2030);
+	buf[1] = cast(ushort)(a + 0x2030);
 
-	copyToVRAMAlt(0, 4, cast(ushort)(0x7C00 + (arg2 * 32) + arg1), cast(ubyte*)x);
+	copyToVRAMAlt(0, 4, cast(ushort)(0x7C00 + (y * 32) + x), cast(ubyte*)buf);
 }
 
 /// $EFD5D9
-void unknownEFD5D9(ushort arg1) {
+void resetDebugSoundModeMenu(ushort entityID) {
 	fadeOutWithMosaic(4, 1, 0);
 	unknownC0927C();
 	unknownEFDA05();
@@ -21310,30 +21310,30 @@ void unknownEFD5D9(ushort arg1) {
 	unknownEFDABD(10, 14, &debugSoundModeMenuText[3][0]);
 	unknownEFDABD(9, 20, &debugSoundModeMenuText[4][0]);
 	unknownEFDABD(10, 22, &debugSoundModeMenuText[5][0]);
-	entityAbsXTable[arg1] = 0x40;
-	entityAbsYTable[arg1] = 0x50;
+	entityAbsXTable[entityID] = 0x40;
+	entityAbsYTable[entityID] = 0x50;
 	fadeInWithMosaic(4, 1, 0);
 }
 
 /// $EFD6D4
-void unknownEFD6D4(ushort arg1) {
+void debugSoundMenu(ushort cursorEntity) {
 	short x02 = 0;
 	unknown7EB545 = currentMusicTrack;
 	unknown7EB54B = currentMusicTrack;
 	unknown7EB54F = 2;
-	unknownEFD5D9(arg1);
+	resetDebugSoundModeMenu(cursorEntity);
 	do {
 		updateScreen();
 		waitUntilNextFrame();
 		if ((padPress[0] & Pad.y) != 0) {
-			unknownEFE175();
-			unknownEFD5D9(arg1);
+			debugMain();
+			resetDebugSoundModeMenu(cursorEntity);
 		}
 		oamClear();
 		runActionscriptFrame();
-		unknownEFD56F(18, 10, unknown7EB54B);
-		unknownEFD56F(18, 12, unknown7EB54D);
-		unknownEFD56F(18, 14, unknown7EB54F);
+		renderDebugDigit(18, 10, unknown7EB54B);
+		renderDebugDigit(18, 12, unknown7EB54D);
+		renderDebugDigit(18, 14, unknown7EB54F);
 		if ((padPress[0] & (Pad.select | Pad.start)) == 0) {
 			break;
 		}
@@ -21411,7 +21411,7 @@ void unknownEFD6D4(ushort arg1) {
 			stopMusic();
 			playSfxUnknown();
 		}
-		entityAbsYTable[arg1] = cast(short)((x02 * 16) + 0x54);
+		entityAbsYTable[cursorEntity] = cast(short)((x02 * 16) + 0x54);
 	} while (true);
 }
 
@@ -21481,7 +21481,7 @@ void unknownEFDA05() {
 	unknownEFD95E();
 	entityAllocationMinSlot = 0;
 	entityAllocationMaxSlot = 1;
-	unknown7EB553 = initEntityWipe(ActionScript.unknown000, 0x34, 0x34);
+	debugCursorEntity = initEntityWipe(ActionScript.unknown000, 0x34, 0x34);
 	unknown7E4A58 = 0;
 	unknown7E4A5A = 0;
 }
@@ -21665,14 +21665,14 @@ void renderAttributeColumn(short x, short y) {
 }
 
 /// $EFE133
-void unknownEFE133(short x, short y) {
+void renderAllAttributeRows(short x, short y) {
 	for (short i = -1; i != 0x1F; i++) {
 		renderAttributeRow(cast(short)((x >> 3) - 16), cast(short)((y >> 3) - 14 + i));
 	}
 }
 
 /// $EFE175
-void unknownEFE175() {
+void debugMain() {
 	short x1A;
 	*(cast(ushort*)&unknown7F0000[0]) = 0;
 	prepareForImmediateDMA();
@@ -21804,7 +21804,7 @@ void unknownEFE175() {
 					if (++viewAttributeMode == 4) {
 						viewAttributeMode = 0;
 					}
-					unknownEFE133(gameState.leaderX.integer, gameState.leaderY.integer);
+					renderAllAttributeRows(gameState.leaderX.integer, gameState.leaderY.integer);
 				}
 			}
 			if ((debugModeNumber == 1) && ((padPress[0] & Pad.b) != 0)) {
@@ -21839,17 +21839,17 @@ void debugProcessCommandSelection() {
 		case 1:
 			debugModeNumber = 1;
 			unknown7E4A58 = -1;
-			unknownEFE175();
+			debugMain();
 			break;
 		case 2:
 			debugModeNumber = 2;
 			unknown7E4A5E = 10;
 			unknown7E4A5A = -1;
-			unknownEFE175();
+			debugMain();
 			break;
 		case 3:
 			debugModeNumber = 3;
-			unknownEFE175();
+			debugMain();
 			break;
 		case 4:
 			debugModeNumber = 4;
@@ -21857,11 +21857,11 @@ void debugProcessCommandSelection() {
 			break;
 		case 5:
 			debugModeNumber = 5;
-			unknownEFE175();
+			debugMain();
 			break;
 		case 6:
 			debugModeNumber = 6;
-			unknownEFD6D4(unknown7EB553);
+			debugSoundMenu(debugCursorEntity);
 			break;
 		default: break;
 	}
@@ -21890,7 +21890,7 @@ void debugHandleCursorMovement() {
 			debugMenuCursorPosition = 0;
 		}
 	}
-	entityAbsYTable[unknown7EB553] = cast(short)((debugMenuCursorPosition * 24) + 0x34);
+	entityAbsYTable[debugCursorEntity] = cast(short)((debugMenuCursorPosition * 24) + 0x34);
 	unknown7EB557 = padPress[0] & (Pad.b | Pad.start | Pad.a | Pad.l);
 }
 

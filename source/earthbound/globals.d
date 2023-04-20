@@ -891,7 +891,7 @@ __gshared ushort unknown7EB54B; /// $B54B
 __gshared ushort unknown7EB54D; /// $B54D
 __gshared ushort unknown7EB54F; /// $B54F
 __gshared ushort unknown7EB551; /// $B551
-__gshared ushort unknown7EB553; /// $B553
+__gshared ushort debugCursorEntity; /// $B553
 __gshared ushort debugMenuCursorPosition; /// $B555
 __gshared ushort unknown7EB557; /// $B557
 __gshared ushort debugModeNumber; /// $B559
