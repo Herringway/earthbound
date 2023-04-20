@@ -6527,12 +6527,12 @@ short displayTownMap() {
 		return 0;
 	}
 	loadTownMapData(cast(short)(x10 - 1));
-	while(((padPress[0] & (Pad.a | Pad.l)) == 0) && ((padPress[0] & (Pad.b | Pad.select)) == 0) && ((padPress[0] & Pad.l) == 0) && ((padPress[0] & Pad.x) == 0)) {
+	do {
 		waitUntilNextFrame();
 		oamClear();
 		unknownC4D43F(cast(short)(x10 - 1));
 		updateScreen();
-	}
+	} while(((padPress[0] & (Pad.a | Pad.l)) == 0) && ((padPress[0] & (Pad.b | Pad.select)) == 0) && ((padPress[0] & Pad.l) == 0) && ((padPress[0] & Pad.x) == 0));
 	fadeOut(2, 1);
 	for (short i = 0; i < 16; i++) {
 		waitUntilNextFrame();
