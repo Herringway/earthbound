@@ -2754,10 +2754,11 @@ void unknownC46631(short arg1) {
 		}
 		entityTickCallbackFlags[a] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
 		return;
-	}
-	entityTickCallbackFlags[23] &= 0x3FFF;
-	for (short i = 0; i < gameState.partyCount; i++) {
-		entityTickCallbackFlags[gameState.partyEntities[i]] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+	} else {
+		entityTickCallbackFlags[23] &= 0x3FFF;
+		for (short i = 0; i < gameState.partyCount; i++) {
+			entityTickCallbackFlags[gameState.partyEntities[i]] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+		}
 	}
 }
 
