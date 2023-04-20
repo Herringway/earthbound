@@ -1015,7 +1015,7 @@ void unknownC02140(short arg1) {
 	}
 	entityTPTEntrySprites[arg1] = -1;
 	entityTPTEntries[arg1] = 0xFFFF;
-	unknownC09C35(arg1);
+	deleteEntity(arg1);
 }
 
 /// $C02194
@@ -1047,7 +1047,7 @@ void unknownC021E6() {
 		}
 		unknownC02140(i);
 	}
-	unknownC09C35(23);
+	deleteEntity(23);
 }
 
 /// $C0222B
@@ -5524,7 +5524,7 @@ immutable const(ubyte)* function(const(ubyte)*)[77] movementControlCodesPointerT
 /// $C095F2 - [00] - End
 const(ubyte)* movementCode00(const(ubyte)* y) {
 	debug(actionscript) tracef("Script %2d(%03d): End", actionScriptVar8A / 2, entityScriptTable[currentEntitySlot]);
-	unknownC09C3B(actionScriptVar88);
+	deleteEntityOffset(actionScriptVar88);
 	entityScriptSleepFrames[actionScriptVar8A / 2] = -1;
 	unknown7E0A58 = -1;
 	return y;
@@ -6179,17 +6179,17 @@ short unknownC09C02(out bool flag) {
 }
 
 /// $C09C35
-void unknownC09C35(short arg1) {
-	unknownC09C3B(cast(short)(arg1 * 2));
+void deleteEntity(short entity) {
+	deleteEntityOffset(cast(short)(entity * 2));
 }
 
 /// $C09C3B
 //note: arg1 is passed via X register
-void unknownC09C3B(short arg1) {
-	if (entityScriptTable[arg1 / 2] >= 0) {
-		entityScriptTable[arg1 / 2] = -1;
-		clearSpriteTickCallback(arg1);
-		short x = unknownC09C99(arg1);
+void deleteEntityOffset(short offset) {
+	if (entityScriptTable[offset / 2] >= 0) {
+		entityScriptTable[offset / 2] = -1;
+		clearSpriteTickCallback(offset);
+		short x = unknownC09C99(offset);
 		short a = unknown7E0A54;
 		unknownC09C73(a, x);
 		unknownC09C8F(x);
@@ -6231,12 +6231,12 @@ void unknownC09C8F(short x) {
 }
 
 /// $C09C99
-short unknownC09C99(short index) {
-	if (entityScriptIndexTable[index / 2] < 0) {
-		return index;
+short unknownC09C99(short offset) {
+	if (entityScriptIndexTable[offset / 2] < 0) {
+		return offset;
 	}
 	short unknown7E0A54Copy = unknown7E0A54;
-	short x = index;
+	short x = offset;
 	short a = entityScriptIndexTable[x / 2];
 	unknown7E0A54 = a;
 	do {
@@ -6244,7 +6244,7 @@ short unknownC09C99(short index) {
 		a = entityScriptUnknown125A[x / 2];
 	} while(a >= 0);
 	entityScriptUnknown125A[x / 2] = unknown7E0A54Copy;
-	return index;
+	return offset;
 }
 
 /// $C09CB5
@@ -7350,12 +7350,12 @@ short actionScriptLoadBattleBG(short, ref const(ubyte)* arg1) {
 }
 
 /// $C0A98B
-short unknownC0A98B(short, ref const(ubyte)* arg2) {
+short actionScriptSpawnEntityAtSelf(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
 	short tmp2 = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
-	return unknownC46534(tmp, tmp2);
+	return spawnEntityAtSelf(tmp, tmp2);
 }
 
 /// $C0A99F
@@ -8013,7 +8013,7 @@ void fileSelectInit() {
 	fadeIn(1, 1);
 	unknownC1FF6B();
 	fadeOutWithMosaic(1, 1, 0);
-	unknownC09C35(0x17);
+	deleteEntity(0x17);
 	mirrorTM = 0x17;
 	unknownC4FD18(gameState.soundSetting - 1);
 }
@@ -10075,7 +10075,7 @@ short unknownC0F21E() {
 		runActionscriptFrame();
 		waitUntilNextFrame();
 		if (padPress[0] != 0) {
-			unknownC09C35(x12);
+			deleteEntity(x12);
 			return 1;
 		}
 	}

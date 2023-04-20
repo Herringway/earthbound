@@ -1220,7 +1220,7 @@ void unknownC4334A(short direction) {
 }
 
 /// $C4343E
-void unknownC4343E(short arg1) {
+void savePhotoState(short arg1) {
 	arg1--;
 	ushort x12;
 	if (60000 > timer / 3600) {
@@ -2474,7 +2474,7 @@ short getDirectionTo(short targetX, short targetY, short fromX, short fromY) {
 }
 
 /// $C46028
-short unknownC46028(short arg1) {
+short findEntityBySprite(short arg1) {
 	for (short i = 0; i < maxEntities; i++) {
 		if (entityTPTEntrySprites[i] == arg1) {
 			return i;
@@ -2484,7 +2484,7 @@ short unknownC46028(short arg1) {
 }
 
 /// $C4605A
-short unknownC4605A(short arg1) {
+short findEntityByTPT(short arg1) {
 	for (short i = 0; i < maxEntities; i++) {
 		if (arg1 == entityTPTEntries[i]) {
 			return i;
@@ -2494,7 +2494,7 @@ short unknownC4605A(short arg1) {
 }
 
 /// $C4608C
-short unknownC4608C(short arg1) {
+short findEntityByPartyMemberID(short arg1) {
 	if (arg1 == 255) {
 		return gameState.firstPartyMemberEntity;
 	}
@@ -2508,7 +2508,7 @@ short unknownC4608C(short arg1) {
 
 /// $C460CE
 void unknownC460CE(short arg1, short arg2) {
-	short x12 = unknownC4605A(arg1);
+	short x12 = findEntityByTPT(arg1);
 	if (x12 == -1) {
 		return;
 	}
@@ -2521,7 +2521,7 @@ void unknownC460CE(short arg1, short arg2) {
 
 /// $C46125
 void unknownC46125(short arg1, short arg2) {
-	short x12 = unknownC46028(arg1);
+	short x12 = findEntityBySprite(arg1);
 	if (x12 == -1) {
 		return;
 	}
@@ -2533,8 +2533,8 @@ void unknownC46125(short arg1, short arg2) {
 }
 
 /// $C4617C
-void unknownC4617C(short arg1, short arg2) {
-	short x = unknownC4605A(arg1);
+void changeScriptForEntityByTPT(short arg1, short arg2) {
+	short x = findEntityByTPT(arg1);
 	if (x == -1) {
 		return;
 	}
@@ -2543,8 +2543,8 @@ void unknownC4617C(short arg1, short arg2) {
 }
 
 /// $C461CC
-void unknownC461CC(short arg1, short arg2) {
-	short x = unknownC46028(arg1);
+void changeScriptForEntityBySprite(short arg1, short arg2) {
+	short x = findEntityBySprite(arg1);
 	if (x == -1) {
 		return;
 	}
@@ -2557,13 +2557,13 @@ short unknownC4621C(short arg1, short arg2) {
 	short x0E;
 	switch (arg1) {
 		case 0:
-			x0E = unknownC4608C(arg2);
+			x0E = findEntityByPartyMemberID(arg2);
 			break;
 		case 1:
-			x0E = unknownC4605A(arg2);
+			x0E = findEntityByTPT(arg2);
 			break;
 		case 2:
-			x0E = unknownC46028(arg2);
+			x0E = findEntityBySprite(arg2);
 			break;
 		default: break;
 	}
@@ -2594,7 +2594,7 @@ short unknownC462E4(short arg1, short arg2, short arg3) {
 
 /// $C462FF
 void unknownC462FF(short arg1, short arg2) {
-	short x0E = unknownC4605A(arg1);
+	short x0E = findEntityByTPT(arg1);
 	if (x0E == -1) {
 		return;
 	}
@@ -2606,7 +2606,7 @@ void unknownC462FF(short arg1, short arg2) {
 
 /// $C46331
 void unknownC46331(short arg1, short arg2) {
-	short x0E = unknownC46028(arg1);
+	short x0E = findEntityBySprite(arg1);
 	if (x0E == -1) {
 		return;
 	}
@@ -2618,7 +2618,7 @@ void unknownC46331(short arg1, short arg2) {
 
 /// $C46363
 void unknownC46363(short arg1, short arg2) {
-	short x0E = unknownC4608C(arg1);
+	short x0E = findEntityByPartyMemberID(arg1);
 	if (x0E == -1) {
 		return;
 	}
@@ -2644,11 +2644,11 @@ void unknownC46397(short arg1) {
 }
 
 /// $C463F4
-void unknownC463F4(short arg1) {
+void hideCharacterOrParty(short arg1) {
 	unknownC07C5B();
 	unknown7E5D58 = 0;
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a != -1) {
 			entitySpriteMapFlags[a] |= 0x8000;
 		}
@@ -2660,9 +2660,9 @@ void unknownC463F4(short arg1) {
 }
 
 /// $C4645A
-void unknownC4645A(short arg1) {
+void unhideCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a != -1) {
 			entitySpriteMapFlags[a] &= 0x7FFF;
 		}
@@ -2689,13 +2689,13 @@ short createPreparedEntitySprite(short sprite, short actionScript) {
 }
 
 /// $C46534
-short unknownC46534(short sprite, short actionScriptID) {
+short spawnEntityAtSelf(short sprite, short actionScriptID) {
 	return createEntity(sprite, actionScriptID, -1, entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]);
 }
 
 /// $C4655E
-void unknownC4655E(short arg1) {
-	short a = unknownC4605A(arg1);
+void disableEntityByTPT(short arg1) {
+	short a = findEntityByTPT(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2703,8 +2703,8 @@ void unknownC4655E(short arg1) {
 }
 
 /// $C46579
-void unknownC46579(short arg1){
-	short a = unknownC46028(arg1);
+void disableEntityBySprite(short arg1){
+	short a = findEntityBySprite(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2712,9 +2712,9 @@ void unknownC46579(short arg1){
 }
 
 /// $C46594
-void unknownC46594(short arg1) {
+void disableEntityByCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a == -1) {
 			return;
 		}
@@ -2727,7 +2727,7 @@ void unknownC46594(short arg1) {
 
 /// $C465FB
 void unknownC465FB(short arg1) {
-	short a = unknownC4605A(arg1);
+	short a = findEntityByTPT(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2736,7 +2736,7 @@ void unknownC465FB(short arg1) {
 
 /// $C46616
 void unknownC46616(short arg1) {
-	short a = unknownC46028(arg1);
+	short a = findEntityBySprite(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2746,7 +2746,7 @@ void unknownC46616(short arg1) {
 /// $C46631
 void unknownC46631(short arg1) {
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a == -1) {
 			return;
 		}
@@ -2761,13 +2761,13 @@ void unknownC46631(short arg1) {
 
 /// $C46698
 void unknownC46698(short arg1) {
-	unknown7E9E33 = unknownC4605A(arg1);
+	unknown7E9E33 = findEntityByTPT(arg1);
 	gameState.unknownB0 = 2;
 }
 
 /// $C466A8
 void unknownC466A8(short arg1) {
-	unknown7E9E33 = unknownC46028(arg1);
+	unknown7E9E33 = findEntityBySprite(arg1);
 	gameState.unknownB0 = 2;
 }
 
@@ -2778,12 +2778,12 @@ void unknownC466B8() {
 }
 
 /// $C466C1
-void unknownC466C1(short arg1) {
+void spawnTravellingPhotographer(short arg1) {
 	unknownC07C5B();
 	unknown7E5D58 = 0;
 	unknown7E9E35 = cast(short)(arg1 - 1);
 	displayText(getTextBlock("textC466C1"));
-	unknownC4343E(arg1);
+	savePhotoState(arg1);
 }
 
 /// $C466F0
@@ -2843,7 +2843,7 @@ void unknownC4681A() {
 
 /// $C46881
 void unknownC46881(const(ubyte)* arg1) {
-	unknownC46594(0xFF);
+	disableEntityByCharacterOrParty(0xFF);
 	unknownC064E3(8, QueuedInteractionPtr(arg1));
 }
 
@@ -2903,7 +2903,7 @@ void unknownC46957(short arg1) {
 
 /// $C46984
 void unknownC46984(short arg1) {
-	short x04 = unknownC4605A(arg1);
+	short x04 = findEntityByTPT(arg1);
 	if (x04 == -1) {
 		return;
 	}
@@ -2917,7 +2917,7 @@ void unknownC46984(short arg1) {
 
 /// $C469F1
 void unknownC469F1(short arg1) {
-	short x04 = unknownC46028(arg1);
+	short x04 = findEntityBySprite(arg1);
 	if (x04 == -1) {
 		return;
 	}
@@ -3026,14 +3026,14 @@ void unknownC46B65() {
 
 /// $C46B8D
 void unknownC46B8D(short arg1) {
-	short x0E = unknownC4605A(arg1);
+	short x0E = findEntityByTPT(arg1);
 	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[x0E];
 	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[x0E];
 }
 
 /// $C46BBB
 void unknownC46BBB(short arg1) {
-	short x0E = unknownC46028(arg1);
+	short x0E = findEntityBySprite(arg1);
 	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[x0E];
 	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[x0E];
 }
@@ -3048,7 +3048,7 @@ void getPositionOfPartyMember(short arg1) {
 			x0E = gameState.partyEntities[gameState.partyCount - 2];
 		}
 	} else {
-		x0E = unknownC4608C(arg1);
+		x0E = findEntityByPartyMemberID(arg1);
 	}
 	entityScriptVar6Table[x12] = entityAbsXTable[x0E];
 	entityScriptVar7Table[x12] = entityAbsYTable[x0E];
@@ -3074,14 +3074,14 @@ void unknownC46C87() {
 
 /// $C46C9B
 void unknownC46C9B(short arg1) {
-	short x0E = unknownC4608C(arg1);
+	short x0E = findEntityByPartyMemberID(arg1);
 	entityAbsXTable[currentEntitySlot] = entityAbsXTable[x0E];
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[x0E];
 }
 
 /// $C46CC7
 void unknownC46CC7(short arg1) {
-	short x0E = unknownC46028(arg1);
+	short x0E = findEntityBySprite(arg1);
 	entityAbsXTable[currentEntitySlot] = entityAbsXTable[x0E];
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[x0E];
 }
@@ -3714,7 +3714,7 @@ void processItemTransformations() {
 
 /// $C490EE
 short getDistanceToMagicTruffle() {
-	short x04 = unknownC46028(0x178);
+	short x04 = findEntityBySprite(0x178);
 	if (x04 == -1) {
 		return 0;
 	}
@@ -4930,32 +4930,32 @@ void unknownC4B4BE(short arg1) {
 
 /// $C4B4FE
 void unknownC4B4FE(short arg1, short arg2) {
-	spawnFloatingSprite(unknownC4608C(arg1), arg2);
+	spawnFloatingSprite(findEntityByPartyMemberID(arg1), arg2);
 }
 
 /// $C4B524
 void unknownC4B524(short arg1, short arg2) {
-	spawnFloatingSprite(unknownC4605A(arg1), arg2);
+	spawnFloatingSprite(findEntityByTPT(arg1), arg2);
 }
 
 /// $C4B519
 void unknownC4B519(short arg1) {
-	unknownC4B4BE(unknownC4608C(arg1));
+	unknownC4B4BE(findEntityByPartyMemberID(arg1));
 }
 
 /// $C4B53F
 void unknownC4B53F(short arg1) {
-	unknownC4B4BE(unknownC4605A(arg1));
+	unknownC4B4BE(findEntityByTPT(arg1));
 }
 
 /// $C4B54A
 void unknownC4B54A(short arg1, short arg2) {
-	spawnFloatingSprite(unknownC46028(arg1), arg2);
+	spawnFloatingSprite(findEntityBySprite(arg1), arg2);
 }
 
 /// $C4B565
 void unknownC4B565(short arg1) {
-	unknownC4B4BE(unknownC46028(arg1));
+	unknownC4B4BE(findEntityBySprite(arg1));
 }
 
 /// $C4B587
@@ -6551,7 +6551,7 @@ short displayTownMap() {
 }
 
 /// $C4D744
-void unknownC4D744() {
+void townMapDebug() {
 	short x10 = 0;
 	short x0E = 0;
 	unknown7EB4AE = 0x3C;
@@ -6602,7 +6602,7 @@ void unknownC4D830(short arg1) {
 		unknownC1004E();
 	}
 	for (const(NamingScreenEntity)* x06 = &unknownC3FD2D[arg1 + 7][0]; x06.sprite != 0; x06++) {
-		short x = unknownC46028(x06.sprite);
+		short x = findEntityBySprite(x06.sprite);
 		if (x == -1) {
 			continue;
 		}
@@ -6959,7 +6959,7 @@ void testYourSanctuaryDisplay() {
 }
 
 /// $C4E369
-void unknownC4E369() {
+void loadCastScene() {
 	unknown7E9F2A = 0;
 	fadeOutWithMosaic(1, 1, 0);
 	prepareForImmediateDMA();
@@ -7152,8 +7152,8 @@ short unknownC4ECE7() {
 }
 
 /// $C4ED0E
-void unknownC4ED0E() {
-	unknownC4E369();
+void playCastScene() {
+	loadCastScene();
 	oamClear();
 	fadeIn(1, 1);
 	initEntityWipe(ActionScript.unknown801, 0, 0);
@@ -7165,7 +7165,7 @@ void unknownC4ED0E() {
 	fadeOutWithMosaic(1, 1, 0);
 	for (short i = 0; i < maxEntities; i++) {
 		if (entityScriptTable[i] == ActionScript.unknown801) {
-			unknownC09C35(i);
+			deleteEntity(i);
 		}
 	}
 	entityAllocationMinSlot = 0x17;

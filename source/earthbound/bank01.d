@@ -1734,13 +1734,13 @@ void debugYButtonMenu() {
 				enterYourNamePlease(1);
 				break;
 			case 15:
-				unknownC4D744();
+				townMapDebug();
 				break;
 			case 16:
 				debugYButtonGuide();
 				break;
 			case 17:
-				unknownC4ED0E();
+				playCastScene();
 				teleport(1);
 				break;
 			case 18:
@@ -3310,7 +3310,7 @@ void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 /// $C167D6
 void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
-	unknownC4C91A(unknownC4605A(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
+	unknownC4C91A(findEntityByTPT(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
 	unknownC460CE(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
@@ -3318,7 +3318,7 @@ void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 /// $C1683B
 void* cc1F1F(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
-	unknownC4C91A(unknownC46028(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
+	unknownC4C91A(findEntityBySprite(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
 	unknownC46125(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
@@ -3391,21 +3391,21 @@ void* cc1FE4(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C16BA4
 void* cc1FE5(DisplayTextState* arg1, ubyte arg2) {
-	unknownC46594(arg2);
+	disableEntityByCharacterOrParty(arg2);
 	return null;
 }
 
 /// $C16BAF
 void* cc1FE6(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC4655E(getCCParameters!ArgType(arg2));
+	disableEntityByTPT(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C16BF2
 void* cc1FE7(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC46579(getCCParameters!ArgType(arg2));
+	disableEntityBySprite(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3432,16 +3432,16 @@ void* cc1FEA(DisplayTextState* arg1, ubyte arg2) {
 /// $C16CC6
 void* cc1FEB(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FEBArguments);
-	unknownC4C91A(unknownC4608C(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
-	unknownC463F4(getCCParameters!ArgType(arg2).arg1);
+	unknownC4C91A(findEntityByPartyMemberID(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
+	hideCharacterOrParty(getCCParameters!ArgType(arg2).arg1);
 	return null;
 }
 
 /// $C16D14
 void* cc1FEC(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FECArguments);
-	unknownC4C91A(unknownC4608C(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
-	unknownC4645A(getCCParameters!ArgType(arg2).arg1);
+	unknownC4C91A(findEntityByPartyMemberID(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
+	unhideCharacterOrParty(getCCParameters!ArgType(arg2).arg1);
 	return null;
 }
 
@@ -3462,7 +3462,7 @@ void* cc1FEF(DisplayTextState* arg1, ubyte arg2) {
 /// $C16DE8
 void* cc1F63(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	unknownC46594(0xFF);
+	disableEntityByCharacterOrParty(0xFF);
 	unknownC064E3(10, QueuedInteractionPtr(getTextBlock(getCCParameters!ArgType(arg2))));
 	return null;
 }
@@ -3470,14 +3470,14 @@ void* cc1F63(DisplayTextState* arg1, ubyte arg2) {
 /// $C16EBF
 void* cc1FF1(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF1Arguments);
-	unknownC4617C(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
+	changeScriptForEntityByTPT(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
 /// $C16F2F
 void* cc1FF2(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF2Arguments);
-	unknownC461CC(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
+	changeScriptForEntityBySprite(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
@@ -3545,15 +3545,15 @@ void* cc1F40(DisplayTextState* arg1, ubyte arg2) {
 	return null;
 }
 
-/// $C172DA
+/// $C172DA - [1F 41 XX] Trigger special event
 void* cc1F41(DisplayTextState* arg1, ubyte arg2) {
-	setWorkingMemory(WorkingMemory(unknownC1BEFC(arg2)));
+	setWorkingMemory(WorkingMemory(triggerSpecialEvent(arg2)));
 	return null;
 }
 
-/// $C17304
+/// $C17304 - [1F D2 XX] Summon travelling photographer
 void* cc1FD2(DisplayTextState* arg1, ubyte arg2) {
-	unknownC466C1(cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
+	spawnTravellingPhotographer(cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
 	return null;
 }
 
@@ -5818,7 +5818,7 @@ void getOffBicycle() {
 }
 
 /// $C1BEFC
-short unknownC1BEFC(short arg1) {
+short triggerSpecialEvent(short arg1) {
 	switch (arg1) {
 		case 1:
 			coffeeTeaScene(0);
@@ -5849,7 +5849,7 @@ short unknownC1BEFC(short arg1) {
 			showTitleScreen(1);
 			break;
 		case 11:
-			unknownC4ED0E();
+			playCastScene();
 			break;
 		case 12:
 			playCredits();

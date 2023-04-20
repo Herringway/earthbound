@@ -1108,7 +1108,7 @@ short showTitleScreen(short arg1) {
 	}
 	for (short i = 0; i < 0x1E; i++) {
 		if ((entityScriptTable[i] >= ActionScript.titleScreen1) && (entityScriptTable[i] <= ActionScript.titleScreen11)) {
-			unknownC09C35(i);
+			deleteEntity(i);
 		}
 		entitySpriteMapFlags[i] &= 0x7FFF;
 	}
