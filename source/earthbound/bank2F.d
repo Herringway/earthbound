@@ -377,7 +377,9 @@ void saveGameBlock(short id) {
 /// $EF0A4D
 void saveGameSlot(short id) {
 	saveGameBlock(cast(short)(id * 2));
-	saveGameBlock(cast(short)(id * 2 + 1));
+	version(savememory) { // only need to write two blocks when SRAM is used
+		saveGameBlock(cast(short)(id * 2 + 1));
+	}
 }
 
 /// $EF0A68
