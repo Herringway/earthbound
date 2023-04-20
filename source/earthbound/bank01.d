@@ -7454,6 +7454,7 @@ short openFlavourMenu() {
 /// $C1F805
 void fileMenuLoop() {
 	if (!config.autoLoadFile.isNull) {
+		currentSaveSlot = cast(ubyte)(config.autoLoadFile.get + 1);
 		loadGameSlot(config.autoLoadFile.get);
 		if (gameState.favouriteThing[1] != 0) {
 			unknownC064D4();
