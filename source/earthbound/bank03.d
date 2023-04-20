@@ -384,7 +384,7 @@ version(bugfix) {
 /// $C3E450
 void unknownC3E450() {
 	const(RGB)* x06;
-	if ((unknown7E0002 & 4) != 0) {
+	if ((frameCounter & 4) != 0) {
 		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][4];
 	} else {
 		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20];

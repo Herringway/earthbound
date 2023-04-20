@@ -21301,17 +21301,17 @@ immutable char[14][6] debugSoundModeMenuText = [
 /// $EFD56F
 void renderDebugDigit(short x, short y, ushort amount) {
 	ushort* buf = cast(ushort*)sbrk(2 * ushort.sizeof);
-	ushort a = (amount >> 4);
-	if (a >= 10) {
-		a += 7;
+	ushort digit = (amount >> 4);
+	if (digit >= 10) {
+		digit += 7;
 	}
-	buf[0] = cast(ushort)(a + 0x2030);
+	buf[0] = cast(ushort)(digit + 0x2030);
 
-	a = amount & 0xF;
-	if (a >= 10) {
-		a += 7;
+	digit = amount & 0xF;
+	if (digit >= 10) {
+		digit += 7;
 	}
-	buf[1] = cast(ushort)(a + 0x2030);
+	buf[1] = cast(ushort)(digit + 0x2030);
 
 	copyToVRAMAlt(0, 4, cast(ushort)(0x7C00 + (y * 32) + x), cast(ubyte*)buf);
 }
@@ -21320,13 +21320,13 @@ void renderDebugDigit(short x, short y, ushort amount) {
 void resetDebugSoundModeMenu(ushort entityID) {
 	fadeOutWithMosaic(4, 1, 0);
 	unknownC0927C();
-	unknownEFDA05();
-	unknownEFDABD(10, 5, &debugSoundModeMenuText[0][0]);
-	unknownEFDABD(10, 10, &debugSoundModeMenuText[1][0]);
-	unknownEFDABD(10, 12, &debugSoundModeMenuText[2][0]);
-	unknownEFDABD(10, 14, &debugSoundModeMenuText[3][0]);
-	unknownEFDABD(9, 20, &debugSoundModeMenuText[4][0]);
-	unknownEFDABD(10, 22, &debugSoundModeMenuText[5][0]);
+	initDebugMenuScreen();
+	renderDebugMenuString(10, 5, &debugSoundModeMenuText[0][0]);
+	renderDebugMenuString(10, 10, &debugSoundModeMenuText[1][0]);
+	renderDebugMenuString(10, 12, &debugSoundModeMenuText[2][0]);
+	renderDebugMenuString(10, 14, &debugSoundModeMenuText[3][0]);
+	renderDebugMenuString(9, 20, &debugSoundModeMenuText[4][0]);
+	renderDebugMenuString(10, 22, &debugSoundModeMenuText[5][0]);
 	entityAbsXTable[entityID] = 0x40;
 	entityAbsYTable[entityID] = 0x50;
 	fadeInWithMosaic(4, 1, 0);
@@ -21335,9 +21335,9 @@ void resetDebugSoundModeMenu(ushort entityID) {
 /// $EFD6D4
 void debugSoundMenu(ushort cursorEntity) {
 	short x02 = 0;
-	unknown7EB545 = currentMusicTrack;
-	unknown7EB54B = currentMusicTrack;
-	unknown7EB54F = 2;
+	debugSoundMenuInitialBGM = currentMusicTrack;
+	debugSoundMenuSelectedBGM = currentMusicTrack;
+	debugSoundMenuSelectedEffect = 2;
 	resetDebugSoundModeMenu(cursorEntity);
 	do {
 		updateScreen();
@@ -21348,9 +21348,9 @@ void debugSoundMenu(ushort cursorEntity) {
 		}
 		oamClear();
 		runActionscriptFrame();
-		renderDebugDigit(18, 10, unknown7EB54B);
-		renderDebugDigit(18, 12, unknown7EB54D);
-		renderDebugDigit(18, 14, unknown7EB54F);
+		renderDebugDigit(18, 10, debugSoundMenuSelectedBGM);
+		renderDebugDigit(18, 12, debugSoundMenuSelectedSE);
+		renderDebugDigit(18, 14, debugSoundMenuSelectedEffect);
 		if ((padPress[0] & (Pad.select | Pad.start)) == (Pad.select | Pad.start)) {
 			break;
 		}
@@ -21368,60 +21368,60 @@ void debugSoundMenu(ushort cursorEntity) {
 		}
 		if ((padPress[0] & Pad.b) == 0) {
 			if ((padPress[0] & Pad.r) != 0) {
-				unknown7EB54B = unknown7EB545;
+				debugSoundMenuSelectedBGM = debugSoundMenuInitialBGM;
 			}
 		}
 		if (x02 == 0) {
 			if ((padHeld[0] & Pad.left) != 0) {
-				unknown7EB54B--;
+				debugSoundMenuSelectedBGM--;
 			}
 			if ((padHeld[0] & Pad.right) != 0) {
-				unknown7EB54B++;
+				debugSoundMenuSelectedBGM++;
 			}
-			if (unknown7EB54B == -1) {
-				unknown7EB54B = 0xBF;
+			if (debugSoundMenuSelectedBGM == -1) {
+				debugSoundMenuSelectedBGM = 191;
 			}
-			if (unknown7EB54B == 0xC0) {
-				unknown7EB54B = 1;
+			if (debugSoundMenuSelectedBGM == 192) {
+				debugSoundMenuSelectedBGM = 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
 				stopMusic();
 				waitUntilNextFrame();
 				//did the header have an incorrect definition for this function...?
 				//unknownC0AC20(currentMusicTrack);
-				changeMusic(unknown7EB54B);
+				changeMusic(debugSoundMenuSelectedBGM);
 			}
 		} else if (x02 == 1) {
 			if ((padHeld[0] & Pad.left) != 0) {
-				unknown7EB54D--;
+				debugSoundMenuSelectedSE--;
 			}
 			if ((padHeld[0] & Pad.right) != 0) {
-				unknown7EB54D++;
+				debugSoundMenuSelectedSE++;
 			}
-			if (unknown7EB54D == -1) {
-				unknown7EB54D = 0x7F;
+			if (debugSoundMenuSelectedSE == -1) {
+				debugSoundMenuSelectedSE = 127;
 			}
-			if (unknown7EB54D == 0x80) {
-				unknown7EB54D = 1;
+			if (debugSoundMenuSelectedSE == 128) {
+				debugSoundMenuSelectedSE = 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
-				playSfx(unknown7EB54D);
+				playSfx(debugSoundMenuSelectedSE);
 			}
 		} else if (x02 == 2) {
 			if ((padHeld[0] & Pad.left) != 0) {
-				unknown7EB54F--;
+				debugSoundMenuSelectedEffect--;
 			}
 			if ((padHeld[0] & Pad.right) != 0) {
-				unknown7EB54F++;
+				debugSoundMenuSelectedEffect++;
 			}
-			if (unknown7EB54D == -1) {
-				unknown7EB54D = 0x20;
+			if (debugSoundMenuSelectedSE == -1) {
+				debugSoundMenuSelectedSE = 32;
 			}
-			if (unknown7EB54D == 0x21) {
-				unknown7EB54D = 1;
+			if (debugSoundMenuSelectedSE == 33) {
+				debugSoundMenuSelectedSE = 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
-				unknownC0AC0C(unknown7EB54F);
+				unknownC0AC0C(debugSoundMenuSelectedEffect);
 			}
 		}
 		if ((padPress[0] & Pad.x) != 0) {
@@ -21450,19 +21450,19 @@ immutable char[17][8] debugMenuText2Lines = [
 void unknownEFD95E() {
 	initializeTextSystem();
 	waitUntilNextFrame();
-	if (debugModeNumber == 1) {
+	if (debugModeNumber == DebugMode.viewMap) {
 		prepareWindowGraphics();
 		loadWindowGraphics(WindowGraphicsToLoad.all);
-		unknownC47F87();
+		loadTextPalette();
 	} else {
 		copyToVRAM(0, 0x1000, 0x6100, &debugMenuFont[0]);
 		unknown7F0000[0] = 0;
 		unknown7F0000[1] = 0;
 		copyToVRAM(3, 0x800, 0x7C00, &unknown7F0000[0]);
-		if (debugModeNumber != 3) {
+		if (debugModeNumber != DebugMode.viewAttribute) {
 			palettes[0][2] = 0xFFFF;
 		} else {
-			memcpy(&palettes[0][0], &unknownEFEF70[47], 0x18);
+			memcpy(&palettes[0][0], &debugFontPalette[0], 0x18);
 		}
 	}
 	unknown7E0030 = 0x18;
@@ -21470,20 +21470,20 @@ void unknownEFD95E() {
 
 /// $EFD9F3
 void unknownEFD9F3() {
-	if (debugModeNumber != 0) {
+	if (debugModeNumber != DebugMode.none) {
 		unknownEFD95E();
 	} else {
-		unknownC47F87();
+		loadTextPalette();
 	}
 }
 
 /// $EFDA05
-void unknownEFDA05() {
+void initDebugMenuScreen() {
 	prepareForImmediateDMA();
 	mirrorTM = 0x17;
 	spritemapBank = 0x2F;
 	unknown7EB55D = 0;
-	unknown7EB557 = 0;
+	debugMenuButtonPressed = 0;
 	debugMenuCursorPosition = 0;
 	unknown7EB551 = 0;
 	viewAttributeMode = 0;
@@ -21504,7 +21504,7 @@ void unknownEFDA05() {
 }
 
 /// $EFDABD
-void unknownEFDABD(short x, short y, const(char)* str) {
+void renderDebugMenuString(short x, short y, const(char)* str) {
 	short x02 = 0;
 	ushort* yReg = cast(ushort*)sbrk(32 * ushort.sizeof);
 	ushort* xReg = yReg;
@@ -21519,11 +21519,11 @@ void unknownEFDABD(short x, short y, const(char)* str) {
 
 /// $EFDB21
 void debugDisplayMenuOptions() {
-	unknownEFDABD(0, 0, &debugMenuText2Line1[0]);
-	unknownEFDABD(8, 3, &debugMenuText2Lines[0][0]);
+	renderDebugMenuString(0, 0, &debugMenuText2Line1[0]);
+	renderDebugMenuString(8, 3, &debugMenuText2Lines[0][0]);
 	short x02 = 6;
 	for (short i = 0; i < 7; i++) {
-		unknownEFDABD(8, x02, &debugMenuText2Lines[i + 1][0]);
+		renderDebugMenuString(8, x02, &debugMenuText2Lines[i + 1][0]);
 		x02 += 3;
 	}
 }
@@ -21645,7 +21645,7 @@ ushort getAttributeTileFor(ushort arg1, ushort x, short y) {
 
 /// $EFDFC4
 void renderAttributeRow(ushort x, ushort y) {
-	if (debugModeNumber != 3) {
+	if (debugModeNumber != DebugMode.viewAttribute) {
 		return;
 	}
 	ushort* x16 =cast(ushort*)sbrk(32 * ushort.sizeof);
@@ -21664,7 +21664,7 @@ void renderAttributeRow(ushort x, ushort y) {
 
 /// $EFE07C
 void renderAttributeColumn(short x, short y) {
-	if (debugModeNumber != 3) {
+	if (debugModeNumber != DebugMode.viewAttribute) {
 		return;
 	}
 	ushort* x16 = cast(ushort*)sbrk(32 * ushort.sizeof);
@@ -21694,30 +21694,30 @@ void debugMain() {
 	*(cast(ushort*)&unknown7F0000[0]) = 0;
 	prepareForImmediateDMA();
 	unknownC0927C();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(short.min, 0);
 	initializeMiscObjectData();
-	short x1C = debugUnknownB565;
+	short x1C = debugViewCharacterSprite;
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	newEntityPriority = 3;
 	gameState.leaderX.integer = debugStartPositionX;
 	gameState.leaderY.integer = debugStartPositionY;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
-	unknownC02D29();
+	clearParty();
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMembers[i] = 0;
 	}
 	addCharToParty(1);
-	if ((debugModeNumber != 5) && (debugModeNumber != 3)) {
+	if ((debugModeNumber != DebugMode.checkPosition) && (debugModeNumber != DebugMode.viewAttribute)) {
 		addCharToParty(2);
 		addCharToParty(3);
 	}
 	unknownC46631(0xFF);
 	entityScreenXTable[24] = 0x80;
 	entityScreenYTable[24] = 0x70;
-	if (debugModeNumber == 2) {
-		x1A = createEntity(debugUnknownB565, ActionScript.characterViewer, -1, 0x20, 0x20);
+	if (debugModeNumber == DebugMode.viewCharacter) {
+		x1A = createEntity(debugViewCharacterSprite, ActionScript.characterViewer, -1, 0x20, 0x20);
 		entityTickCallbackFlags[x1A] |= (objectTickDisabled | objectMoveDisabled);
 		entitySpriteMapFlags[x1A] |= 0x8000;
 	}
@@ -21726,30 +21726,30 @@ void debugMain() {
 	loadMapAtPosition(debugStartPositionX, debugStartPositionY);
 	unknownC03FA9(debugStartPositionX, debugStartPositionY, 4);
 	unknownEFD95E();
-	if (debugModeNumber == 3) {
+	if (debugModeNumber == DebugMode.viewAttribute) {
 		mirrorTM = 0x13;
 		mirrorTD = 4;
 		CGWSEL = 2;
 		CGADSUB = 0x47;
-		debugModeNumber = 3; //uh...ok
+		debugModeNumber = DebugMode.viewAttribute; //uh...ok
 	}
-	if (debugModeNumber == 5) {
-		unknownEFEAC8();
+	if (debugModeNumber == DebugMode.checkPosition) {
+		debugCheckPositionOverlayBackground();
 	}
 	setIRQCallback(&processOverworldTasks);
 	setForceBlank();
 	fadeIn(1, 1);
 	do {
 		oamClear();
-		if (debugModeNumber == 2) {
+		if (debugModeNumber == DebugMode.viewCharacter) {
 			displayViewCharacterDebugOverlay();
-		} else if (debugModeNumber == 5) {
+		} else if (debugModeNumber == DebugMode.checkPosition) {
 			displayCheckPositionDebugOverlay();
 		}
 		if ((padPress[0] & Pad.a) != 0) {
 			battleSwirlCountdown = 0;
 			if ((padState[0] & Pad.x) != 0) {
-				unknown7EB575 = 0xFFFF;
+				debugEnemiesEnabledFlag = 0xFFFF;
 			}
 			unknown7E4370 = -1;
 			unknown7E436E = -1;
@@ -21758,16 +21758,16 @@ void debugMain() {
 			loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 			unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
 			unknownEFD95E();
-			unknown7EB575 = 0;
-			if (debugModeNumber == 5) {
-				unknownEFEAC8();
+			debugEnemiesEnabledFlag = 0;
+			if (debugModeNumber == DebugMode.checkPosition) {
+				debugCheckPositionOverlayBackground();
 			}
 			setForceBlank();
 			fadeInWithMosaic(4, 1, 0);
 		}
-		if (debugModeNumber == 2) {
+		if (debugModeNumber == DebugMode.viewCharacter) {
 			if ((padHeld[1] & Pad.up) != 0) {
-				if (x1C != 0x14D) {
+				if (x1C != 333) {
 					x1C++;
 				} else {
 					x1C = 0;
@@ -21776,7 +21776,7 @@ void debugMain() {
 				if (x1C != 0) {
 					x1C--;
 				} else {
-					x1C = 0x144;
+					x1C = 324;
 				}
 			}
 			if ((padPress[1] & Pad.x) != 0) {
@@ -21787,7 +21787,7 @@ void debugMain() {
 				entityTickCallbackFlags[x1A] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
 				entitySpriteMapFlags[x1A] &= 0x7FFF;
 			}
-			if (debugUnknownB565 != x1C) {
+			if (debugViewCharacterSprite != x1C) {
 				unknownC02140(x1A);
 				entityTPTEntries[createEntity(x1C, ActionScript.characterViewer, x1A, 0x20, 0x20)] = 0;
 			}
@@ -21808,13 +21808,13 @@ void debugMain() {
 		if ((padState[0] & (Pad.start | Pad.select)) == (Pad.start | Pad.select)) {
 			debugStartPositionX = entityAbsXTable[24];
 			debugStartPositionY = entityAbsYTable[24];
-			debugUnknownB565 = x1C;
+			debugViewCharacterSprite = x1C;
 			return;
 		} else {
 			if ((padPress[0] & Pad.y) != 0) {
 				debugYButtonMenu();
 			}
-			if (debugModeNumber == 3) {
+			if (debugModeNumber == DebugMode.viewAttribute) {
 				bg3XPosition = bg1XPosition;
 				bg3YPosition = bg1YPosition;
 				if ((padPress[0] & Pad.select) != 0) {
@@ -21824,7 +21824,7 @@ void debugMain() {
 					renderAllAttributeRows(gameState.leaderX.integer, gameState.leaderY.integer);
 				}
 			}
-			if ((debugModeNumber == 1) && ((padPress[0] & Pad.b) != 0)) {
+			if ((debugModeNumber == DebugMode.viewMap) && ((padPress[0] & Pad.b) != 0)) {
 				openMenuButton();
 			}
 			if ((currentQueuedInteraction - nextQueuedInteraction) != 0) {
@@ -21845,7 +21845,7 @@ short loadKirbySprite(short, ref const(ubyte)*) {
 
 /// $EFE5D3
 void debugProcessCommandSelection() {
-	if (unknown7EB557 == 0) {
+	if (debugMenuButtonPressed == 0) {
 		return;
 	}
 	switch (debugMenuCursorPosition) {
@@ -21854,39 +21854,39 @@ void debugProcessCommandSelection() {
 			ebMain();
 			break;
 		case 1:
-			debugModeNumber = 1;
+			debugModeNumber = DebugMode.viewMap;
 			unknown7E4A58 = -1;
 			debugMain();
 			break;
 		case 2:
-			debugModeNumber = 2;
+			debugModeNumber = DebugMode.viewCharacter;
 			unknown7E4A5E = 10;
 			unknown7E4A5A = -1;
 			debugMain();
 			break;
 		case 3:
-			debugModeNumber = 3;
+			debugModeNumber = DebugMode.viewAttribute;
 			debugMain();
 			break;
 		case 4:
-			debugModeNumber = 4;
+			debugModeNumber = DebugMode.showBattle;
 			battleRoutine();
 			break;
 		case 5:
-			debugModeNumber = 5;
+			debugModeNumber = DebugMode.checkPosition;
 			debugMain();
 			break;
 		case 6:
-			debugModeNumber = 6;
+			debugModeNumber = DebugMode.soundMode;
 			debugSoundMenu(debugCursorEntity);
 			break;
 		default: break;
 	}
-	unknownEFEB2A();
-	unknown7EB557 = 0;
-	debugModeNumber = 0;
+	debugClearHDMA();
+	debugMenuButtonPressed = 0;
+	debugModeNumber = DebugMode.none;
 	unknownC0927C();
-	unknownEFDA05();
+	initDebugMenuScreen();
 	debugDisplayMenuOptions();
 	fadeIn(1, 1);
 }
@@ -21908,18 +21908,18 @@ void debugHandleCursorMovement() {
 		}
 	}
 	entityAbsYTable[debugCursorEntity] = cast(short)((debugMenuCursorPosition * 24) + 0x34);
-	unknown7EB557 = padPress[0] & (Pad.b | Pad.start | Pad.a | Pad.l);
+	debugMenuButtonPressed = padPress[0] & (Pad.b | Pad.start | Pad.a | Pad.l);
 }
 
 /// $EFE689
 noreturn debugMenuLoad() {
-	unknownC43317();
+	initializePartyPointers();
 	debugStartPositionX = 0x80;
 	debugStartPositionY = 0x70;
-	debugUnknownB565 = 0x94;
+	debugViewCharacterSprite = OverworldSprite.lardnaMinch;
 	dadPhoneTimer = 0xFFFF;
 	unknownC0927C();
-	unknownEFDA05();
+	initDebugMenuScreen();
 	debugDisplayMenuOptions();
 	fadeIn(4, 1);
 	while (true) {
@@ -21933,16 +21933,16 @@ noreturn debugMenuLoad() {
 }
 
 /// $EFE6CF
-short unknownEFE6CF() {
-	if (debugModeNumber == 1) {
+short isDebugViewMapMode() {
+	if (debugModeNumber == DebugMode.viewMap) {
 		return 0;
 	}
 	return -1;
 }
 
-/// $EFE6E2
-short unknownEFE6E2(short arg1) {
-	if ((debugModeNumber == 1) && (arg1 > 10)) {
+/// $EFE6E2 - Limits the actionscript ID of NPCs to 10? but why?
+short debugViewMapLimitActionscript(short arg1) {
+	if ((debugModeNumber == DebugMode.viewMap) && (arg1 > 10)) {
 		arg1 = 10;
 	}
 	return arg1;
@@ -21951,7 +21951,7 @@ short unknownEFE6E2(short arg1) {
 /// $EFE708
 short unknownEFE708() {
 	short result = 0;
-	if (debugModeNumber == 2) {
+	if (debugModeNumber == DebugMode.viewCharacter) {
 		while ((padState[0] & Pad.b) == 0) {
 			waitUntilNextFrame();
 		}
@@ -21967,15 +21967,15 @@ short unknownEFE708() {
 
 /// $EFE746
 short debugCheckViewCharacterMode() {
-	if (debugModeNumber == 2) {
+	if (debugModeNumber == DebugMode.viewCharacter) {
 		return 0;
 	}
 	return 1;
 }
 
 /// $EFE759
-short unknownEFE759() {
-	if ((debugModeNumber == 2) && (unknown7EB575 != 0)) {
+short debugEnemiesEnabled() {
+	if ((debugModeNumber == DebugMode.viewCharacter) && (debugEnemiesEnabledFlag != 0)) {
 		return -1;
 	}
 	return 0;
@@ -21994,12 +21994,12 @@ void saveReplaySaveSlot() {
 }
 
 /// $EFE895
-void unknownEFE895(short arg1) {
-	if (testSRAMSize != 0) {
+void storePersistentReplayState(short style) {
+	if (testSRAMSize() != 0) {
 		randABackup = randA;
 		randBBackup = randB;
-		unknown7EB571 = unknown7E0002;
-		unknown7EB573 = arg1;
+		frameCounterBackup = frameCounter;
+		replayTransitionStyle = style;
 	}
 }
 
@@ -22012,7 +22012,7 @@ void loadReplaySaveSlot() {
 	memcpy(&partyCharacters[0], &replaySRAM.partyCharacters, (PartyCharacter[6]).sizeof);
 	memcpy(&eventFlags[0], &replaySRAM.eventFlags, eventFlags.sizeof);
 	memcpy(&timer, &replaySRAM.timer, timer.sizeof);
-	unknown7E0002 = cast(ubyte)unknown7EB571;
+	frameCounter = cast(ubyte)frameCounterBackup;
 	randA = randABackup;
 	randB = randBBackup;
 	unknownC083B8();
@@ -22020,27 +22020,27 @@ void loadReplaySaveSlot() {
 }
 
 /// $EFEA4A
-void unknownEFEA4A() {
+void startReplay() {
 	if (testSRAMSize() == 0) {
 		return;
 	}
-	unknown7EB567 = 1;
+	replayModeActive = 1;
 	loadReplaySaveSlot();
 	fadeOut(1, 1);
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, 0);
 	unfreezeEntities();
-	screenTransition(unknown7EB573, 0);
+	screenTransition(replayTransitionStyle, 0);
 	freezeEntities();
 }
 
 /// $EFEA9E
-void unknownEFEA9E() {
-	unknown7EB567 = 0;
+void endReplay() {
+	replayModeActive = 0;
 }
 
 /// $EFEAC8
-void unknownEFEAC8() {
+void debugCheckPositionOverlayBackground() {
 	WOBJSEL = 0x20;
 	WH0 = 0x18;
 	WH1 = 0x78;
@@ -22050,16 +22050,21 @@ void unknownEFEAC8() {
 	setFixedColourData(0xEF);
 	dmaChannels[4].DMAP = 1;
 	dmaChannels[4].BBAD = 0x26;
-	dmaChannels[4].A1T = &unknownEFEB1D;
-	dmaChannels[4].DASB = 0xEF; //look into this
+	dmaChannels[4].A1T = &checkPositionOverlayBackgroundHDMATable;
 	mirrorHDMAEN = 0x10;
 }
 
 /// $EFEB1D
-immutable ubyte[13] unknownEFEB1D = [0x7F, 0x80, 0x7F, 0x3C, 0x80, 0x7F, 0x20, 0x18, 0x78, 0x01, 0x80, 0x7F, 0x00];
+immutable ubyte[13] checkPositionOverlayBackgroundHDMATable = [
+	127, 0x80, 0x7F, // disable window for 187 lines
+	60, 0x80, 0x7F,
+	32, 0x18, 0x78, // 96 pixel wide window, 24 pixels from the left
+	1, 0x80, 0x7F, // disable window again
+	0
+];
 
 /// $EFEB2A
-void unknownEFEB2A() {
+void debugClearHDMA() {
 	mirrorHDMAEN = 0;
 	WH0 = 0x80;
 	WH1 = 0x7F;
@@ -22070,7 +22075,10 @@ void unknownEFEB2A() {
 immutable(ubyte)[] debugMenuFont;
 
 /// $EFEF70
-immutable ubyte[71] unknownEFEF70 = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];
+immutable ubyte[47] unknownEFEF70 = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF];
+
+/// $EFEF9F
+immutable RGB[12] debugFontPalette = [RGB(0, 0, 0), RGB(0, 31, 31), RGB(31, 31, 6), RGB(31, 6, 6), RGB(0, 0, 0), RGB(26, 0, 26), RGB(11, 11, 31), RGB(6, 31, 6), RGB(0, 0, 0), RGB(0, 0, 26), RGB(31, 16, 0), RGB(31, 21, 21)];
 
 /// $EFFF9F
 immutable ubyte[71] unknownEFEF9F = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];

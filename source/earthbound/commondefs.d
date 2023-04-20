@@ -5126,6 +5126,16 @@ enum BattleSide : ubyte{
 	foes = 1,
 }
 
+enum DebugMode {
+	none = 0,
+	viewMap = 1,
+	viewCharacter = 2,
+	viewAttribute = 3,
+	showBattle = 4,
+	checkPosition = 5,
+	soundMode = 6,
+}
+
 ///
 struct GameState {
 	version(Have_siryul) {

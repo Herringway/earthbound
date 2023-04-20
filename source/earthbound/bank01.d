@@ -477,8 +477,8 @@ void unknownC10BA1(short arg1) {
 
 /// $C10BD3
 void cc12() {
-	unknownC43739(currentFocusWindow);
-	unknownC438A5(0, windowStats[windowTable[currentFocusWindow]].textY);
+	clearCurrentTextLine(currentFocusWindow);
+	moveCurrentTextCursor(0, windowStats[windowTable[currentFocusWindow]].textY);
 }
 
 /// $C10BFE
@@ -494,11 +494,6 @@ short unknownC1138DF(short arg1) {
 /// $C10C55
 short unknownC10C55(uint arg1) {
 	return unknownC10D7C(arg1);
-}
-
-/// $C10C72
-void unknownC438A5F(short arg1, short arg2) {
-	unknownC438A5(arg1, arg2);
 }
 
 /// $C10C79
@@ -695,7 +690,7 @@ int numSelectPrompt(short arg1) {
 	int x18 = 1;
 	outer: while (true) {
 		setInstantPrinting();
-		unknownC438A5(x24, x22);
+		moveCurrentTextCursor(x24, x22);
 		short x02 = unknownC10D7C(x1E);
 		ubyte* x04 = &unknown7E895A[7 - x02];
 		short x16;
@@ -1242,7 +1237,7 @@ void unknownC120D6(short arg1, short arg2) {
 		unknownC3E75D(0);
 		printString(0xFF, returnBattleAttackerAddress());
 		ubyte* x12 = (arg1 != 0) ? &battlersTable[frontRowBattlers[arg2]].afflictions[0] : &battlersTable[backRowBattlers[arg2]].afflictions[0];
-		unknownC438A5(0x11, 0);
+		moveCurrentTextCursor(0x11, 0);
 		unknownC43F77(unknownC223D9(x12, 0));
 	} else {
 		printString(13, (arg1 != 0) ? &battleBackRowText[0] : &battleFrontRowText[0]);
@@ -1649,7 +1644,7 @@ void windowTick() {
 	updateHPPPMeterTiles();
 	if (unknown7EB4B6 == 0) {
 		if (unknownC1FF2C() != 0) {
-			unknownC47F87();
+			loadTextPalette();
 		}
 	}
 	unknown7E9649 = 0;
@@ -1759,7 +1754,7 @@ void debugYButtonMenu() {
 				unknownC12D17(unknown7E9698 == 0 ? 1 : 0);
 				break;
 			case 21:
-				unknownEFEA4A();
+				startReplay();
 				goto Unknown56;
 			case 22:
 				x1A = getTextBlock("textBattleGiygasPrayer91");
@@ -1771,7 +1766,7 @@ void debugYButtonMenu() {
 				displayText(x1A);
 				goto Unknown56;
 			default:
-				unknownEFEA9E();
+				endReplay();
 				goto Unknown56;
 		}
 	}
@@ -1932,7 +1927,7 @@ void openMenuButton() {
 						}
 						createWindowN(Window.inventoryMenu);
 						short x23 = ((partyCharacters[x1F].afflictions[0] != 0) && (Status0.nauseous > partyCharacters[x1F].afflictions[0])) ? 1 : 0;
-						unknownC438A5(0, x23);
+						moveCurrentTextCursor(0, x23);
 						while (x23 < 4) {
 							short x1B = cast(short)(x23 + 1);
 							unknownC115F4(x1B, &itemUseMenuStrings[x23][0], null);
@@ -2254,9 +2249,9 @@ void debugYButtonGoods() {
 		createWindowN(Window.fileSelectMenu);
 		setCurrentWindowPadding(0x02);
 		setCurrentWindowPadding(0x82);
-		unknownC438A5(0, 0);
+		moveCurrentTextCursor(0, 0);
 		printNumber(x04);
-		unknownC438A5(3, 0);
+		moveCurrentTextCursor(3, 0);
 		printItemName(x04);
 		clearInstantPrinting();
 		windowTick();
@@ -2446,7 +2441,7 @@ void* cc1805(DisplayTextState* arg1, ubyte arg2) {
 	if (unknown7E5E71 != 0) {
 		unknownC43D75(getCCParameters!ArgType(arg2).alignment, arg2);
 	} else {
-		unknownC438A5(getCCParameters!ArgType(arg2).alignment, arg2);
+		moveCurrentTextCursor(getCCParameters!ArgType(arg2).alignment, arg2);
 	}
 	return null;
 }
@@ -4794,11 +4789,11 @@ void unknownC1952F(short arg1) {
 				break;
 			default: break loop;
 		}
-		unknownC438A5(1, 1);
+		moveCurrentTextCursor(1, 1);
 		printString(0x100, x06);
 		break;
 	}
-	unknownC438A5(11, 1);
+	moveCurrentTextCursor(11, 1);
 	unknownC43F77(unknownC223D9(&partyCharacters[arg1].afflictions[0], 0));
 	if (arg1 != 2) {
 		unknown7E5E71 = 1;
@@ -4938,7 +4933,7 @@ ushort unknownC19DB5(short arg1) {
 		unknownC115F4(x1A, &unknown7E9C9F[0], null);
 		unknownC4507A(itemData[x1A].cost);
 	}
-	unknownC438A5(0, 0);
+	moveCurrentTextCursor(0, 0);
 	unknownC1180D(1, 0, 0);
 	unknownC11F5A(&setHPPPWindowModeItem);
 	unknownC19CDD();
@@ -5009,7 +5004,7 @@ void printEquipment(short arg1) {
 			memcpy(&unknown7E9C9F[0], &statusEquipWindowText12[0], statusEquipWindowText12.length);
 			unknown7E9C9F[statusEquipWindowText12.length] = 0;
 		}
-		unknownC438A5(6, i);
+		moveCurrentTextCursor(6, i);
 		printLetter(ebChar(':'));
 		printLetter(ebChar(' '));
 		printString(49, &unknown7E9C9F[0]);
@@ -5025,7 +5020,7 @@ void printEquipmentStats(short arg1) {
 	createWindowN(Window.equipMenuStats);
 	windowTickWithoutInstantPrinting();
 	setCurrentWindowPadding(2);
-	unknownC438A5(0, 0);
+	moveCurrentTextCursor(0, 0);
 	printString(statusEquipWindowText8.length, &statusEquipWindowText8[0]);
 	short x16 = partyCharacters[arg1].baseOffense;
 	if (partyCharacters[arg1].equipment[EquipmentSlot.weapon] != 0) {
@@ -5050,7 +5045,7 @@ void printEquipmentStats(short arg1) {
 	}
 	printNumber(a);
 	unknown7E5E71 = 0;
-	unknownC438A5(0, 1);
+	moveCurrentTextCursor(0, 1);
 	printString(statusEquipWindowText9.length, &statusEquipWindowText9[0]);
 	x16 = partyCharacters[arg1].baseDefense;
 	if (partyCharacters[arg1].equipment[EquipmentSlot.body] != 0) {
@@ -5990,7 +5985,7 @@ void generatePSIList(short arg1, ubyte arg2, ubyte arg3) {
 	short x1F = 0;
 	if ((arg1 == 3) && ((arg2 & 2) != 0) && ((arg3 & 1) != 0)) {
 		if ((gameState.partyPSI & 2) != 0) {
-			unknownC438A5(0, psiAbilityTable[21].menuY);
+			moveCurrentTextCursor(0, psiAbilityTable[21].menuY);
 			getPSIName(psiAbilityTable[21].name);
 			unknownC1153B(21, psiAbilityTable[21].menuX, psiAbilityTable[21].menuY, &psiSuffixes[psiAbilityTable[21].level - 1][0], null);
 		}
@@ -6025,7 +6020,7 @@ void generatePSIList(short arg1, ubyte arg2, ubyte arg3) {
 			continue;
 		}
 		if (psiAbilityTable[i].name != x1F) {
-			unknownC438A5(0, psiAbilityTable[i].menuY);
+			moveCurrentTextCursor(0, psiAbilityTable[i].menuY);
 			getPSIName(psiAbilityTable[i].name);
 			x1F = psiAbilityTable[i].name;
 		}
@@ -6033,7 +6028,7 @@ void generatePSIList(short arg1, ubyte arg2, ubyte arg3) {
 	}
 	if ((arg1 == 0) && ((arg2 & 1) != 0) && ((arg3 & 8) != 0)) {
 		if ((gameState.partyPSI & 1) != 0) {
-			unknownC438A5(0, psiAbilityTable[51].menuY);
+			moveCurrentTextCursor(0, psiAbilityTable[51].menuY);
 			getPSIName(psiAbilityTable[51].name);
 			unknownC1153B(51, psiAbilityTable[51].menuX, psiAbilityTable[51].menuY, &psiSuffixes[psiAbilityTable[51].level - 1][0], null);
 		}
@@ -6069,7 +6064,7 @@ void unknownC1C8BC(short arg1) {
 	}
 	printString(psiTargetText[0][0].length, x06);
 	unknown7E5E6E = 0xFF;
-	unknownC438A5(0, 1);
+	moveCurrentTextCursor(0, 1);
 	printString(ppCostText.length, &ppCostText[0]);
 	printLetter(ebChar(' '));
 	setCurrentWindowPadding(0x81);
@@ -6093,7 +6088,7 @@ void unknownC1CA72(short arg1, short arg2) {
 	unknownC1C853(unknown7E9D16);
 	printMenuItems();
 	windowStats[windowTable[currentFocusWindow]].textY = x0E;
-	unknownC438A5(0, getTextY());
+	moveCurrentTextCursor(0, getTextY());
 	windowSetTextColor(arg2);
 	getPSIName(psiAbilityTable[arg1].name);
 	windowSetTextColor(0);
@@ -6747,7 +6742,7 @@ short enemySelectMode(short arg1) {
 	short savedY = windowStats[windowTable[Window.textBattle]].textY;
 	outer: while (true) {
 		setInstantPrinting();
-		unknownC438A5(savedX, savedY);
+		moveCurrentTextCursor(savedX, savedY);
 		short x02 = unknownC10D7C(x24);
 		ubyte* x18 = &unknown7E895A[7 - x02];
 			version(bugfix) {
@@ -6844,7 +6839,7 @@ short unknownC1E4BE(short arg1, short arg2, short arg3) {
 	createWindowN(arg1);
 	short x10 = (4 > arg2) ? 5 : 6;
 	unknownC441B7(x10);
-	unknownC438A5(0, windowStats[windowTable[currentFocusWindow]].textY);
+	moveCurrentTextCursor(0, windowStats[windowTable[currentFocusWindow]].textY);
 	short x12 = (arg3 == 6) ? 0 : cast(short)(arg3 + 1);
 	// Huh. The vanilla game happily just indexes out of bounds here.
 	for (short i = 0; i < dontCareNames[arg2][x12].length && dontCareNames[arg2][x12][i] != 0; i++) {
@@ -6896,7 +6891,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 		}
 		l1: while (true) {
 			clearInstantPrinting();
-			unknownC438A5(x20, x22);
+			moveCurrentTextCursor(x20, x22);
 			windowSetTextColor(1);
 			unknownC10D60(33);
 			windowSetTextColor(0);
@@ -6985,7 +6980,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 					}
 				}
 			}
-			unknownC438A5(x20, x22);
+			moveCurrentTextCursor(x20, x22);
 			unknownC10D60(0x2F);
 			if (x16 != -1) {
 				x20 = x16 & 0xFF;
@@ -7017,26 +7012,26 @@ short enterYourNamePlease(short arg1) {
 	setInstantPrinting();
 	createWindowN(Window.unknown27);
 	if (arg1 != 0) {
-		unknownC438A5(0, 0);
+		moveCurrentTextCursor(0, 0);
 		printString(24, &gameState.earthboundPlayerName[0]);
-		unknownC438A5(0, 1);
+		moveCurrentTextCursor(0, 1);
 		unknownC441B7(12);
 		if (gameState.mother2PlayerName[0] != 0) {
 			printString(12, &gameState.mother2PlayerName[0]);
 		}
-		unknownC438A5(0, 1);
+		moveCurrentTextCursor(0, 1);
 		result = textInputDialog(Window.unknown27, 12, &gameState.mother2PlayerName[0], 0, -1);
 	} else {
-		unknownC438A5(0, 0);
+		moveCurrentTextCursor(0, 0);
 		printString(26, &nameRegistryRequestString[0]);
 		waitDMAFinished();
-		unknownC438A5(0, 1);
+		moveCurrentTextCursor(0, 1);
 		unknownC441B7(24);
-		unknownC438A5(0, 1);
+		moveCurrentTextCursor(0, 1);
 		if (gameState.earthboundPlayerName[0] != 0) {
 			unknownC440B5(&gameState.earthboundPlayerName[0], 24);
 		}
-		unknownC438A5(0, 1);
+		moveCurrentTextCursor(0, 1);
 		result = textInputDialog(Window.unknown27, 24, &gameState.earthboundPlayerName[0], 0, -1);
 		unknownC4D065(&unknown7E9C9F[0], &gameState.earthboundPlayerName[0]);
 		memcpy(&gameState.mother2PlayerName[0], &unknown7E9C9F[0], 12);
@@ -7057,7 +7052,7 @@ short nameACharacter(short arg1, ubyte* arg2, short arg3, const(ubyte)* arg4, sh
 	} else {
 		unknownC441B7(arg1);
 	}
-	unknownC438A5(0, 0);
+	moveCurrentTextCursor(0, 0);
 	createWindowN(Window.fileSelectNamingMessage);
 	windowTickWithoutInstantPrinting();
 	printString(arg5, arg4);
@@ -7073,7 +7068,7 @@ void unknownC1EC8F(short arg1) {
 	gameState.textFlavour = cast(ubyte)arg1;
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all2);
-	unknownC47F87();
+	loadTextPalette();
 	unknown7E0030 = 0x18;
 	gameState.textFlavour = x00;
 }
@@ -7136,13 +7131,13 @@ short fileSelectMenu(short arg1) {
 		if (gameState.favouriteThing[1] != 0) {
 			memcpy(&unknown7E9C9F[0], &fileSelectTextLevel[0], fileSelectTextLevel.length);
 			unknown7E9C9F[6] = 0;
-			unknownC438A5(9, i);
+			moveCurrentTextCursor(9, i);
 			printString(0x20, &unknown7E9C9F[0]);
 			const levelCharsPrinted = unknownC10D7C(partyCharacters[0].level);
 			unknown7E9C9F[0] = (levelCharsPrinted == 1) ? ebChar(' ') : (cast(ubyte)(unknown7E895A[7 - levelCharsPrinted] + ebChar('0')));
 			unknown7E9C9F[1] = cast(ubyte)(unknown7E895A[6] + ebChar('0'));
 			unknown7E9C9F[2] = 0;
-			unknownC438A5(13, i);
+			moveCurrentTextCursor(13, i);
 			printString(0x20, &unknown7E9C9F[0]);
 			memcpy(&unknown7E9C9F[0], &fileSelectTextTextSpeed[0], fileSelectTextTextSpeed.length);
 			unknown7E9C9F[11] = ebChar(' ');
@@ -7152,7 +7147,7 @@ short fileSelectMenu(short arg1) {
 				enum nameOffset = 0;
 			}
 			memcpy(&unknown7E9C9F[12], &fileSelectTextTextSpeedStrings[gameState.textSpeed + nameOffset - 1][0], fileSelectTextTextSpeedStrings[gameState.textSpeed + nameOffset - 1].length);
-			unknownC438A5(16, i);
+			moveCurrentTextCursor(16, i);
 			printString(0x20, &unknown7E9C9F[0]);
 		}
 	}
@@ -7162,7 +7157,7 @@ short fileSelectMenu(short arg1) {
 			x1C_2 = &menuOptions[x1C_2.next];
 		}
 		windowSetTextColor(6);
-		unknownC438A5(cast(short)(x1C_2.textX + 1), x1C_2.textY);
+		moveCurrentTextCursor(cast(short)(x1C_2.textX + 1), x1C_2.textY);
 		unknown7E5E6E = 0;
 		unknownC43B15();
 		windowSetTextColor(0);
@@ -7316,17 +7311,17 @@ short unknownC1F2A8() {
 	createWindowN(Window.fileSelectDeleteConfirmation);
 	setInstantPrinting();
 	setCurrentWindowPadding(0);
-	unknownC438A5(0, 0);
+	moveCurrentTextCursor(0, 0);
 	printString(fileSelectTextAreYouSureDelete.length, &fileSelectTextAreYouSureDelete[0]);
 	unknownC43D75(0, 1);
-	unknownC438A5(0, 1);
+	moveCurrentTextCursor(0, 1);
 	printNumber(currentSaveSlot);
 	printLetter(ebChar(':'));
-	unknownC438A5(2, 1);
+	moveCurrentTextCursor(2, 1);
 	unknownC1931B(1);
-	unknownC438A5(8, 1);
+	moveCurrentTextCursor(8, 1);
 	printString(fileSelectTextLevel.length, &fileSelectTextLevel[0]);
-	unknownC438A5(12, 1);
+	moveCurrentTextCursor(12, 1);
 	printNumber(partyCharacters[0].level);
 	unknownC1153B(0, 0, 2, &fileSelectTextAreYouSureDeleteNo[0], null);
 	unknownC1153B(1, 0, 3, &fileSelectTextAreYouSureDeleteYes[0], null);
@@ -7373,7 +7368,7 @@ short unknownC1F497(short arg1) {
 			x14 = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
 		windowSetTextColor(6);
-		unknownC438A5(cast(short)(x14.textX + 1), x14.textY);
+		moveCurrentTextCursor(cast(short)(x14.textX + 1), x14.textY);
 		unknownC43BB9(0xFFFF, 1, &x14.label[0]);
 		windowSetTextColor(0);
 		x12 = gameState.textSpeed;
@@ -7410,7 +7405,7 @@ short unknownC1F616(short arg1) {
 			x14 = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
 		windowSetTextColor(6);
-		unknownC438A5(cast(short)(x14.textX + 1), x14.textY);
+		moveCurrentTextCursor(cast(short)(x14.textX + 1), x14.textY);
 		unknownC43BB9(0xFFFF, 1, &x14.label[0]);
 		windowSetTextColor(0);
 		x12 = gameState.soundSetting;
@@ -7626,13 +7621,13 @@ void fileMenuLoop() {
 								createWindowN(Window.fileSelectNamingConfirmationFood);
 								printString(fileSelectTextFavoriteFood.length, &fileSelectTextFavoriteFood[0]);
 								short x = unknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), 0, &gameState.favouriteFood[0]);
-								unknownC438A5(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationFood]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
+								moveCurrentTextCursor(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationFood]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteFood[0]), &gameState.favouriteFood[0]);
 
 								createWindowN(Window.fileSelectNamingConfirmationThing);
 								printString(fileSelectTextCoolestThing.length, &fileSelectTextCoolestThing[0]);
 								x = unknownC44FF3(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), 0, &gameState.favouriteThing[4]);
-								unknownC438A5(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationThing]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
+								moveCurrentTextCursor(cast(short)(windowStats[windowTable[Window.fileSelectNamingConfirmationThing]].width - (((x % 8) != 0) || ((x / 8) == 6) ? ((x / 8) + 1) : (x / 8))), 1);
 								printString(cast(short)strlen(cast(char*)&gameState.favouriteThing[4]), &gameState.favouriteThing[4]);
 
 								createWindowN(Window.fileSelectNamingConfirmationMessage);

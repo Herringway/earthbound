@@ -1184,7 +1184,7 @@ void unknownC432B1() {
 }
 
 /// $C43317
-void unknownC43317() {
+void initializePartyPointers() {
 	for (short i = 0; i < 6; i++) {
 		chosenFourPtrs[i] = &partyCharacters[i];
 	}
@@ -1320,7 +1320,7 @@ void unknownC436D7(short arg1, short arg2) {
 }
 
 /// $C43739
-void unknownC43739(short arg1) {
+void clearCurrentTextLine(short arg1) {
 	ushort* x10 = &windowStats[windowTable[arg1]].tilemapBuffer[(windowStats[windowTable[arg1]].width * windowStats[windowTable[arg1]].textY * 2)];
 	for (short i = 0; i != windowStats[windowTable[arg1]].width * 2; i++) {
 		freeTile((x10++)[0]);
@@ -1381,15 +1381,15 @@ void unknownC43B15() {
 }
 
 /// $C43874
-void unknownC43874(short arg1, short x, short y) {
+void moveTextCursor(short windowID, short x, short y) {
 	nextVWFTile();
-	windowStats[windowTable[arg1]].textX = x;
-	windowStats[windowTable[arg1]].textY = y;
+	windowStats[windowTable[windowID]].textX = x;
+	windowStats[windowTable[windowID]].textY = y;
 }
 
 /// $C438A5
-void unknownC438A5(short x, short y) {
-	unknownC43874(currentFocusWindow, x, y);
+void moveCurrentTextCursor(short x, short y) {
+	moveTextCursor(currentFocusWindow, x, y);
 }
 
 /// $C43915
@@ -1472,7 +1472,7 @@ void nextVWFTile() {
 
 /// $C43CD2 - Set text position on focused window (for menu options)
 void unknownC43CD2(MenuOpt* opt, short x, short y) {
-	unknownC438A5F(x, y);
+	moveCurrentTextCursor(x, y);
 	if (opt.pixelAlign != 0) {
 		vwfX += opt.pixelAlign;
 		memset(&vwfBuffer[vwfTile][0], 0xFF, 0x20);
@@ -1488,7 +1488,7 @@ void unknownC43D95(short arg1) {
 
 /// $C43DDB
 void unknownC43DDB(MenuOpt* menuEntry) {
-	unknownC438A5F(menuEntry.textX, menuEntry.textY);
+	moveCurrentTextCursor(menuEntry.textX, menuEntry.textY);
 	unknownC43F77(0x2F);
 	nextVWFTile();
 	if (menuEntry.pixelAlign != 0) {
@@ -1498,7 +1498,7 @@ void unknownC43DDB(MenuOpt* menuEntry) {
 
 /// $C43D24
 void unknownC43D24(ushort arg1, short arg2) {
-	unknownC438A5F(arg1, arg2);
+	moveCurrentTextCursor(arg1, arg2);
 	if (unknown7E5E72 == 0) {
 		return;
 	}
@@ -2086,9 +2086,9 @@ void unknownC4507A(uint arg1) {
 		x24--;
 	}
 	unknown7E5E71 = 0;
-	unknownC438A5F(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
+	moveCurrentTextCursor(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
 	unknownC43F77(0x24);
-	unknownC438A5F(x1E, x1C);
+	moveCurrentTextCursor(x1E, x1C);
 	unknown7E5E75 = unknown7E5E75Copy;
 }
 
@@ -3517,7 +3517,7 @@ void prepareWindowGraphics() {
 }
 
 /// $C47F87
-void unknownC47F87() {
+void loadTextPalette() {
 	ubyte affliction = 0;
 	// Normally the game just indexes the playerControlledPartyMembers array out of bounds - not the best idea.
 	version(bugfix) {
@@ -3551,7 +3551,7 @@ void undrawFlyoverText() {
 	unknownC2038B();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all2);
-	unknownC47F87();
+	loadTextPalette();
 	unknown7E0030 = 0x18;
 }
 
@@ -4715,7 +4715,7 @@ void useSoundStone(short arg1) {
 	decomp(&soundStoneGraphics[0], &unknown7F0000[0]);
 	copyToVRAM(0, 0x2C00, 0x2000, &unknown7F0000[0]);
 	memcpy(&palettes[8][0], &soundStonePalette[0], 0xC0);
-	unknownC47F87();
+	loadTextPalette();
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
 	memset(&unknown7EB3EE, 0, SpriteMap.sizeof);
 	memset(&unknown7EB3F3, 0, SpriteMap.sizeof);
@@ -5548,7 +5548,7 @@ void unknownC4C2DE() {
 	initializeTextSystem();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all);
-	unknownC47F87();
+	loadTextPalette();
 	unknownC0856B(0x18);
 	mirrorTM = 5;
 	unknown7E4DC4 = 0;
@@ -6051,7 +6051,7 @@ void unknownC48B2C() {
 
 /// $C48B3B
 void unknownC48B3B() {
-	if ((unknown7E0002 & 1) != 0) {
+	if ((frameCounter & 1) != 0) {
 		return;
 	}
 	for (short i = 0; gameState.partyCount > i; i++) {
@@ -6632,7 +6632,7 @@ void unknownC4D8FA() {
 /// $C4D989
 short unknownC4D989(short arg1) {
 	unknownC0927C();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(short.min, 0);
 	initializeMiscObjectData();
 	unknown7E4A58 = 1;
@@ -6641,7 +6641,7 @@ short unknownC4D989(short arg1) {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(1, 0, 0);
-	unknownC02D29();
+	clearParty();
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMembers[i] = 0;
 	}
@@ -6989,7 +6989,7 @@ void unknownC4E369() {
 	unknownC4E7AE();
 	copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
 	unknown7EB4CE = 0;
-	unknownC47F87();
+	loadTextPalette();
 	memcpy(&palettes[0][0], &unknownE1D815[0], 0x20);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	decomp(&unknownE1E4E6[0], &unknown7F0000[0x7000]);
@@ -7171,7 +7171,7 @@ void unknownC4ED0E() {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(0, 0, ActionScript.partyMemberLeading);
-	unknownC02D29();
+	clearParty();
 	unknownC03A24();
 	prepareForImmediateDMA();
 	undrawFlyoverText();
@@ -7395,7 +7395,7 @@ void playCredits() {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
-	unknownC02D29();
+	clearParty();
 	unknownC03A24();
 	ushort* x06 = &bg2Buffer[0];
 	for (short i = 0; i < 0x200; i++) {

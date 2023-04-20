@@ -316,7 +316,7 @@ void loadMapAtSector(short x, short y) {
 		if (debugging != 0) {
 			unknownEFD9F3();
 		} else {
-			unknownC47F87();
+			loadTextPalette();
 		}
 		unknownC0856B(0);
 	}
@@ -794,7 +794,7 @@ void initializeMiscObjectData() {
 }
 
 /// $C01A86
-void unknownC01A86() {
+void clearSpriteTable() {
 	ubyte* tmpPtr = cast(ubyte*)&spriteTable7E467E[0];
 	for (short i = 0; i < spriteTable7E467E.sizeof; i++) {
 		tmpPtr[i] = 0xFF;
@@ -1094,14 +1094,14 @@ void trySpawnNPCs(short x, short y) {
 				}
 				x1A = -1;
 				if (unknown7EB4EF == 0) {
-					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != 0) && (unknownEFE6CF() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
+					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != 0) && (isDebugViewMapMode() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
 						continue;
 					} else if ((npcConfig[x20].appearanceStyle != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
 						continue;
 					}
 					if (debugging != 0) {
 						if ((showNPCFlag == 0) || (npcConfig[x20].type == 3)) {
-							x1A = createEntity(npcConfig[x20].sprite, unknownEFE6E2(npcConfig[x20].actionScript), -1, x18, x16);
+							x1A = createEntity(npcConfig[x20].sprite, debugViewMapLimitActionscript(npcConfig[x20].actionScript), -1, x18, x16);
 						}
 					} else {
 						if ((showNPCFlag == 0) || (npcConfig[x20].type == 3)) {
@@ -1186,7 +1186,7 @@ short unknownC0263D(short x, short y) {
 void unknownC02668(short arg1, short arg2, short arg3) {
 	short x2A;
 	const(BattleGroupEnemy)* x0A;
-	if ((debugging != 0) && (unknownEFE759() != 0) && (rand() < 16)) {
+	if ((debugging != 0) && (debugEnemiesEnabled() != 0) && (rand() < 16)) {
 		tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
 		x2A = 0;
 		x0A = &battleEntryPointerTable[0].enemies[0];
@@ -1436,7 +1436,7 @@ void mushroomizationMovementSwap() {
 }
 
 /// $C02D29
-void unknownC02D29() {
+void clearParty() {
 	entitySizes[23] = 1;
 	unknown7E9F6B = -1;
 	gameState.unknown88 = 0;
@@ -1569,7 +1569,7 @@ void updateParty() {
 	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	unknownC032EC();
 	unknownC02C3E();
-	unknownC47F87();
+	loadTextPalette();
 }
 
 /// $C0369B
@@ -2235,10 +2235,10 @@ void unknownC0449B() {
 	} else {
 		gameState.unknown90 = 0;
 	}
-	if (((unknown7E0002 & 1) == 0) && (activeHotspots[0].mode != 0)) {
+	if (((frameCounter & 1) == 0) && (activeHotspots[0].mode != 0)) {
 		unknownC073C0(0);
 	}
-	if (((unknown7E0002 & 1) != 0) && (activeHotspots[1].mode != 0)) {
+	if (((frameCounter & 1) != 0) && (activeHotspots[1].mode != 0)) {
 		unknownC073C0(1);
 	}
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
@@ -2432,7 +2432,7 @@ void unknownC04C45() {
 		unknownC07C5B();
 		unknown7E5D58--;
 	}
-	if ((debugging != 0) && ((padState[0] & Pad.x) != 0) && ((unknown7E0002 & 0xF) != 0)) {
+	if ((debugging != 0) && ((padState[0] & Pad.x) != 0) && ((frameCounter & 0xF) != 0)) {
 		return;
 	}
 	chosenFourPtrs[entityScriptVar1Table[gameState.firstPartyMemberEntity]].positionIndex = gameState.unknown88;
@@ -3752,11 +3752,11 @@ void doorTransition(const(DoorEntryA)* arg1) {
 		x02 += 8;
 	}
 	if (debugging != 0) {
-		if (debugModeNumber != 6) {
+		if (debugModeNumber != DebugMode.soundMode) {
 			loadSectorMusic(x02, x04);
 		}
-		if (unknown7EB567 == 0) {
-			unknownEFE895(arg1.transitionStyle);
+		if (replayModeActive == 0) {
+			storePersistentReplayState(arg1.transitionStyle);
 		}
 	} else {
 		loadSectorMusic(x02, x04);
@@ -3765,7 +3765,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	unknown7E2890 = 0;
 	gameState.walkingStyle = 0;
 	unknownC03FA9(x02, x04, unknownC3E1D8[arg1.unknown6 >> 14]);
-	if ((debugging != 0) && (unknown7EB567 == 0)) {
+	if ((debugging != 0) && (replayModeActive == 0)) {
 		saveReplaySaveSlot();
 	}
 	changeMapMusic();
@@ -4402,7 +4402,7 @@ void irqNMICommon() {
 	HDMAEN = 0;
 	INIDISP = 0x80;
 	unknown7E002B++;
-	unknown7E0002++;
+	frameCounter++;
 	if (nextFrameDisplayID != 0) {
 		handleOAMDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220, 0);
 		unknown7E0099 += 0x220;
@@ -6860,7 +6860,7 @@ void unknownC0A443() {
 
 /// $C0A472
 void unknownC0A472() {
-	unknown7E2892 = (unknown7E0002 >> 3) & 1;
+	unknown7E2892 = (frameCounter >> 3) & 1;
 	unknownC0A443Unknown10();
 }
 void unknownC0A443MovementEntry3() {
@@ -7984,7 +7984,7 @@ void fileSelectInit() {
 	unknownC0927C();
 	oamClear();
 	updateScreen();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(-32768, 0);
 	initializeMiscObjectData();
 	overworldSetupVRAM();
@@ -8032,7 +8032,7 @@ void setLeaderLocation(short arg1, short arg2) {
 /// $C0B67F
 void unknownC0B67F() {
 	unknownC0927C();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(short.min, 0);
 	initializeMiscObjectData();
 	battleDebug = 0;
@@ -8051,10 +8051,10 @@ void unknownC0B67F() {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
-	unknownC02D29();
+	clearParty();
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);
-	unknownC47F87();
+	loadTextPalette();
 	overworldInitialize();
 	if (config.overrideSpawn) {
 		gameState.leaderX.integer = config.spawnCoordinates.x;
@@ -8108,7 +8108,7 @@ void initBattleOverworld() {
 
 /// $C0B7D8
 void ebMain() {
-	unknownC43317();
+	initializePartyPointers();
 	RestartGame:
 	if (config.noIntro) {
 		unknown7EB4B6 = 1;
@@ -9257,7 +9257,7 @@ short scheduleOverworldTask(short arg1, void function() arg2) {
 
 /// $C0DC4E
 void processOverworldTasks() {
-	if ((unknown7E0002 == 0) && (dadPhoneTimer != 0)) {
+	if ((frameCounter == 0) && (dadPhoneTimer != 0)) {
 		dadPhoneTimer--;
 	}
 	if (windowHead != -1) {

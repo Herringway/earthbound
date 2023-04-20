@@ -604,13 +604,13 @@ void hpPPRoller() {
 	if (unknown7E9697 != 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] == 0) {
+	if (gameState.partyMembers[frameCounter & 3] == 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] > 4) {
+	if (gameState.partyMembers[frameCounter & 3] > 4) {
 		return;
 	}
-	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1];
+	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1];
 	if ((unknown7E9698 != 0) || ((x10.hp.current.fraction & 1) != 0)) {
 		if (x10.hp.current.integer < x10.hp.target) {
 			x10.hp.current.combined += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? 0x64000 : unknownC20F58();
@@ -669,25 +669,25 @@ void updateHPPPMeterTiles() {
 	if (unknown7E89C9 == 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] == 0) {
+	if (gameState.partyMembers[frameCounter & 3] == 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] > 4) {
+	if (gameState.partyMembers[frameCounter & 3] > 4) {
 		return;
 	}
-	if ((unknown7E9647 >> (unknown7E0002 & 3) & 1) == 0) {
+	if ((unknown7E9647 >> (frameCounter & 3) & 1) == 0) {
 		return;
 	}
-	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + ((unknown7E0002 & 3) * 7);
+	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (frameCounter & 3)) ? 18 : 19) * 32 + 96 + 3 + ((frameCounter & 3) * 7);
 	ushort* x1A = &bg2Buffer[x1C];
 	//x1C = 0x7C00[x1C];
-	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction & 1) != 0) {
-		fillCharacterHPTileBuffer(unknown7E0002 & 3, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction);
+	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction & 1) != 0) {
+		fillCharacterHPTileBuffer(frameCounter & 3, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction);
 		if (unknown7E9624 == 0) {
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][0]);
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][3]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][0]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][3]);
 		}
-		ushort* y = &hpPPWindowBuffer[unknown7E0002 & 3][0];
+		ushort* y = &hpPPWindowBuffer[frameCounter & 3][0];
 		for (short i = 0; i != 3; i++) {
 			(x1A++)[0] = (y++)[0];
 		}
@@ -699,13 +699,13 @@ void updateHPPPMeterTiles() {
 	} else {
 		x1A += 64;
 	}
-	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction & 1) != 0) {
-		fillCharacterPPTileBuffer(unknown7E0002 & 3, &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction);
+	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction & 1) != 0) {
+		fillCharacterPPTileBuffer(frameCounter & 3, &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction);
 		if (unknown7E9624 == 0) {
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][6]);
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][9]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][6]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][9]);
 		}
-		ushort* x12 = &hpPPWindowBuffer[unknown7E0002 & 3][6];
+		ushort* x12 = &hpPPWindowBuffer[frameCounter & 3][6];
 		for (short i = 0; i != 3; i++) {
 			(x1A++)[0] = (x12++)[0];
 		}
@@ -2303,7 +2303,7 @@ short battleRoutine() {
 		}
 		unknownC2F121();
 		drawBattleSprites();
-		unknownC47F87();
+		loadTextPalette();
 		unknownC0856B(0x18);
 		battleModeFlag = 1;
 		changeMusic(enemyConfigurationTable[unknown7E9F8C[0]].music);
@@ -7053,7 +7053,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 	arg1.distortionCompressionRate += arg1.distortionCompressionAcceleration;
 	loadBackgroundOffsetParameters(cast(short)(arg1.distortionType - 1), x19, layer);
 	loadBackgroundOffsetParameters2(arg1.distortionCompressionRate);
-	if (((unknown7E0002 & 1) == layer) || (unknown7EADAC == 0)) {
+	if (((frameCounter & 1) == layer) || (unknown7EADAC == 0)) {
 		prepareBackgroundOffsetTables(arg1.distortionRippleFrequency, arg1.distortionRippleAmplitude, arg1.distortionSpeed);
 	}
 }
@@ -8128,7 +8128,7 @@ void renderBattleSpriteRow(short arg1) {
 			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else if (battlersTable[i].useAltSpritemap != 0) {
 			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
-		} else if ((unknown7EADA2 != 0) && ((battlersTable[i].unknown74 == 0) || ((unknown7E0002 & 8) != 0))) {
+		} else if ((unknown7EADA2 != 0) && ((battlersTable[i].unknown74 == 0) || ((frameCounter & 8) != 0))) {
 			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else {
 			unknownC08CD5(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
