@@ -22059,13 +22059,25 @@ void debugCheckPositionOverlayBackground() {
 }
 
 /// $EFEB1D
-immutable ubyte[13] checkPositionOverlayBackgroundHDMATable = [
-	127, 0x80, 0x7F, // disable window for 187 lines
-	60, 0x80, 0x7F,
-	32, 0x18, 0x78, // 96 pixel wide window, 24 pixels from the left
-	1, 0x80, 0x7F, // disable window again
-	0
-];
+version(bugfix) {
+	immutable ubyte[19] checkPositionOverlayBackgroundHDMATable = [
+		11, 0x80, 0x7F, // disable window for 16 lines
+		32, 0x08, 0x58, // 80 pixel wide window, 8 pixels from the left
+		127, 0x80, 0x7F, // disable window for 171 lines
+		17, 0x80, 0x7F,
+		32, 0x18, 0x78, // 96 pixel wide window, 24 pixels from the left
+		1, 0x80, 0x7F, // disable window again
+		0
+	];
+} else {
+	immutable ubyte[13] checkPositionOverlayBackgroundHDMATable = [
+		127, 0x80, 0x7F, // disable window for 187 lines
+		60, 0x80, 0x7F,
+		32, 0x18, 0x78, // 96 pixel wide window, 24 pixels from the left
+		1, 0x80, 0x7F, // disable window again
+		0
+	];
+}
 
 /// $EFEB2A
 void debugClearHDMA() {
