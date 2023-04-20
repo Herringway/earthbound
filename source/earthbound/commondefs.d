@@ -6937,7 +6937,7 @@ void writeSaveFile(short id, SaveBlock block) {
 ///
 string saveFileName(short id) {
 	import std.format : format;
-	if (id % 1 == 0) {
+	if (id % 2 == 0) {
 		return format!"%s.ebsave"(id / 2);
 	} else {
 		return format!"%s.ebsave.bak"(id / 2);
