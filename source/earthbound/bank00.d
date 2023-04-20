@@ -6644,7 +6644,8 @@ short unknownC0A156(short x, short y) {
 }
 
 unittest {
-	if (mapDataTileTableChunksTable[0] != []) {
+	// NYI: Need to figure out a way to load data for unit tests
+	if (mapDataTileTableChunksTable.length > 0) {
 		assert(unknownC0A156(0xF8, 0x2C) == 0xA7);
 	}
 }
