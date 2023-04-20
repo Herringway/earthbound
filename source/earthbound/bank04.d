@@ -6473,7 +6473,7 @@ void unknownC4D43F(short arg1) {
 			x14 = 0;
 		}
 		short x12 = 0;
-		if (x06.eventFlag < eventFlagUnset) {
+		if (x06.eventFlag >= eventFlagUnset) {
 			x12 = 1;
 		}
 		if (getEventFlag(x06.eventFlag & 0x7FFF) != x12) {
