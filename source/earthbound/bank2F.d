@@ -260,8 +260,14 @@ short checkBlockSignature(short id) {
 
 /// $EF0683
 void checkAllBlocksSignature() {
-	for (short i = 0; i < 6; i++) {
-		checkBlockSignature(i);
+	version(savememory) {
+		for (short i = 0; i < 6; i++) {
+			checkBlockSignature(i);
+		}
+	} else {
+		for (short i = 0; i < 6; i += 2) {
+			checkBlockSignature(i);
+		}
 	}
 }
 
@@ -326,17 +332,24 @@ short validateSaveBlockChecksums(short id) {
 void checkSaveCorruption(short id) {
 	if (validateSaveBlockChecksums(cast(short)(id * 2)) != 0) {
 		eraseSaveBlock(cast(short)(id * 2));
-		if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
-			eraseSaveBlock(cast(short)(id * 2 + 1));
+		version(savememory) {
+			if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
+				eraseSaveBlock(cast(short)(id * 2 + 1));
+				unknown7E9F79 |= unknownEF05A6[id];
+				return;
+			} else {
+				copySaveBlock(cast(short)(id * 2), cast(short)(id * 2 + 1));
+			}
+		} else {
 			unknown7E9F79 |= unknownEF05A6[id];
 			return;
-		} else {
-			copySaveBlock(cast(short)(id * 2), cast(short)(id * 2 + 1));
 		}
 	}
-	if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
-		eraseSaveBlock(cast(short)(id * 2 + 1));
-		copySaveBlock(cast(short)(id * 2 + 1), cast(short)(id * 2));
+	version(savememory) {
+		if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
+			eraseSaveBlock(cast(short)(id * 2 + 1));
+			copySaveBlock(cast(short)(id * 2 + 1), cast(short)(id * 2));
+		}
 	}
 }
 
@@ -416,13 +429,17 @@ void checkSRAMIntegrity() {
 /// $EF0BFA
 void eraseSaveSlot(short id) {
 	eraseSaveBlock(cast(short)(id * 2));
-	eraseSaveBlock(cast(short)(id * 2 + 1));
+	version(savememory) {
+		eraseSaveBlock(cast(short)(id * 2 + 1));
+	}
 }
 
 /// $EF0C15
 void copySaveSlot(short to, short from) {
 	copySaveBlock(cast(short)(to * 2), cast(short)(from * 2));
-	copySaveBlock(cast(short)(to * 2 + 1), cast(short)(from * 2 + 1));
+	version(savememory) {
+		copySaveBlock(cast(short)(to * 2 + 1), cast(short)(from * 2 + 1));
+	}
 }
 
 /// $EF0C3D - unused
