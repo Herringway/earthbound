@@ -1199,16 +1199,16 @@ void unknownC43344(short arg1) {
 void unknownC4334A(short direction) {
 	short x10 = cast(short)(unknownC3E230[direction] + gameState.leaderX.integer / 8);
 	short x04 = cast(short)((direction == 4) ? (unknownC3E240[direction] + (gameState.leaderY.integer + 1) / 8) :(unknownC3E240[direction] + gameState.leaderY.integer / 8));
-	if ((unknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.currentPartyMembers, direction) & 0x82) == 0x82) {
+	if ((unknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.firstPartyMemberEntity, direction) & 0x82) == 0x82) {
 		x10 += unknownC3E230[direction];
 		x04 += unknownC3E240[direction];
 	}
-	short x = unknownC07477(x10, x04);
+	short x = getDoorAt(x10, x04);
 	if (x == 0xFF) {
-		x = unknownC07477(cast(short)(x10 + 1), x04);
+		x = getDoorAt(cast(short)(x10 + 1), x04);
 	}
 	if (x == 0xFF) {
-		x = unknownC07477(cast(short)(x10 - 1), x04);
+		x = getDoorAt(cast(short)(x10 - 1), x04);
 	}
 	if ((x != 0xFF) && (x == 5)) {
 		unknown7E5DDC = unknown7E5DBE;
@@ -2496,7 +2496,7 @@ short unknownC4605A(short arg1) {
 /// $C4608C
 short unknownC4608C(short arg1) {
 	if (arg1 == 255) {
-		return gameState.currentPartyMembers;
+		return gameState.firstPartyMemberEntity;
 	}
 	for (short i = 0; i < 6; i++) {
 		if (arg1 == gameState.unknown96[i]) {
@@ -3116,7 +3116,7 @@ void prepareNewEntityAtExistingEntityLocation(short arg1) {
 			x0E = currentEntitySlot;
 			break;
 		case 1:
-			x0E = gameState.currentPartyMembers;
+			x0E = gameState.firstPartyMemberEntity;
 			break;
 		default: break;
 	}
@@ -3456,7 +3456,7 @@ void unknownC479E9() {
 /// $C47A27
 void unknownC47A27() {
 	bg1YPosition = cast(short)(entityAbsYTable[currentEntitySlot] - 0x70);
-	short x10 = cast(short)(entityAbsYTable[gameState.currentPartyMembers] - (entityAbsYTable[currentEntitySlot] - 0x70));
+	short x10 = cast(short)(entityAbsYTable[gameState.firstPartyMemberEntity] - (entityAbsYTable[currentEntitySlot] - 0x70));
 	unknownC47930(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
 }
 

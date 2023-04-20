@@ -530,7 +530,7 @@ short unknownEF0F60() {
 	if (overworldStatusSuppression != 0) {
 		return 1;
 	}
-	if ((entitySpriteMapFlags[gameState.currentPartyMembers] & 0x8000) != 0) {
+	if ((entitySpriteMapFlags[gameState.firstPartyMemberEntity] & 0x8000) != 0) {
 		return 1;
 	}
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope) || (gameState.walkingStyle == WalkingStyle.escalator) || (gameState.walkingStyle == WalkingStyle.stairs)) {
@@ -21469,7 +21469,7 @@ void unknownEFDA05() {
 	unknown7EB557 = 0;
 	debugMenuCursorPosition = 0;
 	unknown7EB551 = 0;
-	unknown7EB55F = 0;
+	viewAttributeMode = 0;
 	unknownC08D79(9);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x3800, 0);
 	setBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
@@ -21589,8 +21589,8 @@ void displayViewCharacterDebugOverlay() {
 }
 
 /// $EFDF0B
-ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
-	if (unknown7EB55F == 0) {
+ushort getAttributeTileFor(ushort arg1, ushort x, short y) {
+	if (viewAttributeMode == 0) {
 		if ((arg1 & 2) != 0) {
 			return 0x2061;
 		} else if ((arg1 & 1) != 0) {
@@ -21600,9 +21600,9 @@ ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 		} else if ((arg1 & 0x40) != 0) {
 			return 0x2063;
 		}
-	} else if (unknown7EB55F == 1) {
+	} else if (viewAttributeMode == 1) {
 		if ((arg1 & 0x10) != 0) {
-			switch (unknownC07477(arg2, arg3)) {
+			switch (getDoorAt(x, y)) {
 				case 2:
 					return 0x2461;
 				case 1:
@@ -21618,7 +21618,7 @@ ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 					return 0x2058;
 			}
 		}
-	} else if (unknown7EB55F == 2) {
+	} else if (viewAttributeMode == 2) {
 		if ((arg1 & 0x20) != 0) {
 			return 0x2261;
 		}
@@ -21627,7 +21627,7 @@ ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 }
 
 /// $EFDFC4
-void unknownEFDFC4(ushort x, ushort y) {
+void renderAttributeRow(ushort x, ushort y) {
 	if (debugModeNumber != 3) {
 		return;
 	}
@@ -21636,7 +21636,7 @@ void unknownEFDFC4(ushort x, ushort y) {
 		ushort x14 = x & 0x1F;
 		for (short i = 0; i < 0x20; i++) {
 			if (x < 0x8000) {
-				x16[x14] = unknownEFDF0B(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
+				x16[x14] = getAttributeTileFor(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
 			}
 			x14 = (x14 + 1) & 0x1F;
 			x++;
@@ -21646,7 +21646,7 @@ void unknownEFDFC4(ushort x, ushort y) {
 }
 
 /// $EFE07C
-void unknownEFE07C(short x, short y) {
+void renderAttributeColumn(short x, short y) {
 	if (debugModeNumber != 3) {
 		return;
 	}
@@ -21655,7 +21655,7 @@ void unknownEFE07C(short x, short y) {
 		ushort x14 = y & 0x1F;
 		for (short i = 0; i < 0x20; i++) {
 			if (y < 0x8000) {
-				x16[x14] = unknownEFDF0B(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
+				x16[x14] = getAttributeTileFor(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
 			}
 			x14 = (x14 + 1) & 0x1F;
 			y++;
@@ -21667,7 +21667,7 @@ void unknownEFE07C(short x, short y) {
 /// $EFE133
 void unknownEFE133(short x, short y) {
 	for (short i = -1; i != 0x1F; i++) {
-		unknownEFDFC4(cast(short)((x >> 3) - 16), cast(short)((y >> 3) - 14 + i));
+		renderAttributeRow(cast(short)((x >> 3) - 16), cast(short)((y >> 3) - 14 + i));
 	}
 }
 
@@ -21801,8 +21801,8 @@ void unknownEFE175() {
 				bg3XPosition = bg1XPosition;
 				bg3YPosition = bg1YPosition;
 				if ((padPress[0] & Pad.select) != 0) {
-					if (++unknown7EB55F == 4) {
-						unknown7EB55F = 0;
+					if (++viewAttributeMode == 4) {
+						viewAttributeMode = 0;
 					}
 					unknownEFE133(gameState.leaderX.integer, gameState.leaderY.integer);
 				}

@@ -898,7 +898,7 @@ __gshared ushort debugModeNumber; /// $B559
 
 
 __gshared ushort unknown7EB55D; /// $B55D
-__gshared ushort unknown7EB55F; /// $B55F
+__gshared ushort viewAttributeMode; /// $B55F
 __gshared ushort debugStartPositionX; /// $B561
 __gshared ushort debugStartPositionY; /// $B563
 __gshared ushort debugUnknownB565; /// $B565

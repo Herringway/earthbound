@@ -474,7 +474,7 @@ void loadCollisionColumn(short x, short y) {
 /// $C00E16
 void loadMapRowVRAM(short x, short y) {
 	if (debugging != 0) {
-		unknownEFDFC4(x, y);
+		renderAttributeRow(x, y);
 	}
 	ushort* x1E = cast(ushort*)sbrk(0x100);
 	ushort* x1C = &x1E[0x40];
@@ -508,7 +508,7 @@ void loadMapRowVRAM(short x, short y) {
 /// $C00FCB
 void loadMapColumnVRAM(short x, short y) {
 	if (debugging != 0) {
-		unknownEFE07C(x, y);
+		renderAttributeColumn(x, y);
 	}
 	ushort* x1E = cast(ushort*)sbrk(0x80);
 	ushort* x1C = &x1E[0x20];
@@ -1444,7 +1444,7 @@ void unknownC02D29() {
 	gameState.unknownB2 = 0;
 	gameState.unknownB4 = 0;
 	gameState.partyStatus = 0;
-	gameState.currentPartyMembers = 0x18;
+	gameState.firstPartyMemberEntity = 0x18;
 	for (short i = 0; i < 6; i++) {
 		gameState.unknown96[i] = 0;
 		unknown7E5D8C[i] = 0;
@@ -1566,7 +1566,7 @@ void updateParty() {
 		partyCharacters[i].positionIndex = local1[i];
 		entityScriptVar5Table[i] = gameState.partyEntities[i];
 	}
-	gameState.currentPartyMembers = gameState.partyEntities[0];
+	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	unknownC032EC();
 	unknownC02C3E();
 	unknownC47F87();
@@ -1636,10 +1636,10 @@ short unknownC0369B(short id) {
 	createEntity(x18_2, characterInitialEntityData[id - 1].actionScript, x1A_2, playerPositionBuffer[x].xCoord, playerPositionBuffer[x].yCoord);
 	entityScreenXTable[x1A_2] = cast(short)(playerPositionBuffer[x].xCoord - bg1XPosition);
 	entityScreenYTable[x1A_2] = cast(short)(playerPositionBuffer[x].yCoord - bg1YPosition);
-	gameState.currentPartyMembers = characterInitialEntityData[gameState.unknown96[0] - 1].unknown6;
+	gameState.firstPartyMemberEntity = characterInitialEntityData[gameState.unknown96[0] - 1].unknown6;
 	unknownC09CD7();
 	unknownC032EC();
-	gameState.currentPartyMembers = gameState.partyEntities[0];
+	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	updateParty();
 	entityPreparedXCoordinate = playerPositionBuffer[x].xCoord;
 	entityPreparedYCoordinate = playerPositionBuffer[x].yCoord;
@@ -1757,7 +1757,7 @@ void unknownC03A94(short arg1) {
 	unknown7E5DA8 = 0xFFFF;
 	short x02 = unknown7E5D9A;
 	unknown7E5D9A = 0;
-	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers, Direction.down);
+	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, Direction.down);
 	unknown7E5D9A = x02;
 	if (unknown7E5DA8 != -1) {
 		unknownC07526(unknown7E5DA8, unknown7E5DAA);
@@ -1894,7 +1894,7 @@ void unknownC03DAA() {
 	if (partyCharacters[entityScriptVar1Table[currentEntitySlot] + 1].afflictions[0] == Status0.unconscious) {
 		entityScriptVar3Table[currentEntitySlot] = 16;
 	}
-	unknown7E2898 = cast(short)(gameState.currentPartyMembers * 2);
+	unknown7E2898 = cast(short)(gameState.firstPartyMemberEntity * 2);
 }
 
 /// $C03F1E
@@ -1933,7 +1933,7 @@ void unknownC03FA9(short x, short y, short direction) {
 	gameState.leaderX.integer = x;
 	gameState.leaderY.integer = y;
 	gameState.leaderDirection = direction;
-	gameState.troddenTileType = unknownC05F33(x, y, gameState.currentPartyMembers);
+	gameState.troddenTileType = unknownC05F33(x, y, gameState.firstPartyMemberEntity);
 	unknownC03A94(direction);
 	movePartyToLeaderPosition();
 	for (short i = 0; i < 6; i++) {
@@ -2016,13 +2016,13 @@ short unknownC04116(short direction) {
 	short x12 = unknown7E5D58;
 	unknown7E5D58 = 1;
 	while (true) {
-		short x10 = npcCollisionCheck(x14, x04, gameState.currentPartyMembers);
+		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 > 0) {
 			currentTPTEntry = entityTPTEntries[x10];
 			unknown7E5D64 = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.currentPartyMembers, direction) & 0x82) != 0x82) {
+		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & 0x82) != 0x82) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2077,10 +2077,10 @@ ushort findNearbyCheckableTPTEntry() {
 	currentTPTEntry = -1;
 	unknown7E5D64 = -1;
 	short x10 = unknownC041E3();
-	if ((x10 != -1) && (entityDirections[gameState.currentPartyMembers] != x10)) {
+	if ((x10 != -1) && (entityDirections[gameState.firstPartyMemberEntity] != x10)) {
 		gameState.leaderDirection = x10;
-		entityDirections[gameState.currentPartyMembers] = x10;
-		unknownC0A780(gameState.currentPartyMembers);
+		entityDirections[gameState.firstPartyMemberEntity] = x10;
+		unknownC0A780(gameState.firstPartyMemberEntity);
 	}
 	return currentTPTEntry;
 }
@@ -2092,13 +2092,13 @@ short unknownC042EF(short direction) {
 	short x12 = unknown7E5D58;
 	unknown7E5D58 = 1;
 	while (true) {
-		short x10 = npcCollisionCheck(x14, x04, gameState.currentPartyMembers);
+		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 >= 0) {
 			currentTPTEntry = entityTPTEntries[x10];
 			unknown7E5D64 = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.currentPartyMembers, direction) & 0x82) != 0x82) {
+		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & 0x82) != 0x82) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2146,10 +2146,10 @@ ushort findNearbyTalkableTPTEntry() {
 	currentTPTEntry = -1;
 	unknown7E5D64 = -1;
 	short x10 = unknownC043BC();
-	if ((x10 != -1) && (entityDirections[gameState.currentPartyMembers] != x10)) {
+	if ((x10 != -1) && (entityDirections[gameState.firstPartyMemberEntity] != x10)) {
 		gameState.leaderDirection = x10;
-		entityDirections[gameState.currentPartyMembers] = x10;
-		unknownC0A780(gameState.currentPartyMembers);
+		entityDirections[gameState.firstPartyMemberEntity] = x10;
+		unknownC0A780(gameState.firstPartyMemberEntity);
 	}
 	return currentTPTEntry;
 }
@@ -2163,14 +2163,14 @@ void unknownC0449B() {
 	short x02 = mapInputToDirection(gameState.walkingStyle);
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
-			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		} else {
 			battleDebug = -1;
 		}
 		return;
 	}
 	if (x02 == -1) {
-		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		return;
 	}
 	if (gameState.walkingStyle == WalkingStyle.stairs) {
@@ -2203,19 +2203,19 @@ void unknownC0449B() {
 	unknown7E5DA8 = 0xFFFF;
 	short x04;
 	if ((miscDebugFlags & 2) == 0) {
-		x04 = unknownC05B7B(newX.integer, newY.integer, gameState.currentPartyMembers, x02);
+		x04 = unknownC05B7B(newX.integer, newY.integer, gameState.firstPartyMemberEntity, x02);
 		if (x02 != unknown7E5DA6) {
 			newX.combined = adjustPositionHorizontal(unknown7E5DA6, gameState.leaderX.combined, x22);
 			newY.combined = adjustPositionVertical(unknown7E5DA6, gameState.leaderY.combined, x22);
 		}
 	} else if (demoFramesLeft == 0) {
-		x04 = unknownC05FD1(newX.integer, newY.integer, gameState.currentPartyMembers) & 0x3F;
+		x04 = unknownC05FD1(newX.integer, newY.integer, gameState.firstPartyMemberEntity) & 0x3F;
 	} else {
 		x04 = 0;
 	}
 	gameState.troddenTileType = x04;
 	short x02_2 = 1;
-	npcCollisionCheck(newX.integer, newY.integer, gameState.currentPartyMembers);
+	npcCollisionCheck(newX.integer, newY.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[23] != 0xFFFF) {
 		tracef("Couldn't move due to collision with %s", entityCollidedObjects[23]);
 		x02_2 = 0;
@@ -2291,7 +2291,7 @@ void unknownC047CF() {
 			break;
 	}
 	unknown7E5DA8 = 0xFFFF;
-	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers, x14);
+	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, x14);
 	if (unknown7E5DA8 != -1) {
 		unknownC07526(unknown7E5DA8, unknown7E5DAA);
 	}
@@ -2310,7 +2310,7 @@ void unknownC048D3(short arg1) {
 	short x02 = x1E;
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
-			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 			return;
 		} else {
 			battleDebug = -1;
@@ -2323,7 +2323,7 @@ void unknownC048D3(short arg1) {
 	if ((x1E == -1) || (arg1 != 0)) {
 		x1E = gameState.leaderDirection;
 	} else {
-		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		return;
 	}
 	if ((x1E & 1) != 0) {
@@ -2340,7 +2340,7 @@ void unknownC048D3(short arg1) {
 	x14.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
 	unknown7E5DA8 = 0xFFFF;
 	short x1A = unknownC05CD7(x10.integer, x14.integer, 0x18, x1E);
-	npcCollisionCheck(x10.integer, x14.integer, gameState.currentPartyMembers);
+	npcCollisionCheck(x10.integer, x14.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[23] == -1) {
 		gameState.unknown90++;
 		unknown7E2890++;
@@ -2435,7 +2435,7 @@ void unknownC04C45() {
 	if ((debugging != 0) && ((padState[0] & Pad.x) != 0) && ((unknown7E0002 & 0xF) != 0)) {
 		return;
 	}
-	chosenFourPtrs[entityScriptVar1Table[gameState.currentPartyMembers]].positionIndex = gameState.unknown88;
+	chosenFourPtrs[entityScriptVar1Table[gameState.firstPartyMemberEntity]].positionIndex = gameState.unknown88;
 	if (gameState.unknownB0 != 0) {
 		unknownC04B53();
 	} else {
@@ -2453,7 +2453,7 @@ void unknownC04C45() {
 	}
 	short x12 = gameState.unknown88;
 	PlayerPositionBufferEntry* x10 = &playerPositionBuffer[gameState.unknown88];
-	gameState.troddenTileType = unknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+	gameState.troddenTileType = unknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	if (gameState.unknown90 != 0) {
 		x10.xCoord = gameState.leaderX.integer;
 		x10.yCoord = gameState.leaderY.integer;
@@ -2693,7 +2693,7 @@ void unknownC05200() {
 	}
 	unknown7E9F6F = 0;
 	unknown7E5D76 = gameState.leaderDirection;
-	unknown7E5D78 = cast(short)(gameState.currentPartyMembers * 2);
+	unknown7E5D78 = cast(short)(gameState.firstPartyMemberEntity * 2);
 	if (gameState.unknown90) {
 		unknown7E0A34 = 1;
 	}
@@ -3003,14 +3003,14 @@ short unknownC05B4E(short direction) {
 }
 
 /// $C05B7B
-short unknownC05B7B(short arg1, short arg2, short arg3, short direction) {
+short unknownC05B7B(short x, short y, short arg3, short direction) {
 	unknown7E5DB8 = 0;
 	unknown7E5DB4 = 0;
 	unknown7E5DA4 = 0;
 	unknown7E5DA6 = direction;
 	unknown7E5DA2 = direction;
-	unknown7E5DAC = arg1;
-	unknown7E5DAE = arg2;
+	unknown7E5DAC = x;
+	unknown7E5DAE = y;
 	short x12;
 	switch (direction) {
 		case Direction.up:
@@ -3498,9 +3498,9 @@ void unknownC065C2(short direction) {
 	if (direction == Direction.left) {
 		x0E--;
 	}
-	short x = unknownC07477(x0E, x02);
+	short x = getDoorAt(x0E, x02);
 	if (x == -1) {
-		x = unknownC07477(cast(short)(x0E + 1), x02);
+		x = getDoorAt(cast(short)(x0E + 1), x02);
 	}
 	if ((x != -1) && (x != 6)) {
 		unknown7E5DDC = unknown7E5DBE;
@@ -4044,17 +4044,17 @@ void unknownC073C0(short arg1) {
 }
 
 /// $C07477
-byte unknownC07477(short arg1, short arg2) {
-	const(SectorDoors)* x0A = &doorConfig[arg2 / 32][arg1 / 32];
+byte getDoorAt(short x, short y) {
+	const(SectorDoors)* x0A = &doorConfig[y / 32][x / 32];
 	if (x0A.length == 0) {
 		return -1;
 	}
 	const(DoorConfig)* x06 = &x0A.doors[0];
 	for (short i = x0A.length; i != 0; x06++, i--) {
-		if (x06.unknown1 != (arg1 % 32)) {
+		if (x06.unknown1 != (x % 32)) {
 			continue;
 		}
-		if (x06.unknown0 != (arg2 % 32)) {
+		if (x06.unknown0 != (y % 32)) {
 			continue;
 		}
 		unknown7E5DBC = x06.doorPtr;
@@ -4071,7 +4071,7 @@ short unknownC07526(short arg1, short arg2) {
 	} else {
 		short x0E = void;
 	}
-	switch (unknownC07477(arg1, arg2)) {
+	switch (getDoorAt(arg1, arg2)) {
 		case DoorType.switch_:
 			unknownC06A1B(unknown7E5DBC.entryB);
 			x0E = 0;
@@ -4158,10 +4158,10 @@ void unknownC076C8(short arg1) {
 
 /// $C07716
 void unknownC07716() {
-	if ((entityTickCallbackFlags[gameState.currentPartyMembers] & (objectTickDisabled | objectMoveDisabled)) != 0) {
+	if ((entityTickCallbackFlags[gameState.firstPartyMemberEntity] & (objectTickDisabled | objectMoveDisabled)) != 0) {
 		return;
 	}
-	if ((entitySpriteMapFlags[gameState.currentPartyMembers] & 0x8000) != 0) {
+	if ((entitySpriteMapFlags[gameState.firstPartyMemberEntity] & 0x8000) != 0) {
 		return;
 	}
 	if (gameState.unknownB0 == 2) {
@@ -4182,7 +4182,7 @@ void unknownC0777A() {
 
 /// $C0778A
 void unknownC0778A() {
-	if ((entityTickCallbackFlags[gameState.currentPartyMembers] & (objectTickDisabled | objectMoveDisabled)) != 0) {
+	if ((entityTickCallbackFlags[gameState.firstPartyMemberEntity] & (objectTickDisabled | objectMoveDisabled)) != 0) {
 		entityAnimationFrames[currentEntitySlot] = -1;
 		return;
 	}
@@ -4346,7 +4346,7 @@ void unknownC07B52() {
 		if (entityScriptTable[x04] != -1) {
 			entityTickCallbackFlags[x04] |= (objectTickDisabled | objectMoveDisabled);
 			unknown7E4DC6 = &partyCharacters[entityScriptVar1Table[x04]];
-			if ((gameState.currentPartyMembers == x12) || (unknown7E4DC6.positionIndex == x14)) {
+			if ((gameState.firstPartyMemberEntity == x12) || (unknown7E4DC6.positionIndex == x14)) {
 				unknownC07A56(entityScriptVar0Table[x12], gameState.walkingStyle, x12);
 				entityAbsXTable[x12] = gameState.leaderX.integer;
 				entityAbsYTable[x12] = gameState.leaderY.integer;
@@ -8291,23 +8291,23 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 
 /// $C0BC75
 short findPathToParty(short partyCount, short arg2, short arg3) {
-	short x28 = gameState.currentPartyMembers;
+	short x28 = gameState.firstPartyMemberEntity;
 	PathCtx* x26 = &unknown7EF000.unknown7EF200;
 	unknown7EF000.unknown7EF200.radius.y = arg2;
 	unknown7EF000.unknown7EF200.radius.x = arg3;
 	unknown7E4A94 = unknown7EF000.unknown7EF200.radius.x;
-	unknown7E4A8E = (entityAbsXTable[gameState.currentPartyMembers] - unknownC42A1F[entitySizes[gameState.currentPartyMembers]]) / 8;
-	unknown7E4A90 = (entityAbsYTable[gameState.currentPartyMembers] - unknownC42A41[entitySizes[gameState.currentPartyMembers]] + unknownC42AEB[entitySizes[gameState.currentPartyMembers]]) / 8;
+	unknown7E4A8E = (entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
+	unknown7E4A90 = (entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
 	unknownC0B9BC(&unknown7EF000.unknown7EF200, partyCount,
-		((entityAbsXTable[gameState.currentPartyMembers] - unknownC42A1F[entitySizes[gameState.currentPartyMembers]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2),
-		((entityAbsYTable[gameState.currentPartyMembers] - unknownC42A41[entitySizes[gameState.currentPartyMembers]] + unknownC42AEB[entitySizes[gameState.currentPartyMembers]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2)
+		((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2),
+		((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2)
 	);
 	return unknownC0BA35(&unknown7EF000.unknown7EF200, partyCount, unknown7EF000.unknown7EF200.radius.y, unknown7EF000.unknown7EF200.radius.x, 0, 0x40, 0x32);
 }
 
 /// $C0BD96
 short unknownC0BD96() {
-	short x2A = gameState.currentPartyMembers;
+	short x2A = gameState.firstPartyMemberEntity;
 	PathCtx* x28 = &unknown7EF000.unknown7EF200;
 	short x04 = unknown7EF000.unknown7EF200.radius.y = 56;
 	short x02 = unknown7EF000.unknown7EF200.radius.x = 56;
@@ -9487,14 +9487,14 @@ short unknownC0DED9(short arg1, short arg2, short arg3, short arg4, short) {
 	if (unknown7E9F43 != 0) {
 		return 1;
 	}
-	return unknownC05F33(arg1, arg2, gameState.currentPartyMembers) | unknownC05F33(arg3, arg4, gameState.currentPartyMembers);
+	return unknownC05F33(arg1, arg2, gameState.firstPartyMemberEntity) | unknownC05F33(arg3, arg4, gameState.firstPartyMemberEntity);
 }
 
 /// $C0E196
 void unknownC0E196() {
 	playerPositionBuffer[gameState.unknown88].xCoord = gameState.leaderX.integer;
 	playerPositionBuffer[gameState.unknown88].yCoord = gameState.leaderY.integer;
-	playerPositionBuffer[gameState.unknown88].tileFlags =unknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+	playerPositionBuffer[gameState.unknown88].tileFlags =unknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	playerPositionBuffer[gameState.unknown88].walkingStyle = 0;
 	playerPositionBuffer[gameState.unknown88].direction = gameState.leaderDirection;
 	gameState.unknown88++;
@@ -9543,7 +9543,7 @@ void unknownC0E28F() {
 	unknownC0DF22(x02);
 	unknown7E9F51.combined = unknown7E9F49.combined + gameState.leaderX.combined;
 	unknown7E9F55.combined = unknown7E9F4D.combined + gameState.leaderY.combined;
-	if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.currentPartyMembers) != -1) {
+	if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.firstPartyMemberEntity) != -1) {
 		unknown7E9F43 = 2;
 	}
 	if ((unknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, unknown7E9F51.integer, unknown7E9F55.integer, x02) & 0xC0) != 0) {
@@ -9643,7 +9643,7 @@ void unknownC0E516() {
 			unknown7E9F43 = 2;
 			battleDebug = 1;
 		}
-		if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.currentPartyMembers) != -1) {
+		if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.firstPartyMemberEntity) != -1) {
 			unknown7E9F43 = 2;
 		}
 	}

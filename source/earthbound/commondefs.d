@@ -5160,7 +5160,7 @@ struct GameState {
 	ushort walkingStyle; ///
 	ushort unknown90; ///
 	ushort unknown92; ///
-	ushort currentPartyMembers; ///
+	ushort firstPartyMemberEntity; ///
 	ubyte[6] unknown96; ///
 	ubyte[6] playerControlledPartyMembers; ///
 	ubyte[12] partyEntities; ///
