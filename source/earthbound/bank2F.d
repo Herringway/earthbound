@@ -21455,7 +21455,11 @@ void unknownEFD95E() {
 		loadWindowGraphics(WindowGraphicsToLoad.all);
 		loadTextPalette();
 	} else {
-		copyToVRAM(0, 0x1000, 0x6100, &debugMenuFont[0]);
+		version(bugfix) {
+			copyToVRAM(0, 0x400, 0x6100, &debugMenuFont[0]);
+		} else {
+			copyToVRAM(0, 0x1000, 0x6100, &debugMenuFont[0]);
+		}
 		unknown7F0000[0] = 0;
 		unknown7F0000[1] = 0;
 		copyToVRAM(3, 0x800, 0x7C00, &unknown7F0000[0]);
