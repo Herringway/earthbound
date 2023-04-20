@@ -652,7 +652,7 @@ __gshared ushort dmaTransferFlag; /// $9E2B
 __gshared ushort entityPreparedXCoordinate; /// $9E2D
 __gshared ushort entityPreparedYCoordinate; /// $9E2F
 __gshared ushort entityPreparedDirection; /// $9E31
-__gshared ushort unknown7E9E33; /// $9E33
+__gshared ushort cameraFocusEntity; /// $9E33
 __gshared short unknown7E9E35; /// $9E35
 __gshared ubyte unknown7E9E37; /// $9E37
 __gshared ubyte unknown7E9E38; /// $9E38

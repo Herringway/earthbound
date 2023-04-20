@@ -2728,7 +2728,7 @@ void disableEntityByCharacterOrParty(short arg1) {
 }
 
 /// $C465FB
-void unknownC465FB(short arg1) {
+void enableEntityByTPT(short arg1) {
 	short a = findEntityByTPT(arg1);
 	if (a == -1) {
 		return;
@@ -2737,7 +2737,7 @@ void unknownC465FB(short arg1) {
 }
 
 /// $C46616
-void unknownC46616(short arg1) {
+void enableEntityBySprite(short arg1) {
 	short a = findEntityBySprite(arg1);
 	if (a == -1) {
 		return;
@@ -2746,7 +2746,7 @@ void unknownC46616(short arg1) {
 }
 
 /// $C46631
-void unknownC46631(short arg1) {
+void enableEntityByCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
 		short a = findEntityByPartyMemberID(arg1);
 		if (a == -1) {
@@ -2763,21 +2763,21 @@ void unknownC46631(short arg1) {
 }
 
 /// $C46698
-void unknownC46698(short arg1) {
-	unknown7E9E33 = findEntityByTPT(arg1);
-	gameState.unknownB0 = 2;
+void focusCameraOnTPT(short arg1) {
+	cameraFocusEntity = findEntityByTPT(arg1);
+	gameState.cameraMode = CameraMode.followEntity;
 }
 
 /// $C466A8
-void unknownC466A8(short arg1) {
-	unknown7E9E33 = findEntityBySprite(arg1);
-	gameState.unknownB0 = 2;
+void focusCameraOnSprite(short arg1) {
+	cameraFocusEntity = findEntityBySprite(arg1);
+	gameState.cameraMode = CameraMode.followEntity;
 }
 
 /// $C466B8
-void unknownC466B8() {
+void clearCameraFocus() {
 	gameState.unknown90 = 0;
-	gameState.unknownB0 = 0;
+	gameState.cameraMode = CameraMode.normal;
 }
 
 /// $C466C1
@@ -3690,7 +3690,7 @@ void processItemTransformations() {
 	if (unknown7EB4B6 != 0) {
 		return;
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
 	if (--unknown7E9F2C != 0) {
@@ -4794,7 +4794,7 @@ void useSoundStone(short arg1) {
 			}
 			if (x24 < 8) {
 				if (x26 == soundStoneUnknown7[x24] - 9) {
-					unknownC0AC0C(cast(short)(x32 + 8));
+					musicEffect(cast(short)(x32 + 8));
 				}
 			}
 		}
@@ -5675,7 +5675,7 @@ short spawn() {
 		return result;
 	}
 	unknownC4C58F(0x20);
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	mirrorTM = 0x17;
 	unknown7E436E = -1;
 	currentMapMusicTrack = -1;
@@ -6690,7 +6690,7 @@ short unknownC4D989(short arg1) {
 void initIntro() {
 	short x02 = 0;
 	unknown7EB4B6 = 1;
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	unknownC0927C();
 	initializeTextSystem();
 	unknownC432B1();
@@ -6714,7 +6714,7 @@ void initIntro() {
 		switch (x02) {
 			case 0:
 				if (logoScreen() != 0) {
-					unknownC0AC0C(2);
+					musicEffect(MusicEffect.quickFade);
 					if ((mirrorINIDISP & 0x80) != 0) {
 						fadeOutWithMosaic(4, 1, 0);
 					}
@@ -6728,7 +6728,7 @@ void initIntro() {
 			case 1:
 				changeMusic(Music.gasStation);
 				if (gasStation() != 0) {
-					unknownC0AC0C(2);
+					musicEffect(MusicEffect.quickFade);
 					if ((mirrorINIDISP & 0x80) != 0) {
 						fadeOutWithMosaic(4, 1, 0);
 					}
@@ -6778,7 +6778,7 @@ void initIntro() {
 		}
 		x02++;
 	}
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	unknown7E0028.a = 0;
 	if ((mirrorINIDISP & 0x80) != 0) {
 		fadeOutWithMosaic(4, 1, 0);
@@ -7420,7 +7420,7 @@ void changeMusic(short track) {
 		playSfxUnknown();
 	}
 	if ((track < Music.soundstoneRecordingGiantStep) || (track > Music.soundstoneRecordingFireSpring)) {
-		unknownC0AC0C(1);
+		musicEffect(MusicEffect.normal);
 		stopMusic();
 	}
 	currentMusicTrack = track;

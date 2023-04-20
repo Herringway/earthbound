@@ -6715,7 +6715,7 @@ void giygasHurtPrayer(short damage) {
 /// $C2C41F
 void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	fadeOut(1, 1);
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	unknownC269DE();
 	battleModeFlag = 0;
 	unknownC1DD5F();
@@ -6727,7 +6727,7 @@ void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	displayInBattleText(arg2);
 	battleModeFlag = 1;
 	wait(20);
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	fadeOut(1, 1);
 	unknownC269DE();
 	showHPPPWindowsF();

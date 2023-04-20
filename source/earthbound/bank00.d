@@ -1440,9 +1440,9 @@ void clearParty() {
 	entitySizes[23] = 1;
 	unknown7E9F6B = -1;
 	gameState.unknown88 = 0;
-	gameState.unknownB0 = 0;
-	gameState.unknownB2 = 0;
-	gameState.unknownB4 = 0;
+	gameState.cameraMode = CameraMode.normal;
+	gameState.autoScrollFrames = 0;
+	gameState.autoScrollOriginalWalkingStyle = 0;
 	gameState.partyStatus = 0;
 	gameState.firstPartyMemberEntity = 0x18;
 	for (short i = 0; i < 6; i++) {
@@ -2251,16 +2251,16 @@ void unknownC0449B() {
 }
 
 /// $C0476D
-void unknownC0476D() {
+void moveCameraToEntity() {
 	short x04 = 0;
-	if ((entityAbsXTable[unknown7E9E33] != gameState.leaderX.integer) || (entityAbsYTable[unknown7E9E33] != gameState.leaderY.integer) || (entityAbsXFractionTable[unknown7E9E33] != gameState.leaderX.fraction) || (entityAbsYFractionTable[unknown7E9E33] != gameState.leaderY.fraction)) {
+	if ((entityAbsXTable[cameraFocusEntity] != gameState.leaderX.integer) || (entityAbsYTable[cameraFocusEntity] != gameState.leaderY.integer) || (entityAbsXFractionTable[cameraFocusEntity] != gameState.leaderX.fraction) || (entityAbsYFractionTable[cameraFocusEntity] != gameState.leaderY.fraction)) {
 		x04 = 1;
 	}
-	gameState.leaderX.integer = entityAbsXTable[unknown7E9E33];
-	gameState.leaderY.integer = entityAbsYTable[unknown7E9E33];
-	gameState.leaderX.fraction = entityAbsXFractionTable[unknown7E9E33];
-	gameState.leaderY.fraction = entityAbsYFractionTable[unknown7E9E33];
-	gameState.leaderDirection = entityDirections[unknown7E9E33];
+	gameState.leaderX.integer = entityAbsXTable[cameraFocusEntity];
+	gameState.leaderY.integer = entityAbsYTable[cameraFocusEntity];
+	gameState.leaderX.fraction = entityAbsXFractionTable[cameraFocusEntity];
+	gameState.leaderY.fraction = entityAbsYFractionTable[cameraFocusEntity];
+	gameState.leaderDirection = entityDirections[cameraFocusEntity];
 	gameState.unknown90 = x04;
 }
 
@@ -2354,17 +2354,17 @@ void unknownC048D3(short arg1) {
 }
 
 /// $C04A7B
-void unknownC04A7B() {
-	gameState.unknownB0 = unknown7E5D7A;
+void restoreCameraMode() {
+	gameState.cameraMode = unknown7E5D7A;
 	unknownC0D19B();
 }
 
 /// $C04A88
-void unknownC04A88() {
+void switchToCameraMode3() {
 	unknown7E5D7C = 12;
-	unknown7E5D7A = gameState.unknownB0;
-	gameState.unknownB0 = 3;
-	unknownC0AC0C(2);
+	unknown7E5D7A = gameState.cameraMode;
+	gameState.cameraMode = CameraMode.unknown3;
+	musicEffect(MusicEffect.quickFade);
 	overworldStatusSuppression = 1;
 }
 
@@ -2391,7 +2391,7 @@ void unknownC04AAD() {
 		}
 		gameState.leaderDirection = x10;
 	} else {
-		unknownC04A7B();
+		restoreCameraMode();
 	}
 }
 
@@ -2403,20 +2403,20 @@ void unknownC04B53() {
 	} else {
 		x10 = unknown7E5DCA;
 	}
-	switch (gameState.unknownB0) {
-		case 1:
+	switch (gameState.cameraMode) {
+		case CameraMode.autoScroll:
 			gameState.leaderX.combined += horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[x10].combined;
 			gameState.leaderY.combined += verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[x10].combined;
-			if (--gameState.unknownB2 == 0) {
-				gameState.unknownB0 = 0;
-				gameState.walkingStyle = gameState.unknownB4;
+			if (--gameState.autoScrollFrames == 0) {
+				gameState.cameraMode = CameraMode.normal;
+				gameState.walkingStyle = gameState.autoScrollOriginalWalkingStyle;
 			}
 			gameState.unknown90 = 1;
 			break;
-		case 2:
-			unknownC0476D();
+		case CameraMode.followEntity:
+			moveCameraToEntity();
 			break;
-		case 3:
+		case CameraMode.unknown3:
 			unknownC04AAD();
 			break;
 		default:
@@ -2436,7 +2436,7 @@ void unknownC04C45() {
 		return;
 	}
 	chosenFourPtrs[entityScriptVar1Table[gameState.firstPartyMemberEntity]].positionIndex = gameState.unknown88;
-	if (gameState.unknownB0 != 0) {
+	if (gameState.cameraMode != CameraMode.normal) {
 		unknownC04B53();
 	} else {
 		switch (gameState.walkingStyle) {
@@ -2478,7 +2478,7 @@ void unknownC04C45() {
 
 /// $C04D78
 void unknownC04D78() {
-	if (gameState.unknownB0 == 3) {
+	if (gameState.cameraMode == CameraMode.unknown3) {
 		return;
 	}
 	if (battleSwirlCountdown != 0) {
@@ -2590,7 +2590,7 @@ ushort unknownC04FFE() {
 	ushort x02;
 	ushort x04;
 	ushort x16;
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return 1;
 	}
 	if (overworldStatusSuppression != 0) {
@@ -2688,7 +2688,7 @@ void unknownC05200() {
 			unknownC03C25();
 		}
 	}
-	if ((dadPhoneTimer == 0) && (gameState.unknownB0 != 2)) {
+	if ((dadPhoneTimer == 0) && (gameState.cameraMode != CameraMode.followEntity)) {
 		loadDadPhone();
 	}
 	unknown7E9F6F = 0;
@@ -3610,7 +3610,7 @@ void loadSectorMusic(short x, short y) {
 	loadedMapMusicEntry = x0A;
 	nextMapMusicTrack = x0A.music;
 	if ((unknown7E5DDA == 0) && (x0A.music != currentMapMusicTrack)) {
-		unknownC0AC0C(2);
+		musicEffect(MusicEffect.quickFade);
 	}
 }
 
@@ -3624,7 +3624,7 @@ void changeMapMusic() {
 	}
 	currentMapMusicTrack = nextMapMusicTrack;
 	changeMusic(nextMapMusicTrack);
-	unknownC0AC0C(loadedMapMusicEntry.unknown3);
+	musicEffect(loadedMapMusicEntry.audioEffect);
 }
 
 /// $C069ED
@@ -3682,7 +3682,7 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 	if (unknown7E0A34 == 0) {
 		return;
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
 	if (unknown7E5D9A != 0) {
@@ -4164,7 +4164,7 @@ void unknownC07716() {
 	if ((entitySpriteMapFlags[gameState.firstPartyMemberEntity] & 0x8000) != 0) {
 		return;
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
 	unknown7E9F6B = createEntity(OverworldSprite.miniGhost, ActionScript.unknown786, -1, 0, 0);
@@ -4332,7 +4332,7 @@ void unknownC07A56(short arg1, short arg2, short arg3) {
 			entityScriptVar7Table[x04] |= (1 << 14 | 1 << 13);
 		}
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		entityScriptVar7Table[x04] |= 1 << 12;
 	}
 }
@@ -7510,7 +7510,7 @@ void playSfxUnknown() {
 }
 
 /// $C0AC0C
-void unknownC0AC0C(short arg1) {
+void musicEffect(short arg1) {
 	doMusicEffect(arg1);
 }
 
@@ -8130,7 +8130,7 @@ void ebMain() {
 		if (((currentQueuedInteraction - nextQueuedInteraction) != 0) && !battleSwirlCountdown && !battleSwirlFlag && !battleDebug) {
 			processQueuedInteractions();
 			inputDisableFrameCounter++;
-		} else if ((gameState.unknownB0 != 2) && (gameState.walkingStyle != WalkingStyle.escalator) && !battleSwirlCountdown) {
+		} else if ((gameState.cameraMode != CameraMode.followEntity) && (gameState.walkingStyle != WalkingStyle.escalator) && !battleSwirlCountdown) {
 			if (battleDebug) {
 				initBattleOverworld();
 				inputDisableFrameCounter++;
@@ -8982,7 +8982,7 @@ short unknownC0D5B0() {
 		return 0;
 	}
 	if ((battleSwirlCountdown == 0) || (currentEntitySlot != touchedEnemy)) {
-		if (gameState.unknownB0 == 2) {
+		if (gameState.cameraMode == CameraMode.followEntity) {
 			return 0;
 		}
 		if ((miscDebugFlags & 2) != 0) {
@@ -9018,7 +9018,7 @@ short unknownC0D5B0() {
 			}
 			entityTickCallbackFlags[i] |= objectTickDisabled | objectMoveDisabled;
 		}
-		unknownC04A88();
+		switchToCameraMode3();
 		return 1;
 	}
 	entityCollidedObjects[currentEntitySlot] = 0x8000;

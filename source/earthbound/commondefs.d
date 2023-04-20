@@ -5136,6 +5136,48 @@ enum DebugMode {
 	soundMode = 6,
 }
 
+enum CameraMode {
+	normal = 0,
+	autoScroll = 1,
+	followEntity = 2,
+	unknown3 = 3,
+}
+
+enum MusicEffect {
+	none = 0,
+	normal = 1,
+	quickFade = 2,
+	normalFade = 3,
+	null4 = 4,
+	tempTempoBoost = 5,
+	null6 = 6,
+	tempQuieter = 7,
+	tempLouder = 8,
+	setVolPreset1 = 9,
+	setVolPreset2 = 10,
+	setVolPreset3 = 11,
+	setVolPreset4 = 12,
+	setVolPreset5 = 13,
+	setVolPreset6 = 14,
+	setVolPreset7 = 15,
+	setVolPreset8 = 16,
+	null17 = 17,
+	null18 = 18,
+	null19 = 19,
+	null20 = 20,
+	octaveUp = 21,
+	restorePitch = 22,
+	quieter = 23,
+	louder = 24,
+	chan7Loudest = 25,
+	chan7Silent = 26,
+	chan7Quieter = 27,
+	chan7Quietest = 28,
+	unknown29 = 29,
+	unknown30 = 30,
+	unknown31 = 31,
+}
+
 ///
 struct GameState {
 	version(Have_siryul) {
@@ -5176,9 +5218,9 @@ struct GameState {
 	ubyte[12] partyEntities; ///
 	ubyte partyCount; ///
 	ubyte playerControlledPartyMemberCount; ///
-	ushort unknownB0; ///
-	ushort unknownB2; ///
-	ushort unknownB4; ///
+	ushort cameraMode; ///
+	ushort autoScrollFrames; ///
+	ushort autoScrollOriginalWalkingStyle; ///
 	ubyte[3] deliveryQueueItem; ///
 	ubyte[3] deliveryQueueCharacter; ///
 	ubyte autoFightEnable; ///
@@ -5762,7 +5804,7 @@ struct BattleEntryPointer {
 struct OverworldEventMusic {
 	ushort flag; ///
 	ubyte music; ///
-	ubyte unknown3; ///
+	ubyte audioEffect; ///
 }
 ///
 struct TownMapIconPlacement {

@@ -3411,21 +3411,21 @@ void* cc1FE7(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C16C35
 void* cc1FE8(DisplayTextState* arg1, ubyte arg2) {
-	unknownC46631(arg2);
+	enableEntityByCharacterOrParty(arg2);
 	return null;
 }
 
 /// $C16C40
 void* cc1FE9(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC465FB(getCCParameters!ArgType(arg2));
+	enableEntityByTPT(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C16C83
 void* cc1FEA(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC46616(getCCParameters!ArgType(arg2));
+	enableEntityBySprite(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3448,14 +3448,14 @@ void* cc1FEC(DisplayTextState* arg1, ubyte arg2) {
 /// $C16D62
 void* cc1FEE(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC46698(getCCParameters!ArgType(arg2));
+	focusCameraOnTPT(getCCParameters!ArgType(arg2));
 	return null;
 }
 
 /// $C16DA5
 void* cc1FEF(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	unknownC466A8(getCCParameters!ArgType(arg2));
+	focusCameraOnSprite(getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3589,7 +3589,7 @@ void* cc1C13(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C1741F
 void* cc1F07(DisplayTextState* arg1, ubyte arg2) {
-	unknownC0AC0C(cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
+	musicEffect(cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
 	return null;
 }
 
@@ -4216,7 +4216,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0xEC:
 			return &cc1FEC;
 		case 0xED:
-			unknownC466B8();
+			clearCameraFocus();
 			break;
 		case 0xEE:
 			return &cc1FEE;

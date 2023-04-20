@@ -21421,7 +21421,7 @@ void debugSoundMenu(ushort cursorEntity) {
 				debugSoundMenuSelectedSE = 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
-				unknownC0AC0C(debugSoundMenuSelectedEffect);
+				musicEffect(debugSoundMenuSelectedEffect);
 			}
 		}
 		if ((padPress[0] & Pad.x) != 0) {
@@ -21717,7 +21717,7 @@ void debugMain() {
 		addCharToParty(2);
 		addCharToParty(3);
 	}
-	unknownC46631(0xFF);
+	enableEntityByCharacterOrParty(0xFF);
 	entityScreenXTable[24] = 0x80;
 	entityScreenYTable[24] = 0x70;
 	if (debugModeNumber == DebugMode.viewCharacter) {
