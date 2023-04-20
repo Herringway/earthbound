@@ -188,6 +188,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/prepareForImmediateDMA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/processOverworldTasks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/processQueuedInteractions.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/queueInteraction.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/rand.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/readJoypad.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/recalculateEntityScreenPosition.html</loc></url>
@@ -318,7 +319,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC06478.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC064A6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC064D4.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC064E3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC06537.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0654E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC06578.html</loc></url>
@@ -775,6 +775,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/debugYButtonMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/determineTargetting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/displayInBattleText.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/displayInteractionText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/displayText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/displayTextWait.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/enableBlinkingTriangle.html</loc></url>
@@ -868,7 +869,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/transferStorageMemActive.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/triggerSpecialEvent.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC10000.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC10004.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1004E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC100D6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC100FE.html</loc></url>
@@ -3400,6 +3400,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/pathMatrixCols.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pathMatrixRows.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/pathMatrixSize.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/pendingInteractions.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/piracyFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/playerPositionBuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/queuedInteractions.html</loc></url>
@@ -3652,7 +3653,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E5D7C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E5D7E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E5D8C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E5D9A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E5DA2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E5DA4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E5DA6.html</loc></url>
