@@ -21334,7 +21334,7 @@ void debugSoundMenu(ushort cursorEntity) {
 		renderDebugDigit(18, 10, unknown7EB54B);
 		renderDebugDigit(18, 12, unknown7EB54D);
 		renderDebugDigit(18, 14, unknown7EB54F);
-		if ((padPress[0] & (Pad.select | Pad.start)) == 0) {
+		if ((padPress[0] & (Pad.select | Pad.start)) == (Pad.select | Pad.start)) {
 			break;
 		}
 		if ((padHeld[0] & Pad.up) != 0) {
