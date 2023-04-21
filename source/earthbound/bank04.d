@@ -5770,8 +5770,8 @@ void unknownC47369() {
 }
 
 /// $C473B2
-ushort unknownC473B2(ushort arg1) {
-	if (arg1 < 0x8000) {
+ushort unknownC473B2(short arg1) {
+	if (arg1 < 0) {
 		return 0;
 	}
 	if (arg1 >= 31) {
@@ -5783,11 +5783,16 @@ ushort unknownC473B2(ushort arg1) {
 /// $C473D0
 void unknownC473D0(short arg1, short arg2) {
 	ushort* x16 = &unknown7E4476[arg1][0];
+	version(bugfix) {
+		if (arg1 >= palettes.length - 2) {
+			return;
+		}
+	}
 	ushort* x18 = &palettes[arg1 + 2][0];
 	for (short i = 0; i < 16; i++) {
-		ushort x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
-		ushort x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
-		ushort x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
+		short x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
+		short x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
+		short x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
 		ushort x0E = unknownC473B2(x14);
 		ushort x12_2 = unknownC473B2(x12);
 		ushort x10_2 = unknownC473B2(x10);
