@@ -6424,9 +6424,9 @@ ubyte getTownMapID(short x, short y) {
 }
 
 /// $C4D2A8
-void unknownC4D2A8() {
-	if (unknown7EB4B2 == 0) {
-		unknown7EB4B2 = 12;
+void animateTownMapIconPalette() {
+	if (framesUntilMapIconPaletteUpdate == 0) {
+		framesUntilMapIconPaletteUpdate = 12;
 		short x10 = palettes[8][1];
 		for (short i = 2; i < 8; i++) {
 			palettes[8][i - 1] = palettes[8][i];
@@ -6434,7 +6434,7 @@ void unknownC4D2A8() {
 		palettes[8][7] = x10;
 		unknownC0856B(16);
 	}
-	unknown7EB4B2--;
+	framesUntilMapIconPaletteUpdate--;
 }
 
 /// $C4D2F0
@@ -6466,11 +6466,11 @@ void unknownC4D2F0() {
 }
 
 /// $C4D43F
-void unknownC4D43F(short arg1) {
+void drawTownMapIcons(short map) {
 	unknown7E2400 = 0;
 	//not used - segmented addressing stuff
 	//ubyte savedBank = setSpritemapBank(bankbyte(&townMapIconSpritemaps[0]));
-	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[arg1][0]; x06.x != 0xFF; x06++) {
+	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[map][0]; x06.x != 0xFF; x06++) {
 		short x14 = 1;
 		if ((unknownE1F47A[x06.sprite] != 0) && (townMapIconAnimationFrame < 10)) {
 			x14 = 0;
@@ -6493,7 +6493,7 @@ void unknownC4D43F(short arg1) {
 	}
 	// see above
 	//setSpritemapBank(savedBank);
-	unknownC4D2A8();
+	animateTownMapIconPalette();
 }
 
 /// $C4D552
@@ -6525,7 +6525,7 @@ void loadTownMapData(short arg1) {
 short displayTownMap() {
 	townMapIconAnimationFrame = 60;
 	townMapPlayerIconAnimationFrame = 20;
-	unknown7EB4B2 = 0xC;
+	framesUntilMapIconPaletteUpdate = 12;
 	short x10 = getTownMapID(gameState.leaderX.integer, gameState.leaderY.integer);
 	if (x10 == 0) {
 		return 0;
@@ -6534,14 +6534,14 @@ short displayTownMap() {
 	do {
 		waitUntilNextFrame();
 		oamClear();
-		unknownC4D43F(cast(short)(x10 - 1));
+		drawTownMapIcons(cast(short)(x10 - 1));
 		updateScreen();
 	} while(((padPress[0] & (Pad.a | Pad.l)) == 0) && ((padPress[0] & (Pad.b | Pad.select)) == 0) && ((padPress[0] & Pad.l) == 0) && ((padPress[0] & Pad.x) == 0));
 	fadeOut(2, 1);
 	for (short i = 0; i < 16; i++) {
 		waitUntilNextFrame();
 		oamClear();
-		unknownC4D43F(cast(short)(x10 - 1));
+		drawTownMapIcons(cast(short)(x10 - 1));
 		updateScreen();
 	}
 	unknown7E5DD8 = 1;
@@ -6560,7 +6560,7 @@ void townMapDebug() {
 	short x0E = 0;
 	townMapIconAnimationFrame = 60;
 	townMapPlayerIconAnimationFrame = 20;
-	unknown7EB4B2 = 0x0C;
+	framesUntilMapIconPaletteUpdate = 12;
 	loadTownMapData(0);
 	while (true) {
 		waitUntilNextFrame();
@@ -6581,7 +6581,7 @@ void townMapDebug() {
 			loadTownMapData(x10);
 			x0E = x10;
 		}
-		unknownC4D43F(x10);
+		drawTownMapIcons(x10);
 		if ((padPress[0] & Pad.a) == 0) {
 			break;
 		}

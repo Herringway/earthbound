@@ -8102,7 +8102,7 @@ void initBattleOverworld() {
 	}
 	overworldStatusSuppression = 0;
 	unfreezeEntities();
-	unknown7E5D58 = 0x78;
+	unknown7E5D58 = 120;
 	touchedEnemy = -1;
 }
 
