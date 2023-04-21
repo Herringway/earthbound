@@ -86,18 +86,18 @@ auto getDefaultGamepadMapping() pure @safe {
 }
 auto getDefaultKeyboardMapping() pure @safe {
 	return [
-		SDL_Scancode.SDL_SCANCODE_S: Controller.b,
+		SDL_Scancode.SDL_SCANCODE_Z: Controller.b,
 		SDL_Scancode.SDL_SCANCODE_A: Controller.y,
 		SDL_Scancode.SDL_SCANCODE_X: Controller.select,
-		SDL_Scancode.SDL_SCANCODE_Z: Controller.start,
+		SDL_Scancode.SDL_SCANCODE_RETURN: Controller.start,
 		SDL_Scancode.SDL_SCANCODE_UP: Controller.up,
 		SDL_Scancode.SDL_SCANCODE_DOWN: Controller.down,
 		SDL_Scancode.SDL_SCANCODE_LEFT: Controller.left,
 		SDL_Scancode.SDL_SCANCODE_RIGHT: Controller.right,
-		SDL_Scancode.SDL_SCANCODE_D: Controller.a,
-		SDL_Scancode.SDL_SCANCODE_W: Controller.x,
+		SDL_Scancode.SDL_SCANCODE_X: Controller.a,
+		SDL_Scancode.SDL_SCANCODE_S: Controller.x,
 		SDL_Scancode.SDL_SCANCODE_Q: Controller.l,
-		SDL_Scancode.SDL_SCANCODE_E: Controller.r,
+		SDL_Scancode.SDL_SCANCODE_W: Controller.r,
 		SDL_Scancode.SDL_SCANCODE_9: Controller.printRegisters,
 		SDL_Scancode.SDL_SCANCODE_0: Controller.dumpVRAM,
 		SDL_Scancode.SDL_SCANCODE_P: Controller.pause,
