@@ -3365,7 +3365,7 @@ short getEnemyType(short id) {
 }
 
 /// $C269DE
-void unknownC269DE() {
+void tickUntilFadeCompletion() {
 	while (unknown7E0028.a != 0) {
 		windowTick();
 	}
@@ -6636,7 +6636,7 @@ void battleActionFlyHoney() {
 /// $C2C21F
 void unknownC2C21F(short group, short music) {
 	short x10 = 0;
-	if ((battleModeFlag != 0) || (group == 483)) {
+	if ((battleModeFlag != 0) || (group == EnemyGroup.bossGiygasPhaseFinal)) {
 		x10 = 1;
 	}
 	if (x10 == 0) {
@@ -6661,7 +6661,7 @@ void unknownC2C21F(short group, short music) {
 	setForceBlank();
 	if (x10 != 0) {
 		fadeIn(1, 4);
-		unknownC269DE();
+		tickUntilFadeCompletion();
 		return;
 	}
 	fadeIn(15, 1);
@@ -6685,16 +6685,16 @@ void unknownC2C32C(short arg1) {
 }
 
 /// $C2C37A
-void unknownC2C37A(short arg1, short arg2, const(ubyte)* arg3) {
+void unknownC2C37A(short group, short music, const(ubyte)* text) {
 	fadeOut(1, 4);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 	battleModeFlag = 0;
 	currentMapMusicTrack = 0;
 	unknownC1DD5F();
-	displayInBattleText(arg3);
+	displayInBattleText(text);
 	fadeOut(1, 2);
-	unknownC269DE();
-	unknownC2C21F(arg1, arg2);
+	tickUntilFadeCompletion();
+	unknownC2C21F(group, music);
 	battleModeFlag = 1;
 	showHPPPWindowsF();
 	createWindow(Window.textBattle);
@@ -6716,39 +6716,39 @@ void giygasHurtPrayer(short damage) {
 void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	fadeOut(1, 1);
 	musicEffect(MusicEffect.quickFade);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 	battleModeFlag = 0;
 	unknownC1DD5F();
 	mirrorTM = 4;
 	changeMusic(Music.giygasWeakened);
 	fadeIn(1, 1);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 	wait(20);
 	displayInBattleText(arg2);
 	battleModeFlag = 1;
 	wait(20);
 	musicEffect(MusicEffect.quickFade);
 	fadeOut(1, 1);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 	showHPPPWindowsF();
 	createWindow(Window.textBattle);
 	mirrorTM = 0x17;
 	changeMusic(arg1);
 	fadeIn(1, 1);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 }
 
 /// $C2C4C0
 void battleActionPokeySpeech() {
 	currentGiygasPhase = GiygasPhase.devilsMachineOff;
 	unknownC2C32C(EnemyID.giygas3);
-	unknownC2C21F(476, Music.giygasPhase1);
+	unknownC2C21F(EnemyGroup.bossGiygasPhase1, Music.giygasPhase1);
 	displayInBattleText(getTextBlock("textPokeySpeech3"));
 	battlersTable[9].consciousness = 0;
 	currentGiygasPhase = GiygasPhase.giygasStartsAttacking;
 	unknownC3FDC5();
 	unknownC2C32C(EnemyID.giygas4);
-	unknownC2C21F(477, Music.giygasPhase2);
+	unknownC2C21F(EnemyGroup.bossGiygasPhase2, Music.giygasPhase2);
 	unknown7EAA92 = 1;
 }
 
@@ -6768,13 +6768,13 @@ void battleActionPokeySpeech2() {
 	drawBattleSprites();
 	wait(1 * 60);
 	unknownC2C32C(EnemyID.giygas5);
-	unknownC2C21F(478, Music.giygasPhase3);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseDuringPrayer1, Music.giygasPhase3);
 	unknown7EAA92 = 1;
 }
 
 /// $C2C572
 void battleActionGiygasPrayer1() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer1"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer1"));
 	wait(2 * 60);
 	playSfx(Sfx.psiStarstorm);
 	wait(1 * 60);
@@ -6783,68 +6783,68 @@ void battleActionGiygasPrayer1() {
 	displayInBattleText(getTextBlock("textBattleGiygasDefensesUnstable"));
 	currentGiygasPhase = GiygasPhase.prayer1Used;
 	unknownC2C32C(229);
-	unknownC2C21F(479, Music.none);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.none);
 }
 
 /// $C2C5D1
 void battleActionGiygasPrayer2() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer2"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer2"));
 	giygasHurtPrayer(50);
 	currentGiygasPhase = GiygasPhase.prayer2Used;
 }
 
 /// $C2C5FA
 void battleActionGiygasPrayer3() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer3"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer3"));
 	giygasHurtPrayer(100);
 	currentGiygasPhase = GiygasPhase.prayer3Used;
 }
 
 /// $C2C623
 void battleActionGiygasPrayer4() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer4"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer4"));
 	giygasHurtPrayer(200);
 	currentGiygasPhase = GiygasPhase.prayer4Used;
 }
 
 /// $C2C64C
 void battleActionGiygasPrayer5() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer5"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer5"));
 	giygasHurtPrayer(400);
 	currentGiygasPhase = GiygasPhase.prayer5Used;
 }
 
 /// $C2C675
 void battleActionGiygasPrayer6() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer6"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer6"));
 	giygasHurtPrayer(800);
 	currentGiygasPhase = GiygasPhase.prayer6Used;
 }
 
 /// $C2C69E
 void battleActionGiygasPrayer7() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer7"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer7"));
 	giygasHurtPrayer(1600);
 	currentGiygasPhase = GiygasPhase.prayer7Used;
-	unknownC2C21F(480, Music.giygasWeakened2);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseAfterPrayer7, Music.giygasWeakened2);
 }
 
 /// $C2C6D0
 void battleActionGiygasPrayer8() {
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer8"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer8"));
 	currentGiygasPhase = GiygasPhase.prayer8Used;
 }
 
 /// $C2C6F0
 void battleActionGiygasPrayer9() {
 	resetRolling();
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer91"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer91"));
 	giygasHurtPrayer(3200);
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer92"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer92"));
 	giygasHurtPrayer(6400);
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer93"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer93"));
 	giygasHurtPrayer(12800);
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer94"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer94"));
 	giygasHurtPrayer(25600);
 	closeFocusWindow();
 	battleModeFlag = 0;
@@ -6902,7 +6902,7 @@ void battleActionGiygasPrayer9() {
 		windowTick();
 	}
 	stopMusic();
-	unknownC2C21F(Music.none, 483);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseFinal, Music.none);
 	wait(8 * 60);
 	unknown7EAA0E = 3;
 }
