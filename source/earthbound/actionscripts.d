@@ -1692,8 +1692,8 @@ ubyte[] ACTIONSCRIPT_C0A964(ushort val1, ushort val2) {
 	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A964, val1, val2);
 }
 
-ubyte[] ACTIONSCRIPT_C0A98B(OverworldSprite sprite, ActionScript script) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A98B, cast(ushort)sprite, cast(ushort)script);
+ubyte[] ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite sprite, ActionScript script) {
+	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptSpawnEntityAtSelf, cast(ushort)sprite, cast(ushort)script);
 }
 
 ubyte[] ACTIONSCRIPT_C0A9CF(ushort val1, ushort val2, ushort val3) {
@@ -3952,7 +3952,7 @@ actionScript805 = [
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_SET_Y_VELOCITY(85),
 	ACTIONSCRIPT_PAUSE(168),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.bubbleMonkey, ActionScript.unknown806),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.bubbleMonkey, ActionScript.unknown806),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript609 = [
@@ -7416,13 +7416,13 @@ actionScript782 = [
 	ACTIONSCRIPT_PAUSE(4),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.nessLyingDown, ActionScript.unknown783),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.nessLyingDown, ActionScript.unknown783),
 	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.paulaLyingDown, ActionScript.unknown783),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.paulaLyingDown, ActionScript.unknown783),
 	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.jeffLyingDown, ActionScript.unknown783),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.jeffLyingDown, ActionScript.unknown783),
 	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.pooLyingDown, ActionScript.unknown783),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.pooLyingDown, ActionScript.unknown783),
 	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
@@ -8231,7 +8231,7 @@ actionScript842 = [
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(6),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_PAUSE(48),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.tenda, ActionScript.unknown844),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.tenda, ActionScript.unknown844),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript704 = [
@@ -8604,7 +8604,7 @@ actionScript853 = [
 	ACTIONSCRIPT_PAUSE(140),
 	ACTIONSCRIPT_PAUSE(140),
 	ACTIONSCRIPT_PAUSE(60),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.king, ActionScript.unknown854),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.king, ActionScript.unknown854),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC3AB44 = [
@@ -9594,7 +9594,7 @@ actionScript696 = [
 ].join();
 actionScript109 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA5A[0]),
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6768),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8584),
@@ -10459,7 +10459,7 @@ actionScript857 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_PAUSE(56),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.nessPosing, ActionScript.unknown858),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.nessPosing, ActionScript.unknown858),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript200 = [
@@ -11394,7 +11394,7 @@ actionScript834 = [
 	ACTIONSCRIPT_C0A86F(169),
 	ACTIONSCRIPT_C0A8E7(),
 	ACTIONSCRIPT_LOOP_END(),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.starMasterGuy, ActionScript.unknown835),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.starMasterGuy, ActionScript.unknown835),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript553 = [
@@ -16493,7 +16493,7 @@ actionScript522 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41900[0]),
 ].join();
 actionScript778 = [
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 0),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 0),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript888 = [
@@ -16563,7 +16563,7 @@ actionScript48 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript777 = [
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript260 = [
@@ -18137,7 +18137,7 @@ actionScript825 = [
 	ACTIONSCRIPT_PAUSE(140),
 	ACTIONSCRIPT_PAUSE(20),
 	ACTIONSCRIPT_PAUSE(64),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.brokenPhaseDistorter, ActionScript.unknown827),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.brokenPhaseDistorter, ActionScript.unknown827),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript142 = [
@@ -20166,7 +20166,7 @@ actionScript110 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7512),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 0),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 0),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
@@ -20367,7 +20367,7 @@ actionScript334 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC36834 = [
-	ACTIONSCRIPT_C0A98B(OverworldSprite.flyingMan, ActionScript.unknown802),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.flyingMan, ActionScript.unknown802),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC3B0B6 = [
@@ -21937,7 +21937,7 @@ actionScript224 = [
 	ACTIONSCRIPT_C0AA6E(Direction.right, 0),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 0),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7632),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB59[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
@@ -22603,7 +22603,7 @@ actionScript306 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript306[18 + 7 * (const(void)*).sizeof]),
 ].join();
 actionScript222 = [
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E5D9A, 1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6928),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 392),
 	ACTIONSCRIPT_SHORTCALL(&unknownC30295[0]),
@@ -22839,7 +22839,7 @@ unknownC3CEA2 = [
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.skyRunnerElectricThingies, ActionScript.animSwWinsShadowA),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.skyRunnerElectricThingies, ActionScript.animSwWinsShadowA),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_PAUSE(120),
@@ -23027,7 +23027,7 @@ actionScript830 = [
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_PAUSE(140),
 	ACTIONSCRIPT_PAUSE(140),
-	ACTIONSCRIPT_C0A98B(OverworldSprite.poo, ActionScript.unknown802),
+	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.poo, ActionScript.unknown802),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC3C81A = [

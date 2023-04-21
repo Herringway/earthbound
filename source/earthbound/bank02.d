@@ -604,13 +604,13 @@ void hpPPRoller() {
 	if (unknown7E9697 != 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] == 0) {
+	if (gameState.partyMembers[frameCounter & 3] == 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] > 4) {
+	if (gameState.partyMembers[frameCounter & 3] > 4) {
 		return;
 	}
-	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1];
+	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1];
 	if ((unknown7E9698 != 0) || ((x10.hp.current.fraction & 1) != 0)) {
 		if (x10.hp.current.integer < x10.hp.target) {
 			x10.hp.current.combined += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? 0x64000 : unknownC20F58();
@@ -669,25 +669,25 @@ void updateHPPPMeterTiles() {
 	if (unknown7E89C9 == 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] == 0) {
+	if (gameState.partyMembers[frameCounter & 3] == 0) {
 		return;
 	}
-	if (gameState.partyMembers[unknown7E0002 & 3] > 4) {
+	if (gameState.partyMembers[frameCounter & 3] > 4) {
 		return;
 	}
-	if ((unknown7E9647 >> (unknown7E0002 & 3) & 1) == 0) {
+	if ((unknown7E9647 >> (frameCounter & 3) & 1) == 0) {
 		return;
 	}
-	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (unknown7E0002 & 3)) ? 18 : 19) * 32 + 96 + 3 + ((unknown7E0002 & 3) * 7);
+	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (frameCounter & 3)) ? 18 : 19) * 32 + 96 + 3 + ((frameCounter & 3) * 7);
 	ushort* x1A = &bg2Buffer[x1C];
 	//x1C = 0x7C00[x1C];
-	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction & 1) != 0) {
-		fillCharacterHPTileBuffer(unknown7E0002 & 3, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].hp.current.fraction);
+	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction & 1) != 0) {
+		fillCharacterHPTileBuffer(frameCounter & 3, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction);
 		if (unknown7E9624 == 0) {
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][0]);
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][3]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][0]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][3]);
 		}
-		ushort* y = &hpPPWindowBuffer[unknown7E0002 & 3][0];
+		ushort* y = &hpPPWindowBuffer[frameCounter & 3][0];
 		for (short i = 0; i != 3; i++) {
 			(x1A++)[0] = (y++)[0];
 		}
@@ -699,13 +699,13 @@ void updateHPPPMeterTiles() {
 	} else {
 		x1A += 64;
 	}
-	if ((partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction & 1) != 0) {
-		fillCharacterPPTileBuffer(unknown7E0002 & 3, &partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[unknown7E0002 & 3] - 1].pp.current.fraction);
+	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction & 1) != 0) {
+		fillCharacterPPTileBuffer(frameCounter & 3, &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction);
 		if (unknown7E9624 == 0) {
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][6]);
-			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[unknown7E0002 & 3][9]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][6]);
+			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][9]);
 		}
-		ushort* x12 = &hpPPWindowBuffer[unknown7E0002 & 3][6];
+		ushort* x12 = &hpPPWindowBuffer[frameCounter & 3][6];
 		for (short i = 0; i != 3; i++) {
 			(x1A++)[0] = (x12++)[0];
 		}
@@ -2303,7 +2303,7 @@ short battleRoutine() {
 		}
 		unknownC2F121();
 		drawBattleSprites();
-		unknownC47F87();
+		loadTextPalette();
 		unknownC0856B(0x18);
 		battleModeFlag = 1;
 		changeMusic(enemyConfigurationTable[unknown7E9F8C[0]].music);
@@ -3365,7 +3365,7 @@ short getEnemyType(short id) {
 }
 
 /// $C269DE
-void unknownC269DE() {
+void tickUntilFadeCompletion() {
 	while (unknown7E0028.a != 0) {
 		windowTick();
 	}
@@ -3630,8 +3630,8 @@ void recoverHP(Battler* battler, short amount) {
 	}
 	if (battler.afflictions[0] != Status0.unconscious) {
 		setHP(battler, cast(short)(amount + battler.hpTarget));
-		if (battler.hpMax >= amount + battler.hpTarget) {
-			displayInBattleText(getTextBlock("textBattleHPAreMaxedOut"));
+		if (battler.hpMax <= amount + battler.hpTarget) {
+			displayInBattleText(getTextBlock("textBattleHpAreMaxedOut"));
 		} else {
 			displayTextWait(getTextBlock("textBattleRecoveredHP"), amount);
 		}
@@ -3792,7 +3792,7 @@ void koTarget(Battler* arg1) {
 	}
 	if (countChars(BattleSide.foes) == 1) {
 		resetRolling();
-		for (short i = 0;  i < 6; i++) {
+		for (short i = 0; i < 6; i++) {
 			if (battlersTable[i].consciousness == 0) {
 				continue;
 			}
@@ -6636,7 +6636,7 @@ void battleActionFlyHoney() {
 /// $C2C21F
 void unknownC2C21F(short group, short music) {
 	short x10 = 0;
-	if ((battleModeFlag != 0) || (group == 483)) {
+	if ((battleModeFlag != 0) || (group == EnemyGroup.bossGiygasPhaseFinal)) {
 		x10 = 1;
 	}
 	if (x10 == 0) {
@@ -6661,7 +6661,7 @@ void unknownC2C21F(short group, short music) {
 	setForceBlank();
 	if (x10 != 0) {
 		fadeIn(1, 4);
-		unknownC269DE();
+		tickUntilFadeCompletion();
 		return;
 	}
 	fadeIn(15, 1);
@@ -6685,16 +6685,16 @@ void unknownC2C32C(short arg1) {
 }
 
 /// $C2C37A
-void unknownC2C37A(short arg1, short arg2, const(ubyte)* arg3) {
+void unknownC2C37A(short group, short music, const(ubyte)* text) {
 	fadeOut(1, 4);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 	battleModeFlag = 0;
 	currentMapMusicTrack = 0;
 	unknownC1DD5F();
-	displayInBattleText(arg3);
+	displayInBattleText(text);
 	fadeOut(1, 2);
-	unknownC269DE();
-	unknownC2C21F(arg1, arg2);
+	tickUntilFadeCompletion();
+	unknownC2C21F(group, music);
 	battleModeFlag = 1;
 	showHPPPWindowsF();
 	createWindow(Window.textBattle);
@@ -6715,40 +6715,40 @@ void giygasHurtPrayer(short damage) {
 /// $C2C41F
 void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	fadeOut(1, 1);
-	unknownC0AC0C(2);
-	unknownC269DE();
+	musicEffect(MusicEffect.quickFade);
+	tickUntilFadeCompletion();
 	battleModeFlag = 0;
 	unknownC1DD5F();
 	mirrorTM = 4;
 	changeMusic(Music.giygasWeakened);
 	fadeIn(1, 1);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 	wait(20);
 	displayInBattleText(arg2);
 	battleModeFlag = 1;
 	wait(20);
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	fadeOut(1, 1);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 	showHPPPWindowsF();
 	createWindow(Window.textBattle);
 	mirrorTM = 0x17;
 	changeMusic(arg1);
 	fadeIn(1, 1);
-	unknownC269DE();
+	tickUntilFadeCompletion();
 }
 
 /// $C2C4C0
 void battleActionPokeySpeech() {
 	currentGiygasPhase = GiygasPhase.devilsMachineOff;
 	unknownC2C32C(EnemyID.giygas3);
-	unknownC2C21F(476, Music.giygasPhase1);
+	unknownC2C21F(EnemyGroup.bossGiygasPhase1, Music.giygasPhase1);
 	displayInBattleText(getTextBlock("textPokeySpeech3"));
 	battlersTable[9].consciousness = 0;
 	currentGiygasPhase = GiygasPhase.giygasStartsAttacking;
 	unknownC3FDC5();
 	unknownC2C32C(EnemyID.giygas4);
-	unknownC2C21F(477, Music.giygasPhase2);
+	unknownC2C21F(EnemyGroup.bossGiygasPhase2, Music.giygasPhase2);
 	unknown7EAA92 = 1;
 }
 
@@ -6768,13 +6768,13 @@ void battleActionPokeySpeech2() {
 	drawBattleSprites();
 	wait(1 * 60);
 	unknownC2C32C(EnemyID.giygas5);
-	unknownC2C21F(478, Music.giygasPhase3);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseDuringPrayer1, Music.giygasPhase3);
 	unknown7EAA92 = 1;
 }
 
 /// $C2C572
 void battleActionGiygasPrayer1() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer1"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer1"));
 	wait(2 * 60);
 	playSfx(Sfx.psiStarstorm);
 	wait(1 * 60);
@@ -6783,68 +6783,68 @@ void battleActionGiygasPrayer1() {
 	displayInBattleText(getTextBlock("textBattleGiygasDefensesUnstable"));
 	currentGiygasPhase = GiygasPhase.prayer1Used;
 	unknownC2C32C(229);
-	unknownC2C21F(479, Music.none);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.none);
 }
 
 /// $C2C5D1
 void battleActionGiygasPrayer2() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer2"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer2"));
 	giygasHurtPrayer(50);
 	currentGiygasPhase = GiygasPhase.prayer2Used;
 }
 
 /// $C2C5FA
 void battleActionGiygasPrayer3() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer3"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer3"));
 	giygasHurtPrayer(100);
 	currentGiygasPhase = GiygasPhase.prayer3Used;
 }
 
 /// $C2C623
 void battleActionGiygasPrayer4() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer4"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer4"));
 	giygasHurtPrayer(200);
 	currentGiygasPhase = GiygasPhase.prayer4Used;
 }
 
 /// $C2C64C
 void battleActionGiygasPrayer5() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer5"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer5"));
 	giygasHurtPrayer(400);
 	currentGiygasPhase = GiygasPhase.prayer5Used;
 }
 
 /// $C2C675
 void battleActionGiygasPrayer6() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer6"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer6"));
 	giygasHurtPrayer(800);
 	currentGiygasPhase = GiygasPhase.prayer6Used;
 }
 
 /// $C2C69E
 void battleActionGiygasPrayer7() {
-	unknownC2C37A(479, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer7"));
+	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("textBattleGiygasPrayer7"));
 	giygasHurtPrayer(1600);
 	currentGiygasPhase = GiygasPhase.prayer7Used;
-	unknownC2C21F(480, Music.giygasWeakened2);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseAfterPrayer7, Music.giygasWeakened2);
 }
 
 /// $C2C6D0
 void battleActionGiygasPrayer8() {
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer8"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer8"));
 	currentGiygasPhase = GiygasPhase.prayer8Used;
 }
 
 /// $C2C6F0
 void battleActionGiygasPrayer9() {
 	resetRolling();
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer91"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer91"));
 	giygasHurtPrayer(3200);
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer92"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer92"));
 	giygasHurtPrayer(6400);
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer93"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer93"));
 	giygasHurtPrayer(12800);
-	unknownC2C41F(74, getTextBlock("textBattleGiygasPrayer94"));
+	unknownC2C41F(Music.giygasWeakened2, getTextBlock("textBattleGiygasPrayer94"));
 	giygasHurtPrayer(25600);
 	closeFocusWindow();
 	battleModeFlag = 0;
@@ -6902,7 +6902,7 @@ void battleActionGiygasPrayer9() {
 		windowTick();
 	}
 	stopMusic();
-	unknownC2C21F(Music.none, 483);
+	unknownC2C21F(EnemyGroup.bossGiygasPhaseFinal, Music.none);
 	wait(8 * 60);
 	unknown7EAA0E = 3;
 }
@@ -7053,7 +7053,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 	arg1.distortionCompressionRate += arg1.distortionCompressionAcceleration;
 	loadBackgroundOffsetParameters(cast(short)(arg1.distortionType - 1), x19, layer);
 	loadBackgroundOffsetParameters2(arg1.distortionCompressionRate);
-	if (((unknown7E0002 & 1) == layer) || (unknown7EADAC == 0)) {
+	if (((frameCounter & 1) == layer) || (unknown7EADAC == 0)) {
 		prepareBackgroundOffsetTables(arg1.distortionRippleFrequency, arg1.distortionRippleAmplitude, arg1.distortionSpeed);
 	}
 }
@@ -7455,11 +7455,11 @@ void unknownC2E0E7() {
 /// $C2E116
 void showPSIAnimation(short arg1) {
 	if (loadedBGDataLayer1.bitDepth == 2) {
-		decomp(&psiAnimationConfig[arg1].graphics[0], &unknown7F0000[0x8000]);
+		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &unknown7F0000[0x8000]);
 		copyToVRAM2(0, 0x1000, 0, &unknown7F0000[0x8000]);
 		unknown7E1BCA = &palettes[3][0];
 	} else {
-		decomp(&psiAnimationConfig[arg1].graphics[0], &unknown7F0000[0]);
+		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &unknown7F0000[0]);
 		ushort* x06 = cast(ushort*)&unknown7F0000[0];
 		ushort* x0A = cast(ushort*)&unknown7F0000[0x8000];
 		for (short i = 0; i < 0x100; i++) {
@@ -7860,7 +7860,7 @@ void loadBattleSprite(short arg1) {
 	unknown7EAACE[unknown7EAAB4] = cast(ubyte)x24;
 	unknown7EAAB4++;
 	ubyte* x1A = &unknown7F0000[0x8000];
-	decomp(&battleSpritePointers[arg1].sprite[0], x1A);
+	decomp(&battleSpriteGraphics[battleSpritePointers[arg1].sprite][0], x1A);
 	short y = cast(short)(x24 * x22);
 	while (y-- != 0) {
 		ubyte* x0A = &unknown7F0000[unknownC3F871[unknown7EAAB2++]];
@@ -8128,7 +8128,7 @@ void renderBattleSpriteRow(short arg1) {
 			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else if (battlersTable[i].useAltSpritemap != 0) {
 			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
-		} else if ((unknown7EADA2 != 0) && ((battlersTable[i].unknown74 == 0) || ((unknown7E0002 & 8) != 0))) {
+		} else if ((unknown7EADA2 != 0) && ((battlersTable[i].unknown74 == 0) || ((frameCounter & 8) != 0))) {
 			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else {
 			unknownC08CD5(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));

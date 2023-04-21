@@ -12,6 +12,7 @@ import earthbound.bank04;
 import earthbound.text;
 import earthbound.bank0F;
 import earthbound.bank10;
+import earthbound.bank11;
 import earthbound.bank15;
 import earthbound.bank17;
 import earthbound.bank1C;
@@ -315,7 +316,7 @@ void loadMapAtSector(short x, short y) {
 		if (debugging != 0) {
 			unknownEFD9F3();
 		} else {
-			unknownC47F87();
+			loadTextPalette();
 		}
 		unknownC0856B(0);
 	}
@@ -473,7 +474,7 @@ void loadCollisionColumn(short x, short y) {
 /// $C00E16
 void loadMapRowVRAM(short x, short y) {
 	if (debugging != 0) {
-		unknownEFDFC4(x, y);
+		renderAttributeRow(x, y);
 	}
 	ushort* x1E = cast(ushort*)sbrk(0x100);
 	ushort* x1C = &x1E[0x40];
@@ -507,7 +508,7 @@ void loadMapRowVRAM(short x, short y) {
 /// $C00FCB
 void loadMapColumnVRAM(short x, short y) {
 	if (debugging != 0) {
-		unknownEFE07C(x, y);
+		renderAttributeColumn(x, y);
 	}
 	ushort* x1E = cast(ushort*)sbrk(0x80);
 	ushort* x1C = &x1E[0x20];
@@ -793,7 +794,7 @@ void initializeMiscObjectData() {
 }
 
 /// $C01A86
-void unknownC01A86() {
+void clearSpriteTable() {
 	ubyte* tmpPtr = cast(ubyte*)&spriteTable7E467E[0];
 	for (short i = 0; i < spriteTable7E467E.sizeof; i++) {
 		tmpPtr[i] = 0xFF;
@@ -1014,7 +1015,7 @@ void unknownC02140(short arg1) {
 	}
 	entityTPTEntrySprites[arg1] = -1;
 	entityTPTEntries[arg1] = 0xFFFF;
-	unknownC09C35(arg1);
+	deleteEntity(arg1);
 }
 
 /// $C02194
@@ -1046,7 +1047,7 @@ void unknownC021E6() {
 		}
 		unknownC02140(i);
 	}
-	unknownC09C35(23);
+	deleteEntity(23);
 }
 
 /// $C0222B
@@ -1093,14 +1094,14 @@ void trySpawnNPCs(short x, short y) {
 				}
 				x1A = -1;
 				if (unknown7EB4EF == 0) {
-					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != 0) && (unknownEFE6CF() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
+					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != 0) && (isDebugViewMapMode() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
 						continue;
 					} else if ((npcConfig[x20].appearanceStyle != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
 						continue;
 					}
 					if (debugging != 0) {
 						if ((showNPCFlag == 0) || (npcConfig[x20].type == 3)) {
-							x1A = createEntity(npcConfig[x20].sprite, unknownEFE6E2(npcConfig[x20].actionScript), -1, x18, x16);
+							x1A = createEntity(npcConfig[x20].sprite, debugViewMapLimitActionscript(npcConfig[x20].actionScript), -1, x18, x16);
 						}
 					} else {
 						if ((showNPCFlag == 0) || (npcConfig[x20].type == 3)) {
@@ -1185,7 +1186,7 @@ short unknownC0263D(short x, short y) {
 void unknownC02668(short arg1, short arg2, short arg3) {
 	short x2A;
 	const(BattleGroupEnemy)* x0A;
-	if ((debugging != 0) && (unknownEFE759() != 0) && (rand() < 16)) {
+	if ((debugging != 0) && (debugEnemiesEnabled() != 0) && (rand() < 16)) {
 		tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
 		x2A = 0;
 		x0A = &battleEntryPointerTable[0].enemies[0];
@@ -1435,15 +1436,15 @@ void mushroomizationMovementSwap() {
 }
 
 /// $C02D29
-void unknownC02D29() {
+void clearParty() {
 	entitySizes[23] = 1;
 	unknown7E9F6B = -1;
 	gameState.unknown88 = 0;
-	gameState.unknownB0 = 0;
-	gameState.unknownB2 = 0;
-	gameState.unknownB4 = 0;
+	gameState.cameraMode = CameraMode.normal;
+	gameState.autoScrollFrames = 0;
+	gameState.autoScrollOriginalWalkingStyle = 0;
 	gameState.partyStatus = 0;
-	gameState.currentPartyMembers = 0x18;
+	gameState.firstPartyMemberEntity = 0x18;
 	for (short i = 0; i < 6; i++) {
 		gameState.unknown96[i] = 0;
 		unknown7E5D8C[i] = 0;
@@ -1565,10 +1566,10 @@ void updateParty() {
 		partyCharacters[i].positionIndex = local1[i];
 		entityScriptVar5Table[i] = gameState.partyEntities[i];
 	}
-	gameState.currentPartyMembers = gameState.partyEntities[0];
+	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	unknownC032EC();
 	unknownC02C3E();
-	unknownC47F87();
+	loadTextPalette();
 }
 
 /// $C0369B
@@ -1635,10 +1636,10 @@ short unknownC0369B(short id) {
 	createEntity(x18_2, characterInitialEntityData[id - 1].actionScript, x1A_2, playerPositionBuffer[x].xCoord, playerPositionBuffer[x].yCoord);
 	entityScreenXTable[x1A_2] = cast(short)(playerPositionBuffer[x].xCoord - bg1XPosition);
 	entityScreenYTable[x1A_2] = cast(short)(playerPositionBuffer[x].yCoord - bg1YPosition);
-	gameState.currentPartyMembers = characterInitialEntityData[gameState.unknown96[0] - 1].unknown6;
+	gameState.firstPartyMemberEntity = characterInitialEntityData[gameState.unknown96[0] - 1].unknown6;
 	unknownC09CD7();
 	unknownC032EC();
-	gameState.currentPartyMembers = gameState.partyEntities[0];
+	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	updateParty();
 	entityPreparedXCoordinate = playerPositionBuffer[x].xCoord;
 	entityPreparedYCoordinate = playerPositionBuffer[x].yCoord;
@@ -1754,10 +1755,10 @@ void unknownC03A94(short arg1) {
 	currentEntitySlot = x18;
 	setFollowerEntityLocationToLeaderPosition();
 	unknown7E5DA8 = 0xFFFF;
-	short x02 = unknown7E5D9A;
-	unknown7E5D9A = 0;
-	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers, Direction.down);
-	unknown7E5D9A = x02;
+	short x02 = pendingInteractions;
+	pendingInteractions = 0;
+	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, Direction.down);
+	pendingInteractions = x02;
 	if (unknown7E5DA8 != -1) {
 		unknownC07526(unknown7E5DA8, unknown7E5DAA);
 	}
@@ -1814,7 +1815,7 @@ void unknownC03CFD() {
 		return;
 	}
 	setBoundaryBehaviour(1);
-	if ((battleDebug == 0) && (unknown7E5D9A == 0)) {
+	if ((battleDebug == 0) && (pendingInteractions == 0)) {
 		unknownC06A07();
 	}
 	unknownC02140(0x18);
@@ -1822,7 +1823,7 @@ void unknownC03CFD() {
 	gameState.walkingStyle = 0;
 	partyCharacters[0].positionIndex = 0;
 	gameState.unknown88 = 0;
-	if (unknown7E5D9A == 0) {
+	if (pendingInteractions == 0) {
 		oamClear();
 		runActionscriptFrame();
 		updateScreen();
@@ -1834,7 +1835,7 @@ void unknownC03CFD() {
 	entityAnimationFrames[24] = 0;
 	entityDirections[24] = gameState.leaderDirection;
 	entityScriptVar7Table[24] |= 0x9000;
-	if (unknown7E5D9A != 0) {
+	if (pendingInteractions != 0) {
 		entityTickCallbackFlags[24] |= 0xC000;
 	}
 	waitUntilNextFrame();
@@ -1847,7 +1848,11 @@ void unknownC03CFD() {
 /// $C03E5A
 short unknownC03E5A(short arg1) {
 	short x;
-	for (x = 0; gameState.unknown96[x] != arg1 + 1; x++) {}
+	version(bugfix) {
+		for (x = 0; (x < gameState.unknown96.length) && (gameState.unknown96[x] != arg1 + 1); x++) {}
+	} else {
+		for (x = 0; gameState.unknown96[x] != arg1 + 1; x++) {}
+	}
 	if (x == 0) {
 		return -1;
 	}
@@ -1889,7 +1894,7 @@ void unknownC03DAA() {
 	if (partyCharacters[entityScriptVar1Table[currentEntitySlot] + 1].afflictions[0] == Status0.unconscious) {
 		entityScriptVar3Table[currentEntitySlot] = 16;
 	}
-	unknown7E2898 = cast(short)(gameState.currentPartyMembers * 2);
+	unknown7E2898 = cast(short)(gameState.firstPartyMemberEntity * 2);
 }
 
 /// $C03F1E
@@ -1928,7 +1933,7 @@ void unknownC03FA9(short x, short y, short direction) {
 	gameState.leaderX.integer = x;
 	gameState.leaderY.integer = y;
 	gameState.leaderDirection = direction;
-	gameState.troddenTileType = unknownC05F33(x, y, gameState.currentPartyMembers);
+	gameState.troddenTileType = unknownC05F33(x, y, gameState.firstPartyMemberEntity);
 	unknownC03A94(direction);
 	movePartyToLeaderPosition();
 	for (short i = 0; i < 6; i++) {
@@ -1954,7 +1959,7 @@ void unknownC0402B(Unknown7E007DEntry* arg1) {
 /// $C0404F
 short mapInputToDirection(short style) {
 	short result = -1;
-	if (unknown7E5D9A != 0) {
+	if (pendingInteractions != 0) {
 		return -1;
 	}
 	style = allowedInputDirections[style];
@@ -2011,13 +2016,13 @@ short unknownC04116(short direction) {
 	short x12 = unknown7E5D58;
 	unknown7E5D58 = 1;
 	while (true) {
-		short x10 = npcCollisionCheck(x14, x04, gameState.currentPartyMembers);
+		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 > 0) {
 			currentTPTEntry = entityTPTEntries[x10];
 			unknown7E5D64 = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.currentPartyMembers, direction) & 0x82) != 0x82) {
+		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & 0x82) != 0x82) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2072,10 +2077,10 @@ ushort findNearbyCheckableTPTEntry() {
 	currentTPTEntry = -1;
 	unknown7E5D64 = -1;
 	short x10 = unknownC041E3();
-	if ((x10 != -1) && (entityDirections[gameState.currentPartyMembers] != x10)) {
+	if ((x10 != -1) && (entityDirections[gameState.firstPartyMemberEntity] != x10)) {
 		gameState.leaderDirection = x10;
-		entityDirections[gameState.currentPartyMembers] = x10;
-		unknownC0A780(gameState.currentPartyMembers);
+		entityDirections[gameState.firstPartyMemberEntity] = x10;
+		unknownC0A780(gameState.firstPartyMemberEntity);
 	}
 	return currentTPTEntry;
 }
@@ -2087,13 +2092,13 @@ short unknownC042EF(short direction) {
 	short x12 = unknown7E5D58;
 	unknown7E5D58 = 1;
 	while (true) {
-		short x10 = npcCollisionCheck(x14, x04, gameState.currentPartyMembers);
+		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 >= 0) {
 			currentTPTEntry = entityTPTEntries[x10];
 			unknown7E5D64 = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.currentPartyMembers, direction) & 0x82) != 0x82) {
+		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & 0x82) != 0x82) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2141,10 +2146,10 @@ ushort findNearbyTalkableTPTEntry() {
 	currentTPTEntry = -1;
 	unknown7E5D64 = -1;
 	short x10 = unknownC043BC();
-	if ((x10 != -1) && (entityDirections[gameState.currentPartyMembers] != x10)) {
+	if ((x10 != -1) && (entityDirections[gameState.firstPartyMemberEntity] != x10)) {
 		gameState.leaderDirection = x10;
-		entityDirections[gameState.currentPartyMembers] = x10;
-		unknownC0A780(gameState.currentPartyMembers);
+		entityDirections[gameState.firstPartyMemberEntity] = x10;
+		unknownC0A780(gameState.firstPartyMemberEntity);
 	}
 	return currentTPTEntry;
 }
@@ -2158,14 +2163,14 @@ void unknownC0449B() {
 	short x02 = mapInputToDirection(gameState.walkingStyle);
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
-			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		} else {
 			battleDebug = -1;
 		}
 		return;
 	}
 	if (x02 == -1) {
-		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		return;
 	}
 	if (gameState.walkingStyle == WalkingStyle.stairs) {
@@ -2198,19 +2203,19 @@ void unknownC0449B() {
 	unknown7E5DA8 = 0xFFFF;
 	short x04;
 	if ((miscDebugFlags & 2) == 0) {
-		x04 = unknownC05B7B(newX.integer, newY.integer, gameState.currentPartyMembers, x02);
+		x04 = unknownC05B7B(newX.integer, newY.integer, gameState.firstPartyMemberEntity, x02);
 		if (x02 != unknown7E5DA6) {
 			newX.combined = adjustPositionHorizontal(unknown7E5DA6, gameState.leaderX.combined, x22);
 			newY.combined = adjustPositionVertical(unknown7E5DA6, gameState.leaderY.combined, x22);
 		}
 	} else if (demoFramesLeft == 0) {
-		x04 = unknownC05FD1(newX.integer, newY.integer, gameState.currentPartyMembers) & 0x3F;
+		x04 = unknownC05FD1(newX.integer, newY.integer, gameState.firstPartyMemberEntity) & 0x3F;
 	} else {
 		x04 = 0;
 	}
 	gameState.troddenTileType = x04;
 	short x02_2 = 1;
-	npcCollisionCheck(newX.integer, newY.integer, gameState.currentPartyMembers);
+	npcCollisionCheck(newX.integer, newY.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[23] != 0xFFFF) {
 		tracef("Couldn't move due to collision with %s", entityCollidedObjects[23]);
 		x02_2 = 0;
@@ -2230,10 +2235,10 @@ void unknownC0449B() {
 	} else {
 		gameState.unknown90 = 0;
 	}
-	if (((unknown7E0002 & 1) == 0) && (activeHotspots[0].mode != 0)) {
+	if (((frameCounter & 1) == 0) && (activeHotspots[0].mode != 0)) {
 		unknownC073C0(0);
 	}
-	if (((unknown7E0002 & 1) != 0) && (activeHotspots[1].mode != 0)) {
+	if (((frameCounter & 1) != 0) && (activeHotspots[1].mode != 0)) {
 		unknownC073C0(1);
 	}
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
@@ -2246,16 +2251,16 @@ void unknownC0449B() {
 }
 
 /// $C0476D
-void unknownC0476D() {
+void moveCameraToEntity() {
 	short x04 = 0;
-	if ((entityAbsXTable[unknown7E9E33] != gameState.leaderX.integer) || (entityAbsYTable[unknown7E9E33] != gameState.leaderY.integer) || (entityAbsXFractionTable[unknown7E9E33] != gameState.leaderX.fraction) || (entityAbsYFractionTable[unknown7E9E33] != gameState.leaderY.fraction)) {
+	if ((entityAbsXTable[cameraFocusEntity] != gameState.leaderX.integer) || (entityAbsYTable[cameraFocusEntity] != gameState.leaderY.integer) || (entityAbsXFractionTable[cameraFocusEntity] != gameState.leaderX.fraction) || (entityAbsYFractionTable[cameraFocusEntity] != gameState.leaderY.fraction)) {
 		x04 = 1;
 	}
-	gameState.leaderX.integer = entityAbsXTable[unknown7E9E33];
-	gameState.leaderY.integer = entityAbsYTable[unknown7E9E33];
-	gameState.leaderX.fraction = entityAbsXFractionTable[unknown7E9E33];
-	gameState.leaderY.fraction = entityAbsYFractionTable[unknown7E9E33];
-	gameState.leaderDirection = entityDirections[unknown7E9E33];
+	gameState.leaderX.integer = entityAbsXTable[cameraFocusEntity];
+	gameState.leaderY.integer = entityAbsYTable[cameraFocusEntity];
+	gameState.leaderX.fraction = entityAbsXFractionTable[cameraFocusEntity];
+	gameState.leaderY.fraction = entityAbsYFractionTable[cameraFocusEntity];
+	gameState.leaderDirection = entityDirections[cameraFocusEntity];
 	gameState.unknown90 = x04;
 }
 
@@ -2286,7 +2291,7 @@ void unknownC047CF() {
 			break;
 	}
 	unknown7E5DA8 = 0xFFFF;
-	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers, x14);
+	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, x14);
 	if (unknown7E5DA8 != -1) {
 		unknownC07526(unknown7E5DA8, unknown7E5DAA);
 	}
@@ -2305,7 +2310,7 @@ void unknownC048D3(short arg1) {
 	short x02 = x1E;
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
-			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 			return;
 		} else {
 			battleDebug = -1;
@@ -2318,7 +2323,7 @@ void unknownC048D3(short arg1) {
 	if ((x1E == -1) || (arg1 != 0)) {
 		x1E = gameState.leaderDirection;
 	} else {
-		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		return;
 	}
 	if ((x1E & 1) != 0) {
@@ -2335,7 +2340,7 @@ void unknownC048D3(short arg1) {
 	x14.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
 	unknown7E5DA8 = 0xFFFF;
 	short x1A = unknownC05CD7(x10.integer, x14.integer, 0x18, x1E);
-	npcCollisionCheck(x10.integer, x14.integer, gameState.currentPartyMembers);
+	npcCollisionCheck(x10.integer, x14.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[23] == -1) {
 		gameState.unknown90++;
 		unknown7E2890++;
@@ -2349,17 +2354,17 @@ void unknownC048D3(short arg1) {
 }
 
 /// $C04A7B
-void unknownC04A7B() {
-	gameState.unknownB0 = unknown7E5D7A;
+void restoreCameraMode() {
+	gameState.cameraMode = unknown7E5D7A;
 	unknownC0D19B();
 }
 
 /// $C04A88
-void unknownC04A88() {
+void switchToCameraMode3() {
 	unknown7E5D7C = 12;
-	unknown7E5D7A = gameState.unknownB0;
-	gameState.unknownB0 = 3;
-	unknownC0AC0C(2);
+	unknown7E5D7A = gameState.cameraMode;
+	gameState.cameraMode = CameraMode.unknown3;
+	musicEffect(MusicEffect.quickFade);
 	overworldStatusSuppression = 1;
 }
 
@@ -2386,7 +2391,7 @@ void unknownC04AAD() {
 		}
 		gameState.leaderDirection = x10;
 	} else {
-		unknownC04A7B();
+		restoreCameraMode();
 	}
 }
 
@@ -2398,20 +2403,20 @@ void unknownC04B53() {
 	} else {
 		x10 = unknown7E5DCA;
 	}
-	switch (gameState.unknownB0) {
-		case 1:
+	switch (gameState.cameraMode) {
+		case CameraMode.autoScroll:
 			gameState.leaderX.combined += horizontalMovementSpeeds[gameState.walkingStyle].directionSpeeds[x10].combined;
 			gameState.leaderY.combined += verticalMovementSpeeds[gameState.walkingStyle].directionSpeeds[x10].combined;
-			if (--gameState.unknownB2 == 0) {
-				gameState.unknownB0 = 0;
-				gameState.walkingStyle = gameState.unknownB4;
+			if (--gameState.autoScrollFrames == 0) {
+				gameState.cameraMode = CameraMode.normal;
+				gameState.walkingStyle = gameState.autoScrollOriginalWalkingStyle;
 			}
 			gameState.unknown90 = 1;
 			break;
-		case 2:
-			unknownC0476D();
+		case CameraMode.followEntity:
+			moveCameraToEntity();
 			break;
-		case 3:
+		case CameraMode.unknown3:
 			unknownC04AAD();
 			break;
 		default:
@@ -2427,11 +2432,11 @@ void unknownC04C45() {
 		unknownC07C5B();
 		unknown7E5D58--;
 	}
-	if ((debugging != 0) && ((padState[0] & Pad.x) != 0) && ((unknown7E0002 & 0xF) != 0)) {
+	if ((debugging != 0) && ((padState[0] & Pad.x) != 0) && ((frameCounter & 0xF) != 0)) {
 		return;
 	}
-	chosenFourPtrs[entityScriptVar1Table[gameState.currentPartyMembers]].positionIndex = gameState.unknown88;
-	if (gameState.unknownB0 != 0) {
+	chosenFourPtrs[entityScriptVar1Table[gameState.firstPartyMemberEntity]].positionIndex = gameState.unknown88;
+	if (gameState.cameraMode != CameraMode.normal) {
 		unknownC04B53();
 	} else {
 		switch (gameState.walkingStyle) {
@@ -2448,7 +2453,7 @@ void unknownC04C45() {
 	}
 	short x12 = gameState.unknown88;
 	PlayerPositionBufferEntry* x10 = &playerPositionBuffer[gameState.unknown88];
-	gameState.troddenTileType = unknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+	gameState.troddenTileType = unknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	if (gameState.unknown90 != 0) {
 		x10.xCoord = gameState.leaderX.integer;
 		x10.yCoord = gameState.leaderY.integer;
@@ -2473,7 +2478,7 @@ void unknownC04C45() {
 
 /// $C04D78
 void unknownC04D78() {
-	if (gameState.unknownB0 == 3) {
+	if (gameState.cameraMode == CameraMode.unknown3) {
 		return;
 	}
 	if (battleSwirlCountdown != 0) {
@@ -2498,7 +2503,7 @@ void unknownC04D78() {
 	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[unknown7E4DC6.positionIndex].yCoord;
 	short x1C = 0;
 	short x12 = void;
-	if (entityScriptVar0Table[currentEntitySlot] != gameState.unknown96[0]) {
+	if (entityScriptVar0Table[currentEntitySlot] + 1 != gameState.unknown96[0]) {
 		switch (playerPositionBuffer[unknown7E4DC6.positionIndex].walkingStyle) {
 			case WalkingStyle.ladder:
 			case WalkingStyle.rope:
@@ -2585,7 +2590,7 @@ ushort unknownC04FFE() {
 	ushort x02;
 	ushort x04;
 	ushort x16;
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return 1;
 	}
 	if (overworldStatusSuppression != 0) {
@@ -2683,12 +2688,12 @@ void unknownC05200() {
 			unknownC03C25();
 		}
 	}
-	if ((dadPhoneTimer == 0) && (gameState.unknownB0 != 2)) {
+	if ((dadPhoneTimer == 0) && (gameState.cameraMode != CameraMode.followEntity)) {
 		loadDadPhone();
 	}
 	unknown7E9F6F = 0;
 	unknown7E5D76 = gameState.leaderDirection;
-	unknown7E5D78 = cast(short)(gameState.currentPartyMembers * 2);
+	unknown7E5D78 = cast(short)(gameState.firstPartyMemberEntity * 2);
 	if (gameState.unknown90) {
 		unknown7E0A34 = 1;
 	}
@@ -2998,14 +3003,14 @@ short unknownC05B4E(short direction) {
 }
 
 /// $C05B7B
-short unknownC05B7B(short arg1, short arg2, short arg3, short direction) {
+short unknownC05B7B(short x, short y, short arg3, short direction) {
 	unknown7E5DB8 = 0;
 	unknown7E5DB4 = 0;
 	unknown7E5DA4 = 0;
 	unknown7E5DA6 = direction;
 	unknown7E5DA2 = direction;
-	unknown7E5DAC = arg1;
-	unknown7E5DAE = arg2;
+	unknown7E5DAC = x;
+	unknown7E5DAE = y;
 	short x12;
 	switch (direction) {
 		case Direction.up:
@@ -3055,7 +3060,7 @@ short unknownC05B7B(short arg1, short arg2, short arg3, short direction) {
 			break;
 		default: break;
 	}
-	if (unknown7E5D9A != 0) {
+	if (pendingInteractions != 0) {
 		unknown7E5DA8 = 0xFFFF;
 	}
 	if ((x12 == -1) || (x12 == -256)) {
@@ -3450,7 +3455,7 @@ void unknownC064D4() {
 }
 
 /// $C064E3
-void unknownC064E3(short arg1, QueuedInteractionPtr arg2) {
+void queueInteraction(short arg1, QueuedInteractionPtr arg2) {
 	if (arg1 == currentQueuedInteractionType) {
 		return;
 	}
@@ -3458,7 +3463,7 @@ void unknownC064E3(short arg1, QueuedInteractionPtr arg2) {
 	queuedInteractions[nextQueuedInteraction].type = arg1;
 	queuedInteractions[nextQueuedInteraction].ptr = arg2;
 	nextQueuedInteraction = (nextQueuedInteraction + 1) & 3;
-	unknown7E5D9A = 1;
+	pendingInteractions = 1;
 }
 
 /// $C06537
@@ -3493,9 +3498,9 @@ void unknownC065C2(short direction) {
 	if (direction == Direction.left) {
 		x0E--;
 	}
-	short x = unknownC07477(x0E, x02);
+	short x = getDoorAt(x0E, x02);
 	if (x == -1) {
-		x = unknownC07477(cast(short)(x0E + 1), x02);
+		x = getDoorAt(cast(short)(x0E + 1), x02);
 	}
 	if ((x != -1) && (x != 6)) {
 		unknown7E5DDC = unknown7E5DBE;
@@ -3605,7 +3610,7 @@ void loadSectorMusic(short x, short y) {
 	loadedMapMusicEntry = x0A;
 	nextMapMusicTrack = x0A.music;
 	if ((unknown7E5DDA == 0) && (x0A.music != currentMapMusicTrack)) {
-		unknownC0AC0C(2);
+		musicEffect(MusicEffect.quickFade);
 	}
 }
 
@@ -3619,7 +3624,7 @@ void changeMapMusic() {
 	}
 	currentMapMusicTrack = nextMapMusicTrack;
 	changeMusic(nextMapMusicTrack);
-	unknownC0AC0C(loadedMapMusicEntry.unknown3);
+	musicEffect(loadedMapMusicEntry.audioEffect);
 }
 
 /// $C069ED
@@ -3642,7 +3647,7 @@ void unknownC06A07() {
 /// $C06A1B
 void unknownC06A1B(const(DoorEntryB)* arg1) {
 	if (getEventFlag(arg1.eventFlag & 0x7FFF) == (arg1.eventFlag > eventFlagUnset) ? 1 : 0) {
-		unknownC064E3(0, QueuedInteractionPtr(getTextBlock(arg1.textPtr)));
+		queueInteraction(InteractionType.unknown0, QueuedInteractionPtr(getTextBlock(arg1.textPtr)));
 		unknown7E5DAA = 0;
 		unknown7E5DA8 = 0;
 	}
@@ -3677,10 +3682,10 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 	if (unknown7E0A34 == 0) {
 		return;
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
-	if (unknown7E5D9A != 0) {
+	if (pendingInteractions != 0) {
 		return;
 	}
 	if ((battleSwirlFlag | battleSwirlCountdown) != 0) {
@@ -3688,7 +3693,7 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 	}
 	unknown7E5DC2 = 1;
 	QueuedInteractionPtr ptr = { doorPtr: arg1 };
-	unknownC064E3(2, cast(QueuedInteractionPtr)ptr);
+	queueInteraction(InteractionType.unknown2, cast(QueuedInteractionPtr)ptr);
 	unknownC07C5B();
 }
 
@@ -3709,14 +3714,14 @@ void unknownC06B3D() {
 	}
 	unknown7E5E58[i].textPtr = null;
 	for (short j = 0; unknown7E5E58[j].textPtr !is null; j++) {
-		unknownC064E3(10, unknown7E5E58[j]);
+		queueInteraction(InteractionType.unknown10, unknown7E5E58[j]);
 	}
 }
 
 /// $C06BFF
 void doorTransition(const(DoorEntryA)* arg1) {
 	if (arg1.textPtr !is null) {
-		unknownC10004(getTextBlock(arg1.textPtr));
+		displayInteractionText(getTextBlock(arg1.textPtr));
 	}
 	unknown7E5DAA = 0;
 	unknown7E5DA8 = 0;
@@ -3747,11 +3752,11 @@ void doorTransition(const(DoorEntryA)* arg1) {
 		x02 += 8;
 	}
 	if (debugging != 0) {
-		if (debugModeNumber != 6) {
+		if (debugModeNumber != DebugMode.soundMode) {
 			loadSectorMusic(x02, x04);
 		}
-		if (unknown7EB567 == 0) {
-			unknownEFE895(arg1.transitionStyle);
+		if (replayModeActive == 0) {
+			storePersistentReplayState(arg1.transitionStyle);
 		}
 	} else {
 		loadSectorMusic(x02, x04);
@@ -3760,7 +3765,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	unknown7E2890 = 0;
 	gameState.walkingStyle = 0;
 	unknownC03FA9(x02, x04, unknownC3E1D8[arg1.unknown6 >> 14]);
-	if ((debugging != 0) && (unknown7EB567 == 0)) {
+	if ((debugging != 0) && (replayModeActive == 0)) {
 		saveReplaySaveSlot();
 	}
 	changeMapMusic();
@@ -4034,22 +4039,22 @@ void unknownC073C0(short arg1) {
 		}
 	}
 	activeHotspots[arg1].mode = 0;
-	unknownC064E3(9, QueuedInteractionPtr(activeHotspots[arg1].pointer));
+	queueInteraction(InteractionType.unknown9, QueuedInteractionPtr(activeHotspots[arg1].pointer));
 	gameState.activeHotspotModes[arg1] = 0;
 }
 
 /// $C07477
-byte unknownC07477(short arg1, short arg2) {
-	const(SectorDoors)* x0A = &doorConfig[arg2 / 32][arg1 / 32];
+byte getDoorAt(short x, short y) {
+	const(SectorDoors)* x0A = &doorConfig[y / 32][x / 32];
 	if (x0A.length == 0) {
 		return -1;
 	}
 	const(DoorConfig)* x06 = &x0A.doors[0];
 	for (short i = x0A.length; i != 0; x06++, i--) {
-		if (x06.unknown1 != (arg1 % 32)) {
+		if (x06.unknown1 != (x % 32)) {
 			continue;
 		}
-		if (x06.unknown0 != (arg2 % 32)) {
+		if (x06.unknown0 != (y % 32)) {
 			continue;
 		}
 		unknown7E5DBC = x06.doorPtr;
@@ -4066,7 +4071,7 @@ short unknownC07526(short arg1, short arg2) {
 	} else {
 		short x0E = void;
 	}
-	switch (unknownC07477(arg1, arg2)) {
+	switch (getDoorAt(arg1, arg2)) {
 		case DoorType.switch_:
 			unknownC06A1B(unknown7E5DBC.entryB);
 			x0E = 0;
@@ -4110,24 +4115,24 @@ void processQueuedInteractions() {
 	unknownC07C5B();
 	tracef("Processing interaction of type %s", currentQueuedInteractionType);
 	switch(currentQueuedInteractionType) {
-		case 2:
+		case InteractionType.unknown2:
 			doorTransition(ptr.doorPtr);
 			break;
-		case 10:
-			unknownC10004(ptr.textPtr);
+		case InteractionType.unknown10:
+			displayInteractionText(ptr.textPtr);
 			if (ptr.textPtr == getTextBlock("textDadCalls")) {
 				dadPhoneTimer = 0x697;
 				unknown7E9E56 = 0;
 			}
 			break;
-		case 0:
-		case 8:
-		case 9:
-			unknownC10004(ptr.textPtr);
+		case InteractionType.unknown0:
+		case InteractionType.unknown8:
+		case InteractionType.unknown9:
+			displayInteractionText(ptr.textPtr);
 			break;
 		default: break;
 	}
-	unknown7E5D9A = (currentQueuedInteraction != nextQueuedInteraction) ? 1 : 0;
+	pendingInteractions = (currentQueuedInteraction != nextQueuedInteraction) ? 1 : 0;
 	currentQueuedInteractionType = -1;
 }
 
@@ -4153,13 +4158,13 @@ void unknownC076C8(short arg1) {
 
 /// $C07716
 void unknownC07716() {
-	if ((entityTickCallbackFlags[gameState.currentPartyMembers] & (objectTickDisabled | objectMoveDisabled)) != 0) {
+	if ((entityTickCallbackFlags[gameState.firstPartyMemberEntity] & (objectTickDisabled | objectMoveDisabled)) != 0) {
 		return;
 	}
-	if ((entitySpriteMapFlags[gameState.currentPartyMembers] & 0x8000) != 0) {
+	if ((entitySpriteMapFlags[gameState.firstPartyMemberEntity] & 0x8000) != 0) {
 		return;
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
 	unknown7E9F6B = createEntity(OverworldSprite.miniGhost, ActionScript.unknown786, -1, 0, 0);
@@ -4177,7 +4182,7 @@ void unknownC0777A() {
 
 /// $C0778A
 void unknownC0778A() {
-	if ((entityTickCallbackFlags[gameState.currentPartyMembers] & (objectTickDisabled | objectMoveDisabled)) != 0) {
+	if ((entityTickCallbackFlags[gameState.firstPartyMemberEntity] & (objectTickDisabled | objectMoveDisabled)) != 0) {
 		entityAnimationFrames[currentEntitySlot] = -1;
 		return;
 	}
@@ -4327,7 +4332,7 @@ void unknownC07A56(short arg1, short arg2, short arg3) {
 			entityScriptVar7Table[x04] |= (1 << 14 | 1 << 13);
 		}
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		entityScriptVar7Table[x04] |= 1 << 12;
 	}
 }
@@ -4341,7 +4346,7 @@ void unknownC07B52() {
 		if (entityScriptTable[x04] != -1) {
 			entityTickCallbackFlags[x04] |= (objectTickDisabled | objectMoveDisabled);
 			unknown7E4DC6 = &partyCharacters[entityScriptVar1Table[x04]];
-			if ((gameState.currentPartyMembers == x12) || (unknown7E4DC6.positionIndex == x14)) {
+			if ((gameState.firstPartyMemberEntity == x12) || (unknown7E4DC6.positionIndex == x14)) {
 				unknownC07A56(entityScriptVar0Table[x12], gameState.walkingStyle, x12);
 				entityAbsXTable[x12] = gameState.leaderX.integer;
 				entityAbsYTable[x12] = gameState.leaderY.integer;
@@ -4397,7 +4402,7 @@ void irqNMICommon() {
 	HDMAEN = 0;
 	INIDISP = 0x80;
 	unknown7E002B++;
-	unknown7E0002++;
+	frameCounter++;
 	if (nextFrameDisplayID != 0) {
 		handleOAMDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220, 0);
 		unknown7E0099 += 0x220;
@@ -5205,6 +5210,7 @@ void unknownC0927C() {
 	do {
 		entitySpriteMapFlags[x / 2] = 0;
 		entityTickCallbacks[x / 2] = null;
+		entityTickCallbackFlags[x / 2] = 0;
 		x -= 2;
 	} while (x >= 0);
 
@@ -5518,7 +5524,7 @@ immutable const(ubyte)* function(const(ubyte)*)[77] movementControlCodesPointerT
 /// $C095F2 - [00] - End
 const(ubyte)* movementCode00(const(ubyte)* y) {
 	debug(actionscript) tracef("Script %2d(%03d): End", actionScriptVar8A / 2, entityScriptTable[currentEntitySlot]);
-	unknownC09C3B(actionScriptVar88);
+	deleteEntityOffset(actionScriptVar88);
 	entityScriptSleepFrames[actionScriptVar8A / 2] = -1;
 	unknown7E0A58 = -1;
 	return y;
@@ -5911,6 +5917,7 @@ const(ubyte)* movementCode13(const(ubyte)* y) {
 /// $C09A1A
 const(ubyte)* movementCode08(const(ubyte)* y) {
 	entityTickCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
+	entityTickCallbackFlags[actionScriptVar88 / 2] = 0;
 	y += (const(ubyte)*).sizeof;
 	//banks!
 	return y;
@@ -6172,17 +6179,17 @@ short unknownC09C02(out bool flag) {
 }
 
 /// $C09C35
-void unknownC09C35(short arg1) {
-	unknownC09C3B(cast(short)(arg1 * 2));
+void deleteEntity(short entity) {
+	deleteEntityOffset(cast(short)(entity * 2));
 }
 
 /// $C09C3B
 //note: arg1 is passed via X register
-void unknownC09C3B(short arg1) {
-	if (entityScriptTable[arg1 / 2] >= 0) {
-		entityScriptTable[arg1 / 2] = -1;
-		clearSpriteTickCallback(arg1);
-		short x = unknownC09C99(arg1);
+void deleteEntityOffset(short offset) {
+	if (entityScriptTable[offset / 2] >= 0) {
+		entityScriptTable[offset / 2] = -1;
+		clearSpriteTickCallback(offset);
+		short x = unknownC09C99(offset);
 		short a = unknown7E0A54;
 		unknownC09C73(a, x);
 		unknownC09C8F(x);
@@ -6224,12 +6231,12 @@ void unknownC09C8F(short x) {
 }
 
 /// $C09C99
-short unknownC09C99(short index) {
-	if (entityScriptIndexTable[index / 2] < 0) {
-		return index;
+short unknownC09C99(short offset) {
+	if (entityScriptIndexTable[offset / 2] < 0) {
+		return offset;
 	}
 	short unknown7E0A54Copy = unknown7E0A54;
-	short x = index;
+	short x = offset;
 	short a = entityScriptIndexTable[x / 2];
 	unknown7E0A54 = a;
 	do {
@@ -6237,7 +6244,7 @@ short unknownC09C99(short index) {
 		a = entityScriptUnknown125A[x / 2];
 	} while(a >= 0);
 	entityScriptUnknown125A[x / 2] = unknown7E0A54Copy;
-	return index;
+	return offset;
 }
 
 /// $C09CB5
@@ -6369,6 +6376,7 @@ void jumpToLoadedMovementPtr() {
 /// $C09DA1
 void clearSpriteTickCallback(short index) {
 	entityTickCallbacks[index / 2] = &movementNOP;
+	entityTickCallbackFlags[index / 2] = 0;
 }
 
 /// $C09E71
@@ -6636,7 +6644,8 @@ short unknownC0A156(short x, short y) {
 }
 
 unittest {
-	if (mapDataTileTableChunksTable[0] != []) {
+	// NYI: Need to figure out a way to load data for unit tests
+	if (mapDataTileTableChunksTable.length > 0) {
 		assert(unknownC0A156(0xF8, 0x2C) == 0xA7);
 	}
 }
@@ -6851,7 +6860,7 @@ void unknownC0A443() {
 
 /// $C0A472
 void unknownC0A472() {
-	unknown7E2892 = (unknown7E0002 >> 3) & 1;
+	unknown7E2892 = (frameCounter >> 3) & 1;
 	unknownC0A443Unknown10();
 }
 void unknownC0A443MovementEntry3() {
@@ -6916,7 +6925,7 @@ void unknownC0A443Entry4(short arg1) {
 	//Original code:
 	//dmaCopyRAMSource = cast(void*)((*x02) & 0xFFF0);
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
-	dmaCopyRAMSource = x02.data.ptr;
+	dmaCopyRAMSource = sprites[x02.id].ptr;
 	dmaCopyMode = 0;
 	while (true) {
 		unknownC0A56E();
@@ -7143,7 +7152,7 @@ void unknownC0A794() {
 	//Original code:
 	//dmaCopyRAMSource = (*x02) & 0xFFFE;
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[unknown7E2896 / 2];
-	dmaCopyRAMSource = x02.data.ptr;
+	dmaCopyRAMSource = sprites[x02.id].ptr;
 	dmaCopyMode = 0;
 	while (true) {
 		unknownC0A56E();
@@ -7341,12 +7350,12 @@ short actionScriptLoadBattleBG(short, ref const(ubyte)* arg1) {
 }
 
 /// $C0A98B
-short unknownC0A98B(short, ref const(ubyte)* arg2) {
+short actionScriptSpawnEntityAtSelf(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
 	short tmp2 = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
-	return unknownC46534(tmp, tmp2);
+	return spawnEntityAtSelf(tmp, tmp2);
 }
 
 /// $C0A99F
@@ -7501,7 +7510,7 @@ void playSfxUnknown() {
 }
 
 /// $C0AC0C
-void unknownC0AC0C(short arg1) {
+void musicEffect(short arg1) {
 	doMusicEffect(arg1);
 }
 
@@ -7636,6 +7645,16 @@ shared static this() {
 		HDMAIndirectTableEntry(0xE4, cast(const(ubyte)*)&backgroundHDMABuffer[324]),
 		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&backgroundHDMABuffer[424]),
 		HDMAIndirectTableEntry(0x00),
+	];
+	unknownC0A20C = [
+		&unknown7EB800[0],
+		&unknown7EB800[0xC0],
+		&unknown7EB800[0x180],
+		&unknown7EB800[0x240],
+		&unknown7EB800[0x300],
+		&unknown7EB800[0x3C0],
+		&unknown7EB800[0x480],
+		&unknown7EB800[0x540],
 	];
 }
 
@@ -7965,7 +7984,7 @@ void fileSelectInit() {
 	unknownC0927C();
 	oamClear();
 	updateScreen();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(-32768, 0);
 	initializeMiscObjectData();
 	overworldSetupVRAM();
@@ -7994,7 +8013,7 @@ void fileSelectInit() {
 	fadeIn(1, 1);
 	unknownC1FF6B();
 	fadeOutWithMosaic(1, 1, 0);
-	unknownC09C35(0x17);
+	deleteEntity(0x17);
 	mirrorTM = 0x17;
 	unknownC4FD18(gameState.soundSetting - 1);
 }
@@ -8013,7 +8032,7 @@ void setLeaderLocation(short arg1, short arg2) {
 /// $C0B67F
 void unknownC0B67F() {
 	unknownC0927C();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(short.min, 0);
 	initializeMiscObjectData();
 	battleDebug = 0;
@@ -8022,7 +8041,7 @@ void unknownC0B67F() {
 	unknown7E4A5A = -1;
 	unknown7E4A5E = 10;
 	battleSwirlCountdown = 0;
-	unknown7E5D9A = 0;
+	pendingInteractions = 0;
 	setBoundaryBehaviour(1);
 	dadPhoneTimer = 0x697;
 	setIRQCallback(&processOverworldTasks);
@@ -8032,10 +8051,10 @@ void unknownC0B67F() {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
-	unknownC02D29();
+	clearParty();
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);
-	unknownC47F87();
+	loadTextPalette();
 	overworldInitialize();
 	if (config.overrideSpawn) {
 		gameState.leaderX.integer = config.spawnCoordinates.x;
@@ -8083,13 +8102,13 @@ void initBattleOverworld() {
 	}
 	overworldStatusSuppression = 0;
 	unfreezeEntities();
-	unknown7E5D58 = 0x78;
+	unknown7E5D58 = 120;
 	touchedEnemy = -1;
 }
 
 /// $C0B7D8
 void ebMain() {
-	unknownC43317();
+	initializePartyPointers();
 	RestartGame:
 	if (config.noIntro) {
 		unknown7EB4B6 = 1;
@@ -8111,7 +8130,7 @@ void ebMain() {
 		if (((currentQueuedInteraction - nextQueuedInteraction) != 0) && !battleSwirlCountdown && !battleSwirlFlag && !battleDebug) {
 			processQueuedInteractions();
 			inputDisableFrameCounter++;
-		} else if ((gameState.unknownB0 != 2) && (gameState.walkingStyle != WalkingStyle.escalator) && !battleSwirlCountdown) {
+		} else if ((gameState.cameraMode != CameraMode.followEntity) && (gameState.walkingStyle != WalkingStyle.escalator) && !battleSwirlCountdown) {
 			if (battleDebug) {
 				initBattleOverworld();
 				inputDisableFrameCounter++;
@@ -8141,7 +8160,7 @@ void ebMain() {
 			}
 			if (inputDisableFrameCounter) {
 				inputDisableFrameCounter--;
-			} else if (!unknown7E5D9A) {
+			} else if (!pendingInteractions) {
 				if ((padPress[0] & Pad.a) != 0 ) {
 					openMenuButton();
 				} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (gameState.walkingStyle != WalkingStyle.bicycle)) {
@@ -8272,23 +8291,23 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 
 /// $C0BC75
 short findPathToParty(short partyCount, short arg2, short arg3) {
-	short x28 = gameState.currentPartyMembers;
+	short x28 = gameState.firstPartyMemberEntity;
 	PathCtx* x26 = &unknown7EF000.unknown7EF200;
 	unknown7EF000.unknown7EF200.radius.y = arg2;
 	unknown7EF000.unknown7EF200.radius.x = arg3;
 	unknown7E4A94 = unknown7EF000.unknown7EF200.radius.x;
-	unknown7E4A8E = (entityAbsXTable[gameState.currentPartyMembers] - unknownC42A1F[entitySizes[gameState.currentPartyMembers]]) / 8;
-	unknown7E4A90 = (entityAbsYTable[gameState.currentPartyMembers] - unknownC42A41[entitySizes[gameState.currentPartyMembers]] + unknownC42AEB[entitySizes[gameState.currentPartyMembers]]) / 8;
+	unknown7E4A8E = (entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
+	unknown7E4A90 = (entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
 	unknownC0B9BC(&unknown7EF000.unknown7EF200, partyCount,
-		((entityAbsXTable[gameState.currentPartyMembers] - unknownC42A1F[entitySizes[gameState.currentPartyMembers]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2),
-		((entityAbsYTable[gameState.currentPartyMembers] - unknownC42A41[entitySizes[gameState.currentPartyMembers]] + unknownC42AEB[entitySizes[gameState.currentPartyMembers]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2)
+		((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2),
+		((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2)
 	);
 	return unknownC0BA35(&unknown7EF000.unknown7EF200, partyCount, unknown7EF000.unknown7EF200.radius.y, unknown7EF000.unknown7EF200.radius.x, 0, 0x40, 0x32);
 }
 
 /// $C0BD96
 short unknownC0BD96() {
-	short x2A = gameState.currentPartyMembers;
+	short x2A = gameState.firstPartyMemberEntity;
 	PathCtx* x28 = &unknown7EF000.unknown7EF200;
 	short x04 = unknown7EF000.unknown7EF200.radius.y = 56;
 	short x02 = unknown7EF000.unknown7EF200.radius.x = 56;
@@ -8615,9 +8634,9 @@ void unknownC0CA4E(short arg1) {
 /// $C0CC11
 void unknownC0CC11() {
 	short x12 = cast(short)(entityScriptVar6Table[currentEntitySlot] - entityAbsXTable[currentEntitySlot]);
-	short y =  (0 > x12) ? (cast(short)-cast(int)x12) : x12;
+	short y = (0 > x12) ? (cast(short)-cast(int)x12) : x12;
 	x12 = cast(short)(entityScriptVar7Table[currentEntitySlot] - entityAbsYTable[currentEntitySlot]);
-	short x02 =  (0 > x12) ? (cast(short)-cast(int)x12) : x12;
+	short x02 = (0 > x12) ? (cast(short)-cast(int)x12) : x12;
 	FixedPoint1616 x0E;
 	if (y > x02) {
 		x12 = y;
@@ -8963,7 +8982,7 @@ short unknownC0D5B0() {
 		return 0;
 	}
 	if ((battleSwirlCountdown == 0) || (currentEntitySlot != touchedEnemy)) {
-		if (gameState.unknownB0 == 2) {
+		if (gameState.cameraMode == CameraMode.followEntity) {
 			return 0;
 		}
 		if ((miscDebugFlags & 2) != 0) {
@@ -8999,7 +9018,7 @@ short unknownC0D5B0() {
 			}
 			entityTickCallbackFlags[i] |= objectTickDisabled | objectMoveDisabled;
 		}
-		unknownC04A88();
+		switchToCameraMode3();
 		return 1;
 	}
 	entityCollidedObjects[currentEntitySlot] = 0x8000;
@@ -9238,7 +9257,7 @@ short scheduleOverworldTask(short arg1, void function() arg2) {
 
 /// $C0DC4E
 void processOverworldTasks() {
-	if ((unknown7E0002 == 0) && (dadPhoneTimer != 0)) {
+	if ((frameCounter == 0) && (dadPhoneTimer != 0)) {
 		dadPhoneTimer--;
 	}
 	if (windowHead != -1) {
@@ -9284,7 +9303,7 @@ void loadDadPhone() {
 	if (getEventFlag(EventFlag.sysDis2HPapa) != 0) {
 		return;
 	}
-	unknownC064E3(10, QueuedInteractionPtr(getTextBlock("textDadCalls")));
+	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock("textDadCalls")));
 	unknown7E9E56 = 1;
 }
 
@@ -9468,14 +9487,14 @@ short unknownC0DED9(short arg1, short arg2, short arg3, short arg4, short) {
 	if (unknown7E9F43 != 0) {
 		return 1;
 	}
-	return unknownC05F33(arg1, arg2, gameState.currentPartyMembers) | unknownC05F33(arg3, arg4, gameState.currentPartyMembers);
+	return unknownC05F33(arg1, arg2, gameState.firstPartyMemberEntity) | unknownC05F33(arg3, arg4, gameState.firstPartyMemberEntity);
 }
 
 /// $C0E196
 void unknownC0E196() {
 	playerPositionBuffer[gameState.unknown88].xCoord = gameState.leaderX.integer;
 	playerPositionBuffer[gameState.unknown88].yCoord = gameState.leaderY.integer;
-	playerPositionBuffer[gameState.unknown88].tileFlags =unknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.currentPartyMembers);
+	playerPositionBuffer[gameState.unknown88].tileFlags =unknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	playerPositionBuffer[gameState.unknown88].walkingStyle = 0;
 	playerPositionBuffer[gameState.unknown88].direction = gameState.leaderDirection;
 	gameState.unknown88++;
@@ -9524,7 +9543,7 @@ void unknownC0E28F() {
 	unknownC0DF22(x02);
 	unknown7E9F51.combined = unknown7E9F49.combined + gameState.leaderX.combined;
 	unknown7E9F55.combined = unknown7E9F4D.combined + gameState.leaderY.combined;
-	if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.currentPartyMembers) != -1) {
+	if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.firstPartyMemberEntity) != -1) {
 		unknown7E9F43 = 2;
 	}
 	if ((unknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, unknown7E9F51.integer, unknown7E9F55.integer, x02) & 0xC0) != 0) {
@@ -9624,7 +9643,7 @@ void unknownC0E516() {
 			unknown7E9F43 = 2;
 			battleDebug = 1;
 		}
-		if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.currentPartyMembers) != -1) {
+		if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.firstPartyMemberEntity) != -1) {
 			unknown7E9F43 = 2;
 		}
 	}
@@ -10056,7 +10075,7 @@ short unknownC0F21E() {
 		runActionscriptFrame();
 		waitUntilNextFrame();
 		if (padPress[0] != 0) {
-			unknownC09C35(x12);
+			deleteEntity(x12);
 			return 1;
 		}
 	}

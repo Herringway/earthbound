@@ -14,6 +14,7 @@ import earthbound.bank0C;
 import earthbound.bank0E;
 import earthbound.bank0F;
 import earthbound.bank10;
+import earthbound.bank11;
 import earthbound.bank15;
 import earthbound.bank17;
 import earthbound.bank18;
@@ -353,7 +354,7 @@ auto unknownC41FFF(short arg1, short arg2) {
 	if ((arg1Modified >= 0x42) && (arg1Modified < 0x80)) {
 		a = cast(short)-cast(int)a;
 	}
-	// a  =  sin(arg1) * arg2
+	// a = sin(arg1) * arg2
 	// a2 = -cos(arg1) * arg2
 	return Result(a2, a);
 }
@@ -717,7 +718,7 @@ void updateMapPaletteAnimation() {
 /// $C4283F
 void unknownC4283F(short arg1, ubyte* arg2, short arg3) {
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
-	const(ubyte)* x00 = &entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].data[0];
+	const(ubyte)* x00 = &sprites[entityGraphicsPointers[arg1][spriteDirectionMappings8Direction[entityDirections[arg1]] + entityAnimationFrames[arg1]].id][0];
 	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
 	do {
 		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00)[arg3];
@@ -734,7 +735,7 @@ void unknownC42884(short arg1, ubyte* arg2, short arg3) {
 	}
 	//UNKNOWN_30X2_TABLE_31 has the bank bytes but we don't need those
 	//original code adjusted for the fact that the lower 4 bits were used as flags, but we separated them
-	const(ubyte)* x00_2 = &x00.data[0];
+	const(ubyte)* x00_2 = &sprites[x00.id][0];
 	do {
 		(cast(ushort*)&arg2[0])[arg3] = (cast(ushort*)x00_2)[arg3];
 	} while (--arg3 > 0);
@@ -1102,24 +1103,16 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 /// $C42F45
 void setPartyTickCallbacks(short leaderEntityID, void function() leaderCallback, void function() partyCallback) {
 	entityTickCallbacks[leaderEntityID] = leaderCallback;
+	entityTickCallbackFlags[leaderEntityID] = 0;
 	for (int i = 6; i > 0; i--) {
-		entityTickCallbacks[leaderEntityID++] = partyCallback;
+		entityTickCallbacks[++leaderEntityID] = partyCallback;
+		entityTickCallbackFlags[leaderEntityID] = 0;
 	}
 }
 
 /// $C42F64
-immutable ubyte[][10] mapDataTileTableChunksTable = [
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_01.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_02.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_03.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_04.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_05.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_06.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_07.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_08.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_09.bin"),
-	cast(immutable(ubyte)[])import("maps/tiles/chunk_10.bin"),
-];
+@([ROMSource(0x160000, 10240), ROMSource(0x162800, 10240), ROMSource(0x165000, 12288), ROMSource(0x168000, 10240), ROMSource(0x16A800, 10240), ROMSource(0x16D000, 12288), ROMSource(0x170000, 10240), ROMSource(0x172800, 10240), ROMSource(0x175000, 12288), ROMSource(0x178000, 10240)])
+immutable(ubyte[])[] mapDataTileTableChunksTable;
 
 /// $C42F8C
 immutable ushort[88] unknownC42F8C = [
@@ -1191,7 +1184,7 @@ void unknownC432B1() {
 }
 
 /// $C43317
-void unknownC43317() {
+void initializePartyPointers() {
 	for (short i = 0; i < 6; i++) {
 		chosenFourPtrs[i] = &partyCharacters[i];
 	}
@@ -1206,16 +1199,16 @@ void unknownC43344(short arg1) {
 void unknownC4334A(short direction) {
 	short x10 = cast(short)(unknownC3E230[direction] + gameState.leaderX.integer / 8);
 	short x04 = cast(short)((direction == 4) ? (unknownC3E240[direction] + (gameState.leaderY.integer + 1) / 8) :(unknownC3E240[direction] + gameState.leaderY.integer / 8));
-	if ((unknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.currentPartyMembers, direction) & 0x82) == 0x82) {
+	if ((unknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.firstPartyMemberEntity, direction) & 0x82) == 0x82) {
 		x10 += unknownC3E230[direction];
 		x04 += unknownC3E240[direction];
 	}
-	short x = unknownC07477(x10, x04);
+	short x = getDoorAt(x10, x04);
 	if (x == 0xFF) {
-		x = unknownC07477(cast(short)(x10 + 1), x04);
+		x = getDoorAt(cast(short)(x10 + 1), x04);
 	}
 	if (x == 0xFF) {
-		x = unknownC07477(cast(short)(x10 - 1), x04);
+		x = getDoorAt(cast(short)(x10 - 1), x04);
 	}
 	if ((x != 0xFF) && (x == 5)) {
 		unknown7E5DDC = unknown7E5DBE;
@@ -1227,7 +1220,7 @@ void unknownC4334A(short direction) {
 }
 
 /// $C4343E
-void unknownC4343E(short arg1) {
+void savePhotoState(short arg1) {
 	arg1--;
 	ushort x12;
 	if (60000 > timer / 3600) {
@@ -1327,7 +1320,7 @@ void unknownC436D7(short arg1, short arg2) {
 }
 
 /// $C43739
-void unknownC43739(short arg1) {
+void clearCurrentTextLine(short arg1) {
 	ushort* x10 = &windowStats[windowTable[arg1]].tilemapBuffer[(windowStats[windowTable[arg1]].width * windowStats[windowTable[arg1]].textY * 2)];
 	for (short i = 0; i != windowStats[windowTable[arg1]].width * 2; i++) {
 		freeTile((x10++)[0]);
@@ -1388,15 +1381,15 @@ void unknownC43B15() {
 }
 
 /// $C43874
-void unknownC43874(short arg1, short x, short y) {
+void moveTextCursor(short windowID, short x, short y) {
 	nextVWFTile();
-	windowStats[windowTable[arg1]].textX = x;
-	windowStats[windowTable[arg1]].textY = y;
+	windowStats[windowTable[windowID]].textX = x;
+	windowStats[windowTable[windowID]].textY = y;
 }
 
 /// $C438A5
-void unknownC438A5(short x, short y) {
-	unknownC43874(currentFocusWindow, x, y);
+void moveCurrentTextCursor(short x, short y) {
+	moveTextCursor(currentFocusWindow, x, y);
 }
 
 /// $C43915
@@ -1479,7 +1472,7 @@ void nextVWFTile() {
 
 /// $C43CD2 - Set text position on focused window (for menu options)
 void unknownC43CD2(MenuOpt* opt, short x, short y) {
-	unknownC438A5F(x, y);
+	moveCurrentTextCursor(x, y);
 	if (opt.pixelAlign != 0) {
 		vwfX += opt.pixelAlign;
 		memset(&vwfBuffer[vwfTile][0], 0xFF, 0x20);
@@ -1495,7 +1488,7 @@ void unknownC43D95(short arg1) {
 
 /// $C43DDB
 void unknownC43DDB(MenuOpt* menuEntry) {
-	unknownC438A5F(menuEntry.textX, menuEntry.textY);
+	moveCurrentTextCursor(menuEntry.textX, menuEntry.textY);
 	unknownC43F77(0x2F);
 	nextVWFTile();
 	if (menuEntry.pixelAlign != 0) {
@@ -1505,7 +1498,7 @@ void unknownC43DDB(MenuOpt* menuEntry) {
 
 /// $C43D24
 void unknownC43D24(ushort arg1, short arg2) {
-	unknownC438A5F(arg1, arg2);
+	moveCurrentTextCursor(arg1, arg2);
 	if (unknown7E5E72 == 0) {
 		return;
 	}
@@ -1526,7 +1519,7 @@ short unknownC43E31(const(ubyte)* arg1, short arg2) {
 	short x12 = 0;
 	while ((arg1[0] != 0) && (arg2 != 0)) {
 		arg2--;
-		x12 += unknown7E5E6D + (unknown7EB4CE != 0) ? fontConfigTable[0].data[((arg1++)[0] - ebChar(' ')) & 0x7F] : fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[((arg1++)[0] - ebChar(' ')) & 0x7F];
+		x12 += unknown7E5E6D + (unknown7EB4CE != 0) ? fontData[fontConfigTable[0].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F] : fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F];
 	}
 	return x12;
 }
@@ -1594,7 +1587,7 @@ void unknownC440B5(ubyte* arg1, short arg2) {
 	for (i = 0; (arg1[i] != 0) && (i < arg2); i++, arg1++) {
 		unknown7E1B86[i] = arg1[0];
 		unknown7E1B56[i] = (arg1[0] - ebChar(' ')) & 0x7F;
-		unknown7E1B6E[i] = cast(ubyte)(fontConfigTable[0].data[(arg1[0] - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1[0] - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 		unknownC44E61(0, arg1[0]);
 	}
 	unknown7E9662 = i;
@@ -1625,7 +1618,7 @@ void unknownC441B7(short arg1) {
 	unknown7E1B56[0] = 0x20;
 	for (short i = 1; i < arg1; i++) {
 		unknown7E1B56[i] = cast(ubyte)x02;
-		unknown7E1B6E[i] = cast(ubyte)(fontConfigTable[0].data[x02] + unknown7E5E6D);
+		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + unknown7E5E6D);
 		unknownC44E61(0, 0x53);
 	}
 }
@@ -1638,7 +1631,7 @@ void unknownC4424A(short arg1) {
 		unknown7E1B86[unknown7E9662] = cast(ubyte)arg1;
 	}
 	unknown7E1B56[unknown7E9662] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
-	unknown7E1B6E[unknown7E9662] = cast(ubyte)(fontConfigTable[0].data[(arg1 - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+	unknown7E1B6E[unknown7E9662] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 }
 
 /// $C442AC
@@ -1669,7 +1662,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 	for (short i = 0; i < arg2; i++) {
-		const(ubyte)* x06 = &fontConfigTable[0].graphics[fontConfigTable[0].height * unknown7E1B56[i]];
+		const(ubyte)* x06 = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * unknown7E1B56[i]];
 		short j;
 		for (j = unknown7E1B6E[i]; j >= 8; j -= 8) {
 			renderText(8, fontConfigTable[0].width, x06);
@@ -1717,7 +1710,7 @@ void renderSmallTextToVRAM(ubyte* arg1, ushort arg2) {
 	ushort x18 = vwfTile;
 	ubyte* x0A = arg1;
 	for (short i = 0; arg1[0] != 0; i++) {
-		renderText(6, fontConfigTable[Font.tiny].width, &fontConfigTable[Font.tiny].graphics[(((arg1++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
+		renderText(6, fontConfigTable[Font.tiny].width, &fontGraphics[fontConfigTable[Font.tiny].graphicsID][(((arg1++)[0] - ebChar(' ')) & 0x7F) * fontConfigTable[Font.tiny].height]);
 	}
 	for (short i = x18; (x0A++)[0] != 0; i++) {
 		copyToVRAM(0, 0x10, arg2, &vwfBuffer[i][0]);
@@ -1758,7 +1751,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 			break;
 		}
 		unknown7E9660++;
-		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
 	}
 	short newLineLength;
 	if (windowStats[windowTable[currentFocusWindow]].textX != 0) {
@@ -2041,8 +2034,8 @@ void unknownC44E61(short arg1, short arg2) {
 			unknown7E5E75 = 0;
 		}
 		unknown7E5E76 = cast(ubyte)arg2;
-		const(ubyte)* x14 = &fontConfigTable[arg1].graphics[(arg2 - ebChar(' ')) * fontConfigTable[arg1].height];
-		short x12 = fontConfigTable[arg1].data[arg2 - ebChar(' ')] + unknown7E5E6D;
+		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(arg2 - ebChar(' ')) * fontConfigTable[arg1].height];
+		short x12 = fontData[fontConfigTable[arg1].dataID][arg2 - ebChar(' ')] + unknown7E5E6D;
 		if (x12 > 8) {
 			while (x12 > 8) {
 				renderText(8, fontConfigTable[arg1].width, x14);
@@ -2059,7 +2052,7 @@ void unknownC44E61(short arg1, short arg2) {
 short unknownC44FF3(short arg1, short fontID, ubyte* arg3) {
 	short result;
 	for (short i = 0; i < arg1; i++) {
-		result += cast(short)(unknown7E5E6D + fontConfigTable[fontID].data[(*(arg3++) - 0x50) & 0x7F] + i);
+		result += cast(short)(unknown7E5E6D + fontData[fontConfigTable[fontID].dataID][(*(arg3++) - 0x50) & 0x7F] + i);
 	}
 	return result;
 }
@@ -2077,7 +2070,7 @@ void unknownC4507A(uint arg1) {
 	ubyte* x20 = x22;
 	short x1E = windowStats[windowTable[currentFocusWindow]].textX;
 	short x1C = windowStats[windowTable[currentFocusWindow]].textY;
-	short x04 = unknown7E5E6D + fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].data[4];
+	short x04 = unknown7E5E6D + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][4];
 
 	for (short i = 0; i < x24; i++) {
 		x12[i] = cast(ubyte)(*x22 + 0x60);
@@ -2093,9 +2086,9 @@ void unknownC4507A(uint arg1) {
 		x24--;
 	}
 	unknown7E5E71 = 0;
-	unknownC438A5F(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
+	moveCurrentTextCursor(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
 	unknownC43F77(0x24);
-	unknownC438A5F(x1E, x1C);
+	moveCurrentTextCursor(x1E, x1C);
 	unknown7E5E75 = unknown7E5E75Copy;
 }
 
@@ -2481,7 +2474,7 @@ short getDirectionTo(short targetX, short targetY, short fromX, short fromY) {
 }
 
 /// $C46028
-short unknownC46028(short arg1) {
+short findEntityBySprite(short arg1) {
 	for (short i = 0; i < maxEntities; i++) {
 		if (entityTPTEntrySprites[i] == arg1) {
 			return i;
@@ -2491,7 +2484,7 @@ short unknownC46028(short arg1) {
 }
 
 /// $C4605A
-short unknownC4605A(short arg1) {
+short findEntityByTPT(short arg1) {
 	for (short i = 0; i < maxEntities; i++) {
 		if (arg1 == entityTPTEntries[i]) {
 			return i;
@@ -2501,9 +2494,9 @@ short unknownC4605A(short arg1) {
 }
 
 /// $C4608C
-short unknownC4608C(short arg1) {
+short findEntityByPartyMemberID(short arg1) {
 	if (arg1 == 255) {
-		return gameState.currentPartyMembers;
+		return gameState.firstPartyMemberEntity;
 	}
 	for (short i = 0; i < 6; i++) {
 		if (arg1 == gameState.unknown96[i]) {
@@ -2515,7 +2508,7 @@ short unknownC4608C(short arg1) {
 
 /// $C460CE
 void unknownC460CE(short arg1, short arg2) {
-	short x12 = unknownC4605A(arg1);
+	short x12 = findEntityByTPT(arg1);
 	if (x12 == -1) {
 		return;
 	}
@@ -2528,7 +2521,7 @@ void unknownC460CE(short arg1, short arg2) {
 
 /// $C46125
 void unknownC46125(short arg1, short arg2) {
-	short x12 = unknownC46028(arg1);
+	short x12 = findEntityBySprite(arg1);
 	if (x12 == -1) {
 		return;
 	}
@@ -2540,8 +2533,8 @@ void unknownC46125(short arg1, short arg2) {
 }
 
 /// $C4617C
-void unknownC4617C(short arg1, short arg2) {
-	short x = unknownC4605A(arg1);
+void changeScriptForEntityByTPT(short arg1, short arg2) {
+	short x = findEntityByTPT(arg1);
 	if (x == -1) {
 		return;
 	}
@@ -2550,8 +2543,8 @@ void unknownC4617C(short arg1, short arg2) {
 }
 
 /// $C461CC
-void unknownC461CC(short arg1, short arg2) {
-	short x = unknownC46028(arg1);
+void changeScriptForEntityBySprite(short arg1, short arg2) {
+	short x = findEntityBySprite(arg1);
 	if (x == -1) {
 		return;
 	}
@@ -2564,13 +2557,13 @@ short unknownC4621C(short arg1, short arg2) {
 	short x0E;
 	switch (arg1) {
 		case 0:
-			x0E = unknownC4608C(arg2);
+			x0E = findEntityByPartyMemberID(arg2);
 			break;
 		case 1:
-			x0E = unknownC4605A(arg2);
+			x0E = findEntityByTPT(arg2);
 			break;
 		case 2:
-			x0E = unknownC46028(arg2);
+			x0E = findEntityBySprite(arg2);
 			break;
 		default: break;
 	}
@@ -2601,7 +2594,7 @@ short unknownC462E4(short arg1, short arg2, short arg3) {
 
 /// $C462FF
 void unknownC462FF(short arg1, short arg2) {
-	short x0E = unknownC4605A(arg1);
+	short x0E = findEntityByTPT(arg1);
 	if (x0E == -1) {
 		return;
 	}
@@ -2613,7 +2606,7 @@ void unknownC462FF(short arg1, short arg2) {
 
 /// $C46331
 void unknownC46331(short arg1, short arg2) {
-	short x0E = unknownC46028(arg1);
+	short x0E = findEntityBySprite(arg1);
 	if (x0E == -1) {
 		return;
 	}
@@ -2625,7 +2618,7 @@ void unknownC46331(short arg1, short arg2) {
 
 /// $C46363
 void unknownC46363(short arg1, short arg2) {
-	short x0E = unknownC4608C(arg1);
+	short x0E = findEntityByPartyMemberID(arg1);
 	if (x0E == -1) {
 		return;
 	}
@@ -2651,11 +2644,11 @@ void unknownC46397(short arg1) {
 }
 
 /// $C463F4
-void unknownC463F4(short arg1) {
+void hideCharacterOrParty(short arg1) {
 	unknownC07C5B();
 	unknown7E5D58 = 0;
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a != -1) {
 			entitySpriteMapFlags[a] |= 0x8000;
 		}
@@ -2667,9 +2660,9 @@ void unknownC463F4(short arg1) {
 }
 
 /// $C4645A
-void unknownC4645A(short arg1) {
+void unhideCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a != -1) {
 			entitySpriteMapFlags[a] &= 0x7FFF;
 		}
@@ -2696,13 +2689,13 @@ short createPreparedEntitySprite(short sprite, short actionScript) {
 }
 
 /// $C46534
-short unknownC46534(short sprite, short actionScriptID) {
+short spawnEntityAtSelf(short sprite, short actionScriptID) {
 	return createEntity(sprite, actionScriptID, -1, entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]);
 }
 
 /// $C4655E
-void unknownC4655E(short arg1) {
-	short a = unknownC4605A(arg1);
+void disableEntityByTPT(short arg1) {
+	short a = findEntityByTPT(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2710,8 +2703,8 @@ void unknownC4655E(short arg1) {
 }
 
 /// $C46579
-void unknownC46579(short arg1){
-	short a = unknownC46028(arg1);
+void disableEntityBySprite(short arg1){
+	short a = findEntityBySprite(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2719,22 +2712,24 @@ void unknownC46579(short arg1){
 }
 
 /// $C46594
-void unknownC46594(short arg1) {
+void disableEntityByCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a == -1) {
 			return;
 		}
-	}
-	entityTickCallbackFlags[23] |= (objectTickDisabled | objectMoveDisabled);
-	for (short i = 0; i < gameState.partyCount; i++) {
-		entityTickCallbackFlags[gameState.partyEntities[i]] |= (objectTickDisabled | objectMoveDisabled);
+		entityTickCallbackFlags[a] |= (objectTickDisabled | objectMoveDisabled);
+	} else {
+		entityTickCallbackFlags[23] |= (objectTickDisabled | objectMoveDisabled);
+		for (short i = 0; i < gameState.partyCount; i++) {
+			entityTickCallbackFlags[gameState.partyEntities[i]] |= (objectTickDisabled | objectMoveDisabled);
+		}
 	}
 }
 
 /// $C465FB
-void unknownC465FB(short arg1) {
-	short a = unknownC4605A(arg1);
+void enableEntityByTPT(short arg1) {
+	short a = findEntityByTPT(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2742,8 +2737,8 @@ void unknownC465FB(short arg1) {
 }
 
 /// $C46616
-void unknownC46616(short arg1) {
-	short a = unknownC46028(arg1);
+void enableEntityBySprite(short arg1) {
+	short a = findEntityBySprite(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2751,46 +2746,47 @@ void unknownC46616(short arg1) {
 }
 
 /// $C46631
-void unknownC46631(short arg1) {
+void enableEntityByCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
-		short a = unknownC4608C(arg1);
+		short a = findEntityByPartyMemberID(arg1);
 		if (a == -1) {
 			return;
 		}
 		entityTickCallbackFlags[a] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
 		return;
-	}
-	entityTickCallbackFlags[23] &= 0x3FFF;
-	for (short i = 0; i < gameState.partyCount; i++) {
-		entityTickCallbackFlags[gameState.partyEntities[i]] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+	} else {
+		entityTickCallbackFlags[23] &= 0x3FFF;
+		for (short i = 0; i < gameState.partyCount; i++) {
+			entityTickCallbackFlags[gameState.partyEntities[i]] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+		}
 	}
 }
 
 /// $C46698
-void unknownC46698(short arg1) {
-	unknown7E9E33 = unknownC4605A(arg1);
-	gameState.unknownB0 = 2;
+void focusCameraOnTPT(short arg1) {
+	cameraFocusEntity = findEntityByTPT(arg1);
+	gameState.cameraMode = CameraMode.followEntity;
 }
 
 /// $C466A8
-void unknownC466A8(short arg1) {
-	unknown7E9E33 = unknownC46028(arg1);
-	gameState.unknownB0 = 2;
+void focusCameraOnSprite(short arg1) {
+	cameraFocusEntity = findEntityBySprite(arg1);
+	gameState.cameraMode = CameraMode.followEntity;
 }
 
 /// $C466B8
-void unknownC466B8() {
+void clearCameraFocus() {
 	gameState.unknown90 = 0;
-	gameState.unknownB0 = 0;
+	gameState.cameraMode = CameraMode.normal;
 }
 
 /// $C466C1
-void unknownC466C1(short arg1) {
+void spawnTravellingPhotographer(short arg1) {
 	unknownC07C5B();
 	unknown7E5D58 = 0;
 	unknown7E9E35 = cast(short)(arg1 - 1);
 	displayText(getTextBlock("textC466C1"));
-	unknownC4343E(arg1);
+	savePhotoState(arg1);
 }
 
 /// $C466F0
@@ -2845,13 +2841,13 @@ void unknownC4681A() {
 	if (npcConfig[entityTPTEntries[currentEntitySlot]].talkText == null) {
 		return;
 	}
-	unknownC064E3(8, QueuedInteractionPtr(getTextBlock(npcConfig[entityTPTEntries[currentEntitySlot]].talkText)));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(npcConfig[entityTPTEntries[currentEntitySlot]].talkText)));
 }
 
 /// $C46881
 void unknownC46881(const(ubyte)* arg1) {
-	unknownC46594(0xFF);
-	unknownC064E3(8, QueuedInteractionPtr(arg1));
+	disableEntityByCharacterOrParty(0xFF);
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(arg1));
 }
 
 /// $C468A9
@@ -2910,7 +2906,7 @@ void unknownC46957(short arg1) {
 
 /// $C46984
 void unknownC46984(short arg1) {
-	short x04 = unknownC4605A(arg1);
+	short x04 = findEntityByTPT(arg1);
 	if (x04 == -1) {
 		return;
 	}
@@ -2924,7 +2920,7 @@ void unknownC46984(short arg1) {
 
 /// $C469F1
 void unknownC469F1(short arg1) {
-	short x04 = unknownC46028(arg1);
+	short x04 = findEntityBySprite(arg1);
 	if (x04 == -1) {
 		return;
 	}
@@ -3033,14 +3029,14 @@ void unknownC46B65() {
 
 /// $C46B8D
 void unknownC46B8D(short arg1) {
-	short x0E = unknownC4605A(arg1);
+	short x0E = findEntityByTPT(arg1);
 	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[x0E];
 	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[x0E];
 }
 
 /// $C46BBB
 void unknownC46BBB(short arg1) {
-	short x0E = unknownC46028(arg1);
+	short x0E = findEntityBySprite(arg1);
 	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[x0E];
 	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[x0E];
 }
@@ -3055,7 +3051,7 @@ void getPositionOfPartyMember(short arg1) {
 			x0E = gameState.partyEntities[gameState.partyCount - 2];
 		}
 	} else {
-		x0E = unknownC4608C(arg1);
+		x0E = findEntityByPartyMemberID(arg1);
 	}
 	entityScriptVar6Table[x12] = entityAbsXTable[x0E];
 	entityScriptVar7Table[x12] = entityAbsYTable[x0E];
@@ -3081,14 +3077,14 @@ void unknownC46C87() {
 
 /// $C46C9B
 void unknownC46C9B(short arg1) {
-	short x0E = unknownC4608C(arg1);
+	short x0E = findEntityByPartyMemberID(arg1);
 	entityAbsXTable[currentEntitySlot] = entityAbsXTable[x0E];
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[x0E];
 }
 
 /// $C46CC7
 void unknownC46CC7(short arg1) {
-	short x0E = unknownC46028(arg1);
+	short x0E = findEntityBySprite(arg1);
 	entityAbsXTable[currentEntitySlot] = entityAbsXTable[x0E];
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[x0E];
 }
@@ -3123,7 +3119,7 @@ void prepareNewEntityAtExistingEntityLocation(short arg1) {
 			x0E = currentEntitySlot;
 			break;
 		case 1:
-			x0E = gameState.currentPartyMembers;
+			x0E = gameState.firstPartyMemberEntity;
 			break;
 		default: break;
 	}
@@ -3153,7 +3149,7 @@ void unknownC46E46() {
 
 /// $C46E4F
 void unknownC46E4F(const(ubyte)* arg1) {
-	unknownC064E3(8, QueuedInteractionPtr(arg1));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(arg1));
 }
 
 /// $C46E74
@@ -3463,7 +3459,7 @@ void unknownC479E9() {
 /// $C47A27
 void unknownC47A27() {
 	bg1YPosition = cast(short)(entityAbsYTable[currentEntitySlot] - 0x70);
-	short x10 = cast(short)(entityAbsYTable[gameState.currentPartyMembers] - (entityAbsYTable[currentEntitySlot] - 0x70));
+	short x10 = cast(short)(entityAbsYTable[gameState.firstPartyMemberEntity] - (entityAbsYTable[currentEntitySlot] - 0x70));
 	unknownC47930(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
 }
 
@@ -3489,7 +3485,7 @@ void prepareWindowGraphics() {
 		ubyte* x0A = &partyCharacters[i].name[0];
 		vwfX = 2;
 		for (short j = 0; x0A[0] != 0; j++) {
-			renderText(6, fontConfigTable[Font.battle].width, &fontConfigTable[Font.battle].graphics[fontConfigTable[Font.battle].height * ((*x0A - 0x50) & 0x7F)]);
+			renderText(6, fontConfigTable[Font.battle].width, &fontGraphics[fontConfigTable[Font.battle].graphicsID][fontConfigTable[Font.battle].height * ((*x0A - 0x50) & 0x7F)]);
 			x0A++;
 		}
 		for (short j = 0; j < 4; j++) {
@@ -3524,7 +3520,7 @@ void prepareWindowGraphics() {
 }
 
 /// $C47F87
-void unknownC47F87() {
+void loadTextPalette() {
 	ubyte affliction = 0;
 	// Normally the game just indexes the playerControlledPartyMembers array out of bounds - not the best idea.
 	version(bugfix) {
@@ -3558,7 +3554,7 @@ void undrawFlyoverText() {
 	unknownC2038B();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all2);
-	unknownC47F87();
+	loadTextPalette();
 	unknown7E0030 = 0x18;
 }
 
@@ -3694,7 +3690,7 @@ void processItemTransformations() {
 	if (unknown7EB4B6 != 0) {
 		return;
 	}
-	if (gameState.unknownB0 == 2) {
+	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
 	if (--unknown7E9F2C != 0) {
@@ -3721,7 +3717,7 @@ void processItemTransformations() {
 
 /// $C490EE
 short getDistanceToMagicTruffle() {
-	short x04 = unknownC46028(0x178);
+	short x04 = findEntityBySprite(0x178);
 	if (x04 == -1) {
 		return 0;
 	}
@@ -3932,8 +3928,8 @@ void unknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData)
 /// $C4999B
 void unknownC4999B(ubyte arg1) {
 	arg1 = (arg1 - 0x50) & 0x7F;
-	const(ubyte)* x06 = &fontConfigTable[Font.large].graphics[arg1 * fontConfigTable[Font.large].height];
-	ubyte x02 = cast(ubyte)(fontConfigTable[Font.large].data[arg1] + 1);
+	const(ubyte)* x06 = &fontGraphics[fontConfigTable[Font.large].graphicsID][arg1 * fontConfigTable[Font.large].height];
+	ubyte x02 = cast(ubyte)(fontData[fontConfigTable[Font.large].dataID][arg1] + 1);
 	while (x02 > 8) {
 		unknownC49875(8, fontConfigTable[Font.large].width, &vwfBuffer[0][0], x06);
 		x02 -= 8;
@@ -4103,16 +4099,8 @@ void coffeeTeaScene(short id) {
 }
 
 /// $C49EA4
-immutable ubyte[][8] flyoverTextPointers = [
-	flyoverString(import("onett1.flyover")),
-	flyoverString(import("onett2.flyover")),
-	flyoverString(import("onett3.flyover")),
-	flyoverString(import("winters1.flyover")),
-	flyoverString(import("winters2.flyover")),
-	flyoverString(import("dalaam1.flyover")),
-	flyoverString(import("dalaam2.flyover")),
-	flyoverString(import("laterthatnight.flyover")),
-];
+@([ROMSource(0x210B86, 22), ROMSource(0x210B9C, 38), ROMSource(0x210BC2, 16), ROMSource(0x210BD2, 43), ROMSource(0x210BFD, 30), ROMSource(0x210C1B, 29), ROMSource(0x210C38, 41), ROMSource(0x210C61, 25)])
+immutable(ubyte[])[] flyoverTextPointers;
 
 /// $C49EC4
 void unknownC49EC4(short id) {
@@ -4730,7 +4718,7 @@ void useSoundStone(short arg1) {
 	decomp(&soundStoneGraphics[0], &unknown7F0000[0]);
 	copyToVRAM(0, 0x2C00, 0x2000, &unknown7F0000[0]);
 	memcpy(&palettes[8][0], &soundStonePalette[0], 0xC0);
-	unknownC47F87();
+	loadTextPalette();
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
 	memset(&unknown7EB3EE, 0, SpriteMap.sizeof);
 	memset(&unknown7EB3F3, 0, SpriteMap.sizeof);
@@ -4806,7 +4794,7 @@ void useSoundStone(short arg1) {
 			}
 			if (x24 < 8) {
 				if (x26 == soundStoneUnknown7[x24] - 9) {
-					unknownC0AC0C(cast(short)(x32 + 8));
+					musicEffect(cast(short)(x32 + 8));
 				}
 			}
 		}
@@ -4868,8 +4856,8 @@ ushort unknownC4B1B8(ushort arg1, ushort arg2, ushort arg3) {
 	if (arg3 == 0xFF) {
 		return arg1;
 	}
-	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, arg1, &spriteGroupingPointers[arg2].sprites[arg3].data[0]);
-	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, cast(ushort)(arg1 + 0x100), &spriteGroupingPointers[arg2].sprites[arg3].data[spriteGroupingPointers[arg2].width]);
+	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, arg1, &sprites[spriteGroupingPointers[arg2].sprites[arg3].id][0]);
+	copyToVRAM(0, spriteGroupingPointers[arg2].width * 2, cast(ushort)(arg1 + 0x100), &sprites[spriteGroupingPointers[arg2].sprites[arg3].id][spriteGroupingPointers[arg2].width]);
 	return cast(ushort)(arg1 + spriteGroupingPointers[arg2].width);
 }
 
@@ -4945,32 +4933,32 @@ void unknownC4B4BE(short arg1) {
 
 /// $C4B4FE
 void unknownC4B4FE(short arg1, short arg2) {
-	spawnFloatingSprite(unknownC4608C(arg1), arg2);
+	spawnFloatingSprite(findEntityByPartyMemberID(arg1), arg2);
 }
 
 /// $C4B524
 void unknownC4B524(short arg1, short arg2) {
-	spawnFloatingSprite(unknownC4605A(arg1), arg2);
+	spawnFloatingSprite(findEntityByTPT(arg1), arg2);
 }
 
 /// $C4B519
 void unknownC4B519(short arg1) {
-	unknownC4B4BE(unknownC4608C(arg1));
+	unknownC4B4BE(findEntityByPartyMemberID(arg1));
 }
 
 /// $C4B53F
 void unknownC4B53F(short arg1) {
-	unknownC4B4BE(unknownC4605A(arg1));
+	unknownC4B4BE(findEntityByTPT(arg1));
 }
 
 /// $C4B54A
 void unknownC4B54A(short arg1, short arg2) {
-	spawnFloatingSprite(unknownC46028(arg1), arg2);
+	spawnFloatingSprite(findEntityBySprite(arg1), arg2);
 }
 
 /// $C4B565
 void unknownC4B565(short arg1) {
-	unknownC4B4BE(unknownC46028(arg1));
+	unknownC4B4BE(findEntityBySprite(arg1));
 }
 
 /// $C4B587
@@ -5563,7 +5551,7 @@ void unknownC4C2DE() {
 	initializeTextSystem();
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all);
-	unknownC47F87();
+	loadTextPalette();
 	unknownC0856B(0x18);
 	mirrorTM = 5;
 	unknown7E4DC4 = 0;
@@ -5687,7 +5675,7 @@ short spawn() {
 		return result;
 	}
 	unknownC4C58F(0x20);
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	mirrorTM = 0x17;
 	unknown7E436E = -1;
 	currentMapMusicTrack = -1;
@@ -5782,8 +5770,8 @@ void unknownC47369() {
 }
 
 /// $C473B2
-ushort unknownC473B2(ushort arg1) {
-	if (arg1 < 0x8000) {
+ushort unknownC473B2(short arg1) {
+	if (arg1 < 0) {
 		return 0;
 	}
 	if (arg1 >= 31) {
@@ -5795,11 +5783,16 @@ ushort unknownC473B2(ushort arg1) {
 /// $C473D0
 void unknownC473D0(short arg1, short arg2) {
 	ushort* x16 = &unknown7E4476[arg1][0];
+	version(bugfix) {
+		if (arg1 >= palettes.length - 2) {
+			return;
+		}
+	}
 	ushort* x18 = &palettes[arg1 + 2][0];
 	for (short i = 0; i < 16; i++) {
-		ushort x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
-		ushort x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
-		ushort x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
+		short x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
+		short x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
+		short x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
 		ushort x0E = unknownC473B2(x14);
 		ushort x12_2 = unknownC473B2(x12);
 		ushort x10_2 = unknownC473B2(x10);
@@ -5828,7 +5821,7 @@ void unknownC47A6B() {
 
 /// $C47A9E
 void unknownC47A9E() {
-	decomp(&animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].ptr[0], &unknown7F0000[0]);
+	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &unknown7F0000[0]);
 	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &unknown7F0000[0]);
 	memcpy(&palettes[0][0], &unknown7F0000[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
 	unknown7E0030 = 0x18;
@@ -5885,9 +5878,9 @@ ushort* unknownC4810E(short arg1, ushort* arg2) {
 void unknownC4827B(short arg1, short arg2) {
 	short x1A = (arg2 - 0x50) & 0x7F;
 	short x18 = fontConfigTable[arg1].height;
-	const(ubyte)* x14 = &fontConfigTable[arg1].graphics[x1A * x18];
+	const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][x1A * x18];
 	short x02 = fontConfigTable[arg1].width;
-	short x12 = fontConfigTable[arg1].data[x1A];
+	short x12 = fontData[fontConfigTable[arg1].dataID][x1A];
 	x12 += unknown7E5E6D;
 	while (x12 > 8) {
 		renderText(8, x02, x14);
@@ -6066,7 +6059,7 @@ void unknownC48B2C() {
 
 /// $C48B3B
 void unknownC48B3B() {
-	if ((unknown7E0002 & 1) != 0) {
+	if ((frameCounter & 1) != 0) {
 		return;
 	}
 	for (short i = 0; gameState.partyCount > i; i++) {
@@ -6436,59 +6429,59 @@ ubyte getTownMapID(short x, short y) {
 }
 
 /// $C4D2A8
-void unknownC4D2A8() {
-	if (unknown7EB4B2 == 0) {
-		unknown7EB4B2 = 0xC;
+void animateTownMapIconPalette() {
+	if (framesUntilMapIconPaletteUpdate == 0) {
+		framesUntilMapIconPaletteUpdate = 12;
 		short x10 = palettes[8][1];
-		for (short i = 1; i < 4; i++) {
-			palettes[4][i] = palettes[4][i - 1];
+		for (short i = 2; i < 8; i++) {
+			palettes[8][i - 1] = palettes[8][i];
 		}
-		palettes[8][1] = x10;
+		palettes[8][7] = x10;
 		unknownC0856B(16);
 	}
-	unknown7EB4B2--;
+	framesUntilMapIconPaletteUpdate--;
 }
 
 /// $C4D2F0
 void unknownC4D2F0() {
 	switch (mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown0 & 0x70) {
 		case 0x10:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[2]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[2]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
 			break;
 		case 0x20:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[3]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[3]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
 			break;
 		case 0x40:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[4]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[4]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
 			break;
 		case 0x30:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[5]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[5]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 			break;
 		default:
 			break;
 	}
-	if (unknown7EB4B0 < 10) {
-		unknownC08C58F(&unknownE1F44C[townMapMapping[1]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+	if (townMapPlayerIconAnimationFrame < 10) {
+		unknownC08C58F(&townMapIconSpritemaps[townMapMapping[1]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 	} else {
-		unknownC08C58F(&unknownE1F44C[townMapMapping[0]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+		unknownC08C58F(&townMapIconSpritemaps[townMapMapping[0]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 	}
-	if (--unknown7EB4B0 == 0) {
-		unknown7EB4B0 = 0x14;
+	if (--townMapPlayerIconAnimationFrame == 0) {
+		townMapPlayerIconAnimationFrame = 20;
 	}
 }
 
 /// $C4D43F
-void unknownC4D43F(short arg1) {
+void drawTownMapIcons(short map) {
 	unknown7E2400 = 0;
 	//not used - segmented addressing stuff
-	//ubyte savedBank = setSpritemapBank(bankbyte(&unknownE1F44C[0]));
-	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[arg1][0]; x06.unknown0 != 0xFF; x06++) {
+	//ubyte savedBank = setSpritemapBank(bankbyte(&townMapIconSpritemaps[0]));
+	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[map][0]; x06.x != 0xFF; x06++) {
 		short x14 = 1;
-		if ((unknownE1F47A[x06.unknown2] != 0) && (unknown7EB4AE < 10)) {
+		if ((unknownE1F47A[x06.sprite] != 0) && (townMapIconAnimationFrame < 10)) {
 			x14 = 0;
 		}
 		short x12 = 0;
-		if (x06.eventFlag < eventFlagUnset) {
+		if (x06.eventFlag >= eventFlagUnset) {
 			x12 = 1;
 		}
 		if (getEventFlag(x06.eventFlag & 0x7FFF) != x12) {
@@ -6497,15 +6490,15 @@ void unknownC4D43F(short arg1) {
 		if (x14 == 0) {
 			continue;
 		}
-		unknownC08C58F(&unknownE1F44C[x06.unknown2][0], x06.unknown0, x06.unknown1);
+		unknownC08C58F(&townMapIconSpritemaps[x06.sprite][0], x06.x, x06.y);
 	}
 	unknownC4D2F0();
-	if (--unknown7EB4AE == 0) {
-		unknown7EB4AE = 0x3C;
+	if (--townMapIconAnimationFrame == 0) {
+		townMapIconAnimationFrame = 60;
 	}
 	// see above
 	//setSpritemapBank(savedBank);
-	unknownC4D2A8();
+	animateTownMapIconPalette();
 }
 
 /// $C4D552
@@ -6523,7 +6516,8 @@ void loadTownMapData(short arg1) {
 	mirrorTD = 0;
 	copyToVRAM(0, 0x800, 0x3000, &unknown7F0000[0x40]);
 	copyToVRAM2(0, 0x4000, 0, &unknown7F0000[0x840]);
-	copyToVRAM(0, 0x2400, 0x6000, &townMapLabelGfx[0]);
+	decomp(&townMapLabelGfx[0], &unknown7F0000[0]);
+	copyToVRAM(0, 0x2400, 0x6000, &unknown7F0000[0]);
 	unknownC0856B(0x18);
 	mirrorTM = 0x11;
 	bg1YPosition = 0;
@@ -6534,25 +6528,25 @@ void loadTownMapData(short arg1) {
 
 /// $C4D681
 short displayTownMap() {
-	unknown7EB4AE = 0x3C;
-	unknown7EB4B0 = 0x14;
-	unknown7EB4B2 = 0xC;
+	townMapIconAnimationFrame = 60;
+	townMapPlayerIconAnimationFrame = 20;
+	framesUntilMapIconPaletteUpdate = 12;
 	short x10 = getTownMapID(gameState.leaderX.integer, gameState.leaderY.integer);
 	if (x10 == 0) {
 		return 0;
 	}
 	loadTownMapData(cast(short)(x10 - 1));
-	while(((padPress[0] & (Pad.a | Pad.l)) == 0) && ((padPress[0] & (Pad.b | Pad.select)) == 0) && ((padPress[0] & Pad.l) == 0) && ((padPress[0] & Pad.x) == 0)) {
+	do {
 		waitUntilNextFrame();
 		oamClear();
-		unknownC4D43F(cast(short)(x10 - 1));
+		drawTownMapIcons(cast(short)(x10 - 1));
 		updateScreen();
-	}
+	} while(((padPress[0] & (Pad.a | Pad.l)) == 0) && ((padPress[0] & (Pad.b | Pad.select)) == 0) && ((padPress[0] & Pad.l) == 0) && ((padPress[0] & Pad.x) == 0));
 	fadeOut(2, 1);
 	for (short i = 0; i < 16; i++) {
 		waitUntilNextFrame();
 		oamClear();
-		unknownC4D43F(cast(short)(x10 - 1));
+		drawTownMapIcons(cast(short)(x10 - 1));
 		updateScreen();
 	}
 	unknown7E5DD8 = 1;
@@ -6566,12 +6560,12 @@ short displayTownMap() {
 }
 
 /// $C4D744
-void unknownC4D744() {
+void townMapDebug() {
 	short x10 = 0;
 	short x0E = 0;
-	unknown7EB4AE = 0x3C;
-	unknown7EB4B0 = 0x14;
-	unknown7EB4B2 = 0x0C;
+	townMapIconAnimationFrame = 60;
+	townMapPlayerIconAnimationFrame = 20;
+	framesUntilMapIconPaletteUpdate = 12;
 	loadTownMapData(0);
 	while (true) {
 		waitUntilNextFrame();
@@ -6592,7 +6586,7 @@ void unknownC4D744() {
 			loadTownMapData(x10);
 			x0E = x10;
 		}
-		unknownC4D43F(x10);
+		drawTownMapIcons(x10);
 		if ((padPress[0] & Pad.a) == 0) {
 			break;
 		}
@@ -6617,7 +6611,7 @@ void unknownC4D830(short arg1) {
 		unknownC1004E();
 	}
 	for (const(NamingScreenEntity)* x06 = &unknownC3FD2D[arg1 + 7][0]; x06.sprite != 0; x06++) {
-		short x = unknownC46028(x06.sprite);
+		short x = findEntityBySprite(x06.sprite);
 		if (x == -1) {
 			continue;
 		}
@@ -6647,7 +6641,7 @@ void unknownC4D8FA() {
 /// $C4D989
 short unknownC4D989(short arg1) {
 	unknownC0927C();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(short.min, 0);
 	initializeMiscObjectData();
 	unknown7E4A58 = 1;
@@ -6656,7 +6650,7 @@ short unknownC4D989(short arg1) {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(1, 0, 0);
-	unknownC02D29();
+	clearParty();
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMembers[i] = 0;
 	}
@@ -6702,7 +6696,7 @@ short unknownC4D989(short arg1) {
 void initIntro() {
 	short x02 = 0;
 	unknown7EB4B6 = 1;
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	unknownC0927C();
 	initializeTextSystem();
 	unknownC432B1();
@@ -6726,7 +6720,7 @@ void initIntro() {
 		switch (x02) {
 			case 0:
 				if (logoScreen() != 0) {
-					unknownC0AC0C(2);
+					musicEffect(MusicEffect.quickFade);
 					if ((mirrorINIDISP & 0x80) != 0) {
 						fadeOutWithMosaic(4, 1, 0);
 					}
@@ -6740,7 +6734,7 @@ void initIntro() {
 			case 1:
 				changeMusic(Music.gasStation);
 				if (gasStation() != 0) {
-					unknownC0AC0C(2);
+					musicEffect(MusicEffect.quickFade);
 					if ((mirrorINIDISP & 0x80) != 0) {
 						fadeOutWithMosaic(4, 1, 0);
 					}
@@ -6790,7 +6784,7 @@ void initIntro() {
 		}
 		x02++;
 	}
-	unknownC0AC0C(2);
+	musicEffect(MusicEffect.quickFade);
 	unknown7E0028.a = 0;
 	if ((mirrorINIDISP & 0x80) != 0) {
 		fadeOutWithMosaic(4, 1, 0);
@@ -6974,7 +6968,7 @@ void testYourSanctuaryDisplay() {
 }
 
 /// $C4E369
-void unknownC4E369() {
+void loadCastScene() {
 	unknown7E9F2A = 0;
 	fadeOutWithMosaic(1, 1, 0);
 	prepareForImmediateDMA();
@@ -7004,7 +6998,7 @@ void unknownC4E369() {
 	unknownC4E7AE();
 	copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
 	unknown7EB4CE = 0;
-	unknownC47F87();
+	loadTextPalette();
 	memcpy(&palettes[0][0], &unknownE1D815[0], 0x20);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	decomp(&unknownE1E4E6[0], &unknown7F0000[0x7000]);
@@ -7049,8 +7043,8 @@ void unknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	unknown7E9652.unknown0 = 0;
 	unknownC1FF99(-1, arg2, arg1);
 	for (short i = 0; arg1[0] != 0; arg1++, i++) {
-		const(ubyte)* x0A = &fontConfigTable[0].graphics[fontConfigTable[0].width * (arg1[0] - ebChar(' ') & 0x7F)];
-		short x1E = fontConfigTable[0].data[arg1[0] - ebChar(' ') & 0x7F] + unknown7E5E6D;
+		const(ubyte)* x0A = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].width * (arg1[0] - ebChar(' ') & 0x7F)];
+		short x1E = fontData[fontConfigTable[0].dataID][arg1[0] - ebChar(' ') & 0x7F] + unknown7E5E6D;
 		while (x1E > 8) {
 			renderText(x1E, fontConfigTable[0].width, x0A);
 			x1E -= 8;
@@ -7167,8 +7161,8 @@ short unknownC4ECE7() {
 }
 
 /// $C4ED0E
-void unknownC4ED0E() {
-	unknownC4E369();
+void playCastScene() {
+	loadCastScene();
 	oamClear();
 	fadeIn(1, 1);
 	initEntityWipe(ActionScript.unknown801, 0, 0);
@@ -7180,13 +7174,13 @@ void unknownC4ED0E() {
 	fadeOutWithMosaic(1, 1, 0);
 	for (short i = 0; i < maxEntities; i++) {
 		if (entityScriptTable[i] == ActionScript.unknown801) {
-			unknownC09C35(i);
+			deleteEntity(i);
 		}
 	}
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(0, 0, ActionScript.partyMemberLeading);
-	unknownC02D29();
+	clearParty();
 	unknownC03A24();
 	prepareForImmediateDMA();
 	undrawFlyoverText();
@@ -7410,7 +7404,7 @@ void playCredits() {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
-	unknownC02D29();
+	clearParty();
 	unknownC03A24();
 	ushort* x06 = &bg2Buffer[0];
 	for (short i = 0; i < 0x200; i++) {
@@ -7432,7 +7426,7 @@ void changeMusic(short track) {
 		playSfxUnknown();
 	}
 	if ((track < Music.soundstoneRecordingGiantStep) || (track > Music.soundstoneRecordingFireSpring)) {
-		unknownC0AC0C(1);
+		musicEffect(MusicEffect.normal);
 		stopMusic();
 	}
 	currentMusicTrack = track;

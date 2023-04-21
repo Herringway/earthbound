@@ -25,7 +25,6 @@ jobs:
           compiler: ${{ matrix.dc }}
       - name: 'Test'
         run: |
-          ./genplaceholders.sh
           dub test
   docs:
     strategy:
@@ -40,7 +39,6 @@ jobs:
           compiler: dmd-latest
       - name: 'Build'
         run: |
-          ./genplaceholders.sh
           dub build -b ddox
           touch docs/.nojekyll
       - name: Deploy

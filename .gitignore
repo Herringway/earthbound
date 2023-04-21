@@ -35,3 +35,6 @@ settings.yml
 *.lib
 *.srm
 *.sym
+text.cache
+save.yaml
+dump

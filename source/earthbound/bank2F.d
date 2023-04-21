@@ -7,9 +7,6 @@ import earthbound.bank02;
 import earthbound.bank03;
 import earthbound.bank04;
 import earthbound.bank11;
-import earthbound.bank12;
-import earthbound.bank13;
-import earthbound.bank14;
 import earthbound.bank15;
 import earthbound.bank18;
 import earthbound.bank1C;
@@ -20,9 +17,6 @@ import earthbound.text;
 import core.stdc.string;
 
 import std;
-
-immutable ubyte[2048] t = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) >> x[0]) ^ 255)).array;
-immutable ubyte[2048] t2 = cartesianProduct(iota(8), iota(256)).map!(x => cast(ubyte)(((x[1] ^ 255) << x[0]) ^ 255)).array;
 
 /// $EF0000
 void enemyFlashingOff() {
@@ -94,7 +88,7 @@ void unknownEF016F() {
 /// $EF01D2
 void unknownEF01D2(short arg1) {
 	short x0E = (arg1 - ebChar(' ')) & 0x7F;
-	arg1 = fontConfigTable[0].data[x0E] + unknown7E5E6D;
+	arg1 = fontData[fontConfigTable[0].dataID][x0E] + unknown7E5E6D;
 	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].textX - 1) * 8 + (vwfX & 7) + x0E) {
 		printNewLineF();
 		unknown7E5E75 = 1;
@@ -266,8 +260,14 @@ short checkBlockSignature(short id) {
 
 /// $EF0683
 void checkAllBlocksSignature() {
-	for (short i = 0; i < 6; i++) {
-		checkBlockSignature(i);
+	version(savememory) {
+		for (short i = 0; i < 6; i++) {
+			checkBlockSignature(i);
+		}
+	} else {
+		for (short i = 0; i < 6; i += 2) {
+			checkBlockSignature(i);
+		}
 	}
 }
 
@@ -332,17 +332,24 @@ short validateSaveBlockChecksums(short id) {
 void checkSaveCorruption(short id) {
 	if (validateSaveBlockChecksums(cast(short)(id * 2)) != 0) {
 		eraseSaveBlock(cast(short)(id * 2));
-		if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
-			eraseSaveBlock(cast(short)(id * 2 + 1));
+		version(savememory) {
+			if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
+				eraseSaveBlock(cast(short)(id * 2 + 1));
+				unknown7E9F79 |= unknownEF05A6[id];
+				return;
+			} else {
+				copySaveBlock(cast(short)(id * 2), cast(short)(id * 2 + 1));
+			}
+		} else {
 			unknown7E9F79 |= unknownEF05A6[id];
 			return;
-		} else {
-			copySaveBlock(cast(short)(id * 2), cast(short)(id * 2 + 1));
 		}
 	}
-	if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
-		eraseSaveBlock(cast(short)(id * 2 + 1));
-		copySaveBlock(cast(short)(id * 2 + 1), cast(short)(id * 2));
+	version(savememory) {
+		if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
+			eraseSaveBlock(cast(short)(id * 2 + 1));
+			copySaveBlock(cast(short)(id * 2 + 1), cast(short)(id * 2));
+		}
 	}
 }
 
@@ -383,7 +390,9 @@ void saveGameBlock(short id) {
 /// $EF0A4D
 void saveGameSlot(short id) {
 	saveGameBlock(cast(short)(id * 2));
-	saveGameBlock(cast(short)(id * 2 + 1));
+	version(savememory) { // only need to write two blocks when SRAM is used
+		saveGameBlock(cast(short)(id * 2 + 1));
+	}
 }
 
 /// $EF0A68
@@ -420,13 +429,17 @@ void checkSRAMIntegrity() {
 /// $EF0BFA
 void eraseSaveSlot(short id) {
 	eraseSaveBlock(cast(short)(id * 2));
-	eraseSaveBlock(cast(short)(id * 2 + 1));
+	version(savememory) {
+		eraseSaveBlock(cast(short)(id * 2 + 1));
+	}
 }
 
 /// $EF0C15
 void copySaveSlot(short to, short from) {
 	copySaveBlock(cast(short)(to * 2), cast(short)(from * 2));
-	copySaveBlock(cast(short)(to * 2 + 1), cast(short)(from * 2 + 1));
+	version(savememory) {
+		copySaveBlock(cast(short)(to * 2 + 1), cast(short)(from * 2 + 1));
+	}
 }
 
 /// $EF0C3D - unused
@@ -481,12 +494,12 @@ void unknownEF0D73() {
 
 /// $EF0D8D
 void unknownEF0D8D() {
-	unknownC064E3(8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
 }
 
 /// $EF0DFA
 void unknownEF0DFA() {
-	unknownC064E3(10, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
+	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
 }
 
 /// $EF0E67
@@ -534,19 +547,19 @@ short unknownEF0F60() {
 	if (overworldStatusSuppression != 0) {
 		return 1;
 	}
-	if ((entitySpriteMapFlags[gameState.currentPartyMembers] & 0x8000) != 0) {
+	if ((entitySpriteMapFlags[gameState.firstPartyMemberEntity] & 0x8000) != 0) {
 		return 1;
 	}
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope) || (gameState.walkingStyle == WalkingStyle.escalator) || (gameState.walkingStyle == WalkingStyle.stairs)) {
 		return 1;
 	}
-	return ((entityTickCallbackFlags[23] & (objectTickDisabled | objectMoveDisabled)) != 0) ? 0 : unknown7E5D9A;
+	return ((entityTickCallbackFlags[23] & (objectTickDisabled | objectMoveDisabled)) != 0) ? 0 : pendingInteractions;
 }
 
 /// $EF0FDB
 void unknownEF0FDB() {
 	overworldStatusSuppression = 1;
-	unknown7E5D9A = 1;
+	pendingInteractions = 1;
 	unknownC09F3BEntry2(1);
 	changeMusic(Music.delivery);
 	unknownC03CFD();
@@ -554,7 +567,7 @@ void unknownEF0FDB() {
 
 /// $EF0FF6
 void unknownEF0FF6() {
-	unknown7E5D9A = 0;
+	pendingInteractions = 0;
 	overworldStatusSuppression = getEventFlag(EventFlag.winGiegu);
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);
@@ -600,88 +613,16 @@ immutable ubyte[32] tilesetTable = [
 ];
 
 /// $EF105B
-immutable ubyte[][20] mapDataTilesetPtrTable = [
-	cast(immutable(ubyte)[])import("maps/gfx/0.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/1.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/2.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/3.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/4.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/5.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/6.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/7.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/8.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/9.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/10.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/11.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/12.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/13.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/14.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/15.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/16.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/17.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/18.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/gfx/19.gfx.lzhal"),
-];
+@mapDataTilesetSource
+immutable(ubyte[])[] mapDataTilesetPtrTable;
 
 /// $EF10AB
-immutable ubyte[][20] mapDataTileArrangementPtrTable = [
-	cast(immutable(ubyte)[])import("maps/arrangements/0.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/1.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/2.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/3.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/4.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/5.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/6.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/7.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/8.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/9.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/10.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/11.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/12.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/13.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/14.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/15.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/16.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/17.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/18.arr.lzhal"),
-	cast(immutable(ubyte)[])import("maps/arrangements/19.arr.lzhal"),
-];
+@mapDataArrangementSource
+immutable(ubyte[])[] mapDataTileArrangementPtrTable;
 
 /// $EF10FB
-immutable ubyte[][32] mapPalettePointerTable = [
-	cast(immutable(ubyte)[])import("maps/palettes/0.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/1.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/2.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/3.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/4.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/5.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/6.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/7.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/8.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/9.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/10.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/11.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/12.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/13.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/14.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/15.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/16.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/17.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/18.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/19.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/20.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/21.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/22.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/23.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/24.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/25.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/26.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/27.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/28.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/29.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/30.bin"),
-	cast(immutable(ubyte)[])import("maps/palettes/31.bin"),
-];
+@mapPaletteSource
+immutable(ubyte[])[] mapPalettePointerTable;
 
 /// $EF117B
 immutable ubyte[4][4]*[][20] mapDataTileCollisionPointerTable = [
@@ -13132,28 +13073,8 @@ immutable ubyte[4][4]*[][20] mapDataTileCollisionPointerTable = [
 ];
 
 /// $EF11CB
-immutable ubyte[][20] mapDataTileAnimationPointerTable = [
-	cast(immutable(ubyte)[])import("maps/anim_gfx/0.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/1.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/2.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/3.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/4.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/5.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/6.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/7.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/8.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/9.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/10.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/11.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/12.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/13.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/14.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/15.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/16.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/17.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/18.gfx.lzhal"),
-	cast(immutable(ubyte)[])import("maps/anim_gfx/19.gfx.lzhal"),
-];
+@mapDataTileAnimationSource
+immutable(ubyte[])[] mapDataTileAnimationPointerTable;
 
 /// $EF121B
 immutable TilesetAnimation[20] mapDataWeirdTileAnimationPointerTable = [
@@ -13246,5440 +13167,5440 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 	// Sprite 0 is a clone of Ness - in the original game they both point to Ness' data
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0096),
-		OverworldSpriteGraphics(sprite0096, 1),
-		OverworldSpriteGraphics(sprite0097, 1),
-		OverworldSpriteGraphics(sprite0098, 1),
-		OverworldSpriteGraphics(sprite0095),
-		OverworldSpriteGraphics(sprite0103),
-		OverworldSpriteGraphics(sprite0097),
-		OverworldSpriteGraphics(sprite0098),
-		OverworldSpriteGraphics(sprite0101, 1),
-		OverworldSpriteGraphics(sprite0102, 1),
-		OverworldSpriteGraphics(sprite0099, 1),
-		OverworldSpriteGraphics(sprite0100, 1),
-		OverworldSpriteGraphics(sprite0099),
-		OverworldSpriteGraphics(sprite0100),
-		OverworldSpriteGraphics(sprite0101),
-		OverworldSpriteGraphics(sprite0102)
+		OverworldSpriteGraphics(96),
+		OverworldSpriteGraphics(96, 1),
+		OverworldSpriteGraphics(97, 1),
+		OverworldSpriteGraphics(98, 1),
+		OverworldSpriteGraphics(95),
+		OverworldSpriteGraphics(103),
+		OverworldSpriteGraphics(97),
+		OverworldSpriteGraphics(98),
+		OverworldSpriteGraphics(101, 1),
+		OverworldSpriteGraphics(102, 1),
+		OverworldSpriteGraphics(99, 1),
+		OverworldSpriteGraphics(100, 1),
+		OverworldSpriteGraphics(99),
+		OverworldSpriteGraphics(100),
+		OverworldSpriteGraphics(101),
+		OverworldSpriteGraphics(102)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0096),
-		OverworldSpriteGraphics(sprite0096, 1),
-		OverworldSpriteGraphics(sprite0097, 1),
-		OverworldSpriteGraphics(sprite0098, 1),
-		OverworldSpriteGraphics(sprite0095),
-		OverworldSpriteGraphics(sprite0103),
-		OverworldSpriteGraphics(sprite0097),
-		OverworldSpriteGraphics(sprite0098),
-		OverworldSpriteGraphics(sprite0101, 1),
-		OverworldSpriteGraphics(sprite0102, 1),
-		OverworldSpriteGraphics(sprite0099, 1),
-		OverworldSpriteGraphics(sprite0100, 1),
-		OverworldSpriteGraphics(sprite0099),
-		OverworldSpriteGraphics(sprite0100),
-		OverworldSpriteGraphics(sprite0101),
-		OverworldSpriteGraphics(sprite0102)
+		OverworldSpriteGraphics(96),
+		OverworldSpriteGraphics(96, 1),
+		OverworldSpriteGraphics(97, 1),
+		OverworldSpriteGraphics(98, 1),
+		OverworldSpriteGraphics(95),
+		OverworldSpriteGraphics(103),
+		OverworldSpriteGraphics(97),
+		OverworldSpriteGraphics(98),
+		OverworldSpriteGraphics(101, 1),
+		OverworldSpriteGraphics(102, 1),
+		OverworldSpriteGraphics(99, 1),
+		OverworldSpriteGraphics(100, 1),
+		OverworldSpriteGraphics(99),
+		OverworldSpriteGraphics(100),
+		OverworldSpriteGraphics(101),
+		OverworldSpriteGraphics(102)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0140),
-		OverworldSpriteGraphics(sprite0140, 1),
-		OverworldSpriteGraphics(sprite0141, 1),
-		OverworldSpriteGraphics(sprite0142, 1),
-		OverworldSpriteGraphics(sprite0139),
-		OverworldSpriteGraphics(sprite0139, 1),
-		OverworldSpriteGraphics(sprite0141),
-		OverworldSpriteGraphics(sprite0142),
-		OverworldSpriteGraphics(sprite0145, 1),
-		OverworldSpriteGraphics(sprite0146, 1),
-		OverworldSpriteGraphics(sprite0143, 1),
-		OverworldSpriteGraphics(sprite0144, 1),
-		OverworldSpriteGraphics(sprite0143),
-		OverworldSpriteGraphics(sprite0144),
-		OverworldSpriteGraphics(sprite0145),
-		OverworldSpriteGraphics(sprite0146)
+		OverworldSpriteGraphics(140),
+		OverworldSpriteGraphics(140, 1),
+		OverworldSpriteGraphics(141, 1),
+		OverworldSpriteGraphics(142, 1),
+		OverworldSpriteGraphics(139),
+		OverworldSpriteGraphics(139, 1),
+		OverworldSpriteGraphics(141),
+		OverworldSpriteGraphics(142),
+		OverworldSpriteGraphics(145, 1),
+		OverworldSpriteGraphics(146, 1),
+		OverworldSpriteGraphics(143, 1),
+		OverworldSpriteGraphics(144, 1),
+		OverworldSpriteGraphics(143),
+		OverworldSpriteGraphics(144),
+		OverworldSpriteGraphics(145),
+		OverworldSpriteGraphics(146)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0132),
-		OverworldSpriteGraphics(sprite0132, 1),
-		OverworldSpriteGraphics(sprite0133, 1),
-		OverworldSpriteGraphics(sprite0134, 1),
-		OverworldSpriteGraphics(sprite0131),
-		OverworldSpriteGraphics(sprite0131, 1),
-		OverworldSpriteGraphics(sprite0133),
-		OverworldSpriteGraphics(sprite0134),
-		OverworldSpriteGraphics(sprite0137, 1),
-		OverworldSpriteGraphics(sprite0138, 1),
-		OverworldSpriteGraphics(sprite0135, 1),
-		OverworldSpriteGraphics(sprite0136, 1),
-		OverworldSpriteGraphics(sprite0135),
-		OverworldSpriteGraphics(sprite0136),
-		OverworldSpriteGraphics(sprite0137),
-		OverworldSpriteGraphics(sprite0138)
+		OverworldSpriteGraphics(132),
+		OverworldSpriteGraphics(132, 1),
+		OverworldSpriteGraphics(133, 1),
+		OverworldSpriteGraphics(134, 1),
+		OverworldSpriteGraphics(131),
+		OverworldSpriteGraphics(131, 1),
+		OverworldSpriteGraphics(133),
+		OverworldSpriteGraphics(134),
+		OverworldSpriteGraphics(137, 1),
+		OverworldSpriteGraphics(138, 1),
+		OverworldSpriteGraphics(135, 1),
+		OverworldSpriteGraphics(136, 1),
+		OverworldSpriteGraphics(135),
+		OverworldSpriteGraphics(136),
+		OverworldSpriteGraphics(137),
+		OverworldSpriteGraphics(138)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0124),
-		OverworldSpriteGraphics(sprite0124, 1),
-		OverworldSpriteGraphics(sprite0125, 1),
-		OverworldSpriteGraphics(sprite0126, 1),
-		OverworldSpriteGraphics(sprite0123),
-		OverworldSpriteGraphics(sprite0123, 1),
-		OverworldSpriteGraphics(sprite0125),
-		OverworldSpriteGraphics(sprite0126),
-		OverworldSpriteGraphics(sprite0129, 1),
-		OverworldSpriteGraphics(sprite0130, 1),
-		OverworldSpriteGraphics(sprite0127, 1),
-		OverworldSpriteGraphics(sprite0128, 1),
-		OverworldSpriteGraphics(sprite0127),
-		OverworldSpriteGraphics(sprite0128),
-		OverworldSpriteGraphics(sprite0129),
-		OverworldSpriteGraphics(sprite0130)
+		OverworldSpriteGraphics(124),
+		OverworldSpriteGraphics(124, 1),
+		OverworldSpriteGraphics(125, 1),
+		OverworldSpriteGraphics(126, 1),
+		OverworldSpriteGraphics(123),
+		OverworldSpriteGraphics(123, 1),
+		OverworldSpriteGraphics(125),
+		OverworldSpriteGraphics(126),
+		OverworldSpriteGraphics(129, 1),
+		OverworldSpriteGraphics(130, 1),
+		OverworldSpriteGraphics(127, 1),
+		OverworldSpriteGraphics(128, 1),
+		OverworldSpriteGraphics(127),
+		OverworldSpriteGraphics(128),
+		OverworldSpriteGraphics(129),
+		OverworldSpriteGraphics(130)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0087),
-		OverworldSpriteGraphics(sprite0087, 1),
-		OverworldSpriteGraphics(sprite0088, 1),
-		OverworldSpriteGraphics(sprite0089, 1),
-		OverworldSpriteGraphics(sprite0086),
-		OverworldSpriteGraphics(sprite0094),
-		OverworldSpriteGraphics(sprite0088),
-		OverworldSpriteGraphics(sprite0089),
-		OverworldSpriteGraphics(sprite0092, 1),
-		OverworldSpriteGraphics(sprite0093, 1),
-		OverworldSpriteGraphics(sprite0090, 1),
-		OverworldSpriteGraphics(sprite0091, 1),
-		OverworldSpriteGraphics(sprite0090),
-		OverworldSpriteGraphics(sprite0091),
-		OverworldSpriteGraphics(sprite0092),
-		OverworldSpriteGraphics(sprite0093)
+		OverworldSpriteGraphics(87),
+		OverworldSpriteGraphics(87, 1),
+		OverworldSpriteGraphics(88, 1),
+		OverworldSpriteGraphics(89, 1),
+		OverworldSpriteGraphics(86),
+		OverworldSpriteGraphics(94),
+		OverworldSpriteGraphics(88),
+		OverworldSpriteGraphics(89),
+		OverworldSpriteGraphics(92, 1),
+		OverworldSpriteGraphics(93, 1),
+		OverworldSpriteGraphics(90, 1),
+		OverworldSpriteGraphics(91, 1),
+		OverworldSpriteGraphics(90),
+		OverworldSpriteGraphics(91),
+		OverworldSpriteGraphics(92),
+		OverworldSpriteGraphics(93)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0078),
-		OverworldSpriteGraphics(sprite0078, 1),
-		OverworldSpriteGraphics(sprite0079, 1),
-		OverworldSpriteGraphics(sprite0080, 1),
-		OverworldSpriteGraphics(sprite0077),
-		OverworldSpriteGraphics(sprite0085),
-		OverworldSpriteGraphics(sprite0079),
-		OverworldSpriteGraphics(sprite0080),
-		OverworldSpriteGraphics(sprite0083, 1),
-		OverworldSpriteGraphics(sprite0084, 1),
-		OverworldSpriteGraphics(sprite0081, 1),
-		OverworldSpriteGraphics(sprite0082, 1),
-		OverworldSpriteGraphics(sprite0081),
-		OverworldSpriteGraphics(sprite0082),
-		OverworldSpriteGraphics(sprite0083),
-		OverworldSpriteGraphics(sprite0084)
+		OverworldSpriteGraphics(78),
+		OverworldSpriteGraphics(78, 1),
+		OverworldSpriteGraphics(79, 1),
+		OverworldSpriteGraphics(80, 1),
+		OverworldSpriteGraphics(77),
+		OverworldSpriteGraphics(85),
+		OverworldSpriteGraphics(79),
+		OverworldSpriteGraphics(80),
+		OverworldSpriteGraphics(83, 1),
+		OverworldSpriteGraphics(84, 1),
+		OverworldSpriteGraphics(81, 1),
+		OverworldSpriteGraphics(82, 1),
+		OverworldSpriteGraphics(81),
+		OverworldSpriteGraphics(82),
+		OverworldSpriteGraphics(83),
+		OverworldSpriteGraphics(84)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x1A, 0x08, 0x10, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0001),
-		OverworldSpriteGraphics(sprite0001, 1),
-		OverworldSpriteGraphics(sprite0002, 1),
-		OverworldSpriteGraphics(sprite0003, 1),
-		OverworldSpriteGraphics(sprite0000),
-		OverworldSpriteGraphics(sprite0000, 1),
-		OverworldSpriteGraphics(sprite0002),
-		OverworldSpriteGraphics(sprite0003),
-		OverworldSpriteGraphics(sprite0006, 1),
-		OverworldSpriteGraphics(sprite0007, 1),
-		OverworldSpriteGraphics(sprite0004, 1),
-		OverworldSpriteGraphics(sprite0005, 1),
-		OverworldSpriteGraphics(sprite0004),
-		OverworldSpriteGraphics(sprite0005),
-		OverworldSpriteGraphics(sprite0006),
-		OverworldSpriteGraphics(sprite0007)
+		OverworldSpriteGraphics(1),
+		OverworldSpriteGraphics(1, 1),
+		OverworldSpriteGraphics(2, 1),
+		OverworldSpriteGraphics(3, 1),
+		OverworldSpriteGraphics(0),
+		OverworldSpriteGraphics(0, 1),
+		OverworldSpriteGraphics(2),
+		OverworldSpriteGraphics(3),
+		OverworldSpriteGraphics(6, 1),
+		OverworldSpriteGraphics(7, 1),
+		OverworldSpriteGraphics(4, 1),
+		OverworldSpriteGraphics(5, 1),
+		OverworldSpriteGraphics(4),
+		OverworldSpriteGraphics(5),
+		OverworldSpriteGraphics(6),
+		OverworldSpriteGraphics(7)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0764),
-		OverworldSpriteGraphics(sprite0764),
-		OverworldSpriteGraphics(sprite0765, 1),
-		OverworldSpriteGraphics(sprite0765, 1),
-		OverworldSpriteGraphics(sprite0763),
-		OverworldSpriteGraphics(sprite0763),
-		OverworldSpriteGraphics(sprite0765),
-		OverworldSpriteGraphics(sprite0765),
-		OverworldSpriteGraphics(sprite0764),
-		OverworldSpriteGraphics(sprite0764),
-		OverworldSpriteGraphics(sprite0763),
-		OverworldSpriteGraphics(sprite0763),
-		OverworldSpriteGraphics(sprite0763),
-		OverworldSpriteGraphics(sprite0763),
-		OverworldSpriteGraphics(sprite0764),
-		OverworldSpriteGraphics(sprite0764)
+		OverworldSpriteGraphics(764),
+		OverworldSpriteGraphics(764),
+		OverworldSpriteGraphics(765, 1),
+		OverworldSpriteGraphics(765, 1),
+		OverworldSpriteGraphics(763),
+		OverworldSpriteGraphics(763),
+		OverworldSpriteGraphics(765),
+		OverworldSpriteGraphics(765),
+		OverworldSpriteGraphics(764),
+		OverworldSpriteGraphics(764),
+		OverworldSpriteGraphics(763),
+		OverworldSpriteGraphics(763),
+		OverworldSpriteGraphics(763),
+		OverworldSpriteGraphics(763),
+		OverworldSpriteGraphics(764),
+		OverworldSpriteGraphics(764)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0761),
-		OverworldSpriteGraphics(sprite0761),
-		OverworldSpriteGraphics(sprite0762, 1),
-		OverworldSpriteGraphics(sprite0762, 1),
-		OverworldSpriteGraphics(sprite0760),
-		OverworldSpriteGraphics(sprite0760),
-		OverworldSpriteGraphics(sprite0762),
-		OverworldSpriteGraphics(sprite0762),
-		OverworldSpriteGraphics(sprite0761),
-		OverworldSpriteGraphics(sprite0761),
-		OverworldSpriteGraphics(sprite0760),
-		OverworldSpriteGraphics(sprite0760),
-		OverworldSpriteGraphics(sprite0760),
-		OverworldSpriteGraphics(sprite0760),
-		OverworldSpriteGraphics(sprite0761),
-		OverworldSpriteGraphics(sprite0761)
+		OverworldSpriteGraphics(761),
+		OverworldSpriteGraphics(761),
+		OverworldSpriteGraphics(762, 1),
+		OverworldSpriteGraphics(762, 1),
+		OverworldSpriteGraphics(760),
+		OverworldSpriteGraphics(760),
+		OverworldSpriteGraphics(762),
+		OverworldSpriteGraphics(762),
+		OverworldSpriteGraphics(761),
+		OverworldSpriteGraphics(761),
+		OverworldSpriteGraphics(760),
+		OverworldSpriteGraphics(760),
+		OverworldSpriteGraphics(760),
+		OverworldSpriteGraphics(760),
+		OverworldSpriteGraphics(761),
+		OverworldSpriteGraphics(761)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0758),
-		OverworldSpriteGraphics(sprite0758),
-		OverworldSpriteGraphics(sprite0759, 1),
-		OverworldSpriteGraphics(sprite0759, 1),
-		OverworldSpriteGraphics(sprite0757),
-		OverworldSpriteGraphics(sprite0757),
-		OverworldSpriteGraphics(sprite0759),
-		OverworldSpriteGraphics(sprite0759),
-		OverworldSpriteGraphics(sprite0758),
-		OverworldSpriteGraphics(sprite0758),
-		OverworldSpriteGraphics(sprite0757),
-		OverworldSpriteGraphics(sprite0757),
-		OverworldSpriteGraphics(sprite0757),
-		OverworldSpriteGraphics(sprite0757),
-		OverworldSpriteGraphics(sprite0758),
-		OverworldSpriteGraphics(sprite0758)
+		OverworldSpriteGraphics(758),
+		OverworldSpriteGraphics(758),
+		OverworldSpriteGraphics(759, 1),
+		OverworldSpriteGraphics(759, 1),
+		OverworldSpriteGraphics(757),
+		OverworldSpriteGraphics(757),
+		OverworldSpriteGraphics(759),
+		OverworldSpriteGraphics(759),
+		OverworldSpriteGraphics(758),
+		OverworldSpriteGraphics(758),
+		OverworldSpriteGraphics(757),
+		OverworldSpriteGraphics(757),
+		OverworldSpriteGraphics(757),
+		OverworldSpriteGraphics(757),
+		OverworldSpriteGraphics(758),
+		OverworldSpriteGraphics(758)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0755),
-		OverworldSpriteGraphics(sprite0755),
-		OverworldSpriteGraphics(sprite0756, 1),
-		OverworldSpriteGraphics(sprite0756, 1),
-		OverworldSpriteGraphics(sprite0754),
-		OverworldSpriteGraphics(sprite0754),
-		OverworldSpriteGraphics(sprite0756),
-		OverworldSpriteGraphics(sprite0756),
-		OverworldSpriteGraphics(sprite0755),
-		OverworldSpriteGraphics(sprite0755),
-		OverworldSpriteGraphics(sprite0754),
-		OverworldSpriteGraphics(sprite0754),
-		OverworldSpriteGraphics(sprite0754),
-		OverworldSpriteGraphics(sprite0754),
-		OverworldSpriteGraphics(sprite0755),
-		OverworldSpriteGraphics(sprite0755)
+		OverworldSpriteGraphics(755),
+		OverworldSpriteGraphics(755),
+		OverworldSpriteGraphics(756, 1),
+		OverworldSpriteGraphics(756, 1),
+		OverworldSpriteGraphics(754),
+		OverworldSpriteGraphics(754),
+		OverworldSpriteGraphics(756),
+		OverworldSpriteGraphics(756),
+		OverworldSpriteGraphics(755),
+		OverworldSpriteGraphics(755),
+		OverworldSpriteGraphics(754),
+		OverworldSpriteGraphics(754),
+		OverworldSpriteGraphics(754),
+		OverworldSpriteGraphics(754),
+		OverworldSpriteGraphics(755),
+		OverworldSpriteGraphics(755)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0752),
-		OverworldSpriteGraphics(sprite0752),
-		OverworldSpriteGraphics(sprite0753, 1),
-		OverworldSpriteGraphics(sprite0753, 1),
-		OverworldSpriteGraphics(sprite0751),
-		OverworldSpriteGraphics(sprite0751),
-		OverworldSpriteGraphics(sprite0753),
-		OverworldSpriteGraphics(sprite0753),
-		OverworldSpriteGraphics(sprite0752),
-		OverworldSpriteGraphics(sprite0752),
-		OverworldSpriteGraphics(sprite0751),
-		OverworldSpriteGraphics(sprite0751),
-		OverworldSpriteGraphics(sprite0751),
-		OverworldSpriteGraphics(sprite0751),
-		OverworldSpriteGraphics(sprite0752),
-		OverworldSpriteGraphics(sprite0752)
+		OverworldSpriteGraphics(752),
+		OverworldSpriteGraphics(752),
+		OverworldSpriteGraphics(753, 1),
+		OverworldSpriteGraphics(753, 1),
+		OverworldSpriteGraphics(751),
+		OverworldSpriteGraphics(751),
+		OverworldSpriteGraphics(753),
+		OverworldSpriteGraphics(753),
+		OverworldSpriteGraphics(752),
+		OverworldSpriteGraphics(752),
+		OverworldSpriteGraphics(751),
+		OverworldSpriteGraphics(751),
+		OverworldSpriteGraphics(751),
+		OverworldSpriteGraphics(751),
+		OverworldSpriteGraphics(752),
+		OverworldSpriteGraphics(752)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097),
-		OverworldSpriteGraphics(sprite1097)
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097),
+		OverworldSpriteGraphics(1097)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1096),
-		OverworldSpriteGraphics(sprite1096),
-		OverworldSpriteGraphics(sprite1096),
-		OverworldSpriteGraphics(sprite1096),
-		OverworldSpriteGraphics(sprite1096),
-		OverworldSpriteGraphics(sprite1096),
-		OverworldSpriteGraphics(sprite1096),
-		OverworldSpriteGraphics(sprite1096)
+		OverworldSpriteGraphics(1096),
+		OverworldSpriteGraphics(1096),
+		OverworldSpriteGraphics(1096),
+		OverworldSpriteGraphics(1096),
+		OverworldSpriteGraphics(1096),
+		OverworldSpriteGraphics(1096),
+		OverworldSpriteGraphics(1096),
+		OverworldSpriteGraphics(1096)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1A, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1039),
-		OverworldSpriteGraphics(sprite1039),
-		OverworldSpriteGraphics(sprite1039),
-		OverworldSpriteGraphics(sprite1039),
-		OverworldSpriteGraphics(sprite1039),
-		OverworldSpriteGraphics(sprite1039),
-		OverworldSpriteGraphics(sprite1039),
-		OverworldSpriteGraphics(sprite1039)
+		OverworldSpriteGraphics(1039),
+		OverworldSpriteGraphics(1039),
+		OverworldSpriteGraphics(1039),
+		OverworldSpriteGraphics(1039),
+		OverworldSpriteGraphics(1039),
+		OverworldSpriteGraphics(1039),
+		OverworldSpriteGraphics(1039),
+		OverworldSpriteGraphics(1039)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1095),
-		OverworldSpriteGraphics(sprite1095),
-		OverworldSpriteGraphics(sprite1095),
-		OverworldSpriteGraphics(sprite1095),
-		OverworldSpriteGraphics(sprite1095),
-		OverworldSpriteGraphics(sprite1095),
-		OverworldSpriteGraphics(sprite1095, 1),
-		OverworldSpriteGraphics(sprite1095, 1)
+		OverworldSpriteGraphics(1095),
+		OverworldSpriteGraphics(1095),
+		OverworldSpriteGraphics(1095),
+		OverworldSpriteGraphics(1095),
+		OverworldSpriteGraphics(1095),
+		OverworldSpriteGraphics(1095),
+		OverworldSpriteGraphics(1095, 1),
+		OverworldSpriteGraphics(1095, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1094),
-		OverworldSpriteGraphics(sprite1094, 1),
-		OverworldSpriteGraphics(sprite1094),
-		OverworldSpriteGraphics(sprite1094, 1),
-		OverworldSpriteGraphics(sprite1094),
-		OverworldSpriteGraphics(sprite1094, 1),
-		OverworldSpriteGraphics(sprite1094),
-		OverworldSpriteGraphics(sprite1094, 1)
+		OverworldSpriteGraphics(1094),
+		OverworldSpriteGraphics(1094, 1),
+		OverworldSpriteGraphics(1094),
+		OverworldSpriteGraphics(1094, 1),
+		OverworldSpriteGraphics(1094),
+		OverworldSpriteGraphics(1094, 1),
+		OverworldSpriteGraphics(1094),
+		OverworldSpriteGraphics(1094, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1093),
-		OverworldSpriteGraphics(sprite1093, 1),
-		OverworldSpriteGraphics(sprite1093),
-		OverworldSpriteGraphics(sprite1093, 1),
-		OverworldSpriteGraphics(sprite1093),
-		OverworldSpriteGraphics(sprite1093, 1),
-		OverworldSpriteGraphics(sprite1093),
-		OverworldSpriteGraphics(sprite1093, 1)
+		OverworldSpriteGraphics(1093),
+		OverworldSpriteGraphics(1093, 1),
+		OverworldSpriteGraphics(1093),
+		OverworldSpriteGraphics(1093, 1),
+		OverworldSpriteGraphics(1093),
+		OverworldSpriteGraphics(1093, 1),
+		OverworldSpriteGraphics(1093),
+		OverworldSpriteGraphics(1093, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1092),
-		OverworldSpriteGraphics(sprite1092, 1),
-		OverworldSpriteGraphics(sprite1092),
-		OverworldSpriteGraphics(sprite1092, 1),
-		OverworldSpriteGraphics(sprite1092),
-		OverworldSpriteGraphics(sprite1092, 1),
-		OverworldSpriteGraphics(sprite1092),
-		OverworldSpriteGraphics(sprite1092, 1)
+		OverworldSpriteGraphics(1092),
+		OverworldSpriteGraphics(1092, 1),
+		OverworldSpriteGraphics(1092),
+		OverworldSpriteGraphics(1092, 1),
+		OverworldSpriteGraphics(1092),
+		OverworldSpriteGraphics(1092, 1),
+		OverworldSpriteGraphics(1092),
+		OverworldSpriteGraphics(1092, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1091),
-		OverworldSpriteGraphics(sprite1091, 1),
-		OverworldSpriteGraphics(sprite1091),
-		OverworldSpriteGraphics(sprite1091, 1),
-		OverworldSpriteGraphics(sprite1091),
-		OverworldSpriteGraphics(sprite1091, 1),
-		OverworldSpriteGraphics(sprite1091),
-		OverworldSpriteGraphics(sprite1091, 1)
+		OverworldSpriteGraphics(1091),
+		OverworldSpriteGraphics(1091, 1),
+		OverworldSpriteGraphics(1091),
+		OverworldSpriteGraphics(1091, 1),
+		OverworldSpriteGraphics(1091),
+		OverworldSpriteGraphics(1091, 1),
+		OverworldSpriteGraphics(1091),
+		OverworldSpriteGraphics(1091, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0932),
-		OverworldSpriteGraphics(sprite0933),
-		OverworldSpriteGraphics(sprite0932),
-		OverworldSpriteGraphics(sprite0933),
-		OverworldSpriteGraphics(sprite0932),
-		OverworldSpriteGraphics(sprite0933),
-		OverworldSpriteGraphics(sprite0932),
-		OverworldSpriteGraphics(sprite0933)
+		OverworldSpriteGraphics(932),
+		OverworldSpriteGraphics(933),
+		OverworldSpriteGraphics(932),
+		OverworldSpriteGraphics(933),
+		OverworldSpriteGraphics(932),
+		OverworldSpriteGraphics(933),
+		OverworldSpriteGraphics(932),
+		OverworldSpriteGraphics(933)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0930),
-		OverworldSpriteGraphics(sprite0931),
-		OverworldSpriteGraphics(sprite0930),
-		OverworldSpriteGraphics(sprite0931),
-		OverworldSpriteGraphics(sprite0930),
-		OverworldSpriteGraphics(sprite0931),
-		OverworldSpriteGraphics(sprite0930),
-		OverworldSpriteGraphics(sprite0931)
+		OverworldSpriteGraphics(930),
+		OverworldSpriteGraphics(931),
+		OverworldSpriteGraphics(930),
+		OverworldSpriteGraphics(931),
+		OverworldSpriteGraphics(930),
+		OverworldSpriteGraphics(931),
+		OverworldSpriteGraphics(930),
+		OverworldSpriteGraphics(931)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0928),
-		OverworldSpriteGraphics(sprite0929),
-		OverworldSpriteGraphics(sprite0928),
-		OverworldSpriteGraphics(sprite0929),
-		OverworldSpriteGraphics(sprite0928),
-		OverworldSpriteGraphics(sprite0929),
-		OverworldSpriteGraphics(sprite0928),
-		OverworldSpriteGraphics(sprite0929)
+		OverworldSpriteGraphics(928),
+		OverworldSpriteGraphics(929),
+		OverworldSpriteGraphics(928),
+		OverworldSpriteGraphics(929),
+		OverworldSpriteGraphics(928),
+		OverworldSpriteGraphics(929),
+		OverworldSpriteGraphics(928),
+		OverworldSpriteGraphics(929)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0926),
-		OverworldSpriteGraphics(sprite0927),
-		OverworldSpriteGraphics(sprite0926),
-		OverworldSpriteGraphics(sprite0927),
-		OverworldSpriteGraphics(sprite0926),
-		OverworldSpriteGraphics(sprite0927),
-		OverworldSpriteGraphics(sprite0926),
-		OverworldSpriteGraphics(sprite0927)
+		OverworldSpriteGraphics(926),
+		OverworldSpriteGraphics(927),
+		OverworldSpriteGraphics(926),
+		OverworldSpriteGraphics(927),
+		OverworldSpriteGraphics(926),
+		OverworldSpriteGraphics(927),
+		OverworldSpriteGraphics(926),
+		OverworldSpriteGraphics(927)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0115),
-		OverworldSpriteGraphics(sprite0115, 1),
-		OverworldSpriteGraphics(sprite0116, 1),
-		OverworldSpriteGraphics(sprite0117, 1),
-		OverworldSpriteGraphics(sprite0114),
-		OverworldSpriteGraphics(sprite0114, 1),
-		OverworldSpriteGraphics(sprite0116),
-		OverworldSpriteGraphics(sprite0117),
-		OverworldSpriteGraphics(sprite0120, 1),
-		OverworldSpriteGraphics(sprite0121, 1),
-		OverworldSpriteGraphics(sprite0118, 1),
-		OverworldSpriteGraphics(sprite0119, 1),
-		OverworldSpriteGraphics(sprite0118),
-		OverworldSpriteGraphics(sprite0119),
-		OverworldSpriteGraphics(sprite0120),
-		OverworldSpriteGraphics(sprite0121)
+		OverworldSpriteGraphics(115),
+		OverworldSpriteGraphics(115, 1),
+		OverworldSpriteGraphics(116, 1),
+		OverworldSpriteGraphics(117, 1),
+		OverworldSpriteGraphics(114),
+		OverworldSpriteGraphics(114, 1),
+		OverworldSpriteGraphics(116),
+		OverworldSpriteGraphics(117),
+		OverworldSpriteGraphics(120, 1),
+		OverworldSpriteGraphics(121, 1),
+		OverworldSpriteGraphics(118, 1),
+		OverworldSpriteGraphics(119, 1),
+		OverworldSpriteGraphics(118),
+		OverworldSpriteGraphics(119),
+		OverworldSpriteGraphics(120),
+		OverworldSpriteGraphics(121)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1090),
-		OverworldSpriteGraphics(sprite1090),
-		OverworldSpriteGraphics(sprite1090),
-		OverworldSpriteGraphics(sprite1090),
-		OverworldSpriteGraphics(sprite1090),
-		OverworldSpriteGraphics(sprite1090),
-		OverworldSpriteGraphics(sprite1090, 1),
-		OverworldSpriteGraphics(sprite1090, 1)
+		OverworldSpriteGraphics(1090),
+		OverworldSpriteGraphics(1090),
+		OverworldSpriteGraphics(1090),
+		OverworldSpriteGraphics(1090),
+		OverworldSpriteGraphics(1090),
+		OverworldSpriteGraphics(1090),
+		OverworldSpriteGraphics(1090, 1),
+		OverworldSpriteGraphics(1090, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite0923),
-		OverworldSpriteGraphics(sprite0923, 1),
-		OverworldSpriteGraphics(sprite0924, 1),
-		OverworldSpriteGraphics(sprite0925, 1),
-		OverworldSpriteGraphics(sprite0923),
-		OverworldSpriteGraphics(sprite0923, 1),
-		OverworldSpriteGraphics(sprite0924),
-		OverworldSpriteGraphics(sprite0925),
-		OverworldSpriteGraphics(sprite0923),
-		OverworldSpriteGraphics(sprite0923, 1),
-		OverworldSpriteGraphics(sprite0923),
-		OverworldSpriteGraphics(sprite0923, 1),
-		OverworldSpriteGraphics(sprite0923),
-		OverworldSpriteGraphics(sprite0923, 1),
-		OverworldSpriteGraphics(sprite0923),
-		OverworldSpriteGraphics(sprite0923, 1)
+		OverworldSpriteGraphics(923),
+		OverworldSpriteGraphics(923, 1),
+		OverworldSpriteGraphics(924, 1),
+		OverworldSpriteGraphics(925, 1),
+		OverworldSpriteGraphics(923),
+		OverworldSpriteGraphics(923, 1),
+		OverworldSpriteGraphics(924),
+		OverworldSpriteGraphics(925),
+		OverworldSpriteGraphics(923),
+		OverworldSpriteGraphics(923, 1),
+		OverworldSpriteGraphics(923),
+		OverworldSpriteGraphics(923, 1),
+		OverworldSpriteGraphics(923),
+		OverworldSpriteGraphics(923, 1),
+		OverworldSpriteGraphics(923),
+		OverworldSpriteGraphics(923, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite0920),
-		OverworldSpriteGraphics(sprite0920, 1),
-		OverworldSpriteGraphics(sprite0921, 1),
-		OverworldSpriteGraphics(sprite0922, 1),
-		OverworldSpriteGraphics(sprite0920),
-		OverworldSpriteGraphics(sprite0920, 1),
-		OverworldSpriteGraphics(sprite0921),
-		OverworldSpriteGraphics(sprite0922),
-		OverworldSpriteGraphics(sprite0920),
-		OverworldSpriteGraphics(sprite0920, 1),
-		OverworldSpriteGraphics(sprite0920),
-		OverworldSpriteGraphics(sprite0920, 1),
-		OverworldSpriteGraphics(sprite0920),
-		OverworldSpriteGraphics(sprite0920, 1),
-		OverworldSpriteGraphics(sprite0920),
-		OverworldSpriteGraphics(sprite0920, 1)
+		OverworldSpriteGraphics(920),
+		OverworldSpriteGraphics(920, 1),
+		OverworldSpriteGraphics(921, 1),
+		OverworldSpriteGraphics(922, 1),
+		OverworldSpriteGraphics(920),
+		OverworldSpriteGraphics(920, 1),
+		OverworldSpriteGraphics(921),
+		OverworldSpriteGraphics(922),
+		OverworldSpriteGraphics(920),
+		OverworldSpriteGraphics(920, 1),
+		OverworldSpriteGraphics(920),
+		OverworldSpriteGraphics(920, 1),
+		OverworldSpriteGraphics(920),
+		OverworldSpriteGraphics(920, 1),
+		OverworldSpriteGraphics(920),
+		OverworldSpriteGraphics(920, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite0917),
-		OverworldSpriteGraphics(sprite0917, 1),
-		OverworldSpriteGraphics(sprite0918, 1),
-		OverworldSpriteGraphics(sprite0919, 1),
-		OverworldSpriteGraphics(sprite0917),
-		OverworldSpriteGraphics(sprite0917, 1),
-		OverworldSpriteGraphics(sprite0918),
-		OverworldSpriteGraphics(sprite0919),
-		OverworldSpriteGraphics(sprite0917),
-		OverworldSpriteGraphics(sprite0917, 1),
-		OverworldSpriteGraphics(sprite0917),
-		OverworldSpriteGraphics(sprite0917, 1),
-		OverworldSpriteGraphics(sprite0917),
-		OverworldSpriteGraphics(sprite0917, 1),
-		OverworldSpriteGraphics(sprite0917),
-		OverworldSpriteGraphics(sprite0917, 1)
+		OverworldSpriteGraphics(917),
+		OverworldSpriteGraphics(917, 1),
+		OverworldSpriteGraphics(918, 1),
+		OverworldSpriteGraphics(919, 1),
+		OverworldSpriteGraphics(917),
+		OverworldSpriteGraphics(917, 1),
+		OverworldSpriteGraphics(918),
+		OverworldSpriteGraphics(919),
+		OverworldSpriteGraphics(917),
+		OverworldSpriteGraphics(917, 1),
+		OverworldSpriteGraphics(917),
+		OverworldSpriteGraphics(917, 1),
+		OverworldSpriteGraphics(917),
+		OverworldSpriteGraphics(917, 1),
+		OverworldSpriteGraphics(917),
+		OverworldSpriteGraphics(917, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite0914),
-		OverworldSpriteGraphics(sprite0914, 1),
-		OverworldSpriteGraphics(sprite0915, 1),
-		OverworldSpriteGraphics(sprite0916, 1),
-		OverworldSpriteGraphics(sprite0914),
-		OverworldSpriteGraphics(sprite0914, 1),
-		OverworldSpriteGraphics(sprite0915),
-		OverworldSpriteGraphics(sprite0916),
-		OverworldSpriteGraphics(sprite0914),
-		OverworldSpriteGraphics(sprite0914, 1),
-		OverworldSpriteGraphics(sprite0914),
-		OverworldSpriteGraphics(sprite0914, 1),
-		OverworldSpriteGraphics(sprite0914),
-		OverworldSpriteGraphics(sprite0914, 1),
-		OverworldSpriteGraphics(sprite0914),
-		OverworldSpriteGraphics(sprite0914, 1)
+		OverworldSpriteGraphics(914),
+		OverworldSpriteGraphics(914, 1),
+		OverworldSpriteGraphics(915, 1),
+		OverworldSpriteGraphics(916, 1),
+		OverworldSpriteGraphics(914),
+		OverworldSpriteGraphics(914, 1),
+		OverworldSpriteGraphics(915),
+		OverworldSpriteGraphics(916),
+		OverworldSpriteGraphics(914),
+		OverworldSpriteGraphics(914, 1),
+		OverworldSpriteGraphics(914),
+		OverworldSpriteGraphics(914, 1),
+		OverworldSpriteGraphics(914),
+		OverworldSpriteGraphics(914, 1),
+		OverworldSpriteGraphics(914),
+		OverworldSpriteGraphics(914, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite0911),
-		OverworldSpriteGraphics(sprite0911, 1),
-		OverworldSpriteGraphics(sprite0912, 1),
-		OverworldSpriteGraphics(sprite0913, 1),
-		OverworldSpriteGraphics(sprite0911),
-		OverworldSpriteGraphics(sprite0911, 1),
-		OverworldSpriteGraphics(sprite0912),
-		OverworldSpriteGraphics(sprite0913)
+		OverworldSpriteGraphics(911),
+		OverworldSpriteGraphics(911, 1),
+		OverworldSpriteGraphics(912, 1),
+		OverworldSpriteGraphics(913, 1),
+		OverworldSpriteGraphics(911),
+		OverworldSpriteGraphics(911, 1),
+		OverworldSpriteGraphics(912),
+		OverworldSpriteGraphics(913)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite0908),
-		OverworldSpriteGraphics(sprite0908, 1),
-		OverworldSpriteGraphics(sprite0909, 1),
-		OverworldSpriteGraphics(sprite0910, 1),
-		OverworldSpriteGraphics(sprite0908),
-		OverworldSpriteGraphics(sprite0908, 1),
-		OverworldSpriteGraphics(sprite0909),
-		OverworldSpriteGraphics(sprite0910)
+		OverworldSpriteGraphics(908),
+		OverworldSpriteGraphics(908, 1),
+		OverworldSpriteGraphics(909, 1),
+		OverworldSpriteGraphics(910, 1),
+		OverworldSpriteGraphics(908),
+		OverworldSpriteGraphics(908, 1),
+		OverworldSpriteGraphics(909),
+		OverworldSpriteGraphics(910)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite1038),
-		OverworldSpriteGraphics(sprite1038),
-		OverworldSpriteGraphics(sprite1038),
-		OverworldSpriteGraphics(sprite1038),
-		OverworldSpriteGraphics(sprite1037),
-		OverworldSpriteGraphics(sprite1037),
-		OverworldSpriteGraphics(sprite1037),
-		OverworldSpriteGraphics(sprite1037)
+		OverworldSpriteGraphics(1038),
+		OverworldSpriteGraphics(1038),
+		OverworldSpriteGraphics(1038),
+		OverworldSpriteGraphics(1038),
+		OverworldSpriteGraphics(1037),
+		OverworldSpriteGraphics(1037),
+		OverworldSpriteGraphics(1037),
+		OverworldSpriteGraphics(1037)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1036, 1),
-		OverworldSpriteGraphics(sprite1036, 1),
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1036),
-		OverworldSpriteGraphics(sprite1036),
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1035, 1),
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1035, 1),
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1035, 1),
-		OverworldSpriteGraphics(sprite1035),
-		OverworldSpriteGraphics(sprite1035, 1)
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1036, 1),
+		OverworldSpriteGraphics(1036, 1),
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1036),
+		OverworldSpriteGraphics(1036),
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1035, 1),
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1035, 1),
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1035, 1),
+		OverworldSpriteGraphics(1035),
+		OverworldSpriteGraphics(1035, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1034),
-		OverworldSpriteGraphics(sprite1034),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1034, 1),
-		OverworldSpriteGraphics(sprite1034, 1),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033),
-		OverworldSpriteGraphics(sprite1033)
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1034),
+		OverworldSpriteGraphics(1034),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1034, 1),
+		OverworldSpriteGraphics(1034, 1),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033),
+		OverworldSpriteGraphics(1033)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143),
-		OverworldSpriteGraphics(sprite1143)
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143),
+		OverworldSpriteGraphics(1143)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142),
-		OverworldSpriteGraphics(sprite1142)
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142),
+		OverworldSpriteGraphics(1142)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite1141),
-		OverworldSpriteGraphics(sprite1141),
-		OverworldSpriteGraphics(sprite1141),
-		OverworldSpriteGraphics(sprite1141),
-		OverworldSpriteGraphics(sprite1141),
-		OverworldSpriteGraphics(sprite1141),
-		OverworldSpriteGraphics(sprite1141),
-		OverworldSpriteGraphics(sprite1141)
+		OverworldSpriteGraphics(1141),
+		OverworldSpriteGraphics(1141),
+		OverworldSpriteGraphics(1141),
+		OverworldSpriteGraphics(1141),
+		OverworldSpriteGraphics(1141),
+		OverworldSpriteGraphics(1141),
+		OverworldSpriteGraphics(1141),
+		OverworldSpriteGraphics(1141)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0710),
-		OverworldSpriteGraphics(sprite0710, 1),
-		OverworldSpriteGraphics(sprite0711, 1),
-		OverworldSpriteGraphics(sprite0712, 1),
-		OverworldSpriteGraphics(sprite0709),
-		OverworldSpriteGraphics(sprite0709, 1),
-		OverworldSpriteGraphics(sprite0711),
-		OverworldSpriteGraphics(sprite0712),
-		OverworldSpriteGraphics(sprite0710),
-		OverworldSpriteGraphics(sprite0710, 1),
-		OverworldSpriteGraphics(sprite0709),
-		OverworldSpriteGraphics(sprite0709, 1),
-		OverworldSpriteGraphics(sprite0709),
-		OverworldSpriteGraphics(sprite0709, 1),
-		OverworldSpriteGraphics(sprite0710),
-		OverworldSpriteGraphics(sprite0710, 1)
+		OverworldSpriteGraphics(710),
+		OverworldSpriteGraphics(710, 1),
+		OverworldSpriteGraphics(711, 1),
+		OverworldSpriteGraphics(712, 1),
+		OverworldSpriteGraphics(709),
+		OverworldSpriteGraphics(709, 1),
+		OverworldSpriteGraphics(711),
+		OverworldSpriteGraphics(712),
+		OverworldSpriteGraphics(710),
+		OverworldSpriteGraphics(710, 1),
+		OverworldSpriteGraphics(709),
+		OverworldSpriteGraphics(709, 1),
+		OverworldSpriteGraphics(709),
+		OverworldSpriteGraphics(709, 1),
+		OverworldSpriteGraphics(710),
+		OverworldSpriteGraphics(710, 1)
 	]),
 	SpriteGrouping(0x03, 0x30, 0x06, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0159),
-		OverworldSpriteGraphics(sprite0159, 1),
-		OverworldSpriteGraphics(sprite0160, 1),
-		OverworldSpriteGraphics(sprite0161, 1),
-		OverworldSpriteGraphics(sprite0158),
-		OverworldSpriteGraphics(sprite0158, 1),
-		OverworldSpriteGraphics(sprite0160),
-		OverworldSpriteGraphics(sprite0161),
-		OverworldSpriteGraphics(sprite0159),
-		OverworldSpriteGraphics(sprite0159, 1),
-		OverworldSpriteGraphics(sprite0158),
-		OverworldSpriteGraphics(sprite0158, 1),
-		OverworldSpriteGraphics(sprite0158),
-		OverworldSpriteGraphics(sprite0158, 1),
-		OverworldSpriteGraphics(sprite0159),
-		OverworldSpriteGraphics(sprite0159, 1)
+		OverworldSpriteGraphics(159),
+		OverworldSpriteGraphics(159, 1),
+		OverworldSpriteGraphics(160, 1),
+		OverworldSpriteGraphics(161, 1),
+		OverworldSpriteGraphics(158),
+		OverworldSpriteGraphics(158, 1),
+		OverworldSpriteGraphics(160),
+		OverworldSpriteGraphics(161),
+		OverworldSpriteGraphics(159),
+		OverworldSpriteGraphics(159, 1),
+		OverworldSpriteGraphics(158),
+		OverworldSpriteGraphics(158, 1),
+		OverworldSpriteGraphics(158),
+		OverworldSpriteGraphics(158, 1),
+		OverworldSpriteGraphics(159),
+		OverworldSpriteGraphics(159, 1)
 	]),
 	SpriteGrouping(0x0A, 0x80, 0x10, 0x16, 0x18, 0x18, 0x18, 0x18, 0,
 	[
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1),
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1),
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1),
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1),
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1),
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1),
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1),
-		OverworldSpriteGraphics(sprite0018),
-		OverworldSpriteGraphics(sprite0018, 1)
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1),
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1),
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1),
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1),
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1),
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1),
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1),
+		OverworldSpriteGraphics(18),
+		OverworldSpriteGraphics(18, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1102),
-		OverworldSpriteGraphics(sprite1102, 1),
-		OverworldSpriteGraphics(sprite1102),
-		OverworldSpriteGraphics(sprite1102, 1),
-		OverworldSpriteGraphics(sprite1102),
-		OverworldSpriteGraphics(sprite1102, 1),
-		OverworldSpriteGraphics(sprite1102),
-		OverworldSpriteGraphics(sprite1102, 1)
+		OverworldSpriteGraphics(1102),
+		OverworldSpriteGraphics(1102, 1),
+		OverworldSpriteGraphics(1102),
+		OverworldSpriteGraphics(1102, 1),
+		OverworldSpriteGraphics(1102),
+		OverworldSpriteGraphics(1102, 1),
+		OverworldSpriteGraphics(1102),
+		OverworldSpriteGraphics(1102, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0953),
-		OverworldSpriteGraphics(sprite0954),
-		OverworldSpriteGraphics(sprite0953),
-		OverworldSpriteGraphics(sprite0954),
-		OverworldSpriteGraphics(sprite0953),
-		OverworldSpriteGraphics(sprite0954),
-		OverworldSpriteGraphics(sprite0953),
-		OverworldSpriteGraphics(sprite0954)
+		OverworldSpriteGraphics(953),
+		OverworldSpriteGraphics(954),
+		OverworldSpriteGraphics(953),
+		OverworldSpriteGraphics(954),
+		OverworldSpriteGraphics(953),
+		OverworldSpriteGraphics(954),
+		OverworldSpriteGraphics(953),
+		OverworldSpriteGraphics(954)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0706),
-		OverworldSpriteGraphics(sprite0706, 1),
-		OverworldSpriteGraphics(sprite0707, 1),
-		OverworldSpriteGraphics(sprite0708, 1),
-		OverworldSpriteGraphics(sprite0705),
-		OverworldSpriteGraphics(sprite0705, 1),
-		OverworldSpriteGraphics(sprite0707),
-		OverworldSpriteGraphics(sprite0708),
-		OverworldSpriteGraphics(sprite0706),
-		OverworldSpriteGraphics(sprite0706, 1),
-		OverworldSpriteGraphics(sprite0705),
-		OverworldSpriteGraphics(sprite0705, 1),
-		OverworldSpriteGraphics(sprite0705),
-		OverworldSpriteGraphics(sprite0705, 1),
-		OverworldSpriteGraphics(sprite0706),
-		OverworldSpriteGraphics(sprite0706, 1)
+		OverworldSpriteGraphics(706),
+		OverworldSpriteGraphics(706, 1),
+		OverworldSpriteGraphics(707, 1),
+		OverworldSpriteGraphics(708, 1),
+		OverworldSpriteGraphics(705),
+		OverworldSpriteGraphics(705, 1),
+		OverworldSpriteGraphics(707),
+		OverworldSpriteGraphics(708),
+		OverworldSpriteGraphics(706),
+		OverworldSpriteGraphics(706, 1),
+		OverworldSpriteGraphics(705),
+		OverworldSpriteGraphics(705, 1),
+		OverworldSpriteGraphics(705),
+		OverworldSpriteGraphics(705, 1),
+		OverworldSpriteGraphics(706),
+		OverworldSpriteGraphics(706, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0702),
-		OverworldSpriteGraphics(sprite0702, 1),
-		OverworldSpriteGraphics(sprite0703, 1),
-		OverworldSpriteGraphics(sprite0704, 1),
-		OverworldSpriteGraphics(sprite0701),
-		OverworldSpriteGraphics(sprite0701, 1),
-		OverworldSpriteGraphics(sprite0703),
-		OverworldSpriteGraphics(sprite0704),
-		OverworldSpriteGraphics(sprite0702),
-		OverworldSpriteGraphics(sprite0702, 1),
-		OverworldSpriteGraphics(sprite0701),
-		OverworldSpriteGraphics(sprite0701, 1),
-		OverworldSpriteGraphics(sprite0701),
-		OverworldSpriteGraphics(sprite0701, 1),
-		OverworldSpriteGraphics(sprite0702),
-		OverworldSpriteGraphics(sprite0702, 1)
+		OverworldSpriteGraphics(702),
+		OverworldSpriteGraphics(702, 1),
+		OverworldSpriteGraphics(703, 1),
+		OverworldSpriteGraphics(704, 1),
+		OverworldSpriteGraphics(701),
+		OverworldSpriteGraphics(701, 1),
+		OverworldSpriteGraphics(703),
+		OverworldSpriteGraphics(704),
+		OverworldSpriteGraphics(702),
+		OverworldSpriteGraphics(702, 1),
+		OverworldSpriteGraphics(701),
+		OverworldSpriteGraphics(701, 1),
+		OverworldSpriteGraphics(701),
+		OverworldSpriteGraphics(701, 1),
+		OverworldSpriteGraphics(702),
+		OverworldSpriteGraphics(702, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0698),
-		OverworldSpriteGraphics(sprite0698, 1),
-		OverworldSpriteGraphics(sprite0699, 1),
-		OverworldSpriteGraphics(sprite0700, 1),
-		OverworldSpriteGraphics(sprite0697),
-		OverworldSpriteGraphics(sprite0697, 1),
-		OverworldSpriteGraphics(sprite0699),
-		OverworldSpriteGraphics(sprite0700),
-		OverworldSpriteGraphics(sprite0698),
-		OverworldSpriteGraphics(sprite0698, 1),
-		OverworldSpriteGraphics(sprite0697),
-		OverworldSpriteGraphics(sprite0697, 1),
-		OverworldSpriteGraphics(sprite0697),
-		OverworldSpriteGraphics(sprite0697, 1),
-		OverworldSpriteGraphics(sprite0698),
-		OverworldSpriteGraphics(sprite0698, 1)
+		OverworldSpriteGraphics(698),
+		OverworldSpriteGraphics(698, 1),
+		OverworldSpriteGraphics(699, 1),
+		OverworldSpriteGraphics(700, 1),
+		OverworldSpriteGraphics(697),
+		OverworldSpriteGraphics(697, 1),
+		OverworldSpriteGraphics(699),
+		OverworldSpriteGraphics(700),
+		OverworldSpriteGraphics(698),
+		OverworldSpriteGraphics(698, 1),
+		OverworldSpriteGraphics(697),
+		OverworldSpriteGraphics(697, 1),
+		OverworldSpriteGraphics(697),
+		OverworldSpriteGraphics(697, 1),
+		OverworldSpriteGraphics(698),
+		OverworldSpriteGraphics(698, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952),
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952),
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952),
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952),
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952),
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952),
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952),
-		OverworldSpriteGraphics(sprite0951),
-		OverworldSpriteGraphics(sprite0952)
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952),
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952),
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952),
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952),
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952),
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952),
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952),
+		OverworldSpriteGraphics(951),
+		OverworldSpriteGraphics(952)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0694),
-		OverworldSpriteGraphics(sprite0694, 1),
-		OverworldSpriteGraphics(sprite0695, 1),
-		OverworldSpriteGraphics(sprite0696, 1),
-		OverworldSpriteGraphics(sprite0693),
-		OverworldSpriteGraphics(sprite0693, 1),
-		OverworldSpriteGraphics(sprite0695),
-		OverworldSpriteGraphics(sprite0696),
-		OverworldSpriteGraphics(sprite0694),
-		OverworldSpriteGraphics(sprite0694, 1),
-		OverworldSpriteGraphics(sprite0693),
-		OverworldSpriteGraphics(sprite0693, 1),
-		OverworldSpriteGraphics(sprite0693),
-		OverworldSpriteGraphics(sprite0693, 1),
-		OverworldSpriteGraphics(sprite0694),
-		OverworldSpriteGraphics(sprite0694, 1)
+		OverworldSpriteGraphics(694),
+		OverworldSpriteGraphics(694, 1),
+		OverworldSpriteGraphics(695, 1),
+		OverworldSpriteGraphics(696, 1),
+		OverworldSpriteGraphics(693),
+		OverworldSpriteGraphics(693, 1),
+		OverworldSpriteGraphics(695),
+		OverworldSpriteGraphics(696),
+		OverworldSpriteGraphics(694),
+		OverworldSpriteGraphics(694, 1),
+		OverworldSpriteGraphics(693),
+		OverworldSpriteGraphics(693, 1),
+		OverworldSpriteGraphics(693),
+		OverworldSpriteGraphics(693, 1),
+		OverworldSpriteGraphics(694),
+		OverworldSpriteGraphics(694, 1)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0176),
-		OverworldSpriteGraphics(sprite0176),
-		OverworldSpriteGraphics(sprite0177),
-		OverworldSpriteGraphics(sprite0177),
-		OverworldSpriteGraphics(sprite0177),
-		OverworldSpriteGraphics(sprite0177),
-		OverworldSpriteGraphics(sprite0176),
-		OverworldSpriteGraphics(sprite0176)
+		OverworldSpriteGraphics(176),
+		OverworldSpriteGraphics(176),
+		OverworldSpriteGraphics(177),
+		OverworldSpriteGraphics(177),
+		OverworldSpriteGraphics(177),
+		OverworldSpriteGraphics(177),
+		OverworldSpriteGraphics(176),
+		OverworldSpriteGraphics(176)
 	]),
 	SpriteGrouping(0x05, 0x30, 0x0A, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0864),
-		OverworldSpriteGraphics(sprite0864),
-		OverworldSpriteGraphics(sprite0864),
-		OverworldSpriteGraphics(sprite0864),
-		OverworldSpriteGraphics(sprite0864),
-		OverworldSpriteGraphics(sprite0864),
-		OverworldSpriteGraphics(sprite0864),
-		OverworldSpriteGraphics(sprite0864)
+		OverworldSpriteGraphics(864),
+		OverworldSpriteGraphics(864),
+		OverworldSpriteGraphics(864),
+		OverworldSpriteGraphics(864),
+		OverworldSpriteGraphics(864),
+		OverworldSpriteGraphics(864),
+		OverworldSpriteGraphics(864),
+		OverworldSpriteGraphics(864)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0748),
-		OverworldSpriteGraphics(sprite0748),
-		OverworldSpriteGraphics(sprite0750),
-		OverworldSpriteGraphics(sprite0750),
-		OverworldSpriteGraphics(sprite0749),
-		OverworldSpriteGraphics(sprite0749),
-		OverworldSpriteGraphics(sprite0750, 1),
-		OverworldSpriteGraphics(sprite0750, 1),
-		OverworldSpriteGraphics(sprite0748),
-		OverworldSpriteGraphics(sprite0748),
-		OverworldSpriteGraphics(sprite0749),
-		OverworldSpriteGraphics(sprite0749),
-		OverworldSpriteGraphics(sprite0749),
-		OverworldSpriteGraphics(sprite0749),
-		OverworldSpriteGraphics(sprite0748),
-		OverworldSpriteGraphics(sprite0748)
+		OverworldSpriteGraphics(748),
+		OverworldSpriteGraphics(748),
+		OverworldSpriteGraphics(750),
+		OverworldSpriteGraphics(750),
+		OverworldSpriteGraphics(749),
+		OverworldSpriteGraphics(749),
+		OverworldSpriteGraphics(750, 1),
+		OverworldSpriteGraphics(750, 1),
+		OverworldSpriteGraphics(748),
+		OverworldSpriteGraphics(748),
+		OverworldSpriteGraphics(749),
+		OverworldSpriteGraphics(749),
+		OverworldSpriteGraphics(749),
+		OverworldSpriteGraphics(749),
+		OverworldSpriteGraphics(748),
+		OverworldSpriteGraphics(748)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0687),
-		OverworldSpriteGraphics(sprite0687, 1),
-		OverworldSpriteGraphics(sprite0688, 1),
-		OverworldSpriteGraphics(sprite0689, 1),
-		OverworldSpriteGraphics(sprite0686),
-		OverworldSpriteGraphics(sprite0686, 1),
-		OverworldSpriteGraphics(sprite0688),
-		OverworldSpriteGraphics(sprite0689)
+		OverworldSpriteGraphics(687),
+		OverworldSpriteGraphics(687, 1),
+		OverworldSpriteGraphics(688, 1),
+		OverworldSpriteGraphics(689, 1),
+		OverworldSpriteGraphics(686),
+		OverworldSpriteGraphics(686, 1),
+		OverworldSpriteGraphics(688),
+		OverworldSpriteGraphics(689)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0683),
-		OverworldSpriteGraphics(sprite0683, 1),
-		OverworldSpriteGraphics(sprite0684, 1),
-		OverworldSpriteGraphics(sprite0685, 1),
-		OverworldSpriteGraphics(sprite0682),
-		OverworldSpriteGraphics(sprite0682, 1),
-		OverworldSpriteGraphics(sprite0684),
-		OverworldSpriteGraphics(sprite0685)
+		OverworldSpriteGraphics(683),
+		OverworldSpriteGraphics(683, 1),
+		OverworldSpriteGraphics(684, 1),
+		OverworldSpriteGraphics(685, 1),
+		OverworldSpriteGraphics(682),
+		OverworldSpriteGraphics(682, 1),
+		OverworldSpriteGraphics(684),
+		OverworldSpriteGraphics(685)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0679),
-		OverworldSpriteGraphics(sprite0679, 1),
-		OverworldSpriteGraphics(sprite0680, 1),
-		OverworldSpriteGraphics(sprite0681, 1),
-		OverworldSpriteGraphics(sprite0678),
-		OverworldSpriteGraphics(sprite0678, 1),
-		OverworldSpriteGraphics(sprite0680),
-		OverworldSpriteGraphics(sprite0681)
+		OverworldSpriteGraphics(679),
+		OverworldSpriteGraphics(679, 1),
+		OverworldSpriteGraphics(680, 1),
+		OverworldSpriteGraphics(681, 1),
+		OverworldSpriteGraphics(678),
+		OverworldSpriteGraphics(678, 1),
+		OverworldSpriteGraphics(680),
+		OverworldSpriteGraphics(681)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0675),
-		OverworldSpriteGraphics(sprite0675, 1),
-		OverworldSpriteGraphics(sprite0676, 1),
-		OverworldSpriteGraphics(sprite0677, 1),
-		OverworldSpriteGraphics(sprite0674),
-		OverworldSpriteGraphics(sprite0674, 1),
-		OverworldSpriteGraphics(sprite0676),
-		OverworldSpriteGraphics(sprite0677)
+		OverworldSpriteGraphics(675),
+		OverworldSpriteGraphics(675, 1),
+		OverworldSpriteGraphics(676, 1),
+		OverworldSpriteGraphics(677, 1),
+		OverworldSpriteGraphics(674),
+		OverworldSpriteGraphics(674, 1),
+		OverworldSpriteGraphics(676),
+		OverworldSpriteGraphics(677)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0671),
-		OverworldSpriteGraphics(sprite0671, 1),
-		OverworldSpriteGraphics(sprite0672, 1),
-		OverworldSpriteGraphics(sprite0673, 1),
-		OverworldSpriteGraphics(sprite0670),
-		OverworldSpriteGraphics(sprite0670, 1),
-		OverworldSpriteGraphics(sprite0672),
-		OverworldSpriteGraphics(sprite0673)
+		OverworldSpriteGraphics(671),
+		OverworldSpriteGraphics(671, 1),
+		OverworldSpriteGraphics(672, 1),
+		OverworldSpriteGraphics(673, 1),
+		OverworldSpriteGraphics(670),
+		OverworldSpriteGraphics(670, 1),
+		OverworldSpriteGraphics(672),
+		OverworldSpriteGraphics(673)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0667),
-		OverworldSpriteGraphics(sprite0667, 1),
-		OverworldSpriteGraphics(sprite0668, 1),
-		OverworldSpriteGraphics(sprite0669, 1),
-		OverworldSpriteGraphics(sprite0666),
-		OverworldSpriteGraphics(sprite0666, 1),
-		OverworldSpriteGraphics(sprite0668),
-		OverworldSpriteGraphics(sprite0669)
+		OverworldSpriteGraphics(667),
+		OverworldSpriteGraphics(667, 1),
+		OverworldSpriteGraphics(668, 1),
+		OverworldSpriteGraphics(669, 1),
+		OverworldSpriteGraphics(666),
+		OverworldSpriteGraphics(666, 1),
+		OverworldSpriteGraphics(668),
+		OverworldSpriteGraphics(669)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0663),
-		OverworldSpriteGraphics(sprite0663, 1),
-		OverworldSpriteGraphics(sprite0664, 1),
-		OverworldSpriteGraphics(sprite0665, 1),
-		OverworldSpriteGraphics(sprite0662),
-		OverworldSpriteGraphics(sprite0662, 1),
-		OverworldSpriteGraphics(sprite0664),
-		OverworldSpriteGraphics(sprite0665)
+		OverworldSpriteGraphics(663),
+		OverworldSpriteGraphics(663, 1),
+		OverworldSpriteGraphics(664, 1),
+		OverworldSpriteGraphics(665, 1),
+		OverworldSpriteGraphics(662),
+		OverworldSpriteGraphics(662, 1),
+		OverworldSpriteGraphics(664),
+		OverworldSpriteGraphics(665)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0659),
-		OverworldSpriteGraphics(sprite0659, 1),
-		OverworldSpriteGraphics(sprite0660, 1),
-		OverworldSpriteGraphics(sprite0661, 1),
-		OverworldSpriteGraphics(sprite0658),
-		OverworldSpriteGraphics(sprite0658, 1),
-		OverworldSpriteGraphics(sprite0660),
-		OverworldSpriteGraphics(sprite0661)
+		OverworldSpriteGraphics(659),
+		OverworldSpriteGraphics(659, 1),
+		OverworldSpriteGraphics(660, 1),
+		OverworldSpriteGraphics(661, 1),
+		OverworldSpriteGraphics(658),
+		OverworldSpriteGraphics(658, 1),
+		OverworldSpriteGraphics(660),
+		OverworldSpriteGraphics(661)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0769),
-		OverworldSpriteGraphics(sprite0770),
-		OverworldSpriteGraphics(sprite0771, 1),
-		OverworldSpriteGraphics(sprite0771, 1),
-		OverworldSpriteGraphics(sprite0769),
-		OverworldSpriteGraphics(sprite0770),
-		OverworldSpriteGraphics(sprite0771),
-		OverworldSpriteGraphics(sprite0771)
+		OverworldSpriteGraphics(769),
+		OverworldSpriteGraphics(770),
+		OverworldSpriteGraphics(771, 1),
+		OverworldSpriteGraphics(771, 1),
+		OverworldSpriteGraphics(769),
+		OverworldSpriteGraphics(770),
+		OverworldSpriteGraphics(771),
+		OverworldSpriteGraphics(771)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0655),
-		OverworldSpriteGraphics(sprite0655, 1),
-		OverworldSpriteGraphics(sprite0656, 1),
-		OverworldSpriteGraphics(sprite0657, 1),
-		OverworldSpriteGraphics(sprite0654),
-		OverworldSpriteGraphics(sprite0654, 1),
-		OverworldSpriteGraphics(sprite0656),
-		OverworldSpriteGraphics(sprite0657)
+		OverworldSpriteGraphics(655),
+		OverworldSpriteGraphics(655, 1),
+		OverworldSpriteGraphics(656, 1),
+		OverworldSpriteGraphics(657, 1),
+		OverworldSpriteGraphics(654),
+		OverworldSpriteGraphics(654, 1),
+		OverworldSpriteGraphics(656),
+		OverworldSpriteGraphics(657)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0651),
-		OverworldSpriteGraphics(sprite0651, 1),
-		OverworldSpriteGraphics(sprite0652, 1),
-		OverworldSpriteGraphics(sprite0653, 1),
-		OverworldSpriteGraphics(sprite0650),
-		OverworldSpriteGraphics(sprite0650, 1),
-		OverworldSpriteGraphics(sprite0652),
-		OverworldSpriteGraphics(sprite0653)
+		OverworldSpriteGraphics(651),
+		OverworldSpriteGraphics(651, 1),
+		OverworldSpriteGraphics(652, 1),
+		OverworldSpriteGraphics(653, 1),
+		OverworldSpriteGraphics(650),
+		OverworldSpriteGraphics(650, 1),
+		OverworldSpriteGraphics(652),
+		OverworldSpriteGraphics(653)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0647),
-		OverworldSpriteGraphics(sprite0647, 1),
-		OverworldSpriteGraphics(sprite0648, 1),
-		OverworldSpriteGraphics(sprite0649, 1),
-		OverworldSpriteGraphics(sprite0646),
-		OverworldSpriteGraphics(sprite0646, 1),
-		OverworldSpriteGraphics(sprite0648),
-		OverworldSpriteGraphics(sprite0649)
+		OverworldSpriteGraphics(647),
+		OverworldSpriteGraphics(647, 1),
+		OverworldSpriteGraphics(648, 1),
+		OverworldSpriteGraphics(649, 1),
+		OverworldSpriteGraphics(646),
+		OverworldSpriteGraphics(646, 1),
+		OverworldSpriteGraphics(648),
+		OverworldSpriteGraphics(649)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0643),
-		OverworldSpriteGraphics(sprite0643, 1),
-		OverworldSpriteGraphics(sprite0644, 1),
-		OverworldSpriteGraphics(sprite0645, 1),
-		OverworldSpriteGraphics(sprite0642),
-		OverworldSpriteGraphics(sprite0642, 1),
-		OverworldSpriteGraphics(sprite0644),
-		OverworldSpriteGraphics(sprite0645)
+		OverworldSpriteGraphics(643),
+		OverworldSpriteGraphics(643, 1),
+		OverworldSpriteGraphics(644, 1),
+		OverworldSpriteGraphics(645, 1),
+		OverworldSpriteGraphics(642),
+		OverworldSpriteGraphics(642, 1),
+		OverworldSpriteGraphics(644),
+		OverworldSpriteGraphics(645)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0639),
-		OverworldSpriteGraphics(sprite0639, 1),
-		OverworldSpriteGraphics(sprite0640, 1),
-		OverworldSpriteGraphics(sprite0641, 1),
-		OverworldSpriteGraphics(sprite0638),
-		OverworldSpriteGraphics(sprite0638, 1),
-		OverworldSpriteGraphics(sprite0640),
-		OverworldSpriteGraphics(sprite0641)
+		OverworldSpriteGraphics(639),
+		OverworldSpriteGraphics(639, 1),
+		OverworldSpriteGraphics(640, 1),
+		OverworldSpriteGraphics(641, 1),
+		OverworldSpriteGraphics(638),
+		OverworldSpriteGraphics(638, 1),
+		OverworldSpriteGraphics(640),
+		OverworldSpriteGraphics(641)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0635),
-		OverworldSpriteGraphics(sprite0635, 1),
-		OverworldSpriteGraphics(sprite0636, 1),
-		OverworldSpriteGraphics(sprite0637, 1),
-		OverworldSpriteGraphics(sprite0634),
-		OverworldSpriteGraphics(sprite0634, 1),
-		OverworldSpriteGraphics(sprite0636),
-		OverworldSpriteGraphics(sprite0637)
+		OverworldSpriteGraphics(635),
+		OverworldSpriteGraphics(635, 1),
+		OverworldSpriteGraphics(636, 1),
+		OverworldSpriteGraphics(637, 1),
+		OverworldSpriteGraphics(634),
+		OverworldSpriteGraphics(634, 1),
+		OverworldSpriteGraphics(636),
+		OverworldSpriteGraphics(637)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0631),
-		OverworldSpriteGraphics(sprite0631, 1),
-		OverworldSpriteGraphics(sprite0632, 1),
-		OverworldSpriteGraphics(sprite0633, 1),
-		OverworldSpriteGraphics(sprite0630),
-		OverworldSpriteGraphics(sprite0630, 1),
-		OverworldSpriteGraphics(sprite0632),
-		OverworldSpriteGraphics(sprite0633)
+		OverworldSpriteGraphics(631),
+		OverworldSpriteGraphics(631, 1),
+		OverworldSpriteGraphics(632, 1),
+		OverworldSpriteGraphics(633, 1),
+		OverworldSpriteGraphics(630),
+		OverworldSpriteGraphics(630, 1),
+		OverworldSpriteGraphics(632),
+		OverworldSpriteGraphics(633)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0627),
-		OverworldSpriteGraphics(sprite0627, 1),
-		OverworldSpriteGraphics(sprite0628, 1),
-		OverworldSpriteGraphics(sprite0629, 1),
-		OverworldSpriteGraphics(sprite0626),
-		OverworldSpriteGraphics(sprite0626, 1),
-		OverworldSpriteGraphics(sprite0628),
-		OverworldSpriteGraphics(sprite0629)
+		OverworldSpriteGraphics(627),
+		OverworldSpriteGraphics(627, 1),
+		OverworldSpriteGraphics(628, 1),
+		OverworldSpriteGraphics(629, 1),
+		OverworldSpriteGraphics(626),
+		OverworldSpriteGraphics(626, 1),
+		OverworldSpriteGraphics(628),
+		OverworldSpriteGraphics(629)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0623),
-		OverworldSpriteGraphics(sprite0623, 1),
-		OverworldSpriteGraphics(sprite0624, 1),
-		OverworldSpriteGraphics(sprite0625, 1),
-		OverworldSpriteGraphics(sprite0622),
-		OverworldSpriteGraphics(sprite0622, 1),
-		OverworldSpriteGraphics(sprite0624),
-		OverworldSpriteGraphics(sprite0625)
+		OverworldSpriteGraphics(623),
+		OverworldSpriteGraphics(623, 1),
+		OverworldSpriteGraphics(624, 1),
+		OverworldSpriteGraphics(625, 1),
+		OverworldSpriteGraphics(622),
+		OverworldSpriteGraphics(622, 1),
+		OverworldSpriteGraphics(624),
+		OverworldSpriteGraphics(625)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0619),
-		OverworldSpriteGraphics(sprite0619, 1),
-		OverworldSpriteGraphics(sprite0620, 1),
-		OverworldSpriteGraphics(sprite0621, 1),
-		OverworldSpriteGraphics(sprite0618),
-		OverworldSpriteGraphics(sprite0618, 1),
-		OverworldSpriteGraphics(sprite0620),
-		OverworldSpriteGraphics(sprite0621)
+		OverworldSpriteGraphics(619),
+		OverworldSpriteGraphics(619, 1),
+		OverworldSpriteGraphics(620, 1),
+		OverworldSpriteGraphics(621, 1),
+		OverworldSpriteGraphics(618),
+		OverworldSpriteGraphics(618, 1),
+		OverworldSpriteGraphics(620),
+		OverworldSpriteGraphics(621)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0615),
-		OverworldSpriteGraphics(sprite0615, 1),
-		OverworldSpriteGraphics(sprite0616, 1),
-		OverworldSpriteGraphics(sprite0617, 1),
-		OverworldSpriteGraphics(sprite0614),
-		OverworldSpriteGraphics(sprite0614, 1),
-		OverworldSpriteGraphics(sprite0616),
-		OverworldSpriteGraphics(sprite0617)
+		OverworldSpriteGraphics(615),
+		OverworldSpriteGraphics(615, 1),
+		OverworldSpriteGraphics(616, 1),
+		OverworldSpriteGraphics(617, 1),
+		OverworldSpriteGraphics(614),
+		OverworldSpriteGraphics(614, 1),
+		OverworldSpriteGraphics(616),
+		OverworldSpriteGraphics(617)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0611),
-		OverworldSpriteGraphics(sprite0611, 1),
-		OverworldSpriteGraphics(sprite0612, 1),
-		OverworldSpriteGraphics(sprite0613, 1),
-		OverworldSpriteGraphics(sprite0610),
-		OverworldSpriteGraphics(sprite0610, 1),
-		OverworldSpriteGraphics(sprite0612),
-		OverworldSpriteGraphics(sprite0613)
+		OverworldSpriteGraphics(611),
+		OverworldSpriteGraphics(611, 1),
+		OverworldSpriteGraphics(612, 1),
+		OverworldSpriteGraphics(613, 1),
+		OverworldSpriteGraphics(610),
+		OverworldSpriteGraphics(610, 1),
+		OverworldSpriteGraphics(612),
+		OverworldSpriteGraphics(613)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0603),
-		OverworldSpriteGraphics(sprite0603, 1),
-		OverworldSpriteGraphics(sprite0604, 1),
-		OverworldSpriteGraphics(sprite0605, 1),
-		OverworldSpriteGraphics(sprite0602),
-		OverworldSpriteGraphics(sprite0602, 1),
-		OverworldSpriteGraphics(sprite0604),
-		OverworldSpriteGraphics(sprite0605)
+		OverworldSpriteGraphics(603),
+		OverworldSpriteGraphics(603, 1),
+		OverworldSpriteGraphics(604, 1),
+		OverworldSpriteGraphics(605, 1),
+		OverworldSpriteGraphics(602),
+		OverworldSpriteGraphics(602, 1),
+		OverworldSpriteGraphics(604),
+		OverworldSpriteGraphics(605)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0599),
-		OverworldSpriteGraphics(sprite0599, 1),
-		OverworldSpriteGraphics(sprite0600, 1),
-		OverworldSpriteGraphics(sprite0601, 1),
-		OverworldSpriteGraphics(sprite0598),
-		OverworldSpriteGraphics(sprite0598, 1),
-		OverworldSpriteGraphics(sprite0600),
-		OverworldSpriteGraphics(sprite0601)
+		OverworldSpriteGraphics(599),
+		OverworldSpriteGraphics(599, 1),
+		OverworldSpriteGraphics(600, 1),
+		OverworldSpriteGraphics(601, 1),
+		OverworldSpriteGraphics(598),
+		OverworldSpriteGraphics(598, 1),
+		OverworldSpriteGraphics(600),
+		OverworldSpriteGraphics(601)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0595),
-		OverworldSpriteGraphics(sprite0595, 1),
-		OverworldSpriteGraphics(sprite0596, 1),
-		OverworldSpriteGraphics(sprite0597, 1),
-		OverworldSpriteGraphics(sprite0594),
-		OverworldSpriteGraphics(sprite0594, 1),
-		OverworldSpriteGraphics(sprite0596),
-		OverworldSpriteGraphics(sprite0597)
+		OverworldSpriteGraphics(595),
+		OverworldSpriteGraphics(595, 1),
+		OverworldSpriteGraphics(596, 1),
+		OverworldSpriteGraphics(597, 1),
+		OverworldSpriteGraphics(594),
+		OverworldSpriteGraphics(594, 1),
+		OverworldSpriteGraphics(596),
+		OverworldSpriteGraphics(597)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0591),
-		OverworldSpriteGraphics(sprite0591, 1),
-		OverworldSpriteGraphics(sprite0592, 1),
-		OverworldSpriteGraphics(sprite0593, 1),
-		OverworldSpriteGraphics(sprite0590),
-		OverworldSpriteGraphics(sprite0590, 1),
-		OverworldSpriteGraphics(sprite0592),
-		OverworldSpriteGraphics(sprite0593)
+		OverworldSpriteGraphics(591),
+		OverworldSpriteGraphics(591, 1),
+		OverworldSpriteGraphics(592, 1),
+		OverworldSpriteGraphics(593, 1),
+		OverworldSpriteGraphics(590),
+		OverworldSpriteGraphics(590, 1),
+		OverworldSpriteGraphics(592),
+		OverworldSpriteGraphics(593)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0587),
-		OverworldSpriteGraphics(sprite0587, 1),
-		OverworldSpriteGraphics(sprite0588, 1),
-		OverworldSpriteGraphics(sprite0589, 1),
-		OverworldSpriteGraphics(sprite0586),
-		OverworldSpriteGraphics(sprite0586, 1),
-		OverworldSpriteGraphics(sprite0588),
-		OverworldSpriteGraphics(sprite0589)
+		OverworldSpriteGraphics(587),
+		OverworldSpriteGraphics(587, 1),
+		OverworldSpriteGraphics(588, 1),
+		OverworldSpriteGraphics(589, 1),
+		OverworldSpriteGraphics(586),
+		OverworldSpriteGraphics(586, 1),
+		OverworldSpriteGraphics(588),
+		OverworldSpriteGraphics(589)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0583),
-		OverworldSpriteGraphics(sprite0583, 1),
-		OverworldSpriteGraphics(sprite0584, 1),
-		OverworldSpriteGraphics(sprite0585, 1),
-		OverworldSpriteGraphics(sprite0582),
-		OverworldSpriteGraphics(sprite0582, 1),
-		OverworldSpriteGraphics(sprite0584),
-		OverworldSpriteGraphics(sprite0585)
+		OverworldSpriteGraphics(583),
+		OverworldSpriteGraphics(583, 1),
+		OverworldSpriteGraphics(584, 1),
+		OverworldSpriteGraphics(585, 1),
+		OverworldSpriteGraphics(582),
+		OverworldSpriteGraphics(582, 1),
+		OverworldSpriteGraphics(584),
+		OverworldSpriteGraphics(585)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0579),
-		OverworldSpriteGraphics(sprite0579, 1),
-		OverworldSpriteGraphics(sprite0580, 1),
-		OverworldSpriteGraphics(sprite0581, 1),
-		OverworldSpriteGraphics(sprite0578),
-		OverworldSpriteGraphics(sprite0578, 1),
-		OverworldSpriteGraphics(sprite0580),
-		OverworldSpriteGraphics(sprite0581)
+		OverworldSpriteGraphics(579),
+		OverworldSpriteGraphics(579, 1),
+		OverworldSpriteGraphics(580, 1),
+		OverworldSpriteGraphics(581, 1),
+		OverworldSpriteGraphics(578),
+		OverworldSpriteGraphics(578, 1),
+		OverworldSpriteGraphics(580),
+		OverworldSpriteGraphics(581)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0575),
-		OverworldSpriteGraphics(sprite0575, 1),
-		OverworldSpriteGraphics(sprite0576, 1),
-		OverworldSpriteGraphics(sprite0577, 1),
-		OverworldSpriteGraphics(sprite0574),
-		OverworldSpriteGraphics(sprite0574, 1),
-		OverworldSpriteGraphics(sprite0576),
-		OverworldSpriteGraphics(sprite0577)
+		OverworldSpriteGraphics(575),
+		OverworldSpriteGraphics(575, 1),
+		OverworldSpriteGraphics(576, 1),
+		OverworldSpriteGraphics(577, 1),
+		OverworldSpriteGraphics(574),
+		OverworldSpriteGraphics(574, 1),
+		OverworldSpriteGraphics(576),
+		OverworldSpriteGraphics(577)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0571),
-		OverworldSpriteGraphics(sprite0571, 1),
-		OverworldSpriteGraphics(sprite0572, 1),
-		OverworldSpriteGraphics(sprite0573, 1),
-		OverworldSpriteGraphics(sprite0570),
-		OverworldSpriteGraphics(sprite0570, 1),
-		OverworldSpriteGraphics(sprite0572),
-		OverworldSpriteGraphics(sprite0573)
+		OverworldSpriteGraphics(571),
+		OverworldSpriteGraphics(571, 1),
+		OverworldSpriteGraphics(572, 1),
+		OverworldSpriteGraphics(573, 1),
+		OverworldSpriteGraphics(570),
+		OverworldSpriteGraphics(570, 1),
+		OverworldSpriteGraphics(572),
+		OverworldSpriteGraphics(573)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1044),
-		OverworldSpriteGraphics(sprite1044),
-		OverworldSpriteGraphics(sprite1045, 1),
-		OverworldSpriteGraphics(sprite1045, 1),
-		OverworldSpriteGraphics(sprite1044),
-		OverworldSpriteGraphics(sprite1044),
-		OverworldSpriteGraphics(sprite1045),
-		OverworldSpriteGraphics(sprite1045)
+		OverworldSpriteGraphics(1044),
+		OverworldSpriteGraphics(1044),
+		OverworldSpriteGraphics(1045, 1),
+		OverworldSpriteGraphics(1045, 1),
+		OverworldSpriteGraphics(1044),
+		OverworldSpriteGraphics(1044),
+		OverworldSpriteGraphics(1045),
+		OverworldSpriteGraphics(1045)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0567),
-		OverworldSpriteGraphics(sprite0567, 1),
-		OverworldSpriteGraphics(sprite0568, 1),
-		OverworldSpriteGraphics(sprite0569, 1),
-		OverworldSpriteGraphics(sprite0566),
-		OverworldSpriteGraphics(sprite0566, 1),
-		OverworldSpriteGraphics(sprite0568),
-		OverworldSpriteGraphics(sprite0569)
+		OverworldSpriteGraphics(567),
+		OverworldSpriteGraphics(567, 1),
+		OverworldSpriteGraphics(568, 1),
+		OverworldSpriteGraphics(569, 1),
+		OverworldSpriteGraphics(566),
+		OverworldSpriteGraphics(566, 1),
+		OverworldSpriteGraphics(568),
+		OverworldSpriteGraphics(569)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0767),
-		OverworldSpriteGraphics(sprite0767, 1),
-		OverworldSpriteGraphics(sprite0768, 1),
-		OverworldSpriteGraphics(sprite0768, 1),
-		OverworldSpriteGraphics(sprite0766),
-		OverworldSpriteGraphics(sprite0766, 1),
-		OverworldSpriteGraphics(sprite0768),
-		OverworldSpriteGraphics(sprite0768)
+		OverworldSpriteGraphics(767),
+		OverworldSpriteGraphics(767, 1),
+		OverworldSpriteGraphics(768, 1),
+		OverworldSpriteGraphics(768, 1),
+		OverworldSpriteGraphics(766),
+		OverworldSpriteGraphics(766, 1),
+		OverworldSpriteGraphics(768),
+		OverworldSpriteGraphics(768)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0563),
-		OverworldSpriteGraphics(sprite0563, 1),
-		OverworldSpriteGraphics(sprite0564, 1),
-		OverworldSpriteGraphics(sprite0565, 1),
-		OverworldSpriteGraphics(sprite0562),
-		OverworldSpriteGraphics(sprite0562, 1),
-		OverworldSpriteGraphics(sprite0564),
-		OverworldSpriteGraphics(sprite0565)
+		OverworldSpriteGraphics(563),
+		OverworldSpriteGraphics(563, 1),
+		OverworldSpriteGraphics(564, 1),
+		OverworldSpriteGraphics(565, 1),
+		OverworldSpriteGraphics(562),
+		OverworldSpriteGraphics(562, 1),
+		OverworldSpriteGraphics(564),
+		OverworldSpriteGraphics(565)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0559),
-		OverworldSpriteGraphics(sprite0559, 1),
-		OverworldSpriteGraphics(sprite0560, 1),
-		OverworldSpriteGraphics(sprite0561, 1),
-		OverworldSpriteGraphics(sprite0558),
-		OverworldSpriteGraphics(sprite0558, 1),
-		OverworldSpriteGraphics(sprite0560),
-		OverworldSpriteGraphics(sprite0561)
+		OverworldSpriteGraphics(559),
+		OverworldSpriteGraphics(559, 1),
+		OverworldSpriteGraphics(560, 1),
+		OverworldSpriteGraphics(561, 1),
+		OverworldSpriteGraphics(558),
+		OverworldSpriteGraphics(558, 1),
+		OverworldSpriteGraphics(560),
+		OverworldSpriteGraphics(561)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0555),
-		OverworldSpriteGraphics(sprite0555, 1),
-		OverworldSpriteGraphics(sprite0556, 1),
-		OverworldSpriteGraphics(sprite0557, 1),
-		OverworldSpriteGraphics(sprite0554),
-		OverworldSpriteGraphics(sprite0554, 1),
-		OverworldSpriteGraphics(sprite0556),
-		OverworldSpriteGraphics(sprite0557)
+		OverworldSpriteGraphics(555),
+		OverworldSpriteGraphics(555, 1),
+		OverworldSpriteGraphics(556, 1),
+		OverworldSpriteGraphics(557, 1),
+		OverworldSpriteGraphics(554),
+		OverworldSpriteGraphics(554, 1),
+		OverworldSpriteGraphics(556),
+		OverworldSpriteGraphics(557)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0551),
-		OverworldSpriteGraphics(sprite0551, 1),
-		OverworldSpriteGraphics(sprite0552, 1),
-		OverworldSpriteGraphics(sprite0553, 1),
-		OverworldSpriteGraphics(sprite0550),
-		OverworldSpriteGraphics(sprite0550, 1),
-		OverworldSpriteGraphics(sprite0552),
-		OverworldSpriteGraphics(sprite0553)
+		OverworldSpriteGraphics(551),
+		OverworldSpriteGraphics(551, 1),
+		OverworldSpriteGraphics(552, 1),
+		OverworldSpriteGraphics(553, 1),
+		OverworldSpriteGraphics(550),
+		OverworldSpriteGraphics(550, 1),
+		OverworldSpriteGraphics(552),
+		OverworldSpriteGraphics(553)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0547),
-		OverworldSpriteGraphics(sprite0547, 1),
-		OverworldSpriteGraphics(sprite0548, 1),
-		OverworldSpriteGraphics(sprite0549, 1),
-		OverworldSpriteGraphics(sprite0546),
-		OverworldSpriteGraphics(sprite0546, 1),
-		OverworldSpriteGraphics(sprite0548),
-		OverworldSpriteGraphics(sprite0549)
+		OverworldSpriteGraphics(547),
+		OverworldSpriteGraphics(547, 1),
+		OverworldSpriteGraphics(548, 1),
+		OverworldSpriteGraphics(549, 1),
+		OverworldSpriteGraphics(546),
+		OverworldSpriteGraphics(546, 1),
+		OverworldSpriteGraphics(548),
+		OverworldSpriteGraphics(549)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0543),
-		OverworldSpriteGraphics(sprite0543, 1),
-		OverworldSpriteGraphics(sprite0544, 1),
-		OverworldSpriteGraphics(sprite0545, 1),
-		OverworldSpriteGraphics(sprite0542),
-		OverworldSpriteGraphics(sprite0542, 1),
-		OverworldSpriteGraphics(sprite0544),
-		OverworldSpriteGraphics(sprite0545)
+		OverworldSpriteGraphics(543),
+		OverworldSpriteGraphics(543, 1),
+		OverworldSpriteGraphics(544, 1),
+		OverworldSpriteGraphics(545, 1),
+		OverworldSpriteGraphics(542),
+		OverworldSpriteGraphics(542, 1),
+		OverworldSpriteGraphics(544),
+		OverworldSpriteGraphics(545)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0539),
-		OverworldSpriteGraphics(sprite0539, 1),
-		OverworldSpriteGraphics(sprite0540, 1),
-		OverworldSpriteGraphics(sprite0541, 1),
-		OverworldSpriteGraphics(sprite0538),
-		OverworldSpriteGraphics(sprite0538, 1),
-		OverworldSpriteGraphics(sprite0540),
-		OverworldSpriteGraphics(sprite0541)
+		OverworldSpriteGraphics(539),
+		OverworldSpriteGraphics(539, 1),
+		OverworldSpriteGraphics(540, 1),
+		OverworldSpriteGraphics(541, 1),
+		OverworldSpriteGraphics(538),
+		OverworldSpriteGraphics(538, 1),
+		OverworldSpriteGraphics(540),
+		OverworldSpriteGraphics(541)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0535),
-		OverworldSpriteGraphics(sprite0535, 1),
-		OverworldSpriteGraphics(sprite0536, 1),
-		OverworldSpriteGraphics(sprite0537, 1),
-		OverworldSpriteGraphics(sprite0534),
-		OverworldSpriteGraphics(sprite0534, 1),
-		OverworldSpriteGraphics(sprite0536),
-		OverworldSpriteGraphics(sprite0537)
+		OverworldSpriteGraphics(535),
+		OverworldSpriteGraphics(535, 1),
+		OverworldSpriteGraphics(536, 1),
+		OverworldSpriteGraphics(537, 1),
+		OverworldSpriteGraphics(534),
+		OverworldSpriteGraphics(534, 1),
+		OverworldSpriteGraphics(536),
+		OverworldSpriteGraphics(537)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0531),
-		OverworldSpriteGraphics(sprite0531, 1),
-		OverworldSpriteGraphics(sprite0532, 1),
-		OverworldSpriteGraphics(sprite0533, 1),
-		OverworldSpriteGraphics(sprite0530),
-		OverworldSpriteGraphics(sprite0530, 1),
-		OverworldSpriteGraphics(sprite0532),
-		OverworldSpriteGraphics(sprite0533)
+		OverworldSpriteGraphics(531),
+		OverworldSpriteGraphics(531, 1),
+		OverworldSpriteGraphics(532, 1),
+		OverworldSpriteGraphics(533, 1),
+		OverworldSpriteGraphics(530),
+		OverworldSpriteGraphics(530, 1),
+		OverworldSpriteGraphics(532),
+		OverworldSpriteGraphics(533)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0527),
-		OverworldSpriteGraphics(sprite0527, 1),
-		OverworldSpriteGraphics(sprite0528, 1),
-		OverworldSpriteGraphics(sprite0529, 1),
-		OverworldSpriteGraphics(sprite0526),
-		OverworldSpriteGraphics(sprite0526, 1),
-		OverworldSpriteGraphics(sprite0528),
-		OverworldSpriteGraphics(sprite0529)
+		OverworldSpriteGraphics(527),
+		OverworldSpriteGraphics(527, 1),
+		OverworldSpriteGraphics(528, 1),
+		OverworldSpriteGraphics(529, 1),
+		OverworldSpriteGraphics(526),
+		OverworldSpriteGraphics(526, 1),
+		OverworldSpriteGraphics(528),
+		OverworldSpriteGraphics(529)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0523),
-		OverworldSpriteGraphics(sprite0523, 1),
-		OverworldSpriteGraphics(sprite0524, 1),
-		OverworldSpriteGraphics(sprite0525, 1),
-		OverworldSpriteGraphics(sprite0522),
-		OverworldSpriteGraphics(sprite0522, 1),
-		OverworldSpriteGraphics(sprite0524),
-		OverworldSpriteGraphics(sprite0525)
+		OverworldSpriteGraphics(523),
+		OverworldSpriteGraphics(523, 1),
+		OverworldSpriteGraphics(524, 1),
+		OverworldSpriteGraphics(525, 1),
+		OverworldSpriteGraphics(522),
+		OverworldSpriteGraphics(522, 1),
+		OverworldSpriteGraphics(524),
+		OverworldSpriteGraphics(525)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0947),
-		OverworldSpriteGraphics(sprite0947),
-		OverworldSpriteGraphics(sprite0948, 1),
-		OverworldSpriteGraphics(sprite0948, 1),
-		OverworldSpriteGraphics(sprite0947),
-		OverworldSpriteGraphics(sprite0947),
-		OverworldSpriteGraphics(sprite0948),
-		OverworldSpriteGraphics(sprite0948)
+		OverworldSpriteGraphics(947),
+		OverworldSpriteGraphics(947),
+		OverworldSpriteGraphics(948, 1),
+		OverworldSpriteGraphics(948, 1),
+		OverworldSpriteGraphics(947),
+		OverworldSpriteGraphics(947),
+		OverworldSpriteGraphics(948),
+		OverworldSpriteGraphics(948)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0212),
-		OverworldSpriteGraphics(sprite0212, 1),
-		OverworldSpriteGraphics(sprite0213, 1),
-		OverworldSpriteGraphics(sprite0214, 1),
-		OverworldSpriteGraphics(sprite0211),
-		OverworldSpriteGraphics(sprite0211, 1),
-		OverworldSpriteGraphics(sprite0213),
-		OverworldSpriteGraphics(sprite0214),
-		OverworldSpriteGraphics(sprite0215)
+		OverworldSpriteGraphics(212),
+		OverworldSpriteGraphics(212, 1),
+		OverworldSpriteGraphics(213, 1),
+		OverworldSpriteGraphics(214, 1),
+		OverworldSpriteGraphics(211),
+		OverworldSpriteGraphics(211, 1),
+		OverworldSpriteGraphics(213),
+		OverworldSpriteGraphics(214),
+		OverworldSpriteGraphics(215)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0521),
-		OverworldSpriteGraphics(sprite0521),
-		OverworldSpriteGraphics(sprite0520, 1),
-		OverworldSpriteGraphics(sprite0520, 1),
-		OverworldSpriteGraphics(sprite0518),
-		OverworldSpriteGraphics(sprite0519),
-		OverworldSpriteGraphics(sprite0520),
-		OverworldSpriteGraphics(sprite0520)
+		OverworldSpriteGraphics(521),
+		OverworldSpriteGraphics(521),
+		OverworldSpriteGraphics(520, 1),
+		OverworldSpriteGraphics(520, 1),
+		OverworldSpriteGraphics(518),
+		OverworldSpriteGraphics(519),
+		OverworldSpriteGraphics(520),
+		OverworldSpriteGraphics(520)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0515),
-		OverworldSpriteGraphics(sprite0515, 1),
-		OverworldSpriteGraphics(sprite0516, 1),
-		OverworldSpriteGraphics(sprite0517, 1),
-		OverworldSpriteGraphics(sprite0514),
-		OverworldSpriteGraphics(sprite0514, 1),
-		OverworldSpriteGraphics(sprite0516),
-		OverworldSpriteGraphics(sprite0517)
+		OverworldSpriteGraphics(515),
+		OverworldSpriteGraphics(515, 1),
+		OverworldSpriteGraphics(516, 1),
+		OverworldSpriteGraphics(517, 1),
+		OverworldSpriteGraphics(514),
+		OverworldSpriteGraphics(514, 1),
+		OverworldSpriteGraphics(516),
+		OverworldSpriteGraphics(517)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1042),
-		OverworldSpriteGraphics(sprite1043),
-		OverworldSpriteGraphics(sprite1042),
-		OverworldSpriteGraphics(sprite1043),
-		OverworldSpriteGraphics(sprite1042),
-		OverworldSpriteGraphics(sprite1043),
-		OverworldSpriteGraphics(sprite1042),
-		OverworldSpriteGraphics(sprite1043)
+		OverworldSpriteGraphics(1042),
+		OverworldSpriteGraphics(1043),
+		OverworldSpriteGraphics(1042),
+		OverworldSpriteGraphics(1043),
+		OverworldSpriteGraphics(1042),
+		OverworldSpriteGraphics(1043),
+		OverworldSpriteGraphics(1042),
+		OverworldSpriteGraphics(1043)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0511),
-		OverworldSpriteGraphics(sprite0511, 1),
-		OverworldSpriteGraphics(sprite0512, 1),
-		OverworldSpriteGraphics(sprite0513, 1),
-		OverworldSpriteGraphics(sprite0510),
-		OverworldSpriteGraphics(sprite0510, 1),
-		OverworldSpriteGraphics(sprite0512),
-		OverworldSpriteGraphics(sprite0513)
+		OverworldSpriteGraphics(511),
+		OverworldSpriteGraphics(511, 1),
+		OverworldSpriteGraphics(512, 1),
+		OverworldSpriteGraphics(513, 1),
+		OverworldSpriteGraphics(510),
+		OverworldSpriteGraphics(510, 1),
+		OverworldSpriteGraphics(512),
+		OverworldSpriteGraphics(513)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0945),
-		OverworldSpriteGraphics(sprite0946),
-		OverworldSpriteGraphics(sprite0945),
-		OverworldSpriteGraphics(sprite0946),
-		OverworldSpriteGraphics(sprite0945),
-		OverworldSpriteGraphics(sprite0946),
-		OverworldSpriteGraphics(sprite0945),
-		OverworldSpriteGraphics(sprite0946)
+		OverworldSpriteGraphics(945),
+		OverworldSpriteGraphics(946),
+		OverworldSpriteGraphics(945),
+		OverworldSpriteGraphics(946),
+		OverworldSpriteGraphics(945),
+		OverworldSpriteGraphics(946),
+		OverworldSpriteGraphics(945),
+		OverworldSpriteGraphics(946)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1101),
-		OverworldSpriteGraphics(sprite1101),
-		OverworldSpriteGraphics(sprite1101),
-		OverworldSpriteGraphics(sprite1101),
-		OverworldSpriteGraphics(sprite1101),
-		OverworldSpriteGraphics(sprite1101),
-		OverworldSpriteGraphics(sprite1101),
-		OverworldSpriteGraphics(sprite1101)
+		OverworldSpriteGraphics(1101),
+		OverworldSpriteGraphics(1101),
+		OverworldSpriteGraphics(1101),
+		OverworldSpriteGraphics(1101),
+		OverworldSpriteGraphics(1101),
+		OverworldSpriteGraphics(1101),
+		OverworldSpriteGraphics(1101),
+		OverworldSpriteGraphics(1101)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1100),
-		OverworldSpriteGraphics(sprite1100),
-		OverworldSpriteGraphics(sprite1100),
-		OverworldSpriteGraphics(sprite1100),
-		OverworldSpriteGraphics(sprite1100),
-		OverworldSpriteGraphics(sprite1100),
-		OverworldSpriteGraphics(sprite1100),
-		OverworldSpriteGraphics(sprite1100)
+		OverworldSpriteGraphics(1100),
+		OverworldSpriteGraphics(1100),
+		OverworldSpriteGraphics(1100),
+		OverworldSpriteGraphics(1100),
+		OverworldSpriteGraphics(1100),
+		OverworldSpriteGraphics(1100),
+		OverworldSpriteGraphics(1100),
+		OverworldSpriteGraphics(1100)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0507),
-		OverworldSpriteGraphics(sprite0507, 1),
-		OverworldSpriteGraphics(sprite0508, 1),
-		OverworldSpriteGraphics(sprite0509, 1),
-		OverworldSpriteGraphics(sprite0506),
-		OverworldSpriteGraphics(sprite0506, 1),
-		OverworldSpriteGraphics(sprite0508),
-		OverworldSpriteGraphics(sprite0509)
+		OverworldSpriteGraphics(507),
+		OverworldSpriteGraphics(507, 1),
+		OverworldSpriteGraphics(508, 1),
+		OverworldSpriteGraphics(509, 1),
+		OverworldSpriteGraphics(506),
+		OverworldSpriteGraphics(506, 1),
+		OverworldSpriteGraphics(508),
+		OverworldSpriteGraphics(509)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099)
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0503),
-		OverworldSpriteGraphics(sprite0503, 1),
-		OverworldSpriteGraphics(sprite0504, 1),
-		OverworldSpriteGraphics(sprite0505, 1),
-		OverworldSpriteGraphics(sprite0502),
-		OverworldSpriteGraphics(sprite0502, 1),
-		OverworldSpriteGraphics(sprite0504),
-		OverworldSpriteGraphics(sprite0505)
+		OverworldSpriteGraphics(503),
+		OverworldSpriteGraphics(503, 1),
+		OverworldSpriteGraphics(504, 1),
+		OverworldSpriteGraphics(505, 1),
+		OverworldSpriteGraphics(502),
+		OverworldSpriteGraphics(502, 1),
+		OverworldSpriteGraphics(504),
+		OverworldSpriteGraphics(505)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0499),
-		OverworldSpriteGraphics(sprite0499, 1),
-		OverworldSpriteGraphics(sprite0500, 1),
-		OverworldSpriteGraphics(sprite0501, 1),
-		OverworldSpriteGraphics(sprite0498),
-		OverworldSpriteGraphics(sprite0498, 1),
-		OverworldSpriteGraphics(sprite0500),
-		OverworldSpriteGraphics(sprite0501)
+		OverworldSpriteGraphics(499),
+		OverworldSpriteGraphics(499, 1),
+		OverworldSpriteGraphics(500, 1),
+		OverworldSpriteGraphics(501, 1),
+		OverworldSpriteGraphics(498),
+		OverworldSpriteGraphics(498, 1),
+		OverworldSpriteGraphics(500),
+		OverworldSpriteGraphics(501)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0495),
-		OverworldSpriteGraphics(sprite0495, 1),
-		OverworldSpriteGraphics(sprite0496, 1),
-		OverworldSpriteGraphics(sprite0497, 1),
-		OverworldSpriteGraphics(sprite0494),
-		OverworldSpriteGraphics(sprite0494, 1),
-		OverworldSpriteGraphics(sprite0496),
-		OverworldSpriteGraphics(sprite0497)
+		OverworldSpriteGraphics(495),
+		OverworldSpriteGraphics(495, 1),
+		OverworldSpriteGraphics(496, 1),
+		OverworldSpriteGraphics(497, 1),
+		OverworldSpriteGraphics(494),
+		OverworldSpriteGraphics(494, 1),
+		OverworldSpriteGraphics(496),
+		OverworldSpriteGraphics(497)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0491),
-		OverworldSpriteGraphics(sprite0491),
-		OverworldSpriteGraphics(sprite0493),
-		OverworldSpriteGraphics(sprite0493),
-		OverworldSpriteGraphics(sprite0490),
-		OverworldSpriteGraphics(sprite0490),
-		OverworldSpriteGraphics(sprite0492),
-		OverworldSpriteGraphics(sprite0492)
+		OverworldSpriteGraphics(491),
+		OverworldSpriteGraphics(491),
+		OverworldSpriteGraphics(493),
+		OverworldSpriteGraphics(493),
+		OverworldSpriteGraphics(490),
+		OverworldSpriteGraphics(490),
+		OverworldSpriteGraphics(492),
+		OverworldSpriteGraphics(492)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1098, 1),
-		OverworldSpriteGraphics(sprite1098, 1),
-		OverworldSpriteGraphics(sprite1098, 1),
-		OverworldSpriteGraphics(sprite1098, 1),
-		OverworldSpriteGraphics(sprite1098),
-		OverworldSpriteGraphics(sprite1098),
-		OverworldSpriteGraphics(sprite1098),
-		OverworldSpriteGraphics(sprite1098)
+		OverworldSpriteGraphics(1098, 1),
+		OverworldSpriteGraphics(1098, 1),
+		OverworldSpriteGraphics(1098, 1),
+		OverworldSpriteGraphics(1098, 1),
+		OverworldSpriteGraphics(1098),
+		OverworldSpriteGraphics(1098),
+		OverworldSpriteGraphics(1098),
+		OverworldSpriteGraphics(1098)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0487),
-		OverworldSpriteGraphics(sprite0487, 1),
-		OverworldSpriteGraphics(sprite0488, 1),
-		OverworldSpriteGraphics(sprite0489, 1),
-		OverworldSpriteGraphics(sprite0486),
-		OverworldSpriteGraphics(sprite0486, 1),
-		OverworldSpriteGraphics(sprite0488),
-		OverworldSpriteGraphics(sprite0489)
+		OverworldSpriteGraphics(487),
+		OverworldSpriteGraphics(487, 1),
+		OverworldSpriteGraphics(488, 1),
+		OverworldSpriteGraphics(489, 1),
+		OverworldSpriteGraphics(486),
+		OverworldSpriteGraphics(486, 1),
+		OverworldSpriteGraphics(488),
+		OverworldSpriteGraphics(489)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0483),
-		OverworldSpriteGraphics(sprite0483, 1),
-		OverworldSpriteGraphics(sprite0484, 1),
-		OverworldSpriteGraphics(sprite0485, 1),
-		OverworldSpriteGraphics(sprite0482),
-		OverworldSpriteGraphics(sprite0482, 1),
-		OverworldSpriteGraphics(sprite0484),
-		OverworldSpriteGraphics(sprite0485)
+		OverworldSpriteGraphics(483),
+		OverworldSpriteGraphics(483, 1),
+		OverworldSpriteGraphics(484, 1),
+		OverworldSpriteGraphics(485, 1),
+		OverworldSpriteGraphics(482),
+		OverworldSpriteGraphics(482, 1),
+		OverworldSpriteGraphics(484),
+		OverworldSpriteGraphics(485)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0479),
-		OverworldSpriteGraphics(sprite0479, 1),
-		OverworldSpriteGraphics(sprite0480, 1),
-		OverworldSpriteGraphics(sprite0481, 1),
-		OverworldSpriteGraphics(sprite0478),
-		OverworldSpriteGraphics(sprite0478, 1),
-		OverworldSpriteGraphics(sprite0480),
-		OverworldSpriteGraphics(sprite0481)
+		OverworldSpriteGraphics(479),
+		OverworldSpriteGraphics(479, 1),
+		OverworldSpriteGraphics(480, 1),
+		OverworldSpriteGraphics(481, 1),
+		OverworldSpriteGraphics(478),
+		OverworldSpriteGraphics(478, 1),
+		OverworldSpriteGraphics(480),
+		OverworldSpriteGraphics(481)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0475),
-		OverworldSpriteGraphics(sprite0475, 1),
-		OverworldSpriteGraphics(sprite0476, 1),
-		OverworldSpriteGraphics(sprite0477, 1),
-		OverworldSpriteGraphics(sprite0474),
-		OverworldSpriteGraphics(sprite0474, 1),
-		OverworldSpriteGraphics(sprite0476),
-		OverworldSpriteGraphics(sprite0477)
+		OverworldSpriteGraphics(475),
+		OverworldSpriteGraphics(475, 1),
+		OverworldSpriteGraphics(476, 1),
+		OverworldSpriteGraphics(477, 1),
+		OverworldSpriteGraphics(474),
+		OverworldSpriteGraphics(474, 1),
+		OverworldSpriteGraphics(476),
+		OverworldSpriteGraphics(477)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0471),
-		OverworldSpriteGraphics(sprite0471, 1),
-		OverworldSpriteGraphics(sprite0472, 1),
-		OverworldSpriteGraphics(sprite0473, 1),
-		OverworldSpriteGraphics(sprite0470),
-		OverworldSpriteGraphics(sprite0470, 1),
-		OverworldSpriteGraphics(sprite0472),
-		OverworldSpriteGraphics(sprite0473)
+		OverworldSpriteGraphics(471),
+		OverworldSpriteGraphics(471, 1),
+		OverworldSpriteGraphics(472, 1),
+		OverworldSpriteGraphics(473, 1),
+		OverworldSpriteGraphics(470),
+		OverworldSpriteGraphics(470, 1),
+		OverworldSpriteGraphics(472),
+		OverworldSpriteGraphics(473)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0467),
-		OverworldSpriteGraphics(sprite0467, 1),
-		OverworldSpriteGraphics(sprite0468, 1),
-		OverworldSpriteGraphics(sprite0469, 1),
-		OverworldSpriteGraphics(sprite0466),
-		OverworldSpriteGraphics(sprite0466, 1),
-		OverworldSpriteGraphics(sprite0468),
-		OverworldSpriteGraphics(sprite0469)
+		OverworldSpriteGraphics(467),
+		OverworldSpriteGraphics(467, 1),
+		OverworldSpriteGraphics(468, 1),
+		OverworldSpriteGraphics(469, 1),
+		OverworldSpriteGraphics(466),
+		OverworldSpriteGraphics(466, 1),
+		OverworldSpriteGraphics(468),
+		OverworldSpriteGraphics(469)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0463),
-		OverworldSpriteGraphics(sprite0463, 1),
-		OverworldSpriteGraphics(sprite0464, 1),
-		OverworldSpriteGraphics(sprite0465, 1),
-		OverworldSpriteGraphics(sprite0462),
-		OverworldSpriteGraphics(sprite0462, 1),
-		OverworldSpriteGraphics(sprite0464),
-		OverworldSpriteGraphics(sprite0465)
+		OverworldSpriteGraphics(463),
+		OverworldSpriteGraphics(463, 1),
+		OverworldSpriteGraphics(464, 1),
+		OverworldSpriteGraphics(465, 1),
+		OverworldSpriteGraphics(462),
+		OverworldSpriteGraphics(462, 1),
+		OverworldSpriteGraphics(464),
+		OverworldSpriteGraphics(465)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0459),
-		OverworldSpriteGraphics(sprite0459, 1),
-		OverworldSpriteGraphics(sprite0460, 1),
-		OverworldSpriteGraphics(sprite0461, 1),
-		OverworldSpriteGraphics(sprite0458),
-		OverworldSpriteGraphics(sprite0458, 1),
-		OverworldSpriteGraphics(sprite0460),
-		OverworldSpriteGraphics(sprite0461)
+		OverworldSpriteGraphics(459),
+		OverworldSpriteGraphics(459, 1),
+		OverworldSpriteGraphics(460, 1),
+		OverworldSpriteGraphics(461, 1),
+		OverworldSpriteGraphics(458),
+		OverworldSpriteGraphics(458, 1),
+		OverworldSpriteGraphics(460),
+		OverworldSpriteGraphics(461)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0455),
-		OverworldSpriteGraphics(sprite0455, 1),
-		OverworldSpriteGraphics(sprite0456, 1),
-		OverworldSpriteGraphics(sprite0457, 1),
-		OverworldSpriteGraphics(sprite0454),
-		OverworldSpriteGraphics(sprite0454, 1),
-		OverworldSpriteGraphics(sprite0456),
-		OverworldSpriteGraphics(sprite0457)
+		OverworldSpriteGraphics(455),
+		OverworldSpriteGraphics(455, 1),
+		OverworldSpriteGraphics(456, 1),
+		OverworldSpriteGraphics(457, 1),
+		OverworldSpriteGraphics(454),
+		OverworldSpriteGraphics(454, 1),
+		OverworldSpriteGraphics(456),
+		OverworldSpriteGraphics(457)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0451),
-		OverworldSpriteGraphics(sprite0451, 1),
-		OverworldSpriteGraphics(sprite0452, 1),
-		OverworldSpriteGraphics(sprite0453, 1),
-		OverworldSpriteGraphics(sprite0450),
-		OverworldSpriteGraphics(sprite0450, 1),
-		OverworldSpriteGraphics(sprite0452),
-		OverworldSpriteGraphics(sprite0453)
+		OverworldSpriteGraphics(451),
+		OverworldSpriteGraphics(451, 1),
+		OverworldSpriteGraphics(452, 1),
+		OverworldSpriteGraphics(453, 1),
+		OverworldSpriteGraphics(450),
+		OverworldSpriteGraphics(450, 1),
+		OverworldSpriteGraphics(452),
+		OverworldSpriteGraphics(453)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0447),
-		OverworldSpriteGraphics(sprite0447, 1),
-		OverworldSpriteGraphics(sprite0448, 1),
-		OverworldSpriteGraphics(sprite0449, 1),
-		OverworldSpriteGraphics(sprite0446),
-		OverworldSpriteGraphics(sprite0446, 1),
-		OverworldSpriteGraphics(sprite0448),
-		OverworldSpriteGraphics(sprite0449)
+		OverworldSpriteGraphics(447),
+		OverworldSpriteGraphics(447, 1),
+		OverworldSpriteGraphics(448, 1),
+		OverworldSpriteGraphics(449, 1),
+		OverworldSpriteGraphics(446),
+		OverworldSpriteGraphics(446, 1),
+		OverworldSpriteGraphics(448),
+		OverworldSpriteGraphics(449)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0443),
-		OverworldSpriteGraphics(sprite0443, 1),
-		OverworldSpriteGraphics(sprite0444, 1),
-		OverworldSpriteGraphics(sprite0445, 1),
-		OverworldSpriteGraphics(sprite0442),
-		OverworldSpriteGraphics(sprite0442, 1),
-		OverworldSpriteGraphics(sprite0444),
-		OverworldSpriteGraphics(sprite0445)
+		OverworldSpriteGraphics(443),
+		OverworldSpriteGraphics(443, 1),
+		OverworldSpriteGraphics(444, 1),
+		OverworldSpriteGraphics(445, 1),
+		OverworldSpriteGraphics(442),
+		OverworldSpriteGraphics(442, 1),
+		OverworldSpriteGraphics(444),
+		OverworldSpriteGraphics(445)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0439),
-		OverworldSpriteGraphics(sprite0439, 1),
-		OverworldSpriteGraphics(sprite0440, 1),
-		OverworldSpriteGraphics(sprite0441, 1),
-		OverworldSpriteGraphics(sprite0438),
-		OverworldSpriteGraphics(sprite0438, 1),
-		OverworldSpriteGraphics(sprite0440),
-		OverworldSpriteGraphics(sprite0441)
+		OverworldSpriteGraphics(439),
+		OverworldSpriteGraphics(439, 1),
+		OverworldSpriteGraphics(440, 1),
+		OverworldSpriteGraphics(441, 1),
+		OverworldSpriteGraphics(438),
+		OverworldSpriteGraphics(438, 1),
+		OverworldSpriteGraphics(440),
+		OverworldSpriteGraphics(441)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0435),
-		OverworldSpriteGraphics(sprite0435, 1),
-		OverworldSpriteGraphics(sprite0436, 1),
-		OverworldSpriteGraphics(sprite0437, 1),
-		OverworldSpriteGraphics(sprite0434),
-		OverworldSpriteGraphics(sprite0434, 1),
-		OverworldSpriteGraphics(sprite0436),
-		OverworldSpriteGraphics(sprite0437)
+		OverworldSpriteGraphics(435),
+		OverworldSpriteGraphics(435, 1),
+		OverworldSpriteGraphics(436, 1),
+		OverworldSpriteGraphics(437, 1),
+		OverworldSpriteGraphics(434),
+		OverworldSpriteGraphics(434, 1),
+		OverworldSpriteGraphics(436),
+		OverworldSpriteGraphics(437)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0431),
-		OverworldSpriteGraphics(sprite0431, 1),
-		OverworldSpriteGraphics(sprite0432, 1),
-		OverworldSpriteGraphics(sprite0433, 1),
-		OverworldSpriteGraphics(sprite0430),
-		OverworldSpriteGraphics(sprite0430, 1),
-		OverworldSpriteGraphics(sprite0432),
-		OverworldSpriteGraphics(sprite0433)
+		OverworldSpriteGraphics(431),
+		OverworldSpriteGraphics(431, 1),
+		OverworldSpriteGraphics(432, 1),
+		OverworldSpriteGraphics(433, 1),
+		OverworldSpriteGraphics(430),
+		OverworldSpriteGraphics(430, 1),
+		OverworldSpriteGraphics(432),
+		OverworldSpriteGraphics(433)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0427),
-		OverworldSpriteGraphics(sprite0427, 1),
-		OverworldSpriteGraphics(sprite0428, 1),
-		OverworldSpriteGraphics(sprite0429, 1),
-		OverworldSpriteGraphics(sprite0426),
-		OverworldSpriteGraphics(sprite0426, 1),
-		OverworldSpriteGraphics(sprite0428),
-		OverworldSpriteGraphics(sprite0429)
+		OverworldSpriteGraphics(427),
+		OverworldSpriteGraphics(427, 1),
+		OverworldSpriteGraphics(428, 1),
+		OverworldSpriteGraphics(429, 1),
+		OverworldSpriteGraphics(426),
+		OverworldSpriteGraphics(426, 1),
+		OverworldSpriteGraphics(428),
+		OverworldSpriteGraphics(429)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0423),
-		OverworldSpriteGraphics(sprite0423, 1),
-		OverworldSpriteGraphics(sprite0424, 1),
-		OverworldSpriteGraphics(sprite0425, 1),
-		OverworldSpriteGraphics(sprite0422),
-		OverworldSpriteGraphics(sprite0422, 1),
-		OverworldSpriteGraphics(sprite0424),
-		OverworldSpriteGraphics(sprite0425)
+		OverworldSpriteGraphics(423),
+		OverworldSpriteGraphics(423, 1),
+		OverworldSpriteGraphics(424, 1),
+		OverworldSpriteGraphics(425, 1),
+		OverworldSpriteGraphics(422),
+		OverworldSpriteGraphics(422, 1),
+		OverworldSpriteGraphics(424),
+		OverworldSpriteGraphics(425)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0823),
-		OverworldSpriteGraphics(sprite0823, 1),
-		OverworldSpriteGraphics(sprite0824, 1),
-		OverworldSpriteGraphics(sprite0825, 1),
-		OverworldSpriteGraphics(sprite0822),
-		OverworldSpriteGraphics(sprite0822, 1),
-		OverworldSpriteGraphics(sprite0824),
-		OverworldSpriteGraphics(sprite0825)
+		OverworldSpriteGraphics(823),
+		OverworldSpriteGraphics(823, 1),
+		OverworldSpriteGraphics(824, 1),
+		OverworldSpriteGraphics(825, 1),
+		OverworldSpriteGraphics(822),
+		OverworldSpriteGraphics(822, 1),
+		OverworldSpriteGraphics(824),
+		OverworldSpriteGraphics(825)
 	]),
 	SpriteGrouping(0x03, 0x30, 0x06, 0x1C, 0x0A, 0x08, 0x0A, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0155),
-		OverworldSpriteGraphics(sprite0155, 1),
-		OverworldSpriteGraphics(sprite0156, 1),
-		OverworldSpriteGraphics(sprite0157, 1),
-		OverworldSpriteGraphics(sprite0154),
-		OverworldSpriteGraphics(sprite0154, 1),
-		OverworldSpriteGraphics(sprite0156),
-		OverworldSpriteGraphics(sprite0157)
+		OverworldSpriteGraphics(155),
+		OverworldSpriteGraphics(155, 1),
+		OverworldSpriteGraphics(156, 1),
+		OverworldSpriteGraphics(157, 1),
+		OverworldSpriteGraphics(154),
+		OverworldSpriteGraphics(154, 1),
+		OverworldSpriteGraphics(156),
+		OverworldSpriteGraphics(157)
 	]),
 	SpriteGrouping(0x03, 0x30, 0x06, 0x1C, 0x0A, 0x08, 0x0A, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0151),
-		OverworldSpriteGraphics(sprite0151, 1),
-		OverworldSpriteGraphics(sprite0152, 1),
-		OverworldSpriteGraphics(sprite0153, 1),
-		OverworldSpriteGraphics(sprite0150),
-		OverworldSpriteGraphics(sprite0150, 1),
-		OverworldSpriteGraphics(sprite0152),
-		OverworldSpriteGraphics(sprite0153)
+		OverworldSpriteGraphics(151),
+		OverworldSpriteGraphics(151, 1),
+		OverworldSpriteGraphics(152, 1),
+		OverworldSpriteGraphics(153, 1),
+		OverworldSpriteGraphics(150),
+		OverworldSpriteGraphics(150, 1),
+		OverworldSpriteGraphics(152),
+		OverworldSpriteGraphics(153)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0939, 1),
-		OverworldSpriteGraphics(sprite0940, 1),
-		OverworldSpriteGraphics(sprite0939),
-		OverworldSpriteGraphics(sprite0940),
-		OverworldSpriteGraphics(sprite0939),
-		OverworldSpriteGraphics(sprite0940),
-		OverworldSpriteGraphics(sprite0939, 1),
-		OverworldSpriteGraphics(sprite0940, 1)
+		OverworldSpriteGraphics(939, 1),
+		OverworldSpriteGraphics(940, 1),
+		OverworldSpriteGraphics(939),
+		OverworldSpriteGraphics(940),
+		OverworldSpriteGraphics(939),
+		OverworldSpriteGraphics(940),
+		OverworldSpriteGraphics(939, 1),
+		OverworldSpriteGraphics(940, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0419),
-		OverworldSpriteGraphics(sprite0419, 1),
-		OverworldSpriteGraphics(sprite0420, 1),
-		OverworldSpriteGraphics(sprite0421, 1),
-		OverworldSpriteGraphics(sprite0418),
-		OverworldSpriteGraphics(sprite0418, 1),
-		OverworldSpriteGraphics(sprite0420),
-		OverworldSpriteGraphics(sprite0421)
+		OverworldSpriteGraphics(419),
+		OverworldSpriteGraphics(419, 1),
+		OverworldSpriteGraphics(420, 1),
+		OverworldSpriteGraphics(421, 1),
+		OverworldSpriteGraphics(418),
+		OverworldSpriteGraphics(418, 1),
+		OverworldSpriteGraphics(420),
+		OverworldSpriteGraphics(421)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x0C, 0x0C, 0x0C, 0,
 	[
-		OverworldSpriteGraphics(sprite0174),
-		OverworldSpriteGraphics(sprite0175),
-		OverworldSpriteGraphics(sprite0174, 1),
-		OverworldSpriteGraphics(sprite0175, 1),
-		OverworldSpriteGraphics(sprite0174),
-		OverworldSpriteGraphics(sprite0175),
-		OverworldSpriteGraphics(sprite0174),
-		OverworldSpriteGraphics(sprite0175)
+		OverworldSpriteGraphics(174),
+		OverworldSpriteGraphics(175),
+		OverworldSpriteGraphics(174, 1),
+		OverworldSpriteGraphics(175, 1),
+		OverworldSpriteGraphics(174),
+		OverworldSpriteGraphics(175),
+		OverworldSpriteGraphics(174),
+		OverworldSpriteGraphics(175)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0411),
-		OverworldSpriteGraphics(sprite0411, 1),
-		OverworldSpriteGraphics(sprite0412, 1),
-		OverworldSpriteGraphics(sprite0413, 1),
-		OverworldSpriteGraphics(sprite0410),
-		OverworldSpriteGraphics(sprite0410, 1),
-		OverworldSpriteGraphics(sprite0412),
-		OverworldSpriteGraphics(sprite0413)
+		OverworldSpriteGraphics(411),
+		OverworldSpriteGraphics(411, 1),
+		OverworldSpriteGraphics(412, 1),
+		OverworldSpriteGraphics(413, 1),
+		OverworldSpriteGraphics(410),
+		OverworldSpriteGraphics(410, 1),
+		OverworldSpriteGraphics(412),
+		OverworldSpriteGraphics(413)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0407),
-		OverworldSpriteGraphics(sprite0407, 1),
-		OverworldSpriteGraphics(sprite0408, 1),
-		OverworldSpriteGraphics(sprite0409, 1),
-		OverworldSpriteGraphics(sprite0406),
-		OverworldSpriteGraphics(sprite0406, 1),
-		OverworldSpriteGraphics(sprite0408),
-		OverworldSpriteGraphics(sprite0409)
+		OverworldSpriteGraphics(407),
+		OverworldSpriteGraphics(407, 1),
+		OverworldSpriteGraphics(408, 1),
+		OverworldSpriteGraphics(409, 1),
+		OverworldSpriteGraphics(406),
+		OverworldSpriteGraphics(406, 1),
+		OverworldSpriteGraphics(408),
+		OverworldSpriteGraphics(409)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0403),
-		OverworldSpriteGraphics(sprite0403, 1),
-		OverworldSpriteGraphics(sprite0404, 1),
-		OverworldSpriteGraphics(sprite0405, 1),
-		OverworldSpriteGraphics(sprite0402),
-		OverworldSpriteGraphics(sprite0402, 1),
-		OverworldSpriteGraphics(sprite0404),
-		OverworldSpriteGraphics(sprite0405)
+		OverworldSpriteGraphics(403),
+		OverworldSpriteGraphics(403, 1),
+		OverworldSpriteGraphics(404, 1),
+		OverworldSpriteGraphics(405, 1),
+		OverworldSpriteGraphics(402),
+		OverworldSpriteGraphics(402, 1),
+		OverworldSpriteGraphics(404),
+		OverworldSpriteGraphics(405)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0399),
-		OverworldSpriteGraphics(sprite0399, 1),
-		OverworldSpriteGraphics(sprite0400, 1),
-		OverworldSpriteGraphics(sprite0401, 1),
-		OverworldSpriteGraphics(sprite0398),
-		OverworldSpriteGraphics(sprite0398, 1),
-		OverworldSpriteGraphics(sprite0400),
-		OverworldSpriteGraphics(sprite0401)
+		OverworldSpriteGraphics(399),
+		OverworldSpriteGraphics(399, 1),
+		OverworldSpriteGraphics(400, 1),
+		OverworldSpriteGraphics(401, 1),
+		OverworldSpriteGraphics(398),
+		OverworldSpriteGraphics(398, 1),
+		OverworldSpriteGraphics(400),
+		OverworldSpriteGraphics(401)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0395),
-		OverworldSpriteGraphics(sprite0395, 1),
-		OverworldSpriteGraphics(sprite0396, 1),
-		OverworldSpriteGraphics(sprite0397, 1),
-		OverworldSpriteGraphics(sprite0394),
-		OverworldSpriteGraphics(sprite0394, 1),
-		OverworldSpriteGraphics(sprite0396),
-		OverworldSpriteGraphics(sprite0397)
+		OverworldSpriteGraphics(395),
+		OverworldSpriteGraphics(395, 1),
+		OverworldSpriteGraphics(396, 1),
+		OverworldSpriteGraphics(397, 1),
+		OverworldSpriteGraphics(394),
+		OverworldSpriteGraphics(394, 1),
+		OverworldSpriteGraphics(396),
+		OverworldSpriteGraphics(397)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0391),
-		OverworldSpriteGraphics(sprite0391, 1),
-		OverworldSpriteGraphics(sprite0392, 1),
-		OverworldSpriteGraphics(sprite0393, 1),
-		OverworldSpriteGraphics(sprite0390),
-		OverworldSpriteGraphics(sprite0390, 1),
-		OverworldSpriteGraphics(sprite0392),
-		OverworldSpriteGraphics(sprite0393)
+		OverworldSpriteGraphics(391),
+		OverworldSpriteGraphics(391, 1),
+		OverworldSpriteGraphics(392, 1),
+		OverworldSpriteGraphics(393, 1),
+		OverworldSpriteGraphics(390),
+		OverworldSpriteGraphics(390, 1),
+		OverworldSpriteGraphics(392),
+		OverworldSpriteGraphics(393)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0387),
-		OverworldSpriteGraphics(sprite0387, 1),
-		OverworldSpriteGraphics(sprite0388, 1),
-		OverworldSpriteGraphics(sprite0389, 1),
-		OverworldSpriteGraphics(sprite0386),
-		OverworldSpriteGraphics(sprite0386, 1),
-		OverworldSpriteGraphics(sprite0388),
-		OverworldSpriteGraphics(sprite0389)
+		OverworldSpriteGraphics(387),
+		OverworldSpriteGraphics(387, 1),
+		OverworldSpriteGraphics(388, 1),
+		OverworldSpriteGraphics(389, 1),
+		OverworldSpriteGraphics(386),
+		OverworldSpriteGraphics(386, 1),
+		OverworldSpriteGraphics(388),
+		OverworldSpriteGraphics(389)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0383),
-		OverworldSpriteGraphics(sprite0383, 1),
-		OverworldSpriteGraphics(sprite0384, 1),
-		OverworldSpriteGraphics(sprite0385, 1),
-		OverworldSpriteGraphics(sprite0382),
-		OverworldSpriteGraphics(sprite0382, 1),
-		OverworldSpriteGraphics(sprite0384),
-		OverworldSpriteGraphics(sprite0385)
+		OverworldSpriteGraphics(383),
+		OverworldSpriteGraphics(383, 1),
+		OverworldSpriteGraphics(384, 1),
+		OverworldSpriteGraphics(385, 1),
+		OverworldSpriteGraphics(382),
+		OverworldSpriteGraphics(382, 1),
+		OverworldSpriteGraphics(384),
+		OverworldSpriteGraphics(385)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0379),
-		OverworldSpriteGraphics(sprite0379, 1),
-		OverworldSpriteGraphics(sprite0380, 1),
-		OverworldSpriteGraphics(sprite0381, 1),
-		OverworldSpriteGraphics(sprite0378),
-		OverworldSpriteGraphics(sprite0378, 1),
-		OverworldSpriteGraphics(sprite0380),
-		OverworldSpriteGraphics(sprite0381)
+		OverworldSpriteGraphics(379),
+		OverworldSpriteGraphics(379, 1),
+		OverworldSpriteGraphics(380, 1),
+		OverworldSpriteGraphics(381, 1),
+		OverworldSpriteGraphics(378),
+		OverworldSpriteGraphics(378, 1),
+		OverworldSpriteGraphics(380),
+		OverworldSpriteGraphics(381)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0375),
-		OverworldSpriteGraphics(sprite0375, 1),
-		OverworldSpriteGraphics(sprite0376, 1),
-		OverworldSpriteGraphics(sprite0377, 1),
-		OverworldSpriteGraphics(sprite0374),
-		OverworldSpriteGraphics(sprite0374, 1),
-		OverworldSpriteGraphics(sprite0376),
-		OverworldSpriteGraphics(sprite0377)
+		OverworldSpriteGraphics(375),
+		OverworldSpriteGraphics(375, 1),
+		OverworldSpriteGraphics(376, 1),
+		OverworldSpriteGraphics(377, 1),
+		OverworldSpriteGraphics(374),
+		OverworldSpriteGraphics(374, 1),
+		OverworldSpriteGraphics(376),
+		OverworldSpriteGraphics(377)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0371),
-		OverworldSpriteGraphics(sprite0371, 1),
-		OverworldSpriteGraphics(sprite0372, 1),
-		OverworldSpriteGraphics(sprite0373, 1),
-		OverworldSpriteGraphics(sprite0370),
-		OverworldSpriteGraphics(sprite0370, 1),
-		OverworldSpriteGraphics(sprite0372),
-		OverworldSpriteGraphics(sprite0373)
+		OverworldSpriteGraphics(371),
+		OverworldSpriteGraphics(371, 1),
+		OverworldSpriteGraphics(372, 1),
+		OverworldSpriteGraphics(373, 1),
+		OverworldSpriteGraphics(370),
+		OverworldSpriteGraphics(370, 1),
+		OverworldSpriteGraphics(372),
+		OverworldSpriteGraphics(373)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0367),
-		OverworldSpriteGraphics(sprite0367, 1),
-		OverworldSpriteGraphics(sprite0368, 1),
-		OverworldSpriteGraphics(sprite0369, 1),
-		OverworldSpriteGraphics(sprite0366),
-		OverworldSpriteGraphics(sprite0366, 1),
-		OverworldSpriteGraphics(sprite0368),
-		OverworldSpriteGraphics(sprite0369)
+		OverworldSpriteGraphics(367),
+		OverworldSpriteGraphics(367, 1),
+		OverworldSpriteGraphics(368, 1),
+		OverworldSpriteGraphics(369, 1),
+		OverworldSpriteGraphics(366),
+		OverworldSpriteGraphics(366, 1),
+		OverworldSpriteGraphics(368),
+		OverworldSpriteGraphics(369)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0363),
-		OverworldSpriteGraphics(sprite0363, 1),
-		OverworldSpriteGraphics(sprite0364, 1),
-		OverworldSpriteGraphics(sprite0365, 1),
-		OverworldSpriteGraphics(sprite0362),
-		OverworldSpriteGraphics(sprite0362, 1),
-		OverworldSpriteGraphics(sprite0364),
-		OverworldSpriteGraphics(sprite0365)
+		OverworldSpriteGraphics(363),
+		OverworldSpriteGraphics(363, 1),
+		OverworldSpriteGraphics(364, 1),
+		OverworldSpriteGraphics(365, 1),
+		OverworldSpriteGraphics(362),
+		OverworldSpriteGraphics(362, 1),
+		OverworldSpriteGraphics(364),
+		OverworldSpriteGraphics(365)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0359),
-		OverworldSpriteGraphics(sprite0359, 1),
-		OverworldSpriteGraphics(sprite0360, 1),
-		OverworldSpriteGraphics(sprite0361, 1),
-		OverworldSpriteGraphics(sprite0358),
-		OverworldSpriteGraphics(sprite0358, 1),
-		OverworldSpriteGraphics(sprite0360),
-		OverworldSpriteGraphics(sprite0361)
+		OverworldSpriteGraphics(359),
+		OverworldSpriteGraphics(359, 1),
+		OverworldSpriteGraphics(360, 1),
+		OverworldSpriteGraphics(361, 1),
+		OverworldSpriteGraphics(358),
+		OverworldSpriteGraphics(358, 1),
+		OverworldSpriteGraphics(360),
+		OverworldSpriteGraphics(361)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0355),
-		OverworldSpriteGraphics(sprite0355, 1),
-		OverworldSpriteGraphics(sprite0356, 1),
-		OverworldSpriteGraphics(sprite0357, 1),
-		OverworldSpriteGraphics(sprite0354),
-		OverworldSpriteGraphics(sprite0354, 1),
-		OverworldSpriteGraphics(sprite0356),
-		OverworldSpriteGraphics(sprite0357),
-		OverworldSpriteGraphics(sprite0355),
-		OverworldSpriteGraphics(sprite0355, 1),
-		OverworldSpriteGraphics(sprite0354),
-		OverworldSpriteGraphics(sprite0354, 1),
-		OverworldSpriteGraphics(sprite0354),
-		OverworldSpriteGraphics(sprite0354, 1),
-		OverworldSpriteGraphics(sprite0355),
-		OverworldSpriteGraphics(sprite0355, 1)
+		OverworldSpriteGraphics(355),
+		OverworldSpriteGraphics(355, 1),
+		OverworldSpriteGraphics(356, 1),
+		OverworldSpriteGraphics(357, 1),
+		OverworldSpriteGraphics(354),
+		OverworldSpriteGraphics(354, 1),
+		OverworldSpriteGraphics(356),
+		OverworldSpriteGraphics(357),
+		OverworldSpriteGraphics(355),
+		OverworldSpriteGraphics(355, 1),
+		OverworldSpriteGraphics(354),
+		OverworldSpriteGraphics(354, 1),
+		OverworldSpriteGraphics(354),
+		OverworldSpriteGraphics(354, 1),
+		OverworldSpriteGraphics(355),
+		OverworldSpriteGraphics(355, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0350),
-		OverworldSpriteGraphics(sprite0350, 1),
-		OverworldSpriteGraphics(sprite0351, 1),
-		OverworldSpriteGraphics(sprite0352, 1),
-		OverworldSpriteGraphics(sprite0349),
-		OverworldSpriteGraphics(sprite0349, 1),
-		OverworldSpriteGraphics(sprite0351),
-		OverworldSpriteGraphics(sprite0352),
-		OverworldSpriteGraphics(sprite0350),
-		OverworldSpriteGraphics(sprite0350, 1),
-		OverworldSpriteGraphics(sprite0349),
-		OverworldSpriteGraphics(sprite0349, 1),
-		OverworldSpriteGraphics(sprite0349),
-		OverworldSpriteGraphics(sprite0349, 1),
-		OverworldSpriteGraphics(sprite0350),
-		OverworldSpriteGraphics(sprite0350, 1)
+		OverworldSpriteGraphics(350),
+		OverworldSpriteGraphics(350, 1),
+		OverworldSpriteGraphics(351, 1),
+		OverworldSpriteGraphics(352, 1),
+		OverworldSpriteGraphics(349),
+		OverworldSpriteGraphics(349, 1),
+		OverworldSpriteGraphics(351),
+		OverworldSpriteGraphics(352),
+		OverworldSpriteGraphics(350),
+		OverworldSpriteGraphics(350, 1),
+		OverworldSpriteGraphics(349),
+		OverworldSpriteGraphics(349, 1),
+		OverworldSpriteGraphics(349),
+		OverworldSpriteGraphics(349, 1),
+		OverworldSpriteGraphics(350),
+		OverworldSpriteGraphics(350, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0346),
-		OverworldSpriteGraphics(sprite0346, 1),
-		OverworldSpriteGraphics(sprite0347, 1),
-		OverworldSpriteGraphics(sprite0348, 1),
-		OverworldSpriteGraphics(sprite0345),
-		OverworldSpriteGraphics(sprite0345, 1),
-		OverworldSpriteGraphics(sprite0347),
-		OverworldSpriteGraphics(sprite0348)
+		OverworldSpriteGraphics(346),
+		OverworldSpriteGraphics(346, 1),
+		OverworldSpriteGraphics(347, 1),
+		OverworldSpriteGraphics(348, 1),
+		OverworldSpriteGraphics(345),
+		OverworldSpriteGraphics(345, 1),
+		OverworldSpriteGraphics(347),
+		OverworldSpriteGraphics(348)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0342),
-		OverworldSpriteGraphics(sprite0342, 1),
-		OverworldSpriteGraphics(sprite0343, 1),
-		OverworldSpriteGraphics(sprite0344, 1),
-		OverworldSpriteGraphics(sprite0341),
-		OverworldSpriteGraphics(sprite0341, 1),
-		OverworldSpriteGraphics(sprite0343),
-		OverworldSpriteGraphics(sprite0344)
+		OverworldSpriteGraphics(342),
+		OverworldSpriteGraphics(342, 1),
+		OverworldSpriteGraphics(343, 1),
+		OverworldSpriteGraphics(344, 1),
+		OverworldSpriteGraphics(341),
+		OverworldSpriteGraphics(341, 1),
+		OverworldSpriteGraphics(343),
+		OverworldSpriteGraphics(344)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0338),
-		OverworldSpriteGraphics(sprite0338, 1),
-		OverworldSpriteGraphics(sprite0339, 1),
-		OverworldSpriteGraphics(sprite0340, 1),
-		OverworldSpriteGraphics(sprite0337),
-		OverworldSpriteGraphics(sprite0337, 1),
-		OverworldSpriteGraphics(sprite0339),
-		OverworldSpriteGraphics(sprite0340)
+		OverworldSpriteGraphics(338),
+		OverworldSpriteGraphics(338, 1),
+		OverworldSpriteGraphics(339, 1),
+		OverworldSpriteGraphics(340, 1),
+		OverworldSpriteGraphics(337),
+		OverworldSpriteGraphics(337, 1),
+		OverworldSpriteGraphics(339),
+		OverworldSpriteGraphics(340)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0904),
-		OverworldSpriteGraphics(sprite0904, 1),
-		OverworldSpriteGraphics(sprite0905, 1),
-		OverworldSpriteGraphics(sprite0905, 1),
-		OverworldSpriteGraphics(sprite0904),
-		OverworldSpriteGraphics(sprite0904, 1),
-		OverworldSpriteGraphics(sprite0905),
-		OverworldSpriteGraphics(sprite0905)
+		OverworldSpriteGraphics(904),
+		OverworldSpriteGraphics(904, 1),
+		OverworldSpriteGraphics(905, 1),
+		OverworldSpriteGraphics(905, 1),
+		OverworldSpriteGraphics(904),
+		OverworldSpriteGraphics(904, 1),
+		OverworldSpriteGraphics(905),
+		OverworldSpriteGraphics(905)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0334),
-		OverworldSpriteGraphics(sprite0334, 1),
-		OverworldSpriteGraphics(sprite0335, 1),
-		OverworldSpriteGraphics(sprite0336, 1),
-		OverworldSpriteGraphics(sprite0333),
-		OverworldSpriteGraphics(sprite0333, 1),
-		OverworldSpriteGraphics(sprite0335),
-		OverworldSpriteGraphics(sprite0336)
+		OverworldSpriteGraphics(334),
+		OverworldSpriteGraphics(334, 1),
+		OverworldSpriteGraphics(335, 1),
+		OverworldSpriteGraphics(336, 1),
+		OverworldSpriteGraphics(333),
+		OverworldSpriteGraphics(333, 1),
+		OverworldSpriteGraphics(335),
+		OverworldSpriteGraphics(336)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0330),
-		OverworldSpriteGraphics(sprite0330, 1),
-		OverworldSpriteGraphics(sprite0331, 1),
-		OverworldSpriteGraphics(sprite0332, 1),
-		OverworldSpriteGraphics(sprite0329),
-		OverworldSpriteGraphics(sprite0329, 1),
-		OverworldSpriteGraphics(sprite0331),
-		OverworldSpriteGraphics(sprite0332)
+		OverworldSpriteGraphics(330),
+		OverworldSpriteGraphics(330, 1),
+		OverworldSpriteGraphics(331, 1),
+		OverworldSpriteGraphics(332, 1),
+		OverworldSpriteGraphics(329),
+		OverworldSpriteGraphics(329, 1),
+		OverworldSpriteGraphics(331),
+		OverworldSpriteGraphics(332)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0326),
-		OverworldSpriteGraphics(sprite0326, 1),
-		OverworldSpriteGraphics(sprite0327, 1),
-		OverworldSpriteGraphics(sprite0328, 1),
-		OverworldSpriteGraphics(sprite0325),
-		OverworldSpriteGraphics(sprite0325, 1),
-		OverworldSpriteGraphics(sprite0327),
-		OverworldSpriteGraphics(sprite0328)
+		OverworldSpriteGraphics(326),
+		OverworldSpriteGraphics(326, 1),
+		OverworldSpriteGraphics(327, 1),
+		OverworldSpriteGraphics(328, 1),
+		OverworldSpriteGraphics(325),
+		OverworldSpriteGraphics(325, 1),
+		OverworldSpriteGraphics(327),
+		OverworldSpriteGraphics(328)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0902),
-		OverworldSpriteGraphics(sprite0902, 1),
-		OverworldSpriteGraphics(sprite0903, 1),
-		OverworldSpriteGraphics(sprite0903, 1),
-		OverworldSpriteGraphics(sprite0902),
-		OverworldSpriteGraphics(sprite0902, 1),
-		OverworldSpriteGraphics(sprite0903),
-		OverworldSpriteGraphics(sprite0903)
+		OverworldSpriteGraphics(902),
+		OverworldSpriteGraphics(902, 1),
+		OverworldSpriteGraphics(903, 1),
+		OverworldSpriteGraphics(903, 1),
+		OverworldSpriteGraphics(902),
+		OverworldSpriteGraphics(902, 1),
+		OverworldSpriteGraphics(903),
+		OverworldSpriteGraphics(903)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0322),
-		OverworldSpriteGraphics(sprite0322, 1),
-		OverworldSpriteGraphics(sprite0323, 1),
-		OverworldSpriteGraphics(sprite0324, 1),
-		OverworldSpriteGraphics(sprite0321),
-		OverworldSpriteGraphics(sprite0321, 1),
-		OverworldSpriteGraphics(sprite0323),
-		OverworldSpriteGraphics(sprite0324)
+		OverworldSpriteGraphics(322),
+		OverworldSpriteGraphics(322, 1),
+		OverworldSpriteGraphics(323, 1),
+		OverworldSpriteGraphics(324, 1),
+		OverworldSpriteGraphics(321),
+		OverworldSpriteGraphics(321, 1),
+		OverworldSpriteGraphics(323),
+		OverworldSpriteGraphics(324)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0318),
-		OverworldSpriteGraphics(sprite0318, 1),
-		OverworldSpriteGraphics(sprite0319, 1),
-		OverworldSpriteGraphics(sprite0320, 1),
-		OverworldSpriteGraphics(sprite0317),
-		OverworldSpriteGraphics(sprite0317, 1),
-		OverworldSpriteGraphics(sprite0319),
-		OverworldSpriteGraphics(sprite0320)
+		OverworldSpriteGraphics(318),
+		OverworldSpriteGraphics(318, 1),
+		OverworldSpriteGraphics(319, 1),
+		OverworldSpriteGraphics(320, 1),
+		OverworldSpriteGraphics(317),
+		OverworldSpriteGraphics(317, 1),
+		OverworldSpriteGraphics(319),
+		OverworldSpriteGraphics(320)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0314),
-		OverworldSpriteGraphics(sprite0314, 1),
-		OverworldSpriteGraphics(sprite0315, 1),
-		OverworldSpriteGraphics(sprite0316, 1),
-		OverworldSpriteGraphics(sprite0313),
-		OverworldSpriteGraphics(sprite0313, 1),
-		OverworldSpriteGraphics(sprite0315),
-		OverworldSpriteGraphics(sprite0316)
+		OverworldSpriteGraphics(314),
+		OverworldSpriteGraphics(314, 1),
+		OverworldSpriteGraphics(315, 1),
+		OverworldSpriteGraphics(316, 1),
+		OverworldSpriteGraphics(313),
+		OverworldSpriteGraphics(313, 1),
+		OverworldSpriteGraphics(315),
+		OverworldSpriteGraphics(316)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0310),
-		OverworldSpriteGraphics(sprite0310, 1),
-		OverworldSpriteGraphics(sprite0311, 1),
-		OverworldSpriteGraphics(sprite0312, 1),
-		OverworldSpriteGraphics(sprite0309),
-		OverworldSpriteGraphics(sprite0309, 1),
-		OverworldSpriteGraphics(sprite0311),
-		OverworldSpriteGraphics(sprite0312)
+		OverworldSpriteGraphics(310),
+		OverworldSpriteGraphics(310, 1),
+		OverworldSpriteGraphics(311, 1),
+		OverworldSpriteGraphics(312, 1),
+		OverworldSpriteGraphics(309),
+		OverworldSpriteGraphics(309, 1),
+		OverworldSpriteGraphics(311),
+		OverworldSpriteGraphics(312)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0306),
-		OverworldSpriteGraphics(sprite0306, 1),
-		OverworldSpriteGraphics(sprite0307, 1),
-		OverworldSpriteGraphics(sprite0308, 1),
-		OverworldSpriteGraphics(sprite0305),
-		OverworldSpriteGraphics(sprite0305, 1),
-		OverworldSpriteGraphics(sprite0307),
-		OverworldSpriteGraphics(sprite0308)
+		OverworldSpriteGraphics(306),
+		OverworldSpriteGraphics(306, 1),
+		OverworldSpriteGraphics(307, 1),
+		OverworldSpriteGraphics(308, 1),
+		OverworldSpriteGraphics(305),
+		OverworldSpriteGraphics(305, 1),
+		OverworldSpriteGraphics(307),
+		OverworldSpriteGraphics(308)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0302),
-		OverworldSpriteGraphics(sprite0302, 1),
-		OverworldSpriteGraphics(sprite0303, 1),
-		OverworldSpriteGraphics(sprite0304, 1),
-		OverworldSpriteGraphics(sprite0301),
-		OverworldSpriteGraphics(sprite0301, 1),
-		OverworldSpriteGraphics(sprite0303),
-		OverworldSpriteGraphics(sprite0304)
+		OverworldSpriteGraphics(302),
+		OverworldSpriteGraphics(302, 1),
+		OverworldSpriteGraphics(303, 1),
+		OverworldSpriteGraphics(304, 1),
+		OverworldSpriteGraphics(301),
+		OverworldSpriteGraphics(301, 1),
+		OverworldSpriteGraphics(303),
+		OverworldSpriteGraphics(304)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0298),
-		OverworldSpriteGraphics(sprite0298, 1),
-		OverworldSpriteGraphics(sprite0299, 1),
-		OverworldSpriteGraphics(sprite0300, 1),
-		OverworldSpriteGraphics(sprite0297),
-		OverworldSpriteGraphics(sprite0297, 1),
-		OverworldSpriteGraphics(sprite0299),
-		OverworldSpriteGraphics(sprite0300)
+		OverworldSpriteGraphics(298),
+		OverworldSpriteGraphics(298, 1),
+		OverworldSpriteGraphics(299, 1),
+		OverworldSpriteGraphics(300, 1),
+		OverworldSpriteGraphics(297),
+		OverworldSpriteGraphics(297, 1),
+		OverworldSpriteGraphics(299),
+		OverworldSpriteGraphics(300)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0294),
-		OverworldSpriteGraphics(sprite0294, 1),
-		OverworldSpriteGraphics(sprite0295, 1),
-		OverworldSpriteGraphics(sprite0296, 1),
-		OverworldSpriteGraphics(sprite0293),
-		OverworldSpriteGraphics(sprite0293, 1),
-		OverworldSpriteGraphics(sprite0295),
-		OverworldSpriteGraphics(sprite0296)
+		OverworldSpriteGraphics(294),
+		OverworldSpriteGraphics(294, 1),
+		OverworldSpriteGraphics(295, 1),
+		OverworldSpriteGraphics(296, 1),
+		OverworldSpriteGraphics(293),
+		OverworldSpriteGraphics(293, 1),
+		OverworldSpriteGraphics(295),
+		OverworldSpriteGraphics(296)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0900),
-		OverworldSpriteGraphics(sprite0900),
-		OverworldSpriteGraphics(sprite0901, 1),
-		OverworldSpriteGraphics(sprite0901, 1),
-		OverworldSpriteGraphics(sprite0900),
-		OverworldSpriteGraphics(sprite0900),
-		OverworldSpriteGraphics(sprite0901),
-		OverworldSpriteGraphics(sprite0901)
+		OverworldSpriteGraphics(900),
+		OverworldSpriteGraphics(900),
+		OverworldSpriteGraphics(901, 1),
+		OverworldSpriteGraphics(901, 1),
+		OverworldSpriteGraphics(900),
+		OverworldSpriteGraphics(900),
+		OverworldSpriteGraphics(901),
+		OverworldSpriteGraphics(901)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1074),
-		OverworldSpriteGraphics(sprite1074),
-		OverworldSpriteGraphics(sprite1074),
-		OverworldSpriteGraphics(sprite1074),
-		OverworldSpriteGraphics(sprite1074),
-		OverworldSpriteGraphics(sprite1074),
-		OverworldSpriteGraphics(sprite1074),
-		OverworldSpriteGraphics(sprite1074)
+		OverworldSpriteGraphics(1074),
+		OverworldSpriteGraphics(1074),
+		OverworldSpriteGraphics(1074),
+		OverworldSpriteGraphics(1074),
+		OverworldSpriteGraphics(1074),
+		OverworldSpriteGraphics(1074),
+		OverworldSpriteGraphics(1074),
+		OverworldSpriteGraphics(1074)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0898),
-		OverworldSpriteGraphics(sprite0898, 1),
-		OverworldSpriteGraphics(sprite0899),
-		OverworldSpriteGraphics(sprite0899),
-		OverworldSpriteGraphics(sprite0899),
-		OverworldSpriteGraphics(sprite0899, 1),
-		OverworldSpriteGraphics(sprite0898),
-		OverworldSpriteGraphics(sprite0898)
+		OverworldSpriteGraphics(898),
+		OverworldSpriteGraphics(898, 1),
+		OverworldSpriteGraphics(899),
+		OverworldSpriteGraphics(899),
+		OverworldSpriteGraphics(899),
+		OverworldSpriteGraphics(899, 1),
+		OverworldSpriteGraphics(898),
+		OverworldSpriteGraphics(898)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0291),
-		OverworldSpriteGraphics(sprite0291),
-		OverworldSpriteGraphics(sprite0292, 1),
-		OverworldSpriteGraphics(sprite0292, 1),
-		OverworldSpriteGraphics(sprite0289),
-		OverworldSpriteGraphics(sprite0290),
-		OverworldSpriteGraphics(sprite0292),
-		OverworldSpriteGraphics(sprite0292)
+		OverworldSpriteGraphics(291),
+		OverworldSpriteGraphics(291),
+		OverworldSpriteGraphics(292, 1),
+		OverworldSpriteGraphics(292, 1),
+		OverworldSpriteGraphics(289),
+		OverworldSpriteGraphics(290),
+		OverworldSpriteGraphics(292),
+		OverworldSpriteGraphics(292)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0286),
-		OverworldSpriteGraphics(sprite0286, 1),
-		OverworldSpriteGraphics(sprite0287, 1),
-		OverworldSpriteGraphics(sprite0288, 1),
-		OverworldSpriteGraphics(sprite0285),
-		OverworldSpriteGraphics(sprite0285, 1),
-		OverworldSpriteGraphics(sprite0287),
-		OverworldSpriteGraphics(sprite0288)
+		OverworldSpriteGraphics(286),
+		OverworldSpriteGraphics(286, 1),
+		OverworldSpriteGraphics(287, 1),
+		OverworldSpriteGraphics(288, 1),
+		OverworldSpriteGraphics(285),
+		OverworldSpriteGraphics(285, 1),
+		OverworldSpriteGraphics(287),
+		OverworldSpriteGraphics(288)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0282),
-		OverworldSpriteGraphics(sprite0282, 1),
-		OverworldSpriteGraphics(sprite0283, 1),
-		OverworldSpriteGraphics(sprite0284, 1),
-		OverworldSpriteGraphics(sprite0281),
-		OverworldSpriteGraphics(sprite0281, 1),
-		OverworldSpriteGraphics(sprite0283),
-		OverworldSpriteGraphics(sprite0284)
+		OverworldSpriteGraphics(282),
+		OverworldSpriteGraphics(282, 1),
+		OverworldSpriteGraphics(283, 1),
+		OverworldSpriteGraphics(284, 1),
+		OverworldSpriteGraphics(281),
+		OverworldSpriteGraphics(281, 1),
+		OverworldSpriteGraphics(283),
+		OverworldSpriteGraphics(284)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0278),
-		OverworldSpriteGraphics(sprite0278, 1),
-		OverworldSpriteGraphics(sprite0279, 1),
-		OverworldSpriteGraphics(sprite0280, 1),
-		OverworldSpriteGraphics(sprite0277),
-		OverworldSpriteGraphics(sprite0277, 1),
-		OverworldSpriteGraphics(sprite0279),
-		OverworldSpriteGraphics(sprite0280)
+		OverworldSpriteGraphics(278),
+		OverworldSpriteGraphics(278, 1),
+		OverworldSpriteGraphics(279, 1),
+		OverworldSpriteGraphics(280, 1),
+		OverworldSpriteGraphics(277),
+		OverworldSpriteGraphics(277, 1),
+		OverworldSpriteGraphics(279),
+		OverworldSpriteGraphics(280)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0274),
-		OverworldSpriteGraphics(sprite0274, 1),
-		OverworldSpriteGraphics(sprite0275, 1),
-		OverworldSpriteGraphics(sprite0276, 1),
-		OverworldSpriteGraphics(sprite0273),
-		OverworldSpriteGraphics(sprite0273, 1),
-		OverworldSpriteGraphics(sprite0275),
-		OverworldSpriteGraphics(sprite0276)
+		OverworldSpriteGraphics(274),
+		OverworldSpriteGraphics(274, 1),
+		OverworldSpriteGraphics(275, 1),
+		OverworldSpriteGraphics(276, 1),
+		OverworldSpriteGraphics(273),
+		OverworldSpriteGraphics(273, 1),
+		OverworldSpriteGraphics(275),
+		OverworldSpriteGraphics(276)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0270),
-		OverworldSpriteGraphics(sprite0270, 1),
-		OverworldSpriteGraphics(sprite0271, 1),
-		OverworldSpriteGraphics(sprite0272, 1),
-		OverworldSpriteGraphics(sprite0269),
-		OverworldSpriteGraphics(sprite0269, 1),
-		OverworldSpriteGraphics(sprite0271),
-		OverworldSpriteGraphics(sprite0272)
+		OverworldSpriteGraphics(270),
+		OverworldSpriteGraphics(270, 1),
+		OverworldSpriteGraphics(271, 1),
+		OverworldSpriteGraphics(272, 1),
+		OverworldSpriteGraphics(269),
+		OverworldSpriteGraphics(269, 1),
+		OverworldSpriteGraphics(271),
+		OverworldSpriteGraphics(272)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0266),
-		OverworldSpriteGraphics(sprite0266, 1),
-		OverworldSpriteGraphics(sprite0267, 1),
-		OverworldSpriteGraphics(sprite0268, 1),
-		OverworldSpriteGraphics(sprite0265),
-		OverworldSpriteGraphics(sprite0265, 1),
-		OverworldSpriteGraphics(sprite0267),
-		OverworldSpriteGraphics(sprite0268)
+		OverworldSpriteGraphics(266),
+		OverworldSpriteGraphics(266, 1),
+		OverworldSpriteGraphics(267, 1),
+		OverworldSpriteGraphics(268, 1),
+		OverworldSpriteGraphics(265),
+		OverworldSpriteGraphics(265, 1),
+		OverworldSpriteGraphics(267),
+		OverworldSpriteGraphics(268)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0816),
-		OverworldSpriteGraphics(sprite0817),
-		OverworldSpriteGraphics(sprite0816),
-		OverworldSpriteGraphics(sprite0817),
-		OverworldSpriteGraphics(sprite0816),
-		OverworldSpriteGraphics(sprite0817),
-		OverworldSpriteGraphics(sprite0816),
-		OverworldSpriteGraphics(sprite0817)
+		OverworldSpriteGraphics(816),
+		OverworldSpriteGraphics(817),
+		OverworldSpriteGraphics(816),
+		OverworldSpriteGraphics(817),
+		OverworldSpriteGraphics(816),
+		OverworldSpriteGraphics(817),
+		OverworldSpriteGraphics(816),
+		OverworldSpriteGraphics(817)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0262),
-		OverworldSpriteGraphics(sprite0262, 1),
-		OverworldSpriteGraphics(sprite0263, 1),
-		OverworldSpriteGraphics(sprite0264, 1),
-		OverworldSpriteGraphics(sprite0261),
-		OverworldSpriteGraphics(sprite0261, 1),
-		OverworldSpriteGraphics(sprite0263),
-		OverworldSpriteGraphics(sprite0264)
+		OverworldSpriteGraphics(262),
+		OverworldSpriteGraphics(262, 1),
+		OverworldSpriteGraphics(263, 1),
+		OverworldSpriteGraphics(264, 1),
+		OverworldSpriteGraphics(261),
+		OverworldSpriteGraphics(261, 1),
+		OverworldSpriteGraphics(263),
+		OverworldSpriteGraphics(264)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1139),
-		OverworldSpriteGraphics(sprite1139),
-		OverworldSpriteGraphics(sprite1139),
-		OverworldSpriteGraphics(sprite1139),
-		OverworldSpriteGraphics(sprite1139),
-		OverworldSpriteGraphics(sprite1139),
-		OverworldSpriteGraphics(sprite1139),
-		OverworldSpriteGraphics(sprite1139)
+		OverworldSpriteGraphics(1139),
+		OverworldSpriteGraphics(1139),
+		OverworldSpriteGraphics(1139),
+		OverworldSpriteGraphics(1139),
+		OverworldSpriteGraphics(1139),
+		OverworldSpriteGraphics(1139),
+		OverworldSpriteGraphics(1139),
+		OverworldSpriteGraphics(1139)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1072),
-		OverworldSpriteGraphics(sprite1072),
-		OverworldSpriteGraphics(sprite1072),
-		OverworldSpriteGraphics(sprite1072),
-		OverworldSpriteGraphics(sprite1072),
-		OverworldSpriteGraphics(sprite1072),
-		OverworldSpriteGraphics(sprite1072),
-		OverworldSpriteGraphics(sprite1072)
+		OverworldSpriteGraphics(1072),
+		OverworldSpriteGraphics(1072),
+		OverworldSpriteGraphics(1072),
+		OverworldSpriteGraphics(1072),
+		OverworldSpriteGraphics(1072),
+		OverworldSpriteGraphics(1072),
+		OverworldSpriteGraphics(1072),
+		OverworldSpriteGraphics(1072)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0747),
-		OverworldSpriteGraphics(sprite0747, 1),
-		OverworldSpriteGraphics(sprite0746, 1),
-		OverworldSpriteGraphics(sprite0746, 1),
-		OverworldSpriteGraphics(sprite0745),
-		OverworldSpriteGraphics(sprite0745, 1),
-		OverworldSpriteGraphics(sprite0746),
-		OverworldSpriteGraphics(sprite0746)
+		OverworldSpriteGraphics(747),
+		OverworldSpriteGraphics(747, 1),
+		OverworldSpriteGraphics(746, 1),
+		OverworldSpriteGraphics(746, 1),
+		OverworldSpriteGraphics(745),
+		OverworldSpriteGraphics(745, 1),
+		OverworldSpriteGraphics(746),
+		OverworldSpriteGraphics(746)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0258),
-		OverworldSpriteGraphics(sprite0258, 1),
-		OverworldSpriteGraphics(sprite0259, 1),
-		OverworldSpriteGraphics(sprite0260, 1),
-		OverworldSpriteGraphics(sprite0257),
-		OverworldSpriteGraphics(sprite0257, 1),
-		OverworldSpriteGraphics(sprite0259),
-		OverworldSpriteGraphics(sprite0260),
-		OverworldSpriteGraphics(sprite0258),
-		OverworldSpriteGraphics(sprite0258, 1),
-		OverworldSpriteGraphics(sprite0257),
-		OverworldSpriteGraphics(sprite0257, 1),
-		OverworldSpriteGraphics(sprite0257),
-		OverworldSpriteGraphics(sprite0257, 1),
-		OverworldSpriteGraphics(sprite0258),
-		OverworldSpriteGraphics(sprite0258, 1)
+		OverworldSpriteGraphics(258),
+		OverworldSpriteGraphics(258, 1),
+		OverworldSpriteGraphics(259, 1),
+		OverworldSpriteGraphics(260, 1),
+		OverworldSpriteGraphics(257),
+		OverworldSpriteGraphics(257, 1),
+		OverworldSpriteGraphics(259),
+		OverworldSpriteGraphics(260),
+		OverworldSpriteGraphics(258),
+		OverworldSpriteGraphics(258, 1),
+		OverworldSpriteGraphics(257),
+		OverworldSpriteGraphics(257, 1),
+		OverworldSpriteGraphics(257),
+		OverworldSpriteGraphics(257, 1),
+		OverworldSpriteGraphics(258),
+		OverworldSpriteGraphics(258, 1)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1028),
-		OverworldSpriteGraphics(sprite1028),
-		OverworldSpriteGraphics(sprite1028),
-		OverworldSpriteGraphics(sprite1028),
-		OverworldSpriteGraphics(sprite1028),
-		OverworldSpriteGraphics(sprite1028),
-		OverworldSpriteGraphics(sprite1028),
-		OverworldSpriteGraphics(sprite1028)
+		OverworldSpriteGraphics(1028),
+		OverworldSpriteGraphics(1028),
+		OverworldSpriteGraphics(1028),
+		OverworldSpriteGraphics(1028),
+		OverworldSpriteGraphics(1028),
+		OverworldSpriteGraphics(1028),
+		OverworldSpriteGraphics(1028),
+		OverworldSpriteGraphics(1028)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0896),
-		OverworldSpriteGraphics(sprite0896),
-		OverworldSpriteGraphics(sprite0896, 1),
-		OverworldSpriteGraphics(sprite0897, 1),
-		OverworldSpriteGraphics(sprite0897),
-		OverworldSpriteGraphics(sprite0897),
-		OverworldSpriteGraphics(sprite0896),
-		OverworldSpriteGraphics(sprite0897)
+		OverworldSpriteGraphics(896),
+		OverworldSpriteGraphics(896),
+		OverworldSpriteGraphics(896, 1),
+		OverworldSpriteGraphics(897, 1),
+		OverworldSpriteGraphics(897),
+		OverworldSpriteGraphics(897),
+		OverworldSpriteGraphics(896),
+		OverworldSpriteGraphics(897)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0207),
-		OverworldSpriteGraphics(sprite0207, 1),
-		OverworldSpriteGraphics(sprite0208, 1),
-		OverworldSpriteGraphics(sprite0209, 1),
-		OverworldSpriteGraphics(sprite0206),
-		OverworldSpriteGraphics(sprite0210),
-		OverworldSpriteGraphics(sprite0208),
-		OverworldSpriteGraphics(sprite0209)
+		OverworldSpriteGraphics(207),
+		OverworldSpriteGraphics(207, 1),
+		OverworldSpriteGraphics(208, 1),
+		OverworldSpriteGraphics(209, 1),
+		OverworldSpriteGraphics(206),
+		OverworldSpriteGraphics(210),
+		OverworldSpriteGraphics(208),
+		OverworldSpriteGraphics(209)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0202),
-		OverworldSpriteGraphics(sprite0202, 1),
-		OverworldSpriteGraphics(sprite0203, 1),
-		OverworldSpriteGraphics(sprite0204, 1),
-		OverworldSpriteGraphics(sprite0201),
-		OverworldSpriteGraphics(sprite0205),
-		OverworldSpriteGraphics(sprite0203),
-		OverworldSpriteGraphics(sprite0204)
+		OverworldSpriteGraphics(202),
+		OverworldSpriteGraphics(202, 1),
+		OverworldSpriteGraphics(203, 1),
+		OverworldSpriteGraphics(204, 1),
+		OverworldSpriteGraphics(201),
+		OverworldSpriteGraphics(205),
+		OverworldSpriteGraphics(203),
+		OverworldSpriteGraphics(204)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0197),
-		OverworldSpriteGraphics(sprite0197, 1),
-		OverworldSpriteGraphics(sprite0198, 1),
-		OverworldSpriteGraphics(sprite0199, 1),
-		OverworldSpriteGraphics(sprite0196),
-		OverworldSpriteGraphics(sprite0200),
-		OverworldSpriteGraphics(sprite0198),
-		OverworldSpriteGraphics(sprite0199)
+		OverworldSpriteGraphics(197),
+		OverworldSpriteGraphics(197, 1),
+		OverworldSpriteGraphics(198, 1),
+		OverworldSpriteGraphics(199, 1),
+		OverworldSpriteGraphics(196),
+		OverworldSpriteGraphics(200),
+		OverworldSpriteGraphics(198),
+		OverworldSpriteGraphics(199)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0815),
-		OverworldSpriteGraphics(sprite0815),
-		OverworldSpriteGraphics(sprite0814, 1),
-		OverworldSpriteGraphics(sprite0814, 1),
-		OverworldSpriteGraphics(sprite0812),
-		OverworldSpriteGraphics(sprite0813),
-		OverworldSpriteGraphics(sprite0814),
-		OverworldSpriteGraphics(sprite0814)
+		OverworldSpriteGraphics(815),
+		OverworldSpriteGraphics(815),
+		OverworldSpriteGraphics(814, 1),
+		OverworldSpriteGraphics(814, 1),
+		OverworldSpriteGraphics(812),
+		OverworldSpriteGraphics(813),
+		OverworldSpriteGraphics(814),
+		OverworldSpriteGraphics(814)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0254),
-		OverworldSpriteGraphics(sprite0254, 1),
-		OverworldSpriteGraphics(sprite0255, 1),
-		OverworldSpriteGraphics(sprite0256, 1),
-		OverworldSpriteGraphics(sprite0253),
-		OverworldSpriteGraphics(sprite0253, 1),
-		OverworldSpriteGraphics(sprite0255),
-		OverworldSpriteGraphics(sprite0256)
+		OverworldSpriteGraphics(254),
+		OverworldSpriteGraphics(254, 1),
+		OverworldSpriteGraphics(255, 1),
+		OverworldSpriteGraphics(256, 1),
+		OverworldSpriteGraphics(253),
+		OverworldSpriteGraphics(253, 1),
+		OverworldSpriteGraphics(255),
+		OverworldSpriteGraphics(256)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1137),
-		OverworldSpriteGraphics(sprite1137),
-		OverworldSpriteGraphics(sprite1137),
-		OverworldSpriteGraphics(sprite1137),
-		OverworldSpriteGraphics(sprite1137),
-		OverworldSpriteGraphics(sprite1137),
-		OverworldSpriteGraphics(sprite1137),
-		OverworldSpriteGraphics(sprite1137)
+		OverworldSpriteGraphics(1137),
+		OverworldSpriteGraphics(1137),
+		OverworldSpriteGraphics(1137),
+		OverworldSpriteGraphics(1137),
+		OverworldSpriteGraphics(1137),
+		OverworldSpriteGraphics(1137),
+		OverworldSpriteGraphics(1137),
+		OverworldSpriteGraphics(1137)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1136, 1),
-		OverworldSpriteGraphics(sprite1136, 1),
-		OverworldSpriteGraphics(sprite1136),
-		OverworldSpriteGraphics(sprite1136),
-		OverworldSpriteGraphics(sprite1136),
-		OverworldSpriteGraphics(sprite1136),
-		OverworldSpriteGraphics(sprite1136, 1),
-		OverworldSpriteGraphics(sprite1136, 1)
+		OverworldSpriteGraphics(1136, 1),
+		OverworldSpriteGraphics(1136, 1),
+		OverworldSpriteGraphics(1136),
+		OverworldSpriteGraphics(1136),
+		OverworldSpriteGraphics(1136),
+		OverworldSpriteGraphics(1136),
+		OverworldSpriteGraphics(1136, 1),
+		OverworldSpriteGraphics(1136, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1135),
-		OverworldSpriteGraphics(sprite1135),
-		OverworldSpriteGraphics(sprite1135),
-		OverworldSpriteGraphics(sprite1135),
-		OverworldSpriteGraphics(sprite1135),
-		OverworldSpriteGraphics(sprite1135),
-		OverworldSpriteGraphics(sprite1135),
-		OverworldSpriteGraphics(sprite1135)
+		OverworldSpriteGraphics(1135),
+		OverworldSpriteGraphics(1135),
+		OverworldSpriteGraphics(1135),
+		OverworldSpriteGraphics(1135),
+		OverworldSpriteGraphics(1135),
+		OverworldSpriteGraphics(1135),
+		OverworldSpriteGraphics(1135),
+		OverworldSpriteGraphics(1135)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0887),
-		OverworldSpriteGraphics(sprite0887),
-		OverworldSpriteGraphics(sprite0888),
-		OverworldSpriteGraphics(sprite0888),
-		OverworldSpriteGraphics(sprite0889),
-		OverworldSpriteGraphics(sprite0889),
-		OverworldSpriteGraphics(sprite0887),
-		OverworldSpriteGraphics(sprite0887)
+		OverworldSpriteGraphics(887),
+		OverworldSpriteGraphics(887),
+		OverworldSpriteGraphics(888),
+		OverworldSpriteGraphics(888),
+		OverworldSpriteGraphics(889),
+		OverworldSpriteGraphics(889),
+		OverworldSpriteGraphics(887),
+		OverworldSpriteGraphics(887)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1134),
-		OverworldSpriteGraphics(sprite1134),
-		OverworldSpriteGraphics(sprite1134),
-		OverworldSpriteGraphics(sprite1134),
-		OverworldSpriteGraphics(sprite1134),
-		OverworldSpriteGraphics(sprite1134),
-		OverworldSpriteGraphics(sprite1134),
-		OverworldSpriteGraphics(sprite1134)
+		OverworldSpriteGraphics(1134),
+		OverworldSpriteGraphics(1134),
+		OverworldSpriteGraphics(1134),
+		OverworldSpriteGraphics(1134),
+		OverworldSpriteGraphics(1134),
+		OverworldSpriteGraphics(1134),
+		OverworldSpriteGraphics(1134),
+		OverworldSpriteGraphics(1134)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1025, 2),
-		OverworldSpriteGraphics(sprite1025, 2),
-		OverworldSpriteGraphics(sprite1025, 2),
-		OverworldSpriteGraphics(sprite1025, 2),
-		OverworldSpriteGraphics(sprite1024, 2),
-		OverworldSpriteGraphics(sprite1024, 2),
-		OverworldSpriteGraphics(sprite1024, 2),
-		OverworldSpriteGraphics(sprite1024, 2)
+		OverworldSpriteGraphics(1025, 2),
+		OverworldSpriteGraphics(1025, 2),
+		OverworldSpriteGraphics(1025, 2),
+		OverworldSpriteGraphics(1025, 2),
+		OverworldSpriteGraphics(1024, 2),
+		OverworldSpriteGraphics(1024, 2),
+		OverworldSpriteGraphics(1024, 2),
+		OverworldSpriteGraphics(1024, 2)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1133),
-		OverworldSpriteGraphics(sprite1133),
-		OverworldSpriteGraphics(sprite1133),
-		OverworldSpriteGraphics(sprite1133),
-		OverworldSpriteGraphics(sprite1133),
-		OverworldSpriteGraphics(sprite1133),
-		OverworldSpriteGraphics(sprite1133),
-		OverworldSpriteGraphics(sprite1133)
+		OverworldSpriteGraphics(1133),
+		OverworldSpriteGraphics(1133),
+		OverworldSpriteGraphics(1133),
+		OverworldSpriteGraphics(1133),
+		OverworldSpriteGraphics(1133),
+		OverworldSpriteGraphics(1133),
+		OverworldSpriteGraphics(1133),
+		OverworldSpriteGraphics(1133)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0810),
-		OverworldSpriteGraphics(sprite0811),
-		OverworldSpriteGraphics(sprite0810),
-		OverworldSpriteGraphics(sprite0811),
-		OverworldSpriteGraphics(sprite0810),
-		OverworldSpriteGraphics(sprite0811),
-		OverworldSpriteGraphics(sprite0810),
-		OverworldSpriteGraphics(sprite0811)
+		OverworldSpriteGraphics(810),
+		OverworldSpriteGraphics(811),
+		OverworldSpriteGraphics(810),
+		OverworldSpriteGraphics(811),
+		OverworldSpriteGraphics(810),
+		OverworldSpriteGraphics(811),
+		OverworldSpriteGraphics(810),
+		OverworldSpriteGraphics(811)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1023),
-		OverworldSpriteGraphics(sprite1023),
-		OverworldSpriteGraphics(sprite1023),
-		OverworldSpriteGraphics(sprite1023),
-		OverworldSpriteGraphics(sprite1023),
-		OverworldSpriteGraphics(sprite1023),
-		OverworldSpriteGraphics(sprite1023),
-		OverworldSpriteGraphics(sprite1023)
+		OverworldSpriteGraphics(1023),
+		OverworldSpriteGraphics(1023),
+		OverworldSpriteGraphics(1023),
+		OverworldSpriteGraphics(1023),
+		OverworldSpriteGraphics(1023),
+		OverworldSpriteGraphics(1023),
+		OverworldSpriteGraphics(1023),
+		OverworldSpriteGraphics(1023)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1022),
-		OverworldSpriteGraphics(sprite1022),
-		OverworldSpriteGraphics(sprite1022),
-		OverworldSpriteGraphics(sprite1022),
-		OverworldSpriteGraphics(sprite1022),
-		OverworldSpriteGraphics(sprite1022),
-		OverworldSpriteGraphics(sprite1022),
-		OverworldSpriteGraphics(sprite1022)
+		OverworldSpriteGraphics(1022),
+		OverworldSpriteGraphics(1022),
+		OverworldSpriteGraphics(1022),
+		OverworldSpriteGraphics(1022),
+		OverworldSpriteGraphics(1022),
+		OverworldSpriteGraphics(1022),
+		OverworldSpriteGraphics(1022),
+		OverworldSpriteGraphics(1022)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1021, 2),
-		OverworldSpriteGraphics(sprite1021, 2),
-		OverworldSpriteGraphics(sprite1021, 2),
-		OverworldSpriteGraphics(sprite1021, 2),
-		OverworldSpriteGraphics(sprite1021, 2),
-		OverworldSpriteGraphics(sprite1021, 2),
-		OverworldSpriteGraphics(sprite1021, 2),
-		OverworldSpriteGraphics(sprite1021, 2)
+		OverworldSpriteGraphics(1021, 2),
+		OverworldSpriteGraphics(1021, 2),
+		OverworldSpriteGraphics(1021, 2),
+		OverworldSpriteGraphics(1021, 2),
+		OverworldSpriteGraphics(1021, 2),
+		OverworldSpriteGraphics(1021, 2),
+		OverworldSpriteGraphics(1021, 2),
+		OverworldSpriteGraphics(1021, 2)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1020),
-		OverworldSpriteGraphics(sprite1020),
-		OverworldSpriteGraphics(sprite1020),
-		OverworldSpriteGraphics(sprite1020),
-		OverworldSpriteGraphics(sprite1020),
-		OverworldSpriteGraphics(sprite1020),
-		OverworldSpriteGraphics(sprite1020),
-		OverworldSpriteGraphics(sprite1020)
+		OverworldSpriteGraphics(1020),
+		OverworldSpriteGraphics(1020),
+		OverworldSpriteGraphics(1020),
+		OverworldSpriteGraphics(1020),
+		OverworldSpriteGraphics(1020),
+		OverworldSpriteGraphics(1020),
+		OverworldSpriteGraphics(1020),
+		OverworldSpriteGraphics(1020)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1019),
-		OverworldSpriteGraphics(sprite1019),
-		OverworldSpriteGraphics(sprite1019),
-		OverworldSpriteGraphics(sprite1019),
-		OverworldSpriteGraphics(sprite1019),
-		OverworldSpriteGraphics(sprite1019),
-		OverworldSpriteGraphics(sprite1019),
-		OverworldSpriteGraphics(sprite1019)
+		OverworldSpriteGraphics(1019),
+		OverworldSpriteGraphics(1019),
+		OverworldSpriteGraphics(1019),
+		OverworldSpriteGraphics(1019),
+		OverworldSpriteGraphics(1019),
+		OverworldSpriteGraphics(1019),
+		OverworldSpriteGraphics(1019),
+		OverworldSpriteGraphics(1019)
 	]),
 	SpriteGrouping(0x02, 0x60, 0x04, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0886),
-		OverworldSpriteGraphics(sprite0886),
-		OverworldSpriteGraphics(sprite0886),
-		OverworldSpriteGraphics(sprite0886),
-		OverworldSpriteGraphics(sprite0886),
-		OverworldSpriteGraphics(sprite0886),
-		OverworldSpriteGraphics(sprite0886),
-		OverworldSpriteGraphics(sprite0886)
+		OverworldSpriteGraphics(886),
+		OverworldSpriteGraphics(886),
+		OverworldSpriteGraphics(886),
+		OverworldSpriteGraphics(886),
+		OverworldSpriteGraphics(886),
+		OverworldSpriteGraphics(886),
+		OverworldSpriteGraphics(886),
+		OverworldSpriteGraphics(886)
 	]),
 	SpriteGrouping(0x06, 0x20, 0x0B, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0885),
-		OverworldSpriteGraphics(sprite0885),
-		OverworldSpriteGraphics(sprite0885),
-		OverworldSpriteGraphics(sprite0885),
-		OverworldSpriteGraphics(sprite0885),
-		OverworldSpriteGraphics(sprite0885),
-		OverworldSpriteGraphics(sprite0885),
-		OverworldSpriteGraphics(sprite0885)
+		OverworldSpriteGraphics(885),
+		OverworldSpriteGraphics(885),
+		OverworldSpriteGraphics(885),
+		OverworldSpriteGraphics(885),
+		OverworldSpriteGraphics(885),
+		OverworldSpriteGraphics(885),
+		OverworldSpriteGraphics(885),
+		OverworldSpriteGraphics(885)
 	]),
 	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x18, 0x20, 0x18, 0,
 	[
-		OverworldSpriteGraphics(sprite0012),
-		OverworldSpriteGraphics(sprite0012),
-		OverworldSpriteGraphics(sprite0013),
-		OverworldSpriteGraphics(sprite0013),
-		OverworldSpriteGraphics(sprite0011),
-		OverworldSpriteGraphics(sprite0011),
-		OverworldSpriteGraphics(sprite0013, 1),
-		OverworldSpriteGraphics(sprite0013, 1),
-		OverworldSpriteGraphics(sprite0012),
-		OverworldSpriteGraphics(sprite0012),
-		OverworldSpriteGraphics(sprite0011, 1),
-		OverworldSpriteGraphics(sprite0011, 1),
-		OverworldSpriteGraphics(sprite0011),
-		OverworldSpriteGraphics(sprite0011),
-		OverworldSpriteGraphics(sprite0012, 1),
-		OverworldSpriteGraphics(sprite0012, 1)
+		OverworldSpriteGraphics(12),
+		OverworldSpriteGraphics(12),
+		OverworldSpriteGraphics(13),
+		OverworldSpriteGraphics(13),
+		OverworldSpriteGraphics(11),
+		OverworldSpriteGraphics(11),
+		OverworldSpriteGraphics(13, 1),
+		OverworldSpriteGraphics(13, 1),
+		OverworldSpriteGraphics(12),
+		OverworldSpriteGraphics(12),
+		OverworldSpriteGraphics(11, 1),
+		OverworldSpriteGraphics(11, 1),
+		OverworldSpriteGraphics(11),
+		OverworldSpriteGraphics(11),
+		OverworldSpriteGraphics(12, 1),
+		OverworldSpriteGraphics(12, 1)
 	]),
 	SpriteGrouping(0x04, 0x60, 0x09, 0x1E, 0x18, 0x10, 0x18, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0015),
-		OverworldSpriteGraphics(sprite0015),
-		OverworldSpriteGraphics(sprite0016),
-		OverworldSpriteGraphics(sprite0016),
-		OverworldSpriteGraphics(sprite0014),
-		OverworldSpriteGraphics(sprite0014),
-		OverworldSpriteGraphics(sprite0017),
-		OverworldSpriteGraphics(sprite0017),
-		OverworldSpriteGraphics(sprite0015),
-		OverworldSpriteGraphics(sprite0015),
-		OverworldSpriteGraphics(sprite0014, 1),
-		OverworldSpriteGraphics(sprite0014, 1),
-		OverworldSpriteGraphics(sprite0014),
-		OverworldSpriteGraphics(sprite0014),
-		OverworldSpriteGraphics(sprite0015, 1),
-		OverworldSpriteGraphics(sprite0015, 1)
+		OverworldSpriteGraphics(15),
+		OverworldSpriteGraphics(15),
+		OverworldSpriteGraphics(16),
+		OverworldSpriteGraphics(16),
+		OverworldSpriteGraphics(14),
+		OverworldSpriteGraphics(14),
+		OverworldSpriteGraphics(17),
+		OverworldSpriteGraphics(17),
+		OverworldSpriteGraphics(15),
+		OverworldSpriteGraphics(15),
+		OverworldSpriteGraphics(14, 1),
+		OverworldSpriteGraphics(14, 1),
+		OverworldSpriteGraphics(14),
+		OverworldSpriteGraphics(14),
+		OverworldSpriteGraphics(15, 1),
+		OverworldSpriteGraphics(15, 1)
 	]),
 	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x10, 0x20, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113, 1),
-		OverworldSpriteGraphics(sprite0113, 1)
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113, 1),
+		OverworldSpriteGraphics(113, 1)
 	]),
 	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x10, 0x20, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112, 1),
-		OverworldSpriteGraphics(sprite0112, 1)
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112, 1),
+		OverworldSpriteGraphics(112, 1)
 	]),
 	SpriteGrouping(0x06, 0x60, 0x0D, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0149),
-		OverworldSpriteGraphics(sprite0149),
-		OverworldSpriteGraphics(sprite0149),
-		OverworldSpriteGraphics(sprite0149),
-		OverworldSpriteGraphics(sprite0149),
-		OverworldSpriteGraphics(sprite0149),
-		OverworldSpriteGraphics(sprite0149),
-		OverworldSpriteGraphics(sprite0149)
+		OverworldSpriteGraphics(149),
+		OverworldSpriteGraphics(149),
+		OverworldSpriteGraphics(149),
+		OverworldSpriteGraphics(149),
+		OverworldSpriteGraphics(149),
+		OverworldSpriteGraphics(149),
+		OverworldSpriteGraphics(149),
+		OverworldSpriteGraphics(149)
 	]),
 	SpriteGrouping(0x06, 0x60, 0x0D, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0148),
-		OverworldSpriteGraphics(sprite0148),
-		OverworldSpriteGraphics(sprite0148, 1),
-		OverworldSpriteGraphics(sprite0148, 1),
-		OverworldSpriteGraphics(sprite0148),
-		OverworldSpriteGraphics(sprite0148),
-		OverworldSpriteGraphics(sprite0148),
-		OverworldSpriteGraphics(sprite0148)
+		OverworldSpriteGraphics(148),
+		OverworldSpriteGraphics(148),
+		OverworldSpriteGraphics(148, 1),
+		OverworldSpriteGraphics(148, 1),
+		OverworldSpriteGraphics(148),
+		OverworldSpriteGraphics(148),
+		OverworldSpriteGraphics(148),
+		OverworldSpriteGraphics(148)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0809),
-		OverworldSpriteGraphics(sprite0809),
-		OverworldSpriteGraphics(sprite0809, 1),
-		OverworldSpriteGraphics(sprite0809, 1),
-		OverworldSpriteGraphics(sprite0809),
-		OverworldSpriteGraphics(sprite0809),
-		OverworldSpriteGraphics(sprite0809),
-		OverworldSpriteGraphics(sprite0809)
+		OverworldSpriteGraphics(809),
+		OverworldSpriteGraphics(809),
+		OverworldSpriteGraphics(809, 1),
+		OverworldSpriteGraphics(809, 1),
+		OverworldSpriteGraphics(809),
+		OverworldSpriteGraphics(809),
+		OverworldSpriteGraphics(809),
+		OverworldSpriteGraphics(809)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0111),
-		OverworldSpriteGraphics(sprite0111),
-		OverworldSpriteGraphics(sprite0110),
-		OverworldSpriteGraphics(sprite0111),
-		OverworldSpriteGraphics(sprite0110),
-		OverworldSpriteGraphics(sprite0111),
-		OverworldSpriteGraphics(sprite0110),
-		OverworldSpriteGraphics(sprite0111)
+		OverworldSpriteGraphics(111),
+		OverworldSpriteGraphics(111),
+		OverworldSpriteGraphics(110),
+		OverworldSpriteGraphics(111),
+		OverworldSpriteGraphics(110),
+		OverworldSpriteGraphics(111),
+		OverworldSpriteGraphics(110),
+		OverworldSpriteGraphics(111)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1132),
-		OverworldSpriteGraphics(sprite1132),
-		OverworldSpriteGraphics(sprite1132),
-		OverworldSpriteGraphics(sprite1132),
-		OverworldSpriteGraphics(sprite1132),
-		OverworldSpriteGraphics(sprite1132),
-		OverworldSpriteGraphics(sprite1132),
-		OverworldSpriteGraphics(sprite1132)
+		OverworldSpriteGraphics(1132),
+		OverworldSpriteGraphics(1132),
+		OverworldSpriteGraphics(1132),
+		OverworldSpriteGraphics(1132),
+		OverworldSpriteGraphics(1132),
+		OverworldSpriteGraphics(1132),
+		OverworldSpriteGraphics(1132),
+		OverworldSpriteGraphics(1132)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1018),
-		OverworldSpriteGraphics(sprite1018),
-		OverworldSpriteGraphics(sprite1018),
-		OverworldSpriteGraphics(sprite1018),
-		OverworldSpriteGraphics(sprite1017),
-		OverworldSpriteGraphics(sprite1017),
-		OverworldSpriteGraphics(sprite1017),
-		OverworldSpriteGraphics(sprite1017)
+		OverworldSpriteGraphics(1018),
+		OverworldSpriteGraphics(1018),
+		OverworldSpriteGraphics(1018),
+		OverworldSpriteGraphics(1018),
+		OverworldSpriteGraphics(1017),
+		OverworldSpriteGraphics(1017),
+		OverworldSpriteGraphics(1017),
+		OverworldSpriteGraphics(1017)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0244),
-		OverworldSpriteGraphics(sprite0244),
-		OverworldSpriteGraphics(sprite0244),
-		OverworldSpriteGraphics(sprite0245),
-		OverworldSpriteGraphics(sprite0244),
-		OverworldSpriteGraphics(sprite0246),
-		OverworldSpriteGraphics(sprite0244),
-		OverworldSpriteGraphics(sprite0247)
+		OverworldSpriteGraphics(244),
+		OverworldSpriteGraphics(244),
+		OverworldSpriteGraphics(244),
+		OverworldSpriteGraphics(245),
+		OverworldSpriteGraphics(244),
+		OverworldSpriteGraphics(246),
+		OverworldSpriteGraphics(244),
+		OverworldSpriteGraphics(247)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0808),
-		OverworldSpriteGraphics(sprite0808),
-		OverworldSpriteGraphics(sprite0808),
-		OverworldSpriteGraphics(sprite0808),
-		OverworldSpriteGraphics(sprite0808),
-		OverworldSpriteGraphics(sprite0808),
-		OverworldSpriteGraphics(sprite0808),
-		OverworldSpriteGraphics(sprite0808)
+		OverworldSpriteGraphics(808),
+		OverworldSpriteGraphics(808),
+		OverworldSpriteGraphics(808),
+		OverworldSpriteGraphics(808),
+		OverworldSpriteGraphics(808),
+		OverworldSpriteGraphics(808),
+		OverworldSpriteGraphics(808),
+		OverworldSpriteGraphics(808)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1131, 1),
-		OverworldSpriteGraphics(sprite1131, 1),
-		OverworldSpriteGraphics(sprite1131, 1),
-		OverworldSpriteGraphics(sprite1131, 1),
-		OverworldSpriteGraphics(sprite1131),
-		OverworldSpriteGraphics(sprite1131),
-		OverworldSpriteGraphics(sprite1131),
-		OverworldSpriteGraphics(sprite1131)
+		OverworldSpriteGraphics(1131, 1),
+		OverworldSpriteGraphics(1131, 1),
+		OverworldSpriteGraphics(1131, 1),
+		OverworldSpriteGraphics(1131, 1),
+		OverworldSpriteGraphics(1131),
+		OverworldSpriteGraphics(1131),
+		OverworldSpriteGraphics(1131),
+		OverworldSpriteGraphics(1131)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1130),
-		OverworldSpriteGraphics(sprite1130),
-		OverworldSpriteGraphics(sprite1130),
-		OverworldSpriteGraphics(sprite1130),
-		OverworldSpriteGraphics(sprite1130),
-		OverworldSpriteGraphics(sprite1130),
-		OverworldSpriteGraphics(sprite1130),
-		OverworldSpriteGraphics(sprite1130)
+		OverworldSpriteGraphics(1130),
+		OverworldSpriteGraphics(1130),
+		OverworldSpriteGraphics(1130),
+		OverworldSpriteGraphics(1130),
+		OverworldSpriteGraphics(1130),
+		OverworldSpriteGraphics(1130),
+		OverworldSpriteGraphics(1130),
+		OverworldSpriteGraphics(1130)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1015, 1),
-		OverworldSpriteGraphics(sprite1016, 1),
-		OverworldSpriteGraphics(sprite1015, 1),
-		OverworldSpriteGraphics(sprite1016, 1),
-		OverworldSpriteGraphics(sprite1015),
-		OverworldSpriteGraphics(sprite1016),
-		OverworldSpriteGraphics(sprite1015),
-		OverworldSpriteGraphics(sprite1016)
+		OverworldSpriteGraphics(1015, 1),
+		OverworldSpriteGraphics(1016, 1),
+		OverworldSpriteGraphics(1015, 1),
+		OverworldSpriteGraphics(1016, 1),
+		OverworldSpriteGraphics(1015),
+		OverworldSpriteGraphics(1016),
+		OverworldSpriteGraphics(1015),
+		OverworldSpriteGraphics(1016)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1013),
-		OverworldSpriteGraphics(sprite1014),
-		OverworldSpriteGraphics(sprite1013),
-		OverworldSpriteGraphics(sprite1014),
-		OverworldSpriteGraphics(sprite1013),
-		OverworldSpriteGraphics(sprite1014),
-		OverworldSpriteGraphics(sprite1013),
-		OverworldSpriteGraphics(sprite1014)
+		OverworldSpriteGraphics(1013),
+		OverworldSpriteGraphics(1014),
+		OverworldSpriteGraphics(1013),
+		OverworldSpriteGraphics(1014),
+		OverworldSpriteGraphics(1013),
+		OverworldSpriteGraphics(1014),
+		OverworldSpriteGraphics(1013),
+		OverworldSpriteGraphics(1014)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0807),
-		OverworldSpriteGraphics(sprite0807),
-		OverworldSpriteGraphics(sprite0807),
-		OverworldSpriteGraphics(sprite0807),
-		OverworldSpriteGraphics(sprite0807),
-		OverworldSpriteGraphics(sprite0807),
-		OverworldSpriteGraphics(sprite0807),
-		OverworldSpriteGraphics(sprite0807)
+		OverworldSpriteGraphics(807),
+		OverworldSpriteGraphics(807),
+		OverworldSpriteGraphics(807),
+		OverworldSpriteGraphics(807),
+		OverworldSpriteGraphics(807),
+		OverworldSpriteGraphics(807),
+		OverworldSpriteGraphics(807),
+		OverworldSpriteGraphics(807)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1012),
-		OverworldSpriteGraphics(sprite1012, 1),
-		OverworldSpriteGraphics(sprite1012),
-		OverworldSpriteGraphics(sprite1012, 1),
-		OverworldSpriteGraphics(sprite1011),
-		OverworldSpriteGraphics(sprite1011, 1),
-		OverworldSpriteGraphics(sprite1011),
-		OverworldSpriteGraphics(sprite1011, 1)
+		OverworldSpriteGraphics(1012),
+		OverworldSpriteGraphics(1012, 1),
+		OverworldSpriteGraphics(1012),
+		OverworldSpriteGraphics(1012, 1),
+		OverworldSpriteGraphics(1011),
+		OverworldSpriteGraphics(1011, 1),
+		OverworldSpriteGraphics(1011),
+		OverworldSpriteGraphics(1011, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1129),
-		OverworldSpriteGraphics(sprite1129),
-		OverworldSpriteGraphics(sprite1129),
-		OverworldSpriteGraphics(sprite1129),
-		OverworldSpriteGraphics(sprite1129),
-		OverworldSpriteGraphics(sprite1129),
-		OverworldSpriteGraphics(sprite1129),
-		OverworldSpriteGraphics(sprite1129)
+		OverworldSpriteGraphics(1129),
+		OverworldSpriteGraphics(1129),
+		OverworldSpriteGraphics(1129),
+		OverworldSpriteGraphics(1129),
+		OverworldSpriteGraphics(1129),
+		OverworldSpriteGraphics(1129),
+		OverworldSpriteGraphics(1129),
+		OverworldSpriteGraphics(1129)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1128),
-		OverworldSpriteGraphics(sprite1128),
-		OverworldSpriteGraphics(sprite1128),
-		OverworldSpriteGraphics(sprite1128),
-		OverworldSpriteGraphics(sprite1128),
-		OverworldSpriteGraphics(sprite1128),
-		OverworldSpriteGraphics(sprite1128),
-		OverworldSpriteGraphics(sprite1128)
+		OverworldSpriteGraphics(1128),
+		OverworldSpriteGraphics(1128),
+		OverworldSpriteGraphics(1128),
+		OverworldSpriteGraphics(1128),
+		OverworldSpriteGraphics(1128),
+		OverworldSpriteGraphics(1128),
+		OverworldSpriteGraphics(1128),
+		OverworldSpriteGraphics(1128)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1127),
-		OverworldSpriteGraphics(sprite1127),
-		OverworldSpriteGraphics(sprite1127),
-		OverworldSpriteGraphics(sprite1127),
-		OverworldSpriteGraphics(sprite1127),
-		OverworldSpriteGraphics(sprite1127),
-		OverworldSpriteGraphics(sprite1127),
-		OverworldSpriteGraphics(sprite1127)
+		OverworldSpriteGraphics(1127),
+		OverworldSpriteGraphics(1127),
+		OverworldSpriteGraphics(1127),
+		OverworldSpriteGraphics(1127),
+		OverworldSpriteGraphics(1127),
+		OverworldSpriteGraphics(1127),
+		OverworldSpriteGraphics(1127),
+		OverworldSpriteGraphics(1127)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1126),
-		OverworldSpriteGraphics(sprite1126),
-		OverworldSpriteGraphics(sprite1126),
-		OverworldSpriteGraphics(sprite1126),
-		OverworldSpriteGraphics(sprite1126),
-		OverworldSpriteGraphics(sprite1126),
-		OverworldSpriteGraphics(sprite1126),
-		OverworldSpriteGraphics(sprite1126)
+		OverworldSpriteGraphics(1126),
+		OverworldSpriteGraphics(1126),
+		OverworldSpriteGraphics(1126),
+		OverworldSpriteGraphics(1126),
+		OverworldSpriteGraphics(1126),
+		OverworldSpriteGraphics(1126),
+		OverworldSpriteGraphics(1126),
+		OverworldSpriteGraphics(1126)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1010),
-		OverworldSpriteGraphics(sprite1010),
-		OverworldSpriteGraphics(sprite1010),
-		OverworldSpriteGraphics(sprite1010),
-		OverworldSpriteGraphics(sprite1009),
-		OverworldSpriteGraphics(sprite1009),
-		OverworldSpriteGraphics(sprite1009),
-		OverworldSpriteGraphics(sprite1009)
+		OverworldSpriteGraphics(1010),
+		OverworldSpriteGraphics(1010),
+		OverworldSpriteGraphics(1010),
+		OverworldSpriteGraphics(1010),
+		OverworldSpriteGraphics(1009),
+		OverworldSpriteGraphics(1009),
+		OverworldSpriteGraphics(1009),
+		OverworldSpriteGraphics(1009)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1008),
-		OverworldSpriteGraphics(sprite1008),
-		OverworldSpriteGraphics(sprite1008),
-		OverworldSpriteGraphics(sprite1008),
-		OverworldSpriteGraphics(sprite1008),
-		OverworldSpriteGraphics(sprite1008),
-		OverworldSpriteGraphics(sprite1008),
-		OverworldSpriteGraphics(sprite1008)
+		OverworldSpriteGraphics(1008),
+		OverworldSpriteGraphics(1008),
+		OverworldSpriteGraphics(1008),
+		OverworldSpriteGraphics(1008),
+		OverworldSpriteGraphics(1008),
+		OverworldSpriteGraphics(1008),
+		OverworldSpriteGraphics(1008),
+		OverworldSpriteGraphics(1008)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0243),
-		OverworldSpriteGraphics(sprite0243),
-		OverworldSpriteGraphics(sprite0243),
-		OverworldSpriteGraphics(sprite0243),
-		OverworldSpriteGraphics(sprite0243),
-		OverworldSpriteGraphics(sprite0243),
-		OverworldSpriteGraphics(sprite0243),
-		OverworldSpriteGraphics(sprite0243)
+		OverworldSpriteGraphics(243),
+		OverworldSpriteGraphics(243),
+		OverworldSpriteGraphics(243),
+		OverworldSpriteGraphics(243),
+		OverworldSpriteGraphics(243),
+		OverworldSpriteGraphics(243),
+		OverworldSpriteGraphics(243),
+		OverworldSpriteGraphics(243)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x14, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1007),
-		OverworldSpriteGraphics(sprite1007),
-		OverworldSpriteGraphics(sprite1007),
-		OverworldSpriteGraphics(sprite1007),
-		OverworldSpriteGraphics(sprite1007),
-		OverworldSpriteGraphics(sprite1007),
-		OverworldSpriteGraphics(sprite1007),
-		OverworldSpriteGraphics(sprite1007)
+		OverworldSpriteGraphics(1007),
+		OverworldSpriteGraphics(1007),
+		OverworldSpriteGraphics(1007),
+		OverworldSpriteGraphics(1007),
+		OverworldSpriteGraphics(1007),
+		OverworldSpriteGraphics(1007),
+		OverworldSpriteGraphics(1007),
+		OverworldSpriteGraphics(1007)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1006),
-		OverworldSpriteGraphics(sprite1006),
-		OverworldSpriteGraphics(sprite1006),
-		OverworldSpriteGraphics(sprite1006),
-		OverworldSpriteGraphics(sprite1006),
-		OverworldSpriteGraphics(sprite1006),
-		OverworldSpriteGraphics(sprite1006),
-		OverworldSpriteGraphics(sprite1006)
+		OverworldSpriteGraphics(1006),
+		OverworldSpriteGraphics(1006),
+		OverworldSpriteGraphics(1006),
+		OverworldSpriteGraphics(1006),
+		OverworldSpriteGraphics(1006),
+		OverworldSpriteGraphics(1006),
+		OverworldSpriteGraphics(1006),
+		OverworldSpriteGraphics(1006)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1125),
-		OverworldSpriteGraphics(sprite1125),
-		OverworldSpriteGraphics(sprite1125),
-		OverworldSpriteGraphics(sprite1125),
-		OverworldSpriteGraphics(sprite1125),
-		OverworldSpriteGraphics(sprite1125),
-		OverworldSpriteGraphics(sprite1125),
-		OverworldSpriteGraphics(sprite1125)
+		OverworldSpriteGraphics(1125),
+		OverworldSpriteGraphics(1125),
+		OverworldSpriteGraphics(1125),
+		OverworldSpriteGraphics(1125),
+		OverworldSpriteGraphics(1125),
+		OverworldSpriteGraphics(1125),
+		OverworldSpriteGraphics(1125),
+		OverworldSpriteGraphics(1125)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1005),
-		OverworldSpriteGraphics(sprite1005),
-		OverworldSpriteGraphics(sprite1005),
-		OverworldSpriteGraphics(sprite1005),
-		OverworldSpriteGraphics(sprite1004),
-		OverworldSpriteGraphics(sprite1004),
-		OverworldSpriteGraphics(sprite1004),
-		OverworldSpriteGraphics(sprite1004)
+		OverworldSpriteGraphics(1005),
+		OverworldSpriteGraphics(1005),
+		OverworldSpriteGraphics(1005),
+		OverworldSpriteGraphics(1005),
+		OverworldSpriteGraphics(1004),
+		OverworldSpriteGraphics(1004),
+		OverworldSpriteGraphics(1004),
+		OverworldSpriteGraphics(1004)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0806),
-		OverworldSpriteGraphics(sprite0806),
-		OverworldSpriteGraphics(sprite0806),
-		OverworldSpriteGraphics(sprite0806),
-		OverworldSpriteGraphics(sprite0806),
-		OverworldSpriteGraphics(sprite0806),
-		OverworldSpriteGraphics(sprite0806),
-		OverworldSpriteGraphics(sprite0806)
+		OverworldSpriteGraphics(806),
+		OverworldSpriteGraphics(806),
+		OverworldSpriteGraphics(806),
+		OverworldSpriteGraphics(806),
+		OverworldSpriteGraphics(806),
+		OverworldSpriteGraphics(806),
+		OverworldSpriteGraphics(806),
+		OverworldSpriteGraphics(806)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1003),
-		OverworldSpriteGraphics(sprite1003),
-		OverworldSpriteGraphics(sprite1003),
-		OverworldSpriteGraphics(sprite1003),
-		OverworldSpriteGraphics(sprite1003),
-		OverworldSpriteGraphics(sprite1003),
-		OverworldSpriteGraphics(sprite1003),
-		OverworldSpriteGraphics(sprite1003)
+		OverworldSpriteGraphics(1003),
+		OverworldSpriteGraphics(1003),
+		OverworldSpriteGraphics(1003),
+		OverworldSpriteGraphics(1003),
+		OverworldSpriteGraphics(1003),
+		OverworldSpriteGraphics(1003),
+		OverworldSpriteGraphics(1003),
+		OverworldSpriteGraphics(1003)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1002),
-		OverworldSpriteGraphics(sprite1002),
-		OverworldSpriteGraphics(sprite1002),
-		OverworldSpriteGraphics(sprite1002),
-		OverworldSpriteGraphics(sprite1002),
-		OverworldSpriteGraphics(sprite1002),
-		OverworldSpriteGraphics(sprite1002),
-		OverworldSpriteGraphics(sprite1002)
+		OverworldSpriteGraphics(1002),
+		OverworldSpriteGraphics(1002),
+		OverworldSpriteGraphics(1002),
+		OverworldSpriteGraphics(1002),
+		OverworldSpriteGraphics(1002),
+		OverworldSpriteGraphics(1002),
+		OverworldSpriteGraphics(1002),
+		OverworldSpriteGraphics(1002)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite1124),
-		OverworldSpriteGraphics(sprite1124),
-		OverworldSpriteGraphics(sprite1124),
-		OverworldSpriteGraphics(sprite1124),
-		OverworldSpriteGraphics(sprite1124),
-		OverworldSpriteGraphics(sprite1124),
-		OverworldSpriteGraphics(sprite1124),
-		OverworldSpriteGraphics(sprite1124)
+		OverworldSpriteGraphics(1124),
+		OverworldSpriteGraphics(1124),
+		OverworldSpriteGraphics(1124),
+		OverworldSpriteGraphics(1124),
+		OverworldSpriteGraphics(1124),
+		OverworldSpriteGraphics(1124),
+		OverworldSpriteGraphics(1124),
+		OverworldSpriteGraphics(1124)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite1123),
-		OverworldSpriteGraphics(sprite1123),
-		OverworldSpriteGraphics(sprite1123),
-		OverworldSpriteGraphics(sprite1123),
-		OverworldSpriteGraphics(sprite1123),
-		OverworldSpriteGraphics(sprite1123),
-		OverworldSpriteGraphics(sprite1123),
-		OverworldSpriteGraphics(sprite1123)
+		OverworldSpriteGraphics(1123),
+		OverworldSpriteGraphics(1123),
+		OverworldSpriteGraphics(1123),
+		OverworldSpriteGraphics(1123),
+		OverworldSpriteGraphics(1123),
+		OverworldSpriteGraphics(1123),
+		OverworldSpriteGraphics(1123),
+		OverworldSpriteGraphics(1123)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1122),
-		OverworldSpriteGraphics(sprite1122),
-		OverworldSpriteGraphics(sprite1122),
-		OverworldSpriteGraphics(sprite1122),
-		OverworldSpriteGraphics(sprite1122),
-		OverworldSpriteGraphics(sprite1122),
-		OverworldSpriteGraphics(sprite1122),
-		OverworldSpriteGraphics(sprite1122)
+		OverworldSpriteGraphics(1122),
+		OverworldSpriteGraphics(1122),
+		OverworldSpriteGraphics(1122),
+		OverworldSpriteGraphics(1122),
+		OverworldSpriteGraphics(1122),
+		OverworldSpriteGraphics(1122),
+		OverworldSpriteGraphics(1122),
+		OverworldSpriteGraphics(1122)
 	]),
 	SpriteGrouping(0x04, 0x60, 0x09, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0242),
-		OverworldSpriteGraphics(sprite0242),
-		OverworldSpriteGraphics(sprite0242),
-		OverworldSpriteGraphics(sprite0242),
-		OverworldSpriteGraphics(sprite0242),
-		OverworldSpriteGraphics(sprite0242),
-		OverworldSpriteGraphics(sprite0242),
-		OverworldSpriteGraphics(sprite0242)
+		OverworldSpriteGraphics(242),
+		OverworldSpriteGraphics(242),
+		OverworldSpriteGraphics(242),
+		OverworldSpriteGraphics(242),
+		OverworldSpriteGraphics(242),
+		OverworldSpriteGraphics(242),
+		OverworldSpriteGraphics(242),
+		OverworldSpriteGraphics(242)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1121),
-		OverworldSpriteGraphics(sprite1121),
-		OverworldSpriteGraphics(sprite1121),
-		OverworldSpriteGraphics(sprite1121),
-		OverworldSpriteGraphics(sprite1121),
-		OverworldSpriteGraphics(sprite1121),
-		OverworldSpriteGraphics(sprite1121),
-		OverworldSpriteGraphics(sprite1121)
+		OverworldSpriteGraphics(1121),
+		OverworldSpriteGraphics(1121),
+		OverworldSpriteGraphics(1121),
+		OverworldSpriteGraphics(1121),
+		OverworldSpriteGraphics(1121),
+		OverworldSpriteGraphics(1121),
+		OverworldSpriteGraphics(1121),
+		OverworldSpriteGraphics(1121)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0020),
-		OverworldSpriteGraphics(sprite0020),
-		OverworldSpriteGraphics(sprite0021),
-		OverworldSpriteGraphics(sprite0021),
-		OverworldSpriteGraphics(sprite0022),
-		OverworldSpriteGraphics(sprite0022),
-		OverworldSpriteGraphics(sprite0023),
-		OverworldSpriteGraphics(sprite0023)
+		OverworldSpriteGraphics(20),
+		OverworldSpriteGraphics(20),
+		OverworldSpriteGraphics(21),
+		OverworldSpriteGraphics(21),
+		OverworldSpriteGraphics(22),
+		OverworldSpriteGraphics(22),
+		OverworldSpriteGraphics(23),
+		OverworldSpriteGraphics(23)
 	]),
 	SpriteGrouping(0x06, 0x80, 0x0E, 0x1C, 0x14, 0x18, 0x20, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0009),
-		OverworldSpriteGraphics(sprite0009),
-		OverworldSpriteGraphics(sprite0010),
-		OverworldSpriteGraphics(sprite0010),
-		OverworldSpriteGraphics(sprite0008),
-		OverworldSpriteGraphics(sprite0008),
-		OverworldSpriteGraphics(sprite0010, 1),
-		OverworldSpriteGraphics(sprite0010, 1),
-		OverworldSpriteGraphics(sprite0009),
-		OverworldSpriteGraphics(sprite0009),
-		OverworldSpriteGraphics(sprite0008, 1),
-		OverworldSpriteGraphics(sprite0008, 1),
-		OverworldSpriteGraphics(sprite0008),
-		OverworldSpriteGraphics(sprite0008),
-		OverworldSpriteGraphics(sprite0009, 1),
-		OverworldSpriteGraphics(sprite0009, 1)
+		OverworldSpriteGraphics(9),
+		OverworldSpriteGraphics(9),
+		OverworldSpriteGraphics(10),
+		OverworldSpriteGraphics(10),
+		OverworldSpriteGraphics(8),
+		OverworldSpriteGraphics(8),
+		OverworldSpriteGraphics(10, 1),
+		OverworldSpriteGraphics(10, 1),
+		OverworldSpriteGraphics(9),
+		OverworldSpriteGraphics(9),
+		OverworldSpriteGraphics(8, 1),
+		OverworldSpriteGraphics(8, 1),
+		OverworldSpriteGraphics(8),
+		OverworldSpriteGraphics(8),
+		OverworldSpriteGraphics(9, 1),
+		OverworldSpriteGraphics(9, 1)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0805),
-		OverworldSpriteGraphics(sprite0805),
-		OverworldSpriteGraphics(sprite0805),
-		OverworldSpriteGraphics(sprite0805),
-		OverworldSpriteGraphics(sprite0805),
-		OverworldSpriteGraphics(sprite0805),
-		OverworldSpriteGraphics(sprite0805),
-		OverworldSpriteGraphics(sprite0805)
+		OverworldSpriteGraphics(805),
+		OverworldSpriteGraphics(805),
+		OverworldSpriteGraphics(805),
+		OverworldSpriteGraphics(805),
+		OverworldSpriteGraphics(805),
+		OverworldSpriteGraphics(805),
+		OverworldSpriteGraphics(805),
+		OverworldSpriteGraphics(805)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1000, 1),
-		OverworldSpriteGraphics(sprite1001, 1),
-		OverworldSpriteGraphics(sprite1000, 1),
-		OverworldSpriteGraphics(sprite1001, 1),
-		OverworldSpriteGraphics(sprite1000),
-		OverworldSpriteGraphics(sprite1001),
-		OverworldSpriteGraphics(sprite1000),
-		OverworldSpriteGraphics(sprite1001)
+		OverworldSpriteGraphics(1000, 1),
+		OverworldSpriteGraphics(1001, 1),
+		OverworldSpriteGraphics(1000, 1),
+		OverworldSpriteGraphics(1001, 1),
+		OverworldSpriteGraphics(1000),
+		OverworldSpriteGraphics(1001),
+		OverworldSpriteGraphics(1000),
+		OverworldSpriteGraphics(1001)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x12, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0999),
-		OverworldSpriteGraphics(sprite0999),
-		OverworldSpriteGraphics(sprite0999),
-		OverworldSpriteGraphics(sprite0999),
-		OverworldSpriteGraphics(sprite0999),
-		OverworldSpriteGraphics(sprite0999),
-		OverworldSpriteGraphics(sprite0999),
-		OverworldSpriteGraphics(sprite0999)
+		OverworldSpriteGraphics(999),
+		OverworldSpriteGraphics(999),
+		OverworldSpriteGraphics(999),
+		OverworldSpriteGraphics(999),
+		OverworldSpriteGraphics(999),
+		OverworldSpriteGraphics(999),
+		OverworldSpriteGraphics(999),
+		OverworldSpriteGraphics(999)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1120),
-		OverworldSpriteGraphics(sprite1120),
-		OverworldSpriteGraphics(sprite1120),
-		OverworldSpriteGraphics(sprite1120),
-		OverworldSpriteGraphics(sprite1120),
-		OverworldSpriteGraphics(sprite1120),
-		OverworldSpriteGraphics(sprite1120),
-		OverworldSpriteGraphics(sprite1120)
+		OverworldSpriteGraphics(1120),
+		OverworldSpriteGraphics(1120),
+		OverworldSpriteGraphics(1120),
+		OverworldSpriteGraphics(1120),
+		OverworldSpriteGraphics(1120),
+		OverworldSpriteGraphics(1120),
+		OverworldSpriteGraphics(1120),
+		OverworldSpriteGraphics(1120)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x06, 0x08, 0x06, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1119),
-		OverworldSpriteGraphics(sprite1119),
-		OverworldSpriteGraphics(sprite1119),
-		OverworldSpriteGraphics(sprite1119),
-		OverworldSpriteGraphics(sprite1119),
-		OverworldSpriteGraphics(sprite1119),
-		OverworldSpriteGraphics(sprite1119),
-		OverworldSpriteGraphics(sprite1119)
+		OverworldSpriteGraphics(1119),
+		OverworldSpriteGraphics(1119),
+		OverworldSpriteGraphics(1119),
+		OverworldSpriteGraphics(1119),
+		OverworldSpriteGraphics(1119),
+		OverworldSpriteGraphics(1119),
+		OverworldSpriteGraphics(1119),
+		OverworldSpriteGraphics(1119)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0804),
-		OverworldSpriteGraphics(sprite0804),
-		OverworldSpriteGraphics(sprite0804),
-		OverworldSpriteGraphics(sprite0804),
-		OverworldSpriteGraphics(sprite0804),
-		OverworldSpriteGraphics(sprite0804),
-		OverworldSpriteGraphics(sprite0804),
-		OverworldSpriteGraphics(sprite0804)
+		OverworldSpriteGraphics(804),
+		OverworldSpriteGraphics(804),
+		OverworldSpriteGraphics(804),
+		OverworldSpriteGraphics(804),
+		OverworldSpriteGraphics(804),
+		OverworldSpriteGraphics(804),
+		OverworldSpriteGraphics(804),
+		OverworldSpriteGraphics(804)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0997),
-		OverworldSpriteGraphics(sprite0997),
-		OverworldSpriteGraphics(sprite0998),
-		OverworldSpriteGraphics(sprite0998),
-		OverworldSpriteGraphics(sprite0997, 1),
-		OverworldSpriteGraphics(sprite0997, 1),
-		OverworldSpriteGraphics(sprite0998, 1),
-		OverworldSpriteGraphics(sprite0998, 1)
+		OverworldSpriteGraphics(997),
+		OverworldSpriteGraphics(997),
+		OverworldSpriteGraphics(998),
+		OverworldSpriteGraphics(998),
+		OverworldSpriteGraphics(997, 1),
+		OverworldSpriteGraphics(997, 1),
+		OverworldSpriteGraphics(998, 1),
+		OverworldSpriteGraphics(998, 1)
 	]),
 	SpriteGrouping(0x02, 0x60, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0884),
-		OverworldSpriteGraphics(sprite0884, 1),
-		OverworldSpriteGraphics(sprite0884),
-		OverworldSpriteGraphics(sprite0884, 1),
-		OverworldSpriteGraphics(sprite0884),
-		OverworldSpriteGraphics(sprite0884, 1),
-		OverworldSpriteGraphics(sprite0884),
-		OverworldSpriteGraphics(sprite0884, 1)
+		OverworldSpriteGraphics(884),
+		OverworldSpriteGraphics(884, 1),
+		OverworldSpriteGraphics(884),
+		OverworldSpriteGraphics(884, 1),
+		OverworldSpriteGraphics(884),
+		OverworldSpriteGraphics(884, 1),
+		OverworldSpriteGraphics(884),
+		OverworldSpriteGraphics(884, 1)
 	]),
 	SpriteGrouping(0x08, 0x80, 0x0F, 0x14, 0x10, 0x18, 0x10, 0x18, 0,
 	[
-		OverworldSpriteGraphics(sprite0019),
-		OverworldSpriteGraphics(sprite0019),
-		OverworldSpriteGraphics(sprite0019),
-		OverworldSpriteGraphics(sprite0019),
-		OverworldSpriteGraphics(sprite0019),
-		OverworldSpriteGraphics(sprite0019),
-		OverworldSpriteGraphics(sprite0019),
-		OverworldSpriteGraphics(sprite0019)
+		OverworldSpriteGraphics(19),
+		OverworldSpriteGraphics(19),
+		OverworldSpriteGraphics(19),
+		OverworldSpriteGraphics(19),
+		OverworldSpriteGraphics(19),
+		OverworldSpriteGraphics(19),
+		OverworldSpriteGraphics(19),
+		OverworldSpriteGraphics(19)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0995),
-		OverworldSpriteGraphics(sprite0996),
-		OverworldSpriteGraphics(sprite0995),
-		OverworldSpriteGraphics(sprite0996),
-		OverworldSpriteGraphics(sprite0995),
-		OverworldSpriteGraphics(sprite0996),
-		OverworldSpriteGraphics(sprite0995),
-		OverworldSpriteGraphics(sprite0996)
+		OverworldSpriteGraphics(995),
+		OverworldSpriteGraphics(996),
+		OverworldSpriteGraphics(995),
+		OverworldSpriteGraphics(996),
+		OverworldSpriteGraphics(995),
+		OverworldSpriteGraphics(996),
+		OverworldSpriteGraphics(995),
+		OverworldSpriteGraphics(996)
 	]),
 	SpriteGrouping(0x06, 0x60, 0x0D, 0x1E, 0x18, 0x10, 0x18, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0147),
-		OverworldSpriteGraphics(sprite0147),
-		OverworldSpriteGraphics(sprite0147),
-		OverworldSpriteGraphics(sprite0147),
-		OverworldSpriteGraphics(sprite0147),
-		OverworldSpriteGraphics(sprite0147),
-		OverworldSpriteGraphics(sprite0147, 1),
-		OverworldSpriteGraphics(sprite0147, 1)
+		OverworldSpriteGraphics(147),
+		OverworldSpriteGraphics(147),
+		OverworldSpriteGraphics(147),
+		OverworldSpriteGraphics(147),
+		OverworldSpriteGraphics(147),
+		OverworldSpriteGraphics(147),
+		OverworldSpriteGraphics(147, 1),
+		OverworldSpriteGraphics(147, 1)
 	]),
 	SpriteGrouping(0x04, 0x60, 0x09, 0x1C, 0x18, 0x10, 0x18, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0241),
-		OverworldSpriteGraphics(sprite0241),
-		OverworldSpriteGraphics(sprite0241),
-		OverworldSpriteGraphics(sprite0241),
-		OverworldSpriteGraphics(sprite0241),
-		OverworldSpriteGraphics(sprite0241),
-		OverworldSpriteGraphics(sprite0241),
-		OverworldSpriteGraphics(sprite0241)
+		OverworldSpriteGraphics(241),
+		OverworldSpriteGraphics(241),
+		OverworldSpriteGraphics(241),
+		OverworldSpriteGraphics(241),
+		OverworldSpriteGraphics(241),
+		OverworldSpriteGraphics(241),
+		OverworldSpriteGraphics(241),
+		OverworldSpriteGraphics(241)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0238),
-		OverworldSpriteGraphics(sprite0238),
-		OverworldSpriteGraphics(sprite0239),
-		OverworldSpriteGraphics(sprite0239),
-		OverworldSpriteGraphics(sprite0240),
-		OverworldSpriteGraphics(sprite0240),
-		OverworldSpriteGraphics(sprite0239),
-		OverworldSpriteGraphics(sprite0239)
+		OverworldSpriteGraphics(238),
+		OverworldSpriteGraphics(238),
+		OverworldSpriteGraphics(239),
+		OverworldSpriteGraphics(239),
+		OverworldSpriteGraphics(240),
+		OverworldSpriteGraphics(240),
+		OverworldSpriteGraphics(239),
+		OverworldSpriteGraphics(239)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0881),
-		OverworldSpriteGraphics(sprite0881),
-		OverworldSpriteGraphics(sprite0882),
-		OverworldSpriteGraphics(sprite0882),
-		OverworldSpriteGraphics(sprite0883),
-		OverworldSpriteGraphics(sprite0883),
-		OverworldSpriteGraphics(sprite0882),
-		OverworldSpriteGraphics(sprite0882)
+		OverworldSpriteGraphics(881),
+		OverworldSpriteGraphics(881),
+		OverworldSpriteGraphics(882),
+		OverworldSpriteGraphics(882),
+		OverworldSpriteGraphics(883),
+		OverworldSpriteGraphics(883),
+		OverworldSpriteGraphics(882),
+		OverworldSpriteGraphics(882)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0993),
-		OverworldSpriteGraphics(sprite0994),
-		OverworldSpriteGraphics(sprite0993),
-		OverworldSpriteGraphics(sprite0994),
-		OverworldSpriteGraphics(sprite0993),
-		OverworldSpriteGraphics(sprite0994),
-		OverworldSpriteGraphics(sprite0993),
-		OverworldSpriteGraphics(sprite0994)
+		OverworldSpriteGraphics(993),
+		OverworldSpriteGraphics(994),
+		OverworldSpriteGraphics(993),
+		OverworldSpriteGraphics(994),
+		OverworldSpriteGraphics(993),
+		OverworldSpriteGraphics(994),
+		OverworldSpriteGraphics(993),
+		OverworldSpriteGraphics(994)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0803, 1),
-		OverworldSpriteGraphics(sprite0803, 1),
-		OverworldSpriteGraphics(sprite0803, 1),
-		OverworldSpriteGraphics(sprite0803, 1),
-		OverworldSpriteGraphics(sprite0803),
-		OverworldSpriteGraphics(sprite0803),
-		OverworldSpriteGraphics(sprite0803),
-		OverworldSpriteGraphics(sprite0803)
+		OverworldSpriteGraphics(803, 1),
+		OverworldSpriteGraphics(803, 1),
+		OverworldSpriteGraphics(803, 1),
+		OverworldSpriteGraphics(803, 1),
+		OverworldSpriteGraphics(803),
+		OverworldSpriteGraphics(803),
+		OverworldSpriteGraphics(803),
+		OverworldSpriteGraphics(803)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0E, 0x10, 0x0E, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0802),
-		OverworldSpriteGraphics(sprite0802),
-		OverworldSpriteGraphics(sprite0802),
-		OverworldSpriteGraphics(sprite0802),
-		OverworldSpriteGraphics(sprite0802),
-		OverworldSpriteGraphics(sprite0802),
-		OverworldSpriteGraphics(sprite0802),
-		OverworldSpriteGraphics(sprite0802)
+		OverworldSpriteGraphics(802),
+		OverworldSpriteGraphics(802),
+		OverworldSpriteGraphics(802),
+		OverworldSpriteGraphics(802),
+		OverworldSpriteGraphics(802),
+		OverworldSpriteGraphics(802),
+		OverworldSpriteGraphics(802),
+		OverworldSpriteGraphics(802)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0880),
-		OverworldSpriteGraphics(sprite0880),
-		OverworldSpriteGraphics(sprite0879),
-		OverworldSpriteGraphics(sprite0880),
-		OverworldSpriteGraphics(sprite0879),
-		OverworldSpriteGraphics(sprite0880),
-		OverworldSpriteGraphics(sprite0879),
-		OverworldSpriteGraphics(sprite0880)
+		OverworldSpriteGraphics(880),
+		OverworldSpriteGraphics(880),
+		OverworldSpriteGraphics(879),
+		OverworldSpriteGraphics(880),
+		OverworldSpriteGraphics(879),
+		OverworldSpriteGraphics(880),
+		OverworldSpriteGraphics(879),
+		OverworldSpriteGraphics(880)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0C, 0x0E, 0x0C, 0x0E, 0,
 	[
-		OverworldSpriteGraphics(sprite0169),
-		OverworldSpriteGraphics(sprite0169),
-		OverworldSpriteGraphics(sprite0169),
-		OverworldSpriteGraphics(sprite0169),
-		OverworldSpriteGraphics(sprite0168),
-		OverworldSpriteGraphics(sprite0168),
-		OverworldSpriteGraphics(sprite0168),
-		OverworldSpriteGraphics(sprite0168)
+		OverworldSpriteGraphics(169),
+		OverworldSpriteGraphics(169),
+		OverworldSpriteGraphics(169),
+		OverworldSpriteGraphics(169),
+		OverworldSpriteGraphics(168),
+		OverworldSpriteGraphics(168),
+		OverworldSpriteGraphics(168),
+		OverworldSpriteGraphics(168)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0991),
-		OverworldSpriteGraphics(sprite0992),
-		OverworldSpriteGraphics(sprite0991, 1),
-		OverworldSpriteGraphics(sprite0992, 1),
-		OverworldSpriteGraphics(sprite0991),
-		OverworldSpriteGraphics(sprite0992),
-		OverworldSpriteGraphics(sprite0991),
-		OverworldSpriteGraphics(sprite0992)
+		OverworldSpriteGraphics(991),
+		OverworldSpriteGraphics(992),
+		OverworldSpriteGraphics(991, 1),
+		OverworldSpriteGraphics(992, 1),
+		OverworldSpriteGraphics(991),
+		OverworldSpriteGraphics(992),
+		OverworldSpriteGraphics(991),
+		OverworldSpriteGraphics(992)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1118),
-		OverworldSpriteGraphics(sprite1118),
-		OverworldSpriteGraphics(sprite1118, 1),
-		OverworldSpriteGraphics(sprite1118, 1),
-		OverworldSpriteGraphics(sprite1118),
-		OverworldSpriteGraphics(sprite1118),
-		OverworldSpriteGraphics(sprite1118),
-		OverworldSpriteGraphics(sprite1118)
+		OverworldSpriteGraphics(1118),
+		OverworldSpriteGraphics(1118),
+		OverworldSpriteGraphics(1118, 1),
+		OverworldSpriteGraphics(1118, 1),
+		OverworldSpriteGraphics(1118),
+		OverworldSpriteGraphics(1118),
+		OverworldSpriteGraphics(1118),
+		OverworldSpriteGraphics(1118)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0877),
-		OverworldSpriteGraphics(sprite0878),
-		OverworldSpriteGraphics(sprite0877),
-		OverworldSpriteGraphics(sprite0878),
-		OverworldSpriteGraphics(sprite0877),
-		OverworldSpriteGraphics(sprite0878),
-		OverworldSpriteGraphics(sprite0877),
-		OverworldSpriteGraphics(sprite0878)
+		OverworldSpriteGraphics(877),
+		OverworldSpriteGraphics(878),
+		OverworldSpriteGraphics(877),
+		OverworldSpriteGraphics(878),
+		OverworldSpriteGraphics(877),
+		OverworldSpriteGraphics(878),
+		OverworldSpriteGraphics(877),
+		OverworldSpriteGraphics(878)
 	]),
 	SpriteGrouping(0x06, 0x20, 0x0B, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0876),
-		OverworldSpriteGraphics(sprite0876),
-		OverworldSpriteGraphics(sprite0876),
-		OverworldSpriteGraphics(sprite0876),
-		OverworldSpriteGraphics(sprite0876),
-		OverworldSpriteGraphics(sprite0876),
-		OverworldSpriteGraphics(sprite0876),
-		OverworldSpriteGraphics(sprite0876)
+		OverworldSpriteGraphics(876),
+		OverworldSpriteGraphics(876),
+		OverworldSpriteGraphics(876),
+		OverworldSpriteGraphics(876),
+		OverworldSpriteGraphics(876),
+		OverworldSpriteGraphics(876),
+		OverworldSpriteGraphics(876),
+		OverworldSpriteGraphics(876)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0990),
-		OverworldSpriteGraphics(sprite0990),
-		OverworldSpriteGraphics(sprite0990),
-		OverworldSpriteGraphics(sprite0990),
-		OverworldSpriteGraphics(sprite0990),
-		OverworldSpriteGraphics(sprite0990),
-		OverworldSpriteGraphics(sprite0990),
-		OverworldSpriteGraphics(sprite0990)
+		OverworldSpriteGraphics(990),
+		OverworldSpriteGraphics(990),
+		OverworldSpriteGraphics(990),
+		OverworldSpriteGraphics(990),
+		OverworldSpriteGraphics(990),
+		OverworldSpriteGraphics(990),
+		OverworldSpriteGraphics(990),
+		OverworldSpriteGraphics(990)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1117),
-		OverworldSpriteGraphics(sprite1117),
-		OverworldSpriteGraphics(sprite1117),
-		OverworldSpriteGraphics(sprite1117),
-		OverworldSpriteGraphics(sprite1117),
-		OverworldSpriteGraphics(sprite1117),
-		OverworldSpriteGraphics(sprite1117),
-		OverworldSpriteGraphics(sprite1117)
+		OverworldSpriteGraphics(1117),
+		OverworldSpriteGraphics(1117),
+		OverworldSpriteGraphics(1117),
+		OverworldSpriteGraphics(1117),
+		OverworldSpriteGraphics(1117),
+		OverworldSpriteGraphics(1117),
+		OverworldSpriteGraphics(1117),
+		OverworldSpriteGraphics(1117)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite0988),
-		OverworldSpriteGraphics(sprite0989),
-		OverworldSpriteGraphics(sprite0988),
-		OverworldSpriteGraphics(sprite0989),
-		OverworldSpriteGraphics(sprite0988),
-		OverworldSpriteGraphics(sprite0989),
-		OverworldSpriteGraphics(sprite0988),
-		OverworldSpriteGraphics(sprite0989)
+		OverworldSpriteGraphics(988),
+		OverworldSpriteGraphics(989),
+		OverworldSpriteGraphics(988),
+		OverworldSpriteGraphics(989),
+		OverworldSpriteGraphics(988),
+		OverworldSpriteGraphics(989),
+		OverworldSpriteGraphics(988),
+		OverworldSpriteGraphics(989)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1116),
-		OverworldSpriteGraphics(sprite1116),
-		OverworldSpriteGraphics(sprite1116),
-		OverworldSpriteGraphics(sprite1116),
-		OverworldSpriteGraphics(sprite1116),
-		OverworldSpriteGraphics(sprite1116),
-		OverworldSpriteGraphics(sprite1116),
-		OverworldSpriteGraphics(sprite1116)
+		OverworldSpriteGraphics(1116),
+		OverworldSpriteGraphics(1116),
+		OverworldSpriteGraphics(1116),
+		OverworldSpriteGraphics(1116),
+		OverworldSpriteGraphics(1116),
+		OverworldSpriteGraphics(1116),
+		OverworldSpriteGraphics(1116),
+		OverworldSpriteGraphics(1116)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0987, 1),
-		OverworldSpriteGraphics(sprite0987, 1),
-		OverworldSpriteGraphics(sprite0987, 1),
-		OverworldSpriteGraphics(sprite0987, 1),
-		OverworldSpriteGraphics(sprite0987),
-		OverworldSpriteGraphics(sprite0987),
-		OverworldSpriteGraphics(sprite0987),
-		OverworldSpriteGraphics(sprite0987)
+		OverworldSpriteGraphics(987, 1),
+		OverworldSpriteGraphics(987, 1),
+		OverworldSpriteGraphics(987, 1),
+		OverworldSpriteGraphics(987, 1),
+		OverworldSpriteGraphics(987),
+		OverworldSpriteGraphics(987),
+		OverworldSpriteGraphics(987),
+		OverworldSpriteGraphics(987)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0801, 1),
-		OverworldSpriteGraphics(sprite0801, 1),
-		OverworldSpriteGraphics(sprite0801, 1),
-		OverworldSpriteGraphics(sprite0801, 1),
-		OverworldSpriteGraphics(sprite0801),
-		OverworldSpriteGraphics(sprite0801),
-		OverworldSpriteGraphics(sprite0801),
-		OverworldSpriteGraphics(sprite0801)
+		OverworldSpriteGraphics(801, 1),
+		OverworldSpriteGraphics(801, 1),
+		OverworldSpriteGraphics(801, 1),
+		OverworldSpriteGraphics(801, 1),
+		OverworldSpriteGraphics(801),
+		OverworldSpriteGraphics(801),
+		OverworldSpriteGraphics(801),
+		OverworldSpriteGraphics(801)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1067, 1),
-		OverworldSpriteGraphics(sprite1067, 1),
-		OverworldSpriteGraphics(sprite1067, 1),
-		OverworldSpriteGraphics(sprite1067, 1),
-		OverworldSpriteGraphics(sprite1067),
-		OverworldSpriteGraphics(sprite1067),
-		OverworldSpriteGraphics(sprite1067),
-		OverworldSpriteGraphics(sprite1067)
+		OverworldSpriteGraphics(1067, 1),
+		OverworldSpriteGraphics(1067, 1),
+		OverworldSpriteGraphics(1067, 1),
+		OverworldSpriteGraphics(1067, 1),
+		OverworldSpriteGraphics(1067),
+		OverworldSpriteGraphics(1067),
+		OverworldSpriteGraphics(1067),
+		OverworldSpriteGraphics(1067)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0977),
-		OverworldSpriteGraphics(sprite0978),
-		OverworldSpriteGraphics(sprite0977),
-		OverworldSpriteGraphics(sprite0978),
-		OverworldSpriteGraphics(sprite0977),
-		OverworldSpriteGraphics(sprite0978),
-		OverworldSpriteGraphics(sprite0977),
-		OverworldSpriteGraphics(sprite0978),
-		OverworldSpriteGraphics(sprite0979)
+		OverworldSpriteGraphics(977),
+		OverworldSpriteGraphics(978),
+		OverworldSpriteGraphics(977),
+		OverworldSpriteGraphics(978),
+		OverworldSpriteGraphics(977),
+		OverworldSpriteGraphics(978),
+		OverworldSpriteGraphics(977),
+		OverworldSpriteGraphics(978),
+		OverworldSpriteGraphics(979)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite1064),
-		OverworldSpriteGraphics(sprite1065),
-		OverworldSpriteGraphics(sprite1064),
-		OverworldSpriteGraphics(sprite1065),
-		OverworldSpriteGraphics(sprite1064),
-		OverworldSpriteGraphics(sprite1065),
-		OverworldSpriteGraphics(sprite1064),
-		OverworldSpriteGraphics(sprite1065)
+		OverworldSpriteGraphics(1064),
+		OverworldSpriteGraphics(1065),
+		OverworldSpriteGraphics(1064),
+		OverworldSpriteGraphics(1065),
+		OverworldSpriteGraphics(1064),
+		OverworldSpriteGraphics(1065),
+		OverworldSpriteGraphics(1064),
+		OverworldSpriteGraphics(1065)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite1062),
-		OverworldSpriteGraphics(sprite1063),
-		OverworldSpriteGraphics(sprite1062, 1),
-		OverworldSpriteGraphics(sprite1063, 1),
-		OverworldSpriteGraphics(sprite1062),
-		OverworldSpriteGraphics(sprite1063),
-		OverworldSpriteGraphics(sprite1062),
-		OverworldSpriteGraphics(sprite1063)
+		OverworldSpriteGraphics(1062),
+		OverworldSpriteGraphics(1063),
+		OverworldSpriteGraphics(1062, 1),
+		OverworldSpriteGraphics(1063, 1),
+		OverworldSpriteGraphics(1062),
+		OverworldSpriteGraphics(1063),
+		OverworldSpriteGraphics(1062),
+		OverworldSpriteGraphics(1063)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1060),
-		OverworldSpriteGraphics(sprite1061),
-		OverworldSpriteGraphics(sprite1060),
-		OverworldSpriteGraphics(sprite1061),
-		OverworldSpriteGraphics(sprite1060),
-		OverworldSpriteGraphics(sprite1061),
-		OverworldSpriteGraphics(sprite1060),
-		OverworldSpriteGraphics(sprite1061)
+		OverworldSpriteGraphics(1060),
+		OverworldSpriteGraphics(1061),
+		OverworldSpriteGraphics(1060),
+		OverworldSpriteGraphics(1061),
+		OverworldSpriteGraphics(1060),
+		OverworldSpriteGraphics(1061),
+		OverworldSpriteGraphics(1060),
+		OverworldSpriteGraphics(1061)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0861),
-		OverworldSpriteGraphics(sprite0861, 1),
-		OverworldSpriteGraphics(sprite0862, 1),
-		OverworldSpriteGraphics(sprite0863, 1),
-		OverworldSpriteGraphics(sprite0860),
-		OverworldSpriteGraphics(sprite0860, 1),
-		OverworldSpriteGraphics(sprite0862),
-		OverworldSpriteGraphics(sprite0863)
+		OverworldSpriteGraphics(861),
+		OverworldSpriteGraphics(861, 1),
+		OverworldSpriteGraphics(862, 1),
+		OverworldSpriteGraphics(863, 1),
+		OverworldSpriteGraphics(860),
+		OverworldSpriteGraphics(860, 1),
+		OverworldSpriteGraphics(862),
+		OverworldSpriteGraphics(863)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite1058),
-		OverworldSpriteGraphics(sprite1059),
-		OverworldSpriteGraphics(sprite1058),
-		OverworldSpriteGraphics(sprite1059),
-		OverworldSpriteGraphics(sprite1058),
-		OverworldSpriteGraphics(sprite1059),
-		OverworldSpriteGraphics(sprite1058),
-		OverworldSpriteGraphics(sprite1059)
+		OverworldSpriteGraphics(1058),
+		OverworldSpriteGraphics(1059),
+		OverworldSpriteGraphics(1058),
+		OverworldSpriteGraphics(1059),
+		OverworldSpriteGraphics(1058),
+		OverworldSpriteGraphics(1059),
+		OverworldSpriteGraphics(1058),
+		OverworldSpriteGraphics(1059)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1056),
-		OverworldSpriteGraphics(sprite1057),
-		OverworldSpriteGraphics(sprite1056),
-		OverworldSpriteGraphics(sprite1057),
-		OverworldSpriteGraphics(sprite1056),
-		OverworldSpriteGraphics(sprite1057),
-		OverworldSpriteGraphics(sprite1056),
-		OverworldSpriteGraphics(sprite1057)
+		OverworldSpriteGraphics(1056),
+		OverworldSpriteGraphics(1057),
+		OverworldSpriteGraphics(1056),
+		OverworldSpriteGraphics(1057),
+		OverworldSpriteGraphics(1056),
+		OverworldSpriteGraphics(1057),
+		OverworldSpriteGraphics(1056),
+		OverworldSpriteGraphics(1057)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x05, 0x08, 0x05, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0857),
-		OverworldSpriteGraphics(sprite0857, 1),
-		OverworldSpriteGraphics(sprite0858, 1),
-		OverworldSpriteGraphics(sprite0859, 1),
-		OverworldSpriteGraphics(sprite0856),
-		OverworldSpriteGraphics(sprite0856, 1),
-		OverworldSpriteGraphics(sprite0858),
-		OverworldSpriteGraphics(sprite0859)
+		OverworldSpriteGraphics(857),
+		OverworldSpriteGraphics(857, 1),
+		OverworldSpriteGraphics(858, 1),
+		OverworldSpriteGraphics(859, 1),
+		OverworldSpriteGraphics(856),
+		OverworldSpriteGraphics(856, 1),
+		OverworldSpriteGraphics(858),
+		OverworldSpriteGraphics(859)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite0783, 1),
-		OverworldSpriteGraphics(sprite0784, 1),
-		OverworldSpriteGraphics(sprite0783, 1),
-		OverworldSpriteGraphics(sprite0784, 1),
-		OverworldSpriteGraphics(sprite0783),
-		OverworldSpriteGraphics(sprite0784),
-		OverworldSpriteGraphics(sprite0783),
-		OverworldSpriteGraphics(sprite0784),
-		OverworldSpriteGraphics(sprite0785)
+		OverworldSpriteGraphics(783, 1),
+		OverworldSpriteGraphics(784, 1),
+		OverworldSpriteGraphics(783, 1),
+		OverworldSpriteGraphics(784, 1),
+		OverworldSpriteGraphics(783),
+		OverworldSpriteGraphics(784),
+		OverworldSpriteGraphics(783),
+		OverworldSpriteGraphics(784),
+		OverworldSpriteGraphics(785)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x06, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0742),
-		OverworldSpriteGraphics(sprite0742),
-		OverworldSpriteGraphics(sprite0743, 1),
-		OverworldSpriteGraphics(sprite0744, 1),
-		OverworldSpriteGraphics(sprite0741),
-		OverworldSpriteGraphics(sprite0741),
-		OverworldSpriteGraphics(sprite0743),
-		OverworldSpriteGraphics(sprite0744)
+		OverworldSpriteGraphics(742),
+		OverworldSpriteGraphics(742),
+		OverworldSpriteGraphics(743, 1),
+		OverworldSpriteGraphics(744, 1),
+		OverworldSpriteGraphics(741),
+		OverworldSpriteGraphics(741),
+		OverworldSpriteGraphics(743),
+		OverworldSpriteGraphics(744)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0738),
-		OverworldSpriteGraphics(sprite0738, 1),
-		OverworldSpriteGraphics(sprite0739, 1),
-		OverworldSpriteGraphics(sprite0740, 1),
-		OverworldSpriteGraphics(sprite0737),
-		OverworldSpriteGraphics(sprite0737, 1),
-		OverworldSpriteGraphics(sprite0739),
-		OverworldSpriteGraphics(sprite0740)
+		OverworldSpriteGraphics(738),
+		OverworldSpriteGraphics(738, 1),
+		OverworldSpriteGraphics(739, 1),
+		OverworldSpriteGraphics(740, 1),
+		OverworldSpriteGraphics(737),
+		OverworldSpriteGraphics(737, 1),
+		OverworldSpriteGraphics(739),
+		OverworldSpriteGraphics(740)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite0222),
-		OverworldSpriteGraphics(sprite0222, 1),
-		OverworldSpriteGraphics(sprite0223, 1),
-		OverworldSpriteGraphics(sprite0224, 1),
-		OverworldSpriteGraphics(sprite0221),
-		OverworldSpriteGraphics(sprite0221, 1),
-		OverworldSpriteGraphics(sprite0223),
-		OverworldSpriteGraphics(sprite0224),
-		OverworldSpriteGraphics(sprite0225)
+		OverworldSpriteGraphics(222),
+		OverworldSpriteGraphics(222, 1),
+		OverworldSpriteGraphics(223, 1),
+		OverworldSpriteGraphics(224, 1),
+		OverworldSpriteGraphics(221),
+		OverworldSpriteGraphics(221, 1),
+		OverworldSpriteGraphics(223),
+		OverworldSpriteGraphics(224),
+		OverworldSpriteGraphics(225)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0780),
-		OverworldSpriteGraphics(sprite0781),
-		OverworldSpriteGraphics(sprite0780),
-		OverworldSpriteGraphics(sprite0781),
-		OverworldSpriteGraphics(sprite0780),
-		OverworldSpriteGraphics(sprite0781),
-		OverworldSpriteGraphics(sprite0780),
-		OverworldSpriteGraphics(sprite0781),
-		OverworldSpriteGraphics(sprite0782)
+		OverworldSpriteGraphics(780),
+		OverworldSpriteGraphics(781),
+		OverworldSpriteGraphics(780),
+		OverworldSpriteGraphics(781),
+		OverworldSpriteGraphics(780),
+		OverworldSpriteGraphics(781),
+		OverworldSpriteGraphics(780),
+		OverworldSpriteGraphics(781),
+		OverworldSpriteGraphics(782)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x07, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0734),
-		OverworldSpriteGraphics(sprite0734, 1),
-		OverworldSpriteGraphics(sprite0735, 1),
-		OverworldSpriteGraphics(sprite0736, 1),
-		OverworldSpriteGraphics(sprite0733),
-		OverworldSpriteGraphics(sprite0733, 1),
-		OverworldSpriteGraphics(sprite0735),
-		OverworldSpriteGraphics(sprite0736)
+		OverworldSpriteGraphics(734),
+		OverworldSpriteGraphics(734, 1),
+		OverworldSpriteGraphics(735, 1),
+		OverworldSpriteGraphics(736, 1),
+		OverworldSpriteGraphics(733),
+		OverworldSpriteGraphics(733, 1),
+		OverworldSpriteGraphics(735),
+		OverworldSpriteGraphics(736)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0730),
-		OverworldSpriteGraphics(sprite0730, 1),
-		OverworldSpriteGraphics(sprite0731, 1),
-		OverworldSpriteGraphics(sprite0732, 1),
-		OverworldSpriteGraphics(sprite0729),
-		OverworldSpriteGraphics(sprite0729, 1),
-		OverworldSpriteGraphics(sprite0731),
-		OverworldSpriteGraphics(sprite0732)
+		OverworldSpriteGraphics(730),
+		OverworldSpriteGraphics(730, 1),
+		OverworldSpriteGraphics(731, 1),
+		OverworldSpriteGraphics(732, 1),
+		OverworldSpriteGraphics(729),
+		OverworldSpriteGraphics(729, 1),
+		OverworldSpriteGraphics(731),
+		OverworldSpriteGraphics(732)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x0E, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0065),
-		OverworldSpriteGraphics(sprite0065, 1),
-		OverworldSpriteGraphics(sprite0066, 1),
-		OverworldSpriteGraphics(sprite0067, 1),
-		OverworldSpriteGraphics(sprite0064),
-		OverworldSpriteGraphics(sprite0064, 1),
-		OverworldSpriteGraphics(sprite0066),
-		OverworldSpriteGraphics(sprite0067)
+		OverworldSpriteGraphics(65),
+		OverworldSpriteGraphics(65, 1),
+		OverworldSpriteGraphics(66, 1),
+		OverworldSpriteGraphics(67, 1),
+		OverworldSpriteGraphics(64),
+		OverworldSpriteGraphics(64, 1),
+		OverworldSpriteGraphics(66),
+		OverworldSpriteGraphics(67)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0194),
-		OverworldSpriteGraphics(sprite0195),
-		OverworldSpriteGraphics(sprite0194),
-		OverworldSpriteGraphics(sprite0195),
-		OverworldSpriteGraphics(sprite0194),
-		OverworldSpriteGraphics(sprite0195),
-		OverworldSpriteGraphics(sprite0194),
-		OverworldSpriteGraphics(sprite0195)
+		OverworldSpriteGraphics(194),
+		OverworldSpriteGraphics(195),
+		OverworldSpriteGraphics(194),
+		OverworldSpriteGraphics(195),
+		OverworldSpriteGraphics(194),
+		OverworldSpriteGraphics(195),
+		OverworldSpriteGraphics(194),
+		OverworldSpriteGraphics(195)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0852),
-		OverworldSpriteGraphics(sprite0852, 1),
-		OverworldSpriteGraphics(sprite0853, 1),
-		OverworldSpriteGraphics(sprite0854, 1),
-		OverworldSpriteGraphics(sprite0852),
-		OverworldSpriteGraphics(sprite0852, 1),
-		OverworldSpriteGraphics(sprite0853),
-		OverworldSpriteGraphics(sprite0854),
-		OverworldSpriteGraphics(sprite0855)
+		OverworldSpriteGraphics(852),
+		OverworldSpriteGraphics(852, 1),
+		OverworldSpriteGraphics(853, 1),
+		OverworldSpriteGraphics(854, 1),
+		OverworldSpriteGraphics(852),
+		OverworldSpriteGraphics(852, 1),
+		OverworldSpriteGraphics(853),
+		OverworldSpriteGraphics(854),
+		OverworldSpriteGraphics(855)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0726),
-		OverworldSpriteGraphics(sprite0726, 1),
-		OverworldSpriteGraphics(sprite0727, 1),
-		OverworldSpriteGraphics(sprite0728, 1),
-		OverworldSpriteGraphics(sprite0725),
-		OverworldSpriteGraphics(sprite0725, 1),
-		OverworldSpriteGraphics(sprite0727),
-		OverworldSpriteGraphics(sprite0728)
+		OverworldSpriteGraphics(726),
+		OverworldSpriteGraphics(726, 1),
+		OverworldSpriteGraphics(727, 1),
+		OverworldSpriteGraphics(728, 1),
+		OverworldSpriteGraphics(725),
+		OverworldSpriteGraphics(725, 1),
+		OverworldSpriteGraphics(727),
+		OverworldSpriteGraphics(728)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x09, 0x08, 0x09, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0192),
-		OverworldSpriteGraphics(sprite0193),
-		OverworldSpriteGraphics(sprite0192),
-		OverworldSpriteGraphics(sprite0193),
-		OverworldSpriteGraphics(sprite0192),
-		OverworldSpriteGraphics(sprite0193),
-		OverworldSpriteGraphics(sprite0192),
-		OverworldSpriteGraphics(sprite0193)
+		OverworldSpriteGraphics(192),
+		OverworldSpriteGraphics(193),
+		OverworldSpriteGraphics(192),
+		OverworldSpriteGraphics(193),
+		OverworldSpriteGraphics(192),
+		OverworldSpriteGraphics(193),
+		OverworldSpriteGraphics(192),
+		OverworldSpriteGraphics(193)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x08, 0x10, 0x0D, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0057),
-		OverworldSpriteGraphics(sprite0057, 1),
-		OverworldSpriteGraphics(sprite0058, 1),
-		OverworldSpriteGraphics(sprite0059, 1),
-		OverworldSpriteGraphics(sprite0056),
-		OverworldSpriteGraphics(sprite0056, 1),
-		OverworldSpriteGraphics(sprite0058),
-		OverworldSpriteGraphics(sprite0059)
+		OverworldSpriteGraphics(57),
+		OverworldSpriteGraphics(57, 1),
+		OverworldSpriteGraphics(58, 1),
+		OverworldSpriteGraphics(59, 1),
+		OverworldSpriteGraphics(56),
+		OverworldSpriteGraphics(56, 1),
+		OverworldSpriteGraphics(58),
+		OverworldSpriteGraphics(59)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x0D, 0x0B, 0x0D, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite0190, 2),
-		OverworldSpriteGraphics(sprite0191, 2),
-		OverworldSpriteGraphics(sprite0190, 3),
-		OverworldSpriteGraphics(sprite0191, 3),
-		OverworldSpriteGraphics(sprite0190, 2),
-		OverworldSpriteGraphics(sprite0191, 2),
-		OverworldSpriteGraphics(sprite0190, 2),
-		OverworldSpriteGraphics(sprite0191, 2)
+		OverworldSpriteGraphics(190, 2),
+		OverworldSpriteGraphics(191, 2),
+		OverworldSpriteGraphics(190, 3),
+		OverworldSpriteGraphics(191, 3),
+		OverworldSpriteGraphics(190, 2),
+		OverworldSpriteGraphics(191, 2),
+		OverworldSpriteGraphics(190, 2),
+		OverworldSpriteGraphics(191, 2)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x08, 0x08, 0x0E, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0053),
-		OverworldSpriteGraphics(sprite0053, 1),
-		OverworldSpriteGraphics(sprite0054, 1),
-		OverworldSpriteGraphics(sprite0055, 1),
-		OverworldSpriteGraphics(sprite0052),
-		OverworldSpriteGraphics(sprite0052, 1),
-		OverworldSpriteGraphics(sprite0054),
-		OverworldSpriteGraphics(sprite0055)
+		OverworldSpriteGraphics(53),
+		OverworldSpriteGraphics(53, 1),
+		OverworldSpriteGraphics(54, 1),
+		OverworldSpriteGraphics(55, 1),
+		OverworldSpriteGraphics(52),
+		OverworldSpriteGraphics(52, 1),
+		OverworldSpriteGraphics(54),
+		OverworldSpriteGraphics(55)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x0B, 0x0C, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite0188),
-		OverworldSpriteGraphics(sprite0189),
-		OverworldSpriteGraphics(sprite0188),
-		OverworldSpriteGraphics(sprite0189),
-		OverworldSpriteGraphics(sprite0188),
-		OverworldSpriteGraphics(sprite0189),
-		OverworldSpriteGraphics(sprite0188),
-		OverworldSpriteGraphics(sprite0189)
+		OverworldSpriteGraphics(188),
+		OverworldSpriteGraphics(189),
+		OverworldSpriteGraphics(188),
+		OverworldSpriteGraphics(189),
+		OverworldSpriteGraphics(188),
+		OverworldSpriteGraphics(189),
+		OverworldSpriteGraphics(188),
+		OverworldSpriteGraphics(189)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x09, 0x10, 0x0E, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0049),
-		OverworldSpriteGraphics(sprite0049, 1),
-		OverworldSpriteGraphics(sprite0050, 1),
-		OverworldSpriteGraphics(sprite0051, 1),
-		OverworldSpriteGraphics(sprite0048),
-		OverworldSpriteGraphics(sprite0048, 1),
-		OverworldSpriteGraphics(sprite0050),
-		OverworldSpriteGraphics(sprite0051)
+		OverworldSpriteGraphics(49),
+		OverworldSpriteGraphics(49, 1),
+		OverworldSpriteGraphics(50, 1),
+		OverworldSpriteGraphics(51, 1),
+		OverworldSpriteGraphics(48),
+		OverworldSpriteGraphics(48, 1),
+		OverworldSpriteGraphics(50),
+		OverworldSpriteGraphics(51)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x0F, 0x10, 0x0F, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0186),
-		OverworldSpriteGraphics(sprite0187),
-		OverworldSpriteGraphics(sprite0186, 1),
-		OverworldSpriteGraphics(sprite0187, 1),
-		OverworldSpriteGraphics(sprite0186),
-		OverworldSpriteGraphics(sprite0187),
-		OverworldSpriteGraphics(sprite0186),
-		OverworldSpriteGraphics(sprite0187)
+		OverworldSpriteGraphics(186),
+		OverworldSpriteGraphics(187),
+		OverworldSpriteGraphics(186, 1),
+		OverworldSpriteGraphics(187, 1),
+		OverworldSpriteGraphics(186),
+		OverworldSpriteGraphics(187),
+		OverworldSpriteGraphics(186),
+		OverworldSpriteGraphics(187)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x0B, 0x04, 0x0B, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite0851),
-		OverworldSpriteGraphics(sprite0851),
-		OverworldSpriteGraphics(sprite0851),
-		OverworldSpriteGraphics(sprite0851),
-		OverworldSpriteGraphics(sprite0851),
-		OverworldSpriteGraphics(sprite0851),
-		OverworldSpriteGraphics(sprite0851),
-		OverworldSpriteGraphics(sprite0851)
+		OverworldSpriteGraphics(851),
+		OverworldSpriteGraphics(851),
+		OverworldSpriteGraphics(851),
+		OverworldSpriteGraphics(851),
+		OverworldSpriteGraphics(851),
+		OverworldSpriteGraphics(851),
+		OverworldSpriteGraphics(851),
+		OverworldSpriteGraphics(851)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x08, 0x04, 0x08, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite1054),
-		OverworldSpriteGraphics(sprite1055),
-		OverworldSpriteGraphics(sprite1054, 1),
-		OverworldSpriteGraphics(sprite1055, 1),
-		OverworldSpriteGraphics(sprite1054),
-		OverworldSpriteGraphics(sprite1055),
-		OverworldSpriteGraphics(sprite1054),
-		OverworldSpriteGraphics(sprite1055)
+		OverworldSpriteGraphics(1054),
+		OverworldSpriteGraphics(1055),
+		OverworldSpriteGraphics(1054, 1),
+		OverworldSpriteGraphics(1055, 1),
+		OverworldSpriteGraphics(1054),
+		OverworldSpriteGraphics(1055),
+		OverworldSpriteGraphics(1054),
+		OverworldSpriteGraphics(1055)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite0975),
-		OverworldSpriteGraphics(sprite0976),
-		OverworldSpriteGraphics(sprite0975),
-		OverworldSpriteGraphics(sprite0976),
-		OverworldSpriteGraphics(sprite0975),
-		OverworldSpriteGraphics(sprite0976),
-		OverworldSpriteGraphics(sprite0975),
-		OverworldSpriteGraphics(sprite0976)
+		OverworldSpriteGraphics(975),
+		OverworldSpriteGraphics(976),
+		OverworldSpriteGraphics(975),
+		OverworldSpriteGraphics(976),
+		OverworldSpriteGraphics(975),
+		OverworldSpriteGraphics(976),
+		OverworldSpriteGraphics(975),
+		OverworldSpriteGraphics(976)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0973),
-		OverworldSpriteGraphics(sprite0974),
-		OverworldSpriteGraphics(sprite0973),
-		OverworldSpriteGraphics(sprite0974),
-		OverworldSpriteGraphics(sprite0973),
-		OverworldSpriteGraphics(sprite0974),
-		OverworldSpriteGraphics(sprite0973),
-		OverworldSpriteGraphics(sprite0974)
+		OverworldSpriteGraphics(973),
+		OverworldSpriteGraphics(974),
+		OverworldSpriteGraphics(973),
+		OverworldSpriteGraphics(974),
+		OverworldSpriteGraphics(973),
+		OverworldSpriteGraphics(974),
+		OverworldSpriteGraphics(973),
+		OverworldSpriteGraphics(974)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite0971),
-		OverworldSpriteGraphics(sprite0972),
-		OverworldSpriteGraphics(sprite0971, 1),
-		OverworldSpriteGraphics(sprite0972, 1),
-		OverworldSpriteGraphics(sprite0971),
-		OverworldSpriteGraphics(sprite0972),
-		OverworldSpriteGraphics(sprite0971),
-		OverworldSpriteGraphics(sprite0972)
+		OverworldSpriteGraphics(971),
+		OverworldSpriteGraphics(972),
+		OverworldSpriteGraphics(971, 1),
+		OverworldSpriteGraphics(972, 1),
+		OverworldSpriteGraphics(971),
+		OverworldSpriteGraphics(972),
+		OverworldSpriteGraphics(971),
+		OverworldSpriteGraphics(972)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0722),
-		OverworldSpriteGraphics(sprite0722, 1),
-		OverworldSpriteGraphics(sprite0723, 1),
-		OverworldSpriteGraphics(sprite0724, 1),
-		OverworldSpriteGraphics(sprite0721),
-		OverworldSpriteGraphics(sprite0721, 1),
-		OverworldSpriteGraphics(sprite0723),
-		OverworldSpriteGraphics(sprite0724)
+		OverworldSpriteGraphics(722),
+		OverworldSpriteGraphics(722, 1),
+		OverworldSpriteGraphics(723, 1),
+		OverworldSpriteGraphics(724, 1),
+		OverworldSpriteGraphics(721),
+		OverworldSpriteGraphics(721, 1),
+		OverworldSpriteGraphics(723),
+		OverworldSpriteGraphics(724)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
-		OverworldSpriteGraphics(sprite0969),
-		OverworldSpriteGraphics(sprite0970),
-		OverworldSpriteGraphics(sprite0969),
-		OverworldSpriteGraphics(sprite0970),
-		OverworldSpriteGraphics(sprite0969),
-		OverworldSpriteGraphics(sprite0970),
-		OverworldSpriteGraphics(sprite0969),
-		OverworldSpriteGraphics(sprite0970)
+		OverworldSpriteGraphics(969),
+		OverworldSpriteGraphics(970),
+		OverworldSpriteGraphics(969),
+		OverworldSpriteGraphics(970),
+		OverworldSpriteGraphics(969),
+		OverworldSpriteGraphics(970),
+		OverworldSpriteGraphics(969),
+		OverworldSpriteGraphics(970)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0217),
-		OverworldSpriteGraphics(sprite0217, 1),
-		OverworldSpriteGraphics(sprite0218, 1),
-		OverworldSpriteGraphics(sprite0219, 1),
-		OverworldSpriteGraphics(sprite0216),
-		OverworldSpriteGraphics(sprite0216, 1),
-		OverworldSpriteGraphics(sprite0218),
-		OverworldSpriteGraphics(sprite0219),
-		OverworldSpriteGraphics(sprite0220)
+		OverworldSpriteGraphics(217),
+		OverworldSpriteGraphics(217, 1),
+		OverworldSpriteGraphics(218, 1),
+		OverworldSpriteGraphics(219, 1),
+		OverworldSpriteGraphics(216),
+		OverworldSpriteGraphics(216, 1),
+		OverworldSpriteGraphics(218),
+		OverworldSpriteGraphics(219),
+		OverworldSpriteGraphics(220)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0718),
-		OverworldSpriteGraphics(sprite0718, 1),
-		OverworldSpriteGraphics(sprite0719, 1),
-		OverworldSpriteGraphics(sprite0720, 1),
-		OverworldSpriteGraphics(sprite0717),
-		OverworldSpriteGraphics(sprite0717, 1),
-		OverworldSpriteGraphics(sprite0719),
-		OverworldSpriteGraphics(sprite0720)
+		OverworldSpriteGraphics(718),
+		OverworldSpriteGraphics(718, 1),
+		OverworldSpriteGraphics(719, 1),
+		OverworldSpriteGraphics(720, 1),
+		OverworldSpriteGraphics(717),
+		OverworldSpriteGraphics(717, 1),
+		OverworldSpriteGraphics(719),
+		OverworldSpriteGraphics(720)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104),
-		OverworldSpriteGraphics(sprite1104)
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104),
+		OverworldSpriteGraphics(1104)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0778),
-		OverworldSpriteGraphics(sprite0778, 1),
-		OverworldSpriteGraphics(sprite0779, 1),
-		OverworldSpriteGraphics(sprite0779, 1),
-		OverworldSpriteGraphics(sprite0777),
-		OverworldSpriteGraphics(sprite0777, 1),
-		OverworldSpriteGraphics(sprite0779),
-		OverworldSpriteGraphics(sprite0779)
+		OverworldSpriteGraphics(778),
+		OverworldSpriteGraphics(778, 1),
+		OverworldSpriteGraphics(779, 1),
+		OverworldSpriteGraphics(779, 1),
+		OverworldSpriteGraphics(777),
+		OverworldSpriteGraphics(777, 1),
+		OverworldSpriteGraphics(779),
+		OverworldSpriteGraphics(779)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0B, 0x0C, 0x0E, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0045),
-		OverworldSpriteGraphics(sprite0045, 1),
-		OverworldSpriteGraphics(sprite0046, 1),
-		OverworldSpriteGraphics(sprite0047, 1),
-		OverworldSpriteGraphics(sprite0044),
-		OverworldSpriteGraphics(sprite0044, 1),
-		OverworldSpriteGraphics(sprite0046),
-		OverworldSpriteGraphics(sprite0047)
+		OverworldSpriteGraphics(45),
+		OverworldSpriteGraphics(45, 1),
+		OverworldSpriteGraphics(46, 1),
+		OverworldSpriteGraphics(47, 1),
+		OverworldSpriteGraphics(44),
+		OverworldSpriteGraphics(44, 1),
+		OverworldSpriteGraphics(46),
+		OverworldSpriteGraphics(47)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x09, 0x10, 0x0C, 0x0C, 0,
 	[
-		OverworldSpriteGraphics(sprite0041),
-		OverworldSpriteGraphics(sprite0041, 1),
-		OverworldSpriteGraphics(sprite0042, 1),
-		OverworldSpriteGraphics(sprite0043, 1),
-		OverworldSpriteGraphics(sprite0040),
-		OverworldSpriteGraphics(sprite0040, 1),
-		OverworldSpriteGraphics(sprite0042),
-		OverworldSpriteGraphics(sprite0043)
+		OverworldSpriteGraphics(41),
+		OverworldSpriteGraphics(41, 1),
+		OverworldSpriteGraphics(42, 1),
+		OverworldSpriteGraphics(43, 1),
+		OverworldSpriteGraphics(40),
+		OverworldSpriteGraphics(40, 1),
+		OverworldSpriteGraphics(42),
+		OverworldSpriteGraphics(43)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0848),
-		OverworldSpriteGraphics(sprite0848, 1),
-		OverworldSpriteGraphics(sprite0849, 1),
-		OverworldSpriteGraphics(sprite0850, 1),
-		OverworldSpriteGraphics(sprite0847),
-		OverworldSpriteGraphics(sprite0847, 1),
-		OverworldSpriteGraphics(sprite0849),
-		OverworldSpriteGraphics(sprite0850)
+		OverworldSpriteGraphics(848),
+		OverworldSpriteGraphics(848, 1),
+		OverworldSpriteGraphics(849, 1),
+		OverworldSpriteGraphics(850, 1),
+		OverworldSpriteGraphics(847),
+		OverworldSpriteGraphics(847, 1),
+		OverworldSpriteGraphics(849),
+		OverworldSpriteGraphics(850)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x03, 0x04, 0x03, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite1052, 2),
-		OverworldSpriteGraphics(sprite1053, 2),
-		OverworldSpriteGraphics(sprite1052, 3),
-		OverworldSpriteGraphics(sprite1053, 3),
-		OverworldSpriteGraphics(sprite1052, 2),
-		OverworldSpriteGraphics(sprite1053, 2),
-		OverworldSpriteGraphics(sprite1052, 2),
-		OverworldSpriteGraphics(sprite1053, 2)
+		OverworldSpriteGraphics(1052, 2),
+		OverworldSpriteGraphics(1053, 2),
+		OverworldSpriteGraphics(1052, 3),
+		OverworldSpriteGraphics(1053, 3),
+		OverworldSpriteGraphics(1052, 2),
+		OverworldSpriteGraphics(1053, 2),
+		OverworldSpriteGraphics(1052, 2),
+		OverworldSpriteGraphics(1053, 2)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1050),
-		OverworldSpriteGraphics(sprite1051),
-		OverworldSpriteGraphics(sprite1050),
-		OverworldSpriteGraphics(sprite1051),
-		OverworldSpriteGraphics(sprite1050),
-		OverworldSpriteGraphics(sprite1051),
-		OverworldSpriteGraphics(sprite1050),
-		OverworldSpriteGraphics(sprite1051)
+		OverworldSpriteGraphics(1050),
+		OverworldSpriteGraphics(1051),
+		OverworldSpriteGraphics(1050),
+		OverworldSpriteGraphics(1051),
+		OverworldSpriteGraphics(1050),
+		OverworldSpriteGraphics(1051),
+		OverworldSpriteGraphics(1050),
+		OverworldSpriteGraphics(1051)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x02, 0x04, 0x02, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite1048, 2),
-		OverworldSpriteGraphics(sprite1049, 2),
-		OverworldSpriteGraphics(sprite1048, 3),
-		OverworldSpriteGraphics(sprite1049, 3),
-		OverworldSpriteGraphics(sprite1048, 2),
-		OverworldSpriteGraphics(sprite1049, 2),
-		OverworldSpriteGraphics(sprite1048, 2),
-		OverworldSpriteGraphics(sprite1049, 2)
+		OverworldSpriteGraphics(1048, 2),
+		OverworldSpriteGraphics(1049, 2),
+		OverworldSpriteGraphics(1048, 3),
+		OverworldSpriteGraphics(1049, 3),
+		OverworldSpriteGraphics(1048, 2),
+		OverworldSpriteGraphics(1049, 2),
+		OverworldSpriteGraphics(1048, 2),
+		OverworldSpriteGraphics(1049, 2)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0966),
-		OverworldSpriteGraphics(sprite0966, 1),
-		OverworldSpriteGraphics(sprite0967, 1),
-		OverworldSpriteGraphics(sprite0968, 1),
-		OverworldSpriteGraphics(sprite0966),
-		OverworldSpriteGraphics(sprite0966, 1),
-		OverworldSpriteGraphics(sprite0967),
-		OverworldSpriteGraphics(sprite0968),
-		OverworldSpriteGraphics(sprite0967)
+		OverworldSpriteGraphics(966),
+		OverworldSpriteGraphics(966, 1),
+		OverworldSpriteGraphics(967, 1),
+		OverworldSpriteGraphics(968, 1),
+		OverworldSpriteGraphics(966),
+		OverworldSpriteGraphics(966, 1),
+		OverworldSpriteGraphics(967),
+		OverworldSpriteGraphics(968),
+		OverworldSpriteGraphics(967)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x02, 0x04, 0x02, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite1046),
-		OverworldSpriteGraphics(sprite1047),
-		OverworldSpriteGraphics(sprite1046, 1),
-		OverworldSpriteGraphics(sprite1047, 1),
-		OverworldSpriteGraphics(sprite1046),
-		OverworldSpriteGraphics(sprite1047),
-		OverworldSpriteGraphics(sprite1046),
-		OverworldSpriteGraphics(sprite1047)
+		OverworldSpriteGraphics(1046),
+		OverworldSpriteGraphics(1047),
+		OverworldSpriteGraphics(1046, 1),
+		OverworldSpriteGraphics(1047, 1),
+		OverworldSpriteGraphics(1046),
+		OverworldSpriteGraphics(1047),
+		OverworldSpriteGraphics(1046),
+		OverworldSpriteGraphics(1047)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0844),
-		OverworldSpriteGraphics(sprite0844, 1),
-		OverworldSpriteGraphics(sprite0845, 1),
-		OverworldSpriteGraphics(sprite0846, 1),
-		OverworldSpriteGraphics(sprite0843),
-		OverworldSpriteGraphics(sprite0843, 1),
-		OverworldSpriteGraphics(sprite0845),
-		OverworldSpriteGraphics(sprite0846)
+		OverworldSpriteGraphics(844),
+		OverworldSpriteGraphics(844, 1),
+		OverworldSpriteGraphics(845, 1),
+		OverworldSpriteGraphics(846, 1),
+		OverworldSpriteGraphics(843),
+		OverworldSpriteGraphics(843, 1),
+		OverworldSpriteGraphics(845),
+		OverworldSpriteGraphics(846)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x04, 0x08, 0x04, 0,
 	[
-		OverworldSpriteGraphics(sprite0963),
-		OverworldSpriteGraphics(sprite0964),
-		OverworldSpriteGraphics(sprite0963, 1),
-		OverworldSpriteGraphics(sprite0964, 1),
-		OverworldSpriteGraphics(sprite0963),
-		OverworldSpriteGraphics(sprite0964),
-		OverworldSpriteGraphics(sprite0963),
-		OverworldSpriteGraphics(sprite0964),
-		OverworldSpriteGraphics(sprite0965)
+		OverworldSpriteGraphics(963),
+		OverworldSpriteGraphics(964),
+		OverworldSpriteGraphics(963, 1),
+		OverworldSpriteGraphics(964, 1),
+		OverworldSpriteGraphics(963),
+		OverworldSpriteGraphics(964),
+		OverworldSpriteGraphics(963),
+		OverworldSpriteGraphics(964),
+		OverworldSpriteGraphics(965)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0840),
-		OverworldSpriteGraphics(sprite0840, 1),
-		OverworldSpriteGraphics(sprite0841, 1),
-		OverworldSpriteGraphics(sprite0842, 1),
-		OverworldSpriteGraphics(sprite0839),
-		OverworldSpriteGraphics(sprite0839, 1),
-		OverworldSpriteGraphics(sprite0841),
-		OverworldSpriteGraphics(sprite0842)
+		OverworldSpriteGraphics(840),
+		OverworldSpriteGraphics(840, 1),
+		OverworldSpriteGraphics(841, 1),
+		OverworldSpriteGraphics(842, 1),
+		OverworldSpriteGraphics(839),
+		OverworldSpriteGraphics(839, 1),
+		OverworldSpriteGraphics(841),
+		OverworldSpriteGraphics(842)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0962),
-		OverworldSpriteGraphics(sprite0962),
-		OverworldSpriteGraphics(sprite0962),
-		OverworldSpriteGraphics(sprite0962),
-		OverworldSpriteGraphics(sprite0961),
-		OverworldSpriteGraphics(sprite0961),
-		OverworldSpriteGraphics(sprite0961),
-		OverworldSpriteGraphics(sprite0961),
-		OverworldSpriteGraphics(sprite0961)
+		OverworldSpriteGraphics(962),
+		OverworldSpriteGraphics(962),
+		OverworldSpriteGraphics(962),
+		OverworldSpriteGraphics(962),
+		OverworldSpriteGraphics(961),
+		OverworldSpriteGraphics(961),
+		OverworldSpriteGraphics(961),
+		OverworldSpriteGraphics(961),
+		OverworldSpriteGraphics(961)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0959),
-		OverworldSpriteGraphics(sprite0960),
-		OverworldSpriteGraphics(sprite0959, 1),
-		OverworldSpriteGraphics(sprite0960, 1),
-		OverworldSpriteGraphics(sprite0959),
-		OverworldSpriteGraphics(sprite0960),
-		OverworldSpriteGraphics(sprite0959),
-		OverworldSpriteGraphics(sprite0960)
+		OverworldSpriteGraphics(959),
+		OverworldSpriteGraphics(960),
+		OverworldSpriteGraphics(959, 1),
+		OverworldSpriteGraphics(960, 1),
+		OverworldSpriteGraphics(959),
+		OverworldSpriteGraphics(960),
+		OverworldSpriteGraphics(959),
+		OverworldSpriteGraphics(960)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0957),
-		OverworldSpriteGraphics(sprite0958),
-		OverworldSpriteGraphics(sprite0957),
-		OverworldSpriteGraphics(sprite0958),
-		OverworldSpriteGraphics(sprite0957),
-		OverworldSpriteGraphics(sprite0958),
-		OverworldSpriteGraphics(sprite0957),
-		OverworldSpriteGraphics(sprite0958)
+		OverworldSpriteGraphics(957),
+		OverworldSpriteGraphics(958),
+		OverworldSpriteGraphics(957),
+		OverworldSpriteGraphics(958),
+		OverworldSpriteGraphics(957),
+		OverworldSpriteGraphics(958),
+		OverworldSpriteGraphics(957),
+		OverworldSpriteGraphics(958)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0774),
-		OverworldSpriteGraphics(sprite0775),
-		OverworldSpriteGraphics(sprite0774, 1),
-		OverworldSpriteGraphics(sprite0775, 1),
-		OverworldSpriteGraphics(sprite0774),
-		OverworldSpriteGraphics(sprite0775),
-		OverworldSpriteGraphics(sprite0774),
-		OverworldSpriteGraphics(sprite0775),
-		OverworldSpriteGraphics(sprite0776)
+		OverworldSpriteGraphics(774),
+		OverworldSpriteGraphics(775),
+		OverworldSpriteGraphics(774, 1),
+		OverworldSpriteGraphics(775, 1),
+		OverworldSpriteGraphics(774),
+		OverworldSpriteGraphics(775),
+		OverworldSpriteGraphics(774),
+		OverworldSpriteGraphics(775),
+		OverworldSpriteGraphics(776)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0955),
-		OverworldSpriteGraphics(sprite0956),
-		OverworldSpriteGraphics(sprite0955),
-		OverworldSpriteGraphics(sprite0956),
-		OverworldSpriteGraphics(sprite0955),
-		OverworldSpriteGraphics(sprite0956),
-		OverworldSpriteGraphics(sprite0955),
-		OverworldSpriteGraphics(sprite0956)
+		OverworldSpriteGraphics(955),
+		OverworldSpriteGraphics(956),
+		OverworldSpriteGraphics(955),
+		OverworldSpriteGraphics(956),
+		OverworldSpriteGraphics(955),
+		OverworldSpriteGraphics(956),
+		OverworldSpriteGraphics(955),
+		OverworldSpriteGraphics(956)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0E, 0x10, 0x0E, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0184),
-		OverworldSpriteGraphics(sprite0185),
-		OverworldSpriteGraphics(sprite0184, 1),
-		OverworldSpriteGraphics(sprite0185, 1),
-		OverworldSpriteGraphics(sprite0184),
-		OverworldSpriteGraphics(sprite0185),
-		OverworldSpriteGraphics(sprite0184),
-		OverworldSpriteGraphics(sprite0185)
+		OverworldSpriteGraphics(184),
+		OverworldSpriteGraphics(185),
+		OverworldSpriteGraphics(184, 1),
+		OverworldSpriteGraphics(185, 1),
+		OverworldSpriteGraphics(184),
+		OverworldSpriteGraphics(185),
+		OverworldSpriteGraphics(184),
+		OverworldSpriteGraphics(185)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0F, 0x10, 0x0F, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0182),
-		OverworldSpriteGraphics(sprite0183),
-		OverworldSpriteGraphics(sprite0182, 1),
-		OverworldSpriteGraphics(sprite0183, 1),
-		OverworldSpriteGraphics(sprite0182),
-		OverworldSpriteGraphics(sprite0183),
-		OverworldSpriteGraphics(sprite0182),
-		OverworldSpriteGraphics(sprite0183)
+		OverworldSpriteGraphics(182),
+		OverworldSpriteGraphics(183),
+		OverworldSpriteGraphics(182, 1),
+		OverworldSpriteGraphics(183, 1),
+		OverworldSpriteGraphics(182),
+		OverworldSpriteGraphics(183),
+		OverworldSpriteGraphics(182),
+		OverworldSpriteGraphics(183)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0C, 0x0C, 0x0B, 0x0C, 0,
 	[
-		OverworldSpriteGraphics(sprite0037),
-		OverworldSpriteGraphics(sprite0037, 1),
-		OverworldSpriteGraphics(sprite0038, 1),
-		OverworldSpriteGraphics(sprite0039, 1),
-		OverworldSpriteGraphics(sprite0036),
-		OverworldSpriteGraphics(sprite0036, 1),
-		OverworldSpriteGraphics(sprite0038),
-		OverworldSpriteGraphics(sprite0039)
+		OverworldSpriteGraphics(37),
+		OverworldSpriteGraphics(37, 1),
+		OverworldSpriteGraphics(38, 1),
+		OverworldSpriteGraphics(39, 1),
+		OverworldSpriteGraphics(36),
+		OverworldSpriteGraphics(36, 1),
+		OverworldSpriteGraphics(38),
+		OverworldSpriteGraphics(39)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x07, 0x08, 0x09, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0033),
-		OverworldSpriteGraphics(sprite0033, 1),
-		OverworldSpriteGraphics(sprite0034, 1),
-		OverworldSpriteGraphics(sprite0035, 1),
-		OverworldSpriteGraphics(sprite0032),
-		OverworldSpriteGraphics(sprite0032, 1),
-		OverworldSpriteGraphics(sprite0034),
-		OverworldSpriteGraphics(sprite0035)
+		OverworldSpriteGraphics(33),
+		OverworldSpriteGraphics(33, 1),
+		OverworldSpriteGraphics(34, 1),
+		OverworldSpriteGraphics(35, 1),
+		OverworldSpriteGraphics(32),
+		OverworldSpriteGraphics(32, 1),
+		OverworldSpriteGraphics(34),
+		OverworldSpriteGraphics(35)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0A, 0x0B, 0x0A, 0x0C, 0,
 	[
-		OverworldSpriteGraphics(sprite0029),
-		OverworldSpriteGraphics(sprite0029, 1),
-		OverworldSpriteGraphics(sprite0030, 1),
-		OverworldSpriteGraphics(sprite0031, 1),
-		OverworldSpriteGraphics(sprite0028),
-		OverworldSpriteGraphics(sprite0028, 1),
-		OverworldSpriteGraphics(sprite0030),
-		OverworldSpriteGraphics(sprite0031)
+		OverworldSpriteGraphics(29),
+		OverworldSpriteGraphics(29, 1),
+		OverworldSpriteGraphics(30, 1),
+		OverworldSpriteGraphics(31, 1),
+		OverworldSpriteGraphics(28),
+		OverworldSpriteGraphics(28, 1),
+		OverworldSpriteGraphics(30),
+		OverworldSpriteGraphics(31)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x09, 0x0B, 0x0A, 0x0C, 0,
 	[
-		OverworldSpriteGraphics(sprite0025),
-		OverworldSpriteGraphics(sprite0025, 1),
-		OverworldSpriteGraphics(sprite0026, 1),
-		OverworldSpriteGraphics(sprite0027, 1),
-		OverworldSpriteGraphics(sprite0024),
-		OverworldSpriteGraphics(sprite0024, 1),
-		OverworldSpriteGraphics(sprite0026),
-		OverworldSpriteGraphics(sprite0027)
+		OverworldSpriteGraphics(25),
+		OverworldSpriteGraphics(25, 1),
+		OverworldSpriteGraphics(26, 1),
+		OverworldSpriteGraphics(27, 1),
+		OverworldSpriteGraphics(24),
+		OverworldSpriteGraphics(24, 1),
+		OverworldSpriteGraphics(26),
+		OverworldSpriteGraphics(27)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0180),
-		OverworldSpriteGraphics(sprite0180),
-		OverworldSpriteGraphics(sprite0181),
-		OverworldSpriteGraphics(sprite0181),
-		OverworldSpriteGraphics(sprite0180, 1),
-		OverworldSpriteGraphics(sprite0180, 1),
-		OverworldSpriteGraphics(sprite0181, 1),
-		OverworldSpriteGraphics(sprite0181, 1),
-		OverworldSpriteGraphics(sprite0180)
+		OverworldSpriteGraphics(180),
+		OverworldSpriteGraphics(180),
+		OverworldSpriteGraphics(181),
+		OverworldSpriteGraphics(181),
+		OverworldSpriteGraphics(180, 1),
+		OverworldSpriteGraphics(180, 1),
+		OverworldSpriteGraphics(181, 1),
+		OverworldSpriteGraphics(181, 1),
+		OverworldSpriteGraphics(180)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0943),
-		OverworldSpriteGraphics(sprite0944),
-		OverworldSpriteGraphics(sprite0943),
-		OverworldSpriteGraphics(sprite0944),
-		OverworldSpriteGraphics(sprite0943),
-		OverworldSpriteGraphics(sprite0944),
-		OverworldSpriteGraphics(sprite0943),
-		OverworldSpriteGraphics(sprite0944)
+		OverworldSpriteGraphics(943),
+		OverworldSpriteGraphics(944),
+		OverworldSpriteGraphics(943),
+		OverworldSpriteGraphics(944),
+		OverworldSpriteGraphics(943),
+		OverworldSpriteGraphics(944),
+		OverworldSpriteGraphics(943),
+		OverworldSpriteGraphics(944)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1089),
-		OverworldSpriteGraphics(sprite1089),
-		OverworldSpriteGraphics(sprite1089),
-		OverworldSpriteGraphics(sprite1089),
-		OverworldSpriteGraphics(sprite1089),
-		OverworldSpriteGraphics(sprite1089),
-		OverworldSpriteGraphics(sprite1089),
-		OverworldSpriteGraphics(sprite1089)
+		OverworldSpriteGraphics(1089),
+		OverworldSpriteGraphics(1089),
+		OverworldSpriteGraphics(1089),
+		OverworldSpriteGraphics(1089),
+		OverworldSpriteGraphics(1089),
+		OverworldSpriteGraphics(1089),
+		OverworldSpriteGraphics(1089),
+		OverworldSpriteGraphics(1089)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1088),
-		OverworldSpriteGraphics(sprite1088),
-		OverworldSpriteGraphics(sprite1088),
-		OverworldSpriteGraphics(sprite1088),
-		OverworldSpriteGraphics(sprite1088),
-		OverworldSpriteGraphics(sprite1088),
-		OverworldSpriteGraphics(sprite1088),
-		OverworldSpriteGraphics(sprite1088)
+		OverworldSpriteGraphics(1088),
+		OverworldSpriteGraphics(1088),
+		OverworldSpriteGraphics(1088),
+		OverworldSpriteGraphics(1088),
+		OverworldSpriteGraphics(1088),
+		OverworldSpriteGraphics(1088),
+		OverworldSpriteGraphics(1088),
+		OverworldSpriteGraphics(1088)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1087),
-		OverworldSpriteGraphics(sprite1087),
-		OverworldSpriteGraphics(sprite1087),
-		OverworldSpriteGraphics(sprite1087),
-		OverworldSpriteGraphics(sprite1087),
-		OverworldSpriteGraphics(sprite1087),
-		OverworldSpriteGraphics(sprite1087),
-		OverworldSpriteGraphics(sprite1087)
+		OverworldSpriteGraphics(1087),
+		OverworldSpriteGraphics(1087),
+		OverworldSpriteGraphics(1087),
+		OverworldSpriteGraphics(1087),
+		OverworldSpriteGraphics(1087),
+		OverworldSpriteGraphics(1087),
+		OverworldSpriteGraphics(1087),
+		OverworldSpriteGraphics(1087)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1086),
-		OverworldSpriteGraphics(sprite1086),
-		OverworldSpriteGraphics(sprite1086),
-		OverworldSpriteGraphics(sprite1086),
-		OverworldSpriteGraphics(sprite1086),
-		OverworldSpriteGraphics(sprite1086),
-		OverworldSpriteGraphics(sprite1086),
-		OverworldSpriteGraphics(sprite1086)
+		OverworldSpriteGraphics(1086),
+		OverworldSpriteGraphics(1086),
+		OverworldSpriteGraphics(1086),
+		OverworldSpriteGraphics(1086),
+		OverworldSpriteGraphics(1086),
+		OverworldSpriteGraphics(1086),
+		OverworldSpriteGraphics(1086),
+		OverworldSpriteGraphics(1086)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1079),
-		OverworldSpriteGraphics(sprite1079),
-		OverworldSpriteGraphics(sprite1079),
-		OverworldSpriteGraphics(sprite1079),
-		OverworldSpriteGraphics(sprite1079),
-		OverworldSpriteGraphics(sprite1079),
-		OverworldSpriteGraphics(sprite1079),
-		OverworldSpriteGraphics(sprite1079)
+		OverworldSpriteGraphics(1079),
+		OverworldSpriteGraphics(1079),
+		OverworldSpriteGraphics(1079),
+		OverworldSpriteGraphics(1079),
+		OverworldSpriteGraphics(1079),
+		OverworldSpriteGraphics(1079),
+		OverworldSpriteGraphics(1079),
+		OverworldSpriteGraphics(1079)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1078),
-		OverworldSpriteGraphics(sprite1078),
-		OverworldSpriteGraphics(sprite1078),
-		OverworldSpriteGraphics(sprite1078),
-		OverworldSpriteGraphics(sprite1078),
-		OverworldSpriteGraphics(sprite1078),
-		OverworldSpriteGraphics(sprite1078),
-		OverworldSpriteGraphics(sprite1078)
+		OverworldSpriteGraphics(1078),
+		OverworldSpriteGraphics(1078),
+		OverworldSpriteGraphics(1078),
+		OverworldSpriteGraphics(1078),
+		OverworldSpriteGraphics(1078),
+		OverworldSpriteGraphics(1078),
+		OverworldSpriteGraphics(1078),
+		OverworldSpriteGraphics(1078)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1077),
-		OverworldSpriteGraphics(sprite1077),
-		OverworldSpriteGraphics(sprite1077),
-		OverworldSpriteGraphics(sprite1077),
-		OverworldSpriteGraphics(sprite1077),
-		OverworldSpriteGraphics(sprite1077),
-		OverworldSpriteGraphics(sprite1077),
-		OverworldSpriteGraphics(sprite1077)
+		OverworldSpriteGraphics(1077),
+		OverworldSpriteGraphics(1077),
+		OverworldSpriteGraphics(1077),
+		OverworldSpriteGraphics(1077),
+		OverworldSpriteGraphics(1077),
+		OverworldSpriteGraphics(1077),
+		OverworldSpriteGraphics(1077),
+		OverworldSpriteGraphics(1077)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1076),
-		OverworldSpriteGraphics(sprite1076),
-		OverworldSpriteGraphics(sprite1076),
-		OverworldSpriteGraphics(sprite1076),
-		OverworldSpriteGraphics(sprite1076),
-		OverworldSpriteGraphics(sprite1076),
-		OverworldSpriteGraphics(sprite1076),
-		OverworldSpriteGraphics(sprite1076)
+		OverworldSpriteGraphics(1076),
+		OverworldSpriteGraphics(1076),
+		OverworldSpriteGraphics(1076),
+		OverworldSpriteGraphics(1076),
+		OverworldSpriteGraphics(1076),
+		OverworldSpriteGraphics(1076),
+		OverworldSpriteGraphics(1076),
+		OverworldSpriteGraphics(1076)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1075),
-		OverworldSpriteGraphics(sprite1075),
-		OverworldSpriteGraphics(sprite1075),
-		OverworldSpriteGraphics(sprite1075),
-		OverworldSpriteGraphics(sprite1075),
-		OverworldSpriteGraphics(sprite1075),
-		OverworldSpriteGraphics(sprite1075),
-		OverworldSpriteGraphics(sprite1075)
+		OverworldSpriteGraphics(1075),
+		OverworldSpriteGraphics(1075),
+		OverworldSpriteGraphics(1075),
+		OverworldSpriteGraphics(1075),
+		OverworldSpriteGraphics(1075),
+		OverworldSpriteGraphics(1075),
+		OverworldSpriteGraphics(1075),
+		OverworldSpriteGraphics(1075)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1140),
-		OverworldSpriteGraphics(sprite1140),
-		OverworldSpriteGraphics(sprite1140),
-		OverworldSpriteGraphics(sprite1140),
-		OverworldSpriteGraphics(sprite1140),
-		OverworldSpriteGraphics(sprite1140),
-		OverworldSpriteGraphics(sprite1140),
-		OverworldSpriteGraphics(sprite1140)
+		OverworldSpriteGraphics(1140),
+		OverworldSpriteGraphics(1140),
+		OverworldSpriteGraphics(1140),
+		OverworldSpriteGraphics(1140),
+		OverworldSpriteGraphics(1140),
+		OverworldSpriteGraphics(1140),
+		OverworldSpriteGraphics(1140),
+		OverworldSpriteGraphics(1140)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073)
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0894),
-		OverworldSpriteGraphics(sprite0895),
-		OverworldSpriteGraphics(sprite0894),
-		OverworldSpriteGraphics(sprite0895),
-		OverworldSpriteGraphics(sprite0894),
-		OverworldSpriteGraphics(sprite0895),
-		OverworldSpriteGraphics(sprite0894),
-		OverworldSpriteGraphics(sprite0895)
+		OverworldSpriteGraphics(894),
+		OverworldSpriteGraphics(895),
+		OverworldSpriteGraphics(894),
+		OverworldSpriteGraphics(895),
+		OverworldSpriteGraphics(894),
+		OverworldSpriteGraphics(895),
+		OverworldSpriteGraphics(894),
+		OverworldSpriteGraphics(895)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1026, 1),
-		OverworldSpriteGraphics(sprite1027, 1),
-		OverworldSpriteGraphics(sprite1026, 1),
-		OverworldSpriteGraphics(sprite1027, 1),
-		OverworldSpriteGraphics(sprite1026),
-		OverworldSpriteGraphics(sprite1027),
-		OverworldSpriteGraphics(sprite1026),
-		OverworldSpriteGraphics(sprite1027)
+		OverworldSpriteGraphics(1026, 1),
+		OverworldSpriteGraphics(1027, 1),
+		OverworldSpriteGraphics(1026, 1),
+		OverworldSpriteGraphics(1027, 1),
+		OverworldSpriteGraphics(1026),
+		OverworldSpriteGraphics(1027),
+		OverworldSpriteGraphics(1026),
+		OverworldSpriteGraphics(1027)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0985),
-		OverworldSpriteGraphics(sprite0985, 1),
-		OverworldSpriteGraphics(sprite0985, 1),
-		OverworldSpriteGraphics(sprite0986, 1),
-		OverworldSpriteGraphics(sprite0985),
-		OverworldSpriteGraphics(sprite0985, 1),
-		OverworldSpriteGraphics(sprite0985),
-		OverworldSpriteGraphics(sprite0986)
+		OverworldSpriteGraphics(985),
+		OverworldSpriteGraphics(985, 1),
+		OverworldSpriteGraphics(985, 1),
+		OverworldSpriteGraphics(986, 1),
+		OverworldSpriteGraphics(985),
+		OverworldSpriteGraphics(985, 1),
+		OverworldSpriteGraphics(985),
+		OverworldSpriteGraphics(986)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0799, 1),
-		OverworldSpriteGraphics(sprite0800, 1),
-		OverworldSpriteGraphics(sprite0799, 1),
-		OverworldSpriteGraphics(sprite0800, 1),
-		OverworldSpriteGraphics(sprite0799),
-		OverworldSpriteGraphics(sprite0800),
-		OverworldSpriteGraphics(sprite0799),
-		OverworldSpriteGraphics(sprite0800)
+		OverworldSpriteGraphics(799, 1),
+		OverworldSpriteGraphics(800, 1),
+		OverworldSpriteGraphics(799, 1),
+		OverworldSpriteGraphics(800, 1),
+		OverworldSpriteGraphics(799),
+		OverworldSpriteGraphics(800),
+		OverworldSpriteGraphics(799),
+		OverworldSpriteGraphics(800)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0109),
-		OverworldSpriteGraphics(sprite0109),
-		OverworldSpriteGraphics(sprite0109),
-		OverworldSpriteGraphics(sprite0109),
-		OverworldSpriteGraphics(sprite0108),
-		OverworldSpriteGraphics(sprite0108),
-		OverworldSpriteGraphics(sprite0108),
-		OverworldSpriteGraphics(sprite0108)
+		OverworldSpriteGraphics(109),
+		OverworldSpriteGraphics(109),
+		OverworldSpriteGraphics(109),
+		OverworldSpriteGraphics(109),
+		OverworldSpriteGraphics(108),
+		OverworldSpriteGraphics(108),
+		OverworldSpriteGraphics(108),
+		OverworldSpriteGraphics(108)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0984),
-		OverworldSpriteGraphics(sprite0984),
-		OverworldSpriteGraphics(sprite0983),
-		OverworldSpriteGraphics(sprite0984),
-		OverworldSpriteGraphics(sprite0983),
-		OverworldSpriteGraphics(sprite0984),
-		OverworldSpriteGraphics(sprite0983),
-		OverworldSpriteGraphics(sprite0984)
+		OverworldSpriteGraphics(984),
+		OverworldSpriteGraphics(984),
+		OverworldSpriteGraphics(983),
+		OverworldSpriteGraphics(984),
+		OverworldSpriteGraphics(983),
+		OverworldSpriteGraphics(984),
+		OverworldSpriteGraphics(983),
+		OverworldSpriteGraphics(984)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1115),
-		OverworldSpriteGraphics(sprite1115),
-		OverworldSpriteGraphics(sprite1115),
-		OverworldSpriteGraphics(sprite1115),
-		OverworldSpriteGraphics(sprite1115),
-		OverworldSpriteGraphics(sprite1115),
-		OverworldSpriteGraphics(sprite1115),
-		OverworldSpriteGraphics(sprite1115)
+		OverworldSpriteGraphics(1115),
+		OverworldSpriteGraphics(1115),
+		OverworldSpriteGraphics(1115),
+		OverworldSpriteGraphics(1115),
+		OverworldSpriteGraphics(1115),
+		OverworldSpriteGraphics(1115),
+		OverworldSpriteGraphics(1115),
+		OverworldSpriteGraphics(1115)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1114),
-		OverworldSpriteGraphics(sprite1114),
-		OverworldSpriteGraphics(sprite1114),
-		OverworldSpriteGraphics(sprite1114),
-		OverworldSpriteGraphics(sprite1114),
-		OverworldSpriteGraphics(sprite1114),
-		OverworldSpriteGraphics(sprite1114),
-		OverworldSpriteGraphics(sprite1114)
+		OverworldSpriteGraphics(1114),
+		OverworldSpriteGraphics(1114),
+		OverworldSpriteGraphics(1114),
+		OverworldSpriteGraphics(1114),
+		OverworldSpriteGraphics(1114),
+		OverworldSpriteGraphics(1114),
+		OverworldSpriteGraphics(1114),
+		OverworldSpriteGraphics(1114)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1071),
-		OverworldSpriteGraphics(sprite1071),
-		OverworldSpriteGraphics(sprite1071),
-		OverworldSpriteGraphics(sprite1071),
-		OverworldSpriteGraphics(sprite1071),
-		OverworldSpriteGraphics(sprite1071),
-		OverworldSpriteGraphics(sprite1071),
-		OverworldSpriteGraphics(sprite1071)
+		OverworldSpriteGraphics(1071),
+		OverworldSpriteGraphics(1071),
+		OverworldSpriteGraphics(1071),
+		OverworldSpriteGraphics(1071),
+		OverworldSpriteGraphics(1071),
+		OverworldSpriteGraphics(1071),
+		OverworldSpriteGraphics(1071),
+		OverworldSpriteGraphics(1071)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0893),
-		OverworldSpriteGraphics(sprite0893),
-		OverworldSpriteGraphics(sprite0892),
-		OverworldSpriteGraphics(sprite0893),
-		OverworldSpriteGraphics(sprite0892),
-		OverworldSpriteGraphics(sprite0893),
-		OverworldSpriteGraphics(sprite0892),
-		OverworldSpriteGraphics(sprite0893)
+		OverworldSpriteGraphics(893),
+		OverworldSpriteGraphics(893),
+		OverworldSpriteGraphics(892),
+		OverworldSpriteGraphics(893),
+		OverworldSpriteGraphics(892),
+		OverworldSpriteGraphics(893),
+		OverworldSpriteGraphics(892),
+		OverworldSpriteGraphics(893)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1066),
-		OverworldSpriteGraphics(sprite1066),
-		OverworldSpriteGraphics(sprite1066),
-		OverworldSpriteGraphics(sprite1066),
-		OverworldSpriteGraphics(sprite1066),
-		OverworldSpriteGraphics(sprite1066),
-		OverworldSpriteGraphics(sprite1066),
-		OverworldSpriteGraphics(sprite1066)
+		OverworldSpriteGraphics(1066),
+		OverworldSpriteGraphics(1066),
+		OverworldSpriteGraphics(1066),
+		OverworldSpriteGraphics(1066),
+		OverworldSpriteGraphics(1066),
+		OverworldSpriteGraphics(1066),
+		OverworldSpriteGraphics(1066),
+		OverworldSpriteGraphics(1066)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1070),
-		OverworldSpriteGraphics(sprite1070),
-		OverworldSpriteGraphics(sprite1070),
-		OverworldSpriteGraphics(sprite1070),
-		OverworldSpriteGraphics(sprite1070),
-		OverworldSpriteGraphics(sprite1070),
-		OverworldSpriteGraphics(sprite1070),
-		OverworldSpriteGraphics(sprite1070)
+		OverworldSpriteGraphics(1070),
+		OverworldSpriteGraphics(1070),
+		OverworldSpriteGraphics(1070),
+		OverworldSpriteGraphics(1070),
+		OverworldSpriteGraphics(1070),
+		OverworldSpriteGraphics(1070),
+		OverworldSpriteGraphics(1070),
+		OverworldSpriteGraphics(1070)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1113),
-		OverworldSpriteGraphics(sprite1113),
-		OverworldSpriteGraphics(sprite1113),
-		OverworldSpriteGraphics(sprite1113),
-		OverworldSpriteGraphics(sprite1113),
-		OverworldSpriteGraphics(sprite1113),
-		OverworldSpriteGraphics(sprite1113),
-		OverworldSpriteGraphics(sprite1113)
+		OverworldSpriteGraphics(1113),
+		OverworldSpriteGraphics(1113),
+		OverworldSpriteGraphics(1113),
+		OverworldSpriteGraphics(1113),
+		OverworldSpriteGraphics(1113),
+		OverworldSpriteGraphics(1113),
+		OverworldSpriteGraphics(1113),
+		OverworldSpriteGraphics(1113)
 	]),
 	SpriteGrouping(0x03, 0x30, 0x06, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0772),
-		OverworldSpriteGraphics(sprite0773),
-		OverworldSpriteGraphics(sprite0772),
-		OverworldSpriteGraphics(sprite0773),
-		OverworldSpriteGraphics(sprite0772),
-		OverworldSpriteGraphics(sprite0773),
-		OverworldSpriteGraphics(sprite0772),
-		OverworldSpriteGraphics(sprite0773)
+		OverworldSpriteGraphics(772),
+		OverworldSpriteGraphics(773),
+		OverworldSpriteGraphics(772),
+		OverworldSpriteGraphics(773),
+		OverworldSpriteGraphics(772),
+		OverworldSpriteGraphics(773),
+		OverworldSpriteGraphics(772),
+		OverworldSpriteGraphics(773)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0E, 0x10, 0x0E, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0798),
-		OverworldSpriteGraphics(sprite0798),
-		OverworldSpriteGraphics(sprite0798),
-		OverworldSpriteGraphics(sprite0798),
-		OverworldSpriteGraphics(sprite0798),
-		OverworldSpriteGraphics(sprite0798),
-		OverworldSpriteGraphics(sprite0798),
-		OverworldSpriteGraphics(sprite0798)
+		OverworldSpriteGraphics(798),
+		OverworldSpriteGraphics(798),
+		OverworldSpriteGraphics(798),
+		OverworldSpriteGraphics(798),
+		OverworldSpriteGraphics(798),
+		OverworldSpriteGraphics(798),
+		OverworldSpriteGraphics(798),
+		OverworldSpriteGraphics(798)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0607),
-		OverworldSpriteGraphics(sprite0607, 1),
-		OverworldSpriteGraphics(sprite0608, 1),
-		OverworldSpriteGraphics(sprite0609, 1),
-		OverworldSpriteGraphics(sprite0606),
-		OverworldSpriteGraphics(sprite0606, 1),
-		OverworldSpriteGraphics(sprite0608),
-		OverworldSpriteGraphics(sprite0609)
+		OverworldSpriteGraphics(607),
+		OverworldSpriteGraphics(607, 1),
+		OverworldSpriteGraphics(608, 1),
+		OverworldSpriteGraphics(609, 1),
+		OverworldSpriteGraphics(606),
+		OverworldSpriteGraphics(606, 1),
+		OverworldSpriteGraphics(608),
+		OverworldSpriteGraphics(609)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0907),
-		OverworldSpriteGraphics(sprite0907),
-		OverworldSpriteGraphics(sprite0907),
-		OverworldSpriteGraphics(sprite0907),
-		OverworldSpriteGraphics(sprite0906),
-		OverworldSpriteGraphics(sprite0906),
-		OverworldSpriteGraphics(sprite0906),
-		OverworldSpriteGraphics(sprite0906)
+		OverworldSpriteGraphics(907),
+		OverworldSpriteGraphics(907),
+		OverworldSpriteGraphics(907),
+		OverworldSpriteGraphics(907),
+		OverworldSpriteGraphics(906),
+		OverworldSpriteGraphics(906),
+		OverworldSpriteGraphics(906),
+		OverworldSpriteGraphics(906)
 	]),
 	SpriteGrouping(0x03, 0x30, 0x06, 0x1C, 0x0B, 0x08, 0x0B, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0980),
-		OverworldSpriteGraphics(sprite0980),
-		OverworldSpriteGraphics(sprite0980),
-		OverworldSpriteGraphics(sprite0980),
-		OverworldSpriteGraphics(sprite0980),
-		OverworldSpriteGraphics(sprite0980),
-		OverworldSpriteGraphics(sprite0980),
-		OverworldSpriteGraphics(sprite0980)
+		OverworldSpriteGraphics(980),
+		OverworldSpriteGraphics(980),
+		OverworldSpriteGraphics(980),
+		OverworldSpriteGraphics(980),
+		OverworldSpriteGraphics(980),
+		OverworldSpriteGraphics(980),
+		OverworldSpriteGraphics(980),
+		OverworldSpriteGraphics(980)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x06, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0061),
-		OverworldSpriteGraphics(sprite0061, 1),
-		OverworldSpriteGraphics(sprite0062, 1),
-		OverworldSpriteGraphics(sprite0063, 1),
-		OverworldSpriteGraphics(sprite0060),
-		OverworldSpriteGraphics(sprite0060, 1),
-		OverworldSpriteGraphics(sprite0062),
-		OverworldSpriteGraphics(sprite0063)
+		OverworldSpriteGraphics(61),
+		OverworldSpriteGraphics(61, 1),
+		OverworldSpriteGraphics(62, 1),
+		OverworldSpriteGraphics(63, 1),
+		OverworldSpriteGraphics(60),
+		OverworldSpriteGraphics(60, 1),
+		OverworldSpriteGraphics(62),
+		OverworldSpriteGraphics(63)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0252),
-		OverworldSpriteGraphics(sprite0252),
-		OverworldSpriteGraphics(sprite0252),
-		OverworldSpriteGraphics(sprite0252),
-		OverworldSpriteGraphics(sprite0252),
-		OverworldSpriteGraphics(sprite0252),
-		OverworldSpriteGraphics(sprite0252),
-		OverworldSpriteGraphics(sprite0252)
+		OverworldSpriteGraphics(252),
+		OverworldSpriteGraphics(252),
+		OverworldSpriteGraphics(252),
+		OverworldSpriteGraphics(252),
+		OverworldSpriteGraphics(252),
+		OverworldSpriteGraphics(252),
+		OverworldSpriteGraphics(252),
+		OverworldSpriteGraphics(252)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0874),
-		OverworldSpriteGraphics(sprite0875),
-		OverworldSpriteGraphics(sprite0874),
-		OverworldSpriteGraphics(sprite0875),
-		OverworldSpriteGraphics(sprite0874),
-		OverworldSpriteGraphics(sprite0875),
-		OverworldSpriteGraphics(sprite0874),
-		OverworldSpriteGraphics(sprite0875)
+		OverworldSpriteGraphics(874),
+		OverworldSpriteGraphics(875),
+		OverworldSpriteGraphics(874),
+		OverworldSpriteGraphics(875),
+		OverworldSpriteGraphics(874),
+		OverworldSpriteGraphics(875),
+		OverworldSpriteGraphics(874),
+		OverworldSpriteGraphics(875)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1112),
-		OverworldSpriteGraphics(sprite1112),
-		OverworldSpriteGraphics(sprite1112),
-		OverworldSpriteGraphics(sprite1112),
-		OverworldSpriteGraphics(sprite1112),
-		OverworldSpriteGraphics(sprite1112),
-		OverworldSpriteGraphics(sprite1112),
-		OverworldSpriteGraphics(sprite1112)
+		OverworldSpriteGraphics(1112),
+		OverworldSpriteGraphics(1112),
+		OverworldSpriteGraphics(1112),
+		OverworldSpriteGraphics(1112),
+		OverworldSpriteGraphics(1112),
+		OverworldSpriteGraphics(1112),
+		OverworldSpriteGraphics(1112),
+		OverworldSpriteGraphics(1112)
 	]),
 	SpriteGrouping(0x02, 0x60, 0x04, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1),
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1),
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1),
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1)
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1),
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1),
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1),
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1)
 	]),
 	SpriteGrouping(0x02, 0x60, 0x04, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1),
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1),
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1),
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1)
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1),
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1),
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1),
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0794),
-		OverworldSpriteGraphics(sprite0794),
-		OverworldSpriteGraphics(sprite0795),
-		OverworldSpriteGraphics(sprite0795),
-		OverworldSpriteGraphics(sprite0796),
-		OverworldSpriteGraphics(sprite0796),
-		OverworldSpriteGraphics(sprite0797),
-		OverworldSpriteGraphics(sprite0797)
+		OverworldSpriteGraphics(794),
+		OverworldSpriteGraphics(794),
+		OverworldSpriteGraphics(795),
+		OverworldSpriteGraphics(795),
+		OverworldSpriteGraphics(796),
+		OverworldSpriteGraphics(796),
+		OverworldSpriteGraphics(797),
+		OverworldSpriteGraphics(797)
 	]),
 	SpriteGrouping(0x02, 0x60, 0x04, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0871),
-		OverworldSpriteGraphics(sprite0871),
-		OverworldSpriteGraphics(sprite0871),
-		OverworldSpriteGraphics(sprite0871),
-		OverworldSpriteGraphics(sprite0871),
-		OverworldSpriteGraphics(sprite0871),
-		OverworldSpriteGraphics(sprite0871),
-		OverworldSpriteGraphics(sprite0871)
+		OverworldSpriteGraphics(871),
+		OverworldSpriteGraphics(871),
+		OverworldSpriteGraphics(871),
+		OverworldSpriteGraphics(871),
+		OverworldSpriteGraphics(871),
+		OverworldSpriteGraphics(871),
+		OverworldSpriteGraphics(871),
+		OverworldSpriteGraphics(871)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1111),
-		OverworldSpriteGraphics(sprite1111),
-		OverworldSpriteGraphics(sprite1111),
-		OverworldSpriteGraphics(sprite1111),
-		OverworldSpriteGraphics(sprite1111),
-		OverworldSpriteGraphics(sprite1111),
-		OverworldSpriteGraphics(sprite1111),
-		OverworldSpriteGraphics(sprite1111)
+		OverworldSpriteGraphics(1111),
+		OverworldSpriteGraphics(1111),
+		OverworldSpriteGraphics(1111),
+		OverworldSpriteGraphics(1111),
+		OverworldSpriteGraphics(1111),
+		OverworldSpriteGraphics(1111),
+		OverworldSpriteGraphics(1111),
+		OverworldSpriteGraphics(1111)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0237),
-		OverworldSpriteGraphics(sprite0237),
-		OverworldSpriteGraphics(sprite0237),
-		OverworldSpriteGraphics(sprite0237),
-		OverworldSpriteGraphics(sprite0237),
-		OverworldSpriteGraphics(sprite0237),
-		OverworldSpriteGraphics(sprite0237),
-		OverworldSpriteGraphics(sprite0237)
+		OverworldSpriteGraphics(237),
+		OverworldSpriteGraphics(237),
+		OverworldSpriteGraphics(237),
+		OverworldSpriteGraphics(237),
+		OverworldSpriteGraphics(237),
+		OverworldSpriteGraphics(237),
+		OverworldSpriteGraphics(237),
+		OverworldSpriteGraphics(237)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0236),
-		OverworldSpriteGraphics(sprite0236),
-		OverworldSpriteGraphics(sprite0236),
-		OverworldSpriteGraphics(sprite0236),
-		OverworldSpriteGraphics(sprite0236),
-		OverworldSpriteGraphics(sprite0236),
-		OverworldSpriteGraphics(sprite0236),
-		OverworldSpriteGraphics(sprite0236)
+		OverworldSpriteGraphics(236),
+		OverworldSpriteGraphics(236),
+		OverworldSpriteGraphics(236),
+		OverworldSpriteGraphics(236),
+		OverworldSpriteGraphics(236),
+		OverworldSpriteGraphics(236),
+		OverworldSpriteGraphics(236),
+		OverworldSpriteGraphics(236)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0235, 1),
-		OverworldSpriteGraphics(sprite0235, 1),
-		OverworldSpriteGraphics(sprite0235, 1),
-		OverworldSpriteGraphics(sprite0235, 1),
-		OverworldSpriteGraphics(sprite0235),
-		OverworldSpriteGraphics(sprite0235),
-		OverworldSpriteGraphics(sprite0235),
-		OverworldSpriteGraphics(sprite0235)
+		OverworldSpriteGraphics(235, 1),
+		OverworldSpriteGraphics(235, 1),
+		OverworldSpriteGraphics(235, 1),
+		OverworldSpriteGraphics(235, 1),
+		OverworldSpriteGraphics(235),
+		OverworldSpriteGraphics(235),
+		OverworldSpriteGraphics(235),
+		OverworldSpriteGraphics(235)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1110),
-		OverworldSpriteGraphics(sprite1110),
-		OverworldSpriteGraphics(sprite1110),
-		OverworldSpriteGraphics(sprite1110),
-		OverworldSpriteGraphics(sprite1110),
-		OverworldSpriteGraphics(sprite1110),
-		OverworldSpriteGraphics(sprite1110),
-		OverworldSpriteGraphics(sprite1110)
+		OverworldSpriteGraphics(1110),
+		OverworldSpriteGraphics(1110),
+		OverworldSpriteGraphics(1110),
+		OverworldSpriteGraphics(1110),
+		OverworldSpriteGraphics(1110),
+		OverworldSpriteGraphics(1110),
+		OverworldSpriteGraphics(1110),
+		OverworldSpriteGraphics(1110)
 	]),
 	SpriteGrouping(0x04, 0x60, 0x09, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0106),
-		OverworldSpriteGraphics(sprite0107),
-		OverworldSpriteGraphics(sprite0106),
-		OverworldSpriteGraphics(sprite0107),
-		OverworldSpriteGraphics(sprite0106, 1),
-		OverworldSpriteGraphics(sprite0107, 1),
-		OverworldSpriteGraphics(sprite0106, 1),
-		OverworldSpriteGraphics(sprite0107, 1)
+		OverworldSpriteGraphics(106),
+		OverworldSpriteGraphics(107),
+		OverworldSpriteGraphics(106),
+		OverworldSpriteGraphics(107),
+		OverworldSpriteGraphics(106, 1),
+		OverworldSpriteGraphics(107, 1),
+		OverworldSpriteGraphics(106, 1),
+		OverworldSpriteGraphics(107, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1031),
-		OverworldSpriteGraphics(sprite1032),
-		OverworldSpriteGraphics(sprite1031),
-		OverworldSpriteGraphics(sprite1032),
-		OverworldSpriteGraphics(sprite1031),
-		OverworldSpriteGraphics(sprite1032),
-		OverworldSpriteGraphics(sprite1031),
-		OverworldSpriteGraphics(sprite1032)
+		OverworldSpriteGraphics(1031),
+		OverworldSpriteGraphics(1032),
+		OverworldSpriteGraphics(1031),
+		OverworldSpriteGraphics(1032),
+		OverworldSpriteGraphics(1031),
+		OverworldSpriteGraphics(1032),
+		OverworldSpriteGraphics(1031),
+		OverworldSpriteGraphics(1032)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073)
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073),
-		OverworldSpriteGraphics(sprite1073)
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073),
+		OverworldSpriteGraphics(1073)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099)
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0949),
-		OverworldSpriteGraphics(sprite0950),
-		OverworldSpriteGraphics(sprite0949),
-		OverworldSpriteGraphics(sprite0950),
-		OverworldSpriteGraphics(sprite0949),
-		OverworldSpriteGraphics(sprite0950),
-		OverworldSpriteGraphics(sprite0949),
-		OverworldSpriteGraphics(sprite0950)
+		OverworldSpriteGraphics(949),
+		OverworldSpriteGraphics(950),
+		OverworldSpriteGraphics(949),
+		OverworldSpriteGraphics(950),
+		OverworldSpriteGraphics(949),
+		OverworldSpriteGraphics(950),
+		OverworldSpriteGraphics(949),
+		OverworldSpriteGraphics(950)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1029),
-		OverworldSpriteGraphics(sprite1030),
-		OverworldSpriteGraphics(sprite1029),
-		OverworldSpriteGraphics(sprite1030),
-		OverworldSpriteGraphics(sprite1029),
-		OverworldSpriteGraphics(sprite1030),
-		OverworldSpriteGraphics(sprite1029),
-		OverworldSpriteGraphics(sprite1030)
+		OverworldSpriteGraphics(1029),
+		OverworldSpriteGraphics(1030),
+		OverworldSpriteGraphics(1029),
+		OverworldSpriteGraphics(1030),
+		OverworldSpriteGraphics(1029),
+		OverworldSpriteGraphics(1030),
+		OverworldSpriteGraphics(1029),
+		OverworldSpriteGraphics(1030)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1109),
-		OverworldSpriteGraphics(sprite1109),
-		OverworldSpriteGraphics(sprite1109),
-		OverworldSpriteGraphics(sprite1109),
-		OverworldSpriteGraphics(sprite1109),
-		OverworldSpriteGraphics(sprite1109),
-		OverworldSpriteGraphics(sprite1109),
-		OverworldSpriteGraphics(sprite1109)
+		OverworldSpriteGraphics(1109),
+		OverworldSpriteGraphics(1109),
+		OverworldSpriteGraphics(1109),
+		OverworldSpriteGraphics(1109),
+		OverworldSpriteGraphics(1109),
+		OverworldSpriteGraphics(1109),
+		OverworldSpriteGraphics(1109),
+		OverworldSpriteGraphics(1109)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0808, 1),
-		OverworldSpriteGraphics(sprite0808, 1),
-		OverworldSpriteGraphics(sprite0808, 1),
-		OverworldSpriteGraphics(sprite0808, 1),
-		OverworldSpriteGraphics(sprite0808, 1),
-		OverworldSpriteGraphics(sprite0808, 1),
-		OverworldSpriteGraphics(sprite0808, 1),
-		OverworldSpriteGraphics(sprite0808, 1)
+		OverworldSpriteGraphics(808, 1),
+		OverworldSpriteGraphics(808, 1),
+		OverworldSpriteGraphics(808, 1),
+		OverworldSpriteGraphics(808, 1),
+		OverworldSpriteGraphics(808, 1),
+		OverworldSpriteGraphics(808, 1),
+		OverworldSpriteGraphics(808, 1),
+		OverworldSpriteGraphics(808, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0599),
-		OverworldSpriteGraphics(sprite0599, 1),
-		OverworldSpriteGraphics(sprite0600, 1),
-		OverworldSpriteGraphics(sprite0601, 1),
-		OverworldSpriteGraphics(sprite0598),
-		OverworldSpriteGraphics(sprite0598, 1),
-		OverworldSpriteGraphics(sprite0600),
-		OverworldSpriteGraphics(sprite0601)
+		OverworldSpriteGraphics(599),
+		OverworldSpriteGraphics(599, 1),
+		OverworldSpriteGraphics(600, 1),
+		OverworldSpriteGraphics(601, 1),
+		OverworldSpriteGraphics(598),
+		OverworldSpriteGraphics(598, 1),
+		OverworldSpriteGraphics(600),
+		OverworldSpriteGraphics(601)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0595),
-		OverworldSpriteGraphics(sprite0595, 1),
-		OverworldSpriteGraphics(sprite0596, 1),
-		OverworldSpriteGraphics(sprite0597, 1),
-		OverworldSpriteGraphics(sprite0594),
-		OverworldSpriteGraphics(sprite0594, 1),
-		OverworldSpriteGraphics(sprite0596),
-		OverworldSpriteGraphics(sprite0597)
+		OverworldSpriteGraphics(595),
+		OverworldSpriteGraphics(595, 1),
+		OverworldSpriteGraphics(596, 1),
+		OverworldSpriteGraphics(597, 1),
+		OverworldSpriteGraphics(594),
+		OverworldSpriteGraphics(594, 1),
+		OverworldSpriteGraphics(596),
+		OverworldSpriteGraphics(597)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0623),
-		OverworldSpriteGraphics(sprite0623, 1),
-		OverworldSpriteGraphics(sprite0624, 1),
-		OverworldSpriteGraphics(sprite0625, 1),
-		OverworldSpriteGraphics(sprite0622),
-		OverworldSpriteGraphics(sprite0622, 1),
-		OverworldSpriteGraphics(sprite0624),
-		OverworldSpriteGraphics(sprite0625)
+		OverworldSpriteGraphics(623),
+		OverworldSpriteGraphics(623, 1),
+		OverworldSpriteGraphics(624, 1),
+		OverworldSpriteGraphics(625, 1),
+		OverworldSpriteGraphics(622),
+		OverworldSpriteGraphics(622, 1),
+		OverworldSpriteGraphics(624),
+		OverworldSpriteGraphics(625)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0607),
-		OverworldSpriteGraphics(sprite0607, 1),
-		OverworldSpriteGraphics(sprite0608, 1),
-		OverworldSpriteGraphics(sprite0609, 1),
-		OverworldSpriteGraphics(sprite0606),
-		OverworldSpriteGraphics(sprite0606, 1),
-		OverworldSpriteGraphics(sprite0608),
-		OverworldSpriteGraphics(sprite0609)
+		OverworldSpriteGraphics(607),
+		OverworldSpriteGraphics(607, 1),
+		OverworldSpriteGraphics(608, 1),
+		OverworldSpriteGraphics(609, 1),
+		OverworldSpriteGraphics(606),
+		OverworldSpriteGraphics(606, 1),
+		OverworldSpriteGraphics(608),
+		OverworldSpriteGraphics(609)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0615),
-		OverworldSpriteGraphics(sprite0615, 1),
-		OverworldSpriteGraphics(sprite0616, 1),
-		OverworldSpriteGraphics(sprite0617, 1),
-		OverworldSpriteGraphics(sprite0614),
-		OverworldSpriteGraphics(sprite0614, 1),
-		OverworldSpriteGraphics(sprite0616),
-		OverworldSpriteGraphics(sprite0617)
+		OverworldSpriteGraphics(615),
+		OverworldSpriteGraphics(615, 1),
+		OverworldSpriteGraphics(616, 1),
+		OverworldSpriteGraphics(617, 1),
+		OverworldSpriteGraphics(614),
+		OverworldSpriteGraphics(614, 1),
+		OverworldSpriteGraphics(616),
+		OverworldSpriteGraphics(617)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0671),
-		OverworldSpriteGraphics(sprite0671, 1),
-		OverworldSpriteGraphics(sprite0672, 1),
-		OverworldSpriteGraphics(sprite0673, 1),
-		OverworldSpriteGraphics(sprite0670),
-		OverworldSpriteGraphics(sprite0670, 1),
-		OverworldSpriteGraphics(sprite0672),
-		OverworldSpriteGraphics(sprite0673)
+		OverworldSpriteGraphics(671),
+		OverworldSpriteGraphics(671, 1),
+		OverworldSpriteGraphics(672, 1),
+		OverworldSpriteGraphics(673, 1),
+		OverworldSpriteGraphics(670),
+		OverworldSpriteGraphics(670, 1),
+		OverworldSpriteGraphics(672),
+		OverworldSpriteGraphics(673)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0667),
-		OverworldSpriteGraphics(sprite0667, 1),
-		OverworldSpriteGraphics(sprite0668, 1),
-		OverworldSpriteGraphics(sprite0669, 1),
-		OverworldSpriteGraphics(sprite0666),
-		OverworldSpriteGraphics(sprite0666, 1),
-		OverworldSpriteGraphics(sprite0668),
-		OverworldSpriteGraphics(sprite0669)
+		OverworldSpriteGraphics(667),
+		OverworldSpriteGraphics(667, 1),
+		OverworldSpriteGraphics(668, 1),
+		OverworldSpriteGraphics(669, 1),
+		OverworldSpriteGraphics(666),
+		OverworldSpriteGraphics(666, 1),
+		OverworldSpriteGraphics(668),
+		OverworldSpriteGraphics(669)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1085),
-		OverworldSpriteGraphics(sprite1085),
-		OverworldSpriteGraphics(sprite1085),
-		OverworldSpriteGraphics(sprite1085),
-		OverworldSpriteGraphics(sprite1085),
-		OverworldSpriteGraphics(sprite1085),
-		OverworldSpriteGraphics(sprite1085, 1),
-		OverworldSpriteGraphics(sprite1085, 1)
+		OverworldSpriteGraphics(1085),
+		OverworldSpriteGraphics(1085),
+		OverworldSpriteGraphics(1085),
+		OverworldSpriteGraphics(1085),
+		OverworldSpriteGraphics(1085),
+		OverworldSpriteGraphics(1085),
+		OverworldSpriteGraphics(1085, 1),
+		OverworldSpriteGraphics(1085, 1)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1084),
-		OverworldSpriteGraphics(sprite1084),
-		OverworldSpriteGraphics(sprite1084),
-		OverworldSpriteGraphics(sprite1084),
-		OverworldSpriteGraphics(sprite1084),
-		OverworldSpriteGraphics(sprite1084),
-		OverworldSpriteGraphics(sprite1084, 1),
-		OverworldSpriteGraphics(sprite1084, 1)
+		OverworldSpriteGraphics(1084),
+		OverworldSpriteGraphics(1084),
+		OverworldSpriteGraphics(1084),
+		OverworldSpriteGraphics(1084),
+		OverworldSpriteGraphics(1084),
+		OverworldSpriteGraphics(1084),
+		OverworldSpriteGraphics(1084, 1),
+		OverworldSpriteGraphics(1084, 1)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1083),
-		OverworldSpriteGraphics(sprite1083),
-		OverworldSpriteGraphics(sprite1083),
-		OverworldSpriteGraphics(sprite1083),
-		OverworldSpriteGraphics(sprite1083),
-		OverworldSpriteGraphics(sprite1083),
-		OverworldSpriteGraphics(sprite1083, 1),
-		OverworldSpriteGraphics(sprite1083, 1)
+		OverworldSpriteGraphics(1083),
+		OverworldSpriteGraphics(1083),
+		OverworldSpriteGraphics(1083),
+		OverworldSpriteGraphics(1083),
+		OverworldSpriteGraphics(1083),
+		OverworldSpriteGraphics(1083),
+		OverworldSpriteGraphics(1083, 1),
+		OverworldSpriteGraphics(1083, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0249),
-		OverworldSpriteGraphics(sprite0249, 1),
-		OverworldSpriteGraphics(sprite0250, 1),
-		OverworldSpriteGraphics(sprite0251, 1),
-		OverworldSpriteGraphics(sprite0248),
-		OverworldSpriteGraphics(sprite0248, 1),
-		OverworldSpriteGraphics(sprite0250),
-		OverworldSpriteGraphics(sprite0251)
+		OverworldSpriteGraphics(249),
+		OverworldSpriteGraphics(249, 1),
+		OverworldSpriteGraphics(250, 1),
+		OverworldSpriteGraphics(251, 1),
+		OverworldSpriteGraphics(248),
+		OverworldSpriteGraphics(248, 1),
+		OverworldSpriteGraphics(250),
+		OverworldSpriteGraphics(251)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1069),
-		OverworldSpriteGraphics(sprite1069),
-		OverworldSpriteGraphics(sprite1069),
-		OverworldSpriteGraphics(sprite1069),
-		OverworldSpriteGraphics(sprite1069),
-		OverworldSpriteGraphics(sprite1069),
-		OverworldSpriteGraphics(sprite1069),
-		OverworldSpriteGraphics(sprite1069)
+		OverworldSpriteGraphics(1069),
+		OverworldSpriteGraphics(1069),
+		OverworldSpriteGraphics(1069),
+		OverworldSpriteGraphics(1069),
+		OverworldSpriteGraphics(1069),
+		OverworldSpriteGraphics(1069),
+		OverworldSpriteGraphics(1069),
+		OverworldSpriteGraphics(1069)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x03, 0x06, 0x03, 0x06, 0,
 	[
-		OverworldSpriteGraphics(sprite0936),
-		OverworldSpriteGraphics(sprite0936, 1),
-		OverworldSpriteGraphics(sprite0937, 1),
-		OverworldSpriteGraphics(sprite0938, 1),
-		OverworldSpriteGraphics(sprite0936),
-		OverworldSpriteGraphics(sprite0936, 1),
-		OverworldSpriteGraphics(sprite0937),
-		OverworldSpriteGraphics(sprite0938)
+		OverworldSpriteGraphics(936),
+		OverworldSpriteGraphics(936, 1),
+		OverworldSpriteGraphics(937, 1),
+		OverworldSpriteGraphics(938, 1),
+		OverworldSpriteGraphics(936),
+		OverworldSpriteGraphics(936, 1),
+		OverworldSpriteGraphics(937),
+		OverworldSpriteGraphics(938)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0819),
-		OverworldSpriteGraphics(sprite0819, 1),
-		OverworldSpriteGraphics(sprite0820, 1),
-		OverworldSpriteGraphics(sprite0821, 1),
-		OverworldSpriteGraphics(sprite0818),
-		OverworldSpriteGraphics(sprite0818, 1),
-		OverworldSpriteGraphics(sprite0820),
-		OverworldSpriteGraphics(sprite0821)
+		OverworldSpriteGraphics(819),
+		OverworldSpriteGraphics(819, 1),
+		OverworldSpriteGraphics(820, 1),
+		OverworldSpriteGraphics(821, 1),
+		OverworldSpriteGraphics(818),
+		OverworldSpriteGraphics(818, 1),
+		OverworldSpriteGraphics(820),
+		OverworldSpriteGraphics(821)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1040, 1),
-		OverworldSpriteGraphics(sprite1041, 1),
-		OverworldSpriteGraphics(sprite1040, 1),
-		OverworldSpriteGraphics(sprite1041, 1),
-		OverworldSpriteGraphics(sprite1040),
-		OverworldSpriteGraphics(sprite1041),
-		OverworldSpriteGraphics(sprite1040),
-		OverworldSpriteGraphics(sprite1041)
+		OverworldSpriteGraphics(1040, 1),
+		OverworldSpriteGraphics(1041, 1),
+		OverworldSpriteGraphics(1040, 1),
+		OverworldSpriteGraphics(1041, 1),
+		OverworldSpriteGraphics(1040),
+		OverworldSpriteGraphics(1041),
+		OverworldSpriteGraphics(1040),
+		OverworldSpriteGraphics(1041)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0793),
-		OverworldSpriteGraphics(sprite0793),
-		OverworldSpriteGraphics(sprite0793),
-		OverworldSpriteGraphics(sprite0793),
-		OverworldSpriteGraphics(sprite0793),
-		OverworldSpriteGraphics(sprite0793),
-		OverworldSpriteGraphics(sprite0793),
-		OverworldSpriteGraphics(sprite0793)
+		OverworldSpriteGraphics(793),
+		OverworldSpriteGraphics(793),
+		OverworldSpriteGraphics(793),
+		OverworldSpriteGraphics(793),
+		OverworldSpriteGraphics(793),
+		OverworldSpriteGraphics(793),
+		OverworldSpriteGraphics(793),
+		OverworldSpriteGraphics(793)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0233),
-		OverworldSpriteGraphics(sprite0233, 1),
-		OverworldSpriteGraphics(sprite0234),
-		OverworldSpriteGraphics(sprite0234, 1),
-		OverworldSpriteGraphics(sprite0232),
-		OverworldSpriteGraphics(sprite0232, 1),
-		OverworldSpriteGraphics(sprite0234),
-		OverworldSpriteGraphics(sprite0234, 1)
+		OverworldSpriteGraphics(233),
+		OverworldSpriteGraphics(233, 1),
+		OverworldSpriteGraphics(234),
+		OverworldSpriteGraphics(234, 1),
+		OverworldSpriteGraphics(232),
+		OverworldSpriteGraphics(232, 1),
+		OverworldSpriteGraphics(234),
+		OverworldSpriteGraphics(234, 1)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0792),
-		OverworldSpriteGraphics(sprite0792),
-		OverworldSpriteGraphics(sprite0792),
-		OverworldSpriteGraphics(sprite0792),
-		OverworldSpriteGraphics(sprite0792),
-		OverworldSpriteGraphics(sprite0792),
-		OverworldSpriteGraphics(sprite0792),
-		OverworldSpriteGraphics(sprite0792)
+		OverworldSpriteGraphics(792),
+		OverworldSpriteGraphics(792),
+		OverworldSpriteGraphics(792),
+		OverworldSpriteGraphics(792),
+		OverworldSpriteGraphics(792),
+		OverworldSpriteGraphics(792),
+		OverworldSpriteGraphics(792),
+		OverworldSpriteGraphics(792)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0791),
-		OverworldSpriteGraphics(sprite0791),
-		OverworldSpriteGraphics(sprite0791),
-		OverworldSpriteGraphics(sprite0791),
-		OverworldSpriteGraphics(sprite0791),
-		OverworldSpriteGraphics(sprite0791),
-		OverworldSpriteGraphics(sprite0791),
-		OverworldSpriteGraphics(sprite0791)
+		OverworldSpriteGraphics(791),
+		OverworldSpriteGraphics(791),
+		OverworldSpriteGraphics(791),
+		OverworldSpriteGraphics(791),
+		OverworldSpriteGraphics(791),
+		OverworldSpriteGraphics(791),
+		OverworldSpriteGraphics(791),
+		OverworldSpriteGraphics(791)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1108),
-		OverworldSpriteGraphics(sprite1108),
-		OverworldSpriteGraphics(sprite1108),
-		OverworldSpriteGraphics(sprite1108),
-		OverworldSpriteGraphics(sprite1108),
-		OverworldSpriteGraphics(sprite1108),
-		OverworldSpriteGraphics(sprite1108),
-		OverworldSpriteGraphics(sprite1108)
+		OverworldSpriteGraphics(1108),
+		OverworldSpriteGraphics(1108),
+		OverworldSpriteGraphics(1108),
+		OverworldSpriteGraphics(1108),
+		OverworldSpriteGraphics(1108),
+		OverworldSpriteGraphics(1108),
+		OverworldSpriteGraphics(1108),
+		OverworldSpriteGraphics(1108)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0166),
-		OverworldSpriteGraphics(sprite0166),
-		OverworldSpriteGraphics(sprite0166),
-		OverworldSpriteGraphics(sprite0166),
-		OverworldSpriteGraphics(sprite0167),
-		OverworldSpriteGraphics(sprite0167),
-		OverworldSpriteGraphics(sprite0167),
-		OverworldSpriteGraphics(sprite0167)
+		OverworldSpriteGraphics(166),
+		OverworldSpriteGraphics(166),
+		OverworldSpriteGraphics(166),
+		OverworldSpriteGraphics(166),
+		OverworldSpriteGraphics(167),
+		OverworldSpriteGraphics(167),
+		OverworldSpriteGraphics(167),
+		OverworldSpriteGraphics(167)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0869),
-		OverworldSpriteGraphics(sprite0870),
-		OverworldSpriteGraphics(sprite0869),
-		OverworldSpriteGraphics(sprite0870),
-		OverworldSpriteGraphics(sprite0869),
-		OverworldSpriteGraphics(sprite0870),
-		OverworldSpriteGraphics(sprite0869),
-		OverworldSpriteGraphics(sprite0870)
+		OverworldSpriteGraphics(869),
+		OverworldSpriteGraphics(870),
+		OverworldSpriteGraphics(869),
+		OverworldSpriteGraphics(870),
+		OverworldSpriteGraphics(869),
+		OverworldSpriteGraphics(870),
+		OverworldSpriteGraphics(869),
+		OverworldSpriteGraphics(870)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1107),
-		OverworldSpriteGraphics(sprite1107),
-		OverworldSpriteGraphics(sprite1107),
-		OverworldSpriteGraphics(sprite1107),
-		OverworldSpriteGraphics(sprite1107),
-		OverworldSpriteGraphics(sprite1107),
-		OverworldSpriteGraphics(sprite1107),
-		OverworldSpriteGraphics(sprite1107)
+		OverworldSpriteGraphics(1107),
+		OverworldSpriteGraphics(1107),
+		OverworldSpriteGraphics(1107),
+		OverworldSpriteGraphics(1107),
+		OverworldSpriteGraphics(1107),
+		OverworldSpriteGraphics(1107),
+		OverworldSpriteGraphics(1107),
+		OverworldSpriteGraphics(1107)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x0E, 0x12, 0x0E, 0x12, 0,
 	[
-		OverworldSpriteGraphics(sprite0164),
-		OverworldSpriteGraphics(sprite0165),
-		OverworldSpriteGraphics(sprite0164),
-		OverworldSpriteGraphics(sprite0165),
-		OverworldSpriteGraphics(sprite0164),
-		OverworldSpriteGraphics(sprite0165),
-		OverworldSpriteGraphics(sprite0164),
-		OverworldSpriteGraphics(sprite0165)
+		OverworldSpriteGraphics(164),
+		OverworldSpriteGraphics(165),
+		OverworldSpriteGraphics(164),
+		OverworldSpriteGraphics(165),
+		OverworldSpriteGraphics(164),
+		OverworldSpriteGraphics(165),
+		OverworldSpriteGraphics(164),
+		OverworldSpriteGraphics(165)
 	]),
 	SpriteGrouping(0x04, 0x60, 0x09, 0x1C, 0x18, 0x10, 0x18, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0104, 1),
-		OverworldSpriteGraphics(sprite0104, 1),
-		OverworldSpriteGraphics(sprite0104, 1),
-		OverworldSpriteGraphics(sprite0104, 1),
-		OverworldSpriteGraphics(sprite0104),
-		OverworldSpriteGraphics(sprite0104),
-		OverworldSpriteGraphics(sprite0104),
-		OverworldSpriteGraphics(sprite0105)
+		OverworldSpriteGraphics(104, 1),
+		OverworldSpriteGraphics(104, 1),
+		OverworldSpriteGraphics(104, 1),
+		OverworldSpriteGraphics(104, 1),
+		OverworldSpriteGraphics(104),
+		OverworldSpriteGraphics(104),
+		OverworldSpriteGraphics(104),
+		OverworldSpriteGraphics(105)
 	]),
 	SpriteGrouping(0x04, 0x60, 0x09, 0x1C, 0x14, 0x10, 0x14, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0231, 1),
-		OverworldSpriteGraphics(sprite0231, 1),
-		OverworldSpriteGraphics(sprite0231, 1),
-		OverworldSpriteGraphics(sprite0231, 1),
-		OverworldSpriteGraphics(sprite0231),
-		OverworldSpriteGraphics(sprite0231),
-		OverworldSpriteGraphics(sprite0231),
-		OverworldSpriteGraphics(sprite0231)
+		OverworldSpriteGraphics(231, 1),
+		OverworldSpriteGraphics(231, 1),
+		OverworldSpriteGraphics(231, 1),
+		OverworldSpriteGraphics(231, 1),
+		OverworldSpriteGraphics(231),
+		OverworldSpriteGraphics(231),
+		OverworldSpriteGraphics(231),
+		OverworldSpriteGraphics(231)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0789),
-		OverworldSpriteGraphics(sprite0790),
-		OverworldSpriteGraphics(sprite0789),
-		OverworldSpriteGraphics(sprite0790),
-		OverworldSpriteGraphics(sprite0789),
-		OverworldSpriteGraphics(sprite0790),
-		OverworldSpriteGraphics(sprite0789),
-		OverworldSpriteGraphics(sprite0790)
+		OverworldSpriteGraphics(789),
+		OverworldSpriteGraphics(790),
+		OverworldSpriteGraphics(789),
+		OverworldSpriteGraphics(790),
+		OverworldSpriteGraphics(789),
+		OverworldSpriteGraphics(790),
+		OverworldSpriteGraphics(789),
+		OverworldSpriteGraphics(790)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0981, 1),
-		OverworldSpriteGraphics(sprite0982, 1),
-		OverworldSpriteGraphics(sprite0981, 1),
-		OverworldSpriteGraphics(sprite0982, 1),
-		OverworldSpriteGraphics(sprite0981),
-		OverworldSpriteGraphics(sprite0982),
-		OverworldSpriteGraphics(sprite0981),
-		OverworldSpriteGraphics(sprite0982)
+		OverworldSpriteGraphics(981, 1),
+		OverworldSpriteGraphics(982, 1),
+		OverworldSpriteGraphics(981, 1),
+		OverworldSpriteGraphics(982, 1),
+		OverworldSpriteGraphics(981),
+		OverworldSpriteGraphics(982),
+		OverworldSpriteGraphics(981),
+		OverworldSpriteGraphics(982)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0788),
-		OverworldSpriteGraphics(sprite0788),
-		OverworldSpriteGraphics(sprite0788),
-		OverworldSpriteGraphics(sprite0788),
-		OverworldSpriteGraphics(sprite0788),
-		OverworldSpriteGraphics(sprite0788),
-		OverworldSpriteGraphics(sprite0788),
-		OverworldSpriteGraphics(sprite0788)
+		OverworldSpriteGraphics(788),
+		OverworldSpriteGraphics(788),
+		OverworldSpriteGraphics(788),
+		OverworldSpriteGraphics(788),
+		OverworldSpriteGraphics(788),
+		OverworldSpriteGraphics(788),
+		OverworldSpriteGraphics(788),
+		OverworldSpriteGraphics(788)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0836),
-		OverworldSpriteGraphics(sprite0836, 1),
-		OverworldSpriteGraphics(sprite0837, 1),
-		OverworldSpriteGraphics(sprite0838, 1),
-		OverworldSpriteGraphics(sprite0835),
-		OverworldSpriteGraphics(sprite0835, 1),
-		OverworldSpriteGraphics(sprite0837),
-		OverworldSpriteGraphics(sprite0838)
+		OverworldSpriteGraphics(836),
+		OverworldSpriteGraphics(836, 1),
+		OverworldSpriteGraphics(837, 1),
+		OverworldSpriteGraphics(838, 1),
+		OverworldSpriteGraphics(835),
+		OverworldSpriteGraphics(835, 1),
+		OverworldSpriteGraphics(837),
+		OverworldSpriteGraphics(838)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x05, 0x08, 0x05, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0832),
-		OverworldSpriteGraphics(sprite0832, 1),
-		OverworldSpriteGraphics(sprite0833, 1),
-		OverworldSpriteGraphics(sprite0834, 1),
-		OverworldSpriteGraphics(sprite0831),
-		OverworldSpriteGraphics(sprite0831, 1),
-		OverworldSpriteGraphics(sprite0833),
-		OverworldSpriteGraphics(sprite0834)
+		OverworldSpriteGraphics(832),
+		OverworldSpriteGraphics(832, 1),
+		OverworldSpriteGraphics(833, 1),
+		OverworldSpriteGraphics(834, 1),
+		OverworldSpriteGraphics(831),
+		OverworldSpriteGraphics(831, 1),
+		OverworldSpriteGraphics(833),
+		OverworldSpriteGraphics(834)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0828),
-		OverworldSpriteGraphics(sprite0828, 1),
-		OverworldSpriteGraphics(sprite0829, 1),
-		OverworldSpriteGraphics(sprite0830, 1),
-		OverworldSpriteGraphics(sprite0827),
-		OverworldSpriteGraphics(sprite0827, 1),
-		OverworldSpriteGraphics(sprite0829),
-		OverworldSpriteGraphics(sprite0830)
+		OverworldSpriteGraphics(828),
+		OverworldSpriteGraphics(828, 1),
+		OverworldSpriteGraphics(829, 1),
+		OverworldSpriteGraphics(830, 1),
+		OverworldSpriteGraphics(827),
+		OverworldSpriteGraphics(827, 1),
+		OverworldSpriteGraphics(829),
+		OverworldSpriteGraphics(830)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x07, 0x08, 0x07, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1103),
-		OverworldSpriteGraphics(sprite1103),
-		OverworldSpriteGraphics(sprite1103),
-		OverworldSpriteGraphics(sprite1103),
-		OverworldSpriteGraphics(sprite1103),
-		OverworldSpriteGraphics(sprite1103),
-		OverworldSpriteGraphics(sprite1103),
-		OverworldSpriteGraphics(sprite1103)
+		OverworldSpriteGraphics(1103),
+		OverworldSpriteGraphics(1103),
+		OverworldSpriteGraphics(1103),
+		OverworldSpriteGraphics(1103),
+		OverworldSpriteGraphics(1103),
+		OverworldSpriteGraphics(1103),
+		OverworldSpriteGraphics(1103),
+		OverworldSpriteGraphics(1103)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0C, 0x0C, 0x0C, 0x0C, 0,
 	[
-		OverworldSpriteGraphics(sprite0826),
-		OverworldSpriteGraphics(sprite0826, 1),
-		OverworldSpriteGraphics(sprite0826),
-		OverworldSpriteGraphics(sprite0826, 1),
-		OverworldSpriteGraphics(sprite0826),
-		OverworldSpriteGraphics(sprite0826, 1),
-		OverworldSpriteGraphics(sprite0826),
-		OverworldSpriteGraphics(sprite0826, 1)
+		OverworldSpriteGraphics(826),
+		OverworldSpriteGraphics(826, 1),
+		OverworldSpriteGraphics(826),
+		OverworldSpriteGraphics(826, 1),
+		OverworldSpriteGraphics(826),
+		OverworldSpriteGraphics(826, 1),
+		OverworldSpriteGraphics(826),
+		OverworldSpriteGraphics(826, 1)
 	]),
 	SpriteGrouping(0x02, 0x40, 0x03, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0228),
-		OverworldSpriteGraphics(sprite0229),
-		OverworldSpriteGraphics(sprite0228, 1),
-		OverworldSpriteGraphics(sprite0229, 1),
-		OverworldSpriteGraphics(sprite0230),
-		OverworldSpriteGraphics(sprite0230),
-		OverworldSpriteGraphics(sprite0228),
-		OverworldSpriteGraphics(sprite0229)
+		OverworldSpriteGraphics(228),
+		OverworldSpriteGraphics(229),
+		OverworldSpriteGraphics(228, 1),
+		OverworldSpriteGraphics(229, 1),
+		OverworldSpriteGraphics(230),
+		OverworldSpriteGraphics(230),
+		OverworldSpriteGraphics(228),
+		OverworldSpriteGraphics(229)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1106),
-		OverworldSpriteGraphics(sprite1106),
-		OverworldSpriteGraphics(sprite1106),
-		OverworldSpriteGraphics(sprite1106),
-		OverworldSpriteGraphics(sprite1106),
-		OverworldSpriteGraphics(sprite1106),
-		OverworldSpriteGraphics(sprite1106),
-		OverworldSpriteGraphics(sprite1106)
+		OverworldSpriteGraphics(1106),
+		OverworldSpriteGraphics(1106),
+		OverworldSpriteGraphics(1106),
+		OverworldSpriteGraphics(1106),
+		OverworldSpriteGraphics(1106),
+		OverworldSpriteGraphics(1106),
+		OverworldSpriteGraphics(1106),
+		OverworldSpriteGraphics(1106)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1105),
-		OverworldSpriteGraphics(sprite1105),
-		OverworldSpriteGraphics(sprite1105),
-		OverworldSpriteGraphics(sprite1105),
-		OverworldSpriteGraphics(sprite1105),
-		OverworldSpriteGraphics(sprite1105),
-		OverworldSpriteGraphics(sprite1105),
-		OverworldSpriteGraphics(sprite1105)
+		OverworldSpriteGraphics(1105),
+		OverworldSpriteGraphics(1105),
+		OverworldSpriteGraphics(1105),
+		OverworldSpriteGraphics(1105),
+		OverworldSpriteGraphics(1105),
+		OverworldSpriteGraphics(1105),
+		OverworldSpriteGraphics(1105),
+		OverworldSpriteGraphics(1105)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0227),
-		OverworldSpriteGraphics(sprite0227),
-		OverworldSpriteGraphics(sprite0227),
-		OverworldSpriteGraphics(sprite0227),
-		OverworldSpriteGraphics(sprite0227),
-		OverworldSpriteGraphics(sprite0227),
-		OverworldSpriteGraphics(sprite0227),
-		OverworldSpriteGraphics(sprite0227)
+		OverworldSpriteGraphics(227),
+		OverworldSpriteGraphics(227),
+		OverworldSpriteGraphics(227),
+		OverworldSpriteGraphics(227),
+		OverworldSpriteGraphics(227),
+		OverworldSpriteGraphics(227),
+		OverworldSpriteGraphics(227),
+		OverworldSpriteGraphics(227)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0866),
-		OverworldSpriteGraphics(sprite0867),
-		OverworldSpriteGraphics(sprite0866, 1),
-		OverworldSpriteGraphics(sprite0867, 1),
-		OverworldSpriteGraphics(sprite0868),
-		OverworldSpriteGraphics(sprite0868),
-		OverworldSpriteGraphics(sprite0866),
-		OverworldSpriteGraphics(sprite0867)
+		OverworldSpriteGraphics(866),
+		OverworldSpriteGraphics(867),
+		OverworldSpriteGraphics(866, 1),
+		OverworldSpriteGraphics(867, 1),
+		OverworldSpriteGraphics(868),
+		OverworldSpriteGraphics(868),
+		OverworldSpriteGraphics(866),
+		OverworldSpriteGraphics(867)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1145),
-		OverworldSpriteGraphics(sprite1145),
-		OverworldSpriteGraphics(sprite1145),
-		OverworldSpriteGraphics(sprite1145),
-		OverworldSpriteGraphics(sprite1145),
-		OverworldSpriteGraphics(sprite1145),
-		OverworldSpriteGraphics(sprite1145),
-		OverworldSpriteGraphics(sprite1145)
+		OverworldSpriteGraphics(1145),
+		OverworldSpriteGraphics(1145),
+		OverworldSpriteGraphics(1145),
+		OverworldSpriteGraphics(1145),
+		OverworldSpriteGraphics(1145),
+		OverworldSpriteGraphics(1145),
+		OverworldSpriteGraphics(1145),
+		OverworldSpriteGraphics(1145)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0233),
-		OverworldSpriteGraphics(sprite0233, 1),
-		OverworldSpriteGraphics(sprite0234),
-		OverworldSpriteGraphics(sprite0234, 1),
-		OverworldSpriteGraphics(sprite0232),
-		OverworldSpriteGraphics(sprite0232, 1),
-		OverworldSpriteGraphics(sprite0234),
-		OverworldSpriteGraphics(sprite0234, 1)
+		OverworldSpriteGraphics(233),
+		OverworldSpriteGraphics(233, 1),
+		OverworldSpriteGraphics(234),
+		OverworldSpriteGraphics(234, 1),
+		OverworldSpriteGraphics(232),
+		OverworldSpriteGraphics(232, 1),
+		OverworldSpriteGraphics(234),
+		OverworldSpriteGraphics(234, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1144),
-		OverworldSpriteGraphics(sprite1144),
-		OverworldSpriteGraphics(sprite1144),
-		OverworldSpriteGraphics(sprite1144),
-		OverworldSpriteGraphics(sprite1144),
-		OverworldSpriteGraphics(sprite1144),
-		OverworldSpriteGraphics(sprite1144),
-		OverworldSpriteGraphics(sprite1144)
+		OverworldSpriteGraphics(1144),
+		OverworldSpriteGraphics(1144),
+		OverworldSpriteGraphics(1144),
+		OverworldSpriteGraphics(1144),
+		OverworldSpriteGraphics(1144),
+		OverworldSpriteGraphics(1144),
+		OverworldSpriteGraphics(1144),
+		OverworldSpriteGraphics(1144)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0934, 2),
-		OverworldSpriteGraphics(sprite0935, 2),
-		OverworldSpriteGraphics(sprite0934, 2),
-		OverworldSpriteGraphics(sprite0935, 2),
-		OverworldSpriteGraphics(sprite0934, 2),
-		OverworldSpriteGraphics(sprite0935, 2),
-		OverworldSpriteGraphics(sprite0934, 2),
-		OverworldSpriteGraphics(sprite0935, 2)
+		OverworldSpriteGraphics(934, 2),
+		OverworldSpriteGraphics(935, 2),
+		OverworldSpriteGraphics(934, 2),
+		OverworldSpriteGraphics(935, 2),
+		OverworldSpriteGraphics(934, 2),
+		OverworldSpriteGraphics(935, 2),
+		OverworldSpriteGraphics(934, 2),
+		OverworldSpriteGraphics(935, 2)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x14, 0x0C, 0x10, 0x0C, 0x10, 0,
 	[
-		OverworldSpriteGraphics(sprite0226),
-		OverworldSpriteGraphics(sprite0226),
-		OverworldSpriteGraphics(sprite0226),
-		OverworldSpriteGraphics(sprite0226),
-		OverworldSpriteGraphics(sprite0226),
-		OverworldSpriteGraphics(sprite0226),
-		OverworldSpriteGraphics(sprite0226),
-		OverworldSpriteGraphics(sprite0226)
+		OverworldSpriteGraphics(226),
+		OverworldSpriteGraphics(226),
+		OverworldSpriteGraphics(226),
+		OverworldSpriteGraphics(226),
+		OverworldSpriteGraphics(226),
+		OverworldSpriteGraphics(226),
+		OverworldSpriteGraphics(226),
+		OverworldSpriteGraphics(226)
 	]),
 	SpriteGrouping(0x06, 0x20, 0x0B, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0865),
-		OverworldSpriteGraphics(sprite0865),
-		OverworldSpriteGraphics(sprite0865),
-		OverworldSpriteGraphics(sprite0865),
-		OverworldSpriteGraphics(sprite0865),
-		OverworldSpriteGraphics(sprite0865),
-		OverworldSpriteGraphics(sprite0865),
-		OverworldSpriteGraphics(sprite0865)
+		OverworldSpriteGraphics(865),
+		OverworldSpriteGraphics(865),
+		OverworldSpriteGraphics(865),
+		OverworldSpriteGraphics(865),
+		OverworldSpriteGraphics(865),
+		OverworldSpriteGraphics(865),
+		OverworldSpriteGraphics(865),
+		OverworldSpriteGraphics(865)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0353),
-		OverworldSpriteGraphics(sprite0353),
-		OverworldSpriteGraphics(sprite0353),
-		OverworldSpriteGraphics(sprite0353),
-		OverworldSpriteGraphics(sprite0353),
-		OverworldSpriteGraphics(sprite0353),
-		OverworldSpriteGraphics(sprite0353),
-		OverworldSpriteGraphics(sprite0353)
+		OverworldSpriteGraphics(353),
+		OverworldSpriteGraphics(353),
+		OverworldSpriteGraphics(353),
+		OverworldSpriteGraphics(353),
+		OverworldSpriteGraphics(353),
+		OverworldSpriteGraphics(353),
+		OverworldSpriteGraphics(353),
+		OverworldSpriteGraphics(353)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0691, 1),
-		OverworldSpriteGraphics(sprite0692, 1),
-		OverworldSpriteGraphics(sprite0691, 1),
-		OverworldSpriteGraphics(sprite0692, 1),
-		OverworldSpriteGraphics(sprite0691),
-		OverworldSpriteGraphics(sprite0692),
-		OverworldSpriteGraphics(sprite0691),
-		OverworldSpriteGraphics(sprite0692)
+		OverworldSpriteGraphics(691, 1),
+		OverworldSpriteGraphics(692, 1),
+		OverworldSpriteGraphics(691, 1),
+		OverworldSpriteGraphics(692, 1),
+		OverworldSpriteGraphics(691),
+		OverworldSpriteGraphics(692),
+		OverworldSpriteGraphics(691),
+		OverworldSpriteGraphics(692)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0787),
-		OverworldSpriteGraphics(sprite0787),
-		OverworldSpriteGraphics(sprite0787),
-		OverworldSpriteGraphics(sprite0787),
-		OverworldSpriteGraphics(sprite0787),
-		OverworldSpriteGraphics(sprite0787),
-		OverworldSpriteGraphics(sprite0787),
-		OverworldSpriteGraphics(sprite0787)
+		OverworldSpriteGraphics(787),
+		OverworldSpriteGraphics(787),
+		OverworldSpriteGraphics(787),
+		OverworldSpriteGraphics(787),
+		OverworldSpriteGraphics(787),
+		OverworldSpriteGraphics(787),
+		OverworldSpriteGraphics(787),
+		OverworldSpriteGraphics(787)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0890),
-		OverworldSpriteGraphics(sprite0890),
-		OverworldSpriteGraphics(sprite0890, 1),
-		OverworldSpriteGraphics(sprite0891, 1),
-		OverworldSpriteGraphics(sprite0891),
-		OverworldSpriteGraphics(sprite0891),
-		OverworldSpriteGraphics(sprite0890),
-		OverworldSpriteGraphics(sprite0891)
+		OverworldSpriteGraphics(890),
+		OverworldSpriteGraphics(890),
+		OverworldSpriteGraphics(890, 1),
+		OverworldSpriteGraphics(891, 1),
+		OverworldSpriteGraphics(891),
+		OverworldSpriteGraphics(891),
+		OverworldSpriteGraphics(890),
+		OverworldSpriteGraphics(891)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0096),
-		OverworldSpriteGraphics(sprite0096, 1),
-		OverworldSpriteGraphics(sprite0097, 1),
-		OverworldSpriteGraphics(sprite0098, 1),
-		OverworldSpriteGraphics(sprite0095),
-		OverworldSpriteGraphics(sprite0103),
-		OverworldSpriteGraphics(sprite0097),
-		OverworldSpriteGraphics(sprite0098),
-		OverworldSpriteGraphics(sprite0101, 1),
-		OverworldSpriteGraphics(sprite0102, 1),
-		OverworldSpriteGraphics(sprite0099, 1),
-		OverworldSpriteGraphics(sprite0100, 1),
-		OverworldSpriteGraphics(sprite0099),
-		OverworldSpriteGraphics(sprite0100),
-		OverworldSpriteGraphics(sprite0101),
-		OverworldSpriteGraphics(sprite0102)
+		OverworldSpriteGraphics(96),
+		OverworldSpriteGraphics(96, 1),
+		OverworldSpriteGraphics(97, 1),
+		OverworldSpriteGraphics(98, 1),
+		OverworldSpriteGraphics(95),
+		OverworldSpriteGraphics(103),
+		OverworldSpriteGraphics(97),
+		OverworldSpriteGraphics(98),
+		OverworldSpriteGraphics(101, 1),
+		OverworldSpriteGraphics(102, 1),
+		OverworldSpriteGraphics(99, 1),
+		OverworldSpriteGraphics(100, 1),
+		OverworldSpriteGraphics(99),
+		OverworldSpriteGraphics(100),
+		OverworldSpriteGraphics(101),
+		OverworldSpriteGraphics(102)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x05, 0x08, 0x05, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0415),
-		OverworldSpriteGraphics(sprite0415, 1),
-		OverworldSpriteGraphics(sprite0416, 1),
-		OverworldSpriteGraphics(sprite0417, 1),
-		OverworldSpriteGraphics(sprite0414),
-		OverworldSpriteGraphics(sprite0414, 1),
-		OverworldSpriteGraphics(sprite0416),
-		OverworldSpriteGraphics(sprite0417)
+		OverworldSpriteGraphics(415),
+		OverworldSpriteGraphics(415, 1),
+		OverworldSpriteGraphics(416, 1),
+		OverworldSpriteGraphics(417, 1),
+		OverworldSpriteGraphics(414),
+		OverworldSpriteGraphics(414, 1),
+		OverworldSpriteGraphics(416),
+		OverworldSpriteGraphics(417)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0069),
-		OverworldSpriteGraphics(sprite0069, 1),
-		OverworldSpriteGraphics(sprite0070, 1),
-		OverworldSpriteGraphics(sprite0071, 1),
-		OverworldSpriteGraphics(sprite0068),
-		OverworldSpriteGraphics(sprite0076),
-		OverworldSpriteGraphics(sprite0070),
-		OverworldSpriteGraphics(sprite0071),
-		OverworldSpriteGraphics(sprite0074, 1),
-		OverworldSpriteGraphics(sprite0075, 1),
-		OverworldSpriteGraphics(sprite0072, 1),
-		OverworldSpriteGraphics(sprite0073, 1),
-		OverworldSpriteGraphics(sprite0072),
-		OverworldSpriteGraphics(sprite0073),
-		OverworldSpriteGraphics(sprite0074),
-		OverworldSpriteGraphics(sprite0075)
+		OverworldSpriteGraphics(69),
+		OverworldSpriteGraphics(69, 1),
+		OverworldSpriteGraphics(70, 1),
+		OverworldSpriteGraphics(71, 1),
+		OverworldSpriteGraphics(68),
+		OverworldSpriteGraphics(76),
+		OverworldSpriteGraphics(70),
+		OverworldSpriteGraphics(71),
+		OverworldSpriteGraphics(74, 1),
+		OverworldSpriteGraphics(75, 1),
+		OverworldSpriteGraphics(72, 1),
+		OverworldSpriteGraphics(73, 1),
+		OverworldSpriteGraphics(72),
+		OverworldSpriteGraphics(73),
+		OverworldSpriteGraphics(74),
+		OverworldSpriteGraphics(75)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0944, 1),
-		OverworldSpriteGraphics(sprite0943, 1),
-		OverworldSpriteGraphics(sprite0944, 1),
-		OverworldSpriteGraphics(sprite0943, 1),
-		OverworldSpriteGraphics(sprite0944, 1),
-		OverworldSpriteGraphics(sprite0943, 1),
-		OverworldSpriteGraphics(sprite0944, 1),
-		OverworldSpriteGraphics(sprite0943, 1)
+		OverworldSpriteGraphics(944, 1),
+		OverworldSpriteGraphics(943, 1),
+		OverworldSpriteGraphics(944, 1),
+		OverworldSpriteGraphics(943, 1),
+		OverworldSpriteGraphics(944, 1),
+		OverworldSpriteGraphics(943, 1),
+		OverworldSpriteGraphics(944, 1),
+		OverworldSpriteGraphics(943, 1)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099)
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099)
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099)
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0786),
-		OverworldSpriteGraphics(sprite0786),
-		OverworldSpriteGraphics(sprite0786),
-		OverworldSpriteGraphics(sprite0786),
-		OverworldSpriteGraphics(sprite0786),
-		OverworldSpriteGraphics(sprite0786),
-		OverworldSpriteGraphics(sprite0786),
-		OverworldSpriteGraphics(sprite0786)
+		OverworldSpriteGraphics(786),
+		OverworldSpriteGraphics(786),
+		OverworldSpriteGraphics(786),
+		OverworldSpriteGraphics(786),
+		OverworldSpriteGraphics(786),
+		OverworldSpriteGraphics(786),
+		OverworldSpriteGraphics(786),
+		OverworldSpriteGraphics(786)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0172),
-		OverworldSpriteGraphics(sprite0173),
-		OverworldSpriteGraphics(sprite0172),
-		OverworldSpriteGraphics(sprite0173),
-		OverworldSpriteGraphics(sprite0172),
-		OverworldSpriteGraphics(sprite0173),
-		OverworldSpriteGraphics(sprite0172),
-		OverworldSpriteGraphics(sprite0173)
+		OverworldSpriteGraphics(172),
+		OverworldSpriteGraphics(173),
+		OverworldSpriteGraphics(172),
+		OverworldSpriteGraphics(173),
+		OverworldSpriteGraphics(172),
+		OverworldSpriteGraphics(173),
+		OverworldSpriteGraphics(172),
+		OverworldSpriteGraphics(173)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0714),
-		OverworldSpriteGraphics(sprite0714, 1),
-		OverworldSpriteGraphics(sprite0715, 1),
-		OverworldSpriteGraphics(sprite0716, 1),
-		OverworldSpriteGraphics(sprite0713),
-		OverworldSpriteGraphics(sprite0713, 1),
-		OverworldSpriteGraphics(sprite0715),
-		OverworldSpriteGraphics(sprite0716)
+		OverworldSpriteGraphics(714),
+		OverworldSpriteGraphics(714, 1),
+		OverworldSpriteGraphics(715, 1),
+		OverworldSpriteGraphics(716, 1),
+		OverworldSpriteGraphics(713),
+		OverworldSpriteGraphics(713, 1),
+		OverworldSpriteGraphics(715),
+		OverworldSpriteGraphics(716)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1068),
-		OverworldSpriteGraphics(sprite1068),
-		OverworldSpriteGraphics(sprite1068),
-		OverworldSpriteGraphics(sprite1068),
-		OverworldSpriteGraphics(sprite1068),
-		OverworldSpriteGraphics(sprite1068),
-		OverworldSpriteGraphics(sprite1068),
-		OverworldSpriteGraphics(sprite1068)
+		OverworldSpriteGraphics(1068),
+		OverworldSpriteGraphics(1068),
+		OverworldSpriteGraphics(1068),
+		OverworldSpriteGraphics(1068),
+		OverworldSpriteGraphics(1068),
+		OverworldSpriteGraphics(1068),
+		OverworldSpriteGraphics(1068),
+		OverworldSpriteGraphics(1068)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0170),
-		OverworldSpriteGraphics(sprite0171),
-		OverworldSpriteGraphics(sprite0170),
-		OverworldSpriteGraphics(sprite0171),
-		OverworldSpriteGraphics(sprite0170),
-		OverworldSpriteGraphics(sprite0171),
-		OverworldSpriteGraphics(sprite0170),
-		OverworldSpriteGraphics(sprite0171)
+		OverworldSpriteGraphics(170),
+		OverworldSpriteGraphics(171),
+		OverworldSpriteGraphics(170),
+		OverworldSpriteGraphics(171),
+		OverworldSpriteGraphics(170),
+		OverworldSpriteGraphics(171),
+		OverworldSpriteGraphics(170),
+		OverworldSpriteGraphics(171)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0162),
-		OverworldSpriteGraphics(sprite0163),
-		OverworldSpriteGraphics(sprite0162),
-		OverworldSpriteGraphics(sprite0163),
-		OverworldSpriteGraphics(sprite0162),
-		OverworldSpriteGraphics(sprite0163),
-		OverworldSpriteGraphics(sprite0162),
-		OverworldSpriteGraphics(sprite0163)
+		OverworldSpriteGraphics(162),
+		OverworldSpriteGraphics(163),
+		OverworldSpriteGraphics(162),
+		OverworldSpriteGraphics(163),
+		OverworldSpriteGraphics(162),
+		OverworldSpriteGraphics(163),
+		OverworldSpriteGraphics(162),
+		OverworldSpriteGraphics(163)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite1138),
-		OverworldSpriteGraphics(sprite1138),
-		OverworldSpriteGraphics(sprite1138),
-		OverworldSpriteGraphics(sprite1138),
-		OverworldSpriteGraphics(sprite1138),
-		OverworldSpriteGraphics(sprite1138),
-		OverworldSpriteGraphics(sprite1138),
-		OverworldSpriteGraphics(sprite1138)
+		OverworldSpriteGraphics(1138),
+		OverworldSpriteGraphics(1138),
+		OverworldSpriteGraphics(1138),
+		OverworldSpriteGraphics(1138),
+		OverworldSpriteGraphics(1138),
+		OverworldSpriteGraphics(1138),
+		OverworldSpriteGraphics(1138),
+		OverworldSpriteGraphics(1138)
 	]),
 	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0122),
-		OverworldSpriteGraphics(sprite0122),
-		OverworldSpriteGraphics(sprite0122),
-		OverworldSpriteGraphics(sprite0122),
-		OverworldSpriteGraphics(sprite0122),
-		OverworldSpriteGraphics(sprite0122),
-		OverworldSpriteGraphics(sprite0122),
-		OverworldSpriteGraphics(sprite0122)
+		OverworldSpriteGraphics(122),
+		OverworldSpriteGraphics(122),
+		OverworldSpriteGraphics(122),
+		OverworldSpriteGraphics(122),
+		OverworldSpriteGraphics(122),
+		OverworldSpriteGraphics(122),
+		OverworldSpriteGraphics(122),
+		OverworldSpriteGraphics(122)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0467),
-		OverworldSpriteGraphics(sprite0467, 1),
-		OverworldSpriteGraphics(sprite0468, 1),
-		OverworldSpriteGraphics(sprite0469, 1),
-		OverworldSpriteGraphics(sprite0466),
-		OverworldSpriteGraphics(sprite0466, 1),
-		OverworldSpriteGraphics(sprite0468),
-		OverworldSpriteGraphics(sprite0469)
+		OverworldSpriteGraphics(467),
+		OverworldSpriteGraphics(467, 1),
+		OverworldSpriteGraphics(468, 1),
+		OverworldSpriteGraphics(469, 1),
+		OverworldSpriteGraphics(466),
+		OverworldSpriteGraphics(466, 1),
+		OverworldSpriteGraphics(468),
+		OverworldSpriteGraphics(469)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x05, 0x08, 0x05, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0857),
-		OverworldSpriteGraphics(sprite0857, 1),
-		OverworldSpriteGraphics(sprite0858, 1),
-		OverworldSpriteGraphics(sprite0859, 1),
-		OverworldSpriteGraphics(sprite0856),
-		OverworldSpriteGraphics(sprite0856, 1),
-		OverworldSpriteGraphics(sprite0858),
-		OverworldSpriteGraphics(sprite0859)
+		OverworldSpriteGraphics(857),
+		OverworldSpriteGraphics(857, 1),
+		OverworldSpriteGraphics(858, 1),
+		OverworldSpriteGraphics(859, 1),
+		OverworldSpriteGraphics(856),
+		OverworldSpriteGraphics(856, 1),
+		OverworldSpriteGraphics(858),
+		OverworldSpriteGraphics(859)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0941),
-		OverworldSpriteGraphics(sprite0942),
-		OverworldSpriteGraphics(sprite0941),
-		OverworldSpriteGraphics(sprite0942),
-		OverworldSpriteGraphics(sprite0941),
-		OverworldSpriteGraphics(sprite0942),
-		OverworldSpriteGraphics(sprite0941),
-		OverworldSpriteGraphics(sprite0942)
+		OverworldSpriteGraphics(941),
+		OverworldSpriteGraphics(942),
+		OverworldSpriteGraphics(941),
+		OverworldSpriteGraphics(942),
+		OverworldSpriteGraphics(941),
+		OverworldSpriteGraphics(942),
+		OverworldSpriteGraphics(941),
+		OverworldSpriteGraphics(942)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1082),
-		OverworldSpriteGraphics(sprite1082),
-		OverworldSpriteGraphics(sprite1082, 1),
-		OverworldSpriteGraphics(sprite1082, 1),
-		OverworldSpriteGraphics(sprite1082),
-		OverworldSpriteGraphics(sprite1082),
-		OverworldSpriteGraphics(sprite1082),
-		OverworldSpriteGraphics(sprite1082)
+		OverworldSpriteGraphics(1082),
+		OverworldSpriteGraphics(1082),
+		OverworldSpriteGraphics(1082, 1),
+		OverworldSpriteGraphics(1082, 1),
+		OverworldSpriteGraphics(1082),
+		OverworldSpriteGraphics(1082),
+		OverworldSpriteGraphics(1082),
+		OverworldSpriteGraphics(1082)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1081),
-		OverworldSpriteGraphics(sprite1081),
-		OverworldSpriteGraphics(sprite1081, 1),
-		OverworldSpriteGraphics(sprite1081, 1),
-		OverworldSpriteGraphics(sprite1081),
-		OverworldSpriteGraphics(sprite1081),
-		OverworldSpriteGraphics(sprite1081),
-		OverworldSpriteGraphics(sprite1081)
+		OverworldSpriteGraphics(1081),
+		OverworldSpriteGraphics(1081),
+		OverworldSpriteGraphics(1081, 1),
+		OverworldSpriteGraphics(1081, 1),
+		OverworldSpriteGraphics(1081),
+		OverworldSpriteGraphics(1081),
+		OverworldSpriteGraphics(1081),
+		OverworldSpriteGraphics(1081)
 	]),
 	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0178),
-		OverworldSpriteGraphics(sprite0178, 1),
-		OverworldSpriteGraphics(sprite0179, 1),
-		OverworldSpriteGraphics(sprite0179, 1),
-		OverworldSpriteGraphics(sprite0178),
-		OverworldSpriteGraphics(sprite0178, 1),
-		OverworldSpriteGraphics(sprite0179),
-		OverworldSpriteGraphics(sprite0179)
+		OverworldSpriteGraphics(178),
+		OverworldSpriteGraphics(178, 1),
+		OverworldSpriteGraphics(179, 1),
+		OverworldSpriteGraphics(179, 1),
+		OverworldSpriteGraphics(178),
+		OverworldSpriteGraphics(178, 1),
+		OverworldSpriteGraphics(179),
+		OverworldSpriteGraphics(179)
 	]),
 	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x40, 0x08, 0x40, 0,
 	[
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099),
-		OverworldSpriteGraphics(sprite1099)
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099),
+		OverworldSpriteGraphics(1099)
 	]),
 	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite1080),
-		OverworldSpriteGraphics(sprite1080),
-		OverworldSpriteGraphics(sprite1080),
-		OverworldSpriteGraphics(sprite1080),
-		OverworldSpriteGraphics(sprite1080),
-		OverworldSpriteGraphics(sprite1080),
-		OverworldSpriteGraphics(sprite1080, 1),
-		OverworldSpriteGraphics(sprite1080, 1)
+		OverworldSpriteGraphics(1080),
+		OverworldSpriteGraphics(1080),
+		OverworldSpriteGraphics(1080),
+		OverworldSpriteGraphics(1080),
+		OverworldSpriteGraphics(1080),
+		OverworldSpriteGraphics(1080),
+		OverworldSpriteGraphics(1080, 1),
+		OverworldSpriteGraphics(1080, 1)
 	]),
 	SpriteGrouping(0x06, 0x40, 0x0C, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0690),
-		OverworldSpriteGraphics(sprite0690),
-		OverworldSpriteGraphics(sprite0690),
-		OverworldSpriteGraphics(sprite0690),
-		OverworldSpriteGraphics(sprite0690),
-		OverworldSpriteGraphics(sprite0690),
-		OverworldSpriteGraphics(sprite0690),
-		OverworldSpriteGraphics(sprite0690)
+		OverworldSpriteGraphics(690),
+		OverworldSpriteGraphics(690),
+		OverworldSpriteGraphics(690),
+		OverworldSpriteGraphics(690),
+		OverworldSpriteGraphics(690),
+		OverworldSpriteGraphics(690),
+		OverworldSpriteGraphics(690),
+		OverworldSpriteGraphics(690)
 	]),
 	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x20, 0x20, 0x20, 0,
 	[
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113),
-		OverworldSpriteGraphics(sprite0113, 1),
-		OverworldSpriteGraphics(sprite0113, 1)
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113),
+		OverworldSpriteGraphics(113, 1),
+		OverworldSpriteGraphics(113, 1)
 	]),
 	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x20, 0x20, 0x20, 0,
 	[
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112),
-		OverworldSpriteGraphics(sprite0112, 1),
-		OverworldSpriteGraphics(sprite0112, 1)
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112),
+		OverworldSpriteGraphics(112, 1),
+		OverworldSpriteGraphics(112, 1)
 	]),
 	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x04, 0x08, 0x08, 0x08, 0,
 	[
-		OverworldSpriteGraphics(sprite0828),
-		OverworldSpriteGraphics(sprite0828, 1),
-		OverworldSpriteGraphics(sprite0829, 1),
-		OverworldSpriteGraphics(sprite0830, 1),
-		OverworldSpriteGraphics(sprite0827),
-		OverworldSpriteGraphics(sprite0827, 1),
-		OverworldSpriteGraphics(sprite0829),
-		OverworldSpriteGraphics(sprite0830)
+		OverworldSpriteGraphics(828),
+		OverworldSpriteGraphics(828, 1),
+		OverworldSpriteGraphics(829, 1),
+		OverworldSpriteGraphics(830, 1),
+		OverworldSpriteGraphics(827),
+		OverworldSpriteGraphics(827, 1),
+		OverworldSpriteGraphics(829),
+		OverworldSpriteGraphics(830)
 	]),
 	SpriteGrouping(0x02, 0x60, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1),
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1),
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1),
-		OverworldSpriteGraphics(sprite0873),
-		OverworldSpriteGraphics(sprite0873, 1)
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1),
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1),
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1),
+		OverworldSpriteGraphics(873),
+		OverworldSpriteGraphics(873, 1)
 	]),
 	SpriteGrouping(0x02, 0x60, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1),
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1),
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1),
-		OverworldSpriteGraphics(sprite0872),
-		OverworldSpriteGraphics(sprite0872, 1)
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1),
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1),
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1),
+		OverworldSpriteGraphics(872),
+		OverworldSpriteGraphics(872, 1)
 	]),
 ];
 
@@ -21378,59 +21299,59 @@ immutable char[14][6] debugSoundModeMenuText = [
 ];
 
 /// $EFD56F
-void unknownEFD56F(short arg1, short arg2, ushort arg3) {
-	ushort* x = cast(ushort*)sbrk(2 * ushort.sizeof);
-	ushort a = (arg3 >> 4);
-	if (a < 10) {
-		a += 7;
+void renderDebugDigit(short x, short y, ushort amount) {
+	ushort* buf = cast(ushort*)sbrk(2 * ushort.sizeof);
+	ushort digit = (amount >> 4);
+	if (digit >= 10) {
+		digit += 7;
 	}
-	x[0] = cast(ushort)(a + 0x2030);
+	buf[0] = cast(ushort)(digit + 0x2030);
 
-	a = arg3 & 0xF;
-	if (a < 10) {
-		a += 7;
+	digit = amount & 0xF;
+	if (digit >= 10) {
+		digit += 7;
 	}
-	x[1] = cast(ushort)(a + 0x2030);
+	buf[1] = cast(ushort)(digit + 0x2030);
 
-	copyToVRAMAlt(0, 4, cast(ushort)(0x7C00 + (arg2 * 32) + arg1), cast(ubyte*)x);
+	copyToVRAMAlt(0, 4, cast(ushort)(0x7C00 + (y * 32) + x), cast(ubyte*)buf);
 }
 
 /// $EFD5D9
-void unknownEFD5D9(ushort arg1) {
+void resetDebugSoundModeMenu(ushort entityID) {
 	fadeOutWithMosaic(4, 1, 0);
 	unknownC0927C();
-	unknownEFDA05();
-	unknownEFDABD(10, 5, &debugSoundModeMenuText[0][0]);
-	unknownEFDABD(10, 10, &debugSoundModeMenuText[1][0]);
-	unknownEFDABD(10, 12, &debugSoundModeMenuText[2][0]);
-	unknownEFDABD(10, 14, &debugSoundModeMenuText[3][0]);
-	unknownEFDABD(9, 20, &debugSoundModeMenuText[4][0]);
-	unknownEFDABD(10, 22, &debugSoundModeMenuText[5][0]);
-	entityAbsXTable[arg1] = 0x40;
-	entityAbsYTable[arg1] = 0x50;
+	initDebugMenuScreen();
+	renderDebugMenuString(10, 5, &debugSoundModeMenuText[0][0]);
+	renderDebugMenuString(10, 10, &debugSoundModeMenuText[1][0]);
+	renderDebugMenuString(10, 12, &debugSoundModeMenuText[2][0]);
+	renderDebugMenuString(10, 14, &debugSoundModeMenuText[3][0]);
+	renderDebugMenuString(9, 20, &debugSoundModeMenuText[4][0]);
+	renderDebugMenuString(10, 22, &debugSoundModeMenuText[5][0]);
+	entityAbsXTable[entityID] = 0x40;
+	entityAbsYTable[entityID] = 0x50;
 	fadeInWithMosaic(4, 1, 0);
 }
 
 /// $EFD6D4
-void unknownEFD6D4(ushort arg1) {
+void debugSoundMenu(ushort cursorEntity) {
 	short x02 = 0;
-	unknown7EB545 = currentMusicTrack;
-	unknown7EB54B = currentMusicTrack;
-	unknown7EB54F = 2;
-	unknownEFD5D9(arg1);
+	debugSoundMenuInitialBGM = currentMusicTrack;
+	debugSoundMenuSelectedBGM = currentMusicTrack;
+	debugSoundMenuSelectedEffect = 2;
+	resetDebugSoundModeMenu(cursorEntity);
 	do {
 		updateScreen();
 		waitUntilNextFrame();
 		if ((padPress[0] & Pad.y) != 0) {
-			unknownEFE175();
-			unknownEFD5D9(arg1);
+			debugMain();
+			resetDebugSoundModeMenu(cursorEntity);
 		}
 		oamClear();
 		runActionscriptFrame();
-		unknownEFD56F(18, 10, unknown7EB54B);
-		unknownEFD56F(18, 12, unknown7EB54D);
-		unknownEFD56F(18, 14, unknown7EB54F);
-		if ((padPress[0] & (Pad.select | Pad.start)) == 0) {
+		renderDebugDigit(18, 10, debugSoundMenuSelectedBGM);
+		renderDebugDigit(18, 12, debugSoundMenuSelectedSE);
+		renderDebugDigit(18, 14, debugSoundMenuSelectedEffect);
+		if ((padPress[0] & (Pad.select | Pad.start)) == (Pad.select | Pad.start)) {
 			break;
 		}
 		if ((padHeld[0] & Pad.up) != 0) {
@@ -21447,67 +21368,67 @@ void unknownEFD6D4(ushort arg1) {
 		}
 		if ((padPress[0] & Pad.b) == 0) {
 			if ((padPress[0] & Pad.r) != 0) {
-				unknown7EB54B = unknown7EB545;
+				debugSoundMenuSelectedBGM = debugSoundMenuInitialBGM;
 			}
 		}
 		if (x02 == 0) {
 			if ((padHeld[0] & Pad.left) != 0) {
-				unknown7EB54B--;
+				debugSoundMenuSelectedBGM--;
 			}
 			if ((padHeld[0] & Pad.right) != 0) {
-				unknown7EB54B++;
+				debugSoundMenuSelectedBGM++;
 			}
-			if (unknown7EB54B == -1) {
-				unknown7EB54B = 0xBF;
+			if (debugSoundMenuSelectedBGM == -1) {
+				debugSoundMenuSelectedBGM = 191;
 			}
-			if (unknown7EB54B == 0xC0) {
-				unknown7EB54B = 1;
+			if (debugSoundMenuSelectedBGM == 192) {
+				debugSoundMenuSelectedBGM = 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
 				stopMusic();
 				waitUntilNextFrame();
 				//did the header have an incorrect definition for this function...?
 				//unknownC0AC20(currentMusicTrack);
-				changeMusic(unknown7EB54B);
+				changeMusic(debugSoundMenuSelectedBGM);
 			}
 		} else if (x02 == 1) {
 			if ((padHeld[0] & Pad.left) != 0) {
-				unknown7EB54D--;
+				debugSoundMenuSelectedSE--;
 			}
 			if ((padHeld[0] & Pad.right) != 0) {
-				unknown7EB54D++;
+				debugSoundMenuSelectedSE++;
 			}
-			if (unknown7EB54D == -1) {
-				unknown7EB54D = 0x7F;
+			if (debugSoundMenuSelectedSE == -1) {
+				debugSoundMenuSelectedSE = 127;
 			}
-			if (unknown7EB54D == 0x80) {
-				unknown7EB54D = 1;
+			if (debugSoundMenuSelectedSE == 128) {
+				debugSoundMenuSelectedSE = 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
-				playSfx(unknown7EB54D);
+				playSfx(debugSoundMenuSelectedSE);
 			}
 		} else if (x02 == 2) {
 			if ((padHeld[0] & Pad.left) != 0) {
-				unknown7EB54F--;
+				debugSoundMenuSelectedEffect--;
 			}
 			if ((padHeld[0] & Pad.right) != 0) {
-				unknown7EB54F++;
+				debugSoundMenuSelectedEffect++;
 			}
-			if (unknown7EB54D == -1) {
-				unknown7EB54D = 0x20;
+			if (debugSoundMenuSelectedSE == -1) {
+				debugSoundMenuSelectedSE = 32;
 			}
-			if (unknown7EB54D == 0x21) {
-				unknown7EB54D = 1;
+			if (debugSoundMenuSelectedSE == 33) {
+				debugSoundMenuSelectedSE = 1;
 			}
 			if ((padPress[0] & Pad.a) != 0) {
-				unknownC0AC0C(unknown7EB54F);
+				musicEffect(debugSoundMenuSelectedEffect);
 			}
 		}
 		if ((padPress[0] & Pad.x) != 0) {
 			stopMusic();
 			playSfxUnknown();
 		}
-		entityAbsYTable[arg1] = cast(short)((x02 * 16) + 0x54);
+		entityAbsYTable[cursorEntity] = cast(short)((x02 * 16) + 0x54);
 	} while (true);
 }
 
@@ -21529,19 +21450,23 @@ immutable char[17][8] debugMenuText2Lines = [
 void unknownEFD95E() {
 	initializeTextSystem();
 	waitUntilNextFrame();
-	if (debugModeNumber == 1) {
+	if (debugModeNumber == DebugMode.viewMap) {
 		prepareWindowGraphics();
 		loadWindowGraphics(WindowGraphicsToLoad.all);
-		unknownC47F87();
+		loadTextPalette();
 	} else {
-		copyToVRAM(0, 0x1000, 0x6100, &debugMenuFont[0]);
+		version(bugfix) {
+			copyToVRAM(0, 0x400, 0x6100, &debugMenuFont[0]);
+		} else {
+			copyToVRAM(0, 0x1000, 0x6100, &debugMenuFont[0]);
+		}
 		unknown7F0000[0] = 0;
 		unknown7F0000[1] = 0;
 		copyToVRAM(3, 0x800, 0x7C00, &unknown7F0000[0]);
-		if (debugModeNumber != 3) {
+		if (debugModeNumber != DebugMode.viewAttribute) {
 			palettes[0][2] = 0xFFFF;
 		} else {
-			memcpy(&palettes[0][0], &unknownEFEF70[47], 0x18);
+			memcpy(&palettes[0][0], &debugFontPalette[0], 0x18);
 		}
 	}
 	unknown7E0030 = 0x18;
@@ -21549,23 +21474,23 @@ void unknownEFD95E() {
 
 /// $EFD9F3
 void unknownEFD9F3() {
-	if (debugModeNumber != 0) {
+	if (debugModeNumber != DebugMode.none) {
 		unknownEFD95E();
 	} else {
-		unknownC47F87();
+		loadTextPalette();
 	}
 }
 
 /// $EFDA05
-void unknownEFDA05() {
+void initDebugMenuScreen() {
 	prepareForImmediateDMA();
 	mirrorTM = 0x17;
 	spritemapBank = 0x2F;
 	unknown7EB55D = 0;
-	unknown7EB557 = 0;
+	debugMenuButtonPressed = 0;
 	debugMenuCursorPosition = 0;
 	unknown7EB551 = 0;
-	unknown7EB55F = 0;
+	viewAttributeMode = 0;
 	unknownC08D79(9);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x3800, 0);
 	setBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
@@ -21577,13 +21502,13 @@ void unknownEFDA05() {
 	unknownEFD95E();
 	entityAllocationMinSlot = 0;
 	entityAllocationMaxSlot = 1;
-	unknown7EB553 = initEntityWipe(ActionScript.unknown000, 0x34, 0x34);
+	debugCursorEntity = initEntityWipe(ActionScript.unknown000, 0x34, 0x34);
 	unknown7E4A58 = 0;
 	unknown7E4A5A = 0;
 }
 
 /// $EFDABD
-void unknownEFDABD(short x, short y, const(char)* str) {
+void renderDebugMenuString(short x, short y, const(char)* str) {
 	short x02 = 0;
 	ushort* yReg = cast(ushort*)sbrk(32 * ushort.sizeof);
 	ushort* xReg = yReg;
@@ -21598,11 +21523,11 @@ void unknownEFDABD(short x, short y, const(char)* str) {
 
 /// $EFDB21
 void debugDisplayMenuOptions() {
-	unknownEFDABD(0, 0, &debugMenuText2Line1[0]);
-	unknownEFDABD(8, 3, &debugMenuText2Lines[0][0]);
+	renderDebugMenuString(0, 0, &debugMenuText2Line1[0]);
+	renderDebugMenuString(8, 3, &debugMenuText2Lines[0][0]);
 	short x02 = 6;
 	for (short i = 0; i < 7; i++) {
-		unknownEFDABD(8, x02, &debugMenuText2Lines[i + 1][0]);
+		renderDebugMenuString(8, x02, &debugMenuText2Lines[i + 1][0]);
 		x02 += 3;
 	}
 }
@@ -21685,8 +21610,8 @@ void displayViewCharacterDebugOverlay() {
 }
 
 /// $EFDF0B
-ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
-	if (unknown7EB55F == 0) {
+ushort getAttributeTileFor(ushort arg1, ushort x, short y) {
+	if (viewAttributeMode == 0) {
 		if ((arg1 & 2) != 0) {
 			return 0x2061;
 		} else if ((arg1 & 1) != 0) {
@@ -21696,9 +21621,9 @@ ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 		} else if ((arg1 & 0x40) != 0) {
 			return 0x2063;
 		}
-	} else if (unknown7EB55F == 1) {
+	} else if (viewAttributeMode == 1) {
 		if ((arg1 & 0x10) != 0) {
-			switch (unknownC07477(arg2, arg3)) {
+			switch (getDoorAt(x, y)) {
 				case 2:
 					return 0x2461;
 				case 1:
@@ -21714,7 +21639,7 @@ ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 					return 0x2058;
 			}
 		}
-	} else if (unknown7EB55F == 2) {
+	} else if (viewAttributeMode == 2) {
 		if ((arg1 & 0x20) != 0) {
 			return 0x2261;
 		}
@@ -21723,8 +21648,8 @@ ushort unknownEFDF0B(ushort arg1, ushort arg2, short arg3) {
 }
 
 /// $EFDFC4
-void unknownEFDFC4(ushort x, ushort y) {
-	if (debugModeNumber != 3) {
+void renderAttributeRow(ushort x, ushort y) {
+	if (debugModeNumber != DebugMode.viewAttribute) {
 		return;
 	}
 	ushort* x16 =cast(ushort*)sbrk(32 * ushort.sizeof);
@@ -21732,7 +21657,7 @@ void unknownEFDFC4(ushort x, ushort y) {
 		ushort x14 = x & 0x1F;
 		for (short i = 0; i < 0x20; i++) {
 			if (x < 0x8000) {
-				x16[x14] = unknownEFDF0B(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
+				x16[x14] = getAttributeTileFor(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
 			}
 			x14 = (x14 + 1) & 0x1F;
 			x++;
@@ -21742,8 +21667,8 @@ void unknownEFDFC4(ushort x, ushort y) {
 }
 
 /// $EFE07C
-void unknownEFE07C(short x, short y) {
-	if (debugModeNumber != 3) {
+void renderAttributeColumn(short x, short y) {
+	if (debugModeNumber != DebugMode.viewAttribute) {
 		return;
 	}
 	ushort* x16 = cast(ushort*)sbrk(32 * ushort.sizeof);
@@ -21751,7 +21676,7 @@ void unknownEFE07C(short x, short y) {
 		ushort x14 = y & 0x1F;
 		for (short i = 0; i < 0x20; i++) {
 			if (y < 0x8000) {
-				x16[x14] = unknownEFDF0B(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
+				x16[x14] = getAttributeTileFor(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
 			}
 			x14 = (x14 + 1) & 0x1F;
 			y++;
@@ -21761,42 +21686,42 @@ void unknownEFE07C(short x, short y) {
 }
 
 /// $EFE133
-void unknownEFE133(short x, short y) {
+void renderAllAttributeRows(short x, short y) {
 	for (short i = -1; i != 0x1F; i++) {
-		unknownEFDFC4(cast(short)((x >> 3) - 16), cast(short)((y >> 3) - 14 + i));
+		renderAttributeRow(cast(short)((x >> 3) - 16), cast(short)((y >> 3) - 14 + i));
 	}
 }
 
 /// $EFE175
-void unknownEFE175() {
+void debugMain() {
 	short x1A;
 	*(cast(ushort*)&unknown7F0000[0]) = 0;
 	prepareForImmediateDMA();
 	unknownC0927C();
-	unknownC01A86();
+	clearSpriteTable();
 	allocSpriteMem(short.min, 0);
 	initializeMiscObjectData();
-	short x1C = debugUnknownB565;
+	short x1C = debugViewCharacterSprite;
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	newEntityPriority = 3;
 	gameState.leaderX.integer = debugStartPositionX;
 	gameState.leaderY.integer = debugStartPositionY;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
-	unknownC02D29();
+	clearParty();
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMembers[i] = 0;
 	}
 	addCharToParty(1);
-	if ((debugModeNumber != 5) && (debugModeNumber != 3)) {
+	if ((debugModeNumber != DebugMode.checkPosition) && (debugModeNumber != DebugMode.viewAttribute)) {
 		addCharToParty(2);
 		addCharToParty(3);
 	}
-	unknownC46631(0xFF);
+	enableEntityByCharacterOrParty(0xFF);
 	entityScreenXTable[24] = 0x80;
 	entityScreenYTable[24] = 0x70;
-	if (debugModeNumber == 2) {
-		x1A = createEntity(debugUnknownB565, ActionScript.characterViewer, -1, 0x20, 0x20);
+	if (debugModeNumber == DebugMode.viewCharacter) {
+		x1A = createEntity(debugViewCharacterSprite, ActionScript.characterViewer, -1, 0x20, 0x20);
 		entityTickCallbackFlags[x1A] |= (objectTickDisabled | objectMoveDisabled);
 		entitySpriteMapFlags[x1A] |= 0x8000;
 	}
@@ -21805,30 +21730,30 @@ void unknownEFE175() {
 	loadMapAtPosition(debugStartPositionX, debugStartPositionY);
 	unknownC03FA9(debugStartPositionX, debugStartPositionY, 4);
 	unknownEFD95E();
-	if (debugModeNumber == 3) {
+	if (debugModeNumber == DebugMode.viewAttribute) {
 		mirrorTM = 0x13;
 		mirrorTD = 4;
 		CGWSEL = 2;
 		CGADSUB = 0x47;
-		debugModeNumber = 3; //uh...ok
+		debugModeNumber = DebugMode.viewAttribute; //uh...ok
 	}
-	if (debugModeNumber == 5) {
-		unknownEFEAC8();
+	if (debugModeNumber == DebugMode.checkPosition) {
+		debugCheckPositionOverlayBackground();
 	}
 	setIRQCallback(&processOverworldTasks);
 	setForceBlank();
 	fadeIn(1, 1);
 	do {
 		oamClear();
-		if (debugModeNumber == 2) {
+		if (debugModeNumber == DebugMode.viewCharacter) {
 			displayViewCharacterDebugOverlay();
-		} else if (debugModeNumber == 5) {
+		} else if (debugModeNumber == DebugMode.checkPosition) {
 			displayCheckPositionDebugOverlay();
 		}
 		if ((padPress[0] & Pad.a) != 0) {
 			battleSwirlCountdown = 0;
 			if ((padState[0] & Pad.x) != 0) {
-				unknown7EB575 = 0xFFFF;
+				debugEnemiesEnabledFlag = 0xFFFF;
 			}
 			unknown7E4370 = -1;
 			unknown7E436E = -1;
@@ -21837,16 +21762,16 @@ void unknownEFE175() {
 			loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 			unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
 			unknownEFD95E();
-			unknown7EB575 = 0;
-			if (debugModeNumber == 5) {
-				unknownEFEAC8();
+			debugEnemiesEnabledFlag = 0;
+			if (debugModeNumber == DebugMode.checkPosition) {
+				debugCheckPositionOverlayBackground();
 			}
 			setForceBlank();
 			fadeInWithMosaic(4, 1, 0);
 		}
-		if (debugModeNumber == 2) {
+		if (debugModeNumber == DebugMode.viewCharacter) {
 			if ((padHeld[1] & Pad.up) != 0) {
-				if (x1C != 0x14D) {
+				if (x1C != 333) {
 					x1C++;
 				} else {
 					x1C = 0;
@@ -21855,7 +21780,7 @@ void unknownEFE175() {
 				if (x1C != 0) {
 					x1C--;
 				} else {
-					x1C = 0x144;
+					x1C = 324;
 				}
 			}
 			if ((padPress[1] & Pad.x) != 0) {
@@ -21866,7 +21791,7 @@ void unknownEFE175() {
 				entityTickCallbackFlags[x1A] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
 				entitySpriteMapFlags[x1A] &= 0x7FFF;
 			}
-			if (debugUnknownB565 != x1C) {
+			if (debugViewCharacterSprite != x1C) {
 				unknownC02140(x1A);
 				entityTPTEntries[createEntity(x1C, ActionScript.characterViewer, x1A, 0x20, 0x20)] = 0;
 			}
@@ -21887,23 +21812,23 @@ void unknownEFE175() {
 		if ((padState[0] & (Pad.start | Pad.select)) == (Pad.start | Pad.select)) {
 			debugStartPositionX = entityAbsXTable[24];
 			debugStartPositionY = entityAbsYTable[24];
-			debugUnknownB565 = x1C;
+			debugViewCharacterSprite = x1C;
 			return;
 		} else {
 			if ((padPress[0] & Pad.y) != 0) {
 				debugYButtonMenu();
 			}
-			if (debugModeNumber == 3) {
+			if (debugModeNumber == DebugMode.viewAttribute) {
 				bg3XPosition = bg1XPosition;
 				bg3YPosition = bg1YPosition;
 				if ((padPress[0] & Pad.select) != 0) {
-					if (++unknown7EB55F == 4) {
-						unknown7EB55F = 0;
+					if (++viewAttributeMode == 4) {
+						viewAttributeMode = 0;
 					}
-					unknownEFE133(gameState.leaderX.integer, gameState.leaderY.integer);
+					renderAllAttributeRows(gameState.leaderX.integer, gameState.leaderY.integer);
 				}
 			}
-			if ((debugModeNumber == 1) && ((padPress[0] & Pad.b) != 0)) {
+			if ((debugModeNumber == DebugMode.viewMap) && ((padPress[0] & Pad.b) != 0)) {
 				openMenuButton();
 			}
 			if ((currentQueuedInteraction - nextQueuedInteraction) != 0) {
@@ -21924,7 +21849,7 @@ short loadKirbySprite(short, ref const(ubyte)*) {
 
 /// $EFE5D3
 void debugProcessCommandSelection() {
-	if (unknown7EB557 == 0) {
+	if (debugMenuButtonPressed == 0) {
 		return;
 	}
 	switch (debugMenuCursorPosition) {
@@ -21933,39 +21858,39 @@ void debugProcessCommandSelection() {
 			ebMain();
 			break;
 		case 1:
-			debugModeNumber = 1;
+			debugModeNumber = DebugMode.viewMap;
 			unknown7E4A58 = -1;
-			unknownEFE175();
+			debugMain();
 			break;
 		case 2:
-			debugModeNumber = 2;
+			debugModeNumber = DebugMode.viewCharacter;
 			unknown7E4A5E = 10;
 			unknown7E4A5A = -1;
-			unknownEFE175();
+			debugMain();
 			break;
 		case 3:
-			debugModeNumber = 3;
-			unknownEFE175();
+			debugModeNumber = DebugMode.viewAttribute;
+			debugMain();
 			break;
 		case 4:
-			debugModeNumber = 4;
+			debugModeNumber = DebugMode.showBattle;
 			battleRoutine();
 			break;
 		case 5:
-			debugModeNumber = 5;
-			unknownEFE175();
+			debugModeNumber = DebugMode.checkPosition;
+			debugMain();
 			break;
 		case 6:
-			debugModeNumber = 6;
-			unknownEFD6D4(unknown7EB553);
+			debugModeNumber = DebugMode.soundMode;
+			debugSoundMenu(debugCursorEntity);
 			break;
 		default: break;
 	}
-	unknownEFEB2A();
-	unknown7EB557 = 0;
-	debugModeNumber = 0;
+	debugClearHDMA();
+	debugMenuButtonPressed = 0;
+	debugModeNumber = DebugMode.none;
 	unknownC0927C();
-	unknownEFDA05();
+	initDebugMenuScreen();
 	debugDisplayMenuOptions();
 	fadeIn(1, 1);
 }
@@ -21986,19 +21911,19 @@ void debugHandleCursorMovement() {
 			debugMenuCursorPosition = 0;
 		}
 	}
-	entityAbsYTable[unknown7EB553] = cast(short)((debugMenuCursorPosition * 24) + 0x34);
-	unknown7EB557 = padPress[0] & (Pad.b | Pad.start | Pad.a | Pad.l);
+	entityAbsYTable[debugCursorEntity] = cast(short)((debugMenuCursorPosition * 24) + 0x34);
+	debugMenuButtonPressed = padPress[0] & (Pad.b | Pad.start | Pad.a | Pad.l);
 }
 
 /// $EFE689
 noreturn debugMenuLoad() {
-	unknownC43317();
+	initializePartyPointers();
 	debugStartPositionX = 0x80;
 	debugStartPositionY = 0x70;
-	debugUnknownB565 = 0x94;
+	debugViewCharacterSprite = OverworldSprite.lardnaMinch;
 	dadPhoneTimer = 0xFFFF;
 	unknownC0927C();
-	unknownEFDA05();
+	initDebugMenuScreen();
 	debugDisplayMenuOptions();
 	fadeIn(4, 1);
 	while (true) {
@@ -22012,16 +21937,16 @@ noreturn debugMenuLoad() {
 }
 
 /// $EFE6CF
-short unknownEFE6CF() {
-	if (debugModeNumber == 1) {
+short isDebugViewMapMode() {
+	if (debugModeNumber == DebugMode.viewMap) {
 		return 0;
 	}
 	return -1;
 }
 
-/// $EFE6E2
-short unknownEFE6E2(short arg1) {
-	if ((debugModeNumber == 1) && (arg1 > 10)) {
+/// $EFE6E2 - Limits the actionscript ID of NPCs to 10? but why?
+short debugViewMapLimitActionscript(short arg1) {
+	if ((debugModeNumber == DebugMode.viewMap) && (arg1 > 10)) {
 		arg1 = 10;
 	}
 	return arg1;
@@ -22030,7 +21955,7 @@ short unknownEFE6E2(short arg1) {
 /// $EFE708
 short unknownEFE708() {
 	short result = 0;
-	if (debugModeNumber == 2) {
+	if (debugModeNumber == DebugMode.viewCharacter) {
 		while ((padState[0] & Pad.b) == 0) {
 			waitUntilNextFrame();
 		}
@@ -22046,15 +21971,15 @@ short unknownEFE708() {
 
 /// $EFE746
 short debugCheckViewCharacterMode() {
-	if (debugModeNumber == 2) {
+	if (debugModeNumber == DebugMode.viewCharacter) {
 		return 0;
 	}
 	return 1;
 }
 
 /// $EFE759
-short unknownEFE759() {
-	if ((debugModeNumber == 2) && (unknown7EB575 != 0)) {
+short debugEnemiesEnabled() {
+	if ((debugModeNumber == DebugMode.viewCharacter) && (debugEnemiesEnabledFlag != 0)) {
 		return -1;
 	}
 	return 0;
@@ -22073,12 +21998,12 @@ void saveReplaySaveSlot() {
 }
 
 /// $EFE895
-void unknownEFE895(short arg1) {
-	if (testSRAMSize != 0) {
+void storePersistentReplayState(short style) {
+	if (testSRAMSize() != 0) {
 		randABackup = randA;
 		randBBackup = randB;
-		unknown7EB571 = unknown7E0002;
-		unknown7EB573 = arg1;
+		frameCounterBackup = frameCounter;
+		replayTransitionStyle = style;
 	}
 }
 
@@ -22091,7 +22016,7 @@ void loadReplaySaveSlot() {
 	memcpy(&partyCharacters[0], &replaySRAM.partyCharacters, (PartyCharacter[6]).sizeof);
 	memcpy(&eventFlags[0], &replaySRAM.eventFlags, eventFlags.sizeof);
 	memcpy(&timer, &replaySRAM.timer, timer.sizeof);
-	unknown7E0002 = cast(ubyte)unknown7EB571;
+	frameCounter = cast(ubyte)frameCounterBackup;
 	randA = randABackup;
 	randB = randBBackup;
 	unknownC083B8();
@@ -22099,27 +22024,27 @@ void loadReplaySaveSlot() {
 }
 
 /// $EFEA4A
-void unknownEFEA4A() {
+void startReplay() {
 	if (testSRAMSize() == 0) {
 		return;
 	}
-	unknown7EB567 = 1;
+	replayModeActive = 1;
 	loadReplaySaveSlot();
 	fadeOut(1, 1);
 	loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 	unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, 0);
 	unfreezeEntities();
-	screenTransition(unknown7EB573, 0);
+	screenTransition(replayTransitionStyle, 0);
 	freezeEntities();
 }
 
 /// $EFEA9E
-void unknownEFEA9E() {
-	unknown7EB567 = 0;
+void endReplay() {
+	replayModeActive = 0;
 }
 
 /// $EFEAC8
-void unknownEFEAC8() {
+void debugCheckPositionOverlayBackground() {
 	WOBJSEL = 0x20;
 	WH0 = 0x18;
 	WH1 = 0x78;
@@ -22129,32 +22054,54 @@ void unknownEFEAC8() {
 	setFixedColourData(0xEF);
 	dmaChannels[4].DMAP = 1;
 	dmaChannels[4].BBAD = 0x26;
-	dmaChannels[4].A1T = &unknownEFEB1D;
-	dmaChannels[4].DASB = 0xEF; //look into this
+	dmaChannels[4].A1T = &checkPositionOverlayBackgroundHDMATable;
 	mirrorHDMAEN = 0x10;
 }
 
 /// $EFEB1D
-immutable ubyte[13] unknownEFEB1D = [0x7F, 0x80, 0x7F, 0x3C, 0x80, 0x7F, 0x20, 0x18, 0x78, 0x01, 0x80, 0x7F, 0x00];
+version(bugfix) {
+	immutable ubyte[19] checkPositionOverlayBackgroundHDMATable = [
+		11, 0x80, 0x7F, // disable window for 16 lines
+		32, 0x08, 0x58, // 80 pixel wide window, 8 pixels from the left
+		127, 0x80, 0x7F, // disable window for 171 lines
+		17, 0x80, 0x7F,
+		32, 0x18, 0x78, // 96 pixel wide window, 24 pixels from the left
+		1, 0x80, 0x7F, // disable window again
+		0
+	];
+} else {
+	immutable ubyte[13] checkPositionOverlayBackgroundHDMATable = [
+		127, 0x80, 0x7F, // disable window for 187 lines
+		60, 0x80, 0x7F,
+		32, 0x18, 0x78, // 96 pixel wide window, 24 pixels from the left
+		1, 0x80, 0x7F, // disable window again
+		0
+	];
+}
 
 /// $EFEB2A
-void unknownEFEB2A() {
+void debugClearHDMA() {
 	mirrorHDMAEN = 0;
 	WH0 = 0x80;
 	WH1 = 0x7F;
 }
 
 /// $EFEB5F
-immutable ubyte[] debugMenuFont = cast(immutable(ubyte)[])import("fonts/debug.gfx");
+@ROMSource(0x2FEB5F, 1024)
+immutable(ubyte)[] debugMenuFont;
 
 /// $EFEF70
-immutable ubyte[71] unknownEFEF70 = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];
+immutable ubyte[47] unknownEFEF70 = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF];
+
+/// $EFEF9F
+immutable RGB[12] debugFontPalette = [RGB(0, 0, 0), RGB(0, 31, 31), RGB(31, 31, 6), RGB(31, 6, 6), RGB(0, 0, 0), RGB(26, 0, 26), RGB(11, 11, 31), RGB(6, 31, 6), RGB(0, 0, 0), RGB(0, 0, 26), RGB(31, 16, 0), RGB(31, 21, 21)];
 
 /// $EFFF9F
 immutable ubyte[71] unknownEFEF9F = [0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0xE0, 0x7F, 0xFF, 0x1B, 0xDF, 0x18, 0x00, 0x00, 0x1A, 0x68, 0x6B, 0x7D, 0xE6, 0x1B, 0x00, 0x00, 0x00, 0x68, 0x1F, 0x02, 0xBF, 0x56];
 
 /// $EFEFB7
-immutable ubyte[] kirby = cast(immutable(ubyte)[])import("kirby.gfx");
+@ROMSource(0x2FEFB7, 288)
+immutable(ubyte)[] kirby;
 
 /// $EFF1BB
 immutable ushort[256] unknownEFF1BB = [0x620C, 0x5F19, 0x5B7C, 0x7EA9, 0x0265, 0x5A94, 0x5F19, 0x7EA9, 0x0265, 0x7F64, 0x7FEF, 0x7FF8, 0x0265, 0x5287, 0x4A48, 0x7E89, 0x35AD, 0x7FD8, 0x7E67, 0x7F0B, 0x0265, 0x7E67, 0x7E89, 0x7F0A, 0x0265, 0x45FF, 0x0000, 0x1CF7, 0x0000, 0x7FFF, 0x43FF, 0x3D5F, 0x35AD, 0x0000, 0x0006, 0x000D, 0x1CF7, 0x2D5A, 0x45FF, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x7FFF, 0x35AD, 0x3D28, 0x637B, 0x55EE, 0x7BFF, 0x7D5F, 0x3095, 0x7FFF, 0x7FFF, 0x726F, 0x3480, 0x5DE7, 0x0000, 0x7F73, 0x7F3F, 0x7D5F, 0x35AD, 0x211F, 0x1094, 0x000C, 0x0000, 0x0000, 0x03E0, 0x4314, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x35AD, 0x1E41, 0x2EC5, 0x3F49, 0x00A6, 0x012A, 0x09AE, 0x1611, 0x2274, 0x2ED7, 0x3B3A, 0x19A6, 0x2EAB, 0x19B5, 0x42BB, 0x5F5F, 0x35AD, 0x2BF4, 0x032F, 0x0227, 0x7FFF, 0x2085, 0x70A5, 0x7EE1, 0x1A7D, 0x277F, 0x6EF8, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x35AD, 0x03E0, 0x3907, 0x456A, 0x51CD, 0x5E30, 0x51D2, 0x5B39, 0x637B, 0x6BBD, 0x73FF, 0x31D0, 0x1D2B, 0x35F1, 0x214C, 0x4C9A, 0x2D6B, 0x0421, 0x2C9C, 0x453F, 0x61DF, 0x7A7F, 0x7F5F, 0x294A, 0x7FFF, 0x1CE7, 0x35AD, 0x000B, 0x2D29, 0x4A30, 0x6B58, 0x7FFF, 0x2D6B, 0x0C63, 0x00D4, 0x11F9, 0x331C, 0x537D, 0x6BFF, 0x294A, 0x7FFF, 0x1CE7, 0x1869, 0x3CDF, 0x61DF, 0x7A7F, 0x7F5F, 0x7FFF, 0x2D6B, 0x0C63, 0x01C0, 0x0240, 0x0300, 0x03E0, 0x77FC, 0x33D5, 0x0220, 0x5BFD, 0x0CC8, 0x09D1, 0x0297, 0x033F, 0x5FFF, 0x7FFF, 0x2D6B, 0x02B5, 0x0318, 0x037B, 0x03FF, 0x6FFF, 0x01EF, 0x2ED7, 0x4BBE, 0x4E73, 0x1CE7, 0x314A, 0x41CF, 0x4E52, 0x6B5A, 0x7FFF, 0x2D6B, 0x0000, 0x0005, 0x0010, 0x00BF, 0x067F, 0x27EB, 0x5B39, 0x637B, 0x6BBD, 0x105A, 0x21D0, 0x090A, 0x00C8, 0x03E0, 0x7FFF, 0x2D6B, 0x0000, 0x08EA, 0x2592, 0x3277, 0x00E0, 0x0180, 0x02C0, 0x00C9, 0x2995, 0x46BA, 0x102A, 0x3CF9, 0x727F, 0x14A5, 0x7FFF, 0x2D6B, 0x0000, 0x0924, 0x1607, 0x1D90, 0x3698, 0x5F5F, 0x2D34, 0x55FD, 0x7FFF, 0x00A9, 0x0112, 0x01F6, 0x1CE7, 0x3DEF, 0x7FFF, 0x2D6B, 0x0000, 0x0000, 0x0000, 0x0903, 0x1E08, 0x36ED, 0x0000, 0x0000, 0x033F, 0x1A57, 0x158F, 0x03FF, 0x0299, 0x01D1, 0x7FFF];
@@ -22172,3 +22119,107 @@ immutable SpriteMap*[1] unknownEFF5BB = [[
 	SpriteMap(0x04, 0x08, 0x30, 0x04, 0x80),
 	SpriteMap(0, 0, 0, 0, 0)
 ]];
+
+enum mapDataTilesetSource = [
+	ROMSource(0x1D0000, 12948),
+	ROMSource(0x1D3294, 11395),
+	ROMSource(0x1E747E, 11395),
+	ROMSource(0x1D89A2, 11823),
+	ROMSource(0x1DB7D1, 10090),
+	ROMSource(0x1DDF3B, 8083),
+	ROMSource(0x1E0000, 13001),
+	ROMSource(0x1E32C9, 8566),
+	ROMSource(0x1E543F, 8255),
+	ROMSource(0x1D5F17, 10891),
+	ROMSource(0x1EA101, 11577),
+	ROMSource(0x1ECE3A, 8877),
+	ROMSource(0x1F0000, 10552),
+	ROMSource(0x19CE52, 11718),
+	ROMSource(0x1CB023, 9748),
+	ROMSource(0x1F9F57, 8940),
+	ROMSource(0x1F2938, 10226),
+	ROMSource(0x1F512A, 6846),
+	ROMSource(0x1F6BE8, 5539),
+	ROMSource(0x1F818B, 7628),
+];
+
+enum mapDataArrangementSource = [
+	ROMSource(0x17C600, 13800),
+	ROMSource(0x190000, 13545),
+	ROMSource(0x1934E9, 13250),
+	ROMSource(0x1968AB, 9514),
+	ROMSource(0x198DD5, 16509),
+	ROMSource(0x1A0000, 4930),
+	ROMSource(0x1A1342, 15201),
+	ROMSource(0x1A4EA3, 11780),
+	ROMSource(0x1B0000, 9921),
+	ROMSource(0x1B26C1, 15038),
+	ROMSource(0x1B9218, 13492),
+	ROMSource(0x1BC6CC, 11295),
+	ROMSource(0x1C0000, 8138),
+	ROMSource(0x1C1FCA, 14706),
+	ROMSource(0x1C593C, 3903),
+	ROMSource(0x1C687B, 2629),
+	ROMSource(0x1B617F, 6819),
+	ROMSource(0x1B7C22, 5622),
+	ROMSource(0x1C72C0, 7050),
+	ROMSource(0x1C8E4A, 8665),
+];
+
+enum mapPaletteSource = [
+	ROMSource(0x1A7CA7, 768),
+	ROMSource(0x1A7FA7, 576),
+	ROMSource(0x1A81E7, 768),
+	ROMSource(0x1A84E7, 384),
+	ROMSource(0x1A8667, 384),
+	ROMSource(0x1A87E7, 768),
+	ROMSource(0x1A8AE7, 1344),
+	ROMSource(0x1A9027, 192),
+	ROMSource(0x1A90E7, 384),
+	ROMSource(0x1A9267, 1152),
+	ROMSource(0x1A96E7, 1536),
+	ROMSource(0x1A9CE7, 1536),
+	ROMSource(0x1AA2E7, 1536),
+	ROMSource(0x1AA8E7, 768),
+	ROMSource(0x1AABE7, 1536),
+	ROMSource(0x1AB1E7, 1536),
+	ROMSource(0x1AB7E7, 768),
+	ROMSource(0x1ABAE7, 1536),
+	ROMSource(0x1AC0E7, 192),
+	ROMSource(0x1AC1A7, 1344),
+	ROMSource(0x1AC6E7, 1536),
+	ROMSource(0x1ACCE7, 960),
+	ROMSource(0x1AD0A7, 960),
+	ROMSource(0x1AD467, 768),
+	ROMSource(0x1AD767, 960),
+	ROMSource(0x1ADB27, 1536),
+	ROMSource(0x1AE127, 1152),
+	ROMSource(0x1AE5A7, 960),
+	ROMSource(0x1AE967, 1152),
+	ROMSource(0x1AEDE7, 1152),
+	ROMSource(0x1AF267, 576),
+	ROMSource(0x1AF4A7, 1536),
+];
+
+enum mapDataTileAnimationSource = [
+	ROMSource(0x1FC243, 1784),
+	ROMSource(0x1FC93B, 580),
+	ROMSource(0x1FCB7F, 25),
+	ROMSource(0x1FCB98, 25),
+	ROMSource(0x1FCBB1, 25),
+	ROMSource(0x1FCBCA, 1078),
+	ROMSource(0x1FD000, 1774),
+	ROMSource(0x1FD6EE, 1641),
+	ROMSource(0x1FDD57, 1172),
+	ROMSource(0x1FE1EB, 25),
+	ROMSource(0x1FE204, 25),
+	ROMSource(0x1FE21D, 25),
+	ROMSource(0x1FE236, 460),
+	ROMSource(0x1FE402, 198),
+	ROMSource(0x1FE4C8, 25),
+	ROMSource(0x1EF0E7, 25),
+	ROMSource(0x1EF100, 463),
+	ROMSource(0x1EF2CF, 796),
+	ROMSource(0x1EF5EB, 638),
+	ROMSource(0x1EF869, 1140),
+];

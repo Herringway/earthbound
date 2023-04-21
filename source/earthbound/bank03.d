@@ -16,16 +16,8 @@ import earthbound.globals;
 import core.stdc.string;
 
 //$C30000
-immutable ushort[16][8] spriteGroupPalettes = [
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/0.pal")),
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/1.pal")),
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/2.pal")),
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/3.pal")),
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/4.pal")),
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/5.pal")),
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/6.pal")),
-	convertPalette(cast(immutable(ubyte)[])import("overworld_sprites/7.pal")),
-];
+@ROMSource(0x30000, 256)
+immutable(ushort[16])[] spriteGroupPalettes;
 
 /// $C30100
 void displayAntiPiracyScreen() {
@@ -392,7 +384,7 @@ version(bugfix) {
 /// $C3E450
 void unknownC3E450() {
 	const(RGB)* x06;
-	if ((unknown7E0002 & 4) != 0) {
+	if ((frameCounter & 4) != 0) {
 		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][4];
 	} else {
 		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20];
@@ -798,12 +790,18 @@ void nullC3EF23(short) {
 
 /// $C3F054
 immutable FontConfig[5] fontConfigTable = [
-	FontConfig(cast(immutable(ubyte[]))import("fonts/main.bin"), cast(immutable(ubyte[]))import("fonts/main.gfx"), 32, 16), //main font
-	FontConfig(cast(immutable(ubyte[]))import("fonts/mrsaturn.bin"), cast(immutable(ubyte[]))import("fonts/mrsaturn.gfx"), 32, 16), //mr saturn font
-	FontConfig(cast(immutable(ubyte[]))import("fonts/battle.bin"), cast(immutable(ubyte[]))import("fonts/battle.gfx"), 16, 16), //battle font
-	FontConfig(cast(immutable(ubyte[]))import("fonts/tiny.bin"), cast(immutable(ubyte[]))import("fonts/tiny.gfx"), 8, 8), //tiny font
-	FontConfig(cast(immutable(ubyte[]))import("fonts/large.bin"), cast(immutable(ubyte[]))import("fonts/large.gfx"), 32, 16), //large font
+	FontConfig(0, 0, 32, 16), //main font
+	FontConfig(1, 1, 32, 16), //mr saturn font
+	FontConfig(2, 2, 16, 16), //battle font
+	FontConfig(3, 3, 8, 8), //tiny font
+	FontConfig(4, 4, 32, 16), //large font
 ];
+
+@([ROMSource(0x210C7A, 96), ROMSource(0x201359, 96), ROMSource(0x2118DA, 96), ROMSource(0x211F3A, 96), ROMSource(0x21229A, 96)])
+immutable(ubyte[])[] fontData;
+
+@([ROMSource(0x210CDA, 3072), ROMSource(0x2013B9, 3072), ROMSource(0x21193A, 1536), ROMSource(0x211F9A, 768), ROMSource(0x2122FA, 3072)])
+immutable(ubyte[])[] fontGraphics;
 
 /// $C3F112
 immutable ubyte[2][5] psiSuffixes = [
@@ -1110,7 +1108,7 @@ short showTitleScreen(short arg1) {
 	}
 	for (short i = 0; i < 0x1E; i++) {
 		if ((entityScriptTable[i] >= ActionScript.titleScreen1) && (entityScriptTable[i] <= ActionScript.titleScreen11)) {
-			unknownC09C35(i);
+			deleteEntity(i);
 		}
 		entitySpriteMapFlags[i] &= 0x7FFF;
 	}

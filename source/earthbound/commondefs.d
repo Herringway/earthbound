@@ -56,6 +56,78 @@ enum hpPPWindowHeight = 8;
 enum objectTickDisabled = 0x8000; ///
 enum objectMoveDisabled = 0x4000; ///
 
+enum EntityTickFlags {
+	moveDisabled = 0x4000,
+	tickDisabled = 0x8000,
+	fullyDisabled = moveDisabled | tickDisabled,
+}
+
+enum SpriteMapFlags {
+	unknown = 0x8000,
+}
+
+enum EntityObstacleFlags {
+	unknown0 = 1 << 0,
+	unknown1 = 1 << 1,
+	unknown2 = 1 << 2,
+	unknown3 = 1 << 3,
+	unknown4 = 1 << 4,
+	unknown5 = 1 << 5,
+	unknown6 = 1 << 6,
+	unknown7 = 1 << 7,
+}
+
+auto printableFlags(EntityTickFlags flags) @safe pure {
+	static struct Result {
+		EntityTickFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Callback disabled".only.take(flags & EntityTickFlags.tickDisabled),
+				"Script disabled".only.take(flags & EntityTickFlags.moveDisabled),
+				"Enabled".only.take(flags == cast(EntityTickFlags)0),
+			));
+		}
+	}
+	return Result(flags);
+}
+auto printableFlags(SpriteMapFlags flags) @safe pure {
+	static struct Result {
+		SpriteMapFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Unknown".only.take(flags & SpriteMapFlags.unknown),
+				"None".only.take(flags == cast(SpriteMapFlags)0),
+			));
+		}
+	}
+	return Result(flags);
+}
+auto printableFlags(EntityObstacleFlags flags) @safe pure {
+	static struct Result {
+		EntityObstacleFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Unknown 0".only.take(flags & EntityObstacleFlags.unknown0),
+				"Unknown 1".only.take(flags & EntityObstacleFlags.unknown1),
+				"Unknown 2".only.take(flags & EntityObstacleFlags.unknown2),
+				"Unknown 3".only.take(flags & EntityObstacleFlags.unknown3),
+				"Unknown 4".only.take(flags & EntityObstacleFlags.unknown4),
+				"Unknown 5".only.take(flags & EntityObstacleFlags.unknown5),
+				"Unknown 6".only.take(flags & EntityObstacleFlags.unknown6),
+				"Unknown 7".only.take(flags & EntityObstacleFlags.unknown7),
+				"None".only.take(flags == cast(EntityObstacleFlags)0),
+			));
+		}
+	}
+	return Result(flags);
+}
+
 ///
 enum ubyte baseNumberSelectorCharacter1 = 0x10;
 ///
@@ -135,7 +207,7 @@ enum Window {
 	invalid = -1,
 }
 ///
-enum TeleportStyle : ubyte {
+enum TeleportStyle : short {
 	none = 0,
 	psiAlpha = 1,
 	psiBeta = 2,
@@ -4385,7 +4457,28 @@ enum SurfaceFlags {
 	unknown2 = 1<<6,
 	solid = 1<<7,
 }
-
+auto printableFlags(SurfaceFlags flags) @safe pure {
+	static struct Result {
+		SurfaceFlags flags;
+		void toString(W)(ref W writer) const {
+			import std.format : formattedWrite;
+			import std.range : chain, only, take;
+			writer.formattedWrite!"%-(%s, %)"(chain(
+				"Obscures lower body".only.take(flags & SurfaceFlags.obscureLowerBody),
+				"Obscures upper body".only.take(flags & SurfaceFlags.obscureUpperBody),
+				"Deep water".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.deepWater),
+				"Shallow water".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.shallowWater),
+				"Causes sunstroke".only.take((flags & SurfaceFlags.deepWater) == SurfaceFlags.causesSunstroke),
+				"Ladder/stairs".only.take(flags & SurfaceFlags.ladderOrStairs),
+				"unknown1".only.take(flags & SurfaceFlags.unknown1),
+				"unknown2".only.take(flags & SurfaceFlags.unknown2),
+				"Solid".only.take(flags & SurfaceFlags.solid),
+				"None".only.take(flags == SurfaceFlags.none),
+			));
+		}
+	}
+	return Result(flags);
+}
 enum ShallowWaterSpeed = FixedPoint1616(0x8000, 0x0000); ///0.5x
 enum DeepWaterSpeed = FixedPoint1616(0x547A, 0x0000); ///0.33x
 enum SkipSandwichSpeed = FixedPoint1616(0x8000, 0x0001); ///1.5x
@@ -5033,6 +5126,72 @@ enum BattleSide : ubyte{
 	foes = 1,
 }
 
+enum DebugMode {
+	none = 0,
+	viewMap = 1,
+	viewCharacter = 2,
+	viewAttribute = 3,
+	showBattle = 4,
+	checkPosition = 5,
+	soundMode = 6,
+}
+
+enum CameraMode {
+	normal = 0,
+	autoScroll = 1,
+	followEntity = 2,
+	unknown3 = 3,
+}
+
+enum MusicEffect {
+	none = 0,
+	normal = 1,
+	quickFade = 2,
+	normalFade = 3,
+	null4 = 4,
+	tempTempoBoost = 5,
+	null6 = 6,
+	tempQuieter = 7,
+	tempLouder = 8,
+	setVolPreset1 = 9,
+	setVolPreset2 = 10,
+	setVolPreset3 = 11,
+	setVolPreset4 = 12,
+	setVolPreset5 = 13,
+	setVolPreset6 = 14,
+	setVolPreset7 = 15,
+	setVolPreset8 = 16,
+	null17 = 17,
+	null18 = 18,
+	null19 = 19,
+	null20 = 20,
+	octaveUp = 21,
+	restorePitch = 22,
+	quieter = 23,
+	louder = 24,
+	chan7Loudest = 25,
+	chan7Silent = 26,
+	chan7Quieter = 27,
+	chan7Quietest = 28,
+	unknown29 = 29,
+	unknown30 = 30,
+	unknown31 = 31,
+}
+
+enum InteractionType {
+	unknown0,
+	unknown1,
+	unknown2,
+	unknown3,
+	unknown4,
+	unknown5,
+	unknown6,
+	unknown7,
+	unknown8,
+	unknown9,
+	unknown10,
+}
+
 ///
 struct GameState {
 	version(Have_siryul) {
@@ -5067,15 +5226,15 @@ struct GameState {
 	ushort walkingStyle; ///
 	ushort unknown90; ///
 	ushort unknown92; ///
-	ushort currentPartyMembers; ///
+	ushort firstPartyMemberEntity; ///
 	ubyte[6] unknown96; ///
 	ubyte[6] playerControlledPartyMembers; ///
 	ubyte[12] partyEntities; ///
 	ubyte partyCount; ///
 	ubyte playerControlledPartyMemberCount; ///
-	ushort unknownB0; ///
-	ushort unknownB2; ///
-	ushort unknownB4; ///
+	ushort cameraMode; ///
+	ushort autoScrollFrames; ///
+	ushort autoScrollOriginalWalkingStyle; ///
 	ubyte[3] deliveryQueueItem; ///
 	ubyte[3] deliveryQueueCharacter; ///
 	ubyte autoFightEnable; ///
@@ -5272,7 +5431,7 @@ struct SpriteGrouping {
 }
 ///
 struct OverworldSpriteGraphics {
-	const(ubyte)[] data; ///
+	size_t id; ///
 	ubyte lsb; ///
 }
 ///
@@ -5506,8 +5665,8 @@ struct SaveDataReplay {
 }
 ///
 struct FontConfig {
-	immutable(ubyte)[] data; ///
-	immutable(ubyte)[] graphics; ///
+	ubyte dataID; ///
+	ubyte graphicsID; ///
 	ushort height; ///
 	ushort width; ///
 }
@@ -5659,13 +5818,13 @@ struct BattleEntryPointer {
 struct OverworldEventMusic {
 	ushort flag; ///
 	ubyte music; ///
-	ubyte unknown3; ///
+	ubyte audioEffect; ///
 }
 ///
 struct TownMapIconPlacement {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
-	ubyte unknown2; ///
+	ubyte x; ///
+	ubyte y; ///
+	ubyte sprite; ///
 	ushort eventFlag; ///
 }
 ///
@@ -5810,7 +5969,7 @@ struct BattleGroupEnemy {
 }
 ///
 struct BattleSpritePointer {
-	immutable(ubyte)[] sprite; ///
+	ubyte sprite; ///
 	ubyte size; ///
 }
 ///
@@ -6206,7 +6365,7 @@ struct EnemyPlacementGroup {
 }
 ///
 struct PSIAnimation {
-	immutable(ubyte)[] graphics; ///
+	ubyte graphics; ///
 	ubyte frameDuration; ///
 	ubyte paletteDuration; ///
 	ubyte unknown4; ///
@@ -6256,7 +6415,7 @@ union Unknown7E0028Union {
 }
 ///
 struct AnimationSequence {
-	immutable(ubyte)[] ptr; ///
+	ubyte id; ///
 	ushort unknown4; ///
 	ubyte unknown6; ///
 	ubyte unknown7; ///
@@ -6321,6 +6480,8 @@ void function(short) setStatic = (short) {};
 ///
 ushort function(ushort) getControllerState = (ushort) { return cast(ushort)0; };
 ///
+void function(short, short, short, short, ubyte, ubyte, ubyte, ubyte) drawRect = (short, short, short, short, ubyte, ubyte, ubyte, ubyte) {};
+///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
 	size_t idx;
@@ -6364,7 +6525,7 @@ ubyte[] ebString(string str) {
 	return result;
 }
 ///
-ubyte[] ebStringz(string str) {
+ubyte[] ebStringz(string str) @safe pure {
 	ubyte[] result = new ubyte[](str.length + 1);
 	size_t idx;
 	foreach (dchar c; str) {
@@ -6376,7 +6537,7 @@ ubyte[] ebStringz(string str) {
 
 static assert(ebString!4("Null") == [0x7E, 0xA5, 0x9C, 0x9C]);
 ///
-ubyte ebChar(dchar c) {
+ubyte ebChar(dchar c) @safe pure {
 	import std.conv : text;
 	import std.utf : toUTF8;
 	switch (c) {
@@ -6842,7 +7003,7 @@ void writeSaveFile(short id, SaveBlock block) {
 ///
 string saveFileName(short id) {
 	import std.format : format;
-	if (id % 1 == 0) {
+	if (id % 2 == 0) {
 		return format!"%s.ebsave"(id / 2);
 	} else {
 		return format!"%s.ebsave.bak"(id / 2);
@@ -6852,6 +7013,9 @@ string saveFileName(short id) {
 private extern(C) __gshared string[] rt_options = ["oncycle=ignore"];
 ///
 const(ubyte)[] getFullCC(const(ubyte)* script) {
+	return getFullCC(script[0 .. size_t.max]);
+}
+const(ubyte)[] getFullCC(const(ubyte)[] script) @safe pure {
 	enum ptrSize = string.sizeof;
 	ubyte f = script[0];
 	if (f < 0x20) {
@@ -6916,6 +7080,15 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 					case 35:
 					case 36:
 						return script[0 .. 7];
+					case 2:
+						foreach (idx, v; script[2 .. $]) {
+							if (v == 1) {
+								return script[0 .. idx + ptrSize + 3];
+							} else if (v == 2) {
+								return script[0 .. idx + 3];
+							}
+						}
+						assert(0, "Invalid CC [19 02]");
 					default:
 						return script[0 .. 2];
 				}
@@ -7096,6 +7269,13 @@ const(ubyte)[] getFullCC(const(ubyte)* script) {
 	}
 	return script[0 .. 1];
 }
+
+unittest {
+	assert(getFullCC([0x19, 0x02, 0x50, 0x50, 0x50, 0x02, 0x00]) == [0x19, 0x02, 0x50, 0x50, 0x50, 0x02]);
+	const emptyPointer = new ubyte[](string.sizeof);
+	assert(getFullCC(cast(ubyte[])[0x19, 0x02, 0x50, 0x50, 0x50, 0x01] ~ emptyPointer ~ cast(ubyte[])[0x00]) == cast(ubyte[])[0x19, 0x02, 0x50, 0x50, 0x50, 0x01] ~ emptyPointer);
+}
+
 version(configurable) {
 	struct GameConfig {
 		import std.typecons : Nullable;
@@ -7123,15 +7303,15 @@ version(configurable) {
 }
 GameConfig config;
 ubyte[] allBytes(T...)(T args) {
-    struct X {
-    	align(1):
-        T stuff;
-    }
-    union Z {
-        X x;
-        ubyte[X.sizeof] bytes;
-    }
-    return Z(X(args)).bytes.dup;
+	struct X {
+		align(1):
+		T stuff;
+	}
+	union Z {
+		X x;
+		ubyte[X.sizeof] bytes;
+	}
+	return Z(X(args)).bytes.dup;
 }
 
 void printTrace() {
@@ -7141,4 +7321,9 @@ void printTrace() {
 	foreach (line; trace) {
 		writeln(line);
 	}
+}
+
+struct ROMSource {
+	uint offset;
+	uint length;
 }

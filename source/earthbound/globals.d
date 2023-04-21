@@ -6,7 +6,7 @@ import earthbound.hardware;
 
 __gshared ubyte dmaQueueIndex; /// $0000
 __gshared ubyte unknown7E0001; /// $0001
-__gshared ubyte unknown7E0002; /// $0002
+__gshared ubyte frameCounter; /// $0002
 __gshared OAMEntry* oamAddr; /// $0003
 __gshared OAMEntry* oamEndAddr; /// $0005
 __gshared ubyte* oamHighTableAddr; /// $0007
@@ -487,7 +487,7 @@ __gshared short unknown7E5D7E; /// $5D7E
 
 __gshared short[6] unknown7E5D8C; /// $5D8C
 __gshared short overworldStatusSuppression; /// $5D98
-__gshared short unknown7E5D9A; /// $5D9A
+__gshared short pendingInteractions; /// $5D9A
 __gshared ushort mushroomizationTimer; /// $5D9C - Time left until next direction swap in frames
 __gshared ushort mushroomizationModifier; /// $5D9E - Which set of swapped directions to use
 __gshared ushort mushroomizedWalkingFlag; /// $5DA0 - Whether or not to use mushroomized movement logic
@@ -652,7 +652,7 @@ __gshared ushort dmaTransferFlag; /// $9E2B
 __gshared ushort entityPreparedXCoordinate; /// $9E2D
 __gshared ushort entityPreparedYCoordinate; /// $9E2F
 __gshared ushort entityPreparedDirection; /// $9E31
-__gshared ushort unknown7E9E33; /// $9E33
+__gshared ushort cameraFocusEntity; /// $9E33
 __gshared short unknown7E9E35; /// $9E35
 __gshared ubyte unknown7E9E37; /// $9E37
 __gshared ubyte unknown7E9E38; /// $9E38
@@ -856,9 +856,9 @@ __gshared ubyte* unknown7EB4A4; /// $B4A4
 __gshared short unknown7EB4A6; /// $B4A6
 __gshared short unknown7EB4A8; /// $B4A8
 __gshared Unknown7EB4AAEntry* unknown7EB4AA; /// $B4AA
-__gshared short unknown7EB4AE; /// $B4AE
-__gshared short unknown7EB4B0; /// $B4B0
-__gshared short unknown7EB4B2; /// $B4B2
+__gshared short townMapIconAnimationFrame; /// $B4AE
+__gshared short townMapPlayerIconAnimationFrame; /// $B4B0
+__gshared short framesUntilMapIconPaletteUpdate; /// $B4B2
 __gshared short unknown7EB4B4; /// $B4B4
 __gshared ubyte unknown7EB4B6; /// $B4B6
 __gshared ubyte unknown7EB4B8; /// $B4B8
@@ -884,32 +884,32 @@ __gshared short[10] unknown7EB511; /// $B511
 __gshared ushort[10] unknown7EB525; /// $B525
 __gshared short piracyFlag; /// $B539
 __gshared ushort currentMusicTrack; /// $B53B
-__gshared short unknown7EB545; /// $B545
+__gshared short debugSoundMenuInitialBGM; /// $B545
 __gshared short unknown7EB547; /// $B547
 __gshared ushort sectorBoundaryBehaviourFlag; /// $B549
-__gshared ushort unknown7EB54B; /// $B54B
-__gshared ushort unknown7EB54D; /// $B54D
-__gshared ushort unknown7EB54F; /// $B54F
+__gshared ushort debugSoundMenuSelectedBGM; /// $B54B
+__gshared ushort debugSoundMenuSelectedSE; /// $B54D
+__gshared ushort debugSoundMenuSelectedEffect; /// $B54F
 __gshared ushort unknown7EB551; /// $B551
-__gshared ushort unknown7EB553; /// $B553
+__gshared ushort debugCursorEntity; /// $B553
 __gshared ushort debugMenuCursorPosition; /// $B555
-__gshared ushort unknown7EB557; /// $B557
+__gshared ushort debugMenuButtonPressed; /// $B557
 __gshared ushort debugModeNumber; /// $B559
 
 
 __gshared ushort unknown7EB55D; /// $B55D
-__gshared ushort unknown7EB55F; /// $B55F
+__gshared ushort viewAttributeMode; /// $B55F
 __gshared ushort debugStartPositionX; /// $B561
 __gshared ushort debugStartPositionY; /// $B563
-__gshared ushort debugUnknownB565; /// $B565
-__gshared ushort unknown7EB567; /// $B567
+__gshared ushort debugViewCharacterSprite; /// $B565
+__gshared ushort replayModeActive; /// $B567
 __gshared ushort unknown7EB569; /// $B569
 __gshared ushort unknown7EB56B; /// $B56B
 __gshared ushort randABackup; /// $B56D
 __gshared ushort randBBackup; /// $B56F
-__gshared ushort unknown7EB571; /// $B571
-__gshared ushort unknown7EB573; /// $B573
-__gshared ushort unknown7EB575; /// $B575
+__gshared ushort frameCounterBackup; /// $B571
+__gshared ushort replayTransitionStyle; /// $B573
+__gshared ushort debugEnemiesEnabledFlag; /// $B575
 
 __gshared ubyte[0x800] unknown7EB800; /// $B800
 __gshared ubyte[0x2000] unknown7EC000; /// $C000

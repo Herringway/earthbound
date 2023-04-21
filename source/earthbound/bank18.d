@@ -1,6 +1,8 @@
 ///
 module earthbound.bank18;
 
+import earthbound.commondefs;
+
 /// $D80000
 immutable ubyte[4][4] mapDataTileCollision0 = [
 	[0x80, 0x80, 0x80, 0x80],
@@ -16054,16 +16056,21 @@ immutable ubyte[4][4] mapDataTileCollision2292 = [
 ];
 
 /// $D8F05E
-immutable ubyte[] antiPiracyNoticeArrangement = cast(immutable(ubyte)[])import("errors/antipiracy.arr.lzhal");
+@ROMSource(0x18F05E, 431)
+immutable(ubyte)[] antiPiracyNoticeArrangement;
 
 /// $D8F05E
-immutable ubyte[] antiPiracyNoticeGraphics = cast(immutable(ubyte)[])import("errors/antipiracy.gfx.lzhal");
+@ROMSource(0x18F20D, 433)
+immutable(ubyte)[] antiPiracyNoticeGraphics;
 
 /// $D8F3BE
-immutable ubyte[] warningPalette = cast(immutable(ubyte)[])import("errors/shared.pal");
+@ROMSource(0x18F3BE, 8)
+immutable(ubyte)[] warningPalette;
 
 /// $D8F8CE
-immutable ubyte[] faultyGamepakArrangement = cast(immutable(ubyte)[])import("errors/faulty.arr.lzhal");
+@ROMSource(0x18F3C6, 510)
+immutable(ubyte)[] faultyGamepakArrangement;
 
 /// $D8F5C4
-immutable ubyte[] faultyGamepakGraphics = cast(immutable(ubyte)[])import("errors/faulty.gfx.lzhal");
+@ROMSource(0x18F5C4, 243)
+immutable(ubyte)[] faultyGamepakGraphics;
