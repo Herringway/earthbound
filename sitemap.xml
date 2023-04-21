@@ -1470,6 +1470,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/windowConfigurationTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/windowTickWithoutInstantPrinting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/actionScriptRerenderRow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/animateTownMapIconPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/autoHealing.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/autoLifeup.html</loc></url>
@@ -1549,6 +1550,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/getColourFadeSlope.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getDirectionTo.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getDistanceToMagicTruffle.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/getPartyCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getPositionOfPartyMember.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getRequiredEXP.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getTownMapID.html</loc></url>
@@ -1775,9 +1777,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47269.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC472A8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4730E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC47333.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4733C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4734C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47369.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC473B2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC473D0.html</loc></url>
@@ -3331,8 +3331,12 @@
 <url><loc>http://127.0.0.1/earthbound/globals/loadedAnimatedTileCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedBGDataLayer1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedBGDataLayer2.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/loadedColumnsX.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/loadedColumnsY.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedItemTransformations.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedMapMusicEntry.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/loadedRowsX.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/loadedRowsY.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedYourSanctuaryLocations.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/magicButterfly.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/menuOptions.html</loc></url>
@@ -3599,10 +3603,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E4388.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E438A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E438C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E4390.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E43A0.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E43B0.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E43C0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E43D0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E43D2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E43D4.html</loc></url>
