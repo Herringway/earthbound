@@ -6426,12 +6426,12 @@ ubyte getTownMapID(short x, short y) {
 /// $C4D2A8
 void unknownC4D2A8() {
 	if (unknown7EB4B2 == 0) {
-		unknown7EB4B2 = 0xC;
+		unknown7EB4B2 = 12;
 		short x10 = palettes[8][1];
-		for (short i = 1; i < 4; i++) {
-			palettes[4][i] = palettes[4][i - 1];
+		for (short i = 2; i < 8; i++) {
+			palettes[8][i - 1] = palettes[8][i];
 		}
-		palettes[8][1] = x10;
+		palettes[8][7] = x10;
 		unknownC0856B(16);
 	}
 	unknown7EB4B2--;
