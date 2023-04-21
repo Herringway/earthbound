@@ -386,8 +386,8 @@ __gshared short debugging; /// $436C
 __gshared short unknown7E436E; /// $436E
 __gshared short unknown7E4370; /// $4370
 __gshared short unknown7E4372; /// $4372
-__gshared short screenLeftX; /// $4374
-__gshared short screenTopY; /// $4376
+__gshared short screenLeftX; /// $4374 - The X coordinate of the top left corner of the screen
+__gshared short screenTopY; /// $4376 - The Y coordinate of the top left corner of the screen
 
 __gshared short unknown7E437C; /// $437C
 __gshared short unknown7E437E; /// $437E
@@ -401,10 +401,10 @@ __gshared short unknown7E4388; /// $4388
 __gshared short unknown7E438A; /// $438A
 __gshared short unknown7E438C; /// $438C
 __gshared short currentSectorAttributes; /// $438E
-__gshared byte[16] unknown7E4390; /// $4390
-__gshared byte[16] unknown7E43A0; /// $43A0
-__gshared byte[16] unknown7E43B0; /// $43B0
-__gshared byte[16] unknown7E43C0; /// $43C0
+__gshared byte[16] loadedRowsX; /// $4390 - X coordinates for rows that have been loaded? This is only written to, never read
+__gshared byte[16] loadedRowsY; /// $43A0 - Y coordinates for rows that have been loaded? This is only written to, never read
+__gshared byte[16] loadedColumnsX; /// $43B0 - X coordinates for columns that have been loaded? This is only written to, never read
+__gshared byte[16] loadedColumnsY; /// $43C0 - Y coordinates for columns that have been loaded? This is only written to, never read
 __gshared ushort unknown7E43D0; /// $43D0
 __gshared ushort unknown7E43D2; /// $43D2
 __gshared ushort unknown7E43D4; /// $43D4

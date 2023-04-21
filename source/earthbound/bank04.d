@@ -5754,12 +5754,12 @@ void unknownC4730E() {
 }
 
 /// $C47333
-short unknownC47333() {
+short getPartyCount() {
 	return gameState.partyCount;
 }
 
 /// $C4734C
-short unknownC4734C(short arg1) {
+short actionScriptRerenderRow(short arg1) {
 	unknownC01A63(bg1XPosition / 8, arg1);
 	return arg1;
 }

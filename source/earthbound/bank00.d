@@ -345,8 +345,8 @@ void loadMapRow(short x, short y) {
 	y /= 4;
 	short x16 = x / 4;
 	x = x16 & 0xF;
-	unknown7E4390[x] = cast(byte)x16;
-	unknown7E43A0[y & 0xF] = cast(byte)y;
+	loadedRowsX[x] = cast(byte)x16;
+	loadedRowsY[y & 0xF] = cast(byte)y;
 	ubyte x12;
 	version(noUndefinedBehaviour) {
 		// Use a boolean to track that x12 hasn't been set yet
@@ -395,9 +395,9 @@ void loadMapColumn(short x, short y) {
 	x /= 4;
 	y /= 4;
 	short x18 = x & 0xF;
-	unknown7E43B0[x18] = cast(byte)x;
+	loadedColumnsX[x18] = cast(byte)x;
 	short x16 = y & 0xF;
-	unknown7E43C0[x16] = cast(byte)y;
+	loadedColumnsY[x16] = cast(byte)y;
 	ubyte x14;
 	version(noUndefinedBehaviour) {
 		// Use a boolean to track that x14 hasn't been set yet
@@ -576,10 +576,10 @@ void reloadMapAtPosition(short x, short y) {
 	unknown7E436E = -1;
 	loadMapAtSector(x14 / 32, x02 / 16);
 	for (short i = 0; i < 16; i++) {
-		unknown7E43C0[i] = -1;
-		unknown7E43B0[i] = -1;
-		unknown7E43A0[i] = -1;
-		unknown7E4390[i] = -1;
+		loadedColumnsY[i] = -1;
+		loadedColumnsX[i] = -1;
+		loadedRowsY[i] = -1;
+		loadedRowsX[i] = -1;
 	}
 	for (short i = 0; i < 60; i++) {
 		loadMapRow(cast(short)(x14 - 32), cast(short)(x02 - 32 + i));
@@ -614,10 +614,10 @@ void loadMapAtPosition(short x, short y) {
 		overworldSetupVRAM();
 	}
 	for (short i = 0; i < 16; i++) {
-		unknown7E43C0[i] = -1;
-		unknown7E43B0[i] = -1;
-		unknown7E43A0[i] = -1;
-		unknown7E4390[i] = -1;
+		loadedColumnsY[i] = -1;
+		loadedColumnsX[i] = -1;
+		loadedRowsY[i] = -1;
+		loadedRowsX[i] = -1;
 	}
 	for (short i = 0; i < 60; i++) {
 		loadMapRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
@@ -764,10 +764,10 @@ void initializeMap(short x, short y, short direction) {
 /// $C019E2
 void unknownC019E2() {
 	for (short i = 0; i < 16; i++) {
-		unknown7E43C0[i] = -1;
-		unknown7E43B0[i] = -1;
-		unknown7E43A0[i] = -1;
-		unknown7E4390[i] = -1;
+		loadedColumnsY[i] = -1;
+		loadedColumnsX[i] = -1;
+		loadedRowsY[i] = -1;
+		loadedRowsX[i] = -1;
 	}
 	short x04 = (bg1XPosition - 0x80) /8;
 	short x10 = (bg1YPosition - 0x80) /8;
