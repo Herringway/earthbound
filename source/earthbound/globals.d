@@ -856,8 +856,8 @@ __gshared ubyte* unknown7EB4A4; /// $B4A4
 __gshared short unknown7EB4A6; /// $B4A6
 __gshared short unknown7EB4A8; /// $B4A8
 __gshared Unknown7EB4AAEntry* unknown7EB4AA; /// $B4AA
-__gshared short unknown7EB4AE; /// $B4AE
-__gshared short unknown7EB4B0; /// $B4B0
+__gshared short townMapIconAnimationFrame; /// $B4AE
+__gshared short townMapPlayerIconAnimationFrame; /// $B4B0
 __gshared short unknown7EB4B2; /// $B4B2
 __gshared short unknown7EB4B4; /// $B4B4
 __gshared ubyte unknown7EB4B6; /// $B4B6

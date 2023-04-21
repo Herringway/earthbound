@@ -405,7 +405,7 @@ immutable(ubyte)[] townMapLabelGfx;
 immutable(ubyte)[] townMapIconPalette;
 
 /// $E1F44C
-immutable SpriteMap[][24] unknownE1F44C = [
+immutable SpriteMap[][24] townMapIconSpritemaps = [
 	[
 		SpriteMap(0x00, 0x0C, 0x32, 0x00, 0x01),
 		SpriteMap(0x00, 0x0E, 0x32, 0x10, 0x01),

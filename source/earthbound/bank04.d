@@ -6441,27 +6441,27 @@ void unknownC4D2A8() {
 void unknownC4D2F0() {
 	switch (mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown0 & 0x70) {
 		case 0x10:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[2]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[2]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
 			break;
 		case 0x20:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[3]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[3]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
 			break;
 		case 0x40:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[4]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[4]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
 			break;
 		case 0x30:
-			unknownC08C58F(&unknownE1F44C[townMapMapping[5]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[5]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 			break;
 		default:
 			break;
 	}
-	if (unknown7EB4B0 < 10) {
-		unknownC08C58F(&unknownE1F44C[townMapMapping[1]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+	if (townMapPlayerIconAnimationFrame < 10) {
+		unknownC08C58F(&townMapIconSpritemaps[townMapMapping[1]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 	} else {
-		unknownC08C58F(&unknownE1F44C[townMapMapping[0]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+		unknownC08C58F(&townMapIconSpritemaps[townMapMapping[0]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 	}
-	if (--unknown7EB4B0 == 0) {
-		unknown7EB4B0 = 0x14;
+	if (--townMapPlayerIconAnimationFrame == 0) {
+		townMapPlayerIconAnimationFrame = 20;
 	}
 }
 
@@ -6469,10 +6469,10 @@ void unknownC4D2F0() {
 void unknownC4D43F(short arg1) {
 	unknown7E2400 = 0;
 	//not used - segmented addressing stuff
-	//ubyte savedBank = setSpritemapBank(bankbyte(&unknownE1F44C[0]));
+	//ubyte savedBank = setSpritemapBank(bankbyte(&townMapIconSpritemaps[0]));
 	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[arg1][0]; x06.x != 0xFF; x06++) {
 		short x14 = 1;
-		if ((unknownE1F47A[x06.sprite] != 0) && (unknown7EB4AE < 10)) {
+		if ((unknownE1F47A[x06.sprite] != 0) && (townMapIconAnimationFrame < 10)) {
 			x14 = 0;
 		}
 		short x12 = 0;
@@ -6485,11 +6485,11 @@ void unknownC4D43F(short arg1) {
 		if (x14 == 0) {
 			continue;
 		}
-		unknownC08C58F(&unknownE1F44C[x06.sprite][0], x06.x, x06.y);
+		unknownC08C58F(&townMapIconSpritemaps[x06.sprite][0], x06.x, x06.y);
 	}
 	unknownC4D2F0();
-	if (--unknown7EB4AE == 0) {
-		unknown7EB4AE = 0x3C;
+	if (--townMapIconAnimationFrame == 0) {
+		townMapIconAnimationFrame = 60;
 	}
 	// see above
 	//setSpritemapBank(savedBank);
@@ -6523,8 +6523,8 @@ void loadTownMapData(short arg1) {
 
 /// $C4D681
 short displayTownMap() {
-	unknown7EB4AE = 0x3C;
-	unknown7EB4B0 = 0x14;
+	townMapIconAnimationFrame = 60;
+	townMapPlayerIconAnimationFrame = 20;
 	unknown7EB4B2 = 0xC;
 	short x10 = getTownMapID(gameState.leaderX.integer, gameState.leaderY.integer);
 	if (x10 == 0) {
@@ -6558,8 +6558,8 @@ short displayTownMap() {
 void townMapDebug() {
 	short x10 = 0;
 	short x0E = 0;
-	unknown7EB4AE = 0x3C;
-	unknown7EB4B0 = 0x14;
+	townMapIconAnimationFrame = 60;
+	townMapPlayerIconAnimationFrame = 20;
 	unknown7EB4B2 = 0x0C;
 	loadTownMapData(0);
 	while (true) {
