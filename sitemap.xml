@@ -1293,6 +1293,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/targetAllies.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/targetBattler.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/targetRow.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/tickUntilFadeCompletion.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/truncate16To8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/twentyFivePercentVariance.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/undrawHPPPWindow.html</loc></url>
@@ -1338,7 +1339,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC24434.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC26189.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2654C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC269DE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC290C6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2B66A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2BCB9.html</loc></url>
