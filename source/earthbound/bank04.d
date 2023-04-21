@@ -6511,7 +6511,8 @@ void loadTownMapData(short arg1) {
 	mirrorTD = 0;
 	copyToVRAM(0, 0x800, 0x3000, &unknown7F0000[0x40]);
 	copyToVRAM2(0, 0x4000, 0, &unknown7F0000[0x840]);
-	copyToVRAM(0, 0x2400, 0x6000, &townMapLabelGfx[0]);
+	decomp(&townMapLabelGfx[0], &unknown7F0000[0]);
+	copyToVRAM(0, 0x2400, 0x6000, &unknown7F0000[0]);
 	unknownC0856B(0x18);
 	mirrorTM = 0x11;
 	bg1YPosition = 0;
