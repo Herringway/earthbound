@@ -21699,7 +21699,7 @@ void debugMain() {
 	prepareForImmediateDMA();
 	unknownC0927C();
 	clearSpriteTable();
-	allocSpriteMem(short.min, 0);
+	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
 	short x1C = debugViewCharacterSprite;
 	entityAllocationMinSlot = 0x17;

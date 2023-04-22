@@ -422,7 +422,7 @@ __gshared short unknown7E467A; /// $(DOLLAR)467A
 __gshared short unknown7E467C; /// $(DOLLAR)467C
 __gshared SpriteMap[179] spriteTable7E467E; /// $(DOLLAR)467E
 
-__gshared ubyte[88] unknown7E4A00; /// $(DOLLAR)4A00
+__gshared ubyte[88] spriteVramTable; /// $(DOLLAR)4A00
 __gshared short unknown7E4A58; /// $(DOLLAR)4A58
 __gshared short unknown7E4A5A; /// $(DOLLAR)4A5A
 __gshared short overworldEnemyCount; /// $(DOLLAR)4A5C
