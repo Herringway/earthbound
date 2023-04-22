@@ -8262,7 +8262,7 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		if (entityScriptTable[i] == -1) {
 			continue;
 		}
-		if (entityUnknown2C5E[i] == -1) {
+		if (entityUnknown2C5E[i] != -1) {
 			continue;
 		}
 		arg1.pathers[x26].objIndex = i;
