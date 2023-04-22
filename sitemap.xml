@@ -15,7 +15,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/activateHotspot.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/adjustPositionHorizontal.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/adjustPositionVertical.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/allocSpriteMem.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/animatePalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/animateTileset.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/centerScreen.html</loc></url>
@@ -228,6 +227,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/spawnNPCsRow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/spriteDirectionMappings4Direction.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/spriteDirectionMappings8Direction.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/spriteVramTableAllocateSpace.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/spriteVramTableOverwrite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/start.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/stopMusic.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/switchToCameraMode3.html</loc></url>
@@ -248,7 +249,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC019E2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC01A63.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC01B15.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC01B96.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC01C52.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC01D38.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC01DED.html</loc></url>
@@ -3427,6 +3427,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/showNPCFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/spritemapBank.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/spriteTable7E467E.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/spriteVramTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/sram3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/swirlFramesLeft.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/swirlHDMATableID.html</loc></url>
@@ -3614,7 +3615,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E4676.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E467A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E467C.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E4A00.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E4A58.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E4A5A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E4A5E.html</loc></url>
