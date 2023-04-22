@@ -854,19 +854,21 @@ void unknownC01B15(const(SpriteMap)* arg1) {
 }
 
 /// $C01B96
-// no idea what's going on here
-short unknownC01B96(short arg1, short arg2) {
+// This function will find numTiles of sequential free space in the sprite VRAM allocation table,
+// and fill that free space with (needle | 0x80) so that it can be found and overwritten later by
+// spriteVramTableOverwrite.
+short spriteVramTableAllocateSpace(short numTiles, short needle) {
 	short x;
-	outer: for (short i = 0; i <= 0x58 - arg1; i = cast(short)(x + 1)) {
-		for (short j = 0; j < arg1; j++) {
+	outer: for (short i = 0; i <= 0x58 - numTiles; i = cast(short)(x + 1)) {
+		for (short j = 0; j < numTiles; j++) {
 			x = cast(short)(i + j);
-			if (unknown7E4A00[i + j] != 0) {
+			if (spriteVramTable[i + j] != 0) {
 				continue outer;
 			}
 		}
-		for (short j = 0; j < arg1; j++) {
+		for (short j = 0; j < numTiles; j++) {
 			x = cast(short)(i + j);
-			unknown7E4A00[i + j] = cast(ubyte)arg2 | 0x80;
+			spriteVramTable[i + j] = cast(ubyte)needle | 0x80;
 		}
 		return i;
 	}
@@ -874,27 +876,36 @@ short unknownC01B96(short arg1, short arg2) {
 }
 
 /// $C01C11
-void allocSpriteMem(short arg1, ubyte arg2) {
+void spriteVramTableOverwrite(short needle, ubyte tableValue) {
 	for (short i = 0; i < 0x58; i++) {
-		if (((unknown7E4A00[i] & 0xFF) == ((arg1 & 0xFF) | 0x80)) || (arg1 == short.min)) {
-			unknown7E4A00[i] = arg2;
+		if (((spriteVramTable[i] & 0xFF) == ((needle & 0xFF) | 0x80)) || (needle == short.min)) {
+			spriteVramTable[i] = tableValue;
 		}
+	}
+	debug(spriteVRAM) {
+		int numAvailable = 0;
+		for (int i = 0; i < spriteVramTable.length; i++) {
+			if (spriteVramTable[i] == 0) {
+				numAvailable++;
+			}
+		}
+		tracef("Number of sprite VRAM slots available: %d", numAvailable);
 	}
 }
 
 /// $C01C52
 short unknownC01C52(short arg1, short arg2, short arg3) {
-	short local4 = cast(short)((((arg1 + 1) & 0xFFFE) * ((arg2 + 1) & 0xFFFE)) / 4);
-	short local3 = unknownC01B96(local4, arg3);
+	short spriteNumTiles = cast(short)((((arg1 + 1) & 0xFFFE) * ((arg2 + 1) & 0xFFFE)) / 4);
+	short local3 = spriteVramTableAllocateSpace(spriteNumTiles, arg3);
 	if (local3 < 0) {
 		return local3;
 	}
 	if ((((arg1 + 1) & 0xFFFE) != arg1) || (((arg2 + 1) & 0xFFFE) != arg2)) {
 		short local6;
-		for (short i = local3; i <local3 + local4; i += local6) {
+		for (short i = local3; i <local3 + spriteNumTiles; i += local6) {
 			local6 = cast(short)(((i + 8) & 0xF8) - i);
-			if (local3 + local4 - i < local6) {
-				local6 = cast(short)(local3 + local4 - i);
+			if (local3 + spriteNumTiles - i < local6) {
+				local6 = cast(short)(local3 + spriteNumTiles - i);
 			}
 			copyToVRAM(3, cast(ushort)(local6 * 64), cast(ushort)(unknownC42F8C[i] + 0x4000), &unknownC40BE8[0]);
 			copyToVRAM(3, cast(ushort)(local6 * 64), cast(ushort)(unknownC42F8C[i] + 0x4100), &unknownC40BE8[0]);
@@ -952,7 +963,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 		entityAllocationMinSlot = 0;
 		entityAllocationMaxSlot = 0x16;
 		result = initEntity(actionScript, x, y);
-		allocSpriteMem(-1, cast(ubyte)(result | 0x80));
+		spriteVramTableOverwrite(-1, cast(ubyte)(result | 0x80));
 	}
 	entitySpriteMapPointers[result] = &spriteTable7E467E[x1F];
 	entityUnknown2916[result] = unknownC42B0D[x02].unknown0 * 5;
@@ -992,7 +1003,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 /// $C020F1
 void unknownC020F1() {
 	unknownC01B15(entitySpriteMapPointers[currentEntitySlot]);
-	allocSpriteMem(currentEntitySlot, 0);
+	spriteVramTableOverwrite(currentEntitySlot, 0);
 	if ((entityTPTEntries[currentEntitySlot] & 0xF000) == 0x8000) {
 		overworldEnemyCount--;
 	}
@@ -1006,7 +1017,7 @@ void unknownC020F1() {
 /// $C02140
 void unknownC02140(short arg1) {
 	unknownC01B15(entitySpriteMapPointers[arg1]);
-	allocSpriteMem(arg1, 0);
+	spriteVramTableOverwrite(arg1, 0);
 	if ((entityTPTEntries[arg1] & 0xF000) == 0x8000) {
 		overworldEnemyCount--;
 	}
@@ -7985,7 +7996,7 @@ void fileSelectInit() {
 	oamClear();
 	updateScreen();
 	clearSpriteTable();
-	allocSpriteMem(-32768, 0);
+	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
 	overworldSetupVRAM();
 	unknownC432B1();
@@ -8033,7 +8044,7 @@ void setLeaderLocation(short arg1, short arg2) {
 void unknownC0B67F() {
 	unknownC0927C();
 	clearSpriteTable();
-	allocSpriteMem(short.min, 0);
+	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
 	battleDebug = 0;
 	inputDisableFrameCounter = 0;
@@ -8513,8 +8524,8 @@ short unknownC0C6B6() {
 	}
 	short x0E = cast(short)(entityAbsXTable[currentEntitySlot] - (gameState.leaderX.integer - 0x80));
 	short x = cast(short)(entityAbsYTable[currentEntitySlot] - (gameState.leaderY.integer - 0x70));
-	if ((x0E >= -64) || (x0E < 320)) {
-		if ((x >= -64) || (x < 320)) {
+	if ((x0E >= -64) && (x0E < 320)) {
+		if ((x >= -64) && (x < 320)) {
 			return -1;
 		}
 	}

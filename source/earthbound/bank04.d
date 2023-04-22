@@ -6642,7 +6642,7 @@ void unknownC4D8FA() {
 short unknownC4D989(short arg1) {
 	unknownC0927C();
 	clearSpriteTable();
-	allocSpriteMem(short.min, 0);
+	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
 	unknown7E4A58 = 1;
 	unknown7E4A5A = 0;
