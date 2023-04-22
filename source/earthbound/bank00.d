@@ -6197,6 +6197,7 @@ void deleteEntity(short entity) {
 /// $C09C3B
 //note: arg1 is passed via X register
 void deleteEntityOffset(short offset) {
+	tracef("Deleting entity %s", offset / 2);
 	if (entityScriptTable[offset / 2] >= 0) {
 		entityScriptTable[offset / 2] = -1;
 		clearSpriteTickCallback(offset);
