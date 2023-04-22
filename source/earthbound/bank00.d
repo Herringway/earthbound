@@ -641,7 +641,7 @@ void loadMapAtPosition(short x, short y) {
 		spawnNPCsRow(cast(short)(x02 - 16), cast(short)(x12 - 14 + i));
 	}
 	for (short i = -8; i != 40; i++) {
-		spawnEnemiesRow(cast(short)(x02 - 16), cast(short)(x12 + i));
+		spawnEnemiesRow(cast(short)(x02 - 24), cast(short)(x12 - 14 + i));
 	}
 	if (unknown7E4A58 != 0) {
 		unknown7E4A58 = -1;
