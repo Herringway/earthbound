@@ -8911,13 +8911,14 @@ void unknownC0D19B() {
 	}
 	enemiesInBattle = 0;
 	findPathToParty(gameState.partyCount, 0x40, 0x40);
+	x06 = &battleEntryPointerTable[currentBattleGroup].enemies[0];
 	for (short i = 0; i != 4; i++) {
-		short x14 = battleEntryPointerTable[currentBattleGroup].enemies[i].count;
+		short x14 = x06.count;
 		if (x14 == 0xFF) {
 			continue;
 		}
 		if (x14 != 0) {
-			short x1A = battleEntryPointerTable[currentBattleGroup].enemies[i].enemyID;
+			short x1A = x06.enemyID;
 			if (x1A != 0) {
 				short x18 = 0;
 				for (short j = 0; j < unknown7EF000.unknown7EF200.patherCount; j++) {
@@ -8947,6 +8948,7 @@ void unknownC0D19B() {
 				}
 			}
 		}
+		x06++;
 	}
 	for (short i = 0; i < 23; i++) {
 		if (i == x20) {
