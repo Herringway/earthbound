@@ -5295,7 +5295,7 @@ ushort unknownC1AAFA() {
 	unknownC20A20(&unknown7E9C8A);
 	createWindowN(Window.phoneMenu);
 	setWindowTitle(5, 3, &statusEquipWindowText14[0]);
-	for (short i = 0; psiTeleportDestinationTable[i].name[0] != 0; i++) {
+	for (short i = 1; psiTeleportDestinationTable[i].name[0] != 0; i++) {
 		if (psiTeleportDestinationTable[i].name[0] == 0) {
 			continue;
 		}
