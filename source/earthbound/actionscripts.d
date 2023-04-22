@@ -2281,27 +2281,37 @@ ubyte[] ACTIONSCRIPT_EX_C0F3B2(ubyte frames) {
 	return ACTIONSCRIPT_EX_CALLROUTINE(frames, &fixArgs!unknownC0F3B2);
 }
 
-short fixArgs(alias Func)(short a, ref const(ubyte)* b) {
-	import std.traits : Parameters, ReturnType;
-	static if (is(ReturnType!Func : short) && (Parameters!Func.length > 1)) {
-		return Func(a, b);
-	} else static if (Parameters!Func.length > 1) {
-		Func(a, b);
-		return 0;
-	} else static if (is(ReturnType!Func : short) && (Parameters!Func.length > 0)) {
-		return Func(a);
-	} else static if (is(ReturnType!Func : short)) {
-		return Func();
-	} else static if (Parameters!Func.length > 0) {
-		Func(a);
-		return 0;
-	} else {
-		Func();
-		return 0;
+debug(actionscript) string[void*] funcSymbolMap;
+
+template fixArgs(alias Func) {
+	short fixArgs(short a, ref const(ubyte)* b) {
+		import std.traits : Parameters, ReturnType;
+		static if (is(ReturnType!Func : short) && (Parameters!Func.length > 1)) {
+			return Func(a, b);
+		} else static if (Parameters!Func.length > 1) {
+			Func(a, b);
+			return 0;
+		} else static if (is(ReturnType!Func : short) && (Parameters!Func.length > 0)) {
+			return Func(a);
+		} else static if (is(ReturnType!Func : short)) {
+			return Func();
+		} else static if (Parameters!Func.length > 0) {
+			Func(a);
+			return 0;
+		} else {
+			Func();
+			return 0;
+		}
+	}
+	static this() {
+		debug(actionscript) {
+			funcSymbolMap[&fixArgs] = __traits(identifier, Func);
+		}
 	}
 }
 
 import std.array : join;
+debug immutable ubyte[][string] otherScripts;
 shared static this() {
 	import std.array : join;
 	actionScriptScriptPointers = [
@@ -3201,7 +3211,7 @@ shared static this() {
 		actionScript893[],
 		actionScript894[],
 	];
-	debug immutable otherScripts = [
+	debug otherScripts = [
 		"unknownC30295": unknownC30295[],
 		"unknownC3098B": unknownC3098B[],
 		"unknownC30A1F": unknownC30A1F[],
