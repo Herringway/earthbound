@@ -17,6 +17,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/adjustPositionVertical.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/animatePalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/animateTileset.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/appendActiveEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/centerScreen.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/changeMapMusic.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/changeMapMusicImmediately.html</loc></url>
@@ -35,6 +36,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/cosineSine.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/createEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/defaultIRQCallback.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/deleteActiveEntry.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/deleteEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/deleteEntityOffset.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/disableCurrentEntityCollision.html</loc></url>
@@ -201,6 +203,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/sbrk.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/scheduleOverworldTask.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/screenTransition.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/searchNextEntityTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setBG1VRAMLocation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setBG2VRAMLocation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/setBG3VRAMLocation.html</loc></url>
@@ -388,11 +391,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09AD3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09ADB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09C02.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC09C57.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC09C73.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09C8F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09C99.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC09CB5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09CD7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09D03.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC09D12.html</loc></url>
