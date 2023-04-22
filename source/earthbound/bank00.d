@@ -8878,12 +8878,13 @@ void unknownC0D19B() {
 	battleSwirlCountdown = 120;
 	currentBattleGroup = entityTPTEntries[x20];
 	battleSwirlSequence();
+	const(BattleGroupEnemy)* x06 = &battleEntryPointerTable[entityTPTEntries[x20] & 0x7FFF].enemies[0];
 	for (short i = 0; i != 4; i++) {
-		short x02 = battleEntryPointerTable[entityTPTEntries[x20] & 0x7FFF].enemies[i].count;
+		short x02 = x06.count;
 		if (x02 != 0xFF) {
 			short x1A = x02;
 			if (x1A != 0) {
-				y = battleEntryPointerTable[entityTPTEntries[x20] & 0x7FFF].enemies[i].enemyID;
+				y = x06.enemyID;
 				if (y == entityEnemyIDs[x20]) {
 					entityUnknown2C5E[x20] = 0xFFFF;
 					x1A--;
@@ -8900,6 +8901,7 @@ void unknownC0D19B() {
 					}
 				}
 			}
+			x06++;
 		} else {
 			x02 = 0;
 			y = 0;
