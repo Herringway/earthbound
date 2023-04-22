@@ -1197,6 +1197,14 @@ short unknownC0263D(short x, short y) {
 void unknownC02668(short arg1, short arg2, short arg3) {
 	short x2A;
 	const(BattleGroupEnemy)* x0A;
+	version(bugfix) { // out of bounds checking wasn't done before
+		if (arg1 >= mapDataPerSectorAttributesTable[0].length * 4) {
+			return;
+		}
+		if (arg2 >= mapDataPerSectorAttributesTable.length * 2) {
+			return;
+		}
+	}
 	if ((debugging != 0) && (debugEnemiesEnabled() != 0) && (rand() < 16)) {
 		tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
 		x2A = 0;
