@@ -1309,10 +1309,10 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			short x14 = createEntity(x26, x16, -1, 0, 0);
 			short x04;
 			short x02;
-			tracef("Range: (%s, %s) to (%s, %s)", arg1 * 8, arg2 * 8, (unknown7E4A62 + arg1) * 8, (unknown7E4A64 + arg2) * 8);
 			for (short i = 0; i != 20; i++) {
-				x04 = cast(short)((rand() % unknown7E4A62) * 8 + arg1 * 8);
-				x02 = cast(short)((rand() % unknown7E4A64) * 8 + arg2 * 8);
+				x04 = cast(short)((arg1 * 8 + (rand() % unknown7E4A62)) * 8);
+				x02 = cast(short)((arg2 * 8 + (rand() % unknown7E4A64)) * 8);
+				tracef("Spawning %s at (%s, %s)", cast(EnemyID)x0A[0].enemyID, x04, x02);
 				short x12 = unknownC05F33(x04, x02, x14);
 				if ((x12 & 0xD0) != 0) {
 					continue;
@@ -1324,7 +1324,6 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			unknownC02140(x14);
 			continue;
 			Unknown28:
-			tracef("Moving enemy to %s, %s", x04, x02);
 			entityAbsXTable[x14] = x04;
 			entityAbsYTable[x14] = x02;
 			entityTPTEntries[x14] = x2A + 0x8000;
