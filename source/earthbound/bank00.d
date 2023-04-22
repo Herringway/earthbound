@@ -8876,7 +8876,7 @@ void unknownC0D19B() {
 		battleInitiative = Initiative.enemiesFirst;
 	}
 	battleSwirlCountdown = 120;
-	currentBattleGroup = entityTPTEntries[x20];
+	currentBattleGroup = entityTPTEntries[x20] & 0x7FFF;
 	battleSwirlSequence();
 	const(BattleGroupEnemy)* x06 = &battleEntryPointerTable[entityTPTEntries[x20] & 0x7FFF].enemies[0];
 	for (short i = 0; i != 4; i++) {
