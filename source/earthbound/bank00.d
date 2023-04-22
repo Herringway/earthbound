@@ -5306,7 +5306,7 @@ short initEntity(short actionScript, short x, short y) {
 	entityScreenYTable[newEntity / 2] = y;
 	entityAbsYTable[newEntity / 2] = y;
 	entityAbsZTable[newEntity / 2] = newEntityPosZ;
-	newEntity = unknownC09C57(newEntity);
+	newEntity = appendActiveEntity(newEntity);
 	//Unreachable code?
 	/+
 	unknownC09C99();
@@ -6210,13 +6210,13 @@ void deleteEntityOffset(short offset) {
 		clearSpriteTickCallback(offset);
 		short x = unknownC09C99(offset);
 		short a = unknown7E0A54;
-		unknownC09C73(a, x);
+		deleteActiveEntry(a, x);
 		unknownC09C8F(x);
 	}
 }
 
 /// $C09C57
-short unknownC09C57(short index) {
+short appendActiveEntity(short index) {
 	entityNextEntityTable[index / 2] = -1;
 	if (firstEntity >= 0) {
 		short x, y = firstEntity;
@@ -6230,15 +6230,14 @@ short unknownC09C57(short index) {
 }
 
 /// $C09C73
-void unknownC09C73(ref short a, ref short x) {
-	short y;
-	unknownC09CB5(a, x, y);
-	if (y != -1) {
-		entityNextEntityTable[y / 2] = entityNextEntityTable[x / 2];
+void deleteActiveEntry(short a, short entry) {
+	short foundEntry = searchNextEntityTable(entry);
+	if (foundEntry != -1) {
+		entityNextEntityTable[foundEntry / 2] = entityNextEntityTable[entry / 2];
 	} else {
-		firstEntity = entityNextEntityTable[x / 2];
+		firstEntity = entityNextEntityTable[entry / 2];
 	}
-	if (x == unknown7E0A56) {
+	if (entry == unknown7E0A56) {
 		unknown7E0A56 = a;
 	}
 }
@@ -6267,18 +6266,17 @@ short unknownC09C99(short offset) {
 }
 
 /// $C09CB5
-void unknownC09CB5(ref short a, ref short x, ref short y) {
-	short tmp = x;
-	y = -1;
-	x = firstEntity;
+short searchNextEntityTable(short needle) {
+	short tmp = needle;
+	short foundEntry = -1;
+	tmp = firstEntity;
 	do {
-		if (x == tmp) {
-			break;
+		if (tmp == needle) {
+			return foundEntry;
 		}
-		y = x;
-		x = entityNextEntityTable[x / 2];
+		foundEntry = tmp;
+		tmp = entityNextEntityTable[tmp / 2];
 	} while(true);
-	x = tmp;
 }
 
 /// $C09CD7
