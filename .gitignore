@@ -3,10 +3,12 @@ docs.json
 __dummy.html
 docs/
 /earthbound
+/sdl/earthbound_sdl
 earthbound.so
 earthbound.dylib
 earthbound.dll
 earthbound.a
+libearthbound.a
 earthbound.lib
 earthbound-test-*
 *.exe
@@ -19,6 +21,7 @@ data
 *.sfc
 dub.selections.json
 *.dll
+*.dylib
 .vs
 *.ebsave
 *.ebsave.bak
