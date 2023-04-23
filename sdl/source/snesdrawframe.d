@@ -24,7 +24,7 @@ public bool loadSnesDrawFrame() {
 		const(char)[][1] libNames = [
 			"libsfcppu.dll",
 		];
-	} else version(osx) {
+	} else version(OSX) {
 		const(char)[][1] libNames = [
 			"libsfcppu.dylib",
 		];
