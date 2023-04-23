@@ -848,6 +848,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/selectionMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/selectionMenuF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/selectionMenuItemSetup.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/selectPSITeleportDestination.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/setArgumentMemory.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/setCurrentWindowPadding.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/setHPPPWindowModeItem.html</loc></url>
@@ -939,7 +940,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1A795.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AA18.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AA5D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AAFA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AC00.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AC4A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AC4AF.html</loc></url>
@@ -996,6 +996,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/addCharToParty.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/applyCondiment.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/backupCurrentWindowTextAttributes.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/battleAction350FireDamage.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/battleActionBagOfDragonite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/battleActionBash.html</loc></url>
@@ -1268,6 +1269,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/resetPostBattleStats.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/resetRolling.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/resolveTargetting.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/restoreCurrentWindowTextAttributes.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/reviveTarget.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/rustSprayCommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/saveCurrentGame.html</loc></url>
@@ -1309,8 +1311,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2087C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC208B8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC20958.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC20A20.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC20ABC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC20B65.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC20F58.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC21034.html</loc></url>
@@ -3739,7 +3739,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E97B8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E97D5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E97D7.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E9C8A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9C9F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9CD0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9CD1.html</loc></url>
@@ -3936,6 +3935,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/windowStats.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/windowTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/windowTail.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/windowTextAttributesBackup.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/wobbleDuration.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/wramScriptArgMemory.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/wramScriptSecMemory.html</loc></url>
