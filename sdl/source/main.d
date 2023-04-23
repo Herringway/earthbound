@@ -116,7 +116,13 @@ void main(string[] args) {
 		uninitializeGamepad();
 	}
 	enforce("earthbound.sfc".exists, "Earthbound ROM not found - Place earthbound.sfc in the current directory");
-	const rom = cast(ubyte[])read("earthbound.sfc");
+	auto rom = cast(const(ubyte)[])read("earthbound.sfc");
+	const detected = detect(rom, "EARTH BOUND          ");
+	enforce(detected.matched, "Loaded ROM is not an Earthbound (USA) ROM.");
+	if (detected.header) {
+		info("Headered ROM detected");
+		rom = rom[0x200 .. $];
+	}
 	loadROMData(rom);
 
 	if (!"data/songs".exists) {
@@ -439,4 +445,22 @@ void buildNSPCFiles(const ubyte[] data) {
 		auto file = File(buildPath("data/songs", format!"%03s.nspc"(idx + 1)), "w").lockingBinaryWriter;
 		writer.toBytes(file);
 	}
+}
+
+auto detect(const scope ubyte[] data, scope string identifier) @safe pure {
+	import std.range : only;
+    struct Result {
+        bool header;
+        bool matched;
+    }
+    foreach (headered, base; zip(only(false, true), only(0xFFB0, 0x101B0))) {
+        const checksum = (cast(const ushort[])data[base + 46 .. base + 48])[0];
+        const checksumComplement = (cast(const ushort[])data[base + 44 .. base + 46])[0];
+        if ((checksum ^ checksumComplement) == 0xFFFF) {
+            if (cast(const(char[]))data[base + 16 .. base + 37] == identifier) {
+                return Result(headered, true);
+            }
+        }
+    }
+    return Result(false, false);
 }
