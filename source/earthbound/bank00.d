@@ -1063,10 +1063,11 @@ void unknownC021E6() {
 
 /// $C0222B
 void trySpawnNPCs(short x, short y) {
-	if (x >= 0x20) {
+	// Don't spawn NPCs outside the bounds of the map data
+	if (cast(ushort)x >= 0x20) {
 		return;
 	}
-	if (y >= 0x28) {
+	if (cast(ushort)y >= 0x28) {
 		return;
 	}
 	if (spritePlacementPointerTable[y][x] != null) {
@@ -1083,11 +1084,12 @@ void trySpawnNPCs(short x, short y) {
 				short x1A = cast(short)(x18 - bg1XPosition);
 				short xreg = cast(short)(x16 - bg1YPosition);
 				if (debugging != 0) {
-					if ((((padState[0] & (Pad.l | Pad.r)) != 0) || (unknown7E4A58 - 1 != 0)) && ((x1A < 0x100) && (xreg < 0xE0))) {
+					if ((((padState[0] & (Pad.l | Pad.r)) != 0) || (unknown7E4A58 - 1 != 0)) && ((cast(ushort)x1A < 0x100) && (cast(ushort)xreg < 0xE0))) {
 						continue;
 					}
 				} else {
-					if ((unknown7E4A58 - 1 != 0) && (x1A < 0x100) && (xreg < 0xE0)) {
+					// Prevent sprite from spawning if unknown7E4A58 != 1 and it is on screen
+					if ((unknown7E4A58 - 1 != 0) && (cast(ushort)x1A < 0x100) && (cast(ushort)xreg < 0xE0)) {
 						continue;
 					}
 				}
