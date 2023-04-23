@@ -129,6 +129,9 @@ void main(string[] args) {
 		mkdirRecurse("data/songs");
 		buildNSPCFiles(rom);
 	}
+	if (!"data/sfx".exists) {
+		infof("Sound effects not found. No sound effects will play. This is expected until extraction is implemented.");
+	}
 
 	loadAudioData();
 
