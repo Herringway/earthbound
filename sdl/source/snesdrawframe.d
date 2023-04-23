@@ -36,15 +36,14 @@ public bool loadSnesDrawFrame() {
 
 	bool ret;
 	foreach(name; libNames) {
-		ret = loadDynamicLibrary(name.ptr);
+		ret = loadDynamicLibrary(name);
 		if(ret) break;
 	}
 	return ret;
 }
 
-bool loadDynamicLibrary(const(char)* libName)
-{
-	lib = load(libName);
+bool loadDynamicLibrary(const(char)[] libName) {
+	lib = load(libName.ptr);
 	if(lib == invalidHandle) {
 		return false;
 	}
