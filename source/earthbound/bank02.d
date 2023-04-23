@@ -404,7 +404,7 @@ immutable ubyte[4][2] thethe = [
 ];
 
 /// $C20A20
-void unknownC20A20(WindowTextAttributesCopy* buf) {
+void backupCurrentWindowTextAttributes(WindowTextAttributesCopy* buf) {
 	buf.id = currentFocusWindow;
 	if (currentFocusWindow == -1) {
 		return;
@@ -417,7 +417,7 @@ void unknownC20A20(WindowTextAttributesCopy* buf) {
 }
 
 /// $C20ABC
-void unknownC20ABC(WindowTextAttributesCopy* buf) {
+void restoreCurrentWindowTextAttributes(WindowTextAttributesCopy* buf) {
 	if (buf.id == -1) {
 		return;
 	}

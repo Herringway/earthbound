@@ -622,7 +622,7 @@ __gshared GameState gameState; /// $(DOLLAR)97F5
 __gshared PartyCharacter[totalPartyCount] partyCharacters; /// $(DOLLAR)99CE
 __gshared ubyte[eventFlagCount / 8] eventFlags; /// $(DOLLAR)9C08
 __gshared ushort currentInteractingEventFlag; /// $(DOLLAR)9C88
-__gshared WindowTextAttributesCopy unknown7E9C8A; /// $(DOLLAR)9C8A
+__gshared WindowTextAttributesCopy windowTextAttributesBackup; /// $(DOLLAR)9C8A
 __gshared ubyte[49] unknown7E9C9F; /// $(DOLLAR)9C9F
 __gshared ubyte unknown7E9CD0; /// $(DOLLAR)9CD0
 __gshared ubyte unknown7E9CD1; /// $(DOLLAR)9CD1

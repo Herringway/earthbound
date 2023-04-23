@@ -1375,7 +1375,7 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 	WinStat* x22 = getActiveWindowAddress();
 	uint x1E = x22.argument;
 	if (arg2 == 1) {
-		unknownC20A20(&unknown7E9C8A);
+		backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 		short x1C = gameState.playerControlledPartyMemberCount == 1 ? Window.singleCharacterSelect : cast(short)(gameState.playerControlledPartyMemberCount + Window.characterSelectBase - 1);
 		createWindowN(x1C);
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
@@ -1386,7 +1386,7 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 		printMenuItems();
 		x16 = selectionMenu(arg3);
 		closeWindow(x1C);
-		unknownC20ABC(&unknown7E9C8A);
+		restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	} else {
 		for (short i = 0; i != 4; i++) {
 			unknown7E9631[i] = arg1[i];
@@ -1467,7 +1467,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 	WinStat* x26 = getActiveWindowAddress();
 	uint x22 = x26.argument;
 	if (arg1 == 1) {
-		unknownC20A20(&unknown7E9C8A);
+		backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 		short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.singleCharacterSelect : cast(short)(Window.characterSelectBase + gameState.playerControlledPartyMemberCount);
 		createWindowN(x20);
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
@@ -1478,7 +1478,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 		printMenuItems();
 		x1E = selectionMenu(arg2);
 		closeWindow(x20);
-		unknownC20ABC(&unknown7E9C8A);
+		restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	} else {
 		short x04 = (battleMenuCurrentCharacterID == -1) ? 0 : battleMenuCurrentCharacterID;
 		if (arg3 != null) {
@@ -2893,7 +2893,7 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 		unknownEF0115(1);
 		windowStats[windowTable[currentFocusWindow]].textY = 0;
 		windowStats[windowTable[currentFocusWindow]].textX = 0;
-		unknownC20A20(&arg1.savedTextAttributes);
+		backupCurrentWindowTextAttributes(&arg1.savedTextAttributes);
 		unknown7E5E71 = 0;
 	}
 	inventoryGetItemName(getCCParameters!ArgType(arg2).window, getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()));
@@ -3705,7 +3705,7 @@ void* cc18Tree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x01:
 			return &cc1801;
 		case 0x02:
-			unknownC20A20(&arg1.savedTextAttributes);
+			backupCurrentWindowTextAttributes(&arg1.savedTextAttributes);
 			arg1.unknown4 = 1;
 			break;
 		case 0x03:
@@ -4256,7 +4256,7 @@ void unknownC1869D(DisplayTextState* arg1) {
 	if (arg1.unknown4 == 0) {
 		return;
 	}
-	unknownC20ABC(&arg1.savedTextAttributes);
+	restoreCurrentWindowTextAttributes(&arg1.savedTextAttributes);
 }
 
 /// $C186B1 - Call a text script (script_ptr)
@@ -4685,12 +4685,12 @@ void unknownC1931B(short arg1) {
 
 /// $C193E7
 void openEquipSelectWindow(short arg1) {
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	setInstantPrinting();
 	createWindowN(Window.equipSelectItem);
 	printString(10, &miscTargetText[arg1][0]);
 	clearInstantPrinting();
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 }
 
 /// $C19437
@@ -4701,7 +4701,7 @@ void closeEquipSelectWindow() {
 /// $C19441
 ushort unknownC19441() {
 	ushort x02 = 0;
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.equipMenuItemlist);
 	setWindowTitle(7, 5, &phoneCallText[0]);
 	for (short i = 1; telephoneContacts[i].title[0] != 0; i++) {
@@ -4717,7 +4717,7 @@ ushort unknownC19441() {
 		x02 = selectionMenu(1);
 	}
 	closeFocusWindowN();
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return x02;
 }
 
@@ -4831,17 +4831,17 @@ void inventoryGetItemName(short arg1, short arg2) {
 
 /// $C19A11
 short unknownC19A11(short arg1, short arg2) {
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	setWindowFocus(arg1);
 	short x0E = selectionMenu(arg2);
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return x0E;
 }
 
 /// $C19A43
 ushort unknownC19A43() {
 	ubyte* x18 = &unknown7E9C9F[statusEquipWindowText7.length];
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.unknown0d);
 	memcpy(&unknown7E9C9F[0], &statusEquipWindowText7[0], 12);
 	(x18++)[0] = ebChar('(');
@@ -4860,7 +4860,7 @@ ushort unknownC19A43() {
 	short x18_2 = selectionMenu(1);
 	unknownEF0115(13);
 	unknown7E5E71 = 0;
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return x18_2;
 }
 
@@ -4920,7 +4920,7 @@ void unknownC19D49() {
 ushort unknownC19DB5(short arg1) {
 	unknownC1AA18();
 	setInstantPrinting();
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.unknown0c);
 	setCurrentWindowPadding(5);
 	for (short i = 0; i < 7; i++) {
@@ -4940,7 +4940,7 @@ ushort unknownC19DB5(short arg1) {
 	ushort x1A = selectionMenu(1);
 	unknownC19D49();
 	closeFocusWindow();
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	clearInstantPrinting();
 	return x1A;
 }
@@ -5248,19 +5248,19 @@ void unknownC1A795(short arg1) {
 
 /// $C1AA18
 void unknownC1AA18() {
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.carriedMoney);
 	setCurrentWindowPadding(5);
 	setInstantPrinting();
 	clearFocusWindow();
 	unknownC4507A(gameState.moneyCarried);
 	clearInstantPrinting();
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 }
 
 /// $C1AA5D
 short unknownC1AA5D() {
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	short x16 = gameState.partyMembers[0];
 	while (true) {
 		if (gameState.playerControlledPartyMemberCount == 1) {
@@ -5284,7 +5284,7 @@ short unknownC1AA5D() {
 	}
 	closeWindow(Window.equipMenuStats);
 	closeWindow(Window.equipMenu);
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return x16;
 }
 
@@ -5292,7 +5292,7 @@ short unknownC1AA5D() {
 ushort selectPSITeleportDestination() {
 	short x02 = 0;
 	openEquipSelectWindow(2);
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.phoneMenu);
 	setWindowTitle(5, 3, &statusEquipWindowText14[0]);
 	for (short i = 1; psiTeleportDestinationTable[i].name[0] != 0; i++) {
@@ -5312,7 +5312,7 @@ ushort selectPSITeleportDestination() {
 	}
 	closeFocusWindowN();
 	closeEquipSelectWindow();
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return x02;
 }
 
@@ -7083,7 +7083,7 @@ void corruptionCheck() {
 	if (unknown7E9F79 == 0) {
 		return;
 	}
-	unknownC20A20(&unknown7E9C8A);
+	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.unknown2f);
 	for (short i = 0; 3 > i; i++) {
 		if ((unknownEF05A6[i] & unknown7E9F79) == 0) {
@@ -7094,7 +7094,7 @@ void corruptionCheck() {
 	}
 	closeFocusWindowN();
 	unknown7E9F79 = 0;
-	unknownC20ABC(&unknown7E9C8A);
+	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 }
 
 /// $C1ED5B
