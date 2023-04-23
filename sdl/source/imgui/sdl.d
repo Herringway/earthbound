@@ -79,7 +79,7 @@ struct ImGui_ImplSDL2_Data
 {
     SDL_Window*     Window;
     SDL_Renderer*   Renderer;
-    Uint64          Time;
+    ulong          Time;
     int             MouseButtonsDown;
     SDL_Cursor*[ImGuiMouseCursor.COUNT] MouseCursors;
     int             PendingMouseLeaveFrame;
@@ -299,7 +299,7 @@ bool ImGui_ImplSDL2_ProcessEvent(const SDL_Event* event)
             // - In some cases, when detaching a window from main viewport SDL may send SDL_WINDOWEVENT_ENTER one frame too late,
             //   causing SDL_WINDOWEVENT_LEAVE on previous frame to interrupt drag operation by clear mouse position. This is why
             //   we delay process the SDL_WINDOWEVENT_LEAVE events by one frame. See issue #5012 for details.
-            Uint8 window_event = event.window.event;
+            ubyte window_event = event.window.event;
             if (window_event == SDL_WINDOWEVENT_ENTER)
                 bd.PendingMouseLeaveFrame = 0;
             if (window_event == SDL_WINDOWEVENT_LEAVE)
@@ -472,30 +472,30 @@ static void ImGui_ImplSDL2_UpdateGamepads()
     void MAP_BUTTON(ImGuiKey KEY_NO, SDL_GameControllerButton BUTTON_NO)() { io.AddKeyEvent(KEY_NO, SDL_GameControllerGetButton(game_controller, BUTTON_NO) != 0); }
     void MAP_ANALOG(ImGuiKey KEY_NO, SDL_GameControllerAxis AXIS_NO, float V0, float V1)() { float vn = cast(float)(SDL_GameControllerGetAxis(game_controller, AXIS_NO) - V0) / cast(float)(V1 - V0); vn = IM_SATURATE(vn); io.AddKeyAnalogEvent(KEY_NO, vn > 0.1f, vn); }
     const int thumb_dead_zone = 8000;           // SDL_gamecontroller.h suggests using this value.
-    MAP_BUTTON!(ImGuiKey.GamepadStart, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_START);
-    MAP_BUTTON!(ImGuiKey.GamepadBack, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_BACK);
-    MAP_BUTTON!(ImGuiKey.GamepadFaceLeft, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_X);              // Xbox X, PS Square
-    MAP_BUTTON!(ImGuiKey.GamepadFaceRight, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_B);              // Xbox B, PS Circle
-    MAP_BUTTON!(ImGuiKey.GamepadFaceUp, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_Y);              // Xbox Y, PS Triangle
-    MAP_BUTTON!(ImGuiKey.GamepadFaceDown, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_A);              // Xbox A, PS Cross
-    MAP_BUTTON!(ImGuiKey.GamepadDpadLeft, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_DPAD_LEFT);
-    MAP_BUTTON!(ImGuiKey.GamepadDpadRight, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
-    MAP_BUTTON!(ImGuiKey.GamepadDpadUp, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_DPAD_UP);
-    MAP_BUTTON!(ImGuiKey.GamepadDpadDown, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_DPAD_DOWN);
-    MAP_BUTTON!(ImGuiKey.GamepadL1, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
-    MAP_BUTTON!(ImGuiKey.GamepadR1, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
-    MAP_ANALOG!(ImGuiKey.GamepadL2, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_TRIGGERLEFT,  0.0f, 32767);
-    MAP_ANALOG!(ImGuiKey.GamepadR2, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_TRIGGERRIGHT, 0.0f, 32767);
-    MAP_BUTTON!(ImGuiKey.GamepadL3, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_LEFTSTICK);
-    MAP_BUTTON!(ImGuiKey.GamepadR3, SDL_GameControllerButton.SDL_CONTROLLER_BUTTON_RIGHTSTICK);
-    MAP_ANALOG!(ImGuiKey.GamepadLStickLeft, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_LEFTX,  -thumb_dead_zone, -32768);
-    MAP_ANALOG!(ImGuiKey.GamepadLStickRight, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_LEFTX,  +thumb_dead_zone, +32767);
-    MAP_ANALOG!(ImGuiKey.GamepadLStickUp, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_LEFTY,  -thumb_dead_zone, -32768);
-    MAP_ANALOG!(ImGuiKey.GamepadLStickDown, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_LEFTY,  +thumb_dead_zone, +32767);
-    MAP_ANALOG!(ImGuiKey.GamepadRStickLeft, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_RIGHTX, -thumb_dead_zone, -32768);
-    MAP_ANALOG!(ImGuiKey.GamepadRStickRight, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_RIGHTX, +thumb_dead_zone, +32767);
-    MAP_ANALOG!(ImGuiKey.GamepadRStickUp, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_RIGHTY, -thumb_dead_zone, -32768);
-    MAP_ANALOG!(ImGuiKey.GamepadRStickDown, SDL_GameControllerAxis.SDL_CONTROLLER_AXIS_RIGHTY, +thumb_dead_zone, +32767);
+    MAP_BUTTON!(ImGuiKey.GamepadStart, SDL_CONTROLLER_BUTTON_START);
+    MAP_BUTTON!(ImGuiKey.GamepadBack, SDL_CONTROLLER_BUTTON_BACK);
+    MAP_BUTTON!(ImGuiKey.GamepadFaceLeft, SDL_CONTROLLER_BUTTON_X);              // Xbox X, PS Square
+    MAP_BUTTON!(ImGuiKey.GamepadFaceRight, SDL_CONTROLLER_BUTTON_B);              // Xbox B, PS Circle
+    MAP_BUTTON!(ImGuiKey.GamepadFaceUp, SDL_CONTROLLER_BUTTON_Y);              // Xbox Y, PS Triangle
+    MAP_BUTTON!(ImGuiKey.GamepadFaceDown, SDL_CONTROLLER_BUTTON_A);              // Xbox A, PS Cross
+    MAP_BUTTON!(ImGuiKey.GamepadDpadLeft, SDL_CONTROLLER_BUTTON_DPAD_LEFT);
+    MAP_BUTTON!(ImGuiKey.GamepadDpadRight, SDL_CONTROLLER_BUTTON_DPAD_RIGHT);
+    MAP_BUTTON!(ImGuiKey.GamepadDpadUp, SDL_CONTROLLER_BUTTON_DPAD_UP);
+    MAP_BUTTON!(ImGuiKey.GamepadDpadDown, SDL_CONTROLLER_BUTTON_DPAD_DOWN);
+    MAP_BUTTON!(ImGuiKey.GamepadL1, SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
+    MAP_BUTTON!(ImGuiKey.GamepadR1, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
+    MAP_ANALOG!(ImGuiKey.GamepadL2, SDL_CONTROLLER_AXIS_TRIGGERLEFT,  0.0f, 32767);
+    MAP_ANALOG!(ImGuiKey.GamepadR2, SDL_CONTROLLER_AXIS_TRIGGERRIGHT, 0.0f, 32767);
+    MAP_BUTTON!(ImGuiKey.GamepadL3, SDL_CONTROLLER_BUTTON_LEFTSTICK);
+    MAP_BUTTON!(ImGuiKey.GamepadR3, SDL_CONTROLLER_BUTTON_RIGHTSTICK);
+    MAP_ANALOG!(ImGuiKey.GamepadLStickLeft, SDL_CONTROLLER_AXIS_LEFTX,  -thumb_dead_zone, -32768);
+    MAP_ANALOG!(ImGuiKey.GamepadLStickRight, SDL_CONTROLLER_AXIS_LEFTX,  +thumb_dead_zone, +32767);
+    MAP_ANALOG!(ImGuiKey.GamepadLStickUp, SDL_CONTROLLER_AXIS_LEFTY,  -thumb_dead_zone, -32768);
+    MAP_ANALOG!(ImGuiKey.GamepadLStickDown, SDL_CONTROLLER_AXIS_LEFTY,  +thumb_dead_zone, +32767);
+    MAP_ANALOG!(ImGuiKey.GamepadRStickLeft, SDL_CONTROLLER_AXIS_RIGHTX, -thumb_dead_zone, -32768);
+    MAP_ANALOG!(ImGuiKey.GamepadRStickRight, SDL_CONTROLLER_AXIS_RIGHTX, +thumb_dead_zone, +32767);
+    MAP_ANALOG!(ImGuiKey.GamepadRStickUp, SDL_CONTROLLER_AXIS_RIGHTY, -thumb_dead_zone, -32768);
+    MAP_ANALOG!(ImGuiKey.GamepadRStickDown, SDL_CONTROLLER_AXIS_RIGHTY, +thumb_dead_zone, +32767);
 }
 
 void ImGui_ImplSDL2_NewFrame()
@@ -519,11 +519,11 @@ void ImGui_ImplSDL2_NewFrame()
         io.DisplayFramebufferScale = ImVec2(cast(float)display_w / w, cast(float)display_h / h);
 
     // Setup time step (we don't use SDL_GetTicks() because it is using millisecond resolution)
-    static Uint64 frequency;
+    static ulong frequency;
     if (frequency == 0) {
 	    frequency = SDL_GetPerformanceFrequency();
 	}
-    Uint64 current_time = SDL_GetPerformanceCounter();
+    ulong current_time = SDL_GetPerformanceCounter();
     io.DeltaTime = bd.Time > 0 ? cast(float)(cast(double)(current_time - bd.Time) / frequency) : cast(float)(1.0f / 60.0f);
     bd.Time = current_time;
 

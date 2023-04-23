@@ -2,7 +2,7 @@
 	"name": "sdl",
 	"description": "SDL port",
 	"dependencies": {
-		"bindbc-sdl": "~>1.1.1",
+		"bindbc-sdl": "~>1.4.1",
 		"siryul": "~>0.6",
 		"earthbound": "*",
 		"nspcplay": "~>0.9",
@@ -23,5 +23,5 @@
 	"subConfigurations": {
 		"earthbound": "extra"
 	},
-	"versions": ["sdl", "SDL_2018", "SDL_Mixer"]
+	"versions": ["sdl", "SDL_2018", "SDL_Mixer_200"]
 }

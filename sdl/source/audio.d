@@ -8,7 +8,7 @@ import std.string;
 
 import nspcplay;
 import bindbc.sdl;
-import bindbc.sdl.mixer;
+import sdl_mixer;
 
 import earthbound.commondefs;
 
@@ -94,7 +94,7 @@ immutable bool[Sfx.max + 1] altChannel = [
 
 void initAudio(ubyte channels, uint sampleRate) {
     enforceSDLLoaded!("SDL_Mixer", Mix_Linked_Version, libName)(loadSDLMixer());
-	enforceSDL(Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) != -1, "Could not open audio");
+	enforceSDL(Mix_OpenAudio(sampleRate, AUDIO_S16, channels, 4096) != -1, "Could not open audio");
 	Mix_HookMusic(&nspcFillBuffer, &nspcplayer);
 	int finalSampleRate;
 	int finalChannels;

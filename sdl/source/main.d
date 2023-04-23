@@ -26,6 +26,7 @@ import earthbound.text;
 
 import audio;
 import gamepad;
+import inputconstants;
 import misc;
 import sfcdma;
 import rendering;
@@ -49,9 +50,9 @@ struct Settings {
 	}
 	AudioSettings audio;
 	VideoSettings video;
-	Controller[SDL_GameControllerButton] gamepadMapping;
-	AxisMapping[SDL_GameControllerAxis] gamepadAxisMapping;
-	Controller[SDL_Scancode] keyboardMapping;
+	Controller[GamePadButton] gamepadMapping;
+	AxisMapping[GamePadAxis] gamepadAxisMapping;
+	Controller[KeyboardKey] keyboardMapping;
 	GameConfig game;
 	bool advancedDebugging;
 }
@@ -196,33 +197,33 @@ void main(string[] args) {
 				ImGui_ImplSDL2_ProcessEvent(&event);
 			}
 			switch (event.type) {
-				case SDL_EventType.SDL_QUIT:
+				case SDL_QUIT:
 					break gameLoop;
-				case SDL_EventType.SDL_KEYDOWN:
-				case SDL_EventType.SDL_KEYUP:
+				case SDL_KEYDOWN:
+				case SDL_KEYUP:
 					if (settings.advancedDebugging && imguiAteKeyboard()) {
 						break;
 					}
-					if (auto button = event.key.keysym.scancode in settings.keyboardMapping) {
+					if (auto button = sdlKeyToKeyboardKey(event.key.keysym.scancode) in settings.keyboardMapping) {
 						handleButton(*button, event.type == SDL_KEYDOWN, 1);
 					}
 					break;
-				case SDL_EventType.SDL_CONTROLLERAXISMOTION:
-					if (auto axis = cast(SDL_GameControllerAxis)event.caxis.axis in settings.gamepadAxisMapping) {
+				case SDL_CONTROLLERAXISMOTION:
+					if (auto axis = sdlAxisToGamePadAxis(cast(SDL_GameControllerAxis)event.caxis.axis) in settings.gamepadAxisMapping) {
 						handleAxis(SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.caxis.which)), *axis, event.caxis.value);
 					}
 					break;
-				case SDL_EventType.SDL_CONTROLLERBUTTONUP:
-				case SDL_EventType.SDL_CONTROLLERBUTTONDOWN:
-					if (auto button = cast(SDL_GameControllerButton)event.cbutton.button in settings.gamepadMapping) {
+				case SDL_CONTROLLERBUTTONUP:
+				case SDL_CONTROLLERBUTTONDOWN:
+					if (auto button = sdlButtonToGamePadButton(cast(SDL_GameControllerButton)event.cbutton.button) in settings.gamepadMapping) {
 						handleButton(*button, event.type == SDL_CONTROLLERBUTTONDOWN, SDL_GameControllerGetPlayerIndex(SDL_GameControllerFromInstanceID(event.cbutton.which)));
 					}
 					break;
-				case SDL_EventType.SDL_CONTROLLERDEVICEADDED:
+				case SDL_CONTROLLERDEVICEADDED:
 					connectGamepad(event.cdevice.which);
 					break;
 
-				case SDL_EventType.SDL_CONTROLLERDEVICEREMOVED:
+				case SDL_CONTROLLERDEVICEREMOVED:
 					disconnectGamepad(event.cdevice.which);
 					break;
 				default: break;
