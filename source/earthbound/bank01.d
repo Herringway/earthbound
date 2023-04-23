@@ -3832,7 +3832,7 @@ void* cc1ATree(DisplayTextState* arg1, ubyte arg2) {
 			setWorkingMemory(WorkingMemory(unknownC1AC00()));
 			break;
 		case 0x0B:
-			setWorkingMemory(WorkingMemory(unknownC1AAFA()));
+			setWorkingMemory(WorkingMemory(selectPSITeleportDestination()));
 			break;
 		default: break;
 	}
@@ -5289,7 +5289,7 @@ short unknownC1AA5D() {
 }
 
 /// $C1AAFA
-ushort unknownC1AAFA() {
+ushort selectPSITeleportDestination() {
 	short x02 = 0;
 	openEquipSelectWindow(2);
 	unknownC20A20(&unknown7E9C8A);
@@ -5620,7 +5620,7 @@ short unknownC1B5B6() {
 				} else {
 					if (psiAbilityTable[x01].type == 8) {
 						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.sysDistlpt) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0)) {
-							x00 = cast(ubyte)unknownC1AAFA();
+							x00 = cast(ubyte)selectPSITeleportDestination();
 						} else {
 							createWindowN(Window.textBattle);
 							displayText(getTextBlock("textCannotTeleportHere"));
