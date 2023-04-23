@@ -122,7 +122,7 @@ immutable(ubyte[])[] battleSpriteGraphics;
 
 /// $CE6514
 @ROMSource(0xE6514, 32 * 32)
-immutable(ushort[])[] battleSpritePalettes;
+immutable(ushort[16])[] battleSpritePalettes;
 
 /// $CEDC45
 @swirlDataSource
