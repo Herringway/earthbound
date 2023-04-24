@@ -8199,6 +8199,15 @@ void ebMain() {
 					hideHPPPWindows();
 					closeAllWindows();
 					unfreezeEntities();
+				} else if (config.debugMenuButton && (config.debugTextLabel != "") && ((padPress[0] & Pad.extra3) != 0)) {
+					freezeEntities();
+					playSfx(Sfx.cursor1);
+					createWindowN(Window.textStandard);
+					displayText(getTextBlock(config.debugTextLabel));
+					clearInstantPrinting();
+					hideHPPPWindows();
+					closeAllWindows();
+					unfreezeEntities();
 				}
 			}
 			if (teleportDestination) {

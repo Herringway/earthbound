@@ -7285,6 +7285,7 @@ version(configurable) {
 		bool instantSpeedText;
 		bool debugMenuButton;
 		Coordinates spawnCoordinates;
+		string debugTextLabel;
 		bool overrideSpawn() const @safe pure nothrow {
 			return (spawnCoordinates.x != 0) && (spawnCoordinates.y != 0);
 		}
@@ -7299,6 +7300,7 @@ version(configurable) {
 		enum debugMenuButton = false;
 		enum Coordinates spawnCoordinates = Coordinates.init;
 		enum bool overrideSpawn = false;
+		enum string debugTextLabel = "";
 	}
 }
 GameConfig config;
