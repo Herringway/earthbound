@@ -1529,7 +1529,7 @@ ubyte[] ACTIONSCRIPT_SET_DIRECTION8(Direction direction) {
 }
 
 ubyte[] ACTIONSCRIPT_PLAY_SFX(Sfx sound) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!playSfx, cast(ushort)sound);
+	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A841, cast(ushort)sound);
 }
 
 ubyte[] ACTIONSCRIPT_C0A9B3(ushort arg1, ushort arg2, ushort arg3) {
