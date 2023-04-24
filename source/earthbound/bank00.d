@@ -2693,7 +2693,7 @@ void unknownC05200() {
 		animateTileset();
 	}
 	if (unknown7E4474 != 0) {
-		animateTileset();
+		animatePalette();
 	}
 	if (unknown7E9F2A != 0) {
 		processItemTransformations();
