@@ -7382,7 +7382,11 @@ private auto actionscriptCommandPrinter(const(ubyte)[] commandStream) {
 			enum scriptPtrSize = (void*).sizeof;
 			enum voidPtrSize = (void*).sizeof;
 			ubyte command = stream[0] < 0x70 ? stream[0] : cast(ubyte)(0x45 + (stream[0] & 0x70) >> 4);
-			writer.formattedWrite!"%s"(commandNames[command]);
+			if (command < commandNames.length) {
+				writer.formattedWrite!"%s"(commandNames[command]);
+			} else {
+				writer.formattedWrite!"UNKNOWN COMMAND %02X"(command);
+			}
 			switch (command) {
 				case 0x00:
 				case 0x02:
@@ -7467,7 +7471,7 @@ private auto actionscriptCommandPrinter(const(ubyte)[] commandStream) {
 					writer.formattedWrite!" %s"(funcSymbolMap[(cast(void*[])stream[1 .. 1 + size_t.sizeof])[0]]);
 					break;
 				default:
-					assert(0, "Unknown command");
+					break;
 			}
 		}
 	}
