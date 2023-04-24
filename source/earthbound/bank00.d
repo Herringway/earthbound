@@ -7560,7 +7560,7 @@ void unknownC0AC43() {
 			}
 			goto case;
 		case 4:
-			if (actionScriptVar88 >= 46) {
+			if (actionScriptVar88 < 46) {
 				return;
 			}
 			actionScriptVar02Overlay = entitySweatingOverlayPtrs[actionScriptVar88 / 2];
@@ -7578,7 +7578,7 @@ void unknownC0AC43() {
 	if ((entityUnknown2E7A[actionScriptVar88 / 2] & 0x4000) == 0) {
 		return;
 	}
-	if (actionScriptVar88 >= 46) {
+	if (actionScriptVar88 < 46) {
 		return;
 	}
 	actionScriptVar02Overlay = entityMushroomizedOverlayPtrs[actionScriptVar88 / 2];
