@@ -585,6 +585,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/waitNFrames.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/waitUntilNextFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/addCharacterInventoryToWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/attemptHomesickness.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/battleActionSwitchArmor.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/battleActionSwitchWeapons.html</loc></url>
@@ -806,7 +807,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/hideHPPPWindows.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/hideHPPPWindowsF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/incrementSecondaryMemory.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/inventoryGetItemName.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/levelUpChar.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/lockInput.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/moveCursor.html</loc></url>
