@@ -4931,6 +4931,7 @@ ushort unknownC19DB5(short arg1) {
 		memcpy(&unknown7E9C9F[0], &itemData[x1A].name[0], Item.name.length);
 		unknown7E9C9F[Item.name.length] = 0;
 		unknownC115F4(x1A, &unknown7E9C9F[0], null);
+		moveCurrentTextCursor(0, i);
 		printPrice(itemData[x1A].cost);
 	}
 	moveCurrentTextCursor(0, 0);
