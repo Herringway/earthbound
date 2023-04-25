@@ -255,7 +255,7 @@ void drawHPPPWindow(short id) {
 			x++;
 		}
 		for (short j = 3; j != 0; j--) {
-			x[0] = y[0];
+			x[0] = cast(ushort)(y[0] + x1A);
 			y++;
 			x++;
 		}
@@ -275,7 +275,7 @@ void drawHPPPWindow(short id) {
 			x++;
 		}
 		for (short j = 3; j != 0; j--) {
-			x[0] = y[0];
+			x[0] = cast(ushort)(y[0] + x1A);
 			y++;
 			x++;
 		}
