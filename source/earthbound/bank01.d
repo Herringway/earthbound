@@ -2915,7 +2915,7 @@ void* cc1809(DisplayTextState* arg1, ubyte arg2) {
 /// $C15573
 void* cc1C0B(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
-	unknownC4507A(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()));
+	printPrice(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()));
 	return null;
 }
 
@@ -4931,7 +4931,7 @@ ushort unknownC19DB5(short arg1) {
 		memcpy(&unknown7E9C9F[0], &itemData[x1A].name[0], Item.name.length);
 		unknown7E9C9F[Item.name.length] = 0;
 		unknownC115F4(x1A, &unknown7E9C9F[0], null);
-		unknownC4507A(itemData[x1A].cost);
+		printPrice(itemData[x1A].cost);
 	}
 	moveCurrentTextCursor(0, 0);
 	unknownC1180D(1, 0, 0);
@@ -5253,7 +5253,7 @@ void unknownC1AA18() {
 	setCurrentWindowPadding(5);
 	setInstantPrinting();
 	clearFocusWindow();
-	unknownC4507A(gameState.moneyCarried);
+	printPrice(gameState.moneyCarried);
 	clearInstantPrinting();
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 }

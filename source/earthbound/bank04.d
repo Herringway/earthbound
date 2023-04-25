@@ -2058,7 +2058,7 @@ short unknownC44FF3(short arg1, short fontID, ubyte* arg3) {
 }
 
 /// $C4507A
-void unknownC4507A(uint arg1) {
+void printPrice(uint arg1) {
 	ubyte[8] x12;
 	if (currentFocusWindow == -1) {
 		return;
@@ -2068,8 +2068,8 @@ void unknownC4507A(uint arg1) {
 	short x24 = unknownC10C55(arg1);
 	ubyte* x22 = &unknown7E895A[7 - x24];
 	ubyte* x20 = x22;
-	short x1E = windowStats[windowTable[currentFocusWindow]].textX;
-	short x1C = windowStats[windowTable[currentFocusWindow]].textY;
+	short textXBackup = windowStats[windowTable[currentFocusWindow]].textX;
+	short textYBackup = windowStats[windowTable[currentFocusWindow]].textY;
 	short x04 = unknown7E5E6D + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][4];
 
 	for (short i = 0; i < x24; i++) {
@@ -2088,7 +2088,7 @@ void unknownC4507A(uint arg1) {
 	unknown7E5E71 = 0;
 	moveCurrentTextCursor(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
 	unknownC43F77(0x24);
-	moveCurrentTextCursor(x1E, x1C);
+	moveCurrentTextCursor(textXBackup, textYBackup);
 	unknown7E5E75 = unknown7E5E75Copy;
 }
 
