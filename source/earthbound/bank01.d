@@ -1843,12 +1843,12 @@ const(ubyte)* check() {
 
 /// $C1339E
 void unknownC1339E(short arg1) {
-	return inventoryGetItemName(arg1, Window.inventory);
+	return addCharacterInventoryToWindow(arg1, Window.inventory);
 }
 
 /// $C133A7
 void unknownC133A7(short arg1) {
-	return inventoryGetItemName(arg1, Window.unknown2c);
+	return addCharacterInventoryToWindow(arg1, Window.unknown2c);
 }
 
 /// $C133B0
@@ -1893,7 +1893,7 @@ void openMenuButton() {
 						if (getCharacterItem(gameState.partyMembers[0], 1) == 0) {
 							continue mainLoop;
 						}
-						inventoryGetItemName(gameState.partyMembers[0], Window.inventory);
+						addCharacterInventoryToWindow(gameState.partyMembers[0], Window.inventory);
 						x1F = gameState.partyMembers[0];
 						unknownC43573(0);
 					} else {
@@ -1969,7 +1969,7 @@ void openMenuButton() {
 									setWindowFocus(0);
 									unknown7E5E6C = 1;
 									unknownC133B0();
-									inventoryGetItemName(cast(short)x1F, Window.inventory);
+									addCharacterInventoryToWindow(cast(short)x1F, Window.inventory);
 									closeWindow(Window.inventoryMenu);
 									setWindowFocus(Window.inventory);
 									break L4;
@@ -2896,7 +2896,7 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 		backupCurrentWindowTextAttributes(&arg1.savedTextAttributes);
 		unknown7E5E71 = 0;
 	}
-	inventoryGetItemName(getCCParameters!ArgType(arg2).window, getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()));
+	addCharacterInventoryToWindow(getCCParameters!ArgType(arg2).window, getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()));
 	return null;
 }
 
@@ -4805,16 +4805,16 @@ void unknownC1952F(short arg1) {
 }
 
 /// $C198DE
-void inventoryGetItemName(short arg1, short arg2) {
-	arg1--;
-	createWindowN(arg2);
+void addCharacterInventoryToWindow(short character, short window) {
+	character--;
+	createWindowN(window);
 	if (gameState.playerControlledPartyMemberCount != 1) {
-		unknown7E5E7A = arg2;
+		unknown7E5E7A = window;
 	}
-	setWindowTitle(arg2, PartyCharacter.name.length, &partyCharacters[arg1].name[0]);
+	setWindowTitle(window, PartyCharacter.name.length, &partyCharacters[character].name[0]);
 	for (short i = 0; PartyCharacter.items.length > i; i++) {
-		short x16 = partyCharacters[arg1].items[i];
-		if (checkItemEquipped(cast(short)(arg1 + 1), cast(short)(i + 1)) != 0) {
+		short x16 = partyCharacters[character].items[i];
+		if (checkItemEquipped(cast(short)(character + 1), cast(short)(i + 1)) != 0) {
 			unknown7E9C9F[0] = 0x22;
 			memcpy(&unknown7E9C9F[1], &itemData[x16].name[0], Item.name.length);
 		} else {
@@ -6272,7 +6272,7 @@ short unknownC1CFC6(UnknownA97D* arg1) {
 	if (partyCharacters[arg1.unknown0 - 1].items[0] != 0) {
 		while (true) {
 			createWindowN(Window.inventory);
-			inventoryGetItemName(arg1.unknown0, Window.inventory);
+			addCharacterInventoryToWindow(arg1.unknown0, Window.inventory);
 			x0E = selectionMenu(1);
 			setInstantPrinting();
 			closeFocusWindow();
