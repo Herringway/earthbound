@@ -174,17 +174,17 @@ void drawHPPPWindow(short id) {
 	short x04 = unknownC223D9(&character.afflictions[0], 1);
 	short x20 = cast(short)((x22 & 0xFFF0) + x04);
 	ushort x1E = character.hpPPWindowOptions;
-	short x18;
-	short x1A;
-	short x1C;
+	ushort x18;
+	ushort x1A;
+	ushort x1C;
 	if (x1E == 0xC00) {
-		x1C = 0xC00;
-		x22 = 0xC00;
-		x1A = 0x800;
+		x1C = 3 << 10;
+		x22 = 3 << 10;
+		x1A = 2 << 10;
 	} else {
-		x1C = cast(short)(unknownC22474(&character.afflictions[0]) * 0x400);
-		x22 = 0x1000;
-		x1A = 0;
+		x1C = cast(short)(unknownC22474(&character.afflictions[0]) << 10);
+		x22 = 4 << 10;
+		x1A = 0 << 10;
 	}
 	if (battleMenuCurrentCharacterID == id) {
 		x18 = 18;
