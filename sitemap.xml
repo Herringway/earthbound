@@ -1606,6 +1606,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareYourSanctuaryLocationTileArrangementData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/prepareYourSanctuaryLocationTilesetData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/printNewLine.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/printPrice.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/printWrappableString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/processItemTransformations.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/randMod.html</loc></url>
@@ -1713,7 +1714,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC44E44.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC44E61.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC44FF3.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4507A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC451FA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC45E96.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC460CE.html</loc></url>
