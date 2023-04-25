@@ -2902,13 +2902,13 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C15529 - [18 08 XX] selection menu, no cancelling
 void* cc1808(DisplayTextState* arg1, ubyte arg2) {
-	setWorkingMemory(WorkingMemory(unknownC19A11(0, arg2)));
+	setWorkingMemory(WorkingMemory(unknownC19A11(arg2, 0)));
 	return null;
 }
 
 /// $C1554E - [18 09 XX] selection menu
 void* cc1809(DisplayTextState* arg1, ubyte arg2) {
-	setWorkingMemory(WorkingMemory(unknownC19A11(1, arg2)));
+	setWorkingMemory(WorkingMemory(unknownC19A11(arg2, 1)));
 	return null;
 }
 
