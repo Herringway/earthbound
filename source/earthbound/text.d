@@ -825,8 +825,8 @@ align(1) struct CC1A00Arguments {
 
 align(1) struct CC1A05Arguments {
 	align(1):
-	ubyte character;
 	ubyte window;
+	ubyte character;
 }
 
 align(1) struct CC1C13Arguments {

@@ -2896,7 +2896,7 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 		backupCurrentWindowTextAttributes(&arg1.savedTextAttributes);
 		unknown7E5E71 = 0;
 	}
-	addCharacterInventoryToWindow(getCCParameters!ArgType(arg2).window, getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()));
+	addCharacterInventoryToWindow(getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()), getCCParameters!ArgType(arg2).window);
 	return null;
 }
 
