@@ -4467,16 +4467,16 @@ ushort removeItemFromInventory(ushort character, ushort slot) {
 	} else if (slot == partyCharacters[character - 1].equipment[EquipmentSlot.other]) {
 		changeEquippedOther(character, 0);
 	}
-	if (slot >= partyCharacters[character - 1].equipment[EquipmentSlot.weapon]) {
+	if (slot < partyCharacters[character - 1].equipment[EquipmentSlot.weapon]) {
 		partyCharacters[character - 1].equipment[EquipmentSlot.weapon]--;
 	}
-	if (slot >= partyCharacters[character - 1].equipment[EquipmentSlot.body]) {
+	if (slot < partyCharacters[character - 1].equipment[EquipmentSlot.body]) {
 		partyCharacters[character - 1].equipment[EquipmentSlot.body]--;
 	}
-	if (slot >= partyCharacters[character - 1].equipment[EquipmentSlot.arms]) {
+	if (slot < partyCharacters[character - 1].equipment[EquipmentSlot.arms]) {
 		partyCharacters[character - 1].equipment[EquipmentSlot.arms]--;
 	}
-	if (slot >= partyCharacters[character - 1].equipment[EquipmentSlot.other]) {
+	if (slot < partyCharacters[character - 1].equipment[EquipmentSlot.other]) {
 		partyCharacters[character - 1].equipment[EquipmentSlot.other]--;
 	}
 	short x00 = partyCharacters[character - 1].items[slot - 1];
