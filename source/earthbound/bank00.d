@@ -318,7 +318,7 @@ void loadMapAtSector(short x, short y) {
 		} else {
 			loadTextPalette();
 		}
-		unknownC0856B(0);
+		preparePaletteUpload(PaletteUpload.none);
 	}
 	memcpy(&unknown7E4476[0], &palettes[2][0], 0x1C0);
 	if (unknown7E4676 != 0) {
@@ -329,7 +329,7 @@ void loadMapAtSector(short x, short y) {
 		unknownC496F9();
 		memset(&palettes[1][0], 0, 0x1E0);
 	}
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 	unknown7E436E = x04;
 	unknown7E4370 = x18;
 }
@@ -2572,7 +2572,7 @@ void unknownC04EF0() {
 void unknownC04F47() {
 	palettes[0][0] = unknown7E5D72;
 	mirrorTM = 0x17;
-	unknownC0856B(8);
+	preparePaletteUpload(PaletteUpload.halfFirst);
 }
 
 /// $C04F60
@@ -2586,7 +2586,7 @@ void unknownC04F60() {
 	unknown7E5D72 = palettes[0][0];
 	palettes[0][0] = 0x1F;
 	mirrorTM = 0;
-	unknownC0856B(8);
+	preparePaletteUpload(PaletteUpload.halfFirst);
 	scheduleOverworldTask(1, &unknownC04F47);
 }
 
@@ -3545,7 +3545,7 @@ void screenTransition(short arg1, short arg2) {
 		unknownC4954C(screenTransitionConfigTable[arg1].fadeStyle, &palettes[0][0]);
 		unknownC496E7(x02, -1);
 		for (short i = 0; i < x02; i++) {
-			if (unknown7E0030 != 0) {
+			if (paletteUploadMode != PaletteUpload.none) {
 				waitUntilNextFrame();
 			}
 			updateMapPaletteAnimation();
@@ -3561,7 +3561,7 @@ void screenTransition(short arg1, short arg2) {
 			prepareForImmediateDMA();
 		} else {
 			memset(&palettes[0][0], 0xFF, 0x200);
-			unknownC0856B(0x18);
+			preparePaletteUpload(PaletteUpload.full);
 			waitUntilNextFrame();
 			unknown7E4676 = 1;
 		}
@@ -3578,7 +3578,7 @@ void screenTransition(short arg1, short arg2) {
 		}
 		for (short i = 0; i < screenTransitionConfigTable[arg1].secondaryDuration; i++) {
 			if (arg1 == 0) {
-				if (unknown7E0030 != 0) {
+				if (paletteUploadMode != PaletteUpload.none) {
 					waitUntilNextFrame();
 				}
 				updateMapPaletteAnimation();
@@ -4427,11 +4427,11 @@ void irqNMICommon() {
 		handleOAMDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220, 0);
 		unknown7E0099 += 0x220;
 	}
-	if (unknown7E0030 != 0) {
+	if (paletteUploadMode != PaletteUpload.none) {
 		// In the original game's source code, we would only DMA part of
 		// the palette to save cycles. With the power of modern computers,
 		// we can afford to copy 512 bytes always instead of only 256.
-		unknown7E0030 = 0;
+		paletteUploadMode = PaletteUpload.none;
 		handleCGRAMDMA(0, 0x22, &palettes, 0x200, 0);
 		unknown7E0099 += 0x0200;
 	}
@@ -4663,8 +4663,8 @@ void resetIRQCallback() {
 }
 
 /// $C0856B
-void unknownC0856B(short arg1) {
-	unknown7E0030 = cast(ubyte)arg1;
+void preparePaletteUpload(short arg1) {
+	paletteUploadMode = cast(ubyte)arg1;
 }
 
 /// $C085B7 - Copy data to VRAM in chunks of 0x1200
@@ -6670,7 +6670,7 @@ void unknownC0A1F2(short arg1) {
 	while (--bytesLeft >= 0) {
 		*(destination++) = *(source++);
 	}
-	unknown7E0030 = 8;
+	paletteUploadMode = PaletteUpload.halfFirst;
 }
 
 __gshared const ubyte*[8] unknownC0A20C;
@@ -8987,7 +8987,7 @@ void unknownC0D4DE() {
 		short x16_2 = (x16 + x02 + tmp) / 3;
 		(cast(ushort*)&palettes[0][0])[i] = cast(ushort)(x16_2 << 10 + x16_2 << 5 + x16_2);
 	}
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C0D59B
@@ -9884,7 +9884,7 @@ void teleportMainLoop() {
 }
 
 /// $C0EBE0
-void unknownC0EBE0() {
+void loadTitleScreenGraphics() {
 	decomp(&titleScreenGraphics[0], &unknown7F0000[0]);
 	copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
 	decomp(&titleScreenArrangement[0], &unknown7F0000[0]);
@@ -9904,35 +9904,35 @@ void unknownC0EC77(short arg1) {
 
 /// $C0ECB7
 void unknownC0ECB7() {
-	unknown7E0030 = 0;
+	paletteUploadMode = PaletteUpload.none;
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
 	unknownC496F9();
 	memset(&palettes[0][0], 0, 0x100);
 	unknownC496E7(0xA5, 0xFF);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C0ED14
-void unknownC0ED14() {
+void setBGPalettesWhite() {
 	memset(&palettes[0][0], 0xFF, 0x100);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C0ED39
-void unknownC0ED39() {
+void setBGPalettesBlack() {
 	memset(&palettes[0][0], 0, 0x100);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C0ED5C
 void unknownC0ED5C() {
-	unknown7E0030 = 0;
+	paletteUploadMode = PaletteUpload.none;
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
 	unknownC0EC77(0);
 	memcpy(&palettes[8][0], &unknown7F0000[0x1A0], 0x20);
 	unknownC0EC77(1);
 	memcpy(&palettes[7][0], &unknown7F0000[0x260], 0x20);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C0EDD1
@@ -9951,7 +9951,7 @@ void unknownC0EDDA() {
 		x12 = 0;
 	}
 	entityScriptVar0Table[currentEntitySlot] = x12;
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C0EE47
@@ -9989,7 +9989,7 @@ void logoScreenLoad(short arg1) {
 	}
 	copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
 	copyToVRAM(0, 0x800, 0x4000, &introBG2Buffer[0]);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C0EFE1
@@ -10053,7 +10053,7 @@ void gasStationLoad() {
 	mirrorTD = 2;
 	CGWSEL = 2;
 	CGADSUB = 3;
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C0F1D2
@@ -10079,11 +10079,11 @@ short unknownC0F21E() {
 		}
 		memcpy(&unknown7E4476[0], &palettes[2][0], 0x20);
 		updateMapPaletteAnimation();
-		unknown7E0030 = 0;
+		paletteUploadMode = PaletteUpload.none;
 		unknownC2DB14();
 		memcpy(&palettes[2][0], &unknown7E4476[0], 0x20);
 		unknownC2DB3F();
-		unknown7E0030 = 0x18;
+		paletteUploadMode = PaletteUpload.full;
 		waitUntilNextFrame();
 	}
 	unknownC49740();
@@ -10126,7 +10126,7 @@ short gasStation() {
 	}
 	mirrorTM = 0;
 	memset(&palettes[0][0], 0, 0x200);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	if (x11 == 0) { //isn't this always true...?
 		unknownC0EFE1(0x1E);
 	}
@@ -10136,13 +10136,13 @@ short gasStation() {
 /// $C0F3B2
 void unknownC0F3B2() {
 	decomp(&gasStationPalette2[0], &palettes[0][0]);
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C0F3E8
 void unknownC0F3E8() {
 	decomp(&gasStationPalette[0], &palettes[0][0]);
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C0F41E

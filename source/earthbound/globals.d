@@ -46,7 +46,7 @@ __gshared ubyte unknown7E002D; /// $(DOLLAR)002D
 __gshared ubyte nextFrameBufferID; /// $(DOLLAR)002E
 __gshared ubyte unknown7E002F; /// $(DOLLAR)002F
 //DMA table offset?
-__gshared ubyte unknown7E0030; /// $(DOLLAR)0030
+__gshared ubyte paletteUploadMode; /// $(DOLLAR)0030
 __gshared ushort bg1XPosition; /// $(DOLLAR)0031
 __gshared ushort bg1YPosition; /// $(DOLLAR)0033
 __gshared ushort bg2XPosition; /// $(DOLLAR)0035

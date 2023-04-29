@@ -5192,6 +5192,13 @@ enum InteractionType {
 	unknown10,
 }
 
+enum PaletteUpload {
+	none = 0,
+	halfFirst = 8 * 1,
+	halfSecond = 8 * 2,
+	full = 8 * 3
+}
+
 ///
 struct GameState {
 	version(Have_siryul) {

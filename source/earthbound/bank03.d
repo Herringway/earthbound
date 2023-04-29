@@ -390,7 +390,7 @@ void unknownC3E450() {
 		x06 = &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20];
 	}
 	memcpy(&palettes[1][4], x06, 8);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C3E4CA - Clear the instant text print flag
@@ -1059,23 +1059,23 @@ short showTitleScreen(short arg1) {
 	bg1XPosition = 0;
 	bg1YPosition = 0;
 	updateScreen();
-	unknownC0EBE0();
+	loadTitleScreenGraphics();
 	mirrorTM = 0x11;
 	oamClear();
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
 	unknown7E9641 = 0;
 	if (unknown7E9F75 == 0) {
 		memset(&palettes[0][0], 0, 0x200);
-		unknown7E0030 = 0x18;
+		paletteUploadMode = PaletteUpload.full;
 		setForceBlank();
 		mirrorINIDISP = 0xF;
 		waitUntilNextFrame();
-		unknown7E0030 = 0;
+		paletteUploadMode = PaletteUpload.none;
 		decomp(&unknownE1AE7C[0], &palettes[8][0]);
 		unknownC496F9();
 		memset(&palettes[0][0], 0, 0x200);
 		unknownC496E7(0x3C, 0x100);
-		unknown7E0030 = 0x18;
+		paletteUploadMode = PaletteUpload.full;
 		for (short i = 0; 0x3C > i; i++) {
 			updateMapPaletteAnimation();
 			unknownC1004E();

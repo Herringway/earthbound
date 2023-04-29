@@ -94,7 +94,7 @@ noreturn unknownC40B75() {
 	copyToVRAM(0, 0xA00, 0, &unknown7F0000[0]);
 	copyToVRAM(0, 0x800, 0x4000, &unknown7F0000[0x4000]);
 	memcpy(&palettes[0][0], &warningPalette[0], 0x10);
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 	fadeInWithMosaic(1, 1, 0);
 	while (true) {}
 }
@@ -712,7 +712,7 @@ void updateMapPaletteAnimation() {
 		}
 		(cast(ushort*)&palettes)[i] = cast(ushort)((a2 << 2) | a);
 	}
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C4283F
@@ -3545,7 +3545,7 @@ void loadTextPalette() {
 			break;
 	}
 	palettes[0][0] = 0;
-	unknownC0856B(8);
+	preparePaletteUpload(PaletteUpload.halfFirst);
 }
 
 /// $C4800B
@@ -3555,7 +3555,7 @@ void undrawFlyoverText() {
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all2);
 	loadTextPalette();
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C48BDA
@@ -3784,7 +3784,7 @@ void stepMapPaletteFade() {
 		outputPtr[0] = redBits | greenBits | blueBits;
 		outputPtr++;
 	}
-	unknownC0856B(8);
+	preparePaletteUpload(PaletteUpload.halfFirst);
 }
 
 /// $C4939C
@@ -3803,8 +3803,8 @@ void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 		memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 		unknownC00480();
 		loadSpecialSpritePalette();
-		unknownC0856B(0x18);
-		while (unknown7E0030 != 0) { waitForInterrupt(); }
+		preparePaletteUpload(PaletteUpload.full);
+		while (paletteUploadMode != PaletteUpload.none) { waitForInterrupt(); }
 	}
 }
 
@@ -3881,7 +3881,7 @@ void unknownC496F9() {
 /// $C49740
 void unknownC49740() {
 	memcpy(palettes.ptr, unknown7F0000.ptr, 0x200);
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C4984B
@@ -3950,7 +3950,7 @@ void unknownC49A56() {
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	copyToVRAM(3, 0x3800, 0x6000, &unknown7F0000[0]);
 	memcpy(&palettes[0][0], &movementTextStringPalette[0], 8);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	memset(&vwfBuffer[0][0], 0xFF, 0x680);
 	ushort y = 0x10;
 	for (short i = 0; i < 0x20; i++) {
@@ -5552,7 +5552,7 @@ void unknownC4C2DE() {
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	loadTextPalette();
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 	mirrorTM = 5;
 	unknown7E4DC4 = 0;
 	bg2YPosition = 0;
@@ -5611,7 +5611,7 @@ void unknownC4C58F(short arg1) {
 		waitUntilNextFrame();
 	}
 	memset(&palettes[0][0], 0xFF, 0x200);
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 	waitUntilNextFrame();
 }
 
@@ -5629,10 +5629,10 @@ void unknownC4C60E(short arg1) {
 }
 
 /// $C4C64D
-short unknownC4C64D() {
+short gameOverPrompt() {
 	skippablePause(0x3C);
 	displayText(getTextBlock("textGameOver"));
-	unknownC1DD5F();
+	closeAllWindowsAndHPPP();
 	if (getEventFlag(EventFlag.sysComeBack) == 0) {
 		skippablePause(0x3C);
 		return -1;
@@ -5668,7 +5668,7 @@ short unknownC4C64D() {
 short spawn() {
 	freezeEntities();
 	unknownC4C2DE();
-	short result = unknownC4C64D();
+	short result = gameOverPrompt();
 	if (result != 0) {
 		fadeOutWithMosaic(2, 1, 0);
 		unfreezeEntities();
@@ -5806,7 +5806,7 @@ void unknownC4746B(short arg1) {
 	for (short i = 0; i < 16; i++) {
 		unknownC473D0(i, arg1);
 	}
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $C47499
@@ -5824,7 +5824,7 @@ void unknownC47A9E() {
 	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &unknown7F0000[0]);
 	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &unknown7F0000[0]);
 	memcpy(&palettes[0][0], &unknown7F0000[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	bg3YPosition = 0xFFFF;
 }
 
@@ -6186,7 +6186,7 @@ void unknownC497C0(short arg1, short arg2, short arg3) {
 		}
 	}
 	unknownC49740();
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C4981F
@@ -6437,7 +6437,7 @@ void animateTownMapIconPalette() {
 			palettes[8][i - 1] = palettes[8][i];
 		}
 		palettes[8][7] = x10;
-		unknownC0856B(16);
+		preparePaletteUpload(PaletteUpload.halfSecond);
 	}
 	framesUntilMapIconPaletteUpdate--;
 }
@@ -6518,7 +6518,7 @@ void loadTownMapData(short arg1) {
 	copyToVRAM2(0, 0x4000, 0, &unknown7F0000[0x840]);
 	decomp(&townMapLabelGfx[0], &unknown7F0000[0]);
 	copyToVRAM(0, 0x2400, 0x6000, &unknown7F0000[0]);
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 	mirrorTM = 0x11;
 	bg1YPosition = 0;
 	bg1XPosition = 0;
@@ -6813,7 +6813,7 @@ void decompItoiProduction() {
 	copyToVRAM(0, 0x400, 0x6000, &unknown7F0000[0x800]);
 	decomp(&nintendoItoiPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C4DDD0
@@ -6825,7 +6825,7 @@ void decompNintendoPresentation() {
 	copyToVRAM(0, 0x400, 0x6000, &unknown7F0000[0x800]);
 	decomp(&nintendoItoiPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 }
 
 /// $C4DE78
@@ -6865,7 +6865,7 @@ void prepareYourSanctuaryLocationPaletteData(short arg1, short arg2) {
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	loadMapPalette(arg1 / 8, arg1 & 7);
 	unknownC00480();
-	unknown7E0030 = 0;
+	paletteUploadMode = PaletteUpload.none;
 	memcpy(&unknown7F0000[0x4000 + arg2 * 0x200], &palettes[0][0], 0x100);
 }
 
@@ -6939,7 +6939,7 @@ void displayYourSanctuaryLocation(short arg1) {
 	waitDMAFinished();
 	copyToVRAM(0, 0x780, 0x3800, &unknown7F0000[x02 * 0x800]);
 	memcpy(&palettes[0][0], &unknown7F0000[0x4000 + x02 * 0x200], 0x100);
-	unknown7E0030 = 8;
+	paletteUploadMode = PaletteUpload.halfFirst;
 	screenTopY = 0;
 	screenLeftX = 0;
 	bg1YPosition = 0;
@@ -7002,7 +7002,7 @@ void loadCastScene() {
 	memcpy(&palettes[0][0], &unknownE1D815[0], 0x20);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	decomp(&unknownE1E4E6[0], &unknown7F0000[0x7000]);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	mirrorTM = 0x14;
 	unknown7EB4CF = 0;
 	unknown7EB4D1 = 0;
@@ -7126,7 +7126,7 @@ void unknownC4EBAD(short arg1, short arg2, short arg3) {
 /// $C4EC6E
 void unknownC4EC6E(short arg1) {
 	memcpy(&palettes[12][0], &unknown7F0000[0x7000 + arg1 * 32], 0x20);
-	unknown7E0030 = 0x10;
+	paletteUploadMode = PaletteUpload.halfSecond;
 }
 
 /// $C4EC05
@@ -7266,7 +7266,7 @@ void unknownC4F07D() {
 	memcpy(&palettes[0][0], &staffCreditsFontPalette[0], 0x10);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	memset(&palettes[1][0], 0, 0x1E0);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	mirrorTM = 0x17;
 	unknown7EB4E3 = 0;
 	unknown7EB4EB.combined = 0;
@@ -7293,7 +7293,7 @@ short unknownC4F264(short arg1) {
 	for (short i = 0; i < 0x200/+0x400+/; i++) {
 		*(x++) = 0;
 	}
-	unknown7E0030 = 0;
+	paletteUploadMode = PaletteUpload.none;
 	memcpy(&palettes[1][0], &unknownE1E92A[0], 32);
 	loadMapAtPosition(photographerConfigTable[arg1].mapX, photographerConfigTable[arg1].mapY);
 	unknown7E4A5A = x02;
@@ -7382,7 +7382,7 @@ void playCredits() {
 				unknownC1004E();
 			}
 			memset(&palettes[1][0], 0, 0x1E0);
-			unknownC0856B(0x18);
+			preparePaletteUpload(PaletteUpload.full);
 			unknownC4F01D();
 			unknownC1004E();
 			x02 += x04;

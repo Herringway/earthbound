@@ -198,7 +198,7 @@ short unknownEF04DC() {
 	short x04 = 0;
 	prepareForImmediateDMA();
 	unknownC0927C();
-	unknownC0EBE0();
+	loadTitleScreenGraphics();
 	mirrorTM = 0x11;
 	oamClear();
 	unknown7E9F75 = 1;
@@ -21469,7 +21469,7 @@ void unknownEFD95E() {
 			memcpy(&palettes[0][0], &debugFontPalette[0], 0x18);
 		}
 	}
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 }
 
 /// $EFD9F3

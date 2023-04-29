@@ -2304,7 +2304,7 @@ short battleRoutine() {
 		unknownC2F121();
 		drawBattleSprites();
 		loadTextPalette();
-		unknownC0856B(0x18);
+		preparePaletteUpload(PaletteUpload.full);
 		battleModeFlag = 1;
 		changeMusic(enemyConfigurationTable[unknown7E9F8C[0]].music);
 		setForceBlank();
@@ -3090,7 +3090,7 @@ short battleRoutine() {
 	} while (unknown7E0028.a != 0);
 	unknownC20293();
 	prepareForImmediateDMA();
-	unknownC1DD5F();
+	closeAllWindowsAndHPPP();
 	unknownC2E0E7();
 	return x17;
 }
@@ -3100,7 +3100,7 @@ void unknownC26189(ushort arg1) {
 	for (short i = 0; i < 0x100; i++) {
 		palettes[0][i] = arg1;
 	}
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 	waitUntilNextFrame();
 }
 
@@ -3202,7 +3202,7 @@ void instantWinHandler() {
 		unknownC1ACF8F(itemDropped);
 		displayInBattleText(getTextBlock("textBattleEnemyLeftPresent"));
 	}
-	unknownC1DD5F();
+	closeAllWindowsAndHPPP();
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {
 		changeMusic(Music.bicycle);
 	} else {
@@ -6652,7 +6652,7 @@ void unknownC2C21F(short group, short music) {
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	loadBattleBG(battleEntryBGTable[currentBattleGroup].layer1, battleEntryBGTable[currentBattleGroup].layer2, cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle);
 	unknownC2EEE7();
-	unknownC0856B(0x18);
+	preparePaletteUpload(PaletteUpload.full);
 	drawBattleSprites();
 	battleModeFlag = 1;
 	if (music != 0) {
@@ -6690,7 +6690,7 @@ void unknownC2C37A(short group, short music, const(ubyte)* text) {
 	tickUntilFadeCompletion();
 	battleModeFlag = 0;
 	currentMapMusicTrack = 0;
-	unknownC1DD5F();
+	closeAllWindowsAndHPPP();
 	displayInBattleText(text);
 	fadeOut(1, 2);
 	tickUntilFadeCompletion();
@@ -6718,7 +6718,7 @@ void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	musicEffect(MusicEffect.quickFade);
 	tickUntilFadeCompletion();
 	battleModeFlag = 0;
-	unknownC1DD5F();
+	closeAllWindowsAndHPPP();
 	mirrorTM = 4;
 	changeMusic(Music.giygasWeakened);
 	fadeIn(1, 1);
@@ -6973,7 +6973,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 					break;
 				default: break;
 			}
-			unknownC0856B(0x18);
+			preparePaletteUpload(PaletteUpload.full);
 		}
 		if (currentGiygasPhase == GiygasPhase.defeated) {
 			return;
@@ -7279,7 +7279,7 @@ void unknownC2DB3F() {
 				palettes[0][0] = 0x3E0;
 				goto case;
 			case 2:
-				unknownC0856B(0x18);
+				preparePaletteUpload(PaletteUpload.full);
 				break;
 			default: break;
 		}
@@ -7615,7 +7615,7 @@ void unknownC2E6B6() {
 			if (++unknown7E1BA7 < unknown7E1BA6 - unknown7E1BA5 + 1) {
 				unknown7E1BA7 = 0;
 			}
-			unknownC0856B(0x18);
+			preparePaletteUpload(PaletteUpload.full);
 		}
 	}
 	if ((unknown7E1BCC != 0) && (--unknown7E1BCC == 0)) {
@@ -8317,7 +8317,7 @@ void unknownC2FD99() {
 			x12 += 3;
 			x02++;
 		}
-		unknownC0856B(0x10);
+		preparePaletteUpload(PaletteUpload.halfSecond);
 	}
 }
 
@@ -8328,13 +8328,13 @@ void unknownC2FEF9(short type) {
 		memcpy(&palettes[13][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[14][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[15][0], &unknownC3F8F1[type - 1][0], 32);
-		unknownC0856B(16);
+		preparePaletteUpload(PaletteUpload.halfSecond);
 		return;
 	}
 	for (short i = 16 * 8; i < 16 * 12; i++) {
 		palettes[(i / 16) + 4][i % 16] = (palettes[i / 16][i % 16] >> 2) & ((7 << 10) | (7 << 5) | 7);
 	}
-	unknownC0856B(16);
+	preparePaletteUpload(PaletteUpload.halfSecond);
 }
 
 /// $C2FF9A

@@ -4902,7 +4902,7 @@ void unknownC19CDD() {
 		partyCharacters[i].hpPPWindowOptions = 0x400;
 	}
 	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20], 8);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	unknown7E9623 = 1;
 }
 
@@ -4912,7 +4912,7 @@ void unknownC19D49() {
 		partyCharacters[i].hpPPWindowOptions = 0x400;
 	}
 	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][12], 8);
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	unknown7E9623 = 1;
 }
 
@@ -6599,7 +6599,7 @@ void closeFocusWindow() {
 }
 
 /// $C1DD5F
-void unknownC1DD5F() {
+void closeAllWindowsAndHPPP() {
 	closeAllWindows();
 	windowTick();
 	hideHPPPWindows();
@@ -6816,7 +6816,7 @@ short enemySelectMode(short arg1) {
 			battleInitEnemyStats(unknown7E9F8C[i], &battlersTable[8 + i]);
 		}
 		unknownC2F121();
-		unknownC0856B(0x18);
+		preparePaletteUpload(PaletteUpload.full);
 		setForceBlank();
 		fadeIn(1, 1);
 	}
@@ -7070,7 +7070,7 @@ void unknownC1EC8F(short arg1) {
 	prepareWindowGraphics();
 	loadWindowGraphics(WindowGraphicsToLoad.all2);
 	loadTextPalette();
-	unknown7E0030 = 0x18;
+	paletteUploadMode = PaletteUpload.full;
 	gameState.textFlavour = x00;
 }
 
