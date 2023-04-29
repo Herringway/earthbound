@@ -36,12 +36,12 @@ void inflictSunstrokeCheck() {
 		if (gameState.unknown96[i] > 4) {
 			return;
 		}
-		unknown7E4DC6 = chosenFourPtrs[gameState.playerControlledPartyMembers[i]];
-		if (unknown7E4DC6.afflictions[0] != 0 && unknown7E4DC6.afflictions[0] == 7) {
+		currentPartyMemberTick = chosenFourPtrs[gameState.playerControlledPartyMembers[i]];
+		if (currentPartyMemberTick.afflictions[0] != 0 && currentPartyMemberTick.afflictions[0] == Status0.cold) {
 			continue;
 		}
-		if (((30 - unknown7E4DC6.guts > 0) ? (30 - unknown7E4DC6.guts) : 1) * 256 / 100 < rand()) {
-			unknown7E4DC6.afflictions[0] = 6;
+		if (((30 - currentPartyMemberTick.guts > 0) ? (30 - currentPartyMemberTick.guts) : 1) * 256 / 100 < rand()) {
+			currentPartyMemberTick.afflictions[0] = Status0.sunstroke;
 		}
 	}
 }
@@ -564,7 +564,7 @@ uint unknownC20F58() {
 /// $C20F9A
 void resetRolling() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-		if ((partyCharacters[gameState.partyMembers[i] - 1].afflictions[0] != 1) && (partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer == 0)) {
+		if ((partyCharacters[gameState.partyMembers[i] - 1].afflictions[0] != Status0.unconscious) && (partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer == 0)) {
 			partyCharacters[gameState.partyMembers[i] - 1].hp.target = 1;
 		}
 		if ((partyCharacters[gameState.partyMembers[i] - 1].hp.current.fraction != 0) && (partyCharacters[gameState.partyMembers[i] - 1].hp.current.integer > partyCharacters[gameState.partyMembers[i] - 1].hp.target)) {

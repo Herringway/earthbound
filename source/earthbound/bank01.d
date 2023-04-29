@@ -7708,8 +7708,8 @@ short unknownC1FF2C() {
 		}
 	}
 	switch(chosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
-		case 1:
-		case 2:
+		case Status0.unconscious:
+		case Status0.diamondized:
 			xX = 1;
 			goto default;
 		default:

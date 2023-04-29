@@ -137,19 +137,19 @@ void unknownEF02C4(short arg1) {
 
 /// $EF031E
 void unknownEF031E() {
-	unknown7E4DC6 = &partyCharacters[entityScriptVar1Table[currentEntitySlot]];
+	currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[currentEntitySlot]];
 	short x16 = partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex;
 	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord;
 	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord;
 	if (playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle != 0) {
 		unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
-		unknown7E4DC6.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0x1E, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
+		currentPartyMemberTick.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0x1E, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
 	}
 	switch (unknown7E9F33) {
 		case 0:
 		case 2:
-			unknown7E4DC6.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
-			if ((x16 == unknown7E4DC6.positionIndex) || (x16 + 1 == unknown7E4DC6.positionIndex)) {
+			currentPartyMemberTick.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
+			if ((x16 == currentPartyMemberTick.positionIndex) || (x16 + 1 == currentPartyMemberTick.positionIndex)) {
 				unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
 				if (gameState.unknown90 == 0) {
 					break;

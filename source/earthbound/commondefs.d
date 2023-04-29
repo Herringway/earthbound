@@ -5220,7 +5220,7 @@ struct GameState {
 	ubyte[6] partyMembers; ///
 	FixedPoint1616 leaderX; ///
 	FixedPoint1616 leaderY; ///
-	ushort unknown88; ///
+	ushort leaderPositionIndex; ///
 	ushort leaderDirection; ///
 	ushort troddenTileType; ///
 	ushort walkingStyle; ///

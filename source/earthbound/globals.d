@@ -458,7 +458,7 @@ __gshared short unknown7E4DBE; /// $(DOLLAR)4DBE
 __gshared short unknown7E4DC0; /// $(DOLLAR)4DC0
 __gshared short battleDebug; /// $(DOLLAR)4DC2
 __gshared short unknown7E4DC4; /// $(DOLLAR)4DC4
-__gshared PartyCharacter* unknown7E4DC6; /// $(DOLLAR)4DC6
+__gshared PartyCharacter* currentPartyMemberTick; /// $(DOLLAR)4DC6
 __gshared PartyCharacter*[6] chosenFourPtrs; /// $(DOLLAR)4DC8
 
 __gshared short unknown7E4DD4; /// $(DOLLAR)4DD4

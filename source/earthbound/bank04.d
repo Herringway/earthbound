@@ -1233,7 +1233,7 @@ void savePhotoState(short arg1) {
 		if (gameState.unknown96[i] == 0xFF) {
 			gameState.savedPhotoStates[arg1].partyMembers[i] = 0;
 		} else {
-			unknown7E4DC6 = &partyCharacters[gameState.playerControlledPartyMembers[i]];
+			currentPartyMemberTick = &partyCharacters[gameState.playerControlledPartyMembers[i]];
 			short x0E = gameState.unknown96[i];
 			if ((partyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[0] == Status0.unconscious)) {
 				x0E |= 0x20;
@@ -5683,14 +5683,14 @@ short spawn() {
 	unknown7E4676 = 1;
 	waitUntilNextFrame();
 	initializeMap(respawnX, respawnY, 6);
-	unknown7E4DC6 = &partyCharacters[gameState.partyMembers[0]];
+	currentPartyMemberTick = &partyCharacters[gameState.partyMembers[0]];
 	for (short i = 0; i < 6; i++) {
-		unknown7E4DC6.afflictions[i] = 0;
+		currentPartyMemberTick.afflictions[i] = 0;
 	}
-	unknown7E4DC6.hp.target = unknown7E4DC6.maxHP;
-	unknown7E4DC6.hp.current.integer = unknown7E4DC6.maxHP;
-	unknown7E4DC6.pp.target = 0;
-	unknown7E4DC6.pp.current.integer = 0;
+	currentPartyMemberTick.hp.target = currentPartyMemberTick.maxHP;
+	currentPartyMemberTick.hp.current.integer = currentPartyMemberTick.maxHP;
+	currentPartyMemberTick.pp.target = 0;
+	currentPartyMemberTick.pp.current.integer = 0;
 	gameState.moneyCarried = (gameState.moneyCarried & 1) + gameState.moneyCarried / 2;
 	unknownC07B52();
 	for (short i = 1; 10 < i; i++) {
