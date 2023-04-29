@@ -6639,7 +6639,7 @@ void unknownC4D8FA() {
 }
 
 /// $C4D989
-short unknownC4D989(short arg1) {
+short runAttractModeScene(short arg1) {
 	unknownC0927C();
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
@@ -6755,28 +6755,28 @@ void initIntro() {
 				break;
 			case 3:
 				changeMusic(Music.attractMode);
-				x = unknownC4D989(0);
+				x = runAttractModeScene(0);
 				break;
 			case 4:
-				x = unknownC4D989(2);
+				x = runAttractModeScene(2);
 				break;
 			case 5:
-				x = unknownC4D989(3);
+				x = runAttractModeScene(3);
 				break;
 			case 6:
-				x = unknownC4D989(4);
+				x = runAttractModeScene(4);
 				break;
 			case 7:
-				x = unknownC4D989(5);
+				x = runAttractModeScene(5);
 				break;
 			case 8:
-				x = unknownC4D989(6);
+				x = runAttractModeScene(6);
 				break;
 			case 9:
-				x = unknownC4D989(7);
+				x = runAttractModeScene(7);
 				break;
 			case 10:
-				x = unknownC4D989(9);
+				x = runAttractModeScene(9);
 				break;
 			default:
 				x02 = 1;
