@@ -2175,7 +2175,7 @@ ushort findNearbyTalkableTPTEntry() {
 }
 
 /// $C0449B
-void unknownC0449B() {
+void handleNormalMovement() {
 	gameState.unknown90 = 0;
 	if (mushroomizedWalkingFlag != 0) {
 		mushroomizationMovementSwap();
@@ -2285,7 +2285,7 @@ void moveCameraToEntity() {
 }
 
 /// $C047CF
-void unknownC047CF() {
+void handleEscalatorMovement() {
 	if (battleSwirlFlag != 0) {
 		return;
 	}
@@ -2323,7 +2323,7 @@ void unknownC047CF() {
 }
 
 /// $C048D3
-void unknownC048D3(short arg1) {
+void handleBicycleMovement(short arg1) {
 	FixedPoint1616 x10;
 	FixedPoint1616 x14;
 	short x1E = mapInputToDirection(gameState.walkingStyle);
@@ -2416,7 +2416,7 @@ void unknownC04AAD() {
 }
 
 /// $C04B53
-void unknownC04B53() {
+void handleSpecialCamera() {
 	short x10;
 	if (gameState.walkingStyle != WalkingStyle.stairs) {
 		x10 = gameState.leaderDirection;
@@ -2457,17 +2457,17 @@ void unknownC04C45() {
 	}
 	chosenFourPtrs[entityScriptVar1Table[gameState.firstPartyMemberEntity]].positionIndex = gameState.unknown88;
 	if (gameState.cameraMode != CameraMode.normal) {
-		unknownC04B53();
+		handleSpecialCamera();
 	} else {
 		switch (gameState.walkingStyle) {
 			case WalkingStyle.escalator:
-				unknownC047CF();
+				handleEscalatorMovement();
 				break;
 			case WalkingStyle.bicycle:
-				unknownC048D3(x14);
+				handleBicycleMovement(x14);
 				break;
 			default:
-				unknownC0449B();
+				handleNormalMovement();
 				break;
 		}
 	}
