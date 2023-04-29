@@ -6799,7 +6799,7 @@ void initIntro() {
 /// $C4DCF6
 void unknownC4DCF6() {
 	ushort* x0A = cast(ushort*)&unknown7F0000[0];
-	for (short i = 0; i < 0x400; i++) {
+	for (short i = 0; i < 0x200; i++) {
 		x0A[i] |= 0x2000;
 	}
 }
