@@ -6797,7 +6797,7 @@ void initIntro() {
 }
 
 /// $C4DCF6
-void unknownC4DCF6() {
+void setDecompressedArrangementPriorityBit() {
 	ushort* x0A = cast(ushort*)&unknown7F0000[0];
 	for (short i = 0; i < 0x200; i++) {
 		x0A[i] |= 0x2000;
@@ -6807,7 +6807,7 @@ void unknownC4DCF6() {
 /// $C4DD28
 void decompItoiProduction() {
 	decomp(&producedItoiArrangement[0], &unknown7F0000[0]);
-	unknownC4DCF6();
+	setDecompressedArrangementPriorityBit();
 	copyToVRAM(0, 0x800, 0x7C00, &unknown7F0000[0]);
 	decomp(&producedItoiGraphics[0], &unknown7F0000[0x800]);
 	copyToVRAM(0, 0x400, 0x6000, &unknown7F0000[0x800]);
@@ -6819,7 +6819,7 @@ void decompItoiProduction() {
 /// $C4DDD0
 void decompNintendoPresentation() {
 	decomp(&nintendoPresentationArrangement[0], &unknown7F0000[0]);
-	unknownC4DCF6();
+	setDecompressedArrangementPriorityBit();
 	copyToVRAM(0, 0x800, 0x7C00, &unknown7F0000[0]);
 	decomp(&nintendoPresentationGraphics[0], &unknown7F0000[0x800]);
 	copyToVRAM(0, 0x400, 0x6000, &unknown7F0000[0x800]);
