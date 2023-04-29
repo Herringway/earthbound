@@ -1613,8 +1613,10 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/randMod.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/renderSmallTextToVRAM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/renderText.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/runAttractModeScene.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/savePhotoState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setBoundaryBehaviour.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/setDecompressedArrangementPriorityBit.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setGameOverFadeTargetPalette.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setPartyTickCallbacks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/skippablePause.html</loc></url>
@@ -1877,8 +1879,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D2F0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D830.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D8FA.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4D989.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4DCF6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4E4DA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4E4F9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4E51E.html</loc></url>
