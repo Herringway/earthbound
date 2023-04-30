@@ -756,10 +756,10 @@ void unknownC3EE4D() {
 	unknownC07B52();
 	unknownC1004E();
 	freezeEntities();
-	if (unknown7EB4A8 == -1) {
+	if (unknown7EB4AAEntity == -1) {
 		return;
 	}
-	entityTickCallbackFlags[unknown7EB4A8] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
+	entityTickCallbackFlags[unknown7EB4AAEntity] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
 }
 
 /// $C3EE7A

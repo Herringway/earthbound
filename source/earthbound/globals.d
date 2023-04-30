@@ -852,16 +852,16 @@ __gshared ubyte[3] unknown7EB49E; /// $(DOLLAR)B49E
 __gshared ubyte currentSaveSlot; /// $(DOLLAR)B4A1
 __gshared ubyte unknown7EB4A2; /// $(DOLLAR)B4A2
 
-__gshared ubyte* unknown7EB4A4; /// $(DOLLAR)B4A4
-__gshared short unknown7EB4A6; /// $(DOLLAR)B4A6
-__gshared short unknown7EB4A8; /// $(DOLLAR)B4A8
+__gshared ubyte* unknown7EB4AABuffer; /// $(DOLLAR)B4A4
+__gshared short unknown7EB4AAEntries; /// $(DOLLAR)B4A6
+__gshared short unknown7EB4AAEntity; /// $(DOLLAR)B4A8
 __gshared Unknown7EB4AAEntry* unknown7EB4AA; /// $(DOLLAR)B4AA
 __gshared short townMapIconAnimationFrame; /// $(DOLLAR)B4AE
 __gshared short townMapPlayerIconAnimationFrame; /// $(DOLLAR)B4B0
 __gshared short framesUntilMapIconPaletteUpdate; /// $(DOLLAR)B4B2
-__gshared short unknown7EB4B4; /// $(DOLLAR)B4B4
-__gshared ubyte unknown7EB4B6; /// $(DOLLAR)B4B6
-__gshared ubyte unknown7EB4B8; /// $(DOLLAR)B4B8
+__gshared short waitForNamingScreenActionScript; /// $(DOLLAR)B4B4
+__gshared ubyte disabledTransitions; /// $(DOLLAR)B4B6
+__gshared ubyte nextYourSanctuaryLocationTileIndex; /// $(DOLLAR)B4B8
 __gshared ubyte totalYourSanctuaryLoadedTilesetTiles; /// $(DOLLAR)B4BA
 __gshared ubyte yourSanctuaryLoadedTilesetTiles; /// $(DOLLAR)B4BC
 __gshared ushort[8] loadedYourSanctuaryLocations; /// $(DOLLAR)B4BE
@@ -874,7 +874,7 @@ __gshared short unknown7EB4E3; /// $(DOLLAR)B4E3
 __gshared short unknown7EB4E5; /// $(DOLLAR)B4E5
 __gshared const(ubyte)* unknown7EB4E7; /// $(DOLLAR)B4E7
 __gshared FixedPoint1616 unknown7EB4EB; /// $(DOLLAR)B4EB
-__gshared short unknown7EB4EF; /// $(DOLLAR)B4EF
+__gshared short photographMapLoadingMode; /// $(DOLLAR)B4EF
 __gshared short currentPhotoDisplay; /// $(DOLLAR)B4F1
 __gshared short unknown7EB4F3; /// $(DOLLAR)B4F3
 __gshared short unknown7EB4F5; /// $(DOLLAR)B4F5

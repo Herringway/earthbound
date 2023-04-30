@@ -29,7 +29,7 @@ void displayInteractionText(const(ubyte)* arg1) {
 	displayText(arg1);
 	do {
 		windowTick();
-	} while (unknown7EB4A8 != -1);
+	} while (unknown7EB4AAEntity != -1);
 	unfreezeEntities();
 }
 
@@ -1642,7 +1642,7 @@ void windowTick() {
 	hpPPRoller();
 	unknown7E9624 = 1;
 	updateHPPPMeterTiles();
-	if (unknown7EB4B6 == 0) {
+	if (disabledTransitions == 0) {
 		if (unknownC1FF2C() != 0) {
 			loadTextPalette();
 		}
@@ -1778,7 +1778,7 @@ void debugYButtonMenu() {
 	hideHPPPWindows();
 	do {
 		windowTick();
-	} while (unknown7EB4A8 != -1);
+	} while (unknown7EB4AAEntity != -1);
 	unfreezeEntities();
 }
 
@@ -2114,7 +2114,7 @@ void openMenuButton() {
 	closeAllWindows();
 	do {
 		windowTick();
-	} while (unknown7EB4A8 != -1);
+	} while (unknown7EB4AAEntity != -1);
 	unfreezeEntities();
 }
 
@@ -2136,7 +2136,7 @@ void openMenuButtonCheckTalk() {
 	closeAllWindows();
 	do {
 		windowTick();
-	} while (unknown7EB4A8 != -1);
+	} while (unknown7EB4AAEntity != -1);
 	unfreezeEntities();
 }
 
@@ -5764,7 +5764,7 @@ void teleport(short arg1) {
 	}
 	unknownC06B3D();
 	playSfx(getScreenTransitionSoundEffect(teleportDestinationTable[arg1].screenTransition, 1));
-	if (unknown7EB4B6 != 0) {
+	if (disabledTransitions != 0) {
 		fadeOut(1, 1);
 	} else {
 		screenTransition(teleportDestinationTable[arg1].screenTransition, 1);
@@ -5783,7 +5783,7 @@ void teleport(short arg1) {
 	}
 	unknownC065A3();
 	playSfx(getScreenTransitionSoundEffect(teleportDestinationTable[arg1].screenTransition, 0));
-	if (unknown7EB4B6 != 0) {
+	if (disabledTransitions != 0) {
 		fadeIn(1, 1);
 	} else {
 		screenTransition(teleportDestinationTable[arg1].screenTransition, 0);
@@ -7730,7 +7730,7 @@ short unknownC1FF6B() {
 	fileMenuLoop();
 	clearInstantPrinting();
 	windowTick();
-	unknown7EB4B6 = 0;
+	disabledTransitions = 0;
 	unknown7EB4A2 = 0;
 	unknown7E5E6E = 0xFF;
 	unknown7EB49D = 0;

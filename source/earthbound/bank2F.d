@@ -541,7 +541,7 @@ short unknownEF0F60() {
 	if (windowHead != -1) {
 		return 1;
 	}
-	if (unknown7EB4A8 != -1) {
+	if (unknown7EB4AAEntity != -1) {
 		return 1;
 	}
 	if (overworldStatusSuppression != 0) {

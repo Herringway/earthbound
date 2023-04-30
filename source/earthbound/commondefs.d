@@ -6278,14 +6278,14 @@ struct FloatingSpriteTableEntry {
 }
 ///
 struct Unknown7EB4AAEntry {
-	short unknown0; ///
-	short unknown2; ///
+	short entityID; ///
+	short appearanceStyle; ///
 	short unknown4; ///
 	short unknown6; ///
-	short unknown8; ///
+	short tileHeight; ///
 	ubyte* unknown10; ///
 	ubyte* unknown12; ///
-	short unknown14; ///
+	short unknown10Size; ///
 	short unknown16; ///
 	short unknown18; ///
 }
@@ -6439,7 +6439,7 @@ union Unknown7EF000Stuff {
 		PathCtx unknown7EF200; ///
 		ubyte[0xC00] unknown7EF400; ///
 	}
-	ushort[0x400] unknown7EF000Alt; ///
+	ushort[0x400] yourSanctuaryLocationTileOffsets; ///
 }
 ///
 struct Unknown7E9652Data {

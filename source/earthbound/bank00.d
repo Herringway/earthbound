@@ -259,7 +259,7 @@ void loadSpecialSpritePalette() {
 /// $C007B6
 void loadMapPalette(short arg1, short arg2) {
 	const(ubyte)* x16 = &mapPalettePointerTable[arg1][arg2 * 192];
-	if (unknown7EB4EF == 0) {
+	if (photographMapLoadingMode == 0) {
 		while (true) {
 			memcpy(&palettes[2][0], x16, 0xC0);
 			if (palettes[2][0] == 0) {
@@ -297,7 +297,7 @@ void loadMapAtSector(short x, short y) {
 		unknown7E4372 = tilesetTable[x04];
 		decomp(&mapDataTilesetPtrTable[tilesetTable[x04]][0], &unknown7F0000[0]);
 		while (unknown7E0028.a != 0) { waitForInterrupt(); }
-		if (unknown7EB4EF == 0) {
+		if (photographMapLoadingMode == 0) {
 			copyToVRAM2(0, 0x7000, 0, &unknown7F0000[0]);
 		} else {
 			copyToVRAM2(0, 0x4000, 0, &unknown7F0000[0]);
@@ -307,12 +307,12 @@ void loadMapAtSector(short x, short y) {
 	loadMapPalette(x04, x18);
 	unknownC00480();
 	loadSpecialSpritePalette();
-	if (unknown7EB4EF == 0) {
+	if (photographMapLoadingMode == 0) {
 		loadOverlaySprites();
 		loadTilesetAnim();
 		loadPaletteAnim();
 	}
-	if (unknown7EB4EF == 0) {
+	if (photographMapLoadingMode == 0) {
 		if (debugging != 0) {
 			unknownEFD9F3();
 		} else {
@@ -325,7 +325,7 @@ void loadMapAtSector(short x, short y) {
 		unknownC496F9();
 		memset(&palettes[0][0], 0xFF, 0x200);
 	}
-	if (unknown7EB4EF != 0) {
+	if (photographMapLoadingMode != 0) {
 		unknownC496F9();
 		memset(&palettes[1][0], 0, 0x1E0);
 	}
@@ -499,7 +499,7 @@ void loadMapRowVRAM(short x, short y) {
 	}
 	copyToVRAM(0, 0x40, 0x3800 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0]);
 	copyToVRAM(0, 0x40, 0x3C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1E[0x20]);
-	if (unknown7EB4EF == 0) {
+	if (photographMapLoadingMode == 0) {
 		copyToVRAM(0, 0x40, 0x5800 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0]);
 		copyToVRAM(0, 0x40, 0x5C00 + ((y & 0x1F) * 32), cast(ubyte*)&x1C[0x20]);
 	}
@@ -610,7 +610,7 @@ void loadMapAtPosition(short x, short y) {
 	short x02 = x / 8;
 	short x12 = y / 8;
 	loadMapAtSector(x02 / 32, x12 / 16);
-	if (unknown7EB4EF == 0) {
+	if (photographMapLoadingMode == 0) {
 		overworldSetupVRAM();
 	}
 	for (short i = 0; i < 16; i++) {
@@ -626,7 +626,7 @@ void loadMapAtPosition(short x, short y) {
 		loadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
 	}
 	while (unknown7E0028.a != 0) { waitForInterrupt(); }
-	if (unknown7EB4EF == 0) {
+	if (photographMapLoadingMode == 0) {
 		mirrorTM = 0x17;
 	}
 	if (unknown7E4A58 != 0) {
@@ -1106,7 +1106,7 @@ void trySpawnNPCs(short x, short y) {
 					continue;
 				}
 				x1A = -1;
-				if (unknown7EB4EF == 0) {
+				if (photographMapLoadingMode == 0) {
 					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != 0) && (isDebugViewMapMode() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
 						continue;
 					} else if ((npcConfig[x20].appearanceStyle != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
@@ -3761,7 +3761,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	} else {
 		playSfx(getScreenTransitionSoundEffect(arg1.transitionStyle, 1));
 	}
-	if (unknown7EB4B6 != 0) {
+	if (disabledTransitions != 0) {
 		fadeOut(1, 1);
 	} else {
 		screenTransition(arg1.transitionStyle, 1);
@@ -3798,7 +3798,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	} else {
 		playSfx(getScreenTransitionSoundEffect(arg1.transitionStyle, 0));
 	}
-	if (unknown7EB4B6 != 0) {
+	if (disabledTransitions != 0) {
 		fadeIn(1, 1);
 	} else {
 		screenTransition(arg1.transitionStyle, 0);
@@ -4216,8 +4216,8 @@ void unknownC0778A() {
 /// $C0780F
 short unknownC0780F(short characterID, short walkingStyle, PartyCharacter* character) {
 	short y = 0;
-	if ((characterID == 0) && (unknown7EB4B6 == 0) && (pajamaFlag != 0)) {
-		return 0x1B5;
+	if ((characterID == 0) && (disabledTransitions == 0) && (pajamaFlag != 0)) {
+		return OverworldSprite.nessInPajamas;
 	}
 	if (unknown7E9F73 != -1) {
 		entityUnknown2E7A[unknown7E9F73] = 0;
@@ -7113,7 +7113,7 @@ void unknownC0A6E3() {
 		goto Unknown5;
 	}
 	a = footstepSoundTable[(footstepSoundIDOverride == 0) ? (footstepSoundID / 2) : (footstepSoundIDOverride / 2)];
-	if ((a != 0) && (unknown7EB4B6 == 0)) {
+	if ((a != 0) && (disabledTransitions == 0)) {
 		playSfx(a);
 	}
 	Unknown5:
@@ -8059,7 +8059,7 @@ void unknownC0B67F() {
 	setIRQCallback(&processOverworldTasks);
 	teleportStyle = TeleportStyle.none;
 	teleportDestination = 0;
-	unknown7EB4A8 = -1;
+	unknown7EB4AAEntity = -1;
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
@@ -8123,7 +8123,7 @@ void ebMain() {
 	initializePartyPointers();
 	RestartGame:
 	if (config.noIntro) {
-		unknown7EB4B6 = 1;
+		disabledTransitions = 1;
 	} else {
 		initIntro();
 	}
@@ -9787,7 +9787,7 @@ void unknownC0E97C() {
 
 /// $C0E9BA
 void unknownC0E9BA() {
-	unknown7EB4B6 = 1;
+	disabledTransitions = 1;
 	changeMusic(Music.teleportFail);
 	for (short i = partyLeaderEntityIndex; i < maxEntities; i++) {
 		entityScriptVar7Table[i] |= 0x8000;
@@ -9801,7 +9801,7 @@ void unknownC0E9BA() {
 		waitUntilNextFrame();
 	}
 	gameState.partyStatus = 0;
-	unknown7EB4B6 = 0;
+	disabledTransitions = 0;
 }
 
 /// $C0EA3E
