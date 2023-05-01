@@ -2573,7 +2573,7 @@ short unknownC4621C(short arg1, short arg2) {
 /// $C46257
 short unknownC46257(short arg1, short arg2, short arg3, short arg4) {
 	short x14 = unknownC4621C(arg1, arg2);
-	short x = unknownC4621C(arg2, arg4);
+	short x = unknownC4621C(arg3, arg4);
 	return (unknownC41EFF(entityAbsYTable[x14], entityAbsXTable[x14], entityAbsYTable[x], entityAbsXTable[x]) + 0x1000) / 0x2000;
 }
 
