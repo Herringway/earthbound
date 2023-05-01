@@ -6824,7 +6824,7 @@ void unknownC0A384() {
 /// $C0A3A4
 // originally handwritten assembly, id was actually an offset
 void unknownC0A3A4(short, short id) {
-	if ((entityUnknown341A[id / 2].lsb & 1) != 0) {
+	if ((entityUnknown341A[id / 2] !is null) && ((entityUnknown341A[id / 2].lsb & 1) != 0)) {
 		actionScriptVar8C += entityUnknown2916[id / 2] / 5;
 	}
 	actionScriptVar00 = 0x30;
