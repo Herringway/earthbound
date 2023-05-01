@@ -1674,6 +1674,7 @@ void unknownC03903(short id) {
 	if (i == 6) {
 		return;
 	}
+	const x02 = gameState.partyEntities[i];
 	short j;
 	for (j = i; j < 5; j++) {
 		gameState.unknown96[j] = gameState.unknown96[j + 1];
@@ -1681,14 +1682,14 @@ void unknownC03903(short id) {
 		gameState.playerControlledPartyMembers[j] = gameState.playerControlledPartyMembers[j + 1];
 	}
 	if (i == 0) {
-		partyCharacters[gameState.playerControlledPartyMembers[0]].positionIndex = entityScriptVar1Table[gameState.partyEntities[i]];
+		partyCharacters[gameState.playerControlledPartyMembers[0]].positionIndex = entityScriptVar1Table[x02];
 	}
 	gameState.unknown96[j] = 0;
 	gameState.partyCount--;
-	entityAbsXTable[gameState.partyEntities[i]] = entityPreparedXCoordinate;
-	entityAbsYTable[gameState.partyEntities[i]] = entityPreparedYCoordinate;
-	entityDirections[gameState.partyEntities[i]] = entityPreparedDirection;
-	unknownC02140(gameState.partyEntities[i]);
+	entityAbsXTable[x02] = entityPreparedXCoordinate;
+	entityAbsYTable[x02] = entityPreparedYCoordinate;
+	entityDirections[x02] = entityPreparedDirection;
+	unknownC02140(x02);
 	unknownC032EC();
 	updateParty();
 }
