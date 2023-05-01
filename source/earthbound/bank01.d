@@ -3265,7 +3265,7 @@ void* cc1F1C(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1CArguments);
 	unknownC4B4FE(
 		getCCParameters!ArgType(arg2).character.useVariableIfZero(getWorkingMemory().integer),
-		cast(short)(getCCParameters!ArgType(arg2).sprite.useVariableIfZero(getArgumentMemory()) - 1)
+		cast(short)(getCCParameters!ArgType(arg2).sprite.useVariableIfZero(getArgumentMemory()))
 	);
 	return null;
 }
