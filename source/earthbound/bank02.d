@@ -730,7 +730,7 @@ short getEventFlag(short flag) {
 
 /// $C2165E
 short setEventFlag(short flag, short value) {
-	tracef("Setting event flag %s: %s", cast(EventFlag)flag, value);
+	debug(printTextTrace) tracef("Setting event flag %s: %s", cast(EventFlag)flag, value);
 	flag--;
 	if (value == 1) {
 		eventFlags[flag / 8] |= powersOfTwo8Bit[flag % 8];
