@@ -1908,11 +1908,11 @@ void unknownC03DAA() {
 	entityScriptVar3Table[currentEntitySlot] = 8;
 	entityScriptVar2Table[currentEntitySlot] = rand() & 0xF;
 	unknownC0A780(currentEntitySlot);
-	partyCharacters[entityScriptVar1Table[currentEntitySlot] + 1].unknown59 = currentEntitySlot;
-	partyCharacters[entityScriptVar1Table[currentEntitySlot] + 1].unknown53 = entityScriptVar0Table[currentEntitySlot];
-	partyCharacters[entityScriptVar1Table[currentEntitySlot] + 1].unknown57 = 0;
-	partyCharacters[entityScriptVar1Table[currentEntitySlot] + 1].unknown92 = -1;
-	if (partyCharacters[entityScriptVar1Table[currentEntitySlot] + 1].afflictions[0] == Status0.unconscious) {
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown59 = currentEntitySlot;
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown53 = entityScriptVar0Table[currentEntitySlot];
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown57 = 0;
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown92 = -1;
+	if (partyCharacters[entityScriptVar1Table[currentEntitySlot]].afflictions[0] == Status0.unconscious) {
 		entityScriptVar3Table[currentEntitySlot] = 16;
 	}
 	unknown7E2898 = cast(short)(gameState.firstPartyMemberEntity * 2);
