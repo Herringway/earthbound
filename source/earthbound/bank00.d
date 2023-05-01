@@ -1600,7 +1600,7 @@ short unknownC0369B(short id) {
 			if (gameState.unknown96[x18] == 0) {
 				break;
 			}
-			if (gameState.unknown96[x18] <= id) {
+			if (gameState.unknown96[x18] > id) {
 				break;
 			}
 			x18++;
