@@ -10,11 +10,8 @@ import bindbc.sdl;
 
 import earthbound.commondefs;
 
-bool initializeGamepad() {
-	if (SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) < 0) {
-		SDLError("Couldn't initialise controller SDL subsystem: %s");
-		return false;
-	}
+void initializeGamepad() {
+	enforceSDL(SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER) == 0, "Couldn't initialise controller SDL subsystem");
 	if ("gamecontrollerdb.txt".exists) {
 		if (SDL_GameControllerAddMappingsFromFile("gamecontrollerdb.txt") < 0) {
 			SDLError("Error loading game controller database");
@@ -24,7 +21,6 @@ bool initializeGamepad() {
 	}
 	SDL_GameControllerEventState(SDL_ENABLE);
 	info("SDL game controller subsystem initialized");
-	return true;
 }
 
 void uninitializeGamepad() {

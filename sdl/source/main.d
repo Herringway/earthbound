@@ -88,31 +88,20 @@ void main(string[] args) {
 		(cast()sharedLog).logLevel = LogLevel.trace;
 	}
 
-	if (!loadRenderer()) {
+	try {
+		loadRenderer();
+		initializeRenderer(settings.video.zoom, settings.video.windowMode, settings.video.keepAspectRatio);
+		initAudio(settings.audio.channels, settings.audio.sampleRate);
+		initializeGamepad();
+	} catch (Exception e) {
+		criticalf("Error: %s", e.msg);
 		return;
-	}
-	scope(exit) {
-		unloadRenderer();
-	}
-	if (!initializeRenderer(settings.video.zoom, settings.video.windowMode, settings.video.keepAspectRatio)) {
-		return;
-	}
-	scope(exit) {
-		uninitializeRenderer();
-	}
-	// Prepare to play music
-	if (!initAudio(settings.audio.channels, settings.audio.sampleRate)) {
-		return;
-	}
-	infof("SDL audio subsystem initialized (%s)", SDL_GetCurrentAudioDriver().fromStringz);
-	scope(exit) {
-		uninitializeAudio();
 	}
 
-	if (!initializeGamepad()) {
-		return;
-	}
 	scope(exit) {
+		unloadRenderer();
+		uninitializeRenderer();
+		uninitializeAudio();
 		uninitializeGamepad();
 	}
 	enforce("earthbound.sfc".exists, "Earthbound ROM not found - Place earthbound.sfc in the current directory");

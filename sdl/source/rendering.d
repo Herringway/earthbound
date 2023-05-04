@@ -1,6 +1,7 @@
 module rendering;
 
 import core.time;
+import std.exception;
 import std.experimental.logger;
 import std.string;
 
@@ -12,6 +13,14 @@ import misc;
 import snesdrawframe;
 
 ubyte layersDisabled;
+
+version(Windows) {
+	enum libName = "SDL2.dll";
+} else version (OSX) {
+	enum libName = "libSDL2.dylib";
+} else version (Posix) {
+	enum libName = "libSDL2.so";
+}
 
 public struct HDMAWrite {
 	ushort vcounter;
@@ -127,32 +136,19 @@ private SDL_Renderer* renderer;
 private SDL_Texture* drawTexture;
 private int lastTime;
 
-bool loadRenderer() {
-	if(loadSDL() < sdlSupport) {
-		info("Can't load SDL!");
-		return false;
-	}
-	if(!loadSnesDrawFrame()) {
-		info("Can't load SnesDrawFrame!");
-		return false;
-	}
-	if(!initSnesDrawFrame()) {
-		info("Error initializing SnesDrawFrame!");
-		return false;
-	}
+void loadRenderer() {
+    enforceSDLLoaded!("SDL", SDL_GetVersion, libName)(loadSDL());
+	enforce(loadSnesDrawFrame(), "Could not load SnesDrawFrame");
+	enforce(initSnesDrawFrame(), "Could not initialize SnesDrawFrame");
 	info("SnesDrawFrame initialized");
-	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
-		SDLError("Error initializing SDL: %s");
-		return false;
-	}
+	enforceSDL(SDL_Init(SDL_INIT_VIDEO) == 0, "Error initializing SDL");
 	infof("SDL video subsystem initialized (%s)", SDL_GetCurrentVideoDriver().fromStringz);
-	return true;
 }
 void unloadRenderer() {
 	SDL_Quit();
 }
 
-bool initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
+void initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
 	enum windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
 	appWin = SDL_CreateWindow(
 		"Earthbound",
@@ -172,18 +168,12 @@ bool initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
 			SDL_SetWindowFullscreen(appWin, SDL_WINDOW_FULLSCREEN);
 			break;
 	}
-	if(appWin is null) {
-		SDLError("Error creating SDL window: %s");
-		return false;
-	}
+	enforceSDL(appWin !is null, "Error creating SDL window");
 	const rendererFlags = SDL_RENDERER_ACCELERATED;
 	renderer = SDL_CreateRenderer(
 		appWin, -1, rendererFlags
 	);
-	if(renderer is null) {
-		SDLError("Error creating SDL renderer: %s");
-		return false;
-	}
+	enforceSDL(renderer !is null, "Error creating SDL renderer");
 	if (keepAspectRatio) {
 		SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
 	}
@@ -198,11 +188,7 @@ bool initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
 		ImgW,
 		ImgH
 	);
-	if(drawTexture is null) {
-		SDLError("Error creating SDL texture: %s");
-		return false;
-	}
-	return true;
+	enforceSDL(drawTexture !is null, "Error creating SDL texture");
 }
 
 void uninitializeRenderer() {

@@ -11,16 +11,16 @@ import bindbc.sdl;
 import bindbc.sdl.mixer;
 
 import misc;
-
-bool initAudio(ubyte channels, uint sampleRate) {
-	if(loadSDLMixer() < sdlMixerSupport) {
-		error("Can't load SDL_Mixer!");
-		return false;
-	}
-	if (Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) == -1) {
-		SDLError("Error initializing audio");
-		return false;
-	}
+version(Windows) {
+	enum libName = "SDL2_mixer.dll";
+} else version (OSX) {
+	enum libName = "libSDL2_mixer.dylib";
+} else version (Posix) {
+	enum libName = "libSDL2_mixer.so";
+}
+void initAudio(ubyte channels, uint sampleRate) {
+    enforceSDLLoaded!("SDL_Mixer", Mix_Linked_Version, libName)(loadSDLMixer());
+	enforceSDL(Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) != -1, "Could not open audio");
 	Mix_HookMusic(&nspcFillBuffer, &nspcplayer);
 	int finalSampleRate;
 	int finalChannels;
@@ -28,7 +28,7 @@ bool initAudio(ubyte channels, uint sampleRate) {
 	Mix_QuerySpec(&finalSampleRate, &finalFormat, &finalChannels);
 
 	nspcplayer = NSPCPlayer(finalSampleRate);
-	return true;
+	infof("SDL audio subsystem initialized (%s)", SDL_GetCurrentAudioDriver().fromStringz);
 }
 
 void setAudioChannels(ushort count) {
