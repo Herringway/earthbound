@@ -1,0 +1,1094 @@
+module debugging;
+
+import rendering;
+
+import earthbound.bank00;
+import earthbound.bank01;
+import earthbound.bank02;
+import earthbound.bank03;
+import earthbound.bank15;
+import earthbound.commondefs;
+import earthbound.globals;
+import earthbound.text;
+
+import std.conv;
+import std.format;
+import std.logger;
+import std.range;
+import std.string;
+
+import ImGui = d_imgui;
+import d_imgui.imgui_h;
+
+enum debugMenuHeight = 60;
+enum debugWindowWidth = 500;
+
+struct DebugState {
+	bool showDebugWindow = true;
+	bool addingPartyMember;
+	bool askingForScript;
+	bool askingWarpToPreset;
+	bool askingBattle;
+}
+
+DebugState state;
+
+void prepareDebugUI(size_t width, size_t height) {
+	ImGui.SetNextWindowSize(ImGui.ImVec2(width, debugMenuHeight));
+	ImGui.SetNextWindowPos(ImGui.ImVec2(0, 0));
+	ImGui.Begin("Menu Bar", null, ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse);
+	if (ImGui.BeginMenuBar()) {
+		if (ImGui.BeginMenu("Windows")) {
+			ImGui.MenuItem("Debugging", null, &state.showDebugWindow);
+			ImGui.EndMenu();
+		}
+		if (ImGui.BeginMenu("Other Stuff")) {
+			menuItemCallback("Add Party Member", () { state.addingPartyMember = true; });
+			menuItemCallback("Run Text Script", () { state.askingForScript = true; });
+			menuItemCallback("Warp to preset destination", () { state.askingWarpToPreset = true; });
+			menuItemCallback("Start a battle", () { state.askingBattle = true; });
+			ImGui.EndMenu();
+		}
+		if (ImGui.BeginMenu("Dump")) {
+			menuItemCallback("VRAM", &dumpVRAM);
+			menuItemCallback("Save", &dumpSave);
+			ImGui.EndMenu();
+		}
+		ImGui.EndMenuBar();
+		immutable str = cast(immutable)frameRateString;
+		ImGui.SetCursorPosX(ImGui.GetWindowSize().x - ImGui.CalcTextSize(str).x);
+		ImGui.Text(str);
+	}
+	if (state.showDebugWindow) {
+		renderDebugWindow(0, debugMenuHeight, width, height);
+	}
+	callWithSelectable!(PartyMember, (newMember) { addCharToParty(cast(ubyte)newMember); })(state.addingPartyMember, "Add a party member", "Choose a party member");
+	callWithSelectable!(WarpPreset, (preset) { teleport(cast(ubyte)preset); })(state.askingWarpToPreset, "Warp to preset destination", "Destination");
+	callWithSelectable!(EnemyGroup, (group) { initBattleScripted(cast(short)group); })(state.askingBattle, "Start battle", "Battle");
+	callWithTextInput!((const char[] buf) {
+			freezeEntities();
+			playSfx(Sfx.cursor1);
+			createWindowN(Window.textStandard);
+			displayText(getTextBlock(buf.fromStringz));
+			clearInstantPrinting();
+			hideHPPPWindows();
+			closeAllWindows();
+			unfreezeEntities();
+	})(state.askingForScript, "Run a Script", "Script label");
+	ImGui.End();
+}
+
+void renderDebugWindow(float x, float y, float width, float height) {
+	ImGui.SetNextWindowSize(ImGui.ImVec2(debugWindowWidth, height - y));
+	ImGui.SetNextWindowPos(ImGui.ImVec2(x, y));
+	ImGui.Begin("Debugging", null, ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize);
+	if (ImGui.TreeNode("Game State")) {
+		inputEBText("Player Name (obsolete)", gameState.mother2PlayerName[]);
+		inputEBText("Player Name", gameState.earthboundPlayerName[]);
+		inputEBText("Pet Name", gameState.petName[]);
+		inputEBText("Favourite Food", gameState.favouriteFood[]);
+		inputEBText("Favourite Thing", gameState.favouriteThing[]);
+		InputEditable("Money", gameState.moneyCarried);
+		InputEditable("Bank", gameState.bankBalance);
+		InputEditable("PSI Flags", gameState.partyPSI);
+		if (ImGui.TreeNode("Party NPCs")) {
+			foreach (idx, ref npc; gameState.partyNPCs) {
+				if (ImGui.TreeNode(["NPC 1", "NPC 2"][idx])) {
+					InputEditable("ID", npc);
+					InputEditable("HP", gameState.partyNPCHP[idx]);
+					ImGui.TreePop();
+				}
+			}
+			if (ImGui.TreeNode("NPC 1 Backup")) {
+				InputEditable("ID", gameState.partyNPC1Copy);
+				InputEditable("HP", gameState.partyNPC1HPCopy);
+				ImGui.TreePop();
+			}
+			if (ImGui.TreeNode("NPC 2 Backup")) {
+				InputEditable("ID", gameState.partyNPC2Copy);
+				InputEditable("HP", gameState.partyNPC2HPCopy);
+				ImGui.TreePop();
+			}
+			ImGui.TreePop();
+		}
+		InputEditable("Money (Backup)", gameState.walletBackup);
+		if (ImGui.TreeNode("Escargo Express")) {
+			foreach (invIdx, ref item; gameState.escargoExpressItems) {
+				if (ImGui.BeginCombo(format!"Item %s"(invIdx), printable(itemData[item].name))) {
+					foreach (itemIdx, itemInfo; itemData) {
+						if (ImGui.Selectable(printable(itemInfo.name), itemIdx == invIdx)) {
+							item = cast(ubyte)itemIdx;
+						}
+					}
+					ImGui.EndCombo();
+				}
+			}
+			ImGui.TreePop();
+		}
+		foreach (idx, ref p; gameState.partyMembers) {
+			if (p == 0) {
+				break;
+			}
+			if (ImGui.TreeNode(format!"Party Member %s"(idx))) {
+				InputEditable("ID", p);
+				InputEditable("??", gameState.unknown96[idx]);
+				InputEditable("???", gameState.playerControlledPartyMembers[idx]);
+				InputEditable("Entity", gameState.partyEntities[idx]);
+				if (ImGui.Button("Remove")) {
+					removeCharFromParty(p);
+				}
+				ImGui.TreePop();
+			}
+		}
+		InputEditable2("Camera coords", gameState.leaderX, gameState.leaderY);
+		InputEditable("Leader position index", gameState.leaderPositionIndex);
+		InputEditable!Direction("Direction", gameState.leaderDirection);
+		InputEditable("Tile type", gameState.troddenTileType);
+		InputEditable!WalkingStyle("Walking style", gameState.walkingStyle);
+		InputEditable("Unknown90", gameState.unknown90);
+		InputEditable("Unknown92", gameState.unknown92);
+		InputEditable("Leader entity", gameState.firstPartyMemberEntity);
+		InputEditable!CameraMode("Camera mode", gameState.cameraMode);
+		InputEditable("Autoscroll frames", gameState.autoScrollFrames);
+		InputEditable("Autoscroll walking style backup", gameState.autoScrollOriginalWalkingStyle);
+		InputEditable("Autofight enabled", gameState.autoFightEnable);
+		InputEditable2("Exit mouse coords", gameState.exitMouseXCoordinate, gameState.exitMouseYCoordinate);
+		InputEditable("Text speed", gameState.textSpeed);
+		InputEditable("Sound Setting", gameState.soundSetting);
+		InputEditable("UnknownC3", gameState.unknownC3);
+		InputEditable("UnknownC4", gameState.unknownC4);
+		if (ImGui.TreeNode("Active hotspots")) {
+			foreach (idx, ref mode; gameState.activeHotspotModes) {
+				if (ImGui.TreeNode(format!"Hotspot %s"(idx))) {
+					InputEditable("Mode", mode);
+					InputEditable("ID", gameState.activeHotspotIDs[idx]);
+					ImGui.TreePop();
+				}
+			}
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("Saved Photos")) {
+			foreach (idx, ref state; gameState.savedPhotoStates) {
+				if (ImGui.TreeNode(format!"Photos %s"(idx))) {
+					InputEditable("Unknown", state.unknown);
+					foreach (partyIdx, label; ["Party member 0", "Party member 1", "Party member 2", "Party member 3", "Party member 4", "Party member 5"]) {
+						InputEditable(label, state.partyMembers[partyIdx]);
+					}
+					ImGui.TreePop();
+				}
+			}
+			ImGui.TreePop();
+		}
+		InputEditable("Timer", gameState.timer);
+		InputEditable("Text Flavour", gameState.textFlavour);
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Entities")) {
+		short entityEntry = firstEntity;
+		while (entityEntry >= 0) {
+			const entity = entityEntry / 2;
+			if (ImGui.TreeNode(format!"%s: %s"(entity, cast(ActionScript)entityScriptTable[entity]))) {
+				InputEditable!OverworldSprite("Sprite", entityTPTEntrySprites[entity]);
+				InputEditable("Var 0", entityScriptVar0Table[entity]);
+				InputEditable("Var 1", entityScriptVar1Table[entity]);
+				InputEditable("Var 2", entityScriptVar2Table[entity]);
+				InputEditable("Var 3", entityScriptVar3Table[entity]);
+				InputEditable("Var 4", entityScriptVar4Table[entity]);
+				InputEditable("Var 5", entityScriptVar5Table[entity]);
+				InputEditable("Var 6", entityScriptVar6Table[entity]);
+				InputEditable("Var 7", entityScriptVar7Table[entity]);
+				InputEditable2("S. Coords", entityScreenXTable[entity], entityScreenYTable[entity]);
+				if (auto newCoords = InputEditable3("M. Coords", FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]), FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]), FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]))) {
+					entityAbsXFractionTable[entity] = newCoords[0].fraction;
+					entityAbsXTable[entity] = newCoords[0].integer;
+					entityAbsYFractionTable[entity] = newCoords[1].fraction;
+					entityAbsYTable[entity] = newCoords[1].integer;
+					entityAbsZFractionTable[entity] = newCoords[2].fraction;
+					entityAbsZTable[entity] = newCoords[2].integer;
+				}
+				InputEditable("Size", entitySizes[entity]);
+				InputEditable!Direction("Direction", entityDirections[entity]);
+				InputEditable("Priority", entityDrawPriority[entity]);
+				if (auto newAddress = InputEditableR("VRAM", cast(ushort)(entityVramAddresses[entity] * 2), ImGuiInputTextFlags.CharsHexadecimal)) {
+					entityVramAddresses[entity] = newAddress[0] >> 1;
+				}
+				InputEditable("Frame", entityAnimationFrames[entity]);
+				InputEditable("TPT", entityTPTEntries[entity]);
+				InputEditable("Enemy", entityEnemyIDs[entity]);
+				InputEditable("Collided", entityCollidedObjects[entity]);
+				foreach (idx, flagName; ["Script", "Callback"]) {
+					const mask = (1 << idx + 14);
+					bool flagEnabled = !(entityTickCallbackFlags[entity] & mask);
+					if (ImGui.Checkbox(flagName, &flagEnabled)) {
+						entityTickCallbackFlags[entity] = cast(ushort)((entityTickCallbackFlags[entity] & ~mask) | (!flagEnabled * mask));
+					}
+				}
+				foreach (idx, flagName; ["Visible"]) {
+					const mask = (1 << idx + 15);
+					bool flagEnabled = !(entitySpriteMapFlags[entity] & mask);
+					if (ImGui.Checkbox(flagName, &flagEnabled)) {
+						entitySpriteMapFlags[entity] = cast(ushort)((entitySpriteMapFlags[entity] & ~mask) | (!flagEnabled * mask));
+					}
+				}
+				foreach (idx, flagName; ["Obscure lower", "Obscure upper", "Sunstroke", "Water", "Climbing", "UnknownS1", "UnknownS2", "Solid"]) {
+					const mask = 1 << idx;
+					bool flagEnabled = !(entitySurfaceFlags[entity] & mask);
+					if (!!(idx & 1)) {
+						ImGui.SameLine();
+					}
+					if (ImGui.Checkbox(flagName, &flagEnabled)) {
+						entitySurfaceFlags[entity] = cast(ushort)((entitySurfaceFlags[entity] & ~mask) | (!flagEnabled * mask));
+					}
+				}
+				InputEditable("Sleep", entityScriptSleepFrames[entity]);
+				InputEditable("u1A4A", entityUnknown1A4A[entity]);
+				InputEditable("u1A86", entityUnknown1A86[entity]);
+				InputEditable("u284C", entityUnknown284C[entity]);
+				InputEditable("u2916", entityUnknown2916[entity]);
+				InputEditable("u2952", entityUnknown2952[entity]);
+				InputEditable("u2B32", entityUnknown2B32[entity]);
+				InputEditable("u2BE6", entityUnknown2BE6[entity]);
+				InputEditable("u2C22", entityUnknown2C22[entity]);
+				InputEditable("u2C5E", entityUnknown2C5E[entity]);
+				InputEditable("u2D4E", entityUnknown2D4E[entity]);
+				InputEditable("u2D8A", entityUnknown2D8A[entity]);
+				InputEditable("u2DC6", entityUnknown2DC6[entity]);
+				InputEditable("u2E3E", entityUnknown2E3E[entity]);
+				InputEditable("u2E7A", entityUnknown2E7A[entity]);
+				InputEditable("u2EF2", entityUnknown2EF2[entity]);
+				InputEditable("u2FA6", entityUnknown2FA6[entity]);
+				InputEditable("u305A", entityUnknown305A[entity]);
+				InputEditable("u310E", entityUnknown310E[entity]);
+				InputEditable("u3186", entityUnknown3186[entity]);
+				InputEditable("u332A", entityUnknown332A[entity]);
+				InputEditable("u3366", entityUnknown3366[entity]);
+				InputEditable("u33A2", entityUnknown33A2[entity]);
+				InputEditable("u33DE", entityUnknown33DE[entity]);
+				InputEditable("u3456", entityUnknown3456[entity]);
+				if (ImGui.Button("Delete")) {
+					deleteEntity(entity);
+				}
+				ImGui.TreePop();
+			}
+			entityEntry = entityNextEntityTable[entity];
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Overworld State")) {
+		InputEditable("Unknown7E436E", unknown7E436E);
+		InputEditable("Unknown7E4370", unknown7E4370);
+		InputEditable("Unknown7E4372", unknown7E4372);
+		InputEditable2("Screen coords", screenLeftX, screenTopY);
+		InputEditable("Unknown7E437C", unknown7E437C);
+		InputEditable("Unknown7E437E", unknown7E437E);
+		InputEditable("Unknown7E4380", unknown7E4380);
+		InputEditable("Unknown7E4382", unknown7E4382);
+		InputEditable("Unknown7E4386", unknown7E4386);
+		InputEditable("Unknown7E4388", unknown7E4388);
+		InputEditable("Unknown7E438A", unknown7E438A);
+		InputEditable("Unknown7E438C", unknown7E438C);
+		InputEditable("Current sector attributes", currentSectorAttributes);
+		InputEditable("Unknown7E43D0", unknown7E43D0);
+		InputEditable("Unknown7E43D2", unknown7E43D2);
+		InputEditable("Unknown7E43D4", unknown7E43D4);
+		InputEditable("Unknown7E43D6", unknown7E43D6);
+		InputEditable("Unknown7E43D8", unknown7E43D8);
+		InputEditable("Unknown7E43DA", unknown7E43DA);
+		InputEditable("Animated tile count", loadedAnimatedTileCount);
+		InputEditable("Unknown7E4474", unknown7E4474);
+		InputEditable("Unknown7E4676", unknown7E4676);
+		InputEditable("Unknown7E467A", unknown7E467A);
+		InputEditable("Unknown7E467C", unknown7E467C);
+		InputEditable("Unknown7E4A58", unknown7E4A58);
+		InputEditable("Unknown7E4A5A", unknown7E4A5A);
+		InputEditable("Overworld enemy count", overworldEnemyCount);
+		InputEditable("Unknown7E4A5E", unknown7E4A5E);
+		InputEditable("Magic butterfly", magicButterfly);
+		InputEditable("Unknown7E4A62", unknown7E4A62);
+		InputEditable("Unknown7E4A64", unknown7E4A64);
+		InputEditable("Show NPC flag", showNPCFlag);
+		InputEditable("Unknown7E4A68", unknown7E4A68);
+		InputEditable("Unknown7E4A6A", unknown7E4A6A);
+		InputEditable("Unknown7E4A6C", unknown7E4A6C);
+		InputEditable("Unknown7E4A6E", unknown7E4A6E);
+		InputEditable("Unknown7E4A70", unknown7E4A70);
+		InputEditable("Unknown7E4A72", unknown7E4A72);
+		InputEditable("Unknown7E4A74", unknown7E4A74);
+		InputEditable("Unknown7E4A7A", unknown7E4A7A);
+		InputEditable("Current battle group", currentBattleGroup);
+		InputEditable("Unknown7E4A8E", unknown7E4A8E);
+		InputEditable("Unknown7E4A90", unknown7E4A90);
+		InputEditable("Unknown7E4A92", unknown7E4A92);
+		InputEditable("Unknown7E4A94", unknown7E4A94);
+		InputEditable("Touched enemy", touchedEnemy);
+		InputEditable("Unknown7E4DB8", unknown7E4DB8);
+		InputEditable("Swirl flag", battleSwirlFlag);
+		InputEditable("Initiative", battleInitiative);
+		InputEditable("Unknown7E4DBE", unknown7E4DBE);
+		InputEditable("Unknown7E4DC0", unknown7E4DC0);
+		InputEditable("Battle Debug?", battleDebug);
+		InputEditable("Unknown7E4DC4", unknown7E4DC4);
+		InputEditable("Unknown7E4DD4", unknown7E4DD4);
+		InputEditable("Misc debug flags", miscDebugFlags);
+		InputEditable("Unknown7E5D58", unknown7E5D58);
+		InputEditable("Unknown7E5D5A", unknown7E5D5A);
+		InputEditable("Unknown7E5D5C", unknown7E5D5C);
+		InputEditable("Unknown7E5D5E", unknown7E5D5E);
+		InputEditable("Battle swirl frames", battleSwirlCountdown);
+		InputEditable("Current TPT entry", currentTPTEntry);
+		InputEditable("Unknown7E5D64", unknown7E5D64);
+		InputEditable("Unknown7E5D72", unknown7E5D72);
+		InputEditable("Input disabled frames", inputDisableFrameCounter);
+		InputEditable("Unknown7E5D76", unknown7E5D76);
+		InputEditable("Unknown7E5D78", unknown7E5D78);
+		InputEditable("Unknown7E5D7A", unknown7E5D7A);
+		InputEditable("Unknown7E5D7C", unknown7E5D7C);
+		InputEditable("Unknown7E5D7E", unknown7E5D7E);
+		InputEditable("OSS", overworldStatusSuppression);
+		InputEditable("Pending QI", pendingInteractions);
+		InputEditable("Mushroomization timer", mushroomizationTimer);
+		InputEditable("Mushroomization modifier", mushroomizationModifier);
+		InputEditable("Mushroomized walking", mushroomizedWalkingFlag);
+		InputEditable("Unknown7E5DA2", unknown7E5DA2);
+		InputEditable("Unknown7E5DA4", unknown7E5DA4);
+		InputEditable("Unknown7E5DA6", unknown7E5DA6);
+		InputEditable("Unknown7E5DA8", unknown7E5DA8);
+		InputEditable("Unknown7E5DAA", unknown7E5DAA);
+		InputEditable("Unknown7E5DAC", unknown7E5DAC);
+		InputEditable("Unknown7E5DAE", unknown7E5DAE);
+		InputEditable("Unknown7E5DB4", unknown7E5DB4);
+		InputEditable("Unknown7E5DB6", unknown7E5DB6);
+		InputEditable("Unknown7E5DB8", unknown7E5DB8);
+		InputEditable("Unknown7E5DBA", unknown7E5DBA);
+		InputEditable("Unknown7E5DBE", unknown7E5DBE);
+		InputEditable("Current QI type", currentQueuedInteractionType);
+		InputEditable("Unknown7E5DC2", unknown7E5DC2);
+		InputEditable("Unknown7E5DC4", unknown7E5DC4);
+		InputEditable("Unknown7E5DC6", unknown7E5DC6);
+		InputEditable("Unknown7E5DCA", unknown7E5DCA);
+		InputEditable("Unknown7E5DCC", unknown7E5DCC);
+		InputEditable("Unknown7E5DCE", unknown7E5DCE);
+		InputEditable("Unknown7E5DD0", unknown7E5DD0);
+		InputEditable("Unknown7E5DD2", unknown7E5DD2);
+		InputEditable("Map music track", currentMapMusicTrack);
+		InputEditable("Next map music track", nextMapMusicTrack);
+		InputEditable("Unknown7E5DD8", unknown7E5DD8);
+		InputEditable("Unknown7E5DDA", unknown7E5DDA);
+		InputEditable("Unknown7E5DDC", unknown7E5DDC);
+		ImGui.Text(format!"Unknown7E5DDE: %s"(unknown7E5DDE));
+		InputEditable("Current QI", currentQueuedInteraction);
+		InputEditable("Next QI", nextQueuedInteraction);
+		InputEditable("Unknown7E5E36", unknown7E5E36);
+		InputEditable("Unknown7E5E6C", unknown7E5E6C);
+		InputEditable("Unknown7E5E6D", unknown7E5E6D);
+		InputEditable("Unknown7E5E6E", unknown7E5E6E);
+		InputEditable("Unknown7E5E70", unknown7E5E70);
+		InputEditable("Unknown7E5E71", unknown7E5E71);
+		InputEditable("Unknown7E5E72", unknown7E5E72);
+		InputEditable("Unknown7E5E73", unknown7E5E73);
+		InputEditable("Unknown7E5E74", unknown7E5E74);
+		InputEditable("Unknown7E5E75", unknown7E5E75);
+		InputEditable("Unknown7E5E76", unknown7E5E76);
+		InputEditable("Unknown7E5E77", unknown7E5E77);
+		InputEditable("Unknown7E5E78", unknown7E5E78);
+		InputEditable("Unknown7E5E79", unknown7E5E79);
+		InputEditable("Unknown7E5E7A", unknown7E5E7A);
+		InputEditable("Unknown7E5E7C", unknown7E5E7C);
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Event Flags")) {
+		foreach (i; 0 .. 8) {
+			if (ImGui.TreeNode(format!"Flags %s - %s"(i * 128, (i + 1) * 128))) {
+				foreach (flag; i * 128 + 1 .. (i + 1) * 128 + 1) {
+					bool flagValue = !!getEventFlag(cast(short)flag);
+					if (ImGui.Checkbox((cast(EventFlag)flag).text, &flagValue)) {
+						setEventFlag(cast(short)flag, flagValue);
+					}
+				}
+				ImGui.TreePop();
+			}
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Party Members")) {
+		foreach (idx, ref character; partyCharacters) {
+			if (character.name[0] == '\0') {
+				continue;
+			}
+			if (ImGui.TreeNode(format!"%s"(printable(character.name)))) {
+				inputEBText("Name", character.name);
+				InputEditable("Level", character.level);
+				InputEditable("EXP", character.exp);
+				InputEditable("Max HP", character.maxHP);
+				InputEditable("HP (current)", character.hp.current);
+				InputEditable("HP (target)", character.hp.target);
+				InputEditable("Max PP", character.maxPP);
+				InputEditable("PP (current)", character.pp.current);
+				InputEditable("PP (target)", character.pp.target);
+				InputEditable("Offense", character.offense);
+				InputEditable("Defense", character.defense);
+				InputEditable("Speed", character.speed);
+				InputEditable("Guts", character.guts);
+				InputEditable("Luck", character.luck);
+				InputEditable("Vitality", character.vitality);
+				InputEditable("IQ", character.iq);
+				if (ImGui.TreeNode("Afflictions")) {
+					void handleAfflictions(string label, size_t idx) {
+						if (ImGui.BeginCombo(label, afflictionNames[idx][character.afflictions[idx]])) {
+							foreach (afflictionIdx, afflictionName; afflictionNames[idx]) {
+								if (ImGui.Selectable(afflictionName, afflictionIdx == character.afflictions[idx])) {
+									character.afflictions[idx] = cast(ubyte)afflictionIdx;
+								}
+							}
+							ImGui.EndCombo();
+						}
+					}
+					handleAfflictions("Status 0", 0);
+					handleAfflictions("Status 1", 1);
+					handleAfflictions("Status 2", 2);
+					handleAfflictions("Status 3", 3);
+					handleAfflictions("Status 4", 4);
+					handleAfflictions("Status 5", 5);
+					handleAfflictions("Status 6", 6);
+					ImGui.TreePop();
+				}
+				if (ImGui.TreeNode("Items")) {
+					foreach (invIdx, ref item; character.items) {
+						if (ImGui.BeginCombo(format!"Item %s"(invIdx), printable(itemData[item].name))) {
+							foreach (itemIdx, itemInfo; itemData) {
+								if (ImGui.Selectable(printable(itemInfo.name), itemIdx == invIdx)) {
+									item = cast(ubyte)itemIdx;
+								}
+							}
+							ImGui.EndCombo();
+						}
+					}
+					ImGui.TreePop();
+				}
+				InputEditable("unknown53", character.unknown53);
+				InputEditable("unknown55", character.unknown55);
+				InputEditable("unknown57", character.unknown57);
+				InputEditable("unknown59", character.unknown59);
+				InputEditable("positionIndex", character.positionIndex);
+				InputEditable("unknown63", character.unknown63);
+				InputEditable("unknown65", character.unknown65);
+				InputEditable("HP/PP Window Opt", character.hpPPWindowOptions);
+				InputEditable("Miss rate", character.missRate);
+				InputEditable("Fire resist", character.fireResist);
+				InputEditable("Freeze resist", character.freezeResist);
+				InputEditable("Flash resist", character.flashResist);
+				InputEditable("Paralysis Resist", character.paralysisResist);
+				InputEditable("Hypnosis / Brainshock resist", character.hypnosisBrainshockResist);
+				InputEditable("Boosted speed", character.boostedSpeed);
+				InputEditable("Boosted guts", character.boostedGuts);
+				InputEditable("Boosted vitality", character.boostedVitality);
+				InputEditable("Boosted IQ", character.boostedIQ);
+				InputEditable("Boosted luck", character.boostedLuck);
+				InputEditable("unknown92", character.unknown92);
+				InputEditable("unknown94", character.unknown94);
+				ImGui.TreePop();
+			}
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Text System")) {
+		if (ImGui.TreeNode("Windows")) {
+			foreach (openWindowID; windowTable) {
+				if (openWindowID == -1) {
+					continue;
+				}
+				if (ImGui.TreeNode(format!"%s"(cast(Window)windowStats[openWindowID].windowID))) {
+					InputEditable("Next", windowStats[openWindowID].next);
+					InputEditable("Previous", windowStats[openWindowID].prev);
+					InputEditable2("Coords", windowStats[openWindowID].x, windowStats[openWindowID].y);
+					InputEditable2("Dimensions", windowStats[openWindowID].width, windowStats[openWindowID].height);
+					InputEditable2("Text Coords", windowStats[openWindowID].textX, windowStats[openWindowID].textY);
+					InputEditable("Padding", windowStats[openWindowID].numPadding);
+					InputEditable("Tile Attributes", windowStats[openWindowID].tileAttributes);
+					InputEditable("Font", windowStats[openWindowID].font);
+					if (ImGui.TreeNode("Registers")) {
+						InputEditable("Result", windowStats[openWindowID].result.integer);
+						InputEditable("Argument", windowStats[openWindowID].argument);
+						InputEditable("Counter", windowStats[openWindowID].counter);
+						InputEditable("Result (2)", windowStats[openWindowID].resultBak.integer);
+						InputEditable("Argument (2)", windowStats[openWindowID].argumentBak);
+						InputEditable("Counter (2)", windowStats[openWindowID].counterBak);
+						ImGui.TreePop();
+					}
+					InputEditable("Current option", windowStats[openWindowID].currentOption);
+					InputEditable("Options", windowStats[openWindowID].optionCount);
+					InputEditable("Selected option", windowStats[openWindowID].selectedOption);
+					InputEditable("Menu Columns", windowStats[openWindowID].menuColumns);
+					InputEditable("Menu Page", windowStats[openWindowID].menuPage);
+					InputEditable("Title ID", windowStats[openWindowID].titleID);
+					inputEBText("Title", windowStats[openWindowID].title);
+					ImGui.TreePop();
+				}
+			}
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("Script States")) {
+			foreach (i; 0 .. unknown7E97B8) {
+				if (ImGui.TreeNode(format!"State %s"(i))) {
+					ImGui.Text(format!"Current CC [%02X]"(displayTextStates[(i + 1) % displayTextStates.length].textptr[0]));
+					InputEditable("Unknown4", displayTextStates[(i + 1) % displayTextStates.length].unknown4);
+					if (ImGui.TreeNode("Attribute Backup")) {
+						InputEditable("ID", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.id);
+						InputEditable2("Text Coords", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textX, displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textY);
+						InputEditable("Padding", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.numberPadding);
+						InputEditable("Tile Attributes", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.currTileAttributes);
+						InputEditable("Font", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.font);
+						InputEditable("Unknown11[0]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[0]);
+						InputEditable("Unknown11[1]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[1]);
+						InputEditable("Unknown11[2]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[2]);
+						InputEditable("Unknown11[3]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[3]);
+						InputEditable("Unknown11[4]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[4]);
+						InputEditable("Unknown11[5]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[5]);
+						InputEditable("Unknown11[6]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[6]);
+						InputEditable("Unknown11[7]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[7]);
+						InputEditable("Unknown11[8]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[8]);
+						InputEditable("Unknown11[9]", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.unknown11[9]);
+						ImGui.TreePop();
+					}
+					ImGui.TreePop();
+				}
+			}
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("Menu Options")) {
+			foreach (ref menuOption; menuOptions) {
+				if (!menuOption.field00) {
+					continue;
+				}
+				const label = printable(menuOption.label);
+				if (ImGui.TreeNode(label ? label : "Unlabelled option")) {
+					InputEditable("Unknown", menuOption.field00);
+					InputEditable("Next option", menuOption.next);
+					InputEditable("Previous option", menuOption.prev);
+					InputEditable("Page", menuOption.page);
+					InputEditable2("Text coords", menuOption.textX, menuOption.textY);
+					InputEditable("User Data", menuOption.userdata);
+					InputEditable!Sfx("SFX", menuOption.sfx);
+					ImGui.Text(format!"Script: %s"(menuOption.script));
+					InputEditable("Pixel Alignment", menuOption.pixelAlign);
+					ImGui.TreePop();
+				}
+			}
+			ImGui.TreePop();
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Battle")) {
+		InputEditable("Enemy count", enemiesInBattle);
+		InputEditable("Target flags", battlerTargetFlags);
+		InputEditable("EXP rewarded", battleEXPScratch);
+		InputEditable("Money rewarded", battleMoneyScratch);
+		InputEditable!GiygasPhase("Giygas phase", currentGiygasPhase);
+		InputEditable("Unknown7EA97C", unknown7EA97C);
+		InputEditable("Unknown7EAA0C", unknown7EAA0C);
+		InputEditable("Unknown7EAA0E", unknown7EAA0E);
+		InputEditable("Item dropped", itemDropped);
+		InputEditable("Mirrored enemy", mirrorEnemy);
+		InputEditable("Mirror turns left", mirrorTurnTimer);
+		InputEditable("Unknown7EAA70", unknown7EAA70);
+		InputEditable("Unknown7EAA72", unknown7EAA72);
+		InputEditable("Unknown7EAA74", unknown7EAA74);
+		InputEditable("Unknown7EAA8E", unknown7EAA8E);
+		InputEditable("Unknown7EAA90", unknown7EAA90);
+		InputEditable("Unknown7EAA92", unknown7EAA92);
+		InputEditable("Unknown7EAA94", unknown7EAA94);
+		InputEditable("Unknown7EAA96", unknown7EAA96);
+		InputEditable("Unknown7EAAB2", unknown7EAAB2);
+		InputEditable("Unknown7EAAB4", unknown7EAAB4);
+		InputEditable("Back row battlers", numBattlersInBackRow);
+		InputEditable("Front row battlers", numBattlersInFrontRow);
+		if (ImGui.TreeNode("Battlers")) {
+			foreach (idx, ref battler; battlersTable) {
+				if (battler.id == 0) {
+					continue;
+				}
+				if (ImGui.TreeNode(getBattlerName(battler))) {
+					InputEditable("ID", battler.id);
+					InputEditable("Sprite", battler.sprite);
+					InputEditable("Unknown3", battler.unknown3);
+					InputEditable!BattleActions("Current action", battler.currentAction);
+					InputEditable("Action order var", battler.actionOrderVar);
+					InputEditable("Action item", battler.actionItemSlot);
+					InputEditable("Action argument", battler.currentActionArgument);
+					InputEditable("Action targetting", battler.actionTargetting);
+					InputEditable("Current target", battler.currentTarget);
+					InputEditable("The", battler.theFlag);
+					InputEditable("Consciousness", battler.consciousness);
+					InputEditable("Taken turn", battler.hasTakenTurn);
+					InputEditable("Side", battler.side);
+					InputEditable("NPC ID", battler.npcID);
+					InputEditable("Row", battler.row);
+					InputEditable("HP", battler.hp);
+					InputEditable("HP target", battler.hpTarget);
+					InputEditable("HP max", battler.hpMax);
+					InputEditable("PP", battler.pp);
+					InputEditable("PP target", battler.ppTarget);
+					InputEditable("PP max", battler.ppMax);
+					if (ImGui.TreeNode("Afflictions")) {
+						void handleAfflictions(string label, size_t idx) {
+							if (ImGui.BeginCombo(label, afflictionNames[idx][battler.afflictions[idx]])) {
+								foreach (afflictionIdx, afflictionName; afflictionNames[idx]) {
+									if (ImGui.Selectable(afflictionName, afflictionIdx == battler.afflictions[idx])) {
+										battler.afflictions[idx] = cast(ubyte)afflictionIdx;
+									}
+								}
+								ImGui.EndCombo();
+							}
+						}
+						handleAfflictions("Status 0", 0);
+						handleAfflictions("Status 1", 1);
+						handleAfflictions("Status 2", 2);
+						handleAfflictions("Status 3", 3);
+						handleAfflictions("Status 4", 4);
+						handleAfflictions("Status 5", 5);
+						handleAfflictions("Status 6", 6);
+						ImGui.TreePop();
+					}
+					InputEditable("On guard", battler.guarding);
+					InputEditable("Shield HP", battler.shieldHP);
+					InputEditable("Offense", battler.offense);
+					InputEditable("Defense", battler.defense);
+					InputEditable("Speed", battler.speed);
+					InputEditable("Guts", battler.guts);
+					InputEditable("Luck", battler.luck);
+					InputEditable("Vitality", battler.vitality);
+					InputEditable("IQ", battler.iq);
+					InputEditable("Base offense", battler.baseOffense);
+					InputEditable("Base defense", battler.baseDefense);
+					InputEditable("Base speed", battler.baseSpeed);
+					InputEditable("Base guts", battler.baseGuts);
+					InputEditable("Base luck", battler.baseLuck);
+					InputEditable("Base vitality", battler.paralysisResist);
+					InputEditable("Base IQ", battler.freezeResist);
+					InputEditable("Flash resist", battler.flashResist);
+					InputEditable("Fire resist", battler.fireResist);
+					InputEditable("Brainshock resist", battler.brainshockResist);
+					InputEditable("Hypnosis resist", battler.hypnosisResist);
+					InputEditable("Money", battler.money);
+					InputEditable("EXP", battler.exp);
+					InputEditable("VRAM sprite index", battler.vramSpriteIndex);
+					InputEditable2("Screen coords", battler.spriteX, battler.spriteY);
+					InputEditable("Initiative", battler.initiative);
+					InputEditable("Unknown71", battler.unknown71);
+					InputEditable("Unknown72", battler.unknown72);
+					InputEditable("Unknown73", battler.unknown73);
+					InputEditable("Unknown74", battler.unknown74);
+					InputEditable("Alt spritemap", battler.useAltSpritemap);
+					InputEditable("Unknown76", battler.unknown76);
+					InputEditable("ID2", battler.id2);
+					ImGui.TreePop();
+				}
+			}
+			ImGui.TreePop();
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Palettes")) {
+		foreach (idx, ref palette; palettes) {
+			if (ImGui.TreeNode(format!"Palette %s"(idx))) {
+				foreach (i, ref colour; palette) {
+					float[3] c = [RGB(colour).red / 31.0, RGB(colour).green / 31.0, RGB(colour).blue / 31.0];
+					if (ImGui.ColorEdit3(format!"%s"(i), c)) {
+						colour = RGB(cast(ushort)(c[0] * 31), cast(ushort)(c[1] * 31), cast(ushort)(c[2] * 31)).bgr555;
+						preparePaletteUpload(PaletteUpload.full);
+					}
+				}
+				ImGui.TreePop();
+			}
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Screen effects")) {
+		InputEditable("Unknown7EAD8A", unknown7EAD8A);
+		InputEditable("Vertical shake duration", verticalShakeDuration);
+		InputEditable("Vertical shake hold duration", verticalShakeHoldDuration);
+		InputEditable("Unknown7EAD90", unknown7EAD90);
+		InputEditable("Wobble duration", wobbleDuration);
+		InputEditable("Shake duration", shakeDuration);
+		InputEditable("Unknown7EAD96", unknown7EAD96);
+		InputEditable("Unknown7EAD98", unknown7EAD98);
+		InputEditable("Unknown7EAD9A", unknown7EAD9A);
+		InputEditable("Unknown7EAD9C", unknown7EAD9C);
+		InputEditable("Green flash frames", greenFlashDuration);
+		InputEditable("Red flash frames", redFlashDuration);
+		InputEditable("Unknown7EADA2", unknown7EADA2);
+		InputEditable("HP/PP box blink duration", hpPPBoxBlinkDuration);
+		InputEditable("HP/PP box blink target", hpPPBoxBlinkTarget);
+		InputEditable("Unknown7EADA8", unknown7EADA8);
+		InputEditable("Unknown7EADAA", unknown7EADAA);
+		InputEditable("Unknown7EADAC", unknown7EADAC);
+		InputEditable("Unknown7EADAE", unknown7EADAE);
+		InputEditable("Unknown7EADB0", unknown7EADB0);
+		InputEditable("Letterbox top end", letterboxTopEnd);
+		InputEditable("Letterbox bottom start", letterboxBottomStart);
+		InputEditable("Unknown7EADB6", unknown7EADB6);
+		foreach (layer, label; zip([&loadedBGDataLayer1, &loadedBGDataLayer2], ["Background effect 1", "Background effect 2"])) {
+			if (ImGui.TreeNode(label)) {
+				InputEditable("Layer", layer.targetLayer);
+				InputEditable("Bit depth", layer.bitDepth);
+				InputEditable("Freeze palette", layer.freezePaletteScrolling);
+				InputEditable("Palette style", layer.paletteShiftingStyle);
+				InputEditable2("Cycle 1 colours", layer.paletteCycle1First, layer.paletteCycle1Last);
+				InputEditable2("Cycle 2 colours", layer.paletteCycle2First, layer.paletteCycle2Last);
+				InputEditable("Cycle 1 step", layer.paletteCycle1Step);
+				InputEditable("Cycle 2 step", layer.paletteCycle2Step);
+				InputEditable("Palette cycle speed", layer.paletteChangeSpeed);
+				InputEditable("Palette cycle frames left", layer.paletteChangeDurationLeft);
+				InputEditable4("Scrolling styles", layer.scrollingMovements.tupleof);
+				InputEditable("Scrolling", layer.currentScrollingMovement);
+				InputEditable("Scrolling frames", layer.scrollingDurationLeft);
+				InputEditable2("Position", layer.horizontalPosition, layer.verticalPosition);
+				InputEditable2("Velocity", layer.horizontalVelocity, layer.verticalVelocity);
+				InputEditable2("Acceleration", layer.horizontalAcceleration, layer.verticalAcceleration);
+				InputEditable4("Distortion styles", layer.distortionStyles.tupleof);
+				InputEditable("Distortion", layer.currentDistortionIndex);
+				InputEditable("Distortion framess", layer.distortionDurationLeft);
+				InputEditable("Distortion type", layer.distortionType);
+				InputEditable("Ripple frequency", layer.distortionRippleFrequency);
+				InputEditable("Ripple amplitude", layer.distortionRippleAmplitude);
+				InputEditable("Distortion speed", layer.distortionSpeed);
+				InputEditable("Compression rate", layer.distortionCompressionRate);
+				InputEditable("Ripple frequency acceleration", layer.distortionRippleFrequencyAcceleration);
+				InputEditable("Ripple amplitude acceleration", layer.distortionRippleAmplitudeAcceleration);
+				InputEditable("Distortion acceleration", layer.distortionSpeedAcceleration);
+				InputEditable("Distortion compression acceleration", layer.distortionCompressionAcceleration);
+				ImGui.TreePop();
+			}
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Renderer")) {
+		ImGui.Text("Layers");
+		foreach (idx, layer; ["BG1", "BG2", "BG3", "BG4", "OBJ"]) {
+			const mask = (1 << idx);
+			bool layerEnabled = !(layersDisabled & mask);
+			ImGui.SameLine();
+			if (ImGui.Checkbox(layer, &layerEnabled)) {
+				layersDisabled = cast(ubyte)((layersDisabled & ~mask) | (!layerEnabled * mask));
+			}
+		}
+		if (ImGui.TreeNode("Sprites")) {
+			foreach (id, entry; g_frameData.oam1) {
+				const uint upperX = !!(g_frameData.oam2[id/4] & (1 << ((id % 4) * 2)));
+				const size = !!(g_frameData.oam2[id/4] & (1 << ((id % 4) * 2 + 1)));
+				if (entry.yCoord < 0xE0) {
+					if (ImGui.TreeNode(format!"Sprite %s"(id))) {
+						ImGui.BeginDisabled();
+						ImGui.Text(format!"Tile Offset: %s"(entry.startingTile));
+						ImGui.Text(format!"Coords: (%s, %s)"(entry.xCoord + (upperX << 8), entry.yCoord));
+						ImGui.Text(format!"Palette: %s"(entry.palette));
+						bool boolean = entry.flipVertical;
+						ImGui.Checkbox("Vertical flip", &boolean);
+						boolean = entry.flipHorizontal;
+						ImGui.Checkbox("Horizontal flip", &boolean);
+						ImGui.Text(format!"Priority: %s"(entry.priority));
+						ImGui.Text(format!"Priority: %s"(entry.nameTable));
+						boolean = size;
+						ImGui.Checkbox("Use alt size", &boolean);
+						ImGui.EndDisabled();
+						ImGui.TreePop();
+					}
+				}
+			}
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("Registers")) {
+			InputEditable("INIDISP", g_frameData.INIDISP);
+			InputEditable("OBSEL", g_frameData.OBSEL);
+			InputEditable("OAMADDR", g_frameData.OAMADDR);
+			InputEditable("BGMODE", g_frameData.BGMODE);
+			InputEditable("MOSAIC", g_frameData.MOSAIC);
+			InputEditable("BG1SC", g_frameData.BG1SC);
+			InputEditable("BG2SC", g_frameData.BG2SC);
+			InputEditable("BG3SC", g_frameData.BG3SC);
+			InputEditable("BG4SC", g_frameData.BG4SC);
+			InputEditable("BG12NBA", g_frameData.BG12NBA);
+			InputEditable("BG34NBA", g_frameData.BG34NBA);
+			InputEditable("BG1HOFS", g_frameData.BG1HOFS);
+			InputEditable("BG1VOFS", g_frameData.BG1VOFS);
+			InputEditable("BG2HOFS", g_frameData.BG2HOFS);
+			InputEditable("BG2VOFS", g_frameData.BG2VOFS);
+			InputEditable("BG3HOFS", g_frameData.BG3HOFS);
+			InputEditable("BG3VOFS", g_frameData.BG3VOFS);
+			InputEditable("BG4HOFS", g_frameData.BG4HOFS);
+			InputEditable("BG4VOFS", g_frameData.BG4VOFS);
+			InputEditable("M7SEL", g_frameData.M7SEL);
+			InputEditable("M7A", g_frameData.M7A);
+			InputEditable("M7B", g_frameData.M7B);
+			InputEditable("M7C", g_frameData.M7C);
+			InputEditable("M7D", g_frameData.M7D);
+			InputEditable("M7X", g_frameData.M7X);
+			InputEditable("M7Y", g_frameData.M7Y);
+			InputEditable("W12SEL", g_frameData.W12SEL);
+			InputEditable("W34SEL", g_frameData.W34SEL);
+			InputEditable("WOBJSEL", g_frameData.WOBJSEL);
+			InputEditable("WH0", g_frameData.WH0);
+			InputEditable("WH1", g_frameData.WH1);
+			InputEditable("WH2", g_frameData.WH2);
+			InputEditable("WH3", g_frameData.WH3);
+			InputEditable("WBGLOG", g_frameData.WBGLOG);
+			InputEditable("WOBJLOG", g_frameData.WOBJLOG);
+			InputEditable("TM", g_frameData.TM);
+			InputEditable("TS", g_frameData.TS);
+			InputEditable("TMW", g_frameData.TMW);
+			InputEditable("TSW", g_frameData.TSW);
+			InputEditable("CGWSEL", g_frameData.CGWSEL);
+			InputEditable("CGADSUB", g_frameData.CGADSUB);
+			InputEditable("FIXED_COLOUR_DATA_R", g_frameData.FIXED_COLOUR_DATA_R);
+			InputEditable("FIXED_COLOUR_DATA_G", g_frameData.FIXED_COLOUR_DATA_G);
+			InputEditable("FIXED_COLOUR_DATA_B", g_frameData.FIXED_COLOUR_DATA_B);
+			InputEditable("SETINI", g_frameData.SETINI);
+			ImGui.TreePop();
+		}
+		ImGui.TreePop();
+	}
+	if (ImGui.TreeNode("Misc Debugging Features")) {
+		bool debugFlag = !!earthbound.globals.debugging;
+		if (ImGui.Checkbox("Debug flag", &debugFlag)) {
+			earthbound.globals.debugging = debugFlag;
+		}
+		ImGui.TreePop();
+	}
+	ImGui.End();
+}
+
+void callWithSelectable(E, alias what)(ref bool isActive, string title, string label) {
+	if (!isActive) {
+		return;
+	}
+	static E newValue;
+	ImGui.OpenPopup(title);
+	ImGui.SetNextWindowPos(ImGui.GetMainViewport().GetCenter(), ImGuiCond.Appearing, ImVec2(0.5f, 0.5f));
+	if (ImGui.BeginPopupModal(title, null, ImGuiWindowFlags.AlwaysAutoResize)) {
+		InputEditable!(E, E)(label, newValue);
+		if (ImGui.Button("OK")) {
+			mainFiberExecute = () { what(newValue); };
+			isActive = false;
+		}
+		ImGui.EndPopup();
+	}
+}
+
+void callWithTextInput(alias what)(ref bool isActive, string title, string label) {
+	if (!isActive) {
+		return;
+	}
+	static char[60] buf = '\0';
+	ImGui.OpenPopup(title);
+	ImGui.SetNextWindowPos(ImGui.GetMainViewport().GetCenter(), ImGuiCond.Appearing, ImVec2(0.5f, 0.5f));
+	if (ImGui.BeginPopupModal(title, null, ImGuiWindowFlags.AlwaysAutoResize)) {
+		ImGui.InputText(label, buf[]);
+		if (ImGui.Button("OK")) {
+			mainFiberExecute = () { what(buf.fromStringz); };
+			isActive = false;
+		}
+		ImGui.EndPopup();
+	}
+}
+
+void InputEditable(E, T)(string label, ref T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+	import std.traits : EnumMembers;
+	if (ImGui.BeginCombo(label, (cast(E)value).text)) {
+		static foreach (e; EnumMembers!E) {
+			if (ImGui.Selectable(e.text, e == cast(E)value)) {
+				value = cast(T)e;
+			}
+		}
+		ImGui.EndCombo();
+	}
+}
+void InputEditable(T)(string label, ref T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+	static if (is(T == FixedPoint1616)) {
+		float tmp = cast(float)value.asDouble;
+		if (ImGui.InputFloat(label, &tmp, flags)) {
+			value = tmp;
+		}
+	} else { //integer type
+		int tmp = value;
+		if (ImGui.InputInt(label, &tmp, flags)) {
+			value = cast(T)tmp;
+		}
+	}
+}
+IMGUIValueChanged!T InputEditableR(T)(string label, T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+	static if (is(T == FixedPoint1616)) {
+		float tmp = cast(float)value.asDouble;
+		bool c = ImGui.InputFloat(label, &tmp, flags);
+		value = tmp;
+		return IMGUIValueChanged!T(value, c);
+	} else { //integer type
+		int tmp = value;
+		bool c = ImGui.InputInt(label, &tmp, flags);
+		value = cast(T)tmp;
+		return IMGUIValueChanged!T(value, c);
+	}
+}
+void InputEditable2(T, U)(string label, ref T value, ref U value2, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+	static if (is(T == FixedPoint1616) || is(U == FixedPoint1616)) {
+		float[2] tmp = [cast(float)value.asDouble, cast(float)value2.asDouble];
+		if (ImGui.InputFloat2(label, tmp, "%.3f", flags)) {
+			value = tmp[0];
+			value2 = tmp[1];
+		}
+	} else { //integer type
+		int[2] tmp = [value, value2];
+		if (ImGui.InputInt2(label, tmp, flags)) {
+			value = cast(T)tmp[0];
+			value2 = cast(U)tmp[1];
+		}
+	}
+}
+IMGUIValueChanged!(T,U,V) InputEditable3(T, U, V)(string label, T value, U value2, V value3, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+	static if (is(T == FixedPoint1616) || is(U == FixedPoint1616) || is(U == FixedPoint1616)) {
+		float[3] tmp = [cast(float)value.asDouble, cast(float)value2.asDouble, cast(float)value3.asDouble];
+		bool c = ImGui.InputFloat3(label, tmp, "%.3f", flags);
+		value = tmp[0];
+		value2 = tmp[1];
+		value3 = tmp[2];
+		return IMGUIValueChanged!(T,U,V)(value, value2, value3, c);
+	} else { //integer type
+		int[3] tmp = [value, value2, value3];
+		bool c = ImGui.InputInt3(label, tmp, flags);
+		value = cast(T)tmp[0];
+		value2 = cast(U)tmp[1];
+		value3 = cast(V)tmp[2];
+		return IMGUIValueChanged!(T,U,V)(value, value2, value3, c);
+	}
+}
+IMGUIValueChanged!(T,U,V, W) InputEditable4(T, U, V, W)(string label, T value, U value2, V value3, W value4, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+	static if (is(T == FixedPoint1616) || is(U == FixedPoint1616) || is(U == FixedPoint1616) || is(W == FixedPoint1616)) {
+		float[4] tmp = [cast(float)value.asDouble, cast(float)value2.asDouble, cast(float)value3.asDouble, cast(float)value4.asDouble];
+		bool c = ImGui.InputFloat4(label, tmp, "%.3f", flags);
+		value = tmp[0];
+		value2 = tmp[1];
+		value3 = tmp[2];
+		value4 = tmp[3];
+		return IMGUIValueChanged!(T,U,V,W)(value, value2, value3, value4, c);
+	} else { //integer type
+		int[4] tmp = [value, value2, value3, value4];
+		bool c = ImGui.InputInt4(label, tmp, flags);
+		value = cast(T)tmp[0];
+		value2 = cast(U)tmp[1];
+		value3 = cast(V)tmp[2];
+		value4 = cast(V)tmp[3];
+		return IMGUIValueChanged!(T,U,V,W)(value, value2, value3, value4, c);
+	}
+}
+
+struct IMGUIValueChanged(T...) {
+	T values;
+	private bool changed;
+	alias values this;
+	bool opCast(T: bool)() const @safe pure {
+		return changed;
+	}
+}
+
+void inputEBText(string label, ubyte[] input, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+	import std.algorithm.comparison : min;
+	scope buffer = new char[](input.length * 2);
+	buffer[] = '\0';
+	printableRef(buffer, input);
+	if (ImGui.InputText(label, buffer)) {
+		const converted = ebString(buffer);
+		const length = min(converted.length, input.length);
+		input[0 .. length] = converted[0 .. length];
+		input[length .. $] = 0;
+	}
+}
+
+void menuItemCallback(string label, void function() func) {
+	if (ImGui.MenuItem(label, null, null)) {
+		func();
+	}
+}
+
+static immutable string[][] afflictionNames = [
+	[
+		"None",
+		"Unconscious",
+		"Diamondized",
+		"Paralyzed",
+		"Nauseous",
+		"Poisoned",
+		"Sunstroke",
+		"Cold",
+	], [
+		"None",
+		"Mushroomized",
+		"Possessed",
+	], [
+		"None",
+		"Asleep",
+		"Crying",
+		"Immobilized",
+		"Solidified",
+	], [
+		"None",
+		"Strange",
+	], [
+		"None",
+		"Can't concentrate (1 turn)",
+		"Can't concentrate (2 turns)",
+		"Can't concentrate (3 turns)",
+		"Can't concentrate (4 turns)",
+	], [
+		"None",
+		"Homesick",
+	], [
+		"None",
+		"PSI Power Shield",
+		"PSI Shield",
+		"Power Shield",
+		"Shield",
+	],
+];
+
+void dumpVRAM() {
+	import std.stdio : File;
+	static int dumpVramCount = 0;
+	File(format!"gfxstate%03d.vram"(dumpVramCount), "wb").rawWrite(g_frameData.vram);
+	File(format!"gfxstate%03d.cgram"(dumpVramCount), "wb").rawWrite(g_frameData.cgram);
+	File(format!"gfxstate%03d.oam"(dumpVramCount), "wb").rawWrite(g_frameData.oam1);
+	File(format!"gfxstate%03d.oam2"(dumpVramCount), "wb").rawWrite(g_frameData.oam2);
+	dumpVramCount++;
+}
+
+void dumpSave() {
+	import siryul : toFile, YAML;
+	import earthbound.globals;
+	import earthbound.bank2F;
+	import core.stdc.string;
+	SaveData block;
+	memcpy(&block.gameState, &gameState, GameState.sizeof);
+	memcpy(&block.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
+	memcpy(&block.eventFlags, &eventFlags[0], eventFlags.sizeof);
+	block.toFile!YAML("save.yaml");
+}
+
+string getBattlerName(ref Battler battler) {
+	scope buffer = new ubyte[](30);
+	if ((battler.side == BattleSide.foes) || (battler.npcID != 0)) {
+		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[battler.id].name[0], &buffer[0], 25);
+		if ((battler.side == BattleSide.foes) && ((battler.theFlag != 1) ||(unknownC2B66A(battler.unknown76) != 2))) {
+			x14[0] = ebChar(' ');
+			unknown7E5E78 = 1;
+			x14[1] = cast(ubyte)(battler.theFlag + 0x70);
+		}
+		if (battler.id == EnemyID.myPet) {
+			memcpy(&buffer[0], &gameState.petName[0], gameState.petName.length);
+			buffer[gameState.petName.length] = 0;
+		}
+		return printable(buffer);
+	} else {
+		if (battler.id <= 4) {
+			return printable(partyCharacters[battler.row].name);
+		}
+	}
+	return "";
+}

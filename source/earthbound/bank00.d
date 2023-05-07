@@ -8211,6 +8211,8 @@ void ebMain() {
 					unfreezeEntities();
 				}
 			}
+			mainFiberExecute();
+			mainFiberExecute = () {};
 			if (teleportDestination) {
 				teleportMainLoop();
 			}

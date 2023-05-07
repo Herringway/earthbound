@@ -148,7 +148,7 @@ __gshared short newEntityPosZ; /// $(DOLLAR)0A48
 __gshared short newEntityPriority; /// $(DOLLAR)0A4A
 __gshared short entityAllocationMinSlot; /// $(DOLLAR)0A4C
 __gshared short entityAllocationMaxSlot; /// $(DOLLAR)0A4E
-__gshared short firstEntity; /// $(DOLLAR)0A50
+__gshared short firstEntity = -1; /// $(DOLLAR)0A50
 __gshared short unknown7E0A52; /// $(DOLLAR)0A52
 __gshared short unknown7E0A54; /// $(DOLLAR)0A54
 __gshared short unknown7E0A56; /// $(DOLLAR)0A56

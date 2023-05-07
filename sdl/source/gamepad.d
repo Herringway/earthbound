@@ -94,8 +94,6 @@ auto getDefaultKeyboardMapping() pure @safe {
 		SDL_Scancode.SDL_SCANCODE_W: Controller.x,
 		SDL_Scancode.SDL_SCANCODE_Q: Controller.l,
 		SDL_Scancode.SDL_SCANCODE_E: Controller.r,
-		SDL_Scancode.SDL_SCANCODE_9: Controller.printRegisters,
-		SDL_Scancode.SDL_SCANCODE_0: Controller.dumpVRAM,
 		SDL_Scancode.SDL_SCANCODE_P: Controller.pause,
 		SDL_Scancode.SDL_SCANCODE_BACKSLASH: Controller.skipFrame,
 		SDL_Scancode.SDL_SCANCODE_GRAVE: Controller.fastForward,
@@ -122,16 +120,7 @@ enum Controller {
 	extra4,
 	fastForward,
 	pause,
-	dumpVRAM,
-	dumpEntities,
 	skipFrame,
-	printRegisters,
-	sprToggle,
-	layer4Toggle,
-	layer3Toggle,
-	layer2Toggle,
-	layer1Toggle,
-	saveDump,
 	exit
 }
 
@@ -152,10 +141,7 @@ enum AxisMapping {
 	extra4,
 	fastForward,
 	pause,
-	dumpVRAM,
-	dumpEntities,
 	skipFrame,
-	printRegisters,
 	exit,
 }
 
@@ -205,26 +191,11 @@ void handleButton(Controller button, bool pressed, uint playerID) {
 		case Controller.up, Controller.down, Controller.left, Controller.right, Controller.l, Controller.r, Controller.select, Controller.start, Controller.a, Controller.b, Controller.x, Controller.y, Controller.extra1, Controller.extra2, Controller.extra3, Controller.extra4:
 			handleSNESButton(cast(ushort)controllerToPad(button), pressed, playerID);
 			break;
-		case Controller.saveDump:
-			input.dumpSave = true;
-			break;
 		case Controller.fastForward:
 			input.fastForward = pressed;
 			break;
 		case Controller.pause:
 			input.pause = pressed;
-			break;
-		case Controller.dumpVRAM:
-			input.dumpVram = pressed;
-			break;
-		case Controller.printRegisters:
-			input.printRegisters = pressed;
-			break;
-		case Controller.dumpEntities:
-			input.dumpEntities = pressed;
-			break;
-		case Controller.layer1Toggle, Controller.layer2Toggle, Controller.layer3Toggle, Controller.layer4Toggle, Controller.sprToggle:
-			input.layerTogglePressed[button - Controller.sprToggle] = pressed;
 			break;
 		case Controller.skipFrame:
 			input.step = pressed;
@@ -256,15 +227,6 @@ void handleAxis(uint playerID, AxisMapping axis, short value) {
 		case AxisMapping.pause:
 			input.pause = pressed;
 			break;
-		case AxisMapping.dumpVRAM:
-			input.dumpVram = pressed;
-			break;
-		case AxisMapping.printRegisters:
-			input.printRegisters = pressed;
-			break;
-		case AxisMapping.dumpEntities:
-			input.dumpEntities = pressed;
-			break;
 		case AxisMapping.skipFrame:
 			input.step = pressed;
 			break;
@@ -277,14 +239,9 @@ void handleAxis(uint playerID, AxisMapping axis, short value) {
 struct Input {
 	ushort[2] gameInput;
 	bool exit;
-	bool dumpVram;
 	bool pause;
 	bool step;
 	bool fastForward;
-	bool printRegisters;
-	bool dumpEntities;
-	bool dumpSave;
-	bool[5] layerTogglePressed;
 }
 
 Input input;

@@ -9,10 +9,28 @@ import bindbc.sdl;
 
 import earthbound.hardware;
 
+import debugging;
 import misc;
 import snesdrawframe;
 
+import imgui.sdl;
+import imgui.sdlrenderer;
+import d_imgui.imgui_h;
+import ImGui = d_imgui;
+
 ubyte layersDisabled;
+private uint frameTotal;
+private char[30] frameRateStringBuffer;
+private uint frameCounter;
+const(char)[] frameRateString;
+void updateFrameRate() {
+	frameTotal += timeSinceFrameStart.total!"msecs";
+	if (frameCounter++ == 60) {
+		frameRateString = sformat(frameRateStringBuffer, "%.4s FPS", 1000.0 / (cast(double)frameTotal / 60.0));
+		frameCounter = 0;
+		frameTotal = 0;
+	}
+}
 
 version(Windows) {
 	enum libName = "SDL2.dll";
@@ -135,6 +153,10 @@ private SDL_Window* appWin;
 private SDL_Renderer* renderer;
 private SDL_Texture* drawTexture;
 private int lastTime;
+private int gameX = 0;
+private int gameY = 0;
+private int gameWidth;
+private int gameHeight;
 
 void loadRenderer() {
     enforceSDLLoaded!("SDL", SDL_GetVersion, libName)(loadSDL());
@@ -148,14 +170,20 @@ void unloadRenderer() {
 	SDL_Quit();
 }
 
-void initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
+void initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio, bool reserveDebugArea) {
 	enum windowFlags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
+	const int extraWidth = reserveDebugArea ? debugWindowWidth : 0;
+	const int extraHeight = reserveDebugArea ? debugMenuHeight : 0;
+	gameX = extraWidth;
+	gameY = extraHeight;
+	gameWidth = ImgW * zoom;
+	gameHeight = ImgH * zoom;
 	appWin = SDL_CreateWindow(
 		"Earthbound",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		ImgW * zoom,
-		ImgH * zoom,
+		gameWidth + extraWidth,
+		gameHeight + extraHeight,
 		windowFlags
 	);
 	final switch (mode) {
@@ -175,7 +203,7 @@ void initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
 	);
 	enforceSDL(renderer !is null, "Error creating SDL renderer");
 	if (keepAspectRatio) {
-		SDL_RenderSetLogicalSize(renderer, ImgW, ImgH);
+		SDL_RenderSetLogicalSize(renderer, gameWidth + extraWidth, gameHeight + extraHeight);
 	}
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_RendererInfo renderInfo;
@@ -189,6 +217,25 @@ void initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio) {
 		ImgH
 	);
 	enforceSDL(drawTexture !is null, "Error creating SDL texture");
+}
+
+ImGui.ImGuiContext* imguiContext;
+
+void initializeImgui() {
+	IMGUI_CHECKVERSION();
+	imguiContext = ImGui.CreateContext();
+	ImGuiIO* io = &ImGui.GetIO();
+
+	ImGui.StyleColorsDark();
+	io.FontGlobalScale = 1.5;
+
+	ImGui_ImplSDL2_InitForSDLRenderer(appWin, renderer);
+	ImGui_ImplSDLRenderer_Init(renderer);
+}
+void uninitializeImgui() {
+	ImGui_ImplSDLRenderer_Shutdown();
+	ImGui_ImplSDL2_Shutdown();
+	ImGui.DestroyContext(imguiContext);
 }
 
 void uninitializeRenderer() {
@@ -209,8 +256,13 @@ void uninitializeRenderer() {
 void startFrame() {
 	lastTime = SDL_GetTicks();
 }
+void startUIFrame() {
+	ImGui_ImplSDL2_NewFrame();
+	ImGui_ImplSDLRenderer_NewFrame();
+	ImGui.NewFrame();
+}
 
-void endFrame() {
+void renderGame() {
 	ushort* drawBuffer;
 	int drawPitch;
 	SDL_LockTexture(drawTexture, null, cast(void**)&drawBuffer, &drawPitch);
@@ -219,12 +271,31 @@ void endFrame() {
 
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, drawTexture, null, null);
+	SDL_Rect screen;
+	screen.x = gameX;
+	screen.y = gameY;
+	screen.w = gameWidth;
+	screen.h = gameHeight;
+	SDL_RenderCopy(renderer, drawTexture, null, &screen);
+}
+
+void renderOverlay() {
 	foreach (rectangle; overlayRectangles) {
 		renderRectangle(rectangle);
 	}
 	overlayRectangles = [];
+}
+
+void endFrame() {
 	SDL_RenderPresent(renderer);
+}
+
+void renderUI() {
+	int width, height;
+	SDL_GL_GetDrawableSize(appWin, &width, &height);
+	prepareDebugUI(width, height);
+	ImGui.Render();
+	ImGui_ImplSDLRenderer_RenderDrawData(ImGui.GetDrawData());
 }
 
 Duration waitForNextFrame(bool lockFramerate) {

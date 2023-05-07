@@ -5748,8 +5748,32 @@ align(1) struct RGB {
 	align(1):
 	ushort bgr555; ///
 	///
-	this(ushort red, ushort green, ushort blue) {
+	this(ushort red, ushort green, ushort blue) @safe pure {
 		bgr555 = (red & 0x1F) | ((green & 0x1F) << 5) | ((blue & 0x1F) << 10);
+	}
+	this(ushort value) @safe pure {
+		bgr555 = value;
+	}
+	ubyte red() const @safe pure {
+		return bgr555 & 0x1F;
+	}
+	ubyte green() const @safe pure {
+		return (bgr555 >> 5) & 0x1F;
+	}
+	ubyte blue() const @safe pure {
+		return (bgr555 >> 10) & 0x1F;
+	}
+	void red(ubyte v) @safe pure {
+		import earthbound.hardware : BGR555Mask;
+		bgr555 = (bgr555 & (BGR555Mask.Green | BGR555Mask.Blue)) | v & 0x1F;
+	}
+	void green(ubyte v) @safe pure {
+		import earthbound.hardware : BGR555Mask;
+		bgr555 = (bgr555 & (BGR555Mask.Red | BGR555Mask.Blue)) | (v & 0x1F) << 5;
+	}
+	void blue(ubyte v) @safe pure {
+		import earthbound.hardware : BGR555Mask;
+		bgr555 = (bgr555 & (BGR555Mask.Red | BGR555Mask.Green)) | (v & 0x1F) << 10;
 	}
 }
 ///
@@ -5774,6 +5798,7 @@ struct Unknown7E007DEntry {
 }
 ///
 union FixedPoint1616 {
+	import std.traits : isFloatingPoint;
 	struct {
 		ushort fraction; ///
 		short integer; ///
@@ -5784,11 +5809,15 @@ union FixedPoint1616 {
 	double asDouble() const {
 		return cast(double)cast(int)combined / 65536.0;
 	}
+	void opAssign(T)(T value) if (isFloatingPoint!T) {
+		combined = cast(uint)(65536 * value);
+	}
 	double toSiryulType()() const {
 		return asDouble();
 	}
 	static FixedPoint1616 fromSiryulType()(double val) {
-		return FixedPoint1616(cast(uint)(65536 * val));
+		FixedPoint1616 result = val;
+		return result;
 	}
 }
 ///
@@ -6726,6 +6755,8 @@ void function(short) setStatic = (short) {};
 ushort function(ushort) getControllerState = (ushort) { return cast(ushort)0; };
 ///
 void function(short, short, short, short, ubyte, ubyte, ubyte, ubyte) drawRect = (short, short, short, short, ubyte, ubyte, ubyte, ubyte) {};
+/// For running code in the main fiber
+void function() mainFiberExecute = () {};
 ///
 ubyte[] flyoverString(string str) {
 	ubyte[] result = new ubyte[](str.length);
@@ -6752,7 +6783,7 @@ ubyte[] flyoverString(string str) {
 	return result;
 }
 ///
-ubyte[length] ebString(size_t length)(string str) {
+ubyte[length] ebString(size_t length)(const(char)[] str) {
 	ubyte[length] result = 0;
 	size_t idx;
 	foreach (dchar c; str) {
@@ -6761,7 +6792,7 @@ ubyte[length] ebString(size_t length)(string str) {
 	return result;
 }
 ///
-ubyte[] ebString(string str) {
+ubyte[] ebString(const(char)[] str) {
 	ubyte[] result = new ubyte[](str.length);
 	size_t idx;
 	foreach (dchar c; str) {
@@ -6770,7 +6801,7 @@ ubyte[] ebString(string str) {
 	return result;
 }
 ///
-ubyte[] ebStringz(string str) @safe pure {
+ubyte[] ebStringz(const(char)[] str) @safe pure {
 	ubyte[] result = new ubyte[](str.length + 1);
 	size_t idx;
 	foreach (dchar c; str) {
@@ -6987,8 +7018,8 @@ ubyte ebChar(dchar c) @safe pure {
 		default: assert(0, ("unhandled character: '"d ~ c ~ "'"d).toUTF8);
 	}
 }
-string printable(const ubyte[] str) {
-	string result;
+T printable(T = string)(const ubyte[] str) {
+	T result;
 	foreach (chr; str) {
 		if (chr == 0) {
 			break;
@@ -6996,6 +7027,17 @@ string printable(const ubyte[] str) {
 		result ~= nativeStr(chr);
 	}
 	return result;
+}
+void printableRef(scope char[] buffer, const ubyte[] str) {
+	size_t i;
+	foreach (chr; str) {
+		if (chr == 0) {
+			break;
+		}
+		const converted = nativeStr(chr);
+		buffer[i .. i + converted.length] = converted;
+		i += converted.length;
+	}
 }
 string printable(const(ubyte)* str, size_t maxLength = size_t.max) {
 	string result;

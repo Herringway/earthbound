@@ -3,7 +3,7 @@ module earthbound.text;
 import earthbound.actionscripts;
 import earthbound.commondefs;
 
-const(void)[][string] textData;
+const(void)[][const(char)[]] textData;
 
 private struct CacheEntry {
 	uint keyLength;
@@ -265,7 +265,7 @@ const(void)[] fromBytes(const(ubyte)[] textChunk) {
 	return data;
 }
 
-const(ubyte)* getTextBlock(string label) {
+const(ubyte)* getTextBlock(const(char)[] label) {
 	import std.experimental.logger : tracef;
 	tracef("Looking for text: %s", label);
 	static immutable ubyte[1] r = [2];
