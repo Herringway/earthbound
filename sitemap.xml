@@ -1393,7 +1393,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/clearInstantPrinting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/closeWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/debugMenuElementSpacingData.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank03/debugMenuText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/debugOffText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/debugOnText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/defaultMovementSpeeds.html</loc></url>
@@ -1407,6 +1406,12 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/nessPajamaFlag.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/nullC3EF23.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/oppositeCardinals.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/option10.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/option11.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/option12.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/option13.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/option19.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/option9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/paginationArrowTiles.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/partyCharacterGraphicsTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/ppCostText.html</loc></url>
@@ -3051,6 +3056,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/VecYX.y.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/waitForInterrupt.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/WalkingStyle.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/WarpPreset.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/WarpStyle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Window.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/WindowConfig.html</loc></url>
