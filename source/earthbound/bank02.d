@@ -7079,12 +7079,12 @@ void loadBackgroundAnimationInfo(LoadedBackgroundData* target, const(AnimatedBac
 void unknownC2D0AC() {
 	HDMAWordTransfer* x = &unknown7EADB8[0];
 
-	x.scanlines = cast(ubyte)unknown7EADB2;
+	x.scanlines = cast(ubyte)letterboxTopEnd;
 	x.value = unknown7EADB0;
 	x++;
 
 	short i;
-	for (i = cast(short)(unknown7EADB4 - unknown7EADB2); i >= 0x80; i -= 0x7F) {
+	for (i = cast(short)(letterboxBottomStart - letterboxTopEnd); i >= 0x80; i -= 0x7F) {
 		x.scanlines = 0x7F;
 		x.value = unknown7EADAE;
 		x++;
@@ -7113,20 +7113,20 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	verticalShakeDuration = 0;
 	switch (letterbox) {
 		case LetterboxStyle.none:
-			unknown7EADB2 = 0;
-			unknown7EADB4 = 224;
+			letterboxTopEnd = 0;
+			letterboxBottomStart = 224;
 			break;
 		case LetterboxStyle.large:
-			unknown7EADB2 = 48 - 1;
-			unknown7EADB4 = 224 - 48;
+			letterboxTopEnd = 48 - 1;
+			letterboxBottomStart = 224 - 48;
 			break;
 		case LetterboxStyle.medium:
-			unknown7EADB2 = 58 - 1;
-			unknown7EADB4 = 224 - 58;
+			letterboxTopEnd = 58 - 1;
+			letterboxBottomStart = 224 - 58;
 			break;
 		case LetterboxStyle.small:
-			unknown7EADB2 = 68 - 1;
-			unknown7EADB4 = 224 - 68;
+			letterboxTopEnd = 68 - 1;
+			letterboxBottomStart = 224 - 68;
 			break;
 		default: break;
 	}
@@ -7234,7 +7234,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		unknown7EADAC = 1;
 	}
 	unknownC2D0AC();
-	if (unknown7EADB2 != 0) {
+	if (letterboxTopEnd != 0) {
 		unknownC429E8(2);
 	}
 	unknownC2E9ED();
@@ -7362,7 +7362,7 @@ void unknownC2DB3F() {
 	}
 	unknownC4A7B0();
 	unknownC2FD99();
-	if ((unknown7EADB6 != 0) && (unknown7EADB2 != 0)) {
+	if ((unknown7EADB6 != 0) && (letterboxTopEnd != 0)) {
 		if (unknown7EADCC < 0x3BB) {
 			unknown7EADCC = 0;
 			unknown7EADCE = 0xE0;
@@ -7371,11 +7371,11 @@ void unknownC2DB3F() {
 			unknown7EADCC -= 0x3BB;
 			unknown7EADCE += 0x3BB;
 		}
-		if ((unknown7EADCC >> 8) < unknown7EADB2) {
-			unknown7EADB2 = unknown7EADCC >> 8;
+		if ((unknown7EADCC >> 8) < letterboxTopEnd) {
+			letterboxTopEnd = unknown7EADCC >> 8;
 		}
-		if ((unknown7EADCE >> 8) > unknown7EADB4) {
-			unknown7EADB4 = unknown7EADCE >> 8;
+		if ((unknown7EADCE >> 8) > letterboxBottomStart) {
+			letterboxBottomStart = unknown7EADCE >> 8;
 		}
 		unknownC2D0AC();
 	}

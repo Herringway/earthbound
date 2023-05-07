@@ -783,8 +783,8 @@ __gshared short unknown7EADAA; /// $(DOLLAR)ADAA
 __gshared short unknown7EADAC; /// $(DOLLAR)ADAC
 __gshared short unknown7EADAE; /// $(DOLLAR)ADAE
 __gshared short unknown7EADB0; /// $(DOLLAR)ADB0
-__gshared short unknown7EADB2; /// $(DOLLAR)ADB2
-__gshared short unknown7EADB4; /// $(DOLLAR)ADB4
+__gshared short letterboxTopEnd; /// $(DOLLAR)ADB2
+__gshared short letterboxBottomStart; /// $(DOLLAR)ADB4
 __gshared short unknown7EADB6; /// $(DOLLAR)ADB6
 __gshared HDMAWordTransfer[6] unknown7EADB8; /// $(DOLLAR)ADB8
 
