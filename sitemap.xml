@@ -2616,6 +2616,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/LoadedOverworldPaletteAnimation.delays.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/LoadedOverworldPaletteAnimation.index.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/LoadedOverworldPaletteAnimation.timer.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/mainFiberExecute.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MainMenuOptions.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapDataPaletteAnimationPointer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/MapDataPaletteAnimationPointer.count.html</loc></url>
@@ -3336,6 +3337,8 @@
 <url><loc>http://127.0.0.1/earthbound/globals/introBG2Buffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/irqCallback.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/itemDropped.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/letterboxBottomStart.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/letterboxTopEnd.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedAnimatedTileCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedBGDataLayer1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/loadedBGDataLayer2.html</loc></url>
@@ -3857,8 +3860,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADAC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADAE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADB0.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EADB2.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EADB4.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADB6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADB8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EADCC.html</loc></url>
