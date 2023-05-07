@@ -1741,14 +1741,14 @@ void debugYButtonMenu() {
 				break;
 			case 17:
 				playCastScene();
-				teleport(1);
+				teleport(WarpPreset.debugWarp);
 				break;
 			case 18:
 				useSoundStone(1);
 				break;
 			case 19:
 				playCredits();
-				teleport(1);
+				teleport(WarpPreset.debugWarp);
 				break;
 			case 20:
 				unknownC12D17(unknown7E9698 == 0 ? 1 : 0);
