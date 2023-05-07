@@ -557,6 +557,22 @@ immutable ushort[10] unknownC3E84E = [ 0x0130, 0x0131, 0x0132, 0x0133, 0x0134, 0
 immutable ushort[9] unknownC3E862 = [ 0x0140, 0x0141, 0x0142, 0x0143, 0x0144, 0x0145, 0x0146, 0x0147, 0x0148 ];
 
 /// $C3E874
+version(bugfix) {
+	enum option9 = "Teleport";
+	enum option10 = "Star α";
+	enum option11 = "Star β";
+	enum option12 = "Player 0";
+	enum option13 = "Player 1";
+	enum option19 = "Meter";
+} else {
+	enum option9 = "テレポ";
+	enum option10 = "スターα";
+	enum option11 = "スターβ";
+	enum option12 = "プレーヤー0";
+	enum option13 = "プレーヤー1";
+	enum option19 = "メーター";
+
+}
 immutable ubyte[10][24] debugMenuText = [
 	ebString!10("Flag"),
 	ebString!10("Goods"),
@@ -567,17 +583,17 @@ immutable ubyte[10][24] debugMenuText = [
 	ebString!10("Event"),
 	ebString!10("Warp"),
 	ebString!10("Tea"),
-	ebString!10("テレポ"), //Teleport
-	ebString!10("スターα"), //Star α
-	ebString!10("スターβ"), //Star β
-	ebString!10("プレーヤー0"), //Player 0
-	ebString!10("プレーヤー1"), //Player 1
+	ebString!10(option9), //Teleport
+	ebString!10(option10), //Star α
+	ebString!10(option11), //Star β
+	ebString!10(option12), //Player 0
+	ebString!10(option13), //Player 1
 	ebString!10("GUIDE"),
 	ebString!10("TRACK"),
 	ebString!10("CAST"),
 	ebString!10("STONE"),
 	ebString!10("STAFF"),
-	ebString!10("メーター"), //Meter
+	ebString!10(option19), //Meter
 	ebString!10("REPLAY"),
 	ebString!10("TEST1"),
 	ebString!10("TEST2"),
