@@ -853,7 +853,7 @@ void printMenuItems() {
 	MenuOpt* x02 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
 	setInstantPrinting();
 	while (true) {
-		if (x02.page == windowStats[windowTable[currentFocusWindow]].menuPage) {
+		if ((x02.page == windowStats[windowTable[currentFocusWindow]].menuPage) || (x02.page == 0)) {
 			unknownC43DDB(x02);
 			if (x02.page == 0) {
 				windowSetTextColor(0);
