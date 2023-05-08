@@ -2052,7 +2052,7 @@ void unknownC44E61(short arg1, short arg2) {
 short unknownC44FF3(short arg1, short fontID, ubyte* arg3) {
 	short result;
 	for (short i = 0; i < arg1; i++) {
-		result += cast(short)(unknown7E5E6D + fontData[fontConfigTable[fontID].dataID][(*(arg3++) - 0x50) & 0x7F] + i);
+		result += cast(short)(unknown7E5E6D + fontData[fontConfigTable[fontID].dataID][(*(arg3++) - 0x50) & 0x7F]);
 	}
 	return result;
 }
