@@ -1538,7 +1538,7 @@ void unknownC43F53() {
 }
 
 /// $C43F77
-void unknownC43F77(short arg1) {
+void unknownC43F77(short tile) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
@@ -1547,10 +1547,10 @@ void unknownC43F77(short arg1) {
 	ushort* x0E = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[tilemapOffset];
 	freeTileSafe(x0E[0]);
 	freeTileSafe(x0E[windowStats[windowTable[currentFocusWindow]].width]);
-	if (arg1 == 0x2F) {
+	if (tile == 0x2F) {
 		unknown7E5E75 = 0;
 	}
-	drawTallTextTileFocusedF(arg1);
+	drawTallTextTileFocusedF(tile);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		unknown7E9623 = 1;
 	}
@@ -1565,7 +1565,7 @@ void unknownC43F77(short arg1) {
 			x = 1;
 		}
 	}
-	if ((x != 0) && (instantPrinting == 0) && (arg1 != 0x20)) {
+	if ((x != 0) && (instantPrinting == 0) && (tile != 0x20)) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
@@ -1596,14 +1596,14 @@ void unknownC440B5(ubyte* arg1, short arg2) {
 	}
 	unknown7E1B56[i] = 0x20;
 	unknown7E1B6E[i] = 0x06;
-	unknownC44E61(0, 0x70);
+	unknownC44E61(0, ebChar('@'));
 	unknown7E1B86[i++] = 0;
 	if (arg2 - i <= 0) {
 		return;
 	}
 	for (short x02 = cast(short)(arg2 - i); x02 != 0; x02--, i++) {
 		unknown7E1B56[i] = 0x03;
-		unknownC44E61(0, 0x53);
+		unknownC44E61(0, ebChar('{'));
 		unknown7E1B6E[i] = 0x03;
 	}
 }
@@ -1614,12 +1614,12 @@ void unknownC441B7(short arg1) {
 	short x02 = 3;
 	unknown7E9662 = 0;
 	memset(&unknown7E1B86[0], 0, 0x18);
-	unknownC44E61(0, 0x70);
+	unknownC44E61(0, ebChar('@'));
 	unknown7E1B56[0] = 0x20;
 	for (short i = 1; i < arg1; i++) {
 		unknown7E1B56[i] = cast(ubyte)x02;
 		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + unknown7E5E6D);
-		unknownC44E61(0, 0x53);
+		unknownC44E61(0, ebChar('{'));
 	}
 }
 
@@ -2014,28 +2014,28 @@ void freeTileSafe(short arg1) {
 }
 
 /// $C44E61
-void unknownC44E61(short arg1, short arg2) {
+void unknownC44E61(short arg1, short tile) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	if ((arg2 == 0x2F) || (arg2 == 0x22) || (arg2 == 0x20)) {
-		unknownC43F77(arg2);
+	if ((tile == 0x2F) || (tile == 0x22) || (tile == 0x20)) {
+		unknownC43F77(tile);
 		nextVWFTile();
 	} else {
-		if (arg2 == ebChar(' ')) {
+		if (tile == ebChar(' ')) {
 			if (unknown7E5E75 != 0) {
 				return;
 			}
 		} else if (unknown7E5E75 != 0) {
 			windowStats[windowTable[currentFocusWindow]].textX = 0;
-			if (arg2 != ebChar('@')) {
+			if (tile != ebChar('@')) {
 				unknownC43D75(6, windowStats[windowTable[currentFocusWindow]].textY);
 			}
 			unknown7E5E75 = 0;
 		}
-		unknown7E5E76 = cast(ubyte)arg2;
-		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(arg2 - ebChar(' ')) * fontConfigTable[arg1].height];
-		short x12 = fontData[fontConfigTable[arg1].dataID][arg2 - ebChar(' ')] + unknown7E5E6D;
+		unknown7E5E76 = cast(ubyte)tile;
+		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(tile - ebChar(' ')) * fontConfigTable[arg1].height];
+		short x12 = fontData[fontConfigTable[arg1].dataID][tile - ebChar(' ')] + unknown7E5E6D;
 		if (x12 > 8) {
 			while (x12 > 8) {
 				renderText(8, fontConfigTable[arg1].width, x14);

@@ -522,11 +522,11 @@ void unknownC437B8F(short arg1) {
 }
 
 /// $C10CB6
-void printLetter(short arg1) {
+void printLetter(short letter) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	unknownC44E61(windowStats[windowTable[currentFocusWindow]].font, arg1);
+	unknownC44E61(windowStats[windowTable[currentFocusWindow]].font, letter);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		unknown7E9623 = 1;
 	}
@@ -541,7 +541,7 @@ void printLetter(short arg1) {
 			x = 1;
 		}
 	}
-	if ((x != 0) && (instantPrinting == 0) && (arg1 != 0x20) && (arg1 != ebChar(' '))) {
+	if ((x != 0) && (instantPrinting == 0) && (letter != 0x20) && (letter != ebChar(' '))) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
