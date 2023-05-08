@@ -7767,3 +7767,116 @@ private auto actionscriptCommandPrinter(const(ubyte)[] commandStream) {
 	}
 	return Result(commandStream);
 }
+
+private enum ubyte[char][2] staffTextTable = [[ // small text
+	' ': 0x40,
+	'A': 0x42,
+	'B': 0x52,
+	'C': 0x44,
+	'D': 0x54,
+	'E': 0x45,
+	'F': 0x55,
+	'G': 0x46,
+	'H': 0x56,
+	'I': 0x48,
+	'J': 0x58,
+	'K': 0x49,
+	'L': 0x59,
+	'M': 0x4A,
+	'N': 0x5A,
+	'O': 0x4B,
+	'P': 0x5B,
+	'Q': 0x6A,
+	'R': 0x7A,
+	'S': 0x6B,
+	'T': 0x7B,
+	'U': 0x6C,
+	'V': 0x7C,
+	'W': 0x6D,
+	'X': 0x7D,
+	'Y': 0x6E,
+	'Z': 0x7E,
+	'_': 0x80,
+	'.': 0xAD,
+], [ // big text
+	' ': 0x40,
+	'!': 0x41,
+	'@': 0x43,
+	'\'': 0x47,
+	',': 0x4C,
+	'-': 0x4D,
+	'.': 0x4E,
+	'/': 0x4F,
+	'0': 0x60,
+	'1': 0x61,
+	'2': 0x62,
+	'3': 0x63,
+	'4': 0x64,
+	'5': 0x65,
+	'6': 0x66,
+	'7': 0x67,
+	'8': 0x68,
+	'9': 0x69,
+	'?': 0x6F,
+	'_': 0x80,
+	'A': 0x81,
+	'B': 0x82,
+	'C': 0x83,
+	'D': 0x84,
+	'E': 0x85,
+	'F': 0x86,
+	'G': 0x87,
+	'H': 0x88,
+	'I': 0x89,
+	'J': 0x8A,
+	'K': 0x8B,
+	'L': 0x8C,
+	'M': 0x8D,
+	'N': 0x8E,
+	'O': 0x8F,
+	'P': 0xA0,
+	'Q': 0xA1,
+	'R': 0xA2,
+	'S': 0xA3,
+	'T': 0xA4,
+	'U': 0xA5,
+	'V': 0xA6,
+	'W': 0xA7,
+	'X': 0xA8,
+	'Y': 0xA9,
+	'Z': 0xAA,
+	';': 0xAD,
+]];
+
+const(ubyte)[] convertStaffText(const(char)[] input) @safe pure {
+	const(ubyte)[] result;
+	bool bigText;
+	for (size_t idx = 0; idx < input.length; idx++) {
+		switch (input[idx]) {
+			case '\t':
+			case '\n': // not used, just looks better this way
+				break;
+			case '\x00':
+			case '\x04':
+			case '\xFF':
+				result ~= input[idx];
+				break;
+			case '\x03':
+				result ~= input[idx .. idx + 2];
+				idx++;
+				break;
+			case '\x01':
+				result ~= input[idx];
+				bigText = false;
+				break;
+			case '\x02':
+				result ~= input[idx];
+				bigText = true;
+				break;
+			default:
+				result ~= staffTextTable[bigText][input[idx]];
+				break;
+		}
+	}
+	return result;
+}
