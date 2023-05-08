@@ -679,6 +679,17 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		}
 		ImGui.TreePop();
 	}
+	if (ImGui.TreeNode("Credits")) {
+		InputEditable("Next credit position", creditsNextCreditPosition);
+		InputEditable("Unknown7EB4E5", unknown7EB4E5);
+		InputEditable("Current credit position", creditsScrollPosition);
+		InputEditable("Photograph map loading mode", photographMapLoadingMode);
+		InputEditable("Current photo", currentPhotoDisplay);
+		InputEditable("Unknown7EB4F3", unknown7EB4F3);
+		InputEditable("Unknown7EB4F5", unknown7EB4F5);
+		InputEditable("Unknown7EB4F7", unknown7EB4F7);
+		ImGui.TreePop();
+	}
 	if (ImGui.TreeNode("Palettes")) {
 		foreach (idx, ref palette; palettes) {
 			if (ImGui.TreeNode(format!"Palette %s"(idx))) {
