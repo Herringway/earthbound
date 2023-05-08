@@ -871,6 +871,10 @@ void handleDialog(T)(ref bool isActive, string title) {
 			mainFiberExecute = () { data.execute(); };
 			isActive = false;
 		}
+		ImGui.SameLine();
+		if (ImGui.Button("Cancel")) {
+			isActive = false;
+		}
 		ImGui.EndPopup();
 	}
 }
