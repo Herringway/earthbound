@@ -1550,7 +1550,7 @@ void unknownC43F77(short arg1) {
 	if (arg1 == 0x2F) {
 		unknown7E5E75 = 0;
 	}
-	unknownC10BA1F(arg1);
+	drawTallTextTileFocusedF(arg1);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		unknown7E9623 = 1;
 	}

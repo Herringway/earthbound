@@ -437,42 +437,42 @@ void hideHPPPWindows() {
 }
 
 /// $C10A85
-void unknownC10A85(short arg1, short arg2, ushort arg3) {
-	if (windowTable[arg1] == -1) {
+void drawTallTextTile(short window, short tile, ushort attributes) {
+	if (windowTable[window] == -1) {
 		return;
 	}
-	short x10 = windowStats[windowTable[arg1]].textX;
-	short x04 = windowStats[windowTable[arg1]].textY;
-	if (arg3 == windowStats[windowTable[arg1]].width) {
-		if (x04 != (windowStats[windowTable[arg1]].height / 2) - 1) {
+	short x10 = windowStats[windowTable[window]].textX;
+	short x04 = windowStats[windowTable[window]].textY;
+	if (attributes == windowStats[windowTable[window]].width) {
+		if (x04 != (windowStats[windowTable[window]].height / 2) - 1) {
 			x04++;
 		} else {
-			unknownC437B8(arg1);
+			unknownC437B8(window);
 		}
 		x10 = 0;
 	}
-	if ((blinkingTriangleFlag != 0) && (x10 == 0) && ((arg2 == 0x20) || (arg2 == 0x40))) {
+	if ((blinkingTriangleFlag != 0) && (x10 == 0) && ((tile == 0x20) || (tile == 0x40))) {
 		if (blinkingTriangleFlag == 1) {
 			goto Unknown9;
 		}
 		if (blinkingTriangleFlag == 2) {
-			arg2 = 0x20;
+			tile = 0x20;
 		}
 	}
-	windowStats[windowTable[arg1]].tilemapBuffer[(windowStats[windowTable[arg1]].width * x04 * 2) + x10] = cast(ushort)(((arg2 & 0xFFF0) * 2) + (arg2 & 0xF) + ((arg2 == 0x22) ? 0xC00 : arg3));
-	windowStats[windowTable[arg1]].tilemapBuffer[(windowStats[windowTable[arg1]].width * x04 * 2) + x10 + windowStats[windowTable[arg1]].width] = cast(ushort)(((arg2 & 0xFFF0) * 2) + (arg2 & 0xF) + ((arg2 == 0x22) ? 0xC00 : arg3) + 0x10);
+	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == 0x22) ? 0xC00 : attributes));
+	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10 + windowStats[windowTable[window]].width] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == 0x22) ? 0xC00 : attributes) + 0x10);
 	x10++;
 	Unknown9:
-	windowStats[windowTable[arg1]].textX = x10;
-	windowStats[windowTable[arg1]].textY = x04;
+	windowStats[windowTable[window]].textX = x10;
+	windowStats[windowTable[window]].textY = x04;
 }
 
 /// $C10BA1
-void unknownC10BA1(short arg1) {
+void drawTallTextTileFocused(short tile) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	unknownC10A85(currentFocusWindow, arg1, windowStats[windowTable[currentFocusWindow]].tileAttributes);
+	drawTallTextTile(currentFocusWindow, tile, windowStats[windowTable[currentFocusWindow]].tileAttributes);
 }
 
 /// $C10BD3
@@ -502,8 +502,8 @@ void printNewLineF() {
 }
 
 /// $C10C80
-void unknownC10BA1F(short arg1) {
-	unknownC10BA1(arg1);
+void drawTallTextTileFocusedF(short tile) {
+	drawTallTextTileFocused(tile);
 }
 
 /// $C10C86
@@ -553,7 +553,7 @@ void printLetter(short arg1) {
 
 /// $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
 void unknownC10D60(short tile) {
-	unknownC10BA1(tile);
+	drawTallTextTileFocused(tile);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		unknown7E9623 = 1;
 	}
