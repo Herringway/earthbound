@@ -11,7 +11,7 @@ import std.meta : Filter;
 import std.format : format;
 
 private enum isROMLoadable(alias sym) = (Filter!(typeMatches!ROMSource, __traits(getAttributes, sym)).length == 1) || (Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, sym)).length == 1);
-private template typeMatches(T) {
+template typeMatches(T) {
 	enum typeMatches(alias t) = is(typeof(t) == T);
 }
 void loadROMData(const ubyte[] romData) {

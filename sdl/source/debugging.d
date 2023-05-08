@@ -62,19 +62,10 @@ void prepareDebugUI(size_t width, size_t height) {
 	if (state.showDebugWindow) {
 		renderDebugWindow(0, debugMenuHeight, width, height);
 	}
-	callWithSelectable!(PartyMember, (newMember) { addCharToParty(cast(ubyte)newMember); })(state.addingPartyMember, "Add a party member", "Choose a party member");
-	callWithSelectable!(WarpPreset, (preset) { teleport(cast(ubyte)preset); })(state.askingWarpToPreset, "Warp to preset destination", "Destination");
-	callWithSelectable!(EnemyGroup, (group) { initBattleScripted(cast(short)group); })(state.askingBattle, "Start battle", "Battle");
-	callWithTextInput!((const char[] buf) {
-			freezeEntities();
-			playSfx(Sfx.cursor1);
-			createWindowN(Window.textStandard);
-			displayText(getTextBlock(buf.fromStringz));
-			clearInstantPrinting();
-			hideHPPPWindows();
-			closeAllWindows();
-			unfreezeEntities();
-	})(state.askingForScript, "Run a Script", "Script label");
+	handleDialog!AddPartyMember(state.addingPartyMember, "Add a party member");
+	handleDialog!WarpToDialog(state.askingWarpToPreset, "Warp to preset destination");
+	handleDialog!StartBattleDialog(state.askingBattle, "Start battle");
+	handleDialog!RunTextScript(state.askingForScript, "Run a Text Script");
 	ImGui.End();
 }
 
@@ -857,34 +848,27 @@ void renderDebugWindow(float x, float y, float width, float height) {
 	ImGui.End();
 }
 
-void callWithSelectable(E, alias what)(ref bool isActive, string title, string label) {
+void handleDialog(T)(ref bool isActive, string title) {
+	import std.meta : Filter;
+	import dataloader : typeMatches;
+	static T data;
 	if (!isActive) {
 		return;
 	}
-	static E newValue;
 	ImGui.OpenPopup(title);
 	ImGui.SetNextWindowPos(ImGui.GetMainViewport().GetCenter(), ImGuiCond.Appearing, ImVec2(0.5f, 0.5f));
 	if (ImGui.BeginPopupModal(title, null, ImGuiWindowFlags.AlwaysAutoResize)) {
-		InputEditable!(E, E)(label, newValue);
+		static foreach (field; T.tupleof) {{
+			alias labels = Filter!(typeMatches!Label, __traits(getAttributes, __traits(getMember, data, __traits(identifier, field))));
+			static if (labels.length == 1) {
+				enum label = labels[0].text;
+			} else {
+				enum label = "NO LABEL";
+			}
+			InputEditable(label, __traits(getMember, data, __traits(identifier, field)));
+		}}
 		if (ImGui.Button("OK")) {
-			mainFiberExecute = () { what(newValue); };
-			isActive = false;
-		}
-		ImGui.EndPopup();
-	}
-}
-
-void callWithTextInput(alias what)(ref bool isActive, string title, string label) {
-	if (!isActive) {
-		return;
-	}
-	static char[60] buf = '\0';
-	ImGui.OpenPopup(title);
-	ImGui.SetNextWindowPos(ImGui.GetMainViewport().GetCenter(), ImGuiCond.Appearing, ImVec2(0.5f, 0.5f));
-	if (ImGui.BeginPopupModal(title, null, ImGuiWindowFlags.AlwaysAutoResize)) {
-		ImGui.InputText(label, buf[]);
-		if (ImGui.Button("OK")) {
-			mainFiberExecute = () { what(buf.fromStringz); };
+			mainFiberExecute = () { data.execute(); };
 			isActive = false;
 		}
 		ImGui.EndPopup();
@@ -892,15 +876,9 @@ void callWithTextInput(alias what)(ref bool isActive, string title, string label
 }
 
 void InputEditable(E, T)(string label, ref T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
-	import std.traits : EnumMembers;
-	if (ImGui.BeginCombo(label, (cast(E)value).text)) {
-		static foreach (e; EnumMembers!E) {
-			if (ImGui.Selectable(e.text, e == cast(E)value)) {
-				value = cast(T)e;
-			}
-		}
-		ImGui.EndCombo();
-	}
+	auto e = cast(E)value;
+	InputEditable(label, value, flags);
+	value = cast(T)e;
 }
 void InputEditable(T)(string label, ref T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
 	static if (is(T == FixedPoint1616)) {
@@ -908,6 +886,21 @@ void InputEditable(T)(string label, ref T value, ImGuiInputTextFlags flags = ImG
 		if (ImGui.InputFloat(label, &tmp, flags)) {
 			value = tmp;
 		}
+	} else static if (is(T == enum)) { //enum type
+		import std.traits : EnumMembers;
+		if (ImGui.BeginCombo(label, (cast(T)value).text)) {
+			static foreach (e; EnumMembers!T) {
+				if (ImGui.Selectable(e.text, e == value)) {
+					value = e;
+				}
+			}
+			ImGui.EndCombo();
+		}
+	} else static if (is(T : const(char)[])) { // strings
+		if (value[0] == char.init) {
+			value[] = 0;
+		}
+		ImGui.InputText(label, value[]);
 	} else { //integer type
 		int tmp = value;
 		if (ImGui.InputInt(label, &tmp, flags)) {
@@ -986,6 +979,42 @@ struct IMGUIValueChanged(T...) {
 	alias values this;
 	bool opCast(T: bool)() const @safe pure {
 		return changed;
+	}
+}
+
+struct Label {
+	string text;
+}
+
+struct RunTextScript {
+	@Label("Script") char[60] script;
+	void execute() const {
+		freezeEntities();
+		playSfx(Sfx.cursor1);
+		createWindowN(Window.textStandard);
+		displayText(getTextBlock(script.fromStringz));
+		clearInstantPrinting();
+		hideHPPPWindows();
+		closeAllWindows();
+		unfreezeEntities();
+	}
+}
+struct AddPartyMember {
+	@Label("Party member") PartyMember newMember;
+	void execute() const {
+		addCharToParty(cast(ubyte)newMember);
+	}
+}
+struct WarpToDialog {
+	@Label("Preset") WarpPreset preset;
+	void execute() const {
+		teleport(cast(ubyte)preset);
+	}
+}
+struct StartBattleDialog {
+	@Label("Battle") EnemyGroup group;
+	void execute() const {
+		initBattleScripted(cast(short)group);
 	}
 }
 
