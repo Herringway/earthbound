@@ -19,6 +19,7 @@ import std.string;
 
 import ImGui = d_imgui;
 import d_imgui.imgui_h;
+import imgui.hexeditor;
 
 enum debugMenuHeight = 60;
 enum debugWindowWidth = 500;
@@ -29,9 +30,17 @@ struct DebugState {
 	bool askingForScript;
 	bool askingWarpToPreset;
 	bool askingBattle;
+	bool editingVRAM;
 }
 
 DebugState state;
+static this() {
+	memoryEditor.Cols = 8;
+	memoryEditor.OptShowOptions = false;
+	memoryEditor.OptShowDataPreview = false;
+	memoryEditor.OptShowAscii = false;
+}
+MemoryEditor memoryEditor;
 
 void prepareDebugUI(size_t width, size_t height) {
 	ImGui.SetNextWindowSize(ImGui.ImVec2(width, debugMenuHeight));
@@ -47,6 +56,7 @@ void prepareDebugUI(size_t width, size_t height) {
 			menuItemCallback("Run Text Script", () { state.askingForScript = true; });
 			menuItemCallback("Warp to preset destination", () { state.askingWarpToPreset = true; });
 			menuItemCallback("Start a battle", () { state.askingBattle = true; });
+			menuItemCallback("Edit VRAM", () { state.editingVRAM = true; });
 			ImGui.EndMenu();
 		}
 		if (ImGui.BeginMenu("Dump")) {
@@ -61,6 +71,10 @@ void prepareDebugUI(size_t width, size_t height) {
 	}
 	if (state.showDebugWindow) {
 		renderDebugWindow(0, debugMenuHeight, width, height);
+	}
+	if (state.editingVRAM) {
+		memoryEditor.DrawWindow("VRAM", g_frameData.vram);
+		state.editingVRAM = memoryEditor.Open;
 	}
 	handleDialog!AddPartyMember(state.addingPartyMember, "Add a party member");
 	handleDialog!WarpToDialog(state.askingWarpToPreset, "Warp to preset destination");
