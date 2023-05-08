@@ -10149,7 +10149,7 @@ void unknownC0F3E8() {
 }
 
 /// $C0F41E
-void unknownC0F41E() {
+void creditsScrollFrame() {
 	if (bg3YPosition > creditsNextCreditPosition) {
 		short x23 = unknown7EB4F7;
 		short x21 = cast(short)(unknown7EB4F7 + 1);

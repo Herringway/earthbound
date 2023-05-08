@@ -7359,7 +7359,7 @@ void playCredits() {
 	fadeIn(1, 2);
 	short x04 = (countPhotoFlags() != 0) ? (4528 / countPhotoFlags()) : 4528;
 	short x02 = x04;
-	setIRQCallback(&unknownC0F41E);
+	setIRQCallback(&creditsScrollFrame);
 	for (short i = 0; i < 32; i++) {
 		if (unknownC4F264(i) != 0) {
 			unknownC496E7(64, -1);
