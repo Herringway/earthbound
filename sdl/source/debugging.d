@@ -819,26 +819,33 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			}
 			ImGui.TreePop();
 		}
+		if (ImGui.TreeNode("Layers")) {
+			const screenRegisters = [g_frameData.BG1SC, g_frameData.BG2SC, g_frameData.BG3SC, g_frameData.BG4SC];
+			const screenRegisters2 = [g_frameData.BG12NBA & 0xF, g_frameData.BG12NBA >> 4, g_frameData.BG34NBA & 0xF, g_frameData.BG34NBA >> 4];
+			static foreach (layer, label; ["BG1", "BG2", "BG3", "BG4"]) {{
+				if (ImGui.TreeNode(label)) {
+					ImGui.Text(format!"Tilemap address: $%04X"((screenRegisters[layer] & 0xFC) << 9));
+					ImGui.Text(format!"Tile base address: $%04X"(screenRegisters2[layer] << 13));
+					ImGui.Text(format!"Size: %s"(["32x32", "64x32", "32x64", "64x64"][screenRegisters[layer] & 3]));
+					ImGui.Text(format!"Tile size: %s"(["8x8", "16x16"][!!(g_frameData.BGMODE >> (4 + layer))]));
+					disabledCheckbox("Mosaic Enabled", !!((g_frameData.MOSAIC >> layer) & 1));
+					ImGui.TreePop();
+				}
+			}}
+			ImGui.TreePop();
+		}
 		if (ImGui.TreeNode("Registers")) {
 			InputEditable("INIDISP", g_frameData.INIDISP);
 			InputEditable("OBSEL", g_frameData.OBSEL);
 			InputEditable("OAMADDR", g_frameData.OAMADDR);
 			InputEditable("BGMODE", g_frameData.BGMODE);
 			InputEditable("MOSAIC", g_frameData.MOSAIC);
-			InputEditable("BG1SC", g_frameData.BG1SC);
-			InputEditable("BG2SC", g_frameData.BG2SC);
-			InputEditable("BG3SC", g_frameData.BG3SC);
-			InputEditable("BG4SC", g_frameData.BG4SC);
-			InputEditable("BG12NBA", g_frameData.BG12NBA);
-			InputEditable("BG34NBA", g_frameData.BG34NBA);
-			InputEditable("BG1HOFS", g_frameData.BG1HOFS);
-			InputEditable("BG1VOFS", g_frameData.BG1VOFS);
-			InputEditable("BG2HOFS", g_frameData.BG2HOFS);
-			InputEditable("BG2VOFS", g_frameData.BG2VOFS);
-			InputEditable("BG3HOFS", g_frameData.BG3HOFS);
-			InputEditable("BG3VOFS", g_frameData.BG3VOFS);
-			InputEditable("BG4HOFS", g_frameData.BG4HOFS);
-			InputEditable("BG4VOFS", g_frameData.BG4VOFS);
+			InputEditable("BGxSC", g_frameData.BG1SC, g_frameData.BG2SC, g_frameData.BG3SC, g_frameData.BG4SC);
+			InputEditable("BGxNBA", g_frameData.BG12NBA, g_frameData.BG34NBA);
+			InputEditable("BG1xOFS", g_frameData.BG1HOFS, g_frameData.BG1VOFS);
+			InputEditable("BG2xOFS", g_frameData.BG2HOFS, g_frameData.BG2VOFS);
+			InputEditable("BG3xOFS", g_frameData.BG3HOFS, g_frameData.BG3VOFS);
+			InputEditable("BG4xOFS", g_frameData.BG4HOFS, g_frameData.BG4VOFS);
 			InputEditable("M7SEL", g_frameData.M7SEL);
 			InputEditable("M7A", g_frameData.M7A);
 			InputEditable("M7B", g_frameData.M7B);
@@ -846,13 +853,9 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			InputEditable("M7D", g_frameData.M7D);
 			InputEditable("M7X", g_frameData.M7X);
 			InputEditable("M7Y", g_frameData.M7Y);
-			InputEditable("W12SEL", g_frameData.W12SEL);
-			InputEditable("W34SEL", g_frameData.W34SEL);
+			InputEditable("WxSEL", g_frameData.W12SEL, g_frameData.W34SEL);
 			InputEditable("WOBJSEL", g_frameData.WOBJSEL);
-			InputEditable("WH0", g_frameData.WH0);
-			InputEditable("WH1", g_frameData.WH1);
-			InputEditable("WH2", g_frameData.WH2);
-			InputEditable("WH3", g_frameData.WH3);
+			InputEditable("WHx", g_frameData.WH0, g_frameData.WH1, g_frameData.WH2, g_frameData.WH3);
 			InputEditable("WBGLOG", g_frameData.WBGLOG);
 			InputEditable("WOBJLOG", g_frameData.WOBJLOG);
 			InputEditable("TM", g_frameData.TM);
@@ -861,9 +864,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			InputEditable("TSW", g_frameData.TSW);
 			InputEditable("CGWSEL", g_frameData.CGWSEL);
 			InputEditable("CGADSUB", g_frameData.CGADSUB);
-			InputEditable("FIXED_COLOUR_DATA_R", g_frameData.FIXED_COLOUR_DATA_R);
-			InputEditable("FIXED_COLOUR_DATA_G", g_frameData.FIXED_COLOUR_DATA_G);
-			InputEditable("FIXED_COLOUR_DATA_B", g_frameData.FIXED_COLOUR_DATA_B);
+			InputEditable("FIXED_COLOUR_DATA", g_frameData.FIXED_COLOUR_DATA_R, g_frameData.FIXED_COLOUR_DATA_G, g_frameData.FIXED_COLOUR_DATA_B);
 			InputEditable("SETINI", g_frameData.SETINI);
 			ImGui.TreePop();
 		}
@@ -969,6 +970,12 @@ IMGUIValueChanged!V InputEditableR(ImGuiInputTextFlags flags = ImGuiInputTextFla
 	ImGui.Text(label);
 	ImGui.EndGroup();
 	return result;
+}
+
+void disabledCheckbox(string label, bool value) {
+	ImGui.BeginDisabled();
+	ImGui.Checkbox(label, &value);
+	ImGui.EndDisabled();
 }
 
 struct IMGUIValueChanged(T...) {
