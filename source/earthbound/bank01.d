@@ -443,7 +443,7 @@ void drawTallTextTile(short window, short tile, ushort attributes) {
 	}
 	short x10 = windowStats[windowTable[window]].textX;
 	short x04 = windowStats[windowTable[window]].textY;
-	if (attributes == windowStats[windowTable[window]].width) {
+	if (x10 == windowStats[windowTable[window]].width) {
 		if (x04 != (windowStats[windowTable[window]].height / 2) - 1) {
 			x04++;
 		} else {
