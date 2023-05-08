@@ -31,6 +31,7 @@ struct DebugState {
 	bool askingWarpToPreset;
 	bool askingBattle;
 	bool editingVRAM;
+	bool editingBG2;
 }
 
 DebugState state;
@@ -57,6 +58,7 @@ void prepareDebugUI(size_t width, size_t height) {
 			menuItemCallback("Warp to preset destination", () { state.askingWarpToPreset = true; });
 			menuItemCallback("Start a battle", () { state.askingBattle = true; });
 			menuItemCallback("Edit VRAM", () { state.editingVRAM = true; });
+			menuItemCallback("Edit BG2", () { state.editingBG2 = true; });
 			ImGui.EndMenu();
 		}
 		if (ImGui.BeginMenu("Dump")) {
@@ -75,6 +77,10 @@ void prepareDebugUI(size_t width, size_t height) {
 	if (state.editingVRAM) {
 		memoryEditor.DrawWindow("VRAM", g_frameData.vram);
 		state.editingVRAM = memoryEditor.Open;
+	}
+	if (state.editingBG2) {
+		memoryEditor.DrawWindow("BG2", bg2Buffer);
+		state.editingBG2 = memoryEditor.Open;
 	}
 	handleDialog!AddPartyMember(state.addingPartyMember, "Add a party member");
 	handleDialog!WarpToDialog(state.askingWarpToPreset, "Warp to preset destination");
