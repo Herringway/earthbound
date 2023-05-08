@@ -559,8 +559,8 @@ immutable ushort[9] unknownC3E862 = [ 0x0140, 0x0141, 0x0142, 0x0143, 0x0144, 0x
 /// $C3E874
 version(bugfix) {
 	enum option9 = "Teleport";
-	enum option10 = "Star α";
-	enum option11 = "Star β";
+	enum option10 = "Star ~";
+	enum option11 = "Star ^";
 	enum option12 = "Player 0";
 	enum option13 = "Player 1";
 	enum option19 = "Meter";
