@@ -10241,7 +10241,7 @@ void unknownC0F41E() {
 		unknown7EB4E5 += 8;
 		unknownC4EFC4(3, 0x40, ((((bg3YPosition / 8) - 1) & 0x1F) * 32) + 0x6C00, &unknownC40BE8[0]);
 	}
-	unknown7EB4EB.combined += 0x4000;
-	bg3YPosition = unknown7EB4EB.integer;
+	creditsScrollPosition.combined += 0x4000;
+	bg3YPosition = creditsScrollPosition.integer;
 	unknownC0AD9F();
 }

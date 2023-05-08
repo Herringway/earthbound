@@ -7269,7 +7269,7 @@ void unknownC4F07D() {
 	paletteUploadMode = PaletteUpload.full;
 	mirrorTM = 0x17;
 	creditsNextCreditPosition = 0;
-	unknown7EB4EB.combined = 0;
+	creditsScrollPosition.combined = 0;
 	unknown7EB4E5 = 7;
 	ushort* x06 = &bg2Buffer[0];
 	for (short i = 0; i < 0x200; i++) {
