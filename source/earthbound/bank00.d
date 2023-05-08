@@ -10216,8 +10216,9 @@ void unknownC0F41E() {
 					}
 					unknown7EB4E3 += 16;
 					for (short i = 0; (creditsPlayerNameBuffer[i] != 0) && (i < 24); i++) {
-						(x17++)[0] = cast(ushort)(creditsPlayerNameBuffer[i] & 0xF0 + creditsPlayerNameBuffer[i] + 0x2400);
-						(x0A++)[0] = cast(ushort)(creditsPlayerNameBuffer[i] & 0xF0 + creditsPlayerNameBuffer[i] + 0x2410);
+						(x17++)[0] = cast(ushort)((creditsPlayerNameBuffer[i] & 0xF0) + creditsPlayerNameBuffer[i] + 0x2400);
+						(x0A++)[0] = cast(ushort)((creditsPlayerNameBuffer[i] & 0xF0) + creditsPlayerNameBuffer[i] + 0x2410);
+						x02++;
 					}
 					unknownC4EFC4(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
 					if (x04 != 0x1F) {
