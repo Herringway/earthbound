@@ -10150,7 +10150,7 @@ void unknownC0F3E8() {
 
 /// $C0F41E
 void unknownC0F41E() {
-	if (bg3YPosition > unknown7EB4E3) {
+	if (bg3YPosition > creditsNextCreditPosition) {
 		short x23 = unknown7EB4F7;
 		short x21 = cast(short)(unknown7EB4F7 + 1);
 		unknown7EB4F7 = (unknown7EB4F7 + 2) & 0xF;
@@ -10163,7 +10163,7 @@ void unknownC0F41E() {
 		short x15 = (x1B++)[0];
 		switch (x15) {
 			case 1:
-				unknown7EB4E3 += 8;
+				creditsNextCreditPosition += 8;
 				while (x1B[0] != 0) {
 					(x17++)[0] = cast(ushort)((x1B++)[0] + 0x2000);
 					x02++;
@@ -10171,7 +10171,7 @@ void unknownC0F41E() {
 				unknownC4EFC4(0, cast(short)(x02 * 2), cast(short)((x04 * 32 + 0x6C10) - (x02 / 2)), cast(ubyte*)&bg2Buffer[x23 * 32]);
 				break;
 			case 2:
-				unknown7EB4E3 += 16;
+				creditsNextCreditPosition += 16;
 				while (x1B[0] != 0) {
 					(x17++)[0] = cast(ushort)(x1B[0] + 0x2400);
 					(x0A++)[0] = cast(ushort)((x1B++)[0] + 0x2410);
@@ -10186,7 +10186,7 @@ void unknownC0F41E() {
 				unknownC4EFC4(0, cast(short)(x02 * 2), x23, cast(ubyte*)&bg2Buffer[x21 * 32]);
 				break;
 			case 3:
-				unknown7EB4E3 += x1B[0] * 8;
+				creditsNextCreditPosition += x1B[0] * 8;
 				break;
 			case 4:
 				ubyte* x15_2 = &gameState.earthboundPlayerName[0];
@@ -10214,7 +10214,7 @@ void unknownC0F41E() {
 						}
 						x15_2++;
 					}
-					unknown7EB4E3 += 16;
+					creditsNextCreditPosition += 16;
 					for (short i = 0; (creditsPlayerNameBuffer[i] != 0) && (i < 24); i++) {
 						(x17++)[0] = cast(ushort)((creditsPlayerNameBuffer[i] & 0xF0) + creditsPlayerNameBuffer[i] + 0x2400);
 						(x0A++)[0] = cast(ushort)((creditsPlayerNameBuffer[i] & 0xF0) + creditsPlayerNameBuffer[i] + 0x2410);
@@ -10231,7 +10231,7 @@ void unknownC0F41E() {
 				x1B--;
 				break;
 			case 0xFF:
-				unknown7EB4E3 = 0xFFFF;
+				creditsNextCreditPosition = 0xFFFF;
 				break;
 			default: break;
 		}

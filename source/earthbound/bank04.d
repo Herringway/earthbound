@@ -7268,7 +7268,7 @@ void unknownC4F07D() {
 	memset(&palettes[1][0], 0, 0x1E0);
 	paletteUploadMode = PaletteUpload.full;
 	mirrorTM = 0x17;
-	unknown7EB4E3 = 0;
+	creditsNextCreditPosition = 0;
 	unknown7EB4EB.combined = 0;
 	unknown7EB4E5 = 7;
 	ushort* x06 = &bg2Buffer[0];
