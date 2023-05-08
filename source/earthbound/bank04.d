@@ -7069,7 +7069,7 @@ immutable ubyte[][3] characterGuardianText = [
 
 /// $C4E7AE
 void unknownC4E7AE() {
-	ubyte[10] x16;
+	ubyte[16] x16;
 	for (short i = 0; i < 4; i++) {
 		memset(&x16[0], 0, 0x10);
 		memcpy(&x16[0], &partyCharacters[i].name[0], 5);
