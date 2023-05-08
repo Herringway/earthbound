@@ -10231,7 +10231,7 @@ void unknownC0F41E() {
 				x1B--;
 				break;
 			case 0xFF:
-				unknown7EB4E3 = -1;
+				unknown7EB4E3 = 0xFFFF;
 				break;
 			default: break;
 		}

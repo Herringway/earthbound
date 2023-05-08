@@ -870,7 +870,7 @@ __gshared short unknown7EB4CF; /// $(DOLLAR)B4CF
 __gshared short unknown7EB4D1; /// $(DOLLAR)B4D1
 __gshared short unknown7EB4D3; /// $(DOLLAR)B4D3
 
-__gshared short unknown7EB4E3; /// $(DOLLAR)B4E3
+__gshared ushort unknown7EB4E3; /// $(DOLLAR)B4E3
 __gshared short unknown7EB4E5; /// $(DOLLAR)B4E5
 __gshared const(ubyte)* unknown7EB4E7; /// $(DOLLAR)B4E7
 __gshared FixedPoint1616 unknown7EB4EB; /// $(DOLLAR)B4EB
