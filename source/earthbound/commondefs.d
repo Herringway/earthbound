@@ -3696,6 +3696,7 @@ enum Status6 {
 }
 ///
 enum GiygasPhase {
+	none = 0,
 	battleStarted = 1,
 	devilsMachineOff = 2,
 	giygasStartsAttacking = 3,
