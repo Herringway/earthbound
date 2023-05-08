@@ -131,7 +131,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				ImGui.TreePop();
 			}
 		}
-		InputEditable2("Camera coords", gameState.leaderX, gameState.leaderY);
+		InputEditable("Camera coords", gameState.leaderX, gameState.leaderY);
 		InputEditable("Leader position index", gameState.leaderPositionIndex);
 		InputEditable!Direction("Direction", gameState.leaderDirection);
 		InputEditable("Tile type", gameState.troddenTileType);
@@ -143,7 +143,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Autoscroll frames", gameState.autoScrollFrames);
 		InputEditable("Autoscroll walking style backup", gameState.autoScrollOriginalWalkingStyle);
 		InputEditable("Autofight enabled", gameState.autoFightEnable);
-		InputEditable2("Exit mouse coords", gameState.exitMouseXCoordinate, gameState.exitMouseYCoordinate);
+		InputEditable("Exit mouse coords", gameState.exitMouseXCoordinate, gameState.exitMouseYCoordinate);
 		InputEditable("Text speed", gameState.textSpeed);
 		InputEditable("Sound Setting", gameState.soundSetting);
 		InputEditable("UnknownC3", gameState.unknownC3);
@@ -188,8 +188,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("Var 5", entityScriptVar5Table[entity]);
 				InputEditable("Var 6", entityScriptVar6Table[entity]);
 				InputEditable("Var 7", entityScriptVar7Table[entity]);
-				InputEditable2("S. Coords", entityScreenXTable[entity], entityScreenYTable[entity]);
-				if (auto newCoords = InputEditable3("M. Coords", FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]), FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]), FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]))) {
+				InputEditable("S. Coords", entityScreenXTable[entity], entityScreenYTable[entity]);
+				if (auto newCoords = InputEditableR("M. Coords", FixedPoint1616(entityAbsXFractionTable[entity], entityAbsXTable[entity]), FixedPoint1616(entityAbsYFractionTable[entity], entityAbsYTable[entity]), FixedPoint1616(entityAbsZFractionTable[entity], entityAbsZTable[entity]))) {
 					entityAbsXFractionTable[entity] = newCoords[0].fraction;
 					entityAbsXTable[entity] = newCoords[0].integer;
 					entityAbsYFractionTable[entity] = newCoords[1].fraction;
@@ -200,7 +200,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("Size", entitySizes[entity]);
 				InputEditable!Direction("Direction", entityDirections[entity]);
 				InputEditable("Priority", entityDrawPriority[entity]);
-				if (auto newAddress = InputEditableR("VRAM", cast(ushort)(entityVramAddresses[entity] * 2), ImGuiInputTextFlags.CharsHexadecimal)) {
+				if (auto newAddress = InputEditableR!(ImGuiInputTextFlags.CharsHexadecimal)("VRAM", cast(ushort)(entityVramAddresses[entity] * 2))) {
 					entityVramAddresses[entity] = newAddress[0] >> 1;
 				}
 				InputEditable("Frame", entityAnimationFrames[entity]);
@@ -269,7 +269,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Unknown7E436E", unknown7E436E);
 		InputEditable("Unknown7E4370", unknown7E4370);
 		InputEditable("Unknown7E4372", unknown7E4372);
-		InputEditable2("Screen coords", screenLeftX, screenTopY);
+		InputEditable("Screen coords", screenLeftX, screenTopY);
 		InputEditable("Unknown7E437C", unknown7E437C);
 		InputEditable("Unknown7E437E", unknown7E437E);
 		InputEditable("Unknown7E4380", unknown7E4380);
@@ -491,9 +491,9 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				if (ImGui.TreeNode(format!"%s"(cast(Window)windowStats[openWindowID].windowID))) {
 					InputEditable("Next", windowStats[openWindowID].next);
 					InputEditable("Previous", windowStats[openWindowID].prev);
-					InputEditable2("Coords", windowStats[openWindowID].x, windowStats[openWindowID].y);
-					InputEditable2("Dimensions", windowStats[openWindowID].width, windowStats[openWindowID].height);
-					InputEditable2("Text Coords", windowStats[openWindowID].textX, windowStats[openWindowID].textY);
+					InputEditable("Coords", windowStats[openWindowID].x, windowStats[openWindowID].y);
+					InputEditable("Dimensions", windowStats[openWindowID].width, windowStats[openWindowID].height);
+					InputEditable("Text Coords", windowStats[openWindowID].textX, windowStats[openWindowID].textY);
 					InputEditable("Padding", windowStats[openWindowID].numPadding);
 					InputEditable("Tile Attributes", windowStats[openWindowID].tileAttributes);
 					InputEditable("Font", windowStats[openWindowID].font);
@@ -525,7 +525,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					InputEditable("Unknown4", displayTextStates[(i + 1) % displayTextStates.length].unknown4);
 					if (ImGui.TreeNode("Attribute Backup")) {
 						InputEditable("ID", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.id);
-						InputEditable2("Text Coords", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textX, displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textY);
+						InputEditable("Text Coords", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textX, displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.textY);
 						InputEditable("Padding", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.numberPadding);
 						InputEditable("Tile Attributes", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.currTileAttributes);
 						InputEditable("Font", displayTextStates[(i + 1) % displayTextStates.length].savedTextAttributes.font);
@@ -557,7 +557,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					InputEditable("Next option", menuOption.next);
 					InputEditable("Previous option", menuOption.prev);
 					InputEditable("Page", menuOption.page);
-					InputEditable2("Text coords", menuOption.textX, menuOption.textY);
+					InputEditable("Text coords", menuOption.textX, menuOption.textY);
 					InputEditable("User Data", menuOption.userdata);
 					InputEditable!Sfx("SFX", menuOption.sfx);
 					ImGui.Text(format!"Script: %s"(menuOption.script));
@@ -663,7 +663,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					InputEditable("Money", battler.money);
 					InputEditable("EXP", battler.exp);
 					InputEditable("VRAM sprite index", battler.vramSpriteIndex);
-					InputEditable2("Screen coords", battler.spriteX, battler.spriteY);
+					InputEditable("Screen coords", battler.spriteX, battler.spriteY);
 					InputEditable("Initiative", battler.initiative);
 					InputEditable("Unknown71", battler.unknown71);
 					InputEditable("Unknown72", battler.unknown72);
@@ -724,19 +724,19 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("Bit depth", layer.bitDepth);
 				InputEditable("Freeze palette", layer.freezePaletteScrolling);
 				InputEditable("Palette style", layer.paletteShiftingStyle);
-				InputEditable2("Cycle 1 colours", layer.paletteCycle1First, layer.paletteCycle1Last);
-				InputEditable2("Cycle 2 colours", layer.paletteCycle2First, layer.paletteCycle2Last);
+				InputEditable("Cycle 1 colours", layer.paletteCycle1First, layer.paletteCycle1Last);
+				InputEditable("Cycle 2 colours", layer.paletteCycle2First, layer.paletteCycle2Last);
 				InputEditable("Cycle 1 step", layer.paletteCycle1Step);
 				InputEditable("Cycle 2 step", layer.paletteCycle2Step);
 				InputEditable("Palette cycle speed", layer.paletteChangeSpeed);
 				InputEditable("Palette cycle frames left", layer.paletteChangeDurationLeft);
-				InputEditable4("Scrolling styles", layer.scrollingMovements.tupleof);
+				InputEditable("Scrolling styles", layer.scrollingMovements.tupleof);
 				InputEditable("Scrolling", layer.currentScrollingMovement);
 				InputEditable("Scrolling frames", layer.scrollingDurationLeft);
-				InputEditable2("Position", layer.horizontalPosition, layer.verticalPosition);
-				InputEditable2("Velocity", layer.horizontalVelocity, layer.verticalVelocity);
-				InputEditable2("Acceleration", layer.horizontalAcceleration, layer.verticalAcceleration);
-				InputEditable4("Distortion styles", layer.distortionStyles.tupleof);
+				InputEditable("Position", layer.horizontalPosition, layer.verticalPosition);
+				InputEditable("Velocity", layer.horizontalVelocity, layer.verticalVelocity);
+				InputEditable("Acceleration", layer.horizontalAcceleration, layer.verticalAcceleration);
+				InputEditable("Distortion styles", layer.distortionStyles.tupleof);
 				InputEditable("Distortion", layer.currentDistortionIndex);
 				InputEditable("Distortion framess", layer.distortionDurationLeft);
 				InputEditable("Distortion type", layer.distortionType);
@@ -879,102 +879,65 @@ void handleDialog(T)(ref bool isActive, string title) {
 	}
 }
 
-void InputEditable(E, T)(string label, ref T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
-	auto e = cast(E)value;
-	InputEditable(label, value, flags);
+void InputEditable(E, ImGuiInputTextFlags flags = ImGuiInputTextFlags.None, T)(string label, ref T value) {
+	E e = cast(E)value;
+	InputEditable!flags(label, e);
 	value = cast(T)e;
 }
-void InputEditable(T)(string label, ref T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
-	static if (is(T == FixedPoint1616)) {
-		float tmp = cast(float)value.asDouble;
-		if (ImGui.InputFloat(label, &tmp, flags)) {
-			value = tmp;
-		}
-	} else static if (is(T == enum)) { //enum type
-		import std.traits : EnumMembers;
-		if (ImGui.BeginCombo(label, (cast(T)value).text)) {
-			static foreach (e; EnumMembers!T) {
-				if (ImGui.Selectable(e.text, e == value)) {
-					value = e;
-				}
+void InputEditable(ImGuiInputTextFlags flags = ImGuiInputTextFlags.None, V...)(string label, ref V values) {
+	if (auto result = InputEditableR!flags(label, values)) {
+		values = result.values;
+	}
+}
+IMGUIValueChanged!V InputEditableR(ImGuiInputTextFlags flags = ImGuiInputTextFlags.None, V...)(string label, V value) {
+	IMGUIValueChanged!V result;
+	result.values = value;
+	ImGui.BeginGroup();
+	ImGui.PushID(label);
+	ImGui.PushMultiItemsWidths(V.length, ImGui.CalcItemWidth());
+	static foreach (i, T; V) {{
+		ImGui.PushID(i);
+		static if (is(T == FixedPoint1616)) {
+			float tmp = cast(float)value[i].asDouble;
+			if (ImGui.InputFloat("##v", &tmp, flags)) {
+				infof("%s", tmp);
+				result.values[i] = tmp;
+				result.changed = true;
 			}
-			ImGui.EndCombo();
+		} else static if (is(T == enum)) { //enum type
+			import std.traits : EnumMembers;
+			if (ImGui.BeginCombo("##v", value[i].text)) {
+				static foreach (e; EnumMembers!T) {
+					if (ImGui.Selectable(e.text, e == value[i])) {
+						result.values[i] = e;
+						result.changed = true;
+					}
+				}
+				ImGui.EndCombo();
+			}
+		} else static if (is(T : const(char)[])) { // strings
+			if (value[i][0] == char.init) {
+				value[i][] = 0;
+			}
+			if (ImGui.InputText("##v", value[i][])) {
+				result.values[i] = value[i];
+				result.changed = true;
+			}
+		} else { //integer type
+			int tmp = value[i];
+			if (ImGui.InputInt("##v", &tmp, flags)) {
+				result.values[i] = cast(T)tmp;
+				result.changed = true;
+			}
 		}
-	} else static if (is(T : const(char)[])) { // strings
-		if (value[0] == char.init) {
-			value[] = 0;
-		}
-		ImGui.InputText(label, value[]);
-	} else { //integer type
-		int tmp = value;
-		if (ImGui.InputInt(label, &tmp, flags)) {
-			value = cast(T)tmp;
-		}
-	}
-}
-IMGUIValueChanged!T InputEditableR(T)(string label, T value, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
-	static if (is(T == FixedPoint1616)) {
-		float tmp = cast(float)value.asDouble;
-		bool c = ImGui.InputFloat(label, &tmp, flags);
-		value = tmp;
-		return IMGUIValueChanged!T(value, c);
-	} else { //integer type
-		int tmp = value;
-		bool c = ImGui.InputInt(label, &tmp, flags);
-		value = cast(T)tmp;
-		return IMGUIValueChanged!T(value, c);
-	}
-}
-void InputEditable2(T, U)(string label, ref T value, ref U value2, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
-	static if (is(T == FixedPoint1616) || is(U == FixedPoint1616)) {
-		float[2] tmp = [cast(float)value.asDouble, cast(float)value2.asDouble];
-		if (ImGui.InputFloat2(label, tmp, "%.3f", flags)) {
-			value = tmp[0];
-			value2 = tmp[1];
-		}
-	} else { //integer type
-		int[2] tmp = [value, value2];
-		if (ImGui.InputInt2(label, tmp, flags)) {
-			value = cast(T)tmp[0];
-			value2 = cast(U)tmp[1];
-		}
-	}
-}
-IMGUIValueChanged!(T,U,V) InputEditable3(T, U, V)(string label, T value, U value2, V value3, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
-	static if (is(T == FixedPoint1616) || is(U == FixedPoint1616) || is(U == FixedPoint1616)) {
-		float[3] tmp = [cast(float)value.asDouble, cast(float)value2.asDouble, cast(float)value3.asDouble];
-		bool c = ImGui.InputFloat3(label, tmp, "%.3f", flags);
-		value = tmp[0];
-		value2 = tmp[1];
-		value3 = tmp[2];
-		return IMGUIValueChanged!(T,U,V)(value, value2, value3, c);
-	} else { //integer type
-		int[3] tmp = [value, value2, value3];
-		bool c = ImGui.InputInt3(label, tmp, flags);
-		value = cast(T)tmp[0];
-		value2 = cast(U)tmp[1];
-		value3 = cast(V)tmp[2];
-		return IMGUIValueChanged!(T,U,V)(value, value2, value3, c);
-	}
-}
-IMGUIValueChanged!(T,U,V, W) InputEditable4(T, U, V, W)(string label, T value, U value2, V value3, W value4, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
-	static if (is(T == FixedPoint1616) || is(U == FixedPoint1616) || is(U == FixedPoint1616) || is(W == FixedPoint1616)) {
-		float[4] tmp = [cast(float)value.asDouble, cast(float)value2.asDouble, cast(float)value3.asDouble, cast(float)value4.asDouble];
-		bool c = ImGui.InputFloat4(label, tmp, "%.3f", flags);
-		value = tmp[0];
-		value2 = tmp[1];
-		value3 = tmp[2];
-		value4 = tmp[3];
-		return IMGUIValueChanged!(T,U,V,W)(value, value2, value3, value4, c);
-	} else { //integer type
-		int[4] tmp = [value, value2, value3, value4];
-		bool c = ImGui.InputInt4(label, tmp, flags);
-		value = cast(T)tmp[0];
-		value2 = cast(U)tmp[1];
-		value3 = cast(V)tmp[2];
-		value4 = cast(V)tmp[3];
-		return IMGUIValueChanged!(T,U,V,W)(value, value2, value3, value4, c);
-	}
+		ImGui.SameLine();
+		ImGui.PopID();
+		ImGui.PopItemWidth();
+	}}
+	ImGui.PopID();
+	ImGui.Text(label);
+	ImGui.EndGroup();
+	return result;
 }
 
 struct IMGUIValueChanged(T...) {
@@ -1022,7 +985,7 @@ struct StartBattleDialog {
 	}
 }
 
-void inputEBText(string label, ubyte[] input, ImGuiInputTextFlags flags = ImGuiInputTextFlags.init) {
+void inputEBText(string label, ubyte[] input, ImGuiInputTextFlags flags = ImGuiInputTextFlags.None) {
 	import std.algorithm.comparison : min;
 	scope buffer = new char[](input.length * 2);
 	buffer[] = '\0';
