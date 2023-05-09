@@ -46,7 +46,7 @@ MemoryEditor memoryEditor;
 void prepareDebugUI(size_t width, size_t height) {
 	ImGui.SetNextWindowSize(ImGui.ImVec2(width, debugMenuHeight));
 	ImGui.SetNextWindowPos(ImGui.ImVec2(0, 0));
-	ImGui.Begin("Menu Bar", null, ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse);
+	ImGui.Begin("Menu Bar", null, ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.NoBringToFrontOnFocus);
 	if (ImGui.BeginMenuBar()) {
 		if (ImGui.BeginMenu("Windows")) {
 			ImGui.MenuItem("Debugging", null, &state.showDebugWindow);
@@ -92,7 +92,7 @@ void prepareDebugUI(size_t width, size_t height) {
 void renderDebugWindow(float x, float y, float width, float height) {
 	ImGui.SetNextWindowSize(ImGui.ImVec2(debugWindowWidth, height - y));
 	ImGui.SetNextWindowPos(ImGui.ImVec2(x, y));
-	ImGui.Begin("Debugging", null, ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize);
+	ImGui.Begin("Debugging", null, ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoBringToFrontOnFocus);
 	if (ImGui.TreeNode("Game State")) {
 		inputEBText("Player Name (obsolete)", gameState.mother2PlayerName[]);
 		inputEBText("Player Name", gameState.earthboundPlayerName[]);
