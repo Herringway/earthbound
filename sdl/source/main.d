@@ -181,6 +181,7 @@ void main(string[] args) {
 	auto game = new Fiber(&start);
 	bool paused;
 	gameLoop: while(true) {
+		frameStatTracker.startFrame();
 		SDL_Event event;
 		while(SDL_PollEvent(&event)) {
 			if (settings.advancedDebugging) {
@@ -219,6 +220,7 @@ void main(string[] args) {
 				default: break;
 			}
 		}
+		frameStatTracker.checkpoint(FrameStatistic.sdlEvents);
 		if (input.exit) {
 			break gameLoop;
 		}
@@ -235,12 +237,17 @@ void main(string[] args) {
 			irqNMICommon();
 			copyGlobalsToFrameData();
 		}
+		frameStatTracker.checkpoint(FrameStatistic.gameLogic);
 		renderGame();
+		frameStatTracker.checkpoint(FrameStatistic.snesDrawFrame);
 		renderOverlay();
+		frameStatTracker.checkpoint(FrameStatistic.overlay);
 		if (settings.advancedDebugging) {
 			renderUI();
 		}
+		frameStatTracker.checkpoint(FrameStatistic.imgui);
 		endFrame();
+		frameStatTracker.checkpoint(FrameStatistic.sdlRenderer);
 
 		const renderTime = waitForNextFrame(!input.fastForward);
 		updateFrameRate();
@@ -252,6 +259,7 @@ void main(string[] args) {
 			paused = !paused;
 			input.pause = false;
 		}
+		frameStatTracker.endFrame();
 	}
 }
 
