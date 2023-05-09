@@ -1629,7 +1629,12 @@ short unknownC0369B(short id) {
 		}
 	}
 	if (gameState.unknown96[x18] != 0) {
-		for (short i = 5; i != x18 - 1; i--) {
+		version(bugfix) { // vanilla game has an underflow error that went unnoticed because the garbage data would immediately get overwritten
+			enum sub = 0;
+		} else {
+			enum sub = 1;
+		}
+		for (short i = 5; i != x18 - sub; i--) {
 			gameState.unknown96[i] = gameState.unknown96[i - 1];
 			gameState.partyEntities[i] = gameState.partyEntities[i - 1];
 			gameState.playerControlledPartyMembers[i] = gameState.playerControlledPartyMembers[i - 1];
