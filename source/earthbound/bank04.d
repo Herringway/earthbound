@@ -3507,11 +3507,11 @@ void prepareWindowGraphics() {
 		if (*x24_2 == 0x20) {
 			continue;
 		}
-		ushort* x0A = cast(ushort*)(&unknown7F0000[(*x24_2 & 0xFFF0) + *x24_2]);
+		ushort* x0A = cast(ushort*)(&unknown7F0000[((*x24_2 & 0xFFF0) + *x24_2) * 16]);
 		ubyte* x1A = &unknown7F0000[0x70];
 		for (short i = 0; i < 8; i++) {
 			x16[0] = (x0A[0] & 0xFF00) | ((x0A[0] >> 8) ^ 0xFF) | x1A[0];
-			x16[0x100] = (x0A[0x100] & 0xFF00) | ((x0A[0x100] >> 8) ^ 0xFF) | x1A[0x100];
+			x16[0x80] = (x0A[0x80] & 0xFF00) | ((x0A[0x80] >> 8) ^ 0xFF) | x1A[0x80];
 			x16++;
 			x0A++;
 			x1A += 2;
