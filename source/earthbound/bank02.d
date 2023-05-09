@@ -767,10 +767,8 @@ void unknownC216DB() {
 			if (itemData[x15.items[j]].type != 4) {
 				continue;
 			}
-			if (x18 != 0) {
-				if (itemData[x18].parameters.ep > itemData[x15.items[j]].parameters.ep) {
-					x18 = x15.items[j];
-				}
+			if ((x18 == 0) || (itemData[x18].parameters.ep > itemData[x15.items[j]].parameters.ep)) {
+				x18 = x15.items[j];
 			}
 		}
 	}
