@@ -5,7 +5,7 @@
 		"bindbc-sdl": "~>1.1.1",
 		"siryul": "~>0.6",
 		"earthbound": "*",
-		"nspcplay": "~>0.8",
+		"nspcplay": "~>0.9",
 		"d_imgui": "~>1.89.0"
 	},
 	"dflags": ["-allinst"],

@@ -35,8 +35,129 @@ void setAudioChannels(ushort count) {
 	info("Setting audio channels not yet implemented");
 }
 
-void doMusicEffect(short count) {
-	info("Music effects not yet implemented");
+void doMusicEffect(short id) {
+	static bool shouldRestoreVolume;
+	static bool[8] shouldRestoreChannelVolume;
+	static bool shouldRestoreTempo;
+	switch (id) {
+		case 0:
+		case 1:
+			if (shouldRestoreVolume) {
+				nspcplayer.restoreVolume();
+				shouldRestoreVolume = false;
+			}
+			foreach (idx, ref shouldRestore; shouldRestoreChannelVolume) {
+				if (shouldRestore) {
+					nspcplayer.restoreChannelVolume(cast(ubyte)idx);
+					shouldRestore = false;
+				}
+			}
+			if (shouldRestoreTempo) {
+				nspcplayer.restoreTempo();
+				shouldRestoreTempo = false;
+			}
+			nspcplayer.transpose(0);
+			break;
+		case 2:
+			nspcplayer.fade(24, 16);
+			shouldRestoreVolume = true;
+			break;
+		case 3:
+			nspcplayer.fade(112, 16);
+			shouldRestoreVolume = true;
+			break;
+		case 4: //no-ops
+		case 6:
+		case 17:
+		case 18:
+		case 19:
+		case 20:
+			break;
+		case 5:
+			nspcplayer.transpose(14);
+			const savedTempo = nspcplayer.tempo;
+			nspcplayer.tempo = 200;
+			nspcplayer.addTimer(112, (player) {
+				player.transpose(0);
+				player.restoreTempo();
+			});
+			break;
+		case 7:
+			nspcplayer.addTimer(40, (player) {
+				player.volume = 160;
+			});
+			shouldRestoreVolume = true;
+			break;
+		case 8:
+			nspcplayer.addTimer(105, (player) {
+				player.volume = 240;
+			});
+			shouldRestoreVolume = true;
+			break;
+		case 9:
+		case 10:
+		case 11:
+		case 12:
+		case 13:
+		case 14:
+		case 15:
+		case 16:
+			static immutable ubyte[5][8] presets = [
+				[0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 0],
+				[0, 0, 0, 0, 120],
+				[100, 0, 0, 0, 120],
+				[100, 100, 0, 0, 120],
+				[100, 100, 0, 0, 120],
+				[100, 100, 100, 0, 120],
+				[100, 100, 100, 120, 120],
+			];
+			const selected = presets[id - 9];
+			shouldRestoreChannelVolume[0] = true;
+			shouldRestoreChannelVolume[1] = true;
+			shouldRestoreChannelVolume[2] = true;
+			shouldRestoreChannelVolume[3] = true;
+			shouldRestoreChannelVolume[4] = true;
+			nspcplayer.setChannelVolume(0, selected[0]);
+			nspcplayer.setChannelVolume(1, selected[1]);
+			nspcplayer.setChannelVolume(2, selected[2]);
+			nspcplayer.setChannelVolume(3, selected[3]);
+			nspcplayer.setChannelVolume(4, selected[4]);
+			break;
+		case 21:
+			nspcplayer.transpose(16);
+			break;
+		case 22:
+			nspcplayer.transpose(0);
+			break;
+		case 23:
+			shouldRestoreVolume = true;
+			nspcplayer.volume = 100;
+			break;
+		case 24:
+			shouldRestoreVolume = true;
+			nspcplayer.volume = 240;
+			break;
+		case 25:
+			shouldRestoreChannelVolume[7] = true;
+			nspcplayer.setChannelVolume(7, 250);
+			break;
+		case 26:
+			shouldRestoreChannelVolume[7] = true;
+			nspcplayer.setChannelVolume(7, 0);
+			break;
+		case 27:
+			shouldRestoreChannelVolume[7] = true;
+			nspcplayer.setChannelVolume(7, 90);
+			break;
+		case 28:
+			shouldRestoreChannelVolume[7] = true;
+			nspcplayer.setChannelVolume(7, 40);
+			break;
+		default:
+			infof("Music effect %02X not yet implemented", id);
+			break;
+	}
 }
 
 void setStatic(short count) {
