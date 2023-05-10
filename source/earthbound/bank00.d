@@ -8094,23 +8094,23 @@ void initBattleOverworld() {
 		if (instantWinCheck() != 0) {
 			instantWinHandler();
 			battleDebug = 0;
-		}
-	} else {
-		short x10 = initBattleCommon();
-		unknownC07B52();
-		if (teleportDestination == 0) {
-			if (x10 != 0) {
-				if (debugging == 0) {
-					return;
-				}
-				if (debugCheckViewCharacterMode() != 0) {
-					return;
-				}
-			}
-			reloadMap();
-			fadeIn(1, 1);
 		} else {
-			teleportMainLoop();
+			short x10 = initBattleCommon();
+			unknownC07B52();
+			if (teleportDestination == 0) {
+				if (x10 != 0) {
+					if (debugging == 0) {
+						return;
+					}
+					if (debugCheckViewCharacterMode() != 0) {
+						return;
+					}
+				}
+				reloadMap();
+				fadeIn(1, 1);
+			} else {
+				teleportMainLoop();
+			}
 		}
 	}
 	for (short i = 0; i != 0x17; i++) {
