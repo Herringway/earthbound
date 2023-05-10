@@ -3967,6 +3967,7 @@ enum EnemyID {
 	captainStrong = 228,
 	giygas6 = 229,
 	clumsyRobot3 = 230,
+	noEnemy = -1,
 }
 ///
 enum BattleBGLayer : ushort{
