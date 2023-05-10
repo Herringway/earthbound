@@ -5577,14 +5577,14 @@ short overworldUseItem(short arg1, short arg2, short) {
 
 /// $C1B5B6
 short overworldPSIMenu() {
-	ubyte x00;
-	ubyte x01 = 0xFF;
+	ubyte psiTarget;
+	ubyte psiSelected = 0xFF;
 	ubyte psiUser;
 	short x27 = 0;
 	unknown7E9D18 = 0;
 	do {
 		if (unknownC1C3B6() == 1) {
-			if (x01 == 0) {
+			if (psiSelected == 0) {
 				break;
 			}
 			psiUser = gameState.partyMembers[unknownC1C373() - 1];
@@ -5599,66 +5599,66 @@ short overworldPSIMenu() {
 		if (psiUser == 0) {
 			break;
 		}
-		x01 = 0xFF;
+		psiSelected = 0xFF;
 		do {
 			setWindowFocus(Window.textStandard);
-			if (x01 != 0xFF) {
-				unknownC1CA72(x01, 0);
+			if (psiSelected != 0xFF) {
+				unknownC1CA72(psiSelected, 0);
 				printMenuItems();
 			}
 			unknownC11F5A(&unknownC1C8BC);
-			x01 = cast(ubyte)selectionMenu(1);
+			psiSelected = cast(ubyte)selectionMenu(1);
 			unknownC11F8A();
-			if (x01 != 0) {
+			if (psiSelected != 0) {
 				if (unknown7E9D18 == 0) {
-					unknownC1CA72(x01, 6);
+					unknownC1CA72(psiSelected, 6);
 				}
-				if (battleActionTable[psiAbilityTable[x01].battleAction].ppCost > partyCharacters[psiUser - 1].pp.current.integer) {
+				if (battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost > partyCharacters[psiUser - 1].pp.current.integer) {
 					createWindowN(Window.textBattle);
 					displayText(getTextBlock("textNotEnoughPP"));
 					closeFocusWindowN();
-					x00 = 0;
+					psiTarget = 0;
 				} else {
-					if (psiAbilityTable[x01].type == 8) {
+					if (psiAbilityTable[psiSelected].type == 8) {
 						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.sysDistlpt) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0)) {
-							x00 = cast(ubyte)selectPSITeleportDestination();
+							psiTarget = cast(ubyte)selectPSITeleportDestination();
 						} else {
 							createWindowN(Window.textBattle);
 							displayText(getTextBlock("textCannotTeleportHere"));
 							closeFocusWindowN();
-							x00 = 0;
+							psiTarget = 0;
 						}
 					} else {
-						x00 = cast(ubyte)determineTargetting(psiAbilityTable[x01].battleAction, psiUser);
+						psiTarget = cast(ubyte)determineTargetting(psiAbilityTable[psiSelected].battleAction, psiUser);
 					}
 				}
 			} else {
-				x00 = 1;
+				psiTarget = 1;
 			}
-		} while (x00 == 0);
+		} while (psiTarget == 0);
 		closeWindow(Window.unknown04);
-	} while (x01 == 0);
-	unknownC3ED2C(psiUser, battleActionTable[psiAbilityTable[x01].battleAction].ppCost, 1);
-	if (psiAbilityTable[x01].type == 8) {
-		setTeleportState(x00, cast(TeleportStyle)psiAbilityTable[x01].level);
+	} while (psiSelected == 0);
+	unknownC3ED2C(psiUser, battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost, 1);
+	if (psiAbilityTable[psiSelected].type == 8) {
+		setTeleportState(psiTarget, cast(TeleportStyle)psiAbilityTable[psiSelected].level);
 	} else {
 		currentAttacker = &battlersTable[0];
 		battleInitPlayerStats(psiUser, currentAttacker);
 		unknownC1AC4A(&partyCharacters[psiUser - 1].name[0], PartyCharacter.name.length);
-		if (x00 != 0xFF) {
-			unknownC1ACA1(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.length);
+		if (psiTarget != 0xFF) {
+			unknownC1ACA1(&partyCharacters[psiTarget - 1].name[0], PartyCharacter.name.length);
 		}
-		unknownC1ACF8(x01);
+		unknownC1ACF8(psiSelected);
 		createWindowN(Window.textStandard);
-		displayText(getTextBlock(battleActionTable[psiAbilityTable[x01].battleAction].text));
+		displayText(getTextBlock(battleActionTable[psiAbilityTable[psiSelected].battleAction].text));
 	}
-	if (battleActionTable[psiAbilityTable[x01].battleAction].func !is null) {
+	if (battleActionTable[psiAbilityTable[psiSelected].battleAction].func !is null) {
 		currentTarget = &battlersTable[1];
-		if (x00 == 0xFF) {
+		if (psiTarget == 0xFF) {
 			for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 				unknownC1ACA1(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.length);
 				battleInitPlayerStats(gameState.partyMembers[i] - 1, &battlersTable[1]);
-				battleActionTable[psiAbilityTable[x01].battleAction].func();
+				battleActionTable[psiAbilityTable[psiSelected].battleAction].func();
 				for (short j = 0; PartyCharacter.afflictions.length > j; j++) {
 					version(bugfix) {
 						partyCharacters[gameState.partyMembers[i] - 1].afflictions[j] = currentTarget.afflictions[j];
@@ -5668,10 +5668,10 @@ short overworldPSIMenu() {
 				}
 			}
 		} else {
-			battleInitPlayerStats(x00, currentTarget);
-			battleActionTable[psiAbilityTable[x01].battleAction].func();
+			battleInitPlayerStats(psiTarget, currentTarget);
+			battleActionTable[psiAbilityTable[psiSelected].battleAction].func();
 			for (short i = 0; PartyCharacter.afflictions.length > i; i++) {
-				partyCharacters[x00 - 1].afflictions[i] = currentTarget.afflictions[i];
+				partyCharacters[psiTarget - 1].afflictions[i] = currentTarget.afflictions[i];
 			}
 		}
 		unknownC3EE4D();
