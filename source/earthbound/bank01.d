@@ -2077,7 +2077,7 @@ void openMenuButton() {
 				if (x06_2 != 0) {
 					unknownC43573(cast(short)(cast(short)(x06_2) - 1));
 				}
-				if (unknownC1B5B6() != 0) {
+				if (overworldPSIMenu() != 0) {
 					break mainLoop;
 				}
 				if (unknownC1C3B6() == 1) {
@@ -5576,27 +5576,27 @@ short overworldUseItem(short arg1, short arg2, short) {
 }
 
 /// $C1B5B6
-short unknownC1B5B6() {
-	ubyte x01 = 0xFF;
+short overworldPSIMenu() {
 	ubyte x00;
+	ubyte x01 = 0xFF;
+	ubyte psiUser;
 	short x27 = 0;
 	unknown7E9D18 = 0;
-	while (true) {
-		ubyte x26;
+	do {
 		if (unknownC1C3B6() == 1) {
 			if (x01 == 0) {
 				break;
 			}
-			x26 = gameState.partyMembers[unknownC1C373() - 1];
-			unknownC1C853(x26);
+			psiUser = gameState.partyMembers[unknownC1C373() - 1];
+			unknownC1C853(psiUser);
 			unknown7E9D18 = 1;
 		} else {
 			openEquipSelectWindow(0);
-			x26 = cast(ubyte)charSelectPrompt(0, 1, &unknownC1C853, &unknownC1C367);
+			psiUser = cast(ubyte)charSelectPrompt(0, 1, &unknownC1C853, &psiMenuValidCharacter);
 			closeEquipSelectWindow();
 		}
-		unknown7E9D16 = x26;
-		if (x26 == 0) {
+		unknown7E9D16 = psiUser;
+		if (psiUser == 0) {
 			break;
 		}
 		x01 = 0xFF;
@@ -5613,7 +5613,7 @@ short unknownC1B5B6() {
 				if (unknown7E9D18 == 0) {
 					unknownC1CA72(x01, 6);
 				}
-				if (battleActionTable[psiAbilityTable[x01].battleAction].ppCost > partyCharacters[x26 - 1].pp.current.integer) {
+				if (battleActionTable[psiAbilityTable[x01].battleAction].ppCost > partyCharacters[psiUser - 1].pp.current.integer) {
 					createWindowN(Window.textBattle);
 					displayText(getTextBlock("textNotEnoughPP"));
 					closeFocusWindowN();
@@ -5629,7 +5629,7 @@ short unknownC1B5B6() {
 							x00 = 0;
 						}
 					} else {
-						x00 = cast(ubyte)determineTargetting(psiAbilityTable[x01].battleAction, x26);
+						x00 = cast(ubyte)determineTargetting(psiAbilityTable[x01].battleAction, psiUser);
 					}
 				}
 			} else {
@@ -5637,49 +5637,46 @@ short unknownC1B5B6() {
 			}
 		} while (x00 == 0);
 		closeWindow(Window.unknown04);
-		if (x01 == 0) {
-			continue;
+	} while (x01 == 0);
+	unknownC3ED2C(psiUser, battleActionTable[psiAbilityTable[x01].battleAction].ppCost, 1);
+	if (psiAbilityTable[x01].type == 8) {
+		setTeleportState(x00, cast(TeleportStyle)psiAbilityTable[x01].level);
+	} else {
+		currentAttacker = &battlersTable[0];
+		battleInitPlayerStats(psiUser, currentAttacker);
+		unknownC1AC4A(&partyCharacters[psiUser - 1].name[0], PartyCharacter.name.length);
+		if (x00 != 0xFF) {
+			unknownC1ACA1(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.length);
 		}
-		unknownC3ED2C(x26, battleActionTable[psiAbilityTable[x01].battleAction].ppCost, 1);
-		if (psiAbilityTable[x01].type == 8) {
-			setTeleportState(x00, cast(TeleportStyle)psiAbilityTable[x01].level);
-		} else {
-			currentAttacker = &battlersTable[0];
-			battleInitPlayerStats(x26, currentAttacker);
-			unknownC1AC4A(&partyCharacters[x26 - 1].name[0], PartyCharacter.name.length);
-			if (x00 != 0xFF) {
-				unknownC1ACA1(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.length);
-			}
-			unknownC1ACF8(x01);
-			createWindowN(Window.textStandard);
-			displayText(getTextBlock(battleActionTable[psiAbilityTable[x01].battleAction].text));
-		}
-		if (battleActionTable[psiAbilityTable[x01].battleAction].func !is null) {
-			currentTarget = &battlersTable[1];
-			if (x00 == 0xFF) {
-				for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
-					unknownC1ACA1(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.length);
-					battleInitPlayerStats(gameState.partyMembers[i] - 1, &battlersTable[1]);
-					battleActionTable[psiAbilityTable[x01].battleAction].func();
-					for (short j = 0; PartyCharacter.afflictions.length > j; j++) {
-						version(bugfix) {
-							partyCharacters[gameState.partyMembers[i] - 1].afflictions[j] = currentTarget.afflictions[j];
-						} else {
-							partyCharacters[i].afflictions[j] = currentTarget.afflictions[j];
-						}
+		unknownC1ACF8(x01);
+		createWindowN(Window.textStandard);
+		displayText(getTextBlock(battleActionTable[psiAbilityTable[x01].battleAction].text));
+	}
+	if (battleActionTable[psiAbilityTable[x01].battleAction].func !is null) {
+		currentTarget = &battlersTable[1];
+		if (x00 == 0xFF) {
+			for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
+				unknownC1ACA1(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.length);
+				battleInitPlayerStats(gameState.partyMembers[i] - 1, &battlersTable[1]);
+				battleActionTable[psiAbilityTable[x01].battleAction].func();
+				for (short j = 0; PartyCharacter.afflictions.length > j; j++) {
+					version(bugfix) {
+						partyCharacters[gameState.partyMembers[i] - 1].afflictions[j] = currentTarget.afflictions[j];
+					} else {
+						partyCharacters[i].afflictions[j] = currentTarget.afflictions[j];
 					}
 				}
-			} else {
-				battleInitPlayerStats(x00, currentTarget);
-				battleActionTable[psiAbilityTable[x01].battleAction].func();
-				for (short i = 0; PartyCharacter.afflictions.length > i; i++) {
-					partyCharacters[x00].afflictions[i] = currentTarget.afflictions[i];
-				}
 			}
-			unknownC3EE4D();
+		} else {
+			battleInitPlayerStats(x00, currentTarget);
+			battleActionTable[psiAbilityTable[x01].battleAction].func();
+			for (short i = 0; PartyCharacter.afflictions.length > i; i++) {
+				partyCharacters[x00].afflictions[i] = currentTarget.afflictions[i];
+			}
 		}
-		x27 = 1;
+		unknownC3EE4D();
 	}
+	x27 = 1;
 	closeWindow(Window.textStandard);
 	return x27;
 }
@@ -5942,7 +5939,7 @@ short unknownC1C32A(short arg1, short arg2, short arg3) {
 }
 
 /// $C1C367
-short unknownC1C367(short arg1) {
+short psiMenuValidCharacter(short arg1) {
 	return unknownC1C32A(arg1, 1, 0xF);
 }
 
