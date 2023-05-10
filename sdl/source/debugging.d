@@ -225,7 +225,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				}
 				InputEditable("Frame", entityAnimationFrames[entity]);
 				InputEditable("TPT", entityTPTEntries[entity]);
-				InputEditable("Enemy", entityEnemyIDs[entity]);
+				InputEditable!EnemyID("Enemy", entityEnemyIDs[entity]);
 				InputEditable("Collided", entityCollidedObjects[entity]);
 				foreach (idx, flagName; ["Script", "Callback"]) {
 					const mask = (1 << idx + 14);
