@@ -5585,7 +5585,7 @@ short overworldPSIMenu() {
 	do {
 		if (unknownC1C3B6() == 1) {
 			if (psiSelected == 0) {
-				break;
+				goto end;
 			}
 			psiUser = gameState.partyMembers[unknownC1C373() - 1];
 			unknownC1C853(psiUser);
@@ -5597,7 +5597,7 @@ short overworldPSIMenu() {
 		}
 		unknown7E9D16 = psiUser;
 		if (psiUser == 0) {
-			break;
+			goto end;
 		}
 		psiSelected = 0xFF;
 		do {
@@ -5677,6 +5677,7 @@ short overworldPSIMenu() {
 		unknownC3EE4D();
 	}
 	x27 = 1;
+	end:
 	closeWindow(Window.textStandard);
 	return x27;
 }
