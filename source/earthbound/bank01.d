@@ -5671,7 +5671,7 @@ short overworldPSIMenu() {
 			battleInitPlayerStats(x00, currentTarget);
 			battleActionTable[psiAbilityTable[x01].battleAction].func();
 			for (short i = 0; PartyCharacter.afflictions.length > i; i++) {
-				partyCharacters[x00].afflictions[i] = currentTarget.afflictions[i];
+				partyCharacters[x00 - 1].afflictions[i] = currentTarget.afflictions[i];
 			}
 		}
 		unknownC3EE4D();
