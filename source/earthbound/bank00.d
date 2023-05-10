@@ -5466,87 +5466,87 @@ void unknownC09506() {
 }
 
 immutable const(ubyte)* function(const(ubyte)*)[77] movementControlCodesPointerTable = [
-	&movementCode00,
-	&movementCode01,
-	&movementCode02,
-	&movementCode03,
-	&movementCode04,
-	&movementCode05,
-	&movementCode06,
-	&movementCode07,
-	&movementCode08,
-	&movementCode09,
-	&movementCode0A,
-	&movementCode0B,
-	&movementCode0C,
-	&movementCode0D,
-	&movementCode0E,
-	&movementCode0F,
-	&movementCode10,
-	&movementCode11,
-	&movementCode12,
-	&movementCode13,
-	&movementCode14,
-	&movementCode15,
-	&movementCode16,
-	&movementCode17,
-	&movementCode18,
-	&movementCode19,
-	&movementCode1A,
-	&movementCode1B,
-	&movementCode1C,
-	&movementCode1D,
-	&movementCode1E,
-	&movementCode1F,
-	&movementCode20,
-	&movementCode21,
-	&movementCode22,
-	&movementCode23,
-	&movementCode24,
-	&movementCode25,
-	&movementCode26,
-	&movementCode27,
-	&movementCode28,
-	&movementCode29,
-	&movementCode2A,
-	&movementCode2B,
-	&movementCode2C,
-	&movementCode2D,
-	&movementCode2E,
-	&movementCode2F,
-	&movementCode30,
-	&movementCode31,
-	&movementCode32,
-	&movementCode33,
-	&movementCode34,
-	&movementCode35,
-	&movementCode36,
-	&movementCode37,
-	&movementCode38,
-	&movementCode39,
-	&movementCode3A,
-	&movementCode3B45,
-	&movementCode3C46,
-	&movementCode3D47,
-	&movementCode3E48,
-	&movementCode3F49,
-	&movementCode404A,
-	&movementCode414B,
-	&movementCode424C,
-	&movementCode43,
-	&movementCode44,
-	&movementCode3B45,
-	&movementCode3C46,
-	&movementCode3D47,
-	&movementCode3E48,
-	&movementCode3F49,
-	&movementCode404A,
-	&movementCode414B,
-	&movementCode424C,
+	&actionScriptCommand00,
+	&actionScriptCommand01,
+	&actionScriptCommand02,
+	&actionScriptCommand03,
+	&actionScriptCommand04,
+	&actionScriptCommand05,
+	&actionScriptCommand06,
+	&actionScriptCommand07,
+	&actionScriptCommand08,
+	&actionScriptCommand09,
+	&actionScriptCommand0A,
+	&actionScriptCommand0B,
+	&actionScriptCommand0C,
+	&actionScriptCommand0D,
+	&actionScriptCommand0E,
+	&actionScriptCommand0F,
+	&actionScriptCommand10,
+	&actionScriptCommand11,
+	&actionScriptCommand12,
+	&actionScriptCommand13,
+	&actionScriptCommand14,
+	&actionScriptCommand15,
+	&actionScriptCommand16,
+	&actionScriptCommand17,
+	&actionScriptCommand18,
+	&actionScriptCommand19,
+	&actionScriptCommand1A,
+	&actionScriptCommand1B,
+	&actionScriptCommand1C,
+	&actionScriptCommand1D,
+	&actionScriptCommand1E,
+	&actionScriptCommand1F,
+	&actionScriptCommand20,
+	&actionScriptCommand21,
+	&actionScriptCommand22,
+	&actionScriptCommand23,
+	&actionScriptCommand24,
+	&actionScriptCommand25,
+	&actionScriptCommand26,
+	&actionScriptCommand27,
+	&actionScriptCommand28,
+	&actionScriptCommand29,
+	&actionScriptCommand2A,
+	&actionScriptCommand2B,
+	&actionScriptCommand2C,
+	&actionScriptCommand2D,
+	&actionScriptCommand2E,
+	&actionScriptCommand2F,
+	&actionScriptCommand30,
+	&actionScriptCommand31,
+	&actionScriptCommand32,
+	&actionScriptCommand33,
+	&actionScriptCommand34,
+	&actionScriptCommand35,
+	&actionScriptCommand36,
+	&actionScriptCommand37,
+	&actionScriptCommand38,
+	&actionScriptCommand39,
+	&actionScriptCommand3A,
+	&actionScriptCommand3B45,
+	&actionScriptCommand3C46,
+	&actionScriptCommand3D47,
+	&actionScriptCommand3E48,
+	&actionScriptCommand3F49,
+	&actionScriptCommand404A,
+	&actionScriptCommand414B,
+	&actionScriptCommand424C,
+	&actionScriptCommand43,
+	&actionScriptCommand44,
+	&actionScriptCommand3B45,
+	&actionScriptCommand3C46,
+	&actionScriptCommand3D47,
+	&actionScriptCommand3E48,
+	&actionScriptCommand3F49,
+	&actionScriptCommand404A,
+	&actionScriptCommand414B,
+	&actionScriptCommand424C,
 ];
 
 /// $C095F2 - [00] - End
-const(ubyte)* movementCode00(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand00(const(ubyte)* y) {
 	deleteEntityOffset(actionScriptVar88);
 	entityScriptSleepFrames[actionScriptVar8A / 2] = -1;
 	unknown7E0A58 = -1;
@@ -5554,10 +5554,10 @@ const(ubyte)* movementCode00(const(ubyte)* y) {
 }
 
 /// $C09603 - [01 XX] - Loop XX times
-const(ubyte)* movementCode01(const(ubyte)* y) {
-	return movementCode0124Common(y[actionScriptVar80], actionScriptVar8A, y + 1);
+const(ubyte)* actionScriptCommand01(const(ubyte)* y) {
+	return actionScriptCommand0124Common(y[actionScriptVar80], actionScriptVar8A, y + 1);
 }
-const(ubyte)* movementCode0124Common(short a, short x, const(ubyte)* y) {
+const(ubyte)* actionScriptCommand0124Common(short a, short x, const(ubyte)* y) {
 	actionScriptVar90 = a;
 	actionScriptVar94 = y;
 	actionScriptVar84[entityScriptUnknown12E6[x / 2] / 3].pc = y;
@@ -5567,12 +5567,12 @@ const(ubyte)* movementCode0124Common(short a, short x, const(ubyte)* y) {
 }
 
 /// $C09620 - [24] - Loop (Tempvar)
-const(ubyte)* movementCode24(const(ubyte)* y) {
-	return movementCode0124Common(entityTempvars[actionScriptVar8A / 2], actionScriptVar8A, y);
+const(ubyte)* actionScriptCommand24(const(ubyte)* y) {
+	return actionScriptCommand0124Common(entityTempvars[actionScriptVar8A / 2], actionScriptVar8A, y);
 }
 
 /// $C09627 - [02] - Loop End
-const(ubyte)* movementCode02(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand02(const(ubyte)* y) {
 	actionScriptVar94 = y;
 	if (--actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3 - 1].counter == 0) {
 		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
@@ -5582,17 +5582,17 @@ const(ubyte)* movementCode02(const(ubyte)* y) {
 }
 
 /// $C09649 - [19 NEARPTR] - Short Jump
-const(ubyte)* movementCode19(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand19(const(ubyte)* y) {
 	return *cast(const(ubyte)**)&y[actionScriptVar80];
 }
 
 /// $C0964D - [03 PTR] - Long Jump
-const(ubyte)* movementCode03(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand03(const(ubyte)* y) {
 	return *cast(const(ubyte)**)&y[actionScriptVar80];
 }
 
 /// $C09658 - [1A NEARPTR] - Short Call
-const(ubyte)* movementCode1A(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand1A(const(ubyte)* y) {
 	actionScriptVar8CScript = *cast(const(ubyte)**)&y[actionScriptVar80];
 	actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc = y + (const(ubyte)*).sizeof;
 	entityScriptUnknown12E6[actionScriptVar8A / 2] += 3;
@@ -5600,9 +5600,9 @@ const(ubyte)* movementCode1A(const(ubyte)* y) {
 }
 
 /// $C0966F - [1B] - Short Return
-const(ubyte)* movementCode1B(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand1B(const(ubyte)* y) {
 	if (entityScriptUnknown12E6[actionScriptVar8A / 2] == 0) {
-		return movementCode0C(null);
+		return actionScriptCommand0C(null);
 	} else {
 		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
 		return actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc;
@@ -5610,7 +5610,7 @@ const(ubyte)* movementCode1B(const(ubyte)* y) {
 }
 
 /// $C09685 - [04 PTR] - Long Call
-const(ubyte)* movementCode04(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand04(const(ubyte)* y) {
 	actionScriptVar8CScript = *cast(const(ubyte)**)&y[actionScriptVar80];
 	actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc = y + (const(ubyte)*).sizeof;
 	entityScriptUnknown12E6[actionScriptVar8A / 2] += 3;
@@ -5618,9 +5618,9 @@ const(ubyte)* movementCode04(const(ubyte)* y) {
 }
 
 /// $C096AA - [05] - Long Return
-const(ubyte)* movementCode05(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand05(const(ubyte)* y) {
 	if (entityScriptUnknown12E6[actionScriptVar8A / 2] == 0) {
-		return movementCode0C(null);
+		return actionScriptCommand0C(null);
 	} else {
 		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
 		return actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc;
@@ -5628,40 +5628,40 @@ const(ubyte)* movementCode05(const(ubyte)* y) {
 }
 
 /// $C096C3 - [06 XX] - Pause XX frames
-const(ubyte)* movementCode06(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand06(const(ubyte)* y) {
 	entityScriptSleepFrames[actionScriptVar8A / 2] = y[actionScriptVar80];
 	return y + 1;
 }
 
 /// $C096CF - [3B/45 XX] - Set Animation Frame
-const(ubyte)* movementCode3B45(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand3B45(const(ubyte)* y) {
 	entityAnimationFrames[actionScriptVar88 / 2] = y[actionScriptVar80] == 0xFF ? -1 : y[actionScriptVar80];
 	return y + 1;
 }
 
 /// $C096E3 - [28 XXXX] - Set X
-const(ubyte)* movementCode28(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand28(const(ubyte)* y) {
 	entityAbsXTable[actionScriptVar88 / 2] = *cast(short*)&y[actionScriptVar80];
 	entityAbsXFractionTable[actionScriptVar88 / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C096F3 - [29 XXXX] - Set Y
-const(ubyte)* movementCode29(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand29(const(ubyte)* y) {
 	entityAbsYTable[actionScriptVar88 / 2] = *cast(short*)&y[actionScriptVar80];
 	entityAbsYFractionTable[actionScriptVar88 / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C09703 - [2A XXXX] - Set Z
-const(ubyte)* movementCode2A(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand2A(const(ubyte)* y) {
 	entityAbsZTable[actionScriptVar88 / 2] = *cast(short*)&y[actionScriptVar80];
 	entityAbsZFractionTable[actionScriptVar88 / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C09713
-const(ubyte)* movementCode3F49(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand3F49(const(ubyte)* y) {
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	y += 2;
 	entityDeltaXFractionTable[actionScriptVar88 / 2] = cast(ushort)(actionScriptVar90 << 8);
@@ -5670,7 +5670,7 @@ const(ubyte)* movementCode3F49(const(ubyte)* y) {
 }
 
 /// $C09731
-const(ubyte)* movementCode404A(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand404A(const(ubyte)* y) {
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	y += 2;
 	entityDeltaYFractionTable[actionScriptVar88 / 2] = cast(ushort)(actionScriptVar90 << 8);
@@ -5679,7 +5679,7 @@ const(ubyte)* movementCode404A(const(ubyte)* y) {
 }
 
 /// $C0974F
-const(ubyte)* movementCode414B(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand414B(const(ubyte)* y) {
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	y += 2;
 	entityDeltaZFractionTable[actionScriptVar88 / 2] = cast(ushort)(actionScriptVar90 << 8);
@@ -5688,7 +5688,7 @@ const(ubyte)* movementCode414B(const(ubyte)* y) {
 }
 
 /// $C0976D
-const(ubyte)* movementCode2E(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand2E(const(ubyte)* y) {
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	auto i = actionScriptVar88 / 2;
 	auto param = FixedPoint1616(cast(ushort)(actionScriptVar90 << 8), cast(short)(actionScriptVar90 >> 8));
@@ -5700,7 +5700,7 @@ const(ubyte)* movementCode2E(const(ubyte)* y) {
 }
 
 /// $C09792
-const(ubyte)* movementCode2F(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand2F(const(ubyte)* y) {
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	auto i = actionScriptVar88 / 2;
 	auto param = FixedPoint1616(cast(ushort)(actionScriptVar90 << 8), cast(short)(actionScriptVar90 >> 8));
@@ -5712,7 +5712,7 @@ const(ubyte)* movementCode2F(const(ubyte)* y) {
 }
 
 /// $C097B7
-const(ubyte)* movementCode30(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand30(const(ubyte)* y) {
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	auto i = actionScriptVar88 / 2;
 	auto param = FixedPoint1616(cast(ushort)(actionScriptVar90 << 8), cast(short)(actionScriptVar90 >> 8));
@@ -5724,7 +5724,7 @@ const(ubyte)* movementCode30(const(ubyte)* y) {
 }
 
 /// $C097DC
-const(ubyte)* movementCode31(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand31(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	unknown7E1A02[x] = *cast(short*)&y[actionScriptVar80];
 	unknown7E1A12[x] = 0;
@@ -5732,7 +5732,7 @@ const(ubyte)* movementCode31(const(ubyte)* y) {
 }
 
 /// $C097EF
-const(ubyte)* movementCode32(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand32(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	unknown7E1A0A[x] = *cast(short*)&y[actionScriptVar80];
 	unknown7E1A1A[x] = 0;
@@ -5740,7 +5740,7 @@ const(ubyte)* movementCode32(const(ubyte)* y) {
 }
 
 /// $C09802
-const(ubyte)* movementCode33(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand33(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	unknown7E1A32[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
@@ -5749,7 +5749,7 @@ const(ubyte)* movementCode33(const(ubyte)* y) {
 }
 
 /// $C09826
-const(ubyte)* movementCode34(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand34(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	unknown7E1A3A[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
@@ -5758,7 +5758,7 @@ const(ubyte)* movementCode34(const(ubyte)* y) {
 }
 
 /// $C0984A
-const(ubyte)* movementCode35(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand35(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	unknown7E1A32[x] += (actionScriptVar90 & 0xFF) << 8;
@@ -5767,7 +5767,7 @@ const(ubyte)* movementCode35(const(ubyte)* y) {
 }
 
 /// $C09875
-const(ubyte)* movementCode36(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand36(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
 	unknown7E1A3A[x] += (actionScriptVar90 & 0xFF) << 8;
@@ -5776,39 +5776,39 @@ const(ubyte)* movementCode36(const(ubyte)* y) {
 }
 
 /// $C098A0
-const(ubyte)* movementCode2B(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand2B(const(ubyte)* y) {
 	entityAbsXTable[actionScriptVar88 / 2] += *cast(short*)&y[actionScriptVar80];
 	return y + 2;
 }
 
 /// $C098AE
-const(ubyte)* movementCode2C(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand2C(const(ubyte)* y) {
 	entityAbsYTable[actionScriptVar88 / 2] += *cast(short*)&y[actionScriptVar80];
 	return y + 2;
 }
 
 /// $C098BC
-const(ubyte)* movementCode2D(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand2D(const(ubyte)* y) {
 	entityAbsZTable[actionScriptVar88 / 2] += *cast(short*)&y[actionScriptVar80];
 	return y + 2;
 }
 
 /// $C098CA
-const(ubyte)* movementCode37(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand37(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	unknown7E1A02[x] += *cast(short*)&y[actionScriptVar80];
 	return y + 2;
 }
 
 /// $C098DE
-const(ubyte)* movementCode38(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand38(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	unknown7E1A0A[x] += *cast(short*)&y[actionScriptVar80];
 	return y + 2;
 }
 
 /// $C098F2
-const(ubyte)* movementCode39(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand39(const(ubyte)* y) {
 	entityDeltaXFractionTable[actionScriptVar88 / 2] = 0;
 	entityDeltaXTable[actionScriptVar88 / 2] = 0;
 	entityDeltaYFractionTable[actionScriptVar88 / 2] = 0;
@@ -5829,7 +5829,7 @@ void unknownC09907(short arg1) {
 }
 
 /// $C0991C
-const(ubyte)* movementCode3A(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand3A(const(ubyte)* y) {
 	unknown7E1A32[y[actionScriptVar80]] = 0;
 	unknown7E1A22[y[actionScriptVar80]] = 0;
 	unknown7E1A3A[y[actionScriptVar80]] = 0;
@@ -5838,13 +5838,13 @@ const(ubyte)* movementCode3A(const(ubyte)* y) {
 }
 
 /// $C09931
-const(ubyte)* movementCode43(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand43(const(ubyte)* y) {
 	entityDrawPriority[actionScriptVar88 / 2] = (y++)[actionScriptVar80];
 	return y;
 }
 
 /// $C0993D
-const(ubyte)* movementCode424C(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand424C(const(ubyte)* y) {
 	alias Func = short function(short a, ref const(ubyte)* y);
 	Func f = *cast(Func*)&y[actionScriptVar80];
 	actionScriptVar94 = y + Func.sizeof;
@@ -5853,7 +5853,7 @@ const(ubyte)* movementCode424C(const(ubyte)* y) {
 }
 
 /// $C0995D
-const(ubyte)* movementCode0A(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand0A(const(ubyte)* y) {
 	if (entityTempvars[actionScriptVar8A / 2] == 0) {
 		return *cast(const(ubyte)**)&y[actionScriptVar80];
 	}
@@ -5861,7 +5861,7 @@ const(ubyte)* movementCode0A(const(ubyte)* y) {
 }
 
 /// $C0996B
-const(ubyte)* movementCode0B(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand0B(const(ubyte)* y) {
 	if (entityTempvars[actionScriptVar8A / 2] != 0) {
 		return *cast(const(ubyte)**)&y[actionScriptVar80];
 	}
@@ -5869,7 +5869,7 @@ const(ubyte)* movementCode0B(const(ubyte)* y) {
 }
 
 /// $C09979
-const(ubyte)* movementCode10(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand10(const(ubyte)* y) {
 	actionScriptVar90 = entityTempvars[actionScriptVar8A / 2];
 	actionScriptVar94 = y + 1;
 	if (y[actionScriptVar80] <= actionScriptVar90) {
@@ -5880,7 +5880,7 @@ const(ubyte)* movementCode10(const(ubyte)* y) {
 }
 
 /// $C0999E
-const(ubyte)* movementCode11(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand11(const(ubyte)* y) {
 	actionScriptVar90 = entityTempvars[actionScriptVar8A / 2];
 	actionScriptVar94 = y + 1;
 	if (y[actionScriptVar80] <= actionScriptVar90) {
@@ -5893,21 +5893,21 @@ const(ubyte)* movementCode11(const(ubyte)* y) {
 }
 
 /// $C099C3
-const(ubyte)* movementCode0C(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand0C(const(ubyte)* y) {
 	actionScriptVar94 = y;
-	return movementCode0C13Common(actionScriptVar8A);
+	return actionScriptCommand0C13Common(actionScriptVar8A);
 }
-const(ubyte)* movementCode0C13Common(short y) {
+const(ubyte)* actionScriptCommand0C13Common(short y) {
 	ushort regY = unknownC09D12(actionScriptVar88, y);
 	entityScriptSleepFrames[regY / 2] = -1;
 	if (entityScriptIndexTable[actionScriptVar88 / 2] < 0) {
-		movementCode00(null);
+		actionScriptCommand00(null);
 	}
 	return actionScriptVar94;
 }
 
 /// $C099DD
-const(ubyte)* movementCode07(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
 	actionScriptVar94 = y;
 	bool carry;
 	short regY = unknownC09D03(carry);
@@ -5925,16 +5925,16 @@ const(ubyte)* movementCode07(const(ubyte)* y) {
 }
 
 /// $C09A0E
-const(ubyte)* movementCode13(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand13(const(ubyte)* y) {
 	actionScriptVar94 = y;
 	if (entityScriptUnknown125A[actionScriptVar8A / 2] >= 0) {
-		return movementCode0C13Common(entityScriptUnknown125A[actionScriptVar8A / 2]);
+		return actionScriptCommand0C13Common(entityScriptUnknown125A[actionScriptVar8A / 2]);
 	}
 	return actionScriptVar94;
 }
 
 /// $C09A1A
-const(ubyte)* movementCode08(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand08(const(ubyte)* y) {
 	entityTickCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
 	entityTickCallbackFlags[actionScriptVar88 / 2] = 0;
 	y += (const(ubyte)*).sizeof;
@@ -5943,31 +5943,31 @@ const(ubyte)* movementCode08(const(ubyte)* y) {
 }
 
 /// $C09A2E
-const(ubyte)* movementCode09(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand09(const(ubyte)* y) {
 	entityScriptSleepFrames[actionScriptVar8A / 2] = -1;
 	return y - 1;
 }
 
 /// $C09A38
-const(ubyte)* movementCode3C46(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand3C46(const(ubyte)* y) {
 	entityAnimationFrames[actionScriptVar88 / 2]++;
 	return y;
 }
 
 /// $C09A3E
-const(ubyte)* movementCode3D47(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand3D47(const(ubyte)* y) {
 	entityAnimationFrames[actionScriptVar88 / 2]--;
 	return y;
 }
 
 /// $C09A44
-const(ubyte)* movementCode3E48(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand3E48(const(ubyte)* y) {
 	entityAnimationFrames[actionScriptVar88 / 2] += cast(byte)y[actionScriptVar80];
 	return y + 1;
 }
 
 /// $C09A5C
-const(ubyte)* movementCode18(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand18(const(ubyte)* y) {
 	actionScriptVar8CMemory = *cast(ushort**)&y[actionScriptVar80];
 	y += (ushort*).sizeof;
 	ubyte x = (y++)[actionScriptVar80];
@@ -5977,24 +5977,24 @@ const(ubyte)* movementCode18(const(ubyte)* y) {
 }
 
 /// $C09A87
-const(ubyte)* movementCode14(const(ubyte)* y) {
-	return movementCode0D14Common(cast(ushort*)&entityScriptVarTables[y[actionScriptVar80]][actionScriptVar88 / 2], y);
+const(ubyte)* actionScriptCommand14(const(ubyte)* y) {
+	return actionScriptCommand0D14Common(cast(ushort*)&entityScriptVarTables[y[actionScriptVar80]][actionScriptVar88 / 2], y);
 }
 
 /// $C09A97
-const(ubyte)* movementCode27(const(ubyte)* y) {
-	return movementCode0D27Common(cast(ushort*)&entityTempvars[actionScriptVar8A / 2], y);
+const(ubyte)* actionScriptCommand27(const(ubyte)* y) {
+	return actionScriptCommand0D27Common(cast(ushort*)&entityTempvars[actionScriptVar8A / 2], y);
 }
 
 /// $C09A9F
-const(ubyte)* movementCode0D(const(ubyte)* y) {
-	return movementCode0D14Common(*cast(ushort**)y[actionScriptVar80], y + (ushort*).sizeof - 1);
+const(ubyte)* actionScriptCommand0D(const(ubyte)* y) {
+	return actionScriptCommand0D14Common(*cast(ushort**)y[actionScriptVar80], y + (ushort*).sizeof - 1);
 }
 
-const(ubyte)* movementCode0D14Common(ushort* a, const(ubyte)* y) {
-	return movementCode0D27Common(a, y + 1);
+const(ubyte)* actionScriptCommand0D14Common(ushort* a, const(ubyte)* y) {
+	return actionScriptCommand0D27Common(a, y + 1);
 }
-const(ubyte)* movementCode0D27Common(ushort* a, const(ubyte)* y) {
+const(ubyte)* actionScriptCommand0D27Common(ushort* a, const(ubyte)* y) {
 	actionScriptVar8CMemory = a;
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *(cast(short*)&y[actionScriptVar80]);
@@ -6032,7 +6032,7 @@ void unknownC09ADB() {
 }
 
 /// $C09AE2
-const(ubyte)* movementCode0E(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand0E(const(ubyte)* y) {
 	entityScriptVarTables[y[actionScriptVar80]][actionScriptVar88 / 2] = *cast(short*)&y[1 + actionScriptVar80];
 	return y + 3;
 }
@@ -6050,25 +6050,25 @@ short*[8] entityScriptVarTables = [
 ];
 
 /// $C09B09
-const(ubyte)* movementCode0F(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand0F(const(ubyte)* y) {
 	clearSpriteTickCallback(actionScriptVar88);
 	return y;
 }
 
 /// $C09B0F - [12 NEARPTR XX] - Write XX to memory
-const(ubyte)* movementCode12(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand12(const(ubyte)* y) {
 	*(*cast(ubyte**)&y[actionScriptVar80]) = y[(ubyte*).sizeof + actionScriptVar80];
 	return y + (ubyte*).sizeof + ubyte.sizeof;
 }
 
 /// $C09B1F - [15 NEARPTR XXXX] - Write XXXX to memory
-const(ubyte)* movementCode15(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand15(const(ubyte)* y) {
 	*(*cast(ushort**)&y[actionScriptVar80]) = *cast(ushort*)&y[(ushort*).sizeof + actionScriptVar80];
 	return y + (ushort*).sizeof + ushort.sizeof;
 }
 
 /// $C09B2C - [16 NEARPTR] - Break if false
-const(ubyte)* movementCode16(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand16(const(ubyte)* y) {
 	if (entityTempvars[actionScriptVar8A / 2] == 0) {
 		y = *cast(const(ubyte)**)&y[actionScriptVar80];
 		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
@@ -6078,7 +6078,7 @@ const(ubyte)* movementCode16(const(ubyte)* y) {
 }
 
 /// $C09B44 - [17 NEARPTR] - Break if true
-const(ubyte)* movementCode17(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand17(const(ubyte)* y) {
 	if (entityTempvars[actionScriptVar8A / 2] != 0) {
 		y = *cast(const(ubyte)**)&y[actionScriptVar80];
 		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
@@ -6088,7 +6088,7 @@ const(ubyte)* movementCode17(const(ubyte)* y) {
 }
 
 /// $C09B4D - [1C PTR] - Set Spritemap
-const(ubyte)* movementCode1C(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand1C(const(ubyte)* y) {
 	// The only stuff that uses this command uses a double pointer for its spritemaps
 	entitySpriteMapPointers[actionScriptVar88 / 2] = null;
 	entitySpriteMapPointersDptr[actionScriptVar88 / 2] = *cast(const(SpriteMap*)**)&y[actionScriptVar80];
@@ -6097,19 +6097,19 @@ const(ubyte)* movementCode1C(const(ubyte)* y) {
 }
 
 /// $C09B61 - [1D XXXX] - Write word to tempvar
-const(ubyte)* movementCode1D(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand1D(const(ubyte)* y) {
 	entityTempvars[actionScriptVar8A / 2] = *cast(ushort*)&y[actionScriptVar80];
 	return y + ushort.sizeof;
 }
 
 /// $C09B6B - [1E NEARPTR] - Write data at address to tempvar
-const(ubyte)* movementCode1E(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand1E(const(ubyte)* y) {
 	entityTempvars[actionScriptVar8A / 2] = *(*cast(ushort**)&y[actionScriptVar80]);
 	return y + (ushort*).sizeof;
 }
 
 /// $C09B79 - [1F XX] - Write tempvar to var
-const(ubyte)* movementCode1F(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand1F(const(ubyte)* y) {
 	ubyte x = y[actionScriptVar80];
 	actionScriptVar8CMemory = cast(ushort*)entityScriptVarTables[x];
 	actionScriptVar8CMemory[0] = entityTempvars[actionScriptVar8A / 2];
@@ -6117,13 +6117,13 @@ const(ubyte)* movementCode1F(const(ubyte)* y) {
 }
 
 /// $C09B91 - [20 XX] - Write var to tempvar
-const(ubyte)* movementCode20(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand20(const(ubyte)* y) {
 	entityTempvars[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[0];
 	return y + 1;
 }
 
 /// $C09BA9 - [44] - Sleep for $tempvar frames
-const(ubyte)* movementCode44(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand44(const(ubyte)* y) {
 	if (entityTempvars[actionScriptVar8A / 2] != 0) {
 		entityScriptSleepFrames[actionScriptVar8A / 2] = entityTempvars[actionScriptVar8A / 2];
 	}
@@ -6131,33 +6131,33 @@ const(ubyte)* movementCode44(const(ubyte)* y) {
 }
 
 /// $C09BB4 - [21 XX] - Sleep for var XX frames
-const(ubyte)* movementCode21(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand21(const(ubyte)* y) {
 	entityScriptSleepFrames[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[0];
 	return y + 1;
 }
 
 /// $C09BCC - [26 XX] - Set Animation Frame to Var XX
-const(ubyte)* movementCode26(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand26(const(ubyte)* y) {
 	entityAnimationFrames[actionScriptVar88 / 2] = entityScriptVarTables[(y++)[actionScriptVar80]][actionScriptVar88 / 2];
 	return y;
 }
 
 /// $C09BE4 - [22 NEARPTR] - Set Draw Callback
-const(ubyte)* movementCode22(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand22(const(ubyte)* y) {
 	entityDrawCallbacks[actionScriptVar88 / 2] = *cast(void function(short, short)*)&y[actionScriptVar80];
 	y += (void function(short)).sizeof;
 	return y;
 }
 
 /// $C09BEE - [23 NEARPTR] - Set Position Change Callback
-const(ubyte)* movementCode23(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand23(const(ubyte)* y) {
 	entityScreenPositionCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
 	y += (void function()).sizeof;
 	return y;
 }
 
 /// $C09BF8 - [25 NEARPTR] - Set Physics Callback
-const(ubyte)* movementCode25(const(ubyte)* y) {
+const(ubyte)* actionScriptCommand25(const(ubyte)* y) {
 	entityMoveCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
 	y += (void function()).sizeof;
 	return y;
@@ -6794,7 +6794,7 @@ immutable short function(short)[8] unknownC0A350 = [
 void unknownC0A360() {
 	if (entityUnknown2C5E[actionScriptVar88 / 2] >= 0) {
 		if ((entityObstacleFlags[actionScriptVar88 / 2] & 0xD0) != 0) {
-			movementCode39(null);
+			actionScriptCommand39(null);
 			return;
 		} else if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
 			return;
@@ -6817,7 +6817,7 @@ void unknownC0A37ACommon(short arg1) {
 void unknownC0A384() {
 	if (entityUnknown2C5E[actionScriptVar88 / 2] <= 0) {
 		if ((entityObstacleFlags[actionScriptVar88 / 2] & 0xD0) != 0) {
-			movementCode39(null);
+			actionScriptCommand39(null);
 		} else if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
 			return;
 			//some unreachable code here
