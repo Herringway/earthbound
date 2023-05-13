@@ -825,6 +825,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/openMenuButtonCheckTalk.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/openSoundMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/openTextSpeedMenu.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/overworldPSIMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/overworldUseItem.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/printEquipment.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/printEquipmentStats.html</loc></url>
@@ -839,6 +840,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/printString.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/printStringF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/psiCategories.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/psiMenuValidCharacter.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/queueItemForDelivery.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/recoverHPAmtPercent.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/recoverPPAmtPercent.html</loc></url>
@@ -953,13 +955,11 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AD26.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AD42.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1AD7D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC1B5B6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1BB06.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1BB71.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1C165.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1C1BA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1C32A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC1C367.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1C373.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1C3B6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1C853.html</loc></url>
