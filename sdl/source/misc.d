@@ -2,6 +2,7 @@ module misc;
 
 import std.algorithm;
 import std.exception;
+import std.datetime;
 import std.file;
 import std.experimental.logger;
 import std.path;
@@ -95,3 +96,9 @@ struct FrameStatTracker {
 }
 
 FrameStatTracker frameStatTracker;
+
+SysTime getLastModifiedTime(string path) {
+	SysTime access, modified;
+	getTimes(path, access, modified);
+	return modified;
+}

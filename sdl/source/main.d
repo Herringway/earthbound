@@ -32,6 +32,7 @@ import imgui.sdl;
 import ImGui = d_imgui;
 
 enum textCacheFile = "text.cache";
+enum extractDoc = "extract.yaml";
 
 struct VideoSettings {
 	WindowMode windowMode;
@@ -127,8 +128,13 @@ void main(string[] args) {
 
 	bool loadCachedText = !forceCacheRebuild && textCacheFile.exists;
 
+	if (getLastModifiedTime(extractDoc) > getLastModifiedTime(textCacheFile)) {
+		loadCachedText = false;
+		infof("Text cache out of date");
+	}
+
 	if (!loadCachedText) {
-		const extractInfo = fromFile!(ExtractInfo, YAML)("extract.yaml");
+		const extractInfo = fromFile!(ExtractInfo, YAML)(extractDoc);
 		infof("Building text cache...");
 		foreach (textDocFile; extractInfo.text) {
 			const textData = parseTextData(rom[textDocFile.offset .. textDocFile.offset + textDocFile.size], textDocFile.offset, extractInfo.renameLabels, extractInfo.text);
