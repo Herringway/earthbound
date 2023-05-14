@@ -10,6 +10,8 @@ import nspcplay;
 import bindbc.sdl;
 import bindbc.sdl.mixer;
 
+import earthbound.commondefs;
+
 import misc;
 version(Windows) {
 	enum libName = "SDL2_mixer.dll";
@@ -18,6 +20,78 @@ version(Windows) {
 } else version (Posix) {
 	enum libName = "libSDL2_mixer.so";
 }
+
+immutable bool[Sfx.max + 1] altChannel = [
+	Sfx.onettTrumpetSolo: true,
+	Sfx.praying: true,
+	Sfx.psiUsed: true,
+	Sfx.damageTaken: true,
+	Sfx.smaaaash: true,
+	Sfx.allyFell: true,
+	Sfx.recoverHP: true,
+	Sfx.recoverStatus: true,
+	Sfx.shield: true,
+	Sfx.psiShield: true,
+	Sfx.statIncrease: true,
+	Sfx.statDecrease: true,
+	Sfx.psiHypnosis: true,
+	Sfx.psiMagnet: true,
+	Sfx.psiParalysis: true,
+	Sfx.psiBrainshock: true,
+	Sfx.psiRockin1: true,
+	Sfx.psiRockin2: true,
+	Sfx.psiRockin3: true,
+	Sfx.psiFire: true,
+	Sfx.counterPSI: true,
+	Sfx.enemyPSIUsed: true,
+	Sfx.psiFreeze1: true,
+	Sfx.psiFreeze2: true,
+	Sfx.psiFreezeFinish: true,
+	Sfx.hpSucker: true,
+	Sfx.psiStarstorm: true,
+	Sfx.psiFlash2: true,
+	Sfx.psiFlash3: true,
+	Sfx.reflectDamage: true,
+	Sfx.devilMachineOff: true,
+	Sfx.psiDefenseDown: true,
+	Sfx.beam: true,
+	Sfx.unknown4E: true,
+	Sfx.psiParalysisO: true,
+	Sfx.psiBrainshockO: true,
+	Sfx.spores: true,
+	Sfx.afflicted: true,
+	Sfx.ouch: true,
+	Sfx.unknown56: true,
+	Sfx.unknown57: true,
+	Sfx.refilled: true,
+	Sfx.defensesDestroyed: true,
+	Sfx.psiReflected: true,
+	Sfx.unknown5E: true,
+	Sfx.magicButterfly: true,
+	Sfx.ghost: true,
+	Sfx.unknown62: true,
+	Sfx.shieldKiller: true,
+	Sfx.mysteriousTransport: true,
+	Sfx.congrats: true,
+	Sfx.learnedPSI: true,
+	Sfx.pyramid1: true,
+	Sfx.pyramid2: true,
+	Sfx.pyramid3: true,
+	Sfx.pyramid4: true,
+	Sfx.pyramid5: true,
+	Sfx.pyramidOpened: true,
+	Sfx.rapidKnocking: true,
+	Sfx.mysterious: true,
+	Sfx.mysterious2: true,
+	Sfx.itemSold: true,
+	Sfx.unknown79: true,
+	Sfx.textInput: true,
+	Sfx.unknown7B: true,
+	Sfx.unknown7C: true,
+	Sfx.unknown7D: true,
+	Sfx.unknown7E: true,
+];
+
 void initAudio(ubyte channels, uint sampleRate) {
     enforceSDLLoaded!("SDL_Mixer", Mix_Linked_Version, libName)(loadSDLMixer());
 	enforceSDL(Mix_OpenAudio(sampleRate, SDL_AudioFormat.AUDIO_S16, channels, 4096) != -1, "Could not open audio");
@@ -182,13 +256,14 @@ void playMusic(ushort track) {
 }
 
 void playSFX(ubyte id) {
+	const channel = altChannel[id];
 	if (id == 0) {
 		if(Mix_FadeOutChannel(0, 0) == -1) {
 			SDLError("Could not fade out");
 		}
 	} else {
 		if (auto sound = id in loadedSFX) {
-			if(Mix_PlayChannel(0, *sound, 0) == -1) {
+			if(Mix_PlayChannel(channel, *sound, 0) == -1) {
 				SDLError("Could not play sound effect");
 			}
 		} else {
