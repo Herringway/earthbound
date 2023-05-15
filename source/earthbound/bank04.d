@@ -2785,7 +2785,7 @@ void spawnTravellingPhotographer(short arg1) {
 	unknownC07C5B();
 	unknown7E5D58 = 0;
 	unknown7E9E35 = cast(short)(arg1 - 1);
-	displayText(getTextBlock("textC466C1"));
+	displayText(getTextBlock("MSG_EVT_PHOTOGRAPHER"));
 	savePhotoState(arg1);
 }
 
@@ -5631,7 +5631,7 @@ void unknownC4C60E(short arg1) {
 /// $C4C64D
 short gameOverPrompt() {
 	skippablePause(0x3C);
-	displayText(getTextBlock("textGameOver"));
+	displayText(getTextBlock("MSG_SYS_COMEBACK"));
 	closeAllWindowsAndHPPP();
 	if (getEventFlag(EventFlag.sysComeBack) == 0) {
 		skippablePause(0x3C);

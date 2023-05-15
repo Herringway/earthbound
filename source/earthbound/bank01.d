@@ -1689,16 +1689,16 @@ void debugYButtonMenu() {
 				respawnY = gameState.leaderY.integer;
 				break;
 			case 4:
-				x1A = getTextBlock("textDebugAppleMenu");
+				x1A = getTextBlock("MSG_DEBUG_00");
 				break;
 			case 5:
-				x1A = getTextBlock("textDebugBananaMenu");
+				x1A = getTextBlock("MSG_DEBUG_01");
 				break;
 			case 6:
-				x1A = getTextBlock("textDebugUnknownMenu");
+				x1A = getTextBlock("MSG_DEBUG_02");
 				break;
 			case 7:
-				x1A = getTextBlock("textDebugUnknownMenu2");
+				x1A = getTextBlock("TEXT_DEBUG_UNKNOWN_MENU_2");
 				break;
 			case 8:
 				for (short i = 0; i < 30; i++) {
@@ -1757,10 +1757,10 @@ void debugYButtonMenu() {
 				startReplay();
 				goto Unknown56;
 			case 22:
-				x1A = getTextBlock("textBattleGiygasPrayer91");
+				x1A = getTextBlock("MSG_BTL_INORU_BACK_TO_PC_9");
 				break;
 			case 23:
-				x1A = getTextBlock("textEndOfGamePickyEvent");
+				x1A = getTextBlock("MSG_EVT_TO_BE_CONTINUED");
 				closeAllWindows();
 				hideHPPPWindows();
 				displayText(x1A);
@@ -1881,7 +1881,7 @@ void openMenuButton() {
 			case MainMenuOptions.talkTo:
 				const(ubyte)* textPtr = talkTo();
 				if (textPtr == null) {
-					textPtr = getTextBlock("textWhoAreYouTalkingTo");
+					textPtr = getTextBlock("MSG_SYS_HANASU_NG");
 				}
 				displayText(textPtr);
 				break mainLoop;
@@ -1989,7 +1989,7 @@ void openMenuButton() {
 										createWindowN(Window.textStandard);
 										setWorkingMemory(WorkingMemory(x1F));
 										setArgumentMemory(x1D);
-										displayText(getTextBlock("textOnlyOneWhoShouldCarryThis"));
+										displayText(getTextBlock("MSG_SYS_GOODS_NOCARRY"));
 										closeWindow(Window.textStandard);
 										x1A = 0;
 										continue;
@@ -2013,39 +2013,39 @@ void openMenuButton() {
 									getActiveWindowAddress().argument = x1D;
 									switch (x16) {
 										case 0: //give to self, alive
-											displayText(getTextBlock("textRearrangedOwnItems"));
+											displayText(getTextBlock("MSG_SYS_CARRY_SELF_ALIVE"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 1: //give to other, alive, inventory full
-											displayText(getTextBlock("textCouldntGiveAliveInventoryFull"));
+											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_ALIVE_ALIVE"));
 											break;
 										case 2: //give to other, dead, inventory full
-											displayText(getTextBlock("textCouldntGiveDeadInventoryFull"));
+											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_ALIVE_DEAD"));
 											break;
 										case 3: //give to other, alive
-											displayText(getTextBlock("textGaveItemAlive"));
+											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_ALIVE_ALIVE"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 4: //give to other, dead
-											displayText(getTextBlock("textGaveItemDead"));
+											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_ALIVE_DEAD"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 5: //give to self, dead
-											displayText(getTextBlock("textRearrangedOwnItemsDead"));
+											displayText(getTextBlock("MSG_SYS_CARRY_SELF_DEAD"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 6: //give to other, self dead, other alive, inventory full
-											displayText(getTextBlock("textCouldntTakeFromCharInventoryFull"));
+											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_DEAD_ALIVE"));
 											break;
 										case 7: //give to other, self dead, other dead, inventory full
-											displayText(getTextBlock("textCouldntGiveToCharInventoryFull"));
+											displayText(getTextBlock("MSG_SYS_CARRY_FAIL_OTHER_DEAD_DEAD"));
 											break;
 										case 8: //give to other, self dead, other alive
-											displayText(getTextBlock("textTookItemFromDead"));
+											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_DEAD_ALIVE"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										case 9: //give to other, self dead, other dead
-											displayText(getTextBlock("textTookItemFromDeadGaveToDead"));
+											displayText(getTextBlock("MSG_SYS_CARRY_OTHER_DEAD_DEAD"));
 											unknownC22A3A(x18, cast(short)x1F, x1D);
 											break;
 										default: //invalid
@@ -2059,7 +2059,7 @@ void openMenuButton() {
 									createWindowN(Window.textStandard);
 									setWorkingMemory(WorkingMemory(x1F));
 									setArgumentMemory(x1D);
-									displayText(getTextBlock("textGotRidOfOwnItem"));
+									displayText(getTextBlock("MSG_SYS_GOODS_DROP"));
 									closeWindow(Window.textStandard);
 									closeWindow(Window.inventoryMenu);
 									closeWindow(Window.inventory);
@@ -2096,7 +2096,7 @@ void openMenuButton() {
 			case MainMenuOptions.check:
 				const(ubyte)* textPtr = check();
 				if (textPtr == null) {
-					textPtr = getTextBlock("textNoProblemHere");
+					textPtr = getTextBlock("MSG_SYS_NOPROBLEM");
 				}
 				displayText(textPtr);
 				break mainLoop;
@@ -2127,7 +2127,7 @@ void openMenuButtonCheckTalk() {
 	if (textPtr is null) {
 		textPtr = check();
 		if (textPtr is null) {
-			textPtr = getTextBlock("textNoProblemHere");
+			textPtr = getTextBlock("MSG_SYS_NOPROBLEM");
 		}
 	}
 	displayText(textPtr);
@@ -5465,7 +5465,7 @@ short overworldUseItem(short arg1, short arg2, short) {
 			x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 			break;
 		case ItemType.equippable:
-			x26 = getTextBlock("textItemCanBeEquipped");
+			x26 = getTextBlock("MSG_SYS_GOODS_EQUIP");
 			break;
 		case ItemType.edible:
 			x24 = 1;
@@ -5473,7 +5473,7 @@ short overworldUseItem(short arg1, short arg2, short) {
 			break;
 		case ItemType.healingItem:
 			if ((itemData[x01].flags & itemUsableFlags[arg1 - 1]) == 0) {
-				x26 = getTextBlock("textCouldNotUseVeryWell");
+				x26 = getTextBlock("MSG_SYS_GOODS_USE_NG_USER");
 			} else {
 				switch (itemData[x01].type & 0xC) {
 					case 0:
@@ -5481,7 +5481,7 @@ short overworldUseItem(short arg1, short arg2, short) {
 						x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 						break;
 					case 4:
-						x26 = getTextBlock("textCantBeUsedHere");
+						x26 = getTextBlock("MSG_SYS_GOODS_USE_NG_HERE");
 						break;
 					case 8:
 						switch(itemData[x01].type & 3) {
@@ -5493,13 +5493,13 @@ short overworldUseItem(short arg1, short arg2, short) {
 							case 2:
 								if (unknownC1AD7D() == x01) {
 									if ((x01 == ItemID.bicycle) && (unknownC03C4B() != 0)) {
-										x26 = getTextBlock("textCantRideBikeHere");
+										x26 = getTextBlock("MSG_SYS_BICYCLE_ATARI_HERE");
 									} else {
 										x24 = 1;
 										x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 									}
 								} else {
-									x26 = getTextBlock("textCantBeUsedHere");
+									x26 = getTextBlock("MSG_SYS_GOODS_USE_NG_HERE");
 								}
 								break;
 							case 3:
@@ -5542,7 +5542,7 @@ short overworldUseItem(short arg1, short arg2, short) {
 		unknownC1ACA1(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.sizeof);
 	}
 	if (x26 == null) {
-		x26 = getTextBlock("textCantUseItem");
+		x26 = getTextBlock("MSG_SYS_GOODS_USE_NG");
 	}
 	if ((x24 != 0) && (battleActionTable[itemData[x01].battleAction].func != null)) {
 		currentAttacker = &battlersTable[0];
@@ -5616,7 +5616,7 @@ short overworldPSIMenu() {
 				}
 				if (battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost > partyCharacters[psiUser - 1].pp.current.integer) {
 					createWindowN(Window.textBattle);
-					displayText(getTextBlock("textNotEnoughPP"));
+					displayText(getTextBlock("MSG_BTL_PSI_CANNOT_MENU"));
 					closeFocusWindowN();
 					psiTarget = 0;
 				} else {
@@ -5625,7 +5625,7 @@ short overworldPSIMenu() {
 							psiTarget = cast(ubyte)selectPSITeleportDestination();
 						} else {
 							createWindowN(Window.textBattle);
-							displayText(getTextBlock("textCannotTeleportHere"));
+							displayText(getTextBlock("MSG_SYS_TLPT_NG"));
 							closeFocusWindowN();
 							psiTarget = 0;
 						}
@@ -5811,7 +5811,7 @@ short attemptHomesickness() {
 void getOffBicycle() {
 	createWindowN(Window.textStandard);
 	setWorkingMemory(WorkingMemory(1));
-	displayText(getTextBlock("textGotOffBike"));
+	displayText(getTextBlock("MSG_SYS_BICYCLE_OFF"));
 	closeFocusWindowN();
 	windowTick();
 	unknownC03CFD();
@@ -6174,7 +6174,7 @@ short battlePSIMenu(UnknownA97D* arg1) {
 				if (battleActionTable[psiAbilityTable[x1C].battleAction].ppCost > partyCharacters[arg1.unknown0 - 1].pp.target) {
 					createWindowN(Window.textBattle);
 					enableBlinkingTriangle(2);
-					displayText(getTextBlock("textNotEnoughPP"));
+					displayText(getTextBlock("MSG_BTL_PSI_CANNOT_MENU"));
 					clearBlinkingPrompt();
 					closeFocusWindowN();
 					x16 = 0;
@@ -6314,7 +6314,7 @@ void levelUpChar(short arg1, short arg2) {
 		enableBlinkingTriangle(1);
 		unknownC1ACA1(&partyCharacters[arg1].name[0], 5);
 		unknownC1AD0A(partyCharacters[arg1].level);
-		displayText(getTextBlock("textLevelIsNowX"));
+		displayText(getTextBlock("MSG_BTL_LEVEL_UP"));
 		enableBlinkingTriangle(2);
 	}
 	short x02 = unknownC1D08B(x16, statsGrowthVars[arg2].offense, partyCharacters[arg1].baseOffense);
@@ -6323,7 +6323,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathOffense(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(getTextBlock("textLevelUpOffense"));
+			displayText(getTextBlock("MSG_BTL_LV_OFFENSE_UP"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].defense, partyCharacters[arg1].baseDefense);
@@ -6332,7 +6332,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathDefense(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(getTextBlock("textLevelUpDefense"));
+			displayText(getTextBlock("MSG_BTL_LV_DEFENSE_UP"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].speed, partyCharacters[arg1].baseSpeed);
@@ -6341,7 +6341,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathSpeed(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(getTextBlock("textLevelUpSpeed"));
+			displayText(getTextBlock("MSG_BTL_LV_SPEED_UP"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].guts, partyCharacters[arg1].baseGuts);
@@ -6350,7 +6350,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathGuts(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(getTextBlock("textLevelUpGuts"));
+			displayText(getTextBlock("MSG_BTL_LV_GUTS_UP"));
 		}
 	}
 	if (10 > x16) {
@@ -6363,7 +6363,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathVitality(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(getTextBlock("textLevelUpVitality"));
+			displayText(getTextBlock("MSG_BTL_LV_VITA_UP"));
 		}
 	}
 	if (10 > x16) {
@@ -6376,7 +6376,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathIQ(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(getTextBlock("textLevelUpIQ"));
+			displayText(getTextBlock("MSG_BTL_LV_IQ_UP"));
 		}
 	}
 	x02 = unknownC1D08B(x16, statsGrowthVars[arg2].luck, partyCharacters[arg1].baseLuck);
@@ -6385,7 +6385,7 @@ void levelUpChar(short arg1, short arg2) {
 		recalcCharacterPostmathLuck(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
 			unknownC1AD0A(x02);
-			displayText(getTextBlock("textLevelUpLuck"));
+			displayText(getTextBlock("MSG_BTL_LV_LUCK_UP"));
 		}
 	}
 	short x14 = cast(short)(partyCharacters[arg1].vitality * 15 - partyCharacters[arg1].maxHP);
@@ -6394,7 +6394,7 @@ void levelUpChar(short arg1, short arg2) {
 	partyCharacters[arg1].hp.target += x02;
 	if (arg2 != 0) {
 		unknownC1AD0A(x02);
-		displayText(getTextBlock("textLevelUpMaxHP"));
+		displayText(getTextBlock("MSG_BTL_LV_MAXHP_UP"));
 	}
 	if (arg1 != 2) {
 		short x12 = ((arg1 == 0) && (getEventFlag(EventFlag.winOscar) != 0)) ? partyCharacters[arg1].iq * 2 : partyCharacters[arg1].iq;
@@ -6405,7 +6405,7 @@ void levelUpChar(short arg1, short arg2) {
 			partyCharacters[arg1].pp.target += x14;
 			if (arg2 != 0) {
 				unknownC1AD0A(x14);
-				displayText(getTextBlock("textLevelUpMaxPP"));
+				displayText(getTextBlock("MSG_BTL_LV_MAXPP_UP"));
 			}
 		}
 		if (arg2 != 0) {
@@ -6416,7 +6416,7 @@ void levelUpChar(short arg1, short arg2) {
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].nessLevel == x02) {
 							unknownC1ACF8(i);
-							displayText(getTextBlock("textLevelUpPSILearned"));
+							displayText(getTextBlock("MSG_BTL_LEARN_PSI"));
 						}
 					}
 					break;
@@ -6424,7 +6424,7 @@ void levelUpChar(short arg1, short arg2) {
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].paulaLevel == x02) {
 							unknownC1ACF8(i);
-							displayText(getTextBlock("textLevelUpPSILearned"));
+							displayText(getTextBlock("MSG_BTL_LEARN_PSI"));
 						}
 					}
 					break;
@@ -6432,7 +6432,7 @@ void levelUpChar(short arg1, short arg2) {
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].pooLevel == x02) {
 							unknownC1ACF8(i);
-							displayText(getTextBlock("textLevelUpPSILearned"));
+							displayText(getTextBlock("MSG_BTL_LEARN_PSI"));
 						}
 					}
 					break;
@@ -6486,7 +6486,7 @@ void showHPAlert(short arg1) {
 	freezeEntities();
 	createWindowN(Window.textStandard);
 	unknownC1AC4A(&partyCharacters[arg1].name[0], 5);
-	displayText(getTextBlock("textAlertConditionCritical"));
+	displayText(getTextBlock("MSG_SYS_MAP_CRITICAL_SITUATION"));
 	closeFocusWindowN();
 	windowTick();
 	unfreezeEntities();
@@ -6683,9 +6683,9 @@ void battleActionSwitchWeapons() {
 		currentAttacker.offense = cast(short)(currentAttacker.baseOffense + x18);
 		currentAttacker.baseGuts = partyCharacters[currentAttacker.id - 1].guts;
 		currentAttacker.guts = cast(short)(currentAttacker.baseGuts + x04);
-		displayText(getTextBlock("textBattleEquipXInstead"));
+		displayText(getTextBlock("MSG_BTL_EQUIP_OK"));
 	} else {
-		displayText(getTextBlock("textBattleCouldNotEquipAttackAnyway"));
+		displayText(getTextBlock("MSG_BTL_EQUIP_NG_WEAPON"));
 	}
 	short tmp = partyCharacters[currentAttacker.id - 1].items[partyCharacters[currentAttacker.id - 1].equipment[EquipmentSlot.weapon] - 1];
 	if ((tmp != 0) && ((itemData[tmp].type & 3) == 1)) {
@@ -6706,7 +6706,7 @@ void battleActionSwitchArmor() {
 		short x04 = cast(short)(currentAttacker.speed - currentAttacker.baseSpeed);
 		short x02 = cast(short)(currentAttacker.luck - currentAttacker.baseLuck);
 		equipItem(currentAttacker.id, currentAttacker.actionItemSlot);
-		displayText(getTextBlock("textBattleEquipXInstead"));
+		displayText(getTextBlock("MSG_BTL_EQUIP_OK"));
 		currentAttacker.baseDefense = partyCharacters[currentAttacker.id - 1].defense;
 		currentAttacker.defense = cast(short)(currentAttacker.baseDefense + x16);
 		currentAttacker.baseSpeed = partyCharacters[currentAttacker.id - 1].speed;
@@ -6720,7 +6720,7 @@ void battleActionSwitchArmor() {
 		currentAttacker.hypnosisResist = calcPSIResistanceModifiers(partyCharacters[currentAttacker.id - 1].hypnosisBrainshockResist);
 		currentAttacker.brainshockResist = calcPSIResistanceModifiers(cast(ubyte)(3 - partyCharacters[currentAttacker.id - 1].hypnosisBrainshockResist));
 	} else {
-		displayText(getTextBlock("textBattleCouldNotEquipAttackAnyway"));
+		displayText(getTextBlock("MSG_BTL_EQUIP_NG_WEAPON"));
 	}
 	clearBlinkingPrompt();
 }
@@ -7090,7 +7090,7 @@ void corruptionCheck() {
 			continue;
 		}
 		unknownC1AD0A(i + 1);
-		displayText(getTextBlock("textSaveFileLost"));
+		displayText(getTextBlock("MSG_SYS_SRAM_CRASH"));
 	}
 	closeFocusWindowN();
 	unknown7E9F79 = 0;
@@ -7495,7 +7495,7 @@ void fileMenuLoop() {
 			respawnY = gameState.leaderY.integer;
 			unknownC064D4();
 			setLeaderLocation(0x840, 0x6E8);
-			unknownC46881(getTextBlock("textFileSelectScreen1"));
+			unknownC46881(getTextBlock("MSG_EVT_PROLOGUE_NEW"));
 			setEventFlag(EventFlag.sysMonsterOff, 1);
 			showNPCFlag = 1;
 		}
@@ -7678,7 +7678,7 @@ void fileMenuLoop() {
 								respawnY = gameState.leaderY.integer;
 								unknownC064D4();
 								setLeaderLocation(0x840, 0x6E8);
-								unknownC46881(getTextBlock("textFileSelectScreen1"));
+								unknownC46881(getTextBlock("MSG_EVT_PROLOGUE_NEW"));
 								setEventFlag(EventFlag.sysMonsterOff, 1);
 								showNPCFlag = 1;
 								break outermost;
@@ -7694,7 +7694,7 @@ void fileMenuLoop() {
 	selectedTextSpeed = cast(ushort)(gameState.textSpeed - 1);
 	unknown7E964B = (gameState.textSpeed == 3) ? 0 : 30;
 	unknown7E5DBA = 0;
-	displayText(getTextBlock("textFileSelectScreen2"));
+	displayText(getTextBlock("MSG_SYS_PRE_GAMESTART"));
 }
 
 /// $C1FF2C

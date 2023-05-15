@@ -3725,7 +3725,7 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 
 /// $C06B21
 void spawnBuzzBuzz() {
-	displayText(getTextBlock("textSpawnBuzzBuzz"));
+	displayText(getTextBlock("MSG_EVT_BUNBUNBUN"));
 	unknownEF0EE8();
 }
 
@@ -4146,7 +4146,7 @@ void processQueuedInteractions() {
 			break;
 		case InteractionType.unknown10:
 			displayInteractionText(ptr.textPtr);
-			if (ptr.textPtr == getTextBlock("textDadCalls")) {
+			if (ptr.textPtr == getTextBlock("MSG_SYS_PAPA_2H")) {
 				dadPhoneTimer = 0x697;
 				unknown7E9E56 = 0;
 			}
@@ -8191,7 +8191,7 @@ void ebMain() {
 					freezeEntities();
 					playSfx(Sfx.cursor1);
 					createWindowN(Window.textStandard);
-					displayText(getTextBlock("textDebugAppleMenu"));
+					displayText(getTextBlock("MSG_DEBUG_00"));
 					clearInstantPrinting();
 					hideHPPPWindows();
 					closeAllWindows();
@@ -8200,7 +8200,7 @@ void ebMain() {
 					freezeEntities();
 					playSfx(Sfx.cursor1);
 					createWindowN(Window.textStandard);
-					displayText(getTextBlock("textDebugBananaMenu"));
+					displayText(getTextBlock("MSG_DEBUG_01"));
 					clearInstantPrinting();
 					hideHPPPWindows();
 					closeAllWindows();
@@ -9336,7 +9336,7 @@ void loadDadPhone() {
 	if (getEventFlag(EventFlag.sysDis2HPapa) != 0) {
 		return;
 	}
-	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock("textDadCalls")));
+	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock("MSG_SYS_PAPA_2H")));
 	unknown7E9E56 = 1;
 }
 
@@ -9872,7 +9872,7 @@ void teleportMainLoop() {
 			unknownC0DD79();
 			unknownC0E897();
 			if (teleportStyle == TeleportStyle.unknown) {
-				unknownC46881(getTextBlock("textLearnedPSITeleportAlpha"));
+				unknownC46881(getTextBlock("MSG_EVT_MASTER_TLPT"));
 			}
 			break;
 		case 2:

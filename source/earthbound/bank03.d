@@ -1542,16 +1542,16 @@ immutable FileSelectSummarySpriteConfigEntry[5] fileSelectSummarySpriteConfig = 
 
 /// $C3FD8D
 immutable string[10] attractModeText = [
-	"textAttractMode0",
-	"textAttractMode1",
-	"textAttractMode2",
-	"textAttractMode3",
-	"textAttractMode4",
-	"textAttractMode5",
-	"textAttractMode6",
-	"textAttractMode7",
-	"textAttractMode8",
-	"textAttractMode9",
+	"MSG_MD_TOTO",
+	"MSG_MD_THRK",
+	"MSG_MD_MAKYO",
+	"MSG_MD_HASHI",
+	"MSG_MD_DUNG",
+	"MSG_MD_TWSN",
+	"MSG_MD_SKRB",
+	"MSG_MD_FRSD",
+	"MSG_MD_SUMS",
+	"MSG_MD_ONET",
 ];
 
 /// $C3FDBD
