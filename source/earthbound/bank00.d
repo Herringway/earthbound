@@ -4027,16 +4027,16 @@ void reloadHotspots() {
 /// $C072CF
 void activateHotspot(short arg1, short arg2, const(ubyte)* arg3) {
 	short x;
-	if ((gameState.leaderX.integer > mapHotspots[arg1 - 1].x1) && (gameState.leaderX.integer < mapHotspots[arg1 - 1].x2) && (gameState.leaderY.integer > mapHotspots[arg1 - 1].y1) && (gameState.leaderY.integer < mapHotspots[arg1 - 1].y2)) {
+	if ((gameState.leaderX.integer > mapHotspots[arg2].x1) && (gameState.leaderX.integer < mapHotspots[arg2].x2) && (gameState.leaderY.integer > mapHotspots[arg2].y1) && (gameState.leaderY.integer < mapHotspots[arg2].y2)) {
 		x = 1;
 	} else {
 		x = 2;
 	}
 	activeHotspots[arg1 - 1].mode = x;
-	activeHotspots[arg1 - 1].x1 = cast(ushort)(mapHotspots[arg1 - 1].x1 * 8);
-	activeHotspots[arg1 - 1].y1 = cast(ushort)(mapHotspots[arg1 - 1].y1 * 8);
-	activeHotspots[arg1 - 1].x2 = cast(ushort)(mapHotspots[arg1 - 1].x2 * 8);
-	activeHotspots[arg1 - 1].y2 = cast(ushort)(mapHotspots[arg1 - 1].y2 * 8);
+	activeHotspots[arg1 - 1].x1 = cast(ushort)(mapHotspots[arg2].x1 * 8);
+	activeHotspots[arg1 - 1].y1 = cast(ushort)(mapHotspots[arg2].y1 * 8);
+	activeHotspots[arg1 - 1].x2 = cast(ushort)(mapHotspots[arg2].x2 * 8);
+	activeHotspots[arg1 - 1].y2 = cast(ushort)(mapHotspots[arg2].y2 * 8);
 	activeHotspots[arg1 - 1].pointer = arg3;
 	gameState.activeHotspotModes[arg1 - 1] = cast(ubyte)x;
 	gameState.activeHotspotIDs[arg1 - 1] = cast(ubyte)arg2;
