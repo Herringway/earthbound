@@ -2243,11 +2243,9 @@ void handleNormalMovement() {
 	short x02_2 = 1;
 	npcCollisionCheck(newX.integer, newY.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[23] != 0xFFFF) {
-		tracef("Couldn't move due to collision with %s", entityCollidedObjects[23]);
 		x02_2 = 0;
 	}
 	if ((x04 & 0xC0) != 0) {
-		tracef("Couldn't move due to tile type");
 		x02_2 = 0;
 	}
 	if (unknown7E5DA8 != 0xffff) {
