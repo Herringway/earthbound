@@ -217,6 +217,14 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					entityAbsZFractionTable[entity] = newCoords[2].fraction;
 					entityAbsZTable[entity] = newCoords[2].integer;
 				}
+				if (auto newCoords = InputEditableR("Delta Coords", FixedPoint1616(entityDeltaXFractionTable[entity], entityDeltaXTable[entity]), FixedPoint1616(entityDeltaYFractionTable[entity], entityDeltaYTable[entity]), FixedPoint1616(entityDeltaZFractionTable[entity], entityDeltaZTable[entity]))) {
+					entityDeltaXFractionTable[entity] = newCoords[0].fraction;
+					entityDeltaXTable[entity] = newCoords[0].integer;
+					entityDeltaYFractionTable[entity] = newCoords[1].fraction;
+					entityDeltaYTable[entity] = newCoords[1].integer;
+					entityDeltaZFractionTable[entity] = newCoords[2].fraction;
+					entityDeltaZTable[entity] = newCoords[2].integer;
+				}
 				InputEditable("Size", entitySizes[entity]);
 				InputEditable!Direction("Direction", entityDirections[entity]);
 				InputEditable("Priority", entityDrawPriority[entity]);
