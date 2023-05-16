@@ -5536,7 +5536,8 @@ short overworldUseItem(short arg1, short arg2, short) {
 	unknownC1AC4A(&partyCharacters[arg1 - 1].name[0], PartyCharacter.name.sizeof);
 	unknownC1ACF8(x01);
 	createWindowN(Window.textStandard);
-	setArgumentMemory(arg1);
+	setWorkingMemory(WorkingMemory(arg1));
+	setArgumentMemory(arg2);
 	if (x00 != 0xFF) {
 		unknownC1ACA1(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.sizeof);
 	}
