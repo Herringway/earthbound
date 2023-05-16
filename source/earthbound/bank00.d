@@ -6998,7 +6998,7 @@ void unknownC0A643(short, ref const(ubyte)* arg2) {
 short setDirection8(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead8(arg2);
 	actionScriptVar94 = arg2;
-	entityUnknown1A86[actionScriptVar88 / 2] = setDirection(tmp, arg2);
+	entityMovingDirection[actionScriptVar88 / 2] = setDirection(tmp, arg2);
 	return 0;
 }
 
@@ -8525,7 +8525,7 @@ short unknownC0C62B() {
 	if ((entityTPTEntries[currentEntitySlot] < 0) && (unknownC0C524() != 0)) {
 		x02 = short.min;
 	}
-	return cast(short)(unknownC41EFF(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], entityScriptVar6Table[currentEntitySlot], entityScriptVar7Table[currentEntitySlot]) + x02);
+	return cast(short)(getScreenAngle(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], entityScriptVar6Table[currentEntitySlot], entityScriptVar7Table[currentEntitySlot]) + x02);
 }
 
 /// $C0C682
@@ -8565,17 +8565,17 @@ void unknownC0C7DB() {
 }
 
 /// $C0C83B
-void unknownC0C83B(short arg1) {
-	entityUnknown1A86[currentEntitySlot] = arg1;
+void unknownC0C83B(short direction) {
+	entityMovingDirection[currentEntitySlot] = direction;
 	FixedPoint1616 x0E;
-	if ((arg1 & 1) != 0) {
+	if ((direction & 1) != 0) {
 		x0E.combined = (cast(int)entityUnknown2B32[currentEntitySlot] * 0xB505) >> 8;
 	} else {
 		x0E.combined = (cast(int)entityUnknown2B32[currentEntitySlot] * 0x10000) >> 8;
 	}
 	FixedPoint1616 x12;
 	FixedPoint1616 x16;
-	switch (arg1) {
+	switch (direction) {
 		case Direction.up:
 			x12.combined = 0;
 			x16.combined = -x0E.combined;
@@ -8769,7 +8769,7 @@ short unknownC0CEBE(short arg1) {
 	if (entityUnknown2B32[currentEntitySlot] < entityScriptVar3Table[currentEntitySlot]) {
 		entityUnknown2B32[currentEntitySlot] += 16;
 	}
-	if (unknownC46B0A(x02) != unknownC46B0A(x04)) {
+	if (setMovingDirectionFromAngle(x02) != setMovingDirectionFromAngle(x04)) {
 		unknownC0A443Entry2(currentEntitySlot);
 	}
 	return x04;
@@ -8861,12 +8861,12 @@ void unknownC0D19B() {
 	battleSwirlFlag = 0;
 	short x;
 	short y;
-	if (entityUnknown1A86[touchedEnemy] == 8) {
+	if (entityMovingDirection[touchedEnemy] == 8) {
 		y = 0;
 		x = 1;
 	} else {
-		short x04 = ((unknownC41EFF(entityAbsXTable[x20], entityAbsYTable[x20], entityAbsXTable[unknown7E4DB8], entityAbsYTable[unknown7E4DB8]) + 0x1000) / 0x2000);
-		switch ((entityUnknown1A86[touchedEnemy] - x04) & 7) {
+		short x04 = ((getScreenAngle(entityAbsXTable[x20], entityAbsYTable[x20], entityAbsXTable[unknown7E4DB8], entityAbsYTable[unknown7E4DB8]) + 0x1000) / 0x2000);
+		switch ((entityMovingDirection[touchedEnemy] - x04) & 7) {
 			case 0:
 			case 1:
 			case 7:
@@ -9122,7 +9122,7 @@ void unknownC0D7F7() {
 		}
 	}
 	if (entityUnknown2E3E[currentEntitySlot] != 0) {
-		entityDirections[currentEntitySlot] = unknownC46B0A(unknownC47044(unknownC41EFF(x18, x16, x12, x04)));
+		entityDirections[currentEntitySlot] = setMovingDirectionFromAngle(unknownC47044(getScreenAngle(x18, x16, x12, x04)));
 	} else {
 		entityUnknown2C5E[currentEntitySlot] = 0;
 		entityObstacleFlags[currentEntitySlot] |= 0x80;

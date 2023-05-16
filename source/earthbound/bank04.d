@@ -219,15 +219,15 @@ void decomp(const(ubyte)* data, void* buffer) {
 	decompBlock(data, cast(ubyte*)buffer, 0x10000);
 }
 
-/// $C41EFF
-ushort unknownC41EFF(short arg1, short arg2, short arg3, short arg4) {
-	short a = cast(short)(arg1 - arg3);
+/// $C41EFF - Calculates the screen angle between two given points. Range is 0- 65535, covering a full 360 degrees
+ushort getScreenAngle(short x1, short y1, short x2, short y2) {
+	short a = cast(short)(x1 - x2);
 	short y;
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
 	y = a;
-	a = cast(short)(arg2 - arg4);
+	a = cast(short)(y1 - y2);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -241,7 +241,7 @@ ushort unknownC41EFF(short arg1, short arg2, short arg3, short arg4) {
 		x0C /= 2;
 	}
 	short x0A = a;
-	a = cast(short)(arg2 - arg4);
+	a = cast(short)(y1 - y2);
 	if (a == 0) {
 		a = 8;
 	} else if (a > 0) {
@@ -249,9 +249,9 @@ ushort unknownC41EFF(short arg1, short arg2, short arg3, short arg4) {
 	} else {
 		a = 0;
 	}
-	if (arg1 - arg3 == 0) {
+	if (x1 - x2 == 0) {
 		a |= 4;
-	} else if (arg1 - arg3 > 0) {
+	} else if (x1 - x2 > 0) {
 		a |= 1;
 	}
 	if ((a & 0xC) != 0) {
@@ -285,11 +285,11 @@ ushort unknownC41EFF(short arg1, short arg2, short arg3, short arg4) {
 }
 
 unittest {
-	assert(unknownC41EFF(0x7D0,0x488,0x5F8,0x488) == 0xC000);
-	assert(unknownC41EFF(0x818,0x5D8,0x8F0,0x5D8) == 0x4000);
-	assert(unknownC41EFF(0x718,0x6E8,0x570,0x6E8) == 0xC000);
-	assert(unknownC41EFF(0x56F,0x694,0x575,0x6E3) == 0x7C00);
-	assert(unknownC41EFF(0x1DE8,0x8F0,0x1E10,0x8E8) == 0x3800);
+	assert(getScreenAngle(0x7D0,0x488,0x5F8,0x488) == 0xC000);
+	assert(getScreenAngle(0x818,0x5D8,0x8F0,0x5D8) == 0x4000);
+	assert(getScreenAngle(0x718,0x6E8,0x570,0x6E8) == 0xC000);
+	assert(getScreenAngle(0x56F,0x694,0x575,0x6E3) == 0x7C00);
+	assert(getScreenAngle(0x1DE8,0x8F0,0x1E10,0x8E8) == 0x3800);
 }
 
 /// $C41FC5
@@ -330,7 +330,7 @@ immutable ushort[16] unknownC41FDF = [
 ];
 
 /// $C41FFF
-auto unknownC41FFF(short arg1, short arg2) {
+auto unknownC41FFF(ushort arg1, ushort arg2) {
 	static struct Result {
 		short y;
 		short x;
@@ -363,6 +363,14 @@ unittest {
 	with(unknownC41FFF(0x3800, 0xC0)) {
 		assert(y == -37);
 		assert(x == 188);
+	}
+	with(unknownC41FFF(0xA000, 0x80)) {
+		assert(y == 90);
+		assert(x == -90);
+	}
+	with(unknownC41FFF(0xB400, 0x80)) {
+		assert(y == 37);
+		assert(x == -122);
 	}
 }
 
@@ -2574,7 +2582,7 @@ short unknownC4621C(short arg1, short arg2) {
 short unknownC46257(short arg1, short arg2, short arg3, short arg4) {
 	short x14 = unknownC4621C(arg1, arg2);
 	short x = unknownC4621C(arg3, arg4);
-	return (unknownC41EFF(entityAbsYTable[x14], entityAbsXTable[x14], entityAbsYTable[x], entityAbsXTable[x]) + 0x1000) / 0x2000;
+	return (getScreenAngle(entityAbsYTable[x14], entityAbsXTable[x14], entityAbsYTable[x], entityAbsXTable[x]) + 0x1000) / 0x2000;
 }
 
 /// $C462AE
@@ -2910,7 +2918,7 @@ void unknownC46984(short arg1) {
 	if (x04 == -1) {
 		return;
 	}
-	short x10 = cast(short)((unknownC41EFF(entityAbsXTable[x04], entityAbsYTable[x04], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+	short x10 = cast(short)((getScreenAngle(entityAbsXTable[x04], entityAbsYTable[x04], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
 	if (entityDirections[x04] == x10) {
 		return;
 	}
@@ -2924,7 +2932,7 @@ void unknownC469F1(short arg1) {
 	if (x04 == -1) {
 		return;
 	}
-	short x10 = cast(short)((unknownC41EFF(entityAbsXTable[x04], entityAbsYTable[x04], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+	short x10 = cast(short)((getScreenAngle(entityAbsXTable[x04], entityAbsYTable[x04], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
 	if (entityDirections[x04] == x10) {
 		return;
 	}
@@ -2950,48 +2958,48 @@ short unknownC46A6E() {
 }
 
 /// $C46A7A
-immutable short[8] unknownC46A7A = [
-	0,
-	2,
-	2,
-	2,
-	4,
-	6,
-	6,
-	6,
+immutable short[8] directionTable4LR = [
+	Direction.up,
+	Direction.right,
+	Direction.right,
+	Direction.right,
+	Direction.down,
+	Direction.left,
+	Direction.left,
+	Direction.left,
 ];
 
 /// $C46A8A
-immutable short[8] unknownC46A8A = [
-	0,
-	0,
-	2,
-	4,
-	4,
-	4,
-	6,
-	0,
+immutable short[8] directionTable4UD = [
+	Direction.up,
+	Direction.up,
+	Direction.right,
+	Direction.down,
+	Direction.down,
+	Direction.down,
+	Direction.left,
+	Direction.up,
 ];
 
-/// $C46A9A
-short unknownC46A9A(short arg1) {
-	return unknownC46A7A[arg1];
+/// $C46A9A - Converts a full cardinal+ordinal direction to a cardinal, rounding towards left/right
+short convert8DirectionTo4PreferLeftRight(short arg1) {
+	return directionTable4LR[arg1];
 }
 
-/// $C46AA3
-short unknownC46AA3(short arg1) {
-	return unknownC46A8A[arg1];
+/// $C46AA3 - Converts a full cardinal+ordinal direction to a cardinal, rounding towards up/down
+short convert8DirectionTo4PreferUpDown(short arg1) {
+	return directionTable4UD[arg1];
 }
 
 /// $C46ADB
-ushort unknownC46ADB() {
-	return unknownC41EFF(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], entityScriptVar6Table[currentEntitySlot], entityScriptVar7Table[currentEntitySlot]);
+ushort entityAngleToDestination() {
+	return getScreenAngle(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], entityScriptVar6Table[currentEntitySlot], entityScriptVar7Table[currentEntitySlot]);
 }
 
 /// $C46B0A
-short unknownC46B0A(short arg1) {
-	entityUnknown1A86[currentEntitySlot] = cast(short)(cast(ushort)(arg1 + 0x1000) / 0x2000);
-	return entityUnknown1A86[currentEntitySlot];
+short setMovingDirectionFromAngle(short arg1) {
+	entityMovingDirection[currentEntitySlot] = cast(short)(cast(ushort)(arg1 + 0x1000) / 0x2000);
+	return entityMovingDirection[currentEntitySlot];
 }
 
 /// $C46B2D
@@ -3000,7 +3008,7 @@ short unknownC46B2D(short arg1) {
 }
 
 /// $C46B37
-short unknownC46B37(short arg1) {
+short getOppositeDirection(short arg1) {
 	return (arg1 + 4) & 7;
 }
 
@@ -3245,16 +3253,16 @@ short unknownC47143(short arg1, short arg2) {
 			return 1;
 		}
 	}
-	x12 = unknownC46ADB();
+	x12 = entityAngleToDestination();
 	unknownC47044(x12);
 	if (arg2 == 0) {
-		short x10 = unknownC46B0A(x12);
+		short x10 = setMovingDirectionFromAngle(x12);
 		if (arg1 != 0) {
-			x10 = unknownC46B37(x10);
+			x10 = getOppositeDirection(x10);
 		}
 		short x0E = entityDirections[currentEntitySlot];
 		entityDirections[currentEntitySlot] = x10;
-		if (unknownC46AA3(x0E) != unknownC46AA3(x10)) {
+		if (convert8DirectionTo4PreferUpDown(x0E) != convert8DirectionTo4PreferUpDown(x10)) {
 			unknownC0A443Entry2(currentEntitySlot);
 		}
 	}
@@ -3627,7 +3635,7 @@ short calcFramesToReachDestination(short arg1, short arg2, short arg3, short arg
 		if (((0 > x1A) ? (cast(short)-cast(int)x1A) : x1A <= 1) && ((0 > x18) ? (cast(short)-cast(int)x18) : x18 <= 1)) {
 			break;
 		}
-		short x18_2 = (unknownC41EFF(x10.integer, x14.integer, arg3, arg4) + 0x1000) / 0x2000;
+		short x18_2 = (getScreenAngle(x10.integer, x14.integer, arg3, arg4) + 0x1000) / 0x2000;
 		unknownC48C97(unknownC48C59[x18_2]);
 		x10.combined += horizontalMovementSpeeds[x18_2 / 8].directionSpeeds[0].combined;
 		x14.combined += verticalMovementSpeeds[x18_2 / 8].directionSpeeds[0].combined;
@@ -3745,7 +3753,7 @@ short getDistanceToMagicTruffle() {
 	if (x10 + x12 < 16) {
 		return 10;
 	}
-	return ((unknownC41EFF(gameState.leaderX.integer, gameState.leaderY.integer, entityAbsXTable[x04], entityAbsYTable[x04]) + 0x1000) / 0x2000) + 2;
+	return ((getScreenAngle(gameState.leaderX.integer, gameState.leaderY.integer, entityAbsXTable[x04], entityAbsYTable[x04]) + 0x1000) / 0x2000) + 2;
 }
 
 
@@ -5739,11 +5747,11 @@ void unknownC472A8(short arg1) {
 	unknownC47044(entityScriptVar0Table[currentEntitySlot]);
 	short x10 = unknownC46B51(entityScriptVar0Table[currentEntitySlot]);
 	if (arg1 != 0) {
-		x10 = unknownC46B37(x10);
+		x10 = getOppositeDirection(x10);
 	}
 	short x0E = entityDirections[currentEntitySlot];
 	entityDirections[currentEntitySlot] = x10;
-	if (unknownC46AA3(x0E) != unknownC46AA3(x10)) {
+	if (convert8DirectionTo4PreferUpDown(x0E) != convert8DirectionTo4PreferUpDown(x10)) {
 		unknownC0A443Entry2(currentEntitySlot);
 	}
 }
@@ -6066,7 +6074,7 @@ void unknownC48B3B() {
 		if (16 <= gameState.unknown96[i]) {
 			continue;
 		}
-		short x10 = cast(short)((unknownC41EFF(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+		short x10 = cast(short)((getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
 		if (entityDirections[gameState.partyEntities[i]] == x10) {
 			continue;
 		}

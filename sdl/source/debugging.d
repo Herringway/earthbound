@@ -261,7 +261,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				}
 				InputEditable("Sleep", entityScriptSleepFrames[entity]);
 				InputEditable("u1A4A", entityUnknown1A4A[entity]);
-				InputEditable("u1A86", entityUnknown1A86[entity]);
+				InputEditable!Direction("Moving direction", entityMovingDirection[entity]);
 				InputEditable("u284C", entityUnknown284C[entity]);
 				InputEditable("u2916", entityUnknown2916[entity]);
 				InputEditable("u2952", entityUnknown2952[entity]);

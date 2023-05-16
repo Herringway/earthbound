@@ -236,7 +236,7 @@ __gshared short currentEntityOffset; /// $(DOLLAR)1A44
 __gshared short currentScriptSlot; /// $(DOLLAR)1A46
 __gshared short currentScriptOffset; /// $(DOLLAR)1A48
 __gshared short[maxEntities] entityUnknown1A4A; /// $(DOLLAR)1A4A
-__gshared short[maxEntities] entityUnknown1A86; /// $(DOLLAR)1A86
+__gshared short[maxEntities] entityMovingDirection; /// $(DOLLAR)1A86
 __gshared short backgroundDistortionStyle; /// $(DOLLAR)1ACC
 __gshared short backgroundDistortionTargetLayer; /// $(DOLLAR)1ACE
 
