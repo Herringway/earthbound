@@ -17,12 +17,12 @@ immutable ubyte[][895] actionScriptScriptPointers;
 immutable ubyte[37 + 4 * (const(void)*).sizeof] actionScript774;
 immutable ubyte[26 + 4 * (const(void)*).sizeof] unknownC4152A;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript0;
-immutable ubyte[81 + 10 * (const(void)*).sizeof] actionScript320_321Common;
+immutable ubyte[81 + 10 * (const(void)*).sizeof] actionScriptMaboroshiOut;
 immutable ubyte[47 + 12 * (const(void)*).sizeof] actionScript478;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript607;
 immutable ubyte[17 + 8 * (const(void)*).sizeof] actionScript601;
 immutable ubyte[40 + 6 * (const(void)*).sizeof] unknownC41900;
-immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript332;
+immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiK;
 immutable ubyte[89 + 18 * (const(void)*).sizeof] actionScript561;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript878;
 immutable ubyte[48 + 11 * (const(void)*).sizeof] actionScript667;
@@ -32,7 +32,7 @@ immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript640;
 immutable ubyte[23 + 5 * (const(void)*).sizeof] actionScript720;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] actionScriptFollowToMichikoB;
-immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScript348_349;
+immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScriptTalkPaulaJeff;
 immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScript617;
 immutable ubyte[14 + 5 * (const(void)*).sizeof] actionScriptFrsdFieldO;
 immutable ubyte[24 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTonzuraBusChaous;
@@ -49,7 +49,7 @@ immutable ubyte[3 + 2 * (const(void)*).sizeof] unknownC3A42D;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] unknownC3A426Task;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] unknownC3A42DTask;
 immutable ubyte[26 + 4 * (const(void)*).sizeof] unknownC3A45C;
-immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScript321;
+immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScriptMaboroshiOut2;
 immutable ubyte[27 + 5 * (const(void)*).sizeof] actionScript676_677_678_Common2;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScript805;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript609;
@@ -60,8 +60,8 @@ immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript588;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript868;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript708;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript797;
-immutable ubyte[123 + 17 * (const(void)*).sizeof] actionScript318;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript280;
+immutable ubyte[123 + 17 * (const(void)*).sizeof] actionScriptMaboroshiIn;
+immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistNortheast;
 immutable ubyte[23 + 4 * (const(void)*).sizeof] actionScript429;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript98;
 immutable ubyte[51 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkDsrtIn;
@@ -77,7 +77,7 @@ immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[43 + 29 * (const(void)*).sizeof] actionScript22;
 immutable ubyte[5 + 4 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAD7;
 immutable ubyte[54 + 8 * (const(void)*).sizeof] actionScript595;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript359;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1OK;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript493;
 immutable ubyte[311 + 31 * (const(void)*).sizeof] actionScript410;
 immutable ubyte[38 + 5 * (const(void)*).sizeof] actionScript756;
@@ -89,17 +89,17 @@ immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript819;
 immutable ubyte[57 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusReturnTwsn;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30CAF;
 immutable ubyte[51 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptKnockDoor;
-immutable ubyte[34 + 7 * (const(void)*).sizeof] actionScript328;
+immutable ubyte[34 + 7 * (const(void)*).sizeof] actionScriptHoihoiG;
 immutable ubyte[46 + 5 * (const(void)*).sizeof] unknownC3CC24;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript872;
-immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript257;
+immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScriptYunboBack;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript786;
 immutable ubyte[43 + 9 * (const(void)*).sizeof] actionScript763;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] unknownC3A12E;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript412;
-immutable ubyte[58 + 4 * (const(void)*).sizeof] actionScript388;
+immutable ubyte[58 + 4 * (const(void)*).sizeof] actionScriptTStage2LuckyDance;
 immutable ubyte[43 + 9 * (const(void)*).sizeof] unknownC3C90C;
-immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScript264;
+immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScriptBMonkeyRopeDown;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] unknownC34A61;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] actionScriptCop5E;
 immutable ubyte[202 + 33 * (const(void)*).sizeof] actionScript480;
@@ -113,13 +113,13 @@ immutable ubyte[3] actionScript775Task;
 immutable ubyte[55 + 12 * (const(void)*).sizeof] actionScript706;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript575;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] actionScript730;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript380;
+immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptTStage2SpotInitPlayer;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript851;
 immutable ubyte[95 + 48 * (const(void)*).sizeof] actionScript499_500_Common;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript870;
-immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript323;
-immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript274_275_276;
-immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript391;
+immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScriptHoihoiB;
+immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScriptKoya;
+immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2GorgeousDance4;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript817;
 immutable ubyte[8 + 2 * (const(void)*).sizeof] actionScript131;
 immutable ubyte[129 + 21 * (const(void)*).sizeof] actionScript712;
@@ -132,8 +132,8 @@ immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScript430;
 immutable ubyte[36 + 13 * (const(void)*).sizeof] actionScript804;
 immutable ubyte[16 + 7 * (const(void)*).sizeof] actionScript707_708_709_710_Common;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC42815;
-immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScript300;
-immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript304;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScriptOutSubmarine;
+immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScriptGuardB2;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript887;
 immutable ubyte[53 + 10 * (const(void)*).sizeof] actionScript641;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] unknownC36A3E;
@@ -142,12 +142,12 @@ immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30C7F;
 immutable ubyte[46 + 13 * (const(void)*).sizeof] actionScriptSwDsrtShadowA;
 immutable ubyte[11 + 7 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAA3;
 immutable ubyte[82 + 8 * (const(void)*).sizeof] actionScriptBunbuunBeam;
-immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript266;
+immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptDashTony;
 immutable ubyte[17 + 4 * (const(void)*).sizeof] actionScript573;
-immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScript383;
-immutable ubyte[92 + 7 * (const(void)*).sizeof] actionScript397;
+immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScriptTStage2Gorgeous;
+immutable ubyte[92 + 7 * (const(void)*).sizeof] actionScriptTStage2SpotA;
 immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScript828;
-immutable ubyte[179 + 54 * (const(void)*).sizeof] actionScript340;
+immutable ubyte[179 + 54 * (const(void)*).sizeof] actionScriptPooSyugyou2;
 immutable ubyte[78 + 13 * (const(void)*).sizeof] actionScript465;
 immutable ubyte[33 + 10 * (const(void)*).sizeof] actionScript476;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScript474;
@@ -159,15 +159,15 @@ immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyE;
 immutable ubyte[18 + 6 * (const(void)*).sizeof] actionScriptFrsdFieldPQ;
 immutable ubyte[39 + 5 * (const(void)*).sizeof] unknownC4160A;
 immutable ubyte[38 + 4 * (const(void)*).sizeof] unknownC4158A;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript315;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptAndNearSt3;
 immutable ubyte[52 + 12 * (const(void)*).sizeof] actionScript692;
-immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScript358;
+immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScriptTStage1Thank;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript765;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] unknownC3B431;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1CB;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript501;
-immutable ubyte[25 + 8 * (const(void)*).sizeof] actionScript289;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript363;
+immutable ubyte[25 + 8 * (const(void)*).sizeof] actionScriptOutStKurokoge;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1Nice;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript523;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript95;
 immutable ubyte[61 + 12 * (const(void)*).sizeof] actionScript479;
@@ -176,7 +176,7 @@ immutable ubyte[23 + 9 * (const(void)*).sizeof] unknownC40F18;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript459;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScriptIntoBus;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript16;
-immutable ubyte[253 + 42 * (const(void)*).sizeof] actionScript365;
+immutable ubyte[253 + 42 * (const(void)*).sizeof] actionScriptTStage1Gorgeous;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript581;
 immutable ubyte[37 + 9 * (const(void)*).sizeof] actionScript482;
 immutable ubyte[13] actionScript482Task;
@@ -189,7 +189,7 @@ immutable ubyte[48 + 10 * (const(void)*).sizeof] unknownC41402;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScript740;
 immutable ubyte[68 + 10 * (const(void)*).sizeof] actionScript542;
 immutable ubyte[21 + 4 * (const(void)*).sizeof] unknownC3DFB5;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript378_407;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage23Groove;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] unknownC37A7C;
 immutable ubyte[113 + 17 * (const(void)*).sizeof + 1 * string.sizeof] actionScript700;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript781;
@@ -201,7 +201,7 @@ immutable ubyte[38 + 7 * (const(void)*).sizeof] actionScript732;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptWinsSkywalkerShadow;
 immutable ubyte[41 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript535;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript886;
-immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript390_394;
+immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2LuckyDance35;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript550;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC33C18;
 immutable ubyte[33 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript497;
@@ -214,11 +214,11 @@ immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript831;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC333AA;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] actionScript808;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript892;
-immutable ubyte[51 + 7 * (const(void)*).sizeof] actionScript268;
+immutable ubyte[51 + 7 * (const(void)*).sizeof] actionScriptJumpJefS;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] actionScript453;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript578;
 immutable ubyte[55 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusDsrtThrkIn;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript374;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage2MikeR;
 immutable ubyte[61 + 16 * (const(void)*).sizeof] actionScriptNiceFree;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] unknownC3AFA3;
 immutable ubyte[62 + 8 * (const(void)*).sizeof] actionScript443;
@@ -236,11 +236,11 @@ immutable ubyte[42 + 6 * (const(void)*).sizeof] actionScript671;
 immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript653;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript779;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1B7;
-immutable ubyte[32 + 10 * (const(void)*).sizeof] actionScript270;
+immutable ubyte[32 + 10 * (const(void)*).sizeof] actionScriptJefIntoSwThrk;
 immutable ubyte[41 + 3 * (const(void)*).sizeof] unknownC4116C;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript279;
+immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistNorthwest;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript508;
-immutable ubyte[33 + 4 * (const(void)*).sizeof] actionScript262;
+immutable ubyte[33 + 4 * (const(void)*).sizeof] actionScriptBMonkeyRopeS;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] actionScript422;
 immutable ubyte[23 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript647;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] actionScript470;
@@ -248,14 +248,14 @@ immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript820;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript97;
 immutable ubyte[30 + 7 * (const(void)*).sizeof] actionScript228_229_230_231_232Common;
-immutable ubyte[14 + 4 * (const(void)*).sizeof] actionScript382;
+immutable ubyte[14 + 4 * (const(void)*).sizeof] actionScriptTStage2Spotlight;
 immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript633;
 immutable ubyte[4 + 4 * (const(void)*).sizeof] unknownC3A262;
 immutable ubyte[23 + 9 * (const(void)*).sizeof] unknownC343AE;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript384;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage2Lucky;
 immutable ubyte[20 + 4 * (const(void)*).sizeof] actionScript418;
-immutable ubyte[130 + 24 * (const(void)*).sizeof] actionScript294;
-immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript294Task;
+immutable ubyte[130 + 24 * (const(void)*).sizeof] actionScriptShipSmall;
+immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScriptShipSmallTask;
 immutable ubyte[45 + 21 * (const(void)*).sizeof + 1 * string.sizeof] actionScript37;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutTBusR;
 immutable ubyte[6 + 4 * (const(void)*).sizeof] actionScriptIntoTonzuraBusMono;
@@ -276,14 +276,14 @@ immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScriptNessTobinoku;
 immutable ubyte[33 + 10 * (const(void)*).sizeof] actionScript467;
 immutable ubyte[55 + 27 * (const(void)*).sizeof] actionScript21;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript450;
-immutable ubyte[12 + 2 * (const(void)*).sizeof] actionScript347;
+immutable ubyte[12 + 2 * (const(void)*).sizeof] actionScriptNessAwake;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptMonotoryOutALucky;
-immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScript288;
+immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScriptIntoStKurokoge;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript490;
 immutable ubyte[20 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript591;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC42802;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript409;
-immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScript316;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScriptOutSt3;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript585;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScript734;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript794;
@@ -293,7 +293,7 @@ immutable ubyte[156 + 30 * (const(void)*).sizeof] actionScript562;
 immutable ubyte[34 + 9 * (const(void)*).sizeof] actionScript78;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript414;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] actionScriptWakeUpTony;
-immutable ubyte[61 + 8 * (const(void)*).sizeof] actionScript261;
+immutable ubyte[61 + 8 * (const(void)*).sizeof] actionScriptBMonkeyFope;
 immutable ubyte[51 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript711;
 immutable ubyte[19] unknownC30A1F;
 immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScript824;
@@ -302,12 +302,12 @@ immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScript540;
 immutable ubyte[61 + 25 * (const(void)*).sizeof] actionScript29;
 immutable ubyte[18 + 8 * (const(void)*).sizeof] actionScriptTBusRideMono;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAEA;
-immutable ubyte[33 + 12 * (const(void)*).sizeof] actionScript303;
+immutable ubyte[33 + 12 * (const(void)*).sizeof] actionScriptGuardB1;
 immutable ubyte[56 + 11 * (const(void)*).sizeof] actionScript58;
 immutable ubyte[35 + 17 * (const(void)*).sizeof] actionScript24;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScript525;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] actionScript789;
-immutable ubyte[37 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript369;
+immutable ubyte[37 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage1Scr2;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript514;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScript842;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript704;
@@ -316,12 +316,12 @@ immutable ubyte[25 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScrip
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1DF;
 immutable ubyte[27 + 5 * (const(void)*).sizeof] unknownC33549;
 immutable ubyte[14 + 6 * (const(void)*).sizeof] actionScriptGorgeousChaousRide;
-immutable ubyte[34 + 8 * (const(void)*).sizeof] actionScript345;
-immutable ubyte[182 + 30 * (const(void)*).sizeof] actionScript399;
+immutable ubyte[34 + 8 * (const(void)*).sizeof] actionScriptSyugyouAddPoo;
+immutable ubyte[182 + 30 * (const(void)*).sizeof] actionScriptTStage2GrooveAdlib;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC333BB;
 immutable ubyte[85 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScript250;
-immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript312;
-immutable ubyte[63 + 15 * (const(void)*).sizeof] actionScript292;
+immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScriptAndSt31;
+immutable ubyte[63 + 15 * (const(void)*).sizeof] actionScriptToSailor;
 immutable ubyte[59 + 14 * (const(void)*).sizeof] actionScript767;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript488;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript96;
@@ -333,8 +333,8 @@ immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[3 + 1 * (const(void)*).sizeof] unknownC3A209;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript853;
 immutable ubyte[6 + 5 * (const(void)*).sizeof] unknownC3AB44;
-immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript285;
-immutable ubyte[100 + 11 * (const(void)*).sizeof] actionScript285UnknownRoutine;
+immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScriptBMonkeyBye;
+immutable ubyte[100 + 11 * (const(void)*).sizeof] actionScriptBMonkeyByeUnknownRoutine;
 immutable ubyte[50 + 11 * (const(void)*).sizeof] actionScript743;
 immutable ubyte[108 + 17 * (const(void)*).sizeof] actionScript623;
 immutable ubyte[2575 + 321 * (const(void)*).sizeof] actionScript801;
@@ -344,7 +344,7 @@ immutable ubyte[25 + 3 * (const(void)*).sizeof] unknownC427E0;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript17;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAC2;
 immutable ubyte[19 + 2 * (const(void)*).sizeof] actionScriptCop5A;
-immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript337;
+immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptChkaSt2Still;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptTonzuraFree;
 immutable ubyte[36 + 7 * (const(void)*).sizeof] actionScript615;
 immutable ubyte[53 + 14 * (const(void)*).sizeof] actionScript568;
@@ -365,7 +365,7 @@ immutable ubyte[13 + 4 * (const(void)*).sizeof] unknownC30295;
 immutable ubyte[55 + 10 * (const(void)*).sizeof] unknownC41A2A;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptMagicButterflyOut;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript512;
-immutable ubyte[27 + 6 * (const(void)*).sizeof] actionScript324;
+immutable ubyte[27 + 6 * (const(void)*).sizeof] actionScriptHoihoiC;
 immutable ubyte[49 + 10 * (const(void)*).sizeof] actionScript541;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript893;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] actionScript552;
@@ -378,33 +378,33 @@ immutable ubyte[14 + 6 * (const(void)*).sizeof] actionScript741;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] unknownC3CEB9;
 immutable ubyte[46 + 5 * (const(void)*).sizeof] unknownC3CC5C;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] unknownC3BD03;
-immutable ubyte[28 + 7 * (const(void)*).sizeof] actionScript342;
+immutable ubyte[28 + 7 * (const(void)*).sizeof] actionScriptSenzo1;
 immutable ubyte[135 + 19 * (const(void)*).sizeof] actionScript717;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusTunnelBrdg;
-immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScript271;
+immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScriptIntoSwThrk;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript642;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] unknownC3DFD4;
 immutable ubyte[211 + 26 * (const(void)*).sizeof] actionScript760;
-immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScript400;
+immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage2Scr2;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] unknownC36A41;
 immutable ubyte[24 + 9 * (const(void)*).sizeof] actionScriptToGorgeousChaous;
 immutable ubyte[19 + 6 * (const(void)*).sizeof] actionScriptGorgeousMonoRide;
 immutable ubyte[32 + 14 * (const(void)*).sizeof] unknownC427A1;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript846;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelBrdgR;
-immutable ubyte[12 + 5 * (const(void)*).sizeof] actionScript354;
+immutable ubyte[12 + 5 * (const(void)*).sizeof] actionScriptMonoRMan;
 immutable ubyte[81 + 11 * (const(void)*).sizeof] actionScript536;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript877;
 immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScript437;
-immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript372;
+immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage2Scr1;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScriptAddParty;
 immutable ubyte[109 + 30 * (const(void)*).sizeof] actionScript435;
-immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript396;
+immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2LuckyDance6;
 immutable ubyte[71 + 7 * (const(void)*).sizeof] actionScript648;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAFE;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript871;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScriptBunbunDie;
-immutable ubyte[60 + 10 * (const(void)*).sizeof] actionScript352;
+immutable ubyte[60 + 10 * (const(void)*).sizeof] actionScriptPowspot;
 immutable ubyte[32 + 6 * (const(void)*).sizeof] actionScript857;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusHwayTunnelL;
 immutable ubyte[133 + 17 * (const(void)*).sizeof] actionScript444;
@@ -420,11 +420,11 @@ immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript849;
 immutable ubyte[72 + 13 * (const(void)*).sizeof] actionScriptSwWinsA;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptWinsNearKanai;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScriptCop5ToNess;
-immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript301;
-immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScript338;
+immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScriptGuardA1;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScriptOutSt2;
 immutable ubyte[28 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript134;
 immutable ubyte[12 + 8 * (const(void)*).sizeof] actionScriptMoveToLocationTypeB;
-immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript308;
+immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScriptMochiYunbo;
 immutable ubyte[59 + 14 * (const(void)*).sizeof] actionScriptTelRing;
 immutable ubyte[139 + 26 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScriptSwSumsA;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScript664;
@@ -436,16 +436,16 @@ immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript735;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript520;
 immutable ubyte[36 + 13 * (const(void)*).sizeof] actionScript658;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript94;
-immutable ubyte[473 + 53 * (const(void)*).sizeof] actionScript385;
+immutable ubyte[473 + 53 * (const(void)*).sizeof] actionScriptTStage2GorgeousWalk;
 immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScript539;
 immutable ubyte[47 + 8 * (const(void)*).sizeof] actionScript744;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript587;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScriptBusTwsnThrkIn;
-immutable ubyte[11 + 2 * (const(void)*).sizeof] actionScript361;
+immutable ubyte[11 + 2 * (const(void)*).sizeof] actionScriptTStage1MikeL;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30C67;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptKurokogeJeff;
 immutable ubyte[59 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScript256;
-immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript311;
+immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScriptDoseiSt3;
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript834;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] actionScript553;
 immutable ubyte[91 + 15 * (const(void)*).sizeof] actionScriptGrfdPolaAddParty;
@@ -457,20 +457,20 @@ immutable ubyte[61 + 11 * (const(void)*).sizeof] actionScriptReturnDog;
 immutable ubyte[33 + 10 * (const(void)*).sizeof] actionScript477;
 immutable ubyte[43 + 5 * (const(void)*).sizeof] actionScript445;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript687;
-immutable ubyte[29 + 5 * (const(void)*).sizeof] actionScript254;
+immutable ubyte[29 + 5 * (const(void)*).sizeof] actionScriptBMonkeyFly;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyB;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript614;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript282;
+immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistSouth;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript844;
 immutable ubyte[115 + 34 * (const(void)*).sizeof + 1 * string.sizeof] actionScript674;
-immutable ubyte[28 + 5 * (const(void)*).sizeof] actionScript313;
+immutable ubyte[28 + 5 * (const(void)*).sizeof] actionScriptAndSt32;
 immutable ubyte[20 + 4 * (const(void)*).sizeof] actionScript419;
 immutable ubyte[21 + 4 * (const(void)*).sizeof] unknownC362C0;
 immutable ubyte[66 + 10 * (const(void)*).sizeof] actionScript557;
 immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScript690;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript755;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript796;
-immutable ubyte[9 + 2 * (const(void)*).sizeof] actionScript381;
+immutable ubyte[9 + 2 * (const(void)*).sizeof] actionScriptTStage2Player;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript707;
 immutable ubyte[50 + 14 * (const(void)*).sizeof] unknownC3A0D8;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] actionScript815;
@@ -494,7 +494,7 @@ immutable ubyte[26 + 2 * (const(void)*).sizeof] actionScript705_706_Common;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelHwayR;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript807;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript792;
-immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScript255;
+immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScriptBMonkeyFlyS;
 immutable ubyte[69 + 13 * (const(void)*).sizeof] actionScriptSwThrkB;
 immutable ubyte[95 + 14 * (const(void)*).sizeof + 2 * string.sizeof] actionScriptTonzuraBusToThrk;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] unknownC3AB8A;
@@ -507,7 +507,7 @@ immutable ubyte[71 + 12 * (const(void)*).sizeof] actionScript546;
 immutable ubyte[19 + 3 * (const(void)*).sizeof] actionScript420;
 immutable ubyte[47 + 11 * (const(void)*).sizeof] actionScript460;
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript832;
-immutable ubyte[55 + 7 * (const(void)*).sizeof] actionScript371;
+immutable ubyte[55 + 7 * (const(void)*).sizeof] actionScriptTStage1FlipTurn;
 immutable ubyte[17 + 4 * (const(void)*).sizeof] actionScript759;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript519;
 immutable ubyte[9 + 6 * (const(void)*).sizeof] actionScript500;
@@ -517,40 +517,40 @@ immutable ubyte[8 + 5 * (const(void)*).sizeof] actionScript605;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript103;
 immutable ubyte[36 + 7 * (const(void)*).sizeof] actionScript611;
 immutable ubyte[29 + 15 * (const(void)*).sizeof] actionScript31;
-immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScript350;
+immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScriptTalkPoo;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript423;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScript627;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] actionScript826;
 immutable ubyte[46 + 10 * (const(void)*).sizeof] actionScript770;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript610;
-immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript392;
+immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2LuckyDance4;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A0B2;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] unknownC37439;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] actionScript471;
 immutable ubyte[108 + 18 * (const(void)*).sizeof + 1 * string.sizeof] actionScript273;
 immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScript736;
-immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript330;
+immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiI;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScriptGhostThrkPlus2;
-immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript295;
+immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScriptEvtKrakenApproach;
 immutable ubyte[40 + 8 * (const(void)*).sizeof] actionScript691;
 immutable ubyte[68 + 12 * (const(void)*).sizeof] actionScript729;
-immutable ubyte[93 + 14 * (const(void)*).sizeof] actionScript293;
+immutable ubyte[93 + 14 * (const(void)*).sizeof] actionScriptShipToSkrb1;
 immutable ubyte[99 + 20 * (const(void)*).sizeof] actionScript701;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] unknownC3AAAA;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript128;
 immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScript644;
-immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScript336;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript364;
+immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScriptIntoSt2;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1Groove;
 immutable ubyte[42 + 4 * (const(void)*).sizeof] unknownC4121F;
 immutable ubyte[12 + 6 * (const(void)*).sizeof] unknownC4220E;
 immutable ubyte[65 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript60;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript362;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1MikeR;
 immutable ubyte[56 + 11 * (const(void)*).sizeof] actionScript57;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript526;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScript492;
 immutable ubyte[51 + 9 * (const(void)*).sizeof] actionScript594;
-immutable ubyte[82 + 20 * (const(void)*).sizeof] actionScript259;
-immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScript305;
+immutable ubyte[82 + 20 * (const(void)*).sizeof] actionScriptSigeYunboMove;
+immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScriptGuard3;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC3A47C;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript745;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript698;
@@ -564,7 +564,7 @@ immutable ubyte[65 + 9 * (const(void)*).sizeof] unknownC42235;
 immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScript856;
 immutable ubyte[41 + 6 * (const(void)*).sizeof] actionScript784;
 immutable ubyte[34 + 11 * (const(void)*).sizeof] actionScript806;
-immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript307;
+immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScriptMochi1;
 immutable ubyte[60 + 13 * (const(void)*).sizeof] actionScript719;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript79;
 immutable ubyte[72 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript537;
@@ -597,8 +597,8 @@ immutable ubyte[15 + 3 * (const(void)*).sizeof] unknownC35FCD;
 immutable ubyte[46 + 15 * (const(void)*).sizeof] unknownC3A20E;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAD6;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] unknownC3C20F;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript377_406;
-immutable ubyte[42 + 5 * (const(void)*).sizeof] actionScript333;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage23Nice;
+immutable ubyte[42 + 5 * (const(void)*).sizeof] actionScriptHoihoiL;
 immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript618;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScriptIntoSwWins;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] unknownC3AA2B;
@@ -620,30 +620,30 @@ immutable ubyte[3 + 2 * (const(void)*).sizeof] actionScript662;
 immutable ubyte[68 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusIntoThrk;
 immutable ubyte[20 + 7 * (const(void)*).sizeof] actionScriptSwWinsLand;
 immutable ubyte[39 + 10 * (const(void)*).sizeof] actionScript604;
-immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript395;
+immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2GorgeousDance6;
 immutable ubyte[11 + 1 * (const(void)*).sizeof] unknownC3CCA8;
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript839;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] unknownC3AB37;
 immutable ubyte[27 + 3 * (const(void)*).sizeof] unknownC34D39;
 immutable ubyte[45 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript59;
-immutable ubyte[55 + 14 * (const(void)*).sizeof] actionScript344;
+immutable ubyte[55 + 14 * (const(void)*).sizeof] actionScriptPooTeleport;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1F3;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScript424;
 immutable ubyte[57 + 16 * (const(void)*).sizeof] actionScriptGorgeousFree;
 immutable ubyte[1] unknownC36BEA;
-immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript309;
+immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScriptMochi2;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScript761;
 immutable ubyte[27 + 10 * (const(void)*).sizeof] actionScript188;
 immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScript589;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] actionScriptGorgeousMono;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript379_408;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage23HighHat;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript258;
-immutable ubyte[21 + 4 * (const(void)*).sizeof] actionScript356;
+immutable ubyte[21 + 4 * (const(void)*).sizeof] actionScriptStageFadeout;
 immutable ubyte[11 + 7 * (const(void)*).sizeof] actionScript603;
 immutable ubyte[61 + 14 * (const(void)*).sizeof] actionScriptTonchiki;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] actionScript598;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScript566;
-immutable ubyte[51 + 10 * (const(void)*).sizeof] actionScript302;
+immutable ubyte[51 + 10 * (const(void)*).sizeof] actionScriptGuardA2;
 immutable ubyte[19 + 1 * (const(void)*).sizeof] unknownC383BC;
 immutable ubyte[14 + 6 * (const(void)*).sizeof] actionScript800;
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript838;
@@ -654,7 +654,7 @@ immutable ubyte[32 + 5 * (const(void)*).sizeof] actionScript632;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript528;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] unknownC34392;
 immutable ubyte[65 + 17 * (const(void)*).sizeof] actionScript809;
-immutable ubyte[84 + 16 * (const(void)*).sizeof] actionScript263;
+immutable ubyte[84 + 16 * (const(void)*).sizeof] actionScriptBMonkeyRopeOrosu;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript866;
 immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScript681;
 immutable ubyte[93 + 17 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelTwsn;
@@ -674,7 +674,7 @@ immutable ubyte[115 + 15 * (const(void)*).sizeof] actionScript695;
 immutable ubyte[69 + 11 * (const(void)*).sizeof] actionScript554;
 immutable ubyte[31 + 9 * (const(void)*).sizeof] actionScript660;
 immutable ubyte[33 + 6 * (const(void)*).sizeof] actionScript733;
-immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScript389_393;
+immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2GorgeousDance35;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript869;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] actionScript592;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript879;
@@ -685,19 +685,19 @@ immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript847;
 immutable ubyte[16 + 2 * (const(void)*).sizeof] actionScript472;
 immutable ubyte[77 + 11 * (const(void)*).sizeof] unknownC4163F;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScriptMonotoryOutAGorgeous;
-immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript291;
+immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScriptIntoShip;
 immutable ubyte[51 + 17 * (const(void)*).sizeof] actionScript28;
-immutable ubyte[54 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript287;
+immutable ubyte[54 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptDoseSpaceTunnel;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript15;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] unknownC35231;
-immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScript326;
+immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScriptHoihoiE;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript502;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] actionScript564;
 immutable ubyte[87 + 18 * (const(void)*).sizeof + 1 * string.sizeof] actionScript683;
 immutable ubyte[39 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript284;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript5;
 immutable ubyte[44 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelFour;
-immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScript327;
+immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScriptHoihoiF;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScript702;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript574;
 immutable ubyte[62 + 7 * (const(void)*).sizeof] actionScript679;
@@ -705,25 +705,25 @@ immutable ubyte[66 + 10 * (const(void)*).sizeof] actionScript556;
 immutable ubyte[20 + 8 * (const(void)*).sizeof] actionScript628;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA46;
 immutable ubyte[355 + 50 * (const(void)*).sizeof] actionScript411;
-immutable ubyte[34 + 8 * (const(void)*).sizeof] actionScript325;
+immutable ubyte[34 + 8 * (const(void)*).sizeof] actionScriptHoihoiD;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScript619;
 immutable ubyte[41 + 9 * (const(void)*).sizeof] actionScript714;
 immutable ubyte[29 + 3 * (const(void)*).sizeof] unknownC4198D;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript504;
-immutable ubyte[25 + 8 * (const(void)*).sizeof] actionScript339;
+immutable ubyte[25 + 8 * (const(void)*).sizeof] actionScriptPooSyugyou1;
 immutable ubyte[30 + 7 * (const(void)*).sizeof] unknownC3C1E0;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC33C1D;
 immutable ubyte[13 + 6 * (const(void)*).sizeof] actionScript696_697_698_Common;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AB12;
 immutable ubyte[189 + 31 * (const(void)*).sizeof] unknownC4170E;
-immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScript341;
+immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScriptMessenger;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript402;
 immutable ubyte[68 + 6 * (const(void)*).sizeof] unknownC41382;
 immutable ubyte[51 + 11 * (const(void)*).sizeof] actionScriptSwDsrtA;
 immutable ubyte[60 + 18 * (const(void)*).sizeof] actionScript563;
 immutable ubyte[17 + 2 * (const(void)*).sizeof] unknownC31ED8;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript487;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript376_405;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage23OK;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusBrdgTunnelR;
 immutable ubyte[34 + 9 * (const(void)*).sizeof] actionScript814;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript854;
@@ -758,11 +758,11 @@ immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript533;
 immutable ubyte[10 + 1 * (const(void)*).sizeof] unknownC419B2;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] actionScriptFollowToMichiko;
 immutable ubyte[3 + 1 * (const(void)*).sizeof] actionScript451;
-immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScript290;
+immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScriptAndDose;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript663;
 immutable ubyte[23 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusTunnelDsrt;
 immutable ubyte[40 + 7 * (const(void)*).sizeof] unknownC31E2D;
-immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScript251;
+immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScriptTacyNearBMonkey;
 immutable ubyte[225 + 33 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScriptSwThrkA;
 immutable ubyte[75 + 1 * (const(void)*).sizeof] unknownC3C824;
 immutable ubyte[61 + 16 * (const(void)*).sizeof] actionScriptLuckyFree;
@@ -805,9 +805,9 @@ immutable ubyte[42 + 4 * (const(void)*).sizeof] unknownC411EB;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript677;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutBusR;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript803;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript283;
+immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistWest;
 immutable ubyte[21 + 2 * (const(void)*).sizeof] unknownC3BED4;
-immutable ubyte[242 + 37 * (const(void)*).sizeof] actionScript368;
+immutable ubyte[242 + 37 * (const(void)*).sizeof] actionScriptTStage1Lucky;
 immutable ubyte[38 + 10 * (const(void)*).sizeof] actionScript816;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScriptMapObjStill;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] unknownC3AAB8;
@@ -820,7 +820,7 @@ immutable ubyte[132 + 20 * (const(void)*).sizeof] actionScriptSwThrkShadowA;
 immutable ubyte[33 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript498;
 immutable ubyte[1] unknownC3A07F;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript612;
-immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript253;
+immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScriptBMonkeyGum1;
 immutable ubyte[47 + 5 * (const(void)*).sizeof] unknownC4154E;
 immutable ubyte[38 + 6 * (const(void)*).sizeof] actionScript636;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript703;
@@ -830,13 +830,13 @@ immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript709;
 immutable ubyte[24 + 5 * (const(void)*).sizeof] unknownC3C143;
 immutable ubyte[49 + 9 * (const(void)*).sizeof] actionScript584;
 immutable ubyte[17 + 2 * (const(void)*).sizeof] unknownC31EC1;
-immutable ubyte[115 + 10 * (const(void)*).sizeof] actionScript366;
+immutable ubyte[115 + 10 * (const(void)*).sizeof] actionScriptTStage1LuckyDance;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript518;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] unknownC3AA1E;
 immutable ubyte[26 + 9 * (const(void)*).sizeof + 2 * string.sizeof] actionScriptSw2Wins;
 immutable ubyte[35 + 4 * (const(void)*).sizeof] actionScript446;
 immutable ubyte[30 + 5 * (const(void)*).sizeof] actionScript548;
-immutable ubyte[18 + 4 * (const(void)*).sizeof] actionScript269;
+immutable ubyte[18 + 4 * (const(void)*).sizeof] actionScriptOutTony;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript811;
 immutable ubyte[28 + 1 * (const(void)*).sizeof] unknownC32CD2;
 immutable ubyte[37 + 7 * (const(void)*).sizeof] unknownC3C35D;
@@ -861,7 +861,7 @@ immutable ubyte[38 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript456;
 immutable ubyte[92 + 14 * (const(void)*).sizeof] actionScript724;
 immutable ubyte[29 + 9 * (const(void)*).sizeof + 2 * string.sizeof] actionScriptBusTwsnTunnel;
-immutable ubyte[78 + 3 * (const(void)*).sizeof] actionScript272;
+immutable ubyte[78 + 3 * (const(void)*).sizeof] actionScriptSwToSums1;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript571;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPeopleWalk1Narrow;
 immutable ubyte[52 + 12 * (const(void)*).sizeof] actionScriptMagicButterflyApproach;
@@ -875,12 +875,12 @@ immutable ubyte[22 + 7 * (const(void)*).sizeof] unknownC38978;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScriptNearAndoughnut;
 immutable ubyte[25 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusHwayTunnelR;
 immutable ubyte[13 + 7 * (const(void)*).sizeof] actionScript89;
-immutable ubyte[108 + 20 * (const(void)*).sizeof] actionScript346;
+immutable ubyte[108 + 20 * (const(void)*).sizeof] actionScriptKaitenNess;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript654;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript320;
+immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptMaboroshiOut1;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] unknownC30C55;
 immutable ubyte[54 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkTwsnIn;
-immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScript277;
+immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScriptCarpDungL;
 immutable ubyte[15 + 8 * (const(void)*).sizeof] unknownC3DF90;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] actionScriptCop5C;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A17B;
@@ -904,28 +904,28 @@ immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScriptMogiriToRight;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript580;
 immutable ubyte[60 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScript455;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript873;
-immutable ubyte[6 + 1 * (const(void)*).sizeof] actionScript355;
+immutable ubyte[6 + 1 * (const(void)*).sizeof] actionScriptStageParty;
 immutable ubyte[34 + 6 * (const(void)*).sizeof] actionScript680;
 immutable ubyte[24 + 4 * (const(void)*).sizeof] actionScript721;
-immutable ubyte[25 + 4 * (const(void)*).sizeof] actionScript314;
+immutable ubyte[25 + 4 * (const(void)*).sizeof] actionScriptKidSt3;
 immutable ubyte[51 + 16 * (const(void)*).sizeof] actionScriptSwFourShadowB;
 immutable ubyte[76 + 22 * (const(void)*).sizeof] actionScript583;
 immutable ubyte[95 + 24 * (const(void)*).sizeof + 1 * string.sizeof] actionScript221;
-immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript331;
+immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiJ;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript791;
 immutable ubyte[165 + 35 * (const(void)*).sizeof] actionScript670;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] actionScript799;
-immutable ubyte[27 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript317;
+immutable ubyte[27 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptGeppuPass;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusTunnelHwayL;
 immutable ubyte[3 + 2 * (const(void)*).sizeof] unknownC3098B;
 immutable ubyte[14 + 4 * (const(void)*).sizeof] actionScript425;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript577;
-immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript281;
+immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistEast;
 immutable ubyte[4 + 1 * (const(void)*).sizeof] actionScript624;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScript737;
 immutable ubyte[66 + 10 * (const(void)*).sizeof] actionScript559;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript655;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript373;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage2MikeL;
 immutable ubyte[31 + 5 * (const(void)*).sizeof] actionScript549;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript40;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A09F;
@@ -938,18 +938,18 @@ immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript656;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1A3;
 immutable ubyte[45 + 7 * (const(void)*).sizeof] actionScriptMichikoIntoRoomB;
-immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScript278;
+immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScriptCarpDungR;
 immutable ubyte[8 + 5 * (const(void)*).sizeof] unknownC39E01;
-immutable ubyte[73 + 12 * (const(void)*).sizeof] actionScript296;
+immutable ubyte[73 + 12 * (const(void)*).sizeof] actionScriptShipToSkrb2;
 immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScriptSwSplinter1;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScriptMizunoA;
-immutable ubyte[57 + 9 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScript351;
+immutable ubyte[57 + 9 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScriptBGChange;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript499;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScriptMouseDoor;
-immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScript353;
-immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript329;
+immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScriptKoke;
+immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiH;
 immutable ubyte[53 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScript77;
-immutable ubyte[42 + 5 * (const(void)*).sizeof] actionScript334;
+immutable ubyte[42 + 5 * (const(void)*).sizeof] actionScriptHoihoiM;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] unknownC36834;
 immutable ubyte[34 + 7 * (const(void)*).sizeof] unknownC3B0B6;
 immutable ubyte[14 + 8 * (const(void)*).sizeof] actionScriptRetGhostTunnel;
@@ -965,11 +965,11 @@ immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScriptHallMayorC;
 immutable ubyte[92 + 22 * (const(void)*).sizeof] actionScript240;
 immutable ubyte[55 + 27 * (const(void)*).sizeof] actionScript20;
 immutable ubyte[62 + 17 * (const(void)*).sizeof] actionScriptGrooveFree;
-immutable ubyte[7 + 2 * (const(void)*).sizeof] actionScript343;
+immutable ubyte[7 + 2 * (const(void)*).sizeof] actionScriptSenzo2;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkTunnelR;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript436;
 immutable ubyte[35 + 6 * (const(void)*).sizeof] actionScript626;
-immutable ubyte[115 + 10 * (const(void)*).sizeof] actionScript367;
+immutable ubyte[115 + 10 * (const(void)*).sizeof] actionScriptTStage1GorgeousDance;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript489;
 immutable ubyte[22 + 4 * (const(void)*).sizeof] actionScript715;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript463;
@@ -978,7 +978,7 @@ immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[10 + 4 * (const(void)*).sizeof] actionScript737_738_739_740Common;
 immutable ubyte[34 + 14 * (const(void)*).sizeof] actionScriptBunbuun;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScript439;
-immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript310;
+immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptStSt3;
 immutable ubyte[194 + 4 * (const(void)*).sizeof] actionScriptNesHomeYure;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript457;
 immutable ubyte[16 + 7 * (const(void)*).sizeof] actionScriptPeopleWalk1Live;
@@ -988,37 +988,37 @@ immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript795;
 immutable ubyte[61 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusToThrkTunnel;
 immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScript688;
 immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScriptSwFourB;
-immutable ubyte[24 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScript357;
-immutable ubyte[46 + 4 * (const(void)*).sizeof] actionScript370;
+immutable ubyte[24 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage1Scr1;
+immutable ubyte[46 + 4 * (const(void)*).sizeof] actionScriptTStage1Flip;
 immutable ubyte[4 + 4 * (const(void)*).sizeof] actionScriptPeopleWalk0Live;
-immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScript319;
+immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScriptPooToOldman;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScript739;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript818;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript810;
 immutable ubyte[29 + 10 * (const(void)*).sizeof] actionScript693;
-immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScript375_404;
+immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScriptTStage23Thank;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScriptSyochoToNess;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript532;
 immutable ubyte[37 + 7 * (const(void)*).sizeof] actionScript728;
 immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScript730Entry2;
 immutable ubyte[171 + 24 * (const(void)*).sizeof] actionScript466;
 immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScriptOutTBusGorgeous;
-immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript322;
+immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiA;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutBusL;
 immutable ubyte[12 + 5 * (const(void)*).sizeof] actionScriptGhostThrkPlus1;
 immutable ubyte[61 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkToDsrt;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] unknownC39ABB;
 immutable ubyte[79 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusIntoThrk;
-immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScript265;
+immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScriptBMonkeyRopeGood;
 immutable ubyte[17 + 8 * (const(void)*).sizeof] actionScriptGetOutHallMayor;
-immutable ubyte[62 + 4 * (const(void)*).sizeof] actionScript387;
+immutable ubyte[62 + 4 * (const(void)*).sizeof] actionScriptTStage2GorgeousDance;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScriptIntoTonzuraBusChaous;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScriptFrsdFieldL;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript829;
-immutable ubyte[144 + 10 * (const(void)*).sizeof] actionScript398;
-immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScript297;
+immutable ubyte[144 + 10 * (const(void)*).sizeof] actionScriptTStage2SpotB;
+immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScriptOutShip;
 immutable ubyte[33 + 9 * (const(void)*).sizeof] actionScript484;
-immutable ubyte[80 + 12 * (const(void)*).sizeof] actionScript267;
+immutable ubyte[80 + 12 * (const(void)*).sizeof] actionScriptJumpJef;
 immutable ubyte[70 + 12 * (const(void)*).sizeof] actionScript769;
 immutable ubyte[16 + 2 * (const(void)*).sizeof] unknownC33DBE;
 immutable ubyte[84 + 12 * (const(void)*).sizeof] actionScript750;
@@ -1047,7 +1047,7 @@ immutable ubyte[6 + 2 * (const(void)*).sizeof] actionScript431_432_433_434;
 immutable ubyte[42 + 11 * (const(void)*).sizeof] actionScript661;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript503;
 immutable ubyte[192 + 42 * (const(void)*).sizeof] unknownC41036;
-immutable ubyte[523 + 75 * (const(void)*).sizeof] actionScript386;
+immutable ubyte[523 + 75 * (const(void)*).sizeof] actionScriptTStage2LuckyWalk;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkTunnel;
 immutable ubyte[56 + 13 * (const(void)*).sizeof] actionScript666;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScriptIntoTBusGorgeous;
@@ -1059,7 +1059,7 @@ immutable ubyte[52 + 13 * (const(void)*).sizeof] actionScript788;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] actionScript473;
 immutable ubyte[16 + 2 * (const(void)*).sizeof] actionScript635;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScriptGhostPlus1;
-immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScript306;
+immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScriptToGuard;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScriptSyochoA;
 immutable ubyte[70 + 13 * (const(void)*).sizeof] actionScript501_531_Common;
 immutable ubyte[29 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript438;
@@ -1095,7 +1095,7 @@ immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript517;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript790;
 immutable ubyte[26 + 7 * (const(void)*).sizeof] actionScriptAddPartyBMonkey;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript579;
-immutable ubyte[16 + 4 * (const(void)*).sizeof] actionScript252;
+immutable ubyte[16 + 4 * (const(void)*).sizeof] actionScriptBMonkeyGum;
 immutable ubyte[47 + 11 * (const(void)*).sizeof] actionScript567;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript510;
 immutable ubyte[45 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript771;
@@ -1548,12 +1548,12 @@ ubyte[] ACTIONSCRIPT_C0A8A0(string text) {
 	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A8A0, text);
 }
 
-ubyte[] ACTIONSCRIPT_C0A864(byte val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A864, val);
+ubyte[] ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(ubyte val) {
+	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptMoveEntityToPartyMember, val);
 }
 
-ubyte[] ACTIONSCRIPT_C0A86F(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A86F, val);
+ubyte[] ACTIONSCRIPT_MOVE_TO_SPRITE(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptMoveEntityToSprite, val);
 }
 
 ubyte[] ACTIONSCRIPT_C0A857(EventFlag flag) {
@@ -2566,164 +2566,164 @@ shared static this() {
 		actionScriptFrsdFieldPQ[],
 		actionScriptTonchiki[],
 		actionScript250[],
-		actionScript251[],
-		actionScript252[],
-		actionScript253[],
-		actionScript254[],
-		actionScript255[],
+		actionScriptTacyNearBMonkey[],
+		actionScriptBMonkeyGum[],
+		actionScriptBMonkeyGum1[],
+		actionScriptBMonkeyFly[],
+		actionScriptBMonkeyFlyS[],
 		actionScript256[],
-		actionScript257[],
+		actionScriptYunboBack[],
 		actionScript258[],
-		actionScript259[],
+		actionScriptSigeYunboMove[],
 		actionScript260[],
-		actionScript261[],
-		actionScript262[],
-		actionScript263[],
-		actionScript264[],
-		actionScript265[],
-		actionScript266[],
-		actionScript267[],
-		actionScript268[],
-		actionScript269[],
-		actionScript270[],
-		actionScript271[],
-		actionScript272[],
+		actionScriptBMonkeyFope[],
+		actionScriptBMonkeyRopeS[],
+		actionScriptBMonkeyRopeOrosu[],
+		actionScriptBMonkeyRopeDown[],
+		actionScriptBMonkeyRopeGood[],
+		actionScriptDashTony[],
+		actionScriptJumpJef[],
+		actionScriptJumpJefS[],
+		actionScriptOutTony[],
+		actionScriptJefIntoSwThrk[],
+		actionScriptIntoSwThrk[],
+		actionScriptSwToSums1[],
 		actionScript273[],
-		actionScript274_275_276[],
-		actionScript274_275_276[],
-		actionScript274_275_276[],
-		actionScript277[],
-		actionScript278[],
-		actionScript279[],
-		actionScript280[],
-		actionScript281[],
-		actionScript282[],
-		actionScript283[],
+		actionScriptKoya[],
+		actionScriptKoya[],
+		actionScriptKoya[],
+		actionScriptCarpDungL[],
+		actionScriptCarpDungR[],
+		actionScriptCircleCultistNorthwest[],
+		actionScriptCircleCultistNortheast[],
+		actionScriptCircleCultistEast[],
+		actionScriptCircleCultistSouth[],
+		actionScriptCircleCultistWest[],
 		actionScript284[],
-		actionScript285[],
+		actionScriptBMonkeyBye[],
 		actionScript286[],
-		actionScript287[],
-		actionScript288[],
-		actionScript289[],
-		actionScript290[],
-		actionScript291[],
-		actionScript292[],
-		actionScript293[],
-		actionScript294[],
-		actionScript295[],
-		actionScript296[],
-		actionScript297[],
+		actionScriptDoseSpaceTunnel[],
+		actionScriptIntoStKurokoge[],
+		actionScriptOutStKurokoge[],
+		actionScriptAndDose[],
+		actionScriptIntoShip[],
+		actionScriptToSailor[],
+		actionScriptShipToSkrb1[],
+		actionScriptShipSmall[],
+		actionScriptEvtKrakenApproach[],
+		actionScriptShipToSkrb2[],
+		actionScriptOutShip[],
 		actionScriptSubmarine1[],
 		actionScriptSubmarine2[],
-		actionScript300[],
-		actionScript301[],
-		actionScript302[],
-		actionScript303[],
-		actionScript304[],
-		actionScript305[],
-		actionScript306[],
-		actionScript307[],
-		actionScript308[],
-		actionScript309[],
-		actionScript310[],
-		actionScript311[],
-		actionScript312[],
-		actionScript313[],
-		actionScript314[],
-		actionScript315[],
-		actionScript316[],
-		actionScript317[],
-		actionScript318[],
-		actionScript319[],
-		actionScript320[],
-		actionScript321[],
-		actionScript322[],
-		actionScript323[],
-		actionScript324[],
-		actionScript325[],
-		actionScript326[],
-		actionScript327[],
-		actionScript328[],
-		actionScript329[],
-		actionScript330[],
-		actionScript331[],
-		actionScript332[],
-		actionScript333[],
-		actionScript334[],
+		actionScriptOutSubmarine[],
+		actionScriptGuardA1[],
+		actionScriptGuardA2[],
+		actionScriptGuardB1[],
+		actionScriptGuardB2[],
+		actionScriptGuard3[],
+		actionScriptToGuard[],
+		actionScriptMochi1[],
+		actionScriptMochiYunbo[],
+		actionScriptMochi2[],
+		actionScriptStSt3[],
+		actionScriptDoseiSt3[],
+		actionScriptAndSt31[],
+		actionScriptAndSt32[],
+		actionScriptKidSt3[],
+		actionScriptAndNearSt3[],
+		actionScriptOutSt3[],
+		actionScriptGeppuPass[],
+		actionScriptMaboroshiIn[],
+		actionScriptPooToOldman[],
+		actionScriptMaboroshiOut1[],
+		actionScriptMaboroshiOut2[],
+		actionScriptHoihoiA[],
+		actionScriptHoihoiB[],
+		actionScriptHoihoiC[],
+		actionScriptHoihoiD[],
+		actionScriptHoihoiE[],
+		actionScriptHoihoiF[],
+		actionScriptHoihoiG[],
+		actionScriptHoihoiH[],
+		actionScriptHoihoiI[],
+		actionScriptHoihoiJ[],
+		actionScriptHoihoiK[],
+		actionScriptHoihoiL[],
+		actionScriptHoihoiM[],
 		actionScript335[],
-		actionScript336[],
-		actionScript337[],
-		actionScript338[],
-		actionScript339[],
-		actionScript340[],
-		actionScript341[],
-		actionScript342[],
-		actionScript343[],
-		actionScript344[],
-		actionScript345[],
-		actionScript346[],
-		actionScript347[],
-		actionScript348_349[],
-		actionScript348_349[],
-		actionScript350[],
-		actionScript351[],
-		actionScript352[],
-		actionScript353[],
-		actionScript354[],
-		actionScript355[],
-		actionScript356[],
-		actionScript357[],
-		actionScript358[],
-		actionScript359[],
+		actionScriptIntoSt2[],
+		actionScriptChkaSt2Still[],
+		actionScriptOutSt2[],
+		actionScriptPooSyugyou1[],
+		actionScriptPooSyugyou2[],
+		actionScriptMessenger[],
+		actionScriptSenzo1[],
+		actionScriptSenzo2[],
+		actionScriptPooTeleport[],
+		actionScriptSyugyouAddPoo[],
+		actionScriptKaitenNess[],
+		actionScriptNessAwake[],
+		actionScriptTalkPaulaJeff[],
+		actionScriptTalkPaulaJeff[],
+		actionScriptTalkPoo[],
+		actionScriptBGChange[],
+		actionScriptPowspot[],
+		actionScriptKoke[],
+		actionScriptMonoRMan[],
+		actionScriptStageParty[],
+		actionScriptStageFadeout[],
+		actionScriptTStage1Scr1[],
+		actionScriptTStage1Thank[],
+		actionScriptTStage1OK[],
 		actionScript360[],
-		actionScript361[],
-		actionScript362[],
-		actionScript363[],
-		actionScript364[],
-		actionScript365[],
-		actionScript366[],
-		actionScript367[],
-		actionScript368[],
-		actionScript369[],
-		actionScript370[],
-		actionScript371[],
-		actionScript372[],
-		actionScript373[],
-		actionScript374[],
-		actionScript375_404[],
-		actionScript376_405[],
-		actionScript377_406[],
-		actionScript378_407[],
-		actionScript379_408[],
-		actionScript380[],
-		actionScript381[],
-		actionScript382[],
-		actionScript383[],
-		actionScript384[],
-		actionScript385[],
-		actionScript386[],
-		actionScript387[],
-		actionScript388[],
-		actionScript389_393[],
-		actionScript390_394[],
-		actionScript391[],
-		actionScript392[],
-		actionScript389_393[],
-		actionScript390_394[],
-		actionScript395[],
-		actionScript396[],
-		actionScript397[],
-		actionScript398[],
-		actionScript399[],
-		actionScript400[],
+		actionScriptTStage1MikeL[],
+		actionScriptTStage1MikeR[],
+		actionScriptTStage1Nice[],
+		actionScriptTStage1Groove[],
+		actionScriptTStage1Gorgeous[],
+		actionScriptTStage1LuckyDance[],
+		actionScriptTStage1GorgeousDance[],
+		actionScriptTStage1Lucky[],
+		actionScriptTStage1Scr2[],
+		actionScriptTStage1Flip[],
+		actionScriptTStage1FlipTurn[],
+		actionScriptTStage2Scr1[],
+		actionScriptTStage2MikeL[],
+		actionScriptTStage2MikeR[],
+		actionScriptTStage23Thank[],
+		actionScriptTStage23OK[],
+		actionScriptTStage23Nice[],
+		actionScriptTStage23Groove[],
+		actionScriptTStage23HighHat[],
+		actionScriptTStage2SpotInitPlayer[],
+		actionScriptTStage2Player[],
+		actionScriptTStage2Spotlight[],
+		actionScriptTStage2Gorgeous[],
+		actionScriptTStage2Lucky[],
+		actionScriptTStage2GorgeousWalk[],
+		actionScriptTStage2LuckyWalk[],
+		actionScriptTStage2GorgeousDance[],
+		actionScriptTStage2LuckyDance[],
+		actionScriptTStage2GorgeousDance35[],
+		actionScriptTStage2LuckyDance35[],
+		actionScriptTStage2GorgeousDance4[],
+		actionScriptTStage2LuckyDance4[],
+		actionScriptTStage2GorgeousDance35[],
+		actionScriptTStage2LuckyDance35[],
+		actionScriptTStage2GorgeousDance6[],
+		actionScriptTStage2LuckyDance6[],
+		actionScriptTStage2SpotA[],
+		actionScriptTStage2SpotB[],
+		actionScriptTStage2GrooveAdlib[],
+		actionScriptTStage2Scr2[],
 		actionScript401[],
 		actionScript402[],
 		actionScript403[],
-		actionScript375_404[],
-		actionScript376_405[],
-		actionScript377_406[],
-		actionScript378_407[],
-		actionScript379_408[],
+		actionScriptTStage23Thank[],
+		actionScriptTStage23OK[],
+		actionScriptTStage23Nice[],
+		actionScriptTStage23Groove[],
+		actionScriptTStage23HighHat[],
 		actionScript409[],
 		actionScript410[],
 		actionScript411[],
@@ -3435,7 +3435,7 @@ actionScript0 = [
 	ACTIONSCRIPT_LOAD_KIRBY_SPRITE(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript0[5 + 3 * (const(void)*).sizeof]),
 ].join();
-actionScript320_321Common = [
+actionScriptMaboroshiOut = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(1280),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 5),
@@ -3526,7 +3526,7 @@ unknownC41900 = [
 	ACTIONSCRIPT_PAUSE(141),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41900[10]),
 ].join();
-actionScript332 = [
+actionScriptHoihoiK = [
 	ACTIONSCRIPT_SET_X(5648),
 	ACTIONSCRIPT_SET_Y(9184),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -3613,7 +3613,7 @@ actionScript667 = [
 	ACTIONSCRIPT_LOOP(128),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 4096),
-	ACTIONSCRIPT_C0A86F(169),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.starMasterFlyingAway),
 	ACTIONSCRIPT_C0A8E7(),
 	ACTIONSCRIPT_C4730E(),
 	ACTIONSCRIPT_C0A691(),
@@ -3673,7 +3673,7 @@ actionScript720 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScriptFollowToMichikoB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB37[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 17),
@@ -3685,7 +3685,7 @@ actionScriptFollowToMichikoB = [
 	ACTIONSCRIPT_C0A8C6(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptFollowToMichikoB[14 + 5 * (const(void)*).sizeof]),
 ].join();
-actionScript348_349 = [
+actionScriptTalkPaulaJeff = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -3701,7 +3701,7 @@ actionScript348_349 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript617 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -3825,7 +3825,7 @@ actionScriptMogiriToDown = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript569 = [
-	ACTIONSCRIPT_C0A864(2),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48B3B),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
@@ -3927,8 +3927,8 @@ unknownC3A47C = [
 	ACTIONSCRIPT_C020F1(),
 	ACTIONSCRIPT_END(),
 ].join();
-actionScript321 = [
-	ACTIONSCRIPT_SHORTCALL(&actionScript320_321Common[0]),
+actionScriptMaboroshiOut2 = [
+	ACTIONSCRIPT_SHORTCALL(&actionScriptMaboroshiOut[0]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
@@ -4056,7 +4056,7 @@ actionScript797 = [
 	ACTIONSCRIPT_SET_X(201),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript318 = [
+actionScriptMaboroshiIn = [
 	ACTIONSCRIPT_SET_X(1728),
 	ACTIONSCRIPT_SET_Y(5312),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -4093,7 +4093,7 @@ actionScript318 = [
 	ACTIONSCRIPT_LOOP(64),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 4096),
-	ACTIONSCRIPT_C0A86F(169),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.starMasterFlyingAway),
 	ACTIONSCRIPT_C0A8E7(),
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1728),
@@ -4104,7 +4104,7 @@ actionScript318 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript280 = [
+actionScriptCircleCultistNortheast = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC30C55[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC30C7F[0]),
 ].join();
@@ -4240,7 +4240,7 @@ actionScript475 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript675 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
@@ -4391,19 +4391,19 @@ actionScript595 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript359 = [
+actionScriptTStage1OK = [
 	ACTIONSCRIPT_SET_X(6920),
 	ACTIONSCRIPT_SET_Y(8512),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript358[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1Thank[6]),
 ].join();
 actionScript493 = [
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0A443ME2(),
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(16),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript493[12 + 4 * (const(void)*).sizeof]),
@@ -4562,7 +4562,7 @@ actionScript756 = [
 actionScriptBunbunAppear = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
-	ACTIONSCRIPT_C0A86F(197),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.meteor),
 	ACTIONSCRIPT_START_TASK(&unknownC3AFA3[0]),
 	ACTIONSCRIPT_SET_DIRECTION8(Direction.up),
 	ACTIONSCRIPT_C0A443ME2(),
@@ -4606,7 +4606,7 @@ unknownC413D6 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC413D6[14]),
 ].join();
 actionScript643 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -4700,7 +4700,7 @@ actionScriptKnockDoor = [
 	ACTIONSCRIPT_PAUSE(30),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptKnockDoor[37 + 12 * (const(void)*).sizeof + string.sizeof]),
 ].join();
-actionScript328 = [
+actionScriptHoihoiG = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
@@ -4749,7 +4749,7 @@ actionScript872 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_11"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript257 = [
+actionScriptYunboBack = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -4771,7 +4771,7 @@ actionScript786 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript786[7 + 3 * (const(void)*).sizeof]),
 ].join();
 actionScript763 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -4820,7 +4820,7 @@ actionScript412 = [
 	ACTIONSCRIPT_PAUSE(30),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript388 = [
+actionScriptTStage2LuckyDance = [
 	ACTIONSCRIPT_SET_X(4672),
 	ACTIONSCRIPT_SET_Y(5744),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -4849,7 +4849,7 @@ actionScript388 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC3C90C = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_SET_Z(-96),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -4871,7 +4871,7 @@ unknownC3C90C = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3ABE0[0]),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript264 = [
+actionScriptBMonkeyRopeDown = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(4),
@@ -5000,13 +5000,13 @@ actionScript833 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript494 = [
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(32),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0A443ME2(),
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(32),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript494[12 + 4 * (const(void)*).sizeof]),
@@ -5074,7 +5074,7 @@ actionScript597 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript27[13 + 6 * (const(void)*).sizeof]),
 ].join();
 actionScript775 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_START_TASK(&actionScript757[21 + 11 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_START_TASK(&actionScript775Task[0]),
@@ -5093,7 +5093,7 @@ actionScript775Task = [
 	ACTIONSCRIPT_END_TASK(),
 ].join();
 actionScript706 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_START_TASK(&actionScript705_706_Common[0]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -5132,9 +5132,9 @@ actionScript730 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_C0C7DB(),
 ].join();
-actionScript380 = [
+actionScriptTStage2SpotInitPlayer = [
 	ACTIONSCRIPT_C4258C(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript381[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage2Player[0]),
 ].join();
 actionScript851 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC35FB6[0]),
@@ -5238,7 +5238,7 @@ actionScript870 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_9"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript323 = [
+actionScriptHoihoiB = [
 	ACTIONSCRIPT_SET_X(6008),
 	ACTIONSCRIPT_SET_Y(8504),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -5253,7 +5253,7 @@ actionScript323 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript274_275_276 = [
+actionScriptKoya = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 7),
 	ACTIONSCRIPT_C0A685(384),
@@ -5264,7 +5264,7 @@ actionScript274_275_276 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript391 = [
+actionScriptTStage2GorgeousDance4 = [
 	ACTIONSCRIPT_SET_X(4704),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -5288,7 +5288,7 @@ actionScript131 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript712 = [
-	ACTIONSCRIPT_C0A86F(410),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.helicopter),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -5372,7 +5372,7 @@ actionScriptLardnaKee = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwSumsShadowA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_SET_Z(0),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -5467,8 +5467,8 @@ unknownC42815 = [
 	ACTIONSCRIPT_C4CC2C(),
 	ACTIONSCRIPT_END_TASK(),
 ].join();
-actionScript300 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptOutSubmarine = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -5482,12 +5482,12 @@ actionScript300 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript304 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptGuardB2 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(192),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 15),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript303[23 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptGuardB1[23 + 7 * (const(void)*).sizeof]),
 ].join();
 actionScript887 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC39AC7[0]),
@@ -5546,7 +5546,7 @@ unknownC30C7F = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC30C97[0]),
 ].join();
 actionScriptSwDsrtShadowA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_SET_Z(0),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -5581,7 +5581,7 @@ unknownC3BAA3 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3BAA3[4 + 4 * (const(void)*).sizeof + string.sizeof]),
 ].join();
 actionScriptBunbuunBeam = [
-	ACTIONSCRIPT_C0A86F(197),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.meteor),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-10),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -5618,7 +5618,7 @@ actionScriptBunbuunBeam = [
 	ACTIONSCRIPT_PAUSE(60),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript266 = [
+actionScriptDashTony = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -5639,7 +5639,7 @@ actionScript573 = [
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript383 = [
+actionScriptTStage2Gorgeous = [
 	ACTIONSCRIPT_SET_X(4704),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -5647,7 +5647,7 @@ actionScript383 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript397 = [
+actionScriptTStage2SpotA = [
 	ACTIONSCRIPT_SET_X(4704),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -5705,8 +5705,8 @@ actionScript828 = [
 	ACTIONSCRIPT_PAUSE(204),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript340 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptPooSyugyou2 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
@@ -5716,7 +5716,7 @@ actionScript340 = [
 	ACTIONSCRIPT_LOOP(60),
 	ACTIONSCRIPT_C468A9(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.and, 3840),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript340[30 + 8 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPooSyugyou2[30 + 8 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(1),
 	ACTIONSCRIPT_C0A857(EventFlag.temp1),
 	ACTIONSCRIPT_C46E46(),
@@ -5729,7 +5729,7 @@ actionScript340 = [
 	ACTIONSCRIPT_LOOP(60),
 	ACTIONSCRIPT_C468A9(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.and, 3840),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript340[54 + 13 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPooSyugyou2[54 + 13 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(1),
 	ACTIONSCRIPT_C0A857(EventFlag.temp1),
 	ACTIONSCRIPT_C46E46(),
@@ -5747,14 +5747,14 @@ actionScript340 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C468A9(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.and, 3840),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript340[97 + 23 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPooSyugyou2[97 + 23 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(1),
 	ACTIONSCRIPT_C0A857(EventFlag.temp1),
 	ACTIONSCRIPT_C46E46(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript340[157 + 46 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptPooSyugyou2[157 + 46 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp2),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript340[83 + 18 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPooSyugyou2[83 + 18 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_FADEOUT(1, 1),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3ABE0[0]),
 	ACTIONSCRIPT_C46E46(),
@@ -5763,9 +5763,9 @@ actionScript340 = [
 	ACTIONSCRIPT_FADEIN(1, 1),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp1),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript340[157 + 46 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptPooSyugyou2[157 + 46 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp4),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript340[115 + 29 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPooSyugyou2[115 + 29 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_C4978E(),
 	ACTIONSCRIPT_C0AAB5(0xFFFC, 0, 100),
@@ -5773,9 +5773,9 @@ actionScript340 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp2),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript340[135 + 36 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPooSyugyou2[135 + 36 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp1),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript340[157 + 46 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptPooSyugyou2[157 + 46 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_FADEOUT(1, 1),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3ABE0[0]),
 	ACTIONSCRIPT_RELOAD_MAP(),
@@ -5791,7 +5791,7 @@ actionScript340 = [
 	ACTIONSCRIPT_C0A857(EventFlag.temp3),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp1),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript340[169 + 50 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptPooSyugyou2[169 + 50 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_FADEIN(1, 1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
@@ -5894,7 +5894,7 @@ actionScriptGorgeousChaous = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSubmarine1 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48BE1),
@@ -5913,7 +5913,7 @@ actionScriptSubmarine1 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwWinsLand2 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_SET_Z(200),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -5984,7 +5984,7 @@ unknownC4158A = [
 	ACTIONSCRIPT_PAUSE(212),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4158A[14]),
 ].join();
-actionScript315 = [
+actionScriptAndNearSt3 = [
 	ACTIONSCRIPT_SET_X(5968),
 	ACTIONSCRIPT_SET_Y(304),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript740[0]),
@@ -6015,7 +6015,7 @@ actionScript692 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript358 = [
+actionScriptTStage1Thank = [
 	ACTIONSCRIPT_SET_X(6904),
 	ACTIONSCRIPT_SET_Y(8512),
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
@@ -6024,7 +6024,7 @@ actionScript358 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript765 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_FADEOUT(1, 1),
@@ -6057,8 +6057,8 @@ actionScript501 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript501_531_Common[0]),
 ].join();
-actionScript289 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptOutStKurokoge = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 384),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7624),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -6071,10 +6071,10 @@ actionScript289 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript363 = [
+actionScriptTStage1Nice = [
 	ACTIONSCRIPT_SET_X(6888),
 	ACTIONSCRIPT_SET_Y(8520),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript358[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1Thank[6]),
 ].join();
 actionScript523 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
@@ -6149,7 +6149,7 @@ actionScript459 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptIntoBus = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_C0A938(205),
@@ -6165,7 +6165,7 @@ actionScript16 = [
 	ACTIONSCRIPT_C0A964(24, 8),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript13_14_15_16_17_Common2[0]),
 ].join();
-actionScript365 = [
+actionScriptTStage1Gorgeous = [
 	ACTIONSCRIPT_SET_X(7008),
 	ACTIONSCRIPT_SET_Y(8536),
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
@@ -6323,13 +6323,13 @@ actionScript482Task = [
 	ACTIONSCRIPT_END_TASK(),
 ].join();
 actionScript491 = [
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0A443ME2(),
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-8),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript491[12 + 4 * (const(void)*).sizeof]),
@@ -6454,10 +6454,10 @@ unknownC3DFB5 = [
 	ACTIONSCRIPT_CHOOSE_RANDOM(30, 60, 90, 120),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3DFD4_2[0]),
 ].join();
-actionScript378_407 = [
+actionScriptTStage23Groove = [
 	ACTIONSCRIPT_SET_X(4776),
 	ACTIONSCRIPT_SET_Y(5712),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript375_404[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage23Thank[6]),
 ].join();
 unknownC37A7C = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -6511,7 +6511,7 @@ actionScript700 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript700[107 + 15 * (const(void)*).sizeof + string.sizeof]),
 ].join();
 actionScript781 = [
-	ACTIONSCRIPT_C0A864(2),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_C0C7DB(),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -6587,7 +6587,7 @@ actionScript732 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript730Entry2[0]),
 ].join();
 actionScriptWinsSkywalkerShadow = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
 	ACTIONSCRIPT_HALT(),
@@ -6626,7 +6626,7 @@ actionScript886 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_25"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript390_394 = [
+actionScriptTStage2LuckyDance35 = [
 	ACTIONSCRIPT_SET_X(4744),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -6790,8 +6790,8 @@ actionScript892 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_31"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript268 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptJumpJefS = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -6817,7 +6817,7 @@ actionScript268 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript453 = [
-	ACTIONSCRIPT_C0A86F(205),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.cityBus),
 	ACTIONSCRIPT_SET_X_RELATIVE(-16),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	//fallthrough
@@ -6857,10 +6857,10 @@ actionScriptBusDsrtThrkIn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptBusDsrtThrkIn[50 + 10 * (const(void)*).sizeof]),
 ].join();
-actionScript374 = [
+actionScriptTStage2MikeR = [
 	ACTIONSCRIPT_SET_X(4768),
 	ACTIONSCRIPT_SET_Y(5748),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript361[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1MikeL[6]),
 ].join();
 actionScriptNiceFree = [
 	ACTIONSCRIPT_SET_X(7656),
@@ -6924,7 +6924,7 @@ actionScript443 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC3C94E = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_SET_Z(-96),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -7074,7 +7074,7 @@ actionScript671 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript653 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(-16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_PAUSE(64),
@@ -7087,7 +7087,7 @@ actionScript653 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript779 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_C0C7DB(),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -7103,8 +7103,8 @@ unknownC3A1B7 = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&unknownC3A1B7[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript270 = [
-	ACTIONSCRIPT_C0A864(3),
+actionScriptJefIntoSwThrk = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.jeff),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -7140,7 +7140,7 @@ unknownC4116C = [
 	ACTIONSCRIPT_PAUSE(60),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4116C[10]),
 ].join();
-actionScript279 = [
+actionScriptCircleCultistNorthwest = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC30C55[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC30C67[0]),
 ].join();
@@ -7148,7 +7148,7 @@ actionScript508 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41382[0]),
 ].join();
-actionScript262 = [
+actionScriptBMonkeyRopeS = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(64),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -7241,7 +7241,7 @@ actionScript228_229_230_231_232Common = [
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript382 = [
+actionScriptTStage2Spotlight = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 30),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -7252,7 +7252,7 @@ actionScript382 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript633 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
@@ -7285,10 +7285,10 @@ unknownC343AE = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&unknownC343AE[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript384 = [
+actionScriptTStage2Lucky = [
 	ACTIONSCRIPT_SET_X(4768),
 	ACTIONSCRIPT_SET_Y(5736),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript383[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage2Gorgeous[6]),
 ].join();
 actionScript418 = [
 	ACTIONSCRIPT_SET_X(4768),
@@ -7302,8 +7302,8 @@ actionScript418 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC333BB[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript294 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptShipSmall = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48BE1),
@@ -7330,8 +7330,8 @@ actionScript294 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 9552),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_C0A84C(EventFlag.tlptSkrb),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript294[74 + 15 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_START_TASK(&actionScript294Task[0]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptShipSmall[74 + 15 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptShipSmallTask[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 168),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 9648),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
@@ -7354,7 +7354,7 @@ actionScript294 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript294Task = [
+actionScriptShipSmallTask = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
 	ACTIONSCRIPT_LOOP(12),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 65535),
@@ -7394,7 +7394,7 @@ actionScript37 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript37[22 + 10 * (const(void)*).sizeof + string.sizeof]),
 ].join();
 actionScriptOutTBusR = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -7418,7 +7418,7 @@ actionScriptIntoTonzuraBusMono = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript782 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 65505),
@@ -7482,7 +7482,7 @@ actionScript782UnknownRoutine4 = [
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
 actionScriptSwWinsShadowA = [
-	ACTIONSCRIPT_C0A86F(209),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.skyRunner),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-40),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
@@ -7715,28 +7715,28 @@ actionScript21 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript21[41 + 17 * (const(void)*).sizeof]),
 ].join();
 actionScript450 = [
-	ACTIONSCRIPT_C0A864(1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript347 = [
+actionScriptNessAwake = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-1),
 	ACTIONSCRIPT_PAUSE(8),
 	ACTIONSCRIPT_SET_Y_RELATIVE(1),
 	ACTIONSCRIPT_PAUSE(8),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript347[1 + 1 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptNessAwake[1 + 1 * (const(void)*).sizeof]),
 ].join();
 actionScriptMonotoryOutALucky = [
 	ACTIONSCRIPT_SET_X(5960),
 	ACTIONSCRIPT_SET_Y(5968),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMonotoryOutAGroove[6]),
 ].join();
-actionScript288 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptIntoStKurokoge = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_C0A92D(741),
@@ -7779,8 +7779,8 @@ actionScript409 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC33399[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript409[5 + 1 * (const(void)*).sizeof]),
 ].join();
-actionScript316 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptOutSt3 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -7959,7 +7959,7 @@ actionScriptWakeUpTony = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript261 = [
+actionScriptBMonkeyFope = [
 	ACTIONSCRIPT_SET_X_RELATIVE(7),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_PLAY_SFX(Sfx.unknown0E),
@@ -8001,13 +8001,13 @@ actionScript711 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_C0A88D("MSG_EVT_HELIPOKEY"),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_C0A86F(106),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.animPort0),
 	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript711[31 + 6 * (const(void)*).sizeof + string.sizeof]),
 	ACTIONSCRIPT_SET_PRIORITY(3),
 	ACTIONSCRIPT_C0AA6E(Direction.right, 0),
-	ACTIONSCRIPT_C0A86F(106),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript711[45 + 10 * (const(void)*).sizeof + string.sizeof]),
 ].join();
@@ -8120,7 +8120,7 @@ unknownC3AAEA = [
 	ACTIONSCRIPT_C0A685(352),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript303 = [
+actionScriptGuardB1 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(192),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(4),
@@ -8131,14 +8131,14 @@ actionScript303 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp2),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript303[17 + 5 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptGuardB1[17 + 5 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(254),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB44[0]),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(254),
 	ACTIONSCRIPT_C0A8C6(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript303[26 + 9 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptGuardB1[26 + 9 * (const(void)*).sizeof]),
 ].join();
 actionScript58 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -8199,7 +8199,7 @@ actionScript789 = [
 	ACTIONSCRIPT_C0ED5C(),
 	ACTIONSCRIPT_END(),
 ].join();
-actionScript369 = [
+actionScriptTStage1Scr2 = [
 	ACTIONSCRIPT_SET_X(6912),
 	ACTIONSCRIPT_SET_Y(8560),
 	ACTIONSCRIPT_C0A685(256),
@@ -8214,7 +8214,7 @@ actionScript369 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v2),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript369[30 + 6 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptTStage1Scr2[30 + 6 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C0A88D("MSG_EVT_TSTAGE1_B"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
@@ -8311,7 +8311,7 @@ actionScriptGorgeousChaousRide = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript345 = [
+actionScriptSyugyouAddPoo = [
 	ACTIONSCRIPT_C0A87A(0, 128),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(1024),
@@ -8328,7 +8328,7 @@ actionScript345 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript399 = [
+actionScriptTStage2GrooveAdlib = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 30),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -8460,7 +8460,7 @@ actionScript250 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript312 = [
+actionScriptAndSt31 = [
 	ACTIONSCRIPT_SET_X(5976),
 	ACTIONSCRIPT_SET_Y(280),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -8474,8 +8474,8 @@ actionScript312 = [
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPeopleWalk0[0]),
 ].join();
-actionScript292 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptToSailor = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -8625,17 +8625,17 @@ unknownC3AB44 = [
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript285 = [
+actionScriptBMonkeyBye = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 11),
 	ACTIONSCRIPT_START_TASK(&unknownC3AFA3[0]),
 	ACTIONSCRIPT_C0A685(288),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
-	ACTIONSCRIPT_SHORTCALL(&actionScript285UnknownRoutine[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptBMonkeyByeUnknownRoutine[0]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript285UnknownRoutine = [
+actionScriptBMonkeyByeUnknownRoutine = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 432),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 4336),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
@@ -9498,7 +9498,7 @@ actionScriptCop5A = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript337 = [
+actionScriptChkaSt2Still = [
 	ACTIONSCRIPT_SET_X(5488),
 	ACTIONSCRIPT_SET_Y(304),
 	ACTIONSCRIPT_PAUSE(2),
@@ -9527,7 +9527,7 @@ actionScript615 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript568 = [
-	ACTIONSCRIPT_C0A864(2),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48B3B),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
@@ -9714,7 +9714,7 @@ actionScript512 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4152A[0]),
 ].join();
-actionScript324 = [
+actionScriptHoihoiC = [
 	ACTIONSCRIPT_SET_X(5288),
 	ACTIONSCRIPT_SET_Y(8656),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -9729,7 +9729,7 @@ actionScript324 = [
 	ACTIONSCRIPT_PAUSE(10),
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_PAUSE(30),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript324[7 + 1 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptHoihoiC[7 + 1 * (const(void)*).sizeof]),
 ].join();
 actionScript541 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC34E73[0]),
@@ -9878,7 +9878,7 @@ actionScript741 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 unknownC3CEB9 = [
-	ACTIONSCRIPT_C0A86F(209),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.skyRunner),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-40),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3CEB9[0]),
@@ -9907,7 +9907,7 @@ unknownC3BD03 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB8A[0]),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript342 = [
+actionScriptSenzo1 = [
 	ACTIONSCRIPT_C0A87A(128, 0),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(64),
@@ -9916,7 +9916,7 @@ actionScript342 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 128),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp1),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript342[27 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptSenzo1[27 + 7 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
@@ -9982,8 +9982,8 @@ actionScriptTBusTunnelBrdg = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_TBUS_BRDG_TUNNEL"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript271 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptIntoSwThrk = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_C0A92D(482),
@@ -10098,7 +10098,7 @@ actionScript760 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript400 = [
+actionScriptTStage2Scr2 = [
 	ACTIONSCRIPT_SET_X(4736),
 	ACTIONSCRIPT_SET_Y(5744),
 	ACTIONSCRIPT_C0A685(256),
@@ -10187,7 +10187,7 @@ actionScriptBusTunnelBrdgR = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_BUS_BRDG_TUNNEL_R"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript354 = [
+actionScriptMonoRMan = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(4),
@@ -10253,8 +10253,8 @@ actionScript437 = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_TSTAGE3_B"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript372 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptTStage2Scr1 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
@@ -10338,7 +10338,7 @@ actionScript435 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC33399[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript396 = [
+actionScriptTStage2LuckyDance6 = [
 	ACTIONSCRIPT_SET_X(4768),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -10407,7 +10407,7 @@ actionScript871 = [
 ].join();
 actionScriptBunbunDie = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
-	ACTIONSCRIPT_C0A864(1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	ACTIONSCRIPT_SET_Z(16),
 	ACTIONSCRIPT_C0A685(48),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -10426,7 +10426,7 @@ actionScriptBunbunDie = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript352 = [
+actionScriptPowspot = [
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
 	ACTIONSCRIPT_LOOP(9),
@@ -10440,7 +10440,7 @@ actionScript352 = [
 	ACTIONSCRIPT_PAUSE(12),
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp1),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript352[58 + 8 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptPowspot[58 + 8 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_LOOP(9),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 65535),
 	ACTIONSCRIPT_C47499(),
@@ -10452,7 +10452,7 @@ actionScript352 = [
 	ACTIONSCRIPT_PAUSE(12),
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp1),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript352[6]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPowspot[6]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
@@ -10573,7 +10573,7 @@ actionScriptTBusFourTunnel = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript659 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.left),
@@ -10601,7 +10601,7 @@ actionScript710 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript707_708_709_710_Common[0]),
 ].join();
 actionScriptOutSkywalker = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -10709,7 +10709,7 @@ actionScript849 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC36834[0]),
 ].join();
 actionScriptSwWinsA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -10770,7 +10770,7 @@ actionScriptCop5ToNess = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript301 = [
+actionScriptGuardA1 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(192),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(4),
@@ -10781,7 +10781,7 @@ actionScript301 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.temp1),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript301[17 + 5 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptGuardA1[17 + 5 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 5704),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 5640),
@@ -10790,8 +10790,8 @@ actionScript301 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript338 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptOutSt2 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -10835,7 +10835,7 @@ actionScriptMoveToLocationTypeB = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript308 = [
+actionScriptMochiYunbo = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(64),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -10874,7 +10874,7 @@ actionScriptTelRing = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptTelRing[5 + 2 * (const(void)*).sizeof]),
 ].join();
 actionScriptSwSumsA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -10932,7 +10932,7 @@ actionScriptSwSumsA = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript664 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(48),
 	ACTIONSCRIPT_SET_Y_RELATIVE(32),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -11035,7 +11035,7 @@ actionScript520 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4170E[0]),
 ].join();
 actionScript658 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
 	ACTIONSCRIPT_PAUSE(32),
 	ACTIONSCRIPT_C0A685(256),
@@ -11059,7 +11059,7 @@ actionScript658 = [
 actionScript94 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript94_95_98Common[0]),
 ].join();
-actionScript385 = [
+actionScriptTStage2GorgeousWalk = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
 	ACTIONSCRIPT_C0AA6E(Direction.up, 0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
@@ -11259,7 +11259,7 @@ actionScript385 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript539 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -11317,7 +11317,7 @@ actionScriptBusTwsnThrkIn = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript65[0]),
 ].join();
-actionScript361 = [
+actionScriptTStage1MikeL = [
 	ACTIONSCRIPT_SET_X(6896),
 	ACTIONSCRIPT_SET_Y(8560),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -11373,7 +11373,7 @@ actionScript256 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript311 = [
+actionScriptDoseiSt3 = [
 	ACTIONSCRIPT_SET_X(5976),
 	ACTIONSCRIPT_SET_Y(280),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -11401,7 +11401,7 @@ actionScript834 = [
 	ACTIONSCRIPT_LOOP(64),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 4096),
-	ACTIONSCRIPT_C0A86F(169),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.starMasterFlyingAway),
 	ACTIONSCRIPT_C0A8E7(),
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.starMasterGuy, ActionScript.unknown835),
@@ -11499,7 +11499,7 @@ actionScript885 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript716 = [
-	ACTIONSCRIPT_C0A86F(410),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.helicopter),
 	ACTIONSCRIPT_SET_X_RELATIVE(21),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-14),
 	ACTIONSCRIPT_SET_PRIORITY(0),
@@ -11602,7 +11602,7 @@ actionScript687 = [
 	ACTIONSCRIPT_PAUSE(5),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript687[7 + 3 * (const(void)*).sizeof]),
 ].join();
-actionScript254 = [
+actionScriptBMonkeyFly = [
 	ACTIONSCRIPT_SET_X_RELATIVE(7),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -11639,7 +11639,7 @@ actionScript614 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript282 = [
+actionScriptCircleCultistSouth = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC30C55[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC30CAF[0]),
 ].join();
@@ -11720,7 +11720,7 @@ actionScript674 = [
 	ACTIONSCRIPT_PAUSE(4),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript674[104 + 31 * (const(void)*).sizeof + string.sizeof]),
 ].join();
-actionScript313 = [
+actionScriptAndSt32 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -11822,7 +11822,7 @@ actionScript796 = [
 	ACTIONSCRIPT_SET_X(180),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript381 = [
+actionScriptTStage2Player = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 30),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -11881,7 +11881,7 @@ actionScript815 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScriptSwDsrtB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -12095,7 +12095,7 @@ actionScript440 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_START_TASK(&unknownC33549[0]),
-	ACTIONSCRIPT_C0A86F(165),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.venus),
 	ACTIONSCRIPT_SET_X_RELATIVE(-6),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-8),
 	ACTIONSCRIPT_PAUSE(1),
@@ -12155,14 +12155,14 @@ actionScript713 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_C46E46(),
-	ACTIONSCRIPT_C0A86F(106),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-24),
 	ACTIONSCRIPT_SET_X_RELATIVE(-8),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.animPort0),
 	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript713[61 + 6 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_PRIORITY(3),
-	ACTIONSCRIPT_C0A86F(106),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-24),
 	ACTIONSCRIPT_SET_X_RELATIVE(8),
 	ACTIONSCRIPT_PAUSE(1),
@@ -12247,7 +12247,7 @@ actionScript792 = [
 	ACTIONSCRIPT_SET_X(76),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript255 = [
+actionScriptBMonkeyFlyS = [
 	ACTIONSCRIPT_SET_X_RELATIVE(7),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
@@ -12256,7 +12256,7 @@ actionScript255 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwThrkB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -12370,7 +12370,7 @@ unknownC4119D = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4119D[4]),
 ].join();
 actionScript622 = [
-	ACTIONSCRIPT_C0A864(1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -12551,7 +12551,7 @@ actionScript832 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript371 = [
+actionScriptTStage1FlipTurn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
 	ACTIONSCRIPT_C4258C(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
@@ -12575,7 +12575,7 @@ actionScript371 = [
 	ACTIONSCRIPT_PAUSE(8),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_PAUSE(90),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript370[32 + 2 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1Flip[32 + 2 * (const(void)*).sizeof]),
 ].join();
 actionScript759 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -12657,7 +12657,7 @@ unknownC41822 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41822[52 + 10 * (const(void)*).sizeof]),
 ].join();
 actionScript657 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A685(256),
@@ -12740,7 +12740,7 @@ actionScript31 = [
 	ACTIONSCRIPT_PAUSE(12),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript31[17 + 8 * (const(void)*).sizeof]),
 ].join();
-actionScript350 = [
+actionScriptTalkPoo = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_C0AA6E(Direction.left, 0),
@@ -12820,7 +12820,7 @@ actionScript610 = [
 	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript605[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript392 = [
+actionScriptTStage2LuckyDance4 = [
 	ACTIONSCRIPT_SET_X(4768),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -12916,7 +12916,7 @@ actionScript736 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript330 = [
+actionScriptHoihoiI = [
 	ACTIONSCRIPT_SET_X(5448),
 	ACTIONSCRIPT_SET_Y(9152),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -12937,14 +12937,14 @@ actionScriptGhostThrkPlus2 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript295 = [
+actionScriptEvtKrakenApproach = [
 	ACTIONSCRIPT_SET_X(360),
 	ACTIONSCRIPT_SET_Y(9936),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 9),
 	ACTIONSCRIPT_C0A84C(EventFlag.tlptSkrb),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript295[23 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptEvtKrakenApproach[23 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_C0A443ME2(),
@@ -12956,7 +12956,7 @@ actionScript295 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(255),
 	ACTIONSCRIPT_C0A8C6(),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript295[34 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptEvtKrakenApproach[34 + 7 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
@@ -13011,7 +13011,7 @@ actionScript729 = [
 	ACTIONSCRIPT_C0AA6E(Direction.left, 0),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript293 = [
+actionScriptShipToSkrb1 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48BE1),
@@ -13103,7 +13103,7 @@ actionScript128 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript131[6]),
 ].join();
 actionScript644 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -13122,8 +13122,8 @@ actionScript644 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript336 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptIntoSt2 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_C0A92D(741),
@@ -13135,10 +13135,10 @@ actionScript336 = [
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript364 = [
+actionScriptTStage1Groove = [
 	ACTIONSCRIPT_SET_X(6936),
 	ACTIONSCRIPT_SET_Y(8520),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript358[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1Thank[6]),
 ].join();
 unknownC4121F = [
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -13202,10 +13202,10 @@ actionScript60 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript362 = [
+actionScriptTStage1MikeR = [
 	ACTIONSCRIPT_SET_X(6928),
 	ACTIONSCRIPT_SET_Y(8560),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript361[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1MikeL[6]),
 ].join();
 actionScript57 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -13236,13 +13236,13 @@ actionScript526 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4198D[0]),
 ].join();
 actionScript492 = [
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(8),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0A443ME2(),
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(8),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript492[12 + 4 * (const(void)*).sizeof]),
@@ -13270,8 +13270,8 @@ actionScript594 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript259 = [
-	ACTIONSCRIPT_C0A86F(254),
+actionScriptSigeYunboMove = [
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.bigDirtScooper),
 	ACTIONSCRIPT_SET_X_RELATIVE(-8),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-8),
 	ACTIONSCRIPT_CLEAR_CURRENT_ENTITY_COLLISION2(),
@@ -13306,7 +13306,7 @@ actionScript259 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript305 = [
+actionScriptGuard3 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(192),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -13504,7 +13504,7 @@ actionScript806 = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript806[12 + 4 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript307 = [
+actionScriptMochi1 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(208),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -14154,12 +14154,12 @@ unknownC3C20F = [
 	ACTIONSCRIPT_PLAY_SFX(Sfx.doorClose),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript377_406 = [
+actionScriptTStage23Nice = [
 	ACTIONSCRIPT_SET_X(4720),
 	ACTIONSCRIPT_SET_Y(5704),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript375_404[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage23Thank[6]),
 ].join();
-actionScript333 = [
+actionScriptHoihoiL = [
 	ACTIONSCRIPT_SET_X(5744),
 	ACTIONSCRIPT_SET_Y(8952),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -14274,7 +14274,7 @@ unknownC37559 = [
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
 unknownC3DBDB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -14351,7 +14351,7 @@ actionScript32 = [
 	ACTIONSCRIPT_END(),
 ].join();
 unknownC31DF4 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
@@ -14417,7 +14417,7 @@ actionScript841 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript840[9 + 4 * (const(void)*).sizeof]),
 ].join();
 actionScript662 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
 actionScriptBusIntoThrk = [
@@ -14452,7 +14452,7 @@ actionScriptBusIntoThrk = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScriptSwWinsLand = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_SET_Z(200),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -14484,7 +14484,7 @@ actionScript604 = [
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
-actionScript395 = [
+actionScriptTStage2GorgeousDance6 = [
 	ACTIONSCRIPT_SET_X(4704),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -14582,8 +14582,8 @@ actionScript59 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript344 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptPooTeleport = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_C0A443ME2(),
@@ -14667,7 +14667,7 @@ actionScriptGorgeousFree = [
 unknownC36BEA = [
 	ACTIONSCRIPT_END(),
 ].join();
-actionScript309 = [
+actionScriptMochi2 = [
 	ACTIONSCRIPT_SET_X(3704),
 	ACTIONSCRIPT_SET_Y(9632),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -14735,10 +14735,10 @@ actionScriptGorgeousMono = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript379_408 = [
+actionScriptTStage23HighHat = [
 	ACTIONSCRIPT_SET_X(4740),
 	ACTIONSCRIPT_SET_Y(5704),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript375_404[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage23Thank[6]),
 ].join();
 actionScript258 = [
 	ACTIONSCRIPT_C0A84C(EventFlag.unknown0144),
@@ -14748,7 +14748,7 @@ actionScript258 = [
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
 ].join();
-actionScript356 = [
+actionScriptStageFadeout = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -14827,9 +14827,9 @@ actionScript566 = [
 	ACTIONSCRIPT_PAUSE(3),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript302 = [
+actionScriptGuardA2 = [
 	ACTIONSCRIPT_PLAY_SFX(Sfx.doorClose),
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(192),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -15023,7 +15023,7 @@ actionScript809 = [
 	ACTIONSCRIPT_SET_X_VELOCITY(512),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript263 = [
+actionScriptBMonkeyRopeOrosu = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
@@ -15287,7 +15287,7 @@ actionScript723 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript547 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C3E),
@@ -15379,7 +15379,7 @@ actionScript738 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript737_738_739_740Common[0]),
 ].join();
 actionScript613 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -15395,7 +15395,7 @@ actionScript613 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript613[18 + 7 * (const(void)*).sizeof]),
 ].join();
 actionScript695 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48BE1),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
@@ -15466,7 +15466,7 @@ actionScript554 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript555[0]),
 ].join();
 actionScript660 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
 	ACTIONSCRIPT_PAUSE(16),
 	ACTIONSCRIPT_PAUSE(32),
@@ -15499,7 +15499,7 @@ actionScript733 = [
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript730Entry2[0]),
 ].join();
-actionScript389_393 = [
+actionScriptTStage2GorgeousDance35 = [
 	ACTIONSCRIPT_SET_X(4728),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -15622,7 +15622,7 @@ actionScriptMonotoryOutAGorgeous = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript291 = [
+actionScriptIntoShip = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.left),
@@ -15667,7 +15667,7 @@ actionScript28 = [
 	ACTIONSCRIPT_PAUSE(8),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript28[35 + 9 * (const(void)*).sizeof]),
 ].join();
-actionScript287 = [
+actionScriptDoseSpaceTunnel = [
 	ACTIONSCRIPT_C0A84C(EventFlag.xyzOk),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript335[0]),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -15708,7 +15708,7 @@ unknownC35231 = [
 	ACTIONSCRIPT_JUMP_IF_FALSE(&unknownC35231[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript326 = [
+actionScriptHoihoiE = [
 	ACTIONSCRIPT_SET_X(5264),
 	ACTIONSCRIPT_SET_Y(8704),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -15724,7 +15724,7 @@ actionScript326 = [
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_PAUSE(30),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript326[14 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptHoihoiE[14 + 3 * (const(void)*).sizeof]),
 ].join();
 actionScript502 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F4A[0]),
@@ -15800,7 +15800,7 @@ actionScript284 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 11),
 	ACTIONSCRIPT_C0A685(288),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
-	ACTIONSCRIPT_SHORTCALL(&actionScript285UnknownRoutine[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptBMonkeyByeUnknownRoutine[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript5 = [
@@ -15830,7 +15830,7 @@ actionScriptBusTunnelFour = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript327 = [
+actionScriptHoihoiF = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
@@ -15860,7 +15860,7 @@ actionScript574 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript573[6]),
 ].join();
 actionScript679 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(9),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3D),
@@ -16105,7 +16105,7 @@ actionScript411 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript325 = [
+actionScriptHoihoiD = [
 	ACTIONSCRIPT_SET_X(5240),
 	ACTIONSCRIPT_SET_Y(8656),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -16124,7 +16124,7 @@ actionScript325 = [
 	ACTIONSCRIPT_PAUSE(10),
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_PAUSE(30),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript325[14 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptHoihoiD[14 + 3 * (const(void)*).sizeof]),
 ].join();
 actionScript619 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -16148,13 +16148,13 @@ actionScript714 = [
 	ACTIONSCRIPT_START_TASK(&unknownC3899E[0]),
 	ACTIONSCRIPT_START_TASK(&unknownC38978[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
-	ACTIONSCRIPT_C0A86F(106),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SET_X_RELATIVE(16),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.animPort0),
 	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript714[14 + 4 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_C0A86F(106),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SET_X_RELATIVE(-16),
 	ACTIONSCRIPT_PAUSE(1),
@@ -16177,8 +16177,8 @@ actionScript504 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4119D[0]),
 ].join();
-actionScript339 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptPooSyugyou1 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -16218,7 +16218,7 @@ unknownC33C1D = [
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
 actionScript696_697_698_Common = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB37[0]),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -16313,7 +16313,7 @@ unknownC4170E = [
 	ACTIONSCRIPT_PAUSE(43),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4170E[84 + 16 * (const(void)*).sizeof]),
 ].join();
-actionScript341 = [
+actionScriptMessenger = [
 	ACTIONSCRIPT_SET_X(4840),
 	ACTIONSCRIPT_SET_Y(3880),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -16336,7 +16336,7 @@ actionScript341 = [
 actionScript402 = [
 	ACTIONSCRIPT_SET_X(4704),
 	ACTIONSCRIPT_SET_Y(5748),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript361[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1MikeL[6]),
 ].join();
 unknownC41382 = [
 	ACTIONSCRIPT_SET_X(24),
@@ -16369,7 +16369,7 @@ unknownC41382 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41382[14]),
 ].join();
 actionScriptSwDsrtA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -16443,10 +16443,10 @@ actionScript487 = [
 	ACTIONSCRIPT_SET_Y(3504),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPeopleWalk0[0]),
 ].join();
-actionScript376_405 = [
+actionScriptTStage23OK = [
 	ACTIONSCRIPT_SET_X(4752),
 	ACTIONSCRIPT_SET_Y(5704),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript375_404[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage23Thank[6]),
 ].join();
 actionScriptBusBrdgTunnelR = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
@@ -16694,7 +16694,7 @@ actionScriptWinsAwayKanai = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript749 = [
-	ACTIONSCRIPT_C0A86F(210),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.phaseDistorter),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_PAUSE(32),
@@ -16749,7 +16749,7 @@ actionScriptBusReturnTwsnB = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript780 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_C0C7DB(),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -16811,7 +16811,7 @@ actionScript835 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript773 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
@@ -16839,7 +16839,7 @@ unknownC419B2 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptFollowToMichiko = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB37[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 17),
@@ -16855,7 +16855,7 @@ actionScript451 = [
 	ACTIONSCRIPT_SET_PRIORITY(0),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript450[0]),
 ].join();
-actionScript290 = [
+actionScriptAndDose = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(176),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 17),
@@ -16903,8 +16903,8 @@ unknownC31E2D = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 1),
 	ACTIONSCRIPT_END_TASK(),
 ].join();
-actionScript251 = [
-	ACTIONSCRIPT_C0A864(9),
+actionScriptTacyNearBMonkey = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.bubbleMonkey),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
@@ -16918,7 +16918,7 @@ actionScript251 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwThrkA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-128),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -17463,7 +17463,7 @@ actionScript442 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript401 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
@@ -17504,7 +17504,7 @@ actionScript858 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript645 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -17568,7 +17568,7 @@ actionScript620 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript676_677_678_Common1 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -17606,7 +17606,7 @@ unknownC3899E = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3899E[0]),
 ].join();
 actionScript454 = [
-	ACTIONSCRIPT_C0A86F(205),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.cityBus),
 	ACTIONSCRIPT_SET_X_RELATIVE(16),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript453_454_Common[0]),
@@ -17688,7 +17688,7 @@ actionScriptSwSplinter2 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptSwSplinter1[18 + 4 * (const(void)*).sizeof]),
 ].join();
 actionScriptFollowToSyocho = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB37[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 17),
 	ACTIONSCRIPT_C0A938(75),
@@ -17725,7 +17725,7 @@ actionScript608 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript776 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -17947,7 +17947,7 @@ actionScript677 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript676_677_678_Common2[0]),
 ].join();
 actionScriptOutBusR = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -17971,7 +17971,7 @@ actionScript803 = [
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript283 = [
+actionScriptCircleCultistWest = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC30C55[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC30CC7[0]),
 ].join();
@@ -17984,7 +17984,7 @@ unknownC3BED4 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript368 = [
+actionScriptTStage1Lucky = [
 	ACTIONSCRIPT_SET_X(6816),
 	ACTIONSCRIPT_SET_Y(8536),
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
@@ -18210,7 +18210,7 @@ actionScript545 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwThrkShadowA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C02),
@@ -18295,8 +18295,8 @@ actionScript612 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript253 = [
-	ACTIONSCRIPT_C0A864(9),
+actionScriptBMonkeyGum1 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.bubbleMonkey),
 	ACTIONSCRIPT_SET_X_RELATIVE(-7),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0AA6E(Direction.up, 0),
@@ -18419,7 +18419,7 @@ unknownC31EC1 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript366 = [
+actionScriptTStage1LuckyDance = [
 	ACTIONSCRIPT_SET_X(6920),
 	ACTIONSCRIPT_SET_Y(8536),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -18527,7 +18527,7 @@ actionScript548 = [
 	ACTIONSCRIPT_PAUSE(60),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript269 = [
+actionScriptOutTony = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -18720,7 +18720,7 @@ actionScript481 = [
 	ACTIONSCRIPT_C46957(),
 	ACTIONSCRIPT_PAUSE(3),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript481[54 + 17 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-2),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript481[60 + 21 * (const(void)*).sizeof]),
@@ -18776,14 +18776,14 @@ actionScriptMonotoryOutAOK = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMonotoryOutAGroove[6]),
 ].join();
 actionScript360 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_C0AA6E(Direction.upRight, 0),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript747 = [
-	ACTIONSCRIPT_C0A86F(210),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.phaseDistorter),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 18),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -18921,7 +18921,7 @@ actionScriptBusTwsnTunnel = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_BUS_INTO_THRK"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript272 = [
+actionScriptSwToSums1 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_LOOP(14),
 	ACTIONSCRIPT_SET_X_RELATIVE(2),
@@ -19168,8 +19168,8 @@ actionScript89 = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript106[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript346 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptKaitenNess = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -19201,7 +19201,7 @@ actionScript346 = [
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v1, Binop.add, 65535),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_LOOP_END(),
-	ACTIONSCRIPT_START_TASK(&actionScript346[99 + 16 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptKaitenNess[99 + 16 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_LOOP(7),
 	ACTIONSCRIPT_PAUSE(70),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 65535),
@@ -19214,7 +19214,7 @@ actionScript346 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A673(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.add, -4),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript346[89 + 14 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptKaitenNess[89 + 14 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_HALT(),
 	ACTIONSCRIPT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
@@ -19222,10 +19222,10 @@ actionScript346 = [
 	ACTIONSCRIPT_GET_DIRECTION_ROTATED_CLOCKWISE(),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_C0AAAC(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript346[99 + 16 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptKaitenNess[99 + 16 * (const(void)*).sizeof]),
 ].join();
 actionScript654 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A685(256),
@@ -19236,8 +19236,8 @@ actionScript654 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript320 = [
-	ACTIONSCRIPT_SHORTCALL(&actionScript320_321Common[0]),
+actionScriptMaboroshiOut1 = [
+	ACTIONSCRIPT_SHORTCALL(&actionScriptMaboroshiOut[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 unknownC30C55 = [
@@ -19274,7 +19274,7 @@ actionScriptBusThrkTwsnIn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptBusThrkTwsnIn[49 + 11 * (const(void)*).sizeof]),
 ].join();
-actionScript277 = [
+actionScriptCarpDungL = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(6),
@@ -19330,7 +19330,7 @@ actionScript865 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript665 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(128),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 4),
@@ -19389,7 +19389,7 @@ actionScript413 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript412[6]),
 ].join();
 unknownC34E73 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -19421,7 +19421,7 @@ actionScriptOdorokiNesPola = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript646 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -19475,7 +19475,7 @@ actionScript80 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwFourShadowA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -19503,7 +19503,7 @@ actionScriptSwFourShadowA = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScriptSwThrkShadowB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -19637,8 +19637,8 @@ actionScript873 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_12"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript355 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptStageParty = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_HALT(),
@@ -19670,7 +19670,7 @@ actionScript721 = [
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript314 = [
+actionScriptKidSt3 = [
 	ACTIONSCRIPT_SET_X(5976),
 	ACTIONSCRIPT_SET_Y(280),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -19683,7 +19683,7 @@ actionScript314 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPeopleWalk0[0]),
 ].join();
 actionScriptSwFourShadowB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -19712,7 +19712,7 @@ actionScriptSwFourShadowB = [
 actionScript583 = [
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.up),
 	ACTIONSCRIPT_SET_DIRECTION(),
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(255),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -19801,7 +19801,7 @@ actionScript221 = [
 	ACTIONSCRIPT_C0A8C6(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript221[88 + 21 * (const(void)*).sizeof + string.sizeof]),
 ].join();
-actionScript331 = [
+actionScriptHoihoiJ = [
 	ACTIONSCRIPT_SET_X(5728),
 	ACTIONSCRIPT_SET_Y(9112),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -19915,7 +19915,7 @@ actionScript799 = [
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript317 = [
+actionScriptGeppuPass = [
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -19926,7 +19926,7 @@ actionScript317 = [
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.and, 3840),
 	ACTIONSCRIPT_C468AF(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.and, 3840),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript317[21 + 6 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptGeppuPass[21 + 6 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_LOOP_END(),
@@ -19964,7 +19964,7 @@ actionScript577 = [
 	ACTIONSCRIPT_SET_Y(7624),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
-actionScript281 = [
+actionScriptCircleCultistEast = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC30C55[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC30C97[0]),
 ].join();
@@ -20003,7 +20003,7 @@ actionScript559 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript655 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A685(256),
@@ -20017,10 +20017,10 @@ actionScript655 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript373 = [
+actionScriptTStage2MikeL = [
 	ACTIONSCRIPT_SET_X(4704),
 	ACTIONSCRIPT_SET_Y(5748),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript361[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1MikeL[6]),
 ].join();
 actionScript549 = [
 	ACTIONSCRIPT_SET_X(4224),
@@ -20138,7 +20138,7 @@ actionScript862 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript656 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A685(256),
@@ -20180,7 +20180,7 @@ actionScriptMichikoIntoRoomB = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript278 = [
+actionScriptCarpDungR = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A685(128),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(2),
@@ -20199,7 +20199,7 @@ unknownC39E01 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC39E01[0]),
 ].join();
-actionScript296 = [
+actionScriptShipToSkrb2 = [
 	ACTIONSCRIPT_SET_X(1560),
 	ACTIONSCRIPT_SET_Y(3672),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -20255,13 +20255,13 @@ actionScriptMizunoA = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript351 = [
+actionScriptBGChange = [
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_PAUSE(15),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 16),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.up),
 	ACTIONSCRIPT_SET_DIRECTION(),
-	ACTIONSCRIPT_START_TASK(&actionScript351[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
+	ACTIONSCRIPT_START_TASK(&actionScriptBGChange[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
 	ACTIONSCRIPT_LOOP(15),
 	ACTIONSCRIPT_PAUSE(32),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 65535),
@@ -20274,7 +20274,7 @@ actionScript351 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A673(),
 	ACTIONSCRIPT_BINOP_TEMPVAR(Binop.add, -7),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript351[35 + 2 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptBGChange[35 + 2 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_PAUSE(16),
 	ACTIONSCRIPT_WRITE_DWORD_WRAM(&unknown7E9D1B, &undrawFlyoverText),
@@ -20285,7 +20285,7 @@ actionScript351 = [
 	ACTIONSCRIPT_GET_DIRECTION_ROTATED_CLOCKWISE(),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_DISPLAY_YOUR_SANCTUARY_LOCATION(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript351[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptBGChange[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
 ].join();
 actionScript499 = [
 	ACTIONSCRIPT_C0A643(1311),
@@ -20309,17 +20309,17 @@ actionScriptMouseDoor = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript353 = [
+actionScriptKoke = [
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_C4880C(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 0),
 	ACTIONSCRIPT_PAUSE(3),
 	ACTIONSCRIPT_C48A6D(),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript353[7 + 1 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptKoke[7 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript329 = [
+actionScriptHoihoiH = [
 	ACTIONSCRIPT_SET_X(5456),
 	ACTIONSCRIPT_SET_Y(9144),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -20359,7 +20359,7 @@ actionScript77 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript334 = [
+actionScriptHoihoiM = [
 	ACTIONSCRIPT_SET_X(5456),
 	ACTIONSCRIPT_SET_Y(9008),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -20685,7 +20685,7 @@ actionScriptGrooveFree = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript343 = [
+actionScriptSenzo2 = [
 	ACTIONSCRIPT_C0A87A(128, 128),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_HALT(),
@@ -20738,7 +20738,7 @@ actionScript626 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript367 = [
+actionScriptTStage1GorgeousDance = [
 	ACTIONSCRIPT_SET_X(6904),
 	ACTIONSCRIPT_SET_Y(8536),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -20858,7 +20858,7 @@ actionScriptBunbuun = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_START_TASK(&unknownC3B0B6[0]),
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
-	ACTIONSCRIPT_C0A864(1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	ACTIONSCRIPT_SET_Z(16),
 	ACTIONSCRIPT_C0A685(0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
@@ -20869,7 +20869,7 @@ actionScriptBunbuun = [
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 2048),
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_C0A8E7(),
 	ACTIONSCRIPT_C4730E(),
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -20883,14 +20883,14 @@ actionScript439 = [
 	ACTIONSCRIPT_C0AA6E(Direction.up, 0),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript310 = [
+actionScriptStSt3 = [
 	ACTIONSCRIPT_SET_X(5976),
 	ACTIONSCRIPT_SET_Y(280),
 	ACTIONSCRIPT_PAUSE(2),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
 actionScriptNesHomeYure = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
@@ -20996,7 +20996,7 @@ actionScriptPeopleWalk1Live = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPeopleWalk1[10 + 6 * (const(void)*).sizeof]),
 ].join();
 actionScript634 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
@@ -21072,7 +21072,7 @@ actionScript688 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwFourB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -21096,8 +21096,8 @@ actionScriptSwFourB = [
 	ACTIONSCRIPT_PAUSE(128),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript357 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptTStage1Scr1 = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
@@ -21109,7 +21109,7 @@ actionScript357 = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_TSTAGE1_A"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript370 = [
+actionScriptTStage1Flip = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -21140,7 +21140,7 @@ actionScriptPeopleWalk0Live = [
 	ACTIONSCRIPT_C0A443ME2(),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 ].join();
-actionScript319 = [
+actionScriptPooToOldman = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(160),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 17),
@@ -21196,7 +21196,7 @@ actionScript693 = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript693[6 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript375_404 = [
+actionScriptTStage23Thank = [
 	ACTIONSCRIPT_SET_X(4696),
 	ACTIONSCRIPT_SET_Y(5712),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -21320,7 +21320,7 @@ actionScript466 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptOutTBusGorgeous = [
-	ACTIONSCRIPT_C0A86F(243),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.runaway5Bus),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48B3B),
 	ACTIONSCRIPT_C0A685(128),
@@ -21333,7 +21333,7 @@ actionScriptOutTBusGorgeous = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript322 = [
+actionScriptHoihoiA = [
 	ACTIONSCRIPT_SET_X(6080),
 	ACTIONSCRIPT_SET_Y(8552),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -21348,7 +21348,7 @@ actionScript322 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScriptOutBusL = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -21441,7 +21441,7 @@ actionScriptTBusIntoThrk = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript265 = [
+actionScriptBMonkeyRopeGood = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -21460,7 +21460,7 @@ actionScriptGetOutHallMayor = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript387 = [
+actionScriptTStage2GorgeousDance = [
 	ACTIONSCRIPT_SET_X(4736),
 	ACTIONSCRIPT_SET_Y(5720),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -21523,7 +21523,7 @@ actionScript829 = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript829[11 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript398 = [
+actionScriptTStage2SpotB = [
 	ACTIONSCRIPT_SET_X(4768),
 	ACTIONSCRIPT_SET_Y(5736),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -21597,8 +21597,8 @@ actionScript398 = [
 	ACTIONSCRIPT_C4257F(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript297 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptOutShip = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION(),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -21629,8 +21629,8 @@ actionScript484 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript267 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptJumpJef = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_C0A685(256),
 	ACTIONSCRIPT_START_TASK(&unknownC30A1F[0]),
@@ -21640,7 +21640,7 @@ actionScript267 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB44[0]),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A8C6(),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript267[20 + 5 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptJumpJef[20 + 5 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X_VELOCITY(0),
 	ACTIONSCRIPT_SET_Y_VELOCITY(0),
 	ACTIONSCRIPT_PAUSE(20),
@@ -21785,7 +21785,7 @@ actionScript417 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript412[6]),
 ].join();
 actionScript483 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -21814,7 +21814,7 @@ actionScript483 = [
 	ACTIONSCRIPT_PAUSE(2),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_C46712(),
-	ACTIONSCRIPT_C0A86F(252),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.tessie),
 	ACTIONSCRIPT_SET_X_RELATIVE(-8),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-22),
 	ACTIONSCRIPT_PAUSE(1),
@@ -21893,7 +21893,7 @@ actionScript108 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3AB9E[0]),
 ].join();
 actionScript766 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_C4978E(),
@@ -22030,7 +22030,7 @@ actionScript431_432_433_434 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript430[6 + 2 * (const(void)*).sizeof]),
 ].join();
 actionScript661 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(-16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
 	ACTIONSCRIPT_C0A685(256),
@@ -22138,7 +22138,7 @@ unknownC41036 = [
 	ACTIONSCRIPT_PAUSE(60),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41036[40 + 6 * (const(void)*).sizeof]),
 ].join();
-actionScript386 = [
+actionScriptTStage2LuckyWalk = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
 	ACTIONSCRIPT_C0AA6E(Direction.up, 0),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
@@ -22446,7 +22446,7 @@ actionScriptPeopleWalk0 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3A1F3[0]),
 ].join();
 actionScriptSwFourA = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -22471,7 +22471,7 @@ actionScriptSwFourA = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript651 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
@@ -22596,8 +22596,8 @@ actionScriptGhostPlus1 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript306 = [
-	ACTIONSCRIPT_C0A864(-1),
+actionScriptToGuard = [
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -22610,7 +22610,7 @@ actionScript306 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_C0A92D(866),
 	ACTIONSCRIPT_C0A8C6(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript306[18 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptToGuard[18 + 7 * (const(void)*).sizeof]),
 ].join();
 actionScriptSyochoA = [
 	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
@@ -22654,7 +22654,7 @@ actionScript501_531_Common = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript501_531_Common[67 + 12 * (const(void)*).sizeof]),
 ].join();
 actionScript438 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
@@ -22716,7 +22716,7 @@ actionScript452 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript768 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_C4978E(),
@@ -22862,7 +22862,7 @@ actionScript441 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_START_TASK(&unknownC33549[0]),
-	ACTIONSCRIPT_C0A86F(165),
+	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.venus),
 	ACTIONSCRIPT_SET_X_RELATIVE(3),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript441[14 + 2 * (const(void)*).sizeof]),
@@ -22870,7 +22870,7 @@ actionScript441 = [
 actionScript403 = [
 	ACTIONSCRIPT_SET_X(4768),
 	ACTIONSCRIPT_SET_Y(5748),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript361[6]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1MikeL[6]),
 ].join();
 actionScript752 = [
 	ACTIONSCRIPT_SET_X(360),
@@ -22979,7 +22979,7 @@ actionScript629 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript629[187 + 27 * (const(void)*).sizeof]),
 ].join();
 actionScript652 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_PAUSE(32),
@@ -23007,7 +23007,7 @@ actionScript863 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptSwDsrtShadowB = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB26[0]),
 	ACTIONSCRIPT_SET_Z(0),
 	ACTIONSCRIPT_SET_ANIMATION(0),
@@ -23053,7 +23053,7 @@ actionScript87 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript105[0]),
 ].join();
 actionScript757 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_START_TASK(&actionScript757[21 + 11 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -23119,7 +23119,7 @@ actionScript682 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript705 = [
-	ACTIONSCRIPT_C0A864(-1),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_START_TASK(&actionScript705_706_Common[0]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -23241,7 +23241,7 @@ actionScript579 = [
 	ACTIONSCRIPT_SET_Y(7600),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
-actionScript252 = [
+actionScriptBMonkeyGum = [
 	ACTIONSCRIPT_SET_X_RELATIVE(-7),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0AA6E(Direction.up, 0),
@@ -23252,7 +23252,7 @@ actionScript252 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript567 = [
-	ACTIONSCRIPT_C0A864(2),
+	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48B3B),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),

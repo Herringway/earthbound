@@ -2504,7 +2504,7 @@ short findEntityByTPT(short arg1) {
 
 /// $C4608C
 short findEntityByPartyMemberID(short arg1) {
-	if (arg1 == 255) {
+	if (arg1 == PartyMember.leader) {
 		return gameState.firstPartyMemberEntity;
 	}
 	for (short i = 0; i < 6; i++) {
@@ -3085,7 +3085,7 @@ void unknownC46C87() {
 }
 
 /// $C46C9B
-void unknownC46C9B(short arg1) {
+void moveEntityToPartyMember(short arg1) {
 	short x0E = findEntityByPartyMemberID(arg1);
 	version(noUndefinedBehaviour) { // if no party member found, an underflow will occur here
 		if (x0E == -1) {
@@ -3097,7 +3097,7 @@ void unknownC46C9B(short arg1) {
 }
 
 /// $C46CC7
-void unknownC46CC7(short arg1) {
+void moveEntityToSprite(short arg1) {
 	short x0E = findEntityBySprite(arg1);
 	version(noUndefinedBehaviour) { // if no sprite found, an underflow will occur here
 		if (x0E == -1) {

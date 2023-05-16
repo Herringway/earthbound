@@ -1237,7 +1237,7 @@ enum ActionScript {
 	animNesHomeYure, //36
 	mom1, //37
 	animKnockDoor, //38
-	animNessTobinoku,
+	animNessTobinoku, //39
 	homeTelephone, //40
 	animTelRing, //41
 	animPeopleWalk0Live, //42
@@ -1282,7 +1282,7 @@ enum ActionScript {
 	animOshiokiPokey, //81
 	animOshiokiPickey, //82
 	animOshiokiMince, //83
-	AnimLardnaKee, //84
+	animLardnaKee, //84
 	unknown085, //85
 	unknown086, //86
 	unknown087, //87
@@ -3616,6 +3616,7 @@ enum PartyMember {
 	flyingMan5 = 15,
 	teddyBear = 16,
 	plushTeddyBear = 17,
+	leader = 0xFF,
 }
 ///
 enum NPCType {

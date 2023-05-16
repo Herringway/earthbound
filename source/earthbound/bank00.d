@@ -7213,17 +7213,17 @@ void unknownC0A857(short arg1, ref const(ubyte)* arg2) {
 }
 
 /// $C0A864
-void unknownC0A864(short, ref const(ubyte)* arg2) {
+void actionScriptMoveEntityToPartyMember(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead8(arg2);
 	actionScriptVar94 = arg2;
-	unknownC46C9B(tmp);
+	moveEntityToPartyMember(tmp);
 }
 
 /// $C0A86F
-void unknownC0A86F(short, ref const(ubyte)* arg2) {
+void actionScriptMoveEntityToSprite(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
-	unknownC46CC7(tmp);
+	moveEntityToSprite(tmp);
 }
 
 /// $C0A87A
