@@ -3214,7 +3214,7 @@ void* cc1F16(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F16Arguments);
 	unknownC462FF(
 		getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getWorkingMemory().integer),
-		cast(short)(getCCParameters!ArgType(arg2).arg1.useVariableIfZero(getArgumentMemory()) - 1)
+		cast(short)(getCCParameters!ArgType(arg2).arg2.useVariableIfZero(getArgumentMemory()) - 1)
 	);
 	return null;
 }
