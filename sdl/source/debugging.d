@@ -32,6 +32,7 @@ struct DebugState {
 	bool askingBattle;
 	bool editingVRAM;
 	bool editingBG2;
+	bool askingForEntity;
 }
 
 DebugState state;
@@ -59,6 +60,7 @@ void prepareDebugUI(size_t width, size_t height) {
 			menuItemCallback("Start a battle", () { state.askingBattle = true; });
 			menuItemCallback("Edit VRAM", () { state.editingVRAM = true; });
 			menuItemCallback("Edit BG2", () { state.editingBG2 = true; });
+			menuItemCallback("Spawn an entity", () { state.askingForEntity = true; });
 			ImGui.EndMenu();
 		}
 		if (ImGui.BeginMenu("Dump")) {
@@ -86,6 +88,7 @@ void prepareDebugUI(size_t width, size_t height) {
 	handleDialog!WarpToDialog(state.askingWarpToPreset, "Warp to preset destination");
 	handleDialog!StartBattleDialog(state.askingBattle, "Start battle");
 	handleDialog!RunTextScript(state.askingForScript, "Run a Text Script");
+	handleDialog!SpawnEntity(state.askingForEntity, "Spawn an entity");
 	ImGui.End();
 }
 
@@ -1028,6 +1031,16 @@ struct StartBattleDialog {
 	@Label("Battle") EnemyGroup group;
 	void execute() const {
 		initBattleScripted(cast(short)group);
+	}
+}
+struct SpawnEntity {
+	@Label("Sprite") OverworldSprite sprite;
+	@Label("ActionScript") ActionScript script;
+	@Label("Index") short index = -1;
+	@Label("X") short x;
+	@Label("Y") short y;
+	void execute() const {
+		createEntity(cast(short)sprite, cast(short)script, index, x, y);
 	}
 }
 
