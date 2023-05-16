@@ -3087,6 +3087,11 @@ void unknownC46C87() {
 /// $C46C9B
 void unknownC46C9B(short arg1) {
 	short x0E = findEntityByPartyMemberID(arg1);
+	version(noUndefinedBehaviour) { // if no party member found, an underflow will occur here
+		if (x0E == -1) {
+			return;
+		}
+	}
 	entityAbsXTable[currentEntitySlot] = entityAbsXTable[x0E];
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[x0E];
 }
@@ -3094,6 +3099,11 @@ void unknownC46C9B(short arg1) {
 /// $C46CC7
 void unknownC46CC7(short arg1) {
 	short x0E = findEntityBySprite(arg1);
+	version(noUndefinedBehaviour) { // if no sprite found, an underflow will occur here
+		if (x0E == -1) {
+			return;
+		}
+	}
 	entityAbsXTable[currentEntitySlot] = entityAbsXTable[x0E];
 	entityAbsYTable[currentEntitySlot] = entityAbsYTable[x0E];
 }
