@@ -264,7 +264,7 @@ ushort getScreenAngle(short x1, short y1, short x2, short y2) {
 	if ((a & 0xFF) != 0) {
 		a = -1;
 	}
-	a /= x0A;
+	a = cast(ushort)a / x0A;
 	short x = 0;
 	while (x < 16) {
 		if (a < unknownC41FDF[x]) {
@@ -290,6 +290,7 @@ unittest {
 	assert(getScreenAngle(0x718,0x6E8,0x570,0x6E8) == 0xC000);
 	assert(getScreenAngle(0x56F,0x694,0x575,0x6E3) == 0x7C00);
 	assert(getScreenAngle(0x1DE8,0x8F0,0x1E10,0x8E8) == 0x3800);
+	assert(getScreenAngle(0x4DB,0x1655,0x358,0x17D8) == 0xA000);
 }
 
 /// $C41FC5
