@@ -1503,6 +1503,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/clearCurrentTextLine.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/clearUnknown7EB4AABuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/coffeeTeaScene.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/convert8DirectionTo4PreferLeftRight.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/convert8DirectionTo4PreferUpDown.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/countPhotoFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/createPreparedEntityNPC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/createPreparedEntitySprite.html</loc></url>
@@ -1510,6 +1512,8 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/decomp.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/decompItoiProduction.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/decompNintendoPresentation.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/directionTable4LR.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/directionTable4UD.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/disableEntityByCharacterOrParty.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/disableEntityBySprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/disableEntityByTPT.html</loc></url>
@@ -1522,6 +1526,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/enableEntityBySprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/enableEntityByTPT.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/enableYourSanctuaryDisplay.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/entityAngleToDestination.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/entityOverlayBigRipple.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/entityOverlayBigRippleFrame1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/entityOverlayBigRippleFrame2.html</loc></url>
@@ -1558,9 +1563,11 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/getColourFadeSlope.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getDirectionTo.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getDistanceToMagicTruffle.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/getOppositeDirection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getPartyCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getPositionOfPartyMember.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getRequiredEXP.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/getScreenAngle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getTownMapID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/giygasDeathStaticTransitionDelays.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/hideCharacterOrParty.html</loc></url>
@@ -1625,6 +1632,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/setBoundaryBehaviour.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setDecompressedArrangementPriorityBit.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setGameOverFadeTargetPalette.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/setMovingDirectionFromAngle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/setPartyTickCallbacks.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/skippablePause.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/soundStoneMelodyFlags.html</loc></url>
@@ -1654,7 +1662,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC40B51.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC40B75.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC40BE8.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC41EFF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC41FC5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC41FDF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC41FFF.html</loc></url>
@@ -1756,14 +1763,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC469F1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46A5E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46A6E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46A7A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46A8A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46A9A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46AA3.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46ADB.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B0A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B2D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B37.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B41.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B51.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B65.html</loc></url>
@@ -3248,6 +3248,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/entityEnemyIDs.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityGraphicsPointers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityMoveCallbacks.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/entityMovingDirection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityMushroomizedOverlayPtrs.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityNextEntityTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityObstacleFlags.html</loc></url>
@@ -3285,7 +3286,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/entityTPTEntries.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityTPTEntrySprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityUnknown1A4A.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/entityUnknown1A86.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityUnknown284C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityUnknown2916.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityUnknown2952.html</loc></url>
