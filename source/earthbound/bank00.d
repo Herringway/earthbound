@@ -3249,6 +3249,7 @@ short npcCollisionCheck(short x, short y, short arg3) {
 			x18 = entityUnknown3366[arg3];
 			x04 = entityUnknown33A2[arg3];
 		}
+		x -= x18;
 		y -= x04;
 		for (short i = 0; i != 0x17; i++) {
 			if (entityScriptTable[i] == -1) {
