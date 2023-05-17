@@ -404,7 +404,9 @@ void drawRect(short x1, short y1, short x2, short y2, ubyte r, ubyte g, ubyte b,
 	overlayRectangles ~= ColouredRectangle(x1, y1, cast(short)(x2 - x1), cast(short)(y2 - y1), r, g, b, a);
 }
 void renderRectangle(const ColouredRectangle rect) {
-	const dim = SDL_Rect(rect.x * 2, rect.y * 2, rect.w * 2, rect.h * 2);
+	const xScale = gameWidth / 256.0;
+	const yScale = gameHeight / 224.0;
+	const dim = SDL_Rect(cast(int)(gameX + rect.x * xScale), cast(int)(gameY + rect.y * yScale), cast(int)(rect.w * xScale), cast(int)(rect.h * yScale));
 	assert(SDL_SetRenderDrawColor(renderer, rect.r, rect.g, rect.b, rect.a) >= 0);
 	assert(SDL_RenderFillRect(renderer, &dim) >= 0);
 }
