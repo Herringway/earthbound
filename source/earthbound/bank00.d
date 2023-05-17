@@ -6523,8 +6523,11 @@ void unknownC09FAEEntry4() {
 /// $C09FF1
 void updateEntityPosition3D() {
 	updateActiveEntityPosition2D();
-	entityAbsZFractionTable[actionScriptVar88 / 2] += entityDeltaZFractionTable[actionScriptVar88 / 2];
-	entityAbsZTable[actionScriptVar88 / 2] += entityDeltaZTable[actionScriptVar88 / 2];
+	FixedPoint1616 newPosition;
+
+	newPosition.combined = fullEntityAbsZ(actionScriptVar88 / 2).combined + fullEntityDeltaZ(actionScriptVar88 / 2).combined;
+	entityAbsZFractionTable[actionScriptVar88 / 2] = newPosition.fraction;
+	entityAbsZTable[actionScriptVar88 / 2] = newPosition.integer;
 	unknownC0C7DB();
 }
 
