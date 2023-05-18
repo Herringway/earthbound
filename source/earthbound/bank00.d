@@ -1617,7 +1617,7 @@ short unknownC0369B(short id) {
 				break;
 			}
 			version(bugfix) {
-				if (partyCharacters[entityScriptVar1Table[gameState.partyEntities[gameState.unknown96[x18]]]].afflictions[0] == Status0.unconscious) {
+				if (partyCharacters[entityScriptVar1Table[gameState.partyEntities[gameState.unknown96[x18] - 1]]].afflictions[0] == Status0.unconscious) {
 					break;
 				}
 			} else { // Vanilla game incorrectly uses the party member index as an entity id
