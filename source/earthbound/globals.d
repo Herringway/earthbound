@@ -298,7 +298,7 @@ __gshared short unknown7E288A; /// $(DOLLAR)288A
 __gshared short unknown7E288C; /// $(DOLLAR)288C
 __gshared short unknown7E288E; /// $(DOLLAR)288E
 __gshared short unknown7E2890; /// $(DOLLAR)2890
-__gshared short unknown7E2892; /// $(DOLLAR)2892
+__gshared short useSecondSpriteFrame; /// $(DOLLAR)2892
 __gshared short unknown7E2894; /// $(DOLLAR)2894
 __gshared short unknown7E2896; /// $(DOLLAR)2896
 __gshared short unknown7E2898; /// $(DOLLAR)2898

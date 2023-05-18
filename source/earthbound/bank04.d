@@ -30,7 +30,7 @@ import std.experimental.logger;
 /// $C40015
 short unknownC40015() {
 	entityAnimationFrames[actionScriptVar88 / 2] = 0;
-	unknownC0A443Entry3();
+	updateEntitySpriteCurrentFrame0();
 	return unknownC0C6B6();
 }
 
@@ -1189,7 +1189,7 @@ void unknownC432B1() {
 			partyCharacters[i].afflictions[j] = 0;
 		}
 	}
-	gameState.partyStatus = 0;
+	gameState.partyStatus = PartyStatus.normal;
 }
 
 /// $C43317
@@ -1239,11 +1239,11 @@ void savePhotoState(short arg1) {
 	}
 	gameState.savedPhotoStates[arg1].unknown = x12;
 	for (short i = 0; i < 6; i++) {
-		if (gameState.unknown96[i] == 0xFF) {
+		if (gameState.partyMemberIndex[i] == 0xFF) {
 			gameState.savedPhotoStates[arg1].partyMembers[i] = 0;
 		} else {
 			currentPartyMemberTick = &partyCharacters[gameState.playerControlledPartyMembers[i]];
-			short x0E = gameState.unknown96[i];
+			short x0E = gameState.partyMemberIndex[i];
 			if ((partyCharacters[gameState.playerControlledPartyMembers[i]].afflictions[0] == Status0.unconscious)) {
 				x0E |= 0x20;
 			}
@@ -2508,7 +2508,7 @@ short findEntityByPartyMemberID(short arg1) {
 		return gameState.firstPartyMemberEntity;
 	}
 	for (short i = 0; i < 6; i++) {
-		if (arg1 == gameState.unknown96[i]) {
+		if (arg1 == gameState.partyMemberIndex[i]) {
 			return gameState.partyEntities[i];
 		}
 	}
@@ -2609,7 +2609,7 @@ void unknownC462FF(short arg1, short arg2) {
 	}
 	if (entityDirections[x0E] != arg2) {
 		entityDirections[x0E] = arg2;
-		unknownC0A443Entry2(x0E);
+		updateEntitySprite(x0E);
 	}
 }
 
@@ -2621,7 +2621,7 @@ void unknownC46331(short arg1, short arg2) {
 	}
 	if (entityDirections[x0E] != arg2) {
 		entityDirections[x0E] = arg2;
-		unknownC0A443Entry2(x0E);
+		updateEntitySprite(x0E);
 	}
 }
 
@@ -2640,7 +2640,7 @@ void unknownC46363(short arg1, short arg2) {
 /// $C46397
 void unknownC46397(short arg1) {
 	for (short i = 0; i < gameState.partyCount; i++) {
-		if (16 <= gameState.unknown96[i]) {
+		if (16 <= gameState.partyMemberIndex[i]) {
 			continue;
 		}
 		short x0E = gameState.partyEntities[i];
@@ -2815,7 +2815,7 @@ void unknownC46712() {
 void unknownC4675C() {
 	entityTickCallbackFlags[gameState.partyEntities[0]] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
 	for (short i = 1; i < gameState.partyCount; i++) {
-		if (gameState.unknown96[i] == 9) {
+		if (gameState.partyMemberIndex[i] == 9) {
 			continue;
 		}
 		entitySpriteMapFlags[gameState.partyEntities[i]] &= 0x7FFF;
@@ -2909,7 +2909,7 @@ short unknownC46914() {
 void unknownC46957(short arg1) {
 	if (entityDirections[currentEntitySlot] != arg1) {
 		entityDirections[currentEntitySlot] = arg1;
-		unknownC0A443Entry2(currentEntitySlot);
+		updateEntitySprite(currentEntitySlot);
 	}
 }
 
@@ -2924,7 +2924,7 @@ void unknownC46984(short arg1) {
 		return;
 	}
 	entityDirections[x04] = x10;
-	unknownC0A443Entry2(x04);
+	updateEntitySprite(x04);
 }
 
 /// $C469F1
@@ -2938,7 +2938,7 @@ void unknownC469F1(short arg1) {
 		return;
 	}
 	entityDirections[x04] = x10;
-	unknownC0A443Entry2(x04);
+	updateEntitySprite(x04);
 }
 
 /// $C46A5E
@@ -3274,7 +3274,7 @@ short unknownC47143(short arg1, short arg2) {
 		short x0E = entityDirections[currentEntitySlot];
 		entityDirections[currentEntitySlot] = x10;
 		if (convert8DirectionTo4PreferUpDown(x0E) != convert8DirectionTo4PreferUpDown(x10)) {
-			unknownC0A443Entry2(currentEntitySlot);
+			updateEntitySprite(currentEntitySlot);
 		}
 	}
 	return 0;
@@ -5763,7 +5763,7 @@ void unknownC472A8(short arg1) {
 	short x0E = entityDirections[currentEntitySlot];
 	entityDirections[currentEntitySlot] = x10;
 	if (convert8DirectionTo4PreferUpDown(x0E) != convert8DirectionTo4PreferUpDown(x10)) {
-		unknownC0A443Entry2(currentEntitySlot);
+		updateEntitySprite(currentEntitySlot);
 	}
 }
 
@@ -6082,7 +6082,7 @@ void unknownC48B3B() {
 		return;
 	}
 	for (short i = 0; gameState.partyCount > i; i++) {
-		if (16 <= gameState.unknown96[i]) {
+		if (16 <= gameState.partyMemberIndex[i]) {
 			continue;
 		}
 		short x10 = cast(short)((getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
@@ -6234,7 +6234,7 @@ void unknownC4CB8F() {
 		if (x06.unknown4 == 1) {
 			entityAnimationFrames[x06.entityID] = 0;
 		}
-		unknownC0A443Entry2(x06.entityID);
+		updateEntitySprite(x06.entityID);
 		x06++;
 	}
 }

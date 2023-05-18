@@ -30,10 +30,10 @@ void inflictSunstrokeCheck() {
 		return;
 	}
 	for (short i = 0 ; i < 6; i++) {
-		if (gameState.unknown96[i] == 0) {
+		if (gameState.partyMemberIndex[i] == 0) {
 			return;
 		}
-		if (gameState.unknown96[i] > 4) {
+		if (gameState.partyMemberIndex[i] > 4) {
 			return;
 		}
 		currentPartyMemberTick = chosenFourPtrs[gameState.playerControlledPartyMembers[i]];
@@ -1094,7 +1094,7 @@ short unknownC226E6() {
 /// $C226F0
 ushort unknownC226F0() {
 	ushort i;
-	for (i = 0; (partyCharacters[gameState.unknown96[i] - 1].afflictions[0] != 0) && (i < gameState.playerControlledPartyMemberCount); i++) {}
+	for (i = 0; (partyCharacters[gameState.partyMemberIndex[i] - 1].afflictions[0] != 0) && (i < gameState.playerControlledPartyMemberCount); i++) {}
 	return i;
 }
 
@@ -1102,7 +1102,7 @@ ushort unknownC226F0() {
 short unknownC2272F() {
 	short x10 = 0;
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-		if ((partyCharacters[gameState.unknown96[i] - 1].afflictions[0] != Status0.unconscious) && (partyCharacters[gameState.unknown96[i] - 1].afflictions[0] != Status0.diamondized)) {
+		if ((partyCharacters[gameState.partyMemberIndex[i] - 1].afflictions[0] != Status0.unconscious) && (partyCharacters[gameState.partyMemberIndex[i] - 1].afflictions[0] != Status0.diamondized)) {
 			x10++;
 		}
 	}
@@ -2246,9 +2246,9 @@ short battleRoutine() {
 		x33 = 1;
 		gameState.playerControlledPartyMemberCount = 1;
 		memset(&gameState.partyMembers[0], 0, 6);
-		memset(&gameState.unknown96[0], 0, 6);
+		memset(&gameState.partyMemberIndex[0], 0, 6);
 		gameState.partyMembers[0] = 1;
-		gameState.unknown96[0] = 1;
+		gameState.partyMemberIndex[0] = 1;
 		enemiesInBattle = 1;
 		currentBattleGroup = 1;
 		unknown7E9F8C[0] = battleEntryPointerTable[0].enemies[0].enemyID;
@@ -6226,7 +6226,7 @@ void eatFood() {
 		default: break;
 	}
 	if (x18.ep != 0) {
-		unknownC076C8(x18.ep);
+		boostPartySpeed(x18.ep);
 	}
 }
 

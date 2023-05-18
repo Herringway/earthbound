@@ -5441,6 +5441,14 @@ enum WarpPreset {
 }
 
 ///
+enum PartyStatus {
+	normal = 0,
+	burnt = 1,
+	unknown2 = 2,
+	speedBoost = 3,
+}
+
+///
 struct GameState {
 	version(Have_siryul) {
 		import siryul : Skip;
@@ -5475,7 +5483,7 @@ struct GameState {
 	ushort unknown90; ///
 	ushort unknown92; ///
 	ushort firstPartyMemberEntity; ///
-	ubyte[6] unknown96; ///
+	ubyte[6] partyMemberIndex; ///
 	ubyte[6] playerControlledPartyMembers; ///
 	ubyte[12] partyEntities; ///
 	ubyte partyCount; ///

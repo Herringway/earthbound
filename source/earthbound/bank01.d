@@ -4582,7 +4582,7 @@ short equipItem(short arg1, short arg2) {
 
 /// $C190E6
 short unknownC190E6(short arg1) {
-	return gameState.unknown96[arg1 - 1];
+	return gameState.partyMemberIndex[arg1 - 1];
 }
 
 /// $C190F1
@@ -5439,7 +5439,7 @@ short determineTargetting(short arg1, short arg2) {
 					break;
 				case 2:
 					x16 = 1;
-					x01 = cast(ubyte)gameState.unknown96[randMod(cast(short)(countChars(BattleSide.friends) - 1))];
+					x01 = cast(ubyte)gameState.partyMemberIndex[randMod(cast(short)(countChars(BattleSide.friends) - 1))];
 					break;
 				case 3:
 				case 4:

@@ -125,6 +125,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			}
 			ImGui.TreePop();
 		}
+		InputEditable!PartyStatus("Party status", gameState.partyStatus);
 		InputEditable("Money (Backup)", gameState.walletBackup);
 		if (ImGui.TreeNode("Escargo Express")) {
 			foreach (invIdx, ref item; gameState.escargoExpressItems) {
@@ -145,7 +146,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			}
 			if (ImGui.TreeNode(format!"Party Member %s"(idx))) {
 				InputEditable("ID", p);
-				InputEditable("??", gameState.unknown96[idx]);
+				InputEditable("Index", gameState.partyMemberIndex[idx]);
 				InputEditable("???", gameState.playerControlledPartyMembers[idx]);
 				InputEditable("Entity", gameState.partyEntities[idx]);
 				if (ImGui.Button("Remove")) {
