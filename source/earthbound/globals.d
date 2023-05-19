@@ -932,16 +932,6 @@ __gshared ubyte[0x8000] introBG2Buffer; /// $(DOLLAR)8000 - this seems to overla
 
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
 
-__gshared ubyte actionScriptVar00; /// $(DOLLAR)00
-__gshared short actionScriptVar00s; /// $(DOLLAR)00
-__gshared ubyte actionScriptVar02; /// $(DOLLAR)02
-__gshared const(ubyte)* actionScriptVar02p; /// $(DOLLAR)02
-__gshared const(OverlayScript)* actionScriptVar02Overlay; /// $(DOLLAR)02
-
-__gshared ushort actionScriptVar04; /// $(DOLLAR)04
-__gshared ushort actionScriptVar06; /// $(DOLLAR)06
-__gshared ushort actionScriptVar08; /// $(DOLLAR)08
-
 __gshared ushort actionScriptVar80; /// $(DOLLAR)80
 
 __gshared ActionLoopCallState* actionScriptVar84; /// $(DOLLAR)84

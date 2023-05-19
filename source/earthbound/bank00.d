@@ -6762,7 +6762,7 @@ short unknownC0A317(short arg1) {
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
-	actionScriptVar00s = a;
+	short actionScriptVar00s = a;
 	if (actionScriptVar00s < unknownC0A30B[entityScriptVar5Table[actionScriptVar88 / 2] / 2]) {
 		return actionScriptVar00s;
 	}
@@ -6834,8 +6834,8 @@ void unknownC0A3A4(short, short id) {
 	if ((entityUnknown341A[id / 2] !is null) && ((entityUnknown341A[id / 2].lsb & 1) != 0)) {
 		actionScriptVar8C += entityUnknown2916[id / 2] / 5;
 	}
-	actionScriptVar00 = 0x30;
-	actionScriptVar02 = 0x30;
+	ubyte actionScriptVar00 = 0x30;
+	ubyte actionScriptVar02 = 0x30;
 	if ((entitySurfaceFlags[id / 2] & 1) != 0) {
 		actionScriptVar02 = 0x20;
 	}
@@ -6868,8 +6868,8 @@ void unknownC0A3A4(short, short id) {
 /// $C0A443
 //what a mess
 void unknownC0A443() {
-	actionScriptVar00 = (unknown7E2890 + currentEntitySlot >> 3) & 1;
-	actionScriptVar02 = cast(ubyte)((entityDirections[actionScriptVar88 / 2] * 2) | actionScriptVar00);
+	ubyte actionScriptVar00 = (unknown7E2890 + currentEntitySlot >> 3) & 1;
+	ubyte actionScriptVar02 = cast(ubyte)((entityDirections[actionScriptVar88 / 2] * 2) | actionScriptVar00);
 	if (((entityUnknown2C22[actionScriptVar88 / 2] >> 8) | ((entityUnknown2C22[actionScriptVar88 / 2] &0xFF) << 8) | actionScriptVar02) == entityUnknown3456[actionScriptVar88 / 2]) {
 		return;
 	}
@@ -6913,8 +6913,7 @@ void updateEntitySpriteCurrentCommon() {
 	updateEntitySpriteOffset(actionScriptVar88);
 }
 void updateEntitySpriteOffset(short arg1) {
-	actionScriptVar08 = arg1;
-	actionScriptVar00 = cast(ubyte)(entityTileHeights[arg1 / 2]);
+	ubyte actionScriptVar00 = cast(ubyte)(entityTileHeights[arg1 / 2]);
 	dmaCopySize = entityByteWidths[arg1 / 2];
 	dmaCopyVRAMDestination = entityVramAddresses[arg1 / 2];
 	//x04 = EnttiyGraphicsPointerHigh[arg1 / 2]
@@ -6941,7 +6940,7 @@ void updateEntitySpriteOffset(short arg1) {
 			}
 		}
 	}
-	entityUnknown341A[actionScriptVar08 / 2] = x02;
+	entityUnknown341A[arg1 / 2] = x02;
 	//Original code:
 	//dmaCopyRAMSource = cast(void*)((*x02) & 0xFFF0);
 	//dmaCopyRAMSource + 2 = UNKNOWN_30X2_TABLE_31[arg1 / 2];
@@ -7537,25 +7536,21 @@ void musicEffect(short arg1) {
 /// $C0AC43
 void unknownC0AC43() {
 	spritemapBank = 0xC4;
-	actionScriptVar04 = 0xC4;
-	actionScriptVar00 = ((entitySurfaceFlags[actionScriptVar88 / 2] & 1) != 0) ? 1 : 0;
+	ubyte actionScriptVar04 = 0xC4;
+	ubyte actionScriptVar00 = ((entitySurfaceFlags[actionScriptVar88 / 2] & 1) != 0) ? 1 : 0;
 	switch (entitySurfaceFlags[actionScriptVar88 / 2] & 0xC) {
 		default:
 			if (entityByteWidths[actionScriptVar88 / 2] == 0x40) {
-				actionScriptVar02Overlay = entityRippleOverlayPtrs[actionScriptVar88 / 2];
 				if (entityUnknown305A[actionScriptVar88 / 2] == 0) {
-					entityRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown3096[actionScriptVar88 / 2], entityUnknown305A[actionScriptVar88 / 2]);
+					entityRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown3096[actionScriptVar88 / 2], entityUnknown305A[actionScriptVar88 / 2], entityRippleOverlayPtrs[actionScriptVar88 / 2]);
 				}
 				entityUnknown305A[actionScriptVar88 / 2]--;
-				actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
 				unknownC08C58(entityUnknown3096[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 			} else {
-				actionScriptVar02Overlay = entityBigRippleOverlayPtrs[actionScriptVar88 / 2];
 				if (entityUnknown310E[actionScriptVar88 / 2] == 0) {
-					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown314A[actionScriptVar88 /2], entityUnknown310E[actionScriptVar88 / 2]);
+					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown314A[actionScriptVar88 /2], entityUnknown310E[actionScriptVar88 / 2], entityBigRippleOverlayPtrs[actionScriptVar88 / 2]);
 				}
 				entityUnknown310E[actionScriptVar88 / 2]--;
-				actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
 				unknownC08C58(entityUnknown314A[actionScriptVar88 / 2] + actionScriptVar00 + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], cast(short)(entityScreenYTable[actionScriptVar88 / 2] + 8));
 			}
 			goto case;
@@ -7571,12 +7566,10 @@ void unknownC0AC43() {
 			if (actionScriptVar88 < 46) {
 				return;
 			}
-			actionScriptVar02Overlay = entitySweatingOverlayPtrs[actionScriptVar88 / 2];
 			if (entityUnknown2FA6[actionScriptVar88 / 2] == 0) {
-				entitySweatingOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2FE2[actionScriptVar88 / 2], entityUnknown2FA6[actionScriptVar88 / 2]);
+				entitySweatingOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2FE2[actionScriptVar88 / 2], entityUnknown2FA6[actionScriptVar88 / 2], entitySweatingOverlayPtrs[actionScriptVar88 / 2]);
 			}
 			entityUnknown2FA6[actionScriptVar88 / 2]--;
-			actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
 			if (entityUnknown2FE2[actionScriptVar88 / 2] is null) {
 				break;
 			}
@@ -7589,30 +7582,27 @@ void unknownC0AC43() {
 	if (actionScriptVar88 < 46) {
 		return;
 	}
-	actionScriptVar02Overlay = entityMushroomizedOverlayPtrs[actionScriptVar88 / 2];
 	if (entityUnknown2EF2[actionScriptVar88 / 2] == 0) {
-		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2F2E[actionScriptVar88 / 2], entityUnknown2EF2[actionScriptVar88 / 2]);
+		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2F2E[actionScriptVar88 / 2], entityUnknown2EF2[actionScriptVar88 / 2], entityMushroomizedOverlayPtrs[actionScriptVar88 / 2]);
 	}
 	entityUnknown2EF2[actionScriptVar88 / 2]--;
-	actionScriptVar06 = entityScreenXTable[actionScriptVar88 / 2];
 	unknownC08C58(entityUnknown2F2E[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 }
 
 /// $C0AD56
-const(OverlayScript)* unknownC0AD56(const(SpriteMap)** arg1, out ushort frames) {
+const(OverlayScript)* unknownC0AD56(const(SpriteMap)** arg1, out ushort frames, const(OverlayScript)* overlay) {
 	ushort y = 0;
 	NextCommand:
-	if (actionScriptVar02Overlay[y].command == 1) {
-		arg1[0] = actionScriptVar02Overlay[y++].spriteMap;
+	if (overlay[y].command == 1) {
+		arg1[0] = overlay[y++].spriteMap;
 		goto NextCommand;
 	}
-	if (actionScriptVar02Overlay[y].command == 3) {
-		actionScriptVar02Overlay = actionScriptVar02Overlay[y++].dest;
+	if (overlay[y].command == 3) {
+		overlay = overlay[y++].dest;
 		goto NextCommand;
 	}
-	frames = actionScriptVar02Overlay[y++].frames;
-	actionScriptVar08 = y;
-	return &actionScriptVar02Overlay[y];
+	frames = overlay[y++].frames;
+	return &overlay[y];
 }
 
 /// $C0AD9F
