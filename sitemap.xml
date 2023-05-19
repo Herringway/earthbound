@@ -1654,6 +1654,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/spawnEntityAtSelf.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/spawnFloatingSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/spawnTravellingPhotographer.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/startSwirl.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/statusEquipWindowText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/stepMapPaletteFade.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/testYourSanctuaryDisplay.html</loc></url>
@@ -1854,7 +1855,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A5FA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A626.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A652.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A67E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4A7B0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4AC57.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4B1B8.html</loc></url>
@@ -2540,6 +2540,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Hotspot.x2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Hotspot.y1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Hotspot.y2.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/HotspotID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/InitialStatus.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Initiative.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Item.html</loc></url>
@@ -2925,6 +2926,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Status6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/stopMusicExternal.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SurfaceFlags.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/Swirl.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Targetted.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TelephoneContact.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TelephoneContact.eventFlag.html</loc></url>
