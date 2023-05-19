@@ -269,7 +269,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("u284C", entityUnknown284C[entity]);
 				InputEditable("u2916", entityUnknown2916[entity]);
 				InputEditable("u2952", entityUnknown2952[entity]);
-				InputEditable("u2B32", entityUnknown2B32[entity]);
+				InputEditable("Speed", entityMovementSpeed[entity]);
 				InputEditable("u2BE6", entityUnknown2BE6[entity]);
 				InputEditable("u2C22", entityUnknown2C22[entity]);
 				InputEditable("u2C5E", entityUnknown2C5E[entity]);

@@ -164,7 +164,7 @@ void setWindowTitle(short arg1, short arg2, const(ubyte)* arg3) {
 /// $C2038B
 void unknownC2038B() {
 	copyToVRAMAlt(0, 0x700, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
-	copyToVRAM(0, 0x40, 0x7F80, &unknownC40BE8[0]);
+	copyToVRAM(0, 0x40, 0x7F80, &blankTiles[0]);
 }
 
 /// $C203C3

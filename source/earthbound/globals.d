@@ -300,7 +300,7 @@ __gshared short unknown7E288E; /// $(DOLLAR)288E
 __gshared short unknown7E2890; /// $(DOLLAR)2890
 __gshared short useSecondSpriteFrame; /// $(DOLLAR)2892
 __gshared short unknown7E2894; /// $(DOLLAR)2894
-__gshared short unknown7E2896; /// $(DOLLAR)2896
+__gshared short spriteUpdateEntityOffset; /// $(DOLLAR)2896
 __gshared short unknown7E2898; /// $(DOLLAR)2898
 __gshared short footstepSoundID; /// $(DOLLAR)289A
 __gshared short footstepSoundIDOverride; /// $(DOLLAR)289C
@@ -316,7 +316,7 @@ __gshared OverworldSpriteGraphics*[maxEntities] entityGraphicsPointers; /// $(DO
 __gshared short[maxEntities] entityByteWidths; /// $(DOLLAR)2A7E
 __gshared short[maxEntities] entityTileHeights; /// $(DOLLAR)2ABA
 __gshared short[maxEntities] entityDirections; /// $(DOLLAR)2AF6
-__gshared short[maxEntities] entityUnknown2B32; /// $(DOLLAR)2B32
+__gshared short[maxEntities] entityMovementSpeed; /// $(DOLLAR)2B32
 __gshared short[maxEntities] entitySizes; /// $(DOLLAR)2B6E
 __gshared ushort[maxEntities] entitySurfaceFlags; /// $(DOLLAR)2BAA
 __gshared ushort[maxEntities] entityUnknown2BE6; /// $(DOLLAR)2BE6
