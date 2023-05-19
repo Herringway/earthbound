@@ -235,7 +235,7 @@ __gshared short currentEntitySlot; /// $(DOLLAR)1A42
 __gshared short currentEntityOffset; /// $(DOLLAR)1A44
 __gshared short currentScriptSlot; /// $(DOLLAR)1A46
 __gshared short currentScriptOffset; /// $(DOLLAR)1A48
-__gshared short[maxEntities] entityUnknown1A4A; /// $(DOLLAR)1A4A
+__gshared short[maxEntities] entityHitboxLeftRightHeight; /// $(DOLLAR)1A4A
 __gshared short[maxEntities] entityMovingDirection; /// $(DOLLAR)1A86
 __gshared short backgroundDistortionStyle; /// $(DOLLAR)1ACC
 __gshared short backgroundDistortionTargetLayer; /// $(DOLLAR)1ACE
@@ -330,7 +330,7 @@ __gshared ushort[maxEntities] entityUnknown2D8A; /// $(DOLLAR)2D8A
 __gshared ushort[maxEntities] entityUnknown2DC6; /// $(DOLLAR)2DC6
 __gshared VecYX*[maxEntities] entityUnknown2E02; /// $(DOLLAR)2E02
 __gshared ushort[maxEntities] entityUnknown2E3E; /// $(DOLLAR)2E3E
-__gshared ushort[maxEntities] entityUnknown2E7A; /// $(DOLLAR)2E7A
+__gshared ushort[maxEntities] entityOverlayFlags; /// $(DOLLAR)2E7A
 __gshared const(OverlayScript)*[maxEntities] entityMushroomizedOverlayPtrs; /// $(DOLLAR)2EB6
 __gshared ushort[maxEntities] entityMushroomizedNextUpdateFrames; /// $(DOLLAR)2EF2
 __gshared const(SpriteMap)*[maxEntities] entityMushroomizedSpritemaps; /// $(DOLLAR)2F2E
@@ -343,12 +343,17 @@ __gshared const(SpriteMap)*[maxEntities] entityRippleSpritemaps; /// $(DOLLAR)30
 __gshared const(OverlayScript)*[maxEntities] entityBigRippleOverlayPtrs; /// $(DOLLAR)30D2
 __gshared ushort[maxEntities] entityBigRippleNextUpdateFrames; /// $(DOLLAR)310E
 __gshared const(SpriteMap)*[maxEntities] entityBigRippleSpritemaps; /// $(DOLLAR)314A
-__gshared short[maxEntities] entityUnknown3186; /// $(DOLLAR)3186
+/++ $(DOLLAR)3186 - Random number generated to determine if enemy is 'weak'.
++ If >= 192, will be considered weak if total party level is 8x the enemy level.
++ If >= 128, will be considered weak if total party level is 6x the enemy level.
++ Otherwise, it will only be considered weak if total party level is 10x the enemy level.
++/
+__gshared short[maxEntities] entityWeakEnemyValue;
 
-__gshared short[maxEntities] entityUnknown332A; /// $(DOLLAR)332A
-__gshared short[maxEntities] entityUnknown3366; /// $(DOLLAR)3366
-__gshared short[maxEntities] entityUnknown33A2; /// $(DOLLAR)33A2
-__gshared short[maxEntities] entityUnknown33DE; /// $(DOLLAR)33DE
+__gshared short[maxEntities] entityHitboxEnabled; /// $(DOLLAR)332A - It's unclear what this one once meant. It now only disables hitboxes if zero.
+__gshared short[maxEntities] entityHitboxUpDownWidth; /// $(DOLLAR)3366
+__gshared short[maxEntities] entityHitboxUpDownHeight; /// $(DOLLAR)33A2
+__gshared short[maxEntities] entityHitboxLeftRightWidth; /// $(DOLLAR)33DE
 __gshared const(OverworldSpriteGraphics)*[maxEntities] entityUnknown341A; /// $(DOLLAR)331A
 __gshared short[maxEntities] entityUnknown3456; /// $(DOLLAR)3356
 __gshared ubyte[32][52] vwfBuffer; /// $(DOLLAR)3492

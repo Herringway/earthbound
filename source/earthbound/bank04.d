@@ -930,7 +930,7 @@ immutable short[17] hitboxWidths = [
 	0x0006,
 ];
 
-/// $C42AEB
+/// $C42AEB - Original meaning unknown.
 immutable short[17] unknownC42AEB = [
 	0x000A,
 	0x0000,

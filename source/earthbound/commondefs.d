@@ -4460,6 +4460,27 @@ enum SurfaceFlags {
 	unknown2 = 1<<6,
 	solid = 1<<7,
 }
+///
+enum EntityOverlayFlags : ushort {
+	none = 0, /// No special overlay
+	unknown0 = 1 << 0, ///
+	unknown1 = 1 << 1, ///
+	unknown2 = 1 << 2, ///
+	unknown3 = 1 << 3, ///
+	unknown4 = 1 << 4, ///
+	unknown5 = 1 << 5, ///
+	unknown6 = 1 << 6, ///
+	unknown7 = 1 << 7, ///
+	unknown8 = 1 << 8, ///
+	unknown9 = 1 << 9, ///
+	unknown10 = 1 << 10, ///
+	unknown11 = 1 << 11, ///
+	unknown12 = 1 << 12, ///
+	unknown13 = 1 << 13, ///
+	mushroom = 1 << 14, ///
+	sweating = 1 << 15, ///
+}
+
 auto printableFlags(SurfaceFlags flags) @safe pure {
 	static struct Result {
 		SurfaceFlags flags;
@@ -5676,12 +5697,12 @@ struct QueuedInteraction {
 struct SpriteGrouping {
 	ubyte height; ///
 	ubyte width; ///
-	ubyte unknown2; ///
+	ubyte size; ///
 	ubyte spritemapFlags; ///
-	ubyte unknown4; ///
-	ubyte unknown5; ///
-	ubyte unknown6; ///
-	ubyte unknown7; ///
+	ubyte hitboxWidthUD; ///
+	ubyte hitboxHeightUD; ///
+	ubyte hitboxWidthLR; ///
+	ubyte hitboxHeightLR; ///
 	ubyte spriteBank; ///
 	OverworldSpriteGraphics[] sprites; ///
 }

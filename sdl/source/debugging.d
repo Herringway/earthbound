@@ -264,7 +264,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					}
 				}
 				InputEditable("Sleep", entityScriptSleepFrames[entity]);
-				InputEditable("u1A4A", entityUnknown1A4A[entity]);
+				InputEditable("L/R height", entityHitboxLeftRightHeight[entity]);
 				InputEditable!Direction("Moving direction", entityMovingDirection[entity]);
 				InputEditable("u284C", entityUnknown284C[entity]);
 				InputEditable("u2916", entityUnknown2916[entity]);
@@ -277,16 +277,16 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("u2D8A", entityUnknown2D8A[entity]);
 				InputEditable("u2DC6", entityUnknown2DC6[entity]);
 				InputEditable("u2E3E", entityUnknown2E3E[entity]);
-				InputEditable("u2E7A", entityUnknown2E7A[entity]);
+				InputEditable("Overlay flags", entityOverlayFlags[entity]);
 				InputEditable("Mushroom frames", entityMushroomizedNextUpdateFrames[entity]);
 				InputEditable("Sweat frames", entitySweatingNextUpdateFrames[entity]);
 				InputEditable("Ripple frames", entityRippleNextUpdateFrames[entity]);
 				InputEditable("Big ripple frames", entityBigRippleNextUpdateFrames[entity]);
-				InputEditable("u3186", entityUnknown3186[entity]);
-				InputEditable("u332A", entityUnknown332A[entity]);
-				InputEditable("u3366", entityUnknown3366[entity]);
-				InputEditable("u33A2", entityUnknown33A2[entity]);
-				InputEditable("u33DE", entityUnknown33DE[entity]);
+				InputEditable("Strength", entityWeakEnemyValue[entity]);
+				InputEditable("Hitbox enabled?", entityHitboxEnabled[entity]);
+				InputEditable("U/D width", entityHitboxUpDownWidth[entity]);
+				InputEditable("U/D height", entityHitboxUpDownHeight[entity]);
+				InputEditable("L/R width", entityHitboxLeftRightWidth[entity]);
 				InputEditable("u3456", entityUnknown3456[entity]);
 				if (ImGui.Button("Delete")) {
 					deleteEntity(entity);
