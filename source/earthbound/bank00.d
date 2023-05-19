@@ -6934,7 +6934,7 @@ void updateEntitySpriteOffset(short arg1) {
 		if (--actionScriptVar00 == 0) {
 			return;
 		}
-		if ((actionScriptVar06 & SurfaceFlags.causesSunstroke) != 0) {
+		if ((entitySurfaceFlags[arg1 / 2] & SurfaceFlags.causesSunstroke) != 0) {
 			unknownC0A56E();
 			if (--actionScriptVar00 == 0) {
 				return;
