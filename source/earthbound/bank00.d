@@ -7555,10 +7555,10 @@ void unknownC0AC43() {
 			}
 			goto case;
 		case SurfaceFlags.none:
-			if (entityUnknown2E7A[actionScriptVar88 / 2] != 0) {
+			if (entityUnknown2E7A[actionScriptVar88 / 2] == 0) {
 				return;
 			}
-			if ((entityUnknown2E7A[actionScriptVar88 / 2] & 0x80) == 0) {
+			if ((entityUnknown2E7A[actionScriptVar88 / 2] & 0x8000) == 0) {
 				break;
 			}
 			goto case;
