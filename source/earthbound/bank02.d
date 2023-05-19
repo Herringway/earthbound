@@ -2357,9 +2357,9 @@ short battleRoutine() {
 						}
 					}
 					if ((padPress[0] & Pad.b) != 0) {
-						unknownC4A67E(unknown7EAA72, unknown7EAA74);
+						startSwirl(unknown7EAA72, unknown7EAA74);
 						if (++unknown7EAA72 == 8) {
-							unknown7EAA72 = 0;
+							unknown7EAA72 = Swirl.none;
 							unknown7EAA74 = (unknown7EAA74 + 1) & 3;
 						}
 					}
@@ -6638,7 +6638,7 @@ void unknownC2C21F(short group, short music) {
 		x10 = 1;
 	}
 	if (x10 == 0) {
-		unknownC2E8C4(6, AnimationFlags.unknown0, 30);
+		unknownC2E8C4(Swirl.unknown6, AnimationFlags.unknown0, 30);
 		while (unknownC2E9C8() != 0) {
 			windowTick();
 		}
@@ -6666,7 +6666,7 @@ void unknownC2C21F(short group, short music) {
 	if (group == 483) {
 		return;
 	}
-	unknownC2E8C4(6, AnimationFlags.none, 5);
+	unknownC2E8C4(Swirl.unknown6, AnimationFlags.none, 5);
 	while (unknownC2E9C8() != 0) {
 		windowTick();
 	}
@@ -6895,7 +6895,7 @@ void battleActionGiygasPrayer9() {
 	wait(10 * 60);
 	playSfx(Sfx.psiThunderDamage);
 	stopMusic();
-	unknownC2E8C4(5, AnimationFlags.none, 5);
+	unknownC2E8C4(Swirl.enemyAttack, AnimationFlags.none, 5);
 	while (unknownC2E9C8() != 0) {
 		windowTick();
 	}
@@ -7637,13 +7637,13 @@ void unknownC2E6B6() {
 
 /// $C2E8C4
 void unknownC2E8C4(short arg1, short arg2, short arg3) {
-	unknownC4A67E(arg1, arg2);
+	startSwirl(arg1, arg2);
 	unknown7EAECA = cast(ubyte)arg3;
 }
 
 /// $C2E8E0
 void battleSwirlSequence() {
-	short x16 = 1;
+	short x16 = Swirl.battleStart;
 	short swirlRed = 4;
 	short swirlGreen = 4;
 	short swirlBlue = 0;
@@ -7671,7 +7671,7 @@ void battleSwirlSequence() {
 		default: break;
 	}
 	if (currentBattleGroup >= EnemyGroup.bossFrank) {
-		x16 = 3;
+		x16 = Swirl.bossBattleStart;
 		x0E = AnimationFlags.unknown3 | AnimationFlags.unknown2 | AnimationFlags.unknown1;
 		swirlMusic = Music.battleSwirl1;
 	}
@@ -7719,7 +7719,7 @@ void unknownC2E9ED() {
 /// $C2EA15
 void unknownC2EA15(short arg1) {
 	unknown7EAEEF = cast(ubyte)arg1;
-	unknownC4A67E(0, AnimationFlags.none);
+	startSwirl(Swirl.none, AnimationFlags.none);
 	unknown7EAEC8 = 0x13;
 	switch (arg1) {
 		case 2:
@@ -7736,7 +7736,7 @@ void unknownC2EA15(short arg1) {
 
 /// $C2EA74
 void unknownC2EA74() {
-	unknownC4A67E(0, AnimationFlags.none);
+	startSwirl(Swirl.none, AnimationFlags.none);
 	unknown7EAEC8 = 0x13;
 	if (unknown7EAEEF != 0) {
 		unknown7EAECC = &unknownC4A652[0];

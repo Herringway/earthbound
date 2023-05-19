@@ -4457,7 +4457,7 @@ immutable Unknown7EAECCEntry[2] unknownC4A652 = [
 ];
 
 /// $C4A67E
-void unknownC4A67E(short arg1, short arg2) {
+void startSwirl(short arg1, short arg2) {
 	tracef("Loading swirl %s", arg1);
 	if ((arg2 & AnimationFlags.unknown1) != 0) {
 		unknown7EAEC6 = 1;

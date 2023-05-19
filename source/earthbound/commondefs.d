@@ -1617,7 +1617,7 @@ enum ActionScript {
 	animTStage3Lucky4, //416
 	animTStage3Gorgeous4, //417
 	animTStage3Lucky5, //418
-	animTStage3Torgeous5, //419
+	animTStage3Gorgeous5, //419
 	animTStage3Lucky6, //420
 	animTStage3Gorgeous6, //421
 	animTStage3Lucky7, //422
@@ -1658,7 +1658,7 @@ enum ActionScript {
 	animBusFourTunnel, //457
 	animBusTunnelBrdgL, //458
 	animBusBrdgTunnelL, //459
-	animBusDunnelDsrtL, //460
+	animBusTunnelDsrtL, //460
 	animBusDsrtTunnelL, //461
 	animBusTunnelHwayL, //462
 	animBusHwayTunnelL, //463
@@ -5467,6 +5467,75 @@ enum PartyStatus {
 	burnt = 1,
 	unknown2 = 2,
 	speedBoost = 3,
+}
+///
+enum HotspotID {
+	unknown00 = 0, ///
+	RAMA_MU_A = 1, ///
+	unknown02 = 2, ///
+	TWSN_TONZURABUS = 3, ///
+	unknown04 = 4, ///
+	unknown05 = 5, ///
+	DSRT_CLEAR = 6, ///
+	DKFD_ST3_A = 7, ///
+	DKFD_ST3_B = 8, ///
+	SKRB_DM_HAMARI = 9, ///
+	FOUR_DEPT_1 = 10, ///
+	FOUR_DEPT_2 = 11, ///
+	FOUR_DEPT_3 = 12, ///
+	FOUR_DEPT_4 = 13, ///
+	unknown14 = 14, ///
+	ONET_BUNBUN = 15, ///
+	SKRB_MABOROSHI = 16, ///
+	PHOTO_2_FRANK = 17, ///
+	unknown18 = 18, ///
+	unknown19 = 19, ///
+	LAST_POLA_3 = 20, ///
+	unknown21 = 21, ///
+	LAST_POLA_5 = 22, ///
+	unknown23 = 23, ///
+	unknown24 = 24, ///
+	unknown25 = 25, ///
+	unknown26 = 26, ///
+	unknown27 = 27, ///
+	unknown28 = 28, ///
+	unknown29 = 29, ///
+	unknown30 = 30, ///
+	unknown31 = 31, ///
+	MOON_A = 32, ///
+	MOON_B = 33, ///
+	MOON_C = 34, ///
+	MOON_D1 = 35, ///
+	MOON_D2 = 36, ///
+	MOON_E1 = 37, ///
+	MOON_E2 = 38, ///
+	WINS_TASSI_OFF = 39, ///
+	FOUR_MUSEUM = 40, ///
+	MABOROSHI_2 = 41, ///
+	BUNBUN_DEATH = 42, ///
+	unknown43 = 43, ///
+	unknown44 = 44, ///
+	unknown45 = 45, ///
+	unknown46 = 46, ///
+	INSEKI_STARMAN = 47, ///
+	WINS_GUM = 48, ///
+	SUMS_OMAR = 49, ///
+	SUMS_MUSEUM = 50, ///
+	PHONE_MONO_A = 51, ///
+	PHONE_MONO_B = 52, ///
+	unknown53 = 53, ///
+	THRK_HOIHOI = 54, ///
+	unknown55 = 55, ///
+}
+///
+enum Swirl {
+	none = 0, ///
+	battleStart = 1, ///
+	giygasAttack = 2, ///
+	bossBattleStart = 3, ///
+	unknown4 = 4, ///
+	enemyAttack = 5, ///
+	unknown6 = 6, ///
 }
 
 ///

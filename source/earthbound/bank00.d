@@ -3545,7 +3545,7 @@ void screenTransition(short arg1, short arg2) {
 		freezeEntities();
 		unknownC0DD2C(2);
 		if (screenTransitionConfigTable[arg1].animationID != 0) {
-			unknownC4A67E(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags | AnimationFlags.unknown1);
+			startSwirl(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags | AnimationFlags.unknown1);
 		}
 		unknownC4954C(screenTransitionConfigTable[arg1].fadeStyle, &palettes[0][0]);
 		unknownC496E7(x02, -1);
@@ -3579,7 +3579,7 @@ void screenTransition(short arg1, short arg2) {
 			unknownC496E7(screenTransitionConfigTable[arg1].secondaryDuration, -1);
 		}
 		if (screenTransitionConfigTable[arg1].secondaryAnimationID != 0) {
-			unknownC4A67E(screenTransitionConfigTable[arg1].secondaryAnimationID, screenTransitionConfigTable[arg1].secondaryAnimationFlags);
+			startSwirl(screenTransitionConfigTable[arg1].secondaryAnimationID, screenTransitionConfigTable[arg1].secondaryAnimationFlags);
 		}
 		for (short i = 0; i < screenTransitionConfigTable[arg1].secondaryDuration; i++) {
 			if (arg1 == 0) {

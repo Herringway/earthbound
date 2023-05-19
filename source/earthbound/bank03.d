@@ -1362,7 +1362,7 @@ void unknownC3F981(short arg1) {
 		unknownC2DE0F();
 		setColData(unknownC3F951[arg1 - 35][0], unknownC3F951[arg1 - 35][1], unknownC3F951[arg1 - 35][2]);
 		setColourAddSubMode(0x10, 0x3F);
-		unknownC4A67E(5, 7);
+		startSwirl(Swirl.enemyAttack, 7);
 	} else if (arg1 < 49) {
 		switch (arg1 + 1) {
 			case 47:
@@ -1380,9 +1380,9 @@ void unknownC3F981(short arg1) {
 		setColData(unknownC3F972[arg1 - 49][0], unknownC3F972[arg1 - 49][1], unknownC3F972[arg1 - 49][2]);
 		setColourAddSubMode(0x10, 0x3F);
 		if (arg1 < 53) {
-			unknownC4A67E(4, 5);
+			startSwirl(Swirl.unknown4, 5);
 		} else {
-			unknownC4A67E(2, 4);
+			startSwirl(Swirl.giygasAttack, 4);
 		}
 	}
 }
