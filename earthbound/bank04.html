@@ -423,6 +423,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="directionToEntityBoundaries" class="public" href="../earthbound/bank04/directionToEntityBoundaries.html">directionToEntityBoundaries</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C47269 - Returns the direction + 1 towards the boundaries set by setEntityBoundaries, 0 if already inside. Uses vars 0-3.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="disableEntityByCharacterOrParty" class="public" href="../earthbound/bank04/disableEntityByCharacterOrParty.html">disableEntityByCharacterOrParty</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -1192,6 +1201,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C4DCF6
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setEntityBoundaries" class="public" href="../earthbound/bank04/setEntityBoundaries.html">setEntityBoundaries</a><span class="tableEntryAnnotation">(height, width)</span>
+							</code>
+						</td>
+						<td>$C47225 - Sets boundaries for an entity to be used by directionToEntityBoundaries. Uses vars 0-3.
 </td>
 					</tr>
 					<tr>
@@ -2313,24 +2331,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC47225" class="public" href="../earthbound/bank04/unknownC47225.html">unknownC47225</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C47225
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC47269" class="public" href="../earthbound/bank04/unknownC47269.html">unknownC47269</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C47269
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC472A8" class="public" href="../earthbound/bank04/unknownC472A8.html">unknownC472A8</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -3425,6 +3425,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="blankTiles" class="public" href="../earthbound/bank04/blankTiles.html">
+								<code>blankTiles</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">512</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C40BE8
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="cc1C01Table" class="public" href="../earthbound/bank04/cc1C01Table.html">
 								<code>cc1C01Table</code>
 							</a>
@@ -4000,18 +4012,6 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="unknownC40BE8" class="public" href="../earthbound/bank04/unknownC40BE8.html">
-								<code>unknownC40BE8</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">512</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C40BE8
-</td>
-					</tr>
-					<tr>
-						<td>
 							<a id="unknownC41FC5" class="public" href="../earthbound/bank04/unknownC41FC5.html">
 								<code>unknownC41FC5</code>
 							</a>
@@ -4103,7 +4103,7 @@ $('#symbolSearchPane').show();</script>
 						<td>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">17</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
-						<td>$C42AEB
+						<td>$C42AEB - Original meaning unknown.
 </td>
 					</tr>
 					<tr>
