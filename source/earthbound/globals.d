@@ -332,17 +332,17 @@ __gshared VecYX*[maxEntities] entityUnknown2E02; /// $(DOLLAR)2E02
 __gshared ushort[maxEntities] entityUnknown2E3E; /// $(DOLLAR)2E3E
 __gshared ushort[maxEntities] entityUnknown2E7A; /// $(DOLLAR)2E7A
 __gshared const(OverlayScript)*[maxEntities] entityMushroomizedOverlayPtrs; /// $(DOLLAR)2EB6
-__gshared ushort[maxEntities] entityUnknown2EF2; /// $(DOLLAR)2EF2
-__gshared const(SpriteMap)*[maxEntities] entityUnknown2F2E; /// $(DOLLAR)2F2E
+__gshared ushort[maxEntities] entityMushroomizedNextUpdateFrames; /// $(DOLLAR)2EF2
+__gshared const(SpriteMap)*[maxEntities] entityMushroomizedSpritemaps; /// $(DOLLAR)2F2E
 __gshared const(OverlayScript)*[maxEntities] entitySweatingOverlayPtrs; /// $(DOLLAR)2F6A
-__gshared ushort[maxEntities] entityUnknown2FA6; /// $(DOLLAR)2FA6
-__gshared const(SpriteMap)*[maxEntities] entityUnknown2FE2; /// $(DOLLAR)2FE2
+__gshared ushort[maxEntities] entitySweatingNextUpdateFrames; /// $(DOLLAR)2FA6
+__gshared const(SpriteMap)*[maxEntities] entitySweatingSpritemaps; /// $(DOLLAR)2FE2
 __gshared const(OverlayScript)*[maxEntities] entityRippleOverlayPtrs; /// $(DOLLAR)301E
-__gshared ushort[maxEntities] entityUnknown305A; /// $(DOLLAR)305A
-__gshared const(SpriteMap)*[maxEntities] entityUnknown3096; /// $(DOLLAR)3096
+__gshared ushort[maxEntities] entityRippleNextUpdateFrames; /// $(DOLLAR)305A
+__gshared const(SpriteMap)*[maxEntities] entityRippleSpritemaps; /// $(DOLLAR)3096
 __gshared const(OverlayScript)*[maxEntities] entityBigRippleOverlayPtrs; /// $(DOLLAR)30D2
-__gshared ushort[maxEntities] entityUnknown310E; /// $(DOLLAR)310E
-__gshared const(SpriteMap)*[maxEntities] entityUnknown314A; /// $(DOLLAR)314A
+__gshared ushort[maxEntities] entityBigRippleNextUpdateFrames; /// $(DOLLAR)310E
+__gshared const(SpriteMap)*[maxEntities] entityBigRippleSpritemaps; /// $(DOLLAR)314A
 __gshared short[maxEntities] entityUnknown3186; /// $(DOLLAR)3186
 
 __gshared short[maxEntities] entityUnknown332A; /// $(DOLLAR)332A

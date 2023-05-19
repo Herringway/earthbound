@@ -278,10 +278,10 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("u2DC6", entityUnknown2DC6[entity]);
 				InputEditable("u2E3E", entityUnknown2E3E[entity]);
 				InputEditable("u2E7A", entityUnknown2E7A[entity]);
-				InputEditable("u2EF2", entityUnknown2EF2[entity]);
-				InputEditable("u2FA6", entityUnknown2FA6[entity]);
-				InputEditable("u305A", entityUnknown305A[entity]);
-				InputEditable("u310E", entityUnknown310E[entity]);
+				InputEditable("Mushroom frames", entityMushroomizedNextUpdateFrames[entity]);
+				InputEditable("Sweat frames", entitySweatingNextUpdateFrames[entity]);
+				InputEditable("Ripple frames", entityRippleNextUpdateFrames[entity]);
+				InputEditable("Big ripple frames", entityBigRippleNextUpdateFrames[entity]);
 				InputEditable("u3186", entityUnknown3186[entity]);
 				InputEditable("u332A", entityUnknown332A[entity]);
 				InputEditable("u3366", entityUnknown3366[entity]);

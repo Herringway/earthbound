@@ -7538,23 +7538,23 @@ void unknownC0AC43() {
 	spritemapBank = 0xC4;
 	ubyte actionScriptVar04 = 0xC4;
 	ubyte actionScriptVar00 = ((entitySurfaceFlags[actionScriptVar88 / 2] & 1) != 0) ? 1 : 0;
-	switch (entitySurfaceFlags[actionScriptVar88 / 2] & 0xC) {
+	switch (entitySurfaceFlags[actionScriptVar88 / 2] & SurfaceFlags.deepWater) {
 		default:
 			if (entityByteWidths[actionScriptVar88 / 2] == 0x40) {
-				if (entityUnknown305A[actionScriptVar88 / 2] == 0) {
-					entityRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown3096[actionScriptVar88 / 2], entityUnknown305A[actionScriptVar88 / 2], entityRippleOverlayPtrs[actionScriptVar88 / 2]);
+				if (entityRippleNextUpdateFrames[actionScriptVar88 / 2] == 0) {
+					entityRippleOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityRippleSpritemaps[actionScriptVar88 / 2], entityRippleNextUpdateFrames[actionScriptVar88 / 2], entityRippleOverlayPtrs[actionScriptVar88 / 2]);
 				}
-				entityUnknown305A[actionScriptVar88 / 2]--;
-				unknownC08C58(entityUnknown3096[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+				entityRippleNextUpdateFrames[actionScriptVar88 / 2]--;
+				unknownC08C58(entityRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 			} else {
-				if (entityUnknown310E[actionScriptVar88 / 2] == 0) {
-					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown314A[actionScriptVar88 /2], entityUnknown310E[actionScriptVar88 / 2], entityBigRippleOverlayPtrs[actionScriptVar88 / 2]);
+				if (entityBigRippleNextUpdateFrames[actionScriptVar88 / 2] == 0) {
+					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityBigRippleSpritemaps[actionScriptVar88 /2], entityBigRippleNextUpdateFrames[actionScriptVar88 / 2], entityBigRippleOverlayPtrs[actionScriptVar88 / 2]);
 				}
-				entityUnknown310E[actionScriptVar88 / 2]--;
-				unknownC08C58(entityUnknown314A[actionScriptVar88 / 2] + actionScriptVar00 + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], cast(short)(entityScreenYTable[actionScriptVar88 / 2] + 8));
+				entityBigRippleNextUpdateFrames[actionScriptVar88 / 2]--;
+				unknownC08C58(entityBigRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00 + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], cast(short)(entityScreenYTable[actionScriptVar88 / 2] + 8));
 			}
 			goto case;
-		case 0:
+		case SurfaceFlags.none:
 			if (entityUnknown2E7A[actionScriptVar88 / 2] != 0) {
 				return;
 			}
@@ -7562,18 +7562,18 @@ void unknownC0AC43() {
 				break;
 			}
 			goto case;
-		case 4:
+		case SurfaceFlags.causesSunstroke:
 			if (actionScriptVar88 < 46) {
 				return;
 			}
-			if (entityUnknown2FA6[actionScriptVar88 / 2] == 0) {
-				entitySweatingOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2FE2[actionScriptVar88 / 2], entityUnknown2FA6[actionScriptVar88 / 2], entitySweatingOverlayPtrs[actionScriptVar88 / 2]);
+			if (entitySweatingNextUpdateFrames[actionScriptVar88 / 2] == 0) {
+				entitySweatingOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entitySweatingSpritemaps[actionScriptVar88 / 2], entitySweatingNextUpdateFrames[actionScriptVar88 / 2], entitySweatingOverlayPtrs[actionScriptVar88 / 2]);
 			}
-			entityUnknown2FA6[actionScriptVar88 / 2]--;
-			if (entityUnknown2FE2[actionScriptVar88 / 2] is null) {
+			entitySweatingNextUpdateFrames[actionScriptVar88 / 2]--;
+			if (entitySweatingSpritemaps[actionScriptVar88 / 2] is null) {
 				break;
 			}
-			unknownC08C58(entityUnknown2FE2[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+			unknownC08C58(entitySweatingSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 			break;
 	}
 	if ((entityUnknown2E7A[actionScriptVar88 / 2] & 0x4000) == 0) {
@@ -7582,15 +7582,15 @@ void unknownC0AC43() {
 	if (actionScriptVar88 < 46) {
 		return;
 	}
-	if (entityUnknown2EF2[actionScriptVar88 / 2] == 0) {
-		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = unknownC0AD56(&entityUnknown2F2E[actionScriptVar88 / 2], entityUnknown2EF2[actionScriptVar88 / 2], entityMushroomizedOverlayPtrs[actionScriptVar88 / 2]);
+	if (entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2] == 0) {
+		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityMushroomizedSpritemaps[actionScriptVar88 / 2], entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2], entityMushroomizedOverlayPtrs[actionScriptVar88 / 2]);
 	}
-	entityUnknown2EF2[actionScriptVar88 / 2]--;
-	unknownC08C58(entityUnknown2F2E[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+	entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2]--;
+	unknownC08C58(entityMushroomizedSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 }
 
 /// $C0AD56
-const(OverlayScript)* unknownC0AD56(const(SpriteMap)** arg1, out ushort frames, const(OverlayScript)* overlay) {
+const(OverlayScript)* updateOverlayFrame(const(SpriteMap)** arg1, out ushort frames, const(OverlayScript)* overlay) {
 	ushort y = 0;
 	NextCommand:
 	if (overlay[y].command == 1) {
