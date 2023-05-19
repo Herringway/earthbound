@@ -14,7 +14,7 @@ import earthbound.bank2F;
 /// $C400D4
 immutable ubyte[][895] actionScriptScriptPointers;
 
-immutable ubyte[37 + 4 * (const(void)*).sizeof] actionScript774;
+immutable ubyte[37 + 4 * (const(void)*).sizeof] actionScriptTracyAppear;
 immutable ubyte[26 + 4 * (const(void)*).sizeof] unknownC4152A;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript0;
 immutable ubyte[81 + 10 * (const(void)*).sizeof] actionScriptMaboroshiOut;
@@ -25,19 +25,19 @@ immutable ubyte[40 + 6 * (const(void)*).sizeof] unknownC41900;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiK;
 immutable ubyte[89 + 18 * (const(void)*).sizeof] actionScriptComeBackPola;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript878;
-immutable ubyte[48 + 11 * (const(void)*).sizeof] actionScript667;
+immutable ubyte[48 + 11 * (const(void)*).sizeof] actionScriptMuMaboroshiOut;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript515;
 immutable ubyte[16 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript53;
 immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptVStage1Scr2;
-immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript640;
-immutable ubyte[23 + 5 * (const(void)*).sizeof] actionScript720;
+immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScriptApproachContScript;
+immutable ubyte[23 + 5 * (const(void)*).sizeof] actionScriptEvtPray2Bikini;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] actionScriptFollowToMichikoB;
 immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScriptTalkPaulaJeff;
-immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScript617;
+immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScriptSumsFollowMuseumA;
 immutable ubyte[14 + 5 * (const(void)*).sizeof] actionScriptFrsdFieldO;
 immutable ubyte[24 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTonzuraBusChaous;
 immutable ubyte[65 + 12 * (const(void)*).sizeof] actionScriptFatherCallPaula;
-immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript678;
+immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScriptToFountainC;
 immutable ubyte[71 + 13 * (const(void)*).sizeof] unknownC419BF;
 immutable ubyte[27 + 6 * (const(void)*).sizeof] actionScriptMogiriToDown;
 immutable ubyte[55 + 13 * (const(void)*).sizeof] actionScriptPolaPolastarReturnR;
@@ -50,29 +50,29 @@ immutable ubyte[7 + 5 * (const(void)*).sizeof] unknownC3A426Task;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] unknownC3A42DTask;
 immutable ubyte[26 + 4 * (const(void)*).sizeof] unknownC3A45C;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScriptMaboroshiOut2;
-immutable ubyte[27 + 5 * (const(void)*).sizeof] actionScript676_677_678_Common2;
+immutable ubyte[27 + 5 * (const(void)*).sizeof] actionScriptToFountainCommon2;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScript805;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript609;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript599;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] unknownC35FB6;
-immutable ubyte[63 + 14 * (const(void)*).sizeof] actionScript637;
+immutable ubyte[63 + 14 * (const(void)*).sizeof] actionScriptLeaveButukarizaru;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript588;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript868;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript708;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript797;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen10;
 immutable ubyte[123 + 17 * (const(void)*).sizeof] actionScriptMaboroshiIn;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistNortheast;
 immutable ubyte[23 + 4 * (const(void)*).sizeof] actionScriptTStage3Gorgeous10;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript98;
 immutable ubyte[51 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkDsrtIn;
-immutable ubyte[59 + 13 * (const(void)*).sizeof] actionScript764;
+immutable ubyte[59 + 13 * (const(void)*).sizeof] actionScriptEvtPoolaaa;
 immutable ubyte[25 + 3 * (const(void)*).sizeof] unknownC41A7D;
 immutable ubyte[23 + 6 * (const(void)*).sizeof] actionScriptTStage3Lucky10;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA82;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusDsrtTunnelR;
 immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScriptGorgeousFree2C;
-immutable ubyte[79 + 6 * (const(void)*).sizeof] actionScript675;
-immutable ubyte[70] actionScript675Task;
+immutable ubyte[79 + 6 * (const(void)*).sizeof] actionScriptChiteiQuake;
+immutable ubyte[70] actionScriptChiteiQuakeTask;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript883;
 immutable ubyte[43 + 29 * (const(void)*).sizeof] actionScript22;
 immutable ubyte[5 + 4 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAD7;
@@ -80,11 +80,11 @@ immutable ubyte[54 + 8 * (const(void)*).sizeof] actionScript595;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1OK;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScriptUzu3TassiByeU;
 immutable ubyte[311 + 31 * (const(void)*).sizeof] actionScriptTStage3Lucky1;
-immutable ubyte[38 + 5 * (const(void)*).sizeof] actionScript756;
+immutable ubyte[38 + 5 * (const(void)*).sizeof] actionScriptEvtPray7Motchy;
 immutable ubyte[34 + 15 * (const(void)*).sizeof] actionScriptBunbunAppear;
 immutable ubyte[9] actionScriptBunbunAppearTask;
 immutable ubyte[34 + 4 * (const(void)*).sizeof] unknownC413D6;
-immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScript643;
+immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScriptPanningWinters1;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript819;
 immutable ubyte[57 + 13 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusReturnTwsn;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30CAF;
@@ -94,7 +94,7 @@ immutable ubyte[46 + 5 * (const(void)*).sizeof] unknownC3CC24;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript872;
 immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScriptYunboBack;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript786;
-immutable ubyte[43 + 9 * (const(void)*).sizeof] actionScript763;
+immutable ubyte[43 + 9 * (const(void)*).sizeof] actionScriptEvtEatMagicCake;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] unknownC3A12E;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage3Lucky2;
 immutable ubyte[58 + 4 * (const(void)*).sizeof] actionScriptTStage2LuckyDance;
@@ -108,11 +108,11 @@ immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScriptUzu3TassiByeL;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript13_14_15_16_17_Common;
 immutable ubyte[103 + 19 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusTunnelThrkL;
 immutable ubyte[8 + 6 * (const(void)*).sizeof] actionScript597;
-immutable ubyte[18 + 9 * (const(void)*).sizeof] actionScript775;
-immutable ubyte[3] actionScript775Task;
-immutable ubyte[55 + 12 * (const(void)*).sizeof] actionScript706;
+immutable ubyte[18 + 9 * (const(void)*).sizeof] actionScriptToBeContOvalClose;
+immutable ubyte[3] actionScriptToBeContOvalCloseTask;
+immutable ubyte[55 + 12 * (const(void)*).sizeof] actionScriptCarpainterThunderhead;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptPresentBoxShadow3;
-immutable ubyte[5 + 2 * (const(void)*).sizeof] actionScript730;
+immutable ubyte[5 + 2 * (const(void)*).sizeof] actionScriptEvtPray4GazeTony;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptTStage2SpotInitPlayer;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScript851;
 immutable ubyte[95 + 48 * (const(void)*).sizeof] actionScript499_500_Common;
@@ -122,7 +122,7 @@ immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScriptKoya;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2GorgeousDance4;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript817;
 immutable ubyte[8 + 2 * (const(void)*).sizeof] actionScript131;
-immutable ubyte[129 + 21 * (const(void)*).sizeof] actionScript712;
+immutable ubyte[129 + 21 * (const(void)*).sizeof] actionScriptEvtMonoHeliBoatman;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript18;
 immutable ubyte[17 + 6 * (const(void)*).sizeof] unknownC3BB73;
 immutable ubyte[17 + 5 * (const(void)*).sizeof] actionScriptLardnaKee;
@@ -135,7 +135,7 @@ immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC42815;
 immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScriptOutSubmarine;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScriptGuardB2;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript887;
-immutable ubyte[53 + 10 * (const(void)*).sizeof] actionScript641;
+immutable ubyte[53 + 10 * (const(void)*).sizeof] actionScriptEavesMaid;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] unknownC36A3E;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptPresentBoxFall1;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30C7F;
@@ -160,9 +160,9 @@ immutable ubyte[18 + 6 * (const(void)*).sizeof] actionScriptFrsdFieldPQ;
 immutable ubyte[39 + 5 * (const(void)*).sizeof] unknownC4160A;
 immutable ubyte[38 + 4 * (const(void)*).sizeof] unknownC4158A;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptAndNearSt3;
-immutable ubyte[52 + 12 * (const(void)*).sizeof] actionScript692;
+immutable ubyte[52 + 12 * (const(void)*).sizeof] actionScriptSlotBrosPresent;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScriptTStage1Thank;
-immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript765;
+immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScriptKanjiAtTheNight;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] unknownC3B431;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1CB;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript501;
@@ -181,10 +181,10 @@ immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript581;
 immutable ubyte[37 + 9 * (const(void)*).sizeof] actionScriptBMonkeyTassi1C;
 immutable ubyte[13] actionScriptBMonkeyTassi1CTask;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScriptUzu1TassiBye;
-immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript686;
+immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScriptSlotBrosRotateM;
 immutable ubyte[23 + 15 * (const(void)*).sizeof] actionScript19;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript787;
-immutable ubyte[42 + 10 * (const(void)*).sizeof] actionScript630;
+immutable ubyte[42 + 10 * (const(void)*).sizeof] actionScriptLardnaSlapBunbuun;
 immutable ubyte[48 + 10 * (const(void)*).sizeof] unknownC41402;
 immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScript740;
 immutable ubyte[68 + 10 * (const(void)*).sizeof] actionScriptMdTwsn;
@@ -192,12 +192,12 @@ immutable ubyte[21 + 4 * (const(void)*).sizeof] unknownC3DFB5;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage23Groove;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] unknownC37A7C;
 immutable ubyte[113 + 17 * (const(void)*).sizeof + 1 * string.sizeof] actionScript700;
-immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript781;
+immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScriptSealPCPaulaDirDown;
 immutable ubyte[38 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript758;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA96;
 immutable ubyte[52 + 13 * (const(void)*).sizeof] actionScriptPeopleWalk1;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] actionScript35;
-immutable ubyte[38 + 7 * (const(void)*).sizeof] actionScript732;
+immutable ubyte[38 + 7 * (const(void)*).sizeof] actionScriptEvtPray4PupilB;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptWinsSkywalkerShadow;
 immutable ubyte[41 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptMdToto;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript886;
@@ -208,7 +208,7 @@ immutable ubyte[33 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScrip
 immutable ubyte[63 + 16 * (const(void)*).sizeof] actionScriptOKFree;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30C97;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC3DFD4_2;
-immutable ubyte[34 + 6 * (const(void)*).sizeof] actionScript639;
+immutable ubyte[34 + 6 * (const(void)*).sizeof] actionScriptLeaveUkkariCarrier;
 immutable ubyte[4 + 1 * (const(void)*).sizeof] actionScript894;
 immutable ubyte[23 + 7 * (const(void)*).sizeof] actionScript831;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC333AA;
@@ -227,14 +227,14 @@ immutable ubyte[2 + 1 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3D913
 immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScript527;
 immutable ubyte[52 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScript672;
 immutable ubyte[5 + 4 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3BAC4;
-immutable ubyte[50 + 8 * (const(void)*).sizeof] actionScript722;
+immutable ubyte[50 + 8 * (const(void)*).sizeof] actionScriptEvtPray2Okay;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] unknownC3CC94;
 immutable ubyte[8 + 4 * (const(void)*).sizeof] actionScriptBillboard;
 immutable ubyte[8 + 4 * (const(void)*).sizeof] unknownC39AC7;
 immutable ubyte[26 + 9 * (const(void)*).sizeof] actionScript840;
-immutable ubyte[42 + 6 * (const(void)*).sizeof] actionScript671;
-immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript653;
-immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript779;
+immutable ubyte[42 + 6 * (const(void)*).sizeof] actionScriptReturnSarusensei;
+immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScriptTakeNessKatacomb1B;
+immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScriptSealPCAllDirLeft;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1B7;
 immutable ubyte[32 + 10 * (const(void)*).sizeof] actionScriptJefIntoSwThrk;
 immutable ubyte[41 + 3 * (const(void)*).sizeof] unknownC4116C;
@@ -249,7 +249,7 @@ immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript820;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript97;
 immutable ubyte[30 + 7 * (const(void)*).sizeof] actionScript228_229_230_231_232Common;
 immutable ubyte[14 + 4 * (const(void)*).sizeof] actionScriptTStage2Spotlight;
-immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript633;
+immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScriptIntoNight;
 immutable ubyte[4 + 4 * (const(void)*).sizeof] unknownC3A262;
 immutable ubyte[23 + 9 * (const(void)*).sizeof] unknownC343AE;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage2Lucky;
@@ -259,11 +259,11 @@ immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScriptShipSmallTask;
 immutable ubyte[45 + 21 * (const(void)*).sizeof + 1 * string.sizeof] actionScript37;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutTBusR;
 immutable ubyte[6 + 4 * (const(void)*).sizeof] actionScriptIntoTonzuraBusMono;
-immutable ubyte[41 + 14 * (const(void)*).sizeof] actionScript782;
-immutable ubyte[18 + 11 * (const(void)*).sizeof] actionScript782UnknownRoutine;
-immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript782UnknownRoutine2;
-immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript782UnknownRoutine3;
-immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScript782UnknownRoutine4;
+immutable ubyte[41 + 14 * (const(void)*).sizeof] actionScriptRemodelOperation;
+immutable ubyte[18 + 11 * (const(void)*).sizeof] actionScriptRemodelOperationUnknownRoutine;
+immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScriptRemodelOperationUnknownRoutine2;
+immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScriptRemodelOperationUnknownRoutine3;
+immutable ubyte[16 + 1 * (const(void)*).sizeof] actionScriptRemodelOperationUnknownRoutine4;
 immutable ubyte[28 + 7 * (const(void)*).sizeof] actionScriptSwWinsShadowA;
 immutable ubyte[69 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptMdFrsd;
 immutable ubyte[19 + 3 * (const(void)*).sizeof] actionScript783;
@@ -285,8 +285,8 @@ immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC42802;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptTStage3Band;
 immutable ubyte[20 + 9 * (const(void)*).sizeof] actionScriptOutSt3;
 immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript585;
-immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScript734;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript794;
+immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScriptEvtPray4PupilD;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen7;
 immutable ubyte[19 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript113;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC32138;
 immutable ubyte[156 + 30 * (const(void)*).sizeof] actionScriptComeBackJef;
@@ -306,7 +306,7 @@ immutable ubyte[33 + 12 * (const(void)*).sizeof] actionScriptGuardB1;
 immutable ubyte[56 + 11 * (const(void)*).sizeof] actionScript58;
 immutable ubyte[35 + 17 * (const(void)*).sizeof] actionScript24;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScript525;
-immutable ubyte[4 + 3 * (const(void)*).sizeof] actionScript789;
+immutable ubyte[4 + 3 * (const(void)*).sizeof] actionScriptTitleScreen2;
 immutable ubyte[37 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage1Scr2;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript514;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScript842;
@@ -328,15 +328,15 @@ immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript96;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScriptFrsdFieldM;
 immutable ubyte[24 + 7 * (const(void)*).sizeof] actionScript107;
 immutable ubyte[8 + 4 * (const(void)*).sizeof] actionScriptPhotographerS;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript793;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen6;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript874;
 immutable ubyte[3 + 1 * (const(void)*).sizeof] unknownC3A209;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript853;
 immutable ubyte[6 + 5 * (const(void)*).sizeof] unknownC3AB44;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScriptBMonkeyBye;
 immutable ubyte[100 + 11 * (const(void)*).sizeof] actionScriptBMonkeyByeUnknownRoutine;
-immutable ubyte[50 + 11 * (const(void)*).sizeof] actionScript743;
-immutable ubyte[108 + 17 * (const(void)*).sizeof] actionScript623;
+immutable ubyte[50 + 11 * (const(void)*).sizeof] actionScriptEvtPray5GirlC;
+immutable ubyte[108 + 17 * (const(void)*).sizeof] actionScriptAkanbePokey;
 immutable ubyte[2575 + 321 * (const(void)*).sizeof] actionScript801;
 immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScript3;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC37545;
@@ -346,14 +346,14 @@ immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAC2;
 immutable ubyte[19 + 2 * (const(void)*).sizeof] actionScriptCop5A;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptChkaSt2Still;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptTonzuraFree;
-immutable ubyte[36 + 7 * (const(void)*).sizeof] actionScript615;
+immutable ubyte[36 + 7 * (const(void)*).sizeof] actionScriptSumsMuseumBilk;
 immutable ubyte[53 + 14 * (const(void)*).sizeof] actionScriptPolaPolastarReturnL;
 immutable ubyte[26 + 8 * (const(void)*).sizeof] actionScript699;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] unknownC415E7;
 immutable ubyte[17 + 5 * (const(void)*).sizeof] unknownC33BFB;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript507;
 immutable ubyte[8 + 1 * (const(void)*).sizeof] unknownC3C810;
-immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript696;
+immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptEvtPsychoMyHome1f;
 immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScriptMichikoIntoRoom;
 immutable ubyte[14 + 4 * (const(void)*).sizeof] actionScriptTStage3Lucky9;
 immutable ubyte[8 + 3 * (const(void)*).sizeof] unknownC40F4A;
@@ -369,22 +369,22 @@ immutable ubyte[27 + 6 * (const(void)*).sizeof] actionScriptHoihoiC;
 immutable ubyte[49 + 10 * (const(void)*).sizeof] actionScriptMdDung;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript893;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] actionScriptSpiritReturnPola;
-immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript676;
+immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScriptToFountainA;
 immutable ubyte[65 + 25 * (const(void)*).sizeof] actionScript23;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptBusDsrtTunnelL;
-immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript697;
+immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptEvtPsychoMyHomeRouka;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3AB26;
-immutable ubyte[14 + 6 * (const(void)*).sizeof] actionScript741;
+immutable ubyte[14 + 6 * (const(void)*).sizeof] actionScriptEvtPray5GirlA;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] unknownC3CEB9;
 immutable ubyte[46 + 5 * (const(void)*).sizeof] unknownC3CC5C;
 immutable ubyte[4 + 3 * (const(void)*).sizeof] unknownC3BD03;
 immutable ubyte[28 + 7 * (const(void)*).sizeof] actionScriptSenzo1;
-immutable ubyte[135 + 19 * (const(void)*).sizeof] actionScript717;
+immutable ubyte[135 + 19 * (const(void)*).sizeof] actionScriptEvtPray1Mama;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusTunnelBrdg;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScriptIntoSwThrk;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript642;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] unknownC3DFD4;
-immutable ubyte[211 + 26 * (const(void)*).sizeof] actionScript760;
+immutable ubyte[211 + 26 * (const(void)*).sizeof] actionScriptEndPhotoman;
 immutable ubyte[20 + 4 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage2Scr2;
 immutable ubyte[9 + 4 * (const(void)*).sizeof] unknownC36A41;
 immutable ubyte[24 + 9 * (const(void)*).sizeof] actionScriptToGorgeousChaous;
@@ -400,7 +400,7 @@ immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScriptAddParty;
 immutable ubyte[109 + 30 * (const(void)*).sizeof] actionScriptTStage3Venus;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2LuckyDance6;
-immutable ubyte[71 + 7 * (const(void)*).sizeof] actionScript648;
+immutable ubyte[71 + 7 * (const(void)*).sizeof] actionScriptJumpTonchiki;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAFE;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript871;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScriptBunbunDie;
@@ -410,7 +410,7 @@ immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[133 + 17 * (const(void)*).sizeof] actionScriptVStage1KomoritaAppear;
 immutable ubyte[21 + 6 * (const(void)*).sizeof] actionScriptLeaf2;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusFourTunnel;
-immutable ubyte[39 + 13 * (const(void)*).sizeof] actionScript659;
+immutable ubyte[39 + 13 * (const(void)*).sizeof] actionScriptNessFollowZombi2;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript710;
 immutable ubyte[19 + 9 * (const(void)*).sizeof] actionScriptOutSkywalker;
 immutable ubyte[50 + 19 * (const(void)*).sizeof] actionScript63;
@@ -427,18 +427,18 @@ immutable ubyte[12 + 8 * (const(void)*).sizeof] actionScriptMoveToLocationTypeB;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScriptMochiYunbo;
 immutable ubyte[59 + 14 * (const(void)*).sizeof] actionScriptTelRing;
 immutable ubyte[139 + 26 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2] actionScriptSwSumsA;
-immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScript664;
+immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScriptBikiniLookNess;
 immutable ubyte[32 + 8 * (const(void)*).sizeof] unknownC348C4;
 immutable ubyte[26 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScript55;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] unknownC41974;
 immutable ubyte[55 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusDsrtFourIn;
-immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript735;
+immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScriptEvtPray4Gaus;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript520;
-immutable ubyte[36 + 13 * (const(void)*).sizeof] actionScript658;
+immutable ubyte[36 + 13 * (const(void)*).sizeof] actionScriptNessFollowZombi1;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript94;
 immutable ubyte[473 + 53 * (const(void)*).sizeof] actionScriptTStage2GorgeousWalk;
 immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScriptMdHashiBus;
-immutable ubyte[47 + 8 * (const(void)*).sizeof] actionScript744;
+immutable ubyte[47 + 8 * (const(void)*).sizeof] actionScriptEvtPray6Frank;
 immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript587;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScriptBusTwsnThrkIn;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] actionScriptTStage1MikeL;
@@ -449,17 +449,17 @@ immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScriptDoseiSt3;
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript834;
 immutable ubyte[67 + 11 * (const(void)*).sizeof] actionScriptSpiritReturnJef;
 immutable ubyte[91 + 15 * (const(void)*).sizeof] actionScriptGrfdPolaAddParty;
-immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript685;
+immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScriptSlotBrosRotateL;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript885;
-immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript716;
+immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptHeliPokeyFace;
 immutable ubyte[24 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript190;
 immutable ubyte[61 + 11 * (const(void)*).sizeof] actionScriptReturnDog;
 immutable ubyte[33 + 10 * (const(void)*).sizeof] actionScriptProloguePokey2;
 immutable ubyte[43 + 5 * (const(void)*).sizeof] actionScriptVStage1BodyguardL;
-immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScript687;
+immutable ubyte[24 + 6 * (const(void)*).sizeof] actionScriptSlotBrosRotateN;
 immutable ubyte[29 + 5 * (const(void)*).sizeof] actionScriptBMonkeyFly;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyB;
-immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript614;
+immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScriptFourMuseumReturn;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistSouth;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScript844;
 immutable ubyte[115 + 34 * (const(void)*).sizeof + 1 * string.sizeof] actionScript674;
@@ -467,9 +467,9 @@ immutable ubyte[28 + 5 * (const(void)*).sizeof] actionScriptAndSt32;
 immutable ubyte[20 + 4 * (const(void)*).sizeof] actionScriptTStage3Gorgeous5;
 immutable ubyte[21 + 4 * (const(void)*).sizeof] unknownC362C0;
 immutable ubyte[66 + 10 * (const(void)*).sizeof] actionScriptSpiritReturnPola2;
-immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScript690;
-immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript755;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript796;
+immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScriptSlotBrosStopN;
+immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptEvtPray7Kyorokyoro;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen9;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] actionScriptTStage2Player;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript707;
 immutable ubyte[50 + 14 * (const(void)*).sizeof] unknownC3A0D8;
@@ -485,21 +485,21 @@ immutable ubyte[51 + 7 * (const(void)*).sizeof] actionScriptMdSkrb;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptMapObjStillLive;
 immutable ubyte[26 + 4 * (const(void)*).sizeof] actionScriptVStage1VenusLight1;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] actionScriptCop5D;
-immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScript726;
+immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScriptEvtPray3ChildA;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript505;
-immutable ubyte[90 + 11 * (const(void)*).sizeof] actionScript713;
+immutable ubyte[90 + 11 * (const(void)*).sizeof] actionScriptEvtHeliFWingStart;
 immutable ubyte[12 + 8 * (const(void)*).sizeof] actionScript2;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptBusTunnelBrdgL;
-immutable ubyte[26 + 2 * (const(void)*).sizeof] actionScript705_706_Common;
+immutable ubyte[26 + 2 * (const(void)*).sizeof] actionScriptCarpainterThunderCommon;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelHwayR;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScript807;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript792;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen5;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] actionScriptBMonkeyFlyS;
 immutable ubyte[69 + 13 * (const(void)*).sizeof] actionScriptSwThrkB;
 immutable ubyte[95 + 14 * (const(void)*).sizeof + 2 * string.sizeof] actionScriptTonzuraBusToThrk;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] unknownC3AB8A;
 immutable ubyte[65 + 5 * (const(void)*).sizeof] unknownC4119D;
-immutable ubyte[63 + 12 * (const(void)*).sizeof] actionScript622;
+immutable ubyte[63 + 12 * (const(void)*).sizeof] actionScriptInsekiStarman;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScript822;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript600;
 immutable ubyte[55 + 21 * (const(void)*).sizeof] actionScript25;
@@ -508,37 +508,37 @@ immutable ubyte[19 + 3 * (const(void)*).sizeof] actionScriptTStage3Lucky6;
 immutable ubyte[47 + 11 * (const(void)*).sizeof] actionScriptBusTunnelDsrtL;
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScript832;
 immutable ubyte[55 + 7 * (const(void)*).sizeof] actionScriptTStage1FlipTurn;
-immutable ubyte[17 + 4 * (const(void)*).sizeof] actionScript759;
+immutable ubyte[17 + 4 * (const(void)*).sizeof] actionScriptBlockZombiB;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript519;
 immutable ubyte[9 + 6 * (const(void)*).sizeof] actionScript500;
 immutable ubyte[131 + 33 * (const(void)*).sizeof] unknownC41822;
-immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript657;
-immutable ubyte[8 + 5 * (const(void)*).sizeof] actionScript605;
+immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScriptTakeNessKatacomb2C;
+immutable ubyte[8 + 5 * (const(void)*).sizeof] actionScriptMapObjTBack;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript103;
-immutable ubyte[36 + 7 * (const(void)*).sizeof] actionScript611;
+immutable ubyte[36 + 7 * (const(void)*).sizeof] actionScriptFourMuseumBilk;
 immutable ubyte[29 + 15 * (const(void)*).sizeof] actionScript31;
 immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScriptTalkPoo;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScriptTStage3Gorgeous7;
-immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScript627;
+immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScriptPeopleSleep;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] actionScript826;
-immutable ubyte[46 + 10 * (const(void)*).sizeof] actionScript770;
+immutable ubyte[46 + 10 * (const(void)*).sizeof] actionScriptOmarGiveHierogriph;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript610;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2LuckyDance4;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A0B2;
 immutable ubyte[18 + 4 * (const(void)*).sizeof] unknownC37439;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] actionScriptOKFree2A;
 immutable ubyte[108 + 18 * (const(void)*).sizeof + 1 * string.sizeof] actionScript273;
-immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScript736;
+immutable ubyte[29 + 7 * (const(void)*).sizeof] actionScriptEvtPray4Explain;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiI;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScriptGhostThrkPlus2;
 immutable ubyte[44 + 11 * (const(void)*).sizeof] actionScriptEvtKrakenApproach;
-immutable ubyte[40 + 8 * (const(void)*).sizeof] actionScript691;
-immutable ubyte[68 + 12 * (const(void)*).sizeof] actionScript729;
+immutable ubyte[40 + 8 * (const(void)*).sizeof] actionScriptSlotBrosStopNReach;
+immutable ubyte[68 + 12 * (const(void)*).sizeof] actionScriptEvtPray4Tony;
 immutable ubyte[93 + 14 * (const(void)*).sizeof] actionScriptShipToSkrb1;
-immutable ubyte[99 + 20 * (const(void)*).sizeof] actionScript701;
+immutable ubyte[99 + 20 * (const(void)*).sizeof] actionScriptEvtMonotolyGoSwitch;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] unknownC3AAAA;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript128;
-immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScript644;
+immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScriptPanningWinters2;
 immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScriptIntoSt2;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1Groove;
 immutable ubyte[42 + 4 * (const(void)*).sizeof] unknownC4121F;
@@ -553,7 +553,7 @@ immutable ubyte[82 + 20 * (const(void)*).sizeof] actionScriptSigeYunboMove;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScriptGuard3;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC3A47C;
 immutable ubyte[1 + 1 * (const(void)*).sizeof] actionScript745;
-immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript698;
+immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptEvtPsychoMyRoom;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] unknownC3C227;
 immutable ubyte[97 + 21 * (const(void)*).sizeof] actionScriptBusTunnelThrkL;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript524;
@@ -565,7 +565,7 @@ immutable ubyte[15 + 4 * (const(void)*).sizeof] actionScript856;
 immutable ubyte[41 + 6 * (const(void)*).sizeof] actionScript784;
 immutable ubyte[34 + 11 * (const(void)*).sizeof] actionScript806;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScriptMochi1;
-immutable ubyte[60 + 13 * (const(void)*).sizeof] actionScript719;
+immutable ubyte[60 + 13 * (const(void)*).sizeof] actionScriptEvtPray1Dog;
 immutable ubyte[41 + 10 * (const(void)*).sizeof] actionScript79;
 immutable ubyte[72 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptMdMakyo;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] actionScript861;
@@ -576,22 +576,22 @@ immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScriptDoseAndonutEnd;
 immutable ubyte[29 + 10 * (const(void)*).sizeof] actionScript694;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript105;
-immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScript727;
+immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScriptEvtPray3ChildB;
 immutable ubyte[39 + 6 * (const(void)*).sizeof] actionScript132;
 immutable ubyte[17 + 8 * (const(void)*).sizeof] actionScriptTopolloHallAMuseumKomorita;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript798;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen11;
 immutable ubyte[48 + 28 * (const(void)*).sizeof] actionScript27;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript90;
 immutable ubyte[26 + 6 * (const(void)*).sizeof] actionScriptAndoughnutMessage;
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript837;
 immutable ubyte[51 + 9 * (const(void)*).sizeof] actionScriptMatentAwayZombi1;
-immutable ubyte[32 + 7 * (const(void)*).sizeof] actionScript772;
-immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript616;
+immutable ubyte[32 + 7 * (const(void)*).sizeof] actionScriptOpenGateGumi;
+immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptSumsMuseumRid;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] actionScriptGorgeousFree2A;
 immutable ubyte[45 + 11 * (const(void)*).sizeof] unknownC3B70C;
 immutable ubyte[60 + 29 * (const(void)*).sizeof] actionScript860;
-immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScript621;
-immutable ubyte[72 + 9 * (const(void)*).sizeof] actionScript621UnknownRoutine;
+immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScriptSaiteiMaboroshiOut;
+immutable ubyte[72 + 9 * (const(void)*).sizeof] actionScriptSaiteiMaboroshiOutUnknownRoutine;
 immutable ubyte[64 + 22 * (const(void)*).sizeof] actionScriptPhotographer;
 immutable ubyte[15 + 3 * (const(void)*).sizeof] unknownC35FCD;
 immutable ubyte[46 + 15 * (const(void)*).sizeof] unknownC3A20E;
@@ -599,14 +599,14 @@ immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AAD6;
 immutable ubyte[16 + 3 * (const(void)*).sizeof] unknownC3C20F;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage23Nice;
 immutable ubyte[42 + 5 * (const(void)*).sizeof] actionScriptHoihoiL;
-immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript618;
+immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScriptSumsMuseumReturn;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] actionScriptIntoSwWins;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] unknownC3AA2B;
 immutable ubyte[13 + 1 * (const(void)*).sizeof] actionScriptLuckyFree2A;
-immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScript725;
+immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScriptEvtPray3Polamama;
 immutable ubyte[11 + 4 * (const(void)*).sizeof] actionScript848;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScriptGhostPlus2;
-immutable ubyte[24 + 3 * (const(void)*).sizeof] actionScript762;
+immutable ubyte[24 + 3 * (const(void)*).sizeof] actionScriptEndCamera;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC37559;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] unknownC3DBDB;
 immutable ubyte[132 + 65 * (const(void)*).sizeof + 1 * string.sizeof] actionScript32;
@@ -614,12 +614,12 @@ immutable ubyte[18 + 6 * (const(void)*).sizeof] unknownC31DF4;
 immutable ubyte[22 + 1 * (const(void)*).sizeof] unknownC31DF4Task;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript4;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA5A;
-immutable ubyte[32 + 4 * (const(void)*).sizeof] actionScript638;
+immutable ubyte[32 + 4 * (const(void)*).sizeof] actionScriptUkkariCarrier;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript841;
-immutable ubyte[3 + 2 * (const(void)*).sizeof] actionScript662;
+immutable ubyte[3 + 2 * (const(void)*).sizeof] actionScriptNessStill;
 immutable ubyte[68 + 14 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusIntoThrk;
 immutable ubyte[20 + 7 * (const(void)*).sizeof] actionScriptSwWinsLand;
-immutable ubyte[39 + 10 * (const(void)*).sizeof] actionScript604;
+immutable ubyte[39 + 10 * (const(void)*).sizeof] actionScriptAppleMouseStepback;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2GorgeousDance6;
 immutable ubyte[11 + 1 * (const(void)*).sizeof] unknownC3CCA8;
 immutable ubyte[91 + 12 * (const(void)*).sizeof] actionScript839;
@@ -632,7 +632,7 @@ immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScriptTStage3Lucky8;
 immutable ubyte[57 + 16 * (const(void)*).sizeof] actionScriptGorgeousFree;
 immutable ubyte[1] unknownC36BEA;
 immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScriptMochi2;
-immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScript761;
+immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScriptEndShadow;
 immutable ubyte[27 + 10 * (const(void)*).sizeof] actionScript188;
 immutable ubyte[36 + 6 * (const(void)*).sizeof] actionScript589;
 immutable ubyte[30 + 8 * (const(void)*).sizeof] actionScriptGorgeousMono;
@@ -656,24 +656,24 @@ immutable ubyte[18 + 4 * (const(void)*).sizeof] unknownC34392;
 immutable ubyte[65 + 17 * (const(void)*).sizeof] actionScript809;
 immutable ubyte[84 + 16 * (const(void)*).sizeof] actionScriptBMonkeyRopeOrosu;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript866;
-immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScript681;
+immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScriptMakyoDoctorApproach;
 immutable ubyte[93 + 17 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelTwsn;
 immutable ubyte[156 + 34 * (const(void)*).sizeof] unknownC31EEF;
 immutable ubyte[13 + 7 * (const(void)*).sizeof] actionScript85;
 immutable ubyte[57 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript66;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC36BB4;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] actionScriptElevaterUp;
-immutable ubyte[40 + 6 * (const(void)*).sizeof] actionScript723;
+immutable ubyte[40 + 6 * (const(void)*).sizeof] actionScriptEvtPray2Groovy;
 immutable ubyte[62 + 6 * (const(void)*).sizeof] actionScriptLastBattle;
 immutable ubyte[26] actionScriptLastBattleTask;
-immutable ubyte[41 + 5 * (const(void)*).sizeof] actionScript753;
-immutable ubyte[51 + 10 * (const(void)*).sizeof] actionScript625;
-immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScript738;
-immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScript613;
-immutable ubyte[115 + 15 * (const(void)*).sizeof] actionScript695;
+immutable ubyte[41 + 5 * (const(void)*).sizeof] actionScriptEvtPray7DoseiC;
+immutable ubyte[51 + 10 * (const(void)*).sizeof] actionScriptMouseAddParty;
+immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScriptEvtPray4DirLeft;
+immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScriptFourFollowMuseumA;
+immutable ubyte[115 + 15 * (const(void)*).sizeof] actionScriptEvtIntoPsychoMyHome;
 immutable ubyte[69 + 11 * (const(void)*).sizeof] actionScriptSpiritReturnPoo;
-immutable ubyte[31 + 9 * (const(void)*).sizeof] actionScript660;
-immutable ubyte[33 + 6 * (const(void)*).sizeof] actionScript733;
+immutable ubyte[31 + 9 * (const(void)*).sizeof] actionScriptPaulaFollowZombi1;
+immutable ubyte[33 + 6 * (const(void)*).sizeof] actionScriptEvtPray4PupilC;
 immutable ubyte[17 + 3 * (const(void)*).sizeof] actionScriptTStage2GorgeousDance35;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript869;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] actionScript592;
@@ -698,22 +698,22 @@ immutable ubyte[39 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript5;
 immutable ubyte[44 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusTunnelFour;
 immutable ubyte[25 + 6 * (const(void)*).sizeof] actionScriptHoihoiF;
-immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScript702;
+immutable ubyte[15 + 3 * (const(void)*).sizeof] actionScriptEvtMonokumaMove;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptPresentBoxShadow2;
-immutable ubyte[62 + 7 * (const(void)*).sizeof] actionScript679;
+immutable ubyte[62 + 7 * (const(void)*).sizeof] actionScriptLiftByFountain;
 immutable ubyte[66 + 10 * (const(void)*).sizeof] actionScriptSpiritReturnNes2;
 immutable ubyte[20 + 8 * (const(void)*).sizeof] actionScript628;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA46;
 immutable ubyte[355 + 50 * (const(void)*).sizeof] actionScriptTStage3Gorgeous1;
 immutable ubyte[34 + 8 * (const(void)*).sizeof] actionScriptHoihoiD;
-immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScript619;
-immutable ubyte[41 + 9 * (const(void)*).sizeof] actionScript714;
+immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScriptSyochoEscape;
+immutable ubyte[41 + 9 * (const(void)*).sizeof] actionScriptEvtHeliRWingStart;
 immutable ubyte[29 + 3 * (const(void)*).sizeof] unknownC4198D;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript504;
 immutable ubyte[25 + 8 * (const(void)*).sizeof] actionScriptPooSyugyou1;
 immutable ubyte[30 + 7 * (const(void)*).sizeof] unknownC3C1E0;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC33C1D;
-immutable ubyte[13 + 6 * (const(void)*).sizeof] actionScript696_697_698_Common;
+immutable ubyte[13 + 6 * (const(void)*).sizeof] actionScriptEvtPsychoMyHomeCommon;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AB12;
 immutable ubyte[189 + 31 * (const(void)*).sizeof] unknownC4170E;
 immutable ubyte[42 + 9 * (const(void)*).sizeof] actionScriptMessenger;
@@ -730,13 +730,13 @@ immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript854;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript127;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript521;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript522;
-immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript778;
+immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScriptPermitControl;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript888;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript802;
-immutable ubyte[38 + 5 * (const(void)*).sizeof] actionScript748;
+immutable ubyte[38 + 5 * (const(void)*).sizeof] actionScriptEvtPray7Andoughnut2;
 immutable ubyte[28 + 10 * (const(void)*).sizeof] actionScriptOshiokiPickey;
 immutable ubyte[21 + 7 * (const(void)*).sizeof] actionScriptAddPartyViaLeader;
-immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript777;
+immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScriptForbidControl;
 immutable ubyte[33 + 9 * (const(void)*).sizeof] actionScript260;
 immutable ubyte[6 + 3 * (const(void)*).sizeof] actionScript785;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript511;
@@ -747,19 +747,19 @@ immutable ubyte[16 + 3 * (const(void)*).sizeof] actionScriptTStage3Gorgeous6;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusBrdgTunnel;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript530;
 immutable ubyte[55 + 11 * (const(void)*).sizeof] actionScriptWinsAwayKanai;
-immutable ubyte[23 + 3 * (const(void)*).sizeof] actionScript749;
+immutable ubyte[23 + 3 * (const(void)*).sizeof] actionScriptEvtPray7Applekid;
 immutable ubyte[107 + 19 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusReturnTwsnB;
-immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScript780;
-immutable ubyte[73 + 20 * (const(void)*).sizeof + 1 * string.sizeof] actionScript669;
+immutable ubyte[9 + 4 * (const(void)*).sizeof] actionScriptSealPCAllDirDown;
+immutable ubyte[73 + 20 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptLeadSarusensei;
 immutable ubyte[38 + 6 * (const(void)*).sizeof] actionScript835;
-immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript773;
+immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPossessPCAllStill;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript102;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript533;
 immutable ubyte[10 + 1 * (const(void)*).sizeof] unknownC419B2;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] actionScriptFollowToMichiko;
 immutable ubyte[3 + 1 * (const(void)*).sizeof] actionScriptNesPeaceSaikyou;
 immutable ubyte[13 + 5 * (const(void)*).sizeof] actionScriptAndDose;
-immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript663;
+immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptPaulaStill;
 immutable ubyte[23 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusTunnelDsrt;
 immutable ubyte[40 + 7 * (const(void)*).sizeof] unknownC31E2D;
 immutable ubyte[24 + 8 * (const(void)*).sizeof] actionScriptTacyNearBMonkey;
@@ -767,16 +767,16 @@ immutable ubyte[225 + 33 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof
 immutable ubyte[75 + 1 * (const(void)*).sizeof] unknownC3C824;
 immutable ubyte[61 + 16 * (const(void)*).sizeof] actionScriptLuckyFree;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript827;
-immutable ubyte[33 + 4 * (const(void)*).sizeof] actionScript718;
+immutable ubyte[33 + 4 * (const(void)*).sizeof] actionScriptEvtPray1Tracy;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage3Lucky4;
 immutable ubyte[667 + 102 * (const(void)*).sizeof] actionScriptVStage1Venus;
 immutable ubyte[29 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage3Scr1;
 immutable ubyte[21 + 9 * (const(void)*).sizeof] unknownC35F8B;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] actionScript858;
-immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScript645;
+immutable ubyte[29 + 11 * (const(void)*).sizeof] actionScriptPanningRamma1;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript513;
-immutable ubyte[102 + 14 * (const(void)*).sizeof] actionScript620;
-immutable ubyte[15 + 5 * (const(void)*).sizeof] actionScript676_677_678_Common1;
+immutable ubyte[102 + 14 * (const(void)*).sizeof] actionScriptSaiteiMaboroshiIn;
+immutable ubyte[15 + 5 * (const(void)*).sizeof] actionScriptToFountainCommon1;
 immutable ubyte[18 + 8 * (const(void)*).sizeof] unknownC343DB;
 immutable ubyte[17 + 5 * (const(void)*).sizeof] unknownC3899E;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] actionScriptBusDriverR;
@@ -787,9 +787,9 @@ immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript106;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A0C5;
 immutable ubyte[19 + 5 * (const(void)*).sizeof] actionScriptSwSplinter2;
 immutable ubyte[22 + 8 * (const(void)*).sizeof] actionScriptFollowToSyocho;
-immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScript689;
+immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScriptSlotBrosStopM;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript608;
-immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScript776;
+immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScriptToBeContTitle;
 immutable ubyte[88 + 14 * (const(void)*).sizeof] actionScriptLeaf1;
 immutable ubyte[5 + 4 * (const(void)*).sizeof] actionScriptSwSkyA;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript880;
@@ -802,7 +802,7 @@ immutable ubyte[21 + 4 * (const(void)*).sizeof] unknownC3D0A4;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript88;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC31D4F;
 immutable ubyte[42 + 4 * (const(void)*).sizeof] unknownC411EB;
-immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript677;
+immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScriptToFountainB;
 immutable ubyte[26 + 11 * (const(void)*).sizeof] actionScriptOutBusR;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript803;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistWest;
@@ -819,11 +819,11 @@ immutable ubyte[50 + 8 * (const(void)*).sizeof] actionScriptMdSums;
 immutable ubyte[132 + 20 * (const(void)*).sizeof] actionScriptSwThrkShadowA;
 immutable ubyte[33 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript498;
 immutable ubyte[1] unknownC3A07F;
-immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript612;
+immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptFourMuseumRid;
 immutable ubyte[18 + 5 * (const(void)*).sizeof] actionScriptBMonkeyGum1;
 immutable ubyte[47 + 5 * (const(void)*).sizeof] unknownC4154E;
-immutable ubyte[38 + 6 * (const(void)*).sizeof] actionScript636;
-immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScript703;
+immutable ubyte[38 + 6 * (const(void)*).sizeof] actionScriptButukarizaru;
+immutable ubyte[18 + 3 * (const(void)*).sizeof] actionScriptEvtMonokabeMove;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript506;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptMonotoryOutANice;
 immutable ubyte[4 + 2 * (const(void)*).sizeof] actionScript709;
@@ -852,14 +852,14 @@ immutable ubyte[63 + 13 * (const(void)*).sizeof] unknownC416AC;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptBusTunnelHwayL;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptMonotoryOutAOK;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] actionScript360;
-immutable ubyte[24 + 4 * (const(void)*).sizeof] actionScript747;
-immutable ubyte[8 + 5 * (const(void)*).sizeof] actionScript606;
+immutable ubyte[24 + 4 * (const(void)*).sizeof] actionScriptEvtPray7Andoughnut;
+immutable ubyte[8 + 5 * (const(void)*).sizeof] actionScriptPeopleTBack;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScript130;
 immutable ubyte[32 + 7 * (const(void)*).sizeof] actionScriptSubmarine2;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript891;
 immutable ubyte[38 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScript45;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptBusFourThrkGo;
-immutable ubyte[92 + 14 * (const(void)*).sizeof] actionScript724;
+immutable ubyte[92 + 14 * (const(void)*).sizeof] actionScriptEvtPray3Polapapa;
 immutable ubyte[29 + 9 * (const(void)*).sizeof + 2 * string.sizeof] actionScriptBusTwsnTunnel;
 immutable ubyte[78 + 3 * (const(void)*).sizeof] actionScriptSwToSums1;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptPresentBoxFall2;
@@ -867,8 +867,8 @@ immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScriptPeopleWalk1Narrow;
 immutable ubyte[52 + 12 * (const(void)*).sizeof] actionScriptMagicButterflyApproach;
 immutable ubyte[56 + 23 * (const(void)*).sizeof] actionScript26;
 immutable ubyte[26 + 7 * (const(void)*).sizeof] actionScript843;
-immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript668;
-immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScript754;
+immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScriptLeaveSarusensei;
+immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScriptEvtPray7DoseiD;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript876;
 immutable ubyte[36 + 8 * (const(void)*).sizeof] actionScript812;
 immutable ubyte[22 + 7 * (const(void)*).sizeof] unknownC38978;
@@ -876,7 +876,7 @@ immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScriptNearAndoughnut;
 immutable ubyte[25 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusHwayTunnelR;
 immutable ubyte[13 + 7 * (const(void)*).sizeof] actionScript89;
 immutable ubyte[108 + 20 * (const(void)*).sizeof] actionScriptKaitenNess;
-immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScript654;
+immutable ubyte[20 + 5 * (const(void)*).sizeof] actionScriptTakeNessKatacomb1C;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptMaboroshiOut1;
 immutable ubyte[10 + 3 * (const(void)*).sizeof] unknownC30C55;
 immutable ubyte[54 + 16 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkTwsnIn;
@@ -885,35 +885,35 @@ immutable ubyte[15 + 8 * (const(void)*).sizeof] unknownC3DF90;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] actionScriptCop5C;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A17B;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript865;
-immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScript665;
+immutable ubyte[29 + 6 * (const(void)*).sizeof] actionScriptAyasii;
 immutable ubyte[65 + 28 * (const(void)*).sizeof] actionScript30;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage3Gorgeous2;
 immutable ubyte[8 + 4 * (const(void)*).sizeof] unknownC34E73;
 immutable ubyte[5 + 2 * (const(void)*).sizeof] unknownC3AB94;
 immutable ubyte[28 + 6 * (const(void)*).sizeof] actionScriptOdorokiNesPola;
-immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScript646;
+immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScriptPanningRamma2;
 immutable ubyte[21 + 3 * (const(void)*).sizeof] unknownC30CC7;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript875;
 immutable ubyte[16 + 4 * (const(void)*).sizeof] actionScript80;
 immutable ubyte[53 + 16 * (const(void)*).sizeof] actionScriptSwFourShadowA;
 immutable ubyte[64 + 13 * (const(void)*).sizeof] actionScriptSwThrkShadowB;
 immutable ubyte[18 + 1 * (const(void)*).sizeof] actionScriptCop5B;
-immutable ubyte[27 + 3 * (const(void)*).sizeof] actionScript649;
+immutable ubyte[27 + 3 * (const(void)*).sizeof] actionScriptJumpTonchikiShadow;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScript821;
 immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScriptMogiriToRight;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptDoseiPooDown;
 immutable ubyte[60 + 15 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusFourThrkIn;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript873;
 immutable ubyte[6 + 1 * (const(void)*).sizeof] actionScriptStageParty;
-immutable ubyte[34 + 6 * (const(void)*).sizeof] actionScript680;
-immutable ubyte[24 + 4 * (const(void)*).sizeof] actionScript721;
+immutable ubyte[34 + 6 * (const(void)*).sizeof] actionScriptMaidIntoBuilding;
+immutable ubyte[24 + 4 * (const(void)*).sizeof] actionScriptEvtPray2Nice;
 immutable ubyte[25 + 4 * (const(void)*).sizeof] actionScriptKidSt3;
 immutable ubyte[51 + 16 * (const(void)*).sizeof] actionScriptSwFourShadowB;
 immutable ubyte[76 + 22 * (const(void)*).sizeof] actionScriptElevaterDown;
 immutable ubyte[95 + 24 * (const(void)*).sizeof + 1 * string.sizeof] actionScript221;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiJ;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript791;
-immutable ubyte[165 + 35 * (const(void)*).sizeof] actionScript670;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen4;
+immutable ubyte[165 + 35 * (const(void)*).sizeof] actionScriptTeleportSarusensei;
 immutable ubyte[12 + 4 * (const(void)*).sizeof] actionScript799;
 immutable ubyte[27 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptGeppuPass;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTBusTunnelHwayL;
@@ -922,20 +922,20 @@ immutable ubyte[14 + 4 * (const(void)*).sizeof] actionScriptTStage3Gorgeous8;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptDoseiNesDown;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScriptCircleCultistEast;
 immutable ubyte[4 + 1 * (const(void)*).sizeof] actionScript624;
-immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScript737;
+immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScriptEvtPray4DirDown;
 immutable ubyte[66 + 10 * (const(void)*).sizeof] actionScriptSpiritReturnPoo2;
-immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript655;
+immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScriptTakeNessKatacomb2A;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage2MikeL;
 immutable ubyte[31 + 5 * (const(void)*).sizeof] actionScriptLastBattlePokey;
 immutable ubyte[5 + 3 * (const(void)*).sizeof] actionScript40;
 immutable ubyte[11 + 3 * (const(void)*).sizeof] unknownC3A09F;
-immutable ubyte[59 + 12 * (const(void)*).sizeof] actionScript742;
+immutable ubyte[59 + 12 * (const(void)*).sizeof] actionScriptEvtPray5GirlB;
 immutable ubyte[3 + 1 * (const(void)*).sizeof] actionScript859;
 immutable ubyte[43 + 11 * (const(void)*).sizeof] actionScriptKifuyaTukimatou;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] unknownC36D18;
 immutable ubyte[9 + 2 * (const(void)*).sizeof] unknownC3ABE0;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript862;
-immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript656;
+immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScriptTakeNessKatacomb2B;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A1A3;
 immutable ubyte[45 + 7 * (const(void)*).sizeof] actionScriptMichikoIntoRoomB;
 immutable ubyte[13 + 4 * (const(void)*).sizeof] actionScriptCarpDungR;
@@ -968,39 +968,39 @@ immutable ubyte[62 + 17 * (const(void)*).sizeof] actionScriptGrooveFree;
 immutable ubyte[7 + 2 * (const(void)*).sizeof] actionScriptSenzo2;
 immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusThrkTunnelR;
 immutable ubyte[35 + 5 * (const(void)*).sizeof] actionScriptTStage3TBus;
-immutable ubyte[35 + 6 * (const(void)*).sizeof] actionScript626;
+immutable ubyte[35 + 6 * (const(void)*).sizeof] actionScriptInsekiWakeupWalk;
 immutable ubyte[115 + 10 * (const(void)*).sizeof] actionScriptTStage1GorgeousDance;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTacyMask3;
-immutable ubyte[22 + 4 * (const(void)*).sizeof] actionScript715;
+immutable ubyte[22 + 4 * (const(void)*).sizeof] actionScriptEvtMonoHeliShadow;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptBusHwayTunnelL;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3AA6E;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript884;
-immutable ubyte[10 + 4 * (const(void)*).sizeof] actionScript737_738_739_740Common;
+immutable ubyte[10 + 4 * (const(void)*).sizeof] actionScriptEvtPray4DirCommon;
 immutable ubyte[34 + 14 * (const(void)*).sizeof] actionScriptBunbuun;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScriptVStage1VenusStill;
 immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptStSt3;
 immutable ubyte[194 + 4 * (const(void)*).sizeof] actionScriptNesHomeYure;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptBusFourTunnel;
 immutable ubyte[16 + 7 * (const(void)*).sizeof] actionScriptPeopleWalk1Live;
-immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript634;
+immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScriptBlackout;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript531;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript795;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen8;
 immutable ubyte[61 + 11 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptBusToThrkTunnel;
-immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScript688;
+immutable ubyte[31 + 8 * (const(void)*).sizeof] actionScriptSlotBrosStopL;
 immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScriptSwFourB;
 immutable ubyte[24 + 6 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptTStage1Scr1;
 immutable ubyte[46 + 4 * (const(void)*).sizeof] actionScriptTStage1Flip;
 immutable ubyte[4 + 4 * (const(void)*).sizeof] actionScriptPeopleWalk0Live;
 immutable ubyte[27 + 7 * (const(void)*).sizeof] actionScriptPooToOldman;
-immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScript739;
+immutable ubyte[5 + 1 * (const(void)*).sizeof] actionScriptEvtPray4DirRight;
 immutable ubyte[9 + 3 * (const(void)*).sizeof] actionScript818;
 immutable ubyte[16 + 6 * (const(void)*).sizeof] actionScript810;
 immutable ubyte[29 + 10 * (const(void)*).sizeof] actionScript693;
 immutable ubyte[15 + 2 * (const(void)*).sizeof] actionScriptTStage23Thank;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScriptSyochoToNess;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript532;
-immutable ubyte[37 + 7 * (const(void)*).sizeof] actionScript728;
-immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScript730Entry2;
+immutable ubyte[37 + 7 * (const(void)*).sizeof] actionScriptEvtPray3ChildD;
+immutable ubyte[10 + 6 * (const(void)*).sizeof] actionScriptEvtPray4GazeTonyEntry2;
 immutable ubyte[171 + 24 * (const(void)*).sizeof] actionScriptTeleportSuccess;
 immutable ubyte[29 + 8 * (const(void)*).sizeof] actionScriptOutTBusGorgeous;
 immutable ubyte[33 + 5 * (const(void)*).sizeof] actionScriptHoihoiA;
@@ -1021,7 +1021,7 @@ immutable ubyte[33 + 9 * (const(void)*).sizeof] actionScriptOutTassi1;
 immutable ubyte[80 + 12 * (const(void)*).sizeof] actionScriptJumpJef;
 immutable ubyte[70 + 12 * (const(void)*).sizeof] actionScript769;
 immutable ubyte[16 + 2 * (const(void)*).sizeof] unknownC33DBE;
-immutable ubyte[84 + 12 * (const(void)*).sizeof] actionScript750;
+immutable ubyte[84 + 12 * (const(void)*).sizeof] actionScriptEvtPray7Dosei;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] unknownC31D2D;
 immutable ubyte[20 + 6 * (const(void)*).sizeof] actionScriptJeffAddParty;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript86;
@@ -1031,11 +1031,11 @@ immutable ubyte[70 + 15 * (const(void)*).sizeof] actionScriptRideTassi1;
 immutable ubyte[22 + 6 * (const(void)*).sizeof] actionScriptOshiokiPokey;
 immutable ubyte[10 + 4 * (const(void)*).sizeof] unknownC3A18F;
 immutable ubyte[44 + 6 * (const(void)*).sizeof] actionScriptGumiStoneRise;
-immutable ubyte[41 + 5 * (const(void)*).sizeof] actionScript751;
+immutable ubyte[41 + 5 * (const(void)*).sizeof] actionScriptEvtPray7DoseiA;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScript108;
-immutable ubyte[21 + 8 * (const(void)*).sizeof] actionScript766;
+immutable ubyte[21 + 8 * (const(void)*).sizeof] actionScriptEvtFeelDiggy;
 immutable ubyte[57 + 9 * (const(void)*).sizeof] actionScriptSpiritReturnJef2;
-immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScript650;
+immutable ubyte[21 + 5 * (const(void)*).sizeof] actionScriptTonchikiEnterHouse;
 immutable ubyte[35 + 7 * (const(void)*).sizeof] actionScriptSyochoC;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript881;
 immutable ubyte[11 + 2 * (const(void)*).sizeof] unknownC33399;
@@ -1044,7 +1044,7 @@ immutable ubyte[29 + 9 * (const(void)*).sizeof + 1 * string.sizeof] actionScript
 immutable ubyte[6 + 4 * (const(void)*).sizeof] unknownC36E41;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] unknownC3AA38;
 immutable ubyte[6 + 2 * (const(void)*).sizeof] actionScriptTStage3OK3Nice3Groove3HighHat3;
-immutable ubyte[42 + 11 * (const(void)*).sizeof] actionScript661;
+immutable ubyte[42 + 11 * (const(void)*).sizeof] actionScriptPaulaFollowZombi2;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript503;
 immutable ubyte[192 + 42 * (const(void)*).sizeof] unknownC41036;
 immutable ubyte[523 + 75 * (const(void)*).sizeof] actionScriptTStage2LuckyWalk;
@@ -1053,11 +1053,11 @@ immutable ubyte[56 + 13 * (const(void)*).sizeof] actionScript666;
 immutable ubyte[15 + 7 * (const(void)*).sizeof] actionScriptIntoTBusGorgeous;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScriptPeopleWalk0;
 immutable ubyte[53 + 11 * (const(void)*).sizeof] actionScriptSwFourA;
-immutable ubyte[62 + 11 * (const(void)*).sizeof] actionScript651;
+immutable ubyte[62 + 11 * (const(void)*).sizeof] actionScriptStrikeNess;
 immutable ubyte[77 + 10 * (const(void)*).sizeof + 2 * string.sizeof] actionScriptSwWins;
-immutable ubyte[52 + 13 * (const(void)*).sizeof] actionScript788;
+immutable ubyte[52 + 13 * (const(void)*).sizeof] actionScriptTitleScreen1;
 immutable ubyte[7 + 5 * (const(void)*).sizeof] actionScriptTonzuraFree2B;
-immutable ubyte[16 + 2 * (const(void)*).sizeof] actionScript635;
+immutable ubyte[16 + 2 * (const(void)*).sizeof] actionScriptBlinkSuicide;
 immutable ubyte[22 + 9 * (const(void)*).sizeof] actionScriptGhostPlus1;
 immutable ubyte[26 + 10 * (const(void)*).sizeof] actionScriptToGuard;
 immutable ubyte[14 + 3 * (const(void)*).sizeof] actionScriptSyochoA;
@@ -1065,7 +1065,7 @@ immutable ubyte[70 + 13 * (const(void)*).sizeof] actionScript501_531_Common;
 immutable ubyte[29 + 8 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptVStage1Scr1;
 immutable ubyte[50 + 13 * (const(void)*).sizeof] actionScript104;
 immutable ubyte[46 + 8 * (const(void)*).sizeof] actionScriptCameraEye;
-immutable ubyte[189 + 50 * (const(void)*).sizeof] actionScript768;
+immutable ubyte[189 + 50 * (const(void)*).sizeof] actionScriptEvtFluctuateMagicant;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript516;
 immutable ubyte[17 + 2 * (const(void)*).sizeof] actionScriptSyochoB;
 immutable ubyte[7 + 3 * (const(void)*).sizeof] actionScript14;
@@ -1074,32 +1074,32 @@ immutable ubyte[21 + 5 * (const(void)*).sizeof + 1 * string.sizeof] unknownC3DB7
 immutable ubyte[18 + 2 * (const(void)*).sizeof] unknownC3CEA2;
 immutable ubyte[23 + 4 * (const(void)*).sizeof] actionScriptVStage1VenusLight2;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage3MikeR;
-immutable ubyte[29 + 3 * (const(void)*).sizeof] actionScript752;
+immutable ubyte[29 + 3 * (const(void)*).sizeof] actionScriptEvtPray7DoseiB;
 immutable ubyte[203 + 31 * (const(void)*).sizeof] actionScript629;
-immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScript652;
+immutable ubyte[22 + 5 * (const(void)*).sizeof] actionScriptTakeNessKatacomb1A;
 immutable ubyte[28 + 7 * (const(void)*).sizeof + 1 * string.sizeof] actionScript863;
 immutable ubyte[46 + 13 * (const(void)*).sizeof] actionScriptSwDsrtShadowB;
 immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScript830;
 immutable ubyte[8 + 1 * (const(void)*).sizeof] unknownC3C81A;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript87;
-immutable ubyte[25 + 13 * (const(void)*).sizeof] actionScript757;
+immutable ubyte[25 + 13 * (const(void)*).sizeof] actionScriptEvtPrayOvalWindow;
 immutable ubyte[49 + 8 * (const(void)*).sizeof] unknownC34B62;
 immutable ubyte[8 + 3 * (const(void)*).sizeof] unknownC40F59;
-immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScript682;
-immutable ubyte[48 + 10 * (const(void)*).sizeof] actionScript705;
+immutable ubyte[25 + 5 * (const(void)*).sizeof] actionScriptGoOutCakeWife;
+immutable ubyte[48 + 10 * (const(void)*).sizeof] actionScriptCarpainterThunder;
 immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScript9;
 immutable ubyte[64 + 10 * (const(void)*).sizeof] actionScriptGiantStepCop;
-immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScript746;
+immutable ubyte[9 + 1 * (const(void)*).sizeof] actionScriptEvtPray7STunnel;
 immutable ubyte[47 + 11 * (const(void)*).sizeof] actionScriptBusTunnelDsrtR;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript517;
-immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScript790;
+immutable ubyte[21 + 3 * (const(void)*).sizeof] actionScriptTitleScreen3;
 immutable ubyte[26 + 7 * (const(void)*).sizeof] actionScriptAddPartyBMonkey;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptDoseiJefDown;
 immutable ubyte[16 + 4 * (const(void)*).sizeof] actionScriptBMonkeyGum;
 immutable ubyte[47 + 11 * (const(void)*).sizeof] actionScriptPolaPolastarReturn;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript510;
 immutable ubyte[45 + 10 * (const(void)*).sizeof + 1 * string.sizeof] actionScript771;
-immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScript731;
+immutable ubyte[24 + 5 * (const(void)*).sizeof] actionScriptEvtPray4PupilA;
 immutable ubyte[2 + 2 * (const(void)*).sizeof] actionScript529;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScript813;
 immutable ubyte[2 + 1 * (const(void)*).sizeof] unknownC40F45;
@@ -2919,201 +2919,201 @@ shared static this() {
 		actionScript601[],
 		actionScript602[],
 		actionScript603[],
-		actionScript604[],
-		actionScript605[],
-		actionScript606[],
+		actionScriptAppleMouseStepback[],
+		actionScriptMapObjTBack[],
+		actionScriptPeopleTBack[],
 		actionScript607[],
 		actionScript608[],
 		actionScript609[],
 		actionScript610[],
-		actionScript611[],
-		actionScript612[],
-		actionScript613[],
-		actionScript614[],
-		actionScript615[],
-		actionScript616[],
-		actionScript617[],
-		actionScript618[],
-		actionScript619[],
-		actionScript620[],
-		actionScript621[],
-		actionScript622[],
-		actionScript623[],
+		actionScriptFourMuseumBilk[],
+		actionScriptFourMuseumRid[],
+		actionScriptFourFollowMuseumA[],
+		actionScriptFourMuseumReturn[],
+		actionScriptSumsMuseumBilk[],
+		actionScriptSumsMuseumRid[],
+		actionScriptSumsFollowMuseumA[],
+		actionScriptSumsMuseumReturn[],
+		actionScriptSyochoEscape[],
+		actionScriptSaiteiMaboroshiIn[],
+		actionScriptSaiteiMaboroshiOut[],
+		actionScriptInsekiStarman[],
+		actionScriptAkanbePokey[],
 		actionScript624[],
-		actionScript625[],
-		actionScript626[],
-		actionScript627[],
+		actionScriptMouseAddParty[],
+		actionScriptInsekiWakeupWalk[],
+		actionScriptPeopleSleep[],
 		actionScript628[],
 		actionScript629[],
-		actionScript630[],
+		actionScriptLardnaSlapBunbuun[],
 		actionScript631[],
 		actionScript632[],
-		actionScript633[],
-		actionScript634[],
-		actionScript635[],
-		actionScript636[],
-		actionScript637[],
-		actionScript638[],
-		actionScript639[],
-		actionScript640[],
-		actionScript641[],
+		actionScriptIntoNight[],
+		actionScriptBlackout[],
+		actionScriptBlinkSuicide[],
+		actionScriptButukarizaru[],
+		actionScriptLeaveButukarizaru[],
+		actionScriptUkkariCarrier[],
+		actionScriptLeaveUkkariCarrier[],
+		actionScriptApproachContScript[],
+		actionScriptEavesMaid[],
 		actionScript642[],
-		actionScript643[],
-		actionScript644[],
-		actionScript645[],
-		actionScript646[],
+		actionScriptPanningWinters1[],
+		actionScriptPanningWinters2[],
+		actionScriptPanningRamma1[],
+		actionScriptPanningRamma2[],
 		actionScript647[],
-		actionScript648[],
-		actionScript649[],
-		actionScript650[],
-		actionScript651[],
-		actionScript652[],
-		actionScript653[],
-		actionScript654[],
-		actionScript655[],
-		actionScript656[],
-		actionScript657[],
-		actionScript658[],
-		actionScript659[],
-		actionScript660[],
-		actionScript661[],
-		actionScript662[],
-		actionScript663[],
-		actionScript664[],
-		actionScript665[],
+		actionScriptJumpTonchiki[],
+		actionScriptJumpTonchikiShadow[],
+		actionScriptTonchikiEnterHouse[],
+		actionScriptStrikeNess[],
+		actionScriptTakeNessKatacomb1A[],
+		actionScriptTakeNessKatacomb1B[],
+		actionScriptTakeNessKatacomb1C[],
+		actionScriptTakeNessKatacomb2A[],
+		actionScriptTakeNessKatacomb2B[],
+		actionScriptTakeNessKatacomb2C[],
+		actionScriptNessFollowZombi1[],
+		actionScriptNessFollowZombi2[],
+		actionScriptPaulaFollowZombi1[],
+		actionScriptPaulaFollowZombi2[],
+		actionScriptNessStill[],
+		actionScriptPaulaStill[],
+		actionScriptBikiniLookNess[],
+		actionScriptAyasii[],
 		actionScript666[],
-		actionScript667[],
-		actionScript668[],
-		actionScript669[],
-		actionScript670[],
-		actionScript671[],
+		actionScriptMuMaboroshiOut[],
+		actionScriptLeaveSarusensei[],
+		actionScriptLeadSarusensei[],
+		actionScriptTeleportSarusensei[],
+		actionScriptReturnSarusensei[],
 		actionScript672[],
 		actionScript673[],
 		actionScript674[],
-		actionScript675[],
-		actionScript676[],
-		actionScript677[],
-		actionScript678[],
-		actionScript679[],
-		actionScript680[],
-		actionScript681[],
-		actionScript682[],
+		actionScriptChiteiQuake[],
+		actionScriptToFountainA[],
+		actionScriptToFountainB[],
+		actionScriptToFountainC[],
+		actionScriptLiftByFountain[],
+		actionScriptMaidIntoBuilding[],
+		actionScriptMakyoDoctorApproach[],
+		actionScriptGoOutCakeWife[],
 		actionScript683[],
 		actionScript684[],
-		actionScript685[],
-		actionScript686[],
-		actionScript687[],
-		actionScript688[],
-		actionScript689[],
-		actionScript690[],
-		actionScript691[],
-		actionScript692[],
+		actionScriptSlotBrosRotateL[],
+		actionScriptSlotBrosRotateM[],
+		actionScriptSlotBrosRotateN[],
+		actionScriptSlotBrosStopL[],
+		actionScriptSlotBrosStopM[],
+		actionScriptSlotBrosStopN[],
+		actionScriptSlotBrosStopNReach[],
+		actionScriptSlotBrosPresent[],
 		actionScript693[],
 		actionScript694[],
-		actionScript695[],
-		actionScript696[],
-		actionScript697[],
-		actionScript698[],
+		actionScriptEvtIntoPsychoMyHome[],
+		actionScriptEvtPsychoMyHome1f[],
+		actionScriptEvtPsychoMyHomeRouka[],
+		actionScriptEvtPsychoMyRoom[],
 		actionScript699[],
 		actionScript700[],
-		actionScript701[],
-		actionScript702[],
-		actionScript703[],
+		actionScriptEvtMonotolyGoSwitch[],
+		actionScriptEvtMonokumaMove[],
+		actionScriptEvtMonokabeMove[],
 		actionScript704[],
-		actionScript705[],
-		actionScript706[],
+		actionScriptCarpainterThunder[],
+		actionScriptCarpainterThunderhead[],
 		actionScript707[],
 		actionScript708[],
 		actionScript709[],
 		actionScript710[],
 		actionScript711[],
-		actionScript712[],
-		actionScript713[],
-		actionScript714[],
-		actionScript715[],
-		actionScript716[],
-		actionScript717[],
-		actionScript718[],
-		actionScript719[],
-		actionScript720[],
-		actionScript721[],
-		actionScript722[],
-		actionScript723[],
-		actionScript724[],
-		actionScript725[],
-		actionScript726[],
-		actionScript727[],
-		actionScript728[],
-		actionScript729[],
-		actionScript730[],
-		actionScript731[],
-		actionScript732[],
-		actionScript733[],
-		actionScript734[],
-		actionScript735[],
-		actionScript736[],
-		actionScript737[],
-		actionScript738[],
-		actionScript739[],
+		actionScriptEvtMonoHeliBoatman[],
+		actionScriptEvtHeliFWingStart[],
+		actionScriptEvtHeliRWingStart[],
+		actionScriptEvtMonoHeliShadow[],
+		actionScriptHeliPokeyFace[],
+		actionScriptEvtPray1Mama[],
+		actionScriptEvtPray1Tracy[],
+		actionScriptEvtPray1Dog[],
+		actionScriptEvtPray2Bikini[],
+		actionScriptEvtPray2Nice[],
+		actionScriptEvtPray2Okay[],
+		actionScriptEvtPray2Groovy[],
+		actionScriptEvtPray3Polapapa[],
+		actionScriptEvtPray3Polamama[],
+		actionScriptEvtPray3ChildA[],
+		actionScriptEvtPray3ChildB[],
+		actionScriptEvtPray3ChildD[],
+		actionScriptEvtPray4Tony[],
+		actionScriptEvtPray4GazeTony[],
+		actionScriptEvtPray4PupilA[],
+		actionScriptEvtPray4PupilB[],
+		actionScriptEvtPray4PupilC[],
+		actionScriptEvtPray4PupilD[],
+		actionScriptEvtPray4Gaus[],
+		actionScriptEvtPray4Explain[],
+		actionScriptEvtPray4DirDown[],
+		actionScriptEvtPray4DirLeft[],
+		actionScriptEvtPray4DirRight[],
 		actionScript740[],
-		actionScript741[],
-		actionScript742[],
-		actionScript743[],
-		actionScript744[],
+		actionScriptEvtPray5GirlA[],
+		actionScriptEvtPray5GirlB[],
+		actionScriptEvtPray5GirlC[],
+		actionScriptEvtPray6Frank[],
 		actionScript745[],
-		actionScript746[],
-		actionScript747[],
-		actionScript748[],
-		actionScript749[],
-		actionScript750[],
-		actionScript751[],
-		actionScript752[],
-		actionScript753[],
-		actionScript754[],
-		actionScript755[],
-		actionScript756[],
-		actionScript757[],
+		actionScriptEvtPray7STunnel[],
+		actionScriptEvtPray7Andoughnut[],
+		actionScriptEvtPray7Andoughnut2[],
+		actionScriptEvtPray7Applekid[],
+		actionScriptEvtPray7Dosei[],
+		actionScriptEvtPray7DoseiA[],
+		actionScriptEvtPray7DoseiB[],
+		actionScriptEvtPray7DoseiC[],
+		actionScriptEvtPray7DoseiD[],
+		actionScriptEvtPray7Kyorokyoro[],
+		actionScriptEvtPray7Motchy[],
+		actionScriptEvtPrayOvalWindow[],
 		actionScript758[],
-		actionScript759[],
-		actionScript760[],
-		actionScript761[],
-		actionScript762[],
-		actionScript763[],
-		actionScript764[],
-		actionScript765[],
-		actionScript766[],
+		actionScriptBlockZombiB[],
+		actionScriptEndPhotoman[],
+		actionScriptEndShadow[],
+		actionScriptEndCamera[],
+		actionScriptEvtEatMagicCake[],
+		actionScriptEvtPoolaaa[],
+		actionScriptKanjiAtTheNight[],
+		actionScriptEvtFeelDiggy[],
 		actionScript767[],
-		actionScript768[],
+		actionScriptEvtFluctuateMagicant[],
 		actionScript769[],
-		actionScript770[],
+		actionScriptOmarGiveHierogriph[],
 		actionScript771[],
-		actionScript772[],
-		actionScript773[],
-		actionScript774[],
-		actionScript775[],
-		actionScript776[],
-		actionScript777[],
-		actionScript778[],
-		actionScript779[],
-		actionScript780[],
-		actionScript781[],
-		actionScript782[],
+		actionScriptOpenGateGumi[],
+		actionScriptPossessPCAllStill[],
+		actionScriptTracyAppear[],
+		actionScriptToBeContOvalClose[],
+		actionScriptToBeContTitle[],
+		actionScriptForbidControl[],
+		actionScriptPermitControl[],
+		actionScriptSealPCAllDirLeft[],
+		actionScriptSealPCAllDirDown[],
+		actionScriptSealPCPaulaDirDown[],
+		actionScriptRemodelOperation[],
 		actionScript783[],
 		actionScript784[],
 		actionScript785[],
 		actionScript786[],
 		actionScript787[],
-		actionScript788[],
-		actionScript789[],
-		actionScript790[],
-		actionScript791[],
-		actionScript792[],
-		actionScript793[],
-		actionScript794[],
-		actionScript795[],
-		actionScript796[],
-		actionScript797[],
-		actionScript798[],
+		actionScriptTitleScreen1[],
+		actionScriptTitleScreen2[],
+		actionScriptTitleScreen3[],
+		actionScriptTitleScreen4[],
+		actionScriptTitleScreen5[],
+		actionScriptTitleScreen6[],
+		actionScriptTitleScreen7[],
+		actionScriptTitleScreen8[],
+		actionScriptTitleScreen9[],
+		actionScriptTitleScreen10[],
+		actionScriptTitleScreen11[],
 		actionScript799[],
 		actionScript800[],
 		actionScript801[],
@@ -3397,7 +3397,7 @@ shared static this() {
 		"unknownC42815": unknownC42815[],
 		"unknownC42828": unknownC42828[],
 	];
-actionScript774 = [
+actionScriptTracyAppear = [
 	ACTIONSCRIPT_SET_X(7464),
 	ACTIONSCRIPT_SET_Y(336),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -3598,7 +3598,7 @@ actionScript878 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_17"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript667 = [
+actionScriptMuMaboroshiOut = [
 	ACTIONSCRIPT_SET_X(4960),
 	ACTIONSCRIPT_SET_Y(4128),
 	ACTIONSCRIPT_SET_Z(0),
@@ -3648,7 +3648,7 @@ actionScriptVStage1Scr2 = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_VSTAGE1_B"),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript640 = [
+actionScriptApproachContScript = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 9),
 	ACTIONSCRIPT_START_TASK(&unknownC3AFA3[0]),
@@ -3661,7 +3661,7 @@ actionScript640 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript720 = [
+actionScriptEvtPray2Bikini = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 10),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -3700,7 +3700,7 @@ actionScriptTalkPaulaJeff = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript617 = [
+actionScriptSumsFollowMuseumA = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -3714,7 +3714,7 @@ actionScript617 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_C0A92D(1033),
 	ACTIONSCRIPT_C0A8C6(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript617[18 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptSumsFollowMuseumA[18 + 7 * (const(void)*).sizeof]),
 ].join();
 actionScriptFrsdFieldO = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -3770,10 +3770,10 @@ actionScriptFatherCallPaula = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript678 = [
-	ACTIONSCRIPT_SHORTCALL(&actionScript676_677_678_Common1[0]),
+actionScriptToFountainC = [
+	ACTIONSCRIPT_SHORTCALL(&actionScriptToFountainCommon1[0]),
 	ACTIONSCRIPT_C0A92D(1305),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript676_677_678_Common2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptToFountainCommon2[0]),
 ].join();
 unknownC419BF = [
 	ACTIONSCRIPT_SET_X(24),
@@ -3932,7 +3932,7 @@ actionScriptMaboroshiOut2 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript676_677_678_Common2 = [
+actionScriptToFountainCommon2 = [
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v7, Binop.add, 65531),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -3985,7 +3985,7 @@ unknownC35FB6 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript637 = [
+actionScriptLeaveButukarizaru = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_START_TASK(&unknownC3A1B7[0]),
@@ -4043,12 +4043,12 @@ actionScript708 = [
 	ACTIONSCRIPT_C0A84C(EventFlag.itemLetter1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript707_708_709_710_Common[0]),
 ].join();
-actionScript797 = [
+actionScriptTitleScreen10 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(7),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript797[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen10[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(739),
 	ACTIONSCRIPT_SET_X_VELOCITY(-918),
 	ACTIONSCRIPT_PAUSE(150),
@@ -4149,7 +4149,7 @@ actionScriptBusThrkDsrtIn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptBusThrkDsrtIn[46 + 9 * (const(void)*).sizeof]),
 ].join();
-actionScript764 = [
+actionScriptEvtPoolaaa = [
 	ACTIONSCRIPT_SET_X(1224),
 	ACTIONSCRIPT_SET_Y(6560),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -4159,7 +4159,7 @@ actionScript764 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1336),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 6560),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
-	ACTIONSCRIPT_START_TASK(&actionScript764[44 + 9 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptEvtPoolaaa[44 + 9 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1376),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
@@ -4173,7 +4173,7 @@ actionScript764 = [
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_PAUSE(8),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript764[44 + 9 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPoolaaa[44 + 9 * (const(void)*).sizeof]),
 ].join();
 unknownC41A7D = [
 	ACTIONSCRIPT_SET_X(24),
@@ -4239,12 +4239,12 @@ actionScriptGorgeousFree2C = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3C20F[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript675 = [
+actionScriptChiteiQuake = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48C2B),
-	ACTIONSCRIPT_START_TASK(&actionScript675Task[0]),
+	ACTIONSCRIPT_START_TASK(&actionScriptChiteiQuakeTask[0]),
 	ACTIONSCRIPT_LOOP(2),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-3),
 	ACTIONSCRIPT_PAUSE(6),
@@ -4279,7 +4279,7 @@ actionScript675 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript675Task = [
+actionScriptChiteiQuakeTask = [
 	ACTIONSCRIPT_LOOP(6),
 	ACTIONSCRIPT_SET_X_RELATIVE(3),
 	ACTIONSCRIPT_PAUSE(2),
@@ -4544,7 +4544,7 @@ actionScriptTStage3Lucky1 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC333BB[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript756 = [
+actionScriptEvtPray7Motchy = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -4605,7 +4605,7 @@ unknownC413D6 = [
 	ACTIONSCRIPT_PAUSE(180),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC413D6[14]),
 ].join();
-actionScript643 = [
+actionScriptPanningWinters1 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -4770,7 +4770,7 @@ actionScript786 = [
 	ACTIONSCRIPT_EX_C0778A(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript786[7 + 3 * (const(void)*).sizeof]),
 ].join();
-actionScript763 = [
+actionScriptEvtEatMagicCake = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -5073,29 +5073,29 @@ actionScript597 = [
 	ACTIONSCRIPT_C0CCCC(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript27[13 + 6 * (const(void)*).sizeof]),
 ].join();
-actionScript775 = [
+actionScriptToBeContOvalClose = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
-	ACTIONSCRIPT_START_TASK(&actionScript757[21 + 11 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_START_TASK(&actionScript775Task[0]),
+	ACTIONSCRIPT_START_TASK(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptToBeContOvalCloseTask[0]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(2),
 	ACTIONSCRIPT_C2EA15(),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C2EACF(),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript775[12 + 5 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptToBeContOvalClose[12 + 5 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript775Task = [
+actionScriptToBeContOvalCloseTask = [
 	ACTIONSCRIPT_PAUSE(125),
 	ACTIONSCRIPT_END_TASK(),
 ].join();
-actionScript706 = [
+actionScriptCarpainterThunderhead = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
-	ACTIONSCRIPT_START_TASK(&actionScript705_706_Common[0]),
+	ACTIONSCRIPT_START_TASK(&actionScriptCarpainterThunderCommon[0]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 2),
@@ -5126,7 +5126,7 @@ actionScriptPresentBoxShadow3 = [
 	ACTIONSCRIPT_SET_Y(7624),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPresentBoxShadow1[6]),
 ].join();
-actionScript730 = [
+actionScriptEvtPray4GazeTony = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -5287,7 +5287,7 @@ actionScript131 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3C35D[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript712 = [
+actionScriptEvtMonoHeliBoatman = [
 	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.helicopter),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -5504,7 +5504,7 @@ actionScript887 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_26"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript641 = [
+actionScriptEavesMaid = [
 	ACTIONSCRIPT_SET_X(2552),
 	ACTIONSCRIPT_SET_Y(3728),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -5989,7 +5989,7 @@ actionScriptAndNearSt3 = [
 	ACTIONSCRIPT_SET_Y(304),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript740[0]),
 ].join();
-actionScript692 = [
+actionScriptSlotBrosPresent = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_C0A673(),
 	ACTIONSCRIPT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -6023,7 +6023,7 @@ actionScriptTStage1Thank = [
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript765 = [
+actionScriptKanjiAtTheNight = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -6289,7 +6289,7 @@ actionScriptTStage1Gorgeous = [
 ].join();
 actionScript581 = [
 	ACTIONSCRIPT_C0A84C(EventFlag.doseiPuBoxAppear),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript606[0]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptPeopleTBack[0]),
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -6334,7 +6334,7 @@ actionScriptUzu1TassiBye = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptUzu1TassiBye[12 + 4 * (const(void)*).sizeof]),
 ].join();
-actionScript686 = [
+actionScriptSlotBrosRotateM = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_PLAY_SFX(Sfx.cursor3),
 	ACTIONSCRIPT_C0A673(),
@@ -6345,7 +6345,7 @@ actionScript686 = [
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_PAUSE(6),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript686[7 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptSlotBrosRotateM[7 + 3 * (const(void)*).sizeof]),
 ].join();
 actionScript19 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3A426[0]),
@@ -6371,7 +6371,7 @@ actionScript787 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript787[0]),
 ].join();
-actionScript630 = [
+actionScriptLardnaSlapBunbuun = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_C0AA6E(Direction.left, 0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -6418,7 +6418,7 @@ unknownC41402 = [
 ].join();
 actionScript740 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript737_738_739_740Common[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
 ].join();
 actionScriptMdTwsn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC34E73[0]),
@@ -6510,7 +6510,7 @@ actionScript700 = [
 	ACTIONSCRIPT_PAUSE(3),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript700[107 + 15 * (const(void)*).sizeof + string.sizeof]),
 ].join();
-actionScript781 = [
+actionScriptSealPCPaulaDirDown = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_C0C7DB(),
@@ -6569,7 +6569,7 @@ actionScript35 = [
 	ACTIONSCRIPT_C020F1(),
 	ACTIONSCRIPT_END(),
 ].join();
-actionScript732 = [
+actionScriptEvtPray4PupilB = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 10),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -6584,7 +6584,7 @@ actionScript732 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3096),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript730Entry2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
 ].join();
 actionScriptWinsSkywalkerShadow = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
@@ -6709,7 +6709,7 @@ unknownC3DFD4_2 = [
 	ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER(),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3DFB5[0]),
 ].join();
-actionScript639 = [
+actionScriptLeaveUkkariCarrier = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAFE[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 2560),
@@ -6987,7 +6987,7 @@ unknownC3BAC4 = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_GHOST_WARP"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript722 = [
+actionScriptEvtPray2Okay = [
 	ACTIONSCRIPT_SET_X(5312),
 	ACTIONSCRIPT_SET_Y(2712),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -7056,7 +7056,7 @@ actionScript840 = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript840[9 + 4 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript671 = [
+actionScriptReturnSarusensei = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA82[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1288),
@@ -7073,7 +7073,7 @@ actionScript671 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript653 = [
+actionScriptTakeNessKatacomb1B = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(-16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -7086,7 +7086,7 @@ actionScript653 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript779 = [
+actionScriptSealPCAllDirLeft = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_C0C7DB(),
@@ -7251,7 +7251,7 @@ actionScriptTStage2Spotlight = [
 	ACTIONSCRIPT_CLEAR_TICK_CALLBACK(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript633 = [
+actionScriptIntoNight = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -7417,7 +7417,7 @@ actionScriptIntoTonzuraBusMono = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript782 = [
+actionScriptRemodelOperation = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -7427,34 +7427,34 @@ actionScript782 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.nessLyingDown, ActionScript.unknown783),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine[0]),
 	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.paulaLyingDown, ActionScript.unknown783),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine[0]),
 	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.jeffLyingDown, ActionScript.unknown783),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine[0]),
 	ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite.pooLyingDown, ActionScript.unknown783),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine[0]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript782UnknownRoutine = [
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine4[0]),
+actionScriptRemodelOperationUnknownRoutine = [
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine4[0]),
 	ACTIONSCRIPT_PAUSE(179),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
 	ACTIONSCRIPT_PAUSE(174),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine2[0]),
-	ACTIONSCRIPT_SHORTCALL(&actionScript782UnknownRoutine3[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptRemodelOperationUnknownRoutine3[0]),
 	ACTIONSCRIPT_PAUSE(35),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript782UnknownRoutine2 = [
+actionScriptRemodelOperationUnknownRoutine2 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 22),
 	ACTIONSCRIPT_LOOP(12),
 	ACTIONSCRIPT_C474A8(),
@@ -7463,7 +7463,7 @@ actionScript782UnknownRoutine2 = [
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript782UnknownRoutine3 = [
+actionScriptRemodelOperationUnknownRoutine3 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
 	ACTIONSCRIPT_LOOP(31),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 65535),
@@ -7472,7 +7472,7 @@ actionScript782UnknownRoutine3 = [
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript782UnknownRoutine4 = [
+actionScriptRemodelOperationUnknownRoutine4 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 65505),
 	ACTIONSCRIPT_LOOP(31),
 	ACTIONSCRIPT_BINOP(ActionScriptVars.v0, Binop.add, 1),
@@ -7806,7 +7806,7 @@ actionScript585 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript734 = [
+actionScriptEvtPray4PupilD = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 10),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -7817,14 +7817,14 @@ actionScript734 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_C46E46(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript730Entry2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
 ].join();
-actionScript794 = [
+actionScriptTitleScreen7 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(4),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript794[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen7[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(-21),
 	ACTIONSCRIPT_SET_X_VELOCITY(226),
 	ACTIONSCRIPT_PAUSE(150),
@@ -8193,7 +8193,7 @@ actionScript525 = [
 	ACTIONSCRIPT_START_TASK(&unknownC40F18[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41974[0]),
 ].join();
-actionScript789 = [
+actionScriptTitleScreen2 = [
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
 	ACTIONSCRIPT_JUMP_IF_FALSE(&unknownC42235[0]),
 	ACTIONSCRIPT_C0ED5C(),
@@ -8574,12 +8574,12 @@ actionScriptPhotographerS = [
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript793 = [
+actionScriptTitleScreen6 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(3),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript793[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen6[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(-181),
 	ACTIONSCRIPT_SET_X_VELOCITY(469),
 	ACTIONSCRIPT_PAUSE(150),
@@ -8671,7 +8671,7 @@ actionScriptBMonkeyByeUnknownRoutine = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript743 = [
+actionScriptEvtPray5GirlC = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 10),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -8680,7 +8680,7 @@ actionScript743 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 4440),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3568),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
-	ACTIONSCRIPT_START_TASK(&actionScript743[41 + 8 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptEvtPray5GirlC[41 + 8 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 4400),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3488),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
@@ -8693,9 +8693,9 @@ actionScript743 = [
 	ACTIONSCRIPT_C0A94E(1110),
 	ACTIONSCRIPT_C0A959(89),
 	ACTIONSCRIPT_PAUSE(3),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript743[41 + 8 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray5GirlC[41 + 8 * (const(void)*).sizeof]),
 ].join();
-actionScript623 = [
+actionScriptAkanbePokey = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 8),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
@@ -9510,7 +9510,7 @@ actionScriptTonzuraFree = [
 	ACTIONSCRIPT_PAUSE(3),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptTonzuraFree[0]),
 ].join();
-actionScript615 = [
+actionScriptSumsMuseumBilk = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
@@ -9597,10 +9597,10 @@ unknownC3C810 = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3C810[0]),
 ].join();
-actionScript696 = [
+actionScriptEvtPsychoMyHome1f = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1576),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 8784),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript696_697_698_Common[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPsychoMyHomeCommon[0]),
 ].join();
 actionScriptMichikoIntoRoom = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA5A[0]),
@@ -9795,10 +9795,10 @@ actionScriptSpiritReturnPola = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript676 = [
-	ACTIONSCRIPT_SHORTCALL(&actionScript676_677_678_Common1[0]),
+actionScriptToFountainA = [
+	ACTIONSCRIPT_SHORTCALL(&actionScriptToFountainCommon1[0]),
 	ACTIONSCRIPT_C0A92D(1303),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript676_677_678_Common2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptToFountainCommon2[0]),
 ].join();
 actionScript23 = [
 	ACTIONSCRIPT_START_TASK(&actionScript23[48 + 24 * (const(void)*).sizeof]),
@@ -9851,10 +9851,10 @@ actionScriptBusDsrtTunnelL = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript697 = [
+actionScriptEvtPsychoMyHomeRouka = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 5616),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 4840),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript696_697_698_Common[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPsychoMyHomeCommon[0]),
 ].join();
 unknownC3AB26 = [
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -9865,7 +9865,7 @@ unknownC3AB26 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript741 = [
+actionScriptEvtPray5GirlA = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -9920,7 +9920,7 @@ actionScriptSenzo1 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript717 = [
+actionScriptEvtPray1Mama = [
 	ACTIONSCRIPT_SET_X(1576),
 	ACTIONSCRIPT_SET_Y(8784),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -10010,7 +10010,7 @@ unknownC3DFD4 = [
 	ACTIONSCRIPT_SET_Y_VELOCITY(32),
 	ACTIONSCRIPT_CHOOSE_RANDOM(15, 30, 45, 60),
 ].join();
-actionScript760 = [
+actionScriptEndPhotoman = [
 	ACTIONSCRIPT_SET_X(3072),
 	ACTIONSCRIPT_SET_Y(896),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -10347,7 +10347,7 @@ actionScriptTStage2LuckyDance6 = [
 	ACTIONSCRIPT_PAUSE(75),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript648 = [
+actionScriptJumpTonchiki = [
 	ACTIONSCRIPT_SET_X(1368),
 	ACTIONSCRIPT_SET_Y(6904),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -10572,7 +10572,7 @@ actionScriptTBusFourTunnel = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_TBUS_TUNNEL_BRDG"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript659 = [
+actionScriptNessFollowZombi2 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(256),
@@ -10931,7 +10931,7 @@ actionScriptSwSumsA = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript664 = [
+actionScriptBikiniLookNess = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(48),
 	ACTIONSCRIPT_SET_Y_RELATIVE(32),
@@ -11014,7 +11014,7 @@ actionScriptBusDsrtFourIn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB94[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptBusDsrtFourIn[50 + 10 * (const(void)*).sizeof]),
 ].join();
-actionScript735 = [
+actionScriptEvtPray4Gaus = [
 	ACTIONSCRIPT_SET_X(7728),
 	ACTIONSCRIPT_SET_Y(3080),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -11034,7 +11034,7 @@ actionScript520 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F4A[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4170E[0]),
 ].join();
-actionScript658 = [
+actionScriptNessFollowZombi1 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
 	ACTIONSCRIPT_PAUSE(32),
@@ -11274,7 +11274,7 @@ actionScriptMdHashiBus = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript744 = [
+actionScriptEvtPray6Frank = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -11470,7 +11470,7 @@ actionScriptGrfdPolaAddParty = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript685 = [
+actionScriptSlotBrosRotateL = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_PLAY_SFX(Sfx.cursor3),
 	ACTIONSCRIPT_C0A673(),
@@ -11481,7 +11481,7 @@ actionScript685 = [
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_PAUSE(4),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript685[7 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptSlotBrosRotateL[7 + 3 * (const(void)*).sizeof]),
 ].join();
 actionScript885 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC39AC7[0]),
@@ -11498,7 +11498,7 @@ actionScript885 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_24"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript716 = [
+actionScriptHeliPokeyFace = [
 	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.helicopter),
 	ACTIONSCRIPT_SET_X_RELATIVE(21),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-14),
@@ -11589,7 +11589,7 @@ actionScriptVStage1BodyguardL = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript687 = [
+actionScriptSlotBrosRotateN = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_PLAY_SFX(Sfx.cursor3),
 	ACTIONSCRIPT_C0A673(),
@@ -11600,7 +11600,7 @@ actionScript687 = [
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_PAUSE(5),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript687[7 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptSlotBrosRotateN[7 + 3 * (const(void)*).sizeof]),
 ].join();
 actionScriptBMonkeyFly = [
 	ACTIONSCRIPT_SET_X_RELATIVE(7),
@@ -11625,7 +11625,7 @@ actionScriptSwSkyB = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript614 = [
+actionScriptFourMuseumReturn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
@@ -11782,7 +11782,7 @@ actionScriptSpiritReturnPola2 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript690 = [
+actionScriptSlotBrosStopN = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A673(),
 	ACTIONSCRIPT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -11801,7 +11801,7 @@ actionScript690 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript755 = [
+actionScriptEvtPray7Kyorokyoro = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -11809,12 +11809,12 @@ actionScript755 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC37545[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript796 = [
+actionScriptTitleScreen9 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(6),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript796[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen9[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(539),
 	ACTIONSCRIPT_SET_X_VELOCITY(-612),
 	ACTIONSCRIPT_PAUSE(150),
@@ -12109,7 +12109,7 @@ actionScriptCop5D = [
 	ACTIONSCRIPT_SHORTCALL(&actionScript228_229_230_231_232Common[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript726 = [
+actionScriptEvtPray3ChildA = [
 	ACTIONSCRIPT_SET_X(2128),
 	ACTIONSCRIPT_SET_Y(7056),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -12129,7 +12129,7 @@ actionScript505 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC411EB[0]),
 ].join();
-actionScript713 = [
+actionScriptEvtHeliFWingStart = [
 	ACTIONSCRIPT_SET_PRIORITY(0),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -12160,13 +12160,13 @@ actionScript713 = [
 	ACTIONSCRIPT_SET_X_RELATIVE(-8),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.animPort0),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript713[61 + 6 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptEvtHeliFWingStart[61 + 6 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_PRIORITY(3),
 	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-24),
 	ACTIONSCRIPT_SET_X_RELATIVE(8),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript713[78 + 9 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtHeliFWingStart[78 + 9 * (const(void)*).sizeof]),
 ].join();
 actionScript2 = [
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -12190,7 +12190,7 @@ actionScriptBusTunnelBrdgL = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript705_706_Common = [
+actionScriptCarpainterThunderCommon = [
 	ACTIONSCRIPT_LOOP(11),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 10),
 	ACTIONSCRIPT_C474A8(),
@@ -12234,12 +12234,12 @@ actionScript807 = [
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript792 = [
+actionScriptTitleScreen5 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(2),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript792[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen5[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(-341),
 	ACTIONSCRIPT_SET_X_VELOCITY(711),
 	ACTIONSCRIPT_PAUSE(150),
@@ -12369,7 +12369,7 @@ unknownC4119D = [
 	ACTIONSCRIPT_PAUSE(169),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4119D[4]),
 ].join();
-actionScript622 = [
+actionScriptInsekiStarman = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
@@ -12577,7 +12577,7 @@ actionScriptTStage1FlipTurn = [
 	ACTIONSCRIPT_PAUSE(90),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1Flip[32 + 2 * (const(void)*).sizeof]),
 ].join();
-actionScript759 = [
+actionScriptBlockZombiB = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_C0AA6E(Direction.left, 0),
@@ -12656,7 +12656,7 @@ unknownC41822 = [
 	ACTIONSCRIPT_COAAD5(2, &unknownC41822[118 + 28 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41822[52 + 10 * (const(void)*).sizeof]),
 ].join();
-actionScript657 = [
+actionScriptTakeNessKatacomb2C = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -12669,7 +12669,7 @@ actionScript657 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript605 = [
+actionScriptMapObjTBack = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -12702,7 +12702,7 @@ actionScript103 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript611 = [
+actionScriptFourMuseumBilk = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
@@ -12766,7 +12766,7 @@ actionScriptTStage3Gorgeous7 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC333BB[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript627 = [
+actionScriptPeopleSleep = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -12793,7 +12793,7 @@ actionScript826 = [
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript770 = [
+actionScriptOmarGiveHierogriph = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_START_TASK(&unknownC3AFA3[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 9),
@@ -12817,7 +12817,7 @@ actionScript770 = [
 ].join();
 actionScript610 = [
 	ACTIONSCRIPT_C0A84C(EventFlag.onetDoorClose),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript605[0]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptMapObjTBack[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScriptTStage2LuckyDance4 = [
@@ -12901,7 +12901,7 @@ actionScript273 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript736 = [
+actionScriptEvtPray4Explain = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 10),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12961,7 +12961,7 @@ actionScriptEvtKrakenApproach = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript691 = [
+actionScriptSlotBrosStopNReach = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A673(),
 	ACTIONSCRIPT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -12982,7 +12982,7 @@ actionScript691 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript729 = [
+actionScriptEvtPray4Tony = [
 	ACTIONSCRIPT_SET_X(7892),
 	ACTIONSCRIPT_SET_Y(3032),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -13047,7 +13047,7 @@ actionScriptShipToSkrb1 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript701 = [
+actionScriptEvtMonotolyGoSwitch = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 12),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -13102,7 +13102,7 @@ actionScript128 = [
 	ACTIONSCRIPT_SET_Y(5856),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript131[6]),
 ].join();
-actionScript644 = [
+actionScriptPanningWinters2 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -13320,10 +13320,10 @@ actionScriptGuard3 = [
 actionScript745 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript698 = [
+actionScriptEvtPsychoMyRoom = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 6016),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 2136),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript696_697_698_Common[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPsychoMyHomeCommon[0]),
 ].join();
 unknownC3C227 = [
 	ACTIONSCRIPT_C48B3B(),
@@ -13514,11 +13514,11 @@ actionScriptMochi1 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript719 = [
+actionScriptEvtPray1Dog = [
 	ACTIONSCRIPT_SET_X(1912),
 	ACTIONSCRIPT_SET_Y(8808),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
-	ACTIONSCRIPT_START_TASK(&actionScript719[51 + 10 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptEvtPray1Dog[51 + 10 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 8),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_PLAY_SFX(Sfx.doorClose),
@@ -13540,7 +13540,7 @@ actionScript719 = [
 	ACTIONSCRIPT_C0A959(145),
 	ACTIONSCRIPT_C0A959(146),
 	ACTIONSCRIPT_PAUSE(3),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript719[51 + 10 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray1Dog[51 + 10 * (const(void)*).sizeof]),
 ].join();
 actionScript79 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -13726,7 +13726,7 @@ actionScript105 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA1E[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript727 = [
+actionScriptEvtPray3ChildB = [
 	ACTIONSCRIPT_SET_X(2128),
 	ACTIONSCRIPT_SET_Y(7056),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -13774,12 +13774,12 @@ actionScriptTopolloHallAMuseumKomorita = [
 	ACTIONSCRIPT_END_LAST_TASK(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
-actionScript798 = [
+actionScriptTitleScreen11 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(8),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript798[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen11[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(939),
 	ACTIONSCRIPT_SET_X_VELOCITY(-1223),
 	ACTIONSCRIPT_PAUSE(150),
@@ -13910,7 +13910,7 @@ actionScriptMatentAwayZombi1 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript772 = [
+actionScriptOpenGateGumi = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(128),
@@ -13926,7 +13926,7 @@ actionScript772 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript616 = [
+actionScriptSumsMuseumRid = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
@@ -14020,12 +14020,12 @@ actionScript860 = [
 	ACTIONSCRIPT_EX_C0F3B2(2),
 	ACTIONSCRIPT_END(),
 ].join();
-actionScript621 = [
-	ACTIONSCRIPT_SHORTCALL(&actionScript621UnknownRoutine[0]),
+actionScriptSaiteiMaboroshiOut = [
+	ACTIONSCRIPT_SHORTCALL(&actionScriptSaiteiMaboroshiOutUnknownRoutine[0]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript621UnknownRoutine = [
+actionScriptSaiteiMaboroshiOutUnknownRoutine = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(1280),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 5),
@@ -14176,7 +14176,7 @@ actionScriptHoihoiL = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript618 = [
+actionScriptSumsMuseumReturn = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
@@ -14218,7 +14218,7 @@ actionScriptLuckyFree2A = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 1),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript725 = [
+actionScriptEvtPray3Polamama = [
 	ACTIONSCRIPT_SET_X(2128),
 	ACTIONSCRIPT_SET_Y(7056),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -14253,7 +14253,7 @@ actionScriptGhostPlus2 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript762 = [
+actionScriptEndCamera = [
 	ACTIONSCRIPT_SET_X(2920),
 	ACTIONSCRIPT_SET_Y(1024),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -14392,7 +14392,7 @@ unknownC3AA5A = [
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(256),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript638 = [
+actionScriptUkkariCarrier = [
 	ACTIONSCRIPT_SET_X(2672),
 	ACTIONSCRIPT_SET_Y(3648),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA82[0]),
@@ -14416,7 +14416,7 @@ actionScript841 = [
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript840[9 + 4 * (const(void)*).sizeof]),
 ].join();
-actionScript662 = [
+actionScriptNessStill = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
@@ -14464,14 +14464,14 @@ actionScriptSwWinsLand = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript604 = [
+actionScriptAppleMouseStepback = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(512),
 	ACTIONSCRIPT_C0A84C(EventFlag.animPort0),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript604[17 + 5 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptAppleMouseStepback[17 + 5 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7896),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7928),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript604[25 + 5 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptAppleMouseStepback[25 + 5 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7864),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 7896),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
@@ -14679,7 +14679,7 @@ actionScriptMochi2 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript761 = [
+actionScriptEndShadow = [
 	ACTIONSCRIPT_SET_X(3072),
 	ACTIONSCRIPT_SET_Y(1026),
 	ACTIONSCRIPT_SET_PRIORITY(3),
@@ -15081,7 +15081,7 @@ actionScript866 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_5"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript681 = [
+actionScriptMakyoDoctorApproach = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_START_TASK(&unknownC3A0C5[0]),
@@ -15268,7 +15268,7 @@ actionScriptElevaterUp = [
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptElevaterDown[4 + 1 * (const(void)*).sizeof]),
 ].join();
-actionScript723 = [
+actionScriptEvtPray2Groovy = [
 	ACTIONSCRIPT_SET_X(5240),
 	ACTIONSCRIPT_SET_Y(2808),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -15330,7 +15330,7 @@ actionScriptLastBattleTask = [
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_END_TASK(),
 ].join();
-actionScript753 = [
+actionScriptEvtPray7DoseiC = [
 	ACTIONSCRIPT_SET_X(536),
 	ACTIONSCRIPT_SET_Y(7624),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -15347,7 +15347,7 @@ actionScript753 = [
 	ACTIONSCRIPT_C0AA6E(Direction.down, 1),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript625 = [
+actionScriptMouseAddParty = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
 	ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(255),
@@ -15374,11 +15374,11 @@ actionScript625 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript738 = [
+actionScriptEvtPray4DirLeft = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 6),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript737_738_739_740Common[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
 ].join();
-actionScript613 = [
+actionScriptFourFollowMuseumA = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -15392,9 +15392,9 @@ actionScript613 = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_C0A92D(906),
 	ACTIONSCRIPT_C0A8C6(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript613[18 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptFourFollowMuseumA[18 + 7 * (const(void)*).sizeof]),
 ].join();
-actionScript695 = [
+actionScriptEvtIntoPsychoMyHome = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48BE1),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -15465,7 +15465,7 @@ actionScriptSpiritReturnPoo = [
 	///fallthrough
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptWhiteout[0]),
 ].join();
-actionScript660 = [
+actionScriptPaulaFollowZombi1 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
 	ACTIONSCRIPT_PAUSE(16),
@@ -15484,7 +15484,7 @@ actionScript660 = [
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript733 = [
+actionScriptEvtPray4PupilC = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 10),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -15497,7 +15497,7 @@ actionScript733 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3096),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript730Entry2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
 ].join();
 actionScriptTStage2GorgeousDance35 = [
 	ACTIONSCRIPT_SET_X(4728),
@@ -15843,7 +15843,7 @@ actionScriptHoihoiF = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript702 = [
+actionScriptEvtMonokumaMove = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -15859,7 +15859,7 @@ actionScriptPresentBoxShadow2 = [
 	ACTIONSCRIPT_SET_Y(7592),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPresentBoxShadow1[6]),
 ].join();
-actionScript679 = [
+actionScriptLiftByFountain = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(9),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -16126,7 +16126,7 @@ actionScriptHoihoiD = [
 	ACTIONSCRIPT_PAUSE(30),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptHoihoiD[14 + 3 * (const(void)*).sizeof]),
 ].join();
-actionScript619 = [
+actionScriptSyochoEscape = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 16),
 	ACTIONSCRIPT_START_TASK(&unknownC3AFA3[0]),
@@ -16139,7 +16139,7 @@ actionScript619 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript714 = [
+actionScriptEvtHeliRWingStart = [
 	ACTIONSCRIPT_SET_PRIORITY(0),
 	ACTIONSCRIPT_SET_SURFACE_FLAGS(SurfaceFlags.none),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -16153,12 +16153,12 @@ actionScript714 = [
 	ACTIONSCRIPT_SET_X_RELATIVE(16),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.animPort0),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript714[14 + 4 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptEvtHeliRWingStart[14 + 4 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.invisible),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SET_X_RELATIVE(-16),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript714[29 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtHeliRWingStart[29 + 7 * (const(void)*).sizeof]),
 ].join();
 unknownC4198D = [
 	ACTIONSCRIPT_SET_X(-40),
@@ -16217,7 +16217,7 @@ unknownC33C1D = [
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript696_697_698_Common = [
+actionScriptEvtPsychoMyHomeCommon = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AB37[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(128),
@@ -16502,7 +16502,7 @@ actionScript522 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC41900[0]),
 ].join();
-actionScript778 = [
+actionScriptPermitControl = [
 	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 0),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
@@ -16528,7 +16528,7 @@ actionScript802 = [
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript748 = [
+actionScriptEvtPray7Andoughnut2 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_C0AA6E(Direction.up, 0),
@@ -16572,7 +16572,7 @@ actionScriptAddPartyViaLeader = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript777 = [
+actionScriptForbidControl = [
 	ACTIONSCRIPT_WRITE_WORD_WRAM(&pendingInteractions, 1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
@@ -16693,7 +16693,7 @@ actionScriptWinsAwayKanai = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript749 = [
+actionScriptEvtPray7Applekid = [
 	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.phaseDistorter),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
@@ -16748,7 +16748,7 @@ actionScriptBusReturnTwsnB = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript780 = [
+actionScriptSealPCAllDirDown = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_C0C7DB(),
@@ -16756,7 +16756,7 @@ actionScript780 = [
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript669 = [
+actionScriptLeadSarusensei = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA82[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1416),
@@ -16766,7 +16766,7 @@ actionScript669 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 40),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 48),
 	ACTIONSCRIPT_C46E74(),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript669[29 + 9 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptLeadSarusensei[29 + 9 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_GET_DIRECTION_FROM_PLAYER_TO_ENTITY(),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -16778,7 +16778,7 @@ actionScript669 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 96),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v3, 32),
 	ACTIONSCRIPT_C46E74(),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript669[53 + 17 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptLeadSarusensei[53 + 17 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_GET_DIRECTION_FROM_PLAYER_TO_ENTITY(),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -16810,7 +16810,7 @@ actionScript835 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript773 = [
+actionScriptPossessPCAllStill = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(Direction.down),
 	ACTIONSCRIPT_SET_DIRECTION(),
@@ -16864,7 +16864,7 @@ actionScriptAndDose = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript663 = [
+actionScriptPaulaStill = [
 	ACTIONSCRIPT_SET_X(6792),
 	ACTIONSCRIPT_SET_Y(10056),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
@@ -17085,7 +17085,7 @@ actionScript827 = [
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript718 = [
+actionScriptEvtPray1Tracy = [
 	ACTIONSCRIPT_SET_X(1576),
 	ACTIONSCRIPT_SET_Y(8784),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -17503,7 +17503,7 @@ actionScript858 = [
 	ACTIONSCRIPT_PAUSE(240),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript645 = [
+actionScriptPanningRamma1 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -17526,7 +17526,7 @@ actionScript513 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4154E[0]),
 ].join();
-actionScript620 = [
+actionScriptSaiteiMaboroshiIn = [
 	ACTIONSCRIPT_SET_X(5720),
 	ACTIONSCRIPT_SET_Y(128),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -17567,7 +17567,7 @@ actionScript620 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript676_677_678_Common1 = [
+actionScriptToFountainCommon1 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -17700,7 +17700,7 @@ actionScriptFollowToSyocho = [
 	ACTIONSCRIPT_C0A8C6(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptFollowToSyocho[14 + 5 * (const(void)*).sizeof]),
 ].join();
-actionScript689 = [
+actionScriptSlotBrosStopM = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A673(),
 	ACTIONSCRIPT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -17724,7 +17724,7 @@ actionScript608 = [
 	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptPeopleWalk1Narrow[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript776 = [
+actionScriptToBeContTitle = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -17941,10 +17941,10 @@ unknownC411EB = [
 	ACTIONSCRIPT_PAUSE(169),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC411EB[4]),
 ].join();
-actionScript677 = [
-	ACTIONSCRIPT_SHORTCALL(&actionScript676_677_678_Common1[0]),
+actionScriptToFountainB = [
+	ACTIONSCRIPT_SHORTCALL(&actionScriptToFountainCommon1[0]),
 	ACTIONSCRIPT_C0A92D(1304),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript676_677_678_Common2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptToFountainCommon2[0]),
 ].join();
 actionScriptOutBusR = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
@@ -18285,7 +18285,7 @@ actionScript498 = [
 unknownC3A07F = [
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript612 = [
+actionScriptFourMuseumRid = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
@@ -18330,7 +18330,7 @@ unknownC4154E = [
 	ACTIONSCRIPT_PAUSE(137),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4154E[14]),
 ].join();
-actionScript636 = [
+actionScriptButukarizaru = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAFE[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 2544),
@@ -18347,7 +18347,7 @@ actionScript636 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript703 = [
+actionScriptEvtMonokabeMove = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -18782,7 +18782,7 @@ actionScript360 = [
 	ACTIONSCRIPT_C0AA6E(Direction.upRight, 0),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript747 = [
+actionScriptEvtPray7Andoughnut = [
 	ACTIONSCRIPT_MOVE_TO_SPRITE(OverworldSprite.phaseDistorter),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 18),
@@ -18795,7 +18795,7 @@ actionScript747 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript606 = [
+actionScriptPeopleTBack = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -18868,7 +18868,7 @@ actionScriptBusFourThrkGo = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript724 = [
+actionScriptEvtPray3Polapapa = [
 	ACTIONSCRIPT_SET_X(1936),
 	ACTIONSCRIPT_SET_Y(7120),
 	ACTIONSCRIPT_SHORTCALL(&unknownC31D4F[0]),
@@ -19054,7 +19054,7 @@ actionScript843 = [
 	ACTIONSCRIPT_LOOP_END(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript668 = [
+actionScriptLeaveSarusensei = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA6E[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 2),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7536),
@@ -19066,7 +19066,7 @@ actionScript668 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript754 = [
+actionScriptEvtPray7DoseiD = [
 	ACTIONSCRIPT_SET_X(384),
 	ACTIONSCRIPT_SET_Y(7768),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -19224,7 +19224,7 @@ actionScriptKaitenNess = [
 	ACTIONSCRIPT_C0AAAC(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptKaitenNess[99 + 16 * (const(void)*).sizeof]),
 ].join();
-actionScript654 = [
+actionScriptTakeNessKatacomb1C = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -19329,7 +19329,7 @@ actionScript865 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_4"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript665 = [
+actionScriptAyasii = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(128),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -19420,7 +19420,7 @@ actionScriptOdorokiNesPola = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript646 = [
+actionScriptPanningRamma2 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -19547,7 +19547,7 @@ actionScriptCop5B = [
 	ACTIONSCRIPT_SHORTCALL(&actionScript228_229_230_231_232Common[0]),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript649 = [
+actionScriptJumpTonchikiShadow = [
 	ACTIONSCRIPT_SET_X(1368),
 	ACTIONSCRIPT_SET_Y(6904),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -19643,7 +19643,7 @@ actionScriptStageParty = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript680 = [
+actionScriptMaidIntoBuilding = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 9),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(352),
@@ -19658,7 +19658,7 @@ actionScript680 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript721 = [
+actionScriptEvtPray2Nice = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 8),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -19815,12 +19815,12 @@ actionScriptHoihoiJ = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript791 = [
+actionScriptTitleScreen4 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(1),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript791[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen4[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(-501),
 	ACTIONSCRIPT_SET_X_VELOCITY(947),
 	ACTIONSCRIPT_PAUSE(150),
@@ -19828,7 +19828,7 @@ actionScript791 = [
 	ACTIONSCRIPT_SET_X(54),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript670 = [
+actionScriptTeleportSarusensei = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_START_TASK(&unknownC3A0D8[0]),
@@ -19855,13 +19855,13 @@ actionScript670 = [
 	ACTIONSCRIPT_START_TASK(&unknownC3A09F[0]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(256),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 5),
-	ACTIONSCRIPT_START_TASK(&actionScript670[142 + 30 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptTeleportSarusensei[142 + 30 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1488),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 10032),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_PAUSE(240),
-	ACTIONSCRIPT_START_TASK(&actionScript670[154 + 32 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptTeleportSarusensei[154 + 32 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_MOVEMENT_SPEED(768),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 4),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 3),
@@ -19903,7 +19903,7 @@ actionScript670 = [
 	ACTIONSCRIPT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0(),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript670[154 + 32 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTeleportSarusensei[154 + 32 * (const(void)*).sizeof]),
 ].join();
 actionScript799 = [
 	ACTIONSCRIPT_WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
@@ -19970,11 +19970,11 @@ actionScriptCircleCultistEast = [
 ].join();
 actionScript624 = [
 	ACTIONSCRIPT_SET_Y_RELATIVE(1),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript627[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptPeopleSleep[0]),
 ].join();
-actionScript737 = [
+actionScriptEvtPray4DirDown = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 4),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript737_738_739_740Common[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
 ].join();
 actionScriptSpiritReturnPoo2 = [
 	ACTIONSCRIPT_SET_PRIORITY(0),
@@ -20002,7 +20002,7 @@ actionScriptSpiritReturnPoo2 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript655 = [
+actionScriptTakeNessKatacomb2A = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -20051,7 +20051,7 @@ unknownC3A09F = [
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0(),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC3A09F[0]),
 ].join();
-actionScript742 = [
+actionScriptEvtPray5GirlB = [
 	ACTIONSCRIPT_SET_X(4560),
 	ACTIONSCRIPT_SET_Y(3528),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -20064,7 +20064,7 @@ actionScript742 = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_PAUSE(10),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37545[0]),
-	ACTIONSCRIPT_START_TASK(&actionScript742[53 + 10 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptEvtPray5GirlB[53 + 10 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_PAUSE(30),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 4408),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
@@ -20078,7 +20078,7 @@ actionScript742 = [
 	ACTIONSCRIPT_HALT(),
 	ACTIONSCRIPT_C0A94E(1110),
 	ACTIONSCRIPT_PAUSE(3),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript742[53 + 10 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray5GirlB[53 + 10 * (const(void)*).sizeof]),
 ].join();
 actionScript859 = [
 	ACTIONSCRIPT_PAUSE(2),
@@ -20137,7 +20137,7 @@ actionScript862 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_1"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript656 = [
+actionScriptTakeNessKatacomb2B = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(-16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -20721,7 +20721,7 @@ actionScriptTStage3TBus = [
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript626 = [
+actionScriptInsekiWakeupWalk = [
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&unknownC0A37A),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	ACTIONSCRIPT_SET_X(8136),
@@ -20794,7 +20794,7 @@ actionScriptTacyMask3 = [
 	ACTIONSCRIPT_SET_Y(3536),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPeopleWalk0[0]),
 ].join();
-actionScript715 = [
+actionScriptEvtMonoHeliShadow = [
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SET_PRIORITY(3),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
@@ -20844,7 +20844,7 @@ actionScript884 = [
 	ACTIONSCRIPT_C0A88D("MSG_GLOBAL_PHOTO_23"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript737_738_739_740Common = [
+actionScriptEvtPray4DirCommon = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -20995,7 +20995,7 @@ actionScriptPeopleWalk1Live = [
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptPeopleWalk1[10 + 6 * (const(void)*).sizeof]),
 ].join();
-actionScript634 = [
+actionScriptBlackout = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -21014,12 +21014,12 @@ actionScript531 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript501_531_Common[0]),
 ].join();
-actionScript795 = [
+actionScriptTitleScreen8 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(5),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript795[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen8[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(339),
 	ACTIONSCRIPT_SET_X_VELOCITY(-305),
 	ACTIONSCRIPT_PAUSE(150),
@@ -21052,7 +21052,7 @@ actionScriptBusToThrkTunnel = [
 	ACTIONSCRIPT_C0A88D("MSG_EVT_BUS_THRK_TUNNEL"),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript688 = [
+actionScriptSlotBrosStopL = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
 	ACTIONSCRIPT_C0A673(),
 	ACTIONSCRIPT_WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -21154,9 +21154,9 @@ actionScriptPooToOldman = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript739 = [
+actionScriptEvtPray4DirRight = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 2),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript737_738_739_740Common[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
 ].join();
 actionScript818 = [
 	ACTIONSCRIPT_SET_PRIORITY(0),
@@ -21222,7 +21222,7 @@ actionScript532 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 1),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC34392[0]),
 ].join();
-actionScript728 = [
+actionScriptEvtPray3ChildD = [
 	ACTIONSCRIPT_SET_X(2128),
 	ACTIONSCRIPT_SET_Y(7056),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -21239,14 +21239,14 @@ actionScript728 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript730Entry2 = [
+actionScriptEvtPray4GazeTonyEntry2 = [
 	ACTIONSCRIPT_C0A938(182),
 	ACTIONSCRIPT_GET_ANGLE_TO_DESTINATION(),
 	ACTIONSCRIPT_SET_MOVING_DIRECTION_FROM_ANGLE(),
 	ACTIONSCRIPT_SET_DIRECTION(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_PAUSE(4),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript730Entry2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
 ].join();
 actionScriptTeleportSuccess = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA38[0]),
@@ -21702,7 +21702,7 @@ unknownC33DBE = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 1),
 	ACTIONSCRIPT_END_TASK(),
 ].join();
-actionScript750 = [
+actionScriptEvtPray7Dosei = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 0),
 	ACTIONSCRIPT_C0AA6E(Direction.down, 0),
@@ -21865,7 +21865,7 @@ actionScriptGumiStoneRise = [
 	ACTIONSCRIPT_C020F1(),
 	ACTIONSCRIPT_END(),
 ].join();
-actionScript751 = [
+actionScriptEvtPray7DoseiA = [
 	ACTIONSCRIPT_SET_X(224),
 	ACTIONSCRIPT_SET_Y(7608),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -21892,7 +21892,7 @@ actionScript108 = [
 	ACTIONSCRIPT_SET_BOUNDARIES(8, 8),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptWanderWithinBounds[0]),
 ].join();
-actionScript766 = [
+actionScriptEvtFeelDiggy = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -21927,7 +21927,7 @@ actionScriptSpiritReturnJef2 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript650 = [
+actionScriptTonchikiEnterHouse = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA5A[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 1360),
@@ -22029,7 +22029,7 @@ actionScriptTStage3OK3Nice3Groove3HighHat3 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 40),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage3Thank3[6 + 2 * (const(void)*).sizeof]),
 ].join();
-actionScript661 = [
+actionScriptPaulaFollowZombi2 = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_X_RELATIVE(-16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC37A7C[0]),
@@ -22470,7 +22470,7 @@ actionScriptSwFourA = [
 	ACTIONSCRIPT_PAUSE(128),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript651 = [
+actionScriptStrikeNess = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -22537,9 +22537,9 @@ actionScriptSwWins = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript788 = [
+actionScriptTitleScreen1 = [
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript788[4 + 2 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen1[4 + 2 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_PAUSE(60),
 	ACTIONSCRIPT_C09E71(ActionScript.titleScreen2),
 	ACTIONSCRIPT_C09E71(ActionScript.titleScreen3),
@@ -22570,7 +22570,7 @@ actionScriptTonzuraFree2B = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript635 = [
+actionScriptBlinkSuicide = [
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
@@ -22715,7 +22715,7 @@ actionScriptCameraEye = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript768 = [
+actionScriptEvtFluctuateMagicant = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
 	ACTIONSCRIPT_SET_ANIMATION(255),
@@ -22872,7 +22872,7 @@ actionScriptTStage3MikeR = [
 	ACTIONSCRIPT_SET_Y(5748),
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptTStage1MikeL[6]),
 ].join();
-actionScript752 = [
+actionScriptEvtPray7DoseiB = [
 	ACTIONSCRIPT_SET_X(360),
 	ACTIONSCRIPT_SET_Y(7504),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
@@ -22978,7 +22978,7 @@ actionScript629 = [
 	ACTIONSCRIPT_PAUSE(120),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript629[187 + 27 * (const(void)*).sizeof]),
 ].join();
-actionScript652 = [
+actionScriptTakeNessKatacomb1A = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_Y_RELATIVE(16),
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAB8[0]),
@@ -23052,25 +23052,25 @@ actionScript87 = [
 	ACTIONSCRIPT_JUMP_IF_TRUE(&unknownC3BAA3[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript105[0]),
 ].join();
-actionScript757 = [
+actionScriptEvtPrayOvalWindow = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
-	ACTIONSCRIPT_START_TASK(&actionScript757[21 + 11 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_C49841(),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C0A84C(EventFlag.animPort0),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript757[8 + 4 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptEvtPrayOvalWindow[8 + 4 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C2EA74(),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C2EACF(),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript757[15 + 7 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptEvtPrayOvalWindow[15 + 7 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 	ACTIONSCRIPT_C4A7B0(),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript757[21 + 11 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
 ].join();
 unknownC34B62 = [
 	ACTIONSCRIPT_C0AA6E(Direction.down, 1),
@@ -23106,7 +23106,7 @@ unknownC40F59 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript682 = [
+actionScriptGoOutCakeWife = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AA5A[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v6, 7872),
@@ -23118,10 +23118,10 @@ actionScript682 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript705 = [
+actionScriptCarpainterThunder = [
 	ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	ACTIONSCRIPT_SET_PHYSICS_CALLBACK(&unknownC09FAEEntry4),
-	ACTIONSCRIPT_START_TASK(&actionScript705_706_Common[0]),
+	ACTIONSCRIPT_START_TASK(&actionScriptCarpainterThunderCommon[0]),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SET_ANIMATION(255),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 2),
@@ -23175,7 +23175,7 @@ actionScriptGiantStepCop = [
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
-actionScript746 = [
+actionScriptEvtPray7STunnel = [
 	ACTIONSCRIPT_SET_X(384),
 	ACTIONSCRIPT_SET_Y(7616),
 	ACTIONSCRIPT_PAUSE(2),
@@ -23208,12 +23208,12 @@ actionScript517 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC416AC[0]),
 ].join();
-actionScript790 = [
+actionScriptTitleScreen3 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript790[17 + 3 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptTitleScreen3[17 + 3 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X(-661),
 	ACTIONSCRIPT_SET_X_VELOCITY(1186),
 	ACTIONSCRIPT_PAUSE(150),
@@ -23298,7 +23298,7 @@ actionScript771 = [
 	ACTIONSCRIPT_C46E46(),
 	ACTIONSCRIPT_HALT(),
 ].join();
-actionScript731 = [
+actionScriptEvtPray4PupilA = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3AAAA[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 10),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -23308,7 +23308,7 @@ actionScript731 = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v7, 3072),
 	ACTIONSCRIPT_SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	ACTIONSCRIPT_END_LAST_TASK(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript730Entry2[0]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
 ].join();
 actionScript529 = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC40F59[0]),

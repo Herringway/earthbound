@@ -1802,7 +1802,7 @@ enum ActionScript {
 	unknown601, //601
 	unknown602, //602
 	unknown603, //603
-	animApplemouseStepback, //604
+	animAppleMouseStepback, //604
 	animMapObjTBack, //605
 	animPeopleTBack, //606
 	unknown607, //607
@@ -1924,9 +1924,9 @@ enum ActionScript {
 	animEvtPray2Groovy, //723
 	animEvtPray3Polapapa, //724
 	animEvtPray3Polamama, //725
-	animEvtPray3Childa, //726
-	animEvtPray3Childb, //727
-	animEvtPray3Childd, //728
+	animEvtPray3ChildA, //726
+	animEvtPray3ChildB, //727
+	animEvtPray3ChildD, //728
 	animEvtPray4Tony, //729
 	animEvtPray4GazeTony, //730
 	animEvtPray4PupilA, //731
