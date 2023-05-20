@@ -481,8 +481,8 @@ __gshared short unknown7E5D5E; /// $(DOLLAR)5D5E
 __gshared short battleSwirlCountdown; /// $(DOLLAR)5D60
 __gshared short currentTPTEntry; /// $(DOLLAR)5D62
 __gshared short unknown7E5D64; /// $(DOLLAR)5D64
-__gshared short[6] unknown7E5D66; /// $(DOLLAR)5D66
-__gshared short unknown7E5D72; /// $(DOLLAR)5D72
+__gshared short[6] overworldDamageCountdownFrames; /// $(DOLLAR)5D66
+__gshared short backgroundColourBackup; /// $(DOLLAR)5D72
 __gshared short inputDisableFrameCounter; /// $(DOLLAR)5D74
 __gshared short unknown7E5D76; /// $(DOLLAR)5D76
 __gshared short unknown7E5D78; /// $(DOLLAR)5D78
@@ -490,7 +490,7 @@ __gshared short unknown7E5D7A; /// $(DOLLAR)5D7A
 __gshared short unknown7E5D7C; /// $(DOLLAR)5D7C
 __gshared short unknown7E5D7E; /// $(DOLLAR)5D7E
 
-__gshared short[6] unknown7E5D8C; /// $(DOLLAR)5D8C
+__gshared short[6] hpAlertShown; /// $(DOLLAR)5D8C
 __gshared short overworldStatusSuppression; /// $(DOLLAR)5D98
 __gshared short pendingInteractions; /// $(DOLLAR)5D9A
 __gshared ushort mushroomizationTimer; /// $(DOLLAR)5D9C - Time left until next direction swap in frames

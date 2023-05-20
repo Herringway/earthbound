@@ -1467,7 +1467,7 @@ void clearParty() {
 	gameState.firstPartyMemberEntity = 0x18;
 	for (short i = 0; i < 6; i++) {
 		gameState.partyMemberIndex[i] = 0;
-		unknown7E5D8C[i] = 0;
+		hpAlertShown[i] = 0;
 	}
 	gameState.playerControlledPartyMemberCount = 0;
 	gameState.partyCount = 0;
@@ -2573,38 +2573,41 @@ void unknownC04EF0() {
 }
 
 /// $C04F47
-void unknownC04F47() {
-	palettes[0][0] = unknown7E5D72;
-	mirrorTM = 0x17;
+void restoreBackgroundLayers() {
+	palettes[0][0] = backgroundColourBackup;
+	// re-enable BG1, 2, 3 and OBJ
+	mirrorTM = 0b00010111;
 	preparePaletteUpload(PaletteUpload.halfFirst);
 }
 
 /// $C04F60
-void unknownC04F60() {
+void redFlash() {
 	if (battleSwirlCountdown != 0) {
 		return;
 	}
 	if (battleSwirlFlag != 0) {
 		return;
 	}
-	unknown7E5D72 = palettes[0][0];
+	backgroundColourBackup = palettes[0][0];
+	// set background colour to red
 	palettes[0][0] = 0x1F;
+	// turn off all layers
 	mirrorTM = 0;
 	preparePaletteUpload(PaletteUpload.halfFirst);
-	scheduleOverworldTask(1, &unknownC04F47);
+	scheduleOverworldTask(1, &restoreBackgroundLayers);
 }
 
 /// $C04F9F
-void unknownC04F9F(short arg1) {
+void tryShowHPAlert(short arg1) {
 	short x10 = arg1;
 	PartyCharacter* x0E = chosenFourPtrs[gameState.playerControlledPartyMembers[x10]];
 	if ((x0E.maxHP * 20) / 100 > x0E.hp.current.integer) {
-		if (unknown7E5D8C[x10] == 0) {
+		if (hpAlertShown[x10] == 0) {
 			showHPAlert(cast(short)(x0E.unknown53 + 1));
 		}
-		unknown7E5D8C[x10] = 1;
+		hpAlertShown[x10] = 1;
 	} else {
-		unknown7E5D8C[x10] = 0;
+		hpAlertShown[x10] = 0;
 	}
 }
 
@@ -2627,31 +2630,31 @@ ushort unknownC04FFE() {
 			continue;
 		}
 		if (affliction == Status0.poisoned) {
-			if (unknown7E5D66[x02] == 0) {
-				unknown7E5D66[x02] = 0x78;
-			} else if (!--unknown7E5D66[x02]) {
+			if (overworldDamageCountdownFrames[x02] == 0) {
+				overworldDamageCountdownFrames[x02] = 120;
+			} else if (!--overworldDamageCountdownFrames[x02]) {
 				x04++;
 				currentPartyMemberTick.hp.current.integer -= 10;
 				currentPartyMemberTick.hp.target -= 10;
-				unknownC04F9F(x02);
+				tryShowHPAlert(x02);
 			}
-		} else if (((affliction < Status0.nauseous) && ((gameState.troddenTileType & 0xC) == 0xC)) || ((affliction >= Status0.nauseous) && (affliction <= Status0.cold))) {
-			if (unknown7E5D66[x02] == 0) {
+		} else if (((affliction < Status0.nauseous) && ((gameState.troddenTileType & SurfaceFlags.deepWater) == SurfaceFlags.deepWater)) || ((affliction >= Status0.nauseous) && (affliction <= Status0.cold))) {
+			if (overworldDamageCountdownFrames[x02] == 0) {
 				if (affliction == Status0.nauseous) {
-					unknown7E5D66[x02] = 0x78;
+					overworldDamageCountdownFrames[x02] = 120;
 				} else {
-					unknown7E5D66[x02] = 0xF0;
+					overworldDamageCountdownFrames[x02] = 240;
 				}
-			} else if (!--unknown7E5D66[x02]) {
+			} else if (!--overworldDamageCountdownFrames[x02]) {
 				x04++;
 				if (affliction == Status0.nauseous) {
 					currentPartyMemberTick.hp.current.integer -= 10;
 					currentPartyMemberTick.hp.target -= 10;
-				} else {
+				} else { //cold or deep water
 					currentPartyMemberTick.hp.current.integer -= 2;
 					currentPartyMemberTick.hp.target -= 2;
 				}
-				unknownC04F9F(x02);
+				tryShowHPAlert(x02);
 			}
 		}
 		if (currentPartyMemberTick.hp.current.integer <= 0) {
@@ -2672,7 +2675,7 @@ ushort unknownC04FFE() {
 		}
 	}
 	if (x04 != 0) {
-		unknownC04F60();
+		redFlash();
 	}
 	if (x16 != 0) {
 		unknown7E4DC4 = 0;

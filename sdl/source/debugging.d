@@ -360,7 +360,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Battle swirl frames", battleSwirlCountdown);
 		InputEditable("Current TPT entry", currentTPTEntry);
 		InputEditable("Unknown7E5D64", unknown7E5D64);
-		InputEditable("Unknown7E5D72", unknown7E5D72);
+		InputEditable("BG colour backup", backgroundColourBackup);
 		InputEditable("Input disabled frames", inputDisableFrameCounter);
 		InputEditable("Unknown7E5D76", unknown7E5D76);
 		InputEditable("Unknown7E5D78", unknown7E5D78);

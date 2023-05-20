@@ -7676,7 +7676,7 @@ void battleSwirlSequence() {
 		swirlMusic = Music.battleSwirl1;
 	}
 	changeMusic(swirlMusic);
-	unknownC04F47();
+	restoreBackgroundLayers();
 	if ((x0E & AnimationFlags.unknown2) != 0) {
 		setColData(cast(ubyte)swirlRed, cast(ubyte)swirlGreen, cast(ubyte)swirlBlue);
 	}
