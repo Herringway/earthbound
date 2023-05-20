@@ -14,6 +14,7 @@ import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
 import core.stdc.string;
+import std.logger;
 
 //$C30000
 @ROMSource(0x30000, 256)
@@ -1140,9 +1141,9 @@ short showTitleScreen(short arg1) {
 /// $C3F5F9
 void unknownC3F5F9() {
 	short x04 = 0;
-	short x16 = unknown7E9F7E;
+	short x16 = cast(short)(unknown7E9F7E * 2);
 	for (short i = 0; i < unknown7E9F80; i++) {
-		short x12 = cast(short)(unknown7E9F7C + unknown7E9F84 + (unknown7E9F7A & 0x1F));
+		short x12 = cast(short)(unknown7E9F7C * 32 + unknown7E9F84 + (unknown7E9F7A & 0x1F));
 		copyToVRAM(0, x16, x12, cast(ubyte*)&unknown7E9F86[x04]);
 		x04 += unknown7E9F82;
 		if (++unknown7E9F7C == 0x20) {
