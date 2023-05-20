@@ -6485,7 +6485,7 @@ void showHPAlert(short arg1) {
 	currentAttacker = &battler;
 	freezeEntities();
 	createWindowN(Window.textStandard);
-	unknownC1AC4A(&partyCharacters[arg1].name[0], 5);
+	unknownC1AC4A(&partyCharacters[arg1 - 1].name[0], 5);
 	displayText(getTextBlock("MSG_SYS_MAP_CRITICAL_SITUATION"));
 	closeFocusWindowN();
 	windowTick();
