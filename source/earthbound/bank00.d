@@ -2598,7 +2598,7 @@ void unknownC04F60() {
 void unknownC04F9F(short arg1) {
 	short x10 = arg1;
 	PartyCharacter* x0E = chosenFourPtrs[gameState.playerControlledPartyMembers[x10]];
-	if ((x0E.maxHP * 20) / 100 <= x0E.hp.current.integer) {
+	if ((x0E.maxHP * 20) / 100 > x0E.hp.current.integer) {
 		if (unknown7E5D8C[x10] == 0) {
 			showHPAlert(cast(short)(x0E.unknown53 + 1));
 		}
