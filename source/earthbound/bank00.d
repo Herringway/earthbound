@@ -7202,7 +7202,7 @@ void unknownC0A841(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A84C
-short unknownC0A84C(short, ref const(ubyte)* arg2) {
+short actionScriptGetEventFlag(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
 	return getEventFlag(tmp);
@@ -7239,10 +7239,10 @@ void unknownC0A87A(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A88D
-void unknownC0A88D(short, ref const(ubyte)* arg2) {
+void actionScriptQueueInteraction8(short, ref const(ubyte)* arg2) {
 	string tmp = movementDataReadString(arg2);
 	actionScriptVar94 = arg2;
-	unknownC46E4F(getTextBlock(tmp));
+	queueInteraction8(getTextBlock(tmp));
 }
 
 /// $C0A8A0
@@ -7378,12 +7378,12 @@ short actionScriptSpawnEntityAtSelf(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A99F
-short unknownC0A99F(short, ref const(ubyte)* arg2) {
+short actionScriptCreateEntityAtV01PlusBG3Y(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
 	short tmp2 = movementDataRead16(arg2);
 	actionScriptVar94 = arg2;
-	return unknownC4ECAD(tmp, tmp2);
+	return createEntityAtV01PlusBG3Y(tmp, tmp2);
 }
 
 /// $C0A9B3
@@ -7443,7 +7443,7 @@ void unknownC0AA3F(short arg1, ref const(ubyte)* arg2) {
 }
 
 /// $C0AA6E
-void unknownC0AA6E(short, ref const(ubyte)* arg2) {
+void actionScriptUpdateSpriteDirection(short, ref const(ubyte)* arg2) {
 	if (entityScriptVar0Table[actionScriptVar88 / 2] == 0) {
 		entityDirections[actionScriptVar88 / 2] = cast(ubyte)movementDataRead8(arg2);
 		actionScriptVar94 = arg2;
@@ -7483,7 +7483,7 @@ short unknownC0AACD() {
 }
 
 /// $C0AAD5
-void unknownC0AAD5(short, ref const(ubyte)* arg2) {
+void actionScriptJumpToLabelNTimes(short, ref const(ubyte)* arg2) {
 	actionScriptVar90 = cast(short)(movementDataRead8(arg2) + 1);
 	actionScriptVar94 = arg2;
 	actionScriptVar92 = cast(const(ubyte)*)movementDataReadPtr(arg2);
@@ -9116,7 +9116,7 @@ void unknownC0D7F7() {
 		}
 	}
 	if (entityUnknown2E3E[currentEntitySlot] != 0) {
-		entityDirections[currentEntitySlot] = setMovingDirectionFromAngle(unknownC47044(getScreenAngle(x18, x16, x12, x04)));
+		entityDirections[currentEntitySlot] = setMovingDirectionFromAngle(setMovementFromAngle(getScreenAngle(x18, x16, x12, x04)));
 	} else {
 		entityUnknown2C5E[currentEntitySlot] = 0;
 		entityObstacleFlags[currentEntitySlot] |= 0x80;

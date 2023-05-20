@@ -3084,7 +3084,7 @@ void getPositionOfPartyMember(short arg1) {
 }
 
 /// $C46C45
-void unknownC46C45() {
+void copyXYToVars() {
 	entityScriptVar0Table[currentEntitySlot] = entityAbsXTable[currentEntitySlot];
 	entityScriptVar1Table[currentEntitySlot] = entityAbsYTable[currentEntitySlot];
 }
@@ -3184,12 +3184,12 @@ void unknownC46E46() {
 }
 
 /// $C46E4F
-void unknownC46E4F(const(ubyte)* arg1) {
+void queueInteraction8(const(ubyte)* arg1) {
 	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(arg1));
 }
 
 /// $C46E74
-short unknownC46E74() {
+short isLeaderWithinBoundaries() {
 	if (teleportDestination != 0) {
 		return 0;
 	}
@@ -3241,7 +3241,7 @@ short unknownC46EF8() {
 }
 
 /// $C47044
-short unknownC47044(short arg1) {
+short setMovementFromAngle(short arg1) {
 	auto x0E = unknownC41FFF(arg1, entityMovementSpeed[currentEntitySlot]);
 	short x14 = x0E.x;
 	if (x14 < 0) {
@@ -3282,7 +3282,7 @@ short unknownC47143(short arg1, short arg2) {
 		}
 	}
 	x12 = entityAngleToDestination();
-	unknownC47044(x12);
+	setMovementFromAngle(x12);
 	if (arg2 == 0) {
 		short x10 = setMovingDirectionFromAngle(x12);
 		if (arg1 != 0) {
@@ -4139,7 +4139,7 @@ void coffeeTeaScene(short id) {
 immutable(ubyte[])[] flyoverTextPointers;
 
 /// $C49EC4
-void unknownC49EC4(short id) {
+void runFlyover(short id) {
 	ushort x02 = entityTickCallbackFlags[23];
 	entityTickCallbackFlags[23] |= 0xC000;
 	unknownC49A56();
@@ -5773,7 +5773,7 @@ short directionToEntityBoundaries() {
 
 /// $C472A8
 void unknownC472A8(short arg1) {
-	unknownC47044(entityScriptVar0Table[currentEntitySlot]);
+	setMovementFromAngle(entityScriptVar0Table[currentEntitySlot]);
 	short x10 = unknownC46B51(entityScriptVar0Table[currentEntitySlot]);
 	if (arg1 != 0) {
 		x10 = getOppositeDirection(x10);
@@ -7183,7 +7183,7 @@ void unknownC4EC52(short arg1, short arg2, short arg3) {
 }
 
 /// $C4ECAD
-short unknownC4ECAD(short arg1, short arg2) {
+short createEntityAtV01PlusBG3Y(short arg1, short arg2) {
 	newEntityVar0 = unknown7EB4D3 & 3;
 	return createEntity(arg1, arg2, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
 }
