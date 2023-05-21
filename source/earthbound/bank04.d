@@ -1310,12 +1310,12 @@ void unknownC435E4() {
 	}
 	for (short i = 0; i < (unknown7E89CE != 0) ? numBattlersInFrontRow : numBattlersInBackRow; i++) {
 		if (unknown7E89CE != 0) {
-			battlersTable[frontRowBattlers[i]].unknown74 = 0;
+			battlersTable[frontRowBattlers[i]].isFlashing = 0;
 		} else {
-			battlersTable[backRowBattlers[i]].unknown74 = 0;
+			battlersTable[backRowBattlers[i]].isFlashing = 0;
 		}
 	}
-	unknown7EADA2 = 0;
+	enemyTargettingFlashing = 0;
 	unknown7E89CE = -1;
 	unknown7E9623 = 1;
 }
@@ -1328,12 +1328,12 @@ void unknownC43657(short arg1) {
 	unknown7E89CE = arg1;
 	for (short i = 0; i < (unknown7E89CE != 0) ? numBattlersInFrontRow : numBattlersInBackRow; i++) {
 		if (unknown7E89CE != 0) {
-			battlersTable[frontRowBattlers[i]].unknown74 = 1;
+			battlersTable[frontRowBattlers[i]].isFlashing = 1;
 		} else {
-			battlersTable[backRowBattlers[i]].unknown74 = 1;
+			battlersTable[backRowBattlers[i]].isFlashing = 1;
 		}
 	}
-	unknown7EADA2 = 1;
+	enemyTargettingFlashing = 1;
 	unknown7E9623 = 1;
 }
 
@@ -4615,7 +4615,7 @@ void unknownC4A7B0() {
 	setWindowMask(0, 0);
 	unknownC2DE96();
 	setColData(0, 0, 0);
-	unknownC0AFCD(unknown7EAD8A);
+	setLayerConfig(currentLayerConfig);
 }
 
 /// $C4AC57
@@ -4841,7 +4841,7 @@ void useSoundStone(short arg1) {
 				case 1:
 					unknown7EB3EE.firstTile = soundStoneUnknown3[i];
 					unknown7EB3EE.flags = 0x30;
-					unknownC08CD5(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
+					drawSprite(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
 					break;
 				case 2:
 					unknown7EB37E[i].unknown10 += 0xCCD;
@@ -4853,12 +4853,12 @@ void useSoundStone(short arg1) {
 					unknown7EB3F3.firstTile = cast(ubyte)(soundStoneUnknown5[i] + unknown7EB37E[i].unknown4);
 					unknown7EB3F3.flags = cast(ubyte)(soundStoneUnknown6[i] + 0x31);
 					if (unknown7EB37E[i].unknown8 != 0) {
-						unknownC08CD5(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)));
-						unknownC08CD5(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))));
+						drawSprite(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)));
+						drawSprite(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))));
 					}
 					unknown7EB3EE.firstTile = cast(ubyte)(soundStoneUnknown3[i] + 0x80);
 					unknown7EB3EE.flags = cast(ubyte)(soundStoneUnknown4[i] + 0x30);
-					unknownC08CD5(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
+					drawSprite(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
 					break;
 				default: break;
 			}
@@ -4869,7 +4869,7 @@ void useSoundStone(short arg1) {
 		}
 		unknown7EB3F3.firstTile = cast(ubyte)(x30 + 0x40);
 		unknown7EB3F3.flags = 0x3B;
-		unknownC08CD5(&unknown7EB3F3, 0x80, 0x70);
+		drawSprite(&unknown7EB3F3, 0x80, 0x70);
 		updateScreen();
 		generateBattleBGFrame(&loadedBGDataLayer1, 0);
 		generateBattleBGFrame(&loadedBGDataLayer2, 1);
@@ -4882,7 +4882,7 @@ void useSoundStone(short arg1) {
 		waitUntilNextFrame();
 	}
 	prepareForImmediateDMA();
-	unknownC0AFCD(1);
+	setLayerConfig(LayerConfig.all);
 	reloadMap();
 	fadeIn(1, 1);
 }

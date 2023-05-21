@@ -5551,6 +5551,19 @@ enum BGMode {
 
 enum BG3Priority = 8;
 
+enum LayerConfig {
+	allButBG4 = 0,
+	all = 1,
+	ColourBackdropBG4Add = 2,
+	ColourBackdropBG4AddAvg = 3,
+	ColourBackdropBG4Sub = 4,
+	ColourBackdropBG4SubAvg = 5,
+	ColourBackdropBG2Add = 6,
+	ColourBackdropBG2AddAvg = 7,
+	ColourBackdropBG2Sub = 8,
+	ColourBackdropBG2SubAvg = 9,
+}
+
 ///
 struct GameState {
 	version(Have_siryul) {
@@ -5847,7 +5860,7 @@ struct Battler {
 	ubyte unknown71; ///
 	ubyte unknown72; ///
 	ubyte unknown73; ///
-	ubyte unknown74; ///
+	ubyte isFlashing; ///
 	ubyte useAltSpritemap; ///
 	ubyte unknown76; ///
 	ubyte id2; ///

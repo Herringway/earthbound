@@ -700,7 +700,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					InputEditable("Unknown71", battler.unknown71);
 					InputEditable("Unknown72", battler.unknown72);
 					InputEditable("Unknown73", battler.unknown73);
-					InputEditable("Unknown74", battler.unknown74);
+					InputEditable("Flashing", battler.isFlashing);
 					InputEditable("Alt spritemap", battler.useAltSpritemap);
 					InputEditable("Unknown76", battler.unknown76);
 					InputEditable("ID2", battler.id2);
@@ -738,7 +738,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		ImGui.TreePop();
 	}
 	if (ImGui.TreeNode("Screen effects")) {
-		InputEditable("Unknown7EAD8A", unknown7EAD8A);
+		InputEditable("Layer Config", currentLayerConfig);
 		InputEditable("Vertical shake duration", verticalShakeDuration);
 		InputEditable("Vertical shake hold duration", verticalShakeHoldDuration);
 		InputEditable("Unknown7EAD90", unknown7EAD90);
@@ -750,7 +750,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Unknown7EAD9C", unknown7EAD9C);
 		InputEditable("Green flash frames", greenFlashDuration);
 		InputEditable("Red flash frames", redFlashDuration);
-		InputEditable("Unknown7EADA2", unknown7EADA2);
+		InputEditable("Target Flashing enabled", enemyTargettingFlashing);
 		InputEditable("HP/PP box blink duration", hpPPBoxBlinkDuration);
 		InputEditable("HP/PP box blink target", hpPPBoxBlinkTarget);
 		InputEditable("Unknown7EADA8", unknown7EADA8);

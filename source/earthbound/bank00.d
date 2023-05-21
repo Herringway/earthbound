@@ -4951,28 +4951,28 @@ void unknownC08B8E() {
 	}
 	for (short i =0 ; i < unknown7E2504 / 2; i++) {
 		spritemapBank = unknown7E24C4[i];
-		unknownC08CD5(unknown7E2404[i], unknown7E2444[i], unknown7E2484[i]);
+		drawSprite(unknown7E2404[i], unknown7E2444[i], unknown7E2484[i]);
 	}
 	if (unknown7E2402 == 1) {
 		unknownC08C53();
 	}
 	for (short i =0 ; i < unknown7E2606 / 2; i++) {
 		spritemapBank = unknown7E25C6[i];
-		unknownC08CD5(unknown7E2506[i], unknown7E2546[i], unknown7E2586[i]);
+		drawSprite(unknown7E2506[i], unknown7E2546[i], unknown7E2586[i]);
 	}
 	if (unknown7E2402 == 2) {
 		unknownC08C53();
 	}
 	for (short i =0 ; i < unknown7E2708 / 2; i++) {
 		spritemapBank = unknown7E26C8[i];
-		unknownC08CD5(unknown7E2608[i], unknown7E2648[i], unknown7E2688[i]);
+		drawSprite(unknown7E2608[i], unknown7E2648[i], unknown7E2688[i]);
 	}
 	if (unknown7E2402 == 3) {
 		unknownC08C53();
 	}
 	for (short i =0 ; i < unknown7E280A / 2; i++) {
 		spritemapBank = unknown7E27CA[i];
-		unknownC08CD5(unknown7E270A[i], unknown7E274A[i], unknown7E278A[i]);
+		drawSprite(unknown7E270A[i], unknown7E274A[i], unknown7E278A[i]);
 	}
 }
 
@@ -5040,7 +5040,7 @@ void unknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
 }
 
 /// $C08CD5 - Draw a SpriteMap list into the OAM buffer
-void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
+void drawSprite(const(SpriteMap)* arg1, short xbase, short ybase) {
 	short xpos;
 	short ypos;
 	ubyte abyte;
@@ -7793,24 +7793,24 @@ void prepareBackgroundOffsetTables(short rippleFrequency, short rippleAmplitude,
 }
 
 /// $C0AFCD
-void unknownC0AFCD(short arg1) {
-	mirrorTM = unknownC0AFF1[arg1];
-	mirrorTD = unknownC0AFFC[arg1];
-	CGWSEL = unknownC0B006[arg1];
-	CGADSUB = unknownC0B010[arg1];
+void setLayerConfig(short arg1) {
+	mirrorTM = layerConfigTMs[arg1];
+	mirrorTD = layerConfigTDs[arg1];
+	CGWSEL = layerConfigCGWSELs[arg1];
+	CGADSUB = layerConfigCGADSUBs[arg1];
 }
 
 /// $C0AFF1
-immutable ubyte[11] unknownC0AFF1 = [0x17, 0x1F, 0x17, 0x17, 0x17, 0x17, 0x15, 0x15, 0x15, 0x15, 0x15];
+immutable ubyte[11] layerConfigTMs = [0x17, 0x1F, 0x17, 0x17, 0x17, 0x17, 0x15, 0x15, 0x15, 0x15, 0x15];
 
 /// $C0AFFC
-immutable ubyte[10] unknownC0AFFC = [0x00, 0x00, 0x08, 0x08, 0x08, 0x08, 0x02, 0x02, 0x02, 0x02];
+immutable ubyte[10] layerConfigTDs = [0x00, 0x00, 0x08, 0x08, 0x08, 0x08, 0x02, 0x02, 0x02, 0x02];
 
 /// $C0B006
-immutable ubyte[10] unknownC0B006 = [0x00, 0x00, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02];
+immutable ubyte[10] layerConfigCGWSELs = [0x00, 0x00, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02];
 
 /// $C0B010
-immutable ubyte[10] unknownC0B010 = [0x00, 0x00, 0x24, 0x64, 0xA4, 0xE4, 0x21, 0x61, 0xA1, 0xE1];
+immutable ubyte[10] layerConfigCGADSUBs = [0x00, 0x00, 0x24, 0x64, 0xA4, 0xE4, 0x21, 0x61, 0xA1, 0xE1];
 
 /// $C0B01A
 void setColData(ubyte red, ubyte green, ubyte blue) {

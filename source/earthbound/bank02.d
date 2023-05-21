@@ -7158,14 +7158,14 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		loadedBGDataLayer1.targetLayer = 2;
 		generateBattleBGFrame(&loadedBGDataLayer1, 0);
 		loadedBGDataLayer2.targetLayer = 0;
-		unknown7EAD8A = 1;
-		unknownC0AFCD(unknown7EAD8A);
+		currentLayerConfig = LayerConfig.all;
+		setLayerConfig(currentLayerConfig);
 		unknown7EADAE = 0x17;
 		unknown7EADB0 = 0x15;
 		if (layer2 != 0) {
 			if ((letterbox & 4) != 0) {
-				unknown7EAD8A = 7;
-				unknownC0AFCD(unknown7EAD8A);
+				currentLayerConfig = LayerConfig.ColourBackdropBG2AddAvg;
+				setLayerConfig(currentLayerConfig);
 				decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
 				copyToVRAM(0, 0x2000, 0, &unknown7F0000[0]);
 				decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
@@ -7205,8 +7205,8 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		memcpy(loadedBGDataLayer1.palettePointer, &loadedBGDataLayer1.palette[0], 32);
 		loadedBGDataLayer1.targetLayer = 3;
 		if (layer2 != 0) {
-			unknown7EAD8A = 3;
-			unknownC0AFCD(unknown7EAD8A);
+			currentLayerConfig = LayerConfig.ColourBackdropBG4AddAvg;
+			setLayerConfig(currentLayerConfig);
 
 			decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
 			copyToVRAM(0, 0x1800, 0x3000, &unknown7F0000[0]);
@@ -7339,7 +7339,7 @@ void unknownC2DB3F() {
 			setColourAddSubMode(0, 0x3F);
 		} else {
 			setColData(0, 0, 0);
-			unknownC0AFCD(unknown7EAD8A);
+			setLayerConfig(currentLayerConfig);
 		}
 	}
 	if (greenFlashDuration != 0) {
@@ -7348,7 +7348,7 @@ void unknownC2DB3F() {
 			setColourAddSubMode(0, 0x3F);
 		} else {
 			setColData(0, 0, 0);
-			unknownC0AFCD(unknown7EAD8A);
+			setLayerConfig(currentLayerConfig);
 		}
 	}
 	if (hpPPBoxBlinkDuration != 0) {
@@ -7447,7 +7447,7 @@ void unknownC2E0E7() {
 		hpPPBoxBlinkDuration = 0;
 	}
 	setColData(0, 0, 0);
-	unknownC0AFCD(1);
+	setLayerConfig(LayerConfig.all);
 }
 
 /// $C2E116
@@ -8123,13 +8123,15 @@ void renderBattleSpriteRow(short arg1) {
 			continue;
 		}
 		if ((battlersTable[i].unknown73 != 0) && ((--battlersTable[i].unknown73 & 4) == 0)) {
-			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+			drawSprite(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else if (battlersTable[i].useAltSpritemap != 0) {
-			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
-		} else if ((unknown7EADA2 != 0) && ((battlersTable[i].unknown74 == 0) || ((frameCounter & 8) != 0))) {
-			unknownC08CD5(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+			drawSprite(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+		} else if ((enemyTargettingFlashing != 0) && ((battlersTable[i].isFlashing == 0) || ((frameCounter & 8) != 0))) {
+			//targetted enemies
+			drawSprite(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else {
-			unknownC08CD5(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+			//normal enemies
+			drawSprite(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		}
 	}
 }

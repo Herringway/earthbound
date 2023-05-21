@@ -1258,7 +1258,7 @@ short unknownC121B8(short arg1, short arg2) {
 		short x12;
 		short x10;
 		short x14 = unknownC11FBC(x04, x16);
-		enemyFlashingOn(x04, x16);
+		singleEnemyFlashingOn(x04, x16);
 		if (x18 == 0) {
 			unknownC120D6(x04, x16);
 		}
@@ -1285,12 +1285,12 @@ short unknownC121B8(short arg1, short arg2) {
 					}
 				}
 			} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
-				enemyFlashingOff();
+				singleEnemyFlashingOff();
 				x0E = cast(short)(x04 * numBattlersInBackRow + x16 + 1);
 				playSfx(Sfx.cursor1);
 				break;
 			} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (arg1 == 1)) {
-				enemyFlashingOff();
+				singleEnemyFlashingOff();
 				x0E = 0;
 				playSfx(Sfx.cursor2);
 				break;

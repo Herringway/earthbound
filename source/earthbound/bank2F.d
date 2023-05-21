@@ -19,33 +19,33 @@ import core.stdc.string;
 import std;
 
 /// $EF0000
-void enemyFlashingOff() {
+void singleEnemyFlashingOff() {
 	if (unknown7E89D0 == -1) {
 		return;
 	}
 	if (unknown7E89D2 != 0) {
-		battlersTable[frontRowBattlers[unknown7E89D0]].unknown74 = 0;
+		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 0;
 	} else {
-		battlersTable[backRowBattlers[unknown7E89D0]].unknown74 = 0;
+		battlersTable[backRowBattlers[unknown7E89D0]].isFlashing = 0;
 	}
-	unknown7EADA2 = 0;
+	enemyTargettingFlashing = 0;
 	unknown7E89D0 = -1;
 	unknown7E9623 = 1;
 }
 
 /// $EF0052
-void enemyFlashingOn(short arg1, short arg2) {
+void singleEnemyFlashingOn(short arg1, short arg2) {
 	if (unknown7E89D0 != -1) {
-		enemyFlashingOff();
+		singleEnemyFlashingOff();
 	}
 	unknown7E89D0 = arg2;
 	unknown7E89D2 = arg1;
 	if (arg1 != 0) {
-		battlersTable[frontRowBattlers[unknown7E89D0]].unknown74 = 1;
+		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 1;
 	} else {
-		battlersTable[backRowBattlers[unknown7E89D0]].unknown74 = 1;
+		battlersTable[backRowBattlers[unknown7E89D0]].isFlashing = 1;
 	}
-	unknown7EADA2 = 1;
+	enemyTargettingFlashing = 1;
 	unknown7E9623 = 1;
 }
 

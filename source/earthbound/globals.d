@@ -768,7 +768,7 @@ __gshared ubyte[8] unknown7EAD6A; /// $(DOLLAR)AD6A
 __gshared ubyte[8] unknown7EAD72; /// $(DOLLAR)AD72
 __gshared ubyte[8] backRowBattlers; /// $(DOLLAR)AD7A
 __gshared ubyte[8] frontRowBattlers; /// $(DOLLAR)AD82
-__gshared short unknown7EAD8A; /// $(DOLLAR)AD8A
+__gshared short currentLayerConfig; /// $(DOLLAR)AD8A
 __gshared short verticalShakeDuration; /// $(DOLLAR)AD8C
 __gshared short verticalShakeHoldDuration; /// $(DOLLAR)AD8E
 __gshared short unknown7EAD90; /// $(DOLLAR)AD90
@@ -780,7 +780,7 @@ __gshared short unknown7EAD9A; /// $(DOLLAR)AD9A
 __gshared short unknown7EAD9C; /// $(DOLLAR)AD9C
 __gshared short greenFlashDuration; /// $(DOLLAR)AD9E
 __gshared short redFlashDuration; /// $(DOLLAR)ADA0
-__gshared short unknown7EADA2; /// $(DOLLAR)ADA2
+__gshared short enemyTargettingFlashing; /// $(DOLLAR)ADA2
 __gshared short hpPPBoxBlinkDuration; /// $(DOLLAR)ADA4
 __gshared short hpPPBoxBlinkTarget; /// $(DOLLAR)ADA6
 __gshared short unknown7EADA8; /// $(DOLLAR)ADA8
