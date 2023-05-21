@@ -6907,7 +6907,7 @@ void battleActionGiygasPrayer9() {
 
 /// $C2C8C8
 void loadEnemyBattleSprites() {
-	unknownC08D79(9);
+	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
@@ -7145,7 +7145,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	copyToVRAM(3, 0x800, 0, &unknown7F0000[0]);
 	decomp(&battleBGArrangementPointers[animatedBackgrounds[layer1].graphics][0], &unknown7F0000[0]);
 	if (animatedBackgrounds[layer1].bitsPerPixel == 4) {
-		unknownC08D79(9);
+		setBGMODE(BGMode.mode1 | BG3Priority);
 		for (short i = 0; i < 0x800; i += 2) {
 			unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 8;
 		}
@@ -7189,7 +7189,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			}
 		}
 	} else {
-		unknownC08D79(8);
+		setBGMODE(BGMode.mode0 | BG3Priority);
 		setBG1VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 		setBG2VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 		setBG3VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);

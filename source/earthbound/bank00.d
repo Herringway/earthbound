@@ -32,7 +32,7 @@ short* clearEntityDrawSortingTable() {
 
 /// $C00013
 void overworldSetupVRAM() {
-	unknownC08D79(9);
+	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
 	setBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
@@ -735,7 +735,7 @@ void reloadMap() {
 	prepareForImmediateDMA();
 	currentMapMusicTrack = -1;
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
-	unknownC08D79(9);
+	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
 	setBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
@@ -5098,10 +5098,10 @@ void unknownC08CD5(const(SpriteMap)* arg1, short xbase, short ybase) {
 }
 
 /// $C08D79
-void unknownC08D79(ubyte arg1) {
-	unknown7E000F &= 0xF0;
-	unknown7E000F |= arg1;
-	BGMODE = unknown7E000F;
+void setBGMODE(ubyte arg1) {
+	mirrorBGMODE &= 0xF0;
+	mirrorBGMODE |= arg1;
+	BGMODE = mirrorBGMODE;
 }
 
 /// $C08D92
@@ -9969,7 +9969,7 @@ void unknownC0EE53() {
 
 /// $C0EE68
 void logoScreenLoad(short arg1) {
-	unknownC08D79(1);
+	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x4000, 0);
 	mirrorTM = 4;
 	switch (arg1) {

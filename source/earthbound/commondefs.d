@@ -5538,6 +5538,19 @@ enum Swirl {
 	unknown6 = 6, ///
 }
 
+enum BGMode {
+	mode0 = 0,
+	mode1 = 1,
+	mode2 = 2,
+	mode3 = 3,
+	mode4 = 4,
+	mode5 = 5,
+	mode6 = 6,
+	mode7 = 7,
+}
+
+enum BG3Priority = 8;
+
 ///
 struct GameState {
 	version(Have_siryul) {

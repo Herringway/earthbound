@@ -1059,7 +1059,7 @@ short showTitleScreen(short arg1) {
 			entitySpriteMapFlags[i] |= 0x8000;
 		}
 	}
-	unknownC08D79(11);
+	setBGMODE(BGMode.mode3 | BG3Priority);
 	setOAMSize(3);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 	bg3XPosition = 0;

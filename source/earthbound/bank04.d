@@ -83,7 +83,7 @@ short unknownC40085() {
 /// $C40B51
 void unknownC40B51() {
 	stopMusic();
-	unknownC08D79(1);
+	setBGMODE(BGMode.mode1);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x4000, 0);
 	mirrorTM = 4;
 	prepareForImmediateDMA();
@@ -3305,7 +3305,7 @@ void unknownC4733C() {
 /// $C47370
 void loadBackgroundAnimation(short bg, short arg2) {
 	prepareForImmediateDMA();
-	unknownC08D79(9);
+	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0x0000);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	loadBattleBG(bg, arg2, 4);
@@ -4407,7 +4407,7 @@ immutable FinalGiygasPrayerNoiseEntry[13] finalGiygasPrayerNoiseTable = [
 
 /// $C4A377
 void unknownC4A377() {
-	unknownC08D79(3);
+	setBGMODE(BGMode.mode3);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	decomp(&battleBGGraphicsPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &unknown7F0000[0]);
@@ -5569,7 +5569,7 @@ void unknownC4C2DE() {
 	loadedAnimatedTileCount = 0;
 	unknown7E4474 = 0;
 	unknown7E9F2A = 0;
-	unknownC08D79(9);
+	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	decomp(&unknownE1CFAF[0], &unknown7F0000[0]);

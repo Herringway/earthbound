@@ -21491,7 +21491,7 @@ void initDebugMenuScreen() {
 	debugMenuCursorPosition = 0;
 	unknown7EB551 = 0;
 	viewAttributeMode = 0;
-	unknownC08D79(9);
+	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x3800, 0);
 	setBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);

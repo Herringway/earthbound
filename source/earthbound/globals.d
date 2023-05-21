@@ -15,7 +15,7 @@ __gshared ubyte unknown7E000A; /// $(DOLLAR)000A
 __gshared ushort spritemapBank; /// $(DOLLAR)000B
 __gshared ubyte mirrorINIDISP; /// $(DOLLAR)000D
 __gshared ubyte mirrorOBSEL; /// $(DOLLAR)000E
-__gshared ubyte unknown7E000F; /// $(DOLLAR)000F
+__gshared ubyte mirrorBGMODE; /// $(DOLLAR)000F
 __gshared ubyte mirrorMOSAIC; /// $(DOLLAR)0010
 __gshared ubyte unknown7E0011; /// $(DOLLAR)0011
 __gshared ubyte unknown7E0012; /// $(DOLLAR)0012
