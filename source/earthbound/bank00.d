@@ -5115,7 +5115,7 @@ void setBG1VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 	unknown7E0011 = arg1 & 3;
 	unknown7E0011 |= ((arg2 >> 8) & 0xFC);
 	BG1SC = unknown7E0011;
-	mirrorBG12NBA &= 0xF;
+	mirrorBG12NBA &= 0xF0;
 	bg1XPosition = 0;
 	bg1YPosition = 0;
 	mirrorBG12NBA |= (arg3 >> 12);
@@ -5139,7 +5139,7 @@ void setBG3VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 	unknown7E0013 = arg1 & 3;
 	unknown7E0013 |= ((arg2 >> 8) & 0xFC);
 	BG3SC = unknown7E0013;
-	unknown7E0016 &= 0xF;
+	unknown7E0016 &= 0xF0;
 	bg3XPosition = 0;
 	bg3YPosition = 0;
 	unknown7E0016 |= (arg3 >> 12);
