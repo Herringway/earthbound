@@ -7850,9 +7850,9 @@ void loadBattleSprite(short arg1) {
 		default: break;
 	}
 	x26[(x24 * x22) - 1].specialFlags = 0x81;
-	memcpy(&altBattleSpritemaps[unknown7EAAB4][0], &battleSpritemaps[unknown7EAAB4][0], 80);
+	memcpy(&altBattleSpritemaps[unknown7EAAB4][0], &battleSpritemaps[unknown7EAAB4][0], 16 * SpriteMap.sizeof);
 	for (short i = 0; i < 16; i++) {
-		altBattleSpritemaps[unknown7EAAB4][i].flags |= 8;
+		altBattleSpritemaps[unknown7EAAB4][i].flags += 8;
 	}
 	unknown7EAAC6[unknown7EAAB4] = cast(ubyte)x22;
 	unknown7EAACE[unknown7EAAB4] = cast(ubyte)x24;
