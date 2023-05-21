@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Variable unknown7E0012</title>
+		<title>Union FadeParameters</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -130,12 +130,12 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/commondefs.html">commondefs</a>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/globals.html">globals</a>
 					</div>
 				</li>
@@ -149,17 +149,45 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable unknown7E0012</h1><p>0012
-</p>
+			<h1>Union FadeParameters</h1><p></p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">ubyte</span> <span class="pln">unknown7E0012</span>
+			<span class="kwd">union</span> <span class="typ">FadeParameters</span>
 			<span class="pun">;</span>
 					</div>
 				</code>
 			</div>
 			
+			<section><h2>Fields</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/FadeParameters.delay.html" class="public"><code>delay</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>Number of frames between each increment/decrement
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/FadeParameters.step.html" class="public"><code>step</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ubyte</span></code></td><td>Number of levels of brightness to add/subtract at a time
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../earthbound/commondefs/FadeParameters.word.html" class="public"><code>word</code></a>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">short</span></code></td><td>This is just to avoid undefined behaviour with actionscripts accessing both values with one write
+</td>
+					</tr>
+				</table>
+			</section>
 			
 			<footer>
 				<table class="license-info">
