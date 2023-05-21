@@ -7170,7 +7170,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 				copyToVRAM(0, 0x2000, 0, &unknown7F0000[0]);
 				decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
 				for (short i = 0; i < 0x800; i += 2) {
-					unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 8;
+					unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 16;
 				}
 				copyToVRAM(0, 0x800, 0x5800, &unknown7F0000[0]);
 				loadBackgroundAnimationInfo(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
