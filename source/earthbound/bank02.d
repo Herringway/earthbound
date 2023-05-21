@@ -3085,7 +3085,7 @@ short battleRoutine() {
 	do {
 		waitUntilNextFrame();
 		unknownC2DB3F();
-	} while (unknown7E0028.a != 0);
+	} while (fadeParameters.step != 0);
 	unknownC20293();
 	prepareForImmediateDMA();
 	closeAllWindowsAndHPPP();
@@ -3364,7 +3364,7 @@ short getEnemyType(short id) {
 
 /// $C269DE
 void tickUntilFadeCompletion() {
-	while (unknown7E0028.a != 0) {
+	while (fadeParameters.step != 0) {
 		windowTick();
 	}
 }

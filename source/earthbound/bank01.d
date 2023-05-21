@@ -7163,7 +7163,7 @@ short fileSelectMenu(short arg1) {
 		windowSetTextColor(0);
 	} else {
 		corruptionCheck();
-		while (unknown7E0028.a != 0) { waitForInterrupt(); }
+		while (fadeParameters.step != 0) { waitForInterrupt(); }
 		changeMusic(Music.setupScreen);
 		unknownC11F5A(&unknownC1ECD1);
 		currentSaveSlot = cast(ubyte)selectionMenu(0);

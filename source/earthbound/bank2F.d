@@ -535,7 +535,7 @@ void unknownEF0EE8() {
 
 /// $EF0F60
 short unknownEF0F60() {
-	if ((unknown7E0028.a != 0) || ((mirrorINIDISP & 0xF) != 0)) {
+	if ((fadeParameters.step != 0) || ((mirrorINIDISP & 0xF) != 0)) {
 		return 1;
 	}
 	if (windowHead != -1) {

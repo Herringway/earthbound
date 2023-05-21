@@ -296,14 +296,14 @@ void loadMapAtSector(short x, short y) {
 	if (x04 != unknown7E436E) {
 		unknown7E4372 = tilesetTable[x04];
 		decomp(&mapDataTilesetPtrTable[tilesetTable[x04]][0], &unknown7F0000[0]);
-		while (unknown7E0028.a != 0) { waitForInterrupt(); }
+		while (fadeParameters.step != 0) { waitForInterrupt(); }
 		if (photographMapLoadingMode == 0) {
 			copyToVRAM2(0, 0x7000, 0, &unknown7F0000[0]);
 		} else {
 			copyToVRAM2(0, 0x4000, 0, &unknown7F0000[0]);
 		}
 	}
-	while (unknown7E0028.a != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	loadMapPalette(x04, x18);
 	unknownC00480();
 	loadSpecialSpritePalette();
@@ -590,7 +590,7 @@ void reloadMapAtPosition(short x, short y) {
 	for (short i = -1; i != 31; i++) {
 		loadMapRowVRAM(cast(short)(x14 - 16), cast(short)(x02 - 14 + i));
 	}
-	while (unknown7E0028.a != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	bg2XPosition = cast(short)(unknown7E4380 - 0x80);
 	bg1XPosition = cast(short)(unknown7E4380 - 0x80);
 	bg2YPosition = cast(short)(unknown7E4382 - 0x70);
@@ -625,7 +625,7 @@ void loadMapAtPosition(short x, short y) {
 	for (short i = 0; i < 60; i++) {
 		loadCollisionRow(cast(short)(x02 - 32), cast(short)(x12 - 32 + i));
 	}
-	while (unknown7E0028.a != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	if (photographMapLoadingMode == 0) {
 		mirrorTM = 0x17;
 	}
@@ -4429,7 +4429,7 @@ void irqNMICommon() {
 	//ubyte __unused = RDNMI;
 	HDMAEN = 0;
 	INIDISP = 0x80;
-	unknown7E002B++;
+	newFrameStarted++;
 	frameCounter++;
 	if (nextFrameDisplayID != 0) {
 		handleOAMDMA(0, 4, ((nextFrameDisplayID - 1) != 0) ? (&oam2) : (&oam1), 0x220, 0);
@@ -4443,19 +4443,20 @@ void irqNMICommon() {
 		handleCGRAMDMA(0, 0x22, &palettes, 0x200, 0);
 		unknown7E0099 += 0x0200;
 	}
-	if ((unknown7E0028.a != 0) && (--unknown7E002A < 0)) {
-		unknown7E002A = unknown7E0028.b;
-		ubyte a = cast(byte)((mirrorINIDISP & 0xF) + unknown7E0028.a);
-		if ((a & 0x80) != 0) {
+	if ((fadeParameters.step != 0) && (--fadeDelayFramesLeft < 0)) {
+		fadeDelayFramesLeft = fadeParameters.delay;
+		ubyte a = cast(byte)((mirrorINIDISP & 0xF) + fadeParameters.step);
+		if ((a & 0x80) != 0) { // underflowed
 			mirrorHDMAEN = 0;
 			a = 0x80;
 		} else {
 			if (a < 16) {
 				goto Unknown6;
 			}
+			// overflowed
 			a = 15;
 		}
-		unknown7E0028.a = 0;
+		fadeParameters.step = 0;
 		Unknown6:
 		mirrorINIDISP = a;
 	}
@@ -4498,10 +4499,10 @@ void irqNMICommon() {
 		handleHDMA();
 	}
 	unknown7E0099 = 0;
-	if (unknown7E0022 == 0) {
-		unknown7E0022++;
+	if (inIRQCallback == 0) {
+		inIRQCallback = 1;
 		executeIRQCallback();
-		unknown7E0022 = 0;
+		inIRQCallback = 0;
 	}
 
 	if (heapBaseAddress == &heap[0]) {
@@ -4750,8 +4751,8 @@ void* sbrk(ushort i) {
 			currentHeapAddress += i;
 			return result;
 		}
-		while (unknown7E002B != 0) { waitForInterrupt(); }
-		unknown7E002B = 0;
+		while (newFrameStarted != 0) { waitForInterrupt(); }
+		newFrameStarted = 0;
 	}
 }
 
@@ -4759,36 +4760,36 @@ void* sbrk(ushort i) {
 void prepareForImmediateDMA() {
 	mirrorINIDISP = 0x80;
 	mirrorHDMAEN = 0;
-	unknown7E0028.a = 0;
-	unknown7E002B = 0;
-	while (unknown7E002B != 0) { waitForInterrupt(); }
+	fadeParameters.step = 0;
+	newFrameStarted = 0;
+	while (newFrameStarted != 0) { waitForInterrupt(); }
 	HDMAEN = 0;
 }
 
 /// $C08744
 void setForceBlank() {
 	mirrorINIDISP = 0x80;
-	unknown7E002B = 0;
-	while (unknown7E002B != 0) { waitForInterrupt(); }
+	newFrameStarted = 0;
+	while (newFrameStarted != 0) { waitForInterrupt(); }
 }
 
 /// $C08715
 void enableNMIJoypad() {
-	unknown7E001E |= 0x81;
-	NMITIMEN = unknown7E001E;
+	mirrorNMITIMEN |= 0x81;
+	NMITIMEN = mirrorNMITIMEN;
 }
 
 /// $C08756
 void waitUntilNextFrame() {
-	// if ((unknown7E001E & 0xB0) != 0) {
-	// 	while (unknown7E002B == 0) {}
-	// 	unknown7E002B = 0;
+	// if ((mirrorNMITIMEN & 0xB0) != 0) {
+	// 	while (newFrameStarted == 0) {}
+	// 	newFrameStarted = 0;
 	// } else {
 	// 	while (HVBJOY < 0) {}
 	// 	while (HVBJOY >= 0) {}
 	// }
 	waitForInterrupt();
-	unknown7E002B = 0;
+	newFrameStarted = 0;
 	unknownC08496();
 }
 
@@ -4812,7 +4813,7 @@ void unknownC087AB(ubyte arg1) {
 
 /// $C087CE
 void fadeInWithMosaic(short arg1, short arg2, short arg3) {
-	unknown7E0028.a = 0;
+	fadeParameters.step = 0;
 	mirrorINIDISP = 0;
 	while(true) {
 		mirrorMOSAIC = 0;
@@ -4830,7 +4831,7 @@ void fadeInWithMosaic(short arg1, short arg2, short arg3) {
 
 /// $C08814
 void fadeOutWithMosaic(short arg1, short arg2, short arg3) {
-	unknown7E0028.a = 0;
+	fadeParameters.step = 0;
 	while (true) {
 		mirrorMOSAIC = 0;
 		if ((mirrorINIDISP & 0x80) != 0) {
@@ -4847,29 +4848,29 @@ void fadeOutWithMosaic(short arg1, short arg2, short arg3) {
 	}
 	setINIDISP(0x80);
 	mirrorHDMAEN = 0;
-	unknown7E002B = 0;
-	while (unknown7E002B != 0) { waitForInterrupt(); }
+	newFrameStarted = 0;
+	while (newFrameStarted != 0) { waitForInterrupt(); }
 	HDMAEN = 0;
 }
 
 /// $C0886C
 void fadeIn(ubyte arg1, ubyte arg2) {
-	unknown7E0028.a = arg1;
-	unknown7E0028.b = arg2;
-	unknown7E002A = arg2;
+	fadeParameters.step = arg1;
+	fadeParameters.delay = arg2;
+	fadeDelayFramesLeft = arg2;
 }
 
 /// $C0887A
 void fadeOut(ubyte arg1, ubyte arg2) {
-	unknown7E0028.a = cast(ubyte)((arg1^0xFF) + 1);
-	unknown7E0028.b = arg2;
-	unknown7E002A = arg2;
+	fadeParameters.step = cast(ubyte)((arg1^0xFF) + 1);
+	fadeParameters.delay = arg2;
+	fadeDelayFramesLeft = arg2;
 }
 
 /// $C0888B
 void unknownC0888B() {
 	while (true) {
-		if (unknown7E0028.a == 0) {
+		if (fadeParameters.step == 0) {
 			return;
 		}
 		oamClear();
@@ -5112,9 +5113,9 @@ void setOAMSize(ubyte arg1) {
 
 /// $C08D9E
 void setBG1VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
-	unknown7E0011 = arg1 & 3;
-	unknown7E0011 |= ((arg2 >> 8) & 0xFC);
-	BG1SC = unknown7E0011;
+	mirrorBG1SC = arg1 & 3;
+	mirrorBG1SC |= ((arg2 >> 8) & 0xFC);
+	BG1SC = mirrorBG1SC;
 	mirrorBG12NBA &= 0xF0;
 	bg1XPosition = 0;
 	bg1YPosition = 0;
@@ -5124,9 +5125,9 @@ void setBG1VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 
 /// $C08DDE
 void setBG2VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
-	unknown7E0012 = arg1 & 3;
-	unknown7E0012 |= ((arg2 >> 8) & 0xFC);
-	BG2SC = unknown7E0012;
+	mirrorBG2SC = arg1 & 3;
+	mirrorBG2SC |= ((arg2 >> 8) & 0xFC);
+	BG2SC = mirrorBG2SC;
 	mirrorBG12NBA &= 0xF;
 	bg2XPosition = 0;
 	bg2YPosition = 0;
@@ -5136,26 +5137,26 @@ void setBG2VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
 
 /// $C08E1C
 void setBG3VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
-	unknown7E0013 = arg1 & 3;
-	unknown7E0013 |= ((arg2 >> 8) & 0xFC);
-	BG3SC = unknown7E0013;
-	unknown7E0016 &= 0xF0;
+	mirrorBG3SC = arg1 & 3;
+	mirrorBG3SC |= ((arg2 >> 8) & 0xFC);
+	BG3SC = mirrorBG3SC;
+	mirrorBG34NBA &= 0xF0;
 	bg3XPosition = 0;
 	bg3YPosition = 0;
-	unknown7E0016 |= (arg3 >> 12);
-	BG34NBA = unknown7E0016;
+	mirrorBG34NBA |= (arg3 >> 12);
+	BG34NBA = mirrorBG34NBA;
 }
 
 /// $C08E5C
 void setBG4VRAMLocation(ubyte arg1, ushort arg2, ushort arg3) {
-	unknown7E0014 = arg1 & 3;
-	unknown7E0014 |= ((arg2 >> 8) & 0xFC);
-	BG4SC = unknown7E0014;
-	unknown7E0016 &= 0xF;
+	mirrorBG4SC = arg1 & 3;
+	mirrorBG4SC |= ((arg2 >> 8) & 0xFC);
+	BG4SC = mirrorBG4SC;
+	mirrorBG34NBA &= 0xF;
 	bg4XPosition = 0;
 	bg4YPosition = 0;
-	unknown7E0016 |= ((arg3 >> 8) & 0xF0);
-	BG34NBA = unknown7E0016;
+	mirrorBG34NBA |= ((arg3 >> 8) & 0xF0);
+	BG34NBA = mirrorBG34NBA;
 }
 
 /// $C08E9A
@@ -9337,7 +9338,7 @@ void loadDadPhone() {
 
 /// $C0DD0F
 void unknownC0DD0F() {
-	while (unknown7E0028.a != 0) {
+	while (fadeParameters.step != 0) {
 		oamClear();
 		runActionscriptFrame();
 		updateScreen();

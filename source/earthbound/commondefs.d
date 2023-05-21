@@ -6807,11 +6807,11 @@ struct BackgroundDistortionEntry {
 	}
 }
 ///
-union Unknown7E0028Union {
-	short word; ///
+union FadeParameters {
+	short word; /// This is just to avoid undefined behaviour with actionscripts accessing both values with one write
 	struct {
-		ubyte a; ///
-		ubyte b; ///
+		ubyte step; /// Number of levels of brightness to add/subtract at a time
+		ubyte delay; /// Number of frames between each increment/decrement
 	}
 }
 ///

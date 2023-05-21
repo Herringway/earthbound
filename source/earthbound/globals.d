@@ -17,28 +17,28 @@ __gshared ubyte mirrorINIDISP; /// $(DOLLAR)000D
 __gshared ubyte mirrorOBSEL; /// $(DOLLAR)000E
 __gshared ubyte mirrorBGMODE; /// $(DOLLAR)000F
 __gshared ubyte mirrorMOSAIC; /// $(DOLLAR)0010
-__gshared ubyte unknown7E0011; /// $(DOLLAR)0011
-__gshared ubyte unknown7E0012; /// $(DOLLAR)0012
-__gshared ubyte unknown7E0013; /// $(DOLLAR)0013
-__gshared ubyte unknown7E0014; /// $(DOLLAR)0014
+__gshared ubyte mirrorBG1SC; /// $(DOLLAR)0011
+__gshared ubyte mirrorBG2SC; /// $(DOLLAR)0012
+__gshared ubyte mirrorBG3SC; /// $(DOLLAR)0013
+__gshared ubyte mirrorBG4SC; /// $(DOLLAR)0014
 __gshared ubyte mirrorBG12NBA; /// $(DOLLAR)0015
-__gshared ubyte unknown7E0016; /// $(DOLLAR)0016
+__gshared ubyte mirrorBG34NBA; /// $(DOLLAR)0016
 __gshared ubyte mirrorWH2; /// $(DOLLAR)0017
 __gshared ushort unknown7E0018; /// $(DOLLAR)0018
 __gshared ubyte mirrorTM; /// $(DOLLAR)001A
 __gshared ubyte mirrorTD; /// $(DOLLAR)001B
 
 __gshared ubyte unknown7E001D; /// $(DOLLAR)001D
-__gshared ubyte unknown7E001E; /// $(DOLLAR)001E
+__gshared ubyte mirrorNMITIMEN; /// $(DOLLAR)001E
 __gshared ubyte mirrorHDMAEN; /// $(DOLLAR)001F
 __gshared void function() irqCallback; /// $(DOLLAR)0020
-__gshared ubyte unknown7E0022; /// $(DOLLAR)0022
+__gshared ubyte inIRQCallback; /// $(DOLLAR)0022
 __gshared ubyte unknown7E0023; /// $(DOLLAR)0023
 __gshared ushort randA; /// $(DOLLAR)0024
 __gshared ushort randB; /// $(DOLLAR)0026
-__gshared Unknown7E0028Union unknown7E0028; /// $(DOLLAR)0028
-__gshared byte unknown7E002A; /// $(DOLLAR)002A
-__gshared ubyte unknown7E002B; /// $(DOLLAR)002B
+__gshared FadeParameters fadeParameters; /// $(DOLLAR)0028
+__gshared byte fadeDelayFramesLeft; /// $(DOLLAR)002A
+__gshared ubyte newFrameStarted; /// $(DOLLAR)002B
 //the ID of the frame being/about to be displayed, multiplied by 2
 __gshared ubyte nextFrameDisplayID; /// $(DOLLAR)002C
 __gshared ubyte unknown7E002D; /// $(DOLLAR)002D

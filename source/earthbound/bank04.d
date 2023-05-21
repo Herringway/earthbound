@@ -4118,7 +4118,7 @@ void coffeeTeaScene(short id) {
 		}
 	}
 	fadeOut(1, 1);
-	while (unknown7E0028.a != 0) {
+	while (fadeParameters.step != 0) {
 		unknownC49A4B();
 	}
 	prepareForImmediateDMA();
@@ -4878,7 +4878,7 @@ void useSoundStone(short arg1) {
 		}
 	}
 	fadeOut(1, 1);
-	while (unknown7E0028.a != 0) {
+	while (fadeParameters.step != 0) {
 		waitUntilNextFrame();
 	}
 	prepareForImmediateDMA();
@@ -6542,7 +6542,7 @@ void drawTownMapIcons(short map) {
 void loadTownMapData(short arg1) {
 	fadeOut(2, 1);
 	decomp(&townMapGraphicsPointerTable[arg1][0], &unknown7F0000[0]);
-	while (unknown7E0028.a != 0) { waitForInterrupt(); }
+	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	memcpy(&palettes[0][0], &unknown7F0000[0], 0x40);
 	memcpy(&palettes[8][0], &townMapIconPalette[0], 0x100);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);
@@ -6720,7 +6720,7 @@ short runAttractModeScene(short arg1) {
 		unknownC4A7B0();
 	}
 	fadeOut(1, 1);
-	while (unknown7E0028.a != 0) {
+	while (fadeParameters.step != 0) {
 		unknownC1004E();
 	}
 	unknownC2EAAA();
@@ -6822,7 +6822,7 @@ void initIntro() {
 		x02++;
 	}
 	musicEffect(MusicEffect.quickFade);
-	unknown7E0028.a = 0;
+	fadeParameters.step = 0;
 	if ((mirrorINIDISP & 0x80) != 0) {
 		fadeOutWithMosaic(4, 1, 0);
 	}
