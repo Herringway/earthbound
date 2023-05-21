@@ -1140,8 +1140,10 @@ void spawnNPCsRow(short x, short y) {
 	if (unknown7E4A58 == 0) {
 		return;
 	}
-	if (x12 < 0) {
-		return;
+	version(noUndefinedBehaviour) {} else { // use of uninitialized variable
+		if (x12 < 0) {
+			return;
+		}
 	}
 	short x10 = y / 32;
 	for (short i = cast(short)(x - 2); i != x + 36; i++) {
@@ -1164,8 +1166,10 @@ void spawnNPCsColumn(short x, short y) {
 	if (unknown7E4A58 == 0) {
 		return;
 	}
-	if (x10 < 0) {
-		return;
+	version(noUndefinedBehaviour) {} else { //use of uninitialized variable
+		if (x10 < 0) {
+			return;
+		}
 	}
 	short x0E = x / 32;
 	short x12;
