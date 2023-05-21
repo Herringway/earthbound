@@ -1260,6 +1260,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="drawSprite" class="public" href="../earthbound/bank00/drawSprite.html">drawSprite</a><span class="tableEntryAnnotation">(arg1, xbase, ybase)</span>
+							</code>
+						</td>
+						<td>$C08CD5 - Draw a SpriteMap list into the OAM buffer
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="ebMain" class="public" href="../earthbound/bank00/ebMain.html">ebMain</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2205,6 +2214,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="setBGMODE" class="public" href="../earthbound/bank00/setBGMODE.html">setBGMODE</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C08D79
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="setBGPalettesBlack" class="public" href="../earthbound/bank00/setBGPalettesBlack.html">setBGPalettesBlack</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -2290,6 +2308,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C0851C
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setLayerConfig" class="public" href="../earthbound/bank00/setLayerConfig.html">setLayerConfig</a><span class="tableEntryAnnotation">(arg1)</span>
+							</code>
+						</td>
+						<td>$C0AFCD
 </td>
 					</tr>
 					<tr>
@@ -3582,24 +3609,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC08CD5" class="public" href="../earthbound/bank00/unknownC08CD5.html">unknownC08CD5</a><span class="tableEntryAnnotation">(arg1, xbase, ybase)</span>
-							</code>
-						</td>
-						<td>$C08CD5 - Draw a SpriteMap list into the OAM buffer
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC08D79" class="public" href="../earthbound/bank00/unknownC08D79.html">unknownC08D79</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C08D79
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC09279" class="public" href="../earthbound/bank00/unknownC09279.html">unknownC09279</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -4279,15 +4288,6 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C0AE34
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC0AFCD" class="public" href="../earthbound/bank00/unknownC0AFCD.html">unknownC0AFCD</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C0AFCD
 </td>
 					</tr>
 					<tr>
@@ -5213,6 +5213,54 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="layerConfigCGADSUBs" class="public" href="../earthbound/bank00/layerConfigCGADSUBs.html">
+								<code>layerConfigCGADSUBs</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C0B010
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="layerConfigCGWSELs" class="public" href="../earthbound/bank00/layerConfigCGWSELs.html">
+								<code>layerConfigCGWSELs</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C0B006
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="layerConfigTDs" class="public" href="../earthbound/bank00/layerConfigTDs.html">
+								<code>layerConfigTDs</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C0AFFC
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a id="layerConfigTMs" class="public" href="../earthbound/bank00/layerConfigTMs.html">
+								<code>layerConfigTMs</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">11</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C0AFF1
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="sineLookupTable" class="public" href="../earthbound/bank00/sineLookupTable.html">
 								<code>sineLookupTable</code>
 							</a>
@@ -5401,54 +5449,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C0AE44
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC0AFF1" class="public" href="../earthbound/bank00/unknownC0AFF1.html">
-								<code>unknownC0AFF1</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">11</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C0AFF1
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC0AFFC" class="public" href="../earthbound/bank00/unknownC0AFFC.html">
-								<code>unknownC0AFFC</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C0AFFC
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC0B006" class="public" href="../earthbound/bank00/unknownC0B006.html">
-								<code>unknownC0B006</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C0B006
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC0B010" class="public" href="../earthbound/bank00/unknownC0B010.html">
-								<code>unknownC0B010</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">10</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C0B010
 </td>
 					</tr>
 					<tr>
