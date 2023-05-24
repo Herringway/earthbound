@@ -4849,7 +4849,7 @@ void useSoundStone(short arg1) {
 					unknown7EB3F3.firstTile = cast(ubyte)(soundStoneUnknown5[i] + unknown7EB37E[i].unknown4);
 					unknown7EB3F3.flags = cast(ubyte)(soundStoneUnknown6[i] + 0x31);
 					if (unknown7EB37E[i].unknown8 != 0) {
-						drawSprite(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)));
+						drawSprite(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, cast(ubyte)(unknown7EB37E[i].unknown10 >> 8))), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)));
 						drawSprite(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))));
 					}
 					unknown7EB3EE.firstTile = cast(ubyte)(soundStoneUnknown3[i] + 0x80);

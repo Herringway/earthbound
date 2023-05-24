@@ -7988,11 +7988,11 @@ immutable byte[256] sineLookupTable = [0, 3, 6, 9, 12, 15, 18, 21, 24, 28, 31, 3
 
 /// $C0B400
 short cosine(short arg1, short arg2) {
-	return cosineSine(arg1, cast(short)(arg2 - 0x40));
+	return cosineSine(arg1, cast(ubyte)(arg2 - 0x40));
 }
 
 /// $C0B40B
-short cosineSine(short arg1, short arg2) {
+short cosineSine(short arg1, ubyte arg2) {
 	return (arg1 * sineLookupTable[arg2]) >> 8;
 }
 
