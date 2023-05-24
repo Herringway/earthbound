@@ -335,7 +335,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Unknown7E4A6C", unknown7E4A6C);
 		InputEditable("Unknown7E4A6E", unknown7E4A6E);
 		InputEditable("Unknown7E4A70", unknown7E4A70);
-		InputEditable("Unknown7E4A72", unknown7E4A72);
+		InputEditable("Spawning enemy group", spawningEnemyGroup);
 		InputEditable("Unknown7E4A74", unknown7E4A74);
 		InputEditable("Unknown7E4A7A", unknown7E4A7A);
 		InputEditable("Current battle group", currentBattleGroup);
@@ -353,7 +353,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Unknown7E4DC4", unknown7E4DC4);
 		InputEditable("Unknown7E4DD4", unknown7E4DD4);
 		InputEditable("Misc debug flags", miscDebugFlags);
-		InputEditable("Unknown7E5D58", unknown7E5D58);
+		InputEditable("Intangibility frames", playerIntangibilityFrames);
 		InputEditable("Unknown7E5D5A", unknown7E5D5A);
 		InputEditable("Unknown7E5D5C", unknown7E5D5C);
 		InputEditable("Unknown7E5D5E", unknown7E5D5E);
@@ -373,12 +373,12 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Mushroomization modifier", mushroomizationModifier);
 		InputEditable("Mushroomized walking", mushroomizedWalkingFlag);
 		InputEditable("Unknown7E5DA2", unknown7E5DA2);
-		InputEditable("Unknown7E5DA4", unknown7E5DA4);
+		InputEditable("Temp entity surface flags", tempEntitySurfaceFlags);
 		InputEditable("Unknown7E5DA6", unknown7E5DA6);
 		InputEditable("Unknown7E5DA8", unknown7E5DA8);
 		InputEditable("Unknown7E5DAA", unknown7E5DAA);
-		InputEditable("Unknown7E5DAC", unknown7E5DAC);
-		InputEditable("Unknown7E5DAE", unknown7E5DAE);
+		InputEditable("Checked Left X", checkedCollisionLeftX);
+		InputEditable("Checked Top Y", checkedCollisionTopY);
 		InputEditable("Unknown7E5DB4", unknown7E5DB4);
 		InputEditable("Unknown7E5DB6", unknown7E5DB6);
 		InputEditable("Unknown7E5DB8", unknown7E5DB8);

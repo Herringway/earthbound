@@ -257,7 +257,7 @@ immutable short[4] unknownC3E220 = [8, 0, 8, 0];
 immutable short[4] unknownC3E228 = [8, 8, 0, 0];
 
 /// $C3E230
-immutable short[8] unknownC3E230 = [
+immutable short[8] interactXOffsets = [
 	Direction.up: 0,
 	Direction.upRight: 1,
 	Direction.right: 1,
@@ -269,7 +269,7 @@ immutable short[8] unknownC3E230 = [
 ];
 
 /// $C3E240
-immutable short[8] unknownC3E240 = [
+immutable short[8] interactYOffsets = [
 	Direction.up: -1,
 	Direction.upRight: -1,
 	Direction.right: 0,

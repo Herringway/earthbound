@@ -5,12 +5,12 @@ import earthbound.commondefs;
 import earthbound.hardware;
 
 __gshared ubyte dmaQueueIndex; /// $(DOLLAR)0000
-__gshared ubyte unknown7E0001; /// $(DOLLAR)0001
+__gshared ubyte lastCompletedDMAIndex; /// $(DOLLAR)0001
 __gshared ubyte frameCounter; /// $(DOLLAR)0002
 __gshared OAMEntry* oamAddr; /// $(DOLLAR)0003
 __gshared OAMEntry* oamEndAddr; /// $(DOLLAR)0005
 __gshared ubyte* oamHighTableAddr; /// $(DOLLAR)0007
-__gshared ubyte unknown7E0009; /// $(DOLLAR)0009
+__gshared ubyte unknown7E0009; /// $(DOLLAR)0009 - never read, only written once
 __gshared ubyte unknown7E000A; /// $(DOLLAR)000A
 __gshared ushort spritemapBank; /// $(DOLLAR)000B
 __gshared ubyte mirrorINIDISP; /// $(DOLLAR)000D
@@ -441,7 +441,7 @@ __gshared short unknown7E4A6A; /// $(DOLLAR)4A6A
 __gshared short unknown7E4A6C; /// $(DOLLAR)4A6C
 __gshared short unknown7E4A6E; /// $(DOLLAR)4A6E
 __gshared short unknown7E4A70; /// $(DOLLAR)4A70
-__gshared short unknown7E4A72; /// $(DOLLAR)4A72
+__gshared short spawningEnemyGroup; /// $(DOLLAR)4A72
 __gshared short unknown7E4A74; /// $(DOLLAR)4A74
 __gshared const(ubyte)* unknown7E4A76; /// $(DOLLAR)4A76
 __gshared short unknown7E4A7A; /// $(DOLLAR)4A7A
@@ -474,7 +474,7 @@ __gshared PlayerPositionBufferEntry[256] playerPositionBuffer; /// $(DOLLAR)5156
 //normally this occupies the same position as the player position buffer, but we're not so constrained
 __gshared Unknown7E5156CreditsEntry[128] unknown7E5156Credits; /// $(DOLLAR)5156
 __gshared short miscDebugFlags; /// $(DOLLAR)5D56
-__gshared short unknown7E5D58; /// $(DOLLAR)5D58
+__gshared short playerIntangibilityFrames; /// $(DOLLAR)5D58
 __gshared short unknown7E5D5A; /// $(DOLLAR)5D5A
 __gshared short unknown7E5D5C; /// $(DOLLAR)5D5C
 __gshared short unknown7E5D5E; /// $(DOLLAR)5D5E
@@ -497,12 +497,12 @@ __gshared ushort mushroomizationTimer; /// $(DOLLAR)5D9C - Time left until next 
 __gshared ushort mushroomizationModifier; /// $(DOLLAR)5D9E - Which set of swapped directions to use
 __gshared ushort mushroomizedWalkingFlag; /// $(DOLLAR)5DA0 - Whether or not to use mushroomized movement logic
 __gshared ushort unknown7E5DA2; /// $(DOLLAR)5DA2
-__gshared ushort unknown7E5DA4; /// $(DOLLAR)5DA4
+__gshared ushort tempEntitySurfaceFlags; /// $(DOLLAR)5DA4
 __gshared ushort unknown7E5DA6; /// $(DOLLAR)5DA6
 __gshared ushort unknown7E5DA8; /// $(DOLLAR)5DA8
 __gshared ushort unknown7E5DAA; /// $(DOLLAR)5DAA
-__gshared ushort unknown7E5DAC; /// $(DOLLAR)5DAC
-__gshared short unknown7E5DAE; /// $(DOLLAR)5DAE
+__gshared ushort checkedCollisionLeftX; /// $(DOLLAR)5DAC
+__gshared short checkedCollisionTopY; /// $(DOLLAR)5DAE
 
 __gshared short unknown7E5DB4; /// $(DOLLAR)5DB4
 __gshared short unknown7E5DB6; /// $(DOLLAR)5DB6
@@ -919,7 +919,7 @@ __gshared ushort debugEnemiesEnabledFlag; /// $(DOLLAR)B575
 __gshared ubyte[0x800] animatedMapPaletteBuffer; /// $(DOLLAR)B800
 __gshared ubyte[0x2000] unknown7EC000; /// $(DOLLAR)C000
 
-__gshared ubyte[64][64] unknown7EE000; /// $(DOLLAR)E000
+__gshared ubyte[64][64] loadedCollisionTiles; /// $(DOLLAR)E000
 __gshared Unknown7EF000Stuff unknown7EF000; /// $(DOLLAR)F000
 __gshared ubyte[0x10000] unknown7F0000; /// $(DOLLAR)7F0000
 ref ushort[0x80] paletteAnimTargetPalette() { return (cast(ushort*)&unknown7F0000[0x7800])[0 .. 0x80]; }

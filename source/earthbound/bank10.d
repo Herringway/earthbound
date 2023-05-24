@@ -437,7 +437,7 @@ immutable RGB[4] movementTextStringPalette = [
 /// $D0B880
 immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 	EnemyPlacementGroups(EventFlag.none, 0x64, 0x00, [
-		EnemyPlacementGroup(0x08, EnemyGroup.unknown000)
+		EnemyPlacementGroup(0x08, EnemyGroup.testEnemies)
 	]),
 	EnemyPlacementGroups(EventFlag.infoXyz, 0x05, 0x08, [
 		EnemyPlacementGroup(0x02, EnemyGroup.unknown001),
@@ -1461,7 +1461,7 @@ immutable EnemyPlacementGroups[203] enemyPlacementGroupsPointerTable = [
 
 /// $D0C60D
 immutable BattleEntryPointer[484] battleEntryPointerTable = [
-	BattleEntryPointer([
+	EnemyGroup.testEnemies: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.spitefulCrow),
 		BattleGroupEnemy(0xFF),
 		BattleGroupEnemy(1, EnemyID.petrifiedRoyalGuard),
@@ -1474,2178 +1474,2178 @@ immutable BattleEntryPointer[484] battleEntryPointerTable = [
 		BattleGroupEnemy(1, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(2, EnemyID.starman1)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown001: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.spitefulCrow),
 		BattleGroupEnemy(0xFF)
 	], 0x0040, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown002: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.runawayDog1),
 		BattleGroupEnemy(0xFF)
 	], 0x0040, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown003: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.coilSnake),
 		BattleGroupEnemy(0xFF)
 	], 0x0040, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown004: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.evilEye),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown005: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.mechanicalOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown006: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evilEye),
 		BattleGroupEnemy(1, EnemyID.mechanicalOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown007: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.mechanicalOctobot),
 		BattleGroupEnemy(1, EnemyID.evilEye),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown008: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skatePunk),
 		BattleGroupEnemy(1, EnemyID.yesManJunior),
 		BattleGroupEnemy(0, EnemyID.pogoPunk),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown009: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skatePunk),
 		BattleGroupEnemy(1, EnemyID.pogoPunk),
 		BattleGroupEnemy(0, EnemyID.yesManJunior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown010: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.pogoPunk),
 		BattleGroupEnemy(1, EnemyID.yesManJunior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown011: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skatePunk),
 		BattleGroupEnemy(1, EnemyID.yesManJunior),
 		BattleGroupEnemy(1, EnemyID.pogoPunk),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown012: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.runawayDog2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown013: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.spitefulCrow),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown014: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.gruffGoat),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown015: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(1, EnemyID.whirlingRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown016: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(1, EnemyID.woolyShambler),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown017: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.woolyShambler),
 		BattleGroupEnemy(1, EnemyID.whirlingRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown018: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(1, EnemyID.whirlingRobo),
 		BattleGroupEnemy(1, EnemyID.woolyShambler),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown019: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.spitefulCrow),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown020: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.gruffGoat),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown021: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.runawayDog2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown022: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(1, EnemyID.whirlingRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown023: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(1, EnemyID.woolyShambler),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown024: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.woolyShambler),
 		BattleGroupEnemy(1, EnemyID.whirlingRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown025: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(1, EnemyID.woolyShambler),
 		BattleGroupEnemy(1, EnemyID.whirlingRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown026: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.caveBoy2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown027: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.caveBoy1),
 		BattleGroupEnemy(1, EnemyID.mightyBearSeven),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown028: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.caveBoy1),
 		BattleGroupEnemy(2, EnemyID.mightyBearSeven),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown029: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.caveBoy1),
 		BattleGroupEnemy(1, EnemyID.mightyBearSeven),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown030: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.blackAntoid1),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown031: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown032: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown033: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.blackAntoid1),
 		BattleGroupEnemy(1, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown034: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown035: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown036: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.runawayDog1),
 		BattleGroupEnemy(1, EnemyID.cop),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown037: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crankyLady),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown038: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.annoyingOldPartyMan),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown039: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.unassumingLocalGuy),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown040: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.newAgeRetroHippie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown041: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(1, EnemyID.mobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown042: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown043: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mobileSprout),
 		BattleGroupEnemy(1, EnemyID.territorialOak),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown044: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mobileSprout),
 		BattleGroupEnemy(1, EnemyID.territorialOak),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown045: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mobileSprout),
 		BattleGroupEnemy(1, EnemyID.lilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown046: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown047: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.mobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown048: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.territorialOak),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown049: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.spinningRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown050: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown051: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lilUFO),
 		BattleGroupEnemy(1, EnemyID.mobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown052: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lilUFO),
 		BattleGroupEnemy(1, EnemyID.spinningRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown053: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.lilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown054: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.insaneCultist1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown055: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.insaneCultist1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown056: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.spitefulCrow),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown057: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.spitefulCrow),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown058: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crankyLady),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown059: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.annoyingOldPartyMan),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown060: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.newAgeRetroHippie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown061: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.trickOrTrickKid),
 		BattleGroupEnemy(1, EnemyID.handsomeTom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown062: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.trickOrTrickKid),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown063: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.handsomeTom),
 		BattleGroupEnemy(1, EnemyID.smilinSam),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown064: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.handsomeTom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown065: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.smilinSam),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown066: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.urbanZombie1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown067: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombiePossessor),
 		BattleGroupEnemy(1, EnemyID.urbanZombie1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown068: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.noGoodFly),
 		BattleGroupEnemy(1, EnemyID.putridMoldyman),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown069: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.putridMoldyman),
 		BattleGroupEnemy(1, EnemyID.smellyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown070: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.zombiePossessor),
 		BattleGroupEnemy(1, EnemyID.putridMoldyman),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown071: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombiePossessor),
 		BattleGroupEnemy(1, EnemyID.smellyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown072: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.putridMoldyman),
 		BattleGroupEnemy(1, EnemyID.smellyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown073: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.noGoodFly),
 		BattleGroupEnemy(1, EnemyID.putridMoldyman),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown074: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.noGoodFly),
 		BattleGroupEnemy(1, EnemyID.smellyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown075: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.noGoodFly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown076: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombieDog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown077: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombieDog),
 		BattleGroupEnemy(2, EnemyID.noGoodFly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown078: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.blackAntoid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown079: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(2, EnemyID.blackAntoid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown080: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(1, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown081: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown082: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown083: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown084: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(1, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown085: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown086: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.armoredFrog),
 		BattleGroupEnemy(1, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown087: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.plainCrocodile),
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown088: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.plainCrocodile),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(1, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown089: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.plainCrocodile),
 		BattleGroupEnemy(1, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown090: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.plainCrocodile),
 		BattleGroupEnemy(1, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown091: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.blackAntoid2),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown092: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.blackAntoid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown093: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(2, EnemyID.blackAntoid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown094: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(1, EnemyID.plainCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown095: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown096: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.plainCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown097: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.redAntoid),
 		BattleGroupEnemy(2, EnemyID.plainCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown098: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.redAntoid),
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown099: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown100: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown101: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.plainCrocodile),
 		BattleGroupEnemy(2, EnemyID.armoredFrog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown102: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.plainCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown103: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown104: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.violentRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown105: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown106: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown107: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown108: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(1, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown109: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.badBuffalo),
 		BattleGroupEnemy(1, EnemyID.desertWolf),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown110: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.badBuffalo),
 		BattleGroupEnemy(1, EnemyID.smilinSphere),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown111: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.badBuffalo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown112: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.desertWolf),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown113: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skelpion),
 		BattleGroupEnemy(1, EnemyID.cuteLilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown114: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skelpion),
 		BattleGroupEnemy(1, EnemyID.smilinSphere),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown115: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skelpion),
 		BattleGroupEnemy(1, EnemyID.smilinSphere),
 		BattleGroupEnemy(1, EnemyID.cuteLilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown116: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skelpion),
 		BattleGroupEnemy(1, EnemyID.crestedBooka),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown117: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skelpion),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown118: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.skelpion),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown119: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crestedBooka),
 		BattleGroupEnemy(1, EnemyID.badBuffalo),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown120: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crestedBooka),
 		BattleGroupEnemy(1, EnemyID.desertWolf),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown121: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crestedBooka),
 		BattleGroupEnemy(1, EnemyID.cuteLilUFO),
 		BattleGroupEnemy(1, EnemyID.smilinSphere),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown122: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crestedBooka),
 		BattleGroupEnemy(1, EnemyID.cuteLilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown123: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crestedBooka),
 		BattleGroupEnemy(1, EnemyID.smilinSphere),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown124: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.madTaxi),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown125: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.extraCrankyLady),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown126: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.annoyingReveler),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown127: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crazedSign),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown128: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.dalisClock),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown129: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.enragedFirePlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown130: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.enragedFirePlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown131: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.abstractArt),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown132: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.roboPump1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown133: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.roboPump1),
 		BattleGroupEnemy(1, EnemyID.enragedFirePlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown134: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.madTaxi),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown135: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.madTaxi),
 		BattleGroupEnemy(1, EnemyID.crazedSign),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown136: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.crazedSign),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown137: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.toughGuy),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown138: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.overZealousCop),
 		BattleGroupEnemy(1, EnemyID.toughGuy),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown139: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.overZealousCop),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown140: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.highClassUFO),
 		BattleGroupEnemy(1, EnemyID.beautifulUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown141: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.highClassUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown142: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.highClassUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown143: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.beautifulUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown144: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.dreadSkelpion),
 		BattleGroupEnemy(1, EnemyID.greatCrestedBooka),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown145: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.dreadSkelpion),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown146: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.greatCrestedBooka),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown147: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.greatCrestedBooka),
 		BattleGroupEnemy(1, EnemyID.dreadSkelpion),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown148: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.greatCrestedBooka),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown149: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.highClassUFO),
 		BattleGroupEnemy(1, EnemyID.beautifulUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown150: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.highClassUFO),
 		BattleGroupEnemy(1, EnemyID.marauderOctobot),
 		BattleGroupEnemy(1, EnemyID.beautifulUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown151: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.highClassUFO),
 		BattleGroupEnemy(1, EnemyID.marauderOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown152: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.beautifulUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown153: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.marauderOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown154: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.hostileElderOak),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown155: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.pitBullSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown156: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.demonicPetunia),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown157: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.bigPileOfPuke1),
 		BattleGroupEnemy(0, EnemyID.evenSlimierLittlePile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown158: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.bigPileOfPuke1),
 		BattleGroupEnemy(1, EnemyID.evenSlimierLittlePile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown159: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.hostileElderOak),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown160: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zapEel),
 		BattleGroupEnemy(1, EnemyID.hardCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown161: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.zapEel),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown162: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evenSlimierLittlePile),
 		BattleGroupEnemy(1, EnemyID.zapEel),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown163: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evenSlimierLittlePile),
 		BattleGroupEnemy(1, EnemyID.hardCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown164: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evenSlimierLittlePile),
 		BattleGroupEnemy(1, EnemyID.manlyFish),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown165: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.manlyFish),
 		BattleGroupEnemy(1, EnemyID.hardCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown166: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.manlyFish),
 		BattleGroupEnemy(1, EnemyID.manlyFishsBrother),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown167: BattleEntryPointer([
 		BattleGroupEnemy(6, EnemyID.pitBullSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown168: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.demonicPetunia),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown169: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.demonicPetunia),
 		BattleGroupEnemy(1, EnemyID.hostileElderOak),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown170: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.wetnosaur),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown171: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.chomposaur1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown172: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.egoOrb),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown173: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.careFreeBomb),
 		BattleGroupEnemy(2, EnemyID.mrMolecule),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown174: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.careFreeBomb),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown175: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.frenchKissOfDeath),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown176: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.loadedDice1),
 		BattleGroupEnemy(0, EnemyID.careFreeBomb),
 		BattleGroupEnemy(0, EnemyID.beautifulUFO),
 		BattleGroupEnemy(0, EnemyID.highClassUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown177: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.loadedDice2),
 		BattleGroupEnemy(0, EnemyID.electroSwoosh),
 		BattleGroupEnemy(0, EnemyID.fobby),
 		BattleGroupEnemy(0, EnemyID.uncontrollableSphere),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown178: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.electroSwoosh),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown179: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.electroSwoosh),
 		BattleGroupEnemy(1, EnemyID.frenchKissOfDeath),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown180: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.mrMolecule),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown181: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.mrMolecule),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown182: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.rowdyMouse),
 		BattleGroupEnemy(1, EnemyID.attackSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown183: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.rowdyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown184: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom2),
 		BattleGroupEnemy(1, EnemyID.rowdyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown185: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown186: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.struttinEvilMushroom2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown187: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.attackSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown188: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.attackSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown189: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.elderBatty),
 		BattleGroupEnemy(1, EnemyID.arachnid),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown190: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.elderBatty),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown191: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.elderBatty),
 		BattleGroupEnemy(1, EnemyID.arachnid),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown192: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.elderBatty),
 		BattleGroupEnemy(1, EnemyID.strongCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown193: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.strongCrocodile),
 		BattleGroupEnemy(1, EnemyID.arachnid),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown194: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.strongCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown195: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.strongCrocodile),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown196: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.arachnid),
 		BattleGroupEnemy(0xFF)
 	], 0x00C0, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown197: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.blackAntoid1),
 		BattleGroupEnemy(1, EnemyID.rowdyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown198: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.blackAntoid1),
 		BattleGroupEnemy(1, EnemyID.attackSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown199: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.blackAntoid1),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown200: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.blackAntoid1),
 		BattleGroupEnemy(1, EnemyID.rowdyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown201: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.blackAntoid1),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown202: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.rowdyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown203: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.rowdyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown204: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.attackSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown205: BattleEntryPointer([
 		BattleGroupEnemy(6, EnemyID.attackSlug),
 		BattleGroupEnemy(0xFF)
 	], 0x00BE, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown206: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.molePlayingRough),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown207: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mrBatty),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown208: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mrBatty),
 		BattleGroupEnemy(1, EnemyID.molePlayingRough),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown209: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mrBatty),
 		BattleGroupEnemy(1, EnemyID.mightyBear),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown210: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.mrBatty),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown211: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.molePlayingRough),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown212: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.molePlayingRough),
 		BattleGroupEnemy(1, EnemyID.mightyBear),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown213: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mightyBear),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown214: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mightyBear),
 		BattleGroupEnemy(1, EnemyID.mrBatty),
 		BattleGroupEnemy(0xFF)
 	], 0x00BF, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown215: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.urbanZombie1),
 		BattleGroupEnemy(1, EnemyID.zombieDog),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown216: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.urbanZombie1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown217: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombieDog),
 		BattleGroupEnemy(2, EnemyID.noGoodFly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown218: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombiePossessor),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown219: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombiePossessor),
 		BattleGroupEnemy(1, EnemyID.urbanZombie1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown220: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.zombiePossessor),
 		BattleGroupEnemy(1, EnemyID.urbanZombie1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown221: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.zombiePossessor),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown222: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.violentRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown223: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.foppy1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown224: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.foppy1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown225: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.foppy1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown226: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.foppy1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown227: BattleEntryPointer([
 		BattleGroupEnemy(6, EnemyID.foppy1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown228: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.mostlyBadFly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown229: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.slimyLilPile),
 		BattleGroupEnemy(1, EnemyID.mostlyBadFly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown230: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.slimyLilPile),
 		BattleGroupEnemy(2, EnemyID.mostlyBadFly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown231: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.slimyLilPile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown232: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.slimyLilPile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown233: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.slimyLilPile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown234: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown235: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.farmZombie),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown236: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown237: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(1, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown238: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown239: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown240: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown241: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown242: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(1, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown243: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(1, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown244: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.ranboob),
 		BattleGroupEnemy(0xFF)
 	], 0x00C1, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown245: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown246: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown247: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown248: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.struttinEvilMushroom1),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown249: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giganticAnt1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown250: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.giganticAnt1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown251: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.thirstyCoilSnake),
 		BattleGroupEnemy(1, EnemyID.giganticAnt1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown252: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.thirstyCoilSnake),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown253: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.thirstyCoilSnake),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown254: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.madDuck),
 		BattleGroupEnemy(1, EnemyID.thirstyCoilSnake),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown255: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown256: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.nooseMan),
 		BattleGroupEnemy(1, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown257: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.nooseMan),
 		BattleGroupEnemy(2, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown258: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.nooseMan),
 		BattleGroupEnemy(3, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown259: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.nooseMan),
 		BattleGroupEnemy(2, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown260: BattleEntryPointer([
 		BattleGroupEnemy(5, EnemyID.nooseMan),
 		BattleGroupEnemy(1, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown261: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.nooseMan),
 		BattleGroupEnemy(1, EnemyID.giganticAnt1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown262: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.nooseMan),
 		BattleGroupEnemy(1, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown263: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.nooseMan),
 		BattleGroupEnemy(2, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown264: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.nooseMan),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown265: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.nooseMan),
 		BattleGroupEnemy(1, EnemyID.giganticAnt1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown266: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.musica),
 		BattleGroupEnemy(1, EnemyID.mysticalRecord),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown267: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.musica),
 		BattleGroupEnemy(2, EnemyID.mysticalRecord),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown268: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.musica),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown269: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.scaldingCoffeeCup),
 		BattleGroupEnemy(1, EnemyID.mysticalRecord),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown270: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.scaldingCoffeeCup),
 		BattleGroupEnemy(2, EnemyID.mysticalRecord),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown271: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.scaldingCoffeeCup),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown272: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mysticalRecord),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown273: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.stinkyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown274: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.deadlyMouse),
 		BattleGroupEnemy(1, EnemyID.stinkyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown275: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.filthyAttackRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown276: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.filthyAttackRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown277: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.deadlyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown278: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.deadlyMouse),
 		BattleGroupEnemy(1, EnemyID.stinkyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown279: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.stinkyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown280: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.deadlyMouse),
 		BattleGroupEnemy(1, EnemyID.stinkyGhost),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown281: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.filthyAttackRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown282: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.filthyAttackRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown283: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.filthyAttackRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown284: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.filthyAttackRoach),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown285: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.deadlyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown286: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.deadlyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x00C2, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown287: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.thunderMite),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown288: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.tangoo1),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown289: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.thunderMite),
 		BattleGroupEnemy(1, EnemyID.tangoo1),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown290: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.tangoo1),
 		BattleGroupEnemy(1, EnemyID.kissOfDeath),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown291: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.thunderMite),
 		BattleGroupEnemy(1, EnemyID.tangoo1),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown292: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.tangoo1),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown293: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.thunderMite),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown294: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.conductingMenace),
 		BattleGroupEnemy(1, EnemyID.tangoo1),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown295: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.conductingMenace),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown296: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.kissOfDeath),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown297: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.kissOfDeath),
 		BattleGroupEnemy(1, EnemyID.conductingMenace),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown298: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.conductingMenace),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown299: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.conductingMenace),
 		BattleGroupEnemy(1, EnemyID.tangoo1),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown300: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.conductingMenace),
 		BattleGroupEnemy(1, EnemyID.tangoo1),
 		BattleGroupEnemy(1, EnemyID.kissOfDeath),
 		BattleGroupEnemy(0xFF)
 	], 0x00C3, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown301: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown302: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown303: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fierceShatteredMan),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown304: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fierceShatteredMan),
 		BattleGroupEnemy(1, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown305: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown306: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown307: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown308: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown309: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.petrifiedRoyalGuard),
 		BattleGroupEnemy(1, EnemyID.lethalAspHieroglyph),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown310: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.arachnid2),
 		BattleGroupEnemy(1, EnemyID.guardianHieroglyph),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown311: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fierceShatteredMan),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown312: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fierceShatteredMan),
 		BattleGroupEnemy(1, EnemyID.petrifiedRoyalGuard),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown313: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.petrifiedRoyalGuard),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown314: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lethalAspHieroglyph),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown315: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown316: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown317: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown318: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.arachnid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown319: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fierceShatteredMan),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown320: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fierceShatteredMan),
 		BattleGroupEnemy(1, EnemyID.petrifiedRoyalGuard),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown321: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.petrifiedRoyalGuard),
 		BattleGroupEnemy(1, EnemyID.lethalAspHieroglyph),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown322: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fierceShatteredMan),
 		BattleGroupEnemy(1, EnemyID.guardianHieroglyph),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown323: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.scaldingCoffeeCup),
 		BattleGroupEnemy(1, EnemyID.mysticalRecord),
 		BattleGroupEnemy(1, EnemyID.worthlessProtoplasm),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown324: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.cuteLilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown325: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.cuteLilUFO),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown326: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.dalisClock),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown327: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.roboPump1),
 		BattleGroupEnemy(1, EnemyID.enragedFirePlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown328: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.roboPump1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown329: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.enragedFirePlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown330: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown331: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.lesserMook),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown332: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown333: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown334: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown335: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.lesserMook),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown336: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.lesserMook),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown337: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lesserMook),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown338: BattleEntryPointer([
 		BattleGroupEnemy(5, EnemyID.worthlessProtoplasm),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown339: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.worthlessProtoplasm),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown340: BattleEntryPointer([
 		BattleGroupEnemy(3, EnemyID.worthlessProtoplasm),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown341: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown342: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown343: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown344: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown345: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown346: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown347: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown348: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown349: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown350: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown351: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mookSenior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown352: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown353: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mookSenior),
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown354: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown355: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown356: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown357: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starmanSuper1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown358: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(1, EnemyID.starmanSuper1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown359: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starmanSuper1),
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown360: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(1, EnemyID.starmanSuper1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
-		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
-		BattleGroupEnemy(1, EnemyID.starman1),
-		BattleGroupEnemy(1, EnemyID.starmanSuper1),
-		BattleGroupEnemy(0xFF)
-	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown361: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(1, EnemyID.starman1),
 		BattleGroupEnemy(1, EnemyID.starmanSuper1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown362: BattleEntryPointer([
+		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
+		BattleGroupEnemy(1, EnemyID.starman1),
+		BattleGroupEnemy(1, EnemyID.starmanSuper1),
+		BattleGroupEnemy(0xFF)
+	], 0x0000, 0x00, LetterboxStyle.large),
+	EnemyGroup.unknown363: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.starmanSuper1),
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown364: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starmanSuper1),
 		BattleGroupEnemy(1, EnemyID.militaryOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown365: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(2, EnemyID.starmanSuper1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown366: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(1, EnemyID.militaryOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown367: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(1, EnemyID.militaryOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown368: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.atomicPowerRobot),
 		BattleGroupEnemy(2, EnemyID.militaryOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown369: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown370: BattleEntryPointer([
 		BattleGroupEnemy(6, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown371: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown372: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown373: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.uncontrollableSphere),
 		BattleGroupEnemy(1, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown374: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown375: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.hyperSpinningRobo),
 		BattleGroupEnemy(1, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown376: BattleEntryPointer([
 		BattleGroupEnemy(4, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown377: BattleEntryPointer([
 		BattleGroupEnemy(6, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown378: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.conductingSpirit),
 		BattleGroupEnemy(1, EnemyID.fobby),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown379: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.uncontrollableSphere),
 		BattleGroupEnemy(1, EnemyID.conductingSpirit),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown380: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.uncontrollableSphere),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown381: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.conductingSpirit),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown382: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.conductingSpirit),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown383: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.hyperSpinningRobo),
 		BattleGroupEnemy(1, EnemyID.conductingSpirit),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown384: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.conductingSpirit),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown385: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.uncontrollableSphere),
 		BattleGroupEnemy(1, EnemyID.conductingSpirit),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown386: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.hyperSpinningRobo),
 		BattleGroupEnemy(1, EnemyID.conductingSpirit),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown387: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.hyperSpinningRobo),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown388: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.hyperSpinningRobo),
 		BattleGroupEnemy(1, EnemyID.uncontrollableSphere),
 		BattleGroupEnemy(0xFF)
 	], 0x00C4, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown389: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown390: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.psychicPsycho),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown391: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.evilElemental),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown392: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evilElemental),
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown393: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evilElemental),
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown394: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.evilElemental),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown395: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evilElemental),
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown396: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown397: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown398: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.psychicPsycho),
 		BattleGroupEnemy(1, EnemyID.majorPsychicPsycho),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown399: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evilElemental),
 		BattleGroupEnemy(1, EnemyID.psychicPsycho),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown400: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(1, EnemyID.majorPsychicPsycho),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown401: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(1, EnemyID.majorPsychicPsycho),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown402: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.soulConsumingFlame),
 		BattleGroupEnemy(0xFF)
 	], 0x00C5, 0x01, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown403: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.nuclearReactorRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown404: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.wildNWoolyShambler),
 		BattleGroupEnemy(1, EnemyID.ultimateOctobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown405: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ultimateOctobot),
 		BattleGroupEnemy(1, EnemyID.nuclearReactorRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown406: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.squatterDemon1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown407: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.wildNWoolyShambler),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown408: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.nuclearReactorRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown409: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.nuclearReactorRobot),
 		BattleGroupEnemy(1, EnemyID.finalStarman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown410: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.finalStarman1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown411: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.ghostOfStarman1),
 		BattleGroupEnemy(1, EnemyID.finalStarman1),
 		BattleGroupEnemy(1, EnemyID.nuclearReactorRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown412: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.bionicKraken1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.large),
-	BattleEntryPointer([
+	EnemyGroup.unknown413: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mobileSprout),
 		BattleGroupEnemy(1, EnemyID.ramblinEvilMushroom),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown414: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown415: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown416: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.insaneCultist1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown417: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.insaneCultist1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown418: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.zombiePossessor),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown419: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.mrBatty),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown420: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mrBatty),
 		BattleGroupEnemy(1, EnemyID.zombiePossessor),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown421: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skelpion),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown422: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.madTaxi),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown423: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.criminalCaterpillar),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown424: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.masterCriminalWorm),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown425: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.magicButterfly),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown426: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.coilSnake),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown427: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.coilSnake),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown428: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.molePlayingRough),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown429: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.molePlayingRough),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown430: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.molePlayingRough),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown431: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.skatePunk),
 		BattleGroupEnemy(0, EnemyID.pogoPunk),
 		BattleGroupEnemy(0, EnemyID.yesManJunior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown432: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.pogoPunk),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown433: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.yesManJunior),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown434: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.insaneCultist1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown435: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.unassumingLocalGuy),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown436: BattleEntryPointer([
 		BattleGroupEnemy(2, EnemyID.insaneCultist1),
 		BattleGroupEnemy(1, EnemyID.spitefulCrow),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown437: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.slimyLilPile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown438: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.enragedFirePlug),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown439: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.roboPump1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown440: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.abstractArt),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown441: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.sentryRobot),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown442: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.shatteredMan),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown443: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.guardianHieroglyph),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown444: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.lethalAspHieroglyph),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown445: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.madDuck),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.unknown446: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.worthlessProtoplasm),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown447: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.rowdyMouse),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.small),
-	BattleEntryPointer([
+	EnemyGroup.bossFrank: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.frank),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown449: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.frankysteinMarkII1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown450: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.titanicAnt1),
 		BattleGroupEnemy(2, EnemyID.blackAntoid2),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown451: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.cop),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.medium),
-	BattleEntryPointer([
+	EnemyGroup.unknown452: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.captainStrong),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown453: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.everdred1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown454: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mrCarpainter1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown455: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.mondoMole1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown456: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.masterBelch1),
 		BattleGroupEnemy(0, EnemyID.slimyLilPile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown457: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.trillionageSprout1),
 		BattleGroupEnemy(2, EnemyID.toughMobileSprout),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown458: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.boogeyTent1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown459: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.guardianDigger1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown460: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.deptStoreSpook1),
 		BattleGroupEnemy(0, EnemyID.insaneCultist1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown461: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.evilManiMani1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown462: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.clumsyRobot1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown463: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.plagueRatOfDoom1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown464: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.thunderAndStorm1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown465: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.shrooom1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown466: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starmanDeluxe1),
 		BattleGroupEnemy(0, EnemyID.starman1),
 		BattleGroupEnemy(0, EnemyID.starmanSuper1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown467: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.kraken1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown468: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.guardianGeneral1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown469: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.masterBarf1),
 		BattleGroupEnemy(0, EnemyID.evenSlimierLittlePile),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown470: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.electroSpecter1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown471: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.carbonDog1),
 		BattleGroupEnemy(0, EnemyID.diamondDog1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown472: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.yourNightmare1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown473: BattleEntryPointer([
 		BattleGroupEnemy(0, EnemyID.starmanJr),
 		BattleGroupEnemy(0, EnemyID.giygas1),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown474: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.starmanJr),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown475: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giygas2),
 		BattleGroupEnemy(1, EnemyID.heavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.bossGiygasPhase1: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giygas3),
 		BattleGroupEnemy(1, EnemyID.heavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.bossGiygasPhase2: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giygas4),
 		BattleGroupEnemy(0, EnemyID.heavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.bossGiygasPhaseDuringPrayer1: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giygas5),
 		BattleGroupEnemy(0, EnemyID.heavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.bossGiygasPhaseAfterPrayer1: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giygas6),
 		BattleGroupEnemy(0, EnemyID.heavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.bossGiygasPhaseAfterPrayer7: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giygas6),
 		BattleGroupEnemy(0, EnemyID.heavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.magicButterfly: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.magicButterfly),
 		BattleGroupEnemy(0xFF)
 	], 0x0154, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.unknown482: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.miniBarf),
 		BattleGroupEnemy(0xFF)
 	], 0x0000, 0x00, LetterboxStyle.none),
-	BattleEntryPointer([
+	EnemyGroup.bossGiygasPhaseFinal: BattleEntryPointer([
 		BattleGroupEnemy(1, EnemyID.giygas6),
 		BattleGroupEnemy(0, EnemyID.heavilyArmedPokey3),
 		BattleGroupEnemy(0xFF)

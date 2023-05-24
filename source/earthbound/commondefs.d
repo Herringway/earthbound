@@ -4585,7 +4585,7 @@ enum MainMenuOptions {
 }
 ///
 enum EnemyGroup {
-	unknown000 = 0,
+	testEnemies = 0,
 	unknown001 = 1,
 	unknown002 = 2,
 	unknown003 = 3,
@@ -5066,7 +5066,7 @@ enum EnemyGroup {
 	bossGiygasPhaseDuringPrayer1 = 478,
 	bossGiygasPhaseAfterPrayer1 = 479,
 	bossGiygasPhaseAfterPrayer7 = 480,
-	unknown481 = 481,
+	magicButterfly = 481,
 	unknown482 = 482,
 	bossGiygasPhaseFinal = 483,
 }
@@ -5562,6 +5562,12 @@ enum LayerConfig {
 	ColourBackdropBG2AddAvg = 7,
 	ColourBackdropBG2Sub = 8,
 	ColourBackdropBG2SubAvg = 9,
+}
+
+enum EnemyMovementFlags {
+	canMoveInWater = 1 << 0,
+	canMoveInHeat = 1 << 1,
+	canMoveOnLand = 1 << 2,
 }
 
 ///
@@ -6294,7 +6300,7 @@ struct Enemy {
 	EnemyType type; ///27
 	ushort battleSprite; ///28
 	ushort overworldSprite; ///30
-	ubyte runFlag; ///32
+	ubyte enemyMovementFlags; ///32
 	ushort hp; ///33
 	ushort pp; ///35
 	uint exp; ///37

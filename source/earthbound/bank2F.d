@@ -21657,7 +21657,7 @@ void renderAttributeRow(ushort x, ushort y) {
 		ushort x14 = x & 0x1F;
 		for (short i = 0; i < 0x20; i++) {
 			if (x < 0x8000) {
-				x16[x14] = getAttributeTileFor(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
+				x16[x14] = getAttributeTileFor(loadedCollisionTiles[y & 0x3F][x & 0x3F], x, y);
 			}
 			x14 = (x14 + 1) & 0x1F;
 			x++;
@@ -21676,7 +21676,7 @@ void renderAttributeColumn(short x, short y) {
 		ushort x14 = y & 0x1F;
 		for (short i = 0; i < 0x20; i++) {
 			if (y < 0x8000) {
-				x16[x14] = getAttributeTileFor(unknown7EE000[y & 0x3F][x & 0x3F], x, y);
+				x16[x14] = getAttributeTileFor(loadedCollisionTiles[y & 0x3F][x & 0x3F], x, y);
 			}
 			x14 = (x14 + 1) & 0x1F;
 			y++;

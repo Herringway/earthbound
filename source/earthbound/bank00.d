@@ -444,7 +444,7 @@ void loadMapColumn(short x, short y) {
 /// $C00CF3
 void loadCollisionRow(short x, short y) {
 	ushort* x02 = &unknown7EF000.unknown7EF000[(y / 4) & 0xF][0];
-	ubyte* x10 = &unknown7EE000[y & 0x3F][0];
+	ubyte* x10 = &loadedCollisionTiles[y & 0x3F][0];
 	for (short i = 0; i < 16; i++) {
 		const(ubyte[4][4])* x12 = tileCollisionBuffer[*x02];
 		x02++;
@@ -459,7 +459,7 @@ void loadCollisionRow(short x, short y) {
 /// $C00D7E
 void loadCollisionColumn(short x, short y) {
 	ushort* x02 = &unknown7EF000.unknown7EF000[0][(x >> 2) & 0xF];
-	ubyte* x10 = &unknown7EE000[0][x & 0x3F];
+	ubyte* x10 = &loadedCollisionTiles[0][x & 0x3F];
 	for (short i = 0; i < 16; i++) {
 		const(ubyte[4][4])* x12 = tileCollisionBuffer[*x02];
 		x02 += 16;
@@ -1201,8 +1201,8 @@ short unknownC0263D(short x, short y) {
 
 /// $C02668
 void unknownC02668(short arg1, short arg2, short arg3) {
-	short x2A;
-	const(BattleGroupEnemy)* x0A;
+	short group;
+	const(BattleGroupEnemy)* groupEnemies;
 	version(bugfix) { // out of bounds checking wasn't done before
 		if (arg1 >= mapDataPerSectorAttributesTable[0].length * 4) {
 			return;
@@ -1213,38 +1213,38 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 	}
 	if ((debugging != 0) && (debugEnemiesEnabled() != 0) && (rand() < 16)) {
 		tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
-		x2A = 0;
-		x0A = &battleEntryPointerTable[0].enemies[0];
+		group = EnemyGroup.testEnemies;
+		groupEnemies = &battleEntryPointerTable[EnemyGroup.testEnemies].enemies[0];
 	} else if ((++unknown7E4A7A & 0xF) == 0) {
 		tracef("Trying to spawn a magic butterfly: %s, %s, %s", arg1, arg2, arg3);
-		short x28 = void;
+		short magicButterflyChance = void;
 		switch (mapDataPerSectorAttributesTable[(arg2 * 8) / 16][(arg1 * 8) / 32] & 7) {
-			case 0:
-				x28 = 2;
+			case MapSectorMiscConfig.none:
+				magicButterflyChance = 2;
 				break;
-			case 1:
-				x28 = 0;
+			case MapSectorMiscConfig.indoorArea:
+				magicButterflyChance = 0;
 				break;
-			case 2:
-				x28 = 1;
+			case MapSectorMiscConfig.exitMouseUsable:
+				magicButterflyChance = 1;
 				break;
-			case 3:
-				x28 = 0;
+			case MapSectorMiscConfig.useMiniSprites:
+				magicButterflyChance = 0;
 				break;
-			case 4:
-				x28 = 5;
+			case MapSectorMiscConfig.useMagicantSprites:
+				magicButterflyChance = 5;
 				break;
-			case 5:
-				x28 = 1;
+			case MapSectorMiscConfig.useRobotSprites:
+				magicButterflyChance = 1;
 				break;
 			default: break;
 		}
-		if ((rand() % 100) >= x28) {
+		if ((rand() % 100) >= magicButterflyChance) {
 			return;
 		}
-		x2A = 481;
-		unknown7E4A72 = 481;
-		x0A = &battleEntryPointerTable[481].enemies[0];
+		group = EnemyGroup.magicButterfly;
+		spawningEnemyGroup = EnemyGroup.magicButterfly;
+		groupEnemies = &battleEntryPointerTable[EnemyGroup.magicButterfly].enemies[0];
 	} else if (arg3 != 0) {
 		tracef("Trying to spawn an enemy: %s, %s, %s", arg1, arg2, arg3);
 		if (globalMapTilesetPaletteData[(arg2 * 8) / 16][(arg1 * 8) / 32] / 8 == unknown7E436E) {
@@ -1271,14 +1271,14 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 				}
 				x22++;
 			}
-			x2A = x22[0].groupID;
-			unknown7E4A72 = x2A;
-			x0A = &battleEntryPointerTable[x2A].enemies[0];
+			group = x22[0].groupID;
+			spawningEnemyGroup = group;
+			groupEnemies = &battleEntryPointerTable[group].enemies[0];
 			for (short i = 0; i != 23; i++) {
 				if (entityScriptTable[i] == -1) {
 					continue;
 				}
-				if (x2A + 0x8000 != entityTPTEntries[i]) {
+				if (group + 0x8000 != entityTPTEntries[i]) {
 					continue;
 				}
 				if (x1C == entityUnknown2D4E[i]) {
@@ -1288,21 +1288,21 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		}
 	}
 	version(noUndefinedBehaviour) {
-		if (x0A is null) {
+		if (groupEnemies is null) {
 			return;
 		}
 	}
-	while ((unknown7E4A6E = x0A[0].count) != 0xFF) {
-		tracef("Trying to spawn %sx %s", x0A[0].count, cast(EnemyID)x0A[0].enemyID);
-		unknown7E4A76 = &enemyConfigurationTable[x0A[0].enemyID].name[0];
-		short x26 = enemyConfigurationTable[x0A[0].enemyID].overworldSprite;
+	while ((unknown7E4A6E = groupEnemies[0].count) != 0xFF) {
+		tracef("Trying to spawn %sx %s", groupEnemies[0].count, cast(EnemyID)groupEnemies[0].enemyID);
+		unknown7E4A76 = &enemyConfigurationTable[groupEnemies[0].enemyID].name[0];
+		short x26 = enemyConfigurationTable[groupEnemies[0].enemyID].overworldSprite;
 		unknown7E4A74 = x26;
-		short x16 = enemyConfigurationTable[x0A[0].enemyID].eventScript;
+		short x16 = enemyConfigurationTable[groupEnemies[0].enemyID].eventScript;
 		if (x16 == 0) {
 			x16 = ActionScript.unknown019;
 		}
 		while (unknown7E4A6E-- != 0) {
-			if (x0A[0].enemyID == EnemyID.magicButterfly) {
+			if (groupEnemies[0].enemyID == EnemyID.magicButterfly) {
 				if (magicButterfly != 0) {
 					continue;
 				}
@@ -1318,12 +1318,12 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			for (short i = 0; i != 20; i++) {
 				x04 = cast(short)((arg1 * 8 + (rand() % unknown7E4A62)) * 8);
 				x02 = cast(short)((arg2 * 8 + (rand() % unknown7E4A64)) * 8);
-				tracef("Spawning %s at (%s, %s)", cast(EnemyID)x0A[0].enemyID, x04, x02);
-				short x12 = unknownC05F33(x04, x02, x14);
-				if ((x12 & 0xD0) != 0) {
+				tracef("Spawning %s at (%s, %s)", cast(EnemyID)groupEnemies[0].enemyID, x04, x02);
+				short x12 = getSurfaceFlags(x04, x02, x14);
+				if ((x12 & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs)) != 0) {
 					continue;
 				}
-				if (unknownC05DE7(x12, x14, x0A[0].enemyID) == 0) {
+				if (unknownC05DE7(x12, x14, groupEnemies[0].enemyID) == 0) {
 					goto Unknown28;
 				}
 			}
@@ -1332,17 +1332,17 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			Unknown28:
 			entityAbsXTable[x14] = x04;
 			entityAbsYTable[x14] = x02;
-			entityTPTEntries[x14] = x2A + 0x8000;
-			entityEnemyIDs[x14] = x0A[0].enemyID;
+			entityTPTEntries[x14] = group + 0x8000;
+			entityEnemyIDs[x14] = groupEnemies[0].enemyID;
 			entityUnknown2D4E[x14] = cast(short)(arg2 * 128 + arg1);
 			entityUnknown2C5E[x14] = 0;
 			entityWeakEnemyValue[x14] = rand();
 			overworldEnemyCount++;
-			if (x0A[0].enemyID == EnemyID.magicButterfly) {
+			if (groupEnemies[0].enemyID == EnemyID.magicButterfly) {
 				magicButterfly = 1;
 			}
 		}
-		x0A++;
+		groupEnemies++;
 	}
 }
 
@@ -1806,8 +1806,8 @@ void unknownC03C25() {
 }
 
 /// $C03C4B
-short unknownC03C4B() {
-	return unknownC05D8B(gameState.leaderX.integer, gameState.leaderY.integer, 0xC) & 0xC0;
+short checkBicycleCollisionFlags() {
+	return getCollisionFlags(gameState.leaderX.integer, gameState.leaderY.integer, 12) & (SurfaceFlags.solid | SurfaceFlags.unknown2);
 }
 
 /// $C03C5E
@@ -1963,7 +1963,7 @@ void unknownC03FA9(short x, short y, short direction) {
 	gameState.leaderX.integer = x;
 	gameState.leaderY.integer = y;
 	gameState.leaderDirection = direction;
-	gameState.troddenTileType = unknownC05F33(x, y, gameState.firstPartyMemberEntity);
+	gameState.troddenTileType = getSurfaceFlags(x, y, gameState.firstPartyMemberEntity);
 	unknownC03A94(direction);
 	movePartyToLeaderPosition();
 	for (short i = 0; i < 6; i++) {
@@ -2043,8 +2043,8 @@ short mapInputToDirection(short style) {
 short unknownC04116(short direction) {
 	short x14 = cast(short)(unknownC3E148[direction] + gameState.leaderX.integer);
 	short x04 = cast(short)(unknownC3E158[direction] + gameState.leaderY.integer);
-	short x12 = unknown7E5D58;
-	unknown7E5D58 = 1;
+	short x12 = playerIntangibilityFrames;
+	playerIntangibilityFrames = 1;
 	while (true) {
 		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 > 0) {
@@ -2052,7 +2052,7 @@ short unknownC04116(short direction) {
 			unknown7E5D64 = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & 0x82) != 0x82) {
+		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2062,7 +2062,7 @@ short unknownC04116(short direction) {
 			x04 += ((unknownC3E158[direction] & 0x8000) != 0) ? -8 : 8;
 		}
 	}
-	unknown7E5D58 = x12;
+	playerIntangibilityFrames = x12;
 	if ((currentTPTEntry == -1) || (currentTPTEntry == 0)) {
 		unknownC4334A(direction);
 	}
@@ -2119,8 +2119,8 @@ ushort findNearbyCheckableTPTEntry() {
 short unknownC042EF(short direction) {
 	short x14 = cast(short)(unknownC3E148[direction] + gameState.leaderX.integer);
 	short x04 = cast(short)(unknownC3E158[direction] + gameState.leaderY.integer);
-	short x12 = unknown7E5D58;
-	unknown7E5D58 = 1;
+	short x12 = playerIntangibilityFrames;
+	playerIntangibilityFrames = 1;
 	while (true) {
 		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 >= 0) {
@@ -2128,7 +2128,7 @@ short unknownC042EF(short direction) {
 			unknown7E5D64 = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & 0x82) != 0x82) {
+		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2138,7 +2138,7 @@ short unknownC042EF(short direction) {
 			x04 += ((unknownC3E158[direction] & 0x8000) != 0) ? -8 : 8;
 		}
 	}
-	unknown7E5D58 = x12;
+	playerIntangibilityFrames = x12;
 	if ((currentTPTEntry == 0) || (currentTPTEntry == -1)) {
 		unknownC065C2(direction);
 	}
@@ -2372,7 +2372,7 @@ void handleBicycleMovement(short arg1) {
 	if (entityCollidedObjects[23] == -1) {
 		gameState.unknown90++;
 		unknown7E2890++;
-		if ((x1A & 0xC0) != 0) {
+		if ((x1A & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
 			gameState.unknown90 = 0;
 		} else {
 			gameState.leaderX.combined = x10.combined;
@@ -2456,9 +2456,9 @@ void handleSpecialCamera() {
 void unknownC04C45() {
 	short x14 = gameState.unknown90;
 	gameState.unknown90 = 0;
-	if (unknown7E5D58 != 0) {
+	if (playerIntangibilityFrames != 0) {
 		unknownC07C5B();
-		unknown7E5D58--;
+		playerIntangibilityFrames--;
 	}
 	if ((debugging != 0) && ((padState[0] & Pad.x) != 0) && ((frameCounter & 0xF) != 0)) {
 		return;
@@ -2788,7 +2788,7 @@ short unknownC0546B() {
 
 /// $C054C9
 short unknownC054C9(short arg1, short arg2) {
-	short y = unknown7EE000[arg2 & 0x3F][arg1 & 0x3F];
+	short y = loadedCollisionTiles[arg2 & 0x3F][arg1 & 0x3F];
 	if ((y & 0x10) != 0) {
 		unknown7E5DA8 = arg1;
 		unknown7E5DAA = arg2;
@@ -2797,47 +2797,47 @@ short unknownC054C9(short arg1, short arg2) {
 }
 
 /// $C05503
-void unknownC05503(short arg1, short arg2) {
-	ushort x10 = cast(ushort)(unknown7EE000[(unknown7E5DAE / 8) & 0x3F][(arg1 / 8) & 0x3F] | unknown7E5DA4);
+void checkVerticalUpTileCollision(short arg1, short arg2) {
+	ushort x10 = cast(ushort)(loadedCollisionTiles[(checkedCollisionTopY / 8) & 0x3F][(arg1 / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x14 = (arg1 + 7) / 8;
 	for (short i = 0; i < hitboxWidths[arg2]; i++) {
-		x10 |= unknown7EE000[(unknown7E5DAE / 8) & 0x3F][x14 & 0x3F];
+		x10 |= loadedCollisionTiles[(checkedCollisionTopY / 8) & 0x3F][x14 & 0x3F];
 		x14++;
 	}
-	unknown7E5DA4 = x10;
+	tempEntitySurfaceFlags = x10;
 }
 
 /// $C0559C
-void unknownC0559C(short arg1, short arg2) {
-	ushort y = cast(ushort)(unknown7EE000[((((hitboxHeights[arg2] * 8) + unknown7E5DAE - 1) / 8) & 0x3F)][(arg1 / 8) & 0x3F] | unknown7E5DA4);
+void checkVerticalDownTileCollision(short arg1, short arg2) {
+	ushort y = cast(ushort)(loadedCollisionTiles[((((hitboxHeights[arg2] * 8) + checkedCollisionTopY - 1) / 8) & 0x3F)][(arg1 / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x12 = (arg1 + 7) / 8;
 	for (short i = 0; i < hitboxWidths[arg2]; i++) {
-		y |= unknown7EE000[(((hitboxHeights[arg2] * 8) + unknown7E5DAE - 1) / 8) & 0x3F][x12 & 0x3F];
+		y |= loadedCollisionTiles[(((hitboxHeights[arg2] * 8) + checkedCollisionTopY - 1) / 8) & 0x3F][x12 & 0x3F];
 		x12++;
 	}
-	unknown7E5DA4 = y;
+	tempEntitySurfaceFlags = y;
 }
 
 /// $C05639
-void unknownC05639(short arg1, short arg2) {
-	ushort x10 = cast(ushort)(unknown7EE000[(arg1 / 8) & 0x3F][(unknown7E5DAC / 8) & 0x3F] | unknown7E5DA4);
+void checkHorizontalLeftTileCollision(short arg1, short arg2) {
+	ushort x10 = cast(ushort)(loadedCollisionTiles[(arg1 / 8) & 0x3F][(checkedCollisionLeftX / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x12 = (arg1 + 7) / 8;
 	for (short i = 0; i < hitboxHeights[arg2]; i++) {
-		x10 |= unknown7EE000[x12 & 0x3F][(unknown7E5DAC / 8) & 0x3F];
+		x10 |= loadedCollisionTiles[x12 & 0x3F][(checkedCollisionLeftX / 8) & 0x3F];
 		x12++;
 	}
-	unknown7E5DA4 = x10;
+	tempEntitySurfaceFlags = x10;
 }
 
 /// $C056D0
-void unknownC056D0(short arg1, short arg2) {
-	ushort y = cast(ushort)(unknown7EE000[(arg1 / 8) & 0x3F][(((hitboxWidths[arg2] * 8) + unknown7E5DAC - 1) / 8) & 0x3F] | unknown7E5DA4);
+void checkHorizontalRightTileCollision(short arg1, short arg2) {
+	ushort y = cast(ushort)(loadedCollisionTiles[(arg1 / 8) & 0x3F][(((hitboxWidths[arg2] * 8) + checkedCollisionLeftX - 1) / 8) & 0x3F] | tempEntitySurfaceFlags);
 	short x12 = (arg1 + 7) / 8;
 	for (short i = 0; i < hitboxHeights[arg2]; i++) {
-		y |= unknown7EE000[x12 & 0x3F][(((hitboxWidths[arg2] * 8) + unknown7E5DAC - 1) / 8) & 0x3F];
+		y |= loadedCollisionTiles[x12 & 0x3F][(((hitboxWidths[arg2] * 8) + checkedCollisionLeftX - 1) / 8) & 0x3F];
 		x12++;
 	}
-	unknown7E5DA4 = y;
+	tempEntitySurfaceFlags = y;
 }
 
 /// $C05769
@@ -2848,21 +2848,21 @@ short unknownC05769(short arg1) {
 		if ((arg1 & 1) == 0) {
 			continue;
 		}
-		short x0E = unknownC054C9((unknownC200B9[i] + unknown7E5DAC) / 8, (unknownC200C5[i] + unknown7E5DAE) / 8);
+		short x0E = unknownC054C9((unknownC200B9[i] + checkedCollisionLeftX) / 8, (unknownC200C5[i] + checkedCollisionTopY) / 8);
 		x12 |= x0E;
 		if ((x0E & 0xC0) != 0) {
 			x02 |= 0x40;
 		}
 	}
 	if (unknown7E5DB4 == 1) {
-		unknown7E5DA4 = x12;
+		tempEntitySurfaceFlags = x12;
 	}
 	return x02;
 }
 
 /// $C057E8
 short unknownC057E8() {
-	unknown7E5DA4 = 0;
+	tempEntitySurfaceFlags = 0;
 	unknown7E5DB4++;
 	unknown7E5DB6 = unknownC05769(7);
 	if ((unknown7E5DB6 == 7) || (unknown7E5DB6 == 2)) {
@@ -2877,7 +2877,7 @@ short unknownC057E8() {
 	if (unknown7E5DB6 == 4) {
 		return Direction.upLeft;
 	}
-	if ((unknown7E5DB6 == 6) && ((unknown7E5DAC & 7) == 0)) {
+	if ((unknown7E5DB6 == 6) && ((checkedCollisionLeftX & 7) == 0)) {
 		return Direction.upLeft;
 	}
 	return -1;
@@ -2885,7 +2885,7 @@ short unknownC057E8() {
 
 /// $C0583C
 short unknownC0583C() {
-	unknown7E5DA4 = 0;
+	tempEntitySurfaceFlags = 0;
 	unknown7E5DB4++;
 	unknown7E5DB6 = unknownC05769(0x38);
 	if ((unknown7E5DB6 == 7) || (unknown7E5DB6 == 0x10)) {
@@ -2900,7 +2900,7 @@ short unknownC0583C() {
 	if (unknown7E5DB6 == 0x20) {
 		return Direction.downLeft;
 	}
-	if ((unknown7E5DB6 == 0x30) && ((unknown7E5DAC & 7) == 0)) {
+	if ((unknown7E5DB6 == 0x30) && ((checkedCollisionLeftX & 7) == 0)) {
 		return Direction.downLeft;
 	}
 	return -1;
@@ -2911,27 +2911,27 @@ short unknownC05890() {
 	short x12 = -1;
 	short x02 = 0;
 	short x10 = 0;
-	unknown7E5DA4 = 0;
+	tempEntitySurfaceFlags = 0;
 	unknown7E5DB4 = 1;
 	short x0E = unknownC05769(9);
 	if (x0E == 0) {
-		unknown7E5DAC -= 4;
+		checkedCollisionLeftX -= 4;
 		x0E = unknownC05769(9);
 		if (x0E == 0) {
 			return Direction.left;
 		}
 		x02 = 1;
 	}
-	if (((x0E & 9) == 9) && ((unknown7E5DAE & 7) != 0)) {
+	if (((x0E & 9) == 9) && ((checkedCollisionTopY & 7) != 0)) {
 		if (x02 != 0) {
 			return Direction.left;
 		}
 		return -1;
 	}
-	if ((unknown7EE000[((unknown7E5DAE - 2) / 8) & 0x3F][((unknown7E5DAC - 4) / 8) & 0x3F] & 0xC0) != 0) {
+	if ((loadedCollisionTiles[((checkedCollisionTopY - 2) / 8) & 0x3F][((checkedCollisionLeftX - 4) / 8) & 0x3F] & 0xC0) != 0) {
 		x10 |= 1;
 	}
-	if ((unknown7EE000[((unknown7E5DAE + 9) / 8) & 0x3F][((unknown7E5DAC - 4) / 8) & 0x3F] & 0xC0) != 0) {
+	if ((loadedCollisionTiles[((checkedCollisionTopY + 9) / 8) & 0x3F][((checkedCollisionLeftX - 4) / 8) & 0x3F] & 0xC0) != 0) {
 		x10 |= 2;
 	}
 	switch (x0E) {
@@ -2941,7 +2941,7 @@ short unknownC05890() {
 			} else if (x10 == 2) {
 				x12 = Direction.upLeft;
 			} else if (x10 == 0) {
-				if ((unknown7E5DAE & 7) < 4) {
+				if ((checkedCollisionTopY & 7) < 4) {
 					x12 = Direction.upLeft;
 				} else {
 					x12 = Direction.downLeft;
@@ -2971,27 +2971,27 @@ short unknownC059EF() {
 	short x12 = -1;
 	short x02 = 0;
 	short x10 = 0;
-	unknown7E5DA4 = 0;
+	tempEntitySurfaceFlags = 0;
 	unknown7E5DB4 = 1;
 	short x0E = unknownC05769(0x24);
 	if (x0E == 0) {
-		unknown7E5DAC += 4;
+		checkedCollisionLeftX += 4;
 		x0E = unknownC05769(36);
 		if (x0E == 0) {
 			return Direction.right;
 		}
 		x02 = 1;
 	}
-	if (((x0E & 0x24) == 0x24) && ((unknown7E5DAE & 7) != 0)) {
+	if (((x0E & 0x24) == 0x24) && ((checkedCollisionTopY & 7) != 0)) {
 		if (x02 != 0) {
 			return Direction.right;
 		}
 		return -1;
 	}
-	if ((unknown7EE000[((unknown7E5DAE - 2) / 8) & 0x3F][((unknown7E5DAC + 4) / 8) & 0x3F] & 0xC0) != 0) {
+	if ((loadedCollisionTiles[((checkedCollisionTopY - 2) / 8) & 0x3F][((checkedCollisionLeftX + 4) / 8) & 0x3F] & 0xC0) != 0) {
 		x10 |= 1;
 	}
-	if ((unknown7EE000[((unknown7E5DAE + 9) / 8) & 0x3F][((unknown7E5DAC + 4) / 8) & 0x3F] & 0xC0) != 0) {
+	if ((loadedCollisionTiles[((checkedCollisionTopY + 9) / 8) & 0x3F][((checkedCollisionLeftX + 4) / 8) & 0x3F] & 0xC0) != 0) {
 		x10 |= 2;
 	}
 	switch (x0E) {
@@ -3001,7 +3001,7 @@ short unknownC059EF() {
 			} else if (x10 == 2) {
 				x12 = Direction.upRight;
 			} else if (x10 == 0) {
-				if ((unknown7E5DAE & 7) < 4) {
+				if ((checkedCollisionTopY & 7) < 4) {
 					x12 = Direction.upRight;
 				} else {
 					x12 = Direction.downRight;
@@ -3028,7 +3028,7 @@ short unknownC059EF() {
 
 /// $C05B4E
 short unknownC05B4E(short direction) {
-	unknown7E5DA4 = 0;
+	tempEntitySurfaceFlags = 0;
 	unknown7E5DB4++;
 	return (unknownC05769(unknownC200D1[direction / 2]) != 0) ? -256 : direction;
 }
@@ -3037,11 +3037,11 @@ short unknownC05B4E(short direction) {
 short unknownC05B7B(short x, short y, short arg3, short direction) {
 	unknown7E5DB8 = 0;
 	unknown7E5DB4 = 0;
-	unknown7E5DA4 = 0;
+	tempEntitySurfaceFlags = 0;
 	unknown7E5DA6 = direction;
 	unknown7E5DA2 = direction;
-	unknown7E5DAC = x;
-	unknown7E5DAE = y;
+	checkedCollisionLeftX = x;
+	checkedCollisionTopY = y;
 	short x12;
 	switch (direction) {
 		case Direction.up:
@@ -3050,8 +3050,8 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 				break;
 			}
 			short x10 = unknown7E5DA8;
-			if ((unknown7E5DAE & 7) < 5) {
-				unknown7E5DAE -= 4;
+			if ((checkedCollisionTopY & 7) < 5) {
+				checkedCollisionTopY -= 4;
 				short x0E = unknownC057E8();
 				if ((x0E & 0xFF00) != 0xFF00) {
 					x12 = x0E;
@@ -3065,8 +3065,8 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 				break;
 			}
 			short x10 = unknown7E5DA8;
-			if ((unknown7E5DAE & 7) > 3) {
-				unknown7E5DAE += 4;
+			if ((checkedCollisionTopY & 7) > 3) {
+				checkedCollisionTopY += 4;
 				short x0E = unknownC0583C();
 				if ((x0E & 0xFF00) != 0xFF00) {
 					x12 = x0E;
@@ -3095,58 +3095,58 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 		unknown7E5DA8 = 0xFFFF;
 	}
 	if ((x12 == -1) || (x12 == -256)) {
-		return unknown7E5DA4;
+		return tempEntitySurfaceFlags;
 	}
 	unknown7E5DB8 = (x12 != direction) ? 1 : 0;
 	unknown7E5DA6 = x12;
-	return unknown7E5DA4 & 0x3F;
+	return tempEntitySurfaceFlags & 0x3F;
 }
 
 /// $C05CD7
 short unknownC05CD7(short arg1, short arg2, short arg3, short direction) {
-	unknown7E5DA4 = 0;
-	unknown7E5DAC = cast(short)(arg1 - unknownC42A1F[entitySizes[arg3]]);
-	unknown7E5DAE = cast(short)(arg2 - unknownC42A41[entitySizes[arg3]] + unknownC42AEB[entitySizes[arg3]]);
+	tempEntitySurfaceFlags = 0;
+	checkedCollisionLeftX = cast(short)(arg1 - unknownC42A1F[entitySizes[arg3]]);
+	checkedCollisionTopY = cast(short)(arg2 - unknownC42A41[entitySizes[arg3]] + unknownC42AEB[entitySizes[arg3]]);
 	switch(direction) {
 		case Direction.upRight:
-			unknownC056D0(unknown7E5DAE, entitySizes[arg3]);
+			checkHorizontalRightTileCollision(checkedCollisionTopY, entitySizes[arg3]);
 			goto case;
 		case Direction.up:
-			unknownC05503(unknown7E5DAC, entitySizes[arg3]);
+			checkVerticalUpTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
 			break;
 		case Direction.downRight:
-			unknownC0559C(unknown7E5DAC, entitySizes[arg3]);
+			checkVerticalDownTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
 			goto case;
 		case Direction.right:
-			unknownC056D0(unknown7E5DAE, entitySizes[arg3]);
+			checkHorizontalRightTileCollision(checkedCollisionTopY, entitySizes[arg3]);
 			break;
 		case Direction.downLeft:
-			unknownC05639(unknown7E5DAE, entitySizes[arg3]);
+			checkHorizontalLeftTileCollision(checkedCollisionTopY, entitySizes[arg3]);
 			goto case;
 		case Direction.down:
-			unknownC0559C(unknown7E5DAC, entitySizes[arg3]);
+			checkVerticalDownTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
 			break;
 		case Direction.upLeft:
-			unknownC05503(unknown7E5DAC, entitySizes[arg3]);
+			checkVerticalUpTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
 			goto case;
 		case Direction.left:
-			unknownC05639(unknown7E5DAE, entitySizes[arg3]);
+			checkHorizontalLeftTileCollision(checkedCollisionTopY, entitySizes[arg3]);
 			break;
 		default: break;
 	}
-	return unknown7E5DA4;
+	return tempEntitySurfaceFlags;
 }
 
 /// $C05D8B
-short unknownC05D8B(short arg1, short arg2, short arg3) {
-	short x0E = cast(short)(arg1 - unknownC42A1F[arg3]);
-	unknown7E5DAC = x0E;
-	unknown7E5DAE = cast(short)(arg2 - unknownC42A41[arg3] + unknownC42AEB[arg3]);
-	unknownC05503(x0E, arg3);
-	unknownC0559C(unknown7E5DAC, arg3);
-	unknownC05639(unknown7E5DAE, arg3);
-	unknownC056D0(unknown7E5DAE, arg3);
-	return unknown7E5DA4;
+short getCollisionFlags(short x, short y, short size) {
+	short x0E = cast(short)(x - unknownC42A1F[size]);
+	checkedCollisionLeftX = x0E;
+	checkedCollisionTopY = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
+	checkVerticalUpTileCollision(x0E, size);
+	checkVerticalDownTileCollision(checkedCollisionLeftX, size);
+	checkHorizontalLeftTileCollision(checkedCollisionTopY, size);
+	checkHorizontalRightTileCollision(checkedCollisionTopY, size);
+	return tempEntitySurfaceFlags;
 }
 
 /// $C05DE7
@@ -3154,21 +3154,21 @@ short unknownC05DE7(short arg1, short arg2, short arg3) {
 	short x = 0;
 	switch (arg1 & 0xC) {
 		case 0:
-			x = 4;
+			x = EnemyMovementFlags.canMoveOnLand;
 			break;
-		case 4:
-			x = 2;
+		case SurfaceFlags.causesSunstroke:
+			x = EnemyMovementFlags.canMoveInHeat;
 			break;
-		case 8:
-		case 0xC:
-			x = 1;
+		case SurfaceFlags.shallowWater:
+		case SurfaceFlags.deepWater:
+			x = EnemyMovementFlags.canMoveInWater;
 			break;
 		default: break;
 	}
-	if ((enemyConfigurationTable[arg3].runFlag & x) != 0) {
+	if ((enemyConfigurationTable[arg3].enemyMovementFlags & x) != 0) {
 		return 0;
 	}
-	return 0x80;
+	return SurfaceFlags.solid;
 }
 
 /// $C05E3B
@@ -3176,7 +3176,7 @@ short unknownC05E3B(short arg1) {
 	if (unknownC09EFF() == 0) {
 		return -256;
 	}
-	entityObstacleFlags[arg1] = unknownC05CD7(unknown7E2848, unknown7E284A, arg1, entityDirections[arg1]) & 0xD0;
+	entityObstacleFlags[arg1] = unknownC05CD7(unknown7E2848, unknown7E284A, arg1, entityDirections[arg1]) & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs);
 	return entityObstacleFlags[arg1];
 }
 
@@ -3215,32 +3215,32 @@ short unknownC05ECE() {
 }
 
 /// $C05F33
-short unknownC05F33(short x, short y, short entityID) {
+short getSurfaceFlags(short x, short y, short entityID) {
 	const size = entitySizes[entityID];
-	unknown7E5DA4 = 0;
-	unknown7E5DAC = cast(short)(x - unknownC42A1F[size]);
-	unknown7E5DAE = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
-	unknownC05639(unknown7E5DAE, size);
-	unknownC056D0(unknown7E5DAE, size);
-	return unknown7E5DA4;
+	tempEntitySurfaceFlags = 0;
+	checkedCollisionLeftX = cast(short)(x - unknownC42A1F[size]);
+	checkedCollisionTopY = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
+	checkHorizontalLeftTileCollision(checkedCollisionTopY, size);
+	checkHorizontalRightTileCollision(checkedCollisionTopY, size);
+	return tempEntitySurfaceFlags;
 }
 
 /// $C05F82
 short unknownC05F82(short x, short y, short entityID) {
-	unknown7E5DA4 = 0;
+	tempEntitySurfaceFlags = 0;
 	const size = entitySizes[entityID];
-	unknown7E5DAE = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
-	unknown7E5DAC = cast(short)(x + unknownC42A1F[size]);
-	unknownC05503(unknown7E5DAC, size);
-	unknownC0559C(unknown7E5DAC, size);
-	return unknown7E5DA4;
+	checkedCollisionTopY = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
+	checkedCollisionLeftX = cast(short)(x + unknownC42A1F[size]);
+	checkVerticalUpTileCollision(checkedCollisionLeftX, size);
+	checkVerticalDownTileCollision(checkedCollisionLeftX, size);
+	return tempEntitySurfaceFlags;
 }
 
 /// $C05FD1
 short unknownC05FD1(short arg1, short arg2, short arg3) {
-	unknown7E5DA4 = 0;
-	unknown7E5DA4 = unknownC054C9(arg1 / 8, (arg2 + 4) / 8);
-	return unknown7E5DA4;
+	tempEntitySurfaceFlags = 0;
+	tempEntitySurfaceFlags = unknownC054C9(arg1 / 8, (arg2 + 4) / 8);
+	return tempEntitySurfaceFlags;
 }
 
 /// $C05FF6
@@ -3265,7 +3265,7 @@ short npcCollisionCheck(short x, short y, short arg3) {
 			if (entityCollidedObjects[i] == 0x8000) {
 				continue;
 			}
-			if ((unknown7E5D58 != 0) && (entityTPTEntries[i] + 1 >= 0x8001)){
+			if ((playerIntangibilityFrames != 0) && (entityTPTEntries[i] + 1 >= 0x8001)){
 				continue;
 			}
 			if (entityHitboxEnabled[i] == 0) {
@@ -3377,7 +3377,7 @@ short unknownC06267(short arg1, short arg2, short arg3) {
 		short x04 = cast(short)(arg1 - x02);
 		short x18 = cast(short)(x02 * 2);
 		short x14 = cast(short)(arg2 - x16);
-		if (unknown7E5D58 == 0) {
+		if (playerIntangibilityFrames == 0) {
 			for (short i = 0x18; i < maxEntities; i++) {
 				if (entityScriptTable[i] == -1) {
 					continue;
@@ -3525,8 +3525,8 @@ void unknownC065A3() {
 
 /// $C065C2
 void unknownC065C2(short direction) {
-	short x0E = cast(short)((gameState.leaderX.integer / 8) + unknownC3E230[direction]);
-	short x02 = cast(short)((gameState.leaderY.integer / 8) + unknownC3E240[direction]);
+	short x0E = cast(short)((gameState.leaderX.integer / 8) + interactXOffsets[direction]);
+	short x02 = cast(short)((gameState.leaderY.integer / 8) + interactYOffsets[direction]);
 	if (direction == Direction.left) {
 		x0E--;
 	}
@@ -4143,7 +4143,7 @@ void processQueuedInteractions() {
 	QueuedInteractionPtr ptr = queuedInteractions[currentQueuedInteraction].ptr;
 	currentQueuedInteractionType = queuedInteractions[currentQueuedInteraction].type;
 	currentQueuedInteraction = (currentQueuedInteraction + 1) & 3;
-	unknown7E5D58 &= 0xFFFE;
+	playerIntangibilityFrames &= 0xFFFE;
 	unknownC07C5B();
 	tracef("Processing interaction of type %s", currentQueuedInteractionType);
 	switch(currentQueuedInteractionType) {
@@ -4400,7 +4400,7 @@ void unknownC07B52() {
 
 /// $C07C5B
 void unknownC07C5B() {
-	if (unknown7E5D58 == 0) {
+	if (playerIntangibilityFrames == 0) {
 		return;
 	}
 	for (short i = 0x18; i < 0x1E; i++) {
@@ -4468,10 +4468,10 @@ void irqNMICommon() {
 	MOSAIC = mirrorMOSAIC;
 	BG12NBA = mirrorBG12NBA;
 	WH2 = mirrorWH2;
-	for (short i = unknown7E0001; i != dmaQueueIndex; i++) {
+	for (short i = lastCompletedDMAIndex; i != dmaQueueIndex; i++) {
 		handleVRAMDMA(dmaTable[dmaQueue[i].mode].unknown0, dmaTable[dmaQueue[i].mode].unknown1, dmaQueue[i].source, dmaQueue[i].size, dmaQueue[i].destination, dmaTable[dmaQueue[i].mode].unknown2);
 	}
-	unknown7E0001 = dmaQueueIndex;
+	lastCompletedDMAIndex = dmaQueueIndex;
 	if (nextFrameDisplayID != 0) {
 		if (nextFrameDisplayID - 1 == 0) {
 			setBGOffsetX(1, bg1XPositionBuffer[0]);
@@ -4729,13 +4729,13 @@ void copyToVRAMInternal() {
 	// 		tmp92 = dmaCopySize;
 	// 	}
 	// 	unknown7E0099 = tmp92;
-	// 	unknown7E00A5 = unknown7E0001;
+	// 	unknown7E00A5 = lastCompletedDMAIndex;
 	// 	dmaQueue[dmaQueueIndex].mode = dmaCopyMode;
 	// 	dmaQueue[dmaQueueIndex].size = dmaCopySize;
 	// 	dmaQueue[dmaQueueIndex].source = dmaCopyRAMSource;
 	// 	dmaQueue[dmaQueueIndex].destination = dmaCopyVRAMDestination;
 	// 	if (dmaQueueIndex + 1 == unknown7E00A5) {
-	// 		while (dmaQueueIndex + 1 == unknown7E0001) {}
+	// 		while (dmaQueueIndex + 1 == lastCompletedDMAIndex) {}
 	// 	}
 	// 	dmaQueueIndex++;
 	// } else {
@@ -5178,7 +5178,7 @@ ubyte rand() {
 /// $C08F8B
 void waitDMAFinished() {
 	ubyte a = dmaQueueIndex;
-	while (unknown7E0001 != a) { waitForInterrupt(); }
+	while (lastCompletedDMAIndex != a) { waitForInterrupt(); }
 }
 
 /// $C08F98
@@ -7137,12 +7137,12 @@ void unknownC0A6E3() {
 	if (teleportDestination != 0) {
 		return;
 	}
-	if (unknown7E5D58 == 0) {
+	if (playerIntangibilityFrames == 0) {
 		return;
 	}
-	if (unknown7E5D58 < 45) {
-		a = unknown7E5D58 & 3;
-	} else if ((unknown7E5D58 & 1) == 0) {
+	if (playerIntangibilityFrames < 45) {
+		a = playerIntangibilityFrames & 3;
+	} else if ((playerIntangibilityFrames & 1) == 0) {
 		a = cast(short)(entitySpriteMapFlags[actionScriptVar88 / 2] | 0x8000);
 	} else {
 		a = entitySpriteMapFlags[actionScriptVar88 / 2] & 0x7FFF;
@@ -8120,7 +8120,7 @@ void initBattleOverworld() {
 	}
 	overworldStatusSuppression = 0;
 	unfreezeEntities();
-	unknown7E5D58 = 120;
+	playerIntangibilityFrames = 120;
 	touchedEnemy = -1;
 }
 
@@ -8269,7 +8269,7 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 	arg1.targetCount = arg2;
 	for (short i = 0; i != arg1.radius.x; i++) {
 		for (short j = 0; j != arg1.radius.y; j++) {
-			if ((unknown7EE000[(i + arg7) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
+			if ((loadedCollisionTiles[(i + arg7) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
 				(x06++)[0] = PathfindingTile.unwalkable;
 			} else {
 				(x06++)[0] = 0;
@@ -8481,7 +8481,7 @@ short unknownC0C48F() {
 	if (entityUnknown2C5E[currentEntitySlot] != 0) {
 		return 0;
 	}
-	if (unknown7E5D58 == 0) {
+	if (playerIntangibilityFrames == 0) {
 		return unknownC0C363();
 	}
 	return -1;
@@ -8492,7 +8492,7 @@ short unknownC0C4AF() {
 	if (entityUnknown2C5E[currentEntitySlot] != 0) {
 		return 0;
 	}
-	if (unknown7E5D58 == 0) {
+	if (playerIntangibilityFrames == 0) {
 		return unknownC0C3F9();
 	}
 	return -1;
@@ -8563,7 +8563,7 @@ short unknownC0C711() {
 
 /// $C0C7DB
 void unknownC0C7DB() {
-	entitySurfaceFlags[currentEntitySlot] = unknownC05F33(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
+	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlags(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
 }
 
 /// $C0C83B
@@ -8790,7 +8790,7 @@ short unknownC0CF97(short arg1, short arg2) {
 	short x10 = y & 0x3F;
 	short x18 = x12 & 0x3F;
 	for (short i = 0; i != arg2; i++) {
-		if ((x10 < 0x40) && (x18 < 0x40) && ((x00 & unknown7EE000[x18 & 0x3F][x10 & 0x3F]) != 0)) {
+		if ((x10 < 0x40) && (x18 < 0x40) && ((x00 & loadedCollisionTiles[x18 & 0x3F][x10 & 0x3F]) != 0)) {
 			goto Unknown9;
 		}
 		short x0E = (x06++)[0];
@@ -8834,7 +8834,7 @@ short unknownC0D0E6() {
 		return -1;
 	}
 	unknownC09EFF();
-	if ((unknownC05CD7(unknown7E2848, unknown7E284A, currentEntitySlot, Direction.down) & 0xC0) != 0) {
+	if ((unknownC05CD7(unknown7E2848, unknown7E284A, currentEntitySlot, Direction.down) & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
 		entityMovementSpeed[currentEntitySlot] -= 0x1000;
 		return 0;
 	}
@@ -9024,7 +9024,7 @@ short unknownC0D5B0() {
 		if (gameState.walkingStyle == WalkingStyle.escalator) {
 			return 0;
 		}
-		if (unknown7E5D58 != 0) {
+		if (playerIntangibilityFrames != 0) {
 			return 0;
 		}
 		if ((battleSwirlCountdown == 0) || (entityUnknown2E3E[currentEntitySlot] != 0)) {
@@ -9520,14 +9520,14 @@ short unknownC0DED9(short arg1, short arg2, short arg3, short arg4, short) {
 	if (unknown7E9F43 != 0) {
 		return 1;
 	}
-	return unknownC05F33(arg1, arg2, gameState.firstPartyMemberEntity) | unknownC05F33(arg3, arg4, gameState.firstPartyMemberEntity);
+	return getSurfaceFlags(arg1, arg2, gameState.firstPartyMemberEntity) | getSurfaceFlags(arg3, arg4, gameState.firstPartyMemberEntity);
 }
 
 /// $C0E196
 void unknownC0E196() {
 	playerPositionBuffer[gameState.leaderPositionIndex].xCoord = gameState.leaderX.integer;
 	playerPositionBuffer[gameState.leaderPositionIndex].yCoord = gameState.leaderY.integer;
-	playerPositionBuffer[gameState.leaderPositionIndex].tileFlags =unknownC05F33(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+	playerPositionBuffer[gameState.leaderPositionIndex].tileFlags =getSurfaceFlags(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	playerPositionBuffer[gameState.leaderPositionIndex].walkingStyle = 0;
 	playerPositionBuffer[gameState.leaderPositionIndex].direction = gameState.leaderDirection;
 	gameState.leaderPositionIndex++;
@@ -9789,7 +9789,7 @@ void unknownC0E979() {
 
 /// $C0E97C
 void unknownC0E97C() {
-	entitySurfaceFlags[currentEntitySlot] = unknownC05F33(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
+	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlags(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
 	unknownC07A56(entityScriptVar0Table[currentEntitySlot], -1, currentEntitySlot);
 }
 
@@ -9887,7 +9887,7 @@ void teleportMainLoop() {
 	unknown7E5DBA = 0;
 	unknown7E9F45.fraction = 0;
 	unknown7E9F45.integer = 0;
-	unknown7E5D58 = 0;
+	playerIntangibilityFrames = 0;
 	teleportDestination = 0;
 }
 

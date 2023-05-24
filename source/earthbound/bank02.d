@@ -1355,7 +1355,7 @@ short initBattleScripted(short arg1) {
 		}
 		unknownC3EE4D();
 		if (currentBattleGroup < 0x1C0) {
-			unknown7E5D58 = 120;
+			playerIntangibilityFrames = 120;
 		}
 	}
 	return 0;

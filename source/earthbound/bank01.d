@@ -5371,7 +5371,7 @@ uint unknownC1AD26() {
 }
 
 /// $C1AD42
-short unknownC1AD42() {
+short findReceiveItemNPC() {
 	findNearbyCheckableTPTEntry();
 	if ((currentTPTEntry == 0) || (currentTPTEntry == -1) || (currentTPTEntry == -2)) {
 		return 0;
@@ -5381,7 +5381,7 @@ short unknownC1AD42() {
 }
 
 /// $C1AD71
-short unknownC1AD7D() {
+short getSectorUsableItem() {
 	short x0E = loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
 	if ((getEventFlag(EventFlag.winGiegu != 0) && ((x0E & 7) == 0))) {
 		return ItemID.bicycle;
@@ -5491,8 +5491,8 @@ short overworldUseItem(short arg1, short arg2, short) {
 								x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
 								break;
 							case 2:
-								if (unknownC1AD7D() == x01) {
-									if ((x01 == ItemID.bicycle) && (unknownC03C4B() != 0)) {
+								if (getSectorUsableItem() == x01) {
+									if ((x01 == ItemID.bicycle) && (checkBicycleCollisionFlags() != 0)) {
 										x26 = getTextBlock("MSG_SYS_BICYCLE_ATARI_HERE");
 									} else {
 										x24 = 1;
@@ -5504,7 +5504,7 @@ short overworldUseItem(short arg1, short arg2, short) {
 								break;
 							case 3:
 								x24 = 1;
-								short tmp = unknownC1AD42();
+								short tmp = findReceiveItemNPC();
 								if ((tmp == 1) || (tmp == 3)) {
 									x26 = getTextBlock(npcConfig[currentTPTEntry].checkText);
 								}

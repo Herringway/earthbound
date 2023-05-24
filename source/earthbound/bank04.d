@@ -1223,11 +1223,11 @@ void unknownC43344(short arg1) {
 
 /// $C4334A
 void unknownC4334A(short direction) {
-	short x10 = cast(short)(unknownC3E230[direction] + gameState.leaderX.integer / 8);
-	short x04 = cast(short)((direction == 4) ? (unknownC3E240[direction] + (gameState.leaderY.integer + 1) / 8) :(unknownC3E240[direction] + gameState.leaderY.integer / 8));
-	if ((unknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.firstPartyMemberEntity, direction) & 0x82) == 0x82) {
-		x10 += unknownC3E230[direction];
-		x04 += unknownC3E240[direction];
+	short x10 = cast(short)(interactXOffsets[direction] + gameState.leaderX.integer / 8);
+	short x04 = cast(short)((direction == Direction.down) ? (interactYOffsets[direction] + (gameState.leaderY.integer + 1) / 8) :(interactYOffsets[direction] + gameState.leaderY.integer / 8));
+	if ((unknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) == (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
+		x10 += interactXOffsets[direction];
+		x04 += interactYOffsets[direction];
 	}
 	short x = getDoorAt(x10, x04);
 	if (x == 0xFF) {
@@ -2672,7 +2672,7 @@ void unknownC46397(short arg1) {
 /// $C463F4
 void hideCharacterOrParty(short arg1) {
 	unknownC07C5B();
-	unknown7E5D58 = 0;
+	playerIntangibilityFrames = 0;
 	if (arg1 != 0xFF) {
 		short a = findEntityByPartyMemberID(arg1);
 		if (a != -1) {
@@ -2809,7 +2809,7 @@ void clearCameraFocus() {
 /// $C466C1
 void spawnTravellingPhotographer(short arg1) {
 	unknownC07C5B();
-	unknown7E5D58 = 0;
+	playerIntangibilityFrames = 0;
 	unknown7E9E35 = cast(short)(arg1 - 1);
 	displayText(getTextBlock("MSG_EVT_PHOTOGRAPHER"));
 	savePhotoState(arg1);
@@ -5737,7 +5737,7 @@ short spawn() {
 	}
 	unknownC064D4();
 	unknown7E9E56 = 0;
-	unknown7E5D58 = 0;
+	playerIntangibilityFrames = 0;
 	spawnBuzzBuzz();
 	oamClear();
 	unfreezeEntities();
