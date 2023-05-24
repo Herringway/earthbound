@@ -108,6 +108,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/clearParty.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/clearSpriteTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/clearSpriteTickCallback.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/copyMapPaletteFrame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAM2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/copyToVRAMInternal.html</loc></url>
@@ -435,7 +436,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A0FA.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A156.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A156F.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A1F2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A21C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A26B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A2AB.html</loc></url>
@@ -3129,6 +3129,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/actionScriptVar94.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/activeHotspots.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/altBattleSpritemaps.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/animatedMapPaletteBuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attackerNameAdjustScratch.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attractModeWindowHDMAData.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/attractModeWindowHDMATable.html</loc></url>
@@ -3920,7 +3921,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EB55D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EB569.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EB56B.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7EB800.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EC000.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EE000.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7EF000.html</loc></url>
