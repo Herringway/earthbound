@@ -4717,15 +4717,11 @@ immutable ubyte[9] soundStoneMusic = [
 ];
 
 /// $C4ACB4
-immutable short[4] soundStoneUnknown7 = [
+immutable short[9] soundStoneUnknown7 = [
 	0x0121,
 	0x00D2,
 	0x00D1,
 	0x00D2,
-];
-
-/// $C4ACBC
-immutable short[5] soundStoneUnknown8 = [
 	0x00D2,
 	0x00D1,
 	0x00D2,
@@ -4785,12 +4781,12 @@ void useSoundStone(short arg1) {
 	//short x04 = 0;
 	short x26 = 0;
 	//short x02 = 0;
-	short x24 = 0;
+	ushort x24 = 0;
 	while (true) {
 		waitUntilNextFrame();
 		short x22 = padPress[0];
 		if ((x26 == 0) && (--x2C == 0)) {
-			x24 = -1;
+			x24 = 0xFFFF;
 			x28 = -1;
 			x26 = 1;
 		}
