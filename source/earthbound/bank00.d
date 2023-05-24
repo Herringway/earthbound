@@ -94,7 +94,7 @@ void loadPaletteAnim() {
 	if (mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].count == 0) {
 		return;
 	}
-	decomp(&mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].ptr[0], &unknown7EB800[0]);
+	decomp(&mapDataPaletteAnimationPointerTable[palettes[5][0] - 1].ptr[0], &animatedMapPaletteBuffer[0]);
 	for (short i = 0; i < overworldPaletteAnim.delays.length; i++) {
 		overworldPaletteAnim.delays[i] = 0;
 	}
@@ -115,7 +115,7 @@ void animatePalette() {
 		overworldPaletteAnim.index = 0;
 	}
 	overworldPaletteAnim.timer = overworldPaletteAnim.delays[overworldPaletteAnim.index];
-	unknownC0A1F2(overworldPaletteAnim.index);
+	copyMapPaletteFrame(overworldPaletteAnim.index);
 	overworldPaletteAnim.index++;
 }
 
@@ -6679,8 +6679,8 @@ unittest {
 }
 
 /// $C0A1F2
-void unknownC0A1F2(short arg1) {
-	const(ubyte)* source = cast(const(ubyte)*)unknownC0A20C[arg1];
+void copyMapPaletteFrame(short arg1) {
+	const(ubyte)* source = cast(const(ubyte)*)animatedMapPaletteBuffers[arg1];
 	ubyte* destination = cast(ubyte*)&palettes[2][0];
 	short bytesLeft = 0xBF;
 	while (--bytesLeft >= 0) {
@@ -6689,7 +6689,7 @@ void unknownC0A1F2(short arg1) {
 	paletteUploadMode = PaletteUpload.halfFirst;
 }
 
-__gshared const ubyte*[8] unknownC0A20C;
+__gshared const ubyte*[8] animatedMapPaletteBuffers;
 
 /// $C0A21C
 short unknownC0A21C(short arg1) {
@@ -7664,15 +7664,15 @@ shared static this() {
 		HDMAIndirectTableEntry(0xFC, cast(const(ubyte)*)&backgroundHDMABuffer[424]),
 		HDMAIndirectTableEntry(0x00),
 	];
-	unknownC0A20C = [
-		&unknown7EB800[0],
-		&unknown7EB800[0xC0],
-		&unknown7EB800[0x180],
-		&unknown7EB800[0x240],
-		&unknown7EB800[0x300],
-		&unknown7EB800[0x3C0],
-		&unknown7EB800[0x480],
-		&unknown7EB800[0x540],
+	animatedMapPaletteBuffers = [
+		&animatedMapPaletteBuffer[0],
+		&animatedMapPaletteBuffer[0xC0],
+		&animatedMapPaletteBuffer[0x180],
+		&animatedMapPaletteBuffer[0x240],
+		&animatedMapPaletteBuffer[0x300],
+		&animatedMapPaletteBuffer[0x3C0],
+		&animatedMapPaletteBuffer[0x480],
+		&animatedMapPaletteBuffer[0x540],
 	];
 }
 

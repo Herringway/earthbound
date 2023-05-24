@@ -916,7 +916,7 @@ __gshared ushort frameCounterBackup; /// $(DOLLAR)B571
 __gshared ushort replayTransitionStyle; /// $(DOLLAR)B573
 __gshared ushort debugEnemiesEnabledFlag; /// $(DOLLAR)B575
 
-__gshared ubyte[0x800] unknown7EB800; /// $(DOLLAR)B800
+__gshared ubyte[0x800] animatedMapPaletteBuffer; /// $(DOLLAR)B800
 __gshared ubyte[0x2000] unknown7EC000; /// $(DOLLAR)C000
 
 __gshared ubyte[64][64] unknown7EE000; /// $(DOLLAR)E000
