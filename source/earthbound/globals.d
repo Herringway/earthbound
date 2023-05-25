@@ -831,9 +831,9 @@ __gshared short[3 * 16 * 4] unknown7EAEFC; /// $(DOLLAR)AEFC
 __gshared short[3 * 16 * 4] unknown7EB07C; /// $(DOLLAR)B07C
 __gshared short[3 * 16 * 4] unknown7EB1FC; /// $(DOLLAR)B1FC
 __gshared short unknown7EB37C; /// $(DOLLAR)B37C
-__gshared Unknown7EB37EStruct[8] unknown7EB37E; /// $(DOLLAR)B37E
-__gshared SpriteMap unknown7EB3EE; /// $(DOLLAR)B3EE
-__gshared SpriteMap unknown7EB3F3; /// $(DOLLAR)B3F3
+__gshared SoundStoneMelodyState[8] soundStonePlaybackState; /// $(DOLLAR)B37E
+__gshared SpriteMap soundStoneSpriteTilemap1; /// $(DOLLAR)B3EE
+__gshared SpriteMap soundStoneSpriteTilemap2; /// $(DOLLAR)B3F3
 __gshared short unknown7EB3F8; /// $(DOLLAR)B3F8
 __gshared short unknown7EB3FA; /// $(DOLLAR)B3FA
 __gshared ubyte* pathMatrixBuffer; /// $(DOLLAR)B3FC - Matrix buffer

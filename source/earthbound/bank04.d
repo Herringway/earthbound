@@ -4619,7 +4619,7 @@ void unknownC4A7B0() {
 }
 
 /// $C4AC57
-immutable ubyte[][9] unknownC4AC57 = [
+immutable ubyte[][9] soundStoneOrbitSpriteDistances = [
 	[ 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 ],
 	[ 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 ],
 	[ 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x19, 0x23, 0x2D, 0x28, 0x23, 0x1E, 0x19, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 ],
@@ -4632,7 +4632,7 @@ immutable ubyte[][9] unknownC4AC57 = [
 ];
 
 /// $C4AC7B
-immutable ubyte[8] soundStoneUnknown = [
+immutable ubyte[8] soundStoneSanctuarySpriteX = [
 	0x80,
 	0xB8,
 	0xC8,
@@ -4644,7 +4644,7 @@ immutable ubyte[8] soundStoneUnknown = [
 ];
 
 /// $C4AC83
-immutable ubyte[8] soundStoneUnknown2 = [
+immutable ubyte[8] soundStoneSanctuarySpriteY = [
 	0x28,
 	0x38,
 	0x70,
@@ -4656,7 +4656,7 @@ immutable ubyte[8] soundStoneUnknown2 = [
 ];
 
 /// $C4AC8B
-immutable ubyte[8] soundStoneUnknown3 = [
+immutable ubyte[8] soundStoneSanctuarySprites = [
 	0x00,
 	0x04,
 	0x08,
@@ -4668,7 +4668,7 @@ immutable ubyte[8] soundStoneUnknown3 = [
 ];
 
 /// $C4AC93
-immutable ubyte[8] soundStoneUnknown4 = [
+immutable ubyte[8] soundStoneSanctuaryPalettes = [
 	0x01,
 	0x04,
 	0x04,
@@ -4680,7 +4680,7 @@ immutable ubyte[8] soundStoneUnknown4 = [
 ];
 
 /// $C4AC9B
-immutable ubyte[8] soundStoneUnknown5 = [
+immutable ubyte[8] soundStoneOrbitSprites = [
 	0x00,
 	0x04,
 	0x08,
@@ -4692,7 +4692,7 @@ immutable ubyte[8] soundStoneUnknown5 = [
 ];
 
 /// $C4ACA3
-immutable ubyte[8] soundStoneUnknown6 = [
+immutable ubyte[8] soundStoneOrbitPalettes = [
 	0x01,
 	0x03,
 	0x01,
@@ -4717,16 +4717,16 @@ immutable ubyte[9] soundStoneMusic = [
 ];
 
 /// $C4ACB4
-immutable short[9] soundStoneUnknown7 = [
-	0x0121,
-	0x00D2,
-	0x00D1,
-	0x00D2,
-	0x00D2,
-	0x00D1,
-	0x00D2,
-	0x00D2,
-	0x00D2,
+immutable short[9] soundStoneMelodyFrames = [
+	289,
+	210,
+	209,
+	210,
+	210,
+	209,
+	210,
+	210,
+	210,
 ];
 
 /// $C4AC83
@@ -4752,24 +4752,24 @@ void useSoundStone(short arg1) {
 	memcpy(&palettes[8][0], &soundStonePalette[0], 0xC0);
 	loadTextPalette();
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
-	memset(&unknown7EB3EE, 0, SpriteMap.sizeof);
-	memset(&unknown7EB3F3, 0, SpriteMap.sizeof);
-	unknown7EB3EE.xOffset = 0xF0;
-	unknown7EB3EE.yOffset = 0xF0;
-	unknown7EB3F3.xOffset = 0xF8;
-	unknown7EB3F3.yOffset = 0xF8;
-	unknown7EB3EE.specialFlags = 0x81;
-	unknown7EB3F3.specialFlags = 0x80;
+	memset(&soundStoneSpriteTilemap1, 0, SpriteMap.sizeof);
+	memset(&soundStoneSpriteTilemap2, 0, SpriteMap.sizeof);
+	soundStoneSpriteTilemap1.xOffset = 0xF0;
+	soundStoneSpriteTilemap1.yOffset = 0xF0;
+	soundStoneSpriteTilemap2.xOffset = 0xF8;
+	soundStoneSpriteTilemap2.yOffset = 0xF8;
+	soundStoneSpriteTilemap1.specialFlags = 0x81;
+	soundStoneSpriteTilemap2.specialFlags = 0x80;
 	short x32 = 0;
 	for (short i = 0; i < 8; i++) {
 		if (getEventFlag(soundStoneMelodyFlags[i]) != 0) {
-			unknown7EB37E[i].unknown0 = 1;
+			soundStonePlaybackState[i].playbackState = SoundStonePlaybackState.present;
 			x32++;
 		} else {
-			unknown7EB37E[i].unknown0 = 0;
+			soundStonePlaybackState[i].playbackState = SoundStonePlaybackState.notPresent;
 		}
-		unknown7EB37E[i].unknown2 = 1;
-		unknown7EB37E[i].unknown6 = 0;
+		soundStonePlaybackState[i].unknown2 = 1;
+		soundStonePlaybackState[i].soundStoneOrbitSpriteFrame = 0;
 	}
 	setForceBlank();
 	fadeIn(1, 1);
@@ -4779,31 +4779,31 @@ void useSoundStone(short arg1) {
 	short x2A = 0;
 	short x28 = 0;
 	//short x04 = 0;
-	short x26 = 0;
+	short melodyFramesLeft = 0;
 	//short x02 = 0;
 	ushort x24 = 0;
 	while (true) {
 		waitUntilNextFrame();
 		short x22 = padPress[0];
-		if ((x26 == 0) && (--x2C == 0)) {
+		if ((melodyFramesLeft == 0) && (--x2C == 0)) {
 			x24 = 0xFFFF;
 			x28 = -1;
-			x26 = 1;
+			melodyFramesLeft = 1;
 		}
 		if (x2A != 0) {
 			if (--x2A == 0) {
 				break;
 			}
-		} else if (x26 != 0){
-			if (--x26 == 0) {
+		} else if (melodyFramesLeft != 0){
+			if (--melodyFramesLeft == 0) {
 				if (x24 < 8) {
-					if (unknown7EB37E[x24].unknown0 == 2) {
-						unknown7EB37E[x24].unknown0 = 1;
+					if (soundStonePlaybackState[x24].playbackState == SoundStonePlaybackState.nowPlaying) {
+						soundStonePlaybackState[x24].playbackState = SoundStonePlaybackState.present;
 					}
 				} else if (x24 == 8) {
 					short x20;
 					for (x20 = cast(short)(x28 + 1); x20 < 8; x20++) {
-						if (unknown7EB37E[x20].unknown0 != 0) {
+						if (soundStonePlaybackState[x20].playbackState != SoundStonePlaybackState.notPresent) {
 							break;
 						}
 					}
@@ -4813,19 +4813,19 @@ void useSoundStone(short arg1) {
 				}
 				if (++x28 < 8) {
 					x24 = x28;
-					if (unknown7EB37E[x24].unknown0 != 0) {
-						unknown7EB37E[x24].unknown0 = 2;
+					if (soundStonePlaybackState[x24].playbackState != SoundStonePlaybackState.notPresent) {
+						soundStonePlaybackState[x24].playbackState = SoundStonePlaybackState.nowPlaying;
 					} else {
 						x24 = 8;
 					}
-					x26 = soundStoneUnknown7[x24];
+					melodyFramesLeft = soundStoneMelodyFrames[x24];
 					changeMusic(soundStoneMusic[x24]);
 				} else {
 					x2A = 150;
 				}
 			}
 			if (x24 < 8) {
-				if (x26 == soundStoneUnknown7[x24] - 9) {
+				if (melodyFramesLeft == soundStoneMelodyFrames[x24] - 9) {
 					musicEffect(cast(short)(x32 + 8));
 				}
 			}
@@ -4833,28 +4833,29 @@ void useSoundStone(short arg1) {
 		oamClear();
 		//setSpritemapBank(0x7E);
 		for (short i = 0; i < 8; i++) {
-			switch (unknown7EB37E[i].unknown0) {
-				case 1:
-					unknown7EB3EE.firstTile = soundStoneUnknown3[i];
-					unknown7EB3EE.flags = 0x30;
-					drawSprite(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
+			switch (soundStonePlaybackState[i].playbackState) {
+				case SoundStonePlaybackState.present:
+					soundStoneSpriteTilemap1.firstTile = soundStoneSanctuarySprites[i];
+					soundStoneSpriteTilemap1.flags = 0x30;
+					drawSprite(&soundStoneSpriteTilemap1, soundStoneSanctuarySpriteX[i], soundStoneSanctuarySpriteY[i]);
 					break;
-				case 2:
-					unknown7EB37E[i].unknown10 += 0xCCD;
-					if (--unknown7EB37E[i].unknown2 == 0) {
-						unknown7EB37E[i].unknown2 = 2;
-						unknown7EB37E[i].unknown8 = unknownC4AC57[i][unknown7EB37E[i].unknown6++];
-						unknown7EB37E[i].unknown4 = cast(short)(2 - unknown7EB37E[i].unknown4);
+				case SoundStonePlaybackState.nowPlaying:
+					soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 += 0xCCD;
+					if (--soundStonePlaybackState[i].unknown2 == 0) {
+						soundStonePlaybackState[i].unknown2 = 2;
+						soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 = soundStoneOrbitSpriteDistances[i][soundStonePlaybackState[i].soundStoneOrbitSpriteFrame++];
+						soundStonePlaybackState[i].unknown4 = cast(short)(2 - soundStonePlaybackState[i].unknown4);
 					}
-					unknown7EB3F3.firstTile = cast(ubyte)(soundStoneUnknown5[i] + unknown7EB37E[i].unknown4);
-					unknown7EB3F3.flags = cast(ubyte)(soundStoneUnknown6[i] + 0x31);
-					if (unknown7EB37E[i].unknown8 != 0) {
-						drawSprite(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, cast(ubyte)(unknown7EB37E[i].unknown10 >> 8))), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, unknown7EB37E[i].unknown10 >> 8)));
-						drawSprite(&unknown7EB3F3, cast(short)(soundStoneUnknown[i] + cosineSine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))), cast(short)(soundStoneUnknown2[i] + cosine(unknown7EB37E[i].unknown8, cast(ubyte)((unknown7EB37E[i].unknown10 >> 8) + 0x80))));
+					soundStoneSpriteTilemap2.firstTile = cast(ubyte)(soundStoneOrbitSprites[i] + soundStonePlaybackState[i].unknown4);
+					soundStoneSpriteTilemap2.flags = cast(ubyte)(soundStoneOrbitPalettes[i] + 0x31);
+					if (soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 != 0) {
+						// draw the little sprites flying around the current sanctuary location
+						drawSprite(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)(soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8)));
+						drawSprite(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))));
 					}
-					unknown7EB3EE.firstTile = cast(ubyte)(soundStoneUnknown3[i] + 0x80);
-					unknown7EB3EE.flags = cast(ubyte)(soundStoneUnknown4[i] + 0x30);
-					drawSprite(&unknown7EB3EE, soundStoneUnknown[i], soundStoneUnknown2[i]);
+					soundStoneSpriteTilemap1.firstTile = cast(ubyte)(soundStoneSanctuarySprites[i] + 0x80);
+					soundStoneSpriteTilemap1.flags = cast(ubyte)(soundStoneSanctuaryPalettes[i] + 0x30);
+					drawSprite(&soundStoneSpriteTilemap1, soundStoneSanctuarySpriteX[i], soundStoneSanctuarySpriteY[i]);
 					break;
 				default: break;
 			}
@@ -4863,9 +4864,9 @@ void useSoundStone(short arg1) {
 			x2E = 0xF;
 			x30 = (x30 + 1) & 3;
 		}
-		unknown7EB3F3.firstTile = cast(ubyte)(x30 + 0x40);
-		unknown7EB3F3.flags = 0x3B;
-		drawSprite(&unknown7EB3F3, 0x80, 0x70);
+		soundStoneSpriteTilemap2.firstTile = cast(ubyte)(x30 + 0x40);
+		soundStoneSpriteTilemap2.flags = 0x3B;
+		drawSprite(&soundStoneSpriteTilemap2, 0x80, 0x70);
 		updateScreen();
 		generateBattleBGFrame(&loadedBGDataLayer1, 0);
 		generateBattleBGFrame(&loadedBGDataLayer2, 1);

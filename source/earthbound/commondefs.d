@@ -5571,6 +5571,13 @@ enum EnemyMovementFlags {
 }
 
 ///
+enum SoundStonePlaybackState {
+	notPresent = 0,
+	present = 1,
+	nowPlaying = 2,
+}
+
+///
 struct GameState {
 	version(Have_siryul) {
 		import siryul : Skip;
@@ -6737,13 +6744,13 @@ struct ActionLoopCallState {
 	ubyte counter; ///
 }
 ///
-struct Unknown7EB37EStruct {
-	short unknown0; ///
+struct SoundStoneMelodyState {
+	short playbackState; /// Not present, present but not playing, or present and playing
 	short unknown2; ///
 	short unknown4; ///
-	short unknown6; ///
-	short unknown8; ///
-	short unknown10; ///
+	short soundStoneOrbitSpriteFrame; /// An index for soundStoneFlyingSpriteDistances
+	short soundStoneOrbitSpritePosition1; ///
+	short soundStoneOrbitSpritePosition2; ///
 	short unknown12; ///
 }
 ///
