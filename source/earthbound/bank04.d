@@ -4852,14 +4852,14 @@ void useSoundStone(short arg1) {
 						soundStonePlaybackState[i].unknown4 = cast(short)(2 - soundStonePlaybackState[i].unknown4);
 					}
 					soundStoneSpriteTilemap2.firstTile = cast(ubyte)(soundStoneOrbitSprites[i] + soundStonePlaybackState[i].unknown4);
-					soundStoneSpriteTilemap2.flags = cast(ubyte)(soundStoneOrbitPalettes[i] + 0x31);
+					soundStoneSpriteTilemap2.flags = cast(ubyte)((soundStoneOrbitPalettes[i] << 1) + 0x31);
 					if (soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 != 0) {
 						// draw the little sprites flying around the current sanctuary location
 						drawSprite(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)(soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8)));
 						drawSprite(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))));
 					}
 					soundStoneSpriteTilemap1.firstTile = cast(ubyte)(soundStoneSanctuarySprites[i] + 0x80);
-					soundStoneSpriteTilemap1.flags = cast(ubyte)(soundStoneSanctuaryPalettes[i] + 0x30);
+					soundStoneSpriteTilemap1.flags = cast(ubyte)((soundStoneSanctuaryPalettes[i] << 1) + 0x30);
 					drawSprite(&soundStoneSpriteTilemap1, soundStoneSanctuarySpriteX[i], soundStoneSanctuarySpriteY[i]);
 					break;
 				default: break;
