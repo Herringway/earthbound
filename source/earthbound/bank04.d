@@ -4843,6 +4843,11 @@ void useSoundStone(short arg1) {
 					soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 += 0xCCD;
 					if (--soundStonePlaybackState[i].unknown2 == 0) {
 						soundStonePlaybackState[i].unknown2 = 2;
+						version(noUndefinedBehaviour) { // the last frame indexes out of bounds. we fix it by repeating the last frame instead
+							if (soundStonePlaybackState[i].soundStoneOrbitSpriteFrame == soundStoneOrbitSpriteDistances[i].length) {
+								soundStonePlaybackState[i].soundStoneOrbitSpriteFrame--;
+							}
+						}
 						soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 = soundStoneOrbitSpriteDistances[i][soundStonePlaybackState[i].soundStoneOrbitSpriteFrame++];
 						soundStonePlaybackState[i].unknown4 = cast(short)(2 - soundStonePlaybackState[i].unknown4);
 					}
