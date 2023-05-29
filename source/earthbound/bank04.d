@@ -3043,8 +3043,14 @@ immutable short[8] unknownC46B41 = [
 ];
 
 /// $C46B51
-short unknownC46B51(short arg1) {
-	return unknownC46B41[(arg1 + 0x1000) / 0x2000];
+short unknownC46B51(ushort arg1) {
+	return unknownC46B41[cast(ushort)(arg1 + 0x1000) / 0x2000];
+}
+
+unittest {
+	assert(unknownC46B51(0x0000) == 2);
+	assert(unknownC46B51(0x8000) == 6);
+	assert(unknownC46B51(0xF000) == 2);
 }
 
 /// $C46B65
