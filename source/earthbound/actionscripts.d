@@ -542,7 +542,8 @@ immutable ubyte[36 + 11 * (const(void)*).sizeof] actionScriptPanningWinters2;
 immutable ubyte[25 + 9 * (const(void)*).sizeof] actionScriptIntoSt2;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1Groove;
 immutable ubyte[42 + 4 * (const(void)*).sizeof] unknownC4121F;
-immutable ubyte[12 + 6 * (const(void)*).sizeof] unknownC4220E;
+immutable ubyte[7 + 4 * (const(void)*).sizeof] actionScriptTitleScreenCommonInit;
+immutable ubyte[5 + 2 * (const(void)*).sizeof] actionScriptTitleScreenFlashTask;
 immutable ubyte[65 + 12 * (const(void)*).sizeof + 1 * string.sizeof] actionScript60;
 immutable ubyte[7 + 1 * (const(void)*).sizeof] actionScriptTStage1MikeR;
 immutable ubyte[56 + 11 * (const(void)*).sizeof] actionScript57;
@@ -3389,7 +3390,8 @@ shared static this() {
 		"unknownC419BF": unknownC419BF[],
 		"unknownC41A2A": unknownC41A2A[],
 		"unknownC41A7D": unknownC41A7D[],
-		"unknownC4220E": unknownC4220E[],
+		"actionScriptTitleScreenCommonInit": actionScriptTitleScreenCommonInit[],
+		"actionScriptTitleScreenFlashTask": actionScriptTitleScreenFlashTask[],
 		"unknownC42235": unknownC42235[],
 		"unknownC427A1": unknownC427A1[],
 		"unknownC427E0": unknownC427E0[],
@@ -4044,7 +4046,7 @@ actionScript708 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript707_708_709_710_Common[0]),
 ].join();
 actionScriptTitleScreen10 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(7),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -7820,7 +7822,7 @@ actionScriptEvtPray4PupilD = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
 ].join();
 actionScriptTitleScreen7 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(4),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -8575,7 +8577,7 @@ actionScriptPhotographerS = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptTitleScreen6 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(3),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -11810,7 +11812,7 @@ actionScriptEvtPray7Kyorokyoro = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptTitleScreen9 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(6),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -12235,7 +12237,7 @@ actionScript807 = [
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScriptTitleScreen5 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(2),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -13162,13 +13164,15 @@ unknownC4121F = [
 	ACTIONSCRIPT_PAUSE(122),
 	ACTIONSCRIPT_SHORTJUMP(&unknownC4121F[4]),
 ].join();
-unknownC4220E = [
+actionScriptTitleScreenCommonInit = [
 	ACTIONSCRIPT_SET_ANIMATION_POINTER(&unknownE1CF9D[0]),
 	ACTIONSCRIPT_SET_DRAW_CALLBACK(&unknownC0A0FA),
 	ACTIONSCRIPT_SET_PRIORITY(1),
 	ACTIONSCRIPT_SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	ACTIONSCRIPT_C0EE53(),
 	ACTIONSCRIPT_SHORT_RETURN(),
+].join();
+actionScriptTitleScreenFlashTask = [
 	ACTIONSCRIPT_SET_BG_PALETTES_WHITE(),
 	ACTIONSCRIPT_PAUSE(2),
 	ACTIONSCRIPT_SET_BG_PALETTES_BLACK(),
@@ -13419,7 +13423,7 @@ actionScript867 = [
 unknownC42235 = [
 	ACTIONSCRIPT_PAUSE(150),
 	ACTIONSCRIPT_PAUSE(30),
-	ACTIONSCRIPT_START_TASK(&unknownC4220E[7 + 4 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptTitleScreenFlashTask[0]),
 	ACTIONSCRIPT_WRITE_WORD_TEMPVAR(0),
 	ACTIONSCRIPT_C0EC77(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v0, 0),
@@ -13775,7 +13779,7 @@ actionScriptTopolloHallAMuseumKomorita = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScriptMapObjStill[0]),
 ].join();
 actionScriptTitleScreen11 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(8),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -19816,7 +19820,7 @@ actionScriptHoihoiJ = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScriptTitleScreen4 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(1),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -21015,7 +21019,7 @@ actionScript531 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript501_531_Common[0]),
 ].join();
 actionScriptTitleScreen8 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(5),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
@@ -23209,7 +23213,7 @@ actionScript517 = [
 	ACTIONSCRIPT_SHORTJUMP(&unknownC416AC[0]),
 ].join();
 actionScriptTitleScreen3 = [
-	ACTIONSCRIPT_SHORTCALL(&unknownC4220E[0]),
+	ACTIONSCRIPT_SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	ACTIONSCRIPT_SET_ANIMATION(0),
 	ACTIONSCRIPT_SET_Y(100),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&unknown7E9F75),
