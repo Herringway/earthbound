@@ -3031,26 +3031,26 @@ short getOppositeDirection(short arg1) {
 }
 
 /// $C46B41
-immutable short[8] unknownC46B41 = [
-	Direction.right,
-	Direction.downRight,
-	Direction.down,
-	Direction.downLeft,
-	Direction.left,
-	Direction.upLeft,
-	Direction.upLeft,
-	Direction.upRight,
+immutable short[8] directionTableRotated90 = [
+	Direction.up: Direction.right,
+	Direction.upRight: Direction.downRight,
+	Direction.right: Direction.down,
+	Direction.downRight: Direction.downLeft,
+	Direction.down: Direction.left,
+	Direction.downLeft: Direction.upLeft,
+	Direction.left: Direction.upLeft,
+	Direction.upLeft: Direction.upRight,
 ];
 
 /// $C46B51
-short unknownC46B51(ushort arg1) {
-	return unknownC46B41[cast(ushort)(arg1 + 0x1000) / 0x2000];
+short getDirectionRotatedAngle90(ushort arg1) {
+	return directionTableRotated90[cast(ushort)(arg1 + 0x1000) / 0x2000];
 }
 
 unittest {
-	assert(unknownC46B51(0x0000) == 2);
-	assert(unknownC46B51(0x8000) == 6);
-	assert(unknownC46B51(0xF000) == 2);
+	assert(getDirectionRotatedAngle90(0x0000) == Direction.right);
+	assert(getDirectionRotatedAngle90(0x8000) == Direction.left);
+	assert(getDirectionRotatedAngle90(0xF000) == Direction.right);
 }
 
 /// $C46B65
@@ -5782,7 +5782,7 @@ short directionToEntityBoundaries() {
 /// $C472A8
 void unknownC472A8(short arg1) {
 	setMovementFromAngle(entityScriptVar0Table[currentEntitySlot]);
-	short x10 = unknownC46B51(entityScriptVar0Table[currentEntitySlot]);
+	short x10 = getDirectionRotatedAngle90(entityScriptVar0Table[currentEntitySlot]);
 	if (arg1 != 0) {
 		x10 = getOppositeDirection(x10);
 	}
