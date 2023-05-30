@@ -7285,8 +7285,8 @@ short unknownC0A8DC() {
 }
 
 /// $C0A8E7
-void unknownC0A8E7() {
-	unknownC472A8(0);
+void actionScriptSpiralMovement() {
+	entitySpiralMovement(0);
 }
 
 /// $C0A8F7

@@ -5780,16 +5780,50 @@ short directionToEntityBoundaries() {
 }
 
 /// $C472A8
-void unknownC472A8(short arg1) {
+void entitySpiralMovement(short flip) {
 	setMovementFromAngle(entityScriptVar0Table[currentEntitySlot]);
 	short x10 = getDirectionRotatedAngle90(entityScriptVar0Table[currentEntitySlot]);
-	if (arg1 != 0) {
+	if (flip != 0) {
 		x10 = getOppositeDirection(x10);
 	}
 	short x0E = entityDirections[currentEntitySlot];
 	entityDirections[currentEntitySlot] = x10;
 	if (convert8DirectionTo4PreferUpDown(x0E) != convert8DirectionTo4PreferUpDown(x10)) {
 		updateEntitySprite(currentEntitySlot);
+	}
+}
+unittest {
+	enum testData = [
+		[0x0000, Direction.right, Direction.right],
+		[0x1000, Direction.right, Direction.downRight],
+		[0x2000, Direction.downRight, Direction.downRight],
+		[0x3000, Direction.downRight, Direction.down],
+		[0x4000, Direction.down, Direction.down],
+		[0x5000, Direction.down, Direction.downLeft],
+		[0x6000, Direction.downLeft, Direction.downLeft],
+		[0x7000, Direction.downLeft, Direction.left],
+		[0x8000, Direction.left, Direction.left],
+		[0x9000, Direction.left, Direction.upLeft],
+		[0xA000, Direction.upLeft, Direction.upLeft],
+		[0xB000, Direction.upLeft, Direction.upLeft],
+		[0xC000, Direction.upLeft, Direction.upLeft],
+		[0xD000, Direction.upLeft, Direction.upRight],
+		[0xE000, Direction.upRight, Direction.upRight],
+		[0xF000, Direction.upRight, Direction.right],
+	];
+	OverworldSpriteGraphics dummy;
+	sprites.length = 8;
+	scope(exit) {
+		sprites.length = 0;
+		entityGraphicsPointers[currentEntitySlot] = null;
+	}
+	foreach (testCase; testData) {
+		currentEntitySlot = 0;
+		entityGraphicsPointers[currentEntitySlot] = &dummy;
+		entityScriptVar0Table[currentEntitySlot] = cast(short)testCase[0];
+		entityDirections[currentEntitySlot] = cast(short)testCase[1];
+		entitySpiralMovement(0);
+		assert(entityDirections[currentEntitySlot] == cast(short)testCase[2]);
 	}
 }
 
