@@ -5,6 +5,9 @@ import earthbound.commondefs;
 
 const(void)[][const(char)[]] textData;
 
+// pointers to GC'd memory are considered undefined behaviour, so we'll store some aligned pointers here
+private string[string] nameRefs;
+
 private struct CacheEntry {
 	uint keyLength;
 	uint valueLength;
@@ -159,8 +162,9 @@ const(void)[] fromBytes(const(ubyte)[] textChunk) {
 	import std.algorithm.searching : countUntil;
 	static const(ubyte)[] readLabelLength(const(ubyte)[] label, out uint length) {
 		length = (cast(const(uint)[])(label[0 .. uint.sizeof]))[0];
-		string str = (cast(const(char)[])label[uint.sizeof .. uint.sizeof + length]).idup;
-		return allBytes(str);
+		const str = cast(string)(cast(const(char)[])label[uint.sizeof .. uint.sizeof + length]);
+		// make sure an aligned pointer to this label exists so it doesn't get eaten by the garbage collector
+		return allBytes(nameRefs.require(str, str.idup));
 	}
 	static const(ubyte)[] readLabel(const(ubyte)[] label) {
 		uint _;
