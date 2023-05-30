@@ -6125,7 +6125,7 @@ const(ubyte)* actionScriptCommand1F(const(ubyte)* y) {
 
 /// $C09B91 - [20 XX] - Write var to tempvar
 const(ubyte)* actionScriptCommand20(const(ubyte)* y) {
-	entityTempvars[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[0];
+	entityTempvars[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
 	return y + 1;
 }
 
@@ -6139,7 +6139,7 @@ const(ubyte)* actionScriptCommand44(const(ubyte)* y) {
 
 /// $C09BB4 - [21 XX] - Sleep for var XX frames
 const(ubyte)* actionScriptCommand21(const(ubyte)* y) {
-	entityScriptSleepFrames[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[0];
+	entityScriptSleepFrames[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
 	return y + 1;
 }
 
