@@ -89,6 +89,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptSetEntityBoundaries.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptSetMovementSpeedConstant.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptSpawnEntityAtSelf.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/actionScriptSpiralMovement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/actionScriptUpdateSpriteDirection.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/activateHotspot.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/adjustPositionHorizontal.html</loc></url>
@@ -465,7 +466,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A8C6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A8D1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A8DC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A8E7.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A92D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A938.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0A94E.html</loc></url>
@@ -1199,6 +1199,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/flashInflictFeelingStrange.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/flashInflictParalysis.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/generateBattleBGFrame.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/getActivePartyCharacterCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getBattleActionType.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getBattleSpriteHeight.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getBattleSpriteWidth.html</loc></url>
@@ -1326,7 +1327,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC22673.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC226C5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC226E6.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC226F0.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2272F.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC22A3A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC23008.html</loc></url>
@@ -1517,6 +1517,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/decompNintendoPresentation.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/directionTable4LR.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/directionTable4UD.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/directionTableRotated90.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/directionToEntityBoundaries.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/disableEntityByCharacterOrParty.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/disableEntityBySprite.html</loc></url>
@@ -1546,6 +1547,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/entityOverlaySweatingFrame42.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/entityOverlaySweatingFrame43.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/entityOverlaySweatingFrame44.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/entitySpiralMovement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/fileSelectTextStartNewGame.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/finalGiygasPrayerNoiseTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/findEntityByPartyMemberID.html</loc></url>
@@ -1565,6 +1567,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/gameOverPrompt.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getCharacterAtCursorPosition.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getColourFadeSlope.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/getDirectionRotatedAngle90.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getDirectionTo.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getDistanceToMagicTruffle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/getOppositeDirection.html</loc></url>
@@ -1775,8 +1778,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46A5E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46A6E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B2D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B41.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B51.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B65.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46B8D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46BBB.html</loc></url>
@@ -1788,7 +1789,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46E46.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC46EF8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47143.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC472A8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4730E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4733C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47369.html</loc></url>
