@@ -6372,9 +6372,9 @@ short unknownC4CD44() {
 		}
 		unknownC428FC(cast(ushort*)x0A.unknown12, cast(ushort*)x0A.unknown10, x, x0A.tileHeight, cast(short)((x0A.unknown6 / 8) * 32));
 		unknownC429AE(x0A.unknown12, x0A.entityID);
-		if (++x0A.unknown16 >= x0A.unknown6) {
+		if (++x0A.unknown16 >= x0A.unknown6 / 2) {
 			x0A.unknown18++;
-			x0A.unknown12 = null;
+			x0A.unknown16 = 0;
 		}
 	}
 	return cast(short)(x04 - x1E);
