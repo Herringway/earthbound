@@ -6926,6 +6926,7 @@ void updateEntitySpriteOffset(short arg1) {
 	dmaCopyVRAMDestination = entityVramAddresses[arg1 / 2];
 	//x04 = EnttiyGraphicsPointerHigh[arg1 / 2]
 	OverworldSpriteGraphics* x02 = entityGraphicsPointers[arg1 / 2];
+	assert(x02 !is null, "No sprite to update!");
 	if (spriteDirectionMappings4Direction[entityDirections[arg1 / 2]] != 0) {
 		for (short i = spriteDirectionMappings4Direction[entityDirections[arg1 / 2]]; i > 0; i--) {
 			x02 += 2;
