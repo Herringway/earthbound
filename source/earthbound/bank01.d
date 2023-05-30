@@ -3039,7 +3039,7 @@ void* cc1C0C(DisplayTextState* arg1, ubyte arg2) {
 /// $C15BCA
 void* cc1D15(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
-	setWorkingMemory(WorkingMemory(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()) * unknownC226F0()));
+	setWorkingMemory(WorkingMemory(getCCParameters!ArgType(arg2).useVariableIfZero(getArgumentMemory()) * getActivePartyCharacterCount()));
 	return null;
 }
 

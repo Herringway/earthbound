@@ -1092,7 +1092,7 @@ short unknownC226E6() {
 }
 
 /// $C226F0
-ushort unknownC226F0() {
+ushort getActivePartyCharacterCount() {
 	ushort i;
 	for (i = 0; (partyCharacters[gameState.partyMemberIndex[i] - 1].afflictions[0] != 0) && (i < gameState.playerControlledPartyMemberCount); i++) {}
 	return i;
