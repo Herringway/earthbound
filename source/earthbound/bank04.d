@@ -778,7 +778,10 @@ void unknownC428D1(ushort* arg1, ushort* arg2, short arg3, short arg4) {
 }
 
 /// $C428FC
-void unknownC428FC(ushort* arg1, ushort* arg2, short arg3, short arg4, short arg5) {
+void unknownC428FC(ushort* arg1, ushort* arg2, short arg3, short arg4, short arg5)
+	in(arg1, "Missing arg1")
+	in(arg2, "Missing arg2")
+{
 	ushort x08 = unknownC42955[arg3 & 7];
 	ushort x0A = 0xFFFF ^ unknownC42955[arg3 & 7];
 	short y = cast(short)((arg3 & 0xFFF8) * 4);
