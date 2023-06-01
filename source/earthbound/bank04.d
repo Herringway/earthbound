@@ -6159,16 +6159,16 @@ void unknownC48B3B() {
 
 /// $C4C8A4
 void clearUnknown7EB4AABuffer() {
-	unknown7EB4AABuffer = &unknown7F0000[0];
-	unknown7EB4AAEntries = 0;
-	unknown7EB4AA = cast(Unknown7EB4AAEntry*)&unknown7F0000[0x7C00];
+	entityFadeStatesBuffer = &unknown7F0000[0];
+	entityFadeStatesLength = 0;
+	entityFadeStates = cast(SpriteFadeState*)&unknown7F0000[0x7C00];
 	memset(&unknown7F0000[0x7C00], 0, 0x400);
 }
 
 /// $C4C8DB
 ubyte* allocateUnknown7EB4AABuffer(short arg1) {
-	ubyte* result = unknown7EB4AABuffer;
-	unknown7EB4AABuffer += arg1;
+	ubyte* result = entityFadeStatesBuffer;
+	entityFadeStatesBuffer += arg1;
 	return result;
 }
 
@@ -6182,27 +6182,27 @@ void unknownC4C8E9(ubyte* arg1, short arg2) {
 
 /// $C4C91A
 void unknownC4C91A(short entityID, short appearanceStyle) {
-	if (appearanceStyle == 0) {
+	if (appearanceStyle == ObjFX.none) {
 		return;
 	}
-	if (appearanceStyle == 1) {
+	if (appearanceStyle == ObjFX.showNone) {
 		return;
 	}
-	if (appearanceStyle == 6) {
+	if (appearanceStyle == ObjFX.hideNone) {
 		return;
 	}
 	if (entityTileHeights[entityID] == 0) {
 		return;
 	}
-	if (unknown7EB4AAEntity == -1) {
+	if (entityFadeEntity == -1) {
 		clearUnknown7EB4AABuffer();
 		newEntityVar3 = 0;
 		newEntityVar2 = 0;
 		newEntityVar1 = 0;
 		newEntityVar0 = 0;
-		unknown7EB4AAEntity = initEntityWipe(ActionScript.unknown859, 0, 0);
+		entityFadeEntity = initEntityWipe(ActionScript.unknown859, 0, 0);
 	}
-	Unknown7EB4AAEntry* x1A = &unknown7EB4AA[unknown7EB4AAEntries];
+	SpriteFadeState* x1A = &entityFadeStates[entityFadeStatesLength];
 	x1A.entityID = entityID;
 	entitySpriteMapFlags[entityID] |= 0x4000;
 	x1A.appearanceStyle = appearanceStyle;
@@ -6215,7 +6215,7 @@ void unknownC4C91A(short entityID, short appearanceStyle) {
 	x1A.unknown18 = 0;
 	x1A.unknown16 = 0;
 	ubyte* x16;
-	if ((appearanceStyle == 2) || (appearanceStyle == 3) || (appearanceStyle == 4) || (appearanceStyle == 5)) {
+	if ((appearanceStyle == ObjFX.showBlink) || (appearanceStyle == ObjFX.showHStripe) || (appearanceStyle == ObjFX.showVStripe) || (appearanceStyle == ObjFX.showDots)) {
 		x16 = x1A.unknown10;
 	} else {
 		x16 = x1A.unknown12;
@@ -6226,30 +6226,30 @@ void unknownC4C91A(short entityID, short appearanceStyle) {
 		unknownC42884(entityID, x16, x1A.unknown10Size);
 	}
 	switch (appearanceStyle) {
-		case 2:
-		case 7:
-			entityScriptVar0Table[unknown7EB4AAEntity] = 1;
-			x1A.unknown4 = 1;
+		case ObjFX.showBlink:
+		case ObjFX.hideBlink:
+			entityScriptVar0Table[entityFadeEntity] = 1;
+			x1A.fadeStyle = FadeStyle.blink;
 			break;
-		case 3:
-		case 8:
-			entityScriptVar1Table[unknown7EB4AAEntity] = 1;
-			x1A.unknown4 = 2;
+		case ObjFX.showHStripe:
+		case ObjFX.hideHStripe:
+			entityScriptVar1Table[entityFadeEntity] = 1;
+			x1A.fadeStyle = FadeStyle.hStripe;
 			break;
-		case 4:
-		case 9:
-			entityScriptVar2Table[unknown7EB4AAEntity] = 1;
-			x1A.unknown4 = 3;
+		case ObjFX.showVStripe:
+		case ObjFX.hideVStripe:
+			entityScriptVar2Table[entityFadeEntity] = 1;
+			x1A.fadeStyle = FadeStyle.vStripe;
 			break;
-		case 5:
-		case 10:
-			entityScriptVar3Table[unknown7EB4AAEntity] = 1;
-			x1A.unknown4 = 4;
+		case ObjFX.showDots:
+		case ObjFX.hideDots:
+			entityScriptVar3Table[entityFadeEntity] = 1;
+			x1A.fadeStyle = FadeStyle.dots;
 			break;
 		default: break;
 	}
-	entityScriptVar4Table[unknown7EB4AAEntity] = cast(short)(entityScriptVar0Table[unknown7EB4AAEntity] + entityScriptVar1Table[unknown7EB4AAEntity] + entityScriptVar2Table[unknown7EB4AAEntity] + entityScriptVar3Table[unknown7EB4AAEntity]);
-	unknown7EB4AAEntries++;
+	entityScriptVar4Table[entityFadeEntity] = cast(short)(entityScriptVar0Table[entityFadeEntity] + entityScriptVar1Table[entityFadeEntity] + entityScriptVar2Table[entityFadeEntity] + entityScriptVar3Table[entityFadeEntity]);
+	entityFadeStatesLength++;
 }
 
 /// $C4978E
@@ -6283,8 +6283,8 @@ void unknownC49841() {
 
 /// $C4CB4F
 void unknownC4CB4F() {
-	Unknown7EB4AAEntry* x06 = unknown7EB4AA;
-	for (short i = 0; i < unknown7EB4AAEntries; i++) {
+	SpriteFadeState* x06 = entityFadeStates;
+	for (short i = 0; i < entityFadeStatesLength; i++) {
 		entitySpriteMapFlags[x06.entityID] &= 0xBFFF;
 		x06++;
 	}
@@ -6292,9 +6292,9 @@ void unknownC4CB4F() {
 
 /// $C4CB8F
 void unknownC4CB8F() {
-	Unknown7EB4AAEntry* x06 = unknown7EB4AA;
-	for (short i = 0; i < unknown7EB4AAEntries; i++) {
-		if (x06.unknown4 == 1) {
+	SpriteFadeState* x06 = entityFadeStates;
+	for (short i = 0; i < entityFadeStatesLength; i++) {
+		if (x06.fadeStyle == FadeStyle.blink) {
 			entityAnimationFrames[x06.entityID] = 0;
 		}
 		updateEntitySprite(x06.entityID);
@@ -6304,9 +6304,9 @@ void unknownC4CB8F() {
 
 /// $C4CBE3
 void unknownC4CBE3() {
-	Unknown7EB4AAEntry* x06 = unknown7EB4AA;
-	for (short i = 0; i < unknown7EB4AAEntries; i++) {
-		if (x06.unknown4 == 1) {
+	SpriteFadeState* x06 = entityFadeStates;
+	for (short i = 0; i < entityFadeStatesLength; i++) {
+		if (x06.fadeStyle == FadeStyle.blink) {
 			entityAnimationFrames[x06.entityID] = -1;
 		}
 		x06++;
@@ -6322,9 +6322,9 @@ void unknownC4CC2C() {
 short unknownC4CC2F() {
 	short x1E = 0;
 	short x04 = 0;
-	Unknown7EB4AAEntry* x1A = unknown7EB4AA;
-	for (short i = 0; i < unknown7EB4AAEntries; i++, x1A++) {
-		if (x1A.unknown4 != 2) {
+	SpriteFadeState* x1A = entityFadeStates;
+	for (short i = 0; i < entityFadeStatesLength; i++, x1A++) {
+		if (x1A.fadeStyle != FadeStyle.hStripe) {
 			continue;
 		}
 		x04++;
@@ -6346,9 +6346,9 @@ short unknownC4CC2F() {
 short unknownC4CD44() {
 	short x1E = 0;
 	short x04 = 0;
-	Unknown7EB4AAEntry* x0A = unknown7EB4AA;
-	for (short i = 0; i < unknown7EB4AAEntries; i++, x0A++) {
-		if (x0A.unknown4 != 3) {
+	SpriteFadeState* x0A = entityFadeStates;
+	for (short i = 0; i < entityFadeStatesLength; i++, x0A++) {
+		if (x0A.fadeStyle != FadeStyle.vStripe) {
 			continue;
 		}
 		x04++;
@@ -6390,7 +6390,7 @@ void unknownC4CEB0() {
 
 /// $C4CED8
 void unknownC4CED8() {
-	Unknown7EB4AAEntry* x0A = unknown7EB4AA;
+	SpriteFadeState* x0A = entityFadeStates;
 	ushort* x1A = cast(ushort*)&unknown7F0000[0x7F00];
 	short x18 = rand()&0x3F;
 	while (x1A[x18] != 0) {
@@ -6399,8 +6399,8 @@ void unknownC4CED8() {
 	x1A[x18] = 1;
 	short x16 = x18 / 8;
 	short x14 = x18 % 8;
-	for (short i = 0; unknown7EB4AAEntries > i; i++, x0A++) {
-		if (x0A.unknown4 != 4) {
+	for (short i = 0; entityFadeStatesLength > i; i++, x0A++) {
+		if (x0A.fadeStyle != FadeStyle.dots) {
 			continue;
 		}
 		for (short j = 0; j < x0A.tileHeight / 8; j++) {

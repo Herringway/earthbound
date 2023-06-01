@@ -1107,9 +1107,9 @@ void trySpawnNPCs(short x, short y) {
 				}
 				x1A = -1;
 				if (photographMapLoadingMode == 0) {
-					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != 0) && (isDebugViewMapMode() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
+					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != NPCConfigFlagStyle.showAlways) && (isDebugViewMapMode() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
 						continue;
-					} else if ((npcConfig[x20].appearanceStyle != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
+					} else if ((npcConfig[x20].appearanceStyle != NPCConfigFlagStyle.showAlways) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
 						continue;
 					}
 					if (debugging != 0) {
@@ -1121,7 +1121,7 @@ void trySpawnNPCs(short x, short y) {
 							x1A = createEntity(npcConfig[x20].sprite, npcConfig[x20].actionScript, -1, x18, x16);
 						}
 					}
-				} else if (npcConfig[x20].appearanceStyle == 0) {
+				} else if (npcConfig[x20].appearanceStyle == NPCConfigFlagStyle.showAlways) {
 					x1A = createEntity(npcConfig[x20].sprite, ActionScript.unknown799, -1, x18, x16);
 				}
 				if (x1A != -1) {
@@ -8066,7 +8066,7 @@ void unknownC0B67F() {
 	setIRQCallback(&processOverworldTasks);
 	teleportStyle = TeleportStyle.none;
 	teleportDestination = 0;
-	unknown7EB4AAEntity = -1;
+	entityFadeEntity = -1;
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);

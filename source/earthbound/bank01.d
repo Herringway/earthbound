@@ -29,7 +29,7 @@ void displayInteractionText(const(ubyte)* arg1) {
 	displayText(arg1);
 	do {
 		windowTick();
-	} while (unknown7EB4AAEntity != -1);
+	} while (entityFadeEntity != -1);
 	unfreezeEntities();
 }
 
@@ -1778,7 +1778,7 @@ void debugYButtonMenu() {
 	hideHPPPWindows();
 	do {
 		windowTick();
-	} while (unknown7EB4AAEntity != -1);
+	} while (entityFadeEntity != -1);
 	unfreezeEntities();
 }
 
@@ -2114,7 +2114,7 @@ void openMenuButton() {
 	closeAllWindows();
 	do {
 		windowTick();
-	} while (unknown7EB4AAEntity != -1);
+	} while (entityFadeEntity != -1);
 	unfreezeEntities();
 }
 
@@ -2136,7 +2136,7 @@ void openMenuButtonCheckTalk() {
 	closeAllWindows();
 	do {
 		windowTick();
-	} while (unknown7EB4AAEntity != -1);
+	} while (entityFadeEntity != -1);
 	unfreezeEntities();
 }
 

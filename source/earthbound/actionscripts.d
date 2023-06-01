@@ -10166,7 +10166,7 @@ unknownC427A1 = [
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&unknownC427A1[22 + 11 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C09F71(),
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7EB4AAEntity, -1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&entityFadeEntity, -1),
 	ACTIONSCRIPT_END(),
 ].join();
 actionScript846 = [

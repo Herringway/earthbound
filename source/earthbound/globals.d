@@ -857,10 +857,10 @@ __gshared ubyte[3] unknown7EB49E; /// $(DOLLAR)B49E
 __gshared ubyte currentSaveSlot; /// $(DOLLAR)B4A1
 __gshared ubyte unknown7EB4A2; /// $(DOLLAR)B4A2
 
-__gshared ubyte* unknown7EB4AABuffer; /// $(DOLLAR)B4A4
-__gshared short unknown7EB4AAEntries; /// $(DOLLAR)B4A6
-__gshared short unknown7EB4AAEntity; /// $(DOLLAR)B4A8
-__gshared Unknown7EB4AAEntry* unknown7EB4AA; /// $(DOLLAR)B4AA
+__gshared ubyte* entityFadeStatesBuffer; /// $(DOLLAR)B4A4
+__gshared short entityFadeStatesLength; /// $(DOLLAR)B4A6
+__gshared short entityFadeEntity; /// $(DOLLAR)B4A8
+__gshared SpriteFadeState* entityFadeStates; /// $(DOLLAR)B4AA
 __gshared short townMapIconAnimationFrame; /// $(DOLLAR)B4AE
 __gshared short townMapPlayerIconAnimationFrame; /// $(DOLLAR)B4B0
 __gshared short framesUntilMapIconPaletteUpdate; /// $(DOLLAR)B4B2

@@ -5578,6 +5578,30 @@ enum SoundStonePlaybackState {
 }
 
 ///
+enum ObjFX {
+	none = 0,
+	showNone = 1,
+	showBlink = 2,
+	showHStripe = 3,
+	showVStripe = 4,
+	showDots = 5,
+	hideNone = 6,
+	hideBlink = 7,
+	hideHStripe = 8,
+	hideVStripe = 9,
+	hideDots = 10,
+}
+
+///
+enum FadeStyle {
+	none = 0,
+	blink = 1,
+	hStripe = 2,
+	vStripe = 3,
+	dots = 4,
+}
+
+///
 struct GameState {
 	version(Have_siryul) {
 		import siryul : Skip;
@@ -6684,10 +6708,10 @@ struct FloatingSpriteTableEntry {
 	ubyte unknown4; ///
 }
 ///
-struct Unknown7EB4AAEntry {
+struct SpriteFadeState {
 	short entityID; ///
 	short appearanceStyle; ///
-	short unknown4; ///
+	short fadeStyle; ///
 	short unknown6; ///
 	short tileHeight; ///
 	ubyte* unknown10; ///
