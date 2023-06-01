@@ -6334,7 +6334,8 @@ short actionScriptHStripe() {
 		}
 		unknownC428D1(cast(ushort*)x1A.fadeBuffer2, cast(ushort*)x1A.fadeBuffer, cast(short)((x1A.pixelWidth * 32 *(x1A.unknown16 / 8)) + (x1A.unknown16 % 8) * 2), x1A.pixelWidth / 8);
 		unknownC429AE(x1A.fadeBuffer2, x1A.entityID);
-		if (++x1A.unknown16 >= x1A.pixelHeight) {
+		x1A.unknown16 += 2;
+		if (x1A.unknown16 >= x1A.pixelHeight) {
 			x1A.unknown16 = 1;
 			x1A.unknown18++;
 		}
