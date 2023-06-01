@@ -6938,12 +6938,12 @@ void updateEntitySpriteOffset(short arg1) {
 	if (((x02.lsb & 2) == 0) && (entitySurfaceFlags[arg1 / 2] & SurfaceFlags.shallowWater) != 0) {
 		dmaCopyMode = 3;
 		dmaCopyRAMSource = &blankTiles;
-		unknownC0A56E();
+		uploadSpriteTileRow();
 		if (--actionScriptVar00 == 0) {
 			return;
 		}
 		if ((entitySurfaceFlags[arg1 / 2] & SurfaceFlags.causesSunstroke) != 0) {
-			unknownC0A56E();
+			uploadSpriteTileRow();
 			if (--actionScriptVar00 == 0) {
 				return;
 			}
@@ -6956,7 +6956,7 @@ void updateEntitySpriteOffset(short arg1) {
 	dmaCopyRAMSource = sprites[x02.id].ptr;
 	dmaCopyMode = 0;
 	while (true) {
-		unknownC0A56E();
+		uploadSpriteTileRow();
 		if (--actionScriptVar00 == 0) {
 			return;
 		}
@@ -6965,7 +6965,7 @@ void updateEntitySpriteOffset(short arg1) {
 }
 
 /// $C0A56E
-void unknownC0A56E() {
+void uploadSpriteTileRow() {
 	if (((((dmaCopySize / 2) + dmaCopyVRAMDestination - 1) ^ dmaCopyVRAMDestination) & 0x100) != 0) {
 		const(void)* dmaCopyRAMSourceCopy = dmaCopyRAMSource;
 		ushort dmaCopySizeCopy = dmaCopySize;
@@ -7166,12 +7166,12 @@ void updateEntitySpriteFrameCurrent() {
 	if (((x02.lsb & 2) == 0) && ((entitySurfaceFlags[spriteUpdateEntityOffset / 2] & SurfaceFlags.shallowWater) != 0)) {
 		dmaCopyMode = 3;
 		dmaCopyRAMSource = &blankTiles;
-		unknownC0A56E();
+		uploadSpriteTileRow();
 		if (--x00 == 0) {
 			return;
 		}
 		if ((entitySurfaceFlags[spriteUpdateEntityOffset / 2] & SurfaceFlags.causesSunstroke) != 0) {
-			unknownC0A56E();
+			uploadSpriteTileRow();
 			x00--;
 			return;
 		}
@@ -7183,7 +7183,7 @@ void updateEntitySpriteFrameCurrent() {
 	dmaCopyRAMSource = sprites[x02.id].ptr;
 	dmaCopyMode = 0;
 	while (true) {
-		unknownC0A56E();
+		uploadSpriteTileRow();
 		if (--x00 == 0) {
 			break;
 		}

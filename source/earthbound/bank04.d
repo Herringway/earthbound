@@ -778,38 +778,40 @@ void unknownC428D1(ushort* dest, ushort* src, short arg3, short arg4) {
 }
 
 /// $C428FC
-void unknownC428FC(ushort* arg1, ushort* arg2, short arg3, short arg4, short arg5)
-	in(arg1, "Missing arg1")
-	in(arg2, "Missing arg2")
+void unknownC428FC(ushort* dest, ushort* src, short arg3, short arg4, short arg5)
+	in(dest, "Missing dest")
+	in(src, "Missing src")
 {
-	ushort x08 = unknownC42955[arg3 & 7];
-	ushort x0A = 0xFFFF ^ unknownC42955[arg3 & 7];
+	ushort x08 = pixelPlaneMasks[arg3 & 7];
+	ushort x0A = 0xFFFF ^ pixelPlaneMasks[arg3 & 7];
 	short y = cast(short)((arg3 & 0xFFF8) * 4);
 	short x0E = arg4 / 8;
 	do {
 		short x = 16;
 		short tmp = y;
 		do {
-			arg1[y / 2] = (arg1[y / 2] & x0A) | (arg2[y / 2] & x08);
+			dest[y / 2] = (dest[y / 2] & x0A) | (src[y / 2] & x08);
 			y += 2;
 		} while (--x != 0);
 		y = cast(short)(tmp + arg5);
 	} while (--x0E != 0);
 }
 
-/// $C428FC
-void unknownC42965(ushort* arg1, ushort* arg2, short arg3, short arg4) {
-	ushort x08 = unknownC42955[arg4];
+/// $C42965 - Copies a pixel from one 4BPP tile to another
+void copyPixel(ushort* dest, ushort* src, short pixelRow, short pixelColumn) {
+	ushort x08 = pixelPlaneMasks[pixelColumn];
 	ushort x0A = x08 ^ 0xFFFF;
-	ushort x0C = arg2[arg3] & x08;
-	arg1[arg3] = (arg1[arg3] & x0A) | x0C;
-	arg3 += 16;
-	x0C = arg2[arg3] & x08;
-	arg1[arg3] = (arg1[arg3] & x0A) | x0C;
+	// plane 0-1
+	ushort x0C = src[pixelRow] & x08;
+	dest[pixelRow] = (dest[pixelRow] & x0A) | x0C;
+	// plane 2-3
+	pixelRow += 16;
+	x0C = src[pixelRow] & x08;
+	dest[pixelRow] = (dest[pixelRow] & x0A) | x0C;
 }
 
-/// $C42955
-immutable ushort[8] unknownC42955 = [
+/// $C42955 - masks for getting individual pixels out of a 2 plane pair
+immutable ushort[8] pixelPlaneMasks = [
 	0b1000000010000000,
 	0b0100000001000000,
 	0b0010000000100000,
@@ -821,16 +823,15 @@ immutable ushort[8] unknownC42955 = [
 ];
 
 /// $C429AE
-void unknownC429AE(const(void)* arg1, short arg2) {
-	//pushed arg1
-	short x00 = entityTileHeights[arg2];
+void uploadEntityFadeFrame(const(void)* newSprite, short entity) {
+	short rows = entityTileHeights[entity];
 	dmaCopyMode = 0;
-	dmaCopySize = entityByteWidths[arg2];
-	dmaCopyRAMSource = arg1;
-	dmaCopyVRAMDestination = entityVramAddresses[arg2];
+	dmaCopySize = entityByteWidths[entity];
+	dmaCopyRAMSource = newSprite;
+	dmaCopyVRAMDestination = entityVramAddresses[entity];
 	while (true) {
-		unknownC0A56E();
-		if (--x00 == 0) {
+		uploadSpriteTileRow();
+		if (--rows == 0) {
 			break;
 		}
 		dmaCopyRAMSource += dmaCopySize;
@@ -846,7 +847,6 @@ void unknownC429E8(short channel) {
 	dmaChannels[channel].DMAP = DMATransferUnit.Word;
 	dmaChannels[channel].A1T = &unknown7EADB8[0];
 	mirrorHDMAEN |= dmaFlags[channel];
-
 }
 
 /// $C42A1F
@@ -6333,7 +6333,7 @@ short actionScriptHStripe() {
 			continue;
 		}
 		unknownC428D1(cast(ushort*)x1A.fadeBuffer2, cast(ushort*)x1A.fadeBuffer, cast(short)((x1A.pixelWidth * 32 *(x1A.unknown16 / 8)) + (x1A.unknown16 % 8) * 2), x1A.pixelWidth / 8);
-		unknownC429AE(x1A.fadeBuffer2, x1A.entityID);
+		uploadEntityFadeFrame(x1A.fadeBuffer2, x1A.entityID);
 		x1A.unknown16 += 2;
 		if (x1A.unknown16 >= x1A.pixelHeight) {
 			x1A.unknown16 = 1;
@@ -6372,7 +6372,7 @@ short actionScriptVStripe() {
 			}
 		}
 		unknownC428FC(cast(ushort*)x0A.fadeBuffer2, cast(ushort*)x0A.fadeBuffer, x, x0A.pixelHeight, cast(short)((x0A.pixelWidth / 8) * 32));
-		unknownC429AE(x0A.fadeBuffer2, x0A.entityID);
+		uploadEntityFadeFrame(x0A.fadeBuffer2, x0A.entityID);
 		if (++x0A.unknown16 >= x0A.pixelWidth / 2) {
 			x0A.unknown18++;
 			x0A.unknown16 = 0;
@@ -6407,10 +6407,10 @@ void actionScriptObjFXDots() {
 		for (short j = 0; j < x0A.pixelHeight / 8; j++) {
 			for (short k = 0; k < x0A.pixelWidth / 8; k++) {
 				x18 = cast(short)((j * x0A.pixelWidth * 32) + (x16 * 2) + (k * 32));
-				unknownC42965(cast(ushort*)x0A.fadeBuffer2, cast(ushort*)x0A.fadeBuffer, x18, x14);
+				copyPixel(cast(ushort*)x0A.fadeBuffer2, cast(ushort*)x0A.fadeBuffer, x18, x14);
 			}
 		}
-		unknownC429AE(x0A.fadeBuffer2, x0A.entityID);
+		uploadEntityFadeFrame(x0A.fadeBuffer2, x0A.entityID);
 	}
 }
 
