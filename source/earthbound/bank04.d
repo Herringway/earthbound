@@ -802,12 +802,12 @@ void copyPixel(ushort* dest, ushort* src, short pixelRow, short pixelColumn) {
 	ushort x08 = pixelPlaneMasks[pixelColumn];
 	ushort x0A = x08 ^ 0xFFFF;
 	// plane 0-1
-	ushort x0C = src[pixelRow] & x08;
-	dest[pixelRow] = (dest[pixelRow] & x0A) | x0C;
+	ushort x0C = src[pixelRow / 2] & x08;
+	dest[pixelRow / 2] = (dest[pixelRow / 2] & x0A) | x0C;
 	// plane 2-3
 	pixelRow += 16;
-	x0C = src[pixelRow] & x08;
-	dest[pixelRow] = (dest[pixelRow] & x0A) | x0C;
+	x0C = src[pixelRow / 2] & x08;
+	dest[pixelRow / 2] = (dest[pixelRow / 2] & x0A) | x0C;
 }
 
 /// $C42955 - masks for getting individual pixels out of a 2 plane pair
