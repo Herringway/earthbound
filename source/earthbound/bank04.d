@@ -768,11 +768,11 @@ void unknownC42884(short arg1, ubyte* arg2, short arg3) {
 }
 
 /// $C428D1
-void unknownC428D1(ushort* arg1, ushort* arg2, short arg3, short arg4) {
+void unknownC428D1(ushort* dest, ushort* src, short arg3, short arg4) {
 	short x = cast(short)(arg4 * 2);
 	short y = arg3;
 	do {
-		arg1[y / 2] = arg2[y / 2];
+		dest[y / 2] = src[y / 2];
 		y += 16;
 	} while (--x != 0);
 }
@@ -851,181 +851,181 @@ void unknownC429E8(short channel) {
 
 /// $C42A1F
 immutable short[17] unknownC42A1F = [
-	0x0008,
-	0x0008,
-	0x000C,
-	0x0010,
-	0x0018,
-	0x0008,
-	0x000C,
-	0x0008,
-	0x0010,
-	0x0018,
-	0x000C,
-	0x0008,
-	0x0010,
-	0x0018,
-	0x0020,
-	0x0020,
-	0x0020,
+	EntitySize._8x16: 0x0008,
+	EntitySize._16x16: 0x0008,
+	EntitySize._24x16: 0x000C,
+	EntitySize._32x16: 0x0010,
+	EntitySize._48x16: 0x0018,
+	EntitySize._16x24: 0x0008,
+	EntitySize._24x24: 0x000C,
+	EntitySize._16x32: 0x0008,
+	EntitySize._32x24: 0x0010,
+	EntitySize._48x32: 0x0018,
+	EntitySize._24x48: 0x000C,
+	EntitySize._16x48: 0x0008,
+	EntitySize._32x48: 0x0010,
+	EntitySize._48x48: 0x0018,
+	EntitySize._64x48: 0x0020,
+	EntitySize._64x64: 0x0020,
+	EntitySize._64x80: 0x0020,
 ];
 
 /// $C42A41
 immutable short[17] unknownC42A41 = [
-	0x0008,
-	0x0008,
-	0x0008,
-	0x0008,
-	0x0008,
-	0x0018,
-	0x0018,
-	0x0018,
-	0x0018,
-	0x0018,
-	0x0020,
-	0x0028,
-	0x0028,
-	0x0028,
-	0x0028,
-	0x0038,
-	0x0048,
+	EntitySize._8x16: 0x0008,
+	EntitySize._16x16: 0x0008,
+	EntitySize._24x16: 0x0008,
+	EntitySize._32x16: 0x0008,
+	EntitySize._48x16: 0x0008,
+	EntitySize._16x24: 0x0018,
+	EntitySize._24x24: 0x0018,
+	EntitySize._16x32: 0x0018,
+	EntitySize._32x24: 0x0018,
+	EntitySize._48x32: 0x0018,
+	EntitySize._24x48: 0x0020,
+	EntitySize._16x48: 0x0028,
+	EntitySize._32x48: 0x0028,
+	EntitySize._48x48: 0x0028,
+	EntitySize._64x48: 0x0028,
+	EntitySize._64x64: 0x0038,
+	EntitySize._64x80: 0x0048,
 ];
 
 /// $C42A63
-immutable short[17] unknownC42A63 = [
-	0x0010,
-	0x0010,
-	0x0020,
-	0x0020,
-	0x0030,
-	0x0010,
-	0x0018,
-	0x0010,
-	0x0020,
-	0x0030,
-	0x0018,
-	0x0010,
-	0x0020,
-	0x0030,
-	0x0040,
-	0x0040,
-	0x0040,
+immutable short[17] pixelWidths = [
+	EntitySize._8x16: 0x0010, // off by 8?
+	EntitySize._16x16: 0x0010,
+	EntitySize._24x16: 0x0020, // off by 8?
+	EntitySize._32x16: 0x0020,
+	EntitySize._48x16: 0x0030,
+	EntitySize._16x24: 0x0010,
+	EntitySize._24x24: 0x0018,
+	EntitySize._16x32: 0x0010,
+	EntitySize._32x24: 0x0020,
+	EntitySize._48x32: 0x0030,
+	EntitySize._24x48: 0x0018,
+	EntitySize._16x48: 0x0010,
+	EntitySize._32x48: 0x0020,
+	EntitySize._48x48: 0x0030,
+	EntitySize._64x48: 0x0040,
+	EntitySize._64x64: 0x0040,
+	EntitySize._64x80: 0x0040,
 ];
 
 /// $C42AA7
 immutable short[17] hitboxWidths = [
-	0x0002,
-	0x0000,
-	0x0002,
-	0x0004,
-	0x0006,
-	0x0002,
-	0x0003,
-	0x0002,
-	0x0004,
-	0x0006,
-	0x0000,
-	0x0002,
-	0x0004,
-	0x0006,
-	0x0008,
-	0x0000,
-	0x0006,
+	EntitySize._8x16: 0x0002,
+	EntitySize._16x16: 0x0000,
+	EntitySize._24x16: 0x0002,
+	EntitySize._32x16: 0x0004,
+	EntitySize._48x16: 0x0006,
+	EntitySize._16x24: 0x0002,
+	EntitySize._24x24: 0x0003,
+	EntitySize._16x32: 0x0002,
+	EntitySize._32x24: 0x0004,
+	EntitySize._48x32: 0x0006,
+	EntitySize._24x48: 0x0000,
+	EntitySize._16x48: 0x0002,
+	EntitySize._32x48: 0x0004,
+	EntitySize._48x48: 0x0006,
+	EntitySize._64x48: 0x0008,
+	EntitySize._64x64: 0x0000,
+	EntitySize._64x80: 0x0006,
 ];
 
 /// $C42AEB - Original meaning unknown.
 immutable short[17] unknownC42AEB = [
-	0x000A,
-	0x0000,
-	0x000A,
-	0x000A,
-	0x000A,
-	0x0018,
-	0x0018,
-	0x0018,
-	0x0010,
-	0x0010,
-	0x0000,
-	0x0028,
-	0x0020,
-	0x0020,
-	0x0020,
-	0x0000,
-	0x0041,
+	EntitySize._8x16: 0x000A,
+	EntitySize._16x16: 0x0000,
+	EntitySize._24x16: 0x000A,
+	EntitySize._32x16: 0x000A,
+	EntitySize._48x16: 0x000A,
+	EntitySize._16x24: 0x0018,
+	EntitySize._24x24: 0x0018,
+	EntitySize._16x32: 0x0018,
+	EntitySize._32x24: 0x0010,
+	EntitySize._48x32: 0x0010,
+	EntitySize._24x48: 0x0000,
+	EntitySize._16x48: 0x0028,
+	EntitySize._32x48: 0x0020,
+	EntitySize._48x48: 0x0020,
+	EntitySize._64x48: 0x0020,
+	EntitySize._64x64: 0x0000,
+	EntitySize._64x80: 0x0041,
 ];
 
 /// $C42AC9
 immutable short[17] hitboxHeights = [
-	0x0001,
-	0x0000,
-	0x0001,
-	0x0001,
-	0x0001,
-	0x0001,
-	0x0001,
-	0x0001,
-	0x0002,
-	0x0002,
-	0x0000,
-	0x0001,
-	0x0002,
-	0x0002,
-	0x0002,
-	0x0000,
-	0x0002,
+	EntitySize._8x16: 0x0001,
+	EntitySize._16x16: 0x0000,
+	EntitySize._24x16: 0x0001,
+	EntitySize._32x16: 0x0001,
+	EntitySize._48x16: 0x0001,
+	EntitySize._16x24: 0x0001,
+	EntitySize._24x24: 0x0001,
+	EntitySize._16x32: 0x0001,
+	EntitySize._32x24: 0x0002,
+	EntitySize._48x32: 0x0002,
+	EntitySize._24x48: 0x0000,
+	EntitySize._16x48: 0x0001,
+	EntitySize._32x48: 0x0002,
+	EntitySize._48x48: 0x0002,
+	EntitySize._64x48: 0x0002,
+	EntitySize._64x64: 0x0000,
+	EntitySize._64x80: 0x0002,
 ];
 
 /// $C42B0D
 immutable UnknownC42B0DEntry[17] unknownC42B0D = [
-	UnknownC42B0DEntry(1, 0, [
+	EntitySize._8x16: UnknownC42B0DEntry(1, 0, [
 			[SpriteMap(0xF8, 0x00, 0x00, 0xF8, 0x80), SpriteMap(0xF8, 0x00, 0x40, 0xF8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(1, 0, [
+	EntitySize._16x16: UnknownC42B0DEntry(1, 0, [
 			[SpriteMap(0xF8, 0x00, 0x00, 0xF8, 0x80), SpriteMap(0xF8, 0x00, 0x40, 0xF8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(2, 0, [
+	EntitySize._24x16: UnknownC42B0DEntry(2, 0, [
 			[SpriteMap(0xF8, 0x00, 0x00, 0xF4, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0x04, 0x80)],
 			[SpriteMap(0xF8, 0x00, 0x40, 0xFC, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xEC, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(2, 0, [
+	EntitySize._32x16: UnknownC42B0DEntry(2, 0, [
 			[SpriteMap(0xF8, 0x00, 0x00, 0xF0, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0x00, 0x80)],
 			[SpriteMap(0xF8, 0x00, 0x40, 0x00, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xF0, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(3, 0, [
+	EntitySize._48x16: UnknownC42B0DEntry(3, 0, [
 			[SpriteMap(0xF8, 0x00, 0x00, 0xE8, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0xF8, 0x00)],
 			[SpriteMap(0xF8, 0x04, 0x00, 0x08, 0x80), SpriteMap(0xF8, 0x00, 0x40, 0x08, 0x00)],
 			[SpriteMap(0xF8, 0x02, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x04, 0x40, 0xE8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(2, 1, [
+	EntitySize._16x24: UnknownC42B0DEntry(2, 1, [
 			[SpriteMap(0xE8, 0x00, 0x00, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0xF8, 0x80)],
 			[SpriteMap(0xE8, 0x00, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xF8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(4, 2, [
+	EntitySize._24x24: UnknownC42B0DEntry(4, 2, [
 			[SpriteMap(0xE8, 0x00, 0x00, 0xF4, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0x04, 0x00)],
 			[SpriteMap(0xF8, 0x04, 0x00, 0xF4, 0x00), SpriteMap(0xF8, 0x06, 0x00, 0x04, 0x80)],
 			[SpriteMap(0xE8, 0x00, 0x40, 0xFC, 0x00), SpriteMap(0xE8, 0x02, 0x40, 0xEC, 0x00)],
 			[SpriteMap(0xF8, 0x04, 0x40, 0xFC, 0x00), SpriteMap(0xF8, 0x06, 0x40, 0xEC, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(2, 1, [
+	EntitySize._16x32: UnknownC42B0DEntry(2, 1, [
 			[SpriteMap(0xE8, 0x00, 0x00, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x00, 0xF8, 0x80)],
 			[SpriteMap(0xE8, 0x00, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x02, 0x40, 0xF8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(4, 2, [
+	EntitySize._32x24: UnknownC42B0DEntry(4, 2, [
 			[SpriteMap(0xE8, 0x00, 0x00, 0xF0, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0x00, 0x00)],
 			[SpriteMap(0xF8, 0x04, 0x00, 0xF0, 0x00), SpriteMap(0xF8, 0x06, 0x00, 0x00, 0x80)],
 			[SpriteMap(0xE8, 0x00, 0x40, 0x00, 0x00), SpriteMap(0xE8, 0x02, 0x40, 0xF0, 0x00)],
 			[SpriteMap(0xF8, 0x04, 0x40, 0x00, 0x00), SpriteMap(0xF8, 0x06, 0x40, 0xF0, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(6, 3, [
+	EntitySize._48x32: UnknownC42B0DEntry(6, 3, [
 			[SpriteMap(0xE8, 0x00, 0x00, 0xE8, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0xF8, 0x00)],
 			[SpriteMap(0xE8, 0x04, 0x00, 0x08, 0x00), SpriteMap(0xF8, 0x06, 0x00, 0xE8, 0x00)],
 			[SpriteMap(0xF8, 0x08, 0x00, 0xF8, 0x00), SpriteMap(0xF8, 0x0A, 0x00, 0x08, 0x80)],
@@ -1034,7 +1034,7 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 			[SpriteMap(0xF8, 0x08, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x0A, 0x40, 0xE8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(6, 4, [
+	EntitySize._24x48: UnknownC42B0DEntry(6, 4, [
 			[SpriteMap(0xE0, 0x00, 0x00, 0xF4, 0x00), SpriteMap(0xE0, 0x02, 0x00, 0x04, 0x00)],
 			[SpriteMap(0xF0, 0x04, 0x00, 0xF4, 0x00), SpriteMap(0xF0, 0x06, 0x00, 0x04, 0x00)],
 			[SpriteMap(0x00, 0x08, 0x00, 0xF4, 0x00), SpriteMap(0x00, 0x0A, 0x00, 0x04, 0x80)],
@@ -1043,13 +1043,13 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 			[SpriteMap(0x00, 0x08, 0x40, 0xFC, 0x00), SpriteMap(0x00, 0x0A, 0x40, 0xEC, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(3, 2, [
+	EntitySize._16x48: UnknownC42B0DEntry(3, 2, [
 			[SpriteMap(0xD8, 0x00, 0x00, 0xF8, 0x00), SpriteMap(0xE8, 0x02, 0x00, 0xF8, 0x00)],
 			[SpriteMap(0xF8, 0x04, 0x00, 0xF8, 0x80), SpriteMap(0xD8, 0x00, 0x40, 0xF8, 0x00)],
 			[SpriteMap(0xE8, 0x02, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x04, 0x40, 0xF8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(6, 4, [
+	EntitySize._32x48: UnknownC42B0DEntry(6, 4, [
 			[SpriteMap(0xD8, 0x00, 0x00, 0xF0, 0x00), SpriteMap(0xD8, 0x02, 0x00, 0x00, 0x00)],
 			[SpriteMap(0xE8, 0x04, 0x00, 0xF0, 0x00), SpriteMap(0xE8, 0x06, 0x00, 0x00, 0x00)],
 			[SpriteMap(0xF8, 0x08, 0x00, 0xF0, 0x00), SpriteMap(0xF8, 0x0A, 0x00, 0x00, 0x80)],
@@ -1058,7 +1058,7 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 			[SpriteMap(0xF8, 0x08, 0x40, 0x00, 0x00), SpriteMap(0xF8, 0x0A, 0x40, 0xF0, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(9, 6, [
+	EntitySize._48x48: UnknownC42B0DEntry(9, 6, [
 			[SpriteMap(0xD8, 0x00, 0x00, 0xE8, 0x00), SpriteMap(0xD8, 0x02, 0x00, 0xF8, 0x00)],
 			[SpriteMap(0xD8, 0x04, 0x00, 0x08, 0x00), SpriteMap(0xE8, 0x06, 0x00, 0xE8, 0x00)],
 			[SpriteMap(0xE8, 0x08, 0x00, 0xF8, 0x00), SpriteMap(0xE8, 0x0A, 0x00, 0x08, 0x00)],
@@ -1070,7 +1070,7 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 			[SpriteMap(0xF8, 0x0E, 0x40, 0xF8, 0x00), SpriteMap(0xF8, 0x10, 0x40, 0xE8, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(12, 8, [
+	EntitySize._64x48: UnknownC42B0DEntry(12, 8, [
 			[SpriteMap(0xD8, 0x00, 0x00, 0xE0, 0x00), SpriteMap(0xD8, 0x02, 0x00, 0xF0, 0x00)],
 			[SpriteMap(0xD8, 0x04, 0x00, 0x00, 0x00), SpriteMap(0xD8, 0x06, 0x00, 0x10, 0x00)],
 			[SpriteMap(0xE8, 0x08, 0x00, 0xE0, 0x00), SpriteMap(0xE8, 0x0A, 0x00, 0xF0, 0x00)],
@@ -1085,7 +1085,7 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 			[SpriteMap(0xF8, 0x14, 0x40, 0xF0, 0x00), SpriteMap(0xF8, 0x16, 0x40, 0xE0, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(16, 8, [
+	EntitySize._64x64: UnknownC42B0DEntry(16, 8, [
 			[SpriteMap(0xC8, 0x00, 0x00, 0xE0, 0x00), SpriteMap(0xC8, 0x02, 0x00, 0xF0, 0x00)],
 			[SpriteMap(0xC8, 0x04, 0x00, 0x00, 0x00), SpriteMap(0xC8, 0x06, 0x00, 0x10, 0x00)],
 			[SpriteMap(0xD8, 0x08, 0x00, 0xE0, 0x00), SpriteMap(0xD8, 0x0A, 0x00, 0xF0, 0x00)],
@@ -1104,7 +1104,7 @@ immutable UnknownC42B0DEntry[17] unknownC42B0D = [
 			[SpriteMap(0xF8, 0x1C, 0x40, 0xF0, 0x00), SpriteMap(0xF8, 0x1E, 0x40, 0xE0, 0x80)],
 		]
 	),
-	UnknownC42B0DEntry(20, 8, [
+	EntitySize._64x80: UnknownC42B0DEntry(20, 8, [
 			[SpriteMap(0xB8, 0x00, 0x00, 0xE0, 0x00), SpriteMap(0xB8, 0x02, 0x00, 0xF0, 0x00)],
 			[SpriteMap(0xB8, 0x04, 0x00, 0x00, 0x00), SpriteMap(0xB8, 0x06, 0x00, 0x10, 0x00)],
 			[SpriteMap(0xC8, 0x08, 0x00, 0xE0, 0x00), SpriteMap(0xC8, 0x0A, 0x00, 0xF0, 0x00)],
@@ -6158,7 +6158,7 @@ void unknownC48B3B() {
 }
 
 /// $C4C8A4
-void clearUnknown7EB4AABuffer() {
+void clearEntityFadeBuffer() {
 	entityFadeStatesBuffer = &unknown7F0000[0];
 	entityFadeStatesLength = 0;
 	entityFadeStates = cast(SpriteFadeState*)&unknown7F0000[0x7C00];
@@ -6166,14 +6166,14 @@ void clearUnknown7EB4AABuffer() {
 }
 
 /// $C4C8DB
-ubyte* allocateUnknown7EB4AABuffer(short arg1) {
+ubyte* allocateEntityFadeBuffer(short arg1) {
 	ubyte* result = entityFadeStatesBuffer;
 	entityFadeStatesBuffer += arg1;
 	return result;
 }
 
 /// $C4C8E9
-void unknownC4C8E9(ubyte* arg1, short arg2) {
+void clearEntityFadeEntry(ubyte* arg1, short arg2) {
 	while (arg2 != 0) {
 		(arg1++)[0] = 0;
 		arg2--;
@@ -6181,7 +6181,7 @@ void unknownC4C8E9(ubyte* arg1, short arg2) {
 }
 
 /// $C4C91A
-void unknownC4C91A(short entityID, short appearanceStyle) {
+void initializeEntityFade(short entityID, short appearanceStyle) {
 	if (appearanceStyle == ObjFX.none) {
 		return;
 	}
@@ -6195,7 +6195,7 @@ void unknownC4C91A(short entityID, short appearanceStyle) {
 		return;
 	}
 	if (entityFadeEntity == -1) {
-		clearUnknown7EB4AABuffer();
+		clearEntityFadeBuffer();
 		newEntityVar3 = 0;
 		newEntityVar2 = 0;
 		newEntityVar1 = 0;
@@ -6206,24 +6206,24 @@ void unknownC4C91A(short entityID, short appearanceStyle) {
 	x1A.entityID = entityID;
 	entitySpriteMapFlags[entityID] |= 0x4000;
 	x1A.appearanceStyle = appearanceStyle;
-	x1A.unknown6 = unknownC42A63[entitySizes[entityID]];
-	x1A.tileHeight = cast(short)(entityTileHeights[entityID] * 8);
-	x1A.unknown10Size = cast(short)(entityTileHeights[entityID] * 8 * unknownC42A63[entitySizes[entityID]]);
-	x1A.unknown10 = allocateUnknown7EB4AABuffer(x1A.unknown10Size);
-	unknownC4C8E9(x1A.unknown10, x1A.unknown10Size);
-	x1A.unknown12 = x1A.unknown10 + x1A.unknown10Size;
+	x1A.pixelWidth = pixelWidths[entitySizes[entityID]];
+	x1A.pixelHeight = cast(short)(entityTileHeights[entityID] * 8);
+	x1A.fadeBufferSize = cast(short)(entityTileHeights[entityID] * 8 * pixelWidths[entitySizes[entityID]]);
+	x1A.fadeBuffer = allocateEntityFadeBuffer(x1A.fadeBufferSize);
+	clearEntityFadeEntry(x1A.fadeBuffer, x1A.fadeBufferSize);
+	x1A.fadeBuffer2 = x1A.fadeBuffer + x1A.fadeBufferSize;
 	x1A.unknown18 = 0;
 	x1A.unknown16 = 0;
 	ubyte* x16;
 	if ((appearanceStyle == ObjFX.showBlink) || (appearanceStyle == ObjFX.showHStripe) || (appearanceStyle == ObjFX.showVStripe) || (appearanceStyle == ObjFX.showDots)) {
-		x16 = x1A.unknown10;
+		x16 = x1A.fadeBuffer;
 	} else {
-		x16 = x1A.unknown12;
+		x16 = x1A.fadeBuffer2;
 	}
 	if (entityID >= 0x18) {
-		unknownC4283F(entityID, x16, x1A.unknown10Size);
+		unknownC4283F(entityID, x16, x1A.fadeBufferSize);
 	} else {
-		unknownC42884(entityID, x16, x1A.unknown10Size);
+		unknownC42884(entityID, x16, x1A.fadeBufferSize);
 	}
 	switch (appearanceStyle) {
 		case ObjFX.showBlink:
@@ -6291,7 +6291,7 @@ void unknownC4CB4F() {
 }
 
 /// $C4CB8F
-void unknownC4CB8F() {
+void actionScriptBlinkVisible() {
 	SpriteFadeState* x06 = entityFadeStates;
 	for (short i = 0; i < entityFadeStatesLength; i++) {
 		if (x06.fadeStyle == FadeStyle.blink) {
@@ -6303,7 +6303,7 @@ void unknownC4CB8F() {
 }
 
 /// $C4CBE3
-void unknownC4CBE3() {
+void actionScriptBlinkInvisible() {
 	SpriteFadeState* x06 = entityFadeStates;
 	for (short i = 0; i < entityFadeStatesLength; i++) {
 		if (x06.fadeStyle == FadeStyle.blink) {
@@ -6314,12 +6314,12 @@ void unknownC4CBE3() {
 }
 
 /// $C4CC2C
-void unknownC4CC2C() {
+void actionScriptEndFade() {
 	// wow. nothing!
 }
 
 /// $C4CC2F
-short unknownC4CC2F() {
+short actionScriptHStripe() {
 	short x1E = 0;
 	short x04 = 0;
 	SpriteFadeState* x1A = entityFadeStates;
@@ -6332,9 +6332,9 @@ short unknownC4CC2F() {
 			x1E++;
 			continue;
 		}
-		unknownC428D1(cast(ushort*)x1A.unknown12, cast(ushort*)x1A.unknown10, cast(short)((x1A.unknown6 * 32 *(x1A.unknown16 / 8)) + (x1A.unknown16 % 8) * 2), x1A.unknown6 / 8);
-		unknownC429AE(x1A.unknown12, x1A.entityID);
-		if (++x1A.unknown16 >= x1A.tileHeight) {
+		unknownC428D1(cast(ushort*)x1A.fadeBuffer2, cast(ushort*)x1A.fadeBuffer, cast(short)((x1A.pixelWidth * 32 *(x1A.unknown16 / 8)) + (x1A.unknown16 % 8) * 2), x1A.pixelWidth / 8);
+		unknownC429AE(x1A.fadeBuffer2, x1A.entityID);
+		if (++x1A.unknown16 >= x1A.pixelHeight) {
 			x1A.unknown16 = 1;
 			x1A.unknown18++;
 		}
@@ -6343,7 +6343,7 @@ short unknownC4CC2F() {
 }
 
 /// $C4CD44
-short unknownC4CD44() {
+short actionScriptVStripe() {
 	short x1E = 0;
 	short x04 = 0;
 	SpriteFadeState* x0A = entityFadeStates;
@@ -6361,18 +6361,18 @@ short unknownC4CD44() {
 			if ((x0A.unknown16 & 1) == 0) {
 				x = x0A.unknown16;
 			} else {
-				x = cast(short)(x0A.unknown6 - x0A.unknown16 - 1);
+				x = cast(short)(x0A.pixelWidth - x0A.unknown16 - 1);
 			}
 		} else {
 			if ((x0A.unknown16 & 1) != 0) {
 				x = x0A.unknown16;
 			} else {
-				x = cast(short)(x0A.unknown6 - x0A.unknown16 - 1);
+				x = cast(short)(x0A.pixelWidth - x0A.unknown16 - 1);
 			}
 		}
-		unknownC428FC(cast(ushort*)x0A.unknown12, cast(ushort*)x0A.unknown10, x, x0A.tileHeight, cast(short)((x0A.unknown6 / 8) * 32));
-		unknownC429AE(x0A.unknown12, x0A.entityID);
-		if (++x0A.unknown16 >= x0A.unknown6 / 2) {
+		unknownC428FC(cast(ushort*)x0A.fadeBuffer2, cast(ushort*)x0A.fadeBuffer, x, x0A.pixelHeight, cast(short)((x0A.pixelWidth / 8) * 32));
+		unknownC429AE(x0A.fadeBuffer2, x0A.entityID);
+		if (++x0A.unknown16 >= x0A.pixelWidth / 2) {
 			x0A.unknown18++;
 			x0A.unknown16 = 0;
 		}
@@ -6381,7 +6381,7 @@ short unknownC4CD44() {
 }
 
 /// $C4CEB0
-void unknownC4CEB0() {
+void actionScriptObjFXClearDotBuffer() {
 	ushort* x06 = cast(ushort*)&unknown7F0000[0x7F00];
 	for (short i = 0; i < 0x40; i++) {
 		(x06++)[0] = 0;
@@ -6389,7 +6389,7 @@ void unknownC4CEB0() {
 }
 
 /// $C4CED8
-void unknownC4CED8() {
+void actionScriptObjFXDots() {
 	SpriteFadeState* x0A = entityFadeStates;
 	ushort* x1A = cast(ushort*)&unknown7F0000[0x7F00];
 	short x18 = rand()&0x3F;
@@ -6403,13 +6403,13 @@ void unknownC4CED8() {
 		if (x0A.fadeStyle != FadeStyle.dots) {
 			continue;
 		}
-		for (short j = 0; j < x0A.tileHeight / 8; j++) {
-			for (short k = 0; k < x0A.unknown6 / 8; k++) {
-				x18 = cast(short)((j * x0A.unknown6 * 32) + (x16 * 2) + (k * 32));
-				unknownC42965(cast(ushort*)x0A.unknown12, cast(ushort*)x0A.unknown10, x18, x14);
+		for (short j = 0; j < x0A.pixelHeight / 8; j++) {
+			for (short k = 0; k < x0A.pixelWidth / 8; k++) {
+				x18 = cast(short)((j * x0A.pixelWidth * 32) + (x16 * 2) + (k * 32));
+				unknownC42965(cast(ushort*)x0A.fadeBuffer2, cast(ushort*)x0A.fadeBuffer, x18, x14);
 			}
 		}
-		unknownC429AE(x0A.unknown12, x0A.entityID);
+		unknownC429AE(x0A.fadeBuffer2, x0A.entityID);
 	}
 }
 

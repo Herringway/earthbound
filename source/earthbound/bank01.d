@@ -3222,7 +3222,7 @@ void* cc1F16(DisplayTextState* arg1, ubyte arg2) {
 /// $C16509
 void* cc1F17(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F17Arguments);
-	unknownC4C91A(
+	initializeEntityFade(
 		createPreparedEntityNPC(
 			getCCParameters!ArgType(arg2).arg1,
 			getCCParameters!ArgType(arg2).arg2
@@ -3296,7 +3296,7 @@ void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 			getCCParameters!ArgType(arg2).actionScript
 		);
 	} else {
-		unknownC4C91A(
+		initializeEntityFade(
 			createPreparedEntitySprite(
 				getCCParameters!ArgType(arg2).sprite,
 				getCCParameters!ArgType(arg2).actionScript
@@ -3310,7 +3310,7 @@ void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 /// $C167D6
 void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
-	unknownC4C91A(findEntityByTPT(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
+	initializeEntityFade(findEntityByTPT(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
 	unknownC460CE(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
@@ -3318,7 +3318,7 @@ void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 /// $C1683B
 void* cc1F1F(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
-	unknownC4C91A(findEntityBySprite(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
+	initializeEntityFade(findEntityBySprite(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
 	unknownC46125(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
@@ -3432,7 +3432,7 @@ void* cc1FEA(DisplayTextState* arg1, ubyte arg2) {
 /// $C16CC6
 void* cc1FEB(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FEBArguments);
-	unknownC4C91A(findEntityByPartyMemberID(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
+	initializeEntityFade(findEntityByPartyMemberID(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
 	hideCharacterOrParty(getCCParameters!ArgType(arg2).arg1);
 	return null;
 }
@@ -3440,7 +3440,7 @@ void* cc1FEB(DisplayTextState* arg1, ubyte arg2) {
 /// $C16D14
 void* cc1FEC(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FECArguments);
-	unknownC4C91A(findEntityByPartyMemberID(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
+	initializeEntityFade(findEntityByPartyMemberID(getCCParameters!ArgType(arg2).arg1), getCCParameters!ArgType(arg2).arg2);
 	unhideCharacterOrParty(getCCParameters!ArgType(arg2).arg1);
 	return null;
 }

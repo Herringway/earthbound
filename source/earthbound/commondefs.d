@@ -5602,6 +5602,27 @@ enum FadeStyle {
 }
 
 ///
+enum EntitySize {
+	_8x16 = 0,
+	_16x16 = 1,
+	_24x16 = 2,
+	_32x16 = 3,
+	_48x16 = 4,
+	_16x24 = 5,
+	_24x24 = 6,
+	_16x32 = 7,
+	_32x24 = 8,
+	_48x32 = 9,
+	_24x48 = 10,
+	_16x48 = 11,
+	_32x48 = 12,
+	_48x48 = 13,
+	_64x48 = 14,
+	_64x64 = 15,
+	_64x80 = 16,
+}
+
+///
 struct GameState {
 	version(Have_siryul) {
 		import siryul : Skip;
@@ -6712,11 +6733,11 @@ struct SpriteFadeState {
 	short entityID; ///
 	short appearanceStyle; ///
 	short fadeStyle; ///
-	short unknown6; ///
-	short tileHeight; ///
-	ubyte* unknown10; ///
-	ubyte* unknown12; ///
-	short unknown10Size; ///
+	short pixelWidth; ///
+	short pixelHeight; ///
+	ubyte* fadeBuffer; ///
+	ubyte* fadeBuffer2; ///
+	short fadeBufferSize; ///
 	short unknown16; ///
 	short unknown18; ///
 }

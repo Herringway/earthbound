@@ -13165,7 +13165,7 @@ immutable ubyte[163] statusWindowText =
 
 __gshared SpriteGrouping[464] spriteGroupingPointers = [
 	// Sprite 0 is a clone of Ness - in the original game they both point to Ness' data
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.none: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(96),
 		OverworldSpriteGraphics(96, 1),
@@ -13184,7 +13184,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(101),
 		OverworldSpriteGraphics(102)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.ness: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(96),
 		OverworldSpriteGraphics(96, 1),
@@ -13203,7 +13203,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(101),
 		OverworldSpriteGraphics(102)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.paula: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(140),
 		OverworldSpriteGraphics(140, 1),
@@ -13222,7 +13222,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(145),
 		OverworldSpriteGraphics(146)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.jeff: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(132),
 		OverworldSpriteGraphics(132, 1),
@@ -13241,7 +13241,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(137),
 		OverworldSpriteGraphics(138)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.poo: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(124),
 		OverworldSpriteGraphics(124, 1),
@@ -13260,7 +13260,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(129),
 		OverworldSpriteGraphics(130)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessRobot: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(87),
 		OverworldSpriteGraphics(87, 1),
@@ -13279,7 +13279,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(92),
 		OverworldSpriteGraphics(93)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessPajamas: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(78),
 		OverworldSpriteGraphics(78, 1),
@@ -13298,7 +13298,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(83),
 		OverworldSpriteGraphics(84)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x1A, 0x08, 0x10, 0x10, 0x08, 0,
+	OverworldSprite.nessBicycle: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x1A, 0x08, 0x10, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1),
 		OverworldSpriteGraphics(1, 1),
@@ -13317,7 +13317,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(6),
 		OverworldSpriteGraphics(7)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessAngel: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(764),
 		OverworldSpriteGraphics(764),
@@ -13336,7 +13336,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(764),
 		OverworldSpriteGraphics(764)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.paulaAngel: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(761),
 		OverworldSpriteGraphics(761),
@@ -13355,7 +13355,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(761),
 		OverworldSpriteGraphics(761)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.jeffAngel: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(758),
 		OverworldSpriteGraphics(758),
@@ -13374,7 +13374,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(758),
 		OverworldSpriteGraphics(758)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pooAngel: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(755),
 		OverworldSpriteGraphics(755),
@@ -13393,7 +13393,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(755),
 		OverworldSpriteGraphics(755)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.humanDiamondized: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(752),
 		OverworldSpriteGraphics(752),
@@ -13412,7 +13412,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(752),
 		OverworldSpriteGraphics(752)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.humanCharred: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1097),
 		OverworldSpriteGraphics(1097),
@@ -13431,7 +13431,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1097),
 		OverworldSpriteGraphics(1097)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessPosing: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1096),
 		OverworldSpriteGraphics(1096),
@@ -13442,7 +13442,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1096),
 		OverworldSpriteGraphics(1096)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1A, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.jeffInBed: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1A, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1039),
 		OverworldSpriteGraphics(1039),
@@ -13453,7 +13453,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1039),
 		OverworldSpriteGraphics(1039)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.nessLyingDown: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1095),
 		OverworldSpriteGraphics(1095),
@@ -13464,7 +13464,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1095, 1),
 		OverworldSpriteGraphics(1095, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessClimbingUp: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1094),
 		OverworldSpriteGraphics(1094, 1),
@@ -13475,7 +13475,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1094),
 		OverworldSpriteGraphics(1094, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.paulaClimbingUp: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1093),
 		OverworldSpriteGraphics(1093, 1),
@@ -13486,7 +13486,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1093),
 		OverworldSpriteGraphics(1093, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.jeffClimbingUp: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1092),
 		OverworldSpriteGraphics(1092, 1),
@@ -13497,7 +13497,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1092),
 		OverworldSpriteGraphics(1092, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pooClimbingUp: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1091),
 		OverworldSpriteGraphics(1091, 1),
@@ -13508,7 +13508,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1091),
 		OverworldSpriteGraphics(1091, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessClimbingDown: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(932),
 		OverworldSpriteGraphics(933),
@@ -13519,7 +13519,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(932),
 		OverworldSpriteGraphics(933)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.paulaClimbingDown: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(930),
 		OverworldSpriteGraphics(931),
@@ -13530,7 +13530,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(930),
 		OverworldSpriteGraphics(931)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.jeffClimbingDown: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(928),
 		OverworldSpriteGraphics(929),
@@ -13541,7 +13541,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(928),
 		OverworldSpriteGraphics(929)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pooClimbingDown: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(926),
 		OverworldSpriteGraphics(927),
@@ -13552,7 +13552,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(926),
 		OverworldSpriteGraphics(927)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.robot: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(115),
 		OverworldSpriteGraphics(115, 1),
@@ -13571,7 +13571,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(120),
 		OverworldSpriteGraphics(121)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.robotBroken: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1090),
 		OverworldSpriteGraphics(1090),
@@ -13582,7 +13582,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1090, 1),
 		OverworldSpriteGraphics(1090, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilNess: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(923),
 		OverworldSpriteGraphics(923, 1),
@@ -13601,7 +13601,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(923),
 		OverworldSpriteGraphics(923, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilPaula: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(920),
 		OverworldSpriteGraphics(920, 1),
@@ -13620,7 +13620,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(920),
 		OverworldSpriteGraphics(920, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilJeff: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(917),
 		OverworldSpriteGraphics(917, 1),
@@ -13639,7 +13639,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(917),
 		OverworldSpriteGraphics(917, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilPoo: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(914),
 		OverworldSpriteGraphics(914, 1),
@@ -13658,7 +13658,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(914),
 		OverworldSpriteGraphics(914, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilEscargoExpressGuy: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(911),
 		OverworldSpriteGraphics(911, 1),
@@ -13669,7 +13669,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(912),
 		OverworldSpriteGraphics(913)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilMachPizzaGuy: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(908),
 		OverworldSpriteGraphics(908, 1),
@@ -13680,7 +13680,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(909),
 		OverworldSpriteGraphics(910)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilGiftBox: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(1038),
 		OverworldSpriteGraphics(1038),
@@ -13691,7 +13691,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1037),
 		OverworldSpriteGraphics(1037)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilAngel: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(1035),
 		OverworldSpriteGraphics(1035),
@@ -13710,7 +13710,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1035),
 		OverworldSpriteGraphics(1035, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilTeddyBear: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(1033),
 		OverworldSpriteGraphics(1033),
@@ -13729,7 +13729,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1033),
 		OverworldSpriteGraphics(1033)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilDiamondizedGuy: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(1143),
 		OverworldSpriteGraphics(1143),
@@ -13748,7 +13748,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1143),
 		OverworldSpriteGraphics(1143)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilCharredGuy: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(1142),
 		OverworldSpriteGraphics(1142),
@@ -13767,7 +13767,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1142),
 		OverworldSpriteGraphics(1142)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilNessDoingPeaceSign: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(1141),
 		OverworldSpriteGraphics(1141),
@@ -13778,7 +13778,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1141),
 		OverworldSpriteGraphics(1141)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.flyingMan: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(710),
 		OverworldSpriteGraphics(710, 1),
@@ -13797,7 +13797,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(710),
 		OverworldSpriteGraphics(710, 1)
 	]),
-	SpriteGrouping(0x03, 0x30, 0x06, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.king: SpriteGrouping(0x03, 0x30, EntitySize._24x24, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(159),
 		OverworldSpriteGraphics(159, 1),
@@ -13816,7 +13816,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(159),
 		OverworldSpriteGraphics(159, 1)
 	]),
-	SpriteGrouping(0x0A, 0x80, 0x10, 0x16, 0x18, 0x18, 0x18, 0x18, 0,
+	OverworldSprite.dungeonMan: SpriteGrouping(0x0A, 0x80, EntitySize._64x80, 0x16, 0x18, 0x18, 0x18, 0x18, 0,
 	[
 		OverworldSpriteGraphics(18),
 		OverworldSpriteGraphics(18, 1),
@@ -13835,7 +13835,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(18),
 		OverworldSpriteGraphics(18, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.kingClimbingUp: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1102),
 		OverworldSpriteGraphics(1102, 1),
@@ -13846,7 +13846,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1102),
 		OverworldSpriteGraphics(1102, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.kingClimbingDown: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(953),
 		OverworldSpriteGraphics(954),
@@ -13857,7 +13857,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(953),
 		OverworldSpriteGraphics(954)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pokey: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(706),
 		OverworldSpriteGraphics(706, 1),
@@ -13876,7 +13876,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(706),
 		OverworldSpriteGraphics(706, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.picky: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(702),
 		OverworldSpriteGraphics(702, 1),
@@ -13895,7 +13895,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(702),
 		OverworldSpriteGraphics(702, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.bubbleMonkey: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(698),
 		OverworldSpriteGraphics(698, 1),
@@ -13914,7 +13914,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(698),
 		OverworldSpriteGraphics(698, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.bubbleMonkeyClimbingUp: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(951),
 		OverworldSpriteGraphics(952),
@@ -13933,7 +13933,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(951),
 		OverworldSpriteGraphics(952)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pokeyRich: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(694),
 		OverworldSpriteGraphics(694, 1),
@@ -13952,7 +13952,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(694),
 		OverworldSpriteGraphics(694, 1)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.bubbleMonkeyWithBubble: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(176),
 		OverworldSpriteGraphics(176),
@@ -13963,7 +13963,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(176),
 		OverworldSpriteGraphics(176)
 	]),
-	SpriteGrouping(0x05, 0x30, 0x0A, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.bubbleMonkeyFloating: SpriteGrouping(0x05, 0x30, EntitySize._24x48, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(864),
 		OverworldSpriteGraphics(864),
@@ -13974,7 +13974,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(864),
 		OverworldSpriteGraphics(864)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.teddyBearParty: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(748),
 		OverworldSpriteGraphics(748),
@@ -13993,7 +13993,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(748),
 		OverworldSpriteGraphics(748)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.oldGuyWithCane: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(687),
 		OverworldSpriteGraphics(687, 1),
@@ -14004,7 +14004,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(688),
 		OverworldSpriteGraphics(689)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.oldLadyWithCane: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(683),
 		OverworldSpriteGraphics(683, 1),
@@ -14015,7 +14015,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(684),
 		OverworldSpriteGraphics(685)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.oldFatGuyWithHat: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(679),
 		OverworldSpriteGraphics(679, 1),
@@ -14026,7 +14026,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(680),
 		OverworldSpriteGraphics(681)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.guyInBlueClothes: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(675),
 		OverworldSpriteGraphics(675, 1),
@@ -14037,7 +14037,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(676),
 		OverworldSpriteGraphics(677)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.sortaBaldGuyInSuit: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(671),
 		OverworldSpriteGraphics(671, 1),
@@ -14048,7 +14048,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(672),
 		OverworldSpriteGraphics(673)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.brunetteShoppingLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(667),
 		OverworldSpriteGraphics(667, 1),
@@ -14059,7 +14059,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(668),
 		OverworldSpriteGraphics(669)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.blondeShoppingLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(663),
 		OverworldSpriteGraphics(663, 1),
@@ -14070,7 +14070,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(664),
 		OverworldSpriteGraphics(665)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.fatguyInRedSuit: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(659),
 		OverworldSpriteGraphics(659, 1),
@@ -14081,7 +14081,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(660),
 		OverworldSpriteGraphics(661)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.drinkingGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(769),
 		OverworldSpriteGraphics(770),
@@ -14092,7 +14092,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(771),
 		OverworldSpriteGraphics(771)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.blondeGuyInASuit: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(655),
 		OverworldSpriteGraphics(655, 1),
@@ -14103,7 +14103,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(656),
 		OverworldSpriteGraphics(657)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.darkHairedGuyInSuit: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(651),
 		OverworldSpriteGraphics(651, 1),
@@ -14114,7 +14114,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(652),
 		OverworldSpriteGraphics(653)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.sneakyGuyWithAHat: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(647),
 		OverworldSpriteGraphics(647, 1),
@@ -14125,7 +14125,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(648),
 		OverworldSpriteGraphics(649)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nerdyRedHairedGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(643),
 		OverworldSpriteGraphics(643, 1),
@@ -14136,7 +14136,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(644),
 		OverworldSpriteGraphics(645)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.blondeLadyBlueDress: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(639),
 		OverworldSpriteGraphics(639, 1),
@@ -14147,7 +14147,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(640),
 		OverworldSpriteGraphics(641)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.blondeLadyRedDress: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(635),
 		OverworldSpriteGraphics(635, 1),
@@ -14158,7 +14158,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(636),
 		OverworldSpriteGraphics(637)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.elevatorLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(631),
 		OverworldSpriteGraphics(631, 1),
@@ -14169,7 +14169,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(632),
 		OverworldSpriteGraphics(633)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.blondeHappyLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(627),
 		OverworldSpriteGraphics(627, 1),
@@ -14180,7 +14180,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(628),
 		OverworldSpriteGraphics(629)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.unassumingLocalGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(623),
 		OverworldSpriteGraphics(623, 1),
@@ -14191,7 +14191,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(624),
 		OverworldSpriteGraphics(625)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.youngBlondeGuyInBlue: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(619),
 		OverworldSpriteGraphics(619, 1),
@@ -14202,7 +14202,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(620),
 		OverworldSpriteGraphics(621)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.surfer: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(615),
 		OverworldSpriteGraphics(615, 1),
@@ -14213,7 +14213,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(616),
 		OverworldSpriteGraphics(617)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.beachLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(611),
 		OverworldSpriteGraphics(611, 1),
@@ -14224,7 +14224,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(612),
 		OverworldSpriteGraphics(613)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.hotelAttendant: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(603),
 		OverworldSpriteGraphics(603, 1),
@@ -14235,7 +14235,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(604),
 		OverworldSpriteGraphics(605)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.copInSunglasses: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(599),
 		OverworldSpriteGraphics(599, 1),
@@ -14246,7 +14246,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(600),
 		OverworldSpriteGraphics(601)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.captainStrong: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(595),
 		OverworldSpriteGraphics(595, 1),
@@ -14257,7 +14257,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(596),
 		OverworldSpriteGraphics(597)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.travellingEntertainer: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(591),
 		OverworldSpriteGraphics(591, 1),
@@ -14268,7 +14268,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(592),
 		OverworldSpriteGraphics(593)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.trumpetPerson: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(587),
 		OverworldSpriteGraphics(587, 1),
@@ -14279,7 +14279,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(588),
 		OverworldSpriteGraphics(589)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.jamaicanGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(583),
 		OverworldSpriteGraphics(583, 1),
@@ -14290,7 +14290,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(584),
 		OverworldSpriteGraphics(585)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mrT: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(579),
 		OverworldSpriteGraphics(579, 1),
@@ -14301,7 +14301,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(580),
 		OverworldSpriteGraphics(581)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.guyInSwimmingSuit: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(575),
 		OverworldSpriteGraphics(575, 1),
@@ -14312,7 +14312,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(576),
 		OverworldSpriteGraphics(577)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.girlInBikini: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(571),
 		OverworldSpriteGraphics(571, 1),
@@ -14323,7 +14323,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(572),
 		OverworldSpriteGraphics(573)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.busDriverHead: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1044),
 		OverworldSpriteGraphics(1044),
@@ -14334,7 +14334,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1045),
 		OverworldSpriteGraphics(1045)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.tessieWatcher: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(567),
 		OverworldSpriteGraphics(567, 1),
@@ -14345,7 +14345,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(568),
 		OverworldSpriteGraphics(569)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.jackie: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(767),
 		OverworldSpriteGraphics(767, 1),
@@ -14356,7 +14356,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(768),
 		OverworldSpriteGraphics(768)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.punkGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(563),
 		OverworldSpriteGraphics(563, 1),
@@ -14367,7 +14367,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(564),
 		OverworldSpriteGraphics(565)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.weirdoGuyInSwimTrunks: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(559),
 		OverworldSpriteGraphics(559, 1),
@@ -14378,7 +14378,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(560),
 		OverworldSpriteGraphics(561)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.zombieLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(555),
 		OverworldSpriteGraphics(555, 1),
@@ -14389,7 +14389,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(556),
 		OverworldSpriteGraphics(557)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.dalaameseServant: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(551),
 		OverworldSpriteGraphics(551, 1),
@@ -14400,7 +14400,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(552),
 		OverworldSpriteGraphics(553)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.chineseGirl: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(547),
 		OverworldSpriteGraphics(547, 1),
@@ -14411,7 +14411,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(548),
 		OverworldSpriteGraphics(549)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.shipCaptain: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(543),
 		OverworldSpriteGraphics(543, 1),
@@ -14422,7 +14422,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(544),
 		OverworldSpriteGraphics(545)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.shipCrewman: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(539),
 		OverworldSpriteGraphics(539, 1),
@@ -14433,7 +14433,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(540),
 		OverworldSpriteGraphics(541)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.ladyInVeil: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(535),
 		OverworldSpriteGraphics(535, 1),
@@ -14444,7 +14444,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(536),
 		OverworldSpriteGraphics(537)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.happyTurbanGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(531),
 		OverworldSpriteGraphics(531, 1),
@@ -14455,7 +14455,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(532),
 		OverworldSpriteGraphics(533)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.bigNoseArabGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(527),
 		OverworldSpriteGraphics(527, 1),
@@ -14466,7 +14466,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(528),
 		OverworldSpriteGraphics(529)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mustacheArabTurbanGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(523),
 		OverworldSpriteGraphics(523, 1),
@@ -14477,7 +14477,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(524),
 		OverworldSpriteGraphics(525)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.arabMrT: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(947),
 		OverworldSpriteGraphics(947),
@@ -14488,7 +14488,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(948),
 		OverworldSpriteGraphics(948)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.tenda: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(212),
 		OverworldSpriteGraphics(212, 1),
@@ -14500,7 +14500,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(214),
 		OverworldSpriteGraphics(215)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.starMasterGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(521),
 		OverworldSpriteGraphics(521),
@@ -14511,7 +14511,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(520),
 		OverworldSpriteGraphics(520)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.weirdHornedGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(515),
 		OverworldSpriteGraphics(515, 1),
@@ -14522,7 +14522,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(516),
 		OverworldSpriteGraphics(517)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.flower: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1042),
 		OverworldSpriteGraphics(1043),
@@ -14533,7 +14533,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1042),
 		OverworldSpriteGraphics(1043)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.insaneCultist: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(511),
 		OverworldSpriteGraphics(511, 1),
@@ -14544,7 +14544,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(512),
 		OverworldSpriteGraphics(513)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.tribalWarrior: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(945),
 		OverworldSpriteGraphics(946),
@@ -14555,7 +14555,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(945),
 		OverworldSpriteGraphics(946)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.palmTanGuy: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1101),
 		OverworldSpriteGraphics(1101),
@@ -14566,7 +14566,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1101),
 		OverworldSpriteGraphics(1101)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.sunBathingGirl: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1100),
 		OverworldSpriteGraphics(1100),
@@ -14577,7 +14577,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1100),
 		OverworldSpriteGraphics(1100)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.chineseMonkGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(507),
 		OverworldSpriteGraphics(507, 1),
@@ -14588,7 +14588,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(508),
 		OverworldSpriteGraphics(509)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.invisible: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099),
@@ -14599,7 +14599,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.rabbit: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(503),
 		OverworldSpriteGraphics(503, 1),
@@ -14610,7 +14610,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(504),
 		OverworldSpriteGraphics(505)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.bigSmileLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(499),
 		OverworldSpriteGraphics(499, 1),
@@ -14621,7 +14621,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(500),
 		OverworldSpriteGraphics(501)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.bodyguard: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(495),
 		OverworldSpriteGraphics(495, 1),
@@ -14632,7 +14632,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(496),
 		OverworldSpriteGraphics(497)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mexicanGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(491),
 		OverworldSpriteGraphics(491),
@@ -14643,7 +14643,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(492),
 		OverworldSpriteGraphics(492)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.busDriver: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1098, 1),
 		OverworldSpriteGraphics(1098, 1),
@@ -14654,7 +14654,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1098),
 		OverworldSpriteGraphics(1098)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.blondeGuyInBlueSuit: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(487),
 		OverworldSpriteGraphics(487, 1),
@@ -14665,7 +14665,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(488),
 		OverworldSpriteGraphics(489)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.someBrunetteKid: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(483),
 		OverworldSpriteGraphics(483, 1),
@@ -14676,7 +14676,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(484),
 		OverworldSpriteGraphics(485)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.iLoveQowgaShirtGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(479),
 		OverworldSpriteGraphics(479, 1),
@@ -14687,7 +14687,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(480),
 		OverworldSpriteGraphics(481)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.scuzzyGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(475),
 		OverworldSpriteGraphics(475, 1),
@@ -14698,7 +14698,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(476),
 		OverworldSpriteGraphics(477)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.redClothesPerson: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(471),
 		OverworldSpriteGraphics(471, 1),
@@ -14709,7 +14709,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(472),
 		OverworldSpriteGraphics(473)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.orangeHairedNerdKid: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(467),
 		OverworldSpriteGraphics(467, 1),
@@ -14720,7 +14720,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(468),
 		OverworldSpriteGraphics(469)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.toughGuyWithSunglasses: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(463),
 		OverworldSpriteGraphics(463, 1),
@@ -14731,7 +14731,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(464),
 		OverworldSpriteGraphics(465)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.shyGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(459),
 		OverworldSpriteGraphics(459, 1),
@@ -14742,7 +14742,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(460),
 		OverworldSpriteGraphics(461)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pigtailBlondeGirl: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(455),
 		OverworldSpriteGraphics(455, 1),
@@ -14753,7 +14753,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(456),
 		OverworldSpriteGraphics(457)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pigtailDarkHairedGirl: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(451),
 		OverworldSpriteGraphics(451, 1),
@@ -14764,7 +14764,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(452),
 		OverworldSpriteGraphics(453)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.yellowClothesBlonde: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(447),
 		OverworldSpriteGraphics(447, 1),
@@ -14775,7 +14775,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(448),
 		OverworldSpriteGraphics(449)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.littleKidInBlue: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(443),
 		OverworldSpriteGraphics(443, 1),
@@ -14786,7 +14786,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(444),
 		OverworldSpriteGraphics(445)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.kidInBaseballHelmet: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(439),
 		OverworldSpriteGraphics(439, 1),
@@ -14797,7 +14797,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(440),
 		OverworldSpriteGraphics(441)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.kidInDerbyHat: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(435),
 		OverworldSpriteGraphics(435, 1),
@@ -14808,7 +14808,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(436),
 		OverworldSpriteGraphics(437)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.kidInDetectiveHat: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(431),
 		OverworldSpriteGraphics(431, 1),
@@ -14819,7 +14819,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(432),
 		OverworldSpriteGraphics(433)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.blondePonytailGirl: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(427),
 		OverworldSpriteGraphics(427, 1),
@@ -14830,7 +14830,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(428),
 		OverworldSpriteGraphics(429)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.happyGirlInRed: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(423),
 		OverworldSpriteGraphics(423, 1),
@@ -14841,7 +14841,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(424),
 		OverworldSpriteGraphics(425)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.chick: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(823),
 		OverworldSpriteGraphics(823, 1),
@@ -14852,7 +14852,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(824),
 		OverworldSpriteGraphics(825)
 	]),
-	SpriteGrouping(0x03, 0x30, 0x06, 0x1C, 0x0A, 0x08, 0x0A, 0x08, 0,
+	OverworldSprite.dog: SpriteGrouping(0x03, 0x30, EntitySize._24x24, 0x1C, 0x0A, 0x08, 0x0A, 0x08, 0,
 	[
 		OverworldSpriteGraphics(155),
 		OverworldSpriteGraphics(155, 1),
@@ -14863,7 +14863,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(156),
 		OverworldSpriteGraphics(157)
 	]),
-	SpriteGrouping(0x03, 0x30, 0x06, 0x1C, 0x0A, 0x08, 0x0A, 0x08, 0,
+	OverworldSprite.cat: SpriteGrouping(0x03, 0x30, EntitySize._24x24, 0x1C, 0x0A, 0x08, 0x0A, 0x08, 0,
 	[
 		OverworldSpriteGraphics(151),
 		OverworldSpriteGraphics(151, 1),
@@ -14874,7 +14874,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(152),
 		OverworldSpriteGraphics(153)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.birdOnPerch: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(939, 1),
 		OverworldSpriteGraphics(940, 1),
@@ -14885,7 +14885,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(939, 1),
 		OverworldSpriteGraphics(940, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.monkey: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(419),
 		OverworldSpriteGraphics(419, 1),
@@ -14896,7 +14896,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(420),
 		OverworldSpriteGraphics(421)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x0C, 0x0C, 0x0C, 0,
+	OverworldSprite.blueCow: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x18, 0x0C, 0x0C, 0x0C, 0x0C, 0,
 	[
 		OverworldSpriteGraphics(174),
 		OverworldSpriteGraphics(175),
@@ -14907,7 +14907,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(174),
 		OverworldSpriteGraphics(175)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.escargoExpressGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(411),
 		OverworldSpriteGraphics(411, 1),
@@ -14918,7 +14918,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(412),
 		OverworldSpriteGraphics(413)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.hintGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(407),
 		OverworldSpriteGraphics(407, 1),
@@ -14929,7 +14929,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(408),
 		OverworldSpriteGraphics(409)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.baker: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(403),
 		OverworldSpriteGraphics(403, 1),
@@ -14940,7 +14940,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(404),
 		OverworldSpriteGraphics(405)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.girlInStripedApron: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(399),
 		OverworldSpriteGraphics(399, 1),
@@ -14951,7 +14951,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(400),
 		OverworldSpriteGraphics(401)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.doctor: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(395),
 		OverworldSpriteGraphics(395, 1),
@@ -14962,7 +14962,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(396),
 		OverworldSpriteGraphics(397)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nurse: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(391),
 		OverworldSpriteGraphics(391, 1),
@@ -14973,7 +14973,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(392),
 		OverworldSpriteGraphics(393)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.thickGlassesLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(387),
 		OverworldSpriteGraphics(387, 1),
@@ -14984,7 +14984,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(388),
 		OverworldSpriteGraphics(389)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.waitress: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(383),
 		OverworldSpriteGraphics(383, 1),
@@ -14995,7 +14995,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(384),
 		OverworldSpriteGraphics(385)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.cameraGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(379),
 		OverworldSpriteGraphics(379, 1),
@@ -15006,7 +15006,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(380),
 		OverworldSpriteGraphics(381)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.hiddenArmsDealer: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(375),
 		OverworldSpriteGraphics(375, 1),
@@ -15017,7 +15017,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(376),
 		OverworldSpriteGraphics(377)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mom: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(371),
 		OverworldSpriteGraphics(371, 1),
@@ -15028,7 +15028,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(372),
 		OverworldSpriteGraphics(373)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.tracy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(367),
 		OverworldSpriteGraphics(367, 1),
@@ -15039,7 +15039,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(368),
 		OverworldSpriteGraphics(369)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.aloysiusMinch: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(363),
 		OverworldSpriteGraphics(363, 1),
@@ -15050,7 +15050,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(364),
 		OverworldSpriteGraphics(365)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.lardnaMinch: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(359),
 		OverworldSpriteGraphics(359, 1),
@@ -15061,7 +15061,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(360),
 		OverworldSpriteGraphics(361)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.gorgeous: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(355),
 		OverworldSpriteGraphics(355, 1),
@@ -15080,7 +15080,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(355),
 		OverworldSpriteGraphics(355, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.lucky: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(350),
 		OverworldSpriteGraphics(350, 1),
@@ -15099,7 +15099,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(350),
 		OverworldSpriteGraphics(350, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.machPizzaGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(346),
 		OverworldSpriteGraphics(346, 1),
@@ -15110,7 +15110,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(347),
 		OverworldSpriteGraphics(348)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.lierXAgerate: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(342),
 		OverworldSpriteGraphics(342, 1),
@@ -15121,7 +15121,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(343),
 		OverworldSpriteGraphics(344)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.frank: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(338),
 		OverworldSpriteGraphics(338, 1),
@@ -15132,7 +15132,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(339),
 		OverworldSpriteGraphics(340)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mayorPirkle: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(904),
 		OverworldSpriteGraphics(904, 1),
@@ -15143,7 +15143,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(905),
 		OverworldSpriteGraphics(905)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.paulasFather: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(334),
 		OverworldSpriteGraphics(334, 1),
@@ -15154,7 +15154,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(335),
 		OverworldSpriteGraphics(336)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.paulasMother: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(330),
 		OverworldSpriteGraphics(330, 1),
@@ -15165,7 +15165,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(331),
 		OverworldSpriteGraphics(332)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.everdred: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(326),
 		OverworldSpriteGraphics(326, 1),
@@ -15176,7 +15176,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(327),
 		OverworldSpriteGraphics(328)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.poochyfud: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(902),
 		OverworldSpriteGraphics(902, 1),
@@ -15187,7 +15187,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(903),
 		OverworldSpriteGraphics(903)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mrCarpainter: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(322),
 		OverworldSpriteGraphics(322, 1),
@@ -15198,7 +15198,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(323),
 		OverworldSpriteGraphics(324)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.femaleMonkey: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(318),
 		OverworldSpriteGraphics(318, 1),
@@ -15209,7 +15209,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(319),
 		OverworldSpriteGraphics(320)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.brickRoad: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(314),
 		OverworldSpriteGraphics(314, 1),
@@ -15220,7 +15220,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(315),
 		OverworldSpriteGraphics(316)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.drAndonuts: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(310),
 		OverworldSpriteGraphics(310, 1),
@@ -15231,7 +15231,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(311),
 		OverworldSpriteGraphics(312)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.dalaamGirl: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(306),
 		OverworldSpriteGraphics(306, 1),
@@ -15242,7 +15242,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(307),
 		OverworldSpriteGraphics(308)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.monotoli: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(302),
 		OverworldSpriteGraphics(302, 1),
@@ -15253,7 +15253,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(303),
 		OverworldSpriteGraphics(304)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.venus: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(298),
 		OverworldSpriteGraphics(298, 1),
@@ -15264,7 +15264,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(299),
 		OverworldSpriteGraphics(300)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.starMaster: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(294),
 		OverworldSpriteGraphics(294, 1),
@@ -15275,7 +15275,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(295),
 		OverworldSpriteGraphics(296)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.telephoneHeadGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(900),
 		OverworldSpriteGraphics(900),
@@ -15286,7 +15286,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(901),
 		OverworldSpriteGraphics(901)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.preetProotGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1074),
 		OverworldSpriteGraphics(1074),
@@ -15297,7 +15297,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1074),
 		OverworldSpriteGraphics(1074)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.starMasterFlyingAway: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(898),
 		OverworldSpriteGraphics(898, 1),
@@ -15308,7 +15308,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(898),
 		OverworldSpriteGraphics(898)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.tendaChief: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(291),
 		OverworldSpriteGraphics(291),
@@ -15319,7 +15319,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(292),
 		OverworldSpriteGraphics(292)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mrSaturn: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(286),
 		OverworldSpriteGraphics(286, 1),
@@ -15330,7 +15330,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(287),
 		OverworldSpriteGraphics(288)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.miner: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(282),
 		OverworldSpriteGraphics(282, 1),
@@ -15341,7 +15341,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(283),
 		OverworldSpriteGraphics(284)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.minersBrother: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(278),
 		OverworldSpriteGraphics(278, 1),
@@ -15352,7 +15352,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(279),
 		OverworldSpriteGraphics(280)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.foursideMuseumGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(274),
 		OverworldSpriteGraphics(274, 1),
@@ -15363,7 +15363,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(275),
 		OverworldSpriteGraphics(276)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.orangeKid: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(270),
 		OverworldSpriteGraphics(270, 1),
@@ -15374,7 +15374,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(271),
 		OverworldSpriteGraphics(272)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.appleKid: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(266),
 		OverworldSpriteGraphics(266, 1),
@@ -15385,7 +15385,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(267),
 		OverworldSpriteGraphics(268)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.talahRama: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(816),
 		OverworldSpriteGraphics(817),
@@ -15396,7 +15396,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(816),
 		OverworldSpriteGraphics(817)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.venusMother: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(262),
 		OverworldSpriteGraphics(262, 1),
@@ -15407,7 +15407,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(263),
 		OverworldSpriteGraphics(264)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.brickRoadHead: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1139),
 		OverworldSpriteGraphics(1139),
@@ -15418,7 +15418,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1139),
 		OverworldSpriteGraphics(1139)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.everdredLyingDown: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1072),
 		OverworldSpriteGraphics(1072),
@@ -15429,7 +15429,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1072),
 		OverworldSpriteGraphics(1072)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.magicCakeLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(747),
 		OverworldSpriteGraphics(747, 1),
@@ -15440,7 +15440,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(746),
 		OverworldSpriteGraphics(746)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.tony: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(258),
 		OverworldSpriteGraphics(258, 1),
@@ -15459,7 +15459,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(258),
 		OverworldSpriteGraphics(258, 1)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.tonyInBed: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1028),
 		OverworldSpriteGraphics(1028),
@@ -15470,7 +15470,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1028),
 		OverworldSpriteGraphics(1028)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.gorgeousDancing: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(896),
 		OverworldSpriteGraphics(896),
@@ -15481,7 +15481,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(896),
 		OverworldSpriteGraphics(897)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.runawayFiveDrummer: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(207),
 		OverworldSpriteGraphics(207, 1),
@@ -15492,7 +15492,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(208),
 		OverworldSpriteGraphics(209)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.runawayFiveBassPlayer: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(202),
 		OverworldSpriteGraphics(202, 1),
@@ -15503,7 +15503,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(203),
 		OverworldSpriteGraphics(204)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.runawayFiveSaxPlayer: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(197),
 		OverworldSpriteGraphics(197, 1),
@@ -15514,7 +15514,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(198),
 		OverworldSpriteGraphics(199)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.helpfulMole: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(815),
 		OverworldSpriteGraphics(815),
@@ -15525,7 +15525,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(814),
 		OverworldSpriteGraphics(814)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.healer: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(254),
 		OverworldSpriteGraphics(254, 1),
@@ -15536,7 +15536,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(255),
 		OverworldSpriteGraphics(256)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.musicNotes: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1137),
 		OverworldSpriteGraphics(1137),
@@ -15547,7 +15547,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1137),
 		OverworldSpriteGraphics(1137)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.puPu: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1136, 1),
 		OverworldSpriteGraphics(1136, 1),
@@ -15558,7 +15558,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1136, 1),
 		OverworldSpriteGraphics(1136, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.zzz1: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1135),
 		OverworldSpriteGraphics(1135),
@@ -15569,7 +15569,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1135),
 		OverworldSpriteGraphics(1135)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.weirdWhiteBubbleThing: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(887),
 		OverworldSpriteGraphics(887),
@@ -15580,7 +15580,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(887),
 		OverworldSpriteGraphics(887)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.lightBulb: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1134),
 		OverworldSpriteGraphics(1134),
@@ -15591,7 +15591,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1134),
 		OverworldSpriteGraphics(1134)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.giftBox: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1025, 2),
 		OverworldSpriteGraphics(1025, 2),
@@ -15602,7 +15602,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1024, 2),
 		OverworldSpriteGraphics(1024, 2)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.weirdQuestionMark: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1133),
 		OverworldSpriteGraphics(1133),
@@ -15613,7 +15613,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1133),
 		OverworldSpriteGraphics(1133)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.meteor: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(810),
 		OverworldSpriteGraphics(811),
@@ -15624,7 +15624,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(810),
 		OverworldSpriteGraphics(811)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.bench: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1023),
 		OverworldSpriteGraphics(1023),
@@ -15635,7 +15635,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1023),
 		OverworldSpriteGraphics(1023)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.policeBarrier: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1022),
 		OverworldSpriteGraphics(1022),
@@ -15646,7 +15646,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1022),
 		OverworldSpriteGraphics(1022)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.weirdTailThing: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1021, 2),
 		OverworldSpriteGraphics(1021, 2),
@@ -15657,7 +15657,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1021, 2),
 		OverworldSpriteGraphics(1021, 2)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.streetLight: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1020),
 		OverworldSpriteGraphics(1020),
@@ -15668,7 +15668,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1020),
 		OverworldSpriteGraphics(1020)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.busStopSign: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1019),
 		OverworldSpriteGraphics(1019),
@@ -15679,7 +15679,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1019),
 		OverworldSpriteGraphics(1019)
 	]),
-	SpriteGrouping(0x02, 0x60, 0x04, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.ovalCloud: SpriteGrouping(0x02, 0x60, EntitySize._48x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(886),
 		OverworldSpriteGraphics(886),
@@ -15690,7 +15690,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(886),
 		OverworldSpriteGraphics(886)
 	]),
-	SpriteGrouping(0x06, 0x20, 0x0B, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.streetSign: SpriteGrouping(0x06, 0x20, EntitySize._16x48, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(885),
 		OverworldSpriteGraphics(885),
@@ -15701,7 +15701,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(885),
 		OverworldSpriteGraphics(885)
 	]),
-	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x18, 0x20, 0x18, 0,
+	OverworldSprite.cityBus: SpriteGrouping(0x06, 0x80, EntitySize._64x48, 0x1E, 0x20, 0x18, 0x20, 0x18, 0,
 	[
 		OverworldSpriteGraphics(12),
 		OverworldSpriteGraphics(12),
@@ -15720,7 +15720,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(12, 1),
 		OverworldSpriteGraphics(12, 1)
 	]),
-	SpriteGrouping(0x04, 0x60, 0x09, 0x1E, 0x18, 0x10, 0x18, 0x10, 0,
+	OverworldSprite.realTaxi: SpriteGrouping(0x04, 0x60, EntitySize._48x32, 0x1E, 0x18, 0x10, 0x18, 0x10, 0,
 	[
 		OverworldSpriteGraphics(15),
 		OverworldSpriteGraphics(15),
@@ -15739,7 +15739,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(15, 1),
 		OverworldSpriteGraphics(15, 1)
 	]),
-	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x10, 0x20, 0x10, 0,
+	OverworldSprite.deliveryTruck: SpriteGrouping(0x06, 0x80, EntitySize._64x48, 0x1E, 0x20, 0x10, 0x20, 0x10, 0,
 	[
 		OverworldSpriteGraphics(113),
 		OverworldSpriteGraphics(113),
@@ -15750,7 +15750,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(113, 1),
 		OverworldSpriteGraphics(113, 1)
 	]),
-	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x10, 0x20, 0x10, 0,
+	OverworldSprite.whiteDeliveryTruck: SpriteGrouping(0x06, 0x80, EntitySize._64x48, 0x1E, 0x20, 0x10, 0x20, 0x10, 0,
 	[
 		OverworldSpriteGraphics(112),
 		OverworldSpriteGraphics(112),
@@ -15761,7 +15761,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(112, 1),
 		OverworldSpriteGraphics(112, 1)
 	]),
-	SpriteGrouping(0x06, 0x60, 0x0D, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.skyRunner: SpriteGrouping(0x06, 0x60, EntitySize._48x48, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(149),
 		OverworldSpriteGraphics(149),
@@ -15772,7 +15772,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(149),
 		OverworldSpriteGraphics(149)
 	]),
-	SpriteGrouping(0x06, 0x60, 0x0D, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.phaseDistorter: SpriteGrouping(0x06, 0x60, EntitySize._48x48, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(148),
 		OverworldSpriteGraphics(148),
@@ -15783,7 +15783,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(148),
 		OverworldSpriteGraphics(148)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.bicycle: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1C, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(809),
 		OverworldSpriteGraphics(809),
@@ -15794,7 +15794,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(809),
 		OverworldSpriteGraphics(809)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.ship: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(111),
 		OverworldSpriteGraphics(111),
@@ -15805,7 +15805,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(110),
 		OverworldSpriteGraphics(111)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.sign: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1132),
 		OverworldSpriteGraphics(1132),
@@ -15816,7 +15816,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1132),
 		OverworldSpriteGraphics(1132)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.trashCan: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1018),
 		OverworldSpriteGraphics(1018),
@@ -15827,7 +15827,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1017),
 		OverworldSpriteGraphics(1017)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.telephone: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(244),
 		OverworldSpriteGraphics(244),
@@ -15838,7 +15838,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(244),
 		OverworldSpriteGraphics(247)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.payPhone: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(808),
 		OverworldSpriteGraphics(808),
@@ -15849,7 +15849,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(808),
 		OverworldSpriteGraphics(808)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.weirdThinkMarks: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1131, 1),
 		OverworldSpriteGraphics(1131, 1),
@@ -15860,7 +15860,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1131),
 		OverworldSpriteGraphics(1131)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.surpriseMark: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1130),
 		OverworldSpriteGraphics(1130),
@@ -15871,7 +15871,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1130),
 		OverworldSpriteGraphics(1130)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.sweat: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1015, 1),
 		OverworldSpriteGraphics(1016, 1),
@@ -15882,7 +15882,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1015),
 		OverworldSpriteGraphics(1016)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.twinklingStars: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1013),
 		OverworldSpriteGraphics(1014),
@@ -15893,7 +15893,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1013),
 		OverworldSpriteGraphics(1014)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.pharaohCasket: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(807),
 		OverworldSpriteGraphics(807),
@@ -15904,7 +15904,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(807),
 		OverworldSpriteGraphics(807)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.underwaterNPC: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1012),
 		OverworldSpriteGraphics(1012, 1),
@@ -15915,7 +15915,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1011),
 		OverworldSpriteGraphics(1011, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.apple: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1129),
 		OverworldSpriteGraphics(1129),
@@ -15926,7 +15926,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1129),
 		OverworldSpriteGraphics(1129)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.bananas: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1128),
 		OverworldSpriteGraphics(1128),
@@ -15937,7 +15937,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1128),
 		OverworldSpriteGraphics(1128)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.can: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1127),
 		OverworldSpriteGraphics(1127),
@@ -15948,7 +15948,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1127),
 		OverworldSpriteGraphics(1127)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.littleMushroom: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1126),
 		OverworldSpriteGraphics(1126),
@@ -15959,7 +15959,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1126),
 		OverworldSpriteGraphics(1126)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.mailbox: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1010),
 		OverworldSpriteGraphics(1010),
@@ -15970,7 +15970,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1009),
 		OverworldSpriteGraphics(1009)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.dontEnterSign: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1008),
 		OverworldSpriteGraphics(1008),
@@ -15981,7 +15981,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1008),
 		OverworldSpriteGraphics(1008)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.magicTartStand: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(243),
 		OverworldSpriteGraphics(243),
@@ -15992,7 +15992,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(243),
 		OverworldSpriteGraphics(243)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x14, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.shadow: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x14, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1007),
 		OverworldSpriteGraphics(1007),
@@ -16003,7 +16003,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1007),
 		OverworldSpriteGraphics(1007)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.crossroadSigns: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1006),
 		OverworldSpriteGraphics(1006),
@@ -16014,7 +16014,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1006),
 		OverworldSpriteGraphics(1006)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.exclamationMark: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1125),
 		OverworldSpriteGraphics(1125),
@@ -16025,7 +16025,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1125),
 		OverworldSpriteGraphics(1125)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.dalaamPresent: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1005),
 		OverworldSpriteGraphics(1005),
@@ -16036,7 +16036,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1004),
 		OverworldSpriteGraphics(1004)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.jukebox: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(806),
 		OverworldSpriteGraphics(806),
@@ -16047,7 +16047,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(806),
 		OverworldSpriteGraphics(806)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.slotMachine: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1003),
 		OverworldSpriteGraphics(1003),
@@ -16058,7 +16058,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1003),
 		OverworldSpriteGraphics(1003)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.pileOfBones: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1002),
 		OverworldSpriteGraphics(1002),
@@ -16069,7 +16069,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1002),
 		OverworldSpriteGraphics(1002)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
+	OverworldSprite.sesameSeed: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
 	[
 		OverworldSpriteGraphics(1124),
 		OverworldSpriteGraphics(1124),
@@ -16080,7 +16080,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1124),
 		OverworldSpriteGraphics(1124)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
+	OverworldSprite.unknown3: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
 	[
 		OverworldSpriteGraphics(1123),
 		OverworldSpriteGraphics(1123),
@@ -16091,7 +16091,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1123),
 		OverworldSpriteGraphics(1123)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.crossGravestone: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1122),
 		OverworldSpriteGraphics(1122),
@@ -16102,7 +16102,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1122),
 		OverworldSpriteGraphics(1122)
 	]),
-	SpriteGrouping(0x04, 0x60, 0x09, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.brokenPhaseDistorter: SpriteGrouping(0x04, 0x60, EntitySize._48x32, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(242),
 		OverworldSpriteGraphics(242),
@@ -16113,7 +16113,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(242),
 		OverworldSpriteGraphics(242)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.garbage: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1121),
 		OverworldSpriteGraphics(1121),
@@ -16124,7 +16124,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1121),
 		OverworldSpriteGraphics(1121)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.starMastersPoofCloud: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(20),
 		OverworldSpriteGraphics(20),
@@ -16135,7 +16135,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(23),
 		OverworldSpriteGraphics(23)
 	]),
-	SpriteGrouping(0x06, 0x80, 0x0E, 0x1C, 0x14, 0x18, 0x20, 0x10, 0,
+	OverworldSprite.runaway5Bus: SpriteGrouping(0x06, 0x80, EntitySize._64x48, 0x1C, 0x14, 0x18, 0x20, 0x10, 0,
 	[
 		OverworldSpriteGraphics(9),
 		OverworldSpriteGraphics(9),
@@ -16154,7 +16154,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(9, 1),
 		OverworldSpriteGraphics(9, 1)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.submarine: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1C, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(805),
 		OverworldSpriteGraphics(805),
@@ -16165,7 +16165,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(805),
 		OverworldSpriteGraphics(805)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.submarinePeriscope: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1000, 1),
 		OverworldSpriteGraphics(1001, 1),
@@ -16176,7 +16176,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1000),
 		OverworldSpriteGraphics(1001)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x12, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.brokenManiManiStatue: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x12, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(999),
 		OverworldSpriteGraphics(999),
@@ -16187,7 +16187,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(999),
 		OverworldSpriteGraphics(999)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.unknown247: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1120),
 		OverworldSpriteGraphics(1120),
@@ -16198,7 +16198,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1120),
 		OverworldSpriteGraphics(1120)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x06, 0x08, 0x06, 0x08, 0,
+	OverworldSprite.jarOfFlyHoney: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x06, 0x08, 0x06, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1119),
 		OverworldSpriteGraphics(1119),
@@ -16209,7 +16209,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1119),
 		OverworldSpriteGraphics(1119)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.cellDoor: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x18, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(804),
 		OverworldSpriteGraphics(804),
@@ -16220,7 +16220,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(804),
 		OverworldSpriteGraphics(804)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.coffeeWiggles: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(997),
 		OverworldSpriteGraphics(997),
@@ -16231,7 +16231,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(998, 1),
 		OverworldSpriteGraphics(998, 1)
 	]),
-	SpriteGrouping(0x02, 0x60, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.waterRippleTessieRising: SpriteGrouping(0x02, 0x60, EntitySize._48x16, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(884),
 		OverworldSpriteGraphics(884, 1),
@@ -16242,7 +16242,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(884),
 		OverworldSpriteGraphics(884, 1)
 	]),
-	SpriteGrouping(0x08, 0x80, 0x0F, 0x14, 0x10, 0x18, 0x10, 0x18, 0,
+	OverworldSprite.tessie: SpriteGrouping(0x08, 0x80, EntitySize._64x64, 0x14, 0x10, 0x18, 0x10, 0x18, 0,
 	[
 		OverworldSpriteGraphics(19),
 		OverworldSpriteGraphics(19),
@@ -16253,7 +16253,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(19),
 		OverworldSpriteGraphics(19)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.drumRim: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(995),
 		OverworldSpriteGraphics(996),
@@ -16264,7 +16264,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(995),
 		OverworldSpriteGraphics(996)
 	]),
-	SpriteGrouping(0x06, 0x60, 0x0D, 0x1E, 0x18, 0x10, 0x18, 0x10, 0,
+	OverworldSprite.bigDirtScooper: SpriteGrouping(0x06, 0x60, EntitySize._48x48, 0x1E, 0x18, 0x10, 0x18, 0x10, 0,
 	[
 		OverworldSpriteGraphics(147),
 		OverworldSpriteGraphics(147),
@@ -16275,7 +16275,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(147, 1),
 		OverworldSpriteGraphics(147, 1)
 	]),
-	SpriteGrouping(0x04, 0x60, 0x09, 0x1C, 0x18, 0x10, 0x18, 0x10, 0,
+	OverworldSprite.guyInCoolRedCar: SpriteGrouping(0x04, 0x60, EntitySize._48x32, 0x1C, 0x18, 0x10, 0x18, 0x10, 0,
 	[
 		OverworldSpriteGraphics(241),
 		OverworldSpriteGraphics(241),
@@ -16286,7 +16286,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(241),
 		OverworldSpriteGraphics(241)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.flame: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(238),
 		OverworldSpriteGraphics(238),
@@ -16297,7 +16297,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(239),
 		OverworldSpriteGraphics(239)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.fountainOfHealingMini: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(881),
 		OverworldSpriteGraphics(881),
@@ -16308,7 +16308,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(882),
 		OverworldSpriteGraphics(882)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.shinyEnemyOutside: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(993),
 		OverworldSpriteGraphics(994),
@@ -16319,7 +16319,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(993),
 		OverworldSpriteGraphics(994)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.atm: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(803, 1),
 		OverworldSpriteGraphics(803, 1),
@@ -16330,7 +16330,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(803),
 		OverworldSpriteGraphics(803)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0E, 0x10, 0x0E, 0x10, 0,
+	OverworldSprite.talkingStone: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x14, 0x0E, 0x10, 0x0E, 0x10, 0,
 	[
 		OverworldSpriteGraphics(802),
 		OverworldSpriteGraphics(802),
@@ -16341,7 +16341,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(802),
 		OverworldSpriteGraphics(802)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.shipSmall: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(880),
 		OverworldSpriteGraphics(880),
@@ -16352,7 +16352,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(879),
 		OverworldSpriteGraphics(880)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0C, 0x0E, 0x0C, 0x0E, 0,
+	OverworldSprite.casket: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x14, 0x0C, 0x0E, 0x0C, 0x0E, 0,
 	[
 		OverworldSpriteGraphics(169),
 		OverworldSpriteGraphics(169),
@@ -16363,7 +16363,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(168),
 		OverworldSpriteGraphics(168)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.mrSaturnBallAndChain: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(991),
 		OverworldSpriteGraphics(992),
@@ -16374,7 +16374,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(991),
 		OverworldSpriteGraphics(992)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.miniGhost: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1118),
 		OverworldSpriteGraphics(1118),
@@ -16385,7 +16385,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1118),
 		OverworldSpriteGraphics(1118)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pencilStatue: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(877),
 		OverworldSpriteGraphics(878),
@@ -16396,7 +16396,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(877),
 		OverworldSpriteGraphics(878)
 	]),
-	SpriteGrouping(0x06, 0x20, 0x0B, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.treeInPot: SpriteGrouping(0x06, 0x20, EntitySize._16x48, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(876),
 		OverworldSpriteGraphics(876),
@@ -16407,7 +16407,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(876),
 		OverworldSpriteGraphics(876)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.pyramidDoor: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(990),
 		OverworldSpriteGraphics(990),
@@ -16418,7 +16418,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(990),
 		OverworldSpriteGraphics(990)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.lilTalkingStone: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1117),
 		OverworldSpriteGraphics(1117),
@@ -16429,7 +16429,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1117),
 		OverworldSpriteGraphics(1117)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
+	OverworldSprite.contactLenses: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x02, 0x04, 0x02, 0x04, 0,
 	[
 		OverworldSpriteGraphics(988),
 		OverworldSpriteGraphics(989),
@@ -16440,7 +16440,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(988),
 		OverworldSpriteGraphics(989)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.weirdJunk: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1116),
 		OverworldSpriteGraphics(1116),
@@ -16451,7 +16451,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1116),
 		OverworldSpriteGraphics(1116)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.boogeyTentEye: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(987, 1),
 		OverworldSpriteGraphics(987, 1),
@@ -16462,7 +16462,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(987),
 		OverworldSpriteGraphics(987)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.boogeyTentMouth: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(801, 1),
 		OverworldSpriteGraphics(801, 1),
@@ -16473,7 +16473,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(801),
 		OverworldSpriteGraphics(801)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.microphone: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1067, 1),
 		OverworldSpriteGraphics(1067, 1),
@@ -16484,7 +16484,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1067),
 		OverworldSpriteGraphics(1067)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mrBatty: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(977),
 		OverworldSpriteGraphics(978),
@@ -16496,7 +16496,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(978),
 		OverworldSpriteGraphics(979)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.capsule: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(1064),
 		OverworldSpriteGraphics(1065),
@@ -16507,7 +16507,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1064),
 		OverworldSpriteGraphics(1065)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.electroSwoosh: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(1062),
 		OverworldSpriteGraphics(1063),
@@ -16518,7 +16518,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1062),
 		OverworldSpriteGraphics(1063)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.frenchKissOfDeath: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1060),
 		OverworldSpriteGraphics(1061),
@@ -16529,7 +16529,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1060),
 		OverworldSpriteGraphics(1061)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.fobby: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(861),
 		OverworldSpriteGraphics(861, 1),
@@ -16540,7 +16540,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(862),
 		OverworldSpriteGraphics(863)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.roboPump: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(1058),
 		OverworldSpriteGraphics(1059),
@@ -16551,7 +16551,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1058),
 		OverworldSpriteGraphics(1059)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.armoredFrog: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1056),
 		OverworldSpriteGraphics(1057),
@@ -16562,7 +16562,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1056),
 		OverworldSpriteGraphics(1057)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x05, 0x08, 0x05, 0x08, 0,
+	OverworldSprite.appleKidsMouse: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x14, 0x05, 0x08, 0x05, 0x08, 0,
 	[
 		OverworldSpriteGraphics(857),
 		OverworldSpriteGraphics(857, 1),
@@ -16573,7 +16573,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(858),
 		OverworldSpriteGraphics(859)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.spitefulCrow: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(783, 1),
 		OverworldSpriteGraphics(784, 1),
@@ -16585,7 +16585,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(784),
 		OverworldSpriteGraphics(785)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x06, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.thirstyCoilSnake: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x06, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(742),
 		OverworldSpriteGraphics(742),
@@ -16596,7 +16596,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(743),
 		OverworldSpriteGraphics(744)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.skatePunk: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(738),
 		OverworldSpriteGraphics(738, 1),
@@ -16607,7 +16607,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(739),
 		OverworldSpriteGraphics(740)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.stinkyGhost: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(222),
 		OverworldSpriteGraphics(222, 1),
@@ -16619,7 +16619,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(224),
 		OverworldSpriteGraphics(225)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.handsomeTom: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(780),
 		OverworldSpriteGraphics(781),
@@ -16631,7 +16631,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(781),
 		OverworldSpriteGraphics(782)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x07, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.madDuck: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x07, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(734),
 		OverworldSpriteGraphics(734, 1),
@@ -16642,7 +16642,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(735),
 		OverworldSpriteGraphics(736)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.manlyFish: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(730),
 		OverworldSpriteGraphics(730, 1),
@@ -16653,7 +16653,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(731),
 		OverworldSpriteGraphics(732)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x0E, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.madTaxi: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1C, 0x0E, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(65),
 		OverworldSpriteGraphics(65, 1),
@@ -16664,7 +16664,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(66),
 		OverworldSpriteGraphics(67)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.demonicPetunia: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1C, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(194),
 		OverworldSpriteGraphics(195),
@@ -16675,7 +16675,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(194),
 		OverworldSpriteGraphics(195)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.ramblinEvilMushroom: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x12, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(852),
 		OverworldSpriteGraphics(852, 1),
@@ -16687,7 +16687,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(854),
 		OverworldSpriteGraphics(855)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.ranboob: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(726),
 		OverworldSpriteGraphics(726, 1),
@@ -16698,7 +16698,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(727),
 		OverworldSpriteGraphics(728)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x09, 0x08, 0x09, 0x08, 0,
+	OverworldSprite.evilManiMani: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x12, 0x09, 0x08, 0x09, 0x08, 0,
 	[
 		OverworldSpriteGraphics(192),
 		OverworldSpriteGraphics(193),
@@ -16709,7 +16709,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(192),
 		OverworldSpriteGraphics(193)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x08, 0x10, 0x0D, 0x08, 0,
+	OverworldSprite.gruffGoat: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x12, 0x08, 0x10, 0x0D, 0x08, 0,
 	[
 		OverworldSpriteGraphics(57),
 		OverworldSpriteGraphics(57, 1),
@@ -16720,7 +16720,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(58),
 		OverworldSpriteGraphics(59)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x0D, 0x0B, 0x0D, 0x0B, 0,
+	OverworldSprite.kraken: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x12, 0x0D, 0x0B, 0x0D, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(190, 2),
 		OverworldSpriteGraphics(191, 2),
@@ -16731,7 +16731,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(190, 2),
 		OverworldSpriteGraphics(191, 2)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x08, 0x08, 0x0E, 0x08, 0,
+	OverworldSprite.crestedBooka: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x12, 0x08, 0x08, 0x0E, 0x08, 0,
 	[
 		OverworldSpriteGraphics(53),
 		OverworldSpriteGraphics(53, 1),
@@ -16742,7 +16742,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(54),
 		OverworldSpriteGraphics(55)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x0B, 0x0C, 0x0B, 0,
+	OverworldSprite.territorialOak: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x18, 0x0C, 0x0B, 0x0C, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(188),
 		OverworldSpriteGraphics(189),
@@ -16753,7 +16753,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(188),
 		OverworldSpriteGraphics(189)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x09, 0x10, 0x0E, 0x08, 0,
+	OverworldSprite.wetnosaur: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x12, 0x09, 0x10, 0x0E, 0x08, 0,
 	[
 		OverworldSpriteGraphics(49),
 		OverworldSpriteGraphics(49, 1),
@@ -16764,7 +16764,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(50),
 		OverworldSpriteGraphics(51)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x0F, 0x10, 0x0F, 0x10, 0,
+	OverworldSprite.masterBarf: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x12, 0x0F, 0x10, 0x0F, 0x10, 0,
 	[
 		OverworldSpriteGraphics(186),
 		OverworldSpriteGraphics(187),
@@ -16775,7 +16775,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(186),
 		OverworldSpriteGraphics(187)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x12, 0x0B, 0x04, 0x0B, 0x04, 0,
+	OverworldSprite.abstractArt: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x12, 0x0B, 0x04, 0x0B, 0x04, 0,
 	[
 		OverworldSpriteGraphics(851),
 		OverworldSpriteGraphics(851),
@@ -16786,7 +16786,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(851),
 		OverworldSpriteGraphics(851)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x08, 0x04, 0x08, 0x04, 0,
+	OverworldSprite.zapEel: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x14, 0x08, 0x04, 0x08, 0x04, 0,
 	[
 		OverworldSpriteGraphics(1054),
 		OverworldSpriteGraphics(1055),
@@ -16797,7 +16797,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1054),
 		OverworldSpriteGraphics(1055)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.smilinSphere: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x16, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(975),
 		OverworldSpriteGraphics(976),
@@ -16808,7 +16808,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(975),
 		OverworldSpriteGraphics(976)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.starman: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(973),
 		OverworldSpriteGraphics(974),
@@ -16819,7 +16819,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(973),
 		OverworldSpriteGraphics(974)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.lilUFO: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(971),
 		OverworldSpriteGraphics(972),
@@ -16830,7 +16830,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(971),
 		OverworldSpriteGraphics(972)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.zombiePossessor: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(722),
 		OverworldSpriteGraphics(722, 1),
@@ -16841,7 +16841,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(723),
 		OverworldSpriteGraphics(724)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x0B, 0x08, 0x0B, 0,
+	OverworldSprite.whirlingRobo: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x0B, 0x08, 0x0B, 0,
 	[
 		OverworldSpriteGraphics(969),
 		OverworldSpriteGraphics(970),
@@ -16852,7 +16852,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(969),
 		OverworldSpriteGraphics(970)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.shatteredMan: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(217),
 		OverworldSpriteGraphics(217, 1),
@@ -16864,7 +16864,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(219),
 		OverworldSpriteGraphics(220)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.urbanZombie: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(718),
 		OverworldSpriteGraphics(718, 1),
@@ -16875,7 +16875,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(719),
 		OverworldSpriteGraphics(720)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.crazedSign: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1104),
 		OverworldSpriteGraphics(1104),
@@ -16887,7 +16887,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1104),
 		OverworldSpriteGraphics(1104)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.sentryRobot: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(778),
 		OverworldSpriteGraphics(778, 1),
@@ -16898,7 +16898,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(779),
 		OverworldSpriteGraphics(779)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0B, 0x0C, 0x0E, 0x08, 0,
+	OverworldSprite.badBuffalo: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x0B, 0x0C, 0x0E, 0x08, 0,
 	[
 		OverworldSpriteGraphics(45),
 		OverworldSpriteGraphics(45, 1),
@@ -16909,7 +16909,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(46),
 		OverworldSpriteGraphics(47)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x09, 0x10, 0x0C, 0x0C, 0,
+	OverworldSprite.chomposaur: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x14, 0x09, 0x10, 0x0C, 0x0C, 0,
 	[
 		OverworldSpriteGraphics(41),
 		OverworldSpriteGraphics(41, 1),
@@ -16920,7 +16920,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(42),
 		OverworldSpriteGraphics(43)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.giganticAnt: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x12, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(848),
 		OverworldSpriteGraphics(848, 1),
@@ -16931,7 +16931,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(849),
 		OverworldSpriteGraphics(850)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x03, 0x04, 0x03, 0x04, 0,
+	OverworldSprite.arachnid: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x03, 0x04, 0x03, 0x04, 0,
 	[
 		OverworldSpriteGraphics(1052, 2),
 		OverworldSpriteGraphics(1053, 2),
@@ -16942,7 +16942,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1052, 2),
 		OverworldSpriteGraphics(1053, 2)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.slimyLittlePile: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1050),
 		OverworldSpriteGraphics(1051),
@@ -16953,7 +16953,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1050),
 		OverworldSpriteGraphics(1051)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x02, 0x04, 0x02, 0x04, 0,
+	OverworldSprite.blackAntoid: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x02, 0x04, 0x02, 0x04, 0,
 	[
 		OverworldSpriteGraphics(1048, 2),
 		OverworldSpriteGraphics(1049, 2),
@@ -16964,7 +16964,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1048, 2),
 		OverworldSpriteGraphics(1049, 2)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.mobileSprout: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(966),
 		OverworldSpriteGraphics(966, 1),
@@ -16976,7 +16976,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(968),
 		OverworldSpriteGraphics(967)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x02, 0x04, 0x02, 0x04, 0,
+	OverworldSprite.noGoodFly: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x02, 0x04, 0x02, 0x04, 0,
 	[
 		OverworldSpriteGraphics(1046),
 		OverworldSpriteGraphics(1047),
@@ -16987,7 +16987,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1046),
 		OverworldSpriteGraphics(1047)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.skelpion: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(844),
 		OverworldSpriteGraphics(844, 1),
@@ -16998,7 +16998,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(845),
 		OverworldSpriteGraphics(846)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x08, 0x04, 0x08, 0x04, 0,
+	OverworldSprite.lethalAspHieroglyph: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x08, 0x04, 0x08, 0x04, 0,
 	[
 		OverworldSpriteGraphics(963),
 		OverworldSpriteGraphics(964),
@@ -17010,7 +17010,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(964),
 		OverworldSpriteGraphics(965)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.helpfulMoleEnemy: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(840),
 		OverworldSpriteGraphics(840, 1),
@@ -17021,7 +17021,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(841),
 		OverworldSpriteGraphics(842)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.petrifiedRoyalGuard: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(962),
 		OverworldSpriteGraphics(962),
@@ -17033,7 +17033,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(961),
 		OverworldSpriteGraphics(961)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.nooseMan: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(959),
 		OverworldSpriteGraphics(960),
@@ -17044,7 +17044,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(959),
 		OverworldSpriteGraphics(960)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.thunderMite: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(957),
 		OverworldSpriteGraphics(958),
@@ -17055,7 +17055,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(957),
 		OverworldSpriteGraphics(958)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.guardianHieroglyph: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(774),
 		OverworldSpriteGraphics(775),
@@ -17067,7 +17067,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(775),
 		OverworldSpriteGraphics(776)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.dalisClock: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(955),
 		OverworldSpriteGraphics(956),
@@ -17078,7 +17078,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(955),
 		OverworldSpriteGraphics(956)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0E, 0x10, 0x0E, 0x10, 0,
+	OverworldSprite.egoOrb: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x0E, 0x10, 0x0E, 0x10, 0,
 	[
 		OverworldSpriteGraphics(184),
 		OverworldSpriteGraphics(185),
@@ -17089,7 +17089,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(184),
 		OverworldSpriteGraphics(185)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0F, 0x10, 0x0F, 0x10, 0,
+	OverworldSprite.masterBelch: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x0F, 0x10, 0x0F, 0x10, 0,
 	[
 		OverworldSpriteGraphics(182),
 		OverworldSpriteGraphics(183),
@@ -17100,7 +17100,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(182),
 		OverworldSpriteGraphics(183)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0C, 0x0C, 0x0B, 0x0C, 0,
+	OverworldSprite.caveBoy: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x0C, 0x0C, 0x0B, 0x0C, 0,
 	[
 		OverworldSpriteGraphics(37),
 		OverworldSpriteGraphics(37, 1),
@@ -17111,7 +17111,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(38),
 		OverworldSpriteGraphics(39)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x07, 0x08, 0x09, 0x08, 0,
+	OverworldSprite.runawayDog: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x07, 0x08, 0x09, 0x08, 0,
 	[
 		OverworldSpriteGraphics(33),
 		OverworldSpriteGraphics(33, 1),
@@ -17122,7 +17122,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(34),
 		OverworldSpriteGraphics(35)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x0A, 0x0B, 0x0A, 0x0C, 0,
+	OverworldSprite.mightyBear: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x0A, 0x0B, 0x0A, 0x0C, 0,
 	[
 		OverworldSpriteGraphics(29),
 		OverworldSpriteGraphics(29, 1),
@@ -17133,7 +17133,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(30),
 		OverworldSpriteGraphics(31)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x09, 0x0B, 0x0A, 0x0C, 0,
+	OverworldSprite.plainCrocodile: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x09, 0x0B, 0x0A, 0x0C, 0,
 	[
 		OverworldSpriteGraphics(25),
 		OverworldSpriteGraphics(25, 1),
@@ -17144,7 +17144,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(26),
 		OverworldSpriteGraphics(27)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.yourSanctuaryPointBoss: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(180),
 		OverworldSpriteGraphics(180),
@@ -17156,7 +17156,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(181, 1),
 		OverworldSpriteGraphics(180)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.zombieGluedToFloor: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(943),
 		OverworldSpriteGraphics(944),
@@ -17167,7 +17167,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(943),
 		OverworldSpriteGraphics(944)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.nessSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1089),
 		OverworldSpriteGraphics(1089),
@@ -17178,7 +17178,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1089),
 		OverworldSpriteGraphics(1089)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.paulaSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1088),
 		OverworldSpriteGraphics(1088),
@@ -17189,7 +17189,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1088),
 		OverworldSpriteGraphics(1088)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.jeffSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1087),
 		OverworldSpriteGraphics(1087),
@@ -17200,7 +17200,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1087),
 		OverworldSpriteGraphics(1087)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.pooSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1086),
 		OverworldSpriteGraphics(1086),
@@ -17211,7 +17211,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1086),
 		OverworldSpriteGraphics(1086)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.nessAngelSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1079),
 		OverworldSpriteGraphics(1079),
@@ -17222,7 +17222,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1079),
 		OverworldSpriteGraphics(1079)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.paulaAngelSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1078),
 		OverworldSpriteGraphics(1078),
@@ -17233,7 +17233,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1078),
 		OverworldSpriteGraphics(1078)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.jeffAngelSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1077),
 		OverworldSpriteGraphics(1077),
@@ -17244,7 +17244,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1077),
 		OverworldSpriteGraphics(1077)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.pooAngelSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1076),
 		OverworldSpriteGraphics(1076),
@@ -17255,7 +17255,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1076),
 		OverworldSpriteGraphics(1076)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.diamondizedSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1075),
 		OverworldSpriteGraphics(1075),
@@ -17266,7 +17266,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1075),
 		OverworldSpriteGraphics(1075)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.smallShadow: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1140),
 		OverworldSpriteGraphics(1140),
@@ -17277,7 +17277,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1140),
 		OverworldSpriteGraphics(1140)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.teddyBearSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1073),
 		OverworldSpriteGraphics(1073),
@@ -17288,7 +17288,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1073),
 		OverworldSpriteGraphics(1073)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.runaway5Pianist: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(894),
 		OverworldSpriteGraphics(895),
@@ -17299,7 +17299,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(894),
 		OverworldSpriteGraphics(895)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.fly: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1026, 1),
 		OverworldSpriteGraphics(1027, 1),
@@ -17310,7 +17310,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1026),
 		OverworldSpriteGraphics(1027)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.waterRipple: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(985),
 		OverworldSpriteGraphics(985, 1),
@@ -17321,7 +17321,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(985),
 		OverworldSpriteGraphics(986)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.bigWaterRipple: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(799, 1),
 		OverworldSpriteGraphics(800, 1),
@@ -17332,7 +17332,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(799),
 		OverworldSpriteGraphics(800)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.knockingOnDoor: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(109),
 		OverworldSpriteGraphics(109),
@@ -17343,7 +17343,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(108),
 		OverworldSpriteGraphics(108)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.heart: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(984),
 		OverworldSpriteGraphics(984),
@@ -17354,7 +17354,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(983),
 		OverworldSpriteGraphics(984)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.cellPhoneTendaVillage: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1115),
 		OverworldSpriteGraphics(1115),
@@ -17365,7 +17365,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1115),
 		OverworldSpriteGraphics(1115)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.hawksEye: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1114),
 		OverworldSpriteGraphics(1114),
@@ -17376,7 +17376,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1114),
 		OverworldSpriteGraphics(1114)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessMomSitting: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1071),
 		OverworldSpriteGraphics(1071),
@@ -17387,7 +17387,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1071),
 		OverworldSpriteGraphics(1071)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.venusSinging: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(893),
 		OverworldSpriteGraphics(893),
@@ -17398,7 +17398,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(892),
 		OverworldSpriteGraphics(893)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.rope: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1066),
 		OverworldSpriteGraphics(1066),
@@ -17409,7 +17409,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1066),
 		OverworldSpriteGraphics(1066)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.tonyKneeling: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1C, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1070),
 		OverworldSpriteGraphics(1070),
@@ -17420,7 +17420,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1070),
 		OverworldSpriteGraphics(1070)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.unknown358: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1113),
 		OverworldSpriteGraphics(1113),
@@ -17431,7 +17431,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1113),
 		OverworldSpriteGraphics(1113)
 	]),
-	SpriteGrouping(0x03, 0x30, 0x06, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.nessDogSleeping: SpriteGrouping(0x03, 0x30, EntitySize._24x24, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(772),
 		OverworldSpriteGraphics(773),
@@ -17442,7 +17442,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(772),
 		OverworldSpriteGraphics(773)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0E, 0x10, 0x0E, 0x10, 0,
+	OverworldSprite.rock: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x14, 0x0E, 0x10, 0x0E, 0x10, 0,
 	[
 		OverworldSpriteGraphics(798),
 		OverworldSpriteGraphics(798),
@@ -17453,7 +17453,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(798),
 		OverworldSpriteGraphics(798)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.newAgeRetroHippie: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(607),
 		OverworldSpriteGraphics(607, 1),
@@ -17464,7 +17464,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(608),
 		OverworldSpriteGraphics(609)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pooMeditating: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(907),
 		OverworldSpriteGraphics(907),
@@ -17475,7 +17475,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(906),
 		OverworldSpriteGraphics(906)
 	]),
-	SpriteGrouping(0x03, 0x30, 0x06, 0x1C, 0x0B, 0x08, 0x0B, 0x08, 0,
+	OverworldSprite.catAsleep: SpriteGrouping(0x03, 0x30, EntitySize._24x24, 0x1C, 0x0B, 0x08, 0x0B, 0x08, 0,
 	[
 		OverworldSpriteGraphics(980),
 		OverworldSpriteGraphics(980),
@@ -17486,7 +17486,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(980),
 		OverworldSpriteGraphics(980)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x06, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.zombieDog: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1C, 0x06, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(61),
 		OverworldSpriteGraphics(61, 1),
@@ -17497,7 +17497,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(62),
 		OverworldSpriteGraphics(63)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.muGhost: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(252),
 		OverworldSpriteGraphics(252),
@@ -17508,7 +17508,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(252),
 		OverworldSpriteGraphics(252)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.flagOfTheExtinctHappyPeople: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(874),
 		OverworldSpriteGraphics(875),
@@ -17519,7 +17519,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(874),
 		OverworldSpriteGraphics(875)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.leavesForTessieScene: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1112),
 		OverworldSpriteGraphics(1112),
@@ -17530,7 +17530,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1112),
 		OverworldSpriteGraphics(1112)
 	]),
-	SpriteGrouping(0x02, 0x60, 0x04, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.tessieWaterRipplesTop: SpriteGrouping(0x02, 0x60, EntitySize._48x16, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(873),
 		OverworldSpriteGraphics(873, 1),
@@ -17541,7 +17541,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(873),
 		OverworldSpriteGraphics(873, 1)
 	]),
-	SpriteGrouping(0x02, 0x60, 0x04, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.tessieWaterRipplesBottom: SpriteGrouping(0x02, 0x60, EntitySize._48x16, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(872),
 		OverworldSpriteGraphics(872, 1),
@@ -17552,7 +17552,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(872),
 		OverworldSpriteGraphics(872, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.giygasToNessTransform: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(794),
 		OverworldSpriteGraphics(794),
@@ -17563,7 +17563,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(797),
 		OverworldSpriteGraphics(797)
 	]),
-	SpriteGrouping(0x02, 0x60, 0x04, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.unknown: SpriteGrouping(0x02, 0x60, EntitySize._48x16, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(871),
 		OverworldSpriteGraphics(871),
@@ -17574,7 +17574,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(871),
 		OverworldSpriteGraphics(871)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.plate: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1111),
 		OverworldSpriteGraphics(1111),
@@ -17585,7 +17585,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1111),
 		OverworldSpriteGraphics(1111)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.drapesClosed: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(237),
 		OverworldSpriteGraphics(237),
@@ -17596,7 +17596,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(237),
 		OverworldSpriteGraphics(237)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.yellowDrapesOpen: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(236),
 		OverworldSpriteGraphics(236),
@@ -17607,7 +17607,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(236),
 		OverworldSpriteGraphics(236)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.yellowDrapesClosed: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(235, 1),
 		OverworldSpriteGraphics(235, 1),
@@ -17618,7 +17618,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(235),
 		OverworldSpriteGraphics(235)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.unknown2: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1110),
 		OverworldSpriteGraphics(1110),
@@ -17629,7 +17629,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1110),
 		OverworldSpriteGraphics(1110)
 	]),
-	SpriteGrouping(0x04, 0x60, 0x09, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.policeCar: SpriteGrouping(0x04, 0x60, EntitySize._48x32, 0x14, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(106),
 		OverworldSpriteGraphics(107),
@@ -17640,7 +17640,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(106, 1),
 		OverworldSpriteGraphics(107, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.nessSleeping: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1031),
 		OverworldSpriteGraphics(1032),
@@ -17651,7 +17651,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1031),
 		OverworldSpriteGraphics(1032)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.teddyBear: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1073),
 		OverworldSpriteGraphics(1073),
@@ -17662,7 +17662,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1073),
 		OverworldSpriteGraphics(1073)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.teddyBear2: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1073),
 		OverworldSpriteGraphics(1073),
@@ -17673,7 +17673,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1073),
 		OverworldSpriteGraphics(1073)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.invisible2: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099),
@@ -17684,7 +17684,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.pickySitting: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(949),
 		OverworldSpriteGraphics(950),
@@ -17695,7 +17695,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(949),
 		OverworldSpriteGraphics(950)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.nessSleepingWithHat: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1029),
 		OverworldSpriteGraphics(1030),
@@ -17706,7 +17706,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1029),
 		OverworldSpriteGraphics(1030)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x01, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.zzz: SpriteGrouping(0x02, 0x20, EntitySize._16x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1109),
 		OverworldSpriteGraphics(1109),
@@ -17717,7 +17717,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1109),
 		OverworldSpriteGraphics(1109)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.payPhoneMirrored: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(808, 1),
 		OverworldSpriteGraphics(808, 1),
@@ -17728,7 +17728,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(808, 1),
 		OverworldSpriteGraphics(808, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.police: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(599),
 		OverworldSpriteGraphics(599, 1),
@@ -17739,7 +17739,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(600),
 		OverworldSpriteGraphics(601)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.crookedCop: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(595),
 		OverworldSpriteGraphics(595, 1),
@@ -17750,7 +17750,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(596),
 		OverworldSpriteGraphics(597)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.unassumingLocalGuyEnemy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(623),
 		OverworldSpriteGraphics(623, 1),
@@ -17761,7 +17761,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(624),
 		OverworldSpriteGraphics(625)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.newAgeRetroHippieEnemy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(607),
 		OverworldSpriteGraphics(607, 1),
@@ -17772,7 +17772,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(608),
 		OverworldSpriteGraphics(609)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.toughGuy: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(615),
 		OverworldSpriteGraphics(615, 1),
@@ -17783,7 +17783,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(616),
 		OverworldSpriteGraphics(617)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.annoyingOldPartyMan: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(671),
 		OverworldSpriteGraphics(671, 1),
@@ -17794,7 +17794,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(672),
 		OverworldSpriteGraphics(673)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.crankyLady: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x10, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(667),
 		OverworldSpriteGraphics(667, 1),
@@ -17805,7 +17805,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(668),
 		OverworldSpriteGraphics(669)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.paulaLyingDown: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1085),
 		OverworldSpriteGraphics(1085),
@@ -17816,7 +17816,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1085, 1),
 		OverworldSpriteGraphics(1085, 1)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.jeffLyingDown: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1084),
 		OverworldSpriteGraphics(1084),
@@ -17827,7 +17827,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1084, 1),
 		OverworldSpriteGraphics(1084, 1)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.pooLyingDown: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1083),
 		OverworldSpriteGraphics(1083),
@@ -17838,7 +17838,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1083, 1),
 		OverworldSpriteGraphics(1083, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.electra: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(249),
 		OverworldSpriteGraphics(249, 1),
@@ -17849,7 +17849,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(250),
 		OverworldSpriteGraphics(251)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.everdredSurprised: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1069),
 		OverworldSpriteGraphics(1069),
@@ -17860,7 +17860,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1069),
 		OverworldSpriteGraphics(1069)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x03, 0x06, 0x03, 0x06, 0,
+	OverworldSprite.lilTenda: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x03, 0x06, 0x03, 0x06, 0,
 	[
 		OverworldSpriteGraphics(936),
 		OverworldSpriteGraphics(936, 1),
@@ -17871,7 +17871,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(937),
 		OverworldSpriteGraphics(938)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.kingInTheFlashback: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(819),
 		OverworldSpriteGraphics(819, 1),
@@ -17882,7 +17882,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(820),
 		OverworldSpriteGraphics(821)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.bird: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1040, 1),
 		OverworldSpriteGraphics(1041, 1),
@@ -17893,7 +17893,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1040),
 		OverworldSpriteGraphics(1041)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.frankysteinMarkII: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(793),
 		OverworldSpriteGraphics(793),
@@ -17904,7 +17904,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(793),
 		OverworldSpriteGraphics(793)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.redFountainLostUnderworld: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(233),
 		OverworldSpriteGraphics(233, 1),
@@ -17915,7 +17915,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(234),
 		OverworldSpriteGraphics(234, 1)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.appleKidSign: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(792),
 		OverworldSpriteGraphics(792),
@@ -17926,7 +17926,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(792),
 		OverworldSpriteGraphics(792)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.orangeKidSign: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(791),
 		OverworldSpriteGraphics(791),
@@ -17937,7 +17937,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(791),
 		OverworldSpriteGraphics(791)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.spaSign: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1108),
 		OverworldSpriteGraphics(1108),
@@ -17948,7 +17948,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1108),
 		OverworldSpriteGraphics(1108)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.pastBabyCradle: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(166),
 		OverworldSpriteGraphics(166),
@@ -17959,7 +17959,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(167),
 		OverworldSpriteGraphics(167)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.eraserStatue: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(869),
 		OverworldSpriteGraphics(870),
@@ -17970,7 +17970,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(869),
 		OverworldSpriteGraphics(870)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.moneyBox: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1107),
 		OverworldSpriteGraphics(1107),
@@ -17981,7 +17981,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1107),
 		OverworldSpriteGraphics(1107)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x0E, 0x12, 0x0E, 0x12, 0,
+	OverworldSprite.magnetHill: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x0E, 0x12, 0x0E, 0x12, 0,
 	[
 		OverworldSpriteGraphics(164),
 		OverworldSpriteGraphics(165),
@@ -17992,7 +17992,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(164),
 		OverworldSpriteGraphics(165)
 	]),
-	SpriteGrouping(0x04, 0x60, 0x09, 0x1C, 0x18, 0x10, 0x18, 0x10, 0,
+	OverworldSprite.helicopter: SpriteGrouping(0x04, 0x60, EntitySize._48x32, 0x1C, 0x18, 0x10, 0x18, 0x10, 0,
 	[
 		OverworldSpriteGraphics(104, 1),
 		OverworldSpriteGraphics(104, 1),
@@ -18003,7 +18003,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(104),
 		OverworldSpriteGraphics(105)
 	]),
-	SpriteGrouping(0x04, 0x60, 0x09, 0x1C, 0x14, 0x10, 0x14, 0x10, 0,
+	OverworldSprite.brokenHelicopter: SpriteGrouping(0x04, 0x60, EntitySize._48x32, 0x1C, 0x14, 0x10, 0x14, 0x10, 0,
 	[
 		OverworldSpriteGraphics(231, 1),
 		OverworldSpriteGraphics(231, 1),
@@ -18014,7 +18014,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(231),
 		OverworldSpriteGraphics(231)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.deepDarknessPhone: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(789),
 		OverworldSpriteGraphics(790),
@@ -18025,7 +18025,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(789),
 		OverworldSpriteGraphics(790)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.magicButterfly: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(981, 1),
 		OverworldSpriteGraphics(982, 1),
@@ -18036,7 +18036,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(981),
 		OverworldSpriteGraphics(982)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
+	OverworldSprite.tools: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x10, 0x10, 0x10, 0x10, 0,
 	[
 		OverworldSpriteGraphics(788),
 		OverworldSpriteGraphics(788),
@@ -18047,7 +18047,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(788),
 		OverworldSpriteGraphics(788)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.molePlayingRough: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x16, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(836),
 		OverworldSpriteGraphics(836, 1),
@@ -18058,7 +18058,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(837),
 		OverworldSpriteGraphics(838)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x05, 0x08, 0x05, 0x08, 0,
+	OverworldSprite.rowdyMouse: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x05, 0x08, 0x05, 0x08, 0,
 	[
 		OverworldSpriteGraphics(832),
 		OverworldSpriteGraphics(832, 1),
@@ -18069,7 +18069,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(833),
 		OverworldSpriteGraphics(834)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x04, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.criminalCaterpillar: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x04, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(828),
 		OverworldSpriteGraphics(828, 1),
@@ -18080,7 +18080,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(829),
 		OverworldSpriteGraphics(830)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x14, 0x07, 0x08, 0x07, 0x08, 0,
+	OverworldSprite.clumsyRobot: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x14, 0x07, 0x08, 0x07, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1103),
 		OverworldSpriteGraphics(1103),
@@ -18091,7 +18091,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1103),
 		OverworldSpriteGraphics(1103)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x14, 0x0C, 0x0C, 0x0C, 0x0C, 0,
+	OverworldSprite.guardianDigger: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x14, 0x0C, 0x0C, 0x0C, 0x0C, 0,
 	[
 		OverworldSpriteGraphics(826),
 		OverworldSpriteGraphics(826, 1),
@@ -18102,7 +18102,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(826),
 		OverworldSpriteGraphics(826, 1)
 	]),
-	SpriteGrouping(0x02, 0x40, 0x03, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.helicopterBlade: SpriteGrouping(0x02, 0x40, EntitySize._32x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(228),
 		OverworldSpriteGraphics(229),
@@ -18113,7 +18113,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(228),
 		OverworldSpriteGraphics(229)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.skyRunnerElectricThingies: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1106),
 		OverworldSpriteGraphics(1106),
@@ -18124,7 +18124,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1106),
 		OverworldSpriteGraphics(1106)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.woodBox: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1105),
 		OverworldSpriteGraphics(1105),
@@ -18135,7 +18135,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1105),
 		OverworldSpriteGraphics(1105)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.ornamentsOnPoosTemple: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(227),
 		OverworldSpriteGraphics(227),
@@ -18146,7 +18146,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(227),
 		OverworldSpriteGraphics(227)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.helicopterBack: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(866),
 		OverworldSpriteGraphics(867),
@@ -18157,7 +18157,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(866),
 		OverworldSpriteGraphics(867)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.richPokeysHead: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1A, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1145),
 		OverworldSpriteGraphics(1145),
@@ -18168,7 +18168,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1145),
 		OverworldSpriteGraphics(1145)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.badPaletteFountain: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(233),
 		OverworldSpriteGraphics(233, 1),
@@ -18179,7 +18179,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(234),
 		OverworldSpriteGraphics(234, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.lilToucanPhone: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1144),
 		OverworldSpriteGraphics(1144),
@@ -18190,7 +18190,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1144),
 		OverworldSpriteGraphics(1144)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
+	OverworldSprite.atmGuyUnderwater: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x16, 0x04, 0x08, 0x04, 0x08, 0,
 	[
 		OverworldSpriteGraphics(934, 2),
 		OverworldSpriteGraphics(935, 2),
@@ -18201,7 +18201,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(934, 2),
 		OverworldSpriteGraphics(935, 2)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x14, 0x0C, 0x10, 0x0C, 0x10, 0,
+	OverworldSprite.instantRevitalizingDevice: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x14, 0x0C, 0x10, 0x0C, 0x10, 0,
 	[
 		OverworldSpriteGraphics(226),
 		OverworldSpriteGraphics(226),
@@ -18212,7 +18212,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(226),
 		OverworldSpriteGraphics(226)
 	]),
-	SpriteGrouping(0x06, 0x20, 0x0B, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.secretDoorInMonotoliBuilding: SpriteGrouping(0x06, 0x20, EntitySize._16x48, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(865),
 		OverworldSpriteGraphics(865),
@@ -18223,7 +18223,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(865),
 		OverworldSpriteGraphics(865)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.secretDoorInMonotoliBuildingSmall: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x18, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(353),
 		OverworldSpriteGraphics(353),
@@ -18234,7 +18234,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(353),
 		OverworldSpriteGraphics(353)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.magicButterflyOnGround: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(691, 1),
 		OverworldSpriteGraphics(692, 1),
@@ -18245,7 +18245,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(691),
 		OverworldSpriteGraphics(692)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.burglinParkSign: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(787),
 		OverworldSpriteGraphics(787),
@@ -18256,7 +18256,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(787),
 		OverworldSpriteGraphics(787)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.luckyRunaway5Member: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(890),
 		OverworldSpriteGraphics(890),
@@ -18267,7 +18267,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(890),
 		OverworldSpriteGraphics(891)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessWithMessedPalette: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(96),
 		OverworldSpriteGraphics(96, 1),
@@ -18286,7 +18286,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(101),
 		OverworldSpriteGraphics(102)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x05, 0x08, 0x05, 0x08, 0,
+	OverworldSprite.exitMouse: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x05, 0x08, 0x05, 0x08, 0,
 	[
 		OverworldSpriteGraphics(415),
 		OverworldSpriteGraphics(415, 1),
@@ -18297,7 +18297,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(416),
 		OverworldSpriteGraphics(417)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessInPajamas: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(69),
 		OverworldSpriteGraphics(69, 1),
@@ -18316,7 +18316,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(74),
 		OverworldSpriteGraphics(75)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.zombieLyingDown: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x14, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(944, 1),
 		OverworldSpriteGraphics(943, 1),
@@ -18327,7 +18327,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(944, 1),
 		OverworldSpriteGraphics(943, 1)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.unknown439: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099),
@@ -18338,7 +18338,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.unknown441: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099),
@@ -18349,7 +18349,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.unknown440: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099),
@@ -18360,7 +18360,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
+	OverworldSprite.hotelSign: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1E, 0x10, 0x08, 0x10, 0x08, 0,
 	[
 		OverworldSpriteGraphics(786),
 		OverworldSpriteGraphics(786),
@@ -18371,7 +18371,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(786),
 		OverworldSpriteGraphics(786)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.camel: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x16, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(172),
 		OverworldSpriteGraphics(173),
@@ -18382,7 +18382,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(172),
 		OverworldSpriteGraphics(173)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.trickOrTrickKid: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(714),
 		OverworldSpriteGraphics(714, 1),
@@ -18393,7 +18393,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(715),
 		OverworldSpriteGraphics(716)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.angelOfEverdred: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1068),
 		OverworldSpriteGraphics(1068),
@@ -18404,7 +18404,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1068),
 		OverworldSpriteGraphics(1068)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.hintMan: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(170),
 		OverworldSpriteGraphics(171),
@@ -18415,7 +18415,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(170),
 		OverworldSpriteGraphics(171)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x18, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.saturnValleyATM: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x18, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(162),
 		OverworldSpriteGraphics(163),
@@ -18426,7 +18426,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(162),
 		OverworldSpriteGraphics(163)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.runaway5MembersHead: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(1138),
 		OverworldSpriteGraphics(1138),
@@ -18437,7 +18437,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1138),
 		OverworldSpriteGraphics(1138)
 	]),
-	SpriteGrouping(0x04, 0x20, 0x07, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.photographersCamera: SpriteGrouping(0x04, 0x20, EntitySize._16x32, 0x1E, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(122),
 		OverworldSpriteGraphics(122),
@@ -18448,7 +18448,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(122),
 		OverworldSpriteGraphics(122)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.badPaletteGuyOnettNight: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x18, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(467),
 		OverworldSpriteGraphics(467, 1),
@@ -18459,7 +18459,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(468),
 		OverworldSpriteGraphics(469)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x1E, 0x05, 0x08, 0x05, 0x08, 0,
+	OverworldSprite.exitMouseNoSign: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1E, 0x05, 0x08, 0x05, 0x08, 0,
 	[
 		OverworldSpriteGraphics(857),
 		OverworldSpriteGraphics(857, 1),
@@ -18470,7 +18470,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(858),
 		OverworldSpriteGraphics(859)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.slots: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(941),
 		OverworldSpriteGraphics(942),
@@ -18481,7 +18481,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(941),
 		OverworldSpriteGraphics(942)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.nessResting: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1082),
 		OverworldSpriteGraphics(1082),
@@ -18492,7 +18492,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1082),
 		OverworldSpriteGraphics(1082)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.paulaResting: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1A, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1081),
 		OverworldSpriteGraphics(1081),
@@ -18503,7 +18503,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1081),
 		OverworldSpriteGraphics(1081)
 	]),
-	SpriteGrouping(0x04, 0x40, 0x08, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.deptStoreMook: SpriteGrouping(0x04, 0x40, EntitySize._32x24, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(178),
 		OverworldSpriteGraphics(178, 1),
@@ -18514,7 +18514,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(179),
 		OverworldSpriteGraphics(179)
 	]),
-	SpriteGrouping(0x03, 0x20, 0x05, 0x1C, 0x08, 0x40, 0x08, 0x40, 0,
+	OverworldSprite.unknown4: SpriteGrouping(0x03, 0x20, EntitySize._16x24, 0x1C, 0x08, 0x40, 0x08, 0x40, 0,
 	[
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099),
@@ -18525,7 +18525,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1099),
 		OverworldSpriteGraphics(1099)
 	]),
-	SpriteGrouping(0x02, 0x30, 0x02, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
+	OverworldSprite.lyingDownRobotNess: SpriteGrouping(0x02, 0x30, EntitySize._24x16, 0x1A, 0x0C, 0x08, 0x0C, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1080),
 		OverworldSpriteGraphics(1080),
@@ -18536,7 +18536,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(1080, 1),
 		OverworldSpriteGraphics(1080, 1)
 	]),
-	SpriteGrouping(0x06, 0x40, 0x0C, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.heavilyArmedPokey: SpriteGrouping(0x06, 0x40, EntitySize._32x48, 0x16, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(690),
 		OverworldSpriteGraphics(690),
@@ -18547,7 +18547,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(690),
 		OverworldSpriteGraphics(690)
 	]),
-	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x20, 0x20, 0x20, 0,
+	OverworldSprite.redTruck: SpriteGrouping(0x06, 0x80, EntitySize._64x48, 0x1E, 0x20, 0x20, 0x20, 0x20, 0,
 	[
 		OverworldSpriteGraphics(113),
 		OverworldSpriteGraphics(113),
@@ -18558,7 +18558,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(113, 1),
 		OverworldSpriteGraphics(113, 1)
 	]),
-	SpriteGrouping(0x06, 0x80, 0x0E, 0x1E, 0x20, 0x20, 0x20, 0x20, 0,
+	OverworldSprite.whiteTruck: SpriteGrouping(0x06, 0x80, EntitySize._64x48, 0x1E, 0x20, 0x20, 0x20, 0x20, 0,
 	[
 		OverworldSpriteGraphics(112),
 		OverworldSpriteGraphics(112),
@@ -18569,7 +18569,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(112, 1),
 		OverworldSpriteGraphics(112, 1)
 	]),
-	SpriteGrouping(0x02, 0x20, 0x00, 0x12, 0x04, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.masterCriminalWorm: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x12, 0x04, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(828),
 		OverworldSpriteGraphics(828, 1),
@@ -18580,7 +18580,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(829),
 		OverworldSpriteGraphics(830)
 	]),
-	SpriteGrouping(0x02, 0x60, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.tessieWaterRing: SpriteGrouping(0x02, 0x60, EntitySize._48x16, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(873),
 		OverworldSpriteGraphics(873, 1),
@@ -18591,7 +18591,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(873),
 		OverworldSpriteGraphics(873, 1)
 	]),
-	SpriteGrouping(0x02, 0x60, 0x04, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
+	OverworldSprite.bigTessieWaterRing: SpriteGrouping(0x02, 0x60, EntitySize._48x16, 0x14, 0x00, 0x00, 0x00, 0x00, 0,
 	[
 		OverworldSpriteGraphics(872),
 		OverworldSpriteGraphics(872, 1),
