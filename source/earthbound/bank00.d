@@ -7098,6 +7098,7 @@ void unknownC0A6E3() {
 	spriteUpdateEntityOffset = actionScriptVar88;
 	if (((entityUnknown2C22[actionScriptVar88 / 2] >> 8) | entityDirections[actionScriptVar88 / 2]) != entityUnknown3456[actionScriptVar88 / 2]) {
 		entityUnknown3456[actionScriptVar88 / 2] = (entityUnknown2C22[actionScriptVar88 / 2] >> 8) | entityDirections[actionScriptVar88 / 2];
+		updateEntitySpriteFrameCurrent();
 		return;
 	}
 	if (entityScriptVar7Table[actionScriptVar88 / 2] < 0) {
