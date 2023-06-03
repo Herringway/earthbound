@@ -883,6 +883,37 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		ImGui.TreePop();
 	}
 	if (ImGui.TreeNode("Misc Debugging Features")) {
+		if (ImGui.TreeNode("Position buffer")) {
+			if (ImGui.BeginTable("Positions", 7)) {
+				ImGui.TableSetupColumn("");
+				ImGui.TableSetupColumn("X");
+				ImGui.TableSetupColumn("Y");
+				ImGui.TableSetupColumn("Flags");
+				ImGui.TableSetupColumn("Style");
+				ImGui.TableSetupColumn("Dir");
+				ImGui.TableSetupColumn("???");
+				ImGui.TableHeadersRow();
+				foreach (idx, entry; playerPositionBuffer) {
+					ImGui.TableNextRow();
+					ImGui.TableNextColumn();
+					ImGui.Text("%s".format(idx));
+					ImGui.TableNextColumn();
+					ImGui.Text("%s".format(entry.xCoord));
+					ImGui.TableNextColumn();
+					ImGui.Text("%s".format(entry.yCoord));
+					ImGui.TableNextColumn();
+					ImGui.Text("%s".format(entry.tileFlags));
+					ImGui.TableNextColumn();
+					ImGui.Text("%s".format(cast(WalkingStyle)entry.walkingStyle));
+					ImGui.TableNextColumn();
+					ImGui.Text("%s".format(cast(Direction)entry.direction));
+					ImGui.TableNextColumn();
+					ImGui.Text("%s".format(entry.unknown10));
+				}
+				ImGui.EndTable();
+			}
+			ImGui.TreePop();
+		}
 		bool debugFlag = !!earthbound.globals.debugging;
 		if (ImGui.Checkbox("Debug flag", &debugFlag)) {
 			earthbound.globals.debugging = debugFlag;
