@@ -7096,6 +7096,7 @@ short disableCurrentEntityCollision(short, ref const(ubyte)* arg2) {
 void unknownC0A6E3() {
 	short a;
 	spriteUpdateEntityOffset = actionScriptVar88;
+	// new direction this frame?
 	if (((entityUnknown2C22[actionScriptVar88 / 2] >> 8) | entityDirections[actionScriptVar88 / 2]) != entityUnknown3456[actionScriptVar88 / 2]) {
 		entityUnknown3456[actionScriptVar88 / 2] = (entityUnknown2C22[actionScriptVar88 / 2] >> 8) | entityDirections[actionScriptVar88 / 2];
 		updateEntitySpriteFrameCurrent();
@@ -7105,6 +7106,7 @@ void unknownC0A6E3() {
 		entityScriptVar7Table[actionScriptVar88 / 2] &= 0x7FFF;
 		goto Unknown5;
 	}
+	// animation frame updated
 	if ((entityScriptVar7Table[actionScriptVar88 / 2] & 0x2000) != 0) {
 		if (entityAnimationFrames[actionScriptVar88 / 2] == 0) {
 			goto Unknown6;
