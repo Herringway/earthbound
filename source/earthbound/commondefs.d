@@ -5623,6 +5623,14 @@ enum EntitySize {
 }
 
 ///
+enum TeleportState {
+	inProgress = 0,
+	complete = 1,
+	failed = 2,
+	unknown3 = 3,
+}
+
+///
 struct GameState {
 	version(Have_siryul) {
 		import siryul : Skip;

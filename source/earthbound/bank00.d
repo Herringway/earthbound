@@ -9428,8 +9428,8 @@ void unknownC0DE46() {
 /// $C0DF22
 void unknownC0DF22(ushort arg1) {
 	FixedPoint1616 x0E;
-	switch (unknown7E9F43) {
-		case 1:
+	switch (teleportState) {
+		case TeleportState.complete:
 			if (gameState.unknown92 == 3) {
 				FixedPoint1616 x06;
 				x06.combined = unknown7E9F45.combined;
@@ -9448,7 +9448,7 @@ void unknownC0DF22(ushort arg1) {
 				x0E = x06;
 			}
 			break;
-		case 3:
+		case TeleportState.unknown3:
 			if (gameState.unknown92 == 3) {
 				FixedPoint1616 x06;
 				x06.combined = unknown7E9F45.combined;
@@ -9536,7 +9536,7 @@ void unknownC0DE7C() {
 
 /// $C0DED9
 short unknownC0DED9(short arg1, short arg2, short arg3, short arg4, short) {
-	if (unknown7E9F43 != 0) {
+	if (teleportState != TeleportState.inProgress) {
 		return 1;
 	}
 	return getSurfaceFlags(arg1, arg2, gameState.firstPartyMemberEntity) | getSurfaceFlags(arg3, arg4, gameState.firstPartyMemberEntity);
@@ -9589,19 +9589,19 @@ void unknownC0E28F() {
 	}
 	gameState.leaderDirection = x02;
 	if (battleSwirlCountdown != 0) {
-		unknown7E9F43 = 2;
+		teleportState = TeleportState.failed;
 		battleDebug = 1;
 	}
 	unknownC0DF22(x02);
 	unknown7E9F51.combined = unknown7E9F49.combined + gameState.leaderX.combined;
 	unknown7E9F55.combined = unknown7E9F4D.combined + gameState.leaderY.combined;
 	if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.firstPartyMemberEntity) != -1) {
-		unknown7E9F43 = 2;
+		teleportState = TeleportState.failed;
 	}
 	if ((unknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, unknown7E9F51.integer, unknown7E9F55.integer, x02) & 0xC0) != 0) {
-		unknown7E9F43 = 2;
+		teleportState = TeleportState.failed;
 	}
-	if (unknown7E9F43 != 2) {
+	if (teleportState != TeleportState.failed) {
 		gameState.leaderX = unknown7E9F51;
 		gameState.leaderY = unknown7E9F55;
 	}
@@ -9609,7 +9609,7 @@ void unknownC0E28F() {
 	writePartyLeaderStateToPositionBuffer();
 	unknownC0E254();
 	if (unknown7E9F45.integer > 9) {
-		unknown7E9F43 = 1;
+		teleportState = TeleportState.complete;
 	}
 }
 
@@ -9689,17 +9689,17 @@ void unknownC0E516() {
 	unknown7E9F55.integer = x12.y >> 8 + unknown7E9F69;
 	if (teleportStyle != TeleportStyle.psiBetter) {
 		if ((unknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, unknown7E9F51.integer, unknown7E9F55.integer, gameState.leaderDirection) & 0xC0) != 0) {
-			unknown7E9F43 = 2;
+			teleportState = TeleportState.failed;
 		}
 		if (battleSwirlCountdown != 0) {
-			unknown7E9F43 = 2;
+			teleportState = TeleportState.failed;
 			battleDebug = 1;
 		}
 		if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.firstPartyMemberEntity) != -1) {
-			unknown7E9F43 = 2;
+			teleportState = TeleportState.failed;
 		}
 	}
-	if (unknown7E9F43 != 2) {
+	if (teleportState != TeleportState.failed) {
 		gameState.leaderX.integer = unknown7E9F51.integer;
 		gameState.leaderY.integer = unknown7E9F55.integer;
 	}
@@ -9718,12 +9718,12 @@ void unknownC0E516() {
 	unknownC0E254();
 	if (teleportStyle == TeleportStyle.psiBeta) {
 		if (unknown7E9F63 > 0x1000) {
-			unknown7E9F43 = 1;
+			teleportState = TeleportState.complete;
 			unknownC0E48A();
 		}
 	} else {
 		if (unknown7E9F65 > 0x1800) {
-			unknown7E9F43 = 1;
+			teleportState = TeleportState.complete;
 			unknownC0E48A();
 		}
 	}
@@ -9784,7 +9784,7 @@ void unknownC0E897() {
 	unknown7E9F45.fraction = 0;
 	unknown7E9F45.integer = 8;
 	gameState.leaderDirection = 6;
-	unknown7E9F43 = 3;
+	teleportState = TeleportState.unknown3;
 	setPartyTickCallbacks(0x17, &unknownC0E776, &unknownC0E3C1);
 	unknownC0DE16();
 	changeMusic(Music.teleportIn);
@@ -9855,7 +9855,7 @@ void teleportMainLoop() {
 	unknown7E5DBA = 1;
 	unknown7E9F45.fraction = 0;
 	unknown7E9F45.integer = 0;
-	unknown7E9F43 = 0;
+	teleportState = TeleportState.inProgress;
 	unknownC07C5B();
 	unknownC0DE46();
 	switch(teleportStyle) {
@@ -9868,7 +9868,7 @@ void teleportMainLoop() {
 			setPartyTickCallbacks(0x17, &unknownC0E516, &unknownC0E3C1);
 			break;
 		case TeleportStyle.instant:
-			unknown7E9F43 = 1;
+			teleportState = TeleportState.complete;
 			break;
 		case TeleportStyle.psiBetter:
 			setPartyTickCallbacks(0x17, &unknownC0E516, &unknownC0E3C1);
@@ -9883,10 +9883,10 @@ void teleportMainLoop() {
 		teleportFreezeObjects2();
 		updateScreen();
 		waitUntilNextFrame();
-	} while (unknown7E9F43 != 0);
+	} while (teleportState != TeleportState.inProgress);
 
-	switch (unknown7E9F43) {
-		case 1:
+	switch (teleportState) {
+		case TeleportState.complete:
 			unknownC0E815();
 			unknownC0DD79();
 			unknownC0E897();
@@ -9894,7 +9894,7 @@ void teleportMainLoop() {
 				unknownC46881(getTextBlock("MSG_EVT_MASTER_TLPT"));
 			}
 			break;
-		case 2:
+		case TeleportState.failed:
 			unknownC0E9BA();
 			unknownC0DD2C(0xA);
 			break;

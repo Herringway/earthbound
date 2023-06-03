@@ -685,7 +685,7 @@ __gshared short unknown7E9F3B; /// $(DOLLAR)9F3B
 __gshared short unknown7E9F3D; /// $(DOLLAR)9F3D
 __gshared short teleportDestination; /// $(DOLLAR)9F3F
 __gshared TeleportStyle teleportStyle; /// $(DOLLAR)9F41
-__gshared short unknown7E9F43; /// $(DOLLAR)9F43
+__gshared short teleportState; /// $(DOLLAR)9F43
 __gshared FixedPoint1616 unknown7E9F45; /// $(DOLLAR)9F45
 __gshared FixedPoint1616 unknown7E9F49; /// $(DOLLAR)9F49
 __gshared FixedPoint1616 unknown7E9F4D; /// $(DOLLAR)9F4D
