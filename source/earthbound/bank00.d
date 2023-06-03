@@ -9877,13 +9877,14 @@ void teleportMainLoop() {
 	}
 	if (teleportStyle != TeleportStyle.instant) {
 		changeMusic(Music.teleportOut);
-	} else do {
+	}
+	while (teleportState == TeleportState.inProgress) {
 		oamClear();
 		runActionscriptFrame();
 		teleportFreezeObjects2();
 		updateScreen();
 		waitUntilNextFrame();
-	} while (teleportState != TeleportState.inProgress);
+	}
 
 	switch (teleportState) {
 		case TeleportState.complete:
