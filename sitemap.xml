@@ -538,7 +538,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0DE7C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0DED9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0DF22.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank00/unknownC0E196.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0E214.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0E254.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/unknownC0E28F.html</loc></url>
@@ -584,6 +583,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank00/waitDMAFinished.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/waitNFrames.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank00/waitUntilNextFrame.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank00/writePartyLeaderStateToPositionBuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/addCharacterInventoryToWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/attemptHomesickness.html</loc></url>
@@ -2497,6 +2497,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.favouriteThing.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.firstPartyMemberEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.leaderDirection.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/GameState.leaderHasMoved.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.leaderPositionIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.leaderX.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.leaderY.html</loc></url>
@@ -2523,7 +2524,6 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.textSpeed.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.timer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.troddenTileType.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/GameState.unknown90.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.unknown92.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.unknownC3.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/GameState.unknownC4.html</loc></url>
