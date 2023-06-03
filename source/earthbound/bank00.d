@@ -9685,8 +9685,8 @@ void unknownC0E516() {
 	gameState.leaderHasMoved = 1;
 	unknownC0E44D();
 	auto x12 = unknownC41FFF(unknown7E9F61, unknown7E9F63);
-	unknown7E9F51.integer = x12.x >> 8 + unknown7E9F67;
-	unknown7E9F55.integer = x12.y >> 8 + unknown7E9F69;
+	unknown7E9F51.integer = cast(short)((x12.x >> 8) + unknown7E9F67);
+	unknown7E9F55.integer = cast(short)((x12.y >> 8) + unknown7E9F69);
 	if (teleportStyle != TeleportStyle.psiBetter) {
 		if ((unknownC0DED9(gameState.leaderX.integer, gameState.leaderY.integer, unknown7E9F51.integer, unknown7E9F55.integer, gameState.leaderDirection) & 0xC0) != 0) {
 			teleportState = TeleportState.failed;
