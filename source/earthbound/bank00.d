@@ -9778,6 +9778,11 @@ void unknownC0E897() {
 	}
 	for (short i = 0; i < 6; i++) {
 		partyCharacters[i].unknown55 = 0xFFFF;
+		version(noUndefinedBehaviour) {
+			if (gameState.partyMemberIndex[i] == 0) {
+				continue;
+			}
+		}
 		unknownC07A56(gameState.partyMemberIndex[i] - 1, 0, cast(short)(i + 0x18));
 	}
 	unknown7E9F45.fraction = 0;
