@@ -9550,8 +9550,7 @@ void writePartyLeaderStateToPositionBuffer() {
 	playerPositionBuffer[gameState.leaderPositionIndex].walkingStyle = 0;
 	playerPositionBuffer[gameState.leaderPositionIndex].direction = gameState.leaderDirection;
 	gameState.leaderPositionIndex++;
-	//uh... yeah, sure
-	gameState.leaderPositionIndex = gameState.leaderPositionIndex;
+	gameState.leaderPositionIndex &= 0xFF;
 }
 
 /// $C0E214
