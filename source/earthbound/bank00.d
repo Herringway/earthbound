@@ -7118,10 +7118,8 @@ void unknownC0A6E3() {
 	if (battleSwirlCountdown != 0) {
 		goto Unknown6;
 	}
-	if (--entityScriptVar2Table[actionScriptVar88 / 2] >= 0) {
-		if (entityScriptVar2Table[actionScriptVar88 / 2] != 0) {
-			goto Unknown6;
-		}
+	if (--entityScriptVar2Table[actionScriptVar88 / 2] > 0) {
+		goto Unknown6;
 	}
 	entityScriptVar2Table[actionScriptVar88 / 2] = entityScriptVar3Table[actionScriptVar88 / 2];
 	entityAnimationFrames[actionScriptVar88 / 2] ^= 2;
