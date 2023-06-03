@@ -5988,7 +5988,7 @@ union FixedPoint1616 {
 		ushort fraction; ///
 		short integer; ///
 	}
-	uint combined; ///
+	int combined; ///
 	//for debugging
 	///
 	double asDouble() const {
