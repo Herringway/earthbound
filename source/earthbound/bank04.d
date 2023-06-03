@@ -2805,7 +2805,7 @@ void focusCameraOnSprite(short arg1) {
 
 /// $C466B8
 void clearCameraFocus() {
-	gameState.unknown90 = 0;
+	gameState.leaderHasMoved = 0;
 	gameState.cameraMode = CameraMode.normal;
 }
 

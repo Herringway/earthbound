@@ -151,7 +151,7 @@ void unknownEF031E() {
 			currentPartyMemberTick.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
 			if ((x16 == currentPartyMemberTick.positionIndex) || (x16 + 1 == currentPartyMemberTick.positionIndex)) {
 				unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
-				if (gameState.unknown90 == 0) {
+				if (gameState.leaderHasMoved == 0) {
 					break;
 				}
 			} else {

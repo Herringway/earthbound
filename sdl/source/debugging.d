@@ -160,7 +160,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable!Direction("Direction", gameState.leaderDirection);
 		InputEditable("Tile type", gameState.troddenTileType);
 		InputEditable!WalkingStyle("Walking style", gameState.walkingStyle);
-		InputEditable("Unknown90", gameState.unknown90);
+		InputEditable("Leader moved", gameState.leaderHasMoved);
 		InputEditable("Unknown92", gameState.unknown92);
 		InputEditable("Leader entity", gameState.firstPartyMemberEntity);
 		InputEditable!CameraMode("Camera mode", gameState.cameraMode);

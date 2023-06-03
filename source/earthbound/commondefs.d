@@ -5654,7 +5654,7 @@ struct GameState {
 	ushort leaderDirection; ///
 	ushort troddenTileType; ///
 	ushort walkingStyle; ///
-	ushort unknown90; ///
+	ushort leaderHasMoved; ///
 	ushort unknown92; ///
 	ushort firstPartyMemberEntity; ///
 	ubyte[6] partyMemberIndex; ///
