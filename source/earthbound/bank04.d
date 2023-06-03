@@ -5814,7 +5814,7 @@ unittest {
 		[0xE000, Direction.upRight, Direction.upRight],
 		[0xF000, Direction.upRight, Direction.right],
 	];
-	OverworldSpriteGraphics dummy;
+	static OverworldSpriteGraphics[8] dummy;
 	sprites.length = 8;
 	scope(exit) {
 		sprites.length = 0;
@@ -5822,7 +5822,7 @@ unittest {
 	}
 	foreach (testCase; testData) {
 		currentEntitySlot = 0;
-		entityGraphicsPointers[currentEntitySlot] = &dummy;
+		entityGraphicsPointers[currentEntitySlot] = &dummy[0];
 		entityScriptVar0Table[currentEntitySlot] = cast(short)testCase[0];
 		entityDirections[currentEntitySlot] = cast(short)testCase[1];
 		entitySpiralMovement(0);
