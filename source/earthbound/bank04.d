@@ -6728,7 +6728,7 @@ short runAttractModeScene(short arg1) {
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
 	unknown7E4A58 = 1;
-	unknown7E4A5A = 0;
+	enemySpawnsEnabled = 0;
 	setBoundaryBehaviour(0);
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
@@ -7369,8 +7369,8 @@ short unknownC4F264(short arg1) {
 	}
 	photographMapLoadingMode = 1;
 	currentPhotoDisplay = arg1;
-	short x02 = unknown7E4A5A;
-	unknown7E4A5A = 0;
+	short x02 = enemySpawnsEnabled;
+	enemySpawnsEnabled = 0;
 	ushort* x = cast(ushort*)&heap[0][0];
 	// the original code went way beyond the heap. the heap appears to be 0x400 bytes, so perhaps they just forgot to factor the size of a short?
 	for (short i = 0; i < 0x200/+0x400+/; i++) {
@@ -7379,7 +7379,7 @@ short unknownC4F264(short arg1) {
 	paletteUploadMode = PaletteUpload.none;
 	memcpy(&palettes[1][0], &unknownE1E92A[0], 32);
 	loadMapAtPosition(photographerConfigTable[arg1].mapX, photographerConfigTable[arg1].mapY);
-	unknown7E4A5A = x02;
+	enemySpawnsEnabled = x02;
 	bg2YPosition = 0;
 	bg2XPosition = 0;
 	photographMapLoadingMode = 0;

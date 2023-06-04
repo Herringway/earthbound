@@ -21504,7 +21504,7 @@ void initDebugMenuScreen() {
 	entityAllocationMaxSlot = 1;
 	debugCursorEntity = initEntityWipe(ActionScript.unknown000, 0x34, 0x34);
 	unknown7E4A58 = 0;
-	unknown7E4A5A = 0;
+	enemySpawnsEnabled = 0;
 }
 
 /// $EFDABD
@@ -21598,7 +21598,7 @@ void displayCheckPositionDebugOverlay() {
 void displayViewCharacterDebugOverlay() {
 	copyToVRAMAlt(0, 8, 0x7F24, cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 0x40));
 	copyToVRAMAlt(0, 8, 0x7F2A, cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 0x40));
-	copyToVRAMAlt(0, 8, 0x7F35, cast(ubyte*)integerToDecimalDebugTiles(unknownC0263D(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
+	copyToVRAMAlt(0, 8, 0x7F35, cast(ubyte*)integerToDecimalDebugTiles(getEncounterGroupID(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
 	copyToVRAMAlt(0, 8, 0x7F3A, cast(ubyte*)integerToDecimalDebugTiles(unknown7E4A68));
 	if (battleSwirlCountdown == 0) {
 		return;
@@ -21865,7 +21865,7 @@ void debugProcessCommandSelection() {
 		case 2:
 			debugModeNumber = DebugMode.viewCharacter;
 			unknown7E4A5E = 10;
-			unknown7E4A5A = -1;
+			enemySpawnsEnabled = -1;
 			debugMain();
 			break;
 		case 3:

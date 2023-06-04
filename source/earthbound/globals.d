@@ -325,7 +325,7 @@ __gshared ushort[maxEntities] entityUnknown2C5E; /// $(DOLLAR)2C5E
 __gshared ushort[maxEntities] entityTPTEntries; /// $(DOLLAR)2C9A
 __gshared short[maxEntities] entityTPTEntrySprites; /// $(DOLLAR)2CD6
 __gshared short[maxEntities] entityEnemyIDs; /// $(DOLLAR)2D12
-__gshared ushort[maxEntities] entityUnknown2D4E; /// $(DOLLAR)2D4E
+__gshared ushort[maxEntities] entityEnemySpawnTiles; /// $(DOLLAR)2D4E
 __gshared ushort[maxEntities] entityUnknown2D8A; /// $(DOLLAR)2D8A
 __gshared ushort[maxEntities] entityUnknown2DC6; /// $(DOLLAR)2DC6
 __gshared VecYX*[maxEntities] entityUnknown2E02; /// $(DOLLAR)2E02
@@ -429,21 +429,21 @@ __gshared SpriteMap[179] spriteTable7E467E; /// $(DOLLAR)467E
 
 __gshared ubyte[88] spriteVramTable; /// $(DOLLAR)4A00
 __gshared short unknown7E4A58; /// $(DOLLAR)4A58
-__gshared short unknown7E4A5A; /// $(DOLLAR)4A5A
+__gshared short enemySpawnsEnabled; /// $(DOLLAR)4A5A
 __gshared short overworldEnemyCount; /// $(DOLLAR)4A5C
 __gshared short unknown7E4A5E; /// $(DOLLAR)4A5E
 __gshared short magicButterfly; /// $(DOLLAR)4A60
-__gshared short unknown7E4A62; /// $(DOLLAR)4A62
-__gshared short unknown7E4A64; /// $(DOLLAR)4A64
+__gshared short enemySpawnRangeWidth; /// $(DOLLAR)4A62
+__gshared short enemySpawnRangeHeight; /// $(DOLLAR)4A64
 __gshared short showNPCFlag; /// $(DOLLAR)4A66
 __gshared short unknown7E4A68; /// $(DOLLAR)4A68
 __gshared short unknown7E4A6A; /// $(DOLLAR)4A6A
 __gshared short unknown7E4A6C; /// $(DOLLAR)4A6C
-__gshared short unknown7E4A6E; /// $(DOLLAR)4A6E
+__gshared short enemySpawnRemainingEnemyCount; /// $(DOLLAR)4A6E
 __gshared short unknown7E4A70; /// $(DOLLAR)4A70
 __gshared short spawningEnemyGroup; /// $(DOLLAR)4A72
-__gshared short unknown7E4A74; /// $(DOLLAR)4A74
-__gshared const(ubyte)* unknown7E4A76; /// $(DOLLAR)4A76
+__gshared short spawningEnemySprite; /// $(DOLLAR)4A74
+__gshared const(ubyte)* spawningEnemyName; /// $(DOLLAR)4A76
 __gshared short unknown7E4A7A; /// $(DOLLAR)4A7A
 __gshared short[4] unknown7E4A7C; /// $(DOLLAR)4A7C
 __gshared short[4] unknown7E4A84; /// $(DOLLAR)4A84

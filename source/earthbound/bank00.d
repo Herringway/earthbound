@@ -986,7 +986,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 	entityHitboxLeftRightHeight[result] = spriteGroupingPointers[sprite].hitboxHeightLR;
 	entityHitboxEnabled[result] = unknownC42AEB[spriteGroupingPointers[sprite].size];
 	entityUnknown2BE6[result] = cast(ushort)((unknownC42B0D[x02].unknown1 <<8) | (unknownC42B0D[x02].unknown0 - unknownC42B0D[x02].unknown1));
-	entityUnknown2D4E[result] = 0xFFFF;
+	entityEnemySpawnTiles[result] = 0xFFFF;
 	entityEnemyIDs[result] = -1;
 	entityTPTEntries[result] = 0xFFFF;
 	entityCollidedObjects[result] = 0xFFFF;
@@ -1187,7 +1187,7 @@ void spawnNPCsColumn(short x, short y) {
 }
 
 /// $C0263D
-short unknownC0263D(short x, short y) {
+short getEncounterGroupID(short x, short y) {
 	version(noUndefinedBehaviour) {
 		if ((x < 0) || (y < 0)) {
 			return 0;
@@ -1200,25 +1200,25 @@ short unknownC0263D(short x, short y) {
 }
 
 /// $C02668
-void unknownC02668(short arg1, short arg2, short arg3) {
+void spawnEnemyFromGroup(short tileX, short tileY, short encounterGroupID) {
 	short group;
 	const(BattleGroupEnemy)* groupEnemies;
 	version(bugfix) { // out of bounds checking wasn't done before
-		if (arg1 >= mapDataPerSectorAttributesTable[0].length * 4) {
+		if (tileX >= mapDataPerSectorAttributesTable[0].length * 4) {
 			return;
 		}
-		if (arg2 >= mapDataPerSectorAttributesTable.length * 2) {
+		if (tileY >= mapDataPerSectorAttributesTable.length * 2) {
 			return;
 		}
 	}
 	if ((debugging != 0) && (debugEnemiesEnabled() != 0) && (rand() < 16)) {
-		debug(enemySpawnTracing) tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
+		debug(enemySpawnTracing) tracef("Trying to spawn an enemy (debug): %s, %s, %s", tileX, tileY, encounterGroupID);
 		group = EnemyGroup.testEnemies;
 		groupEnemies = &battleEntryPointerTable[EnemyGroup.testEnemies].enemies[0];
 	} else if ((++unknown7E4A7A & 0xF) == 0) {
-		debug(enemySpawnTracing) tracef("Trying to spawn a magic butterfly: %s, %s, %s", arg1, arg2, arg3);
+		debug(enemySpawnTracing) tracef("Trying to spawn a magic butterfly: %s, %s, %s", tileX, tileY, encounterGroupID);
 		short magicButterflyChance = void;
-		switch (mapDataPerSectorAttributesTable[(arg2 * 8) / 16][(arg1 * 8) / 32] & 7) {
+		switch (mapDataPerSectorAttributesTable[(tileY * 8) / 16][(tileX * 8) / 32] & 7) {
 			case MapSectorMiscConfig.none:
 				magicButterflyChance = 2;
 				break;
@@ -1245,17 +1245,17 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		group = EnemyGroup.magicButterfly;
 		spawningEnemyGroup = EnemyGroup.magicButterfly;
 		groupEnemies = &battleEntryPointerTable[EnemyGroup.magicButterfly].enemies[0];
-	} else if (arg3 != 0) {
-		debug(enemySpawnTracing) tracef("Trying to spawn an enemy: %s, %s, %s", arg1, arg2, arg3);
-		if (globalMapTilesetPaletteData[(arg2 * 8) / 16][(arg1 * 8) / 32] / 8 == unknown7E436E) {
-			unknown7E4A6C = arg3;
-			short x26 = enemyPlacementGroupsPointerTable[arg3].eventFlag;
-			const(EnemyPlacementGroup)* x22 = enemyPlacementGroupsPointerTable[arg3].groups.ptr;
-			unknown7E4A70 = enemyPlacementGroupsPointerTable[arg3].unknown2;
+	} else if (encounterGroupID != 0) {
+		debug(enemySpawnTracing) tracef("Trying to spawn an enemy: %s, %s, %s", tileX, tileY, encounterGroupID);
+		if (globalMapTilesetPaletteData[(tileY * 8) / 16][(tileX * 8) / 32] / 8 == unknown7E436E) {
+			unknown7E4A6C = encounterGroupID;
+			short x26 = enemyPlacementGroupsPointerTable[encounterGroupID].eventFlag;
+			const(EnemyPlacementGroup)* x22 = enemyPlacementGroupsPointerTable[encounterGroupID].groups.ptr;
+			unknown7E4A70 = enemyPlacementGroupsPointerTable[encounterGroupID].unknown2;
 			short x1C = 0;
 			if ((x26 != 0) && (getEventFlag(x26) != 0)) {
-				unknown7E4A70 = enemyPlacementGroupsPointerTable[arg3].unknown3;
-				if (enemyPlacementGroupsPointerTable[arg3].unknown2 != 0) {
+				unknown7E4A70 = enemyPlacementGroupsPointerTable[encounterGroupID].unknown3;
+				if (enemyPlacementGroupsPointerTable[encounterGroupID].unknown2 != 0) {
 					x1C = 8;
 				}
 			}
@@ -1281,7 +1281,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 				if (group + 0x8000 != entityTPTEntries[i]) {
 					continue;
 				}
-				if (tileY * 128 + tileX == entityUnknown2D4E[i]) {
+				if (tileY * 128 + tileX == entityEnemySpawnTiles[i]) {
 					return;
 				}
 			}
@@ -1292,16 +1292,16 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			return;
 		}
 	}
-	while ((unknown7E4A6E = groupEnemies[0].count) != 0xFF) {
+	while ((enemySpawnRemainingEnemyCount = groupEnemies[0].count) != 0xFF) {
 		debug(enemySpawnTracing) tracef("Trying to spawn %sx %s", groupEnemies[0].count, cast(EnemyID)groupEnemies[0].enemyID);
-		unknown7E4A76 = &enemyConfigurationTable[groupEnemies[0].enemyID].name[0];
+		spawningEnemyName = &enemyConfigurationTable[groupEnemies[0].enemyID].name[0];
 		short x26 = enemyConfigurationTable[groupEnemies[0].enemyID].overworldSprite;
-		unknown7E4A74 = x26;
+		spawningEnemySprite = x26;
 		short x16 = enemyConfigurationTable[groupEnemies[0].enemyID].eventScript;
 		if (x16 == 0) {
 			x16 = ActionScript.unknown019;
 		}
-		while (unknown7E4A6E-- != 0) {
+		while (enemySpawnRemainingEnemyCount-- != 0) {
 			if (groupEnemies[0].enemyID == EnemyID.magicButterfly) {
 				if (magicButterfly != 0) {
 					continue;
@@ -1316,8 +1316,8 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			short x04;
 			short x02;
 			for (short i = 0; i != 20; i++) {
-				x04 = cast(short)((arg1 * 8 + (rand() % unknown7E4A62)) * 8);
-				x02 = cast(short)((arg2 * 8 + (rand() % unknown7E4A64)) * 8);
+				x04 = cast(short)((tileX * 8 + (rand() % enemySpawnRangeWidth)) * 8);
+				x02 = cast(short)((tileY * 8 + (rand() % enemySpawnRangeHeight)) * 8);
 				debug(enemySpawnTracing) tracef("Spawning %s at (%s, %s)", cast(EnemyID)groupEnemies[0].enemyID, x04, x02);
 				short x12 = getSurfaceFlags(x04, x02, x14);
 				if ((x12 & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs)) != 0) {
@@ -1334,7 +1334,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			entityAbsYTable[x14] = x02;
 			entityTPTEntries[x14] = group + 0x8000;
 			entityEnemyIDs[x14] = groupEnemies[0].enemyID;
-			entityUnknown2D4E[x14] = cast(short)(arg2 * 128 + arg1);
+			entityEnemySpawnTiles[x14] = cast(short)(tileY * 128 + tileX);
 			entityUnknown2C5E[x14] = 0;
 			entityWeakEnemyValue[x14] = rand();
 			overworldEnemyCount++;
@@ -1347,81 +1347,83 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 }
 
 /// $C02A6B
-void spawnEnemiesRow(short x, short y) {
+void spawnEnemiesRow(short tileX, short tileY) {
 	if (getEventFlag(EventFlag.sysMonsterOff) != 0) {
 		return;
 	}
 	if (getEventFlag(EventFlag.winGiegu) != 0) {
 		return;
 	}
-	if (unknown7E4A5A == 0) {
+	if (enemySpawnsEnabled == 0) {
 		return;
 	}
-	if ((y & 7) != 0) {
+	if ((tileY & 7) != 0) {
 		return;
 	}
-	if (((y < -16) ? 0 : y) >= 0x500) {
+	if (((tileY < -16) ? 0 : tileY) >= 0x500) {
 		return;
 	}
-	short x14 = x / 8;
-	short x12 = ((y < -16) ? 0 : y) / 8;
-	for (short i = x14; x14 + 5 > i; i++) {
-		short x10 = i;
-		unknown7E4A62 = 8;
-		unknown7E4A64 = 8;
-		short x02 = 1;
+	short baseEnemySectorX = tileX / 8;
+	short baseEnemySectorY = ((tileY < -16) ? 0 : tileY) / 8;
+	// try to spawn an enemy group for each enemy sector in (X, Y) .. (X + 6, Y), an area 48 tiles wide, 1 tile tall
+	for (short i = baseEnemySectorX; baseEnemySectorX + 5 > i; i++) {
+		short enemySectorX = i;
+		enemySpawnRangeWidth = 8;
+		enemySpawnRangeHeight = 8;
+		short spawnAttempts = 1;
 		Unknown9:
-		short x16 = unknownC0263D(i, x12);
-		short tmp = unknownC0263D(cast(short)(i + 1), x12);
-		if ((x16 != 0) && (tmp == x16)) {
-			unknown7E4A62 += 8;
+		short group = getEncounterGroupID(i, baseEnemySectorY);
+		short groupNext = getEncounterGroupID(cast(short)(i + 1), baseEnemySectorY);
+		if ((group != 0) && (groupNext == group)) {
+			enemySpawnRangeWidth += 8;
 			i++;
-			if (++x02 != 6) {
+			if (++spawnAttempts != 6) {
 				goto Unknown9;
 			}
 		}
-		while (x02-- != 0) {
-			unknownC02668(x10, x12, x16);
+		while (spawnAttempts-- != 0) {
+			spawnEnemyFromGroup(enemySectorX, baseEnemySectorY, group);
 		}
 	}
 }
 
 /// $C02B55
-void spawnEnemiesColumn(short x, short y) {
+void spawnEnemiesColumn(short tileX, short tileY) {
 	if (getEventFlag(EventFlag.sysMonsterOff) != 0) {
 		return;
 	}
 	if (getEventFlag(EventFlag.winGiegu) != 0) {
 		return;
 	}
-	if (unknown7E4A5A == 0) {
+	if (enemySpawnsEnabled == 0) {
 		return;
 	}
-	if ((x & 7) != 0) {
+	if ((tileX & 7) != 0) {
 		return;
 	}
-	if (((x < -16) ? 0 : x) >= 0x400) {
+	if (((tileX < -16) ? 0 : tileX) >= 0x400) {
 		return;
 	}
-	short x14 = ((x < -16) ? 0 : x) / 8;
-	short x12 = y / 8;
-	for (short i = x12; x12 + 5 > i; i++) {
-		short x10 = i;
-		unknown7E4A62 = 8;
-		unknown7E4A64 = 8;
-		short x02 = 1;
+	short baseEnemySectorX = ((tileX < -16) ? 0 : tileX) / 8;
+	short baseEnemySectorY = tileY / 8;
+	// try to spawn an enemy group for each enemy sector in (X, Y) .. (X, Y + 6), an area 1 tile wide, 48 tiles tall
+	for (short i = baseEnemySectorY; baseEnemySectorY + 5 > i; i++) {
+		short enemySectorY = i;
+		enemySpawnRangeWidth = 8;
+		enemySpawnRangeHeight = 8;
+		short spawnAttempts = 1;
 		Unknown9:
-		short x18 = unknownC0263D(x14, i);
-		short tmp = unknownC0263D(x14, cast(short)(i + 1));
-		if ((x18 != 0) && (tmp == x18)) {
-			unknown7E4A64 += 8;
+		short group = getEncounterGroupID(baseEnemySectorX, i);
+		short groupNext = getEncounterGroupID(baseEnemySectorX, cast(short)(i + 1));
+		if ((group != 0) && (groupNext == group)) {
+			enemySpawnRangeHeight += 8;
 			i++;
-			if (++x02 != 6) {
+			if (++spawnAttempts != 6) {
 				goto Unknown9;
 			}
 		}
-		while (x02-- != 0) {
-			unknownC02668(x14, x10, x18);
+		while (spawnAttempts-- != 0) {
+			spawnEnemyFromGroup(baseEnemySectorX, enemySectorY, group);
 		}
 	}
 }
@@ -8067,7 +8069,7 @@ void unknownC0B67F() {
 	battleDebug = 0;
 	inputDisableFrameCounter = 0;
 	unknown7E4A58 = 1;
-	unknown7E4A5A = -1;
+	enemySpawnsEnabled = -1;
 	unknown7E4A5E = 10;
 	battleSwirlCountdown = 0;
 	pendingInteractions = 0;
