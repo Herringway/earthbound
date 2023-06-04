@@ -3096,7 +3096,7 @@ short battleRoutine() {
 /// $C26189
 void unknownC26189(ushort arg1) {
 	for (short i = 0; i < 0x100; i++) {
-		palettes[0][i] = arg1;
+		(cast(ushort*)&palettes[0][0])[i] = arg1;
 	}
 	preparePaletteUpload(PaletteUpload.full);
 	waitUntilNextFrame();

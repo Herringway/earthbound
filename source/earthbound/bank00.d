@@ -6825,15 +6825,24 @@ void unknownC0A37ACommon(short arg1) {
 
 /// $C0A384
 void unknownC0A384() {
-	if (entityUnknown2C5E[actionScriptVar88 / 2] <= 0) {
+	if (entityUnknown2C5E[actionScriptVar88 / 2] >= 0) {
 		if ((entityObstacleFlags[actionScriptVar88 / 2] & 0xD0) != 0) {
 			actionScriptCommand39(null);
+			return;
 		} else if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
 			return;
-			//some unreachable code here
 		}
 	}
-	updateEntityPosition2D(actionScriptVar88);
+	unknownC0A384Common(actionScriptVar88);
+}
+
+// unused
+void unknownC0A384Alt() {
+	unknownC0A384Common(actionScriptVar88);
+}
+
+void unknownC0A384Common(short arg1) {
+	updateEntityPosition2D(arg1);
 }
 
 /// $C0A3A4
