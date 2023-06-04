@@ -1212,11 +1212,11 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		}
 	}
 	if ((debugging != 0) && (debugEnemiesEnabled() != 0) && (rand() < 16)) {
-		tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
+		debug(enemySpawnTracing) tracef("Trying to spawn an enemy (debug): %s, %s, %s", arg1, arg2, arg3);
 		group = EnemyGroup.testEnemies;
 		groupEnemies = &battleEntryPointerTable[EnemyGroup.testEnemies].enemies[0];
 	} else if ((++unknown7E4A7A & 0xF) == 0) {
-		tracef("Trying to spawn a magic butterfly: %s, %s, %s", arg1, arg2, arg3);
+		debug(enemySpawnTracing) tracef("Trying to spawn a magic butterfly: %s, %s, %s", arg1, arg2, arg3);
 		short magicButterflyChance = void;
 		switch (mapDataPerSectorAttributesTable[(arg2 * 8) / 16][(arg1 * 8) / 32] & 7) {
 			case MapSectorMiscConfig.none:
@@ -1246,7 +1246,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		spawningEnemyGroup = EnemyGroup.magicButterfly;
 		groupEnemies = &battleEntryPointerTable[EnemyGroup.magicButterfly].enemies[0];
 	} else if (arg3 != 0) {
-		tracef("Trying to spawn an enemy: %s, %s, %s", arg1, arg2, arg3);
+		debug(enemySpawnTracing) tracef("Trying to spawn an enemy: %s, %s, %s", arg1, arg2, arg3);
 		if (globalMapTilesetPaletteData[(arg2 * 8) / 16][(arg1 * 8) / 32] / 8 == unknown7E436E) {
 			unknown7E4A6C = arg3;
 			short x26 = enemyPlacementGroupsPointerTable[arg3].eventFlag;
@@ -1293,7 +1293,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 		}
 	}
 	while ((unknown7E4A6E = groupEnemies[0].count) != 0xFF) {
-		tracef("Trying to spawn %sx %s", groupEnemies[0].count, cast(EnemyID)groupEnemies[0].enemyID);
+		debug(enemySpawnTracing) tracef("Trying to spawn %sx %s", groupEnemies[0].count, cast(EnemyID)groupEnemies[0].enemyID);
 		unknown7E4A76 = &enemyConfigurationTable[groupEnemies[0].enemyID].name[0];
 		short x26 = enemyConfigurationTable[groupEnemies[0].enemyID].overworldSprite;
 		unknown7E4A74 = x26;
@@ -1318,7 +1318,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 			for (short i = 0; i != 20; i++) {
 				x04 = cast(short)((arg1 * 8 + (rand() % unknown7E4A62)) * 8);
 				x02 = cast(short)((arg2 * 8 + (rand() % unknown7E4A64)) * 8);
-				tracef("Spawning %s at (%s, %s)", cast(EnemyID)groupEnemies[0].enemyID, x04, x02);
+				debug(enemySpawnTracing) tracef("Spawning %s at (%s, %s)", cast(EnemyID)groupEnemies[0].enemyID, x04, x02);
 				short x12 = getSurfaceFlags(x04, x02, x14);
 				if ((x12 & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs)) != 0) {
 					continue;
