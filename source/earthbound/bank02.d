@@ -3248,13 +3248,13 @@ short instantWinCheck() {
 		if ((x1A < 1) || (x1A > 4)) {
 			continue;
 		}
-		if (partyCharacters[x1A].speed < x04) {
-			x04 = partyCharacters[x1A].speed;
+		if (partyCharacters[x1A - 1].speed < x04) {
+			x04 = partyCharacters[x1A - 1].speed;
 		}
-		if (partyCharacters[x1A].offense < x1E) {
-			x1E = partyCharacters[x1A].offense;
+		if (partyCharacters[x1A - 1].offense < x1E) {
+			x1E = partyCharacters[x1A - 1].offense;
 		}
-		short x16 = partyCharacters[x1A].afflictions[0];
+		short x16 = partyCharacters[x1A - 1].afflictions[0];
 		if (x16 == Status0.unconscious) {
 			continue;
 		}
@@ -3276,10 +3276,10 @@ short instantWinCheck() {
 		if (x16 == Status0.cold) {
 			continue;
 		}
-		if ((partyCharacters[x1A].afflictions[1] == Status1.mushroomized) || (partyCharacters[x1A].afflictions[1] == Status1.possessed)) {
+		if ((partyCharacters[x1A - 1].afflictions[1] == Status1.mushroomized) || (partyCharacters[x1A - 1].afflictions[1] == Status1.possessed)) {
 			continue;
 		}
-		unknown7EAA76[x20++] = partyCharacters[x1A].offense;
+		unknown7EAA76[x20++] = partyCharacters[x1A - 1].offense;
 	}
 	if (enemiesInBattle > x20) {
 		return 0;
