@@ -2964,6 +2964,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/TeleportDestination.unknown6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TeleportDestination.x.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TeleportDestination.y.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/TeleportState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TeleportStyle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TextWindowPropertiesEntry.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/TextWindowPropertiesEntry.offset.html</loc></url>
@@ -3479,6 +3480,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/swirlHDMATableID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/targetNameAdjustScratch.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/teleportDestination.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/teleportState.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/teleportStyle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/tempDividend.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/tempEntitySurfaceFlags.html</loc></url>
@@ -3798,7 +3800,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F39.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F3B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F3D.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F43.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F45.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F49.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F4D.html</loc></url>
