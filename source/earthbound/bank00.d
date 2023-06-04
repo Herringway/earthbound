@@ -1281,7 +1281,7 @@ void unknownC02668(short arg1, short arg2, short arg3) {
 				if (group + 0x8000 != entityTPTEntries[i]) {
 					continue;
 				}
-				if (x1C == entityUnknown2D4E[i]) {
+				if (tileY * 128 + tileX == entityUnknown2D4E[i]) {
 					return;
 				}
 			}
