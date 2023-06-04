@@ -6447,11 +6447,11 @@ short unknownC09EFFCommon(short arg1) {
 /// $C09F3B
 void unknownC09F3BUnusedEntry() {
 	currentEntityOffset = -1;
-	unknownC09F3BEntry2(-1);
+	unknownC09F3BEntry2();
 }
 
 /// $C09F3B
-void unknownC09F3BEntry2(short arg1) {
+void unknownC09F3BEntry2() {
 	for (short i = 0; i != 0x3C; i++) {
 		entityUnknown284C[i / 2] = entityTickCallbackFlags[i / 2];
 		i += 2;
