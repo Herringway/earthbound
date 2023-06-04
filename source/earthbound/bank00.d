@@ -1200,7 +1200,7 @@ short getEncounterGroupID(short x, short y) {
 }
 
 /// $C02668
-void spawnEnemyFromGroup(short tileX, short tileY, short encounterGroupID) {
+void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 	short group;
 	const(BattleGroupEnemy)* groupEnemies;
 	version(bugfix) { // out of bounds checking wasn't done before
@@ -1382,7 +1382,7 @@ void spawnEnemiesRow(short tileX, short tileY) {
 			}
 		}
 		while (spawnAttempts-- != 0) {
-			spawnEnemyFromGroup(enemySectorX, baseEnemySectorY, group);
+			spawnEnemiesFromGroup(enemySectorX, baseEnemySectorY, group);
 		}
 	}
 }
@@ -1423,13 +1423,13 @@ void spawnEnemiesColumn(short tileX, short tileY) {
 			}
 		}
 		while (spawnAttempts-- != 0) {
-			spawnEnemyFromGroup(baseEnemySectorX, enemySectorY, group);
+			spawnEnemiesFromGroup(baseEnemySectorX, enemySectorY, group);
 		}
 	}
 }
 
 /// $C02C3E
-void unknownC02C3E() {
+void enableMushroomizedWalking() {
 	if (partyCharacters[gameState.playerControlledPartyMembers[0]].afflictions[1] == Status1.mushroomized) {
 		mushroomizedWalkingFlag = 1;
 		if (mushroomizationTimer == 0) {
@@ -1437,7 +1437,7 @@ void unknownC02C3E() {
 			mushroomizationModifier = 0;
 		}
 		if (gameState.walkingStyle == WalkingStyle.bicycle) {
-			unknownC03CFD();
+			getOffBicycle();
 		}
 	} else {
 		mushroomizedWalkingFlag = 0;
@@ -1594,7 +1594,7 @@ void updateParty() {
 	}
 	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	unknownC032EC();
-	unknownC02C3E();
+	enableMushroomizedWalking();
 	loadTextPalette();
 }
 
@@ -1842,7 +1842,7 @@ void getOnBicycle() {
 }
 
 /// $C03CFD
-void unknownC03CFD() {
+void getOffBicycle() {
 	if (gameState.walkingStyle != WalkingStyle.bicycle) {
 		return;
 	}
@@ -8167,7 +8167,7 @@ void ebMain() {
 				inputDisableFrameCounter++;
 			} else if (((padPress[0] & (Pad.a | Pad.l)) != 0) && (gameState.walkingStyle == WalkingStyle.bicycle)) {
 				freezeEntities();
-				getOffBicycle();
+				getOffBicycleWithText();
 				unfreezeEntities();
 				continue;
 			}

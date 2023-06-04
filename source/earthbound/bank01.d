@@ -5808,13 +5808,13 @@ short attemptHomesickness() {
 }
 
 /// $C1BEC6
-void getOffBicycle() {
+void getOffBicycleWithText() {
 	createWindowN(Window.textStandard);
 	setWorkingMemory(WorkingMemory(1));
 	displayText(getTextBlock("MSG_SYS_BICYCLE_OFF"));
 	closeFocusWindowN();
 	windowTick();
-	unknownC03CFD();
+	getOffBicycle();
 }
 
 /// $C1BEFC
@@ -5872,7 +5872,7 @@ short triggerSpecialEvent(short arg1) {
 			return attemptHomesickness();
 		case 18:
 			if (gameState.walkingStyle == 3) {
-				unknownC03CFD();
+				getOffBicycle();
 				return 1;
 			}
 			return 0;

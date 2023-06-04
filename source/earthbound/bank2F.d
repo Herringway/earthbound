@@ -562,7 +562,7 @@ void unknownEF0FDB() {
 	pendingInteractions = 1;
 	unknownC09F3BEntry2();
 	changeMusic(Music.delivery);
-	unknownC03CFD();
+	getOffBicycle();
 }
 
 /// $EF0FF6
