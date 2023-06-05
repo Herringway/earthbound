@@ -1235,7 +1235,7 @@ void unknownC120D6(short arg1, short arg2) {
 	if (arg2 != -1) {
 		unknownC23E8A(cast(short)(arg1 * numBattlersInBackRow + arg2 + 1));
 		unknownC3E75D(0);
-		printString(0xFF, returnBattleAttackerAddress());
+		printString(0xFF, getBattleAttackerName());
 		ubyte* x12 = (arg1 != 0) ? &battlersTable[frontRowBattlers[arg2]].afflictions[0] : &battlersTable[backRowBattlers[arg2]].afflictions[0];
 		moveCurrentTextCursor(0x11, 0);
 		unknownC43F77(unknownC223D9(x12, 0));
@@ -3775,10 +3775,10 @@ void* cc19Tree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x1D:
 			return &cc191D;
 		case 0x1E:
-			setWorkingMemory(WorkingMemory(unknownC1AD26()));
+			setWorkingMemory(WorkingMemory(getCNum()));
 			break;
 		case 0x1F:
-			setWorkingMemory(WorkingMemory(unknownC1AD02()));
+			setWorkingMemory(WorkingMemory(getCItem()));
 			break;
 		case 0x20:
 			setWorkingMemory(WorkingMemory(gameState.playerControlledPartyMemberCount));
@@ -3829,7 +3829,7 @@ void* cc1ATree(DisplayTextState* arg1, ubyte arg2) {
 			setWorkingMemory(WorkingMemory(selectionMenu(1)));
 			break;
 		case 0x0A:
-			setWorkingMemory(WorkingMemory(unknownC1AC00()));
+			setWorkingMemory(WorkingMemory(makePhoneCall()));
 			break;
 		case 0x0B:
 			setWorkingMemory(WorkingMemory(selectPSITeleportDestination()));
@@ -3918,14 +3918,14 @@ void* cc1CTree(DisplayTextState* arg1, ubyte arg2) {
 			return &cc1C15;
 		case 0x0D:
 			unknownC3E75D(0);
-			printWrappableString(0x50, returnBattleAttackerAddress());
+			printWrappableString(0x50, getBattleAttackerName());
 			break;
 		case 0x0E:
 			unknownC3E75D(1);
-			printWrappableString(0x50, returnBattleTargetAddress());
+			printWrappableString(0x50, getBattleTargetName());
 			break;
 		case 0x0F:
-			printNumber(unknownC1AD26());
+			printNumber(getCNum());
 			break;
 		case 0x11:
 			return &cc1C11;
@@ -3993,7 +3993,7 @@ void* cc1DTree(DisplayTextState* arg1, ubyte arg2) {
 			return &cc1D19;
 		case 0x20:
 			short x14 = 0;
-			if (unknownC14070(returnBattleTargetAddress(), returnBattleAttackerAddress()) == 0) {
+			if (unknownC14070(getBattleTargetName(), getBattleAttackerName()) == 0) {
 				x14 = 1;
 			}
 			setWorkingMemory(WorkingMemory(x14));
@@ -4170,7 +4170,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x83:
 			return &cc1F83;
 		case 0x90:
-			setWorkingMemory(WorkingMemory(unknownC19441()));
+			setWorkingMemory(WorkingMemory(openPhoneMenu()));
 			break;
 		case 0xA0:
 			unknownC226C5(1);
@@ -4699,7 +4699,7 @@ void closeEquipSelectWindow() {
 }
 
 /// $C19441
-ushort unknownC19441() {
+ushort openPhoneMenu() {
 	ushort x02 = 0;
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.equipMenuItemlist);
@@ -5318,56 +5318,56 @@ ushort selectPSITeleportDestination() {
 }
 
 /// $C1AC00
-ushort unknownC1AC00() {
-	ushort x12 = unknownC19441();
-	if (x12 != 0) {
-		displayText(getTextBlock(telephoneContacts[x12].text));
+ushort makePhoneCall() {
+	ushort selectedContact = openPhoneMenu();
+	if (selectedContact != 0) {
+		displayText(getTextBlock(telephoneContacts[selectedContact].text));
 	}
-	return x12;
+	return selectedContact;
 }
 
 /// $C1AC4A
-void unknownC1AC4A(ubyte* arg1, short arg2) {
-	memcpy(&unknown7E9CD7[0], arg1, arg2);
-	unknown7E9CD7[arg2] = 0;
+void setBattleAttackerName(ubyte* str, short length) {
+	memcpy(&battleAttackerName[0], str, length);
+	battleAttackerName[length] = 0;
 	unknown7E9658 = -1;
 }
 
 /// $C1ACA1
-void unknownC1ACA1(ubyte* arg1, short arg2) {
-	memcpy(&unknown7E9CF5[0], arg1, arg2);
-	unknown7E9CF5[arg2] = 0;
+void setBattleTargetName(ubyte* str, short length) {
+	memcpy(&battleTargerName[0], str, length);
+	battleTargerName[length] = 0;
 	unknown7E965A = -1;
 }
 
 /// $C1AC9B
-ubyte* returnBattleAttackerAddress() {
-	return &unknown7E9CD7[0];
+ubyte* getBattleAttackerName() {
+	return &battleAttackerName[0];
 }
 
 /// $C1ACF2
-ubyte* returnBattleTargetAddress() {
-	return &unknown7E9CF5[0];
+ubyte* getBattleTargetName() {
+	return &battleTargerName[0];
 }
 
 /// $C1ACF8
-void unknownC1ACF8(short arg1) {
-	unknown7E9D11 = cast(ubyte)arg1;
+void setCItem(short arg1) {
+	cItem = cast(ubyte)arg1;
 }
 
 /// $C1AD02
-ubyte unknownC1AD02() {
-	return unknown7E9D11;
+ubyte getCItem() {
+	return cItem;
 }
 
 /// $C1AD0A
-void unknownC1AD0A(int arg) {
-	unknown7E9D12 = arg;
+void setCNum(int arg) {
+	cNum = arg;
 }
 
 /// $C1AD26
-uint unknownC1AD26() {
-	return unknown7E9D12;
+uint getCNum() {
+	return cNum;
 }
 
 /// $C1AD42
@@ -5533,13 +5533,13 @@ short overworldUseItem(short arg1, short arg2, short) {
 	}
 	closeWindow(Window.inventoryMenu);
 	closeWindow(Window.inventory);
-	unknownC1AC4A(&partyCharacters[arg1 - 1].name[0], PartyCharacter.name.sizeof);
-	unknownC1ACF8(x01);
+	setBattleAttackerName(&partyCharacters[arg1 - 1].name[0], PartyCharacter.name.sizeof);
+	setCItem(x01);
 	createWindowN(Window.textStandard);
 	setWorkingMemory(WorkingMemory(arg1));
 	setArgumentMemory(arg2);
 	if (x00 != 0xFF) {
-		unknownC1ACA1(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.sizeof);
+		setBattleTargetName(&partyCharacters[x00 - 1].name[0], PartyCharacter.name.sizeof);
 	}
 	if (x26 == null) {
 		x26 = getTextBlock("MSG_SYS_GOODS_USE_NG");
@@ -5550,11 +5550,11 @@ short overworldUseItem(short arg1, short arg2, short) {
 		currentAttacker.currentActionArgument = x01;
 		currentAttacker.actionItemSlot = cast(ubyte)arg2;
 		displayText(x26);
-		unknownC1ACF8(x01);
+		setCItem(x01);
 		currentTarget = &battlersTable[1];
 		if (x00 == 0) {
 			for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
-				unknownC1ACA1(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.sizeof);
+				setBattleTargetName(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.sizeof);
 				battleInitPlayerStats(gameState.partyMembers[i], currentTarget);
 				battleActionTable[itemData[x01].battleAction].func();
 				for (short j = 0; 7 > j; j++) {
@@ -5645,11 +5645,11 @@ short overworldPSIMenu() {
 	} else {
 		currentAttacker = &battlersTable[0];
 		battleInitPlayerStats(psiUser, currentAttacker);
-		unknownC1AC4A(&partyCharacters[psiUser - 1].name[0], PartyCharacter.name.length);
+		setBattleAttackerName(&partyCharacters[psiUser - 1].name[0], PartyCharacter.name.length);
 		if (psiTarget != 0xFF) {
-			unknownC1ACA1(&partyCharacters[psiTarget - 1].name[0], PartyCharacter.name.length);
+			setBattleTargetName(&partyCharacters[psiTarget - 1].name[0], PartyCharacter.name.length);
 		}
-		unknownC1ACF8(psiSelected);
+		setCItem(psiSelected);
 		createWindowN(Window.textStandard);
 		displayText(getTextBlock(battleActionTable[psiAbilityTable[psiSelected].battleAction].text));
 	}
@@ -5657,7 +5657,7 @@ short overworldPSIMenu() {
 		currentTarget = &battlersTable[1];
 		if (psiTarget == 0xFF) {
 			for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
-				unknownC1ACA1(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.length);
+				setBattleTargetName(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.length);
 				battleInitPlayerStats(gameState.partyMembers[i] - 1, &battlersTable[1]);
 				battleActionTable[psiAbilityTable[psiSelected].battleAction].func();
 				for (short j = 0; PartyCharacter.afflictions.length > j; j++) {
@@ -6312,8 +6312,8 @@ void levelUpChar(short arg1, short arg2) {
 	partyCharacters[arg1].level++;
 	if (arg2 != 0) {
 		enableBlinkingTriangle(1);
-		unknownC1ACA1(&partyCharacters[arg1].name[0], 5);
-		unknownC1AD0A(partyCharacters[arg1].level);
+		setBattleTargetName(&partyCharacters[arg1].name[0], 5);
+		setCNum(partyCharacters[arg1].level);
 		displayText(getTextBlock("MSG_BTL_LEVEL_UP"));
 		enableBlinkingTriangle(2);
 	}
@@ -6322,7 +6322,7 @@ void levelUpChar(short arg1, short arg2) {
 		partyCharacters[arg1].baseOffense += x02;
 		recalcCharacterPostmathOffense(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
-			unknownC1AD0A(x02);
+			setCNum(x02);
 			displayText(getTextBlock("MSG_BTL_LV_OFFENSE_UP"));
 		}
 	}
@@ -6331,7 +6331,7 @@ void levelUpChar(short arg1, short arg2) {
 		partyCharacters[arg1].baseDefense += x02;
 		recalcCharacterPostmathDefense(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
-			unknownC1AD0A(x02);
+			setCNum(x02);
 			displayText(getTextBlock("MSG_BTL_LV_DEFENSE_UP"));
 		}
 	}
@@ -6340,7 +6340,7 @@ void levelUpChar(short arg1, short arg2) {
 		partyCharacters[arg1].baseSpeed += x02;
 		recalcCharacterPostmathSpeed(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
-			unknownC1AD0A(x02);
+			setCNum(x02);
 			displayText(getTextBlock("MSG_BTL_LV_SPEED_UP"));
 		}
 	}
@@ -6349,7 +6349,7 @@ void levelUpChar(short arg1, short arg2) {
 		partyCharacters[arg1].baseGuts += x02;
 		recalcCharacterPostmathGuts(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
-			unknownC1AD0A(x02);
+			setCNum(x02);
 			displayText(getTextBlock("MSG_BTL_LV_GUTS_UP"));
 		}
 	}
@@ -6362,7 +6362,7 @@ void levelUpChar(short arg1, short arg2) {
 		partyCharacters[arg1].baseVitality += x02;
 		recalcCharacterPostmathVitality(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
-			unknownC1AD0A(x02);
+			setCNum(x02);
 			displayText(getTextBlock("MSG_BTL_LV_VITA_UP"));
 		}
 	}
@@ -6375,7 +6375,7 @@ void levelUpChar(short arg1, short arg2) {
 		partyCharacters[arg1].baseIQ += x02;
 		recalcCharacterPostmathIQ(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
-			unknownC1AD0A(x02);
+			setCNum(x02);
 			displayText(getTextBlock("MSG_BTL_LV_IQ_UP"));
 		}
 	}
@@ -6384,7 +6384,7 @@ void levelUpChar(short arg1, short arg2) {
 		partyCharacters[arg1].baseLuck += x02;
 		recalcCharacterPostmathLuck(cast(short)(arg1 + 1));
 		if (arg2 != 0) {
-			unknownC1AD0A(x02);
+			setCNum(x02);
 			displayText(getTextBlock("MSG_BTL_LV_LUCK_UP"));
 		}
 	}
@@ -6393,7 +6393,7 @@ void levelUpChar(short arg1, short arg2) {
 	partyCharacters[arg1].maxHP += x02;
 	partyCharacters[arg1].hp.target += x02;
 	if (arg2 != 0) {
-		unknownC1AD0A(x02);
+		setCNum(x02);
 		displayText(getTextBlock("MSG_BTL_LV_MAXHP_UP"));
 	}
 	if (arg1 != 2) {
@@ -6404,7 +6404,7 @@ void levelUpChar(short arg1, short arg2) {
 			partyCharacters[arg1].maxPP += x14;
 			partyCharacters[arg1].pp.target += x14;
 			if (arg2 != 0) {
-				unknownC1AD0A(x14);
+				setCNum(x14);
 				displayText(getTextBlock("MSG_BTL_LV_MAXPP_UP"));
 			}
 		}
@@ -6415,7 +6415,7 @@ void levelUpChar(short arg1, short arg2) {
 				case 0:
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].nessLevel == x02) {
-							unknownC1ACF8(i);
+							setCItem(i);
 							displayText(getTextBlock("MSG_BTL_LEARN_PSI"));
 						}
 					}
@@ -6423,7 +6423,7 @@ void levelUpChar(short arg1, short arg2) {
 				case 1:
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].paulaLevel == x02) {
-							unknownC1ACF8(i);
+							setCItem(i);
 							displayText(getTextBlock("MSG_BTL_LEARN_PSI"));
 						}
 					}
@@ -6431,7 +6431,7 @@ void levelUpChar(short arg1, short arg2) {
 				case 3:
 					for (short i = 1; psiAbilityTable[i].name != 0; i++) {
 						if (psiAbilityTable[i].pooLevel == x02) {
-							unknownC1ACF8(i);
+							setCItem(i);
 							displayText(getTextBlock("MSG_BTL_LEARN_PSI"));
 						}
 					}
@@ -6485,7 +6485,7 @@ void showHPAlert(short arg1) {
 	currentAttacker = &battler;
 	freezeEntities();
 	createWindowN(Window.textStandard);
-	unknownC1AC4A(&partyCharacters[arg1 - 1].name[0], 5);
+	setBattleAttackerName(&partyCharacters[arg1 - 1].name[0], 5);
 	displayText(getTextBlock("MSG_SYS_MAP_CRITICAL_SITUATION"));
 	closeFocusWindowN();
 	windowTick();
@@ -6532,12 +6532,12 @@ void resetCharLevelOne(short arg1, short arg2, short arg3) {
 }
 
 /// $C1DC66
-void displayTextWait(const(ubyte)* arg1, int arg2) {
+void displayTextWithValue(const(ubyte)* arg1, int arg2) {
 	if ((gameState.autoFightEnable != 0) && ((padState[0] & Pad.b) != 0)) {
 		gameState.autoFightEnable = 0;
 		unknownC20293();
 	}
-	unknownC1AD0A(arg2);
+	setCNum(arg2);
 	if (battleModeFlag != 0) {
 		enableBlinkingTriangle(2);
 	}
@@ -6606,18 +6606,18 @@ void closeAllWindowsAndHPPP() {
 }
 
 /// $C1DD70
-void unknownC1AC4AF(ubyte* arg1, short arg2) {
-	unknownC1AC4A(arg1, arg2);
+void setBattleAttackerNameF(ubyte* arg1, short arg2) {
+	setBattleAttackerName(arg1, arg2);
 }
 
 /// $C1DD76
-void unknownC1ACA1F(ubyte* arg1, short arg2) {
-	unknownC1ACA1(arg1, arg2);
+void setBattleTargetNameF(ubyte* arg1, short arg2) {
+	setBattleTargetName(arg1, arg2);
 }
 
 /// $C1DD7C
-void unknownC1ACF8F(short arg1) {
-	unknownC1ACF8(arg1);
+void setCItemF(short arg1) {
+	setCItem(arg1);
 }
 
 /// $C1DD9F
@@ -7089,7 +7089,7 @@ void corruptionCheck() {
 		if ((unknownEF05A6[i] & unknown7E9F79) == 0) {
 			continue;
 		}
-		unknownC1AD0A(i + 1);
+		setCNum(i + 1);
 		displayText(getTextBlock("MSG_SYS_SRAM_CRASH"));
 	}
 	closeFocusWindowN();

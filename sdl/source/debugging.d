@@ -518,6 +518,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		ImGui.TreePop();
 	}
 	if (ImGui.TreeNode("Text System")) {
+		InputEditable("CNum", cNum);
+		InputEditable("CItem", cItem);
 		if (ImGui.TreeNode("Windows")) {
 			foreach (openWindowID; windowTable) {
 				if (openWindowID == -1) {

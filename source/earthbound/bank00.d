@@ -6489,7 +6489,7 @@ short chooseRandom(short, ref const(ubyte)* arg1) {
 }
 
 /// $C09FA8
-short unknownC09FA8() {
+short actionScriptGenerateRandomAngle() {
 	return cast(short)(rand() << 8);
 }
 
@@ -6527,7 +6527,7 @@ void actionScriptFadeOut(short, ref const(ubyte)* arg1) {
 }
 
 /// $C09F??
-void unknownC09FAEEntry4() {
+void actionScriptNoPhysics() {
 	//nothing!
 }
 

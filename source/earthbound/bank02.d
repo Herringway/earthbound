@@ -1801,11 +1801,11 @@ void fixAttackerName(short arg1) {
 			memcpy(&attackerNameAdjustScratch[0], &gameState.petName[0], 6);
 			attackerNameAdjustScratch[6] = 0;
 		}
-		unknownC1AC4AF(&attackerNameAdjustScratch[0], 27);
+		setBattleAttackerNameF(&attackerNameAdjustScratch[0], 27);
 		unknown7E9658 = currentAttacker.id;
 	} else {
 		if (currentAttacker.id <= 4) {
-			unknownC1AC4AF(&partyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
+			setBattleAttackerNameF(&partyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
 		}
 	}
 }
@@ -1825,11 +1825,11 @@ void fixTargetName() {
 			memcpy(&targetNameAdjustScratch[0], &gameState.petName[0], gameState.petName.length);
 			targetNameAdjustScratch[gameState.petName.length] = 0;
 		}
-		unknownC1ACA1F(&targetNameAdjustScratch[0], 27);
+		setBattleTargetNameF(&targetNameAdjustScratch[0], 27);
 		unknown7E965A = currentTarget.id;
 	} else {
 		if (currentTarget.id <= 4) {
-			unknownC1ACA1F(&partyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
+			setBattleTargetNameF(&partyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
 		}
 	}
 }
@@ -1865,7 +1865,7 @@ void unknownC23E8A(short arg1) {
 		(x12++)[0] = cast(ubyte)(ebChar('A') + battlersTable[x02].theFlag);
 		unknown7E5E77 = 1;
 	}
-	unknownC1AC4AF(&unknown7EA9B9[0], unknown7EA9B9.length - 1);
+	setBattleAttackerNameF(&unknown7EA9B9[0], unknown7EA9B9.length - 1);
 	unknown7E9658 = battlersTable[x02].id;
 }
 
@@ -2803,19 +2803,19 @@ short battleRoutine() {
 					switch (currentAttacker.afflictions[0]) {
 						case Status0.nauseous:
 							x2F = twentyFivePercentVariance(20);
-							displayTextWait(getTextBlock("MSG_BTL_KIMOCHI_DAMAGE"), x2F);
+							displayTextWithValue(getTextBlock("MSG_BTL_KIMOCHI_DAMAGE"), x2F);
 							break;
 						case Status0.poisoned:
 							x2F = twentyFivePercentVariance(20);
-							displayTextWait(getTextBlock("MSG_BTL_MODOKU_DAMAGE"), x2F);
+							displayTextWithValue(getTextBlock("MSG_BTL_MODOKU_DAMAGE"), x2F);
 							break;
 						case Status0.sunstroke:
 							x2F = twentyFivePercentVariance(4);
-							displayTextWait(getTextBlock("MSG_BTL_NISSHA_DAMAGE"), x2F);
+							displayTextWithValue(getTextBlock("MSG_BTL_NISSHA_DAMAGE"), x2F);
 							break;
 						case Status0.cold:
 							x2F = twentyFivePercentVariance(4);
-							displayTextWait(getTextBlock("MSG_BTL_KAZE_DAMAGE"), x2F);
+							displayTextWithValue(getTextBlock("MSG_BTL_KAZE_DAMAGE"), x2F);
 							break;
 						default: break;
 					}
@@ -2836,7 +2836,7 @@ short battleRoutine() {
 							currentAttacker.currentActionArgument = selectStealableItem();
 						}
 					}
-					tracef("Current turn: %s/%s - using %s/%s on %s", x04, unknown7E9CD7.printable, cast(BattleActions)currentAttacker.currentAction, currentAttacker.currentActionArgument, currentAttacker.actionTargetting);
+					tracef("Current turn: %s/%s - using %s/%s on %s", x04, battleAttackerName.printable, cast(BattleActions)currentAttacker.currentAction, currentAttacker.currentActionArgument, currentAttacker.actionTargetting);
 					resolveTargetting(currentAttacker);
 					if ((currentAttacker.side == BattleSide.friends) && (battleActionTable[currentAttacker.currentAction].direction == 0)) {
 						removeStatusUntargettableTargets();
@@ -2862,7 +2862,7 @@ short battleRoutine() {
 						}
 					}
 					fixAttackerName(0);
-					unknownC1ACF8F(currentAttacker.currentActionArgument);
+					setCItemF(currentAttacker.currentActionArgument);
 					unknownC23E32();
 					if ((currentAttacker.side == BattleSide.friends) && (currentAttacker.id <= 4)) {
 						for (short i = 0; i < 6; i++) {
@@ -3022,12 +3022,12 @@ short battleRoutine() {
 					battleEXPScratch += countChars(BattleSide.friends) - 1;
 					battleEXPScratch /= countChars(BattleSide.friends); //Bug! if party is dead, this is division by 0
 					if (currentBattleGroup < 0x1C0) {
-						displayTextWait(getTextBlock("MSG_BTL_PLAYER_WIN"), battleEXPScratch);
+						displayTextWithValue(getTextBlock("MSG_BTL_PLAYER_WIN"), battleEXPScratch);
 					} else {
-						displayTextWait(getTextBlock("MSG_BTL_PLAYER_WIN_BOSS"), battleEXPScratch);
+						displayTextWithValue(getTextBlock("MSG_BTL_PLAYER_WIN_BOSS"), battleEXPScratch);
 					}
 					if (itemDropped != 0) {
-						unknownC1ACF8F(itemDropped);
+						setCItemF(itemDropped);
 						displayInBattleText(getTextBlock("MSG_BTL_PRESENT"));
 					}
 					for (short i = 0; i < battlersTable.length; i++) {
@@ -3145,7 +3145,7 @@ void instantWinHandler() {
 	}
 	battleEXPScratch += countChars(BattleSide.friends) - 1;
 	battleEXPScratch /= countChars(BattleSide.friends);
-	displayTextWait(getTextBlock("MSG_BTL_PLAYER_WIN_FORCE"), battleEXPScratch);
+	displayTextWithValue(getTextBlock("MSG_BTL_PLAYER_WIN_FORCE"), battleEXPScratch);
 	for (short i = 0; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
@@ -3197,7 +3197,7 @@ void instantWinHandler() {
 		default: break;
 	}
 	if (itemDropped != 0) {
-		unknownC1ACF8F(itemDropped);
+		setCItemF(itemDropped);
 		displayInBattleText(getTextBlock("MSG_BTL_PRESENT"));
 	}
 	closeAllWindowsAndHPPP();
@@ -3631,7 +3631,7 @@ void recoverHP(Battler* battler, short amount) {
 		if (battler.hpMax <= amount + battler.hpTarget) {
 			displayInBattleText(getTextBlock("MSG_BTL_HPMAX_KAIFUKU"));
 		} else {
-			displayTextWait(getTextBlock("MSG_BTL_HP_KAIFUKU"), amount);
+			displayTextWithValue(getTextBlock("MSG_BTL_HP_KAIFUKU"), amount);
 		}
 	} else {
 		displayInBattleText(getTextBlock("MSG_BTL_HEAL_NG"));
@@ -3648,7 +3648,7 @@ void recoverPP(Battler* battler, short amount) {
 	}
 	short x16 = (battler.ppTarget + amount >= battler.ppMax) ? cast(short)(battler.ppMax - battler.ppTarget) : amount;
 	setPP(battler, cast(short)(battler.ppTarget + amount));
-	displayTextWait(getTextBlock("MSG_BTL_PP_KAIFUKU"), x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_PP_KAIFUKU"), x16);
 }
 
 /// $C27397
@@ -4037,10 +4037,10 @@ short calcDamage(Battler* target, short damage) {
 		}
 		target.unknown72 = 21;
 		if (unknown7EAA8E != 0) {
-			displayTextWait(getTextBlock("MSG_BTL_DAMAGE_SMASH_M"), damage);
+			displayTextWithValue(getTextBlock("MSG_BTL_DAMAGE_SMASH_M"), damage);
 			unknown7EAA8E = 0;
 		} else {
-			displayTextWait(getTextBlock("MSG_BTL_DAMAGE_M"), damage);
+			displayTextWithValue(getTextBlock("MSG_BTL_DAMAGE_M"), damage);
 		}
 	} else {
 		if ((target.npcID == 0) && (hpPPBoxBlinkDuration == 0)) {
@@ -4056,15 +4056,15 @@ short calcDamage(Battler* target, short damage) {
 		if (target.hpTarget == 0) {
 			verticalShakeDuration = 1 * 60;
 			verticalShakeHoldDuration = 1 * 12;
-			displayTextWait(getTextBlock("MSG_BTL_DAMAGE_TO_DEATH"), damage);
+			displayTextWithValue(getTextBlock("MSG_BTL_DAMAGE_TO_DEATH"), damage);
 		} else if (unknown7EAA8E != 0) {
 			verticalShakeDuration = 1 * 60;
-			displayTextWait(getTextBlock("MSG_BTL_DAMAGE_SMASH"), damage);
+			displayTextWithValue(getTextBlock("MSG_BTL_DAMAGE_SMASH"), damage);
 			verticalShakeHoldDuration = 0;
 			unknown7EAA8E = 0;
 		} else {
 			verticalShakeDuration = 7 * 6;
-			displayTextWait(getTextBlock("MSG_BTL_DAMAGE"), damage);
+			displayTextWithValue(getTextBlock("MSG_BTL_DAMAGE"), damage);
 			verticalShakeHoldDuration = 0;
 		}
 		unknown7EAD90 = 40;
@@ -4343,8 +4343,8 @@ void battleActionShoot() {
 
 /// $C28770
 void battleActionSpy() {
-	displayTextWait(getTextBlock("MSG_BTL_CHECK_OFFENSE"), currentTarget.offense);
-	displayTextWait(getTextBlock("MSG_BTL_CHECK_DEFENSE"), currentTarget.defense);
+	displayTextWithValue(getTextBlock("MSG_BTL_CHECK_OFFENSE"), currentTarget.offense);
+	displayTextWithValue(getTextBlock("MSG_BTL_CHECK_DEFENSE"), currentTarget.defense);
 	if (currentTarget.fireResist == 0xFF) {
 		displayInBattleText(getTextBlock("MSG_BTL_CHECK_ANTI_FIRE"));
 	}
@@ -4364,7 +4364,7 @@ void battleActionSpy() {
 		displayInBattleText(getTextBlock("MSG_BTL_CHECK_BRAIN_LEVEL_3"));
 	}
 	if ((currentTarget.side == BattleSide.foes) && (findInventorySpace2(3) != 0) && (itemDropped != 0)) {
-		unknownC1ACF8F(itemDropped);
+		setCItemF(itemDropped);
 		displayInBattleText(getTextBlock("MSG_BTL_CHECK_PRESENT_GET"));
 		itemDropped = 0;
 	}
@@ -4609,7 +4609,7 @@ void battleActionReducePP() {
 		short x16 = fiftyPercentVariance(currentTarget.ppMax / 16);
 		if (x16 != 0) {
 			reducePP(currentTarget, x16);
-			displayTextWait(getTextBlock("MSG_BTL_PPSUCK_OBJ"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_PPSUCK_OBJ"), x16);
 		} else {
 			displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
 		}
@@ -4626,7 +4626,7 @@ void battleActionCutGuts() {
 	if (currentTarget.guts < currentTarget.baseGuts / 2) {
 		currentTarget.guts = currentTarget.baseGuts / 2;
 	}
-	displayTextWait(getTextBlock("MSG_BTL_GUTS_DOWN"), tmp - currentTarget.guts);
+	displayTextWithValue(getTextBlock("MSG_BTL_GUTS_DOWN"), tmp - currentTarget.guts);
 }
 
 /// $C28F21
@@ -4636,10 +4636,10 @@ void battleActionReduceOffenseDefense() {
 	}
 	short x16 = currentTarget.offense;
 	hexadecimateOffense(currentTarget);
-	displayTextWait(getTextBlock("MSG_BTL_OFFENSE_DOWN"), x16 - currentTarget.offense);
+	displayTextWithValue(getTextBlock("MSG_BTL_OFFENSE_DOWN"), x16 - currentTarget.offense);
 	x16 = currentTarget.defense;
 	hexadecimateDefense(currentTarget);
-	displayTextWait(getTextBlock("MSG_BTL_DEFENSE_DOWN"), x16 - currentTarget.defense);
+	displayTextWithValue(getTextBlock("MSG_BTL_DEFENSE_DOWN"), x16 - currentTarget.defense);
 }
 
 /// $C28F97
@@ -4807,7 +4807,7 @@ void battleActionReduceOffense() {
 	}
 	short x16 = currentTarget.offense;
 	hexadecimateOffense(currentTarget);
-	displayTextWait(getTextBlock("MSG_BTL_OFFENSE_DOWN"), x16 - currentTarget.offense);
+	displayTextWithValue(getTextBlock("MSG_BTL_OFFENSE_DOWN"), x16 - currentTarget.offense);
 }
 
 /// $C29298
@@ -4850,7 +4850,7 @@ void battleActionMasterBarfDeath() {
 	}
 	displayInBattleText(getTextBlock("MSG_BTL_POO_BREAK_IN_2"));
 	fixAttackerName(0);
-	unknownC1ACF8F(0x15);
+	setCItemF(0x15);
 	displayInBattleText(getTextBlock(battleActionTable[30].text));
 	for (short i = 0; battlersTable.length > i; i++) {
 		if (battlersTable[i].consciousness == 0) {
@@ -4872,7 +4872,7 @@ void battleActionMasterBarfDeath() {
 /// $C2941D
 short psiShieldNullify() {
 	unknown7EAA94 = 1;
-	unknownC1ACF8F(currentAttacker.currentActionArgument);
+	setCItemF(currentAttacker.currentActionArgument);
 	if (battleActionTable[currentAttacker.currentAction].type != ActionType.psi) {
 		return 0;
 	}
@@ -5423,7 +5423,7 @@ void battleActionOffenseUpAlpha() {
 	}
 	short x16 = currentTarget.offense;
 	increaseOffense16th(currentTarget);
-	displayTextWait(getTextBlock("MSG_BTL_OFFENSE_UP"), currentTarget.offense - x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_OFFENSE_UP"), currentTarget.offense - x16);
 }
 
 /// $C29E7F
@@ -5456,7 +5456,7 @@ void battleActionDefenseDownAlpha() {
 	if (successLuck80() != 0) {
 		short x16 = currentTarget.defense;
 		hexadecimateDefense(currentTarget);
-		displayTextWait(getTextBlock("MSG_BTL_DEFENSE_DOWN"), x16 - currentTarget.defense);
+		displayTextWithValue(getTextBlock("MSG_BTL_DEFENSE_DOWN"), x16 - currentTarget.defense);
 	} else {
 		displayInBattleText(getTextBlock("MSG_BTL_KIKANAI"));
 	}
@@ -5477,7 +5477,7 @@ void battleActionPSIMagnetAlpha() {
 	if (x02 > currentTarget.ppTarget) {
 		x02 = currentTarget.ppTarget;
 	}
-	displayTextWait(getTextBlock("MSG_BTL_PPSUCK"), x02);
+	displayTextWithValue(getTextBlock("MSG_BTL_PPSUCK"), x02);
 	reducePP(currentTarget, x02);
 	setPP(currentAttacker, cast(short)(x02 + currentAttacker.ppTarget));
 }
@@ -5552,35 +5552,35 @@ void battleActionPPRecovery80() {
 void battleActionIQUp1d4() {
 	short x16 = cast(short)(randLimit(4) + 1);
 	currentTarget.iq += cast(ubyte)x16;
-	displayTextWait(getTextBlock("MSG_BTL_IQ_UP"), x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_IQ_UP"), x16);
 }
 
 /// $C2A14B
 void battleActionGutsUp1d4() {
 	short x16 = cast(short)(randLimit(4) + 1);
 	currentTarget.guts += x16;
-	displayTextWait(getTextBlock("MSG_BTL_GUTS_UP"), x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_GUTS_UP"), x16);
 }
 
 /// $C2A193
 void battleActionSpeedUp1d4() {
 	short x16 = cast(short)(randLimit(4) + 1);
 	currentTarget.speed += x16;
-	displayTextWait(getTextBlock("MSG_BTL_SPEED_UP"), x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_SPEED_UP"), x16);
 }
 
 /// $C2A1DB
 void battleActionVitalityUp1d4() {
 	short x16 = cast(short)(randLimit(4) + 1);
 	currentTarget.vitality += cast(ubyte)x16;
-	displayTextWait(getTextBlock("MSG_BTL_VITA_UP"), x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_VITA_UP"), x16);
 }
 
 /// $C2A227
 void battleActionLuckUp1d4() {
 	short x16 = cast(short)(randLimit(4) + 1);
 	currentTarget.luck += x16;
-	displayTextWait(getTextBlock("MSG_BTL_LUCK_UP"), x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_LUCK_UP"), x16);
 }
 
 /// $C2A26F
@@ -5594,12 +5594,12 @@ void battleActionRandomStatUp1d4() {
 		case 0:
 			short x16 = cast(short)(randLimit(4) + 1);
 			currentTarget.defense += x16;
-			displayTextWait(getTextBlock("MSG_BTL_DEFENSE_UP"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_DEFENSE_UP"), x16);
 			break;
 		case 1:
 			short x16 = cast(short)(randLimit(4) + 1);
 			currentTarget.offense += x16;
-			displayTextWait(getTextBlock("MSG_BTL_OFFENSE_UP"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_OFFENSE_UP"), x16);
 			break;
 		case 2:
 			battleActionSpeedUp1d4();
@@ -5695,7 +5695,7 @@ void battleActionHPSucker() {
 		} else {
 			short x16 = fiftyPercentVariance(currentTarget.hpMax) / 8;
 			reduceHP(currentTarget, x16);
-			displayTextWait(getTextBlock("MSG_BTL_HPSUCK_ON"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_HPSUCK_ON"), x16);
 			setHP(currentAttacker, cast(short)(currentAttacker.hp + x16));
 			if (currentTarget.hp == 0) {
 				koTarget(currentTarget);
@@ -5917,7 +5917,7 @@ void battleActionSuddenGutsPill() {
 		return;
 	}
 	currentTarget.guts = (currentTarget.guts * 2 >= 255) ? 255 : cast(ubyte)(currentTarget.guts * 2);
-	displayTextWait(getTextBlock("MSG_BTL_2GUTS_UP"), currentTarget.guts);
+	displayTextWithValue(getTextBlock("MSG_BTL_2GUTS_UP"), currentTarget.guts);
 }
 
 /// $C2AAC6
@@ -5927,7 +5927,7 @@ void battleActionDefenseSpray() {
 	}
 	short x16 = currentTarget.defense;
 	increaseDefense16th(currentTarget);
-	displayTextWait(getTextBlock("MSG_BTL_DEFENSE_UP"), currentTarget.defense - x16);
+	displayTextWithValue(getTextBlock("MSG_BTL_DEFENSE_UP"), currentTarget.defense - x16);
 }
 
 /// $C2AB0D
@@ -6187,35 +6187,35 @@ void eatFood() {
 			currentTarget.iq += cast(ubyte)x16;
 			partyCharacters[x1C - 1].boostedIQ += cast(ubyte)x16;
 			recalcCharacterPostmathIQ(x1C);
-			displayTextWait(getTextBlock("MSG_BTL_IQ_UP"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_IQ_UP"), x16);
 			break;
 		case 5:
 		BoostGuts:
 			currentTarget.guts += x16;
 			partyCharacters[x1C - 1].boostedGuts += cast(ubyte)x16;
 			recalcCharacterPostmathGuts(x1C);
-			displayTextWait(getTextBlock("MSG_BTL_GUTS_UP"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_GUTS_UP"), x16);
 			break;
 		case 6:
 		BoostSpeed:
 			currentTarget.speed += x16;
 			partyCharacters[x1C - 1].boostedSpeed += cast(ubyte)x16;
 			recalcCharacterPostmathSpeed(x1C);
-			displayTextWait(getTextBlock("MSG_BTL_SPEED_UP"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_SPEED_UP"), x16);
 			break;
 		case 7:
 		BoostVitality:
 			currentTarget.vitality += cast(ubyte)x16;
 			partyCharacters[x1C - 1].boostedVitality += cast(ubyte)x16;
 			recalcCharacterPostmathVitality(x1C);
-			displayTextWait(getTextBlock("MSG_BTL_VITA_UP"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_VITA_UP"), x16);
 			break;
 		case 8:
 		BoostLuck:
 			currentTarget.luck += x16;
 			partyCharacters[x1C - 1].boostedLuck += cast(ubyte)x16;
 			recalcCharacterPostmathLuck(x1C);
-			displayTextWait(getTextBlock("MSG_BTL_LUCK_UP"), x16);
+			displayTextWithValue(getTextBlock("MSG_BTL_LUCK_UP"), x16);
 			break;
 		case 9:
 			battleActionHealingAlpha();
