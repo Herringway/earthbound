@@ -410,3 +410,12 @@ void renderRectangle(const ColouredRectangle rect) {
 	assert(SDL_SetRenderDrawColor(renderer, rect.r, rect.g, rect.b, rect.a) >= 0);
 	assert(SDL_RenderFillRect(renderer, &dim) >= 0);
 }
+
+SDL_Texture* createTexture(scope const ubyte[] data, int width, int height) {
+	auto surface = SDL_CreateRGBSurfaceFrom(cast(void*)&data[0], width, height, 16, 2 * width, BGR555Mask.Red, BGR555Mask.Green, BGR555Mask.Blue, 0);
+	enforceSDL(surface != null, "Failed to create surface");
+	assert(renderer, "No renderer");
+	auto tex = SDL_CreateTextureFromSurface(renderer, surface);
+	enforceSDL(tex != null, "Failed to create texture");
+	return tex;
+}

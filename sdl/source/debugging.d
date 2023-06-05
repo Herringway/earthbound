@@ -6,16 +6,20 @@ import earthbound.bank00;
 import earthbound.bank01;
 import earthbound.bank02;
 import earthbound.bank03;
+import earthbound.bank04;
 import earthbound.bank15;
 import earthbound.commondefs;
 import earthbound.globals;
 import earthbound.text;
 
+import std.algorithm;
 import std.conv;
 import std.format;
 import std.logger;
 import std.range;
 import std.string;
+
+import rendering;
 
 import ImGui = d_imgui;
 import d_imgui.imgui_h;
@@ -843,6 +847,32 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					ImGui.TreePop();
 				}
 			}}
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("VRAM")) {
+			static int paletteID = 0;
+			if (ImGui.InputInt("Palette", &paletteID)) {
+				paletteID = clamp(paletteID, 0, 16);
+			}
+			const texWidth = 16 * 8;
+			const texHeight = 0x8000 / 16 / 16 * 8;
+			static ubyte[2 * texWidth * texHeight] data;
+			auto pixels = cast(ushort[])(data[]);
+			ushort[16] palette = g_frameData.cgram[paletteID * 16 .. (paletteID + 1) * 16];
+			palette[] &= 0x7FFF;
+			foreach (idx, tile; g_frameData.vram[].chunks(16).enumerate) {
+				const base = (idx % 16) * 8 + (idx / 16) * texWidth * 8;
+				foreach (p; 0 .. 8 * 8) {
+					const px = p % 8;
+					const py = p / 8;
+					const plane01 = tile[py] & pixelPlaneMasks[px];
+					const plane23 = tile[py + 8] & pixelPlaneMasks[px];
+					const s = 7 - px;
+					const pixel = ((plane01 & 0xFF) >> s) | (((plane01 >> 8) >> s) << 1) | (((plane23 & 0xFF) >> s) << 2) | (((plane23 >> 8) >> s) << 3);
+					pixels[base + px + py * texWidth] = palette[pixel];
+				}
+			}
+			ImGui.Image(createTexture(data[], texWidth, texHeight), ImVec2(texWidth * 3, texHeight * 3));
 			ImGui.TreePop();
 		}
 		if (ImGui.TreeNode("Registers")) {
