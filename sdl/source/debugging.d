@@ -25,7 +25,7 @@ import ImGui = d_imgui;
 import d_imgui.imgui_h;
 import imgui.hexeditor;
 
-enum debugMenuHeight = 60;
+int debugMenuHeight;
 enum debugWindowWidth = 500;
 
 struct DebugState {
@@ -49,10 +49,7 @@ static this() {
 MemoryEditor memoryEditor;
 
 void prepareDebugUI(size_t width, size_t height) {
-	ImGui.SetNextWindowSize(ImGui.ImVec2(width, debugMenuHeight));
-	ImGui.SetNextWindowPos(ImGui.ImVec2(0, 0));
-	ImGui.Begin("Menu Bar", null, ImGuiWindowFlags.MenuBar | ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse | ImGuiWindowFlags.NoBringToFrontOnFocus);
-	if (ImGui.BeginMenuBar()) {
+	if (ImGui.BeginMainMenuBar()) {
 		if (ImGui.BeginMenu("Windows")) {
 			ImGui.MenuItem("Debugging", null, &state.showDebugWindow);
 			ImGui.EndMenu();
@@ -72,13 +69,14 @@ void prepareDebugUI(size_t width, size_t height) {
 			menuItemCallback("Save", &dumpSave);
 			ImGui.EndMenu();
 		}
-		ImGui.EndMenuBar();
 		immutable str = cast(immutable)frameRateString;
 		ImGui.SetCursorPosX(ImGui.GetWindowSize().x - ImGui.CalcTextSize(str).x);
 		ImGui.Text(str);
+		debugMenuHeight = cast(int)ImGui.GetWindowSize().y;
+		ImGui.EndMainMenuBar();
 	}
 	if (state.showDebugWindow) {
-		renderDebugWindow(0, debugMenuHeight, width, height);
+		renderDebugWindow(0, debugMenuHeight - 1, width, height);
 	}
 	if (state.editingVRAM) {
 		memoryEditor.DrawWindow("VRAM", g_frameData.vram);
@@ -93,7 +91,6 @@ void prepareDebugUI(size_t width, size_t height) {
 	handleDialog!StartBattleDialog(state.askingBattle, "Start battle");
 	handleDialog!RunTextScript(state.askingForScript, "Run a Text Script");
 	handleDialog!SpawnEntity(state.askingForEntity, "Spawn an entity");
-	ImGui.End();
 }
 
 void renderDebugWindow(float x, float y, float width, float height) {
