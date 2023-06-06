@@ -2792,7 +2792,7 @@ short battleRoutine() {
 						currentAttacker.currentAction = BattleActions.action251;
 						currentAttacker.actionItemSlot = 0;
 					}
-					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.party) && (battleActionTable[currentAttacker.currentAction].target == 0)) {
+					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.party) && (battleActionTable[currentAttacker.currentAction].target == ActionTarget.none)) {
 						if (currentAttacker.side == BattleSide.friends) {
 							currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
 							currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof + 1);
