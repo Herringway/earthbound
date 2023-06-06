@@ -2099,7 +2099,7 @@ void chooseTarget(Battler* arg1) {
 	}
 	unknownC2F917();
 	Unknown4:
-	if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
+	if (battleActionTable[arg1.currentAction].direction == ActionDirection.enemy) {
 		if (arg1.side == BattleSide.foes) {
 			arg1.actionTargetting = Targetted.allies;
 		} else {
@@ -2125,7 +2125,7 @@ void chooseTarget(Battler* arg1) {
 		case ActionTarget.random:
 			arg1.actionTargetting |= Targetted.single;
 			if (arg1.side == BattleSide.foes) {
-				if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
+				if (battleActionTable[arg1.currentAction].direction == ActionDirection.enemy) {
 					arg1.currentTarget = cast(ubyte)findTargettableNPC();
 					if (arg1.currentTarget != 0) {
 						return;
@@ -2144,7 +2144,7 @@ void chooseTarget(Battler* arg1) {
 					}
 				}
 			} else {
-				if (battleActionTable[arg1.currentAction].direction == ActionDirection.party) {
+				if (battleActionTable[arg1.currentAction].direction == ActionDirection.enemy) {
 					while (true) {
 						if (checkIfValidTarget(unknownC24434(arg1)) != 0) {
 							return;
@@ -2789,7 +2789,7 @@ short battleRoutine() {
 						currentAttacker.currentAction = BattleActions.action251;
 						currentAttacker.actionItemSlot = 0;
 					}
-					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.enemy) && (battleActionTable[currentAttacker.currentAction].target == 0)) {
+					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.party) && (battleActionTable[currentAttacker.currentAction].target == 0)) {
 						currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
 						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof + 1);
 					} else {

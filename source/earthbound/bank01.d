@@ -5395,40 +5395,40 @@ short determineTargetting(short arg1, short arg2) {
 	ubyte x16;
 	ubyte x01 = 0xFF;
 	switch (battleActionTable[arg1].direction) {
-		case 0:
-			x16 = 0x10;
+		case ActionDirection.enemy:
+			x16 = Targetted.enemies;
 			switch (battleActionTable[arg1].target) {
-				case 0:
-					x16 = 0x11;
+				case ActionTarget.none:
+					x16 = Targetted.enemies | Targetted.single;
 					x01 = cast(ubyte)arg2;
 					break;
-				case 1:
-					x16 = 0x11;
+				case ActionTarget.one:
+					x16 = Targetted.enemies | Targetted.single;
 					x01 = cast(ubyte)unknownC1242E(0, 1, arg1);
 					break;
-				case 2:
-					x16 = 0x11;
+				case ActionTarget.random:
+					x16 = Targetted.enemies | Targetted.single;
 					x01 = cast(ubyte)(randMod(cast(short)(countChars(BattleSide.foes) - 1)) + 1);
 					break;
-				case 3:
-					x16 = 0x12;
+				case ActionTarget.row:
+					x16 = Targetted.enemies | Targetted.row;
 					x01 = cast(ubyte)unknownC1242E(1, 1, arg1);
 					break;
-				case 4:
+				case ActionTarget.all:
 				default:
-					x16 |= 4;
+					x16 |= Targetted.all;
 					break;
 			}
 			break;
-		case 1:
-			x16 = 0x00;
+		case ActionDirection.party:
+			x16 = Targetted.allies;
 			switch (battleActionTable[arg1].target) {
-				case 0:
-					x16 = 1;
+				case ActionTarget.none:
+					x16 = Targetted.allies | Targetted.single;
 					x01 = cast(ubyte)arg2;
 					break;
-				case 1:
-					x16 = 1;
+				case ActionTarget.one:
+					x16 = Targetted.allies | Targetted.single;
 					if (gameState.playerControlledPartyMemberCount != 1) {
 						openEquipSelectWindow(3);
 						x01 = cast(ubyte)charSelectPrompt(1, 1, null, null);
@@ -5437,14 +5437,14 @@ short determineTargetting(short arg1, short arg2) {
 						x01 = cast(ubyte)arg2;
 					}
 					break;
-				case 2:
-					x16 = 1;
+				case ActionTarget.random:
+					x16 = Targetted.allies | Targetted.single;
 					x01 = cast(ubyte)gameState.partyMemberIndex[randMod(cast(short)(countChars(BattleSide.friends) - 1))];
 					break;
-				case 3:
-				case 4:
+				case ActionTarget.row:
+				case ActionTarget.all:
 				default:
-					x16 |= 4;
+					x16 |= Targetted.all;
 					break;
 			}
 			break;

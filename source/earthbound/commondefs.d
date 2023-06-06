@@ -4313,8 +4313,8 @@ enum Initiative {
 }
 ///
 enum ActionDirection {
-	party = 0,
-	enemy = 1,
+	enemy = 0,
+	party = 1,
 }
 ///
 enum ActionType {
