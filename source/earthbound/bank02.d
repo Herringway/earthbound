@@ -123,14 +123,14 @@ void initializeTextSystem() {
 /// $C20266
 void drawAutoFightIcon() {
 	for (short i = 0; i < 4; i++) {
-		bg2Buffer[0x240 + i] = autoBattleArrangement[i];
+		bg2Buffer[0x23A + i] = autoBattleArrangement[i];
 	}
 }
 
 /// $C20293
 void clearAutoFightIcon() {
 	for (short i = 0; i < 4; i++) {
-		bg2Buffer[0x240 + i] = 0;
+		bg2Buffer[0x23A + i] = 0;
 	}
 }
 
