@@ -2790,11 +2790,11 @@ short battleRoutine() {
 						currentAttacker.actionItemSlot = 0;
 					}
 					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.enemy) && (battleActionTable[currentAttacker.currentAction].target == 0)) {
+						currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
+						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof + 1);
+					} else {
 						currentAttacker.actionTargetting = Targetted.enemies | Targetted.single;
 						unknownC4A228(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
-					} else {
-						currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
-						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof);
 					}
 					short statusDamage = 0;
 					currentTarget = currentAttacker;
