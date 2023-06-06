@@ -3583,7 +3583,7 @@ void loadTextPalette() {
 			if (disabledTransitions != 0) {
 				goto default;
 			}
-			memcpy(palettes.ptr, textWindowDeathPalette.ptr, 0x40);
+			memcpy(palettes.ptr, textWindowFlavourPalettes[5].ptr, 0x40);
 			break;
 		default:
 			memcpy(palettes.ptr, (cast(void*)textWindowFlavourPalettes.ptr) + textWindowProperties[gameState.textFlavour - 1].offset, 0x40);
