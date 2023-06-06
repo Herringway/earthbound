@@ -8110,6 +8110,7 @@ void initBattleOverworld() {
 		} else {
 			short battleResult = initBattleCommon();
 			unknownC07B52();
+			overworldStatusSuppression = 0;
 			if (teleportDestination == 0) {
 				if (battleResult != BattleResult.won) {
 					if (debugging == 0) {
