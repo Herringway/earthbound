@@ -6136,7 +6136,7 @@ short unknownC1CB7F(short arg1, short arg2) {
 }
 
 /// $C1CBCD
-short battlePSIMenu(UnknownA97D* arg1) {
+short battlePSIMenu(BattleMenuSelection* arg1) {
 	short x1E = 0;
 	short x02;
 	short x16;
@@ -6158,7 +6158,7 @@ short battlePSIMenu(UnknownA97D* arg1) {
 			if (x02 == 0) {
 				break outer;
 			}
-			if (unknownC1CB7F(x02, arg1.unknown0) == 0) {
+			if (unknownC1CB7F(x02, arg1.user) == 0) {
 				continue;
 			}
 			short x1C;
@@ -6171,7 +6171,7 @@ short battlePSIMenu(UnknownA97D* arg1) {
 				if (x1C == 0) {
 					break;
 				}
-				if (battleActionTable[psiAbilityTable[x1C].battleAction].ppCost > partyCharacters[arg1.unknown0 - 1].pp.target) {
+				if (battleActionTable[psiAbilityTable[x1C].battleAction].ppCost > partyCharacters[arg1.user - 1].pp.target) {
 					createWindowN(Window.textBattle);
 					enableBlinkingTriangle(2);
 					displayText(getTextBlock("MSG_BTL_PSI_CANNOT_MENU"));
@@ -6191,7 +6191,7 @@ short battlePSIMenu(UnknownA97D* arg1) {
 						printPSIName(x1C);
 						windowSetTextColor(0);
 					}
-					x16 = determineTargetting(psiAbilityTable[x1C].battleAction, arg1.unknown0);
+					x16 = determineTargetting(psiAbilityTable[x1C].battleAction, arg1.user);
 					if (battleActionTable[psiAbilityTable[x1C].battleAction].direction == 0) {
 						closeWindow(Window.unknown26);
 					} else {
@@ -6213,10 +6213,10 @@ short battlePSIMenu(UnknownA97D* arg1) {
 			if (x1C == 0) {
 				break;
 			}
-			arg1.unknown1 = cast(ubyte)x1C;
-			arg1.unknown2 = psiAbilityTable[x1C].battleAction;
-			arg1.unknown4 = cast(ubyte)(x16 >> 8);
-			arg1.unknown5 = cast(ubyte)x16;
+			arg1.param1 = cast(ubyte)x1C;
+			arg1.selectedAction = psiAbilityTable[x1C].battleAction;
+			arg1.targetting = cast(ubyte)(x16 >> 8);
+			arg1.selectedTarget = cast(ubyte)x16;
 			x02 = 1;
 			break outer;
 		}
@@ -6227,66 +6227,66 @@ short battlePSIMenu(UnknownA97D* arg1) {
 }
 
 /// $C1CE85
-short unknownC1CE85(UnknownA97D* arg1) {
-	short x02 = 0xFF;
-	arg1.unknown2 = BattleActions.action002;
-	arg1.unknown4 = 1;
-	arg1.unknown5 = arg1.unknown0;
-	const(Item)* x06 = &itemData[getCharacterItem(arg1.unknown0, arg1.unknown1)];
-	short x12 = x06.type;
-	switch (x12 & 0x30) {
+short battleSelectItemTargetting(BattleMenuSelection* arg1) {
+	short targetting = 0xFF;
+	arg1.selectedAction = BattleActions.action002;
+	arg1.targetting = 1;
+	arg1.selectedTarget = arg1.user;
+	const(Item)* item = &itemData[getCharacterItem(arg1.user, arg1.param1)];
+	short type = item.type;
+	switch (type & 0x30) {
 		case 0x10:
 		case 0x20:
-			x02 = determineTargetting(x06.battleAction, arg1.unknown0);
-			if (x02 == 0) {
+			targetting = determineTargetting(item.battleAction, arg1.user);
+			if (targetting == 0) {
 				return 0;
 			}
-			arg1.unknown2 = x06.battleAction;
-			arg1.unknown4 = cast(ubyte)(x02 >> 8);
-			arg1.unknown5 = cast(ubyte)x02;
+			arg1.selectedAction = item.battleAction;
+			arg1.targetting = cast(ubyte)(targetting >> 8);
+			arg1.selectedTarget = cast(ubyte)targetting;
 			break;
 		case 0x30:
-			if (((x12 & 0xC) == 0) || ((x12 & 0xC) == 4)) {
-				if ((x06.flags & itemUsableFlags[arg1.unknown0 - 1]) != 0) {
-					x02 = determineTargetting(x06.battleAction, arg1.unknown0);
-					if (x02 == 0) {
+			if (((type & 0xC) == 0) || ((type & 0xC) == 4)) {
+				if ((item.flags & itemUsableFlags[arg1.user - 1]) != 0) {
+					targetting = determineTargetting(item.battleAction, arg1.user);
+					if (targetting == 0) {
 						return 0;
 					}
-					arg1.unknown2 = x06.battleAction;
-					arg1.unknown4 = cast(ubyte)(x02 >> 8);
-					arg1.unknown5 = cast(ubyte)x02;
+					arg1.selectedAction = item.battleAction;
+					arg1.targetting = cast(ubyte)(targetting >> 8);
+					arg1.selectedTarget = cast(ubyte)targetting;
 				} else {
-					arg1.unknown2 = 3;
+					arg1.selectedAction = 3;
 				}
 			}
 			break;
 		default: break;
 	}
-	return x02;
+	return targetting;
 }
 
 /// $C1CFC6
-short unknownC1CFC6(UnknownA97D* arg1) {
-	short x0E = 0;
-	if (partyCharacters[arg1.unknown0 - 1].items[0] != 0) {
+short battleSelectItem(BattleMenuSelection* arg1) {
+	short targetting = 0;
+	if (partyCharacters[arg1.user - 1].items[0] != 0) {
 		while (true) {
 			createWindowN(Window.inventory);
-			addCharacterInventoryToWindow(arg1.unknown0, Window.inventory);
-			x0E = selectionMenu(1);
+			addCharacterInventoryToWindow(arg1.user, Window.inventory);
+			short selectedItem = selectionMenu(1);
 			setInstantPrinting();
 			closeFocusWindow();
-			if (x0E == 0) {
+			if (selectedItem == 0) {
 				break;
 			}
-			arg1.unknown1 = cast(ubyte)x0E;
-			x0E = unknownC1CE85(arg1);
+			arg1.param1 = cast(ubyte)selectedItem;
+			targetting = battleSelectItemTargetting(arg1);
 			closeWindow(Window.unknown26);
-			if (x0E != 0) {
+			if (targetting != 0) {
 				break;
 			}
 		}
 	}
-	return x0E;
+	return targetting;
 }
 
 /// $C1D038 - Get fixed version of an item
@@ -6658,8 +6658,8 @@ short selectionMenuF(short id) {
 }
 
 /// $C1DE31
-short unknownC1CFC6F(UnknownA97D* arg1) {
-	return unknownC1CFC6(arg1);
+short battleSelectItemF(BattleMenuSelection* arg1) {
+	return battleSelectItem(arg1);
 }
 
 /// $C1DE37
@@ -6668,7 +6668,7 @@ short unknownC1242EF(short arg1, short arg2, short arg3) {
 }
 
 /// $C1DE3D
-short battlePSIMenuF(UnknownA97D* arg1) {
+short battlePSIMenuF(BattleMenuSelection* arg1) {
 	return battlePSIMenu(arg1);
 }
 

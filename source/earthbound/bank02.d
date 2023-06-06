@@ -1423,9 +1423,9 @@ short battleSelectionMenu(short arg1, short arg2) {
 	}
 	if (gameState.autoFightEnable != 0) {
 		if ((x22.afflictions[4] == 0) && (x22.afflictions[3] != Status3.strange) && (x22.afflictions[1] != Status1.mushroomized) && ((arg1 == PartyMember.ness) || (arg1 == PartyMember.poo))) {
-			unknown7EA97D.unknown4 = Targetted.allies | Targetted.single;
-			unknown7EA97D.unknown1 = 26;
-			unknown7EA97D.unknown2 = BattleActions.psiLifeupOmega;
+			battleMenuSelection.targetting = Targetted.allies | Targetted.single;
+			battleMenuSelection.param1 = 26;
+			battleMenuSelection.selectedAction = BattleActions.psiLifeupOmega;
 			if ((checkIfPSIKnown(arg1, 26) != 0) && (battleActionTable[BattleActions.psiLifeupOmega].ppCost <= x22.pp.target) && (countChars(BattleSide.friends) >= 2)) {
 					for (short i = 0; i < 6; i++) {
 						if (gameState.partyMembers[i] < 1) {
@@ -1438,99 +1438,99 @@ short battleSelectionMenu(short arg1, short arg2) {
 							goto Unknown15;
 						}
 					}
-					unknown7EA97D.unknown4 = Targetted.allies | Targetted.all;
+					battleMenuSelection.targetting = Targetted.allies | Targetted.all;
 					goto Unknown21;
 
 					Unknown15:
 			}
-			unknown7EA97D.unknown1 = 25;
-			unknown7EA97D.unknown2 = BattleActions.psiLifeupGamma;
+			battleMenuSelection.param1 = 25;
+			battleMenuSelection.selectedAction = BattleActions.psiLifeupGamma;
 			if ((checkIfPSIKnown(arg1, 25) != 0) && (battleActionTable[BattleActions.psiLifeupGamma].ppCost <= x22.pp.target)) {
-				unknown7EA97D.unknown5 = cast(ubyte)autoLifeup();
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoLifeup();
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
 			}
-			unknown7EA97D.unknown1 = 24;
-			unknown7EA97D.unknown2 = BattleActions.psiLifeupBeta;
+			battleMenuSelection.param1 = 24;
+			battleMenuSelection.selectedAction = BattleActions.psiLifeupBeta;
 			if ((checkIfPSIKnown(arg1, 24) != 0) && (battleActionTable[BattleActions.psiLifeupBeta].ppCost <= x22.pp.target)) {
-				unknown7EA97D.unknown5 = cast(ubyte)autoLifeup();
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoLifeup();
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
 			}
-			unknown7EA97D.unknown1 = 23;
-			unknown7EA97D.unknown2 = BattleActions.psiLifeupAlpha;
+			battleMenuSelection.param1 = 23;
+			battleMenuSelection.selectedAction = BattleActions.psiLifeupAlpha;
 			if ((checkIfPSIKnown(arg1, 23) != 0) && (battleActionTable[BattleActions.psiLifeupAlpha].ppCost <= x22.pp.target)) {
-				unknown7EA97D.unknown5 = cast(ubyte)autoLifeup();
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoLifeup();
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
 			}
 			goto Unknown22;
 
 			Unknown21:
-			unknown7EA97D.unknown0 = cast(ubyte)arg1;
-			return unknown7EA97D.unknown2;
+			battleMenuSelection.user = cast(ubyte)arg1;
+			return battleMenuSelection.selectedAction;
 
 			Unknown22:
-			unknown7EA97D.unknown1 = 30;
-			unknown7EA97D.unknown2 = BattleActions.psiHealingOmega;
+			battleMenuSelection.param1 = 30;
+			battleMenuSelection.selectedAction = BattleActions.psiHealingOmega;
 			if ((checkIfPSIKnown(arg1, 30) != 0) && (battleActionTable[BattleActions.psiHealingOmega].ppCost <= x22.pp.target)) {
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.unconscious);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.unconscious);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
 			}
-			unknown7EA97D.unknown1 = 29;
-			unknown7EA97D.unknown2 = BattleActions.psiHealingGamma;
+			battleMenuSelection.param1 = 29;
+			battleMenuSelection.selectedAction = BattleActions.psiHealingGamma;
 			if ((checkIfPSIKnown(arg1, 29) != 0) && (battleActionTable[BattleActions.psiHealingGamma].ppCost <= x22.pp.target)) {
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.paralyzed);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.paralyzed);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.diamondized);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.diamondized);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.unconscious);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.unconscious);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
 			}
-			unknown7EA97D.unknown1 = 28;
-			unknown7EA97D.unknown2 = BattleActions.psiHealingBeta;
+			battleMenuSelection.param1 = 28;
+			battleMenuSelection.selectedAction = BattleActions.psiHealingBeta;
 			if ((checkIfPSIKnown(arg1, 28) != 0) && (battleActionTable[BattleActions.psiHealingBeta].ppCost <= x22.pp.target)) {
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.poisoned);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.poisoned);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.nauseous);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.nauseous);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(2, Status2.crying);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(2, Status2.crying);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(3, Status3.strange);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(3, Status3.strange);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
 			}
-			unknown7EA97D.unknown1 = 27;
-			unknown7EA97D.unknown2 = BattleActions.psiHealingAlpha;
+			battleMenuSelection.param1 = 27;
+			battleMenuSelection.selectedAction = BattleActions.psiHealingAlpha;
 			if ((checkIfPSIKnown(arg1, 27) != 0) && (battleActionTable[BattleActions.psiHealingAlpha].ppCost <= x22.pp.target)) {
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.cold);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.cold);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(0, Status0.sunstroke);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(0, Status0.sunstroke);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
-				unknown7EA97D.unknown5 = cast(ubyte)autoHealing(2, Status2.asleep);
-				if (unknown7EA97D.unknown5 != 0) {
+				battleMenuSelection.selectedTarget = cast(ubyte)autoHealing(2, Status2.asleep);
+				if (battleMenuSelection.selectedTarget != 0) {
 					goto Unknown21;
 				}
 			}
@@ -1547,11 +1547,11 @@ short battleSelectionMenu(short arg1, short arg2) {
 				return BattleActions.useNoEffect;
 			default: break;
 		}
-		unknown7EA97D.unknown0 = cast(ubyte)arg1;
-		unknown7EA97D.unknown1 = 0;
-		unknown7EA97D.unknown2 = x1A;
-		unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
-		unknown7EA97D.unknown5 = cast(ubyte)(randLimit(cast(short)(numBattlersInBackRow + numBattlersInFrontRow)) + 1);
+		battleMenuSelection.user = cast(ubyte)arg1;
+		battleMenuSelection.param1 = 0;
+		battleMenuSelection.selectedAction = x1A;
+		battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
+		battleMenuSelection.selectedTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInBackRow + numBattlersInFrontRow)) + 1);
 		return x1A;
 	}
 	unknownEF0262();
@@ -1568,38 +1568,38 @@ short battleSelectionMenu(short arg1, short arg2) {
 	setWindowTitle(battleWindows[x1A], PartyCharacter.name.length, &partyCharacters[arg1 - 1].name[0]);
 	switch (x20) {
 		case 0:
-			selectionMenuItemSetup(1, 0, 0, &battleMenuText[0][0], null);
+			selectionMenuItemSetup(BattleMenuOptions.attack, 0, 0, &battleMenuText[0][0], null);
 			break;
 		case 1:
-			selectionMenuItemSetup(1, 0, 0, &battleMenuText[6][0], null);
+			selectionMenuItemSetup(BattleMenuOptions.attack, 0, 0, &battleMenuText[6][0], null);
 			break;
 		case 2:
-			selectionMenuItemSetup(1, 0, 0, &battleMenuTextDoNothing[0], null);
+			selectionMenuItemSetup(BattleMenuOptions.attack, 0, 0, &battleMenuTextDoNothing[0], null);
 			break;
 		default: break;
 	}
 	if (x20 != 2) {
-		selectionMenuItemSetup(2, 6, 0, &battleMenuText[1][0], null);
-		selectionMenuItemSetup(5, 6, 1, &battleMenuText[4][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.goods, 6, 0, &battleMenuText[1][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.defend, 6, 1, &battleMenuText[4][0], null);
 	}
 	if (arg2 == 0) {
 		short x04 = (x1A == 2) ? 16 : 11;
 		if ((arg1 == PartyMember.paula) || (arg1 == PartyMember.poo)) {
 			x04 += 2;
 		}
-		selectionMenuItemSetup(3, x04, 0, &battleMenuText[2][0], null);
-		selectionMenuItemSetup(6, x04, 1, &battleMenuText[8][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.autoFight, x04, 0, &battleMenuText[2][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.runAway, x04, 1, &battleMenuText[8][0], null);
 	}
 	if (arg1 == PartyMember.jeff) {
-		selectionMenuItemSetup(4, 0, 1, &battleMenuText[7][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.spyPSI, 0, 1, &battleMenuText[7][0], null);
 	} else if (x22.afflictions[4] == 0) {
-		selectionMenuItemSetup(4, 0, 1, &battleMenuText[3][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.spyPSI, 0, 1, &battleMenuText[3][0], null);
 	}
 	if (arg1 == PartyMember.paula) {
-		selectionMenuItemSetup(7, 11, 0, &battleMenuText[5][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.prayMirror, 11, 0, &battleMenuText[5][0], null);
 	}
 	if (arg1 == PartyMember.poo) {
-		selectionMenuItemSetup(7, 13, 0, &battleMenuText[9][0], null);
+		selectionMenuItemSetup(BattleMenuOptions.prayMirror, 13, 0, &battleMenuText[9][0], null);
 	}
 	short x1E;
 	while (true) {
@@ -1642,7 +1642,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 		}
 		unknown7EA97C = 0;
 		switch (tmp) {
-			case 1:
+			case BattleMenuOptions.attack:
 				switch (x20) {
 					case 0:
 						x1E = BattleActions.bash;
@@ -1655,59 +1655,59 @@ short battleSelectionMenu(short arg1, short arg2) {
 						break;
 					default: break;
 				}
-				unknown7EA97D.unknown2 = x1E;
-				unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
+				battleMenuSelection.selectedAction = x1E;
+				battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
 				if (x20 != 2) {
-					unknown7EA97D.unknown5 = cast(ubyte)unknownC1242EF(0, 1, x1E);
-					if (unknown7EA97D.unknown5 == 0) {
+					battleMenuSelection.selectedTarget = cast(ubyte)unknownC1242EF(0, 1, x1E);
+					if (battleMenuSelection.selectedTarget == 0) {
 						continue;
 					}
 				}
 				break;
-			case 2:
-				unknown7EA97D.unknown0 = cast(ubyte)arg1;
-				if (unknownC1CFC6F(&unknown7EA97D) == 0) {
+			case BattleMenuOptions.goods:
+				battleMenuSelection.user = cast(ubyte)arg1;
+				if (battleSelectItemF(&battleMenuSelection) == 0) {
 					continue;
 				}
-				unknown7EA97C = cast(ubyte)getCharacterItem(arg1, unknown7EA97D.unknown1);
-				x1E = unknown7EA97D.unknown2;
+				unknown7EA97C = cast(ubyte)getCharacterItem(arg1, battleMenuSelection.param1);
+				x1E = battleMenuSelection.selectedAction;
 				break;
-			case 3:
+			case BattleMenuOptions.autoFight:
 				gameState.autoFightEnable = 1;
 				unknownC20266();
 				x1E = BattleActions.noEffect;
 				break;
-			case 4:
+			case BattleMenuOptions.spyPSI:
 				if (arg1 == PartyMember.jeff) {
 					x1E = BattleActions.spy;
-					unknown7EA97D.unknown2 = x1E;
-					unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
-					unknown7EA97D.unknown5 = cast(ubyte)unknownC1242EF(0, 1, x1E);
-					if (unknown7EA97D.unknown5 == 0) {
+					battleMenuSelection.selectedAction = x1E;
+					battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
+					battleMenuSelection.selectedTarget = cast(ubyte)unknownC1242EF(0, 1, x1E);
+					if (battleMenuSelection.selectedTarget == 0) {
 						continue;
 					}
 				}
-				unknown7EA97D.unknown0 = cast(ubyte)arg1;
-				if (battlePSIMenuF(&unknown7EA97D) == 0) {
+				battleMenuSelection.user = cast(ubyte)arg1;
+				if (battlePSIMenuF(&battleMenuSelection) == 0) {
 					continue;
 				}
 				unknown7EA97C = 0;
-				x1E = unknown7EA97D.unknown2;
+				x1E = battleMenuSelection.selectedAction;
 				break;
-			case 5:
+			case BattleMenuOptions.defend:
 				x1E = BattleActions.guard;
-				unknown7EA97D.unknown2 = x1E;
-				unknown7EA97D.unknown4 = Targetted.allies;
+				battleMenuSelection.selectedAction = x1E;
+				battleMenuSelection.targetting = Targetted.allies;
 				break;
-			case 6:
-				unknown7EA97D.unknown4 = Targetted.allies | Targetted.single;
-				unknown7EA97D.unknown5 = cast(ubyte)arg1;
+			case BattleMenuOptions.runAway:
+				battleMenuSelection.targetting = Targetted.allies | Targetted.single;
+				battleMenuSelection.selectedTarget = cast(ubyte)arg1;
 				x1E = BattleActions.runAway;
-				unknown7EA97D.unknown2 = x1E;
+				battleMenuSelection.selectedAction = x1E;
 				break;
-			case 7:
-				unknown7EA97D.unknown4 = Targetted.allies | Targetted.single;
-				unknown7EA97D.unknown5 = cast(ubyte)arg1;
+			case BattleMenuOptions.prayMirror:
+				battleMenuSelection.targetting = Targetted.allies | Targetted.single;
+				battleMenuSelection.selectedTarget = cast(ubyte)arg1;
 				switch (arg1) {
 					case PartyMember.paula:
 						switch (currentGiygasPhase) {
@@ -1742,14 +1742,14 @@ short battleSelectionMenu(short arg1, short arg2) {
 								x1E = BattleActions.pray;
 								break;
 						}
-						unknown7EA97D.unknown2 = x1E;
+						battleMenuSelection.selectedAction = x1E;
 						break;
 					case PartyMember.poo:
 						x1E = BattleActions.mirror;
-						unknown7EA97D.unknown2 = x1E;
-						unknown7EA97D.unknown4 = Targetted.enemies | Targetted.single;
-						unknown7EA97D.unknown5 = cast(ubyte)unknownC1242EF(0, 1, x1E);
-						if (unknown7EA97D.unknown5 == 0) {
+						battleMenuSelection.selectedAction = x1E;
+						battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
+						battleMenuSelection.selectedTarget = cast(ubyte)unknownC1242EF(0, 1, x1E);
+						if (battleMenuSelection.selectedTarget == 0) {
 							continue;
 						}
 						break;
@@ -2562,20 +2562,20 @@ short battleRoutine() {
 						}
 						battlersTable[j].currentAction = x1F;
 						if (unknown7EA97C != 0) {
-							battlersTable[j].actionItemSlot = unknown7EA97D.unknown1;
+							battlersTable[j].actionItemSlot = battleMenuSelection.param1;
 							battlersTable[j].currentActionArgument = unknown7EA97C;
 						} else {
 							battlersTable[j].actionItemSlot = 0;
-							battlersTable[j].currentActionArgument = unknown7EA97D.unknown1;
+							battlersTable[j].currentActionArgument = battleMenuSelection.param1;
 						}
-						battlersTable[j].actionTargetting = unknown7EA97D.unknown4;
-						battlersTable[j].currentTarget = unknown7EA97D.unknown5;
-						if (unknown7EA97D.unknown4 == (Targetted.allies | Targetted.single)) {
+						battlersTable[j].actionTargetting = battleMenuSelection.targetting;
+						battlersTable[j].currentTarget = battleMenuSelection.selectedTarget;
+						if (battleMenuSelection.targetting == (Targetted.allies | Targetted.single)) {
 							for (short k = 0; k < 6; k++) {
 								if (battlersTable[k].consciousness == 0) {
 									continue;
 								}
-								if (unknown7EA97D.unknown5 == battlersTable[k].id) {
+								if (battleMenuSelection.selectedTarget == battlersTable[k].id) {
 									continue;
 								}
 								battlersTable[j].currentTarget = cast(ubyte)k;
@@ -2836,7 +2836,6 @@ short battleRoutine() {
 							currentAttacker.currentActionArgument = selectStealableItem();
 						}
 					}
-					tracef("Current turn: %s/%s - using %s/%s on %s", x04, battleAttackerName.printable, cast(BattleActions)currentAttacker.currentAction, currentAttacker.currentActionArgument, currentAttacker.actionTargetting);
 					resolveTargetting(currentAttacker);
 					if ((currentAttacker.side == BattleSide.friends) && (battleActionTable[currentAttacker.currentAction].direction == 0)) {
 						removeStatusUntargettableTargets();

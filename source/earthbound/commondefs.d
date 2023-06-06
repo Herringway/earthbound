@@ -5642,7 +5642,17 @@ enum SpecialDefeat {
 	bossDefeated = 2,
 	giygasDefeated = 3,
 }
-
+///
+enum BattleMenuOptions {
+	none = 0,
+	attack = 1,
+	goods = 2,
+	autoFight = 3,
+	spyPSI = 4,
+	defend = 5,
+	runAway = 6,
+	prayMirror = 7,
+}
 
 ///
 struct GameState {
@@ -6421,12 +6431,12 @@ struct BattleAction {
 	void function() func; /// 8
 }
 ///
-struct UnknownA97D {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
-	short unknown2; ///
-	ubyte unknown4; ///
-	ubyte unknown5; ///
+struct BattleMenuSelection {
+	ubyte user; ///
+	ubyte param1; ///
+	short selectedAction; ///
+	ubyte targetting; ///
+	ubyte selectedTarget; ///
 }
 ///
 struct NPCAI {

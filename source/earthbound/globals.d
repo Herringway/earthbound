@@ -726,7 +726,7 @@ __gshared uint battleEXPScratch; /// $(DOLLAR)A974
 __gshared ushort battleMoneyScratch; /// $(DOLLAR)A978
 __gshared ushort currentGiygasPhase; /// $(DOLLAR)A97A
 __gshared ubyte unknown7EA97C; /// $(DOLLAR)A97C
-__gshared UnknownA97D unknown7EA97D; /// $(DOLLAR)A97D
+__gshared BattleMenuSelection battleMenuSelection; /// $(DOLLAR)A97D
 __gshared ubyte[27] attackerNameAdjustScratch; /// $(DOLLAR)A983
 __gshared ubyte[27] targetNameAdjustScratch; /// $(DOLLAR)A99E
 __gshared ubyte[27] unknown7EA9B9; /// $(DOLLAR)A9B9
