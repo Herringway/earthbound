@@ -1468,7 +1468,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 	uint x22 = x26.argument;
 	if (arg1 == 1) {
 		backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
-		short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.singleCharacterSelect : cast(short)(Window.characterSelectBase + gameState.playerControlledPartyMemberCount);
+		short x20 = (gameState.playerControlledPartyMemberCount == 1) ? Window.singleCharacterSelect : cast(short)(Window.characterSelectBase + gameState.playerControlledPartyMemberCount - 1);
 		createWindowN(x20);
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 			memcpy(&unknown7E9C9F[0], getPartyCharacterName(gameState.partyMembers[i]), 6);
