@@ -130,7 +130,7 @@ void unknownC20266() {
 /// $C20293
 void unknownC20293() {
 	for (short i = 0; i < 4; i++) {
-		(cast(ushort*)(&introBG2Buffer[0x272]))[i] = 0;
+		bg2Buffer[0x240 + i] = 0;
 	}
 }
 
