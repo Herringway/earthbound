@@ -5730,7 +5730,7 @@ short spawn() {
 	unknown7E4676 = 1;
 	waitUntilNextFrame();
 	initializeMap(respawnX, respawnY, 6);
-	currentPartyMemberTick = &partyCharacters[gameState.partyMembers[0]];
+	currentPartyMemberTick = &partyCharacters[gameState.partyMembers[0] - 1];
 	for (short i = 0; i < 6; i++) {
 		currentPartyMemberTick.afflictions[i] = 0;
 	}
