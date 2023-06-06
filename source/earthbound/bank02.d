@@ -2575,10 +2575,13 @@ short battleRoutine() {
 								if (battlersTable[k].consciousness == 0) {
 									continue;
 								}
-								if (battleMenuSelection.selectedTarget == battlersTable[k].id) {
+								if (battlersTable[k].npcID != 0) {
 									continue;
 								}
-								battlersTable[j].currentTarget = cast(ubyte)k;
+								if (battleMenuSelection.selectedTarget != battlersTable[k].id) {
+									continue;
+								}
+								battlersTable[j].currentTarget = cast(ubyte)(k + 1);
 								break;
 							}
 						}
@@ -2790,11 +2793,13 @@ short battleRoutine() {
 						currentAttacker.actionItemSlot = 0;
 					}
 					if ((battleActionTable[currentAttacker.currentAction].direction == ActionDirection.party) && (battleActionTable[currentAttacker.currentAction].target == 0)) {
-						currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
-						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof + 1);
-					} else {
-						currentAttacker.actionTargetting = Targetted.enemies | Targetted.single;
-						unknownC4A228(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
+						if (currentAttacker.side == BattleSide.friends) {
+							currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
+							currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof + 1);
+						} else {
+							currentAttacker.actionTargetting = Targetted.enemies | Targetted.single;
+							unknownC4A228(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
+						}
 					}
 					short statusDamage = 0;
 					currentTarget = currentAttacker;
