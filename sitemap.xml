@@ -1173,6 +1173,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/callForHelpCommon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/checkDeadPlayers.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/chooseTarget.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/clearAutoFightIcon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/consolationItemTable.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/copyEnemyName.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/copyMirrorData.html</loc></url>
@@ -1180,6 +1181,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/decreaseWalletBalance.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/depositIntoATM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/determineDodge.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/drawAutoFightIcon.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/drawBattleSprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/drawHPPPWindow.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/eatFood.html</loc></url>
@@ -1306,8 +1308,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC200B9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC200C5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC200D1.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC20266.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC20293.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC202AC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2038B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2077D.html</loc></url>
@@ -1385,6 +1385,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/arrC3E406.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/arrC3E40A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/attractModeText.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank03/autoBattleArrangement.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/blinkingTriangleTiles.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/canCharacterEquip.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/characterInitialEntityData.html</loc></url>
@@ -1434,7 +1435,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E220.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E228.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E3F8.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E40E.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E44C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E450.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank03/unknownC3E4EF.html</loc></url>
