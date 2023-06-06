@@ -8235,8 +8235,8 @@ void unknownC2FADE(short speed, short spriteIndex) {
 	battleSpritePaletteEffectSpeed = speed;
 	battleSpritePaletteEffectFramesLeft[spriteIndex] = battleSpritePaletteEffectSpeed;
 	for (short i = 0; i < 48; i++) {
-		battleSpritePaletteEffectDeltas[(8 * spriteIndex) * 3 + i] = cast(short)-cast(int)(battleSpritePaletteEffectDeltas[(8 * spriteIndex) * 3 + i]);
-		battleSpritePaletteEffectCounters[(8 * spriteIndex) * 3 + i] = 0;
+		battleSpritePaletteEffectDeltas[(16 * spriteIndex) * 3 + i] = cast(short)-cast(int)(battleSpritePaletteEffectDeltas[(16 * spriteIndex) * 3 + i]);
+		battleSpritePaletteEffectCounters[(16 * spriteIndex) * 3 + i] = 0;
 	}
 }
 
@@ -8290,7 +8290,7 @@ void singleBattleSpritePaletteEffectFrame() {
 		short* paletteCounters = &battleSpritePaletteEffectCounters[(i * 16 + 1) * 3];
 		short* paletteSteps = &battleSpritePaletteEffectSteps[(i * 16 + 1) * 3];
 		ushort* targetColour = &palettes[12 + i][1];
-		for (short j = 1; j < 16; j++, targetColour++) {
+		for (short j = 1; j < 16; j++) {
 			if (paletteDeltas[0] != 0) {
 				paletteCounters[0] += paletteSteps[0];
 				while (battleSpritePaletteEffectSpeed <= paletteCounters[0]) {
