@@ -121,14 +121,14 @@ void initializeTextSystem() {
 }
 
 /// $C20266
-void unknownC20266() {
+void drawAutoFightIcon() {
 	for (short i = 0; i < 4; i++) {
-		bg2Buffer[0x240 + i] = unknownC3E40E[i];
+		bg2Buffer[0x240 + i] = autoBattleArrangement[i];
 	}
 }
 
 /// $C20293
-void unknownC20293() {
+void clearAutoFightIcon() {
 	for (short i = 0; i < 4; i++) {
 		bg2Buffer[0x240 + i] = 0;
 	}
@@ -1674,7 +1674,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 				break;
 			case BattleMenuOptions.autoFight:
 				gameState.autoFightEnable = 1;
-				unknownC20266();
+				drawAutoFightIcon();
 				x1E = BattleActions.noEffect;
 				break;
 			case BattleMenuOptions.spyPSI:
@@ -3092,7 +3092,7 @@ short battleRoutine() {
 		waitUntilNextFrame();
 		unknownC2DB3F();
 	} while (fadeParameters.step != 0);
-	unknownC20293();
+	clearAutoFightIcon();
 	prepareForImmediateDMA();
 	closeAllWindowsAndHPPP();
 	unknownC2E0E7();

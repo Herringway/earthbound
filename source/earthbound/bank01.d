@@ -6535,7 +6535,7 @@ void resetCharLevelOne(short arg1, short arg2, short arg3) {
 void displayTextWithValue(const(ubyte)* arg1, int arg2) {
 	if ((gameState.autoFightEnable != 0) && ((padState[0] & Pad.b) != 0)) {
 		gameState.autoFightEnable = 0;
-		unknownC20293();
+		clearAutoFightIcon();
 	}
 	setCNum(arg2);
 	if (battleModeFlag != 0) {
@@ -6549,7 +6549,7 @@ void displayTextWithValue(const(ubyte)* arg1, int arg2) {
 void displayInBattleText(const(ubyte)* ptr) {
 	if ((gameState.autoFightEnable != 0) && ((padState[0] & Pad.b) != 0)) {
 		gameState.autoFightEnable = 0;
-		unknownC20293();
+		clearAutoFightIcon();
 	}
 	if (battleModeFlag != 0) {
 		enableBlinkingTriangle(2);
