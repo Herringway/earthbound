@@ -2542,6 +2542,8 @@ short battleRoutine() {
 								x19--;
 								i = unknown7EAA66[x19];
 							}
+							// we don't want i to increase for the next iteration
+							i--;
 							continue;
 						}
 						unknown7EAA66[x19] = i;
