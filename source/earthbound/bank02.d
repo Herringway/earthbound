@@ -2684,7 +2684,7 @@ short battleRoutine() {
 						continue;
 					}
 					if (battlersTable[i].side == BattleSide.foes) {
-						if (enemyConfigurationTable[battlersTable[i].id].boss == 0) {
+						if (enemyConfigurationTable[battlersTable[i].id].boss != 0) {
 							goto RunFailure;
 						}
 						if (battlersTable[i].afflictions[0] == Status0.unconscious) {
