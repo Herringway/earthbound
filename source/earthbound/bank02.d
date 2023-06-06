@@ -2513,7 +2513,7 @@ short battleRoutine() {
 					goto Unknown225;
 				}
 				if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
-					if ((initiative == Initiative.enemiesFirst) || (initiative == Initiative.runningAway) || (initiative == Initiative.runningAlwaysSuccessful) || ((gameState.partyMembers[i] == 4) && (mirrorEnemy == 0)) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.unconscious) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.diamondized) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.asleep) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.solidified)) {
+					if ((initiative == Initiative.enemiesFirst) || (initiative == Initiative.runningAway) || (initiative == Initiative.runningAlwaysSuccessful) || ((gameState.partyMembers[i] == 4) && (mirrorEnemy != 0)) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.unconscious) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.diamondized) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.asleep) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.solidified)) {
 						x1F = BattleActions.noEffect;
 						unknown7EA97C = 0;
 					} else {
