@@ -172,7 +172,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Text speed", gameState.textSpeed);
 		InputEditable("Sound Setting", gameState.soundSetting);
 		InputEditable("UnknownC3", gameState.unknownC3);
-		InputEditable("UnknownC4", gameState.unknownC4);
+		InputEditable("Money earned since last call", gameState.moneyEarnedSinceLastCall);
 		if (ImGui.TreeNode("Active hotspots")) {
 			foreach (idx, ref mode; gameState.activeHotspotModes) {
 				if (ImGui.TreeNode(format!"Hotspot %s"(idx))) {
@@ -611,8 +611,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable!GiygasPhase("Giygas phase", currentGiygasPhase);
 		InputEditable("Unknown7EA97C", unknown7EA97C);
 		InputEditable("Unknown7EAA0C", unknown7EAA0C);
-		InputEditable("Unknown7EAA0E", unknown7EAA0E);
-		InputEditable("Item dropped", itemDropped);
+		InputEditable!SpecialDefeat("Special Defeat", specialDefeat);
+		InputEditable!ItemID("Item dropped", itemDropped);
 		InputEditable("Mirrored enemy", mirrorEnemy);
 		InputEditable("Mirror turns left", mirrorTurnTimer);
 		InputEditable("Unknown7EAA70", unknown7EAA70);
@@ -762,7 +762,9 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Unknown7EADB0", unknown7EADB0);
 		InputEditable("Letterbox top end", letterboxTopEnd);
 		InputEditable("Letterbox bottom start", letterboxBottomStart);
-		InputEditable("Unknown7EADB6", unknown7EADB6);
+		InputEditable("Letterbox ending effect", letterboxEffectEnding);
+		InputEditable("Letterbox ending top", letterboxEffectEndingTop);
+		InputEditable("Letterbox ending bottom", letterboxEffectEndingBottom);
 		foreach (layer, label; zip([&loadedBGDataLayer1, &loadedBGDataLayer2], ["Background effect 1", "Background effect 2"])) {
 			if (ImGui.TreeNode(label)) {
 				InputEditable("Layer", layer.targetLayer);

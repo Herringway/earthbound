@@ -5629,6 +5629,20 @@ enum TeleportState {
 	failed = 2,
 	unknown3 = 3,
 }
+///
+enum BattleResult {
+	won = 0,
+	lost = 1,
+	teleported = 2,
+}
+///
+enum SpecialDefeat {
+	none = 0,
+	teleported = 1,
+	bossDefeated = 2,
+	giygasDefeated = 3,
+}
+
 
 ///
 struct GameState {
@@ -5681,7 +5695,7 @@ struct GameState {
 	ubyte textSpeed; ///
 	ubyte soundSetting; ///
 	ubyte unknownC3; ///
-	uint unknownC4; ///
+	uint moneyEarnedSinceLastCall; ///
 	ubyte[2] activeHotspotModes; ///
 	ubyte[2] activeHotspotIDs; ///
 	@skip const(ubyte)*[2] activeHotspotPointers; ///

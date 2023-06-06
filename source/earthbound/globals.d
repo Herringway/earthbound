@@ -717,7 +717,7 @@ __gshared short unknown7E9F84; /// $(DOLLAR)9F84
 __gshared ushort* unknown7E9F86; /// $(DOLLAR)9F86
 __gshared short unknown7E9F88; /// $(DOLLAR)9F88
 __gshared short enemiesInBattle; /// $(DOLLAR)9F8A
-__gshared short[16] unknown7E9F8C; /// $(DOLLAR)9F8C
+__gshared short[16] enemiesInBattleIDs; /// $(DOLLAR)9F8C
 __gshared Battler[32] battlersTable; /// $(DOLLAR)9FAC
 __gshared uint battlerTargetFlags; /// $(DOLLAR)A96C
 __gshared Battler* currentAttacker; /// $(DOLLAR)A970
@@ -733,7 +733,7 @@ __gshared ubyte[27] unknown7EA9B9; /// $(DOLLAR)A9B9
 __gshared ubyte[56] unknown7EA9D4; /// $(DOLLAR)A9D4
 
 __gshared short unknown7EAA0C; /// $(DOLLAR)AA0C
-__gshared short unknown7EAA0E; /// $(DOLLAR)AA0E
+__gshared short specialDefeat; /// $(DOLLAR)AA0E
 __gshared short itemDropped; /// $(DOLLAR)AA10
 __gshared short mirrorEnemy; /// $(DOLLAR)AA12
 __gshared Battler unknown7EAA14; /// $(DOLLAR)AA14
@@ -790,11 +790,11 @@ __gshared short unknown7EADAE; /// $(DOLLAR)ADAE
 __gshared short unknown7EADB0; /// $(DOLLAR)ADB0
 __gshared short letterboxTopEnd; /// $(DOLLAR)ADB2
 __gshared short letterboxBottomStart; /// $(DOLLAR)ADB4
-__gshared short unknown7EADB6; /// $(DOLLAR)ADB6
+__gshared short letterboxEffectEnding; /// $(DOLLAR)ADB6
 __gshared HDMAWordTransfer[6] unknown7EADB8; /// $(DOLLAR)ADB8
 
-__gshared short unknown7EADCC; /// $(DOLLAR)ADCC
-__gshared short unknown7EADCE; /// $(DOLLAR)ADCE
+__gshared short letterboxEffectEndingTop; /// $(DOLLAR)ADCC
+__gshared short letterboxEffectEndingBottom; /// $(DOLLAR)ADCE
 __gshared short unknown7EADD0; /// $(DOLLAR)ADD0
 __gshared short unknown7EADD2; /// $(DOLLAR)ADD2
 __gshared LoadedBackgroundData loadedBGDataLayer1; /// $(DOLLAR)ADD4
@@ -826,11 +826,11 @@ __gshared ubyte unknown7EAEE6; /// $(DOLLAR)AEE6
 __gshared ushort[4] unknown7EAEE7; /// $(DOLLAR)AEE7
 __gshared ubyte unknown7EAEEF; /// $(DOLLAR)AEEF
 __gshared ushort[2] unknown7EAEF0; /// $(DOLLAR)AEF0
-__gshared ushort[4] unknown7EAEF4; /// $(DOLLAR)AEF4
-__gshared short[3 * 16 * 4] unknown7EAEFC; /// $(DOLLAR)AEFC
-__gshared short[3 * 16 * 4] unknown7EB07C; /// $(DOLLAR)B07C
-__gshared short[3 * 16 * 4] unknown7EB1FC; /// $(DOLLAR)B1FC
-__gshared short unknown7EB37C; /// $(DOLLAR)B37C
+__gshared ushort[4] battleSpritePaletteEffectFramesLeft; /// $(DOLLAR)AEF4
+__gshared short[3 * 16 * 4] battleSpritePaletteEffectDeltas; /// $(DOLLAR)AEFC
+__gshared short[3 * 16 * 4] battleSpritePaletteEffectCounters; /// $(DOLLAR)B07C
+__gshared short[3 * 16 * 4] battleSpritePaletteEffectSteps; /// $(DOLLAR)B1FC
+__gshared short battleSpritePaletteEffectSpeed; /// $(DOLLAR)B37C
 __gshared SoundStoneMelodyState[8] soundStonePlaybackState; /// $(DOLLAR)B37E
 __gshared SpriteMap soundStoneSpriteTilemap1; /// $(DOLLAR)B3EE
 __gshared SpriteMap soundStoneSpriteTilemap2; /// $(DOLLAR)B3F3

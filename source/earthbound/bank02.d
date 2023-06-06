@@ -1331,7 +1331,7 @@ short initBattleScripted(short arg1) {
 	while (x06.count != 0xFF) {
 		short x0E = x06.count;
 		while (x0E-- != 0) {
-			unknown7E9F8C[enemiesInBattle++] = x06.enemyID;
+			enemiesInBattleIDs[enemiesInBattle++] = x06.enemyID;
 		}
 		x06++;
 	}
@@ -1341,16 +1341,16 @@ short initBattleScripted(short arg1) {
 		waitUntilNextFrame();
 		unknownC4A7B0();
 	}
-	short x10 = initBattleCommon();
+	short battleResult = initBattleCommon();
 	if (teleportDestination == 0) {
-		if (x10 != 0) {
+		if (battleResult != BattleResult.won) {
 			return 1;
 		}
 		reloadMap();
 		fadeIn(1, 1);
 	} else {
 		teleportMainLoop();
-		if (x10 != 0) {
+		if (battleResult != BattleResult.won) {
 			return 1;
 		}
 		unknownC3EE4D();
@@ -2232,18 +2232,18 @@ void resolveTargetting(Battler* battler) {
 
 /// $C24821
 short battleRoutine() {
-	short x17;
-	ushort x23;
-	ushort x25;
-	ushort x27;
-	ushort x29;
-	ushort x2B;
-	ushort x2D;
-	short x33;
-	short x35;
+	short battleResult;
+	ushort battleOver;
+	ushort turnCount;
+	ushort runningAway;
+	ushort letterboxStyle;
+	ushort layer2;
+	ushort layer1;
+	short debugPartyMembersSelected;
+	short debugNumberInput;
 	if (battleDebug == 0) {
-		x35 = 1;
-		x33 = 1;
+		debugNumberInput = 1;
+		debugPartyMembersSelected = 1;
 		gameState.playerControlledPartyMemberCount = 1;
 		memset(&gameState.partyMembers[0], 0, 6);
 		memset(&gameState.partyMemberIndex[0], 0, 6);
@@ -2251,21 +2251,21 @@ short battleRoutine() {
 		gameState.partyMemberIndex[0] = 1;
 		enemiesInBattle = 1;
 		currentBattleGroup = 1;
-		unknown7E9F8C[0] = battleEntryPointerTable[0].enemies[0].enemyID;
+		enemiesInBattleIDs[0] = battleEntryPointerTable[0].enemies[0].enemyID;
 	}
 	currentGiygasPhase = 0;
 	if (currentBattleGroup == 0x1DB) {
 		currentGiygasPhase = GiygasPhase.battleStarted;
 	}
-	x2D = battleEntryBGTable[currentBattleGroup].layer1;
-	x2B = battleEntryBGTable[currentBattleGroup].layer2;
-	x29 = cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle;
+	layer1 = battleEntryBGTable[currentBattleGroup].layer1;
+	layer2 = battleEntryBGTable[currentBattleGroup].layer2;
+	letterboxStyle = cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle;
 	infiniteBattleLoop: do {
-		ushort x1D;
+		ushort initiative;
 		mirrorEnemy = 0;
-		x27 = 0;
+		runningAway = 0;
 		unknown7EA97C = 0;
-		x25 = 0;
+		turnCount = 0;
 		battleMoneyScratch = 0;
 		battleEXPScratch = 0;
 		prepareForImmediateDMA();
@@ -2273,13 +2273,13 @@ short battleRoutine() {
 		loadEnemyBattleSprites();
 		prepareWindowGraphics();
 		loadWindowGraphics(WindowGraphicsToLoad.all);
-		loadBattleBG(x2D, x2B, x29);
+		loadBattleBG(layer1, layer2, letterboxStyle);
 		unknownC2EEE7();
 		for (short i = 0; i < battlersTable.length; i++) {
 			memset(&battlersTable[i], 0, Battler.sizeof);
 		}
 		unknown7EAA0C = 0;
-		x23 = 0;
+		ushort row = 0;
 		for (short i = 0; i < 6; i++ ) {
 			if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
 				battleInitPlayerStats(gameState.partyMembers[i], &battlersTable[i]);
@@ -2287,28 +2287,28 @@ short battleRoutine() {
 				battleInitEnemyStats(npcAITable[gameState.partyMembers[i]].enemyID, &battlersTable[i]);
 				battlersTable[i].side = BattleSide.friends;
 				battlersTable[i].npcID = gameState.partyMembers[i];
-				battlersTable[i].row = cast(ubyte)x23;
-				battlersTable[i].hpTarget = gameState.partyNPCHP[x23];
-				battlersTable[i].hp = gameState.partyNPCHP[x23];
+				battlersTable[i].row = cast(ubyte)row;
+				battlersTable[i].hpTarget = gameState.partyNPCHP[row];
+				battlersTable[i].hp = gameState.partyNPCHP[row];
 				battlersTable[i].ppTarget = 0;
 				battlersTable[i].pp = 0;
-				x23++;
+				row++;
 			}
 		}
 		unknownC2F0D1();
 		for (short i = 0; i < enemiesInBattle; i++) {
-			battleInitEnemyStats(unknown7E9F8C[i], &battlersTable[i + 8]);
+			battleInitEnemyStats(enemiesInBattleIDs[i], &battlersTable[i + 8]);
 		}
 		unknownC2F121();
 		drawBattleSprites();
 		loadTextPalette();
 		preparePaletteUpload(PaletteUpload.full);
 		battleModeFlag = 1;
-		changeMusic(enemyConfigurationTable[unknown7E9F8C[0]].music);
+		changeMusic(enemyConfigurationTable[enemiesInBattleIDs[0]].music);
 		setForceBlank();
 		fadeIn(1, 1);
 		if (battleDebug == 0) {
-			unknownC1DCCB(x35);
+			unknownC1DCCB(debugNumberInput);
 			short x02 = 0;
 			for (short i = 0; i < 6; i++) {
 				if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
@@ -2336,19 +2336,19 @@ short battleRoutine() {
 				}
 				if ((padPress[0] & Pad.select) != 0) {
 					currentBattleGroup = enemySelectMode(currentBattleGroup);
-					x2D = battleEntryBGTable[currentBattleGroup].layer1;
-					x2B = battleEntryBGTable[currentBattleGroup].layer2;
-					x29 = cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle;
-				} else if (((padHeld[0] & Pad.right) != 0) && (x33 < 0xF)) {
-					x33++;
-				} else if (((padHeld[0] & Pad.left) != 0) && (x33 > 1)) {
-					x33--;
-				} else if (((padHeld[0] & Pad.down) != 0) && (x35 > 1)) {
-					x35--;
-				} else if (((padHeld[0] & Pad.up) != 0) && (x35 < 99)) {
-					x35++;
+					layer1 = battleEntryBGTable[currentBattleGroup].layer1;
+					layer2 = battleEntryBGTable[currentBattleGroup].layer2;
+					letterboxStyle = cast(ushort)battleEntryPointerTable[currentBattleGroup].letterboxStyle;
+				} else if (((padHeld[0] & Pad.right) != 0) && (debugPartyMembersSelected < 0xF)) {
+					debugPartyMembersSelected++;
+				} else if (((padHeld[0] & Pad.left) != 0) && (debugPartyMembersSelected > 1)) {
+					debugPartyMembersSelected--;
+				} else if (((padHeld[0] & Pad.down) != 0) && (debugNumberInput > 1)) {
+					debugNumberInput--;
+				} else if (((padHeld[0] & Pad.up) != 0) && (debugNumberInput < 99)) {
+					debugNumberInput++;
 				} else if ((padPress[0] & Pad.x) != 0) {
-					x35 = unknown7EAA0C;
+					debugNumberInput = unknown7EAA0C;
 				} else {
 					if ((padPress[0] & Pad.a) != 0) {
 						showPSIAnimation(unknown7EAA70);
@@ -2366,19 +2366,19 @@ short battleRoutine() {
 					continue;
 				}
 				short x = 0;
-				if ((x33 & 1) != 0) {
+				if ((debugPartyMembersSelected & 1) != 0) {
 					gameState.partyMembers[x] = 1;
 					x = 1;
 				}
-				if ((x33 & 2) != 0) {
+				if ((debugPartyMembersSelected & 2) != 0) {
 					gameState.partyMembers[x] = 2;
 					x++;
 				}
-				if ((x33 & 4) != 0) {
+				if ((debugPartyMembersSelected & 4) != 0) {
 					gameState.partyMembers[x] = 3;
 					x++;
 				}
-				if ((x33 & 8) != 0) {
+				if ((debugPartyMembersSelected & 8) != 0) {
 					gameState.partyMembers[x] = 4;
 					x++;
 				}
@@ -2387,7 +2387,7 @@ short battleRoutine() {
 					gameState.partyMembers[i] = 0;
 				}
 			}
-			changeMusic(enemyConfigurationTable[unknown7E9F8C[0]].music);
+			changeMusic(enemyConfigurationTable[enemiesInBattleIDs[0]].music);
 		}
 		if (getEventFlag(EventFlag.bunbun) != 0) {
 			battleInitEnemyStats(EnemyID.buzzBuzz, &battlersTable[6]);
@@ -2404,9 +2404,9 @@ short battleRoutine() {
 			}
 		}
 		showHPPPWindowsF();
-		short x2F = unknown7E9F8C[randLimit(enemiesInBattle)];
-		itemDropped = enemyConfigurationTable[x2F].itemDropped;
-		switch (enemyConfigurationTable[x2F].itemDropRate) {
+		short enemyDropSelected = enemiesInBattleIDs[randLimit(enemiesInBattle)];
+		itemDropped = enemyConfigurationTable[enemyDropSelected].itemDropped;
+		switch (enemyConfigurationTable[enemyDropSelected].itemDropRate) {
 			case 0:
 				if ((rand() & 0x7F) != 0) {
 					itemDropped = 0;
@@ -2452,15 +2452,15 @@ short battleRoutine() {
 				}
 			}
 		}
-		x1D = Initiative.normal;
+		initiative = Initiative.normal;
 		switch (battleInitiative) {
 			case 0:
 				break;
 			case 1:
-				x1D = Initiative.partyFirst;
+				initiative = Initiative.partyFirst;
 				break;
 			case 2:
-				x1D = Initiative.enemiesFirst;
+				initiative = Initiative.enemiesFirst;
 				break;
 			default: break;
 		}
@@ -2468,8 +2468,8 @@ short battleRoutine() {
 		createWindow(Window.textBattle);
 		currentAttacker = &battlersTable[8];
 		fixAttackerName(1);
-		displayInBattleText(getTextBlock(enemyConfigurationTable[unknown7E9F8C[0]].encounterTextPointer));
-		if (x1D == Initiative.partyFirst) {
+		displayInBattleText(getTextBlock(enemyConfigurationTable[enemiesInBattleIDs[0]].encounterTextPointer));
+		if (initiative == Initiative.partyFirst) {
 			displayInBattleText(getTextBlock("MSG_BTL_SENSEI_PC"));
 		}
 		for (short i = 0; i < enemiesInBattle; i++) {
@@ -2486,10 +2486,10 @@ short battleRoutine() {
 			}
 		}
 		closeFocusWindow();
-		x23 = 0;
-		unknown7EAA0E = x23;
-		turnLoop: while (x23 == 0) {
-			x25++;
+		battleOver = 0;
+		specialDefeat = battleOver;
+		turnLoop: while (battleOver == 0) {
+			turnCount++;
 			unknownC2F917();
 			for (short i = 0; i < battlersTable.length; i++) {
 				battlersTable[i].hasTakenTurn = 0;
@@ -2513,7 +2513,7 @@ short battleRoutine() {
 					goto Unknown225;
 				}
 				if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
-					if ((x1D == Initiative.enemiesFirst) || (x1D == Initiative.runningAway) || (x1D == Initiative.runningAlwaysSuccessful) || ((gameState.partyMembers[i] == 4) && (mirrorEnemy == 0)) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.unconscious) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.diamondized) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.asleep) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.solidified)) {
+					if ((initiative == Initiative.enemiesFirst) || (initiative == Initiative.runningAway) || (initiative == Initiative.runningAlwaysSuccessful) || ((gameState.partyMembers[i] == 4) && (mirrorEnemy == 0)) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.unconscious) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.diamondized) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.asleep) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.solidified)) {
 						x1F = BattleActions.noEffect;
 						unknown7EA97C = 0;
 					} else {
@@ -2522,17 +2522,17 @@ short battleRoutine() {
 						unknownC3E6F8F();
 						closeFocusWindow();
 						if ((battleDebug != 0) && (x1F == -1)) {
-							x17 = 0;
+							battleResult = BattleResult.won;
 							break turnLoop;
 						}
 						if (x1F == BattleActions.runAway) {
 							x1F = BattleActions.useNoEffect;
-							if (x1D == Initiative.partyFirst) {
-								x1D = Initiative.runningAlwaysSuccessful;
+							if (initiative == Initiative.partyFirst) {
+								initiative = Initiative.runningAlwaysSuccessful;
 							} else {
-								x1D = Initiative.runningAway;
+								initiative = Initiative.runningAway;
 							}
-							x27 = 1;
+							runningAway = 1;
 						}
 						if (x1F == -1) {
 							continue infiniteBattleLoop;
@@ -2600,11 +2600,11 @@ short battleRoutine() {
 						continue;
 					}
 				}
-				if (((x1D == Initiative.partyFirst) || (x1D == Initiative.runningAlwaysSuccessful)) && (battlersTable[i].side == BattleSide.foes)) {
+				if (((initiative == Initiative.partyFirst) || (initiative == Initiative.runningAlwaysSuccessful)) && (battlersTable[i].side == BattleSide.foes)) {
 					battlersTable[i].currentAction = 0;
 					continue;
 				}
-				if ((x1D == Initiative.enemiesFirst) && (battlersTable[i].side == BattleSide.friends)) {
+				if ((initiative == Initiative.enemiesFirst) && (battlersTable[i].side == BattleSide.friends)) {
 					battlersTable[i].currentAction = 0;
 					continue;
 				}
@@ -2670,12 +2670,12 @@ short battleRoutine() {
 				chooseTarget(&battlersTable[i]);
 			}
 			createWindow(Window.textBattle);
-			if (x1D == Initiative.enemiesFirst) {
+			if (initiative == Initiative.enemiesFirst) {
 				displayInBattleText(getTextBlock("MSG_BTL_SENSEI_MON"));
 			}
-			if (x27 != 0) {
-				short x04;
-				short x1B;
+			if (runningAway != 0) {
+				short highestSpeedEnemy;
+				short highestSpeedFriend;
 				for (short i = 0; i < battlersTable.length; i++) {
 					if (battlersTable[i].consciousness == 0) {
 						continue;
@@ -2705,27 +2705,27 @@ short battleRoutine() {
 						if (battlersTable[i].afflictions[2] == Status2.solidified) {
 							continue;
 						}
-						if (battlersTable[i].speed > x04) {
-							x04 = battlersTable[i].speed;
+						if (battlersTable[i].speed > highestSpeedEnemy) {
+							highestSpeedEnemy = battlersTable[i].speed;
 						}
 					} else {
-						if (battlersTable[i].speed > x1B) {
-							x1B = battlersTable[i].speed;
+						if (battlersTable[i].speed > highestSpeedFriend) {
+							highestSpeedFriend = battlersTable[i].speed;
 						}
 					}
 				}
-				if ((x04 == 0) || (x1D == 4) || ((x25 * 10 + x1B >= x04) && (randLimit(100) < (x25 * 10 + x1B - x04)))) {
-					x17 = 0;
+				if ((highestSpeedEnemy == 0) || (initiative == Initiative.runningAlwaysSuccessful) || ((turnCount * 10 + highestSpeedFriend >= highestSpeedEnemy) && (randLimit(100) < (turnCount * 10 + highestSpeedFriend - highestSpeedEnemy)))) {
+					battleResult = BattleResult.won;
 					displayInBattleText(getTextBlock("MSG_BTL_PLAYER_FLEE"));
 					break turnLoop;
 				} else {
 					RunFailure:
-					x27 = 0;
+					runningAway = 0;
 					displayInBattleText(getTextBlock("MSG_BTL_PLAYER_FLEE_NG"));
 				}
 			}
-			x1D = 0;
-			while (x23 == 0) {
+			initiative = Initiative.normal;
+			while (battleOver == 0) {
 				checkDeadPlayers();
 				if ((countChars(BattleSide.friends) != 0) && (countChars(BattleSide.foes) != 0)) {
 					short x04 = -1;
@@ -2796,30 +2796,30 @@ short battleRoutine() {
 						currentAttacker.actionTargetting = Targetted.allies | Targetted.single;
 						currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof);
 					}
-					x2F = 0;
+					short statusDamage = 0;
 					currentTarget = currentAttacker;
 					fixAttackerName(0);
 					fixTargetName();
 					switch (currentAttacker.afflictions[0]) {
 						case Status0.nauseous:
-							x2F = twentyFivePercentVariance(20);
-							displayTextWithValue(getTextBlock("MSG_BTL_KIMOCHI_DAMAGE"), x2F);
+							statusDamage = twentyFivePercentVariance(20);
+							displayTextWithValue(getTextBlock("MSG_BTL_KIMOCHI_DAMAGE"), statusDamage);
 							break;
 						case Status0.poisoned:
-							x2F = twentyFivePercentVariance(20);
-							displayTextWithValue(getTextBlock("MSG_BTL_MODOKU_DAMAGE"), x2F);
+							statusDamage = twentyFivePercentVariance(20);
+							displayTextWithValue(getTextBlock("MSG_BTL_MODOKU_DAMAGE"), statusDamage);
 							break;
 						case Status0.sunstroke:
-							x2F = twentyFivePercentVariance(4);
-							displayTextWithValue(getTextBlock("MSG_BTL_NISSHA_DAMAGE"), x2F);
+							statusDamage = twentyFivePercentVariance(4);
+							displayTextWithValue(getTextBlock("MSG_BTL_NISSHA_DAMAGE"), statusDamage);
 							break;
 						case Status0.cold:
-							x2F = twentyFivePercentVariance(4);
-							displayTextWithValue(getTextBlock("MSG_BTL_KAZE_DAMAGE"), x2F);
+							statusDamage = twentyFivePercentVariance(4);
+							displayTextWithValue(getTextBlock("MSG_BTL_KAZE_DAMAGE"), statusDamage);
 							break;
 						default: break;
 					}
-					loseHPStatus(currentAttacker, x2F);
+					loseHPStatus(currentAttacker, statusDamage);
 					if (currentAttacker.hp == 0) {
 						koTarget(currentAttacker);
 						if (countChars(BattleSide.friends) == 0) {
@@ -2941,15 +2941,15 @@ short battleRoutine() {
 								unknownC2437E();
 								goto Unknown225;
 							}
-							switch (unknown7EAA0E) {
-								case 3:
-									x17 = 0;
+							switch (specialDefeat) {
+								case SpecialDefeat.giygasDefeated:
+									battleResult = BattleResult.won;
 									break turnLoop;
-								case 2:
+								case SpecialDefeat.bossDefeated:
 									unknownC2437E();
 									goto EnemiesAreDead;
-								case 1:
-									x17 = 2;
+								case SpecialDefeat.teleported:
+									battleResult = BattleResult.teleported;
 									break turnLoop;
 								default:
 									while(unknown7EAD90 != 0) {
@@ -3005,20 +3005,20 @@ short battleRoutine() {
 				}
 				Unknown225:
 				if (countChars(BattleSide.friends) == 0) {
-					x17 = 1;
+					battleResult = BattleResult.lost;
 					resetRolling();
 					displayInBattleText(getTextBlock("MSG_BTL_MONSTER_WIN"));
-					x23 = 1;
+					battleOver = 1;
 				}
 				// this should be an else if
 				if (countChars(BattleSide.foes) == 0) {
 					EnemiesAreDead:
-					x17 = 0;
+					battleResult = BattleResult.won;
 					resetRolling();
-					unknown7EADB6 = 1;
+					letterboxEffectEnding = 1;
 					unknown7EADD0 = 0;
 					depositIntoATM(battleMoneyScratch);
-					gameState.unknownC4 += battleMoneyScratch;
+					gameState.moneyEarnedSinceLastCall += battleMoneyScratch;
 					battleEXPScratch += countChars(BattleSide.friends) - 1;
 					battleEXPScratch /= countChars(BattleSide.friends); //Bug! if party is dead, this is division by 0
 					if (currentBattleGroup < 0x1C0) {
@@ -3045,7 +3045,7 @@ short battleRoutine() {
 						}
 						gainEXP(battlersTable[i].id, 1, battleEXPScratch);
 					}
-					x23 = 1;
+					battleOver = 1;
 				}
 			}
 			closeFocusWindow();
@@ -3090,7 +3090,7 @@ short battleRoutine() {
 	prepareForImmediateDMA();
 	closeAllWindowsAndHPPP();
 	unknownC2E0E7();
-	return x17;
+	return battleResult;
 }
 
 /// $C26189
@@ -3124,9 +3124,9 @@ void instantWinHandler() {
 	createWindow(Window.textBattle);
 	battleMoneyScratch = 0;
 	for (short i = 0; i < enemiesInBattle; i++) {
-		battleMoneyScratch += enemyConfigurationTable[unknown7E9F8C[i]].money;
+		battleMoneyScratch += enemyConfigurationTable[enemiesInBattleIDs[i]].money;
 	}
-	gameState.unknownC4 += depositIntoATM(battleMoneyScratch);
+	gameState.moneyEarnedSinceLastCall += depositIntoATM(battleMoneyScratch);
 	for (short i = 0; i < battlersTable.length; i++) {
 		memset(&battlersTable[i], 0, Battler.sizeof);
 	}
@@ -3141,7 +3141,7 @@ void instantWinHandler() {
 	}
 	battleEXPScratch = 0;
 	for (short i = 0; i < enemiesInBattle; i++) {
-		battleEXPScratch += enemyConfigurationTable[unknown7E9F8C[i]].exp;
+		battleEXPScratch += enemyConfigurationTable[enemiesInBattleIDs[i]].exp;
 	}
 	battleEXPScratch += countChars(BattleSide.friends) - 1;
 	battleEXPScratch /= countChars(BattleSide.friends);
@@ -3161,9 +3161,9 @@ void instantWinHandler() {
 		}
 		gainEXP(battlersTable[i].id, 1, battleEXPScratch);
 	}
-	short x16 = unknown7E9F8C[randLimit(enemiesInBattle)];
-	itemDropped = enemyConfigurationTable[x16].itemDropped;
-	switch (enemyConfigurationTable[x16].itemDropRate) {
+	short enemyDropSelected = enemiesInBattleIDs[randLimit(enemiesInBattle)];
+	itemDropped = enemyConfigurationTable[enemyDropSelected].itemDropped;
+	switch (enemyConfigurationTable[enemyDropSelected].itemDropRate) {
 		case 0:
 			if ((rand() & 0x7F) != 0) {
 				itemDropped = 0;
@@ -3286,23 +3286,23 @@ short instantWinCheck() {
 	}
 	if (battleInitiative == Initiative.normal) {
 		for (short i = 0; i < enemiesInBattle; i++) {
-			if (enemyConfigurationTable[unknown7E9F8C[i]].speed > x22) {
-				x22 = enemyConfigurationTable[unknown7E9F8C[i]].speed;
+			if (enemyConfigurationTable[enemiesInBattleIDs[i]].speed > x22) {
+				x22 = enemyConfigurationTable[enemiesInBattleIDs[i]].speed;
 			}
 		}
 		if (x04 < x22) {
 			return 0;
 		}
 		for (short i = 0; i < enemiesInBattle; i++) {
-			if (x1E * 2 < enemyConfigurationTable[unknown7E9F8C[i]].defense + enemyConfigurationTable[unknown7E9F8C[i]].hp) {
+			if (x1E * 2 < enemyConfigurationTable[enemiesInBattleIDs[i]].defense + enemyConfigurationTable[enemiesInBattleIDs[i]].hp) {
 				return 0;
 			}
 		}
 		return 1;
 	}
 	for (short i = 0; i < enemiesInBattle; i++) {
-		unknown7EAA7E[i] = enemyConfigurationTable[unknown7E9F8C[i]].hp;
-		unknown7EAA86[i] = enemyConfigurationTable[unknown7E9F8C[i]].defense;
+		unknown7EAA7E[i] = enemyConfigurationTable[enemiesInBattleIDs[i]].hp;
+		unknown7EAA86[i] = enemyConfigurationTable[enemiesInBattleIDs[i]].defense;
 	}
 	while (true) {
 		short y = 1;
@@ -3676,14 +3676,14 @@ short reviveTarget(Battler* arg1, short arg2) {
 		for (short i = 1; i < 16; i++) {
 			palettes[12 + arg1.vramSpriteIndex][i] = 0;
 		}
-		unknownC2FAD8(10);
+		setBattleSpritePaletteEffectSpeed(10);
 		for (short i = 1; i < 16; i++) {
-			unknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), 0x1F, 0x1F, 0x1F);
+			initializeBattleSpritePaletteEffect(cast(short)(arg1.vramSpriteIndex * 16 + i), 0x1F, 0x1F, 0x1F);
 		}
 		wait(10);
-		unknownC2FAD8(20);
+		setBattleSpritePaletteEffectSpeed(20);
 		for (short i = 1; i < 16; i++) {
-			unknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), palettes[8 + arg1.vramSpriteIndex][i] & 0x1F, (palettes[8 + arg1.vramSpriteIndex][i] >> 5) & 0x1F, (palettes[8 + arg1.vramSpriteIndex][i] >> 10) & 0x1F);
+			initializeBattleSpritePaletteEffect(cast(short)(arg1.vramSpriteIndex * 16 + i), palettes[8 + arg1.vramSpriteIndex][i] & 0x1F, (palettes[8 + arg1.vramSpriteIndex][i] >> 5) & 0x1F, (palettes[8 + arg1.vramSpriteIndex][i] >> 10) & 0x1F);
 		}
 		wait(20);
 	}
@@ -3831,7 +3831,7 @@ void koTarget(Battler* arg1) {
 		battlerTargetFlags = x12;
 		fixAttackerName(0);
 		fixTargetName();
-		if (unknown7EAA0E != 0) {
+		if (specialDefeat != SpecialDefeat.none) {
 			return;
 		}
 	}
@@ -3843,14 +3843,14 @@ void koTarget(Battler* arg1) {
 		battlersTable[i].useAltSpritemap = 0;
 	}
 	arg1.useAltSpritemap = 1;
-	unknownC2FAD8(10);
+	setBattleSpritePaletteEffectSpeed(10);
 	for (short i = 1; i < 16; i++) {
-		unknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), 0x1F, 0x1F, 0x1F);
+		initializeBattleSpritePaletteEffect(cast(short)(arg1.vramSpriteIndex * 16 + i), 0x1F, 0x1F, 0x1F);
 	}
 	wait(10);
-	unknownC2FAD8(20);
+	setBattleSpritePaletteEffectSpeed(20);
 	for (short i = 1; i < 16; i++) {
-		unknownC2FB35(cast(short)(arg1.vramSpriteIndex * 16 + i), 0, 0, 0);
+		initializeBattleSpritePaletteEffect(cast(short)(arg1.vramSpriteIndex * 16 + i), 0, 0, 0);
 	}
 	wait(20);
 	arg1.afflictions[0] = Status0.unconscious;
@@ -3869,20 +3869,20 @@ void koTarget(Battler* arg1) {
 			battlersTable[i].useAltSpritemap = 1;
 		}
 		playSfx(Sfx.enemyDefeated);
-		unknownC2FAD8(10);
+		setBattleSpritePaletteEffectSpeed(10);
 		for (short i = 1; i < 64; i++) {
 			if ((i & 0xF) == 0) {
 				continue;
 			}
-			unknownC2FB35(i, 0x1F, 0x1F, 0x1F);
+			initializeBattleSpritePaletteEffect(i, 0x1F, 0x1F, 0x1F);
 		}
 		wait(10);
-		unknownC2FAD8(20);
+		setBattleSpritePaletteEffectSpeed(20);
 		for (short i = 1; i < 64; i++) {
 			if ((i & 0xF) == 0) {
 				continue;
 			}
-			unknownC2FB35(i, 0, 0, 0);
+			initializeBattleSpritePaletteEffect(i, 0, 0, 0);
 		}
 		wait(20);
 		for (short i = 8; i < battlersTable.length; i++) {
@@ -3891,7 +3891,7 @@ void koTarget(Battler* arg1) {
 			}
 			battlersTable[i].afflictions[0] = Status0.unconscious;
 		}
-		unknown7EAA0E = 2;
+		specialDefeat = SpecialDefeat.bossDefeated;
 	}
 	if (arg1.npcID == EnemyID.tinyLilGhost) {
 		short x22;
@@ -4818,7 +4818,7 @@ void battleActionClumsyRobotDeath() {
 	} else {
 		displayInBattleText(getTextBlock("MSG_BTL_TONZURA_BREAK_IN_NG"));
 		setTeleportState(13, TeleportStyle.instant);
-		unknown7EAA0E = 1;
+		specialDefeat = SpecialDefeat.teleported;
 	}
 }
 
@@ -5959,7 +5959,7 @@ void battleActionTeleportBox() {
 			removeItemFromInventoryF(currentAttacker.id, currentAttacker.actionItemSlot);
 			displayInBattleText(getTextBlock("MSG_BTL_TLPTBOX_OK"));
 			setTeleportState(gameState.unknownC3, TeleportStyle.instant);
-			unknown7EAA0E = 1;
+			specialDefeat = SpecialDefeat.teleported;
 		} else {
 			displayInBattleText(getTextBlock("MSG_BTL_TLPTBOX_NG"));
 		}
@@ -6902,7 +6902,7 @@ void battleActionGiygasPrayer9() {
 	stopMusic();
 	unknownC2C21F(EnemyGroup.bossGiygasPhaseFinal, Music.none);
 	wait(8 * 60);
-	unknown7EAA0E = 3;
+	specialDefeat = SpecialDefeat.giygasDefeated;
 }
 
 /// $C2C8C8
@@ -7074,7 +7074,7 @@ void loadBackgroundAnimationInfo(LoadedBackgroundData* target, const(AnimatedBac
 }
 
 /// $C2D0AC
-void unknownC2D0AC() {
+void updateLetterboxHDMATable() {
 	HDMAWordTransfer* x = &unknown7EADB8[0];
 
 	x.scanlines = cast(ubyte)letterboxTopEnd;
@@ -7128,9 +7128,9 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			break;
 		default: break;
 	}
-	unknown7EADB6 = 0;
-	unknown7EADCE = 0x7000;
-	unknown7EADCC = 0x7000;
+	letterboxEffectEnding = 0;
+	letterboxEffectEndingBottom = 0x7000;
+	letterboxEffectEndingTop = 0x7000;
 	unknown7EADD0 = 0;
 	unknown7EADD2 = -1;
 	decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer1].graphics][0], &unknown7F0000[0]);
@@ -7231,7 +7231,7 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	if ((loadedBGDataLayer2.targetLayer != 0) && (loadedBGDataLayer2.distortionStyles[0] != 0)) {
 		unknown7EADAC = 1;
 	}
-	unknownC2D0AC();
+	updateLetterboxHDMATable();
 	if (letterboxTopEnd != 0) {
 		unknownC429E8(2);
 	}
@@ -7359,23 +7359,23 @@ void unknownC2DB3F() {
 		}
 	}
 	unknownC4A7B0();
-	unknownC2FD99();
-	if ((unknown7EADB6 != 0) && (letterboxTopEnd != 0)) {
-		if (unknown7EADCC < 0x3BB) {
-			unknown7EADCC = 0;
-			unknown7EADCE = 0xE0;
-			unknown7EADB6 = 0;
-		} else {
-			unknown7EADCC -= 0x3BB;
-			unknown7EADCE += 0x3BB;
+	singleBattleSpritePaletteEffectFrame();
+	if ((letterboxEffectEnding != 0) && (letterboxTopEnd != 0)) {
+		if (letterboxEffectEndingTop < 0x3BB) { //effect is done
+			letterboxEffectEndingTop = 0;
+			letterboxEffectEndingBottom = 224;
+			letterboxEffectEnding = 0;
+		} else { // add about 3.75 lines to top and bottom
+			letterboxEffectEndingTop -= 0x3BB;
+			letterboxEffectEndingBottom += 0x3BB;
 		}
-		if ((unknown7EADCC >> 8) < letterboxTopEnd) {
-			letterboxTopEnd = unknown7EADCC >> 8;
+		if ((letterboxEffectEndingTop >> 8) < letterboxTopEnd) {
+			letterboxTopEnd = letterboxEffectEndingTop >> 8;
 		}
-		if ((unknown7EADCE >> 8) > letterboxBottomStart) {
-			letterboxBottomStart = unknown7EADCE >> 8;
+		if ((letterboxEffectEndingBottom >> 8) > letterboxBottomStart) {
+			letterboxBottomStart = letterboxEffectEndingBottom >> 8;
 		}
-		unknownC2D0AC();
+		updateLetterboxHDMATable();
 	}
 }
 
@@ -7617,11 +7617,11 @@ void unknownC2E6B6() {
 		}
 	}
 	if ((unknown7E1BCC != 0) && (--unknown7E1BCC == 0)) {
-		unknownC2FAD8(0x14);
+		setBattleSpritePaletteEffectSpeed(0x14);
 		for (short i = 0; i < 4; i++) {
 			if (unknown7EAEE7[i] != 0) {
 				for (short j = 1; j < 16; j++) {
-					unknownC2FB35(cast(short)(i * 16 + j), unknown7E1BD0, unknown7E1BD2, unknown7E1BD4);
+					initializeBattleSpritePaletteEffect(cast(short)(i * 16 + j), unknown7E1BD0, unknown7E1BD2, unknown7E1BD4);
 				}
 			}
 		}
@@ -7934,7 +7934,7 @@ ubyte unknownC2F09F(short arg1) {
 void unknownC2F0D1() {
 	short y = 0;
 	for (short i = 0; i < enemiesInBattle; i++) {
-		y += getBattleSpriteWidth(enemyConfigurationTable[unknown7E9F8C[i]].battleSprite);
+		y += getBattleSpriteWidth(enemyConfigurationTable[enemiesInBattleIDs[i]].battleSprite);
 		if (y > 32) {
 			enemiesInBattle = i;
 			return;
@@ -8226,96 +8226,96 @@ short unknownC2FAD2(short /+unused+/) {
 }
 
 /// $C2FAD8
-void unknownC2FAD8(short arg1) {
-	unknown7EB37C = arg1;
+void setBattleSpritePaletteEffectSpeed(short arg1) {
+	battleSpritePaletteEffectSpeed = arg1;
 }
 
 /// $C2FADE
-void unknownC2FADE(short arg1, short arg2) {
-	unknown7EB37C = arg1;
-	unknown7EAEF4[arg2] = unknown7EB37C;
+void unknownC2FADE(short speed, short spriteIndex) {
+	battleSpritePaletteEffectSpeed = speed;
+	battleSpritePaletteEffectFramesLeft[spriteIndex] = battleSpritePaletteEffectSpeed;
 	for (short i = 0; i < 48; i++) {
-		unknown7EAEFC[(8 * arg2) * 3 + i] = cast(short)-cast(int)(unknown7EAEFC[(8 * arg2) * 3 + i]);
-		unknown7EB07C[(8 * arg2) * 3 + i] = 0;
+		battleSpritePaletteEffectDeltas[(8 * spriteIndex) * 3 + i] = cast(short)-cast(int)(battleSpritePaletteEffectDeltas[(8 * spriteIndex) * 3 + i]);
+		battleSpritePaletteEffectCounters[(8 * spriteIndex) * 3 + i] = 0;
 	}
 }
 
 /// $C2FB35
-void unknownC2FB35(short arg1, short arg2, short arg3, short arg4) {
-	unknown7EAEF4[arg1 / 16] = unknown7EB37C;
-	ushort x12 = (&palettes[12][0])[arg1];
-	ushort x02 = x12 & 0x1F;
-	ushort x10 = (x12 >> 5) & 0x1F;
-	ushort x0E = (x12 >> 10) & 0x1F;
-	if (arg2 > x02) {
-		unknown7EB1FC[arg1 * 3] = cast(short)(arg2 - x02);
-		unknown7EAEFC[arg1 * 3] = 1;
-	} else if (arg2 == x02) {
-		unknown7EAEFC[arg1 * 3] = 0;
+void initializeBattleSpritePaletteEffect(short spriteColour, short targetRed, short targetGreen, short targetBlue) {
+	battleSpritePaletteEffectFramesLeft[spriteColour / 16] = battleSpritePaletteEffectSpeed;
+	ushort colour = (&palettes[12][0])[spriteColour];
+	ushort red = colour & 0x1F;
+	ushort green = (colour >> 5) & 0x1F;
+	ushort blue = (colour >> 10) & 0x1F;
+	if (targetRed > red) {
+		battleSpritePaletteEffectSteps[spriteColour * 3] = cast(short)(targetRed - red);
+		battleSpritePaletteEffectDeltas[spriteColour * 3] = 1;
+	} else if (targetRed == red) {
+		battleSpritePaletteEffectDeltas[spriteColour * 3] = 0;
 	} else {
-		unknown7EB1FC[arg1 * 3] = cast(short)(x02 - arg2);
-		unknown7EAEFC[arg1 * 3] = -1;
+		battleSpritePaletteEffectSteps[spriteColour * 3] = cast(short)(red - targetRed);
+		battleSpritePaletteEffectDeltas[spriteColour * 3] = -1;
 	}
-	if (arg3 > x10) {
-		unknown7EB1FC[arg1 * 3 + 1] = cast(short)(arg3 - x10);
-		unknown7EAEFC[arg1 * 3 + 1] = 0x20;
-	} else if (arg3 == x10) {
-		unknown7EAEFC[arg1 * 3 + 1] = 0;
+	if (targetGreen > green) {
+		battleSpritePaletteEffectSteps[spriteColour * 3 + 1] = cast(short)(targetGreen - green);
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 1] = 0x20;
+	} else if (targetGreen == green) {
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 1] = 0;
 	} else {
-		unknown7EB1FC[arg1 * 3 + 1] = cast(short)(x10 - arg3);
-		unknown7EAEFC[arg1 * 3 + 1] = -0x20;
+		battleSpritePaletteEffectSteps[spriteColour * 3 + 1] = cast(short)(green - targetGreen);
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 1] = -0x20;
 	}
-	if (arg4 > x0E) {
-		unknown7EB1FC[arg1 * 3 + 2] = cast(short)(arg4 - x0E);
-		unknown7EAEFC[arg1 * 3 + 2] = 0x400;
-	} else if (arg4 == x0E) {
-		unknown7EAEFC[arg1 * 3 + 2] = 0;
+	if (targetBlue > blue) {
+		battleSpritePaletteEffectSteps[spriteColour * 3 + 2] = cast(short)(targetBlue - blue);
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 2] = 0x400;
+	} else if (targetBlue == blue) {
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 2] = 0;
 	} else {
-		unknown7EB1FC[arg1 * 3 + 2] = cast(short)(x0E - arg4);
-		unknown7EAEFC[arg1 * 3 + 2] = -0x400;
+		battleSpritePaletteEffectSteps[spriteColour * 3 + 2] = cast(short)(blue - targetBlue);
+		battleSpritePaletteEffectDeltas[spriteColour * 3 + 2] = -0x400;
 	}
-	unknown7EB07C[arg1 * 3 + 2] = 0;
-	unknown7EB07C[arg1 * 3 + 1] = 0;
-	unknown7EB07C[arg1 * 3 + 0] = 0;
+	battleSpritePaletteEffectCounters[spriteColour * 3 + 2] = 0;
+	battleSpritePaletteEffectCounters[spriteColour * 3 + 1] = 0;
+	battleSpritePaletteEffectCounters[spriteColour * 3 + 0] = 0;
 }
 
 /// $C2FD99
-void unknownC2FD99() {
+void singleBattleSpritePaletteEffectFrame() {
 	for (short i = 0; i < 4; i++) {
-		if (unknown7EAEF4[i] == 0) {
+		if (battleSpritePaletteEffectFramesLeft[i] == 0) {
 			continue;
 		}
-		unknown7EAEF4[i]--;
-		short* y = &unknown7EAEFC[(i * 16 + 1) * 3];
-		short* x14 = &unknown7EB07C[(i * 16 + 1) * 3];
-		short* x12 = &unknown7EB1FC[(i * 16 + 1) * 3];
-		ushort* x02 = &palettes[12 + i][1];
-		for (short j = 1; j < 16; j++, x02++) {
-			if (y[0] != 0) {
-				x14[0] += x12[0];
-				while (unknown7EB37C <= x14[0]) {
-					x14[0] -= unknown7EB37C;
-					x02[0] += y[0];
+		battleSpritePaletteEffectFramesLeft[i]--;
+		short* paletteDeltas = &battleSpritePaletteEffectDeltas[(i * 16 + 1) * 3];
+		short* paletteCounters = &battleSpritePaletteEffectCounters[(i * 16 + 1) * 3];
+		short* paletteSteps = &battleSpritePaletteEffectSteps[(i * 16 + 1) * 3];
+		ushort* targetColour = &palettes[12 + i][1];
+		for (short j = 1; j < 16; j++, targetColour++) {
+			if (paletteDeltas[0] != 0) {
+				paletteCounters[0] += paletteSteps[0];
+				while (battleSpritePaletteEffectSpeed <= paletteCounters[0]) {
+					paletteCounters[0] -= battleSpritePaletteEffectSpeed;
+					targetColour[0] += paletteDeltas[0];
 				}
 			}
-			if (y[1] != 0) {
-				x14[1] += x12[1];
-				while (unknown7EB37C <= x14[1]) {
-					x14[1] -= unknown7EB37C;
-					x02[0] += y[1];
+			if (paletteDeltas[1] != 0) {
+				paletteCounters[1] += paletteSteps[1];
+				while (battleSpritePaletteEffectSpeed <= paletteCounters[1]) {
+					paletteCounters[1] -= battleSpritePaletteEffectSpeed;
+					targetColour[0] += paletteDeltas[1];
 				}
 			}
-			if (y[2] != 0) {
-				x14[2] += x12[2];
-				while (unknown7EB37C <= x14[2]) {
-					x14[2] -= unknown7EB37C;
-					x02[0] += y[2];
+			if (paletteDeltas[2] != 0) {
+				paletteCounters[2] += paletteSteps[2];
+				while (battleSpritePaletteEffectSpeed <= paletteCounters[2]) {
+					paletteCounters[2] -= battleSpritePaletteEffectSpeed;
+					targetColour[0] += paletteDeltas[2];
 				}
 			}
-			y += 3;
-			x14 += 3;
-			x12 += 3;
-			x02++;
+			paletteDeltas += 3;
+			paletteCounters += 3;
+			paletteSteps += 3;
+			targetColour++;
 		}
 		preparePaletteUpload(PaletteUpload.halfSecond);
 	}

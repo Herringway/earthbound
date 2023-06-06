@@ -8108,10 +8108,10 @@ void initBattleOverworld() {
 			instantWinHandler();
 			battleDebug = 0;
 		} else {
-			short x10 = initBattleCommon();
+			short battleResult = initBattleCommon();
 			unknownC07B52();
 			if (teleportDestination == 0) {
-				if (x10 != 0) {
+				if (battleResult != BattleResult.won) {
 					if (debugging == 0) {
 						return;
 					}
@@ -9011,7 +9011,7 @@ void unknownC0D19B() {
 		}
 	}
 	entityUnknown2C5E[x20] = 0;
-	unknown7E9F8C[enemiesInBattle++] = entityEnemyIDs[x20];
+	enemiesInBattleIDs[enemiesInBattle++] = entityEnemyIDs[x20];
 }
 
 /// $C0D4DE
@@ -9100,7 +9100,7 @@ short unknownC0D5B0() {
 						unknown7E4A84[i] = cast(short)(x0E - 1);
 						x12 = 1;
 						entityTickCallbackFlags[currentEntitySlot] |= objectTickDisabled | objectMoveDisabled;
-						unknown7E9F8C[enemiesInBattle++] = entityEnemyIDs[currentEntitySlot];
+						enemiesInBattleIDs[enemiesInBattle++] = entityEnemyIDs[currentEntitySlot];
 					}
 				}
 				y += unknown7E4A84[i];

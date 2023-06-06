@@ -21604,7 +21604,7 @@ void displayViewCharacterDebugOverlay() {
 		return;
 	}
 	for (short i = 0; i != 5; i++) {
-		copyToVRAM(0, 8, cast(ushort)(0x7F46 + i * 5), cast(ubyte*)integerToDecimalDebugTiles(unknown7E9F8C[i]));
+		copyToVRAM(0, 8, cast(ushort)(0x7F46 + i * 5), cast(ubyte*)integerToDecimalDebugTiles(enemiesInBattleIDs[i]));
 	}
 	copyToVRAMAlt(0, 8, 0x7F41, cast(ubyte*)integerToDecimalDebugTiles(currentBattleGroup));
 }

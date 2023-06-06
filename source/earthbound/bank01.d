@@ -3507,7 +3507,7 @@ void* cc1D0C(DisplayTextState* arg1, ubyte arg2) {
 	return null;
 }
 
-/// $C1711C
+/// $C1711C - [1F 66 XX YY ZZ ZZ ZZ ZZ] Enable hotspot
 void* cc1F66(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F66Arguments);
 	activateHotspot(
@@ -3518,28 +3518,28 @@ void* cc1F66(DisplayTextState* arg1, ubyte arg2) {
 	return null;
 }
 
-/// $C17233
+/// $C17233 - [1F 67 XX] Disable hotspot
 void* cc1F67(DisplayTextState* arg1, ubyte arg2) {
 	disableHotspot(cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
 	return null;
 }
 
-/// $C17254
+/// $C17254 - [1F 04 XX] Toggle text sound
 void* cc1F04(DisplayTextState* arg1, ubyte arg2) {
 	setTextSoundMode(cast(short)(arg2 != 0 ? arg2 : getArgumentMemory()));
 	return null;
 }
 
-/// $C17274
+/// $C17274 - [1D 24 XX] Display money earned since last call, resetting if XX is 2
 void* cc1D24(DisplayTextState* arg1, ubyte arg2) {
-	setWorkingMemory(WorkingMemory(gameState.unknownC4));
+	setWorkingMemory(WorkingMemory(gameState.moneyEarnedSinceLastCall));
 	if (arg2 == 2) {
-		gameState.unknownC4 = 0;
+		gameState.moneyEarnedSinceLastCall = 0;
 	}
 	return null;
 }
 
-/// $C172BC
+/// $C172BC - [1F 40 XX XX] Do nothing
 void* cc1F40(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
 	return null;
@@ -3557,14 +3557,14 @@ void* cc1FD2(DisplayTextState* arg1, ubyte arg2) {
 	return null;
 }
 
-/// $C17325
+/// $C17325 - [1F F3 XX XX YY]
 void* cc1FF3(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1FF3Arguments);
 	unknownC4B54A(getCCParameters!ArgType(arg2).arg1, getCCParameters!ArgType(arg2).arg2);
 	return null;
 }
 
-/// $C1737D
+/// $C1737D - [1F F4 XX XX]
 void* cc1FF4(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!ushort);
 	unknownC4B565(getCCParameters!ArgType(arg2));
@@ -6802,7 +6802,7 @@ short enemySelectMode(short arg1) {
 		while (x06[0].count != 0xFF) {
 			short x14 = x06[0].count;
 			while (x14-- != 0) {
-				unknown7E9F8C[enemiesInBattle++] = x06[0].enemyID;
+				enemiesInBattleIDs[enemiesInBattle++] = x06[0].enemyID;
 			}
 			x06++;
 		}
@@ -6812,7 +6812,7 @@ short enemySelectMode(short arg1) {
 			memset(&battlersTable[i], 0, Battler.sizeof);
 		}
 		for (short i = 0; i < enemiesInBattle; i++) {
-			battleInitEnemyStats(unknown7E9F8C[i], &battlersTable[8 + i]);
+			battleInitEnemyStats(enemiesInBattleIDs[i], &battlersTable[8 + i]);
 		}
 		unknownC2F121();
 		preparePaletteUpload(PaletteUpload.full);
