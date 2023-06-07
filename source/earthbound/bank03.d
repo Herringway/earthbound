@@ -771,7 +771,7 @@ short canCharacterEquip(short character, short item) {
 void unknownC3EE4D() {
 	updateParty();
 	unknownC07B52();
-	unknownC1004E();
+	finishFrame();
 	freezeEntities();
 	if (entityFadeEntity == -1) {
 		return;
@@ -1095,12 +1095,12 @@ short showTitleScreen(short arg1) {
 		paletteUploadMode = PaletteUpload.full;
 		for (short i = 0; 0x3C > i; i++) {
 			updateMapPaletteAnimation();
-			unknownC1004E();
+			finishFrame();
 		}
 	} else {
 		fadeIn(4, 1);
 		for (short i = 0; 0x3C > i; i++) {
-			unknownC1004E();
+			finishFrame();
 		}
 	}
 	short x02 = 0;
@@ -1111,7 +1111,7 @@ short showTitleScreen(short arg1) {
 				break;
 			}
 		}
-		unknownC1004E();
+		finishFrame();
 	}
 	if ((unknown7E9F75 == 0) && (unknown7E9641 == 0)) {
 		x02 = unknownEF04DC();

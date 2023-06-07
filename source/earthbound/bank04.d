@@ -1287,9 +1287,9 @@ immutable ubyte[6][4] itemUseMenuStrings = [
 ];
 
 /// $C43568
-void unknownC43568() {
+void finishBattleFrame() {
 	waitUntilNextFrame();
-	unknownC2DB3F();
+	drawBattleFrame();
 }
 
 /// $C43573
@@ -1307,7 +1307,7 @@ void unknownC43573(short arg1) {
 }
 
 /// $C435E4
-void unknownC435E4() {
+void rowEnemyFlashingOff() {
 	if (unknown7E89CE == -1) {
 		return;
 	}
@@ -1324,9 +1324,9 @@ void unknownC435E4() {
 }
 
 /// $C43657
-void unknownC43657(short arg1) {
+void rowEnemyFlashingOn(short arg1) {
 	if (unknown7E89CE != -1) {
-		unknownC435E4();
+		rowEnemyFlashingOff();
 	}
 	unknown7E89CE = arg1;
 	for (short i = 0; i < (unknown7E89CE != 0) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
@@ -3605,7 +3605,7 @@ void undrawFlyoverText() {
 
 /// $C48BDA
 void unknownC48BDA() {
-	unknownC2DB3F();
+	drawBattleFrame();
 }
 
 /// $C48BE1
@@ -3986,7 +3986,7 @@ void unknownC4999B(ubyte arg1) {
 /// $C49A4B
 void unknownC49A4B() {
 	waitUntilNextFrame();
-	unknownC2DB3F();
+	drawBattleFrame();
 }
 
 /// $C49A56 - prepares flyover text graphics
@@ -4107,7 +4107,7 @@ void coffeeTeaScene(short id) {
 			case 9:
 				short x0E = unknownC49D1E(x04);
 				unknownC49B6E(0x18);
-				unknownC2DB3F();
+				drawBattleFrame();
 				while (x0E < 0x2000) {
 					x0E = unknownC49D1E(x0E);
 					unknownC49A4B();
@@ -6691,7 +6691,7 @@ void displayAnimatedNamingSprite(short arg1) {
 /// $C4D830
 void unknownC4D830(short arg1) {
 	while (waitForNamingScreenActionScript != 0) {
-		unknownC1004E();
+		finishFrame();
 	}
 	for (const(NamingScreenEntity)* x06 = &unknownC3FD2D[arg1 + 7][0]; x06.sprite != 0; x06++) {
 		short x = findEntityBySprite(x06.sprite);
@@ -6707,7 +6707,7 @@ void unknownC4D830(short arg1) {
 		for (short i = 0; i < 23; i++) {
 			x0E &= (y++)[0];
 		}
-		unknownC1004E();
+		finishFrame();
 		if (x0E == 0xFFFF) {
 			break;
 		}
@@ -6754,7 +6754,7 @@ short runAttractModeScene(short arg1) {
 			x12 = 1;
 			break;
 		}
-		unknownC1004E();
+		finishFrame();
 		if ((x14 == 0) || (x14 == 1)) {
 			mirrorTM = 0x13;
 		}
@@ -6762,12 +6762,12 @@ short runAttractModeScene(short arg1) {
 	}
 	unknownC2EA74();
 	while (unknownC2EACF() != 0) {
-		unknownC1004E();
+		finishFrame();
 		unknownC4A7B0();
 	}
 	fadeOut(1, 1);
 	while (fadeParameters.step != 0) {
-		unknownC1004E();
+		finishFrame();
 	}
 	unknownC2EAAA();
 	unknown7E9641 = 0;
@@ -7251,8 +7251,8 @@ void playCastScene() {
 	initEntityWipe(ActionScript.unknown801, 0, 0);
 	unknown7E9641 = 0;
 	while (unknown7E9641 == 0) {
-		unknownC1004E();
-		unknownC2DB3F();
+		finishFrame();
+		drawBattleFrame();
 	}
 	fadeOutWithMosaic(1, 1, 0);
 	for (short i = 0; i < maxEntities; i++) {
@@ -7430,7 +7430,7 @@ void unknownC4F46F(short arg1) {
 		bg2XPosition = cast(ushort)(x02 / 0x100);
 		bg2YPosition = cast(ushort)(x04 / 0x100);
 		unknownC4F01D();
-		unknownC1004E();
+		finishFrame();
 	}
 }
 
@@ -7449,35 +7449,35 @@ void playCredits() {
 			for (short j = 0x40; j != 0; j--) {
 				updateMapPaletteAnimation();
 				unknownC4F01D();
-				unknownC1004E();
+				finishFrame();
 			}
 			unknownC49740();
 			unknownC4F46F(i);
 			while (x02 > bg3YPosition) {
 				unknownC4F01D();
-				unknownC1004E();
+				finishFrame();
 			}
 			memset(&unknown7F0000[32], 0, 0x1E0);
 			unknownC496E7(64, -1);
 			for (short j = 0; j < 64; j++) {
 				updateMapPaletteAnimation();
 				unknownC4F01D();
-				unknownC1004E();
+				finishFrame();
 			}
 			memset(&palettes[1][0], 0, 0x1E0);
 			preparePaletteUpload(PaletteUpload.full);
 			unknownC4F01D();
-			unknownC1004E();
+			finishFrame();
 			x02 += x04;
 		}
 	}
 	while (bg3YPosition < 4528) {
 		unknownC4F01D();
-		unknownC1004E();
+		finishFrame();
 	}
 	resetIRQCallback();
 	for (short i = 0; i < 2000; i++) {
-		unknownC1004E();
+		finishFrame();
 	}
 	fadeOutWithMosaic(1, 2, 0);
 	unknownC4249A(0xB3, 0);

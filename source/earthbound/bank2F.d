@@ -204,10 +204,10 @@ short unknownEF04DC() {
 	unknown7E9F75 = 1;
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
 	unknown7E9641 = 0;
-	unknownC1004E();
+	finishFrame();
 	fadeIn(16, 1);
 	for (short i = 0; i < 60; i++) {
-		unknownC1004E();
+		finishFrame();
 	}
 	short x02 = 0;
 	while ((unknown7E9641 == 0) || (unknown7E9641 == 2)) {
@@ -215,7 +215,7 @@ short unknownEF04DC() {
 			x02 = 1;
 			break;
 		}
-		unknownC1004E();
+		finishFrame();
 	}
 	fadeOutWithMosaic(1, 4, 0);
 	unknown7E9641 = 0;

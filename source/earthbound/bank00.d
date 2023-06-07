@@ -10114,7 +10114,7 @@ short unknownC0F21E() {
 		if (padPress[0] != 0) {
 			return 1;
 		}
-		unknownC2DB3F();
+		drawBattleFrame();
 		waitUntilNextFrame();
 	}
 	for (short i = 0; i < 480; i++) {
@@ -10126,7 +10126,7 @@ short unknownC0F21E() {
 		paletteUploadMode = PaletteUpload.none;
 		unknownC2DB14();
 		memcpy(&palettes[2][0], &unknown7E4476[0], 0x20);
-		unknownC2DB3F();
+		drawBattleFrame();
 		paletteUploadMode = PaletteUpload.full;
 		waitUntilNextFrame();
 	}

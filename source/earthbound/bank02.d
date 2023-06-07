@@ -753,9 +753,9 @@ void stopMusicF(short arg1) {
 }
 
 /// $C216D0
-void playSfxAndUnknown(short arg1) {
+void playSfxAndTickMinimal(short arg1) {
 	playSfx(arg1);
-	unknownC12E42();
+	windowTickMinimal();
 }
 
 /// $C216DB
@@ -2330,7 +2330,7 @@ short battleRoutine() {
 			windowTick();
 			while (true) {
 				waitUntilNextFrame();
-				unknownC2DB3F();
+				drawBattleFrame();
 				if ((padPress[0] & Pad.start) != 0) {
 					break;
 				}
@@ -3090,7 +3090,7 @@ short battleRoutine() {
 	fadeOut(1, 1);
 	do {
 		waitUntilNextFrame();
-		unknownC2DB3F();
+		drawBattleFrame();
 	} while (fadeParameters.step != 0);
 	clearAutoFightIcon();
 	prepareForImmediateDMA();
@@ -7260,7 +7260,7 @@ void unknownC2DB14() {
 }
 
 /// $C2DB3F
-void unknownC2DB3F() {
+void drawBattleFrame() {
 	if (unknown7EADD0 != 0) {
 		unknown7EADD2 -= 0x555;
 		if (unknown7EADD2 > 0x6000) {
@@ -8194,8 +8194,8 @@ void unknownC2F917() {
 			}
 		}
 		backRowBattlers[i] = cast(ubyte)(x0E);
-		unknown7EAD5A[i] = cast(ubyte)(x04 / 8);
-		unknown7EAD62[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
+		battlerFrontRowXPositions[i] = cast(ubyte)(x04 / 8);
+		battlerFrontRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
 		x10 = x04;
 	}
 	x10 = 0;
@@ -8220,8 +8220,8 @@ void unknownC2F917() {
 			}
 		}
 		frontRowBattlers[i] = cast(ubyte)(x0E);
-		unknown7EAD6A[i] = cast(ubyte)(x04 / 8);
-		unknown7EAD72[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
+		battlerBackRowXPositions[i] = cast(ubyte)(x04 / 8);
+		battlerBackRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
 		x10 = x04;
 	}
 }

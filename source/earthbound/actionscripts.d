@@ -1909,8 +1909,8 @@ ubyte[] ACTIONSCRIPT_C2654C() {
 	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC2654C);
 }
 
-ubyte[] ACTIONSCRIPT_C2DB3F() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC2DB3F);
+ubyte[] ACTIONSCRIPT_DRAW_BATTLE_FRAME() {
+	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!drawBattleFrame);
 }
 
 ubyte[] ACTIONSCRIPT_C2EA15() {
@@ -6369,7 +6369,7 @@ actionScript19 = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript19[6 + 4 * (const(void)*).sizeof]),
 ].join();
 actionScript787 = [
-	ACTIONSCRIPT_C2DB3F(),
+	ACTIONSCRIPT_DRAW_BATTLE_FRAME(),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_SHORTJUMP(&actionScript787[0]),
 ].join();
