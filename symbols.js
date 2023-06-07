@@ -3598,7 +3598,6 @@ var symbols = [
 {name: 'earthbound.globals.townMapPlayerIconAnimationFrame', kind: "variabledeclaration", path: './earthbound/globals/townMapPlayerIconAnimationFrame.html', attributes: []},
 {name: 'earthbound.globals.unknown7E0009', kind: "variabledeclaration", path: './earthbound/globals/unknown7E0009.html', attributes: []},
 {name: 'earthbound.globals.unknown7E000A', kind: "variabledeclaration", path: './earthbound/globals/unknown7E000A.html', attributes: []},
-{name: 'earthbound.globals.unknown7E0018', kind: "variabledeclaration", path: './earthbound/globals/unknown7E0018.html', attributes: []},
 {name: 'earthbound.globals.unknown7E001D', kind: "variabledeclaration", path: './earthbound/globals/unknown7E001D.html', attributes: []},
 {name: 'earthbound.globals.unknown7E0023', kind: "variabledeclaration", path: './earthbound/globals/unknown7E0023.html', attributes: []},
 {name: 'earthbound.globals.unknown7E002D', kind: "variabledeclaration", path: './earthbound/globals/unknown7E002D.html', attributes: []},
