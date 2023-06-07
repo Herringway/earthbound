@@ -4469,7 +4469,11 @@ void irqNMICommon() {
 	INIDISP = mirrorINIDISP;
 	MOSAIC = mirrorMOSAIC;
 	BG12NBA = mirrorBG12NBA;
-	WH2 = mirrorWH2;
+	// mirrorWH2 is loaded into Y for no reason here... and then immediately
+	// replaced with a constant which is written to WH2/3.
+	// This has the effect of disabling the 2nd window.
+	WH2 = 0xFF;
+	WH3 = 0x00;
 	for (short i = lastCompletedDMAIndex; i != dmaQueueIndex; i++) {
 		handleVRAMDMA(dmaTable[dmaQueue[i].mode].unknown0, dmaTable[dmaQueue[i].mode].unknown1, dmaQueue[i].source, dmaQueue[i].size, dmaQueue[i].destination, dmaTable[dmaQueue[i].mode].unknown2);
 	}
@@ -7453,7 +7457,7 @@ void unknownC0AA23(short, ref const(ubyte)* arg2) {
 
 /// $C0AA3F
 void unknownC0AA3F(short arg1, ref const(ubyte)* arg2) {
-	short x = (--arg1 == 0) ? 0x33 : 0xB3;
+	short x = (--arg1 != 0) ? 0x33 : 0xB3;
 	unknown7E9E37 = cast(ubyte)movementDataRead8(arg2);
 	actionScriptVar94 = arg2;
 	unknown7E9E38 = cast(ubyte)movementDataRead8(arg2);

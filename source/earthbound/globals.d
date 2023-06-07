@@ -23,8 +23,7 @@ __gshared ubyte mirrorBG3SC; /// $(DOLLAR)0013
 __gshared ubyte mirrorBG4SC; /// $(DOLLAR)0014
 __gshared ubyte mirrorBG12NBA; /// $(DOLLAR)0015
 __gshared ubyte mirrorBG34NBA; /// $(DOLLAR)0016
-__gshared ubyte mirrorWH2; /// $(DOLLAR)0017
-__gshared ushort unknown7E0018; /// $(DOLLAR)0018
+__gshared ushort mirrorWH2; /// $(DOLLAR)0017
 __gshared ubyte mirrorTM; /// $(DOLLAR)001A
 __gshared ubyte mirrorTD; /// $(DOLLAR)001B
 
