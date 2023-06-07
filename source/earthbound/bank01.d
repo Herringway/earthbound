@@ -1300,7 +1300,7 @@ short pickTargetSingle(short arg1, short action) {
 				playSfx(Sfx.cursor2);
 				break;
 			} else {
-				continue;
+				goto Unknown4;
 			}
 		} else {
 			x12 = Sfx.cursor3;
