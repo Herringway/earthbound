@@ -1186,7 +1186,7 @@ short getTargettingAllowed(short row, short arg2, short action) {
 }
 
 /// $C12012
-short getNextTargetRight(short row, short arg2, short action) {
+short getNextTargetRight(short row, short position, short action) {
 	short x0E;
 	ubyte* x04;
 	if (row == Row.front) {
@@ -1197,7 +1197,7 @@ short getNextTargetRight(short row, short arg2, short action) {
 		x04 = &unknown7EAD6A[0];
 	}
 	for (short i = 0; i < x0E; i++) {
-		if ((x04++)[0] > arg2) {
+		if ((x04++)[0] > position) {
 			if (getTargettingAllowed(row, i, action) != 0) {
 				return i;
 			}
@@ -1207,7 +1207,7 @@ short getNextTargetRight(short row, short arg2, short action) {
 }
 
 /// $C12070
-short getNextTargetLeft(short row, short arg2, short action) {
+short getNextTargetLeft(short row, short position, short action) {
 	ubyte* x04;
 	short x;
 	if (row == Row.front) {
@@ -1218,7 +1218,7 @@ short getNextTargetLeft(short row, short arg2, short action) {
 		x04 = &unknown7EAD6A[x - 1];
 	}
 	for (short i = cast(short)(x - 1); i + 1 != 0; i--) {
-		if ((x04--)[0] < arg2) {
+		if ((x04--)[0] < position) {
 			if (getTargettingAllowed(row, i, action) != 0) {
 				return i;
 			}
