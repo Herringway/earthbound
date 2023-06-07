@@ -1551,7 +1551,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 		battleMenuSelection.param1 = 0;
 		battleMenuSelection.selectedAction = x1A;
 		battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
-		battleMenuSelection.selectedTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInBackRow + numBattlersInFrontRow)) + 1);
+		battleMenuSelection.selectedTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInFrontRow + numBattlersInBackRow)) + 1);
 		return x1A;
 	}
 	unknownEF0262();
@@ -1658,7 +1658,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 				battleMenuSelection.selectedAction = x1E;
 				battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
 				if (x20 != 2) {
-					battleMenuSelection.selectedTarget = cast(ubyte)unknownC1242EF(0, 1, x1E);
+					battleMenuSelection.selectedTarget = cast(ubyte)pickTargetF(0, 1, x1E);
 					if (battleMenuSelection.selectedTarget == 0) {
 						continue;
 					}
@@ -1682,7 +1682,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 					x1E = BattleActions.spy;
 					battleMenuSelection.selectedAction = x1E;
 					battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
-					battleMenuSelection.selectedTarget = cast(ubyte)unknownC1242EF(0, 1, x1E);
+					battleMenuSelection.selectedTarget = cast(ubyte)pickTargetF(0, 1, x1E);
 					if (battleMenuSelection.selectedTarget == 0) {
 						continue;
 					}
@@ -1748,7 +1748,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 						x1E = BattleActions.mirror;
 						battleMenuSelection.selectedAction = x1E;
 						battleMenuSelection.targetting = Targetted.enemies | Targetted.single;
-						battleMenuSelection.selectedTarget = cast(ubyte)unknownC1242EF(0, 1, x1E);
+						battleMenuSelection.selectedTarget = cast(ubyte)pickTargetF(0, 1, x1E);
 						if (battleMenuSelection.selectedTarget == 0) {
 							continue;
 						}
@@ -1854,8 +1854,8 @@ void unknownC23E8A(short arg1) {
 	unknown7E5E77 = 0;
 	short x02;
 	memset(&unknown7EA9B9[0], 0, unknown7EA9B9.length);
-	if (arg1 > numBattlersInBackRow) {
-		x02 = frontRowBattlers[arg1 - numBattlersInBackRow - 1];
+	if (arg1 > numBattlersInFrontRow) {
+		x02 = frontRowBattlers[arg1 - numBattlersInFrontRow - 1];
 	} else {
 		x02 = backRowBattlers[arg1 - 1];
 	}
@@ -2078,21 +2078,21 @@ void unknownC2437E() {
 
 /// $C24434
 short unknownC24434(Battler* arg1) {
-	arg1.currentTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInBackRow + numBattlersInFrontRow)) + 1);
-	if (arg1.currentTarget > numBattlersInBackRow) {
-		return frontRowBattlers[arg1.currentTarget - numBattlersInBackRow - 1];
+	arg1.currentTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInFrontRow + numBattlersInBackRow)) + 1);
+	if (arg1.currentTarget > numBattlersInFrontRow) {
+		return frontRowBattlers[arg1.currentTarget - numBattlersInFrontRow - 1];
 	}
 	return backRowBattlers[arg1.currentTarget - 1];
 }
 
 /// $C24477
 void chooseTarget(Battler* arg1) {
-	for (short i = 0; i < numBattlersInBackRow; i++) {
+	for (short i = 0; i < numBattlersInFrontRow; i++) {
 		if (checkIfValidTarget(backRowBattlers[i]) == 0) {
 			goto Unknown4;
 		}
 	}
-	for (short i = 0; i < numBattlersInFrontRow; i++) {
+	for (short i = 0; i < numBattlersInBackRow; i++) {
 		if (checkIfValidTarget(frontRowBattlers[i]) == 0) {
 			goto Unknown4;
 		}
@@ -2162,9 +2162,9 @@ void chooseTarget(Battler* arg1) {
 			arg1.actionTargetting |= Targetted.row;
 			if (arg1.side == BattleSide.foes) {
 				arg1.currentTarget = 1;
-			} else if (numBattlersInBackRow == 0) {
-				arg1.currentTarget = 2;
 			} else if (numBattlersInFrontRow == 0) {
+				arg1.currentTarget = 2;
+			} else if (numBattlersInBackRow == 0) {
 				arg1.currentTarget = 1;
 			} else {
 				arg1.currentTarget = (rand() & 1) + 1;
@@ -2194,8 +2194,8 @@ void resolveTargetting(Battler* battler) {
 			removeStatusUntargettableTargets();
 			break;
 		case Targetted.enemies | Targetted.single:
-			if (battler.currentTarget > numBattlersInBackRow) {
-				targetBattler(frontRowBattlers[battler.currentTarget - numBattlersInBackRow - 1]);
+			if (battler.currentTarget > numBattlersInFrontRow) {
+				targetBattler(frontRowBattlers[battler.currentTarget - numBattlersInFrontRow - 1]);
 			} else {
 				targetBattler(backRowBattlers[battler.currentTarget - 1]);
 			}
@@ -8154,8 +8154,8 @@ void drawBattleSprites() {
 /// $C2F917
 void unknownC2F917() {
 	short x0E;
-	numBattlersInFrontRow = 0;
 	numBattlersInBackRow = 0;
+	numBattlersInFrontRow = 0;
 	for (short i = 8; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
@@ -8167,13 +8167,13 @@ void unknownC2F917() {
 			continue;
 		}
 		if (battlersTable[i].row != 0) {
-			numBattlersInFrontRow++;
-		} else {
 			numBattlersInBackRow++;
+		} else {
+			numBattlersInFrontRow++;
 		}
 	}
 	short x10 = 0;
-	for (short i = 0; i < numBattlersInBackRow; i++) {
+	for (short i = 0; i < numBattlersInFrontRow; i++) {
 		ushort x04 = 0xFFFF;
 		for (short j = 8; j < battlersTable.length; j++) {
 			if (battlersTable[j].consciousness == 0) {
@@ -8199,7 +8199,7 @@ void unknownC2F917() {
 		x10 = x04;
 	}
 	x10 = 0;
-	for (short i = 0; i < numBattlersInFrontRow; i++) {
+	for (short i = 0; i < numBattlersInBackRow; i++) {
 		ushort x04 = 0xFFFF;
 		for (short j = 8; j < battlersTable.length; j++) {
 			if (battlersTable[j].consciousness == 0) {
@@ -8227,7 +8227,7 @@ void unknownC2F917() {
 }
 
 /// $C2FAD8
-short unknownC2FAD2(short /+unused+/) {
+short getPhysicalTargettingAllowed(short position) {
 	return 1;
 }
 

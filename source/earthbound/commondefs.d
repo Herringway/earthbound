@@ -5653,6 +5653,12 @@ enum BattleMenuOptions {
 	runAway = 6,
 	prayMirror = 7,
 }
+///
+enum Row {
+	front = 0,
+	back = 1,
+}
+
 
 ///
 struct GameState {

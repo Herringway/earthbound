@@ -1169,8 +1169,8 @@ void unknownC11F8A() {
 }
 
 /// $C11FBC
-short unknownC11FBC(short arg1, short arg2) {
-	if (arg1 == 0) {
+short unknownC11FBC(short row, short arg2) {
+	if (row == Row.front) {
 		return unknown7EAD5A[arg2];
 	} else {
 		return unknown7EAD6A[arg2];
@@ -1178,27 +1178,27 @@ short unknownC11FBC(short arg1, short arg2) {
 }
 
 /// $C11FD4
-short unknownC11FD4(short arg1, short arg2, short arg3) {
-	if ((arg1 == 1) && (battleActionTable[arg3].type == 1) && (unknownC2FAD2(arg2) == 0)) {
+short getTargettingAllowed(short row, short arg2, short action) {
+	if ((row == Row.back) && (battleActionTable[action].type == ActionType.physical) && (getPhysicalTargettingAllowed(arg2) == 0)) {
 		return 0;
 	}
 	return 1;
 }
 
 /// $C12012
-short unknownC12012(short arg1, short arg2, short arg3) {
+short getNextTargetRight(short row, short arg2, short action) {
 	short x0E;
 	ubyte* x04;
-	if (arg1 == 0) {
-		x0E = numBattlersInFrontRow;
+	if (row == Row.front) {
+		x0E = numBattlersInBackRow;
 		x04 = &unknown7EAD5A[0];
 	} else {
-		x0E = numBattlersInBackRow;
+		x0E = numBattlersInFrontRow;
 		x04 = &unknown7EAD6A[0];
 	}
 	for (short i = 0; i < x0E; i++) {
 		if ((x04++)[0] > arg2) {
-			if (unknownC11FD4(arg1, i, arg3) != 0) {
+			if (getTargettingAllowed(row, i, action) != 0) {
 				return i;
 			}
 		}
@@ -1207,19 +1207,19 @@ short unknownC12012(short arg1, short arg2, short arg3) {
 }
 
 /// $C12070
-short unknownC12070(short arg1, short arg2, short arg3) {
+short getNextTargetLeft(short row, short arg2, short action) {
 	ubyte* x04;
 	short x;
-	if (arg1 == 0) {
-		x = numBattlersInBackRow;
+	if (row == Row.front) {
+		x = numBattlersInFrontRow;
 		x04 = &unknown7EAD5A[x - 1];
 	} else {
-		x = numBattlersInFrontRow;
+		x = numBattlersInBackRow;
 		x04 = &unknown7EAD6A[x - 1];
 	}
 	for (short i = cast(short)(x - 1); i + 1 != 0; i--) {
 		if ((x04--)[0] < arg2) {
-			if (unknownC11FD4(arg1, i, arg3) != 0) {
+			if (getTargettingAllowed(row, i, action) != 0) {
 				return i;
 			}
 		}
@@ -1233,7 +1233,7 @@ void unknownC120D6(short arg1, short arg2) {
 	createWindowN(Window.unknown31);
 	printString(battleToText.length, &battleToText[0]);
 	if (arg2 != -1) {
-		unknownC23E8A(cast(short)(arg1 * numBattlersInBackRow + arg2 + 1));
+		unknownC23E8A(cast(short)(arg1 * numBattlersInFrontRow + arg2 + 1));
 		unknownC3E75D(0);
 		printString(0xFF, getBattleAttackerName());
 		ubyte* x12 = (arg1 != 0) ? &battlersTable[frontRowBattlers[arg2]].afflictions[0] : &battlersTable[backRowBattlers[arg2]].afflictions[0];
@@ -1246,47 +1246,47 @@ void unknownC120D6(short arg1, short arg2) {
 }
 
 /// $C121B8
-short unknownC121B8(short arg1, short arg2) {
+short pickTargetSingle(short arg1, short action) {
 	short x0E;
 	short x18 = 0;
 	short x16 = 0;
-	short x04 = (numBattlersInBackRow != 0) ? 0 : 1;
+	short row = (numBattlersInFrontRow != 0) ? Row.front : Row.back;
 	if (currentGiygasPhase != 0) {
-		x04 = 1;
+		row = Row.back;
 	}
 	outer: while (true) {
 		short x12;
 		short x10;
-		short x14 = unknownC11FBC(x04, x16);
-		singleEnemyFlashingOn(x04, x16);
+		short x14 = unknownC11FBC(row, x16);
+		singleEnemyFlashingOn(row, x16);
 		if (x18 == 0) {
-			unknownC120D6(x04, x16);
+			unknownC120D6(row, x16);
 		}
 		x18++;
 		windowTick();
 		Unknown4:
 		unknownC12E42();
-		if ((((padPress[0] & Pad.up) == 0) || (x04 != 0) || (numBattlersInFrontRow == 0)) && (((padPress[0] & Pad.down) == 0) || (x04 != 1) || (numBattlersInBackRow == 0))) {
+		if ((((padPress[0] & Pad.up) == 0) || (row != 0) || (numBattlersInBackRow == 0)) && (((padPress[0] & Pad.down) == 0) || (row != 1) || (numBattlersInFrontRow == 0))) {
 			x12 = Sfx.cursor2;
 			if ((padPress[0] & Pad.left) != 0) {
-				x10 = unknownC12070(x04, x14, arg2);
+				x10 = getNextTargetLeft(row, x14, action);
 				if (x10 == -1) {
-					x10 = unknownC12070(x04 ^ 1, x14, arg2);
+					x10 = getNextTargetLeft(row ^ 1, x14, action);
 					if (x10 == -1) {
 						continue;
 					}
 				}
 			} else if ((padPress[0] & Pad.right) != 0) {
-				x10 = unknownC12012(x04, x14, arg2);
+				x10 = getNextTargetRight(row, x14, action);
 				if (x10 == -1) {
-					x10 = unknownC12012(x04 ^ 1, x14, arg2);
+					x10 = getNextTargetRight(row ^ 1, x14, action);
 					if (x10 == -1) {
 						continue;
 					}
 				}
 			} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
 				singleEnemyFlashingOff();
-				x0E = cast(short)(x04 * numBattlersInBackRow + x16 + 1);
+				x0E = cast(short)(row * numBattlersInFrontRow + x16 + 1);
 				playSfx(Sfx.cursor1);
 				break;
 			} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (arg1 == 1)) {
@@ -1299,9 +1299,9 @@ short unknownC121B8(short arg1, short arg2) {
 			}
 		} else {
 			x12 = Sfx.cursor3;
-			x10 = unknownC12012(x04 ^ 1, cast(short)(x14 - 1), arg2);
+			x10 = getNextTargetRight(row ^ 1, cast(short)(x14 - 1), action);
 			if (x10 == -1) {
-				x10 = unknownC12070(x04 ^ 1, x14, arg2);
+				x10 = getNextTargetLeft(row ^ 1, x14, action);
 				if (x10 == -1) {
 					continue;
 				}
@@ -1320,8 +1320,8 @@ short unknownC121B8(short arg1, short arg2) {
 }
 
 /// $C12362
-short unknownC12362(short arg1) {
-	short x12 = (numBattlersInBackRow != 0) ? 0 : 1;
+short pickTargetRow(short arg1) {
+	short x12 = (numBattlersInFrontRow != 0) ? 0 : 1;
 	short x10;
 	short x0E;
 	outer: while (true) {
@@ -1350,7 +1350,7 @@ short unknownC12362(short arg1) {
 			} else {
 				continue;
 			}
-			if (((x10 != 0) || (numBattlersInBackRow == 0)) && ((x10 != 0) || (numBattlersInFrontRow != 0))) {
+			if (((x10 != 0) || (numBattlersInFrontRow == 0)) && ((x10 != 0) || (numBattlersInBackRow != 0))) {
 				playSfx(x0E);
 				x12 = x10;
 			}
@@ -1361,11 +1361,11 @@ short unknownC12362(short arg1) {
 }
 
 /// $C1242E
-short unknownC1242E(short arg1, short arg2, short arg3) {
+short pickTarget(short arg1, short arg2, short action) {
 	if (arg1 != 0) {
-		return unknownC12362(arg2);
+		return pickTargetRow(arg2);
 	} else {
-		return unknownC121B8(arg2, arg3);
+		return pickTargetSingle(arg2, action);
 	}
 }
 
@@ -5404,7 +5404,7 @@ short determineTargetting(short arg1, short arg2) {
 					break;
 				case ActionTarget.one:
 					x16 = Targetted.enemies | Targetted.single;
-					x01 = cast(ubyte)unknownC1242E(0, 1, arg1);
+					x01 = cast(ubyte)pickTarget(0, 1, arg1);
 					break;
 				case ActionTarget.random:
 					x16 = Targetted.enemies | Targetted.single;
@@ -5412,7 +5412,7 @@ short determineTargetting(short arg1, short arg2) {
 					break;
 				case ActionTarget.row:
 					x16 = Targetted.enemies | Targetted.row;
-					x01 = cast(ubyte)unknownC1242E(1, 1, arg1);
+					x01 = cast(ubyte)pickTarget(1, 1, arg1);
 					break;
 				case ActionTarget.all:
 				default:
@@ -6663,8 +6663,8 @@ short battleSelectItemF(BattleMenuSelection* arg1) {
 }
 
 /// $C1DE37
-short unknownC1242EF(short arg1, short arg2, short arg3) {
-	return unknownC1242E(arg1, arg2, arg3);
+short pickTargetF(short arg1, short arg2, short arg3) {
+	return pickTarget(arg1, arg2, arg3);
 }
 
 /// $C1DE3D
