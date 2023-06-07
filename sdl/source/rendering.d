@@ -146,6 +146,14 @@ align:
 			put(sink, "\n");
 		}
 	}
+	const(ubyte[]) getRegistersConst() const {
+		const ubyte* start = cast(const ubyte*)(&g_frameData.INIDISP);
+		const ubyte* end   = cast(const ubyte*)(&g_frameData.vram);
+		return start[0..(end-start)];
+	}
+	const(HDMAWrite[]) getValidHdmaDataConst() const {
+		return hdmaData[0..numHdmaWrites];
+	}
 }
 
 public __gshared SnesDrawFrameData g_frameData;
