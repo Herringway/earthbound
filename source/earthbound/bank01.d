@@ -1257,6 +1257,7 @@ short pickTargetSingle(short arg1, short action) {
 	outer: while (true) {
 		short x12;
 		short x10;
+		short tmpRow;
 		short x14 = unknownC11FBC(row, x16);
 		singleEnemyFlashingOn(row, x16);
 		if (x18 == 0) {
@@ -1269,17 +1270,21 @@ short pickTargetSingle(short arg1, short action) {
 		if ((((padPress[0] & Pad.up) == 0) || (row != 0) || (numBattlersInBackRow == 0)) && (((padPress[0] & Pad.down) == 0) || (row != 1) || (numBattlersInFrontRow == 0))) {
 			x12 = Sfx.cursor2;
 			if ((padPress[0] & Pad.left) != 0) {
-				x10 = getNextTargetLeft(row, x14, action);
+				tmpRow = row;
+				x10 = getNextTargetLeft(tmpRow, x14, action);
 				if (x10 == -1) {
-					x10 = getNextTargetLeft(row ^ 1, x14, action);
+					tmpRow = row ^ 1;
+					x10 = getNextTargetLeft(tmpRow, x14, action);
 					if (x10 == -1) {
 						continue;
 					}
 				}
 			} else if ((padPress[0] & Pad.right) != 0) {
-				x10 = getNextTargetRight(row, x14, action);
+				tmpRow = row;
+				x10 = getNextTargetRight(tmpRow, x14, action);
 				if (x10 == -1) {
-					x10 = getNextTargetRight(row ^ 1, x14, action);
+					tmpRow = row ^ 1;
+					x10 = getNextTargetRight(tmpRow, x14, action);
 					if (x10 == -1) {
 						continue;
 					}
@@ -1299,9 +1304,10 @@ short pickTargetSingle(short arg1, short action) {
 			}
 		} else {
 			x12 = Sfx.cursor3;
-			x10 = getNextTargetRight(row ^ 1, cast(short)(x14 - 1), action);
+			tmpRow = row ^ 1;
+			x10 = getNextTargetRight(tmpRow, cast(short)(x14 - 1), action);
 			if (x10 == -1) {
-				x10 = getNextTargetLeft(row ^ 1, x14, action);
+				x10 = getNextTargetLeft(tmpRow, x14, action);
 				if (x10 == -1) {
 					continue;
 				}
@@ -1313,6 +1319,7 @@ short pickTargetSingle(short arg1, short action) {
 		windowTick();
 		setInstantPrinting();
 		x16 = x10;
+		row = tmpRow;
 		playSfx(x12);
 	}
 	closeFocusWindowN();
