@@ -632,7 +632,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				if (battler.id == 0) {
 					continue;
 				}
-				if (ImGui.TreeNode(getBattlerName(battler))) {
+				if (ImGui.TreeNode(format!"%s - %s"(idx, getBattlerName(battler)))) {
 					InputEditable("ID", battler.id);
 					InputEditable("Sprite", battler.sprite);
 					InputEditable("Unknown3", battler.unknown3);
