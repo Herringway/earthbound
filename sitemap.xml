@@ -807,10 +807,13 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/getCItem.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getCNum.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getItemType.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/getNextTargetLeft.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/getNextTargetRight.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getOffBicycleWithText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getPSIName.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getSecondaryMemory.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getSectorUsableItem.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/getTargettingAllowed.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getTextX.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getTextY.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/getWorkingMemory.html</loc></url>
@@ -838,6 +841,10 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/openTextSpeedMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/overworldPSIMenu.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/overworldUseItem.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/pickTarget.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/pickTargetF.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/pickTargetRow.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank01/pickTargetSingle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/printEquipment.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/printEquipmentStats.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/printItemName.html</loc></url>
@@ -919,14 +926,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC11F5A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC11F8A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC11FBC.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC11FD4.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC12012.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC12070.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC120D6.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC121B8.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC12362.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC1242E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank01/unknownC1242EF.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC1244C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC12BD5.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank01/unknownC12BF3.html</loc></url>
@@ -1211,6 +1211,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/getItemSubtype.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getItemSubtype2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getPartyCharacterName.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/getPhysicalTargettingAllowed.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getShieldTargetting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/giygasHurtPrayer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/healPoison.html</loc></url>
@@ -1371,7 +1372,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F0D1.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F121.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2F917.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC2FAD2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2FADE.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2FEF9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2FF9A.html</loc></url>
@@ -2851,6 +2851,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/RollingStat.current.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/RollingStat.target.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/ROR.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/Row.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SaveBlock.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SaveBlock.checksum.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/SaveBlock.checksumComplement.html</loc></url>
