@@ -1190,10 +1190,10 @@ short getNextTargetRight(short row, short arg2, short action) {
 	short x0E;
 	ubyte* x04;
 	if (row == Row.front) {
-		x0E = numBattlersInBackRow;
+		x0E = numBattlersInFrontRow;
 		x04 = &unknown7EAD5A[0];
 	} else {
-		x0E = numBattlersInFrontRow;
+		x0E = numBattlersInBackRow;
 		x04 = &unknown7EAD6A[0];
 	}
 	for (short i = 0; i < x0E; i++) {
