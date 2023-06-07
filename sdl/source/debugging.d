@@ -1169,10 +1169,12 @@ static immutable string[][] afflictionNames = [
 void dumpVRAM() {
 	import std.stdio : File;
 	static int dumpVramCount = 0;
+	File(format!"gfxstate%03d.regs"(dumpVramCount), "wb").rawWrite(g_frameData.getRegistersConst());
 	File(format!"gfxstate%03d.vram"(dumpVramCount), "wb").rawWrite(g_frameData.vram);
 	File(format!"gfxstate%03d.cgram"(dumpVramCount), "wb").rawWrite(g_frameData.cgram);
 	File(format!"gfxstate%03d.oam"(dumpVramCount), "wb").rawWrite(g_frameData.oam1);
 	File(format!"gfxstate%03d.oam2"(dumpVramCount), "wb").rawWrite(g_frameData.oam2);
+	File(format!"gfxstate%03d.hdma"(dumpVramCount), "wb").rawWrite(g_frameData.getValidHdmaDataConst());
 	dumpVramCount++;
 }
 
