@@ -147,9 +147,9 @@ align:
 		}
 	}
 	const(ubyte[]) getRegistersConst() const {
-		const ubyte* start = cast(const ubyte*)(&g_frameData.INIDISP);
-		const ubyte* end   = cast(const ubyte*)(&g_frameData.vram);
-		return start[0..(end-start)];
+		const ubyte* first = cast(const ubyte*)(&g_frameData.INIDISP);
+		const ubyte* last  = cast(const ubyte*)(&g_frameData.SETINI);
+		return first[0..(last-first+1)];
 	}
 	const(HDMAWrite[]) getValidHdmaDataConst() const {
 		return hdmaData[0..numHdmaWrites];
