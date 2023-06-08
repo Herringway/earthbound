@@ -1354,7 +1354,7 @@ immutable ubyte[3][5] unknownC3F972 = [
 ];
 
 /// $C3F981
-void unknownC3F981(short arg1) {
+void unknownC3F981(ushort arg1) {
 	if (arg1 < 35) {
 		showPSIAnimation(arg1);
 		return;
@@ -1430,7 +1430,7 @@ immutable ubyte[10][26] unknownC3FB45 = [
 ];
 
 /// $C3FAC9
-short unknownC3FAC9(short arg1, short arg2) {
+short unknownC3FAC9(ushort arg1, ushort arg2) {
 	if (currentTarget.npcID == EnemyID.tinyLilGhost) {
 		return 1;
 	}
