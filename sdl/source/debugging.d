@@ -1189,25 +1189,3 @@ void dumpSave() {
 	memcpy(&block.eventFlags, &eventFlags[0], eventFlags.sizeof);
 	block.toFile!YAML("save.yaml");
 }
-
-string getBattlerName(ref Battler battler) {
-	scope buffer = new ubyte[](30);
-	if ((battler.side == BattleSide.foes) || (battler.npcID != 0)) {
-		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[battler.id].name[0], &buffer[0], 25);
-		if ((battler.side == BattleSide.foes) && ((battler.theFlag != 1) ||(unknownC2B66A(battler.unknown76) != 2))) {
-			x14[0] = ebChar(' ');
-			unknown7E5E78 = 1;
-			x14[1] = cast(ubyte)(battler.theFlag + 0x70);
-		}
-		if (battler.id == EnemyID.myPet) {
-			memcpy(&buffer[0], &gameState.petName[0], gameState.petName.length);
-			buffer[gameState.petName.length] = 0;
-		}
-		return printable(buffer);
-	} else {
-		if (battler.id <= 4) {
-			return printable(partyCharacters[battler.row].name);
-		}
-	}
-	return "";
-}
