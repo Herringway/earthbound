@@ -6918,13 +6918,18 @@ void updateEntitySpriteByFrameVarCommon(short arg1) {
 }
 void updateEntitySpriteCurrentFrame0() {
 	useSecondSpriteFrame = 0;
-	if (unknownC0C711() != 0) {
+	// BUG: The result is never checked. The game uses the stack address to determine whether or not to update the sprite.
+	// The function fails to update sprites in several cases anyway, so there's nothing that needs to be fixed here...
+	unknownC0C711();
+	if (1 != 0) {
 		updateEntitySpriteCurrentCommon();
 	}
 }
 void updateEntitySpriteCurrentFrame1() {
 	useSecondSpriteFrame = 1;
-	if (unknownC0C711() != 0) {
+	// see above
+	unknownC0C711();
+	if (1 != 0) {
 		updateEntitySpriteCurrentCommon();
 	}
 }
