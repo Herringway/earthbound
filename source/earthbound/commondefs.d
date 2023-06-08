@@ -6218,10 +6218,10 @@ struct NPC {
 	}
 }
 ///
-struct UnknownC42B0DEntry {
-	ubyte unknown0; ///
+struct SpriteMapTemplates {
+	ubyte count; ///
 	ubyte unknown1; ///
-	SpriteMap[2][] unknown2; ///
+	SpriteMap[2][] spriteMapTemplates; ///
 }
 ///
 struct UnknownC42B0DSubEntry {

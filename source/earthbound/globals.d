@@ -305,8 +305,8 @@ __gshared short footstepSoundID; /// $(DOLLAR)289A
 __gshared short footstepSoundIDOverride; /// $(DOLLAR)289C
 __gshared ushort[maxEntities] entityCollidedObjects; /// $(DOLLAR)289E
 __gshared ushort[maxEntities] entityObstacleFlags; /// $(DOLLAR)28DA
-__gshared ushort[maxEntities] entityUnknown2916; /// $(DOLLAR)2916
-__gshared ushort[maxEntities] entityUnknown2952; /// $(DOLLAR)2952
+__gshared ushort[maxEntities] entitySpriteMapSizes; /// $(DOLLAR)2916
+__gshared ushort[maxEntities] entitySpriteMapBeginningIndices; /// $(DOLLAR)2952
 __gshared ushort[maxEntities] entityVramAddresses; /// $(DOLLAR)298E
 //__gshared ushort[maxEntities] EntityGraphicsPointersLow; /// $(DOLLAR)29CA
 //__gshared ushort[maxEntities] EntityGraphicsPointersHigh; /// $(DOLLAR)2A06
@@ -422,9 +422,9 @@ __gshared short unknown7E4474; /// $(DOLLAR)4474
 __gshared ushort[16][16] unknown7E4476; /// $(DOLLAR)4476
 __gshared short unknown7E4676; /// $(DOLLAR)4676
 
-__gshared short unknown7E467A; /// $(DOLLAR)467A
-__gshared short unknown7E467C; /// $(DOLLAR)467C
-__gshared SpriteMap[179] spriteTable7E467E; /// $(DOLLAR)467E
+__gshared short newSpriteTileWidth; /// $(DOLLAR)467A
+__gshared short newSpriteTileHeight; /// $(DOLLAR)467C
+__gshared SpriteMap[179] overworldSpriteMaps; /// $(DOLLAR)467E
 
 __gshared ubyte[88] spriteVramTable; /// $(DOLLAR)4A00
 __gshared short unknown7E4A58; /// $(DOLLAR)4A58

@@ -268,8 +268,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("L/R height", entityHitboxLeftRightHeight[entity]);
 				InputEditable!Direction("Moving direction", entityMovingDirection[entity]);
 				InputEditable("u284C", entityUnknown284C[entity]);
-				InputEditable("u2916", entityUnknown2916[entity]);
-				InputEditable("u2952", entityUnknown2952[entity]);
+				InputEditable("SpriteMap size", entitySpriteMapSizes[entity]);
+				InputEditable("SpriteMap index", entitySpriteMapBeginningIndices[entity]);
 				InputEditable("Speed", entityMovementSpeed[entity]);
 				InputEditable("u2BE6", entityUnknown2BE6[entity]);
 				InputEditable("u2C22", entityUnknown2C22[entity]);
@@ -321,8 +321,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Animated tile count", loadedAnimatedTileCount);
 		InputEditable("Unknown7E4474", unknown7E4474);
 		InputEditable("Unknown7E4676", unknown7E4676);
-		InputEditable("Unknown7E467A", unknown7E467A);
-		InputEditable("Unknown7E467C", unknown7E467C);
+		InputEditable("New sprite tile width", newSpriteTileWidth);
+		InputEditable("New sprite tile height", newSpriteTileHeight);
 		InputEditable("Unknown7E4A58", unknown7E4A58);
 		InputEditable("Enemy spawns enabled", enemySpawnsEnabled);
 		InputEditable("Overworld enemy count", overworldEnemyCount);

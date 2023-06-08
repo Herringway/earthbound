@@ -795,29 +795,29 @@ void initializeMiscObjectData() {
 
 /// $C01A86
 void clearSpriteTable() {
-	ubyte* tmpPtr = cast(ubyte*)&spriteTable7E467E[0];
-	for (short i = 0; i < spriteTable7E467E.sizeof; i++) {
+	ubyte* tmpPtr = cast(ubyte*)&overworldSpriteMaps[0];
+	for (short i = 0; i < overworldSpriteMaps.sizeof; i++) {
 		tmpPtr[i] = 0xFF;
 	}
 }
 
 /// $C01A9D
-short findFree7E4682(ushort arg1) {
+short findFreeSpriteMap(ushort arg1) {
 	arg1 /= 5; //convert offset to index
 	short x10 = 0;
 	unknown7E4A6A = cast(short)(arg1 * 5);
 	Unknown1:
-	while (x10 < spriteTable7E467E.length) {
-		if (spriteTable7E467E[x10].specialFlags == 0xFF) {
+	while (x10 < overworldSpriteMaps.length) {
+		if (overworldSpriteMaps[x10].specialFlags == 0xFF) {
 			goto Found;
 		}
 		x10++;
 	}
 	return -255;
 	Found:
-	if ((x10 + arg1) < spriteTable7E467E.length) {
+	if ((x10 + arg1) < overworldSpriteMaps.length) {
 		for (short i = x10; i < x10 + arg1; i++) {
-			if (spriteTable7E467E[i].specialFlags == 0xFF) {
+			if (overworldSpriteMaps[i].specialFlags == 0xFF) {
 				continue;
 			}
 			x10 = cast(short)(i + 1);
@@ -830,22 +830,22 @@ short findFree7E4682(ushort arg1) {
 
 /// $C01B15
 void unknownC01B15(const(SpriteMap)* arg1) {
-	if (arg1 < &spriteTable7E467E[0]) {
+	if (arg1 < &overworldSpriteMaps[0]) {
 		return;
 	}
 	//??????????
-	if (cast(const(ubyte)*)arg1 > cast(ubyte*)&spriteTable7E467E.ptr[179] + 1) {
+	if (cast(const(ubyte)*)arg1 > cast(ubyte*)&overworldSpriteMaps.ptr[179] + 1) {
 		return;
 	}
-	short x10 = cast(short)(arg1 - &spriteTable7E467E[0]);
+	short x10 = cast(short)(arg1 - &overworldSpriteMaps[0]);
 	short i = 0;
 	while(i < 2) {
-		ubyte y = spriteTable7E467E[x10].specialFlags;
-		spriteTable7E467E[x10].yOffset = 0xFF;
-		spriteTable7E467E[x10].firstTile = 0xFF;
-		spriteTable7E467E[x10].flags = 0xFF;
-		spriteTable7E467E[x10].xOffset = 0xFF;
-		spriteTable7E467E[x10].specialFlags = 0xFF;
+		ubyte y = overworldSpriteMaps[x10].specialFlags;
+		overworldSpriteMaps[x10].yOffset = 0xFF;
+		overworldSpriteMaps[x10].firstTile = 0xFF;
+		overworldSpriteMaps[x10].flags = 0xFF;
+		overworldSpriteMaps[x10].xOffset = 0xFF;
+		overworldSpriteMaps[x10].specialFlags = 0xFF;
 		x10 += 1;
 		if ((y & 0x80) != 0) { //if this wasn't a terminating entry, clear the next one too
 			i++;
@@ -894,48 +894,47 @@ void spriteVramTableOverwrite(short needle, ubyte tableValue) {
 }
 
 /// $C01C52
-short unknownC01C52(short arg1, short arg2, short arg3) {
-	short spriteNumTiles = cast(short)((((arg1 + 1) & 0xFFFE) * ((arg2 + 1) & 0xFFFE)) / 4);
-	short local3 = spriteVramTableAllocateSpace(spriteNumTiles, arg3);
-	if (local3 < 0) {
-		return local3;
+short reserveOverworldSpriteVRAM(short tileWidth, short tileHeight, short needle) {
+	short spriteNumTiles = cast(short)((((tileWidth + 1) & 0xFFFE) * ((tileHeight + 1) & 0xFFFE)) / 4);
+	short firstTile = spriteVramTableAllocateSpace(spriteNumTiles, needle);
+	if (firstTile < 0) {
+		return firstTile;
 	}
-	if ((((arg1 + 1) & 0xFFFE) != arg1) || (((arg2 + 1) & 0xFFFE) != arg2)) {
-		short local6;
-		for (short i = local3; i <local3 + spriteNumTiles; i += local6) {
-			local6 = cast(short)(((i + 8) & 0xF8) - i);
-			if (local3 + spriteNumTiles - i < local6) {
-				local6 = cast(short)(local3 + spriteNumTiles - i);
+	if ((((tileWidth + 1) & 0xFFFE) != tileWidth) || (((tileHeight + 1) & 0xFFFE) != tileHeight)) {
+		short tileCount;
+		for (short i = firstTile; i < firstTile + spriteNumTiles; i += tileCount) {
+			tileCount = cast(short)(((i + 8) & 0xF8) - i);
+			if (firstTile + spriteNumTiles - i < tileCount) {
+				tileCount = cast(short)(firstTile + spriteNumTiles - i);
 			}
-			copyToVRAM(3, cast(ushort)(local6 * 64), cast(ushort)(unknownC42F8C[i] + 0x4000), &blankTiles[0]);
-			copyToVRAM(3, cast(ushort)(local6 * 64), cast(ushort)(unknownC42F8C[i] + 0x4100), &blankTiles[0]);
+			copyToVRAM(3, cast(ushort)(tileCount * 64), cast(ushort)(overworldSpriteVRAMOffsets[i] + 0x4000), &blankTiles[0]);
+			copyToVRAM(3, cast(ushort)(tileCount * 64), cast(ushort)(overworldSpriteVRAMOffsets[i] + 0x4100), &blankTiles[0]);
 		}
 	}
-	return local3;
+	return firstTile;
 }
 
 /// $C01D38
-void unknownC01D38(short arg1, short arg2, short arg3, const(UnknownC42B0DEntry)* arg4) {
-	// why???
-	SpriteMap* x10 = &spriteTable7E467E.ptr[arg1];
-	const(SpriteMap)* x06 = &arg4.unknown2[0][0];
+void prepareSpriteMap(short arg1, short arg2, short flags, const(SpriteMapTemplates)* spriteTemplates) {
+	SpriteMap* newSpriteMap = &overworldSpriteMaps.ptr[arg1];
+	const(SpriteMap)* templateSpriteMap = &spriteTemplates.spriteMapTemplates[0][0];
 	for (short i = 0; i < 2; i++) {
-		for (short j = 0; j < arg4.unknown0; j++) {
-			x10.yOffset = x06.yOffset;
-			x10.firstTile = cast(ubyte)unknownC4303C[arg2 + j];
-			x10.flags = cast(ubyte)((x06.flags & 0xFE) | ((unknownC4303C[arg2 + j] >> 8) & 0xFF) | arg3);
-			x10.xOffset = x06.xOffset;
-			x10.specialFlags = x06.specialFlags;
-			x10++;
-			x06++;
+		for (short j = 0; j < spriteTemplates.count; j++) {
+			newSpriteMap.yOffset = templateSpriteMap.yOffset;
+			newSpriteMap.firstTile = cast(ubyte)overworldSpriteOAMTileNumbers[arg2 + j];
+			newSpriteMap.flags = cast(ubyte)((templateSpriteMap.flags & 0xFE) | ((overworldSpriteOAMTileNumbers[arg2 + j] >> 8) & 0xFF) | flags);
+			newSpriteMap.xOffset = templateSpriteMap.xOffset;
+			newSpriteMap.specialFlags = templateSpriteMap.specialFlags;
+			newSpriteMap++;
+			templateSpriteMap++;
 		}
 	}
 }
 
 /// $C01DED
-short unknownC01DED(short arg1) {
-	unknown7E467A = spriteGroupingPointers[arg1].width / 16;
-	unknown7E467C = spriteGroupingPointers[arg1].height;
+short getOverworldSpriteTileSize(short arg1) {
+	newSpriteTileWidth = spriteGroupingPointers[arg1].width / 16;
+	newSpriteTileHeight = spriteGroupingPointers[arg1].height;
 	return spriteGroupingPointers[arg1].size;
 }
 
@@ -948,13 +947,13 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 			return 0;
 		}
 	}
-	short x02 = unknownC01DED(sprite);
-	short x21 = unknownC01C52(unknown7E467A, unknown7E467C, index);
-	assert(x21 >= 0);
-	short x1F = findFree7E4682(unknownC42B0D[x02].unknown0 * 10);
-	assert(x1F >= 0);
+	short newEntitySize = getOverworldSpriteTileSize(sprite);
+	short spriteMapBeginningIndex = reserveOverworldSpriteVRAM(newSpriteTileWidth, newSpriteTileHeight, index);
+	assert(spriteMapBeginningIndex >= 0);
+	short newSpriteMapIndex = findFreeSpriteMap(overworldSpriteTemplates[newEntitySize].count * 10);
+	assert(newSpriteMapIndex >= 0);
 	newEntityPriority = 1;
-	unknownC01D38(x1F, x21, spriteGroupingPointers[sprite].spritemapFlags, &unknownC42B0D[x02]);
+	prepareSpriteMap(newSpriteMapIndex, spriteMapBeginningIndex, spriteGroupingPointers[sprite].spritemapFlags, &overworldSpriteTemplates[newEntitySize]);
 	if (index != -1) {
 		entityAllocationMinSlot = index;
 		entityAllocationMaxSlot = cast(short)(index + 1);
@@ -965,10 +964,10 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 		result = initEntity(actionScript, x, y);
 		spriteVramTableOverwrite(-1, cast(ubyte)(result | 0x80));
 	}
-	entitySpriteMapPointers[result] = &spriteTable7E467E[x1F];
-	entityUnknown2916[result] = unknownC42B0D[x02].unknown0 * 5;
-	entityUnknown2952[result] = x21;
-	entityVramAddresses[result] = cast(ushort)(unknownC42F8C[x21] + 0x4000);
+	entitySpriteMapPointers[result] = &overworldSpriteMaps[newSpriteMapIndex];
+	entitySpriteMapSizes[result] = overworldSpriteTemplates[newEntitySize].count * 5;
+	entitySpriteMapBeginningIndices[result] = spriteMapBeginningIndex;
+	entityVramAddresses[result] = cast(ushort)(overworldSpriteVRAMOffsets[spriteMapBeginningIndex] + 0x4000);
 	entityByteWidths[result] = spriteGroupingPointers[sprite].width * 2;
 	entityTileHeights[result] = spriteGroupingPointers[sprite].height;
 	//UNKNOWN_30X2_TABLE_31[result] = spriteGroupingPointers[sprite].spriteBank;
@@ -976,7 +975,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 	//EntityGraphicsPointerHigh[result] = &spriteGroupingPointers[sprite];
 	//EntityGraphicsPointerLow[result] = &spriteGroupingPointers[sprite];
 	entityGraphicsPointers[result] = &spriteGroupingPointers[sprite].sprites[0];
-	if ((unknown7E467C & 1) != 0) {
+	if ((newSpriteTileHeight & 1) != 0) {
 		entityVramAddresses[result] += 0x100;
 	}
 	entitySizes[result] = spriteGroupingPointers[sprite].size;
@@ -985,7 +984,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 	entityHitboxLeftRightWidth[result] = spriteGroupingPointers[sprite].hitboxWidthLR;
 	entityHitboxLeftRightHeight[result] = spriteGroupingPointers[sprite].hitboxHeightLR;
 	entityHitboxEnabled[result] = unknownC42AEB[spriteGroupingPointers[sprite].size];
-	entityUnknown2BE6[result] = cast(ushort)((unknownC42B0D[x02].unknown1 <<8) | (unknownC42B0D[x02].unknown0 - unknownC42B0D[x02].unknown1));
+	entityUnknown2BE6[result] = cast(ushort)((overworldSpriteTemplates[newEntitySize].unknown1 <<8) | (overworldSpriteTemplates[newEntitySize].count - overworldSpriteTemplates[newEntitySize].unknown1));
 	entityEnemySpawnTiles[result] = 0xFFFF;
 	entityEnemyIDs[result] = -1;
 	entityTPTEntries[result] = 0xFFFF;
@@ -6855,7 +6854,7 @@ void unknownC0A384Common(short arg1) {
 // originally handwritten assembly, id was actually an offset
 void unknownC0A3A4(short, short id) {
 	if ((entityUnknown341A[id / 2] !is null) && ((entityUnknown341A[id / 2].lsb & 1) != 0)) {
-		actionScriptVar8C += entityUnknown2916[id / 2] / 5;
+		actionScriptVar8C += entitySpriteMapSizes[id / 2] / 5;
 	}
 	ubyte actionScriptVar00 = 0x30;
 	ubyte actionScriptVar02 = 0x30;
