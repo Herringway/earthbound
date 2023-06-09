@@ -547,7 +547,7 @@ void unknownC42439(short arg1) {
 }
 
 /// $C4245D
-void unknownC4245D(ubyte* arg1) {
+void rectangleWindowEnableHdma(ubyte* arg1) {
 	dmaChannels[4].DMAP = 1;
 	dmaChannels[4].BBAD = 0x26;
 	dmaChannels[4].A1T = arg1;
@@ -3456,56 +3456,67 @@ short unknownC47866(short arg1, short arg2) {
 }
 
 /// $C4789E
-ubyte* unknownC4789E(short arg1, short arg2, short arg3, ubyte* arg4) {
-	if (arg1 == 0) {
-		return arg4;
+ubyte* rectangleWindowAddHdmaEntry(short numLines, short winL, short winR, ubyte* hdmaTable) {
+	if (numLines == 0) {
+		return hdmaTable;
 	}
-	if (arg1 < 0x80) {
-		(arg4++)[0] = cast(ubyte)arg1;
-		(arg4++)[0] = cast(ubyte)arg2;
-		(arg4++)[0] = cast(ubyte)arg3;
+	if (numLines < 0x80) {
+		(hdmaTable++)[0] = cast(ubyte)numLines;
+		(hdmaTable++)[0] = cast(ubyte)winL;
+		(hdmaTable++)[0] = cast(ubyte)winR;
 	} else {
-		(arg4++)[0] = 0x7F;
-		(arg4++)[0] = cast(ubyte)arg2;
-		(arg4++)[0] = cast(ubyte)arg3;
-		(arg4++)[0] = cast(ubyte)(arg1 - 0x7F);
-		(arg4++)[0] = cast(ubyte)arg2;
-		(arg4++)[0] = cast(ubyte)arg3;
+		(hdmaTable++)[0] = 0x7F;
+		(hdmaTable++)[0] = cast(ubyte)winL;
+		(hdmaTable++)[0] = cast(ubyte)winR;
+		(hdmaTable++)[0] = cast(ubyte)(numLines - 0x7F);
+		(hdmaTable++)[0] = cast(ubyte)winL;
+		(hdmaTable++)[0] = cast(ubyte)winR;
 	}
-	return arg4;
+	return hdmaTable;
 }
 
-/// $C47930
-void unknownC47930(short arg1, short arg2, short arg3, short arg4) {
-	short x1A;
-	if ((unknown7E9E3A & 1) != 0) {
-		x1A = 0;
+/// $C47930 - Configures HDMA + window to create a rectangular window on screen
+void rectangleWindowConfigure(short xmin, short xmax, short ymin, short ymax) {
+	short bufferOffset;
+	if ((rectangleWindowBufferIndex & 1) != 0) {
+		bufferOffset = 0;
 	} else {
-		x1A = 0x2FE;
+		bufferOffset = 0x2FE;
 	}
-	short x18 = unknownC47866(arg2, 0xE0);
-	short x16 = unknownC47866(arg4, 0xE0);
-	short x04 = unknownC47866(arg1, 0x100);
-	short x02 = unknownC47866(arg3, 0x100);
-	unknownC4789E(cast(short)(0xE0 - x16 - 1), 0x80, 0x7F, unknownC4789E(cast(short)(x16 - x18), x04, x02, unknownC4789E(x18, 0x80, 0x7F, &unknown7F0000[x1A])))[0] = 0;
-	unknownC4245D(&unknown7F0000[x1A]);
-	unknown7E9E3A++;
+	short yminClamp = unknownC47866(ymin, 224);
+	short ymaxClamp = unknownC47866(ymax, 224);
+	short xminClamp = unknownC47866(xmin, 256);
+	short xmaxClamp = unknownC47866(xmax, 256);
+	ubyte* buffer = &unknown7F0000[bufferOffset];
+	// Configure a region above the rectangle with no windowing (WH0 > WH1 means no window)
+	buffer = rectangleWindowAddHdmaEntry(yminClamp, 0x80, 0x7F, buffer);
+	// Configure the region where we have our rectangle
+	buffer = rectangleWindowAddHdmaEntry(cast(short)(ymaxClamp - yminClamp), xminClamp, xmaxClamp, buffer);
+	// Configure a region below the rectangle with no windowing (WH0 > WH1 means no window)
+	buffer = rectangleWindowAddHdmaEntry(cast(short)(224 - ymaxClamp - 1), 0x80, 0x7F, buffer);
+	// Terminate the table
+	buffer[0] = 0;
+	rectangleWindowEnableHdma(&unknown7F0000[bufferOffset]);
+	rectangleWindowBufferIndex++;
 }
 
 /// $C479E9
-void unknownC479E9() {
-	short x10 = void; // whoops?
-	short x04 = cast(short)(entityAbsXTable[currentEntitySlot] - bg1XPosition);
-	short x12 = cast(short)(entityAbsYTable[currentEntitySlot] - bg1YPosition);
-	short x02 = entityScriptVar0Table[currentEntitySlot];
-	unknownC47930(cast(short)(x04 - x02), x10, cast(short)(x04 + x02), cast(short)(x12 + x02));
+void bunbuunBeamConfigure() {
+	short ymin = void; // whoops?
+	version(noUndefinedBehaviour) {
+		ymin = 0;
+	}
+	short objX = cast(short)(entityAbsXTable[currentEntitySlot] - bg1XPosition);
+	short objY = cast(short)(entityAbsYTable[currentEntitySlot] - bg1YPosition);
+	short beamSize = entityScriptVar0Table[currentEntitySlot];
+	rectangleWindowConfigure(cast(short)(objX - beamSize), ymin, cast(short)(objX + beamSize), cast(short)(objY + beamSize));
 }
 
 /// $C47A27
 void unknownC47A27() {
 	bg1YPosition = cast(short)(entityAbsYTable[currentEntitySlot] - 0x70);
 	short x10 = cast(short)(entityAbsYTable[gameState.firstPartyMemberEntity] - (entityAbsYTable[currentEntitySlot] - 0x70));
-	unknownC47930(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
+	rectangleWindowConfigure(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
 }
 
 /// $C47C3F
