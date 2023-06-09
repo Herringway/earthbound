@@ -1,3 +1,5 @@
+module game;
+
 import std.algorithm : filter;
 import std.conv : to;
 import std.datetime : SysTime;
@@ -58,7 +60,7 @@ void handleNullableOption(alias var)(string, string value) {
 	infof("%s", value);
 	var = value.to!(typeof(var.get));
 }
-
+version(unittest) {} else {
 void main(string[] args) {
 	if (!"settings.yml".exists) {
 		getDefaultSettings().toFile!YAML("settings.yml");
@@ -267,6 +269,7 @@ void main(string[] args) {
 		}
 		frameStatTracker.endFrame();
 	}
+}
 }
 
 Settings getDefaultSettings() {
