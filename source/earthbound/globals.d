@@ -661,7 +661,7 @@ __gshared short unknown7E9E35; /// $(DOLLAR)9E35
 __gshared ubyte unknown7E9E37; /// $(DOLLAR)9E37
 __gshared ubyte unknown7E9E38; /// $(DOLLAR)9E38
 __gshared ubyte unknown7E9E39; /// $(DOLLAR)9E39
-__gshared short unknown7E9E3A; /// $(DOLLAR)9E3A
+__gshared short rectangleWindowBufferIndex; /// $(DOLLAR)9E3A
 __gshared OverworldTask[4] overworldTasks; /// $(DOLLAR)9E3C
 
 __gshared ushort dadPhoneTimer; /// $(DOLLAR)9E54
