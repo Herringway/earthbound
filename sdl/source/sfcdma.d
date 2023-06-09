@@ -147,16 +147,16 @@ void queueHDMA(const DMAChannel channel, scope HDMAWrite[] buffer, ref ushort nu
 		auto lineChunk = chunk[0 .. numBytes];
 		ushort line = 1;
 		do {
-			if (increment) {
-				lineChunk = chunk[line * numBytes .. (line + 1) * numBytes];
-			}
 			foreach (o; 0 .. numBytes) {
 				const addr = cast(ubyte)(baseAddr + o / (1 + shortSized));
-				buffer[0] = HDMAWrite(lineBase, addr, chunk[o]);
+				buffer[0] = HDMAWrite(cast(ushort)(lineBase + line - 1), addr, lineChunk[o]);
 				buffer = buffer[1 .. $];
 			}
-		} while (always && ++line < lines); //always bit means value is written EVERY line
-		count = line * numBytes;
+			if (increment && (line < lines)) {
+				lineChunk = chunk[line * numBytes .. (line + 1) * numBytes];
+			}
+		} while (always && ++line <= lines); //always bit means value is written EVERY line
+		count = (line - always) * numBytes;
 	}
 	const dmap = channel.DMAP;
 	const indirect = !!(dmap & 0b01000000);
