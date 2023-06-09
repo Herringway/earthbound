@@ -6878,7 +6878,7 @@ void unknownC0A3A4(short, short id) {
 	short unknown7E2400Copy = unknown7E2400;
 	if ((unknown7E2400 & 0x8000) != 0) {
 		unknown7E2400 = entityDrawPriority[unknown7E2400Copy & 0x3F];
-		if ((unknown7E2400 & 0x4000) == 0) {
+		if ((entityDrawPriority[actionScriptVar88 / 2] & 0x4000) == 0) {
 			entityDrawPriority[actionScriptVar88 / 2] = 0;
 		}
 	}
