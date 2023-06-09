@@ -106,8 +106,6 @@ void handleHDMA() {
 }
 
 void queueHDMA(const DMAChannel channel, scope HDMAWrite[] buffer, ref ushort numHDMAWrites) pure {
-	import earthbound.hardware : dmaChannels, HDMAIndirectTableEntry;
-	import std.experimental.logger : tracef;
 	static void readTable(const(ubyte)* data, ubyte mode, ubyte lines, ubyte lineBase, ubyte baseAddr, bool always, bool increment, HDMAWrite[] buffer, out size_t count) {
 		const(ubyte)[] chunk;
 		ubyte numBytes;
