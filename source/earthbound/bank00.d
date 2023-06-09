@@ -7896,7 +7896,7 @@ void enableAttractModeWindowHDMA(ubyte channel, ubyte flags) {
 	// Depending on whether we are writing to windows 1 and 2 (4 bytes) or just window 1 (2 bytes),
 	// skip ahead in the buffer by 400 or 200 bytes (100 lines)
 	attractModeWindowHDMATable[1].address = ((flags & 4) != 0) ? (&attractModeWindowHDMAData[400]) : (&attractModeWindowHDMAData[200]);
-	dmaChannels[channel].A1T = &attractModeWindowHDMATable;
+	dmaChannels[channel].A1T = &attractModeWindowHDMATable[0];
 	mirrorHDMAEN |= dmaFlags[channel];
 }
 
