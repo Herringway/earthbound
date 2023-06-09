@@ -50,6 +50,10 @@ MemoryEditor memoryEditor;
 
 void prepareDebugUI(size_t width, size_t height) {
 	if (ImGui.BeginMainMenuBar()) {
+		if (ImGui.BeginMenu("File")) {
+			menuItemCallback("Save game", () { mainFiberExecute = () { saveCurrentGame(); }; });
+			ImGui.EndMenu();
+		}
 		if (ImGui.BeginMenu("Windows")) {
 			ImGui.MenuItem("Debugging", null, &state.showDebugWindow);
 			ImGui.EndMenu();
