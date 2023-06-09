@@ -1696,9 +1696,9 @@ void unknownC03903(short id) {
 	}
 	gameState.partyMemberIndex[j] = 0;
 	gameState.partyCount--;
-	entityAbsXTable[x02] = entityPreparedXCoordinate;
-	entityAbsYTable[x02] = entityPreparedYCoordinate;
-	entityDirections[x02] = entityPreparedDirection;
+	entityPreparedXCoordinate = entityAbsXTable[x02];
+	entityPreparedYCoordinate = entityAbsYTable[x02];
+	entityPreparedDirection = entityDirections[x02];
 	unknownC02140(x02);
 	unknownC032EC();
 	updateParty();
