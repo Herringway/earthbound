@@ -1493,6 +1493,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/battleToText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/battleWindows.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/blankTiles.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/bunbuunBeamConfigure.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/calcFramesToReachDestination.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/cc1C01Table.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/changeEquippedArms.html</loc></url>
@@ -1652,6 +1653,9 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/processItemTransformations.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/queueInteraction8.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/randMod.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/rectangleWindowAddHdmaEntry.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/rectangleWindowConfigure.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank04/rectangleWindowEnableHdma.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/renderSmallTextToVRAM.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/renderText.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/rowEnemyFlashingOff.html</loc></url>
@@ -1702,7 +1706,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC423DC.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4240A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC42439.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4245D.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4248A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC4249A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC424D1.html</loc></url>
@@ -1811,9 +1814,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47705.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47765.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47866.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC4789E.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC47930.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank04/unknownC479E9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47A27.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47A6B.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank04/unknownC47A9E.html</loc></url>
@@ -3484,6 +3484,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/randABackup.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/randB.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/randBBackup.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/rectangleWindowBufferIndex.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/redFlashDuration.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/replayModeActive.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/replaySRAM.html</loc></url>
@@ -3804,7 +3805,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9E37.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9E38.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9E39.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E9E3A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9E56.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9E58.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E9F18.html</loc></url>
