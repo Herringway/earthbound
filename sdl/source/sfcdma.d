@@ -96,7 +96,7 @@ void handleHDMA() {
 	auto channels = HDMAEN;
 	for(auto i = 0; i < 8; i += 1) {
 		if (((channels >> i) & 1) == 0) continue;
-		queueHDMA(cast(ubyte)i);
+		queueHDMA(dmaChannels[i], g_frameData.hdmaData[g_frameData.numHdmaWrites .. $], g_frameData.numHdmaWrites);
 	}
 	auto writes = g_frameData.hdmaData[0 .. g_frameData.numHdmaWrites];
 	sort!((x,y) => x.vcounter < y.vcounter)(writes);
@@ -105,10 +105,10 @@ void handleHDMA() {
 	}
 }
 
-void queueHDMA(ubyte channelID) {
+void queueHDMA(const DMAChannel channel, scope HDMAWrite[] buffer, ref ushort numHDMAWrites) pure {
 	import earthbound.hardware : dmaChannels, HDMAIndirectTableEntry;
 	import std.experimental.logger : tracef;
-	static void readTable(const(ubyte)* data, ubyte mode, ubyte lines, ubyte lineBase, ubyte baseAddr, bool always, bool increment, ubyte channel, HDMAWrite[] buffer, out size_t count) {
+	static void readTable(const(ubyte)* data, ubyte mode, ubyte lines, ubyte lineBase, ubyte baseAddr, bool always, bool increment, HDMAWrite[] buffer, out size_t count) {
 		const(ubyte)[] chunk;
 		ubyte numBytes;
 		bool shortSized;
@@ -148,7 +148,7 @@ void queueHDMA(ubyte channelID) {
 		ushort line = 1;
 		do {
 			if (increment) {
-				lineChunk = chunk[line * numBytes .. line * numBytes + numBytes];
+				lineChunk = chunk[line * numBytes .. (line + 1) * numBytes];
 			}
 			foreach (o; 0 .. numBytes) {
 				const addr = cast(ubyte)(baseAddr + o / (1 + shortSized));
@@ -158,8 +158,6 @@ void queueHDMA(ubyte channelID) {
 		} while (always && ++line < lines); //always bit means value is written EVERY line
 		count = line * numBytes;
 	}
-	assert(channelID < 8);
-	const channel = dmaChannels[channelID];
 	const dmap = channel.DMAP;
 	const indirect = !!(dmap & 0b01000000);
 	const mode = (dmap & 0b00000111);
@@ -168,7 +166,6 @@ void queueHDMA(ubyte channelID) {
 	assert(!autoIncrement && !decrement, "autoincrement is unimplemented");
 	ubyte lineBase = 0;
 	ubyte dest = channel.BBAD;
-	HDMAWrite[] buffer = g_frameData.hdmaData[g_frameData.numHdmaWrites .. $];
 	ubyte increment = 1;
 	if (!indirect) {
 		auto data = cast(const(ubyte)*)channel.A1T;
@@ -176,8 +173,8 @@ void queueHDMA(ubyte channelID) {
 			const lines = (data[0] == 0x80) ? 128 : (data[0] & 0x7F);
 			const always = !!(data[0] & 0x80);
 			size_t offset;
-			readTable(data + 1, mode, lines, lineBase, dest, always, false, channelID, buffer[g_frameData.numHdmaWrites .. $], offset);
-			g_frameData.numHdmaWrites += offset;
+			readTable(data + 1, mode, lines, lineBase, dest, always, false, buffer[numHDMAWrites .. $], offset);
+			numHDMAWrites += offset;
 			data += offset + 1;
 			lineBase += lines;
 		}
@@ -189,11 +186,11 @@ void queueHDMA(ubyte channelID) {
 			auto addr = data[0].address;
 			size_t offset;
 			// Indirect tables always auto-increment when always bit is set? Should figure out if this is controlled by something
-			readTable(addr, mode, lines, lineBase, dest, always, always, channelID, buffer[g_frameData.numHdmaWrites .. $], offset);
-			g_frameData.numHdmaWrites += offset;
+			readTable(addr, mode, lines, lineBase, dest, always, always, buffer[numHDMAWrites .. $], offset);
+			numHDMAWrites += offset;
 			lineBase += lines;
 			data++;
 		}
 	}
-	debug(printHDMA) tracef("Performing HDMA %s (mode: %s, indirect: %s, dest: %04X, autoinc: %s, dec: %s)", channelID, mode, indirect, channel.BBAD + 0x2100, autoIncrement, decrement);
+	debug(printHDMA) tracef("Performing HDMA (mode: %s, indirect: %s, dest: %04X, autoinc: %s, dec: %s)", mode, indirect, channel.BBAD + 0x2100, autoIncrement, decrement);
 }
