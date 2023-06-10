@@ -3845,8 +3845,8 @@ immutable short[4] stairInputDirectionMap = [Direction.left, Direction.right, Di
 void enterEscalator() {
 	gameState.walkingStyle = WalkingStyle.escalator;
 	miscDebugFlags = 0;
-	gameState.leaderX.integer = unknown7E5DD0;
-	gameState.leaderY.integer = unknown7E5DD2;
+	gameState.leaderX.integer = escalatorNewX;
+	gameState.leaderY.integer = escalatorNewY;
 	gameState.leaderY.fraction = 0;
 	gameState.leaderX.fraction = 0;
 }
@@ -3857,8 +3857,8 @@ void exitEscalator() {
 	gameState.walkingStyle = WalkingStyle.normal;
 	miscDebugFlags = 0;
 	unknown7E5DBA = 0;
-	gameState.leaderX.integer = unknown7E5DD0;
-	gameState.leaderY.integer = unknown7E5DD2;
+	gameState.leaderX.integer = escalatorNewX;
+	gameState.leaderY.integer = escalatorNewY;
 	gameState.leaderY.fraction = 0;
 	gameState.leaderX.fraction = 0;
 }
@@ -3895,27 +3895,27 @@ void doEscalatorTransition(ushort arg1, short x, short y) {
 		scheduleOverworldTask(recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, cast(short)(y * 8)), &enterEscalator);
 		finishAutoMovementDemoAndStart();
 	}
-	unknown7E5DD0 = xDest;
-	unknown7E5DD2 = cast(short)(y * 8);
+	escalatorNewX = xDest;
+	escalatorNewY = cast(short)(y * 8);
 	unknown7E5DC4 = -1;
 }
 
 /// $C06F82
 void getOnStairs() {
 	short x12 = 0;
-	if ((unknown7E5DC4 == 0) || (unknown7E5DC4 == 0x100)) {
-		if (unknown7E5DCE - 1 > gameState.leaderY.integer) {
+	if ((unknown7E5DC4 == StairDirection.upLeft) || (unknown7E5DC4 == StairDirection.upRight)) {
+		if (stairsNewY - 1 > gameState.leaderY.integer) {
 			x12 = 1;
 		}
 	} else {
-		if (unknown7E5DCE + 1 < gameState.leaderY.integer) {
+		if (stairsNewY + 1 < gameState.leaderY.integer) {
 			x12 = 1;
 		}
 	}
 	if (x12 != 0) {
 		gameState.walkingStyle = WalkingStyle.stairs;
-		gameState.leaderX.integer = unknown7E5DCC;
-		gameState.leaderY.integer = unknown7E5DCE;
+		gameState.leaderX.integer = stairsNewX;
+		gameState.leaderY.integer = stairsNewY;
 		gameState.leaderY.fraction = 0;
 		gameState.leaderX.fraction = 0;
 	} else {
@@ -3926,12 +3926,12 @@ void getOnStairs() {
 /// $C06FED
 void getOffStairs() {
 	short x12 = 0;
-	if ((unknown7E5DC4 == 0) || (unknown7E5DC4 == 0x100)) {
-		if (unknown7E5DCE < gameState.leaderY.integer) {
+	if ((unknown7E5DC4 == StairDirection.upLeft) || (unknown7E5DC4 == StairDirection.upRight)) {
+		if (stairsNewY < gameState.leaderY.integer) {
 			x12 = 1;
 		}
 	} else {
-		if (unknown7E5DCE > gameState.leaderY.integer) {
+		if (stairsNewY > gameState.leaderY.integer) {
 			x12 = 1;
 		}
 	}
@@ -3939,8 +3939,8 @@ void getOffStairs() {
 		unknown7E5DC4 = -1;
 		gameState.walkingStyle = WalkingStyle.normal;
 		miscDebugFlags = 0;
-		gameState.leaderX.integer = unknown7E5DCC;
-		gameState.leaderY.integer = unknown7E5DCE;
+		gameState.leaderX.integer = stairsNewX;
+		gameState.leaderY.integer = stairsNewY;
 		gameState.leaderY.fraction = 0;
 		gameState.leaderX.fraction = 0;
 		unknown7E5DBA = 0;
@@ -4017,8 +4017,8 @@ void doStairsTransition(ushort arg1, short x, short y) {
 		recordAutoMovementDemoNFramesDirection(staircaseExitDirections[arg1 >> 8], 12);
 		scheduleOverworldTask(frames, &getOffStairs);
 	}
-	unknown7E5DCC = xDest;
-	unknown7E5DCE = yDest;
+	stairsNewX = xDest;
+	stairsNewY = yDest;
 	finishAutoMovementDemoAndStart();
 }
 

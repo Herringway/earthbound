@@ -515,10 +515,10 @@ __gshared short unknown7E5DC4; /// $(DOLLAR)5DC4
 __gshared short escalatorEntranceDirection; /// $(DOLLAR)5DC6
 
 __gshared short unknown7E5DCA; /// $(DOLLAR)5DCA
-__gshared short unknown7E5DCC; /// $(DOLLAR)5DCC
-__gshared short unknown7E5DCE; /// $(DOLLAR)5DCE
-__gshared short unknown7E5DD0; /// $(DOLLAR)5DD0
-__gshared short unknown7E5DD2; /// $(DOLLAR)5DD2
+__gshared short stairsNewX; /// $(DOLLAR)5DCC
+__gshared short stairsNewY; /// $(DOLLAR)5DCE
+__gshared short escalatorNewX; /// $(DOLLAR)5DD0
+__gshared short escalatorNewY; /// $(DOLLAR)5DD2
 __gshared short currentMapMusicTrack; /// $(DOLLAR)5DD4
 __gshared short nextMapMusicTrack; /// $(DOLLAR)5DD6
 __gshared short unknown7E5DD8; /// $(DOLLAR)5DD8

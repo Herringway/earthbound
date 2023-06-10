@@ -379,8 +379,8 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Unknown7E5DA2", unknown7E5DA2);
 		InputEditable("Temp entity surface flags", tempEntitySurfaceFlags);
 		InputEditable("Unknown7E5DA6", unknown7E5DA6);
-		InputEditable("Unknown7E5DA8", unknown7E5DA8);
-		InputEditable("Unknown7E5DAA", unknown7E5DAA);
+		InputEditable("Ladder/stairs tile x", ladderStairsTileX);
+		InputEditable("Ladder/stairs tile y", ladderStairsTileY);
 		InputEditable("Checked Left X", checkedCollisionLeftX);
 		InputEditable("Checked Top Y", checkedCollisionTopY);
 		InputEditable("Unknown7E5DB4", unknown7E5DB4);
@@ -391,12 +391,12 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Current QI type", currentQueuedInteractionType);
 		InputEditable("Unknown7E5DC2", unknown7E5DC2);
 		InputEditable("Unknown7E5DC4", unknown7E5DC4);
-		InputEditable("Unknown7E5DC6", unknown7E5DC6);
+		InputEditable("Escalator entrance direction", escalatorEntranceDirection);
 		InputEditable("Unknown7E5DCA", unknown7E5DCA);
-		InputEditable("Unknown7E5DCC", unknown7E5DCC);
-		InputEditable("Unknown7E5DCE", unknown7E5DCE);
-		InputEditable("Unknown7E5DD0", unknown7E5DD0);
-		InputEditable("Unknown7E5DD2", unknown7E5DD2);
+		InputEditable("Stairs new X", stairsNewX);
+		InputEditable("Stairs new Y", stairsNewY);
+		InputEditable("Escalator new X", escalatorNewX);
+		InputEditable("Escalator new Y", escalatorNewY);
 		InputEditable("Map music track", currentMapMusicTrack);
 		InputEditable("Next map music track", nextMapMusicTrack);
 		InputEditable("Unknown7E5DD8", unknown7E5DD8);
