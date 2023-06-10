@@ -279,15 +279,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="calcFramesToReachDestination" class="public" href="../earthbound/bank04/calcFramesToReachDestination.html">calcFramesToReachDestination</a><span class="tableEntryAnnotation">(arg1, arg2, arg3, arg4)</span>
-							</code>
-						</td>
-						<td>$C48D58
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="changeEquippedArms" class="public" href="../earthbound/bank04/changeEquippedArms.html">changeEquippedArms</a><span class="tableEntryAnnotation">(character, slot)</span>
 							</code>
 						</td>
@@ -382,6 +373,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C45860
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="clearAutoMovementDemo" class="public" href="../earthbound/bank04/clearAutoMovementDemo.html">clearAutoMovementDemo</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C48C69
 </td>
 					</tr>
 					<tr>
@@ -724,6 +724,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C45683
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="finishAutoMovementDemoAndStart" class="public" href="../earthbound/bank04/finishAutoMovementDemoAndStart.html">finishAutoMovementDemoAndStart</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$C48E95
 </td>
 					</tr>
 					<tr>
@@ -1309,6 +1318,33 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$C45F7B
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="recordAutoMovementDemo" class="public" href="../earthbound/bank04/recordAutoMovementDemo.html">recordAutoMovementDemo</a><span class="tableEntryAnnotation">(startX, startY, destX, destY)</span>
+							</code>
+						</td>
+						<td>$C48D58
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="recordAutoMovementDemoFrame" class="public" href="../earthbound/bank04/recordAutoMovementDemoFrame.html">recordAutoMovementDemoFrame</a><span class="tableEntryAnnotation">(newPadState)</span>
+							</code>
+						</td>
+						<td>$C48C97
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="recordAutoMovementDemoNFramesDirection" class="public" href="../earthbound/bank04/recordAutoMovementDemoNFramesDirection.html">recordAutoMovementDemoNFramesDirection</a><span class="tableEntryAnnotation">(direction, frames)</span>
+							</code>
+						</td>
+						<td>$C48E6B
 </td>
 					</tr>
 					<tr>
@@ -2727,42 +2763,6 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownC48C69" class="public" href="../earthbound/bank04/unknownC48C69.html">unknownC48C69</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C48C69
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC48C97" class="public" href="../earthbound/bank04/unknownC48C97.html">unknownC48C97</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$C48C97
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC48E6B" class="public" href="../earthbound/bank04/unknownC48E6B.html">unknownC48E6B</a><span class="tableEntryAnnotation">(arg1, arg2)</span>
-							</code>
-						</td>
-						<td>$C48E6B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownC48E95" class="public" href="../earthbound/bank04/unknownC48E95.html">unknownC48E95</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$C48E95
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownC48F98" class="public" href="../earthbound/bank04/unknownC48F98.html">unknownC48F98</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
@@ -3509,6 +3509,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="directionToButtonMap" class="public" href="../earthbound/bank04/directionToButtonMap.html">
+								<code>directionToButtonMap</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$C48C59
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="entityOverlayBigRipple" class="public" href="../earthbound/bank04/entityOverlayBigRipple.html">
 								<code>entityOverlayBigRipple</code>
 							</a>
@@ -4188,18 +4200,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">11</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$C474F6
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownC48C59" class="public" href="../earthbound/bank04/unknownC48C59.html">
-								<code>unknownC48C59</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">short</span><span class="pun">[</span><span class="lit">8</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$C48C59
 </td>
 					</tr>
 					<tr>
