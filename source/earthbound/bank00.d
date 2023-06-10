@@ -3876,7 +3876,7 @@ void doEscalatorTransition(ushort arg1, short x, short y) {
 		}
 		gameState.walkingStyle = WalkingStyle.normal;
 		miscDebugFlags = 3;
-		xDest = cast(short)((x * 8) + escalatorEntryOffsetsX[escalatorEntranceDirection >> 8]);
+		xDest = cast(short)((x * 8) + escalatorExitOffsetsX[escalatorEntranceDirection >> 8]);
 		short frames = recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, cast(short)(y * 8));
 		recordAutoMovementDemoNFramesDirection(stairInputDirectionMap[escalatorEntranceDirection >> 8], 16);
 		scheduleOverworldTask(cast(short)(frames + 1), &exitEscalator);
