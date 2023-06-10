@@ -3642,67 +3642,67 @@ void unknownC48C3E() {
 }
 
 /// $C48C59
-immutable short[8] unknownC48C59 = [ 0x0800, 0x0900, 0x0100, 0x0500, 0x0400, 0x0600, 0x0200, 0x0A00 ];
+immutable short[8] directionToButtonMap = [ Pad.up, Pad.up | Pad.right, Pad.right, Pad.down | Pad.right, Pad.down, Pad.left | Pad.down, Pad.left, Pad.up | Pad.left ];
 
 /// $C48C69
-void unknownC48C69() {
-	unknown7E9F18 = 0;
-	for (short i = 0; i < unknown7E9E58.length; i++) {
-		unknown7E9E58[i].unknown1 = 0;
-		unknown7E9E58[i].unknown0 = 0;
+void clearAutoMovementDemo() {
+	autoMovementDemoPosition = 0;
+	for (short i = 0; i < autoMovementDemoBuffer.length; i++) {
+		autoMovementDemoBuffer[i].padState = 0;
+		autoMovementDemoBuffer[i].frames = 0;
 	}
 }
 
 /// $C48C97
-void unknownC48C97(short arg1) {
-	if ((unknown7E9F18 == 0) && (unknown7E9E58[unknown7E9F18].unknown1 == 0)) {
-		unknown7E9E58[unknown7E9F18].unknown1 = arg1;
-		unknown7E9E58[0].unknown0 = 1;
+void recordAutoMovementDemoFrame(short newPadState) {
+	if ((autoMovementDemoPosition == 0) && (autoMovementDemoBuffer[autoMovementDemoPosition].padState == 0)) {
+		autoMovementDemoBuffer[autoMovementDemoPosition].padState = newPadState;
+		autoMovementDemoBuffer[0].frames = 1;
 	} else {
-		if (unknown7E9E58[unknown7E9F18].unknown1 == arg1) {
-			unknown7E9E58[unknown7E9F18].unknown0++;
+		if (autoMovementDemoBuffer[autoMovementDemoPosition].padState == newPadState) {
+			autoMovementDemoBuffer[autoMovementDemoPosition].frames++;
 		} else {
-			if (++unknown7E9F18 == 0x40) {
+			if (++autoMovementDemoPosition == autoMovementDemoBuffer.length) {
 				assert(0);
 			} else {
-				unknown7E9E58[unknown7E9F18].unknown1 = arg1;
-				unknown7E9E58[unknown7E9F18].unknown0 = 1;
+				autoMovementDemoBuffer[autoMovementDemoPosition].padState = newPadState;
+				autoMovementDemoBuffer[autoMovementDemoPosition].frames = 1;
 			}
 		}
 	}
 }
 
 /// $C48D58
-short calcFramesToReachDestination(short arg1, short arg2, short arg3, short arg4) {
-	FixedPoint1616 x10 = { fraction: arg1 };
-	FixedPoint1616 x14 = { fraction: arg2 };
+short recordAutoMovementDemo(short startX, short startY, short destX, short destY) {
+	FixedPoint1616 xPosition = { fraction: startX };
+	FixedPoint1616 yPosition = { fraction: startY };
 	short result = 0;
 	while (true) {
-		short x1A = cast(short)(x10.integer - arg3);
-		short x18 = cast(short)(x14.integer - arg4);
-		if (((0 > x1A) ? (cast(short)-cast(int)x1A) : x1A <= 1) && ((0 > x18) ? (cast(short)-cast(int)x18) : x18 <= 1)) {
+		short xDifference = cast(short)(xPosition.integer - destX);
+		short yDifference = cast(short)(yPosition.integer - destY);
+		if (((0 > xDifference) ? (cast(short)-cast(int)xDifference) : xDifference <= 1) && ((0 > yDifference) ? (cast(short)-cast(int)yDifference) : yDifference <= 1)) {
 			break;
 		}
-		short x18_2 = (getScreenAngle(x10.integer, x14.integer, arg3, arg4) + 0x1000) / 0x2000;
-		unknownC48C97(unknownC48C59[x18_2]);
-		x10.combined += horizontalMovementSpeeds[x18_2 / 8].directionSpeeds[0].combined;
-		x14.combined += verticalMovementSpeeds[x18_2 / 8].directionSpeeds[0].combined;
+		short nextDirection = (getScreenAngle(xPosition.integer, yPosition.integer, destX, destY) + 0x1000) / 0x2000;
+		recordAutoMovementDemoFrame(directionToButtonMap[nextDirection]);
+		xPosition.combined += horizontalMovementSpeeds[nextDirection / 8].directionSpeeds[0].combined;
+		yPosition.combined += verticalMovementSpeeds[nextDirection / 8].directionSpeeds[0].combined;
 		result++;
 	}
 	return result;
 }
 
 /// $C48E6B
-void unknownC48E6B(short arg1, short arg2) {
-	for (short i = arg2; i != 0; i--) {
-		unknownC48C97(unknownC48C59[arg1]);
+void recordAutoMovementDemoNFramesDirection(short direction, short frames) {
+	for (short i = frames; i != 0; i--) {
+		recordAutoMovementDemoFrame(directionToButtonMap[direction]);
 	}
 }
 
 /// $C48E95
-void unknownC48E95() {
-	unknown7E9E58[++unknown7E9F18].unknown0 = 0;
-	unknownC0402B(&unknown7E9E58[0]);
+void finishAutoMovementDemoAndStart() {
+	autoMovementDemoBuffer[++autoMovementDemoPosition].frames = 0;
+	startAutoMovementDemo(&autoMovementDemoBuffer[0]);
 }
 
 /// $C48ECE
@@ -4857,7 +4857,7 @@ void useSoundStone(short arg1) {
 				case SoundStonePlaybackState.present:
 					soundStoneSpriteTilemap1.firstTile = soundStoneSanctuarySprites[i];
 					soundStoneSpriteTilemap1.flags = 0x30;
-					drawSprite(&soundStoneSpriteTilemap1, soundStoneSanctuarySpriteX[i], soundStoneSanctuarySpriteY[i]);
+					renderSpriteToOAM(&soundStoneSpriteTilemap1, soundStoneSanctuarySpriteX[i], soundStoneSanctuarySpriteY[i]);
 					break;
 				case SoundStonePlaybackState.nowPlaying:
 					soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 += 0xCCD;
@@ -4875,12 +4875,12 @@ void useSoundStone(short arg1) {
 					soundStoneSpriteTilemap2.flags = cast(ubyte)((soundStoneOrbitPalettes[i] << 1) + 0x31);
 					if (soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 != 0) {
 						// draw the little sprites flying around the current sanctuary location
-						drawSprite(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)(soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8)));
-						drawSprite(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))));
+						renderSpriteToOAM(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)(soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8)));
+						renderSpriteToOAM(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))));
 					}
 					soundStoneSpriteTilemap1.firstTile = cast(ubyte)(soundStoneSanctuarySprites[i] + 0x80);
 					soundStoneSpriteTilemap1.flags = cast(ubyte)((soundStoneSanctuaryPalettes[i] << 1) + 0x30);
-					drawSprite(&soundStoneSpriteTilemap1, soundStoneSanctuarySpriteX[i], soundStoneSanctuarySpriteY[i]);
+					renderSpriteToOAM(&soundStoneSpriteTilemap1, soundStoneSanctuarySpriteX[i], soundStoneSanctuarySpriteY[i]);
 					break;
 				default: break;
 			}
@@ -4891,7 +4891,7 @@ void useSoundStone(short arg1) {
 		}
 		soundStoneSpriteTilemap2.firstTile = cast(ubyte)(x30 + 0x40);
 		soundStoneSpriteTilemap2.flags = 0x3B;
-		drawSprite(&soundStoneSpriteTilemap2, 0x80, 0x70);
+		renderSpriteToOAM(&soundStoneSpriteTilemap2, 0x80, 0x70);
 		updateScreen();
 		generateBattleBGFrame(&loadedBGDataLayer1, 0);
 		generateBattleBGFrame(&loadedBGDataLayer2, 1);
@@ -4971,7 +4971,7 @@ void spawnFloatingSprite(short arg1, short arg2) {
 	unknown7EB3F8 += floatingSpriteTable[arg2].unknown3 | (((floatingSpriteTable[arg2].unknown3 & 0x80) != 0) ? -256 : 0);
 	unknown7EB3FA += floatingSpriteTable[arg2].unknown4 | (((floatingSpriteTable[arg2].unknown4 & 0x80) != 0) ? -256 : 0);
 	short x12 = createEntity(floatingSpriteTable[arg2].sprite, ActionScript.unknown785, -1, unknown7EB3F8, unknown7EB3FA);
-	entityDrawPriority[x12] = cast(ushort)(arg1 | 0xC000);
+	entityDrawPriority[x12] = cast(ushort)(arg1 | DrawPriority.parent | DrawPriority.dontClearIfParent);
 	entitySurfaceFlags[x12] = entitySurfaceFlags[arg1];
 }
 
@@ -4981,7 +4981,7 @@ void unknownC4B4BE(short arg1) {
 		return;
 	}
 	for (short i = 0; i < maxEntities; i++) {
-		if (entityDrawPriority[i] == (arg1 | 0xC000)) {
+		if (entityDrawPriority[i] == (arg1 | DrawPriority.parent | DrawPriority.dontClearIfParent)) {
 			entityDrawPriority[i] = 0;
 			unknownC02140(i);
 		}
@@ -6539,24 +6539,24 @@ void animateTownMapIconPalette() {
 void unknownC4D2F0() {
 	switch (mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown0 & 0x70) {
 		case 0x10:
-			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[2]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+			drawSpriteF(&townMapIconSpritemaps[townMapMapping[2]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
 			break;
 		case 0x20:
-			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[3]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
+			drawSpriteF(&townMapIconSpritemaps[townMapMapping[3]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 + 8);
 			break;
 		case 0x40:
-			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[4]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
+			drawSpriteF(&townMapIconSpritemaps[townMapMapping[4]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 - 8, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2 - 8);
 			break;
 		case 0x30:
-			unknownC08C58F(&townMapIconSpritemaps[townMapMapping[5]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+			drawSpriteF(&townMapIconSpritemaps[townMapMapping[5]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1 + 16, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 			break;
 		default:
 			break;
 	}
 	if (townMapPlayerIconAnimationFrame < 10) {
-		unknownC08C58F(&townMapIconSpritemaps[townMapMapping[1]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+		drawSpriteF(&townMapIconSpritemaps[townMapMapping[1]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 	} else {
-		unknownC08C58F(&townMapIconSpritemaps[townMapMapping[0]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
+		drawSpriteF(&townMapIconSpritemaps[townMapMapping[0]][0], mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown1, mapDataPerSectorTownMapData[gameState.leaderY.integer / 0x80][(gameState.leaderX.integer >> 8) & 0xFF].unknown2);
 	}
 	if (--townMapPlayerIconAnimationFrame == 0) {
 		townMapPlayerIconAnimationFrame = 20;
@@ -6565,7 +6565,7 @@ void unknownC4D2F0() {
 
 /// $C4D43F
 void drawTownMapIcons(short map) {
-	unknown7E2400 = 0;
+	currentSpriteDrawingPriority = 0;
 	//not used - segmented addressing stuff
 	//ubyte savedBank = setSpritemapBank(bankbyte(&townMapIconSpritemaps[0]));
 	for (const(TownMapIconPlacement)* x06 = &townMapIconPlacementTable[map][0]; x06.x != 0xFF; x06++) {
@@ -6583,7 +6583,7 @@ void drawTownMapIcons(short map) {
 		if (x14 == 0) {
 			continue;
 		}
-		unknownC08C58F(&townMapIconSpritemaps[x06.sprite][0], x06.x, x06.y);
+		drawSpriteF(&townMapIconSpritemaps[x06.sprite][0], x06.x, x06.y);
 	}
 	unknownC4D2F0();
 	if (--townMapIconAnimationFrame == 0) {

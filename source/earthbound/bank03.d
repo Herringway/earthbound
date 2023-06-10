@@ -239,22 +239,52 @@ immutable short[4] unknownC3E1D8 = [4, 0, 2, 6];
 immutable short[4][4] unknownC3E1E0 = [[0, 0, 4, 0], [0, 0, -4, 0], [-4, 0, 0, 0], [4, 0, 0, 0]];
 
 /// $C3E200
-immutable short[4] unknownC3E200 = [7, 1, 5, 3];
+immutable short[4] staircaseEntryDirections = [
+	StairDirection.upLeft >> 8: Direction.upLeft,
+	StairDirection.upRight >> 8: Direction.upRight,
+	StairDirection.downLeft >> 8: Direction.downLeft,
+	StairDirection.downRight >> 8: Direction.downRight
+];
 
 /// $C3E208
-immutable short[4] unknownC3E208 = [2, 6, 2, 6];
+immutable short[4] staircaseExitDirections = [
+	StairDirection.upLeft >> 8: Direction.right,
+	StairDirection.upRight >> 8: Direction.left,
+	StairDirection.downLeft >> 8: Direction.right,
+	StairDirection.downRight >> 8: Direction.left
+];
 
 /// $C3E210
-immutable short[4] unknownC3E210 = [0, 8, 0, 8];
+immutable short[4] staircaseStartOffsetX = [
+	StairDirection.upLeft >> 8: 0,
+	StairDirection.upRight >> 8: 8,
+	StairDirection.downLeft >> 8: 0,
+	StairDirection.downRight >> 8: 8
+];
 
 /// $C3E218
-immutable short[4] unknownC3E218 = [0, 0, 8, 8];
+immutable short[4] staircaseStartOffsetY = [
+	StairDirection.upLeft >> 8: 0,
+	StairDirection.upRight >> 8: 0,
+	StairDirection.downLeft >> 8: 8,
+	StairDirection.downRight >> 8: 8
+];
 
 /// $C3E220
-immutable short[4] unknownC3E220 = [8, 0, 8, 0];
+immutable short[4] staircaseEndOffsetX = [
+	StairDirection.upLeft >> 8: 8,
+	StairDirection.upRight >> 8: 0,
+	StairDirection.downLeft >> 8: 8,
+	StairDirection.downRight >> 8: 0
+];
 
 /// $C3E228
-immutable short[4] unknownC3E228 = [8, 8, 0, 0];
+immutable short[4] staircaseEndOffsetY = [
+	StairDirection.upLeft >> 8: 8,
+	StairDirection.upRight >> 8: 8,
+	StairDirection.downLeft >> 8: 0,
+	StairDirection.downRight >> 8: 0
+];
 
 /// $C3E230
 immutable short[8] interactXOffsets = [

@@ -21994,7 +21994,7 @@ void saveReplaySaveSlot() {
 	memcpy(&replaySRAM.partyCharacters, &partyCharacters[0], (PartyCharacter[6]).sizeof);
 	memcpy(&replaySRAM.eventFlags, &eventFlags[0], eventFlags.sizeof);
 	memcpy(&replaySRAM.timer, &timer, timer.sizeof);
-	unknownC083C1(sram3.ptr);
+	demoRecordingStart(sram3.ptr);
 }
 
 /// $EFE895
@@ -22019,8 +22019,8 @@ void loadReplaySaveSlot() {
 	frameCounter = cast(ubyte)frameCounterBackup;
 	randA = randABackup;
 	randB = randBBackup;
-	unknownC083B8();
-	unknownC083E3(sram3.ptr);
+	demoRecordingEnd();
+	demoReplayStart(sram3.ptr);
 }
 
 /// $EFEA4A

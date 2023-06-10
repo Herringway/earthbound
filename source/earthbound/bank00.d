@@ -1785,13 +1785,13 @@ void unknownC03A94(short arg1) {
 	}
 	currentEntitySlot = x18;
 	setFollowerEntityLocationToLeaderPosition();
-	unknown7E5DA8 = 0xFFFF;
+	ladderStairsTileX = 0xFFFF;
 	short x02 = pendingInteractions;
 	pendingInteractions = 0;
 	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, Direction.down);
 	pendingInteractions = x02;
-	if (unknown7E5DA8 != -1) {
-		unknownC07526(unknown7E5DA8, unknown7E5DAA);
+	if (ladderStairsTileX != -1) {
+		unknownC07526(ladderStairsTileX, ladderStairsTileY);
 	}
 }
 
@@ -1983,8 +1983,8 @@ void centerScreen(short x, short y) {
 }
 
 /// $C0402B
-void unknownC0402B(Unknown7E007DEntry* arg1) {
-	unknownC083E3(arg1);
+void startAutoMovementDemo(DemoEntry* arg1) {
+	demoReplayStart(arg1);
 }
 
 /// $C0404F
@@ -2231,7 +2231,7 @@ void handleNormalMovement() {
 	short x22 = gameState.troddenTileType;
 	FixedPoint1616 newX = { combined: adjustPositionHorizontal(x02, gameState.leaderX.combined, x22) };
 	FixedPoint1616 newY = { combined: adjustPositionVertical(x02, gameState.leaderY.combined, x22) };
-	unknown7E5DA8 = 0xFFFF;
+	ladderStairsTileX = 0xFFFF;
 	short x04;
 	if ((miscDebugFlags & 2) == 0) {
 		x04 = unknownC05B7B(newX.integer, newY.integer, gameState.firstPartyMemberEntity, x02);
@@ -2253,8 +2253,8 @@ void handleNormalMovement() {
 	if ((x04 & 0xC0) != 0) {
 		x02_2 = 0;
 	}
-	if (unknown7E5DA8 != 0xffff) {
-		x02_2 = unknownC07526(unknown7E5DA8, unknown7E5DAA);
+	if (ladderStairsTileX != 0xffff) {
+		x02_2 = unknownC07526(ladderStairsTileX, ladderStairsTileY);
 	} else if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
 		gameState.walkingStyle = WalkingStyle.normal;
 	}
@@ -2271,7 +2271,7 @@ void handleNormalMovement() {
 		unknownC073C0(1);
 	}
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
-		gameState.leaderX.integer = cast(short)((unknown7E5DA8 * 8) + 8);
+		gameState.leaderX.integer = cast(short)((ladderStairsTileX * 8) + 8);
 	}
 	if ((debugging != 0) && ((padState[0] & Pad.x) != 0)) {
 		gameState.leaderX.integer &= 0xFFF8;
@@ -2303,26 +2303,26 @@ void handleEscalatorMovement() {
 		return;
 	}
 	short x14;
-	switch (unknown7E5DC6 & 0x300) {
-		case 0x000:
+	switch (escalatorEntranceDirection & 0x300) {
+		case StairDirection.upLeft:
 			x14 = Direction.upLeft;
 			break;
-		case 0x200:
+		case StairDirection.downLeft:
 			x14 = Direction.downLeft;
 			break;
-		case 0x100:
+		case StairDirection.upRight:
 			x14 = Direction.upRight;
 			break;
-		case 0x300:
+		case StairDirection.downRight:
 			x14 = Direction.downRight;
 			break;
 		default:
 			break;
 	}
-	unknown7E5DA8 = 0xFFFF;
+	ladderStairsTileX = 0xFFFF;
 	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, x14);
-	if (unknown7E5DA8 != -1) {
-		unknownC07526(unknown7E5DA8, unknown7E5DAA);
+	if (ladderStairsTileX != -1) {
+		unknownC07526(ladderStairsTileX, ladderStairsTileY);
 	}
 	if (1 != 0) { //wat
 		gameState.leaderX.combined += horizontalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[x14 * 4].combined;
@@ -2367,7 +2367,7 @@ void handleBicycleMovement(short arg1) {
 	gameState.leaderDirection = x1E;
 	x10.combined = gameState.leaderX.combined + horizontalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
 	x14.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
-	unknown7E5DA8 = 0xFFFF;
+	ladderStairsTileX = 0xFFFF;
 	short x1A = unknownC05CD7(x10.integer, x14.integer, 0x18, x1E);
 	npcCollisionCheck(x10.integer, x14.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[23] == -1) {
@@ -2788,13 +2788,13 @@ short unknownC0546B() {
 }
 
 /// $C054C9
-short unknownC054C9(short arg1, short arg2) {
-	short y = loadedCollisionTiles[arg2 & 0x3F][arg1 & 0x3F];
-	if ((y & 0x10) != 0) {
-		unknown7E5DA8 = arg1;
-		unknown7E5DAA = arg2;
+short unknownC054C9(short x, short y) {
+	short result = loadedCollisionTiles[y & 0x3F][x & 0x3F];
+	if ((result & SurfaceFlags.ladderOrStairs) != 0) {
+		ladderStairsTileX = x;
+		ladderStairsTileY = y;
 	}
-	return y;
+	return result;
 }
 
 /// $C05503
@@ -3050,7 +3050,7 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 			if (x12 != -1) {
 				break;
 			}
-			short x10 = unknown7E5DA8;
+			short x10 = ladderStairsTileX;
 			if ((checkedCollisionTopY & 7) < 5) {
 				checkedCollisionTopY -= 4;
 				short x0E = unknownC057E8();
@@ -3058,14 +3058,14 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 					x12 = x0E;
 				}
 			}
-			unknown7E5DA8 = x10;
+			ladderStairsTileX = x10;
 			break;
 		case Direction.down:
 			x12 = unknownC0583C();
 			if (x12 != -1) {
 				break;
 			}
-			short x10 = unknown7E5DA8;
+			short x10 = ladderStairsTileX;
 			if ((checkedCollisionTopY & 7) > 3) {
 				checkedCollisionTopY += 4;
 				short x0E = unknownC0583C();
@@ -3073,7 +3073,7 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 					x12 = x0E;
 				}
 			}
-			unknown7E5DA8 = x10;
+			ladderStairsTileX = x10;
 			break;
 		case Direction.left:
 			x12 = unknownC05890();
@@ -3093,7 +3093,7 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 		default: break;
 	}
 	if (pendingInteractions != 0) {
-		unknown7E5DA8 = 0xFFFF;
+		ladderStairsTileX = 0xFFFF;
 	}
 	if ((x12 == -1) || (x12 == -256)) {
 		return tempEntitySurfaceFlags;
@@ -3613,8 +3613,8 @@ void screenTransition(short arg1, short arg2) {
 		unknownC2EAAA();
 	}
 	unfreezeEntities();
-	unknown7E5DAA = 0;
-	unknown7E5DA8 = 0;
+	ladderStairsTileY = 0;
+	ladderStairsTileX = 0;
 }
 
 /// $C068AF
@@ -3681,8 +3681,8 @@ void unknownC06A07() {
 void unknownC06A1B(const(DoorEntryB)* arg1) {
 	if (getEventFlag(arg1.eventFlag & 0x7FFF) == (arg1.eventFlag > eventFlagUnset) ? 1 : 0) {
 		queueInteraction(InteractionType.unknown0, QueuedInteractionPtr(getTextBlock(arg1.textPtr)));
-		unknown7E5DAA = 0;
-		unknown7E5DA8 = 0;
+		ladderStairsTileY = 0;
+		ladderStairsTileX = 0;
 	}
 }
 
@@ -3756,8 +3756,8 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	if (arg1.textPtr !is null) {
 		displayInteractionText(getTextBlock(arg1.textPtr));
 	}
-	unknown7E5DAA = 0;
-	unknown7E5DA8 = 0;
+	ladderStairsTileY = 0;
+	ladderStairsTileX = 0;
 	if ((arg1.eventFlag != 0) && (getEventFlag(arg1.eventFlag & 0x7FFF) != (arg1.eventFlag > eventFlagUnset) ? 1 : 0)) {
 		unknown7E5DC2 = 0;
 		return;
@@ -3823,16 +3823,26 @@ void doorTransition(const(DoorEntryA)* arg1) {
 }
 
 /// $C06E02
-immutable short[4] unknownC06E02 = [8, 0, 0, 8];
+immutable short[4] escalatorEntryOffsetsX = [
+	StairDirection.upLeft >> 8: 8,
+	StairDirection.upRight >> 8: 0,
+	StairDirection.downLeft >> 8: 0,
+	StairDirection.downRight >> 8: 8
+];
 
 /// $C06E0A
-immutable short[4] unknownC06E0A = [0, 8, 0, 8];
+immutable short[4] escalatorExitOffsetsX = [
+	StairDirection.upLeft >> 8: 0,
+	StairDirection.upRight >> 8: 8,
+	StairDirection.downLeft >> 8: 0,
+	StairDirection.downRight >> 8: 8
+];
 
 /// $C06E12
-immutable short[4] unknownC06E12 = [Direction.left, Direction.right, Direction.left, Direction.right];
+immutable short[4] stairInputDirectionMap = [Direction.left, Direction.right, Direction.left, Direction.right];
 
 /// $C06E2C
-void unknownC06E2C() {
+void enterEscalator() {
 	gameState.walkingStyle = WalkingStyle.escalator;
 	miscDebugFlags = 0;
 	gameState.leaderX.integer = unknown7E5DD0;
@@ -3842,7 +3852,7 @@ void unknownC06E2C() {
 }
 
 /// $C06E4A
-void unknownC06E4A() {
+void exitEscalator() {
 	unknown7E5DC4 = -1;
 	gameState.walkingStyle = WalkingStyle.normal;
 	miscDebugFlags = 0;
@@ -3854,44 +3864,44 @@ void unknownC06E4A() {
 }
 
 /// $C06E6E
-void unknownC06E6E(ushort arg1, short arg2, short arg3) {
+void doEscalatorTransition(ushort arg1, short x, short y) {
 	if (demoFramesLeft != 0) {
 		return;
 	}
-	unknownC48C69();
-	short x04;
-	if ((arg1 & 0x8000) != 0) {
+	clearAutoMovementDemo();
+	short xDest;
+	if ((arg1 & 0x8000) != 0) { // getting off escalator
 		if (gameState.walkingStyle != WalkingStyle.escalator) {
 			return;
 		}
 		gameState.walkingStyle = WalkingStyle.normal;
 		miscDebugFlags = 3;
-		x04 = cast(short)((arg2 * 8) + unknownC06E02[unknown7E5DC6 >> 8]);
-		short x1A = calcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8));
-		unknownC48E6B(unknownC06E12[unknown7E5DC6 >> 8], 16);
-		scheduleOverworldTask(cast(short)(x1A + 1), &unknownC06E4A);
-		unknownC48E95();
-		unknown7E5DC6 = 0;
+		xDest = cast(short)((x * 8) + escalatorEntryOffsetsX[escalatorEntranceDirection >> 8]);
+		short frames = recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, cast(short)(y * 8));
+		recordAutoMovementDemoNFramesDirection(stairInputDirectionMap[escalatorEntranceDirection >> 8], 16);
+		scheduleOverworldTask(cast(short)(frames + 1), &exitEscalator);
+		finishAutoMovementDemoAndStart();
+		escalatorEntranceDirection = 0;
 		unknown7E5DBA = 1;
-	} else {
+	} else { // getting on escalator
 		if (gameState.walkingStyle == WalkingStyle.escalator) {
 			return;
 		}
 		unknown7E5DBA = 1;
-		unknown7E5DC6 = arg1;
-		gameState.leaderDirection = unknownC06E12[arg1 >> 8];
+		escalatorEntranceDirection = arg1;
+		gameState.leaderDirection = stairInputDirectionMap[arg1 >> 8];
 		miscDebugFlags = 3;
-		x04 = cast(short)((arg2 * 8) + unknownC06E02[arg1 >> 8]);
-		scheduleOverworldTask(calcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x04, cast(short)(arg3 * 8)), &unknownC06E2C);
-		unknownC48E95();
+		xDest = cast(short)((x * 8) + escalatorEntryOffsetsX[arg1 >> 8]);
+		scheduleOverworldTask(recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, cast(short)(y * 8)), &enterEscalator);
+		finishAutoMovementDemoAndStart();
 	}
-	unknown7E5DD0 = x04;
-	unknown7E5DD2 = cast(short)(arg3 * 8);
+	unknown7E5DD0 = xDest;
+	unknown7E5DD2 = cast(short)(y * 8);
 	unknown7E5DC4 = -1;
 }
 
 /// $C06F82
-void unknownC06F82() {
+void getOnStairs() {
 	short x12 = 0;
 	if ((unknown7E5DC4 == 0) || (unknown7E5DC4 == 0x100)) {
 		if (unknown7E5DCE - 1 > gameState.leaderY.integer) {
@@ -3909,12 +3919,12 @@ void unknownC06F82() {
 		gameState.leaderY.fraction = 0;
 		gameState.leaderX.fraction = 0;
 	} else {
-		scheduleOverworldTask(1, &unknownC06F82);
+		scheduleOverworldTask(1, &getOnStairs);
 	}
 }
 
 /// $C06FED
-void unknownC06FED() {
+void getOffStairs() {
 	short x12 = 0;
 	if ((unknown7E5DC4 == 0) || (unknown7E5DC4 == 0x100)) {
 		if (unknown7E5DCE < gameState.leaderY.integer) {
@@ -3935,52 +3945,52 @@ void unknownC06FED() {
 		gameState.leaderX.fraction = 0;
 		unknown7E5DBA = 0;
 	} else {
-		scheduleOverworldTask(1, &unknownC06FED);
+		scheduleOverworldTask(1, &getOffStairs);
 	}
 }
 
 /// $C0705F
 short unknownC0705F(ushort arg1) {
-	short y = 1;
+	short result = 1;
 	switch (arg1) {
-		case 0x100:
+		case StairDirection.upRight:
 			if ((gameState.leaderDirection == 0) || ((gameState.leaderDirection & 3) != 0)) {
-				y = 0;
+				result = 0;
 			}
 			unknown7E5DCA = Direction.right;
 			break;
-		case 0x000:
+		case StairDirection.upLeft:
 			if ((gameState.leaderDirection == 0) || ((gameState.leaderDirection & 3) != 0)) {
-				y = 0;
+				result = 0;
 			}
 			unknown7E5DCA = Direction.left;
 			break;
-		case 0x300:
+		case StairDirection.downRight:
 			if ((gameState.leaderDirection & 7) != 0) {
-				y = 0;
+				result = 0;
 			}
 			unknown7E5DCA = Direction.right;
 			break;
-		case 0x200:
+		case StairDirection.downLeft:
 			if ((gameState.leaderDirection & 7) != 0) {
-				y = 0;
+				result = 0;
 			}
 			unknown7E5DCA = Direction.left;
 			break;
 		default: break;
 	}
-	return y;
+	return result;
 }
 
 /// $C070CB
-void unknownC070CB(ushort arg1, short arg2, short arg3) {
+void doStairsTransition(ushort arg1, short x, short y) {
 	if (demoFramesLeft != 0) {
 		return;
 	}
-	unknownC48C69();
-	short x16;
-	short x0E;
-	if (gameState.walkingStyle == 0) {
+	clearAutoMovementDemo();
+	short xDest;
+	short yDest;
+	if (gameState.walkingStyle == 0) { //getting on stairs
 		if (unknownC0705F(arg1) != 0) {
 			return;
 		}
@@ -3989,27 +3999,27 @@ void unknownC070CB(ushort arg1, short arg2, short arg3) {
 		miscDebugFlags = 3;
 		unknown7E5DBA = 1;
 		unknown7E5DC4 = cast(short)(arg1 & 0xFF00);
-		x16 = cast(short)((arg2 * 8) + unknownC3E210[arg1 >> 8]);
-		x0E = cast(short)((arg3 * 8) + unknownC3E218[arg1 >> 8]);
-		short x14 = calcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
-		if (x14 == 0) {
-			x14++;
+		xDest = cast(short)((x * 8) + staircaseStartOffsetX[arg1 >> 8]);
+		yDest = cast(short)((y * 8) + staircaseStartOffsetY[arg1 >> 8]);
+		short frames = recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, yDest);
+		if (frames == 0) {
+			frames++;
 		}
-		unknownC48E6B(unknownC3E200[arg1 >> 8], 6);
-		scheduleOverworldTask(x14, &unknownC06F82);
-	} else {
-		x16 = cast(short)((arg2 * 8) + unknownC3E220[arg1 >> 8]);
-		x0E = cast(short)((arg3 * 8) + unknownC3E228[arg1 >> 8]);
-		short x14 = calcFramesToReachDestination(gameState.leaderX.integer, gameState.leaderY.integer, x16, x0E);
-		if (x14 == 0) {
-			x14++;
+		recordAutoMovementDemoNFramesDirection(staircaseEntryDirections[arg1 >> 8], 6);
+		scheduleOverworldTask(frames, &getOnStairs);
+	} else { //getting off stairs
+		xDest = cast(short)((x * 8) + staircaseEndOffsetX[arg1 >> 8]);
+		yDest = cast(short)((y * 8) + staircaseEndOffsetY[arg1 >> 8]);
+		short frames = recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, yDest);
+		if (frames == 0) {
+			frames++;
 		}
-		unknownC48E6B(unknownC3E208[arg1 >> 8], 12);
-		scheduleOverworldTask(x14, &unknownC06FED);
+		recordAutoMovementDemoNFramesDirection(staircaseExitDirections[arg1 >> 8], 12);
+		scheduleOverworldTask(frames, &getOffStairs);
 	}
-	unknown7E5DCC = x16;
-	unknown7E5DCE = x0E;
-	unknownC48E95();
+	unknown7E5DCC = xDest;
+	unknown7E5DCE = yDest;
+	finishAutoMovementDemoAndStart();
 }
 
 /// $C071E5
@@ -4098,19 +4108,19 @@ byte getDoorAt(short x, short y) {
 }
 
 /// $C07526
-short unknownC07526(short arg1, short arg2) {
+short unknownC07526(short x, short y) {
 	version(noUndefinedBehaviour) {
 		short x0E = 1;
 	} else {
 		short x0E = void;
 	}
-	switch (getDoorAt(arg1, arg2)) {
+	switch (getDoorAt(x, y)) {
 		case DoorType.switch_:
 			unknownC06A1B(unknown7E5DBC.entryB);
 			x0E = 0;
 			break;
 		case DoorType.ropeLadder:
-			unknownC06A91(unknown7E5DBC.unknown3);
+			unknownC06A91(unknown7E5DBC.direction);
 			x0E = 1;
 			break;
 		case DoorType.door:
@@ -4118,11 +4128,11 @@ short unknownC07526(short arg1, short arg2) {
 			x0E = 0;
 			break;
 		case DoorType.escalator:
-			unknownC06E6E(unknown7E5DBC.unknown3, arg1, arg2);
+			doEscalatorTransition(unknown7E5DBC.direction, x, y);
 			x0E = 0;
 			break;
 		case DoorType.stairway:
-			unknownC070CB(unknown7E5DBC.unknown3, arg1, arg2);
+			doStairsTransition(unknown7E5DBC.direction, x, y);
 			x0E = 1;
 			break;
 		case DoorType.object:
@@ -4420,12 +4430,12 @@ void start() {
 
 	currentHeapAddress = &heap[0][0];
 	heapBaseAddress = &heap[0][0];
-	unknown7E2402 = 0xFFFF;
+	unknown7E2402 = -1;
 	randA = 0x1234;
 	randB = 0x5678;
 	nextFrameBufferID = 1;
 	irqCallback = &defaultIRQCallback;
-	unknownC08B19();
+	renderFirstFrame();
 	gameInit();
 }
 
@@ -4528,32 +4538,32 @@ void irqNMICommon() {
 }
 
 /// $C083B8
-void unknownC083B8() {
-	unknown7E007B = 0;
+void demoRecordingEnd() {
+	demoRecordingFlags = 0;
 }
 
 /// $C083C1
-void unknownC083C1(Unknown7E007DEntry* arg1) {
-	unknown7E0085 = arg1;
+void demoRecordingStart(DemoEntry* arg1) {
+	demoWriteDestination = arg1;
 	unknown7E008B = padState[0];
 	unknown7E0089 = 1;
-	unknown7E007B |= 0x8000;
+	demoRecordingFlags |= DemoRecordingFlags.recordingEnabled;
 }
 
 /// $C083E3
-void unknownC083E3(Unknown7E007DEntry* arg1) {
-	if ((unknown7E007B & 0x4000) != 0) {
+void demoReplayStart(DemoEntry* arg1) {
+	if ((demoRecordingFlags & DemoRecordingFlags.playbackEnabled) != 0) {
 		return;
 	}
-	if (arg1.unknown0 == 0) {
-		unknownC083B8();
+	if (arg1.frames == 0) {
+		demoRecordingEnd();
 	}
-	demoFramesLeft = arg1.unknown0;
-	unknown7E0083 = arg1.unknown1;
-	unknown7E007D = arg1;
-	padRaw[0] = arg1.unknown1;
-	padRaw[1] = arg1.unknown1;
-	unknown7E007B |= 0x4000;
+	demoFramesLeft = arg1.frames;
+	unknown7E0083 = arg1.padState;
+	demoReadSource = arg1;
+	padRaw[0] = arg1.padState;
+	padRaw[1] = arg1.padState;
+	demoRecordingFlags |= DemoRecordingFlags.playbackEnabled;
 }
 
 /// $C0841B
@@ -4565,26 +4575,26 @@ short testSRAMSize() {
 
 /// $C0841B
 void readJoypad() {
-	if (unknown7E007B == 0) {
+	if (demoRecordingFlags == 0) {
 		goto l1;
 	}
-	if ((unknown7E007B & 0x4000) == 0) {
+	if ((demoRecordingFlags & DemoRecordingFlags.playbackEnabled) == 0) {
 		goto l1;
 	}
 	if (--demoFramesLeft != 0) {
 		return;
 	}
-	unknown7E007D++;
-	if (unknown7E007D[0].unknown0 == 0) {
+	demoReadSource++;
+	if (demoReadSource[0].frames == 0) {
 		goto l0;
 	}
-	demoFramesLeft = unknown7E007D[0].unknown0;
-	padRaw[0] = unknown7E007D[0].unknown1;
-	padRaw[1] = unknown7E007D[0].unknown1;
+	demoFramesLeft = demoReadSource[0].frames;
+	padRaw[0] = demoReadSource[0].padState;
+	padRaw[1] = demoReadSource[0].padState;
 	return;
 
 	l0:
-	unknown7E007B &= 0xBFFF;
+	demoRecordingFlags &= ~DemoRecordingFlags.playbackEnabled;
 
 	l1:
 	padRaw[1] = getControllerState(1);
@@ -4592,8 +4602,8 @@ void readJoypad() {
 }
 
 /// $C08456
-void unknownC08456() {
-	if ((unknown7E007B & 0x8000) == 0) {
+void demoRecordButtons() {
+	if ((demoRecordingFlags & DemoRecordingFlags.recordingEnabled) == 0) {
 		return;
 	}
 	if ((padRaw[0] | padRaw[1]) == unknown7E008B) {
@@ -4602,24 +4612,24 @@ void unknownC08456() {
 			return;
 		}
 	}
-	unknown7E0085.unknown0 = cast(ubyte)unknown7E0089;
-	unknown7E0085.unknown1 = unknown7E008B;
-	unknown7E0085++;
+	demoWriteDestination.frames = cast(ubyte)unknown7E0089;
+	demoWriteDestination.padState = unknown7E008B;
+	demoWriteDestination++;
 	unknown7E008B = padRaw[0] | padRaw[1];
 	unknown7E0089 = 0;
 	unknown7E0089++;
-	unknown7E0085.unknown0 = 0;
-	if (unknown7E0085 !is null) { //not sure about this... but what is BPL on a pointer supposed to mean?
+	demoWriteDestination.frames = 0;
+	if (demoWriteDestination !is null) { //not sure about this... but what is BPL on a pointer supposed to mean?
 		return;
 	}
-	unknown7E007B &= 0x7FFF;
+	demoRecordingFlags &= ~DemoRecordingFlags.recordingEnabled;
 }
 
 /// $C08496
 void unknownC08496() {
 	while ((HVBJOY & 1) == 1) {}
 	readJoypad();
-	unknownC08456();
+	demoRecordButtons();
 
 	short x = 1;
 	while (x >= 0) {
@@ -4890,10 +4900,10 @@ void unknownC0888B() {
 
 /// $C088B1
 void oamClear() {
-	unknown7E2504 = 0;
-	unknown7E2606 = 0;
-	unknown7E2708 = 0;
-	unknown7E280A = 0;
+	priority0SpriteOffset = 0;
+	priority1SpriteOffset = 0;
+	priority2SpriteOffset = 0;
+	priority3SpriteOffset = 0;
 	if (nextFrameBufferID - 1 == 0) {
 		oamAddr = &oam1.mainTable[0];
 		oamEndAddr = &oam1.mainTable.ptr[128];
@@ -4921,7 +4931,7 @@ ushort setSpritemapBank(ushort arg1) {
 }
 
 /// $C08B19
-void unknownC08B19() {
+void renderFirstFrame() {
 	unknown7E0009 = 0;
 	oamClear();
 	updateScreen();
@@ -4929,7 +4939,7 @@ void unknownC08B19() {
 
 /// $C08B26
 void updateScreen() {
-	unknownC08B8E();
+	renderSpritesToOAM();
 	if (false /+Actually tests if the DBR is 0xFF, which should never happen+/) while(true) {}
 	ubyte unknown7E000Atmp = unknown7E000A;
 	if (unknown7E000Atmp != 0x80) {
@@ -4955,102 +4965,108 @@ void updateScreen() {
 }
 
 /// $C08B8E
-void unknownC08B8E() {
+void renderSpritesToOAM() {
 	if (unknown7E2402 == 0) {
 		unknownC08C53();
 	}
-	for (short i =0 ; i < unknown7E2504 / 2; i++) {
-		spritemapBank = unknown7E24C4[i];
-		drawSprite(unknown7E2404[i], unknown7E2444[i], unknown7E2484[i]);
+	for (short i = 0; i < priority0SpriteOffset / 2; i++) {
+		spritemapBank = priority0SpriteMapBanks[i];
+		renderSpriteToOAM(priority0SpriteMaps[i], priority0SpriteX[i], priority0SpriteY[i]);
 	}
 	if (unknown7E2402 == 1) {
 		unknownC08C53();
 	}
-	for (short i =0 ; i < unknown7E2606 / 2; i++) {
-		spritemapBank = unknown7E25C6[i];
-		drawSprite(unknown7E2506[i], unknown7E2546[i], unknown7E2586[i]);
+	for (short i = 0; i < priority1SpriteOffset / 2; i++) {
+		spritemapBank = priority1SpriteMapBanks[i];
+		renderSpriteToOAM(priority1SpriteMaps[i], priority1SpriteX[i], priority1SpriteY[i]);
 	}
 	if (unknown7E2402 == 2) {
 		unknownC08C53();
 	}
-	for (short i =0 ; i < unknown7E2708 / 2; i++) {
-		spritemapBank = unknown7E26C8[i];
-		drawSprite(unknown7E2608[i], unknown7E2648[i], unknown7E2688[i]);
+	for (short i = 0; i < priority2SpriteOffset / 2; i++) {
+		spritemapBank = priority2SpriteMapBanks[i];
+		renderSpriteToOAM(priority2SpriteMaps[i], priority2SpriteX[i], priority2SpriteY[i]);
 	}
 	if (unknown7E2402 == 3) {
 		unknownC08C53();
 	}
-	for (short i =0 ; i < unknown7E280A / 2; i++) {
-		spritemapBank = unknown7E27CA[i];
-		drawSprite(unknown7E270A[i], unknown7E274A[i], unknown7E278A[i]);
+	for (short i = 0; i < priority3SpriteOffset / 2; i++) {
+		spritemapBank = priority3SpriteMapBanks[i];
+		renderSpriteToOAM(priority3SpriteMaps[i], priority3SpriteX[i], priority3SpriteY[i]);
 	}
 }
 
-/// $C08C53
+/// $C08C53 - It's hard to guess what this one did
 void unknownC08C53() {
 	//You Get: Nothing
 }
 
 /// $C08C54
-void unknownC08C58F(const(SpriteMap)* arg1, short arg2, short arg3) {
-	unknownC08C58(arg1, arg2, arg3);
+void drawSpriteF(const(SpriteMap)* spriteMap, short x, short y) {
+	drawSprite(spriteMap, x, y);
 }
 
 /// $C08C58
-void unknownC08C58(const(SpriteMap)* arg1, short arg2, short arg3)
-	in(arg1 !is null, "Spritemap must not be null")
+void drawSprite(const(SpriteMap)* spriteMap, short x, short y)
+	in(spriteMap !is null, "Spritemap must not be null")
 {
-	unknownC08C65[unknown7E2400](arg1, arg2, arg3);
+	addPriorityXSpriteFuncs[currentSpriteDrawingPriority](spriteMap, x, y);
 }
 
 /// $C08C65
-immutable void function(const(SpriteMap)*, short, short)[4] unknownC08C65 = [
-	&unknownC08C6D,
-	&unknownC08C87,
-	&unknownC08CA1,
-	&unknownC08CBB,
+immutable void function(const(SpriteMap)*, short, short)[4] addPriorityXSpriteFuncs = [
+	&addPriority0Sprite,
+	&addPriority1Sprite,
+	&addPriority2Sprite,
+	&addPriority3Sprite,
 ];
 
 /// $C08C6D
-void unknownC08C6D(const(SpriteMap)* arg1, short arg2, short arg3) {
-	unknown7E2404[unknown7E2504 / 2] = arg1;
-	unknown7E2444[unknown7E2504 / 2] = arg2;
-	unknown7E2484[unknown7E2504 / 2] = arg3;
-	unknown7E24C4[unknown7E2504 / 2] = spritemapBank;
-	unknown7E2504 += 2;
+void addPriority0Sprite(const(SpriteMap)* spriteMap, short x, short y)
+	in(spriteMap !is null, "Trying to add a null spritemap")
+{
+	priority0SpriteMaps[priority0SpriteOffset / 2] = spriteMap;
+	priority0SpriteX[priority0SpriteOffset / 2] = x;
+	priority0SpriteY[priority0SpriteOffset / 2] = y;
+	priority0SpriteMapBanks[priority0SpriteOffset / 2] = spritemapBank;
+	priority0SpriteOffset += 2;
 }
 
 /// $C08C87
-void unknownC08C87(const(SpriteMap)* arg1, short arg2, short arg3)
-	in(arg1 !is null, "Trying to add a null spritemap")
+void addPriority1Sprite(const(SpriteMap)* spriteMap, short x, short y)
+	in(spriteMap !is null, "Trying to add a null spritemap")
 {
-	unknown7E2506[unknown7E2606 / 2] = arg1;
-	unknown7E2546[unknown7E2606 / 2] = arg2;
-	unknown7E2586[unknown7E2606 / 2] = arg3;
-	unknown7E25C6[unknown7E2606 / 2] = spritemapBank;
-	unknown7E2606 += 2;
+	priority1SpriteMaps[priority1SpriteOffset / 2] = spriteMap;
+	priority1SpriteX[priority1SpriteOffset / 2] = x;
+	priority1SpriteY[priority1SpriteOffset / 2] = y;
+	priority1SpriteMapBanks[priority1SpriteOffset / 2] = spritemapBank;
+	priority1SpriteOffset += 2;
 }
 
 /// $C08CA1
-void unknownC08CA1(const(SpriteMap)* arg1, short arg2, short arg3) {
-	unknown7E2608[unknown7E2708 / 2] = arg1;
-	unknown7E2648[unknown7E2708 / 2] = arg2;
-	unknown7E2688[unknown7E2708 / 2] = arg3;
-	unknown7E26C8[unknown7E2708 / 2] = spritemapBank;
-	unknown7E2708 += 2;
+void addPriority2Sprite(const(SpriteMap)* spriteMap, short x, short y)
+	in(spriteMap !is null, "Trying to add a null spritemap")
+{
+	priority2SpriteMaps[priority2SpriteOffset / 2] = spriteMap;
+	priority2SpriteX[priority2SpriteOffset / 2] = x;
+	priority2SpriteY[priority2SpriteOffset / 2] = y;
+	priority2SpriteMapBanks[priority2SpriteOffset / 2] = spritemapBank;
+	priority2SpriteOffset += 2;
 }
 
 /// $C08CBB
-void unknownC08CBB(const(SpriteMap)* arg1, short arg2, short arg3) {
-	unknown7E270A[unknown7E280A / 2] = arg1;
-	unknown7E274A[unknown7E280A / 2] = arg2;
-	unknown7E278A[unknown7E280A / 2] = arg3;
-	unknown7E27CA[unknown7E280A / 2] = spritemapBank;
-	unknown7E280A += 2;
+void addPriority3Sprite(const(SpriteMap)* spriteMap, short x, short y)
+	in(spriteMap !is null, "Trying to add a null spritemap")
+{
+	priority3SpriteMaps[priority3SpriteOffset / 2] = spriteMap;
+	priority3SpriteX[priority3SpriteOffset / 2] = x;
+	priority3SpriteY[priority3SpriteOffset / 2] = y;
+	priority3SpriteMapBanks[priority3SpriteOffset / 2] = spritemapBank;
+	priority3SpriteOffset += 2;
 }
 
 /// $C08CD5 - Draw a SpriteMap list into the OAM buffer
-void drawSprite(const(SpriteMap)* arg1, short xbase, short ybase) {
+void renderSpriteToOAM(const(SpriteMap)* arg1, short xbase, short ybase) {
 	short xpos;
 	short ypos;
 	ubyte abyte;
@@ -6616,10 +6632,10 @@ void unknownC0A0E3(short arg1, bool overflowed) {
 /// $C0A0FA
 void unknownC0A0FA(short arg1, short arg2) {
 	spritemapBank = actionScriptVar8E;
-	unknown7E2400 = entityDrawPriority[arg2 / 2];
+	currentSpriteDrawingPriority = entityDrawPriority[arg2 / 2];
 	// This uses a double pointer to the spritemap, indexed by the animation frame.
 	// Don't use the value in 8C!
-	unknownC08C58(entitySpriteMapPointersDptr[arg2 / 2][arg1], entityAbsXTable[arg2 / 2], entityAbsYTable[arg2 / 2]);
+	drawSprite(entitySpriteMapPointersDptr[arg2 / 2][arg1], entityAbsXTable[arg2 / 2], entityAbsYTable[arg2 / 2]);
 }
 
 /// $C0A11C
@@ -6874,17 +6890,18 @@ void unknownC0A3A4(short, short id) {
 		(cast()actionScriptVar8C[y]).flags = (actionScriptVar8C[y].flags & 0xCF) | (actionScriptVar02 & 0xFF);
 	}
 	spritemapBank = actionScriptVar8E;
-	unknown7E2400 = entityDrawPriority[actionScriptVar88 / 2];
-	short unknown7E2400Copy = unknown7E2400;
-	if ((unknown7E2400 & 0x8000) != 0) {
-		unknown7E2400 = entityDrawPriority[unknown7E2400Copy & 0x3F];
-		if ((entityDrawPriority[actionScriptVar88 / 2] & 0x4000) == 0) {
+	currentSpriteDrawingPriority = entityDrawPriority[actionScriptVar88 / 2];
+	if ((entityDrawPriority[actionScriptVar88 / 2] & DrawPriority.parent) != 0) {
+		// if parent bit is set, use parent entity's draw priority
+		currentSpriteDrawingPriority = entityDrawPriority[currentSpriteDrawingPriority & 0x3F];
+		// clear the priority unless otherwise requested
+		if ((entityDrawPriority[actionScriptVar88 / 2] & DrawPriority.dontClearIfParent) == 0) {
 			entityDrawPriority[actionScriptVar88 / 2] = 0;
 		}
 	}
 	unknownC0AC43();
 	spritemapBank = actionScriptVar8E;
-	unknownC08C58(actionScriptVar8C, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+	drawSprite(actionScriptVar8C, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 }
 
 /// $C0A443
@@ -7574,13 +7591,13 @@ void unknownC0AC43() {
 					entityRippleOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityRippleSpritemaps[actionScriptVar88 / 2], entityRippleNextUpdateFrames[actionScriptVar88 / 2], entityRippleOverlayPtrs[actionScriptVar88 / 2]);
 				}
 				entityRippleNextUpdateFrames[actionScriptVar88 / 2]--;
-				unknownC08C58(entityRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+				drawSprite(entityRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 			} else {
 				if (entityBigRippleNextUpdateFrames[actionScriptVar88 / 2] == 0) {
 					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityBigRippleSpritemaps[actionScriptVar88 /2], entityBigRippleNextUpdateFrames[actionScriptVar88 / 2], entityBigRippleOverlayPtrs[actionScriptVar88 / 2]);
 				}
 				entityBigRippleNextUpdateFrames[actionScriptVar88 / 2]--;
-				unknownC08C58(entityBigRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00 + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], cast(short)(entityScreenYTable[actionScriptVar88 / 2] + 8));
+				drawSprite(entityBigRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00 + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], cast(short)(entityScreenYTable[actionScriptVar88 / 2] + 8));
 			}
 			goto case;
 		case SurfaceFlags.none:
@@ -7602,7 +7619,7 @@ void unknownC0AC43() {
 			if (entitySweatingSpritemaps[actionScriptVar88 / 2] is null) {
 				break;
 			}
-			unknownC08C58(entitySweatingSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+			drawSprite(entitySweatingSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 			break;
 	}
 	if ((entityOverlayFlags[actionScriptVar88 / 2] & EntityOverlayFlags.mushroom) == 0) {
@@ -7615,7 +7632,7 @@ void unknownC0AC43() {
 		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityMushroomizedSpritemaps[actionScriptVar88 / 2], entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2], entityMushroomizedOverlayPtrs[actionScriptVar88 / 2]);
 	}
 	entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2]--;
-	unknownC08C58(entityMushroomizedSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+	drawSprite(entityMushroomizedSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
 }
 
 /// $C0AD56

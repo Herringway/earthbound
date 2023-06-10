@@ -5658,7 +5658,23 @@ enum Row {
 	front = 0,
 	back = 1,
 }
-
+///
+enum DrawPriority {
+	dontClearIfParent = 0x4000,
+	parent = 0x8000,
+}
+///
+enum DemoRecordingFlags {
+	playbackEnabled = 0x4000,
+	recordingEnabled = 0x8000,
+}
+///
+enum StairDirection {
+	upLeft = 0x000,
+	upRight = 0x100,
+	downLeft = 0x200,
+	downRight = 0x300,
+}
 
 ///
 struct GameState {
@@ -6015,9 +6031,9 @@ struct LoadedItemTransformation {
 	ubyte transformationCountdown; ///
 }
 ///
-struct Unknown7E007DEntry {
-	ubyte unknown0; ///
-	ushort unknown1; ///
+struct DemoEntry {
+	ubyte frames; ///
+	ushort padState; ///
 }
 ///
 union FixedPoint1616 {
@@ -6516,7 +6532,7 @@ union DoorPtr {
 	immutable(DoorEntryA)* entryA; ///
 	immutable(DoorEntryB)* entryB; ///
 	immutable(DoorEntryC)* entryC; ///
-	ushort unknown3; ///
+	ushort direction; ///
 }
 ///
 struct DoorConfig {
@@ -6550,7 +6566,7 @@ struct DoorConfig {
 		unknown0 = u0;
 		unknown1 = u1;
 		type = t;
-		doorPtr.unknown3 = u3;
+		doorPtr.direction = u3;
 	}
 	///
 	this(ubyte u0, ubyte u1, ubyte t, typeof(null)) {

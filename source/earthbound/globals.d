@@ -71,13 +71,13 @@ __gshared ushort[2] padPress; /// $(DOLLAR)006D - Pressed buttons on Controllers
 __gshared ushort[2] padTimer; /// $(DOLLAR)0071 - Timer for Controller auto-repeat
 __gshared ushort padTemp; /// $(DOLLAR)0075 - Temp var, used only when reading Controllers
 __gshared ushort[2] padRaw; /// $(DOLLAR)0077 - Controller "raw" state (how exactly is this different from padState?)
-__gshared ushort unknown7E007B; /// $(DOLLAR)007B
-__gshared Unknown7E007DEntry* unknown7E007D; /// $(DOLLAR)007D
+__gshared ushort demoRecordingFlags; /// $(DOLLAR)007B
+__gshared DemoEntry* demoReadSource; /// $(DOLLAR)007D
 __gshared ubyte unknown7E007F; /// $(DOLLAR)007F
 __gshared ubyte unknown7E0080; /// $(DOLLAR)0080
 __gshared short demoFramesLeft; /// $(DOLLAR)0081
 __gshared short unknown7E0083; /// $(DOLLAR)0083
-__gshared Unknown7E007DEntry* unknown7E0085; /// $(DOLLAR)0085
+__gshared DemoEntry* demoWriteDestination; /// $(DOLLAR)0085
 __gshared short unknown7E0087; /// $(DOLLAR)0087
 __gshared short unknown7E0089; /// $(DOLLAR)0089
 __gshared short unknown7E008B; /// $(DOLLAR)008B
@@ -266,28 +266,28 @@ __gshared short unknown7E1BD4; /// $(DOLLAR)1BD4
 
 __gshared ubyte[0x200][2] heap; /// $(DOLLAR)2000
 
-__gshared ushort unknown7E2400; /// $(DOLLAR)2400
-__gshared ushort unknown7E2402; /// $(DOLLAR)2402
-__gshared const(SpriteMap)*[32] unknown7E2404; /// $(DOLLAR)2404
-__gshared short[32] unknown7E2444; /// $(DOLLAR)2444
-__gshared short[32] unknown7E2484; /// $(DOLLAR)2484
-__gshared ushort[32] unknown7E24C4; /// $(DOLLAR)24C4
-__gshared short unknown7E2504; /// $(DOLLAR)2504
-__gshared const(SpriteMap)*[32] unknown7E2506; /// $(DOLLAR)2506
-__gshared short[32] unknown7E2546; /// $(DOLLAR)2546
-__gshared short[32] unknown7E2586; /// $(DOLLAR)2586
-__gshared ushort[32] unknown7E25C6; /// $(DOLLAR)25C6
-__gshared short unknown7E2606; /// $(DOLLAR)2606
-__gshared const(SpriteMap)*[32] unknown7E2608; /// $(DOLLAR)2608
-__gshared short[32] unknown7E2648; /// $(DOLLAR)2648
-__gshared short[32] unknown7E2688; /// $(DOLLAR)2688
-__gshared ushort[32] unknown7E26C8; /// $(DOLLAR)26C8
-__gshared short unknown7E2708; /// $(DOLLAR)2708
-__gshared const(SpriteMap)*[32] unknown7E270A; /// $(DOLLAR)270A
-__gshared short[32] unknown7E274A; /// $(DOLLAR)274A
-__gshared short[32] unknown7E278A; /// $(DOLLAR)278A
-__gshared ushort[32] unknown7E27CA; /// $(DOLLAR)27CA
-__gshared short unknown7E280A; /// $(DOLLAR)280A
+__gshared ushort currentSpriteDrawingPriority; /// $(DOLLAR)2400
+__gshared short unknown7E2402; /// $(DOLLAR)2402
+__gshared const(SpriteMap)*[32] priority0SpriteMaps; /// $(DOLLAR)2404
+__gshared short[32] priority0SpriteX; /// $(DOLLAR)2444
+__gshared short[32] priority0SpriteY; /// $(DOLLAR)2484
+__gshared ushort[32] priority0SpriteMapBanks; /// $(DOLLAR)24C4
+__gshared short priority0SpriteOffset; /// $(DOLLAR)2504
+__gshared const(SpriteMap)*[32] priority1SpriteMaps; /// $(DOLLAR)2506
+__gshared short[32] priority1SpriteX; /// $(DOLLAR)2546
+__gshared short[32] priority1SpriteY; /// $(DOLLAR)2586
+__gshared ushort[32] priority1SpriteMapBanks; /// $(DOLLAR)25C6
+__gshared short priority1SpriteOffset; /// $(DOLLAR)2606
+__gshared const(SpriteMap)*[32] priority2SpriteMaps; /// $(DOLLAR)2608
+__gshared short[32] priority2SpriteX; /// $(DOLLAR)2648
+__gshared short[32] priority2SpriteY; /// $(DOLLAR)2688
+__gshared ushort[32] priority2SpriteMapBanks; /// $(DOLLAR)26C8
+__gshared short priority2SpriteOffset; /// $(DOLLAR)2708
+__gshared const(SpriteMap)*[32] priority3SpriteMaps; /// $(DOLLAR)270A
+__gshared short[32] priority3SpriteX; /// $(DOLLAR)274A
+__gshared short[32] priority3SpriteY; /// $(DOLLAR)278A
+__gshared ushort[32] priority3SpriteMapBanks; /// $(DOLLAR)27CA
+__gshared short priority3SpriteOffset; /// $(DOLLAR)280A
 __gshared short[maxEntities] entityDrawSorting; /// $(DOLLAR)280C
 __gshared short unknown7E2848; /// $(DOLLAR)2848
 __gshared short unknown7E284A; /// $(DOLLAR)284A
@@ -498,8 +498,8 @@ __gshared ushort mushroomizedWalkingFlag; /// $(DOLLAR)5DA0 - Whether or not to 
 __gshared ushort unknown7E5DA2; /// $(DOLLAR)5DA2
 __gshared ushort tempEntitySurfaceFlags; /// $(DOLLAR)5DA4
 __gshared ushort unknown7E5DA6; /// $(DOLLAR)5DA6
-__gshared ushort unknown7E5DA8; /// $(DOLLAR)5DA8
-__gshared ushort unknown7E5DAA; /// $(DOLLAR)5DAA
+__gshared ushort ladderStairsTileX; /// $(DOLLAR)5DA8
+__gshared ushort ladderStairsTileY; /// $(DOLLAR)5DAA
 __gshared ushort checkedCollisionLeftX; /// $(DOLLAR)5DAC
 __gshared short checkedCollisionTopY; /// $(DOLLAR)5DAE
 
@@ -512,7 +512,7 @@ __gshared short unknown7E5DBE; /// $(DOLLAR)5DBC
 __gshared short currentQueuedInteractionType; /// $(DOLLAR)5DC0
 __gshared ushort unknown7E5DC2; /// $(DOLLAR)5DC2
 __gshared short unknown7E5DC4; /// $(DOLLAR)5DC4
-__gshared short unknown7E5DC6; /// $(DOLLAR)5DC6
+__gshared short escalatorEntranceDirection; /// $(DOLLAR)5DC6
 
 __gshared short unknown7E5DCA; /// $(DOLLAR)5DCA
 __gshared short unknown7E5DCC; /// $(DOLLAR)5DCC
@@ -666,9 +666,9 @@ __gshared OverworldTask[4] overworldTasks; /// $(DOLLAR)9E3C
 
 __gshared ushort dadPhoneTimer; /// $(DOLLAR)9E54
 __gshared short unknown7E9E56; /// $(DOLLAR)9E56
-__gshared Unknown7E007DEntry[64] unknown7E9E58; /// $(DOLLAR)9E58
+__gshared DemoEntry[64] autoMovementDemoBuffer; /// $(DOLLAR)9E58
 
-__gshared short unknown7E9F18; /// $(DOLLAR)9E56
+__gshared short autoMovementDemoPosition; /// $(DOLLAR)9E56
 __gshared LoadedItemTransformation[4] loadedItemTransformations; /// $(DOLLAR)9F1A
 
 __gshared short unknown7E9F2A; /// $(DOLLAR)9F2A
@@ -957,4 +957,4 @@ __gshared const(ubyte)* actionScriptVar94; /// $(DOLLAR)94
 
 version(savememory) __gshared SRAM sram; /// $(DOLLAR)306000
 __gshared SaveDataReplay replaySRAM; /// $(DOLLAR)316000
-__gshared Unknown7E007DEntry[0] sram3; /// $(DOLLAR)326000
+__gshared DemoEntry[0] sram3; /// $(DOLLAR)326000

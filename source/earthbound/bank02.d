@@ -8129,15 +8129,15 @@ void renderBattleSpriteRow(short arg1) {
 			continue;
 		}
 		if ((battlersTable[i].unknown73 != 0) && ((--battlersTable[i].unknown73 & 4) == 0)) {
-			drawSprite(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else if (battlersTable[i].useAltSpritemap != 0) {
-			drawSprite(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else if ((enemyTargettingFlashing != 0) && ((battlersTable[i].isFlashing == 0) || ((frameCounter & 8) != 0))) {
 			//targetted enemies
-			drawSprite(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+			renderSpriteToOAM(&altBattleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		} else {
 			//normal enemies
-			drawSprite(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
+			renderSpriteToOAM(&battleSpritemaps[battlersTable[i].vramSpriteIndex][0], cast(short)(battlersTable[i].spriteX - unknown7EAD96), cast(short)(battlersTable[i].spriteY - unknown7EAD98));
 		}
 	}
 }
