@@ -5785,7 +5785,7 @@ struct PartyCharacter {
 	ubyte boostedIQ; ///
 	ubyte boostedLuck; ///
 	short unknown92; ///
-	ubyte unknown94; ///
+	ubyte isAutoHealed; ///
 }
 ///
 struct RollingStat {

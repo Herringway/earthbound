@@ -2116,7 +2116,7 @@ void chooseTarget(Battler* arg1) {
 		case ActionTarget.none:
 			arg1.actionTargetting |= Targetted.single;
 			if (arg1.side == BattleSide.foes) {
-				unknownC4A228(arg1, cast(short)((arg1 - &battlersTable[0]) / Battler.sizeof));
+				targetEnemyByBattlerIndex(arg1, cast(short)((arg1 - &battlersTable[0]) / Battler.sizeof));
 			} else {
 				arg1.currentTarget = cast(ubyte)(((arg1 - &battlersTable[0]) / Battler.sizeof) + 1);
 			}
@@ -2502,7 +2502,7 @@ short battleRoutine() {
 				}
 			}
 			for (short i = 0; i < 4; i++) {
-				partyCharacters[i].unknown94 = 0;
+				partyCharacters[i].isAutoHealed = 0;
 			}
 			short x19 = 0;
 			for (short i = 0; i < 6; i++) {
@@ -2800,7 +2800,7 @@ short battleRoutine() {
 							currentAttacker.currentTarget = cast(ubyte)((currentAttacker - &battlersTable[0]) / Battler.sizeof + 1);
 						} else {
 							currentAttacker.actionTargetting = Targetted.enemies | Targetted.single;
-							unknownC4A228(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
+							targetEnemyByBattlerIndex(currentAttacker, cast(short)((currentAttacker - &battlersTable[0]) / Battler.sizeof));
 						}
 					}
 					short statusDamage = 0;

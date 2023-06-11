@@ -4267,7 +4267,7 @@ short autoHealing(short arg1, short arg2) {
 		if ((gameState.partyMembers[i] < 1) || (gameState.partyMembers[i] > 4)) {
 			continue;
 		}
-		if (partyCharacters[gameState.partyMembers[i]].unknown94 != 0) {
+		if (partyCharacters[gameState.partyMembers[i]].isAutoHealed != 0) {
 			continue;
 		}
 		if (partyCharacters[gameState.partyMembers[i]].afflictions[arg1] != arg2) {
@@ -4280,7 +4280,7 @@ short autoHealing(short arg1, short arg2) {
 		x04 = gameState.partyMembers[i];
 	}
 	if (x04 != 0) {
-		partyCharacters[x04 - 1].unknown94 = 1;
+		partyCharacters[x04 - 1].isAutoHealed = 1;
 	}
 	return x04;
 }
@@ -4293,7 +4293,7 @@ short autoLifeup() {
 		if ((gameState.partyMembers[i] < 1) || (gameState.partyMembers[i] > 4)) {
 			continue;
 		}
-		if (partyCharacters[gameState.partyMembers[i]].unknown94 != 0) {
+		if (partyCharacters[gameState.partyMembers[i]].isAutoHealed != 0) {
 			continue;
 		}
 		if (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.unconscious) {
@@ -4309,7 +4309,7 @@ short autoLifeup() {
 		x04 = gameState.partyMembers[i];
 	}
 	if (x04 != 0) {
-		partyCharacters[x04 - 1].unknown94 = 1;
+		partyCharacters[x04 - 1].isAutoHealed = 1;
 	}
 	return x04;
 }
@@ -4329,7 +4329,7 @@ short checkIfValidTarget(short arg1) {
 }
 
 /// $C4A228
-void unknownC4A228(Battler* battler, short arg2) {
+void targetEnemyByBattlerIndex(Battler* battler, short arg2) {
 	for (short i = 0; i < numBattlersInFrontRow; i++) {
 		if (frontRowBattlers[i] != arg2) {
 			continue;

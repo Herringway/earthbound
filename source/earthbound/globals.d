@@ -99,21 +99,22 @@ __gshared uint timer; /// $(DOLLAR)00A7
 __gshared ubyte unknown7E00AB; /// $(DOLLAR)00AB
 __gshared ubyte unknown7E00AC; /// $(DOLLAR)00AC
 __gshared ubyte unknown7E00AD; /// $(DOLLAR)00AD
-__gshared short unknown7E00AE; /// $(DOLLAR)00AE
 
-__gshared ubyte unknown7E00B0; /// $(DOLLAR)00B0
-__gshared ubyte unknown7E00B1; /// $(DOLLAR)00B1
-__gshared short unknown7E00B2; /// $(DOLLAR)00B2
-__gshared ubyte tempDividend; /// $(DOLLAR)00B4
-__gshared ubyte unknown7E00B5; /// $(DOLLAR)00B5
-__gshared ubyte unknown7E00B6; /// $(DOLLAR)00B6
-__gshared ubyte unknown7E00B7; /// $(DOLLAR)00B7
-__gshared ubyte unknown7E00B8; /// $(DOLLAR)00B8
-__gshared ubyte unknown7E00B9; /// $(DOLLAR)00B9
-__gshared short unknown7E00BA; /// $(DOLLAR)00BA
-__gshared short unknown7E00BC; /// $(DOLLAR)00BC
-__gshared short unknown7E00BE; /// $(DOLLAR)00BE
-__gshared short unknown7E00C0; /// $(DOLLAR)00C0
+// compiler-generated pseudoglobals
+//__gshared short unknown7E00AE; /// $(DOLLAR)00AE
+//__gshared ubyte unknown7E00B0; /// $(DOLLAR)00B0
+//__gshared ubyte unknown7E00B1; /// $(DOLLAR)00B1
+//__gshared short unknown7E00B2; /// $(DOLLAR)00B2
+//__gshared ubyte tempDividend; /// $(DOLLAR)00B4
+//__gshared ubyte unknown7E00B5; /// $(DOLLAR)00B5
+//__gshared ubyte unknown7E00B6; /// $(DOLLAR)00B6
+//__gshared ubyte unknown7E00B7; /// $(DOLLAR)00B7
+//__gshared ubyte unknown7E00B8; /// $(DOLLAR)00B8
+//__gshared ubyte unknown7E00B9; /// $(DOLLAR)00B9
+//__gshared short unknown7E00BA; /// $(DOLLAR)00BA
+//__gshared short unknown7E00BC; /// $(DOLLAR)00BC
+//__gshared short unknown7E00BE; /// $(DOLLAR)00BE
+//__gshared short unknown7E00C0; /// $(DOLLAR)00C0
 
 __gshared short unknown7E00C4; /// $(DOLLAR)00C4
 __gshared short unknown7E00C8; /// $(DOLLAR)00C8

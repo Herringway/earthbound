@@ -512,7 +512,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 				InputEditable("Boosted IQ", character.boostedIQ);
 				InputEditable("Boosted luck", character.boostedLuck);
 				InputEditable("unknown92", character.unknown92);
-				InputEditable("unknown94", character.unknown94);
+				InputEditable("Is autohealed", character.isAutoHealed);
 				ImGui.TreePop();
 			}
 		}

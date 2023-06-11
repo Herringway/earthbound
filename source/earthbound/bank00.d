@@ -2522,7 +2522,7 @@ void partyMemberTick() {
 	currentPartyMemberTick = chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]];
 	entityDirections[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].direction;
 	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].tileFlags;
-	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, currentEntitySlot);
+	doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, currentEntitySlot);
 	if (gameState.leaderHasMoved == 0) {
 		if (playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle != WalkingStyle.escalator) {
 			return;
@@ -2574,7 +2574,7 @@ void unknownC04EF0() {
 	currentPartyMemberTick = chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]];
 	entityDirections[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].direction;
 	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].tileFlags;
-	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, currentEntitySlot);
+	doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, currentEntitySlot);
 }
 
 /// $C04F47
@@ -3398,8 +3398,7 @@ short unknownC06267(short arg1, short arg2, short arg3) {
 					x12 = entityHitboxUpDownWidth[i];
 					x10 = entityHitboxUpDownHeight[i];
 				}
-				unknown7E00C0 = x14;
-				if (unknown7E00C0 <= entityAbsYTable[i] - x10 - x16) {
+				if (x14 <= entityAbsYTable[i] - x10 - x16) {
 					continue;
 				}
 				if (x14 >= entityAbsYTable[i] - x10 + x10) {
@@ -3440,8 +3439,7 @@ short unknownC06267(short arg1, short arg2, short arg3) {
 				x12 = entityHitboxUpDownWidth[i];
 				x10 = entityHitboxUpDownHeight[i];
 			}
-			unknown7E00C0 = x14;
-			if (unknown7E00C0 <= entityAbsYTable[i] - x10 - x16) {
+			if (x14 <= entityAbsYTable[i] - x10 - x16) {
 				continue;
 			}
 			if (x14 >= entityAbsYTable[i] - x10 + x10 - 1) {
@@ -4349,11 +4347,11 @@ void unknownC07A31(short arg1, short arg2) {
 }
 
 /// $C07A56
-void unknownC07A56(short arg1, short arg2, short arg3) {
-	short x04 = arg3;
-	short x02 = arg2;
-	short x16 = arg2;
-	short x14 = arg1;
+void doPartyMovementFrame(short characterID, short walkingStyle, short entityID) {
+	const short x04 = entityID;
+	short x02 = walkingStyle;
+	const short x16 = walkingStyle;
+	const short x14 = characterID;
 	unknown7E9F73 = x04;
 	short x12 = unknownC0780F(x14, x02, currentPartyMemberTick);
 	if (x12 == -1) {
@@ -4362,10 +4360,7 @@ void unknownC07A56(short arg1, short arg2, short arg3) {
 		auto x0E = spriteGroupingPointers[x12];
 		//UNKNOWN_30X2_TABLE_31[x04] = x0E.spriteBank;
 		entityGraphicsPointers[x04] = &x0E.sprites[0];
-		unknown7E00C0 = x02;
-		x02 = currentPartyMemberTick.unknown55;
-		if (unknown7E00C0 != x02) {
-			x02 = x16;
+		if (walkingStyle != currentPartyMemberTick.unknown55) {
 			currentPartyMemberTick.unknown55 = x16;
 			entityScriptVar7Table[x04] |= 1<<15;
 		}
@@ -4390,14 +4385,14 @@ void unknownC07B52() {
 			entityTickCallbackFlags[x04] |= (objectTickDisabled | objectMoveDisabled);
 			currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[x04]];
 			if ((gameState.firstPartyMemberEntity == x12) || (currentPartyMemberTick.positionIndex == x14)) {
-				unknownC07A56(entityScriptVar0Table[x12], gameState.walkingStyle, x12);
+				doPartyMovementFrame(entityScriptVar0Table[x12], gameState.walkingStyle, x12);
 				entityAbsXTable[x12] = gameState.leaderX.integer;
 				entityAbsYTable[x12] = gameState.leaderY.integer;
 				if (gameState.partyCount != 1) {
 					entityDirections[x12] = gameState.leaderDirection;
 				}
 			} else {
-				unknownC07A56(entityScriptVar0Table[x12], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, x12);
+				doPartyMovementFrame(entityScriptVar0Table[x12], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, x12);
 				entityAbsXTable[x10] = playerPositionBuffer[currentPartyMemberTick.positionIndex].xCoord;
 				entityAbsYTable[x10] = playerPositionBuffer[currentPartyMemberTick.positionIndex].yCoord;
 				entityDirections[x10] = playerPositionBuffer[currentPartyMemberTick.positionIndex].direction;
@@ -9645,7 +9640,7 @@ void unknownC0E28F() {
 /// $C0E3C1
 void unknownC0E3C1() {
 	currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[currentEntitySlot]];
-	unknownC07A56(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
+	doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
 	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord;
 	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord;
 	entityDirections[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].direction;
@@ -9813,7 +9808,7 @@ void unknownC0E897() {
 				continue;
 			}
 		}
-		unknownC07A56(gameState.partyMemberIndex[i] - 1, 0, cast(short)(i + 0x18));
+		doPartyMovementFrame(gameState.partyMemberIndex[i] - 1, 0, cast(short)(i + 0x18));
 	}
 	unknown7E9F45.fraction = 0;
 	unknown7E9F45.integer = 8;
@@ -9843,7 +9838,7 @@ void unknownC0E979() {
 /// $C0E97C
 void unknownC0E97C() {
 	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlags(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
-	unknownC07A56(entityScriptVar0Table[currentEntitySlot], -1, currentEntitySlot);
+	doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], -1, currentEntitySlot);
 }
 
 /// $C0E9BA
