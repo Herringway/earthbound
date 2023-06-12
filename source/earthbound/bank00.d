@@ -4279,7 +4279,7 @@ short unknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
 	}
 	if (gameState.unknown92 == 6) {
 			return 7;
-	} else if (gameState.unknown92 == 6) {
+	} else if (gameState.unknown92 == 4) {
 		if (character.unknown53 == 0) {
 			return 6;
 		}
