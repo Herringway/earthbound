@@ -4364,13 +4364,14 @@ enum MapSectorConfig {
 	cannotTeleport = 1<<7,
 }
 ///
-enum MapSectorMiscConfig {
+enum SpecialGameState {
 	none = 0,
 	indoorArea = 1,
 	exitMouseUsable = 2,
 	useMiniSprites = 3,
 	useMagicantSprites = 4,
 	useRobotSprites = 5,
+	onBicycle = 6,
 }
 ///
 enum MapSectorTownMap {
@@ -5709,7 +5710,7 @@ struct GameState {
 	ushort troddenTileType; ///
 	ushort walkingStyle; ///
 	ushort leaderHasMoved; ///
-	ushort unknown92; ///
+	ushort specialGameState; ///
 	ushort firstPartyMemberEntity; ///
 	ubyte[6] partyMemberIndex; ///
 	ubyte[6] playerControlledPartyMembers; ///
@@ -5763,7 +5764,7 @@ struct PartyCharacter {
 	ubyte baseIQ; ///
 	ubyte[14] items; ///
 	ubyte[4] equipment; ///
-	ushort unknown53; ///
+	ushort characterID; ///
 	ushort unknown55; ///
 	ushort unknown57; ///
 	ushort unknown59; ///
@@ -5784,7 +5785,7 @@ struct PartyCharacter {
 	ubyte boostedVitality; ///
 	ubyte boostedIQ; ///
 	ubyte boostedLuck; ///
-	short unknown92; ///
+	short unknown92; /// unused? always -1
 	ubyte isAutoHealed; ///
 }
 ///

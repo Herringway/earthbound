@@ -1218,22 +1218,22 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 		debug(enemySpawnTracing) tracef("Trying to spawn a magic butterfly: %s, %s, %s", tileX, tileY, encounterGroupID);
 		short magicButterflyChance = void;
 		switch (mapDataPerSectorAttributesTable[(tileY * 8) / 16][(tileX * 8) / 32] & 7) {
-			case MapSectorMiscConfig.none:
+			case SpecialGameState.none:
 				magicButterflyChance = 2;
 				break;
-			case MapSectorMiscConfig.indoorArea:
+			case SpecialGameState.indoorArea:
 				magicButterflyChance = 0;
 				break;
-			case MapSectorMiscConfig.exitMouseUsable:
+			case SpecialGameState.exitMouseUsable:
 				magicButterflyChance = 1;
 				break;
-			case MapSectorMiscConfig.useMiniSprites:
+			case SpecialGameState.useMiniSprites:
 				magicButterflyChance = 0;
 				break;
-			case MapSectorMiscConfig.useMagicantSprites:
+			case SpecialGameState.useMagicantSprites:
 				magicButterflyChance = 5;
 				break;
-			case MapSectorMiscConfig.useRobotSprites:
+			case SpecialGameState.useRobotSprites:
 				magicButterflyChance = 1;
 				break;
 			default: break;
@@ -1662,7 +1662,7 @@ short unknownC0369B(short id) {
 		partyCharacters[newEntityVar1].positionIndex = x16;
 	}
 	short x = (partyCharacters[newEntityVar1].positionIndex != 0) ? cast(short)(partyCharacters[newEntityVar1].positionIndex - 1) : 0xFF;
-	short x18_2 = (gameState.unknown92 != 3) ? characterInitialEntityData[id - 1].overworldSprite : characterInitialEntityData[id - 1].lostUnderworldSprite;
+	short x18_2 = (gameState.specialGameState != SpecialGameState.useMiniSprites) ? characterInitialEntityData[id - 1].overworldSprite : characterInitialEntityData[id - 1].lostUnderworldSprite;
 	createEntity(x18_2, characterInitialEntityData[id - 1].actionScript, x1A_2, playerPositionBuffer[x].xCoord, playerPositionBuffer[x].yCoord);
 	entityScreenXTable[x1A_2] = cast(short)(playerPositionBuffer[x].xCoord - bg1XPosition);
 	entityScreenYTable[x1A_2] = cast(short)(playerPositionBuffer[x].yCoord - bg1YPosition);
@@ -1733,7 +1733,7 @@ void unknownC03A24() {
 		unknownC0369B(gameState.partyMembers[i]);
 	}
 	unknown7E5D7E = 0;
-	footstepSoundID = cast(short)(gameState.unknown92 * 2);
+	footstepSoundID = cast(short)(gameState.specialGameState * 2);
 	footstepSoundIDOverride = 0;
 }
 
@@ -1750,7 +1750,7 @@ void unknownC03A94(short arg1) {
 		x = gameState.leaderY.integer;
 	}
 	short x1A = loadSectorAttributes(x1C, x) & 7;
-	gameState.unknown92 = x1A;
+	gameState.specialGameState = x1A;
 	footstepSoundID = cast(short)(x1A * 2);
 	footstepSoundIDOverride = 0;
 	if (x1A != 3) {
@@ -1772,7 +1772,7 @@ void unknownC03A94(short arg1) {
 		unknownC02140(gameState.partyEntities[i]);
 		unknown7E9F73 = gameState.partyEntities[i];
 		short x12;
-		if (gameState.unknown92 != 3) {
+		if (gameState.specialGameState != SpecialGameState.useMiniSprites) {
 			x12 = createEntity(unknownC0780F(gameState.partyMemberIndex[i] - 1, 0, &partyCharacters[i]), characterInitialEntityData[gameState.partyMemberIndex[i] - 1].actionScript, gameState.partyEntities[i], gameState.leaderX.integer, gameState.leaderY.integer);
 		} else {
 			x12 = createEntity(unknownC0780F(gameState.partyMemberIndex[i] - 1, 10, &partyCharacters[i]), characterInitialEntityData[gameState.partyMemberIndex[i] - 1].actionScript, gameState.partyEntities[i], gameState.leaderX.integer, gameState.leaderY.integer);
@@ -1823,7 +1823,7 @@ void getOnBicycle() {
 		changeMusic(Music.bicycle);
 	}
 	unknownC02140(0x18);
-	gameState.unknown92 = 6;
+	gameState.specialGameState = SpecialGameState.onBicycle;
 	gameState.walkingStyle = WalkingStyle.bicycle;
 	partyCharacters[0].positionIndex = 0;
 	gameState.leaderPositionIndex = 0;
@@ -1850,7 +1850,7 @@ void getOffBicycle() {
 		unknownC06A07();
 	}
 	unknownC02140(0x18);
-	gameState.unknown92 = 0;
+	gameState.specialGameState = SpecialGameState.none;
 	gameState.walkingStyle = 0;
 	partyCharacters[0].positionIndex = 0;
 	gameState.leaderPositionIndex = 0;
@@ -1919,7 +1919,7 @@ void unknownC03DAA() {
 	entityScriptVar2Table[currentEntitySlot] = rand() & 0xF;
 	updateEntitySpriteFrame(currentEntitySlot);
 	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown59 = currentEntitySlot;
-	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown53 = entityScriptVar0Table[currentEntitySlot];
+	partyCharacters[entityScriptVar1Table[currentEntitySlot]].characterID = entityScriptVar0Table[currentEntitySlot];
 	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown57 = 0;
 	partyCharacters[entityScriptVar1Table[currentEntitySlot]].unknown92 = -1;
 	if (partyCharacters[entityScriptVar1Table[currentEntitySlot]].afflictions[0] == Status0.unconscious) {
@@ -2549,7 +2549,7 @@ void partyMemberTick() {
 				x12 = 0x18;
 				break;
 			default:
-				if (gameState.unknown92 == 3) {
+				if (gameState.specialGameState == SpecialGameState.useMiniSprites) {
 					x12 = 0x8;
 				} else {
 					x12 = 0xC;
@@ -2608,7 +2608,7 @@ void tryShowHPAlert(short arg1) {
 	PartyCharacter* x0E = chosenFourPtrs[gameState.playerControlledPartyMembers[x10]];
 	if ((x0E.maxHP * 20) / 100 > x0E.hp.current.integer) {
 		if (hpAlertShown[x10] == 0) {
-			showHPAlert(cast(short)(x0E.unknown53 + 1));
+			showHPAlert(cast(short)(x0E.characterID + 1));
 		}
 		hpAlertShown[x10] = 1;
 	} else {
@@ -4244,7 +4244,7 @@ short unknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
 		entityOverlayFlags[unknown7E9F73] = EntityOverlayFlags.none;
 	}
 	if (gameState.partyStatus == PartyStatus.burnt) {
-		if (gameState.unknown92 != 3) {
+		if (gameState.specialGameState != SpecialGameState.useMiniSprites) {
 			return 0xD;
 		} else {
 			return 0x25;
@@ -4255,7 +4255,7 @@ short unknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
 			y = 1;
 			break;
 		case Status0.diamondized:
-			if (gameState.unknown92 != 3) {
+			if (gameState.specialGameState != SpecialGameState.useMiniSprites) {
 				return 0xC;
 			}
 			return 0x24;
@@ -4277,10 +4277,10 @@ short unknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
 			break;
 		default: break;
 	}
-	if (gameState.unknown92 == 6) {
+	if (gameState.specialGameState == SpecialGameState.onBicycle) {
 			return 7;
-	} else if (gameState.unknown92 == 4) {
-		if (character.unknown53 == 0) {
+	} else if (gameState.specialGameState == SpecialGameState.useMagicantSprites) {
+		if (character.characterID == 0) {
 			return 6;
 		}
 	}
@@ -4303,10 +4303,10 @@ short unknownC0780F(short characterID, short walkingStyle, PartyCharacter* chara
 			default: break;
 		}
 	}
-	if (gameState.unknown92 == 3) {
+	if (gameState.specialGameState == SpecialGameState.useMiniSprites) {
 		y += 4;
 		entityOverlayFlags[unknown7E9F73] = EntityOverlayFlags.none;
-	} else if ((gameState.unknown92 == 5) && (y == 0)) {
+	} else if ((gameState.specialGameState == SpecialGameState.useRobotSprites) && (y == 0)) {
 		y += 6;
 	}
 	if (gameState.partyStatus == PartyStatus.speedBoost) {
@@ -9455,7 +9455,7 @@ void unknownC0DF22(ushort arg1) {
 	FixedPoint1616 x0E;
 	switch (teleportState) {
 		case TeleportState.complete:
-			if (gameState.unknown92 == 3) {
+			if (gameState.specialGameState == SpecialGameState.useMiniSprites) {
 				FixedPoint1616 x06;
 				x06.combined = unknown7E9F45.combined;
 				x06.fraction += 0x51E;
@@ -9474,7 +9474,7 @@ void unknownC0DF22(ushort arg1) {
 			}
 			break;
 		case TeleportState.unknown3:
-			if (gameState.unknown92 == 3) {
+			if (gameState.specialGameState == SpecialGameState.useMiniSprites) {
 				FixedPoint1616 x06;
 				x06.combined = unknown7E9F45.combined;
 				x06.fraction -= 0x1999;
@@ -9493,7 +9493,7 @@ void unknownC0DF22(ushort arg1) {
 			}
 			break;
 		default:
-			if (gameState.unknown92 == 3) {
+			if (gameState.specialGameState == SpecialGameState.useMiniSprites) {
 				FixedPoint1616 x06;
 				x06.combined = unknown7E9F45.combined;
 				x06.fraction += 0x29FB;

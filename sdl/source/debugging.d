@@ -166,7 +166,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Tile type", gameState.troddenTileType);
 		InputEditable!WalkingStyle("Walking style", gameState.walkingStyle);
 		InputEditable("Leader moved", gameState.leaderHasMoved);
-		InputEditable("Unknown92", gameState.unknown92);
+		InputEditable!SpecialGameState("Special game state", gameState.specialGameState);
 		InputEditable("Leader entity", gameState.firstPartyMemberEntity);
 		InputEditable!CameraMode("Camera mode", gameState.cameraMode);
 		InputEditable("Autoscroll frames", gameState.autoScrollFrames);
@@ -492,7 +492,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					}
 					ImGui.TreePop();
 				}
-				InputEditable("unknown53", character.unknown53);
+				InputEditable("ID", character.characterID);
 				InputEditable("unknown55", character.unknown55);
 				InputEditable("unknown57", character.unknown57);
 				InputEditable("unknown59", character.unknown59);
