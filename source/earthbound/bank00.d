@@ -2713,7 +2713,7 @@ void partyLeaderTick() {
 	unknownC04C45();
 	const x = gameState.leaderX.integer >> 8;
 	const y = gameState.leaderY.integer >> 8;
-	if (((x^unknown7E5D5C) != 0) && ((y^unknown7E5D5E) != 0)) {
+	if (((x^unknown7E5D5C) != 0) || ((y^unknown7E5D5E) != 0)) {
 		unknown7E5D5C = x;
 		unknown7E5D5E = y;
 		if (sectorBoundaryBehaviourFlag) {
