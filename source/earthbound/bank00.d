@@ -9239,7 +9239,7 @@ void unknownC0DA31() {
 		for (j = 0; entityDrawSorting[j] == 0; j++) {}
 		x02 = j;
 		short x12 = j;
-		short y = entityAbsYTable[j - 1];
+		short y = entityAbsYTable[entityDrawSorting[j] - 1];
 		while (entityDrawSorting[++j] + 1 != 0) {
 			if (entityDrawSorting[j] == 0) {
 				continue;
