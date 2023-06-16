@@ -152,9 +152,9 @@ __gshared short firstEntity = -1; /// $(DOLLAR)0A50
 __gshared short unknown7E0A52; /// $(DOLLAR)0A52
 __gshared short unknown7E0A54; /// $(DOLLAR)0A54
 __gshared short unknown7E0A56; /// $(DOLLAR)0A56
-__gshared short unknown7E0A58; /// $(DOLLAR)0A58
+__gshared short actionScriptCurrentScript; /// $(DOLLAR)0A58
 __gshared void function() movement42LoadedPtr; /// $(DOLLAR)0A5A
-__gshared void function() unknown7E0A5E; /// $(DOLLAR)0A5E
+__gshared void function() actionScriptDrawFunction; /// $(DOLLAR)0A5E
 __gshared short unknown7E0A60; /// $(DOLLAR)0A60
 __gshared short[maxEntities] entityScriptTable; /// $(DOLLAR)0A62
 __gshared short[maxEntities] entityNextEntityTable; /// $(DOLLAR)0A9E
@@ -214,23 +214,24 @@ __gshared const(SpriteMap*)*[maxEntities] entitySpriteMapPointersDptr; /// $(DOL
 __gshared void function()[maxEntities] entityScreenPositionCallbacks; /// $(DOLLAR)11A6
 __gshared void function(short, short)[maxEntities] entityDrawCallbacks; /// $(DOLLAR)11E2
 __gshared void function()[maxEntities] entityMoveCallbacks; /// $(DOLLAR)121E
-__gshared short[maxScripts] entityScriptUnknown125A; /// $(DOLLAR)125A
-__gshared short[maxScripts] entityScriptUnknown12E6; /// $(DOLLAR)12E6
+__gshared short[maxScripts] entityScriptNextScripts; /// $(DOLLAR)125A
+__gshared short[maxScripts] entityScriptStackPosition; /// $(DOLLAR)12E6
 __gshared short[maxScripts] entityScriptSleepFrames; /// $(DOLLAR)1372
-
 __gshared const(ubyte)*[maxScripts] entityProgramCounters; /// $(DOLLAR)13FE and $(DOLLAR)148A
-
 __gshared short[maxScripts] entityTempvars; /// $(DOLLAR)1516
-
 __gshared ActionLoopCallState[5][maxScripts] unknown7E15A2; /// $(DOLLAR)15A2
-__gshared short[4] unknown7E1A02; /// $(DOLLAR)1A02
-__gshared short[4] unknown7E1A0A; /// $(DOLLAR)1A0A
-__gshared short[4] unknown7E1A12; /// $(DOLLAR)1A12
-__gshared short[4] unknown7E1A1A; /// $(DOLLAR)1A1A
-__gshared short[4] unknown7E1A22; /// $(DOLLAR)1A22
-__gshared short[4] unknown7E1A2A; /// $(DOLLAR)1A2A
-__gshared short[4] unknown7E1A32; /// $(DOLLAR)1A32
-__gshared short[4] unknown7E1A3A; /// $(DOLLAR)1A3A
+
+// used for actionscript commands 0x31 - 0x3A, which go unused in Earthbound.
+// although the commands make use of them, nothing else does. Their functions are only known because of their presence in HyperZone.
+__gshared short[4] actionScriptBGHorizontalOffsetLow; /// $(DOLLAR)1A02
+__gshared short[4] actionScriptBGVerticalOffsetLow; /// $(DOLLAR)1A0A
+__gshared short[4] actionScriptBGHorizontalOffsetHigh; /// $(DOLLAR)1A12
+__gshared short[4] actionScriptBGVerticalOffsetHigh; /// $(DOLLAR)1A1A
+__gshared short[4] actionScriptBGHorizontalVelocityLow; /// $(DOLLAR)1A22
+__gshared short[4] actionScriptBGVerticalVelocityLow; /// $(DOLLAR)1A2A
+__gshared short[4] actionScriptBGHorizontalVelocityHigh; /// $(DOLLAR)1A32
+__gshared short[4] actionScriptBGVerticalVelocityHigh; /// $(DOLLAR)1A3A
+
 __gshared short currentEntitySlot; /// $(DOLLAR)1A42
 __gshared short currentEntityOffset; /// $(DOLLAR)1A44
 __gshared short currentScriptSlot; /// $(DOLLAR)1A46
@@ -410,12 +411,12 @@ __gshared byte[16] loadedRowsX; /// $(DOLLAR)4390 - X coordinates for rows that 
 __gshared byte[16] loadedRowsY; /// $(DOLLAR)43A0 - Y coordinates for rows that have been loaded? This is only written to, never read
 __gshared byte[16] loadedColumnsX; /// $(DOLLAR)43B0 - X coordinates for columns that have been loaded? This is only written to, never read
 __gshared byte[16] loadedColumnsY; /// $(DOLLAR)43C0 - Y coordinates for columns that have been loaded? This is only written to, never read
-__gshared ushort unknown7E43D0; /// $(DOLLAR)43D0
-__gshared ushort unknown7E43D2; /// $(DOLLAR)43D2
-__gshared ushort unknown7E43D4; /// $(DOLLAR)43D4
-__gshared ushort unknown7E43D6; /// $(DOLLAR)43D6
-__gshared ushort unknown7E43D8; /// $(DOLLAR)43D8
-__gshared ushort unknown7E43DA; /// $(DOLLAR)43DA
+__gshared ushort colourAverageRed; /// $(DOLLAR)43D0
+__gshared ushort colourAverageGreen; /// $(DOLLAR)43D2
+__gshared ushort colourAverageBlue; /// $(DOLLAR)43D4
+__gshared ushort savedColourAverageRed; /// $(DOLLAR)43D6
+__gshared ushort savedColourAverageGreen; /// $(DOLLAR)43D8
+__gshared ushort savedColourAverageBlue; /// $(DOLLAR)43DA
 __gshared LoadedAnimatedTiles[8] overworldTilesetAnim; /// $(DOLLAR)43DC
 __gshared LoadedOverworldPaletteAnimation overworldPaletteAnim; /// $(DOLLAR)445C
 __gshared short loadedAnimatedTileCount; /// $(DOLLAR)4472
@@ -431,16 +432,16 @@ __gshared ubyte[88] spriteVramTable; /// $(DOLLAR)4A00
 __gshared short unknown7E4A58; /// $(DOLLAR)4A58
 __gshared short enemySpawnsEnabled; /// $(DOLLAR)4A5A
 __gshared short overworldEnemyCount; /// $(DOLLAR)4A5C
-__gshared short unknown7E4A5E; /// $(DOLLAR)4A5E
+__gshared short overworldEnemyMaximum; /// $(DOLLAR)4A5E
 __gshared short magicButterfly; /// $(DOLLAR)4A60
 __gshared short enemySpawnRangeWidth; /// $(DOLLAR)4A62
 __gshared short enemySpawnRangeHeight; /// $(DOLLAR)4A64
 __gshared short showNPCFlag; /// $(DOLLAR)4A66
-__gshared short unknown7E4A68; /// $(DOLLAR)4A68
+__gshared short enemySpawnTooManyEnemiesFailureCount; /// $(DOLLAR)4A68
 __gshared short unknown7E4A6A; /// $(DOLLAR)4A6A
-__gshared short unknown7E4A6C; /// $(DOLLAR)4A6C
+__gshared short enemySpawnEncounterID; /// $(DOLLAR)4A6C
 __gshared short enemySpawnRemainingEnemyCount; /// $(DOLLAR)4A6E
-__gshared short unknown7E4A70; /// $(DOLLAR)4A70
+__gshared short enemySpawnChance; /// $(DOLLAR)4A70
 __gshared short spawningEnemyGroup; /// $(DOLLAR)4A72
 __gshared short spawningEnemySprite; /// $(DOLLAR)4A74
 __gshared const(ubyte)* spawningEnemyName; /// $(DOLLAR)4A76
@@ -476,8 +477,8 @@ __gshared Unknown7E5156CreditsEntry[128] unknown7E5156Credits; /// $(DOLLAR)5156
 __gshared short miscDebugFlags; /// $(DOLLAR)5D56
 __gshared short playerIntangibilityFrames; /// $(DOLLAR)5D58
 __gshared short unknown7E5D5A; /// $(DOLLAR)5D5A
-__gshared short unknown7E5D5C; /// $(DOLLAR)5D5C
-__gshared short unknown7E5D5E; /// $(DOLLAR)5D5E
+__gshared short lastSectorX; /// $(DOLLAR)5D5C
+__gshared short lastSectorY; /// $(DOLLAR)5D5E
 __gshared short battleSwirlCountdown; /// $(DOLLAR)5D60
 __gshared short currentTPTEntry; /// $(DOLLAR)5D62
 __gshared short unknown7E5D64; /// $(DOLLAR)5D64
@@ -522,8 +523,8 @@ __gshared short escalatorNewX; /// $(DOLLAR)5DD0
 __gshared short escalatorNewY; /// $(DOLLAR)5DD2
 __gshared short currentMapMusicTrack; /// $(DOLLAR)5DD4
 __gshared short nextMapMusicTrack; /// $(DOLLAR)5DD6
-__gshared short unknown7E5DD8; /// $(DOLLAR)5DD8
-__gshared short unknown7E5DDA; /// $(DOLLAR)5DDA
+__gshared short disableMusicChanges; /// $(DOLLAR)5DD8
+__gshared short doMapMusicFade; /// $(DOLLAR)5DDA
 __gshared short unknown7E5DDC; /// $(DOLLAR)5DDC
 __gshared string unknown7E5DDE; /// $(DOLLAR)5DDE
 
@@ -593,7 +594,7 @@ __gshared short unknown7E964B; /// $(DOLLAR)964B
 __gshared ushort blinkingTriangleFlag; /// $(DOLLAR)964D
 __gshared ushort textSoundMode; /// $(DOLLAR)964F
 __gshared ubyte unknown7E9651; /// $(DOLLAR)9651
-__gshared Unknown7E9652Data unknown7E9652; /// $(DOLLAR)9652
+__gshared TextRenderState textRenderState; /// $(DOLLAR)9652
 __gshared short unknown7E9658; /// $(DOLLAR)9658
 __gshared short unknown7E965A; /// $(DOLLAR)965A
 
@@ -803,13 +804,13 @@ __gshared ubyte unknown7EAEC2; /// $(DOLLAR)AEC2
 __gshared ubyte framesUntilNextSwirlFrame; /// $(DOLLAR)AEC3
 __gshared ubyte swirlFramesLeft; /// $(DOLLAR)AEC4
 __gshared ubyte swirlHDMATableID; /// $(DOLLAR)AEC5
-__gshared ubyte unknown7EAEC6; /// $(DOLLAR)AEC6
-__gshared ubyte unknown7EAEC7; /// $(DOLLAR)AEC7
-__gshared ubyte unknown7EAEC8; /// $(DOLLAR)AEC8
+__gshared ubyte swirlInvertEnabled; /// $(DOLLAR)AEC6
+__gshared ubyte swirlReversed; /// $(DOLLAR)AEC7
+__gshared ubyte swirlMaskSettings; /// $(DOLLAR)AEC8
 __gshared ubyte unknown7EAEC9; /// $(DOLLAR)AEC9
 __gshared ubyte unknown7EAECA; /// $(DOLLAR)AECA
 __gshared ubyte unknown7EAECB; /// $(DOLLAR)AECB
-__gshared const(Unknown7EAECCEntry)* unknown7EAECC; /// $(DOLLAR)AECC
+__gshared const(AttractModeParameters)* loadedComputedSwirl; /// $(DOLLAR)AECC
 __gshared short unknown7EAED0; /// $(DOLLAR)AED0
 __gshared short unknown7EAED2; /// $(DOLLAR)AED2
 __gshared short unknown7EAED4; /// $(DOLLAR)AED4
@@ -921,14 +922,14 @@ __gshared ubyte[0x2000] unknown7EC000; /// $(DOLLAR)C000
 
 __gshared ubyte[64][64] loadedCollisionTiles; /// $(DOLLAR)E000
 __gshared Unknown7EF000Stuff unknown7EF000; /// $(DOLLAR)F000
-__gshared ubyte[0x10000] unknown7F0000; /// $(DOLLAR)7F0000
-ref ushort[0x80] paletteAnimTargetPalette() { return (cast(ushort*)&unknown7F0000[0x7800])[0 .. 0x80]; }
-ref ushort[0x80] paletteAnimRedSlope() { return (cast(ushort*)&unknown7F0000[0x7900])[0 .. 0x80]; }
-ref ushort[0x80] paletteAnimGreenSlope() { return (cast(ushort*)&unknown7F0000[0x7A00])[0 .. 0x80]; }
-ref ushort[0x80] paletteAnimBlueSlope() { return (cast(ushort*)&unknown7F0000[0x7B00])[0 .. 0x80]; }
-ref ushort[0x80] paletteAnimRedAccum() { return (cast(ushort*)&unknown7F0000[0x7C00])[0 .. 0x80]; }
-ref ushort[0x80] paletteAnimGreenAccum() { return (cast(ushort*)&unknown7F0000[0x7D00])[0 .. 0x80]; }
-ref ushort[0x80] paletteAnimBlueAccum() { return (cast(ushort*)&unknown7F0000[0x7E00])[0 .. 0x80]; }
+__gshared ubyte[0x10000] buffer; /// $(DOLLAR)7F0000
+ref ushort[0x80] paletteAnimTargetPalette() { return (cast(ushort*)&buffer[0x7800])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimRedSlope() { return (cast(ushort*)&buffer[0x7900])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimGreenSlope() { return (cast(ushort*)&buffer[0x7A00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimBlueSlope() { return (cast(ushort*)&buffer[0x7B00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimRedAccum() { return (cast(ushort*)&buffer[0x7C00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimGreenAccum() { return (cast(ushort*)&buffer[0x7D00])[0 .. 0x80]; }
+ref ushort[0x80] paletteAnimBlueAccum() { return (cast(ushort*)&buffer[0x7E00])[0 .. 0x80]; }
 __gshared ushort[0x3C00] tileArrangementBuffer; /// $(DOLLAR)7F8000
 __gshared const(ubyte[4][4])*[0x400] tileCollisionBuffer; /// $(DOLLAR)7FF800
 
@@ -942,7 +943,7 @@ __gshared ushort actionScriptVar80; /// $(DOLLAR)80
 __gshared ActionLoopCallState* actionScriptVar84; /// $(DOLLAR)84
 __gshared ushort actionScriptVar86; /// $(DOLLAR)86
 __gshared ushort actionScriptVar88; /// $(DOLLAR)88
-__gshared ushort actionScriptVar8A; /// $(DOLLAR)8A
+__gshared ushort currentEntityScriptOffset; /// $(DOLLAR)8A
 __gshared const(SpriteMap)* actionScriptVar8C; /// $(DOLLAR)8C
 __gshared const(ubyte)* actionScriptVar8CScript; /// $(DOLLAR)8C
 __gshared ushort* actionScriptVar8CMemory; /// $(DOLLAR)8C

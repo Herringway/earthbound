@@ -42,8 +42,8 @@ void overworldSetupVRAM() {
 /// $C0004B
 void overworldInitialize() {
 	overworldSetupVRAM();
-	unknown7F0000[0] = 0;
-	copyToVRAM(3, 0, 0, &unknown7F0000[0]);
+	buffer[0] = 0;
+	copyToVRAM(3, 0, 0, &buffer[0]);
 	unknown7E4370 = -1;
 	unknown7E436E = -1;
 }
@@ -125,29 +125,29 @@ ushort unknownC0035B(ushort a, ushort x, ushort y) {
 }
 
 /// $C00391
-void getColorAverage(ushort* ptr) {
-	ushort x04 = 0;
-	ushort x16 = 0;
-	ushort x14 = 0;
-	ushort x12 = 0;
-	ushort* x10 = ptr - 1;
+void getColorAverage(ushort* palette) {
+	ushort red = 0;
+	ushort blue = 0;
+	ushort green = 0;
+	ushort count = 0;
+	ushort* colour = palette - 1;
 	for (short i = 0; i < 96; i++) {
-		ushort x18 = *++x10;
-		if ((x18 & 0x7FFF) == 0) {
+		ushort value = *++colour;
+		if ((value & 0x7FFF) == 0) {
 			continue;
 		}
-		x04 += x18 & BGR555Mask.Red;
-		x14 += (x18 & BGR555Mask.Green) >> 5;
-		x16 += (x18 & BGR555Mask.Blue) >> 10;
-		x12++;
+		red += value & BGR555Mask.Red;
+		green += (value & BGR555Mask.Green) >> 5;
+		blue += (value & BGR555Mask.Blue) >> 10;
+		count++;
 	}
-	unknown7E43D0 = cast(ushort)((x04 * 8) / x12);
-	unknown7E43D2 = cast(ushort)((x14 * 8) / x12);
-	unknown7E43D4 = cast(ushort)((x16 * 8) / x12);
+	colourAverageRed = cast(ushort)((red * 8) / count);
+	colourAverageGreen = cast(ushort)((green * 8) / count);
+	colourAverageBlue = cast(ushort)((blue * 8) / count);
 }
 
 /// $C00434
-ushort unknownC00434(ushort original, ushort modified) {
+ushort adjustSingleColour(ushort original, ushort modified) {
 	if (original == modified) {
 		return modified;
 	} else if (original > modified) {
@@ -163,50 +163,51 @@ ushort unknownC00434(ushort original, ushort modified) {
 }
 
 /// $C00480
-void unknownC00480() {
+void adjustSpritePalettesByAverage() {
 	getColorAverage(&palettes[2][0]);
-	ushort x20 = cast(ushort)((unknown7E43D0 << 8) / unknown7E43D6);
-	ushort x1E = cast(ushort)((unknown7E43D2 << 8) / unknown7E43D8);
-	ushort x1C = cast(ushort)((unknown7E43D4 << 8) / unknown7E43DA);
-	ushort x1A = (x20 + x1E + x1C) / 3;
-	if ((x20 <= 0x100) && (x1E <= 0x100) && (x1C <= 0x100)) {
+	ushort redModifier = cast(ushort)((colourAverageRed << 8) / savedColourAverageRed);
+	ushort greenModifier = cast(ushort)((colourAverageGreen << 8) / savedColourAverageGreen);
+	ushort blueModifier = cast(ushort)((colourAverageBlue << 8) / savedColourAverageBlue);
+	ushort combinedModifier = (redModifier + greenModifier + blueModifier) / 3;
+	if ((redModifier <= 0x100) && (greenModifier <= 0x100) && (blueModifier <= 0x100)) {
 		for (short i = 0x80; i < 0x100; i++) {
-			ushort x16, x14, x10, x02, x04, x0E;
-			x16 = x14 = palettes[i / 16][i % 16] & BGR555Mask.Red;
-			x02 = x10 = (palettes[i / 16][i % 16] & BGR555Mask.Green) >> 5;
-			x04 = x0E = (palettes[i / 16][i % 16] & BGR555Mask.Blue) >> 10;
-			if ((x16 == x02) && (x02 == x04) && (x04 == x16)) {
-				x16 *= x1A;
-				x02 *= x1A;
-				x04 *= x1A;
+			ushort modifiedRed, newRed, modifiedGreen, newGreen, modifiedBlue, newBlue;
+			modifiedRed = newRed = palettes[i / 16][i % 16] & BGR555Mask.Red;
+			modifiedGreen = newGreen = (palettes[i / 16][i % 16] & BGR555Mask.Green) >> 5;
+			modifiedBlue = newBlue = (palettes[i / 16][i % 16] & BGR555Mask.Blue) >> 10;
+			// shades of grey use combined multiplier
+			if ((modifiedRed == modifiedGreen) && (modifiedGreen == modifiedBlue) && (modifiedBlue == modifiedRed)) {
+				modifiedRed *= combinedModifier;
+				modifiedGreen *= combinedModifier;
+				modifiedBlue *= combinedModifier;
 			} else {
-				x16 *= x20;
-				x02 *= x1E;
-				x04 *= x1C;
+				modifiedRed *= redModifier;
+				modifiedGreen *= greenModifier;
+				modifiedBlue *= blueModifier;
 			}
-			x14 = unknownC00434(x14, (x16 >> 8) & 0x1F);
-			x02 = unknownC00434(x10, (x02 >> 8) & 0x1F);
-			x0E = unknownC00434(x0E, (x04 >> 8) & 0x1F);
-			palettes[i / 16][i % 16] = cast(ushort)((x0E << 10) | (x02 << 5) | x14);
+			newRed = adjustSingleColour(newRed, (modifiedRed >> 8) & 0x1F);
+			modifiedGreen = adjustSingleColour(newGreen, (modifiedGreen >> 8) & 0x1F);
+			newBlue = adjustSingleColour(newBlue, (modifiedBlue >> 8) & 0x1F);
+			palettes[i / 16][i % 16] = cast(ushort)((newBlue << 10) | (modifiedGreen << 5) | newRed);
 		}
 	}
 }
 
 /// $C005E7
-void unknownC005E7() {
+void prepareAverageForSpritePalettes() {
 	memcpy(&palettes[2][0], &mapPalettePointerTable[1][0], 0xC0);
 	getColorAverage(&palettes[2][0]);
-	unknown7E43D6 = unknown7E43D0;
-	unknown7E43D8 = unknown7E43D2;
-	unknown7E43DA = unknown7E43D4;
+	savedColourAverageRed = colourAverageRed;
+	savedColourAverageGreen = colourAverageGreen;
+	savedColourAverageBlue = colourAverageBlue;
 }
 
 /// $C0062A
 void loadCollisionData(short tileset) {
-	const(ubyte[4][4]*)* x0A = &mapDataTileCollisionPointerTable[tileset][0];
-	const(ubyte[4][4])** x06 = &tileCollisionBuffer[0];
+	const(ubyte[4][4]*)* src = &mapDataTileCollisionPointerTable[tileset][0];
+	const(ubyte[4][4])** dest = &tileCollisionBuffer[0];
 	for (short i = 0; i < 0x3C0; i++) {
-		*(x06++) = *(x0A++);
+		*(dest++) = *(src++);
 	}
 }
 
@@ -272,8 +273,8 @@ void loadMapPalette(short arg1, short arg2) {
 			x16 = &paletteOffsetToPointer(palettes[3][0])[0];
 		}
 	} else {
-		decomp(&compressedPaletteUnknown[0], &unknown7F0000[0]);
-		memcpy(&palettes[2][0], &unknown7F0000[photographerConfigTable[currentPhotoDisplay].creditsMapPalettesOffset], 0xC0);
+		decomp(&compressedPaletteUnknown[0], &buffer[0]);
+		memcpy(&palettes[2][0], &buffer[photographerConfigTable[currentPhotoDisplay].creditsMapPalettesOffset], 0xC0);
 	}
 }
 
@@ -291,21 +292,21 @@ void loadMapAtSector(short x, short y) {
 	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x04]][0], &tileArrangementBuffer[0]);
 	loadCollisionData(tilesetTable[x04]);
 	unknownC006F2(tilesetTable[x04]);
-	unknownC005E7();
+	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	if (x04 != unknown7E436E) {
 		unknown7E4372 = tilesetTable[x04];
-		decomp(&mapDataTilesetPtrTable[tilesetTable[x04]][0], &unknown7F0000[0]);
+		decomp(&mapDataTilesetPtrTable[tilesetTable[x04]][0], &buffer[0]);
 		while (fadeParameters.step != 0) { waitForInterrupt(); }
 		if (photographMapLoadingMode == 0) {
-			copyToVRAM2(0, 0x7000, 0, &unknown7F0000[0]);
+			copyToVRAM2(0, 0x7000, 0, &buffer[0]);
 		} else {
-			copyToVRAM2(0, 0x4000, 0, &unknown7F0000[0]);
+			copyToVRAM2(0, 0x4000, 0, &buffer[0]);
 		}
 	}
 	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	loadMapPalette(x04, x18);
-	unknownC00480();
+	adjustSpritePalettesByAverage();
 	loadSpecialSpritePalette();
 	if (photographMapLoadingMode == 0) {
 		loadOverlaySprites();
@@ -1031,7 +1032,7 @@ void unknownC02140(short arg1) {
 /// $C02194
 void unknownC02194() {
 	magicButterfly = 0;
-	unknown7E4A68 = 0;
+	enemySpawnTooManyEnemiesFailureCount = 0;
 	overworldEnemyCount = 0;
 	for (short i = 0; i < maxEntities; i++) {
 		if ((entityScriptTable[i] + 1) > 6) {
@@ -1046,7 +1047,7 @@ void unknownC02194() {
 /// $C021E6
 void unknownC021E6() {
 	magicButterfly = 0;
-	unknown7E4A68 = 0;
+	enemySpawnTooManyEnemiesFailureCount = 0;
 	overworldEnemyCount = 0;
 	for (short i = 0; i < maxEntities; i++) {
 		if (entityScriptTable[i] + 1 <= 2) {
@@ -1247,30 +1248,30 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 	} else if (encounterGroupID != 0) {
 		debug(enemySpawnTracing) tracef("Trying to spawn an enemy: %s, %s, %s", tileX, tileY, encounterGroupID);
 		if (globalMapTilesetPaletteData[(tileY * 8) / 16][(tileX * 8) / 32] / 8 == unknown7E436E) {
-			unknown7E4A6C = encounterGroupID;
-			short x26 = enemyPlacementGroupsPointerTable[encounterGroupID].eventFlag;
-			const(EnemyPlacementGroup)* x22 = enemyPlacementGroupsPointerTable[encounterGroupID].groups.ptr;
-			unknown7E4A70 = enemyPlacementGroupsPointerTable[encounterGroupID].unknown2;
-			short x1C = 0;
-			if ((x26 != 0) && (getEventFlag(x26) != 0)) {
-				unknown7E4A70 = enemyPlacementGroupsPointerTable[encounterGroupID].unknown3;
-				if (enemyPlacementGroupsPointerTable[encounterGroupID].unknown2 != 0) {
-					x1C = 8;
+			enemySpawnEncounterID = encounterGroupID;
+			short flag = enemyPlacementGroupsPointerTable[encounterGroupID].eventFlag;
+			const(EnemyPlacementGroup)* selectedGroup = enemyPlacementGroupsPointerTable[encounterGroupID].groups.ptr;
+			enemySpawnChance = enemyPlacementGroupsPointerTable[encounterGroupID].enemySpawnChance;
+			short rollAdjustment = 0;
+			if ((flag != 0) && (getEventFlag(flag) != 0)) {
+				enemySpawnChance = enemyPlacementGroupsPointerTable[encounterGroupID].altEnemySpawnChance;
+				if (enemyPlacementGroupsPointerTable[encounterGroupID].enemySpawnChance != 0) {
+					rollAdjustment = 8;
 				}
 			}
-			if ((piracyFlag == 0) && (((rand() * 100) >> 8) >= unknown7E4A70)) {
+			if ((piracyFlag == 0) && (((rand() * 100) >> 8) >= enemySpawnChance)) {
 				return;
 			}
-			short x1A = rand() & 7 + x1C;
-			short x = 0;
+			short roll = rand() & 7 + rollAdjustment;
+			short entrySlot = 0;
 			while (true) {
-				x += x22[0].unknown0;
-				if (x1A < x) {
+				entrySlot += selectedGroup[0].slotsOccupied;
+				if (roll < entrySlot) {
 					break;
 				}
-				x22++;
+				selectedGroup++;
 			}
-			group = x22[0].groupID;
+			group = selectedGroup[0].groupID;
 			spawningEnemyGroup = group;
 			groupEnemies = &battleEntryPointerTable[group].enemies[0];
 			for (short i = 0; i != 23; i++) {
@@ -1294,11 +1295,11 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 	while ((enemySpawnRemainingEnemyCount = groupEnemies[0].count) != 0xFF) {
 		debug(enemySpawnTracing) tracef("Trying to spawn %sx %s", groupEnemies[0].count, cast(EnemyID)groupEnemies[0].enemyID);
 		spawningEnemyName = &enemyConfigurationTable[groupEnemies[0].enemyID].name[0];
-		short x26 = enemyConfigurationTable[groupEnemies[0].enemyID].overworldSprite;
-		spawningEnemySprite = x26;
-		short x16 = enemyConfigurationTable[groupEnemies[0].enemyID].eventScript;
-		if (x16 == 0) {
-			x16 = ActionScript.unknown019;
+		short sprite = enemyConfigurationTable[groupEnemies[0].enemyID].overworldSprite;
+		spawningEnemySprite = sprite;
+		short script = enemyConfigurationTable[groupEnemies[0].enemyID].eventScript;
+		if (script == 0) {
+			script = ActionScript.unknown019;
 		}
 		while (enemySpawnRemainingEnemyCount-- != 0) {
 			if (groupEnemies[0].enemyID == EnemyID.magicButterfly) {
@@ -1306,36 +1307,39 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 					continue;
 				}
 			}
-			if (overworldEnemyCount == unknown7E4A5E) {
-				unknown7E4A68++;
+			if (overworldEnemyCount == overworldEnemyMaximum) {
+				enemySpawnTooManyEnemiesFailureCount++;
 				continue;
 			}
-			unknown7E4A68 = 0;
-			short x14 = createEntity(x26, x16, -1, 0, 0);
-			short x04;
-			short x02;
+			enemySpawnTooManyEnemiesFailureCount = 0;
+			short newEntity = createEntity(sprite, script, -1, 0, 0);
+			short newEntityX;
+			short newEntityY;
 			for (short i = 0; i != 20; i++) {
-				x04 = cast(short)((tileX * 8 + (rand() % enemySpawnRangeWidth)) * 8);
-				x02 = cast(short)((tileY * 8 + (rand() % enemySpawnRangeHeight)) * 8);
-				debug(enemySpawnTracing) tracef("Spawning %s at (%s, %s)", cast(EnemyID)groupEnemies[0].enemyID, x04, x02);
-				short x12 = getSurfaceFlags(x04, x02, x14);
-				if ((x12 & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs)) != 0) {
+				newEntityX = cast(short)((tileX * 8 + (rand() % enemySpawnRangeWidth)) * 8);
+				newEntityY = cast(short)((tileY * 8 + (rand() % enemySpawnRangeHeight)) * 8);
+				debug(enemySpawnTracing) tracef("Spawning %s at (%s, %s)", cast(EnemyID)groupEnemies[0].enemyID, newEntityX, newEntityY);
+				short positionFlags = getSurfaceFlags(newEntityX, newEntityY, newEntity);
+				if ((positionFlags & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs)) != 0) {
+					// can't spawn here, try again
 					continue;
 				}
-				if (unknownC05DE7(x12, x14, groupEnemies[0].enemyID) == 0) {
-					goto Unknown28;
+				if (unknownC05DE7(positionFlags, newEntity, groupEnemies[0].enemyID) == 0) {
+					// this spot is fine, proceed
+					goto SpawnSuccess;
 				}
 			}
-			unknownC02140(x14);
+			// didn't find a suitable spawn location after 20 tries, so clean up
+			unknownC02140(newEntity);
 			continue;
-			Unknown28:
-			entityAbsXTable[x14] = x04;
-			entityAbsYTable[x14] = x02;
-			entityTPTEntries[x14] = group + 0x8000;
-			entityEnemyIDs[x14] = groupEnemies[0].enemyID;
-			entityEnemySpawnTiles[x14] = cast(short)(tileY * 128 + tileX);
-			entityUnknown2C5E[x14] = 0;
-			entityWeakEnemyValue[x14] = rand();
+			SpawnSuccess:
+			entityAbsXTable[newEntity] = newEntityX;
+			entityAbsYTable[newEntity] = newEntityY;
+			entityTPTEntries[newEntity] = group + 0x8000;
+			entityEnemyIDs[newEntity] = groupEnemies[0].enemyID;
+			entityEnemySpawnTiles[newEntity] = cast(short)(tileY * 128 + tileX);
+			entityUnknown2C5E[newEntity] = 0;
+			entityWeakEnemyValue[newEntity] = rand();
 			overworldEnemyCount++;
 			if (groupEnemies[0].enemyID == EnemyID.magicButterfly) {
 				magicButterfly = 1;
@@ -1370,14 +1374,14 @@ void spawnEnemiesRow(short tileX, short tileY) {
 		enemySpawnRangeWidth = 8;
 		enemySpawnRangeHeight = 8;
 		short spawnAttempts = 1;
-		Unknown9:
+		AttemptAnotherSpawn:
 		short group = getEncounterGroupID(i, baseEnemySectorY);
 		short groupNext = getEncounterGroupID(cast(short)(i + 1), baseEnemySectorY);
 		if ((group != 0) && (groupNext == group)) {
 			enemySpawnRangeWidth += 8;
 			i++;
 			if (++spawnAttempts != 6) {
-				goto Unknown9;
+				goto AttemptAnotherSpawn;
 			}
 		}
 		while (spawnAttempts-- != 0) {
@@ -1411,14 +1415,14 @@ void spawnEnemiesColumn(short tileX, short tileY) {
 		enemySpawnRangeWidth = 8;
 		enemySpawnRangeHeight = 8;
 		short spawnAttempts = 1;
-		Unknown9:
+		AttemptAnotherSpawn:
 		short group = getEncounterGroupID(baseEnemySectorX, i);
 		short groupNext = getEncounterGroupID(baseEnemySectorX, cast(short)(i + 1));
 		if ((group != 0) && (groupNext == group)) {
 			enemySpawnRangeHeight += 8;
 			i++;
 			if (++spawnAttempts != 6) {
-				goto Unknown9;
+				goto AttemptAnotherSpawn;
 			}
 		}
 		while (spawnAttempts-- != 0) {
@@ -1515,7 +1519,7 @@ uint adjustPositionVertical(short arg1, uint arg2, short arg3) {
 }
 
 /// $C032EC
-void unknownC032EC() {
+void updatePartyNPCs() {
 	short y;
 	for (y = 0; (gameState.partyMembers[y] != 0) && (5 > gameState.partyMembers[y]); y++) {}
 	gameState.playerControlledPartyMemberCount = cast(ubyte)y;
@@ -1592,7 +1596,7 @@ void updateParty() {
 		entityScriptVar5Table[i] = gameState.partyEntities[i];
 	}
 	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
-	unknownC032EC();
+	updatePartyNPCs();
 	enableMushroomizedWalking();
 	loadTextPalette();
 }
@@ -1668,7 +1672,7 @@ short unknownC0369B(short id) {
 	entityScreenYTable[x1A_2] = cast(short)(playerPositionBuffer[x].yCoord - bg1YPosition);
 	gameState.firstPartyMemberEntity = characterInitialEntityData[gameState.partyMemberIndex[0] - 1].unknown6;
 	unknownC09CD7();
-	unknownC032EC();
+	updatePartyNPCs();
 	gameState.firstPartyMemberEntity = gameState.partyEntities[0];
 	updateParty();
 	entityPreparedXCoordinate = playerPositionBuffer[x].xCoord;
@@ -1700,7 +1704,7 @@ void unknownC03903(short id) {
 	entityPreparedYCoordinate = entityAbsYTable[x02];
 	entityPreparedDirection = entityDirections[x02];
 	unknownC02140(x02);
-	unknownC032EC();
+	updatePartyNPCs();
 	updateParty();
 }
 
@@ -1739,7 +1743,6 @@ void unknownC03A24() {
 
 /// $C03A94
 void unknownC03A94(short arg1) {
-	//x1E = arg1
 	short x1C;
 	short x;
 	if ((unknown7E438A | unknown7E438C) != 0) {
@@ -1796,14 +1799,14 @@ void unknownC03A94(short arg1) {
 }
 
 /// $C03C25
-void unknownC03C25() {
-	unknown7E5DDA = 1;
+void doSectorMusicUpdate() {
+	doMapMusicFade = 1;
 	loadSectorMusic(gameState.leaderX.integer, gameState.leaderY.integer);
 	if (nextMapMusicTrack != currentMapMusicTrack) {
 		waitUntilNextFrame();
 		changeMapMusic();
 	}
-	unknown7E5DDA = 0;
+	doMapMusicFade = 0;
 }
 
 /// $C03C4B
@@ -1819,7 +1822,7 @@ void getOnBicycle() {
 	if (gameState.partyMemberIndex[0] != 1) {
 		return;
 	}
-	if (unknown7E5DD8 == 0) {
+	if (disableMusicChanges == 0) {
 		changeMusic(Music.bicycle);
 	}
 	unknownC02140(0x18);
@@ -2713,11 +2716,11 @@ void partyLeaderTick() {
 	unknownC04C45();
 	const x = gameState.leaderX.integer >> 8;
 	const y = gameState.leaderY.integer >> 8;
-	if (((x^unknown7E5D5C) != 0) || ((y^unknown7E5D5E) != 0)) {
-		unknown7E5D5C = x;
-		unknown7E5D5E = y;
+	if (((x^lastSectorX) != 0) || ((y^lastSectorY) != 0)) {
+		lastSectorX = x;
+		lastSectorY = y;
 		if (sectorBoundaryBehaviourFlag) {
-			unknownC03C25();
+			doSectorMusicUpdate();
 		}
 	}
 	if ((dadPhoneTimer == 0) && (gameState.cameraMode != CameraMode.followEntity)) {
@@ -3551,7 +3554,7 @@ void screenTransition(short arg1, short arg2) {
 		freezeEntities();
 		unknownC0DD2C(2);
 		if (screenTransitionConfigTable[arg1].animationID != 0) {
-			startSwirl(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags | AnimationFlags.unknown1);
+			startSwirl(screenTransitionConfigTable[arg1].animationID, screenTransitionConfigTable[arg1].animationFlags | AnimationFlags.invert);
 		}
 		unknownC4954C(screenTransitionConfigTable[arg1].fadeStyle, &palettes[0][0]);
 		unknownC496E7(x02, -1);
@@ -3625,7 +3628,7 @@ short getScreenTransitionSoundEffect(short transition, short getStart) {
 
 /// $C068F4
 void loadSectorMusic(short x, short y) {
-	if (unknown7E5DD8 != 0) {
+	if (disableMusicChanges != 0) {
 		return;
 	}
 	tracef("Using overworld music entry %s", mapDataPerSectorMusic[y / 128][(x >> 8) & 0xFF]);
@@ -3640,14 +3643,14 @@ void loadSectorMusic(short x, short y) {
 	tracef("Selected music track: %s", cast(Music)x0A.music);
 	loadedMapMusicEntry = x0A;
 	nextMapMusicTrack = x0A.music;
-	if ((unknown7E5DDA == 0) && (x0A.music != currentMapMusicTrack)) {
+	if ((doMapMusicFade == 0) && (x0A.music != currentMapMusicTrack)) {
 		musicEffect(MusicEffect.quickFade);
 	}
 }
 
 /// $C069AF
 void changeMapMusic() {
-	if (unknown7E5DD8 != 0) {
+	if (disableMusicChanges != 0) {
 		return;
 	}
 	if (nextMapMusicTrack == currentMapMusicTrack) {
@@ -5231,31 +5234,31 @@ immutable ubyte[2] unknownC08FE6 = [ 0xEB, 0x98 ];
 
 /// $C0927C
 void unknownC0927C() {
-	unknown7E0A5E = &unknownC0DB0F;
+	actionScriptDrawFunction = &actionScriptDrawEntities;
 	firstEntity = -1;
 	entityNextEntityTable[29] = -1;
-	entityScriptUnknown125A[69] = -1;
+	entityScriptNextScripts[69] = -1;
 	unknown7E0A52 = 0;
 	unknown7E0A54 = 0;
-	short x = 0x38;
+	short x = 56;
 	do {
 		entityNextEntityTable[x / 2] = cast(short)(x + 2);
 		x -= 2;
 	} while (x >= 0);
 
-	x = 0x88;
+	x = 136;
 	do {
-		entityScriptUnknown125A[x / 2] = cast(short)(x + 2);
+		entityScriptNextScripts[x / 2] = cast(short)(x + 2);
 		x -= 2;
 	} while (x >= 0);
 
-	x = 0x3A;
+	x = 58;
 	do {
 		entityScriptTable[x / 2] = -1;
 		x -= 2;
 	} while (x >= 0);
 
-	x = 0x3A;
+	x = 58;
 	do {
 		entitySpriteMapFlags[x / 2] = 0;
 		entityTickCallbacks[x / 2] = null;
@@ -5265,14 +5268,14 @@ void unknownC0927C() {
 
 	x = 6;
 	do {
-		unknown7E1A12[x / 2] = 0;
-		unknown7E1A1A[x / 2] = 0;
-		unknown7E1A22[x / 2] = 0;
-		unknown7E1A32[x / 2] = 0;
-		unknown7E1A2A[x / 2] = 0;
-		unknown7E1A3A[x / 2] = 0;
-		unknown7E1A02[x / 2] = 0;
-		unknown7E1A0A[x / 2] = 0;
+		actionScriptBGHorizontalOffsetHigh[x / 2] = 0;
+		actionScriptBGVerticalOffsetHigh[x / 2] = 0;
+		actionScriptBGHorizontalVelocityLow[x / 2] = 0;
+		actionScriptBGHorizontalVelocityHigh[x / 2] = 0;
+		actionScriptBGVerticalVelocityLow[x / 2] = 0;
+		actionScriptBGVerticalVelocityHigh[x / 2] = 0;
+		actionScriptBGHorizontalOffsetLow[x / 2] = 0;
+		actionScriptBGVerticalOffsetLow[x / 2] = 0;
 		entityDrawPriority[x / 2] = 0;
 		x -= 2;
 	} while (x >= 0);
@@ -5307,15 +5310,15 @@ short initEntity(short actionScript, short x, short y) {
 	entityAllocationMinSlot *= 2;
 	entityAllocationMaxSlot *= 2;
 	bool allocationFailed;
-	short newEntity = unknownC09C02(allocationFailed);
+	short newEntity = allocateEntity(allocationFailed);
 	if (allocationFailed) {
 		return 0;
 	}
 	tracef("Initializing entity slot %s with %s at %s,%s", newEntity / 2, cast(ActionScript)actionScript, x, y);
 	bool __ignored;
-	short newScript = unknownC09D03(__ignored);
+	short newScript = allocateScript(__ignored);
 	entityScriptIndexTable[newEntity / 2] = newScript;
-	entityScriptUnknown125A[newScript / 2] = -1;
+	entityScriptNextScripts[newScript / 2] = -1;
 	entityMoveCallbacks[newEntity / 2] = &updateActiveEntityPosition2D;
 	entityScreenPositionCallbacks[newEntity / 2] = &updateScreenPositionBG12D;
 	entityDrawCallbacks[newEntity / 2] = &unknownC0A3A4;
@@ -5340,9 +5343,9 @@ short initEntity(short actionScript, short x, short y) {
 	//Unreachable code?
 	/+
 	unknownC09C99();
-	short newScript2 = unknownC09D03(__ignored);
+	short newScript2 = allocateScript(__ignored);
 	entityScriptIndexTable[newEntity / 2] = newScript2;
-	entityScriptUnknown125A[newScript2 / 2] = -1;
+	entityScriptNextScripts[newScript2 / 2] = -1;
 	+/
 	entityScriptTable[newEntity / 2] = actionScript;
 	entityAnimationFrames[newEntity / 2] = -1;
@@ -5362,9 +5365,9 @@ short setEntityActionScriptByOffset(const(ubyte)* pc, short entityIndex) {
 	assert (entityScriptTable[entityIndex / 2] >= 0);
 	entityIndex = unknownC09C99(entityIndex);
 	bool __ignored;
-	short newScript = unknownC09D03(__ignored);
+	short newScript = allocateScript(__ignored);
 	entityScriptIndexTable[entityIndex / 2] = newScript;
-	entityScriptUnknown125A[newScript / 2] = -1;
+	entityScriptNextScripts[newScript / 2] = -1;
 	return unknownC092F5Unknown4(pc, entityIndex);
 }
 
@@ -5372,7 +5375,7 @@ short unknownC092F5Unknown4(const(ubyte)* pc, short entityIndex) {
 	clearSpriteTickCallback(entityIndex);
 	entityProgramCounters[entityScriptIndexTable[entityIndex / 2] / 2] = pc;
 	entityScriptSleepFrames[entityScriptIndexTable[entityIndex / 2] / 2] = 0;
-	entityScriptUnknown12E6[entityScriptIndexTable[entityIndex / 2] / 2] = 0;
+	entityScriptStackPosition[entityScriptIndexTable[entityIndex / 2] / 2] = 0;
 	return entityIndex / 2;
 }
 //actually part of the previous function normally, but whatever
@@ -5421,7 +5424,7 @@ void runActionscriptFrame() {
 		currentEntitySlot = x;
 		currentEntitySlot /= 2;
 		unknown7E0A56 = entityNextEntityTable[currentEntitySlot];
-		unknownC094D0(unknown7E0A56,x);
+		runEntityScripts(unknown7E0A56,x);
 	} while ((x = unknown7E0A56) >= 0);
 	if (firstEntity < 0) {
 		unknown7E0A60 = 0;
@@ -5438,21 +5441,21 @@ void runActionscriptFrame() {
 		entityScreenPositionCallbacks[currentEntitySlot]();
 		x = entityNextEntityTable[actionScriptVar88 / 2];
 	} while(x >= 0);
-	unknown7E0A5E();
+	actionScriptDrawFunction();
 	unknown7E0A60 = 0;
 }
 
 /// $C09466
-void unknownC094D0(short a, short x) {
+void runEntityScripts(short a, short x) {
 	if ((entityTickCallbackFlags[x / 2] & objectMoveDisabled) == 0) {
 		short y = entityScriptIndexTable[x / 2];
 		do {
-			actionScriptVar8A = y;
+			currentEntityScriptOffset = y;
 			currentScriptOffset = y;
 			currentScriptSlot = y / 2;
-			unknown7E0A58 = entityScriptUnknown125A[y / 2];
-			unknownC09506();
-			y = unknown7E0A58;
+			actionScriptCurrentScript = entityScriptNextScripts[y / 2];
+			runEntityScript();
+			y = actionScriptCurrentScript;
 		} while (y > 0);
 		x = actionScriptVar88;
 	}
@@ -5463,14 +5466,14 @@ void unknownC094D0(short a, short x) {
 }
 
 /// $C09506
-void unknownC09506() {
-	if (entityScriptSleepFrames[actionScriptVar8A / 2] != 0) {
-		entityScriptSleepFrames[actionScriptVar8A / 2]--;
+void runEntityScript() {
+	if (entityScriptSleepFrames[currentEntityScriptOffset / 2] != 0) {
+		entityScriptSleepFrames[currentEntityScriptOffset / 2]--;
 		return;
 	}
-	const(ubyte)* ystart, y = entityProgramCounters[actionScriptVar8A / 2];
-	//ActionScript82 = EntityProgramCounterBanks[actionScriptVar8A / 2];
-	actionScriptVar84 = &unknown7E15A2[actionScriptVar8A / 2][0];
+	const(ubyte)* ystart, y = entityProgramCounters[currentEntityScriptOffset / 2];
+	//ActionScript82 = EntityProgramCounterBanks[currentEntityScriptOffset / 2];
+	actionScriptVar84 = &unknown7E15A2[currentEntityScriptOffset / 2][0];
 	do {
 		ystart = y;
 		ubyte a = (y++)[actionScriptVar80];
@@ -5479,13 +5482,13 @@ void unknownC09506() {
 			y = movementControlCodesPointerTable[a](y);
 		} else {
 			actionScriptVar90 = a;
-			entityScriptSleepFrames[actionScriptVar8A / 2] = a & 0xF;
+			entityScriptSleepFrames[currentEntityScriptOffset / 2] = a & 0xF;
 			y = movementControlCodesPointerTable[0x45 + ((actionScriptVar90 & 0x70) >> 4)](y);
 		}
-	} while (entityScriptSleepFrames[actionScriptVar8A / 2] == 0);
-	entityProgramCounters[actionScriptVar8A / 2] = y;
-	//EntityProgramCounterBanks[actionScriptVar8A / 2] = ActionScript82;
-	entityScriptSleepFrames[actionScriptVar8A / 2]--;
+	} while (entityScriptSleepFrames[currentEntityScriptOffset / 2] == 0);
+	entityProgramCounters[currentEntityScriptOffset / 2] = y;
+	//EntityProgramCounterBanks[currentEntityScriptOffset / 2] = ActionScript82;
+	entityScriptSleepFrames[currentEntityScriptOffset / 2]--;
 }
 
 immutable const(ubyte)* function(const(ubyte)*)[77] movementControlCodesPointerTable = [
@@ -5571,37 +5574,37 @@ immutable const(ubyte)* function(const(ubyte)*)[77] movementControlCodesPointerT
 /// $C095F2 - [00] - End
 const(ubyte)* actionScriptCommand00(const(ubyte)* y) {
 	deleteEntityOffset(actionScriptVar88);
-	entityScriptSleepFrames[actionScriptVar8A / 2] = -1;
-	unknown7E0A58 = -1;
+	entityScriptSleepFrames[currentEntityScriptOffset / 2] = -1;
+	actionScriptCurrentScript = -1;
 	return y;
 }
 
 /// $C09603 - [01 XX] - Loop XX times
 const(ubyte)* actionScriptCommand01(const(ubyte)* y) {
-	return actionScriptCommand0124Common(y[actionScriptVar80], actionScriptVar8A, y + 1);
+	return actionScriptCommand0124Common(y[actionScriptVar80], currentEntityScriptOffset, y + 1);
 }
 const(ubyte)* actionScriptCommand0124Common(short a, short x, const(ubyte)* y) {
 	actionScriptVar90 = a;
 	actionScriptVar94 = y;
-	actionScriptVar84[entityScriptUnknown12E6[x / 2] / 3].pc = y;
-	actionScriptVar84[entityScriptUnknown12E6[x / 2] / 3].counter = cast(ubyte)a;
-	entityScriptUnknown12E6[x / 2] += 3;
+	actionScriptVar84[entityScriptStackPosition[x / 2] / 3].pc = y;
+	actionScriptVar84[entityScriptStackPosition[x / 2] / 3].counter = cast(ubyte)a;
+	entityScriptStackPosition[x / 2] += 3;
 	return y;
 }
 
 /// $C09620 - [24] - Loop (Tempvar)
 const(ubyte)* actionScriptCommand24(const(ubyte)* y) {
-	return actionScriptCommand0124Common(entityTempvars[actionScriptVar8A / 2], actionScriptVar8A, y);
+	return actionScriptCommand0124Common(entityTempvars[currentEntityScriptOffset / 2], currentEntityScriptOffset, y);
 }
 
 /// $C09627 - [02] - Loop End
 const(ubyte)* actionScriptCommand02(const(ubyte)* y) {
 	actionScriptVar94 = y;
-	if (--actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3 - 1].counter == 0) {
-		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
+	if (--actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3 - 1].counter == 0) {
+		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
 		return actionScriptVar94;
 	}
-	return actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3 - 1].pc;
+	return actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3 - 1].pc;
 }
 
 /// $C09649 - [19 NEARPTR] - Short Jump
@@ -5617,42 +5620,42 @@ const(ubyte)* actionScriptCommand03(const(ubyte)* y) {
 /// $C09658 - [1A NEARPTR] - Short Call
 const(ubyte)* actionScriptCommand1A(const(ubyte)* y) {
 	actionScriptVar8CScript = *cast(const(ubyte)**)&y[actionScriptVar80];
-	actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc = y + (const(ubyte)*).sizeof;
-	entityScriptUnknown12E6[actionScriptVar8A / 2] += 3;
+	actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + (const(ubyte)*).sizeof;
+	entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
 	return actionScriptVar8CScript;
 }
 
 /// $C0966F - [1B] - Short Return
 const(ubyte)* actionScriptCommand1B(const(ubyte)* y) {
-	if (entityScriptUnknown12E6[actionScriptVar8A / 2] == 0) {
+	if (entityScriptStackPosition[currentEntityScriptOffset / 2] == 0) {
 		return actionScriptCommand0C(null);
 	} else {
-		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
-		return actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc;
+		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
+		return actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc;
 	}
 }
 
 /// $C09685 - [04 PTR] - Long Call
 const(ubyte)* actionScriptCommand04(const(ubyte)* y) {
 	actionScriptVar8CScript = *cast(const(ubyte)**)&y[actionScriptVar80];
-	actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc = y + (const(ubyte)*).sizeof;
-	entityScriptUnknown12E6[actionScriptVar8A / 2] += 3;
+	actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + (const(ubyte)*).sizeof;
+	entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
 	return actionScriptVar8CScript;
 }
 
 /// $C096AA - [05] - Long Return
 const(ubyte)* actionScriptCommand05(const(ubyte)* y) {
-	if (entityScriptUnknown12E6[actionScriptVar8A / 2] == 0) {
+	if (entityScriptStackPosition[currentEntityScriptOffset / 2] == 0) {
 		return actionScriptCommand0C(null);
 	} else {
-		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
-		return actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc;
+		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
+		return actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc;
 	}
 }
 
 /// $C096C3 - [06 XX] - Pause XX frames
 const(ubyte)* actionScriptCommand06(const(ubyte)* y) {
-	entityScriptSleepFrames[actionScriptVar8A / 2] = y[actionScriptVar80];
+	entityScriptSleepFrames[currentEntityScriptOffset / 2] = y[actionScriptVar80];
 	return y + 1;
 }
 
@@ -5749,16 +5752,16 @@ const(ubyte)* actionScriptCommand30(const(ubyte)* y) {
 /// $C097DC
 const(ubyte)* actionScriptCommand31(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
-	unknown7E1A02[x] = *cast(short*)&y[actionScriptVar80];
-	unknown7E1A12[x] = 0;
+	actionScriptBGHorizontalOffsetLow[x] = *cast(short*)&y[actionScriptVar80];
+	actionScriptBGHorizontalOffsetHigh[x] = 0;
 	return y + 2;
 }
 
 /// $C097EF
 const(ubyte)* actionScriptCommand32(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
-	unknown7E1A0A[x] = *cast(short*)&y[actionScriptVar80];
-	unknown7E1A1A[x] = 0;
+	actionScriptBGVerticalOffsetLow[x] = *cast(short*)&y[actionScriptVar80];
+	actionScriptBGVerticalOffsetHigh[x] = 0;
 	return y + 2;
 }
 
@@ -5766,8 +5769,8 @@ const(ubyte)* actionScriptCommand32(const(ubyte)* y) {
 const(ubyte)* actionScriptCommand33(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
-	unknown7E1A32[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
-	unknown7E1A22[x] = cast(short)((actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00));
+	actionScriptBGHorizontalVelocityHigh[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
+	actionScriptBGHorizontalVelocityLow[x] = cast(short)((actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00));
 	return y + 2;
 }
 
@@ -5775,8 +5778,8 @@ const(ubyte)* actionScriptCommand33(const(ubyte)* y) {
 const(ubyte)* actionScriptCommand34(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
-	unknown7E1A3A[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
-	unknown7E1A2A[x] = cast(short)((actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00));
+	actionScriptBGVerticalVelocityHigh[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
+	actionScriptBGVerticalVelocityLow[x] = cast(short)((actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00));
 	return y + 2;
 }
 
@@ -5784,8 +5787,8 @@ const(ubyte)* actionScriptCommand34(const(ubyte)* y) {
 const(ubyte)* actionScriptCommand35(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
-	unknown7E1A32[x] += (actionScriptVar90 & 0xFF) << 8;
-	unknown7E1A22[x] += (actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00);
+	actionScriptBGHorizontalVelocityHigh[x] += (actionScriptVar90 & 0xFF) << 8;
+	actionScriptBGHorizontalVelocityLow[x] += (actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00);
 	return y + 2;
 }
 
@@ -5793,8 +5796,8 @@ const(ubyte)* actionScriptCommand35(const(ubyte)* y) {
 const(ubyte)* actionScriptCommand36(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
 	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
-	unknown7E1A3A[x] += (actionScriptVar90 & 0xFF) << 8;
-	unknown7E1A2A[x] += (actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00);
+	actionScriptBGVerticalVelocityHigh[x] += (actionScriptVar90 & 0xFF) << 8;
+	actionScriptBGVerticalVelocityLow[x] += (actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00);
 	return y + 2;
 }
 
@@ -5819,14 +5822,14 @@ const(ubyte)* actionScriptCommand2D(const(ubyte)* y) {
 /// $C098CA
 const(ubyte)* actionScriptCommand37(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
-	unknown7E1A02[x] += *cast(short*)&y[actionScriptVar80];
+	actionScriptBGHorizontalOffsetLow[x] += *cast(short*)&y[actionScriptVar80];
 	return y + 2;
 }
 
 /// $C098DE
 const(ubyte)* actionScriptCommand38(const(ubyte)* y) {
 	ubyte x = (y++)[actionScriptVar80];
-	unknown7E1A0A[x] += *cast(short*)&y[actionScriptVar80];
+	actionScriptBGVerticalOffsetLow[x] += *cast(short*)&y[actionScriptVar80];
 	return y + 2;
 }
 
@@ -5853,10 +5856,10 @@ void unknownC09907(short arg1) {
 
 /// $C0991C
 const(ubyte)* actionScriptCommand3A(const(ubyte)* y) {
-	unknown7E1A32[y[actionScriptVar80]] = 0;
-	unknown7E1A22[y[actionScriptVar80]] = 0;
-	unknown7E1A3A[y[actionScriptVar80]] = 0;
-	unknown7E1A2A[y[actionScriptVar80]] = 0;
+	actionScriptBGHorizontalVelocityHigh[y[actionScriptVar80]] = 0;
+	actionScriptBGHorizontalVelocityLow[y[actionScriptVar80]] = 0;
+	actionScriptBGVerticalVelocityHigh[y[actionScriptVar80]] = 0;
+	actionScriptBGVerticalVelocityLow[y[actionScriptVar80]] = 0;
 	return y + 1;
 }
 
@@ -5871,13 +5874,13 @@ const(ubyte)* actionScriptCommand424C(const(ubyte)* y) {
 	alias Func = short function(short a, ref const(ubyte)* y);
 	Func f = *cast(Func*)&y[actionScriptVar80];
 	actionScriptVar94 = y + Func.sizeof;
-	entityTempvars[actionScriptVar8A / 2] = f(entityTempvars[actionScriptVar8A / 2], actionScriptVar94);
+	entityTempvars[currentEntityScriptOffset / 2] = f(entityTempvars[currentEntityScriptOffset / 2], actionScriptVar94);
 	return actionScriptVar94;
 }
 
 /// $C0995D
 const(ubyte)* actionScriptCommand0A(const(ubyte)* y) {
-	if (entityTempvars[actionScriptVar8A / 2] == 0) {
+	if (entityTempvars[currentEntityScriptOffset / 2] == 0) {
 		return *cast(const(ubyte)**)&y[actionScriptVar80];
 	}
 	return y + (const(ubyte)*).sizeof;
@@ -5885,7 +5888,7 @@ const(ubyte)* actionScriptCommand0A(const(ubyte)* y) {
 
 /// $C0996B
 const(ubyte)* actionScriptCommand0B(const(ubyte)* y) {
-	if (entityTempvars[actionScriptVar8A / 2] != 0) {
+	if (entityTempvars[currentEntityScriptOffset / 2] != 0) {
 		return *cast(const(ubyte)**)&y[actionScriptVar80];
 	}
 	return y + (const(ubyte)*).sizeof;
@@ -5893,7 +5896,7 @@ const(ubyte)* actionScriptCommand0B(const(ubyte)* y) {
 
 /// $C09979
 const(ubyte)* actionScriptCommand10(const(ubyte)* y) {
-	actionScriptVar90 = entityTempvars[actionScriptVar8A / 2];
+	actionScriptVar90 = entityTempvars[currentEntityScriptOffset / 2];
 	actionScriptVar94 = y + 1;
 	if (y[actionScriptVar80] <= actionScriptVar90) {
 		return actionScriptVar94 + y[actionScriptVar80] * (const(ubyte)*).sizeof;
@@ -5904,13 +5907,13 @@ const(ubyte)* actionScriptCommand10(const(ubyte)* y) {
 
 /// $C0999E
 const(ubyte)* actionScriptCommand11(const(ubyte)* y) {
-	actionScriptVar90 = entityTempvars[actionScriptVar8A / 2];
+	actionScriptVar90 = entityTempvars[currentEntityScriptOffset / 2];
 	actionScriptVar94 = y + 1;
 	if (y[actionScriptVar80] <= actionScriptVar90) {
 		return actionScriptVar94 + y[actionScriptVar80] * (const(ubyte)*).sizeof;
 	} else {
-		actionScriptVar84[entityScriptUnknown12E6[actionScriptVar8A / 2] / 3].pc = actionScriptVar94 + y[actionScriptVar80] * (const(ubyte)*).sizeof;
-		entityScriptUnknown12E6[actionScriptVar8A / 2] += 3;
+		actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = actionScriptVar94 + y[actionScriptVar80] * (const(ubyte)*).sizeof;
+		entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
 		return (cast(const(ubyte)**)actionScriptVar94)[actionScriptVar90];
 	}
 }
@@ -5918,7 +5921,7 @@ const(ubyte)* actionScriptCommand11(const(ubyte)* y) {
 /// $C099C3
 const(ubyte)* actionScriptCommand0C(const(ubyte)* y) {
 	actionScriptVar94 = y;
-	return actionScriptCommand0C13Common(actionScriptVar8A);
+	return actionScriptCommand0C13Common(currentEntityScriptOffset);
 }
 const(ubyte)* actionScriptCommand0C13Common(short y) {
 	ushort regY = unknownC09D12(actionScriptVar88, y);
@@ -5933,12 +5936,12 @@ const(ubyte)* actionScriptCommand0C13Common(short y) {
 const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
 	actionScriptVar94 = y;
 	bool carry;
-	short regY = unknownC09D03(carry);
+	short regY = allocateScript(carry);
 	if (!carry) {
-		unknown7E0A58 = regY;
-		entityScriptUnknown125A[regY / 2] = entityScriptUnknown125A[actionScriptVar8A / 2];
-		entityScriptUnknown125A[actionScriptVar8A / 2] = regY;
-		entityScriptUnknown12E6[regY / 2] = 0;
+		actionScriptCurrentScript = regY;
+		entityScriptNextScripts[regY / 2] = entityScriptNextScripts[currentEntityScriptOffset / 2];
+		entityScriptNextScripts[currentEntityScriptOffset / 2] = regY;
+		entityScriptStackPosition[regY / 2] = 0;
 		entityScriptSleepFrames[regY / 2] = 0;
 		entityProgramCounters[regY / 2] = *cast(const(ubyte)**)&y[actionScriptVar80];
 		///blah blah blah bank
@@ -5950,8 +5953,8 @@ const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
 /// $C09A0E
 const(ubyte)* actionScriptCommand13(const(ubyte)* y) {
 	actionScriptVar94 = y;
-	if (entityScriptUnknown125A[actionScriptVar8A / 2] >= 0) {
-		return actionScriptCommand0C13Common(entityScriptUnknown125A[actionScriptVar8A / 2]);
+	if (entityScriptNextScripts[currentEntityScriptOffset / 2] >= 0) {
+		return actionScriptCommand0C13Common(entityScriptNextScripts[currentEntityScriptOffset / 2]);
 	}
 	return actionScriptVar94;
 }
@@ -5967,7 +5970,7 @@ const(ubyte)* actionScriptCommand08(const(ubyte)* y) {
 
 /// $C09A2E
 const(ubyte)* actionScriptCommand09(const(ubyte)* y) {
-	entityScriptSleepFrames[actionScriptVar8A / 2] = -1;
+	entityScriptSleepFrames[currentEntityScriptOffset / 2] = -1;
 	return y - 1;
 }
 
@@ -6006,7 +6009,7 @@ const(ubyte)* actionScriptCommand14(const(ubyte)* y) {
 
 /// $C09A97
 const(ubyte)* actionScriptCommand27(const(ubyte)* y) {
-	return actionScriptCommand0D27Common(cast(ushort*)&entityTempvars[actionScriptVar8A / 2], y);
+	return actionScriptCommand0D27Common(cast(ushort*)&entityTempvars[currentEntityScriptOffset / 2], y);
 }
 
 /// $C09A9F
@@ -6092,9 +6095,9 @@ const(ubyte)* actionScriptCommand15(const(ubyte)* y) {
 
 /// $C09B2C - [16 NEARPTR] - Break if false
 const(ubyte)* actionScriptCommand16(const(ubyte)* y) {
-	if (entityTempvars[actionScriptVar8A / 2] == 0) {
+	if (entityTempvars[currentEntityScriptOffset / 2] == 0) {
 		y = *cast(const(ubyte)**)&y[actionScriptVar80];
-		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
+		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
 		return y;
 	}
 	return y + (const(ubyte)*).sizeof;
@@ -6102,9 +6105,9 @@ const(ubyte)* actionScriptCommand16(const(ubyte)* y) {
 
 /// $C09B44 - [17 NEARPTR] - Break if true
 const(ubyte)* actionScriptCommand17(const(ubyte)* y) {
-	if (entityTempvars[actionScriptVar8A / 2] != 0) {
+	if (entityTempvars[currentEntityScriptOffset / 2] != 0) {
 		y = *cast(const(ubyte)**)&y[actionScriptVar80];
-		entityScriptUnknown12E6[actionScriptVar8A / 2] -= 3;
+		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
 		return y;
 	}
 	return y + (const(ubyte)*).sizeof;
@@ -6121,13 +6124,13 @@ const(ubyte)* actionScriptCommand1C(const(ubyte)* y) {
 
 /// $C09B61 - [1D XXXX] - Write word to tempvar
 const(ubyte)* actionScriptCommand1D(const(ubyte)* y) {
-	entityTempvars[actionScriptVar8A / 2] = *cast(ushort*)&y[actionScriptVar80];
+	entityTempvars[currentEntityScriptOffset / 2] = *cast(ushort*)&y[actionScriptVar80];
 	return y + ushort.sizeof;
 }
 
 /// $C09B6B - [1E NEARPTR] - Write data at address to tempvar
 const(ubyte)* actionScriptCommand1E(const(ubyte)* y) {
-	entityTempvars[actionScriptVar8A / 2] = *(*cast(ushort**)&y[actionScriptVar80]);
+	entityTempvars[currentEntityScriptOffset / 2] = *(*cast(ushort**)&y[actionScriptVar80]);
 	return y + (ushort*).sizeof;
 }
 
@@ -6135,27 +6138,27 @@ const(ubyte)* actionScriptCommand1E(const(ubyte)* y) {
 const(ubyte)* actionScriptCommand1F(const(ubyte)* y) {
 	ubyte x = y[actionScriptVar80];
 	actionScriptVar8CMemory = cast(ushort*)entityScriptVarTables[x];
-	actionScriptVar8CMemory[0] = entityTempvars[actionScriptVar8A / 2];
+	actionScriptVar8CMemory[0] = entityTempvars[currentEntityScriptOffset / 2];
 	return y + 1;
 }
 
 /// $C09B91 - [20 XX] - Write var to tempvar
 const(ubyte)* actionScriptCommand20(const(ubyte)* y) {
-	entityTempvars[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
+	entityTempvars[currentEntityScriptOffset / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
 	return y + 1;
 }
 
 /// $C09BA9 - [44] - Sleep for $tempvar frames
 const(ubyte)* actionScriptCommand44(const(ubyte)* y) {
-	if (entityTempvars[actionScriptVar8A / 2] != 0) {
-		entityScriptSleepFrames[actionScriptVar8A / 2] = entityTempvars[actionScriptVar8A / 2];
+	if (entityTempvars[currentEntityScriptOffset / 2] != 0) {
+		entityScriptSleepFrames[currentEntityScriptOffset / 2] = entityTempvars[currentEntityScriptOffset / 2];
 	}
 	return y;
 }
 
 /// $C09BB4 - [21 XX] - Sleep for var XX frames
 const(ubyte)* actionScriptCommand21(const(ubyte)* y) {
-	entityScriptSleepFrames[actionScriptVar8A / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
+	entityScriptSleepFrames[currentEntityScriptOffset / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
 	return y + 1;
 }
 
@@ -6187,7 +6190,7 @@ const(ubyte)* actionScriptCommand25(const(ubyte)* y) {
 }
 
 /// $C09C02 - allocates an entity slot
-short unknownC09C02(out bool flag) {
+short allocateEntity(out bool flag) {
 	if (unknown7E0A54 < 0) {
 		flag = true;
 		return -1; //actually just whatever was in the X register when called
@@ -6283,9 +6286,9 @@ short unknownC09C99(short offset) {
 	unknown7E0A54 = a;
 	do {
 		x = a;
-		a = entityScriptUnknown125A[x / 2];
+		a = entityScriptNextScripts[x / 2];
 	} while(a >= 0);
-	entityScriptUnknown125A[x / 2] = unknown7E0A54Copy;
+	entityScriptNextScripts[x / 2] = unknown7E0A54Copy;
 	return offset;
 }
 
@@ -6325,13 +6328,13 @@ void unknownC09CD7() {
 }
 
 /// $C09D03 - allocates a script slot
-short unknownC09D03(out bool flag) {
+short allocateScript(out bool flag) {
 	short result = unknown7E0A54;
 	if (result < 0) {
 		flag = true;
 		return result;
 	}
-	unknown7E0A54 = entityScriptUnknown125A[result / 2];
+	unknown7E0A54 = entityScriptNextScripts[result / 2];
 	flag = false;
 	return result;
 }
@@ -6339,7 +6342,7 @@ short unknownC09D03(out bool flag) {
 /// $C09D12
 ushort unknownC09D12(short x, short y) {
 	unknownC09D1F(x, y);
-	entityScriptUnknown125A[y / 2] = unknown7E0A54;
+	entityScriptNextScripts[y / 2] = unknown7E0A54;
 	unknown7E0A54 = y;
 	return y;
 }
@@ -6349,12 +6352,12 @@ void unknownC09D1F(short x, short y) {
 	short tmpX;
 	y = unknownC09D3E(x, y, tmpX);
 	if (tmpX != -1) {
-		entityScriptUnknown125A[tmpX / 2] = entityScriptUnknown125A[y / 2];
+		entityScriptNextScripts[tmpX / 2] = entityScriptNextScripts[y / 2];
 	} else {
-		entityScriptIndexTable[x / 2] = entityScriptUnknown125A[y / 2];
+		entityScriptIndexTable[x / 2] = entityScriptNextScripts[y / 2];
 	}
-	if (y == unknown7E0A58) {
-		unknown7E0A58 = entityScriptUnknown125A[y / 2];
+	if (y == actionScriptCurrentScript) {
+		actionScriptCurrentScript = entityScriptNextScripts[y / 2];
 	}
 }
 
@@ -6368,7 +6371,7 @@ short unknownC09D3E(short x, short y, out short finalX) {
 			break;
 		}
 		x = y;
-		y = entityScriptUnknown125A[x / 2];
+		y = entityScriptNextScripts[x / 2];
 	}
 	finalX = x;
 	return tmpY;
@@ -6607,10 +6610,10 @@ void updateEntityPositionAbsolute() {
 }
 
 /// $C0A0CA
-void unknownC0A0CA(short arg1) {
-	assert(arg1 >= 0);
-	actionScriptVar88 = cast(ushort)(arg1 * 2);
-	unknownC0A0E3(actionScriptVar88, (arg1 * 2) < 0);
+void actionScriptDrawEntity(short entityOffset) {
+	assert(entityOffset >= 0);
+	actionScriptVar88 = cast(ushort)(entityOffset * 2);
+	unknownC0A0E3(actionScriptVar88, (entityOffset * 2) < 0);
 }
 
 /// $C0A0E3
@@ -7864,14 +7867,14 @@ void setColourAddSubMode(ubyte cgwsel, ubyte cgadsub) {
 }
 
 /// $C0B047
-void setWindowMask(ushort arg1, ushort arg2) {
-	W12SEL = unknownC0B0A6[arg1 & 3] & ((arg2 != 0) ? 0xAA : 0xFF);
-	W34SEL = unknownC0B0A6[(arg1>>2) & 3] & ((arg2 != 0) ? 0xAA : 0xFF);
-	WOBJSEL = unknownC0B0A6[(arg1>>4) & 3] & ((arg2 != 0) ? 0xAA : 0xFF);
-	TMW = arg1 & 0x1F;
-	TSW = arg1 & 0x1F;
-	WBGLOG = (arg2 != 0) ? 0 : 0x55;
-	WOBJLOG = (arg2 != 0) ? 0 : 0x55;
+void setWindowMask(ushort layers, ushort invert) {
+	W12SEL = unknownC0B0A6[layers & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	W34SEL = unknownC0B0A6[(layers>>2) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	WOBJSEL = unknownC0B0A6[(layers>>4) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	TMW = layers & 0b00011111;
+	TSW = layers & 0b00011111;
+	WBGLOG = (invert != 0) ? 0 : 0b01010101;
+	WOBJLOG = (invert != 0) ? 0 : 0b01010101;
 }
 
 /// $C0B0A6
@@ -7913,7 +7916,7 @@ void enableAttractModeWindowHDMA(ubyte channel, ubyte flags) {
 }
 
 /// $C0B149
-void unknownC0B149(short arg1, short arg2, short arg3, short arg4) {
+void generateAttractModeWindowHDMATable(short arg1, short arg2, short arg3, short arg4) {
 	if (/+(arg2 > 0) && (+/arg2 >= 0x70) {
 		short y = 0;
 		short a = cast(short)(arg2 - arg4);
@@ -8040,12 +8043,12 @@ void fileSelectInit() {
 	initializeMiscObjectData();
 	overworldSetupVRAM();
 	unknownC432B1();
-	unknownC005E7();
+	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], spriteGroupPalettes.ptr, 0x100);
 	initializeTextSystem();
-	copyToVRAM(3, 0x800, 0x7C00, unknown7F0000.ptr);
-	decomp(textWindowGraphics.ptr, unknown7F0000.ptr);
-	memcpy(&unknown7F0000[0x2000], &unknown7F0000[0x1000], 0x2A00);
+	copyToVRAM(3, 0x800, 0x7C00, buffer.ptr);
+	decomp(textWindowGraphics.ptr, buffer.ptr);
+	memcpy(&buffer[0x2000], &buffer[0x1000], 0x2A00);
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	memcpy(&palettes[0][0], textWindowFlavourPalettes.ptr, 0x40);
 	if (config.autoLoadFile.isNull) {
@@ -8090,7 +8093,7 @@ void unknownC0B67F() {
 	inputDisableFrameCounter = 0;
 	unknown7E4A58 = 1;
 	enemySpawnsEnabled = -1;
-	unknown7E4A5E = 10;
+	overworldEnemyMaximum = 10;
 	battleSwirlCountdown = 0;
 	pendingInteractions = 0;
 	setBoundaryBehaviour(1);
@@ -8292,7 +8295,7 @@ void unknownC0B9BC(PathCtx* arg1, short arg2, short arg3, short arg4) {
 
 /// $C0BA35
 short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg5, short arg6, short arg7) {
-	ubyte* x06 = &unknown7F0000[0x3000];
+	ubyte* x06 = &buffer[0x3000];
 	arg1.targetCount = arg2;
 	for (short i = 0; i != arg1.radius.x; i++) {
 		for (short j = 0; j != arg1.radius.y; j++) {
@@ -8321,7 +8324,7 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		x26++;
 	}
 	arg1.patherCount = x26;
-	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &unknown7F0000[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg5, arg6);
+	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &buffer[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg5, arg6);
 	while (pathGetHeapSize() > 0xC00) {}
 	if (x28 == 0) {
 		for (short i = 0; i != maxEntities; i++) {
@@ -9030,7 +9033,7 @@ void unknownC0D19B() {
 
 /// $C0D4DE
 void unknownC0D4DE() {
-	memcpy(&unknown7F0000[0x2000], &palettes[0][0], 0x200);
+	memcpy(&buffer[0x2000], &palettes[0][0], 0x200);
 	for (short i = 0; i < 0x80; i++) {
 		ushort x18 = (cast(ushort*)&palettes[0][0])[i];
 		short x16 = x18 & 0x1F;
@@ -9216,7 +9219,7 @@ short unknownC0D98F() {
 
 /// $C0DA31
 //this looks pretty ugly... is this right?
-void unknownC0DA31() {
+void actionScriptDrawEntitiesAlt() {
 	if (firstEntity + 1 == 0) {
 		return;
 	}
@@ -9229,7 +9232,7 @@ void unknownC0DA31() {
 			if (((entityScreenYTable[i] + 8) & 0xFE00) == 0) {
 				entityDrawSorting[x02++] = cast(short)(i + 1);
 			} else {
-				unknownC0A0CA(i);
+				actionScriptDrawEntity(i);
 			}
 		}
 	}
@@ -9250,68 +9253,68 @@ void unknownC0DA31() {
 			y = entityAbsYTable[entityDrawSorting[j - 1]];
 			x12 = j;
 		}
-		unknownC0A0CA(cast(short)(entityDrawSorting[x12] - 1));
+		actionScriptDrawEntity(cast(short)(entityDrawSorting[x12] - 1));
 		entityDrawSorting[x12] = 0;
 	}
 }
 
 /// $C0DB0F
-void unknownC0DB0F() {
+void actionScriptDrawEntities() {
 	if (padState[1] & Pad.select) {
-		unknownC0DA31();
+		actionScriptDrawEntitiesAlt();
 		return;
 	}
 
-	int dp16 = -1;
-	uint dp14 = firstEntity;
+	int entity = -1;
+	uint entityOffset = firstEntity;
 
 	// UNKNOWN6
 	// I guess this is a micro-optimization they decided to add here...? We've seen what == -1 looks like normally,
 	// and this is logically equivalent to that, but usually the compiler just does CMP #$FFFF
-	while (dp14 + 1) {
-		if (entityScreenYTable[dp14 / 2] < 256 || entityScreenYTable[dp14 / 2] >= -64u) {
+	while (entityOffset + 1) {
+		if (entityScreenYTable[entityOffset / 2] < 256 || entityScreenYTable[entityOffset / 2] >= -64u) {
 			// UNKNOWN3
-			if (entityDrawPriority[dp14 / 2] == 1) {
-				entityDrawSorting[dp14 / 2] = cast(short)dp16;
-				dp16 = dp14 / 2;
+			if (entityDrawPriority[entityOffset / 2] == 1) {
+				entityDrawSorting[entityOffset / 2] = cast(short)entity;
+				entity = entityOffset / 2;
 			} else {
 				// UNKNOWN4
-				unknownC0A0CA(cast(short)(dp14 / 2));
+				actionScriptDrawEntity(cast(short)(entityOffset / 2));
 			}
 		}
 		// UNKNOWN5
-		dp14 = entityNextEntityTable[dp14 / 2];
+		entityOffset = entityNextEntityTable[entityOffset / 2];
 	}
 
 	// UNKNOWN12
 	// Same little optimization as above
-	while (dp16 + 1) {
+	while (entity + 1) {
 		// UNKNOWN7
-		uint dp10 = dp16;
-		uint dp0E = entityAbsYTable[dp16];
+		uint drawnEntity = entity;
+		uint maxY = entityAbsYTable[entity];
 		uint dp04 = -1;
-		uint dp02 = dp16;
-		uint y = entityDrawSorting[dp16];
+		uint dp02 = entity;
+		uint y = entityDrawSorting[entity];
 		// UNKNOWN10
 		// They really liked doing this huh...
 		while (y + 1) {
 			// UNKNOWN8
-			if (entityAbsYTable[y] >= dp0E) {
-				dp0E = entityAbsYTable[y];
-				dp10 = y;
+			if (entityAbsYTable[y] >= maxY) {
+				maxY = entityAbsYTable[y];
+				drawnEntity = y;
 				dp04 = dp02;
 			}
 			// UNKNOWN9
 			dp02 = y;
 			y = entityDrawSorting[y];
 		}
-		unknownC0A0CA(cast(short)dp10);
+		actionScriptDrawEntity(cast(short)drawnEntity);
 
 		if (dp04 + 1) {
-			entityDrawSorting[dp04] = entityDrawSorting[dp10];
+			entityDrawSorting[dp04] = entityDrawSorting[drawnEntity];
 		} else {
 			// UNKNOWN11
-			dp16 = entityDrawSorting[dp10];
+			entity = entityDrawSorting[drawnEntity];
 		}
 	}
 	// UNKNOWN13
@@ -9319,16 +9322,16 @@ void unknownC0DB0F() {
 
 /// $C0DBE6 - schedules a task to be run at some point in the future while on the overworld
 short scheduleOverworldTask(short arg1, void function() arg2) {
-	OverworldTask* x10 = &overworldTasks[0];
+	OverworldTask* task = &overworldTasks[0];
 	short i;
 	for (i = 0; i < 4; i++) {
-		if (x10.framesLeft == 0) {
+		if (task.framesLeft == 0) {
 			break;
 		}
-		x10++;
+		task++;
 	}
-	x10.framesLeft = arg1;
-	x10.func = arg2;
+	task.framesLeft = arg1;
+	task.func = arg2;
 	return i;
 }
 
@@ -9942,20 +9945,20 @@ void teleportMainLoop() {
 
 /// $C0EBE0
 void loadTitleScreenGraphics() {
-	decomp(&titleScreenGraphics[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
-	decomp(&titleScreenArrangement[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x1000, 0x5800, &unknown7F0000[0]);
-	decomp(&unknownE1C6E5[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x4000, 0x6000, &unknown7F0000[0]);
+	decomp(&titleScreenGraphics[0], &buffer[0]);
+	copyToVRAM(0, 0x8000, 0, &buffer[0]);
+	decomp(&titleScreenArrangement[0], &buffer[0]);
+	copyToVRAM(0, 0x1000, 0x5800, &buffer[0]);
+	decomp(&unknownE1C6E5[0], &buffer[0]);
+	copyToVRAM(0, 0x4000, 0x6000, &buffer[0]);
 }
 
 /// $C0EC77
 void unknownC0EC77(short arg1) {
 	if (arg1 == 0) {
-		decomp(&unknownE1AE83[0], &unknown7F0000[0]);
+		decomp(&unknownE1AE83[0], &buffer[0]);
 	} else {
-		decomp(&unknownE1AEFD[0], &unknown7F0000[0]);
+		decomp(&unknownE1AEFD[0], &buffer[0]);
 	}
 }
 
@@ -9986,9 +9989,9 @@ void unknownC0ED5C() {
 	paletteUploadMode = PaletteUpload.none;
 	decomp(&titleScreenPalette[0], &palettes[0][0]);
 	unknownC0EC77(0);
-	memcpy(&palettes[8][0], &unknown7F0000[0x1A0], 0x20);
+	memcpy(&palettes[8][0], &buffer[0x1A0], 0x20);
 	unknownC0EC77(1);
-	memcpy(&palettes[7][0], &unknown7F0000[0x260], 0x20);
+	memcpy(&palettes[7][0], &buffer[0x260], 0x20);
 	paletteUploadMode = PaletteUpload.full;
 }
 
@@ -10002,7 +10005,7 @@ void unknownC0EDDA() {
 	short x16 = entityScriptVar0Table[currentEntitySlot];
 	short x14 = entityScriptVar1Table[currentEntitySlot];
 	short x02 = entityScriptVar2Table[currentEntitySlot];
-	memcpy(&palettes[x14][0], &unknown7F0000[x16 * 32], 0x20);
+	memcpy(&palettes[x14][0], &buffer[x16 * 32], 0x20);
 	short x12 = cast(short)(x16 + 1);
 	if (x12 == x02) {
 		x12 = 0;
@@ -10028,23 +10031,23 @@ void logoScreenLoad(short arg1) {
 	mirrorTM = 4;
 	switch (arg1) {
 		case 0:
-			decomp(&nintendoGraphics[0], &unknown7F0000[0]);
+			decomp(&nintendoGraphics[0], &buffer[0]);
 			decomp(&nintendoArrangement[0], &introBG2Buffer[0]);
 			decomp(&nintendoPalette[0], &palettes[0][0]);
 			break;
 		case 1:
-			decomp(&apeGraphics[0], &unknown7F0000[0]);
+			decomp(&apeGraphics[0], &buffer[0]);
 			decomp(&apeArrangement[0], &introBG2Buffer[0]);
 			decomp(&apePalette[0], &palettes[0][0]);
 			break;
 		case 2:
-			decomp(&halkenGraphics[0], &unknown7F0000[0]);
+			decomp(&halkenGraphics[0], &buffer[0]);
 			decomp(&halkenArrangement[0], &introBG2Buffer[0]);
 			decomp(&halkenPalette[0], &palettes[0][0]);
 			break;
 		default: break;
 	}
-	copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
+	copyToVRAM(0, 0x8000, 0, &buffer[0]);
 	copyToVRAM(0, 0x800, 0x4000, &introBG2Buffer[0]);
 	paletteUploadMode = PaletteUpload.full;
 }
@@ -10095,14 +10098,14 @@ void gasStationLoad() {
 	bg2XPosition = 0;
 	bg1YPosition = 0;
 	bg1XPosition = 0;
-	decomp(&gasStationGraphics[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0xC000, 0, &unknown7F0000[0]);
-	decomp(&gasStationArrangement[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x800, 0x7800, &unknown7F0000[0]);
+	decomp(&gasStationGraphics[0], &buffer[0]);
+	copyToVRAM(0, 0xC000, 0, &buffer[0]);
+	decomp(&gasStationArrangement[0], &buffer[0]);
+	copyToVRAM(0, 0x800, 0x7800, &buffer[0]);
 	decomp(&gasStationPalette[0], &palettes[0][0]);
 	unknownC4A377();
 	unknownC496F9();
-	memset(&unknown7F0000[0x40], 0, 0x20);
+	memset(&buffer[0x40], 0, 0x20);
 	memset(&palettes[0][0], 0, 0x40);
 	memset(&palettes[3][0], 0, 0x1A0);
 	unknownC496E7(0x1E0, -1);

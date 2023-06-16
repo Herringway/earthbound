@@ -21460,9 +21460,9 @@ void unknownEFD95E() {
 		} else {
 			copyToVRAM(0, 0x1000, 0x6100, &debugMenuFont[0]);
 		}
-		unknown7F0000[0] = 0;
-		unknown7F0000[1] = 0;
-		copyToVRAM(3, 0x800, 0x7C00, &unknown7F0000[0]);
+		buffer[0] = 0;
+		buffer[1] = 0;
+		copyToVRAM(3, 0x800, 0x7C00, &buffer[0]);
 		if (debugModeNumber != DebugMode.viewAttribute) {
 			palettes[0][2] = 0xFFFF;
 		} else {
@@ -21496,8 +21496,8 @@ void initDebugMenuScreen() {
 	setBG2VRAMLocation(BGTileMapSize.horizontal, 0x5800, 0x2000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	setOAMSize(2);
-	unknown7F0000[0] = 0;
-	copyToVRAM(3, 0, 0, &unknown7F0000[0]);
+	buffer[0] = 0;
+	copyToVRAM(3, 0, 0, &buffer[0]);
 	memcpy(&palettes[0][0], &unknownEFF1BB[0], 0x200);
 	unknownEFD95E();
 	entityAllocationMinSlot = 0;
@@ -21599,7 +21599,7 @@ void displayViewCharacterDebugOverlay() {
 	copyToVRAMAlt(0, 8, 0x7F24, cast(ubyte*)integerToHexDebugTiles(gameState.leaderX.integer / 0x40));
 	copyToVRAMAlt(0, 8, 0x7F2A, cast(ubyte*)integerToHexDebugTiles(gameState.leaderY.integer / 0x40));
 	copyToVRAMAlt(0, 8, 0x7F35, cast(ubyte*)integerToDecimalDebugTiles(getEncounterGroupID(gameState.leaderX.integer / 0x40, gameState.leaderY.integer / 0x40)));
-	copyToVRAMAlt(0, 8, 0x7F3A, cast(ubyte*)integerToDecimalDebugTiles(unknown7E4A68));
+	copyToVRAMAlt(0, 8, 0x7F3A, cast(ubyte*)integerToDecimalDebugTiles(enemySpawnTooManyEnemiesFailureCount));
 	if (battleSwirlCountdown == 0) {
 		return;
 	}
@@ -21695,7 +21695,7 @@ void renderAllAttributeRows(short x, short y) {
 /// $EFE175
 void debugMain() {
 	short x1A;
-	*(cast(ushort*)&unknown7F0000[0]) = 0;
+	*(cast(ushort*)&buffer[0]) = 0;
 	prepareForImmediateDMA();
 	unknownC0927C();
 	clearSpriteTable();
@@ -21864,7 +21864,7 @@ void debugProcessCommandSelection() {
 			break;
 		case 2:
 			debugModeNumber = DebugMode.viewCharacter;
-			unknown7E4A5E = 10;
+			overworldEnemyMaximum = 10;
 			enemySpawnsEnabled = -1;
 			debugMain();
 			break;

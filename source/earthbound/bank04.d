@@ -36,11 +36,11 @@ short unknownC40015() {
 
 /// $C40023
 void unknownC40023() {
-	entityScriptSleepFrames[actionScriptVar8A / 2] = currentEntitySlot & 0xF;
+	entityScriptSleepFrames[currentEntityScriptOffset / 2] = currentEntitySlot & 0xF;
 }
 
 /// $C4002F
-void unknownC4002F(short arg1, ushort arg2, ushort arg3) {
+void uploadTextTile(short arg1, ushort arg2, ushort arg3) {
 	dmaCopyRAMSource = &vwfBuffer[arg1][0];
 	dmaCopyMode = 0;
 	dmaCopySize = 16;
@@ -91,8 +91,8 @@ void unknownC40B51() {
 
 /// $C40B75
 noreturn unknownC40B75() {
-	copyToVRAM(0, 0xA00, 0, &unknown7F0000[0]);
-	copyToVRAM(0, 0x800, 0x4000, &unknown7F0000[0x4000]);
+	copyToVRAM(0, 0xA00, 0, &buffer[0]);
+	copyToVRAM(0, 0x800, 0x4000, &buffer[0x4000]);
 	memcpy(&palettes[0][0], &warningPalette[0], 0x10);
 	preparePaletteUpload(PaletteUpload.full);
 	fadeInWithMosaic(1, 1, 0);
@@ -693,7 +693,7 @@ void unknownC426C7() {
 void updateMapPaletteAnimation() {
 	// Use ushort addition instead of byte addition since we need carrying
 	// At that point, it's easier to just use 7F0000 as ushort everywhere
-	ushort* Word7F0000 = cast(ushort*)(&unknown7F0000[0]);
+	ushort* Word7F0000 = cast(ushort*)(&buffer[0]);
 	for (short i = 0; i < 0x100; i += 1) {
 		// Red channel
 		Word7F0000[0x400 + i] += Word7F0000[0x100 + i];
@@ -1495,8 +1495,8 @@ void nextVWFTile() {
 	} else {
 		vwfX = cast(ushort)(vwfTile * 8);
 	}
-	unknown7E9652.unknown2 = 0;
-	unknown7E9652.unknown0 = vwfX;
+	textRenderState.upperVRAMPosition = 0;
+	textRenderState.pixelsRendered = vwfX;
 }
 
 /// $C43CD2 - Set text position on focused window (for menu options)
@@ -1669,8 +1669,8 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	vwfTile = 0;
 	vwfX = 0;
 	memset(&vwfBuffer[0][0], 0xFF, 0x340);
-	unknown7E9652.unknown2 = 0;
-	unknown7E9652.unknown0 = 0;
+	textRenderState.upperVRAMPosition = 0;
+	textRenderState.pixelsRendered = 0;
 	if (arg3 == -1) {
 		if (unknown7E9662 == 0) {
 			return 1;
@@ -1708,7 +1708,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	}
 	dmaTransferFlag = 1;
 	for (short i = 0; i < windowStats[windowTable[currentFocusWindow]].width + 1; i++) {
-		unknownC44C8C(cast(short)(i * 2 + 0x2E0), cast(short)(i * 2 + 0x2E0 + 1));
+		finishTextTileRender(cast(short)(i * 2 + 0x2E0), cast(short)(i * 2 + 0x2E0 + 1));
 	}
 	if (windowTable[currentFocusWindow] != windowTail) {
 		unknown7E9623 = 1;
@@ -1832,24 +1832,24 @@ void unknownC4487C(short arg1, const(ubyte)* arg2) {
 void loadWindowGraphics(short arg1) {
 	switch (arg1) {
 		case WindowGraphicsToLoad.all: // reload all window graphics in VRAM
-			copyToVRAM(0, 0x1800, 0x7000, &unknown7F0000[0x2000]); // HP/PP meter tiles, special text graphics
+			copyToVRAM(0, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
 			goto case;
 		case WindowGraphicsToLoad.allButMeter: // same as 1, but no meter or special text
-			copyToVRAM(0, 0x450, 0x6000, &unknown7F0000[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
-			copyToVRAM(0, 0x60, 0x6278, &unknown7F0000[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
-			copyToVRAM(0, 0xB0, 0x62F8, &unknown7F0000[0x5F0]); // upper halves of normal digits
-			copyToVRAM(0, 0xA0, 0x6380, &unknown7F0000[0x700]); // lower halves of normal digits
-			copyToVRAM(0, 0x10, 0x6400, &unknown7F0000[0x800]); // upper half of bullet character
-			copyToVRAM(0, 0x10, 0x6480, &unknown7F0000[0x900]); // lower half of bullet character
+			copyToVRAM(0, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(0, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(0, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
+			copyToVRAM(0, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
+			copyToVRAM(0, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
+			copyToVRAM(0, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
 			break;
 		case WindowGraphicsToLoad.all2: // this seems to be a copy of 1, for some reason
-			copyToVRAM(0, 0x450, 0x6000, &unknown7F0000[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
-			copyToVRAM(0, 0x60, 0x6278, &unknown7F0000[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
-			copyToVRAM(0, 0xB0, 0x62F8, &unknown7F0000[0x5F0]); // upper halves of normal digits
-			copyToVRAM(0, 0xA0, 0x6380, &unknown7F0000[0x700]); // lower halves of normal digits
-			copyToVRAM(0, 0x10, 0x6400, &unknown7F0000[0x800]); // upper half of bullet character
-			copyToVRAM(0, 0x10, 0x6480, &unknown7F0000[0x900]); // lower half of bullet character
-			copyToVRAM(0, 0x1800, 0x7000, &unknown7F0000[0x2000]); // HP/PP meter tiles, special text graphics
+			copyToVRAM(0, 0x450, 0x6000, &buffer[0]); //status ailments, backgrounds and selector digits, upper halves of some icons
+			copyToVRAM(0, 0x60, 0x6278, &buffer[0x4F0]); // lower half of cursor, equip icon, dollar sign and cents
+			copyToVRAM(0, 0xB0, 0x62F8, &buffer[0x5F0]); // upper halves of normal digits
+			copyToVRAM(0, 0xA0, 0x6380, &buffer[0x700]); // lower halves of normal digits
+			copyToVRAM(0, 0x10, 0x6400, &buffer[0x800]); // upper half of bullet character
+			copyToVRAM(0, 0x10, 0x6480, &buffer[0x900]); // lower half of bullet character
+			copyToVRAM(0, 0x1800, 0x7000, &buffer[0x2000]); // HP/PP meter tiles, special text graphics
 			break;
 		default: break;
 	}
@@ -1952,7 +1952,7 @@ immutable ushort[16] powersOfTwo16Bit = [
 ];
 
 /// $C44C8C
-void unknownC44C8C(short arg1, short arg2) {
+void finishTextTileRender(short arg1, short arg2) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
@@ -2005,30 +2005,30 @@ void unknownC44C8C(short arg1, short arg2) {
 
 /// $C44DCA
 void unknownC44DCA() {
-	short x12 = vwfX / 8;
-	short x02 = unknown7E9652.unknown0 / 8;
-	short x10 = unknown7E9652.unknown2;
+	short lastRenderedTileIndex = vwfX / 8;
+	short tileIndex = textRenderState.pixelsRendered / 8;
+	short x10 = textRenderState.upperVRAMPosition;
 	if (x10 != 0) {
-		unknownC4002F(x02, x10, unknown7E9652.unknown4);
+		uploadTextTile(tileIndex, x10, textRenderState.lowerVRAMPosition);
 	} else {
-		x02--;
+		tileIndex--;
 	}
-	while (x02 != x12) {
+	while (tileIndex != lastRenderedTileIndex) {
 		short x0E = unknownC40085();
-		unknown7E9652.unknown2 = x0E;
+		textRenderState.upperVRAMPosition = x0E;
 		short x04 = unknownC40085();
-		unknown7E9652.unknown4 = x04;
-		x02 = (x02 + 1 == 52) ? 0 : cast(short)(x02 + 1);
-		unknownC4002F(x02, x0E, x04);
-		unknownC44C8C(x0E, x04);
+		textRenderState.lowerVRAMPosition = x04;
+		tileIndex = (tileIndex + 1 == vwfBuffer.length) ? 0 : cast(short)(tileIndex + 1);
+		uploadTextTile(tileIndex, x0E, x04);
+		finishTextTileRender(x0E, x04);
 	}
-	unknown7E9652.unknown0 = vwfX;
+	textRenderState.pixelsRendered = vwfX;
 }
 
 /// $C44E44
 void unknownC44E44() {
-	unknown7E9652.unknown2 = 0;
-	unknown7E9652.unknown0 = 0;
+	textRenderState.upperVRAMPosition = 0;
+	textRenderState.pixelsRendered = 0;
 }
 
 /// $C44E4D
@@ -3396,8 +3396,8 @@ void unknownC476A5() {
 	} else {
 		x16 = 0x2FE;
 	}
-	unknownC47501(&unknown7F0000[x16]);
-	unknownC425CC(&unknown7F0000[x16]);
+	unknownC47501(&buffer[x16]);
+	unknownC425CC(&buffer[x16]);
 	entityScriptVar0Table[currentEntitySlot]++;
 }
 
@@ -3409,20 +3409,20 @@ void unknownC47705() {
 	} else {
 		x16 = 0x8FA;
 	}
-	unknownC47501(&unknown7F0000[x16]);
-	unknownC425FD(&unknown7F0000[x16]);
+	unknownC47501(&buffer[x16]);
+	unknownC425FD(&buffer[x16]);
 	entityScriptVar0Table[currentEntitySlot]++;
 }
 
 /// $C47765
 void unknownC47765(short arg1, short arg2, short arg3) {
-	ubyte* x0A = &unknown7F0000[0xBF8];
+	ubyte* x0A = &buffer[0xBF8];
 	short x14 = cast(short)(arg2 - bg1YPosition);
 	if (x14 > 0x7F) {
 		x0A[0] = 0x7F;
-		unknown7F0000[0xBF9] = 0;
-		unknown7F0000[0xBFA] = 0xFF;
-		x0A = &unknown7F0000[0xBFB];
+		buffer[0xBF9] = 0;
+		buffer[0xBFA] = 0xFF;
+		x0A = &buffer[0xBFB];
 		x14 -= 0x7F;
 	}
 	(x0A++)[0] = cast(ubyte)x14;
@@ -3440,7 +3440,7 @@ void unknownC47765(short arg1, short arg2, short arg3) {
 	(x0A++)[0] = 0x80;
 	(x0A++)[0] = 0x7F;
 	(x0A++)[0] = 0;
-	unknownC42542(&unknown7F0000[0xBF8]);
+	unknownC42542(&buffer[0xBF8]);
 }
 
 /// $C47866
@@ -3487,7 +3487,7 @@ void rectangleWindowConfigure(short xmin, short xmax, short ymin, short ymax) {
 	short ymaxClamp = unknownC47866(ymax, 224);
 	short xminClamp = unknownC47866(xmin, 256);
 	short xmaxClamp = unknownC47866(xmax, 256);
-	ubyte* buffer = &unknown7F0000[bufferOffset];
+	ubyte* buffer = &buffer[bufferOffset];
 	// Configure a region above the rectangle with no windowing (WH0 > WH1 means no window)
 	buffer = rectangleWindowAddHdmaEntry(yminClamp, 0x80, 0x7F, buffer);
 	// Configure the region where we have our rectangle
@@ -3496,7 +3496,7 @@ void rectangleWindowConfigure(short xmin, short xmax, short ymin, short ymax) {
 	buffer = rectangleWindowAddHdmaEntry(cast(short)(224 - ymaxClamp - 1), 0x80, 0x7F, buffer);
 	// Terminate the table
 	buffer[0] = 0;
-	rectangleWindowEnableHdma(&unknown7F0000[bufferOffset]);
+	rectangleWindowEnableHdma(&buffer[bufferOffset]);
 	rectangleWindowBufferIndex++;
 }
 
@@ -3522,22 +3522,22 @@ void unknownC47A27() {
 /// $C47C3F
 //definitely need to check this one over
 void prepareWindowGraphics() {
-	decomp(&textWindowGraphics[0], &unknown7F0000[0]);
-	memcpy(&unknown7F0000[0x2000], &unknown7F0000[0x1000], 0x2A00);
-	memset(&unknown7F0000[0x3200], 0, 0x600);
+	decomp(&textWindowGraphics[0], &buffer[0]);
+	memcpy(&buffer[0x2000], &buffer[0x1000], 0x2A00);
+	memset(&buffer[0x3200], 0, 0x600);
 	if (gameState.textFlavour == 0) {
 		gameState.textFlavour = 1;
 	}
 	if (textWindowProperties[gameState.textFlavour - 1].unknown == 8) {
-		decomp(&flavouredTextGraphics[0], &unknown7F0000[0x100]);
+		decomp(&flavouredTextGraphics[0], &buffer[0x100]);
 	}
-	ushort* x24 = cast(ushort*)&unknown7F0000[0x2A00];
+	ushort* x24 = cast(ushort*)&buffer[0x2A00];
 	for (short i = 0; i < 4; i++) {
 		vwfTile = 0;
 		vwfX = 0;
 		memset(&vwfBuffer[0][0], 0xFF, 0x340);
-		unknown7E9652.unknown2 = 0;
-		unknown7E9652.unknown0 = 0;
+		textRenderState.upperVRAMPosition = 0;
+		textRenderState.pixelsRendered = 0;
 		ubyte* x0A = &partyCharacters[i].name[0];
 		vwfX = 2;
 		for (short j = 0; x0A[0] != 0; j++) {
@@ -3545,26 +3545,26 @@ void prepareWindowGraphics() {
 			x0A++;
 		}
 		for (short j = 0; j < 4; j++) {
-			memcpy(&unknown7F0000[0x2A00 + j * 16 + i * 64], &vwfBuffer[j][0], 0x10);
-			memcpy(&unknown7F0000[0x2A00 + j * 16 + i * 64 + 0x100], &vwfBuffer[j][16], 0x10);
+			memcpy(&buffer[0x2A00 + j * 16 + i * 64], &vwfBuffer[j][0], 0x10);
+			memcpy(&buffer[0x2A00 + j * 16 + i * 64 + 0x100], &vwfBuffer[j][16], 0x10);
 		}
 	}
 	for (short i = 0; i < 0x20; i++) {
-		ubyte* x1A = &unknown7F0000[0x70];
+		ubyte* x1A = &buffer[0x70];
 		for (short j = 0; j < 8; j++) {
 			x24[0] = (x24[0] & 0xFF00) | ((x24[0] >> 8) ^ 0xFF) | x1A[0];
 			x24++;
 			x1A += 2;
 		}
 	}
-	ushort* x16 = cast(ushort*)&unknown7F0000[0x2C00];
+	ushort* x16 = cast(ushort*)&buffer[0x2C00];
 
 	for (const(ushort)* x24_2 = &statusEquipWindowText2[0][0]; *x24_2 != 0; x24_2++) {
 		if (*x24_2 == 0x20) {
 			continue;
 		}
-		ushort* x0A = cast(ushort*)(&unknown7F0000[((*x24_2 & 0xFFF0) + *x24_2) * 16]);
-		ubyte* x1A = &unknown7F0000[0x70];
+		ushort* x0A = cast(ushort*)(&buffer[((*x24_2 & 0xFFF0) + *x24_2) * 16]);
+		ubyte* x1A = &buffer[0x70];
 		for (short i = 0; i < 8; i++) {
 			x16[0] = (x0A[0] & 0xFF00) | ((x0A[0] >> 8) ^ 0xFF) | x1A[0];
 			x16[0x80] = (x0A[0x80] & 0xFF00) | ((x0A[0x80] >> 8) ^ 0xFF) | x1A[0x80];
@@ -3857,7 +3857,7 @@ void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 		}
 		memcpy(&palettes[2][0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
 		memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
-		unknownC00480();
+		adjustSpritePalettesByAverage();
 		loadSpecialSpritePalette();
 		preparePaletteUpload(PaletteUpload.full);
 		while (paletteUploadMode != PaletteUpload.none) { waitForInterrupt(); }
@@ -3892,7 +3892,7 @@ ushort unknownC49496(ushort arg1, short arg2) {
 
 /// $C4954C
 void unknownC4954C(short arg1, ushort* arg2) {
-	ushort* x06 = cast(ushort*)(&unknown7F0000[0]);
+	ushort* x06 = cast(ushort*)(&buffer[0]);
 	for (short i = 0; i < 0x100; i++) {
 		*(x06++) = unknownC49496(*(arg2++), arg1);
 	}
@@ -3900,8 +3900,8 @@ void unknownC4954C(short arg1, ushort* arg2) {
 
 /// $C4958E
 void unknownC4958E(short arg1, short arg2, ushort* arg3) {
-	ushort* x06 = cast(ushort*)&unknown7F0000[0];
-	memset(&unknown7F0000[0x200], 0, 0x1000);
+	ushort* x06 = cast(ushort*)&buffer[0];
+	memset(&buffer[0x200], 0, 0x1000);
 	for (ushort i = 0; i < 0x100; i += 16) {
 		for (ushort j = i; i + 16 > j; j++) {
 			ushort x02;
@@ -3931,12 +3931,12 @@ void unknownC496E7(short arg1, short arg2) {
 
 /// $C496F9
 void unknownC496F9() {
-	memcpy(&unknown7F0000[0], &palettes[0][0], 0x200);
+	memcpy(&buffer[0], &palettes[0][0], 0x200);
 }
 
 /// $C49740
 void unknownC49740() {
-	memcpy(palettes.ptr, unknown7F0000.ptr, 0x200);
+	memcpy(palettes.ptr, buffer.ptr, 0x200);
 	preparePaletteUpload(PaletteUpload.full);
 }
 
@@ -4004,7 +4004,7 @@ void unknownC49A4B() {
 void unknownC49A56() {
 	prepareForImmediateDMA();
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	copyToVRAM(3, 0x3800, 0x6000, &unknown7F0000[0]);
+	copyToVRAM(3, 0x3800, 0x6000, &buffer[0]);
 	memcpy(&palettes[0][0], &movementTextStringPalette[0], 8);
 	paletteUploadMode = PaletteUpload.full;
 	memset(&vwfBuffer[0][0], 0xFF, 0x680);
@@ -4430,13 +4430,13 @@ void unknownC4A377() {
 	setBGMODE(BGMode.mode3);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x7800, 0);
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	decomp(&battleBGGraphicsPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x2000, 0x6000, &unknown7F0000[0]);
-	decomp(&battleBGArrangementPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &unknown7F0000[0]);
+	decomp(&battleBGGraphicsPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
+	copyToVRAM(0, 0x2000, 0x6000, &buffer[0]);
+	decomp(&battleBGArrangementPointers[animatedBackgrounds[BattleBGLayer.introGiygas].graphics][0], &buffer[0]);
 	for (short i = 0; i < 0x800; i += 2) {
-		unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 8;
+		buffer[i + 1] = (buffer[i + 1] & 0xDF) | 8;
 	}
-	copyToVRAM(0, 0x800, 0x7C00, &unknown7F0000[0]);
+	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
 	loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[BattleBGLayer.introGiygas]);
 	loadedBGDataLayer1.palettePointer = &palettes[2];
 	memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[BattleBGLayer.introGiygas].palette][0], 0x20);
@@ -4453,62 +4453,62 @@ immutable byte[61] unknownC4A591 = [
 ];
 
 /// $C4A5CE
-immutable Unknown7EAECCEntry[2] unknownC4A5CE = [
-	Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
-	Unknown7EAECCEntry(0),
+immutable AttractModeParameters[2] unknownC4A5CE = [
+	AttractModeParameters(0x3D, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
+	AttractModeParameters(0),
 ];
 
 /// $C4A5FA
-immutable Unknown7EAECCEntry[2] unknownC4A5FA = [
-	Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
-	Unknown7EAECCEntry(0),
+immutable AttractModeParameters[2] unknownC4A5FA = [
+	AttractModeParameters(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
+	AttractModeParameters(0),
 ];
 
 /// $C4A626
-immutable Unknown7EAECCEntry[2] unknownC4A626 = [
-	Unknown7EAECCEntry(0x3D, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
-	Unknown7EAECCEntry(0),
+immutable AttractModeParameters[2] unknownC4A626 = [
+	AttractModeParameters(0x3D, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
+	AttractModeParameters(0),
 ];
 
 /// $C4A652
-immutable Unknown7EAECCEntry[2] unknownC4A652 = [
-	Unknown7EAECCEntry(0x64, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
-	Unknown7EAECCEntry(0),
+immutable AttractModeParameters[2] unknownC4A652 = [
+	AttractModeParameters(0x64, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
+	AttractModeParameters(0),
 ];
 
 /// $C4A67E
 void startSwirl(short arg1, short arg2) {
 	tracef("Loading swirl %s", arg1);
-	if ((arg2 & AnimationFlags.unknown1) != 0) {
-		unknown7EAEC6 = 1;
+	if ((arg2 & AnimationFlags.invert) != 0) {
+		swirlInvertEnabled = 1;
 	} else {
-		unknown7EAEC6 = 0;
+		swirlInvertEnabled = 0;
 	}
-	if ((arg2 & AnimationFlags.unknown0) != 0) {
-		unknown7EAEC7 = 1;
+	if ((arg2 & AnimationFlags.reverse) != 0) {
+		swirlReversed = 1;
 	} else {
-		unknown7EAEC7 = 0;
+		swirlReversed = 0;
 	}
 	if ((arg2 & AnimationFlags.unknown2) != 0) {
-		unknown7EAEC8 = 32;
+		swirlMaskSettings = SwirlMask.mathMode;
 	} else {
-		unknown7EAEC8 = 31;
+		swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.bg3 | SwirlMask.bg4 | SwirlMask.obj; // on/off mask
 	}
 	unknown7EAEC2 = 1;
 	framesUntilNextSwirlFrame = swirlPrimaryTable[arg1].timeBetweenFrames;
 	swirlFramesLeft = swirlPrimaryTable[arg1].swirlFrames;
 	swirlHDMATableID = swirlPrimaryTable[arg1].startingHDMATableID;
-	if (unknown7EAEC7 != 0) {
+	if (swirlReversed != 0) {
 		swirlHDMATableID += swirlFramesLeft;
 	}
-	unknown7EAECC = null;
+	loadedComputedSwirl = null;
 	if (arg1 == 0) {
-		unknown7EAECC = &unknownC4A5CE[0];
+		loadedComputedSwirl = &unknownC4A5CE[0];
 	}
 	unknown7EAEC9 = 0;
 	unknown7EAECA = 0;
 	unknown7EAECB = 1;
-	if ((arg2 & AnimationFlags.unknown7) != 0) {
+	if ((arg2 & AnimationFlags.repeat) != 0) {
 		unknown7EAEE4 = cast(ubyte)arg1;
 		framesUntilNextSwirlFrame = 4;
 		unknown7EAEE5 = 0;
@@ -4524,31 +4524,31 @@ void unknownC4A7B0() {
 	if (unknown7EAEC2 == 0) {
 		return;
 	}
-	if (unknown7EAECC != null) {
+	if (loadedComputedSwirl != null) {
 		if (--unknown7EAEC2 == 0) {
-			if (unknown7EAECC.unknown0 == 0) {
-				unknown7EAECC = null;
+			if (loadedComputedSwirl.unknown0 == 0) {
+				loadedComputedSwirl = null;
 				return;
 			}
-			if (unknown7EAECC.unknown2 != 0x8000) {
-				unknown7EAED0 = unknown7EAECC.unknown2;
+			if (loadedComputedSwirl.unknown2 != 0x8000) {
+				unknown7EAED0 = loadedComputedSwirl.unknown2;
 			}
-			if (unknown7EAECC.unknown4 != 0x8000) {
-				unknown7EAED2 = unknown7EAECC.unknown4;
+			if (loadedComputedSwirl.unknown4 != 0x8000) {
+				unknown7EAED2 = loadedComputedSwirl.unknown4;
 			}
-			if (unknown7EAECC.unknown6 != 0x8000) {
-				unknown7EAED4 = unknown7EAECC.unknown6;
+			if (loadedComputedSwirl.unknown6 != 0x8000) {
+				unknown7EAED4 = loadedComputedSwirl.unknown6;
 			}
-			if (unknown7EAECC.unknown8 != 0x8000) {
-				unknown7EAED6 = unknown7EAECC.unknown8;
+			if (loadedComputedSwirl.unknown8 != 0x8000) {
+				unknown7EAED6 = loadedComputedSwirl.unknown8;
 			}
-			unknown7EAED8 = unknown7EAECC.unknown10;
-			unknown7EAEDA = unknown7EAECC.unknown12;
-			unknown7EAEDC = unknown7EAECC.unknown14;
-			unknown7EAEDE = unknown7EAECC.unknown16;
-			unknown7EAEE0 = unknown7EAECC.unknown18;
-			unknown7EAEE2 = unknown7EAECC.unknown20;
-			unknown7EAECC++;
+			unknown7EAED8 = loadedComputedSwirl.unknown10;
+			unknown7EAEDA = loadedComputedSwirl.unknown12;
+			unknown7EAEDC = loadedComputedSwirl.unknown14;
+			unknown7EAEDE = loadedComputedSwirl.unknown16;
+			unknown7EAEE0 = loadedComputedSwirl.unknown18;
+			unknown7EAEE2 = loadedComputedSwirl.unknown20;
+			loadedComputedSwirl++;
 		}
 		unknown7EAED0 += unknown7EAED8;
 		unknown7EAED2 += unknown7EAEDA;
@@ -4566,11 +4566,11 @@ void unknownC4A7B0() {
 		}
 		if ((unknown7EAED4 == 0) && (unknown7EAED6 == 0)) {
 			unknown7EAEC2 = 0;
-			unknown7EAECC = null;
+			loadedComputedSwirl = null;
 		}
-		unknownC0B149(unknown7EAED0, unknown7EAED2, (unknown7EAED4 >> 8) & 0xFF, (unknown7EAED6 >> 8) & 0xFF);
+		generateAttractModeWindowHDMATable(unknown7EAED0, unknown7EAED2, (unknown7EAED4 >> 8) & 0xFF, (unknown7EAED6 >> 8) & 0xFF);
 		enableAttractModeWindowHDMA(3, 0x41);
-		setWindowMask(unknown7EAEC8, (unknown7EAEC6 >> 8) & 0xFF);
+		setWindowMask(swirlMaskSettings, (swirlInvertEnabled >> 8) & 0xFF);
 		return;
 	}
 
@@ -4583,12 +4583,12 @@ void unknownC4A7B0() {
 			unknownC0AE34(unknown7EAEC9 + 3);
 			unknown7EAEC9++;
 			unknown7EAEC9 &= 1;
-			if (unknown7EAEC7 == 0) {
+			if (swirlReversed == 0) {
 				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[swirlHDMATableID++][0]);
 			} else {
 				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[--swirlHDMATableID][0]);
 			}
-			setWindowMask(unknown7EAEC8, unknown7EAEC6);
+			setWindowMask(swirlMaskSettings, swirlInvertEnabled);
 			swirlFramesLeft--;
 			return;
 		}
@@ -4596,7 +4596,7 @@ void unknownC4A7B0() {
 			if (--unknown7EAEE6 != 0) {
 				swirlFramesLeft = swirlPrimaryTable[unknown7EAEE4].swirlFrames;
 				unknown7EAEE6 = swirlPrimaryTable[unknown7EAEE4].startingHDMATableID;
-				if (unknown7EAEC7 == 0) {
+				if (swirlReversed == 0) {
 					continue;
 				}
 				unknown7EAEE6 += swirlFramesLeft;
@@ -4767,8 +4767,8 @@ void useSoundStone(short arg1) {
 	prepareForImmediateDMA();
 	stopMusic();
 	loadEnemyBattleSprites();
-	decomp(&soundStoneGraphics[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x2C00, 0x2000, &unknown7F0000[0]);
+	decomp(&soundStoneGraphics[0], &buffer[0]);
+	copyToVRAM(0, 0x2C00, 0x2000, &buffer[0]);
 	memcpy(&palettes[8][0], &soundStonePalette[0], 0xC0);
 	loadTextPalette();
 	loadBattleBG(BackgroundLayer.soundStone1, BackgroundLayer.soundStone2, 4);
@@ -5593,14 +5593,14 @@ void unknownC4C2DE() {
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	decomp(&unknownE1CFAF[0], &unknown7F0000[0]);
+	decomp(&unknownE1CFAF[0], &buffer[0]);
 	if (gameState.partyMembers[0] == 3) {
-		copyToVRAM(0, 0x8000, 0, &unknown7F0000[0x8000]);
+		copyToVRAM(0, 0x8000, 0, &buffer[0x8000]);
 	} else {
-		copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
+		copyToVRAM(0, 0x8000, 0, &buffer[0]);
 	}
-	decomp(&unknownE1D5E8[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x800, 0x5800, &unknown7F0000[0]);
+	decomp(&unknownE1D5E8[0], &buffer[0]);
+	copyToVRAM(0, 0x800, 0x5800, &buffer[0]);
 	decomp(&unknownE1D4F4[0], cast(ubyte*)&palettes[0][0]);
 	memcpy(&palettes[7][0], &palettes[0][0], 0x20);
 	memset(&palettes[1][0], 0, 0xC0);
@@ -5913,9 +5913,9 @@ void unknownC47A6B() {
 
 /// $C47A9E
 void unknownC47A9E() {
-	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &unknown7F0000[0]);
-	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &unknown7F0000[0]);
-	memcpy(&palettes[0][0], &unknown7F0000[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
+	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
+	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &buffer[0]);
+	memcpy(&palettes[0][0], &buffer[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
 	paletteUploadMode = PaletteUpload.full;
 	bg3YPosition = 0xFFFF;
 }
@@ -5923,7 +5923,7 @@ void unknownC47A9E() {
 /// $C47B77
 short unknownC47B77() {
 	bg3YPosition = 0xFFFF;
-	copyToVRAM(0, 0x700, 0x7C00, &unknown7F0000[8 + animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4 + entityScriptVar1Table[currentEntitySlot] * 0x700]);
+	copyToVRAM(0, 0x700, 0x7C00, &buffer[8 + animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4 + entityScriptVar1Table[currentEntitySlot] * 0x700]);
 	if (entityScriptVar1Table[currentEntitySlot] + 1 == animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown6) {
 		return 0;
 	}
@@ -5935,7 +5935,7 @@ immutable ubyte[215] lumineHallText = ebString!215("I'm ....  It's been a long r
 
 /// $C4810E
 ushort* unknownC4810E(short arg1, ushort* arg2) {
-	ubyte* x06 = &unknown7F0000[0];
+	ubyte* x06 = &buffer[0];
 	x06 += (((arg1 & 0xFFF0) * 2) + arg1 & 0xF) * 16;
 	for (ushort i = 6; i < 7; i -= 2) {
 		for (short j = 0; j < 4; j++) {
@@ -6010,9 +6010,9 @@ short unknownC4838A(short arg1) {
 	x28 = 0;
 	short x20 = 0;
 	for (short i = 0; i < vwfX / 8; i++) {
-		memcpy(&unknown7F0000[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+		memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
 		x20 += 16;
-		memcpy(&unknown7F0000[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
 		x20 += 16;
 		x2A += 16;
 	}
@@ -6026,9 +6026,9 @@ short unknownC4838A(short arg1) {
 			x26 += vwfX;
 			x20 = 0;
 			 for (short j = 0; i < vwfX / 8; i++) {
-				memcpy(&unknown7F0000[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+				memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
 				x20 += 16;
-				memcpy(&unknown7F0000[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+				memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
 				x20 += 16;
 				x2A += 16;
 				if ((x2A % 0x100) == 0) {
@@ -6052,9 +6052,9 @@ short unknownC4838A(short arg1) {
 	x04 = cast(short)(vwfX + x26);
 	x20 = 0;
 	for (short i = 0; i < vwfX + 16; i++) {
-		memcpy(&unknown7F0000[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+		memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
 		short x16 = cast(short)(x20 + 16);
-		memcpy(&unknown7F0000[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x16], 16);
+		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x16], 16);
 		x20 = cast(short)(x16 + 16);
 		x2A += 0x100;
 		if ((x2A % 0x100) == 0) {
@@ -6067,7 +6067,7 @@ short unknownC4838A(short arg1) {
 /// $C4880C
 void unknownC4880C() {
 	short y = unknownC4838A(0);
-	ushort* x06 = cast(ushort*)&unknown7F0000[0x4000];
+	ushort* x06 = cast(ushort*)&buffer[0x4000];
 	for (short i = 0; i < 0x1D; i++) {
 		for (short j = 0; j < 8; j++) {
 			(x06++)[0] = 0;
@@ -6098,8 +6098,8 @@ void unknownC4880C() {
 			(x06++)[0] = 0;
 		}
 	}
-	ushort* x06_2 = cast(ushort*)&unknown7F0000[0x1000];
-	ushort* x0A = cast(ushort*)&unknown7F0000[0x4000];
+	ushort* x06_2 = cast(ushort*)&buffer[0x1000];
+	ushort* x0A = cast(ushort*)&buffer[0x4000];
 	for (short i = 0; i < 8; i++) {
 		(x06_2++)[0] = 0x0C10;
 	}
@@ -6114,19 +6114,19 @@ void unknownC4880C() {
 		}
 	}
 	entityScriptVar0Table[currentEntitySlot] = cast(short)(x04 * 2);
-	unknown7F0000[0] = 8;
-	unknown7F0000[1] = 30;
+	buffer[0] = 8;
+	buffer[1] = 30;
 }
 
 /// $C48A6D
 short unknownC48A6D() {
 	ushort* x06;
 	if ((entityScriptVar1Table[currentEntitySlot] & 1) != 0) {
-		x06 = cast(ushort*)&unknown7F0000[0x4000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
+		x06 = cast(ushort*)&buffer[0x4000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
 	} else {
-		x06 = cast(ushort*)&unknown7F0000[0x1000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
+		x06 = cast(ushort*)&buffer[0x1000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
 	}
-	ushort* x0A = cast(ushort*)&unknown7F0000[2];
+	ushort* x0A = cast(ushort*)&buffer[2];
 	for (short i = 0; i < 8; i++) {
 		for (short j = 0; j < 30; j++) {
 			(x0A++)[0] = x06[0];
@@ -6135,7 +6135,7 @@ short unknownC48A6D() {
 		// interesting...
 		x06 += -239;
 	}
-	unknownC3F705(808, 588, cast(ushort*)&unknown7F0000[0]);
+	unknownC3F705(808, 588, cast(ushort*)&buffer[0]);
 	short x = 0;
 	if (++entityScriptVar1Table[currentEntitySlot] > entityScriptVar0Table[currentEntitySlot]) {
 		x = 1;
@@ -6169,10 +6169,10 @@ void unknownC48B3B() {
 
 /// $C4C8A4
 void clearEntityFadeBuffer() {
-	entityFadeStatesBuffer = &unknown7F0000[0];
+	entityFadeStatesBuffer = &buffer[0];
 	entityFadeStatesLength = 0;
-	entityFadeStates = cast(SpriteFadeState*)&unknown7F0000[0x7C00];
-	memset(&unknown7F0000[0x7C00], 0, 0x400);
+	entityFadeStates = cast(SpriteFadeState*)&buffer[0x7C00];
+	memset(&buffer[0x7C00], 0, 0x400);
 }
 
 /// $C4C8DB
@@ -6393,7 +6393,7 @@ short actionScriptVStripe() {
 
 /// $C4CEB0
 void actionScriptObjFXClearDotBuffer() {
-	ushort* x06 = cast(ushort*)&unknown7F0000[0x7F00];
+	ushort* x06 = cast(ushort*)&buffer[0x7F00];
 	for (short i = 0; i < 0x40; i++) {
 		(x06++)[0] = 0;
 	}
@@ -6402,7 +6402,7 @@ void actionScriptObjFXClearDotBuffer() {
 /// $C4CED8
 void actionScriptObjFXDots() {
 	SpriteFadeState* x0A = entityFadeStates;
-	ushort* x1A = cast(ushort*)&unknown7F0000[0x7F00];
+	ushort* x1A = cast(ushort*)&buffer[0x7F00];
 	short x18 = rand()&0x3F;
 	while (x1A[x18] != 0) {
 		x18 = (x18 + 1) & 0x3F;
@@ -6597,9 +6597,9 @@ void drawTownMapIcons(short map) {
 /// $C4D552
 void loadTownMapData(short arg1) {
 	fadeOut(2, 1);
-	decomp(&townMapGraphicsPointerTable[arg1][0], &unknown7F0000[0]);
+	decomp(&townMapGraphicsPointerTable[arg1][0], &buffer[0]);
 	while (fadeParameters.step != 0) { waitForInterrupt(); }
-	memcpy(&palettes[0][0], &unknown7F0000[0], 0x40);
+	memcpy(&palettes[0][0], &buffer[0], 0x40);
 	memcpy(&palettes[8][0], &townMapIconPalette[0], 0x100);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x3000, 0);
 	setOAMSize(3);
@@ -6607,10 +6607,10 @@ void loadTownMapData(short arg1) {
 	CGWSEL = 0;
 	mirrorTM = 1;
 	mirrorTD = 0;
-	copyToVRAM(0, 0x800, 0x3000, &unknown7F0000[0x40]);
-	copyToVRAM2(0, 0x4000, 0, &unknown7F0000[0x840]);
-	decomp(&townMapLabelGfx[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0x2400, 0x6000, &unknown7F0000[0]);
+	copyToVRAM(0, 0x800, 0x3000, &buffer[0x40]);
+	copyToVRAM2(0, 0x4000, 0, &buffer[0x840]);
+	decomp(&townMapLabelGfx[0], &buffer[0]);
+	copyToVRAM(0, 0x2400, 0x6000, &buffer[0]);
 	preparePaletteUpload(PaletteUpload.full);
 	mirrorTM = 0x11;
 	bg1YPosition = 0;
@@ -6642,11 +6642,11 @@ short displayTownMap() {
 		drawTownMapIcons(cast(short)(x10 - 1));
 		updateScreen();
 	}
-	unknown7E5DD8 = 1;
+	disableMusicChanges = 1;
 	reloadMap();
 	currentMapMusicTrack = nextMapMusicTrack;
 	undrawFlyoverText();
-	unknown7E5DD8 = 0;
+	disableMusicChanges = 0;
 	mirrorTM = 0x17;
 	fadeIn(2, 1);
 	return x10;
@@ -6793,7 +6793,7 @@ void initIntro() {
 	unknownC0927C();
 	initializeTextSystem();
 	unknownC432B1();
-	unknown7E5DD8 = 1;
+	disableMusicChanges = 1;
 	bg3XPosition = 0;
 	bg3YPosition = 0;
 	bg2XPosition = 0;
@@ -6886,12 +6886,12 @@ void initIntro() {
 	CGWSEL = 0;
 	mirrorTM = 1;
 	mirrorTD = 0;
-	unknown7E5DD8 = 0;
+	disableMusicChanges = 0;
 }
 
 /// $C4DCF6
 void setDecompressedArrangementPriorityBit() {
-	ushort* x0A = cast(ushort*)&unknown7F0000[0];
+	ushort* x0A = cast(ushort*)&buffer[0];
 	for (short i = 0; i < 0x200; i++) {
 		x0A[i] |= 0x2000;
 	}
@@ -6899,11 +6899,11 @@ void setDecompressedArrangementPriorityBit() {
 
 /// $C4DD28
 void decompItoiProduction() {
-	decomp(&producedItoiArrangement[0], &unknown7F0000[0]);
+	decomp(&producedItoiArrangement[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
-	copyToVRAM(0, 0x800, 0x7C00, &unknown7F0000[0]);
-	decomp(&producedItoiGraphics[0], &unknown7F0000[0x800]);
-	copyToVRAM(0, 0x400, 0x6000, &unknown7F0000[0x800]);
+	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
+	decomp(&producedItoiGraphics[0], &buffer[0x800]);
+	copyToVRAM(0, 0x400, 0x6000, &buffer[0x800]);
 	decomp(&nintendoItoiPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
@@ -6911,11 +6911,11 @@ void decompItoiProduction() {
 
 /// $C4DDD0
 void decompNintendoPresentation() {
-	decomp(&nintendoPresentationArrangement[0], &unknown7F0000[0]);
+	decomp(&nintendoPresentationArrangement[0], &buffer[0]);
 	setDecompressedArrangementPriorityBit();
-	copyToVRAM(0, 0x800, 0x7C00, &unknown7F0000[0]);
-	decomp(&nintendoPresentationGraphics[0], &unknown7F0000[0x800]);
-	copyToVRAM(0, 0x400, 0x6000, &unknown7F0000[0x800]);
+	copyToVRAM(0, 0x800, 0x7C00, &buffer[0]);
+	decomp(&nintendoPresentationGraphics[0], &buffer[0x800]);
+	copyToVRAM(0, 0x400, 0x6000, &buffer[0x800]);
 	decomp(&nintendoItoiPalette[0], &palettes[0][0]);
 	palettes[0][0] = 0;
 	preparePaletteUpload(PaletteUpload.full);
@@ -6954,12 +6954,12 @@ void enableYourSanctuaryDisplay() {
 
 /// $C4DEE9
 void prepareYourSanctuaryLocationPaletteData(short arg1, short arg2) {
-	unknownC005E7();
+	prepareAverageForSpritePalettes();
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	loadMapPalette(arg1 / 8, arg1 & 7);
-	unknownC00480();
+	adjustSpritePalettesByAverage();
 	paletteUploadMode = PaletteUpload.none;
-	memcpy(&unknown7F0000[0x4000 + arg2 * 0x200], &palettes[0][0], 0x100);
+	memcpy(&buffer[0x4000 + arg2 * 0x200], &palettes[0][0], 0x100);
 }
 
 /// $C4DF7D
@@ -6967,7 +6967,7 @@ void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, sho
 	arg1 -= 16;
 	arg2 -= 14;
 	memset(&unknown7EF000.yourSanctuaryLocationTileOffsets[0], 0, 0x800);
-	ushort* x06 = cast(ushort*)&unknown7F0000[arg3 * 0x800];
+	ushort* x06 = cast(ushort*)&buffer[arg3 * 0x800];
 	for (short i = 0; i < maxEntities; i++) {
 		for (short j = 0; j < 0x20; j++) {
 			short x0F;
@@ -6993,7 +6993,7 @@ void prepareYourSanctuaryLocationTilesetData(short arg1) {
 		nextYourSanctuaryLocationTileIndex++;
 		yourSanctuaryLoadedTilesetTiles++;
 	}
-	ushort* x06 = (cast(ushort*)&unknown7F0000[0x800 * arg1]);
+	ushort* x06 = (cast(ushort*)&buffer[0x800 * arg1]);
 	for (short i = 0; i < 0x3C0; i++) {
 		ushort x14 = x06[0];
 		x06[0] = unknown7EF000.yourSanctuaryLocationTileOffsets[x14 & 0x3FF] | (x14 & 0xFC00);
@@ -7007,9 +7007,9 @@ void loadYourSanctuaryLocationData(short arg1, short arg2, short arg3) {
 	short x1A = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	unknown7E436E = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	prepareYourSanctuaryLocationPaletteData(x1A, arg3);
-	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x1A]][0], &unknown7F0000[0x8000]);
+	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x1A]][0], &buffer[0x8000]);
 	prepareYourSanctuaryLocationTileArrangementData(arg1, arg2, arg3);
-	decomp(&mapDataTilesetPtrTable[tilesetTable[x1A]][0], &unknown7F0000[0x8000]);
+	decomp(&mapDataTilesetPtrTable[tilesetTable[x1A]][0], &buffer[0x8000]);
 	prepareYourSanctuaryLocationTilesetData(arg3);
 	totalYourSanctuaryLoadedTilesetTiles += yourSanctuaryLoadedTilesetTiles;
 }
@@ -7030,8 +7030,8 @@ void displayYourSanctuaryLocation(short arg1) {
 		waitUntilNextFrame();
 	}
 	waitDMAFinished();
-	copyToVRAM(0, 0x780, 0x3800, &unknown7F0000[x02 * 0x800]);
-	memcpy(&palettes[0][0], &unknown7F0000[0x4000 + x02 * 0x200], 0x100);
+	copyToVRAM(0, 0x780, 0x3800, &buffer[x02 * 0x800]);
+	memcpy(&palettes[0][0], &buffer[0x4000 + x02 * 0x200], 0x100);
 	paletteUploadMode = PaletteUpload.halfFirst;
 	screenTopY = 0;
 	screenLeftX = 0;
@@ -7082,19 +7082,19 @@ void loadCastScene() {
 	bg1YPosition = 0;
 	bg1XPosition = 0;
 	updateScreen();
-	*cast(ushort*)&unknown7F0000[0] = 0;
-	copyToVRAM(3, 0x800, 0x7C00, &unknown7F0000[0]);
+	*cast(ushort*)&buffer[0] = 0;
+	copyToVRAM(3, 0x800, 0x7C00, &buffer[0]);
 	unknown7EB4CE = 0xFF;
-	memset(&unknown7F0000[0], 0, 0x1000);
-	decomp(&unknownE1D6E1[0], &unknown7F0000[0x200]);
-	decomp(&castNamesGraphics[0], &unknown7F0000[0x600]);
+	memset(&buffer[0], 0, 0x1000);
+	decomp(&unknownE1D6E1[0], &buffer[0x200]);
+	decomp(&castNamesGraphics[0], &buffer[0x600]);
 	unknownC4E7AE();
-	copyToVRAM(0, 0x8000, 0, &unknown7F0000[0]);
+	copyToVRAM(0, 0x8000, 0, &buffer[0]);
 	unknown7EB4CE = 0;
 	loadTextPalette();
 	memcpy(&palettes[0][0], &unknownE1D815[0], 0x20);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
-	decomp(&unknownE1E4E6[0], &unknown7F0000[0x7000]);
+	decomp(&unknownE1E4E6[0], &buffer[0x7000]);
 	paletteUploadMode = PaletteUpload.full;
 	mirrorTM = 0x14;
 	unknown7EB4CF = 0;
@@ -7118,7 +7118,7 @@ short unknownC4E4F9() {
 
 /// $C4E51E
 void unknownC4E51E() {
-	ubyte* x06 = &unknown7F0000[0x7FFE];
+	ubyte* x06 = &buffer[0x7FFE];
 	bg3YPosition = entityAbsYTable[currentEntitySlot];
 	if (entityScriptVar7Table[currentEntitySlot] < entityAbsYTable[currentEntitySlot]) {
 		entityScriptVar7Table[currentEntitySlot] += 8;
@@ -7132,8 +7132,8 @@ void unknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	vwfTile = 0;
 	vwfX = 0;
 	memset(&vwfBuffer[0][0], 0xFF, 0x340);
-	unknown7E9652.unknown2 = 0;
-	unknown7E9652.unknown0 = 0;
+	textRenderState.upperVRAMPosition = 0;
+	textRenderState.pixelsRendered = 0;
 	unknownC1FF99(-1, arg2, arg1);
 	for (short i = 0; arg1[0] != 0; arg1++, i++) {
 		const(ubyte)* x0A = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].width * (arg1[0] - ebChar(' ') & 0x7F)];
@@ -7148,8 +7148,8 @@ void unknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	unknownC4EEE1(arg2);
 	short x04 = cast(short)(arg3 * 8);
 	for (short i = 0; i < arg2; i++, x04 += 8) {
-		memcpy(&unknown7F0000[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16], &vwfBuffer[i][0], 16);
-		memcpy(&unknown7F0000[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16 + 256], &vwfBuffer[i][16], 16);
+		memcpy(&buffer[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16], &vwfBuffer[i][0], 16);
+		memcpy(&buffer[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16 + 256], &vwfBuffer[i][16], 16);
 	}
 }
 
@@ -7187,7 +7187,7 @@ void unknownC4E7AE() {
 
 /// $C4EA9C
 void unknownC4EA9C(short arg1, short arg2, short arg3) {
-	ushort* x06 = cast(ushort*)&unknown7F0000[0x4000 + arg3];
+	ushort* x06 = cast(ushort*)&buffer[0x4000 + arg3];
 	while (arg2-- != 0) {
 		x06[0] = cast(short)(unknown7EB4D1 + ((arg1 & 0x3F0) * 2) + (arg1 & 0xF));
 		x06[0x40] = cast(short)(x06[0] + 0x10);
@@ -7200,14 +7200,14 @@ void unknownC4EA9C(short arg1, short arg2, short arg3) {
 void unknownC4EB04(short arg1, short arg2, short arg3) {
 	short x14 = (bg3YPosition / 8 + arg2) & 0x1F;
 	short x04 = cast(short)((arg2 * 32) + arg1 + 0x7C00 - (arg3 + 1) / 2);
-	copyToVRAM(0, cast(ushort)(arg3 * 2), x04, &unknown7F0000[0x4000 + arg1 * 2]);
+	copyToVRAM(0, cast(ushort)(arg3 * 2), x04, &buffer[0x4000 + arg1 * 2]);
 	short x12;
 	if (x14 != 0x1F) {
 		x12 = cast(short)(x04 + 0x20);
 	} else {
 		x12 = cast(short)(x04 - 0x3E0);
 	}
-	copyToVRAM(0, cast(short)(arg3 * 2), x12, &unknown7F0000[0x4000 + arg1 * 2 + 64]);
+	copyToVRAM(0, cast(short)(arg3 * 2), x12, &buffer[0x4000 + arg1 * 2 + 64]);
 }
 
 /// $C4EBAD
@@ -7218,7 +7218,7 @@ void unknownC4EBAD(short arg1, short arg2, short arg3) {
 
 /// $C4EC6E
 void unknownC4EC6E(short arg1) {
-	memcpy(&palettes[12][0], &unknown7F0000[0x7000 + arg1 * 32], 0x20);
+	memcpy(&palettes[12][0], &buffer[0x7000 + arg1 * 32], 0x20);
 	paletteUploadMode = PaletteUpload.halfSecond;
 }
 
@@ -7343,19 +7343,19 @@ void unknownC4F07D() {
 	bg1YPosition = 0;
 	bg1XPosition = 0;
 	updateScreen();
-	*(cast(ushort*)&unknown7F0000[0]) = 0;
-	copyToVRAM(3, 0x1000, 0x3800, &unknown7F0000[0]);
-	*(cast(ushort*)&unknown7F0000[0]) = 0x240C;
-	copyToVRAM(9, 0x1000, 0x7000, &unknown7F0000[0]);
-	copyToVRAM(15, 0x1000, 0x7000, &unknown7F0000[1]);
-	decomp(&unknownE1E94A[0], &unknown7F0000[0]);
+	*(cast(ushort*)&buffer[0]) = 0;
+	copyToVRAM(3, 0x1000, 0x3800, &buffer[0]);
+	*(cast(ushort*)&buffer[0]) = 0x240C;
+	copyToVRAM(9, 0x1000, 0x7000, &buffer[0]);
+	copyToVRAM(15, 0x1000, 0x7000, &buffer[1]);
+	decomp(&unknownE1E94A[0], &buffer[0]);
 	memcpy(&palettes[1][0], &unknownE1E92A[0], 0x20);
-	copyToVRAM(0, 0x700, 0x7000, &unknown7F0000[0]);
-	copyToVRAM(0, 0x2000, 0x2000, &unknown7F0000[0x700]);
-	*(cast(ushort*)&unknown7F0000[0]) = 0;
-	copyToVRAM(3, 0x800, 0x6C00, &unknown7F0000[0x700]);
-	decomp(&staffCreditsFontGraphics[0], &unknown7F0000[0]);
-	copyToVRAM(0, 0xC00, 0x6200, &unknown7F0000[0]);
+	copyToVRAM(0, 0x700, 0x7000, &buffer[0]);
+	copyToVRAM(0, 0x2000, 0x2000, &buffer[0x700]);
+	*(cast(ushort*)&buffer[0]) = 0;
+	copyToVRAM(3, 0x800, 0x6C00, &buffer[0x700]);
+	decomp(&staffCreditsFontGraphics[0], &buffer[0]);
+	copyToVRAM(0, 0xC00, 0x6200, &buffer[0]);
 	memcpy(&palettes[0][0], &staffCreditsFontPalette[0], 0x10);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	memset(&palettes[1][0], 0, 0x1E0);
@@ -7467,7 +7467,7 @@ void playCredits() {
 				unknownC4F01D();
 				finishFrame();
 			}
-			memset(&unknown7F0000[32], 0, 0x1E0);
+			memset(&buffer[32], 0, 0x1E0);
 			unknownC496E7(64, -1);
 			for (short j = 0; j < 64; j++) {
 				updateMapPaletteAnimation();

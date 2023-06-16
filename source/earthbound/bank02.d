@@ -2359,7 +2359,7 @@ short battleRoutine() {
 					if ((padPress[0] & Pad.b) != 0) {
 						startSwirl(unknown7EAA72, unknown7EAA74);
 						if (++unknown7EAA72 == 8) {
-							unknown7EAA72 = Swirl.none;
+							unknown7EAA72 = Swirl.attractMode;
 							unknown7EAA74 = (unknown7EAA74 + 1) & 3;
 						}
 					}
@@ -3119,7 +3119,7 @@ void instantWinHandler() {
 		unknownC26189(0x7C00);
 	}
 	unknownC26189(0);
-	memcpy(&unknown7F0000[0], &unknown7F0000[0x2000], 0x200);
+	memcpy(&buffer[0], &buffer[0x2000], 0x200);
 	unknownC496E7(6, -1);
 	for (short i = 0; i < 6; i++) {
 		updateMapPaletteAnimation();
@@ -3219,7 +3219,7 @@ void instantWinHandler() {
 void unknownC2654C() {
 	playSfx(Sfx.recoverHP);
 	for (short i = 0; i < 2; i++) {
-		memcpy(&unknown7F0000[0], &palettes[0][0], 0x200);
+		memcpy(&buffer[0], &palettes[0][0], 0x200);
 		for (short j = 0; j < 0x100; j++) {
 			(cast(ushort*)&palettes[0][0])[j] = 0x5D70;
 		}
@@ -6644,7 +6644,7 @@ void unknownC2C21F(short group, short music) {
 		x10 = 1;
 	}
 	if (x10 == 0) {
-		unknownC2E8C4(Swirl.unknown6, AnimationFlags.unknown0, 30);
+		unknownC2E8C4(Swirl.unknown6, AnimationFlags.reverse, 30);
 		while (unknownC2E9C8() != 0) {
 			windowTick();
 		}
@@ -6918,7 +6918,7 @@ void loadEnemyBattleSprites() {
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
 	setOAMSize(0x61);
-	copyToVRAM(3, 0x800, 0x7C00, &unknown7F0000[0x8000]);
+	copyToVRAM(3, 0x800, 0x7C00, &buffer[0x8000]);
 }
 
 /// $C2C92D
@@ -7139,23 +7139,23 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	letterboxEffectEndingTop = 0x7000;
 	unknown7EADD0 = 0;
 	unknown7EADD2 = -1;
-	decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer1].graphics][0], &unknown7F0000[0]);
+	decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
 	if (currentBattleGroup == 0x1DE) {
 		setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x3000);
-		copyToVRAM(0, 0x5000, 0x3000, &unknown7F0000[0]);
+		copyToVRAM(0, 0x5000, 0x3000, &buffer[0]);
 	} else {
-		copyToVRAM(0, 0x2000, 0x1000, &unknown7F0000[0]);
+		copyToVRAM(0, 0x2000, 0x1000, &buffer[0]);
 	}
-	*(cast(ushort*)&unknown7F0000[0]) = 0;
-	copyToVRAM(3, 0x800, 0x5800, &unknown7F0000[0]);
-	copyToVRAM(3, 0x800, 0, &unknown7F0000[0]);
-	decomp(&battleBGArrangementPointers[animatedBackgrounds[layer1].graphics][0], &unknown7F0000[0]);
+	*(cast(ushort*)&buffer[0]) = 0;
+	copyToVRAM(3, 0x800, 0x5800, &buffer[0]);
+	copyToVRAM(3, 0x800, 0, &buffer[0]);
+	decomp(&battleBGArrangementPointers[animatedBackgrounds[layer1].graphics][0], &buffer[0]);
 	if (animatedBackgrounds[layer1].bitsPerPixel == 4) {
 		setBGMODE(BGMode.mode1 | BG3Priority);
 		for (short i = 0; i < 0x800; i += 2) {
-			unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 8;
+			buffer[i + 1] = (buffer[i + 1] & 0xDF) | 8;
 		}
-		copyToVRAM(0, 0x800, 0x5C00, &unknown7F0000[0]);
+		copyToVRAM(0, 0x800, 0x5C00, &buffer[0]);
 		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[2];
 		memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
@@ -7172,13 +7172,13 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			if ((letterbox & 4) != 0) {
 				currentLayerConfig = LayerConfig.ColourBackdropBG2AddAvg;
 				setLayerConfig(currentLayerConfig);
-				decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
-				copyToVRAM(0, 0x2000, 0, &unknown7F0000[0]);
-				decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
+				decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
+				copyToVRAM(0, 0x2000, 0, &buffer[0]);
+				decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 				for (short i = 0; i < 0x800; i += 2) {
-					unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF) | 16;
+					buffer[i + 1] = (buffer[i + 1] & 0xDF) | 16;
 				}
-				copyToVRAM(0, 0x800, 0x5800, &unknown7F0000[0]);
+				copyToVRAM(0, 0x800, 0x5800, &buffer[0]);
 				loadBackgroundAnimationInfo(&loadedBGDataLayer2, &animatedBackgrounds[layer2]);
 				loadedBGDataLayer2.palettePointer = &palettes[4];
 				loadedBGDataLayer2.targetLayer = 1;
@@ -7201,9 +7201,9 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 		setBG3VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 		setBG4VRAMLocation(BGTileMapSize.normal, 0xC00, 0x3000);
 		for (short i = 0; i < 0x800; i++) {
-			unknown7F0000[i + 1] = unknown7F0000[i + 1] & 0xDF;
+			buffer[i + 1] = buffer[i + 1] & 0xDF;
 		}
-		copyToVRAM(0, 0x800, 0x5C00, &unknown7F0000[0]);
+		copyToVRAM(0, 0x800, 0x5C00, &buffer[0]);
 		loadBackgroundAnimationInfo(&loadedBGDataLayer1, &animatedBackgrounds[layer1]);
 		loadedBGDataLayer1.palettePointer = &palettes[4];
 		memcpy(&loadedBGDataLayer1.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer1].palette][0], 32);
@@ -7214,13 +7214,13 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 			currentLayerConfig = LayerConfig.ColourBackdropBG4AddAvg;
 			setLayerConfig(currentLayerConfig);
 
-			decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
-			copyToVRAM(0, 0x1800, 0x3000, &unknown7F0000[0]);
-			decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &unknown7F0000[0]);
+			decomp(&battleBGGraphicsPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
+			copyToVRAM(0, 0x1800, 0x3000, &buffer[0]);
+			decomp(&battleBGArrangementPointers[animatedBackgrounds[layer2].graphics][0], &buffer[0]);
 			for (short i = 0; i < 0x800; i += 2) {
-				unknown7F0000[i + 1] = (unknown7F0000[i + 1] & 0xDF);
+				buffer[i + 1] = (buffer[i + 1] & 0xDF);
 			}
-			copyToVRAM(0, 0x800, 0xC00, &unknown7F0000[0]);
+			copyToVRAM(0, 0x800, 0xC00, &buffer[0]);
 			loadBackgroundAnimationInfo(&loadedBGDataLayer2 ,&animatedBackgrounds[layer2]);
 			loadedBGDataLayer2.palettePointer = &palettes[6];
 			memcpy(&loadedBGDataLayer2.palette[0], &battleBGPalettePointers[animatedBackgrounds[layer2].palette][0], 32);
@@ -7459,13 +7459,13 @@ void unknownC2E0E7() {
 /// $C2E116
 void showPSIAnimation(short arg1) {
 	if (loadedBGDataLayer1.bitDepth == 2) {
-		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &unknown7F0000[0x8000]);
-		copyToVRAM2(0, 0x1000, 0, &unknown7F0000[0x8000]);
+		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &buffer[0x8000]);
+		copyToVRAM2(0, 0x1000, 0, &buffer[0x8000]);
 		unknown7E1BCA = &palettes[3][0];
 	} else {
-		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &unknown7F0000[0]);
-		ushort* x06 = cast(ushort*)&unknown7F0000[0];
-		ushort* x0A = cast(ushort*)&unknown7F0000[0x8000];
+		decomp(&psiAnimationGraphicsSets[psiAnimationConfig[arg1].graphics][0], &buffer[0]);
+		ushort* x06 = cast(ushort*)&buffer[0];
+		ushort* x0A = cast(ushort*)&buffer[0x8000];
 		for (short i = 0; i < 0x100; i++) {
 			(x0A++)[0] = (x06++)[0];
 			(x0A++)[0] = (x06++)[0];
@@ -7502,7 +7502,7 @@ void showPSIAnimation(short arg1) {
 	}
 	waitUntilNextFrame();
 	memcpy(&unknown7E1BAA[0], &psiAnimationPalettes[arg1][0], 8);
-	unknown7E1BA1 = &unknown7F0000[0];
+	unknown7E1BA1 = &buffer[0];
 	unknown7E1B9E = 1;
 	unknown7E1B9F = psiAnimationConfig[arg1].frameDuration;
 	unknown7E1BA0 = psiAnimationConfig[arg1].totalFrames;
@@ -7516,7 +7516,7 @@ void showPSIAnimation(short arg1) {
 	unknown7E1BD0 = psiAnimationConfig[arg1].enemyColour & 0x1F;
 	unknown7E1BD2 = (psiAnimationConfig[arg1].enemyColour >> 5) & 0x1F;
 	unknown7E1BD4 = (psiAnimationConfig[arg1].enemyColour >> 10) & 0x1F;
-	decomp(&psiAnimationPointers[arg1][0], &unknown7F0000[0]);
+	decomp(&psiAnimationPointers[arg1][0], &buffer[0]);
 	unknownC2DE0F();
 	memcpy(&palettes[12][0], &palettes[8][0], 0x80);
 	for (short i = 0; i < 4; i++) {
@@ -7658,27 +7658,27 @@ void battleSwirlSequence() {
 	switch (battleInitiative) {
 		case Initiative.normal:
 			swirlMusic = Music.battleSwirl4;
-			x0E = AnimationFlags.unknown3 | AnimationFlags.unknown2 | AnimationFlags.unknown1;
+			x0E = AnimationFlags.unknown3 | AnimationFlags.unknown2 | AnimationFlags.invert;
 			break;
 		case Initiative.partyFirst:
 			swirlMusic = Music.battleSwirl4;
 			swirlRed = 28;
 			swirlGreen = 5;
 			swirlBlue = 12;
-			x0E = AnimationFlags.unknown2 | AnimationFlags.unknown1;
+			x0E = AnimationFlags.unknown2 | AnimationFlags.invert;
 			break;
 		case Initiative.enemiesFirst:
 			swirlMusic = Music.battleSwirl2;
 			swirlRed = 0;
 			swirlGreen = 31;
 			swirlBlue = 31;
-			x0E = AnimationFlags.unknown2 | AnimationFlags.unknown1;
+			x0E = AnimationFlags.unknown2 | AnimationFlags.invert;
 			break;
 		default: break;
 	}
 	if (currentBattleGroup >= EnemyGroup.bossFrank) {
 		x16 = Swirl.bossBattleStart;
-		x0E = AnimationFlags.unknown3 | AnimationFlags.unknown2 | AnimationFlags.unknown1;
+		x0E = AnimationFlags.unknown3 | AnimationFlags.unknown2 | AnimationFlags.invert;
 		swirlMusic = Music.battleSwirl1;
 	}
 	changeMusic(swirlMusic);
@@ -7699,9 +7699,9 @@ void battleSwirlSequence() {
 	}
 	unknownC2E8C4(x16, x0E, 30);
 	if ((x0E & 4) != 0) {
-		unknown7EAEC8 = 0x20;
+		swirlMaskSettings = SwirlMask.mathMode;
 	} else {
-		unknown7EAEC8 = 0x0F;
+		swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.bg3 | SwirlMask.bg4;
 	}
 	unknown7EAECB = 0;
 }
@@ -7725,36 +7725,36 @@ void unknownC2E9ED() {
 /// $C2EA15
 void unknownC2EA15(short arg1) {
 	unknown7EAEEF = cast(ubyte)arg1;
-	startSwirl(Swirl.none, AnimationFlags.none);
-	unknown7EAEC8 = 0x13;
+	startSwirl(Swirl.attractMode, AnimationFlags.none);
+	swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.obj;
 	switch (arg1) {
 		case 2:
-			unknown7EAECC = &unknownC3F819[0];
+			loadedComputedSwirl = &unknownC3F819[0];
 			break;
 		case 1:
-			unknown7EAECC = &unknownC4A5FA[0];
+			loadedComputedSwirl = &unknownC4A5FA[0];
 			break;
 		default:
-			unknown7EAECC = &unknownC4A5CE[0];
+			loadedComputedSwirl = &unknownC4A5CE[0];
 			break;
 	}
 }
 
 /// $C2EA74
 void unknownC2EA74() {
-	startSwirl(Swirl.none, AnimationFlags.none);
-	unknown7EAEC8 = 0x13;
+	startSwirl(Swirl.attractMode, AnimationFlags.none);
+	swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.obj;
 	if (unknown7EAEEF != 0) {
-		unknown7EAECC = &unknownC4A652[0];
+		loadedComputedSwirl = &unknownC4A652[0];
 	} else {
-		unknown7EAECC = &unknownC4A626[0];
+		loadedComputedSwirl = &unknownC4A626[0];
 	}
 }
 
 /// $C2EAAA
 void unknownC2EAAA() {
 	unknown7EAEC2 = 0;
-	unknown7EAECC = null;
+	loadedComputedSwirl = null;
 	unknownC0AE34(3);
 	setWindowMask(0, 0);
 }
@@ -7863,11 +7863,11 @@ void loadBattleSprite(short arg1) {
 	unknown7EAAC6[unknown7EAAB4] = cast(ubyte)x22;
 	unknown7EAACE[unknown7EAAB4] = cast(ubyte)x24;
 	unknown7EAAB4++;
-	ubyte* x1A = &unknown7F0000[0x8000];
+	ubyte* x1A = &buffer[0x8000];
 	decomp(&battleSpriteGraphics[battleSpritePointers[arg1].sprite][0], x1A);
 	short y = cast(short)(x24 * x22);
 	while (y-- != 0) {
-		ubyte* x0A = &unknown7F0000[unknownC3F871[unknown7EAAB2++]];
+		ubyte* x0A = &buffer[unknownC3F871[unknown7EAAB2++]];
 		for (short i = 0; i < 4; i++) {
 			ubyte* x16 = x0A;
 			for (short j = 0; j < 0x80; j++) {
@@ -7889,7 +7889,7 @@ void unknownC2EEE7() {
 		loadBattleSprite(enemyConfigurationTable[x1A.enemyID].battleSprite);
 		x1A++;
 	}
-	copyToVRAM(0, (unknown7EAAB2 > 16) ? 0x3000 : 0x2000, 0x2000, &unknown7F0000[0]);
+	copyToVRAM(0, (unknown7EAAB2 > 16) ? 0x3000 : 0x2000, 0x2000, &buffer[0]);
 }
 
 /// $C2EFFD

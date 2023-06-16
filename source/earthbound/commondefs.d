@@ -5129,15 +5129,15 @@ enum StatusGroups {
 }
 ///
 enum AnimationFlags : ubyte {
-	none = 0,
-	unknown0 = 1 << 0,
-	unknown1 = 1 << 1,
-	unknown2 = 1 << 2,
-	unknown3 = 1 << 3,
-	unknown4 = 1 << 4,
-	unknown5 = 1 << 5,
-	unknown6 = 1 << 6,
-	unknown7 = 1 << 7,
+	none = 0, ///
+	reverse = 1 << 0, /// Plays backwards
+	invert = 1 << 1, /// Inverts the mask
+	unknown2 = 1 << 2, ///
+	unknown3 = 1 << 3, ///
+	unknown4 = 1 << 4, ///
+	unknown5 = 1 << 5, ///
+	unknown6 = 1 << 6, ///
+	repeat = 1 << 7, /// Animation loops repeatedly
 }
 /// How much of the window graphics should be loaded to VRAM
 enum WindowGraphicsToLoad {
@@ -5531,6 +5531,7 @@ enum HotspotID {
 ///
 enum Swirl {
 	none = 0, ///
+	attractMode = 0, ///
 	battleStart = 1, ///
 	giygasAttack = 2, ///
 	bossBattleStart = 3, ///
@@ -5676,6 +5677,16 @@ enum StairDirection {
 	downLeft = 0x200,
 	downRight = 0x300,
 }
+///
+enum SwirlMask {
+	bg1 = 1 << 0,
+	bg2 = 1 << 1,
+	bg3 = 1 << 2,
+	bg4 = 1 << 3,
+	obj = 1 << 4,
+	mathMode = 1 << 5,
+}
+
 
 ///
 struct GameState {
@@ -6380,7 +6391,7 @@ struct TownMapData {
 	ubyte unknown2; ///
 }
 ///
-struct Unknown7EAECCEntry {
+struct AttractModeParameters {
 	ubyte unknown0; ///
 	ubyte unknown1; ///
 	ushort unknown2; ///
@@ -6868,13 +6879,13 @@ struct CommandWindowSpacing {
 ///
 struct EnemyPlacementGroups {
 	ushort eventFlag; ///
-	ubyte unknown2; ///
-	ubyte unknown3; ///
+	ubyte enemySpawnChance; ///
+	ubyte altEnemySpawnChance; ///
 	EnemyPlacementGroup[] groups; ///
 }
 ///
 struct EnemyPlacementGroup {
-	ubyte unknown0; ///
+	ubyte slotsOccupied; ///
 	short groupID; ///
 }
 ///
@@ -6949,10 +6960,10 @@ union Unknown7EF000Stuff {
 	ushort[0x400] yourSanctuaryLocationTileOffsets; ///
 }
 ///
-struct Unknown7E9652Data {
-	ushort unknown0; ///
-	ushort unknown2; ///
-	ushort unknown4; ///
+struct TextRenderState {
+	ushort pixelsRendered; ///
+	ushort upperVRAMPosition; ///
+	ushort lowerVRAMPosition; ///
 }
 ///
 struct BattleSwirlConfig {

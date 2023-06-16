@@ -21,7 +21,7 @@ immutable ScreenTransitionConfig[34] screenTransitionConfigTable = [
 	ScreenTransitionConfig(0x14, Swirl.none, AnimationFlags.none, 0x00, 0x00, 0x00, 0x00, Sfx.unknown70, 0x14, 0x00, AnimationFlags.none, Sfx.unknown70),
 	ScreenTransitionConfig(0x14, Swirl.none, AnimationFlags.none, 0x64, 0x00, 0x00, 0x00, Sfx.none, 0x14, 0x00, AnimationFlags.none, Sfx.none),
 	ScreenTransitionConfig(0x14, Swirl.none, AnimationFlags.none, 0x00, 0x00, 0x00, 0x00, Sfx.unknown12, 0x14, 0x00, AnimationFlags.none, Sfx.none),
-	ScreenTransitionConfig(0xFF, Swirl.giygasAttack, AnimationFlags.unknown7, 0x64, 0x00, 0x00, 0x00, Sfx.none, 0x3C, 0x02, AnimationFlags.unknown0, Sfx.none),
+	ScreenTransitionConfig(0xFF, Swirl.giygasAttack, AnimationFlags.repeat, 0x64, 0x00, 0x00, 0x00, Sfx.none, 0x3C, 0x02, AnimationFlags.reverse, Sfx.none),
 	ScreenTransitionConfig(0x3C, Swirl.none, AnimationFlags.none, 0x00, 0x26, 0x00, 0x0C, Sfx.cashRegister, 0x14, 0x00, AnimationFlags.none, Sfx.none),
 	ScreenTransitionConfig(0x3C, Swirl.none, AnimationFlags.none, 0x00, 0x07, 0x00, 0x0C, Sfx.cashRegister, 0x14, 0x00, AnimationFlags.none, Sfx.none),
 	ScreenTransitionConfig(0x3C, Swirl.none, AnimationFlags.none, 0x00, 0x3B, 0x00, 0x0C, Sfx.cashRegister, 0x14, 0x00, AnimationFlags.none, Sfx.none),
