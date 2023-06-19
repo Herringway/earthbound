@@ -6187,8 +6187,8 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 					x16 = 0;
 					goto Unknown15;
 				}
-				if ((battleActionTable[psiAbilityTable[x1C].battleAction].target == 1) || (battleActionTable[psiAbilityTable[x1C].battleAction].target == 3)) {
-					if (battleActionTable[psiAbilityTable[x1C].battleAction].direction == 0) {
+				if ((battleActionTable[psiAbilityTable[x1C].battleAction].target == ActionTarget.one) || (battleActionTable[psiAbilityTable[x1C].battleAction].target == ActionTarget.row)) {
+					if (battleActionTable[psiAbilityTable[x1C].battleAction].direction == ActionDirection.enemy) {
 						closeWindow(Window.unknown10);
 						closeWindow(Window.unknown04);
 						closeWindow(Window.textStandard);
@@ -6198,17 +6198,17 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 						printPSIName(x1C);
 						windowSetTextColor(0);
 					}
-					x16 = determineTargetting(psiAbilityTable[x1C].battleAction, arg1.user);
-					if (battleActionTable[psiAbilityTable[x1C].battleAction].direction == 0) {
-						closeWindow(Window.unknown26);
-					} else {
-						closeWindow(Window.unknown10);
-						closeWindow(Window.unknown04);
-						closeWindow(Window.textStandard);
-					}
-					if (x16 != 0) {
-						goto Unknown15;
-					}
+				}
+				x16 = determineTargetting(psiAbilityTable[x1C].battleAction, arg1.user);
+				if (battleActionTable[psiAbilityTable[x1C].battleAction].direction == ActionDirection.enemy) {
+					closeWindow(Window.unknown26);
+				} else {
+					closeWindow(Window.unknown10);
+					closeWindow(Window.unknown04);
+					closeWindow(Window.textStandard);
+				}
+				if (x16 != 0) {
+					goto Unknown15;
 				}
 			}
 			x16 = 1;
