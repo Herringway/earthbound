@@ -7402,7 +7402,9 @@ void unknownC2DE96() {
 	memcpy(&loadedBGDataLayer1.palette[0], &loadedBGDataLayer1.palette2[0], loadedBGDataLayer1.palette.sizeof);
 	memcpy(&loadedBGDataLayer2.palette[0], &loadedBGDataLayer2.palette2[0], loadedBGDataLayer2.palette.sizeof);
 	memcpy(loadedBGDataLayer1.palettePointer, &loadedBGDataLayer1.palette[0], loadedBGDataLayer1.palette.sizeof);
-	memcpy(loadedBGDataLayer2.palettePointer, &loadedBGDataLayer2.palette[0], loadedBGDataLayer2.palette.sizeof);
+	if (loadedBGDataLayer2.targetLayer != 0) {
+		memcpy(loadedBGDataLayer2.palettePointer, &loadedBGDataLayer2.palette[0], loadedBGDataLayer2.palette.sizeof);
+	}
 }
 
 /// $C2DF2E
