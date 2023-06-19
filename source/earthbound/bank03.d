@@ -500,7 +500,7 @@ void closeWindow(short arg1) {
 		unknown7E894E[windowStats[x10].titleID - 1] = -1;
 	}
 	windowStats[x10].titleID = 0;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 	if (unknown7E5E7A == arg1) {
 		unknown7E5E7A = -1;
 	}
@@ -524,7 +524,7 @@ void unknownC3E6F8() {
 		y++;
 	}
 	battleMenuCurrentCharacterID = -1;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C3E75D

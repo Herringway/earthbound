@@ -340,7 +340,7 @@ void createWindowN(short id) {
 	x10.title[0] = 0;
 	x10.titleID = 0;
 	unknownC45E96();
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 	unknownC07C5B();
 }
 
@@ -350,7 +350,7 @@ void unknownC1078D() {
 }
 
 /// $C107AF - Draws a window
-void unknownC107AF(short windowID) {
+void drawWindow(short windowID) {
 	ushort* x1E = &windowStats[windowID].tilemapBuffer[0];
 	ushort* x18 = &bg2Buffer[windowStats[windowID].y * 32 + windowStats[windowID].x];
 	short x1C = windowStats[windowID].width;
@@ -416,7 +416,7 @@ void unknownC107AF(short windowID) {
 void showHPPPWindows() {
 	unknownC3E6F8();
 	unknown7E89C9 = 1;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 	unknown7E9647 = -1;
 }
 
@@ -433,7 +433,7 @@ void hideHPPPWindows() {
 			partyCharacters[gameState.partyMembers[i] - 1].pp.current.fraction = 0;
 		}
 	}
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C10A85
@@ -528,7 +528,7 @@ void printLetter(short letter) {
 	}
 	unknownC44E61(windowStats[windowTable[currentFocusWindow]].font, letter);
 	if (windowTable[currentFocusWindow] != windowTail) {
-		unknown7E9623 = 1;
+		redrawAllWindows = 1;
 	}
 	short x;
 	if (textSoundMode == 2) {
@@ -555,7 +555,7 @@ void printLetter(short letter) {
 void unknownC10D60(short tile) {
 	drawTallTextTileFocused(tile);
 	if (windowTable[currentFocusWindow] != windowTail) {
-		unknown7E9623 = 1;
+		redrawAllWindows = 1;
 	}
 }
 
@@ -1638,13 +1638,13 @@ void windowTick() {
 	if (instantPrinting != 0) {
 		return;
 	}
-	if (unknown7E9623 == 0) {
+	if (redrawAllWindows == 0) {
 		if (windowHead != -1) {
-			unknownC107AF(windowTail);
+			drawWindow(windowTail);
 		}
 	} else {
-		unknownC2087C();
-		unknown7E9623 = 0;
+		drawOpenWindows();
+		redrawAllWindows = 0;
 	}
 	hpPPRoller();
 	unknown7E9624 = 1;
@@ -4900,7 +4900,7 @@ void setHPPPWindowModeItem(short arg1) {
 		}
 		partyCharacters[i].hpPPWindowOptions = x10;
 	}
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C19CDD
@@ -4910,7 +4910,7 @@ void unknownC19CDD() {
 	}
 	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][20], 8);
 	paletteUploadMode = PaletteUpload.full;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C19D49
@@ -4920,7 +4920,7 @@ void unknownC19D49() {
 	}
 	memcpy(&palettes[0][12], &textWindowFlavourPalettes[textWindowProperties[gameState.textFlavour - 1].offset / 0x40][12], 8);
 	paletteUploadMode = PaletteUpload.full;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C19DB5

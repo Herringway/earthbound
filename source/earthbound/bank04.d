@@ -1303,7 +1303,7 @@ void unknownC43573(short arg1) {
 	for (short i = hpPPWindowWidth; i != 0; i--) {
 		*(x++) = 0;
 	}
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C435E4
@@ -1320,7 +1320,7 @@ void rowEnemyFlashingOff() {
 	}
 	enemyTargettingFlashing = 0;
 	unknown7E89CE = -1;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C43657
@@ -1337,7 +1337,7 @@ void rowEnemyFlashingOn(short arg1) {
 		}
 	}
 	enemyTargettingFlashing = 1;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $C436D7
@@ -1581,7 +1581,7 @@ void unknownC43F77(short tile) {
 	}
 	drawTallTextTileFocusedF(tile);
 	if (windowTable[currentFocusWindow] != windowTail) {
-		unknown7E9623 = 1;
+		redrawAllWindows = 1;
 	}
 	short x;
 	if (textSoundMode == 2) {
@@ -1711,7 +1711,7 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 		finishTextTileRender(cast(short)(i * 2 + 0x2E0), cast(short)(i * 2 + 0x2E0 + 1));
 	}
 	if (windowTable[currentFocusWindow] != windowTail) {
-		unknown7E9623 = 1;
+		redrawAllWindows = 1;
 	}
 	short x;
 	if (textSoundMode == 2) {

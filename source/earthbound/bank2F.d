@@ -30,7 +30,7 @@ void singleEnemyFlashingOff() {
 	}
 	enemyTargettingFlashing = 0;
 	unknown7E89D0 = -1;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $EF0052
@@ -46,7 +46,7 @@ void singleEnemyFlashingOn(short arg1, short arg2) {
 		battlersTable[backRowBattlers[unknown7E89D0]].isFlashing = 1;
 	}
 	enemyTargettingFlashing = 1;
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 }
 
 /// $EF00BB
@@ -73,7 +73,7 @@ void unknownEF0115(short arg1) {
 		x10++;
 		x0E--;
 	}
-	unknown7E9623 = 1;
+	redrawAllWindows = 1;
 	unknownC07C5B();
 }
 

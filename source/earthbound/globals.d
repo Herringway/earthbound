@@ -579,7 +579,7 @@ __gshared short unknown7E89D2; /// $(DOLLAR)89D2
 __gshared MenuOpt[70] menuOptions; /// $(DOLLAR)89D4 - Window menu options
 
 __gshared ubyte instantPrinting; /// $(DOLLAR)9622
-__gshared ubyte unknown7E9623; /// $(DOLLAR)9623
+__gshared ubyte redrawAllWindows; /// $(DOLLAR)9623
 __gshared ubyte unknown7E9624; /// $(DOLLAR)9624
 __gshared ushort selectedTextSpeed; /// $(DOLLAR)9625
 __gshared uint unknown7E9627; /// $(DOLLAR)9627

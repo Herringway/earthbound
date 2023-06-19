@@ -64,7 +64,7 @@ void initializeTextSystem() {
 	unknown7E89CC = -1;
 	battleMenuCurrentCharacterID = -1;
 	instantPrinting = 0;
-	unknown7E9623 = 0;
+	redrawAllWindows = 0;
 	unknown7E9641 = 0;
 	unknown7E9624 = 0;
 	windowHead = -1;
@@ -293,7 +293,7 @@ void drawHPPPWindow(short id) {
 }
 
 /// $C2077D
-void unknownC2077D() {
+void drawHPPPWindows() {
 	ushort x10 = unknown7E9647;
 	for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
 		if ((x10 & 1) != 0) {
@@ -330,16 +330,16 @@ void undrawHPPPWindow(short arg1) {
 }
 
 /// $C2087C
-void unknownC2087C() {
+void drawOpenWindows() {
 	if (unknown7E89C9 != 0) {
-		unknownC2077D();
+		drawHPPPWindows();
 	}
 	if (windowHead == -1) {
 		return;
 	}
 	short x0E = windowHead;
 	do {
-		unknownC107AF(x0E);
+		drawWindow(x0E);
 		x0E = windowStats[x0E].next;
 	} while(x0E != -1);
 }
@@ -2054,7 +2054,7 @@ short unknownC24348(short arg1) {
 }
 
 /// $C2437E
-void unknownC2437E() {
+void removeUsedItem() {
 	if (currentAttacker.side != BattleSide.friends) {
 		return;
 	}
@@ -2510,7 +2510,7 @@ short battleRoutine() {
 				checkDeadPlayers();
 				if (countChars(BattleSide.friends) == 0) {
 					createWindow(Window.textBattle);
-					goto Unknown225;
+					goto TurnOver;
 				}
 				if ((gameState.partyMembers[i] != 0) && (gameState.partyMembers[i] <= 4)) {
 					if ((initiative == Initiative.enemiesFirst) || (initiative == Initiative.runningAway) || (initiative == Initiative.runningAlwaysSuccessful) || ((gameState.partyMembers[i] == 4) && (mirrorEnemy != 0)) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.unconscious) || (partyCharacters[gameState.partyMembers[i]].afflictions[0] == Status0.diamondized) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.asleep) || (partyCharacters[gameState.partyMembers[i]].afflictions[2] == Status2.solidified)) {
@@ -2830,12 +2830,12 @@ short battleRoutine() {
 					if (currentAttacker.hp == 0) {
 						koTarget(currentAttacker);
 						if (countChars(BattleSide.friends) == 0) {
-							goto Unknown225;
+							goto TurnOver;
 						}
 						if (countChars(BattleSide.foes) != 0) {
 							continue;
 						}
-						goto Unknown225;
+						goto TurnOver;
 					}
 					if (currentAttacker.side == BattleSide.foes) {
 						chooseTarget(currentAttacker);
@@ -2881,7 +2881,7 @@ short battleRoutine() {
 					if (battleActionTable[currentAttacker.currentAction].ppCost != 0) {
 						if (battleActionTable[currentAttacker.currentAction].ppCost > currentAttacker.ppTarget) {
 							displayInBattleText(getTextBlock("MSG_BTL_PSI_CANNOT"));
-							goto Unknown215;
+							goto EndOfTurn;
 						} else {
 							unknownC2BCB9(currentAttacker, battleActionTable[currentAttacker.currentAction].ppCost);
 						}
@@ -2927,32 +2927,29 @@ short battleRoutine() {
 							if (currentTarget.afflictions[0] == Status0.unconscious) {
 								for (short j = 0; deadTargettableActions[j] != 0; j++) {
 									if (currentAttacker.currentAction == deadTargettableActions[j]) {
-										goto Unknown204;
+										goto CurrentTargetOK;
 									}
 								}
 								displayInBattleText(getTextBlock("MSG_BTL_NOT_EXIST"));
 								break;
 							}
-							Unknown204:
+							CurrentTargetOK:
 							if (battleActionTable[currentAttacker.currentAction].func is null) {
 								continue;
 							}
-							// we don't need this kinda help
-							//unknown7E00BC = battleActionTable[currentAttacker.currentAction].func;
-							//unknownC09279();
 							battleActionTable[currentAttacker.currentAction].func();
 							checkDeadPlayers();
-							unknown7E9623 = 1;
+							redrawAllWindows = 1;
 							if ((countChars(BattleSide.friends) == 0) || (countChars(BattleSide.foes) == 0)) {
-								unknownC2437E();
-								goto Unknown225;
+								removeUsedItem();
+								goto TurnOver;
 							}
 							switch (specialDefeat) {
 								case SpecialDefeat.giygasDefeated:
 									battleResult = BattleResult.won;
 									break turnLoop;
 								case SpecialDefeat.bossDefeated:
-									unknownC2437E();
+									removeUsedItem();
 									goto EnemiesAreDead;
 								case SpecialDefeat.teleported:
 									battleResult = BattleResult.teleported;
@@ -2965,9 +2962,9 @@ short battleRoutine() {
 							}
 						}
 					}
-					Unknown215:
+					EndOfTurn:
 					if (currentAttacker.side == BattleSide.friends) {
-						unknownC2437E();
+						removeUsedItem();
 						if ((mirrorEnemy != 0) && (currentAttacker.id == 4) && (--mirrorTurnTimer == 0)) {
 							mirrorEnemy = 0;
 							copyMirrorData(currentAttacker, &unknown7EAA14);
@@ -3009,7 +3006,7 @@ short battleRoutine() {
 					checkDeadPlayers();
 					showHPPPWindowsF();
 				}
-				Unknown225:
+				TurnOver:
 				if (countChars(BattleSide.friends) == 0) {
 					battleResult = BattleResult.lost;
 					resetRolling();
