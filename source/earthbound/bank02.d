@@ -7892,8 +7892,10 @@ void unknownC2EEE7() {
 }
 
 /// $C2EFFD
-short getBattleSpriteWidth(short arg1) {
-	switch (battleSpritePointers[arg1 - 1].size) {
+short getBattleSpriteWidth(short sprite)
+	in(sprite != 0, "Sprite 0 is invalid")
+{
+	switch (battleSpritePointers[sprite - 1].size) {
 		case BattleSpriteSize._32X32:
 		case BattleSpriteSize._32X64:
 			return 4;
@@ -7909,8 +7911,10 @@ short getBattleSpriteWidth(short arg1) {
 }
 
 /// $C2F04E
-short getBattleSpriteHeight(short arg1) {
-	switch (battleSpritePointers[arg1 - 1].size) {
+short getBattleSpriteHeight(short sprite)
+	in(sprite != 0, "Sprite 0 is invalid")
+{
+	switch (battleSpritePointers[sprite - 1].size) {
 		case BattleSpriteSize._32X32:
 		case BattleSpriteSize._64X32:
 			return 4;
