@@ -7497,6 +7497,7 @@ void showPSIAnimation(short arg1) {
 			(x0A++)[0] = 0;
 			(x0A++)[0] = 0;
 		}
+		copyToVRAM2(0, 0x2000, 0, &buffer[0x8000]);
 		unknown7E1BCA = &palettes[4][0];
 	}
 	waitUntilNextFrame();
