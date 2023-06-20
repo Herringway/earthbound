@@ -36,6 +36,7 @@ struct DebugState {
 	bool askingBattle;
 	bool editingVRAM;
 	bool editingBG2;
+	bool editingBuffer;
 	bool askingForEntity;
 }
 
@@ -65,6 +66,7 @@ void prepareDebugUI(size_t width, size_t height) {
 			menuItemCallback("Start a battle", () { state.askingBattle = true; });
 			menuItemCallback("Edit VRAM", () { state.editingVRAM = true; });
 			menuItemCallback("Edit BG2", () { state.editingBG2 = true; });
+			menuItemCallback("Edit Buffer", () { state.editingBuffer = true; });
 			menuItemCallback("Spawn an entity", () { state.askingForEntity = true; });
 			ImGui.EndMenu();
 		}
@@ -85,6 +87,10 @@ void prepareDebugUI(size_t width, size_t height) {
 	if (state.editingVRAM) {
 		memoryEditor.DrawWindow("VRAM", g_frameData.vram);
 		state.editingVRAM = memoryEditor.Open;
+	}
+	if (state.editingBuffer) {
+		memoryEditor.DrawWindow("Buffer", buffer);
+		state.editingBuffer = memoryEditor.Open;
 	}
 	if (state.editingBG2) {
 		memoryEditor.DrawWindow("BG2", bg2Buffer);
