@@ -91,7 +91,7 @@ void handleVRAMDMA(ubyte dmap, ubyte bbad, const(void)* a1t, ushort das, ushort 
 	// - writing byte to $2118 and increment after writing $2118
 	assert((vmain & 0x80) || (!hibyte && transferSize == 1));
 	wrapTo = cast(ubyte *)(&g_frameData.vram);
-	dest = wrapTo + (vmaddr << 1 + (hibyte ? 1 : 0));
+	dest = wrapTo + ((vmaddr << 1) + (hibyte ? 1 : 0));
 	wrapAt = wrapTo + 0x10000;
 	// If the "Fixed Transfer" bit is set, transfer same data repeatedly
 	if ((dmap & 0x08) != 0) srcAdjust = -transferSize;
@@ -105,6 +105,10 @@ unittest {
 	immutable ubyte[100] testSource = [aliasSeqOf!(iota(0, 100))];
 	handleVRAMDMA(0x01, 0x18, &testSource[0], 100, 0, 0x80);
 	assert(cast(ubyte[])g_frameData.vram[0 .. 50] == testSource);
+	immutable ubyte[2] testFixedHigh = [0x30, 0];
+	handleVRAMDMA(0x08, 0x19, &testFixedHigh[0], 0x400, 0x5800, 0x80);
+	assert(cast(ubyte[])g_frameData.vram[0 .. 50] == testSource);
+	assert((cast(ubyte[])g_frameData.vram)[0xB001] == 0x30);
 }
 
 void handleHDMA() {
