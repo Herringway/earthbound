@@ -18,6 +18,15 @@ void dmaCopy(const(ubyte)* src, ubyte* dst, ubyte* wrapAt, ubyte* wrapTo, int co
 	}
 }
 
+unittest {
+	import std.meta : aliasSeqOf;
+	import std.range : iota;
+	ubyte[100] testBuffer;
+	immutable ubyte[100] testSource = [aliasSeqOf!(iota(0, 100))];
+	dmaCopy(&testSource[0], &testBuffer[0], &testBuffer[2], &testBuffer[0], 4, 2, 0, 0);
+	assert(testBuffer[0 .. 2] == [2, 3]);
+}
+
 void handleOAMDMA(ubyte dmap, ubyte bbad, const(void)* a1t, ushort das, ushort oamaddr) {
 	assert((dmap & 0x80) == 0); // Can't go from B bus to A bus
 	assert((dmap & 0x10) == 0); // Can't decrement pointer
@@ -88,6 +97,14 @@ void handleVRAMDMA(ubyte dmap, ubyte bbad, const(void)* a1t, ushort das, ushort 
 	if ((dmap & 0x08) != 0) srcAdjust = -transferSize;
 	// Perform actual copy
 	dmaCopy(cast(const(ubyte)*)a1t, dest, wrapAt, wrapTo, das, transferSize, srcAdjust, dstAdjust);
+}
+
+unittest {
+	import std.meta : aliasSeqOf;
+	import std.range : iota;
+	immutable ubyte[100] testSource = [aliasSeqOf!(iota(0, 100))];
+	handleVRAMDMA(0x01, 0x18, &testSource[0], 100, 0, 0x80);
+	assert(cast(ubyte[])g_frameData.vram[0 .. 50] == testSource);
 }
 
 void handleHDMA() {
