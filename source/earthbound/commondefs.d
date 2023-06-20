@@ -6155,9 +6155,9 @@ struct DMAQueueEntry {
 }
 ///
 struct DMATableEntry {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
-	ubyte unknown2; ///
+	ubyte dmap; ///
+	ubyte bbad; ///
+	ubyte vmain; ///
 }
 ///
 struct SRAM {

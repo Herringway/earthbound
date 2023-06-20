@@ -4482,7 +4482,7 @@ void irqNMICommon() {
 	WH2 = 0xFF;
 	WH3 = 0x00;
 	for (short i = lastCompletedDMAIndex; i != dmaQueueIndex; i++) {
-		handleVRAMDMA(dmaTable[dmaQueue[i].mode].unknown0, dmaTable[dmaQueue[i].mode].unknown1, dmaQueue[i].source, dmaQueue[i].size, dmaQueue[i].destination, dmaTable[dmaQueue[i].mode].unknown2);
+		handleVRAMDMA(dmaTable[dmaQueue[i].mode].dmap, dmaTable[dmaQueue[i].mode].bbad, dmaQueue[i].source, dmaQueue[i].size, dmaQueue[i].destination, dmaTable[dmaQueue[i].mode].vmain);
 	}
 	lastCompletedDMAIndex = dmaQueueIndex;
 	if (nextFrameDisplayID != 0) {
@@ -4754,7 +4754,7 @@ void copyToVRAMInternal() {
 	// } else {
 		// Since we send a complete image of VRAM to the console every frame, we
 		// can just overwrite our local VRAM copy - no need to delay
-		handleVRAMDMA(dmaTable[dmaCopyMode / 3].unknown0, dmaTable[dmaCopyMode / 3].unknown1, dmaCopyRAMSource, dmaCopySize, dmaCopyVRAMDestination, dmaTable[dmaCopyMode / 3].unknown2);
+		handleVRAMDMA(dmaTable[dmaCopyMode / 3].dmap, dmaTable[dmaCopyMode / 3].bbad, dmaCopyRAMSource, dmaCopySize, dmaCopyVRAMDestination, dmaTable[dmaCopyMode / 3].vmain);
 		currentHeapAddress = heapBaseAddress;
 		dmaTransferFlag = 0;
 	// }
@@ -5209,24 +5209,24 @@ immutable UnknownC08F98Entry[4] unknownC08F98 = [
 
 /// $C08FB0
 immutable DMATableEntry[18] dmaTable = [
-	DMATableEntry(0x01, 0x18, 0x80),
-	DMATableEntry(0x09, 0x18, 0x80),
-	DMATableEntry(0x00, 0x18, 0x00),
-	DMATableEntry(0x08, 0x18, 0x00),
-	DMATableEntry(0x00, 0x19, 0x80),
-	DMATableEntry(0x08, 0x19, 0x80),
-	DMATableEntry(0x81, 0x39, 0x80),
-	DMATableEntry(0x80, 0x39, 0x00),
-	DMATableEntry(0x80, 0x3A, 0x80),
-	DMATableEntry(0x01, 0x18, 0x81),
-	DMATableEntry(0x09, 0x18, 0x81),
-	DMATableEntry(0x00, 0x18, 0x01),
-	DMATableEntry(0x08, 0x18, 0x01),
-	DMATableEntry(0x00, 0x19, 0x81),
-	DMATableEntry(0x08, 0x19, 0x81),
-	DMATableEntry(0x81, 0x39, 0x81),
-	DMATableEntry(0x80, 0x39, 0x01),
-	DMATableEntry(0x80, 0x3A, 0x81),
+	DMATableEntry(0x01, 0x18, 0x80), /// A -> B
+	DMATableEntry(0x09, 0x18, 0x80), /// A -> B
+	DMATableEntry(0x00, 0x18, 0x00), /// A -> B
+	DMATableEntry(0x08, 0x18, 0x00), /// A -> B
+	DMATableEntry(0x00, 0x19, 0x80), /// A -> B
+	DMATableEntry(0x08, 0x19, 0x80), /// A -> B
+	DMATableEntry(0x81, 0x39, 0x80), /// B -> A
+	DMATableEntry(0x80, 0x39, 0x00), /// B -> A
+	DMATableEntry(0x80, 0x3A, 0x80), /// B -> A
+	DMATableEntry(0x01, 0x18, 0x81), /// A -> B
+	DMATableEntry(0x09, 0x18, 0x81), /// A -> B
+	DMATableEntry(0x00, 0x18, 0x01), /// A -> B
+	DMATableEntry(0x08, 0x18, 0x01), /// A -> B
+	DMATableEntry(0x00, 0x19, 0x81), /// A -> B
+	DMATableEntry(0x08, 0x19, 0x81), /// A -> B
+	DMATableEntry(0x81, 0x39, 0x81), /// B -> A
+	DMATableEntry(0x80, 0x39, 0x01), /// B -> A
+	DMATableEntry(0x80, 0x3A, 0x81), /// B -> A
 ];
 
 /// $C08FE6 - unused. these bytes happen to correspond to XBA / TYA opcodes, however
