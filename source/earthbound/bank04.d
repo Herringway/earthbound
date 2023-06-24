@@ -4124,7 +4124,7 @@ void coffeeTeaScene(short id) {
 					unknownC49A4B();
 				}
 				x04 = cast(short)(x0E - 0x2000);
-				unknownC49B6E(0x18);
+				unknownC49C56(0x18);
 				break;
 			case 1:
 				unknownC49CA8(*(x06++));
