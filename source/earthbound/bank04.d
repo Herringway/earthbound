@@ -4130,7 +4130,7 @@ void coffeeTeaScene(short id) {
 				unknownC49CA8(*(x06++));
 				break;
 			case 8:
-				unknownC49CC3(0xC, *(x06++));
+				unknownC49CC3(*(x06++), 0xC);
 				break;
 			default:
 				unknownC49D16(*(x06 - 1), 0, 0xC);
