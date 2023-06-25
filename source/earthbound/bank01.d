@@ -5665,7 +5665,7 @@ short overworldPSIMenu() {
 		if (psiTarget == 0xFF) {
 			for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 				setBattleTargetName(&partyCharacters[gameState.partyMembers[i] - 1].name[0], PartyCharacter.name.length);
-				battleInitPlayerStats(gameState.partyMembers[i] - 1, &battlersTable[1]);
+				battleInitPlayerStats(gameState.partyMembers[i], &battlersTable[1]);
 				battleActionTable[psiAbilityTable[psiSelected].battleAction].func();
 				for (short j = 0; PartyCharacter.afflictions.length > j; j++) {
 					version(bugfix) {
