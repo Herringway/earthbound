@@ -3053,12 +3053,10 @@ short battleRoutine() {
 			}
 			closeFocusWindow();
 		}
-		tracef("Cleaning up HP/PP");
 		resetRolling();
 		do {
 			windowTick();
 		} while (unknownC2108C() == 0);
-		tracef("Cleaning up mirror");
 		if (mirrorEnemy != 0) {
 			for (short i = 0; i < battlersTable.length; i++) {
 				if (battlersTable[i].consciousness == 0) {
@@ -3078,12 +3076,10 @@ short battleRoutine() {
 				break;
 			}
 		}
-		tracef("Cleaning up battle state");
 		resetPostBattleStats();
 		gameState.autoFightEnable = 0;
 		battleModeFlag = 0;
 	} while (battleDebug == 0);
-	tracef("Bailing");
 	fadeOut(1, 1);
 	do {
 		waitUntilNextFrame();
@@ -7684,7 +7680,7 @@ void battleSwirlSequence() {
 		);
 	}
 	unknownC2E8C4(x16, x0E, 30);
-	if ((x0E & 4) != 0) {
+	if ((x0E & AnimationFlags.unknown2) != 0) {
 		swirlMaskSettings = SwirlMask.mathMode;
 	} else {
 		swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.bg3 | SwirlMask.bg4;

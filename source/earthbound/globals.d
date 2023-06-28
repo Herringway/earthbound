@@ -322,7 +322,7 @@ __gshared short[maxEntities] entitySizes; /// $(DOLLAR)2B6E
 __gshared ushort[maxEntities] entitySurfaceFlags; /// $(DOLLAR)2BAA
 __gshared ushort[maxEntities] entityUnknown2BE6; /// $(DOLLAR)2BE6
 __gshared ushort[maxEntities] entityUnknown2C22; /// $(DOLLAR)2C22
-__gshared ushort[maxEntities] entityUnknown2C5E; /// $(DOLLAR)2C5E
+__gshared short[maxEntities] entityUnknown2C5E; /// $(DOLLAR)2C5E
 __gshared ushort[maxEntities] entityTPTEntries; /// $(DOLLAR)2C9A
 __gshared short[maxEntities] entityTPTEntrySprites; /// $(DOLLAR)2CD6
 __gshared short[maxEntities] entityEnemyIDs; /// $(DOLLAR)2D12

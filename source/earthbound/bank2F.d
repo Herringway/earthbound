@@ -21804,7 +21804,7 @@ void debugMain() {
 						entityUnknown2C5E[i] = 0;
 					}
 				}
-				entityUnknown2C5E[createEntity(0x8A, ActionScript.unknown499, -1, bg1XPosition, bg1YPosition)] = 0xFFFF;
+				entityUnknown2C5E[createEntity(0x8A, ActionScript.unknown499, -1, bg1XPosition, bg1YPosition)] = -1;
 				unknownC0BD96();
 			}
 		}

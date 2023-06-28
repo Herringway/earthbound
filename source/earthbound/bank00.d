@@ -8325,7 +8325,7 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 	}
 	arg1.patherCount = x26;
 	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &buffer[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg5, arg6);
-	while (pathGetHeapSize() > 0xC00) {}
+	assert(pathGetHeapSize() <= 0xC00);
 	if (x28 == 0) {
 		for (short i = 0; i != maxEntities; i++) {
 			if (entityScriptTable[i] == -1) {
@@ -8407,7 +8407,7 @@ short unknownC0BF72() {
 /// $C0C19B
 short unknownC0C19B(short arg1) {
 	if (unknownC3DFE8[loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7] != 0) {
-		entityUnknown2C5E[currentEntitySlot] = 0xFFFF;
+		entityUnknown2C5E[currentEntitySlot] = -1;
 		short y = unknownC0BD96();
 		if (y == 0) {
 			entityUnknown2C5E[currentEntitySlot] = 0;
@@ -8427,7 +8427,7 @@ short unknownC0C19B(short arg1) {
 
 /// $C0C251
 short unknownC0C251(short arg1) {
-	entityUnknown2C5E[currentEntitySlot] = 0xFFFF;
+	entityUnknown2C5E[currentEntitySlot] = -1;
 	if (unknownC0BF72() == 0) {
 		entityUnknown2C5E[currentEntitySlot] = 0;
 		short x12 = --entityUnknown2E3E[currentEntitySlot];
@@ -8953,7 +8953,7 @@ void unknownC0D19B() {
 			if (x1A != 0) {
 				y = x06.enemyID;
 				if (y == entityEnemyIDs[x20]) {
-					entityUnknown2C5E[x20] = 0xFFFF;
+					entityUnknown2C5E[x20] = -1;
 					x1A--;
 				}
 				if (x1A != 0) {
@@ -8964,7 +8964,7 @@ void unknownC0D19B() {
 						if (y != entityEnemyIDs[j]) {
 							continue;
 						}
-						entityUnknown2C5E[j] = 0xFFFF;
+						entityUnknown2C5E[j] = -1;
 					}
 				}
 			}
@@ -9289,13 +9289,11 @@ void actionScriptDrawEntities() {
 	// UNKNOWN12
 	// Same little optimization as above
 	while (entity + 1) {
-		// UNKNOWN7
 		uint drawnEntity = entity;
 		uint maxY = entityAbsYTable[entity];
 		uint dp04 = -1;
 		uint dp02 = entity;
 		uint y = entityDrawSorting[entity];
-		// UNKNOWN10
 		// They really liked doing this huh...
 		while (y + 1) {
 			// UNKNOWN8

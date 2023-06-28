@@ -5175,8 +5175,6 @@ void pathInitMatrix() {
 
 /// $C4B859
 void pathC4B859(ushort patherCount, Pather *pathers, Pather **pather_table) {
-	// X REGISTER = pathers
-
 	ushort dp1A = cast(ushort)(patherCount - 1);
 
 	// Scope for dp18 where it's seen as an ushort
