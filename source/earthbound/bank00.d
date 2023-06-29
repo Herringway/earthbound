@@ -9609,7 +9609,7 @@ void unknownC0E28F() {
 	if (gameState.leaderDirection == (x02 ^ 4)) {
 		x02 = gameState.leaderDirection;
 	}
-	if (x02 == -1) {
+	if (x02 == 0xFFFF) {
 		x02 = gameState.leaderDirection;
 	}
 	gameState.leaderDirection = x02;
