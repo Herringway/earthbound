@@ -3536,7 +3536,7 @@ void unknownC065C2(short direction) {
 	if (x == -1) {
 		x = getDoorAt(cast(short)(x0E + 1), x02);
 	}
-	if ((x != -1) && (x != 6)) {
+	if ((x != -1) && (x == 6)) {
 		unknown7E5DDC = unknown7E5DBE;
 		//unknown7E5DDE = doorData[unknown7E5DBC & 0x7FFF]
 
