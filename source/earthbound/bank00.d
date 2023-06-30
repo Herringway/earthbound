@@ -3591,7 +3591,7 @@ void screenTransition(short arg1, short arg2) {
 			startSwirl(screenTransitionConfigTable[arg1].secondaryAnimationID, screenTransitionConfigTable[arg1].secondaryAnimationFlags);
 		}
 		for (short i = 0; i < screenTransitionConfigTable[arg1].secondaryDuration; i++) {
-			if (arg1 == 0) {
+			if (x1D == 0) {
 				if (paletteUploadMode != PaletteUpload.none) {
 					waitUntilNextFrame();
 				}
