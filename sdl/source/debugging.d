@@ -34,6 +34,7 @@ struct DebugState {
 	bool askingForScript;
 	bool askingWarpToPreset;
 	bool askingBattle;
+	bool askingWarpPoint;
 	bool editingVRAM;
 	bool editingBG2;
 	bool editingBuffer;
@@ -63,6 +64,7 @@ void prepareDebugUI(size_t width, size_t height) {
 			menuItemCallback("Add Party Member", () { state.addingPartyMember = true; });
 			menuItemCallback("Run Text Script", () { state.askingForScript = true; });
 			menuItemCallback("Warp to preset destination", () { state.askingWarpToPreset = true; });
+			menuItemCallback("Warp to position", () { state.askingWarpPoint = true; });
 			menuItemCallback("Start a battle", () { state.askingBattle = true; });
 			menuItemCallback("Edit VRAM", () { state.editingVRAM = true; });
 			menuItemCallback("Edit BG2", () { state.editingBG2 = true; });
@@ -98,6 +100,7 @@ void prepareDebugUI(size_t width, size_t height) {
 	}
 	handleDialog!AddPartyMember(state.addingPartyMember, "Add a party member");
 	handleDialog!WarpToDialog(state.askingWarpToPreset, "Warp to preset destination");
+	handleDialog!WarpToPosition(state.askingWarpPoint, "Warp to point");
 	handleDialog!StartBattleDialog(state.askingBattle, "Start battle");
 	handleDialog!RunTextScript(state.askingForScript, "Run a Text Script");
 	handleDialog!SpawnEntity(state.askingForEntity, "Spawn an entity");
@@ -1092,6 +1095,22 @@ struct AddPartyMember {
 	@Label("Party member") PartyMember newMember;
 	void execute() const {
 		addCharToParty(cast(ubyte)newMember);
+	}
+}
+struct WarpToPosition {
+	@Label("X") ushort x;
+	@Label("Y") ushort y;
+	void execute() const {
+		for (short i = 1; i <= 10; i++) {
+			setEventFlag(i, 0);
+		}
+		fadeOut(1, 1);
+		playSfx(Sfx.equippedItem);
+		loadMapAtPosition(x, y);
+		unknown7E2890 = 0;
+		unknownC03FA9(x, y, 4);
+		fadeIn(1, 1);
+		unknown7E5DC4 = -1;
 	}
 }
 struct WarpToDialog {
