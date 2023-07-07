@@ -3865,14 +3865,14 @@ void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
 }
 
 /// $C49496
-ushort unknownC49496(ushort arg1, short arg2) {
+ushort unknownC49496(ushort colour, short arg2) {
 	ushort red;
 	ushort green;
 	ushort blue;
-	if (arg2 < 0x32) {
-		red = cast(ushort)((arg1 & 0x1F) * arg2 * 5);
-		green = cast(ushort)(((arg1 >> 5) & 0x1F) * arg2 * 5);
-		blue = cast(ushort)(((arg1 >> 10) & 0x1F) * arg2 * 5);
+	if (arg2 < 50) {
+		red = cast(ushort)((colour & 0x1F) * arg2 * 5);
+		green = cast(ushort)(((colour >> 5) & 0x1F) * arg2 * 5);
+		blue = cast(ushort)(((colour >> 10) & 0x1F) * arg2 * 5);
 		if (red > 0x1E45) {
 			red = 0x1F00;
 		}
@@ -3882,7 +3882,7 @@ ushort unknownC49496(ushort arg1, short arg2) {
 		if (blue > 0x1E45) {
 			blue = 0x1F00;
 		}
-	} else if (arg2 != 0x32) {
+	} else if (arg2 != 50) {
 		red = 0x1F00;
 		green = 0x1F00;
 		blue = 0x1F00;
@@ -3891,10 +3891,10 @@ ushort unknownC49496(ushort arg1, short arg2) {
 }
 
 /// $C4954C
-void unknownC4954C(short arg1, ushort* arg2) {
+void unknownC4954C(short style, ushort* arg2) {
 	ushort* x06 = cast(ushort*)(&buffer[0]);
 	for (short i = 0; i < 0x100; i++) {
-		*(x06++) = unknownC49496(*(arg2++), arg1);
+		*(x06++) = unknownC49496(*(arg2++), style);
 	}
 }
 
