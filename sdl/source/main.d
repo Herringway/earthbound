@@ -239,6 +239,7 @@ void main(string[] args) {
 		}
 
 		if (!paused || input.step) {
+			input.step = false;
 			Throwable t = game.call(Fiber.Rethrow.no);
 			if(t) {
 				throw t;
