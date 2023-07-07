@@ -113,6 +113,7 @@ unittest {
 
 void handleHDMA() {
 	import std.algorithm.sorting : sort;
+	import std.algorithm.mutation : SwapStrategy;
 	g_frameData.numHdmaWrites = 0;
 	auto channels = HDMAEN;
 	for(auto i = 0; i < 8; i += 1) {
@@ -120,7 +121,11 @@ void handleHDMA() {
 		queueHDMA(dmaChannels[i], g_frameData.hdmaData[g_frameData.numHdmaWrites .. $], g_frameData.numHdmaWrites);
 	}
 	auto writes = g_frameData.hdmaData[0 .. g_frameData.numHdmaWrites];
-	sort!((x,y) => x.vcounter < y.vcounter)(writes);
+	// Stable sorting is required - when there are back-to-back writes to
+	// the same register, they may need to be completed in the correct order.
+	// Example: when writing the scroll registers by HDMA, writing (0x80, 0x00)
+	// is completely different than writing (0x00, 0x80)
+	sort!((x,y) => x.vcounter < y.vcounter, SwapStrategy.stable)(writes);
 	if (writes.length > 0) {
 		debug(printHDMA) tracef("Transfer: %s", writes);
 	}
