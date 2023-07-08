@@ -72,8 +72,10 @@ void main(string[] args) {
 	Nullable!bool noIntro;
 	Nullable!ubyte autoLoadFile;
 	Nullable!bool debugMenu;
+	string logFile;
 	auto help = getopt(args,
 		"verbose|v", "Print extra information", &verbose,
+		"logfile|l", "Log to file", &logFile,
 		"nointro|n", "Skip intro scenes", &handleNullableOption!noIntro,
 		"autoload|a", "Auto-load specified file. Will be created if nonexistent", &handleNullableOption!autoLoadFile,
 		"debug|d", "Always boot to debug menu (debug builds only)", &handleNullableOption!debugMenu,
@@ -82,6 +84,9 @@ void main(string[] args) {
 	if (help.helpWanted) {
 		defaultGetoptPrinter("Earthbound.", help.options);
 		return;
+	}
+	if (logFile) {
+		sharedLog = cast(shared)new FileLogger(logFile, LogLevel.info);
 	}
 	if (verbose) {
 		(cast()sharedLog).logLevel = LogLevel.trace;
