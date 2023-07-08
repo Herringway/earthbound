@@ -131,7 +131,7 @@ void main(string[] args) {
 
 	bool loadCachedText = !forceCacheRebuild && textCacheFile.exists;
 
-	if (getLastModifiedTime(extractDoc) > getLastModifiedTime(textCacheFile)) {
+	if (loadCachedText && (getLastModifiedTime(extractDoc) > getLastModifiedTime(textCacheFile))) {
 		loadCachedText = false;
 		infof("Text cache out of date");
 	}
