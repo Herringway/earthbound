@@ -814,6 +814,98 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		}
 		ImGui.TreePop();
 	}
+	if (ImGui.TreeNode("Engine state")) {
+		if (ImGui.TreeNode("Register mirrors")) {
+			InputEditable("INIDISP", mirrorINIDISP);
+			InputEditable("OBSEL", mirrorOBSEL);
+			InputEditable("BGMODE", mirrorBGMODE);
+			InputEditable("MOSAIC", mirrorMOSAIC);
+			InputEditable("BG1SC", mirrorBG1SC);
+			InputEditable("BG2SC", mirrorBG2SC);
+			InputEditable("BG3SC", mirrorBG3SC);
+			InputEditable("BG4SC", mirrorBG4SC);
+			InputEditable("BG12NBA", mirrorBG12NBA);
+			InputEditable("BG34NBA", mirrorBG34NBA);
+			InputEditable("WH2", mirrorWH2);
+			InputEditable("TM", mirrorTM);
+			InputEditable("TD", mirrorTD);
+			InputEditable("unknown7E001D", unknown7E001D);
+			InputEditable("NMITIMEN", mirrorNMITIMEN);
+			InputEditable("HDMAEN", mirrorHDMAEN);
+			InputEditable("BG1 position", bg1XPosition, bg1YPosition);
+			InputEditable("BG2 position", bg2XPosition, bg2YPosition);
+			InputEditable("BG3 position", bg3XPosition, bg3YPosition);
+			InputEditable("BG4 position", bg4XPosition, bg4YPosition);
+			InputEditable("BG1 position buffer", bg1XPositionBuffer[0], bg1YPositionBuffer[0], bg1XPositionBuffer[1], bg1YPositionBuffer[1]);
+			InputEditable("BG2 position buffer", bg2XPositionBuffer[0], bg2YPositionBuffer[0], bg2XPositionBuffer[1], bg2YPositionBuffer[1]);
+			InputEditable("BG3 position buffer", bg3XPositionBuffer[0], bg3YPositionBuffer[0], bg3XPositionBuffer[1], bg3YPositionBuffer[1]);
+			InputEditable("BG4 position buffer", bg4XPositionBuffer[0], bg4YPositionBuffer[0], bg4XPositionBuffer[1], bg4YPositionBuffer[1]);
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("DMA state")) {
+			InputEditable("Mode", dmaCopyMode);
+			InputEditable("Size", dmaCopySize);
+			InputEditable("VRAM destination", dmaCopyVRAMDestination);
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("Input state")) {
+			InputEditable("Gamepad state", padState[0], padState[1]);
+			InputEditable("Gamepad held", padHeld[0], padHeld[1]);
+			InputEditable("Gamepad press", padPress[0], padPress[1]);
+			InputEditable("Gamepad timer", padTimer[0], padTimer[1]);
+			InputEditable("Gamepad temp", padTemp);
+			InputEditable("Gamepad raw", padRaw[0], padRaw[1]);
+			ImGui.TreePop();
+		}
+		if (ImGui.TreeNode("Demo state")) {
+			InputEditable("Recording flags", demoRecordingFlags);
+			InputEditable("unknown7E007F", unknown7E007F);
+			InputEditable("unknown7E0080", unknown7E0080);
+			InputEditable("Frames left", demoFramesLeft);
+			ImGui.TreePop();
+		}
+		InputEditable("unknown7E0009", unknown7E0009);
+		InputEditable("unknown7E000A", unknown7E000A);
+		// not really used, but whatever
+		InputEditable("Spritemap bank", spritemapBank);
+		InputEditable("Executing IRQ callback", inIRQCallback);
+		InputEditable("unknown7E0023", unknown7E0023);
+		InputEditable("RNG state", randA, randB);
+		InputEditable("Fade delay frames left", fadeDelayFramesLeft);
+		InputEditable("New frame started", newFrameStarted);
+		InputEditable("Next frame display ID", nextFrameDisplayID);
+		InputEditable("unknown7E002D", unknown7E002D);
+		InputEditable("Next frame buffer ID", nextFrameBufferID);
+		InputEditable("unknown7E002F", unknown7E002F);
+		InputEditable("Palette upload mode", paletteUploadMode);
+		InputEditable("unknown7E0061", unknown7E0061);
+		InputEditable("unknown7E0063", unknown7E0063);
+		InputEditable("unknown7E0083", unknown7E0083);
+		InputEditable("unknown7E0087", unknown7E0087);
+		InputEditable("unknown7E0089", unknown7E0089);
+		InputEditable("unknown7E008B", unknown7E008B);
+		InputEditable("unknown7E008D", unknown7E008D);
+		InputEditable("unknown7E008F", unknown7E008F);
+		InputEditable("unknown7E0099", unknown7E0099);
+		InputEditable("unknown7E009B", unknown7E009B);
+		InputEditable("unknown7E009D", unknown7E009D);
+		InputEditable("unknown7E009F", unknown7E009F);
+		InputEditable("unknown7E00A5", unknown7E00A5);
+		InputEditable("unknown7E00A6", unknown7E00A6);
+		InputEditable("Timer", timer);
+		InputEditable("unknown7E00AB", unknown7E00AB);
+		InputEditable("unknown7E00AC", unknown7E00AC);
+		InputEditable("unknown7E00AD", unknown7E00AD);
+		InputEditable("unknown7E00C4", unknown7E00C4);
+		InputEditable("unknown7E00C8", unknown7E00C8);
+		InputEditable("unknown7E00CC", unknown7E00CC);
+		InputEditable("unknown7E00CE", unknown7E00CE);
+		InputEditable("unknown7E00CF", unknown7E00CF);
+		InputEditable("unknown7E00D1", unknown7E00D1);
+		InputEditable("unknown7E00D2", unknown7E00D2);
+		InputEditable("unknown7E00D3", unknown7E00D3);
+		ImGui.TreePop();
+	}
 	if (ImGui.TreeNode("Renderer")) {
 		ImGui.Text("Layers");
 		foreach (idx, layer; ["BG1", "BG2", "BG3", "BG4", "OBJ"]) {
