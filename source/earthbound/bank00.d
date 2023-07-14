@@ -7825,6 +7825,7 @@ void prepareBackgroundOffsetTables(short rippleFrequency, short rippleAmplitude,
 				x05 += backgroundDistortionCompressionRate;
 				backgroundHDMABuffer[bufferPosition / 2] = cast(ushort)(((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8) + (x05 / 256));
 				x05 += backgroundDistortionCompressionRate;
+				x03 += rippleFrequency;
 				backgroundHDMABuffer[bufferPosition / 2 + 1] = cast(ushort)((x05 / 256) - ((rippleAmplitude * sineLookupTable[x03 / 256]) >> 8));
 				x03 += rippleFrequency;
 				bufferPosition += 4;
