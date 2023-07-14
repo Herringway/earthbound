@@ -7051,7 +7051,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 	loadBackgroundOffsetParameters(cast(short)(arg1.distortionType - 1), x19, layer);
 	loadBackgroundOffsetParameters2(arg1.distortionCompressionRate);
 	if (((frameCounter & 1) == layer) || (unknown7EADAC == 0)) {
-		prepareBackgroundOffsetTables(arg1.distortionRippleFrequency, arg1.distortionRippleAmplitude, arg1.distortionSpeed);
+		prepareBackgroundOffsetTables(arg1.distortionRippleFrequency, (cast(ushort)arg1.distortionRippleAmplitude) >> 8, arg1.distortionSpeed);
 	}
 }
 
