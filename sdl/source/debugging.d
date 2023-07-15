@@ -523,6 +523,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		ImGui.TreePop();
 	}
 	if (ImGui.TreeNode("Text System")) {
+		InputEditable("Current focus", currentFocusWindow);
 		InputEditable("CNum", cNum);
 		InputEditable("CItem", cItem);
 		if (ImGui.TreeNode("Windows")) {
