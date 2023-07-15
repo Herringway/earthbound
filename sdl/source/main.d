@@ -2,12 +2,13 @@ module game;
 
 import std.algorithm : filter;
 import std.conv : to;
-import std.datetime : SysTime;
+import std.datetime : Clock, SysTime;
 import std.experimental.logger;
 import std.exception;
 import std.file : exists, getTimes, mkdirRecurse, read;
 import std.format : sformat;
 import std.getopt;
+import std.path;
 import std.range : chain, drop, front, repeat, zip;
 import std.parallelism : parallel;
 import std.stdio : File, write, writef, writefln, writeln;
@@ -62,7 +63,7 @@ void handleNullableOption(alias var)(string, string value) {
 	var = value.to!(typeof(var.get));
 }
 version(unittest) {} else {
-void main(string[] args) {
+int main(string[] args) {
 	if (!"settings.yml".exists) {
 		getDefaultSettings().toFile!YAML("settings.yml");
 	}
@@ -83,7 +84,7 @@ void main(string[] args) {
 	);
 	if (help.helpWanted) {
 		defaultGetoptPrinter("Earthbound.", help.options);
-		return;
+		return 2;
 	}
 	if (logFile) {
 		sharedLog = cast(shared)new FileLogger(logFile, LogLevel.info);
@@ -102,7 +103,7 @@ void main(string[] args) {
 		initializeGamepad();
 	} catch (Exception e) {
 		criticalf("Error: %s", e.msg);
-		return;
+		return 3;
 	}
 
 	scope(exit) {
@@ -247,7 +248,11 @@ void main(string[] args) {
 			input.step = false;
 			Throwable t = game.call(Fiber.Rethrow.no);
 			if(t) {
-				throw t;
+				auto crashFile = format!"dump/crash %s.txt"(Clock.currTime.toISOString).absolutePath;
+				File(crashFile, "w").write(t);
+				infof("Game crashed! Details written to '%s', please report this bug at https://github.com/Herringway/earthbound/issues with as many details as you can include.", crashFile);
+				debug writeln(t);
+				return 1;
 			}
 			irqNMICommon();
 			copyGlobalsToFrameData();
@@ -276,6 +281,7 @@ void main(string[] args) {
 		}
 		frameStatTracker.endFrame();
 	}
+	return 0;
 }
 }
 
