@@ -2266,38 +2266,42 @@ short findInventorySpace2(short arg1) {
 
 /// $C4577D
 ubyte changeEquippedWeapon(ushort character, short slot) {
+	const oldWeapon = partyCharacters[character - 1].equipment[EquipmentSlot.weapon];
 	partyCharacters[character - 1].equipment[EquipmentSlot.weapon] = cast(ubyte)slot;
 	recalcCharacterPostmathOffense(character);
 	recalcCharacterPostmathGuts(character);
 	recalcCharacterMissRate(character);
-	return partyCharacters[character - 1].equipment[EquipmentSlot.weapon];
+	return oldWeapon;
 }
 
 /// $C457CA
 ubyte changeEquippedBody(ushort character, short slot) {
+	const oldBody = partyCharacters[character - 1].equipment[EquipmentSlot.body];
 	partyCharacters[character - 1].equipment[EquipmentSlot.body] = cast(ubyte)slot;
 	recalcCharacterPostmathDefense(character);
 	recalcCharacterPostmathSpeed(character);
 	calcResistances(character);
-	return partyCharacters[character - 1].equipment[EquipmentSlot.body];
+	return oldBody;
 }
 
 /// $C45815
 ubyte changeEquippedArms(ushort character, short slot) {
+	const oldArms = partyCharacters[character - 1].equipment[EquipmentSlot.arms];
 	partyCharacters[character - 1].equipment[EquipmentSlot.arms] = cast(ubyte)slot;
 	recalcCharacterPostmathDefense(character);
 	recalcCharacterPostmathLuck(character);
 	calcResistances(character);
-	return partyCharacters[character - 1].equipment[EquipmentSlot.arms];
+	return oldArms;
 }
 
 /// $C45860
 ubyte changeEquippedOther(ushort character, short slot) {
+	const oldOther = partyCharacters[character - 1].equipment[EquipmentSlot.other];
 	partyCharacters[character - 1].equipment[EquipmentSlot.other] = cast(ubyte)slot;
 	recalcCharacterPostmathDefense(character);
 	recalcCharacterPostmathLuck(character);
 	calcResistances(character);
-	return partyCharacters[character - 1].equipment[EquipmentSlot.other];
+	return oldOther;
 }
 
 /// $C458AB
