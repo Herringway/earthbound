@@ -3011,7 +3011,7 @@ void* cc1919(DisplayTextState* arg1, ubyte arg2) {
 void* cc1D14(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!uint);
 	uint x06 = getCCParameters!ArgType(arg2);
-	setWorkingMemory(WorkingMemory((x06.useVariableIfZero(getArgumentMemory()) < gameState.moneyCarried) ? 0 : 1));
+	setWorkingMemory(WorkingMemory((x06.useVariableIfZero(getArgumentMemory()) <= gameState.moneyCarried) ? 0 : 1));
 	return null;
 }
 
