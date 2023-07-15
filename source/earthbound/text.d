@@ -1332,7 +1332,7 @@ const(ubyte)[] getCachedFullCC(const(ubyte)[] script) @safe pure {
 						foreach (i; 0 .. 4) {
 							offset += textSize(script[offset .. $]);
 						}
-						return script[0 .. offset];
+						return script[0 .. offset + 1];
 					case 6:
 						return script[0 .. 3];
 					case 5:
