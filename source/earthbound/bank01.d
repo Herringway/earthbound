@@ -4506,7 +4506,7 @@ ushort removeItemFromInventory(ushort character, ushort slot) {
 ushort takeItemFromSpecificCharacter(ushort character, ushort item) {
 	for (short i = 0; 14 > i; i++) {
 		if (partyCharacters[character - 1].items[i] == item) {
-			return removeItemFromInventory(character, i);
+			return removeItemFromInventory(character, cast(ushort)(i + 1));
 		}
 	}
 	return 0;
