@@ -7025,7 +7025,7 @@ void generateBattleBGFrame(LoadedBackgroundData* arg1, short layer) {
 		if (x10 != 0) {
 			tracef("Switching to distortion %s", backgroundDistortionTable[x10]);
 			arg1.distortionDurationLeft = backgroundDistortionTable[x10].duration;
-			arg1.distortionType = backgroundDistortionTable[x10].style;
+			arg1.distortionType = cast(ubyte)backgroundDistortionTable[x10].style;
 			arg1.distortionRippleFrequency = backgroundDistortionTable[x10].rippleFrequency;
 			arg1.distortionRippleAmplitude = backgroundDistortionTable[x10].rippleAmplitude;
 			arg1.distortionSpeed = backgroundDistortionTable[x10].speed;

@@ -6916,7 +6916,7 @@ struct BackgroundScrollingEntry {
 ///
 struct BackgroundDistortionEntry {
 	short duration; ///
-	ubyte style; ///
+	DistortionStyle style; ///
 	short rippleFrequency; ///
 	short rippleAmplitude; ///
 	ubyte speed; ///
