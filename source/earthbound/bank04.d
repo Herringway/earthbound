@@ -6160,7 +6160,7 @@ void unknownC48B3B() {
 		if (16 <= gameState.partyMemberIndex[i]) {
 			continue;
 		}
-		short x10 = cast(short)((getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+		short x10 = cast(short)(cast(ushort)(getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
 		if (entityDirections[gameState.partyEntities[i]] == x10) {
 			continue;
 		}
