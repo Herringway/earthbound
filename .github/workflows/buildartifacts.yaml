@@ -1,0 +1,47 @@
+---
+name: Build artifacts
+"on":
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout libsfcppu
+        uses: actions/checkout@v3
+        with:
+          repository: charasyn/libsfcppu
+          path: libsfcppu
+      - name: 'Build libsfcppu'
+        run: |
+          cd libsfcppu
+          mkdir obj
+          mkdir out
+          make
+          cd ..
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: earthbound
+      - uses: dlang-community/setup-dlang@v1
+        name: Setting up D compiler
+        with:
+          compiler: ldc-latest
+      - name: 'Build Earthbound (SDL, Win64)'
+        run: |
+          cd earthbound
+          dub build :sdl
+          cd ..
+      - name: 'Prepare artifact'
+        run: |
+          mv libsfcppu/out/libsfcppu.dll .
+          mv earthbound/sdl/earthbound_sdl.exe .
+          mv earthbound/extract.yaml .
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: |
+            libsfcppu.dll
+            extract.yaml
+            earthbound_sdl.exe
