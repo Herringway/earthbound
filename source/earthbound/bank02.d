@@ -1791,7 +1791,7 @@ void fixAttackerName(short arg1) {
 	if ((currentAttacker.side == BattleSide.foes) || (currentAttacker.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentAttacker.id].name[0], &attackerNameAdjustScratch[0], 25);
 		if ((currentAttacker.side == BattleSide.foes) && (arg1 == 0)) {
-			if ((currentAttacker.theFlag != 1) || (getNextAvailableEnemyLetter(currentAttacker.unknown76) != 2)) {
+			if ((currentAttacker.theFlag != 1) || (getNextAvailableEnemyLetter(currentAttacker.originalID) != 2)) {
 				x14[0] = ebChar(' ');
 				unknown7E5E77 = 1;
 				x14[1] = cast(ubyte)(currentAttacker.theFlag + 0x70);
@@ -1816,7 +1816,7 @@ void fixTargetName() {
 	memset(&targetNameAdjustScratch[0], 0, targetNameAdjustScratch.length);
 	if ((currentTarget.side == BattleSide.foes) || (currentTarget.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentTarget.id].name[0], &targetNameAdjustScratch[0], 25);
-		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.theFlag != 1) || (getNextAvailableEnemyLetter(currentTarget.unknown76) != 2))) {
+		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.theFlag != 1) || (getNextAvailableEnemyLetter(currentTarget.originalID) != 2))) {
 			x14[0] = ebChar(' ');
 			unknown7E5E78 = 1;
 			x14[1] = cast(ubyte)(currentTarget.theFlag + 0x70);
@@ -1832,6 +1832,34 @@ void fixTargetName() {
 			setBattleTargetNameF(&partyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
 		}
 	}
+}
+
+unittest {
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[0]);
+	currentTarget = &battlersTable[0];
+	fixTargetName();
+	assert(printable(battleTargetName) == "Insane Cultist");
+
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[1]);
+	currentTarget = &battlersTable[1];
+	fixTargetName();
+	assert(printable(battleTargetName) == "Insane Cultist B");
+
+	gameState.petName = ebString!6("Pupper");
+	battleInitEnemyStats(EnemyID.myPet, &battlersTable[2]);
+	currentTarget = &battlersTable[2];
+	fixTargetName();
+	assert(printable(battleTargetName) == "Pupper");
+
+	partyCharacters[0].name = ebString!5("Ness");
+	battleInitPlayerStats(PartyMember.ness, &battlersTable[3]);
+	currentTarget = &battlersTable[3];
+	fixTargetName();
+	assert(printable(battleTargetName) == "Ness");
+
+	currentTarget = null;
+	gameState = gameState.init;
+	battlersTable = battlersTable.init;
 }
 
 /// $C23E32
@@ -1860,7 +1888,7 @@ void unknownC23E8A(short arg1) {
 		x02 = backRowBattlers[arg1 - 1];
 	}
 	ubyte* x12 = copyEnemyName(&enemyConfigurationTable[battlersTable[x02].id].name[0], &unknown7EA9B9[0], unknown7EA9B9.length);
-	if ((battlersTable[x02].theFlag != 1) || (getNextAvailableEnemyLetter(battlersTable[x02].unknown76) != 2)) {
+	if ((battlersTable[x02].theFlag != 1) || (getNextAvailableEnemyLetter(battlersTable[x02].originalID) != 2)) {
 		(x12++)[0] = ebChar(' ');
 		(x12++)[0] = cast(ubyte)(ebChar('A') + battlersTable[x02].theFlag);
 		unknown7E5E77 = 1;
@@ -6260,7 +6288,7 @@ ubyte getNextAvailableEnemyLetter(short arg1) {
 		if (battlersTable[i].side != BattleSide.foes) {
 			continue;
 		}
-		if (battlersTable[i].id2 != arg1) {
+		if (battlersTable[i].originalID != arg1) {
 			continue;
 		}
 		unknown7EAA98[battlersTable[i].theFlag - 1] = 1;
@@ -6291,8 +6319,8 @@ void battleInitEnemyStats(short arg1, Battler* battler) {
 	if (enemyConfigurationTable[arg1].level > unknown7EAA0C) {
 		unknown7EAA0C = enemyConfigurationTable[arg1].level;
 	}
-	battler.id = cast(ubyte)arg1;
-	battler.id2 = cast(ubyte)arg1;
+	battler.id = arg1;
+	battler.originalID = arg1;
 	battler.sprite = cast(ubyte)enemyConfigurationTable[arg1].battleSprite;
 	battler.theFlag = getNextAvailableEnemyLetter(arg1);
 	battler.consciousness = 1;
@@ -6503,7 +6531,7 @@ void callForHelpCommon(short sowingSeeds) {
 		if (battlersTable[i].afflictions[0] == Status0.unconscious) {
 			continue;
 		}
-		if (battlersTable[i].unknown76 != currentAttacker.currentActionArgument) {
+		if (battlersTable[i].originalID != currentAttacker.currentActionArgument) {
 			continue;
 		}
 		x24++;

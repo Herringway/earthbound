@@ -5986,8 +5986,7 @@ struct Battler {
 	ubyte unknown73; ///
 	ubyte isFlashing; ///
 	ubyte useAltSpritemap; ///
-	ubyte unknown76; ///
-	ubyte id2; ///
+	short originalID; ///
 }
 ///
 struct TextWindowPropertiesEntry {
@@ -8137,7 +8136,7 @@ string getBattlerName(ref Battler battler) {
 	scope buffer = new ubyte[](30);
 	if ((battler.side == BattleSide.foes) || (battler.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[battler.id].name[0], &buffer[0], 25);
-		if ((battler.side == BattleSide.foes) && ((battler.theFlag != 1) ||(getNextAvailableEnemyLetter(battler.unknown76) != 2))) {
+		if ((battler.side == BattleSide.foes) && ((battler.theFlag != 1) ||(getNextAvailableEnemyLetter(battler.originalID) != 2))) {
 			x14[0] = ebChar(' ');
 			unknown7E5E78 = 1;
 			x14[1] = cast(ubyte)(battler.theFlag + 0x70);
