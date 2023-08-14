@@ -5342,8 +5342,8 @@ void setBattleAttackerName(ubyte* str, short length) {
 
 /// $C1ACA1
 void setBattleTargetName(ubyte* str, short length) {
-	memcpy(&battleTargerName[0], str, length);
-	battleTargerName[length] = 0;
+	memcpy(&battleTargetName[0], str, length);
+	battleTargetName[length] = 0;
 	unknown7E965A = -1;
 }
 
@@ -5354,7 +5354,7 @@ ubyte* getBattleAttackerName() {
 
 /// $C1ACF2
 ubyte* getBattleTargetName() {
-	return &battleTargerName[0];
+	return &battleTargetName[0];
 }
 
 /// $C1ACF8

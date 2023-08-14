@@ -637,7 +637,7 @@ __gshared ubyte unknown7E9CD3; /// $(DOLLAR)9CD3
 __gshared short unknown7E9CD4; /// $(DOLLAR)9CD4
 __gshared ubyte unknown7E9CD6; /// $(DOLLAR)9CD6
 __gshared ubyte[30] battleAttackerName; /// $(DOLLAR)9CD7
-__gshared ubyte[28] battleTargerName; /// $(DOLLAR)9CF5
+__gshared ubyte[28] battleTargetName; /// $(DOLLAR)9CF5
 __gshared ubyte cItem; /// $(DOLLAR)9D11
 __gshared uint cNum; /// $(DOLLAR)9D12
 __gshared short unknown7E9D16; /// $(DOLLAR)9D16
