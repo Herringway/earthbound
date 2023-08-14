@@ -1805,9 +1805,39 @@ void fixAttackerName(short arg1) {
 		unknown7E9658 = currentAttacker.id;
 	} else {
 		if (currentAttacker.id <= 4) {
-			setBattleAttackerNameF(&partyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
+			setBattleAttackerNameF(&partyCharacters[currentAttacker.row].name[0], PartyCharacter.name.length);
 		}
 	}
+}
+
+unittest {
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[0]);
+	currentAttacker = &battlersTable[0];
+	fixAttackerName(0);
+	assert(printable(battleAttackerName) == "Insane Cultist");
+
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[1]);
+	currentAttacker = &battlersTable[1];
+	fixAttackerName(0);
+	assert(printable(battleAttackerName) == "Insane Cultist B");
+	fixAttackerName(1);
+	assert(printable(battleAttackerName) == "Insane Cultist");
+
+	gameState.petName = ebString!6("Pupper");
+	battleInitEnemyStats(EnemyID.myPet, &battlersTable[2]);
+	currentAttacker = &battlersTable[2];
+	fixAttackerName(0);
+	assert(printable(battleAttackerName) == "Pupper");
+
+	partyCharacters[0].name = ebString!5("Ness");
+	battleInitPlayerStats(PartyMember.ness, &battlersTable[3]);
+	currentAttacker = &battlersTable[3];
+	fixAttackerName(0);
+	assert(printable(battleAttackerName) == "Ness");
+
+	currentAttacker = null;
+	gameState = gameState.init;
+	battlersTable = battlersTable.init;
 }
 
 /// $C23D05
