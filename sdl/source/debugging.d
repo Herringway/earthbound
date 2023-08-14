@@ -719,8 +719,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					InputEditable("Unknown73", battler.unknown73);
 					InputEditable("Flashing", battler.isFlashing);
 					InputEditable("Alt spritemap", battler.useAltSpritemap);
-					InputEditable("Unknown76", battler.unknown76);
-					InputEditable("ID2", battler.id2);
+					InputEditable("Original ID", battler.originalID);
 					ImGui.TreePop();
 				}
 			}
