@@ -1791,7 +1791,7 @@ void fixAttackerName(short arg1) {
 	if ((currentAttacker.side == BattleSide.foes) || (currentAttacker.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentAttacker.id].name[0], &attackerNameAdjustScratch[0], 25);
 		if ((currentAttacker.side == BattleSide.foes) && (arg1 == 0)) {
-			if ((currentAttacker.theFlag != 1) || (unknownC2B66A(currentAttacker.unknown76) != 2)) {
+			if ((currentAttacker.theFlag != 1) || (getNextAvailableEnemyLetter(currentAttacker.unknown76) != 2)) {
 				x14[0] = ebChar(' ');
 				unknown7E5E77 = 1;
 				x14[1] = cast(ubyte)(currentAttacker.theFlag + 0x70);
@@ -1816,7 +1816,7 @@ void fixTargetName() {
 	memset(&targetNameAdjustScratch[0], 0, targetNameAdjustScratch.length);
 	if ((currentTarget.side == BattleSide.foes) || (currentTarget.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentTarget.id].name[0], &targetNameAdjustScratch[0], 25);
-		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.theFlag != 1) ||(unknownC2B66A(currentTarget.unknown76) != 2))) {
+		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.theFlag != 1) || (getNextAvailableEnemyLetter(currentTarget.unknown76) != 2))) {
 			x14[0] = ebChar(' ');
 			unknown7E5E78 = 1;
 			x14[1] = cast(ubyte)(currentTarget.theFlag + 0x70);
@@ -1860,7 +1860,7 @@ void unknownC23E8A(short arg1) {
 		x02 = backRowBattlers[arg1 - 1];
 	}
 	ubyte* x12 = copyEnemyName(&enemyConfigurationTable[battlersTable[x02].id].name[0], &unknown7EA9B9[0], unknown7EA9B9.length);
-	if ((battlersTable[x02].theFlag != 1) || (unknownC2B66A(battlersTable[x02].unknown76) != 2)) {
+	if ((battlersTable[x02].theFlag != 1) || (getNextAvailableEnemyLetter(battlersTable[x02].unknown76) != 2)) {
 		(x12++)[0] = ebChar(' ');
 		(x12++)[0] = cast(ubyte)(ebChar('A') + battlersTable[x02].theFlag);
 		unknown7E5E77 = 1;
@@ -6251,8 +6251,8 @@ ubyte calcPSIResistanceModifiers(ubyte arg1) {
 }
 
 /// $C2B66A
-ubyte unknownC2B66A(short arg1) {
-	memset(&unknown7EAA98, 0, 26);
+ubyte getNextAvailableEnemyLetter(short arg1) {
+	memset(&unknown7EAA98[0], 0, unknown7EAA98.length);
 	for (short i = 0; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
@@ -6265,13 +6265,24 @@ ubyte unknownC2B66A(short arg1) {
 		}
 		unknown7EAA98[battlersTable[i].theFlag - 1] = 1;
 	}
-	for (short i = 0; i < 26; i++) {
+	for (short i = 0; i < unknown7EAA98.length; i++) {
 		if (unknown7EAA98[i] != 0) {
 			continue;
 		}
 		return cast(ubyte)(i + 1);
 	}
 	return 0;
+}
+
+unittest {
+	battlersTable = battlersTable.init;
+	assert(getNextAvailableEnemyLetter(EnemyID.insaneCultist1) == 1);
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[0]);
+	assert(getNextAvailableEnemyLetter(EnemyID.insaneCultist1) == 2);
+	battleInitEnemyStats(EnemyID.insaneCultist1, &battlersTable[1]);
+	assert(getNextAvailableEnemyLetter(EnemyID.insaneCultist1) == 3);
+	battlersTable[0].consciousness = 0;
+	assert(getNextAvailableEnemyLetter(EnemyID.insaneCultist1) == 1);
 }
 
 /// $C2B6EB
@@ -6283,7 +6294,7 @@ void battleInitEnemyStats(short arg1, Battler* battler) {
 	battler.id = cast(ubyte)arg1;
 	battler.id2 = cast(ubyte)arg1;
 	battler.sprite = cast(ubyte)enemyConfigurationTable[arg1].battleSprite;
-	battler.theFlag = unknownC2B66A(arg1);
+	battler.theFlag = getNextAvailableEnemyLetter(arg1);
 	battler.consciousness = 1;
 	battler.side = BattleSide.foes;
 	battler.npcID = 0;
