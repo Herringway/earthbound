@@ -66,6 +66,9 @@ public void drawFrame(ushort* buffer, int pitch, const(SnesDrawFrameData)* d) {
 	assert(ImgH == 448);
 	assert(pitch == 1024);
 	assert(libsfcppu_drawFrame, "libsfcppu not loaded?");
+	buffer[0..ImgW*ImgH] = getFrameData(d);
+}
+ushort[] getFrameData(const(SnesDrawFrameData)* d) {
 	ushort * rawdata = libsfcppu_drawFrame(d);
-	buffer[0..ImgW*ImgH] = rawdata[ImgW * 16..ImgW*(ImgH + 16)];
+	return rawdata[ImgW * 16..ImgW*(ImgH + 16)];
 }

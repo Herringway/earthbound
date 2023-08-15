@@ -427,3 +427,12 @@ SDL_Texture* createTexture(scope const ubyte[] data, int width, int height) {
 	enforceSDL(tex != null, "Failed to create texture");
 	return tex;
 }
+
+void dumpScreen(string path) {
+	auto frame = getFrameData(&g_frameData);
+	auto surface = SDL_CreateRGBSurfaceFrom(&frame[0], ImgW, ImgH, 16, ImgW * ushort.sizeof, 0x1F << 10, 0x1F << 5, 0x1F, 0);
+	enforceSDL(surface != null, "Failed to create surface");
+	SDL_SaveBMP(surface, path.toStringz);
+
+	SDL_FreeSurface(surface);
+}

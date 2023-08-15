@@ -248,9 +248,11 @@ int main(string[] args) {
 			input.step = false;
 			Throwable t = game.call(Fiber.Rethrow.no);
 			if(t) {
-				auto crashFile = format!"dump/crash %s.txt"(Clock.currTime.toISOString).absolutePath;
-				File(crashFile, "w").write(t);
-				infof("Game crashed! Details written to '%s', please report this bug at https://github.com/Herringway/earthbound/issues with as many details as you can include.", crashFile);
+				auto crashDir = buildNormalizedPath("dump", format!"crash %s"(Clock.currTime.toISOString)).absolutePath;
+				mkdirRecurse(crashDir);
+				dumpScreen(buildPath(crashDir, "screen.bmp"));
+				File(buildPath(crashDir, "trace.txt"), "w").write(t);
+				infof("Game crashed! Details written to '%s', please report this bug at https://github.com/Herringway/earthbound/issues with as many details as you can include.", crashDir);
 				debug writeln(t);
 				return 1;
 			}
