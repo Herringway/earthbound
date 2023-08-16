@@ -26,6 +26,34 @@ enum Pad {
 }
 
 enum PathfindingTile {
+	clear = 0x00, ///
+	unknown01 = 0x01, ///
+	unknown02 = 0x02, ///
+	unknown03 = 0x03, ///
+	unknown04 = 0x04, ///
+	unknown05 = 0x05, ///
+	unknown06 = 0x06, ///
+	unknown07 = 0x07, ///
+	unknown08 = 0x08, ///
+	unknown09 = 0x09, ///
+	unknown0A = 0x0A, ///
+	unknown0B = 0x0B, ///
+	unknown0C = 0x0C, ///
+	unknown0D = 0x0D, ///
+	unknown0E = 0x0E, ///
+	unknown0F = 0x0F, ///
+	unknown10 = 0x10, ///
+	unknown11 = 0x11, ///
+	unknown12 = 0x12, ///
+	unknown13 = 0x13, ///
+	unknown14 = 0x14, ///
+	unknown15 = 0x15, ///
+	unknown16 = 0x16, ///
+	unknown17 = 0x17, ///
+	unknown18 = 0x18, ///
+	unknown19 = 0x19, ///
+	unknown1A = 0x1A, ///
+	unknown1B = 0x1B, ///
 	unknownFB = 0xFB, ///
 	unknownFC = 0xFC, ///
 	unwalkable = 0xFD, ///

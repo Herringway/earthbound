@@ -5065,13 +5065,13 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 	pathMatrixSize = cast(ushort)(pathMatrixRows * pathMatrixCols);
 	pathMatrixBuffer = matrix;
 
-	ushort *ptr = cast(ushort*)pathSbrk(search_radius*int.sizeof + int.sizeof); // dp1E
+	ushort *ptr = cast(ushort*)pathSbrk(search_radius*ushort.sizeof + ushort.sizeof); // dp1E
 	pathB408 = ptr;
-	pathB40A = ptr + cast(size_t)heap_start;
+	pathB40A = ptr + search_radius * ushort.sizeof;
 	pathB40C = ptr;
 	pathB40E = ptr;
 
-	pathCardinalOffset[0] = cast(short)-cast(int)pathMatrixCols; // NORTH
+	pathCardinalOffset[0] = cast(short)-pathMatrixCols; // NORTH
 	pathCardinalOffset[1] = 1; // EAST
 	pathCardinalOffset[2] = pathMatrixCols; // SOUTH
 	pathCardinalOffset[3] = -1; // WEST
@@ -5165,15 +5165,13 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 void pathInitMatrix() {
 	int i;
 	for (i = 0; i < pathMatrixRows; ++i) {
-		ubyte dp0E = PathfindingTile.unwalkable;
-		pathMatrixBuffer[((pathMatrixCols - 1) * i) + (pathMatrixCols - 1)] = dp0E;
-		pathMatrixBuffer[(pathMatrixCols - 1) * i] = dp0E;
+		pathMatrixBuffer[pathMatrixCols * i + pathMatrixCols - 1] = PathfindingTile.unwalkable;
+		pathMatrixBuffer[pathMatrixCols  * i] = PathfindingTile.unwalkable;
 	}
 
 	for (i = 0; i < pathMatrixCols; ++i) {
-		ubyte dp0E = PathfindingTile.unwalkable;
-		pathMatrixBuffer[(pathMatrixRows - 1) + i] = dp0E;
-		pathMatrixBuffer[i] = dp0E;
+		pathMatrixBuffer[(pathMatrixRows - 1) * pathMatrixCols + i] = PathfindingTile.unwalkable;
+		pathMatrixBuffer[i] = PathfindingTile.unwalkable;
 	}
 }
 

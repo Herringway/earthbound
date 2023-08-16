@@ -8289,9 +8289,35 @@ void gameInit() {
 /// $C0B9BC
 void unknownC0B9BC(PathCtx* arg1, short arg2, short arg3, short arg4) {
 	for (short i = 0; i < arg2; i++) {
-		arg1.targetsPos[i].x = ((entityAbsXTable[entitySizes[gameState.partyEntities[i]]] - unknownC42A1F[entitySizes[gameState.partyEntities[i]]]) / 8 - arg3) & 0x3F;
-		arg1.targetsPos[i].y = ((entityAbsYTable[entitySizes[gameState.partyEntities[i]]] - unknownC42A41[entitySizes[gameState.partyEntities[i]]] + unknownC42AEB[entitySizes[gameState.partyEntities[i]]]) / 8 - arg4) & 0x3F;
+		arg1.targetsPos[i].x = (((entityAbsXTable[gameState.partyEntities[i]] - unknownC42A1F[entitySizes[gameState.partyEntities[i]]]) / 8) - arg3) & 0x3F;
+		arg1.targetsPos[i].y = (((entityAbsYTable[gameState.partyEntities[i]] - unknownC42A41[entitySizes[gameState.partyEntities[i]]] + unknownC42AEB[entitySizes[gameState.partyEntities[i]]]) / 8) - arg4) & 0x3F;
 	}
+}
+
+unittest {
+	PathCtx ctx;
+	gameState.partyEntities[0] = 0;
+	entitySizes[gameState.partyEntities[0]] = 5;
+	entityAbsXTable[gameState.partyEntities[0]] = 1727;
+	entityAbsYTable[gameState.partyEntities[0]] = 1717;
+
+	unknownC0B9BC(&ctx, 1, 182, 182);
+	assert(ctx.targetsPos[0].x == 32);
+	assert(ctx.targetsPos[0].y == 32);
+
+	entityAbsXTable[gameState.partyEntities[0]] = 1367;
+	entityAbsYTable[gameState.partyEntities[0]] = 1783;
+
+	unknownC0B9BC(&ctx, 1, 137, 190);
+	assert(ctx.targetsPos[0].x == 32);
+	assert(ctx.targetsPos[0].y == 32);
+
+	entityAbsXTable[gameState.partyEntities[0]] = 1560;
+	entityAbsYTable[gameState.partyEntities[0]] = 1765;
+
+	unknownC0B9BC(&ctx, 1, 162, 188);
+	assert(ctx.targetsPos[0].x == 32);
+	assert(ctx.targetsPos[0].y == 32);
 }
 
 /// $C0BA35
@@ -8300,7 +8326,7 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 	arg1.targetCount = arg2;
 	for (short i = 0; i != arg1.radius.x; i++) {
 		for (short j = 0; j != arg1.radius.y; j++) {
-			if ((loadedCollisionTiles[(i + arg7) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
+			if ((loadedCollisionTiles[(i + arg4) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
 				(x06++)[0] = PathfindingTile.unwalkable;
 			} else {
 				(x06++)[0] = 0;
@@ -8317,15 +8343,15 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 			continue;
 		}
 		arg1.pathers[x26].objIndex = i;
-		arg1.pathers[x26].fromOffscreen = arg6;
+		arg1.pathers[x26].fromOffscreen = arg5;
 		arg1.pathers[x26].hitbox.x = hitboxWidths[entitySizes[i]];
 		arg1.pathers[x26].hitbox.y = hitboxHeights[entitySizes[i]];
-		arg1.pathers[x26].origin.x = ((entityAbsXTable[i] - unknownC42A1F[entitySizes[i]]) / 8 - arg3) & 0x3F;
-		arg1.pathers[x26].origin.y = ((entityAbsYTable[i] - unknownC42A41[entitySizes[i]] + unknownC42AEB[entitySizes[i]]) / 8 - arg3) & 0x3F;
+		arg1.pathers[x26].origin.x = (((entityAbsXTable[i] - unknownC42A1F[entitySizes[i]]) / 8) - arg3) & 0x3F;
+		arg1.pathers[x26].origin.y = (((entityAbsYTable[i] - unknownC42A41[entitySizes[i]] + unknownC42AEB[entitySizes[i]]) / 8) - arg4) & 0x3F;
 		x26++;
 	}
 	arg1.patherCount = x26;
-	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &buffer[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg5, arg6);
+	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &buffer[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg6, arg7);
 	assert(pathGetHeapSize() <= 0xC00);
 	if (x28 == 0) {
 		for (short i = 0; i != maxEntities; i++) {
@@ -8349,20 +8375,20 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 	}
 }
 
-/// $C0BC75
+/// $C0BC74
 short findPathToParty(short partyCount, short arg2, short arg3) {
 	short x28 = gameState.firstPartyMemberEntity;
 	PathCtx* x26 = &unknown7EF000.unknown7EF200;
 	unknown7EF000.unknown7EF200.radius.y = arg2;
 	unknown7EF000.unknown7EF200.radius.x = arg3;
-	unknown7E4A94 = unknown7EF000.unknown7EF200.radius.x;
+	unknown7E4A92 = unknown7EF000.unknown7EF200.radius.y / 2;
+	unknown7E4A94 = unknown7EF000.unknown7EF200.radius.x / 2;
 	unknown7E4A8E = (entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
 	unknown7E4A90 = (entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
-	unknownC0B9BC(&unknown7EF000.unknown7EF200, partyCount,
-		((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2),
-		((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2)
-	);
-	return unknownC0BA35(&unknown7EF000.unknown7EF200, partyCount, unknown7EF000.unknown7EF200.radius.y, unknown7EF000.unknown7EF200.radius.x, 0, 0x40, 0x32);
+	short x02 = ((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2);
+	short x04 = ((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2);
+	unknownC0B9BC(&unknown7EF000.unknown7EF200, partyCount, x04, x02);
+	return unknownC0BA35(&unknown7EF000.unknown7EF200, partyCount, x04, x02, 0, 0x40, 0x32);
 }
 
 /// $C0BD96
