@@ -40,7 +40,16 @@ void displayFaultyGamepakScreen() {
 immutable nessPajamaFlag = EventFlag.myHomeNesChange;
 
 /// $C3DFE8
-immutable ubyte[8] unknownC3DFE8 = [1, 1, 1, 0, 1, 1, 0, 0];
+immutable ubyte[8] unknownC3DFE8 = [
+	SpecialGameState.none: 1,
+	SpecialGameState.indoorArea: 1,
+	SpecialGameState.exitMouseUsable: 1,
+	SpecialGameState.useMiniSprites: 0,
+	SpecialGameState.useMagicantSprites: 1,
+	SpecialGameState.useRobotSprites: 1,
+	SpecialGameState.onBicycle: 0,
+	7: 0
+];
 
 /// $C3DFF0 - unused?
 immutable short[17] unknownC3DFF0 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
