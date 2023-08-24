@@ -960,3 +960,6 @@ __gshared const(ubyte)* actionScriptVar94; /// $(DOLLAR)94
 version(savememory) __gshared SRAM sram; /// $(DOLLAR)306000
 __gshared SaveDataReplay replaySRAM; /// $(DOLLAR)316000
 __gshared DemoEntry[0] sram3; /// $(DOLLAR)326000
+
+/// non-SNES stuff
+bool romDataLoaded;

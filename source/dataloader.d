@@ -37,6 +37,19 @@ void loadROMData(const ubyte[] romData) {
 	}
 }
 
+version(unittest) {
+	shared static this() {
+		import std.file : exists, read;
+		import std.stdio : writeln;
+		if ("earthbound.sfc".exists) {
+			loadROMData(cast(ubyte[])read("earthbound.sfc"));
+			romDataLoaded = true;
+		} else {
+			debug writeln("Warning: earthbound rom not found. Skipping some tests.");
+			romDataLoaded = false;
+		}
+	}
+}
 
 struct DumpInfo {
     string name;
