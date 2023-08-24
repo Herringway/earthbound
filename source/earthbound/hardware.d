@@ -155,7 +155,8 @@ enum BGR555Mask {
 }
 
 align(1) struct HDMAIndirectTableEntry {
+	import earthbound.commondefs : skip;
 	align(1):
 	ubyte lines;
-	const(ubyte)* address;
+	@skip const(ubyte)* address;
 }

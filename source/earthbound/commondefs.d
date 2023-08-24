@@ -1,6 +1,13 @@
 /// Misc definitions
 module earthbound.commondefs;
 
+version(Have_siryul) {
+	import siryul : Skip;
+	alias skip = Skip;
+} else {
+	enum skip = 0;
+}
+
 enum maxEntities = 30; ///
 enum maxScripts = 70; ///
 
@@ -5718,12 +5725,6 @@ enum SwirlMask {
 
 ///
 struct GameState {
-	version(Have_siryul) {
-		import siryul : Skip;
-		alias skip = Skip;
-	} else {
-		enum skip = 0;
-	}
 	ubyte[12] mother2PlayerName; ///
 	ubyte[24] earthboundPlayerName; ///
 	ubyte[6] petName; ///
@@ -5851,10 +5852,10 @@ struct WinStat {
 	ubyte numPadding; /// [12]
 	ushort tileAttributes; /// [13]
 	short font; /// [15]
-	WorkingMemory result; /// [17]
+	@skip WorkingMemory result; /// [17]
 	uint argument; /// [1B]
 	ushort counter; /// [1F]
-	WorkingMemory resultBak; /// [21]
+	@skip WorkingMemory resultBak; /// [21]
 	uint argumentBak; /// [25]
 	ushort counterBak; /// [29]
 	short currentOption; /// [2B]
@@ -5862,8 +5863,8 @@ struct WinStat {
 	short selectedOption; /// [2F]
 	short menuColumns; /// [31]
 	short menuPage; /// [33]
-	ushort* tilemapBuffer; /// [35] 16-bit pointer
-	void function(short) menuCallback; /// [37] 32-bit pointer
+	@skip ushort* tilemapBuffer; /// [35] 16-bit pointer
+	@skip void function(short) menuCallback; /// [37] 32-bit pointer
 	ubyte titleID; /// [3B]
 	ubyte[32] title; /// [3C]
 }
@@ -5938,7 +5939,7 @@ union QueuedInteractionPtr {
 ///
 struct QueuedInteraction {
 	ushort type; ///0
-	QueuedInteractionPtr ptr; ///2
+	@skip QueuedInteractionPtr ptr; ///2
 }
 ///
 struct SpriteGrouping {
@@ -6101,7 +6102,7 @@ union FixedPoint1616 {
 ///
 struct OverworldTask {
 	ushort framesLeft; ///
-	void function() func; ///
+	@skip void function() func; ///
 }
 ///
 struct TimedDelivery {
@@ -6324,7 +6325,7 @@ struct LoadedBackgroundData {
 	ubyte paletteChangeDurationLeft; ///11
 	ushort[16] palette; ///12
 	ushort[16] palette2; ///44
-	ushort[16]* palettePointer; ///76
+	@skip ushort[16]* palettePointer; ///76
 	ubyte[4] scrollingMovements; ///78
 	ubyte currentScrollingMovement; ///82
 	short scrollingDurationLeft; ///83
@@ -6383,7 +6384,7 @@ struct TownMapIconPlacement {
 struct SpriteMap {
 	ubyte yOffset; ///
 	union {
-		SpriteMap* nextMap; ///Implemented, but unused
+		@skip SpriteMap* nextMap; ///Implemented, but unused
 		struct {
 			ubyte firstTile; ///
 			ubyte flags; ///
@@ -6540,7 +6541,7 @@ struct WindowConfig {
 }
 ///
 struct DisplayTextState {
-	const(ubyte)* textptr; ///0
+	@skip const(ubyte)* textptr; ///0
 	ushort unknown4; ///4
 	WindowTextAttributesCopy savedTextAttributes; ///6
 }
@@ -6776,7 +6777,7 @@ struct CastSequenceFormattingEntry {
 struct Unknown7E5156CreditsEntry {
 	ubyte unknown0; ///
 	ushort unknown1; ///
-	const(ubyte)* unknown3; ///
+	@skip const(ubyte)* unknown3; ///
 	ushort unknown7; ///
 }
 ///
@@ -6812,7 +6813,7 @@ struct ActiveHotspot {
 	short y1; ///
 	short x2; ///
 	short y2; ///
-	const(ubyte)* pointer; ///
+	@skip const(ubyte)* pointer; ///
 }
 ///
 struct FloatingSpriteTableEntry {
@@ -6878,7 +6879,7 @@ struct FileSelectSummarySpriteConfigEntry {
 }
 ///
 struct ActionLoopCallState {
-	const(ubyte)* pc; ///
+	@skip const(ubyte)* pc; ///
 	ubyte counter; ///
 }
 ///

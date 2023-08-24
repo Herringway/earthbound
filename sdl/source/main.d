@@ -26,11 +26,13 @@ import dataloader;
 import earthbound.text;
 
 import audio;
+import debugging;
 import gamepad;
 import inputconstants;
 import misc;
 import sfcdma;
 import rendering;
+import watchdog;
 
 import imgui.sdl;
 import ImGui = d_imgui;
@@ -194,8 +196,11 @@ int main(string[] args) {
 		earthbound.commondefs.config.noIntro = noIntro.get();
 	}
 	auto game = new Fiber(&start);
+	startWatchDog();
 	bool paused;
 	gameLoop: while(true) {
+		// pet the dog each frame so it knows we're ok
+		watchDog.pet();
 		frameStatTracker.startFrame();
 		SDL_Event event;
 		while(SDL_PollEvent(&event)) {
@@ -248,12 +253,7 @@ int main(string[] args) {
 			input.step = false;
 			Throwable t = game.call(Fiber.Rethrow.no);
 			if(t) {
-				auto crashDir = buildNormalizedPath("dump", format!"crash %s"(Clock.currTime.toISOString)).absolutePath;
-				mkdirRecurse(crashDir);
-				dumpScreen(buildPath(crashDir, "screen.bmp"));
-				File(buildPath(crashDir, "trace.txt"), "w").write(t);
-				infof("Game crashed! Details written to '%s', please report this bug at https://github.com/Herringway/earthbound/issues with as many details as you can include.", crashDir);
-				debug writeln(t);
+				writeDebugDump(t.msg, t.info);
 				return 1;
 			}
 			irqNMICommon();
