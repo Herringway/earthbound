@@ -1213,6 +1213,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/getInventoryCount.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getItemSubtype.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getItemSubtype2.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/getNextAvailableEnemyLetter.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getPartyCharacterName.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getPhysicalTargettingAllowed.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/getShieldTargetting.html</loc></url>
@@ -1345,7 +1346,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC26189.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2654C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC290C6.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC2B66A.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2BCB9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2BD13.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2C21F.html</loc></url>
@@ -2266,7 +2266,6 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.hpTarget.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.hypnosisResist.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.id.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/Battler.id2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.initiative.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.iq.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.isFlashing.html</loc></url>
@@ -2274,6 +2273,7 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.money.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.npcID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.offense.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/commondefs/Battler.originalID.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.paralysisResist.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.pp.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.ppMax.html</loc></url>
@@ -2290,7 +2290,6 @@
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown71.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown72.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown73.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/commondefs/Battler.unknown76.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.useAltSpritemap.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.vitality.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/commondefs/Battler.vramSpriteIndex.html</loc></url>
@@ -3185,7 +3184,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/battleSpritePaletteEffectSteps.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battleSwirlCountdown.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/battleSwirlFlag.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/battleTargerName.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/battleTargetName.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/bg1XPosition.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/bg1XPositionBuffer.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/bg1YPosition.html</loc></url>
@@ -3550,6 +3549,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/replayTransitionStyle.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/respawnX.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/respawnY.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/romDataLoaded.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/savedColourAverageBlue.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/savedColourAverageGreen.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/savedColourAverageRed.html</loc></url>
