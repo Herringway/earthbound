@@ -8182,3 +8182,37 @@ string getBattlerName(ref Battler battler) {
 	}
 	return "";
 }
+
+void printPathMatrix() {
+	import earthbound.globals : pathMatrixBuffer, pathMatrixCols, pathMatrixRows;
+	import std.stdio : write, writeln;
+	import std.range : chunks, take;
+	foreach (row; pathMatrixBuffer[0 .. pathMatrixCols * pathMatrixRows].chunks(pathMatrixCols).take(pathMatrixRows)) {
+		foreach (block; row) {
+			ubyte[3] colour;
+			switch (cast(PathfindingTile)block) {
+				case PathfindingTile.clear: colour = [0, 0, 0]; break;
+				case cast(PathfindingTile)0x01: .. case cast(PathfindingTile)0x80:
+					colour = [cast(ubyte)(block * 2), cast(ubyte)(block * 2), cast(ubyte)(block * 2)]; break;
+				case PathfindingTile.unknownFB: colour = [0, 128, 128]; break;
+				case PathfindingTile.unknownFC: colour = [128, 128, 0]; break;
+				case PathfindingTile.unwalkable: colour = [128, 0, 0]; break;
+				case PathfindingTile.maybeStart: colour = [0, 0, 128]; break;
+				case PathfindingTile.start: colour = [0, 128, 0]; break;
+				default: writeln(block); break;
+			}
+			write("\x1B[38;2;", colour[0], ";", colour[1], ";", colour[2], "m██\x1B[0m");
+		}
+		writeln();
+	}
+}
+
+void printCollision(const ubyte[64][64] collision) {
+	import std.stdio : write, writeln;
+	foreach (row; collision) {
+		foreach (tile; row) {
+			write("\x1B[38;5;", tile, "m██\x1B[0m");
+		}
+		writeln();
+	}
+}
