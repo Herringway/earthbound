@@ -4890,10 +4890,10 @@ void useSoundStone(short arg1) {
 			}
 		}
 		if (--x2E == 0) {
-			x2E = 0xF;
+			x2E = 15;
 			x30 = (x30 + 1) & 3;
 		}
-		soundStoneSpriteTilemap2.firstTile = cast(ubyte)(x30 + 0x40);
+		soundStoneSpriteTilemap2.firstTile = cast(ubyte)((x30 * 2) + 0x40);
 		soundStoneSpriteTilemap2.flags = 0x3B;
 		renderSpriteToOAM(&soundStoneSpriteTilemap2, 0x80, 0x70);
 		updateScreen();
