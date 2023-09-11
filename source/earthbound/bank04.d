@@ -5825,9 +5825,10 @@ unittest {
 		[0xF000, Direction.upRight, Direction.right],
 	];
 	static OverworldSpriteGraphics[8] dummy;
+	auto oldSprites = sprites;
 	sprites.length = 8;
 	scope(exit) {
-		sprites.length = 0;
+		sprites = oldSprites;
 		entityGraphicsPointers[currentEntitySlot] = null;
 	}
 	foreach (testCase; testData) {
