@@ -611,13 +611,13 @@ void setCurrentWindowPadding(short arg1) {
 }
 
 /// $C10EE3
-void unknownC10EE3(short arg1) {
+void printSpecialGraphics(short arg1) {
 	switch (arg1) {
 		case 1:
-			unknownC12BF3();
+			printSMAAAASH();
 			break;
 		case 2:
-			unknownC12C36();
+			printYouWon();
 			break;
 		default: break;
 	}
@@ -1571,9 +1571,9 @@ short unknownC12BD5(short arg1) {
 }
 
 /// $C12BF3
-void unknownC12BF3() {
+void printSMAAAASH() {
 	windowSetTextColor(3);
-	const(ushort)* x06 = &unknownC3E84E[0];
+	const(ushort)* x06 = &smaaaashTiles[0];
 	while (x06[0] != 0) {
 		unknownC10D60(*(x06++));
 		for (short i = 1; i-- != 0;) {
@@ -1584,9 +1584,9 @@ void unknownC12BF3() {
 }
 
 /// $C12C36
-void unknownC12C36() {
+void printYouWon() {
 	windowSetTextColor(3);
-	const(ushort)* x06 = &unknownC3E862[0];
+	const(ushort)* x06 = &youWonTiles[0];
 	for (short i = 0; i < 4; i++) {
 		unknownC10D60(*(x06++));
 		for (short j = 1; j-- != 0;) {
@@ -2407,7 +2407,7 @@ void* cc07(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C143B8
 void* cc1C08(DisplayTextState* arg1, ubyte arg2) {
-	unknownC10EE3(arg2);
+	printSpecialGraphics(arg2);
 	return null;
 }
 
