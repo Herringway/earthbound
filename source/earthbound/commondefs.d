@@ -5722,6 +5722,14 @@ enum SwirlMask {
 	mathMode = 1 << 5,
 }
 
+enum TMTD {
+	none = 0,
+	bg1 = 1 << 0,
+	bg2 = 1 << 1,
+	bg3 = 1 << 2,
+	bg4 = 1 << 3,
+	obj = 1 << 4,
+}
 
 ///
 struct GameState {

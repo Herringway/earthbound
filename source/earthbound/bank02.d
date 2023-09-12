@@ -6785,7 +6785,7 @@ void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	tickUntilFadeCompletion();
 	battleModeFlag = 0;
 	closeAllWindowsAndHPPP();
-	mirrorTM = 4;
+	mirrorTM = TMTD.bg3;
 	changeMusic(Music.giygasWeakened);
 	fadeIn(1, 1);
 	tickUntilFadeCompletion();
@@ -6798,7 +6798,7 @@ void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	tickUntilFadeCompletion();
 	showHPPPWindowsF();
 	createWindow(Window.textBattle);
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	changeMusic(arg1);
 	fadeIn(1, 1);
 	tickUntilFadeCompletion();

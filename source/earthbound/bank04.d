@@ -86,7 +86,7 @@ void unknownC40B51() {
 	stopMusic();
 	setBGMODE(BGMode.mode1);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x4000, 0);
-	mirrorTM = 4;
+	mirrorTM = TMTD.bg3;
 	prepareForImmediateDMA();
 }
 
@@ -4173,13 +4173,13 @@ void runFlyover(short id) {
 	while (true) {
 		switch(*(x06++)) {
 			case 0:
-				mirrorTM = 4;
+				mirrorTM = TMTD.bg3;
 				fadeInWithMosaic(1, 3, 0);
 				for (short i = 0; i < 0xB4; i++) {
 					waitUntilNextFrame();
 				}
 				fadeOutWithMosaic(1, 3, 0);
-				mirrorTM = 0x17;
+				mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 				ushort* buf = bg2Buffer.ptr;
 				for (short i = 0x380; i != 0; i--) {
 					*(buf++) = 0;
@@ -5611,7 +5611,7 @@ void unknownC4C2DE() {
 	loadWindowGraphics(WindowGraphicsToLoad.all);
 	loadTextPalette();
 	preparePaletteUpload(PaletteUpload.full);
-	mirrorTM = 5;
+	mirrorTM = TMTD.bg3 | TMTD.bg1;
 	unknown7E4DC4 = 0;
 	bg2YPosition = 0;
 	bg2XPosition = 0;
@@ -5734,7 +5734,7 @@ short spawn() {
 	}
 	unknownC4C58F(0x20);
 	musicEffect(MusicEffect.quickFade);
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	unknown7E436E = -1;
 	currentMapMusicTrack = -1;
 	currentMusicTrack = 0xFFFF;
@@ -6607,14 +6607,14 @@ void loadTownMapData(short arg1) {
 	setOAMSize(3);
 	CGADSUB = 0;
 	CGWSEL = 0;
-	mirrorTM = 1;
-	mirrorTD = 0;
+	mirrorTM = TMTD.bg1;
+	mirrorTD = TMTD.none;
 	copyToVRAM(0, 0x800, 0x3000, &buffer[0x40]);
 	copyToVRAM2(0, 0x4000, 0, &buffer[0x840]);
 	decomp(&townMapLabelGfx[0], &buffer[0]);
 	copyToVRAM(0, 0x2400, 0x6000, &buffer[0]);
 	preparePaletteUpload(PaletteUpload.full);
-	mirrorTM = 0x11;
+	mirrorTM = TMTD.obj | TMTD.bg1;
 	bg1YPosition = 0;
 	bg1XPosition = 0;
 	updateScreen();
@@ -6649,7 +6649,7 @@ short displayTownMap() {
 	currentMapMusicTrack = nextMapMusicTrack;
 	undrawFlyoverText();
 	disableMusicChanges = 0;
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	fadeIn(2, 1);
 	return x10;
 }
@@ -6715,7 +6715,7 @@ void townMapDebug() {
 	}
 	undrawFlyoverText();
 	reloadMap();
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 }
 
 /// $C4D7D9
@@ -6779,7 +6779,7 @@ short runAttractModeScene(short arg1) {
 	unknownC03A24();
 	memset(&palettes[0][0], 0, 0x200);
 	overworldInitialize();
-	mirrorTM = 0;
+	mirrorTM = TMTD.none;
 	unknownC2EA15(0);
 	unknownC4A7B0();
 	unknown7E9641 = 0;
@@ -6794,7 +6794,7 @@ short runAttractModeScene(short arg1) {
 		}
 		finishFrame();
 		if ((x14 == 0) || (x14 == 1)) {
-			mirrorTM = 0x13;
+			mirrorTM = TMTD.obj | TMTD.bg2 | TMTD.bg1;
 		}
 		x14++;
 	}
@@ -6861,8 +6861,8 @@ void initIntro() {
 					}
 					CGADSUB = 0;
 					CGWSEL = 0;
-					mirrorTM = 1;
-					mirrorTD = 0;
+					mirrorTM = TMTD.bg1;
+					mirrorTD = TMTD.none;
 					changeMusic(Music.titleScreen);
 					x = showTitleScreen(1);
 					x02++;
@@ -6912,8 +6912,8 @@ void initIntro() {
 	}
 	CGADSUB = 0;
 	CGWSEL = 0;
-	mirrorTM = 1;
-	mirrorTD = 0;
+	mirrorTM = TMTD.bg1;
+	mirrorTD = TMTD.none;
 	disableMusicChanges = 0;
 }
 
@@ -6971,13 +6971,13 @@ void initializeYourSanctuaryDisplay() {
 	for (short i = 0; i < 8; i++) {
 		loadedYourSanctuaryLocations[i] = 0;
 	}
-	mirrorTM = 0x10;
+	mirrorTM = TMTD.obj;
 }
 
 /// $C4DED0
 void enableYourSanctuaryDisplay() {
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0x6000);
-	mirrorTM = 0x11;
+	mirrorTM = TMTD.obj | TMTD.bg1;
 }
 
 /// $C4DEE9
@@ -7124,7 +7124,7 @@ void loadCastScene() {
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	decomp(&unknownE1E4E6[0], &buffer[0x7000]);
 	paletteUploadMode = PaletteUpload.full;
-	mirrorTM = 0x14;
+	mirrorTM = TMTD.obj | TMTD.bg3;
 	unknown7EB4CF = 0;
 	unknown7EB4D1 = 0;
 	setForceBlank();
@@ -7305,7 +7305,7 @@ void playCastScene() {
 	unknownC03A24();
 	prepareForImmediateDMA();
 	undrawFlyoverText();
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 }
 
 /// $C4EEE1
@@ -7388,7 +7388,7 @@ void unknownC4F07D() {
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	memset(&palettes[1][0], 0, 0x1E0);
 	paletteUploadMode = PaletteUpload.full;
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	creditsNextCreditPosition = 0;
 	creditsScrollPosition.combined = 0;
 	unknown7EB4E5 = 7;
@@ -7532,7 +7532,7 @@ void playCredits() {
 		*(x06++) = 0;
 	}
 	undrawFlyoverText();
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	setIRQCallback(&processOverworldTasks);
 	disabledTransitions = 0;
 }

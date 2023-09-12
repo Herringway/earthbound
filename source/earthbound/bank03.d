@@ -1116,7 +1116,7 @@ short showTitleScreen(short arg1) {
 	bg1YPosition = 0;
 	updateScreen();
 	loadTitleScreenGraphics();
-	mirrorTM = 0x11;
+	mirrorTM = TMTD.obj | TMTD.bg1;
 	oamClear();
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
 	unknown7E9641 = 0;
@@ -1171,7 +1171,7 @@ short showTitleScreen(short arg1) {
 	prepareForImmediateDMA();
 	reloadMap();
 	undrawFlyoverText();
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	fadeIn(1, 1);
 	//the original code may not have had an explicit return, but this is what effectively happens
 	return 1;

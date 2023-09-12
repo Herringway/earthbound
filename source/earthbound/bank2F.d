@@ -199,7 +199,7 @@ short unknownEF04DC() {
 	prepareForImmediateDMA();
 	unknownC0927C();
 	loadTitleScreenGraphics();
-	mirrorTM = 0x11;
+	mirrorTM = TMTD.obj | TMTD.bg1;
 	oamClear();
 	unknown7E9F75 = 1;
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
@@ -21484,7 +21484,7 @@ void unknownEFD9F3() {
 /// $EFDA05
 void initDebugMenuScreen() {
 	prepareForImmediateDMA();
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	spritemapBank = 0x2F;
 	unknown7EB55D = 0;
 	debugMenuButtonPressed = 0;
@@ -21731,8 +21731,8 @@ void debugMain() {
 	unknownC03FA9(debugStartPositionX, debugStartPositionY, 4);
 	unknownEFD95E();
 	if (debugModeNumber == DebugMode.viewAttribute) {
-		mirrorTM = 0x13;
-		mirrorTD = 4;
+		mirrorTM = TMTD.obj | TMTD.bg2 | TMTD.bg1;
+		mirrorTD = TMTD.bg3;
 		CGWSEL = 2;
 		CGADSUB = 0x47;
 		debugModeNumber = DebugMode.viewAttribute; //uh...ok

@@ -628,7 +628,7 @@ void loadMapAtPosition(short x, short y) {
 	}
 	while (fadeParameters.step != 0) { waitForInterrupt(); }
 	if (photographMapLoadingMode == 0) {
-		mirrorTM = 0x17;
+		mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	}
 	if (unknown7E4A58 != 0) {
 		unknown7E4A58 = 1;
@@ -747,7 +747,7 @@ void reloadMap() {
 	} else {
 		changeMapMusic();
 	}
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	if (debugging != 0) {
 		unknownEFD9F3();
 	}
@@ -2584,7 +2584,7 @@ void unknownC04EF0() {
 void restoreBackgroundLayers() {
 	palettes[0][0] = backgroundColourBackup;
 	// re-enable BG1, 2, 3 and OBJ
-	mirrorTM = 0b00010111;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	preparePaletteUpload(PaletteUpload.halfFirst);
 }
 
@@ -2600,7 +2600,7 @@ void redFlash() {
 	// set background colour to red
 	palettes[0][0] = 0x1F;
 	// turn off all layers
-	mirrorTM = 0;
+	mirrorTM = TMTD.none;
 	preparePaletteUpload(PaletteUpload.halfFirst);
 	scheduleOverworldTask(1, &restoreBackgroundLayers);
 }
@@ -7842,10 +7842,33 @@ void setLayerConfig(short arg1) {
 }
 
 /// $C0AFF1
-immutable ubyte[11] layerConfigTMs = [0x17, 0x1F, 0x17, 0x17, 0x17, 0x17, 0x15, 0x15, 0x15, 0x15, 0x15];
+immutable ubyte[11] layerConfigTMs = [
+	TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1,
+	TMTD.obj | TMTD.bg4 | TMTD.bg3 | TMTD.bg2 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg1,
+	TMTD.obj | TMTD.bg3 | TMTD.bg1
+];
 
 /// $C0AFFC
-immutable ubyte[10] layerConfigTDs = [0x00, 0x00, 0x08, 0x08, 0x08, 0x08, 0x02, 0x02, 0x02, 0x02];
+immutable ubyte[10] layerConfigTDs = [
+	TMTD.none,
+	TMTD.none,
+	TMTD.bg4,
+	TMTD.bg4,
+	TMTD.bg4,
+	TMTD.bg4,
+	TMTD.bg2,
+	TMTD.bg2,
+	TMTD.bg2,
+	TMTD.bg2
+];
 
 /// $C0B006
 immutable ubyte[10] layerConfigCGWSELs = [0x00, 0x00, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02, 0x02];
@@ -8057,7 +8080,7 @@ void fileSelectInit() {
 	entityAllocationMinSlot = 0x17;
 	entityAllocationMaxSlot = 0x18;
 	initEntity(ActionScript.unknown787, 0, 0);
-	mirrorTM = 0x16;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2;
 	bg2YPosition = 0;
 	bg1YPosition = 0;
 	bg2XPosition = 0;
@@ -8068,7 +8091,7 @@ void fileSelectInit() {
 	unknownC1FF6B();
 	fadeOutWithMosaic(1, 1, 0);
 	deleteEntity(0x17);
-	mirrorTM = 0x17;
+	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	unknownC4FD18(gameState.soundSetting - 1);
 }
 
@@ -10040,7 +10063,7 @@ void unknownC0EDDA() {
 
 /// $C0EE47
 void unknownC0EE47() {
-	mirrorTM = 0x13;
+	mirrorTM = TMTD.obj | TMTD.bg2 | TMTD.bg1;
 }
 
 /// $C0EE53
@@ -10052,7 +10075,7 @@ void unknownC0EE53() {
 void logoScreenLoad(short arg1) {
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x4000, 0);
-	mirrorTM = 4;
+	mirrorTM = TMTD.bg3;
 	switch (arg1) {
 		case 0:
 			decomp(&nintendoGraphics[0], &buffer[0]);
@@ -10133,8 +10156,8 @@ void gasStationLoad() {
 	memset(&palettes[0][0], 0, 0x40);
 	memset(&palettes[3][0], 0, 0x1A0);
 	unknownC496E7(0x1E0, -1);
-	mirrorTM = 1;
-	mirrorTD = 2;
+	mirrorTM = TMTD.bg1;
+	mirrorTD = TMTD.bg2;
 	CGWSEL = 2;
 	CGADSUB = 3;
 	paletteUploadMode = PaletteUpload.full;
@@ -10173,8 +10196,8 @@ short unknownC0F21E() {
 	unknownC49740();
 	CGADSUB = 0;
 	CGWSEL = 0;
-	mirrorTM = 1;
-	mirrorTD = 0;
+	mirrorTM = TMTD.bg1;
+	mirrorTD = TMTD.none;
 	if (unknownC0EFE1(120) != 0) {
 		return 1;
 	}
@@ -10208,7 +10231,7 @@ short gasStation() {
 		updateMapPaletteAnimation();
 		waitUntilNextFrame();
 	}
-	mirrorTM = 0;
+	mirrorTM = TMTD.none;
 	memset(&palettes[0][0], 0, 0x200);
 	paletteUploadMode = PaletteUpload.full;
 	if (x11 == 0) { //isn't this always true...?
