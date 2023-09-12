@@ -892,7 +892,7 @@ __gshared short piracyFlag; /// $(DOLLAR)B539
 __gshared ushort currentMusicTrack; /// $(DOLLAR)B53B
 __gshared short debugSoundMenuInitialBGM; /// $(DOLLAR)B545
 __gshared short unknown7EB547; /// $(DOLLAR)B547
-__gshared ushort sectorBoundaryBehaviourFlag; /// $(DOLLAR)B549
+__gshared ushort enableAutoSectorMusicChanges; /// $(DOLLAR)B549
 __gshared ushort debugSoundMenuSelectedBGM; /// $(DOLLAR)B54B
 __gshared ushort debugSoundMenuSelectedSE; /// $(DOLLAR)B54D
 __gshared ushort debugSoundMenuSelectedEffect; /// $(DOLLAR)B54F

@@ -2719,7 +2719,7 @@ void partyLeaderTick() {
 	if (((x^lastSectorX) != 0) || ((y^lastSectorY) != 0)) {
 		lastSectorX = x;
 		lastSectorY = y;
-		if (sectorBoundaryBehaviourFlag) {
+		if (enableAutoSectorMusicChanges) {
 			doSectorMusicUpdate();
 		}
 	}

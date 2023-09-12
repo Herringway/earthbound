@@ -6626,22 +6626,22 @@ short displayTownMap() {
 	townMapIconAnimationFrame = 60;
 	townMapPlayerIconAnimationFrame = 20;
 	framesUntilMapIconPaletteUpdate = 12;
-	short x10 = getTownMapID(gameState.leaderX.integer, gameState.leaderY.integer);
-	if (x10 == 0) {
+	short mapID = getTownMapID(gameState.leaderX.integer, gameState.leaderY.integer);
+	if (mapID == 0) {
 		return 0;
 	}
-	loadTownMapData(cast(short)(x10 - 1));
+	loadTownMapData(cast(short)(mapID - 1));
 	do {
 		waitUntilNextFrame();
 		oamClear();
-		drawTownMapIcons(cast(short)(x10 - 1));
+		drawTownMapIcons(cast(short)(mapID - 1));
 		updateScreen();
 	} while(((padPress[0] & (Pad.a | Pad.l)) == 0) && ((padPress[0] & (Pad.b | Pad.select)) == 0) && ((padPress[0] & Pad.l) == 0) && ((padPress[0] & Pad.x) == 0));
 	fadeOut(2, 1);
 	for (short i = 0; i < 16; i++) {
 		waitUntilNextFrame();
 		oamClear();
-		drawTownMapIcons(cast(short)(x10 - 1));
+		drawTownMapIcons(cast(short)(mapID - 1));
 		updateScreen();
 	}
 	disableMusicChanges = 1;
@@ -6651,7 +6651,7 @@ short displayTownMap() {
 	disableMusicChanges = 0;
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	fadeIn(2, 1);
-	return x10;
+	return mapID;
 }
 
 unittest {
@@ -7556,7 +7556,7 @@ void changeMusic(short track) {
 
 /// $C4FB58
 void initializeSPC700() {
-	sectorBoundaryBehaviourFlag = 1;
+	enableAutoSectorMusicChanges = 1;
 }
 
 /// $C4FD18
@@ -7566,7 +7566,7 @@ void unknownC4FD18(short arg1) {
 
 /// $C4FD45
 void setBoundaryBehaviour(short val) {
-	sectorBoundaryBehaviourFlag = val;
+	enableAutoSectorMusicChanges = val;
 }
 
 shared static this() {
