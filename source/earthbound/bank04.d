@@ -22,6 +22,7 @@ import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
 import earthbound.globals;
+import earthbound.testing;
 import earthbound.text;
 import core.stdc.string;
 
@@ -6652,6 +6653,32 @@ short displayTownMap() {
 	fadeIn(2, 1);
 	return x10;
 }
+
+unittest {
+	if (romDataLoaded) {
+		gameState.leaderX.integer = 0x782; // approx middle of downtown onett
+		gameState.leaderY.integer = 0x5C7;
+		runGameTest!displayTownMap((frame) {
+			// skip the first frame, where the map hasn't loaded yet
+			if (frame < 1) {
+				return;
+			}
+			frame -= 1;
+			// the player's icon pulsates, and the size changes along with it for about 9 frames out of every 60 frames
+			if ((frame > 60 - 10) && (frame < 60)) {
+				assert(priority0SpriteX[0] == 120);
+				assert(priority0SpriteY[0] == 160);
+			} else {
+				assert(priority0SpriteX[0] == 85);
+				assert(priority0SpriteY[0] == 91);
+			}
+			// these icons blink but don't move
+			assert(priority0SpriteX[1 .. 7] == [106, 140, 29, 117, 96, 120]);
+			assert(priority0SpriteY[1 .. 7] == [94, 123, 158, 166, 190, 160]);
+		}, ".60a1");
+	}
+}
+
 
 /// $C4D744
 void townMapDebug() {

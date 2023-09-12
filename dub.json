@@ -16,6 +16,13 @@
 			"name": "standard"
 		},
 		{
+			"name": "unittest",
+			"versions": [
+				"bugfix",
+				"noUndefinedBehaviour"
+			]
+		},
+		{
 			"name": "extra",
 			"versions": [
 				"bugfix",
