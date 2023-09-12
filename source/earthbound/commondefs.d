@@ -5979,7 +5979,7 @@ struct Battler {
 	// used for retargetting
 	ubyte actionTargetting; ///9
 	ubyte currentTarget; ///10
-	ubyte theFlag; ///11
+	ubyte suffixLetter; ///11
 	ubyte consciousness; ///12
 	ubyte hasTakenTurn; ///13
 	BattleSide side; ///14
@@ -8169,14 +8169,14 @@ string getBattlerName(ref Battler battler) {
 	import core.stdc.string : memcpy;
 	import earthbound.bank02 : copyEnemyName, getNextAvailableEnemyLetter;
 	import earthbound.bank15 : enemyConfigurationTable;
-	import earthbound.globals : gameState, partyCharacters, unknown7E5E78;
+	import earthbound.globals : gameState, partyCharacters, printTargetArticle;
 	scope buffer = new ubyte[](30);
 	if ((battler.side == BattleSide.foes) || (battler.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[battler.id].name[0], &buffer[0], 25);
-		if ((battler.side == BattleSide.foes) && ((battler.theFlag != 1) ||(getNextAvailableEnemyLetter(battler.originalID) != 2))) {
+		if ((battler.side == BattleSide.foes) && ((battler.suffixLetter != 1) ||(getNextAvailableEnemyLetter(battler.originalID) != 2))) {
 			x14[0] = ebChar(' ');
-			unknown7E5E78 = 1;
-			x14[1] = cast(ubyte)(battler.theFlag + 0x70);
+			printTargetArticle = 1;
+			x14[1] = cast(ubyte)(battler.suffixLetter + 0x70);
 		}
 		if (battler.id == EnemyID.myPet) {
 			memcpy(&buffer[0], &gameState.petName[0], gameState.petName.length);

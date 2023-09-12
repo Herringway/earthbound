@@ -414,7 +414,7 @@ void drawWindow(short windowID) {
 
 /// $C10A04
 void showHPPPWindows() {
-	unknownC3E6F8();
+	resetActivePartyMemberHPPPWindow();
 	unknown7E89C9 = 1;
 	redrawAllWindows = 1;
 	unknown7E9647 = -1;
@@ -422,7 +422,7 @@ void showHPPPWindows() {
 
 /// $C10A1D
 void hideHPPPWindows() {
-	unknownC3E6F8();
+	resetActivePartyMemberHPPPWindow();
 	unknown7E89C9 = 0;
 	if (battleModeFlag == 0) {
 		for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
@@ -926,10 +926,10 @@ void unknownC11887(short arg1) {
 
 /// $C118E7 - Get target X/Y window positions after menu cursor movement
 /// Returns: low byte = X, high byte = Y
-short moveCursor(short curX, short curY, short deltaX, short deltaY, short sfx, short wrapX, short wrapY) {
-	short x12 = unknownC20B65(curX, curY, deltaX, deltaY, -1);
+short moveCursorWrap(short curX, short curY, short deltaX, short deltaY, short sfx, short wrapX, short wrapY) {
+	short x12 = moveCursor(curX, curY, deltaX, deltaY, -1);
 	if (x12 == -1) {
-		x12 = unknownC20B65(wrapX, wrapY, deltaX, deltaY, -1);
+		x12 = moveCursor(wrapX, wrapY, deltaX, deltaY, -1);
 
 		if (deltaX == 0) {
 			if (((x12 >> 8) & 0xFF) != curY) {
@@ -1026,42 +1026,42 @@ label2:
 		windowTickMinimal();
 
 		if (padPress[0] & Pad.up) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, -1, 0, Sfx.cursor3, dp04.textX, dp24.height / 2);
+			dp1C = moveCursorWrap(dp04.textX, dp04.textY, -1, 0, Sfx.cursor3, dp04.textX, dp24.height / 2);
 			goto label3;
 		}
 
 		if (padPress[0] & Pad.left) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, 0, -1, Sfx.cursor2, dp24.width, dp04.textY);
+			dp1C = moveCursorWrap(dp04.textX, dp04.textY, 0, -1, Sfx.cursor2, dp24.width, dp04.textY);
 			goto label3;
 		}
 
 		if (padPress[0] & Pad.down) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, 1, 0, Sfx.cursor3, dp04.textX, -1);
+			dp1C = moveCursorWrap(dp04.textX, dp04.textY, 1, 0, Sfx.cursor3, dp04.textX, -1);
 			goto label3;
 		}
 
 		if (padPress[0] & Pad.right) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, 0, 1, Sfx.cursor2, -1, dp04.textY);
+			dp1C = moveCursorWrap(dp04.textX, dp04.textY, 0, 1, Sfx.cursor2, -1, dp04.textY);
 			goto label3;
 		}
 
 		if (padHeld[0] & Pad.up) {
-			dp1C = unknownC20B65(dp04.textX, dp04.textY, -1, 0, 3);
+			dp1C = moveCursor(dp04.textX, dp04.textY, -1, 0, 3);
 			goto label3;
 		}
 
 		if (padHeld[0] & Pad.left) {
-			dp1C = unknownC20B65(dp04.textX, dp04.textY, 0, -1, 2);
+			dp1C = moveCursor(dp04.textX, dp04.textY, 0, -1, 2);
 			goto label3;
 		}
 
 		if (padHeld[0] & Pad.down) {
-			dp1C = unknownC20B65(dp04.textX, dp04.textY, 1, 0, 3);
+			dp1C = moveCursor(dp04.textX, dp04.textY, 1, 0, 3);
 			goto label3;
 		}
 
 		if (padHeld[0] & Pad.right) {
-			dp1C = unknownC20B65(dp04.textX, dp04.textY, 0, 1, 2);
+			dp1C = moveCursor(dp04.textX, dp04.textY, 0, 1, 2);
 		}
 
 		if (padPress[0] & (Pad.a|Pad.l)) {
@@ -1234,7 +1234,7 @@ void printTargetName(short arg1, short arg2) {
 	printString(battleToText.length, &battleToText[0]);
 	if (arg2 != -1) {
 		unknownC23E8A(cast(short)(arg1 * numBattlersInFrontRow + arg2 + 1));
-		unknownC3E75D(0);
+		printBattlerArticle(0);
 		printString(0xFF, getBattleAttackerName());
 		ubyte* x12 = (arg1 != 0) ? &battlersTable[frontRowBattlers[arg2]].afflictions[0] : &battlersTable[backRowBattlers[arg2]].afflictions[0];
 		moveCurrentTextCursor(0x11, 0);
@@ -1439,7 +1439,7 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 					} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (arg3 == 1)) {
 						x16 = 0;
 						playSfx((arg2 != 0) ? Sfx.cursor2 : Sfx.menuOpenClose);
-						unknownC3E6F8();
+						resetActivePartyMemberHPPPWindow();
 						goto Unknown42;
 					}
 				}
@@ -1528,7 +1528,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 					} else if (((padPress[0] & (Pad.b | Pad.select)) != 0) && (arg2 == 1)) {
 						x1E = 0;
 						playSfx((arg1 != 0) ? Sfx.cursor2 : Sfx.menuOpenClose);
-						unknownC3E6F8();
+						resetActivePartyMemberHPPPWindow();
 						goto Unknown44;
 					}
 				}
@@ -1927,7 +1927,7 @@ void openMenuButton() {
 							}
 							if (getCharacterItem(gameState.partyMembers[0], 1) != 0) {
 								playSfx(Sfx.menuOpenClose);
-								unknownC3E6F8();
+								resetActivePartyMemberHPPPWindow();
 							}
 							closeWindow(Window.inventory);
 							continue mainLoop;
@@ -2089,7 +2089,7 @@ void openMenuButton() {
 				}
 				if (unknownC1C3B6() == 1) {
 					playSfx(Sfx.menuOpenClose);
-					unknownC3E6F8();
+					resetActivePartyMemberHPPPWindow();
 				}
 				break;
 			case MainMenuOptions.equip:
@@ -2097,7 +2097,7 @@ void openMenuButton() {
 				unknownC1AA5D();
 				if (gameState.playerControlledPartyMemberCount == 1) {
 					playSfx(Sfx.menuOpenClose);
-					unknownC3E6F8();
+					resetActivePartyMemberHPPPWindow();
 				}
 				break;
 			case MainMenuOptions.check:
@@ -3924,11 +3924,11 @@ void* cc1CTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x15:
 			return &cc1C15;
 		case 0x0D:
-			unknownC3E75D(0);
+			printBattlerArticle(0);
 			printWrappableString(0x50, getBattleAttackerName());
 			break;
 		case 0x0E:
-			unknownC3E75D(1);
+			printBattlerArticle(1);
 			printWrappableString(0x50, getBattleTargetName());
 			break;
 		case 0x0F:
@@ -5337,14 +5337,14 @@ ushort makePhoneCall() {
 void setBattleAttackerName(ubyte* str, short length) {
 	memcpy(&battleAttackerName[0], str, length);
 	battleAttackerName[length] = 0;
-	unknown7E9658 = -1;
+	attackerEnemyID = -1;
 }
 
 /// $C1ACA1
 void setBattleTargetName(ubyte* str, short length) {
 	memcpy(&battleTargetName[0], str, length);
 	battleTargetName[length] = 0;
-	unknown7E965A = -1;
+	targetEnemyID = -1;
 }
 
 /// $C1AC9B
@@ -6645,8 +6645,8 @@ ushort removeItemFromInventoryF(ushort character, ushort id) {
 }
 
 /// $C1DDD3
-void unknownC3E6F8F() {
-	unknownC3E6F8();
+void resetActivePartyMemberHPPPWindowF() {
+	resetActivePartyMemberHPPPWindow();
 }
 
 /// $C1DDD3
@@ -6911,35 +6911,35 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 				for (short i = 0; 10 > i; i++) {
 					finishFrame();
 					if ((padPress[0] & Pad.up) != 0) {
-						x16 = moveCursor(x20, x22, -1, 0, Sfx.unknown7C, x20, windowStats[windowTable[currentFocusWindow]].height / 2);
+						x16 = moveCursorWrap(x20, x22, -1, 0, Sfx.unknown7C, x20, windowStats[windowTable[currentFocusWindow]].height / 2);
 						break l2;
 					}
 					if ((padPress[0] & Pad.left) != 0) {
-						x16 = moveCursor(x20, x22, 0, -1, Sfx.unknown7B, windowStats[windowTable[currentFocusWindow]].width, x22);
+						x16 = moveCursorWrap(x20, x22, 0, -1, Sfx.unknown7B, windowStats[windowTable[currentFocusWindow]].width, x22);
 						break l2;
 					}
 					if ((padPress[0] & Pad.down) != 0) {
-						x16 = moveCursor(x20, x22, 1, 0, Sfx.unknown7C, x20, -1);
+						x16 = moveCursorWrap(x20, x22, 1, 0, Sfx.unknown7C, x20, -1);
 						break l2;
 					}
 					if ((padPress[0] & Pad.right) != 0) {
-						x16 = moveCursor(x20, x22, 0, 1, Sfx.unknown7B, -1, x22);
+						x16 = moveCursorWrap(x20, x22, 0, 1, Sfx.unknown7B, -1, x22);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.up) != 0) {
-						x16 = unknownC20B65(x20, x22, -1, 0, Sfx.unknown7C);
+						x16 = moveCursor(x20, x22, -1, 0, Sfx.unknown7C);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.down) != 0) {
-						x16 = unknownC20B65(x20, x22, 1, 0, Sfx.unknown7C);
+						x16 = moveCursor(x20, x22, 1, 0, Sfx.unknown7C);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.left) != 0) {
-						x16 = unknownC20B65(x20, x22, 0, -1, Sfx.unknown7B);
+						x16 = moveCursor(x20, x22, 0, -1, Sfx.unknown7B);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.right) != 0) {
-						x16 = unknownC20B65(x20, x22, 0, 1, Sfx.unknown7B);
+						x16 = moveCursor(x20, x22, 0, 1, Sfx.unknown7B);
 						break l2;
 					}
 					if ((padPress[0] & (Pad.a | Pad.l)) != 0) {

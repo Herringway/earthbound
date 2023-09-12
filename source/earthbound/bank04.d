@@ -1296,7 +1296,7 @@ void finishBattleFrame() {
 /// $C43573
 void unknownC43573(short arg1) {
 	if (battleMenuCurrentCharacterID != -1) {
-		unknownC3E6F8();
+		resetActivePartyMemberHPPPWindow();
 	}
 	battleMenuCurrentCharacterID = arg1;
 	waitUntilNextFrame();
@@ -2063,7 +2063,7 @@ void unknownC44E61(short arg1, short tile) {
 			}
 			unknown7E5E75 = 0;
 		}
-		unknown7E5E76 = cast(ubyte)tile;
+		lastPrintedCharacter = cast(ubyte)tile;
 		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(tile - ebChar(' ')) * fontConfigTable[arg1].height];
 		short x12 = fontData[fontConfigTable[arg1].dataID][tile - ebChar(' ')] + unknown7E5E6D;
 		if (x12 > 8) {

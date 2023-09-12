@@ -521,13 +521,14 @@ void closeWindow(short arg1) {
 }
 
 /// $C3E6F8
-void unknownC3E6F8() {
+void resetActivePartyMemberHPPPWindow() {
 	if (battleMenuCurrentCharacterID == -1) {
 		return;
 	}
 	waitUntilNextFrame();
 
-	ushort* y = &bg2Buffer[0x240 + (16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (battleMenuCurrentCharacterID * 7))];
+	// clear the top row of HP/PP window tiles, which were raised for the active party member
+	ushort* y = &bg2Buffer[18 * 32 + (16 - (gameState.playerControlledPartyMemberCount * 7) / 2 + (battleMenuCurrentCharacterID * 7))];
 	for (short i = hpPPWindowWidth; i != 0; i--) {
 		*y = 0;
 		y++;
@@ -537,29 +538,29 @@ void unknownC3E6F8() {
 }
 
 /// $C3E75D
-void unknownC3E75D(short arg1) {
-	short a;
-	if (arg1 == 0) {
-		if (unknown7E9658 == -1) {
-			unknown7E5E77 = 0;
+void printBattlerArticle(short target) {
+	short enemyID;
+	if (target == 0) {
+		if (attackerEnemyID == -1) {
+			printAttackerArticle = 0;
 			return;
 		}
-		if (unknown7E5E77 == 0) {
+		if (printAttackerArticle == 0) {
 			return;
 		}
-		a = unknown7E9658;
+		enemyID = attackerEnemyID;
 	} else {
-		if (unknown7E965A == -1) {
-			unknown7E5E78 = 0;
+		if (targetEnemyID == -1) {
+			printTargetArticle = 0;
 			return;
 		}
-		if (unknown7E5E78 == 0) {
+		if (printTargetArticle == 0) {
 			return;
 		}
-		a = unknown7E965A;
+		enemyID = targetEnemyID;
 	}
-	if (enemyConfigurationTable[a].theFlag != 0) {
-		if (unknown7E5E76 == ebChar('@')) {
+	if (enemyConfigurationTable[enemyID].theFlag != 0) {
+		if (lastPrintedCharacter == ebChar('@')) { //starting a new sentence, capitalize it
 			printWrappableString(thethe[0].length, &thethe[0][0]);
 		} else {
 			printWrappableString(thethe[1].length, &thethe[1][0]);

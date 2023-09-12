@@ -546,9 +546,9 @@ __gshared ubyte unknown7E5E72; /// $(DOLLAR)5E72
 __gshared ubyte unknown7E5E73; /// $(DOLLAR)5E73
 __gshared ubyte unknown7E5E74; /// $(DOLLAR)5E74
 __gshared ubyte unknown7E5E75; /// $(DOLLAR)5E75
-__gshared ubyte unknown7E5E76; /// $(DOLLAR)5E76
-__gshared ubyte unknown7E5E77; /// $(DOLLAR)5E77
-__gshared ubyte unknown7E5E78; /// $(DOLLAR)5E78
+__gshared ubyte lastPrintedCharacter; /// $(DOLLAR)5E76
+__gshared ubyte printAttackerArticle; /// $(DOLLAR)5E77
+__gshared ubyte printTargetArticle; /// $(DOLLAR)5E78
 __gshared ubyte unknown7E5E79; /// $(DOLLAR)5E79 - Mystery flag
 __gshared short unknown7E5E7A; /// $(DOLLAR)5E7A
 __gshared short unknown7E5E7C; /// $(DOLLAR)5E7C
@@ -595,8 +595,8 @@ __gshared ushort blinkingTriangleFlag; /// $(DOLLAR)964D
 __gshared ushort textSoundMode; /// $(DOLLAR)964F
 __gshared ubyte unknown7E9651; /// $(DOLLAR)9651
 __gshared TextRenderState textRenderState; /// $(DOLLAR)9652
-__gshared short unknown7E9658; /// $(DOLLAR)9658
-__gshared short unknown7E965A; /// $(DOLLAR)965A
+__gshared short attackerEnemyID; /// $(DOLLAR)9658
+__gshared short targetEnemyID; /// $(DOLLAR)965A
 
 __gshared short unknown7E9660; /// $(DOLLAR)9660
 __gshared short unknown7E9662; /// $(DOLLAR)9662
@@ -731,7 +731,7 @@ __gshared BattleMenuSelection battleMenuSelection; /// $(DOLLAR)A97D
 __gshared ubyte[27] attackerNameAdjustScratch; /// $(DOLLAR)A983
 __gshared ubyte[27] targetNameAdjustScratch; /// $(DOLLAR)A99E
 __gshared ubyte[27] unknown7EA9B9; /// $(DOLLAR)A9B9
-__gshared ubyte[56] unknown7EA9D4; /// $(DOLLAR)A9D4
+__gshared ubyte[4*14] stealableItemCandidates; /// $(DOLLAR)A9D4
 
 __gshared short unknown7EAA0C; /// $(DOLLAR)AA0C
 __gshared short specialDefeat; /// $(DOLLAR)AA0E

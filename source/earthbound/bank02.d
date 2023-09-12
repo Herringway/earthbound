@@ -113,9 +113,9 @@ void initializeTextSystem() {
 	unknown7E5E72 = 0;
 	unknown7E5E73 = 0;
 	unknown7E5E74 = 0;
-	unknown7E5E76 = 0;
-	unknown7E5E78 = 0;
-	unknown7E5E77 = 0;
+	lastPrintedCharacter = 0;
+	printTargetArticle = 0;
+	printAttackerArticle = 0;
 	unknown7EB4CE = 0;
 	unknown7E5E6C = 0;
 }
@@ -433,7 +433,7 @@ void restoreCurrentWindowTextAttributes(WindowTextAttributesCopy* buf) {
 }
 
 /// $C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
-short unknownC20B65(short curX, short curY, short deltaX, short deltaY, short sfx) {
+short moveCursor(short curX, short curY, short deltaX, short deltaY, short sfx) {
 	ushort x0E = curY;
 	ushort x02 = curX;
 	if (deltaX != 0) {
@@ -1786,15 +1786,15 @@ ubyte* copyEnemyName(const(ubyte)* arg1, ubyte* arg2, short arg3) {
 
 /// $C23BCF
 void fixAttackerName(short arg1) {
-	unknown7E5E77 = 0;
+	printAttackerArticle = 0;
 	memset(&attackerNameAdjustScratch[0], 0, 28);
 	if ((currentAttacker.side == BattleSide.foes) || (currentAttacker.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentAttacker.id].name[0], &attackerNameAdjustScratch[0], 25);
 		if ((currentAttacker.side == BattleSide.foes) && (arg1 == 0)) {
-			if ((currentAttacker.theFlag != 1) || (getNextAvailableEnemyLetter(currentAttacker.originalID) != 2)) {
+			if ((currentAttacker.suffixLetter != 1) || (getNextAvailableEnemyLetter(currentAttacker.originalID) != 2)) {
 				x14[0] = ebChar(' ');
-				unknown7E5E77 = 1;
-				x14[1] = cast(ubyte)(currentAttacker.theFlag + 0x70);
+				printAttackerArticle = 1;
+				x14[1] = cast(ubyte)(currentAttacker.suffixLetter + 0x70);
 			}
 		}
 		if (currentAttacker.id == EnemyID.myPet) {
@@ -1802,7 +1802,7 @@ void fixAttackerName(short arg1) {
 			attackerNameAdjustScratch[6] = 0;
 		}
 		setBattleAttackerNameF(&attackerNameAdjustScratch[0], 27);
-		unknown7E9658 = currentAttacker.id;
+		attackerEnemyID = currentAttacker.id;
 	} else {
 		if (currentAttacker.id <= 4) {
 			setBattleAttackerNameF(&partyCharacters[currentAttacker.row].name[0], PartyCharacter.name.length);
@@ -1842,21 +1842,21 @@ unittest {
 
 /// $C23D05
 void fixTargetName() {
-	unknown7E5E78 = 0;
+	printTargetArticle = 0;
 	memset(&targetNameAdjustScratch[0], 0, targetNameAdjustScratch.length);
 	if ((currentTarget.side == BattleSide.foes) || (currentTarget.npcID != 0)) {
 		ubyte* x14 = copyEnemyName(&enemyConfigurationTable[currentTarget.id].name[0], &targetNameAdjustScratch[0], 25);
-		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.theFlag != 1) || (getNextAvailableEnemyLetter(currentTarget.originalID) != 2))) {
+		if ((currentTarget.side == BattleSide.foes) && ((currentTarget.suffixLetter != 1) || (getNextAvailableEnemyLetter(currentTarget.originalID) != 2))) {
 			x14[0] = ebChar(' ');
-			unknown7E5E78 = 1;
-			x14[1] = cast(ubyte)(currentTarget.theFlag + 0x70);
+			printTargetArticle = 1;
+			x14[1] = cast(ubyte)(currentTarget.suffixLetter + 0x70);
 		}
 		if (currentTarget.id == EnemyID.myPet) {
 			memcpy(&targetNameAdjustScratch[0], &gameState.petName[0], gameState.petName.length);
 			targetNameAdjustScratch[gameState.petName.length] = 0;
 		}
 		setBattleTargetNameF(&targetNameAdjustScratch[0], 27);
-		unknown7E965A = currentTarget.id;
+		targetEnemyID = currentTarget.id;
 	} else {
 		if (currentTarget.id <= 4) {
 			setBattleTargetNameF(&partyCharacters[currentTarget.row].name[0], PartyCharacter.name.length);
@@ -1909,7 +1909,7 @@ void unknownC23E32() {
 
 /// $C23E8A
 void unknownC23E8A(short arg1) {
-	unknown7E5E77 = 0;
+	printAttackerArticle = 0;
 	short x02;
 	memset(&unknown7EA9B9[0], 0, unknown7EA9B9.length);
 	if (arg1 > numBattlersInFrontRow) {
@@ -1918,13 +1918,13 @@ void unknownC23E8A(short arg1) {
 		x02 = backRowBattlers[arg1 - 1];
 	}
 	ubyte* x12 = copyEnemyName(&enemyConfigurationTable[battlersTable[x02].id].name[0], &unknown7EA9B9[0], unknown7EA9B9.length);
-	if ((battlersTable[x02].theFlag != 1) || (getNextAvailableEnemyLetter(battlersTable[x02].originalID) != 2)) {
+	if ((battlersTable[x02].suffixLetter != 1) || (getNextAvailableEnemyLetter(battlersTable[x02].originalID) != 2)) {
 		(x12++)[0] = ebChar(' ');
-		(x12++)[0] = cast(ubyte)(ebChar('A') + battlersTable[x02].theFlag);
-		unknown7E5E77 = 1;
+		(x12++)[0] = cast(ubyte)(ebChar('A') + battlersTable[x02].suffixLetter);
+		printAttackerArticle = 1;
 	}
 	setBattleAttackerNameF(&unknown7EA9B9[0], unknown7EA9B9.length - 1);
-	unknown7E9658 = battlersTable[x02].id;
+	attackerEnemyID = battlersTable[x02].id;
 }
 
 /// $C23F6C
@@ -2080,7 +2080,7 @@ ubyte findStealableItems() {
 			if (partyCharacters[x14 - 1].equipment[3] == j + 1) {
 				continue;
 			}
-			unknown7EA9D4[x18] = partyCharacters[x14 - 1].items[j];
+			stealableItemCandidates[x18] = partyCharacters[x14 - 1].items[j];
 			x18++;
 		}
 	}
@@ -2096,14 +2096,14 @@ ubyte selectStealableItem() {
 	if ((rand() & 0x80) != 0) {
 		return 0;
 	}
-	return unknown7EA9D4[randLimit(x0E)];
+	return stealableItemCandidates[randLimit(x0E)];
 }
 
 /// $C24348
 short unknownC24348(short arg1) {
 	short x02 = findStealableItems();
 	for (short i = 0; i < x02; i++) {
-		if (unknown7EA9D4[i] != arg1) {
+		if (stealableItemCandidates[i] != arg1) {
 			continue;
 		}
 		return 1;
@@ -2577,7 +2577,7 @@ short battleRoutine() {
 					} else {
 						unknownC43573F(i);
 						x1F = battleSelectionMenu(gameState.partyMembers[i], x19);
-						unknownC3E6F8F();
+						resetActivePartyMemberHPPPWindowF();
 						closeFocusWindow();
 						if ((battleDebug != 0) && (x1F == -1)) {
 							battleResult = BattleResult.won;
@@ -3028,7 +3028,7 @@ short battleRoutine() {
 							copyMirrorData(currentAttacker, &unknown7EAA14);
 							displayInBattleText(getTextBlock("MSG_BTL_NEUTRALIZE_METAMORPH"));
 						}
-						unknownC3E6F8F();
+						resetActivePartyMemberHPPPWindowF();
 					}
 					checkDeadPlayers();
 					currentTarget = currentAttacker;
@@ -6321,7 +6321,7 @@ ubyte getNextAvailableEnemyLetter(short arg1) {
 		if (battlersTable[i].originalID != arg1) {
 			continue;
 		}
-		unknown7EAA98[battlersTable[i].theFlag - 1] = 1;
+		unknown7EAA98[battlersTable[i].suffixLetter - 1] = 1;
 	}
 	for (short i = 0; i < unknown7EAA98.length; i++) {
 		if (unknown7EAA98[i] != 0) {
@@ -6352,7 +6352,7 @@ void battleInitEnemyStats(short arg1, Battler* battler) {
 	battler.id = arg1;
 	battler.originalID = arg1;
 	battler.sprite = cast(ubyte)enemyConfigurationTable[arg1].battleSprite;
-	battler.theFlag = getNextAvailableEnemyLetter(arg1);
+	battler.suffixLetter = getNextAvailableEnemyLetter(arg1);
 	battler.consciousness = 1;
 	battler.side = BattleSide.foes;
 	battler.npcID = 0;
@@ -8165,13 +8165,13 @@ short unknownC2F121() {
 				if (battlersTable[8 + i].id != battlersTable[8 + j].id) {
 					continue;
 				}
-				if (((battlersTable[8 + i].theFlag >= battlersTable[8 + j].theFlag) || ((battlersTable[8 + i].spriteY >= battlersTable[8 + j].spriteY) && (battlersTable[8 + i].spriteY != battlersTable[8 + j].spriteY)) || (battlersTable[8 + i].spriteX <= battlersTable[8 + j].spriteX)) &&
-				(battlersTable[8 + i].theFlag > battlersTable[8 + j].theFlag) && ((battlersTable[8 + i].spriteY > battlersTable[8 + j].spriteY) || ((battlersTable[8 + i].spriteY == battlersTable[8 + j].spriteY) && (battlersTable[8 + i].spriteX < battlersTable[8 + j].spriteX)))) {
+				if (((battlersTable[8 + i].suffixLetter >= battlersTable[8 + j].suffixLetter) || ((battlersTable[8 + i].spriteY >= battlersTable[8 + j].spriteY) && (battlersTable[8 + i].spriteY != battlersTable[8 + j].spriteY)) || (battlersTable[8 + i].spriteX <= battlersTable[8 + j].spriteX)) &&
+				(battlersTable[8 + i].suffixLetter > battlersTable[8 + j].suffixLetter) && ((battlersTable[8 + i].spriteY > battlersTable[8 + j].spriteY) || ((battlersTable[8 + i].spriteY == battlersTable[8 + j].spriteY) && (battlersTable[8 + i].spriteX < battlersTable[8 + j].spriteX)))) {
 					x21 = 1;
-					short x12 = battlersTable[8 + i].theFlag;
-					battlersTable[8 + i].theFlag = battlersTable[8 + j].theFlag;
-					battlersTable[8 + j].theFlag = cast(ubyte)x12;
-					if (battlersTable[8 + i].theFlag > battlersTable[8 + j].theFlag) {
+					short x12 = battlersTable[8 + i].suffixLetter;
+					battlersTable[8 + i].suffixLetter = battlersTable[8 + j].suffixLetter;
+					battlersTable[8 + j].suffixLetter = cast(ubyte)x12;
+					if (battlersTable[8 + i].suffixLetter > battlersTable[8 + j].suffixLetter) {
 						memcpy(&battlersTable[battlersTable.length - 1], &battlersTable[8 + i], Battler.sizeof);
 						memcpy(&battlersTable[8 + i], &battlersTable[8 + j], Battler.sizeof);
 						memcpy(&battlersTable[8 + j], &battlersTable[battlersTable.length - 1], Battler.sizeof);
