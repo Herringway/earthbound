@@ -4009,7 +4009,7 @@ void* cc1DTree(DisplayTextState* arg1, ubyte arg2) {
 			return &cc1D21;
 		case 0x22:
 			short x14 = 0;
-			if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) == 2) {
+			if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) == SpecialGameState.exitMouseUsable) {
 				x14 = 1;
 			}
 			setWorkingMemory(WorkingMemory(x14));
@@ -5390,7 +5390,7 @@ short findReceiveItemNPC() {
 /// $C1AD71
 short getSectorUsableItem() {
 	short x0E = loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
-	if ((getEventFlag(EventFlag.winGiegu != 0) && ((x0E & 7) == 0))) {
+	if ((getEventFlag(EventFlag.winGiegu != 0) && ((x0E & 7) == SpecialGameState.none))) {
 		return ItemID.bicycle;
 	} else {
 		return x0E >> 8;

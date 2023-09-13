@@ -481,35 +481,36 @@ short unknownEF0D23() {
 }
 
 /// $EF0D46
-void unknownEF0D46() {
-	unknown7EB525[entityScriptVar0Table[currentEntitySlot]] = timedDeliveries[entityScriptVar0Table[currentEntitySlot]].deliveryTime;
+void startDeliveryCountdown() {
+	deliveryTimers[entityScriptVar0Table[currentEntitySlot]] = timedDeliveries[entityScriptVar0Table[currentEntitySlot]].deliveryTime;
 }
 
 /// $EF0D73
-void unknownEF0D73() {
-	if (unknown7EB525[entityScriptVar0Table[currentEntitySlot]] != 0) {
-		unknown7EB525[entityScriptVar0Table[currentEntitySlot]]--;
+ushort doDeliveryCountdown() {
+	if (deliveryTimers[entityScriptVar0Table[currentEntitySlot]] != 0) {
+		deliveryTimers[entityScriptVar0Table[currentEntitySlot]]--;
 	}
+	return deliveryTimers[entityScriptVar0Table[currentEntitySlot]];
 }
 
 /// $EF0D8D
-void unknownEF0D8D() {
+void startDeliverySuccessText() {
 	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer1)));
 }
 
 /// $EF0DFA
-void unknownEF0DFA() {
+void startDeliveryFailText() {
 	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
 }
 
 /// $EF0E67
-short unknownEF0E67() {
-	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown18;
+short getDeliveryEnterSpeed() {
+	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].enterSpeed;
 }
 
 /// $EF0E8A
-short unknownEF0E8A() {
-	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown20;
+short getDeliveryExitSpeed() {
+	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].exitSpeed;
 }
 
 /// $EF0EAD
@@ -519,7 +520,7 @@ void getDeliverySpriteAndPlaceholder(short arg1) {
 }
 
 /// $EF0EE8
-void unknownEF0EE8() {
+void resolveActiveDeliveries() {
 	for (short i = 0; i < 10; i++) {
 		if (getEventFlag(timedDeliveries[i].eventFlag) == 0) {
 			continue;
@@ -534,7 +535,7 @@ void unknownEF0EE8() {
 }
 
 /// $EF0F60
-short unknownEF0F60() {
+short checkDeliveryEligibility() {
 	if ((fadeParameters.step != 0) || ((mirrorINIDISP & 0xF) != 0)) {
 		return 1;
 	}
@@ -557,7 +558,7 @@ short unknownEF0F60() {
 }
 
 /// $EF0FDB
-void unknownEF0FDB() {
+void startDelivery() {
 	overworldStatusSuppression = 1;
 	pendingInteractions = 1;
 	unknownC09F3BEntry2();
@@ -566,7 +567,7 @@ void unknownEF0FDB() {
 }
 
 /// $EF0FF6
-void unknownEF0FF6() {
+void finishDelivery() {
 	pendingInteractions = 0;
 	overworldStatusSuppression = getEventFlag(EventFlag.winGiegu);
 	if (gameState.walkingStyle == WalkingStyle.bicycle) {

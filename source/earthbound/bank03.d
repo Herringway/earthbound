@@ -40,7 +40,7 @@ void displayFaultyGamepakScreen() {
 immutable nessPajamaFlag = EventFlag.myHomeNesChange;
 
 /// $C3DFE8
-immutable ubyte[8] unknownC3DFE8 = [
+immutable ubyte[8] legalDeliveryAreaTypes = [
 	SpecialGameState.none: 1,
 	SpecialGameState.indoorArea: 1,
 	SpecialGameState.exitMouseUsable: 1,

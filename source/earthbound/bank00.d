@@ -1756,7 +1756,7 @@ void unknownC03A94(short arg1) {
 	gameState.specialGameState = x1A;
 	footstepSoundID = cast(short)(x1A * 2);
 	footstepSoundIDOverride = 0;
-	if (x1A != 3) {
+	if (x1A != SpecialGameState.useMiniSprites) {
 		gameState.walkingStyle = 0;
 	} else {
 		gameState.walkingStyle = WalkingStyle.slowest;
@@ -3734,7 +3734,7 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 /// $C06B21
 void spawnBuzzBuzz() {
 	displayText(getTextBlock("MSG_EVT_BUNBUNBUN"));
-	unknownEF0EE8();
+	resolveActiveDeliveries();
 }
 
 /// $C06B3D
@@ -8387,8 +8387,8 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		for (short i = 0; i < x26; i++) {
 			short x22 = arg1.pathers[i].objIndex;
 			if (arg1.pathers[i].field0A != 0) {
-				entityUnknown2E02[x22] = arg1.pathers[i].points;
-				entityUnknown2E3E[x22] = arg1.pathers[i].field0A;
+				entityPathPoints[x22] = arg1.pathers[i].points;
+				entityPathPointsCount[x22] = arg1.pathers[i].field0A;
 			} else {
 				entityUnknown2C5E[x22] = 1;
 			}
@@ -8430,8 +8430,8 @@ short unknownC0BD96() {
 	if (result == 0) {
 		entityAbsXTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((unknown7E4A8E - unknown7E4A92) * 8));
 		entityAbsYTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + unknownC42A41[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((unknown7E4A90 - unknown7E4A94) * 8));
-		entityUnknown2E02[unknown7EF000.unknown7EF200.pathers[0].objIndex]++;
-		entityUnknown2E3E[unknown7EF000.unknown7EF200.pathers[0].objIndex]--;
+		entityPathPoints[unknown7EF000.unknown7EF200.pathers[0].objIndex]++;
+		entityPathPointsCount[unknown7EF000.unknown7EF200.pathers[0].objIndex]--;
 	}
 	return result;
 }
@@ -8454,17 +8454,16 @@ short unknownC0BF72() {
 }
 
 /// $C0C19B
-short unknownC0C19B(short arg1) {
-	if (unknownC3DFE8[loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7] != 0) {
+short prepareDeliveryEntrancePath(short arg1) {
+	if (legalDeliveryAreaTypes[loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7] != 0) {
 		entityUnknown2C5E[currentEntitySlot] = -1;
-		short y = unknownC0BD96();
-		if (y == 0) {
+		if (unknownC0BD96() == 0) {
 			entityUnknown2C5E[currentEntitySlot] = 0;
-			VecYX* x02 = entityUnknown2E02[currentEntitySlot];
-			VecYX* y2 = &unknown7E4A96[arg1][0];
-			entityUnknown2E02[currentEntitySlot] = y2;
-			short x10 = entityUnknown2E3E[currentEntitySlot];
-			for (short i = 0; (x10 != 0) && (i < 0x14); i++) {
+			VecYX* x02 = entityPathPoints[currentEntitySlot];
+			VecYX* y2 = &deliveryPaths[arg1][0];
+			entityPathPoints[currentEntitySlot] = y2;
+			short x10 = entityPathPointsCount[currentEntitySlot];
+			for (short i = 0; (x10 != 0) && (i < 20); i++) {
 				(y2++)[0] = (x02++)[0];
 				x10--;
 			}
@@ -8475,15 +8474,15 @@ short unknownC0C19B(short arg1) {
 }
 
 /// $C0C251
-short unknownC0C251(short arg1) {
+short prepareDeliveryExitPath(short arg1) {
 	entityUnknown2C5E[currentEntitySlot] = -1;
 	if (unknownC0BF72() == 0) {
 		entityUnknown2C5E[currentEntitySlot] = 0;
-		short x12 = --entityUnknown2E3E[currentEntitySlot];
-		VecYX* x02 = &entityUnknown2E02[currentEntitySlot][(x12 - 1) * 4];
-		VecYX* x10 = &unknown7E4A96[arg1][0];
-		entityUnknown2E02[currentEntitySlot] = x10;
-		short y = entityUnknown2E3E[currentEntitySlot];
+		short x12 = --entityPathPointsCount[currentEntitySlot];
+		VecYX* x02 = &entityPathPoints[currentEntitySlot][(x12 - 1) * 4];
+		VecYX* x10 = &deliveryPaths[arg1][0];
+		entityPathPoints[currentEntitySlot] = x10;
+		short y = entityPathPointsCount[currentEntitySlot];
 		for (short i = 0; (y != 0) && (i < 20); y--, i++) {
 			x10.y = x02.y;
 			x10.x = x02.x;
@@ -9123,7 +9122,7 @@ short unknownC0D5B0() {
 		if (playerIntangibilityFrames != 0) {
 			return 0;
 		}
-		if ((battleSwirlCountdown == 0) || (entityUnknown2E3E[currentEntitySlot] != 0)) {
+		if ((battleSwirlCountdown == 0) || (entityPathPointsCount[currentEntitySlot] != 0)) {
 			if (unknownC0D15C() == 0) {
 				return 0;
 			}
@@ -9198,7 +9197,7 @@ void unknownC0D7F7() {
 		return;
 	}
 	short x1C = entitySizes[currentEntitySlot];
-	VecYX* x1A = entityUnknown2E02[currentEntitySlot];
+	VecYX* x1A = entityPathPoints[currentEntitySlot];
 	short x18 = entityAbsXTable[currentEntitySlot];
 	short x16 = entityAbsYTable[currentEntitySlot];
 	short x12 = cast(short)((unknown7E4A8E - unknown7E4A92 * 8) + x1A.x * 8 + unknownC42A1F[x1C]);
@@ -9212,14 +9211,14 @@ void unknownC0D7F7() {
 		if (0 > x10) {
 			x10 = cast(short)-cast(int)x10;
 		}
-		if ((3 > x10) && (--entityUnknown2E3E[currentEntitySlot] != 0)) {
+		if ((3 > x10) && (--entityPathPointsCount[currentEntitySlot] != 0)) {
 			VecYX* x14 = &x1A[1];
-			entityUnknown2E02[currentEntitySlot] = x14;
+			entityPathPoints[currentEntitySlot] = x14;
 			x12 = cast(short)((unknown7E4A8E - unknown7E4A92) * 8 + x14.x * 8 + unknownC42A1F[x1C]);
 			x04 = cast(short)((unknown7E4A90 - unknown7E4A94) * 8 + x14.y * 8 - unknownC42AEB[x1C] + unknownC42A41[x1C]);
 		}
 	}
-	if (entityUnknown2E3E[currentEntitySlot] != 0) {
+	if (entityPathPointsCount[currentEntitySlot] != 0) {
 		entityDirections[currentEntitySlot] = setMovingDirectionFromAngle(setMovementFromAngle(getScreenAngle(x18, x16, x12, x04)));
 	} else {
 		entityUnknown2C5E[currentEntitySlot] = 0;
@@ -9254,15 +9253,15 @@ void unknownC0D7C7() {
 
 /// $C0D98F
 short unknownC0D98F() {
-	if (entityUnknown2E3E[currentEntitySlot] == 0) {
+	if (entityPathPointsCount[currentEntitySlot] == 0) {
 		return 0;
 	}
 	short x12 = entitySizes[currentEntitySlot];
-	VecYX* x0E = entityUnknown2E02[currentEntitySlot];
+	VecYX* x0E = entityPathPoints[currentEntitySlot];
 	entityScriptVar6Table[currentEntitySlot] = cast(short)((x0E.x * 8) + unknownC42A1F[x12] + (unknown7E4A8E - unknown7E4A92) * 8);
 	entityScriptVar7Table[currentEntitySlot] = cast(short)((x0E.y * 8) - unknownC42AEB[x12] + unknownC42A41[x12] + (unknown7E4A90 - unknown7E4A94) * 8);
-	entityUnknown2E3E[currentEntitySlot]--;
-	entityUnknown2E02[currentEntitySlot] = x0E + 1;
+	entityPathPointsCount[currentEntitySlot]--;
+	entityPathPoints[currentEntitySlot] = x0E + 1;
 	return 1;
 }
 
@@ -10255,13 +10254,13 @@ void unknownC0F3E8() {
 /// $C0F41E
 void creditsScrollFrame() {
 	if (bg3YPosition > creditsNextCreditPosition) {
-		short x23 = unknown7EB4F7;
-		short x21 = cast(short)(unknown7EB4F7 + 1);
-		unknown7EB4F7 = (unknown7EB4F7 + 2) & 0xF;
+		short x23 = creditsCurrentRow;
+		short x21 = cast(short)(creditsCurrentRow + 1);
+		creditsCurrentRow = (creditsCurrentRow + 2) & 0xF;
 		short x04 = ((bg3YPosition / 8) + 29) & 0x1F;
 		short x02 = 0;
 		short x1F = 0;
-		const(ubyte)* x1B = unknown7EB4E7;
+		const(ubyte)* x1B = creditsSource;
 		ushort* x17 = &bg2Buffer[x23 * 32];
 		ushort* x0A = &bg2Buffer[x21 * 32];
 		short x15 = (x1B++)[0];
@@ -10339,10 +10338,10 @@ void creditsScrollFrame() {
 				break;
 			default: break;
 		}
-		unknown7EB4E7 = x1B + 1;
+		creditsSource = x1B + 1;
 	}
-	if (unknown7EB4E5 < bg3YPosition) {
-		unknown7EB4E5 += 8;
+	if (creditsRowWipeThreshold < bg3YPosition) {
+		creditsRowWipeThreshold += 8;
 		unknownC4EFC4(3, 0x40, ((((bg3YPosition / 8) - 1) & 0x1F) * 32) + 0x6C00, &blankTiles[0]);
 	}
 	creditsScrollPosition.combined += 0x4000;

@@ -3193,7 +3193,7 @@ void prepareNewEntity(short arg1, short arg2, short arg3) {
 }
 
 /// $C46E46
-void unknownC46E46() {
+void actionScriptYieldToText() {
 	unknown7E9641 = 1;
 }
 
@@ -3311,9 +3311,105 @@ short unknownC47143(short arg1, short arg2) {
 	return 0;
 }
 
+/// $C47225 - Sets boundaries for an entity to be used by directionToEntityBoundaries. Uses vars 0-3.
+void setEntityBoundaries(short height, short width) {
+	entityScriptVar0Table[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] - width);
+	entityScriptVar1Table[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] + width);
+	entityScriptVar2Table[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] - height);
+	entityScriptVar3Table[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] + height);
+}
+
+/// $C47269 - Returns the direction + 1 towards the boundaries set by setEntityBoundaries, 0 if already inside. Uses vars 0-3.
+short directionToEntityBoundaries() {
+	if (entityAbsXTable[currentEntitySlot] < entityScriptVar0Table[currentEntitySlot]) {
+		return Direction.right + 1;
+	}
+	if (entityAbsXTable[currentEntitySlot] > entityScriptVar1Table[currentEntitySlot]) {
+		return Direction.left + 1;
+	}
+	if (entityAbsYTable[currentEntitySlot] < entityScriptVar2Table[currentEntitySlot]) {
+		return Direction.down + 1;
+	}
+	if (entityAbsYTable[currentEntitySlot] > entityScriptVar3Table[currentEntitySlot]) {
+		return Direction.up + 1;
+	}
+	// within boundaries
+	return 0;
+}
+
+/// $C472A8
+void entitySpiralMovement(short flip) {
+	setMovementFromAngle(entityScriptVar0Table[currentEntitySlot]);
+	short x10 = getDirectionRotatedAngle90(entityScriptVar0Table[currentEntitySlot]);
+	if (flip != 0) {
+		x10 = getOppositeDirection(x10);
+	}
+	short x0E = entityDirections[currentEntitySlot];
+	entityDirections[currentEntitySlot] = x10;
+	if (convert8DirectionTo4PreferUpDown(x0E) != convert8DirectionTo4PreferUpDown(x10)) {
+		updateEntitySprite(currentEntitySlot);
+	}
+}
+unittest {
+	enum testData = [
+		[0x0000, Direction.right, Direction.right],
+		[0x1000, Direction.right, Direction.downRight],
+		[0x2000, Direction.downRight, Direction.downRight],
+		[0x3000, Direction.downRight, Direction.down],
+		[0x4000, Direction.down, Direction.down],
+		[0x5000, Direction.down, Direction.downLeft],
+		[0x6000, Direction.downLeft, Direction.downLeft],
+		[0x7000, Direction.downLeft, Direction.left],
+		[0x8000, Direction.left, Direction.left],
+		[0x9000, Direction.left, Direction.upLeft],
+		[0xA000, Direction.upLeft, Direction.upLeft],
+		[0xB000, Direction.upLeft, Direction.upLeft],
+		[0xC000, Direction.upLeft, Direction.upLeft],
+		[0xD000, Direction.upLeft, Direction.upRight],
+		[0xE000, Direction.upRight, Direction.upRight],
+		[0xF000, Direction.upRight, Direction.right],
+	];
+	static OverworldSpriteGraphics[8] dummy;
+	auto oldSprites = sprites;
+	sprites.length = 8;
+	scope(exit) {
+		sprites = oldSprites;
+		entityGraphicsPointers[currentEntitySlot] = null;
+	}
+	foreach (testCase; testData) {
+		currentEntitySlot = 0;
+		entityGraphicsPointers[currentEntitySlot] = &dummy[0];
+		entityScriptVar0Table[currentEntitySlot] = cast(short)testCase[0];
+		entityDirections[currentEntitySlot] = cast(short)testCase[1];
+		entitySpiralMovement(0);
+		assert(entityDirections[currentEntitySlot] == cast(short)testCase[2]);
+	}
+}
+
+/// $C4730E
+void unknownC4730E() {
+	entityDeltaYTable[currentEntitySlot] /= 2;
+}
+
+/// $C47333
+short getPartyCount() {
+	return gameState.partyCount;
+}
+
 /// $C4733C
 void unknownC4733C() {
 	unknownC006F2(tilesetTable[unknown7E436E]);
+}
+
+/// $C4734C
+short actionScriptRerenderRow(short arg1) {
+	unknownC01A63(bg1XPosition / 8, arg1);
+	return arg1;
+}
+
+/// $C47369
+void unknownC47369() {
+	unknownC019E2();
 }
 
 /// $C47370
@@ -3324,6 +3420,51 @@ void loadBackgroundAnimation(short bg, short arg2) {
 	setBG2VRAMLocation(BGTileMapSize.normal, 0x5C00, 0x1000);
 	loadBattleBG(bg, arg2, 4);
 	setForceBlank();
+}
+
+/// $C473B2
+ushort unknownC473B2(short arg1) {
+	if (arg1 < 0) {
+		return 0;
+	}
+	if (arg1 >= 31) {
+		return 31;
+	}
+	return arg1 & 0x1F;
+}
+
+/// $C473D0
+void unknownC473D0(short arg1, short arg2) {
+	ushort* x16 = &unknown7E4476[arg1][0];
+	version(bugfix) {
+		if (arg1 >= palettes.length - 2) {
+			return;
+		}
+	}
+	ushort* x18 = &palettes[arg1 + 2][0];
+	for (short i = 0; i < 16; i++) {
+		short x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
+		short x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
+		short x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
+		ushort x0E = unknownC473B2(x14);
+		ushort x12_2 = unknownC473B2(x12);
+		ushort x10_2 = unknownC473B2(x10);
+		x16++;
+		(x18++)[0] = cast(ushort)((x12_2 << 5) | (x10_2 << 10) | x0E);
+	}
+}
+
+/// $C4746B
+void unknownC4746B(short arg1) {
+	for (short i = 0; i < 16; i++) {
+		unknownC473D0(i, arg1);
+	}
+	paletteUploadMode = PaletteUpload.full;
+}
+
+/// $C47499
+void unknownC47499() {
+	unknownC4746B(entityScriptVar0Table[currentEntitySlot]);
 }
 
 /// $C474A8
@@ -3524,6 +3665,30 @@ void unknownC47A27() {
 	rectangleWindowConfigure(0x10, cast(short)(x10 - 0x60), 0xF0, cast(short)(x10 + 0x60));
 }
 
+/// $C47A6B
+void unknownC47A6B() {
+	entityAbsYTable[currentEntitySlot] = cast(short)(entityScriptVar7Table[currentEntitySlot] - (entityAbsYTable[currentEntitySlot] - entityScriptVar7Table[currentEntitySlot]));
+}
+
+/// $C47A9E
+void unknownC47A9E() {
+	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
+	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &buffer[0]);
+	memcpy(&palettes[0][0], &buffer[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
+	paletteUploadMode = PaletteUpload.full;
+	bg3YPosition = 0xFFFF;
+}
+
+/// $C47B77
+short unknownC47B77() {
+	bg3YPosition = 0xFFFF;
+	copyToVRAM(0, 0x700, 0x7C00, &buffer[8 + animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4 + entityScriptVar1Table[currentEntitySlot] * 0x700]);
+	if (entityScriptVar1Table[currentEntitySlot] + 1 == animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown6) {
+		return 0;
+	}
+	return animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown7;
+}
+
 /// $C47C3F
 //definitely need to check this one over
 void prepareWindowGraphics() {
@@ -3617,6 +3782,243 @@ void undrawFlyoverText() {
 	loadWindowGraphics(WindowGraphicsToLoad.all2);
 	loadTextPalette();
 	paletteUploadMode = PaletteUpload.full;
+}
+
+/// $C48037
+immutable ubyte[215] lumineHallText = ebString!215("I'm ....  It's been a long road getting here...  Soon, I'll be...  Soon, I'll be...  Soon, I'll be...  What will happen to us?  W...what's happening?  My thoughts are being written out on the wall...  or are they?  ");
+
+/// $C4810E
+ushort* unknownC4810E(short arg1, ushort* arg2) {
+	ubyte* x06 = &buffer[0];
+	x06 += (((arg1 & 0xFFF0) * 2) + arg1 & 0xF) * 16;
+	for (ushort i = 6; i < 7; i -= 2) {
+		for (short j = 0; j < 4; j++) {
+			ubyte x00 = x06[0];
+			ubyte x01 = x06[1];
+			ushort x0E = (x00 ^ x01) & x00;
+			x00 = x06[2];
+			x01 = x06[3];
+			ushort x02 = (x00 ^ x01) & x00;
+			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
+			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			x06 += 4;
+		}
+		x06 += 0xF0;
+		for (short j = 0; j < 4; j++) {
+			ubyte x00 = x06[0];
+			ubyte x01 = x06[1];
+			ushort x0E = (x00 ^ x01) & x00;
+			x00 = x06[2];
+			x01 = x06[3];
+			ushort x02 = (x00 ^ x01) & x00;
+			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
+			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
+			x06 += 4;
+		}
+		x06 -= 0x110;
+	}
+	return arg2;
+}
+
+/// $C4827B
+void unknownC4827B(short arg1, short arg2) {
+	short x1A = (arg2 - 0x50) & 0x7F;
+	short x18 = fontConfigTable[arg1].height;
+	const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][x1A * x18];
+	short x02 = fontConfigTable[arg1].width;
+	short x12 = fontData[fontConfigTable[arg1].dataID][x1A];
+	x12 += unknown7E5E6D;
+	while (x12 > 8) {
+		renderText(8, x02, x14);
+		x12 -= 8;
+		x14 += x02;
+	}
+	renderText(x12, x02, x14);
+}
+
+/// $C4838A
+short unknownC4838A(short arg1) {
+	short x2E = 0;
+	short x2C = 0;
+	short x2A = 0;
+	vwfTile = 0;
+	vwfX = 0;
+	memset(&vwfBuffer[0][0], 0xFF, 0x400);
+	short x04 = 4;
+	short x28 = cast(short)strlen(cast(char*)&partyCharacters[0].name[0]);
+	if (x28 > 5) {
+		x28 = 5;
+	}
+	short x26 = 6;
+	ubyte* x06 = &partyCharacters[0].name[0];
+	for (short i = 0; x04 > i; i++) {
+		unknownC4827B(arg1, lumineHallText[i]);
+	}
+	for (short i = 0; x28 > i; i++) {
+		unknownC4827B(arg1, (x06++)[0]);
+	}
+	for (short i = 0; x26 > i; i++) {
+		unknownC4827B(arg1, lumineHallText[4 + i]);
+	}
+	x26 = cast(short)(vwfX + x2C);
+	x28 = 0;
+	short x20 = 0;
+	for (short i = 0; i < vwfX / 8; i++) {
+		memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+		x20 += 16;
+		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+		x20 += 16;
+		x2A += 16;
+	}
+	x2C = 205;
+	memcpy(&vwfBuffer[0][0], &vwfBuffer[vwfX / 8][0], 0x20);
+	vwfTile = 0;
+	vwfX %= 8;
+	for (short i = 0; x2C > i; i++) {
+		if (x2E > 16) {
+			x2E = 0;
+			x26 += vwfX;
+			x20 = 0;
+			 for (short j = 0; i < vwfX / 8; i++) {
+				memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+				x20 += 16;
+				memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+				x20 += 16;
+				x2A += 16;
+				if ((x2A % 0x100) == 0) {
+					x2A += 0x100;
+				}
+			 }
+			 if ((vwfX % 8) != 0) {
+				memcpy(&vwfBuffer[0][0], &vwfBuffer[vwfX / 8][0], 0x20);
+				memset(&vwfBuffer[1][0], 0xFF, 0x1E0);
+				vwfTile = 0;
+				vwfX %= 8;
+			 } else {
+				vwfX = 0;
+				vwfTile = 0;
+				memset(&vwfBuffer[0][0], 0xFF, 0x200);
+			 }
+		}
+		unknownC4827B(arg1, lumineHallText[10 + i]);
+		x2E++;
+	}
+	x04 = cast(short)(vwfX + x26);
+	x20 = 0;
+	for (short i = 0; i < vwfX + 16; i++) {
+		memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+		short x16 = cast(short)(x20 + 16);
+		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x16], 16);
+		x20 = cast(short)(x16 + 16);
+		x2A += 0x100;
+		if ((x2A % 0x100) == 0) {
+			x2A += 0x100;
+		}
+	}
+	return cast(short)((x04 / 16) * 4);
+}
+
+/// $C4880C
+void unknownC4880C() {
+	short y = unknownC4838A(0);
+	ushort* x06 = cast(ushort*)&buffer[0x4000];
+	for (short i = 0; i < 0x1D; i++) {
+		for (short j = 0; j < 8; j++) {
+			(x06++)[0] = 0;
+		}
+	}
+	short x04 = cast(short)(y + 30);
+	short x1E = 0;
+	short x1C;
+	for (x1C = 0; x1C < 4; x1C++) {
+		x06 = unknownC4810E(x1C, x06);
+		x1E++;
+	}
+	short x1A = cast(short)strlen(cast(char*)&partyCharacters[0].name[0]);
+	if (x1A == 6) {
+		x1A--;
+	}
+	for(x1E = 0; x1A < x1E; x1E++, x1C++) {
+		x06 = unknownC4810E(x1C, x06);
+	}
+	for (x1E = 0; x1E < 6; x1E++, x1C++) {
+		x06 = unknownC4810E(x1C, x06);
+	}
+	for (x1E = 0; x1E < 205; x1E++, x1C++) {
+		x06 = unknownC4810E(x1C, x06);
+	}
+	for (short i = 0; i < 30; i++) {
+		for (short j = 0; j < 8; j++) {
+			(x06++)[0] = 0;
+		}
+	}
+	ushort* x06_2 = cast(ushort*)&buffer[0x1000];
+	ushort* x0A = cast(ushort*)&buffer[0x4000];
+	for (short i = 0; i < 8; i++) {
+		(x06_2++)[0] = 0x0C10;
+	}
+	for (short i = 0; i < x04 + 0x1E; i++) {
+		for (short j = 0; j < 8; j++) {
+			x06_2[0] = ((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5);
+			//suspicious...
+			x06_2[0] = cast(ushort)(((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5) + 0x0C10);
+			x0A[0] += 0x0C10;
+			x06++;
+			x0A++;
+		}
+	}
+	entityScriptVar0Table[currentEntitySlot] = cast(short)(x04 * 2);
+	buffer[0] = 8;
+	buffer[1] = 30;
+}
+
+/// $C48A6D
+short unknownC48A6D() {
+	ushort* x06;
+	if ((entityScriptVar1Table[currentEntitySlot] & 1) != 0) {
+		x06 = cast(ushort*)&buffer[0x4000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
+	} else {
+		x06 = cast(ushort*)&buffer[0x1000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
+	}
+	ushort* x0A = cast(ushort*)&buffer[2];
+	for (short i = 0; i < 8; i++) {
+		for (short j = 0; j < 30; j++) {
+			(x0A++)[0] = x06[0];
+			x06 += 8;
+		}
+		// interesting...
+		x06 += -239;
+	}
+	unknownC3F705(808, 588, cast(ushort*)&buffer[0]);
+	short x = 0;
+	if (++entityScriptVar1Table[currentEntitySlot] > entityScriptVar0Table[currentEntitySlot]) {
+		x = 1;
+	}
+	return x;
+}
+
+/// $C48B2C
+void unknownC48B2C() {
+	teleportStyle = TeleportStyle.unknown;
+	gameState.leaderDirection = Direction.right;
+}
+
+/// $C48B3B
+void unknownC48B3B() {
+	if ((frameCounter & 1) != 0) {
+		return;
+	}
+	for (short i = 0; gameState.partyCount > i; i++) {
+		if (16 <= gameState.partyMemberIndex[i]) {
+			continue;
+		}
+		short x10 = cast(short)(cast(ushort)(getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+		if (entityDirections[gameState.partyEntities[i]] == x10) {
+			continue;
+		}
+		entityDirections[gameState.partyEntities[i]] = x10;
+		updateEntitySpriteFrame(gameState.partyEntities[i]);
+	}
 }
 
 /// $C48BDA
@@ -3904,8 +4306,9 @@ void unknownC4954C(short style, ushort* arg2) {
 }
 
 /// $C4958E
-void unknownC4958E(short arg1, short arg2, ushort* arg3) {
+void unknownC4958E(short arg1, short arg2, ushort* palette) {
 	ushort* x06 = cast(ushort*)&buffer[0];
+	// why clear 0x0200 - 0x1200? 0x0000-0x0700 is used here
 	memset(&buffer[0x200], 0, 0x1000);
 	for (ushort i = 0; i < 0x100; i += 16) {
 		for (ushort j = i; i + 16 > j; j++) {
@@ -3913,17 +4316,17 @@ void unknownC4958E(short arg1, short arg2, ushort* arg3) {
 			if ((arg2 & 1) != 0) {
 				x02 = x06[j];
 			} else {
-				x02 = arg3[j];
+				x02 = palette[j];
 				x06[j] = x02;
 			}
-			x06[0x100 + j] = getColourFadeSlope(arg3[j] & 0x1F, x02 & 0x1F, arg1);
-			x06[0x200 + j] = getColourFadeSlope((arg3[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
-			x06[0x300 + j] = getColourFadeSlope((arg3[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
+			x06[0x100 + j] = getColourFadeSlope(palette[j] & 0x1F, x02 & 0x1F, arg1);
+			x06[0x200 + j] = getColourFadeSlope((palette[j] & 0x3E0) >> 5, (x02 & 0x3E0) >> 5, arg1);
+			x06[0x300 + j] = getColourFadeSlope((palette[j] & 0x7C00) >> 10, (x02 & 0x7C00) >> 10, arg1);
 		}
 		for (short j = i; j < i + 16; j++) {
-			x06[0x400 + j] = (arg3[j] & 0x1F) << 8;
-			x06[0x500 + j] = (arg3[j] & 0x3E0) << 3;
-			x06[0x600 + j] = (arg3[j] & 0x7C00) >> 2;
+			x06[0x400 + j] = (palette[j] & 0x1F) << 8;
+			x06[0x500 + j] = (palette[j] & 0x3E0) << 3;
+			x06[0x600 + j] = (palette[j] & 0x7C00) >> 2;
 		}
 		arg2 >>= 1;
 	}
@@ -3943,6 +4346,35 @@ void unknownC496F9() {
 void unknownC49740() {
 	memcpy(palettes.ptr, buffer.ptr, 0x200);
 	preparePaletteUpload(PaletteUpload.full);
+}
+
+/// $C4978E
+void unknownC4978E() {
+	memcpy(&unknown7E4476[0][0], &palettes[0][0], 0x200);
+}
+
+/// $C497C0
+void unknownC497C0(short arg1, short arg2, short arg3) {
+	unknownC4954C(arg2, &unknown7E4476[0][0]);
+	unknownC496E7(arg1, arg2);
+	if (arg1 != 1) {
+		for (short i = 0; i < arg1; i++) {
+			updateMapPaletteAnimation();
+			waitUntilNextFrame();
+		}
+	}
+	unknownC49740();
+	preparePaletteUpload(PaletteUpload.full);
+}
+
+/// $C4981F
+void unknownC4981F() {
+	copyToVRAM(3, 0x800, 0x7C00, &blankTiles[0]);
+}
+
+/// $C49841
+void unknownC49841() {
+	unknownC2EA15(1);
 }
 
 /// $C4984B
@@ -5662,7 +6094,7 @@ short skippablePause(short arg1) {
 
 /// $C4C58F
 void unknownC4C58F(short arg1) {
-	unknownC4954C(0x64, &palettes[0][0]);
+	unknownC4954C(100, &palettes[0][0]);
 	unknownC496E7(arg1, -1);
 	for (short i = 0; i < arg1; i++) {
 		updateMapPaletteAnimation();
@@ -5767,408 +6199,6 @@ short spawn() {
 	return result;
 }
 
-/// $C47225 - Sets boundaries for an entity to be used by directionToEntityBoundaries. Uses vars 0-3.
-void setEntityBoundaries(short height, short width) {
-	entityScriptVar0Table[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] - width);
-	entityScriptVar1Table[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] + width);
-	entityScriptVar2Table[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] - height);
-	entityScriptVar3Table[currentEntitySlot] = cast(short)(entityAbsYTable[currentEntitySlot] + height);
-}
-
-/// $C47269 - Returns the direction + 1 towards the boundaries set by setEntityBoundaries, 0 if already inside. Uses vars 0-3.
-short directionToEntityBoundaries() {
-	if (entityAbsXTable[currentEntitySlot] < entityScriptVar0Table[currentEntitySlot]) {
-		return Direction.right + 1;
-	}
-	if (entityAbsXTable[currentEntitySlot] > entityScriptVar1Table[currentEntitySlot]) {
-		return Direction.left + 1;
-	}
-	if (entityAbsYTable[currentEntitySlot] < entityScriptVar2Table[currentEntitySlot]) {
-		return Direction.down + 1;
-	}
-	if (entityAbsYTable[currentEntitySlot] > entityScriptVar3Table[currentEntitySlot]) {
-		return Direction.up + 1;
-	}
-	// within boundaries
-	return 0;
-}
-
-/// $C472A8
-void entitySpiralMovement(short flip) {
-	setMovementFromAngle(entityScriptVar0Table[currentEntitySlot]);
-	short x10 = getDirectionRotatedAngle90(entityScriptVar0Table[currentEntitySlot]);
-	if (flip != 0) {
-		x10 = getOppositeDirection(x10);
-	}
-	short x0E = entityDirections[currentEntitySlot];
-	entityDirections[currentEntitySlot] = x10;
-	if (convert8DirectionTo4PreferUpDown(x0E) != convert8DirectionTo4PreferUpDown(x10)) {
-		updateEntitySprite(currentEntitySlot);
-	}
-}
-unittest {
-	enum testData = [
-		[0x0000, Direction.right, Direction.right],
-		[0x1000, Direction.right, Direction.downRight],
-		[0x2000, Direction.downRight, Direction.downRight],
-		[0x3000, Direction.downRight, Direction.down],
-		[0x4000, Direction.down, Direction.down],
-		[0x5000, Direction.down, Direction.downLeft],
-		[0x6000, Direction.downLeft, Direction.downLeft],
-		[0x7000, Direction.downLeft, Direction.left],
-		[0x8000, Direction.left, Direction.left],
-		[0x9000, Direction.left, Direction.upLeft],
-		[0xA000, Direction.upLeft, Direction.upLeft],
-		[0xB000, Direction.upLeft, Direction.upLeft],
-		[0xC000, Direction.upLeft, Direction.upLeft],
-		[0xD000, Direction.upLeft, Direction.upRight],
-		[0xE000, Direction.upRight, Direction.upRight],
-		[0xF000, Direction.upRight, Direction.right],
-	];
-	static OverworldSpriteGraphics[8] dummy;
-	auto oldSprites = sprites;
-	sprites.length = 8;
-	scope(exit) {
-		sprites = oldSprites;
-		entityGraphicsPointers[currentEntitySlot] = null;
-	}
-	foreach (testCase; testData) {
-		currentEntitySlot = 0;
-		entityGraphicsPointers[currentEntitySlot] = &dummy[0];
-		entityScriptVar0Table[currentEntitySlot] = cast(short)testCase[0];
-		entityDirections[currentEntitySlot] = cast(short)testCase[1];
-		entitySpiralMovement(0);
-		assert(entityDirections[currentEntitySlot] == cast(short)testCase[2]);
-	}
-}
-
-/// $C4730E
-void unknownC4730E() {
-	entityDeltaYTable[currentEntitySlot] /= 2;
-}
-
-/// $C47333
-short getPartyCount() {
-	return gameState.partyCount;
-}
-
-/// $C4734C
-short actionScriptRerenderRow(short arg1) {
-	unknownC01A63(bg1XPosition / 8, arg1);
-	return arg1;
-}
-
-/// $C47369
-void unknownC47369() {
-	unknownC019E2();
-}
-
-/// $C473B2
-ushort unknownC473B2(short arg1) {
-	if (arg1 < 0) {
-		return 0;
-	}
-	if (arg1 >= 31) {
-		return 31;
-	}
-	return arg1 & 0x1F;
-}
-
-/// $C473D0
-void unknownC473D0(short arg1, short arg2) {
-	ushort* x16 = &unknown7E4476[arg1][0];
-	version(bugfix) {
-		if (arg1 >= palettes.length - 2) {
-			return;
-		}
-	}
-	ushort* x18 = &palettes[arg1 + 2][0];
-	for (short i = 0; i < 16; i++) {
-		short x14 = cast(ushort)((x16[0] & 0x1F) + arg2);
-		short x12 = cast(ushort)(((x16[0] >> 5) & 0x1F) + arg2);
-		short x10 = cast(ushort)(((x16[0] >> 10) & 0x1F) + arg2);
-		ushort x0E = unknownC473B2(x14);
-		ushort x12_2 = unknownC473B2(x12);
-		ushort x10_2 = unknownC473B2(x10);
-		x16++;
-		(x18++)[0] = cast(ushort)((x12_2 << 5) | (x10_2 << 10) | x0E);
-	}
-}
-
-/// $C4746B
-void unknownC4746B(short arg1) {
-	for (short i = 0; i < 16; i++) {
-		unknownC473D0(i, arg1);
-	}
-	paletteUploadMode = PaletteUpload.full;
-}
-
-/// $C47499
-void unknownC47499() {
-	unknownC4746B(entityScriptVar0Table[currentEntitySlot]);
-}
-
-/// $C47A6B
-void unknownC47A6B() {
-	entityAbsYTable[currentEntitySlot] = cast(short)(entityScriptVar7Table[currentEntitySlot] - (entityAbsYTable[currentEntitySlot] - entityScriptVar7Table[currentEntitySlot]));
-}
-
-/// $C47A9E
-void unknownC47A9E() {
-	decomp(&animationGraphics[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].id][0], &buffer[0]);
-	copyToVRAM2(0, animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4, 0x6000, &buffer[0]);
-	memcpy(&palettes[0][0], &buffer[animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4], 8);
-	paletteUploadMode = PaletteUpload.full;
-	bg3YPosition = 0xFFFF;
-}
-
-/// $C47B77
-short unknownC47B77() {
-	bg3YPosition = 0xFFFF;
-	copyToVRAM(0, 0x700, 0x7C00, &buffer[8 + animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown4 + entityScriptVar1Table[currentEntitySlot] * 0x700]);
-	if (entityScriptVar1Table[currentEntitySlot] + 1 == animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown6) {
-		return 0;
-	}
-	return animationSequencePointers[entityScriptVar0Table[currentEntitySlot]].unknown7;
-}
-
-/// $C48037
-immutable ubyte[215] lumineHallText = ebString!215("I'm ....  It's been a long road getting here...  Soon, I'll be...  Soon, I'll be...  Soon, I'll be...  What will happen to us?  W...what's happening?  My thoughts are being written out on the wall...  or are they?  ");
-
-/// $C4810E
-ushort* unknownC4810E(short arg1, ushort* arg2) {
-	ubyte* x06 = &buffer[0];
-	x06 += (((arg1 & 0xFFF0) * 2) + arg1 & 0xF) * 16;
-	for (ushort i = 6; i < 7; i -= 2) {
-		for (short j = 0; j < 4; j++) {
-			ubyte x00 = x06[0];
-			ubyte x01 = x06[1];
-			ushort x0E = (x00 ^ x01) & x00;
-			x00 = x06[2];
-			x01 = x06[3];
-			ushort x02 = (x00 ^ x01) & x00;
-			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
-			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
-			x06 += 4;
-		}
-		x06 += 0xF0;
-		for (short j = 0; j < 4; j++) {
-			ubyte x00 = x06[0];
-			ubyte x01 = x06[1];
-			ushort x0E = (x00 ^ x01) & x00;
-			x00 = x06[2];
-			x01 = x06[3];
-			ushort x02 = (x00 ^ x01) & x00;
-			x02 = cast(ushort)(((x02 >> i) & 3) << 2);
-			(arg2++)[0] = cast(ushort)(((x0E >> i) & 3) + x02);
-			x06 += 4;
-		}
-		x06 -= 0x110;
-	}
-	return arg2;
-}
-
-/// $C4827B
-void unknownC4827B(short arg1, short arg2) {
-	short x1A = (arg2 - 0x50) & 0x7F;
-	short x18 = fontConfigTable[arg1].height;
-	const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][x1A * x18];
-	short x02 = fontConfigTable[arg1].width;
-	short x12 = fontData[fontConfigTable[arg1].dataID][x1A];
-	x12 += unknown7E5E6D;
-	while (x12 > 8) {
-		renderText(8, x02, x14);
-		x12 -= 8;
-		x14 += x02;
-	}
-	renderText(x12, x02, x14);
-}
-
-/// $C4838A
-short unknownC4838A(short arg1) {
-	short x2E = 0;
-	short x2C = 0;
-	short x2A = 0;
-	vwfTile = 0;
-	vwfX = 0;
-	memset(&vwfBuffer[0][0], 0xFF, 0x400);
-	short x04 = 4;
-	short x28 = cast(short)strlen(cast(char*)&partyCharacters[0].name[0]);
-	if (x28 > 5) {
-		x28 = 5;
-	}
-	short x26 = 6;
-	ubyte* x06 = &partyCharacters[0].name[0];
-	for (short i = 0; x04 > i; i++) {
-		unknownC4827B(arg1, lumineHallText[i]);
-	}
-	for (short i = 0; x28 > i; i++) {
-		unknownC4827B(arg1, (x06++)[0]);
-	}
-	for (short i = 0; x26 > i; i++) {
-		unknownC4827B(arg1, lumineHallText[4 + i]);
-	}
-	x26 = cast(short)(vwfX + x2C);
-	x28 = 0;
-	short x20 = 0;
-	for (short i = 0; i < vwfX / 8; i++) {
-		memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
-		x20 += 16;
-		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
-		x20 += 16;
-		x2A += 16;
-	}
-	x2C = 205;
-	memcpy(&vwfBuffer[0][0], &vwfBuffer[vwfX / 8][0], 0x20);
-	vwfTile = 0;
-	vwfX %= 8;
-	for (short i = 0; x2C > i; i++) {
-		if (x2E > 16) {
-			x2E = 0;
-			x26 += vwfX;
-			x20 = 0;
-			 for (short j = 0; i < vwfX / 8; i++) {
-				memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
-				x20 += 16;
-				memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
-				x20 += 16;
-				x2A += 16;
-				if ((x2A % 0x100) == 0) {
-					x2A += 0x100;
-				}
-			 }
-			 if ((vwfX % 8) != 0) {
-				memcpy(&vwfBuffer[0][0], &vwfBuffer[vwfX / 8][0], 0x20);
-				memset(&vwfBuffer[1][0], 0xFF, 0x1E0);
-				vwfTile = 0;
-				vwfX %= 8;
-			 } else {
-				vwfX = 0;
-				vwfTile = 0;
-				memset(&vwfBuffer[0][0], 0xFF, 0x200);
-			 }
-		}
-		unknownC4827B(arg1, lumineHallText[10 + i]);
-		x2E++;
-	}
-	x04 = cast(short)(vwfX + x26);
-	x20 = 0;
-	for (short i = 0; i < vwfX + 16; i++) {
-		memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
-		short x16 = cast(short)(x20 + 16);
-		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x16], 16);
-		x20 = cast(short)(x16 + 16);
-		x2A += 0x100;
-		if ((x2A % 0x100) == 0) {
-			x2A += 0x100;
-		}
-	}
-	return cast(short)((x04 / 16) * 4);
-}
-
-/// $C4880C
-void unknownC4880C() {
-	short y = unknownC4838A(0);
-	ushort* x06 = cast(ushort*)&buffer[0x4000];
-	for (short i = 0; i < 0x1D; i++) {
-		for (short j = 0; j < 8; j++) {
-			(x06++)[0] = 0;
-		}
-	}
-	short x04 = cast(short)(y + 30);
-	short x1E = 0;
-	short x1C;
-	for (x1C = 0; x1C < 4; x1C++) {
-		x06 = unknownC4810E(x1C, x06);
-		x1E++;
-	}
-	short x1A = cast(short)strlen(cast(char*)&partyCharacters[0].name[0]);
-	if (x1A == 6) {
-		x1A--;
-	}
-	for(x1E = 0; x1A < x1E; x1E++, x1C++) {
-		x06 = unknownC4810E(x1C, x06);
-	}
-	for (x1E = 0; x1E < 6; x1E++, x1C++) {
-		x06 = unknownC4810E(x1C, x06);
-	}
-	for (x1E = 0; x1E < 205; x1E++, x1C++) {
-		x06 = unknownC4810E(x1C, x06);
-	}
-	for (short i = 0; i < 30; i++) {
-		for (short j = 0; j < 8; j++) {
-			(x06++)[0] = 0;
-		}
-	}
-	ushort* x06_2 = cast(ushort*)&buffer[0x1000];
-	ushort* x0A = cast(ushort*)&buffer[0x4000];
-	for (short i = 0; i < 8; i++) {
-		(x06_2++)[0] = 0x0C10;
-	}
-	for (short i = 0; i < x04 + 0x1E; i++) {
-		for (short j = 0; j < 8; j++) {
-			x06_2[0] = ((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5);
-			//suspicious...
-			x06_2[0] = cast(ushort)(((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5) + 0x0C10);
-			x0A[0] += 0x0C10;
-			x06++;
-			x0A++;
-		}
-	}
-	entityScriptVar0Table[currentEntitySlot] = cast(short)(x04 * 2);
-	buffer[0] = 8;
-	buffer[1] = 30;
-}
-
-/// $C48A6D
-short unknownC48A6D() {
-	ushort* x06;
-	if ((entityScriptVar1Table[currentEntitySlot] & 1) != 0) {
-		x06 = cast(ushort*)&buffer[0x4000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
-	} else {
-		x06 = cast(ushort*)&buffer[0x1000 + (entityScriptVar1Table[currentEntitySlot] >> 1) * 16];
-	}
-	ushort* x0A = cast(ushort*)&buffer[2];
-	for (short i = 0; i < 8; i++) {
-		for (short j = 0; j < 30; j++) {
-			(x0A++)[0] = x06[0];
-			x06 += 8;
-		}
-		// interesting...
-		x06 += -239;
-	}
-	unknownC3F705(808, 588, cast(ushort*)&buffer[0]);
-	short x = 0;
-	if (++entityScriptVar1Table[currentEntitySlot] > entityScriptVar0Table[currentEntitySlot]) {
-		x = 1;
-	}
-	return x;
-}
-
-/// $C48B2C
-void unknownC48B2C() {
-	teleportStyle = TeleportStyle.unknown;
-	gameState.leaderDirection = Direction.right;
-}
-
-/// $C48B3B
-void unknownC48B3B() {
-	if ((frameCounter & 1) != 0) {
-		return;
-	}
-	for (short i = 0; gameState.partyCount > i; i++) {
-		if (16 <= gameState.partyMemberIndex[i]) {
-			continue;
-		}
-		short x10 = cast(short)(cast(ushort)(getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
-		if (entityDirections[gameState.partyEntities[i]] == x10) {
-			continue;
-		}
-		entityDirections[gameState.partyEntities[i]] = x10;
-		updateEntitySpriteFrame(gameState.partyEntities[i]);
-	}
-}
-
 /// $C4C8A4
 void clearEntityFadeBuffer() {
 	entityFadeStatesBuffer = &buffer[0];
@@ -6262,35 +6292,6 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	}
 	entityScriptVar4Table[entityFadeEntity] = cast(short)(entityScriptVar0Table[entityFadeEntity] + entityScriptVar1Table[entityFadeEntity] + entityScriptVar2Table[entityFadeEntity] + entityScriptVar3Table[entityFadeEntity]);
 	entityFadeStatesLength++;
-}
-
-/// $C4978E
-void unknownC4978E() {
-	memcpy(&unknown7E4476[0][0], &palettes[0][0], 0x200);
-}
-
-/// $C497C0
-void unknownC497C0(short arg1, short arg2, short arg3) {
-	unknownC4954C(arg2, &unknown7E4476[0][0]);
-	unknownC496E7(arg1, arg2);
-	if (arg1 != 1) {
-		for (short i = 0; i < arg1; i++) {
-			updateMapPaletteAnimation();
-			waitUntilNextFrame();
-		}
-	}
-	unknownC49740();
-	preparePaletteUpload(PaletteUpload.full);
-}
-
-/// $C4981F
-void unknownC4981F() {
-	copyToVRAM(3, 0x800, 0x7C00, &blankTiles[0]);
-}
-
-/// $C49841
-void unknownC49841() {
-	unknownC2EA15(1);
 }
 
 /// $C4CB4F
@@ -7336,30 +7337,30 @@ void unknownC4EEE1(short arg1) {
 }
 
 /// $C4EFC4
-void unknownC4EFC4(short arg1, short arg2, short arg3, const(ubyte)* arg4) {
-	unknown7E5156Credits[unknown7EB4F5].unknown0 = cast(ubyte)arg1;
-	unknown7E5156Credits[unknown7EB4F5].unknown1 = arg2;
-	unknown7E5156Credits[unknown7EB4F5].unknown3 = arg4;
-	unknown7E5156Credits[unknown7EB4F5].unknown7 = arg3;
-	unknown7EB4F5 = (unknown7EB4F5 + 1) & 0x7F;
+void unknownC4EFC4(short mode, short count, short address, const(ubyte)* data) {
+	creditsDMAQueue[creditsDMAQueueStart].mode = cast(ubyte)mode;
+	creditsDMAQueue[creditsDMAQueueStart].count = count;
+	creditsDMAQueue[creditsDMAQueueStart].data = data;
+	creditsDMAQueue[creditsDMAQueueStart].address = address;
+	creditsDMAQueueStart = (creditsDMAQueueStart + 1) & 0x7F;
 }
 
 /// $C4F01D
 void unknownC4F01D() {
-	if (unknown7EB4F5 == unknown7EB4F3) {
+	if (creditsDMAQueueStart == creditsDMAQueueEnd) {
 		return;
 	}
-	copyToVRAM(unknown7E5156Credits[unknown7EB4F3].unknown0, unknown7E5156Credits[unknown7EB4F3].unknown1, unknown7E5156Credits[unknown7EB4F3].unknown7, unknown7E5156Credits[unknown7EB4F3].unknown3);
-	unknown7EB4F3 = (unknown7EB4F3 + 1) & 0x7F;
+	copyToVRAM(creditsDMAQueue[creditsDMAQueueEnd].mode, creditsDMAQueue[creditsDMAQueueEnd].count, creditsDMAQueue[creditsDMAQueueEnd].address, creditsDMAQueue[creditsDMAQueueEnd].data);
+	creditsDMAQueueEnd = (creditsDMAQueueEnd + 1) & 0x7F;
 }
 
 /// $C4F07D
 void unknownC4F07D() {
 	prepareForImmediateDMA();
 	unknownC021E6();
-	unknown7EB4F7 = 0;
-	unknown7EB4F5 = 0;
-	unknown7EB4F3 = 0;
+	creditsCurrentRow = 0;
+	creditsDMAQueueStart = 0;
+	creditsDMAQueueEnd = 0;
 	setBG1VRAMLocation(BGTileMapSize.horizontal, 0x3800, 0);
 	setBG2VRAMLocation(BGTileMapSize.both, 0x7000, 0x2000);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x6C00, 0x6000);
@@ -7391,12 +7392,12 @@ void unknownC4F07D() {
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	creditsNextCreditPosition = 0;
 	creditsScrollPosition.combined = 0;
-	unknown7EB4E5 = 7;
+	creditsRowWipeThreshold = 7;
 	ushort* x06 = &bg2Buffer[0];
 	for (short i = 0; i < 0x200; i++) {
 		*(x06++) = 0;
 	}
-	unknown7EB4E7 = &staffText[0];
+	creditsSource = &staffText[0];
 	setForceBlank();
 }
 

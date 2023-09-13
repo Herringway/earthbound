@@ -6121,8 +6121,8 @@ struct TimedDelivery {
 	ushort deliveryTime; ///8
 	string textPointer1; ///10
 	string textPointer2; ///13
-	short unknown18; ///16
-	short unknown20; ///18
+	short enterSpeed; ///16 - speed at which npc travels towards you
+	short exitSpeed; ///18 - speed at which npc travels away from you
 }
 ///
 union ItemParameters {
@@ -6782,11 +6782,11 @@ struct CastSequenceFormattingEntry {
 	ubyte unknown2; ///
 }
 ///
-struct Unknown7E5156CreditsEntry {
-	ubyte unknown0; ///
-	ushort unknown1; ///
-	@skip const(ubyte)* unknown3; ///
-	ushort unknown7; ///
+struct CreditsDMAQueueEntry {
+	ubyte mode; ///
+	ushort count; ///
+	@skip const(ubyte)* data; ///
+	ushort address; ///
 }
 ///
 struct Unknown7EAEFCEntry {

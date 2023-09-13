@@ -6011,7 +6011,7 @@ short bossBattleCheck() {
 
 /// $C2AB71
 void battleActionTeleportBox() {
-	if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 0x80) == 0) {
+	if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0) {
 		if ((battleModeFlag == 0) || ((randLimit(100) < itemData[currentAttacker.currentActionArgument].parameters.strength) && (bossBattleCheck() != 0))) {
 			removeItemFromInventoryF(currentAttacker.id, currentAttacker.actionItemSlot);
 			displayInBattleText(getTextBlock("MSG_BTL_TLPTBOX_OK"));
@@ -8425,7 +8425,7 @@ void unknownC2FEF9(short type) {
 
 /// $C2FF9A
 short unknownC2FF9A() {
-	if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) >= 3) {
+	if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) >= SpecialGameState.useMiniSprites) {
 		return 1;
 	}
 	return 0;

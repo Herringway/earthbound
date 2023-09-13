@@ -329,8 +329,8 @@ __gshared short[maxEntities] entityEnemyIDs; /// $(DOLLAR)2D12
 __gshared ushort[maxEntities] entityEnemySpawnTiles; /// $(DOLLAR)2D4E
 __gshared ushort[maxEntities] entityUnknown2D8A; /// $(DOLLAR)2D8A
 __gshared ushort[maxEntities] entityUnknown2DC6; /// $(DOLLAR)2DC6
-__gshared VecYX*[maxEntities] entityUnknown2E02; /// $(DOLLAR)2E02
-__gshared ushort[maxEntities] entityUnknown2E3E; /// $(DOLLAR)2E3E
+__gshared VecYX*[maxEntities] entityPathPoints; /// $(DOLLAR)2E02
+__gshared ushort[maxEntities] entityPathPointsCount; /// $(DOLLAR)2E3E
 __gshared ushort[maxEntities] entityOverlayFlags; /// $(DOLLAR)2E7A
 __gshared const(OverlayScript)*[maxEntities] entityMushroomizedOverlayPtrs; /// $(DOLLAR)2EB6
 __gshared ushort[maxEntities] entityMushroomizedNextUpdateFrames; /// $(DOLLAR)2EF2
@@ -453,7 +453,7 @@ __gshared short unknown7E4A8E; /// $(DOLLAR)4A8E
 __gshared short unknown7E4A90; /// $(DOLLAR)4A90
 __gshared short unknown7E4A92; /// $(DOLLAR)4A92
 __gshared short unknown7E4A94; /// $(DOLLAR)4A94
-__gshared VecYX[20][10] unknown7E4A96; /// $(DOLLAR)4A96
+__gshared VecYX[20][10] deliveryPaths; /// $(DOLLAR)4A96
 
 __gshared short touchedEnemy; /// $(DOLLAR)4D86
 
@@ -473,7 +473,7 @@ __gshared MovementSpeeds[14] verticalMovementSpeeds; /// $(DOLLAR)4F96
 
 __gshared PlayerPositionBufferEntry[256] playerPositionBuffer; /// $(DOLLAR)5156
 //normally this occupies the same position as the player position buffer, but we're not so constrained
-__gshared Unknown7E5156CreditsEntry[128] unknown7E5156Credits; /// $(DOLLAR)5156
+__gshared CreditsDMAQueueEntry[128] creditsDMAQueue; /// $(DOLLAR)5156
 __gshared short miscDebugFlags; /// $(DOLLAR)5D56
 __gshared short playerIntangibilityFrames; /// $(DOLLAR)5D58
 __gshared short unknown7E5D5A; /// $(DOLLAR)5D5A
@@ -877,17 +877,17 @@ __gshared short unknown7EB4D1; /// $(DOLLAR)B4D1
 __gshared short unknown7EB4D3; /// $(DOLLAR)B4D3
 
 __gshared ushort creditsNextCreditPosition; /// $(DOLLAR)B4E3
-__gshared short unknown7EB4E5; /// $(DOLLAR)B4E5
-__gshared const(ubyte)* unknown7EB4E7; /// $(DOLLAR)B4E7
+__gshared short creditsRowWipeThreshold; /// $(DOLLAR)B4E5 - Y position where top row gets cleared
+__gshared const(ubyte)* creditsSource; /// $(DOLLAR)B4E7
 __gshared FixedPoint1616 creditsScrollPosition; /// $(DOLLAR)B4EB
 __gshared short photographMapLoadingMode; /// $(DOLLAR)B4EF
 __gshared short currentPhotoDisplay; /// $(DOLLAR)B4F1
-__gshared short unknown7EB4F3; /// $(DOLLAR)B4F3
-__gshared short unknown7EB4F5; /// $(DOLLAR)B4F5
-__gshared short unknown7EB4F7; /// $(DOLLAR)B4F7
+__gshared short creditsDMAQueueEnd; /// $(DOLLAR)B4F3
+__gshared short creditsDMAQueueStart; /// $(DOLLAR)B4F5
+__gshared short creditsCurrentRow; /// $(DOLLAR)B4F7
 __gshared ubyte[24] creditsPlayerNameBuffer; /// $(DOLLAR)B4F9
 __gshared short[10] unknown7EB511; /// $(DOLLAR)B511
-__gshared ushort[10] unknown7EB525; /// $(DOLLAR)B525
+__gshared ushort[10] deliveryTimers; /// $(DOLLAR)B525
 __gshared short piracyFlag; /// $(DOLLAR)B539
 __gshared ushort currentMusicTrack; /// $(DOLLAR)B53B
 __gshared short debugSoundMenuInitialBGM; /// $(DOLLAR)B545
