@@ -3932,10 +3932,12 @@ short renderLumineHallText(short font) {
 }
 
 unittest {
-	partyCharacters[0].name = ebString!5("Ness");
-	characterPadding = 1;
-	renderLumineHallText(Font.main);
-	assert(buffer[0 .. 0x1000] == import("exampleluminehallrender.bin"));
+	if (romDataLoaded) {
+		partyCharacters[0].name = ebString!5("Ness");
+		characterPadding = 1;
+		renderLumineHallText(Font.main);
+		assert(buffer[0 .. 0x1000] == import("exampleluminehallrender.bin"));
+	}
 }
 
 /// $C4880C
