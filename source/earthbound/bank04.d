@@ -3974,24 +3974,34 @@ void unknownC4880C() {
 			(x06++)[0] = 0;
 		}
 	}
-	ushort* x06_2 = cast(ushort*)&buffer[0x1000];
+	x06 = cast(ushort*)&buffer[0x1000];
 	ushort* x0A = cast(ushort*)&buffer[0x4000];
 	for (short i = 0; i < 8; i++) {
-		(x06_2++)[0] = 0x0C10;
+		(x06++)[0] = 0x0C10;
 	}
 	for (short i = 0; i < x04 + 0x1E; i++) {
 		for (short j = 0; j < 8; j++) {
-			x06_2[0] = ((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5);
-			//suspicious...
-			x06_2[0] = cast(ushort)(((x0A[0] << 1) & 0xA) | ((x0A[16] >> 1) & 5) + 0x0C10);
+			x06[0] = ((x0A[0] << 1) & 0b1010) | ((x0A[8] >> 1) & 0b0101);
+			x06[0] += 0x0C10;
 			x0A[0] += 0x0C10;
 			x06++;
 			x0A++;
 		}
 	}
 	entityScriptVar0Table[currentEntitySlot] = cast(short)(x04 * 2);
-	buffer[0] = 8;
-	buffer[1] = 30;
+	buffer[0] = 0x08;
+	buffer[1] = 0x1E;
+}
+
+unittest {
+	if (romDataLoaded) {
+		buffer[] = 0;
+		partyCharacters[0].name = ebString!5("Ness");
+		characterPadding = 1;
+		unknownC4880C();
+		assert(buffer[0x1000 .. 0x3040] == import("exampleluminehallrendermap1.bin"));
+		assert(buffer[0x4000 .. 0x6040] == import("exampleluminehallrendermap2.bin"));
+	}
 }
 
 /// $C48A6D

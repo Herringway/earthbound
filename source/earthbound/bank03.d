@@ -1207,6 +1207,7 @@ void unknownC3F705(short arg1, short arg2, ushort* newTiles) {
 		unknown7E9F82 = x18;
 		unknownC3F5F9();
 	} else {
+		short x0E = x18;
 		do {
 			tilemapUpdateTileCount = cast(short)(((x18 + x12) & 0xFFE0) - unknown7E9F7A);
 			unknown7E9F82 = x18;
@@ -1218,7 +1219,7 @@ void unknownC3F705(short arg1, short arg2, ushort* newTiles) {
 			x18 -= tilemapUpdateTileCount;
 		} while (x18 >= 0x20);
 		tilemapUpdateTileCount = x18;
-		unknown7E9F82 = x18;
+		unknown7E9F82 = x0E;
 		unknownC3F5F9();
 	}
 }
