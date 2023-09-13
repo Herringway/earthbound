@@ -6871,13 +6871,13 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 	} else {
 		displayText(&nameInputWindowSelectionLayoutPointers[4][0]);
 	}
-	unknown7E5E6D = 0;
+	characterPadding = 0;
 	if (arg5 == -1) {
 		displayText(&nameInputWindowSelectionLayoutPointers[2 + arg4][0]);
 	} else {
 		displayText(&nameInputWindowSelectionLayoutPointers[arg4][0]);
 	}
-	unknown7E5E6D = 1;
+	characterPadding = 1;
 	l0: while (true) {
 		setInstantPrinting();
 		if (x1E != arg4) {
@@ -6888,13 +6888,13 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 			} else {
 				displayText(&nameInputWindowSelectionLayoutPointers[4][0]);
 			}
-			unknown7E5E6D = 0;
+			characterPadding = 0;
 			if (arg5 == -1) {
 				displayText(&nameInputWindowSelectionLayoutPointers[2 + arg4][0]);
 			} else {
 				displayText(&nameInputWindowSelectionLayoutPointers[arg4][0]);
 			}
-			unknown7E5E6D = 1;
+			characterPadding = 1;
 		}
 		l1: while (true) {
 			clearInstantPrinting();

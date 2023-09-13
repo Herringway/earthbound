@@ -538,7 +538,7 @@ __gshared const(OverworldEventMusic)* loadedMapMusicEntry; /// $(DOLLAR)5E38
 __gshared ActiveHotspot[2] activeHotspots; /// $(DOLLAR)5E3C
 __gshared QueuedInteractionPtr[5] unknown7E5E58; /// $(DOLLAR)5E58
 __gshared ubyte unknown7E5E6C; /// $(DOLLAR)5E6C
-__gshared ubyte unknown7E5E6D; /// $(DOLLAR)5E6D
+__gshared ubyte characterPadding; /// $(DOLLAR)5E6D
 __gshared short unknown7E5E6E; /// $(DOLLAR)5E6E - "word-wrap flag"?
 __gshared ubyte unknown7E5E70; /// $(DOLLAR)5E70
 __gshared ubyte unknown7E5E71; /// $(DOLLAR)5E71

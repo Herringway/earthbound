@@ -1549,7 +1549,7 @@ short unknownC43E31(const(ubyte)* arg1, short arg2) {
 	short x12 = 0;
 	while ((arg1[0] != 0) && (arg2 != 0)) {
 		arg2--;
-		x12 += unknown7E5E6D + (unknown7EB4CE != 0) ? fontData[fontConfigTable[0].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F] : fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F];
+		x12 += characterPadding + (unknown7EB4CE != 0) ? fontData[fontConfigTable[0].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F] : fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F];
 	}
 	return x12;
 }
@@ -1617,7 +1617,7 @@ void unknownC440B5(ubyte* arg1, short arg2) {
 	for (i = 0; (arg1[i] != 0) && (i < arg2); i++, arg1++) {
 		unknown7E1B86[i] = arg1[0];
 		unknown7E1B56[i] = (arg1[0] - ebChar(' ')) & 0x7F;
-		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1[0] - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1[0] - ebChar(' ')) & 0x7F] + characterPadding);
 		unknownC44E61(0, arg1[0]);
 	}
 	unknown7E9662 = i;
@@ -1648,7 +1648,7 @@ void unknownC441B7(short arg1) {
 	unknown7E1B56[0] = 0x20;
 	for (short i = 1; i < arg1; i++) {
 		unknown7E1B56[i] = cast(ubyte)x02;
-		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + unknown7E5E6D);
+		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + characterPadding);
 		unknownC44E61(0, ebChar('{'));
 	}
 }
@@ -1661,7 +1661,7 @@ void unknownC4424A(short arg1) {
 		unknown7E1B86[unknown7E9662] = cast(ubyte)arg1;
 	}
 	unknown7E1B56[unknown7E9662] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
-	unknown7E1B6E[unknown7E9662] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+	unknown7E1B6E[unknown7E9662] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + characterPadding);
 }
 
 /// $C442AC
@@ -1781,7 +1781,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 			break;
 		}
 		unknown7E9660++;
-		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(a - ebChar(' ')) & 0x7F] + unknown7E5E6D);
+		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(a - ebChar(' ')) & 0x7F] + characterPadding);
 	}
 	short newLineLength;
 	if (windowStats[windowTable[currentFocusWindow]].textX != 0) {
@@ -2065,7 +2065,7 @@ void unknownC44E61(short arg1, short tile) {
 		}
 		lastPrintedCharacter = cast(ubyte)tile;
 		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(tile - ebChar(' ')) * fontConfigTable[arg1].height];
-		short x12 = fontData[fontConfigTable[arg1].dataID][tile - ebChar(' ')] + unknown7E5E6D;
+		short x12 = fontData[fontConfigTable[arg1].dataID][tile - ebChar(' ')] + characterPadding;
 		if (x12 > 8) {
 			while (x12 > 8) {
 				renderText(8, fontConfigTable[arg1].width, x14);
@@ -2082,7 +2082,7 @@ void unknownC44E61(short arg1, short tile) {
 short unknownC44FF3(short arg1, short fontID, ubyte* arg3) {
 	short result;
 	for (short i = 0; i < arg1; i++) {
-		result += cast(short)(unknown7E5E6D + fontData[fontConfigTable[fontID].dataID][(*(arg3++) - 0x50) & 0x7F]);
+		result += cast(short)(characterPadding + fontData[fontConfigTable[fontID].dataID][(*(arg3++) - 0x50) & 0x7F]);
 	}
 	return result;
 }
@@ -2100,14 +2100,14 @@ void printPrice(uint arg1) {
 	ubyte* x20 = x22;
 	short textXBackup = windowStats[windowTable[currentFocusWindow]].textX;
 	short textYBackup = windowStats[windowTable[currentFocusWindow]].textY;
-	short x04 = unknown7E5E6D + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][4];
+	short x04 = characterPadding + fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][4];
 
 	for (short i = 0; i < x24; i++) {
 		x12[i] = cast(ubyte)(*x22 + 0x60);
 		x22++;
 	}
 	short x18 = cast(short)(x04 + unknownC44FF3(x24, windowStats[windowTable[currentFocusWindow]].font, &x12[0]));
-	x18 += unknown7E5E6D;
+	x18 += characterPadding;
 	unknown7E5E71 =1;
 	unknownC43D75(cast(short)((windowStats[windowTable[currentFocusWindow]].width - 1) * 8 - x18), windowStats[windowTable[currentFocusWindow]].textY);
 	printLetterF(ebChar('$'));
@@ -3745,6 +3745,19 @@ void prepareWindowGraphics() {
 	}
 }
 
+unittest {
+	if (romDataLoaded) {
+		// test name rendering
+		partyCharacters[0].name = ebString!5("Hello");
+		partyCharacters[1].name = ebString!5("Earth");
+		partyCharacters[2].name = ebString!5("bound");
+		partyCharacters[3].name = ebString!5("World");
+		prepareWindowGraphics();
+		const correct = cast(immutable(ubyte)[])import("examplenamerenders.bin");
+		assert(buffer[0x2A00 .. 0x2C00] == correct);
+	}
+}
+
 /// $C47F87
 void loadTextPalette() {
 	ubyte affliction = 0;
@@ -3821,23 +3834,23 @@ ushort* unknownC4810E(short arg1, ushort* arg2) {
 }
 
 /// $C4827B
-void unknownC4827B(short arg1, short arg2) {
-	short x1A = (arg2 - 0x50) & 0x7F;
-	short x18 = fontConfigTable[arg1].height;
-	const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][x1A * x18];
-	short x02 = fontConfigTable[arg1].width;
-	short x12 = fontData[fontConfigTable[arg1].dataID][x1A];
-	x12 += unknown7E5E6D;
-	while (x12 > 8) {
-		renderText(8, x02, x14);
-		x12 -= 8;
-		x14 += x02;
+void renderWholeCharacter(short font, short character) {
+	short characterOffset = (character - ebChar(' ')) & 0x7F;
+	short fontHeight = fontConfigTable[font].height;
+	const(ubyte)* charTiles = &fontGraphics[fontConfigTable[font].graphicsID][characterOffset * fontHeight];
+	short fontWidth = fontConfigTable[font].width;
+	short charWidth = fontData[fontConfigTable[font].dataID][characterOffset];
+	charWidth += characterPadding;
+	while (charWidth > 8) {
+		renderText(8, fontWidth, charTiles);
+		charWidth -= 8;
+		charTiles += fontWidth;
 	}
-	renderText(x12, x02, x14);
+	renderText(charWidth, fontWidth, charTiles);
 }
 
 /// $C4838A
-short unknownC4838A(short arg1) {
+short renderLumineHallText(short font) {
 	short x2E = 0;
 	short x2C = 0;
 	short x2A = 0;
@@ -3852,13 +3865,13 @@ short unknownC4838A(short arg1) {
 	short x26 = 6;
 	ubyte* x06 = &partyCharacters[0].name[0];
 	for (short i = 0; x04 > i; i++) {
-		unknownC4827B(arg1, lumineHallText[i]);
+		renderWholeCharacter(font, lumineHallText[i]);
 	}
 	for (short i = 0; x28 > i; i++) {
-		unknownC4827B(arg1, (x06++)[0]);
+		renderWholeCharacter(font, (x06++)[0]);
 	}
 	for (short i = 0; x26 > i; i++) {
-		unknownC4827B(arg1, lumineHallText[4 + i]);
+		renderWholeCharacter(font, lumineHallText[4 + i]);
 	}
 	x26 = cast(short)(vwfX + x2C);
 	x28 = 0;
@@ -3870,7 +3883,7 @@ short unknownC4838A(short arg1) {
 		x20 += 16;
 		x2A += 16;
 	}
-	x2C = 205;
+	x2C = lumineHallText.length - 10;
 	memcpy(&vwfBuffer[0][0], &vwfBuffer[vwfX / 8][0], 0x20);
 	vwfTile = 0;
 	vwfX %= 8;
@@ -3879,7 +3892,7 @@ short unknownC4838A(short arg1) {
 			x2E = 0;
 			x26 += vwfX;
 			x20 = 0;
-			 for (short j = 0; i < vwfX / 8; i++) {
+			 for (short j = 0; j < vwfX / 8; j++) {
 				memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
 				x20 += 16;
 				memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
@@ -3900,17 +3913,17 @@ short unknownC4838A(short arg1) {
 				memset(&vwfBuffer[0][0], 0xFF, 0x200);
 			 }
 		}
-		unknownC4827B(arg1, lumineHallText[10 + i]);
+		renderWholeCharacter(font, lumineHallText[10 + i]);
 		x2E++;
 	}
 	x04 = cast(short)(vwfX + x26);
 	x20 = 0;
-	for (short i = 0; i < vwfX + 16; i++) {
+	for (short i = 0; i < (vwfX / 8) + 16; i++) {
 		memcpy(&buffer[x2A], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
-		short x16 = cast(short)(x20 + 16);
-		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x16], 16);
-		x20 = cast(short)(x16 + 16);
-		x2A += 0x100;
+		x20 += 16;
+		memcpy(&buffer[x2A + 0x100], &(cast(ubyte*)&vwfBuffer[0][0])[x20], 16);
+		x20 += 16;
+		x2A += 16;
 		if ((x2A % 0x100) == 0) {
 			x2A += 0x100;
 		}
@@ -3918,9 +3931,16 @@ short unknownC4838A(short arg1) {
 	return cast(short)((x04 / 16) * 4);
 }
 
+unittest {
+	partyCharacters[0].name = ebString!5("Ness");
+	characterPadding = 1;
+	renderLumineHallText(Font.main);
+	assert(buffer[0 .. 0x1000] == import("exampleluminehallrender.bin"));
+}
+
 /// $C4880C
 void unknownC4880C() {
-	short y = unknownC4838A(0);
+	short y = renderLumineHallText(Font.main);
 	ushort* x06 = cast(ushort*)&buffer[0x4000];
 	for (short i = 0; i < 0x1D; i++) {
 		for (short j = 0; j < 8; j++) {
@@ -7171,7 +7191,7 @@ void unknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	unknownC1FF99(-1, arg2, arg1);
 	for (short i = 0; arg1[0] != 0; arg1++, i++) {
 		const(ubyte)* x0A = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].width * (arg1[0] - ebChar(' ') & 0x7F)];
-		short x1E = fontData[fontConfigTable[0].dataID][arg1[0] - ebChar(' ') & 0x7F] + unknown7E5E6D;
+		short x1E = fontData[fontConfigTable[0].dataID][arg1[0] - ebChar(' ') & 0x7F] + characterPadding;
 		while (x1E > 8) {
 			renderText(x1E, fontConfigTable[0].width, x0A);
 			x1E -= 8;

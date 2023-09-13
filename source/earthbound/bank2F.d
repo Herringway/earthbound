@@ -88,7 +88,7 @@ void unknownEF016F() {
 /// $EF01D2
 void unknownEF01D2(short arg1) {
 	short x0E = (arg1 - ebChar(' ')) & 0x7F;
-	arg1 = fontData[fontConfigTable[0].dataID][x0E] + unknown7E5E6D;
+	arg1 = fontData[fontConfigTable[0].dataID][x0E] + characterPadding;
 	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].textX - 1) * 8 + (vwfX & 7) + x0E) {
 		printNewLineF();
 		unknown7E5E75 = 1;

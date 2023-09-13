@@ -100,7 +100,7 @@ void initializeTextSystem() {
 	battleModeFlag = 0;
 	inputLockFlag = 0;
 	currentFocusWindow = -1;
-	unknown7E5E6D = 1;
+	characterPadding = 1;
 	unknownC43F53();
 	unknown7E9651 = 0xFF;
 	unknown7E5E6E = 0xFF;

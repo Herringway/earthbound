@@ -11,6 +11,9 @@
 		"sdl",
 		"snes"
 	],
+	"stringImportPaths": [
+		"testdata"
+	],
 	"configurations": [
 		{
 			"name": "standard"
