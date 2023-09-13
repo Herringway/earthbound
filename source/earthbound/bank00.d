@@ -8413,6 +8413,31 @@ short findPathToParty(short partyCount, short arg2, short arg3) {
 	return unknownC0BA35(&unknown7EF000.unknown7EF200, partyCount, x04, x02, 0, 0x40, 0x32);
 }
 
+unittest {
+	if (romDataLoaded) {
+		currentHeapAddress = &heap[0][0];
+		heapBaseAddress = &heap[0][0];
+
+		gameState.playerControlledPartyMemberCount = 1;
+		gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1] = 0;
+		chosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] = &partyCharacters[0];
+		reloadMapAtPosition(1365, 1766);
+		//printCollision(loadedCollisionTiles);
+
+		entityAbsXTable = [1656, 1816, 1562, 1728, 1648, 1624, 1528, 1656, 1425, 1521, 222, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1560, 0, 0, 0, 0, 0];
+		entityAbsYTable = [1608, 1952, 1773, 1744, 1758, 1632, 1728, 1712, 1768, 1790, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1765, 0, 0, 0, 0, 0];
+		entitySizes = [8, 5, 5, 11, 5, 5, 0, 5, 14, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5, 0, 0, 0, 0, 0];
+		entityScriptTable = [0, -1, 21, 8, 21, 13, 9, 12, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 1, 2, -1, -1, -1, -1, -1];
+		entityUnknown2C5E = [0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+		gameState.firstPartyMemberEntity = 24;
+		gameState.partyEntities[0] = cast(ubyte)gameState.firstPartyMemberEntity;
+		entitySizes[gameState.firstPartyMemberEntity] = 5;
+		//assert(findPathToParty(1, 64, 64) == 0);
+	}
+}
+
+
 /// $C0BD96
 short unknownC0BD96() {
 	short x2A = gameState.firstPartyMemberEntity;

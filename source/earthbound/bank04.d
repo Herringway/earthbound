@@ -5486,6 +5486,10 @@ Params:
 	search_radius = Just a guess...
 ++/
 ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *matrix, ushort border_size, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, short unk1, ushort unk2, ushort search_radius) {
+	debug(pathing) {
+		import std.stdio;
+		writeln(heap_size, ", ", *matrix_dim, ", ", border_size, ", ", targetCount, ", ", *targetsPos, ", ", patherCount, ", ", *pathers, ", ", unk1, ", ", unk2, ", ", search_radius);
+	}
 	ushort dp20 = 0;
 
 	pathHeapStart = heap_start;
@@ -5590,6 +5594,7 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 			++dp20;
 		}
 	}
+	debug(pathing) printPathMatrix();
 
 	return dp20;
 }
