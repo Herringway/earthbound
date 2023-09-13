@@ -3803,7 +3803,7 @@ immutable ubyte[215] lumineHallText = ebString!215("I'm ....  It's been a long r
 /// $C4810E
 ushort* unknownC4810E(short arg1, ushort* arg2) {
 	ubyte* x06 = &buffer[0];
-	x06 += (((arg1 & 0xFFF0) * 2) + arg1 & 0xF) * 16;
+	x06 += (((arg1 & 0xFFF0) * 2) + (arg1 & 0xF)) * 16;
 	for (ushort i = 6; i < 7; i -= 2) {
 		for (short j = 0; j < 4; j++) {
 			ubyte x00 = x06[0];
