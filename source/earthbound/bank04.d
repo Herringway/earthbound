@@ -3928,14 +3928,14 @@ short renderLumineHallText(short font) {
 			x2A += 0x100;
 		}
 	}
-	return cast(short)((x04 / 16) * 4);
+	return cast(short)((x04 / 8) * 4);
 }
 
 unittest {
 	if (romDataLoaded) {
 		partyCharacters[0].name = ebString!5("Ness");
 		characterPadding = 1;
-		renderLumineHallText(Font.main);
+		assert(renderLumineHallText(Font.main) == 456);
 		assert(buffer[0 .. 0x1000] == import("exampleluminehallrender.bin"));
 	}
 }
