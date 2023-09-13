@@ -711,11 +711,11 @@ __gshared short unknown7E9F77; /// $(DOLLAR)9F77
 __gshared ubyte unknown7E9F79; /// $(DOLLAR)9F79
 __gshared short unknown7E9F7A; /// $(DOLLAR)9F7A
 __gshared short unknown7E9F7C; /// $(DOLLAR)9F7C
-__gshared short unknown7E9F7E; /// $(DOLLAR)9F7E
+__gshared short tilemapUpdateTileCount; /// $(DOLLAR)9F7E
 __gshared short unknown7E9F80; /// $(DOLLAR)9F80
 __gshared short unknown7E9F82; /// $(DOLLAR)9F82
-__gshared short unknown7E9F84; /// $(DOLLAR)9F84
-__gshared ushort* unknown7E9F86; /// $(DOLLAR)9F86
+__gshared short tilemapUpdateBaseAddress; /// $(DOLLAR)9F84
+__gshared ushort* tilemapUpdateRemainingTiles; /// $(DOLLAR)9F86
 __gshared short unknown7E9F88; /// $(DOLLAR)9F88
 __gshared short enemiesInBattle; /// $(DOLLAR)9F8A
 __gshared short[16] enemiesInBattleIDs; /// $(DOLLAR)9F8C

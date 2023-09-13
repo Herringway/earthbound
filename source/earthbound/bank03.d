@@ -1181,10 +1181,10 @@ short showTitleScreen(short arg1) {
 /// $C3F5F9
 void unknownC3F5F9() {
 	short x04 = 0;
-	short x16 = cast(short)(unknown7E9F7E * 2);
+	short size = cast(short)(tilemapUpdateTileCount * 2);
 	for (short i = 0; i < unknown7E9F80; i++) {
-		short x12 = cast(short)(unknown7E9F7C * 32 + unknown7E9F84 + (unknown7E9F7A & 0x1F));
-		copyToVRAM(0, x16, x12, cast(ubyte*)&unknown7E9F86[x04]);
+		short destination = cast(short)(unknown7E9F7C * 32 + tilemapUpdateBaseAddress + (unknown7E9F7A & 0x1F));
+		copyToVRAM(0, size, destination, cast(ubyte*)&tilemapUpdateRemainingTiles[x04]);
 		x04 += unknown7E9F82;
 		if (++unknown7E9F7C == 0x20) {
 			unknown7E9F7C = 0;
@@ -1193,31 +1193,31 @@ void unknownC3F5F9() {
 }
 
 /// $C3F705
-void unknownC3F705(short arg1, short arg2, ushort* arg3) {
-	unknown7E9F86 = &arg3[1];
+void unknownC3F705(short arg1, short arg2, ushort* newTiles) {
+	tilemapUpdateRemainingTiles = &newTiles[1];
 	short x12 = arg1 & 0x3F;
 	unknown7E9F7A = x12;
 	short x10 = arg2 & 0x1F;
 	unknown7E9F7C = x10;
-	unknown7E9F84 = ((x12 & 0x1F) != 0) ? 0x3C00 : 0x3800;
-	short x18 = arg3[0] >> 8;
-	unknown7E9F7E = x18;
-	unknown7E9F80 = arg3[0] & 0xFF;
+	tilemapUpdateBaseAddress = ((x12 & 0x1F) != 0) ? 0x3C00 : 0x3800;
+	short x18 = newTiles[0] >> 8;
+	tilemapUpdateTileCount = x18;
+	unknown7E9F80 = newTiles[0] & 0xFF;
 	if ((x12 & 0xFFE0) == ((x12 + x18) & 0xFFE0)) {
 		unknown7E9F82 = x18;
 		unknownC3F5F9();
 	} else {
 		do {
-			unknown7E9F7E = cast(short)(((x18 + x12) & 0xFFE0) - unknown7E9F7A);
+			tilemapUpdateTileCount = cast(short)(((x18 + x12) & 0xFFE0) - unknown7E9F7A);
 			unknown7E9F82 = x18;
 			unknownC3F5F9();
-			unknown7E9F84 ^= 0x400;
-			unknown7E9F86 = &unknown7E9F86[unknown7E9F7E];
+			tilemapUpdateBaseAddress ^= 0x400;
+			tilemapUpdateRemainingTiles = &tilemapUpdateRemainingTiles[tilemapUpdateTileCount];
 			unknown7E9F7A = 0;
 			unknown7E9F7C = x10;
-			x18 -= unknown7E9F7E;
+			x18 -= tilemapUpdateTileCount;
 		} while (x18 >= 0x20);
-		unknown7E9F7E = x18;
+		tilemapUpdateTileCount = x18;
 		unknown7E9F82 = x18;
 		unknownC3F5F9();
 	}

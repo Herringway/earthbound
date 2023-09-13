@@ -3966,7 +3966,7 @@ void unknownC4880C() {
 	for (x1E = 0; x1E < 6; x1E++, x1C++) {
 		x06 = unknownC4810E(x1C, x06);
 	}
-	for (x1E = 0; x1E < 205; x1E++, x1C++) {
+	for (x1E = 0; x1E < lumineHallText.length - 10; x1E++, x1C++) {
 		x06 = unknownC4810E(x1C, x06);
 	}
 	for (short i = 0; i < 30; i++) {
@@ -4011,7 +4011,7 @@ short unknownC48A6D() {
 		// interesting...
 		x06 += -239;
 	}
-	unknownC3F705(808, 588, cast(ushort*)&buffer[0]);
+	unknownC3F705(0x328, 0x24C, cast(ushort*)&buffer[0]);
 	short x = 0;
 	if (++entityScriptVar1Table[currentEntitySlot] > entityScriptVar0Table[currentEntitySlot]) {
 		x = 1;
