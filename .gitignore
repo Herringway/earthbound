@@ -29,7 +29,6 @@ gamecontrollerdb.txt
 data
 settings.yml
 *.pdb
-*.bin
 *.cgram
 *.oam
 *.oam2
