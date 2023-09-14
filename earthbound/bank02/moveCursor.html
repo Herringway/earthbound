@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Function unknownC4EFC4</title>
+		<title>Function moveCursor</title>
 		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
 		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
 		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
@@ -35,7 +35,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module ">
+					<div class="module selected">
 						<a href="../../earthbound/bank02.html">bank02</a>
 					</div>
 				</li>
@@ -45,7 +45,7 @@ $('#symbolSearchPane').show();</script>
 					</div>
 				</li>
 				<li>
-					<div class="module selected">
+					<div class="module ">
 						<a href="../../earthbound/bank04.html">bank04</a>
 					</div>
 				</li>
@@ -149,21 +149,23 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function unknownC4EFC4</h1><p>$C4EFC4
+			<h1>Function moveCursor</h1><p>$C20B65 - Similar to $C118E7, but doesn't wrap around window edges (arguments unknown)
 </p>
 			<div class="prototype">
 				<code class="lang-d">
 					<div class="single-prototype">
-			<span class="typ">void</span> <span class="pln">unknownC4EFC4</span>
+			<span class="typ">short</span> <span class="pln">moveCursor</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">mode</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">curX</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">count</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">curY</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">address</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">deltaX</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="kwd">const</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)</span><span class="pun">*</span> <span class="pln">data</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">deltaY</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">sfx</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
