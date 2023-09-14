@@ -210,7 +210,7 @@ void queueHDMA(const DMAChannel channel, scope HDMAWrite[] buffer, ref ushort nu
 			data++;
 		}
 	}
-	debug(printHDMA) tracef("Performing HDMA (mode: %s, indirect: %s, dest: %04X, autoinc: %s, dec: %s)", mode, indirect, channel.BBAD + 0x2100, autoIncrement, decrement);
+	debug(printHDMA) tracef("Performing HDMA (mode: %s, indirect: %s, dest: %04X, fixed: %s, dec: %s)", mode, indirect, channel.BBAD + 0x2100, fixedTransfer, decrement);
 }
 
 unittest {
