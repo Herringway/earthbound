@@ -1243,6 +1243,7 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/loadBattleSprite.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loadEnemyBattleSprites.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/loseHPStatus.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/bank02/magicButterflyRecovery.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/missCalc.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/moveCursor.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/nameEntryGridCharacterOffsetTable.html</loc></url>
@@ -1344,7 +1345,6 @@
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC24348.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC24434.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC26189.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/bank02/unknownC2654C.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC290C6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2BCB9.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/bank02/unknownC2BD13.html</loc></url>
