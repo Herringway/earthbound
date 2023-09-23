@@ -2350,7 +2350,7 @@ immutable ubyte[10][5] miscTargetText = [
 /// $C4
 immutable ubyte[5] phoneCallText = ebString!5("Call:");
 
-/// $C45860
+/// $C4599A
 uint getRequiredEXP(short character) {
 	character--;
 	if (partyCharacters[character].level == maxLevel) {

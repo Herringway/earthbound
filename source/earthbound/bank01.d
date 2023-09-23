@@ -6453,22 +6453,29 @@ void levelUpChar(short arg1, short arg2) {
 }
 
 /// $C1D9E9
-void gainEXP(short arg1, short arg2, uint exp) {
-	partyCharacters[arg1 - 1].exp += exp;
-	if (partyCharacters[arg1 - 1].level > 99) {
+void gainEXP(short character, short arg2, uint exp) {
+	partyCharacters[character - 1].exp += exp;
+	if (partyCharacters[character - 1].level >= 99) {
 		return;
 	}
-	if (expTable[arg1 - 1][partyCharacters[arg1 - 1].level + 1] < partyCharacters[arg1 - 1].exp) {
+	if (expTable[character - 1][partyCharacters[character - 1].level + 1] <= partyCharacters[character - 1].exp) {
 		if (arg2 != 0) {
 			changeMusic(Music.levelUp);
 		}
-		while (expTable[arg1 - 1][partyCharacters[arg1 - 1].level + 1] < partyCharacters[arg1 - 1].exp) {
-			levelUpChar(arg1, arg2);
-			if (partyCharacters[arg1 - 1].level > 99) {
+		while (expTable[character - 1][partyCharacters[character - 1].level + 1] <= partyCharacters[character - 1].exp) {
+			levelUpChar(character, arg2);
+			if (partyCharacters[character - 1].level >= 99) {
 				return;
 			}
 		}
 	}
+}
+
+unittest {
+	gainEXP(1, 1, 4);
+	assert(partyCharacters[0].level == 2);
+	gainEXP(1, 1, 99999999);
+	assert(partyCharacters[0].level == 99);
 }
 
 /// $C1DB33
