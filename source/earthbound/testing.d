@@ -44,7 +44,7 @@ void runGameTest(alias fun)(FrameTestFunction perFrameTests, DemoEntry[] demo = 
 	frameTestDelegate = perFrameTests;
 	waitForInterrupt = &interruptFunction;
 	scope(exit) {
-		waitForInterrupt = null;
+		waitForInterrupt = () {};
 		frameTestDelegate = null;
 	}
 
