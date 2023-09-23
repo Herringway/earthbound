@@ -14,7 +14,8 @@ void demoReplayStart(DemoEntry[] demo)
 
 alias FrameTestFunction = void delegate(uint);
 private FrameTestFunction frameTestDelegate;
-private void initHardware() {
+void initializeForTesting() {
+	waitForInterrupt = &irqNMICommon;
 	dmaQueueIndex = 0;
 
 	INIDISP = 0x80;
@@ -41,6 +42,8 @@ void runGameTest(alias fun)(FrameTestFunction perFrameTests, DemoEntry[] demo = 
 		frameTestDelegate(frame++);
 	}
 
+	initializeForTesting();
+
 	frameTestDelegate = perFrameTests;
 	waitForInterrupt = &interruptFunction;
 	scope(exit) {
@@ -48,13 +51,12 @@ void runGameTest(alias fun)(FrameTestFunction perFrameTests, DemoEntry[] demo = 
 		frameTestDelegate = null;
 	}
 
-	initHardware();
-
 	if (demo) {
 		demoReplayStart(demo);
 	}
 
 	fun();
+	demoRecordingEnd();
 }
 
 unittest {

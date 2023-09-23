@@ -20,6 +20,7 @@ import earthbound.bank1F;
 import earthbound.bank20;
 import earthbound.bank21;
 import earthbound.bank2F;
+import earthbound.testing;
 import core.stdc.string;
 import core.bitop;
 import std.experimental.logger;
@@ -8415,6 +8416,7 @@ short findPathToParty(short partyCount, short arg2, short arg3) {
 
 unittest {
 	if (romDataLoaded) {
+		initializeForTesting();
 		currentHeapAddress = &heap[0][0];
 		heapBaseAddress = &heap[0][0];
 
