@@ -3267,7 +3267,7 @@ void instantWinHandler() {
 }
 
 /// $C2654C
-void unknownC2654C() {
+void magicButterflyRecovery() {
 	playSfx(Sfx.recoverHP);
 	for (short i = 0; i < 2; i++) {
 		memcpy(&buffer[0], &palettes[0][0], 0x200);
@@ -3283,12 +3283,26 @@ void unknownC2654C() {
 	}
 	for (short i = 0; i < 6; i++) {
 		if ((gameState.partyMembers[i] == 1) || (gameState.partyMembers[i] == 2) || (gameState.partyMembers[i] == 4)) {
-			partyCharacters[gameState.partyMembers[i]].pp.target += 20;
-			if (partyCharacters[gameState.partyMembers[i]].pp.target > partyCharacters[gameState.partyMembers[i]].maxPP) {
-				partyCharacters[gameState.partyMembers[i]].pp.target = partyCharacters[gameState.partyMembers[i]].maxPP;
+			partyCharacters[gameState.partyMembers[i] - 1].pp.target += 20;
+			if (partyCharacters[gameState.partyMembers[i] - 1].pp.target > partyCharacters[gameState.partyMembers[i] - 1].maxPP) {
+				partyCharacters[gameState.partyMembers[i] - 1].pp.target = partyCharacters[gameState.partyMembers[i] - 1].maxPP;
 			}
 		}
 	}
+}
+
+unittest {
+	gameState.partyMembers = [1, 2, 3, 4, 0, 0];
+	partyCharacters[0].maxPP = 300;
+	partyCharacters[0].pp.target = 0;
+	partyCharacters[1].maxPP = 300;
+	partyCharacters[1].pp.target = 0;
+	partyCharacters[3].maxPP = 300;
+	partyCharacters[3].pp.target = 0;
+	magicButterflyRecovery();
+	assert(partyCharacters[0].pp.target == 20);
+	assert(partyCharacters[1].pp.target == 20);
+	assert(partyCharacters[3].pp.target == 20);
 }
 
 /// $C26634
