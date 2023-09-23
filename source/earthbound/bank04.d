@@ -6697,11 +6697,11 @@ unittest {
 		gameState.leaderX.integer = 0x782; // approx middle of downtown onett
 		gameState.leaderY.integer = 0x5C7;
 		runGameTest!displayTownMap((frame) {
-			// skip the first frame, where the map hasn't loaded yet
-			if (frame < 1) {
+			// skip the first three frames, where the map hasn't loaded yet
+			if (frame < 3) {
 				return;
 			}
-			frame -= 1;
+			frame -= 3;
 			// the player's icon pulsates, and the size changes along with it for about 9 frames out of every 60 frames
 			if ((frame > 60 - 10) && (frame < 60)) {
 				assert(priority0SpriteX[0] == 120);

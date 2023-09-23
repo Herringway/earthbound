@@ -36,9 +36,9 @@ void runGameTest(alias fun)(FrameTestFunction perFrameTests, string demo) {
 }
 void runGameTest(alias fun)(FrameTestFunction perFrameTests, DemoEntry[] demo = [DemoEntry.init]) {
 	static void interruptFunction() {
-		static uint frame;
+		static uint frame = 0;
 		irqNMICommon();
-		frameTestDelegate(frame);
+		frameTestDelegate(frame++);
 	}
 
 	frameTestDelegate = perFrameTests;
