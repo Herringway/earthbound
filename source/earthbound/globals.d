@@ -767,8 +767,8 @@ __gshared ubyte[8] battlerFrontRowXPositions; /// $(DOLLAR)AD5A
 __gshared ubyte[8] battlerFrontRowYPositions; /// $(DOLLAR)AD62
 __gshared ubyte[8] battlerBackRowXPositions; /// $(DOLLAR)AD6A
 __gshared ubyte[8] battlerBackRowYPositions; /// $(DOLLAR)AD72
-__gshared ubyte[8] backRowBattlers; /// $(DOLLAR)AD7A
-__gshared ubyte[8] frontRowBattlers; /// $(DOLLAR)AD82
+__gshared ubyte[8] frontRowBattlers; /// $(DOLLAR)AD7A
+__gshared ubyte[8] backRowBattlers; /// $(DOLLAR)AD82
 __gshared short currentLayerConfig; /// $(DOLLAR)AD8A
 __gshared short verticalShakeDuration; /// $(DOLLAR)AD8C
 __gshared short verticalShakeHoldDuration; /// $(DOLLAR)AD8E

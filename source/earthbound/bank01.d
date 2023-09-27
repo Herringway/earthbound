@@ -1208,39 +1208,59 @@ short getNextTargetRight(short row, short position, short action) {
 
 /// $C12070
 short getNextTargetLeft(short row, short position, short action) {
-	ubyte* x04;
-	short x;
-	if (row == Row.front) {
-		x = numBattlersInFrontRow;
-		x04 = &battlerFrontRowXPositions[x - 1];
-	} else {
-		x = numBattlersInBackRow;
-		x04 = &battlerBackRowXPositions[x - 1];
-	}
-	for (short i = cast(short)(x - 1); i + 1 != 0; i--) {
-		if ((x04--)[0] < position) {
-			if (getTargettingAllowed(row, i, action) != 0) {
-				return i;
+	version(noUndefinedBehaviour) {
+		short numBattlersInRow;
+		ubyte[] battlerRowXPositions;
+		if (row == Row.front) {
+			numBattlersInRow = numBattlersInFrontRow;
+			battlerRowXPositions = battlerFrontRowXPositions;
+		} else {
+			numBattlersInRow = numBattlersInBackRow;
+			battlerRowXPositions = battlerBackRowXPositions;
+		}
+		for (short i = cast(short)(numBattlersInRow - 1); i >= 0; i--) {
+			if (battlerRowXPositions[i] < position) {
+				if (getTargettingAllowed(row, i, action) != 0) {
+					return i;
+				}
 			}
 		}
+		return -1;
+	} else {
+		ubyte* x04;
+		short numBattlersInRow;
+		if (row == Row.front) {
+			numBattlersInRow = numBattlersInFrontRow;
+			x04 = &battlerFrontRowXPositions[numBattlersInRow - 1];
+		} else {
+			numBattlersInRow = numBattlersInBackRow;
+			x04 = &battlerBackRowXPositions[numBattlersInRow - 1];
+		}
+		for (short i = cast(short)(numBattlersInRow - 1); i + 1 != 0; i--) {
+			if ((x04--)[0] < position) {
+				if (getTargettingAllowed(row, i, action) != 0) {
+					return i;
+				}
+			}
+		}
+		return -1;
 	}
-	return -1;
 }
 
 /// $C120D6
-void printTargetName(short arg1, short arg2) {
+void printTargetName(short row, short target) {
 	setInstantPrinting();
 	createWindowN(Window.unknown31);
 	printString(battleToText.length, &battleToText[0]);
-	if (arg2 != -1) {
-		unknownC23E8A(cast(short)(arg1 * numBattlersInFrontRow + arg2 + 1));
+	if (target != -1) {
+		unknownC23E8A(cast(short)(row * numBattlersInFrontRow + target + 1));
 		printBattlerArticle(0);
 		printString(0xFF, getBattleAttackerName());
-		ubyte* x12 = (arg1 != 0) ? &battlersTable[frontRowBattlers[arg2]].afflictions[0] : &battlersTable[backRowBattlers[arg2]].afflictions[0];
+		ubyte* x12 = (row != Row.front) ? &battlersTable[backRowBattlers[target]].afflictions[0] : &battlersTable[frontRowBattlers[target]].afflictions[0];
 		moveCurrentTextCursor(0x11, 0);
 		unknownC43F77(unknownC223D9(x12, 0));
 	} else {
-		printString(13, (arg1 != 0) ? &battleBackRowText[0] : &battleFrontRowText[0]);
+		printString(13, (row != Row.front) ? &battleBackRowText[0] : &battleFrontRowText[0]);
 	}
 	clearInstantPrinting();
 }
@@ -1267,7 +1287,7 @@ short pickTargetSingle(short arg1, short action) {
 		windowTick();
 		NoButtonPressed:
 		windowTickMinimal();
-		if ((((padPress[0] & Pad.up) == 0) || (row != 0) || (numBattlersInBackRow == 0)) && (((padPress[0] & Pad.down) == 0) || (row != 1) || (numBattlersInFrontRow == 0))) {
+		if ((((padPress[0] & Pad.up) == 0) || (row != Row.front) || (numBattlersInBackRow == 0)) && (((padPress[0] & Pad.down) == 0) || (row != Row.back) || (numBattlersInFrontRow == 0))) {
 			cursorSFX = Sfx.cursor2;
 			if ((padPress[0] & Pad.left) != 0) {
 				tmpRow = row;

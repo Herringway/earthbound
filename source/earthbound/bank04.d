@@ -1312,11 +1312,11 @@ void rowEnemyFlashingOff() {
 	if (unknown7E89CE == -1) {
 		return;
 	}
-	for (short i = 0; i < (unknown7E89CE != 0) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
-		if (unknown7E89CE != 0) {
-			battlersTable[frontRowBattlers[i]].isFlashing = 0;
-		} else {
+	for (short i = 0; i < (unknown7E89CE != Row.front) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
+		if (unknown7E89CE != Row.front) {
 			battlersTable[backRowBattlers[i]].isFlashing = 0;
+		} else {
+			battlersTable[frontRowBattlers[i]].isFlashing = 0;
 		}
 	}
 	enemyTargettingFlashing = 0;
@@ -1330,11 +1330,11 @@ void rowEnemyFlashingOn(short arg1) {
 		rowEnemyFlashingOff();
 	}
 	unknown7E89CE = arg1;
-	for (short i = 0; i < (unknown7E89CE != 0) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
-		if (unknown7E89CE != 0) {
-			battlersTable[frontRowBattlers[i]].isFlashing = 1;
-		} else {
+	for (short i = 0; i < (unknown7E89CE != Row.front) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
+		if (unknown7E89CE != Row.front) {
 			battlersTable[backRowBattlers[i]].isFlashing = 1;
+		} else {
+			battlersTable[frontRowBattlers[i]].isFlashing = 1;
 		}
 	}
 	enemyTargettingFlashing = 1;

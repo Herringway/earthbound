@@ -545,7 +545,7 @@ void printBattlerArticle(short target) {
 			printAttackerArticle = 0;
 			return;
 		}
-		if (printAttackerArticle == 0) {
+		if (printAttackerArticle != 0) {
 			return;
 		}
 		enemyID = attackerEnemyID;
@@ -554,7 +554,7 @@ void printBattlerArticle(short target) {
 			printTargetArticle = 0;
 			return;
 		}
-		if (printTargetArticle == 0) {
+		if (printTargetArticle != 0) {
 			return;
 		}
 		enemyID = targetEnemyID;
