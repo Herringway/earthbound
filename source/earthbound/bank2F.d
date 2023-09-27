@@ -23,10 +23,10 @@ void singleEnemyFlashingOff() {
 	if (unknown7E89D0 == -1) {
 		return;
 	}
-	if (unknown7E89D2 != 0) {
-		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 0;
-	} else {
+	if (unknown7E89D2 != Row.front) {
 		battlersTable[backRowBattlers[unknown7E89D0]].isFlashing = 0;
+	} else {
+		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 0;
 	}
 	enemyTargettingFlashing = 0;
 	unknown7E89D0 = -1;
@@ -40,10 +40,10 @@ void singleEnemyFlashingOn(short arg1, short arg2) {
 	}
 	unknown7E89D0 = arg2;
 	unknown7E89D2 = arg1;
-	if (arg1 != 0) {
-		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 1;
-	} else {
+	if (arg1 != Row.front) {
 		battlersTable[backRowBattlers[unknown7E89D0]].isFlashing = 1;
+	} else {
+		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 1;
 	}
 	enemyTargettingFlashing = 1;
 	redrawAllWindows = 1;

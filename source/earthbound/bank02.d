@@ -1913,9 +1913,9 @@ void unknownC23E8A(short arg1) {
 	short x02;
 	memset(&unknown7EA9B9[0], 0, unknown7EA9B9.length);
 	if (arg1 > numBattlersInFrontRow) {
-		x02 = frontRowBattlers[arg1 - numBattlersInFrontRow - 1];
+		x02 = backRowBattlers[arg1 - numBattlersInFrontRow - 1];
 	} else {
-		x02 = backRowBattlers[arg1 - 1];
+		x02 = frontRowBattlers[arg1 - 1];
 	}
 	ubyte* x12 = copyEnemyName(&enemyConfigurationTable[battlersTable[x02].id].name[0], &unknown7EA9B9[0], unknown7EA9B9.length);
 	if ((battlersTable[x02].suffixLetter != 1) || (getNextAvailableEnemyLetter(battlersTable[x02].originalID) != 2)) {
@@ -2138,20 +2138,20 @@ void removeUsedItem() {
 short unknownC24434(Battler* arg1) {
 	arg1.currentTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInFrontRow + numBattlersInBackRow)) + 1);
 	if (arg1.currentTarget > numBattlersInFrontRow) {
-		return frontRowBattlers[arg1.currentTarget - numBattlersInFrontRow - 1];
+		return backRowBattlers[arg1.currentTarget - numBattlersInFrontRow - 1];
 	}
-	return backRowBattlers[arg1.currentTarget - 1];
+	return frontRowBattlers[arg1.currentTarget - 1];
 }
 
 /// $C24477
 void chooseTarget(Battler* arg1) {
 	for (short i = 0; i < numBattlersInFrontRow; i++) {
-		if (checkIfValidTarget(backRowBattlers[i]) == 0) {
+		if (checkIfValidTarget(frontRowBattlers[i]) == 0) {
 			goto Unknown4;
 		}
 	}
 	for (short i = 0; i < numBattlersInBackRow; i++) {
-		if (checkIfValidTarget(frontRowBattlers[i]) == 0) {
+		if (checkIfValidTarget(backRowBattlers[i]) == 0) {
 			goto Unknown4;
 		}
 	}
@@ -2209,13 +2209,14 @@ void chooseTarget(Battler* arg1) {
 						}
 					}
 				} else {
-					arg1.currentTarget = (rand() & 7) + 1;
-					if (checkIfValidTarget(arg1.currentTarget - 1) != 0) {
-						return;
+					while (true) {
+						arg1.currentTarget = (rand() & 7) + 1;
+						if (checkIfValidTarget(arg1.currentTarget - 1) != 0) {
+							return;
+						}
 					}
 				}
 			}
-			break;
 		case ActionTarget.row:
 			arg1.actionTargetting |= Targetted.row;
 			if (arg1.side == BattleSide.foes) {
@@ -2253,9 +2254,9 @@ void resolveTargetting(Battler* battler) {
 			break;
 		case Targetted.enemies | Targetted.single:
 			if (battler.currentTarget > numBattlersInFrontRow) {
-				targetBattler(frontRowBattlers[battler.currentTarget - numBattlersInFrontRow - 1]);
+				targetBattler(backRowBattlers[battler.currentTarget - numBattlersInFrontRow - 1]);
 			} else {
-				targetBattler(backRowBattlers[battler.currentTarget - 1]);
+				targetBattler(frontRowBattlers[battler.currentTarget - 1]);
 			}
 			if (battler.currentAction == BattleActions.psiHealingOmega) {
 				for (short i = 8; i < battlersTable.length; i++) {
@@ -8248,8 +8249,8 @@ void drawBattleSprites() {
 /// $C2F917
 void unknownC2F917() {
 	short x0E;
-	numBattlersInBackRow = 0;
 	numBattlersInFrontRow = 0;
+	numBattlersInBackRow = 0;
 	for (short i = 8; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
@@ -8279,7 +8280,7 @@ void unknownC2F917() {
 			if (battlersTable[j].side != BattleSide.foes) {
 				continue;
 			}
-			if (battlersTable[j].row != 0) {
+			if (battlersTable[j].row != Row.front) {
 				continue;
 			}
 			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX <= x04)) {
@@ -8287,7 +8288,7 @@ void unknownC2F917() {
 				x04 = battlersTable[j].spriteX;
 			}
 		}
-		backRowBattlers[i] = cast(ubyte)(x0E);
+		frontRowBattlers[i] = cast(ubyte)(x0E);
 		battlerFrontRowXPositions[i] = cast(ubyte)(x04 / 8);
 		battlerFrontRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
 		x10 = x04;
@@ -8305,7 +8306,7 @@ void unknownC2F917() {
 			if (battlersTable[j].side != BattleSide.foes) {
 				continue;
 			}
-			if (battlersTable[j].row == 0) {
+			if (battlersTable[j].row == Row.front) {
 				continue;
 			}
 			if ((battlersTable[j].spriteX > x10) && (battlersTable[j].spriteX <= x04)) {
@@ -8313,7 +8314,7 @@ void unknownC2F917() {
 				x04 = battlersTable[j].spriteX;
 			}
 		}
-		frontRowBattlers[i] = cast(ubyte)(x0E);
+		backRowBattlers[i] = cast(ubyte)(x0E);
 		battlerBackRowXPositions[i] = cast(ubyte)(x04 / 8);
 		battlerBackRowYPositions[i] = cast(ubyte)(18 - getBattleSpriteHeight(battlersTable[x0E].sprite));
 		x10 = x04;
