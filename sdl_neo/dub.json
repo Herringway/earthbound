@@ -1,0 +1,27 @@
+{
+	"name": "sdl_neo",
+	"description": "SDL port",
+	"dependencies": {
+		"bindbc-sdl": "~>1.4.1",
+		"siryul": "~>0.6",
+		"earthbound": "*",
+		"nspcplay": "~>0.9",
+		"d_imgui": "~>1.89.0"
+	},
+	"dflags": ["-allinst"],
+	"configurations": [
+		{
+			"name": "standard",
+			"targetType": "executable"
+		},
+		{
+			"name": "full",
+			"targetType": "executable",
+			"sourceFiles-windows": ["earthbound.res"]
+		}
+	],
+	"subConfigurations": {
+		"earthbound": "extra"
+	},
+	"versions": ["sdl", "SDL_2018", "SDL_Mixer_200"]
+}
