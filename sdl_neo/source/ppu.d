@@ -1,10 +1,3 @@
-import core.stdc.stdio;
-import core.stdc.stdlib;
-import core.stdc.string;
-import core.stdc.stdint;
-import core.stdc.stddef;
-import core.stdc.assert_;
-
 /**
  * MIT License
 
@@ -152,7 +145,7 @@ struct PPU {
 
 
 	void reset() {
-		memset(&vram[0], 0, vram.sizeof);
+		vram[] = 0;
 		lastBrightnessMult = 0xff;
 		lastMosaicModulo = 0xff;
 		extraLeftCur = 0;
@@ -161,32 +154,32 @@ struct PPU {
 		vramPointer = 0;
 		vramIncrementOnHigh = false;
 		vramIncrement = 1;
-		memset(&cgram[0], 0, cgram.sizeof);
+		cgram[] = 0;
 		cgramPointer = 0;
 		cgramSecondWrite = false;
 		cgramBuffer = 0;
-		memset(&oam[0], 0, oam.sizeof);
+		oam[] = 0;
 		oamAdr = 0;
 		oamSecondWrite = false;
 		oamBuffer = 0;
 		objTileAdr1 = 0x4000;
 		objTileAdr2 = 0x5000;
 		objSize = 0;
-		memset(&objBuffer, 0, objBuffer.sizeof);
-		for (int i = 0; i < 4; i++) {
-			bgLayer[i].hScroll = 0;
-			bgLayer[i].vScroll = 0;
-			bgLayer[i].tilemapWider = false;
-			bgLayer[i].tilemapHigher = false;
-			bgLayer[i].tilemapAdr = 0;
-			bgLayer[i].tileAdr = 0;
+		objBuffer.data[] = 0;
+		foreach (ref layer; bgLayer) {
+			layer.hScroll = 0;
+			layer.vScroll = 0;
+			layer.tilemapWider = false;
+			layer.tilemapHigher = false;
+			layer.tilemapAdr = 0;
+			layer.tileAdr = 0;
 		}
 		scrollPrev = 0;
 		scrollPrev2 = 0;
 		mosaicSize = 1;
 		screenEnabled[0] = screenEnabled[1] = 0;
 		screenWindowed[0] = screenWindowed[1] = 0;
-		memset(&m7matrix[0], 0, m7matrix.sizeof);
+		m7matrix[] = 0;
 		m7prev = 0;
 		m7largeField = true;
 		m7charFill = false;
@@ -221,9 +214,9 @@ struct PPU {
 		func(ctx, &cgram[0], 512);
 		func(ctx, &tmp[0], 556);
 		func(ctx, &tmp[0], 520);
-		for (int i = 0; i < 4; i++) {
+		foreach (layer; bgLayer) {
 			func(ctx, &tmp[0], 4);
-			func(ctx, &bgLayer[i].tilemapWider, 4);
+			func(ctx, &layer.tilemapWider, 4);
 			func(ctx, &tmp[0], 4);
 		}
 		func(ctx, &tmp[0], 123);
@@ -248,11 +241,11 @@ struct PPU {
 				brightnessMultHalf[i * 2] = brightnessMultHalf[i * 2 + 1] = brightnessMult[i] = cast(ubyte)(((i << 3) | (i >> 2)) * ppu_brightness / 15);
 			}
 			// Store 31 extra entries to remove the need for clamping to 31.
-			memset(&brightnessMult[32], brightnessMult[31], 31);
+			brightnessMult[32 .. 63] = brightnessMult[31];
 		}
 
 		if (getCurrentRenderScale(renderFlags) == 4) {
-			for (int i = 0; i < 256; i++) {
+			for (int i = 0; i < colorMapRgb.length; i++) {
 				uint color = cgram[i];
 				colorMapRgb[i] = brightnessMult[color & 0x1f] << 16 | brightnessMult[(color >> 5) & 0x1f] << 8 | brightnessMult[(color >> 10) & 0x1f];
 			}
@@ -282,7 +275,7 @@ struct PPU {
 
 			// outside of visible range?
 			if (line >= 225 + extraBottomCur) {
-				memset(&renderBuffer[(line - 1) * renderPitch], 0, uint.sizeof * (256 + extraLeftRight * 2));
+				renderBuffer[(line - 1) * renderPitch .. (line - 1) * renderPitch + uint.sizeof * (256 + extraLeftRight * 2)] = 0;
 				return;
 			}
 
@@ -298,8 +291,8 @@ struct PPU {
 
 				ubyte *dst = renderBuffer + ((line - 1) * renderPitch);
 				if (extraLeftRight != 0) {
-					memset(dst, 0, uint.sizeof * extraLeftRight);
-					memset(dst + uint.sizeof * (256 + extraLeftRight), 0, uint.sizeof * extraLeftRight);
+					dst[0 .. uint.sizeof * extraLeftRight] = 0;
+					dst[uint.sizeof * (256 + extraLeftRight) .. uint.sizeof * (257 + extraLeftRight)] = 0;
 				}
 			}
 		}
@@ -828,7 +821,7 @@ struct PPU {
 			PpuZbufType *src = &objBuffer.data[left + kPpuExtraLeftRight];
 			PpuZbufType *dst = &bgBuffers[sub].data[left + kPpuExtraLeftRight];
 			if (clear_backdrop) {
-				memcpy(dst, src, width * ushort.sizeof);
+				dst[0 .. width * ushort.sizeof] = src[0 .. width * ushort.sizeof];
 			} else {
 				do {
 					if (src[0] > dst[0]) {
@@ -1030,13 +1023,14 @@ struct PPU {
 		if (extraLeftRight - extraLeftCur != 0) {
 			size_t n = 4 * uint.sizeof * (extraLeftRight - extraLeftCur);
 			for(int i = 0; i < 4; i++) {
-				memset(render_buffer_ptr + pitch * i, 0, n);
+				render_buffer_ptr[pitch * i .. pitch * i + n] = 0;
 			}
 		}
 		if (extraLeftRight - extraRightCur != 0) {
 			size_t n = 4 * uint.sizeof * (extraLeftRight - extraRightCur);
 			for (int i = 0; i < 4; i++) {
-				memset(render_buffer_ptr + pitch * i + (256 + extraLeftRight * 2 - (extraLeftRight - extraRightCur)) * 4 * uint.sizeof, 0, n);
+				const start = pitch * i + (256 + extraLeftRight * 2 - (extraLeftRight - extraRightCur)) * 4 * uint.sizeof;
+				render_buffer_ptr[start .. start + n] = 0;
 			}
 		}
 	}
@@ -1092,7 +1086,7 @@ struct PPU {
 		if (forcedBlank) {
 			ubyte *dst = &renderBuffer[(y - 1) * renderPitch];
 			size_t n = uint.sizeof * (256 + extraLeftRight * 2);
-			memset(dst, 0, n);
+			dst[0 .. n] = 0;
 			return;
 		}
 
@@ -1193,11 +1187,11 @@ struct PPU {
 
 		// Clear out stuff on the sides.
 		if (extraLeftRight - extraLeftCur != 0) {
-			memset(dst_org, 0, uint.sizeof * (extraLeftRight - extraLeftCur));
+			dst_org[0 .. uint.sizeof * (extraLeftRight - extraLeftCur)] = 0;
 		}
 		if (extraLeftRight - extraRightCur != 0) {
-			memset(dst_org + (256 + extraLeftRight * 2 - (extraLeftRight - extraRightCur)), 0,
-					uint.sizeof * (extraLeftRight - extraRightCur));
+			const start = 256 + extraLeftRight * 2 - (extraLeftRight - extraRightCur);
+			dst_org[start .. start + uint.sizeof * (extraLeftRight - extraRightCur)] = 0;
 		}
 	}
 
