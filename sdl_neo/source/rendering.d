@@ -65,7 +65,6 @@ private int gameHeight;
 
 void loadRenderer() {
     enforceSDLLoaded!("SDL", SDL_GetVersion, libName)(loadSDL());
-	renderer.reset();
 	renderer.extraLeftRight = (ImgW - 256) / 2;
 	renderer.setExtraSideSpace((ImgW - 256) / 2, (ImgW - 256) / 2, (ImgH - 224) / 2);
 	enforceSDL(SDL_Init(SDL_INIT_VIDEO) == 0, "Error initializing SDL");
@@ -171,7 +170,7 @@ void renderGame() {
 	ubyte* drawBuffer;
 	int drawPitch;
 	SDL_LockTexture(drawTexture, null, cast(void**)&drawBuffer, &drawPitch);
-	renderFrame(drawBuffer, drawPitch);
+	renderFrame(drawBuffer[0 .. ImgH * drawPitch], drawPitch);
 	SDL_UnlockTexture(drawTexture);
 
 	SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
@@ -325,7 +324,7 @@ SDL_Texture* createTexture(scope const ubyte[] data, int width, int height) {
 
 void dumpScreen(string path) {
 	auto frame = new ubyte[](ImgW * ImgH * 4);
-	renderFrame(&frame[0], ImgW * uint.sizeof);
+	renderFrame(frame[], ImgW * uint.sizeof);
 	auto surface = SDL_CreateRGBSurfaceFrom(&frame[0], ImgW, ImgH, 32, ImgW * uint.sizeof, 0xFF << 16, 0xFF << 8, 0xFF, 0xFF << 24);
 	enforceSDL(surface != null, "Failed to create surface");
 	SDL_SaveBMP(surface, path.toStringz);
@@ -333,7 +332,7 @@ void dumpScreen(string path) {
 	SDL_FreeSurface(surface);
 }
 
-void renderFrame(ubyte* drawBuffer, size_t pitch) {
+void renderFrame(ubyte[] drawBuffer, size_t pitch) {
 	renderer.beginDrawing(drawBuffer, pitch, KPPURenderFlags.newRenderer);
 	HDMAWrite[] hdmaTemp = hdmaData[0 .. numHDMA];
 	foreach (i; 0 .. ImgH) {
