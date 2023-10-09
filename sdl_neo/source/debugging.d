@@ -88,7 +88,7 @@ void prepareDebugUI(size_t width, size_t height) {
 		renderDebugWindow(0, debugMenuHeight - 1, width, height);
 	}
 	if (state.editingVRAM) {
-		memoryEditor.DrawWindow("VRAM", ppuI.vram);
+		memoryEditor.DrawWindow("VRAM", renderer.vram);
 		state.editingVRAM = memoryEditor.Open;
 	}
 	if (state.editingBuffer) {
@@ -966,9 +966,9 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			const texHeight = 0x8000 / 16 / 16 * 8;
 			static ubyte[2 * texWidth * texHeight] data;
 			auto pixels = cast(ushort[])(data[]);
-			ushort[16] palette = ppuI.cgram[paletteID * 16 .. (paletteID + 1) * 16];
+			ushort[16] palette = renderer.cgram[paletteID * 16 .. (paletteID + 1) * 16];
 			palette[] &= 0x7FFF;
-			foreach (idx, tile; ppuI.vram[].chunks(16).enumerate) {
+			foreach (idx, tile; renderer.vram[].chunks(16).enumerate) {
 				const base = (idx % 16) * 8 + (idx / 16) * texWidth * 8;
 				foreach (p; 0 .. 8 * 8) {
 					const px = p % 8;
@@ -1298,10 +1298,10 @@ void dumpVRAMToDir(string basePath) {
 	import std.stdio : File;
 	static int dumpVramCount = 0;
 	//File(buildPath(basePath, format!"gfxstate%03d.regs"(dumpVramCount)), "wb").rawWrite(g_frameData.getRegistersConst());
-	File(buildPath(basePath, format!"gfxstate%03d.vram"(dumpVramCount)), "wb").rawWrite(ppuI.vram);
-	File(buildPath(basePath, format!"gfxstate%03d.cgram"(dumpVramCount)), "wb").rawWrite(ppuI.cgram);
-	File(buildPath(basePath, format!"gfxstate%03d.oam"(dumpVramCount)), "wb").rawWrite(ppuI.oam);
-	//File(buildPath(basePath, format!"gfxstate%03d.hdma"(dumpVramCount)), "wb").rawWrite(ppuI.getValidHdmaDataConst());
+	File(buildPath(basePath, format!"gfxstate%03d.vram"(dumpVramCount)), "wb").rawWrite(renderer.vram);
+	File(buildPath(basePath, format!"gfxstate%03d.cgram"(dumpVramCount)), "wb").rawWrite(renderer.cgram);
+	File(buildPath(basePath, format!"gfxstate%03d.oam"(dumpVramCount)), "wb").rawWrite(renderer.oam);
+	//File(buildPath(basePath, format!"gfxstate%03d.hdma"(dumpVramCount)), "wb").rawWrite(renderer.getValidHdmaDataConst());
 	dumpVramCount++;
 }
 

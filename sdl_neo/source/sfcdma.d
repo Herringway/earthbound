@@ -34,7 +34,7 @@ void handleOAMDMA(ubyte dmap, ubyte bbad, const(void)* a1t, ushort das, ushort o
 	ubyte* dest, wrapAt, wrapTo;
 	int transferSize = 1, srcAdjust = 0, dstAdjust = 0;
 
-	wrapTo = cast(ubyte *)(&ppuI.oam);
+	wrapTo = cast(ubyte *)(&renderer.oam);
 	dest = wrapTo + (oamaddr << 1);
 	wrapAt = wrapTo + 0x220;
 
@@ -50,7 +50,7 @@ void handleCGRAMDMA(ubyte dmap, ubyte bbad, const(void)* a1t, ushort das, ushort
 	ubyte* dest, wrapAt, wrapTo;
 	int transferSize = 1, srcAdjust = 0, dstAdjust = 0;
 	// Dest is CGRAM
-	wrapTo = cast(ubyte *)(&ppuI.cgram);
+	wrapTo = cast(ubyte *)(&renderer.cgram);
 	dest = wrapTo + (cgadd << 1);
 	wrapAt = wrapTo + 0x200;
 
@@ -90,7 +90,7 @@ void handleVRAMDMA(ubyte dmap, ubyte bbad, const(void)* a1t, ushort das, ushort 
 	// - writing byte to $2119 and increment after writing $2119
 	// - writing byte to $2118 and increment after writing $2118
 	assert((vmain & 0x80) || (!hibyte && transferSize == 1));
-	wrapTo = cast(ubyte *)(&ppuI.vram);
+	wrapTo = cast(ubyte *)(&renderer.vram);
 	dest = wrapTo + ((vmaddr << 1) + (hibyte ? 1 : 0));
 	wrapAt = wrapTo + 0x10000;
 	// If the "Fixed Transfer" bit is set, transfer same data repeatedly
@@ -104,11 +104,11 @@ unittest {
 	import std.range : iota;
 	immutable ubyte[100] testSource = [aliasSeqOf!(iota(0, 100))];
 	handleVRAMDMA(0x01, 0x18, &testSource[0], 100, 0, 0x80);
-	assert(cast(ubyte[])ppuI.vram[0 .. 50] == testSource);
+	assert(cast(ubyte[])renderer.vram[0 .. 50] == testSource);
 	immutable ubyte[2] testFixedHigh = [0x30, 0];
 	handleVRAMDMA(0x08, 0x19, &testFixedHigh[0], 0x400, 0x5800, 0x80);
-	assert(cast(ubyte[])ppuI.vram[0 .. 50] == testSource);
-	assert((cast(ubyte[])ppuI.vram)[0xB001] == 0x30);
+	assert(cast(ubyte[])renderer.vram[0 .. 50] == testSource);
+	assert((cast(ubyte[])renderer.vram)[0xB001] == 0x30);
 }
 
 void handleHDMA() {

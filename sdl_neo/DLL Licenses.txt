@@ -1,27 +1,4 @@
 -------------------------------------------------------------------------------
-libsfcppu.dll: libsfcppu is based on bsnes, which is released under the following license:
-
-Copyright © 2004-2019 byuu
-
-https://byuu.org
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, specifically version 3 of the License
-and no other version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program. If not, see <https://www.gnu.org/licenses/>.
-
-The source code for the version of libsfcppu provided is available here:
-https://github.com/charasyn/libsfcppu/releases/tag/v1.0
-
--------------------------------------------------------------------------------
 SDL2.dll: SDL2 is released under the following license:
 
 Copyright (C) 1997-2022 Sam Lantinga <slouken@libsdl.org>
