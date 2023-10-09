@@ -313,7 +313,7 @@ struct PPU {
 	}
 	// Draw a whole line of a 4bpp background layer into bgBuffers
 	private void drawBackground4BPP(uint y, bool sub, uint layer, PpuZbufType zhi, PpuZbufType zlo) @safe pure {
-		enum { kPaletteShift = 6 };
+		enum kPaletteShift = 6;
 		if (!IS_SCREEN_ENABLED(sub, layer)) {
 			return; // layer is completely hidden
 		}
@@ -451,7 +451,7 @@ struct PPU {
 
 	// Draw a whole line of a 2bpp background layer into bgBuffers
 	private void drawBackground2BPP(uint y, bool sub, uint layer, PpuZbufType zhi, PpuZbufType zlo) @safe pure {
-		enum { kPaletteShift = 8 };
+		enum kPaletteShift = 8;
 		if (!IS_SCREEN_ENABLED(sub, layer)) {
 			return; // layer is completely hidden
 		}
@@ -590,7 +590,7 @@ struct PPU {
 
 	// Draw a whole line of a 4bpp background layer into bgBuffers, with mosaic applied
 	private void drawBackground4BPPMosaic(uint y, bool sub, uint layer, PpuZbufType zhi, PpuZbufType zlo) @safe pure {
-		enum { kPaletteShift = 6 };
+		enum kPaletteShift = 6;
 		if (!IS_SCREEN_ENABLED(sub, layer)) {
 			return; // layer is completely hidden
 		}
@@ -666,7 +666,7 @@ struct PPU {
 
 	// Draw a whole line of a 2bpp background layer into bgBuffers, with mosaic applied
 	private void drawBackground2BPPMosaic(int y, bool sub, uint layer, PpuZbufType zhi, PpuZbufType zlo) @safe pure {
-		enum { kPaletteShift = 8 };
+		enum kPaletteShift = 8;
 		if (!IS_SCREEN_ENABLED(sub, layer)) {
 			return; // layer is completely hidden
 		}
@@ -822,7 +822,7 @@ struct PPU {
 				int w = mosaicSize - (x - mosaicModulo[x]);
 				do {
 					w = IntMin(w, cast(int)dstz.length);
-					if ((uint)(xpos | ypos) > outside_value) {
+					if (cast(uint)(xpos | ypos) > outside_value) {
 						if (!char_fill) {
 							continue;
 						}
@@ -844,7 +844,7 @@ struct PPU {
 				} while (dstz.length > 0);
 			} else {
 				do {
-					if ((uint)(xpos | ypos) > outside_value) {
+					if (cast(uint)(xpos | ypos) > outside_value) {
 						if (!char_fill) {
 							continue;
 						}
