@@ -151,22 +151,6 @@ struct PPU {
 	PpuPixelPrioBufs objBuffer;
 	ushort[0x8000] vram;
 
-	void saveload(SaveLoadFunc func, void *ctx) {
-		ubyte[556] tmp;
-
-		func(ctx, &vram[0], 0x8000 * 2);
-		func(ctx, &tmp[0], 10);
-		func(ctx, &cgram[0], 512);
-		func(ctx, &tmp[0], 556);
-		func(ctx, &tmp[0], 520);
-		foreach (layer; bgLayer) {
-			func(ctx, &tmp[0], 4);
-			func(ctx, &layer.tilemapWider, 4);
-			func(ctx, &tmp[0], 4);
-		}
-		func(ctx, &tmp[0], 123);
-	}
-
 	int getCurrentRenderScale(uint render_flags) @safe pure {
 		bool hq = mode == 7 && !forcedBlank && (render_flags & (KPPURenderFlags.mode74x4 | KPPURenderFlags.newRenderer)) == (KPPURenderFlags.mode74x4 | KPPURenderFlags.newRenderer);
 		return hq ? 4 : 1;
