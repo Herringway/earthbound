@@ -8228,3 +8228,7 @@ void printCollision(const ubyte[64][64] collision) {
 		writeln();
 	}
 }
+
+struct EntityExtra {
+	bool breakpoint;
+}

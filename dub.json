@@ -31,7 +31,8 @@
 			"versions": [
 				"bugfix",
 				"noUndefinedBehaviour",
-				"configurable"
+				"configurable",
+				"extra"
 			]
 		}
 	]

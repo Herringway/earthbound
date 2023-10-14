@@ -155,7 +155,7 @@ __gshared short unknown7E0A56; /// $(DOLLAR)0A56
 __gshared short actionScriptCurrentScript; /// $(DOLLAR)0A58
 __gshared void function() movement42LoadedPtr; /// $(DOLLAR)0A5A
 __gshared void function() actionScriptDrawFunction; /// $(DOLLAR)0A5E
-__gshared short unknown7E0A60; /// $(DOLLAR)0A60
+__gshared short disableActionscript; /// $(DOLLAR)0A60
 __gshared short[maxEntities] entityScriptTable; /// $(DOLLAR)0A62
 __gshared short[maxEntities] entityNextEntityTable; /// $(DOLLAR)0A9E
 __gshared short[maxEntities] entityScriptIndexTable; /// $(DOLLAR)0ADA
@@ -961,5 +961,11 @@ version(savememory) __gshared SRAM sram; /// $(DOLLAR)306000
 __gshared SaveDataReplay replaySRAM; /// $(DOLLAR)316000
 __gshared DemoEntry[0] sram3; /// $(DOLLAR)326000
 
-/// non-SNES stuff
+// non-SNES stuff
+/// Whether ROM data is loaded (for testing)
 bool romDataLoaded;
+
+/// Extra entity data
+EntityExtra[maxEntities] entityExtra;
+
+bool breakActionscript;

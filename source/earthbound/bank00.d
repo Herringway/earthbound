@@ -5281,7 +5281,7 @@ void unknownC0927C() {
 		x -= 2;
 	} while (x >= 0);
 	clearEntityDrawSortingTable();
-	unknown7E0A60 = 0;
+	disableActionscript = 0;
 }
 
 /// $C09279
@@ -5407,13 +5407,22 @@ void unfreezeEntities() {
 
 /// $C09466
 void runActionscriptFrame() {
-	if (unknown7E0A60 != 0) {
+	version(extra) {
+		if (breakActionscript) {
+			actionScriptDrawFunction();
+			return;
+		}
+	}
+	if (disableActionscript != 0) {
 		return;
 	}
-	// jump to slowrom
-	unknown7E0A60++;
+	// jump to slowrom goes here
+
+	// make sure that if we somehow end up calling this function recursively
+	// that we don't end up running scripts again
+	disableActionscript = 1;
 	if (firstEntity < 0) {
-		unknown7E0A60 = 0;
+		disableActionscript = 0;
 		return;
 	}
 	actionScriptVar80 = 0;
@@ -5428,7 +5437,7 @@ void runActionscriptFrame() {
 		runEntityScripts(unknown7E0A56,x);
 	} while ((x = unknown7E0A56) >= 0);
 	if (firstEntity < 0) {
-		unknown7E0A60 = 0;
+		disableActionscript = 0;
 		return;
 	}
 	x = firstEntity;
@@ -5443,7 +5452,7 @@ void runActionscriptFrame() {
 		x = entityNextEntityTable[actionScriptVar88 / 2];
 	} while(x >= 0);
 	actionScriptDrawFunction();
-	unknown7E0A60 = 0;
+	disableActionscript = 0;
 }
 
 /// $C09466
@@ -5485,6 +5494,14 @@ void runEntityScript() {
 			actionScriptVar90 = a;
 			entityScriptSleepFrames[currentEntityScriptOffset / 2] = a & 0xF;
 			y = movementControlCodesPointerTable[0x45 + ((actionScriptVar90 & 0x70) >> 4)](y);
+		}
+		version(extra) {
+			if (entityExtra[currentEntitySlot].breakpoint) {
+				breakActionscript = 1;
+				entityProgramCounters[currentEntityScriptOffset / 2] = y;
+				// don't decrease sleep frames here, might cause underflow
+				return;
+			}
 		}
 	} while (entityScriptSleepFrames[currentEntityScriptOffset / 2] == 0);
 	entityProgramCounters[currentEntityScriptOffset / 2] = y;
