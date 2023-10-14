@@ -1389,904 +1389,12 @@ ubyte[] ACTIONSCRIPT_SET_Z_VELOCITY(short velocity) {
 	return actionCommand(0x41, velocity);
 }
 
-ubyte[] ACTIONSCRIPT_CALLROUTINE(T...)(short function(short, ref const(ubyte)*) ptr, T args) {
-	return actionCommand(0x42, ptr, args);
-}
-
-ubyte[] ACTIONSCRIPT_EX_CALLROUTINE(T...)(ubyte ex, short function(short, ref const(ubyte)*) ptr, T args) {
-	return actionCommand(cast(ubyte)(0xF0 + ex), ptr, args);
-}
-
-ubyte[] ACTIONSCRIPT_SET_PRIORITY(ubyte priority) {
-	return actionCommand(0x43, priority);
-}
-
-ubyte[] ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER() {
-	return actionCommand(0x44);
-}
-
-ubyte[] ACTIONSCRIPT_UPDATE_SPRITE_DIRECTION(Direction direction, ubyte unknown) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptUpdateSpriteDirection, cast(ubyte)direction, unknown);
-}
-
-ubyte[] ACTIONSCRIPT_SET_MOVEMENT_SPEED(ushort arg1) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptSetMovementSpeedConstant, arg1);
-}
-
-ubyte[] ACTIONSCRIPT_SET_MOVEMENT_SPEED() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setMovementSpeed);
-}
-
-ubyte[] ACTIONSCRIPT_FADEOUT(ubyte arg1, ubyte arg2) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptFadeOut, arg1, arg2);
-}
-
-ubyte[] ACTIONSCRIPT_FADEIN(ubyte arg1, ubyte arg2) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptFadeIn, arg1, arg2);
-}
-
-ubyte[] ACTIONSCRIPT_FADEOUTWITHMOSAIC(ushort arg1, ushort arg2, ushort arg3) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptFadeOutWithMosaic, arg1, arg2, arg3);
-}
-
-ubyte[] ACTIONSCRIPT_JUMP_TO_LABEL_N_TIMES(ubyte arg, const(ubyte)* address) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptJumpToLabelNTimes, arg, address);
-}
-
-ubyte[] ACTIONSCRIPT_SET_MOVEMENT_FROM_ANGLE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setMovementFromAngle);
-}
-
-ubyte[] ACTIONSCRIPT_YIELD_TO_TEXT() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptYieldToText);
-}
-
-ubyte[] ACTIONSCRIPT_CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite sprite, ActionScript script) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptCreateEntityAtV01PlusBG3Y, cast(ushort)sprite, cast(ushort)script);
-}
-
-ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME1() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!updateEntitySpriteCurrentFrame1);
-}
-
-ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!updateEntitySpriteCurrentFrame0Forced);
-}
-
-ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!updateEntitySpriteCurrent);
-}
-
-ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!updateEntitySpriteCurrentFrame0);
-}
-
-ubyte[] ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(ubyte member) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptGetPositionOfPartyMember, member);
-}
-
-ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptPrepareNewEntityAtPartyLeader);
-}
-
-ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptPrepareNewEntityAtSelf);
-}
-
-ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY(ushort x, ushort y, Direction direction) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptPrepareNewEntity, x, y, cast(ubyte)direction);
-}
-
-ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(ubyte arg) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptPrepareNewEntityAtTeleportDestination, arg);
-}
-
-ubyte[] ACTIONSCRIPT_CLEAR_CURRENT_ENTITY_COLLISION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!clearCurrentEntityCollision);
-}
-
-ubyte[] ACTIONSCRIPT_CLEAR_CURRENT_ENTITY_COLLISION2() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!clearCurrentEntityCollision2);
-}
-
-ubyte[] ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!disableCurrentEntityCollision);
-}
-
-ubyte[] ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!disableCurrentEntityCollision2);
-}
-
-ubyte[] ACTIONSCRIPT_GET_DIRECTION_FROM_PLAYER_TO_ENTITY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getDirectionFromPlayerToEntity);
-}
-
-ubyte[] ACTIONSCRIPT_GET_DIRECTION_ROTATED_CLOCKWISE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getDirectionRotatedClockwise);
-}
-
-ubyte[] ACTIONSCRIPT_INITIALIZE_YOUR_SANCTUARY_DISPLAY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!initializeYourSanctuaryDisplay);
-}
-
-ubyte[] ACTIONSCRIPT_ENABLE_YOUR_SANCTUARY_DISPLAY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!enableYourSanctuaryDisplay);
-}
-
-ubyte[] ACTIONSCRIPT_DISPLAY_YOUR_SANCTUARY_LOCATION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!displayYourSanctuaryLocation);
-}
-
-ubyte[] ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!movePartyToLeaderPosition);
-}
-
-ubyte[] ACTIONSCRIPT_SET_DIRECTION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setDirection);
-}
-
-ubyte[] ACTIONSCRIPT_SET_DIRECTION8(Direction direction) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setDirection8, cast(ubyte)direction);
-}
-
-ubyte[] ACTIONSCRIPT_PLAY_SFX(Sfx sound) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A841, cast(ushort)sound);
-}
-
-ubyte[] ACTIONSCRIPT_C0A9B3(ushort arg1, ushort arg2, ushort arg3) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A9B3, arg1, arg2, arg3);
-}
-
-ubyte[] ACTIONSCRIPT_C0AAB5(ushort arg1, ubyte arg2, ubyte arg3) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0AAB5, arg1, arg2, arg3);
-}
-
-ubyte[] ACTIONSCRIPT_QUEUE_INTERACTION_TYPE_8(string text) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptQueueInteraction8, text);
-}
-
-ubyte[] ACTIONSCRIPT_C0A8A0(string text) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A8A0, text);
-}
-
-ubyte[] ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(ubyte val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptMoveEntityToPartyMember, val);
-}
-
-ubyte[] ACTIONSCRIPT_MOVE_TO_SPRITE(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptMoveEntityToSprite, val);
-}
-
-ubyte[] ACTIONSCRIPT_C0A857(EventFlag flag) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A857, cast(ushort)flag);
-}
-
-ubyte[] ACTIONSCRIPT_LOAD_BATTLE_BG(BattleBGLayer layer1, BattleBGLayer layer2) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptLoadBattleBG, cast(ushort)layer1, cast(ushort)layer2);
-}
-
-ubyte[] ACTIONSCRIPT_RAND() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!rand);
-}
-
-ubyte[] ACTIONSCRIPT_RELOAD_MAP() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!reloadMap);
-}
-
-ubyte[] ACTIONSCRIPT_UNDRAW_FLYOVER_TEXT() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!undrawFlyoverText);
-}
-
-ubyte[] ACTIONSCRIPT_DECOMP_ITOI_PRODUCTION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!decompItoiProduction);
-}
-
-ubyte[] ACTIONSCRIPT_DECOMP_NINTENDO_PRESENTATION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!decompNintendoPresentation);
-}
-
-ubyte[] ACTIONSCRIPT_DISPLAY_ANTI_PIRACY_SCREEN() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!displayAntiPiracyScreen);
-}
-
-ubyte[] ACTIONSCRIPT_INFLICT_SUNSTROKE_CHECK() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!inflictSunstrokeCheck);
-}
-
-ubyte[] ACTIONSCRIPT_LOAD_KIRBY_SPRITE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!loadKirbySprite);
-}
-
-ubyte[] ACTIONSCRIPT_SRAM_CHECK_ROUTINE_CHECKSUM() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!sramCheckRoutineChecksum);
-}
-
-ubyte[] ACTIONSCRIPT_UPDATE_MAP_PALETTE_ANIMATION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!updateMapPaletteAnimation);
-}
-
-ubyte[] ACTIONSCRIPT_C020F1() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC020F1);
-}
-
-ubyte[] ACTIONSCRIPT_C03DAA() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC03DAA);
-}
-
-ubyte[] ACTIONSCRIPT_C04EF0() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC04EF0);
-}
-
-ubyte[] ACTIONSCRIPT_C05E76(ubyte val, void function() func) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC05E76, val, func);
-}
-
-ubyte[] ACTIONSCRIPT_C05E82() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC05E82);
-}
-
-ubyte[] ACTIONSCRIPT_C05ECE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC05ECE);
-}
-
-ubyte[] ACTIONSCRIPT_C06478() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC06478);
-}
-
-ubyte[] ACTIONSCRIPT_UNFREEZE_ENTITIES() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unfreezeEntities);
-}
-
-ubyte[] ACTIONSCRIPT_C09E71(ActionScript script) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC09E71, cast(ushort)script);
-}
-
-ubyte[] ACTIONSCRIPT_C09F3BE2() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC09F3BEntry2);
-}
-
-ubyte[] ACTIONSCRIPT_C09F71() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC09F71);
-}
-
-ubyte[] ACTIONSCRIPT_PICK_RANDOM_ANGLE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptGenerateRandomAngle);
-}
-
-ubyte[] ACTIONSCRIPT_MOVE_RELATIVE_TO_BG3() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!moveRelativeToBG3);
-}
-
-ubyte[] ACTIONSCRIPT_C0A643(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A643, val);
-}
-
-ubyte[] ACTIONSCRIPT_C0A6A2(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A6A2, val);
-}
-
-ubyte[] ACTIONSCRIPT_C0A6AD(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A6AD, val);
-}
-
-ubyte[] ACTIONSCRIPT_C0A87A(ushort val1, ushort val2) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A87A, val1, val2);
-}
-
-ubyte[] ACTIONSCRIPT_C0A8B3(ushort val1, ushort val2) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A8B3, val1, val2);
-}
-
-ubyte[] ACTIONSCRIPT_C0A938(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A938, val);
-}
-
-ubyte[] ACTIONSCRIPT_C0A94E(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A94E, val);
-}
-
-ubyte[] ACTIONSCRIPT_C0A959(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A959, val);
-}
-
-ubyte[] ACTIONSCRIPT_SET_BOUNDARIES(ushort val1, ushort val2) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptSetEntityBoundaries, val1, val2);
-}
-
-ubyte[] ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite sprite, ActionScript script) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptSpawnEntityAtSelf, cast(ushort)sprite, cast(ushort)script);
-}
-
-ubyte[] ACTIONSCRIPT_C0A9CF(ushort val1, ushort val2, ushort val3) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A9CF, val1, val2, val3);
-}
-
-ubyte[] ACTIONSCRIPT_C0A9EB(ushort val1, ushort val2, ushort val3) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A9EB, val1, val2, val3);
-}
-
-ubyte[] ACTIONSCRIPT_C0AA23(ushort val1, ushort val2, ushort val3) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0AA23, val1, val2, val3);
-}
-
-ubyte[] ACTIONSCRIPT_C0AA3F(ubyte val1, ubyte val2, ubyte val3) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0AA3F, val1, val2, val3);
-}
-
-ubyte[] ACTIONSCRIPT_C0A92D(ushort val) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A92D, val);
-}
-
-ubyte[] ACTIONSCRIPT_GET_EVENT_FLAG(EventFlag flag) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptGetEventFlag, cast(ushort)flag);
-}
-
-ubyte[] ACTIONSCRIPT_SET_SURFACE_FLAGS(ubyte flags) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setSurfaceFlags, flags);
-}
-
-ubyte[] ACTIONSCRIPT_C0A673() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A673);
-}
-
-ubyte[] ACTIONSCRIPT_GET_MOVEMENT_SPEED() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getMovementSpeed);
-}
-
-ubyte[] ACTIONSCRIPT_C0A6B8() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A6B8);
-}
-
-ubyte[] ACTIONSCRIPT_C0A6E3() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A6E3);
-}
-
-ubyte[] ACTIONSCRIPT_C0A8C6() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A8C6);
-}
-
-ubyte[] ACTIONSCRIPT_C0A8D1() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A8D1);
-}
-
-ubyte[] ACTIONSCRIPT_C0A8DC() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0A8DC);
-}
-
-ubyte[] ACTIONSCRIPT_SPIRAL_MOVEMENT_FRAME() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptSpiralMovement);
-}
-
-ubyte[] ACTIONSCRIPT_C0AAAC() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0AAAC);
-}
-
-ubyte[] ACTIONSCRIPT_C0AACD() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0AACD);
-}
-
-ubyte[] ACTIONSCRIPT_C0AAFD() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0AAFD);
-}
-
-ubyte[] ACTIONSCRIPT_PREPARE_DELIVERY_ENTRANCE_PATH() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!prepareDeliveryEntrancePath);
-}
-
-ubyte[] ACTIONSCRIPT_PREPARE_DELIVERY_EXIT_PATH() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!prepareDeliveryExitPath);
-}
-
-ubyte[] ACTIONSCRIPT_C0C353() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0C353);
-}
-
-ubyte[] ACTIONSCRIPT_C0C35D() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0C35D);
-}
-
-ubyte[] ACTIONSCRIPT_C0C48F() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0C48F);
-}
-
-ubyte[] ACTIONSCRIPT_C0C4AF() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0C4AF);
-}
-
-ubyte[] ACTIONSCRIPT_GET_ANGLE_TOWARDS_PLAYER_UNLESS_WEAK() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getAngleTowardsPlayerUnlessWeak);
-}
-
-ubyte[] ACTIONSCRIPT_C0C6B6() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0C6B6);
-}
-
-ubyte[] ACTIONSCRIPT_C0C7DB() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0C7DB);
-}
-
-ubyte[] ACTIONSCRIPT_C0C83B() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0C83B);
-}
-
-ubyte[] ACTIONSCRIPT_C0CA4E() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0CA4E);
-}
-
-ubyte[] ACTIONSCRIPT_C0CC11() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0CC11);
-}
-
-ubyte[] ACTIONSCRIPT_C0CCCC() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0CCCC);
-}
-
-ubyte[] ACTIONSCRIPT_C0CD50() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0CD50);
-}
-
-ubyte[] ACTIONSCRIPT_C0CEBE() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0CEBE);
-}
-
-ubyte[] ACTIONSCRIPT_C0D0D9() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D0D9);
-}
-
-ubyte[] ACTIONSCRIPT_C0D0E6() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D0E6);
-}
-
-ubyte[] ACTIONSCRIPT_C0D15C() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D15C);
-}
-
-ubyte[] ACTIONSCRIPT_C0D59B() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D59B);
-}
-
-ubyte[] ACTIONSCRIPT_C0D5B0() {
-		return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D5B0);
-}
-
-ubyte[] ACTIONSCRIPT_C0D77F() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D77F);
-}
-
-ubyte[] ACTIONSCRIPT_C0D7B3() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D7B3);
-}
-
-ubyte[] ACTIONSCRIPT_C0D7C7() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D7C7);
-}
-
-ubyte[] ACTIONSCRIPT_C0D98F() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0D98F);
-}
-
-ubyte[] ACTIONSCRIPT_C0EC77() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0EC77);
-}
-
-ubyte[] ACTIONSCRIPT_C0ECB7() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0ECB7);
-}
-
-ubyte[] ACTIONSCRIPT_SET_BG_PALETTES_WHITE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setBGPalettesWhite);
-}
-
-ubyte[] ACTIONSCRIPT_SET_BG_PALETTES_BLACK() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setBGPalettesBlack);
-}
-
-ubyte[] ACTIONSCRIPT_C0ED5C() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0ED5C);
-}
-
-ubyte[] ACTIONSCRIPT_C0EDD1() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0EDD1);
-}
-
-ubyte[] ACTIONSCRIPT_C0EDDA() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0EDDA);
-}
-
-ubyte[] ACTIONSCRIPT_C0EE53() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0EE53);
-}
-
-ubyte[] ACTIONSCRIPT_C0F3B2() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0F3B2);
-}
-
-ubyte[] ACTIONSCRIPT_C0F3E8() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC0F3E8);
-}
-
-ubyte[] ACTIONSCRIPT_MAGIC_BUTTERFLY_RECOVERY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!magicButterflyRecovery);
-}
-
-ubyte[] ACTIONSCRIPT_DRAW_BATTLE_FRAME() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!drawBattleFrame);
-}
-
-ubyte[] ACTIONSCRIPT_C2EA15() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC2EA15);
-}
-
-ubyte[] ACTIONSCRIPT_C2EA74() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC2EA74);
-}
-
-ubyte[] ACTIONSCRIPT_C2EACF() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC2EACF);
-}
-
-ubyte[] ACTIONSCRIPT_C2FF9A() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC2FF9A);
-}
-
-ubyte[] ACTIONSCRIPT_C40015() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC40015);
-}
-
-ubyte[] ACTIONSCRIPT_C40023() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC40023);
-}
-
-ubyte[] ACTIONSCRIPT_C423DC() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC423DC);
-}
-
-ubyte[] ACTIONSCRIPT_C4240A() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4240A);
-}
-
-ubyte[] ACTIONSCRIPT_C4248A() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4248A);
-}
-
-ubyte[] ACTIONSCRIPT_C424D1() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC424D1);
-}
-
-ubyte[] ACTIONSCRIPT_C4257F() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4257F);
-}
-
-ubyte[] ACTIONSCRIPT_C4258C() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4258C);
-}
-
-ubyte[] ACTIONSCRIPT_C425F3() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC425F3);
-}
-
-ubyte[] ACTIONSCRIPT_C42624() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC42624);
-}
-
-ubyte[] ACTIONSCRIPT_C46712() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46712);
-}
-
-ubyte[] ACTIONSCRIPT_C4675C() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4675C);
-}
-
-ubyte[] ACTIONSCRIPT_C467B4() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC467B4);
-}
-
-ubyte[] ACTIONSCRIPT_C467C2() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC467C2);
-}
-
-ubyte[] ACTIONSCRIPT_C467E6() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC467E6);
-}
-
-ubyte[] ACTIONSCRIPT_C4681A() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4681A);
-}
-
-ubyte[] ACTIONSCRIPT_C468A9() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC468A9);
-}
-
-ubyte[] ACTIONSCRIPT_C468AF() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC468AF);
-}
-
-ubyte[] ACTIONSCRIPT_C468B5() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC468B5);
-}
-
-ubyte[] ACTIONSCRIPT_C468DC() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC468DC);
-}
-
-ubyte[] ACTIONSCRIPT_C46903() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46903);
-}
-
-ubyte[] ACTIONSCRIPT_C46914() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46914);
-}
-
-ubyte[] ACTIONSCRIPT_C46957() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46957);
-}
-
-ubyte[] ACTIONSCRIPT_C46A6E() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46A6E);
-}
-
-ubyte[] ACTIONSCRIPT_CONVERT_8DIR_TO_4DIR_PREFER_LR() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!convert8DirectionTo4PreferLeftRight);
-}
-
-ubyte[] ACTIONSCRIPT_GET_ANGLE_TO_DESTINATION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!entityAngleToDestination);
-}
-
-ubyte[] ACTIONSCRIPT_SET_MOVING_DIRECTION_FROM_ANGLE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!setMovingDirectionFromAngle);
-}
-
-ubyte[] ACTIONSCRIPT_C46B2D() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46B2D);
-}
-
-ubyte[] ACTIONSCRIPT_GET_OPPOSITE_DIRECTION() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getOppositeDirection);
-}
-
-ubyte[] ACTIONSCRIPT_GET_DIRECTION_ROTATED_ANGLE_90() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getDirectionRotatedAngle90);
-}
-
-ubyte[] ACTIONSCRIPT_C46B65() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46B65);
-}
-
-ubyte[] ACTIONSCRIPT_COPY_XY_TO_VARS() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!copyXYToVars);
-}
-
-ubyte[] ACTIONSCRIPT_C46C87() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46C87);
-}
-
-ubyte[] ACTIONSCRIPT_C46D23() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46D23);
-}
-
-ubyte[] ACTIONSCRIPT_C46D4B() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46D4B);
-}
-
-ubyte[] ACTIONSCRIPT_TEST_IF_LEADER_WITHIN_BOUNDARIES() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!isLeaderWithinBoundaries);
-}
-
-ubyte[] ACTIONSCRIPT_C46EF8() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC46EF8);
-}
-
-ubyte[] ACTIONSCRIPT_GET_DIRECTION_TO_BOUNDARY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!directionToEntityBoundaries);
-}
-
-ubyte[] ACTIONSCRIPT_C4730E() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4730E);
-}
-
-ubyte[] ACTIONSCRIPT_GET_PARTY_COUNT() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getPartyCount);
-}
-
-ubyte[] ACTIONSCRIPT_C4733C() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4733C);
-}
-
-ubyte[] ACTIONSCRIPT_RERENDER_ROW() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptRerenderRow);
-}
-
-ubyte[] ACTIONSCRIPT_C47369() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC47369);
-}
-
-ubyte[] ACTIONSCRIPT_C47499() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC47499);
-}
-
-ubyte[] ACTIONSCRIPT_C474A8() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC474A8);
-}
-
-ubyte[] ACTIONSCRIPT_C47A6B() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC47A6B);
-}
-
-ubyte[] ACTIONSCRIPT_C47A9E() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC47A9E);
-}
-
-ubyte[] ACTIONSCRIPT_C47B77() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC47B77);
-}
-
-ubyte[] ACTIONSCRIPT_C4880C() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4880C);
-}
-
-ubyte[] ACTIONSCRIPT_C48A6D() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC48A6D);
-}
-
-ubyte[] ACTIONSCRIPT_C48B2C() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC48B2C);
-}
-
-ubyte[] ACTIONSCRIPT_C48B3B() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC48B3B);
-}
-
-ubyte[] ACTIONSCRIPT_C49740() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC49740);
-}
-
-ubyte[] ACTIONSCRIPT_C4978E() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4978E);
-}
-
-ubyte[] ACTIONSCRIPT_C4981F() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4981F);
-}
-
-ubyte[] ACTIONSCRIPT_C49841() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC49841);
-}
-
-ubyte[] ACTIONSCRIPT_RUN_FLYOVER() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!runFlyover);
-}
-
-ubyte[] ACTIONSCRIPT_C4A7B0() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4A7B0);
-}
-
-ubyte[] ACTIONSCRIPT_C4CB4F() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4CB4F);
-}
-
-ubyte[] ACTIONSCRIPT_BLINK_VISIBLE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptBlinkVisible);
-}
-
-ubyte[] ACTIONSCRIPT_BLINK_INVISIBLE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptBlinkInvisible);
-}
-
-ubyte[] ACTIONSCRIPT_END_FADE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptEndFade);
-}
-
-ubyte[] ACTIONSCRIPT_OBJFX_HSTRIPE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptHStripe);
-}
-
-ubyte[] ACTIONSCRIPT_OBJFX_VSTRIPE() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptVStripe);
-}
-
-ubyte[] ACTIONSCRIPT_OBJFX_CLEAR_DOT_BUFFER() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptObjFXClearDotBuffer);
-}
-
-ubyte[] ACTIONSCRIPT_OBJFX_DOTS() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!actionScriptObjFXDots);
-}
-
-ubyte[] ACTIONSCRIPT_C4E4DA() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4E4DA);
-}
-
-ubyte[] ACTIONSCRIPT_C4E4F9() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4E4F9);
-}
-
-ubyte[] ACTIONSCRIPT_C4EC6E() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4EC6E);
-}
-
-ubyte[] ACTIONSCRIPT_C4ECE7() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownC4ECE7);
-}
-
-ubyte[] ACTIONSCRIPT_EF027D() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownEF027D);
-}
-
-ubyte[] ACTIONSCRIPT_EF0C87() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownEF0C87);
-}
-
-ubyte[] ACTIONSCRIPT_EF0C97() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownEF0C97);
-}
-
-ubyte[] ACTIONSCRIPT_EF0CA7() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownEF0CA7);
-}
-
-ubyte[] ACTIONSCRIPT_EF0D23() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!unknownEF0D23);
-}
-
-ubyte[] ACTIONSCRIPT_START_DELIVERY_COUNTDOWN() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!startDeliveryCountdown);
-}
-
-ubyte[] ACTIONSCRIPT_DO_DELIVERY_COUNTDOWN() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!doDeliveryCountdown);
-}
-
-ubyte[] ACTIONSCRIPT_START_DELIVERY_SUCCESS_TEXT() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!startDeliverySuccessText);
-}
-
-ubyte[] ACTIONSCRIPT_START_DELIVERY_FAIL_TEXT() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!startDeliveryFailText);
-}
-
-ubyte[] ACTIONSCRIPT_GET_DELIVERY_ENTER_SPEED() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getDeliveryEnterSpeed);
-}
-
-ubyte[] ACTIONSCRIPT_GET_DELIVERY_EXIT_SPEED() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!getDeliveryExitSpeed);
-}
-
-ubyte[] ACTIONSCRIPT_CHECK_DELIVERY_ELIGIBILITY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!checkDeliveryEligibility);
-}
-
-ubyte[] ACTIONSCRIPT_START_DELIVERY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!startDelivery);
-}
-
-ubyte[] ACTIONSCRIPT_FINISH_DELIVERY() {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!finishDelivery);
-}
-
-
-ubyte[] ACTIONSCRIPT_CHOOSE_RANDOM(T...)(T args) {
-	return ACTIONSCRIPT_CALLROUTINE(&fixArgs!chooseRandom, cast(ubyte)T.length, cast(short)args);
-}
-
-ubyte[] ACTIONSCRIPT_EX_C0778A(ubyte frames) {
-	return ACTIONSCRIPT_EX_CALLROUTINE(frames, &fixArgs!unknownC0778A);
-}
-
-ubyte[] ACTIONSCRIPT_EX_C0F3E8(ubyte frames) {
-	return ACTIONSCRIPT_EX_CALLROUTINE(frames, &fixArgs!unknownC0F3E8);
-}
-
-ubyte[] ACTIONSCRIPT_EX_C0F3B2(ubyte frames) {
-	return ACTIONSCRIPT_EX_CALLROUTINE(frames, &fixArgs!unknownC0F3B2);
-}
-
-debug(actionscript) string[void*] funcSymbolMap;
-
-template fixArgs(alias Func) {
+debug string[void*] funcSymbolMap;
+debug size_t[void*] funcArgLengths;
+
+template fixArgs(alias Func, Params...) {
+	import std.traits : Parameters, ReturnType;
 	short fixArgs(short a, ref const(ubyte)* b) {
-		import std.traits : Parameters, ReturnType;
 		static if (is(ReturnType!Func : short) && (Parameters!Func.length > 1)) {
 			return Func(a, b);
 		} else static if (Parameters!Func.length > 1) {
@@ -2305,10 +1413,905 @@ template fixArgs(alias Func) {
 		}
 	}
 	static this() {
-		debug(actionscript) {
-			funcSymbolMap[&fixArgs] = __traits(identifier, Func);
-		}
+		// the ubyte is included because an empty struct is still 1 byte, making it impossible to distinguish between nothing and a single byte
+		struct _ { align(1): ubyte dummy; Params foo; }
+		funcArgLengths[&fixArgs] = _.sizeof - 1;
+		funcSymbolMap[&fixArgs] = __traits(identifier, Func);
 	}
+}
+ubyte[] ACTIONSCRIPT_CALLROUTINE(alias fun, T...)(T args) {
+	short function(short, ref const(ubyte)*) ptr = &fixArgs!(fun, T);
+	return actionCommand(0x42, ptr, args);
+}
+
+ubyte[] ACTIONSCRIPT_EX_CALLROUTINE(alias fun, T...)(ubyte ex, T args) {
+	short function(short, ref const(ubyte)*) ptr = &fixArgs!(fun, T);
+	return actionCommand(cast(ubyte)(0xF0 + ex), ptr, args);
+}
+
+ubyte[] ACTIONSCRIPT_SET_PRIORITY(ubyte priority) {
+	return actionCommand(0x43, priority);
+}
+
+ubyte[] ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER() {
+	return actionCommand(0x44);
+}
+
+ubyte[] ACTIONSCRIPT_UPDATE_SPRITE_DIRECTION(Direction direction, ubyte unknown) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptUpdateSpriteDirection(cast(ubyte)direction, unknown);
+}
+
+ubyte[] ACTIONSCRIPT_SET_MOVEMENT_SPEED(ushort arg1) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptSetMovementSpeedConstant(arg1);
+}
+
+ubyte[] ACTIONSCRIPT_SET_MOVEMENT_SPEED() {
+	return ACTIONSCRIPT_CALLROUTINE!setMovementSpeed();
+}
+
+ubyte[] ACTIONSCRIPT_FADEOUT(ubyte arg1, ubyte arg2) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptFadeOut(arg1, arg2);
+}
+
+ubyte[] ACTIONSCRIPT_FADEIN(ubyte arg1, ubyte arg2) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptFadeIn(arg1, arg2);
+}
+
+ubyte[] ACTIONSCRIPT_FADEOUTWITHMOSAIC(ushort arg1, ushort arg2, ushort arg3) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptFadeOutWithMosaic(arg1, arg2, arg3);
+}
+
+ubyte[] ACTIONSCRIPT_JUMP_TO_LABEL_N_TIMES(ubyte arg, const(ubyte)* address) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptJumpToLabelNTimes(arg, address);
+}
+
+ubyte[] ACTIONSCRIPT_SET_MOVEMENT_FROM_ANGLE() {
+	return ACTIONSCRIPT_CALLROUTINE!setMovementFromAngle();
+}
+
+ubyte[] ACTIONSCRIPT_YIELD_TO_TEXT() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptYieldToText();
+}
+
+ubyte[] ACTIONSCRIPT_CREATE_ENTITY_AT_VAR01_PLUS_BG3Y(OverworldSprite sprite, ActionScript script) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptCreateEntityAtV01PlusBG3Y(cast(ushort)sprite, cast(ushort)script);
+}
+
+ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME1() {
+	return ACTIONSCRIPT_CALLROUTINE!updateEntitySpriteCurrentFrame1();
+}
+
+ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED() {
+	return ACTIONSCRIPT_CALLROUTINE!updateEntitySpriteCurrentFrame0Forced();
+}
+
+ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE() {
+	return ACTIONSCRIPT_CALLROUTINE!updateEntitySpriteCurrent();
+}
+
+ubyte[] ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0() {
+	return ACTIONSCRIPT_CALLROUTINE!updateEntitySpriteCurrentFrame0();
+}
+
+ubyte[] ACTIONSCRIPT_GET_POSITION_OF_PARTY_MEMBER(ubyte member) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptGetPositionOfPartyMember(member);
+}
+
+ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_PARTY_LEADER() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptPrepareNewEntityAtPartyLeader();
+}
+
+ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_SELF() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptPrepareNewEntityAtSelf();
+}
+
+ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY(ushort x, ushort y, Direction direction) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptPrepareNewEntity(x, y, cast(ubyte)direction);
+}
+
+ubyte[] ACTIONSCRIPT_PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(ubyte arg) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptPrepareNewEntityAtTeleportDestination(arg);
+}
+
+ubyte[] ACTIONSCRIPT_CLEAR_CURRENT_ENTITY_COLLISION() {
+	return ACTIONSCRIPT_CALLROUTINE!clearCurrentEntityCollision();
+}
+
+ubyte[] ACTIONSCRIPT_CLEAR_CURRENT_ENTITY_COLLISION2() {
+	return ACTIONSCRIPT_CALLROUTINE!clearCurrentEntityCollision2();
+}
+
+ubyte[] ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION() {
+	return ACTIONSCRIPT_CALLROUTINE!disableCurrentEntityCollision();
+}
+
+ubyte[] ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2() {
+	return ACTIONSCRIPT_CALLROUTINE!disableCurrentEntityCollision2();
+}
+
+ubyte[] ACTIONSCRIPT_GET_DIRECTION_FROM_PLAYER_TO_ENTITY() {
+	return ACTIONSCRIPT_CALLROUTINE!getDirectionFromPlayerToEntity();
+}
+
+ubyte[] ACTIONSCRIPT_GET_DIRECTION_ROTATED_CLOCKWISE() {
+	return ACTIONSCRIPT_CALLROUTINE!getDirectionRotatedClockwise();
+}
+
+ubyte[] ACTIONSCRIPT_INITIALIZE_YOUR_SANCTUARY_DISPLAY() {
+	return ACTIONSCRIPT_CALLROUTINE!initializeYourSanctuaryDisplay();
+}
+
+ubyte[] ACTIONSCRIPT_ENABLE_YOUR_SANCTUARY_DISPLAY() {
+	return ACTIONSCRIPT_CALLROUTINE!enableYourSanctuaryDisplay();
+}
+
+ubyte[] ACTIONSCRIPT_DISPLAY_YOUR_SANCTUARY_LOCATION() {
+	return ACTIONSCRIPT_CALLROUTINE!displayYourSanctuaryLocation();
+}
+
+ubyte[] ACTIONSCRIPT_MOVE_PARTY_TO_LEADER_POSITION() {
+	return ACTIONSCRIPT_CALLROUTINE!movePartyToLeaderPosition();
+}
+
+ubyte[] ACTIONSCRIPT_SET_DIRECTION() {
+	return ACTIONSCRIPT_CALLROUTINE!setDirection();
+}
+
+ubyte[] ACTIONSCRIPT_SET_DIRECTION8(Direction direction) {
+	return ACTIONSCRIPT_CALLROUTINE!setDirection8(cast(ubyte)direction);
+}
+
+ubyte[] ACTIONSCRIPT_PLAY_SFX(Sfx sound) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A841(cast(ushort)sound);
+}
+
+ubyte[] ACTIONSCRIPT_C0A9B3(ushort arg1, ushort arg2, ushort arg3) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A9B3(arg1, arg2, arg3);
+}
+
+ubyte[] ACTIONSCRIPT_C0AAB5(ushort arg1, ubyte arg2, ubyte arg3) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0AAB5(arg1, arg2, arg3);
+}
+
+ubyte[] ACTIONSCRIPT_QUEUE_INTERACTION_TYPE_8(string text) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptQueueInteraction8(text);
+}
+
+ubyte[] ACTIONSCRIPT_C0A8A0(string text) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A8A0(text);
+}
+
+ubyte[] ACTIONSCRIPT_MOVE_TO_PARTY_MEMBER(ubyte val) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptMoveEntityToPartyMember(val);
+}
+
+ubyte[] ACTIONSCRIPT_MOVE_TO_SPRITE(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptMoveEntityToSprite(val);
+}
+
+ubyte[] ACTIONSCRIPT_C0A857(EventFlag flag) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A857(cast(ushort)flag);
+}
+
+ubyte[] ACTIONSCRIPT_LOAD_BATTLE_BG(BattleBGLayer layer1, BattleBGLayer layer2) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptLoadBattleBG(cast(ushort)layer1, cast(ushort)layer2);
+}
+
+ubyte[] ACTIONSCRIPT_RAND() {
+	return ACTIONSCRIPT_CALLROUTINE!rand();
+}
+
+ubyte[] ACTIONSCRIPT_RELOAD_MAP() {
+	return ACTIONSCRIPT_CALLROUTINE!reloadMap();
+}
+
+ubyte[] ACTIONSCRIPT_UNDRAW_FLYOVER_TEXT() {
+	return ACTIONSCRIPT_CALLROUTINE!undrawFlyoverText();
+}
+
+ubyte[] ACTIONSCRIPT_DECOMP_ITOI_PRODUCTION() {
+	return ACTIONSCRIPT_CALLROUTINE!decompItoiProduction();
+}
+
+ubyte[] ACTIONSCRIPT_DECOMP_NINTENDO_PRESENTATION() {
+	return ACTIONSCRIPT_CALLROUTINE!decompNintendoPresentation();
+}
+
+ubyte[] ACTIONSCRIPT_DISPLAY_ANTI_PIRACY_SCREEN() {
+	return ACTIONSCRIPT_CALLROUTINE!displayAntiPiracyScreen();
+}
+
+ubyte[] ACTIONSCRIPT_INFLICT_SUNSTROKE_CHECK() {
+	return ACTIONSCRIPT_CALLROUTINE!inflictSunstrokeCheck();
+}
+
+ubyte[] ACTIONSCRIPT_LOAD_KIRBY_SPRITE() {
+	return ACTIONSCRIPT_CALLROUTINE!loadKirbySprite();
+}
+
+ubyte[] ACTIONSCRIPT_SRAM_CHECK_ROUTINE_CHECKSUM() {
+	return ACTIONSCRIPT_CALLROUTINE!sramCheckRoutineChecksum();
+}
+
+ubyte[] ACTIONSCRIPT_UPDATE_MAP_PALETTE_ANIMATION() {
+	return ACTIONSCRIPT_CALLROUTINE!updateMapPaletteAnimation();
+}
+
+ubyte[] ACTIONSCRIPT_C020F1() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC020F1();
+}
+
+ubyte[] ACTIONSCRIPT_C03DAA() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC03DAA();
+}
+
+ubyte[] ACTIONSCRIPT_C04EF0() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC04EF0();
+}
+
+ubyte[] ACTIONSCRIPT_C05E76(ubyte val, void function() func) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC05E76(val, func);
+}
+
+ubyte[] ACTIONSCRIPT_C05E82() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC05E82();
+}
+
+ubyte[] ACTIONSCRIPT_C05ECE() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC05ECE();
+}
+
+ubyte[] ACTIONSCRIPT_C06478() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC06478();
+}
+
+ubyte[] ACTIONSCRIPT_UNFREEZE_ENTITIES() {
+	return ACTIONSCRIPT_CALLROUTINE!unfreezeEntities();
+}
+
+ubyte[] ACTIONSCRIPT_C09E71(ActionScript script) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC09E71(cast(ushort)script);
+}
+
+ubyte[] ACTIONSCRIPT_C09F3BE2() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC09F3BEntry2();
+}
+
+ubyte[] ACTIONSCRIPT_C09F71() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC09F71();
+}
+
+ubyte[] ACTIONSCRIPT_PICK_RANDOM_ANGLE() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptGenerateRandomAngle();
+}
+
+ubyte[] ACTIONSCRIPT_MOVE_RELATIVE_TO_BG3() {
+	return ACTIONSCRIPT_CALLROUTINE!moveRelativeToBG3();
+}
+
+ubyte[] ACTIONSCRIPT_C0A643(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A643(val);
+}
+
+ubyte[] ACTIONSCRIPT_C0A6A2(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A6A2(val);
+}
+
+ubyte[] ACTIONSCRIPT_C0A6AD(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A6AD(val);
+}
+
+ubyte[] ACTIONSCRIPT_C0A87A(ushort val1, ushort val2) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A87A(val1, val2);
+}
+
+ubyte[] ACTIONSCRIPT_C0A8B3(ushort val1, ushort val2) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A8B3(val1, val2);
+}
+
+ubyte[] ACTIONSCRIPT_C0A938(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A938(val);
+}
+
+ubyte[] ACTIONSCRIPT_C0A94E(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A94E(val);
+}
+
+ubyte[] ACTIONSCRIPT_C0A959(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A959(val);
+}
+
+ubyte[] ACTIONSCRIPT_SET_BOUNDARIES(ushort val1, ushort val2) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptSetEntityBoundaries(val1, val2);
+}
+
+ubyte[] ACTIONSCRIPT_SPAWN_ENTITY_AT_SELF(OverworldSprite sprite, ActionScript script) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptSpawnEntityAtSelf(cast(ushort)sprite, cast(ushort)script);
+}
+
+ubyte[] ACTIONSCRIPT_C0A9CF(ushort val1, ushort val2, ushort val3) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A9CF(val1, val2, val3);
+}
+
+ubyte[] ACTIONSCRIPT_C0A9EB(ushort val1, ushort val2, ushort val3) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A9EB(val1, val2, val3);
+}
+
+ubyte[] ACTIONSCRIPT_C0AA23(ushort val1, ushort val2, ushort val3) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0AA23(val1, val2, val3);
+}
+
+ubyte[] ACTIONSCRIPT_C0AA3F(ubyte val1, ubyte val2, ubyte val3) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0AA3F(val1, val2, val3);
+}
+
+ubyte[] ACTIONSCRIPT_C0A92D(ushort val) {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0A92D(val);
+}
+
+ubyte[] ACTIONSCRIPT_GET_EVENT_FLAG(EventFlag flag) {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptGetEventFlag(cast(ushort)flag);
+}
+
+ubyte[] ACTIONSCRIPT_SET_SURFACE_FLAGS(ubyte flags) {
+	return ACTIONSCRIPT_CALLROUTINE!setSurfaceFlags(flags);
+}
+
+ubyte[] ACTIONSCRIPT_C0A673() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0A673();
+}
+
+ubyte[] ACTIONSCRIPT_GET_MOVEMENT_SPEED() {
+		return ACTIONSCRIPT_CALLROUTINE!getMovementSpeed();
+}
+
+ubyte[] ACTIONSCRIPT_C0A6B8() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0A6B8();
+}
+
+ubyte[] ACTIONSCRIPT_C0A6E3() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0A6E3();
+}
+
+ubyte[] ACTIONSCRIPT_C0A8C6() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0A8C6();
+}
+
+ubyte[] ACTIONSCRIPT_C0A8D1() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0A8D1();
+}
+
+ubyte[] ACTIONSCRIPT_C0A8DC() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0A8DC();
+}
+
+ubyte[] ACTIONSCRIPT_SPIRAL_MOVEMENT_FRAME() {
+		return ACTIONSCRIPT_CALLROUTINE!actionScriptSpiralMovement();
+}
+
+ubyte[] ACTIONSCRIPT_C0AAAC() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0AAAC();
+}
+
+ubyte[] ACTIONSCRIPT_C0AACD() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0AACD();
+}
+
+ubyte[] ACTIONSCRIPT_C0AAFD() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0AAFD();
+}
+
+ubyte[] ACTIONSCRIPT_PREPARE_DELIVERY_ENTRANCE_PATH() {
+		return ACTIONSCRIPT_CALLROUTINE!prepareDeliveryEntrancePath();
+}
+
+ubyte[] ACTIONSCRIPT_PREPARE_DELIVERY_EXIT_PATH() {
+		return ACTIONSCRIPT_CALLROUTINE!prepareDeliveryExitPath();
+}
+
+ubyte[] ACTIONSCRIPT_C0C353() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0C353();
+}
+
+ubyte[] ACTIONSCRIPT_C0C35D() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0C35D();
+}
+
+ubyte[] ACTIONSCRIPT_C0C48F() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0C48F();
+}
+
+ubyte[] ACTIONSCRIPT_C0C4AF() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0C4AF();
+}
+
+ubyte[] ACTIONSCRIPT_GET_ANGLE_TOWARDS_PLAYER_UNLESS_WEAK() {
+		return ACTIONSCRIPT_CALLROUTINE!getAngleTowardsPlayerUnlessWeak();
+}
+
+ubyte[] ACTIONSCRIPT_C0C6B6() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0C6B6();
+}
+
+ubyte[] ACTIONSCRIPT_C0C7DB() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0C7DB();
+}
+
+ubyte[] ACTIONSCRIPT_C0C83B() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0C83B();
+}
+
+ubyte[] ACTIONSCRIPT_C0CA4E() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0CA4E();
+}
+
+ubyte[] ACTIONSCRIPT_C0CC11() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0CC11();
+}
+
+ubyte[] ACTIONSCRIPT_C0CCCC() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0CCCC();
+}
+
+ubyte[] ACTIONSCRIPT_C0CD50() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0CD50();
+}
+
+ubyte[] ACTIONSCRIPT_C0CEBE() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0CEBE();
+}
+
+ubyte[] ACTIONSCRIPT_C0D0D9() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0D0D9();
+}
+
+ubyte[] ACTIONSCRIPT_C0D0E6() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0D0E6();
+}
+
+ubyte[] ACTIONSCRIPT_C0D15C() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0D15C();
+}
+
+ubyte[] ACTIONSCRIPT_C0D59B() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0D59B();
+}
+
+ubyte[] ACTIONSCRIPT_C0D5B0() {
+		return ACTIONSCRIPT_CALLROUTINE!unknownC0D5B0();
+}
+
+ubyte[] ACTIONSCRIPT_C0D77F() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0D77F();
+}
+
+ubyte[] ACTIONSCRIPT_C0D7B3() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0D7B3();
+}
+
+ubyte[] ACTIONSCRIPT_C0D7C7() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0D7C7();
+}
+
+ubyte[] ACTIONSCRIPT_C0D98F() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0D98F();
+}
+
+ubyte[] ACTIONSCRIPT_C0EC77() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0EC77();
+}
+
+ubyte[] ACTIONSCRIPT_C0ECB7() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0ECB7();
+}
+
+ubyte[] ACTIONSCRIPT_SET_BG_PALETTES_WHITE() {
+	return ACTIONSCRIPT_CALLROUTINE!setBGPalettesWhite();
+}
+
+ubyte[] ACTIONSCRIPT_SET_BG_PALETTES_BLACK() {
+	return ACTIONSCRIPT_CALLROUTINE!setBGPalettesBlack();
+}
+
+ubyte[] ACTIONSCRIPT_C0ED5C() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0ED5C();
+}
+
+ubyte[] ACTIONSCRIPT_C0EDD1() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0EDD1();
+}
+
+ubyte[] ACTIONSCRIPT_C0EDDA() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0EDDA();
+}
+
+ubyte[] ACTIONSCRIPT_C0EE53() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0EE53();
+}
+
+ubyte[] ACTIONSCRIPT_C0F3B2() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0F3B2();
+}
+
+ubyte[] ACTIONSCRIPT_C0F3E8() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC0F3E8();
+}
+
+ubyte[] ACTIONSCRIPT_MAGIC_BUTTERFLY_RECOVERY() {
+	return ACTIONSCRIPT_CALLROUTINE!magicButterflyRecovery();
+}
+
+ubyte[] ACTIONSCRIPT_DRAW_BATTLE_FRAME() {
+	return ACTIONSCRIPT_CALLROUTINE!drawBattleFrame();
+}
+
+ubyte[] ACTIONSCRIPT_C2EA15() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC2EA15();
+}
+
+ubyte[] ACTIONSCRIPT_C2EA74() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC2EA74();
+}
+
+ubyte[] ACTIONSCRIPT_C2EACF() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC2EACF();
+}
+
+ubyte[] ACTIONSCRIPT_C2FF9A() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC2FF9A();
+}
+
+ubyte[] ACTIONSCRIPT_C40015() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC40015();
+}
+
+ubyte[] ACTIONSCRIPT_C40023() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC40023();
+}
+
+ubyte[] ACTIONSCRIPT_C423DC() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC423DC();
+}
+
+ubyte[] ACTIONSCRIPT_C4240A() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4240A();
+}
+
+ubyte[] ACTIONSCRIPT_C4248A() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4248A();
+}
+
+ubyte[] ACTIONSCRIPT_C424D1() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC424D1();
+}
+
+ubyte[] ACTIONSCRIPT_C4257F() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4257F();
+}
+
+ubyte[] ACTIONSCRIPT_C4258C() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4258C();
+}
+
+ubyte[] ACTIONSCRIPT_C425F3() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC425F3();
+}
+
+ubyte[] ACTIONSCRIPT_C42624() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC42624();
+}
+
+ubyte[] ACTIONSCRIPT_C46712() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46712();
+}
+
+ubyte[] ACTIONSCRIPT_C4675C() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4675C();
+}
+
+ubyte[] ACTIONSCRIPT_C467B4() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC467B4();
+}
+
+ubyte[] ACTIONSCRIPT_C467C2() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC467C2();
+}
+
+ubyte[] ACTIONSCRIPT_C467E6() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC467E6();
+}
+
+ubyte[] ACTIONSCRIPT_C4681A() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4681A();
+}
+
+ubyte[] ACTIONSCRIPT_C468A9() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC468A9();
+}
+
+ubyte[] ACTIONSCRIPT_C468AF() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC468AF();
+}
+
+ubyte[] ACTIONSCRIPT_C468B5() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC468B5();
+}
+
+ubyte[] ACTIONSCRIPT_C468DC() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC468DC();
+}
+
+ubyte[] ACTIONSCRIPT_C46903() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46903();
+}
+
+ubyte[] ACTIONSCRIPT_C46914() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46914();
+}
+
+ubyte[] ACTIONSCRIPT_C46957() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46957();
+}
+
+ubyte[] ACTIONSCRIPT_C46A6E() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46A6E();
+}
+
+ubyte[] ACTIONSCRIPT_CONVERT_8DIR_TO_4DIR_PREFER_LR() {
+	return ACTIONSCRIPT_CALLROUTINE!convert8DirectionTo4PreferLeftRight();
+}
+
+ubyte[] ACTIONSCRIPT_GET_ANGLE_TO_DESTINATION() {
+	return ACTIONSCRIPT_CALLROUTINE!entityAngleToDestination();
+}
+
+ubyte[] ACTIONSCRIPT_SET_MOVING_DIRECTION_FROM_ANGLE() {
+	return ACTIONSCRIPT_CALLROUTINE!setMovingDirectionFromAngle();
+}
+
+ubyte[] ACTIONSCRIPT_C46B2D() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46B2D();
+}
+
+ubyte[] ACTIONSCRIPT_GET_OPPOSITE_DIRECTION() {
+	return ACTIONSCRIPT_CALLROUTINE!getOppositeDirection();
+}
+
+ubyte[] ACTIONSCRIPT_GET_DIRECTION_ROTATED_ANGLE_90() {
+	return ACTIONSCRIPT_CALLROUTINE!getDirectionRotatedAngle90();
+}
+
+ubyte[] ACTIONSCRIPT_C46B65() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46B65();
+}
+
+ubyte[] ACTIONSCRIPT_COPY_XY_TO_VARS() {
+	return ACTIONSCRIPT_CALLROUTINE!copyXYToVars();
+}
+
+ubyte[] ACTIONSCRIPT_C46C87() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46C87();
+}
+
+ubyte[] ACTIONSCRIPT_C46D23() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46D23();
+}
+
+ubyte[] ACTIONSCRIPT_C46D4B() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46D4B();
+}
+
+ubyte[] ACTIONSCRIPT_TEST_IF_LEADER_WITHIN_BOUNDARIES() {
+	return ACTIONSCRIPT_CALLROUTINE!isLeaderWithinBoundaries();
+}
+
+ubyte[] ACTIONSCRIPT_C46EF8() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC46EF8();
+}
+
+ubyte[] ACTIONSCRIPT_GET_DIRECTION_TO_BOUNDARY() {
+	return ACTIONSCRIPT_CALLROUTINE!directionToEntityBoundaries();
+}
+
+ubyte[] ACTIONSCRIPT_C4730E() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4730E();
+}
+
+ubyte[] ACTIONSCRIPT_GET_PARTY_COUNT() {
+	return ACTIONSCRIPT_CALLROUTINE!getPartyCount();
+}
+
+ubyte[] ACTIONSCRIPT_C4733C() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4733C();
+}
+
+ubyte[] ACTIONSCRIPT_RERENDER_ROW() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptRerenderRow();
+}
+
+ubyte[] ACTIONSCRIPT_C47369() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC47369();
+}
+
+ubyte[] ACTIONSCRIPT_C47499() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC47499();
+}
+
+ubyte[] ACTIONSCRIPT_C474A8() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC474A8();
+}
+
+ubyte[] ACTIONSCRIPT_C47A6B() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC47A6B();
+}
+
+ubyte[] ACTIONSCRIPT_C47A9E() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC47A9E();
+}
+
+ubyte[] ACTIONSCRIPT_C47B77() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC47B77();
+}
+
+ubyte[] ACTIONSCRIPT_C4880C() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4880C();
+}
+
+ubyte[] ACTIONSCRIPT_C48A6D() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC48A6D();
+}
+
+ubyte[] ACTIONSCRIPT_C48B2C() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC48B2C();
+}
+
+ubyte[] ACTIONSCRIPT_C48B3B() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC48B3B();
+}
+
+ubyte[] ACTIONSCRIPT_C49740() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC49740();
+}
+
+ubyte[] ACTIONSCRIPT_C4978E() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4978E();
+}
+
+ubyte[] ACTIONSCRIPT_C4981F() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4981F();
+}
+
+ubyte[] ACTIONSCRIPT_C49841() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC49841();
+}
+
+ubyte[] ACTIONSCRIPT_RUN_FLYOVER() {
+	return ACTIONSCRIPT_CALLROUTINE!runFlyover();
+}
+
+ubyte[] ACTIONSCRIPT_C4A7B0() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4A7B0();
+}
+
+ubyte[] ACTIONSCRIPT_C4CB4F() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4CB4F();
+}
+
+ubyte[] ACTIONSCRIPT_BLINK_VISIBLE() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptBlinkVisible();
+}
+
+ubyte[] ACTIONSCRIPT_BLINK_INVISIBLE() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptBlinkInvisible();
+}
+
+ubyte[] ACTIONSCRIPT_END_FADE() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptEndFade();
+}
+
+ubyte[] ACTIONSCRIPT_OBJFX_HSTRIPE() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptHStripe();
+}
+
+ubyte[] ACTIONSCRIPT_OBJFX_VSTRIPE() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptVStripe();
+}
+
+ubyte[] ACTIONSCRIPT_OBJFX_CLEAR_DOT_BUFFER() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptObjFXClearDotBuffer();
+}
+
+ubyte[] ACTIONSCRIPT_OBJFX_DOTS() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptObjFXDots();
+}
+
+ubyte[] ACTIONSCRIPT_C4E4DA() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4E4DA();
+}
+
+ubyte[] ACTIONSCRIPT_C4E4F9() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4E4F9();
+}
+
+ubyte[] ACTIONSCRIPT_C4EC6E() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4EC6E();
+}
+
+ubyte[] ACTIONSCRIPT_C4ECE7() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownC4ECE7();
+}
+
+ubyte[] ACTIONSCRIPT_EF027D() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownEF027D();
+}
+
+ubyte[] ACTIONSCRIPT_EF0C87() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownEF0C87();
+}
+
+ubyte[] ACTIONSCRIPT_EF0C97() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownEF0C97();
+}
+
+ubyte[] ACTIONSCRIPT_EF0CA7() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownEF0CA7();
+}
+
+ubyte[] ACTIONSCRIPT_EF0D23() {
+	return ACTIONSCRIPT_CALLROUTINE!unknownEF0D23();
+}
+
+ubyte[] ACTIONSCRIPT_START_DELIVERY_COUNTDOWN() {
+	return ACTIONSCRIPT_CALLROUTINE!startDeliveryCountdown();
+}
+
+ubyte[] ACTIONSCRIPT_DO_DELIVERY_COUNTDOWN() {
+	return ACTIONSCRIPT_CALLROUTINE!doDeliveryCountdown();
+}
+
+ubyte[] ACTIONSCRIPT_START_DELIVERY_SUCCESS_TEXT() {
+	return ACTIONSCRIPT_CALLROUTINE!startDeliverySuccessText();
+}
+
+ubyte[] ACTIONSCRIPT_START_DELIVERY_FAIL_TEXT() {
+	return ACTIONSCRIPT_CALLROUTINE!startDeliveryFailText();
+}
+
+ubyte[] ACTIONSCRIPT_GET_DELIVERY_ENTER_SPEED() {
+	return ACTIONSCRIPT_CALLROUTINE!getDeliveryEnterSpeed();
+}
+
+ubyte[] ACTIONSCRIPT_GET_DELIVERY_EXIT_SPEED() {
+	return ACTIONSCRIPT_CALLROUTINE!getDeliveryExitSpeed();
+}
+
+ubyte[] ACTIONSCRIPT_CHECK_DELIVERY_ELIGIBILITY() {
+	return ACTIONSCRIPT_CALLROUTINE!checkDeliveryEligibility();
+}
+
+ubyte[] ACTIONSCRIPT_START_DELIVERY() {
+	return ACTIONSCRIPT_CALLROUTINE!startDelivery();
+}
+
+ubyte[] ACTIONSCRIPT_FINISH_DELIVERY() {
+	return ACTIONSCRIPT_CALLROUTINE!finishDelivery();
+}
+
+
+ubyte[] ACTIONSCRIPT_CHOOSE_RANDOM(T...)(T args) {
+	return ACTIONSCRIPT_CALLROUTINE!chooseRandom(cast(ubyte)T.length, cast(short)args);
+}
+
+ubyte[] ACTIONSCRIPT_EX_C0778A(ubyte frames) {
+	return ACTIONSCRIPT_EX_CALLROUTINE!unknownC0778A(frames);
+}
+
+ubyte[] ACTIONSCRIPT_EX_C0F3E8(ubyte frames) {
+	return ACTIONSCRIPT_EX_CALLROUTINE!unknownC0F3E8(frames);
+}
+
+ubyte[] ACTIONSCRIPT_EX_C0F3B2(ubyte frames) {
+	return ACTIONSCRIPT_EX_CALLROUTINE!unknownC0F3B2(frames);
 }
 
 import std.array : join;
