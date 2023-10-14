@@ -1,4 +1,4 @@
-module rendering;
+module earthbound.sdl.rendering;
 
 import core.time;
 import std.exception;
@@ -9,10 +9,10 @@ import bindbc.sdl;
 
 import earthbound.hardware;
 
-import debugging;
-import misc;
-import snesdrawframe;
-import ppu;
+import earthbound.sdl.debugging;
+import earthbound.sdl.misc;
+import earthbound.sdl.snesdrawframe;
+import earthbound.sdl.ppu;
 
 import imgui.sdl;
 import imgui.sdlrenderer;
@@ -89,7 +89,7 @@ struct SNESRenderer {
 	void draw(ubyte[] texture, int pitch) {
 		final switch (renderer) {
 			case Renderer.bsnes:
-				snesdrawframe.drawFrame(cast(ushort*)&texture[0], pitch, &bsnesFrame);
+				.drawFrame(cast(ushort*)&texture[0], pitch, &bsnesFrame);
 				break;
 			case Renderer.neo:
 				neoRenderer.beginDrawing(texture, pitch, KPPURenderFlags.newRenderer);

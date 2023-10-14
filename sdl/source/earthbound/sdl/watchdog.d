@@ -1,9 +1,10 @@
-module watchdog;
+module earthbound.sdl.watchdog;
+
+import earthbound.sdl.debugging;
 
 import core.stdc.stdlib;
 import core.thread;
 import core.time;
-import debugging;
 
 version(Windows) {
 	import core.sys.windows.stacktrace;

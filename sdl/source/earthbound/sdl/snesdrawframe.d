@@ -1,6 +1,6 @@
-module snesdrawframe;
+module earthbound.sdl.snesdrawframe;
+import earthbound.sdl.rendering;
 import bindbc.loader;
-import rendering;
 
 public enum ImgW = 512;
 public enum ImgH = 448;

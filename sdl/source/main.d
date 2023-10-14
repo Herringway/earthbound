@@ -25,14 +25,14 @@ import earthbound.commondefs;
 import dataloader;
 import earthbound.text;
 
-import audio;
-import debugging;
-import gamepad;
-import inputconstants;
-import misc;
-import sfcdma;
-import rendering;
-import watchdog;
+import earthbound.sdl.audio;
+import earthbound.sdl.debugging;
+import earthbound.sdl.gamepad;
+import earthbound.sdl.inputconstants;
+import earthbound.sdl.misc;
+import earthbound.sdl.sfcdma;
+import earthbound.sdl.rendering;
+import earthbound.sdl.watchdog;
 
 import imgui.sdl;
 import ImGui = d_imgui;
@@ -171,21 +171,21 @@ int main(string[] args) {
 	}
 
 	waitForInterrupt = () { Fiber.yield(); };
-	earthbound.commondefs.handleOAMDMA = &sfcdma.handleOAMDMA;
-	earthbound.commondefs.handleCGRAMDMA = &sfcdma.handleCGRAMDMA;
-	earthbound.commondefs.handleVRAMDMA = &sfcdma.handleVRAMDMA;
-	earthbound.commondefs.handleHDMA = &sfcdma.handleHDMA;
-	earthbound.commondefs.setFixedColourData = &rendering.setFixedColourData;
-	earthbound.commondefs.setBGOffsetX = &rendering.setBGOffsetX;
-	earthbound.commondefs.setBGOffsetY = &rendering.setBGOffsetY;
-	earthbound.commondefs.drawRect = &rendering.drawRect;
-	earthbound.commondefs.playSFX = &audio.playSFX;
-	earthbound.commondefs.setAudioChannels = &audio.setAudioChannels;
-	earthbound.commondefs.doMusicEffect = &audio.doMusicEffect;
-	earthbound.commondefs.setStatic = &audio.setStatic;
-	earthbound.commondefs.getControllerState = &gamepad.getControllerState;
-	playMusicExternal = &audio.playMusic;
-	stopMusicExternal = &audio.stopMusic;
+	earthbound.commondefs.handleOAMDMA = &earthbound.sdl.sfcdma.handleOAMDMA;
+	earthbound.commondefs.handleCGRAMDMA = &earthbound.sdl.sfcdma.handleCGRAMDMA;
+	earthbound.commondefs.handleVRAMDMA = &earthbound.sdl.sfcdma.handleVRAMDMA;
+	earthbound.commondefs.handleHDMA = &earthbound.sdl.sfcdma.handleHDMA;
+	earthbound.commondefs.setFixedColourData = &earthbound.sdl.rendering.setFixedColourData;
+	earthbound.commondefs.setBGOffsetX = &earthbound.sdl.rendering.setBGOffsetX;
+	earthbound.commondefs.setBGOffsetY = &earthbound.sdl.rendering.setBGOffsetY;
+	earthbound.commondefs.drawRect = &earthbound.sdl.rendering.drawRect;
+	earthbound.commondefs.playSFX = &earthbound.sdl.audio.playSFX;
+	earthbound.commondefs.setAudioChannels = &earthbound.sdl.audio.setAudioChannels;
+	earthbound.commondefs.doMusicEffect = &earthbound.sdl.audio.doMusicEffect;
+	earthbound.commondefs.setStatic = &earthbound.sdl.audio.setStatic;
+	earthbound.commondefs.getControllerState = &earthbound.sdl.gamepad.getControllerState;
+	playMusicExternal = &earthbound.sdl.audio.playMusic;
+	stopMusicExternal = &earthbound.sdl.audio.stopMusic;
 	earthbound.commondefs.config = settings.game;
 	if (!autoLoadFile.isNull) {
 		earthbound.commondefs.config.autoLoadFile = autoLoadFile;

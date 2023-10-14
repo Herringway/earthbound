@@ -1,7 +1,7 @@
-module gamepad;
+module earthbound.sdl.gamepad;
 
-import inputconstants;
-import misc;
+import earthbound.sdl.inputconstants;
+import earthbound.sdl.misc;
 
 import std.experimental.logger;
 import std.file;

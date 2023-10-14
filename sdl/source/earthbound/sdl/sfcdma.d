@@ -1,5 +1,5 @@
-module sfcdma;
-import rendering;
+module earthbound.sdl.sfcdma;
+import earthbound.sdl.rendering;
 import earthbound.commondefs;
 import earthbound.hardware;
 import std.experimental.logger;

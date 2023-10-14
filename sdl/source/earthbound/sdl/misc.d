@@ -1,4 +1,4 @@
-module misc;
+module earthbound.sdl.misc;
 
 import std.algorithm;
 import std.exception;

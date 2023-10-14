@@ -1,3 +1,4 @@
+module earthbound.sdl.ppu;
 /**
  * MIT License
 

@@ -1,6 +1,6 @@
-module debugging;
+module earthbound.sdl.debugging;
 
-import rendering;
+import earthbound.sdl.rendering;
 
 import earthbound.bank00;
 import earthbound.bank01;
@@ -19,8 +19,6 @@ import std.logger;
 import std.meta;
 import std.range;
 import std.string;
-
-import rendering;
 
 import ImGui = d_imgui;
 import d_imgui.imgui_h;

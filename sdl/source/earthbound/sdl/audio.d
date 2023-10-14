@@ -1,4 +1,4 @@
-module audio;
+module earthbound.sdl.audio;
 
 import std.conv;
 import std.experimental.logger;
@@ -12,7 +12,7 @@ import sdl_mixer;
 
 import earthbound.commondefs;
 
-import misc;
+import earthbound.sdl.misc;
 version(Windows) {
 	enum libName = "SDL2_mixer.dll";
 } else version (OSX) {

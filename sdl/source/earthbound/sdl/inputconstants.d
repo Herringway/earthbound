@@ -1,4 +1,4 @@
-module inputconstants;
+module earthbound.sdl.inputconstants;
 
 enum Controller {
 	up,
