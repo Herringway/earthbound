@@ -8285,6 +8285,8 @@ void ebMain() {
 					unfreezeEntities();
 				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra3) != 0)) {
 					debugYButtonMenu();
+				} else if (config.debugMenuButton && ((padPress[0] & Pad.extra4) != 0)) {
+					assert(0, "Intentional crash");
 				}
 			}
 			mainFiberExecute();
