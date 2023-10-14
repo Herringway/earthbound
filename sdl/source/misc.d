@@ -22,9 +22,9 @@ void SDLError(string fmt) {
 	errorf(fmt, SDL_GetError().fromStringz);
 }
 
-void enforceSDL(lazy bool expr, string message) {
+void enforceSDL(lazy bool expr, string message, string file = __FILE__, ulong line = __LINE__) {
 	if (!expr) {
-		throw new Exception(format!"%s: %s"(SDL_GetError().fromStringz, message));
+		throw new Exception(format!"%s: %s"(SDL_GetError().fromStringz, message), file, line);
 	}
 }
 
