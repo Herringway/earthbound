@@ -1415,8 +1415,8 @@ template fixArgs(alias Func, Params...) {
 	static this() {
 		// the ubyte is included because an empty struct is still 1 byte, making it impossible to distinguish between nothing and a single byte
 		struct _ { align(1): ubyte dummy; Params foo; }
-		funcArgLengths[&fixArgs] = _.sizeof - 1;
-		funcSymbolMap[&fixArgs] = __traits(identifier, Func);
+		debug funcArgLengths[&fixArgs] = _.sizeof - 1;
+		debug funcSymbolMap[&fixArgs] = __traits(identifier, Func);
 	}
 }
 ubyte[] ACTIONSCRIPT_CALLROUTINE(alias fun, T...)(T args) {
