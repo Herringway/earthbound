@@ -88,7 +88,7 @@ void prepareDebugUI(size_t width, size_t height) {
 		renderDebugWindow(0, debugMenuHeight - 1, width, height);
 	}
 	if (state.editingVRAM) {
-		memoryEditor.DrawWindow("VRAM", g_frameData.vram);
+		memoryEditor.DrawWindow("VRAM", renderer.vram);
 		state.editingVRAM = memoryEditor.Open;
 	}
 	if (state.editingBuffer) {
@@ -933,9 +933,9 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			}
 		}
 		if (ImGui.TreeNode("Sprites")) {
-			foreach (id, entry; g_frameData.oam1) {
-				const uint upperX = !!(g_frameData.oam2[id/4] & (1 << ((id % 4) * 2)));
-				const size = !!(g_frameData.oam2[id/4] & (1 << ((id % 4) * 2 + 1)));
+			foreach (id, entry; renderer.oam1) {
+				const uint upperX = !!(renderer.oam2[id/4] & (1 << ((id % 4) * 2)));
+				const size = !!(renderer.oam2[id/4] & (1 << ((id % 4) * 2 + 1)));
 				if (entry.yCoord < 0xE0) {
 					if (ImGui.TreeNode(format!"Sprite %s"(id))) {
 						ImGui.BeginDisabled();
@@ -958,15 +958,15 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			ImGui.TreePop();
 		}
 		if (ImGui.TreeNode("Layers")) {
-			const screenRegisters = [g_frameData.BG1SC, g_frameData.BG2SC, g_frameData.BG3SC, g_frameData.BG4SC];
-			const screenRegisters2 = [g_frameData.BG12NBA & 0xF, g_frameData.BG12NBA >> 4, g_frameData.BG34NBA & 0xF, g_frameData.BG34NBA >> 4];
+			const screenRegisters = [renderer.BG1SC, renderer.BG2SC, renderer.BG3SC, renderer.BG4SC];
+			const screenRegisters2 = [renderer.BG12NBA & 0xF, renderer.BG12NBA >> 4, renderer.BG34NBA & 0xF, renderer.BG34NBA >> 4];
 			static foreach (layer, label; ["BG1", "BG2", "BG3", "BG4"]) {{
 				if (ImGui.TreeNode(label)) {
 					ImGui.Text(format!"Tilemap address: $%04X"((screenRegisters[layer] & 0xFC) << 9));
 					ImGui.Text(format!"Tile base address: $%04X"(screenRegisters2[layer] << 13));
 					ImGui.Text(format!"Size: %s"(["32x32", "64x32", "32x64", "64x64"][screenRegisters[layer] & 3]));
-					ImGui.Text(format!"Tile size: %s"(["8x8", "16x16"][!!(g_frameData.BGMODE >> (4 + layer))]));
-					disabledCheckbox("Mosaic Enabled", !!((g_frameData.MOSAIC >> layer) & 1));
+					ImGui.Text(format!"Tile size: %s"(["8x8", "16x16"][!!(renderer.BGMODE >> (4 + layer))]));
+					disabledCheckbox("Mosaic Enabled", !!((renderer.MOSAIC >> layer) & 1));
 					ImGui.TreePop();
 				}
 			}}
@@ -981,9 +981,9 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			const texHeight = 0x8000 / 16 / 16 * 8;
 			static ubyte[2 * texWidth * texHeight] data;
 			auto pixels = cast(ushort[])(data[]);
-			ushort[16] palette = g_frameData.cgram[paletteID * 16 .. (paletteID + 1) * 16];
+			ushort[16] palette = renderer.cgram[paletteID * 16 .. (paletteID + 1) * 16];
 			palette[] &= 0x7FFF;
-			foreach (idx, tile; g_frameData.vram[].chunks(16).enumerate) {
+			foreach (idx, tile; (cast(ushort[])renderer.vram).chunks(16).enumerate) {
 				const base = (idx % 16) * 8 + (idx / 16) * texWidth * 8;
 				foreach (p; 0 .. 8 * 8) {
 					const px = p % 8;
@@ -999,37 +999,37 @@ void renderDebugWindow(float x, float y, float width, float height) {
 			ImGui.TreePop();
 		}
 		if (ImGui.TreeNode("Registers")) {
-			InputEditable("INIDISP", g_frameData.INIDISP);
-			InputEditable("OBSEL", g_frameData.OBSEL);
-			InputEditable("OAMADDR", g_frameData.OAMADDR);
-			InputEditable("BGMODE", g_frameData.BGMODE);
-			InputEditable("MOSAIC", g_frameData.MOSAIC);
-			InputEditable("BGxSC", g_frameData.BG1SC, g_frameData.BG2SC, g_frameData.BG3SC, g_frameData.BG4SC);
-			InputEditable("BGxNBA", g_frameData.BG12NBA, g_frameData.BG34NBA);
-			InputEditable("BG1xOFS", g_frameData.BG1HOFS, g_frameData.BG1VOFS);
-			InputEditable("BG2xOFS", g_frameData.BG2HOFS, g_frameData.BG2VOFS);
-			InputEditable("BG3xOFS", g_frameData.BG3HOFS, g_frameData.BG3VOFS);
-			InputEditable("BG4xOFS", g_frameData.BG4HOFS, g_frameData.BG4VOFS);
-			InputEditable("M7SEL", g_frameData.M7SEL);
-			InputEditable("M7A", g_frameData.M7A);
-			InputEditable("M7B", g_frameData.M7B);
-			InputEditable("M7C", g_frameData.M7C);
-			InputEditable("M7D", g_frameData.M7D);
-			InputEditable("M7X", g_frameData.M7X);
-			InputEditable("M7Y", g_frameData.M7Y);
-			InputEditable("WxSEL", g_frameData.W12SEL, g_frameData.W34SEL);
-			InputEditable("WOBJSEL", g_frameData.WOBJSEL);
-			InputEditable("WHx", g_frameData.WH0, g_frameData.WH1, g_frameData.WH2, g_frameData.WH3);
-			InputEditable("WBGLOG", g_frameData.WBGLOG);
-			InputEditable("WOBJLOG", g_frameData.WOBJLOG);
-			InputEditable("TM", g_frameData.TM);
-			InputEditable("TS", g_frameData.TS);
-			InputEditable("TMW", g_frameData.TMW);
-			InputEditable("TSW", g_frameData.TSW);
-			InputEditable("CGWSEL", g_frameData.CGWSEL);
-			InputEditable("CGADSUB", g_frameData.CGADSUB);
-			InputEditable("FIXED_COLOUR_DATA", g_frameData.FIXED_COLOUR_DATA_R, g_frameData.FIXED_COLOUR_DATA_G, g_frameData.FIXED_COLOUR_DATA_B);
-			InputEditable("SETINI", g_frameData.SETINI);
+			InputEditableR("INIDISP", renderer.INIDISP);
+			InputEditableR("OBSEL", renderer.OBSEL);
+			InputEditableR("OAMADDR", renderer.OAMADDR);
+			InputEditableR("BGMODE", renderer.BGMODE);
+			InputEditableR("MOSAIC", renderer.MOSAIC);
+			InputEditableR("BGxSC", renderer.BG1SC, renderer.BG2SC, renderer.BG3SC, renderer.BG4SC);
+			InputEditableR("BGxNBA", renderer.BG12NBA, renderer.BG34NBA);
+			InputEditableR("BG1xOFS", renderer.BG1HOFS, renderer.BG1VOFS);
+			InputEditableR("BG2xOFS", renderer.BG2HOFS, renderer.BG2VOFS);
+			InputEditableR("BG3xOFS", renderer.BG3HOFS, renderer.BG3VOFS);
+			InputEditableR("BG4xOFS", renderer.BG4HOFS, renderer.BG4VOFS);
+			InputEditableR("M7SEL", renderer.M7SEL);
+			InputEditableR("M7A", renderer.M7A);
+			InputEditableR("M7B", renderer.M7B);
+			InputEditableR("M7C", renderer.M7C);
+			InputEditableR("M7D", renderer.M7D);
+			InputEditableR("M7X", renderer.M7X);
+			InputEditableR("M7Y", renderer.M7Y);
+			InputEditableR("WxSEL", renderer.W12SEL, renderer.W34SEL);
+			InputEditableR("WOBJSEL", renderer.WOBJSEL);
+			InputEditableR("WHx", renderer.WH0, renderer.WH1, renderer.WH2, renderer.WH3);
+			InputEditableR("WBGLOG", renderer.WBGLOG);
+			InputEditableR("WOBJLOG", renderer.WOBJLOG);
+			InputEditableR("TM", renderer.TM);
+			InputEditableR("TS", renderer.TS);
+			InputEditableR("TMW", renderer.TMW);
+			InputEditableR("TSW", renderer.TSW);
+			InputEditableR("CGWSEL", renderer.CGWSEL);
+			InputEditableR("CGADSUB", renderer.CGADSUB);
+			InputEditableR("FIXED_COLOUR_DATA", renderer.FIXED_COLOUR_DATA_R, renderer.FIXED_COLOUR_DATA_G, renderer.FIXED_COLOUR_DATA_B);
+			InputEditableR("SETINI", renderer.SETINI);
 			ImGui.TreePop();
 		}
 		ImGui.TreePop();
@@ -1312,12 +1312,12 @@ void dumpVRAMToDir(string basePath) {
 	import std.path : buildPath;
 	import std.stdio : File;
 	static int dumpVramCount = 0;
-	File(buildPath(basePath, format!"gfxstate%03d.regs"(dumpVramCount)), "wb").rawWrite(g_frameData.getRegistersConst());
-	File(buildPath(basePath, format!"gfxstate%03d.vram"(dumpVramCount)), "wb").rawWrite(g_frameData.vram);
-	File(buildPath(basePath, format!"gfxstate%03d.cgram"(dumpVramCount)), "wb").rawWrite(g_frameData.cgram);
-	File(buildPath(basePath, format!"gfxstate%03d.oam"(dumpVramCount)), "wb").rawWrite(g_frameData.oam1);
-	File(buildPath(basePath, format!"gfxstate%03d.oam2"(dumpVramCount)), "wb").rawWrite(g_frameData.oam2);
-	File(buildPath(basePath, format!"gfxstate%03d.hdma"(dumpVramCount)), "wb").rawWrite(g_frameData.getValidHdmaDataConst());
+	File(buildPath(basePath, format!"gfxstate%03d.regs"(dumpVramCount)), "wb").rawWrite(renderer.registers);
+	File(buildPath(basePath, format!"gfxstate%03d.vram"(dumpVramCount)), "wb").rawWrite(renderer.vram);
+	File(buildPath(basePath, format!"gfxstate%03d.cgram"(dumpVramCount)), "wb").rawWrite(renderer.cgram);
+	File(buildPath(basePath, format!"gfxstate%03d.oam"(dumpVramCount)), "wb").rawWrite(renderer.oam1);
+	File(buildPath(basePath, format!"gfxstate%03d.oam2"(dumpVramCount)), "wb").rawWrite(renderer.oam2);
+	File(buildPath(basePath, format!"gfxstate%03d.hdma"(dumpVramCount)), "wb").rawWrite(renderer.allHDMAData());
 	dumpVramCount++;
 }
 

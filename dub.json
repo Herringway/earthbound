@@ -9,7 +9,6 @@
 	"subPackages": [
 		"actionscriptgen",
 		"sdl",
-		"sdl_neo",
 		"snes"
 	],
 	"stringImportPaths": [

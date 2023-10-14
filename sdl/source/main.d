@@ -44,6 +44,7 @@ struct VideoSettings {
 	WindowMode windowMode;
 	uint zoom = 1;
 	bool keepAspectRatio = true;
+	Renderer renderer = Renderer.bsnes;
 }
 
 struct Settings {
@@ -96,7 +97,7 @@ int main(string[] args) {
 	}
 
 	try {
-		loadRenderer();
+		loadRenderer(settings.video.renderer);
 		initializeRenderer(settings.video.zoom, settings.video.windowMode, settings.video.keepAspectRatio, settings.advancedDebugging);
 		if (settings.advancedDebugging) {
 			initializeImgui();

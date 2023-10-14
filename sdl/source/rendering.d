@@ -12,6 +12,7 @@ import earthbound.hardware;
 import debugging;
 import misc;
 import snesdrawframe;
+import ppu;
 
 import imgui.sdl;
 import imgui.sdlrenderer;
@@ -44,6 +45,222 @@ public struct HDMAWrite {
 	ushort vcounter;
 	ubyte addr;
 	ubyte value;
+}
+
+enum Renderer {
+	bsnes,
+	neo,
+}
+
+SNESRenderer renderer;
+
+struct SNESRenderer {
+	private enum defaultWidth = 256;
+	private enum defaultHeight = 224;
+	private SnesDrawFrameData bsnesFrame;
+	private PPU neoRenderer;
+	private HDMAWrite[4*8*240] neoHDMAData;
+	private ushort neoNumHDMA;
+	ushort width = defaultWidth;
+	ushort height = defaultHeight;
+	private Renderer renderer;
+	uint textureType;
+	void initialize(Renderer renderer) {
+		this.renderer = renderer;
+		final switch (renderer) {
+			case Renderer.bsnes:
+				textureType = SDL_PIXELFORMAT_RGB555;
+				width = defaultWidth * 2;
+				height = defaultHeight * 2;
+				enforce(loadSnesDrawFrame(), "Could not load SnesDrawFrame");
+				enforce(initSnesDrawFrame(), "Could not initialize SnesDrawFrame");
+				info("SnesDrawFrame initialized");
+				break;
+			case Renderer.neo:
+				textureType = SDL_PIXELFORMAT_ARGB8888;
+				neoRenderer.extraLeftRight = (defaultWidth - 256) / 2;
+				neoRenderer.setExtraSideSpace((defaultWidth - 256) / 2, (defaultWidth - 256) / 2, (defaultHeight - 224) / 2);
+				info("Neo initialized");
+				break;
+		}
+	}
+	void draw(ubyte[] texture, int pitch) {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				snesdrawframe.drawFrame(cast(ushort*)&texture[0], pitch, &bsnesFrame);
+				break;
+			case Renderer.neo:
+				neoRenderer.beginDrawing(texture, pitch, KPPURenderFlags.newRenderer);
+				HDMAWrite[] hdmaTemp = neoHDMAData[0 .. neoNumHDMA];
+				foreach (i; 0 .. height) {
+					//while ((hdmaTemp.length > 0) && (hdmaTemp[0].vcounter == i)) {
+					//	neoRenderer.write(hdmaTemp[0].addr, hdmaTemp[0].value);
+					//	hdmaTemp = hdmaTemp[1 .. $];
+					//}
+					neoRenderer.runLine(i);
+				}
+				break;
+		}
+	}
+	ushort[] getFrameData() {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return .getFrameData(&bsnesFrame);
+			case Renderer.neo:
+				auto frame = new ubyte[](width * height * 4);
+				draw(frame, width * 4);
+				return cast(ushort[])frame;
+		}
+	}
+	ref inout(ushort) numHDMA() inout {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return bsnesFrame.numHdmaWrites;
+			case Renderer.neo:
+				return neoNumHDMA;
+		}
+	}
+	inout(HDMAWrite)[] hdmaData() inout {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return bsnesFrame.hdmaData[];
+			case Renderer.neo:
+				return neoHDMAData[];
+			}
+	}
+	ubyte[] vram() {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return cast(ubyte[])bsnesFrame.vram[];
+			case Renderer.neo:
+				return cast(ubyte[])(neoRenderer.vram[]);
+		}
+	}
+	ushort[] cgram() {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return bsnesFrame.cgram[];
+			case Renderer.neo:
+				return neoRenderer.cgram[];
+		}
+	}
+	OAMEntry[] oam1() {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return cast(OAMEntry[])(bsnesFrame.oam1[]);
+			case Renderer.neo:
+				return cast(OAMEntry[])(neoRenderer.oam[0 .. 0x100]);
+		}
+	}
+	ubyte[] oam2() {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return bsnesFrame.oam2[];
+			case Renderer.neo:
+				return cast(ubyte[])(neoRenderer.oam[0x100 .. $]);
+		}
+	}
+	const(ubyte)[] registers() const {
+		final switch (renderer) {
+			case Renderer.bsnes:
+				return bsnesFrame.getRegistersConst;
+			case Renderer.neo:
+				return []; // unsupported
+		}
+	}
+	const(HDMAWrite[]) allHDMAData() const {
+		return hdmaData[0 .. numHDMA];
+	}
+	private  template Register(ubyte addr, string Reg) {
+		alias T = typeof(__traits(getMember, bsnesFrame, Reg));
+		static T remembered;
+		T Register() {
+			final switch (renderer) {
+				case Renderer.bsnes:
+					return __traits(getMember, bsnesFrame, Reg);
+				case Renderer.neo:
+					return remembered;
+			}
+		}
+		void Register(T newValue) {
+			final switch (renderer) {
+				case Renderer.bsnes:
+					__traits(getMember, bsnesFrame, Reg) = newValue;
+					break;
+				case Renderer.neo:
+					remembered = newValue;
+					static if (is(T : ubyte)) {
+						neoRenderer.write(addr, newValue);
+					} else {
+						neoRenderer.write(addr, newValue & 0xFF);
+						neoRenderer.write(addr, newValue >> 8);
+					}
+					break;
+			}
+		}
+	}
+	alias INIDISP = Register!(0x00, "INIDISP");
+	alias OBSEL = Register!(0x01, "OBSEL");
+	alias BGMODE = Register!(0x05, "BGMODE");
+	ushort OAMADDR() {
+		return bsnesFrame.OAMADDR;
+	}
+	alias MOSAIC = Register!(0x06, "MOSAIC");
+	alias BG1SC = Register!(0x07, "BG1SC");
+	alias BG2SC = Register!(0x08, "BG2SC");
+	alias BG3SC = Register!(0x09, "BG3SC");
+	alias BG4SC = Register!(0x0A, "BG4SC");
+	alias BG12NBA = Register!(0x0B, "BG12NBA");
+	alias BG34NBA = Register!(0x0C, "BG34NBA");
+	alias BG1HOFS = Register!(0x0D, "BG1HOFS");
+	alias BG1VOFS = Register!(0x0E, "BG1VOFS");
+	alias BG2HOFS = Register!(0x0F, "BG2HOFS");
+	alias BG2VOFS = Register!(0x10, "BG2VOFS");
+	alias BG3HOFS = Register!(0x11, "BG3HOFS");
+	alias BG3VOFS = Register!(0x12, "BG3VOFS");
+	alias BG4HOFS = Register!(0x13, "BG4HOFS");
+	alias BG4VOFS = Register!(0x14, "BG4VOFS");
+	alias M7SEL = Register!(0x1A, "M7SEL");
+	alias M7A = Register!(0x1B, "M7A");
+	alias M7B = Register!(0x1C, "M7B");
+	alias M7C = Register!(0x1D, "M7C");
+	alias M7D = Register!(0x1E, "M7D");
+	alias M7X = Register!(0x1F, "M7X");
+	alias M7Y = Register!(0x20, "M7Y");
+	alias W12SEL = Register!(0x23, "W12SEL");
+	alias W34SEL = Register!(0x24, "W34SEL");
+	alias WOBJSEL = Register!(0x25, "WOBJSEL");
+	alias WH0 = Register!(0x26, "WH0");
+	alias WH1 = Register!(0x27, "WH1");
+	alias WH2 = Register!(0x28, "WH2");
+	alias WH3 = Register!(0x29, "WH3");
+	alias WBGLOG = Register!(0x2A, "WBGLOG");
+	alias WOBJLOG = Register!(0x2B, "WOBJLOG");
+	alias TM = Register!(0x2C, "TM");
+	alias TS = Register!(0x2D, "TS");
+	alias TMW = Register!(0x2E, "TMW");
+	alias TSW = Register!(0x2F, "TSW");
+	alias CGWSEL = Register!(0x30, "CGWSEL");
+	alias CGADSUB = Register!(0x31, "CGADSUB");
+	alias SETINI = Register!(0x33, "SETINI");
+	ubyte FIXED_COLOUR_DATA_B() {
+		return bsnesFrame.FIXED_COLOUR_DATA_B;
+	}
+	ubyte FIXED_COLOUR_DATA_G() {
+		return bsnesFrame.FIXED_COLOUR_DATA_G;
+	}
+	ubyte FIXED_COLOUR_DATA_R() {
+		return bsnesFrame.FIXED_COLOUR_DATA_R;
+	}
+	void FIXED_COLOUR_DATA_B(ubyte i) {
+		bsnesFrame.FIXED_COLOUR_DATA_B = i;
+	}
+	void FIXED_COLOUR_DATA_G(ubyte i) {
+		bsnesFrame.FIXED_COLOUR_DATA_G = i;
+	}
+	void FIXED_COLOUR_DATA_R(ubyte i) {
+		bsnesFrame.FIXED_COLOUR_DATA_R = i;
+	}
 }
 
 public struct SnesDrawFrameData {
@@ -147,18 +364,14 @@ align:
 		}
 	}
 	const(ubyte[]) getRegistersConst() const {
-		const ubyte* first = cast(const ubyte*)(&g_frameData.INIDISP);
-		const ubyte* last  = cast(const ubyte*)(&g_frameData.SETINI);
+		const ubyte* first = cast(const ubyte*)(&INIDISP);
+		const ubyte* last  = cast(const ubyte*)(&SETINI);
 		return first[0..(last-first+1)];
-	}
-	const(HDMAWrite[]) getValidHdmaDataConst() const {
-		return hdmaData[0..numHdmaWrites];
 	}
 }
 
-public __gshared SnesDrawFrameData g_frameData;
 private SDL_Window* appWin;
-private SDL_Renderer* renderer;
+private SDL_Renderer* sdlRenderer;
 private SDL_Texture* drawTexture;
 private int lastTime;
 private int gameX = 0;
@@ -166,11 +379,9 @@ private int gameY = 0;
 private int gameWidth;
 private int gameHeight;
 
-void loadRenderer() {
+void loadRenderer(Renderer r) {
     enforceSDLLoaded!("SDL", SDL_GetVersion, libName)(loadSDL());
-	enforce(loadSnesDrawFrame(), "Could not load SnesDrawFrame");
-	enforce(initSnesDrawFrame(), "Could not initialize SnesDrawFrame");
-	info("SnesDrawFrame initialized");
+    renderer.initialize(r);
 	enforceSDL(SDL_Init(SDL_INIT_VIDEO) == 0, "Error initializing SDL");
 	infof("SDL video subsystem initialized (%s)", SDL_GetCurrentVideoDriver().fromStringz);
 }
@@ -184,8 +395,8 @@ void initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio, bool r
 	const int extraHeight = reserveDebugArea ? debugMenuHeight : 0;
 	gameX = extraWidth;
 	gameY = extraHeight;
-	gameWidth = ImgW * zoom;
-	gameHeight = ImgH * zoom;
+	gameWidth = renderer.width * zoom;
+	gameHeight = renderer.height * zoom;
 	appWin = SDL_CreateWindow(
 		"Earthbound",
 		SDL_WINDOWPOS_UNDEFINED,
@@ -206,23 +417,23 @@ void initializeRenderer(uint zoom, WindowMode mode, bool keepAspectRatio, bool r
 	}
 	enforceSDL(appWin !is null, "Error creating SDL window");
 	const rendererFlags = SDL_RENDERER_ACCELERATED;
-	renderer = SDL_CreateRenderer(
+	sdlRenderer = SDL_CreateRenderer(
 		appWin, -1, rendererFlags
 	);
-	enforceSDL(renderer !is null, "Error creating SDL renderer");
+	enforceSDL(sdlRenderer !is null, "Error creating SDL renderer");
 	if (keepAspectRatio) {
-		SDL_RenderSetLogicalSize(renderer, gameWidth + extraWidth, gameHeight + extraHeight);
+		SDL_RenderSetLogicalSize(sdlRenderer, gameWidth + extraWidth, gameHeight + extraHeight);
 	}
-	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+	SDL_SetRenderDrawBlendMode(sdlRenderer, SDL_BLENDMODE_BLEND);
 	SDL_RendererInfo renderInfo;
-	SDL_GetRendererInfo(renderer, &renderInfo);
+	SDL_GetRendererInfo(sdlRenderer, &renderInfo);
 	infof("SDL renderer subsystem initialized (%s)", renderInfo.name.fromStringz);
 	drawTexture = SDL_CreateTexture(
-		renderer,
-		SDL_PIXELFORMAT_RGB555,
+		sdlRenderer,
+		renderer.textureType,
 		SDL_TEXTUREACCESS_STREAMING,
-		ImgW,
-		ImgH
+		renderer.width,
+		renderer.height
 	);
 	enforceSDL(drawTexture !is null, "Error creating SDL texture");
 }
@@ -237,8 +448,8 @@ void initializeImgui() {
 	ImGui.StyleColorsDark();
 	io.FontGlobalScale = 1.5;
 
-	ImGui_ImplSDL2_InitForSDLRenderer(appWin, renderer);
-	ImGui_ImplSDLRenderer_Init(renderer);
+	ImGui_ImplSDL2_InitForSDLRenderer(appWin, sdlRenderer);
+	ImGui_ImplSDLRenderer_Init(sdlRenderer);
 }
 void uninitializeImgui() {
 	ImGui_ImplSDLRenderer_Shutdown();
@@ -252,8 +463,8 @@ void uninitializeRenderer() {
 		SDL_DestroyWindow(appWin);
 	}
 	// Close and destroy the renderer
-	if (renderer !is null) {
-		SDL_DestroyRenderer(renderer);
+	if (sdlRenderer !is null) {
+		SDL_DestroyRenderer(sdlRenderer);
 	}
 	// Close and destroy the texture
 	if (drawTexture !is null) {
@@ -271,20 +482,20 @@ void startUIFrame() {
 }
 
 void renderGame() {
-	ushort* drawBuffer;
+	ubyte* drawBuffer;
 	int drawPitch;
 	SDL_LockTexture(drawTexture, null, cast(void**)&drawBuffer, &drawPitch);
-	snesdrawframe.drawFrame(drawBuffer, drawPitch, &g_frameData);
+	renderer.draw(drawBuffer[0 .. renderer.height * drawPitch], drawPitch);
 	SDL_UnlockTexture(drawTexture);
 
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-	SDL_RenderClear(renderer);
+	SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
+	SDL_RenderClear(sdlRenderer);
 	SDL_Rect screen;
 	screen.x = gameX;
 	screen.y = gameY;
 	screen.w = gameWidth;
 	screen.h = gameHeight;
-	SDL_RenderCopy(renderer, drawTexture, null, &screen);
+	SDL_RenderCopy(sdlRenderer, drawTexture, null, &screen);
 }
 
 void renderOverlay() {
@@ -295,7 +506,7 @@ void renderOverlay() {
 }
 
 void endFrame() {
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(sdlRenderer);
 }
 
 void renderUI() {
@@ -323,61 +534,61 @@ void setTitle(scope const char[] title) {
 }
 
 void copyGlobalsToFrameData() {
-	g_frameData.INIDISP = INIDISP;
-	g_frameData.OBSEL = OBSEL;
-	//g_frameData.OAMADDR = OAMADDL | OAMADDH << 8;
-	g_frameData.BGMODE = BGMODE;
-	g_frameData.MOSAIC = MOSAIC;
-	g_frameData.BG1SC = BG1SC;
-	g_frameData.BG2SC = BG2SC;
-	g_frameData.BG3SC = BG3SC;
-	g_frameData.BG4SC = BG4SC;
-	g_frameData.BG12NBA = BG12NBA;
-	g_frameData.BG34NBA = BG34NBA;
-	g_frameData.W12SEL = W12SEL;
-	g_frameData.W34SEL = W34SEL;
-	g_frameData.WOBJSEL = WOBJSEL;
-	g_frameData.WH0 = WH0;
-	g_frameData.WH1 = WH1;
-	g_frameData.WH2 = WH2;
-	g_frameData.WH3 = WH3;
-	g_frameData.WBGLOG = WBGLOG;
-	g_frameData.WOBJLOG = WOBJLOG;
-	g_frameData.TM = TM ^ layersDisabled;
-	g_frameData.TS = TD;
-	g_frameData.TMW = TMW;
-	g_frameData.TSW = TSW;
-	g_frameData.CGWSEL = CGWSEL;
-	g_frameData.CGADSUB = CGADSUB;
-	//g_frameData.SETINI = SETINI;
+	renderer.INIDISP = INIDISP;
+	renderer.OBSEL = OBSEL;
+	//renderer.OAMADDR = OAMADDL | OAMADDH << 8;
+	renderer.BGMODE = BGMODE;
+	renderer.MOSAIC = MOSAIC;
+	renderer.BG1SC = BG1SC;
+	renderer.BG2SC = BG2SC;
+	renderer.BG3SC = BG3SC;
+	renderer.BG4SC = BG4SC;
+	renderer.BG12NBA = BG12NBA;
+	renderer.BG34NBA = BG34NBA;
+	renderer.W12SEL = W12SEL;
+	renderer.W34SEL = W34SEL;
+	renderer.WOBJSEL = WOBJSEL;
+	renderer.WH0 = WH0;
+	renderer.WH1 = WH1;
+	renderer.WH2 = WH2;
+	renderer.WH3 = WH3;
+	renderer.WBGLOG = WBGLOG;
+	renderer.WOBJLOG = WOBJLOG;
+	renderer.TM = TM ^ layersDisabled;
+	renderer.TS = TD;
+	renderer.TMW = TMW;
+	renderer.TSW = TSW;
+	renderer.CGWSEL = CGWSEL;
+	renderer.CGADSUB = CGADSUB;
+	//renderer.SETINI = SETINI;
 }
 
 void setFixedColourData(ubyte val) {
 	const intensity = val & 0x1F;
 	if (val & 0x80) {
-		g_frameData.FIXED_COLOUR_DATA_B = intensity;
+		renderer.FIXED_COLOUR_DATA_B = intensity;
 	}
 	if (val & 0x40) {
-		g_frameData.FIXED_COLOUR_DATA_G = intensity;
+		renderer.FIXED_COLOUR_DATA_G = intensity;
 	}
 	if (val & 0x20) {
-		g_frameData.FIXED_COLOUR_DATA_R = intensity;
+		renderer.FIXED_COLOUR_DATA_R = intensity;
 	}
 }
 
 void setBGOffsetX(ubyte layer, ushort x) {
 	switch (layer) {
 		case 1:
-			g_frameData.BG1HOFS = x;
+			renderer.BG1HOFS = x;
 			break;
 		case 2:
-			g_frameData.BG2HOFS = x;
+			renderer.BG2HOFS = x;
 			break;
 		case 3:
-			g_frameData.BG3HOFS = x;
+			renderer.BG3HOFS = x;
 			break;
 		case 4:
-			g_frameData.BG4HOFS = x;
+			renderer.BG4HOFS = x;
 			break;
 		default: assert(0);
 	}
@@ -385,16 +596,16 @@ void setBGOffsetX(ubyte layer, ushort x) {
 void setBGOffsetY(ubyte layer, ushort y) {
 	switch (layer) {
 		case 1:
-			g_frameData.BG1VOFS = y;
+			renderer.BG1VOFS = y;
 			break;
 		case 2:
-			g_frameData.BG2VOFS = y;
+			renderer.BG2VOFS = y;
 			break;
 		case 3:
-			g_frameData.BG3VOFS = y;
+			renderer.BG3VOFS = y;
 			break;
 		case 4:
-			g_frameData.BG4VOFS = y;
+			renderer.BG4VOFS = y;
 			break;
 		default: assert(0);
 	}
@@ -415,23 +626,28 @@ void renderRectangle(const ColouredRectangle rect) {
 	const xScale = gameWidth / 256.0;
 	const yScale = gameHeight / 224.0;
 	const dim = SDL_Rect(cast(int)(gameX + rect.x * xScale), cast(int)(gameY + rect.y * yScale), cast(int)(rect.w * xScale), cast(int)(rect.h * yScale));
-	assert(SDL_SetRenderDrawColor(renderer, rect.r, rect.g, rect.b, rect.a) >= 0);
-	assert(SDL_RenderFillRect(renderer, &dim) >= 0);
+	assert(SDL_SetRenderDrawColor(sdlRenderer, rect.r, rect.g, rect.b, rect.a) >= 0);
+	assert(SDL_RenderFillRect(sdlRenderer, &dim) >= 0);
 }
 
-SDL_Texture* createTexture(scope const ubyte[] data, int width, int height) {
-	auto surface = SDL_CreateRGBSurfaceFrom(cast(void*)&data[0], width, height, 16, 2 * width, BGR555Mask.Red, BGR555Mask.Green, BGR555Mask.Blue, 0);
+SDL_Surface* createSurface(scope const ubyte[] data, int width, int height) {
+	assert(sdlRenderer, "No renderer");
+	int bpp;
+	uint redMask, greenMask, blueMask, alphaMask;
+	SDL_PixelFormatEnumToMasks(renderer.textureType, &bpp, &redMask, &greenMask, &blueMask, &alphaMask);
+	auto surface = SDL_CreateRGBSurfaceFrom(cast(void*)&data[0], width, height, bpp, (bpp / 8) * width, redMask, greenMask, blueMask, alphaMask);
 	enforceSDL(surface != null, "Failed to create surface");
-	assert(renderer, "No renderer");
-	auto tex = SDL_CreateTextureFromSurface(renderer, surface);
+	return surface;
+}
+SDL_Texture* createTexture(scope const ubyte[] data, int width, int height) {
+	auto tex = SDL_CreateTextureFromSurface(sdlRenderer, createSurface(data, width, height));
 	enforceSDL(tex != null, "Failed to create texture");
 	return tex;
 }
 
 void dumpScreen(string path) {
-	auto frame = getFrameData(&g_frameData);
-	auto surface = SDL_CreateRGBSurfaceFrom(&frame[0], ImgW, ImgH, 16, ImgW * ushort.sizeof, 0x1F << 10, 0x1F << 5, 0x1F, 0);
-	enforceSDL(surface != null, "Failed to create surface");
+	auto frame = renderer.getFrameData();
+	auto surface = createSurface(cast(ubyte[])frame, renderer.width, renderer.height);
 	SDL_SaveBMP(surface, path.toStringz);
 
 	SDL_FreeSurface(surface);
