@@ -995,7 +995,7 @@ void renderDebugWindow(float x, float y, float width, float height) {
 					pixels[base + px + py * texWidth] = palette[pixel];
 				}
 			}
-			ImGui.Image(createTexture(data[], texWidth, texHeight), ImVec2(texWidth * 3, texHeight * 3));
+			ImGui.Image(createTexture(data[], texWidth, texHeight, ushort.sizeof * texWidth, nativeFormat), ImVec2(texWidth * 3, texHeight * 3));
 			ImGui.TreePop();
 		}
 		if (ImGui.TreeNode("Registers")) {

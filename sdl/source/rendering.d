@@ -19,6 +19,8 @@ import imgui.sdlrenderer;
 import d_imgui.imgui_h;
 import ImGui = d_imgui;
 
+enum nativeFormat = SDL_PIXELFORMAT_RGB555;
+
 ubyte layersDisabled;
 private uint frameTotal;
 private char[30] frameRateStringBuffer;
@@ -103,11 +105,17 @@ struct SNESRenderer {
 		}
 	}
 	ushort[] getFrameData() {
+		uint _;
+		return getFrameData(_);
+	}
+	ushort[] getFrameData(out uint pitch) {
 		final switch (renderer) {
 			case Renderer.bsnes:
+				pitch = 256 * 4;
 				return .getFrameData(&bsnesFrame);
 			case Renderer.neo:
 				auto frame = new ubyte[](width * height * 4);
+				pitch = width * 4;
 				draw(frame, width * 4);
 				return cast(ushort[])frame;
 		}
@@ -630,24 +638,25 @@ void renderRectangle(const ColouredRectangle rect) {
 	assert(SDL_RenderFillRect(sdlRenderer, &dim) >= 0);
 }
 
-SDL_Surface* createSurface(scope const ubyte[] data, int width, int height) {
+SDL_Surface* createSurface(scope const ubyte[] data, int width, int height, uint pitch, uint format) {
 	assert(sdlRenderer, "No renderer");
 	int bpp;
 	uint redMask, greenMask, blueMask, alphaMask;
-	SDL_PixelFormatEnumToMasks(renderer.textureType, &bpp, &redMask, &greenMask, &blueMask, &alphaMask);
-	auto surface = SDL_CreateRGBSurfaceFrom(cast(void*)&data[0], width, height, bpp, (bpp / 8) * width, redMask, greenMask, blueMask, alphaMask);
+	SDL_PixelFormatEnumToMasks(format, &bpp, &redMask, &greenMask, &blueMask, &alphaMask);
+	auto surface = SDL_CreateRGBSurfaceFrom(cast(void*)&data[0], width, height, bpp, pitch, redMask, greenMask, blueMask, alphaMask);
 	enforceSDL(surface != null, "Failed to create surface");
 	return surface;
 }
-SDL_Texture* createTexture(scope const ubyte[] data, int width, int height) {
-	auto tex = SDL_CreateTextureFromSurface(sdlRenderer, createSurface(data, width, height));
+SDL_Texture* createTexture(scope const ubyte[] data, int width, int height, uint pitch, uint format) {
+	auto tex = SDL_CreateTextureFromSurface(sdlRenderer, createSurface(data, width, height, pitch, format));
 	enforceSDL(tex != null, "Failed to create texture");
 	return tex;
 }
 
 void dumpScreen(string path) {
-	auto frame = renderer.getFrameData();
-	auto surface = createSurface(cast(ubyte[])frame, renderer.width, renderer.height);
+	uint pitch;
+	auto frame = renderer.getFrameData(pitch);
+	auto surface = createSurface(cast(ubyte[])frame, renderer.width, renderer.height, pitch, renderer.textureType);
 	SDL_SaveBMP(surface, path.toStringz);
 
 	SDL_FreeSurface(surface);
