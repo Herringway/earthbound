@@ -174,11 +174,11 @@ enum WalkingStyle {
 	bicycle = 3,
 	ghost = 4,
 
-	slower = 6,
+	slower = 6, /// used for shallow water
 	ladder = 7,
 	rope = 8,
 
-	slowest = 10,
+	slowest = 10, /// used for deep water
 
 	escalator = 12,
 	stairs = 13,
