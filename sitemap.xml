@@ -3269,6 +3269,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/demoReadSource.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/demoRecordingFlags.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/demoWriteDestination.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/disableActionscript.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/disabledTransitions.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/disableMusicChanges.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/displayTextStates.html</loc></url>
@@ -3317,6 +3318,7 @@
 <url><loc>http://127.0.0.1/earthbound/globals/entityDrawSorting.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityEnemyIDs.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityEnemySpawnTiles.html</loc></url>
+<url><loc>http://127.0.0.1/earthbound/globals/entityExtra.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityFadeEntity.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityFadeStates.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/entityFadeStatesBuffer.html</loc></url>
@@ -3647,7 +3649,6 @@
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0A52.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0A54.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E0A56.html</loc></url>
-<url><loc>http://127.0.0.1/earthbound/globals/unknown7E0A60.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E15A2.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1AD6.html</loc></url>
 <url><loc>http://127.0.0.1/earthbound/globals/unknown7E1B56.html</loc></url>
