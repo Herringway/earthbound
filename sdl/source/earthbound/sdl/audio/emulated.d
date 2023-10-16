@@ -16,6 +16,7 @@ import sdl_mixer;
 
 import earthbound.commondefs;
 
+import earthbound.assets;
 import earthbound.sdl.debugging;
 import earthbound.sdl.misc;
 
@@ -98,7 +99,7 @@ void playSFX(ubyte id) {
 	mask ^= 0x80;
 }
 
-private ubyte[65536][uint] loadedSongs;
+private ubyte[65536][size_t] loadedSongs;
 
 extern (C) void spc700FillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 	auto spc = cast(AllSPC*)user;
@@ -118,21 +119,16 @@ extern (C) void spc700FillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 	}
 }
 
-void loadAudioData() {
-	import std.parallelism : parallel;
-	foreach (songFile; parallel(getDataFiles("songs", "*.nspc"))) {
-		try {
-			const id = songFile.baseName.stripExtension.to!uint;
-			loadedSongs[id] = loadNSPCBuffer(cast(ubyte[])read(songFile));
-			debug(loading) tracef("Loaded song %02X - %s", id, songFile);
-		} catch (Exception e) {
-			errorf("Could not load %s: %s", songFile, e.msg);
-		}
+void loadSong(size_t index, const ubyte[] data) {
+	try {
+		loadedSongs[index] = loadNSPCBuffer(data);
+		debug(loading) tracef("Loaded song %02X", index);
+	} catch (Exception e) {
+		errorf("Could not load %s: %s", index, e.msg);
 	}
-	tracef("Loaded songs");
 }
 
-ubyte[65536] loadNSPCBuffer(scope ubyte[] file) @safe {
+ubyte[65536] loadNSPCBuffer(scope const ubyte[] file) @safe {
 	import std.bitmanip : read;
 	ubyte[65536] buffer;
 	const remaining = loadAllSubpacks(buffer[], file[NSPCFileHeader.sizeof .. $]);

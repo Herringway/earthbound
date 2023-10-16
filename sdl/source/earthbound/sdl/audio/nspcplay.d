@@ -12,7 +12,9 @@ import sdl_mixer;
 
 import earthbound.commondefs;
 
+import earthbound.assets;
 import earthbound.sdl.misc;
+
 version(Windows) {
 	enum libName = "SDL2_mixer.dll";
 } else version (OSX) {
@@ -272,8 +274,8 @@ void playSFX(ubyte id) {
 	}
 }
 
-private Mix_Chunk*[uint] loadedSFX;
-private Song[uint] loadedSongs;
+private Mix_Chunk*[size_t] loadedSFX;
+private Song[size_t] loadedSongs;
 private __gshared NSPCPlayer nspcplayer;
 
 extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
@@ -286,26 +288,19 @@ extern (C) void nspcFillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 	}
 }
 
-void loadAudioData() {
-	import std.parallelism : parallel;
-	foreach (sfxFile; getDataFiles("sfx", "*.wav")) {
-		try {
-			const id = sfxFile.baseName.stripExtension.to!uint;
-			loadedSFX[id] = Mix_LoadWAV(sfxFile.toStringz);
-			debug(loading) tracef("Loaded sound effect %02X - %s", id, sfxFile);
-		} catch (Exception e) {
-			errorf("Could not load %s: %s", sfxFile, e.msg);
-		}
+void loadSong(size_t index, const(ubyte)[] data) {
+	try {
+		loadedSongs[index] = loadNSPCFile(data);
+		debug(loading) tracef("Loaded song %02X", index);
+	} catch (Exception e) {
+		errorf("Could not load song %s: %s", index, e.msg);
 	}
-	tracef("Loaded SFX");
-	foreach (songFile; parallel(getDataFiles("songs", "*.nspc"))) {
-		try {
-			const id = songFile.baseName.stripExtension.to!uint;
-			loadedSongs[id] = loadNSPCFile(cast(ubyte[])read(songFile));
-			debug(loading) tracef("Loaded song %02X - %s", id, songFile);
-		} catch (Exception e) {
-			errorf("Could not load %s: %s", songFile, e.msg);
-		}
+}
+void loadSFX(size_t index, const(ubyte)[] data) {
+	try {
+		loadedSFX[index] = Mix_LoadWAV_RW(SDL_RWFromMem(cast(void*)&data[0], cast(int)data.length), 0);
+		debug(loading) tracef("Loaded sound effect %02X", index);
+	} catch (Exception e) {
+		errorf("Could not load SFX %s: %s", index, e.msg);
 	}
-	tracef("Loaded songs");
 }

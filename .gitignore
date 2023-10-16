@@ -15,7 +15,6 @@ earthbound-test-*
 *.o
 *.obj
 *.lst
-data
 *.rom
 *.spc
 *.sfc
@@ -26,7 +25,6 @@ dub.selections.json
 *.ebsave
 *.ebsave.bak
 gamecontrollerdb.txt
-data
 settings.yml
 *.pdb
 *.cgram
@@ -39,7 +37,9 @@ settings.yml
 *.lib
 *.srm
 *.sym
-text.cache
+*.dmp
+*.bin
+earthbound.planet
 save.yaml
 dump
 imgui.ini

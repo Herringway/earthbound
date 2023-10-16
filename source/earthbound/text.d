@@ -15,9 +15,7 @@ private struct CacheEntry {
 	uint valueOffset;
 }
 
-void loadTextCache(string path) {
-	import std.file : read;
-	auto data = cast(const(ubyte)[])read(path);
+void loadTextCache(const(ubyte)[] data) {
 	const entryCount = (cast(const(uint)[])(data[0 .. uint.sizeof]))[0];
 	const entries = cast(const(CacheEntry)[])(data[uint.sizeof .. entryCount * CacheEntry.sizeof + uint.sizeof]);
 	textData = null;
@@ -28,8 +26,9 @@ void loadTextCache(string path) {
 	}
 }
 
-void saveTextCache(string path) {
-	import std.stdio : File;
+void buildTextCache(T)(auto ref T outputRange) {
+	import std.bitmanip : nativeToLittleEndian;
+	import std.range : put;
 	const(ubyte)[] data;
 	CacheEntry[] entries;
 	entries.reserve(textData.length);
@@ -49,10 +48,9 @@ void saveTextCache(string path) {
 	}
 
 	assert(textData.length < uint.max, "Too many text entries for cache");
-	auto writer = File(path, "w").lockingBinaryWriter;
-	writer.put(cast(uint)entries.length);
-	writer.put(entries);
-	writer.put(data);
+	put(outputRange, nativeToLittleEndian(cast(uint)entries.length)[]);
+	put(outputRange, cast(ubyte[])entries);
+	put(outputRange, data);
 }
 
 const(ubyte)[] asBytes(const(void)[] textChunk) {

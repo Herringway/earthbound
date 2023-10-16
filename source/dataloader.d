@@ -6,35 +6,100 @@ import earthbound.bank00;
 import earthbound.bank04;
 import earthbound.bank08;
 import earthbound.text;
-import std.exception : enforce;
-import std.meta : Filter;
-import std.format : format;
+
+import std.conv;
+import std.exception;
+import std.format;
+import std.logger;
+import std.meta;
 
 private enum isROMLoadable(alias sym) = (Filter!(typeMatches!ROMSource, __traits(getAttributes, sym)).length == 1) || (Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, sym)).length == 1);
+
+struct Asset {
+    const(ubyte)[][] data;
+    const(char)[] name;
+}
+
 template typeMatches(T) {
 	enum typeMatches(alias t) = is(typeof(t) == T);
 }
+
+struct SymbolDataItem(alias Sym) {
+    ROMSource[] sources;
+    string name;
+    bool array;
+    alias data = Sym;
+}
+
+template SymbolData() {
+    import std.meta : AliasSeq;
+    alias SymbolData = AliasSeq!();
+    static import earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F;
+    static foreach (mod; AliasSeq!(earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F)) {
+        static foreach (member; __traits(allMembers, mod)) { // look for loadable things in module
+            static if (!is(typeof(__traits(getMember, mod, member)) == function) && isROMLoadable!(__traits(getMember, mod, member))) {
+                static if (Filter!(typeMatches!ROMSource, __traits(getAttributes, __traits(getMember, mod, member))).length == 1) { // single source
+                    SymbolData = AliasSeq!(SymbolData, SymbolDataItem!(__traits(getMember, mod, member))([Filter!(typeMatches!ROMSource, __traits(getAttributes, __traits(getMember, mod, member)))[0]], member, false));
+                } else static if (Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, __traits(getMember, mod, member))).length == 1) { // array of sources
+                    SymbolData = AliasSeq!(SymbolData, SymbolDataItem!(__traits(getMember, mod, member))(Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, __traits(getMember, mod, member)))[0], member, true));
+                }
+            }
+        }
+    }
+}
+
 void loadROMData(const ubyte[] romData) {
 	import std.logger : tracef;
-	import std.meta : AliasSeq;
-	static import earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F;
-	static foreach (mod; AliasSeq!(earthbound.bank03, earthbound.bank04, earthbound.bank0A, earthbound.bank0C, earthbound.bank0E, earthbound.bank11, earthbound.bank18, earthbound.bank20, earthbound.bank21, earthbound.bank2F)) {
-		static foreach (member; __traits(allMembers, mod)) { // look for loadable things in module
-			static if (!is(typeof(__traits(getMember, mod, member)) == function) && isROMLoadable!(__traits(getMember, mod, member))) {{
-				debug(loading) tracef("Loading %s from ROM", member.stringof);
-				static if (Filter!(typeMatches!ROMSource, __traits(getAttributes, __traits(getMember, mod, member))).length == 1) { // single source
-					enum source = Filter!(typeMatches!ROMSource, __traits(getAttributes, __traits(getMember, mod, member)))[0];
-					__traits(getMember, mod, member) = cast(typeof(__traits(getMember, mod, member)))(romData[source.offset .. source.offset + source.length]);
-				} else static if (Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, __traits(getMember, mod, member))).length == 1) { // array of sources
-					enum sources = Filter!(typeMatches!(ROMSource[]), __traits(getAttributes, __traits(getMember, mod, member)))[0];
-					__traits(getMember, mod, member).reserve(sources.length);
-					static foreach (source; sources) {
-						__traits(getMember, mod, member) ~= cast(typeof(__traits(getMember, mod, member)[0]))(romData[source.offset .. source.offset + source.length]);
-					}
-				}
-			}}
-		}
-	}
+    static foreach (asset; SymbolData!()) {
+        static if (asset.sources.length > 1) {
+            asset.data.reserve(asset.sources.length);
+            static foreach (element; asset.sources) {
+                asset.data ~= cast(typeof(asset.data[0]))(romData[element.offset .. element.offset + element.length]);
+            }
+        } else {
+            asset.data = cast(typeof(asset.data))(romData[asset.sources[0].offset .. asset.sources[0].offset + asset.sources[0].length]);
+        }
+    }
+}
+Asset[] extractROMData(const ubyte[] romData) {
+    import std.logger : tracef;
+    import std.meta : AliasSeq;
+    Asset[] results;
+    static foreach (asset; SymbolData!()) {{
+        Asset newAsset;
+        newAsset.name = asset.name;
+        static if (asset.sources.length > 1) {
+            static foreach (i, element; asset.sources) {
+                newAsset.data ~= romData[element.offset .. element.offset + element.length];
+            }
+        } else {
+            newAsset.data ~= romData[asset.sources[0].offset .. asset.sources[0].offset + asset.sources[0].length];
+        }
+        results ~= newAsset;
+    }}
+    return results;
+}
+void loadROMAssets(Asset[] assets) {
+    foreach (asset; assets) {
+        tracef("Loading asset %s (%s files)", asset.name, asset.data.length);
+        sw: switch (asset.name) {
+            static foreach (Symbol; SymbolData!()) {
+                case Symbol.name:
+                    static if (Symbol.array) {
+                        Symbol.data.reserve(asset.data.length);
+                        foreach (data; asset.data) {
+                            Symbol.data ~= cast(typeof(Symbol.data[0]))data;
+                        }
+                    } else {
+                        Symbol.data = cast(typeof(Symbol.data))(asset.data[0]);
+                    }
+                    break sw;
+            }
+            default:
+                infof("Unknown asset: %s", asset.name);
+                break;
+        }
+    }
 }
 
 version(unittest) {

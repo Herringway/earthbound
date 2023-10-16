@@ -28,28 +28,6 @@ void enforceSDL(lazy bool expr, string message, string file = __FILE__, ulong li
 	}
 }
 
-auto getDataFiles(string type, string pattern) {
-	static struct Result {
-		DirIterator iterator;
-		bool pathExists;
-		void popFront() {
-			iterator.popFront();
-		}
-		auto front() {
-			return iterator.front;
-		}
-		bool empty() {
-			return !pathExists || iterator.empty;
-		}
-	}
-	const path = buildPath("data", type);
-	bool filterFunc(string name) {
-		return globMatch(baseName(name), pattern);
-	}
-	tracef("Looking for %s (%s) in %s", type, pattern, path.asAbsolutePath);
-	return Result(path.exists ? dirEntries(path, SpanMode.depth) : DirIterator.init, path.exists).map!(x => x.name).filter!filterFunc;
-}
-
 void enforceSDLLoaded(string what, alias versionFunction, string libName, T)(T got) {
 	enforce(got != T.noLibrary, "Could not load "~what~": No library found - "~libName~" is missing or has incorrect architecture");
 	enforce(got != T.badLibrary, "Could not load "~what~": Bad library found - "~libName~" is incompatible");
@@ -96,9 +74,3 @@ struct FrameStatTracker {
 }
 
 FrameStatTracker frameStatTracker;
-
-SysTime getLastModifiedTime(string path) {
-	SysTime access, modified;
-	getTimes(path, access, modified);
-	return modified;
-}

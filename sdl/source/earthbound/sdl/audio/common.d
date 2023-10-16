@@ -62,13 +62,23 @@ void uninitializeAudio() {
 	}
 }
 
-void loadAudioData() {
+void loadSong(size_t index, const(ubyte)[] data) {
 	final switch (mode) {
 		case AudioMode.emulated:
-			earthbound.sdl.audio.emulated.loadAudioData();
+			earthbound.sdl.audio.emulated.loadSong(index, data);
 			break;
 		case AudioMode.nspcplay:
-			earthbound.sdl.audio.nspcplay.loadAudioData();
+			earthbound.sdl.audio.nspcplay.loadSong(index, data);
+			break;
+	}
+}
+
+void loadSFX(size_t index, const(ubyte)[] data) {
+	final switch (mode) {
+		case AudioMode.emulated:
+			break;
+		case AudioMode.nspcplay:
+			earthbound.sdl.audio.nspcplay.loadSFX(index, data);
 			break;
 	}
 }
