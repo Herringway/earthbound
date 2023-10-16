@@ -25,7 +25,7 @@ ubyte layersDisabled;
 private uint frameTotal;
 private char[30] frameRateStringBuffer;
 private uint frameCounter;
-const(char)[] frameRateString;
+const(char)[] frameRateString = "??";
 void updateFrameRate() {
 	frameTotal += timeSinceFrameStart.total!"msecs";
 	if (frameCounter++ == 60) {
