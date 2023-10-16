@@ -40,13 +40,6 @@ void initAudio(ubyte channels, uint sampleRate) {
 	const dev = SDL_OpenAudioDevice(null, 0, &want, &have, 0);
 	enforceSDL(dev != 0, "Error opening audio device");
 	SDL_PauseAudioDevice(dev, 0);
-    //enforceSDLLoaded!("SDL_Mixer", Mix_Linked_Version, libName)(loadSDLMixer());
-	//enforceSDL(Mix_OpenAudio(32000, AUDIO_S16, channels, 4096) != -1, "Could not open audio");
-	//Mix_HookMusic(&spc700FillBuffer, &spc);
-	//int finalSampleRate;
-	//int finalChannels;
-	//ushort finalFormat;
-	//Mix_QuerySpec(&finalSampleRate, &finalFormat, &finalChannels);
 
 	spc.snes_spc.initialize();
 	spc.filter = SPC_Filter();
