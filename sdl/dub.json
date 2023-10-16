@@ -4,6 +4,7 @@
 	"dependencies": {
 		"bindbc-sdl": "~>1.4.1",
 		"siryul": "~>0.6",
+		"spc700": "~>0.0",
 		"earthbound": "*",
 		"nspcplay": "~>0.9",
 		"d_imgui": "~>1.89.0"

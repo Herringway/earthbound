@@ -25,7 +25,7 @@ import earthbound.commondefs;
 import dataloader;
 import earthbound.text;
 
-import earthbound.sdl.audio;
+import earthbound.sdl.audio.common;
 import earthbound.sdl.debugging;
 import earthbound.sdl.gamepad;
 import earthbound.sdl.inputconstants;
@@ -48,10 +48,6 @@ struct VideoSettings {
 }
 
 struct Settings {
-	static struct AudioSettings {
-		uint sampleRate = 44100;
-		ubyte channels = 2;
-	}
 	AudioSettings audio;
 	VideoSettings video;
 	Controller[GamePadButton] gamepadMapping;
@@ -102,7 +98,7 @@ int main(string[] args) {
 		if (settings.advancedDebugging) {
 			initializeImgui();
 		}
-		initAudio(settings.audio.channels, settings.audio.sampleRate);
+		initAudio(settings.audio);
 		initializeGamepad();
 	} catch (Exception e) {
 		criticalf("Error: %s", e.msg);
@@ -179,13 +175,13 @@ int main(string[] args) {
 	earthbound.commondefs.setBGOffsetX = &earthbound.sdl.rendering.setBGOffsetX;
 	earthbound.commondefs.setBGOffsetY = &earthbound.sdl.rendering.setBGOffsetY;
 	earthbound.commondefs.drawRect = &earthbound.sdl.rendering.drawRect;
-	earthbound.commondefs.playSFX = &earthbound.sdl.audio.playSFX;
-	earthbound.commondefs.setAudioChannels = &earthbound.sdl.audio.setAudioChannels;
-	earthbound.commondefs.doMusicEffect = &earthbound.sdl.audio.doMusicEffect;
-	earthbound.commondefs.setStatic = &earthbound.sdl.audio.setStatic;
+	earthbound.commondefs.playSFX = playSFXFunction;
+	earthbound.commondefs.playMusicExternal = playMusicExternalFunction;
+	earthbound.commondefs.stopMusicExternal = stopMusicExternalFunction;
+	earthbound.commondefs.setAudioChannels = setAudioChannelsFunction;
+	earthbound.commondefs.doMusicEffect = doMusicEffectFunction;
+	earthbound.commondefs.setStatic = setStaticFunction;
 	earthbound.commondefs.getControllerState = &earthbound.sdl.gamepad.getControllerState;
-	playMusicExternal = &earthbound.sdl.audio.playMusic;
-	stopMusicExternal = &earthbound.sdl.audio.stopMusic;
 	earthbound.commondefs.config = settings.game;
 	if (!autoLoadFile.isNull) {
 		earthbound.commondefs.config.autoLoadFile = autoLoadFile;
@@ -329,9 +325,7 @@ void buildNSPCFiles(const ubyte[] data) {
 		writer.header.sampleBase = 0x6C00;
 		writer.header.volumeTable = VolumeTable.hal1;
 		writer.header.releaseTable = ReleaseTable.hal1;
-		if (songPacks[2] == 0xFF) {
-			writer.packs ~= packs[1];
-		}
+		writer.packs ~= packs[1]; // engine pack
 		foreach (pack; songPacks) {
 			if (pack == 0xFF) {
 				continue;
