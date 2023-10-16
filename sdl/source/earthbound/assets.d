@@ -116,11 +116,9 @@ void tryExtractAssets(string baseDir, bool force) {
 		foreach (asset; extractROMData(rom)) {
 			const dest = buildPath(baseDir,  "assets", asset.name);
 			infof("Extracting %s", asset.name);
-			mkdirRecurse(dest.dirName);
 			if (asset.data.length == 1) {
 				archive.addFile(asset.name, asset.data[0]);
 			} else {
-				mkdirRecurse(dest);
 				foreach(i, file; asset.data) {
 					archive.addFile(asset.name, file);
 				}
