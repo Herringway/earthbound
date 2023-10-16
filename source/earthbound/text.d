@@ -5,7 +5,7 @@ import earthbound.commondefs;
 
 const(void)[][const(char)[]] textData;
 
-// pointers to GC'd memory are considered undefined behaviour, so we'll store some aligned pointers here
+// unaligned pointers to GC'd memory are considered undefined behaviour, so we'll store some aligned pointers here
 private string[string] nameRefs;
 
 private struct CacheEntry {
