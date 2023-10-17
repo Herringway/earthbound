@@ -1,6 +1,0 @@
-{
-	"name": "actionscriptgen",
-	"dependencies": {
-		"dyaml": "~>0.8.4"
-	}
-}

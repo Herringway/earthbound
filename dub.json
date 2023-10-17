@@ -7,7 +7,6 @@
 	"license": "proprietary",
 	"name": "earthbound",
 	"subPackages": [
-		"actionscriptgen",
 		"sdl",
 		"snes"
 	],
