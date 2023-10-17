@@ -453,6 +453,7 @@ void initializeImgui() {
 	imguiContext = ImGui.CreateContext();
 	ImGuiIO* io = &ImGui.GetIO();
 
+	io.IniFilename = null;
 	ImGui.StyleColorsDark();
 	io.FontGlobalScale = 1.5;
 
