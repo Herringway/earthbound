@@ -125,8 +125,7 @@ extern (C) void spc700FillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 	try {
 		spc.fillBuffer(buffer);
 	} catch (Throwable t) {
-		assumeWontThrow(writeDebugDump(t.msg, t.info));
-		exit(1);
+		writeDebugDumpOtherThread(t.msg, t.info);
 	}
 }
 

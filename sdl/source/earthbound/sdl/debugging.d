@@ -1348,6 +1348,17 @@ void dumpGameState(string basePath) {
 	state.toFile!YAML(buildPath(basePath, "state.yaml"));
 }
 
+__gshared string otherThreadCrashMsg;
+__gshared Throwable.TraceInfo otherThreadCrashTrace;
+__gshared bool otherThreadCrashed;
+
+noreturn writeDebugDumpOtherThread(string msg, Throwable.TraceInfo traceInfo) nothrow {
+	otherThreadCrashMsg = msg;
+	otherThreadCrashTrace = traceInfo;
+	otherThreadCrashed = true;
+	while(true) {}
+}
+
 void writeDebugDump(string msg, Throwable.TraceInfo traceInfo) {
 	import std.datetime : Clock;
 	import std.file : mkdirRecurse;

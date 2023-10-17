@@ -25,7 +25,11 @@ struct SimpleWatchDog {
 		private DWORD watchThread;
 	}
 	/// Pet the watchdog, so it knows that the thread is okay
-	void pet() shared @safe {
+	void pet() shared @trusted {
+		if (otherThreadCrashed) {
+			writeDebugDump(otherThreadCrashMsg, otherThreadCrashTrace);
+			exit(1);
+		}
 		lastPetting = MonoTime.currTime();
 	}
 	/// Whether or not the watchdog is alarmed by a lack of pets in the last few seconds.
