@@ -6,6 +6,7 @@ import std.algorithm.searching;
 import std.algorithm.sorting;
 import std.bitmanip;
 import std.conv;
+import std.concurrency;
 import std.datetime;
 import std.exception;
 import std.file;
@@ -18,6 +19,11 @@ import std.stdio;
 import std.string;
 import std.traits;
 
+import bindbc.sdl;
+import imgui.sdl;
+import imgui.spinner;
+import d_imgui.imgui_h;
+import ImGui = d_imgui;
 import nspcplay;
 import siryul;
 
@@ -25,6 +31,7 @@ import dataloader;
 import earthbound.text;
 import earthbound.sdl.audio.common;
 import earthbound.sdl.audio.emulated : AllSPC, loadNSPCBuffer;
+import earthbound.sdl.rendering;
 
 enum textCacheFile = "text.cache";
 enum extractDoc = "extract.yaml";
@@ -106,8 +113,43 @@ struct PlanetArchive {
 
 enum archiveName = "earthbound.planet";
 void tryExtractAssets(string baseDir, bool force) {
+	auto extractorThread = spawn(&tryExtractAssetsThread, thisTid, baseDir, force);
+	bool extractionDone;
+	string lastMessage = "Initializing";
+	void renderExtractionUI(int width, int height) {
+		ImGui.SetNextWindowPos(ImGui.GetMainViewport().GetCenter(), ImGuiCond.Appearing, ImVec2(0.5f, 0.5f));
+		ImGui.Begin("Creating earthbound.planet", null, ImGuiWindowFlags.NoMove | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse);
+			Spinner("##spinning", 15, 6,  ImGui.GetColorU32(ImGuiCol.ButtonHovered));
+			ImGui.SameLine();
+			ImGui.Text("Extracting assets. Please wait.");
+			ImGui.Text(lastMessage);
+		ImGui.End();
+	}
+	while (!extractionDone) {
+		receiveTimeout(0.seconds,
+			(bool) { extractionDone = true; },
+			(string msg) { lastMessage = msg; }
+		);
+		SDL_Event event;
+		while(SDL_PollEvent(&event)) {
+			ImGui_ImplSDL2_ProcessEvent(&event);
+			switch (event.type) {
+				default: break;
+				case SDL_QUIT:
+					assert(0);
+			}
+		}
+		startFrame();
+		startUIFrame();
+		renderUI!renderExtractionUI();
+		endFrame();
+		waitForNextFrame(true);
+	}
+}
+void tryExtractAssetsThread(Tid main, string baseDir, bool force) {
 	if (force | !archiveName.exists) {
 		PlanetArchive archive;
+		send(main, "Loading ROM");
 		enforce(earthboundROM.exists, "Earthbound ROM not found - Place earthbound.sfc in the current directory");
 		auto rom = cast(const(ubyte)[])read(earthboundROM);
 		const detected = detect(rom, "EARTH BOUND          ");
@@ -118,6 +160,8 @@ void tryExtractAssets(string baseDir, bool force) {
 		}
 		foreach (asset; extractROMData(rom)) {
 			const dest = buildPath(baseDir,  "assets", asset.name);
+			immutable str = text("Extracting ", asset.name);
+			send(main, str);
 			infof("Extracting %s", asset.name);
 			if (asset.data.length == 1) {
 				archive.addFile(asset.name, asset.data[0]);
@@ -128,9 +172,11 @@ void tryExtractAssets(string baseDir, bool force) {
 			}
 		}
 
+		send(main, "Extracting songs");
 		ubyte[65536] song4; // we want the silent song to record sound effects against
 		buildNSPCFiles(rom, archive, song4);
 
+		send(main, "Extracting sound effects");
 		foreach (ubyte i; 0 .. 0x80) {
 			infof("Dumping sound effect %s", i);
 			archive.addFile("sfx", dumpSoundEffect(song4[], i));
@@ -138,6 +184,7 @@ void tryExtractAssets(string baseDir, bool force) {
 
 		const extractDoc = "extract.yaml";
 		const extractInfo = fromFile!(ExtractInfo, YAML)(extractDoc);
+		send(main, "Extracting text");
 		infof("Building text cache...");
 		foreach (textDocFile; extractInfo.text) {
 			const textData = parseTextData(rom[textDocFile.offset .. textDocFile.offset + textDocFile.size], textDocFile.offset, extractInfo.renameLabels, extractInfo.text);
@@ -154,6 +201,7 @@ void tryExtractAssets(string baseDir, bool force) {
 			tracef("Loaded text %s", textDocFile.name);
 		}
 		tracef("Loaded text, saving cache");
+		send(main, "Building text cache");
 		Appender!(ubyte[]) buffer;
 		buildTextCache(buffer);
 		archive.addFile("text", buffer.data);
@@ -161,6 +209,8 @@ void tryExtractAssets(string baseDir, bool force) {
 		// write the archive
 		archive.write(File(archiveName, "w").lockingBinaryWriter);
 	}
+	// done
+	send(main, true);
 }
 void loadAssets(string baseDir) {
 	auto archiveData = new MmFile("earthbound.planet")[].dup;

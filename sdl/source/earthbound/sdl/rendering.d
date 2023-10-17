@@ -482,6 +482,8 @@ void uninitializeRenderer() {
 
 void startFrame() {
 	lastTime = SDL_GetTicks();
+	SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
+	SDL_RenderClear(sdlRenderer);
 }
 void startUIFrame() {
 	ImGui_ImplSDL2_NewFrame();
@@ -496,8 +498,6 @@ void renderGame() {
 	renderer.draw(drawBuffer[0 .. renderer.height * drawPitch], drawPitch);
 	SDL_UnlockTexture(drawTexture);
 
-	SDL_SetRenderDrawColor(sdlRenderer, 0, 0, 0, 255);
-	SDL_RenderClear(sdlRenderer);
 	SDL_Rect screen;
 	screen.x = gameX;
 	screen.y = gameY;
@@ -517,10 +517,10 @@ void endFrame() {
 	SDL_RenderPresent(sdlRenderer);
 }
 
-void renderUI() {
+void renderUI(alias func)() {
 	int width, height;
 	SDL_GL_GetDrawableSize(appWin, &width, &height);
-	prepareDebugUI(width, height);
+	func(width, height);
 	ImGui.Render();
 	ImGui_ImplSDLRenderer_RenderDrawData(ImGui.GetDrawData());
 }

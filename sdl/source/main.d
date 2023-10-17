@@ -93,9 +93,7 @@ int main(string[] args) {
 	try {
 		loadRenderer(settings.video.renderer);
 		initializeRenderer(settings.video.zoom, settings.video.windowMode, settings.video.keepAspectRatio, settings.advancedDebugging);
-		if (settings.advancedDebugging) {
-			initializeImgui();
-		}
+		initializeImgui();
 		initAudio(settings.audio);
 		initializeGamepad();
 	} catch (Exception e) {
@@ -108,9 +106,7 @@ int main(string[] args) {
 		uninitializeRenderer();
 		uninitializeAudio();
 		uninitializeGamepad();
-		if (settings.advancedDebugging) {
-			uninitializeImgui();
-		}
+		uninitializeImgui();
 	}
 
 	tryExtractAssets("data", forceAssetExtraction);
@@ -213,7 +209,7 @@ int main(string[] args) {
 		renderOverlay();
 		frameStatTracker.checkpoint(FrameStatistic.overlay);
 		if (settings.advancedDebugging) {
-			renderUI();
+			renderUI!prepareDebugUI();
 		}
 		frameStatTracker.checkpoint(FrameStatistic.imgui);
 		endFrame();
