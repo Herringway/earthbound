@@ -944,10 +944,6 @@ struct PPU {
 					(cast(uint[])(dst[pitch * 1 .. pitch * 1 + 4 * uint.sizeof]))[] = color;
 					(cast(uint[])(dst[pitch * 2 .. pitch * 2 + 4 * uint.sizeof]))[] = color;
 					(cast(uint[])(dst[pitch * 3 .. pitch * 3 + 4 * uint.sizeof]))[] = color;
-					//(cast(uint *)dst)[3] = (cast(uint *)dst)[2] = (cast(uint *)dst)[1] = (cast(uint *)dst)[0] = color;
-					//(cast(uint *)(dst + pitch * 1))[3] = (cast(uint *)(dst + pitch * 1))[2] = (cast(uint *)(dst + pitch * 1))[1] = (cast(uint *)(dst + pitch * 1))[0] = color;
-					//(cast(uint *)(dst + pitch * 2))[3] = (cast(uint *)(dst + pitch * 2))[2] = (cast(uint *)(dst + pitch * 2))[1] = (cast(uint *)(dst + pitch * 2))[0] = color;
-					//(cast(uint *)(dst + pitch * 3))[3] = (cast(uint *)(dst + pitch * 3))[2] = (cast(uint *)(dst + pitch * 3))[1] = (cast(uint *)(dst + pitch * 3))[0] = color;
 				}
 			}
 		}
@@ -1201,7 +1197,7 @@ struct PPU {
 		pixelBuffer[3] = 0;
 	}
 
-	immutable int[4][10] bitDepthsPerMode = [
+	static immutable int[4][10] bitDepthsPerMode = [
 		[2, 2, 2, 2],
 		[4, 4, 2, 5],
 		[4, 4, 5, 5],
@@ -1749,113 +1745,6 @@ struct PPU {
 		}
 	}
 
-	void INIDISP(ubyte val) @safe pure {
-		write(0x00, val);
-	}
-	void OBSEL(ubyte val) @safe pure {
-		write(0x01, val);
-	}
-	void BGMODE(ubyte val) @safe pure {
-		write(0x05, val);
-	}
-	void MOSAIC(ubyte val) @safe pure {
-		write(0x06, val);
-	}
-	void BG1SC(ubyte val) @safe pure {
-		write(0x07, val);
-	}
-	void BG2SC(ubyte val) @safe pure {
-		write(0x08, val);
-	}
-	void BG3SC(ubyte val) @safe pure {
-		write(0x09, val);
-	}
-	void BG4SC(ubyte val) @safe pure {
-		write(0x0A, val);
-	}
-	void BG12NBA(ubyte val) @safe pure {
-		write(0x0B, val);
-	}
-	void BG34NBA(ubyte val) @safe pure {
-		write(0x0C, val);
-	}
-	void BG1HOFS(ushort val) @safe pure {
-		write(0x0D, val & 0xFF);
-		write(0x0D, val >> 8);
-	}
-	void BG1VOFS(ushort val) @safe pure {
-		write(0x0E, val & 0xFF);
-		write(0x0E, val >> 8);
-	}
-	void BG2HOFS(ushort val) @safe pure {
-		write(0x0F, val & 0xFF);
-		write(0x0F, val >> 8);
-	}
-	void BG2VOFS(ushort val) @safe pure {
-		write(0x10, val & 0xFF);
-		write(0x10, val >> 8);
-	}
-	void BG3HOFS(ushort val) @safe pure {
-		write(0x11, val & 0xFF);
-		write(0x11, val >> 8);
-	}
-	void BG3VOFS(ushort val) @safe pure {
-		write(0x12, val & 0xFF);
-		write(0x12, val >> 8);
-	}
-	void BG4HOFS(ushort val) @safe pure {
-		write(0x13, val & 0xFF);
-		write(0x13, val >> 8);
-	}
-	void BG4VOFS(ushort val) @safe pure {
-		write(0x14, val & 0xFF);
-		write(0x14, val >> 8);
-	}
-	void W12SEL(ubyte val) @safe pure {
-		write(0x23, val);
-	}
-	void W34SEL(ubyte val) @safe pure {
-		write(0x24, val);
-	}
-	void WOBJSEL(ubyte val) @safe pure {
-		write(0x25, val);
-	}
-	void WH0(ubyte val) @safe pure {
-		write(0x26, val);
-	}
-	void WH1(ubyte val) @safe pure {
-		write(0x27, val);
-	}
-	void WH2(ubyte val) @safe pure {
-		write(0x28, val);
-	}
-	void WH3(ubyte val) @safe pure {
-		write(0x29, val);
-	}
-	void WBGLOG(ubyte val) @safe pure {
-		write(0x2A, val);
-	}
-	void WOBJLOG(ubyte val) @safe pure {
-		write(0x2B, val);
-	}
-	void TM(ubyte val) @safe pure {
-		write(0x2C, val);
-	}
-	void TS(ubyte val) @safe pure {
-		write(0x2D, val);
-	}
-	void TMW(ubyte val) @safe pure {
-		write(0x2E, val);
-	}
-	void TSW(ubyte val) @safe pure {
-		write(0x2F, val);
-	}
-	void CGWSEL(ubyte val) @safe pure {
-		write(0x30, val);
-	}
-	void CGADSUB(ubyte val) @safe pure {
-		write(0x31, val);
-	}
 	bool IS_SCREEN_ENABLED(uint sub, uint layer) @safe pure { return !!(screenEnabled[sub] & (1 << layer)); }
 	bool IS_SCREEN_WINDOWED(uint sub, uint layer) @safe pure { return !!(screenWindowed[sub] & (1 << layer)); }
 	bool IS_MOSAIC_ENABLED(uint layer) @safe pure { return !!(mosaicEnabled & (1 << layer)); }
