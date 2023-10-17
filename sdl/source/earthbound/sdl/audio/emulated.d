@@ -24,6 +24,41 @@ struct AllSPC {
 	SNES_SPC snes_spc;
 	SPC_Filter filter;
 	bool initialized;
+	void initialize() {
+		snes_spc.initialize();
+		filter = SPC_Filter();
+	}
+	void waitUntilReady() {
+		writePort(1, 0xFF);
+		while (true) {
+			snes_spc.skip(2);
+			if (readPort(1) == 0) {
+				return;
+			}
+		}
+	}
+	void playSong(ubyte[] buffer, ubyte track) {
+		initialized = false;
+		snes_spc.load_buffer(buffer, 0x500);
+		snes_spc.clear_echo();
+		filter.clear();
+		waitUntilReady();
+		writePort(0, track);
+		initialized = true;
+	}
+	void writePort(uint id, ubyte value) {
+		snes_spc.write_port_now(id, value);
+	}
+	ubyte readPort(uint id) {
+		return cast(ubyte)snes_spc.read_port_now(id);
+	}
+	void fillBuffer(short[] buffer) {
+		// Play into buffer
+		snes_spc.play(buffer);
+
+		// Filter samples
+		filter.run(buffer);
+	}
 }
 
 __gshared AllSPC spc;
@@ -41,8 +76,7 @@ void initAudio(ubyte channels, uint sampleRate) {
 	enforceSDL(dev != 0, "Error opening audio device");
 	SDL_PauseAudioDevice(dev, 0);
 
-	spc.snes_spc.initialize();
-	spc.filter = SPC_Filter();
+	spc.initialize();
 	infof("SDL audio subsystem initialized (%s)", SDL_GetCurrentAudioDriver().fromStringz);
 }
 
@@ -53,42 +87,30 @@ void setAudioChannels(ushort count) {
 void doMusicEffect(short id) {
 	// see playSFX for explanation
 	static ubyte mask;
-	spc.snes_spc.write_port_now(1, id ^ mask);
+	spc.writePort(1, cast(ubyte)(id ^ mask));
 	mask ^= 0x80;
 }
 
 void setStatic(short count) {
 	// could do the same thing as playSFX, but not needed
-	spc.snes_spc.write_port_now(2, count);
+	spc.writePort(2, cast(ubyte)count);
 }
 
 void uninitializeAudio() {} //nothing to do here
 
 void stopMusic() {
-	spc.snes_spc.write_port_now(0, 0);
+	spc.writePort(0, 0);
 }
 
 void playMusic(ushort track) {
-	spc.initialized = false;
-	spc.snes_spc.load_buffer(loadedSongs[track], 0x500);
-	spc.snes_spc.clear_echo();
-	spc.filter.clear();
-	spc.snes_spc.write_port_now(1, 0xFF);
-	while (true) {
-		spc.snes_spc.skip(2);
-		if (spc.snes_spc.read_port_now(1) == 0) {
-			spc.snes_spc.write_port_now(0, track);
-			break;
-		}
-	}
-	spc.initialized = true;
+	spc.playSong(loadedSongs[track], cast(ubyte)track);
 }
 
 void playSFX(ubyte id) {
 	// the audio program detects a new sound effect when the id is different
 	// the MSB is ignored, so we can simply flip the MSB bit every other time to play the same effect twice
 	static ubyte mask;
-	spc.snes_spc.write_port_now(3, id ^ mask);
+	spc.writePort(3, cast(ubyte)(id ^ mask));
 	mask ^= 0x80;
 }
 
@@ -101,11 +123,7 @@ extern (C) void spc700FillBuffer(void* user, ubyte* buf, int bufSize) nothrow {
 		return;
 	}
 	try {
-		// Play into buffer
-		spc.snes_spc.play(buffer);
-
-		// Filter samples
-		spc.filter.run(buffer);
+		spc.fillBuffer(buffer);
 	} catch (Throwable t) {
 		assumeWontThrow(writeDebugDump(t.msg, t.info));
 		exit(1);

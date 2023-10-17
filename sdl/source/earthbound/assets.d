@@ -2,6 +2,7 @@ module earthbound.assets;
 
 import std.algorithm.comparison;
 import std.algorithm.iteration;
+import std.algorithm.searching;
 import std.algorithm.sorting;
 import std.bitmanip;
 import std.conv;
@@ -17,11 +18,13 @@ import std.stdio;
 import std.string;
 import std.traits;
 
+import nspcplay;
 import siryul;
 
 import dataloader;
 import earthbound.text;
 import earthbound.sdl.audio.common;
+import earthbound.sdl.audio.emulated : AllSPC, loadNSPCBuffer;
 
 enum textCacheFile = "text.cache";
 enum extractDoc = "extract.yaml";
@@ -125,12 +128,13 @@ void tryExtractAssets(string baseDir, bool force) {
 			}
 		}
 
-		buildNSPCFiles(rom, archive);
+		ubyte[65536] song4; // we want the silent song to record sound effects against
+		buildNSPCFiles(rom, archive, song4);
 
-		//const sfxDir = buildPath(baseDir, "sfx");
-		//if (!sfxDir.exists) {
-		//	infof("Sound effects not found. No sound effects will play. This is expected until extraction is implemented.");
-		//}
+		foreach (ubyte i; 0 .. 0x80) {
+			infof("Dumping sound effect %s", i);
+			archive.addFile("sfx", dumpSoundEffect(song4[], i));
+		}
 
 		const extractDoc = "extract.yaml";
 		const extractInfo = fromFile!(ExtractInfo, YAML)(extractDoc);
@@ -154,6 +158,7 @@ void tryExtractAssets(string baseDir, bool force) {
 		buildTextCache(buffer);
 		archive.addFile("text", buffer.data);
 
+		// write the archive
 		archive.write(File(archiveName, "w").lockingBinaryWriter);
 	}
 }
@@ -186,10 +191,7 @@ void loadAssets(string baseDir) {
 	loadROMAssets(assets.values);
 }
 
-void buildNSPCFiles(const ubyte[] data, ref PlanetArchive archive) {
-	import nspcplay : NSPCWriter, parsePacks, ReleaseTable, VolumeTable;
-	import std.algorithm.iteration : map;
-	import std.path : buildPath;
+void buildNSPCFiles(const ubyte[] data, ref PlanetArchive archive, out ubyte[65536] song4) {
 	static align(1) struct PackPointer {
 		align(1):
 		ubyte bank;
@@ -214,7 +216,8 @@ void buildNSPCFiles(const ubyte[] data, ref PlanetArchive archive) {
 		writer.header.sampleBase = 0x6C00;
 		writer.header.volumeTable = VolumeTable.hal1;
 		writer.header.releaseTable = ReleaseTable.hal1;
-		writer.packs ~= packs[1]; // engine pack
+		writer.packs ~= packs[0]; // engine packs
+		writer.packs ~= packs[1];
 		foreach (pack; songPacks) {
 			if (pack == 0xFF) {
 				continue;
@@ -224,12 +227,14 @@ void buildNSPCFiles(const ubyte[] data, ref PlanetArchive archive) {
 		tracef("Writing %03X.nspc", idx);
 		Appender!(ubyte[]) buffer;
 		writer.toBytes(buffer);
+		if (idx == 4) {
+			song4 = loadNSPCBuffer(buffer.data);
+		}
 		archive.addFile("song", buffer.data);
 	}
 }
 
 auto detect(const scope ubyte[] data, scope string identifier) @safe pure {
-	import std.range : only;
     struct Result {
         bool header;
         bool matched;
@@ -271,4 +276,62 @@ auto getDataFiles(string base, string type, string pattern) {
 	}
 	tracef("Looking for %s (%s) in %s", type, pattern, path.asAbsolutePath);
 	return Result(path.exists ? dirEntries(path, SpanMode.depth) : DirIterator.init, path.exists).map!(x => x.name).filter!filterFunc;
+}
+
+private struct WAVHeader {
+	align(1):
+	static struct Chunk1 {
+		align(1):
+		char[4] magic = "fmt ";
+		uint size = 16;
+		ushort format = 1;
+		ushort channels = 2;
+		uint sampleRate = 32000;
+		uint byteRate = 32000 * 2 * short.sizeof;
+		ushort blockAlign = short.sizeof * 2;
+		ushort bitsPerSample = short.sizeof * 8;
+	}
+	static struct Chunk2 {
+		align(1):
+		char[4] magic = "data";
+		uint size;
+		ubyte[0] data;
+	}
+	char[4] magic = "RIFF";
+	uint chunkSize;
+	char[4] wavMagic = "WAVE";
+	Chunk1 chunk1;
+	Chunk2 chunk2;
+}
+
+ubyte[] dumpSoundEffect(scope ubyte[] data, ubyte index) {
+	enum chunkLength = 512 * short.sizeof * 2;
+	enum silentChunkThreshold = 128;
+
+
+	AllSPC player;
+	player.initialize();
+	player.playSong(data, 4); // 0 is silent
+	player.writePort(3, index); // port 3 is used for sound effects
+	ubyte[] full = new ubyte[](WAVHeader.sizeof);
+	(cast(WAVHeader[])(full[0 .. WAVHeader.sizeof]))[0] = WAVHeader.init;
+	auto buffer = new ubyte[](chunkLength);
+	size_t threshold = silentChunkThreshold;
+	while (true) {
+		player.fillBuffer(cast(short[])buffer);
+		if (buffer.all!(x => x == 0)) {
+			if (--threshold == 0) {
+				break;
+			}
+		} else {
+			threshold = silentChunkThreshold;
+		}
+		full ~= buffer;
+	}
+	full = full[0 .. max(WAVHeader.sizeof + chunkLength, $ - chunkLength * (silentChunkThreshold - 1))];
+	with((cast(WAVHeader[])(full[0 .. WAVHeader.sizeof]))[0]) {
+		chunk2.size = cast(uint)(full.length - WAVHeader.sizeof);
+		chunkSize = cast(uint)(full.length - 8);
+	}
+	return full;
 }

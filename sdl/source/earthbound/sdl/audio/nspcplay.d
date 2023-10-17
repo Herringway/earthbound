@@ -13,6 +13,7 @@ import sdl_mixer;
 import earthbound.commondefs;
 
 import earthbound.assets;
+import earthbound.sdl.debugging;
 import earthbound.sdl.misc;
 
 version(Windows) {
