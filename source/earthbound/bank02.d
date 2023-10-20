@@ -3399,10 +3399,10 @@ short instantWinCheck() {
 				short x0E = unknown7EAA7E[i];
 				if (unknown7EAA7E[j] > x0E) {
 					x1E_2 = 0;
-					unknown7EAA7E[i] = unknown7EAA7E[i];
+					unknown7EAA7E[i] = unknown7EAA7E[j];
 					unknown7EAA7E[j] = x0E;
 					short x04_2 = unknown7EAA86[j];
-					unknown7EAA86[i] = unknown7EAA86[i];
+					unknown7EAA86[i] = unknown7EAA86[j];
 					unknown7EAA86[j] = x04_2;
 				}
 			}
