@@ -6487,9 +6487,8 @@ void unknownC09F3BUnusedEntry() {
 
 /// $C09F3B
 void unknownC09F3BEntry2() {
-	for (short i = 0; i != 0x3C; i++) {
+	for (short i = 0; i != maxEntities * 2; i += 2) {
 		entityUnknown284C[i / 2] = entityTickCallbackFlags[i / 2];
-		i += 2;
 	}
 	if (firstEntity < 0) {
 		return;
@@ -6508,9 +6507,8 @@ void unknownC09F3BEntry2() {
 
 /// $C09F71
 void unknownC09F71() {
-	for (short i = 0; i != 30 * 2; i++) {
+	for (short i = 0; i != maxEntities * 2; i += 2) {
 		entityTickCallbackFlags[i / 2] = entityUnknown284C[i / 2];
-		i += 2;
 	}
 }
 
