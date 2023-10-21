@@ -4362,8 +4362,9 @@ void doPartyMovementFrame(short characterID, short walkingStyle, short entityID)
 		entityAnimationFrames[x04] = x12;
 	} else {
 		auto x0E = spriteGroupingPointers[x12];
-		//UNKNOWN_30X2_TABLE_31[x04] = x0E.spriteBank;
 		entityGraphicsPointers[x04] = &x0E.sprites[0];
+		//UNKNOWN_30X2_TABLE_31[x04] = x0E.spriteBank;
+		entityUnknown2C22[x04] = x02;
 		if (walkingStyle != currentPartyMemberTick.unknown55) {
 			currentPartyMemberTick.unknown55 = x16;
 			entityScriptVar7Table[x04] |= 1<<15;
