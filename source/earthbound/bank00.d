@@ -326,6 +326,7 @@ void loadMapAtSector(short x, short y) {
 	if (wipePalettesOnMapLoad != 0) {
 		unknownC496F9();
 		memset(&palettes[0][0], 0xFF, 0x200);
+		wipePalettesOnMapLoad = 0;
 	}
 	if (photographMapLoadingMode != 0) {
 		unknownC496F9();
