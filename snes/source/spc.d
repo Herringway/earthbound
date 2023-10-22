@@ -5,6 +5,7 @@ import earthbound.globals : unknown7E001E;
 import registers;
 
 __gshared const(ubyte)* spcDataPointer; /// $00C6
+__gshared short spcDataBank; /// Original_Address: $(DOLLAR)00C8
 
 __gshared ubyte soundEffectQueueEndIndex; /// $00CA
 __gshared ubyte soundEffectQueueIndex; /// $00CB
@@ -119,7 +120,7 @@ void setMusicChannels(ushort channels) {
 //original version had separate bank/addr parameters
 void loadSPC700Data(const(ubyte)* data) {
 	spcDataPointer = data;
-	//unknown7E00C8 = bank;
+	//spcDataBank = bank;
 	ushort y = 0;
 	ubyte b;
 	if ((*APUIO0 != 0xAA) || (*APUIO1 != 0xBB)) {

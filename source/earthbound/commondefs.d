@@ -11,7 +11,8 @@ version(Have_siryul) {
 enum maxEntities = 30; ///
 enum maxScripts = 70; ///
 
-enum partyLeaderEntityIndex = 24; ///
+enum partyLeaderEntity = 23; /// The party leader entity ID. This is NOT the entity of the character in the front of the party, but the invisible entity that entity follows around
+enum partyMemberEntityStart = 24; /// The entity ID of the first party member
 
 enum Pad {
 	extra4 = 0x0001, ///The SNES controller doesn't actually have a button like this
@@ -88,17 +89,19 @@ enum firstEnemyIndex = totalPartyCount + 2; ///the +2 might be space for bad "pa
 enum hpPPWindowWidth = 7;
 enum hpPPWindowHeight = 8;
 
-enum objectTickDisabled = 0x8000; ///
-enum objectMoveDisabled = 0x4000; ///
-
-enum EntityTickFlags {
+enum EntityCallbackFlags : ushort {
+	/// If set, the entity's move callback is disabled
 	moveDisabled = 0x4000,
+	/// If set, the entity's tick  callback is disabled
 	tickDisabled = 0x8000,
 	fullyDisabled = moveDisabled | tickDisabled,
 }
 
-enum SpriteMapFlags {
-	unknown = 0x8000,
+enum SpriteMapFlags : ushort {
+	/// If set, the entity is not drawn
+	drawDisabled = 0x8000,
+	/// If set, the entity is fading. Has no effect
+	fading = 0x4000,
 }
 
 enum EntityObstacleFlags {
@@ -112,16 +115,16 @@ enum EntityObstacleFlags {
 	unknown7 = 1 << 7,
 }
 
-auto printableFlags(EntityTickFlags flags) @safe pure {
+auto printableFlags(EntityCallbackFlags flags) @safe pure {
 	static struct Result {
-		EntityTickFlags flags;
+		EntityCallbackFlags flags;
 		void toString(W)(ref W writer) const {
 			import std.format : formattedWrite;
 			import std.range : chain, only, take;
 			writer.formattedWrite!"%-(%s, %)"(chain(
-				"Callback disabled".only.take(flags & EntityTickFlags.tickDisabled),
-				"Script disabled".only.take(flags & EntityTickFlags.moveDisabled),
-				"Enabled".only.take(flags == cast(EntityTickFlags)0),
+				"Callback disabled".only.take(flags & EntityCallbackFlags.tickDisabled),
+				"Script disabled".only.take(flags & EntityCallbackFlags.moveDisabled),
+				"Enabled".only.take(flags == cast(EntityCallbackFlags)0),
 			));
 		}
 	}
@@ -2507,7 +2510,7 @@ enum OverworldSprite {
 	drapesClosed = 373,
 	yellowDrapesOpen = 374,
 	yellowDrapesClosed = 375,
-	unknown2 = 376,
+	magicTruffle = 376,
 	policeCar = 377,
 	nessSleeping = 378,
 	teddyBear = 379,
@@ -6284,7 +6287,7 @@ struct NPC {
 ///
 struct SpriteMapTemplates {
 	ubyte count; ///
-	ubyte unknown1; ///
+	ubyte lowerBodyCount; /// Number of spritemap pairs in the sprite's lower body
 	SpriteMap[2][] spriteMapTemplates; ///
 }
 ///
@@ -6722,15 +6725,15 @@ struct LoadedOverworldPaletteAnimation {
 	ushort[9] delays; ///4
 }
 ///
-struct MapTileEvent {
+struct MapBlockEvent {
 	ushort eventFlag; ///
 	ushort count; ///
-	MapTilePair[] tiles; ///
+	MapBlockPair[] blocks; ///
 }
 ///
-struct MapTilePair {
-	ushort tile1; ///
-	ushort tile2; ///
+struct MapBlockPair {
+	ushort block1; ///
+	ushort block2; ///
 }
 ///
 struct CreditsPhotograph {
@@ -6929,8 +6932,8 @@ struct PSIAnimation {
 	ubyte graphics; ///
 	ubyte frameDuration; ///
 	ubyte paletteDuration; ///
-	ubyte unknown4; ///
-	ubyte unknown5; ///
+	ubyte paletteLowerRange; ///
+	ubyte paletteUpperRange; ///
 	ubyte totalFrames; ///
 	ubyte target; ///
 	ubyte enemyColourChangeDelay; ///
@@ -6989,7 +6992,7 @@ struct YourSanctuaryLocation {
 ///
 union Unknown7EF000Stuff {
 	struct {
-		ushort[16][16] unknown7EF000; ///
+		ushort[16][16] loadedMapBlocks; ///
 		PathCtx unknown7EF200; ///
 		ubyte[0xC00] unknown7EF400; ///
 	}

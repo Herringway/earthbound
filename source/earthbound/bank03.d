@@ -816,7 +816,7 @@ void unknownC3EE4D() {
 	if (entityFadeEntity == -1) {
 		return;
 	}
-	entityTickCallbackFlags[entityFadeEntity] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
+	entityCallbackFlags[entityFadeEntity] &= 0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 }
 
 /// $C3EE7A
@@ -1096,7 +1096,7 @@ short showTitleScreen(short arg1) {
 	unknownC0927C();
 	if (0) { //interesting... this is unreachable and the entry statement seems to have been optimized out, but the body, condition and post-body statement remain
 		for (short i = 0; i < 30; i++) {
-			entitySpriteMapFlags[i] |= 0x8000;
+			entitySpriteMapFlags[i] |= SpriteMapFlags.drawDisabled;
 		}
 	}
 	setBGMODE(BGMode.mode3 | BG3Priority);
@@ -1167,7 +1167,7 @@ short showTitleScreen(short arg1) {
 		if ((entityScriptTable[i] >= ActionScript.titleScreen1) && (entityScriptTable[i] <= ActionScript.titleScreen11)) {
 			deleteEntity(i);
 		}
-		entitySpriteMapFlags[i] &= 0x7FFF;
+		entitySpriteMapFlags[i] &= ~SpriteMapFlags.drawDisabled;
 	}
 	prepareForImmediateDMA();
 	reloadMap();

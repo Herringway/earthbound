@@ -548,20 +548,20 @@ short checkDeliveryEligibility() {
 	if (overworldStatusSuppression != 0) {
 		return 1;
 	}
-	if ((entitySpriteMapFlags[gameState.firstPartyMemberEntity] & 0x8000) != 0) {
+	if ((entitySpriteMapFlags[gameState.firstPartyMemberEntity] & SpriteMapFlags.drawDisabled) != 0) {
 		return 1;
 	}
 	if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope) || (gameState.walkingStyle == WalkingStyle.escalator) || (gameState.walkingStyle == WalkingStyle.stairs)) {
 		return 1;
 	}
-	return ((entityTickCallbackFlags[23] & (objectTickDisabled | objectMoveDisabled)) != 0) ? 0 : pendingInteractions;
+	return ((entityCallbackFlags[partyLeaderEntity] & (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled)) != 0) ? 0 : pendingInteractions;
 }
 
 /// $EF0FDB
 void startDelivery() {
 	overworldStatusSuppression = 1;
 	pendingInteractions = 1;
-	unknownC09F3BEntry2();
+	backupEntityCallbackFlagsAndDisable();
 	changeMusic(Music.delivery);
 	getOffBicycle();
 }
@@ -13075,10 +13075,10 @@ immutable ubyte[4][4]*[][20] mapDataTileCollisionPointerTable = [
 
 /// $EF11CB
 @mapDataTileAnimationSource
-immutable(ubyte[])[] mapDataTileAnimationPointerTable;
+immutable(ubyte[])[] mapDataAnimatedTilesets;
 
 /// $EF121B
-immutable TilesetAnimation[20] mapDataWeirdTileAnimationPointerTable = [
+immutable TilesetAnimation[20] mapDataTilesetAnimationPointerTable = [
 	TilesetAnimation(5, [
 		AnimatedTiles(0x04, 0x0C, 0x0060, 0x0020, 0x0010),
 		AnimatedTiles(0x04, 0x0F, 0x0060, 0x01A0, 0x0040),
@@ -17619,7 +17619,7 @@ __gshared SpriteGrouping[464] spriteGroupingPointers = [
 		OverworldSpriteGraphics(235),
 		OverworldSpriteGraphics(235)
 	]),
-	OverworldSprite.unknown2: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
+	OverworldSprite.magicTruffle: SpriteGrouping(0x02, 0x20, EntitySize._8x16, 0x1C, 0x08, 0x08, 0x08, 0x08, 0,
 	[
 		OverworldSpriteGraphics(1110),
 		OverworldSpriteGraphics(1110),
@@ -21703,8 +21703,8 @@ void debugMain() {
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
 	short x1C = debugViewCharacterSprite;
-	entityAllocationMinSlot = 0x17;
-	entityAllocationMaxSlot = 0x18;
+	entityAllocationMinSlot = partyLeaderEntity;
+	entityAllocationMaxSlot = partyLeaderEntity + 1;
 	newEntityPriority = 3;
 	gameState.leaderX.integer = debugStartPositionX;
 	gameState.leaderY.integer = debugStartPositionY;
@@ -21723,8 +21723,8 @@ void debugMain() {
 	entityScreenYTable[24] = 0x70;
 	if (debugModeNumber == DebugMode.viewCharacter) {
 		x1A = createEntity(debugViewCharacterSprite, ActionScript.characterViewer, -1, 0x20, 0x20);
-		entityTickCallbackFlags[x1A] |= (objectTickDisabled | objectMoveDisabled);
-		entitySpriteMapFlags[x1A] |= 0x8000;
+		entityCallbackFlags[x1A] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
+		entitySpriteMapFlags[x1A] |= SpriteMapFlags.drawDisabled;
 	}
 	memset(&palettes[0][0], 0, 0x200);
 	overworldInitialize();
@@ -21756,9 +21756,9 @@ void debugMain() {
 			if ((padState[0] & Pad.x) != 0) {
 				debugEnemiesEnabledFlag = 0xFFFF;
 			}
-			unknown7E4370 = -1;
-			unknown7E436E = -1;
-			unknown7E4380 &= 0xFFF8;
+			loadedMapPalette = -1;
+			loadedMapTileCombo = -1;
+			screenXPixels &= 0xFFF8;
 			prepareForImmediateDMA();
 			loadMapAtPosition(gameState.leaderX.integer, gameState.leaderY.integer);
 			unknownC03FA9(gameState.leaderX.integer, gameState.leaderY.integer, gameState.leaderDirection);
@@ -21785,27 +21785,27 @@ void debugMain() {
 				}
 			}
 			if ((padPress[1] & Pad.x) != 0) {
-				entityTickCallbackFlags[x1A] |= (objectTickDisabled | objectMoveDisabled);
-				entitySpriteMapFlags[x1A] |= 0x8000;
+				entityCallbackFlags[x1A] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
+				entitySpriteMapFlags[x1A] |= SpriteMapFlags.drawDisabled;
 			}
 			if ((padPress[1] & Pad.y) != 0) {
-				entityTickCallbackFlags[x1A] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
-				entitySpriteMapFlags[x1A] &= 0x7FFF;
+				entityCallbackFlags[x1A] &= ~(EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
+				entitySpriteMapFlags[x1A] &= ~SpriteMapFlags.drawDisabled;
 			}
 			if (debugViewCharacterSprite != x1C) {
 				unknownC02140(x1A);
-				entityTPTEntries[createEntity(x1C, ActionScript.characterViewer, x1A, 0x20, 0x20)] = 0;
+				entityNPCIDs[createEntity(x1C, ActionScript.characterViewer, x1A, 0x20, 0x20)] = 0;
 			}
-			if (((padPress[1] & Pad.a) != 0) && ((entityTickCallbackFlags[x1A] & objectTickDisabled) == 0)) {
-				entityTPTEntries[createEntity(x1C, ActionScript.unknown006, -1, cast(short)(bg1XPosition + 0x20), cast(short)(bg1YPosition + 0x20))] = 0;
+			if (((padPress[1] & Pad.a) != 0) && ((entityCallbackFlags[x1A] & EntityCallbackFlags.tickDisabled) == 0)) {
+				entityNPCIDs[createEntity(x1C, ActionScript.unknown006, -1, cast(short)(bg1XPosition + 0x20), cast(short)(bg1YPosition + 0x20))] = 0;
 			}
 			if ((padPress[1] & Pad.b) != 0) {
 				for (short i = 0; i < 0x1E; i++) {
 					if (entityScriptTable[i] != -1) {
-						entityUnknown2C5E[i] = 0;
+						entityPathfindingState[i] = 0;
 					}
 				}
-				entityUnknown2C5E[createEntity(0x8A, ActionScript.unknown499, -1, bg1XPosition, bg1YPosition)] = -1;
+				entityPathfindingState[createEntity(0x8A, ActionScript.unknown499, -1, bg1XPosition, bg1YPosition)] = -1;
 				unknownC0BD96();
 			}
 		}

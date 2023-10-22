@@ -4185,7 +4185,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 			fadeOut(1, 1);
 			playSfx(Sfx.equippedItem);
 			loadMapAtPosition(gameState.exitMouseYCoordinate, gameState.exitMouseYCoordinate);
-			unknown7E2890 = 0;
+			playerHasMovedSinceMapLoad = 0;
 			unknownC03FA9(gameState.exitMouseXCoordinate, gameState.exitMouseYCoordinate, 4);
 			fadeIn(1, 1);
 			unknown7E5DC4 = -1;
@@ -5796,7 +5796,7 @@ void teleport(short arg1) {
 		screenTransition(teleportDestinationTable[arg1].screenTransition, 1);
 	}
 	loadMapAtPosition(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8));
-	unknown7E2890 = 0;
+	playerHasMovedSinceMapLoad = 0;
 	unknownC03FA9(cast(short)(teleportDestinationTable[arg1].x * 8), cast(short)(teleportDestinationTable[arg1].y * 8), cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
 	if ((teleportDestinationTable[arg1].direction & 0x80) != 0) {
 		unknownC052D4(cast(short)((teleportDestinationTable[arg1].direction & 0x7F) - 1));
@@ -7022,11 +7022,11 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 			}
 			continue;
 			Unknown42:
-			if (strlen(cast(char*)&unknown7E1B86[0]) != 0) {
+			if (strlen(cast(char*)&keyboardInputCharacters[0]) != 0) {
 				setWindowFocus(arg1);
 				short i;
-				for(i = 0; (unknown7E1B86[i] != 0) && (i < arg2); i++) {
-					(arg3++)[0] = unknown7E1B86[i];
+				for(i = 0; (keyboardInputCharacters[i] != 0) && (i < arg2); i++) {
+					(arg3++)[0] = keyboardInputCharacters[i];
 				}
 				for(; i < arg2; i++) {
 					(arg3++)[0] = 0;

@@ -58,8 +58,8 @@ void uploadTextTile(short arg1, ushort arg2, ushort arg3) {
 /// $C40085
 short unknownC40085() {
 	ushort y = 8;
-	short a = -1;
-	while (a == unknown7E1AD6[y / 2]) {
+	ushort a = 0xFFFF;
+	while (a == usedBG2TileMap[y / 2]) {
 		y += 2;
 		if (y != 0x40) {
 			continue;
@@ -70,15 +70,15 @@ short unknownC40085() {
 		//longjmp(&jmpbuf2);
 	}
 	ushort x = 30;
-	a = unknown7E1AD6[y / 2];
-	while (a < 0) {
+	a = usedBG2TileMap[y / 2];
+	while (a >= 0x8000) {
 		x -= 2;
 		a <<= 1;
 	}
-	unknown7E1AD6[y / 2] |= powersOfTwo16Bit[x / 2];
-	unknown7E288E = x;
-	unknown7E288E >>= 1;
-	return cast(short)(unknown7E288E + y * 8);
+	usedBG2TileMap[y / 2] |= powersOfTwo16Bit[x / 2];
+	usedBG2TileMapFirstFreeBit = x;
+	usedBG2TileMapFirstFreeBit >>= 1;
+	return cast(short)(usedBG2TileMapFirstFreeBit + y * 8);
 }
 
 /// $C40B51
@@ -645,23 +645,23 @@ void unknownC42624() {
 /// $C42631
 void unknownC42631(short arg1, short arg2) {
 	unknown7E3C22 = 0;
-	unknown7E3C24 = 0;
+	transitionBackgroundXVelocity = 0;
 	unknown7E3C26 = 0;
-	unknown7E3C28 = 0;
-	short a = cosineSine(arg1, cast(ubyte)(arg2 - 128));
+	transitionBackgroundYVelocity = 0;
+	short a = sineMult(arg1, cast(ubyte)(arg2 - 128));
 	unknown7E3C22 = cast(short)((a & 0xFF) << 8);
-	unknown7E3C24 = (cast(ushort)a & 0xFF00) >> 8;
+	transitionBackgroundXVelocity = (cast(ushort)a & 0xFF00) >> 8;
 	if (a < 0) {
-		unknown7E3C24 |= 0xFF00;
+		transitionBackgroundXVelocity |= 0xFF00;
 	}
-	a = cosine(arg1, cast(ubyte)(arg2 - 128));
+	a = cosineMult(arg1, cast(ubyte)(arg2 - 128));
 	unknown7E3C26 = cast(short)((a & 0xFF) << 8);
-	unknown7E3C28 = (cast(ushort)a & 0xFF00) >> 8;
+	transitionBackgroundYVelocity = (cast(ushort)a & 0xFF00) >> 8;
 	if (a < 0) {
-		unknown7E3C28 |= 0xFF00;
+		transitionBackgroundYVelocity |= 0xFF00;
 	}
-	unknown7E3C2C = bg1XPosition;
-	unknown7E3C30 = bg1YPosition;
+	transitionBackgroundX = bg1XPosition;
+	transitionBackgroundY = bg1YPosition;
 	unknown7E3C2A = 0;
 	unknown7E3C2E = 0;
 }
@@ -669,13 +669,13 @@ void unknownC42631(short arg1, short arg2) {
 /// $C4268A
 void unknownC4268A() {
 	unknown7E3C2A += unknown7E3C22;
-	unknown7E3C2C += unknown7E3C24;
-	bg1XPosition = unknown7E3C2C;
-	bg2XPosition = unknown7E3C2C;
+	transitionBackgroundX += transitionBackgroundXVelocity;
+	bg1XPosition = transitionBackgroundX;
+	bg2XPosition = transitionBackgroundX;
 	unknown7E3C2E += unknown7E3C26;
-	unknown7E3C30 += unknown7E3C28;
-	bg1YPosition = unknown7E3C30;
-	bg2YPosition = unknown7E3C30;
+	transitionBackgroundY += transitionBackgroundYVelocity;
+	bg1YPosition = transitionBackgroundY;
+	bg2YPosition = transitionBackgroundY;
 	unknownC01731(bg1XPosition, bg1YPosition);
 }
 
@@ -1133,16 +1133,19 @@ immutable SpriteMapTemplates[17] overworldSpriteTemplates = [
 /// $C42F45
 void setPartyTickCallbacks(short leaderEntityID, void function() leaderCallback, void function() partyCallback) {
 	entityTickCallbacks[leaderEntityID] = leaderCallback;
-	entityTickCallbackFlags[leaderEntityID] = 0;
+	entityCallbackFlags[leaderEntityID] = 0;
 	for (int i = 6; i > 0; i--) {
 		entityTickCallbacks[++leaderEntityID] = partyCallback;
-		entityTickCallbackFlags[leaderEntityID] = 0;
+		entityCallbackFlags[leaderEntityID] = 0;
 	}
 }
 
-/// $C42F64
+/// The block arrangements of the entire game map. Each block is a 4x4 arrangement of 8x8 tiles.
+/// There are 8 + 2 chunks of data, with the first 8 being 128 x 20 strips of blocks, ordered from top to bottom.
+/// The latter 2 chunks provide the upper 2 bits of the blocks
+/// Original_Address: $(DOLLAR)C42F64
 @([ROMSource(0x160000, 10240), ROMSource(0x162800, 10240), ROMSource(0x165000, 12288), ROMSource(0x168000, 10240), ROMSource(0x16A800, 10240), ROMSource(0x16D000, 12288), ROMSource(0x170000, 10240), ROMSource(0x172800, 10240), ROMSource(0x175000, 12288), ROMSource(0x178000, 10240)])
-immutable(ubyte[])[] mapDataTileTableChunksTable;
+immutable(ubyte[])[] mapBlockArrangements;
 
 /// $C42F8C
 immutable ushort[88] overworldSpriteVRAMOffsets = [
@@ -1563,7 +1566,7 @@ void unknownC43EF8(const(ubyte)* arg1, short arg2) {
 /// $C43F53
 void unknownC43F53() {
 	for (short i = 0; i < 0x20; i++) {
-		unknown7E1AD6[i] = unknownC20958[i];
+		usedBG2TileMap[i] = reservedBG2TileMap[i];
 	}
 }
 
@@ -1612,29 +1615,29 @@ short getCharacterAtCursorPosition(short arg1, short arg2, short arg3) {
 
 /// $C440B5
 void unknownC440B5(ubyte* arg1, short arg2) {
-	memset(&unknown7E1B6E[0], 0, 0x18);
+	memset(&keyboardInputCharacterWidths[0], 0, 0x18);
 	short i;
 	for (i = 0; (arg1[i] != 0) && (i < arg2); i++, arg1++) {
-		unknown7E1B86[i] = arg1[0];
-		unknown7E1B56[i] = (arg1[0] - ebChar(' ')) & 0x7F;
-		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1[0] - ebChar(' ')) & 0x7F] + characterPadding);
+		keyboardInputCharacters[i] = arg1[0];
+		keyboardInputCharacterOffsets[i] = (arg1[0] - ebChar(' ')) & 0x7F;
+		keyboardInputCharacterWidths[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1[0] - ebChar(' ')) & 0x7F] + characterPadding);
 		unknownC44E61(0, arg1[0]);
 	}
 	unknown7E9662 = i;
 	if (i >= arg2) {
 		return;
 	}
-	unknown7E1B56[i] = 0x20;
-	unknown7E1B6E[i] = 0x06;
+	keyboardInputCharacterOffsets[i] = 0x20;
+	keyboardInputCharacterWidths[i] = 0x06;
 	unknownC44E61(0, ebChar('@'));
-	unknown7E1B86[i++] = 0;
+	keyboardInputCharacters[i++] = 0;
 	if (arg2 - i <= 0) {
 		return;
 	}
 	for (short x02 = cast(short)(arg2 - i); x02 != 0; x02--, i++) {
-		unknown7E1B56[i] = 0x03;
+		keyboardInputCharacterOffsets[i] = 0x03;
 		unknownC44E61(0, ebChar('{'));
-		unknown7E1B6E[i] = 0x03;
+		keyboardInputCharacterWidths[i] = 0x03;
 	}
 }
 
@@ -1643,12 +1646,12 @@ void unknownC441B7(short arg1) {
 	memset(&vwfBuffer[0][0], 0xFF, 0x680);
 	short x02 = 3;
 	unknown7E9662 = 0;
-	memset(&unknown7E1B86[0], 0, 0x18);
+	memset(&keyboardInputCharacters[0], 0, 0x18);
 	unknownC44E61(0, ebChar('@'));
-	unknown7E1B56[0] = 0x20;
+	keyboardInputCharacterOffsets[0] = 0x20;
 	for (short i = 1; i < arg1; i++) {
-		unknown7E1B56[i] = cast(ubyte)x02;
-		unknown7E1B6E[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + characterPadding);
+		keyboardInputCharacterOffsets[i] = cast(ubyte)x02;
+		keyboardInputCharacterWidths[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][x02] + characterPadding);
 		unknownC44E61(0, ebChar('{'));
 	}
 }
@@ -1656,12 +1659,12 @@ void unknownC441B7(short arg1) {
 /// $C4424A
 void unknownC4424A(short arg1) {
 	if (arg1 == 0x70) {
-		unknown7E1B86[unknown7E9662] = 0;
+		keyboardInputCharacters[unknown7E9662] = 0;
 	} else {
-		unknown7E1B86[unknown7E9662] = cast(ubyte)arg1;
+		keyboardInputCharacters[unknown7E9662] = cast(ubyte)arg1;
 	}
-	unknown7E1B56[unknown7E9662] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
-	unknown7E1B6E[unknown7E9662] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + characterPadding);
+	keyboardInputCharacterOffsets[unknown7E9662] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
+	keyboardInputCharacterWidths[unknown7E9662] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + characterPadding);
 }
 
 /// $C442AC
@@ -1692,9 +1695,9 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 	for (short i = 0; i < arg2; i++) {
-		const(ubyte)* x06 = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * unknown7E1B56[i]];
+		const(ubyte)* x06 = &fontGraphics[fontConfigTable[0].graphicsID][fontConfigTable[0].height * keyboardInputCharacterOffsets[i]];
 		short j;
-		for (j = unknown7E1B6E[i]; j >= 8; j -= 8) {
+		for (j = keyboardInputCharacterWidths[i]; j >= 8; j -= 8) {
 			renderText(8, fontConfigTable[0].width, x06);
 			x06 += fontConfigTable[0].width;
 		}
@@ -1857,7 +1860,7 @@ void loadWindowGraphics(short arg1) {
 }
 
 /// $C44AD7
-immutable ushort[16] unknownC44AD7 = [
+immutable ushort[16] usedBG2TileMapMasks = [
 	0xFFFE,
 	0xFFFD,
 	0xFFFB,
@@ -1882,7 +1885,7 @@ void freeTile(short arg1) {
 	if (lockedTiles[x10] != 0) {
 		return;
 	}
-	unknown7E1AD6[x10 >> 4] &= unknownC44AD7[x10 & 0xF];
+	usedBG2TileMap[x10 >> 4] &= usedBG2TileMapMasks[x10 & 0xF];
 }
 
 /// $C44B3A
@@ -2510,7 +2513,7 @@ short getDirectionTo(short targetX, short targetY, short fromX, short fromY) {
 /// $C46028
 short findEntityBySprite(short arg1) {
 	for (short i = 0; i < maxEntities; i++) {
-		if (entityTPTEntrySprites[i] == arg1) {
+		if (entitySpriteIDs[i] == arg1) {
 			return i;
 		}
 	}
@@ -2520,7 +2523,7 @@ short findEntityBySprite(short arg1) {
 /// $C4605A
 short findEntityByTPT(short arg1) {
 	for (short i = 0; i < maxEntities; i++) {
-		if (arg1 == entityTPTEntries[i]) {
+		if (arg1 == entityNPCIDs[i]) {
 			return i;
 		}
 	}
@@ -2684,11 +2687,11 @@ void hideCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
 		short a = findEntityByPartyMemberID(arg1);
 		if (a != -1) {
-			entitySpriteMapFlags[a] |= 0x8000;
+			entitySpriteMapFlags[a] |= SpriteMapFlags.drawDisabled;
 		}
 	} else {
 		for (short i = 0; i < gameState.partyCount; i++) {
-			entitySpriteMapFlags[gameState.partyEntities[i]] |= 0x8000;
+			entitySpriteMapFlags[gameState.partyEntities[i]] |= SpriteMapFlags.drawDisabled;
 		}
 	}
 }
@@ -2698,11 +2701,11 @@ void unhideCharacterOrParty(short arg1) {
 	if (arg1 != 0xFF) {
 		short a = findEntityByPartyMemberID(arg1);
 		if (a != -1) {
-			entitySpriteMapFlags[a] &= 0x7FFF;
+			entitySpriteMapFlags[a] &= ~SpriteMapFlags.drawDisabled;
 		}
 	} else {
 		for (short i = 0; i < gameState.partyCount; i++) {
-			entitySpriteMapFlags[gameState.partyEntities[i]] &= 0x7FFF;
+			entitySpriteMapFlags[gameState.partyEntities[i]] &= ~SpriteMapFlags.drawDisabled;
 		}
 	}
 }
@@ -2711,7 +2714,7 @@ void unhideCharacterOrParty(short arg1) {
 short createPreparedEntityNPC(short npcID, short actionScript) {
 	short result = createEntity(npcConfig[npcID].sprite, actionScript, -1, entityPreparedXCoordinate, entityPreparedYCoordinate);
 	entityDirections[result] = entityPreparedDirection;
-	entityTPTEntries[result] = npcID;
+	entityNPCIDs[result] = npcID;
 	return result;
 }
 
@@ -2733,7 +2736,7 @@ void disableEntityByTPT(short arg1) {
 	if (a == -1) {
 		return;
 	}
-	entityTickCallbackFlags[a] |= (objectTickDisabled | objectMoveDisabled);
+	entityCallbackFlags[a] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 }
 
 /// $C46579
@@ -2742,7 +2745,7 @@ void disableEntityBySprite(short arg1){
 	if (a == -1) {
 		return;
 	}
-	entityTickCallbackFlags[a] |= (objectTickDisabled | objectMoveDisabled);
+	entityCallbackFlags[a] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 }
 
 /// $C46594
@@ -2752,11 +2755,11 @@ void disableEntityByCharacterOrParty(short arg1) {
 		if (a == -1) {
 			return;
 		}
-		entityTickCallbackFlags[a] |= (objectTickDisabled | objectMoveDisabled);
+		entityCallbackFlags[a] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 	} else {
-		entityTickCallbackFlags[23] |= (objectTickDisabled | objectMoveDisabled);
+		entityCallbackFlags[partyLeaderEntity] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 		for (short i = 0; i < gameState.partyCount; i++) {
-			entityTickCallbackFlags[gameState.partyEntities[i]] |= (objectTickDisabled | objectMoveDisabled);
+			entityCallbackFlags[gameState.partyEntities[i]] |= (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 		}
 	}
 }
@@ -2767,7 +2770,7 @@ void enableEntityByTPT(short arg1) {
 	if (a == -1) {
 		return;
 	}
-	entityTickCallbackFlags[a] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+	entityCallbackFlags[a] &= (0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled));
 }
 
 /// $C46616
@@ -2776,7 +2779,7 @@ void enableEntityBySprite(short arg1) {
 	if (a == -1) {
 		return;
 	}
-	entityTickCallbackFlags[a] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+	entityCallbackFlags[a] &= (0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled));
 }
 
 /// $C46631
@@ -2786,12 +2789,12 @@ void enableEntityByCharacterOrParty(short arg1) {
 		if (a == -1) {
 			return;
 		}
-		entityTickCallbackFlags[a] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+		entityCallbackFlags[a] &= (0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled));
 		return;
 	} else {
-		entityTickCallbackFlags[23] &= 0x3FFF;
+		entityCallbackFlags[partyLeaderEntity] &= 0x3FFF;
 		for (short i = 0; i < gameState.partyCount; i++) {
-			entityTickCallbackFlags[gameState.partyEntities[i]] &= (0xFFFF ^ (objectTickDisabled | objectMoveDisabled));
+			entityCallbackFlags[gameState.partyEntities[i]] &= (0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled));
 		}
 	}
 }
@@ -2830,20 +2833,20 @@ void unknownC466F0(const(ubyte)* arg1) {
 
 /// $C46712
 void unknownC46712() {
-	entityTickCallbackFlags[gameState.partyEntities[0]] |= objectTickDisabled | objectMoveDisabled;
+	entityCallbackFlags[gameState.partyEntities[0]] |= EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled;
 	for (short i = 0; i < gameState.partyCount; i++) {
-		entitySpriteMapFlags[gameState.partyEntities[i]] |= 0x8000;
+		entitySpriteMapFlags[gameState.partyEntities[i]] |= SpriteMapFlags.drawDisabled;
 	}
 }
 
 /// $C4675C
 void unknownC4675C() {
-	entityTickCallbackFlags[gameState.partyEntities[0]] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
+	entityCallbackFlags[gameState.partyEntities[0]] &= ~(EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 	for (short i = 1; i < gameState.partyCount; i++) {
 		if (gameState.partyMemberIndex[i] == 9) {
 			continue;
 		}
-		entitySpriteMapFlags[gameState.partyEntities[i]] &= 0x7FFF;
+		entitySpriteMapFlags[gameState.partyEntities[i]] &= ~SpriteMapFlags.drawDisabled;
 	}
 }
 
@@ -2860,22 +2863,22 @@ short unknownC467C2() {
 /// $C467E6
 void unknownC467E6() {
 	for (short i = 0; i < maxEntities; i++) {
-		if (entityTPTEntrySprites[i] != 0x16F) {
+		if (entitySpriteIDs[i] != 0x16F) {
 			continue;
 		}
-		entityTickCallbackFlags[i] &= 0xFFFF ^ (objectTickDisabled | objectMoveDisabled);
+		entityCallbackFlags[i] &= 0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 	}
 }
 
 /// $C4681A
 void unknownC4681A() {
-	if (entityTPTEntries[currentEntitySlot] == -1) {
+	if (entityNPCIDs[currentEntitySlot] == -1) {
 		return;
 	}
-	if (npcConfig[entityTPTEntries[currentEntitySlot]].talkText == null) {
+	if (npcConfig[entityNPCIDs[currentEntitySlot]].talkText == null) {
 		return;
 	}
-	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(npcConfig[entityTPTEntries[currentEntitySlot]].talkText)));
+	queueInteraction(InteractionType.unknown8, QueuedInteractionPtr(getTextBlock(npcConfig[entityNPCIDs[currentEntitySlot]].talkText)));
 }
 
 /// $C46881
@@ -2924,10 +2927,10 @@ short unknownC46903(short arg1) {
 
 /// $C46914
 short unknownC46914() {
-	if (entityTPTEntries[currentEntitySlot] == -1) {
+	if (entityNPCIDs[currentEntitySlot] == -1) {
 		return 4;
 	}
-	return npcConfig[entityTPTEntries[currentEntitySlot]].direction;
+	return npcConfig[entityNPCIDs[currentEntitySlot]].direction;
 }
 
 /// $C46957
@@ -3398,7 +3401,7 @@ short getPartyCount() {
 
 /// $C4733C
 void unknownC4733C() {
-	unknownC006F2(tilesetTable[unknown7E436E]);
+	unknownC006F2(tilesetTable[loadedMapTileCombo]);
 }
 
 /// $C4734C
@@ -3435,7 +3438,7 @@ ushort unknownC473B2(short arg1) {
 
 /// $C473D0
 void unknownC473D0(short arg1, short arg2) {
-	ushort* x16 = &unknown7E4476[arg1][0];
+	ushort* x16 = &mapPaletteBackup[arg1][0];
 	version(bugfix) {
 		if (arg1 >= palettes.length - 2) {
 			return;
@@ -4212,7 +4215,7 @@ void processItemTransformations() {
 
 /// $C490EE
 short getDistanceToMagicTruffle() {
-	short x04 = findEntityBySprite(0x178);
+	short x04 = findEntityBySprite(OverworldSprite.magicTruffle);
 	if (x04 == -1) {
 		return 0;
 	}
@@ -4284,7 +4287,7 @@ void stepMapPaletteFade() {
 
 /// $C4939C
 void changeMapPalette(ubyte tilesetNum, ubyte paletteNum, ubyte fadeDuration) {
-	unknown7E4474 = 0;
+	mapPaletteAnimationLoaded = 0;
 	if (fadeDuration == 0) {
 		memcpy(&palettes[2][0], &mapPalettePointerTable[tilesetNum][paletteNum * 0xC0], 0xC0);
 	} else {
@@ -4382,12 +4385,12 @@ void unknownC49740() {
 
 /// $C4978E
 void unknownC4978E() {
-	memcpy(&unknown7E4476[0][0], &palettes[0][0], 0x200);
+	memcpy(&mapPaletteBackup[0][0], &palettes[0][0], 0x200);
 }
 
 /// $C497C0
 void unknownC497C0(short arg1, short arg2, short arg3) {
-	unknownC4954C(arg2, &unknown7E4476[0][0]);
+	unknownC4954C(arg2, &mapPaletteBackup[0][0]);
 	unknownC496E7(arg1, arg2);
 	if (arg1 != 1) {
 		for (short i = 0; i < arg1; i++) {
@@ -4629,8 +4632,8 @@ immutable(ubyte[])[] flyoverTextPointers;
 
 /// $C49EC4
 void runFlyover(short id) {
-	ushort x02 = entityTickCallbackFlags[23];
-	entityTickCallbackFlags[23] |= 0xC000;
+	ushort x02 = entityCallbackFlags[partyLeaderEntity];
+	entityCallbackFlags[partyLeaderEntity] |= 0xC000;
 	unknownC49A56();
 	immutable(ubyte)* x06 = &flyoverTextPointers[id][0];
 	unknown7E5E6E = 0;
@@ -4651,7 +4654,7 @@ void runFlyover(short id) {
 				unknown7E5E6E = 0xFF;
 				prepareForImmediateDMA();
 				undrawFlyoverText();
-				entityTickCallbackFlags[23] = x02;
+				entityCallbackFlags[partyLeaderEntity] = x02;
 				setForceBlank();
 				return;
 			case 2:
@@ -5344,8 +5347,8 @@ void useSoundStone(short arg1) {
 					soundStoneSpriteTilemap2.flags = cast(ubyte)((soundStoneOrbitPalettes[i] << 1) + 0x31);
 					if (soundStonePlaybackState[i].soundStoneOrbitSpritePosition1 != 0) {
 						// draw the little sprites flying around the current sanctuary location
-						renderSpriteToOAM(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)(soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8)));
-						renderSpriteToOAM(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + cosineSine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))), cast(short)(soundStoneSanctuarySpriteY[i] + cosine(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))));
+						renderSpriteToOAM(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + sineMult(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)(soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8))), cast(short)(soundStoneSanctuarySpriteY[i] + cosineMult(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8)));
+						renderSpriteToOAM(&soundStoneSpriteTilemap2, cast(short)(soundStoneSanctuarySpriteX[i] + sineMult(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))), cast(short)(soundStoneSanctuarySpriteY[i] + cosineMult(soundStonePlaybackState[i].soundStoneOrbitSpritePosition1, cast(ubyte)((soundStonePlaybackState[i].soundStoneOrbitSpritePosition2 >> 8) + 0x80))));
 					}
 					soundStoneSpriteTilemap1.firstTile = cast(ubyte)(soundStoneSanctuarySprites[i] + 0x80);
 					soundStoneSpriteTilemap1.flags = cast(ubyte)((soundStoneSanctuaryPalettes[i] << 1) + 0x30);
@@ -6058,7 +6061,7 @@ void unknownC4C2DE() {
 		fadeOutWithMosaic(1, 1, 0);
 	}
 	loadedAnimatedTileCount = 0;
-	unknown7E4474 = 0;
+	mapPaletteAnimationLoaded = 0;
 	unknown7E9F2A = 0;
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
@@ -6204,7 +6207,7 @@ short spawn() {
 	unknownC4C58F(0x20);
 	musicEffect(MusicEffect.quickFade);
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
-	unknown7E436E = -1;
+	loadedMapTileCombo = -1;
 	currentMapMusicTrack = -1;
 	currentMusicTrack = 0xFFFF;
 	unknown7E4676 = 1;
@@ -6283,7 +6286,7 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 	}
 	SpriteFadeState* x1A = &entityFadeStates[entityFadeStatesLength];
 	x1A.entityID = entityID;
-	entitySpriteMapFlags[entityID] |= 0x4000;
+	entitySpriteMapFlags[entityID] |= SpriteMapFlags.fading;
 	x1A.appearanceStyle = appearanceStyle;
 	x1A.pixelWidth = pixelWidths[entitySizes[entityID]];
 	x1A.pixelHeight = cast(short)(entityTileHeights[entityID] * 8);
@@ -6335,7 +6338,7 @@ void initializeEntityFade(short entityID, short appearanceStyle) {
 void unknownC4CB4F() {
 	SpriteFadeState* x06 = entityFadeStates;
 	for (short i = 0; i < entityFadeStatesLength; i++) {
-		entitySpriteMapFlags[x06.entityID] &= 0xBFFF;
+		entitySpriteMapFlags[x06.entityID] &= ~SpriteMapFlags.fading;
 		x06++;
 	}
 }
@@ -6780,7 +6783,7 @@ void unknownC4D830(short arg1) {
 	while (true) {
 		short* y = &entityScriptTable[0];
 		ushort x0E = 0xFFFF;
-		for (short i = 0; i < 23; i++) {
+		for (short i = 0; i < partyLeaderEntity; i++) {
 			x0E &= (y++)[0];
 		}
 		finishFrame();
@@ -6806,8 +6809,8 @@ short runAttractModeScene(short arg1) {
 	unknown7E4A58 = 1;
 	enemySpawnsEnabled = 0;
 	setBoundaryBehaviour(0);
-	entityAllocationMinSlot = 0x17;
-	entityAllocationMaxSlot = 0x18;
+	entityAllocationMinSlot = partyLeaderEntity;
+	entityAllocationMaxSlot = partyLeaderEntity + 1;
 	initEntity(1, 0, 0);
 	clearParty();
 	for (short i = 0; i < 6; i++) {
@@ -7005,7 +7008,7 @@ void initializeYourSanctuaryDisplay() {
 	totalYourSanctuaryLoadedTilesetTiles = 0;
 	yourSanctuaryLoadedTilesetTiles = 0;
 	loadedAnimatedTileCount = 0;
-	unknown7E4474 = 0;
+	mapPaletteAnimationLoaded = 0;
 	for (short i = 0; i < 8; i++) {
 		loadedYourSanctuaryLocations[i] = 0;
 	}
@@ -7037,8 +7040,8 @@ void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, sho
 	for (short i = 0; i < maxEntities; i++) {
 		for (short j = 0; j < 0x20; j++) {
 			short x0F;
-			if (globalMapTilesetPaletteData[(i + arg2) / 16][(j + arg1) / 32] / 8 == unknown7E436E) {
-				x0F = unknownC0A156F((j + arg1) / 4, (i + arg2) / 4);
+			if (globalMapTilesetPaletteData[(i + arg2) / 16][(j + arg1) / 32] / 8 == loadedMapTileCombo) {
+				x0F = loadMapBlockF((j + arg1) / 4, (i + arg2) / 4);
 			} else {
 				x0F = 0;
 			}
@@ -7071,7 +7074,7 @@ void prepareYourSanctuaryLocationTilesetData(short arg1) {
 void loadYourSanctuaryLocationData(short arg1, short arg2, short arg3) {
 	yourSanctuaryLoadedTilesetTiles = 0;
 	short x1A = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
-	unknown7E436E = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
+	loadedMapTileCombo = globalMapTilesetPaletteData[arg2 / 16][arg1 / 32];
 	prepareYourSanctuaryLocationPaletteData(x1A, arg3);
 	decomp(&mapDataTileArrangementPtrTable[tilesetTable[x1A]][0], &buffer[0x8000]);
 	prepareYourSanctuaryLocationTileArrangementData(arg1, arg2, arg3);
@@ -7136,7 +7139,7 @@ void loadCastScene() {
 		if (entityScriptTable[i] == -1) {
 			continue;
 		}
-		entitySpriteMapFlags[i] |= 0x8000;
+		entitySpriteMapFlags[i] |= SpriteMapFlags.drawDisabled;
 	}
 	loadBackgroundAnimation(BackgroundLayer.unknown279, BackgroundLayer.none);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0);
@@ -7336,8 +7339,8 @@ void playCastScene() {
 			deleteEntity(i);
 		}
 	}
-	entityAllocationMinSlot = 0x17;
-	entityAllocationMaxSlot = 0x18;
+	entityAllocationMinSlot = partyLeaderEntity;
+	entityAllocationMaxSlot = partyLeaderEntity + 1;
 	initEntity(0, 0, ActionScript.partyMemberLeading);
 	clearParty();
 	unknownC03A24();
@@ -7560,8 +7563,8 @@ void playCredits() {
 	prepareForImmediateDMA();
 	overworldSetupVRAM();
 	unknownC021E6();
-	entityAllocationMinSlot = 0x17;
-	entityAllocationMaxSlot = 0x18;
+	entityAllocationMinSlot = partyLeaderEntity;
+	entityAllocationMaxSlot = partyLeaderEntity + 1;
 	initEntity(ActionScript.partyMemberLeading, 0, 0);
 	clearParty();
 	unknownC03A24();
