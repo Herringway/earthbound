@@ -590,7 +590,7 @@ immutable ubyte[32 + 7 * (const(void)*).sizeof] actionScriptOpenGateGumi;
 immutable ubyte[19 + 4 * (const(void)*).sizeof] actionScriptSumsMuseumRid;
 immutable ubyte[10 + 2 * (const(void)*).sizeof] actionScriptGorgeousFree2A;
 immutable ubyte[45 + 11 * (const(void)*).sizeof] unknownC3B70C;
-immutable ubyte[60 + 29 * (const(void)*).sizeof] actionScript860;
+immutable ubyte[60 + 29 * (const(void)*).sizeof] actionScriptGasStationFlashing;
 immutable ubyte[3 + 3 * (const(void)*).sizeof] actionScriptSaiteiMaboroshiOut;
 immutable ubyte[72 + 9 * (const(void)*).sizeof] actionScriptSaiteiMaboroshiOutUnknownRoutine;
 immutable ubyte[64 + 22 * (const(void)*).sizeof] actionScriptPhotographer;
@@ -3179,7 +3179,7 @@ shared static this() {
 		actionScript857[],
 		actionScript858[],
 		actionScript859[],
-		actionScript860[],
+		actionScriptGasStationFlashing[],
 		actionScript861[],
 		actionScript862[],
 		actionScript863[],
@@ -13995,7 +13995,7 @@ unknownC3B70C = [
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript860 = [
+actionScriptGasStationFlashing = [
 	ACTIONSCRIPT_C0F3B2(),
 	ACTIONSCRIPT_PAUSE(15),
 	ACTIONSCRIPT_C0F3E8(),

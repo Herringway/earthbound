@@ -6210,7 +6210,7 @@ short spawn() {
 	loadedMapTileCombo = -1;
 	currentMapMusicTrack = -1;
 	currentMusicTrack = 0xFFFF;
-	unknown7E4676 = 1;
+	wipePalettesOnMapLoad = 1;
 	waitUntilNextFrame();
 	initializeMap(respawnX, respawnY, 6);
 	currentPartyMemberTick = &partyCharacters[gameState.partyMembers[0] - 1];

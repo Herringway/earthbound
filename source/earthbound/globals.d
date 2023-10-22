@@ -1443,8 +1443,14 @@ __gshared short loadedAnimatedTileCount;
  * Original_Address: $(DOLLAR)4474
  */
 __gshared short mapPaletteAnimationLoaded;
-__gshared ushort[16][16] mapPaletteBackup; /// Original_Address: $(DOLLAR)4476
-__gshared short unknown7E4676; /// Original_Address: $(DOLLAR)4676
+/** A backup of palette memory, used for temporary palette effects
+ * Original_Address: $(DOLLAR)4476
+ */
+__gshared ushort[16][16] mapPaletteBackup;
+/** When set, all colours in all palettes will be set to white when a map load completes
+ * Original_Address: $(DOLLAR)4676
+ */
+__gshared short wipePalettesOnMapLoad;
 
 __gshared short newSpriteTileWidth; /// Original_Address: $(DOLLAR)467A
 __gshared short newSpriteTileHeight; /// Original_Address: $(DOLLAR)467C

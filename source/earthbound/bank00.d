@@ -323,7 +323,7 @@ void loadMapAtSector(short x, short y) {
 		preparePaletteUpload(PaletteUpload.none);
 	}
 	memcpy(&mapPaletteBackup[0], &palettes[2][0], 0x1C0);
-	if (unknown7E4676 != 0) {
+	if (wipePalettesOnMapLoad != 0) {
 		unknownC496F9();
 		memset(&palettes[0][0], 0xFF, 0x200);
 	}
@@ -3598,7 +3598,7 @@ void screenTransition(short arg1, short arg2) {
 			memset(&palettes[0][0], 0xFF, 0x200);
 			preparePaletteUpload(PaletteUpload.full);
 			waitUntilNextFrame();
-			unknown7E4676 = 1;
+			wipePalettesOnMapLoad = 1;
 		}
 		unfreezeEntities();
 	} else {
@@ -10267,8 +10267,10 @@ void unknownC0F1D2(short arg1) {
 	unknownC496E7(arg1, -1);
 }
 
-/// $C0F21E
-short unknownC0F21E() {
+/** Runs the portion of the gas station intro screen that can end early when a button is pressed
+ * Original_Address: $(DOLLAR)C0F21E
+ */
+short runGasStationSkippablePortion() {
 	short result = 0;
 	for (short i = 0; i < 236; i++) {
 		if (padPress[0] != 0) {
@@ -10299,7 +10301,7 @@ short unknownC0F21E() {
 		return 1;
 	}
 	changeMusic(Music.gasStation2);
-	short x12 = initEntityWipe(ActionScript.unknown860, 0, 0);
+	short x12 = initEntityWipe(ActionScript.gasStationFlashing, 0, 0);
 	while (entityScriptTable[x12] != -1) {
 		runActionscriptFrame();
 		waitUntilNextFrame();
@@ -10317,7 +10319,7 @@ short gasStation() {
 	unknownC0927C();
 	gasStationLoad();
 	fadeIn(1, 11);
-	short x11 = unknownC0F21E();
+	short x11 = runGasStationSkippablePortion();
 	if (x11 != 0) {
 		return 1;
 	}

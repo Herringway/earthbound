@@ -2096,7 +2096,7 @@ enum ActionScript {
 	unknown857, //857
 	unknown858, //858
 	unknown859, //859
-	unknown860, //860
+	gasStationFlashing, //860
 	unknown861, //861
 	unknown862, //862
 	unknown863, //863
