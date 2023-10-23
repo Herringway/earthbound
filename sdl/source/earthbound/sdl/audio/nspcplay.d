@@ -265,7 +265,7 @@ void playSFX(ubyte id) {
 			SDLError("Could not fade out");
 		}
 	} else {
-		if (auto sound = id in loadedSFX) {
+		if (auto sound = (id + 1) in loadedSFX) {
 			if(Mix_PlayChannel(channel, *sound, 0) == -1) {
 				SDLError("Could not play sound effect");
 			}
