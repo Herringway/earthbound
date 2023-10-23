@@ -5409,8 +5409,8 @@ short findReceiveItemNPC() {
 
 /// $C1AD71
 short getSectorUsableItem() {
-	short x0E = loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
-	if ((getEventFlag(EventFlag.winGiegu != 0) && ((x0E & 7) == SpecialGameState.none))) {
+	ushort x0E = loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer);
+	if ((getEventFlag(EventFlag.winGiegu) != 0) && ((x0E & 7) == SpecialGameState.none)) {
 		return ItemID.bicycle;
 	} else {
 		return x0E >> 8;
