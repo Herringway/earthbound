@@ -2367,18 +2367,20 @@ void handleBicycleMovement(short arg1) {
 			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 			return;
 		} else {
-			battleDebug = -1;
+			battleMode = BattleMode.inBattle;
 			return;
 		}
 	}
 	if ((padPress[0] & Pad.r) != 0) {
 		playSfx(Sfx.bicycleBell);
 	}
-	if ((x1E == -1) || (arg1 != 0)) {
-		x1E = gameState.leaderDirection;
-	} else {
-		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
-		return;
+	if (x1E == -1) {
+		if (arg1 != 0) {
+			x1E = gameState.leaderDirection;
+		} else {
+			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
+			return;
+		}
 	}
 	if ((x1E & 1) != 0) {
 		unknown7E5D5A = 4;
