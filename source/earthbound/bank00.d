@@ -9258,7 +9258,7 @@ short unknownC0D5B0() {
 			x12 = 0;
 			short y = 0;
 			for (short i = 0; i != 4; i++) {
-				if (currentEntitySlot == unknown7E4A7C[i]) {
+				if (entityEnemyIDs[currentEntitySlot] == unknown7E4A7C[i]) {
 					short x0E = unknown7E4A84[i];
 					if (x0E != 0) {
 						unknown7E4A84[i] = cast(short)(x0E - 1);
