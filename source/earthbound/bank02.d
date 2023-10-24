@@ -47,13 +47,13 @@ void inflictSunstrokeCheck() {
 }
 
 /// $C200B9
-immutable short[6] unknownC200B9 = [-8, 0, 7, -8, 0, 7];
+immutable short[6] collisionTestCoordDiffsX = [-8, 0, 7, -8, 0, 7];
 
 /// $C200C5
-immutable short[6] unknownC200C5 = [0, 0, 0, 7, 7, 7];
+immutable short[6] collisionTestCoordDiffsY = [0, 0, 0, 7, 7, 7];
 
 /// $C200D1
-immutable ushort[4] unknownC200D1 = [0b11110, 0b110011, 0b11110, 0b110011];
+immutable ushort[4] unknownC200D1 = [0b011110, 0b110011, 0b011110, 0b110011];
 
 /// $C200D9
 void initializeTextSystem() {
@@ -1082,7 +1082,7 @@ void unknownC22673(short arg1) {
 /// $C226C5
 short unknownC226C5(short arg1) {
 	short x0E = setEventFlag(currentInteractingEventFlag, arg1);
-	unknownC0C30C(unknown7E5D64);
+	unknownC0C30C(interactingNPCEntity);
 	return x0E;
 }
 
@@ -1335,7 +1335,7 @@ short initBattleScripted(short arg1) {
 		}
 		x06++;
 	}
-	battleDebug = -1;
+	battleMode = BattleMode.inBattle;
 	battleSwirlSequence();
 	while (unknownC2E9C8() != 0) {
 		waitUntilNextFrame();
@@ -1619,7 +1619,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 					continue;
 				}
 			}
-			if (battleDebug == 0) {
+			if (battleMode == BattleMode.noBattle) {
 				if ((padState[0] & Pad.l) != 0) {
 					debugSetCharacterLevel();
 					for (short i = 0; i < 6; i++) {
@@ -2300,7 +2300,7 @@ short battleRoutine() {
 	ushort layer1;
 	short debugPartyMembersSelected;
 	short debugNumberInput;
-	if (battleDebug == 0) {
+	if (battleMode == BattleMode.noBattle) {
 		debugNumberInput = 1;
 		debugPartyMembersSelected = 1;
 		gameState.playerControlledPartyMemberCount = 1;
@@ -2366,7 +2366,7 @@ short battleRoutine() {
 		changeMusic(enemyConfigurationTable[enemiesInBattleIDs[0]].music);
 		setForceBlank();
 		fadeIn(1, 1);
-		if (battleDebug == 0) {
+		if (battleMode == BattleMode.noBattle) {
 			unknownC1DCCB(debugNumberInput);
 			short x02 = 0;
 			for (short i = 0; i < 6; i++) {
@@ -2580,7 +2580,7 @@ short battleRoutine() {
 						x1F = battleSelectionMenu(gameState.partyMembers[i], x19);
 						resetActivePartyMemberHPPPWindowF();
 						closeFocusWindow();
-						if ((battleDebug != 0) && (x1F == -1)) {
+						if ((battleMode != BattleMode.noBattle) && (x1F == -1)) {
 							battleResult = BattleResult.won;
 							break turnLoop;
 						}
@@ -3138,7 +3138,7 @@ short battleRoutine() {
 		resetPostBattleStats();
 		gameState.autoFightEnable = 0;
 		battleModeFlag = 0;
-	} while (battleDebug == 0);
+	} while (battleMode == BattleMode.noBattle);
 	fadeOut(1, 1);
 	do {
 		waitUntilNextFrame();

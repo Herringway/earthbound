@@ -1452,103 +1452,368 @@ __gshared ushort[16][16] mapPaletteBackup;
  */
 __gshared short wipePalettesOnMapLoad;
 
-__gshared short newSpriteTileWidth; /// Original_Address: $(DOLLAR)467A
-__gshared short newSpriteTileHeight; /// Original_Address: $(DOLLAR)467C
-__gshared SpriteMap[179] overworldSpriteMaps; /// Original_Address: $(DOLLAR)467E
+/** Sprite width in tiles of the entity being created
+ * Original_Address: $(DOLLAR)467A
+ */
+__gshared short newSpriteTileWidth;
+/** Sprite height in tiles of the entity being created
+ * Original_Address: $(DOLLAR)467C
+ */
+__gshared short newSpriteTileHeight;
+/** Allocated spritemaps for overworld entities. Spritemaps must be adjacent to each other. Make sure all spritemaps allocated are deallocated!
+ * The game will only clear this during attract mode, file select and loading a new file!
+ * Original_Address: $(DOLLAR)467E
+ */
+__gshared SpriteMap[179] overworldSpriteMaps;
+/** Keeps track of allocations in overworldSpriteMaps. Entries are 0 if unallocated, 0x80 | x otherwise.
+ * Index corresponds with overworldSpriteOAMTileNumbers and overworldSpriteVRAMOffsets
+ * Original_Address: $(DOLLAR)4A00
+ */
+__gshared ubyte[88] spriteVramTable;
+/** Controls when NPCs are spawned
+ * See_Also: earthbound.commondefs.SpawnControl
+ * Original_Address: $(DOLLAR)4A58
+ */
+__gshared short npcSpawnsEnabled;
+/** Controls when enemies are spawned. Note that enemies will ONLY spawn offscreen, so offscreenOnly and allEnabled behave identically
+ * See_Also: earthbound.commondefs.SpawnControl
+ * Original_Address: $(DOLLAR)4A5A
+ */
+__gshared short enemySpawnsEnabled;
+/** Number of randomly spawned enemy entities currently active
+ * Original_Address: $(DOLLAR)4A5C
+ */
+__gshared short overworldEnemyCount;
+/** Maximum number of enemy entities allowed to be active. Always set to 10
+ * Original_Address: $(DOLLAR)4A5E
+ */
+__gshared short overworldEnemyMaximum;
+/** Set to 1 if a magic butterfly is onscreen. Disables further magic butterfly spawning
+ * Original_Address: $(DOLLAR)4A60
+ */
+__gshared short magicButterfly;
+/** The horizontal range in which enemies can spawn. Usually set just before spawning a set of enemies
+ * Original_Address: $(DOLLAR)4A62
+ */
+__gshared short enemySpawnRangeWidth;
+/** The vertical range in which enemies can spawn. Usually set just before spawning a set of enemies
+ * Original_Address: $(DOLLAR)4A64
+ */
+__gshared short enemySpawnRangeHeight;
+/** Blocks NPCs from spawning, unless they are type 3 or are part of a photograph
+ * Original_Address: $(DOLLAR)4A66
+ */
+__gshared short showNPCFlag;
+/** The number of times enemy spawning has failed due to too many onscreen enemies. Only used for debugging
+ * Original_Address: $(DOLLAR)4A68
+ */
+__gshared short enemySpawnTooManyEnemiesFailureCount;
+/** Unknown. Seems to be set to the number of free spritemaps last searched for, but not used. Probably for debugging
+ * Original_Address: $(DOLLAR)4A6A
+ */
+__gshared short unknown7E4A6A;
+/** Set to the ID of the last enemy group attempting to spawn. Never read, possibly used by an obsolete debugging feature
+ * Original_Address: $(DOLLAR)4A6C
+ */
+__gshared short enemySpawnEncounterID;
+/** Number of enemies left to spawn in the enemy group. Outside of spawnEnemiesFromGroup, should always be zero
+ * Original_Address: $(DOLLAR)4A6E
+ */
+__gshared short enemySpawnRemainingEnemyCount;
+/** The selected spawn chance of the enemy group currently attempting to spawn. Normal range is 0-100(%)
+ * Original_Address: $(DOLLAR)4A70
+ */
+__gshared short enemySpawnChance;
+/** Similar to enemySpawnEncounterID, but only set if spawn roll is successful
+ * Original_Address: $(DOLLAR)4A72
+ */
+__gshared short spawningEnemyGroup;
+/** Sprite ID of the most recent enemy attempting to spawn. Set but not read
+ * Original_Address: $(DOLLAR)4A74
+ */
+__gshared short spawningEnemySprite;
+/** Name of the most recent enemy attempting to spawn. Set but not read
+ * Original_Address: $(DOLLAR)4A76
+ */
+__gshared const(ubyte)* spawningEnemyName;
+/** Number of enemy spawn attempts made so far. Magic butterfly spawning happens every 16 attempts
+ * Original_Address: $(DOLLAR)4A7A
+ */
+__gshared short enemySpawnCounter;
+/** Enemy IDs involved in the active enemy pathfinding attempt
+ * Original_Address: $(DOLLAR)4A7C
+ */
+__gshared short[4] pathfindingEnemyIDs;
+/** Amounts of each enemy involved in the active enemy pathfinding attempt
+ * Original_Address: $(DOLLAR)4A84
+ */
+__gshared short[4] pathfindingEnemyCounts;
+/** The enemy group ID about to be faced in battle
+ * Original_Address: $(DOLLAR)4A8C
+ */
+__gshared short currentBattleGroup;
+/** X coordinate to pathfind towards
+ * Original_Address: $(DOLLAR)4A8E
+ */
+__gshared short pathfindingTargetCenterX;
+/** Y coordinate to pathfind towards
+ * Original_Address: $(DOLLAR)4A90
+ */
+__gshared short pathfindingTargetCenterY;
+/** The width of the target being pathfinded towards
+ * Original_Address: $(DOLLAR)4A92
+ */
+__gshared short pathfindingTargetWidth;
+/** The height of the target being pathfinded towards
+ * Original_Address: $(DOLLAR)4A94
+ */
+__gshared short pathfindingTargetHeight;
+/** The entry or exit path generated for delivery NPCs. Does not appear to be read at any point
+ * Original_Address: $(DOLLAR)4A96
+ */
+__gshared VecYX[20][10] deliveryPaths;
+/** The ID of the enemy entity that is in contact with the party, starting a battle
+ * Original_Address: $(DOLLAR)4D86
+ */
+__gshared short touchedEnemy;
+/** The entity that touched an enemy (or the party member in front if the special leader entity was touched)
+ * Original_Address: $(DOLLAR)4DB8
+ */
+__gshared short enemyPathfindingTargetEntity;
+/** Set to 1 if enemy has just been touched and a swirl hasn't started up yet, 0 otherwise
+ * Original_Address: $(DOLLAR)4DBA
+ */
+__gshared short enemyHasBeenTouched;
+/** Who gets the surprise round in the battle that's about to start
+ * Original_Address: $(DOLLAR)4DBC
+ */
+__gshared short battleInitiative;
+/** X coordinate backup used for transferring coordinates between entities, the magic butterfly in particular
+ * Original_Address: $(DOLLAR)4DBE
+ */
+__gshared short actionScriptBackupX;
+/** Y coordinate backup used for transferring coordinates between entities, the magic butterfly in particular
+ * Original_Address: $(DOLLAR)4DC0
+ */
+__gshared short actionScriptBackupY;
+/** The active battle mode. Note that if a battle starts while set to BattleMode.noBattle, then a debugging battle begins
+ * See_Also: earthbound.commondefs.BattleMode
+ * Original_Address: $(DOLLAR)4DC2
+ */
+__gshared short battleMode;
+/** Set to 0 if a party member died on the overworld this frame
+ * Original_Address: $(DOLLAR)4DC4
+ */
+__gshared short partyMembersAliveOverworld;
+/** Set to the party member currently active (in movement, party health checks, etc)
+ * Original_Address: $(DOLLAR)4DC6
+ */
+__gshared PartyCharacter* currentPartyMemberTick;
+/** Pointers to the four party members
+ * Original_Address: $(DOLLAR)4DC8
+ */
+__gshared PartyCharacter*[6] chosenFourPtrs;
+/** Unknown. Set to 1 if the party leader has moved this frame, 0 otherwise. Never read
+ * Original_Address: $(DOLLAR)4DD4
+ */
+__gshared short unknown7E4DD4;
+/** Horizontal movement speeds for every walking style
+ * Original_Address: $(DOLLAR)4DD6
+ */
+__gshared MovementSpeeds[14] horizontalMovementSpeeds;
+/** Vertical movement speeds for every walking style
+ * Original_Address: $(DOLLAR)4F96
+ */
+__gshared MovementSpeeds[14] verticalMovementSpeeds;
 
-__gshared ubyte[88] spriteVramTable; /// Original_Address: $(DOLLAR)4A00
-__gshared short unknown7E4A58; /// Original_Address: $(DOLLAR)4A58
-__gshared short enemySpawnsEnabled; /// Original_Address: $(DOLLAR)4A5A
-__gshared short overworldEnemyCount; /// Original_Address: $(DOLLAR)4A5C
-__gshared short overworldEnemyMaximum; /// Original_Address: $(DOLLAR)4A5E
-__gshared short magicButterfly; /// Original_Address: $(DOLLAR)4A60
-__gshared short enemySpawnRangeWidth; /// Original_Address: $(DOLLAR)4A62
-__gshared short enemySpawnRangeHeight; /// Original_Address: $(DOLLAR)4A64
-__gshared short showNPCFlag; /// Original_Address: $(DOLLAR)4A66
-__gshared short enemySpawnTooManyEnemiesFailureCount; /// Original_Address: $(DOLLAR)4A68
-__gshared short unknown7E4A6A; /// Original_Address: $(DOLLAR)4A6A
-__gshared short enemySpawnEncounterID; /// Original_Address: $(DOLLAR)4A6C
-__gshared short enemySpawnRemainingEnemyCount; /// Original_Address: $(DOLLAR)4A6E
-__gshared short enemySpawnChance; /// Original_Address: $(DOLLAR)4A70
-__gshared short spawningEnemyGroup; /// Original_Address: $(DOLLAR)4A72
-__gshared short spawningEnemySprite; /// Original_Address: $(DOLLAR)4A74
-__gshared const(ubyte)* spawningEnemyName; /// Original_Address: $(DOLLAR)4A76
-__gshared short unknown7E4A7A; /// Original_Address: $(DOLLAR)4A7A
-__gshared short[4] unknown7E4A7C; /// Original_Address: $(DOLLAR)4A7C
-__gshared short[4] unknown7E4A84; /// Original_Address: $(DOLLAR)4A84
-__gshared short currentBattleGroup; /// Original_Address: $(DOLLAR)4A8C
-__gshared short unknown7E4A8E; /// Original_Address: $(DOLLAR)4A8E
-__gshared short unknown7E4A90; /// Original_Address: $(DOLLAR)4A90
-__gshared short unknown7E4A92; /// Original_Address: $(DOLLAR)4A92
-__gshared short unknown7E4A94; /// Original_Address: $(DOLLAR)4A94
-__gshared VecYX[20][10] deliveryPaths; /// Original_Address: $(DOLLAR)4A96
-
-__gshared short touchedEnemy; /// Original_Address: $(DOLLAR)4D86
-
-__gshared short unknown7E4DB8; /// Original_Address: $(DOLLAR)4DB8
-__gshared short battleSwirlFlag; /// Original_Address: $(DOLLAR)4DBA
-__gshared short battleInitiative; /// Original_Address: $(DOLLAR)4DBC
-__gshared short unknown7E4DBE; /// Original_Address: $(DOLLAR)4DBE
-__gshared short unknown7E4DC0; /// Original_Address: $(DOLLAR)4DC0
-__gshared short battleDebug; /// Original_Address: $(DOLLAR)4DC2
-__gshared short unknown7E4DC4; /// Original_Address: $(DOLLAR)4DC4
-__gshared PartyCharacter* currentPartyMemberTick; /// Original_Address: $(DOLLAR)4DC6
-__gshared PartyCharacter*[6] chosenFourPtrs; /// Original_Address: $(DOLLAR)4DC8
-
-__gshared short unknown7E4DD4; /// Original_Address: $(DOLLAR)4DD4
-__gshared MovementSpeeds[14] horizontalMovementSpeeds; /// Original_Address: $(DOLLAR)4DD6
-__gshared MovementSpeeds[14] verticalMovementSpeeds; /// Original_Address: $(DOLLAR)4F96
-
-__gshared PlayerPositionBufferEntry[256] playerPositionBuffer; /// Original_Address: $(DOLLAR)5156
+/** A ring buffer that records position and direction as the player moves around
+ * Original_Address: $(DOLLAR)5156
+ */
+__gshared PlayerPositionBufferEntry[256] playerPositionBuffer;
 //normally this occupies the same position as the player position buffer, but we're not so constrained
-__gshared CreditsDMAQueueEntry[128] creditsDMAQueue; /// Original_Address: $(DOLLAR)5156
-__gshared short miscDebugFlags; /// Original_Address: $(DOLLAR)5D56
-__gshared short playerIntangibilityFrames; /// Original_Address: $(DOLLAR)5D58
-__gshared short unknown7E5D5A; /// Original_Address: $(DOLLAR)5D5A
-__gshared short lastSectorX; /// Original_Address: $(DOLLAR)5D5C
-__gshared short lastSectorY; /// Original_Address: $(DOLLAR)5D5E
-__gshared short battleSwirlCountdown; /// Original_Address: $(DOLLAR)5D60
-__gshared short currentTPTEntry; /// Original_Address: $(DOLLAR)5D62
-__gshared short unknown7E5D64; /// Original_Address: $(DOLLAR)5D64
-__gshared short[6] overworldDamageCountdownFrames; /// Original_Address: $(DOLLAR)5D66
-__gshared short backgroundColourBackup; /// Original_Address: $(DOLLAR)5D72
-__gshared short inputDisableFrameCounter; /// Original_Address: $(DOLLAR)5D74
-__gshared short unknown7E5D76; /// Original_Address: $(DOLLAR)5D76
-__gshared short unknown7E5D78; /// Original_Address: $(DOLLAR)5D78
-__gshared short unknown7E5D7A; /// Original_Address: $(DOLLAR)5D7A
-__gshared short unknown7E5D7C; /// Original_Address: $(DOLLAR)5D7C
-__gshared short unknown7E5D7E; /// Original_Address: $(DOLLAR)5D7E
+/** DMA queue used for the credits to transfer the tile arrangement to VRAM
+ * Original_Address: $(DOLLAR)5156
+ */
+__gshared CreditsDMAQueueEntry[128] creditsDMAQueue;
+/** Movement flags for the player characters. Can disable collision and changing direction
+ * See_Also: earthbound.commondefs.PlayerMovementFlags
+ * Original_Address: $(DOLLAR)5D56
+ */
+__gshared short playerMovementFlags;
+/** The number of frames of intangibility remaining for the player, during which battles will not start
+ * Original_Address: $(DOLLAR)5D58
+ */
+__gshared short playerIntangibilityFrames;
+/** Number of frames of input required before the bicycle can turn. Only used if currently moving diagonally
+ * Original_Address: $(DOLLAR)5D5A
+ */
+__gshared short bicycleDiagonalTurnCounter;
+/** The X coordinate of the last sector. Used for determining when music needs to change
+ * Original_Address: $(DOLLAR)5D5C
+ */
+__gshared short lastSectorX;
+/** The Y coordinate of the last sector. Used for determining when music needs to change
+ * Original_Address: $(DOLLAR)5D5E
+ */
+__gshared short lastSectorY;
+/** Number of frames left until a battle starts. Will be 0 if in battle or no battle is starting
+ * Original_Address: $(DOLLAR)5D60
+ */
+__gshared short battleSwirlCountdown;
+/** The NPC ID of whatever's currently being interacted with, -1 if no valid NPCs found, or -2 if interacting with map objects
+ * Original_Address: $(DOLLAR)5D62
+ */
+__gshared short interactingNPCID;
+/** The NPC entity ID of whatever's currently being interacted with. -1 if no valid NPCs found
+ * Original_Address: $(DOLLAR)5D64
+ */
+__gshared short interactingNPCEntity;
+/** Number of frames left until periodic status damage is inflicted on a party member
+ * Original_Address: $(DOLLAR)5D66
+ */
+__gshared short[6] overworldDamageCountdownFrames;
+/** Background colour backup. Full-screen colour flash effects only need to set palette 0's transparent colour and turn off all backgrounds, so palette 0's transparent colour is saved here when needed
+ * Original_Address: $(DOLLAR)5D72
+ */
+__gshared short backgroundColourBackup;
+/** When set, ignore all input from the player for that number of frames
+ * Original_Address: $(DOLLAR)5D74
+ */
+__gshared short inputDisableFrameCounter;
+/** A copy of the direction currently faced by the party leader
+ * Original_Address: $(DOLLAR)5D76
+ */
+__gshared short currentLeaderDirection;
+/** A copy of the current leading party member entity offset
+ * Original_Address: $(DOLLAR)5D78
+ */
+__gshared short currentLeadingPartyMemberEntity;
+/** A backup of the current camera mode, made when switching to camera mode 3 and restored when switching back
+ * Original_Address: $(DOLLAR)5D7A
+ */
+__gshared short cameraModeBackup;
+/** Number of frames left until camera mode 3 ends
+ * Original_Address: $(DOLLAR)5D7C
+ */
+__gshared short cameraMode3FramesLeft;
+/** Unknown. Set to 1 for a short period while initial loading of party character data occurs. Never read
+ * Original_Address: $(DOLLAR)5D7E
+ */
+__gshared short unknown7E5D7E;
+/** Whether or not the HP alert has been shown for each party member recently
+ * Original_Address: $(DOLLAR)5D8C
+ */
+__gshared short[6] hpAlertShown;
+/** Disables party health checks, sunstroke infliction and deliveries when non-zero. Will be cleared upon entering a battle or by text including [1F 41 05]
+ * Original_Address: $(DOLLAR)5D98
+ */
+__gshared short overworldStatusSuppression;
+/** Flag set whenever an interaction is queued up (such as text or a door), prevents most game input from being processed
+ * Original_Address: $(DOLLAR)5D9A
+ */
+__gshared short pendingInteractions;
+/** Time left until next mushroomization direction swap in frames
+ * Original_Address: $(DOLLAR)5D9C
+ */
+__gshared ushort mushroomizationTimer;
+/** Which set of rotated directions to use. Valid values are 0 (rotate 90 degrees clockwise), 1 (rotate 180 degrees) and 2 (rotate 90 degrees counterclockwise)
+ * Original_Address: $(DOLLAR)5D9E
+ */
+__gshared ushort mushroomizationModifier;
+/** Whether or not to use mushroomized movement logic
+ * Original_Address: $(DOLLAR)5DA0
+ */
+__gshared ushort mushroomizedWalkingFlag;
+/** Unknown. Never read, but holds a copy of the direction moved by the party this frame, if any
+ * Original_Address: $(DOLLAR)5DA2
+ */
+__gshared ushort unknown7E5DA2;
+/** Surface flags for the active entity as they are being put together by the various collision functions
+ * Original_Address: $(DOLLAR)5DA4
+ */
+__gshared ushort tempEntitySurfaceFlags;
+/** The actual direction the party ends up moving in, if any
+ * Original_Address: $(DOLLAR)5DA6
+ */
+__gshared ushort finalMovementDirection;
+/** X coordinate of the entry point of the ladder or stairs that the player is currently using
+ * Original_Address: $(DOLLAR)5DA8
+ */
+__gshared ushort ladderStairsTileX;
+/** Y coordinate of the entry point of the ladder or stairs that the player is currently using
+ * Original_Address: $(DOLLAR)5DAA
+ */
+__gshared ushort ladderStairsTileY;
+/** The X coordinate of the left of the player entity's hitbox while it is moving around the map
+ * Original_Address: $(DOLLAR)5DAC
+ */
+__gshared ushort checkedCollisionLeftX;
+/** The Y coordinate of the top of the player entity's hitbox while it is moving around the map
+ * Original_Address: $(DOLLAR)5DAE
+ */
+__gshared short checkedCollisionTopY;
 
-__gshared short[6] hpAlertShown; /// Original_Address: $(DOLLAR)5D8C
-__gshared short overworldStatusSuppression; /// Original_Address: $(DOLLAR)5D98
-__gshared short pendingInteractions; /// Original_Address: $(DOLLAR)5D9A
-__gshared ushort mushroomizationTimer; /// Original_Address: $(DOLLAR)5D9C - Time left until next direction swap in frames
-__gshared ushort mushroomizationModifier; /// Original_Address: $(DOLLAR)5D9E - Which set of swapped directions to use
-__gshared ushort mushroomizedWalkingFlag; /// Original_Address: $(DOLLAR)5DA0 - Whether or not to use mushroomized movement logic
-__gshared ushort unknown7E5DA2; /// Original_Address: $(DOLLAR)5DA2
-__gshared ushort tempEntitySurfaceFlags; /// Original_Address: $(DOLLAR)5DA4
-__gshared ushort unknown7E5DA6; /// Original_Address: $(DOLLAR)5DA6
-__gshared ushort ladderStairsTileX; /// Original_Address: $(DOLLAR)5DA8
-__gshared ushort ladderStairsTileY; /// Original_Address: $(DOLLAR)5DAA
-__gshared ushort checkedCollisionLeftX; /// Original_Address: $(DOLLAR)5DAC
-__gshared short checkedCollisionTopY; /// Original_Address: $(DOLLAR)5DAE
+/** Whether or not the collision routines should set tempEntitySurfaceFlags. This is only disabled for a very short period where it isn't even checked
+ * Original_Address: $(DOLLAR)5DB4
+ */
+__gshared short setTempEntitySurfaceFlags;
+/** A saved copy of the collision check result for north/south map movement collision. Not read anywhere
+ * Original_Address: $(DOLLAR)5DB6
+ */
+__gshared short northSouthCollisionTestResult;
+/** Set if the party isn't moving in the same direction that it's facing
+ * Original_Address: $(DOLLAR)5DB8
+ */
+__gshared short notMovingInSameDirectionFaced;
+/** Unknown. Never read. Seems to be set to 1 when movement isn't normal?
+ * Original_Address: $(DOLLAR)5DBA
+ */
+__gshared short unknown7E5DBA;
+/** Door pointer found by getDoorAt()
+ * Original_Address: $(DOLLAR)5DBC
+ */
+__gshared DoorPtr doorFound;
+/** Type of door found by getDoorAt()
+ * Original_Address: $(DOLLAR)5DBC
+ */
+__gshared short doorFoundType;
+/** The type of the interaction currently being processed
+ * Original_Address: $(DOLLAR)5DC0
+ */
+__gshared short currentQueuedInteractionType;
+/** 1 if a door is currently being used, 0 otherwise
+ * Original_Address: $(DOLLAR)5DC2
+ */
+__gshared ushort usingDoor;
+/** The direction towards the other side of the stairs currently in use, or -1 if no stairs are in use
+ * Original_Address: $(DOLLAR)5DC4
+ */
+__gshared short stairsDirection;
+/** The direction towards the other side of the escalator currently in use, or 0 if no escalators are in use
+ * Original_Address: $(DOLLAR)5DC6
+ */
+__gshared short escalatorEntranceDirection;
 
-__gshared short unknown7E5DB4; /// Original_Address: $(DOLLAR)5DB4
-__gshared short unknown7E5DB6; /// Original_Address: $(DOLLAR)5DB6
-__gshared short unknown7E5DB8; /// Original_Address: $(DOLLAR)5DB8
-__gshared short unknown7E5DBA; /// Original_Address: $(DOLLAR)5DBA
-__gshared DoorPtr unknown7E5DBC; /// Original_Address: $(DOLLAR)5DBC
-__gshared short unknown7E5DBE; /// Original_Address: $(DOLLAR)5DBC
-__gshared short currentQueuedInteractionType; /// Original_Address: $(DOLLAR)5DC0
-__gshared ushort unknown7E5DC2; /// Original_Address: $(DOLLAR)5DC2
-__gshared short unknown7E5DC4; /// Original_Address: $(DOLLAR)5DC4
-__gshared short escalatorEntranceDirection; /// Original_Address: $(DOLLAR)5DC6
-
-__gshared short unknown7E5DCA; /// Original_Address: $(DOLLAR)5DCA
-__gshared short stairsNewX; /// Original_Address: $(DOLLAR)5DCC
-__gshared short stairsNewY; /// Original_Address: $(DOLLAR)5DCE
-__gshared short escalatorNewX; /// Original_Address: $(DOLLAR)5DD0
-__gshared short escalatorNewY; /// Original_Address: $(DOLLAR)5DD2
+/** Direction to face when a stairs demo is playing
+ * Original_Address: $(DOLLAR)5DCA
+ */
+__gshared short autoMovementDirection;
+/** The party's new X coordinate after getting on/off stairs
+ * Original_Address: $(DOLLAR)5DCC
+ */
+__gshared short stairsNewX;
+/** The party's new Y coordinate after getting on/off stairs
+ * Original_Address: $(DOLLAR)5DCE
+ */
+__gshared short stairsNewY;
+/** The party's new X coordinate after getting on/off an escalator
+ * Original_Address: $(DOLLAR)5DD0
+ */
+__gshared short escalatorNewX;
+/** The party's new Y coordinate after getting on/off an escalator
+ * Original_Address: $(DOLLAR)5DD2
+ */
+__gshared short escalatorNewY;
 __gshared short currentMapMusicTrack; /// Original_Address: $(DOLLAR)5DD4
 __gshared short nextMapMusicTrack; /// Original_Address: $(DOLLAR)5DD6
 __gshared short disableMusicChanges; /// Original_Address: $(DOLLAR)5DD8

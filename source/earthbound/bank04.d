@@ -1244,11 +1244,11 @@ void unknownC4334A(short direction) {
 		x = getDoorAt(cast(short)(x10 - 1), x04);
 	}
 	if ((x != 0xFF) && (x == 5)) {
-		unknown7E5DDC = unknown7E5DBE;
-		//unknown7E5DDE = doorData[unknown7E5DBC & 0x7FFF]
+		unknown7E5DDC = doorFoundType;
+		//unknown7E5DDE = doorData[doorFound & 0x7FFF]
 
-		unknown7E5DDE = unknown7E5DBC.entryA.textPtr;
-		currentTPTEntry = -2;
+		unknown7E5DDE = doorFound.entryA.textPtr;
+		interactingNPCID = -2;
 	}
 }
 
@@ -4182,7 +4182,7 @@ void unknownC48F98(short arg1) {
 
 /// $C48FC4
 void processItemTransformations() {
-	if (battleSwirlFlag + battleSwirlCountdown != 0) {
+	if (enemyHasBeenTouched + battleSwirlCountdown != 0) {
 		return;
 	}
 	if (disabledTransitions != 0) {
@@ -6056,7 +6056,7 @@ immutable ubyte[5] fileSelectTextAreYouSureNope = ebStringz("Nope");
 
 /// $C4C2DE
 void unknownC4C2DE() {
-	if (unknown7E4DC4 == 0) {
+	if (partyMembersAliveOverworld == 0) {
 		changeMusic(Music.youLose);
 		fadeOutWithMosaic(1, 1, 0);
 	}
@@ -6084,7 +6084,7 @@ void unknownC4C2DE() {
 	loadTextPalette();
 	preparePaletteUpload(PaletteUpload.full);
 	mirrorTM = TMTD.bg3 | TMTD.bg1;
-	unknown7E4DC4 = 0;
+	partyMembersAliveOverworld = 0;
 	bg2YPosition = 0;
 	bg2XPosition = 0;
 	bg1XPosition = 0;
@@ -6806,8 +6806,8 @@ short runAttractModeScene(short arg1) {
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
-	unknown7E4A58 = 1;
-	enemySpawnsEnabled = 0;
+	npcSpawnsEnabled = SpawnControl.offscreenOnly;
+	enemySpawnsEnabled = SpawnControl.allDisabled;
 	setBoundaryBehaviour(0);
 	entityAllocationMinSlot = partyLeaderEntity;
 	entityAllocationMaxSlot = partyLeaderEntity + 1;
@@ -7449,7 +7449,7 @@ short unknownC4F264(short arg1) {
 	photographMapLoadingMode = 1;
 	currentPhotoDisplay = arg1;
 	short x02 = enemySpawnsEnabled;
-	enemySpawnsEnabled = 0;
+	enemySpawnsEnabled = SpawnControl.allDisabled;
 	ushort* x = cast(ushort*)&heap[0][0];
 	// the original code went way beyond the heap. the heap appears to be 0x400 bytes, so perhaps they just forgot to factor the size of a short?
 	for (short i = 0; i < 0x200/+0x400+/; i++) {

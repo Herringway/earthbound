@@ -652,8 +652,8 @@ void loadMapAtPosition(short x, short y) {
 	if (photographMapLoadingMode == 0) {
 		mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	}
-	if (unknown7E4A58 != 0) {
-		unknown7E4A58 = 1;
+	if (npcSpawnsEnabled != SpawnControl.allDisabled) {
+		npcSpawnsEnabled = SpawnControl.offscreenOnly;
 	}
 	bg2XPosition = cast(short)(screenXPixels - 0x80);
 	bg1XPosition = cast(short)(screenXPixels - 0x80);
@@ -666,8 +666,8 @@ void loadMapAtPosition(short x, short y) {
 	for (short i = -8; i != 40; i++) {
 		spawnEnemiesRow(cast(short)(x02 - 24), cast(short)(x12 - 14 + i));
 	}
-	if (unknown7E4A58 != 0) {
-		unknown7E4A58 = -1;
+	if (npcSpawnsEnabled != SpawnControl.allDisabled) {
+		npcSpawnsEnabled = SpawnControl.allEnabled;
 	}
 	screenLeftX = cast(short)(x02 - 16);
 	screenTopY = cast(short)(x12 - 14);
@@ -852,7 +852,7 @@ short findFreeSpriteMap(ushort arg1) {
 }
 
 /// $C01B15
-void unknownC01B15(const(SpriteMap)* arg1) {
+void freeSpritemap(const(SpriteMap)* arg1) {
 	if (arg1 < &overworldSpriteMaps[0]) {
 		return;
 	}
@@ -1024,7 +1024,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 
 /// $C020F1
 void unknownC020F1() {
-	unknownC01B15(entitySpriteMapPointers[currentEntitySlot]);
+	freeSpritemap(entitySpriteMapPointers[currentEntitySlot]);
 	spriteVramTableOverwrite(currentEntitySlot, 0);
 	if ((entityNPCIDs[currentEntitySlot] & 0xF000) == 0x8000) {
 		overworldEnemyCount--;
@@ -1038,7 +1038,7 @@ void unknownC020F1() {
 
 /// $C02140
 void unknownC02140(short arg1) {
-	unknownC01B15(entitySpriteMapPointers[arg1]);
+	freeSpritemap(entitySpriteMapPointers[arg1]);
 	spriteVramTableOverwrite(arg1, 0);
 	if ((entityNPCIDs[arg1] & 0xF000) == 0x8000) {
 		overworldEnemyCount--;
@@ -1106,12 +1106,12 @@ void trySpawnNPCs(short x, short y) {
 				short x1A = cast(short)(x18 - bg1XPosition);
 				short xreg = cast(short)(x16 - bg1YPosition);
 				if (debugging != 0) {
-					if ((((padState[0] & (Pad.l | Pad.r)) != 0) || (unknown7E4A58 - 1 != 0)) && ((cast(ushort)x1A < 0x100) && (cast(ushort)xreg < 0xE0))) {
+					if ((((padState[0] & (Pad.l | Pad.r)) != 0) || (npcSpawnsEnabled != SpawnControl.offscreenOnly)) && ((cast(ushort)x1A < 0x100) && (cast(ushort)xreg < 0xE0))) {
 						continue;
 					}
 				} else {
-					// Prevent sprite from spawning if unknown7E4A58 != 1 and it is on screen
-					if ((unknown7E4A58 - 1 != 0) && (cast(ushort)x1A < 0x100) && (cast(ushort)xreg < 0xE0)) {
+					// Prevent NPC from spawning if npcSpawnsEnabled != 1 and it is on screen
+					if ((npcSpawnsEnabled != SpawnControl.offscreenOnly) && (cast(ushort)x1A < 0x100) && (cast(ushort)xreg < 0xE0)) {
 						continue;
 					}
 				}
@@ -1159,7 +1159,7 @@ void trySpawnNPCs(short x, short y) {
 void spawnNPCsRow(short x, short y) {
 	short x12 = void;
 	short x14 = short.min;
-	if (unknown7E4A58 == 0) {
+	if (npcSpawnsEnabled == SpawnControl.allDisabled) {
 		return;
 	}
 	version(noUndefinedBehaviour) {} else { // use of uninitialized variable
@@ -1185,7 +1185,7 @@ void spawnNPCsRow(short x, short y) {
 void spawnNPCsColumn(short x, short y) {
 	short x10 = void;
 	short x_ = short.min;
-	if (unknown7E4A58 == 0) {
+	if (npcSpawnsEnabled == SpawnControl.allDisabled) {
 		return;
 	}
 	version(noUndefinedBehaviour) {} else { //use of uninitialized variable
@@ -1237,7 +1237,7 @@ void spawnEnemiesFromGroup(short tileX, short tileY, short encounterGroupID) {
 		debug(enemySpawnTracing) tracef("Trying to spawn an enemy (debug): %s, %s, %s", tileX, tileY, encounterGroupID);
 		group = EnemyGroup.testEnemies;
 		groupEnemies = &battleEntryPointerTable[EnemyGroup.testEnemies].enemies[0];
-	} else if ((++unknown7E4A7A & 0xF) == 0) {
+	} else if ((++enemySpawnCounter & 0xF) == 0) {
 		debug(enemySpawnTracing) tracef("Trying to spawn a magic butterfly: %s, %s, %s", tileX, tileY, encounterGroupID);
 		short magicButterflyChance = void;
 		switch (mapDataPerSectorAttributesTable[(tileY * 8) / 16][(tileX * 8) / 32] & 7) {
@@ -1379,7 +1379,7 @@ void spawnEnemiesRow(short tileX, short tileY) {
 	if (getEventFlag(EventFlag.winGiegu) != 0) {
 		return;
 	}
-	if (enemySpawnsEnabled == 0) {
+	if (enemySpawnsEnabled == SpawnControl.allDisabled) {
 		return;
 	}
 	if ((tileY & 7) != 0) {
@@ -1420,7 +1420,7 @@ void spawnEnemiesColumn(short tileX, short tileY) {
 	if (getEventFlag(EventFlag.winGiegu) != 0) {
 		return;
 	}
-	if (enemySpawnsEnabled == 0) {
+	if (enemySpawnsEnabled == SpawnControl.allDisabled) {
 		return;
 	}
 	if ((tileX & 7) != 0) {
@@ -1813,7 +1813,7 @@ void unknownC03A94(short arg1) {
 	ladderStairsTileX = 0xFFFF;
 	short x02 = pendingInteractions;
 	pendingInteractions = 0;
-	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, Direction.down);
+	checkMovementMapCollision(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, Direction.down);
 	pendingInteractions = x02;
 	if (ladderStairsTileX != -1) {
 		unknownC07526(ladderStairsTileX, ladderStairsTileY);
@@ -1871,7 +1871,7 @@ void getOffBicycle() {
 		return;
 	}
 	setBoundaryBehaviour(1);
-	if ((battleDebug == 0) && (pendingInteractions == 0)) {
+	if ((battleMode == BattleMode.noBattle) && (pendingInteractions == 0)) {
 		unknownC06A07();
 	}
 	unknownC02140(0x18);
@@ -1964,7 +1964,7 @@ void movePartyToLeaderPosition() {
 		x.direction = gameState.leaderDirection;
 		x.walkingStyle = gameState.walkingStyle;
 		x.tileFlags = gameState.troddenTileType;
-		miscDebugFlags = 0;
+		playerMovementFlags = 0;
 		x.unknown10 = 0;
 		x += 255;
 	}
@@ -2074,8 +2074,8 @@ short unknownC04116(short direction) {
 	while (true) {
 		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 > 0) {
-			currentTPTEntry = entityNPCIDs[x10];
-			unknown7E5D64 = x10;
+			interactingNPCID = entityNPCIDs[x10];
+			interactingNPCEntity = x10;
 			break;
 		}
 		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
@@ -2089,10 +2089,10 @@ short unknownC04116(short direction) {
 		}
 	}
 	playerIntangibilityFrames = x12;
-	if ((currentTPTEntry == -1) || (currentTPTEntry == 0)) {
+	if ((interactingNPCID == -1) || (interactingNPCID == 0)) {
 		unknownC4334A(direction);
 	}
-	return currentTPTEntry;
+	return interactingNPCID;
 }
 
 /// $C041E3
@@ -2130,15 +2130,15 @@ void faceOppositeLeader(short arg1) {
 
 /// $C04279
 ushort findNearbyCheckableTPTEntry() {
-	currentTPTEntry = -1;
-	unknown7E5D64 = -1;
+	interactingNPCID = -1;
+	interactingNPCEntity = -1;
 	short x10 = unknownC041E3();
 	if ((x10 != -1) && (entityDirections[gameState.firstPartyMemberEntity] != x10)) {
 		gameState.leaderDirection = x10;
 		entityDirections[gameState.firstPartyMemberEntity] = x10;
 		updateEntitySpriteFrame(gameState.firstPartyMemberEntity);
 	}
-	return currentTPTEntry;
+	return interactingNPCID;
 }
 
 /// $C042EF
@@ -2150,8 +2150,8 @@ short unknownC042EF(short direction) {
 	while (true) {
 		short x10 = npcCollisionCheck(x14, x04, gameState.firstPartyMemberEntity);
 		if (x10 >= 0) {
-			currentTPTEntry = entityNPCIDs[x10];
-			unknown7E5D64 = x10;
+			interactingNPCID = entityNPCIDs[x10];
+			interactingNPCEntity = x10;
 			break;
 		}
 		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
@@ -2165,10 +2165,10 @@ short unknownC042EF(short direction) {
 		}
 	}
 	playerIntangibilityFrames = x12;
-	if ((currentTPTEntry == 0) || (currentTPTEntry == -1)) {
+	if ((interactingNPCID == 0) || (interactingNPCID == -1)) {
 		unknownC065C2(direction);
 	}
-	return currentTPTEntry;
+	return interactingNPCID;
 }
 
 /// $C043BC
@@ -2199,15 +2199,15 @@ short unknownC043BC() {
 
 /// $C04452
 ushort findNearbyTalkableTPTEntry() {
-	currentTPTEntry = -1;
-	unknown7E5D64 = -1;
+	interactingNPCID = -1;
+	interactingNPCEntity = -1;
 	short x10 = unknownC043BC();
 	if ((x10 != -1) && (entityDirections[gameState.firstPartyMemberEntity] != x10)) {
 		gameState.leaderDirection = x10;
 		entityDirections[gameState.firstPartyMemberEntity] = x10;
 		updateEntitySpriteFrame(gameState.firstPartyMemberEntity);
 	}
-	return currentTPTEntry;
+	return interactingNPCID;
 }
 
 /// $C0449B
@@ -2216,53 +2216,53 @@ void handleNormalMovement() {
 	if (mushroomizedWalkingFlag != 0) {
 		mushroomizationMovementSwap();
 	}
-	short x02 = mapInputToDirection(gameState.walkingStyle);
+	short chosenDirection = mapInputToDirection(gameState.walkingStyle);
 	if (battleSwirlCountdown != 0) {
 		if (--battleSwirlCountdown != 0) {
 			npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		} else {
-			battleDebug = -1;
+			battleMode = BattleMode.inBattle;
 		}
 		return;
 	}
-	if (x02 == -1) {
+	if (chosenDirection == -1) {
 		npcCollisionCheck(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 		return;
 	}
 	if (gameState.walkingStyle == WalkingStyle.stairs) {
-		if ((unknown7E5DC4 == 0x100) || (unknown7E5DC4 == 0x200)) {
-			if (x02 <= Direction.downRight) {
-				x02 = Direction.upRight;
+		if ((stairsDirection == StairDirection.upRight) || (stairsDirection == StairDirection.downLeft)) {
+			if (chosenDirection <= Direction.downRight) {
+				chosenDirection = Direction.upRight;
 			} else {
-				x02 = Direction.downLeft;
+				chosenDirection = Direction.downLeft;
 			}
 		} else {
-			if (((x02 - 1) & 7) <= Direction.downRight) {
-				x02 = Direction.downRight;
+			if (((chosenDirection - 1) & 7) <= Direction.downRight) {
+				chosenDirection = Direction.downRight;
 			} else {
-				x02 = Direction.upLeft;
+				chosenDirection = Direction.upLeft;
 			}
 		}
-		if (x02 < Direction.down) {
+		if (chosenDirection < Direction.down) {
 			gameState.leaderDirection = Direction.right;
 		} else {
 			gameState.leaderDirection = Direction.left;
 		}
-	} else if ((miscDebugFlags & 1) == 0) {
-		gameState.leaderDirection = x02;
+	} else if ((playerMovementFlags & PlayerMovementFlags.dontChangeDirection) == 0) {
+		gameState.leaderDirection = chosenDirection;
 	}
 	playerHasMovedSinceMapLoad++;
 	gameState.leaderHasMoved++;
 	short x22 = gameState.troddenTileType;
-	FixedPoint1616 newX = { combined: adjustPositionHorizontal(x02, gameState.leaderX.combined, x22) };
-	FixedPoint1616 newY = { combined: adjustPositionVertical(x02, gameState.leaderY.combined, x22) };
+	FixedPoint1616 newX = { combined: adjustPositionHorizontal(chosenDirection, gameState.leaderX.combined, x22) };
+	FixedPoint1616 newY = { combined: adjustPositionVertical(chosenDirection, gameState.leaderY.combined, x22) };
 	ladderStairsTileX = 0xFFFF;
 	short x04;
-	if ((miscDebugFlags & 2) == 0) {
-		x04 = unknownC05B7B(newX.integer, newY.integer, gameState.firstPartyMemberEntity, x02);
-		if (x02 != unknown7E5DA6) {
-			newX.combined = adjustPositionHorizontal(unknown7E5DA6, gameState.leaderX.combined, x22);
-			newY.combined = adjustPositionVertical(unknown7E5DA6, gameState.leaderY.combined, x22);
+	if ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) == 0) {
+		x04 = checkMovementMapCollision(newX.integer, newY.integer, gameState.firstPartyMemberEntity, chosenDirection);
+		if (chosenDirection != finalMovementDirection) {
+			newX.combined = adjustPositionHorizontal(finalMovementDirection, gameState.leaderX.combined, x22);
+			newY.combined = adjustPositionVertical(finalMovementDirection, gameState.leaderY.combined, x22);
 		}
 	} else if (demoFramesLeft == 0) {
 		x04 = unknownC05FD1(newX.integer, newY.integer, gameState.firstPartyMemberEntity) & 0x3F;
@@ -2278,7 +2278,7 @@ void handleNormalMovement() {
 	if ((x04 & 0xC0) != 0) {
 		x02_2 = 0;
 	}
-	if (ladderStairsTileX != 0xffff) {
+	if (ladderStairsTileX != 0xFFFF) {
 		x02_2 = unknownC07526(ladderStairsTileX, ladderStairsTileY);
 	} else if ((gameState.walkingStyle == WalkingStyle.ladder) || (gameState.walkingStyle == WalkingStyle.rope)) {
 		gameState.walkingStyle = WalkingStyle.normal;
@@ -2320,38 +2320,38 @@ void moveCameraToEntity() {
 
 /// $C047CF
 void handleEscalatorMovement() {
-	if (battleSwirlFlag != 0) {
+	if (enemyHasBeenTouched != 0) {
 		return;
 	}
 	if (battleSwirlCountdown != 0) {
 		battleSwirlCountdown--;
 		return;
 	}
-	short x14;
+	short direction;
 	switch (escalatorEntranceDirection & 0x300) {
 		case StairDirection.upLeft:
-			x14 = Direction.upLeft;
+			direction = Direction.upLeft;
 			break;
 		case StairDirection.downLeft:
-			x14 = Direction.downLeft;
+			direction = Direction.downLeft;
 			break;
 		case StairDirection.upRight:
-			x14 = Direction.upRight;
+			direction = Direction.upRight;
 			break;
 		case StairDirection.downRight:
-			x14 = Direction.downRight;
+			direction = Direction.downRight;
 			break;
 		default:
 			break;
 	}
 	ladderStairsTileX = 0xFFFF;
-	unknownC05B7B(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, x14);
+	checkMovementMapCollision(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity, direction);
 	if (ladderStairsTileX != -1) {
 		unknownC07526(ladderStairsTileX, ladderStairsTileY);
 	}
 	if (1 != 0) { //wat
-		gameState.leaderX.combined += horizontalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[x14 * 4].combined;
-		gameState.leaderY.combined += verticalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[x14 * 4].combined;
+		gameState.leaderX.combined += horizontalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[direction * 4].combined;
+		gameState.leaderY.combined += verticalMovementSpeeds[WalkingStyle.escalator].directionSpeeds[direction * 4].combined;
 	}
 	gameState.leaderHasMoved = 1;
 }
@@ -2383,9 +2383,9 @@ void handleBicycleMovement(short arg1) {
 		}
 	}
 	if ((x1E & 1) != 0) {
-		unknown7E5D5A = 4;
-	} else if (unknown7E5D5A != 0) {
-		if (--unknown7E5D5A != 0) {
+		bicycleDiagonalTurnCounter = 4;
+	} else if (bicycleDiagonalTurnCounter != 0) {
+		if (--bicycleDiagonalTurnCounter != 0) {
 			x1E = gameState.leaderDirection;
 		} else if (x02 == -1) {
 			x1E = gameState.leaderDirection;
@@ -2411,14 +2411,14 @@ void handleBicycleMovement(short arg1) {
 
 /// $C04A7B
 void restoreCameraMode() {
-	gameState.cameraMode = unknown7E5D7A;
+	gameState.cameraMode = cameraModeBackup;
 	unknownC0D19B();
 }
 
 /// $C04A88
 void switchToCameraMode3() {
-	unknown7E5D7C = 12;
-	unknown7E5D7A = gameState.cameraMode;
+	cameraMode3FramesLeft = 12;
+	cameraModeBackup = gameState.cameraMode;
 	gameState.cameraMode = CameraMode.unknown3;
 	musicEffect(MusicEffect.quickFade);
 	overworldStatusSuppression = 1;
@@ -2426,7 +2426,7 @@ void switchToCameraMode3() {
 
 /// $C04AAD
 void unknownC04AAD() {
-	if (--unknown7E5D7C != 0) {
+	if (--cameraMode3FramesLeft != 0) {
 		short x10 = mapInputToDirection(gameState.walkingStyle);
 		if (x10 == -1) {
 			return;
@@ -2457,7 +2457,7 @@ void handleSpecialCamera() {
 	if (gameState.walkingStyle != WalkingStyle.stairs) {
 		x10 = gameState.leaderDirection;
 	} else {
-		x10 = unknown7E5DCA;
+		x10 = autoMovementDirection;
 	}
 	switch (gameState.cameraMode) {
 		case CameraMode.autoScroll:
@@ -2540,10 +2540,10 @@ void partyMemberTick() {
 	if (battleSwirlCountdown != 0) {
 		return;
 	}
-	if (battleSwirlFlag != 0) {
+	if (enemyHasBeenTouched != 0) {
 		return;
 	}
-	if (battleDebug != 0) {
+	if (battleMode != BattleMode.noBattle) {
 		return;
 	}
 	currentPartyMemberTick = chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]];
@@ -2617,7 +2617,7 @@ void redFlash() {
 	if (battleSwirlCountdown != 0) {
 		return;
 	}
-	if (battleSwirlFlag != 0) {
+	if (enemyHasBeenTouched != 0) {
 		return;
 	}
 	backgroundColourBackup = palettes[0][0];
@@ -2648,7 +2648,7 @@ ushort unknownC04FFE() {
 	ushort result = 0;
 	ushort x02;
 	ushort x04;
-	ushort x16;
+	ushort numberCollapsed;
 	if (gameState.cameraMode == CameraMode.followEntity) {
 		return 1;
 	}
@@ -2698,7 +2698,7 @@ ushort unknownC04FFE() {
 				currentPartyMemberTick.hp.target = 0;
 				currentPartyMemberTick.hp.current.integer = 0;
 				entityScriptVar3Table[currentPartyMemberTick.unknown59] = 0x10;
-				x16++;
+				numberCollapsed++;
 			}
 		} else {
 			if (affliction != Status0.diamondized) {
@@ -2709,8 +2709,8 @@ ushort unknownC04FFE() {
 	if (x04 != 0) {
 		redFlash();
 	}
-	if (x16 != 0) {
-		unknown7E4DC4 = 0;
+	if (numberCollapsed != 0) {
+		partyMembersAliveOverworld = 0;
 		updateParty();
 		unknownC07B52();
 		unfreezeEntities();
@@ -2720,7 +2720,7 @@ ushort unknownC04FFE() {
 
 /// $C05200
 void partyLeaderTick() {
-	if (battleDebug != 0) {
+	if (battleMode != BattleMode.noBattle) {
 		return;
 	}
 	if ((unknown7E9F6F == 0) && (unknown7E9F6B != -1)) {
@@ -2751,8 +2751,8 @@ void partyLeaderTick() {
 		loadDadPhone();
 	}
 	unknown7E9F6F = 0;
-	unknown7E5D76 = gameState.leaderDirection;
-	unknown7E5D78 = cast(short)(gameState.firstPartyMemberEntity * 2);
+	currentLeaderDirection = gameState.leaderDirection;
+	currentLeadingPartyMemberEntity = cast(short)(gameState.firstPartyMemberEntity * 2);
 	if (gameState.leaderHasMoved) {
 		playerHasDoneSomethingThisFrame = 1;
 	}
@@ -2763,8 +2763,8 @@ short initBattleCommon() {
 	fadeOutWithMosaic(1, 1, 0);
 	short result = battleRoutine();
 	updateParty();
-	unknown7E4DC4 = 1;
-	battleDebug = 0;
+	partyMembersAliveOverworld = 1;
+	battleMode = BattleMode.noBattle;
 	return result;
 }
 
@@ -2815,7 +2815,7 @@ short unknownC0546B() {
 }
 
 /// $C054C9
-short unknownC054C9(short x, short y) {
+short getCollisionAt(short x, short y) {
 	short result = loadedCollisionTiles[y & 0x3F][x & 0x3F];
 	if ((result & SurfaceFlags.ladderOrStairs) != 0) {
 		ladderStairsTileX = x;
@@ -2868,253 +2868,275 @@ void checkHorizontalRightTileCollision(short arg1, short arg2) {
 	tempEntitySurfaceFlags = y;
 }
 
-/// $C05769
-short unknownC05769(short arg1) {
-	short x02 = 0;
-	short x12 = 0;
-	for (short i = 0; i < 6; i++, x02 >>= 1, arg1 >>= 1) {
-		if ((arg1 & 1) == 0) {
+/** Runs some collision checks. Checks the tiles at each direction specified by directionMask and returns each check that failed
+ * Params:
+ * 	directionMask = A set of flags indicating which directions to test. 0b000001 = west, 0b000010 = none, 0b000100 = east, 0b001000 = southwest, 0b010000 = south, 0b100000 = southeast
+ * Returns: the directionMask specified, minus the bits that didn't collide
+ * Original_Address: $(DOLLAR)C05769
+ */
+short performCollisionChecks(short directionMask) {
+	short result = 0;
+	short flagsCombined = 0;
+	for (short i = 0; i < 6; i++, result >>= 1, directionMask >>= 1) {
+		if ((directionMask & 1) == 0) {
 			continue;
 		}
-		short x0E = unknownC054C9((unknownC200B9[i] + checkedCollisionLeftX) / 8, (unknownC200C5[i] + checkedCollisionTopY) / 8);
-		x12 |= x0E;
-		if ((x0E & 0xC0) != 0) {
-			x02 |= 0x40;
+		short flags = getCollisionAt((collisionTestCoordDiffsX[i] + checkedCollisionLeftX) / 8, (collisionTestCoordDiffsY[i] + checkedCollisionTopY) / 8);
+		flagsCombined |= flags;
+		if ((flags & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+			result |= 0x40;
 		}
 	}
-	if (unknown7E5DB4 == 1) {
-		tempEntitySurfaceFlags = x12;
+	if (setTempEntitySurfaceFlags == 1) {
+		tempEntitySurfaceFlags = flagsCombined;
 	}
-	return x02;
+	return result;
 }
 
-/// $C057E8
-short unknownC057E8() {
+/** Runs collision checks for north movement and returns whether it's possible to move northish
+ * Returns: -256 if north movement impossible, -1 if possible, a similar Direction otherwise
+ * Original_Address: $(DOLLAR)C057E8
+ */
+short checkNorthMovementMapCollision() {
 	tempEntitySurfaceFlags = 0;
-	unknown7E5DB4++;
-	unknown7E5DB6 = unknownC05769(7);
-	if ((unknown7E5DB6 == 7) || (unknown7E5DB6 == 2)) {
+	setTempEntitySurfaceFlags++;
+	northSouthCollisionTestResult = performCollisionChecks(0b000111); // check west, none, east
+	if ((northSouthCollisionTestResult == 0b000111) || (northSouthCollisionTestResult == 0b000010)) { // E/W solid line
 		return -256;
 	}
-	if (unknown7E5DB6 == 0) {
+	if (northSouthCollisionTestResult == 0) { // All clear
 		return -1;
 	}
-	if (unknown7E5DB6 == 1) {
+	if (northSouthCollisionTestResult == 0b000001) { // NE/SW solid line, can move northeast alongside it
 		return Direction.upRight;
 	}
-	if (unknown7E5DB6 == 4) {
+	if (northSouthCollisionTestResult == 0b000100) { // NW/SE solid line, can move northwest alongside it
 		return Direction.upLeft;
 	}
-	if ((unknown7E5DB6 == 6) && ((checkedCollisionLeftX & 7) == 0)) {
+	if ((northSouthCollisionTestResult == 0b000110) && ((checkedCollisionLeftX & 7) == 0)) { // bottom-left corners of E/W and NW/SE intersections
 		return Direction.upLeft;
 	}
 	return -1;
 }
 
-/// $C0583C
-short unknownC0583C() {
+/** Runs collision checks for south movement and returns whether it's possible to move southish
+ * Returns: -256 if south movement impossible, -1 if possible, a similar Direction otherwise
+ * Original_Address: $(DOLLAR)C0583C
+ */
+short checkSouthMovementMapCollision() {
 	tempEntitySurfaceFlags = 0;
-	unknown7E5DB4++;
-	unknown7E5DB6 = unknownC05769(0x38);
-	if ((unknown7E5DB6 == 7) || (unknown7E5DB6 == 0x10)) {
+	setTempEntitySurfaceFlags++;
+	northSouthCollisionTestResult = performCollisionChecks(0b111000); // check southwest, south, southeast
+	// shouldn't that be 0b111000?
+	if ((northSouthCollisionTestResult == 0b000111) || (northSouthCollisionTestResult == 0b010000)) { // E/W solid line
 		return -256;
 	}
-	if (unknown7E5DB6 == 0) {
+	if (northSouthCollisionTestResult == 0) { // All clear
 		return -1;
 	}
-	if (unknown7E5DB6 == 8) {
+	if (northSouthCollisionTestResult == 0b001000) { // NW/SE solid line, can move southeast alongside it
 		return Direction.downRight;
 	}
-	if (unknown7E5DB6 == 0x20) {
+	if (northSouthCollisionTestResult == 0b100000) { // NE/SW solid line, can move southwest alongside it
 		return Direction.downLeft;
 	}
-	if ((unknown7E5DB6 == 0x30) && ((checkedCollisionLeftX & 7) == 0)) {
+	if ((northSouthCollisionTestResult == 0b110000) && ((checkedCollisionLeftX & 7) == 0)) { // top-left corners of E/W and NE/SW intersections
 		return Direction.downLeft;
 	}
 	return -1;
 }
 
-/// $C05890
-short unknownC05890() {
-	short x12 = -1;
-	short x02 = 0;
-	short x10 = 0;
+/** Runs collision checks for west movement and returns whether it's possible to move westish
+ * Returns: -1 if impossible, a Direction that we can move in otherwise
+ * Original_Address: $(DOLLAR)C05890
+ */
+short checkWestMovementMapCollision() {
+	short result = -1;
+	short furtherWestAttempted = 0;
+	short extraCollisionResult = 0;
 	tempEntitySurfaceFlags = 0;
-	unknown7E5DB4 = 1;
-	short x0E = unknownC05769(9);
-	if (x0E == 0) {
+	setTempEntitySurfaceFlags = 1;
+	short collisionResult = performCollisionChecks(0b001001); // check west, southwest
+	if (collisionResult == 0) { // see if we can move even further west
 		checkedCollisionLeftX -= 4;
-		x0E = unknownC05769(9);
-		if (x0E == 0) {
+		collisionResult = performCollisionChecks(0b001001); //check west, southwest again
+		if (collisionResult == 0) {
 			return Direction.left;
 		}
-		x02 = 1;
+		furtherWestAttempted = 1;
 	}
-	if (((x0E & 9) == 9) && ((checkedCollisionTopY & 7) != 0)) {
-		if (x02 != 0) {
+	if (((collisionResult & 0b001001) == 0b001001) && ((checkedCollisionTopY & 7) != 0)) {
+		if (furtherWestAttempted != 0) {
+			// though the second check failed, we aren't at a tile boundary yet, so we can move at least a little west
 			return Direction.left;
 		}
 		return -1;
 	}
-	if ((loadedCollisionTiles[((checkedCollisionTopY - 2) / 8) & 0x3F][((checkedCollisionLeftX - 4) / 8) & 0x3F] & 0xC0) != 0) {
-		x10 |= 1;
+	if ((loadedCollisionTiles[((checkedCollisionTopY - 2) / 8) & 0x3F][((checkedCollisionLeftX - 4) / 8) & 0x3F] & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+		extraCollisionResult |= 0b01; // further northwest
 	}
-	if ((loadedCollisionTiles[((checkedCollisionTopY + 9) / 8) & 0x3F][((checkedCollisionLeftX - 4) / 8) & 0x3F] & 0xC0) != 0) {
-		x10 |= 2;
+	if ((loadedCollisionTiles[((checkedCollisionTopY + 9) / 8) & 0x3F][((checkedCollisionLeftX - 4) / 8) & 0x3F] & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+		extraCollisionResult |= 0b10; // further southwest
 	}
-	switch (x0E) {
-		case 9:
-			if (x10 == 1) {
-				x12 = Direction.downLeft;
-			} else if (x10 == 2) {
-				x12 = Direction.upLeft;
-			} else if (x10 == 0) {
+	switch (collisionResult) {
+		case 0b001001:
+			if (extraCollisionResult == 0b01) {
+				result = Direction.downLeft; // NE/SW solid line, can move southwest alongside it
+			} else if (extraCollisionResult == 0b10) {
+				result = Direction.upLeft; // NW/SE solid line, can move northwest alongside it
+			} else if (extraCollisionResult == 0b00) {
 				if ((checkedCollisionTopY & 7) < 4) {
-					x12 = Direction.upLeft;
+					result = Direction.upLeft;
 				} else {
-					x12 = Direction.downLeft;
+					result = Direction.downLeft;
 				}
 			}
 			break;
-		case 1:
-			if ((x10 & 2) == 0) {
-				x12 = Direction.downLeft;
+		case 0b000001:
+			if ((extraCollisionResult & 0b10) == 0) { // NE/SW solid line, can move alongside it
+				result = Direction.downLeft;
 			}
 			break;
-		case 8:
-			if ((x10 & 1) == 0) {
-				x12 = Direction.upLeft;
+		case 0b001000:
+			if ((extraCollisionResult & 0b01) == 0) {  // NW/SE solid line, can move alongside it
+				result = Direction.upLeft;
 			}
 			break;
 		default: break;
 	}
-	if ((x02 != 0) && (x12 == -1)) {
+	if ((furtherWestAttempted != 0) && (result == -1)) { // we're near the end of a very narrow path westward
 		return Direction.left;
 	}
-	return x12;
+	return result;
 }
 
-/// $C059EF
-short unknownC059EF() {
-	short x12 = -1;
-	short x02 = 0;
-	short x10 = 0;
+/** Runs collision checks for east movement and returns whether it's possible to move eastish
+ * Returns: -1 if impossible, a Direction that we can move in otherwise
+ * Original_Address: $(DOLLAR)C059EF
+ */
+short checkEastMovementMapCollision() {
+	short result = -1;
+	short furtherEastAttempted = 0;
+	short extraCollisionResult = 0;
 	tempEntitySurfaceFlags = 0;
-	unknown7E5DB4 = 1;
-	short x0E = unknownC05769(0x24);
-	if (x0E == 0) {
+	setTempEntitySurfaceFlags = 1;
+	short collisionResult = performCollisionChecks(0b100100); // check east, southeast
+	if (collisionResult == 0) { // see if we can move even further east
 		checkedCollisionLeftX += 4;
-		x0E = unknownC05769(36);
-		if (x0E == 0) {
+		collisionResult = performCollisionChecks(0b100100); // check east, southeast again
+		if (collisionResult == 0) {
 			return Direction.right;
 		}
-		x02 = 1;
+		furtherEastAttempted = 1;
 	}
-	if (((x0E & 0x24) == 0x24) && ((checkedCollisionTopY & 7) != 0)) {
-		if (x02 != 0) {
+	if (((collisionResult & 0b100100) == 0b100100) && ((checkedCollisionTopY & 7) != 0)) {
+		if (furtherEastAttempted != 0) {
+			// though the second check failed, we aren't at a tile boundary yet, so we can move at least a little west
 			return Direction.right;
 		}
 		return -1;
 	}
-	if ((loadedCollisionTiles[((checkedCollisionTopY - 2) / 8) & 0x3F][((checkedCollisionLeftX + 4) / 8) & 0x3F] & 0xC0) != 0) {
-		x10 |= 1;
+	if ((loadedCollisionTiles[((checkedCollisionTopY - 2) / 8) & 0x3F][((checkedCollisionLeftX + 4) / 8) & 0x3F] & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+		extraCollisionResult |= 0b01; // further northeast
 	}
-	if ((loadedCollisionTiles[((checkedCollisionTopY + 9) / 8) & 0x3F][((checkedCollisionLeftX + 4) / 8) & 0x3F] & 0xC0) != 0) {
-		x10 |= 2;
+	if ((loadedCollisionTiles[((checkedCollisionTopY + 9) / 8) & 0x3F][((checkedCollisionLeftX + 4) / 8) & 0x3F] & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+		extraCollisionResult |= 0b10; // further southeast
 	}
-	switch (x0E) {
-		case 0x24:
-			if (x10 == 1) {
-				x12 = Direction.downRight;
-			} else if (x10 == 2) {
-				x12 = Direction.upRight;
-			} else if (x10 == 0) {
+	switch (collisionResult) {
+		case 0b100100:
+			if (extraCollisionResult == 1) {
+				result = Direction.downRight; // NW/SE solid line, can move southeast alongside it
+			} else if (extraCollisionResult == 2) {
+				result = Direction.upRight; // NE/SW solid line, can move northeast alongside it
+			} else if (extraCollisionResult == 0) {
 				if ((checkedCollisionTopY & 7) < 4) {
-					x12 = Direction.upRight;
+					result = Direction.upRight;
 				} else {
-					x12 = Direction.downRight;
+					result = Direction.downRight;
 				}
 			}
 			break;
-		case 0x04:
-			if ((x10 & 2) == 0) {
-				x12 = Direction.downRight;
+		case 0b000100:
+			if ((extraCollisionResult & 2) == 0) {
+				result = Direction.downRight; // NW/SE solid line, can move alongside it
 			}
 			break;
-		case 0x20:
-			if ((x10 & 1) == 0) {
-				x12 = Direction.upRight;
+		case 0b100000:
+			if ((extraCollisionResult & 1) == 0) {
+				result = Direction.upRight; // NE/SW solid line, can move alongside it
 			}
 			break;
 		default: break;
 	}
-	if ((x02 != 0) && (x12 == -1)) {
+	if ((furtherEastAttempted != 0) && (result == -1)) { // we're near the end of a very narrow path eastward
 		return Direction.right;
 	}
-	return x12;
+	return result;
 }
 
 /// $C05B4E
-short unknownC05B4E(short direction) {
+short checkDiagonalMovementCollision(short direction) {
 	tempEntitySurfaceFlags = 0;
-	unknown7E5DB4++;
-	return (unknownC05769(unknownC200D1[direction / 2]) != 0) ? -256 : direction;
+	setTempEntitySurfaceFlags++;
+	return (performCollisionChecks(unknownC200D1[direction / 2]) != 0) ? -256 : direction;
 }
 
-/// $C05B7B
-short unknownC05B7B(short x, short y, short arg3, short direction) {
-	unknown7E5DB8 = 0;
-	unknown7E5DB4 = 0;
+/** See if movement in a particular direction is possible and return flags
+ * Original_Address: $(DOLLAR)C05B7B
+ */
+short checkMovementMapCollision(short x, short y, short arg3, short direction) {
+	notMovingInSameDirectionFaced = 0;
+	setTempEntitySurfaceFlags = 0;
 	tempEntitySurfaceFlags = 0;
-	unknown7E5DA6 = direction;
+	finalMovementDirection = direction;
 	unknown7E5DA2 = direction;
 	checkedCollisionLeftX = x;
 	checkedCollisionTopY = y;
-	short x12;
+	short collisionResult;
 	switch (direction) {
 		case Direction.up:
-			x12 = unknownC057E8();
-			if (x12 != -1) {
+			collisionResult = checkNorthMovementMapCollision();
+			if (collisionResult != -1) {
 				break;
 			}
 			short x10 = ladderStairsTileX;
 			if ((checkedCollisionTopY & 7) < 5) {
 				checkedCollisionTopY -= 4;
-				short x0E = unknownC057E8();
+				short x0E = checkNorthMovementMapCollision();
 				if ((x0E & 0xFF00) != 0xFF00) {
-					x12 = x0E;
+					collisionResult = x0E;
 				}
 			}
 			ladderStairsTileX = x10;
 			break;
 		case Direction.down:
-			x12 = unknownC0583C();
-			if (x12 != -1) {
+			collisionResult = checkSouthMovementMapCollision();
+			if (collisionResult != -1) {
 				break;
 			}
 			short x10 = ladderStairsTileX;
 			if ((checkedCollisionTopY & 7) > 3) {
 				checkedCollisionTopY += 4;
-				short x0E = unknownC0583C();
+				short x0E = checkSouthMovementMapCollision();
 				if ((x0E & 0xFF00) != 0xFF00) {
-					x12 = x0E;
+					collisionResult = x0E;
 				}
 			}
 			ladderStairsTileX = x10;
 			break;
 		case Direction.left:
-			x12 = unknownC05890();
+			collisionResult = checkWestMovementMapCollision();
 			break;
 		case Direction.right:
-			x12 = unknownC059EF();
+			collisionResult = checkEastMovementMapCollision();
 			break;
 		case Direction.upLeft:
 		case Direction.upRight:
 		case Direction.downLeft:
 		case Direction.downRight:
-			x12 = unknownC05B4E(direction);
-			if (x12 != -256) {
-				x12 = direction;
+			collisionResult = checkDiagonalMovementCollision(direction);
+			if (collisionResult != -256) {
+				collisionResult = direction;
 			}
 			break;
 		default: break;
@@ -3122,11 +3144,11 @@ short unknownC05B7B(short x, short y, short arg3, short direction) {
 	if (pendingInteractions != 0) {
 		ladderStairsTileX = 0xFFFF;
 	}
-	if ((x12 == -1) || (x12 == -256)) {
+	if ((collisionResult == -1) || (collisionResult == -256)) {
 		return tempEntitySurfaceFlags;
 	}
-	unknown7E5DB8 = (x12 != direction) ? 1 : 0;
-	unknown7E5DA6 = x12;
+	notMovingInSameDirectionFaced = (collisionResult != direction) ? 1 : 0;
+	finalMovementDirection = collisionResult;
 	return tempEntitySurfaceFlags & 0x3F;
 }
 
@@ -3267,14 +3289,14 @@ short unknownC05F82(short x, short y, short entityID) {
 /// $C05FD1
 short unknownC05FD1(short arg1, short arg2, short arg3) {
 	tempEntitySurfaceFlags = 0;
-	tempEntitySurfaceFlags = unknownC054C9(arg1 / 8, (arg2 + 4) / 8);
+	tempEntitySurfaceFlags = getCollisionAt(arg1 / 8, (arg2 + 4) / 8);
 	return tempEntitySurfaceFlags;
 }
 
 /// $C05FF6
 short npcCollisionCheck(short x, short y, short arg3) {
 	short result = -1;
-	if ((entityHitboxEnabled[arg3] != 0) && ((miscDebugFlags & 2) == 0) && (gameState.walkingStyle != WalkingStyle.escalator) && (demoFramesLeft == 0)) {
+	if ((entityHitboxEnabled[arg3] != 0) && ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) == 0) && (gameState.walkingStyle != WalkingStyle.escalator) && (demoFramesLeft == 0)) {
 		short x18;
 		short x04;
 		if ((entityDirections[arg3] == Direction.right) || (entityDirections[arg3] == Direction.left)) {
@@ -3561,12 +3583,12 @@ void unknownC065C2(short direction) {
 		x = getDoorAt(cast(short)(x0E + 1), x02);
 	}
 	if ((x != -1) && (x == 6)) {
-		unknown7E5DDC = unknown7E5DBE;
-		//unknown7E5DDE = doorData[unknown7E5DBC & 0x7FFF]
+		unknown7E5DDC = doorFoundType;
+		//unknown7E5DDE = doorData[doorFound & 0x7FFF]
 
 		//not sure if this is the correct type...
-		unknown7E5DDE = unknown7E5DBC.entryA.textPtr;
-		currentTPTEntry = -2;
+		unknown7E5DDE = doorFound.entryA.textPtr;
+		interactingNPCID = -2;
 	}
 }
 
@@ -3732,7 +3754,7 @@ void unknownC06A91(short arg1) {
 		gameState.walkingStyle = WalkingStyle.rope;
 	}
 	gameState.leaderDirection &= 0xFFFE;
-	unknown7E5DC4 = -1;
+	stairsDirection = -1;
 }
 
 /// $C06ACA
@@ -3746,10 +3768,10 @@ void unknownC06ACA(const(DoorEntryA)* arg1) {
 	if (pendingInteractions != 0) {
 		return;
 	}
-	if ((battleSwirlFlag | battleSwirlCountdown) != 0) {
+	if ((enemyHasBeenTouched | battleSwirlCountdown) != 0) {
 		return;
 	}
-	unknown7E5DC2 = 1;
+	usingDoor = 1;
 	QueuedInteractionPtr ptr = { doorPtr: arg1 };
 	queueInteraction(InteractionType.unknown2, cast(QueuedInteractionPtr)ptr);
 	unknownC07C5B();
@@ -3784,7 +3806,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	ladderStairsTileY = 0;
 	ladderStairsTileX = 0;
 	if ((arg1.eventFlag != 0) && (getEventFlag(arg1.eventFlag & 0x7FFF) != (arg1.eventFlag > eventFlagUnset) ? 1 : 0)) {
-		unknown7E5DC2 = 0;
+		usingDoor = 0;
 		return;
 	}
 	for (short i = 1; i <= 10; i++) {
@@ -3841,10 +3863,10 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	} else {
 		screenTransition(arg1.transitionStyle, 0);
 	}
-	unknown7E5DC4 = -1;
+	stairsDirection = -1;
 	playerHasDoneSomethingThisFrame = -1;
 	spawnBuzzBuzz();
-	unknown7E5DC2 = 0;
+	usingDoor = 0;
 }
 
 /// $C06E02
@@ -3869,7 +3891,7 @@ immutable short[4] stairInputDirectionMap = [Direction.left, Direction.right, Di
 /// $C06E2C
 void enterEscalator() {
 	gameState.walkingStyle = WalkingStyle.escalator;
-	miscDebugFlags = 0;
+	playerMovementFlags = 0;
 	gameState.leaderX.integer = escalatorNewX;
 	gameState.leaderY.integer = escalatorNewY;
 	gameState.leaderY.fraction = 0;
@@ -3878,9 +3900,9 @@ void enterEscalator() {
 
 /// $C06E4A
 void exitEscalator() {
-	unknown7E5DC4 = -1;
+	stairsDirection = -1;
 	gameState.walkingStyle = WalkingStyle.normal;
-	miscDebugFlags = 0;
+	playerMovementFlags = 0;
 	unknown7E5DBA = 0;
 	gameState.leaderX.integer = escalatorNewX;
 	gameState.leaderY.integer = escalatorNewY;
@@ -3900,7 +3922,7 @@ void doEscalatorTransition(ushort arg1, short x, short y) {
 			return;
 		}
 		gameState.walkingStyle = WalkingStyle.normal;
-		miscDebugFlags = 3;
+		playerMovementFlags = PlayerMovementFlags.collisionDisabled | PlayerMovementFlags.dontChangeDirection;
 		xDest = cast(short)((x * 8) + escalatorExitOffsetsX[escalatorEntranceDirection >> 8]);
 		short frames = recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, cast(short)(y * 8));
 		recordAutoMovementDemoNFramesDirection(stairInputDirectionMap[escalatorEntranceDirection >> 8], 16);
@@ -3915,20 +3937,20 @@ void doEscalatorTransition(ushort arg1, short x, short y) {
 		unknown7E5DBA = 1;
 		escalatorEntranceDirection = arg1;
 		gameState.leaderDirection = stairInputDirectionMap[arg1 >> 8];
-		miscDebugFlags = 3;
+		playerMovementFlags = PlayerMovementFlags.collisionDisabled | PlayerMovementFlags.dontChangeDirection;
 		xDest = cast(short)((x * 8) + escalatorEntryOffsetsX[arg1 >> 8]);
 		scheduleOverworldTask(recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, cast(short)(y * 8)), &enterEscalator);
 		finishAutoMovementDemoAndStart();
 	}
 	escalatorNewX = xDest;
 	escalatorNewY = cast(short)(y * 8);
-	unknown7E5DC4 = -1;
+	stairsDirection = -1;
 }
 
 /// $C06F82
 void getOnStairs() {
 	short x12 = 0;
-	if ((unknown7E5DC4 == StairDirection.upLeft) || (unknown7E5DC4 == StairDirection.upRight)) {
+	if ((stairsDirection == StairDirection.upLeft) || (stairsDirection == StairDirection.upRight)) {
 		if (stairsNewY - 1 > gameState.leaderY.integer) {
 			x12 = 1;
 		}
@@ -3951,7 +3973,7 @@ void getOnStairs() {
 /// $C06FED
 void getOffStairs() {
 	short x12 = 0;
-	if ((unknown7E5DC4 == StairDirection.upLeft) || (unknown7E5DC4 == StairDirection.upRight)) {
+	if ((stairsDirection == StairDirection.upLeft) || (stairsDirection == StairDirection.upRight)) {
 		if (stairsNewY < gameState.leaderY.integer) {
 			x12 = 1;
 		}
@@ -3961,9 +3983,9 @@ void getOffStairs() {
 		}
 	}
 	if (x12 != 0) {
-		unknown7E5DC4 = -1;
+		stairsDirection = -1;
 		gameState.walkingStyle = WalkingStyle.normal;
-		miscDebugFlags = 0;
+		playerMovementFlags = 0;
 		gameState.leaderX.integer = stairsNewX;
 		gameState.leaderY.integer = stairsNewY;
 		gameState.leaderY.fraction = 0;
@@ -3982,25 +4004,25 @@ short unknownC0705F(ushort arg1) {
 			if ((gameState.leaderDirection == 0) || ((gameState.leaderDirection & 3) != 0)) {
 				result = 0;
 			}
-			unknown7E5DCA = Direction.right;
+			autoMovementDirection = Direction.right;
 			break;
 		case StairDirection.upLeft:
 			if ((gameState.leaderDirection == 0) || ((gameState.leaderDirection & 3) != 0)) {
 				result = 0;
 			}
-			unknown7E5DCA = Direction.left;
+			autoMovementDirection = Direction.left;
 			break;
 		case StairDirection.downRight:
 			if ((gameState.leaderDirection & 7) != 0) {
 				result = 0;
 			}
-			unknown7E5DCA = Direction.right;
+			autoMovementDirection = Direction.right;
 			break;
 		case StairDirection.downLeft:
 			if ((gameState.leaderDirection & 7) != 0) {
 				result = 0;
 			}
-			unknown7E5DCA = Direction.left;
+			autoMovementDirection = Direction.left;
 			break;
 		default: break;
 	}
@@ -4008,7 +4030,7 @@ short unknownC0705F(ushort arg1) {
 }
 
 /// $C070CB
-void doStairsTransition(ushort arg1, short x, short y) {
+void doStairsTransition(ushort direction, short x, short y) {
 	if (demoFramesLeft != 0) {
 		return;
 	}
@@ -4016,30 +4038,30 @@ void doStairsTransition(ushort arg1, short x, short y) {
 	short xDest;
 	short yDest;
 	if (gameState.walkingStyle == 0) { //getting on stairs
-		if (unknownC0705F(arg1) != 0) {
+		if (unknownC0705F(direction) != 0) {
 			return;
 		}
-		gameState.leaderDirection = unknown7E5DCA;
-		unknown7E5DB8 = 0;
-		miscDebugFlags = 3;
+		gameState.leaderDirection = autoMovementDirection;
+		notMovingInSameDirectionFaced = 0;
+		playerMovementFlags = PlayerMovementFlags.collisionDisabled | PlayerMovementFlags.dontChangeDirection;
 		unknown7E5DBA = 1;
-		unknown7E5DC4 = cast(short)(arg1 & 0xFF00);
-		xDest = cast(short)((x * 8) + staircaseStartOffsetX[arg1 >> 8]);
-		yDest = cast(short)((y * 8) + staircaseStartOffsetY[arg1 >> 8]);
+		stairsDirection = cast(short)(direction & 0xFF00);
+		xDest = cast(short)((x * 8) + staircaseStartOffsetX[direction >> 8]);
+		yDest = cast(short)((y * 8) + staircaseStartOffsetY[direction >> 8]);
 		short frames = recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, yDest);
 		if (frames == 0) {
 			frames++;
 		}
-		recordAutoMovementDemoNFramesDirection(staircaseEntryDirections[arg1 >> 8], 6);
+		recordAutoMovementDemoNFramesDirection(staircaseEntryDirections[direction >> 8], 6);
 		scheduleOverworldTask(frames, &getOnStairs);
 	} else { //getting off stairs
-		xDest = cast(short)((x * 8) + staircaseEndOffsetX[arg1 >> 8]);
-		yDest = cast(short)((y * 8) + staircaseEndOffsetY[arg1 >> 8]);
+		xDest = cast(short)((x * 8) + staircaseEndOffsetX[direction >> 8]);
+		yDest = cast(short)((y * 8) + staircaseEndOffsetY[direction >> 8]);
 		short frames = recordAutoMovementDemo(gameState.leaderX.integer, gameState.leaderY.integer, xDest, yDest);
 		if (frames == 0) {
 			frames++;
 		}
-		recordAutoMovementDemoNFramesDirection(staircaseExitDirections[arg1 >> 8], 12);
+		recordAutoMovementDemoNFramesDirection(staircaseExitDirections[direction >> 8], 12);
 		scheduleOverworldTask(frames, &getOffStairs);
 	}
 	stairsNewX = xDest;
@@ -4125,8 +4147,8 @@ byte getDoorAt(short x, short y) {
 		if (x06.unknown0 != (y % 32)) {
 			continue;
 		}
-		unknown7E5DBC = x06.doorPtr;
-		unknown7E5DBE = x06.type;
+		doorFound = x06.doorPtr;
+		doorFoundType = x06.type;
 		return x06.type;
 	}
 	return -1;
@@ -4141,32 +4163,32 @@ short unknownC07526(short x, short y) {
 	}
 	switch (getDoorAt(x, y)) {
 		case DoorType.switch_:
-			unknownC06A1B(unknown7E5DBC.entryB);
+			unknownC06A1B(doorFound.entryB);
 			x0E = 0;
 			break;
 		case DoorType.ropeLadder:
-			unknownC06A91(unknown7E5DBC.direction);
+			unknownC06A91(doorFound.direction);
 			x0E = 1;
 			break;
 		case DoorType.door:
-			unknownC06ACA(unknown7E5DBC.entryA);
+			unknownC06ACA(doorFound.entryA);
 			x0E = 0;
 			break;
 		case DoorType.escalator:
-			doEscalatorTransition(unknown7E5DBC.direction, x, y);
+			doEscalatorTransition(doorFound.direction, x, y);
 			x0E = 0;
 			break;
 		case DoorType.stairway:
-			doStairsTransition(unknown7E5DBC.direction, x, y);
+			doStairsTransition(doorFound.direction, x, y);
 			x0E = 1;
 			break;
 		case DoorType.object:
 		case DoorType.type7:
-			unknownC06A8B(unknown7E5DBC.entryC);
+			unknownC06A8B(doorFound.entryC);
 			x0E = 0;
 			break;
 		case DoorType.person:
-			unknownC06A8E(unknown7E5DBC.entryC);
+			unknownC06A8E(doorFound.entryC);
 			x0E = 0;
 			break;
 		default: break;
@@ -6792,7 +6814,7 @@ void recalculateEntityScreenPosition(short arg1) {
 
 /// $C0A26B
 void unknownC0A26B() {
-	if ((actionScriptVar88 == unknown7E5D78) || ((entityScriptVar7Table[actionScriptVar88 / 2] & 0) != 0) || (unknown7E5DB8 != 0) || (entityDirections[actionScriptVar88 / 2] != unknown7E5D76) || (unknownC0A350[entityDirections[actionScriptVar88 / 2]](unknown7E5D78) * 2 != 0)) {
+	if ((actionScriptVar88 == currentLeadingPartyMemberEntity) || ((entityScriptVar7Table[actionScriptVar88 / 2] & 0) != 0) || (notMovingInSameDirectionFaced != 0) || (entityDirections[actionScriptVar88 / 2] != currentLeaderDirection) || (unknownC0A350[entityDirections[actionScriptVar88 / 2]](currentLeadingPartyMemberEntity) * 2 != 0)) {
 		entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg1XPosition);
 		entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg1YPosition);
 	}
@@ -8185,10 +8207,10 @@ void unknownC0B67F() {
 	clearSpriteTable();
 	spriteVramTableOverwrite(short.min, 0);
 	initializeMiscObjectData();
-	battleDebug = 0;
+	battleMode = BattleMode.noBattle;
 	inputDisableFrameCounter = 0;
-	unknown7E4A58 = 1;
-	enemySpawnsEnabled = -1;
+	npcSpawnsEnabled = SpawnControl.offscreenOnly;
+	enemySpawnsEnabled = SpawnControl.allEnabled;
 	overworldEnemyMaximum = 10;
 	battleSwirlCountdown = 0;
 	pendingInteractions = 0;
@@ -8219,13 +8241,13 @@ void unknownC0B67F() {
 
 /// $C0B731
 void initBattleOverworld() {
-	if (battleDebug == 0) {
+	if (battleMode == BattleMode.noBattle) {
 		return;
 	}
 	if ((debugging == 0) || (unknownEFE708() != -1)) {
 		if (instantWinCheck() != 0) {
 			instantWinHandler();
-			battleDebug = 0;
+			battleMode = BattleMode.noBattle;
 		} else {
 			short battleResult = initBattleCommon();
 			unknownC07B52();
@@ -8278,11 +8300,11 @@ void ebMain() {
 		updateScreen();
 		unknownC4A7B0();
 		waitUntilNextFrame();
-		if (((currentQueuedInteraction - nextQueuedInteraction) != 0) && !battleSwirlCountdown && !battleSwirlFlag && !battleDebug) {
+		if (((currentQueuedInteraction - nextQueuedInteraction) != 0) && !battleSwirlCountdown && !enemyHasBeenTouched && (battleMode == BattleMode.noBattle)) {
 			processQueuedInteractions();
 			inputDisableFrameCounter++;
 		} else if ((gameState.cameraMode != CameraMode.followEntity) && (gameState.walkingStyle != WalkingStyle.escalator) && !battleSwirlCountdown) {
-			if (battleDebug) {
+			if (battleMode != BattleMode.noBattle) {
 				initBattleOverworld();
 				inputDisableFrameCounter++;
 			} else if (((padPress[0] & (Pad.a | Pad.l)) != 0) && (gameState.walkingStyle == WalkingStyle.bicycle)) {
@@ -8306,7 +8328,7 @@ void ebMain() {
 			if (battleSwirlCountdown) {
 				continue;
 			}
-			if (battleSwirlFlag) {
+			if (enemyHasBeenTouched) {
 				continue;
 			}
 			if (inputDisableFrameCounter) {
@@ -8478,10 +8500,10 @@ short findPathToParty(short partyCount, short arg2, short arg3) {
 	PathCtx* x26 = &unknown7EF000.unknown7EF200;
 	unknown7EF000.unknown7EF200.radius.y = arg2;
 	unknown7EF000.unknown7EF200.radius.x = arg3;
-	unknown7E4A92 = unknown7EF000.unknown7EF200.radius.y / 2;
-	unknown7E4A94 = unknown7EF000.unknown7EF200.radius.x / 2;
-	unknown7E4A8E = (entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
-	unknown7E4A90 = (entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
+	pathfindingTargetWidth = unknown7EF000.unknown7EF200.radius.y / 2;
+	pathfindingTargetHeight = unknown7EF000.unknown7EF200.radius.x / 2;
+	pathfindingTargetCenterX = (entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
+	pathfindingTargetCenterY = (entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
 	short x02 = ((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2);
 	short x04 = ((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2);
 	unknownC0B9BC(&unknown7EF000.unknown7EF200, partyCount, x04, x02);
@@ -8520,17 +8542,17 @@ short unknownC0BD96() {
 	PathCtx* x28 = &unknown7EF000.unknown7EF200;
 	short x04 = unknown7EF000.unknown7EF200.radius.y = 56;
 	short x02 = unknown7EF000.unknown7EF200.radius.x = 56;
-	unknown7E4A92 = unknown7EF000.unknown7EF200.radius.y / 2;
-	unknown7E4A94 = unknown7EF000.unknown7EF200.radius.x / 2;
-	unknown7E4A8E = (entityAbsXTable[x2A] - unknownC42A1F[entitySizes[x2A]]) / 8;
-	unknown7E4A90 = (entityAbsYTable[x2A] - unknownC42A41[entitySizes[x2A]] + unknownC42AEB[entitySizes[x2A]]) / 8;
+	pathfindingTargetWidth = unknown7EF000.unknown7EF200.radius.y / 2;
+	pathfindingTargetHeight = unknown7EF000.unknown7EF200.radius.x / 2;
+	pathfindingTargetCenterX = (entityAbsXTable[x2A] - unknownC42A1F[entitySizes[x2A]]) / 8;
+	pathfindingTargetCenterY = (entityAbsYTable[x2A] - unknownC42A41[entitySizes[x2A]] + unknownC42AEB[entitySizes[x2A]]) / 8;
 	x04 = cast(short)((entityAbsXTable[x2A] - unknownC42A1F[entitySizes[x2A]]) / 8 - x04);
 	x02 = cast(short)((entityAbsYTable[x2A] - unknownC42A41[entitySizes[x2A]] + unknownC42AEB[entitySizes[x2A]]) / 8 - x02);
 	unknownC0B9BC(x28, 1, x04, x02);
 	short result = unknownC0BA35(x28, 1, x04, x02, 1, 0xFC, 0x32);
 	if (result == 0) {
-		entityAbsXTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((unknown7E4A8E - unknown7E4A92) * 8));
-		entityAbsYTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + unknownC42A41[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((unknown7E4A90 - unknown7E4A94) * 8));
+		entityAbsXTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((pathfindingTargetCenterX - pathfindingTargetWidth) * 8));
+		entityAbsYTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + unknownC42A41[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((pathfindingTargetCenterY - pathfindingTargetHeight) * 8));
 		entityPathPoints[unknown7EF000.unknown7EF200.pathers[0].objIndex]++;
 		entityPathPointsCount[unknown7EF000.unknown7EF200.pathers[0].objIndex]--;
 	}
@@ -8543,14 +8565,14 @@ short unknownC0BF72() {
 	unknown7EF000.unknown7EF200.radius.y = 56;
 	unknown7EF000.unknown7EF200.radius.x = 56;
 	short x04 = unknown7EF000.unknown7EF200.radius.y / 2;
-	unknown7E4A92 = unknown7EF000.unknown7EF200.radius.y / 2;
-	unknown7E4A94 = unknown7EF000.unknown7EF200.radius.x / 2;
-	unknown7E4A8E = (entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8;
-	unknown7E4A90 = (entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8;
+	pathfindingTargetWidth = unknown7EF000.unknown7EF200.radius.y / 2;
+	pathfindingTargetHeight = unknown7EF000.unknown7EF200.radius.x / 2;
+	pathfindingTargetCenterX = (entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8;
+	pathfindingTargetCenterY = (entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8;
 	short x = cast(short)((entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8 - x04);
 	short x28 = cast(short)((entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8 - x04);
 	unknown7EF000.unknown7EF200.targetsPos[0].x = x04 & 0x3F;
-	unknown7EF000.unknown7EF200.targetsPos[0].y = unknown7E4A94 & 0x3F;
+	unknown7EF000.unknown7EF200.targetsPos[0].y = pathfindingTargetHeight & 0x3F;
 	return unknownC0BA35(x26, 1, x, x28, 1, 0xFC, 0x32);
 }
 
@@ -9041,7 +9063,7 @@ short unknownC0D0E6() {
 
 /// $C0D15C
 short unknownC0D15C() {
-	if ((miscDebugFlags & 2) != 0) {
+	if ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) != 0) {
 		return 0;
 	}
 	if (entityCollidedObjects[partyLeaderEntity] == currentEntitySlot) {
@@ -9056,14 +9078,14 @@ short unknownC0D15C() {
 /// $C0D19B
 void unknownC0D19B() {
 	short x20 = touchedEnemy;
-	battleSwirlFlag = 0;
+	enemyHasBeenTouched = 0;
 	short x;
 	short y;
 	if (entityMovingDirection[touchedEnemy] == 8) {
 		y = 0;
 		x = 1;
 	} else {
-		short x04 = ((getScreenAngle(entityAbsXTable[x20], entityAbsYTable[x20], entityAbsXTable[unknown7E4DB8], entityAbsYTable[unknown7E4DB8]) + 0x1000) / 0x2000);
+		short x04 = ((getScreenAngle(entityAbsXTable[x20], entityAbsYTable[x20], entityAbsXTable[enemyPathfindingTargetEntity], entityAbsYTable[enemyPathfindingTargetEntity]) + 0x1000) / 0x2000);
 		switch ((entityMovingDirection[touchedEnemy] - x04) & 7) {
 			case 0:
 			case 1:
@@ -9122,8 +9144,8 @@ void unknownC0D19B() {
 			x02 = 0;
 			y = 0;
 		}
-		unknown7E4A7C[i] = y;
-		unknown7E4A84[i] = x02;
+		pathfindingEnemyIDs[i] = y;
+		pathfindingEnemyCounts[i] = x02;
 	}
 	enemiesInBattle = 0;
 	findPathToParty(gameState.partyCount, 0x40, 0x40);
@@ -9196,7 +9218,7 @@ void unknownC0D4DE() {
 
 /// $C0D59B
 short unknownC0D59B() {
-	if ((battleSwirlCountdown != 0) || (battleSwirlFlag != 0)) {
+	if ((battleSwirlCountdown != 0) || (enemyHasBeenTouched != 0)) {
 		return 1;
 	}
 	return 0;
@@ -9204,17 +9226,17 @@ short unknownC0D59B() {
 
 /// $C0D5B0
 short unknownC0D5B0() {
-	if (battleDebug != 0) {
+	if (battleMode != BattleMode.noBattle) {
 		return 0;
 	}
-	if (unknown7E5DC2 != 0) {
+	if (usingDoor != 0) {
 		return 0;
 	}
 	if ((battleSwirlCountdown == 0) || (currentEntitySlot != touchedEnemy)) {
 		if (gameState.cameraMode == CameraMode.followEntity) {
 			return 0;
 		}
-		if ((miscDebugFlags & 2) != 0) {
+		if ((playerMovementFlags & PlayerMovementFlags.collisionDisabled) != 0) {
 			return 0;
 		}
 		if (gameState.walkingStyle == WalkingStyle.escalator) {
@@ -9229,16 +9251,16 @@ short unknownC0D5B0() {
 			}
 		}
 	}
-	if ((battleSwirlCountdown == 0) && (battleSwirlFlag == 0) && (entityEnemyIDs[currentEntitySlot] == EnemyID.magicButterfly)) {
+	if ((battleSwirlCountdown == 0) && (enemyHasBeenTouched == 0) && (entityEnemyIDs[currentEntitySlot] == EnemyID.magicButterfly)) {
 		return 1;
 	}
-	if ((battleSwirlCountdown == 0) && (battleSwirlFlag == 0)) {
-		battleSwirlFlag = 1;
+	if ((battleSwirlCountdown == 0) && (enemyHasBeenTouched == 0)) {
+		enemyHasBeenTouched = 1;
 		unknownC0D4DE();
 		if (currentEntitySlot == entityCollidedObjects[partyLeaderEntity]) {
-			unknown7E4DB8 = 0x18;
+			enemyPathfindingTargetEntity = partyMemberEntityStart;
 		} else {
-			unknown7E4DB8 = entityCollidedObjects[currentEntitySlot];
+			enemyPathfindingTargetEntity = entityCollidedObjects[currentEntitySlot];
 		}
 		touchedEnemy = currentEntitySlot;
 		for (short i = 0; i < maxEntities; i++) {
@@ -9260,16 +9282,16 @@ short unknownC0D5B0() {
 			x12 = 0;
 			short y = 0;
 			for (short i = 0; i != 4; i++) {
-				if (entityEnemyIDs[currentEntitySlot] == unknown7E4A7C[i]) {
-					short x0E = unknown7E4A84[i];
+				if (entityEnemyIDs[currentEntitySlot] == pathfindingEnemyIDs[i]) {
+					short x0E = pathfindingEnemyCounts[i];
 					if (x0E != 0) {
-						unknown7E4A84[i] = cast(short)(x0E - 1);
+						pathfindingEnemyCounts[i] = cast(short)(x0E - 1);
 						x12 = 1;
 						entityCallbackFlags[currentEntitySlot] |= EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled;
 						enemiesInBattleIDs[enemiesInBattle++] = entityEnemyIDs[currentEntitySlot];
 					}
 				}
-				y += unknown7E4A84[i];
+				y += pathfindingEnemyCounts[i];
 			}
 			if ((y == 0) && (unknownC2E9C8() == 0)) {
 				for (short i = 0; i < maxEntities; i++) {
@@ -9301,8 +9323,8 @@ void unknownC0D7F7() {
 	VecYX* x1A = entityPathPoints[currentEntitySlot];
 	short x18 = entityAbsXTable[currentEntitySlot];
 	short x16 = entityAbsYTable[currentEntitySlot];
-	short x12 = cast(short)((unknown7E4A8E - unknown7E4A92 * 8) + x1A.x * 8 + unknownC42A1F[x1C]);
-	short x04 = cast(short)((unknown7E4A90 - unknown7E4A94 * 8) + x1A.y * 8 - unknownC42AEB[x1C] + unknownC42A41[x1C]);
+	short x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth * 8) + x1A.x * 8 + unknownC42A1F[x1C]);
+	short x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight * 8) + x1A.y * 8 - unknownC42AEB[x1C] + unknownC42A41[x1C]);
 	short x10 = cast(short)(x18 - x12);
 	if (0 > x10) {
 		x10 = cast(short)-cast(int)x10;
@@ -9315,8 +9337,8 @@ void unknownC0D7F7() {
 		if ((3 > x10) && (--entityPathPointsCount[currentEntitySlot] != 0)) {
 			VecYX* x14 = &x1A[1];
 			entityPathPoints[currentEntitySlot] = x14;
-			x12 = cast(short)((unknown7E4A8E - unknown7E4A92) * 8 + x14.x * 8 + unknownC42A1F[x1C]);
-			x04 = cast(short)((unknown7E4A90 - unknown7E4A94) * 8 + x14.y * 8 - unknownC42AEB[x1C] + unknownC42A41[x1C]);
+			x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + x14.x * 8 + unknownC42A1F[x1C]);
+			x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + x14.y * 8 - unknownC42AEB[x1C] + unknownC42A41[x1C]);
 		}
 	}
 	if (entityPathPointsCount[currentEntitySlot] != 0) {
@@ -9341,15 +9363,15 @@ void unknownC0D77F() {
 }
 
 /// $C0D7B3
-void unknownC0D7B3() {
-	unknown7E4DBE = entityAbsXTable[currentEntitySlot];
-	unknown7E4DC0 = entityAbsYTable[currentEntitySlot];
+void actionScriptBackupPosition() {
+	actionScriptBackupX = entityAbsXTable[currentEntitySlot];
+	actionScriptBackupY = entityAbsYTable[currentEntitySlot];
 }
 
 /// $C0D7C7
-void unknownC0D7C7() {
-	entityAbsXTable[currentEntitySlot] = unknown7E4DBE;
-	entityAbsYTable[currentEntitySlot] = unknown7E4DC0;
+void actionScriptRestorePositionBackup() {
+	entityAbsXTable[currentEntitySlot] = actionScriptBackupX;
+	entityAbsYTable[currentEntitySlot] = actionScriptBackupY;
 }
 
 /// $C0D98F
@@ -9359,8 +9381,8 @@ short unknownC0D98F() {
 	}
 	short x12 = entitySizes[currentEntitySlot];
 	VecYX* x0E = entityPathPoints[currentEntitySlot];
-	entityScriptVar6Table[currentEntitySlot] = cast(short)((x0E.x * 8) + unknownC42A1F[x12] + (unknown7E4A8E - unknown7E4A92) * 8);
-	entityScriptVar7Table[currentEntitySlot] = cast(short)((x0E.y * 8) - unknownC42AEB[x12] + unknownC42A41[x12] + (unknown7E4A90 - unknown7E4A94) * 8);
+	entityScriptVar6Table[currentEntitySlot] = cast(short)((x0E.x * 8) + unknownC42A1F[x12] + (pathfindingTargetCenterX - pathfindingTargetWidth) * 8);
+	entityScriptVar7Table[currentEntitySlot] = cast(short)((x0E.y * 8) - unknownC42AEB[x12] + unknownC42A41[x12] + (pathfindingTargetCenterY - pathfindingTargetHeight) * 8);
 	entityPathPointsCount[currentEntitySlot]--;
 	entityPathPoints[currentEntitySlot] = x0E + 1;
 	return 1;
@@ -9490,13 +9512,13 @@ void processOverworldTasks() {
 	if (windowHead != -1) {
 		return;
 	}
-	if (battleModeFlag != 0) {
+	if (battleModeFlag != BattleMode.noBattle) {
 		return;
 	}
 	if (battleSwirlCountdown != 0) {
 		return;
 	}
-	if (battleSwirlFlag != 0) {
+	if (enemyHasBeenTouched != 0) {
 		return;
 	}
 	for (short i = 0; i < overworldTasks.length; i++) {
@@ -9515,13 +9537,13 @@ void loadDadPhone() {
 	if (windowHead != -1) {
 		return;
 	}
-	if (battleModeFlag != 0) {
+	if (battleModeFlag != BattleMode.noBattle) {
 		return;
 	}
 	if (battleSwirlCountdown != 0) {
 		return;
 	}
-	if (battleSwirlFlag != 0) {
+	if (enemyHasBeenTouched != 0) {
 		return;
 	}
 	if (unknown7E9E56 != 0) {
@@ -9699,7 +9721,7 @@ void unknownC0DF22(ushort arg1) {
 /// $C0DE7C
 void unknownC0DE7C() {
 	currentPartyMemberTick = &partyCharacters[0];
-	for (short i = 0x18; i < 0x1E; i++) {
+	for (short i = partyMemberEntityStart; i < partyMemberEntityStart + partyCharacters.length; i++) {
 		entityScriptVar3Table[i] = 8;
 		entityScriptVar7Table[i] &= 0xF7FF;
 		entityCollidedObjects[i] &= 0x7FFF;
@@ -9764,7 +9786,7 @@ void unknownC0E28F() {
 	gameState.leaderDirection = x02;
 	if (battleSwirlCountdown != 0) {
 		teleportState = TeleportState.failed;
-		battleDebug = 1;
+		battleMode = BattleMode.teleportFailed;
 	}
 	unknownC0DF22(x02);
 	unknown7E9F51.combined = unknown7E9F49.combined + gameState.leaderX.combined;
@@ -9867,7 +9889,7 @@ void unknownC0E516() {
 		}
 		if (battleSwirlCountdown != 0) {
 			teleportState = TeleportState.failed;
-			battleDebug = 1;
+			battleMode = BattleMode.teleportFailed;
 		}
 		if (npcCollisionCheck(unknown7E9F51.integer, unknown7E9F55.integer, gameState.firstPartyMemberEntity) != -1) {
 			teleportState = TeleportState.failed;

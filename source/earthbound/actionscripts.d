@@ -610,7 +610,7 @@ immutable ubyte[16 + 5 * (const(void)*).sizeof] actionScriptGhostPlus2;
 immutable ubyte[24 + 3 * (const(void)*).sizeof] actionScriptEndCamera;
 immutable ubyte[14 + 2 * (const(void)*).sizeof] unknownC37559;
 immutable ubyte[10 + 5 * (const(void)*).sizeof] unknownC3DBDB;
-immutable ubyte[132 + 65 * (const(void)*).sizeof + 1 * string.sizeof] actionScript32;
+immutable ubyte[132 + 65 * (const(void)*).sizeof + 1 * string.sizeof] actionScriptMagicButterfly;
 immutable ubyte[18 + 6 * (const(void)*).sizeof] unknownC31DF4;
 immutable ubyte[22 + 1 * (const(void)*).sizeof] unknownC31DF4Task;
 immutable ubyte[9 + 5 * (const(void)*).sizeof] actionScript4;
@@ -1885,12 +1885,12 @@ ubyte[] ACTIONSCRIPT_C0D77F() {
 	return ACTIONSCRIPT_CALLROUTINE!unknownC0D77F();
 }
 
-ubyte[] ACTIONSCRIPT_C0D7B3() {
-	return ACTIONSCRIPT_CALLROUTINE!unknownC0D7B3();
+ubyte[] ACTIONSCRIPT_BACKUP_POSITION() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptBackupPosition();
 }
 
-ubyte[] ACTIONSCRIPT_C0D7C7() {
-	return ACTIONSCRIPT_CALLROUTINE!unknownC0D7C7();
+ubyte[] ACTIONSCRIPT_RESTORE_POSITION_BACKUP() {
+	return ACTIONSCRIPT_CALLROUTINE!actionScriptRestorePositionBackup();
 }
 
 ubyte[] ACTIONSCRIPT_C0D98F() {
@@ -2351,7 +2351,7 @@ shared static this() {
 		actionScript29[],
 		actionScript30[],
 		actionScript31[],
-		actionScript32[],
+		actionScriptMagicButterfly[],
 		actionScriptMagicButterflyOut[],
 		actionScriptMagicButterflyApproach[],
 		actionScript35[],
@@ -6983,7 +6983,7 @@ actionScript672 = [
 	ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER(),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlCountdown),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript674[1 + 1 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlFlag),
+	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&enemyHasBeenTouched),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript674[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_COPY_XY_TO_VARS(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 248),
@@ -11684,7 +11684,7 @@ actionScript674 = [
 	ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER(),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlCountdown),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript674[1 + 1 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlFlag),
+	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&enemyHasBeenTouched),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript674[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_COPY_XY_TO_VARS(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 248),
@@ -14304,69 +14304,69 @@ unknownC3DBDB = [
 	ACTIONSCRIPT_SET_TICK_CALLBACK(&unknownC48BE1),
 	ACTIONSCRIPT_SHORT_RETURN(),
 ].join();
-actionScript32 = [
+actionScriptMagicButterfly = [
 	ACTIONSCRIPT_SHORTCALL(&unknownC3A401[0]),
 	ACTIONSCRIPT_C0A6B8(),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&unknownC3A47C[0]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 0),
-	ACTIONSCRIPT_START_TASK(&actionScript32[114 + 55 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_START_TASK(&actionScript32[28 + 13 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_START_TASK(&actionScript32[74 + 36 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptMagicButterfly[114 + 55 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptMagicButterfly[28 + 13 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_START_TASK(&actionScriptMagicButterfly[74 + 36 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_PAUSE(10),
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v1),
-	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScript32[16 + 9 * (const(void)*).sizeof], &actionScript32[16 + 9 * (const(void)*).sizeof], &actionScript32[10 + 6 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[16 + 9 * (const(void)*).sizeof], &actionScriptMagicButterfly[16 + 9 * (const(void)*).sizeof], &actionScriptMagicButterfly[10 + 6 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C0C48F(),
-	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScript32[23 + 12 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptMagicButterfly[23 + 12 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 0),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[10 + 6 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[10 + 6 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 1),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[10 + 6 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[10 + 6 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v1),
-	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScript32[32 + 16 * (const(void)*).sizeof], &actionScript32[64 + 25 * (const(void)*).sizeof], &actionScript32[68 + 35 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof], &actionScriptMagicButterfly[64 + 25 * (const(void)*).sizeof], &actionScriptMagicButterfly[68 + 35 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_CHOOSE_RANDOM(0, 1),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript32[46 + 21 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_DIRECTION8(Direction.left),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_SET_X_VELOCITY(-256),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[52 + 23 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[52 + 23 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_DIRECTION8(Direction.right),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_SET_X_VELOCITY(256),
 	ACTIONSCRIPT_CHOOSE_RANDOM(30, 60, 90, 120),
 	ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[28 + 13 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[28 + 13 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_GET_DIRECTION_FROM_PLAYER_TO_ENTITY(),
-	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScript32[32 + 16 * (const(void)*).sizeof], &actionScript32[39 + 18 * (const(void)*).sizeof], &actionScript32[39 + 18 * (const(void)*).sizeof], &actionScript32[39 + 18 * (const(void)*).sizeof], &actionScript32[32 + 16 * (const(void)*).sizeof], &actionScript32[46 + 21 * (const(void)*).sizeof], &actionScript32[46 + 21 * (const(void)*).sizeof], &actionScript32[46 + 21 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[32 + 16 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof], &actionScriptMagicButterfly[39 + 18 * (const(void)*).sizeof], &actionScriptMagicButterfly[39 + 18 * (const(void)*).sizeof], &actionScriptMagicButterfly[39 + 18 * (const(void)*).sizeof], &actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof], &actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof], &actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof], &actionScriptMagicButterfly[46 + 21 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[32 + 16 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_X_VELOCITY(0),
 	ACTIONSCRIPT_PAUSE(10),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[28 + 13 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[28 + 13 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v1),
-	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScript32[78 + 39 * (const(void)*).sizeof], &actionScript32[104 + 44 * (const(void)*).sizeof], &actionScript32[108 + 54 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof], &actionScriptMagicButterfly[104 + 44 * (const(void)*).sizeof], &actionScriptMagicButterfly[108 + 54 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_CHOOSE_RANDOM(0, 1),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript32[89 + 42 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_Y_VELOCITY(-256),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[92 + 42 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[92 + 42 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_Y_VELOCITY(256),
 	ACTIONSCRIPT_CHOOSE_RANDOM(15, 30, 45, 60),
 	ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER(),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[74 + 36 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[74 + 36 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_GET_DIRECTION_FROM_PLAYER_TO_ENTITY(),
-	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScript32[89 + 42 * (const(void)*).sizeof], &actionScript32[89 + 42 * (const(void)*).sizeof], &actionScript32[78 + 39 * (const(void)*).sizeof], &actionScript32[85 + 41 * (const(void)*).sizeof], &actionScript32[85 + 41 * (const(void)*).sizeof], &actionScript32[85 + 41 * (const(void)*).sizeof], &actionScript32[78 + 39 * (const(void)*).sizeof], &actionScript32[89 + 42 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[78 + 39 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SWITCH_JUMP_TEMPVAR(&actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof], &actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof], &actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof], &actionScriptMagicButterfly[85 + 41 * (const(void)*).sizeof], &actionScriptMagicButterfly[85 + 41 * (const(void)*).sizeof], &actionScriptMagicButterfly[85 + 41 * (const(void)*).sizeof], &actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof], &actionScriptMagicButterfly[89 + 42 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[78 + 39 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SET_Y_VELOCITY(0),
 	ACTIONSCRIPT_PAUSE(10),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[74 + 36 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[74 + 36 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C06478(),
 	ACTIONSCRIPT_C05ECE(),
 	ACTIONSCRIPT_C0D5B0(),
-	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript32[121 + 60 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptMagicButterfly[121 + 60 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_PAUSE(1),
-	ACTIONSCRIPT_SHORTJUMP(&actionScript32[114 + 55 * (const(void)*).sizeof]),
+	ACTIONSCRIPT_SHORTJUMP(&actionScriptMagicButterfly[114 + 55 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_C0D77F(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v1, 2),
 	ACTIONSCRIPT_SET_VELOCITIES_ZERO(),
-	ACTIONSCRIPT_C0D7B3(),
+	ACTIONSCRIPT_BACKUP_POSITION(),
 	ACTIONSCRIPT_SHORTCALL(&unknownC39E01[0]),
 	ACTIONSCRIPT_QUEUE_INTERACTION_TYPE_8("MSG_BUTTERFLY_HIT"),
 	ACTIONSCRIPT_C020F1(),
@@ -19002,7 +19002,7 @@ actionScriptMagicButterflyApproach = [
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v4, 6),
 	ACTIONSCRIPT_DISABLE_CURRENT_ENTITY_COLLISION2(),
 	ACTIONSCRIPT_SET_Z(5),
-	ACTIONSCRIPT_C0D7C7(),
+	ACTIONSCRIPT_RESTORE_POSITION_BACKUP(),
 	ACTIONSCRIPT_UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	ACTIONSCRIPT_PLAY_SFX(Sfx.magicButterfly),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v5, 1),
@@ -20217,7 +20217,7 @@ actionScriptCarpDungR = [
 unknownC39E01 = [
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlCountdown),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&unknownC39E01[5 + 4 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlFlag),
+	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&enemyHasBeenTouched),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&unknownC39E01[5 + 4 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_SHORT_RETURN(),
 	ACTIONSCRIPT_PAUSE(1),
@@ -20552,7 +20552,7 @@ actionScript673 = [
 	ACTIONSCRIPT_WRITE_TEMPVAR_WAITTIMER(),
 	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlCountdown),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript674[1 + 1 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&battleSwirlFlag),
+	ACTIONSCRIPT_WRITE_WRAM_TEMPVAR(&enemyHasBeenTouched),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScript674[1 + 1 * (const(void)*).sizeof]),
 	ACTIONSCRIPT_COPY_XY_TO_VARS(),
 	ACTIONSCRIPT_SET_VAR(ActionScriptVars.v2, 248),

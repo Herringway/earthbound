@@ -111,7 +111,7 @@ void unknownC100D6(ushort arg1) {
 
 /// $C100FE
 void unknownC100FE(short arg1) {
-	if ((debugging != 0) && (battleDebug == 0)) {
+	if ((debugging != 0) && (battleMode == BattleMode.noBattle)) {
 		while ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) == 0) {
 			windowTickMinimal();
 		}
@@ -1814,19 +1814,19 @@ const(ubyte)* talkTo() {
 	const(ubyte)* x0A = null;
 	createWindowN(Window.textStandard);
 	findNearbyTalkableTPTEntry();
-	if (currentTPTEntry == 0) {
+	if (interactingNPCID == 0) {
 		return null;
 	}
-	if (currentTPTEntry == -1) {
+	if (interactingNPCID == -1) {
 		return null;
 	}
-	if (currentTPTEntry == -2) {
+	if (interactingNPCID == -2) {
 		x0A = getTextBlock(unknown7E5DDE);
 	} else {
-		switch (npcConfig[currentTPTEntry].type) {
+		switch (npcConfig[interactingNPCID].type) {
 			case NPCType.person:
-				faceOppositeLeader(unknown7E5D64);
-				x0A = getTextBlock(npcConfig[currentTPTEntry].talkText);
+				faceOppositeLeader(interactingNPCEntity);
+				x0A = getTextBlock(npcConfig[interactingNPCID].talkText);
 				break;
 			case NPCType.itemBox:
 			case NPCType.object:
@@ -1840,29 +1840,29 @@ const(ubyte)* talkTo() {
 const(ubyte)* check() {
 	createWindowN(Window.textStandard);
 	findNearbyCheckableTPTEntry();
-	if (currentTPTEntry == 0) {
+	if (interactingNPCID == 0) {
 		return null;
 	}
-	if (currentTPTEntry == -1) {
+	if (interactingNPCID == -1) {
 		return null;
 	}
-	if (currentTPTEntry == -2) {
+	if (interactingNPCID == -2) {
 		return getTextBlock(unknown7E5DDE);
 	}
-	switch (npcConfig[currentTPTEntry].type) {
+	switch (npcConfig[interactingNPCID].type) {
 		case NPCType.person:
 			return null;
 		case NPCType.itemBox:
-			if (npcConfig[currentTPTEntry].item < 0x100) {
-				setWorkingMemory(WorkingMemory(npcConfig[currentTPTEntry].item));
+			if (npcConfig[interactingNPCID].item < 0x100) {
+				setWorkingMemory(WorkingMemory(npcConfig[interactingNPCID].item));
 			} else {
 				setWorkingMemory(WorkingMemory(0));
-				setArgumentMemory(npcConfig[currentTPTEntry].item - 0x100);
+				setArgumentMemory(npcConfig[interactingNPCID].item - 0x100);
 			}
-			currentInteractingEventFlag = npcConfig[currentTPTEntry].eventFlag;
-			return getTextBlock(npcConfig[currentTPTEntry].talkText);
+			currentInteractingEventFlag = npcConfig[interactingNPCID].eventFlag;
+			return getTextBlock(npcConfig[interactingNPCID].talkText);
 		case NPCType.object:
-			return getTextBlock(npcConfig[currentTPTEntry].talkText);
+			return getTextBlock(npcConfig[interactingNPCID].talkText);
 		default: break;
 	}
 	return null;
@@ -4188,7 +4188,7 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 			playerHasMovedSinceMapLoad = 0;
 			unknownC03FA9(gameState.exitMouseXCoordinate, gameState.exitMouseYCoordinate, 4);
 			fadeIn(1, 1);
-			unknown7E5DC4 = -1;
+			stairsDirection = -1;
 			break;
 		case 0x71:
 			return &cc1F71;
@@ -5400,10 +5400,10 @@ uint getCNum() {
 /// $C1AD42
 short findReceiveItemNPC() {
 	findNearbyCheckableTPTEntry();
-	if ((currentTPTEntry == 0) || (currentTPTEntry == -1) || (currentTPTEntry == -2)) {
+	if ((interactingNPCID == 0) || (interactingNPCID == -1) || (interactingNPCID == -2)) {
 		return 0;
 	} else {
-		return npcConfig[currentTPTEntry].type;
+		return npcConfig[interactingNPCID].type;
 	}
 }
 
@@ -5533,7 +5533,7 @@ short overworldUseItem(short arg1, short arg2, short) {
 								x24 = 1;
 								short tmp = findReceiveItemNPC();
 								if ((tmp == 1) || (tmp == 3)) {
-									x26 = getTextBlock(npcConfig[currentTPTEntry].checkText);
+									x26 = getTextBlock(npcConfig[interactingNPCID].checkText);
 								}
 								if (x26 == null) {
 									x26 = getTextBlock(battleActionTable[itemData[x01].battleAction].text);
@@ -5814,7 +5814,7 @@ void teleport(short arg1) {
 	} else {
 		screenTransition(teleportDestinationTable[arg1].screenTransition, 0);
 	}
-	unknown7E5DC4 = -1;
+	stairsDirection = -1;
 	overworldStatusSuppression = x16;
 }
 

@@ -21504,8 +21504,8 @@ void initDebugMenuScreen() {
 	entityAllocationMinSlot = 0;
 	entityAllocationMaxSlot = 1;
 	debugCursorEntity = initEntityWipe(ActionScript.unknown000, 0x34, 0x34);
-	unknown7E4A58 = 0;
-	enemySpawnsEnabled = 0;
+	npcSpawnsEnabled = SpawnControl.allDisabled;
+	enemySpawnsEnabled = SpawnControl.allDisabled;
 }
 
 /// $EFDABD
@@ -21860,13 +21860,13 @@ void debugProcessCommandSelection() {
 			break;
 		case 1:
 			debugModeNumber = DebugMode.viewMap;
-			unknown7E4A58 = -1;
+			npcSpawnsEnabled = SpawnControl.allEnabled;
 			debugMain();
 			break;
 		case 2:
 			debugModeNumber = DebugMode.viewCharacter;
 			overworldEnemyMaximum = 10;
-			enemySpawnsEnabled = -1;
+			enemySpawnsEnabled = SpawnControl.allEnabled;
 			debugMain();
 			break;
 		case 3:
@@ -21960,7 +21960,7 @@ short unknownEFE708() {
 		while ((padState[0] & Pad.b) == 0) {
 			waitUntilNextFrame();
 		}
-		battleDebug = 0;
+		battleMode = BattleMode.noBattle;
 		result = -1;
 	} else {
 		if ((padState[0] & Pad.y) != 0) {

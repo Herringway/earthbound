@@ -132,20 +132,20 @@ immutable FixedPoint1616[14] defaultMovementSpeedsDiagonal = [
 
 /// $C3E12C
 immutable ushort[] allowedInputDirections = [
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //NORMAL
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //UNKNOWN_01
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //UNKNOWN_02
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //BICYCLE
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //GHOST
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //UNKNOWN_05
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //SLOWER
-	DirectionMask.up | DirectionMask.down, //LADDER
-	DirectionMask.up | DirectionMask.down, //ROPE
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //UNKNOWN_09
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //SLOWEST
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft, //UNKNOWN_0B
-	0, //ESCALATOR
-	DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft //STAIRS
+	WalkingStyle.normal : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.unknown01 : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.unknown02 : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.bicycle : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.ghost : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.unknown05 : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.slower : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.ladder : DirectionMask.up | DirectionMask.down,
+	WalkingStyle.rope : DirectionMask.up | DirectionMask.down,
+	WalkingStyle.unknown09 : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.slowest : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.unknown11 : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft,
+	WalkingStyle.escalator : 0,
+	WalkingStyle.stairs : DirectionMask.up | DirectionMask.upRight | DirectionMask.right | DirectionMask.downRight | DirectionMask.down | DirectionMask.downLeft | DirectionMask.left | DirectionMask.upLeft
 ];
 
 /// $C3E148
@@ -188,55 +188,55 @@ immutable short[8] oppositeCardinals = [
 immutable short[16][3] mushroomizationDirectionRemapTables = [
 	[
 		0,
-		Pad.down,
-		Pad.up,
-		Pad.up | Pad.down,
-		Pad.left,
-		Pad.left | Pad.down,
-		Pad.left | Pad.up,
-		Pad.left | Pad.up | Pad.down,
-		Pad.right,
-		Pad.right | Pad.down,
-		Pad.right | Pad.up,
-		Pad.right | Pad.up | Pad.down,
-		Pad.right | Pad.left,
-		Pad.right | Pad.left | Pad.down,
-		Pad.right | Pad.left | Pad.up,
-		Pad.right | Pad.left | Pad.up | Pad.down,
+		((Pad.right) >> 8): Pad.down,
+		((Pad.left) >> 8): Pad.up,
+		((Pad.right | Pad.left) >> 8): Pad.up | Pad.down,
+		((Pad.down) >> 8): Pad.left,
+		((Pad.down | Pad.right) >> 8): Pad.left | Pad.down,
+		((Pad.down | Pad.left) >> 8): Pad.left | Pad.up,
+		((Pad.down | Pad.right | Pad.left) >> 8): Pad.left | Pad.up | Pad.down,
+		((Pad.up) >> 8): Pad.right,
+		((Pad.up | Pad.right) >> 8): Pad.right | Pad.down,
+		((Pad.up | Pad.left) >> 8): Pad.right | Pad.up,
+		((Pad.up | Pad.right | Pad.left) >> 8): Pad.right | Pad.up | Pad.down,
+		((Pad.up | Pad.down) >> 8): Pad.right | Pad.left,
+		((Pad.up | Pad.down | Pad.right) >> 8): Pad.right | Pad.left | Pad.down,
+		((Pad.up | Pad.down | Pad.left) >> 8): Pad.right | Pad.left | Pad.up,
+		((Pad.up | Pad.down | Pad.right | Pad.left) >> 8): Pad.right | Pad.left | Pad.up | Pad.down,
 	], [
 		0,
-		Pad.left,
-		Pad.right,
-		Pad.right | Pad.left,
-		Pad.up,
-		Pad.left | Pad.up,
-		Pad.right | Pad.up,
-		Pad.right | Pad.left | Pad.up,
-		Pad.down,
-		Pad.left | Pad.down,
-		Pad.right | Pad.down,
-		Pad.right | Pad.left | Pad.down,
-		Pad.up | Pad.down,
-		Pad.left | Pad.up | Pad.down,
-		Pad.right | Pad.up | Pad.down,
-		Pad.right | Pad.left | Pad.up | Pad.down,
+		((Pad.right) >> 8): Pad.left,
+		((Pad.left) >> 8): Pad.right,
+		((Pad.right | Pad.left) >> 8): Pad.right | Pad.left,
+		((Pad.down) >> 8): Pad.up,
+		((Pad.down | Pad.right) >> 8): Pad.left | Pad.up,
+		((Pad.down | Pad.left) >> 8): Pad.right | Pad.up,
+		((Pad.down | Pad.right | Pad.left) >> 8): Pad.right | Pad.left | Pad.up,
+		((Pad.up) >> 8): Pad.down,
+		((Pad.up | Pad.right) >> 8): Pad.left | Pad.down,
+		((Pad.up | Pad.left) >> 8): Pad.right | Pad.down,
+		((Pad.up | Pad.right | Pad.left) >> 8): Pad.right | Pad.left | Pad.down,
+		((Pad.up | Pad.down) >> 8): Pad.up | Pad.down,
+		((Pad.up | Pad.down | Pad.right) >> 8): Pad.left | Pad.up | Pad.down,
+		((Pad.up | Pad.down | Pad.left) >> 8): Pad.right | Pad.up | Pad.down,
+		((Pad.up | Pad.down | Pad.right | Pad.left) >> 8): Pad.right | Pad.left | Pad.up | Pad.down,
 	], [
 		0,
-		Pad.up,
-		Pad.down,
-		Pad.up | Pad.down,
-		Pad.right,
-		Pad.right | Pad.up,
-		Pad.right | Pad.down,
-		Pad.right | Pad.up | Pad.down,
-		Pad.left,
-		Pad.left | Pad.up,
-		Pad.left | Pad.down,
-		Pad.left | Pad.up | Pad.down,
-		Pad.right | Pad.left,
-		Pad.right | Pad.left | Pad.up,
-		Pad.right | Pad.left | Pad.down,
-		Pad.right | Pad.left | Pad.up | Pad.down,
+		((Pad.right) >> 8): Pad.up,
+		((Pad.left) >> 8): Pad.down,
+		((Pad.right | Pad.left) >> 8): Pad.up | Pad.down,
+		((Pad.down) >> 8): Pad.right,
+		((Pad.down | Pad.right) >> 8): Pad.right | Pad.up,
+		((Pad.down | Pad.left) >> 8): Pad.right | Pad.down,
+		((Pad.down | Pad.right | Pad.left) >> 8): Pad.right | Pad.up | Pad.down,
+		((Pad.up) >> 8): Pad.left,
+		((Pad.up | Pad.right) >> 8): Pad.left | Pad.up,
+		((Pad.up | Pad.left) >> 8): Pad.left | Pad.down,
+		((Pad.up | Pad.right | Pad.left) >> 8): Pad.left | Pad.up | Pad.down,
+		((Pad.up | Pad.down) >> 8): Pad.right | Pad.left,
+		((Pad.up | Pad.down | Pad.right) >> 8): Pad.right | Pad.left | Pad.up,
+		((Pad.up | Pad.down | Pad.left) >> 8): Pad.right | Pad.left | Pad.down,
+		((Pad.up | Pad.down | Pad.right | Pad.left) >> 8): Pad.right | Pad.left | Pad.up | Pad.down,
 	]
 ];
 

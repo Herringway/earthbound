@@ -173,16 +173,17 @@ enum ubyte baseNumberSelectorCharacter2 = 0x30;
 ///
 enum WalkingStyle {
 	normal = 0,
-
+	unknown01 = 1,
+	unknown02 = 2,
 	bicycle = 3,
 	ghost = 4,
-
+	unknown05 = 5,
 	slower = 6, /// used for shallow water
 	ladder = 7,
 	rope = 8,
-
+	unknown09 = 9,
 	slowest = 10, /// used for deep water
-
+	unknown11 = 11,
 	escalator = 12,
 	stairs = 13,
 }
@@ -5724,7 +5725,7 @@ enum SwirlMask {
 	obj = 1 << 4,
 	mathMode = 1 << 5,
 }
-
+///
 enum TMTD {
 	none = 0,
 	bg1 = 1 << 0,
@@ -5732,6 +5733,23 @@ enum TMTD {
 	bg3 = 1 << 2,
 	bg4 = 1 << 3,
 	obj = 1 << 4,
+}
+///
+enum SpawnControl {
+	allEnabled = -1, /// Spawning fully enabled
+	allDisabled = 0, /// Don't spawn anything
+	offscreenOnly = 1, /// Only spawn things near the edge of the screen or beyond
+}
+///
+enum BattleMode {
+	inBattle = -1,
+	noBattle = 0,
+	teleportFailed = 1,
+}
+///
+enum PlayerMovementFlags {
+	dontChangeDirection = 1 << 0, /// Party members will not change direction as you move
+	collisionDisabled = 1 << 1, /// No collisions between sprites or the map, only doors
 }
 
 ///
