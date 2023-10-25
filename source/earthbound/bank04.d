@@ -4495,6 +4495,7 @@ void prepareNewFlyoverCoffeeTeaScene() {
 	enum bg3TileAddress = 0x6000;
 	prepareForImmediateDMA();
 	setBG3VRAMLocation(BGTileMapSize.normal, bg3TileMapAddress, bg3TileAddress);
+	*cast(ushort*)(&buffer[0]) = 0;
 	copyToVRAM(3, 0x3800, bg3TileAddress, &buffer[0]);
 	memcpy(&palettes[0][0], &flyoverTextPalette[0], 8);
 	paletteUploadMode = PaletteUpload.full;
