@@ -55,7 +55,7 @@ void setTextSoundMode(ushort arg1) {
 
 /// $C1004E
 void finishFrame() {
-	if (unknown7E89C9 != 0) {
+	if (renderHPPPWindows != 0) {
 		unknownC3E450();
 	}
 	if (battleModeFlag != 0) {
@@ -80,24 +80,24 @@ void closeFocusWindowN() {
 
 /// $C1008E
 void closeAllWindows() {
-	unknown7E5E70 = 1;
+	extraTickOnWindowClose = 1;
 	while (windowTail != -1) {
 		closeWindow(windowStats[windowTail].windowID);
 	}
 	clearInstantPrinting();
 	windowTick();
-	unknown7E5E70 = 0;
+	extraTickOnWindowClose = 0;
 	unknownC43F53();
 }
 
 /// $C100C7
 void lockInput() {
-	inputLockFlag = 1;
+	textPromptWaitingForInput = 1;
 }
 
 /// $C100D0
 void unlockInput() {
-	inputLockFlag = 0;
+	textPromptWaitingForInput = 0;
 }
 
 /// $C100D6
@@ -117,16 +117,16 @@ void unknownC100FE(short arg1) {
 		}
 		return;
 	}
-	while (inputLockFlag != 0) {
+	while (textPromptWaitingForInput != 0) {
 		if (debugging == 0) {
 			continue;
 		}
 		if ((padPress[0] & (Pad.b | Pad.r)) != (Pad.b | Pad.r)) {
 			continue;
 		}
-		inputLockFlag = 0;
+		textPromptWaitingForInput = 0;
 	}
-	short x0E = (arg1 != 0) ? arg1 : unknown7E964B;
+	short x0E = (arg1 != 0) ? arg1 : textSpeedBasedWait;
 	while ((x0E-- != 0) && ((padPress[0] & (Pad.b | Pad.select | Pad.a | Pad.l)) == 0)) {
 		windowTickMinimal();
 	}
@@ -134,18 +134,18 @@ void unknownC100FE(short arg1) {
 
 /// $C10166 - CC [03], [13], [14] common code - halt parsing
 void cc1314(short arg1, short arg2) {
-	while (inputLockFlag) {
+	while (textPromptWaitingForInput) {
 		if (debugging == 0) {
 			continue;
 		}
 		if ((padPress[0] & (Pad.b | Pad.r)) == (Pad.b | Pad.r)) {
-			inputLockFlag = 0;
+			textPromptWaitingForInput = 0;
 			break;
 		}
 	}
 	clearInstantPrinting();
 	windowTick();
-	if ((arg2 == 0) && (blinkingTriangleFlag != 0) &&(unknown7E964B != 0)) {
+	if ((arg2 == 0) && (blinkingTriangleFlag != 0) && (textSpeedBasedWait != 0)) {
 		unknownC100FE(0);
 		return;
 	}
@@ -180,22 +180,22 @@ void cc1314(short arg1, short arg2) {
 
 /// $C102D0
 void unknownC102D0() {
-	unknown7E9641 = 0;
+	actionscriptState = ActionScriptState.running;
 	clearInstantPrinting();
 	windowTick();
-	while (unknown7E9641 == 0) {
+	while (actionscriptState == ActionScriptState.running) {
 		if ((debugging != 0) && ((padState[0] & Pad.start) != 0) && ((padState[0] & Pad.select) != 0)) {
 			return;
 		}
 		finishFrame();
 	}
-	unknown7E9641 = 0;
+	actionscriptState = ActionScriptState.running;
 }
 
 /// $C10301
 WinStat* getActiveWindowAddress() {
 	if (windowHead == -1) {
-		return &unknown7E85FE;
+		return &dummyWindow;
 	}
 	return &windowStats[windowTable[currentFocusWindow]];
 }
@@ -307,7 +307,7 @@ void createWindowN(short id) {
 		x10.y = windowConfigurationTable[id].y;
 		x10.width = cast(short)(windowConfigurationTable[id].width - 2);
 		x10.height = cast(short)(windowConfigurationTable[id].height - 2);
-		x10.tilemapBuffer = &unknown7E5E7E[x0E][0];
+		x10.tilemapBuffer = &textTilemapBuffer[x0E][0];
 		currentFocusWindow = id;
 	}
 	WinStat* x12 = getActiveWindowAddress();
@@ -335,7 +335,7 @@ void createWindowN(short id) {
 		x10.tilemapBuffer[i] = 0x40;
 	}
 	if (x10.titleID != 0) {
-		unknown7E894E[x10.titleID - 1] = -1;
+		titledWindows[x10.titleID - 1] = -1;
 	}
 	x10.title[0] = 0;
 	x10.titleID = 0;
@@ -344,8 +344,10 @@ void createWindowN(short id) {
 	unknownC07C5B();
 }
 
-/// $C1078D
-void unknownC1078D() {
+/** Uploads the entire 8 rows of tiles that make up the HP/PP meters into VRAM
+ * Original_Address: $(DOLLAR)C1078D
+ */
+void uploadHPPPMeterArea() {
 	copyToVRAMAlt(0, 0x240, 0x7E40, cast(ubyte*)&bg2Buffer[0x240]);
 }
 
@@ -372,15 +374,15 @@ void drawWindow(short windowID) {
 		(x18++)[0] = 0x7C16;
 		x04 = cast(short)(x12 - 1);
 	}
-	if ((windowStats[windowID].windowID == unknown7E5E7A) && (unknown7E5E7C != -1)) {
+	if ((windowStats[windowID].windowID == paginationWindow) && (paginationAnimationFrame != -1)) {
 		x04 -= 4;
 	}
 	for (short i = x04; i != 0; i--) {
 		(x18++)[0] = 0x3C11;
 	}
-	if ((windowStats[windowID].windowID == unknown7E5E7A) && (unknown7E5E7C != -1)) {
+	if ((windowStats[windowID].windowID == paginationWindow) && (paginationAnimationFrame != -1)) {
 		for (short i = 0; i < 4; i++) {
-			(x18++)[0] = paginationArrowTiles[unknown7E5E7C][i];
+			(x18++)[0] = paginationArrowTiles[paginationAnimationFrame][i];
 		}
 	}
 	if ((x18[0] == 0) || (x18[0] == 0x7C10)) {
@@ -415,15 +417,15 @@ void drawWindow(short windowID) {
 /// $C10A04
 void showHPPPWindows() {
 	resetActivePartyMemberHPPPWindow();
-	unknown7E89C9 = 1;
+	renderHPPPWindows = 1;
 	redrawAllWindows = 1;
-	unknown7E9647 = -1;
+	currentlyDrawnHPPPWindows = -1;
 }
 
 /// $C10A1D
 void hideHPPPWindows() {
 	resetActivePartyMemberHPPPWindow();
-	unknown7E89C9 = 0;
+	renderHPPPWindows = 0;
 	if (battleModeFlag == 0) {
 		for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
 			undrawHPPPWindow(i);
@@ -531,9 +533,9 @@ void printLetter(short letter) {
 		redrawAllWindows = 1;
 	}
 	short x;
-	if (textSoundMode == 2) {
+	if (textSoundMode == TextSoundMode.unknown2) {
 		x = 1;
-	} else if (textSoundMode == 3) {
+	} else if (textSoundMode == TextSoundMode.unknown3) {
 		x = 0;
 	} else {
 		x = 0;
@@ -562,7 +564,7 @@ void unknownC10D60(short tile) {
 /// $C10D7C
 short unknownC10D7C(uint arg1) {
 	short result = 1;
-	ubyte* x = &unknown7E895A[6];
+	ubyte* x = &numberTextBuffer[6];
 	while (arg1 >= 10) {
 		*(x--) = arg1 % 10;
 		arg1 /= 10;
@@ -587,7 +589,7 @@ void printNumber(uint arg1) {
 		arg1 = limit;
 	}
 	short x14 = unknownC10D7C(arg1);
-	ubyte* x12 = &unknown7E895A[7 - x14];
+	ubyte* x12 = &numberTextBuffer[7 - x14];
 	byte x16 = windowStats[windowTable[currentFocusWindow]].numPadding;
 	if (x16 >= 0) {
 		short a = (x16 & 0xF) + 1;
@@ -625,7 +627,7 @@ void printSpecialGraphics(short arg1) {
 
 /// $C10EFC
 void printString(short length, const(ubyte)* text) {
-	if (unknown7E5E74 != 0) {
+	if (forceCentreTextAlignment != 0) {
 		unknownC43EF8(text, length);
 	}
 	while ((text[0] != 0) && (length != 0)) {
@@ -692,7 +694,7 @@ int numSelectPrompt(short arg1) {
 		setInstantPrinting();
 		moveCurrentTextCursor(x24, x22);
 		short x02 = unknownC10D7C(x1E);
-		ubyte* x04 = &unknown7E895A[7 - x02];
+		ubyte* x04 = &numberTextBuffer[7 - x02];
 		short x16;
 		for (x16 = arg1; x16 > x02; x16--) {
 			unknownC43F77((x16 == x1C) ? baseNumberSelectorCharacter1 : baseNumberSelectorCharacter2);
@@ -809,7 +811,7 @@ MenuOpt* unknownC113D1(const(ubyte)* label, string selectedText) {
 MenuOpt* unknownC114B1(short x, short y, const(ubyte)* label, string selectedText) {
 	MenuOpt* x16 = unknownC113D1(label, selectedText);
 	x16.pixelAlign = 0;
-	if (unknown7E5E71 != 0) {
+	if (forceLeftTextAlignment != 0) {
 		x16.pixelAlign = x & 7;
 		x = x >> 3;
 	}
@@ -847,7 +849,7 @@ void printMenuItems() {
 		return;
 	}
 	if (windowStats[windowTable[currentFocusWindow]].currentOption == -1) {
-		unknown7E968C = 0xFF;
+		earlyTickExit = 0xFF;
 		return;
 	}
 	MenuOpt* x02 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
@@ -956,9 +958,9 @@ short selectionMenu(short cancelable) {
 
 	WinStat *dp24 = &windowStats[windowTable[currentFocusWindow]]; // 16-bit pointer
 
-	if (unknown7E5E79) {
-		dp24.currentOption = unknown7E9688; // field2B
-		dp24.selectedOption = unknown7E968A; // field2F
+	if (restoreMenuBackup) {
+		dp24.currentOption = menuBackupCurrentOption; // field2B
+		dp24.selectedOption = menuBackupSelectedOption; // field2F
 	}
 
 	short dp20;
@@ -997,9 +999,9 @@ label1:
 	}
 
 	clearInstantPrinting();
-	if (unknown7E5E79) {
-		dp04.textX = unknown7E9684; // field08
-		dp04.textY = unknown7E9686; // field0A
+	if (restoreMenuBackup) {
+		dp04.textX = menuBackupSelectedTextX; // field08
+		dp04.textY = menuBackupSelectedTextY; // field0A
 	}
 
 	unknownC43CD2(dp04, dp04.textX, dp04.textY);
@@ -1072,7 +1074,7 @@ label2:
 				unknownC10D60(0x2F); // Remove cursor from window?
 				windowSetTextColor(6);
 
-				if (unknown7E5E6E) {
+				if (enableWordWrap) {
 					if (unknown7EB49D != 1) {
 						if (currentFocusWindow == 19) {
 							unknownC43B15();
@@ -1416,14 +1418,14 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 		restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	} else {
 		for (short i = 0; i != 4; i++) {
-			unknown7E9631[i] = arg1[i];
+			partyMemberSelectionScripts[i] = arg1[i];
 		}
 		short x04 = (battleMenuCurrentCharacterID == -1) ? 0 : battleMenuCurrentCharacterID;
-		string x06 = unknown7E9631[gameState.partyMembers[x04] - 1];
+		string x06 = partyMemberSelectionScripts[gameState.partyMembers[x04] - 1];
 		if (x06 != null) {
 			displayText(getTextBlock(x06));
 		}
-		unknown7E5E7C = 0;
+		paginationAnimationFrame = 0;
 		short x1C = 10;
 		while (true) {
 			if (arg2 == 0) {
@@ -1432,25 +1434,25 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 			clearInstantPrinting();
 			windowTick();
 			WinStat* x1A;
-			if ((unknown7E5E7A != -1) && (windowTable[unknown7E5E7A] != -1)) {
-				x1A = &windowStats[windowTable[unknown7E5E7A]];
+			if ((paginationWindow != Window.invalid) && (windowTable[paginationWindow] != -1)) {
+				x1A = &windowStats[windowTable[paginationWindow]];
 			}
 			short y;
 			l2: while (true) {
-				if ((unknown7E5E7A != -1) && (windowTable[unknown7E5E7A] != -1)) {
-					copyToVRAM(0, 8, cast(ushort)((x1A.y * 32) + x1A.x + x1A.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[unknown7E5E7C][0]);
+				if ((paginationWindow != Window.invalid) && (windowTable[paginationWindow] != -1)) {
+					copyToVRAM(0, 8, cast(ushort)((x1A.y * 32) + x1A.x + x1A.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[paginationAnimationFrame][0]);
 				}
 				for (x16 = 0; x16 < x1C; x16++) {
 					windowTickMinimal();
 					if ((padPress[0] & Pad.left) != 0) {
 						x16 = cast(short)(x04 - 1);
 						y = (arg2 != 0) ? Sfx.cursor2 : Sfx.menuOpenClose;
-						unknown7E5E7C = 2;
+						paginationAnimationFrame = 2;
 						break l2;
 					} else if ((padPress[0] & Pad.right) != 0) {
 						x16 = cast(short)(x04 + 1);
 						y = (arg2 != 0) ? Sfx.cursor2 : Sfx.menuOpenClose;
-						unknown7E5E7C = 3;
+						paginationAnimationFrame = 3;
 						break l2;
 					} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
 						x16 = gameState.partyMembers[x04];
@@ -1463,7 +1465,7 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 						goto Unknown42;
 					}
 				}
-				unknown7E5E7C = (unknown7E5E7C == 0) ? 1 : 0;
+				paginationAnimationFrame = (paginationAnimationFrame == 0) ? 1 : 0;
 				x1C = 10;
 			}
 			if (gameState.playerControlledPartyMemberCount <= x16) {
@@ -1475,15 +1477,15 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 			if (x16 != x04) {
 				playSfx(y);
 				x04 = x16;
-				if (unknown7E9631[gameState.partyMembers[x16] - 1] != null) {
-					displayText(getTextBlock(unknown7E9631[gameState.partyMembers[x16] - 1]));
+				if (partyMemberSelectionScripts[gameState.partyMembers[x16] - 1] != null) {
+					displayText(getTextBlock(partyMemberSelectionScripts[gameState.partyMembers[x16] - 1]));
 				}
 			}
 			x1C = 4;
 		}
 	}
 	Unknown42:
-	unknown7E5E7C = -1;
+	paginationAnimationFrame = -1;
 	x22.argument = x1E;
 	return x16;
 }
@@ -1511,7 +1513,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 		if (arg3 != null) {
 			arg3(gameState.partyMembers[x04]);
 		}
-		unknown7E5E7C = 0;
+		paginationAnimationFrame = 0;
 		short x20 = 10;
 		while (true) {
 			if (arg1 == 0) {
@@ -1521,25 +1523,25 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 			windowTick();
 			short x1A = x04;
 			WinStat* x18;
-			if ((unknown7E5E7A != -1) && (windowTable[unknown7E5E7A] != -1)) {
-				x18 = &windowStats[windowTable[unknown7E5E7A]];
+			if ((paginationWindow != Window.invalid) && (windowTable[paginationWindow] != -1)) {
+				x18 = &windowStats[windowTable[paginationWindow]];
 			}
 			short x16;
 			l2: while (true) {
-				if ((unknown7E5E7A != -1) && (windowTable[unknown7E5E7A] != -1)) {
-					copyToVRAM(0, 8, cast(ushort)((x18.y * 32) + x18.x + x18.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[unknown7E5E7C][0]);
+				if ((paginationWindow != Window.invalid) && (windowTable[paginationWindow] != -1)) {
+					copyToVRAM(0, 8, cast(ushort)((x18.y * 32) + x18.x + x18.width - 3 + 0x7C00), cast(ubyte*)&paginationArrowTiles[paginationAnimationFrame][0]);
 				}
 				for (x1E = 0; x1E < x20; x1E++) {
 					windowTickMinimal();
 					if ((padPress[0] & Pad.left) != 0) {
 						x1A--;
 						x16 = (arg1 != 0) ? Sfx.cursor2 : Sfx.menuOpenClose;
-						unknown7E5E7C = 2;
+						paginationAnimationFrame = 2;
 						break l2;
 					} else if ((padPress[0] & Pad.right) != 0) {
 						x1A++;
 						x16 = (arg1 != 0) ? Sfx.cursor2 : Sfx.menuOpenClose;
-						unknown7E5E7C = 3;
+						paginationAnimationFrame = 3;
 						break l2;
 					} else if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
 						x1E = gameState.partyMembers[x1A];
@@ -1552,7 +1554,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 						goto Unknown44;
 					}
 				}
-				unknown7E5E7C = (unknown7E5E7C == 0) ? 1 : 0;
+				paginationAnimationFrame = (paginationAnimationFrame == 0) ? 1 : 0;
 				x20 = 10;
 			}
 			x20 = cast(short)(x1A - x04);
@@ -1580,7 +1582,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 		}
 	}
 	Unknown44:
-	unknown7E5E7C = -1;
+	paginationAnimationFrame = -1;
 	x26.argument = x22;
 	return x1E;
 }
@@ -1651,8 +1653,8 @@ void unknownC12D17(short arg1) {
 /// $C12DD5 - Tick windows (draw windows if necessary, roll HP/PP, advance RNG, wait a frame)
 void windowTick() {
 	rand();
-	if (unknown7E968C != 0) {
-		unknown7E968C = 0;
+	if (earlyTickExit != 0) {
+		earlyTickExit = 0;
 		return;
 	}
 	if (instantPrinting != 0) {
@@ -1667,14 +1669,14 @@ void windowTick() {
 		redrawAllWindows = 0;
 	}
 	hpPPRoller();
-	unknown7E9624 = 1;
+	uploadHPPPMeterTiles = 1;
 	updateHPPPMeterTiles();
 	if (disabledTransitions == 0) {
 		if (unknownC1FF2C() != 0) {
 			loadTextPalette();
 		}
 	}
-	unknown7E9649 = 0;
+	hpPPMeterAreaNeedsUpdate = 0;
 	unknownC2038B();
 	finishFrame();
 }
@@ -1682,10 +1684,10 @@ void windowTick() {
 /// $C12E42 - Looks like a "minimal" window tick function, doesn't advance RNG
 void windowTickMinimal() {
 	hpPPRoller();
-	if (unknown7E9649 != 0) {
-		unknownC1078D();
-		unknown7E9649 = 0;
-		unknown7E9624 = 1;
+	if (hpPPMeterAreaNeedsUpdate != 0) {
+		uploadHPPPMeterArea();
+		hpPPMeterAreaNeedsUpdate = 0;
+		uploadHPPPMeterTiles = 1;
 	}
 	updateHPPPMeterTiles();
 	finishFrame();
@@ -1821,7 +1823,7 @@ const(ubyte)* talkTo() {
 		return null;
 	}
 	if (interactingNPCID == -2) {
-		x0A = getTextBlock(unknown7E5DDE);
+		x0A = getTextBlock(mapObjectText);
 	} else {
 		switch (npcConfig[interactingNPCID].type) {
 			case NPCType.person:
@@ -1847,7 +1849,7 @@ const(ubyte)* check() {
 		return null;
 	}
 	if (interactingNPCID == -2) {
-		return getTextBlock(unknown7E5DDE);
+		return getTextBlock(mapObjectText);
 	}
 	switch (npcConfig[interactingNPCID].type) {
 		case NPCType.person:
@@ -1879,17 +1881,20 @@ void unknownC133A7(short arg1) {
 }
 
 /// $C133B0
-void unknownC133B0() {
-	if (unknown7E5E6C == 0) {
+void populateCommandMenu() {
+	if (skipAddingCommandText == 0) {
 		for (short i = 1; i < 7; i++) {
-			if ((i == 3) && (unknownC1C373() == 0)) {
+			if ((i == CommandMenuOption.psi) && (getFirstPartyMemberWithPSI() == 0)) {
 				continue;
 			}
-			short y = ((i == 1) || (i == 5) || ((i == 2) && (gameState.playerControlledPartyMemberCount == 1) && (getCharacterItem(gameState.partyMembers[0], 1) == 0))) ? Sfx.cursor1 : Sfx.menuOpenClose;
-			unknownC11596(i, debugMenuElementSpacingData[i - 1].unknown0, debugMenuElementSpacingData[i - 1].unknown1, &commandWindowText[i - 1][0], null, cast(ubyte)y);
+			short sfx = // use menu open sound unless talking to, checking, or opening inventory with no items, which use the cursor sound instead
+				((i == CommandMenuOption.talkTo) ||
+				(i == CommandMenuOption.check) ||
+				((i == CommandMenuOption.goods) && (gameState.playerControlledPartyMemberCount == 1) && (getCharacterItem(gameState.partyMembers[0], 1) == 0))) ? Sfx.cursor1 : Sfx.menuOpenClose;
+			unknownC11596(i, commandMenuOptionPositioning[i - 1].x, commandMenuOptionPositioning[i - 1].y, &commandMenuText[i - 1][0], null, cast(ubyte)sfx);
 		}
 	}
-	unknown7E5E6C = 0;
+	skipAddingCommandText = 0;
 	printMenuItems();
 }
 
@@ -1898,21 +1903,21 @@ void openMenuButton() {
 	freezeEntities();
 	playSfx(Sfx.cursor1);
 	createWindowN(Window.unknown00);
-	unknown7E5E6C = 0;
-	unknownC133B0();
-	unknown7E5E79 = 0;
+	skipAddingCommandText = 0;
+	populateCommandMenu();
+	restoreMenuBackup = 0;
 	mainLoop: while (true) {
 		setWindowFocus(0);
 		uint x06 = selectionMenu(1);
 		switch (cast(short)x06) {
-			case MainMenuOptions.talkTo:
+			case CommandMenuOption.talkTo:
 				const(ubyte)* textPtr = talkTo();
 				if (textPtr == null) {
 					textPtr = getTextBlock("MSG_SYS_HANASU_NG");
 				}
 				displayText(textPtr);
 				break mainLoop;
-			case MainMenuOptions.goods:
+			case CommandMenuOption.goods:
 				openHpAndWallet();
 				L2: while (true) {
 					uint x1F;
@@ -1939,7 +1944,7 @@ void openMenuButton() {
 						openEquipSelectWindow(1);
 						setWindowFocus(Window.inventory);
 						short x1D = selectionMenu(1);
-						unknownEF016F();
+						backupMenuSelection();
 						closeEquipSelectWindow();
 						if (x1D == 0) {
 							if (gameState.playerControlledPartyMemberCount != 1) {
@@ -1989,13 +1994,13 @@ void openMenuButton() {
 								case 4: //help
 									unknownC10F40(0);
 									unknownC10F40(2);
-									unknown7E5E79 = 0xFF;
+									restoreMenuBackup = 0xFF;
 									createWindowN(Window.textStandard);
 									displayText(getTextBlock(itemData[getCharacterItem(cast(short)x1F, x1D)].helpText));
 									closeWindow(Window.textStandard);
 									setWindowFocus(0);
-									unknown7E5E6C = 1;
-									unknownC133B0();
+									skipAddingCommandText = 1;
+									populateCommandMenu();
 									addCharacterInventoryToWindow(cast(short)x1F, Window.inventory);
 									closeWindow(Window.inventoryMenu);
 									setWindowFocus(Window.inventory);
@@ -2098,21 +2103,21 @@ void openMenuButton() {
 					}
 				}
 				break;
-			case MainMenuOptions.psi:
+			case CommandMenuOption.psi:
 				openHpAndWallet();
-				uint x06_2 = unknownC1C373();
+				uint x06_2 = getFirstPartyMemberWithPSI();
 				if (x06_2 != 0) {
 					unknownC43573(cast(short)(cast(short)(x06_2) - 1));
 				}
 				if (overworldPSIMenu() != 0) {
 					break mainLoop;
 				}
-				if (unknownC1C3B6() == 1) {
+				if (getPartyMemberCountWithPSI() == 1) {
 					playSfx(Sfx.menuOpenClose);
 					resetActivePartyMemberHPPPWindow();
 				}
 				break;
-			case MainMenuOptions.equip:
+			case CommandMenuOption.equip:
 				openHpAndWallet();
 				unknownC1AA5D();
 				if (gameState.playerControlledPartyMemberCount == 1) {
@@ -2120,18 +2125,18 @@ void openMenuButton() {
 					resetActivePartyMemberHPPPWindow();
 				}
 				break;
-			case MainMenuOptions.check:
+			case CommandMenuOption.check:
 				const(ubyte)* textPtr = check();
 				if (textPtr == null) {
 					textPtr = getTextBlock("MSG_SYS_NOPROBLEM");
 				}
 				displayText(textPtr);
 				break mainLoop;
-			case MainMenuOptions.status:
+			case CommandMenuOption.status:
 				openHpAndWallet();
-				unknown7E5E71 = 1;
+				forceLeftTextAlignment = 1;
 				unknownC1BB71();
-				unknown7E5E71 = 0;
+				forceLeftTextAlignment = 0;
 				break;
 			default: break mainLoop;
 		}
@@ -2465,8 +2470,8 @@ void* cc1F52(DisplayTextState* arg1, ubyte arg2) {
 /// $C14509 - [18 05 XX YY] force text alignment
 void* cc1805(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1805Arguments);
-	if (unknown7E5E71 != 0) {
-		unknownC43D75(getCCParameters!ArgType(arg2).alignment, arg2);
+	if (forceLeftTextAlignment != 0) {
+		forcePixelAlignment(getCCParameters!ArgType(arg2).alignment, arg2);
 	} else {
 		moveCurrentTextCursor(getCCParameters!ArgType(arg2).alignment, arg2);
 	}
@@ -2921,7 +2926,7 @@ void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 		windowStats[windowTable[currentFocusWindow]].textY = 0;
 		windowStats[windowTable[currentFocusWindow]].textX = 0;
 		backupCurrentWindowTextAttributes(&arg1.savedTextAttributes);
-		unknown7E5E71 = 0;
+		forceLeftTextAlignment = 0;
 	}
 	addCharacterInventoryToWindow(getCCParameters!ArgType(arg2).character.useVariableIfZero(getArgumentMemory()), getCCParameters!ArgType(arg2).window);
 	return null;
@@ -3318,7 +3323,7 @@ void* cc1FE1(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F15Arguments);
 	if (getCCParameters!ArgType(arg2).style == 0xFF) {
-		unknownC06578(
+		queueEntityCreationRequest(
 			getCCParameters!ArgType(arg2).sprite,
 			getCCParameters!ArgType(arg2).actionScript
 		);
@@ -3490,7 +3495,7 @@ void* cc1FEF(DisplayTextState* arg1, ubyte arg2) {
 void* cc1F63(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
 	disableEntityByCharacterOrParty(0xFF);
-	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock(getCCParameters!ArgType(arg2))));
+	queueInteraction(InteractionType.textSurvivesDoorTransition, QueuedInteractionPtr(getTextBlock(getCCParameters!ArgType(arg2))));
 	return null;
 }
 
@@ -4304,11 +4309,11 @@ const(ubyte)* displayText(const(ubyte)* script_ptr) {
 			auto str = getFullCC(x1A[0] ? x1A : x12.textptr);
 			tracef("Next text: [%(%02X %)]", str);
 		}
-		if ((unknown7E5E6E != 0) && (x1E is null)) {
-			if (unknown7E9660 == 0) {
+		if ((enableWordWrap != 0) && (x1E is null)) {
+			if (upcomingWordLength == 0) {
 				unknownC445E1(x12, x1A);
 			} else {
-				unknown7E9660--;
+				upcomingWordLength--;
 			}
 		}
 		if (x1A[0] != 0) {
@@ -4754,50 +4759,50 @@ void unknownC1952F(short arg1) {
 	setInstantPrinting();
 	createWindowN(Window.statusMenu);
 	windowTickWithoutInstantPrinting();
-	unknown7E5E71 = 1;
+	forceLeftTextAlignment = 1;
 	displayText(&statusWindowText[0]);
-	unknown7E5E71 = 0;
+	forceLeftTextAlignment = 0;
 	if (gameState.playerControlledPartyMemberCount != 1) {
-		unknown7E5E7A = 8;
+		paginationWindow = Window.statusMenu;
 	}
-	setWindowTitle(8, PartyCharacter.name.length, &partyCharacters[arg1].name[0]);
-	unknown7E5E71 = 1;
+	setWindowTitle(Window.statusMenu, PartyCharacter.name.length, &partyCharacters[arg1].name[0]);
+	forceLeftTextAlignment = 1;
 	setCurrentWindowPadding(1);
-	unknownC43D75(38, 0);
+	forcePixelAlignment(38, 0);
 	printNumber(partyCharacters[arg1].level);
 	setCurrentWindowPadding(2);
-	unknownC43D75(94, 3);
+	forcePixelAlignment(94, 3);
 	printNumber(partyCharacters[arg1].hp.current.integer);
-	unknownC43D75(114, 3);
+	forcePixelAlignment(114, 3);
 	printLetter(ebChar('/'));
-	unknownC43D75(121, 3);
+	forcePixelAlignment(121, 3);
 	printNumber(partyCharacters[arg1].maxHP);
-	unknownC43D75(94, 4);
+	forcePixelAlignment(94, 4);
 	printNumber(partyCharacters[arg1].pp.current.integer);
-	unknownC43D75(114, 4);
+	forcePixelAlignment(114, 4);
 	printLetter(ebChar('/'));
-	unknownC43D75(121, 4);
+	forcePixelAlignment(121, 4);
 	printNumber(partyCharacters[arg1].maxPP);
-	unknownC43D75(199, 0);
+	forcePixelAlignment(199, 0);
 	printNumber(partyCharacters[arg1].offense);
-	unknownC43D75(199, 1);
+	forcePixelAlignment(199, 1);
 	printNumber(partyCharacters[arg1].defense);
-	unknownC43D75(199, 2);
+	forcePixelAlignment(199, 2);
 	printNumber(partyCharacters[arg1].speed);
-	unknownC43D75(199, 3);
+	forcePixelAlignment(199, 3);
 	printNumber(partyCharacters[arg1].guts);
-	unknownC43D75(199, 4);
+	forcePixelAlignment(199, 4);
 	printNumber(partyCharacters[arg1].vitality);
-	unknownC43D75(199, 5);
+	forcePixelAlignment(199, 5);
 	printNumber(partyCharacters[arg1].iq);
-	unknownC43D75(199, 6);
+	forcePixelAlignment(199, 6);
 	printNumber(partyCharacters[arg1].luck);
 	setCurrentWindowPadding(6);
-	unknownC43D75(97, 5);
+	forcePixelAlignment(97, 5);
 	printNumber((partyCharacters[arg1].exp > 9_999_999) ? 9_999_999 : partyCharacters[arg1].exp);
-	unknownC43D75(10, 6);
+	forcePixelAlignment(10, 6);
 	printNumber(getRequiredEXP(cast(short)(arg1 + 1)));
-	unknown7E5E71 = 0;
+	forceLeftTextAlignment = 0;
 	loop: for (short i = 0; i < 7; i++) {
 		ubyte x12 = partyCharacters[arg1].afflictions[i];
 		if (x12 == 0) {
@@ -4823,10 +4828,10 @@ void unknownC1952F(short arg1) {
 	moveCurrentTextCursor(11, 1);
 	unknownC43F77(unknownC223D9(&partyCharacters[arg1].afflictions[0], 0));
 	if (arg1 != 2) {
-		unknown7E5E71 = 1;
-		unknownC43D75(36, 7);
+		forceLeftTextAlignment = 1;
+		forcePixelAlignment(36, 7);
 		printString(0x23, &statusEquipWindowText4[0]);
-		unknown7E5E71 = 0;
+		forceLeftTextAlignment = 0;
 	}
 	clearInstantPrinting();
 }
@@ -4836,7 +4841,7 @@ void addCharacterInventoryToWindow(short character, short window) {
 	character--;
 	createWindowN(window);
 	if (gameState.playerControlledPartyMemberCount != 1) {
-		unknown7E5E7A = window;
+		paginationWindow = window;
 	}
 	setWindowTitle(window, PartyCharacter.name.length, &partyCharacters[character].name[0]);
 	for (short i = 0; PartyCharacter.items.length > i; i++) {
@@ -4886,7 +4891,7 @@ ushort unknownC19A43() {
 	unknownC1180D(2, 0, 1);
 	short x18_2 = selectionMenu(1);
 	unknownEF0115(13);
-	unknown7E5E71 = 0;
+	forceLeftTextAlignment = 0;
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return x18_2;
 }
@@ -4995,11 +5000,11 @@ void printEquipment(short arg1) {
 	createWindowN(Window.equipMenu);
 	windowTickWithoutInstantPrinting();
 	if (gameState.playerControlledPartyMemberCount != 1) {
-		unknown7E5E7A = 6;
+		paginationWindow = Window.equipMenu;
 	}
 	setWindowTitle(6, PartyCharacter.name.length, &partyCharacters[arg1].name[0]);
 	for (short i = 0; 4 > i; i++) {
-		unknown7E5E71 = 1;
+		forceLeftTextAlignment = 1;
 		short x18;
 		switch (i) {
 			case 0:
@@ -5038,7 +5043,7 @@ void printEquipment(short arg1) {
 		printString(49, &unknown7E9C9F[0]);
 	}
 	printMenuItems();
-	unknown7E5E71 = 0;
+	forceLeftTextAlignment = 0;
 	clearInstantPrinting();
 }
 
@@ -5058,8 +5063,8 @@ void printEquipmentStats(short arg1) {
 		}
 		x16 += itemData[partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.weapon] - 1]].parameters.raw[x14];
 	}
-	unknown7E5E71 = 1;
-	unknownC43D75(55, 0);
+	forceLeftTextAlignment = 1;
+	forcePixelAlignment(55, 0);
 	short a;
 	//probably a clamp macro
 	if (0 > x16) {
@@ -5072,7 +5077,7 @@ void printEquipmentStats(short arg1) {
 		}
 	}
 	printNumber(a);
-	unknown7E5E71 = 0;
+	forceLeftTextAlignment = 0;
 	moveCurrentTextCursor(0, 1);
 	printString(statusEquipWindowText9.length, &statusEquipWindowText9[0]);
 	x16 = partyCharacters[arg1].baseDefense;
@@ -5097,8 +5102,8 @@ void printEquipmentStats(short arg1) {
 		}
 		x16 += itemData[partyCharacters[arg1].items[partyCharacters[arg1].equipment[EquipmentSlot.other] - 1]].parameters.raw[x14];
 	}
-	unknown7E5E71 = 1;
-	unknownC43D75(55, 1);
+	forceLeftTextAlignment = 1;
+	forcePixelAlignment(55, 1);
 	//same as above
 	if (0 > x16) {
 		a = 0;
@@ -5110,9 +5115,9 @@ void printEquipmentStats(short arg1) {
 		}
 	}
 	printNumber(a);
-	unknown7E5E71 = 0;
+	forceLeftTextAlignment = 0;
 	if (unknown7E9CD4 != 0) {
-		unknownC43D75(76, 0);
+		forcePixelAlignment(76, 0);
 		windowSetTextColor(1);
 		unknownC43F77(0x14E);
 		windowSetTextColor(0);
@@ -5124,7 +5129,7 @@ void printEquipmentStats(short arg1) {
 			}
 			x14_2 += itemData[partyCharacters[arg1].items[unknown7E9CD0 - 1]].parameters.raw[x16_2];
 		}
-		unknown7E5E71 = 1;
+		forceLeftTextAlignment = 1;
 		//yes, again
 		if (0 > x14_2) {
 			a = 0;
@@ -5136,8 +5141,8 @@ void printEquipmentStats(short arg1) {
 			}
 		}
 		printNumber(a);
-		unknown7E5E71 = 0;
-		unknownC43D75(76, 1);
+		forceLeftTextAlignment = 0;
+		forcePixelAlignment(76, 1);
 		windowSetTextColor(1);
 		unknownC43F77(0x14E);
 
@@ -5163,7 +5168,7 @@ void printEquipmentStats(short arg1) {
 			}
 			x16 += itemData[partyCharacters[arg1].items[unknown7E9CD3 - 1]].parameters.raw[x14];
 		}
-		unknown7E5E71 = 1;
+		forceLeftTextAlignment = 1;
 		//see the pattern yet?
 		if (0 > x16) {
 			a = 0;
@@ -5175,7 +5180,7 @@ void printEquipmentStats(short arg1) {
 			}
 		}
 		printNumber(a);
-		unknown7E5E71 = 0;
+		forceLeftTextAlignment = 0;
 	}
 	clearInstantPrinting();
 }
@@ -5611,19 +5616,19 @@ short overworldPSIMenu() {
 	short x27 = 0;
 	unknown7E9D18 = 0;
 	do {
-		if (unknownC1C3B6() == 1) {
+		if (getPartyMemberCountWithPSI() == 1) {
 			if (psiSelected == 0) {
 				goto end;
 			}
-			psiUser = gameState.partyMembers[unknownC1C373() - 1];
-			unknownC1C853(psiUser);
+			psiUser = gameState.partyMembers[getFirstPartyMemberWithPSI() - 1];
+			createOverworldPSIMenuWindow(psiUser);
 			unknown7E9D18 = 1;
 		} else {
 			openEquipSelectWindow(0);
-			psiUser = cast(ubyte)charSelectPrompt(0, 1, &unknownC1C853, &psiMenuValidCharacter);
+			psiUser = cast(ubyte)charSelectPrompt(0, 1, &createOverworldPSIMenuWindow, &psiMenuValidCharacter);
 			closeEquipSelectWindow();
 		}
-		unknown7E9D16 = psiUser;
+		overworldSelectedPSIUser = psiUser;
 		if (psiUser == 0) {
 			goto end;
 		}
@@ -5647,7 +5652,7 @@ short overworldPSIMenu() {
 					closeFocusWindowN();
 					psiTarget = 0;
 				} else {
-					if (psiAbilityTable[psiSelected].type == 8) {
+					if (psiAbilityTable[psiSelected].category == PSICategory.other) {
 						if ((gameState.partyNPCs[0] != PartyMember.dungeonMan) && (gameState.partyNPCs[1] != PartyMember.dungeonMan) && (getEventFlag(EventFlag.sysDistlpt) == 0) && (gameState.walkingStyle != WalkingStyle.ladder) && (gameState.walkingStyle != WalkingStyle.rope) && (gameState.walkingStyle != WalkingStyle.escalator) && (gameState.walkingStyle != WalkingStyle.stairs) && ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & MapSectorConfig.cannotTeleport) == 0)) {
 							psiTarget = cast(ubyte)selectPSITeleportDestination();
 						} else {
@@ -5664,10 +5669,10 @@ short overworldPSIMenu() {
 				psiTarget = 1;
 			}
 		} while (psiTarget == 0);
-		closeWindow(Window.unknown04);
+		closeWindow(Window.targettingDescription);
 	} while (psiSelected == 0);
 	unknownC3ED2C(psiUser, battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost, 1);
-	if (psiAbilityTable[psiSelected].type == 8) {
+	if (psiAbilityTable[psiSelected].category == PSICategory.other) {
 		setTeleportState(psiTarget, cast(TeleportStyle)psiAbilityTable[psiSelected].level);
 	} else {
 		currentAttacker = &battlersTable[0];
@@ -5726,7 +5731,7 @@ void unknownC1BB06(short arg1) {
 void unknownC1BB71() {
 	short x16;
 	while (true) {
-		unknown7E5E71 = 1;
+		forceLeftTextAlignment = 1;
 		Unknown1:
 		short x = charSelectPrompt(0, 1, &unknownC1952F, null);
 		if (x == 0) {
@@ -5750,8 +5755,8 @@ void unknownC1BB71() {
 			}
 			createWindowN(Window.statusMenu);
 			currentFocusWindow = Window.unknown2e;
-			unknown7E5E71 = 0;
-			unknownC11F5A(&unknownC1CAF5);
+			forceLeftTextAlignment = 0;
+			unknownC11F5A(&prepareBattlePSIMenuOptions);
 			x16 = selectionMenu(1);
 			unknownC11F8A();
 			if (x16 == 0) {
@@ -5765,14 +5770,14 @@ void unknownC1BB71() {
 			unknownC11F5A(&unknownC1BB06);
 			while (selectionMenu(1) != 0) {}
 			unknownC11F8A();
-			closeWindow(Window.unknown04);
+			closeWindow(Window.targettingDescription);
 			closeWindow(Window.unknown2f);
 			unknown7E9D19 = 0xFF;
 		}
 		closeWindow(Window.unknown2e);
 		closeWindow(Window.textStandard);
 		currentFocusWindow = Window.statusMenu;
-		unknown7E5E71 = 1;
+		forceLeftTextAlignment = 1;
 		if (x16 == 0) {
 			goto Unknown1;
 		}
@@ -5788,7 +5793,7 @@ void teleport(short arg1) {
 	for (short i = 1; i <= 10; i++) {
 		setEventFlag(i, 0);
 	}
-	unknownC06B3D();
+	removeNonTransitionSurvivingInteractions();
 	playSfx(getScreenTransitionSoundEffect(teleportDestinationTable[arg1].screenTransition, 1));
 	if (disabledTransitions != 0) {
 		fadeOut(1, 1);
@@ -5807,7 +5812,7 @@ void teleport(short arg1) {
 		unknown7E9D1B();
 		unknown7E9D1B = null;
 	}
-	unknownC065A3();
+	processEntityCreationRequests();
 	playSfx(getScreenTransitionSoundEffect(teleportDestinationTable[arg1].screenTransition, 0));
 	if (disabledTransitions != 0) {
 		fadeIn(1, 1);
@@ -5908,14 +5913,19 @@ short triggerSpecialEvent(short arg1) {
 	return 0;
 }
 
-/// $C1C165
-short unknownC1C165(short arg1) {
-	ubyte* y = &partyCharacters[arg1 - 1].afflictions[0];
-	for (short i = 0; i < 7; i++, y++) {
-		if (y[0] == 0) {
+/** Checks whether or not the specified party member has any statuses that block the use of PSI
+ * Returns: 0 if the party member has some PSI-blocking status effect, 1 otherwise
+ * Params:
+ * 	character = The party member ID to check
+ * Original_Address: $(DOLLAR)C1C165
+ */
+short checkCharacterCanUsePSIStatus(short character) {
+	ubyte* currentStatus = &partyCharacters[character - 1].afflictions[0];
+	for (short statusGroup = 0; statusGroup < 7; statusGroup++, currentStatus++) {
+		if (currentStatus[0] == 0) {
 			continue;
 		}
-		if (unknownC3F0B0[i][y[0] - 1] != 0) {
+		if (psiBlockingStatuses[statusGroup][currentStatus[0] - 1] != 0) {
 			return 0;
 		}
 		return 1;
@@ -5923,143 +5933,186 @@ short unknownC1C165(short arg1) {
 	return 1;
 }
 
-/// $C1C1BA
-short unknownC1C1BA(short character, ushort categories, ushort types) {
-	if (character == 3) {
+/** Test whether or not a character knows any PSI of a particular type
+ * Returns: 1 if the character knows any matching PSI
+ * Params:
+ * 	character = The character whose PSI is being checked
+ * 	usability = Where the PSI can be used (bitmask, see earthbound.commondefs.PSIUsability)
+ * 	categories = PSI categories to match (bitmask, see earthbound.commondefs.PSICategory)
+ * Original_Address: $(DOLLAR)C1C1BA
+ */
+short characterKnowsPSITypes(short character, ushort usability, ushort categories) {
+	if (character == PartyMember.jeff) {
 		return 0;
 	}
-	short x13 = cast(short)(character - 1);
+	short adjustedCharacter = cast(short)(character - 1);
+	// normal learned PSI
 	for (short i = 1; psiAbilityTable[i].name != 0; i++) {
-		ubyte x10 = 0;
-		switch (x13) {
-			case 0:
-				x10 = psiAbilityTable[i].nessLevel;
+		ubyte targetLevel = 0;
+		switch (adjustedCharacter) {
+			case PartyMember.ness - 1:
+				targetLevel = psiAbilityTable[i].nessLevel;
 				break;
-			case 1:
-				x10 = psiAbilityTable[i].paulaLevel;
+			case PartyMember.paula - 1:
+				targetLevel = psiAbilityTable[i].paulaLevel;
 				break;
-			case 3:
-				x10 = psiAbilityTable[i].pooLevel;
+			case PartyMember.poo - 1:
+				targetLevel = psiAbilityTable[i].pooLevel;
 				break;
 			default: break;
 		}
-		if ((x10 != 0) && ((psiAbilityTable[i].target & categories) != 0) && (x10 <= partyCharacters[x13].level)) {
-			if ((psiAbilityTable[i].type & types) != 0) {
+		if ((targetLevel != 0) && ((psiAbilityTable[i].usability & usability) != 0) && (targetLevel <= partyCharacters[adjustedCharacter].level)) {
+			if ((psiAbilityTable[i].category & categories) != 0) {
 				return 1;
 			}
 		}
 	}
-	if ((x13 == 0) && ((categories & 1) != 0) && ((gameState.partyPSI & 1) != 0) && ((types & 8) != 0)) {
+	// Ness's teleport alpha
+	if ((adjustedCharacter == PartyMember.ness - 1) && ((usability & PSIUsability.overworld) != 0) && ((gameState.partyPSI & PartyPSIFlags.teleportAlpha) != 0) && ((categories & PSICategory.other) != 0)) {
 		return 1;
 	}
-	if ((x13 == 3) && ((categories & 2) != 0) && ((gameState.partyPSI & 6) != 0) && ((types & 1) != 0)) {
+	// Poo's starstorm alpha and beta
+	if ((adjustedCharacter == PartyMember.poo - 1) && ((usability & PSIUsability.battle) != 0) && ((gameState.partyPSI & (PartyPSIFlags.starstormAlpha | PartyPSIFlags.starstormBeta)) != 0) && ((categories & PSICategory.offense) != 0)) {
 		return 1;
 	}
 	return 0;
 }
 
-/// $C1C32A
-short unknownC1C32A(short arg1, short arg2, short arg3) {
-	short x04 = 0;
-	if ((arg1 != 3) && (unknownC1C165(arg1) != 0) && (unknownC1C1BA(arg1, arg2, arg3) != 0)) {
-		x04 = 1;
+/** Determine whether or not the specified character can currently use a specific category of PSI
+ * Returns: 1 if the character isn't Jeff, doesn't have any statuses blocking PSI usage, and knows any appropriate PSI. 0 otherwise
+ * Params:
+ * 	character = The character ID being checked
+ * 	usability = Where the PSI can be used (bitmask, see earthbound.commondefs.PSIUsability)
+ * 	categories = The PSI categories to check for (bitmask, see earthbound.commondefs.PSICategory)
+ * Original_Address: $(DOLLAR)C1C32A
+ */
+short checkCharacterCanCurrentlyUsePSITypes(short character, short usability, short categories) {
+	short result = 0;
+	if ((character != PartyMember.jeff) && (checkCharacterCanUsePSIStatus(character) != 0) && (characterKnowsPSITypes(character, usability, categories) != 0)) {
+		result = 1;
 	}
-	return x04;
+	return result;
 }
 
-/// $C1C367
-short psiMenuValidCharacter(short arg1) {
-	return unknownC1C32A(arg1, 1, 0xF);
+/** Determine whether or not the specified character can use PSI
+ * Returns: 1 if party member can use PSI, 0 otherwise
+ * Params:
+ * 	character = The character ID to check
+ * Original_Address: $(DOLLAR)C1C367
+ */
+short psiMenuValidCharacter(short character) {
+	return checkCharacterCanCurrentlyUsePSITypes(character, PSIUsability.overworld, PSICategory.all);
 }
 
-/// $C1C373
-short unknownC1C373() {
+/** Get the ID of the first party member capable of using PSI
+ * Returns: Either the ID of the first party member that can use PSI or 0 if none were found
+ * Original_Address: $(DOLLAR)C1C373
+ */
+short getFirstPartyMemberWithPSI() {
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-		if (unknownC1C32A(gameState.partyMembers[i], 1, 0xF) != 0) {
+		if (checkCharacterCanCurrentlyUsePSITypes(gameState.partyMembers[i], PSIUsability.overworld, PSICategory.all) != 0) {
 			return cast(short)(i + 1);
 		}
 	}
 	return 0;
 }
 
-/// $C1C3B6
-short unknownC1C3B6() {
-	short x04 =0;
+/** Get number of party members capable of using PSI
+ * Original_Address: $(DOLLAR)C1C3B6
+ */
+short getPartyMemberCountWithPSI() {
+	short count = 0;
 	for (short i = 0; i < gameState.playerControlledPartyMemberCount; i++) {
-		if (unknownC1C32A(gameState.partyMembers[i], 1, 0xF) != 0) {
-			x04++;
+		if (checkCharacterCanCurrentlyUsePSITypes(gameState.partyMembers[i], PSIUsability.overworld, PSICategory.all) != 0) {
+			count++;
 		}
 	}
-	return x04;
+	return count;
 }
 
-/// $C1C403
-void getPSIName(short arg1) {
-	const(ubyte)* x06;
-	if (arg1 == 1) {
-		x06 = &gameState.favouriteThing[0];
+/** Prints a PSIID's name
+ * Params:
+ * 	id = The ID of a PSI name to print (see earthbound.commondefs.PSIID for values)
+ * Original_Address: $(DOLLAR)C1C403
+ */
+void getPSIName(short id) {
+	const(ubyte)* text;
+	// PSI favouritething is special
+	if (id == 1) {
+		text = &gameState.favouriteThing[0];
 	} else {
-		x06 = &psiNameTable[arg1 - 1][0];
+		text = &psiNameTable[id - 1][0];
 	}
-	printWrappableString(-1, x06);
+	printWrappableString(-1, text);
 }
 
-/// $C1C452
-void generatePSIList(short arg1, ubyte arg2, ubyte arg3) {
-	arg1--;
+/** Prepares a selectable menu of PSI for the specified category
+ * Params:
+ * 	character = The character whose PSI will be listed
+ * 	usability = Whether to select from overworld or battle PSI (bitmask, see earthbound.commondefs.PSIUsability for values)
+ * 	categories = The categories that should populate the menu (bitmask, see earthbound.commondefs.PSICategory for values)
+ * Original_Address: $(DOLLAR)C1C452
+ */
+void preparePSIMenuOptions(short character, ubyte usability, ubyte categories) {
+	character--;
 	setInstantPrinting();
 	unknownC11383();
-	short x1F = 0;
-	if ((arg1 == 3) && ((arg2 & 2) != 0) && ((arg3 & 1) != 0)) {
-		if ((gameState.partyPSI & 2) != 0) {
+	short nameLastPrinted = 0; //note: all PSI with the same name MUST be adjacent to each other for this to work properly
+	if ((character == PartyMember.poo - 1) && ((usability & PSIUsability.battle) != 0) && ((categories & PSICategory.offense) != 0)) {
+		// Poo can use starstorm alpha?
+		if ((gameState.partyPSI & PartyPSIFlags.starstormAlpha) != 0) {
 			moveCurrentTextCursor(0, psiAbilityTable[21].menuY);
 			getPSIName(psiAbilityTable[21].name);
 			unknownC1153B(21, psiAbilityTable[21].menuX, psiAbilityTable[21].menuY, &psiSuffixes[psiAbilityTable[21].level - 1][0], null);
 		}
-		if ((gameState.partyPSI & 4) != 0) {
+		// Poo can use starstorm beta?
+		if ((gameState.partyPSI & PartyPSIFlags.starstormBeta) != 0) {
 			unknownC1153B(22, psiAbilityTable[22].menuX, psiAbilityTable[22].menuY, &psiSuffixes[psiAbilityTable[22].level - 1][0], null);
 		}
 	}
+	// handle normal learnable PSI
 	for (short i = 1; psiAbilityTable[i].name != 0; i++) {
-		ubyte x18;
-		switch (arg1) {
-			case 0:
-				x18 = psiAbilityTable[i].nessLevel;
+		ubyte targetLevel;
+		switch (character) {
+			case PartyMember.ness - 1:
+				targetLevel = psiAbilityTable[i].nessLevel;
 				break;
-			case 1:
-				x18 = psiAbilityTable[i].paulaLevel;
+			case PartyMember.paula - 1:
+				targetLevel = psiAbilityTable[i].paulaLevel;
 				break;
-			case 3:
-				x18 = psiAbilityTable[i].pooLevel;
+			case PartyMember.poo - 1:
+				targetLevel = psiAbilityTable[i].pooLevel;
 				break;
 			default: break;
 		}
-		if (x18 == 0) {
+		if (targetLevel == 0) {
 			continue;
 		}
-		if ((psiAbilityTable[i].target & arg2) == 0) {
+		if ((psiAbilityTable[i].usability & usability) == 0) {
 			continue;
 		}
-		if (x18 > partyCharacters[arg1].level) {
+		if (targetLevel > partyCharacters[character].level) {
 			continue;
 		}
-		if ((psiAbilityTable[i].type & arg3) == 0) {
+		if ((psiAbilityTable[i].category & categories) == 0) {
 			continue;
 		}
-		if (psiAbilityTable[i].name != x1F) {
+		if (psiAbilityTable[i].name != nameLastPrinted) {
 			moveCurrentTextCursor(0, psiAbilityTable[i].menuY);
 			getPSIName(psiAbilityTable[i].name);
-			x1F = psiAbilityTable[i].name;
+			nameLastPrinted = psiAbilityTable[i].name;
 		}
 		unknownC1153B(i, psiAbilityTable[i].menuX, psiAbilityTable[i].menuY, &psiSuffixes[psiAbilityTable[i].level - 1][0], null);
 	}
-	if ((arg1 == 0) && ((arg2 & 1) != 0) && ((arg3 & 8) != 0)) {
-		if ((gameState.partyPSI & 1) != 0) {
+	if ((character == PartyMember.ness - 1) && ((usability & PSIUsability.overworld) != 0) && ((categories & PSICategory.other) != 0)) {
+		// Ness can use teleport alpha?
+		if ((gameState.partyPSI & PartyPSIFlags.teleportAlpha) != 0) {
 			moveCurrentTextCursor(0, psiAbilityTable[51].menuY);
 			getPSIName(psiAbilityTable[51].name);
 			unknownC1153B(51, psiAbilityTable[51].menuX, psiAbilityTable[51].menuY, &psiSuffixes[psiAbilityTable[51].level - 1][0], null);
 		}
-		if ((gameState.partyPSI & 8) != 0) {
+		// Ness can use teleport beta?
+		if ((gameState.partyPSI & PartyPSIFlags.teleportBeta) != 0) {
 			unknownC1153B(52, psiAbilityTable[52].menuX, psiAbilityTable[52].menuY, &psiSuffixes[psiAbilityTable[52].level - 1][0], null);
 		}
 	}
@@ -6068,34 +6121,34 @@ void generatePSIList(short arg1, ubyte arg2, ubyte arg3) {
 }
 
 /// $C1C853
-void unknownC1C853(short arg1) {
+void createOverworldPSIMenuWindow(short character) {
 	createWindowN(Window.textStandard);
 	windowTickWithoutInstantPrinting();
 	if (gameState.playerControlledPartyMemberCount != 1) {
-		unknown7E5E7A = 1;
+		paginationWindow = Window.textStandard;
 	}
-	setWindowTitle(1, PartyCharacter.name.length, &partyCharacters[arg1 - 1].name[0]);
-	generatePSIList(arg1, 1, 0xF);
+	setWindowTitle(1, PartyCharacter.name.length, &partyCharacters[character - 1].name[0]);
+	preparePSIMenuOptions(character, PSIUsability.overworld, PSICategory.all);
 }
 
 /// $C1C8BC
 void unknownC1C8BC(short arg1) {
 	const(ubyte)* x06;
-	createWindowN(Window.unknown04);
+	createWindowN(Window.targettingDescription);
 	windowTickWithoutInstantPrinting();
-	unknown7E5E6E = 0;
+	enableWordWrap = 0;
 	if (psiAbilityTable[arg1].name == 4) {
 		x06 = &psiTargetText[0][0][0];
 	} else {
 		x06 = &psiTargetText[battleActionTable[psiAbilityTable[arg1].battleAction].direction][battleActionTable[psiAbilityTable[arg1].battleAction].target][0];
 	}
 	printString(psiTargetText[0][0].length, x06);
-	unknown7E5E6E = 0xFF;
+	enableWordWrap = 0xFF;
 	moveCurrentTextCursor(0, 1);
 	printString(ppCostText.length, &ppCostText[0]);
 	printLetter(ebChar(' '));
 	setCurrentWindowPadding(0x81);
-	unknownC43D75(0x28, 0x1);
+	forcePixelAlignment(0x28, 0x1);
 	printNumber(battleActionTable[psiAbilityTable[arg1].battleAction].ppCost);
 	clearInstantPrinting();
 }
@@ -6112,7 +6165,7 @@ void unknownC1CA72(short arg1, short arg2) {
 	short x0E = windowStats[windowTable[currentFocusWindow]].textY;
 	unknownEF0115(currentFocusWindow);
 	windowTickWithoutInstantPrinting();
-	unknownC1C853(unknown7E9D16);
+	createOverworldPSIMenuWindow(overworldSelectedPSIUser);
 	printMenuItems();
 	windowStats[windowTable[currentFocusWindow]].textY = x0E;
 	moveCurrentTextCursor(0, getTextY());
@@ -6122,135 +6175,143 @@ void unknownC1CA72(short arg1, short arg2) {
 	clearInstantPrinting();
 }
 
-/// $C1CAF5
-void unknownC1CAF5(short arg1) {
+/** Prepares the menu options for selecting specific PSI abilities in battle PSI menus
+ * Original_Address: $(DOLLAR)C1CAF5
+ */
+void prepareBattlePSIMenuOptions(short category) {
 	short x10 = gameState.partyMembers[battleMenuCurrentCharacterID];
 	createWindowN(Window.textStandard);
 	windowTickWithoutInstantPrinting();
-	switch (arg1) {
+	switch (category) {
 		case 1:
-			generatePSIList(x10, 2, 1);
+			preparePSIMenuOptions(x10, PSIUsability.battle, PSICategory.offense);
 			break;
 		case 2:
-			generatePSIList(x10, 2, 2);
+			preparePSIMenuOptions(x10, PSIUsability.battle, PSICategory.recover);
 			break;
 		case 3:
-			generatePSIList(x10, 2, 4);
+			preparePSIMenuOptions(x10, PSIUsability.battle, PSICategory.assist);
 			break;
 		case 4:
-			generatePSIList(x10, 3, 8);
+			preparePSIMenuOptions(x10, PSIUsability.overworld | PSIUsability.battle, PSICategory.other);
 			break;
 		default: break;
 	}
 }
 
-/// $C1CB7F
-short unknownC1CB7F(short arg1, short arg2) {
-	short x0E = void;
-	switch (arg1) {
+/** Checks if the character knows any battle PSI in a particular category
+ * Returns: 1 if any appropriate PSI is known, 0 otherwise
+ * Original_Address: $(DOLLAR)C1CB7F
+ */
+short characterKnowsAnyBattlePSIByType(short category, short character) {
+	short result = void;
+	switch (category) {
 		case 1:
-			x0E = unknownC1C1BA(arg2, 2, 1);
+			result = characterKnowsPSITypes(character, PSIUsability.battle, PSICategory.offense);
 			break;
 		case 2:
-			x0E = unknownC1C1BA(arg2, 2, 2);
+			result = characterKnowsPSITypes(character, PSIUsability.battle, PSICategory.recover);
 			break;
 		case 3:
-			x0E = unknownC1C1BA(arg2, 2, 4);
+			result = characterKnowsPSITypes(character, PSIUsability.battle, PSICategory.assist);
 			break;
 		default: break;
 	}
-	return x0E;
+	return result;
 }
 
 /// $C1CBCD
 short battlePSIMenu(BattleMenuSelection* arg1) {
-	short x1E = 0;
-	short x02;
-	short x16;
+	short psiCategoriesPrinted = 0;
+	short selectedPSICategory;
+	short psiTargetting;
 	outer: while (true) {
-		createWindowN(Window.unknown10);
+		createWindowN(Window.psiCategories);
 		for (short i = 0; i < 3; i++) {
 			unknownC115F4(cast(short)(i + 1), &psiCategories[i][0], null);
 		}
 		unknownC1180D(1, 0, 0);
-		while (true) {
-			setWindowFocus(Window.unknown10);
-			if (x1E == 0) {
+		while (true) { // pick a PSI category
+			setWindowFocus(Window.psiCategories);
+			if (psiCategoriesPrinted == 0) {
 				printMenuItems();
 			}
-			x1E++;
-			unknownC11F5A(&unknownC1CAF5);
-			x02 = selectionMenu(1);
+			psiCategoriesPrinted++; //will cause a minor visual glitch after entering and exiting a category menu 65536 times
+			unknownC11F5A(&prepareBattlePSIMenuOptions);
+			selectedPSICategory = selectionMenu(1);
 			unknownC11F8A();
-			if (x02 == 0) {
+			if (selectedPSICategory == 0) {
 				break outer;
 			}
-			if (unknownC1CB7F(x02, arg1.user) == 0) {
+			if (characterKnowsAnyBattlePSIByType(selectedPSICategory, arg1.user) == 0) {
 				continue;
 			}
-			short x1C;
-			while (true) {
+			short selectedPSI;
+			while (true) { // pick a PSI ability
 				createWindowN(Window.textStandard);
-				unknownC1CAF5(x02);
+				prepareBattlePSIMenuOptions(selectedPSICategory);
 				unknownC11F5A(&unknownC1C8BC);
-				x1C = selectionMenu(1);
+				selectedPSI = selectionMenu(1);
 				unknownC11F8A();
-				if (x1C == 0) {
+				if (selectedPSI == 0) {
 					break;
 				}
-				if (battleActionTable[psiAbilityTable[x1C].battleAction].ppCost > partyCharacters[arg1.user - 1].pp.target) {
+				// does user have enough PP?
+				if (battleActionTable[psiAbilityTable[selectedPSI].battleAction].ppCost > partyCharacters[arg1.user - 1].pp.target) {
 					createWindowN(Window.textBattle);
 					enableBlinkingTriangle(2);
 					displayText(getTextBlock("MSG_BTL_PSI_CANNOT_MENU"));
 					clearBlinkingPrompt();
 					closeFocusWindowN();
-					x16 = 0;
+					psiTargetting = 0;
 					goto Unknown15;
 				}
-				if ((battleActionTable[psiAbilityTable[x1C].battleAction].target == ActionTarget.one) || (battleActionTable[psiAbilityTable[x1C].battleAction].target == ActionTarget.row)) {
-					if (battleActionTable[psiAbilityTable[x1C].battleAction].direction == ActionDirection.enemy) {
-						closeWindow(Window.unknown10);
-						closeWindow(Window.unknown04);
+				// figure out targetting
+				if ((battleActionTable[psiAbilityTable[selectedPSI].battleAction].target == ActionTarget.one) || (battleActionTable[psiAbilityTable[selectedPSI].battleAction].target == ActionTarget.row)) {
+					if (battleActionTable[psiAbilityTable[selectedPSI].battleAction].direction == ActionDirection.enemy) {
+						closeWindow(Window.psiCategories);
+						closeWindow(Window.targettingDescription);
 						closeWindow(Window.textStandard);
-						createWindowN(Window.unknown26);
+						// create a window with the PSI name highlighted
+						createWindowN(Window.itemPSINameWhileTargetting);
 						setInstantPrinting();
 						windowSetTextColor(6);
-						printPSIName(x1C);
+						printPSIName(selectedPSI);
 						windowSetTextColor(0);
 					}
 				}
-				x16 = determineTargetting(psiAbilityTable[x1C].battleAction, arg1.user);
-				if (battleActionTable[psiAbilityTable[x1C].battleAction].direction == ActionDirection.enemy) {
-					closeWindow(Window.unknown26);
+				psiTargetting = determineTargetting(psiAbilityTable[selectedPSI].battleAction, arg1.user);
+				if (battleActionTable[psiAbilityTable[selectedPSI].battleAction].direction == ActionDirection.enemy) {
+					closeWindow(Window.itemPSINameWhileTargetting);
 				} else {
-					closeWindow(Window.unknown10);
-					closeWindow(Window.unknown04);
+					closeWindow(Window.psiCategories);
+					closeWindow(Window.targettingDescription);
 					closeWindow(Window.textStandard);
 				}
-				if (x16 != 0) {
+				if (psiTargetting != 0) {
 					goto Unknown15;
 				}
 			}
-			x16 = 1;
+			psiTargetting = 1;
 			Unknown15:
-			if (x16 == 0) {
+			if (psiTargetting == 0) {
 				continue;
 			}
-			closeWindow(Window.unknown04);
-			if (x1C == 0) {
+			closeWindow(Window.targettingDescription);
+			if (selectedPSI == 0) {
 				break;
 			}
-			arg1.param1 = cast(ubyte)x1C;
-			arg1.selectedAction = psiAbilityTable[x1C].battleAction;
-			arg1.targetting = cast(ubyte)(x16 >> 8);
-			arg1.selectedTarget = cast(ubyte)x16;
-			x02 = 1;
+			arg1.param1 = cast(ubyte)selectedPSI;
+			arg1.selectedAction = psiAbilityTable[selectedPSI].battleAction;
+			arg1.targetting = cast(ubyte)(psiTargetting >> 8);
+			arg1.selectedTarget = cast(ubyte)psiTargetting;
+			selectedPSICategory = 1;
 			break outer;
 		}
 	}
 	closeWindow(Window.textStandard);
-	closeWindow(Window.unknown10);
-	return x02;
+	closeWindow(Window.psiCategories);
+	return selectedPSICategory;
 }
 
 /// $C1CE85
@@ -6307,7 +6368,7 @@ short battleSelectItem(BattleMenuSelection* arg1) {
 			}
 			arg1.param1 = cast(ubyte)selectedItem;
 			targetting = battleSelectItemTargetting(arg1);
-			closeWindow(Window.unknown26);
+			closeWindow(Window.itemPSINameWhileTargetting); // yes, the window is closed even though it wasn't opened in earthbound
 			if (targetting != 0) {
 				break;
 			}
@@ -6778,7 +6839,7 @@ short enemySelectMode(short arg1) {
 		setInstantPrinting();
 		moveCurrentTextCursor(savedX, savedY);
 		short x02 = unknownC10D7C(x24);
-		ubyte* x18 = &unknown7E895A[7 - x02];
+		ubyte* x18 = &numberTextBuffer[7 - x02];
 			version(bugfix) {
 				alias printLetterFunc = unknownC43F77;
 			} else {
@@ -7041,7 +7102,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 /// $C1EAA6
 short enterYourNamePlease(short arg1) {
 	short result;
-	unknown7E5E6E = 0;
+	enableWordWrap = 0;
 	unknown7EB49D = 1;
 	setInstantPrinting();
 	createWindowN(Window.unknown27);
@@ -7072,7 +7133,7 @@ short enterYourNamePlease(short arg1) {
 	}
 	closeWindow(Window.fileSelectNamingKeyboard);
 	closeWindow(Window.unknown27);
-	unknown7E5E6E = 0xFF;
+	enableWordWrap = 0xFF;
 	unknown7EB49D = 0;
 	return result;
 }
@@ -7168,8 +7229,8 @@ short fileSelectMenu(short arg1) {
 			moveCurrentTextCursor(9, i);
 			printString(0x20, &unknown7E9C9F[0]);
 			const levelCharsPrinted = unknownC10D7C(partyCharacters[0].level);
-			unknown7E9C9F[0] = (levelCharsPrinted == 1) ? ebChar(' ') : (cast(ubyte)(unknown7E895A[7 - levelCharsPrinted] + ebChar('0')));
-			unknown7E9C9F[1] = cast(ubyte)(unknown7E895A[6] + ebChar('0'));
+			unknown7E9C9F[0] = (levelCharsPrinted == 1) ? ebChar(' ') : (cast(ubyte)(numberTextBuffer[7 - levelCharsPrinted] + ebChar('0')));
+			unknown7E9C9F[1] = cast(ubyte)(numberTextBuffer[6] + ebChar('0'));
 			unknown7E9C9F[2] = 0;
 			moveCurrentTextCursor(13, i);
 			printString(0x20, &unknown7E9C9F[0]);
@@ -7192,7 +7253,7 @@ short fileSelectMenu(short arg1) {
 		}
 		windowSetTextColor(6);
 		moveCurrentTextCursor(cast(short)(x1C_2.textX + 1), x1C_2.textY);
-		unknown7E5E6E = 0;
+		enableWordWrap = 0;
 		unknownC43B15();
 		windowSetTextColor(0);
 	} else {
@@ -7223,7 +7284,7 @@ short unknownC1F07E() {
 	unknownC1153B(3, 10, 0, &fileSelectTextDelete[0], null);
 	unknownC1153B(4, 15, 0, &fileSelectTextSetUp[0], null);
 	printMenuItems();
-	unknown7E5E6E = 0xFF;
+	enableWordWrap = 0xFF;
 	return selectionMenu(1);
 }
 
@@ -7236,7 +7297,7 @@ immutable ubyte[8][4] psiCategories = [
 ];
 
 /// $C3F0B0
-immutable short[7][7] unknownC3F0B0 = [
+immutable short[7][7] psiBlockingStatuses = [
 	[
 		1, //Unconscious
 		1, //Diamondized
@@ -7335,7 +7396,7 @@ short unknownC1F14F() {
 	if (x16 != 0) {
 		copySaveSlot(cast(short)(x16 - 1), cast(short)(currentSaveSlot - 1));
 	}
-	unknown7E5E6E = 0;
+	enableWordWrap = 0;
 	closeFocusWindowN();
 	return x16;
 }
@@ -7347,7 +7408,7 @@ short unknownC1F2A8() {
 	setCurrentWindowPadding(0);
 	moveCurrentTextCursor(0, 0);
 	printString(fileSelectTextAreYouSureDelete.length, &fileSelectTextAreYouSureDelete[0]);
-	unknownC43D75(0, 1);
+	forcePixelAlignment(0, 1);
 	moveCurrentTextCursor(0, 1);
 	printNumber(currentSaveSlot);
 	printLetter(ebChar(':'));
@@ -7364,7 +7425,7 @@ short unknownC1F2A8() {
 	if (x16 != 0) {
 		eraseSaveSlot(currentSaveSlot - 1);
 	}
-	unknown7E5E6E = 0;
+	enableWordWrap = 0;
 	closeFocusWindowN();
 	return x16;
 }
@@ -7407,7 +7468,7 @@ short unknownC1F497(short arg1) {
 		windowSetTextColor(0);
 		x12 = gameState.textSpeed;
 	} else {
-		unknown7E5E6E = 0;
+		enableWordWrap = 0;
 		x12 = selectionMenu(1);
 		if (x12 != 0) {
 			gameState.textSpeed = cast(ubyte)x12;
@@ -7671,7 +7732,7 @@ void fileMenuLoop() {
 								unknownC1153B(0, 18, 0, &fileSelectTextAreYouSureNope[0], null);
 								printMenuItems();
 								unknownC4D8FA();
-								unknown7E5E6E = 0xFF;
+								enableWordWrap = 0xFF;
 								if (selectionMenu(1) == 0) {
 									unknownC021E6();
 									continue nameLoop;
@@ -7724,10 +7785,10 @@ void fileMenuLoop() {
 		}
 	}
 	closeAllWindows();
-	unknown7E9627 = unknownC3FB1F[gameState.textSpeed - 1];
+	hpMeterSpeed = hpMeterSpeeds[gameState.textSpeed - 1];
 	selectedTextSpeed = cast(ushort)(gameState.textSpeed - 1);
-	unknown7E964B = (gameState.textSpeed == 3) ? 0 : 30;
-	unknown7E5DBA = 0;
+	textSpeedBasedWait = (gameState.textSpeed == 3) ? 0 : 30;
+	unread7E5DBA = 0;
 	displayText(getTextBlock("MSG_SYS_PRE_GAMESTART"));
 }
 
@@ -7758,14 +7819,14 @@ short unknownC1FF2C() {
 
 /// $C1FF6B
 short unknownC1FF6B() {
-	unknown7E5E6E = 0;
+	enableWordWrap = 0;
 	unknown7EB49D = 1;
 	fileMenuLoop();
 	clearInstantPrinting();
 	windowTick();
 	disabledTransitions = 0;
 	unknown7EB4A2 = 0;
-	unknown7E5E6E = 0xFF;
+	enableWordWrap = 0xFF;
 	unknown7EB49D = 0;
 	return 0;
 }

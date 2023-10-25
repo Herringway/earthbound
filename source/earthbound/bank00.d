@@ -828,7 +828,7 @@ void clearSpriteTable() {
 short findFreeSpriteMap(ushort arg1) {
 	arg1 /= 5; //convert offset to index
 	short x10 = 0;
-	unknown7E4A6A = cast(short)(arg1 * 5);
+	unread7E4A6A = cast(short)(arg1 * 5);
 	Unknown1:
 	while (x10 < overworldSpriteMaps.length) {
 		if (overworldSpriteMaps[x10].specialFlags == 0xFF) {
@@ -1751,14 +1751,14 @@ void unknownC03A24() {
 		gameState.playerControlledPartyMembers[i] = 0;
 		gameState.partyEntities[i] = 0;
 	}
-	unknown7E5D7E = 1;
+	unread7E5D7E = 1;
 	for (short i = 0; i < 6; i++) {
 		if (gameState.partyMembers[i] == 0) {
 			break;
 		}
 		unknownC0369B(gameState.partyMembers[i]);
 	}
-	unknown7E5D7E = 0;
+	unread7E5D7E = 0;
 	footstepSoundID = cast(short)(gameState.specialGameState * 2);
 	footstepSoundIDOverride = 0;
 }
@@ -1861,7 +1861,7 @@ void getOnBicycle() {
 	entityDirections[partyMemberEntityStart] = gameState.leaderDirection;
 	setBoundaryBehaviour(0);
 	gameState.leaderHasMoved = 1;
-	unknown7E5DBA = 1;
+	unread7E5DBA = 1;
 	inputDisableFrameCounter = 2;
 }
 
@@ -1897,7 +1897,7 @@ void getOffBicycle() {
 	waitUntilNextFrame();
 	waitUntilNextFrame();
 	updateEntitySpriteFrame(0x18);
-	unknown7E5DBA = 0;
+	unread7E5DBA = 0;
 	inputDisableFrameCounter = 2;
 }
 
@@ -2515,9 +2515,9 @@ void unknownC04C45() {
 		x10.yCoord = gameState.leaderY.integer;
 		gameState.leaderPositionIndex = (x12 + 1) & 0xFF;
 		centerScreen(gameState.leaderX.integer, gameState.leaderY.integer);
-		unknown7E4DD4 = 1;
+		unread7E4DD4 = 1;
 	} else {
-		unknown7E4DD4 = 0;
+		unread7E4DD4 = 0;
 	}
 	x10.tileFlags = gameState.troddenTileType;
 	x10.walkingStyle = gameState.walkingStyle;
@@ -3089,7 +3089,7 @@ short checkMovementMapCollision(short x, short y, short arg3, short direction) {
 	setTempEntitySurfaceFlags = 0;
 	tempEntitySurfaceFlags = 0;
 	finalMovementDirection = direction;
-	unknown7E5DA2 = direction;
+	unread7E5DA2 = direction;
 	checkedCollisionLeftX = x;
 	checkedCollisionTopY = y;
 	short collisionResult;
@@ -3547,27 +3547,27 @@ void queueInteraction(short arg1, QueuedInteractionPtr arg2) {
 }
 
 /// $C06537
-short unknownC06537() {
+short getLastQueuedInteractionType() {
 	return queuedInteractions[currentQueuedInteraction].type;
 }
 
 /// $C0654E
-QueuedInteractionPtr unknownC0654E() {
+QueuedInteractionPtr getLastQueuedInteractionPointer() {
 	return queuedInteractions[currentQueuedInteraction].ptr;
 }
 
 /// $C06578
-void unknownC06578(short arg1, short arg2) {
-	unknown7E5E06[unknown7E5E36].unknown0 = arg1;
-	unknown7E5E06[unknown7E5E36].unknown2 = arg2;
-	unknown7E5E36++;
+void queueEntityCreationRequest(short sprite, short script) {
+	entityCreationRequests[entityCreationRequestsCount].sprite = sprite;
+	entityCreationRequests[entityCreationRequestsCount].script = script;
+	entityCreationRequestsCount++;
 }
 
 /// $C065A3
-void unknownC065A3() {
-	while (unknown7E5E36 != 0) {
-		unknown7E5E36--;
-		createPreparedEntitySprite(unknown7E5E06[unknown7E5E36].unknown0, unknown7E5E06[unknown7E5E36].unknown2);
+void processEntityCreationRequests() {
+	while (entityCreationRequestsCount != 0) {
+		entityCreationRequestsCount--;
+		createPreparedEntitySprite(entityCreationRequests[entityCreationRequestsCount].sprite, entityCreationRequests[entityCreationRequestsCount].script);
 	}
 }
 
@@ -3583,11 +3583,11 @@ void unknownC065C2(short direction) {
 		x = getDoorAt(cast(short)(x0E + 1), x02);
 	}
 	if ((x != -1) && (x == 6)) {
-		unknown7E5DDC = doorFoundType;
-		//unknown7E5DDE = doorData[doorFound & 0x7FFF]
+		unread7E5DDC = doorFoundType;
+		//mapObjectText = doorData[doorFound & 0x7FFF]
 
 		//not sure if this is the correct type...
-		unknown7E5DDE = doorFound.entryA.textPtr;
+		mapObjectText = doorFound.entryA.textPtr;
 		interactingNPCID = -2;
 	}
 }
@@ -3784,17 +3784,17 @@ void spawnBuzzBuzz() {
 }
 
 /// $C06B3D
-void unknownC06B3D() {
+void removeNonTransitionSurvivingInteractions() {
 	short i;
 	for (i = 0; (4 > i) && (currentQueuedInteraction != nextQueuedInteraction); currentQueuedInteraction = (currentQueuedInteraction + 1) & 3, i++) {
-		if (unknownC06537() != 10) {
+		if (getLastQueuedInteractionType() != InteractionType.textSurvivesDoorTransition) {
 			continue;
 		}
-		unknown7E5E58[i] = unknownC0654E();
+		doorInteractions[i] = getLastQueuedInteractionPointer();
 	}
-	unknown7E5E58[i].textPtr = null;
-	for (short j = 0; unknown7E5E58[j].textPtr !is null; j++) {
-		queueInteraction(InteractionType.unknown10, unknown7E5E58[j]);
+	doorInteractions[i].textPtr = null;
+	for (short j = 0; doorInteractions[j].textPtr !is null; j++) {
+		queueInteraction(InteractionType.textSurvivesDoorTransition, doorInteractions[j]);
 	}
 }
 
@@ -3812,7 +3812,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 	for (short i = 1; i <= 10; i++) {
 		setEventFlag(i, 0);
 	}
-	unknownC06B3D();
+	removeNonTransitionSurvivingInteractions();
 	unknownC07C5B();
 	version(bugfix) {
 		if (auto sfx = getScreenTransitionSoundEffect(arg1.transitionStyle, 1)) {
@@ -3849,7 +3849,7 @@ void doorTransition(const(DoorEntryA)* arg1) {
 		saveReplaySaveSlot();
 	}
 	changeMapMusic();
-	unknownC065A3();
+	processEntityCreationRequests();
 	unknownC07C5B();
 	version(bugfix) {
 		if (auto sfx = getScreenTransitionSoundEffect(arg1.transitionStyle, 0)) {
@@ -3903,7 +3903,7 @@ void exitEscalator() {
 	stairsDirection = -1;
 	gameState.walkingStyle = WalkingStyle.normal;
 	playerMovementFlags = 0;
-	unknown7E5DBA = 0;
+	unread7E5DBA = 0;
 	gameState.leaderX.integer = escalatorNewX;
 	gameState.leaderY.integer = escalatorNewY;
 	gameState.leaderY.fraction = 0;
@@ -3929,12 +3929,12 @@ void doEscalatorTransition(ushort arg1, short x, short y) {
 		scheduleOverworldTask(cast(short)(frames + 1), &exitEscalator);
 		finishAutoMovementDemoAndStart();
 		escalatorEntranceDirection = 0;
-		unknown7E5DBA = 1;
+		unread7E5DBA = 1;
 	} else { // getting on escalator
 		if (gameState.walkingStyle == WalkingStyle.escalator) {
 			return;
 		}
-		unknown7E5DBA = 1;
+		unread7E5DBA = 1;
 		escalatorEntranceDirection = arg1;
 		gameState.leaderDirection = stairInputDirectionMap[arg1 >> 8];
 		playerMovementFlags = PlayerMovementFlags.collisionDisabled | PlayerMovementFlags.dontChangeDirection;
@@ -3990,7 +3990,7 @@ void getOffStairs() {
 		gameState.leaderY.integer = stairsNewY;
 		gameState.leaderY.fraction = 0;
 		gameState.leaderX.fraction = 0;
-		unknown7E5DBA = 0;
+		unread7E5DBA = 0;
 	} else {
 		scheduleOverworldTask(1, &getOffStairs);
 	}
@@ -4044,7 +4044,7 @@ void doStairsTransition(ushort direction, short x, short y) {
 		gameState.leaderDirection = autoMovementDirection;
 		notMovingInSameDirectionFaced = 0;
 		playerMovementFlags = PlayerMovementFlags.collisionDisabled | PlayerMovementFlags.dontChangeDirection;
-		unknown7E5DBA = 1;
+		unread7E5DBA = 1;
 		stairsDirection = cast(short)(direction & 0xFF00);
 		xDest = cast(short)((x * 8) + staircaseStartOffsetX[direction >> 8]);
 		yDest = cast(short)((y * 8) + staircaseStartOffsetY[direction >> 8]);
@@ -4208,7 +4208,7 @@ void processQueuedInteractions() {
 		case InteractionType.unknown2:
 			doorTransition(ptr.doorPtr);
 			break;
-		case InteractionType.unknown10:
+		case InteractionType.textSurvivesDoorTransition:
 			displayInteractionText(ptr.textPtr);
 			if (ptr.textPtr == getTextBlock("MSG_SYS_PAPA_2H")) {
 				dadPhoneTimer = 0x697;
@@ -4578,7 +4578,7 @@ void irqNMICommon() {
 	}
 
 	dmaTransferFlag = 0;
-	unknown7E00AB = 0;
+	unread7E00AB = 0;
 	timer++;
 }
 
@@ -4977,7 +4977,7 @@ ushort setSpritemapBank(ushort arg1) {
 
 /// $C08B19
 void renderFirstFrame() {
-	unknown7E0009 = 0;
+	unread7E0009 = 0;
 	oamClear();
 	updateScreen();
 }
@@ -9512,7 +9512,7 @@ void processOverworldTasks() {
 	if (windowHead != -1) {
 		return;
 	}
-	if (battleModeFlag != BattleMode.noBattle) {
+	if (battleModeFlag != 0) {
 		return;
 	}
 	if (battleSwirlCountdown != 0) {
@@ -9537,7 +9537,7 @@ void loadDadPhone() {
 	if (windowHead != -1) {
 		return;
 	}
-	if (battleModeFlag != BattleMode.noBattle) {
+	if (battleModeFlag != 0) {
 		return;
 	}
 	if (battleSwirlCountdown != 0) {
@@ -9552,7 +9552,7 @@ void loadDadPhone() {
 	if (getEventFlag(EventFlag.sysDis2HPapa) != 0) {
 		return;
 	}
-	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock("MSG_SYS_PAPA_2H")));
+	queueInteraction(InteractionType.textSurvivesDoorTransition, QueuedInteractionPtr(getTextBlock("MSG_SYS_PAPA_2H")));
 	unknown7E9E56 = 1;
 }
 
@@ -10053,7 +10053,7 @@ void teleportMainLoop() {
 	stopMusic();
 	waitUntilNextFrame();
 	teleportFreezeObjects();
-	unknown7E5DBA = 1;
+	unread7E5DBA = 1;
 	unknown7E9F45.fraction = 0;
 	unknown7E9F45.integer = 0;
 	teleportState = TeleportState.inProgress;
@@ -10105,7 +10105,7 @@ void teleportMainLoop() {
 	setPartyTickCallbacks(partyLeaderEntity, &partyLeaderTick, &partyMemberTick);
 	unknownC0DE7C();
 	unfreezeEntities();
-	unknown7E5DBA = 0;
+	unread7E5DBA = 0;
 	unknown7E9F45.fraction = 0;
 	unknown7E9F45.integer = 0;
 	playerIntangibilityFrames = 0;
@@ -10166,7 +10166,7 @@ void unknownC0ED5C() {
 
 /// $C0EDD1
 void unknownC0EDD1() {
-	unknown7E9641 = 2;
+	actionscriptState = ActionScriptState.titleScreenSpecial;
 }
 
 /// $C0EDDA

@@ -6745,7 +6745,7 @@ actionScriptLeaveUkkariCarrier = [
 	ACTIONSCRIPT_SHORTJUMP(&actionScript35[0]),
 ].join();
 actionScript894 = [
-	ACTIONSCRIPT_WRITE_WORD_WRAM(&unknown7E00AD, 1),
+	ACTIONSCRIPT_WRITE_WORD_WRAM(&unread7E00AD, 1),
 	ACTIONSCRIPT_HALT(),
 ].join();
 actionScript831 = [

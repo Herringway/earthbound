@@ -31,7 +31,7 @@ __gshared ubyte* oamHighTableAddr;
 /** Unclear. Never read, only initialized to zero on the first rendered frame
  * Original_Address: $(DOLLAR)0009
  */
-__gshared ubyte unknown7E0009;
+__gshared ubyte unread7E0009;
 /** Buffer used for the OAM high table sprites, holds upper bits for four sprites at a time
  * Original_Address: $(DOLLAR)000A
  */
@@ -96,7 +96,7 @@ __gshared ubyte mirrorTD;
 /** Unknown, but likely another register mirror. Not used
  * Original_Address: $(DOLLAR)001D
  */
-__gshared ubyte unknown7E001D;
+__gshared ubyte unused7E001D;
 /** Mirror of the NMITIMEN register, copied to the real register during NMI
  * Original_Address: $(DOLLAR)001E
  */
@@ -116,7 +116,7 @@ __gshared ubyte inIRQCallback;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)0023
  */
-__gshared ubyte unknown7E0023;
+__gshared ubyte unused7E0023;
 /** Random number generator state
  * Original_Address: $(DOLLAR)0024
  */
@@ -144,7 +144,7 @@ __gshared ubyte nextFrameDisplayID;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)002D
  */
-__gshared ubyte unknown7E002D;
+__gshared ubyte unused7E002D;
 /** The ID of the next frame to buffer as a byte offset - 0 for buffer 0, 2 for buffer 1
  * Original_Address: $(DOLLAR)002E
  */
@@ -152,7 +152,7 @@ __gshared ubyte nextFrameBufferID;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)002F
  */
-__gshared ubyte unknown7E002F;
+__gshared ubyte unused7E002F;
 /** Palette upload mode.
  * See_Also: earthbound.commondefs.PaletteUpload
  * Original_Address: $(DOLLAR)0030
@@ -267,11 +267,11 @@ __gshared DemoEntry* demoReadSource;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)007F
  */
-__gshared ubyte unknown7E007F;
+__gshared ubyte unused7E007F;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)0080
  */
-__gshared ubyte unknown7E0080;
+__gshared ubyte unused7E0080;
 /** Number of frames left in the currently playing demo
  * Original_Address: $(DOLLAR)0081
  */
@@ -287,7 +287,7 @@ __gshared DemoEntry* demoWriteDestination;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)0087
  */
-__gshared short unknown7E0087;
+__gshared short unused7E0087;
 /** Number of frames since the last controller input changed
  * Original_Address: $(DOLLAR)0089
  */
@@ -299,7 +299,7 @@ __gshared short demoLastInput;
 /** Unknown. Only used in unused function C08573.
  * Original_Address: $(DOLLAR)008D
  */
-__gshared const(void)* unknown7E008D;
+__gshared const(void)* unused7E008D;
 /** DMA copy mode. Used as an index for earthbound.bank00.dmaTable.
  * Original_Address: $(DOLLAR)0091
  */
@@ -347,7 +347,7 @@ __gshared ubyte memcpyWordsLeft;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)00A6
  */
-__gshared ubyte unknown7E00A6;
+__gshared ubyte unused7E00A6;
 /** Number of frames of play since the game file was created. Overflows after about 2 years, 98 days, 12 hours, 6 minutes and 28.27 seconds
  * Original_Address: $(DOLLAR)00A7
  */
@@ -355,45 +355,15 @@ __gshared uint timer;
 /** Unknown. Only set to zero after an interrupt is done
  * Original_Address: $(DOLLAR)00AB
  */
-__gshared ubyte unknown7E00AB;
+__gshared ubyte unread7E00AB;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)00AC
  */
-__gshared ubyte unknown7E00AC;
+__gshared ubyte unused7E00AC;
 /** Unknown. Only written to by actionscript #894, which seems to be unused and does nothing else. Possibly related to the wandering photographer, as it is grouped with them
  * Original_Address: $(DOLLAR)00AD
  */
-__gshared ubyte unknown7E00AD;
-
-// compiler-generated pseudoglobals
-/// Original_Address: $(DOLLAR)00AE
-//__gshared short unknown7E00AE;
-/// Original_Address: $(DOLLAR)00B0
-//__gshared ubyte unknown7E00B0;
-/// Original_Address: $(DOLLAR)00B1
-//__gshared ubyte unknown7E00B1;
-/// Original_Address: $(DOLLAR)00B2
-//__gshared short unknown7E00B2;
-/// Original_Address: $(DOLLAR)00B4
-//__gshared ubyte tempDividend;
-/// Original_Address: $(DOLLAR)00B5
-//__gshared ubyte unknown7E00B5;
-/// Original_Address: $(DOLLAR)00B6
-//__gshared ubyte unknown7E00B6;
-/// Original_Address: $(DOLLAR)00B7
-//__gshared ubyte unknown7E00B7;
-/// Original_Address: $(DOLLAR)00B8
-//__gshared ubyte unknown7E00B8;
-/// Original_Address: $(DOLLAR)00B9
-//__gshared ubyte unknown7E00B9;
-/// Original_Address: $(DOLLAR)00BA
-//__gshared short unknown7E00BA;
-/// Original_Address: $(DOLLAR)00BC
-//__gshared short unknown7E00BC;
-/// Original_Address: $(DOLLAR)00BE
-//__gshared short unknown7E00BE;
-/// Original_Address: $(DOLLAR)00C0
-//__gshared short unknown7E00C0;
+__gshared ubyte unread7E00AD;
 
 /** Number of times the mult16 intrinsic has been called
  * Original_Address: $(DOLLAR)00C4
@@ -406,7 +376,7 @@ __gshared const(void)* decompSourceBuffer;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)00CE
  */
-__gshared ubyte unknown7E00CE;
+__gshared ubyte unused7E00CE;
 /** Temporary destination buffer location for decomp assembly
  * Original_Address: $(DOLLAR)00CF
  */
@@ -1031,7 +1001,7 @@ __gshared short useSecondSpriteFrame;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)2894
  */
-__gshared short unknown7E2894;
+__gshared short unused7E2894;
 /** The ID of the active entity being rendered
  * Original_Address: $(DOLLAR)2896
  */
@@ -1242,7 +1212,7 @@ __gshared ubyte[32][52] vwfBuffer;
 /** Unknown. May have served a purpose in Mother 2, but is vestigial in Earthbound. Only set to 0
  * Original_Address: $(DOLLAR)3C14
  */
-__gshared short unknown7E3C14;
+__gshared short unused7E3C14;
 /** Unsure. Related to scrolling for flyovers.
  * Original_Address: $(DOLLAR)3C16
  */
@@ -1250,27 +1220,27 @@ __gshared short unknown7E3C16;
 /** Unknown. Set to 0x1A and only read in C41DB6, which is vestigial
  * Original_Address: $(DOLLAR)3C18
  */
-__gshared short unknown7E3C18;
+__gshared short unused7E3C18;
 /** Unknown. Not used
  * Original_Address: $(DOLLAR)3C1A
  */
-__gshared short unknown7E3C1A;
+__gshared short unread7E3C1A;
 /** Unknown. Always zero
  * Original_Address: $(DOLLAR)3C1C
  */
-__gshared short unknown7E3C1C;
+__gshared short unread7E3C1C;
 /** Unknown. Set to -1 and only read in C41EE9, which is vestigial
  * Original_Address: $(DOLLAR)3C1E
  */
-__gshared short unknown7E3C1E;
+__gshared short unused7E3C1E;
 /** Unknown. Set to 0 and only read in C41EF4, which is vestigial
  * Original_Address: $(DOLLAR)3C20
  */
-__gshared short unknown7E3C20;
+__gshared short unused7E3C20;
 /** Unknown. Technically used, but is only added to an otherwise vestigial variable
  * Original_Address: $(DOLLAR)3C22
  */
-__gshared short unknown7E3C22;
+__gshared short unused7E3C22;
 /**  Velocity (in pixels/frame) at which the background scrolls horizontally during a screen transition
  * Original_Address: $(DOLLAR)3C24
  */
@@ -1278,15 +1248,15 @@ __gshared short transitionBackgroundXVelocity;
 /** Unknown. Technically used, but is only added to an otherwise vestigial variable
  * Original_Address: $(DOLLAR)3C26
  */
-__gshared short unknown7E3C26;
+__gshared short unused7E3C26;
 /** Velocity (in pixels/frame) at which the background scrolls vertically during a screen transition
  * Original_Address: $(DOLLAR)3C28
  */
 __gshared short transitionBackgroundYVelocity;
-/** Unknown. Set to zero, increases at the rate of unknown7E3C22, but never read
+/** Unknown. Set to zero, increases at the rate of unused7E3C22, but never read
  * Original_Address: $(DOLLAR)3C2A
  */
-__gshared short unknown7E3C2A;
+__gshared short unread7E3C2A;
 /** X coordinate of the background during a screen transition
  * Original_Address: $(DOLLAR)3C2C
  */
@@ -1294,7 +1264,7 @@ __gshared short transitionBackgroundX;
 /** Unknown. Technically used, but is only added to an otherwise vestigial variable
  * Original_Address: $(DOLLAR)3C2E
  */
-__gshared short unknown7E3C2E;
+__gshared short unread7E3C2E;
 /** Y coordinate of the background during a screen transition
  * Original_Address: $(DOLLAR)3C30
  */
@@ -1511,7 +1481,7 @@ __gshared short enemySpawnTooManyEnemiesFailureCount;
 /** Unknown. Seems to be set to the number of free spritemaps last searched for, but not used. Probably for debugging
  * Original_Address: $(DOLLAR)4A6A
  */
-__gshared short unknown7E4A6A;
+__gshared short unread7E4A6A;
 /** Set to the ID of the last enemy group attempting to spawn. Never read, possibly used by an obsolete debugging feature
  * Original_Address: $(DOLLAR)4A6C
  */
@@ -1616,7 +1586,7 @@ __gshared PartyCharacter*[6] chosenFourPtrs;
 /** Unknown. Set to 1 if the party leader has moved this frame, 0 otherwise. Never read
  * Original_Address: $(DOLLAR)4DD4
  */
-__gshared short unknown7E4DD4;
+__gshared short unread7E4DD4;
 /** Horizontal movement speeds for every walking style
  * Original_Address: $(DOLLAR)4DD6
  */
@@ -1699,7 +1669,7 @@ __gshared short cameraMode3FramesLeft;
 /** Unknown. Set to 1 for a short period while initial loading of party character data occurs. Never read
  * Original_Address: $(DOLLAR)5D7E
  */
-__gshared short unknown7E5D7E;
+__gshared short unread7E5D7E;
 /** Whether or not the HP alert has been shown for each party member recently
  * Original_Address: $(DOLLAR)5D8C
  */
@@ -1727,7 +1697,7 @@ __gshared ushort mushroomizedWalkingFlag;
 /** Unknown. Never read, but holds a copy of the direction moved by the party this frame, if any
  * Original_Address: $(DOLLAR)5DA2
  */
-__gshared ushort unknown7E5DA2;
+__gshared ushort unread7E5DA2;
 /** Surface flags for the active entity as they are being put together by the various collision functions
  * Original_Address: $(DOLLAR)5DA4
  */
@@ -1768,7 +1738,7 @@ __gshared short notMovingInSameDirectionFaced;
 /** Unknown. Never read. Seems to be set to 1 when movement isn't normal?
  * Original_Address: $(DOLLAR)5DBA
  */
-__gshared short unknown7E5DBA;
+__gshared short unread7E5DBA;
 /** Door pointer found by getDoorAt()
  * Original_Address: $(DOLLAR)5DBC
  */
@@ -1814,91 +1784,305 @@ __gshared short escalatorNewX;
  * Original_Address: $(DOLLAR)5DD2
  */
 __gshared short escalatorNewY;
-__gshared short currentMapMusicTrack; /// Original_Address: $(DOLLAR)5DD4
-__gshared short nextMapMusicTrack; /// Original_Address: $(DOLLAR)5DD6
-__gshared short disableMusicChanges; /// Original_Address: $(DOLLAR)5DD8
-__gshared short doMapMusicFade; /// Original_Address: $(DOLLAR)5DDA
-__gshared short unknown7E5DDC; /// Original_Address: $(DOLLAR)5DDC
-__gshared string unknown7E5DDE; /// Original_Address: $(DOLLAR)5DDE
+/** The ID of the music track currently playing on the overworld
+ * Original_Address: $(DOLLAR)5DD4
+ */
+__gshared short currentMapMusicTrack;
+/** The ID of the music track that will start playing on the overworld next frame, if different from currentMapMusicTrack
+ * Original_Address: $(DOLLAR)5DD6
+ */
+__gshared short nextMapMusicTrack;
+/** If nonzero, disable automatically changing music tracks
+ * Original_Address: $(DOLLAR)5DD8
+ */
+__gshared short disableMusicChanges;
+/** If nonzero, the music will fade out when the next track starts playing
+ * Original_Address: $(DOLLAR)5DDA
+ */
+__gshared short doMapMusicFade;
+/** The type of the map object currently being interacted with. Not read
+ * Original_Address: $(DOLLAR)5DDC
+ */
+__gshared short unread7E5DDC;
+/** Text pointer associated with the map object currently being interacted with
+ * Original_Address: $(DOLLAR)5DDE
+ */
+__gshared string mapObjectText;
 
-__gshared QueuedInteraction[4] queuedInteractions; /// Original_Address: $(DOLLAR)5DEA
-__gshared short currentQueuedInteraction; /// Original_Address: $(DOLLAR)5E02
-__gshared short nextQueuedInteraction; /// Original_Address: $(DOLLAR)5E04
-__gshared Unknown7E5E06Entry[24] unknown7E5E06; /// Original_Address: $(DOLLAR)5E06
+/** A short ring buffer of queued overworld interactions. Includes doors and talking/checking objects and NPCs/etc. Only one type of each interaction may be queued at any given time
+ * Original_Address: $(DOLLAR)5DEA
+ */
+__gshared QueuedInteraction[4] queuedInteractions;
+/** The starting position of valid queued interactions
+ * Original_Address: $(DOLLAR)5E02
+ */
+__gshared short currentQueuedInteraction;
+/** The position of the next queued interaction to be added to the buffer. Will be equal to currentQueuedInteraction if there are no interactions queued up
+ * Original_Address: $(DOLLAR)5E04
+ */
+__gshared short nextQueuedInteraction;
+/** Queued entity creation requests. These will be spawned after the next door transition or teleportation in LIFO order
+ * Original_Address: $(DOLLAR)5E06
+ */
+__gshared EntityCreationRequest[24] entityCreationRequests;
+/** Number of entity creation requests queued
+ * Original_Address: $(DOLLAR)5E36
+ */
+__gshared short entityCreationRequestsCount;
+/** A pointer to the currently-used map music entry
+ * Original_Address: $(DOLLAR)5E38
+ */
+__gshared const(OverworldEventMusic)* loadedMapMusicEntry;
+/** Active hotspots that will be triggered when the player walks within their boundaries
+ * Original_Address: $(DOLLAR)5E3C
+ */
+__gshared ActiveHotspot[2] activeHotspots;
+/** A temporary buffer containing door-transition-surviving text interactions to be queued up before a door transition occurs
+ * Original_Address: $(DOLLAR)5E58
+ */
+__gshared QueuedInteractionPtr[5] doorInteractions;
+/** When non-zero, will skip repopulating the command menu option list and just refresh the existing list
+ * Original_Address: $(DOLLAR)5E6C
+ */
+__gshared ubyte skipAddingCommandText;
+/** Number of extra pixels of empty space to add to the width of a glyph
+ * Original_Address: $(DOLLAR)5E6D
+ */
+__gshared ubyte characterPadding;
+/** Enables automatic word wrap when non-zero. When text rendering would overflow the window, automatically insert a line break
+ * Original_Address: $(DOLLAR)5E6E
+ */
+__gshared short enableWordWrap;
+/** When set, adds an extra tick and disables instant printing when a window is closed
+ * Original_Address: $(DOLLAR)5E70
+ */
+__gshared ubyte extraTickOnWindowClose;
+/** When set, will force text to be rendered on the left side of the window, even if it would mean overwriting existing text
+ * Original_Address: $(DOLLAR)5E71
+ */
+__gshared ubyte forceLeftTextAlignment;
+/** Subtile pixel offset to start text rendering next
+ * Original_Address: $(DOLLAR)5E72
+ */
+__gshared ubyte newTextPixelOffset;
+/** The last set subtile pixel offset, used when keeping numbers evenly spaced
+ * Original_Address: $(DOLLAR)5E73
+ */
+__gshared ubyte lastTextPixelOffsetSet;
+/** When set to 1, the next call to printString will have its text aligned to the centre of the window. Vanilla game never uses this
+ * Original_Address: $(DOLLAR)5E74
+ */
+__gshared ubyte forceCentreTextAlignment;
+/** If set, the next new line will be indented, unless it starts with a bullet point
+ * Original_Address: $(DOLLAR)5E75
+ */
+__gshared ubyte vwfIndentNewLine;
+/** The last character that was printed with the text system
+ * Original_Address: $(DOLLAR)5E76
+ */
+__gshared ubyte lastPrintedCharacter;
+/** Whether or not to print the article when printing the attacker's name
+ * Original_Address: $(DOLLAR)5E77
+ */
+__gshared ubyte printAttackerArticle;
+/** Whether or not to print the article when printing the target's name
+ * Original_Address: $(DOLLAR)5E78
+ */
+__gshared ubyte printTargetArticle;
+/** Whether or not to restore the selection from the last opened menu when the next menu is opened
+ * Original_Address: $(DOLLAR)5E79 - Mystery flag
+ */
+__gshared ubyte restoreMenuBackup;
+/** The window ID that currently has pagination enabled
+ * Original_Address: $(DOLLAR)5E7A
+ */
+__gshared short paginationWindow;
+/** Current frame of the throbbing pagination arrow animation. -1 if disabled
+ * Original_Address: $(DOLLAR)5E7C
+ */
+__gshared short paginationAnimationFrame;
+/** Buffers for window tilemaps so they can be written to directly and DMA'd later
+ * Original_Address: $(DOLLAR)5E7E
+ */
+__gshared ushort[0x1F8][8] textTilemapBuffer;
+/** Fully prepared background layer 2 tilemap to be DMA'd directly into VRAM
+ * Original_Address: $(DOLLAR)7DFE
+ */
+__gshared ushort[0x400] bg2Buffer;
 
-__gshared short unknown7E5E36; /// Original_Address: $(DOLLAR)5E36
-__gshared const(OverworldEventMusic)* loadedMapMusicEntry; /// Original_Address: $(DOLLAR)5E38
-__gshared ActiveHotspot[2] activeHotspots; /// Original_Address: $(DOLLAR)5E3C
-__gshared QueuedInteractionPtr[5] unknown7E5E58; /// Original_Address: $(DOLLAR)5E58
-__gshared ubyte unknown7E5E6C; /// Original_Address: $(DOLLAR)5E6C
-__gshared ubyte characterPadding; /// Original_Address: $(DOLLAR)5E6D
-__gshared short unknown7E5E6E; /// Original_Address: $(DOLLAR)5E6E - "word-wrap flag"?
-__gshared ubyte unknown7E5E70; /// Original_Address: $(DOLLAR)5E70
-__gshared ubyte unknown7E5E71; /// Original_Address: $(DOLLAR)5E71
-__gshared ubyte unknown7E5E72; /// Original_Address: $(DOLLAR)5E72
-__gshared ubyte unknown7E5E73; /// Original_Address: $(DOLLAR)5E73
-__gshared ubyte unknown7E5E74; /// Original_Address: $(DOLLAR)5E74
-__gshared ubyte unknown7E5E75; /// Original_Address: $(DOLLAR)5E75
-__gshared ubyte lastPrintedCharacter; /// Original_Address: $(DOLLAR)5E76
-__gshared ubyte printAttackerArticle; /// Original_Address: $(DOLLAR)5E77
-__gshared ubyte printTargetArticle; /// Original_Address: $(DOLLAR)5E78
-__gshared ubyte unknown7E5E79; /// Original_Address: $(DOLLAR)5E79 - Mystery flag
-__gshared short unknown7E5E7A; /// Original_Address: $(DOLLAR)5E7A
-__gshared short unknown7E5E7C; /// Original_Address: $(DOLLAR)5E7C
-
-__gshared ushort[0x1F8][8] unknown7E5E7E; /// Original_Address: $(DOLLAR)5E7E
-
-__gshared ushort[0x400] bg2Buffer; /// Original_Address: $(DOLLAR)7DFE
-
-__gshared WinStat unknown7E85FE; /// Original_Address: $(DOLLAR)85FE
-__gshared WinStat[9] windowStats; /// Original_Address: $(DOLLAR)8650
-__gshared short windowHead; /// Original_Address: $(DOLLAR)88E0 - Head of the window linked list
-__gshared short windowTail; /// Original_Address: $(DOLLAR)88E2 - Tail of the window linked list
-__gshared short[53] windowTable; /// Original_Address: $(DOLLAR)88E4 - Index: Window ID; Value: Index to windowStats
-__gshared short[5] unknown7E894E; /// Original_Address: $(DOLLAR)894E
-__gshared short currentFocusWindow; /// Original_Address: $(DOLLAR)8958 - Window ID of the focused window
-__gshared ubyte[12] unknown7E895A; /// Original_Address: $(DOLLAR)895A
-
-__gshared ubyte[3] hpPPWindowDigitBuffer; /// Original_Address: $(DOLLAR)8966
-__gshared ushort[12][4] hpPPWindowBuffer; /// Original_Address: $(DOLLAR)8969
-
-__gshared ubyte unknown7E89C9; /// Original_Address: $(DOLLAR)89C9
-__gshared short battleMenuCurrentCharacterID; /// Original_Address: $(DOLLAR)89CA
-
-__gshared short unknown7E89CC; /// Original_Address: $(DOLLAR)89CC
-__gshared short unknown7E89CE; /// Original_Address: $(DOLLAR)89CE
-__gshared short unknown7E89D0; /// Original_Address: $(DOLLAR)89D0
-__gshared short unknown7E89D2; /// Original_Address: $(DOLLAR)89D2
-__gshared MenuOpt[70] menuOptions; /// Original_Address: $(DOLLAR)89D4 - Window menu options
-
-__gshared ubyte instantPrinting; /// Original_Address: $(DOLLAR)9622
-__gshared ubyte redrawAllWindows; /// Original_Address: $(DOLLAR)9623
-__gshared ubyte unknown7E9624; /// Original_Address: $(DOLLAR)9624
-__gshared ushort selectedTextSpeed; /// Original_Address: $(DOLLAR)9625
-__gshared uint unknown7E9627; /// Original_Address: $(DOLLAR)9627
-
-__gshared string[4] unknown7E9631; /// Original_Address: $(DOLLAR)9631
-__gshared short unknown7E9641; /// Original_Address: $(DOLLAR)9641
-__gshared short battleModeFlag; /// Original_Address: $(DOLLAR)9643
-__gshared short inputLockFlag; /// Original_Address: $(DOLLAR)9645
-__gshared short unknown7E9647; /// Original_Address: $(DOLLAR)9647
-__gshared short unknown7E9649; /// Original_Address: $(DOLLAR)9649
-__gshared short unknown7E964B; /// Original_Address: $(DOLLAR)964B
-__gshared ushort blinkingTriangleFlag; /// Original_Address: $(DOLLAR)964D
-__gshared ushort textSoundMode; /// Original_Address: $(DOLLAR)964F
-__gshared ubyte unknown7E9651; /// Original_Address: $(DOLLAR)9651
-__gshared TextRenderState textRenderState; /// Original_Address: $(DOLLAR)9652
-__gshared short attackerEnemyID; /// Original_Address: $(DOLLAR)9658
-__gshared short targetEnemyID; /// Original_Address: $(DOLLAR)965A
-
-__gshared short unknown7E9660; /// Original_Address: $(DOLLAR)9660
-__gshared short unknown7E9662; /// Original_Address: $(DOLLAR)9662
-__gshared ubyte[32] unknown7E9664; /// Original_Address: $(DOLLAR)9664
-__gshared short unknown7E9684; /// Original_Address: $(DOLLAR)9684
-__gshared short unknown7E9686; /// Original_Address: $(DOLLAR)9686
-__gshared short unknown7E9688; /// Original_Address: $(DOLLAR)9688
-__gshared short unknown7E968A; /// Original_Address: $(DOLLAR)968A
-__gshared short unknown7E968C; /// Original_Address: $(DOLLAR)968C
+/** A dummy window to be used if no windows are open
+ * Original_Address: $(DOLLAR)85FE
+ */
+__gshared WinStat dummyWindow;
+/** Data for all opened windows
+ * Original_Address: $(DOLLAR)8650
+ */
+__gshared WinStat[9] windowStats;
+/** Head of the window linked list
+ * Original_Address: $(DOLLAR)88E0
+ */
+__gshared short windowHead;
+/** Tail of the window linked list
+ * Original_Address: $(DOLLAR)88E2
+ */
+__gshared short windowTail;
+/** Index: Window ID; Value: Index to windowStats
+ * Original_Address: $(DOLLAR)88E4
+ */
+__gshared short[53] windowTable;
+/** Windows with titles attached to them. -1 for invalid entries. Never actually read from
+ * Original_Address: $(DOLLAR)894E
+ */
+__gshared short[5] titledWindows;
+/** Window ID of the focused window. Most windowing functions that don't specify a window will use this
+ * Original_Address: $(DOLLAR)8958
+ */
+__gshared short currentFocusWindow;
+/** Buffer used for converting numbers into printable text
+ * Original_Address: $(DOLLAR)895A
+ */
+__gshared ubyte[12] numberTextBuffer;
+/** Buffer used for splitting HP and PP values into separate digits
+ * Original_Address: $(DOLLAR)8966
+ */
+__gshared ubyte[3] hpPPWindowDigitBuffer;
+/** Buffers to be filled with HP/PP meter tiles
+ * Original_Address: $(DOLLAR)8969
+ */
+__gshared ushort[12][4] hpPPWindowBuffer;
+/** Renders HP/PP windows if set
+ * Original_Address: $(DOLLAR)89C9
+ */
+__gshared ubyte renderHPPPWindows;
+/** The party member ID matching the current open battle menus, or -1 if none
+ * Original_Address: $(DOLLAR)89CA
+ */
+__gshared short battleMenuCurrentCharacterID;
+/** Unknown. Initialized to -1, never read from
+ * Original_Address: $(DOLLAR)89CC
+ */
+__gshared short unread7E89CC;
+/** Index of the row of enemies currently flashing to indicate selection, or -1 if no flashing is occurring
+ * Original_Address: $(DOLLAR)89CE
+ */
+__gshared short currentFlashingRow;
+/** Index into an enemy row for the currently selected flashing enemy, or -1 if no flashing is occurring
+ * Original_Address: $(DOLLAR)89D0
+ */
+__gshared short currentFlashingEnemy;
+/** Used with currentFlashingEnemy to indicate which row the enemy is in, or -1 if no flashing is occurring
+ * Original_Address: $(DOLLAR)89D2
+ */
+__gshared short currentFlashingEnemyRow;
+/** Options for active windows
+ * Original_Address: $(DOLLAR)89D4
+ */
+__gshared MenuOpt[70] menuOptions;
+/** When nonzero, text will be rendered and displayed immediately, with no animation or sound effects
+ * Original_Address: $(DOLLAR)9622
+ */
+__gshared ubyte instantPrinting;
+/** When nonzero, all open windows will be redrawn
+ * Original_Address: $(DOLLAR)9623
+ */
+__gshared ubyte redrawAllWindows;
+/** When nonzero, will upload the HP/PP meter tiles into VRAM
+ * Original_Address: $(DOLLAR)9624
+ */
+__gshared ubyte uploadHPPPMeterTiles;
+/** Number of frames (minus 1) to wait before drawing the next text character
+ * Original_Address: $(DOLLAR)9625
+ */
+__gshared ushort selectedTextSpeed;
+/** The current HP meter speed as dictated by the text speed
+ * Original_Address: $(DOLLAR)9627
+ */
+__gshared uint hpMeterSpeed;
+/**
+ * Original_Address: $(DOLLAR)9631
+ */
+__gshared string[4] partyMemberSelectionScripts;
+/** Current state of the Actionscript system
+ * See_Also: earthbound.commondefs.ActionScriptState
+ * Original_Address: $(DOLLAR)9641
+ */
+__gshared short actionscriptState;
+/** Similar to battleMode, indicates whether or not the player is in a battle
+ * Original_Address: $(DOLLAR)9643
+ */
+__gshared short battleModeFlag;
+/** Set whenever the text system is waiting for input to proceed
+ * Original_Address: $(DOLLAR)9645
+ */
+__gshared short textPromptWaitingForInput;
+/** A bitmask representing all active drawn HP/PP meter windows
+ * Original_Address: $(DOLLAR)9647
+ */
+__gshared short currentlyDrawnHPPPWindows;
+/** When set, the minimal window tick function will copy the HP/PP meters into VRAM
+ * Original_Address: $(DOLLAR)9649
+ */
+__gshared short hpPPMeterAreaNeedsUpdate;
+/** If set, text control codes [03] and [13] will wait for that many frames
+ * Original_Address: $(DOLLAR)964B
+ */
+__gshared short textSpeedBasedWait;
+/** When set, causes the halt text control codes to display a small triangle on the window
+ * Original_Address: $(DOLLAR)964D
+ */
+__gshared ushort blinkingTriangleFlag;
+/** The currently active text sound mode that determines how to play the text printing sound effect
+ * Original_Address: $(DOLLAR)964F
+ */
+__gshared ushort textSoundMode;
+/** Unknown. Appears to be related to the VWF, as it does not exist in Mother 2. Not read
+ * Original_Address: $(DOLLAR)9651
+ */
+__gshared ubyte unread7E9651;
+/** Miscellaneous text rendering state
+ * Original_Address: $(DOLLAR)9652
+ */
+__gshared TextRenderState textRenderState;
+/** The enemy ID of the current attacker, if any. -1 if attacker is a full party member
+ * Original_Address: $(DOLLAR)9658
+ */
+__gshared short attackerEnemyID;
+/** The enemy ID of the current target, if any. -1 if target is a full party member
+ * Original_Address: $(DOLLAR)965A
+ */
+__gshared short targetEnemyID;
+/** The length in characters of the current word being printed
+ * Original_Address: $(DOLLAR)9660
+ */
+__gshared short upcomingWordLength;
+/** The index of the next keyboard input character
+ * Original_Address: $(DOLLAR)9662
+ */
+__gshared short nextKeyboardInputIndex;
+/** A buffer for splitting words to be printed by printWrappableString()
+ * Original_Address: $(DOLLAR)9664
+ */
+__gshared ubyte[32] wordSplittingBuffer;
+/** Backup of the remembered menu item's text's X coordinate
+ * Original_Address: $(DOLLAR)9684
+ */
+__gshared short menuBackupSelectedTextX;
+/** Backup of the remembered menu item's text's Y coordinate
+ * Original_Address: $(DOLLAR)9686
+ */
+__gshared short menuBackupSelectedTextY;
+/** Backup of the remembered menu item's current option value
+ * Original_Address: $(DOLLAR)9688
+ */
+__gshared short menuBackupCurrentOption;
+/** Backup of the remembered menu item's selected option value
+ * Original_Address: $(DOLLAR)968A
+ */
+__gshared short menuBackupSelectedOption;
+/** When nonzero, will cause windowTick() to exit immediately after generating a new random number
+ * Original_Address: $(DOLLAR)968C
+ */
+__gshared short earlyTickExit;
 __gshared ubyte[4] unknown7E968D; /// Original_Address: $(DOLLAR)968D
 __gshared ubyte[4] unknown7E9691; /// Original_Address: $(DOLLAR)9691
 __gshared ubyte unknown7E9695; /// Original_Address: $(DOLLAR)9695
@@ -1933,7 +2117,7 @@ __gshared ubyte[30] battleAttackerName; /// Original_Address: $(DOLLAR)9CD7
 __gshared ubyte[28] battleTargetName; /// Original_Address: $(DOLLAR)9CF5
 __gshared ubyte cItem; /// Original_Address: $(DOLLAR)9D11
 __gshared uint cNum; /// Original_Address: $(DOLLAR)9D12
-__gshared short unknown7E9D16; /// Original_Address: $(DOLLAR)9D16
+__gshared short overworldSelectedPSIUser; /// Original_Address: $(DOLLAR)9D16
 __gshared ubyte unknown7E9D18; /// Original_Address: $(DOLLAR)9D18
 __gshared short unknown7E9D19; /// Original_Address: $(DOLLAR)9D19
 __gshared void function() unknown7E9D1B; /// Original_Address: $(DOLLAR)9D1B

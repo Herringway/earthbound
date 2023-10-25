@@ -20,30 +20,30 @@ import std;
 
 /// $EF0000
 void singleEnemyFlashingOff() {
-	if (unknown7E89D0 == -1) {
+	if (currentFlashingEnemy == -1) {
 		return;
 	}
-	if (unknown7E89D2 != Row.front) {
-		battlersTable[backRowBattlers[unknown7E89D0]].isFlashing = 0;
+	if (currentFlashingEnemyRow != Row.front) {
+		battlersTable[backRowBattlers[currentFlashingEnemy]].isFlashing = 0;
 	} else {
-		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 0;
+		battlersTable[frontRowBattlers[currentFlashingEnemy]].isFlashing = 0;
 	}
 	enemyTargettingFlashing = 0;
-	unknown7E89D0 = -1;
+	currentFlashingEnemy = -1;
 	redrawAllWindows = 1;
 }
 
 /// $EF0052
 void singleEnemyFlashingOn(short arg1, short arg2) {
-	if (unknown7E89D0 != -1) {
+	if (currentFlashingEnemy != -1) {
 		singleEnemyFlashingOff();
 	}
-	unknown7E89D0 = arg2;
-	unknown7E89D2 = arg1;
+	currentFlashingEnemy = arg2;
+	currentFlashingEnemyRow = arg1;
 	if (arg1 != Row.front) {
-		battlersTable[backRowBattlers[unknown7E89D0]].isFlashing = 1;
+		battlersTable[backRowBattlers[currentFlashingEnemy]].isFlashing = 1;
 	} else {
-		battlersTable[frontRowBattlers[unknown7E89D0]].isFlashing = 1;
+		battlersTable[frontRowBattlers[currentFlashingEnemy]].isFlashing = 1;
 	}
 	enemyTargettingFlashing = 1;
 	redrawAllWindows = 1;
@@ -78,11 +78,11 @@ void unknownEF0115(short arg1) {
 }
 
 /// $EF016F
-void unknownEF016F() {
-	unknown7E9684 = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textX;
-	unknown7E9686 = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textY;
-	unknown7E9688 = windowStats[windowTable[currentFocusWindow]].currentOption;
-	unknown7E968A = windowStats[windowTable[currentFocusWindow]].selectedOption;
+void backupMenuSelection() {
+	menuBackupSelectedTextX = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textX;
+	menuBackupSelectedTextY = menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption + windowStats[windowTable[currentFocusWindow]].selectedOption].textY;
+	menuBackupCurrentOption = windowStats[windowTable[currentFocusWindow]].currentOption;
+	menuBackupSelectedOption = windowStats[windowTable[currentFocusWindow]].selectedOption;
 }
 
 /// $EF01D2
@@ -91,7 +91,7 @@ void unknownEF01D2(short arg1) {
 	arg1 = fontData[fontConfigTable[0].dataID][x0E] + characterPadding;
 	if (windowStats[windowTable[currentFocusWindow]].width < (windowStats[windowTable[currentFocusWindow]].textX - 1) * 8 + (vwfX & 7) + x0E) {
 		printNewLineF();
-		unknown7E5E75 = 1;
+		vwfIndentNewLine = 1;
 	}
 }
 
@@ -203,14 +203,14 @@ short unknownEF04DC() {
 	oamClear();
 	unknown7E9F75 = 1;
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
-	unknown7E9641 = 0;
+	actionscriptState = 0;
 	finishFrame();
 	fadeIn(16, 1);
 	for (short i = 0; i < 60; i++) {
 		finishFrame();
 	}
 	short x02 = 0;
-	while ((unknown7E9641 == 0) || (unknown7E9641 == 2)) {
+	while ((actionscriptState == 0) || (actionscriptState == 2)) {
 		if ((x04 == 0) && (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0))) {
 			x02 = 1;
 			break;
@@ -218,7 +218,7 @@ short unknownEF04DC() {
 		finishFrame();
 	}
 	fadeOutWithMosaic(1, 4, 0);
-	unknown7E9641 = 0;
+	actionscriptState = 0;
 	unknownC474A8(/+0+/);
 	unknownC0927C();
 	return x02;
@@ -500,7 +500,7 @@ void startDeliverySuccessText() {
 
 /// $EF0DFA
 void startDeliveryFailText() {
-	queueInteraction(InteractionType.unknown10, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
+	queueInteraction(InteractionType.textSurvivesDoorTransition, QueuedInteractionPtr(getTextBlock(timedDeliveries[entityScriptVar0Table[currentEntitySlot]].textPointer2)));
 }
 
 /// $EF0E67
@@ -13138,7 +13138,7 @@ immutable TilesetAnimation[20] mapDataTilesetAnimationPointerTable = [
 ];
 
 /// $EFA37A
-immutable ubyte[10][6] commandWindowText = [
+immutable ubyte[10][6] commandMenuText = [
 	ebString!10("Talk to"),
 	ebString!10("Goods"),
 	ebString!10("PSI"),

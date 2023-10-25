@@ -644,35 +644,35 @@ void unknownC42624() {
 
 /// $C42631
 void unknownC42631(short arg1, short arg2) {
-	unknown7E3C22 = 0;
+	unused7E3C22 = 0;
 	transitionBackgroundXVelocity = 0;
-	unknown7E3C26 = 0;
+	unused7E3C26 = 0;
 	transitionBackgroundYVelocity = 0;
 	short a = sineMult(arg1, cast(ubyte)(arg2 - 128));
-	unknown7E3C22 = cast(short)((a & 0xFF) << 8);
+	unused7E3C22 = cast(short)((a & 0xFF) << 8);
 	transitionBackgroundXVelocity = (cast(ushort)a & 0xFF00) >> 8;
 	if (a < 0) {
 		transitionBackgroundXVelocity |= 0xFF00;
 	}
 	a = cosineMult(arg1, cast(ubyte)(arg2 - 128));
-	unknown7E3C26 = cast(short)((a & 0xFF) << 8);
+	unused7E3C26 = cast(short)((a & 0xFF) << 8);
 	transitionBackgroundYVelocity = (cast(ushort)a & 0xFF00) >> 8;
 	if (a < 0) {
 		transitionBackgroundYVelocity |= 0xFF00;
 	}
 	transitionBackgroundX = bg1XPosition;
 	transitionBackgroundY = bg1YPosition;
-	unknown7E3C2A = 0;
-	unknown7E3C2E = 0;
+	unread7E3C2A = 0;
+	unread7E3C2E = 0;
 }
 
 /// $C4268A
 void unknownC4268A() {
-	unknown7E3C2A += unknown7E3C22;
+	unread7E3C2A += unused7E3C22;
 	transitionBackgroundX += transitionBackgroundXVelocity;
 	bg1XPosition = transitionBackgroundX;
 	bg2XPosition = transitionBackgroundX;
-	unknown7E3C2E += unknown7E3C26;
+	unread7E3C2E += unused7E3C26;
 	transitionBackgroundY += transitionBackgroundYVelocity;
 	bg1YPosition = transitionBackgroundY;
 	bg2YPosition = transitionBackgroundY;
@@ -1244,10 +1244,10 @@ void unknownC4334A(short direction) {
 		x = getDoorAt(cast(short)(x10 - 1), x04);
 	}
 	if ((x != 0xFF) && (x == 5)) {
-		unknown7E5DDC = doorFoundType;
-		//unknown7E5DDE = doorData[doorFound & 0x7FFF]
+		unread7E5DDC = doorFoundType;
+		//mapObjectText = doorData[doorFound & 0x7FFF]
 
-		unknown7E5DDE = doorFound.entryA.textPtr;
+		mapObjectText = doorFound.entryA.textPtr;
 		interactingNPCID = -2;
 	}
 }
@@ -1312,29 +1312,29 @@ void unknownC43573(short arg1) {
 
 /// $C435E4
 void rowEnemyFlashingOff() {
-	if (unknown7E89CE == -1) {
+	if (currentFlashingRow == -1) {
 		return;
 	}
-	for (short i = 0; i < (unknown7E89CE != Row.front) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
-		if (unknown7E89CE != Row.front) {
+	for (short i = 0; i < (currentFlashingRow != Row.front) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
+		if (currentFlashingRow != Row.front) {
 			battlersTable[backRowBattlers[i]].isFlashing = 0;
 		} else {
 			battlersTable[frontRowBattlers[i]].isFlashing = 0;
 		}
 	}
 	enemyTargettingFlashing = 0;
-	unknown7E89CE = -1;
+	currentFlashingRow = -1;
 	redrawAllWindows = 1;
 }
 
 /// $C43657
 void rowEnemyFlashingOn(short arg1) {
-	if (unknown7E89CE != -1) {
+	if (currentFlashingRow != -1) {
 		rowEnemyFlashingOff();
 	}
-	unknown7E89CE = arg1;
-	for (short i = 0; i < (unknown7E89CE != Row.front) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
-		if (unknown7E89CE != Row.front) {
+	currentFlashingRow = arg1;
+	for (short i = 0; i < (currentFlashingRow != Row.front) ? numBattlersInBackRow : numBattlersInFrontRow; i++) {
+		if (currentFlashingRow != Row.front) {
 			battlersTable[backRowBattlers[i]].isFlashing = 1;
 		} else {
 			battlersTable[frontRowBattlers[i]].isFlashing = 1;
@@ -1510,13 +1510,13 @@ void unknownC43CD2(MenuOpt* opt, short x, short y) {
 		vwfX += opt.pixelAlign;
 		memset(&vwfBuffer[vwfTile][0], 0xFF, 0x20);
 	}
-	unknown7E5E79 = 0;
+	restoreMenuBackup = 0;
 }
 
 /// $C43D95
 void unknownC43D95(short arg1) {
 	arg1 += (windowStats[windowTable[currentFocusWindow]].textX * 8);
-	unknownC43D75(cast(short)(arg1 + unknown7E5E73), windowStats[windowTable[currentFocusWindow]].textY);
+	forcePixelAlignment(cast(short)(arg1 + lastTextPixelOffsetSet), windowStats[windowTable[currentFocusWindow]].textY);
 }
 
 /// $C43DDB
@@ -1530,21 +1530,23 @@ void unknownC43DDB(MenuOpt* menuEntry) {
 }
 
 /// $C43D24
-void unknownC43D24(ushort arg1, short arg2) {
+void vwfTextMove(ushort arg1, short arg2) {
 	moveCurrentTextCursor(arg1, arg2);
-	if (unknown7E5E72 == 0) {
+	if (newTextPixelOffset == 0) {
 		return;
 	}
-	vwfX += unknown7E5E72;
+	vwfX += newTextPixelOffset;
 	memset(&vwfBuffer[vwfTile][0], 0xFF, 0x20);
-	unknown7E5E73 = unknown7E5E72;
-	unknown7E5E72 = 0;
+	lastTextPixelOffsetSet = newTextPixelOffset;
+	newTextPixelOffset = 0;
 }
 
-/// $C43D75
-void unknownC43D75(ushort arg1, short arg2) {
-	unknown7E5E72 = cast(ubyte)(arg1 & 7);
-	unknownC43D24(arg1 / 8, arg2);
+/** Forces text to align to a specific pixel
+ * Original_Address: $(DOLLAR)C43D75
+ */
+void forcePixelAlignment(ushort pixelX, short tileY) {
+	newTextPixelOffset = cast(ubyte)(pixelX & 7);
+	vwfTextMove(pixelX / 8, tileY);
 }
 
 /// $C43E31
@@ -1559,8 +1561,8 @@ short unknownC43E31(const(ubyte)* arg1, short arg2) {
 
 /// $C43EF8
 void unknownC43EF8(const(ubyte)* arg1, short arg2) {
-	unknownC43D75(cast(short)((windowStats[windowTable[currentFocusWindow]].width * 8 - unknownC43E31(arg1, arg2)) / 2), windowStats[windowTable[currentFocusWindow]].textY);
-	unknown7E5E74 = 0;
+	forcePixelAlignment(cast(short)((windowStats[windowTable[currentFocusWindow]].width * 8 - unknownC43E31(arg1, arg2)) / 2), windowStats[windowTable[currentFocusWindow]].textY);
+	forceCentreTextAlignment = 0;
 }
 
 /// $C43F53
@@ -1581,16 +1583,16 @@ void unknownC43F77(short tile) {
 	freeTileSafe(x0E[0]);
 	freeTileSafe(x0E[windowStats[windowTable[currentFocusWindow]].width]);
 	if (tile == 0x2F) {
-		unknown7E5E75 = 0;
+		vwfIndentNewLine = 0;
 	}
 	drawTallTextTileFocusedF(tile);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
 	short x;
-	if (textSoundMode == 2) {
+	if (textSoundMode == TextSoundMode.unknown2) {
 		x = 1;
-	} else if (textSoundMode == 3) {
+	} else if (textSoundMode == TextSoundMode.unknown3) {
 		x = 0;
 	} else {
 		x = 0;
@@ -1623,7 +1625,7 @@ void unknownC440B5(ubyte* arg1, short arg2) {
 		keyboardInputCharacterWidths[i] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1[0] - ebChar(' ')) & 0x7F] + characterPadding);
 		unknownC44E61(0, arg1[0]);
 	}
-	unknown7E9662 = i;
+	nextKeyboardInputIndex = i;
 	if (i >= arg2) {
 		return;
 	}
@@ -1645,7 +1647,7 @@ void unknownC440B5(ubyte* arg1, short arg2) {
 void unknownC441B7(short arg1) {
 	memset(&vwfBuffer[0][0], 0xFF, 0x680);
 	short x02 = 3;
-	unknown7E9662 = 0;
+	nextKeyboardInputIndex = 0;
 	memset(&keyboardInputCharacters[0], 0, 0x18);
 	unknownC44E61(0, ebChar('@'));
 	keyboardInputCharacterOffsets[0] = 0x20;
@@ -1659,12 +1661,12 @@ void unknownC441B7(short arg1) {
 /// $C4424A
 void unknownC4424A(short arg1) {
 	if (arg1 == 0x70) {
-		keyboardInputCharacters[unknown7E9662] = 0;
+		keyboardInputCharacters[nextKeyboardInputIndex] = 0;
 	} else {
-		keyboardInputCharacters[unknown7E9662] = cast(ubyte)arg1;
+		keyboardInputCharacters[nextKeyboardInputIndex] = cast(ubyte)arg1;
 	}
-	keyboardInputCharacterOffsets[unknown7E9662] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
-	keyboardInputCharacterWidths[unknown7E9662] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + characterPadding);
+	keyboardInputCharacterOffsets[nextKeyboardInputIndex] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
+	keyboardInputCharacterWidths[nextKeyboardInputIndex] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + characterPadding);
 }
 
 /// $C442AC
@@ -1676,20 +1678,20 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	textRenderState.upperVRAMPosition = 0;
 	textRenderState.pixelsRendered = 0;
 	if (arg3 == -1) {
-		if (unknown7E9662 == 0) {
+		if (nextKeyboardInputIndex == 0) {
 			return 1;
 		}
-		if (unknown7E9662 < arg2) {
+		if (nextKeyboardInputIndex < arg2) {
 			unknownC4424A(0x53);
 		}
-		unknown7E9662--;
+		nextKeyboardInputIndex--;
 		unknownC4424A(0x70);
 	} else {
-		if (arg2 - 1 < unknown7E9662) {
+		if (arg2 - 1 < nextKeyboardInputIndex) {
 			return 0;
 		}
 		unknownC4424A(arg3);
-		if (++unknown7E9662 < arg2) {
+		if (++nextKeyboardInputIndex < arg2) {
 			unknownC4424A(0x70);
 		}
 	}
@@ -1718,9 +1720,9 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 		redrawAllWindows = 1;
 	}
 	short x;
-	if (textSoundMode == 2) {
+	if (textSoundMode == TextSoundMode.unknown2) {
 		x = 1;
-	} else if (textSoundMode == 3) {
+	} else if (textSoundMode == TextSoundMode.unknown3) {
 		x = 0;
 	} else {
 		x = 0;
@@ -1783,7 +1785,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 		if (a == ebChar(' ') || (a < 0x20)) {
 			break;
 		}
-		unknown7E9660++;
+		upcomingWordLength++;
 		nextWordLength += (a == 0x2F) ? 8 : cast(ubyte)(fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][(a - ebChar(' ')) & 0x7F] + characterPadding);
 	}
 	short newLineLength;
@@ -1794,7 +1796,7 @@ void unknownC445E1(DisplayTextState* arg1, const(ubyte)* arg2) {
 	}
 	if ((windowStats[windowTable[currentFocusWindow]].width * 8) < newLineLength) {
 		printNewLineF();
-		unknown7E5E75 = 1;
+		vwfIndentNewLine = 1;
 	}
 }
 
@@ -1803,7 +1805,7 @@ void printWrappableString(short length, const(ubyte)* text) {
 	short x12 = unknownC43E31(text, length);
 	if ((vwfX & 7) + ((windowStats[windowTable[currentFocusWindow]].textX - 1) * 8) + x12 >= (windowStats[windowTable[currentFocusWindow]].width * 8)) {
 		printNewLineF();
-		unknown7E5E75 = 1;
+		vwfIndentNewLine = 1;
 	}
 	printStringF(length, text);
 }
@@ -1811,7 +1813,7 @@ void printWrappableString(short length, const(ubyte)* text) {
 /// $C4487C
 void unknownC4487C(short arg1, const(ubyte)* arg2) {
 	ubyte x00 = 0;
-	ubyte* x15 = &unknown7E9664[0];
+	ubyte* x15 = &wordSplittingBuffer[0];
 	short x12;
 	do {
 		ubyte x14 = arg2[0];
@@ -1825,7 +1827,7 @@ void unknownC4487C(short arg1, const(ubyte)* arg2) {
 			x15[x00] = 0;
 			printWrappableString(-1, x15);
 			x00 = 0;
-			x15 = &unknown7E9664[0];
+			x15 = &wordSplittingBuffer[0];
 		} else {
 			x00++;
 		}
@@ -1978,8 +1980,8 @@ void finishTextTileRender(short arg1, short arg2) {
 			}
 			unknownC437B8F(currentFocusWindow);
 		}
-		if (unknown7E5E6E != 0) {
-			unknown7E5E75 = 1;
+		if (enableWordWrap != 0) {
+			vwfIndentNewLine = 1;
 		}
 	}
 	if ((blinkingTriangleFlag != 0) && (x04 == 0) && ((arg1 == 0x20) || (arg1 == 0x70))) {
@@ -2056,15 +2058,15 @@ void unknownC44E61(short arg1, short tile) {
 		nextVWFTile();
 	} else {
 		if (tile == ebChar(' ')) {
-			if (unknown7E5E75 != 0) {
+			if (vwfIndentNewLine != 0) {
 				return;
 			}
-		} else if (unknown7E5E75 != 0) {
+		} else if (vwfIndentNewLine != 0) {
 			windowStats[windowTable[currentFocusWindow]].textX = 0;
 			if (tile != ebChar('@')) {
-				unknownC43D75(6, windowStats[windowTable[currentFocusWindow]].textY);
+				forcePixelAlignment(6, windowStats[windowTable[currentFocusWindow]].textY);
 			}
-			unknown7E5E75 = 0;
+			vwfIndentNewLine = 0;
 		}
 		lastPrintedCharacter = cast(ubyte)tile;
 		const(ubyte)* x14 = &fontGraphics[fontConfigTable[arg1].graphicsID][(tile - ebChar(' ')) * fontConfigTable[arg1].height];
@@ -2096,10 +2098,10 @@ void printPrice(uint arg1) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	ubyte unknown7E5E75Copy = unknown7E5E75;
-	unknown7E5E75 = 0;
+	ubyte vwfIndentNewLineCopy = vwfIndentNewLine;
+	vwfIndentNewLine = 0;
 	short x24 = unknownC10C55(arg1);
-	ubyte* x22 = &unknown7E895A[7 - x24];
+	ubyte* x22 = &numberTextBuffer[7 - x24];
 	ubyte* x20 = x22;
 	short textXBackup = windowStats[windowTable[currentFocusWindow]].textX;
 	short textYBackup = windowStats[windowTable[currentFocusWindow]].textY;
@@ -2111,18 +2113,18 @@ void printPrice(uint arg1) {
 	}
 	short x18 = cast(short)(x04 + unknownC44FF3(x24, windowStats[windowTable[currentFocusWindow]].font, &x12[0]));
 	x18 += characterPadding;
-	unknown7E5E71 =1;
-	unknownC43D75(cast(short)((windowStats[windowTable[currentFocusWindow]].width - 1) * 8 - x18), windowStats[windowTable[currentFocusWindow]].textY);
+	forceLeftTextAlignment = 1;
+	forcePixelAlignment(cast(short)((windowStats[windowTable[currentFocusWindow]].width - 1) * 8 - x18), windowStats[windowTable[currentFocusWindow]].textY);
 	printLetterF(ebChar('$'));
 	while (x24 != 0) {
 		printLetterF(*(x20++) + 0x60);
 		x24--;
 	}
-	unknown7E5E71 = 0;
+	forceLeftTextAlignment = 0;
 	moveCurrentTextCursor(cast(short)(windowStats[windowTable[currentFocusWindow]].width - 1), windowStats[windowTable[currentFocusWindow]].textY);
 	unknownC43F77(0x24);
 	moveCurrentTextCursor(textXBackup, textYBackup);
-	unknown7E5E75 = unknown7E5E75Copy;
+	vwfIndentNewLine = vwfIndentNewLineCopy;
 }
 
 /// $C451FA
@@ -3197,7 +3199,7 @@ void prepareNewEntity(short arg1, short arg2, short arg3) {
 
 /// $C46E46
 void actionScriptYieldToText() {
-	unknown7E9641 = 1;
+	actionscriptState = ActionScriptState.paused;
 }
 
 /// $C46E4F
@@ -4494,11 +4496,11 @@ void unknownC49A56() {
 		bg2Buffer[i * 32 + 31] = 0;
 	}
 	copyToVRAM(0, 0x800, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
-	unknown7E3C18 = 0x1A;
-	unknown7E3C1C = 0;
-	unknown7E3C1E = -1;
-	unknown7E3C20 = 0;
-	unknown7E3C14 = 0;
+	unused7E3C18 = 0x1A;
+	unread7E3C1C = 0;
+	unused7E3C1E = -1;
+	unused7E3C20 = 0;
+	unused7E3C14 = 0;
 	unknown7E3C16 = 0;
 	unknown7E9F2F = 0;
 	unknown7E9F31 = 0;
@@ -4519,15 +4521,15 @@ void unknownC49B6E(short arg1) {
 	} else {
 		copyToVRAM(0, 0x4E0, cast(ushort)(0xD0 * unknown7E9F2D + 0x6150), &vwfBuffer[0][0]);
 	}
-	unknown7E3C1E = -1;
-	unknown7E3C20 = 0;
+	unused7E3C1E = -1;
+	unused7E3C20 = 0;
 	waitUntilNextFrame();
 }
 
 /// $C49C56
 void unknownC49C56(short arg1) {
 	unknown7E3C16 += arg1;
-	unknown7E3C14 = 0;
+	unused7E3C14 = 0;
 	unknown7E9F2D += unknown7E3C16 / 8 + 1;
 	if (unknown7E9F2D >= 0x20) {
 		unknown7E9F2D -= 0x20;
@@ -4582,7 +4584,7 @@ void coffeeTeaScene(short id) {
 	unknown7E9F2D = 0x1C;
 	short x04 = 0;
 	const(ubyte)* x06 = (id == 0) ? &coffeeSequenceText[0] : &teaSequenceText[0];
-	unknown7E5E6E = 0;
+	enableWordWrap = 0;
 	parseLoop: while (true) {
 		switch ((x06++)[0]) {
 			case 0:
@@ -4619,7 +4621,7 @@ void coffeeTeaScene(short id) {
 	for (short i = 0x380; i != 0; i--) {
 		*(y++) = 0;
 	}
-	unknown7E5E6E = 0xFF;
+	enableWordWrap = 0xFF;
 	prepareForImmediateDMA();
 	undrawFlyoverText();
 	setForceBlank();
@@ -4636,7 +4638,7 @@ void runFlyover(short id) {
 	entityCallbackFlags[partyLeaderEntity] |= 0xC000;
 	unknownC49A56();
 	immutable(ubyte)* x06 = &flyoverTextPointers[id][0];
-	unknown7E5E6E = 0;
+	enableWordWrap = 0;
 	while (true) {
 		switch(*(x06++)) {
 			case 0:
@@ -4651,7 +4653,7 @@ void runFlyover(short id) {
 				for (short i = 0x380; i != 0; i--) {
 					*(buf++) = 0;
 				}
-				unknown7E5E6E = 0xFF;
+				enableWordWrap = 0xFF;
 				prepareForImmediateDMA();
 				undrawFlyoverText();
 				entityCallbackFlags[partyLeaderEntity] = x02;
@@ -6823,11 +6825,11 @@ short runAttractModeScene(short arg1) {
 	mirrorTM = TMTD.none;
 	unknownC2EA15(0);
 	unknownC4A7B0();
-	unknown7E9641 = 0;
+	actionscriptState = ActionScriptState.running;
 	short x12 = 0;
 	short x14 = 0;
 	displayText(getTextBlock(attractModeText[arg1]));
-	while (unknown7E9641 == 0) {
+	while (actionscriptState == ActionScriptState.running) {
 		unknownC4A7B0();
 		if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
 			x12 = 1;
@@ -6849,7 +6851,7 @@ short runAttractModeScene(short arg1) {
 		finishFrame();
 	}
 	unknownC2EAAA();
-	unknown7E9641 = 0;
+	actionscriptState = ActionScriptState.running;
 	unknownC021E6();
 	return x12;
 }
@@ -7328,8 +7330,8 @@ void playCastScene() {
 	oamClear();
 	fadeIn(1, 1);
 	initEntityWipe(ActionScript.unknown801, 0, 0);
-	unknown7E9641 = 0;
-	while (unknown7E9641 == 0) {
+	actionscriptState = ActionScriptState.running;
+	while (actionscriptState == ActionScriptState.running) {
 		finishFrame();
 		drawBattleFrame();
 	}

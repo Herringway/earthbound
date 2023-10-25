@@ -193,7 +193,7 @@ enum Window {
 	textStandard = 0x01,
 	inventory = 0x02,
 	inventoryMenu = 0x03,
-	unknown04 = 0x04,
+	targettingDescription = 0x04,
 	phoneMenu = 0x05,
 	equipMenu = 0x06,
 	equipMenuItemlist = 0x07,
@@ -205,7 +205,7 @@ enum Window {
 	unknown0d = 0x0D,
 	textBattle = 0x0E,
 	battleMenu = 0x0F,
-	unknown10 = 0x10,
+	psiCategories = 0x10,
 	unknown11 = 0x11,
 	battleMenuJeff = 0x12,
 	fileSelectMain = 0x13,
@@ -227,7 +227,7 @@ enum Window {
 	fileSelectNamingConfirmationThing = 0x23,
 	fileSelectNamingConfirmationMessage = 0x24,
 	unknown25 = 0x25,
-	unknown26 = 0x26,
+	itemPSINameWhileTargetting = 0x26, /// Used by the highlighted item & PSI name window that pops up while targetting with them
 	unknown27 = 0x27,
 	equipSelectItem = 0x28,
 	characterSelectBase = 0x28,
@@ -4445,10 +4445,10 @@ enum DoorType {
 }
 ///
 enum PartyPSIFlags {
-	teleportAlpha = 1<<0,
-	teleportBeta = 1<<1,
-	starstormAlpha = 1<<2,
-	starstormBeta = 1<<3,
+	teleportAlpha = 1 << 0,
+	starstormAlpha = 1 << 1,
+	starstormBeta = 1 << 2,
+	teleportBeta = 1 << 3,
 }
 ///
 enum WarpStyle {
@@ -4586,16 +4586,16 @@ enum PSIID {
 }
 ///
 enum PSICategory {
-	offense = 1,
-	recover = 2,
-	assist = 4,
-	other = 8,
+	offense = 1 << 0,
+	recover = 1 << 1,
+	assist = 1 << 2,
+	other = 1 << 3,
+	all = offense | recover | assist | other,
 }
 ///
-enum PSITarget {
-	nobody = 1,
-	enemies = 2,
-	allies = 3,
+enum PSIUsability {
+	overworld = 1 << 0,
+	battle = 1 << 1,
 }
 ///
 enum PSITargetA {
@@ -4615,7 +4615,7 @@ enum ThingsToName {
 	favoriteThing = 6,
 }
 ///
-enum MainMenuOptions {
+enum CommandMenuOption {
 	talkTo = 1,
 	goods = 2,
 	psi = 3,
@@ -5241,7 +5241,7 @@ enum MusicEffect {
 	unknown30 = 30,
 	unknown31 = 31,
 }
-
+///
 enum InteractionType {
 	unknown0,
 	unknown1,
@@ -5253,7 +5253,7 @@ enum InteractionType {
 	unknown7,
 	unknown8,
 	unknown9,
-	unknown10,
+	textSurvivesDoorTransition, /// Displays text, and won't be removed during a door transition
 }
 
 enum PaletteUpload {
@@ -5750,6 +5750,20 @@ enum BattleMode {
 enum PlayerMovementFlags {
 	dontChangeDirection = 1 << 0, /// Party members will not change direction as you move
 	collisionDisabled = 1 << 1, /// No collisions between sprites or the map, only doors
+}
+
+///
+enum ActionScriptState {
+	running = 0, /// Actively running
+	paused = 1, /// Waiting for control to be returned
+	titleScreenSpecial = 2, ///
+}
+///
+enum TextSoundMode {
+	unknown0 = 0, ///
+	unknown1 = 1, /// Default
+	unknown2 = 2, ///
+	unknown3 = 3, ///
 }
 
 ///
@@ -6659,10 +6673,10 @@ struct ScreenTransitionConfig {
 	ubyte secondaryAnimationFlags; ///10
 	ubyte endingSoundEffect; ///11
 }
-///
-struct Unknown7E5E06Entry {
-	ushort unknown0; ///0
-	ushort unknown2; ///2
+/// An entity creation request. Note that no coordinates are included here, so the actionscript should set them explicitly
+struct EntityCreationRequest {
+	ushort sprite; /// Sprite to use for the spawned entity
+	ushort script; /// Actionscript ID for the spawned entity
 }
 ///
 struct TeleportDestination {
@@ -6823,16 +6837,16 @@ struct TelephoneContact {
 }
 ///
 struct PSIAbility {
-	ubyte name; ///0
-	ubyte level; ///1
-	ubyte type; ///2
-	ubyte target; ///3
-	short battleAction; ///4
-	ubyte nessLevel; ///6
-	ubyte paulaLevel; ///7
-	ubyte pooLevel; ///8
-	ubyte menuX; ///9
-	ubyte menuY; ///10
+	ubyte name; /// The base name for this PSI (See earthbound.commondefs.PSIID for values)
+	ubyte level; /// The PSI level (see earthbound.commondefs.PSILevel for value values)
+	ubyte category; /// The PSI category, which determines which menu it appears in
+	ubyte usability; /// Where the PSI may be used
+	short battleAction; /// The battle action that is called when used
+	ubyte nessLevel; /// Level at which Ness learns to use this
+	ubyte paulaLevel; /// Level at which Paula learns to use this
+	ubyte pooLevel; /// Level at which Poo learns to use this
+	ubyte menuX; /// X position at which the menu option for this PSI is located (the character, not the name)
+	ubyte menuY; /// Y position at which the menu option for this PSI is located
 	string text; ///11
 }
 ///
@@ -6929,9 +6943,9 @@ struct Hotspot {
 	short y2; ///
 }
 ///
-struct CommandWindowSpacing {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
+struct CommandMenuOptionPositioning {
+	ubyte x; ///
+	ubyte y; ///
 }
 ///
 struct EnemyPlacementGroups {

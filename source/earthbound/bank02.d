@@ -57,16 +57,16 @@ immutable ushort[4] unknownC200D1 = [0b011110, 0b110011, 0b011110, 0b110011];
 
 /// $C200D9
 void initializeTextSystem() {
-	unknown7E89C9 = 0;
-	unknown7E89D2 = -1;
-	unknown7E89D0 = -1;
-	unknown7E89CE = -1;
-	unknown7E89CC = -1;
+	renderHPPPWindows = 0;
+	currentFlashingEnemyRow = -1;
+	currentFlashingEnemy = -1;
+	currentFlashingRow = -1;
+	unread7E89CC = -1;
 	battleMenuCurrentCharacterID = -1;
 	instantPrinting = 0;
 	redrawAllWindows = 0;
-	unknown7E9641 = 0;
-	unknown7E9624 = 0;
+	actionscriptState = ActionScriptState.running;
+	uploadHPPPMeterTiles = 0;
 	windowHead = -1;
 	windowTail = -1;
 	for (short i = 0; i != 8; i++) {
@@ -76,10 +76,10 @@ void initializeTextSystem() {
 		windowTable[i] = -1;
 	}
 	for (short i = 0; i != 5; i++) {
-		unknown7E894E[i] = -1;
+		titledWindows[i] = -1;
 	}
-	unknown7E5E7A = -1;
-	unknown7E5E7C = -1;
+	paginationWindow = Window.invalid;
+	paginationAnimationFrame = -1;
 	for (short i = 0x380; i != 0; i--) {
 		bg2Buffer[0x380 - i] = 0;
 	}
@@ -96,28 +96,28 @@ void initializeTextSystem() {
 	vwfTile = 0;
 	vwfX = 0;
 	blinkingTriangleFlag = 0;
-	textSoundMode = 1;
+	textSoundMode = TextSoundMode.unknown1;
 	battleModeFlag = 0;
-	inputLockFlag = 0;
+	textPromptWaitingForInput = 0;
 	currentFocusWindow = -1;
 	characterPadding = 1;
 	unknownC43F53();
-	unknown7E9651 = 0xFF;
-	unknown7E5E6E = 0xFF;
-	unknown7E5E70 = 0;
-	unknown7E5E75 = 0;
+	unread7E9651 = 0xFF;
+	enableWordWrap = 0xFF;
+	extraTickOnWindowClose = 0;
+	vwfIndentNewLine = 0;
 	// uhhhhh
 	//menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].pixelAlign = 0;
 
-	unknown7E5E71 = 0;
-	unknown7E5E72 = 0;
-	unknown7E5E73 = 0;
-	unknown7E5E74 = 0;
+	forceLeftTextAlignment = 0;
+	newTextPixelOffset = 0;
+	lastTextPixelOffsetSet = 0;
+	forceCentreTextAlignment = 0;
 	lastPrintedCharacter = 0;
 	printTargetArticle = 0;
 	printAttackerArticle = 0;
 	unknown7EB4CE = 0;
-	unknown7E5E6C = 0;
+	skipAddingCommandText = 0;
 }
 
 /// $C20266
@@ -139,13 +139,13 @@ void unknownC202AC(short arg1) {
 	if (windowStats[windowTable[arg1]].titleID == 0) {
 		short i;
 		for (i = 0; i != 5; i++) {
-			if (unknown7E894E[i] == -1) {
+			if (titledWindows[i] == -1) {
 				goto Unknown2;
 			}
 		}
 		return;
 		Unknown2:
-		unknown7E894E[i] = windowTable[arg1];
+		titledWindows[i] = windowTable[arg1];
 		windowStats[windowTable[arg1]].titleID = cast(ubyte)(i + 1);
 	}
 	renderSmallTextToVRAM(&windowStats[windowTable[arg1]].title[0], cast(ushort)(0x7700 + (windowStats[windowTable[arg1]].titleID - 1) * 128));
@@ -294,7 +294,7 @@ void drawHPPPWindow(short id) {
 
 /// $C2077D
 void drawHPPPWindows() {
-	ushort x10 = unknown7E9647;
+	ushort x10 = currentlyDrawnHPPPWindows;
 	for (short i = 0; i != gameState.playerControlledPartyMemberCount; i++) {
 		if ((x10 & 1) != 0) {
 			drawHPPPWindow(i);
@@ -305,15 +305,15 @@ void drawHPPPWindows() {
 
 /// $C207B6
 void unknownC207B6(short arg1) {
-	unknown7E9647 |= (1 << arg1);
+	currentlyDrawnHPPPWindows |= (1 << arg1);
 	drawHPPPWindow(arg1);
-	unknown7E9649 = 1;
+	hpPPMeterAreaNeedsUpdate = 1;
 }
 
 /// $C207E1
 void undrawHPPPWindow(short arg1) {
-	unknown7E9649 = 1;
-	unknown7E9647 &= cast(short)(0xFFFF ^ (1 << arg1));
+	hpPPMeterAreaNeedsUpdate = 1;
+	currentlyDrawnHPPPWindows &= cast(short)(0xFFFF ^ (1 << arg1));
 	short x0E;
 	if (arg1 == battleMenuCurrentCharacterID) {
 		x0E = 18;
@@ -331,7 +331,7 @@ void undrawHPPPWindow(short arg1) {
 
 /// $C2087C
 void drawOpenWindows() {
-	if (unknown7E89C9 != 0) {
+	if (renderHPPPWindows != 0) {
 		drawHPPPWindows();
 	}
 	if (windowHead == -1) {
@@ -553,11 +553,11 @@ void fillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short integer, sh
 }
 
 /// $C20F58
-uint unknownC20F58() {
+uint getHPPPMeterSpeed() {
 	if (unknown7E9695 != 0) {
-		return unknown7E9627 >> 1;
+		return hpMeterSpeed >> 1;
 	} else {
-		return unknown7E9627;
+		return hpMeterSpeed;
 	}
 }
 
@@ -613,7 +613,7 @@ void hpPPRoller() {
 	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1];
 	if ((unknown7E9698 != 0) || ((x10.hp.current.fraction & 1) != 0)) {
 		if (x10.hp.current.integer < x10.hp.target) {
-			x10.hp.current.combined += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? 0x64000 : unknownC20F58();
+			x10.hp.current.combined += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? 0x64000 : getHPPPMeterSpeed();
 			if (x10.hp.current.integer >= x10.hp.target) {
 				x10.hp.current.integer = x10.hp.target;
 				x10.hp.current.fraction = 1;
@@ -621,7 +621,7 @@ void hpPPRoller() {
 		} else if ((x10.hp.current.integer == x10.hp.target) && (x10.hp.current.fraction == 1)) {
 			x10.hp.current.fraction = 0;
 		} else {
-			x10.hp.current.combined -= (unknown7E9698 != 0) ? 0x64000 : unknownC20F58();
+			x10.hp.current.combined -= (unknown7E9698 != 0) ? 0x64000 : getHPPPMeterSpeed();
 			if ((x10.hp.current.integer < x10.hp.target) || (x10.hp.current.integer > 0x1000)) {
 				x10.hp.current.integer = x10.hp.target;
 				x10.hp.current.fraction = 1;
@@ -666,7 +666,7 @@ void hpPPRoller() {
 
 /// $C213AC
 void updateHPPPMeterTiles() {
-	if (unknown7E89C9 == 0) {
+	if (renderHPPPWindows == 0) {
 		return;
 	}
 	if (gameState.partyMembers[frameCounter & 3] == 0) {
@@ -675,7 +675,7 @@ void updateHPPPMeterTiles() {
 	if (gameState.partyMembers[frameCounter & 3] > 4) {
 		return;
 	}
-	if ((unknown7E9647 >> (frameCounter & 3) & 1) == 0) {
+	if ((currentlyDrawnHPPPWindows >> (frameCounter & 3) & 1) == 0) {
 		return;
 	}
 	short x1C = 16 - (gameState.playerControlledPartyMemberCount * 7 )/ 2 + ((battleMenuCurrentCharacterID == (frameCounter & 3)) ? 18 : 19) * 32 + 96 + 3 + ((frameCounter & 3) * 7);
@@ -683,7 +683,7 @@ void updateHPPPMeterTiles() {
 	//x1C = 0x7C00[x1C];
 	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction & 1) != 0) {
 		fillCharacterHPTileBuffer(frameCounter & 3, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].hp.current.fraction);
-		if (unknown7E9624 == 0) {
+		if (uploadHPPPMeterTiles == 0) {
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C00 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][0]);
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C20 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][3]);
 		}
@@ -701,7 +701,7 @@ void updateHPPPMeterTiles() {
 	}
 	if ((partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction & 1) != 0) {
 		fillCharacterPPTileBuffer(frameCounter & 3, &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].afflictions[0], partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.integer, partyCharacters[gameState.partyMembers[frameCounter & 3] - 1].pp.current.fraction);
-		if (unknown7E9624 == 0) {
+		if (uploadHPPPMeterTiles == 0) {
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C40 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][6]);
 			copyToVRAMAlt(0, 6, cast(ushort)(0x7C60 + x1C), cast(ubyte*)&hpPPWindowBuffer[frameCounter & 3][9]);
 		}
@@ -714,8 +714,8 @@ void updateHPPPMeterTiles() {
 			(y++)[0] = (x12++)[0];
 		}
 	}
-	if (unknown7E9624 != 0) {
-		unknown7E9624 = 0;
+	if (uploadHPPPMeterTiles != 0) {
+		uploadHPPPMeterTiles = 0;
 	}
 }
 
@@ -1116,13 +1116,13 @@ void learnSpecialPSI(short id) {
 			gameState.partyPSI |= PartyPSIFlags.teleportAlpha;
 			break;
 		case 2:
-			gameState.partyPSI |= PartyPSIFlags.teleportBeta;
-			break;
-		case 3:
 			gameState.partyPSI |= PartyPSIFlags.starstormAlpha;
 			break;
-		case 4:
+		case 3:
 			gameState.partyPSI |= PartyPSIFlags.starstormBeta;
+			break;
+		case 4:
+			gameState.partyPSI |= PartyPSIFlags.teleportBeta;
 			break;
 		default: break;
 	}

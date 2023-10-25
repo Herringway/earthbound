@@ -332,7 +332,7 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	Window.textStandard: WindowConfig(0x000C, 0x0001, 0x0013, 0x0008),
 	Window.inventory: WindowConfig(0x0007, 0x0001, 0x0018, 0x0010),
 	Window.inventoryMenu: WindowConfig(0x0001, 0x0001, 0x0006, 0x000A),
-	Window.unknown04: WindowConfig(0x0001, 0x0003, 0x000B, 0x0006),
+	Window.targettingDescription: WindowConfig(0x0001, 0x0003, 0x000B, 0x0006), /// Used for targetting and PP cost descriptions in battle
 	Window.phoneMenu: WindowConfig(0x0014, 0x0001, 0x000B, 0x0010),
 	Window.equipMenu: WindowConfig(0x0008, 0x0001, 0x0014, 0x000A),
 	Window.equipMenuItemlist: WindowConfig(0x0012, 0x0001, 0x000D, 0x0010),
@@ -344,7 +344,7 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	Window.unknown0d: WindowConfig(0x0007, 0x0001, 0x0018, 0x0010),
 	Window.textBattle: WindowConfig(0x0004, 0x0001, 0x0018, 0x0006),
 	Window.battleMenu: WindowConfig(0x0001, 0x0001, 0x0015, 0x0006),
-	Window.unknown10: WindowConfig(0x0004, 0x0001, 0x0008, 0x0008),
+	Window.psiCategories: WindowConfig(0x0004, 0x0001, 0x0008, 0x0008), // Used for the PSI category list
 	Window.unknown11: WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
 	Window.battleMenuJeff: WindowConfig(0x0001, 0x0001, 0x000E, 0x0006),
 	Window.fileSelectMain: WindowConfig(0x0001, 0x0002, 0x001E, 0x0008),
@@ -366,7 +366,7 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	Window.fileSelectNamingConfirmationThing: WindowConfig(0x000F, 0x000D, 0x000D, 0x0006),
 	Window.fileSelectNamingConfirmationMessage: WindowConfig(0x0004, 0x0015, 0x0018, 0x0004),
 	Window.unknown25: WindowConfig(0x0012, 0x0006, 0x000D, 0x0008),
-	Window.unknown26: WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
+	Window.itemPSINameWhileTargetting: WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
 	Window.unknown27: WindowConfig(0x0003, 0x0003, 0x001A, 0x0006),
 	Window.equipSelectItem: WindowConfig(0x0001, 0x0001, 0x0007, 0x0004),
 	Window.unknown29: WindowConfig(0x0010, 0x0008, 0x000F, 0x0004),
@@ -506,18 +506,18 @@ void closeWindow(short arg1) {
 	}
 	unknownC45E96();
 	if (windowStats[x10].titleID != 0) {
-		unknown7E894E[windowStats[x10].titleID - 1] = -1;
+		titledWindows[windowStats[x10].titleID - 1] = -1;
 	}
 	windowStats[x10].titleID = 0;
 	redrawAllWindows = 1;
-	if (unknown7E5E7A == arg1) {
-		unknown7E5E7A = -1;
+	if (paginationWindow == arg1) {
+		paginationWindow = Window.invalid;
 	}
-	if (unknown7E5E70 == 0) {
+	if (extraTickOnWindowClose == 0) {
 		windowTickWithoutInstantPrinting();
 		clearInstantPrinting();
 	}
-	unknown7E5E75 = 0;
+	vwfIndentNewLine = 0;
 }
 
 /// $C3E6F8
@@ -642,13 +642,13 @@ immutable ubyte[10][24] debugMenuText = [
 ];
 
 /// $C3E964
-immutable CommandWindowSpacing[6] debugMenuElementSpacingData = [
-	CommandWindowSpacing(0x00, 0x00),
-	CommandWindowSpacing(0x06, 0x00),
-	CommandWindowSpacing(0x00, 0x01),
-	CommandWindowSpacing(0x06, 0x01),
-	CommandWindowSpacing(0x00, 0x02),
-	CommandWindowSpacing(0x06, 0x02),
+immutable CommandMenuOptionPositioning[6] commandMenuOptionPositioning = [
+	CommandMenuOptionPositioning(0x00, 0x00),
+	CommandMenuOptionPositioning(0x06, 0x00),
+	CommandMenuOptionPositioning(0x00, 0x01),
+	CommandMenuOptionPositioning(0x06, 0x01),
+	CommandMenuOptionPositioning(0x00, 0x02),
+	CommandMenuOptionPositioning(0x06, 0x02),
 ];
 
 /// $C3E970
@@ -1120,7 +1120,7 @@ short showTitleScreen(short arg1) {
 	mirrorTM = TMTD.obj | TMTD.bg1;
 	oamClear();
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
-	unknown7E9641 = 0;
+	actionscriptState = ActionScriptState.running;
 	if (unknown7E9F75 == 0) {
 		memset(&palettes[0][0], 0, 0x200);
 		paletteUploadMode = PaletteUpload.full;
@@ -1144,7 +1144,7 @@ short showTitleScreen(short arg1) {
 		}
 	}
 	short x02 = 0;
-	while ((unknown7E9641 == 0) || (unknown7E9641 == 2)) {
+	while ((actionscriptState == ActionScriptState.running) || (actionscriptState == ActionScriptState.titleScreenSpecial)) {
 		if (x04 == 0) {
 			if (((padPress[0] & Pad.a) != 0) || ((padPress[0] & Pad.b) != 0) || ((padPress[0] & Pad.start) != 0)) {
 				x02 = 1;
@@ -1153,12 +1153,12 @@ short showTitleScreen(short arg1) {
 		}
 		finishFrame();
 	}
-	if ((unknown7E9F75 == 0) && (unknown7E9641 == 0)) {
+	if ((unknown7E9F75 == 0) && (actionscriptState == ActionScriptState.running)) {
 		x02 = unknownEF04DC();
 	}
 	fadeOutWithMosaic(1, 4, 0);
 	if (x04 == 0) {
-		unknown7E9641 = 0;
+		actionscriptState = ActionScriptState.running;
 		unknownC474A8(/+0+/);
 		unknownC0927C();
 		return x02;
@@ -1484,7 +1484,7 @@ short unknownC3FAC9(ushort arg1, ushort arg2) {
 }
 
 /// $C3FB1F
-immutable uint[3] unknownC3FB1F = [
+immutable uint[3] hpMeterSpeeds = [
 	0x12000,
 	0x11800,
 	0x11000,
