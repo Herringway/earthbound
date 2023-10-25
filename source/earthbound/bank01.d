@@ -5717,7 +5717,7 @@ short overworldPSIMenu() {
 
 /// $C1BB06
 void unknownC1BB06(short arg1) {
-	if ((unknown7E9D19 == 0xFF) || (arg1 == unknown7E9D19)) {
+	if ((unknown7E9D19 == 0xFF) || (arg1 != unknown7E9D19)) {
 		unknownC1C8BC(arg1);
 		createWindowN(Window.unknown2f);
 		windowTickWithoutInstantPrinting();
