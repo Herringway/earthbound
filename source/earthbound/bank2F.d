@@ -96,19 +96,21 @@ void unknownEF01D2(short arg1) {
 }
 
 /// $EF0256
-void pauseMusic() {
-	unknown7E9697 = 1;
+void stopHPPPRolling() {
+	disableHPPPRolling = 1;
 }
 
-/// $EF0262
-void unknownEF0262() {
-	unknown7E9695 = 1;
+/** Sets the HP meter to half-speed mode
+ * Original_Address: $(DOLLAR)EF0262
+ */
+void enableHalfHPMeterSpeed() {
+	halfHPMeterSpeed = 1;
 }
 
 /// $EF026E
-void resumeMusic() {
-	unknown7E9695 = 0;
-	unknown7E9697 = 0;
+void resumeHPPPRolling() {
+	halfHPMeterSpeed = 0;
+	disableHPPPRolling = 0;
 }
 
 /// $EF027D

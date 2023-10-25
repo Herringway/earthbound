@@ -1213,10 +1213,10 @@ __gshared ubyte[32][52] vwfBuffer;
  * Original_Address: $(DOLLAR)3C14
  */
 __gshared short unused7E3C14;
-/** Unsure. Related to scrolling for flyovers.
+/** The number of pixels to add to the current position in flyovers. Before and after addition, will be an offset within a single tile (ie less than 8)
  * Original_Address: $(DOLLAR)3C16
  */
-__gshared short unknown7E3C16;
+__gshared short flyoverNextLineIncrement;
 /** Unknown. Set to 0x1A and only read in C41DB6, which is vestigial
  * Original_Address: $(DOLLAR)3C18
  */
@@ -2083,80 +2083,265 @@ __gshared short menuBackupSelectedOption;
  * Original_Address: $(DOLLAR)968C
  */
 __gshared short earlyTickExit;
-__gshared ubyte[4] unknown7E968D; /// Original_Address: $(DOLLAR)968D
-__gshared ubyte[4] unknown7E9691; /// Original_Address: $(DOLLAR)9691
-__gshared ubyte unknown7E9695; /// Original_Address: $(DOLLAR)9695
-__gshared ubyte unknown7E9696; /// Original_Address: $(DOLLAR)9696
-__gshared ubyte unknown7E9697; /// Original_Address: $(DOLLAR)9697
-__gshared short unknown7E9698; /// Original_Address: $(DOLLAR)9698
-__gshared short[4] unknown7E969A; /// Original_Address: $(DOLLAR)969A
-__gshared short[4] unknown7E96A2; /// Original_Address: $(DOLLAR)96A2
-__gshared DisplayTextState[10] displayTextStates; /// Original_Address: $(DOLLAR)96AA
-__gshared ushort unknown7E97B8; /// Original_Address: $(DOLLAR)97B8
-__gshared ubyte[65] ccArgumentStorage; /// Original_Address: $(DOLLAR)97BA
-__gshared ushort ccArgumentGatheringLoopCounter; /// Original_Address: $(DOLLAR)97CA
-__gshared WorkingMemory wramScriptWorkMemory; /// Original_Address: $(DOLLAR)97CC
-__gshared uint wramScriptArgMemory; /// Original_Address: $(DOLLAR)97D0
-__gshared ubyte wramScriptSecMemory; /// Original_Address: $(DOLLAR)97D4
-__gshared short unknown7E97D5; /// Original_Address: $(DOLLAR)97D5
-__gshared ubyte[30] unknown7E97D7; /// Original_Address: $(DOLLAR)97D7
-
-__gshared GameState gameState; /// Original_Address: $(DOLLAR)97F5
-__gshared PartyCharacter[totalPartyCount] partyCharacters; /// Original_Address: $(DOLLAR)99CE
-__gshared ubyte[eventFlagCount / 8] eventFlags; /// Original_Address: $(DOLLAR)9C08
-__gshared ushort currentInteractingEventFlag; /// Original_Address: $(DOLLAR)9C88
-__gshared WindowTextAttributesCopy windowTextAttributesBackup; /// Original_Address: $(DOLLAR)9C8A
-__gshared ubyte[49] unknown7E9C9F; /// Original_Address: $(DOLLAR)9C9F
-__gshared ubyte unknown7E9CD0; /// Original_Address: $(DOLLAR)9CD0
-__gshared ubyte unknown7E9CD1; /// Original_Address: $(DOLLAR)9CD1
-__gshared ubyte unknown7E9CD2; /// Original_Address: $(DOLLAR)9CD2
-__gshared ubyte unknown7E9CD3; /// Original_Address: $(DOLLAR)9CD3
-__gshared short unknown7E9CD4; /// Original_Address: $(DOLLAR)9CD4
-__gshared ubyte unknown7E9CD6; /// Original_Address: $(DOLLAR)9CD6
-__gshared ubyte[30] battleAttackerName; /// Original_Address: $(DOLLAR)9CD7
-__gshared ubyte[28] battleTargetName; /// Original_Address: $(DOLLAR)9CF5
-__gshared ubyte cItem; /// Original_Address: $(DOLLAR)9D11
-__gshared uint cNum; /// Original_Address: $(DOLLAR)9D12
-__gshared short overworldSelectedPSIUser; /// Original_Address: $(DOLLAR)9D16
-__gshared ubyte unknown7E9D18; /// Original_Address: $(DOLLAR)9D18
-__gshared short unknown7E9D19; /// Original_Address: $(DOLLAR)9D19
-__gshared void function() unknown7E9D1B; /// Original_Address: $(DOLLAR)9D1B
-__gshared short respawnX; /// Original_Address: $(DOLLAR)9D1F
-__gshared short respawnY; /// Original_Address: $(DOLLAR)9D21
-__gshared ubyte[8][0x20] unknown7E9D23; /// Original_Address: $(DOLLAR)9D23
-
-__gshared ushort vwfX; /// Original_Address: $(DOLLAR)9E23
-__gshared ushort vwfTile; /// Original_Address: $(DOLLAR)9E25
-__gshared ushort unknown7E9E27; /// Original_Address: $(DOLLAR)9E27
-__gshared ushort unknown7E9E29; /// Original_Address: $(DOLLAR)9E29
-
-__gshared ushort dmaTransferFlag; /// Original_Address: $(DOLLAR)9E2B
-__gshared ushort entityPreparedXCoordinate; /// Original_Address: $(DOLLAR)9E2D
-__gshared ushort entityPreparedYCoordinate; /// Original_Address: $(DOLLAR)9E2F
-__gshared ushort entityPreparedDirection; /// Original_Address: $(DOLLAR)9E31
-__gshared ushort cameraFocusEntity; /// Original_Address: $(DOLLAR)9E33
-__gshared short unknown7E9E35; /// Original_Address: $(DOLLAR)9E35
-__gshared ubyte unknown7E9E37; /// Original_Address: $(DOLLAR)9E37
-__gshared ubyte unknown7E9E38; /// Original_Address: $(DOLLAR)9E38
-__gshared ubyte unknown7E9E39; /// Original_Address: $(DOLLAR)9E39
-__gshared short rectangleWindowBufferIndex; /// Original_Address: $(DOLLAR)9E3A
-__gshared OverworldTask[4] overworldTasks; /// Original_Address: $(DOLLAR)9E3C
-
-__gshared ushort dadPhoneTimer; /// Original_Address: $(DOLLAR)9E54
-__gshared short unknown7E9E56; /// Original_Address: $(DOLLAR)9E56
-__gshared DemoEntry[64] autoMovementDemoBuffer; /// Original_Address: $(DOLLAR)9E58
-
-__gshared short autoMovementDemoPosition; /// Original_Address: $(DOLLAR)9E56
-__gshared LoadedItemTransformation[4] loadedItemTransformations; /// Original_Address: $(DOLLAR)9F1A
-
-__gshared short unknown7E9F2A; /// Original_Address: $(DOLLAR)9F2A
-__gshared ubyte unknown7E9F2C; /// Original_Address: $(DOLLAR)9F2C
-__gshared short unknown7E9F2D; /// Original_Address: $(DOLLAR)9F2D
-__gshared short unknown7E9F2F; /// Original_Address: $(DOLLAR)9F2F
-__gshared short unknown7E9F31; /// Original_Address: $(DOLLAR)9F31
+/** The lengths of each menu option for an unused menu mode
+ * Original_Address: $(DOLLAR)968D
+ */
+__gshared ubyte[4] menuOptionLabelLengths;
+/** Unsure. Only used by an unused menu option, which doesn't seem to work well
+ * Original_Address: $(DOLLAR)9691
+ */
+__gshared ubyte[4] unknown7E9691;
+/** When set, the HP meter rolls at half speed
+ * Original_Address: $(DOLLAR)9695
+ */
+__gshared ubyte halfHPMeterSpeed;
+/** When nonzero, HP rolls at 100x normal speed
+ * Original_Address: $(DOLLAR)9696
+ */
+__gshared ubyte fastestHPMeterSpeed;
+/** While nonzero, don't do any HP/PP rolling at all
+ * Original_Address: $(DOLLAR)9697
+ */
+__gshared ubyte disableHPPPRolling;
+/** Causes HP/PP meters to roll up to 999, down to 0, then back to 999 repeatedly while nonzero
+ * Original_Address: $(DOLLAR)9698
+ */
+__gshared short hpPPMeterFlipoutMode;
+/** Backups for party HP when HP/PP meter flipout mode is enabled
+ * Original_Address: $(DOLLAR)969A
+ */
+__gshared short[4] hpPPMeterFlipoutModeHPBackups;
+/** Backups for party HP when HP/PP meter flipout mode is enabled
+ * Original_Address: $(DOLLAR)96A2
+ */
+__gshared short[4] hpPPMeterFlipoutModePPBackups;
+/** The text script stack, holding script pointers and other state for each text call
+ * Original_Address: $(DOLLAR)96AA
+ */
+__gshared DisplayTextState[10] displayTextStates;
+/** The index into displayTextStates of the next stack frame
+ * Original_Address: $(DOLLAR)97B8
+ */
+__gshared ushort nextTextStackFrame;
+/** Temporary storage for text control code arguments
+ * Original_Address: $(DOLLAR)97BA
+ */
+__gshared ubyte[(void*).sizeof * 16 + 1] ccArgumentStorage;
+/** Current index into ccArgumentStorage for the next bytes read
+ * Original_Address: $(DOLLAR)97CA
+ */
+__gshared ushort ccArgumentGatheringLoopCounter;
+/** Backup of a script's main register
+ * Original_Address: $(DOLLAR)97CC
+ */
+__gshared WorkingMemory textMainRegisterBackup;
+/** Backup of a script's sub register
+ * Original_Address: $(DOLLAR)97D0
+ */
+__gshared uint textSubRegisterBackup;
+/** Backup of a script's loop register
+ * Original_Address: $(DOLLAR)97D4
+ */
+__gshared ubyte textLoopRegisterBackup;
+/** Offset of the chosen text script called by the ONGOSUB() control code
+ * Original_Address: $(DOLLAR)97D5
+ */
+__gshared short onGoSubOffset;
+/** Buffer that holds a new menu option being constructed by a text script
+ * Original_Address: $(DOLLAR)97D7
+ */
+__gshared ubyte[30] textNewMenuOptionBuffer;
+/** Game state that can be saved and restored with save files
+ * Original_Address: $(DOLLAR)97F5
+ */
+__gshared GameState gameState;
+/** Party character data that can be saved and restored with save files
+ * Original_Address: $(DOLLAR)99CE
+ */
+__gshared PartyCharacter[totalPartyCount] partyCharacters;
+/** Event flags describing the state of the game world, such as story progress or present boxes opened
+ * Original_Address: $(DOLLAR)9C08
+ */
+__gshared ubyte[eventFlagCount / 8] eventFlags;
+/** The event flag associated with the NPC currently being interacted with
+ * Original_Address: $(DOLLAR)9C88
+ */
+__gshared ushort currentInteractingEventFlag;
+/** A backup of the active window's text attributes typically saved before a menu is created and restored afterward
+ * Original_Address: $(DOLLAR)9C8A
+ */
+__gshared WindowTextAttributesCopy windowTextAttributesBackup;
+/** A text buffer for constructing fairly long temporary strings
+ * Original_Address: $(DOLLAR)9C9F
+ */
+__gshared ubyte[49] temporaryTextBuffer;
+/** A temporary weapon ID to be used with the other temporary gear IDs to calculate and print a set of stats
+ * Original_Address: $(DOLLAR)9CD0
+ */
+__gshared ubyte temporaryWeapon;
+/** A temporary body gear ID to be used with the other temporary gear IDs to calculate and print a set of stats
+ * Original_Address: $(DOLLAR)9CD1
+ */
+__gshared ubyte temporaryBodyGear;
+/** A temporary arms gear ID to be used with the other temporary gear IDs to calculate and print a set of stats
+ * Original_Address: $(DOLLAR)9CD2
+ */
+__gshared ubyte temporaryArmsGear;
+/** A temporary other gear ID to be used with the other temporary gear IDs to calculate and print a set of stats
+ * Original_Address: $(DOLLAR)9CD3
+ */
+__gshared ubyte temporaryOtherGear;
+/** If nonzero, compare stats of the character's current gear to the temporary gear IDs
+ * Original_Address: $(DOLLAR)9CD4
+ */
+__gshared short compareEquipmentMode;
+/** The currently selected character in the equip menu
+ * Original_Address: $(DOLLAR)9CD6
+ */
+__gshared ubyte characterForEquipMenu;
+/** A temporary buffer for battle attacker names
+ * Original_Address: $(DOLLAR)9CD7
+ */
+__gshared ubyte[30] battleAttackerName;
+/** A temporary buffer for battle target names
+ * Original_Address: $(DOLLAR)9CF5
+ */
+__gshared ubyte[28] battleTargetName;
+/** The ID associated with the battle action being used, usually a PSI ID or item
+ * Original_Address: $(DOLLAR)9D11
+ */
+__gshared ubyte cItem;
+/** Script-specific integer data accessed with the GET_CNUM control code
+ * Original_Address: $(DOLLAR)9D12
+ */
+__gshared uint cNum;
+/** The character ID of the overworld PSI user
+ * Original_Address: $(DOLLAR)9D16
+ */
+__gshared short overworldSelectedPSIUser;
+/** Set to 1 if there is only one character capable of using PSI in the party
+ * Original_Address: $(DOLLAR)9D18
+ */
+__gshared ubyte onlyOneCharacterWithPSI;
+/** The ID of the last selected PSI in the PSI description menu, or 0xFF if none
+ * Original_Address: $(DOLLAR)9D19
+ */
+__gshared short lastSelectedPSIDescription;
+/** A function called after a successful teleportation is completed and the party has arrived at their intended destination
+ * Original_Address: $(DOLLAR)9D1B
+ */
+__gshared void function() postTeleportCallback;
+/** The X coordinate that the party will respawn at after returning from a game over
+ * Original_Address: $(DOLLAR)9D1F
+ */
+__gshared short respawnX;
+/** The Y coordinate that the party will respawn at after returning from a game over
+ * Original_Address: $(DOLLAR)9D21
+ */
+__gshared short respawnY;
+/** Unknown. Mother 2 used this, but Earthbound never reads from this
+ * Original_Address: $(DOLLAR)9D23
+ */
+__gshared ubyte[8][0x20] unread7E9D23;
+/** Current text renderer X position measured in pixels
+ * Original_Address: $(DOLLAR)9E23
+ */
+__gshared ushort vwfX;
+/** Current text renderer X position measured in tiles
+ * Original_Address: $(DOLLAR)9E25
+ */
+__gshared ushort vwfTile;
+/** Unknown. Vestigial Mother 2 global variable. Counts up to 48 and resets itself, otherwise unused
+ * Original_Address: $(DOLLAR)9E27
+ */
+__gshared ushort unused7E9E27;
+/** Unknown. Vestigial Mother 2 global variable. Always zero, never read
+ * Original_Address: $(DOLLAR)9E29
+ */
+__gshared ushort unread7E9E29;
+/** When 1, wait for DMA transfers to complete while rendering lines of text
+ * Original_Address: $(DOLLAR)9E2B
+ */
+__gshared ushort dmaTransferFlag;
+/** X coordinate for the entity being spawned with createPreparedEntityNPC()
+ * Original_Address: $(DOLLAR)9E2D
+ */
+__gshared ushort entityPreparedXCoordinate;
+/** Y coordinate for the entity being spawned with createPreparedEntityNPC()
+ * Original_Address: $(DOLLAR)9E2F
+ */
+__gshared ushort entityPreparedYCoordinate;
+/** Direction for the entity being spawned with createPreparedEntityNPC()
+ * Original_Address: $(DOLLAR)9E31
+ */
+__gshared ushort entityPreparedDirection;
+/** The entity that the camera is currently focusing on
+ * Original_Address: $(DOLLAR)9E33
+ */
+__gshared ushort cameraFocusEntity;
+/** The ID of the travelling photographer being spawned
+ * Original_Address: $(DOLLAR)9E35
+ */
+__gshared short spawningTravellingPhotographerID;
+/** Red component of the colour to send to COLDATA from actionscripts
+ * Original_Address: $(DOLLAR)9E37
+ */
+__gshared ubyte actionscriptCOLDATABlue;
+/** Red component of the colour to send to COLDATA from actionscripts
+ * Original_Address: $(DOLLAR)9E38
+ */
+__gshared ubyte actionscriptCOLDATAGreen;
+/** Red component of the colour to send to COLDATA from actionscripts
+ * Original_Address: $(DOLLAR)9E39
+ */
+__gshared ubyte actionscriptCOLDATARed;
+/** Buffer index for creating rectangular regions onscreen with HDMA-controlled windowing. When odd, use the first buffer. When even, use the second buffer
+ * Original_Address: $(DOLLAR)9E3A
+ */
+__gshared short rectangleWindowBufferIndex;
+/** Overworld tasks to be executed periodically. If a task wants to be executed repeatedly, it must requeue itself
+ * Original_Address: $(DOLLAR)9E3C
+ */
+__gshared OverworldTask[4] overworldTasks;
+/** Number of frames until dad calls the player
+ * Original_Address: $(DOLLAR)9E54
+ */
+__gshared ushort dadPhoneTimer;
+/** Set when a call from dad has been queued up
+ * Original_Address: $(DOLLAR)9E56
+ */
+__gshared short dadPhoneQueued;
+/** Buffer to create an automatic movement demo in for use with the demo replay system, used for things like stairs and escalators
+ * Original_Address: $(DOLLAR)9E58
+ */
+__gshared DemoEntry[64] autoMovementDemoBuffer;
+/** Current index into the autoMovementDemoBuffer
+ * Original_Address: $(DOLLAR)9E56
+ */
+__gshared short autoMovementDemoPosition;
+/** Active item transformations waiting to happen
+ * Original_Address: $(DOLLAR)9F1A
+ */
+__gshared LoadedItemTransformation[4] loadedItemTransformations;
+/** Nonzero if any valid item transformations are loaded
+ * Original_Address: $(DOLLAR)9F2A
+ */
+__gshared short itemTransformationsLoaded;
+/** Number of frames until the next item transformation check occurs
+ * Original_Address: $(DOLLAR)9F2C
+ */
+__gshared ubyte timeUntilNextItemTransformationCheck;
+__gshared short flyoverScreenOffset; /// Original_Address: $(DOLLAR)9F2D
+/** Pixel offset at which the flyover text renderer will start rendering
+ * Original_Address: $(DOLLAR)9F2F
+ */
+__gshared short flyoverPixelOffset;
+/** Byte offset into the VWF buffer at which the flyover text renderer will start rendering
+ * Original_Address: $(DOLLAR)9F31
+ */
+__gshared short flyoverByteOffset;
 __gshared short unknown7E9F33; /// Original_Address: $(DOLLAR)9F33
 __gshared short unknown7E9F35; /// Original_Address: $(DOLLAR)9F35
-
 __gshared short unknown7E9F39; /// Original_Address: $(DOLLAR)9F39
 __gshared short unknown7E9F3B; /// Original_Address: $(DOLLAR)9F3B
 __gshared short unknown7E9F3D; /// Original_Address: $(DOLLAR)9F3D

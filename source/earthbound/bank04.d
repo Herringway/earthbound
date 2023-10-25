@@ -542,9 +542,9 @@ void unknownC4240A() {
 /// $C42439
 void unknownC42439(short arg1) {
 	CGADSUB = cast(ubyte)arg1;
-	setFixedColourData(unknown7E9E37 | 0x80);
-	setFixedColourData(unknown7E9E38 | 0x40);
-	setFixedColourData(unknown7E9E39 | 0x20);
+	setFixedColourData(actionscriptCOLDATABlue | 0x80);
+	setFixedColourData(actionscriptCOLDATAGreen | 0x40);
+	setFixedColourData(actionscriptCOLDATARed | 0x20);
 }
 
 /// $C4245D
@@ -2137,21 +2137,21 @@ void unknownC451FA(short arg1, short arg2, short arg3) {
 	}
 	windowStats[windowTable[currentFocusWindow]].menuColumns = arg1;
 	MenuOpt* x24 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
-	memset(&unknown7E968D[0], 0, 4);
+	memset(&menuOptionLabelLengths[0], 0, 4);
 	memset(&unknown7E9691[0], 0xFF, 4);
 	if (arg3 != 0) {
 		while (true) {
-			unknown7E968D[x04] = cast(ubyte)(unknownC43E31(&x24.label[0], 30) + 8);
-			x02 += unknown7E968D[x04];
+			menuOptionLabelLengths[x04] = cast(ubyte)(unknownC43E31(&x24.label[0], 30) + 8);
+			x02 += menuOptionLabelLengths[x04];
 			if (x24.next == -1) {
 				break;
 			}
 			x24 = &menuOptions[x24.next];
 			x04++;
 		}
-		ushort x22 = cast(ushort)((windowStats[windowTable[currentFocusWindow]].width * 0x800) / x02);
+		ushort optionSpacing = cast(ushort)((windowStats[windowTable[currentFocusWindow]].width * 0x800) / x02);
 		while (x04 != -1) {
-			unknown7E9691[x04] = cast(ubyte)((x22 * unknown7E968D[x04]) / 256);
+			unknown7E9691[x04] = cast(ubyte)((optionSpacing * menuOptionLabelLengths[x04]) / 256);
 			x04--;
 		}
 		x24 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
@@ -2170,7 +2170,7 @@ void unknownC451FA(short arg1, short arg2, short arg3) {
 		for (short x2A = x1E; x2A != 0; x2A--) {
 			for (short x18 = arg1; x18 != 0; x18--) {
 				if (arg3 != 0) {
-					x24.textX = cast(short)(x22 + (unknown7E9691[x04] - unknown7E968D[x04]) / 16);
+					x24.textX = cast(short)(x22 + (unknown7E9691[x04] - menuOptionLabelLengths[x04]) / 16);
 					x24.textY = x1A;
 					x24.page = x1C;
 					if (x24.next == -1) {
@@ -2442,14 +2442,14 @@ immutable ubyte[6] homesicknessProbabilities = [
 void unknownC45E96() {
 	while (dmaTransferFlag != 0) { waitForInterrupt(); }
 	for (short i = 0; i < 0x20; i++) {
-		unknown7E9D23[i][0] = 0xFF;
+		unread7E9D23[i][0] = 0xFF;
 	}
 	vwfTile = 0;
 	vwfX = 0;
-	if (++unknown7E9E27 >= 0x30) {
-		unknown7E9E27 = 0;
+	if (++unused7E9E27 >= 0x30) {
+		unused7E9E27 = 0;
 	}
-	unknown7E9E29 = 0;
+	unread7E9E29 = 0;
 	unknownC44E44();
 }
 
@@ -2823,7 +2823,7 @@ void clearCameraFocus() {
 void spawnTravellingPhotographer(short arg1) {
 	unknownC07C5B();
 	playerIntangibilityFrames = 0;
-	unknown7E9E35 = cast(short)(arg1 - 1);
+	spawningTravellingPhotographerID = cast(short)(arg1 - 1);
 	displayText(getTextBlock("MSG_EVT_PHOTOGRAPHER"));
 	savePhotoState(arg1);
 }
@@ -3160,8 +3160,8 @@ void unknownC46D23() {
 
 /// $C46D4B
 void unknownC46D4B() {
-	entityAbsXTable[currentEntitySlot] = cast(short)(photographerConfigTable[unknown7E9E35].photographerX * 8);
-	entityAbsYTable[currentEntitySlot] = cast(short)(photographerConfigTable[unknown7E9E35].photographerY * 8);
+	entityAbsXTable[currentEntitySlot] = cast(short)(photographerConfigTable[spawningTravellingPhotographerID].photographerX * 8);
+	entityAbsYTable[currentEntitySlot] = cast(short)(photographerConfigTable[spawningTravellingPhotographerID].photographerY * 8);
 	entityAbsYFractionTable[currentEntitySlot] = 0;
 	entityAbsXFractionTable[currentEntitySlot] = 0;
 }
@@ -4163,8 +4163,8 @@ short isValidItemTransformation(short arg1) {
 /// $C48EEB
 void initializeItemTransformation(short arg1) {
 	if (isValidItemTransformation(arg1) == 0) {
-		unknown7E9F2C = 0x3C;
-		unknown7E9F2A++;
+		timeUntilNextItemTransformationCheck = 0x3C;
+		itemTransformationsLoaded++;
 	}
 	loadedItemTransformations[arg1].sfx = timedItemTransformationTable[arg1].sfx;
 	loadedItemTransformations[arg1].sfxFrequency = timedItemTransformationTable[arg1].sfxFrequency;
@@ -4177,7 +4177,7 @@ void unknownC48F98(short arg1) {
 	if (isValidItemTransformation(arg1) == 0) {
 		return;
 	}
-	unknown7E9F2A--;
+	itemTransformationsLoaded--;
 	loadedItemTransformations[arg1].sfxFrequency = 0;
 	loadedItemTransformations[arg1].transformationCountdown = 0;
 }
@@ -4193,10 +4193,10 @@ void processItemTransformations() {
 	if (gameState.cameraMode == CameraMode.followEntity) {
 		return;
 	}
-	if (--unknown7E9F2C != 0) {
+	if (--timeUntilNextItemTransformationCheck != 0) {
 		return;
 	}
-	unknown7E9F2C = 0x3C;
+	timeUntilNextItemTransformationCheck = 0x3C;
 	LoadedItemTransformation* x02 = loadedItemTransformations.ptr;
 	short x14 = 1;
 	short x12 = 0;
@@ -4423,49 +4423,60 @@ void unknownC4984B() {
 	}
 }
 
-/// $C49875
-void unknownC49875(ubyte arg1, ushort width, ubyte* buf, const(ubyte)* fontData) {
-	ubyte* x02 = &buf[unknown7E9F31];
-	ubyte x14 = cast(ubyte)(unknown7E9F2F % 8);
-	const(ubyte)* x06 = fontData;
+/** Render up to 8 pixels worth of large font graphics to a buffer. Automatically increases flyoverByteOffset and flyoverPixelOffset as needed
+ * Params:
+ * 	renderWidth = number of pixels across to render
+ * 	characterWidth = unused. the full width of the character being rendered
+ * 	buf = buffer to render to, starting at flyoverByteOffset
+ * 	fontData = the graphics data being rendered
+ * Original_Address: $(DOLLAR)C49875
+ */
+void renderLargeCharacterInternalCommon(ubyte renderWidth, ushort characterWidth, ubyte* buf, const(ubyte)* fontData) {
+	ubyte* destination = &buf[flyoverByteOffset];
+	ubyte subTileOffset = cast(ubyte)(flyoverPixelOffset % 8);
+	const(ubyte)* src = fontData;
 	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < 8; j++) {
-			*(x02 + 1) &= ((x06[0] ^ 0xFF) >> x14) ^ 0xFF;
-			*x02 = *(x02 + 1);
-			x02 += 2;
-			x06++;
+			*(destination + 1) &= ((src[0] ^ 0xFF) >> subTileOffset) ^ 0xFF;
+			*destination = *(destination + 1);
+			destination += 2;
+			src++;
 		}
-		x02 = &buf[unknown7E9F31 + 0x1A0];
+		destination = &buf[flyoverByteOffset + 0x1A0];
 	}
-	unknown7E9F2F += arg1;
-	if (unknown7E9F2F / 8 == unknown7E9F31) {
+	flyoverPixelOffset += renderWidth;
+	if (flyoverPixelOffset / 8 == flyoverByteOffset) {
 		return;
 	}
-	unknown7E9F31 = cast(ushort)((unknown7E9F2F / 8) * 16);
-	x06 = fontData;
-	x02 = &buf[unknown7E9F31];
+	flyoverByteOffset = cast(ushort)((flyoverPixelOffset / 8) * 16);
+	src = fontData;
+	destination = &buf[flyoverByteOffset];
 	for (short i = 0; i < 2; i++) {
 		for (short j = 0; j < 8; j++) {
-			*(x02 + 1) &= ((x06[0] ^ 0xFF) << (8 - x14)) ^ 0xFF;
-			*x02 = *(x02 + 1);
-			x02 += 2;
-			x06++;
+			*(destination + 1) &= ((src[0] ^ 0xFF) << (8 - subTileOffset)) ^ 0xFF;
+			*destination = *(destination + 1);
+			destination += 2;
+			src++;
 		}
-		x02 = &buf[unknown7E9F31 + 0x1A0];
+		destination = &buf[flyoverByteOffset + 0x1A0];
 	}
 }
 
-/// $C4999B
-void unknownC4999B(ubyte arg1) {
-	arg1 = (arg1 - 0x50) & 0x7F;
-	const(ubyte)* x06 = &fontGraphics[fontConfigTable[Font.large].graphicsID][arg1 * fontConfigTable[Font.large].height];
-	ubyte x02 = cast(ubyte)(fontData[fontConfigTable[Font.large].dataID][arg1] + 1);
-	while (x02 > 8) {
-		unknownC49875(8, fontConfigTable[Font.large].width, &vwfBuffer[0][0], x06);
-		x02 -= 8;
-		x06 += fontConfigTable[Font.large].width;
+/** Render a full large font character to the VWF buffer, adjusting flyoverByteOffset and flyoverPixelOffset as appropriate
+ * Params:
+ * 	character = The character being rendered in flyover encoding (should be in the range of 0x50 - 0xD0)
+ * Original_Address: $(DOLLAR)C4999B
+ */
+void renderLargeCharacterInternal(ubyte character) {
+	character = (character - 0x50) & 0x7F;
+	const(ubyte)* graphicsData = &fontGraphics[fontConfigTable[Font.large].graphicsID][character * fontConfigTable[Font.large].height];
+	ubyte pixelWidth = cast(ubyte)(fontData[fontConfigTable[Font.large].dataID][character] + 1);
+	while (pixelWidth > 8) { // render 8 pixels at a time
+		renderLargeCharacterInternalCommon(8, fontConfigTable[Font.large].width, &vwfBuffer[0][0], graphicsData);
+		pixelWidth -= 8;
+		graphicsData += fontConfigTable[Font.large].width;
 	}
-	unknownC49875(x02, fontConfigTable[Font.large].width, &vwfBuffer[0][0], x06);
+	renderLargeCharacterInternalCommon(pixelWidth, fontConfigTable[Font.large].width, &vwfBuffer[0][0], graphicsData);
 }
 
 /// $C49A4B
@@ -4474,52 +4485,71 @@ void unknownC49A4B() {
 	drawBattleFrame();
 }
 
-/// $C49A56 - prepares flyover text graphics
-void unknownC49A56() {
+/** Prepares for a new screen of flyover text or coffee/tea text
+ *
+ * Uploads the text palette, a tilemap for BG3, clears the VWF buffer
+ * Original_Address: $(DOLLAR)C49A56
+ */
+void prepareNewFlyoverCoffeeTeaScene() {
+	enum bg3TileMapAddress = 0x7C00;
+	enum bg3TileAddress = 0x6000;
 	prepareForImmediateDMA();
-	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
-	copyToVRAM(3, 0x3800, 0x6000, &buffer[0]);
-	memcpy(&palettes[0][0], &movementTextStringPalette[0], 8);
+	setBG3VRAMLocation(BGTileMapSize.normal, bg3TileMapAddress, bg3TileAddress);
+	copyToVRAM(3, 0x3800, bg3TileAddress, &buffer[0]);
+	memcpy(&palettes[0][0], &flyoverTextPalette[0], 8);
 	paletteUploadMode = PaletteUpload.full;
-	memset(&vwfBuffer[0][0], 0xFF, 0x680);
+	memset(&vwfBuffer[0][0], 0xFF, vwfBuffer.sizeof);
 	ushort y = 0x10;
+	// we want a 26 x 32 arrangement of sequential tiles, centered horizontally
+	// so just skip the 3 tiles on the left and right sides
 	for (short i = 0; i < 0x20; i++) {
 		bg2Buffer[i * 32] = 0;
 		bg2Buffer[i * 32 + 1] = 0;
 		bg2Buffer[i * 32 + 2] = 0;
 		for (short j = 3; j < 0x1D; j++) {
-			bg2Buffer[i * 32 + j] = cast(ushort)(0x2000 + y);
+			bg2Buffer[i * 32 + j] = cast(ushort)(0x2000 + y); // priority bit on
 			y++;
 		}
 		bg2Buffer[i * 32 + 29] = 0;
 		bg2Buffer[i * 32 + 30] = 0;
 		bg2Buffer[i * 32 + 31] = 0;
 	}
-	copyToVRAM(0, 0x800, 0x7C00, cast(ubyte*)&bg2Buffer[0]);
+	copyToVRAM(0, 0x800, bg3TileMapAddress, cast(ubyte*)&bg2Buffer[0]);
 	unused7E3C18 = 0x1A;
 	unread7E3C1C = 0;
 	unused7E3C1E = -1;
 	unused7E3C20 = 0;
 	unused7E3C14 = 0;
-	unknown7E3C16 = 0;
-	unknown7E9F2F = 0;
-	unknown7E9F31 = 0;
+	flyoverNextLineIncrement = 0;
+	flyoverPixelOffset = 0;
+	flyoverByteOffset = 0;
 	setForceBlank();
 }
 
-/// $C49B6E
-void unknownC49B6E(short arg1) {
+/** Copies rendered text tiles to VRAM
+ *
+ * Copies as much of the VWF buffer as possible into VRAM, starting at $6150 adjusted by flyoverScreenOffset.
+ * Bugs: Limits copying to $6510 + 0x3400, which extends beyond VRAM
+ * Original_Address: $(DOLLAR)C49B6E
+ */
+void flyoverCopyRenderedText(short) {
+	enum addressIncrements = vwfBuffer.sizeof / 8;
+	enum sizeIncrements = vwfBuffer.sizeof / 4;
+	enum baseDestination = 0x6150; // start at tile at (40, 8)
+	enum maximumSize = 0x3400; // the buffer must've been relocated at some point, because this is way past the end of VRAM
 	unknownC4984B();
-	if (unknown7E9F2D * 0x1A0 + 0x4E0 > 0x3400) {
-		if (0x3400 - unknown7E9F2D * 0x1A0 != 0) {
-			copyToVRAM(0, cast(short)(0x3400 - unknown7E9F2D * 0x1A0), cast(ushort)(0xD0 * unknown7E9F2D + 0x6150), &vwfBuffer[0][0]);
+	// this branch is only taken if flyoverScreenOffset is 30, which is offscreen
+	if (flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 > maximumSize) {
+		if (maximumSize - flyoverScreenOffset * sizeIncrements != 0) {
+			copyToVRAM(0, cast(short)(maximumSize - flyoverScreenOffset * sizeIncrements), cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
 		}
-		if (unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400 != 0) {
-			assert(0, "Not yet implemented");
-			//copyToVRAM(0, unknown7E9F2D * 0x1A0 + 0x4E0 - 0x3400, 0x6150, 0x6892 - unknown7E9F2D * 0x1A0);
+		// this can never be true, fortunately
+		if (flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize != 0) {
+			assert(0, "Not implemented");
+			//copyToVRAM(0, flyoverScreenOffset * sizeIncrements + sizeIncrements * 3 - maximumSize, baseDestination, 0x6892 - flyoverScreenOffset * sizeIncrements);
 		}
 	} else {
-		copyToVRAM(0, 0x4E0, cast(ushort)(0xD0 * unknown7E9F2D + 0x6150), &vwfBuffer[0][0]);
+		copyToVRAM(0, sizeIncrements * 3, cast(ushort)(addressIncrements * flyoverScreenOffset + baseDestination), &vwfBuffer[0][0]);
 	}
 	unused7E3C1E = -1;
 	unused7E3C20 = 0;
@@ -4527,38 +4557,38 @@ void unknownC49B6E(short arg1) {
 }
 
 /// $C49C56
-void unknownC49C56(short arg1) {
-	unknown7E3C16 += arg1;
+void finishLine(short nextLineOffset) {
+	flyoverNextLineIncrement += nextLineOffset;
 	unused7E3C14 = 0;
-	unknown7E9F2D += unknown7E3C16 / 8 + 1;
-	if (unknown7E9F2D >= 0x20) {
-		unknown7E9F2D -= 0x20;
+	flyoverScreenOffset += flyoverNextLineIncrement / 8 + 1;
+	if (flyoverScreenOffset >= 0x20) {
+		flyoverScreenOffset -= 0x20;
 	}
 	waitDMAFinished();
 	memset(&vwfBuffer[0][0], 0xFF, 0x680);
-	unknown7E3C16 &= 7;
-	unknown7E9F2F = 0;
-	unknown7E9F31 = 0;
+	flyoverNextLineIncrement &= 7;
+	flyoverPixelOffset = 0;
+	flyoverByteOffset = 0;
 }
 
 /// $C49CA8
-void unknownC49CA8(ubyte arg1) {
-	unknown7E9F2F += arg1 + 8;
-	unknown7E9F31 = cast(short)((unknown7E9F2F / 8) * 16);
+void flyoverSetPixelOffset(ubyte arg1) {
+	flyoverPixelOffset += arg1 + 8;
+	flyoverByteOffset = cast(short)((flyoverPixelOffset / 8) * 16);
 }
 
 /// $C49CC3
-void unknownC49CC3(ubyte arg1, short arg2) {
-	ubyte* x06 = &partyCharacters[arg1 - 1].name[0];
-	for (short i = 0; (i < 5) && (x06[0] > 0x4F); i++) {
-		unknownC4999B(*(x06++));
+void unknownC49CC3(ubyte partyCharacter, short) {
+	ubyte* name = &partyCharacters[partyCharacter - 1].name[0];
+	for (short i = 0; (i < 5) && (name[0] > 0x4F); i++) {
+		renderLargeCharacterInternal(*(name++));
 	}
 }
 
 /// $C49D16
 // seems weird, but mother 2 did make use of the other args
-void unknownC49D16(ubyte arg1, short, short) {
-	unknownC4999B(arg1);
+void renderFlyoverCharacter(ubyte character, short, short) {
+	renderLargeCharacterInternal(character);
 }
 
 /// $C49D1E
@@ -4577,11 +4607,11 @@ short unknownC49D1E(short arg1) {
 /// $C49D6A
 void coffeeTeaScene(short id) {
 	fadeOutWithMosaic(1, 1, 0);
-	unknownC49A56();
+	prepareNewFlyoverCoffeeTeaScene();
 	oamClear();
 	loadBackgroundAnimation((id == 0) ? BattleBGLayer.coffee1 : BattleBGLayer.tea1, (id == 0) ? BattleBGLayer.coffee2 : BattleBGLayer.tea2);
 	fadeIn(1, 1);
-	unknown7E9F2D = 0x1C;
+	flyoverScreenOffset = 28;
 	short x04 = 0;
 	const(ubyte)* x06 = (id == 0) ? &coffeeSequenceText[0] : &teaSequenceText[0];
 	enableWordWrap = 0;
@@ -4591,23 +4621,23 @@ void coffeeTeaScene(short id) {
 				break parseLoop;
 			case 9:
 				short x0E = unknownC49D1E(x04);
-				unknownC49B6E(0x18);
+				flyoverCopyRenderedText(0x18);
 				drawBattleFrame();
 				while (x0E < 0x2000) {
 					x0E = unknownC49D1E(x0E);
 					unknownC49A4B();
 				}
 				x04 = cast(short)(x0E - 0x2000);
-				unknownC49C56(0x18);
+				finishLine(0x18);
 				break;
 			case 1:
-				unknownC49CA8(*(x06++));
+				flyoverSetPixelOffset(*(x06++));
 				break;
 			case 8:
 				unknownC49CC3(*(x06++), 0xC);
 				break;
 			default:
-				unknownC49D16(*(x06 - 1), 0, 0xC);
+				renderFlyoverCharacter(*(x06 - 1), 0, 0xC);
 				break;
 		}
 	}
@@ -4636,7 +4666,7 @@ immutable(ubyte[])[] flyoverTextPointers;
 void runFlyover(short id) {
 	ushort x02 = entityCallbackFlags[partyLeaderEntity];
 	entityCallbackFlags[partyLeaderEntity] |= 0xC000;
-	unknownC49A56();
+	prepareNewFlyoverCoffeeTeaScene();
 	immutable(ubyte)* x06 = &flyoverTextPointers[id][0];
 	enableWordWrap = 0;
 	while (true) {
@@ -4660,21 +4690,21 @@ void runFlyover(short id) {
 				setForceBlank();
 				return;
 			case 2:
-				unknown7E9F2D = *(x06++);
+				flyoverScreenOffset = *(x06++);
 				break;
 			case 9:
-				unknownC49B6E(0x18);
+				flyoverCopyRenderedText(0x18);
 				waitUntilNextFrame();
-				unknownC49C56(0x18);
+				finishLine(0x18);
 				break;
 			case 1:
-				unknownC49CA8(*(x06++));
+				flyoverSetPixelOffset(*(x06++));
 				break;
 			case 8:
 				unknownC49CC3(*(x06++), 0xC);
 				break;
 			default:
-				unknownC49D16(*(x06 - 1), 0, 0xC);
+				renderFlyoverCharacter(*(x06 - 1), 0, 0xC);
 				break;
 		}
 	}
@@ -6064,7 +6094,7 @@ void unknownC4C2DE() {
 	}
 	loadedAnimatedTileCount = 0;
 	mapPaletteAnimationLoaded = 0;
-	unknown7E9F2A = 0;
+	itemTransformationsLoaded = 0;
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x5800, 0);
 	setBG3VRAMLocation(BGTileMapSize.normal, 0x7C00, 0x6000);
@@ -6232,7 +6262,7 @@ short spawn() {
 		entityCollidedObjects[i] = 0xFFFF;
 	}
 	unknownC064D4();
-	unknown7E9E56 = 0;
+	dadPhoneQueued = 0;
 	playerIntangibilityFrames = 0;
 	spawnBuzzBuzz();
 	oamClear();
@@ -7133,7 +7163,7 @@ void testYourSanctuaryDisplay() {
 
 /// $C4E369
 void loadCastScene() {
-	unknown7E9F2A = 0;
+	itemTransformationsLoaded = 0;
 	fadeOutWithMosaic(1, 1, 0);
 	prepareForImmediateDMA();
 	unknownC021E6();

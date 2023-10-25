@@ -426,8 +426,10 @@ immutable ushort[128][160] mapEnemyPlacement = [
 ];
 
 
-/// $D02188
-immutable RGB[4] movementTextStringPalette = [
+/** Palette used for flyover text screens
+ * Original_Address: $(DOLLAR)D02188
+ */
+immutable RGB[4] flyoverTextPalette = [
 	RGB(0,0,0),
 	RGB(17,18,17),
 	RGB(17,18,17),

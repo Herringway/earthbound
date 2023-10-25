@@ -88,11 +88,11 @@ void initializeTextSystem() {
 	}
 	for (short i = 0; i < 8; i++) {
 		for (short j = 0; j < 0x20; j++) {
-			unknown7E9D23[j][i] = 0xFF;
+			unread7E9D23[j][i] = 0xFF;
 		}
 	}
-	unknown7E9E29 = 0;
-	unknown7E9E27 = 0;
+	unread7E9E29 = 0;
+	unused7E9E27 = 0;
 	vwfTile = 0;
 	vwfX = 0;
 	blinkingTriangleFlag = 0;
@@ -554,7 +554,7 @@ void fillCharacterPPTileBuffer(short arg1, ubyte* afflictions, short integer, sh
 
 /// $C20F58
 uint getHPPPMeterSpeed() {
-	if (unknown7E9695 != 0) {
+	if (halfHPMeterSpeed != 0) {
 		return hpMeterSpeed >> 1;
 	} else {
 		return hpMeterSpeed;
@@ -574,7 +574,7 @@ void resetRolling() {
 			partyCharacters[gameState.partyMembers[i] - 1].pp.target = partyCharacters[gameState.partyMembers[i] - 1].pp.current.integer;
 		}
 	}
-	unknown7E9696 = 1;
+	fastestHPMeterSpeed = 1;
 }
 
 /// $C21034
@@ -594,14 +594,14 @@ short unknownC21034() {
 short unknownC2108C() {
 	short a = unknownC21034();
 	if (a != 0) {
-		unknown7E9696 = 0;
+		fastestHPMeterSpeed = 0;
 	}
 	return a;
 }
 
 /// $C2109F
 void hpPPRoller() {
-	if (unknown7E9697 != 0) {
+	if (disableHPPPRolling != 0) {
 		return;
 	}
 	if (gameState.partyMembers[frameCounter & 3] == 0) {
@@ -611,9 +611,9 @@ void hpPPRoller() {
 		return;
 	}
 	PartyCharacter* x10 = &partyCharacters[gameState.partyMembers[frameCounter & 3] - 1];
-	if ((unknown7E9698 != 0) || ((x10.hp.current.fraction & 1) != 0)) {
+	if ((hpPPMeterFlipoutMode != 0) || ((x10.hp.current.fraction & 1) != 0)) {
 		if (x10.hp.current.integer < x10.hp.target) {
-			x10.hp.current.combined += ((unknown7E9696 == 0) && (unknown7E9698 != 0)) ? 0x64000 : getHPPPMeterSpeed();
+			x10.hp.current.combined += ((fastestHPMeterSpeed == 0) && (hpPPMeterFlipoutMode != 0)) ? 0x64000 : getHPPPMeterSpeed();
 			if (x10.hp.current.integer >= x10.hp.target) {
 				x10.hp.current.integer = x10.hp.target;
 				x10.hp.current.fraction = 1;
@@ -621,7 +621,7 @@ void hpPPRoller() {
 		} else if ((x10.hp.current.integer == x10.hp.target) && (x10.hp.current.fraction == 1)) {
 			x10.hp.current.fraction = 0;
 		} else {
-			x10.hp.current.combined -= (unknown7E9698 != 0) ? 0x64000 : getHPPPMeterSpeed();
+			x10.hp.current.combined -= (hpPPMeterFlipoutMode != 0) ? 0x64000 : getHPPPMeterSpeed();
 			if ((x10.hp.current.integer < x10.hp.target) || (x10.hp.current.integer > 0x1000)) {
 				x10.hp.current.integer = x10.hp.target;
 				x10.hp.current.fraction = 1;
@@ -630,9 +630,9 @@ void hpPPRoller() {
 	} else if (x10.hp.current.integer != x10.hp.target) {
 		x10.hp.current.fraction = 1;
 	}
-	if ((unknown7E9698 != 0) || ((x10.pp.current.fraction & 1) != 0)) {
+	if ((hpPPMeterFlipoutMode != 0) || ((x10.pp.current.fraction & 1) != 0)) {
 		if (x10.pp.current.integer < x10.pp.target) {
-			x10.pp.current.combined += (unknown7E9698 != 0) ? 0x64000 : 0x19000;
+			x10.pp.current.combined += (hpPPMeterFlipoutMode != 0) ? 0x64000 : 0x19000;
 			if (x10.pp.current.integer >= x10.pp.target) {
 				x10.pp.current.integer = x10.pp.target;
 				x10.hp.current.fraction = 1;
@@ -640,7 +640,7 @@ void hpPPRoller() {
 		} else if ((x10.pp.current.integer == x10.pp.target) && (x10.pp.current.fraction == 1)) {
 			x10.pp.current.fraction = 0;
 		} else {
-			x10.pp.current.combined -= (unknown7E9698 != 0) ? 0x64000 : 0x19000;
+			x10.pp.current.combined -= (hpPPMeterFlipoutMode != 0) ? 0x64000 : 0x19000;
 			if ((x10.pp.current.integer < x10.pp.target) || (x10.pp.current.integer > 0x1000)) {
 				x10.pp.current.integer = x10.pp.target;
 				x10.pp.current.fraction = 1;
@@ -649,7 +649,7 @@ void hpPPRoller() {
 	} else if (x10.pp.current.integer != x10.pp.target) {
 		x10.pp.current.fraction = 1;
 	}
-	if (unknown7E9698 == 0) {
+	if (hpPPMeterFlipoutMode == 0) {
 		return;
 	}
 	if (x10.hp.current.integer == 999) {
@@ -1045,38 +1045,38 @@ short getItemSubtype2(short arg1) {
 
 /// $C22562
 void unknownC22562(short arg1) {
-	unknown7E9CD0 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
-	unknown7E9CD1 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.body];
-	unknown7E9CD2 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.arms];
-	unknown7E9CD3 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.other];
-	printEquipmentStats(unknown7E9CD6);
+	temporaryWeapon = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	temporaryBodyGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.body];
+	temporaryArmsGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.arms];
+	temporaryOtherGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.other];
+	printEquipmentStats(characterForEquipMenu);
 }
 
 /// $C225AC
 void unknownC225AC(short arg1) {
-	unknown7E9CD0 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.weapon];
-	unknown7E9CD1 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
-	unknown7E9CD2 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.arms];
-	unknown7E9CD3 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.other];
-	printEquipmentStats(unknown7E9CD6);
+	temporaryWeapon = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.weapon];
+	temporaryBodyGear = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	temporaryArmsGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.arms];
+	temporaryOtherGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.other];
+	printEquipmentStats(characterForEquipMenu);
 }
 
 /// $C2260D
 void unknownC2260D(short arg1) {
-	unknown7E9CD0 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.weapon];
-	unknown7E9CD1 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.body];
-	unknown7E9CD2 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
-	unknown7E9CD3 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.other];
-	printEquipmentStats(unknown7E9CD6);
+	temporaryWeapon = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.weapon];
+	temporaryBodyGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.body];
+	temporaryArmsGear = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	temporaryOtherGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.other];
+	printEquipmentStats(characterForEquipMenu);
 }
 
 /// $C22673
 void unknownC22673(short arg1) {
-	unknown7E9CD0 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.weapon];
-	unknown7E9CD1 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.body];
-	unknown7E9CD2 = partyCharacters[unknown7E9CD6 - 1].equipment[EquipmentSlot.arms];
-	unknown7E9CD3 = cast(ubyte)((arg1 == -1) ? 0 : arg1);
-	printEquipmentStats(unknown7E9CD6);
+	temporaryWeapon = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.weapon];
+	temporaryBodyGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.body];
+	temporaryArmsGear = partyCharacters[characterForEquipMenu - 1].equipment[EquipmentSlot.arms];
+	temporaryOtherGear = cast(ubyte)((arg1 == -1) ? 0 : arg1);
+	printEquipmentStats(characterForEquipMenu);
 }
 
 /// $C226C5
@@ -1554,7 +1554,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 		battleMenuSelection.selectedTarget = cast(ubyte)(randLimit(cast(short)(numBattlersInFrontRow + numBattlersInBackRow)) + 1);
 		return x1A;
 	}
-	unknownEF0262();
+	enableHalfHPMeterSpeed();
 	short x1A;
 	if ((arg1 == PartyMember.paula) || (arg1 == PartyMember.poo)) {
 		x1A = 1;
@@ -1612,7 +1612,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 		if (tmp == 0) {
 			if (debugging != 0) {
 				if ((padState[0] & (Pad.select | Pad.start)) == (Pad.select | Pad.start)) {
-					resumeMusic();
+					resumeHPPPRolling();
 					return -1;
 				} else if ((padState[0] & Pad.r) != 0){
 					unknownE14DE8();
@@ -1636,7 +1636,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 					debugYButtonGoods();
 					continue;
 				}
-				resumeMusic();
+				resumeHPPPRolling();
 				return 0;
 			}
 		}
@@ -1761,7 +1761,7 @@ short battleSelectionMenu(short arg1, short arg2) {
 		break;
 	}
 	setWindowFocusF(battleWindows[x1A]);
-	resumeMusic();
+	resumeHPPPRolling();
 	return x1E;
 }
 
@@ -4465,7 +4465,7 @@ void battleActionSteal() {
 
 /// $C288EB
 void battleActionFreezeTime() {
-	pauseMusic();
+	stopHPPPRolling();
 	short x02 = cast(short)(randLimit(4) + 1);
 	uint x16 = battlerTargetFlags;
 	for (short i = 0; i < x02; i++) {
@@ -4484,7 +4484,7 @@ void battleActionFreezeTime() {
 		fixTargetName();
 		battleActionBash();
 	}
-	resumeMusic();
+	resumeHPPPRolling();
 	displayInBattleText(getTextBlock("MSG_BTL_TIMESTOP_RET"));
 	battlerTargetFlags = 0;
 }
@@ -4923,7 +4923,7 @@ void battleActionMasterBarfDeath() {
 	}
 	displayInBattleText(getTextBlock("MSG_BTL_POO_BREAK_IN_2"));
 	fixAttackerName(0);
-	setCItemF(0x15);
+	setCItemF(0x15); // PSI starstorm alpha ID
 	displayInBattleText(getTextBlock(battleActionTable[30].text));
 	for (short i = 0; battlersTable.length > i; i++) {
 		if (battlersTable[i].consciousness == 0) {

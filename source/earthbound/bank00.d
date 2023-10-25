@@ -2734,7 +2734,7 @@ void partyLeaderTick() {
 	if (mapPaletteAnimationLoaded != 0) {
 		animatePalette();
 	}
-	if (unknown7E9F2A != 0) {
+	if (itemTransformationsLoaded != 0) {
 		processItemTransformations();
 	}
 	unknownC04C45();
@@ -4212,7 +4212,7 @@ void processQueuedInteractions() {
 			displayInteractionText(ptr.textPtr);
 			if (ptr.textPtr == getTextBlock("MSG_SYS_PAPA_2H")) {
 				dadPhoneTimer = 0x697;
-				unknown7E9E56 = 0;
+				dadPhoneQueued = 0;
 			}
 			break;
 		case InteractionType.unknown0:
@@ -7561,11 +7561,11 @@ void unknownC0AA23(short, ref const(ubyte)* arg2) {
 /// $C0AA3F
 void unknownC0AA3F(short arg1, ref const(ubyte)* arg2) {
 	short x = (--arg1 != 0) ? 0x33 : 0xB3;
-	unknown7E9E37 = cast(ubyte)movementDataRead8(arg2);
+	actionscriptCOLDATABlue = cast(ubyte)movementDataRead8(arg2);
 	actionScriptVar94 = arg2;
-	unknown7E9E38 = cast(ubyte)movementDataRead8(arg2);
+	actionscriptCOLDATAGreen = cast(ubyte)movementDataRead8(arg2);
 	actionScriptVar94 = arg2;
-	unknown7E9E39 = cast(ubyte)movementDataRead8(arg2);
+	actionscriptCOLDATARed = cast(ubyte)movementDataRead8(arg2);
 	actionScriptVar94 = arg2;
 	unknownC42439(x);
 }
@@ -9546,14 +9546,14 @@ void loadDadPhone() {
 	if (enemyHasBeenTouched != 0) {
 		return;
 	}
-	if (unknown7E9E56 != 0) {
+	if (dadPhoneQueued != 0) {
 		return;
 	}
 	if (getEventFlag(EventFlag.sysDis2HPapa) != 0) {
 		return;
 	}
 	queueInteraction(InteractionType.textSurvivesDoorTransition, QueuedInteractionPtr(getTextBlock("MSG_SYS_PAPA_2H")));
-	unknown7E9E56 = 1;
+	dadPhoneQueued = 1;
 }
 
 /// $C0DD0F
