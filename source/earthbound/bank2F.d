@@ -150,7 +150,7 @@ void unknownEF031E() {
 	switch (unknown7E9F33) {
 		case 0:
 		case 2:
-			currentPartyMemberTick.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
+			currentPartyMemberTick.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2) & 0xFF;
 			if ((x16 == currentPartyMemberTick.positionIndex) || (x16 + 1 == currentPartyMemberTick.positionIndex)) {
 				doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
 				if (gameState.leaderHasMoved == 0) {
