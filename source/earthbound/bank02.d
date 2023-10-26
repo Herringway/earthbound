@@ -3078,7 +3078,7 @@ short battleRoutine() {
 					battleResult = BattleResult.won;
 					resetRolling();
 					letterboxEffectEnding = 1;
-					unknown7EADD0 = 0;
+					unknown7EADD0 = 1;
 					depositIntoATM(battleMoneyScratch);
 					gameState.moneyEarnedSinceLastCall += battleMoneyScratch;
 					battleEXPScratch += countChars(BattleSide.friends) - 1;
