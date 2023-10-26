@@ -7878,6 +7878,21 @@ void loadBattleSprite(short arg1) {
 		x26[i].xOffset = 0xF0;
 		x26[i].specialFlags = 1;
 	}
+	version(noUndefinedBehaviour) {
+		// sprite 0 aka "no sprite" ends up indexing out of bounds and using *cast(ubyte*)&battleSpritePointers[0] as a size instead, which only works because invalid sizes are ignored
+		// so just do the bare minimum and return
+		if ((arg1 < 0) || (arg1 >= battleSpritePointers.length)) {
+			x26[(spritemapHeight * spritemapWidth) - 1].specialFlags = 0x81;
+			memcpy(&altBattleSpritemaps[currentBattleSpritesAllocated][0], &battleSpritemaps[currentBattleSpritesAllocated][0], 16 * SpriteMap.sizeof);
+			for (short i = 0; i < 16; i++) {
+				altBattleSpritemaps[currentBattleSpritesAllocated][i].flags += 8;
+			}
+			currentBattleSpriteWidths[currentBattleSpritesAllocated] = cast(ubyte)spritemapWidth;
+			currentBattleSpriteHeights[currentBattleSpritesAllocated] = cast(ubyte)spritemapHeight;
+			currentBattleSpritesAllocated++;
+			return;
+		}
+	}
 	switch (battleSpritePointers[arg1].size) {
 		case BattleSpriteSize._64X32:
 			spritemapWidth = 2;
@@ -7986,9 +8001,12 @@ void unknownC2EEE7() {
 }
 
 /// $C2EFFD
-short getBattleSpriteWidth(short sprite)
-	in(sprite != 0, "Sprite 0 is invalid")
-{
+short getBattleSpriteWidth(short sprite) {
+	version(noUndefinedBehaviour) {
+		if ((sprite <= 0) || (sprite > battleSpritePointers.length)) {
+			return 0;
+		}
+	}
 	switch (battleSpritePointers[sprite - 1].size) {
 		case BattleSpriteSize._32X32:
 		case BattleSpriteSize._32X64:
@@ -8005,9 +8023,12 @@ short getBattleSpriteWidth(short sprite)
 }
 
 /// $C2F04E
-short getBattleSpriteHeight(short sprite)
-	in(sprite != 0, "Sprite 0 is invalid")
-{
+short getBattleSpriteHeight(short sprite) {
+	version(noUndefinedBehaviour) {
+		if ((sprite <= 0) || (sprite > battleSpritePointers.length)) {
+			return 0;
+		}
+	}
 	switch (battleSpritePointers[sprite - 1].size) {
 		case BattleSpriteSize._32X32:
 		case BattleSpriteSize._64X32:
