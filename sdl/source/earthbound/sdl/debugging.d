@@ -422,6 +422,14 @@ void renderDebugWindow(float x, float y, float width, float height) {
 		InputEditable("Restore menu backup", restoreMenuBackup);
 		InputEditable!Window("Pagination window", paginationWindow);
 		InputEditable("Pagination animation frame", paginationAnimationFrame);
+		if (ImGui.TreeNode("Bubble Monkey")) {
+			InputEditable!BubbleMonkeyMode("Current mode", bubbleMonkeyMode);
+			InputEditable("Mode change timer", bubbleMonkeyMovementChangeTmer);
+			InputEditable!Direction("Distracted next direction", bubbleMonkeyDistractedNextDirection);
+			InputEditable("Distracted next direction change time", bubbleMonkeyDistractedNextDirectionChangeTime);
+			InputEditable("Distracted direction changes left", bubbleMonkeyDistractedDirectionChangesLeft);
+			ImGui.TreePop();
+		}
 		ImGui.TreePop();
 	}
 	if (ImGui.TreeNode("Event Flags")) {
