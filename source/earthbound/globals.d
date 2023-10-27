@@ -2340,61 +2340,224 @@ __gshared short flyoverPixelOffset;
  * Original_Address: $(DOLLAR)9F31
  */
 __gshared short flyoverByteOffset;
-__gshared short unknown7E9F33; /// Original_Address: $(DOLLAR)9F33
-__gshared short unknown7E9F35; /// Original_Address: $(DOLLAR)9F35
-__gshared short unknown7E9F39; /// Original_Address: $(DOLLAR)9F39
-__gshared short unknown7E9F3B; /// Original_Address: $(DOLLAR)9F3B
-__gshared short unknown7E9F3D; /// Original_Address: $(DOLLAR)9F3D
-__gshared short teleportDestination; /// Original_Address: $(DOLLAR)9F3F
-__gshared TeleportStyle teleportStyle; /// Original_Address: $(DOLLAR)9F41
-__gshared short teleportState; /// Original_Address: $(DOLLAR)9F43
-__gshared FixedPoint1616 unknown7E9F45; /// Original_Address: $(DOLLAR)9F45
-__gshared FixedPoint1616 unknown7E9F49; /// Original_Address: $(DOLLAR)9F49
-__gshared FixedPoint1616 unknown7E9F4D; /// Original_Address: $(DOLLAR)9F4D
-__gshared FixedPoint1616 unknown7E9F51; /// Original_Address: $(DOLLAR)9F51
-__gshared FixedPoint1616 unknown7E9F55; /// Original_Address: $(DOLLAR)9F55
-__gshared short unknown7E9F59; /// Original_Address: $(DOLLAR)9F59
-__gshared short unknown7E9F5B; /// Original_Address: $(DOLLAR)9F5B
-__gshared short unknown7E9F5D; /// Original_Address: $(DOLLAR)9F5D
-__gshared short unknown7E9F5F; /// Original_Address: $(DOLLAR)9F5F
-__gshared short unknown7E9F61; /// Original_Address: $(DOLLAR)9F61
-__gshared short unknown7E9F63; /// Original_Address: $(DOLLAR)9F63
-__gshared short unknown7E9F65; /// Original_Address: $(DOLLAR)9F65
-__gshared short unknown7E9F67; /// Original_Address: $(DOLLAR)9F67
-__gshared short unknown7E9F69; /// Original_Address: $(DOLLAR)9F69
-__gshared short unknown7E9F6B; /// Original_Address: $(DOLLAR)9F6B
-__gshared short unknown7E9F6D; /// Original_Address: $(DOLLAR)9F6D
-__gshared short unknown7E9F6F; /// Original_Address: $(DOLLAR)9F6F
-__gshared short pajamaFlag; /// Original_Address: $(DOLLAR)9F71
-__gshared short unknown7E9F73; /// Original_Address: $(DOLLAR)9F73
-__gshared short unknown7E9F75; /// Original_Address: $(DOLLAR)9F75
-__gshared short unknown7E9F77; /// Original_Address: $(DOLLAR)9F77
-__gshared ubyte unknown7E9F79; /// Original_Address: $(DOLLAR)9F79
-__gshared short unknown7E9F7A; /// Original_Address: $(DOLLAR)9F7A
-__gshared short unknown7E9F7C; /// Original_Address: $(DOLLAR)9F7C
-__gshared short tilemapUpdateTileCount; /// Original_Address: $(DOLLAR)9F7E
-__gshared short unknown7E9F80; /// Original_Address: $(DOLLAR)9F80
-__gshared short unknown7E9F82; /// Original_Address: $(DOLLAR)9F82
-__gshared short tilemapUpdateBaseAddress; /// Original_Address: $(DOLLAR)9F84
-__gshared ushort* tilemapUpdateRemainingTiles; /// Original_Address: $(DOLLAR)9F86
-__gshared short unknown7E9F88; /// Original_Address: $(DOLLAR)9F88
-__gshared short enemiesInBattle; /// Original_Address: $(DOLLAR)9F8A
-__gshared short[16] enemiesInBattleIDs; /// Original_Address: $(DOLLAR)9F8C
-__gshared Battler[32] battlersTable; /// Original_Address: $(DOLLAR)9FAC
-__gshared uint battlerTargetFlags; /// Original_Address: $(DOLLAR)A96C
-__gshared Battler* currentAttacker; /// Original_Address: $(DOLLAR)A970
-__gshared Battler* currentTarget; /// Original_Address: $(DOLLAR)A972
-__gshared uint battleEXPScratch; /// Original_Address: $(DOLLAR)A974
-__gshared ushort battleMoneyScratch; /// Original_Address: $(DOLLAR)A978
-__gshared ushort currentGiygasPhase; /// Original_Address: $(DOLLAR)A97A
-__gshared ubyte unknown7EA97C; /// Original_Address: $(DOLLAR)A97C
-__gshared BattleMenuSelection battleMenuSelection; /// Original_Address: $(DOLLAR)A97D
-__gshared ubyte[27] attackerNameAdjustScratch; /// Original_Address: $(DOLLAR)A983
-__gshared ubyte[27] targetNameAdjustScratch; /// Original_Address: $(DOLLAR)A99E
-__gshared ubyte[27] unknown7EA9B9; /// Original_Address: $(DOLLAR)A9B9
-__gshared ubyte[4*14] stealableItemCandidates; /// Original_Address: $(DOLLAR)A9D4
-
-__gshared short unknown7EAA0C; /// Original_Address: $(DOLLAR)AA0C
+/** The current state of bubble monkey movement
+ * See_Also: earthbound.commondefs.BubbleMonkeyMode
+ * Original_Address: $(DOLLAR)9F33
+ */
+__gshared short bubbleMonkeyMode;
+/** Time in frames until the next bubble monkey movement mode change
+ * Original_Address: $(DOLLAR)9F35
+ */
+__gshared short bubbleMonkeyMovementChangeTmer;
+/** The next direction the bubble monkey will face while distracted. Flips between the original direction faced and its opposite
+ * Original_Address: $(DOLLAR)9F39
+ */
+__gshared short bubbleMonkeyDistractedNextDirection;
+/** Time until the bubble monkey changes direction while distracted
+ * Original_Address: $(DOLLAR)9F3B
+ */
+__gshared short bubbleMonkeyDistractedNextDirectionChangeTime;
+/** Number of direction changes the bubble monkey will make until it is done being distracted
+ * Original_Address: $(DOLLAR)9F3D
+ */
+__gshared short bubbleMonkeyDistractedDirectionChangesLeft;
+/** ID of the PSI teleportation destination or 0 if not teleporting
+ * Original_Address: $(DOLLAR)9F3F
+ */
+__gshared short psiTeleportDestination;
+/** Current PSI teleportation style being used to teleport if psiTeleportDestination is nonzero
+ * Original_Address: $(DOLLAR)9F41
+ */
+__gshared PSITeleportStyle psiTeleportStyle;
+/** The current stage of PSI teleportation
+ * See_Also: earthbound.commondefs.TeleportState
+ * Original_Address: $(DOLLAR)9F43
+ */
+__gshared short teleportState;
+/** Current teleportation speed. Alpha teleportation succeeds once speed exceeds 9.0
+ * Original_Address: $(DOLLAR)9F45
+ */
+__gshared FixedPoint1616 teleportationSpeed;
+/** Current PSI Teleport speed along the X axis
+ * Original_Address: $(DOLLAR)9F49
+ */
+__gshared FixedPoint1616 psiTeleportSpeedX;
+/** Current PSI Teleport speed along the Y axis
+ * Original_Address: $(DOLLAR)9F4D
+ */
+__gshared FixedPoint1616 psiTeleportSpeedY;
+/** PSI Teleport: Next X coordinate for leader
+ * Original_Address: $(DOLLAR)9F51
+ */
+__gshared FixedPoint1616 psiTeleportNextX;
+/** PSI Teleport: Next Y coordinate for leader
+ * Original_Address: $(DOLLAR)9F55
+ */
+__gshared FixedPoint1616 psiTeleportNextY;
+/** Speed at which the screen moves horizontally during a successful PSI Teleport
+ * Original_Address: $(DOLLAR)9F59
+ */
+__gshared short psiTeleportSuccessScreenSpeedX;
+/** Horizontal position of the screen after a successful PSI Teleport
+ * Original_Address: $(DOLLAR)9F5B
+ */
+__gshared short psiTeleportSuccessScreenX;
+/** Speed at which the screen moves vertically during a successful PSI Teleport
+ * Original_Address: $(DOLLAR)9F5D
+ */
+__gshared short psiTeleportSuccessScreenSpeedY;
+/** Vertical position of the screen after a successful PSI Teleport
+ * Original_Address: $(DOLLAR)9F5F
+ */
+__gshared short psiTeleportSuccessScreenY;
+/** Current angle for PSI Teleport beta movement
+ * Original_Address: $(DOLLAR)9F61
+ */
+__gshared short psiTeleportBetaAngle;
+/** Current progress for PSI Teleport beta movement
+ * Original_Address: $(DOLLAR)9F63
+ */
+__gshared short psiTeleportBetaProgress;
+/** Current Progress for improved PSI Teleport beta (AKA PSI farewell)
+ * Original_Address: $(DOLLAR)9F65
+ */
+__gshared short psiTeleportBetterProgress;
+/** How much horizontal adjustment the player has provided during PSI Teleport beta movement
+ * Original_Address: $(DOLLAR)9F67
+ */
+__gshared short psiTeleportBetaXAdjustment;
+/** How much vertical adjustment the player has provided during PSI Teleport beta movement
+ * Original_Address: $(DOLLAR)9F69
+ */
+__gshared short psiTeleportBetaYAdjustment;
+/** Entity ID of the active mini ghost. -1 if no active mini ghost
+ * Original_Address: $(DOLLAR)9F6B
+ */
+__gshared short miniGhostEntityID;
+/** Current angle of the mini ghost's movement
+ * Original_Address: $(DOLLAR)9F6D
+ */
+__gshared short miniGhostAngle;
+/** Number of currently possessed party members
+ * Original_Address: $(DOLLAR)9F6F
+ */
+__gshared short possessedPlayerCount;
+/** Whether or not Ness is currently wearing pajamas
+ * Original_Address: $(DOLLAR)9F71
+ */
+__gshared short pajamaFlag;
+/** The current moving party member entity ID
+ * Original_Address: $(DOLLAR)9F73
+ */
+__gshared short movingPartyMemberEntityID;
+/** Using the short version of the title screen sequence
+ * Original_Address: $(DOLLAR)9F75
+ */
+__gshared short titleScreenQuickMode;
+/** A magic number for save files in SRAM. Whether 0x493/1171 holds any deeper meaning or not is unknown
+ * Original_Address: $(DOLLAR)9F77
+ */
+__gshared short sramVersion;
+/** A combined bitmask representing the save files that failed corruption checks
+ * Original_Address: $(DOLLAR)9F79
+ */
+__gshared ubyte corruptionCheckResults;
+/** X coordinate of the top row of tiles to write text to
+ * Original_Address: $(DOLLAR)9F7A
+ */
+__gshared short tilemapUpdateTileX;
+/** Y coordinate of the left column of tiles to write text to
+ * Original_Address: $(DOLLAR)9F7C
+ */
+__gshared short tilemapUpdateTileY;
+/** Number of tiles to send to VRAM in a single tilemap update
+ * Original_Address: $(DOLLAR)9F7E
+ */
+__gshared short tilemapUpdateTileCount;
+/** Number of rows of map tiles to update with text tiles
+ * Original_Address: $(DOLLAR)9F80
+ */
+__gshared short tilemapUpdateTileHeight;
+/** Number of columns of map tiles to update with text tiles
+ * Original_Address: $(DOLLAR)9F82
+ */
+__gshared short tilemapUpdateTileWidth;
+/** Base address in VRAM to send text tiles to
+ * Original_Address: $(DOLLAR)9F84
+ */
+__gshared short tilemapUpdateBaseAddress;
+/** Remaining tiles to send to VRAM
+ * Original_Address: $(DOLLAR)9F86
+ */
+__gshared ushort* tilemapUpdateRemainingTiles;
+/** Not used in any live code
+ * Original_Address: $(DOLLAR)9F88
+ */
+__gshared short unused7E9F88;
+/** Number of enemies that entered the battle initially (0 for scripted battles)
+ * Original_Address: $(DOLLAR)9F8A
+ */
+__gshared short enemiesInBattle;
+/** IDs of the enemies that joined battle initially
+ * Original_Address: $(DOLLAR)9F8C
+ */
+__gshared short[16] enemiesInBattleIDs;
+/** Stats for all participants in an active battle. Slots 0, 1, 2 and 3 are reserved for permanent party members, 4 and 5 are reserved for NPC guests, 6 is reserved for buzz buzz and tiny lil ghosts, and enemies start at slot 8
+ * Original_Address: $(DOLLAR)9FAC
+ */
+__gshared Battler[32] battlersTable;
+/** A bitmask representing all battlers currently targetted by the action in use
+ * Original_Address: $(DOLLAR)A96C
+ */
+__gshared uint battlerTargetFlags;
+/** The current attacker's Battler entry
+ * Original_Address: $(DOLLAR)A970
+ */
+__gshared Battler* currentAttacker;
+/** The current target's Battler entry
+ * Original_Address: $(DOLLAR)A972
+ */
+__gshared Battler* currentTarget;
+/** The current total EXP reward to be given at the end of the battle
+ * Original_Address: $(DOLLAR)A974
+ */
+__gshared uint battleEXPScratch;
+/** The current total money reward to be deposited in the ATM after battle
+ * Original_Address: $(DOLLAR)A978
+ */
+__gshared ushort battleMoneyScratch;
+/** Current phase of the giygas battle. Usually zero, especially for normal battles
+ * Original_Address: $(DOLLAR)A97A
+ */
+__gshared ushort currentGiygasPhase;
+/** The ID of an item currently being used in battle
+ * Original_Address: $(DOLLAR)A97C
+ */
+__gshared ubyte battleItemUsed;
+/** All relevant information for the action selection the player just made for a party member in battle
+ * Original_Address: $(DOLLAR)A97D
+ */
+__gshared BattleMenuSelection battleMenuSelection;
+/** A buffer for adjusting attacker names, like replacing the pet name or adding suffix letters for disambiguation
+ * Original_Address: $(DOLLAR)A983
+ */
+__gshared ubyte[27] attackerNameAdjustScratch;
+/** A buffer for adjusting target names, like replacing the pet name or adding suffix letters for disambiguation
+ * Original_Address: $(DOLLAR)A99E
+ */
+__gshared ubyte[27] targetNameAdjustScratch;
+/** A buffer to hold the current target's name before printing it out
+ * Original_Address: $(DOLLAR)A9B9
+ */
+__gshared ubyte[27] targetNameBuffer;
+/** Items held by the party that are cheap, not equipped and edible (single person)
+ * Original_Address: $(DOLLAR)A9D4
+ */
+__gshared ubyte[4*14] stealableItemCandidates;
+/** The level of the highest levelled enemy in the current battle
+ * Original_Address: $(DOLLAR)AA0C
+ */
+__gshared short highestEnemyLevelInBattle;
 /** How the battle was won (normal, teleportation, boss defeated, giygas defeated)
  * Original_Address: $(DOLLAR)AA0E
  */
@@ -2415,10 +2578,10 @@ __gshared Battler mirrorBattlerBackup;
  * Original_Address: $(DOLLAR)AA64
  */
 __gshared ushort mirrorTurnTimer;
-/**
+/** A list of party members that are doing something this turn
  * Original_Address: $(DOLLAR)AA66
  */
-__gshared ushort[5] unknown7EAA66;
+__gshared ushort[5] partyMembersWithSelectedActions;
 /** For battle debug mode - The current PSI animation ID
  * Original_Address: $(DOLLAR)AA70
  */
@@ -2536,34 +2699,114 @@ __gshared ubyte[8] backRowBattlers;
  * See_Also: earthbound.commondefs.LayerConfig
  */
 __gshared short currentLayerConfig;
-__gshared short verticalShakeDuration; /// Original_Address: $(DOLLAR)AD8C
-__gshared short verticalShakeHoldDuration; /// Original_Address: $(DOLLAR)AD8E
-__gshared short unknown7EAD90; /// Original_Address: $(DOLLAR)AD90
-__gshared short wobbleDuration; /// Original_Address: $(DOLLAR)AD92
-__gshared short shakeDuration; /// Original_Address: $(DOLLAR)AD94
-__gshared short unknown7EAD96; /// Original_Address: $(DOLLAR)AD96
-__gshared short unknown7EAD98; /// Original_Address: $(DOLLAR)AD98
-__gshared short unknown7EAD9A; /// Original_Address: $(DOLLAR)AD9A
-__gshared short unknown7EAD9C; /// Original_Address: $(DOLLAR)AD9C
-__gshared short greenFlashDuration; /// Original_Address: $(DOLLAR)AD9E
-__gshared short redFlashDuration; /// Original_Address: $(DOLLAR)ADA0
-__gshared short enemyTargettingFlashing; /// Original_Address: $(DOLLAR)ADA2
-__gshared short hpPPBoxBlinkDuration; /// Original_Address: $(DOLLAR)ADA4
-__gshared short hpPPBoxBlinkTarget; /// Original_Address: $(DOLLAR)ADA6
-__gshared short unknown7EADA8; /// Original_Address: $(DOLLAR)ADA8
-__gshared short unknown7EADAA; /// Original_Address: $(DOLLAR)ADAA
-__gshared short unknown7EADAC; /// Original_Address: $(DOLLAR)ADAC
-__gshared short unknown7EADAE; /// Original_Address: $(DOLLAR)ADAE
-__gshared short unknown7EADB0; /// Original_Address: $(DOLLAR)ADB0
-__gshared short letterboxTopEnd; /// Original_Address: $(DOLLAR)ADB2
-__gshared short letterboxBottomStart; /// Original_Address: $(DOLLAR)ADB4
-__gshared short letterboxEffectEnding; /// Original_Address: $(DOLLAR)ADB6
-__gshared HDMAWordTransfer[6] unknown7EADB8; /// Original_Address: $(DOLLAR)ADB8
-
-__gshared short letterboxEffectEndingTop; /// Original_Address: $(DOLLAR)ADCC
-__gshared short letterboxEffectEndingBottom; /// Original_Address: $(DOLLAR)ADCE
-__gshared short unknown7EADD0; /// Original_Address: $(DOLLAR)ADD0
-__gshared short unknown7EADD2; /// Original_Address: $(DOLLAR)ADD2
+/** Number of frames left on the current vertical shake screen effect
+ * Original_Address: $(DOLLAR)AD8C
+ */
+__gshared short verticalShakeDuration;
+/** Number of frames left on the current vertical shake hold
+ * Original_Address: $(DOLLAR)AD8E
+ */
+__gshared short verticalShakeHoldDuration;
+/** Minimum number of frames to wait while a screen effect is active at the end of a battle
+ * Original_Address: $(DOLLAR)AD90
+ */
+__gshared short screenEffectMinimumWaitFrames;
+/** Number of frames left on a wobble screen effect
+ * Original_Address: $(DOLLAR)AD92
+ */
+__gshared short wobbleDuration;
+/** Number of frames left on a horizontal shake screen effect
+ * Original_Address: $(DOLLAR)AD94
+ */
+__gshared short shakeDuration;
+/** The current horizontal offset generated by active screen effects
+ * Original_Address: $(DOLLAR)AD96
+ */
+__gshared short screenEffectHorizontalOffset;
+/** The current vertical offset generated by active screen effects
+ * Original_Address: $(DOLLAR)AD98
+ */
+__gshared short screenEffectVerticalOffset;
+/** X offset for the PSI animation layer
+ * Original_Address: $(DOLLAR)AD9A
+ */
+__gshared short psiAnimationXOffset;
+/** Y offset for the PSI animation layer
+ * Original_Address: $(DOLLAR)AD9C
+ */
+__gshared short psiAnimationYOffset;
+/** Number of frames left for the green flash screen effect
+ * Original_Address: $(DOLLAR)AD9E
+ */
+__gshared short greenFlashDuration;
+/** Number of frames left for the red flash screen effect
+ * Original_Address: $(DOLLAR)ADA0
+ */
+__gshared short redFlashDuration;
+/** Flag for whether or not enemy targetting flashing is active
+ * Original_Address: $(DOLLAR)ADA2
+ */
+__gshared short enemyTargettingFlashing;
+/** Frames left on the HP/PP meter blink effect
+ * Original_Address: $(DOLLAR)ADA4
+ */
+__gshared short hpPPBoxBlinkDuration;
+/** Which HP/PP meter is blinking
+ * Original_Address: $(DOLLAR)ADA6
+ */
+__gshared short hpPPBoxBlinkTarget;
+/** Number of frames left on the black/white damage reflect flash screen effect
+ * Original_Address: $(DOLLAR)ADA8
+ */
+__gshared short reflectFlashDuration;
+/** Number of frames left on the green background flash screen effect
+ * Original_Address: $(DOLLAR)ADAA
+ */
+__gshared short greenBackgroundFlashDuration;
+/** Whether or not to alternate distortion effects on each background, for 30fps distortion on both layers
+ * Original_Address: $(DOLLAR)ADAC
+ */
+__gshared short distort30FPS;
+/** Value to write to TM/TD via HDMA for the visible portion of the letterbox effect
+ * Original_Address: $(DOLLAR)ADAE
+ */
+__gshared short letterboxVisibleScreenValue;
+/** Value to write to TM/TD via HDMA for the black portion of the letterbox effect
+ * Original_Address: $(DOLLAR)ADB0
+ */
+__gshared short letterboxNonvisibleScreenValue;
+/** Vertical coordinate where the upper black portion of the letterbox ends
+ * Original_Address: $(DOLLAR)ADB2
+ */
+__gshared short letterboxTopEnd;
+/** Vertical coordinate where the lower black portion of the letterbox starts
+ * Original_Address: $(DOLLAR)ADB4
+ */
+__gshared short letterboxBottomStart;
+/** Enable letterbox expansion animation, where the black parts of the letterbox shrink and disappear
+ * Original_Address: $(DOLLAR)ADB6
+ */
+__gshared short letterboxEffectEnding;
+/** HDMA table for the letterbox screen effect
+ * Original_Address: $(DOLLAR)ADB8
+ */
+__gshared HDMAWordTransfer[6] letterboxHDMATable;
+/** Vertical coordinate for the current upper black portion of the letterbox shrinking effect
+ * Original_Address: $(DOLLAR)ADCC
+ */
+__gshared short letterboxEffectEndingTop;
+/** Vertical coordinate for the current bottom black portion of the letterbox shrinking effect
+ * Original_Address: $(DOLLAR)ADCE
+ */
+__gshared short letterboxEffectEndingBottom;
+/** Enable the background darkening effect, which lowers background brightness by 0x555 every frame until it reaches 0x6000
+ * Original_Address: $(DOLLAR)ADD0
+ */
+__gshared short enableBackgroundDarkening;
+/** Current background brightness level used for the darkening effect. Lowers by 0x555 every frame when enabled
+ * Original_Address: $(DOLLAR)ADD2
+ */
+__gshared ushort backgroundBrightness;
 __gshared LoadedBackgroundData loadedBGDataLayer1; /// Original_Address: $(DOLLAR)ADD4
 __gshared LoadedBackgroundData loadedBGDataLayer2; /// Original_Address: $(DOLLAR)AE4B
 __gshared ubyte unknown7EAEC2; /// Original_Address: $(DOLLAR)AEC2

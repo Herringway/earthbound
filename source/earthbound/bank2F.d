@@ -16,8 +16,6 @@ import earthbound.hardware;
 import earthbound.text;
 import core.stdc.string;
 
-import std;
-
 /// $EF0000
 void singleEnemyFlashingOff() {
 	if (currentFlashingEnemy == -1) {
@@ -74,7 +72,7 @@ void unknownEF0115(short arg1) {
 		x0E--;
 	}
 	redrawAllWindows = 1;
-	unknownC07C5B();
+	playerIntangibilityFlash();
 }
 
 /// $EF016F
@@ -113,45 +111,51 @@ void resumeHPPPRolling() {
 	disableHPPPRolling = 0;
 }
 
-/// $EF027D
-void unknownEF027D() {
-	unknown7E9F33 = 0;
-	unknown7E9F35 = 30;
+/** Initializes bubble monkey movement with half a second until the next change
+ * $(DOLLAR)EF027D
+ */
+void bubbleMonkeyInitialize() {
+	bubbleMonkeyMode = BubbleMonkeyMode.normal;
+	bubbleMonkeyMovementChangeTmer = 30;
 	entityScriptVar3Table[currentEntitySlot] = 4;
 	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord = gameState.leaderX.integer;
 	playerPositionBuffer[chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord = gameState.leaderY.integer;
 }
 
-/// $EF02C4
-void unknownEF02C4(short arg1) {
+/** Picks a new movement mode for the bubble monkey
+ * Original_Address: $(DOLLAR)EF02C4
+ */
+void pickNextBubbleMonkeyMovementMode(short arg1) {
 	short x0E = void;
-	if ((unknown7E9F33 == 3) || (unknown7E9F33 == 1)) {
-		unknown7E9F33 = 2;
+	if ((bubbleMonkeyMode == BubbleMonkeyMode.distracted) || (bubbleMonkeyMode == BubbleMonkeyMode.pausing)) {
+		bubbleMonkeyMode = BubbleMonkeyMode.catchup;
 	} else if (unknownC03E9D(arg1) > 40) {
-		unknown7E9F33 = 2;
+		bubbleMonkeyMode = BubbleMonkeyMode.catchup;
 	} else {
 		x0E = rand() & 3;
-		unknown7E9F33 = x0E;
+		bubbleMonkeyMode = x0E;
 	}
 	// uh oh. x0E may not have been initialized by this point...
-	unknown7E9F35 = ((x0E & 3) * 3) + 4;
+	bubbleMonkeyMovementChangeTmer = ((x0E & 3) * 3) + 4;
 }
 
-/// $EF031E
-void unknownEF031E() {
+/** Runs a single tick of bubble monkey movement
+ * Original_Address: $(DOLLAR)EF031E
+ */
+void bubbleMonkeyTick() {
 	currentPartyMemberTick = &partyCharacters[entityScriptVar1Table[currentEntitySlot]];
-	short x16 = partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex;
+	short positionIndex = partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex;
 	entityAbsXTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].xCoord;
 	entityAbsYTable[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].yCoord;
 	if (playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle != 0) {
 		doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
-		currentPartyMemberTick.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0x1E, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
+		currentPartyMemberTick.positionIndex = getNewPositionIndex(entityScriptVar0Table[currentEntitySlot], 0x1E, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2);
 	}
-	switch (unknown7E9F33) {
-		case 0:
-		case 2:
-			currentPartyMemberTick.positionIndex = unknownC03EC3(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2) & 0xFF;
-			if ((x16 == currentPartyMemberTick.positionIndex) || (x16 + 1 == currentPartyMemberTick.positionIndex)) {
+	switch (bubbleMonkeyMode) {
+		case BubbleMonkeyMode.normal:
+		case BubbleMonkeyMode.catchup:
+			currentPartyMemberTick.positionIndex = getNewPositionIndex(entityScriptVar0Table[currentEntitySlot], 0xC, partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex, 2) & 0xFF;
+			if ((positionIndex == currentPartyMemberTick.positionIndex) || (positionIndex + 1 == currentPartyMemberTick.positionIndex)) {
 				doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].walkingStyle, currentEntitySlot);
 				if (gameState.leaderHasMoved == 0) {
 					break;
@@ -160,36 +164,36 @@ void unknownEF031E() {
 				doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], 14, currentEntitySlot);
 			}
 			entityDirections[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].direction;
-			entityScriptVar7Table[currentEntitySlot] &= 0x1FFF;
+			entityScriptVar7Table[currentEntitySlot] &= ~(PartyMemberMovementFlags.unknown13 | PartyMemberMovementFlags.unknown14 | PartyMemberMovementFlags.unknown15);
 			break;
-		case 1:
-			entityScriptVar7Table[currentEntitySlot] |= 0x7000;
+		case BubbleMonkeyMode.pausing:
+			entityScriptVar7Table[currentEntitySlot] |= PartyMemberMovementFlags.unknown12 | PartyMemberMovementFlags.unknown13 | PartyMemberMovementFlags.unknown14;
 			break;
-		case 3:
-			entityScriptVar7Table[currentEntitySlot] |= 0x7000;
-			if (--unknown7E9F3B != 0) {
+		case BubbleMonkeyMode.distracted:
+			entityScriptVar7Table[currentEntitySlot] |= PartyMemberMovementFlags.unknown12 | PartyMemberMovementFlags.unknown13 | PartyMemberMovementFlags.unknown14;
+			if (--bubbleMonkeyDistractedNextDirectionChangeTime != 0) {
 				break;
 			}
-			if (--unknown7E9F3D == 0) {
-				unknown7E9F35 = 15;
-				unknown7E9F3B = -1;
+			if (--bubbleMonkeyDistractedDirectionChangesLeft == 0) {
+				bubbleMonkeyMovementChangeTmer = 15;
+				bubbleMonkeyDistractedNextDirectionChangeTime = -1;
 			}
-			unknown7E9F3B = ((rand() * 4) & 0xF) + 4;
-			unknown7E9F39 ^= 4;
-			entityDirections[currentEntitySlot] = unknown7E9F39;
+			bubbleMonkeyDistractedNextDirectionChangeTime = ((rand() * 4) & 0xF) + 4;
+			bubbleMonkeyDistractedNextDirection ^= 4;
+			entityDirections[currentEntitySlot] = bubbleMonkeyDistractedNextDirection;
 			break;
 		default: break;
 	}
 	entityScriptVar3Table[currentEntitySlot] = 4;
-	if (--unknown7E9F35 == 0) {
-		unknownEF02C4(entityScriptVar0Table[currentEntitySlot]);
-		if (unknown7E9F33 == 3) {
-			unknown7E9F3D = 4;
-			unknown7E9F39 = 6;
-			unknown7E9F3B = 15;
-			unknown7E9F35 = -1;
+	if (--bubbleMonkeyMovementChangeTmer == 0) {
+		pickNextBubbleMonkeyMovementMode(entityScriptVar0Table[currentEntitySlot]);
+		if (bubbleMonkeyMode == BubbleMonkeyMode.distracted) {
+			bubbleMonkeyDistractedDirectionChangesLeft = 4;
+			bubbleMonkeyDistractedNextDirection = Direction.left;
+			bubbleMonkeyDistractedNextDirectionChangeTime = 15;
+			bubbleMonkeyMovementChangeTmer = -1;
 		} else {
-			unknown7E9F35 = 60;
+			bubbleMonkeyMovementChangeTmer = 60;
 		}
 	}
 	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[partyCharacters[entityScriptVar1Table[currentEntitySlot]].positionIndex].tileFlags;
@@ -203,7 +207,7 @@ short unknownEF04DC() {
 	loadTitleScreenGraphics();
 	mirrorTM = TMTD.obj | TMTD.bg1;
 	oamClear();
-	unknown7E9F75 = 1;
+	titleScreenQuickMode = 1;
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
 	actionscriptState = 0;
 	finishFrame();
@@ -229,8 +233,10 @@ short unknownEF04DC() {
 /// $EF0591
 immutable string sramSignature = "HAL Laboratory, inc.";
 
-/// $EF05A6
-immutable ubyte[3] unknownEF05A6 = [1 << 0, 1 << 1, 1 << 2];
+/** Bitmasks to represent the three save slots as a single combined value
+ * Original_Address: $(DOLLAR)EF05A6
+ */
+immutable ubyte[3] sramSlotBitmasks = [1 << 0, 1 << 1, 1 << 2];
 
 /// $EF05A9
 void eraseSaveBlock(short id) {
@@ -337,13 +343,13 @@ void checkSaveCorruption(short id) {
 		version(savememory) {
 			if (validateSaveBlockChecksums(cast(short)(id * 2 + 1)) != 0) {
 				eraseSaveBlock(cast(short)(id * 2 + 1));
-				unknown7E9F79 |= unknownEF05A6[id];
+				corruptionCheckResults |= sramSlotBitmasks[id];
 				return;
 			} else {
 				copySaveBlock(cast(short)(id * 2), cast(short)(id * 2 + 1));
 			}
 		} else {
-			unknown7E9F79 |= unknownEF05A6[id];
+			corruptionCheckResults |= sramSlotBitmasks[id];
 			return;
 		}
 	}
@@ -414,17 +420,17 @@ void loadGameSlot(short id) {
 
 /// $EF0B9E
 void checkSRAMIntegrity() {
-	unknown7E9F77 = 0x493;
+	sramVersion = 0x493;
 	version(savememory) {
 		if (sram.signature != 0x493) {
 			memset(&sram, 0, 0x2000);
 		}
 		checkAllBlocksSignature();
-		unknown7E9F79 = 0;
+		corruptionCheckResults = 0;
 		for (short i = 0; i < 3; i++) {
 			checkSaveCorruption(i);
 		}
-		sram.signature = unknown7E9F77;
+		sram.signature = sramVersion;
 	}
 }
 

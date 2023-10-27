@@ -361,7 +361,7 @@ void createWindowN(short id) {
 	x10.titleID = 0;
 	unknownC45E96();
 	redrawAllWindows = 1;
-	unknownC07C5B();
+	playerIntangibilityFlash();
 }
 
 /** Uploads the entire 8 rows of tiles that make up the HP/PP meters into VRAM
@@ -2755,7 +2755,7 @@ void* cc1F20(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F20Arguments);
 	setTeleportState(
 		getCCParameters!ArgType(arg2).p1.useVariableIfZero(getMainRegister().integer),
-		cast(TeleportStyle)getCCParameters!ArgType(arg2).p2.useVariableIfZero(getSubRegister())
+		cast(PSITeleportStyle)getCCParameters!ArgType(arg2).p2.useVariableIfZero(getSubRegister())
 	);
 	return null;
 }
@@ -3629,7 +3629,7 @@ void* cc1C13(DisplayTextState* arg1, ubyte arg2) {
 	if (getBlinkingPrompt() != 0) {
 		setMainRegister(
 			WorkingMemory(
-				unknownC3FAC9(
+				startEnemyOrAllyBattleAnimation(
 					cast(short)(getCCParameters!ArgType(arg2).allyAnimation - 1),
 					cast(short)(getCCParameters!ArgType(arg2).enemyAnimation - 1)
 				)
@@ -5693,7 +5693,7 @@ short overworldPSIMenu() {
 	} while (psiSelected == 0);
 	unknownC3ED2C(psiUser, battleActionTable[psiAbilityTable[psiSelected].battleAction].ppCost, 1);
 	if (psiAbilityTable[psiSelected].category == PSICategory.other) {
-		setTeleportState(psiTarget, cast(TeleportStyle)psiAbilityTable[psiSelected].level);
+		setTeleportState(psiTarget, cast(PSITeleportStyle)psiAbilityTable[psiSelected].level);
 	} else {
 		currentAttacker = &battlersTable[0];
 		battleInitPlayerStats(psiUser, currentAttacker);
@@ -7195,20 +7195,20 @@ void unknownC1ECD1(short arg1) {
 
 /// $C1ECDC
 void corruptionCheck() {
-	if (unknown7E9F79 == 0) {
+	if (corruptionCheckResults == 0) {
 		return;
 	}
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.unknown2f);
 	for (short i = 0; 3 > i; i++) {
-		if ((unknownEF05A6[i] & unknown7E9F79) == 0) {
+		if ((sramSlotBitmasks[i] & corruptionCheckResults) == 0) {
 			continue;
 		}
 		setCNum(i + 1);
 		displayText(getTextBlock("MSG_SYS_SRAM_CRASH"));
 	}
 	closeFocusWindowN();
-	unknown7E9F79 = 0;
+	corruptionCheckResults = 0;
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 }
 
@@ -7610,7 +7610,7 @@ void fileMenuLoop() {
 			respawnY = gameState.leaderY.integer;
 			unknownC064D4();
 			setLeaderLocation(0x840, 0x6E8);
-			unknownC46881(getTextBlock("MSG_EVT_PROLOGUE_NEW"));
+			displayTextWindowless(getTextBlock("MSG_EVT_PROLOGUE_NEW"));
 			setEventFlag(EventFlag.sysMonsterOff, 1);
 			showNPCFlag = 1;
 		}
@@ -7793,7 +7793,7 @@ void fileMenuLoop() {
 								respawnY = gameState.leaderY.integer;
 								unknownC064D4();
 								setLeaderLocation(0x840, 0x6E8);
-								unknownC46881(getTextBlock("MSG_EVT_PROLOGUE_NEW"));
+								displayTextWindowless(getTextBlock("MSG_EVT_PROLOGUE_NEW"));
 								setEventFlag(EventFlag.sysMonsterOff, 1);
 								showNPCFlag = 1;
 								break outermost;

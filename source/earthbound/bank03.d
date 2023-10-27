@@ -1089,8 +1089,8 @@ immutable ushort[8][17] partyCharacterGraphicsTable = [
 ];
 
 /// $C3F3C5
-short showTitleScreen(short arg1) {
-	unknown7E9F75 = arg1;
+short showTitleScreen(short quick) {
+	titleScreenQuickMode = quick;
 	short x04 = 0;
 	prepareForImmediateDMA();
 	unknownC0927C();
@@ -1121,7 +1121,7 @@ short showTitleScreen(short arg1) {
 	oamClear();
 	initEntityWipe(ActionScript.titleScreen1, 0, 0);
 	actionscriptState = ActionScriptState.running;
-	if (unknown7E9F75 == 0) {
+	if (titleScreenQuickMode == 0) {
 		memset(&palettes[0][0], 0, 0x200);
 		paletteUploadMode = PaletteUpload.full;
 		setForceBlank();
@@ -1153,7 +1153,7 @@ short showTitleScreen(short arg1) {
 		}
 		finishFrame();
 	}
-	if ((unknown7E9F75 == 0) && (actionscriptState == ActionScriptState.running)) {
+	if ((titleScreenQuickMode == 0) && (actionscriptState == ActionScriptState.running)) {
 		x02 = unknownEF04DC();
 	}
 	fadeOutWithMosaic(1, 4, 0);
@@ -1171,7 +1171,7 @@ short showTitleScreen(short arg1) {
 	}
 	prepareForImmediateDMA();
 	reloadMap();
-	undrawFlyoverText();
+	restoreMapRendering();
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	fadeIn(1, 1);
 	//the original code may not have had an explicit return, but this is what effectively happens
@@ -1179,48 +1179,48 @@ short showTitleScreen(short arg1) {
 }
 
 /// $C3F5F9
-void unknownC3F5F9() {
+void tilemapUpdateUploadRows() {
 	short x04 = 0;
 	short size = cast(short)(tilemapUpdateTileCount * 2);
-	for (short i = 0; i < unknown7E9F80; i++) {
-		short destination = cast(short)(unknown7E9F7C * 32 + tilemapUpdateBaseAddress + (unknown7E9F7A & 0x1F));
+	for (short i = 0; i < tilemapUpdateTileHeight; i++) {
+		short destination = cast(short)(tilemapUpdateTileY * 32 + tilemapUpdateBaseAddress + (tilemapUpdateTileX & 0x1F));
 		copyToVRAM(0, size, destination, cast(ubyte*)&tilemapUpdateRemainingTiles[x04]);
-		x04 += unknown7E9F82;
-		if (++unknown7E9F7C == 0x20) {
-			unknown7E9F7C = 0;
+		x04 += tilemapUpdateTileWidth;
+		if (++tilemapUpdateTileY == 0x20) {
+			tilemapUpdateTileY = 0;
 		}
 	}
 }
 
 /// $C3F705
-void unknownC3F705(short arg1, short arg2, ushort* newTiles) {
+void tilemapUpdateUploadTilemap(short arg1, short arg2, ushort* newTiles) {
 	tilemapUpdateRemainingTiles = &newTiles[1];
 	short x12 = arg1 & 0x3F;
-	unknown7E9F7A = x12;
+	tilemapUpdateTileX = x12;
 	short x10 = arg2 & 0x1F;
-	unknown7E9F7C = x10;
+	tilemapUpdateTileY = x10;
 	tilemapUpdateBaseAddress = ((x12 & 0x1F) != 0) ? 0x3C00 : 0x3800;
 	short x18 = newTiles[0] >> 8;
 	tilemapUpdateTileCount = x18;
-	unknown7E9F80 = newTiles[0] & 0xFF;
+	tilemapUpdateTileHeight = newTiles[0] & 0xFF;
 	if ((x12 & 0xFFE0) == ((x12 + x18) & 0xFFE0)) {
-		unknown7E9F82 = x18;
-		unknownC3F5F9();
+		tilemapUpdateTileWidth = x18;
+		tilemapUpdateUploadRows();
 	} else {
 		short x0E = x18;
 		do {
-			tilemapUpdateTileCount = cast(short)(((x18 + x12) & 0xFFE0) - unknown7E9F7A);
-			unknown7E9F82 = x18;
-			unknownC3F5F9();
+			tilemapUpdateTileCount = cast(short)(((x18 + x12) & 0xFFE0) - tilemapUpdateTileX);
+			tilemapUpdateTileWidth = x18;
+			tilemapUpdateUploadRows();
 			tilemapUpdateBaseAddress ^= 0x400;
 			tilemapUpdateRemainingTiles = &tilemapUpdateRemainingTiles[tilemapUpdateTileCount];
-			unknown7E9F7A = 0;
-			unknown7E9F7C = x10;
+			tilemapUpdateTileX = 0;
+			tilemapUpdateTileY = x10;
 			x18 -= tilemapUpdateTileCount;
 		} while (x18 >= 0x20);
 		tilemapUpdateTileCount = x18;
-		unknown7E9F82 = x0E;
-		unknownC3F5F9();
+		tilemapUpdateTileWidth = x0E;
+		tilemapUpdateUploadRows();
 	}
 }
 
@@ -1232,8 +1232,13 @@ immutable(AttractModeParameters)[4] unknownC3F819 = [
 	AttractModeParameters(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
 ];
 
-/// $C3F871
-immutable ushort[32] unknownC3F871 = [
+/** Mappings for each chunk of tile data associated with a 32x32 hardware sprite
+ *
+ * This enables 32 chunks of 32x32 tile data to fit into a 0x4000 byte buffer without any gaps. Note that the offsets aren't evenly spaced - this is because the sprites
+ * are made up of 4x4 8x8 chunks of tile data laid out in two dimensions instead of linearly
+ * Original_Address: $(DOLLAR)C3F871
+ */
+immutable ushort[32] battleSpritemapVRAMMapping = [
 	0x0000,
 	0x0080,
 	0x0100,
@@ -1371,7 +1376,7 @@ immutable RGB[16][3] unknownC3F8F1 = [
 ];
 
 /// $C3F951
-immutable ubyte[3][11] unknownC3F951 = [
+immutable ubyte[3][11] enemyPSIColours = [
 	[31, 0, 0],
 	[18, 6, 0],
 	[16, 6, 0],
@@ -1386,7 +1391,7 @@ immutable ubyte[3][11] unknownC3F951 = [
 ];
 
 /// $C3F951
-immutable ubyte[3][5] unknownC3F972 = [
+immutable ubyte[3][5] miscSwirlColours = [
 	[15, 15, 15],
 	[15, 15, 0],
 	[15, 7, 15],
@@ -1395,33 +1400,33 @@ immutable ubyte[3][5] unknownC3F972 = [
 ];
 
 /// $C3F981
-void unknownC3F981(ushort arg1) {
-	if (arg1 < 35) {
+void startBattleAnimation(ushort arg1) {
+	if (arg1 <= BattleAnimation.unknown34) {
 		showPSIAnimation(arg1);
 		return;
 	}
-	if (arg1 < 46) {
-		unknownC2DE0F();
-		setColData(unknownC3F951[arg1 - 35][0], unknownC3F951[arg1 - 35][1], unknownC3F951[arg1 - 35][2]);
+	if (arg1 <= BattleAnimation.enemyPSI11) {
+		darkenAnimatedBackgrounds();
+		setColData(enemyPSIColours[arg1 - BattleAnimation.enemyPSI01][0], enemyPSIColours[arg1 - BattleAnimation.enemyPSI01][1], enemyPSIColours[arg1 - BattleAnimation.enemyPSI01][2]);
 		setColourAddSubMode(0x10, 0x3F);
 		startSwirl(Swirl.enemyAttack, 7);
-	} else if (arg1 < 49) {
+	} else if (arg1 <= BattleAnimation.unknown48) {
 		switch (arg1 + 1) {
-			case 47:
+			case BattleAnimation.unknown46 + 1:
 				wobbleDuration = 144;
 				break;
-			case 48:
+			case BattleAnimation.unknown47 + 1:
 				shakeDuration = 300;
 				break;
-			case 49:
+			case BattleAnimation.unknown48 + 1:
 			default:
 				break;
 		}
-	} else if (arg1 < 54) {
-		unknownC2DE0F();
-		setColData(unknownC3F972[arg1 - 49][0], unknownC3F972[arg1 - 49][1], unknownC3F972[arg1 - 49][2]);
+	} else if (arg1 <= BattleAnimation.giygasAttack) {
+		darkenAnimatedBackgrounds();
+		setColData(miscSwirlColours[arg1 - BattleAnimation.unknown49][0], miscSwirlColours[arg1 - BattleAnimation.unknown49][1], miscSwirlColours[arg1 - BattleAnimation.unknown49][2]);
 		setColourAddSubMode(0x10, 0x3F);
-		if (arg1 < 53) {
+		if (arg1 <= BattleAnimation.unknown52) {
 			startSwirl(Swirl.unknown4, 5);
 		} else {
 			startSwirl(Swirl.giygasAttack, 4);
@@ -1471,15 +1476,15 @@ immutable ubyte[10][26] unknownC3FB45 = [
 ];
 
 /// $C3FAC9
-short unknownC3FAC9(ushort arg1, ushort arg2) {
+short startEnemyOrAllyBattleAnimation(ushort toPartyAnimation, ushort toEnemyAnimation) {
 	if (currentTarget.npcID == EnemyID.tinyLilGhost) {
 		return 1;
 	}
 	if (currentTarget.side == BattleSide.friends) {
-		unknownC3F981(arg1);
+		startBattleAnimation(toPartyAnimation);
 		return 0;
 	}
-	unknownC3F981(arg2);
+	startBattleAnimation(toEnemyAnimation);
 	return 1;
 }
 

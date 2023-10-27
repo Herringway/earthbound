@@ -246,13 +246,13 @@ enum Window {
 	invalid = -1,
 }
 ///
-enum TeleportStyle : short {
+enum PSITeleportStyle : short {
 	none = 0,
 	psiAlpha = 1,
 	psiBeta = 2,
 	instant = 3,
 	psiBetter = 4,
-	unknown = 5
+	learnAlpha = 5
 }
 ///
 enum Direction {
@@ -5567,15 +5567,15 @@ enum HotspotID {
 	THRK_HOIHOI = 54, ///
 	unknown55 = 55, ///
 }
-///
+/// HDMA-based windowing effects
 enum Swirl {
-	none = 0, ///
-	attractMode = 0, ///
-	battleStart = 1, ///
-	giygasAttack = 2, ///
-	bossBattleStart = 3, ///
+	none = 0, /// No effect
+	ovalWindow = 0, /// "Oval window" effect, creates a black area around an oval in the centre of the screen, similar to looking through a peephole
+	battleStart = 1, /// The normal battle start effect. Set CGWSEL and CGADSUB for different tinting
+	giygasAttack = 2, /// The expanding doughnut effect used by Giygas's incomprehensible attacks
+	bossBattleStart = 3, /// The boss battle start effect. Set CGWSEL and CGADSUB for different tinting
 	unknown4 = 4, ///
-	enemyAttack = 5, ///
+	enemyAttack = 5, /// The simple expanding rectangle effect used for enemy special attacks. Set CGWSEL and CGADSUB for different colours
 	unknown6 = 6, ///
 }
 
@@ -5765,7 +5765,89 @@ enum TextSoundMode {
 	unknown2 = 2, ///
 	unknown3 = 3, ///
 }
-
+/// The various states of bubble monkey movement
+enum BubbleMonkeyMode {
+	normal = 0, /// Walks behind party leader like most party members, but moves faster if fallen behind
+	pausing = 1, /// Stops for a moment
+	catchup = 2, /// Identical to normal mode
+	distracted = 3, /// Bubble monkey is distracted by something and falls behind
+}
+///
+enum PartyMemberMovementFlags {
+	unknown0 = 1 << 0, ///
+	unknown1 = 1 << 1, ///
+	unknown2 = 1 << 2, ///
+	unknown3 = 1 << 3, ///
+	unknown4 = 1 << 4, ///
+	unknown5 = 1 << 5, ///
+	unknown6 = 1 << 6, ///
+	unknown7 = 1 << 7, ///
+	unknown8 = 1 << 8, ///
+	unknown9 = 1 << 9, ///
+	unknown10 = 1 << 10, ///
+	unknown11 = 1 << 11, ///
+	unknown12 = 1 << 12, ///
+	unknown13 = 1 << 13, ///
+	unknown14 = 1 << 14, ///
+	unknown15 = 1 << 15, ///
+}
+/// Temporary onscreen animations used during battle
+enum BattleAnimation {
+	unknown00 = 0, ///
+	unknown01 = 1, ///
+	unknown02 = 2, ///
+	unknown03 = 3, ///
+	unknown04 = 4, ///
+	unknown05 = 5, ///
+	unknown06 = 6, ///
+	unknown07 = 7, ///
+	unknown08 = 8, ///
+	unknown09 = 9, ///
+	unknown10 = 10, ///
+	unknown11 = 11, ///
+	unknown12 = 12, ///
+	unknown13 = 13, ///
+	unknown14 = 14, ///
+	unknown15 = 15, ///
+	unknown16 = 16, ///
+	unknown17 = 17, ///
+	unknown18 = 18, ///
+	unknown19 = 19, ///
+	unknown20 = 20, ///
+	unknown21 = 21, ///
+	unknown22 = 22, ///
+	unknown23 = 23, ///
+	unknown24 = 24, ///
+	unknown25 = 25, ///
+	unknown26 = 26, ///
+	unknown27 = 27, ///
+	unknown28 = 28, ///
+	unknown29 = 29, ///
+	unknown30 = 30, ///
+	unknown31 = 31, ///
+	unknown32 = 32, ///
+	unknown33 = 33, ///
+	unknown34 = 34, ///
+	enemyPSI01 = 35, ///
+	enemyPSI02 = 36, ///
+	enemyPSI03 = 37, ///
+	enemyPSI04 = 38, ///
+	enemyPSI05 = 39, ///
+	enemyPSI06 = 40, ///
+	enemyPSI07 = 41, ///
+	enemyPSI08 = 42, ///
+	enemyPSI09 = 43, ///
+	enemyPSI10 = 44, ///
+	enemyPSI11 = 45, ///
+	unknown46 = 46, ///
+	unknown47 = 47, ///
+	unknown48 = 48, ///
+	unknown49 = 49, ///
+	unknown50 = 50, ///
+	unknown51 = 51, ///
+	unknown52 = 52, ///
+	giygasAttack = 53, ///
+}
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
