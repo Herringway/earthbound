@@ -6716,13 +6716,14 @@ void battleActionFlyHoney() {
 }
 
 /// $C2C21F
-void unknownC2C21F(short group, short music) {
+void switchToNewGiygasBattle(short group, short music) {
 	short x10 = 0;
+	// skip the static fade for the final giygas transition
 	if ((battleModeFlag != 0) || (group == EnemyGroup.bossGiygasPhaseFinal)) {
 		x10 = 1;
 	}
 	if (x10 == 0) {
-		unknownC2E8C4(Swirl.unknown6, AnimationFlags.reverse, 30);
+		startSwirlPadded(Swirl.staticWipe, AnimationFlags.reverse, 30);
 		while (unknownC2E9C8() != 0) {
 			windowTick();
 		}
@@ -6747,27 +6748,36 @@ void unknownC2C21F(short group, short music) {
 		return;
 	}
 	fadeIn(15, 1);
-	if (group == 483) {
+	// skip the static fade for the final giygas transition
+	if (group == EnemyGroup.bossGiygasPhaseFinal) {
 		return;
 	}
-	unknownC2E8C4(Swirl.unknown6, AnimationFlags.none, 5);
+	startSwirlPadded(Swirl.staticWipe, AnimationFlags.none, 5);
 	while (unknownC2E9C8() != 0) {
 		windowTick();
 	}
 }
 
-/// $C2C32C
-void unknownC2C32C(short arg1) {
+/** Transforms battler 8 into a new enemy while preserving its positioning
+ * Original_Address: $(DOLLAR)C2C32C
+ */
+void giygasTransformBattler8(short newEnemy) {
 	ubyte x10 = battlersTable[8].spriteX;
 	ubyte x04 = battlersTable[8].spriteY;
-	battleInitEnemyStats(arg1, &battlersTable[8]);
+	battleInitEnemyStats(newEnemy, &battlersTable[8]);
 	battlersTable[8].spriteX = x10;
 	battlersTable[8].spriteY = x04;
 	battlersTable[8].hasTakenTurn = 1;
 }
 
-/// $C2C37A
-void unknownC2C37A(short group, short music, const(ubyte)* text) {
+/** Fades out, runs text script (does not open window), fades out, switches to the specified enemy group with specified music then resumes the battle
+ * Params:
+ * 	group = Enemy group to spawn
+ * 	music = Music track to switch to
+ * 	text = Text script to run
+ * Original_Address: $(DOLLAR)C2C37A
+ */
+void giygasTextNewPhase(short group, short music, const(ubyte)* text) {
 	fadeOut(1, 4);
 	tickUntilFadeCompletion();
 	battleModeFlag = 0;
@@ -6776,7 +6786,7 @@ void unknownC2C37A(short group, short music, const(ubyte)* text) {
 	displayInBattleText(text);
 	fadeOut(1, 2);
 	tickUntilFadeCompletion();
-	unknownC2C21F(group, music);
+	switchToNewGiygasBattle(group, music);
 	battleModeFlag = 1;
 	showHPPPWindowsF();
 	createWindow(Window.textBattle);
@@ -6794,8 +6804,13 @@ void giygasHurtPrayer(short damage) {
 	wait(1 * 60);
 }
 
-/// $C2C41F
-void unknownC2C41F(short arg1, const(ubyte)* arg2) {
+/** Fades to black, cleans up the screen, switches to the quieter 'giygas weakened' music track, opens a standard text window for the specified text, switches to the specified music, then resumes the battle
+ * Params:
+ * 	finalMusic = The music to start playing after the text script is complete
+ * 	textScript = The text script to run after the screen turns black
+ * Original_Address: $(DOLLAR)C2C41F
+ */
+void giygasWeakText(short finalMusic, const(ubyte)* textScript) {
 	fadeOut(1, 1);
 	musicEffect(MusicEffect.quickFade);
 	tickUntilFadeCompletion();
@@ -6806,7 +6821,7 @@ void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	fadeIn(1, 1);
 	tickUntilFadeCompletion();
 	wait(20);
-	displayInBattleText(arg2);
+	displayInBattleText(textScript);
 	battleModeFlag = 1;
 	wait(20);
 	musicEffect(MusicEffect.quickFade);
@@ -6815,7 +6830,7 @@ void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 	showHPPPWindowsF();
 	createWindow(Window.textBattle);
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
-	changeMusic(arg1);
+	changeMusic(finalMusic);
 	fadeIn(1, 1);
 	tickUntilFadeCompletion();
 }
@@ -6823,14 +6838,14 @@ void unknownC2C41F(short arg1, const(ubyte)* arg2) {
 /// $C2C4C0
 void battleActionPokeySpeech() {
 	currentGiygasPhase = GiygasPhase.devilsMachineOff;
-	unknownC2C32C(EnemyID.giygas3);
-	unknownC2C21F(EnemyGroup.bossGiygasPhase1, Music.giygasPhase1);
+	giygasTransformBattler8(EnemyID.giygas3);
+	switchToNewGiygasBattle(EnemyGroup.bossGiygasPhase1, Music.giygasPhase1);
 	displayInBattleText(getTextBlock("MSG_BTL_MECHPOKEY_1_TALK_B"));
 	battlersTable[9].consciousness = 0;
 	currentGiygasPhase = GiygasPhase.giygasStartsAttacking;
 	unknownC3FDC5();
-	unknownC2C32C(EnemyID.giygas4);
-	unknownC2C21F(EnemyGroup.bossGiygasPhase2, Music.giygasPhase2);
+	giygasTransformBattler8(EnemyID.giygas4);
+	switchToNewGiygasBattle(EnemyGroup.bossGiygasPhase2, Music.giygasPhase2);
 	skipDeathTextAndCleanup = 1;
 }
 
@@ -6849,14 +6864,16 @@ void battleActionPokeySpeech2() {
 	battlersTable[9].consciousness = 0;
 	drawBattleSprites();
 	wait(1 * 60);
-	unknownC2C32C(EnemyID.giygas5);
-	unknownC2C21F(EnemyGroup.bossGiygasPhaseDuringPrayer1, Music.giygasPhase3);
+	giygasTransformBattler8(EnemyID.giygas5);
+	switchToNewGiygasBattle(EnemyGroup.bossGiygasPhaseDuringPrayer1, Music.giygasPhase3);
 	skipDeathTextAndCleanup = 1;
 }
 
-/// $C2C572
+/** The first giygas prayer scene. Plays the scene, then switches the battle to the next giygas phase
+ * Original_Address: $(DOLLAR)C2C572
+ */
 void battleActionGiygasPrayer1() {
-	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_7_DOSEI"));
+	giygasTextNewPhase(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_7_DOSEI"));
 	wait(2 * 60);
 	playSfx(Sfx.psiStarstorm);
 	wait(1 * 60);
@@ -6864,69 +6881,85 @@ void battleActionGiygasPrayer1() {
 	verticalShakeHoldDuration = 12;
 	displayInBattleText(getTextBlock("MSG_BTL_INORU_DAMAGE_1"));
 	currentGiygasPhase = GiygasPhase.prayer1Used;
-	unknownC2C32C(229);
-	unknownC2C21F(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.none);
+	giygasTransformBattler8(EnemyID.giygas6);
+	switchToNewGiygasBattle(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.none);
 }
 
-/// $C2C5D1
+/** The 2nd prayer scene. Reloads the enemies, plays a scene, pretends to do some damage and moves on to the next battle phase
+ * Original_Address: $(DOLLAR)C2C5D1
+ */
 void battleActionGiygasPrayer2() {
-	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_2_TONZURA"));
+	giygasTextNewPhase(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_2_TONZURA"));
 	giygasHurtPrayer(50);
 	currentGiygasPhase = GiygasPhase.prayer2Used;
 }
 
-/// $C2C5FA
+/** The 3rd prayer scene. Reloads the enemies, plays a scene, pretends to do some damage and moves on to the next battle phase
+ * Original_Address: $(DOLLAR)C2C5FA
+ */
 void battleActionGiygasPrayer3() {
-	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_3_PAULA_PAPA"));
+	giygasTextNewPhase(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_3_PAULA_PAPA"));
 	giygasHurtPrayer(100);
 	currentGiygasPhase = GiygasPhase.prayer3Used;
 }
 
-/// $C2C623
+/** The 4th prayer scene. Reloads the enemies, plays a scene, pretends to do some damage and moves on to the next battle phase
+ * Original_Address: $(DOLLAR)C2C623
+ */
 void battleActionGiygasPrayer4() {
-	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_4_TONY"));
+	giygasTextNewPhase(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_4_TONY"));
 	giygasHurtPrayer(200);
 	currentGiygasPhase = GiygasPhase.prayer4Used;
 }
 
-/// $C2C64C
+/** The 5th prayer scene. Reloads the enemies, plays a scene, pretends to do some damage and moves on to the next battle phase
+ * Original_Address: $(DOLLAR)C2C64C
+ */
 void battleActionGiygasPrayer5() {
-	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_5_RAMA"));
+	giygasTextNewPhase(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_5_RAMA"));
 	giygasHurtPrayer(400);
 	currentGiygasPhase = GiygasPhase.prayer5Used;
 }
 
-/// $C2C675
+/** The 6th prayer scene. Reloads the enemies, plays a scene, pretends to do some damage and moves on to the next battle phase
+ * Original_Address: $(DOLLAR)C2C675
+ */
 void battleActionGiygasPrayer6() {
-	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_6_FRANK"));
+	giygasTextNewPhase(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_6_FRANK"));
 	giygasHurtPrayer(800);
 	currentGiygasPhase = GiygasPhase.prayer6Used;
 }
 
-/// $C2C69E
+/** The 7th prayer scene. Reloads the enemies, plays a scene, pretends to do some damage and moves on to the next battle phase. Also switches to a new giygas group
+ * Original_Address: $(DOLLAR)C2C69E
+ */
 void battleActionGiygasPrayer7() {
-	unknownC2C37A(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_1_NES_MAMA"));
+	giygasTextNewPhase(EnemyGroup.bossGiygasPhaseAfterPrayer1, Music.giygasPhase3, getTextBlock("MSG_EVT_PRAY_1_NES_MAMA"));
 	giygasHurtPrayer(1600);
 	currentGiygasPhase = GiygasPhase.prayer7Used;
-	unknownC2C21F(EnemyGroup.bossGiygasPhaseAfterPrayer7, Music.giygasWeakened2);
+	switchToNewGiygasBattle(EnemyGroup.bossGiygasPhaseAfterPrayer7, Music.giygasWeakened2);
 }
 
-/// $C2C6D0
+/** The 8th prayer scene. Sorry, nobody's left. Nothing happens
+ * Original_Address: $(DOLLAR)C2C6D0
+ */
 void battleActionGiygasPrayer8() {
-	unknownC2C41F(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_8"));
+	giygasWeakText(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_8"));
 	currentGiygasPhase = GiygasPhase.prayer8Used;
 }
 
-/// $C2C6F0
+/** The final prayer scene. Pretends to do ridiculous amounts of damage, then starts the giygas death scene
+ * Original_Address: $(DOLLAR)C2C6F0
+ */
 void battleActionGiygasPrayer9() {
 	resetRolling();
-	unknownC2C41F(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_9"));
+	giygasWeakText(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_9"));
 	giygasHurtPrayer(3200);
-	unknownC2C41F(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_F_1"));
+	giygasWeakText(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_F_1"));
 	giygasHurtPrayer(6400);
-	unknownC2C41F(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_F_2"));
+	giygasWeakText(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_F_2"));
 	giygasHurtPrayer(12800);
-	unknownC2C41F(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_F_3"));
+	giygasWeakText(Music.giygasWeakened2, getTextBlock("MSG_BTL_INORU_BACK_TO_PC_F_3"));
 	giygasHurtPrayer(25600);
 	closeFocusWindow();
 	battleModeFlag = 0;
@@ -6950,8 +6983,8 @@ void battleActionGiygasPrayer9() {
 	battlersTable[9].consciousness = 0;
 	drawBattleSprites();
 	wait(1 * 60);
-	short x14 = 2;
-	short x04 = x14;
+	short staticEffect = 2;
+	short x04 = 2;
 	short x02 = 45;
 	verticalShakeDuration = 1 * 60;
 	for (short i = 0; giygasDeathStaticTransitionDelays[i] != 0; i++) {
@@ -6967,24 +7000,25 @@ void battleActionGiygasPrayer9() {
 			x02 = 45;
 			verticalShakeDuration = 1 * 60;
 		}
-		unknownC2DAE3();
-		setStatic(x14);
-		if (x14 == 2) {
-			x14 = 1;
+		giygasSwapDeathDistortion();
+		setStatic(staticEffect);
+		// switch to the other static effect
+		if (staticEffect == 2) {
+			staticEffect = 1;
 		} else {
-			x14 = 2;
+			staticEffect = 2;
 		}
 	}
 	changeMusic(Music.giygasStatic);
 	wait(10 * 60);
 	playSfx(Sfx.psiThunderDamage);
 	stopMusic();
-	unknownC2E8C4(Swirl.enemyAttack, AnimationFlags.none, 5);
+	startSwirlPadded(Swirl.enemyAttack, AnimationFlags.none, 5);
 	while (unknownC2E9C8() != 0) {
 		windowTick();
 	}
 	stopMusic();
-	unknownC2C21F(EnemyGroup.bossGiygasPhaseFinal, Music.none);
+	switchToNewGiygasBattle(EnemyGroup.bossGiygasPhaseFinal, Music.none);
 	wait(8 * 60);
 	specialDefeat = SpecialDefeat.giygasDefeated;
 }
@@ -7348,8 +7382,10 @@ void loadBattleBG(ushort layer1, ushort layer2, ushort letterbox) {
 	tracef("Loaded battle bg: %s/%s", loadedBGDataLayer1, loadedBGDataLayer2);
 }
 
-/// $C2DAE3
-void unknownC2DAE3() {
+/** Enables the final battle's death effect by swapping the 0th loaded distortion style with the 3rd, erasing the 1st and forcing the current distortion to end
+ * Original_Address: $(DOLLAR)C2DAE3
+ */
+void giygasSwapDeathDistortion() {
 	ubyte x0E = loadedBGDataLayer1.distortionStyles[0];
 	loadedBGDataLayer1.distortionStyles[0] = loadedBGDataLayer1.distortionStyles[3];
 	loadedBGDataLayer1.distortionStyles[1] = 0;
@@ -7357,12 +7393,16 @@ void unknownC2DAE3() {
 	loadedBGDataLayer1.distortionStyles[3] = x0E;
 }
 
-/// $C2DB14
-void unknownC2DB14() {
+/** Replaces the normally-unchanged animated background palette with the rendered background's palette for layer 1
+ * Original_Address: $(DOLLAR)C2DB14
+ */
+void replaceLoadedAnimatedLayer1Palette() {
 	memcpy(&loadedBGDataLayer1.palette[0], loadedBGDataLayer1.palettePointer, loadedBGDataLayer1.palette[0].sizeof);
 }
 
-/// $C2DB3F
+/** Renders a single battle frame. Includes screen effects like flashes and shakes, large battle sprites and their palette effects, background animation and letterboxing
+ * Original_Address: $(DOLLAR)C2DB3F
+ */
 void drawBattleFrame() {
 	if (enableBackgroundDarkening != 0) {
 		backgroundBrightness -= 0x555;
@@ -7556,7 +7596,7 @@ void unknownC2E08E(short arg1) {
 void unknownC2E0E7() {
 	greenFlashDuration = 0;
 	redFlashDuration = 0;
-	unknown7EAEC2 = 0;
+	framesLeftUntilNextSwirlUpdate = 0;
 	if (hpPPBoxBlinkDuration != 0) {
 		unknownC207B6(hpPPBoxBlinkTarget);
 		hpPPBoxBlinkDuration = 0;
@@ -7737,10 +7777,16 @@ void unknownC2E6B6() {
 	}
 }
 
-/// $C2E8C4
-void unknownC2E8C4(short arg1, short arg2, short arg3) {
-	startSwirl(arg1, arg2);
-	unknown7EAECA = cast(ubyte)arg3;
+/** Starts a swirl animation with extra padding frames
+ * Params:
+ * 	swirl = The ID of the swirl animation to play
+ * 	flags = The flags for the swirl animation
+ * 	extraFrames = Number of extra frames to pad the animation with
+ * Original_Address: $(DOLLAR)C2E8C4
+ */
+void startSwirlPadded(short swirl, short flags, short extraFrames) {
+	startSwirl(swirl, flags);
+	swirlLengthPadding = cast(ubyte)extraFrames;
 }
 
 /// $C2E8E0
@@ -7793,18 +7839,18 @@ void battleSwirlSequence() {
 			CGADSUBFlags.ColourMathAddsub | CGADSUBFlags.ColourMathMainIsBackdrop | CGADSUBFlags.ColourMathMainIsOBJ47 | CGADSUBFlags.ColourMathMainIsBG4 | CGADSUBFlags.ColourMathMainIsBG3 | CGADSUBFlags.ColourMathMainIsBG2 | CGADSUBFlags.ColourMathMainIsBG1
 		);
 	}
-	unknownC2E8C4(x16, x0E, 30);
+	startSwirlPadded(x16, x0E, 30);
 	if ((x0E & AnimationFlags.unknown2) != 0) {
 		swirlMaskSettings = SwirlMask.mathMode;
 	} else {
 		swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.bg3 | SwirlMask.bg4;
 	}
-	unknown7EAECB = 0;
+	swirlAutoRestore = 0;
 }
 
 /// $C2E9C8
 short unknownC2E9C8() {
-	if ((unknown7EAEC2 != 0) && (unknown7EAECA > 4)) {
+	if ((framesLeftUntilNextSwirlUpdate != 0) && (swirlLengthPadding > 4)) {
 		return 1;
 	}
 	return 0;
@@ -7812,46 +7858,46 @@ short unknownC2E9C8() {
 
 /// $C2E9ED
 void unknownC2E9ED() {
-	unknown7EAEC2 = 0;
-	unknownC0AE34(unknown7EAEC9 + 3);
+	framesLeftUntilNextSwirlUpdate = 0;
+	hdmaDisable(swirlHDMAChannelOffset + 3);
 	setColData(0, 0, 0);
 	setWindowMask(0, 0);
 }
 
 /// $C2EA15
 void unknownC2EA15(short arg1) {
-	unknown7EAEEF = cast(ubyte)arg1;
+	activeOvalWindow = cast(ubyte)arg1;
 	startSwirl(Swirl.ovalWindow, AnimationFlags.none);
 	swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.obj;
 	switch (arg1) {
 		case 2:
-			loadedComputedSwirl = &unknownC3F819[0];
+			loadedOvalWindow = &toBeContOvalClose[0];
 			break;
 		case 1:
-			loadedComputedSwirl = &unknownC4A5FA[0];
+			loadedOvalWindow = &evtPrayOvalWindow[0];
 			break;
 		default:
-			loadedComputedSwirl = &unknownC4A5CE[0];
+			loadedOvalWindow = &ovalWindowSwirl[0];
 			break;
 	}
 }
 
 /// $C2EA74
-void enableOvalWindow() {
+void closeOvalWindow() {
 	startSwirl(Swirl.ovalWindow, AnimationFlags.none);
 	swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.obj;
-	if (unknown7EAEEF != 0) {
-		loadedComputedSwirl = &unknownC4A652[0];
+	if (activeOvalWindow != 0) {
+		loadedOvalWindow = &unknownC4A652[0];
 	} else {
-		loadedComputedSwirl = &unknownC4A626[0];
+		loadedOvalWindow = &unknownC4A626[0];
 	}
 }
 
 /// $C2EAAA
 void disableOvalWindow() {
-	unknown7EAEC2 = 0;
-	loadedComputedSwirl = null;
-	unknownC0AE34(3);
+	framesLeftUntilNextSwirlUpdate = 0;
+	loadedOvalWindow = null;
+	hdmaDisable(3);
 	setWindowMask(0, 0);
 }
 
@@ -7860,7 +7906,7 @@ short unknownC2EACF() {
 	if (psiAnimationTimeUntilNextFrame != 0) {
 		return 1;
 	}
-	if (unknown7EAEC2 == 0) {
+	if (framesLeftUntilNextSwirlUpdate == 0) {
 		return 0;
 	}
 	return 1;

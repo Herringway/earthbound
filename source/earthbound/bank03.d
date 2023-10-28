@@ -343,10 +343,10 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	Window.unknown0c: WindowConfig(0x000C, 0x0001, 0x0013, 0x0010),
 	Window.unknown0d: WindowConfig(0x0007, 0x0001, 0x0018, 0x0010),
 	Window.textBattle: WindowConfig(0x0004, 0x0001, 0x0018, 0x0006),
-	Window.battleMenu: WindowConfig(0x0001, 0x0001, 0x0015, 0x0006),
+	Window.battleMenuExtended: WindowConfig(0x0001, 0x0001, 0x0015, 0x0006),
 	Window.psiCategories: WindowConfig(0x0004, 0x0001, 0x0008, 0x0008), // Used for the PSI category list
 	Window.unknown11: WindowConfig(0x000C, 0x0001, 0x000C, 0x0004),
-	Window.battleMenuJeff: WindowConfig(0x0001, 0x0001, 0x000E, 0x0006),
+	Window.battleMenuNormal: WindowConfig(0x0001, 0x0001, 0x000E, 0x0006),
 	Window.fileSelectMain: WindowConfig(0x0001, 0x0002, 0x001E, 0x0008),
 	Window.fileSelectMenu: WindowConfig(0x0005, 0x0009, 0x0016, 0x0004),
 	Window.fileSelectCopyMenuTwoFiles: WindowConfig(0x000A, 0x0010, 0x000C, 0x0008),
@@ -376,7 +376,7 @@ immutable WindowConfig[53] windowConfigurationTable = [
 	Window.equipMenuStats: WindowConfig(0x0003, 0x000B, 0x000F, 0x0006),
 	Window.unknown2e: WindowConfig(0x0004, 0x0001, 0x0008, 0x000A),
 	Window.unknown2f: WindowConfig(0x0001, 0x0009, 0x001E, 0x000A),
-	Window.unknown30: WindowConfig(0x0001, 0x0001, 0x001C, 0x0006),
+	Window.battleMenuDoubleExtended: WindowConfig(0x0001, 0x0001, 0x001C, 0x0006),
 	Window.unknown31: WindowConfig(0x000A, 0x0004, 0x0014, 0x0004),
 	Window.fileSelectFlavourChoice: WindowConfig(0x000E, 0x000B, 0x000F, 0x0010),
 	Window.singleCharacterSelect: WindowConfig(0x0016, 0x0008, 0x0009, 0x0004),
@@ -717,7 +717,7 @@ void unknownC3EAD0(short arg1) {
 void unknownC3EB1C(short arg1) {
 	short x14 = 0;
 	for (; (timedItemTransformationTable[x14].sfx != 0) && (timedItemTransformationTable[x14].item != arg1); x14++) {}
-	unknownC48F98(x14);
+	removeItemTransformationEntry(x14);
 	for (short x12 = 0; x12 < gameState.playerControlledPartyMemberCount; x12++) {
 		for (short x10 = 0; (x10 < 14) && (partyCharacters[gameState.partyMembers[x12] - 1].items[x10] != 0); x10++) {
 			if (partyCharacters[gameState.partyMembers[x12] - 1].items[x10] != arg1) {
@@ -1178,7 +1178,9 @@ short showTitleScreen(short quick) {
 	return 1;
 }
 
-/// $C3F5F9
+/** Upload tiles from a tilemap to the map in VRAM, one row at a time
+ * Original_Address: $(DOLLAR)C3F5F9
+ */
 void tilemapUpdateUploadRows() {
 	short x04 = 0;
 	short size = cast(short)(tilemapUpdateTileCount * 2);
@@ -1192,44 +1194,48 @@ void tilemapUpdateUploadRows() {
 	}
 }
 
-/// $C3F705
-void tilemapUpdateUploadTilemap(short arg1, short arg2, ushort* newTiles) {
+/** Upload a full tilemap to VRAM at specific overworld coordinates
+ * Original_Address: $(DOLLAR)C3F705
+ */
+void tilemapUpdateUploadTilemap(short mapX, short mapY, ushort* newTiles) {
 	tilemapUpdateRemainingTiles = &newTiles[1];
-	short x12 = arg1 & 0x3F;
-	tilemapUpdateTileX = x12;
-	short x10 = arg2 & 0x1F;
-	tilemapUpdateTileY = x10;
-	tilemapUpdateBaseAddress = ((x12 & 0x1F) != 0) ? 0x3C00 : 0x3800;
-	short x18 = newTiles[0] >> 8;
-	tilemapUpdateTileCount = x18;
+	short vramX = mapX & 0x3F;
+	tilemapUpdateTileX = vramX;
+	short vramY = mapY & 0x1F;
+	tilemapUpdateTileY = vramY;
+	tilemapUpdateBaseAddress = ((vramX & 0x1F) != 0) ? 0x3C00 : 0x3800;
+	short count = newTiles[0] >> 8;
+	tilemapUpdateTileCount = count;
 	tilemapUpdateTileHeight = newTiles[0] & 0xFF;
-	if ((x12 & 0xFFE0) == ((x12 + x18) & 0xFFE0)) {
-		tilemapUpdateTileWidth = x18;
+	if ((vramX & 0xFFE0) == ((vramX + count) & 0xFFE0)) {
+		tilemapUpdateTileWidth = count;
 		tilemapUpdateUploadRows();
 	} else {
-		short x0E = x18;
+		short x0E = count;
 		do {
-			tilemapUpdateTileCount = cast(short)(((x18 + x12) & 0xFFE0) - tilemapUpdateTileX);
-			tilemapUpdateTileWidth = x18;
+			tilemapUpdateTileCount = cast(short)(((count + vramX) & 0xFFE0) - tilemapUpdateTileX);
+			tilemapUpdateTileWidth = count;
 			tilemapUpdateUploadRows();
 			tilemapUpdateBaseAddress ^= 0x400;
 			tilemapUpdateRemainingTiles = &tilemapUpdateRemainingTiles[tilemapUpdateTileCount];
 			tilemapUpdateTileX = 0;
-			tilemapUpdateTileY = x10;
-			x18 -= tilemapUpdateTileCount;
-		} while (x18 >= 0x20);
-		tilemapUpdateTileCount = x18;
+			tilemapUpdateTileY = vramY;
+			count -= tilemapUpdateTileCount;
+		} while (count >= 0x20);
+		tilemapUpdateTileCount = count;
 		tilemapUpdateTileWidth = x0E;
 		tilemapUpdateUploadRows();
 	}
 }
 
-/// $C3F819
-immutable(AttractModeParameters)[4] unknownC3F819 = [
-	AttractModeParameters(0x3C, 0x00, 0x0080, 0x0070, 0x9800, 0x7F00, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
-	AttractModeParameters(0x3C, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
-	AttractModeParameters(0x3C, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF38, 0xFF50, 0xFFFC, 0xFFFD),
-	AttractModeParameters(0x00, 0x00, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000),
+/** The oval window animations making up the iris out animation at the end of the game
+ * Original_Address: $(DOLLAR)C3F819
+ */
+immutable(OvalWindowAnimation)[4] toBeContOvalClose = [
+	OvalWindowAnimation(60, 0, 128, 112, 0x9800, 0x7F00, 0, 0, -224, -183, -4, -3),
+	OvalWindowAnimation(60, 0, 128, 112, 0x8000, 0x8000, 0, 0, 0, 0, 0, 0),
+	OvalWindowAnimation(60, 0, 128, 112, 0x8000, 0x8000, 0, 0, -200, -176, -4, -3),
+	OvalWindowAnimation(0),
 ];
 
 /** Mappings for each chunk of tile data associated with a 32x32 hardware sprite

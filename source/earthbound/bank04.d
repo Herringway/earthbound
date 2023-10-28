@@ -3967,11 +3967,11 @@ void unknownC4880C() {
 		dest = unknownC4810E(x1C, dest);
 		offset++;
 	}
-	short x1A = cast(short)strlen(cast(char*)&partyCharacters[0].name[0]);
-	if (x1A == 6) {
-		x1A--;
+	short nameLength = cast(short)strlen(cast(char*)&partyCharacters[0].name[0]);
+	if (nameLength == 6) {
+		nameLength--;
 	}
-	for(offset = 0; x1A < offset; offset++, x1C++) {
+	for(offset = 0; nameLength < offset; offset++, x1C++) {
 		dest = unknownC4810E(x1C, dest);
 	}
 	for (offset = 0; offset < 6; offset++, x1C++) {
@@ -4000,8 +4000,8 @@ void unknownC4880C() {
 		}
 	}
 	entityScriptVar0Table[currentEntitySlot] = cast(short)(tileCount * 2);
-	buffer[0] = 0x08;
-	buffer[1] = 0x1E;
+	buffer[0] = 8; // height (tiles)
+	buffer[1] = 30; // width (tiles)
 }
 
 unittest {
@@ -4168,29 +4168,35 @@ short isValidItemTransformation(short arg1) {
 	return 0;
 }
 
-/// $C48EEB
-void initializeItemTransformation(short arg1) {
-	if (isValidItemTransformation(arg1) == 0) {
-		timeUntilNextItemTransformationCheck = 0x3C;
+/** Initializes an item transformation entry. If entry wasn't already initialized, also sets time until the next check to one second from now
+ * Original_Address: $(DOLLAR)C48EEB
+ */
+void initializeItemTransformation(short id) {
+	if (isValidItemTransformation(id) == 0) {
+		timeUntilNextItemTransformationCheck = 60;
 		itemTransformationsLoaded++;
 	}
-	loadedItemTransformations[arg1].sfx = timedItemTransformationTable[arg1].sfx;
-	loadedItemTransformations[arg1].sfxFrequency = timedItemTransformationTable[arg1].sfxFrequency;
-	loadedItemTransformations[arg1].sfxCountdown = cast(ubyte)(timedItemTransformationTable[arg1].sfxFrequency + randMod(2) - 1);
-	loadedItemTransformations[arg1].transformationCountdown = timedItemTransformationTable[arg1].transformationTime;
+	loadedItemTransformations[id].sfx = timedItemTransformationTable[id].sfx;
+	loadedItemTransformations[id].sfxFrequency = timedItemTransformationTable[id].sfxFrequency;
+	loadedItemTransformations[id].sfxCountdown = cast(ubyte)(timedItemTransformationTable[id].sfxFrequency + randMod(2) - 1);
+	loadedItemTransformations[id].transformationCountdown = timedItemTransformationTable[id].transformationTime;
 }
 
-/// $C48F98
-void unknownC48F98(short arg1) {
-	if (isValidItemTransformation(arg1) == 0) {
+/** Removes an item transformation entry
+ * Original_Address: $(DOLLAR)C48F98
+ */
+void removeItemTransformationEntry(short id) {
+	if (isValidItemTransformation(id) == 0) {
 		return;
 	}
 	itemTransformationsLoaded--;
-	loadedItemTransformations[arg1].sfxFrequency = 0;
-	loadedItemTransformations[arg1].transformationCountdown = 0;
+	loadedItemTransformations[id].sfxFrequency = 0;
+	loadedItemTransformations[id].transformationCountdown = 0;
 }
 
-/// $C48FC4
+/** Process a single frame's worth of item transformations, such as eggs hatching into chicks or chicks growing up into chickens
+ * Original_Address: $(DOLLAR)C48FC4
+ */
 void processItemTransformations() {
 	if (enemyHasBeenTouched + battleSwirlCountdown != 0) {
 		return;
@@ -4204,26 +4210,28 @@ void processItemTransformations() {
 	if (--timeUntilNextItemTransformationCheck != 0) {
 		return;
 	}
-	timeUntilNextItemTransformationCheck = 0x3C;
-	LoadedItemTransformation* x02 = loadedItemTransformations.ptr;
-	short x14 = 1;
-	short x12 = 0;
+	timeUntilNextItemTransformationCheck = 60;
+	LoadedItemTransformation* transformation = loadedItemTransformations.ptr;
+	short canPlaySFX = 1;
 	for (short i = 0; i < 4; i++) {
-		if ((x14 != 0) && (x02.sfxFrequency != 0) && (x02.sfxCountdown-- == 0)) {
-			x02.sfxCountdown = cast(ubyte)(x02.sfxFrequency + randMod(2) - 1);
-			playSfx(x02.sfx);
-			x14 = 0;
+		if ((canPlaySFX != 0) && (transformation.sfxFrequency != 0) && (transformation.sfxCountdown-- == 0)) {
+			transformation.sfxCountdown = cast(ubyte)(transformation.sfxFrequency + randMod(2) - 1);
+			playSfx(transformation.sfx);
+			canPlaySFX = 0;
 		}
-		if (x02.transformationCountdown != 0) {
-			if (x02.transformationCountdown-- == 0) {
+		if (transformation.transformationCountdown != 0) {
+			if (transformation.transformationCountdown-- == 0) {
 				giveItemToCharacter(takeItemFromCharacter(0xFF, timedItemTransformationTable[i].item), timedItemTransformationTable[i].targetItem);
 			}
 		}
-		x02++;
+		transformation++;
 	}
 }
 
-/// $C490EE
+/** Gets the distance and direction from the nearest magic truffle onscreen to the player
+ * Returns: 0 if no truffle found, 1 if far off, 10 if directly on top of one, or a direction + 2 if it's nearby
+ * Original_Address: $(DOLLAR)C490EE
+ */
 short getDistanceToMagicTruffle() {
 	short x04 = findEntityBySprite(OverworldSprite.magicTruffle);
 	if (x04 == -1) {
@@ -4598,9 +4606,10 @@ void flyoverSetPixelOffset(ubyte arg1) {
 /** Renders a party member name in flyover mode
  * Params:
  * 	partyCharacter = Character ID + 1 of the party member whose name is being rendered
+ * 	unused =
  * Original_Address: $(DOLLAR)C49CC3
  */
-void renderFlyoverPartyMemberName(ubyte partyCharacter, short) {
+void renderFlyoverPartyMemberName(ubyte partyCharacter, short unused) {
 	ubyte* name = &partyCharacters[partyCharacter - 1].name[0];
 	for (short i = 0; (i < PartyCharacter.name.length) && (name[0] > 0x4F); i++) {
 		renderLargeCharacterInternal(*(name++));
@@ -4610,10 +4619,12 @@ void renderFlyoverPartyMemberName(ubyte partyCharacter, short) {
 /** Renders a single character to the flyover buffer
  * Params:
  * 	character = The text character, in flyover encoding, to render
+ * 	unused1 =
+ * 	unused2 =
  * Original_Address: $(DOLLAR)C49D16
  */
 // seems weird, but mother 2 did make use of the other args
-void renderFlyoverCharacter(ubyte character, short, short) {
+void renderFlyoverCharacter(ubyte character, short unused1, short unused2) {
 	renderLargeCharacterInternal(character);
 }
 
@@ -4694,9 +4705,11 @@ void coffeeTeaScene(short id) {
 	fadeIn(1, 1);
 }
 
-/// $C49EA4
+/** Scripts for each flyover screen
+ * Original_Address: $(DOLLAR)C49EA4
+ */
 @([ROMSource(0x210B86, 22), ROMSource(0x210B9C, 38), ROMSource(0x210BC2, 16), ROMSource(0x210BD2, 43), ROMSource(0x210BFD, 30), ROMSource(0x210C1B, 29), ROMSource(0x210C38, 41), ROMSource(0x210C61, 25)])
-immutable(ubyte[])[] flyoverTextPointers;
+immutable(ubyte[])[] flyoverTextScripts;
 
 /** Renders a full flyover screen
  * Params:
@@ -4707,7 +4720,7 @@ void runFlyover(short id) {
 	ushort leaderCallbackFlagsBackup = entityCallbackFlags[partyLeaderEntity];
 	entityCallbackFlags[partyLeaderEntity] |= 0xC000;
 	prepareNewFlyoverCoffeeTeaScene();
-	immutable(ubyte)* script = &flyoverTextPointers[id][0];
+	immutable(ubyte)* script = &flyoverTextScripts[id][0];
 	enableWordWrap = 0;
 	while (true) {
 		switch(*(script++)) {
@@ -4772,7 +4785,9 @@ immutable ubyte[16][10] battleMenuText = [
  */
 immutable ubyte[12] battleMenuTextDoNothing = ebString!12("Do Nothing");
 
-/// $C4A08D
+/** A list of battle actions that don't ignore or force retargetting when targetted at the dead
+ * Original_Address: $(DOLLAR)C4A08D
+ */
 immutable ushort[33] deadTargettableActions = [
 	BattleActions.psiLifeupAlpha,
 	BattleActions.psiLifeupBeta,
@@ -4809,10 +4824,18 @@ immutable ushort[33] deadTargettableActions = [
 	0,
 ];
 
-/// $C4A0CF
-short autoHealing(short arg1, short arg2) {
-	short x12 = 9999;
-	short x04 = 0;
+/** Figure out which character is in greatest need of healing of a specific status effect
+ *
+ * Finds the party member with the least amount of HP that isn't already being autohealed with the status effect in question
+ * Params:
+ * 	statusGroup = The group ID of the status effect to search for
+ * 	status = The specific status effect being searched for
+ * Returns: 1-based party member ID of the party member who needs healing the most, or 0 if no appropriate party members found
+ * Original_Address: $(DOLLAR)C4A0CF
+ */
+short autoHealing(short statusGroup, short status) {
+	short leastHPFound = 9999;
+	short partyMemberWithLeastHP = 0;
 	for (short i = 0; i < 6; i++) {
 		if ((gameState.partyMembers[i] < 1) || (gameState.partyMembers[i] > 4)) {
 			continue;
@@ -4820,25 +4843,30 @@ short autoHealing(short arg1, short arg2) {
 		if (partyCharacters[gameState.partyMembers[i]].isAutoHealed != 0) {
 			continue;
 		}
-		if (partyCharacters[gameState.partyMembers[i]].afflictions[arg1] != arg2) {
+		if (partyCharacters[gameState.partyMembers[i]].afflictions[statusGroup] != status) {
 			continue;
 		}
-		if (partyCharacters[gameState.partyMembers[i]].hp.target >= x12) {
+		if (partyCharacters[gameState.partyMembers[i]].hp.target >= leastHPFound) {
 			continue;
 		}
-		x12 = partyCharacters[gameState.partyMembers[i]].hp.target;
-		x04 = gameState.partyMembers[i];
+		leastHPFound = partyCharacters[gameState.partyMembers[i]].hp.target;
+		partyMemberWithLeastHP = gameState.partyMembers[i];
 	}
-	if (x04 != 0) {
-		partyCharacters[x04 - 1].isAutoHealed = 1;
+	if (partyMemberWithLeastHP != 0) {
+		partyCharacters[partyMemberWithLeastHP - 1].isAutoHealed = 1;
 	}
-	return x04;
+	return partyMemberWithLeastHP;
 }
 
-/// $C4A15D
+/** Figure out which character is in greatest need of HP restoration
+ *
+ * Finds the still-living party member with the least amount of HP that isn't already being autohealed. Must also have at most 25% of max HP
+ * Returns: 1-based party member ID of the party member who needs healing the most, or 0 if no appropriate party members found
+ * Original_Address: $(DOLLAR)C4A15D
+ */
 short autoLifeup() {
-	short x14 = 9999;
-	short x04 = 0;
+	short leastHPFound = 9999;
+	short partyMemberWithLeastHP = 0;
 	for (short i = 0; i < 6; i++) {
 		if ((gameState.partyMembers[i] < 1) || (gameState.partyMembers[i] > 4)) {
 			continue;
@@ -4852,27 +4880,38 @@ short autoLifeup() {
 		if (partyCharacters[gameState.partyMembers[i]].hp.target >= partyCharacters[gameState.partyMembers[i]].maxHP / 4) {
 			continue;
 		}
-		if (partyCharacters[gameState.partyMembers[i]].hp.target >= x14) {
+		if (partyCharacters[gameState.partyMembers[i]].hp.target >= leastHPFound) {
 			continue;
 		}
-		x14 = partyCharacters[gameState.partyMembers[i]].hp.target;
-		x04 = gameState.partyMembers[i];
+		leastHPFound = partyCharacters[gameState.partyMembers[i]].hp.target;
+		partyMemberWithLeastHP = gameState.partyMembers[i];
 	}
-	if (x04 != 0) {
-		partyCharacters[x04 - 1].isAutoHealed = 1;
+	if (partyMemberWithLeastHP != 0) {
+		partyCharacters[partyMemberWithLeastHP - 1].isAutoHealed = 1;
 	}
-	return x04;
+	return partyMemberWithLeastHP;
 }
 
-/// $C4A1F2
-immutable ubyte[3] battleWindows = [ Window.battleMenuJeff, Window.battleMenu, Window.unknown30 ];
+/** Battle menus to use, in order of space for columns of commands
+ * Original_Address: $(DOLLAR)C4A1F2
+ */
+immutable ubyte[3] battleWindows = [
+	Window.battleMenuNormal, // 2 columns
+	Window.battleMenuExtended, // 3 columns
+	Window.battleMenuDoubleExtended // 4 columns
+];
 
-/// $C4A1F5
-short checkIfValidTarget(short arg1) {
-	if ((battlersTable[arg1].consciousness != 0) &&
-		(battlersTable[arg1].npcID == 0) &&
-		(battlersTable[arg1].afflictions[0] != Status0.unconscious) &&
-		(battlersTable[arg1].afflictions[0] != Status0.diamondized)) {
+/** Check if target is attackable
+ * Params:
+ * 	target = The battler ID of the fighter to check over
+ * Returns: 0 if the target is dead, an NPC or is diamondized
+ * Original_Address: $(DOLLAR)C4A1F5
+ */
+short checkIfValidTarget(short target) {
+	if ((battlersTable[target].consciousness != 0) &&
+		(battlersTable[target].npcID == 0) &&
+		(battlersTable[target].afflictions[0] != Status0.unconscious) &&
+		(battlersTable[target].afflictions[0] != Status0.diamondized)) {
 		return 1;
 	}
 	return 0;
@@ -5003,150 +5042,150 @@ immutable byte[61] unknownC4A591 = [
 ];
 
 /// $C4A5CE
-immutable AttractModeParameters[2] unknownC4A5CE = [
-	AttractModeParameters(0x3D, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
-	AttractModeParameters(0),
+immutable OvalWindowAnimation[2] ovalWindowSwirl = [
+	OvalWindowAnimation(61, 0, 128, 112, 0, 0, 0, 0, 224, 183, 4, 3),
+	OvalWindowAnimation(0),
 ];
 
 /// $C4A5FA
-immutable AttractModeParameters[2] unknownC4A5FA = [
-	AttractModeParameters(0x64, 0x00, 0x0080, 0x0070, 0x0000, 0x0000, 0x0000, 0x0000, 0x00E0, 0x00B7, 0x0004, 0x0003),
-	AttractModeParameters(0),
+immutable OvalWindowAnimation[2] evtPrayOvalWindow = [
+	OvalWindowAnimation(100, 0, 128, 112, 0, 0, 0, 0, 224, 183, 4, 3),
+	OvalWindowAnimation(0),
 ];
 
 /// $C4A626
-immutable AttractModeParameters[2] unknownC4A626 = [
-	AttractModeParameters(0x3D, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
-	AttractModeParameters(0),
+immutable OvalWindowAnimation[2] unknownC4A626 = [
+	OvalWindowAnimation(61, 0, 128, 112, 0x8000, 0x8000, 0, 0, -224, -183, -4, -3),
+	OvalWindowAnimation(0),
 ];
 
 /// $C4A652
-immutable AttractModeParameters[2] unknownC4A652 = [
-	AttractModeParameters(0x64, 0x00, 0x0080, 0x0070, 0x8000, 0x8000, 0x0000, 0x0000, 0xFF20, 0xFF49, 0xFFFC, 0xFFFD),
-	AttractModeParameters(0),
+immutable OvalWindowAnimation[2] unknownC4A652 = [
+	OvalWindowAnimation(100, 0, 128, 112, 0x8000, 0x8000, 0, 0, -224, -183, -4, -3),
+	OvalWindowAnimation(0),
 ];
 
 /// $C4A67E
-void startSwirl(short arg1, short arg2) {
-	tracef("Loading swirl %s", arg1);
-	if ((arg2 & AnimationFlags.invert) != 0) {
+void startSwirl(short swirl, short flags) {
+	tracef("Loading swirl %s", swirl);
+	if ((flags & AnimationFlags.invert) != 0) {
 		swirlInvertEnabled = 1;
 	} else {
 		swirlInvertEnabled = 0;
 	}
-	if ((arg2 & AnimationFlags.reverse) != 0) {
+	if ((flags & AnimationFlags.reverse) != 0) {
 		swirlReversed = 1;
 	} else {
 		swirlReversed = 0;
 	}
-	if ((arg2 & AnimationFlags.unknown2) != 0) {
+	if ((flags & AnimationFlags.unknown2) != 0) {
 		swirlMaskSettings = SwirlMask.mathMode;
 	} else {
 		swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.bg3 | SwirlMask.bg4 | SwirlMask.obj; // on/off mask
 	}
-	unknown7EAEC2 = 1;
-	framesUntilNextSwirlFrame = swirlPrimaryTable[arg1].timeBetweenFrames;
-	swirlFramesLeft = swirlPrimaryTable[arg1].swirlFrames;
-	swirlHDMATableID = swirlPrimaryTable[arg1].startingHDMATableID;
+	framesLeftUntilNextSwirlUpdate = 1;
+	framesUntilNextSwirlFrame = swirlPrimaryTable[swirl].timeBetweenFrames;
+	swirlFramesLeft = swirlPrimaryTable[swirl].swirlFrames;
+	swirlHDMATableID = swirlPrimaryTable[swirl].startingHDMATableID;
 	if (swirlReversed != 0) {
 		swirlHDMATableID += swirlFramesLeft;
 	}
-	loadedComputedSwirl = null;
-	if (arg1 == 0) {
-		loadedComputedSwirl = &unknownC4A5CE[0];
+	loadedOvalWindow = null;
+	if (swirl == 0) {
+		loadedOvalWindow = &ovalWindowSwirl[0];
 	}
-	unknown7EAEC9 = 0;
-	unknown7EAECA = 0;
-	unknown7EAECB = 1;
-	if ((arg2 & AnimationFlags.repeat) != 0) {
-		unknown7EAEE4 = cast(ubyte)arg1;
+	swirlHDMAChannelOffset = 0;
+	swirlLengthPadding = 0;
+	swirlAutoRestore = 1;
+	if ((flags & AnimationFlags.repeat) != 0) {
+		swirlNextSwirl = cast(ubyte)swirl;
 		framesUntilNextSwirlFrame = 4;
 		unknown7EAEE5 = 0;
 		unknown7EAEE6 = 6;
 	} else {
-		unknown7EAEE4 = 0;
+		swirlNextSwirl = 0;
 	}
-	unknownC0B0AA();
+	resetWindows();
 }
 
 /// $C4A7B0
 void unknownC4A7B0() {
-	if (unknown7EAEC2 == 0) {
+	if (framesLeftUntilNextSwirlUpdate == 0) {
 		return;
 	}
-	if (loadedComputedSwirl != null) {
-		if (--unknown7EAEC2 == 0) {
-			unknown7EAEC2 = loadedComputedSwirl.unknown0;
-			if (loadedComputedSwirl.unknown0 == 0) {
-				loadedComputedSwirl = null;
+	if (loadedOvalWindow != null) {
+		if (--framesLeftUntilNextSwirlUpdate == 0) {
+			framesLeftUntilNextSwirlUpdate = loadedOvalWindow.duration;
+			if (loadedOvalWindow.duration == 0) {
+				loadedOvalWindow = null;
 				return;
 			}
-			if (loadedComputedSwirl.unknown2 != 0x8000) {
-				unknown7EAED0 = loadedComputedSwirl.unknown2;
+			if (loadedOvalWindow.centreX != 0x8000) {
+				loadedOvalWindowCentreX = loadedOvalWindow.centreX;
 			}
-			if (loadedComputedSwirl.unknown4 != 0x8000) {
-				unknown7EAED2 = loadedComputedSwirl.unknown4;
+			if (loadedOvalWindow.centreY != 0x8000) {
+				loadedOvalWindowCentreY = loadedOvalWindow.centreY;
 			}
-			if (loadedComputedSwirl.unknown6 != 0x8000) {
-				unknown7EAED4 = loadedComputedSwirl.unknown6;
+			if (loadedOvalWindow.initialWidth != 0x8000) {
+				loadedOvalWindowWidth = loadedOvalWindow.initialWidth;
 			}
-			if (loadedComputedSwirl.unknown8 != 0x8000) {
-				unknown7EAED6 = loadedComputedSwirl.unknown8;
+			if (loadedOvalWindow.initialHeight != 0x8000) {
+				loadedOvalWindowHeight = loadedOvalWindow.initialHeight;
 			}
-			unknown7EAED8 = loadedComputedSwirl.unknown10;
-			unknown7EAEDA = loadedComputedSwirl.unknown12;
-			unknown7EAEDC = loadedComputedSwirl.unknown14;
-			unknown7EAEDE = loadedComputedSwirl.unknown16;
-			unknown7EAEE0 = loadedComputedSwirl.unknown18;
-			unknown7EAEE2 = loadedComputedSwirl.unknown20;
-			loadedComputedSwirl++;
+			loadedOvalWindowCentreXAdd = loadedOvalWindow.centreXAdd;
+			loadedOvalWindowCentreYAdd = loadedOvalWindow.centreYAdd;
+			loadedOvalWindowWidthVelocity = loadedOvalWindow.widthVelocity;
+			loadedOvalWindowHeightVelocity = loadedOvalWindow.heightVelocity;
+			loadedOvalWindowWidthAcceleration = loadedOvalWindow.widthAcceleration;
+			loadedOvalWindowHeightAcceleration = loadedOvalWindow.heightAcceleration;
+			loadedOvalWindow++;
 		}
-		unknown7EAED0 += unknown7EAED8;
-		unknown7EAED2 += unknown7EAEDA;
-		unknown7EAEDC += unknown7EAEE0;
-		unknown7EAEDE += unknown7EAEE2;
-		if ((0 > unknown7EAEDC) && (unknown7EAED4 < -cast(int)unknown7EAEDC)) {
-			unknown7EAED4 = 0;
+		loadedOvalWindowCentreX += loadedOvalWindowCentreXAdd;
+		loadedOvalWindowCentreY += loadedOvalWindowCentreYAdd;
+		loadedOvalWindowWidthVelocity += loadedOvalWindowWidthAcceleration;
+		loadedOvalWindowHeightVelocity += loadedOvalWindowHeightAcceleration;
+		if ((0 > loadedOvalWindowWidthVelocity) && (loadedOvalWindowWidth < -cast(int)loadedOvalWindowWidthVelocity)) {
+			loadedOvalWindowWidth = 0;
 		} else {
-			unknown7EAED4 += unknown7EAEDC;
+			loadedOvalWindowWidth += loadedOvalWindowWidthVelocity;
 		}
-		if ((0 > unknown7EAEDE) && (unknown7EAED6 < -cast(int)unknown7EAEDE)) {
-			unknown7EAED6 = 0;
+		if ((0 > loadedOvalWindowHeightVelocity) && (loadedOvalWindowHeight < -cast(int)loadedOvalWindowHeightVelocity)) {
+			loadedOvalWindowHeight = 0;
 		} else {
-			unknown7EAED6 += unknown7EAEDE;
+			loadedOvalWindowHeight += loadedOvalWindowHeightVelocity;
 		}
-		if ((unknown7EAED4 == 0) && (unknown7EAED6 == 0)) {
-			unknown7EAEC2 = 0;
-			loadedComputedSwirl = null;
+		if ((loadedOvalWindowWidth == 0) && (loadedOvalWindowHeight == 0)) {
+			framesLeftUntilNextSwirlUpdate = 0;
+			loadedOvalWindow = null;
 		}
-		generateAttractModeWindowHDMATable(unknown7EAED0, unknown7EAED2, (unknown7EAED4 >> 8) & 0xFF, (unknown7EAED6 >> 8) & 0xFF);
-		enableAttractModeWindowHDMA(3, 0x41);
+		generateSwirlHDMATable(loadedOvalWindowCentreX, loadedOvalWindowCentreY, (loadedOvalWindowWidth >> 8) & 0xFF, (loadedOvalWindowHeight >> 8) & 0xFF);
+		enableSwirlWindowHDMA(3, 0x41);
 		setWindowMask(swirlMaskSettings, (swirlInvertEnabled >> 8) & 0xFF);
 		return;
 	}
 
-	if (--unknown7EAEC2 != 0) {
+	if (--framesLeftUntilNextSwirlUpdate != 0) {
 		return;
 	}
 	while (true) { //pretty weird but I'm not sure how else to express this mass of branches
 		if (swirlFramesLeft != 0) {
-			unknown7EAEC2 = framesUntilNextSwirlFrame;
-			unknownC0AE34(unknown7EAEC9 + 3);
-			unknown7EAEC9++;
-			unknown7EAEC9 &= 1;
+			framesLeftUntilNextSwirlUpdate = framesUntilNextSwirlFrame;
+			hdmaDisable(swirlHDMAChannelOffset + 3);
+			swirlHDMAChannelOffset++;
+			swirlHDMAChannelOffset &= 1;
 			if (swirlReversed == 0) {
-				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[swirlHDMATableID++][0]);
+				enableWindowHDMA(swirlHDMAChannelOffset + 3, &swirlPointerTable[swirlHDMATableID++][0]);
 			} else {
-				unknownC0B0B8(unknown7EAEC9 + 3, &swirlPointerTable[--swirlHDMATableID][0]);
+				enableWindowHDMA(swirlHDMAChannelOffset + 3, &swirlPointerTable[--swirlHDMATableID][0]);
 			}
 			setWindowMask(swirlMaskSettings, swirlInvertEnabled);
 			swirlFramesLeft--;
 			return;
 		}
-		if (unknown7EAEE4 != 0) {
+		if (swirlNextSwirl != 0) {
 			if (--unknown7EAEE6 != 0) {
-				swirlFramesLeft = swirlPrimaryTable[unknown7EAEE4].swirlFrames;
-				unknown7EAEE6 = swirlPrimaryTable[unknown7EAEE4].startingHDMATableID;
+				swirlFramesLeft = swirlPrimaryTable[swirlNextSwirl].swirlFrames;
+				unknown7EAEE6 = swirlPrimaryTable[swirlNextSwirl].startingHDMATableID;
 				if (swirlReversed == 0) {
 					continue;
 				}
@@ -5172,17 +5211,17 @@ void unknownC4A7B0() {
 				continue;
 			}
 		}
-		if (unknown7EAECA != 0) {
-			unknown7EAEC2 = 1;
-			unknown7EAECA--;
+		if (swirlLengthPadding != 0) {
+			framesLeftUntilNextSwirlUpdate = 1;
+			swirlLengthPadding--;
 			return;
 		}
 		break;
 	}
-	if (unknown7EAECB == 0) {
+	if (swirlAutoRestore == 0) {
 		return;
 	}
-	unknownC0AE34(unknown7EAEC9 + 3);
+	hdmaDisable(swirlHDMAChannelOffset + 3);
 	setWindowMask(0, 0);
 	restoreAnimatedBackgroundColour();
 	setColData(0, 0, 0);
@@ -6984,7 +7023,7 @@ short runAttractModeScene(short arg1) {
 		}
 		x14++;
 	}
-	enableOvalWindow();
+	closeOvalWindow();
 	while (unknownC2EACF() != 0) {
 		finishFrame();
 		unknownC4A7B0();

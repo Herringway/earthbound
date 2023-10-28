@@ -1949,8 +1949,8 @@ ubyte[] ACTIONSCRIPT_C2EA15() {
 	return ACTIONSCRIPT_CALLROUTINE!unknownC2EA15();
 }
 
-ubyte[] ACTIONSCRIPT_ENABLE_OVAL_WINDOW() {
-	return ACTIONSCRIPT_CALLROUTINE!enableOvalWindow();
+ubyte[] ACTIONSCRIPT_CLOSE_OVAL_WINDOW() {
+	return ACTIONSCRIPT_CALLROUTINE!closeOvalWindow();
 }
 
 ubyte[] ACTIONSCRIPT_C2EACF() {
@@ -23086,7 +23086,7 @@ actionScriptEvtPrayOvalWindow = [
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_GET_EVENT_FLAG(EventFlag.animPort0),
 	ACTIONSCRIPT_JUMP_IF_FALSE(&actionScriptEvtPrayOvalWindow[8 + 4 * (const(void)*).sizeof]),
-	ACTIONSCRIPT_ENABLE_OVAL_WINDOW(),
+	ACTIONSCRIPT_CLOSE_OVAL_WINDOW(),
 	ACTIONSCRIPT_PAUSE(1),
 	ACTIONSCRIPT_C2EACF(),
 	ACTIONSCRIPT_JUMP_IF_TRUE(&actionScriptEvtPrayOvalWindow[15 + 7 * (const(void)*).sizeof]),

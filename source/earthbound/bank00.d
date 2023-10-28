@@ -7803,12 +7803,21 @@ shared static this() {
 immutable ubyte[9] dmaTargetRegisters = [ 0x80, 0x0D, 0x0F, 0x11, 0x13, 0x0E, 0x10, 0x12, 0x14 ];
 
 /// $C0AE34
-void unknownC0AE34(short arg1) {
-	mirrorHDMAEN &= unknownC0AE44[arg1];
+void hdmaDisable(short layer) {
+	mirrorHDMAEN &= hdmaDisableMasks[layer];
 }
 
 /// $C0AE44
-immutable ubyte[8] unknownC0AE44 = [0xFE, 0xFD, 0xFB, 0xF7, 0xEF, 0xDF, 0xBF, 0x7F];
+immutable ubyte[8] hdmaDisableMasks = [
+	0b11111110,
+	0b11111101,
+	0b11111011,
+	0b11110111,
+	0b11101111,
+	0b11011111,
+	0b10111111,
+	0b01111111
+];
 
 /// $C0AE4C
 void loadBackgroundOffsetParameters(short arg1, short arg2, short arg3) {
@@ -7976,63 +7985,82 @@ void setColourAddSubMode(ubyte cgwsel, ubyte cgadsub) {
 	CGADSUB = cgadsub;
 }
 
-/// $C0B047
+/** Sets window masking registers WxxxSEL, TMW, TSW and WxxxLOG with presets
+ * Params:
+ * 	layers = Bitmask of masks to enable (see earthbound.commondefs.SwirlMask for values)
+ * 	invert = If 0, sets mode to affect the outside of the windows using OR logic, if 1, uses area inside of the windows with AND logic
+ * Original_Address: $(DOLLAR)C0B047
+ */
 void setWindowMask(ushort layers, ushort invert) {
-	W12SEL = unknownC0B0A6[layers & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
-	W34SEL = unknownC0B0A6[(layers>>2) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
-	WOBJSEL = unknownC0B0A6[(layers>>4) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	W12SEL = windowMaskSettingPresets[layers & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	W34SEL = windowMaskSettingPresets[(layers>>2) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
+	WOBJSEL = windowMaskSettingPresets[(layers>>4) & 3] & ((invert != 0) ? 0b10101010 : 0b11111111);
 	TMW = layers & 0b00011111;
 	TSW = layers & 0b00011111;
 	WBGLOG = (invert != 0) ? 0 : 0b01010101;
 	WOBJLOG = (invert != 0) ? 0 : 0b01010101;
 }
 
-/// $C0B0A6
-immutable ubyte[4] unknownC0B0A6 = [0x00, 0x0F, 0xF0, 0xFF];
+/** Mask setting presets for W12SEL, W34SEL, WOBJSEL used by setWindowMask
+ * Original_Address: $(DOLLAR)C0B0A6
+ */
+immutable ubyte[4] windowMaskSettingPresets = [
+	0b00000000, // disable masking on both BG1/BG3/OBJ and BG2/BG4/MATH
+	0b00001111, // enable masking only on BG1/BG3/OBJ
+	0b11110000, // enable masking only on BG2/BG4/MATH
+	0b11111111, // enable masking on both BG1/BG3/OBJ and BG2/BG4/MATH
+];
 
-/// $C0B0AA
-void unknownC0B0AA() {
+/** Resets windows 1 and 2 by setting the left edge to the right edge of the screen
+ * Original_Address: $(DOLLAR)C0B0AA
+ */
+void resetWindows() {
 	WH0 = 0xFF;
 	WH2 = 0xFF;
 }
 
-/// $C0B0B8
-void unknownC0B0B8(short arg1, const(ubyte)* arg2) {
-	//dmaChannels[arg1].A1B = bank of arg2;
-	//dmaChannels[arg1].DASB = bank of arg2;
-	dmaChannels[arg1].BBAD = 0x26;
-	dmaChannels[arg1].DMAP = *arg2;
-	dmaChannels[arg1].A1T = &arg2[1];
-	mirrorHDMAEN |= dmaFlags[arg1];
+/** Enables window HDMA. Destination is fixed to WH0-WH3
+ * Params:
+ * 	channel = The channel (0 - 7) to set up HDMA on
+ * 	table = The HDMA table to use, prefixed with a single byte for HDMA parameters (ie a DMAPx value)
+ * Original_Address: $(DOLLAR)C0B0B8
+ */
+void enableWindowHDMA(short channel, const(ubyte)* table) {
+	//dmaChannels[channel].A1B = bank of table;
+	//dmaChannels[channel].DASB = bank of table;
+	dmaChannels[channel].BBAD = 0x26;
+	dmaChannels[channel].DMAP = *table;
+	dmaChannels[channel].A1T = &table[1];
+	mirrorHDMAEN |= dmaFlags[channel];
 }
 
 /// $C0B0EF
-void enableAttractModeWindowHDMA(ubyte channel, ubyte flags) {
+void enableSwirlWindowHDMA(ubyte channel, ubyte flags) {
 	// Write the table entry for the first 100 lines of window data
-	attractModeWindowHDMATable[0].lines = 100 | 0x80;
-	attractModeWindowHDMATable[0].address = &attractModeWindowHDMAData[0];
+	swirlWindowHDMATable[0].lines = 100 | 0x80;
+	swirlWindowHDMATable[0].address = &swirlWindowHDMAData[0];
 	// Write the table entry for the 124 remaining lines of window data
-	attractModeWindowHDMATable[1].lines = 124 | 0x80;
-	attractModeWindowHDMATable[2].lines = 0;
+	swirlWindowHDMATable[1].lines = 124 | 0x80;
+	swirlWindowHDMATable[2].lines = 0;
 	//dmaChannels[channel].A1B = 0x7E;
 	//dmaChannels[channel].DASB = 0x7E;
 	dmaChannels[channel].BBAD = 0x26;
 	dmaChannels[channel].DMAP = flags;
 	// Depending on whether we are writing to windows 1 and 2 (4 bytes) or just window 1 (2 bytes),
 	// skip ahead in the buffer by 400 or 200 bytes (100 lines)
-	attractModeWindowHDMATable[1].address = ((flags & 4) != 0) ? (&attractModeWindowHDMAData[400]) : (&attractModeWindowHDMAData[200]);
-	dmaChannels[channel].A1T = &attractModeWindowHDMATable[0];
+	swirlWindowHDMATable[1].address = ((flags & 4) != 0) ? (&swirlWindowHDMAData[400]) : (&swirlWindowHDMAData[200]);
+	dmaChannels[channel].A1T = &swirlWindowHDMATable[0];
 	mirrorHDMAEN |= dmaFlags[channel];
 }
 
 /// $C0B149
-void generateAttractModeWindowHDMATable(short arg1, short arg2, short arg3, short arg4) {
+void generateSwirlHDMATable(short arg1, short arg2, short arg3, short arg4) {
 	if (/+(arg2 > 0) && (+/arg2 >= 0x70) {
 		short y = 0;
 		short a = cast(short)(arg2 - arg4);
 		if (a > 0) {
 			do {
-				*cast(ushort*)&attractModeWindowHDMAData[y] = 0xFF;
+				*cast(ushort*)&swirlWindowHDMAData[y] = 0xFF;
 				y += 2;
 			} while(--a != 0);
 			a = 0;
@@ -8056,10 +8084,10 @@ void generateAttractModeWindowHDMATable(short arg1, short arg2, short arg3, shor
 					a = cast(ushort)(x0C << 8) | cast(ubyte)a;
 				}
 			}
-			*cast(ushort*)&attractModeWindowHDMAData[y] = a;
+			*cast(ushort*)&swirlWindowHDMAData[y] = a;
 			x0C = cast(short)(x0A * 4);
 			if (y + x0C < 0x1C0) {
-				*cast(ushort*)&attractModeWindowHDMAData[y + x0C] = a;
+				*cast(ushort*)&swirlWindowHDMAData[y + x0C] = a;
 			}
 			y += 2;
 			if (--x0A < 0) {
@@ -8071,7 +8099,7 @@ void generateAttractModeWindowHDMATable(short arg1, short arg2, short arg3, shor
 		if (y < 0x1C0) {
 			a = 0xFF;
 			do {
-				*cast(ushort*)&attractModeWindowHDMAData[y] = 0xFF;
+				*cast(ushort*)&swirlWindowHDMAData[y] = 0xFF;
 				y += 2;
 			} while (y < 0x1C0);
 		}
@@ -8081,7 +8109,7 @@ void generateAttractModeWindowHDMATable(short arg1, short arg2, short arg3, shor
 		a = cast(short)(a - arg2 - arg4);
 		if (a > 0) {
 			do {
-				*cast(ushort*)&attractModeWindowHDMAData[y] = 0xFF;
+				*cast(ushort*)&swirlWindowHDMAData[y] = 0xFF;
 				y -= 2;
 			} while (--a != 0);
 			a = 0;
@@ -8105,10 +8133,10 @@ void generateAttractModeWindowHDMATable(short arg1, short arg2, short arg3, shor
 					a = cast(ushort)(x0C << 8) | cast(ubyte)a;
 				}
 			}
-			*cast(ushort*)&attractModeWindowHDMAData[y] = a;
+			*cast(ushort*)&swirlWindowHDMAData[y] = a;
 			x0C = cast(short)(x0A * 4);
 			if (y - x0C >= 0) {
-				*cast(ushort*)&attractModeWindowHDMAData[y - x0C] = a;
+				*cast(ushort*)&swirlWindowHDMAData[y - x0C] = a;
 			}
 			y -= 2;
 			if (--x0A < 0) {
@@ -8119,7 +8147,7 @@ void generateAttractModeWindowHDMATable(short arg1, short arg2, short arg3, shor
 		y = cast(short)(a - arg4 - arg4);
 		if (y >= 0) {
 			do {
-				attractModeWindowHDMAData[y] = 0xFF;
+				swirlWindowHDMAData[y] = 0xFF;
 				y -= 2;
 			} while (y >= 0);
 		}
@@ -10372,7 +10400,7 @@ short runGasStationSkippablePortion() {
 		memcpy(&mapPaletteBackup[0], &palettes[2][0], 0x20);
 		updateMapPaletteAnimation();
 		paletteUploadMode = PaletteUpload.none;
-		unknownC2DB14();
+		replaceLoadedAnimatedLayer1Palette();
 		memcpy(&palettes[2][0], &mapPaletteBackup[0], 0x20);
 		drawBattleFrame();
 		paletteUploadMode = PaletteUpload.full;

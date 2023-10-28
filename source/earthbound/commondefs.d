@@ -204,10 +204,10 @@ enum Window {
 	unknown0c = 0x0C,
 	unknown0d = 0x0D,
 	textBattle = 0x0E,
-	battleMenu = 0x0F,
+	battleMenuExtended = 0x0F, /// Extended battle menu, for paula, poo or when ness or jeff are leading
 	psiCategories = 0x10,
 	unknown11 = 0x11,
-	battleMenuJeff = 0x12,
+	battleMenuNormal = 0x12, /// Normal battle menu
 	fileSelectMain = 0x13,
 	fileSelectMenu = 0x14,
 	fileSelectCopyMenuTwoFiles = 0x15,
@@ -238,7 +238,7 @@ enum Window {
 	equipMenuStats = 0x2D,
 	unknown2e = 0x2E,
 	unknown2f = 0x2F,
-	unknown30 = 0x30,
+	battleMenuDoubleExtended = 0x30, /// Doubly-extended battle menu for when paula or poo are leading
 	unknown31 = 0x31,
 	fileSelectFlavourChoice = 0x32,
 	singleCharacterSelect = 0x33,
@@ -5576,7 +5576,7 @@ enum Swirl {
 	bossBattleStart = 3, /// The boss battle start effect. Set CGWSEL and CGADSUB for different tinting
 	unknown4 = 4, ///
 	enemyAttack = 5, /// The simple expanding rectangle effect used for enemy special attacks. Set CGWSEL and CGADSUB for different colours
-	unknown6 = 6, ///
+	staticWipe = 6, /// The "random lines" wipe effect used in the final battle
 }
 
 enum BGMode {
@@ -6544,19 +6544,19 @@ struct TownMapData {
 	ubyte unknown2; ///
 }
 ///
-struct AttractModeParameters {
-	ubyte unknown0; ///
-	ubyte unknown1; ///
-	ushort unknown2; ///
-	ushort unknown4; ///
-	ushort unknown6; ///
-	ushort unknown8; ///
-	ushort unknown10; ///
-	ushort unknown12; ///
-	ushort unknown14; ///
-	ushort unknown16; ///
-	ushort unknown18; ///
-	ushort unknown20; ///
+struct OvalWindowAnimation {
+	ubyte duration; /// Number of frames of animation
+	ubyte unused; ///
+	ushort centreX; /// The initial centre X of the oval, or 0x8000 to keep whatever was loaded already
+	ushort centreY; /// The initial centre Y of the oval, or 0x8000 to keep whatever was loaded already
+	ushort initialWidth; /// The initial width of the oval, or 0x8000 to keep whatever was loaded before
+	ushort initialHeight; /// The initial height of the oval, or 0x8000 to keep whatever was loaded before
+	short centreXAdd; /// Added to centreX each frame
+	short centreYAdd; /// Added to centreY each frame
+	short widthVelocity; /// Added to width every frame
+	short heightVelocity; /// Added to height every frame
+	short widthAcceleration; /// added to width velocity every frame
+	short heightAcceleration; /// added to height velocity every frame
 }
 ///
 struct BattleEntryBGEntry {

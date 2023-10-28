@@ -1283,15 +1283,15 @@ __gshared ubyte[HDMAIndirectTableEntry.sizeof * 2 + 1] animatedBackgroundLayer2H
  * Original_Address: $(DOLLAR)3C46
  */
 __gshared ushort[448] backgroundHDMABuffer;
-/** HDMA table generated for attract mode screen effects
+/** HDMA table generated for computed swirl screen effects
  * Original_Address: $(DOLLAR)3FC6
  */
-__gshared HDMAIndirectTableEntry[3] attractModeWindowHDMATable;
+__gshared HDMAIndirectTableEntry[3] swirlWindowHDMATable;
 
-/** HDMA data for attract mode screen effects. Large enough to hold data for 231 lines of HDMA data, just enough to cover overscan
+/** HDMA data for computed swirl screen effects. Large enough to hold data for 231 lines of HDMA data, just enough to cover overscan
  * Original_Address: $(DOLLAR)3FD0
  */
-__gshared ubyte[924] attractModeWindowHDMAData;
+__gshared ubyte[924] swirlWindowHDMAData;
 
 /** Enables some debugging features when non-zero
  * Original_Address: $(DOLLAR)436C
@@ -2807,34 +2807,107 @@ __gshared short enableBackgroundDarkening;
  * Original_Address: $(DOLLAR)ADD2
  */
 __gshared ushort backgroundBrightness;
-__gshared LoadedBackgroundData loadedBGDataLayer1; /// Original_Address: $(DOLLAR)ADD4
-__gshared LoadedBackgroundData loadedBGDataLayer2; /// Original_Address: $(DOLLAR)AE4B
-__gshared ubyte unknown7EAEC2; /// Original_Address: $(DOLLAR)AEC2
-__gshared ubyte framesUntilNextSwirlFrame; /// Original_Address: $(DOLLAR)AEC3
-__gshared ubyte swirlFramesLeft; /// Original_Address: $(DOLLAR)AEC4
-__gshared ubyte swirlHDMATableID; /// Original_Address: $(DOLLAR)AEC5
-__gshared ubyte swirlInvertEnabled; /// Original_Address: $(DOLLAR)AEC6
-__gshared ubyte swirlReversed; /// Original_Address: $(DOLLAR)AEC7
-__gshared ubyte swirlMaskSettings; /// Original_Address: $(DOLLAR)AEC8
-__gshared ubyte unknown7EAEC9; /// Original_Address: $(DOLLAR)AEC9
-__gshared ubyte unknown7EAECA; /// Original_Address: $(DOLLAR)AECA
-__gshared ubyte unknown7EAECB; /// Original_Address: $(DOLLAR)AECB
-__gshared const(AttractModeParameters)* loadedComputedSwirl; /// Original_Address: $(DOLLAR)AECC
-__gshared short unknown7EAED0; /// Original_Address: $(DOLLAR)AED0
-__gshared short unknown7EAED2; /// Original_Address: $(DOLLAR)AED2
-__gshared short unknown7EAED4; /// Original_Address: $(DOLLAR)AED4
-__gshared short unknown7EAED6; /// Original_Address: $(DOLLAR)AED6
-__gshared short unknown7EAED8; /// Original_Address: $(DOLLAR)AED8
-__gshared short unknown7EAEDA; /// Original_Address: $(DOLLAR)AEDA
-__gshared short unknown7EAEDC; /// Original_Address: $(DOLLAR)AEDC
-__gshared short unknown7EAEDE; /// Original_Address: $(DOLLAR)AEDE
-__gshared short unknown7EAEE0; /// Original_Address: $(DOLLAR)AEE0
-__gshared short unknown7EAEE2; /// Original_Address: $(DOLLAR)AEE2
-__gshared ubyte unknown7EAEE4; /// Original_Address: $(DOLLAR)AEE4
+/** Data for loaded background animation, first layer
+ * Original_Address: $(DOLLAR)ADD4
+ */
+__gshared LoadedBackgroundData loadedBGDataLayer1;
+/** Data for loaded background animation, second layer
+ * Original_Address: $(DOLLAR)AE4B
+ */
+__gshared LoadedBackgroundData loadedBGDataLayer2;
+/** The number of frames left before the next part of the active swirl effect. Note that computed swirls will update independently of this, this will simply advance to their next stage instead
+ * Original_Address: $(DOLLAR)AEC2
+ */
+__gshared ubyte framesLeftUntilNextSwirlUpdate;
+/** The number of frames between the last swirl update and the next one. Note that this doesn't decrease like framesLeftUntilNextSwirlUpdate each frame
+ * Original_Address: $(DOLLAR)AEC3
+ */
+__gshared ubyte framesUntilNextSwirlFrame;
+/** Number of frame updates remaining in the active swirl
+ * Original_Address: $(DOLLAR)AEC4
+ */
+__gshared ubyte swirlFramesLeft;
+/** The currently active HDMA table index for swirl effects
+ * Original_Address: $(DOLLAR)AEC5
+ */
+__gshared ubyte swirlHDMATableID;
+/** Set to 1 if the swirl effect is being displayed with inverted colouring, 0 otherwise
+ * Original_Address: $(DOLLAR)AEC6
+ */
+__gshared ubyte swirlInvertEnabled;
+/** Set to 1 if the swirl effect is playing backwards, 0 if playing forwards
+ * Original_Address: $(DOLLAR)AEC7
+ */
+__gshared ubyte swirlReversed;
+/** The layers being affected by the active swirl effect
+ * See_Also: earthbound.bank00.setWindowMask, earthbound.commondefs.SwirlMask
+ * Original_Address: $(DOLLAR)AEC8
+ */
+__gshared ubyte swirlMaskSettings;
+/** The current HDMA channel offset used for HDMA transfers. Either 0 or 1, alternating on each frame
+ * Original_Address: $(DOLLAR)AEC9
+ */
+__gshared ubyte swirlHDMAChannelOffset;
+/** Number of blank frames to pad a swirl animation out to
+ * Original_Address: $(DOLLAR)AECA
+ */
+__gshared ubyte swirlLengthPadding;
+/** Whether or not to automatically disable HDMA, restore masks and COLDATA after a swirl animation is done
+ * Original_Address: $(DOLLAR)AECB
+ */
+__gshared ubyte swirlAutoRestore;
+/** Parameters for runtime-generated oval window animations
+ * Original_Address: $(DOLLAR)AECC
+ */
+__gshared const(OvalWindowAnimation)* loadedOvalWindow;
+/** The centre X coordinate of the active oval window animation
+ * Original_Address: $(DOLLAR)AED0
+ */
+__gshared short loadedOvalWindowCentreX;
+/** The centre Y coordinate of the active oval window animation
+ * Original_Address: $(DOLLAR)AED2
+ */
+__gshared short loadedOvalWindowCentreY;
+/** The current width of the active oval window animation
+ * Original_Address: $(DOLLAR)AED4
+ */
+__gshared short loadedOvalWindowWidth;
+/** The current height of the active oval window animation
+ * Original_Address: $(DOLLAR)AED6
+ */
+__gshared short loadedOvalWindowHeight;
+/** The value added to the centre X of the loaded oval window animation each frame
+ * Original_Address: $(DOLLAR)AED8
+ */
+__gshared short loadedOvalWindowCentreXAdd;
+/** The value added to the centre Y of the loaded oval window animation each frame
+ * Original_Address: $(DOLLAR)AEDA
+ */
+__gshared short loadedOvalWindowCentreYAdd;
+/** The current rate of increase for the width of the active oval window animation
+ * Original_Address: $(DOLLAR)AEDC
+ */
+__gshared short loadedOvalWindowWidthVelocity;
+/** The current rate of increase for the height of the active oval window animation
+ * Original_Address: $(DOLLAR)AEDE
+ */
+__gshared short loadedOvalWindowHeightVelocity;
+/** The current rate of increase for the width velocity of the active oval window animatino
+ * Original_Address: $(DOLLAR)AEE0
+ */
+__gshared short loadedOvalWindowWidthAcceleration;
+/** The current rate of increase for the height velocity of the active oval window animatino
+ * Original_Address: $(DOLLAR)AEE2
+ */
+__gshared short loadedOvalWindowHeightAcceleration;
+/** The next swirl animation to play after the current one completes. If 0, no further animation will play
+ * Original_Address: $(DOLLAR)AEE4
+ */
+__gshared ubyte swirlNextSwirl;
 __gshared ubyte unknown7EAEE5; /// Original_Address: $(DOLLAR)AEE5
 __gshared ubyte unknown7EAEE6; /// Original_Address: $(DOLLAR)AEE6
 __gshared ushort[4] unknown7EAEE7; /// Original_Address: $(DOLLAR)AEE7
-__gshared ubyte unknown7EAEEF; /// Original_Address: $(DOLLAR)AEEF
+__gshared ubyte activeOvalWindow; /// Original_Address: $(DOLLAR)AEEF
 __gshared ushort[2] unknown7EAEF0; /// Original_Address: $(DOLLAR)AEF0
 __gshared ushort[4] battleSpritePaletteEffectFramesLeft; /// Original_Address: $(DOLLAR)AEF4
 __gshared short[3 * 16 * 4] battleSpritePaletteEffectDeltas; /// Original_Address: $(DOLLAR)AEFC
