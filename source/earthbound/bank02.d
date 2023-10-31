@@ -83,8 +83,8 @@ void initializeTextSystem() {
 	for (short i = 0x380; i != 0; i--) {
 		bg2Buffer[0x380 - i] = 0;
 	}
-	for (short i = 0; i != 0x46; i++) {
-		menuOptions[i].field00 = 0;
+	for (short i = 0; i != menuOptions.length; i++) {
+		menuOptions[i].type = MenuOptionType.available;
 	}
 	for (short i = 0; i < 8; i++) {
 		for (short j = 0; j < 0x20; j++) {
@@ -116,7 +116,7 @@ void initializeTextSystem() {
 	lastPrintedCharacter = 0;
 	printTargetArticle = 0;
 	printAttackerArticle = 0;
-	unknown7EB4CE = 0;
+	forceNormalFontForLengthCalculation = 0;
 	skipAddingCommandText = 0;
 }
 
@@ -7656,7 +7656,7 @@ void showPSIAnimation(short arg1) {
 	darkenAnimatedBackgrounds();
 	memcpy(&palettes[12][0], &palettes[8][0], 0x80);
 	for (short i = 0; i < 4; i++) {
-		unknown7EAEE7[i] = 0;
+		psiAnimationEnemyTargets[i] = 0;
 	}
 	if (currentTarget.consciousness == 0) {
 		return;
@@ -7674,7 +7674,7 @@ void showPSIAnimation(short arg1) {
 				psiAnimationYOffset += 16;
 			}
 			currentTarget.useAltSpritemap = 1;
-			unknown7EAEE7[currentTarget.vramSpriteIndex] = 1;
+			psiAnimationEnemyTargets[currentTarget.vramSpriteIndex] = 1;
 			break;
 		case PSIAnimationTarget.row:
 			psiAnimationYOffset = 0x90 - currentTarget.spriteY;
@@ -7696,7 +7696,7 @@ void showPSIAnimation(short arg1) {
 					x1A = 1;
 				}
 				battlersTable[i].useAltSpritemap = 1;
-				unknown7EAEE7[battlersTable[i].vramSpriteIndex] = 1;
+				psiAnimationEnemyTargets[battlersTable[i].vramSpriteIndex] = 1;
 			}
 			break;
 		case PSIAnimationTarget.allEnemies:
@@ -7712,7 +7712,7 @@ void showPSIAnimation(short arg1) {
 					continue;
 				}
 				battlersTable[i].useAltSpritemap = 1;
-				unknown7EAEE7[battlersTable[i].vramSpriteIndex] = 1;
+				psiAnimationEnemyTargets[battlersTable[i].vramSpriteIndex] = 1;
 			}
 			break;
 		default: break;
@@ -7759,9 +7759,9 @@ void unknownC2E6B6() {
 		}
 	}
 	if ((psiAnimationEnemyColourChangeStartFramesLeft != 0) && (--psiAnimationEnemyColourChangeStartFramesLeft == 0)) {
-		setBattleSpritePaletteEffectSpeed(0x14);
+		setBattleSpritePaletteEffectSpeed(20);
 		for (short i = 0; i < 4; i++) {
-			if (unknown7EAEE7[i] != 0) {
+			if (psiAnimationEnemyTargets[i] != 0) {
 				for (short j = 1; j < 16; j++) {
 					initializeBattleSpritePaletteEffect(cast(short)(i * 16 + j), psiAnimationEnemyColourChangeRed, psiAnimationEnemyColourChangeGreen, psiAnimationEnemyColourChangeBlue);
 				}
@@ -7770,8 +7770,8 @@ void unknownC2E6B6() {
 	}
 	if ((psiAnimationEnemyColourChangeFramesLeft != 0) && (--psiAnimationEnemyColourChangeFramesLeft == 0)) {
 		for (short i = 0; i < 4; i++) {
-			if (unknown7EAEE7[i] != 0) {
-				unknownC2FADE(0x14, i);
+			if (psiAnimationEnemyTargets[i] != 0) {
+				unknownC2FADE(20, i);
 			}
 		}
 	}
@@ -7865,7 +7865,7 @@ void unknownC2E9ED() {
 }
 
 /// $C2EA15
-void unknownC2EA15(short arg1) {
+void openOvalWindow(short arg1) {
 	activeOvalWindow = cast(ubyte)arg1;
 	startSwirl(Swirl.ovalWindow, AnimationFlags.none);
 	swirlMaskSettings = SwirlMask.bg1 | SwirlMask.bg2 | SwirlMask.obj;
@@ -8122,8 +8122,8 @@ void unknownC2F0D1() {
 
 /// $C2F121
 short unknownC2F121() {
-	unknown7EAEF0[1] = 0;
-	unknown7EAEF0[0] = 0;
+	battleSpriteRowWidth[1] = 0;
+	battleSpriteRowWidth[0] = 0;
 	for (short i = 8; i < battlersTable.length; i++) {
 		if (battlersTable[i].consciousness == 0) {
 			continue;
@@ -8133,19 +8133,19 @@ short unknownC2F121() {
 		}
 		battlersTable[i].vramSpriteIndex = unknownC2F09F(battlersTable[i].id);
 		short x02 = getBattleSpriteWidth(battlersTable[i].sprite);
-		if (unknown7EAEF0[battlersTable[i].row] != 0) {
+		if (battleSpriteRowWidth[battlersTable[i].row] != 0) {
 			x02++;
 		}
-		if (unknown7EAEF0[battlersTable[i].row] + x02 <= 30) {
-			unknown7EAEF0[battlersTable[i].row] += x02;
+		if (battleSpriteRowWidth[battlersTable[i].row] + x02 <= 30) {
+			battleSpriteRowWidth[battlersTable[i].row] += x02;
 		} else {
 			x02 = getBattleSpriteWidth(battlersTable[i].sprite);
-			if (unknown7EAEF0[1 - battlersTable[i].row] != 0) {
+			if (battleSpriteRowWidth[1 - battlersTable[i].row] != 0) {
 				x02++;
 			}
-			if (unknown7EAEF0[1 - battlersTable[i].row] + x02 <= 30) {
+			if (battleSpriteRowWidth[1 - battlersTable[i].row] + x02 <= 30) {
 				battlersTable[i].row = cast(ubyte)(1 - battlersTable[i].row);
-				unknown7EAEF0[1 - battlersTable[i].row] += x02;
+				battleSpriteRowWidth[1 - battlersTable[i].row] += x02;
 			} else {
 				return 0;
 			}

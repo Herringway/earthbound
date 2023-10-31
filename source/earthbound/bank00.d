@@ -55,7 +55,7 @@ void loadTilesetAnim() {
 	if (mapDataTilesetAnimationPointerTable[loadedMapTileset].count == 0) {
 		return;
 	}
-	decomp(&mapDataAnimatedTilesets[loadedMapTileset][0], &unknown7EC000[0]);
+	decomp(&mapDataAnimatedTilesets[loadedMapTileset][0], &animatedTilesetBuffer[0]);
 	loadedAnimatedTileCount = mapDataTilesetAnimationPointerTable[loadedMapTileset].count;
 	for (short i = 0; i < loadedAnimatedTileCount; i++) {
 		overworldTilesetAnim[i].frameCount = mapDataTilesetAnimationPointerTable[loadedMapTileset].animations[i].frameCount;
@@ -80,7 +80,7 @@ void animateTileset() {
 			overworldTilesetAnim[i].frameCounter = 0;
 			overworldTilesetAnim[i].sourceOffset2 = overworldTilesetAnim[i].sourceOffset;
 		}
-		copyToVRAM(0, overworldTilesetAnim[i].copySize, overworldTilesetAnim[i].destinationAddress, &unknown7EC000[overworldTilesetAnim[i].sourceOffset2]);
+		copyToVRAM(0, overworldTilesetAnim[i].copySize, overworldTilesetAnim[i].destinationAddress, &animatedTilesetBuffer[overworldTilesetAnim[i].sourceOffset2]);
 		overworldTilesetAnim[i].sourceOffset2 += overworldTilesetAnim[i].copySize;
 		overworldTilesetAnim[i].frameCounter++;
 	}
@@ -350,7 +350,7 @@ short loadSectorAttributes(ushort arg1, ushort arg2) {
 * Mutates:
 * 	loadedRowsX = Block X coordinate of the row being loaded
 * 	loadedRowsY = Block Y coordinate of the row being loaded
-*	unknown7EF000.loadedMapBlocks = The IDs of the map blocks in the requested area
+*	loadedMapBlocks = The IDs of the map blocks in the requested area
 * See_Also: loadMapBlock
 * Original_Address: $(DOLLAR)C00AC5
 */
@@ -367,7 +367,7 @@ void loadMapRow(short x, short y) {
 	} else {
 		x12 = globalMapTilesetPaletteData[y / 4][x16 / 8] / 8;
 	}
-	ushort* x14 = cast(ushort*)&unknown7EF000.loadedMapBlocks[y & 0xF];
+	ushort* x14 = cast(ushort*)&loadedMapBlocks[y & 0xF];
 	if (cast(ushort)y < 0x140) {
 		short x10 = x;
 		for (short i = 0; i < 16; i++) {
@@ -410,7 +410,7 @@ void loadMapRow(short x, short y) {
 * Mutates:
 * 	loadedColumnsX = Block X coordinate of the column being loaded
 * 	loadedColumnsY = Block Y coordinate of the column being loaded
-*	unknown7EF000.loadedMapBlocks = The IDs of the map blocks in the requested area
+*	loadedMapBlocks = The IDs of the map blocks in the requested area
 * See_Also: loadMapBlock
 * Original_Address: $(DOLLAR)C00BDC
 */
@@ -428,7 +428,7 @@ void loadMapColumn(short x, short y) {
 	} else {
 		x14 = globalMapTilesetPaletteData[y / 4][x / 8] / 8;
 	}
-	ushort* x12 = &unknown7EF000.loadedMapBlocks[0][x18];
+	ushort* x12 = &loadedMapBlocks[0][x18];
 	if (cast(ushort)x < 0x100) {
 		short x10 = cast(short)(x16 * 16);
 		for (short i = 0; i < 16; i++) {
@@ -466,7 +466,7 @@ void loadMapColumn(short x, short y) {
 
 /// $C00CF3
 void loadCollisionRow(short x, short y) {
-	ushort* x02 = &unknown7EF000.loadedMapBlocks[(y / 4) & 0xF][0];
+	ushort* x02 = &loadedMapBlocks[(y / 4) & 0xF][0];
 	ubyte* x10 = &loadedCollisionTiles[y & 0x3F][0];
 	for (short i = 0; i < 16; i++) {
 		const(ubyte[4][4])* x12 = tileCollisionBuffer[*x02];
@@ -481,7 +481,7 @@ void loadCollisionRow(short x, short y) {
 
 /// $C00D7E
 void loadCollisionColumn(short x, short y) {
-	ushort* x02 = &unknown7EF000.loadedMapBlocks[0][(x >> 2) & 0xF];
+	ushort* x02 = &loadedMapBlocks[0][(x >> 2) & 0xF];
 	ubyte* x10 = &loadedCollisionTiles[0][x & 0x3F];
 	for (short i = 0; i < 16; i++) {
 		const(ubyte[4][4])* x12 = tileCollisionBuffer[*x02];
@@ -502,11 +502,11 @@ void loadMapRowVRAM(short x, short y) {
 	ushort* x1E = cast(ushort*)sbrk(0x100);
 	ushort* x1C = &x1E[0x40];
 	x--;
-	ushort x18 = cast(ushort)((unknown7EF000.loadedMapBlocks[((y >> 2) & 0xF)][(x >> 2) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
+	ushort x18 = cast(ushort)((loadedMapBlocks[((y >> 2) & 0xF)][(x >> 2) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
 	short x16 = x & 0x3F;
 	for (short i = 0; i < 34; i++) {
 		if ((x & 3) == 0) {
-			x18 = cast(ushort)((unknown7EF000.loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + ((y & 3) * 4));
+			x18 = cast(ushort)((loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + ((y & 3) * 4));
 		}
 		ushort x12 = tileArrangementBuffer[x18];
 		x1E[x16] = x12;
@@ -536,11 +536,11 @@ void loadMapColumnVRAM(short x, short y) {
 	ushort* x1E = cast(ushort*)sbrk(0x80);
 	ushort* x1C = &x1E[0x20];
 	y--;
-	ushort x18 = cast(ushort)((unknown7EF000.loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
+	ushort x18 = cast(ushort)((loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + ((y & 3) * 4) + (x & 3));
 	short x16 = y & 0x1F;
 	for (short i = 0; i < 30; i++) {
 		if ((y & 3) == 0) {
-			x18 = cast(ushort)((unknown7EF000.loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + (x & 3));
+			x18 = cast(ushort)((loadedMapBlocks[(y >> 2) & 0xF][(x >> 2) & 0xF] * 16) + (x & 3));
 		}
 		ushort x12 = tileArrangementBuffer[x18];
 		x1E[x16] = x12;
@@ -4477,7 +4477,7 @@ void start() {
 
 	currentHeapAddress = &heap[0][0];
 	heapBaseAddress = &heap[0][0];
-	unknown7E2402 = -1;
+	unused7E2402 = -1;
 	randA = 0x1234;
 	randB = 0x5678;
 	nextFrameBufferID = 1;
@@ -5013,28 +5013,28 @@ void updateScreen() {
 
 /// $C08B8E
 void renderSpritesToOAM() {
-	if (unknown7E2402 == 0) {
+	if (unused7E2402 == 0) {
 		unknownC08C53();
 	}
 	for (short i = 0; i < priority0SpriteOffset / 2; i++) {
 		spritemapBank = priority0SpriteMapBanks[i];
 		renderSpriteToOAM(priority0SpriteMaps[i], priority0SpriteX[i], priority0SpriteY[i]);
 	}
-	if (unknown7E2402 == 1) {
+	if (unused7E2402 == 1) {
 		unknownC08C53();
 	}
 	for (short i = 0; i < priority1SpriteOffset / 2; i++) {
 		spritemapBank = priority1SpriteMapBanks[i];
 		renderSpriteToOAM(priority1SpriteMaps[i], priority1SpriteX[i], priority1SpriteY[i]);
 	}
-	if (unknown7E2402 == 2) {
+	if (unused7E2402 == 2) {
 		unknownC08C53();
 	}
 	for (short i = 0; i < priority2SpriteOffset / 2; i++) {
 		spritemapBank = priority2SpriteMapBanks[i];
 		renderSpriteToOAM(priority2SpriteMaps[i], priority2SpriteX[i], priority2SpriteY[i]);
 	}
-	if (unknown7E2402 == 3) {
+	if (unused7E2402 == 3) {
 		unknownC08C53();
 	}
 	for (short i = 0; i < priority3SpriteOffset / 2; i++) {
@@ -5473,11 +5473,11 @@ void runActionscriptFrame() {
 		disableActionscript = 0;
 		return;
 	}
-	actionScriptVar80 = 0;
-	actionScriptVar86 = 0;
+	actionScriptScriptOffset = 0;
+	unread86 = 0;
 	short x = firstEntity;
 	do {
-		actionScriptVar88 = x;
+		currentActiveEntityOffset = x;
 		currentEntityOffset = x;
 		currentEntitySlot = x;
 		currentEntitySlot /= 2;
@@ -5492,12 +5492,12 @@ void runActionscriptFrame() {
 	do {
 		currentEntitySlot = x;
 		currentEntitySlot /= 2;
-		actionScriptVar88 = x;
+		currentActiveEntityOffset = x;
 		if ((entityCallbackFlags[currentEntitySlot] & EntityCallbackFlags.moveDisabled) == 0) {
 			entityMoveCallbacks[currentEntitySlot]();
 		}
 		entityScreenPositionCallbacks[currentEntitySlot]();
-		x = entityNextEntityTable[actionScriptVar88 / 2];
+		x = entityNextEntityTable[currentActiveEntityOffset / 2];
 	} while(x >= 0);
 	actionScriptDrawCallback();
 	disableActionscript = 0;
@@ -5515,7 +5515,7 @@ void runEntityScripts(short a, short x) {
 			runEntityScript();
 			y = actionScriptCurrentScript;
 		} while (y > 0);
-		x = actionScriptVar88;
+		x = currentActiveEntityOffset;
 	}
 	if ((entityCallbackFlags[x / 2] & EntityCallbackFlags.tickDisabled) == 0) {
 		currentEntityTickCallback = entityTickCallbacks[x / 2];
@@ -5531,10 +5531,10 @@ void runEntityScript() {
 	}
 	const(ubyte)* ystart, y = entityProgramCounters[currentEntityScriptOffset / 2];
 	//ActionScript82 = EntityProgramCounterBanks[currentEntityScriptOffset / 2];
-	actionScriptVar84 = &entityScriptStacks[currentEntityScriptOffset / 2][0];
+	actionScriptStack = &entityScriptStacks[currentEntityScriptOffset / 2][0];
 	do {
 		ystart = y;
-		ubyte a = (y++)[actionScriptVar80];
+		ubyte a = (y++)[actionScriptScriptOffset];
 		debug(actionscript) printActionscriptCommand(currentEntitySlot, ystart);
 		if (a < 0x70) {
 			y = movementControlCodesPointerTable[a](y);
@@ -5639,7 +5639,7 @@ immutable const(ubyte)* function(const(ubyte)*)[77] movementControlCodesPointerT
 
 /// $C095F2 - [00] - End
 const(ubyte)* actionScriptCommand00(const(ubyte)* y) {
-	deleteEntityOffset(actionScriptVar88);
+	deleteEntityOffset(currentActiveEntityOffset);
 	entityScriptSleepFrames[currentEntityScriptOffset / 2] = -1;
 	actionScriptCurrentScript = -1;
 	return y;
@@ -5647,13 +5647,13 @@ const(ubyte)* actionScriptCommand00(const(ubyte)* y) {
 
 /// $C09603 - [01 XX] - Loop XX times
 const(ubyte)* actionScriptCommand01(const(ubyte)* y) {
-	return actionScriptCommand0124Common(y[actionScriptVar80], currentEntityScriptOffset, y + 1);
+	return actionScriptCommand0124Common(y[actionScriptScriptOffset], currentEntityScriptOffset, y + 1);
 }
 const(ubyte)* actionScriptCommand0124Common(short a, short x, const(ubyte)* y) {
 	actionScriptVar90 = a;
-	actionScriptVar94 = y;
-	actionScriptVar84[entityScriptStackPosition[x / 2] / 3].pc = y;
-	actionScriptVar84[entityScriptStackPosition[x / 2] / 3].counter = cast(ubyte)a;
+	actionScriptLastRead = y;
+	actionScriptStack[entityScriptStackPosition[x / 2] / 3].pc = y;
+	actionScriptStack[entityScriptStackPosition[x / 2] / 3].counter = cast(ubyte)a;
 	entityScriptStackPosition[x / 2] += 3;
 	return y;
 }
@@ -5665,30 +5665,30 @@ const(ubyte)* actionScriptCommand24(const(ubyte)* y) {
 
 /// $C09627 - [02] - Loop End
 const(ubyte)* actionScriptCommand02(const(ubyte)* y) {
-	actionScriptVar94 = y;
-	if (--actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3 - 1].counter == 0) {
+	actionScriptLastRead = y;
+	if (--actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3 - 1].counter == 0) {
 		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
-		return actionScriptVar94;
+		return actionScriptLastRead;
 	}
-	return actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3 - 1].pc;
+	return actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3 - 1].pc;
 }
 
 /// $C09649 - [19 NEARPTR] - Short Jump
 const(ubyte)* actionScriptCommand19(const(ubyte)* y) {
-	return *cast(const(ubyte)**)&y[actionScriptVar80];
+	return *cast(const(ubyte)**)&y[actionScriptScriptOffset];
 }
 
 /// $C0964D - [03 PTR] - Long Jump
 const(ubyte)* actionScriptCommand03(const(ubyte)* y) {
-	return *cast(const(ubyte)**)&y[actionScriptVar80];
+	return *cast(const(ubyte)**)&y[actionScriptScriptOffset];
 }
 
 /// $C09658 - [1A NEARPTR] - Short Call
 const(ubyte)* actionScriptCommand1A(const(ubyte)* y) {
-	actionScriptVar8CScript = *cast(const(ubyte)**)&y[actionScriptVar80];
-	actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + (const(ubyte)*).sizeof;
+	const(ubyte)* result = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+	actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + (const(ubyte)*).sizeof;
 	entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
-	return actionScriptVar8CScript;
+	return result;
 }
 
 /// $C0966F - [1B] - Short Return
@@ -5697,16 +5697,16 @@ const(ubyte)* actionScriptCommand1B(const(ubyte)* y) {
 		return actionScriptCommand0C(null);
 	} else {
 		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
-		return actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc;
+		return actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc;
 	}
 }
 
 /// $C09685 - [04 PTR] - Long Call
 const(ubyte)* actionScriptCommand04(const(ubyte)* y) {
-	actionScriptVar8CScript = *cast(const(ubyte)**)&y[actionScriptVar80];
-	actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + (const(ubyte)*).sizeof;
+	const(ubyte)* result = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
+	actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = y + (const(ubyte)*).sizeof;
 	entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
-	return actionScriptVar8CScript;
+	return result;
 }
 
 /// $C096AA - [05] - Long Return
@@ -5715,74 +5715,74 @@ const(ubyte)* actionScriptCommand05(const(ubyte)* y) {
 		return actionScriptCommand0C(null);
 	} else {
 		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
-		return actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc;
+		return actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc;
 	}
 }
 
 /// $C096C3 - [06 XX] - Pause XX frames
 const(ubyte)* actionScriptCommand06(const(ubyte)* y) {
-	entityScriptSleepFrames[currentEntityScriptOffset / 2] = y[actionScriptVar80];
+	entityScriptSleepFrames[currentEntityScriptOffset / 2] = y[actionScriptScriptOffset];
 	return y + 1;
 }
 
 /// $C096CF - [3B/45 XX] - Set Animation Frame
 const(ubyte)* actionScriptCommand3B45(const(ubyte)* y) {
-	entityAnimationFrames[actionScriptVar88 / 2] = y[actionScriptVar80] == 0xFF ? -1 : y[actionScriptVar80];
+	entityAnimationFrames[currentActiveEntityOffset / 2] = y[actionScriptScriptOffset] == 0xFF ? -1 : y[actionScriptScriptOffset];
 	return y + 1;
 }
 
 /// $C096E3 - [28 XXXX] - Set X
 const(ubyte)* actionScriptCommand28(const(ubyte)* y) {
-	entityAbsXTable[actionScriptVar88 / 2] = *cast(short*)&y[actionScriptVar80];
-	entityAbsXFractionTable[actionScriptVar88 / 2] = 0x8000;
+	entityAbsXTable[currentActiveEntityOffset / 2] = *cast(short*)&y[actionScriptScriptOffset];
+	entityAbsXFractionTable[currentActiveEntityOffset / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C096F3 - [29 XXXX] - Set Y
 const(ubyte)* actionScriptCommand29(const(ubyte)* y) {
-	entityAbsYTable[actionScriptVar88 / 2] = *cast(short*)&y[actionScriptVar80];
-	entityAbsYFractionTable[actionScriptVar88 / 2] = 0x8000;
+	entityAbsYTable[currentActiveEntityOffset / 2] = *cast(short*)&y[actionScriptScriptOffset];
+	entityAbsYFractionTable[currentActiveEntityOffset / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C09703 - [2A XXXX] - Set Z
 const(ubyte)* actionScriptCommand2A(const(ubyte)* y) {
-	entityAbsZTable[actionScriptVar88 / 2] = *cast(short*)&y[actionScriptVar80];
-	entityAbsZFractionTable[actionScriptVar88 / 2] = 0x8000;
+	entityAbsZTable[currentActiveEntityOffset / 2] = *cast(short*)&y[actionScriptScriptOffset];
+	entityAbsZFractionTable[currentActiveEntityOffset / 2] = 0x8000;
 	return y + 2;
 }
 
 /// $C09713
 const(ubyte)* actionScriptCommand3F49(const(ubyte)* y) {
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
 	y += 2;
-	entityDeltaXFractionTable[actionScriptVar88 / 2] = cast(ushort)(actionScriptVar90 << 8);
-	entityDeltaXTable[actionScriptVar88 / 2] = actionScriptVar90 >> 8;
+	entityDeltaXFractionTable[currentActiveEntityOffset / 2] = cast(ushort)(actionScriptVar90 << 8);
+	entityDeltaXTable[currentActiveEntityOffset / 2] = actionScriptVar90 >> 8;
 	return y;
 }
 
 /// $C09731
 const(ubyte)* actionScriptCommand404A(const(ubyte)* y) {
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
 	y += 2;
-	entityDeltaYFractionTable[actionScriptVar88 / 2] = cast(ushort)(actionScriptVar90 << 8);
-	entityDeltaYTable[actionScriptVar88 / 2] = actionScriptVar90 >> 8;
+	entityDeltaYFractionTable[currentActiveEntityOffset / 2] = cast(ushort)(actionScriptVar90 << 8);
+	entityDeltaYTable[currentActiveEntityOffset / 2] = actionScriptVar90 >> 8;
 	return y;
 }
 
 /// $C0974F
 const(ubyte)* actionScriptCommand414B(const(ubyte)* y) {
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
 	y += 2;
-	entityDeltaZFractionTable[actionScriptVar88 / 2] = cast(ushort)(actionScriptVar90 << 8);
-	entityDeltaZTable[actionScriptVar88 / 2] = actionScriptVar90 >> 8;
+	entityDeltaZFractionTable[currentActiveEntityOffset / 2] = cast(ushort)(actionScriptVar90 << 8);
+	entityDeltaZTable[currentActiveEntityOffset / 2] = actionScriptVar90 >> 8;
 	return y;
 }
 
 /// $C0976D
 const(ubyte)* actionScriptCommand2E(const(ubyte)* y) {
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
-	auto i = actionScriptVar88 / 2;
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
+	auto i = currentActiveEntityOffset / 2;
 	auto param = FixedPoint1616(cast(ushort)(actionScriptVar90 << 8), cast(short)(actionScriptVar90 >> 8));
 	auto prev = FixedPoint1616(entityDeltaXFractionTable[i], entityDeltaXTable[i]);
 	prev.combined += param.combined;
@@ -5793,8 +5793,8 @@ const(ubyte)* actionScriptCommand2E(const(ubyte)* y) {
 
 /// $C09792
 const(ubyte)* actionScriptCommand2F(const(ubyte)* y) {
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
-	auto i = actionScriptVar88 / 2;
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
+	auto i = currentActiveEntityOffset / 2;
 	auto param = FixedPoint1616(cast(ushort)(actionScriptVar90 << 8), cast(short)(actionScriptVar90 >> 8));
 	auto prev = FixedPoint1616(entityDeltaYFractionTable[i], entityDeltaYTable[i]);
 	prev.combined += param.combined;
@@ -5805,8 +5805,8 @@ const(ubyte)* actionScriptCommand2F(const(ubyte)* y) {
 
 /// $C097B7
 const(ubyte)* actionScriptCommand30(const(ubyte)* y) {
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
-	auto i = actionScriptVar88 / 2;
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
+	auto i = currentActiveEntityOffset / 2;
 	auto param = FixedPoint1616(cast(ushort)(actionScriptVar90 << 8), cast(short)(actionScriptVar90 >> 8));
 	auto prev = FixedPoint1616(entityDeltaZFractionTable[i], entityDeltaZTable[i]);
 	prev.combined += param.combined;
@@ -5817,24 +5817,24 @@ const(ubyte)* actionScriptCommand30(const(ubyte)* y) {
 
 /// $C097DC
 const(ubyte)* actionScriptCommand31(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	entityBGHorizontalOffsetLow[x] = *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	entityBGHorizontalOffsetLow[x] = *cast(short*)&y[actionScriptScriptOffset];
 	entityBGHorizontalOffsetHigh[x] = 0;
 	return y + 2;
 }
 
 /// $C097EF
 const(ubyte)* actionScriptCommand32(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	entityBGVerticalOffsetLow[x] = *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	entityBGVerticalOffsetLow[x] = *cast(short*)&y[actionScriptScriptOffset];
 	entityBGVerticalOffsetHigh[x] = 0;
 	return y + 2;
 }
 
 /// $C09802
 const(ubyte)* actionScriptCommand33(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
 	entityBGHorizontalVelocityHigh[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
 	entityBGHorizontalVelocityLow[x] = cast(short)((actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00));
 	return y + 2;
@@ -5842,8 +5842,8 @@ const(ubyte)* actionScriptCommand33(const(ubyte)* y) {
 
 /// $C09826
 const(ubyte)* actionScriptCommand34(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
 	entityBGVerticalVelocityHigh[x] = cast(short)((actionScriptVar90 & 0xFF) << 8);
 	entityBGVerticalVelocityLow[x] = cast(short)((actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00));
 	return y + 2;
@@ -5851,8 +5851,8 @@ const(ubyte)* actionScriptCommand34(const(ubyte)* y) {
 
 /// $C0984A
 const(ubyte)* actionScriptCommand35(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
 	entityBGHorizontalVelocityHigh[x] += (actionScriptVar90 & 0xFF) << 8;
 	entityBGHorizontalVelocityLow[x] += (actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00);
 	return y + 2;
@@ -5860,8 +5860,8 @@ const(ubyte)* actionScriptCommand35(const(ubyte)* y) {
 
 /// $C09875
 const(ubyte)* actionScriptCommand36(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	actionScriptVar90 = *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	actionScriptVar90 = *cast(short*)&y[actionScriptScriptOffset];
 	entityBGVerticalVelocityHigh[x] += (actionScriptVar90 & 0xFF) << 8;
 	entityBGVerticalVelocityLow[x] += (actionScriptVar90 & 0x8000) ? ((actionScriptVar90 & 0xFF00) | 0xFF) : (actionScriptVar90 & 0xFF00);
 	return y + 2;
@@ -5869,44 +5869,44 @@ const(ubyte)* actionScriptCommand36(const(ubyte)* y) {
 
 /// $C098A0
 const(ubyte)* actionScriptCommand2B(const(ubyte)* y) {
-	entityAbsXTable[actionScriptVar88 / 2] += *cast(short*)&y[actionScriptVar80];
+	entityAbsXTable[currentActiveEntityOffset / 2] += *cast(short*)&y[actionScriptScriptOffset];
 	return y + 2;
 }
 
 /// $C098AE
 const(ubyte)* actionScriptCommand2C(const(ubyte)* y) {
-	entityAbsYTable[actionScriptVar88 / 2] += *cast(short*)&y[actionScriptVar80];
+	entityAbsYTable[currentActiveEntityOffset / 2] += *cast(short*)&y[actionScriptScriptOffset];
 	return y + 2;
 }
 
 /// $C098BC
 const(ubyte)* actionScriptCommand2D(const(ubyte)* y) {
-	entityAbsZTable[actionScriptVar88 / 2] += *cast(short*)&y[actionScriptVar80];
+	entityAbsZTable[currentActiveEntityOffset / 2] += *cast(short*)&y[actionScriptScriptOffset];
 	return y + 2;
 }
 
 /// $C098CA
 const(ubyte)* actionScriptCommand37(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	entityBGHorizontalOffsetLow[x] += *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	entityBGHorizontalOffsetLow[x] += *cast(short*)&y[actionScriptScriptOffset];
 	return y + 2;
 }
 
 /// $C098DE
 const(ubyte)* actionScriptCommand38(const(ubyte)* y) {
-	ubyte x = (y++)[actionScriptVar80];
-	entityBGVerticalOffsetLow[x] += *cast(short*)&y[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	entityBGVerticalOffsetLow[x] += *cast(short*)&y[actionScriptScriptOffset];
 	return y + 2;
 }
 
 /// $C098F2
 const(ubyte)* actionScriptCommand39(const(ubyte)* y) {
-	entityDeltaXFractionTable[actionScriptVar88 / 2] = 0;
-	entityDeltaXTable[actionScriptVar88 / 2] = 0;
-	entityDeltaYFractionTable[actionScriptVar88 / 2] = 0;
-	entityDeltaYTable[actionScriptVar88 / 2] = 0;
-	entityDeltaZFractionTable[actionScriptVar88 / 2] = 0;
-	entityDeltaZTable[actionScriptVar88 / 2] = 0;
+	entityDeltaXFractionTable[currentActiveEntityOffset / 2] = 0;
+	entityDeltaXTable[currentActiveEntityOffset / 2] = 0;
+	entityDeltaYFractionTable[currentActiveEntityOffset / 2] = 0;
+	entityDeltaYTable[currentActiveEntityOffset / 2] = 0;
+	entityDeltaZFractionTable[currentActiveEntityOffset / 2] = 0;
+	entityDeltaZTable[currentActiveEntityOffset / 2] = 0;
 	return y;
 }
 
@@ -5922,32 +5922,32 @@ void unknownC09907(short arg1) {
 
 /// $C0991C
 const(ubyte)* actionScriptCommand3A(const(ubyte)* y) {
-	entityBGHorizontalVelocityHigh[y[actionScriptVar80]] = 0;
-	entityBGHorizontalVelocityLow[y[actionScriptVar80]] = 0;
-	entityBGVerticalVelocityHigh[y[actionScriptVar80]] = 0;
-	entityBGVerticalVelocityLow[y[actionScriptVar80]] = 0;
+	entityBGHorizontalVelocityHigh[y[actionScriptScriptOffset]] = 0;
+	entityBGHorizontalVelocityLow[y[actionScriptScriptOffset]] = 0;
+	entityBGVerticalVelocityHigh[y[actionScriptScriptOffset]] = 0;
+	entityBGVerticalVelocityLow[y[actionScriptScriptOffset]] = 0;
 	return y + 1;
 }
 
 /// $C09931
 const(ubyte)* actionScriptCommand43(const(ubyte)* y) {
-	entityDrawPriority[actionScriptVar88 / 2] = (y++)[actionScriptVar80];
+	entityDrawPriority[currentActiveEntityOffset / 2] = (y++)[actionScriptScriptOffset];
 	return y;
 }
 
 /// $C0993D
 const(ubyte)* actionScriptCommand424C(const(ubyte)* y) {
 	alias Func = short function(short a, ref const(ubyte)* y);
-	Func f = *cast(Func*)&y[actionScriptVar80];
-	actionScriptVar94 = y + Func.sizeof;
-	entityScriptTempvars[currentEntityScriptOffset / 2] = f(entityScriptTempvars[currentEntityScriptOffset / 2], actionScriptVar94);
-	return actionScriptVar94;
+	Func f = *cast(Func*)&y[actionScriptScriptOffset];
+	actionScriptLastRead = y + Func.sizeof;
+	entityScriptTempvars[currentEntityScriptOffset / 2] = f(entityScriptTempvars[currentEntityScriptOffset / 2], actionScriptLastRead);
+	return actionScriptLastRead;
 }
 
 /// $C0995D
 const(ubyte)* actionScriptCommand0A(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] == 0) {
-		return *cast(const(ubyte)**)&y[actionScriptVar80];
+		return *cast(const(ubyte)**)&y[actionScriptScriptOffset];
 	}
 	return y + (const(ubyte)*).sizeof;
 }
@@ -5955,7 +5955,7 @@ const(ubyte)* actionScriptCommand0A(const(ubyte)* y) {
 /// $C0996B
 const(ubyte)* actionScriptCommand0B(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] != 0) {
-		return *cast(const(ubyte)**)&y[actionScriptVar80];
+		return *cast(const(ubyte)**)&y[actionScriptScriptOffset];
 	}
 	return y + (const(ubyte)*).sizeof;
 }
@@ -5963,44 +5963,44 @@ const(ubyte)* actionScriptCommand0B(const(ubyte)* y) {
 /// $C09979
 const(ubyte)* actionScriptCommand10(const(ubyte)* y) {
 	actionScriptVar90 = entityScriptTempvars[currentEntityScriptOffset / 2];
-	actionScriptVar94 = y + 1;
-	if (y[actionScriptVar80] <= actionScriptVar90) {
-		return actionScriptVar94 + y[actionScriptVar80] * (const(ubyte)*).sizeof;
+	actionScriptLastRead = y + 1;
+	if (y[actionScriptScriptOffset] <= actionScriptVar90) {
+		return actionScriptLastRead + y[actionScriptScriptOffset] * (const(ubyte)*).sizeof;
 	} else {
-		return (cast(const(ubyte)**)actionScriptVar94)[actionScriptVar90];
+		return (cast(const(ubyte)**)actionScriptLastRead)[actionScriptVar90];
 	}
 }
 
 /// $C0999E
 const(ubyte)* actionScriptCommand11(const(ubyte)* y) {
 	actionScriptVar90 = entityScriptTempvars[currentEntityScriptOffset / 2];
-	actionScriptVar94 = y + 1;
-	if (y[actionScriptVar80] <= actionScriptVar90) {
-		return actionScriptVar94 + y[actionScriptVar80] * (const(ubyte)*).sizeof;
+	actionScriptLastRead = y + 1;
+	if (y[actionScriptScriptOffset] <= actionScriptVar90) {
+		return actionScriptLastRead + y[actionScriptScriptOffset] * (const(ubyte)*).sizeof;
 	} else {
-		actionScriptVar84[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = actionScriptVar94 + y[actionScriptVar80] * (const(ubyte)*).sizeof;
+		actionScriptStack[entityScriptStackPosition[currentEntityScriptOffset / 2] / 3].pc = actionScriptLastRead + y[actionScriptScriptOffset] * (const(ubyte)*).sizeof;
 		entityScriptStackPosition[currentEntityScriptOffset / 2] += 3;
-		return (cast(const(ubyte)**)actionScriptVar94)[actionScriptVar90];
+		return (cast(const(ubyte)**)actionScriptLastRead)[actionScriptVar90];
 	}
 }
 
 /// $C099C3
 const(ubyte)* actionScriptCommand0C(const(ubyte)* y) {
-	actionScriptVar94 = y;
+	actionScriptLastRead = y;
 	return actionScriptCommand0C13Common(currentEntityScriptOffset);
 }
 const(ubyte)* actionScriptCommand0C13Common(short y) {
-	ushort regY = unknownC09D12(actionScriptVar88, y);
+	ushort regY = unknownC09D12(currentActiveEntityOffset, y);
 	entityScriptSleepFrames[regY / 2] = -1;
-	if (entityScriptIndexTable[actionScriptVar88 / 2] < 0) {
+	if (entityScriptIndexTable[currentActiveEntityOffset / 2] < 0) {
 		actionScriptCommand00(null);
 	}
-	return actionScriptVar94;
+	return actionScriptLastRead;
 }
 
 /// $C099DD
 const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
-	actionScriptVar94 = y;
+	actionScriptLastRead = y;
 	bool carry;
 	short regY = allocateScript(carry);
 	if (!carry) {
@@ -6009,7 +6009,7 @@ const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
 		entityScriptNextScripts[currentEntityScriptOffset / 2] = regY;
 		entityScriptStackPosition[regY / 2] = 0;
 		entityScriptSleepFrames[regY / 2] = 0;
-		entityProgramCounters[regY / 2] = *cast(const(ubyte)**)&y[actionScriptVar80];
+		entityProgramCounters[regY / 2] = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
 		///blah blah blah bank
 		return y + (const(ubyte)*).sizeof;
 	}
@@ -6018,17 +6018,17 @@ const(ubyte)* actionScriptCommand07(const(ubyte)* y) {
 
 /// $C09A0E
 const(ubyte)* actionScriptCommand13(const(ubyte)* y) {
-	actionScriptVar94 = y;
+	actionScriptLastRead = y;
 	if (entityScriptNextScripts[currentEntityScriptOffset / 2] >= 0) {
 		return actionScriptCommand0C13Common(entityScriptNextScripts[currentEntityScriptOffset / 2]);
 	}
-	return actionScriptVar94;
+	return actionScriptLastRead;
 }
 
 /// $C09A1A
 const(ubyte)* actionScriptCommand08(const(ubyte)* y) {
-	entityTickCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
-	entityCallbackFlags[actionScriptVar88 / 2] = 0;
+	entityTickCallbacks[currentActiveEntityOffset / 2] = *cast(void function()*)&y[actionScriptScriptOffset];
+	entityCallbackFlags[currentActiveEntityOffset / 2] = 0;
 	y += (const(ubyte)*).sizeof;
 	//banks!
 	return y;
@@ -6042,35 +6042,35 @@ const(ubyte)* actionScriptCommand09(const(ubyte)* y) {
 
 /// $C09A38
 const(ubyte)* actionScriptCommand3C46(const(ubyte)* y) {
-	entityAnimationFrames[actionScriptVar88 / 2]++;
+	entityAnimationFrames[currentActiveEntityOffset / 2]++;
 	return y;
 }
 
 /// $C09A3E
 const(ubyte)* actionScriptCommand3D47(const(ubyte)* y) {
-	entityAnimationFrames[actionScriptVar88 / 2]--;
+	entityAnimationFrames[currentActiveEntityOffset / 2]--;
 	return y;
 }
 
 /// $C09A44
 const(ubyte)* actionScriptCommand3E48(const(ubyte)* y) {
-	entityAnimationFrames[actionScriptVar88 / 2] += cast(byte)y[actionScriptVar80];
+	entityAnimationFrames[currentActiveEntityOffset / 2] += cast(byte)y[actionScriptScriptOffset];
 	return y + 1;
 }
 
 /// $C09A5C
 const(ubyte)* actionScriptCommand18(const(ubyte)* y) {
-	actionScriptVar8CMemory = *cast(ushort**)&y[actionScriptVar80];
+	actionScriptVar8CMemory = *cast(ushort**)&y[actionScriptScriptOffset];
 	y += (ushort*).sizeof;
-	ubyte x = (y++)[actionScriptVar80];
-	actionScriptVar90 = (y++)[actionScriptVar80];
+	ubyte x = (y++)[actionScriptScriptOffset];
+	actionScriptVar90 = (y++)[actionScriptScriptOffset];
 	unknownC09ABD[x]();
 	return y;
 }
 
 /// $C09A87
 const(ubyte)* actionScriptCommand14(const(ubyte)* y) {
-	return actionScriptCommand0D14Common(cast(ushort*)&entityScriptVarTables[y[actionScriptVar80]][actionScriptVar88 / 2], y);
+	return actionScriptCommand0D14Common(cast(ushort*)&entityScriptVarTables[y[actionScriptScriptOffset]][currentActiveEntityOffset / 2], y);
 }
 
 /// $C09A97
@@ -6080,7 +6080,7 @@ const(ubyte)* actionScriptCommand27(const(ubyte)* y) {
 
 /// $C09A9F
 const(ubyte)* actionScriptCommand0D(const(ubyte)* y) {
-	return actionScriptCommand0D14Common(*cast(ushort**)y[actionScriptVar80], y + (ushort*).sizeof - 1);
+	return actionScriptCommand0D14Common(*cast(ushort**)y[actionScriptScriptOffset], y + (ushort*).sizeof - 1);
 }
 
 const(ubyte)* actionScriptCommand0D14Common(ushort* a, const(ubyte)* y) {
@@ -6088,8 +6088,8 @@ const(ubyte)* actionScriptCommand0D14Common(ushort* a, const(ubyte)* y) {
 }
 const(ubyte)* actionScriptCommand0D27Common(ushort* a, const(ubyte)* y) {
 	actionScriptVar8CMemory = a;
-	ubyte x = (y++)[actionScriptVar80];
-	actionScriptVar90 = *(cast(short*)&y[actionScriptVar80]);
+	ubyte x = (y++)[actionScriptScriptOffset];
+	actionScriptVar90 = *(cast(short*)&y[actionScriptScriptOffset]);
 	y += 2;
 	unknownC09ABD[x]();
 	return y;
@@ -6125,7 +6125,7 @@ void unknownC09ADB() {
 
 /// $C09AE2
 const(ubyte)* actionScriptCommand0E(const(ubyte)* y) {
-	entityScriptVarTables[y[actionScriptVar80]][actionScriptVar88 / 2] = *cast(short*)&y[1 + actionScriptVar80];
+	entityScriptVarTables[y[actionScriptScriptOffset]][currentActiveEntityOffset / 2] = *cast(short*)&y[1 + actionScriptScriptOffset];
 	return y + 3;
 }
 
@@ -6143,26 +6143,26 @@ short*[8] entityScriptVarTables = [
 
 /// $C09B09
 const(ubyte)* actionScriptCommand0F(const(ubyte)* y) {
-	clearSpriteTickCallback(actionScriptVar88);
+	clearSpriteTickCallback(currentActiveEntityOffset);
 	return y;
 }
 
 /// $C09B0F - [12 NEARPTR XX] - Write XX to memory
 const(ubyte)* actionScriptCommand12(const(ubyte)* y) {
-	*(*cast(ubyte**)&y[actionScriptVar80]) = y[(ubyte*).sizeof + actionScriptVar80];
+	*(*cast(ubyte**)&y[actionScriptScriptOffset]) = y[(ubyte*).sizeof + actionScriptScriptOffset];
 	return y + (ubyte*).sizeof + ubyte.sizeof;
 }
 
 /// $C09B1F - [15 NEARPTR XXXX] - Write XXXX to memory
 const(ubyte)* actionScriptCommand15(const(ubyte)* y) {
-	*(*cast(ushort**)&y[actionScriptVar80]) = *cast(ushort*)&y[(ushort*).sizeof + actionScriptVar80];
+	*(*cast(ushort**)&y[actionScriptScriptOffset]) = *cast(ushort*)&y[(ushort*).sizeof + actionScriptScriptOffset];
 	return y + (ushort*).sizeof + ushort.sizeof;
 }
 
 /// $C09B2C - [16 NEARPTR] - Break if false
 const(ubyte)* actionScriptCommand16(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] == 0) {
-		y = *cast(const(ubyte)**)&y[actionScriptVar80];
+		y = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
 		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
 		return y;
 	}
@@ -6172,7 +6172,7 @@ const(ubyte)* actionScriptCommand16(const(ubyte)* y) {
 /// $C09B44 - [17 NEARPTR] - Break if true
 const(ubyte)* actionScriptCommand17(const(ubyte)* y) {
 	if (entityScriptTempvars[currentEntityScriptOffset / 2] != 0) {
-		y = *cast(const(ubyte)**)&y[actionScriptVar80];
+		y = *cast(const(ubyte)**)&y[actionScriptScriptOffset];
 		entityScriptStackPosition[currentEntityScriptOffset / 2] -= 3;
 		return y;
 	}
@@ -6182,27 +6182,27 @@ const(ubyte)* actionScriptCommand17(const(ubyte)* y) {
 /// $C09B4D - [1C PTR] - Set Spritemap
 const(ubyte)* actionScriptCommand1C(const(ubyte)* y) {
 	// The only stuff that uses this command uses a double pointer for its spritemaps
-	entitySpriteMapPointers[actionScriptVar88 / 2] = null;
-	entitySpriteMapPointersDptr[actionScriptVar88 / 2] = *cast(const(SpriteMap*)**)&y[actionScriptVar80];
+	entitySpriteMapPointers[currentActiveEntityOffset / 2] = null;
+	entitySpriteMapPointersDptr[currentActiveEntityOffset / 2] = *cast(const(SpriteMap*)**)&y[actionScriptScriptOffset];
 	y += (const(SpriteMap*)*).sizeof;
 	return y;
 }
 
 /// $C09B61 - [1D XXXX] - Write word to tempvar
 const(ubyte)* actionScriptCommand1D(const(ubyte)* y) {
-	entityScriptTempvars[currentEntityScriptOffset / 2] = *cast(ushort*)&y[actionScriptVar80];
+	entityScriptTempvars[currentEntityScriptOffset / 2] = *cast(ushort*)&y[actionScriptScriptOffset];
 	return y + ushort.sizeof;
 }
 
 /// $C09B6B - [1E NEARPTR] - Write data at address to tempvar
 const(ubyte)* actionScriptCommand1E(const(ubyte)* y) {
-	entityScriptTempvars[currentEntityScriptOffset / 2] = *(*cast(ushort**)&y[actionScriptVar80]);
+	entityScriptTempvars[currentEntityScriptOffset / 2] = *(*cast(ushort**)&y[actionScriptScriptOffset]);
 	return y + (ushort*).sizeof;
 }
 
 /// $C09B79 - [1F XX] - Write tempvar to var
 const(ubyte)* actionScriptCommand1F(const(ubyte)* y) {
-	ubyte x = y[actionScriptVar80];
+	ubyte x = y[actionScriptScriptOffset];
 	actionScriptVar8CMemory = cast(ushort*)entityScriptVarTables[x];
 	actionScriptVar8CMemory[0] = entityScriptTempvars[currentEntityScriptOffset / 2];
 	return y + 1;
@@ -6210,7 +6210,7 @@ const(ubyte)* actionScriptCommand1F(const(ubyte)* y) {
 
 /// $C09B91 - [20 XX] - Write var to tempvar
 const(ubyte)* actionScriptCommand20(const(ubyte)* y) {
-	entityScriptTempvars[currentEntityScriptOffset / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
+	entityScriptTempvars[currentEntityScriptOffset / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptScriptOffset]])[currentActiveEntityOffset / 2];
 	return y + 1;
 }
 
@@ -6224,33 +6224,33 @@ const(ubyte)* actionScriptCommand44(const(ubyte)* y) {
 
 /// $C09BB4 - [21 XX] - Sleep for var XX frames
 const(ubyte)* actionScriptCommand21(const(ubyte)* y) {
-	entityScriptSleepFrames[currentEntityScriptOffset / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptVar80]])[actionScriptVar88 / 2];
+	entityScriptSleepFrames[currentEntityScriptOffset / 2] = (cast(ushort*)entityScriptVarTables[y[actionScriptScriptOffset]])[currentActiveEntityOffset / 2];
 	return y + 1;
 }
 
 /// $C09BCC - [26 XX] - Set Animation Frame to Var XX
 const(ubyte)* actionScriptCommand26(const(ubyte)* y) {
-	entityAnimationFrames[actionScriptVar88 / 2] = entityScriptVarTables[(y++)[actionScriptVar80]][actionScriptVar88 / 2];
+	entityAnimationFrames[currentActiveEntityOffset / 2] = entityScriptVarTables[(y++)[actionScriptScriptOffset]][currentActiveEntityOffset / 2];
 	return y;
 }
 
 /// $C09BE4 - [22 NEARPTR] - Set Draw Callback
 const(ubyte)* actionScriptCommand22(const(ubyte)* y) {
-	entityDrawCallbacks[actionScriptVar88 / 2] = *cast(void function(short, short)*)&y[actionScriptVar80];
+	entityDrawCallbacks[currentActiveEntityOffset / 2] = *cast(void function(short, short)*)&y[actionScriptScriptOffset];
 	y += (void function(short)).sizeof;
 	return y;
 }
 
 /// $C09BEE - [23 NEARPTR] - Set Position Change Callback
 const(ubyte)* actionScriptCommand23(const(ubyte)* y) {
-	entityScreenPositionCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
+	entityScreenPositionCallbacks[currentActiveEntityOffset / 2] = *cast(void function()*)&y[actionScriptScriptOffset];
 	y += (void function()).sizeof;
 	return y;
 }
 
 /// $C09BF8 - [25 NEARPTR] - Set Physics Callback
 const(ubyte)* actionScriptCommand25(const(ubyte)* y) {
-	entityMoveCallbacks[actionScriptVar88 / 2] = *cast(void function()*)&y[actionScriptVar80];
+	entityMoveCallbacks[currentActiveEntityOffset / 2] = *cast(void function()*)&y[actionScriptScriptOffset];
 	y += (void function()).sizeof;
 	return y;
 }
@@ -6445,35 +6445,35 @@ short unknownC09D3E(short x, short y, out short finalX) {
 
 /// $C09D86
 ushort movementDataRead8(ref const(ubyte)* arg1) {
-	ushort a = arg1[actionScriptVar80];
+	ushort a = arg1[actionScriptScriptOffset];
 	arg1++;
 	return a;
 }
 
 /// $C09D94
 ushort movementDataRead16(ref const(ubyte)* arg1) {
-	ushort a = *cast(const(ushort)*)&arg1[actionScriptVar80];
+	ushort a = *cast(const(ushort)*)&arg1[actionScriptScriptOffset];
 	arg1 += 2;
 	return a;
 }
 
 /// $C09D99 - Same as movementDataRead16, but with a short return
 ushort movementDataRead16Copy(ref const(ubyte)* arg1) {
-	ushort a = *cast(const(ushort)*)&arg1[actionScriptVar80];
+	ushort a = *cast(const(ushort)*)&arg1[actionScriptScriptOffset];
 	arg1 += 2;
 	return a;
 }
 
 /// does not exist in original game
 void* movementDataReadPtr(ref const(ubyte)* arg1) {
-	void* a = *cast(void**)&arg1[actionScriptVar80];
+	void* a = *cast(void**)&arg1[actionScriptScriptOffset];
 	arg1 += (void*).sizeof;
 	return a;
 }
 
 /// does not exist in original game
 string movementDataReadString(ref const(ubyte)* arg1) {
-	string a = *cast(string*)&arg1[actionScriptVar80];
+	string a = *cast(string*)&arg1[actionScriptScriptOffset];
 	arg1 += string.sizeof;
 	return a;
 }
@@ -6494,8 +6494,8 @@ short unknownC09E71(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16Copy(arg2);
 	// initEntityWipe takes 3 arguments but this code only prepares one of them...
 	short x = void;
-	actionScriptVar94 = arg2;
-	return initEntityWipe(tmp, x, cast(short)actionScriptVar94);
+	actionScriptLastRead = arg2;
+	return initEntityWipe(tmp, x, cast(short)actionScriptLastRead);
 }
 
 /// Tests if the active entity is moving somewhere. Stores possible destination in entityMovementProspectX/Y
@@ -6509,7 +6509,7 @@ short testEntityMovementActive() {
 /// Returns: number of axes movement is occurring on
 /// Original_Address: $(DOLLAR)C09EFF
 short testEntityMovementUnusedEntry() {
-	return testEntityMovementCommon(actionScriptVar88);
+	return testEntityMovementCommon(currentActiveEntityOffset);
 }
 
 /// Tests if an arbitrary entity is moving somewhere. Stores possible destination in entityMovementProspectX/Y
@@ -6578,10 +6578,10 @@ void restoreEntityCallbackFlags() {
 
 /// $C09F82
 short chooseRandom(short, ref const(ubyte)* arg1) {
-	actionScriptVar90 = arg1[actionScriptVar80];
-	actionScriptVar94 = arg1 + 1;
-	const tmp = actionScriptVar94;
-	actionScriptVar94 += actionScriptVar90 * 2;
+	actionScriptVar90 = arg1[actionScriptScriptOffset];
+	actionScriptLastRead = arg1 + 1;
+	const tmp = actionScriptLastRead;
+	actionScriptLastRead += actionScriptVar90 * 2;
 	return (cast(const(short)*)tmp)[rand() % actionScriptVar90];
 }
 
@@ -6592,14 +6592,14 @@ short actionScriptGenerateRandomAngle() {
 
 /// $C09FAE
 void actionScriptFadeIn(short, ref const(ubyte)* arg1) {
-	ubyte a = (arg1++)[actionScriptVar80];
-	ubyte b = (arg1++)[actionScriptVar80];
+	ubyte a = (arg1++)[actionScriptScriptOffset];
+	ubyte b = (arg1++)[actionScriptScriptOffset];
 	fadeIn(a, b);
 }
 
 /// $C09FC8
 void updateActiveEntityPosition2D() {
-	updateEntityPosition2D(actionScriptVar88);
+	updateEntityPosition2D(currentActiveEntityOffset);
 }
 
 /// $C09FB0
@@ -6618,8 +6618,8 @@ void updateEntityPosition2D(short arg1) {
 
 /// $C09FAE
 void actionScriptFadeOut(short, ref const(ubyte)* arg1) {
-	ubyte a = (arg1++)[actionScriptVar80];
-	ubyte b = (arg1++)[actionScriptVar80];
+	ubyte a = (arg1++)[actionScriptScriptOffset];
+	ubyte b = (arg1++)[actionScriptScriptOffset];
 	fadeOut(a, b);
 }
 
@@ -6633,23 +6633,23 @@ void updateEntityPosition3D() {
 	updateActiveEntityPosition2D();
 	FixedPoint1616 newPosition;
 
-	newPosition.combined = fullEntityAbsZ(actionScriptVar88 / 2).combined + fullEntityDeltaZ(actionScriptVar88 / 2).combined;
-	entityAbsZFractionTable[actionScriptVar88 / 2] = newPosition.fraction;
-	entityAbsZTable[actionScriptVar88 / 2] = newPosition.integer;
+	newPosition.combined = fullEntityAbsZ(currentActiveEntityOffset / 2).combined + fullEntityDeltaZ(currentActiveEntityOffset / 2).combined;
+	entityAbsZFractionTable[currentActiveEntityOffset / 2] = newPosition.fraction;
+	entityAbsZTable[currentActiveEntityOffset / 2] = newPosition.integer;
 	unknownC0C7DB();
 }
 
 /// $C0A00C
 void updateEntityPosition3DIgnoreSurface() {
 	updateActiveEntityPosition2D();
-	entityAbsZFractionTable[actionScriptVar88 / 2] += entityDeltaZFractionTable[actionScriptVar88 / 2];
-	entityAbsZTable[actionScriptVar88 / 2] += entityDeltaZTable[actionScriptVar88 / 2];
+	entityAbsZFractionTable[currentActiveEntityOffset / 2] += entityDeltaZFractionTable[currentActiveEntityOffset / 2];
+	entityAbsZTable[currentActiveEntityOffset / 2] += entityDeltaZTable[currentActiveEntityOffset / 2];
 }
 
 /// $C0A023
 void updateScreenPositionBG12D() {
-	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg1XPosition);
-	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg1YPosition);
+	entityScreenXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg1XPosition);
+	entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg1YPosition);
 }
 
 /// $C0A039
@@ -6659,41 +6659,41 @@ void unknownC0A039() {
 
 /// $C0A03A
 void updateScreenPositionBG13D() {
-	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg1XPosition);
-	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg1YPosition - entityAbsZTable[actionScriptVar88 / 2]);
+	entityScreenXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg1XPosition);
+	entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg1YPosition - entityAbsZTable[currentActiveEntityOffset / 2]);
 }
 
 /// $C0A055
 void updateScreenPositionBG32D() {
-	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
-	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg3YPosition);
+	entityScreenXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg3XPosition);
+	entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg3YPosition);
 }
 
 /// $C0A06C
 void moveRelativeToBG3() {
-	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
-	entityAbsXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
-	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg3YPosition);
-	entityAbsYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg3YPosition);
+	entityScreenXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg3XPosition);
+	entityAbsXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg3XPosition);
+	entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg3YPosition);
+	entityAbsYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg3YPosition);
 }
 
 /// $C0A0A0
 void updateScreenPositionBG13DDupe() {
-	entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg3XPosition);
-	entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg3YPosition - entityAbsZTable[actionScriptVar88 / 2]);
+	entityScreenXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg3XPosition);
+	entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg3YPosition - entityAbsZTable[currentActiveEntityOffset / 2]);
 }
 
 /// $C0A0BB
 void updateEntityPositionAbsolute() {
-	entityScreenXTable[actionScriptVar88 / 2] = entityAbsXTable[actionScriptVar88 / 2];
-	entityScreenYTable[actionScriptVar88 / 2] = entityAbsYTable[actionScriptVar88 / 2];
+	entityScreenXTable[currentActiveEntityOffset / 2] = entityAbsXTable[currentActiveEntityOffset / 2];
+	entityScreenYTable[currentActiveEntityOffset / 2] = entityAbsYTable[currentActiveEntityOffset / 2];
 }
 
 /// $C0A0CA
 void actionScriptDrawEntity(short entityOffset) {
 	assert(entityOffset >= 0);
-	actionScriptVar88 = cast(ushort)(entityOffset * 2);
-	unknownC0A0E3(actionScriptVar88, (entityOffset * 2) < 0);
+	currentActiveEntityOffset = cast(ushort)(entityOffset * 2);
+	unknownC0A0E3(currentActiveEntityOffset, (entityOffset * 2) < 0);
 }
 
 /// $C0A0E3
@@ -6701,7 +6701,7 @@ void unknownC0A0E3(short arg1, bool overflowed) {
 	if (((entitySpriteMapFlags[arg1 / 2] & SpriteMapFlags.drawDisabled) != 0) || overflowed) {
 		return;
 	}
-	actionScriptVar8C = entitySpriteMapPointers[arg1 / 2];
+	actionScriptSpritemap = entitySpriteMapPointers[arg1 / 2];
 	if (entityAnimationFrames[arg1 / 2] >= 0) {
 		entityDrawCallbacks[arg1 / 2](entityAnimationFrames[arg1 / 2], arg1);
 	}
@@ -6709,7 +6709,7 @@ void unknownC0A0E3(short arg1, bool overflowed) {
 
 /// $C0A0FA
 void unknownC0A0FA(short arg1, short arg2) {
-	spritemapBank = actionScriptVar8E;
+	spritemapBank = actionScriptSpritemapBank;
 	currentSpriteDrawingPriority = entityDrawPriority[arg2 / 2];
 	// This uses a double pointer to the spritemap, indexed by the animation frame.
 	// Don't use the value in 8C!
@@ -6816,11 +6816,11 @@ void recalculateEntityScreenPosition(short arg1) {
 
 /// $C0A26B
 void unknownC0A26B() {
-	if ((actionScriptVar88 == currentLeadingPartyMemberEntity) || ((entityScriptVar7Table[actionScriptVar88 / 2] & 0) != 0) || (notMovingInSameDirectionFaced != 0) || (entityDirections[actionScriptVar88 / 2] != currentLeaderDirection) || (unknownC0A350[entityDirections[actionScriptVar88 / 2]](currentLeadingPartyMemberEntity) * 2 != 0)) {
-		entityScreenXTable[actionScriptVar88 / 2] = cast(short)(entityAbsXTable[actionScriptVar88 / 2] - bg1XPosition);
-		entityScreenYTable[actionScriptVar88 / 2] = cast(short)(entityAbsYTable[actionScriptVar88 / 2] - bg1YPosition);
+	if ((currentActiveEntityOffset == currentLeadingPartyMemberEntity) || ((entityScriptVar7Table[currentActiveEntityOffset / 2] & 0) != 0) || (notMovingInSameDirectionFaced != 0) || (entityDirections[currentActiveEntityOffset / 2] != currentLeaderDirection) || (unknownC0A350[entityDirections[currentActiveEntityOffset / 2]](currentLeadingPartyMemberEntity) * 2 != 0)) {
+		entityScreenXTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsXTable[currentActiveEntityOffset / 2] - bg1XPosition);
+		entityScreenYTable[currentActiveEntityOffset / 2] = cast(short)(entityAbsYTable[currentActiveEntityOffset / 2] - bg1YPosition);
 	}
-	//return actionScriptVar88;
+	//return currentActiveEntityOffset;
 }
 
 /// $C0A2AB
@@ -6828,15 +6828,15 @@ immutable short[6] unknownC0A2AB = [ 0, 17, 32, 47, 62, 77 ];
 
 /// $C0A2B7
 short unknownC0A2B7(short arg1) {
-	short a = entityScreenXTable[arg1 / 2] ^ entityScreenXTable[actionScriptVar88 / 2];
+	short a = entityScreenXTable[arg1 / 2] ^ entityScreenXTable[currentActiveEntityOffset / 2];
 	if (a != 0) {
 		return a;
 	}
-	a = cast(short)(entityAbsYTable[arg1 / 2] - entityAbsYTable[actionScriptVar88 / 2]);
+	a = cast(short)(entityAbsYTable[arg1 / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
-	a -= unknownC0A2AB[entityScriptVar5Table[actionScriptVar88 / 2] / 2];
+	a -= unknownC0A2AB[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2];
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6848,15 +6848,15 @@ short unknownC0A2B7(short arg1) {
 
 /// $C0A2E1
 short unknownC0A2E1(short arg1) {
-	short a = entityScreenYTable[arg1 / 2] ^ entityScreenYTable[actionScriptVar88 / 2];
+	short a = entityScreenYTable[arg1 / 2] ^ entityScreenYTable[currentActiveEntityOffset / 2];
 	if (a != 0) {
 		return a;
 	}
-	a = cast(short)(entityAbsXTable[arg1 / 2] - entityAbsXTable[actionScriptVar88 / 2]);
+	a = cast(short)(entityAbsXTable[arg1 / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
-	a -= unknownC0A2AB[entityScriptVar5Table[actionScriptVar88 / 2] / 2];
+	a -= unknownC0A2AB[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2];
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6871,15 +6871,15 @@ immutable short[6] unknownC0A30B = [ 0, 11, 22, 32, 43, 54 ];
 
 /// $C0A317
 short unknownC0A317(short arg1) {
-	short a = cast(short)(entityAbsXTable[arg1 / 2] - entityAbsXTable[actionScriptVar88 / 2]);
+	short a = cast(short)(entityAbsXTable[arg1 / 2] - entityAbsXTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
 	short actionScriptVar00s = a;
-	if (actionScriptVar00s < unknownC0A30B[entityScriptVar5Table[actionScriptVar88 / 2] / 2]) {
+	if (actionScriptVar00s < unknownC0A30B[entityScriptVar5Table[currentActiveEntityOffset / 2] / 2]) {
 		return actionScriptVar00s;
 	}
-	a = cast(short)(entityAbsYTable[arg1 / 2] - entityAbsYTable[actionScriptVar88 / 2]);
+	a = cast(short)(entityAbsYTable[arg1 / 2] - entityAbsYTable[currentActiveEntityOffset / 2]);
 	if (a < 0) {
 		a = cast(short)-cast(int)a;
 	}
@@ -6907,20 +6907,20 @@ immutable short function(short)[8] unknownC0A350 = [
 
 /// $C0A360
 void unknownC0A360() {
-	if (entityPathfindingState[actionScriptVar88 / 2] >= 0) {
-		if ((entityObstacleFlags[actionScriptVar88 / 2] & 0xD0) != 0) {
+	if (entityPathfindingState[currentActiveEntityOffset / 2] >= 0) {
+		if ((entityObstacleFlags[currentActiveEntityOffset / 2] & 0xD0) != 0) {
 			actionScriptCommand39(null);
 			return;
-		} else if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
+		} else if ((entityCollidedObjects[currentActiveEntityOffset / 2] & 0x8000) == 0) {
 			return;
 		}
 	}
-	unknownC0A37ACommon(actionScriptVar88);
+	unknownC0A37ACommon(currentActiveEntityOffset);
 }
 
 /// $C0A37A
 void unknownC0A37A() {
-	unknownC0A37ACommon(actionScriptVar88);
+	unknownC0A37ACommon(currentActiveEntityOffset);
 }
 
 void unknownC0A37ACommon(short arg1) {
@@ -6930,20 +6930,20 @@ void unknownC0A37ACommon(short arg1) {
 
 /// $C0A384
 void unknownC0A384() {
-	if (entityPathfindingState[actionScriptVar88 / 2] >= 0) {
-		if ((entityObstacleFlags[actionScriptVar88 / 2] & 0xD0) != 0) {
+	if (entityPathfindingState[currentActiveEntityOffset / 2] >= 0) {
+		if ((entityObstacleFlags[currentActiveEntityOffset / 2] & 0xD0) != 0) {
 			actionScriptCommand39(null);
 			return;
-		} else if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
+		} else if ((entityCollidedObjects[currentActiveEntityOffset / 2] & 0x8000) == 0) {
 			return;
 		}
 	}
-	unknownC0A384Common(actionScriptVar88);
+	unknownC0A384Common(currentActiveEntityOffset);
 }
 
 // unused
 void unknownC0A384Alt() {
-	unknownC0A384Common(actionScriptVar88);
+	unknownC0A384Common(currentActiveEntityOffset);
 }
 
 void unknownC0A384Common(short arg1) {
@@ -6954,7 +6954,7 @@ void unknownC0A384Common(short arg1) {
 // originally handwritten assembly, id was actually an offset
 void unknownC0A3A4(short, short id) {
 	if ((entityCurrentDisplayedSprites[id / 2] !is null) && ((entityCurrentDisplayedSprites[id / 2].lsb & 1) != 0)) {
-		actionScriptVar8C += entitySpriteMapSizes[id / 2] / 5;
+		actionScriptSpritemap += entitySpriteMapSizes[id / 2] / 5;
 	}
 	ubyte upperBodyPriority = 3 << 4;
 	ubyte lowerBodyPriority = 3 << 4;
@@ -6967,36 +6967,36 @@ void unknownC0A3A4(short, short id) {
 	byte y = -1;
 	for (ubyte i = entityUpperLowerBodyDivide[id / 2] >> 8; (--i & 0x80) == 0; ) {
 		y++;
-		(cast()actionScriptVar8C[y]).flags = (actionScriptVar8C[y].flags & 0xCF) | upperBodyPriority;
+		(cast()actionScriptSpritemap[y]).flags = (actionScriptSpritemap[y].flags & 0xCF) | upperBodyPriority;
 	}
-	for (ubyte i = entityUpperLowerBodyDivide[actionScriptVar88 / 2] & 0xFF; (--i & 0x80) == 0; ) {
+	for (ubyte i = entityUpperLowerBodyDivide[currentActiveEntityOffset / 2] & 0xFF; (--i & 0x80) == 0; ) {
 		y++;
-		(cast()actionScriptVar8C[y]).flags = (actionScriptVar8C[y].flags & 0xCF) | lowerBodyPriority;
+		(cast()actionScriptSpritemap[y]).flags = (actionScriptSpritemap[y].flags & 0xCF) | lowerBodyPriority;
 	}
-	spritemapBank = actionScriptVar8E;
-	currentSpriteDrawingPriority = entityDrawPriority[actionScriptVar88 / 2];
-	if ((entityDrawPriority[actionScriptVar88 / 2] & DrawPriority.parent) != 0) {
+	spritemapBank = actionScriptSpritemapBank;
+	currentSpriteDrawingPriority = entityDrawPriority[currentActiveEntityOffset / 2];
+	if ((entityDrawPriority[currentActiveEntityOffset / 2] & DrawPriority.parent) != 0) {
 		// if parent bit is set, use parent entity's draw priority
 		currentSpriteDrawingPriority = entityDrawPriority[currentSpriteDrawingPriority & 0x3F];
 		// clear the priority unless otherwise requested
-		if ((entityDrawPriority[actionScriptVar88 / 2] & DrawPriority.dontClearIfParent) == 0) {
-			entityDrawPriority[actionScriptVar88 / 2] = 0;
+		if ((entityDrawPriority[currentActiveEntityOffset / 2] & DrawPriority.dontClearIfParent) == 0) {
+			entityDrawPriority[currentActiveEntityOffset / 2] = 0;
 		}
 	}
 	unknownC0AC43();
-	spritemapBank = actionScriptVar8E;
-	drawSprite(actionScriptVar8C, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+	spritemapBank = actionScriptSpritemapBank;
+	drawSprite(actionScriptSpritemap, entityScreenXTable[currentActiveEntityOffset / 2], entityScreenYTable[currentActiveEntityOffset / 2]);
 }
 
 /// $C0A443
 //what a mess
 void unknownC0A443() {
 	ubyte actionScriptVar00 = (playerHasMovedSinceMapLoad + currentEntitySlot >> 3) & 1;
-	ubyte actionScriptVar02 = cast(ubyte)((entityDirections[actionScriptVar88 / 2] * 2) | actionScriptVar00);
-	if (((entityWalkingStyles[actionScriptVar88 / 2] >> 8) | ((entityWalkingStyles[actionScriptVar88 / 2] &0xFF) << 8) | actionScriptVar02) == entityAnimationFingerprints[actionScriptVar88 / 2]) {
+	ubyte actionScriptVar02 = cast(ubyte)((entityDirections[currentActiveEntityOffset / 2] * 2) | actionScriptVar00);
+	if (((entityWalkingStyles[currentActiveEntityOffset / 2] >> 8) | ((entityWalkingStyles[currentActiveEntityOffset / 2] &0xFF) << 8) | actionScriptVar02) == entityAnimationFingerprints[currentActiveEntityOffset / 2]) {
 		return;
 	}
-	entityAnimationFingerprints[actionScriptVar88 / 2] = cast(short)((entityWalkingStyles[actionScriptVar88 / 2] >> 8) | ((entityWalkingStyles[actionScriptVar88 / 2] &0xFF) << 8) | actionScriptVar02);
+	entityAnimationFingerprints[currentActiveEntityOffset / 2] = cast(short)((entityWalkingStyles[currentActiveEntityOffset / 2] >> 8) | ((entityWalkingStyles[currentActiveEntityOffset / 2] &0xFF) << 8) | actionScriptVar02);
 
 	updateEntitySpriteCurrentCommon();
 }
@@ -7007,7 +7007,7 @@ void updateEntitySpriteCurrentFrameCounter() {
 	updateEntitySpriteCurrentCommon();
 }
 void updateEntitySpriteCurrent() {
-	updateEntitySpriteByFrameVarCommon(actionScriptVar88);
+	updateEntitySpriteByFrameVarCommon(currentActiveEntityOffset);
 }
 void updateEntitySprite(short arg1) {
 	updateEntitySpriteByFrameVarCommon(cast(short)(arg1 * 2));
@@ -7038,7 +7038,7 @@ void updateEntitySpriteCurrentFrame0Forced() {
 	updateEntitySpriteCurrentCommon();
 }
 void updateEntitySpriteCurrentCommon() {
-	updateEntitySpriteOffset(actionScriptVar88);
+	updateEntitySpriteOffset(currentActiveEntityOffset);
 }
 void updateEntitySpriteOffset(short arg1) {
 	ubyte actionScriptVar00 = cast(ubyte)(entityTileHeights[arg1 / 2]);
@@ -7122,79 +7122,79 @@ ushort[8] spriteDirectionMappings8Direction = [0, 4, 1, 5, 2, 6, 3, 7];
 /// $C0A643
 void unknownC0A643(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
-	entityNPCIDs[actionScriptVar88 / 2] = setDirection(tmp, arg2);
+	actionScriptLastRead = arg2;
+	entityNPCIDs[currentActiveEntityOffset / 2] = setDirection(tmp, arg2);
 }
 
 /// $C0A651
 short setDirection8(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
-	entityMovingDirection[actionScriptVar88 / 2] = setDirection(tmp, arg2);
+	actionScriptLastRead = arg2;
+	entityMovingDirection[currentActiveEntityOffset / 2] = setDirection(tmp, arg2);
 	return 0;
 }
 
 /// $C0A65F
 short setDirection(short arg1, ref const(ubyte)*) {
-	if (entityPathfindingState[actionScriptVar88 / 2] >= 0) {
-		entityDirections[actionScriptVar88 / 2] = arg1;
+	if (entityPathfindingState[currentActiveEntityOffset / 2] >= 0) {
+		entityDirections[currentActiveEntityOffset / 2] = arg1;
 	}
 	return arg1;
 }
 
 /// $C0A66D
 void unknownC0A66D(short arg1) {
-	entityDirections[actionScriptVar88 / 2] = arg1;
+	entityDirections[currentActiveEntityOffset / 2] = arg1;
 }
 
 /// $C0A673
 short unknownC0A673() {
-	return entityDirections[actionScriptVar88 / 2];
+	return entityDirections[currentActiveEntityOffset / 2];
 }
 
 /// $C0A679
 short setSurfaceFlags(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
-	entitySurfaceFlags[actionScriptVar88 / 2] = tmp;
+	actionScriptLastRead = arg2;
+	entitySurfaceFlags[currentActiveEntityOffset / 2] = tmp;
 	return 0;
 }
 
 /// $C0A685
 void actionScriptSetMovementSpeedConstant(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	setMovementSpeed(tmp, arg2);
 }
 
 /// $C0A685
 void setMovementSpeed(short arg1, ref const(ubyte)* arg2) {
-	entityMovementSpeed[actionScriptVar88 / 2] = arg1;
+	entityMovementSpeed[currentActiveEntityOffset / 2] = arg1;
 }
 
 /// $C0A691
 short getMovementSpeed() {
-	return entityMovementSpeed[actionScriptVar88 / 2];
+	return entityMovementSpeed[currentActiveEntityOffset / 2];
 }
 
 /// $C0A6A2
 void unknownC0A6A2(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC0CA4E(tmp);
 }
 
 /// $C0A6AD
 void unknownC0A6AD(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC0CBD3(tmp);
 }
 
 /// $C0A6B8
 short unknownC0A6B8() {
 	short tmp = 0;
-	if ((entityCollidedObjects[actionScriptVar88 / 2] & 0x8000) == 0) {
+	if ((entityCollidedObjects[currentActiveEntityOffset / 2] & 0x8000) == 0) {
 		tmp--;
 	}
 	return tmp;
@@ -7202,51 +7202,51 @@ short unknownC0A6B8() {
 
 /// $C0A6DA
 short clearCurrentEntityCollision(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[actionScriptVar88 / 2] = 0xFFFF;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = 0xFFFF;
 	return 0;
 }
 
 /// $C0A6D1
 short disableCurrentEntityCollision(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[actionScriptVar88 / 2] = 0x8000;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = 0x8000;
 	return 0;
 }
 
 /// $C0A6E3
 void unknownC0A6E3() {
 	short a;
-	spriteUpdateEntityOffset = actionScriptVar88;
+	spriteUpdateEntityOffset = currentActiveEntityOffset;
 	// new direction this frame?
-	if (((entityWalkingStyles[actionScriptVar88 / 2] >> 8) | entityDirections[actionScriptVar88 / 2]) != entityAnimationFingerprints[actionScriptVar88 / 2]) {
-		entityAnimationFingerprints[actionScriptVar88 / 2] = (entityWalkingStyles[actionScriptVar88 / 2] >> 8) | entityDirections[actionScriptVar88 / 2];
+	if (((entityWalkingStyles[currentActiveEntityOffset / 2] >> 8) | entityDirections[currentActiveEntityOffset / 2]) != entityAnimationFingerprints[currentActiveEntityOffset / 2]) {
+		entityAnimationFingerprints[currentActiveEntityOffset / 2] = (entityWalkingStyles[currentActiveEntityOffset / 2] >> 8) | entityDirections[currentActiveEntityOffset / 2];
 		updateEntitySpriteFrameCurrent();
 		return;
 	}
-	if (entityScriptVar7Table[actionScriptVar88 / 2] < 0) {
-		entityScriptVar7Table[actionScriptVar88 / 2] &= ~PartyMemberMovementFlags.unknown15;
+	if (entityScriptVar7Table[currentActiveEntityOffset / 2] < 0) {
+		entityScriptVar7Table[currentActiveEntityOffset / 2] &= ~PartyMemberMovementFlags.unknown15;
 		goto Unknown5;
 	}
 	// animation frame updated
-	if ((entityScriptVar7Table[actionScriptVar88 / 2] & PartyMemberMovementFlags.unknown13) != 0) {
-		if (entityAnimationFrames[actionScriptVar88 / 2] == 0) {
+	if ((entityScriptVar7Table[currentActiveEntityOffset / 2] & PartyMemberMovementFlags.unknown13) != 0) {
+		if (entityAnimationFrames[currentActiveEntityOffset / 2] == 0) {
 			goto Unknown6;
 		} else {
-			entityAnimationFrames[actionScriptVar88 / 2] = 0;
+			entityAnimationFrames[currentActiveEntityOffset / 2] = 0;
 			goto Unknown5;
 		}
 	}
 	if (battleSwirlCountdown != 0) {
 		goto Unknown6;
 	}
-	if (--entityScriptVar2Table[actionScriptVar88 / 2] > 0) {
+	if (--entityScriptVar2Table[currentActiveEntityOffset / 2] > 0) {
 		goto Unknown6;
 	}
-	entityScriptVar2Table[actionScriptVar88 / 2] = entityScriptVar3Table[actionScriptVar88 / 2];
-	entityAnimationFrames[actionScriptVar88 / 2] ^= 2;
-	if (entityAnimationFrames[actionScriptVar88 / 2] != 0) {
+	entityScriptVar2Table[currentActiveEntityOffset / 2] = entityScriptVar3Table[currentActiveEntityOffset / 2];
+	entityAnimationFrames[currentActiveEntityOffset / 2] ^= 2;
+	if (entityAnimationFrames[currentActiveEntityOffset / 2] != 0) {
 		goto Unknown5;
 	}
-	if (actionScriptVar88 == footstepSoundIgnoreEntity) {
+	if (currentActiveEntityOffset == footstepSoundIgnoreEntity) {
 		goto Unknown5;
 	}
 	a = footstepSoundTable[(footstepSoundIDOverride == 0) ? (footstepSoundID / 2) : (footstepSoundIDOverride / 2)];
@@ -7265,11 +7265,11 @@ void unknownC0A6E3() {
 	if (playerIntangibilityFrames < 45) {
 		a = playerIntangibilityFrames & 3;
 	} else if ((playerIntangibilityFrames & 1) == 0) {
-		a = cast(short)(entitySpriteMapFlags[actionScriptVar88 / 2] | SpriteMapFlags.drawDisabled);
+		a = cast(short)(entitySpriteMapFlags[currentActiveEntityOffset / 2] | SpriteMapFlags.drawDisabled);
 	} else {
-		a = entitySpriteMapFlags[actionScriptVar88 / 2] & ~SpriteMapFlags.drawDisabled;
+		a = entitySpriteMapFlags[currentActiveEntityOffset / 2] & ~SpriteMapFlags.drawDisabled;
 	}
-	entitySpriteMapFlags[actionScriptVar88 / 2] = a;
+	entitySpriteMapFlags[currentActiveEntityOffset / 2] = a;
 }
 
 /// $C0A780
@@ -7314,80 +7314,80 @@ void updateEntitySpriteFrameCurrent() {
 
 /// $C0A82F
 short disableCurrentEntityCollision2(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[actionScriptVar88 / 2] = 0x8000;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = 0x8000;
 	return 0;
 }
 
 /// $C0A838
 short clearCurrentEntityCollision2(short, ref const(ubyte)* arg2) {
-	entityCollidedObjects[actionScriptVar88 / 2] = 0xFFFF;
+	entityCollidedObjects[currentActiveEntityOffset / 2] = 0xFFFF;
 	return 0;
 }
 
 /// $C0A841
 void unknownC0A841(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	return playSfx(tmp);
 }
 
 /// $C0A84C
 short actionScriptGetEventFlag(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	return getEventFlag(tmp);
 }
 
 /// $C0A857
 void unknownC0A857(short arg1, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	setEventFlag(tmp, arg1);
 }
 
 /// $C0A864
 void actionScriptMoveEntityToPartyMember(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	moveEntityToPartyMember(tmp);
 }
 
 /// $C0A86F
 void actionScriptMoveEntityToSprite(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	moveEntityToSprite(tmp);
 }
 
 /// $C0A87A
 void unknownC0A87A(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC46CF5(tmp2, tmp);
 }
 
 /// $C0A88D
 void actionScriptQueueInteraction8(short, ref const(ubyte)* arg2) {
 	string tmp = movementDataReadString(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	queueInteraction8(getTextBlock(tmp));
 }
 
 /// $C0A8A0
 void unknownC0A8A0(short, ref const(ubyte)* arg2) {
 	string tmp = movementDataReadString(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC466F0(getTextBlock(tmp));
 }
 
 /// $C0A8B3
 void unknownC0A8B3(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC46C5E(tmp2, tmp);
 }
 
@@ -7426,7 +7426,7 @@ short actionScriptPrepareNewEntityAtPartyLeader(short, ref const(ubyte)* arg2) {
 /// $C0A907
 short actionScriptPrepareNewEntityAtTeleportDestination(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	prepareNewEntityAtTeleportDestination(tmp);
 	return 0;
 }
@@ -7434,11 +7434,11 @@ short actionScriptPrepareNewEntityAtTeleportDestination(short, ref const(ubyte)*
 /// $C0A912
 short actionScriptPrepareNewEntity(short, ref const(ubyte)* arg1) {
 	short tmp = movementDataRead16(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	short tmp2 = movementDataRead16(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	short tmp3 = movementDataRead8(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	prepareNewEntity(tmp3, tmp, tmp2);
 	return 0;
 }
@@ -7446,21 +7446,21 @@ short actionScriptPrepareNewEntity(short, ref const(ubyte)* arg1) {
 /// $C0A92D
 void unknownC0A92D(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC46B8D(tmp);
 }
 
 /// $C0A938
 void unknownC0A938(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC46BBB(tmp);
 }
 
 /// $C0A943
 short actionScriptGetPositionOfPartyMember(short, ref const(ubyte)* arg1) {
 	short tmp1 = movementDataRead8(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	getPositionOfPartyMember(tmp1);
 	return 0;
 }
@@ -7468,32 +7468,32 @@ short actionScriptGetPositionOfPartyMember(short, ref const(ubyte)* arg1) {
 /// $C0A94E
 void unknownC0A94E(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC46984(tmp);
 }
 
 /// $C0A959
 void unknownC0A959(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC469F1(tmp);
 }
 
 /// $C0A964
 void actionScriptSetEntityBoundaries(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	setEntityBoundaries(tmp, tmp2);
 }
 
 /// $C0A977
 short actionScriptLoadBattleBG(short, ref const(ubyte)* arg1) {
 	short tmp = movementDataRead16(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	short tmp2 = movementDataRead16(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	loadBackgroundAnimation(tmp, tmp2);
 	return 0;
 }
@@ -7501,62 +7501,62 @@ short actionScriptLoadBattleBG(short, ref const(ubyte)* arg1) {
 /// $C0A98B
 short actionScriptSpawnEntityAtSelf(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	return spawnEntityAtSelf(tmp, tmp2);
 }
 
 /// $C0A99F
 short actionScriptCreateEntityAtV01PlusBG3Y(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	return createEntityAtV01PlusBG3Y(tmp, tmp2);
 }
 
 /// $C0A9B3
 void unknownC0A9B3(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC4EBAD(tmp, tmp2, tmp3);
 }
 
 /// $C0A9CF
 void unknownC0A9CF(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC4EC05(tmp, tmp2, tmp3);
 }
 
 /// $C0A9EB
 void unknownC0A9EB(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC4EC52(tmp, tmp2, tmp3);
 }
 
 /// $C0AA23
 void unknownC0AA23(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC47765(tmp, tmp2, tmp3);
 }
 
@@ -7564,46 +7564,46 @@ void unknownC0AA23(short, ref const(ubyte)* arg2) {
 void unknownC0AA3F(short arg1, ref const(ubyte)* arg2) {
 	short x = (--arg1 != 0) ? 0x33 : 0xB3;
 	actionscriptCOLDATABlue = cast(ubyte)movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	actionscriptCOLDATAGreen = cast(ubyte)movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	actionscriptCOLDATARed = cast(ubyte)movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC42439(x);
 }
 
 /// $C0AA6E
 void actionScriptUpdateSpriteDirection(short, ref const(ubyte)* arg2) {
-	if (entityScriptVar0Table[actionScriptVar88 / 2] == 0) {
-		entityDirections[actionScriptVar88 / 2] = cast(ubyte)movementDataRead8(arg2);
-		actionScriptVar94 = arg2;
-		useSecondSpriteFrame = entityAnimationFrames[actionScriptVar88 / 2] = cast(ubyte)movementDataRead8(arg2);
-		actionScriptVar94 = arg2;
-		updateEntitySpriteOffset(actionScriptVar88);
+	if (entityScriptVar0Table[currentActiveEntityOffset / 2] == 0) {
+		entityDirections[currentActiveEntityOffset / 2] = cast(ubyte)movementDataRead8(arg2);
+		actionScriptLastRead = arg2;
+		useSecondSpriteFrame = entityAnimationFrames[currentActiveEntityOffset / 2] = cast(ubyte)movementDataRead8(arg2);
+		actionScriptLastRead = arg2;
+		updateEntitySpriteOffset(currentActiveEntityOffset);
 	} else {
-		entityDirections[actionScriptVar88 / 2] = cast(ubyte)movementDataRead8(arg2);
-		actionScriptVar94 = arg2;
-		entityAnimationFrames[actionScriptVar88 / 2] = cast(ubyte)(movementDataRead8(arg2) * 2);
-		actionScriptVar94 = arg2;
-		spriteUpdateEntityOffset = actionScriptVar88;
+		entityDirections[currentActiveEntityOffset / 2] = cast(ubyte)movementDataRead8(arg2);
+		actionScriptLastRead = arg2;
+		entityAnimationFrames[currentActiveEntityOffset / 2] = cast(ubyte)(movementDataRead8(arg2) * 2);
+		actionScriptLastRead = arg2;
+		spriteUpdateEntityOffset = currentActiveEntityOffset;
 		updateEntitySpriteFrameCurrent();
 	}
 }
 
 /// $C0AAAC
 void unknownC0AAAC() {
-	spriteUpdateEntityOffset = actionScriptVar88;
+	spriteUpdateEntityOffset = currentActiveEntityOffset;
 	updateEntitySpriteFrameCurrent();
 }
 
 /// $C0AAB5
 void unknownC0AAB5(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp2 = movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	short tmp3 = movementDataRead8(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
 	unknownC497C0(tmp3, tmp2, tmp);
 }
 
@@ -7615,32 +7615,32 @@ short unknownC0AACD() {
 /// $C0AAD5
 void actionScriptJumpToLabelNTimes(short, ref const(ubyte)* arg2) {
 	actionScriptVar90 = cast(short)(movementDataRead8(arg2) + 1);
-	actionScriptVar94 = arg2;
-	actionScriptVar92 = cast(const(ubyte)*)movementDataReadPtr(arg2);
-	actionScriptVar94 = arg2;
+	actionScriptLastRead = arg2;
+	actionScriptJumpDestination = cast(const(ubyte)*)movementDataReadPtr(arg2);
+	actionScriptLastRead = arg2;
 	//offset is just an estimate...
-	if (actionScriptVar84[4].counter == 0) {
-		actionScriptVar84[4].counter = cast(ubyte)actionScriptVar90;
+	if (actionScriptStack[4].counter == 0) {
+		actionScriptStack[4].counter = cast(ubyte)actionScriptVar90;
 	}
-	if (--actionScriptVar84[4].counter != 0) {
-		actionScriptVar94 = actionScriptVar92;
+	if (--actionScriptStack[4].counter != 0) {
+		actionScriptLastRead = actionScriptJumpDestination;
 	}
 }
 
 /// $C0AAFD
 void unknownC0AAFD() {
 	//offset is just an estimate...
-	actionScriptVar84[4].counter = 0;
+	actionScriptStack[4].counter = 0;
 }
 
 /// $C0AA07
 void actionScriptFadeOutWithMosaic(short, ref const(ubyte)* arg1) {
 	short tmp1 = movementDataRead16(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	short tmp2 = movementDataRead16(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	short tmp3 = movementDataRead16(arg1);
-	actionScriptVar94 = arg1;
+	actionScriptLastRead = arg1;
 	fadeOutWithMosaic(tmp1, tmp2, tmp3);
 }
 
@@ -7667,56 +7667,56 @@ void musicEffect(short arg1) {
 void unknownC0AC43() {
 	spritemapBank = 0xC4;
 	ubyte actionScriptVar04 = 0xC4;
-	ubyte actionScriptVar00 = ((entitySurfaceFlags[actionScriptVar88 / 2] & 1) != 0) ? 1 : 0;
-	switch (entitySurfaceFlags[actionScriptVar88 / 2] & SurfaceFlags.deepWater) {
+	ubyte actionScriptVar00 = ((entitySurfaceFlags[currentActiveEntityOffset / 2] & 1) != 0) ? 1 : 0;
+	switch (entitySurfaceFlags[currentActiveEntityOffset / 2] & SurfaceFlags.deepWater) {
 		default:
-			if (entityByteWidths[actionScriptVar88 / 2] == 0x40) {
-				if (entityRippleNextUpdateFrames[actionScriptVar88 / 2] == 0) {
-					entityRippleOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityRippleSpritemaps[actionScriptVar88 / 2], entityRippleNextUpdateFrames[actionScriptVar88 / 2], entityRippleOverlayPtrs[actionScriptVar88 / 2]);
+			if (entityByteWidths[currentActiveEntityOffset / 2] == 0x40) {
+				if (entityRippleNextUpdateFrames[currentActiveEntityOffset / 2] == 0) {
+					entityRippleOverlayPtrs[currentActiveEntityOffset / 2] = updateOverlayFrame(&entityRippleSpritemaps[currentActiveEntityOffset / 2], entityRippleNextUpdateFrames[currentActiveEntityOffset / 2], entityRippleOverlayPtrs[currentActiveEntityOffset / 2]);
 				}
-				entityRippleNextUpdateFrames[actionScriptVar88 / 2]--;
-				drawSprite(entityRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+				entityRippleNextUpdateFrames[currentActiveEntityOffset / 2]--;
+				drawSprite(entityRippleSpritemaps[currentActiveEntityOffset / 2] + actionScriptVar00, entityScreenXTable[currentActiveEntityOffset / 2], entityScreenYTable[currentActiveEntityOffset / 2]);
 			} else {
-				if (entityBigRippleNextUpdateFrames[actionScriptVar88 / 2] == 0) {
-					entityBigRippleOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityBigRippleSpritemaps[actionScriptVar88 /2], entityBigRippleNextUpdateFrames[actionScriptVar88 / 2], entityBigRippleOverlayPtrs[actionScriptVar88 / 2]);
+				if (entityBigRippleNextUpdateFrames[currentActiveEntityOffset / 2] == 0) {
+					entityBigRippleOverlayPtrs[currentActiveEntityOffset / 2] = updateOverlayFrame(&entityBigRippleSpritemaps[currentActiveEntityOffset /2], entityBigRippleNextUpdateFrames[currentActiveEntityOffset / 2], entityBigRippleOverlayPtrs[currentActiveEntityOffset / 2]);
 				}
-				entityBigRippleNextUpdateFrames[actionScriptVar88 / 2]--;
-				drawSprite(entityBigRippleSpritemaps[actionScriptVar88 / 2] + actionScriptVar00 + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], cast(short)(entityScreenYTable[actionScriptVar88 / 2] + 8));
+				entityBigRippleNextUpdateFrames[currentActiveEntityOffset / 2]--;
+				drawSprite(entityBigRippleSpritemaps[currentActiveEntityOffset / 2] + actionScriptVar00 + actionScriptVar00, entityScreenXTable[currentActiveEntityOffset / 2], cast(short)(entityScreenYTable[currentActiveEntityOffset / 2] + 8));
 			}
 			goto case;
 		case SurfaceFlags.none:
-			if (entityOverlayFlags[actionScriptVar88 / 2] == EntityOverlayFlags.none) {
+			if (entityOverlayFlags[currentActiveEntityOffset / 2] == EntityOverlayFlags.none) {
 				return;
 			}
-			if ((entityOverlayFlags[actionScriptVar88 / 2] & EntityOverlayFlags.sweating) == 0) {
+			if ((entityOverlayFlags[currentActiveEntityOffset / 2] & EntityOverlayFlags.sweating) == 0) {
 				break;
 			}
 			goto case;
 		case SurfaceFlags.causesSunstroke:
-			if (actionScriptVar88 < 46) {
+			if (currentActiveEntityOffset < 46) {
 				return;
 			}
-			if (entitySweatingNextUpdateFrames[actionScriptVar88 / 2] == 0) {
-				entitySweatingOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entitySweatingSpritemaps[actionScriptVar88 / 2], entitySweatingNextUpdateFrames[actionScriptVar88 / 2], entitySweatingOverlayPtrs[actionScriptVar88 / 2]);
+			if (entitySweatingNextUpdateFrames[currentActiveEntityOffset / 2] == 0) {
+				entitySweatingOverlayPtrs[currentActiveEntityOffset / 2] = updateOverlayFrame(&entitySweatingSpritemaps[currentActiveEntityOffset / 2], entitySweatingNextUpdateFrames[currentActiveEntityOffset / 2], entitySweatingOverlayPtrs[currentActiveEntityOffset / 2]);
 			}
-			entitySweatingNextUpdateFrames[actionScriptVar88 / 2]--;
-			if (entitySweatingSpritemaps[actionScriptVar88 / 2] is null) {
+			entitySweatingNextUpdateFrames[currentActiveEntityOffset / 2]--;
+			if (entitySweatingSpritemaps[currentActiveEntityOffset / 2] is null) {
 				break;
 			}
-			drawSprite(entitySweatingSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+			drawSprite(entitySweatingSpritemaps[currentActiveEntityOffset / 2] + actionScriptVar00, entityScreenXTable[currentActiveEntityOffset / 2], entityScreenYTable[currentActiveEntityOffset / 2]);
 			break;
 	}
-	if ((entityOverlayFlags[actionScriptVar88 / 2] & EntityOverlayFlags.mushroom) == 0) {
+	if ((entityOverlayFlags[currentActiveEntityOffset / 2] & EntityOverlayFlags.mushroom) == 0) {
 		return;
 	}
-	if (actionScriptVar88 < 46) {
+	if (currentActiveEntityOffset < 46) {
 		return;
 	}
-	if (entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2] == 0) {
-		entityMushroomizedOverlayPtrs[actionScriptVar88 / 2] = updateOverlayFrame(&entityMushroomizedSpritemaps[actionScriptVar88 / 2], entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2], entityMushroomizedOverlayPtrs[actionScriptVar88 / 2]);
+	if (entityMushroomizedNextUpdateFrames[currentActiveEntityOffset / 2] == 0) {
+		entityMushroomizedOverlayPtrs[currentActiveEntityOffset / 2] = updateOverlayFrame(&entityMushroomizedSpritemaps[currentActiveEntityOffset / 2], entityMushroomizedNextUpdateFrames[currentActiveEntityOffset / 2], entityMushroomizedOverlayPtrs[currentActiveEntityOffset / 2]);
 	}
-	entityMushroomizedNextUpdateFrames[actionScriptVar88 / 2]--;
-	drawSprite(entityMushroomizedSpritemaps[actionScriptVar88 / 2] + actionScriptVar00, entityScreenXTable[actionScriptVar88 / 2], entityScreenYTable[actionScriptVar88 / 2]);
+	entityMushroomizedNextUpdateFrames[currentActiveEntityOffset / 2]--;
+	drawSprite(entityMushroomizedSpritemaps[currentActiveEntityOffset / 2] + actionScriptVar00, entityScreenXTable[currentActiveEntityOffset / 2], entityScreenYTable[currentActiveEntityOffset / 2]);
 }
 
 /// $C0AD56
@@ -8500,7 +8500,7 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		x26++;
 	}
 	arg1.patherCount = x26;
-	ushort x28 = pathMain(0xC00, &unknown7EF000.unknown7EF400[0], &arg1.radius, &buffer[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg6, arg7);
+	ushort x28 = pathMain(0xC00, &pathfindingBuffer[0], &arg1.radius, &buffer[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg6, arg7);
 	assert(pathGetHeapSize() <= 0xC00);
 	if (x28 == 0) {
 		for (short i = 0; i != maxEntities; i++) {
@@ -8527,17 +8527,17 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 /// $C0BC74
 short findPathToParty(short partyCount, short arg2, short arg3) {
 	short x28 = gameState.firstPartyMemberEntity;
-	PathCtx* x26 = &unknown7EF000.unknown7EF200;
-	unknown7EF000.unknown7EF200.radius.y = arg2;
-	unknown7EF000.unknown7EF200.radius.x = arg3;
-	pathfindingTargetWidth = unknown7EF000.unknown7EF200.radius.y / 2;
-	pathfindingTargetHeight = unknown7EF000.unknown7EF200.radius.x / 2;
+	PathCtx* x26 = &pathfindingState;
+	pathfindingState.radius.y = arg2;
+	pathfindingState.radius.x = arg3;
+	pathfindingTargetWidth = pathfindingState.radius.y / 2;
+	pathfindingTargetHeight = pathfindingState.radius.x / 2;
 	pathfindingTargetCenterX = (entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
 	pathfindingTargetCenterY = (entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
-	short x02 = ((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.x / 2);
-	short x04 = ((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (unknown7EF000.unknown7EF200.radius.y / 2);
-	unknownC0B9BC(&unknown7EF000.unknown7EF200, partyCount, x04, x02);
-	return unknownC0BA35(&unknown7EF000.unknown7EF200, partyCount, x04, x02, 0, 0x40, 0x32);
+	short x02 = ((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (pathfindingState.radius.x / 2);
+	short x04 = ((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (pathfindingState.radius.y / 2);
+	unknownC0B9BC(&pathfindingState, partyCount, x04, x02);
+	return unknownC0BA35(&pathfindingState, partyCount, x04, x02, 0, 0x40, 0x32);
 }
 
 unittest {
@@ -8569,11 +8569,11 @@ unittest {
 /// $C0BD96
 short unknownC0BD96() {
 	short x2A = gameState.firstPartyMemberEntity;
-	PathCtx* x28 = &unknown7EF000.unknown7EF200;
-	short x04 = unknown7EF000.unknown7EF200.radius.y = 56;
-	short x02 = unknown7EF000.unknown7EF200.radius.x = 56;
-	pathfindingTargetWidth = unknown7EF000.unknown7EF200.radius.y / 2;
-	pathfindingTargetHeight = unknown7EF000.unknown7EF200.radius.x / 2;
+	PathCtx* x28 = &pathfindingState;
+	short x04 = pathfindingState.radius.y = 56;
+	short x02 = pathfindingState.radius.x = 56;
+	pathfindingTargetWidth = pathfindingState.radius.y / 2;
+	pathfindingTargetHeight = pathfindingState.radius.x / 2;
 	pathfindingTargetCenterX = (entityAbsXTable[x2A] - unknownC42A1F[entitySizes[x2A]]) / 8;
 	pathfindingTargetCenterY = (entityAbsYTable[x2A] - unknownC42A41[entitySizes[x2A]] + unknownC42AEB[entitySizes[x2A]]) / 8;
 	x04 = cast(short)((entityAbsXTable[x2A] - unknownC42A1F[entitySizes[x2A]]) / 8 - x04);
@@ -8581,28 +8581,28 @@ short unknownC0BD96() {
 	unknownC0B9BC(x28, 1, x04, x02);
 	short result = unknownC0BA35(x28, 1, x04, x02, 1, 0xFC, 0x32);
 	if (result == 0) {
-		entityAbsXTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((pathfindingTargetCenterX - pathfindingTargetWidth) * 8));
-		entityAbsYTable[unknown7EF000.unknown7EF200.pathers[0].objIndex] = cast(short)((unknown7EF000.unknown7EF200.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + unknownC42A41[entitySizes[unknown7EF000.unknown7EF200.pathers[0].objIndex]] + ((pathfindingTargetCenterY - pathfindingTargetHeight) * 8));
-		entityPathPoints[unknown7EF000.unknown7EF200.pathers[0].objIndex]++;
-		entityPathPointsCount[unknown7EF000.unknown7EF200.pathers[0].objIndex]--;
+		entityAbsXTable[pathfindingState.pathers[0].objIndex] = cast(short)((pathfindingState.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[pathfindingState.pathers[0].objIndex]] + ((pathfindingTargetCenterX - pathfindingTargetWidth) * 8));
+		entityAbsYTable[pathfindingState.pathers[0].objIndex] = cast(short)((pathfindingState.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[pathfindingState.pathers[0].objIndex]] + unknownC42A41[entitySizes[pathfindingState.pathers[0].objIndex]] + ((pathfindingTargetCenterY - pathfindingTargetHeight) * 8));
+		entityPathPoints[pathfindingState.pathers[0].objIndex]++;
+		entityPathPointsCount[pathfindingState.pathers[0].objIndex]--;
 	}
 	return result;
 }
 
 /// $C0BF72
 short unknownC0BF72() {
-	PathCtx* x26 = &unknown7EF000.unknown7EF200;
-	unknown7EF000.unknown7EF200.radius.y = 56;
-	unknown7EF000.unknown7EF200.radius.x = 56;
-	short x04 = unknown7EF000.unknown7EF200.radius.y / 2;
-	pathfindingTargetWidth = unknown7EF000.unknown7EF200.radius.y / 2;
-	pathfindingTargetHeight = unknown7EF000.unknown7EF200.radius.x / 2;
+	PathCtx* x26 = &pathfindingState;
+	pathfindingState.radius.y = 56;
+	pathfindingState.radius.x = 56;
+	short x04 = pathfindingState.radius.y / 2;
+	pathfindingTargetWidth = pathfindingState.radius.y / 2;
+	pathfindingTargetHeight = pathfindingState.radius.x / 2;
 	pathfindingTargetCenterX = (entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8;
 	pathfindingTargetCenterY = (entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8;
 	short x = cast(short)((entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8 - x04);
 	short x28 = cast(short)((entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8 - x04);
-	unknown7EF000.unknown7EF200.targetsPos[0].x = x04 & 0x3F;
-	unknown7EF000.unknown7EF200.targetsPos[0].y = pathfindingTargetHeight & 0x3F;
+	pathfindingState.targetsPos[0].x = x04 & 0x3F;
+	pathfindingState.targetsPos[0].y = pathfindingTargetHeight & 0x3F;
 	return unknownC0BA35(x26, 1, x, x28, 1, 0xFC, 0x32);
 }
 
@@ -9189,8 +9189,8 @@ void unknownC0D19B() {
 			short x1A = x06.enemyID;
 			if (x1A != 0) {
 				short x18 = 0;
-				for (short j = 0; j < unknown7EF000.unknown7EF200.patherCount; j++) {
-					if (unknown7EF000.unknown7EF200.pathers[j].objIndex == x1A) {
+				for (short j = 0; j < pathfindingState.patherCount; j++) {
+					if (pathfindingState.pathers[j].objIndex == x1A) {
 						x18++;
 					}
 				}
@@ -9198,19 +9198,19 @@ void unknownC0D19B() {
 					for (short j = cast(short)(x18 - x14); j-- != 0;) {
 						short x10 = -1;
 						short x1C = 0;
-						for (short k = 0; k < unknown7EF000.unknown7EF200.patherCount; k++) {
-							if (entityEnemyIDs[unknown7EF000.unknown7EF200.pathers[k].objIndex] != x1A) {
+						for (short k = 0; k < pathfindingState.patherCount; k++) {
+							if (entityEnemyIDs[pathfindingState.pathers[k].objIndex] != x1A) {
 								continue;
 							}
-							if (unknown7EF000.unknown7EF200.pathers[k].pointCount <= x1C) {
+							if (pathfindingState.pathers[k].pointCount <= x1C) {
 								continue;
 							}
 							x10 = x18;
-							x1C = entityEnemyIDs[unknown7EF000.unknown7EF200.pathers[k].pointCount];
+							x1C = entityEnemyIDs[pathfindingState.pathers[k].pointCount];
 						}
-						if (unknown7EF000.unknown7EF200.pathers[x10].objIndex != x20) {
-							unknown7EF000.unknown7EF200.pathers[x10].pointCount = 0;
-							entityPathfindingState[unknown7EF000.unknown7EF200.pathers[x10].objIndex] = 0;
+						if (pathfindingState.pathers[x10].objIndex != x20) {
+							pathfindingState.pathers[x10].pointCount = 0;
+							entityPathfindingState[pathfindingState.pathers[x10].objIndex] = 0;
 						}
 					}
 				}

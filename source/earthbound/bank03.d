@@ -395,10 +395,10 @@ immutable ubyte[14] unknownC3E3F8 = [
 ];
 
 /// $C3E406
-immutable ushort[2] arrC3E406 = [ 0x2441, 0x268D ];
+immutable ushort[2] selectionCursorFramesUpper = [ 0x2441, 0x268D ];
 
 /// $C3E40A
-immutable ushort[2] arrC3E40A = [ 0x2451, 0x269D ];
+immutable ushort[2] selectionCursorFramesLower = [ 0x2451, 0x269D ];
 
 /// $C3E40E
 immutable ushort[4] autoBattleArrangement = [ 0x3A69, 0x3A6A, 0x3A6B, 0x3A6C ];
@@ -414,11 +414,13 @@ immutable ushort[][4] paginationArrowTiles = [
 	[0x3C16, 0x2C40, 0x2E6E, 0x7C16],
 ];
 
-/// $C3E44C
+/** String for the next page menu option label. This was left untranslated in Earthbound, probably because it only gets used in a debugging menu
+ * Original_Address: $(DOLLAR)C3E44C
+ */
 version(bugfix) {
-	immutable ubyte[5] unknownC3E44C = ebString!5("Next"); //tx6 in EB
+	immutable ubyte[5] menuNextLabel = ebString!5("Next"); //tx6 in EB
 } else {
-	immutable ubyte[4] unknownC3E44C = ebString!4("そのた"); //tx6 in EB
+	immutable ubyte[4] menuNextLabel = ebString!4("そのた"); //tx6 in EB
 }
 
 /// $C3E450
@@ -471,13 +473,13 @@ void closeWindow(short arg1) {
 	if (currentFocusWindow == arg1) {
 		currentFocusWindow = -1;
 	}
-	unknownC3E7E3(arg1);
+	resetWindowMenu(arg1);
 	short x14 = windowStats[windowTable[arg1]].next;
-	short x12 = windowStats[windowTable[arg1]].prev;
+	short x12 = windowStats[windowTable[arg1]].previous;
 	if (x14 == -1) {
 		windowTail = x12;
 	} else {
-		windowStats[x14].prev = x12;
+		windowStats[x14].previous = x12;
 	}
 	if (x12 == -1) {
 		windowHead = x14;
@@ -568,36 +570,48 @@ void printBattlerArticle(short target) {
 	}
 }
 
-/// $C3E7E3
-void unknownC3E7E3(short arg1) {
-	if (arg1 == -1) {
+/** Resets a window's menu state and frees up its menu options
+ * Params:
+ * 	window = A currently-open window ID
+ * $(DOLLAR)C3E7E3
+ */
+void resetWindowMenu(short window) {
+	if (window == Window.invalid) {
 		return;
 	}
-	if (windowStats[windowTable[arg1]].currentOption == -1) {
+	if (windowStats[windowTable[window]].currentOption == -1) {
 		return;
 	}
-	MenuOpt* x = &menuOptions[windowStats[windowTable[arg1]].currentOption];
+	MenuOption* option = &menuOptions[windowStats[windowTable[window]].currentOption];
 	while (true) {
-		x.field00 = 0;
-		if (x.next == -1) {
+		option.type = MenuOptionType.available;
+		if (option.next == -1) {
 			break;
 		}
-		x++;
+		option++;
 	}
-	windowStats[windowTable[arg1]].selectedOption = -1;
-	windowStats[windowTable[arg1]].optionCount = -1;
-	windowStats[windowTable[arg1]].currentOption = -1;
-	windowStats[windowTable[arg1]].menuColumns = 1;
-	windowStats[windowTable[arg1]].menuPage = 1;
+	windowStats[windowTable[window]].selectedOption = -1;
+	windowStats[windowTable[window]].optionCount = -1;
+	windowStats[windowTable[window]].currentOption = -1;
+	windowStats[windowTable[window]].menuColumns = 1;
+	windowStats[windowTable[window]].menuPage = 1;
 }
 
-/// $C3E84E
-immutable ushort[10] smaaaashTiles = [ 0x0130, 0x0131, 0x0132, 0x0133, 0x0134, 0x0135, 0x0136, 0x0137, 0x0138, 0x0000 ];
+/** IDs for the upper tiles of the "SMAAAAASH!" graphic
+ * Original_Address: $(DOLLAR)C3E84E
+ */
+immutable ushort[10] smaaaashTiles = [
+	0x0130, 0x0131, 0x0132, 0x0133, 0x0134, 0x0135, 0x0136, 0x0137, 0x0138, 0x0000
+];
 
-/// $C3E862
-immutable ushort[9] youWonTiles = [ 0x0140, 0x0141, 0x0142, 0x0143, 0x0144, 0x0145, 0x0146, 0x0147, 0x0148 ];
+/** IDs for the upper tiles of the "YOU WON!" graphic. There is a short 8-frame pause between the two sets being printed
+ * Original_Address: $(DOLLAR)C3E862
+ */
+immutable ushort[9] youWonTiles = [
+	0x0140, 0x0141, 0x0142, 0x0143, // YOU
+	0x0144, 0x0145, 0x0146, 0x0147, 0x0148 // WON!
+];
 
-/// $C3E874
 version(bugfix) {
 	enum option9 = "Teleport";
 	enum option10 = "Star ~";
@@ -612,8 +626,11 @@ version(bugfix) {
 	enum option12 = "プレーヤー0";
 	enum option13 = "プレーヤー1";
 	enum option19 = "メーター";
-
 }
+
+/** Labels for the overworld debugging menu mapped to the Y button. Options 9, 10, 11, 12, 13 and 19 were never officially localized
+ * Original_Address: $(DOLLAR)C3E874
+ */
 immutable ubyte[10][24] debugMenuText = [
 	ebString!10("Flag"),
 	ebString!10("Goods"),
@@ -641,7 +658,9 @@ immutable ubyte[10][24] debugMenuText = [
 	ebString!10(""),
 ];
 
-/// $C3E964
+/** Positioning data for the six main menu options in the overworld command menu
+ * Original_Address: $(DOLLAR)C3E964
+ */
 immutable CommandMenuOptionPositioning[6] commandMenuOptionPositioning = [
 	CommandMenuOptionPositioning(0x00, 0x00),
 	CommandMenuOptionPositioning(0x06, 0x00),
@@ -651,15 +670,21 @@ immutable CommandMenuOptionPositioning[6] commandMenuOptionPositioning = [
 	CommandMenuOptionPositioning(0x06, 0x02),
 ];
 
-/// $C3E970
+/** "ON" text used for the FLAG debugging function
+ * Original_Address: $(DOLLAR)C3E970
+ */
 immutable ubyte[3] debugOnText = ebStringz("ON");
 
-/// $C3E973
+/** "OFF" text used for the FLAG debugging function
+ * Original_Address: $(DOLLAR)C3E973
+ */
 immutable ubyte[4] debugOffText = ebStringz("OFF");
 
-/// $C3E977
-short getCharacterItem(short arg1, short arg2) {
-	return partyCharacters[arg1 - 1].items[arg2 - 1];
+/** Get the item at the specified slot for the specified character
+ * Original_Address: $(DOLLAR)C3E977
+ */
+short getCharacterItem(short character, short slot) {
+	return partyCharacters[character - 1].items[slot - 1];
 }
 
 /// $C3E9F7

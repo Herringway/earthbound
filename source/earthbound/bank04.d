@@ -30,7 +30,7 @@ import std.experimental.logger;
 
 /// $C40015
 short unknownC40015() {
-	entityAnimationFrames[actionScriptVar88 / 2] = 0;
+	entityAnimationFrames[currentActiveEntityOffset / 2] = 0;
 	updateEntitySpriteCurrentFrame0();
 	return unknownC0C6B6();
 }
@@ -1344,38 +1344,50 @@ void rowEnemyFlashingOn(short arg1) {
 	redrawAllWindows = 1;
 }
 
-/// $C436D7
-void unknownC436D7(short arg1, short arg2) {
-	ushort* x0E = &windowStats[windowTable[arg1]].tilemapBuffer[windowStats[windowTable[arg1]].width * arg2 * 2];
-	for (short i = 0; i != windowStats[windowTable[arg1]].width * 2; i++) {
-		*(x0E++) = 0x40;
+/** Clears a line in the specified open window. This assumes that the current font is 2 tiles high
+ * Original_Address: $(DOLLAR)C436D7
+ */
+void clearTextLine(short window, short height) {
+	ushort* buffer = &windowStats[windowTable[window]].tilemapBuffer[windowStats[windowTable[window]].width * height * 2];
+	for (short i = 0; i != windowStats[windowTable[window]].width * 2; i++) {
+		*(buffer++) = 0x40;
 	}
 }
 
-/// $C43739
-void clearCurrentTextLine(short arg1) {
-	ushort* x10 = &windowStats[windowTable[arg1]].tilemapBuffer[(windowStats[windowTable[arg1]].width * windowStats[windowTable[arg1]].textY * 2)];
-	for (short i = 0; i != windowStats[windowTable[arg1]].width * 2; i++) {
-		freeTile((x10++)[0]);
+/** Clears the line in the specified window where text will next be rendered. This assumes that the current font is 2 tiles high
+ * Original_Address: $(DOLLAR)C43739
+ */
+void clearCurrentTextLine(short window) {
+	ushort* buffer = &windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * windowStats[windowTable[window]].textY * 2)];
+	// first make sure all the text tiles rendered on the line so far are freed up
+	for (short i = 0; i != windowStats[windowTable[window]].width * 2; i++) {
+		freeTile((buffer++)[0]);
 	}
-	unknownC436D7(arg1, windowStats[windowTable[arg1]].textY);
+	clearTextLine(window, windowStats[windowTable[window]].textY);
 }
 
-/// $C437B8
-void unknownC437B8(short arg1) {
-	ushort* x14 = &windowStats[windowTable[arg1]].tilemapBuffer[0];
-	ushort* x12 = &windowStats[windowTable[arg1]].tilemapBuffer[0];
-	ushort* x04 = &windowStats[windowTable[arg1]].tilemapBuffer[windowStats[windowTable[arg1]].width * 2];
-	for (short i = 0; i != windowStats[windowTable[arg1]].width * 2; i++) {
-		freeTile(*(x14++));
+/** Moves text in the window up a single line. This assumes that the current font is 2 tiles high
+ * Original_Address: $(DOLLAR)C437B8
+ */
+void moveTextUpOneLine(short window) {
+	ushort* freeBuffer = &windowStats[windowTable[window]].tilemapBuffer[0];
+	ushort* destinationBuffer = &windowStats[windowTable[window]].tilemapBuffer[0];
+	ushort* sourceBuffer = &windowStats[windowTable[window]].tilemapBuffer[windowStats[windowTable[window]].width * 2];
+	// first free the tiles of the first line of text
+	for (short i = 0; i != windowStats[windowTable[window]].width * 2; i++) {
+		freeTile(*(freeBuffer++));
 	}
-	for (short i = 0; i != (windowStats[windowTable[arg1]].height - 2) * windowStats[windowTable[arg1]].width; i++) {
-		*(x12++) = *(x04++);
+	// then copy the tiles of each line up two rows of tiles
+	for (short i = 0; i != (windowStats[windowTable[window]].height - 2) * windowStats[windowTable[window]].width; i++) {
+		*(destinationBuffer++) = *(sourceBuffer++);
 	}
-	unknownC436D7(arg1, (windowStats[windowTable[arg1]].height / 2) - 1);
+	// clear the last text line in the window
+	clearTextLine(window, (windowStats[windowTable[window]].height / 2) - 1);
 }
 
-/// $C438B1
+/** Starts a new line of text in the active window
+ * Original_Address: $(DOLLAR)C438B1
+ */
 void printNewLine() {
 	if (currentFocusWindow == -1) {
 		return;
@@ -1392,24 +1404,29 @@ void printNewLine() {
 	if (windowStats[windowTable[currentFocusWindow]].textY != (windowStats[windowTable[currentFocusWindow]].height / 2) - 1) {
 		windowStats[windowTable[currentFocusWindow]].textY++;
 	} else {
-		unknownC437B8(currentFocusWindow);
+		moveTextUpOneLine(currentFocusWindow);
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
 }
 
-/// $C43B15 - Unknown, but looks like it resets the color of existing text in the focused window
-void unknownC43B15() {
-	WinStat* x12 = &windowStats[windowTable[currentFocusWindow]];
-	ushort* y = &x12.tilemapBuffer[x12.width * x12.textY * 2];
-	ushort x0E;
-	for (x0E = cast(ushort)(x12.width - 1); y[x0E] == 0x40; x0E--) {}
-	ushort x12_2 = x12.textX;
-	ushort* x = &y[x12_2];
-	while (x12_2 < (x0E + 1)) {
-		x[0] = (x[0] & 0x3FF) | x12.tileAttributes;
-		x[x12.width] = (x[x12.width] & 0x3FF) | x12.tileAttributes;
-		x++;
-		x12_2++;
+/** Prepares the window for word wrapping by setting the tile attributes for any remaining blank tiles on the current line
+ * Original_Address: $(DOLLAR)C43B15
+ */
+void fillRestOfWindowLine() {
+	WinStat* window = &windowStats[windowTable[currentFocusWindow]];
+	ushort* tileBuffer = &window.tilemapBuffer[window.width * window.textY * 2];
+	// find last tile
+	ushort endTile;
+	for (endTile = cast(ushort)(window.width - 1); tileBuffer[endTile] == 0x40; endTile--) {}
+	ushort tile = window.textX;
+	ushort* tilemap = &tileBuffer[tile];
+	while (tile < (endTile + 1)) {
+		// keep only the tile, add window's attributes
+		tilemap[0] = (tilemap[0] & 0x3FF) | window.tileAttributes;
+		// ditto, but for the second line
+		tilemap[window.width] = (tilemap[window.width] & 0x3FF) | window.tileAttributes;
+		tilemap++;
+		tile++;
 	}
 }
 
@@ -1461,33 +1478,41 @@ immutable ubyte[0x400] lockedTiles = [
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00
 ];
 
-/// $C43BB9 - Unknown, but looks like it prints optionally highlighted text
-void unknownC43BB9(ushort maxLength, short highlighted, ubyte* text) {
-	if (windowTable[currentFocusWindow] == -1) {
+/** Sets or clears highlighting for some rendered text in the active window
+ * Params:
+ * 	maxLength = Maximum number of tiles to adjust
+ * 	highlighted = 0 to clear all highlighting, 1 to set it
+ * 	text = The string of text being highlighted
+ * Original_Address: $(DOLLAR)C43BB9
+ */
+void setTextHighlighting(ushort maxLength, short highlighted, ubyte* text) {
+	if (windowTable[currentFocusWindow] == Window.invalid) {
+		// no open window
 		return;
 	}
-	if ((currentFocusWindow != 0x18) && (currentFocusWindow != 0x19) && (currentFocusWindow != 0x14) && (currentFocusWindow != 0x24)) {
+	// Don't do anything for windows that aren't part of the file select mode
+	if ((currentFocusWindow != Window.fileSelectTextSpeed) && (currentFocusWindow != Window.fileSelectMusicMode) && (currentFocusWindow != Window.fileSelectMenu) && (currentFocusWindow != Window.fileSelectNamingConfirmationMessage)) {
 		return;
 	}
-	WinStat* x14 = &windowStats[windowTable[currentFocusWindow]];
-	short x12 = windowStats[windowTable[currentFocusWindow]].tileAttributes;
-	short x10 = windowStats[windowTable[currentFocusWindow]].textX;
-	ushort* x04 = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[windowStats[windowTable[currentFocusWindow]].textY * windowStats[windowTable[currentFocusWindow]].width * 2 + x10];
+	WinStat* window = &windowStats[windowTable[currentFocusWindow]];
+	short attributes = windowStats[windowTable[currentFocusWindow]].tileAttributes;
+	short x = windowStats[windowTable[currentFocusWindow]].textX;
+	ushort* buffer = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[windowStats[windowTable[currentFocusWindow]].textY * windowStats[windowTable[currentFocusWindow]].width * 2 + x];
 	while ((*text != 0) && (maxLength != 0)) {
-		if (*x04 == 0x40) {
+		if (*buffer == 0x40) {
 			break;
 		}
 		if (highlighted != 0) {
-			unknownEF00E6(x04, x14.width, x12);
+			setTextTileAttributes(buffer, window.width, attributes);
 		} else {
-			unknownEF00BB(x04, x14.width, x12);
+			clearTextTileAttributes(buffer, window.width, attributes);
 		}
-		x10++;
-		x04++;
+		x++;
+		buffer++;
 		text++;
 		maxLength--;
 	}
-	x14.textX = x10;
+	window.textX = x;
 	instantPrinting = 0;
 }
 
@@ -1503,11 +1528,13 @@ void nextVWFTile() {
 	textRenderState.pixelsRendered = vwfX;
 }
 
-/// $C43CD2 - Set text position on focused window (for menu options)
-void unknownC43CD2(MenuOpt* opt, short x, short y) {
+/** Set text position to the cursor drawing position of the specified menu option
+ * Original_Address: $(DOLLAR)C43CD2
+ */
+void moveCurrentTextCursorOption(MenuOption* option, short x, short y) {
 	moveCurrentTextCursor(x, y);
-	if (opt.pixelAlign != 0) {
-		vwfX += opt.pixelAlign;
+	if (option.pixelAlign != 0) {
+		vwfX += option.pixelAlign;
 		memset(&vwfBuffer[vwfTile][0], 0xFF, 0x20);
 	}
 	restoreMenuBackup = 0;
@@ -1520,12 +1547,12 @@ void unknownC43D95(short arg1) {
 }
 
 /// $C43DDB
-void unknownC43DDB(MenuOpt* menuEntry) {
+void unknownC43DDB(MenuOption* menuEntry) {
 	moveCurrentTextCursor(menuEntry.textX, menuEntry.textY);
 	unknownC43F77(0x2F);
 	nextVWFTile();
 	if (menuEntry.pixelAlign != 0) {
-		unknownC43CD2(menuEntry, menuEntry.textX, menuEntry.textY);
+		moveCurrentTextCursorOption(menuEntry, menuEntry.textX, menuEntry.textY);
 	}
 }
 
@@ -1554,7 +1581,7 @@ short unknownC43E31(const(ubyte)* arg1, short arg2) {
 	short x12 = 0;
 	while ((arg1[0] != 0) && (arg2 != 0)) {
 		arg2--;
-		x12 += characterPadding + (unknown7EB4CE != 0) ? fontData[fontConfigTable[0].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F] : fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F];
+		x12 += characterPadding + (forceNormalFontForLengthCalculation != 0) ? fontData[fontConfigTable[0].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F] : fontData[fontConfigTable[windowStats[windowTable[currentFocusWindow]].font].dataID][((arg1++)[0] - ebChar(' ')) & 0x7F];
 	}
 	return x12;
 }
@@ -1579,9 +1606,10 @@ void unknownC43F77(short tile) {
 	}
 	int tilemapOffset = windowStats[windowTable[currentFocusWindow]].textX +
 		windowStats[windowTable[currentFocusWindow]].textY * windowStats[windowTable[currentFocusWindow]].width * 2;
-	ushort* x0E = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[tilemapOffset];
-	freeTileSafe(x0E[0]);
-	freeTileSafe(x0E[windowStats[windowTable[currentFocusWindow]].width]);
+	// free the text tiles at the current offset
+	ushort* buffer = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[tilemapOffset];
+	freeTileSafe(buffer[0]);
+	freeTileSafe(buffer[windowStats[windowTable[currentFocusWindow]].width]);
 	if (tile == 0x2F) {
 		vwfIndentNewLine = 0;
 	}
@@ -1589,18 +1617,18 @@ void unknownC43F77(short tile) {
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
-	short x;
+	short playSound;
 	if (textSoundMode == TextSoundMode.unknown2) {
-		x = 1;
+		playSound = 1;
 	} else if (textSoundMode == TextSoundMode.unknown3) {
-		x = 0;
+		playSound = 0;
 	} else {
-		x = 0;
+		playSound = 0;
 		if (blinkingTriangleFlag == 0) {
-			x = 1;
+			playSound = 1;
 		}
 	}
-	if ((x != 0) && (instantPrinting == 0) && (tile != 0x20)) {
+	if ((playSound != 0) && (instantPrinting == 0) && (tile != 0x20)) {
 		playSfx(Sfx.textPrint);
 	}
 	if (instantPrinting == 0) {
@@ -1659,14 +1687,14 @@ void unknownC441B7(short arg1) {
 }
 
 /// $C4424A
-void unknownC4424A(short arg1) {
-	if (arg1 == 0x70) {
+void unknownC4424A(short chr) {
+	if (chr == 0x70) {
 		keyboardInputCharacters[nextKeyboardInputIndex] = 0;
 	} else {
-		keyboardInputCharacters[nextKeyboardInputIndex] = cast(ubyte)arg1;
+		keyboardInputCharacters[nextKeyboardInputIndex] = cast(ubyte)chr;
 	}
-	keyboardInputCharacterOffsets[nextKeyboardInputIndex] = cast(ubyte)((arg1 - ebChar(' ')) & 0x7F);
-	keyboardInputCharacterWidths[nextKeyboardInputIndex] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(arg1 - ebChar(' ')) & 0x7F] + characterPadding);
+	keyboardInputCharacterOffsets[nextKeyboardInputIndex] = cast(ubyte)((chr - ebChar(' ')) & 0x7F);
+	keyboardInputCharacterWidths[nextKeyboardInputIndex] = cast(ubyte)(fontData[fontConfigTable[0].dataID][(chr - ebChar(' ')) & 0x7F] + characterPadding);
 }
 
 /// $C442AC
@@ -1682,17 +1710,17 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 			return 1;
 		}
 		if (nextKeyboardInputIndex < arg2) {
-			unknownC4424A(0x53);
+			unknownC4424A(ebChar('{'));
 		}
 		nextKeyboardInputIndex--;
-		unknownC4424A(0x70);
+		unknownC4424A(ebChar('@'));
 	} else {
 		if (arg2 - 1 < nextKeyboardInputIndex) {
 			return 0;
 		}
 		unknownC4424A(arg3);
 		if (++nextKeyboardInputIndex < arg2) {
-			unknownC4424A(0x70);
+			unknownC4424A(ebChar('@'));
 		}
 	}
 	windowStats[windowTable[currentFocusWindow]].textX = 0;
@@ -1719,20 +1747,22 @@ short unknownC442AC(short arg1, short arg2, short arg3) {
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
 	}
-	short x;
+	// should we play a sound?
+	short playSound;
 	if (textSoundMode == TextSoundMode.unknown2) {
-		x = 1;
+		playSound = 1;
 	} else if (textSoundMode == TextSoundMode.unknown3) {
-		x = 0;
+		playSound = 0;
 	} else {
-		x = 0;
+		playSound = 0;
 		if (blinkingTriangleFlag == 0) {
-			x = 1;
+			playSound = 1;
 		}
 	}
-	if ((x != 0) && (instantPrinting == 0) && (arg3 != 0x20)) {
+	if ((playSound != 0) && (instantPrinting == 0) && (arg3 != 0x20)) {
 		playSfx(Sfx.textPrint);
 	}
+	// wait according to player's chosen text speed
 	for (short i = cast(short)(selectedTextSpeed + (config.instantSpeedText ? 0 : 1)); i != 0; i--) {
 		windowTick();
 	}
@@ -1958,55 +1988,58 @@ immutable ushort[16] powersOfTwo16Bit = [
 ];
 
 /// $C44C8C
-void finishTextTileRender(short arg1, short arg2) {
+void finishTextTileRender(short upperTile, short lowerTile) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
 	if (windowTable[currentFocusWindow] == -1) {
 		return;
 	}
-	short x04 = windowStats[windowTable[currentFocusWindow]].textX;
-	short x12 = windowStats[windowTable[currentFocusWindow]].textY;
-	short x10 = windowStats[windowTable[currentFocusWindow]].tileAttributes;
-	ushort* x0E;
-	ushort* x16;
-	if (x04 == windowStats[windowTable[currentFocusWindow]].width) {
-		x04 = 0;
-		if ((windowStats[windowTable[currentFocusWindow]].height / 2) - 1 != x12) {
-			x12++;
+	short x = windowStats[windowTable[currentFocusWindow]].textX;
+	short y = windowStats[windowTable[currentFocusWindow]].textY;
+	short attributes = windowStats[windowTable[currentFocusWindow]].tileAttributes;
+	ushort* bufferUpper;
+	ushort* bufferLower;
+	if (x == windowStats[windowTable[currentFocusWindow]].width) {
+		x = 0;
+		if ((windowStats[windowTable[currentFocusWindow]].height / 2) - 1 != y) {
+			y++;
 		} else {
-			if (unknown7EB49D != 0) {
+			if (allowTextOverflow != 0) {
 				goto Unknown15;
 			}
-			unknownC437B8F(currentFocusWindow);
+			moveTextUpOneLineF(currentFocusWindow);
 		}
 		if (enableWordWrap != 0) {
 			vwfIndentNewLine = 1;
 		}
 	}
-	if ((blinkingTriangleFlag != 0) && (x04 == 0) && ((arg1 == 0x20) || (arg1 == 0x70))) {
+	if ((blinkingTriangleFlag != 0) && (x == 0) && ((upperTile == 0x20) || (upperTile == 0x70))) {
 		if (blinkingTriangleFlag == 1) {
 			goto Unknown15;
 		}
 		if (blinkingTriangleFlag == 1) {
-			arg1 = 0x20;
+			upperTile = 0x20;
 		}
 	}
-	x0E = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[windowStats[windowTable[currentFocusWindow]].width * x12 * 2 + x04];
-	if (*x0E != 0) {
-		freeTileSafe(*x0E);
+	// upper half of tile
+	bufferUpper = &windowStats[windowTable[currentFocusWindow]].tilemapBuffer[windowStats[windowTable[currentFocusWindow]].width * y * 2 + x];
+	if (bufferUpper[0] != 0) {
+		freeTileSafe(bufferUpper[0]);
 	}
-	*x0E = cast(ushort)(((arg1 == 0x22) ? 0xC00 : x10) + arg1);
-	x16 = x0E + windowStats[windowTable[currentFocusWindow]].width;
-	if (*x16 != 0) {
-		freeTileSafe(*x16);
+	bufferUpper[0] = cast(ushort)(((upperTile == SpecialCharacter.equipIcon) ? (3 << 10) : attributes) | upperTile);
+
+	// lower half of tile
+	bufferLower = bufferUpper + windowStats[windowTable[currentFocusWindow]].width;
+	if (bufferLower[0] != 0) {
+		freeTileSafe(bufferLower[0]);
 	}
-	*x16 = cast(ushort)(((arg2 == 0x22) ? 0xC00 : x10) + arg2);
-	x04++;
+	bufferLower[0] = cast(ushort)(((lowerTile == SpecialCharacter.equipIcon) ? (3 << 10) : attributes) + lowerTile);
+	x++;
 
 	Unknown15:
-	windowStats[windowTable[currentFocusWindow]].textX = x04;
-	windowStats[windowTable[currentFocusWindow]].textY = x12;
+	windowStats[windowTable[currentFocusWindow]].textX = x;
+	windowStats[windowTable[currentFocusWindow]].textY = y;
 }
 
 /// $C44DCA
@@ -2053,7 +2086,7 @@ void unknownC44E61(short arg1, short tile) {
 	if (currentFocusWindow == -1) {
 		return;
 	}
-	if ((tile == 0x2F) || (tile == 0x22) || (tile == 0x20)) {
+	if ((tile == 0x2F) || (tile == SpecialCharacter.equipIcon) || (tile == 0x20)) {
 		unknownC43F77(tile);
 		nextVWFTile();
 	} else {
@@ -2127,82 +2160,92 @@ void printPrice(uint arg1) {
 	vwfIndentNewLine = vwfIndentNewLineCopy;
 }
 
-/// $C451FA
-void unknownC451FA(short arg1, short arg2, short arg3) {
+/** Fill a window with a table of menu options, automatically including a next page option when appropriate
+ * Params:
+ * 	columns = Number of columns of menu options to prepare
+ * 	reservedColumns = Number of columns to reserve
+ * 	altSpacingMode = Enables an alternate rendering mode. Details unclear
+ * Original_Address: $(DOLLAR)C451FA
+ */
+void createMenuOptionTable(short columns, short reservedColumns, short altSpacingMode) {
 	short x20 = void;
-	short x04 = 0;
-	short x02 = 0;
+	short index = 0;
+	short totalLength = 0;
 	if (windowStats[windowTable[currentFocusWindow]].currentOption == -1) {
 		return;
 	}
-	windowStats[windowTable[currentFocusWindow]].menuColumns = arg1;
-	MenuOpt* x24 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+	windowStats[windowTable[currentFocusWindow]].menuColumns = columns;
+	MenuOption* option = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
 	memset(&menuOptionLabelLengths[0], 0, 4);
 	memset(&unknown7E9691[0], 0xFF, 4);
-	if (arg3 != 0) {
+	if (altSpacingMode != 0) {
 		while (true) {
-			menuOptionLabelLengths[x04] = cast(ubyte)(unknownC43E31(&x24.label[0], 30) + 8);
-			x02 += menuOptionLabelLengths[x04];
-			if (x24.next == -1) {
+			menuOptionLabelLengths[index] = cast(ubyte)(unknownC43E31(&option.label[0], 30) + 8);
+			totalLength += menuOptionLabelLengths[index];
+			if (option.next == -1) {
 				break;
 			}
-			x24 = &menuOptions[x24.next];
-			x04++;
+			option = &menuOptions[option.next];
+			index++;
 		}
-		ushort optionSpacing = cast(ushort)((windowStats[windowTable[currentFocusWindow]].width * 0x800) / x02);
-		while (x04 != -1) {
-			unknown7E9691[x04] = cast(ubyte)((optionSpacing * menuOptionLabelLengths[x04]) / 256);
-			x04--;
+		ushort optionSpacing = cast(ushort)((windowStats[windowTable[currentFocusWindow]].width * 0x800) / totalLength);
+		while (index != -1) {
+			unknown7E9691[index] = cast(ubyte)((optionSpacing * menuOptionLabelLengths[index]) / 256);
+			index--;
 		}
-		x24 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
-		x04 = 0;
+		option = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+		index = 0;
 	} else {
-		x20 = cast(short)(((arg1 - 1) * arg2 + windowStats[windowTable[currentFocusWindow]].width) / arg1);
+		x20 = cast(short)(((columns - 1) * reservedColumns + windowStats[windowTable[currentFocusWindow]].width) / columns);
 	}
-	short x1E = windowStats[windowTable[currentFocusWindow]].height / 2;
-	if ((arg1 + unknownC1138DF(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / arg1 > x1E) {
-		x1E -= 2;
+	short maxOptionCount = windowStats[windowTable[currentFocusWindow]].height / 2;
+	// reserve space for the next page option if applicable
+	if ((columns + getMenuOptionCountF(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / columns > maxOptionCount) {
+		maxOptionCount -= 2;
 	}
-	short x22 = 0;
-	short x1C = 1;
+	short x = 0;
+	short page = 1;
 	outermost: while (true) {
-		short x1A = windowStats[windowTable[currentFocusWindow]].textY;
-		for (short x2A = x1E; x2A != 0; x2A--) {
-			for (short x18 = arg1; x18 != 0; x18--) {
-				if (arg3 != 0) {
-					x24.textX = cast(short)(x22 + (unknown7E9691[x04] - menuOptionLabelLengths[x04]) / 16);
-					x24.textY = x1A;
-					x24.page = x1C;
-					if (x24.next == -1) {
+		short y = windowStats[windowTable[currentFocusWindow]].textY;
+		for (short i = maxOptionCount; i != 0; i--) {
+			for (short x18 = columns; x18 != 0; x18--) {
+				if (altSpacingMode != 0) {
+					option.textX = cast(short)(x + (unknown7E9691[index] - menuOptionLabelLengths[index]) / 16);
+					option.textY = y;
+					option.page = page;
+					if (option.next == -1) { // no more options
 						break outermost;
 					}
-					x22 += (unknown7E9691[x04] + 7) / 8;
-					x04++;
-					x24 = &menuOptions[x24.next];
+					x += (unknown7E9691[index] + 7) / 8;
+					index++;
+					option = &menuOptions[option.next];
 				} else {
-					x24.textX = x22;
-					x24.textY = x1A;
-					x24.page = x1C;
-					if (x24.next == -1) {
+					option.textX = x;
+					option.textY = y;
+					option.page = page;
+					if (option.next == -1) {
 						break outermost;
 					}
-					x22 += x20;
-					x24 = &menuOptions[x24.next];
+					x += x20;
+					option = &menuOptions[option.next];
 				}
 			}
-			x22 = 0;
-			x1A++;
+			x = 0;
+			y++;
 		}
-		x1C++;
+		page++;
 	}
-	if (((arg1 + unknownC1138DF(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / arg1) > windowStats[windowTable[currentFocusWindow]].height / 2) {
-		MenuOpt* x = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
-		x20 = cast(short)(arg1 - 1);
-		while (x20 != 0) {
-			x20--;
-			x = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
+	// too many options. add the next page option
+	if (((columns + getMenuOptionCountF(windowStats[windowTable[currentFocusWindow]].currentOption) - 1) / columns) > windowStats[windowTable[currentFocusWindow]].height / 2) {
+		// first we waste some time by getting the last option for no reason
+		MenuOption* tmpOption = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+		short tmp = cast(short)(columns - 1);
+		while (tmp != 0) {
+			tmp--;
+			tmpOption = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
-		unknownC10BFE(0, 0, windowStats[windowTable[currentFocusWindow]].height / 2 - 1, &unknownC3E44C[0], null);
+		// then we add the 'Next' option
+		createNewMenuOptionAtPositionWithUserdataF(0, 0, windowStats[windowTable[currentFocusWindow]].height / 2 - 1, &menuNextLabel[0], null);
 		menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].page = 0;
 	}
 }
@@ -4427,7 +4470,7 @@ void unknownC4981F() {
 
 /// $C49841
 void unknownC49841() {
-	unknownC2EA15(1);
+	openOvalWindow(1);
 }
 
 /// $C4984B
@@ -5100,8 +5143,8 @@ void startSwirl(short swirl, short flags) {
 	if ((flags & AnimationFlags.repeat) != 0) {
 		swirlNextSwirl = cast(ubyte)swirl;
 		framesUntilNextSwirlFrame = 4;
-		unknown7EAEE5 = 0;
-		unknown7EAEE6 = 6;
+		swirlRepeatSpeed = 0;
+		swirlRepeatsUntilSpeedUp = 6;
 	} else {
 		swirlNextSwirl = 0;
 	}
@@ -5183,31 +5226,31 @@ void unknownC4A7B0() {
 			return;
 		}
 		if (swirlNextSwirl != 0) {
-			if (--unknown7EAEE6 != 0) {
+			if (--swirlRepeatsUntilSpeedUp != 0) {
 				swirlFramesLeft = swirlPrimaryTable[swirlNextSwirl].swirlFrames;
-				unknown7EAEE6 = swirlPrimaryTable[swirlNextSwirl].startingHDMATableID;
+				swirlRepeatsUntilSpeedUp = swirlPrimaryTable[swirlNextSwirl].startingHDMATableID;
 				if (swirlReversed == 0) {
 					continue;
 				}
-				unknown7EAEE6 += swirlFramesLeft;
+				swirlRepeatsUntilSpeedUp += swirlFramesLeft;
 				continue;
 			}
-			switch (++unknown7EAEE5) {
+			switch (++swirlRepeatSpeed) {
 				case 1:
-					unknown7EAEE6 = 7;
+					swirlRepeatsUntilSpeedUp = 7;
 					framesUntilNextSwirlFrame = 3;
 					break;
 				case 2:
-					unknown7EAEE6 = 6;
+					swirlRepeatsUntilSpeedUp = 6;
 					framesUntilNextSwirlFrame = 2;
 					break;
 				case 3:
-					unknown7EAEE6 = 12;
+					swirlRepeatsUntilSpeedUp = 12;
 					framesUntilNextSwirlFrame = 1;
 					break;
 				default: break;
 			}
-			if (unknown7EAEE6 != 0) {
+			if (swirlRepeatsUntilSpeedUp != 0) {
 				continue;
 			}
 		}
@@ -5594,20 +5637,20 @@ void loadOverlaySprites() {
 void unknownC4B329(short arg1, short arg2) {
 	switch (arg1) {
 		case 1:
-			unknown7EB3FA -= unknownC42A41[arg2] + 8;
+			activeManpuY -= unknownC42A41[arg2] + 8;
 			goto case;
 		case 4:
-			unknown7EB3F8 -= unknownC42A1F[arg2] - 8;
+			activeManpuX -= unknownC42A1F[arg2] - 8;
 			break;
 		case 2:
-			unknown7EB3FA -= unknownC42A41[arg2] - 8;
+			activeManpuY -= unknownC42A41[arg2] - 8;
 			goto case;
 		case 5: break;
 		case 3:
-			unknown7EB3FA -= unknownC42A41[arg2] + 8;
+			activeManpuY -= unknownC42A41[arg2] + 8;
 			goto case;
 		case 6:
-			unknown7EB3F8 -= unknownC42A1F[arg2] + 8;
+			activeManpuX -= unknownC42A1F[arg2] + 8;
 			break;
 		default: break;
 	}
@@ -5621,12 +5664,12 @@ void spawnFloatingSprite(short arg1, short arg2) {
 	if (entityScriptTable[arg1] == -1) {
 		return;
 	}
-	unknown7EB3F8 = entityAbsXTable[arg1];
-	unknown7EB3FA = entityAbsYTable[arg1];
+	activeManpuX = entityAbsXTable[arg1];
+	activeManpuY = entityAbsYTable[arg1];
 	unknownC4B329(floatingSpriteTable[arg2].unknown2, entitySizes[arg1]);
-	unknown7EB3F8 += floatingSpriteTable[arg2].unknown3 | (((floatingSpriteTable[arg2].unknown3 & 0x80) != 0) ? -256 : 0);
-	unknown7EB3FA += floatingSpriteTable[arg2].unknown4 | (((floatingSpriteTable[arg2].unknown4 & 0x80) != 0) ? -256 : 0);
-	short x12 = createEntity(floatingSpriteTable[arg2].sprite, ActionScript.unknown785, -1, unknown7EB3F8, unknown7EB3FA);
+	activeManpuX += floatingSpriteTable[arg2].unknown3 | (((floatingSpriteTable[arg2].unknown3 & 0x80) != 0) ? -256 : 0);
+	activeManpuY += floatingSpriteTable[arg2].unknown4 | (((floatingSpriteTable[arg2].unknown4 & 0x80) != 0) ? -256 : 0);
+	short x12 = createEntity(floatingSpriteTable[arg2].sprite, ActionScript.unknown785, -1, activeManpuX, activeManpuY);
 	entityDrawPriority[x12] = cast(ushort)(arg1 | DrawPriority.parent | DrawPriority.dontClearIfParent);
 	entitySurfaceFlags[x12] = entitySurfaceFlags[arg1];
 }
@@ -5722,10 +5765,10 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 	pathMatrixBuffer = matrix;
 
 	ushort *ptr = cast(ushort*)pathSbrk(search_radius*ushort.sizeof + ushort.sizeof); // dp1E
-	pathB408 = ptr;
-	pathB40A = ptr + search_radius * ushort.sizeof;
-	pathB40C = ptr;
-	pathB40E = ptr;
+	pathSearchTempStart = ptr;
+	pathSearchTempEnd = ptr + search_radius * ushort.sizeof;
+	pathSearchTempA = ptr;
+	pathSearchTempB = ptr;
 
 	pathCardinalOffset[0] = cast(short)-pathMatrixCols; // NORTH
 	pathCardinalOffset[1] = 1; // EAST
@@ -5948,19 +5991,19 @@ void pathC4BAF6(ushort targetCount, VecYX *targetsPos, Pather *pather, ushort un
 	ushort dp15 = 0;
 	ushort dp13 = 0;
 
-	pathB40E = pathB408;
-	pathB40C = pathB408;
+	pathSearchTempB = pathSearchTempStart;
+	pathSearchTempA = pathSearchTempStart;
 
 	ushort dp11;
 	for (dp11 = 0; dp11 < targetCount; dp11++) {
-		*pathB40E = cast(ushort)((targetsPos[dp11].y * pathMatrixCols) + targetsPos[dp11].x);
-		pathB40E = (pathB40E == pathB40A) ? pathB408 : pathB40E + 1;
+		*pathSearchTempB = cast(ushort)((targetsPos[dp11].y * pathMatrixCols) + targetsPos[dp11].x);
+		pathSearchTempB = (pathSearchTempB == pathSearchTempEnd) ? pathSearchTempStart : pathSearchTempB + 1;
 	}
 
-	while (pathB40C != pathB40E) {
-		ushort dp02 = *pathB40C;
+	while (pathSearchTempA != pathSearchTempB) {
+		ushort dp02 = *pathSearchTempA;
 
-		pathB40C = (pathB40C == pathB40A) ? pathB408 : pathB40C + 1;
+		pathSearchTempA = (pathSearchTempA == pathSearchTempEnd) ? pathSearchTempStart : pathSearchTempA + 1;
 
 		ubyte dp00 = pathMatrixBuffer[dp02];
 		if (dp00 < PathfindingTile.maybeStart) continue; // Ignore PathfindingTile.maybeStart or PathfindingTile.start
@@ -5997,15 +6040,15 @@ exit_loop:
 				dp11 = cast(ushort)(dp02 + pathCardinalOffset[dp0F]);
 				ubyte dp01 = pathMatrixBuffer[dp11];
 				if (dp01 >= PathfindingTile.maybeStart) { // if PathfindingTile.maybeStart or PathfindingTile.start
-					if (pathB40C == pathB408) {
-						flag = (pathB40E == pathB40A);
+					if (pathSearchTempA == pathSearchTempStart) {
+						flag = (pathSearchTempB == pathSearchTempEnd);
 					} else {
-						flag = (pathB40E + 1 == pathB40C);
+						flag = (pathSearchTempB + 1 == pathSearchTempA);
 					}
 
 					if (!flag) {
-						*pathB40E = dp11;
-						pathB40E = (pathB40E == pathB40A) ? pathB408 : pathB40E + 1;
+						*pathSearchTempB = dp11;
+						pathSearchTempB = (pathSearchTempB == pathSearchTempEnd) ? pathSearchTempStart : pathSearchTempB + 1;
 					}
 				} else if (dp00 > dp01) {
 					dp00 = dp01;
@@ -7005,7 +7048,7 @@ short runAttractModeScene(short arg1) {
 	memset(&palettes[0][0], 0, 0x200);
 	overworldInitialize();
 	mirrorTM = TMTD.none;
-	unknownC2EA15(0);
+	openOvalWindow(0);
 	unknownC4A7B0();
 	actionscriptState = ActionScriptState.running;
 	short x12 = 0;
@@ -7219,7 +7262,7 @@ void prepareYourSanctuaryLocationPaletteData(short arg1, short arg2) {
 void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, short arg3) {
 	arg1 -= 16;
 	arg2 -= 14;
-	memset(&unknown7EF000.yourSanctuaryLocationTileOffsets[0], 0, 0x800);
+	memset(&yourSanctuaryLocationTileOffsets[0], 0, 0x800);
 	ushort* x06 = cast(ushort*)&buffer[arg3 * 0x800];
 	for (short i = 0; i < maxEntities; i++) {
 		for (short j = 0; j < 0x20; j++) {
@@ -7229,7 +7272,7 @@ void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, sho
 			} else {
 				x0F = 0;
 			}
-			unknown7EF000.yourSanctuaryLocationTileOffsets[tileArrangementBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
+			yourSanctuaryLocationTileOffsets[tileArrangementBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3] & 0x3FF * 2] = 0xFFFF;
 			(x06++)[0] = tileArrangementBuffer[(((i + arg2) & 3) * 4) + (x0F * 16) + (j + arg1) & 3];
 		}
 	}
@@ -7238,18 +7281,18 @@ void prepareYourSanctuaryLocationTileArrangementData(short arg1, short arg2, sho
 /// $C4E08C
 void prepareYourSanctuaryLocationTilesetData(short arg1) {
 	for (short i = 0; i < 0x400; i++) {
-		if (unknown7EF000.yourSanctuaryLocationTileOffsets[i] == 0) {
+		if (yourSanctuaryLocationTileOffsets[i] == 0) {
 			continue;
 		}
 		copyToVRAM(0, 0x20, (nextYourSanctuaryLocationTileIndex * 16 + 0x6000) & 0x7FFF, cast(ubyte*)&tileArrangementBuffer[i * 16]);
-		unknown7EF000.yourSanctuaryLocationTileOffsets[i] = nextYourSanctuaryLocationTileIndex;
+		yourSanctuaryLocationTileOffsets[i] = nextYourSanctuaryLocationTileIndex;
 		nextYourSanctuaryLocationTileIndex++;
 		yourSanctuaryLoadedTilesetTiles++;
 	}
 	ushort* x06 = (cast(ushort*)&buffer[0x800 * arg1]);
 	for (short i = 0; i < 0x3C0; i++) {
 		ushort x14 = x06[0];
-		x06[0] = unknown7EF000.yourSanctuaryLocationTileOffsets[x14 & 0x3FF] | (x14 & 0xFC00);
+		x06[0] = yourSanctuaryLocationTileOffsets[x14 & 0x3FF] | (x14 & 0xFC00);
 		x06++;
 	}
 }
@@ -7337,21 +7380,21 @@ void loadCastScene() {
 	updateScreen();
 	*cast(ushort*)&buffer[0] = 0;
 	copyToVRAM(3, 0x800, 0x7C00, &buffer[0]);
-	unknown7EB4CE = 0xFF;
+	forceNormalFontForLengthCalculation = 0xFF;
 	memset(&buffer[0], 0, 0x1000);
 	decomp(&unknownE1D6E1[0], &buffer[0x200]);
 	decomp(&castNamesGraphics[0], &buffer[0x600]);
 	unknownC4E7AE();
 	copyToVRAM(0, 0x8000, 0, &buffer[0]);
-	unknown7EB4CE = 0;
+	forceNormalFontForLengthCalculation = 0;
 	loadTextPalette();
 	memcpy(&palettes[0][0], &unknownE1D815[0], 0x20);
 	memcpy(&palettes[8][0], &spriteGroupPalettes[0], 0x100);
 	decomp(&unknownE1E4E6[0], &buffer[0x7000]);
 	paletteUploadMode = PaletteUpload.full;
 	mirrorTM = TMTD.obj | TMTD.bg3;
-	unknown7EB4CF = 0;
-	unknown7EB4D1 = 0;
+	unread7EB4CF = 0;
+	castTileOffset = 0;
 	setForceBlank();
 }
 
@@ -7443,7 +7486,7 @@ void unknownC4E7AE() {
 void unknownC4EA9C(short arg1, short arg2, short arg3) {
 	ushort* x06 = cast(ushort*)&buffer[0x4000 + arg3 * 2];
 	while (arg2-- != 0) {
-		x06[0] = cast(short)(unknown7EB4D1 + ((arg1 & 0x3F0) * 2) + (arg1 & 0xF));
+		x06[0] = cast(short)(castTileOffset + ((arg1 & 0x3F0) * 2) + (arg1 & 0xF));
 		x06[0x20] = cast(short)(x06[0] + 0x10);
 		x06++;
 		arg1++;
@@ -7494,7 +7537,7 @@ void unknownC4EC52(short arg1, short arg2, short arg3) {
 
 /// $C4ECAD
 short createEntityAtV01PlusBG3Y(short arg1, short arg2) {
-	newEntityVar0 = unknown7EB4D3++ & 3;
+	newEntityVar0 = initialCastEntitySleepFrames++ & 3;
 	return createEntity(arg1, arg2, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
 }
 

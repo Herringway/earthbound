@@ -47,29 +47,43 @@ void singleEnemyFlashingOn(short arg1, short arg2) {
 	redrawAllWindows = 1;
 }
 
-/// $EF00BB
-void unknownEF00BB(ushort* arg1, short arg2, short /+unused+/) {
-	arg1[0] &= 0x3FF;
-	arg1[arg2] &= 0x3FF;
+/** Clears tile attributes for an 8 pixel wide chunk of text. This assumes that the font used is two tiles high
+ * Params:
+ * 	buffer = The tilemap containing the tiles to adjust. Index 0 is the first tile to adjust
+ * 	width = The window's width, used for calculating the position of the lower tile
+ * 	attributes = The attributes (palette, priority, etc) to not set for the tiles...? This parameter is unused
+ * Original_Address: $(DOLLAR)EF00BB
+ */
+void clearTextTileAttributes(ushort* buffer, short width, short attributes) {
+	buffer[0] &= 0x3FF;
+	buffer[width] &= 0x3FF;
 }
 
-/// $EF00E6
-void unknownEF00E6(ushort* arg1, short arg2, short arg3) {
-	arg1[0] = (arg1[0] & 0x3FF) | arg3;
-	arg1[arg2] = (arg1[arg2] & 0x3FF) | arg3;
+/** Sets tile attributes for an 8 pixel wide chunk of text. This assumes that the font used is two tiles high
+ * Params:
+ * 	buffer = The tilemap containing the tiles to adjust. Index 0 is the first tile to adjust
+ * 	width = The window's width, used for calculating the position of the lower tile
+ * 	attributes = The attributes (palette, priority, etc) to set for the tiles
+ * Original_Address: $(DOLLAR)EF00E6
+ */
+void setTextTileAttributes(ushort* buffer, short width, short attributes) {
+	buffer[0] = (buffer[0] & 0x3FF) | attributes;
+	buffer[width] = (buffer[width] & 0x3FF) | attributes;
 }
 
-/// $EF0115 - Clear the focused window and do something unknown?
-void unknownEF0115(short arg1) {
-	ushort* x10 = windowStats[windowTable[arg1]].tilemapBuffer;
-	ushort x0E = cast(ushort)(windowStats[windowTable[arg1]].height * windowStats[windowTable[arg1]].width);
-	while (x0E != 0) {
-		if (*x10 != 0) {
-			freeTileSafe(*x10);
+/** Wipe the specified window's tiles, trigger a redraw and advance the player's intangibility frames
+ * Original_Address: $(DOLLAR)EF0115
+ */
+void removeWindowFromScreen(short window) {
+	ushort* buffer = windowStats[windowTable[window]].tilemapBuffer;
+	ushort tilesLeft = cast(ushort)(windowStats[windowTable[window]].height * windowStats[windowTable[window]].width);
+	while (tilesLeft != 0) {
+		if (*buffer != 0) {
+			freeTileSafe(*buffer);
 		}
-		*x10 = 0x0040;
-		x10++;
-		x0E--;
+		*buffer = 0x0040;
+		buffer++;
+		tilesLeft--;
 	}
 	redrawAllWindows = 1;
 	playerIntangibilityFlash();
@@ -463,12 +477,12 @@ void unknownEF0C3D() {
 
 /// $EF0C87
 short unknownEF0C87() {
-	return unknown7EB511[entityScriptVar0Table[currentEntitySlot]];
+	return deliveryAttempts[entityScriptVar0Table[currentEntitySlot]];
 }
 
 /// $EF0C97
 void unknownEF0C97() {
-	unknown7EB511[entityScriptVar0Table[currentEntitySlot]] = 0;
+	deliveryAttempts[entityScriptVar0Table[currentEntitySlot]] = 0;
 }
 
 /// $EF0CA7
@@ -476,8 +490,8 @@ short unknownEF0CA7() {
 	if (timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown4 == 0xFF) {
 		return 1;
 	}
-	unknown7EB511[entityScriptVar0Table[currentEntitySlot]]++;
-	if (timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown4 > unknown7EB511[entityScriptVar0Table[currentEntitySlot]]) {
+	deliveryAttempts[entityScriptVar0Table[currentEntitySlot]]++;
+	if (timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown4 > deliveryAttempts[entityScriptVar0Table[currentEntitySlot]]) {
 		return 1;
 	}
 	return 0;
@@ -21495,10 +21509,10 @@ void initDebugMenuScreen() {
 	prepareForImmediateDMA();
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
 	spritemapBank = 0x2F;
-	unknown7EB55D = 0;
+	unread7EB55D = 0;
 	debugMenuButtonPressed = 0;
 	debugMenuCursorPosition = 0;
-	unknown7EB551 = 0;
+	unread7EB551 = 0;
 	viewAttributeMode = 0;
 	setBGMODE(BGMode.mode1 | BG3Priority);
 	setBG1VRAMLocation(BGTileMapSize.normal, 0x3800, 0);

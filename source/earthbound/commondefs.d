@@ -5848,6 +5848,18 @@ enum BattleAnimation {
 	unknown52 = 52, ///
 	giygasAttack = 53, ///
 }
+
+/// Types of menu options
+enum MenuOptionType {
+	available = 0, /// Free to be reused
+	standard = 1, /// Standard menu option
+	hasUserdata = 2, /// Standard menu option with extra userdata
+}
+/// Special characters
+enum SpecialCharacter {
+	equipIcon = 0x22,
+}
+
 ///
 struct GameState {
 	ubyte[12] mother2PlayerName; ///
@@ -5966,7 +5978,7 @@ struct PhotoState {
 ///
 struct WinStat {
 	short next; /// [00]
-	short prev; /// [02]
+	short previous; /// [02]
 	short windowID; /// [04]
 	short x; /// [06]
 	short y; /// [08]
@@ -5993,11 +6005,11 @@ struct WinStat {
 	ubyte titleID; /// [3B]
 	ubyte[32] title; /// [3C]
 }
-///
-struct MenuOpt {
-	short field00; /// [00]
-	short next; /// [02]
-	short prev; /// [04]
+/// Data for the text system's menu options
+struct MenuOption {
+	short type; /// The type of menu option. See MenuOptionType for valid values
+	short next; /// The next menu option, if any. -1 for no next option
+	short previous; /// The previous menu option, if any. -1 for no previous option
 	short page; /// [06]
 	short textX; /// [08]
 	short textY; /// [0A]
@@ -7102,15 +7114,6 @@ struct AnimationSequence {
 struct YourSanctuaryLocation {
 	short x; ///
 	short y; ///
-}
-///
-union Unknown7EF000Stuff {
-	struct {
-		ushort[16][16] loadedMapBlocks; ///
-		PathCtx unknown7EF200; ///
-		ubyte[0xC00] unknown7EF400; ///
-	}
-	ushort[0x400] yourSanctuaryLocationTileOffsets; ///
 }
 ///
 struct TextRenderState {

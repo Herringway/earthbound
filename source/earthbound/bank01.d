@@ -292,7 +292,7 @@ void createWindowN(short id) {
 	WinStat* x10;
 	if (windowTable[id] != -1) {
 		currentFocusWindow = id;
-		unknownC11383();
+		resetCurrentWindowMenu();
 		x10 = &windowStats[windowTable[id]];
 	} else {
 		short x0E = unknownC3E4EF();
@@ -305,17 +305,17 @@ void createWindowN(short id) {
 				x10.next = -1;
 				windowTail = x0E;
 			} else {
-				windowStats[windowHead].prev = x0E;
+				windowStats[windowHead].previous = x0E;
 				x10.next = windowHead;
 			}
-			x10.prev = -1;
+			x10.previous = -1;
 			windowHead = x0E;
 		} else {
 			if (windowHead == -1) {
-				x10.prev = -1;
+				x10.previous = -1;
 				windowHead = x0E;
 			} else {
-				x10.prev = windowTail;
+				x10.previous = windowTail;
 				windowStats[windowTail].next = x0E;
 			}
 			windowTail = x0E;
@@ -469,7 +469,7 @@ void drawTallTextTile(short window, short tile, ushort attributes) {
 		if (x04 != (windowStats[windowTable[window]].height / 2) - 1) {
 			x04++;
 		} else {
-			unknownC437B8(window);
+			moveTextUpOneLine(window);
 		}
 		x10 = 0;
 	}
@@ -481,8 +481,8 @@ void drawTallTextTile(short window, short tile, ushort attributes) {
 			tile = 0x20;
 		}
 	}
-	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == 0x22) ? 0xC00 : attributes));
-	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10 + windowStats[windowTable[window]].width] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == 0x22) ? 0xC00 : attributes) + 0x10);
+	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == SpecialCharacter.equipIcon) ? 0xC00 : attributes));
+	windowStats[windowTable[window]].tilemapBuffer[(windowStats[windowTable[window]].width * x04 * 2) + x10 + windowStats[windowTable[window]].width] = cast(ushort)(((tile & 0xFFF0) * 2) + (tile & 0xF) + ((tile == SpecialCharacter.equipIcon) ? 0xC00 : attributes) + 0x10);
 	x10++;
 	Unknown9:
 	windowStats[windowTable[window]].textX = x10;
@@ -504,13 +504,13 @@ void cc12() {
 }
 
 /// $C10BFE
-MenuOpt* unknownC10BFE(short arg1, short x, short y, const(ubyte)* label, string selectedText) {
-	return unknownC1153B(arg1, x, y, label, selectedText);
+MenuOption* createNewMenuOptionAtPositionWithUserdataF(short arg1, short x, short y, const(ubyte)* label, string selectedText) {
+	return createNewMenuOptionAtPositionWithUserdata(arg1, x, y, label, selectedText);
 }
 
 /// $C10C49
-short unknownC1138DF(short arg1) {
-	return unknownC1138D(arg1);
+short getMenuOptionCountF(short arg1) {
+	return getMenuOptionCount(arg1);
 }
 
 /// $C10C55
@@ -539,8 +539,8 @@ void printStringF(short arg1, const(ubyte)* arg2) {
 }
 
 /// $C10CAF
-void unknownC437B8F(short arg1) {
-	unknownC437B8(arg1);
+void moveTextUpOneLineF(short arg1) {
+	moveTextUpOneLine(arg1);
 }
 
 /// $C10CB6
@@ -574,7 +574,7 @@ void printLetter(short letter) {
 }
 
 /// $C10D60 - Put a tile on the focused window -- How is this different from "PrintIcon" ($C43F77)?
-void unknownC10D60(short tile) {
+void drawTallTextTileFocusedRedraw(short tile) {
 	drawTallTextTileFocused(tile);
 	if (windowTable[currentFocusWindow] != windowTail) {
 		redrawAllWindows = 1;
@@ -770,66 +770,90 @@ void openHpAndWallet() {
 	unknownC1AA18();
 }
 
-/// $C11354
-short unknownC11354() {
+/** Finds an unused menu option and returns its index
+ * Returns: The index of the first free menu option, or -1 if none available
+ * Original_Address: $(DOLLAR)C11354
+ */
+short findFreeMenuOption() {
 	for (short i = 0; i < menuOptions.length; i++) {
-		if (menuOptions[i].field00 == 0) {
+		if (menuOptions[i].type == MenuOptionType.available) {
 			return i;
 		}
 	}
 	return -1;
 }
 
-/// $C11383
-void unknownC11383() {
-	unknownC3E7E3(currentFocusWindow);
+/** Resets the menu state for the currently active window.
+ * See_Also: earthbound.bank03.resetWindowMenu
+ * Original_Address: $(DOLLAR)C11383
+ */
+void resetCurrentWindowMenu() {
+	resetWindowMenu(currentFocusWindow);
 }
 
 /// $C1138D
-short unknownC1138D(short arg1) {
-	if (arg1 == -1) {
+short getMenuOptionCount(short firstOption) {
+	if (firstOption == -1) {
 		return 0;
 	}
-	short i = 1;
-	for (MenuOpt* tmp = &menuOptions[arg1]; tmp.next != -1; tmp++) {
-		i++;
+	short count = 1;
+	for (MenuOption* tmp = &menuOptions[firstOption]; tmp.next != -1; tmp++) {
+		count++;
 	}
-	return i;
+	return count;
 }
 
-/// $C113D1
-MenuOpt* unknownC113D1(const(ubyte)* label, string selectedText) {
-	if (currentFocusWindow == -1) {
+/** Creates a new menu option for the currently active window using the specified label and script
+ * Params:
+ * 	label = The null-terminated text label for the menu option
+ * 	selectedText = The text script to run when the menu option is chosen
+ * Returns: A pointer to the newly-created menu option
+ * Original_Address: $(DOLLAR)C113D1
+ */
+MenuOption* createNewMenuOptionActive(const(ubyte)* label, string selectedText) {
+	// in case of no open window or no free menu options, just return the last one in the array
+	if (currentFocusWindow == Window.invalid) {
 		return &menuOptions[$ - 1];
 	}
-	short x10 = unknownC11354();
-	if (x10 == -1) {
+	short newOptionIndex = findFreeMenuOption();
+	if (newOptionIndex == -1) {
 		return &menuOptions[$ - 1];
 	}
 
 	if (windowStats[windowTable[currentFocusWindow]].currentOption == -1) {
-		menuOptions[x10].prev = -1;
-		windowStats[windowTable[currentFocusWindow]].currentOption = x10;
+		// first new option for window
+		menuOptions[newOptionIndex].previous = -1;
+		windowStats[windowTable[currentFocusWindow]].currentOption = newOptionIndex;
 	} else {
-		menuOptions[x10].prev = windowStats[windowTable[currentFocusWindow]].optionCount;
-		menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].next = x10;
+		menuOptions[newOptionIndex].previous = windowStats[windowTable[currentFocusWindow]].optionCount;
+		menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].next = newOptionIndex;
 	}
-	windowStats[windowTable[currentFocusWindow]].optionCount = x10;
-	menuOptions[x10].next = -1;
-	menuOptions[x10].field00 = 1;
-	menuOptions[x10].script = selectedText;
-	menuOptions[x10].page = 1;
-	menuOptions[x10].sfx = Sfx.cursor1;
-	ubyte* x = &menuOptions[x10].label[0];
+	windowStats[windowTable[currentFocusWindow]].optionCount = newOptionIndex;
+	menuOptions[newOptionIndex].next = -1;
+	menuOptions[newOptionIndex].type = MenuOptionType.standard;
+	menuOptions[newOptionIndex].script = selectedText;
+	menuOptions[newOptionIndex].page = 1;
+	menuOptions[newOptionIndex].sfx = Sfx.cursor1;
+	// set the label
+	ubyte* labelBuffer = &menuOptions[newOptionIndex].label[0];
 	do {
-		(x++)[0] = label[0];
+		(labelBuffer++)[0] = label[0];
 	} while ((label++)[0] != 0);
-	return &menuOptions[x10];
+	return &menuOptions[newOptionIndex];
 }
 
-/// $C114B1
-MenuOpt* unknownC114B1(short x, short y, const(ubyte)* label, string selectedText) {
-	MenuOpt* x16 = unknownC113D1(label, selectedText);
+/** Creates a new menu option for the currently active window at specific coordinates
+ * Params:
+ * 	x = Tile X coordinate to place the menu option at
+ * 	y = Tile Y coordinate to place the menu option at
+ * 	label = The null-terminated text label for the menu option
+ * 	selectedText = The text script to run when the menu option is chosen
+ * Returns: A pointer to the newly-created menu option
+ * See_Also: createNewMenuOptionActive
+ * Original_Address: $(DOLLAR)C114B1
+ */
+MenuOption* createNewMenuOptionAtPosition(short x, short y, const(ubyte)* label, string selectedText) {
+	MenuOption* x16 = createNewMenuOptionActive(label, selectedText);
 	x16.pixelAlign = 0;
 	if (forceLeftTextAlignment != 0) {
 		x16.pixelAlign = x & 7;
@@ -840,30 +864,61 @@ MenuOpt* unknownC114B1(short x, short y, const(ubyte)* label, string selectedTex
 	return x16;
 }
 
-/// $C1153B
-MenuOpt* unknownC1153B(short arg1, short x, short y, const(ubyte)* label, string selectedText) {
-	MenuOpt* X = unknownC114B1(x, y, label, selectedText);
-	X.userdata = arg1;
-	X.field00 = 2;
-	return X;
+/** Create a new menu option for the currently active window at specific coordinates with userdata attached
+ * Params:
+ * 	userdata = The userdata to attach to the menu option
+ * 	x = Tile X coordinate to place the menu option at
+ * 	y = Tile Y coordinate to place the menu option at
+ * 	label = The null-terminated text label for the menu option
+ * 	selectedText = The text script to run when the menu option is chosen
+ * Returns: A pointer to the newly-created menu option
+ * See_Also: createNewMenuOptionAtPosition
+ * Original_Address: $(DOLLAR)C1153B
+ */
+MenuOption* createNewMenuOptionAtPositionWithUserdata(short userdata, short x, short y, const(ubyte)* label, string selectedText) {
+	MenuOption* option = createNewMenuOptionAtPosition(x, y, label, selectedText);
+	option.userdata = userdata;
+	option.type = MenuOptionType.hasUserdata;
+	return option;
 }
 
-/// $C11596
-MenuOpt* unknownC11596(short arg1, short x, short y, const(ubyte)* arg4, string arg5, ubyte arg6) {
-	MenuOpt* X = unknownC1153B(arg1, x, y, arg4, arg5);
-	X.sfx = arg6;
-	return X;
+/** Create a new menu option for the currently active window at specific coordinates with userdata and SFX attached
+ * Params:
+ * 	userdata = The userdata to attach to the menu option
+ * 	x = Tile X coordinate to place the menu option at
+ * 	y = Tile Y coordinate to place the menu option at
+ * 	label = The null-terminated text label for the menu option
+ * 	selectedText = The text script to run when the menu option is chosen
+ * 	sfx = The sound effect to play when chosen
+ * Returns: A pointer to the newly-created menu option
+ * See_Also: createNewMenuOptionAtPositionWithUserdata
+ * Original_Address: $(DOLLAR)C11596
+ */
+MenuOption* createNewMenuOptionAtPositionWithUserdataSFX(short userdata, short x, short y, const(ubyte)* label, string selectedText, ubyte sfx) {
+	MenuOption* option = createNewMenuOptionAtPositionWithUserdata(userdata, x, y, label, selectedText);
+	option.sfx = sfx;
+	return option;
 }
 
-/// $C115F4
-MenuOpt* unknownC115F4(short arg1, const(ubyte)* arg2, string arg3) {
-	MenuOpt* x = unknownC113D1(arg2, arg3);
-	x.userdata = arg1;
-	x.field00 = 2;
+/** Create a new menu option for the currently active window with userdata attached
+ * Params:
+ * 	userdata = The userdata to attach to the menu option
+ * 	label = The null-terminated text label for the menu option
+ * 	selectedText = The text script to run when the menu option is chosen
+ * Returns: A pointer to the newly-created menu option
+ * See_Also: createNewMenuOptionActive
+ * Original_Address: $(DOLLAR)C115F4
+ */
+MenuOption* createNewMenuOptionWithUserdata(short userdata, const(ubyte)* label, string selectedText) {
+	MenuOption* x = createNewMenuOptionActive(label, selectedText);
+	x.userdata = userdata;
+	x.type = MenuOptionType.hasUserdata;
 	return x;
 }
 
-/// $C1163C - Prints the options into the focused window
+/** Prints the options into the active window
+ * Original_Address: $(DOLLAR)C1163C
+ */
 void printMenuItems() {
 	if (currentFocusWindow == -1) {
 		return;
@@ -872,312 +927,327 @@ void printMenuItems() {
 		earlyTickExit = 0xFF;
 		return;
 	}
-	MenuOpt* x02 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+	MenuOption* option = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
 	setInstantPrinting();
 	while (true) {
-		if ((x02.page == windowStats[windowTable[currentFocusWindow]].menuPage) || (x02.page == 0)) {
-			unknownC43DDB(x02);
-			if (x02.page == 0) {
+		if ((option.page == windowStats[windowTable[currentFocusWindow]].menuPage) || (option.page == 0)) {
+			unknownC43DDB(option);
+			if (option.page == 0) {
 				windowSetTextColor(0);
 				unknownC43F77(0x14F);
 				nextVWFTile();
 				windowSetTextColor(0);
-				ubyte* y = &windowStats[windowTable[currentFocusWindow]].title[0];
-				if (y[0] != 0) {
-					ubyte* x;
-					for (x = &temporaryTextBuffer[0]; (y[0] != 0) && (y[0] != ebChar('(')); x++) {
-						x[0] = (y++)[0];
+				ubyte* src = &windowStats[windowTable[currentFocusWindow]].title[0];
+				if (src[0] != 0) {
+					ubyte* dest;
+					for (dest = &temporaryTextBuffer[0]; (src[0] != 0) && (src[0] != ebChar('(')); dest++) {
+						dest[0] = (src++)[0];
 					}
-					(x++)[0] = ebChar('(');
-					(x++)[0] = cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('0'));
-					(x++)[0] = ebChar(')');
-					x[0] = 0;
+					(dest++)[0] = ebChar('(');
+					(dest++)[0] = cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('0'));
+					(dest++)[0] = ebChar(')');
+					dest[0] = 0;
 					nextVWFTile();
 					setWindowTitle(currentFocusWindow, -1, &temporaryTextBuffer[0]);
 					nextVWFTile();
 					printString(cast(short)(strlen(cast(char*)&temporaryTextBuffer[0]) - 2), &temporaryTextBuffer[0]);
-					printLetter((windowStats[windowTable[currentFocusWindow]].menuPage == menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].prev].page) ? ebChar('1') : cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('1')));
+					printLetter((windowStats[windowTable[currentFocusWindow]].menuPage == menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].optionCount].previous].page) ? ebChar('1') : cast(ubyte)(windowStats[windowTable[currentFocusWindow]].menuPage + ebChar('1')));
 					printLetter(ebChar(')'));
 				} else {
-					printString(-1, &x02.label[0]);
+					printString(-1, &option.label[0]);
 				}
 			} else {
-				printString(-1, &x02.label[0]);
+				printString(-1, &option.label[0]);
 			}
 		}
-		if (x02.next == -1) {
+		if (option.next == -1) {
 			break;
 		}
-		x02 = &menuOptions[x02.next];
+		option = &menuOptions[option.next];
 	}
 }
 
-/// $C1180D
-// third argument unused?
-void unknownC1180D(short arg1, short arg2, short) {
-	unknownC451FA(arg1, 0, arg2);
+/** Prints a table of menu options into the current active window
+ * Params:
+ * 	columns = Number of columns of menu options to create
+ * 	altSpacingMode = unclear
+ * 	unused = Unused
+ * Original_Address: $(DOLLAR)C1180D
+ */
+void printMenuOptionTable(short columns, short altSpacingMode, short unused) {
+	createMenuOptionTable(columns, 0, altSpacingMode);
 	printMenuItems();
 }
 
-/// $C1181B
-void unknownC1181B(short arg1, short arg2, short arg3) {
-	unknownC451FA(arg1, 0, arg2);
-	if (arg3 != -1) {
-		windowStats[windowTable[currentFocusWindow]].selectedOption = arg3;
-		MenuOpt* x = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
-		while (arg3 != 0) {
-			arg3--;
-			x = &menuOptions[x.next];
+/** Prints a table of menu options into the current active window with a specified option preselected
+ * Params:
+ * 	columns = Number of columns of menu options to create
+ * 	altSpacingMode = unclear
+ * 	preselected = The index of the option to preselect
+ * Original_Address: $(DOLLAR)C1181B
+ */
+void printMenuOptionTablePreselected(short columns, short altSpacingMode, short preselected) {
+	createMenuOptionTable(columns, 0, altSpacingMode);
+	if (preselected != -1) {
+		windowStats[windowTable[currentFocusWindow]].selectedOption = preselected;
+		MenuOption* option = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+		while (preselected != 0) {
+			preselected--;
+			option = &menuOptions[option.next];
 		}
-		windowStats[windowTable[currentFocusWindow]].menuPage = x.page;
+		windowStats[windowTable[currentFocusWindow]].menuPage = option.page;
 	}
 	printMenuItems();
 }
 
-/// $C11887
-void unknownC11887(short arg1) {
-	windowStats[windowTable[currentFocusWindow]].selectedOption = arg1;
-	MenuOpt* x = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
-	while (arg1 != 0) {
-		arg1--;
-		x = &menuOptions[x.next];
+/** Prints a list menu with a preselected option
+ * Params:
+ * 	optionIndex = The index of the option to select
+ * Original_Address: $(DOLLAR)C11887
+ */
+void printMenuItemsPreselected(short optionIndex) {
+	windowStats[windowTable[currentFocusWindow]].selectedOption = optionIndex;
+	MenuOption* option = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+	while (optionIndex != 0) {
+		optionIndex--;
+		option = &menuOptions[option.next];
 	}
-	windowStats[windowTable[currentFocusWindow]].menuPage = x.page;
+	windowStats[windowTable[currentFocusWindow]].menuPage = option.page;
 	printMenuItems();
 }
 
-/// $C118E7 - Get target X/Y window positions after menu cursor movement
-/// Returns: low byte = X, high byte = Y
+/** Get target X/Y window positions after menu cursor movement
+ * Original_Address: $(DOLLAR)C118E7
+ * Returns: low byte = X, high byte = Y or -1 if no valid options
+ */
 short moveCursorWrap(short curX, short curY, short deltaX, short deltaY, short sfx, short wrapX, short wrapY) {
-	short x12 = moveCursor(curX, curY, deltaX, deltaY, -1);
-	if (x12 == -1) {
-		x12 = moveCursor(wrapX, wrapY, deltaX, deltaY, -1);
+	short result = moveCursor(curX, curY, deltaX, deltaY, -1);
+	if (result == -1) {
+		result = moveCursor(wrapX, wrapY, deltaX, deltaY, -1);
 
 		if (deltaX == 0) {
-			if (((x12 >> 8) & 0xFF) != curY) {
-				x12 = -1;
+			if (((result >> 8) & 0xFF) != curY) {
+				result = -1;
 			}
 		} else {
-			if ((x12 & 0xFF) != curX) {
-				x12 = -1;
+			if ((result & 0xFF) != curX) {
+				result = -1;
 			}
 		}
 	}
-	if (x12 != -1) {
+	if (result != -1) {
 		playSfx(sfx);
 	}
-	return x12;
+	return result;
 }
 
-/// $C1196A - Handle menu selection on the focused window
+/** Handle player input for text window menus until a choice is made
+ * Params:
+ * 	cancelable = 1 if the player may exit the menu without making a selection, 0 otherwise
+ * Returns: Either the userdata/index associated with a menu option or 0 if no choice was made
+ * Original_Address: $(DOLLAR)C1196A
+ */
 short selectionMenu(short cancelable) {
-	// $28 = cancelable
+	short windowID = currentFocusWindow;
+	if (windowID == Window.invalid) return 0;
 
-	short dp26 = currentFocusWindow;
-	if (dp26 == -1) return 0;
-
-	WinStat *dp24 = &windowStats[windowTable[currentFocusWindow]]; // 16-bit pointer
+	WinStat* window = &windowStats[windowTable[currentFocusWindow]];
 
 	if (restoreMenuBackup) {
-		dp24.currentOption = menuBackupCurrentOption; // field2B
-		dp24.selectedOption = menuBackupSelectedOption; // field2F
+		window.currentOption = menuBackupCurrentOption;
+		window.selectedOption = menuBackupSelectedOption;
 	}
 
-	short dp20;
-	MenuOpt *dp04; // 16-bit pointer
-	if (dp24.selectedOption != -1) { // field2F
-		short dp22 = dp24.selectedOption;
-		dp20 = dp22;
+	short selectedOptionIndex;
+	MenuOption* highlightedOption;
+	if (window.selectedOption != -1) { // player chose an option
+		short count = window.selectedOption;
+		selectedOptionIndex = count;
 
-		dp04 = &menuOptions[dp24.currentOption]; // field2B
-
-		while (dp22) {
-			dp22--;
-			dp04 = &menuOptions[dp04.next]; // field02
+		highlightedOption = &menuOptions[window.currentOption];
+		// we have an option index, iterate through that many options
+		while (count) {
+			count--;
+			highlightedOption = &menuOptions[highlightedOption.next];
 		}
 
+		// remove highlighting
 		setInstantPrinting();
-		unknownC43CD2(dp04, dp04.textX, dp04.textY); // field08, field0A
-		unknownC43BB9(0xFFFF, 0, dp04.label.ptr); // field13
-	} else {
-		dp20 = 0;
-		dp04 = &menuOptions[dp24.currentOption]; // field2B
+		moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
+		setTextHighlighting(0xFFFF, 0, highlightedOption.label.ptr);
+	} else { // no option chosen yet
+		selectedOptionIndex = 0;
+		highlightedOption = &menuOptions[window.currentOption];
 	}
 
-	short dp22;
-label1:
-	dp22 = 0;
-	if (dp04.script) { // field0F
-		setInstantPrinting();
-		displayText(getTextBlock(dp04.script)); // field0F
-	}
-
-	if (dp24.menuCallback) { // field37
-		short dp1C = cast(short)((dp04.field00 == 1) ? dp20+1 : dp04.userdata);
-		dp24.menuCallback(dp1C);
-		setWindowFocus(dp26);
-	}
-
-	clearInstantPrinting();
-	if (restoreMenuBackup) {
-		dp04.textX = menuBackupSelectedTextX; // field08
-		dp04.textY = menuBackupSelectedTextY; // field0A
-	}
-
-	unknownC43CD2(dp04, dp04.textX, dp04.textY);
-	windowSetTextColor(1);
-	unknownC10D60(0x21); // Put cursor on the window maybe?
-	windowSetTextColor(0);
-	windowTick();
-
-	short dp02 = 1;
-label2:
-	dp02 ^= 1;
-	short dp1A = dp02;
-
-	// x=field06, textX=field0E, textY=field10, y=field08
-	short dp1E = cast(short)((dp24.x + dp24.textX) + ((dp24.textY * 2 + dp24.y) * 32) + 0x7C20);
-	dp02 = dp1A; // The addition above used dp02 as an intermediary value
-
-	// dp18 = dp02 * 2;
-	copyToVRAM(0, 2, cast(ushort)dp1E, cast(ubyte*)&arrC3E406[dp02]); // Implied (dp02 * 2), because arrC3E406 is an array of ushort
-	copyToVRAM(0, 2, cast(ushort)(dp1E+32), cast(ubyte*)&arrC3E40A[dp02]); // Implied (dp02 * 2), because arrC3E40A is an array of ushort
-
-	short dp1C;
-	for (dp1E = 0; dp1E < 10; dp1E++) {
-		windowTickMinimal();
-
-		if (padPress[0] & Pad.up) {
-			dp1C = moveCursorWrap(dp04.textX, dp04.textY, -1, 0, Sfx.cursor3, dp04.textX, dp24.height / 2);
-			goto label3;
-		}
-
-		if (padPress[0] & Pad.left) {
-			dp1C = moveCursorWrap(dp04.textX, dp04.textY, 0, -1, Sfx.cursor2, dp24.width, dp04.textY);
-			goto label3;
-		}
-
-		if (padPress[0] & Pad.down) {
-			dp1C = moveCursorWrap(dp04.textX, dp04.textY, 1, 0, Sfx.cursor3, dp04.textX, -1);
-			goto label3;
-		}
-
-		if (padPress[0] & Pad.right) {
-			dp1C = moveCursorWrap(dp04.textX, dp04.textY, 0, 1, Sfx.cursor2, -1, dp04.textY);
-			goto label3;
-		}
-
-		if (padHeld[0] & Pad.up) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, -1, 0, 3);
-			goto label3;
-		}
-
-		if (padHeld[0] & Pad.left) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, 0, -1, 2);
-			goto label3;
-		}
-
-		if (padHeld[0] & Pad.down) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, 1, 0, 3);
-			goto label3;
-		}
-
-		if (padHeld[0] & Pad.right) {
-			dp1C = moveCursor(dp04.textX, dp04.textY, 0, 1, 2);
-		}
-
-		if (padPress[0] & (Pad.a|Pad.l)) {
+	short idleTimer;
+	short cursorPosition;
+	outer: while (true) {
+		idleTimer = 0;
+		if (highlightedOption.script) {
 			setInstantPrinting();
-			if (dp04.page) { // field06
-				playSfx(dp04.sfx); // field0E
-				unknownC43CD2(dp04, dp04.textX, dp04.textY);
-				unknownC10D60(0x2F); // Remove cursor from window?
-				windowSetTextColor(6);
+			displayText(getTextBlock(highlightedOption.script));
+		}
 
-				if (enableWordWrap) {
-					if (unknown7EB49D != 1) {
-						if (currentFocusWindow == 19) {
-							unknownC43B15();
+		if (window.menuCallback) {
+			short index = cast(short)((highlightedOption.type == MenuOptionType.standard) ? selectedOptionIndex+1 : highlightedOption.userdata);
+			window.menuCallback(index);
+			setWindowFocus(windowID);
+		}
+
+		clearInstantPrinting();
+		if (restoreMenuBackup) {
+			highlightedOption.textX = menuBackupSelectedTextX;
+			highlightedOption.textY = menuBackupSelectedTextY;
+		}
+
+		moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
+		windowSetTextColor(1);
+		drawTallTextTileFocusedRedraw(0x21); // draw cursor
+		windowSetTextColor(0);
+		windowTick();
+
+		short cursorFrame = 1;
+		inner: while (true) {
+			cursorFrame ^= 1;
+
+			ushort vramAddress = cast(ushort)((window.x + window.textX) + ((window.textY * 2 + window.y) * 32) + 0x7C20);
+
+			copyToVRAM(0, 2, vramAddress, cast(const(ubyte)*)&selectionCursorFramesUpper[cursorFrame]);
+			copyToVRAM(0, 2, cast(ushort)(vramAddress+32), cast(const(ubyte)*)&selectionCursorFramesLower[cursorFrame]);
+
+			for (short i = 0; i < 10; i++) { // wait a maximum of ten frames for input
+				windowTickMinimal();
+
+				if (padPress[0] & Pad.up) {
+					cursorPosition = moveCursorWrap(highlightedOption.textX, highlightedOption.textY, -1, 0, Sfx.cursor3, highlightedOption.textX, window.height / 2);
+					break inner;
+				}
+
+				if (padPress[0] & Pad.left) {
+					cursorPosition = moveCursorWrap(highlightedOption.textX, highlightedOption.textY, 0, -1, Sfx.cursor2, window.width, highlightedOption.textY);
+					break inner;
+				}
+
+				if (padPress[0] & Pad.down) {
+					cursorPosition = moveCursorWrap(highlightedOption.textX, highlightedOption.textY, 1, 0, Sfx.cursor3, highlightedOption.textX, -1);
+					break inner;
+				}
+
+				if (padPress[0] & Pad.right) {
+					cursorPosition = moveCursorWrap(highlightedOption.textX, highlightedOption.textY, 0, 1, Sfx.cursor2, -1, highlightedOption.textY);
+					break inner;
+				}
+
+				if (padHeld[0] & Pad.up) {
+					cursorPosition = moveCursor(highlightedOption.textX, highlightedOption.textY, -1, 0, 3);
+					break inner;
+				}
+
+				if (padHeld[0] & Pad.left) {
+					cursorPosition = moveCursor(highlightedOption.textX, highlightedOption.textY, 0, -1, 2);
+					break inner;
+				}
+
+				if (padHeld[0] & Pad.down) {
+					cursorPosition = moveCursor(highlightedOption.textX, highlightedOption.textY, 1, 0, 3);
+					break inner;
+				}
+
+				if (padHeld[0] & Pad.right) {
+					cursorPosition = moveCursor(highlightedOption.textX, highlightedOption.textY, 0, 1, 2);
+				}
+
+				if (padPress[0] & (Pad.a|Pad.l)) {
+					setInstantPrinting();
+					if (highlightedOption.page) {
+						playSfx(highlightedOption.sfx);
+						moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
+						drawTallTextTileFocusedRedraw(0x2F); // draw over cursor
+						windowSetTextColor(6);
+
+						if (enableWordWrap) {
+							if (allowTextOverflow != 1) {
+								if (currentFocusWindow == Window.fileSelectMain) {
+									fillRestOfWindowLine();
+								} else {
+									setTextHighlighting(4, 1, highlightedOption.label.ptr);
+								}
+							} else {
+								setTextHighlighting(0xFFFF, 1, highlightedOption.label.ptr);
+							}
 						} else {
-							unknownC43BB9(4, 1, dp04.label.ptr); // field13
+							fillRestOfWindowLine();
 						}
-					} else {
-						unknownC43BB9(0xFFFF, 1, dp04.label.ptr); // field13;
+
+						windowSetTextColor(0);
+						clearInstantPrinting();
+
+						window.selectedOption = selectedOptionIndex;
+						return (highlightedOption.type == MenuOptionType.standard) ? cast(short)(selectedOptionIndex+1) : highlightedOption.userdata;
 					}
-				} else {
-					unknownC43B15();
+
+					playSfx(Sfx.cursor2);
+					clearFocusWindow(); // Clear the focused window
+
+					if (window.menuPage == menuOptions[highlightedOption.previous].page) {
+						window.menuPage = 1;
+					} else {
+						window.menuPage++;
+					}
+
+					clearInstantPrinting();
+					removeWindowFromScreen(windowID);
+					windowTick();
+
+					printMenuItems(); // Print the options for the new page
+					setInstantPrinting();
+					continue outer; // Back to the start....
 				}
 
-				windowSetTextColor(0);
-				clearInstantPrinting();
+				if ((padPress[0] & (Pad.b|Pad.select)) && cancelable == 1) { // exiting without choosing anything
+					playSfx(Sfx.cursor2);
+					return 0;
+				}
 
-				dp24.selectedOption = cast(short)dp20; // field2F
-				return (dp04.field00 == 1) ? cast(short)(dp20+1) : dp04.userdata;
-			}
-
-			playSfx(2);
-			clearFocusWindow(); // Clear the focused window
-
-			dp1E = dp24.menuPage;
-			if (dp1E == menuOptions[dp04.prev].page) { // prev=field04
-				dp24.menuPage = 1;
-			} else {
-				dp24.menuPage = cast(short)(dp1E+1);
-			}
-
-			clearInstantPrinting();
-			unknownEF0115(cast(short)dp26);
-			windowTick();
-
-			printMenuItems(); // Print the options for the new page
-			setInstantPrinting();
-			goto label1; // Back to the start....
-		}
-
-		if ((padPress[0] & (Pad.b|Pad.select)) && cancelable == 1) {
-			playSfx(2);
-			return 0;
-		}
-
-		++dp22;
-		if (windowTable[0] == windowTail) { // If the field/overworld commands window is the last opened window...
-			if (dp22 > 60) { // If 60 frames have passed
-				if (windowTable[10] == -1) { // If the wallet window is not open
-					openHpAndWallet();
-					setWindowFocus(0);
-					// Funky! I didn't expect a goto back to the start here...
-					// The reason this is here is because the code path from label1 calls windowTick (draws the HP and wallet windows) and resets dp22.
-					// Why they didn't just do that here, I have no idea. This has the "side-effect" of acting as if the player
-					// moved the cursor into the same option again, calling the option select script and the window menu callback
-					goto label1; // Back to the start...
+				++idleTimer;
+				if (windowTable[0] == windowTail) { // If the field/overworld commands window is the last opened window...
+					if (idleTimer > 60) { // If 60 frames have passed
+						if (windowTable[10] == -1) { // If the wallet window is not open
+							openHpAndWallet();
+							setWindowFocus(0);
+							// Funky! I didn't expect a goto back to the start here...
+							// The reason this is here is because the code path from label1 calls windowTick (draws the HP and wallet windows) and resets idleTimer.
+							// Why they didn't just do that here, I have no idea. This has the "side-effect" of acting as if the player
+							// moved the cursor into the same option again, calling the option select script and the window menu callback
+							continue outer; // Back to the start...
+						}
+					}
 				}
 			}
 		}
-	} // for (dp1E = 0; dp1E < 10; dp1E++);
-	goto label2; // 10 frames have passed without player input, change cursor frame and start over again
+		if (cursorPosition == -1) {
+			continue;
+		}
 
-	// Okay, so this is an interesting one... The code just does "CMP #$FFFF" without an "LDA $1C",
-	// however, the code always stores the Accumulator into dp1C before gotoing here
-label3:
-	if (dp1C == -1) goto label1; // Back to the start...
+		short optionIndex = 0;
+		MenuOption *tmpOption = &menuOptions[window.currentOption];
 
-	dp02 = 0;
-	MenuOpt *dp22_opt = &menuOptions[dp24.currentOption]; // Reuses dp22, 16-bit pointer
+		short tmp = cursorPosition & 0xFF;
+		cursorPosition = cursorPosition >> 8;
 
-	short tmp = dp1C & 0xFF;
-	dp1C = dp1C >> 8;
+		while ((tmpOption.textX != tmp) || (tmpOption.textY != cursorPosition) || ((tmpOption.page != window.menuPage) && (tmpOption.page != 0))) {
+			++optionIndex;
+			tmpOption = &menuOptions[tmpOption.next];
+		}
 
-	while ((dp22_opt.textX != tmp) || (dp22_opt.textY != dp1C) || ((dp22_opt.page != dp24.menuPage) && (dp22_opt.page != 0))) {
-		++dp02;
-		dp22_opt = &menuOptions[dp22_opt.next]; // field02
+		moveCurrentTextCursorOption(highlightedOption, highlightedOption.textX, highlightedOption.textY);
+		drawTallTextTileFocusedRedraw(0x2F); // draw blank tile over cursor
+
+		selectedOptionIndex = optionIndex;
+		highlightedOption = tmpOption;
 	}
-
-	unknownC43CD2(dp04, dp04.textX, dp04.textY);
-	unknownC10D60(0x2F); // Remove cursor from window?
-
-	dp20 = dp02;
-	dp04 = dp22_opt;
-	goto label1; // Aaaand back to the start....
+	assert(0, "This should never be reached");
 }
 
 /// $C11F5A
@@ -1430,7 +1500,7 @@ short unknownC1244C(string* arg1, short arg2, short arg3) {
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 			memcpy(&temporaryTextBuffer[0], getPartyCharacterName(gameState.partyMembers[i]), 6);
 			temporaryTextBuffer[PartyCharacter.name.length] = 0;
-			unknownC1153B(gameState.partyMembers[i], cast(short)(i * 6), 0, &temporaryTextBuffer[0], arg1[i]);
+			createNewMenuOptionAtPositionWithUserdata(gameState.partyMembers[i], cast(short)(i * 6), 0, &temporaryTextBuffer[0], arg1[i]);
 		}
 		printMenuItems();
 		x16 = selectionMenu(arg3);
@@ -1522,7 +1592,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 		for (short i = 0; gameState.playerControlledPartyMemberCount > i; i++) {
 			memcpy(&temporaryTextBuffer[0], getPartyCharacterName(gameState.partyMembers[i]), 6);
 			temporaryTextBuffer[PartyCharacter.name.length] = 0;
-			unknownC1153B(gameState.partyMembers[i], cast(short)(i * 6), 0, &temporaryTextBuffer[0], null);
+			createNewMenuOptionAtPositionWithUserdata(gameState.partyMembers[i], cast(short)(i * 6), 0, &temporaryTextBuffer[0], null);
 		}
 		printMenuItems();
 		x1E = selectionMenu(arg2);
@@ -1609,7 +1679,7 @@ short charSelectPrompt(short arg1, short arg2, void function(short) arg3, short 
 
 /// $C12BD5
 short unknownC12BD5(short arg1) {
-	return unknownC1138D(windowStats[windowTable[arg1 == 0 ? currentFocusWindow : arg1]].currentOption);
+	return getMenuOptionCount(windowStats[windowTable[arg1 == 0 ? currentFocusWindow : arg1]].currentOption);
 }
 
 /// $C12BF3
@@ -1617,7 +1687,7 @@ void printSMAAAASH() {
 	windowSetTextColor(3);
 	const(ushort)* x06 = &smaaaashTiles[0];
 	while (x06[0] != 0) {
-		unknownC10D60(*(x06++));
+		drawTallTextTileFocusedRedraw(*(x06++));
 		for (short i = 1; i-- != 0;) {
 			windowTick();
 		}
@@ -1630,7 +1700,7 @@ void printYouWon() {
 	windowSetTextColor(3);
 	const(ushort)* x06 = &youWonTiles[0];
 	for (short i = 0; i < 4; i++) {
-		unknownC10D60(*(x06++));
+		drawTallTextTileFocusedRedraw(*(x06++));
 		for (short j = 1; j-- != 0;) {
 			windowTick();
 		}
@@ -1639,7 +1709,7 @@ void printYouWon() {
 		windowTickMinimal();
 	}
 	for (short i = 0; i < 5; i++) {
-		unknownC10D60(*(x06++));
+		drawTallTextTileFocusedRedraw(*(x06++));
 		for (short j = 1; j-- != 0;) {
 			windowTick();
 		}
@@ -1692,7 +1762,7 @@ void windowTick() {
 	uploadHPPPMeterTiles = 1;
 	updateHPPPMeterTiles();
 	if (disabledTransitions == 0) {
-		if (unknownC1FF2C() != 0) {
+		if (checkTextPaletteReloadRequired() != 0) {
 			loadTextPalette();
 		}
 	}
@@ -1722,9 +1792,9 @@ void debugYButtonMenu() {
 	loop: while (x1A is null) {
 		createWindowN(Window.phoneMenu);
 		for (short i = 0; debugMenuText[i][0] != 0; i++) {
-			unknownC113D1(&debugMenuText[i][0], null);
+			createNewMenuOptionActive(&debugMenuText[i][0], null);
 		}
-		unknownC1180D(1, 0, 0);
+		printMenuOptionTable(1, 0, 0);
 		switch (selectionMenu(1)) {
 			case 1:
 				debugYButtonFlag();
@@ -1911,7 +1981,7 @@ void populateCommandMenu() {
 				((i == CommandMenuOption.talkTo) ||
 				(i == CommandMenuOption.check) ||
 				((i == CommandMenuOption.goods) && (gameState.playerControlledPartyMemberCount == 1) && (getCharacterItem(gameState.partyMembers[0], 1) == 0))) ? Sfx.cursor1 : Sfx.menuOpenClose;
-			unknownC11596(i, commandMenuOptionPositioning[i - 1].x, commandMenuOptionPositioning[i - 1].y, &commandMenuText[i - 1][0], null, cast(ubyte)sfx);
+			createNewMenuOptionAtPositionWithUserdataSFX(i, commandMenuOptionPositioning[i - 1].x, commandMenuOptionPositioning[i - 1].y, &commandMenuText[i - 1][0], null, cast(ubyte)sfx);
 		}
 	}
 	skipAddingCommandText = 0;
@@ -1982,10 +2052,10 @@ void openMenuButton() {
 						moveCurrentTextCursor(0, x23);
 						while (x23 < 4) {
 							short x1B = cast(short)(x23 + 1);
-							unknownC115F4(x1B, &itemUseMenuStrings[x23][0], null);
+							createNewMenuOptionWithUserdata(x1B, &itemUseMenuStrings[x23][0], null);
 							x23 = x1B;
 						}
-						unknownC451FA(1, 0, 0);
+						createMenuOptionTable(1, 0, 0);
 						short x02 = 0;
 						short x1A;
 						L4: while (true) {
@@ -2512,7 +2582,7 @@ void* cc0C(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C145CA
 void* cc1C07(DisplayTextState* arg1, ubyte arg2) {
-	unknownC1180D(arg2 == 0 ? cast(short)getSubRegister() : arg2, 1, 0);
+	printMenuOptionTable(arg2 == 0 ? cast(short)getSubRegister() : arg2, 1, 0);
 	return null;
 }
 
@@ -2942,7 +3012,7 @@ void* cc1F60(DisplayTextState* arg1, ubyte arg2) {
 void* cc1A05(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1A05Arguments);
 	if (currentFocusWindow == 1) {
-		unknownEF0115(1);
+		removeWindowFromScreen(Window.textStandard);
 		windowStats[windowTable[currentFocusWindow]].textY = 0;
 		windowStats[windowTable[currentFocusWindow]].textX = 0;
 		backupCurrentWindowTextAttributes(&arg1.savedTextAttributes);
@@ -3084,7 +3154,7 @@ void* cc180D(DisplayTextState* arg1, ubyte arg2) {
 
 /// $C15BA7
 void* cc1C0C(DisplayTextState* arg1, ubyte arg2) {
-	unknownC1180D(arg2 != 0 ? arg2 : cast(ushort)getSubRegister(), 0, 0);
+	printMenuOptionTable(arg2 != 0 ? arg2 : cast(ushort)getSubRegister(), 0, 0);
 	return null;
 }
 
@@ -3727,7 +3797,7 @@ void* cc1927(DisplayTextState* arg1, ubyte arg2) {
 /// $C17796
 void* unknownC17796(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!string);
-	unknownC113D1(&textNewMenuOptionBuffer[0], getCCParameters!ArgType(arg2));
+	createNewMenuOptionActive(&textNewMenuOptionBuffer[0], getCCParameters!ArgType(arg2));
 	return null;
 }
 
@@ -3740,7 +3810,7 @@ void* unknownC17889(DisplayTextState* arg1, ubyte arg2) {
 			return &unknownC17796;
 		case 2:
 			textNewMenuOptionBuffer[ccArgumentGatheringLoopCounter] = 0;
-			unknownC113D1(&textNewMenuOptionBuffer[0], null);
+			createNewMenuOptionActive(&textNewMenuOptionBuffer[0], null);
 			return null;
 		default:
 			textNewMenuOptionBuffer[ccArgumentGatheringLoopCounter++] = cast(ubyte)arg2;
@@ -3800,7 +3870,7 @@ void* cc19Tree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x02:
 			return &cc1902;
 		case 0x04:
-			unknownC11383();
+			resetCurrentWindowMenu();
 			break;
 		case 0x05:
 			return &cc1905;
@@ -3865,7 +3935,7 @@ void* cc1ATree(DisplayTextState* arg1, ubyte arg2) {
 			return &cc1A01;
 		case 0x04:
 			setMainRegister(WorkingMemory(selectionMenu(0)));
-			unknownC11383();
+			resetCurrentWindowMenu();
 			break;
 		case 0x05:
 			return &cc1A05;
@@ -4428,7 +4498,7 @@ const(ubyte)* displayText(const(ubyte)* script_ptr) {
 					break;
 				case 0x11:
 					setMainRegister(WorkingMemory(selectionMenu(1)));
-					unknownC11383();
+					resetCurrentWindowMenu();
 					break;
 				case 0x12:
 					cc12();
@@ -4718,7 +4788,7 @@ void unknownC19249(short arg1) {
 void unknownC1931B(short arg1) {
 	if (arg1 > 4) {
 		if (arg1 == PartyMember.king) {
-			if (unknown7EB49D != 0) {
+			if (allowTextOverflow != 0) {
 				printString(gameState.petName.length, &gameState.petName[0]);
 			} else {
 				printWrappableString(gameState.petName.length, &gameState.petName[0]);
@@ -4727,7 +4797,7 @@ void unknownC1931B(short arg1) {
 			printWrappableString(Enemy.name.length, &enemyConfigurationTable[npcAITable[arg1].enemyID].name[0]);
 		}
 	} else {
-		if (unknown7EB49D != 0) {
+		if (allowTextOverflow != 0) {
 			printString(PartyCharacter.name.length, &partyCharacters[arg1 -1].name[0]);
 		} else {
 			printWrappableString(PartyCharacter.name.length, &partyCharacters[arg1 - 1].name[0]);
@@ -4762,10 +4832,10 @@ ushort openPhoneMenu() {
 		}
 		memcpy(&temporaryTextBuffer[0], &telephoneContacts[i].title[0], TelephoneContact.title.length);
 		temporaryTextBuffer[TelephoneContact.title.length] = 0;
-		unknownC115F4(i, &temporaryTextBuffer[0], null);
+		createNewMenuOptionWithUserdata(i, &temporaryTextBuffer[0], null);
 	}
 	if (unknownC12BD5(0) != 0) {
-		unknownC1180D(1, 0, 1);
+		printMenuOptionTable(1, 0, 1);
 		x02 = selectionMenu(1);
 	}
 	closeFocusWindowN();
@@ -4867,18 +4937,18 @@ void addCharacterInventoryToWindow(short character, short window) {
 	for (short i = 0; PartyCharacter.items.length > i; i++) {
 		short x16 = partyCharacters[character].items[i];
 		if (checkItemEquipped(cast(short)(character + 1), cast(short)(i + 1)) != 0) {
-			temporaryTextBuffer[0] = 0x22;
+			temporaryTextBuffer[0] = SpecialCharacter.equipIcon;
 			memcpy(&temporaryTextBuffer[1], &itemData[x16].name[0], Item.name.length);
 		} else {
 			memcpy(&temporaryTextBuffer[0], &itemData[x16].name[0], Item.name.length);
 		}
 		temporaryTextBuffer[Item.name.length] = 0;
 		if (x16 != 0) {
-			unknownC113D1(&temporaryTextBuffer[0], null);
+			createNewMenuOptionActive(&temporaryTextBuffer[0], null);
 		}
 	}
 	windowTickWithoutInstantPrinting();
-	unknownC1180D(2, 0, 0);
+	printMenuOptionTable(2, 0, 0);
 }
 
 /// $C19A11
@@ -4905,12 +4975,12 @@ ushort unknownC19A43() {
 		memcpy(&temporaryTextBuffer[0], &itemData[gameState.escargoExpressItems[i]].name[0], Item.name.sizeof);
 		temporaryTextBuffer[Item.name.sizeof] = 0;
 		if (gameState.escargoExpressItems[i] != 0) {
-			unknownC113D1(&temporaryTextBuffer[0], null);
+			createNewMenuOptionActive(&temporaryTextBuffer[0], null);
 		}
 	}
-	unknownC1180D(2, 0, 1);
+	printMenuOptionTable(2, 0, 1);
 	short x18_2 = selectionMenu(1);
-	unknownEF0115(13);
+	removeWindowFromScreen(Window.unknown0d);
 	forceLeftTextAlignment = 0;
 	restoreCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	return x18_2;
@@ -4982,12 +5052,12 @@ ushort unknownC19DB5(short arg1) {
 		}
 		memcpy(&temporaryTextBuffer[0], &itemData[x1A].name[0], Item.name.length);
 		temporaryTextBuffer[Item.name.length] = 0;
-		unknownC115F4(x1A, &temporaryTextBuffer[0], null);
+		createNewMenuOptionWithUserdata(x1A, &temporaryTextBuffer[0], null);
 		moveCurrentTextCursor(0, i);
 		printPrice(itemData[x1A].cost);
 	}
 	moveCurrentTextCursor(0, 0);
-	unknownC1180D(1, 0, 0);
+	printMenuOptionTable(1, 0, 0);
 	unknownC11F5A(&setHPPPWindowModeItem);
 	unknownC19CDD();
 	ushort x1A = selectionMenu(1);
@@ -5028,26 +5098,26 @@ void printEquipment(short arg1) {
 		short x18;
 		switch (i) {
 			case 0:
-				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
+				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
 				x18 = partyCharacters[arg1].equipment[EquipmentSlot.weapon];
 				break;
 			case 1:
-				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
+				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
 				x18 = partyCharacters[arg1].equipment[EquipmentSlot.body];
 				break;
 			case 2:
-				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
+				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
 				x18 = partyCharacters[arg1].equipment[EquipmentSlot.arms];
 				break;
 			case 3:
-				unknownC114B1(0, i, &statusEquipWindowText10[i][0], null);
+				createNewMenuOptionAtPosition(0, i, &statusEquipWindowText10[i][0], null);
 				x18 = partyCharacters[arg1].equipment[EquipmentSlot.other];
 				break;
 			default: break;
 		}
 		if (x18 != 0) {
 			if (checkItemEquipped(cast(short)(arg1 + 1), x18) != 0) {
-				temporaryTextBuffer[0] = 0x22;
+				temporaryTextBuffer[0] = SpecialCharacter.equipIcon;
 				memcpy(&temporaryTextBuffer[1], &itemData[partyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
 			} else {
 				memcpy(&temporaryTextBuffer[0], &itemData[partyCharacters[arg1].items[x18 - 1]].name[0], Item.name.length);
@@ -5242,18 +5312,18 @@ void unknownC1A795(short arg1) {
 				continue;
 			}
 			if (checkItemEquipped(cast(short)(arg1 + 1), cast(short)(i + 1)) != 0) {
-				temporaryTextBuffer = 0x22;
+				temporaryTextBuffer = SpecialCharacter.equipIcon;
 				memcpy(&temporaryTextBuffer[1], &itemData[x16].name, Item.name.length);
 				x18 = x04;
 			} else {
 				memcpy(&temporaryTextBuffer[0], &itemData[x16].name, Item.name.length);
 			}
 			temporaryTextBuffer[Item.name.length] = 0;
-			unknownC115F4(cast(short)(i + 1), &temporaryTextBuffer[0], null).sfx = Sfx.equippedItem;
+			createNewMenuOptionWithUserdata(cast(short)(i + 1), &temporaryTextBuffer[0], null).sfx = Sfx.equippedItem;
 			x04++;
 		}
-		unknownC115F4(-1, &statusEquipWindowText13[0], null);
-		unknownC1181B(1, 0, x18);
+		createNewMenuOptionWithUserdata(-1, &statusEquipWindowText13[0], null);
+		printMenuOptionTablePreselected(1, 0, x18);
 		characterForEquipMenu = cast(ubyte)(arg1 + 1);
 		switch (x1C) {
 			case 1:
@@ -5357,10 +5427,10 @@ ushort selectPSITeleportDestination() {
 		}
 		memcpy(&temporaryTextBuffer[0], &psiTeleportDestinationTable[i].name[0], PSITeleportDestination.name.length);
 		temporaryTextBuffer[PSITeleportDestination.name.length] = 0;
-		unknownC115F4(i, &temporaryTextBuffer[0], null);
+		createNewMenuOptionWithUserdata(i, &temporaryTextBuffer[0], null);
 	}
 	if (unknownC12BD5(0) != 0) {
-		unknownC1180D(1, 0, 1);
+		printMenuOptionTable(1, 0, 1);
 		x02 = cast(short)selectionMenu(1);
 	}
 	closeFocusWindowN();
@@ -5763,9 +5833,9 @@ void unknownC1BB71() {
 		short x02 = 0;
 		createWindowN(Window.unknown2e);
 		for (short i = 0; i < 4; i++) {
-			unknownC115F4(cast(short)(i + 1), &psiCategories[i][0], null);
+			createNewMenuOptionWithUserdata(cast(short)(i + 1), &psiCategories[i][0], null);
 		}
-		unknownC1180D(1, 0, 0);
+		printMenuOptionTable(1, 0, 0);
 		while (true) {
 			setWindowFocus(Window.unknown2e);
 			if (x02 == 0) {
@@ -6076,18 +6146,18 @@ void getPSIName(short id) {
 void preparePSIMenuOptions(short character, ubyte usability, ubyte categories) {
 	character--;
 	setInstantPrinting();
-	unknownC11383();
+	resetCurrentWindowMenu();
 	short nameLastPrinted = 0; //note: all PSI with the same name MUST be adjacent to each other for this to work properly
 	if ((character == PartyMember.poo - 1) && ((usability & PSIUsability.battle) != 0) && ((categories & PSICategory.offense) != 0)) {
 		// Poo can use starstorm alpha?
 		if ((gameState.partyPSI & PartyPSIFlags.starstormAlpha) != 0) {
 			moveCurrentTextCursor(0, psiAbilityTable[21].menuY);
 			getPSIName(psiAbilityTable[21].name);
-			unknownC1153B(21, psiAbilityTable[21].menuX, psiAbilityTable[21].menuY, &psiSuffixes[psiAbilityTable[21].level - 1][0], null);
+			createNewMenuOptionAtPositionWithUserdata(21, psiAbilityTable[21].menuX, psiAbilityTable[21].menuY, &psiSuffixes[psiAbilityTable[21].level - 1][0], null);
 		}
 		// Poo can use starstorm beta?
 		if ((gameState.partyPSI & PartyPSIFlags.starstormBeta) != 0) {
-			unknownC1153B(22, psiAbilityTable[22].menuX, psiAbilityTable[22].menuY, &psiSuffixes[psiAbilityTable[22].level - 1][0], null);
+			createNewMenuOptionAtPositionWithUserdata(22, psiAbilityTable[22].menuX, psiAbilityTable[22].menuY, &psiSuffixes[psiAbilityTable[22].level - 1][0], null);
 		}
 	}
 	// handle normal learnable PSI
@@ -6122,18 +6192,18 @@ void preparePSIMenuOptions(short character, ubyte usability, ubyte categories) {
 			getPSIName(psiAbilityTable[i].name);
 			nameLastPrinted = psiAbilityTable[i].name;
 		}
-		unknownC1153B(i, psiAbilityTable[i].menuX, psiAbilityTable[i].menuY, &psiSuffixes[psiAbilityTable[i].level - 1][0], null);
+		createNewMenuOptionAtPositionWithUserdata(i, psiAbilityTable[i].menuX, psiAbilityTable[i].menuY, &psiSuffixes[psiAbilityTable[i].level - 1][0], null);
 	}
 	if ((character == PartyMember.ness - 1) && ((usability & PSIUsability.overworld) != 0) && ((categories & PSICategory.other) != 0)) {
 		// Ness can use teleport alpha?
 		if ((gameState.partyPSI & PartyPSIFlags.teleportAlpha) != 0) {
 			moveCurrentTextCursor(0, psiAbilityTable[51].menuY);
 			getPSIName(psiAbilityTable[51].name);
-			unknownC1153B(51, psiAbilityTable[51].menuX, psiAbilityTable[51].menuY, &psiSuffixes[psiAbilityTable[51].level - 1][0], null);
+			createNewMenuOptionAtPositionWithUserdata(51, psiAbilityTable[51].menuX, psiAbilityTable[51].menuY, &psiSuffixes[psiAbilityTable[51].level - 1][0], null);
 		}
 		// Ness can use teleport beta?
 		if ((gameState.partyPSI & PartyPSIFlags.teleportBeta) != 0) {
-			unknownC1153B(52, psiAbilityTable[52].menuX, psiAbilityTable[52].menuY, &psiSuffixes[psiAbilityTable[52].level - 1][0], null);
+			createNewMenuOptionAtPositionWithUserdata(52, psiAbilityTable[52].menuX, psiAbilityTable[52].menuY, &psiSuffixes[psiAbilityTable[52].level - 1][0], null);
 		}
 	}
 	printMenuItems();
@@ -6183,7 +6253,7 @@ void printPSIName(short id) {
 void unknownC1CA72(short arg1, short arg2) {
 	setInstantPrinting();
 	short x0E = windowStats[windowTable[currentFocusWindow]].textY;
-	unknownEF0115(currentFocusWindow);
+	removeWindowFromScreen(currentFocusWindow);
 	windowTickWithoutInstantPrinting();
 	createOverworldPSIMenuWindow(overworldSelectedPSIUser);
 	printMenuItems();
@@ -6248,9 +6318,9 @@ short battlePSIMenu(BattleMenuSelection* arg1) {
 	outer: while (true) {
 		createWindowN(Window.psiCategories);
 		for (short i = 0; i < 3; i++) {
-			unknownC115F4(cast(short)(i + 1), &psiCategories[i][0], null);
+			createNewMenuOptionWithUserdata(cast(short)(i + 1), &psiCategories[i][0], null);
 		}
-		unknownC1180D(1, 0, 0);
+		printMenuOptionTable(1, 0, 0);
 		while (true) { // pick a PSI category
 			setWindowFocus(Window.psiCategories);
 			if (psiCategoriesPrinted == 0) {
@@ -6759,7 +6829,7 @@ void resetActivePartyMemberHPPPWindowF() {
 
 /// $C1DDD3
 void selectionMenuItemSetup(short arg1, short arg2, short arg3, const(ubyte)* arg4, string arg5) {
-	unknownC1153B(arg1, arg2, arg3, arg4, arg5);
+	createNewMenuOptionAtPositionWithUserdata(arg1, arg2, arg3, arg4, arg5);
 }
 
 /// $C1DE25
@@ -6967,11 +7037,11 @@ short unknownC1E4BE(short arg1, short arg2, short arg3) {
 /// $C1E57F
 short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg5) {
 	short x24 = -1;
-	short x22 = 0;
-	short x20 = 0;
+	short y = 0;
+	short x = 0;
 	short x1E = arg4;
-	short x04;
-	short x16;
+	short selectionCursorFrame;
+	short cursorPosition;
 	setInstantPrinting();
 	createWindowN(Window.fileSelectNamingKeyboard);
 	if (arg5 == -1) {
@@ -7006,53 +7076,53 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 		}
 		l1: while (true) {
 			clearInstantPrinting();
-			moveCurrentTextCursor(x20, x22);
+			moveCurrentTextCursor(x, y);
 			windowSetTextColor(1);
-			unknownC10D60(33);
+			drawTallTextTileFocusedRedraw(33);
 			windowSetTextColor(0);
 			windowTick();
-			x04 = 1;
+			selectionCursorFrame = 1;
 			l2: while (true) {
-				x04 ^= 1;
-				copyToVRAM(0, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C20), cast(const(ubyte)*)&arrC3E406[x04]);
-				copyToVRAM(0, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C40), cast(const(ubyte)*)&arrC3E40A[x04]);
+				selectionCursorFrame ^= 1;
+				copyToVRAM(0, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C20), cast(const(ubyte)*)&selectionCursorFramesUpper[selectionCursorFrame]);
+				copyToVRAM(0, 2, cast(ushort)((windowStats[windowTable[currentFocusWindow]].textY * 2 + windowStats[windowTable[currentFocusWindow]].y) * 32 + windowStats[windowTable[currentFocusWindow]].x + windowStats[windowTable[currentFocusWindow]].textX + 0x7C40), cast(const(ubyte)*)&selectionCursorFramesLower[selectionCursorFrame]);
 				for (short i = 0; 10 > i; i++) {
 					finishFrame();
 					if ((padPress[0] & Pad.up) != 0) {
-						x16 = moveCursorWrap(x20, x22, -1, 0, Sfx.unknown7C, x20, windowStats[windowTable[currentFocusWindow]].height / 2);
+						cursorPosition = moveCursorWrap(x, y, -1, 0, Sfx.unknown7C, x, windowStats[windowTable[currentFocusWindow]].height / 2);
 						break l2;
 					}
 					if ((padPress[0] & Pad.left) != 0) {
-						x16 = moveCursorWrap(x20, x22, 0, -1, Sfx.unknown7B, windowStats[windowTable[currentFocusWindow]].width, x22);
+						cursorPosition = moveCursorWrap(x, y, 0, -1, Sfx.unknown7B, windowStats[windowTable[currentFocusWindow]].width, y);
 						break l2;
 					}
 					if ((padPress[0] & Pad.down) != 0) {
-						x16 = moveCursorWrap(x20, x22, 1, 0, Sfx.unknown7C, x20, -1);
+						cursorPosition = moveCursorWrap(x, y, 1, 0, Sfx.unknown7C, x, -1);
 						break l2;
 					}
 					if ((padPress[0] & Pad.right) != 0) {
-						x16 = moveCursorWrap(x20, x22, 0, 1, Sfx.unknown7B, -1, x22);
+						cursorPosition = moveCursorWrap(x, y, 0, 1, Sfx.unknown7B, -1, y);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.up) != 0) {
-						x16 = moveCursor(x20, x22, -1, 0, Sfx.unknown7C);
+						cursorPosition = moveCursor(x, y, -1, 0, Sfx.unknown7C);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.down) != 0) {
-						x16 = moveCursor(x20, x22, 1, 0, Sfx.unknown7C);
+						cursorPosition = moveCursor(x, y, 1, 0, Sfx.unknown7C);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.left) != 0) {
-						x16 = moveCursor(x20, x22, 0, -1, Sfx.unknown7B);
+						cursorPosition = moveCursor(x, y, 0, -1, Sfx.unknown7B);
 						break l2;
 					}
 					if ((padHeld[0] & Pad.right) != 0) {
-						x16 = moveCursor(x20, x22, 0, 1, Sfx.unknown7B);
+						cursorPosition = moveCursor(x, y, 0, 1, Sfx.unknown7B);
 						break l2;
 					}
 					if ((padPress[0] & (Pad.a | Pad.l)) != 0) {
-						if (x22 == 6) {
-							switch (x20) {
+						if (y == 6) {
+							switch (x) {
 								case 0: //don't care
 									playSfx(Sfx.textInput);
 									x24 = unknownC1E4BE(arg1, arg5, x24);
@@ -7070,8 +7140,8 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 							}
 						} else {
 							playSfx(Sfx.textInput);
-							if (x22 == 4) {
-								switch (x20) {
+							if (y == 4) {
+								switch (x) {
 									case 0:
 										arg4 = 0;
 										continue l0;
@@ -7081,7 +7151,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 									default: break;
 								}
 							}
-							unknownC1E48D(arg1, arg2, getCharacterAtCursorPosition(x20 / 2, x22, arg4));
+							unknownC1E48D(arg1, arg2, getCharacterAtCursorPosition(x / 2, y, arg4));
 							continue l1;
 						}
 					} else if ((padPress[0] & (Pad.b | Pad.select)) != 0) {
@@ -7095,11 +7165,11 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 					}
 				}
 			}
-			moveCurrentTextCursor(x20, x22);
-			unknownC10D60(0x2F);
-			if (x16 != -1) {
-				x20 = x16 & 0xFF;
-				x22 = x16 >> 8;
+			moveCurrentTextCursor(x, y);
+			drawTallTextTileFocusedRedraw(0x2F);
+			if (cursorPosition != -1) {
+				x = cursorPosition & 0xFF;
+				y = cursorPosition >> 8;
 			}
 			continue;
 			Unknown42:
@@ -7123,7 +7193,7 @@ short textInputDialog(short arg1, short arg2, ubyte* arg3, short arg4, short arg
 short enterYourNamePlease(short arg1) {
 	short result;
 	enableWordWrap = 0;
-	unknown7EB49D = 1;
+	allowTextOverflow = 1;
 	setInstantPrinting();
 	createWindowN(Window.unknown27);
 	if (arg1 != 0) {
@@ -7154,7 +7224,7 @@ short enterYourNamePlease(short arg1) {
 	closeWindow(Window.fileSelectNamingKeyboard);
 	closeWindow(Window.unknown27);
 	enableWordWrap = 0xFF;
-	unknown7EB49D = 0;
+	allowTextOverflow = 0;
 	return result;
 }
 
@@ -7216,7 +7286,7 @@ void corruptionCheck() {
 short fileSelectMenu(short arg1) {
 	short x1C;
 	createWindowN(Window.fileSelectMain);
-	for (short i = 0; i < 3; i++, unknownC115F4(x1C | i, &temporaryTextBuffer[0], null)) {
+	for (short i = 0; i < 3; i++, createNewMenuOptionWithUserdata(x1C | i, &temporaryTextBuffer[0], null)) {
 		loadGameSlot(i);
 		if (gameState.favouriteThing[1] != 0) {
 			memset(&temporaryTextBuffer[0], 0, 0x20);
@@ -7230,17 +7300,17 @@ short fileSelectMenu(short arg1) {
 					temporaryTextBuffer[j + 3] = partyCharacters[0].name[j];
 				}
 			}
-			unknown7EB49E[i] = 1;
+			saveFilesPresent[i] = 1;
 			x1C = cast(short)(gameState.textFlavour << 8);
 		} else {
 			temporaryTextBuffer[0] = cast(ubyte)(ebChar('1') + i);
 			memcpy(&temporaryTextBuffer[1], &fileSelectTextStartNewGame[0], fileSelectTextStartNewGame.length);
 			temporaryTextBuffer[17] = 0;
-			unknown7EB49E[i] = 0;
+			saveFilesPresent[i] = 0;
 			x1C = 0x100;
 		}
 	}
-	unknownC1180D(1, 0, 0);
+	printMenuOptionTable(1, 0, 0);
 	for (short i = 0; i < 3; i++) {
 		loadGameSlot(i);
 		if (gameState.favouriteThing[1] != 0) {
@@ -7267,14 +7337,14 @@ short fileSelectMenu(short arg1) {
 		}
 	}
 	if (arg1 != 0) {
-		MenuOpt* x1C_2 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+		MenuOption* x1C_2 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
 		for (short i = cast(short)(currentSaveSlot - 1); i != 0; i--) {
 			x1C_2 = &menuOptions[x1C_2.next];
 		}
 		windowSetTextColor(6);
 		moveCurrentTextCursor(cast(short)(x1C_2.textX + 1), x1C_2.textY);
 		enableWordWrap = 0;
-		unknownC43B15();
+		fillRestOfWindowLine();
 		windowSetTextColor(0);
 	} else {
 		corruptionCheck();
@@ -7291,18 +7361,18 @@ short fileSelectMenu(short arg1) {
 /// $C1F07E
 short unknownC1F07E() {
 	createWindowN(Window.fileSelectMenu);
-	unknownC1153B(1, 0, 0, &fileSelectTextContinue[0], null);
+	createNewMenuOptionAtPositionWithUserdata(1, 0, 0, &fileSelectTextContinue[0], null);
 	for (short i = 0; 3 > i; i++) {
 		if (currentSaveSlot -1 == i) {
 			continue;
 		}
-		if (unknown7EB49E[i] != 0) {
+		if (saveFilesPresent[i] != 0) {
 			continue;
 		}
-		unknownC1153B(2, 6, 0, &fileSelectTextCopy[0], null);
+		createNewMenuOptionAtPositionWithUserdata(2, 6, 0, &fileSelectTextCopy[0], null);
 	}
-	unknownC1153B(3, 10, 0, &fileSelectTextDelete[0], null);
-	unknownC1153B(4, 15, 0, &fileSelectTextSetUp[0], null);
+	createNewMenuOptionAtPositionWithUserdata(3, 10, 0, &fileSelectTextDelete[0], null);
+	createNewMenuOptionAtPositionWithUserdata(4, 15, 0, &fileSelectTextSetUp[0], null);
 	printMenuItems();
 	enableWordWrap = 0xFF;
 	return selectionMenu(1);
@@ -7381,7 +7451,7 @@ immutable short[7][7] psiBlockingStatuses = [
 short unknownC1F14F() {
 	short y;
 	for (short i = 0; 3 > i; i++) {
-		if (unknown7EB49E[i] == 0) {
+		if (saveFilesPresent[i] == 0) {
 			y++;
 		}
 	}
@@ -7390,11 +7460,11 @@ short unknownC1F14F() {
 		setInstantPrinting();
 		printString(fileSelectTextCopyToWhere.length, &fileSelectTextCopyToWhere[0]);
 		for (short i = 0; 3 > i; i++) {
-			if (unknown7EB49E[i] == 0) {
+			if (saveFilesPresent[i] == 0) {
 				temporaryTextBuffer[0] = cast(ubyte)(ebChar('1') + i);
 				temporaryTextBuffer[1] = ebChar(':');
 				temporaryTextBuffer[2] = 0;
-				unknownC1153B(cast(short)(i + 1), 0, 1, &temporaryTextBuffer[0], null);
+				createNewMenuOptionAtPositionWithUserdata(cast(short)(i + 1), 0, 1, &temporaryTextBuffer[0], null);
 			}
 		}
 	} else {
@@ -7403,11 +7473,11 @@ short unknownC1F14F() {
 		printString(fileSelectTextCopyToWhere.length, &fileSelectTextCopyToWhere[0]);
 		short x04 = 1;
 		for (short i = 0; 3 > i; i++) {
-			if (unknown7EB49E[i] == 0) {
+			if (saveFilesPresent[i] == 0) {
 				temporaryTextBuffer[0] = cast(ubyte)(ebChar('1') + i);
 				temporaryTextBuffer[1] = ebChar(':');
 				temporaryTextBuffer[2] = 0;
-				unknownC1153B(cast(short)(i + 1), 0, x04++, &temporaryTextBuffer[0], null);
+				createNewMenuOptionAtPositionWithUserdata(cast(short)(i + 1), 0, x04++, &temporaryTextBuffer[0], null);
 			}
 		}
 	}
@@ -7438,8 +7508,8 @@ short unknownC1F2A8() {
 	printString(fileSelectTextLevel.length, &fileSelectTextLevel[0]);
 	moveCurrentTextCursor(12, 1);
 	printNumber(partyCharacters[0].level);
-	unknownC1153B(0, 0, 2, &fileSelectTextAreYouSureDeleteNo[0], null);
-	unknownC1153B(1, 0, 3, &fileSelectTextAreYouSureDeleteYes[0], null);
+	createNewMenuOptionAtPositionWithUserdata(0, 0, 2, &fileSelectTextAreYouSureDeleteNo[0], null);
+	createNewMenuOptionAtPositionWithUserdata(1, 0, 3, &fileSelectTextAreYouSureDeleteYes[0], null);
 	printMenuItems();
 	short x16 = selectionMenu(1);
 	if (x16 != 0) {
@@ -7460,42 +7530,42 @@ void openTextSpeedMenu() {
 	} else {
 		enum nameOffset = 0;
 	}
-	unknownC114B1(0, 1, &fileSelectTextTextSpeedStrings[0 + nameOffset][0], null);
-	unknownC114B1(0, 2, &fileSelectTextTextSpeedStrings[1 + nameOffset][0], null);
-	unknownC114B1(0, 3, &fileSelectTextTextSpeedStrings[2 + nameOffset][0], null);
+	createNewMenuOptionAtPosition(0, 1, &fileSelectTextTextSpeedStrings[0 + nameOffset][0], null);
+	createNewMenuOptionAtPosition(0, 2, &fileSelectTextTextSpeedStrings[1 + nameOffset][0], null);
+	createNewMenuOptionAtPosition(0, 3, &fileSelectTextTextSpeedStrings[2 + nameOffset][0], null);
 	version(configurable) {
 		if (config.instantSpeedText) {
-			unknownC114B1(0, 4, &fileSelectTextTextSpeedStrings[3][0], null);
+			createNewMenuOptionAtPosition(0, 4, &fileSelectTextTextSpeedStrings[3][0], null);
 		}
 	}
-	unknownC11887(gameState.textSpeed != 0 ? gameState.textSpeed - 1 : 1);
+	printMenuItemsPreselected(gameState.textSpeed != 0 ? gameState.textSpeed - 1 : 1);
 }
 
 /// $C1F497
-short unknownC1F497(short arg1) {
-	short x12;
+short unknownC1F497(short openWindow) {
+	short textSpeed;
 	currentFocusWindow = Window.fileSelectTextSpeed;
 	setInstantPrinting();
-	if (arg1 != 0) {
+	if (openWindow != 0) {
 		openTextSpeedMenu();
-		MenuOpt* x14 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+		MenuOption* option = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
 		for (short i = cast(short)(gameState.textSpeed - 1); i != 0; i--) {
-			x14 = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
+			option = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
 		windowSetTextColor(6);
-		moveCurrentTextCursor(cast(short)(x14.textX + 1), x14.textY);
-		unknownC43BB9(0xFFFF, 1, &x14.label[0]);
+		moveCurrentTextCursor(cast(short)(option.textX + 1), option.textY);
+		setTextHighlighting(0xFFFF, 1, &option.label[0]);
 		windowSetTextColor(0);
-		x12 = gameState.textSpeed;
+		textSpeed = gameState.textSpeed;
 	} else {
 		enableWordWrap = 0;
-		x12 = selectionMenu(1);
-		if (x12 != 0) {
-			gameState.textSpeed = cast(ubyte)x12;
+		textSpeed = selectionMenu(1);
+		if (textSpeed != 0) {
+			gameState.textSpeed = cast(ubyte)textSpeed;
 			saveGameSlot(cast(short)(currentSaveSlot - 1));
 		}
 	}
-	return x12;
+	return textSpeed;
 }
 
 /// $C1F568
@@ -7503,25 +7573,25 @@ void openSoundMenu() {
 	createWindowN(Window.fileSelectMusicMode);
 	setInstantPrinting();
 	printString(fileSelectTextSelectSoundSetting.length, &fileSelectTextSelectSoundSetting[0]);
-	unknownC114B1(0, 1, &fileSelectTextSoundSettingStrings[0][0], null);
-	unknownC114B1(0, 2, &fileSelectTextSoundSettingStrings[1][0], null);
-	unknownC11887(gameState.soundSetting != 0 ? gameState.soundSetting - 1 : 0);
+	createNewMenuOptionAtPosition(0, 1, &fileSelectTextSoundSettingStrings[0][0], null);
+	createNewMenuOptionAtPosition(0, 2, &fileSelectTextSoundSettingStrings[1][0], null);
+	printMenuItemsPreselected(gameState.soundSetting != 0 ? gameState.soundSetting - 1 : 0);
 }
 
 /// $C1F616
-short unknownC1F616(short arg1) {
+short unknownC1F616(short openWindow) {
 	short x12;
 	currentFocusWindow = Window.fileSelectMusicMode;
 	setInstantPrinting();
-	if (arg1 != 0) {
+	if (openWindow != 0) {
 		openSoundMenu();
-		MenuOpt* x14 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
+		MenuOption* x14 = &menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption];
 		for (short i = gameState.soundSetting; i != 0; i--) {
 			x14 = &menuOptions[menuOptions[windowStats[windowTable[currentFocusWindow]].currentOption].next];
 		}
 		windowSetTextColor(6);
 		moveCurrentTextCursor(cast(short)(x14.textX + 1), x14.textY);
-		unknownC43BB9(0xFFFF, 1, &x14.label[0]);
+		setTextHighlighting(0xFFFF, 1, &x14.label[0]);
 		windowSetTextColor(0);
 		x12 = gameState.soundSetting;
 	} else {
@@ -7539,17 +7609,17 @@ short openFlavourMenu() {
 	createWindowN(Window.fileSelectFlavourChoice);
 	setInstantPrinting();
 	printString(fileSelectTextWhichStyle.length, &fileSelectTextWhichStyle[0]);
-	unknownC114B1(0, 2, &fileSelectTextFlavorPlain[0], null);
-	unknownC114B1(0, 3, &fileSelectTextFlavorMint[0], null);
-	unknownC114B1(0, 4, &fileSelectTextFlavorStrawberry[0], null);
-	unknownC114B1(0, 5, &fileSelectTextFlavorBanana[0], null);
-	unknownC114B1(0, 6, &fileSelectTextFlavorPeanut[0], null);
+	createNewMenuOptionAtPosition(0, 2, &fileSelectTextFlavorPlain[0], null);
+	createNewMenuOptionAtPosition(0, 3, &fileSelectTextFlavorMint[0], null);
+	createNewMenuOptionAtPosition(0, 4, &fileSelectTextFlavorStrawberry[0], null);
+	createNewMenuOptionAtPosition(0, 5, &fileSelectTextFlavorBanana[0], null);
+	createNewMenuOptionAtPosition(0, 6, &fileSelectTextFlavorPeanut[0], null);
 	version(bugfix) {
 		if (gameState.textFlavour == 0) {
 			gameState.textFlavour = 1;
 		}
 	}
-	unknownC11887(gameState.textFlavour - 1);
+	printMenuItemsPreselected(gameState.textFlavour - 1);
 	unknownC11F5A(&unknownC1EC8F);
 	short x16 = selectionMenu(1);
 	if (x16 != 0) {
@@ -7618,7 +7688,7 @@ void fileMenuLoop() {
 		outermost: while (true) {
 			setInstantPrinting();
 			const fileMenuResult = fileSelectMenu(0);
-			if ((fileMenuResult == 0) || (unknown7EB49E[fileMenuResult - 1] != 0)) {
+			if ((fileMenuResult == 0) || (saveFilesPresent[fileMenuResult - 1] != 0)) {
 				ValidFileSelected:
 				switch (unknownC1F07E()) {
 					case 0: //B pressed
@@ -7748,8 +7818,8 @@ void fileMenuLoop() {
 								createWindowN(Window.fileSelectNamingConfirmationMessage);
 								printString(fileSelectTextAreYouSure.length, &fileSelectTextAreYouSure[0]);
 
-								unknownC1153B(1, 14, 0, &fileSelectTextAreYouSureYep[0], null);
-								unknownC1153B(0, 18, 0, &fileSelectTextAreYouSureNope[0], null);
+								createNewMenuOptionAtPositionWithUserdata(1, 14, 0, &fileSelectTextAreYouSureYep[0], null);
+								createNewMenuOptionAtPositionWithUserdata(0, 18, 0, &fileSelectTextAreYouSureNope[0], null);
 								printMenuItems();
 								unknownC4D8FA();
 								enableWordWrap = 0xFF;
@@ -7812,42 +7882,46 @@ void fileMenuLoop() {
 	displayText(getTextBlock("MSG_SYS_PRE_GAMESTART"));
 }
 
-/// $C1FF2C
-short unknownC1FF2C() {
+/** Test whether or not the text palettes need to be reloaded due to party status changes
+ * Returns: 1 if a palette reload is needed, 0 otherwise
+ * $(DOLLAR)C1FF2C
+ */
+short checkTextPaletteReloadRequired() {
 	short result;
-	ubyte xX = 0;
+	ubyte lastPartyMemberStatus = 0;
 	version(bugfix) {
 		if (chosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]] == null){
 			return 1;
 		}
 	}
+	// dead party members will always be last, so we only have to check the last one
 	switch(chosenFourPtrs[gameState.playerControlledPartyMembers[gameState.playerControlledPartyMemberCount - 1]].afflictions[0]) {
 		case Status0.unconscious:
 		case Status0.diamondized:
-			xX = 1;
+			lastPartyMemberStatus = 1;
 			goto default;
 		default:
 			result = 0;
-			if (xX != unknown7EB4A2) {
+			if (lastPartyMemberStatus != lastPartyMemberStatusLastCheck) {
 				result = 1;
 			}
 			break;
 	}
-	unknown7EB4A2 = xX;
+	lastPartyMemberStatusLastCheck = lastPartyMemberStatus;
 	return result;
 }
 
 /// $C1FF6B
 short unknownC1FF6B() {
 	enableWordWrap = 0;
-	unknown7EB49D = 1;
+	allowTextOverflow = 1;
 	fileMenuLoop();
 	clearInstantPrinting();
 	windowTick();
 	disabledTransitions = 0;
-	unknown7EB4A2 = 0;
+	lastPartyMemberStatusLastCheck = 0;
 	enableWordWrap = 0xFF;
-	unknown7EB49D = 0;
+	allowTextOverflow = 0;
 	return 0;
 }
 

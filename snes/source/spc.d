@@ -36,7 +36,7 @@ void initialize() {
 	currentPrimarySamplePack = 0xFFFF;
 	unknown7EB543 = musicDatasetTable[0].sequencePack;
 	currentSecondarySamplePack = musicDatasetTable[0].sequencePack;
-	//loadSPC700Data(musicPackPointerTable[musicDatasetTable[0].sequencePack].addr & unknown7EB547, unknownC4FB42(musicPackPointerTable[musicDatasetTable[0].sequencePack].bank));
+	//loadSPC700Data(musicPackPointerTable[musicDatasetTable[0].sequencePack].addr & sequencePackMask, unknownC4FB42(musicPackPointerTable[musicDatasetTable[0].sequencePack].bank));
 	loadSPC700Data(&musicPackPointerTable[musicDatasetTable[0].sequencePack][0]);
 }
 

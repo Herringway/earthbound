@@ -877,7 +877,7 @@ __gshared ushort currentSpriteDrawingPriority;
 /** Unknown. Initialized to -1, checked for 0-3 values. May have been a removed debugging function
  * Original_Address: $(DOLLAR)2402
  */
-__gshared short unknown7E2402;
+__gshared short unused7E2402;
 /** Priority 0 (first) spritemaps queued for drawing this frame
  * Original_Address: $(DOLLAR)2404
  */
@@ -1977,7 +1977,7 @@ __gshared short currentFlashingEnemyRow;
 /** Options for active windows
  * Original_Address: $(DOLLAR)89D4
  */
-__gshared MenuOpt[70] menuOptions;
+__gshared MenuOption[70] menuOptions;
 /** When nonzero, text will be rendered and displayed immediately, with no animation or sound effects
  * Original_Address: $(DOLLAR)9622
  */
@@ -2904,144 +2904,487 @@ __gshared short loadedOvalWindowHeightAcceleration;
  * Original_Address: $(DOLLAR)AEE4
  */
 __gshared ubyte swirlNextSwirl;
-__gshared ubyte unknown7EAEE5; /// Original_Address: $(DOLLAR)AEE5
-__gshared ubyte unknown7EAEE6; /// Original_Address: $(DOLLAR)AEE6
-__gshared ushort[4] unknown7EAEE7; /// Original_Address: $(DOLLAR)AEE7
-__gshared ubyte activeOvalWindow; /// Original_Address: $(DOLLAR)AEEF
-__gshared ushort[2] unknown7EAEF0; /// Original_Address: $(DOLLAR)AEF0
-__gshared ushort[4] battleSpritePaletteEffectFramesLeft; /// Original_Address: $(DOLLAR)AEF4
-__gshared short[3 * 16 * 4] battleSpritePaletteEffectDeltas; /// Original_Address: $(DOLLAR)AEFC
-__gshared short[3 * 16 * 4] battleSpritePaletteEffectCounters; /// Original_Address: $(DOLLAR)B07C
-__gshared short[3 * 16 * 4] battleSpritePaletteEffectSteps; /// Original_Address: $(DOLLAR)B1FC
-__gshared short battleSpritePaletteEffectSpeed; /// Original_Address: $(DOLLAR)B37C
-__gshared SoundStoneMelodyState[8] soundStonePlaybackState; /// Original_Address: $(DOLLAR)B37E
-__gshared SpriteMap soundStoneSpriteTilemap1; /// Original_Address: $(DOLLAR)B3EE
-__gshared SpriteMap soundStoneSpriteTilemap2; /// Original_Address: $(DOLLAR)B3F3
-__gshared short unknown7EB3F8; /// Original_Address: $(DOLLAR)B3F8
-__gshared short unknown7EB3FA; /// Original_Address: $(DOLLAR)B3FA
-__gshared ubyte* pathMatrixBuffer; /// Original_Address: $(DOLLAR)B3FC - Matrix buffer
-__gshared ushort pathMatrixRows; /// Original_Address: $(DOLLAR)B400 - Matrix rows
-__gshared ushort pathMatrixCols; /// Original_Address: $(DOLLAR)B402 - Matrix columns
-__gshared ushort pathMatrixBorder; /// Original_Address: $(DOLLAR)B404 - Matrix start point border size (for offscreen deliverymen)
-__gshared ushort pathMatrixSize; /// Original_Address: $(DOLLAR)B406 - Matrix size (path_matrix_rows * path_matrix_cols)
-__gshared ushort* pathB408; /// Original_Address: $(DOLLAR)B408 - Pathfinder unknown int array start pointer
-__gshared ushort* pathB40A; /// Original_Address: $(DOLLAR)B40A - Pathfinder unknown int array end pointer
-__gshared ushort* pathB40C; /// Original_Address: $(DOLLAR)B40C - Pathfinder unknown int array curr pointer #1
-__gshared ushort* pathB40E; /// Original_Address: $(DOLLAR)B40E - Pathfinder unknown int array curr pointer #2
-__gshared short[4] pathCardinalOffset; /// Original_Address: $(DOLLAR)B410 - Pathfinder matrix offset increments for each cardinal (N/E/S/W) direction
-__gshared VecYX[4] pathCardinalIndex; /// Original_Address: $(DOLLAR)B418 - Pathfinder matrix index increments for each cardinal direction
-__gshared VecYX[4] pathDiagonalIndex; /// Original_Address: $(DOLLAR)B428 - Pathfinder matrix index increments for each ordinal (NE/SE/SW/NW) direction
-__gshared void* pathHeapStart; /// Original_Address: $(DOLLAR)B438 - Pathfinder heap start pointer
-__gshared void* pathHeapCurrent; /// Original_Address: $(DOLLAR)B43A - Pathfinder heap current pointer
-__gshared void* pathHeapEnd; /// Original_Address: $(DOLLAR)B43C - Pathfinder heap end pointer
+/**Speed to play each repeat of a swirl animation at. 0 is slowest, 3 is fastest, 4+ ends the repeating
+ * Original_Address: $(DOLLAR)AEE5
+ */
+__gshared ubyte swirlRepeatSpeed;
+/** Number of swirl animation loops to play before it speeds up
+ * Original_Address: $(DOLLAR)AEE6
+ */
+__gshared ubyte swirlRepeatsUntilSpeedUp;
+/** Whether or not to do palette animation to each enemy sprite in battle. 0 for sprite palettes not being animated, 1 for palettes that are
+ * Original_Address: $(DOLLAR)AEE7
+ */
+__gshared ushort[4] psiAnimationEnemyTargets;
+/** The currently loaded oval window animation ID, used to play its matching closing animation
+ * Original_Address: $(DOLLAR)AEEF
+ */
+__gshared ubyte activeOvalWindow;
+/** The width reserved for each enemy sprite in each row in battle
+ * Original_Address: $(DOLLAR)AEF0
+ */
+__gshared ushort[2] battleSpriteRowWidth;
+/** Number of frames left for each battle sprite palette animation
+ * Original_Address: $(DOLLAR)AEF4
+ */
+__gshared ushort[4] battleSpritePaletteEffectFramesLeft;
+/**The amounts to change each battle sprite palette by
+ * Original_Address: $(DOLLAR)AEFC
+ */
+__gshared short[3 * 16 * 4] battleSpritePaletteEffectDeltas;
+/** Number of frames until the next colour update. One counter for each colour for each palette for each sprite
+ * Original_Address: $(DOLLAR)B07C
+ */
+__gshared short[3 * 16 * 4] battleSpritePaletteEffectCounters;
+/** Number of steps for each animated battle sprite palette before it reaches the final result
+ * Original_Address: $(DOLLAR)B1FC
+ */
+__gshared short[3 * 16 * 4] battleSpritePaletteEffectSteps;
+/** The speed at which an animated battle sprite palette change occurs at. Typically 10 or 20
+ * Original_Address: $(DOLLAR)B37C
+ */
+__gshared short battleSpritePaletteEffectSpeed;
+/** The current playback state of each melody while using the sound stone
+ * Original_Address: $(DOLLAR)B37E
+ */
+__gshared SoundStoneMelodyState[8] soundStonePlaybackState;
+/** Temporary spritemap used for drawing the 'your sanctuary location' sprites during the sound stone animation
+ * Original_Address: $(DOLLAR)B3EE
+ */
+__gshared SpriteMap soundStoneSpriteTilemap1;
+/** Temporary spritemap used for drawing the sound stone sprite during the sound stone animation
+ * Original_Address: $(DOLLAR)B3F3
+ */
+__gshared SpriteMap soundStoneSpriteTilemap2;
+/** X coordinate of the currently active 'manpu', aka emotion bubble
+ * Original_Address: $(DOLLAR)B3F8
+ */
+__gshared short activeManpuX;
+/** Y coordinate of the currently active 'manpu', aka emotion bubble
+ * Original_Address: $(DOLLAR)B3FA
+ */
+__gshared short activeManpuY;
+/** Buffer used for tile data during pathfinding
+ * Original_Address: $(DOLLAR)B3FC
+ */
+__gshared ubyte* pathMatrixBuffer;
+/** Number of rows in the pathfinding matrix
+ * Original_Address: $(DOLLAR)B400
+ */
+__gshared ushort pathMatrixRows;
+/** Number of columns in the pathfinding matrix
+ * Original_Address: $(DOLLAR)B402
+ */
+__gshared ushort pathMatrixCols;
+/** The width of the offscreen pathfinding area in tiles
+ * Original_Address: $(DOLLAR)B404
+ */
+__gshared ushort pathMatrixBorder;
+/** The full size of the pathfinding matrix (rows * cols)
+ * Original_Address: $(DOLLAR)B406
+ */
+__gshared ushort pathMatrixSize;
+/** Start address for the pathfinding temp buffer
+ * Original_Address: $(DOLLAR)B408
+ */
+__gshared ushort* pathSearchTempStart;
+/** End address for the pathfinding temp buffer
+ * Original_Address: $(DOLLAR)B40A
+ */
+__gshared ushort* pathSearchTempEnd;
+/** Pathfinding cursor A
+ * Original_Address: $(DOLLAR)B40C
+ */
+__gshared ushort* pathSearchTempA;
+/** Pathfinding cursor B
+ * Original_Address: $(DOLLAR)B40E
+ */
+__gshared ushort* pathSearchTempB;
+/** Pathfinder matrix offset increments for each cardinal (N/E/S/W) direction
+ * Original_Address: $(DOLLAR)B410
+ */
+__gshared short[4] pathCardinalOffset;
+/** Pathfinder matrix index increments for each cardinal direction
+ * Original_Address: $(DOLLAR)B418
+ */
+__gshared VecYX[4] pathCardinalIndex;
+/** Pathfinder matrix index increments for each ordinal (NE/SE/SW/NW) direction
+ * Original_Address: $(DOLLAR)B428
+ */
+__gshared VecYX[4] pathDiagonalIndex;
+/** Pathfinder heap start pointer
+ * Original_Address: $(DOLLAR)B438
+ */
+__gshared void* pathHeapStart;
+/** Pathfinder heap current pointer
+ * Original_Address: $(DOLLAR)B43A
+ */
+__gshared void* pathHeapCurrent;
+/** Pathfinder heap end pointer
+ * Original_Address: $(DOLLAR)B43C
+ */
+__gshared void* pathHeapEnd;
 
-__gshared ubyte unknown7EB49D; /// Original_Address: $(DOLLAR)B49D - Addressed specifically using long addressing, why??
-__gshared ubyte[3] unknown7EB49E; /// Original_Address: $(DOLLAR)B49E
-__gshared ubyte currentSaveSlot; /// Original_Address: $(DOLLAR)B4A1
-__gshared ubyte unknown7EB4A2; /// Original_Address: $(DOLLAR)B4A2
-
-__gshared ubyte* entityFadeStatesBuffer; /// Original_Address: $(DOLLAR)B4A4
-__gshared short entityFadeStatesLength; /// Original_Address: $(DOLLAR)B4A6
-__gshared short entityFadeEntity; /// Original_Address: $(DOLLAR)B4A8
-__gshared SpriteFadeState* entityFadeStates; /// Original_Address: $(DOLLAR)B4AA
-__gshared short townMapIconAnimationFrame; /// Original_Address: $(DOLLAR)B4AE
-__gshared short townMapPlayerIconAnimationFrame; /// Original_Address: $(DOLLAR)B4B0
-__gshared short framesUntilMapIconPaletteUpdate; /// Original_Address: $(DOLLAR)B4B2
-__gshared short waitForNamingScreenActionScript; /// Original_Address: $(DOLLAR)B4B4
-__gshared ubyte disabledTransitions; /// Original_Address: $(DOLLAR)B4B6
-__gshared ubyte nextYourSanctuaryLocationTileIndex; /// Original_Address: $(DOLLAR)B4B8
-__gshared ubyte totalYourSanctuaryLoadedTilesetTiles; /// Original_Address: $(DOLLAR)B4BA
-__gshared ubyte yourSanctuaryLoadedTilesetTiles; /// Original_Address: $(DOLLAR)B4BC
-__gshared ushort[8] loadedYourSanctuaryLocations; /// Original_Address: $(DOLLAR)B4BE
-__gshared ubyte unknown7EB4CE; /// Original_Address: $(DOLLAR)B4CE
-__gshared short unknown7EB4CF; /// Original_Address: $(DOLLAR)B4CF
-__gshared short unknown7EB4D1; /// Original_Address: $(DOLLAR)B4D1
-__gshared short unknown7EB4D3; /// Original_Address: $(DOLLAR)B4D3
-
-__gshared ushort creditsNextCreditPosition; /// Original_Address: $(DOLLAR)B4E3
-__gshared short creditsRowWipeThreshold; /// Original_Address: $(DOLLAR)B4E5 - Y position where top row gets cleared
-__gshared const(ubyte)* creditsSource; /// Original_Address: $(DOLLAR)B4E7
-__gshared FixedPoint1616 creditsScrollPosition; /// Original_Address: $(DOLLAR)B4EB
-__gshared short photographMapLoadingMode; /// Original_Address: $(DOLLAR)B4EF
-__gshared short currentPhotoDisplay; /// Original_Address: $(DOLLAR)B4F1
-__gshared short creditsDMAQueueEnd; /// Original_Address: $(DOLLAR)B4F3
-__gshared short creditsDMAQueueStart; /// Original_Address: $(DOLLAR)B4F5
-__gshared short creditsCurrentRow; /// Original_Address: $(DOLLAR)B4F7
-__gshared ubyte[24] creditsPlayerNameBuffer; /// Original_Address: $(DOLLAR)B4F9
-__gshared short[10] unknown7EB511; /// Original_Address: $(DOLLAR)B511
-__gshared ushort[10] deliveryTimers; /// Original_Address: $(DOLLAR)B525
-__gshared short piracyFlag; /// Original_Address: $(DOLLAR)B539
-__gshared ushort currentMusicTrack; /// Original_Address: $(DOLLAR)B53B
-__gshared short debugSoundMenuInitialBGM; /// Original_Address: $(DOLLAR)B545
-__gshared short unknown7EB547; /// Original_Address: $(DOLLAR)B547
-__gshared ushort enableAutoSectorMusicChanges; /// Original_Address: $(DOLLAR)B549
-__gshared ushort debugSoundMenuSelectedBGM; /// Original_Address: $(DOLLAR)B54B
-__gshared ushort debugSoundMenuSelectedSE; /// Original_Address: $(DOLLAR)B54D
-__gshared ushort debugSoundMenuSelectedEffect; /// Original_Address: $(DOLLAR)B54F
-__gshared ushort unknown7EB551; /// Original_Address: $(DOLLAR)B551
-__gshared ushort debugCursorEntity; /// Original_Address: $(DOLLAR)B553
-__gshared ushort debugMenuCursorPosition; /// Original_Address: $(DOLLAR)B555
-__gshared ushort debugMenuButtonPressed; /// Original_Address: $(DOLLAR)B557
-__gshared ushort debugModeNumber; /// Original_Address: $(DOLLAR)B559
-
-
-__gshared ushort unknown7EB55D; /// Original_Address: $(DOLLAR)B55D
-__gshared ushort viewAttributeMode; /// Original_Address: $(DOLLAR)B55F
-__gshared ushort debugStartPositionX; /// Original_Address: $(DOLLAR)B561
-__gshared ushort debugStartPositionY; /// Original_Address: $(DOLLAR)B563
-__gshared ushort debugViewCharacterSprite; /// Original_Address: $(DOLLAR)B565
-__gshared ushort replayModeActive; /// Original_Address: $(DOLLAR)B567
-__gshared ushort unknown7EB569; /// Original_Address: $(DOLLAR)B569
-__gshared ushort unknown7EB56B; /// Original_Address: $(DOLLAR)B56B
-__gshared ushort randABackup; /// Original_Address: $(DOLLAR)B56D
-__gshared ushort randBBackup; /// Original_Address: $(DOLLAR)B56F
-__gshared ushort frameCounterBackup; /// Original_Address: $(DOLLAR)B571
-__gshared ushort replayTransitionStyle; /// Original_Address: $(DOLLAR)B573
-__gshared ushort debugEnemiesEnabledFlag; /// Original_Address: $(DOLLAR)B575
-
-__gshared ubyte[0x800] animatedMapPaletteBuffer; /// Original_Address: $(DOLLAR)B800
-__gshared ubyte[0x2000] unknown7EC000; /// Original_Address: $(DOLLAR)C000
-
-__gshared ubyte[64][64] loadedCollisionTiles; /// Original_Address: $(DOLLAR)E000
-__gshared Unknown7EF000Stuff unknown7EF000; /// Original_Address: $(DOLLAR)F000
-__gshared ubyte[0x10000] buffer; /// Original_Address: $(DOLLAR)7F0000
+/** Allows text to overflow windows without messing with formatting too much
+ * Original_Address: $(DOLLAR)B49D
+ */
+__gshared ubyte allowTextOverflow;
+/** Flags marking whether or not each of the 3 save files are present. 1 if save is valid, 0 otherwise
+ * Original_Address: $(DOLLAR)B49E
+ */
+__gshared ubyte[3] saveFilesPresent;
+/** Which of the 3 save files is currently loaded
+ * Original_Address: $(DOLLAR)B4A1
+ */
+__gshared ubyte currentSaveSlot;
+/** Whether the last party member was dead or alive last frame. 1 if dead, 0 if alive
+ * Original_Address: $(DOLLAR)B4A2
+ */
+__gshared ubyte lastPartyMemberStatusLastCheck;
+/** Address of the buffer to allocate entity pixel fade buffers from
+ * Original_Address: $(DOLLAR)B4A4
+ */
+__gshared ubyte* entityFadeStatesBuffer;
+/** Number of entity fade states currently allocated
+ * Original_Address: $(DOLLAR)B4A6
+ */
+__gshared short entityFadeStatesLength;
+/** The ID of the active entity that is currently fading
+ * Original_Address: $(DOLLAR)B4A8
+ */
+__gshared short entityFadeEntity;
+/** Entity fade information for all currently-fading entities
+ * Original_Address: $(DOLLAR)B4AA
+ */
+__gshared SpriteFadeState* entityFadeStates;
+/** The current shared animation frame for all town map icons, except for the player icon
+ * Original_Address: $(DOLLAR)B4AE
+ */
+__gshared short townMapIconAnimationFrame;
+/** The current animation frame for the town map player icon
+ * Original_Address: $(DOLLAR)B4B0
+ */
+__gshared short townMapPlayerIconAnimationFrame;
+/** Number of frames left until the unused town map palette animation updates
+ * Original_Address: $(DOLLAR)B4B2
+ */
+__gshared short framesUntilMapIconPaletteUpdate;
+/** When non-zero, wait for the current naming screen entity animation to finish
+ * Original_Address: $(DOLLAR)B4B4
+ */
+__gshared short waitForNamingScreenActionScript;
+/** When set to a non-zero value, uses fades instead of door animations, disables item transformation, disables footstep sound effects and disables text palette reloading
+ * Original_Address: $(DOLLAR)B4B6
+ */
+__gshared ubyte disabledTransitions;
+/** The next available location in VRAM to load magicant sanctuary montage map tiles into
+ * Original_Address: $(DOLLAR)B4B8
+ */
+__gshared ubyte nextYourSanctuaryLocationTileIndex;
+/** Total number of map tiles loaded for the magicant sanctuary montage
+ * Original_Address: $(DOLLAR)B4BA
+ */
+__gshared ubyte totalYourSanctuaryLoadedTilesetTiles;
+/** Number of tiles copied into VRAM by the magicant sanctuary montage so far
+ * Original_Address: $(DOLLAR)B4BC
+ */
+__gshared ubyte yourSanctuaryLoadedTilesetTiles;
+/** A set of flags indicating which of the sanctuary locations have been loaded into memory so far. 1 if present, 0 if not
+ * Original_Address: $(DOLLAR)B4BE
+ */
+__gshared ushort[8] loadedYourSanctuaryLocations;
+/** When set to a non-zero value, always use the normal font when calculating the length of a string, regardless of text window state
+ * Original_Address: $(DOLLAR)B4CE
+ */
+__gshared ubyte forceNormalFontForLengthCalculation;
+/** Unknown. Set to 0 for cast scene, but never read
+ * Original_Address: $(DOLLAR)B4CF
+ */
+__gshared short unread7EB4CF;
+/** An offset to add to tiles in the cast sequence text background. Always zero
+ * Original_Address: $(DOLLAR)B4D1
+ */
+__gshared short castTileOffset;
+/** Number of frames for cast entities to sleep when created
+ * Original_Address: $(DOLLAR)B4D3
+ */
+__gshared short initialCastEntitySleepFrames;
+/** The next vertical position where rendering needs to be done during the credits
+ * Original_Address: $(DOLLAR)B4E3
+ */
+__gshared ushort creditsNextCreditPosition;
+/** Vertical position where top row gets cleared during the credits
+ * Original_Address: $(DOLLAR)B4E5
+ */
+__gshared short creditsRowWipeThreshold;
+/** The current position of the staff credits script
+ * Original_Address: $(DOLLAR)B4E7
+ */
+__gshared const(ubyte)* creditsSource;
+/** The current staff credits scroll position
+ * Original_Address: $(DOLLAR)B4EB
+ */
+__gshared FixedPoint1616 creditsScrollPosition;
+/** When non-zero, use a special map loading mode for the photographs in the credits
+ * Original_Address: $(DOLLAR)B4EF
+ */
+__gshared short photographMapLoadingMode;
+/** The ID of the photo currently onscreen. Zero if no photo has been loaded
+ * Original_Address: $(DOLLAR)B4F1
+ */
+__gshared short currentPhotoDisplay;
+/** The end position of the credits photo DMA ring buffer
+ * Original_Address: $(DOLLAR)B4F3
+ */
+__gshared short creditsDMAQueueEnd;
+/** The start position of the credits photo DMA ring buffer
+ * Original_Address: $(DOLLAR)B4F5
+ */
+__gshared short creditsDMAQueueStart;
+/** The screen row of the last rendered staff credit
+ * Original_Address: $(DOLLAR)B4F7
+ */
+__gshared short creditsCurrentRow;
+/** A buffer used for rendering the player name during the credits
+ * Original_Address: $(DOLLAR)B4F9
+ */
+__gshared ubyte[24] creditsPlayerNameBuffer;
+/** Number of failed delivery attempts made so far
+ * Original_Address: $(DOLLAR)B511
+ */
+__gshared short[10] deliveryAttempts;
+/** Number of frames until another delivery attempt is made
+ * Original_Address: $(DOLLAR)B525
+ */
+__gshared ushort[10] deliveryTimers;
+/** When non-zero, enable way-too-many-enemies mode
+ * Original_Address: $(DOLLAR)B539
+ */
+__gshared short piracyFlag;
+/** The current music track playing
+ * Original_Address: $(DOLLAR)B53B
+ */
+__gshared ushort currentMusicTrack;
+/** The music track that was playing when the sound debug menu was entered
+ * Original_Address: $(DOLLAR)B545
+ */
+__gshared short debugSoundMenuInitialBGM;
+/** A mask used for music sequence pack addresses
+ * Original_Address: $(DOLLAR)B547
+ */
+__gshared short sequencePackMask;
+/** When non-zero, music will change when crossing boundaries
+ * Original_Address: $(DOLLAR)B549
+ */
+__gshared ushort enableAutoSectorMusicChanges;
+/** The currently selected music in the sound debug menu
+ * Original_Address: $(DOLLAR)B54B
+ */
+__gshared ushort debugSoundMenuSelectedBGM;
+/** The currently selected sound effect in the sound debug menu
+ * Original_Address: $(DOLLAR)B54D
+ */
+__gshared ushort debugSoundMenuSelectedSE;
+/** The currently selected audio effect in the sound debug menu
+ * Original_Address: $(DOLLAR)B54F
+ */
+__gshared ushort debugSoundMenuSelectedEffect;
+/** Unknown. Never read, only set to 0 on debug menu initialization
+ * Original_Address: $(DOLLAR)B551
+ */
+__gshared ushort unread7EB551;
+/** The entity ID for the debug menu cursor
+ * Original_Address: $(DOLLAR)B553
+ */
+__gshared ushort debugCursorEntity;
+/** The current position of the debug menu cursor
+ * Original_Address: $(DOLLAR)B555
+ */
+__gshared ushort debugMenuCursorPosition;
+/** A mask of the B+A+start+L buttons pressed on the debug menu
+ * Original_Address: $(DOLLAR)B557
+ */
+__gshared ushort debugMenuButtonPressed;
+/** The ID of the debug menu mode selected
+ * Original_Address: $(DOLLAR)B559
+ */
+__gshared ushort debugModeNumber;
+/** Unknown. Never read, only set to 0 on debug menu initialization
+ * Original_Address: $(DOLLAR)B55D
+ */
+__gshared ushort unread7EB55D;
+/** The current 'View Attribute' mode. Determines what sort of overlays are being rendered
+ * Original_Address: $(DOLLAR)B55F
+ */
+__gshared ushort viewAttributeMode;
+/** Starting map position, X coordinate in debug mode
+ * Original_Address: $(DOLLAR)B561
+ */
+__gshared ushort debugStartPositionX;
+/** Starting map position, Y coordinate in debug mode
+ * Original_Address: $(DOLLAR)B563
+ */
+__gshared ushort debugStartPositionY;
+/** Current sprite being displayed in the View Character debug mode
+ * Original_Address: $(DOLLAR)B565
+ */
+__gshared ushort debugViewCharacterSprite;
+/** When set to 1, indicates that a demo is being replayed
+ * Original_Address: $(DOLLAR)B567
+ */
+__gshared ushort replayModeActive;
+/** Unknown. Only written to by the vestigial function EFEA23, never read
+ * Original_Address: $(DOLLAR)B569
+ */
+__gshared ushort unused7EB569;
+/** Unknown. Only written to by the vestigial function EFEA23, never read
+ * Original_Address: $(DOLLAR)B56B
+ */
+__gshared ushort unused7EB56B;
+/** Copy of half of the RNG state, used to backup and restore the RNG state during demo playback
+ * Original_Address: $(DOLLAR)B56D
+ */
+__gshared ushort randABackup;
+/** Copy of half of the RNG state, used to backup and restore the RNG state during demo playback
+ * Original_Address: $(DOLLAR)B56F
+ */
+__gshared ushort randBBackup;
+/** A copy of the frame counter, to be backed up and restored by demo playback
+ * Original_Address: $(DOLLAR)B571
+ */
+__gshared ushort frameCounterBackup;
+/** A transition style to use for the start of a demo
+ * Original_Address: $(DOLLAR)B573
+ */
+__gshared ushort replayTransitionStyle;
+/** When non-zero, allows enemies to spawn during debug mode
+ * Original_Address: $(DOLLAR)B575
+ */
+__gshared ushort debugEnemiesEnabledFlag;
+/** Buffer holding the entire loaded animated map palette
+ * Original_Address: $(DOLLAR)B800
+ */
+__gshared ubyte[0x800] animatedMapPaletteBuffer;
+/** Buffer holding the animated tileset tile data
+ * Original_Address: $(DOLLAR)C000
+ */
+__gshared ubyte[0x2000] animatedTilesetBuffer;
+/** The collision tiles for the currently loaded 512x512 portion of the map
+ * Original_Address: $(DOLLAR)E000
+ */
+__gshared ubyte[64][64] loadedCollisionTiles;
+/** The currently-loaded set of 4x4 map blocks
+ * Original_Address: $(DOLLAR)F000
+ */
+__gshared ushort[16][16] loadedMapBlocks;
+/** The current pathfinding context
+ * Original_Address: $(DOLLAR)F200
+ */
+__gshared PathCtx pathfindingState;
+/** A buffer used to hold temporary pathfinding data
+ * Original_Address: $(DOLLAR)F400
+ */
+__gshared ubyte[0xC00] pathfindingBuffer;
+/** Tile offsets used by the sanctuary montage
+ * Original_Address: $(DOLLAR)F000
+ */
+__gshared ushort[0x400] yourSanctuaryLocationTileOffsets;
+/** Buffer used to hold large bits of temporary data, such as decompressed graphics
+ * Original_Address: $(DOLLAR)7F0000
+ */
+__gshared ubyte[0x10000] buffer;
+/// convenience function for accessing the target palette during a palette fade
 ref ushort[0x80] paletteAnimTargetPalette() { return (cast(ushort*)&buffer[0x7800])[0 .. 0x80]; }
+/// convenience function for accessing the red slope during a palette fade
 ref ushort[0x80] paletteAnimRedSlope() { return (cast(ushort*)&buffer[0x7900])[0 .. 0x80]; }
+/// convenience function for accessing the green slope during a palette fade
 ref ushort[0x80] paletteAnimGreenSlope() { return (cast(ushort*)&buffer[0x7A00])[0 .. 0x80]; }
+/// convenience function for accessing the blue slope during a palette fade
 ref ushort[0x80] paletteAnimBlueSlope() { return (cast(ushort*)&buffer[0x7B00])[0 .. 0x80]; }
+/// convenience function for accessing the accumulated red during a palette fade
 ref ushort[0x80] paletteAnimRedAccum() { return (cast(ushort*)&buffer[0x7C00])[0 .. 0x80]; }
+/// convenience function for accessing the accumulated green during a palette fade
 ref ushort[0x80] paletteAnimGreenAccum() { return (cast(ushort*)&buffer[0x7D00])[0 .. 0x80]; }
+/// convenience function for accessing the accumulated blue during a palette fade
 ref ushort[0x80] paletteAnimBlueAccum() { return (cast(ushort*)&buffer[0x7E00])[0 .. 0x80]; }
-__gshared ushort[0x3C00] tileArrangementBuffer; /// Original_Address: $(DOLLAR)7F8000
-__gshared const(ubyte[4][4])*[0x400] tileCollisionBuffer; /// Original_Address: $(DOLLAR)7FF800
+/** The currently-loaded tile arrangements for each of the map blocks
+ * Original_Address: $(DOLLAR)7F8000
+ */
+__gshared ushort[0x3C00] tileArrangementBuffer;
+/** The currently-loaded tile collision data for each of the map blocks
+ * Original_Address: $(DOLLAR)7FF800
+ */
+__gshared const(ubyte[4][4])*[0x400] tileCollisionBuffer;
 
-__gshared ubyte[0x8000] introBG2Buffer; /// Original_Address: $(DOLLAR)8000 - this seems to overlap with other stuff...?
+/** A buffer used for the BG2 layer tilemap during the intro. Original version seems to overlap with other data in an unusual way
+ * Original_Address: $(DOLLAR)8000
+ */
+__gshared ubyte[0x8000] introBG2Buffer;
 
 
 // Actionscript stuff. This was originally assembly and relied on some unusual direct page manipulation, which cannot be reproduced exactly
 
-__gshared ushort actionScriptVar80; /// Original_Address: $(DOLLAR)80
-
-__gshared ActionLoopCallState* actionScriptVar84; /// Original_Address: $(DOLLAR)84
-__gshared ushort actionScriptVar86; /// Original_Address: $(DOLLAR)86
-__gshared ushort actionScriptVar88; /// Original_Address: $(DOLLAR)88
-__gshared ushort currentEntityScriptOffset; /// Original_Address: $(DOLLAR)8A
-__gshared const(SpriteMap)* actionScriptVar8C; /// Original_Address: $(DOLLAR)8C
-__gshared const(ubyte)* actionScriptVar8CScript; /// Original_Address: $(DOLLAR)8C
-__gshared ushort* actionScriptVar8CMemory; /// Original_Address: $(DOLLAR)8C
-__gshared ubyte actionScriptVar8E; /// Original_Address: $(DOLLAR)8E
-
-__gshared short actionScriptVar90; /// Original_Address: $(DOLLAR)90
-
-__gshared const(ubyte)* actionScriptVar92; /// Original_Address: $(DOLLAR)92
-
-__gshared const(ubyte)* actionScriptVar94; /// Original_Address: $(DOLLAR)94
+/** Current offset into the executing actionscript. Always zero, script pointer is adjusted directly instead
+ * Original_Address: $(DOLLAR)80
+ */
+__gshared ushort actionScriptScriptOffset;
+/** Stack for the executing actionscript. Contains return addresses and loop counters
+ * Original_Address: $(DOLLAR)84
+ */
+__gshared ActionLoopCallState* actionScriptStack;
+/** Unknown. Set to zero, never read
+ * Original_Address: $(DOLLAR)86
+ */
+__gshared ushort unread86;
+/** Similar to currentEntityOffset, but set for actionscript callbacks as well
+ * Original_Address: $(DOLLAR)88
+ */
+__gshared ushort currentActiveEntityOffset;
+/** The current offset (ID * 2) for the currently executing actionscript, used for faster indexing of the script tables
+ * Original_Address: $(DOLLAR)8A
+ */
+__gshared ushort currentEntityScriptOffset;
+/** The current spritemap being manipulated by the active actionscript
+ * Original_Address: $(DOLLAR)8C
+ */
+__gshared const(SpriteMap)* actionScriptSpritemap;
+/** Temporary variable used for memory manipulation
+ * Original_Address: $(DOLLAR)8C
+ */
+__gshared ushort* actionScriptVar8CMemory;
+/** Spritemap bank to go with actionScriptSpritemap
+ * Original_Address: $(DOLLAR)8E
+ */
+__gshared ubyte actionScriptSpritemapBank;
+/** Not a real global variable
+ * Original_Address: $(DOLLAR)90
+ */
+__gshared short actionScriptVar90;
+/** Destination for jump loops
+ * Original_Address: $(DOLLAR)92
+ */
+__gshared const(ubyte)* actionScriptJumpDestination;
+/** The most recently-read actionscript offset
+ * Original_Address: $(DOLLAR)94
+ */
+__gshared const(ubyte)* actionScriptLastRead;
 
 // Other hardware stuff
 
-version(savememory) __gshared SRAM sram; /// Original_Address: $(DOLLAR)306000
-__gshared SaveDataReplay replaySRAM; /// Original_Address: $(DOLLAR)316000
-__gshared DemoEntry[0] sram3; /// Original_Address: $(DOLLAR)326000
+version(savememory) {
+	/** Save memory
+	 * Original_Address: $(DOLLAR)306000
+	 */
+	__gshared SRAM sram;
+}
+/** Reserved save file for replay data
+ * Original_Address: $(DOLLAR)316000
+ */
+__gshared SaveDataReplay replaySRAM;
+/** The demo data currently held in SRAM
+ * Original_Address: $(DOLLAR)326000
+ */
+__gshared DemoEntry[0] sram3;
 
 // non-SNES stuff
 /// Whether ROM data is loaded (for testing)
@@ -3050,4 +3393,5 @@ bool romDataLoaded;
 /// Extra entity data
 EntityExtra[maxEntities] entityExtra;
 
+/// Whether or not actionscript execution is paused
 bool breakActionscript;

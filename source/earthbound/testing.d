@@ -25,7 +25,6 @@ void initializeForTesting() {
 
 	currentHeapAddress = &heap[0][0];
 	heapBaseAddress = &heap[0][0];
-	unknown7E2402 = -1;
 	randA = 0x1234;
 	randB = 0x5678;
 	nextFrameBufferID = 1;
