@@ -7440,10 +7440,10 @@ void unknownC4E7AE() {
 
 /// $C4EA9C
 void unknownC4EA9C(short arg1, short arg2, short arg3) {
-	ushort* x06 = cast(ushort*)&buffer[0x4000 + arg3];
+	ushort* x06 = cast(ushort*)&buffer[0x4000 + arg3 * 2];
 	while (arg2-- != 0) {
 		x06[0] = cast(short)(unknown7EB4D1 + ((arg1 & 0x3F0) * 2) + (arg1 & 0xF));
-		x06[0x40] = cast(short)(x06[0] + 0x10);
+		x06[0x20] = cast(short)(x06[0] + 0x10);
 		x06++;
 		arg1++;
 	}
@@ -7452,7 +7452,7 @@ void unknownC4EA9C(short arg1, short arg2, short arg3) {
 /// $C4EB04
 void unknownC4EB04(short arg1, short arg2, short arg3) {
 	short x14 = (bg3YPosition / 8 + arg2) & 0x1F;
-	short x04 = cast(short)((arg2 * 32) + arg1 + 0x7C00 - (arg3 + 1) / 2);
+	short x04 = cast(short)((x14 * 32) + arg1 + 0x7C00 - (arg3 + 1) / 2);
 	copyToVRAM(0, cast(ushort)(arg3 * 2), x04, &buffer[0x4000 + arg1 * 2]);
 	short x12;
 	if (x14 != 0x1F) {
@@ -7466,7 +7466,7 @@ void unknownC4EB04(short arg1, short arg2, short arg3) {
 /// $C4EBAD
 void unknownC4EBAD(short arg1, short arg2, short arg3) {
 	unknownC4EA9C(castSequenceFormatting[arg1].unknown0, castSequenceFormatting[arg1].unknown2, arg2);
-	unknownC4EB04(arg2, arg3, castSequenceFormatting[arg1].unknown0);
+	unknownC4EB04(arg2, arg3, castSequenceFormatting[arg1].unknown2);
 }
 
 /// $C4EC6E
