@@ -162,6 +162,34 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="backupMenuSelection" class="public" href="../earthbound/bank2F/backupMenuSelection.html">backupMenuSelection</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$EF016F
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="bubbleMonkeyInitialize" class="public" href="../earthbound/bank2F/bubbleMonkeyInitialize.html">bubbleMonkeyInitialize</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Initializes bubble monkey movement with half a second until the next change
+ EF027D
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="bubbleMonkeyTick" class="public" href="../earthbound/bank2F/bubbleMonkeyTick.html">bubbleMonkeyTick</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Runs a single tick of bubble monkey movement
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="calcSaveBlockAddChecksum" class="public" href="../earthbound/bank2F/calcSaveBlockAddChecksum.html">calcSaveBlockAddChecksum</a><span class="tableEntryAnnotation">(id)</span>
 							</code>
 						</td>
@@ -220,6 +248,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$EF0B9E
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="clearTextTileAttributes" class="public" href="../earthbound/bank2F/clearTextTileAttributes.html">clearTextTileAttributes</a><span class="tableEntryAnnotation">(buffer, width, attributes)</span>
+							</code>
+						</td>
+						<td>Clears tile attributes for an 8 pixel wide chunk of text. This assumes that the font used is two tiles high
 </td>
 					</tr>
 					<tr>
@@ -369,6 +406,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="enableHalfHPMeterSpeed" class="public" href="../earthbound/bank2F/enableHalfHPMeterSpeed.html">enableHalfHPMeterSpeed</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>Sets the HP meter to half-speed mode
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="endReplay" class="public" href="../earthbound/bank2F/endReplay.html">endReplay</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
@@ -513,10 +559,19 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="pauseMusic" class="public" href="../earthbound/bank2F/pauseMusic.html">pauseMusic</a><span class="tableEntryAnnotation">()</span>
+								<a id="pickNextBubbleMonkeyMovementMode" class="public" href="../earthbound/bank2F/pickNextBubbleMonkeyMovementMode.html">pickNextBubbleMonkeyMovementMode</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
-						<td>$EF0256
+						<td>Picks a new movement mode for the bubble monkey
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="removeWindowFromScreen" class="public" href="../earthbound/bank2F/removeWindowFromScreen.html">removeWindowFromScreen</a><span class="tableEntryAnnotation">(window)</span>
+							</code>
+						</td>
+						<td>Wipe the specified window's tiles, trigger a redraw and advance the player's intangibility frames
 </td>
 					</tr>
 					<tr>
@@ -585,7 +640,7 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="resumeMusic" class="public" href="../earthbound/bank2F/resumeMusic.html">resumeMusic</a><span class="tableEntryAnnotation">()</span>
+								<a id="resumeHPPPRolling" class="public" href="../earthbound/bank2F/resumeHPPPRolling.html">resumeHPPPRolling</a><span class="tableEntryAnnotation">()</span>
 							</code>
 						</td>
 						<td>$EF026E
@@ -616,6 +671,15 @@ $('#symbolSearchPane').show();</script>
 							</code>
 						</td>
 						<td>$EFE771
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
+								<a id="setTextTileAttributes" class="public" href="../earthbound/bank2F/setTextTileAttributes.html">setTextTileAttributes</a><span class="tableEntryAnnotation">(buffer, width, attributes)</span>
+							</code>
+						</td>
+						<td>Sets tile attributes for an 8 pixel wide chunk of text. This assumes that the font used is two tiles high
 </td>
 					</tr>
 					<tr>
@@ -684,6 +748,15 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
+								<a id="stopHPPPRolling" class="public" href="../earthbound/bank2F/stopHPPPRolling.html">stopHPPPRolling</a><span class="tableEntryAnnotation">()</span>
+							</code>
+						</td>
+						<td>$EF0256
+</td>
+					</tr>
+					<tr>
+						<td>
+							<code>
 								<a id="storePersistentReplayState" class="public" href="../earthbound/bank2F/storePersistentReplayState.html">storePersistentReplayState</a><span class="tableEntryAnnotation">(style)</span>
 							</code>
 						</td>
@@ -693,82 +766,10 @@ $('#symbolSearchPane').show();</script>
 					<tr>
 						<td>
 							<code>
-								<a id="unknownEF00BB" class="public" href="../earthbound/bank2F/unknownEF00BB.html">unknownEF00BB</a><span class="tableEntryAnnotation">(arg1, arg2, __param_2)</span>
-							</code>
-						</td>
-						<td>$EF00BB
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEF00E6" class="public" href="../earthbound/bank2F/unknownEF00E6.html">unknownEF00E6</a><span class="tableEntryAnnotation">(arg1, arg2, arg3)</span>
-							</code>
-						</td>
-						<td>$EF00E6
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEF0115" class="public" href="../earthbound/bank2F/unknownEF0115.html">unknownEF0115</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$EF0115 - Clear the focused window and do something unknown?
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEF016F" class="public" href="../earthbound/bank2F/unknownEF016F.html">unknownEF016F</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EF016F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
 								<a id="unknownEF01D2" class="public" href="../earthbound/bank2F/unknownEF01D2.html">unknownEF01D2</a><span class="tableEntryAnnotation">(arg1)</span>
 							</code>
 						</td>
 						<td>$EF01D2
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEF0262" class="public" href="../earthbound/bank2F/unknownEF0262.html">unknownEF0262</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EF0262
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEF027D" class="public" href="../earthbound/bank2F/unknownEF027D.html">unknownEF027D</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EF027D
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEF02C4" class="public" href="../earthbound/bank2F/unknownEF02C4.html">unknownEF02C4</a><span class="tableEntryAnnotation">(arg1)</span>
-							</code>
-						</td>
-						<td>$EF02C4
-</td>
-					</tr>
-					<tr>
-						<td>
-							<code>
-								<a id="unknownEF031E" class="public" href="../earthbound/bank2F/unknownEF031E.html">unknownEF031E</a><span class="tableEntryAnnotation">()</span>
-							</code>
-						</td>
-						<td>$EF031E
 </td>
 					</tr>
 					<tr>
@@ -884,8 +885,8 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
-							<a id="commandWindowText" class="public" href="../earthbound/bank2F/commandWindowText.html">
-								<code>commandWindowText</code>
+							<a id="commandMenuText" class="public" href="../earthbound/bank2F/commandMenuText.html">
+								<code>commandMenuText</code>
 							</a>
 						</td>
 						<td>
@@ -955,6 +956,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="mapDataAnimatedTilesets" class="public" href="../earthbound/bank2F/mapDataAnimatedTilesets.html">
+								<code>mapDataAnimatedTilesets</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
+						</td>
+						<td>$EF11CB
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="mapDataPerSectorTownMapData" class="public" href="../earthbound/bank2F/mapDataPerSectorTownMapData.html">
 								<code>mapDataPerSectorTownMapData</code>
 							</a>
@@ -963,18 +976,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/TownMapData.html"><span class="typ">TownMapData</span></a><span class="pun">[</span><span class="lit">32</span><span class="pun">]</span><span class="pun">[</span><span class="lit">80</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$EFA70F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="mapDataTileAnimationPointerTable" class="public" href="../earthbound/bank2F/mapDataTileAnimationPointerTable.html">
-								<code>mapDataTileAnimationPointerTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
-						</td>
-						<td>$EF11CB
 </td>
 					</tr>
 					<tr>
@@ -1003,6 +1004,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="mapDataTilesetAnimationPointerTable" class="public" href="../earthbound/bank2F/mapDataTilesetAnimationPointerTable.html">
+								<code>mapDataTilesetAnimationPointerTable</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/TilesetAnimation.html"><span class="typ">TilesetAnimation</span></a><span class="pun">[</span><span class="lit">20</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>$EF121B
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="mapDataTilesetPtrTable" class="public" href="../earthbound/bank2F/mapDataTilesetPtrTable.html">
 								<code>mapDataTilesetPtrTable</code>
 							</a>
@@ -1011,18 +1024,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[]</span><span class="pun">)</span><span class="pun">[]</span></code>
 						</td>
 						<td>$EF105B
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="mapDataWeirdTileAnimationPointerTable" class="public" href="../earthbound/bank2F/mapDataWeirdTileAnimationPointerTable.html">
-								<code>mapDataWeirdTileAnimationPointerTable</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><a href="../earthbound/commondefs/TilesetAnimation.html"><span class="typ">TilesetAnimation</span></a><span class="pun">[</span><span class="lit">20</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$EF121B
 </td>
 					</tr>
 					<tr>
@@ -1063,6 +1064,18 @@ $('#symbolSearchPane').show();</script>
 					</tr>
 					<tr>
 						<td>
+							<a id="sramSlotBitmasks" class="public" href="../earthbound/bank2F/sramSlotBitmasks.html">
+								<code>sramSlotBitmasks</code>
+							</a>
+						</td>
+						<td>
+							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
+						</td>
+						<td>Bitmasks to represent the three save slots as a single combined value
+</td>
+					</tr>
+					<tr>
+						<td>
 							<a id="statusWindowText" class="public" href="../earthbound/bank2F/statusWindowText.html">
 								<code>statusWindowText</code>
 							</a>
@@ -1095,18 +1108,6 @@ $('#symbolSearchPane').show();</script>
 							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ushort</span><span class="pun">[</span><span class="lit">6</span><span class="pun">]</span><span class="pun">)</span></code>
 						</td>
 						<td>$EFC50F
-</td>
-					</tr>
-					<tr>
-						<td>
-							<a id="unknownEF05A6" class="public" href="../earthbound/bank2F/unknownEF05A6.html">
-								<code>unknownEF05A6</code>
-							</a>
-						</td>
-						<td>
-							<code class="prettyprint lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">[</span><span class="lit">3</span><span class="pun">]</span><span class="pun">)</span></code>
-						</td>
-						<td>$EF05A6
 </td>
 					</tr>
 					<tr>

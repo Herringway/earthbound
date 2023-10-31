@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function setWindowMask</h1><p>$C0B047
+			<h1>Function setWindowMask</h1><p>Sets window masking registers WxxxSEL, TMW, TSW and WxxxLOG with presets
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -166,7 +166,17 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="layers">layers</td><td> Bitmask of masks to enable (see earthbound.commondefs.SwirlMask for values)</td></tr>
+<tr><td id="invert">invert</td><td> If 0, sets mode to affect the outside of the windows using OR logic, if 1, uses area inside of the windows with AND logic</td></tr>
+</table>
+</section>
+<section><h2>Original Address</h2>
+<p>C0B047
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

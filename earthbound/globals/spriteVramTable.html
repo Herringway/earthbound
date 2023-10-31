@@ -149,7 +149,8 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Variable spriteVramTable</h1><p>4A00
+			<h1>Variable spriteVramTable</h1><p>Keeps track of allocations in overworldSpriteMaps. Entries are 0 if unallocated, 0x80 | x otherwise.
+ Index corresponds with overworldSpriteOAMTileNumbers and overworldSpriteVRAMOffsets
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -160,7 +161,11 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Original Address</h2>
+<p>4A00
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

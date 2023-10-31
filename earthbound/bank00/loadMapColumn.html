@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function loadMapColumn</h1><p>$C00BDC
+			<h1>Function loadMapColumn</h1><p>Loads a column of map block data, starting from (x, y) to (x, y + 16), representing a 32x512 pixel area
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -166,7 +166,27 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="x">x</td><td> X coordinate in tiles</td></tr>
+<tr><td id="y">y</td><td> Y coordinate in tiles</td></tr>
+</table>
+</section>
+<section><h2>Mutates</h2>
+<p>loadedColumnsX = Block X coordinate of the column being loaded
+ 	loadedColumnsY = Block Y coordinate of the column being loaded
+	loadedMapBlocks = The IDs of the map blocks in the requested area
+</p>
+</section>
+<section><h2>See Also</h2>
+<p>loadMapBlock
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C00BDC
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

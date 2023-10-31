@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function autoHealing</h1><p>$C4A0CF
+			<h1>Function autoHealing</h1><p>Figure out which character is in greatest need of healing of a specific status effect
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -157,16 +157,33 @@ $('#symbolSearchPane').show();</script>
 			<span class="typ">short</span> <span class="pln">autoHealing</span>
 			<span class="pun">(</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg1</span><span class="pun">,</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">statusGroup</span><span class="pun">,</span>
 			<br/>
-			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">arg2</span>
+			&nbsp;&nbsp;<span class="typ">short</span> <span class="pln">status</span>
 			<br/>
 			<span class="pun">)</span><span class="pun">;</span>
 					</div>
 				</code>
 			</div>
-			
-			
+			<section><p>Finds the party member with the least amount of HP that isn't already being autohealed with the status effect in question
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="statusGroup">statusGroup</td><td> The group ID of the status effect to search for</td></tr>
+<tr><td id="status">status</td><td> The specific status effect being searched for</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>1-based party member ID of the party member who needs healing the most, or 0 if no appropriate party members found
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C4A0CF
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>

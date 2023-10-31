@@ -149,7 +149,7 @@ $('#symbolSearchPane').show();</script>
 			</ul>
 		</nav>
 		<div id="main-contents">
-			<h1>Function selectionMenu</h1><p>$C1196A - Handle menu selection on the focused window
+			<h1>Function selectionMenu</h1><p>Handle player input for text window menus until a choice is made
 </p>
 			<div class="prototype">
 				<code class="lang-d">
@@ -164,7 +164,20 @@ $('#symbolSearchPane').show();</script>
 				</code>
 			</div>
 			
-			
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="cancelable">cancelable</td><td> 1 if the player may exit the menu without making a selection, 0 otherwise</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>Either the userdata/index associated with a menu option or 0 if no choice was made
+</p>
+</section>
+<section><h2>Original Address</h2>
+<p>C1196A
+</p>
+</section>
+
 			<footer>
 				<table class="license-info">
 					<tr>
