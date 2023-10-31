@@ -7400,9 +7400,10 @@ void unknownC4E583(ubyte* arg1, short arg2, short arg3) {
 	}
 	unknownC4EEE1(arg2);
 	short x04 = cast(short)(arg3 * 8);
-	for (short i = 0; i < arg2; i++, x04 += 8) {
-		memcpy(&buffer[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16], &vwfBuffer[i][0], 16);
-		memcpy(&buffer[((arg3 & 0xF) + ((arg3 & 0x3F0) * 2)) * 16 + 256], &vwfBuffer[i][16], 16);
+	short x28 = arg3;
+	for (short i = 0; i < arg2; i++, x04 += 8, x28++) {
+		memcpy(&buffer[((x28 & 0xF) + ((x28 & 0x3F0) * 2)) * 16], &vwfBuffer[i][0], 16);
+		memcpy(&buffer[((x28 & 0xF) + ((x28 & 0x3F0) * 2)) * 16 + 256], &vwfBuffer[i][16], 16);
 	}
 }
 
