@@ -7494,7 +7494,7 @@ void unknownC4EC52(short arg1, short arg2, short arg3) {
 
 /// $C4ECAD
 short createEntityAtV01PlusBG3Y(short arg1, short arg2) {
-	newEntityVar0 = unknown7EB4D3 & 3;
+	newEntityVar0 = unknown7EB4D3++ & 3;
 	return createEntity(arg1, arg2, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
 }
 
