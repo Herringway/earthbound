@@ -1490,10 +1490,11 @@ alias UPDATE_MAP_PALETTE_ANIMATION = CALL!updateMapPaletteAnimation;
 alias C020F1 = CALL!unknownC020F1;
 alias C03DAA = CALL!unknownC03DAA;
 alias C04EF0 = CALL!unknownC04EF0;
-alias C05E76 = CALL!(unknownC05E76, ubyte, void function());
+alias C05E76 = CALL!unknownC05E76;
 alias C05E82 = CALL!unknownC05E82;
 alias C05ECE = CALL!unknownC05ECE;
 alias C06478 = CALL!unknownC06478;
+alias C064A6_WAIT = CALLEX!unknownC064A6;
 alias UNFREEZE_ENTITIES = CALL!unfreezeEntities;
 alias C09E71 = CALL!(unknownC09E71, ActionScript);
 alias BACKUP_ENTITY_CALLBACK_FLAGS_AND_DISABLE = CALL!backupEntityCallbackFlagsAndDisable;
@@ -6630,7 +6631,8 @@ actionScriptIntoNight = [
 ].join();
 unknownC3A262 = [
 	CLEAR_CURRENT_ENTITY_COLLISION(),
-	C05E76(241, &unknownC064A6),
+	C05E76(),
+	C064A6_WAIT(1),
 	SHORTJUMP(&unknownC3A262[1 + 1 * (const(void)*).sizeof]),
 ].join();
 unknownC343AE = [
