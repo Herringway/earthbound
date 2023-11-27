@@ -8515,8 +8515,11 @@ void unknownC2FEF9(short type) {
 	preparePaletteUpload(PaletteUpload.halfSecond);
 }
 
-/// $C2FF9A
-short unknownC2FF9A() {
+/** ActionScript function - Tests if player is in a big area, like the Lost Underworld
+ * Returns: 1 if in big area, 0 otherwise
+ * Original_Address: $(DOLLAR)C2FF9A
+ */
+short actionScriptTestInBigArea() {
 	if ((loadSectorAttributes(gameState.leaderX.integer, gameState.leaderY.integer) & 7) >= SpecialGameState.useMiniSprites) {
 		return 1;
 	}

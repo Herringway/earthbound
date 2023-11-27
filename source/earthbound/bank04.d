@@ -851,129 +851,133 @@ void enableLetterboxHDMA(short channel) {
 }
 
 /// $C42A1F
-immutable short[17] unknownC42A1F = [
-	EntitySize._8x16: 0x0008,
-	EntitySize._16x16: 0x0008,
-	EntitySize._24x16: 0x000C,
-	EntitySize._32x16: 0x0010,
-	EntitySize._48x16: 0x0018,
-	EntitySize._16x24: 0x0008,
-	EntitySize._24x24: 0x000C,
-	EntitySize._16x32: 0x0008,
-	EntitySize._32x24: 0x0010,
-	EntitySize._48x32: 0x0018,
-	EntitySize._24x48: 0x000C,
-	EntitySize._16x48: 0x0008,
-	EntitySize._32x48: 0x0010,
-	EntitySize._48x48: 0x0018,
-	EntitySize._64x48: 0x0020,
-	EntitySize._64x64: 0x0020,
-	EntitySize._64x80: 0x0020,
+immutable short[17] collisionWidths = [
+	EntitySize._8x16: 8,
+	EntitySize._16x16: 8,
+	EntitySize._24x16: 12,
+	EntitySize._32x16: 16,
+	EntitySize._48x16: 24,
+	EntitySize._16x24: 8,
+	EntitySize._24x24: 12,
+	EntitySize._16x32: 8,
+	EntitySize._32x24: 16,
+	EntitySize._48x32: 24,
+	EntitySize._24x48: 12,
+	EntitySize._16x48: 8,
+	EntitySize._32x48: 16,
+	EntitySize._48x48: 24,
+	EntitySize._64x48: 32,
+	EntitySize._64x64: 32,
+	EntitySize._64x80: 32,
 ];
 
-/// $C42A41
-immutable short[17] unknownC42A41 = [
-	EntitySize._8x16: 0x0008,
-	EntitySize._16x16: 0x0008,
-	EntitySize._24x16: 0x0008,
-	EntitySize._32x16: 0x0008,
-	EntitySize._48x16: 0x0008,
-	EntitySize._16x24: 0x0018,
-	EntitySize._24x24: 0x0018,
-	EntitySize._16x32: 0x0018,
-	EntitySize._32x24: 0x0018,
-	EntitySize._48x32: 0x0018,
-	EntitySize._24x48: 0x0020,
-	EntitySize._16x48: 0x0028,
-	EntitySize._32x48: 0x0028,
-	EntitySize._48x48: 0x0028,
-	EntitySize._64x48: 0x0028,
-	EntitySize._64x64: 0x0038,
-	EntitySize._64x80: 0x0048,
+/** Map collision "heights", that are subtracted from the Y coordinate of an entity and added to collisionHeights2 to obtain the top of a hitbox. The Y coordinate is assumed to be at the entity's centre
+ * Original_Address: $(DOLLAR)C42A41
+ */
+immutable short[17] collisionHeights1 = [
+	EntitySize._8x16: 8,
+	EntitySize._16x16: 8,
+	EntitySize._24x16: 8,
+	EntitySize._32x16: 8,
+	EntitySize._48x16: 8,
+	EntitySize._16x24: 24,
+	EntitySize._24x24: 24,
+	EntitySize._16x32: 24,
+	EntitySize._32x24: 24,
+	EntitySize._48x32: 24,
+	EntitySize._24x48: 32,
+	EntitySize._16x48: 40,
+	EntitySize._32x48: 40,
+	EntitySize._48x48: 40,
+	EntitySize._64x48: 40,
+	EntitySize._64x64: 56,
+	EntitySize._64x80: 72,
 ];
 
 /// $C42A63
 immutable short[17] pixelWidths = [
-	EntitySize._8x16: 0x0010, // off by 8?
-	EntitySize._16x16: 0x0010,
-	EntitySize._24x16: 0x0020, // off by 8?
-	EntitySize._32x16: 0x0020,
-	EntitySize._48x16: 0x0030,
-	EntitySize._16x24: 0x0010,
-	EntitySize._24x24: 0x0018,
-	EntitySize._16x32: 0x0010,
-	EntitySize._32x24: 0x0020,
-	EntitySize._48x32: 0x0030,
-	EntitySize._24x48: 0x0018,
-	EntitySize._16x48: 0x0010,
-	EntitySize._32x48: 0x0020,
-	EntitySize._48x48: 0x0030,
-	EntitySize._64x48: 0x0040,
-	EntitySize._64x64: 0x0040,
-	EntitySize._64x80: 0x0040,
+	EntitySize._8x16: 16, // off by 8?
+	EntitySize._16x16: 16,
+	EntitySize._24x16: 32, // off by 8?
+	EntitySize._32x16: 32,
+	EntitySize._48x16: 48,
+	EntitySize._16x24: 16,
+	EntitySize._24x24: 24,
+	EntitySize._16x32: 16,
+	EntitySize._32x24: 32,
+	EntitySize._48x32: 48,
+	EntitySize._24x48: 24,
+	EntitySize._16x48: 16,
+	EntitySize._32x48: 32,
+	EntitySize._48x48: 48,
+	EntitySize._64x48: 64,
+	EntitySize._64x64: 64,
+	EntitySize._64x80: 64,
 ];
 
 /// $C42AA7
 immutable short[17] hitboxWidths = [
-	EntitySize._8x16: 0x0002,
-	EntitySize._16x16: 0x0000,
-	EntitySize._24x16: 0x0002,
-	EntitySize._32x16: 0x0004,
-	EntitySize._48x16: 0x0006,
-	EntitySize._16x24: 0x0002,
-	EntitySize._24x24: 0x0003,
-	EntitySize._16x32: 0x0002,
-	EntitySize._32x24: 0x0004,
-	EntitySize._48x32: 0x0006,
-	EntitySize._24x48: 0x0000,
-	EntitySize._16x48: 0x0002,
-	EntitySize._32x48: 0x0004,
-	EntitySize._48x48: 0x0006,
-	EntitySize._64x48: 0x0008,
-	EntitySize._64x64: 0x0000,
-	EntitySize._64x80: 0x0006,
+	EntitySize._8x16: 2,
+	EntitySize._16x16: 0,
+	EntitySize._24x16: 2,
+	EntitySize._32x16: 4,
+	EntitySize._48x16: 6,
+	EntitySize._16x24: 2,
+	EntitySize._24x24: 3,
+	EntitySize._16x32: 2,
+	EntitySize._32x24: 4,
+	EntitySize._48x32: 6,
+	EntitySize._24x48: 0,
+	EntitySize._16x48: 2,
+	EntitySize._32x48: 4,
+	EntitySize._48x48: 6,
+	EntitySize._64x48: 8,
+	EntitySize._64x64: 0,
+	EntitySize._64x80: 6,
 ];
 
-/// $C42AEB - Original meaning unknown.
-immutable short[17] unknownC42AEB = [
-	EntitySize._8x16: 0x000A,
-	EntitySize._16x16: 0x0000,
-	EntitySize._24x16: 0x000A,
-	EntitySize._32x16: 0x000A,
-	EntitySize._48x16: 0x000A,
-	EntitySize._16x24: 0x0018,
-	EntitySize._24x24: 0x0018,
-	EntitySize._16x32: 0x0018,
-	EntitySize._32x24: 0x0010,
-	EntitySize._48x32: 0x0010,
-	EntitySize._24x48: 0x0000,
-	EntitySize._16x48: 0x0028,
-	EntitySize._32x48: 0x0020,
-	EntitySize._48x48: 0x0020,
-	EntitySize._64x48: 0x0020,
-	EntitySize._64x64: 0x0000,
-	EntitySize._64x80: 0x0041,
+/** Map collision "heights", that are added to the Y coordinate of an entity after collisionHeights1 is subtracted to obtain the top of a hitbox. The Y coordinate is assumed to be at the entity's centre
+ * Original_Address: $(DOLLAR)C42AEB
+ */
+immutable short[17] collisionHeights2 = [
+	EntitySize._8x16: 10,
+	EntitySize._16x16: 0,
+	EntitySize._24x16: 10,
+	EntitySize._32x16: 10,
+	EntitySize._48x16: 10,
+	EntitySize._16x24: 24,
+	EntitySize._24x24: 24,
+	EntitySize._16x32: 24,
+	EntitySize._32x24: 16,
+	EntitySize._48x32: 16,
+	EntitySize._24x48: 0,
+	EntitySize._16x48: 40,
+	EntitySize._32x48: 32,
+	EntitySize._48x48: 32,
+	EntitySize._64x48: 32,
+	EntitySize._64x64: 0,
+	EntitySize._64x80: 65,
 ];
 
 /// $C42AC9
 immutable short[17] hitboxHeights = [
-	EntitySize._8x16: 0x0001,
-	EntitySize._16x16: 0x0000,
-	EntitySize._24x16: 0x0001,
-	EntitySize._32x16: 0x0001,
-	EntitySize._48x16: 0x0001,
-	EntitySize._16x24: 0x0001,
-	EntitySize._24x24: 0x0001,
-	EntitySize._16x32: 0x0001,
-	EntitySize._32x24: 0x0002,
-	EntitySize._48x32: 0x0002,
-	EntitySize._24x48: 0x0000,
-	EntitySize._16x48: 0x0001,
-	EntitySize._32x48: 0x0002,
-	EntitySize._48x48: 0x0002,
-	EntitySize._64x48: 0x0002,
-	EntitySize._64x64: 0x0000,
-	EntitySize._64x80: 0x0002,
+	EntitySize._8x16: 1,
+	EntitySize._16x16: 0,
+	EntitySize._24x16: 1,
+	EntitySize._32x16: 1,
+	EntitySize._48x16: 1,
+	EntitySize._16x24: 1,
+	EntitySize._24x24: 1,
+	EntitySize._16x32: 1,
+	EntitySize._32x24: 2,
+	EntitySize._48x32: 2,
+	EntitySize._24x48: 0,
+	EntitySize._16x48: 1,
+	EntitySize._32x48: 2,
+	EntitySize._48x48: 2,
+	EntitySize._64x48: 2,
+	EntitySize._64x64: 0,
+	EntitySize._64x80: 2,
 ];
 
 /// $C42B0D
@@ -5637,20 +5641,20 @@ void loadOverlaySprites() {
 void unknownC4B329(short arg1, short arg2) {
 	switch (arg1) {
 		case 1:
-			activeManpuY -= unknownC42A41[arg2] + 8;
+			activeManpuY -= collisionHeights1[arg2] + 8;
 			goto case;
 		case 4:
-			activeManpuX -= unknownC42A1F[arg2] - 8;
+			activeManpuX -= collisionWidths[arg2] - 8;
 			break;
 		case 2:
-			activeManpuY -= unknownC42A41[arg2] - 8;
+			activeManpuY -= collisionHeights1[arg2] - 8;
 			goto case;
 		case 5: break;
 		case 3:
-			activeManpuY -= unknownC42A41[arg2] + 8;
+			activeManpuY -= collisionHeights1[arg2] + 8;
 			goto case;
 		case 6:
-			activeManpuX -= unknownC42A1F[arg2] + 8;
+			activeManpuX -= collisionWidths[arg2] + 8;
 			break;
 		default: break;
 	}

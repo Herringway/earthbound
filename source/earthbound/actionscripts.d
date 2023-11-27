@@ -1437,7 +1437,7 @@ ubyte[] WRITE_TEMPVAR_WAITTIMER() {
 	return actionCommand(0x44);
 }
 
-alias UPDATE_SPRITE_DIRECTION = CALL!(actionScriptUpdateSpriteDirection, Direction, ubyte);
+alias UPDATE_SPRITE_DIRECTION = CALL!(actionScriptUpdateSpriteDirection, ubyte, ubyte);
 alias SET_MOVEMENT_SPEED = CALL!(actionScriptSetMovementSpeedConstant, ushort);
 alias SET_MOVEMENT_SPEED = CALL!setMovementSpeed;
 alias FADE_OUT = CALL!(actionScriptFadeOut, ubyte, ubyte);
@@ -1446,7 +1446,7 @@ alias FADE_OUT_WITH_MOSAIC = CALL!(actionScriptFadeOutWithMosaic, ushort, ushort
 alias JUMP_TO_LABEL_N_TIMES = CALL!(actionScriptJumpToLabelNTimes, ubyte, const(ubyte)*);
 alias SET_MOVEMENT_FROM_ANGLE = CALL!setMovementFromAngle;
 alias YIELD_TO_TEXT = CALL!actionScriptYieldToText;
-alias CREATE_ENTITY_AT_VAR01_PLUS_BG3Y = CALL!(actionScriptCreateEntityAtV01PlusBG3Y, OverworldSprite, ActionScript);
+alias CREATE_ENTITY_AT_VAR01_PLUS_BG3Y = CALL!(actionScriptCreateEntityAtV01PlusBG3Y, ushort, ushort);
 alias UPDATE_ENTITY_SPRITE_FRAME1 = CALL!updateEntitySpriteCurrentFrame1;
 alias UPDATE_ENTITY_SPRITE_FRAME0_FORCED = CALL!updateEntitySpriteCurrentFrame0Forced;
 alias UPDATE_ENTITY_SPRITE = CALL!updateEntitySpriteCurrent;
@@ -1454,7 +1454,7 @@ alias UPDATE_ENTITY_SPRITE_FRAME0 = CALL!updateEntitySpriteCurrentFrame0;
 alias GET_POSITION_OF_PARTY_MEMBER = CALL!(actionScriptGetPositionOfPartyMember, ubyte);
 alias PREPARE_NEW_ENTITY_AT_PARTY_LEADER = CALL!actionScriptPrepareNewEntityAtPartyLeader;
 alias PREPARE_NEW_ENTITY_AT_SELF = CALL!actionScriptPrepareNewEntityAtSelf;
-alias PREPARE_NEW_ENTITY = CALL!(actionScriptPrepareNewEntity, ushort, ushort, Direction);
+alias PREPARE_NEW_ENTITY = CALL!(actionScriptPrepareNewEntity, ushort, ushort, ubyte);
 alias PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION = CALL!(actionScriptPrepareNewEntityAtTeleportDestination, ubyte);
 alias CLEAR_CURRENT_ENTITY_COLLISION = CALL!clearCurrentEntityCollision;
 alias CLEAR_CURRENT_ENTITY_COLLISION2 = CALL!clearCurrentEntityCollision2;
@@ -1467,16 +1467,16 @@ alias ENABLE_YOUR_SANCTUARY_DISPLAY = CALL!enableYourSanctuaryDisplay;
 alias DISPLAY_YOUR_SANCTUARY_LOCATION = CALL!displayYourSanctuaryLocation;
 alias MOVE_PARTY_TO_LEADER_POSITION = CALL!movePartyToLeaderPosition;
 alias SET_DIRECTION = CALL!setDirection;
-alias SET_DIRECTION8 = CALL!(setDirection8, Direction);
-alias PLAY_SFX = CALL!(unknownC0A841, Sfx);
+alias SET_DIRECTION8 = CALL!(setDirection8, ubyte);
+alias PLAY_SFX = CALL!(unknownC0A841, ushort);
 alias C0A9B3 = CALL!(unknownC0A9B3, short, ushort, ushort);
 alias C0AAB5 = CALL!(unknownC0AAB5, short, ubyte, ubyte);
 alias QUEUE_INTERACTION_TYPE_8 = CALL!(actionScriptQueueInteraction8, string);
 alias C0A8A0 = CALL!(unknownC0A8A0, string);
 alias MOVE_TO_PARTY_MEMBER = CALL!(actionScriptMoveEntityToPartyMember, ubyte);
 alias MOVE_TO_SPRITE = CALL!(actionScriptMoveEntityToSprite, ushort);
-alias C0A857 = CALL!(unknownC0A857, EventFlag);
-alias LOAD_BATTLE_BG = CALL!(actionScriptLoadBattleBG, BattleBGLayer, BattleBGLayer);
+alias C0A857 = CALL!(unknownC0A857, ushort);
+alias LOAD_BATTLE_BG = CALL!(actionScriptLoadBattleBG, ushort, ushort);
 alias RAND = CALL!rand;
 alias RELOAD_MAP = CALL!reloadMap;
 alias RESTORE_MAP_RENDERING = CALL!restoreMapRendering;
@@ -1487,16 +1487,16 @@ alias INFLICT_SUNSTROKE_CHECK = CALL!inflictSunstrokeCheck;
 alias LOAD_KIRBY_SPRITE = CALL!loadKirbySprite;
 alias SRAM_CHECK_ROUTINE_CHECKSUM = CALL!sramCheckRoutineChecksum;
 alias UPDATE_MAP_PALETTE_ANIMATION = CALL!updateMapPaletteAnimation;
-alias C020F1 = CALL!unknownC020F1;
-alias C03DAA = CALL!unknownC03DAA;
-alias C04EF0 = CALL!unknownC04EF0;
+alias CLEANUP_SELF = CALL!activeScriptCleanupSelf;
+alias INITIALIZE_PARTY_MEMBER = CALL!actionScriptInitializePartyMember;
+alias UPDATE_PARTY_MEMBER_POSITION = CALL!actionScriptUpdatePartyMemberPosition;
 alias C05E76 = CALL!unknownC05E76;
 alias C05E82 = CALL!unknownC05E82;
 alias C05ECE = CALL!unknownC05ECE;
 alias C06478 = CALL!unknownC06478;
 alias C064A6_WAIT = CALLEX!unknownC064A6;
 alias UNFREEZE_ENTITIES = CALL!unfreezeEntities;
-alias C09E71 = CALL!(unknownC09E71, ActionScript);
+alias C09E71 = CALL!(unknownC09E71, ushort);
 alias BACKUP_ENTITY_CALLBACK_FLAGS_AND_DISABLE = CALL!backupEntityCallbackFlagsAndDisable;
 alias RESTORE_ENTITY_CALLBACK_FLAGS = CALL!restoreEntityCallbackFlags;
 alias PICK_RANDOM_ANGLE = CALL!actionScriptGenerateRandomAngle;
@@ -1510,13 +1510,13 @@ alias C0A938 = CALL!(unknownC0A938, ushort);
 alias C0A94E = CALL!(unknownC0A94E, ushort);
 alias C0A959 = CALL!(unknownC0A959, ushort);
 alias SET_BOUNDARIES = CALL!(actionScriptSetEntityBoundaries, ushort, ushort);
-alias SPAWN_ENTITY_AT_SELF = CALL!(actionScriptSpawnEntityAtSelf, OverworldSprite, ActionScript);
+alias SPAWN_ENTITY_AT_SELF = CALL!(actionScriptSpawnEntityAtSelf, ushort, ushort);
 alias C0A9CF = CALL!(unknownC0A9CF, ushort, ushort, ushort);
 alias C0A9EB = CALL!(unknownC0A9EB, ushort, ushort, ushort);
 alias C0AA23 = CALL!(unknownC0AA23, ushort, ushort, ushort);
 alias C0AA3F = CALL!(unknownC0AA3F, ubyte, ubyte, ubyte);
 alias C0A92D = CALL!(unknownC0A92D, ushort);
-alias GET_EVENT_FLAG = CALL!(actionScriptGetEventFlag, EventFlag);
+alias GET_EVENT_FLAG = CALL!(actionScriptGetEventFlag, ushort);
 alias SET_SURFACE_FLAGS = CALL!(setSurfaceFlags, ubyte);
 alias C0A673 = CALL!unknownC0A673;
 alias GET_MOVEMENT_SPEED = CALL!getMovementSpeed;
@@ -1568,7 +1568,7 @@ alias DRAW_BATTLE_FRAME = CALL!drawBattleFrame;
 alias OPEN_OVAL_WINDOW = CALL!openOvalWindow;
 alias CLOSE_OVAL_WINDOW = CALL!closeOvalWindow;
 alias C2EACF = CALL!unknownC2EACF;
-alias C2FF9A = CALL!unknownC2FF9A;
+alias TEST_IN_BIG_AREA = CALL!actionScriptTestInBigArea;
 alias C40015 = CALL!unknownC40015;
 alias C40023 = CALL!unknownC40023;
 alias C423DC = CALL!unknownC423DC;
@@ -2747,7 +2747,7 @@ shared static this() {
 		"actionScriptRunVStripeEffect": actionScriptRunVStripeEffect[],
 		"actionScriptRunDotsEffect": actionScriptRunDotsEffect[],
 	];
-actionScriptTracyAppear = [
+actionScriptTracyAppear = initializeScript(actionScriptTracyAppear.length,
 	SET_X(7464),
 	SET_Y(336),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -2761,8 +2761,8 @@ actionScriptTracyAppear = [
 	SET_VAR(ActionScriptVars.v7, 352),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-unknownC4152A = [
+);
+unknownC4152A = initializeScript(unknownC4152A.length,
 	SET_X(36),
 	SET_Y(21),
 	SET_ANIMATION(255),
@@ -2775,8 +2775,8 @@ unknownC4152A = [
 	SET_ANIMATION(255),
 	PAUSE(1),
 	SHORTJUMP(&unknownC4152A[21 + 3 * (const(void)*).sizeof]),
-].join();
-actionScript0 = [
+);
+actionScript0 = initializeScript(actionScript0.length,
 	SET_ANIMATION_POINTER(&unknownEFF5BB[0]),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	SET_DRAW_CALLBACK(&unknownC0A0FA),
@@ -2784,8 +2784,8 @@ actionScript0 = [
 	PAUSE(5),
 	LOAD_KIRBY_SPRITE(),
 	SHORTJUMP(&actionScript0[5 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptMaboroshiOut = [
+);
+actionScriptMaboroshiOut = initializeScript(actionScriptMaboroshiOut.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(1280),
 	SET_VAR(ActionScriptVars.v5, 5),
@@ -2814,8 +2814,8 @@ actionScriptMaboroshiOut = [
 	SET_VAR(ActionScriptVars.v7, 5312),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptProloguePokey3 = [
+);
+actionScriptProloguePokey3 = initializeScript(actionScriptProloguePokey3.length,
 	SET_X(2664),
 	SET_Y(888),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -2838,13 +2838,13 @@ actionScriptProloguePokey3 = [
 	YIELD_TO_TEXT(),
 	WRITE_WORD_WRAM(&showNPCFlag, 0),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript607 = [
+);
+actionScript607 = initializeScript(actionScript607.length,
 	GET_EVENT_FLAG(EventFlag.onetDoorClose),
 	JUMP_IF_FALSE(&actionScriptPeopleWalk1[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript601 = [
+);
+actionScript601 = initializeScript(actionScript601.length,
 	SET_DIRECTION8(Direction.down),
 	SET_ANIMATION(0),
 	SET_MOVEMENT_SPEED(512),
@@ -2855,8 +2855,8 @@ actionScript601 = [
 	START_TASK(&unknownC36D18[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScript31[12 + 5 * (const(void)*).sizeof]),
-].join();
-unknownC41900 = [
+);
+unknownC41900 = initializeScript(unknownC41900.length,
 	SET_X(20),
 	SET_Y(40),
 	SET_ANIMATION(255),
@@ -2875,8 +2875,8 @@ unknownC41900 = [
 	SET_ANIMATION(255),
 	PAUSE(141),
 	SHORTJUMP(&unknownC41900[10]),
-].join();
-actionScriptHoihoiK = [
+);
+actionScriptHoihoiK = initializeScript(actionScriptHoihoiK.length,
 	SET_X(5648),
 	SET_Y(9184),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -2889,8 +2889,8 @@ actionScriptHoihoiK = [
 	SET_VAR(ActionScriptVars.v7, 9136),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptComeBackPola = [
+);
+actionScriptComeBackPola = initializeScript(actionScriptComeBackPola.length,
 	SET_X(416),
 	SET_Y(7616),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -2932,8 +2932,8 @@ actionScriptComeBackPola = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript878 = [
+);
+actionScript878 = initializeScript(actionScript878.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoDinosor),
@@ -2947,8 +2947,8 @@ actionScript878 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_17"),
 	HALT(),
-].join();
-actionScriptMuMaboroshiOut = [
+);
+actionScriptMuMaboroshiOut = initializeScript(actionScriptMuMaboroshiOut.length,
 	SET_X(4960),
 	SET_Y(4128),
 	SET_Z(0),
@@ -2972,12 +2972,12 @@ actionScriptMuMaboroshiOut = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript515 = [
+);
+actionScript515 = initializeScript(actionScript515.length,
 	SHORTCALL(&unknownC40F4A[0]),
 	SHORTJUMP(&unknownC4163F[0]),
-].join();
-actionScript53 = [
+);
+actionScript53 = initializeScript(actionScript53.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
 	SET_VELOCITIES_ZERO(),
@@ -2987,8 +2987,8 @@ actionScript53 = [
 	SHORTCALL(&unknownC3AB8A[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_INSEKI_POKEY"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptVStage1Scr2 = [
+);
+actionScriptVStage1Scr2 = initializeScript(actionScriptVStage1Scr2.length,
 	SET_X(4736),
 	SET_Y(5744),
 	SET_MOVEMENT_SPEED(256),
@@ -2997,8 +2997,8 @@ actionScriptVStage1Scr2 = [
 	SHORTCALL(&unknownC31E2D[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_VSTAGE1_B"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptApproachContScript = [
+);
+actionScriptApproachContScript = initializeScript(actionScriptApproachContScript.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 9),
 	START_TASK(&unknownC3AFA3[0]),
@@ -3010,8 +3010,8 @@ actionScriptApproachContScript = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray2Bikini = [
+);
+actionScriptEvtPray2Bikini = initializeScript(actionScriptEvtPray2Bikini.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 10),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -3021,8 +3021,8 @@ actionScriptEvtPray2Bikini = [
 	SET_VAR(ActionScriptVars.v7, 2824),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptFollowToMichikoB = [
+);
+actionScriptFollowToMichikoB = initializeScript(actionScriptFollowToMichikoB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB37[0]),
 	SET_MOVEMENT_SPEED(256),
@@ -3034,8 +3034,8 @@ actionScriptFollowToMichikoB = [
 	C0A938(120),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptFollowToMichikoB[14 + 5 * (const(void)*).sizeof]),
-].join();
-actionScriptTalkPaulaJeff = [
+);
+actionScriptTalkPaulaJeff = initializeScript(actionScriptTalkPaulaJeff.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -3049,8 +3049,8 @@ actionScriptTalkPaulaJeff = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSumsFollowMuseumA = [
+);
+actionScriptSumsFollowMuseumA = initializeScript(actionScriptSumsFollowMuseumA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -3065,8 +3065,8 @@ actionScriptSumsFollowMuseumA = [
 	C0A92D(1033),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptSumsFollowMuseumA[18 + 7 * (const(void)*).sizeof]),
-].join();
-actionScriptFrsdFieldO = [
+);
+actionScriptFrsdFieldO = initializeScript(actionScriptFrsdFieldO.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(6),
@@ -3076,8 +3076,8 @@ actionScriptFrsdFieldO = [
 	YIELD_TO_TEXT(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptTonzuraBusChaous = [
+);
+actionScriptTonzuraBusChaous = initializeScript(actionScriptTonzuraBusChaous.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -3091,8 +3091,8 @@ actionScriptTonzuraBusChaous = [
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_TONZURABUS_CHAOUS"),
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	HALT(),
-].join();
-actionScriptFatherCallPaula = [
+);
+actionScriptFatherCallPaula = initializeScript(actionScriptFatherCallPaula.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 12),
 	START_TASK(&unknownC3AFA3[0]),
@@ -3119,13 +3119,13 @@ actionScriptFatherCallPaula = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptToFountainC = [
+);
+actionScriptToFountainC = initializeScript(actionScriptToFountainC.length,
 	SHORTCALL(&actionScriptToFountainCommon1[0]),
 	C0A92D(1305),
 	SHORTJUMP(&actionScriptToFountainCommon2[0]),
-].join();
-unknownC419BF = [
+);
+unknownC419BF = initializeScript(unknownC419BF.length,
 	SET_X(24),
 	SET_Y(32),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
@@ -3157,8 +3157,8 @@ unknownC419BF = [
 	UPDATE_SPRITE_DIRECTION(Direction.up, 1),
 	PAUSE(10),
 	SHORTJUMP(&unknownC419BF[60 + 10 * (const(void)*).sizeof]),
-].join();
-actionScriptMogiriToDown = [
+);
+actionScriptMogiriToDown = initializeScript(actionScriptMogiriToDown.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 18),
 	SET_MOVEMENT_SPEED(128),
@@ -3173,8 +3173,8 @@ actionScriptMogiriToDown = [
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPolaPolastarReturnR = [
+);
+actionScriptPolaPolastarReturnR = initializeScript(actionScriptPolaPolastarReturnR.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
@@ -3198,8 +3198,8 @@ actionScriptPolaPolastarReturnR = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript586 = [
+);
+actionScript586 = initializeScript(actionScript586.length,
 	GET_EVENT_FLAG(EventFlag.onetDoorClose),
 	JUMP_IF_TRUE(&actionScript35[0]),
 	SHORTCALL(&unknownC36A41[0]),
@@ -3210,13 +3210,13 @@ actionScript586 = [
 	SET_VAR(ActionScriptVars.v7, 1768),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-actionScriptPresentBoxFall3 = [
+);
+actionScriptPresentBoxFall3 = initializeScript(actionScriptPresentBoxFall3.length,
 	SET_X(464),
 	SET_Y(7624),
 	SHORTJUMP(&unknownC34D39[0]),
-].join();
-unknownC3A401 = [
+);
+unknownC3A401 = initializeScript(unknownC3A401.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	CLEAR_CURRENT_ENTITY_COLLISION(),
 	PAUSE(1),
@@ -3229,34 +3229,34 @@ unknownC3A401 = [
 	SET_VAR(ActionScriptVars.v0, 0),
 	START_TASK(&unknownC3A20E[0]),
 	SHORT_RETURN(),
-].join();
-unknownC3A426 = [
+);
+unknownC3A426 = initializeScript(unknownC3A426.length,
 	SHORTCALL(&unknownC3A401[0]),
 	START_TASK(&unknownC3A426Task[0]),
 	SHORT_RETURN(),
-].join();
-unknownC3A42D = [
+);
+unknownC3A42D = initializeScript(unknownC3A42D.length,
 	SHORTCALL(&unknownC3A401[0]),
 	START_TASK(&unknownC3A42DTask[0]),
 	SHORT_RETURN(),
-].join();
-unknownC3A426Task = [
+);
+unknownC3A426Task = initializeScript(unknownC3A426Task.length,
 	C06478(),
 	C05E82(),
 	C0D5B0(),
 	JUMP_IF_TRUE(&unknownC3A45C[0]),
 	PAUSE(1),
 	SHORTJUMP(&unknownC3A426Task[0]),
-].join();
-unknownC3A42DTask = [
+);
+unknownC3A42DTask = initializeScript(unknownC3A42DTask.length,
 	C06478(),
 	C05ECE(),
 	C0D5B0(),
 	JUMP_IF_TRUE(&unknownC3A45C[0]),
 	PAUSE(1),
 	SHORTJUMP(&unknownC3A42DTask[0]),
-].join();
-unknownC3A45C = [
+);
+unknownC3A45C = initializeScript(unknownC3A45C.length,
 	PAUSE(1),
 	C0D59B(),
 	JUMP_IF_TRUE(&unknownC3A45C[0]),
@@ -3272,17 +3272,17 @@ unknownC3A45C = [
 		PAUSE(5),
 	LOOP_END(),
 	SHORTJUMP(&unknownC3A47C[0]),
-].join();
-unknownC3A47C = [
-	C020F1(),
+);
+unknownC3A47C = initializeScript(unknownC3A47C.length,
+	CLEANUP_SELF(),
 	END(),
-].join();
-actionScriptMaboroshiOut2 = [
+);
+actionScriptMaboroshiOut2 = initializeScript(actionScriptMaboroshiOut2.length,
 	SHORTCALL(&actionScriptMaboroshiOut[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptToFountainCommon2 = [
+);
+actionScriptToFountainCommon2 = initializeScript(actionScriptToFountainCommon2.length,
 	ADD(ActionScriptVars.v7, -5),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SET_VELOCITIES_ZERO(),
@@ -3299,8 +3299,8 @@ actionScriptToFountainCommon2 = [
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript805 = [
+);
+actionScript805 = initializeScript(actionScript805.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -3314,17 +3314,17 @@ actionScript805 = [
 	PAUSE(168),
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.bubbleMonkey, ActionScript.unknown806),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript609 = [
+);
+actionScript609 = initializeScript(actionScript609.length,
 	GET_EVENT_FLAG(EventFlag.onetDoorClose),
 	JUMP_IF_FALSE(&actionScript16[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript599 = [
+);
+actionScript599 = initializeScript(actionScript599.length,
 	SET_MOVEMENT_SPEED(288),
 	SHORTJUMP(&actionScript600[3 + 1 * (const(void)*).sizeof]),
-].join();
-unknownC35FB6 = [
+);
+unknownC35FB6 = initializeScript(unknownC35FB6.length,
 	WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_VAR(ActionScriptVars.v3, 16),
@@ -3334,8 +3334,8 @@ unknownC35FB6 = [
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SHORT_RETURN(),
-].join();
-actionScriptLeaveButukarizaru = [
+);
+actionScriptLeaveButukarizaru = initializeScript(actionScriptLeaveButukarizaru.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1B7[0]),
@@ -3364,8 +3364,8 @@ actionScriptLeaveButukarizaru = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript588 = [
+);
+actionScript588 = initializeScript(actionScript588.length,
 	SHORTCALL(&unknownC36A41[0]),
 	SET_MOVEMENT_SPEED(544),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -3373,8 +3373,8 @@ actionScript588 = [
 	SET_VAR(ActionScriptVars.v7, 6360),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-actionScript868 = [
+);
+actionScript868 = initializeScript(actionScript868.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoTacy),
@@ -3388,12 +3388,12 @@ actionScript868 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_7"),
 	HALT(),
-].join();
-actionScript708 = [
+);
+actionScript708 = initializeScript(actionScript708.length,
 	GET_EVENT_FLAG(EventFlag.itemLetter1),
 	SHORTJUMP(&actionScript707_708_709_710_Common[0]),
-].join();
-actionScriptTitleScreen10 = [
+);
+actionScriptTitleScreen10 = initializeScript(actionScriptTitleScreen10.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(7),
 	SET_Y(100),
@@ -3405,8 +3405,8 @@ actionScriptTitleScreen10 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(201),
 	HALT(),
-].join();
-actionScriptMaboroshiIn = [
+);
+actionScriptMaboroshiIn = initializeScript(actionScriptMaboroshiIn.length,
 	SET_X(1728),
 	SET_Y(5312),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -3453,12 +3453,12 @@ actionScriptMaboroshiIn = [
 	SET_DIRECTION(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptCircleCultistNortheast = [
+);
+actionScriptCircleCultistNortheast = initializeScript(actionScriptCircleCultistNortheast.length,
 	SHORTCALL(&unknownC30C55[0]),
 	SHORTJUMP(&unknownC30C7F[0]),
-].join();
-actionScriptTStage3Gorgeous10 = [
+);
+actionScriptTStage3Gorgeous10 = initializeScript(actionScriptTStage3Gorgeous10.length,
 	SET_X(4752),
 	SET_Y(5728),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -3469,11 +3469,11 @@ actionScriptTStage3Gorgeous10 = [
 	SET_Y_VELOCITY(0),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript98 = [
+);
+actionScript98 = initializeScript(actionScript98.length,
 	SHORTJUMP(&actionScript94_95_98Common[0]),
-].join();
-actionScriptBusThrkDsrtIn = [
+);
+actionScriptBusThrkDsrtIn = initializeScript(actionScriptBusThrkDsrtIn.length,
 	SET_X(5272),
 	SET_Y(9016),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -3498,8 +3498,8 @@ actionScriptBusThrkDsrtIn = [
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScriptBusThrkDsrtIn[46 + 9 * (const(void)*).sizeof]),
-].join();
-actionScriptEvtPoolaaa = [
+);
+actionScriptEvtPoolaaa = initializeScript(actionScriptEvtPoolaaa.length,
 	SET_X(1224),
 	SET_Y(6560),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -3524,8 +3524,8 @@ actionScriptEvtPoolaaa = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(8),
 	SHORTJUMP(&actionScriptEvtPoolaaa[44 + 9 * (const(void)*).sizeof]),
-].join();
-unknownC41A7D = [
+);
+unknownC41A7D = initializeScript(unknownC41A7D.length,
 	SET_X(24),
 	SET_Y(32),
 	SET_ANIMATION(255),
@@ -3537,8 +3537,8 @@ unknownC41A7D = [
 	SET_ANIMATION(255),
 	PAUSE(5),
 	SHORTJUMP(&unknownC41A7D[10]),
-].join();
-actionScriptTStage3Lucky10 = [
+);
+actionScriptTStage3Lucky10 = initializeScript(actionScriptTStage3Lucky10.length,
 	SET_X(4720),
 	SET_Y(5728),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -3551,8 +3551,8 @@ actionScriptTStage3Lucky10 = [
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3AA82 = [
+);
+unknownC3AA82 = initializeScript(unknownC3AA82.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0D8[11 + 3 * (const(void)*).sizeof]),
@@ -3560,8 +3560,8 @@ unknownC3AA82 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(512),
 	SHORT_RETURN(),
-].join();
-actionScriptBusDsrtTunnelR = [
+);
+actionScriptBusDsrtTunnelR = initializeScript(actionScriptBusDsrtTunnelR.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -3571,8 +3571,8 @@ actionScriptBusDsrtTunnelR = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_BRDG_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_BRDG_R"),
 	HALT(),
-].join();
-actionScriptGorgeousFree2C = [
+);
+actionScriptGorgeousFree2C = initializeScript(actionScriptGorgeousFree2C.length,
 	SET_X(4592),
 	SET_Y(4968),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -3588,8 +3588,8 @@ actionScriptGorgeousFree2C = [
 	YIELD_TO_TEXT(),
 	SHORTCALL(&unknownC3C20F[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptChiteiQuake = [
+);
+actionScriptChiteiQuake = initializeScript(actionScriptChiteiQuake.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -3628,8 +3628,8 @@ actionScriptChiteiQuake = [
 	CLEAR_TICK_CALLBACK(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptChiteiQuakeTask = [
+);
+actionScriptChiteiQuakeTask = initializeScript(actionScriptChiteiQuakeTask.length,
 	LOOP(6),
 		SET_X_RELATIVE(3),
 		PAUSE(2),
@@ -3661,8 +3661,8 @@ actionScriptChiteiQuakeTask = [
 		PAUSE(2),
 	LOOP_END(),
 	END_TASK(),
-].join();
-actionScript883 = [
+);
+actionScript883 = initializeScript(actionScript883.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoStonehenge),
@@ -3676,8 +3676,8 @@ actionScript883 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_22"),
 	HALT(),
-].join();
-actionScript22 = [
+);
+actionScript22 = initializeScript(actionScript22.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -3712,15 +3712,15 @@ actionScript22 = [
 	SET_DIRECTION(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript22[32 + 20 * (const(void)*).sizeof]),
-].join();
-unknownC3BAD7 = [
+);
+unknownC3BAD7 = initializeScript(unknownC3BAD7.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SHORTCALL(&unknownC3BB5C[0]),
 	SHORTCALL(&unknownC3BB73[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_GHOST_WARP_THRK"),
 	HALT(),
-].join();
-actionScript595 = [
+);
+actionScript595 = initializeScript(actionScript595.length,
 	SHORTCALL(&unknownC36A41[0]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -3740,13 +3740,13 @@ actionScript595 = [
 	SET_VAR(ActionScriptVars.v7, 9432),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage1OK = [
+);
+actionScriptTStage1OK = initializeScript(actionScriptTStage1OK.length,
 	SET_X(6920),
 	SET_Y(8512),
 	SHORTJUMP(&actionScriptTStage1Thank[6]),
-].join();
-actionScriptUzu3TassiByeU = [
+);
+actionScriptUzu3TassiByeU = initializeScript(actionScriptUzu3TassiByeU.length,
 	MOVE_TO_SPRITE(OverworldSprite.tessie),
 	SET_Y_RELATIVE(16),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -3757,8 +3757,8 @@ actionScriptUzu3TassiByeU = [
 	SET_Y_RELATIVE(16),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptUzu3TassiByeU[12 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptTStage3Lucky1 = [
+);
+actionScriptTStage3Lucky1 = initializeScript(actionScriptTStage3Lucky1.length,
 	SET_X(4640),
 	SET_Y(5728),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -3893,8 +3893,8 @@ actionScriptTStage3Lucky1 = [
 	SET_Y_VELOCITY(-45),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPray7Motchy = [
+);
+actionScriptEvtPray7Motchy = initializeScript(actionScriptEvtPray7Motchy.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -3908,8 +3908,8 @@ actionScriptEvtPray7Motchy = [
 	SET_VAR(ActionScriptVars.v4, 20),
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 	HALT(),
-].join();
-actionScriptBunbunAppear = [
+);
+actionScriptBunbunAppear = initializeScript(actionScriptBunbunAppear.length,
 	SHORTCALL(&unknownC3AB26[0]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	MOVE_TO_SPRITE(OverworldSprite.meteor),
@@ -3930,14 +3930,14 @@ actionScriptBunbunAppear = [
 	END_LAST_TASK(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptBunbuun[0]),
-].join();
-actionScriptBunbunAppearTask = [
+);
+actionScriptBunbunAppearTask = initializeScript(actionScriptBunbunAppearTask.length,
 	SET_Z_VELOCITY(64),
 	PAUSE(64),
 	SET_Z_VELOCITY(0),
 	END_TASK(),
-].join();
-unknownC413D6 = [
+);
+unknownC413D6 = initializeScript(unknownC413D6.length,
 	SET_X(24),
 	SET_Y(42),
 	SET_ANIMATION(255),
@@ -3954,8 +3954,8 @@ unknownC413D6 = [
 	SET_ANIMATION(255),
 	PAUSE(180),
 	SHORTJUMP(&unknownC413D6[14]),
-].join();
-actionScriptPanningWinters1 = [
+);
+actionScriptPanningWinters1 = initializeScript(actionScriptPanningWinters1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -3973,15 +3973,15 @@ actionScriptPanningWinters1 = [
 	RUN_FLYOVER(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript819 = [
+);
+actionScript819 = initializeScript(actionScript819.length,
 	SHORTCALL(&unknownC35FCD[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptBusReturnTwsn = [
+);
+actionScriptBusReturnTwsn = initializeScript(actionScriptBusReturnTwsn.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -4007,8 +4007,8 @@ actionScriptBusReturnTwsn = [
 	PAUSE(140),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC30CAF = [
+);
+unknownC30CAF = initializeScript(unknownC30CAF.length,
 	PAUSE(60),
 	SET_VAR(ActionScriptVars.v6, 7648),
 	SET_VAR(ActionScriptVars.v7, 2408),
@@ -4017,8 +4017,8 @@ unknownC30CAF = [
 	SET_VAR(ActionScriptVars.v7, 2352),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&unknownC30CC7[0]),
-].join();
-actionScriptKnockDoor = [
+);
+actionScriptKnockDoor = initializeScript(actionScriptKnockDoor.length,
 	SET_X(7792),
 	SET_Y(344),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -4049,8 +4049,8 @@ actionScriptKnockDoor = [
 	LOOP_END(),
 	PAUSE(30),
 	SHORTJUMP(&actionScriptKnockDoor[37 + 12 * (const(void)*).sizeof + string.sizeof]),
-].join();
-actionScriptHoihoiG = [
+);
+actionScriptHoihoiG = initializeScript(actionScriptHoihoiG.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -4065,8 +4065,8 @@ actionScriptHoihoiG = [
 	SET_VAR(ActionScriptVars.v7, 8424),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3CC24 = [
+);
+unknownC3CC24 = initializeScript(unknownC3CC24.length,
 	SET_VAR(ActionScriptVars.v6, 5288),
 	SET_VAR(ActionScriptVars.v7, 8976),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
@@ -4083,8 +4083,8 @@ unknownC3CC24 = [
 	SET_VAR(ActionScriptVars.v7, 8448),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-actionScript872 = [
+);
+actionScript872 = initializeScript(actionScript872.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoOnsen),
@@ -4098,8 +4098,8 @@ actionScript872 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_11"),
 	HALT(),
-].join();
-actionScriptYunboBack = [
+);
+actionScriptYunboBack = initializeScript(actionScriptYunboBack.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_VELOCITIES_ZERO(),
 	SET_ANIMATION(0),
@@ -4110,8 +4110,8 @@ actionScriptYunboBack = [
 	SHORTCALL(&actionScriptMoveToLocationTypeB[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript786 = [
+);
+actionScript786 = initializeScript(actionScript786.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A26B),
 	PAUSE(8),
@@ -4119,8 +4119,8 @@ actionScript786 = [
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	C0778A_WAIT(1),
 	SHORTJUMP(&actionScript786[7 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptEvtEatMagicCake = [
+);
+actionScriptEvtEatMagicCake = initializeScript(actionScriptEvtEatMagicCake.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_VELOCITIES_ZERO(),
@@ -4137,8 +4137,8 @@ actionScriptEvtEatMagicCake = [
 	FADE_OUT_WITH_MOSAIC(1, 8, 0),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3A12E = [
+);
+unknownC3A12E = initializeScript(unknownC3A12E.length,
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	JUMP_IF_FALSE(&unknownC3A12E[27 + 7 * (const(void)*).sizeof]),
 	LOOP_TEMPVAR(),
@@ -4160,8 +4160,8 @@ unknownC3A12E = [
 	SHORTJUMP(&unknownC3A12E[0]),
 	PAUSE(1),
 	SHORTJUMP(&unknownC3A12E[0]),
-].join();
-actionScriptTStage3Lucky2 = [
+);
+actionScriptTStage3Lucky2 = initializeScript(actionScriptTStage3Lucky2.length,
 	SET_X(4744),
 	SET_Y(5728),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -4169,8 +4169,8 @@ actionScriptTStage3Lucky2 = [
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 	PAUSE(30),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2LuckyDance = [
+);
+actionScriptTStage2LuckyDance = initializeScript(actionScriptTStage2LuckyDance.length,
 	SET_X(4672),
 	SET_Y(5744),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -4197,8 +4197,8 @@ actionScriptTStage2LuckyDance = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	PAUSE(30),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3C90C = [
+);
+unknownC3C90C = initializeScript(unknownC3C90C.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z(-96),
@@ -4220,8 +4220,8 @@ unknownC3C90C = [
 	FADE_OUT(1, 1),
 	SHORTCALL(&unknownC3ABE0[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptBMonkeyRopeDown = [
+);
+actionScriptBMonkeyRopeDown = initializeScript(actionScriptBMonkeyRopeDown.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(4),
@@ -4230,21 +4230,21 @@ actionScriptBMonkeyRopeDown = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC34A61 = [
+);
+unknownC34A61 = initializeScript(unknownC34A61.length,
 	C0A959(1),
 	PAUSE(1),
 	SHORTJUMP(&unknownC34A61[0]),
-].join();
-actionScriptCop5E = [
+);
+actionScriptCop5E = initializeScript(actionScriptCop5E.length,
 	SET_VAR(ActionScriptVars.v6, 7560),
 	SET_VAR(ActionScriptVars.v7, 192),
 	SET_VAR(ActionScriptVars.v0, 7536),
 	SET_VAR(ActionScriptVars.v1, 192),
 	SHORTCALL(&actionScript228_229_230_231_232Common[0]),
 	HALT(),
-].join();
-actionScriptTassi1 = [
+);
+actionScriptTassi1 = initializeScript(actionScriptTassi1.length,
 	SET_X(600),
 	SET_Y(3488),
 	SET_Z(-64),
@@ -4333,8 +4333,8 @@ actionScriptTassi1 = [
 	YIELD_TO_TEXT(),
 	PAUSE(1),
 	HALT(),
-].join();
-actionScript833 = [
+);
+actionScript833 = initializeScript(actionScript833.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 12),
 	WRITE_WORD_TEMPVAR(Direction.left),
@@ -4348,8 +4348,8 @@ actionScript833 = [
 	WRITE_WORD_TEMPVAR(2),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptUzu3TassiByeL = [
+);
+actionScriptUzu3TassiByeL = initializeScript(actionScriptUzu3TassiByeL.length,
 	MOVE_TO_SPRITE(OverworldSprite.tessie),
 	SET_Y_RELATIVE(32),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -4360,8 +4360,8 @@ actionScriptUzu3TassiByeL = [
 	SET_Y_RELATIVE(32),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptUzu3TassiByeL[12 + 4 * (const(void)*).sizeof]),
-].join();
-actionScript13_14_15_16_17_Common = [
+);
+actionScript13_14_15_16_17_Common = initializeScript(actionScript13_14_15_16_17_Common.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A15E[0]),
@@ -4369,8 +4369,8 @@ actionScript13_14_15_16_17_Common = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(256),
 	SHORT_RETURN(),
-].join();
-actionScriptTBusTunnelThrkL = [
+);
+actionScriptTBusTunnelThrkL = initializeScript(actionScriptTBusTunnelThrkL.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -4414,16 +4414,16 @@ actionScriptTBusTunnelThrkL = [
 	PAUSE(140),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript597 = [
+);
+actionScript597 = initializeScript(actionScript597.length,
 	SHORTCALL(&unknownC3AA2B[0]),
 	START_TASK(&unknownC36D18[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(256),
 	C0CCCC(),
 	SHORTJUMP(&actionScript27[13 + 6 * (const(void)*).sizeof]),
-].join();
-actionScriptToBeContOvalClose = [
+);
+actionScriptToBeContOvalClose = initializeScript(actionScriptToBeContOvalClose.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	START_TASK(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
@@ -4437,12 +4437,12 @@ actionScriptToBeContOvalClose = [
 	JUMP_IF_TRUE(&actionScriptToBeContOvalClose[12 + 5 * (const(void)*).sizeof]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptToBeContOvalCloseTask = [
+);
+actionScriptToBeContOvalCloseTask = initializeScript(actionScriptToBeContOvalCloseTask.length,
 	PAUSE(125),
 	END_TASK(),
-].join();
-actionScriptCarpainterThunderhead = [
+);
+actionScriptCarpainterThunderhead = initializeScript(actionScriptCarpainterThunderhead.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	START_TASK(&actionScriptCarpainterThunderCommon[0]),
@@ -4470,23 +4470,23 @@ actionScriptCarpainterThunderhead = [
 	PAUSE(1),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptPresentBoxShadow3 = [
+);
+actionScriptPresentBoxShadow3 = initializeScript(actionScriptPresentBoxShadow3.length,
 	SET_X(464),
 	SET_Y(7624),
 	SHORTJUMP(&actionScriptPresentBoxShadow1[6]),
-].join();
-actionScriptEvtPray4GazeTony = [
+);
+actionScriptEvtPray4GazeTony = initializeScript(actionScriptEvtPray4GazeTony.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	C0C7DB(),
-].join();
-actionScriptTStage2SpotInitPlayer = [
+);
+actionScriptTStage2SpotInitPlayer = initializeScript(actionScriptTStage2SpotInitPlayer.length,
 	C4258C(),
 	SHORTJUMP(&actionScriptTStage2Player[0]),
-].join();
-actionScript851 = [
+);
+actionScript851 = initializeScript(actionScript851.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.right),
 	SET_DIRECTION(),
@@ -4500,8 +4500,8 @@ actionScript851 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript499_500_Common = [
+);
+actionScript499_500_Common = initializeScript(actionScript499_500_Common.length,
 	PAUSE(60),
 	DO_DELIVERY_COUNTDOWN(),
 	JUMP_IF_TRUE(&actionScript499_500_Common[0]),
@@ -4518,7 +4518,7 @@ actionScript499_500_Common = [
 	JUMP_IF_FALSE(&actionScript499_500_Common[15 + 9 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript499_500_Common[5 + 3 * (const(void)*).sizeof]),
 
-	C2FF9A(),
+	TEST_IN_BIG_AREA(),
 	JUMP_IF_TRUE(&actionScript499_500_Common[29 + 19 * (const(void)*).sizeof]),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
 	PREPARE_DELIVERY_ENTRANCE_PATH(),
@@ -4587,8 +4587,8 @@ actionScript499_500_Common = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	PAUSE(240),
 	SHORTJUMP(&actionScript499_500_Common[88 + 47 * (const(void)*).sizeof]),
-].join();
-actionScript870 = [
+);
+actionScript870 = initializeScript(actionScript870.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoHakaba),
@@ -4602,8 +4602,8 @@ actionScript870 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_9"),
 	HALT(),
-].join();
-actionScriptHoihoiB = [
+);
+actionScriptHoihoiB = initializeScript(actionScriptHoihoiB.length,
 	SET_X(6008),
 	SET_Y(8504),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -4617,8 +4617,8 @@ actionScriptHoihoiB = [
 	SET_VAR(ActionScriptVars.v7, 8680),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptKoya = [
+);
+actionScriptKoya = initializeScript(actionScriptKoya.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 7),
 	SET_MOVEMENT_SPEED(384),
@@ -4628,8 +4628,8 @@ actionScriptKoya = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage2GorgeousDance4 = [
+);
+actionScriptTStage2GorgeousDance4 = initializeScript(actionScriptTStage2GorgeousDance4.length,
 	SET_X(4704),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -4637,22 +4637,22 @@ actionScriptTStage2GorgeousDance4 = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	PAUSE(90),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript817 = [
+);
+actionScript817 = initializeScript(actionScript817.length,
 	SET_PRIORITY(3),
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript131 = [
+);
+actionScript131 = initializeScript(actionScript131.length,
 	SET_X(5512),
 	SET_Y(5864),
 	SHORTCALL(&unknownC3C35D[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtMonoHeliBoatman = [
+);
+actionScriptEvtMonoHeliBoatman = initializeScript(actionScriptEvtMonoHeliBoatman.length,
 	MOVE_TO_SPRITE(OverworldSprite.helicopter),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -4704,8 +4704,8 @@ actionScriptEvtMonoHeliBoatman = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript18 = [
+);
+actionScript18 = initializeScript(actionScript18.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
@@ -4714,8 +4714,8 @@ actionScript18 = [
 	SET_MOVEMENT_SPEED(256),
 	SET_BOUNDARIES(8, 8),
 	SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
-].join();
-unknownC3BB73 = [
+);
+unknownC3BB73 = initializeScript(unknownC3BB73.length,
 	SET_VAR(ActionScriptVars.v5, 18),
 	GET_POSITION_OF_PARTY_MEMBER(255),
 	SET_MOVEMENT_SPEED(384),
@@ -4725,8 +4725,8 @@ unknownC3BB73 = [
 	C0A8C6(),
 	JUMP_IF_FALSE(&unknownC3BB73[10 + 3 * (const(void)*).sizeof]),
 	SHORT_RETURN(),
-].join();
-actionScriptLardnaKee = [
+);
+actionScriptLardnaKee = initializeScript(actionScriptLardnaKee.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 17),
@@ -4735,8 +4735,8 @@ actionScriptLardnaKee = [
 	YIELD_TO_TEXT(),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-actionScriptSwSumsShadowA = [
+);
+actionScriptSwSumsShadowA = initializeScript(actionScriptSwSumsShadowA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z(0),
@@ -4761,8 +4761,8 @@ actionScriptSwSumsShadowA = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	PAUSE(30),
 	HALT(),
-].join();
-actionScript823 = [
+);
+actionScript823 = initializeScript(actionScript823.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -4780,15 +4780,15 @@ actionScript823 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptTStage3Thank3 = [
+);
+actionScriptTStage3Thank3 = initializeScript(actionScriptTStage3Thank3.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 40),
 	C4258C(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript804 = [
+);
+actionScript804 = initializeScript(actionScript804.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	COPY_XY_TO_VARS(),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
@@ -4810,8 +4810,8 @@ actionScript804 = [
 	C4730E(),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SHORTJUMP(&actionScript804[24 + 8 * (const(void)*).sizeof]),
-].join();
-actionScript707_708_709_710_Common = [
+);
+actionScript707_708_709_710_Common = initializeScript(actionScript707_708_709_710_Common.length,
 	JUMP_IF_TRUE(&actionScript707_708_709_710_Common[5 + 2 * (const(void)*).sizeof]),
 	WRITE_WORD_TEMPVAR(4),
 	JUMP_IF_TRUE(&actionScript707_708_709_710_Common[8 + 2 * (const(void)*).sizeof]),
@@ -4823,16 +4823,16 @@ actionScript707_708_709_710_Common = [
 	C0C7DB(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
-].join();
-actionScriptRunVStripeEffect = [
+);
+actionScriptRunVStripeEffect = initializeScript(actionScriptRunVStripeEffect.length,
 	OBJFX_VSTRIPE(),
 	PAUSE(2),
 	JUMP_IF_TRUE(&actionScriptRunVStripeEffect[0]),
 	ADD(ActionScriptVars.v4, -1),
 	END_FADE(),
 	END_TASK(),
-].join();
-actionScriptOutSubmarine = [
+);
+actionScriptOutSubmarine = initializeScript(actionScriptOutSubmarine.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -4846,15 +4846,15 @@ actionScriptOutSubmarine = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGuardB2 = [
+);
+actionScriptGuardB2 = initializeScript(actionScriptGuardB2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(192),
 	SET_VAR(ActionScriptVars.v5, 15),
 	SHORTJUMP(&actionScriptGuardB1[23 + 7 * (const(void)*).sizeof]),
-].join();
-actionScript887 = [
+);
+actionScript887 = initializeScript(actionScript887.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoToto),
@@ -4868,8 +4868,8 @@ actionScript887 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_26"),
 	HALT(),
-].join();
-actionScriptEavesMaid = [
+);
+actionScriptEavesMaid = initializeScript(actionScriptEavesMaid.length,
 	SET_X(2552),
 	SET_Y(3728),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -4891,16 +4891,16 @@ actionScriptEavesMaid = [
 	SET_VAR(ActionScriptVars.v7, 4224),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC36A3E = [
+);
+unknownC36A3E = initializeScript(unknownC36A3E.length,
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptPresentBoxFall1 = [
+);
+actionScriptPresentBoxFall1 = initializeScript(actionScriptPresentBoxFall1.length,
 	SET_X(392),
 	SET_Y(7552),
 	SHORTJUMP(&unknownC34D39[0]),
-].join();
-unknownC30C7F = [
+);
+unknownC30C7F = initializeScript(unknownC30C7F.length,
 	PAUSE(60),
 	SET_VAR(ActionScriptVars.v6, 7760),
 	SET_VAR(ActionScriptVars.v7, 2320),
@@ -4909,8 +4909,8 @@ unknownC30C7F = [
 	SET_VAR(ActionScriptVars.v7, 2360),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&unknownC30C97[0]),
-].join();
-actionScriptSwDsrtShadowA = [
+);
+actionScriptSwDsrtShadowA = initializeScript(actionScriptSwDsrtShadowA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z(0),
@@ -4933,8 +4933,8 @@ actionScriptSwDsrtShadowA = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_B),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3BAA3 = [
+);
+unknownC3BAA3 = initializeScript(unknownC3BAA3.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SHORTCALL(&unknownC3BB5C[0]),
 	SHORTCALL(&unknownC3BB73[0]),
@@ -4944,8 +4944,8 @@ unknownC3BAA3 = [
 	SET_VELOCITIES_ZERO(),
 	C0A8C6(),
 	SHORTJUMP(&unknownC3BAA3[4 + 4 * (const(void)*).sizeof + string.sizeof]),
-].join();
-actionScriptBunbuunBeam = [
+);
+actionScriptBunbuunBeam = initializeScript(actionScriptBunbuunBeam.length,
 	MOVE_TO_SPRITE(OverworldSprite.meteor),
 	SET_Y_RELATIVE(-10),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -4982,8 +4982,8 @@ actionScriptBunbuunBeam = [
 	C4248A(),
 	PAUSE(60),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptDashTony = [
+);
+actionScriptDashTony = initializeScript(actionScriptDashTony.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -4992,8 +4992,8 @@ actionScriptDashTony = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPresentBoxShadow1 = [
+);
+actionScriptPresentBoxShadow1 = initializeScript(actionScriptPresentBoxShadow1.length,
 	SET_X(392),
 	SET_Y(7552),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -5003,16 +5003,16 @@ actionScriptPresentBoxShadow1 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(120),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2Gorgeous = [
+);
+actionScriptTStage2Gorgeous = initializeScript(actionScriptTStage2Gorgeous.length,
 	SET_X(4704),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-actionScriptTStage2SpotA = [
+);
+actionScriptTStage2SpotA = initializeScript(actionScriptTStage2SpotA.length,
 	SET_X(4704),
 	SET_Y(5736),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -5060,8 +5060,8 @@ actionScriptTStage2SpotA = [
 	CLEAR_TICK_CALLBACK(),
 	PAUSE(180),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript828 = [
+);
+actionScript828 = initializeScript(actionScript828.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 12),
 	SET_MOVEMENT_SPEED(341),
@@ -5069,8 +5069,8 @@ actionScript828 = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	PAUSE(204),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptPooSyugyou2 = [
+);
+actionScriptPooSyugyou2 = initializeScript(actionScriptPooSyugyou2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
@@ -5159,8 +5159,8 @@ actionScriptPooSyugyou2 = [
 	JUMP_IF_TRUE(&actionScriptPooSyugyou2[169 + 50 * (const(void)*).sizeof]),
 	FADE_IN(1, 1),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTeleportFail = [
+);
+actionScriptTeleportFail = initializeScript(actionScriptTeleportFail.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
 	GET_POSITION_OF_PARTY_MEMBER(255),
@@ -5193,8 +5193,8 @@ actionScriptTeleportFail = [
 	SET_Y(7168),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptProloguePokey1 = [
+);
+actionScriptProloguePokey1 = initializeScript(actionScriptProloguePokey1.length,
 	SET_X(2084),
 	SET_Y(1768),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -5213,8 +5213,8 @@ actionScriptProloguePokey1 = [
 	RUN_FLYOVER(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGrooveFree2B = [
+);
+actionScriptGrooveFree2B = initializeScript(actionScriptGrooveFree2B.length,
 	SHORTCALL(&unknownC3C1E0[0]),
 	YIELD_TO_TEXT(),
 	PAUSE(1),
@@ -5231,8 +5231,8 @@ actionScriptGrooveFree2B = [
 	SHORTCALL(&unknownC3C20F[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript178 = [
+);
+actionScript178 = initializeScript(actionScript178.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1F3[0]),
@@ -5241,8 +5241,8 @@ actionScript178 = [
 	SET_MOVEMENT_SPEED(256),
 	SET_BOUNDARIES(24, 24),
 	SHORTJUMP(&actionScriptWanderWithinBounds[0]),
-].join();
-actionScriptGorgeousChaous = [
+);
+actionScriptGorgeousChaous = initializeScript(actionScriptGorgeousChaous.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 17),
@@ -5257,8 +5257,8 @@ actionScriptGorgeousChaous = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSubmarine1 = [
+);
+actionScriptSubmarine1 = initializeScript(actionScriptSubmarine1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -5276,8 +5276,8 @@ actionScriptSubmarine1 = [
 	WRITE_WORD_WRAM(&currentTeleportDestinationY, 886),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSwWinsLand2 = [
+);
+actionScriptSwWinsLand2 = initializeScript(actionScriptSwWinsLand2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z(200),
@@ -5290,14 +5290,14 @@ actionScriptSwWinsLand2 = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSwSkyE = [
+);
+actionScriptSwSkyE = initializeScript(actionScriptSwSkyE.length,
 	SHORTCALL(&unknownC3C94E[0]),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_FOUR_B),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptFrsdFieldPQ = [
+);
+actionScriptFrsdFieldPQ = initializeScript(actionScriptFrsdFieldPQ.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(Direction.left),
@@ -5309,8 +5309,8 @@ actionScriptFrsdFieldPQ = [
 	SET_VELOCITIES_ZERO(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-unknownC4160A = [
+);
+unknownC4160A = initializeScript(unknownC4160A.length,
 	SET_X(24),
 	SET_Y(40),
 	SET_ANIMATION(255),
@@ -5328,8 +5328,8 @@ unknownC4160A = [
 	UPDATE_SPRITE_DIRECTION(Direction.up, 1),
 	PAUSE(45),
 	SHORTJUMP(&unknownC4160A[20 + 2 * (const(void)*).sizeof]),
-].join();
-unknownC4158A = [
+);
+unknownC4158A = initializeScript(unknownC4158A.length,
 	SET_X(25),
 	SET_Y(15),
 	SET_ANIMATION(255),
@@ -5348,13 +5348,13 @@ unknownC4158A = [
 	SET_ANIMATION(255),
 	PAUSE(212),
 	SHORTJUMP(&unknownC4158A[14]),
-].join();
-actionScriptAndNearSt3 = [
+);
+actionScriptAndNearSt3 = initializeScript(actionScriptAndNearSt3.length,
 	SET_X(5968),
 	SET_Y(304),
 	SHORTJUMP(&actionScript740[0]),
-].join();
-actionScriptSlotBrosPresent = [
+);
+actionScriptSlotBrosPresent = initializeScript(actionScriptSlotBrosPresent.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	C0A673(),
 	WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -5379,16 +5379,16 @@ actionScriptSlotBrosPresent = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage1Thank = [
+);
+actionScriptTStage1Thank = initializeScript(actionScriptTStage1Thank.length,
 	SET_X(6904),
 	SET_Y(8512),
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScriptKanjiAtTheNight = [
+);
+actionScriptKanjiAtTheNight = initializeScript(actionScriptKanjiAtTheNight.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -5398,16 +5398,16 @@ actionScriptKanjiAtTheNight = [
 	RUN_FLYOVER(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3B431 = [
+);
+unknownC3B431 = initializeScript(unknownC3B431.length,
 	PAUSE(8),
 	C0C6B6(),
 	JUMP_IF_TRUE(&unknownC3B431[0]),
 	C0A857(EventFlag.temp9),
-	C020F1(),
+	CLEANUP_SELF(),
 	END(),
-].join();
-unknownC3A1CB = [
+);
+unknownC3A1CB = initializeScript(unknownC3A1CB.length,
 	PAUSE(6),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -5415,14 +5415,14 @@ unknownC3A1CB = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A1CB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript501 = [
+);
+actionScript501 = initializeScript(actionScript501.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	SET_VAR(ActionScriptVars.v0, 1),
 	SHORTJUMP(&actionScript501_531_Common[0]),
-].join();
-actionScriptOutStKurokoge = [
+);
+actionScriptOutStKurokoge = initializeScript(actionScriptOutStKurokoge.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_VAR(ActionScriptVars.v6, 384),
 	SET_VAR(ActionScriptVars.v7, 7624),
@@ -5435,20 +5435,20 @@ actionScriptOutStKurokoge = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage1Nice = [
+);
+actionScriptTStage1Nice = initializeScript(actionScriptTStage1Nice.length,
 	SET_X(6888),
 	SET_Y(8520),
 	SHORTJUMP(&actionScriptTStage1Thank[6]),
-].join();
-actionScript523 = [
+);
+actionScript523 = initializeScript(actionScript523.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC41900[0]),
-].join();
-actionScript95 = [
+);
+actionScript95 = initializeScript(actionScript95.length,
 	SHORTJUMP(&actionScript94_95_98Common[0]),
-].join();
-actionScriptBMonkeyTassi1A = [
+);
+actionScriptBMonkeyTassi1A = initializeScript(actionScriptBMonkeyTassi1A.length,
 	C467E6(),
 	SET_X_RELATIVE(7),
 	SHORTCALL(&unknownC3AB26[0]),
@@ -5477,8 +5477,8 @@ actionScriptBMonkeyTassi1A = [
 	JUMP_IF_FALSE(&actionScriptBMonkeyTassi1A[54 + 10 * (const(void)*).sizeof]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBMonkeyTassi1ATask = [
+);
+actionScriptBMonkeyTassi1ATask = initializeScript(actionScriptBMonkeyTassi1ATask.length,
 	SET_Z_VELOCITY(128),
 	PAUSE(48),
 	SET_Z_VELOCITY(-128),
@@ -5486,8 +5486,8 @@ actionScriptBMonkeyTassi1ATask = [
 	SET_Z_VELOCITY(0),
 	SET_VAR(ActionScriptVars.v0, 1),
 	END_TASK(),
-].join();
-unknownC40F18 = [
+);
+unknownC40F18 = initializeScript(unknownC40F18.length,
 	PAUSE(1),
 	WRITE_WORD_TEMPVAR(256),
 	C468B5(),
@@ -5502,8 +5502,8 @@ unknownC40F18 = [
 	C468DC(),
 	JUMP_IF_TRUE(&unknownC40F18[0]),
 	SHORTJUMP(&unknownC40F45[0]),
-].join();
-actionScriptBusBrdgTunnelL = [
+);
+actionScriptBusBrdgTunnelL = initializeScript(actionScriptBusBrdgTunnelL.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -5512,8 +5512,8 @@ actionScriptBusBrdgTunnelL = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptIntoBus = [
+);
+actionScriptIntoBus = initializeScript(actionScriptIntoBus.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -5524,13 +5524,13 @@ actionScriptIntoBus = [
 	SHORTCALL(&unknownC3B70C[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript16 = [
+);
+actionScript16 = initializeScript(actionScript16.length,
 	SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
 	SET_BOUNDARIES(24, 8),
 	SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
-].join();
-actionScriptTStage1Gorgeous = [
+);
+actionScriptTStage1Gorgeous = initializeScript(actionScriptTStage1Gorgeous.length,
 	SET_X(7008),
 	SET_Y(8536),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -5651,16 +5651,16 @@ actionScriptTStage1Gorgeous = [
 	YIELD_TO_TEXT(),
 	PAUSE(180),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript581 = [
+);
+actionScript581 = initializeScript(actionScript581.length,
 	GET_EVENT_FLAG(EventFlag.doseiPuBoxAppear),
 	JUMP_IF_TRUE(&actionScriptPeopleTBack[0]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
 	SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
-].join();
-actionScriptBMonkeyTassi1C = [
+);
+actionScriptBMonkeyTassi1C = initializeScript(actionScriptBMonkeyTassi1C.length,
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	SET_VAR(ActionScriptVars.v0, 0),
@@ -5679,15 +5679,15 @@ actionScriptBMonkeyTassi1C = [
 	JUMP_IF_FALSE(&actionScriptBMonkeyTassi1C[30 + 7 * (const(void)*).sizeof]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBMonkeyTassi1CTask = [
+);
+actionScriptBMonkeyTassi1CTask = initializeScript(actionScriptBMonkeyTassi1CTask.length,
 	SET_Z_VELOCITY(-512),
 	PAUSE(30),
 	SET_Z_VELOCITY(0),
 	SET_VAR(ActionScriptVars.v0, 1),
 	END_TASK(),
-].join();
-actionScriptUzu1TassiBye = [
+);
+actionScriptUzu1TassiBye = initializeScript(actionScriptUzu1TassiBye.length,
 	MOVE_TO_SPRITE(OverworldSprite.tessie),
 	SET_Y_RELATIVE(-8),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -5698,8 +5698,8 @@ actionScriptUzu1TassiBye = [
 	SET_Y_RELATIVE(-8),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptUzu1TassiBye[12 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptSlotBrosRotateM = [
+);
+actionScriptSlotBrosRotateM = initializeScript(actionScriptSlotBrosRotateM.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	PLAY_SFX(Sfx.cursor3),
 	C0A673(),
@@ -5711,8 +5711,8 @@ actionScriptSlotBrosRotateM = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(6),
 	SHORTJUMP(&actionScriptSlotBrosRotateM[7 + 3 * (const(void)*).sizeof]),
-].join();
-actionScript19 = [
+);
+actionScript19 = initializeScript(actionScript19.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -5730,13 +5730,13 @@ actionScript19 = [
 	SET_DIRECTION(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript19[6 + 4 * (const(void)*).sizeof]),
-].join();
-actionScript787 = [
+);
+actionScript787 = initializeScript(actionScript787.length,
 	DRAW_BATTLE_FRAME(),
 	PAUSE(1),
 	SHORTJUMP(&actionScript787[0]),
-].join();
-actionScriptLardnaSlapBunbuun = [
+);
+actionScriptLardnaSlapBunbuun = initializeScript(actionScriptLardnaSlapBunbuun.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	SET_VELOCITIES_ZERO(),
@@ -5756,8 +5756,8 @@ actionScriptLardnaSlapBunbuun = [
 	C474A8(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC41402 = [
+);
+unknownC41402 = initializeScript(unknownC41402.length,
 	SET_X(12),
 	SET_Y(20),
 	SET_ANIMATION(255),
@@ -5780,12 +5780,12 @@ unknownC41402 = [
 	PAUSE(10),
 	JUMP_TO_LABEL_N_TIMES(8, &unknownC41402[36 + 6 * (const(void)*).sizeof]),
 	SHORTJUMP(&unknownC41402[21 + 3 * (const(void)*).sizeof]),
-].join();
-actionScript740 = [
+);
+actionScript740 = initializeScript(actionScript740.length,
 	SET_VAR(ActionScriptVars.v0, 0),
 	SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
-].join();
-actionScriptMdTwsn = [
+);
+actionScriptMdTwsn = initializeScript(actionScriptMdTwsn.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(448),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -5811,28 +5811,28 @@ actionScriptMdTwsn = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC3DFB5 = [
+);
+unknownC3DFB5 = initializeScript(unknownC3DFB5.length,
 	CHOOSE_RANDOM(0, 1),
 	JUMP_IF_TRUE(&unknownC3DFD4[0]),
 	SET_Z_VELOCITY(-128),
 	CHOOSE_RANDOM(30, 60, 90, 120),
 	SHORTJUMP(&unknownC3DFD4_2[0]),
-].join();
-actionScriptTStage23Groove = [
+);
+actionScriptTStage23Groove = initializeScript(actionScriptTStage23Groove.length,
 	SET_X(4776),
 	SET_Y(5712),
 	SHORTJUMP(&actionScriptTStage23Thank[6]),
-].join();
-unknownC37A7C = [
+);
+unknownC37A7C = initializeScript(unknownC37A7C.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A15E[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScript700 = [
+);
+actionScript700 = initializeScript(actionScript700.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	START_TASK(&actionScript700[107 + 15 * (const(void)*).sizeof + string.sizeof]),
@@ -5874,16 +5874,16 @@ actionScript700 = [
 	C0A94E(873),
 	PAUSE(3),
 	SHORTJUMP(&actionScript700[107 + 15 * (const(void)*).sizeof + string.sizeof]),
-].join();
-actionScriptSealPCPaulaDirDown = [
+);
+actionScriptSealPCPaulaDirDown = initializeScript(actionScriptSealPCPaulaDirDown.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	C0C7DB(),
 	SET_VELOCITIES_ZERO(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript758 = [
+);
+actionScript758 = initializeScript(actionScript758.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -5900,8 +5900,8 @@ actionScript758 = [
 	PAUSE(30),
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 	HALT(),
-].join();
-unknownC3AA96 = [
+);
+unknownC3AA96 = initializeScript(unknownC3AA96.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0D8[22 + 6 * (const(void)*).sizeof]),
@@ -5909,8 +5909,8 @@ unknownC3AA96 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(1536),
 	SHORT_RETURN(),
-].join();
-actionScriptPeopleWalk1 = [
+);
+actionScriptPeopleWalk1 = initializeScript(actionScriptPeopleWalk1.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	C0C7DB(),
@@ -5929,12 +5929,12 @@ actionScriptPeopleWalk1 = [
 	CHOOSE_RANDOM(30, 60, 90, 120),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SHORTJUMP(&actionScriptPeopleWalk1[10 + 6 * (const(void)*).sizeof]),
-].join();
-actionScript35 = [
-	C020F1(),
+);
+actionScript35 = initializeScript(actionScript35.length,
+	CLEANUP_SELF(),
 	END(),
-].join();
-actionScriptEvtPray4PupilB = [
+);
+actionScriptEvtPray4PupilB = initializeScript(actionScriptEvtPray4PupilB.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 10),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -5950,14 +5950,14 @@ actionScriptEvtPray4PupilB = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
-].join();
-actionScriptWinsSkywalkerShadow = [
+);
+actionScriptWinsSkywalkerShadow = initializeScript(actionScriptWinsSkywalkerShadow.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AA38[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScriptMdToto = [
+);
+actionScriptMdToto = initializeScript(actionScriptMdToto.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -5975,8 +5975,8 @@ actionScriptMdToto = [
 	C0A8A0("MSG_MD_TOTO_SENCHOU"),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript886 = [
+);
+actionScript886 = initializeScript(actionScript886.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoSumsBeach),
@@ -5990,8 +5990,8 @@ actionScript886 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_25"),
 	HALT(),
-].join();
-actionScriptTStage2LuckyDance35 = [
+);
+actionScriptTStage2LuckyDance35 = initializeScript(actionScriptTStage2LuckyDance35.length,
 	SET_X(4744),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -5999,15 +5999,15 @@ actionScriptTStage2LuckyDance35 = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	PAUSE(90),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript550 = [
+);
+actionScript550 = initializeScript(actionScript550.length,
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC33C18 = [
+);
+unknownC33C18 = initializeScript(unknownC33C18.length,
 	RESTORE_MAP_RENDERING(),
 	SHORT_RETURN(),
-].join();
-actionScript497 = [
+);
+actionScript497 = initializeScript(actionScript497.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -6026,8 +6026,8 @@ actionScript497 = [
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_89_DUNGEONMAN"),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScript497[20 + 5 * (const(void)*).sizeof]),
-].join();
-actionScriptOKFree = [
+);
+actionScriptOKFree = initializeScript(actionScriptOKFree.length,
 	SET_X(7656),
 	SET_Y(7656),
 	SET_ANIMATION(255),
@@ -6059,8 +6059,8 @@ actionScriptOKFree = [
 	WRITE_WORD_TEMPVAR(1),
 	C0A857(EventFlag.temp5),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC30C97 = [
+);
+unknownC30C97 = initializeScript(unknownC30C97.length,
 	PAUSE(60),
 	SET_VAR(ActionScriptVars.v6, 7752),
 	SET_VAR(ActionScriptVars.v7, 2392),
@@ -6069,12 +6069,12 @@ unknownC30C97 = [
 	SET_VAR(ActionScriptVars.v7, 2416),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&unknownC30CAF[0]),
-].join();
-unknownC3DFD4_2 = [
+);
+unknownC3DFD4_2 = initializeScript(unknownC3DFD4_2.length,
 	WRITE_TEMPVAR_WAITTIMER(),
 	SHORTJUMP(&unknownC3DFB5[0]),
-].join();
-actionScriptLeaveUkkariCarrier = [
+);
+actionScriptLeaveUkkariCarrier = initializeScript(actionScriptLeaveUkkariCarrier.length,
 	SHORTCALL(&unknownC3AAFE[0]),
 	SET_VAR(ActionScriptVars.v5, 2),
 	SET_VAR(ActionScriptVars.v6, 2560),
@@ -6088,12 +6088,12 @@ actionScriptLeaveUkkariCarrier = [
 	SET_VAR(ActionScriptVars.v7, 4152),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript894 = [
+);
+actionScript894 = initializeScript(actionScript894.length,
 	WRITE_WORD_WRAM(&unread7E00AD, 1),
 	HALT(),
-].join();
-actionScript831 = [
+);
+actionScript831 = initializeScript(actionScript831.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -6108,15 +6108,15 @@ actionScript831 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-unknownC333AA = [
+);
+unknownC333AA = initializeScript(unknownC333AA.length,
 	UPDATE_SPRITE_DIRECTION(Direction.up, 1),
 	PAUSE(22),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	PAUSE(23),
 	SHORT_RETURN(),
-].join();
-actionScript808 = [
+);
+actionScript808 = initializeScript(actionScript808.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
@@ -6139,8 +6139,8 @@ actionScript808 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(20),
 	SHORTJUMP(&actionScript808[1 + 1 * (const(void)*).sizeof]),
-].join();
-actionScript892 = [
+);
+actionScript892 = initializeScript(actionScript892.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoGumi),
@@ -6154,8 +6154,8 @@ actionScript892 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_31"),
 	HALT(),
-].join();
-actionScriptJumpJefS = [
+);
+actionScriptJumpJefS = initializeScript(actionScriptJumpJefS.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -6180,20 +6180,20 @@ actionScriptJumpJefS = [
 	PAUSE(12),
 	SET_VELOCITIES_ZERO(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBusDriverL = [
+);
+actionScriptBusDriverL = initializeScript(actionScriptBusDriverL.length,
 	MOVE_TO_SPRITE(OverworldSprite.cityBus),
 	SET_X_RELATIVE(-16),
 	SET_Y_RELATIVE(-16),
 	//fallthrough
 	SHORTJUMP(&actionScriptBusDriverR[0]),
-].join();
-actionScriptDoseiPolaDown = [
+);
+actionScriptDoseiPolaDown = initializeScript(actionScriptDoseiPolaDown.length,
 	SET_X(420),
 	SET_Y(7616),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptBusDsrtThrkIn = [
+);
+actionScriptBusDsrtThrkIn = initializeScript(actionScriptBusDsrtThrkIn.length,
 	SET_X(1792),
 	SET_Y(10008),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -6221,13 +6221,13 @@ actionScriptBusDsrtThrkIn = [
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScriptBusDsrtThrkIn[50 + 10 * (const(void)*).sizeof]),
-].join();
-actionScriptTStage2MikeR = [
+);
+actionScriptTStage2MikeR = initializeScript(actionScriptTStage2MikeR.length,
 	SET_X(4768),
 	SET_Y(5748),
 	SHORTJUMP(&actionScriptTStage1MikeL[6]),
-].join();
-actionScriptNiceFree = [
+);
+actionScriptNiceFree = initializeScript(actionScriptNiceFree.length,
 	SET_X(7656),
 	SET_Y(7656),
 	SET_ANIMATION(255),
@@ -6258,13 +6258,13 @@ actionScriptNiceFree = [
 	WRITE_WORD_TEMPVAR(1),
 	C0A857(EventFlag.temp4),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3AFA3 = [
+);
+unknownC3AFA3 = initializeScript(unknownC3AFA3.length,
 	C48B3B(),
 	PAUSE(3),
 	SHORTJUMP(&unknownC3AFA3[0]),
-].join();
-actionScriptVStage1KomoritaCross = [
+);
+actionScriptVStage1KomoritaCross = initializeScript(actionScriptVStage1KomoritaCross.length,
 	SET_X(4584),
 	SET_Y(5792),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -6287,8 +6287,8 @@ actionScriptVStage1KomoritaCross = [
 	SET_VAR(ActionScriptVars.v7, 5792),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3C94E = [
+);
+unknownC3C94E = initializeScript(unknownC3C94E.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z(-96),
@@ -6310,17 +6310,17 @@ unknownC3C94E = [
 	FADE_OUT(1, 1),
 	SHORTCALL(&unknownC3ABE0[0]),
 	SHORT_RETURN(),
-].join();
-unknownC3D913 = [
+);
+unknownC3D913 = initializeScript(unknownC3D913.length,
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_DSRT_R"),
 	HALT(),
-].join();
-actionScript527 = [
+);
+actionScript527 = initializeScript(actionScript527.length,
 	SHORTCALL(&unknownC40F59[0]),
 	START_TASK(&unknownC40F18[0]),
 	SHORTJUMP(&unknownC419B2[0]),
-].join();
-actionScript672 = [
+);
+actionScript672 = initializeScript(actionScript672.length,
 	SHORTCALL(&actionScript674[52 + 16 * (const(void)*).sizeof + string.sizeof]),
 	WRITE_WORD_TEMPVAR(0),
 	C0A857(EventFlag.animPort4),
@@ -6344,15 +6344,15 @@ actionScript672 = [
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_FOUNTAIN_A"),
 	SHORTCALL(&actionScript674[61 + 21 * (const(void)*).sizeof + string.sizeof]),
 	SHORTJUMP(&actionScript672[1 + 1 * (const(void)*).sizeof]),
-].join();
-unknownC3BAC4 = [
+);
+unknownC3BAC4 = initializeScript(unknownC3BAC4.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SHORTCALL(&unknownC3BB5C[0]),
 	SHORTCALL(&unknownC3BB73[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_GHOST_WARP"),
 	HALT(),
-].join();
-actionScriptEvtPray2Okay = [
+);
+actionScriptEvtPray2Okay = initializeScript(actionScriptEvtPray2Okay.length,
 	SET_X(5312),
 	SET_Y(2712),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -6372,8 +6372,8 @@ actionScriptEvtPray2Okay = [
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	END_LAST_TASK(),
 	HALT(),
-].join();
-unknownC3CC94 = [
+);
+unknownC3CC94 = initializeScript(unknownC3CC94.length,
 	START_TASK(&unknownC3C824[0]),
 	PAUSE(100),
 	END_LAST_TASK(),
@@ -6384,16 +6384,16 @@ unknownC3CC94 = [
 	PAUSE(80),
 	START_TASK(&unknownC3C824[0]),
 	HALT(),
-].join();
-actionScriptBillboard = [
+);
+actionScriptBillboard = initializeScript(actionScriptBillboard.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
-].join();
-unknownC39AC7 = [
+);
+unknownC39AC7 = initializeScript(unknownC39AC7.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -6401,8 +6401,8 @@ unknownC39AC7 = [
 	C0C7DB(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORT_RETURN(),
-].join();
-actionScript840 = [
+);
+actionScript840 = initializeScript(actionScript840.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -6420,8 +6420,8 @@ actionScript840 = [
 	C4ECE7(),
 	JUMP_IF_TRUE(&actionScript840[9 + 4 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptReturnSarusensei = [
+);
+actionScriptReturnSarusensei = initializeScript(actionScriptReturnSarusensei.length,
 	SHORTCALL(&unknownC3AA82[0]),
 	SET_VAR(ActionScriptVars.v5, 2),
 	SET_VAR(ActionScriptVars.v6, 1288),
@@ -6437,8 +6437,8 @@ actionScriptReturnSarusensei = [
 	SET_VAR(ActionScriptVars.v7, 9704),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTakeNessKatacomb1B = [
+);
+actionScriptTakeNessKatacomb1B = initializeScript(actionScriptTakeNessKatacomb1B.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_X_RELATIVE(-16),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -6450,16 +6450,16 @@ actionScriptTakeNessKatacomb1B = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptSealPCAllDirLeft = [
+);
+actionScriptSealPCAllDirLeft = initializeScript(actionScriptSealPCAllDirLeft.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	C0C7DB(),
 	SET_VELOCITIES_ZERO(),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	HALT(),
-].join();
-unknownC3A1B7 = [
+);
+unknownC3A1B7 = initializeScript(unknownC3A1B7.length,
 	PAUSE(9),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -6467,8 +6467,8 @@ unknownC3A1B7 = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A1B7[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptJefIntoSwThrk = [
+);
+actionScriptJefIntoSwThrk = initializeScript(actionScriptJefIntoSwThrk.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.jeff),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
@@ -6483,8 +6483,8 @@ actionScriptJefIntoSwThrk = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC4116C = [
+);
+unknownC4116C = initializeScript(unknownC4116C.length,
 	SET_X(24),
 	SET_Y(40),
 	SET_ANIMATION(255),
@@ -6504,16 +6504,16 @@ unknownC4116C = [
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	PAUSE(60),
 	SHORTJUMP(&unknownC4116C[10]),
-].join();
-actionScriptCircleCultistNorthwest = [
+);
+actionScriptCircleCultistNorthwest = initializeScript(actionScriptCircleCultistNorthwest.length,
 	SHORTCALL(&unknownC30C55[0]),
 	SHORTJUMP(&unknownC30C67[0]),
-].join();
-actionScript508 = [
+);
+actionScript508 = initializeScript(actionScript508.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC41382[0]),
-].join();
-actionScriptBMonkeyRopeS = [
+);
+actionScriptBMonkeyRopeS = initializeScript(actionScriptBMonkeyRopeS.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(64),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -6526,8 +6526,8 @@ actionScriptBMonkeyRopeS = [
 	SET_VAR(ActionScriptVars.v7, 320),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-actionScriptTStage3Lucky7 = [
+);
+actionScriptTStage3Lucky7 = initializeScript(actionScriptTStage3Lucky7.length,
 	SET_X(4736),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -6535,8 +6535,8 @@ actionScriptTStage3Lucky7 = [
 	SET_X_VELOCITY(-45),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript647 = [
+);
+actionScript647 = initializeScript(actionScript647.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	SET_VELOCITIES_ZERO(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -6548,8 +6548,8 @@ actionScript647 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_ROOF_TONCHIKI"),
 	HALT(),
-].join();
-actionScriptNiceFree2A = [
+);
+actionScriptNiceFree2A = initializeScript(actionScriptNiceFree2A.length,
 	SET_ANIMATION(255),
 	PAUSE(36),
 	SHORTCALL(&unknownC3C143[0]),
@@ -6557,8 +6557,8 @@ actionScriptNiceFree2A = [
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-actionScript864 = [
+);
+actionScript864 = initializeScript(actionScript864.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoCycleShop),
@@ -6572,8 +6572,8 @@ actionScript864 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_3"),
 	HALT(),
-].join();
-actionScript820 = [
+);
+actionScript820 = initializeScript(actionScript820.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.right),
 	SET_DIRECTION(),
@@ -6585,11 +6585,11 @@ actionScript820 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript97 = [
+);
+actionScript97 = initializeScript(actionScript97.length,
 	SHORTJUMP(&unknownC3BAD7[0]),
-].join();
-actionScript228_229_230_231_232Common = [
+);
+actionScript228_229_230_231_232Common = initializeScript(actionScript228_229_230_231_232Common.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 14),
 	SET_MOVEMENT_SPEED(256),
@@ -6605,8 +6605,8 @@ actionScript228_229_230_231_232Common = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORT_RETURN(),
-].join();
-actionScriptTStage2Spotlight = [
+);
+actionScriptTStage2Spotlight = initializeScript(actionScriptTStage2Spotlight.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 30),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -6615,8 +6615,8 @@ actionScriptTStage2Spotlight = [
 	C425F3(),
 	CLEAR_TICK_CALLBACK(),
 	HALT(),
-].join();
-actionScriptIntoNight = [
+);
+actionScriptIntoNight = initializeScript(actionScriptIntoNight.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -6628,14 +6628,14 @@ actionScriptIntoNight = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3A262 = [
+);
+unknownC3A262 = initializeScript(unknownC3A262.length,
 	CLEAR_CURRENT_ENTITY_COLLISION(),
 	C05E76(),
 	C064A6_WAIT(1),
 	SHORTJUMP(&unknownC3A262[1 + 1 * (const(void)*).sizeof]),
-].join();
-unknownC343AE = [
+);
+unknownC343AE = initializeScript(unknownC343AE.length,
 	PAUSE(1),
 	WRITE_WORD_TEMPVAR(256),
 	C468B5(),
@@ -6650,13 +6650,13 @@ unknownC343AE = [
 	C468DC(),
 	JUMP_IF_TRUE(&unknownC343AE[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2Lucky = [
+);
+actionScriptTStage2Lucky = initializeScript(actionScriptTStage2Lucky.length,
 	SET_X(4768),
 	SET_Y(5736),
 	SHORTJUMP(&actionScriptTStage2Gorgeous[6]),
-].join();
-actionScriptTStage3Lucky5 = [
+);
+actionScriptTStage3Lucky5 = initializeScript(actionScriptTStage3Lucky5.length,
 	SET_X(4768),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -6667,8 +6667,8 @@ actionScriptTStage3Lucky5 = [
 	SET_X_VELOCITY(-45),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptShipSmall = [
+);
+actionScriptShipSmall = initializeScript(actionScriptShipSmall.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -6719,8 +6719,8 @@ actionScriptShipSmall = [
 	WRITE_WORD_WRAM(&currentTeleportDestinationY, 483),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptShipSmallTask = [
+);
+actionScriptShipSmallTask = initializeScript(actionScriptShipSmallTask.length,
 	SET_VAR(ActionScriptVars.v0, 0),
 	LOOP(12),
 		ADD(ActionScriptVars.v0, -1),
@@ -6728,8 +6728,8 @@ actionScriptShipSmallTask = [
 		PAUSE(8),
 	LOOP_END(),
 	END_TASK(),
-].join();
-actionScript37 = [
+);
+actionScript37 = initializeScript(actionScript37.length,
 	GET_EVENT_FLAG(EventFlag.myHomeKnockAppear),
 	JUMP_IF_FALSE(&actionScript18[0]),
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
@@ -6758,8 +6758,8 @@ actionScript37 = [
 	ADD_TEMPVAR(-6),
 	JUMP_IF_FALSE(&actionScript37[32 + 13 * (const(void)*).sizeof + string.sizeof]),
 	SHORTJUMP(&actionScript37[22 + 10 * (const(void)*).sizeof + string.sizeof]),
-].join();
-actionScriptOutTBusR = [
+);
+actionScriptOutTBusR = initializeScript(actionScriptOutTBusR.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -6776,14 +6776,14 @@ actionScriptOutTBusR = [
 	PAUSE(24),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptIntoTonzuraBusMono = [
+);
+actionScriptIntoTonzuraBusMono = initializeScript(actionScriptIntoTonzuraBusMono.length,
 	C0A92D(994),
 	SHORTCALL(&unknownC3B70C[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptRemodelOperation = [
+);
+actionScriptRemodelOperation = initializeScript(actionScriptRemodelOperation.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -6802,8 +6802,8 @@ actionScriptRemodelOperation = [
 	SHORTCALL(&actionScriptRemodelOperationUnknownRoutine[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptRemodelOperationUnknownRoutine = [
+);
+actionScriptRemodelOperationUnknownRoutine = initializeScript(actionScriptRemodelOperationUnknownRoutine.length,
 	SHORTCALL(&actionScriptRemodelOperationUnknownRoutine4[0]),
 	PAUSE(179),
 	SHORTCALL(&actionScriptRemodelOperationUnknownRoutine2[0]),
@@ -6819,8 +6819,8 @@ actionScriptRemodelOperationUnknownRoutine = [
 	SHORTCALL(&actionScriptRemodelOperationUnknownRoutine3[0]),
 	PAUSE(35),
 	SHORT_RETURN(),
-].join();
-actionScriptRemodelOperationUnknownRoutine2 = [
+);
+actionScriptRemodelOperationUnknownRoutine2 = initializeScript(actionScriptRemodelOperationUnknownRoutine2.length,
 	SET_VAR(ActionScriptVars.v0, 22),
 	LOOP(12),
 		C474A8(),
@@ -6828,8 +6828,8 @@ actionScriptRemodelOperationUnknownRoutine2 = [
 		ADD(ActionScriptVars.v0, -2),
 	LOOP_END(),
 	SHORT_RETURN(),
-].join();
-actionScriptRemodelOperationUnknownRoutine3 = [
+);
+actionScriptRemodelOperationUnknownRoutine3 = initializeScript(actionScriptRemodelOperationUnknownRoutine3.length,
 	SET_VAR(ActionScriptVars.v0, 0),
 	LOOP(31),
 		ADD(ActionScriptVars.v0, -1),
@@ -6837,8 +6837,8 @@ actionScriptRemodelOperationUnknownRoutine3 = [
 		PAUSE(1),
 	LOOP_END(),
 	SHORT_RETURN(),
-].join();
-actionScriptRemodelOperationUnknownRoutine4 = [
+);
+actionScriptRemodelOperationUnknownRoutine4 = initializeScript(actionScriptRemodelOperationUnknownRoutine4.length,
 	SET_VAR(ActionScriptVars.v0, 65505),
 	LOOP(31),
 		ADD(ActionScriptVars.v0, 1),
@@ -6846,8 +6846,8 @@ actionScriptRemodelOperationUnknownRoutine4 = [
 		PAUSE(1),
 	LOOP_END(),
 	SHORT_RETURN(),
-].join();
-actionScriptSwWinsShadowA = [
+);
+actionScriptSwWinsShadowA = initializeScript(actionScriptSwWinsShadowA.length,
 	MOVE_TO_SPRITE(OverworldSprite.skyRunner),
 	SET_Y_RELATIVE(-40),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -6862,8 +6862,8 @@ actionScriptSwWinsShadowA = [
 	SET_ANIMATION(0),
 	PAUSE(30),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMdFrsd = [
+);
+actionScriptMdFrsd = initializeScript(actionScriptMdFrsd.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -6890,8 +6890,8 @@ actionScriptMdFrsd = [
 	PAUSE(120),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript783 = [
+);
+actionScript783 = initializeScript(actionScript783.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_VELOCITIES_ZERO(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -6902,8 +6902,8 @@ actionScript783 = [
 		PAUSE(2),
 	LOOP_END(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptWhiteout = [
+);
+actionScriptWhiteout = initializeScript(actionScriptWhiteout.length,
 	SET_VAR(ActionScriptVars.v0, 0),
 	LOOP(31),
 		ADD(ActionScriptVars.v0, 1),
@@ -6912,8 +6912,8 @@ actionScriptWhiteout = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript850 = [
+);
+actionScript850 = initializeScript(actionScript850.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
@@ -6927,8 +6927,8 @@ actionScript850 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptBusTunnelDsrtRJ = [
+);
+actionScriptBusTunnelDsrtRJ = initializeScript(actionScriptBusTunnelDsrtRJ.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -6950,8 +6950,8 @@ actionScriptBusTunnelDsrtRJ = [
 	SHORTCALL(&actionScriptMoveToLocationTypeB[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript852 = [
+);
+actionScript852 = initializeScript(actionScript852.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -7003,14 +7003,14 @@ actionScript852 = [
 	C4ECE7(),
 	JUMP_IF_TRUE(&actionScript852[13 + 4 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC34964 = [
+);
+unknownC34964 = initializeScript(unknownC34964.length,
 	C0A959(2),
 	C0A959(1),
 	PAUSE(1),
 	SHORTJUMP(&unknownC34964[0]),
-].join();
-actionScriptNessTobinoku = [
+);
+actionScriptNessTobinoku = initializeScript(actionScriptNessTobinoku.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -7022,8 +7022,8 @@ actionScriptNessTobinoku = [
 	YIELD_TO_TEXT(),
 	PREPARE_NEW_ENTITY(7792, 344, Direction.left),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript467 = [
+);
+actionScript467 = initializeScript(actionScript467.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -7042,8 +7042,8 @@ actionScript467 = [
 	CHOOSE_RANDOM(Direction.up, Direction.right, Direction.down, Direction.left),
 	SET_DIRECTION(),
 	SHORTJUMP(&actionScript467[6 + 3 * (const(void)*).sizeof]),
-].join();
-actionScript21 = [
+);
+actionScript21 = initializeScript(actionScript21.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -7079,29 +7079,29 @@ actionScript21 = [
 	SET_DIRECTION(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript21[41 + 17 * (const(void)*).sizeof]),
-].join();
-actionScriptNesPeace = [
+);
+actionScriptNesPeace = initializeScript(actionScriptNesPeace.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptNessAwake = [
+);
+actionScriptNessAwake = initializeScript(actionScriptNessAwake.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_Y_RELATIVE(-1),
 	PAUSE(8),
 	SET_Y_RELATIVE(1),
 	PAUSE(8),
 	SHORTJUMP(&actionScriptNessAwake[1 + 1 * (const(void)*).sizeof]),
-].join();
-actionScriptMonotoryOutALucky = [
+);
+actionScriptMonotoryOutALucky = initializeScript(actionScriptMonotoryOutALucky.length,
 	SET_X(5960),
 	SET_Y(5968),
 	SHORTJUMP(&actionScriptMonotoryOutAGroove[6]),
-].join();
-actionScriptIntoStKurokoge = [
+);
+actionScriptIntoStKurokoge = initializeScript(actionScriptIntoStKurokoge.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -7113,13 +7113,13 @@ actionScriptIntoStKurokoge = [
 	YIELD_TO_TEXT(),
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTacyMask4 = [
+);
+actionScriptTacyMask4 = initializeScript(actionScriptTacyMask4.length,
 	SET_X(600),
 	SET_Y(3552),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-actionScript591 = [
+);
+actionScript591 = initializeScript(actionScript591.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_ANIMATION(255),
 	SET_VAR(ActionScriptVars.v4, 1),
@@ -7130,22 +7130,22 @@ actionScript591 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_THRK_FIGHT_MATENT"),
 	HALT(),
-].join();
-actionScriptRunHStripeEffect = [
+);
+actionScriptRunHStripeEffect = initializeScript(actionScriptRunHStripeEffect.length,
 	OBJFX_HSTRIPE(),
 	PAUSE(2),
 	JUMP_IF_TRUE(&actionScriptRunHStripeEffect[0]),
 	ADD(ActionScriptVars.v4, -1),
 	END_FADE(),
 	END_TASK(),
-].join();
-actionScriptTStage3Band = [
+);
+actionScriptTStage3Band = initializeScript(actionScriptTStage3Band.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	SHORTCALL(&unknownC33399[0]),
 	SHORTJUMP(&actionScriptTStage3Band[5 + 1 * (const(void)*).sizeof]),
-].join();
-actionScriptOutSt3 = [
+);
+actionScriptOutSt3 = initializeScript(actionScriptOutSt3.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -7159,8 +7159,8 @@ actionScriptOutSt3 = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript585 = [
+);
+actionScript585 = initializeScript(actionScript585.length,
 	GET_EVENT_FLAG(EventFlag.onetDoorClose),
 	JUMP_IF_TRUE(&actionScript35[0]),
 	SHORTCALL(&unknownC36A41[0]),
@@ -7171,8 +7171,8 @@ actionScript585 = [
 	SET_VAR(ActionScriptVars.v7, 1160),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-actionScriptEvtPray4PupilD = [
+);
+actionScriptEvtPray4PupilD = initializeScript(actionScriptEvtPray4PupilD.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 10),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -7184,8 +7184,8 @@ actionScriptEvtPray4PupilD = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
-].join();
-actionScriptTitleScreen7 = [
+);
+actionScriptTitleScreen7 = initializeScript(actionScriptTitleScreen7.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(4),
 	SET_Y(100),
@@ -7197,8 +7197,8 @@ actionScriptTitleScreen7 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(112),
 	HALT(),
-].join();
-actionScript113 = [
+);
+actionScript113 = initializeScript(actionScript113.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -7211,8 +7211,8 @@ actionScript113 = [
 	SHORTCALL(&unknownC3AB94[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_WAKEUP_TONY"),
 	HALT(),
-].join();
-unknownC32138 = [
+);
+unknownC32138 = initializeScript(unknownC32138.length,
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	PAUSE(22),
@@ -7220,8 +7220,8 @@ unknownC32138 = [
 	UPDATE_ENTITY_SPRITE_FRAME1(),
 	PAUSE(23),
 	SHORT_RETURN(),
-].join();
-actionScriptComeBackJef = [
+);
+actionScriptComeBackJef = initializeScript(actionScriptComeBackJef.length,
 	SET_X(400),
 	SET_Y(7600),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -7291,8 +7291,8 @@ actionScriptComeBackJef = [
 	C0C6B6(),
 	JUMP_IF_TRUE(&actionScriptComeBackJef[151 + 27 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript78 = [
+);
+actionScript78 = initializeScript(actionScript78.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	COPY_XY_TO_VARS(),
@@ -7308,13 +7308,13 @@ actionScript78 = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	PAUSE(56),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage3Lucky3 = [
+);
+actionScriptTStage3Lucky3 = initializeScript(actionScriptTStage3Lucky3.length,
 	SET_X(4728),
 	SET_Y(5728),
 	SHORTJUMP(&actionScriptTStage3Lucky2[6]),
-].join();
-actionScriptWakeUpTony = [
+);
+actionScriptWakeUpTony = initializeScript(actionScriptWakeUpTony.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 9),
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
@@ -7324,8 +7324,8 @@ actionScriptWakeUpTony = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBMonkeyFope = [
+);
+actionScriptBMonkeyFope = initializeScript(actionScriptBMonkeyFope.length,
 	SET_X_RELATIVE(7),
 	SHORTCALL(&unknownC3AB26[0]),
 	PLAY_SFX(Sfx.unknown0E),
@@ -7351,8 +7351,8 @@ actionScriptBMonkeyFope = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript711 = [
+);
+actionScript711 = initializeScript(actionScript711.length,
 	SET_PRIORITY(0),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -7376,8 +7376,8 @@ actionScript711 = [
 	MOVE_TO_SPRITE(OverworldSprite.invisible),
 	PAUSE(1),
 	SHORTJUMP(&actionScript711[45 + 10 * (const(void)*).sizeof + string.sizeof]),
-].join();
-unknownC30A1F = [
+);
+unknownC30A1F = initializeScript(unknownC30A1F.length,
 	SET_Z_VELOCITY(512),
 	PAUSE(8),
 	SET_Z_VELOCITY(0),
@@ -7386,8 +7386,8 @@ unknownC30A1F = [
 	PAUSE(6),
 	SET_Z_VELOCITY(0),
 	END_TASK(),
-].join();
-actionScript824 = [
+);
+actionScript824 = initializeScript(actionScript824.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -7403,8 +7403,8 @@ actionScript824 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptTBusToFourTunnel = [
+);
+actionScriptTBusToFourTunnel = initializeScript(actionScriptTBusToFourTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -7424,8 +7424,8 @@ actionScriptTBusToFourTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_FOUR_TUNNEL),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_FOUR_TUNNEL"),
 	HALT(),
-].join();
-actionScriptMdHashiYunbo = [
+);
+actionScriptMdHashiYunbo = initializeScript(actionScriptMdHashiYunbo.length,
 	SET_X(4960),
 	SET_Y(10024),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -7433,8 +7433,8 @@ actionScriptMdHashiYunbo = [
 	WRITE_WORD_TEMPVAR(2),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScript29 = [
+);
+actionScript29 = initializeScript(actionScript29.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -7464,8 +7464,8 @@ actionScript29 = [
 	UPDATE_ENTITY_SPRITE(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript29[49 + 15 * (const(void)*).sizeof]),
-].join();
-actionScriptTBusRideMono = [
+);
+actionScriptTBusRideMono = initializeScript(actionScriptTBusRideMono.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -7476,8 +7476,8 @@ actionScriptTBusRideMono = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3AAEA = [
+);
+unknownC3AAEA = initializeScript(unknownC3AAEA.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1B7[0]),
@@ -7485,8 +7485,8 @@ unknownC3AAEA = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(352),
 	SHORT_RETURN(),
-].join();
-actionScriptGuardB1 = [
+);
+actionScriptGuardB1 = initializeScript(actionScriptGuardB1.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(192),
 	WRITE_WORD_TEMPVAR(4),
@@ -7505,8 +7505,8 @@ actionScriptGuardB1 = [
 	GET_POSITION_OF_PARTY_MEMBER(254),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptGuardB1[26 + 9 * (const(void)*).sizeof]),
-].join();
-actionScript58 = [
+);
+actionScript58 = initializeScript(actionScript58.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -7529,8 +7529,8 @@ actionScript58 = [
 	SET_VAR(ActionScriptVars.v7, 2520),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript24 = [
+);
+actionScript24 = initializeScript(actionScript24.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -7553,19 +7553,19 @@ actionScript24 = [
 	SET_DIRECTION(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript24[24 + 8 * (const(void)*).sizeof]),
-].join();
-actionScript525 = [
+);
+actionScript525 = initializeScript(actionScript525.length,
 	SHORTCALL(&unknownC40F59[0]),
 	START_TASK(&unknownC40F18[0]),
 	SHORTJUMP(&unknownC41974[0]),
-].join();
-actionScriptTitleScreen2 = [
+);
+actionScriptTitleScreen2 = initializeScript(actionScriptTitleScreen2.length,
 	WRITE_WRAM_TEMPVAR(&titleScreenQuickMode),
 	JUMP_IF_FALSE(&unknownC42235[0]),
 	C0ED5C(),
 	END(),
-].join();
-actionScriptTStage1Scr2 = [
+);
+actionScriptTStage1Scr2 = initializeScript(actionScriptTStage1Scr2.length,
 	SET_X(6912),
 	SET_Y(8560),
 	SET_MOVEMENT_SPEED(256),
@@ -7583,12 +7583,12 @@ actionScriptTStage1Scr2 = [
 	JUMP_IF_FALSE(&actionScriptTStage1Scr2[30 + 6 * (const(void)*).sizeof]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE1_B"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript514 = [
+);
+actionScript514 = initializeScript(actionScript514.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4158A[0]),
-].join();
-actionScript842 = [
+);
+actionScript842 = initializeScript(actionScript842.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 12),
 	WRITE_WORD_TEMPVAR(Direction.down),
@@ -7609,13 +7609,13 @@ actionScript842 = [
 	PAUSE(48),
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.tenda, ActionScript.unknown844),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript704 = [
+);
+actionScript704 = initializeScript(actionScript704.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SET_PRIORITY(3),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScript882 = [
+);
+actionScript882 = initializeScript(actionScript882.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoRammaField),
@@ -7629,8 +7629,8 @@ actionScript882 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_21"),
 	HALT(),
-].join();
-actionScript65 = [
+);
+actionScript65 = initializeScript(actionScript65.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -7645,8 +7645,8 @@ actionScript65 = [
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScript65[20 + 5 * (const(void)*).sizeof]),
-].join();
-unknownC3A1DF = [
+);
+unknownC3A1DF = initializeScript(unknownC3A1DF.length,
 	PAUSE(2),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -7654,8 +7654,8 @@ unknownC3A1DF = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A0D8[22 + 6 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC33549 = [
+);
+unknownC33549 = initializeScript(unknownC33549.length,
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(2),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 1),
@@ -7667,8 +7667,8 @@ unknownC33549 = [
 	CHOOSE_RANDOM(0, 12),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SHORTJUMP(&unknownC33549[0]),
-].join();
-actionScriptGorgeousChaousRide = [
+);
+actionScriptGorgeousChaousRide = initializeScript(actionScriptGorgeousChaousRide.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -7676,8 +7676,8 @@ actionScriptGorgeousChaousRide = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSyugyouAddPoo = [
+);
+actionScriptSyugyouAddPoo = initializeScript(actionScriptSyugyouAddPoo.length,
 	C0A87A(0, 128),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(1024),
@@ -7693,8 +7693,8 @@ actionScriptSyugyouAddPoo = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage2GrooveAdlib = [
+);
+actionScriptTStage2GrooveAdlib = initializeScript(actionScriptTStage2GrooveAdlib.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 30),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -7781,15 +7781,15 @@ actionScriptTStage2GrooveAdlib = [
 	PAUSE(30),
 	PAUSE(180),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC333BB = [
+);
+unknownC333BB = initializeScript(unknownC333BB.length,
 	UPDATE_SPRITE_DIRECTION(Direction.left, 1),
 	PAUSE(22),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	PAUSE(23),
 	SHORT_RETURN(),
-].join();
-actionScript250 = [
+);
+actionScript250 = initializeScript(actionScript250.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_ANIMATION(255),
@@ -7825,8 +7825,8 @@ actionScript250 = [
 	C0A857(EventFlag.libraryToilet),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptAndSt31 = [
+);
+actionScriptAndSt31 = initializeScript(actionScriptAndSt31.length,
 	SET_X(5976),
 	SET_Y(280),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -7839,8 +7839,8 @@ actionScriptAndSt31 = [
 	YIELD_TO_TEXT(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-actionScriptToSailor = [
+);
+actionScriptToSailor = initializeScript(actionScriptToSailor.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -7873,8 +7873,8 @@ actionScriptToSailor = [
 	YIELD_TO_TEXT(),
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript767 = [
+);
+actionScript767 = initializeScript(actionScript767.length,
 	CHOOSE_RANDOM(0, 1),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
@@ -7895,16 +7895,16 @@ actionScript767 = [
 	CHOOSE_RANDOM(30, 60, 90, 120),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SHORTJUMP(&actionScript767[17 + 7 * (const(void)*).sizeof]),
-].join();
-actionScriptTacyMask2 = [
+);
+actionScriptTacyMask2 = initializeScript(actionScriptTacyMask2.length,
 	SET_X(600),
 	SET_Y(3520),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-actionScript96 = [
+);
+actionScript96 = initializeScript(actionScript96.length,
 	SHORTJUMP(&unknownC3BAA3[0]),
-].join();
-actionScriptFrsdFieldM = [
+);
+actionScriptFrsdFieldM = initializeScript(actionScriptFrsdFieldM.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(4),
@@ -7916,8 +7916,8 @@ actionScriptFrsdFieldM = [
 	SET_VELOCITIES_ZERO(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScript107 = [
+);
+actionScript107 = initializeScript(actionScript107.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -7931,16 +7931,16 @@ actionScript107 = [
 	WRITE_WORD_TEMPVAR(1),
 	C0A857(EventFlag.twsnTacoDiscover),
 	HALT(),
-].join();
-actionScriptPhotographerS = [
+);
+actionScriptPhotographerS = initializeScript(actionScriptPhotographerS.length,
 	C46D4B(),
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptTitleScreen6 = [
+);
+actionScriptTitleScreen6 = initializeScript(actionScriptTitleScreen6.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(3),
 	SET_Y(100),
@@ -7952,8 +7952,8 @@ actionScriptTitleScreen6 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(94),
 	HALT(),
-].join();
-actionScript874 = [
+);
+actionScript874 = initializeScript(actionScript874.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoBone),
@@ -7967,12 +7967,12 @@ actionScript874 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_13"),
 	HALT(),
-].join();
-unknownC3A209 = [
+);
+unknownC3A209 = initializeScript(unknownC3A209.length,
 	PAUSE(4),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript853 = [
+);
+actionScript853 = initializeScript(actionScript853.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
@@ -7982,16 +7982,16 @@ actionScript853 = [
 	PAUSE(60),
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.king, ActionScript.unknown854),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3AB44 = [
+);
+unknownC3AB44 = initializeScript(unknownC3AB44.length,
 	GET_ANGLE_TO_DESTINATION(),
 	SET_MOVEMENT_FROM_ANGLE(),
 	SET_MOVING_DIRECTION_FROM_ANGLE(),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORT_RETURN(),
-].join();
-actionScriptBMonkeyBye = [
+);
+actionScriptBMonkeyBye = initializeScript(actionScriptBMonkeyBye.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 11),
 	START_TASK(&unknownC3AFA3[0]),
@@ -8000,8 +8000,8 @@ actionScriptBMonkeyBye = [
 	SHORTCALL(&actionScriptBMonkeyByeUnknownRoutine[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBMonkeyByeUnknownRoutine = [
+);
+actionScriptBMonkeyByeUnknownRoutine = initializeScript(actionScriptBMonkeyByeUnknownRoutine.length,
 	SET_VAR(ActionScriptVars.v6, 432),
 	SET_VAR(ActionScriptVars.v7, 4336),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
@@ -8036,8 +8036,8 @@ actionScriptBMonkeyByeUnknownRoutine = [
 	SET_VAR(ActionScriptVars.v7, 4184),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptEvtPray5GirlC = [
+);
+actionScriptEvtPray5GirlC = initializeScript(actionScriptEvtPray5GirlC.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 10),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -8060,8 +8060,8 @@ actionScriptEvtPray5GirlC = [
 	C0A959(89),
 	PAUSE(3),
 	SHORTJUMP(&actionScriptEvtPray5GirlC[41 + 8 * (const(void)*).sizeof]),
-].join();
-actionScriptAkanbePokey = [
+);
+actionScriptAkanbePokey = initializeScript(actionScriptAkanbePokey.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 8),
 	SET_MOVEMENT_SPEED(352),
@@ -8102,8 +8102,8 @@ actionScriptAkanbePokey = [
 	SET_VAR(ActionScriptVars.v7, 7688),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript801 = [
+);
+actionScript801 = initializeScript(actionScript801.length,
 	SET_Y(0),
 	SET_VAR(ActionScriptVars.v7, 8),
 	SET_TICK_CALLBACK(&unknownC4E51E),
@@ -8808,8 +8808,8 @@ actionScript801 = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	END(),
-].join();
-actionScript3 = [
+);
+actionScript3 = initializeScript(actionScript3.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A26B),
 	SET_ANIMATION(0),
@@ -8818,8 +8818,8 @@ actionScript3 = [
 	C0A6E3(),
 	PAUSE(1),
 	SHORTJUMP(&actionScript3[6 + 4 * (const(void)*).sizeof]),
-].join();
-unknownC37545 = [
+);
+unknownC37545 = initializeScript(unknownC37545.length,
 	LOOP(2),
 		UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 		PAUSE(16),
@@ -8827,8 +8827,8 @@ unknownC37545 = [
 		PAUSE(16),
 	LOOP_END(),
 	SHORT_RETURN(),
-].join();
-actionScriptRunBlinkEffect = [
+);
+actionScriptRunBlinkEffect = initializeScript(actionScriptRunBlinkEffect.length,
 	SET_VAR(ActionScriptVars.v7, 1),
 	LOOP(12),
 		BLINK_INVISIBLE(),
@@ -8840,13 +8840,13 @@ actionScriptRunBlinkEffect = [
 	ADD(ActionScriptVars.v4, -1),
 	END_FADE(),
 	END_TASK(),
-].join();
-actionScript17 = [
+);
+actionScript17 = initializeScript(actionScript17.length,
 	SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
 	SET_BOUNDARIES(24, 8),
 	SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
-].join();
-unknownC3AAC2 = [
+);
+unknownC3AAC2 = initializeScript(unknownC3AAC2.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A18F[0]),
@@ -8854,8 +8854,8 @@ unknownC3AAC2 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(64),
 	SHORT_RETURN(),
-].join();
-actionScriptCop5A = [
+);
+actionScriptCop5A = initializeScript(actionScriptCop5A.length,
 	SET_VAR(ActionScriptVars.v6, 7496),
 	SET_VAR(ActionScriptVars.v7, 248),
 	SET_VAR(ActionScriptVars.v0, 7560),
@@ -8863,20 +8863,20 @@ actionScriptCop5A = [
 	SHORTCALL(&actionScript228_229_230_231_232Common[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptChkaSt2Still = [
+);
+actionScriptChkaSt2Still = initializeScript(actionScriptChkaSt2Still.length,
 	SET_X(5488),
 	SET_Y(304),
 	PAUSE(2),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptTonzuraFree = [
+);
+actionScriptTonzuraFree = initializeScript(actionScriptTonzuraFree.length,
 	C48B3B(),
 	C0A94E(253),
 	PAUSE(3),
 	SHORTJUMP(&actionScriptTonzuraFree[0]),
-].join();
-actionScriptSumsMuseumBilk = [
+);
+actionScriptSumsMuseumBilk = initializeScript(actionScriptSumsMuseumBilk.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(352),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -8891,8 +8891,8 @@ actionScriptSumsMuseumBilk = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPolaPolastarReturnL = [
+);
+actionScriptPolaPolastarReturnL = initializeScript(actionScriptPolaPolastarReturnL.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
@@ -8916,8 +8916,8 @@ actionScriptPolaPolastarReturnL = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript699 = [
+);
+actionScript699 = initializeScript(actionScript699.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 8),
 	SET_MOVEMENT_SPEED(256),
@@ -8931,8 +8931,8 @@ actionScript699 = [
 	JUMP_IF_FALSE(&actionScript699[15 + 4 * (const(void)*).sizeof]),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	HALT(),
-].join();
-unknownC415E7 = [
+);
+unknownC415E7 = initializeScript(unknownC415E7.length,
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	PAUSE(8),
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
@@ -8942,8 +8942,8 @@ unknownC415E7 = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	PAUSE(8),
 	SHORTJUMP(&unknownC40F45[0]),
-].join();
-unknownC33BFB = [
+);
+unknownC33BFB = initializeScript(unknownC33BFB.length,
 	SET_ANIMATION(255),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	C47A9E(),
@@ -8953,22 +8953,22 @@ unknownC33BFB = [
 	WRITE_TEMPVAR_WAITTIMER(),
 	ADD(ActionScriptVars.v1, 1),
 	SHORTJUMP(&unknownC33BFB[8 + 2 * (const(void)*).sizeof]),
-].join();
-actionScript507 = [
+);
+actionScript507 = initializeScript(actionScript507.length,
 	SHORTCALL(&unknownC40F4A[0]),
 	SHORTJUMP(&unknownC41253[0]),
-].join();
-unknownC3C810 = [
+);
+unknownC3C810 = initializeScript(unknownC3C810.length,
 	ADD(ActionScriptVars.v1, -2),
 	PAUSE(1),
 	SHORTJUMP(&unknownC3C810[0]),
-].join();
-actionScriptEvtPsychoMyHome1f = [
+);
+actionScriptEvtPsychoMyHome1f = initializeScript(actionScriptEvtPsychoMyHome1f.length,
 	SET_VAR(ActionScriptVars.v6, 1576),
 	SET_VAR(ActionScriptVars.v7, 8784),
 	SHORTJUMP(&actionScriptEvtPsychoMyHomeCommon[0]),
-].join();
-actionScriptMichikoIntoRoom = [
+);
+actionScriptMichikoIntoRoom = initializeScript(actionScriptMichikoIntoRoom.length,
 	SHORTCALL(&unknownC3AA5A[0]),
 	WRITE_WORD_WRAM(&pendingInteractions, 1),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -8979,8 +8979,8 @@ actionScriptMichikoIntoRoom = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage3Lucky9 = [
+);
+actionScriptTStage3Lucky9 = initializeScript(actionScriptTStage3Lucky9.length,
 	SET_X(4720),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -8988,22 +8988,22 @@ actionScriptTStage3Lucky9 = [
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC40F4A = [
+);
+unknownC40F4A = initializeScript(unknownC40F4A.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	C0AAFD(),
 	SET_VAR(ActionScriptVars.v0, 1),
 	SHORT_RETURN(),
-].join();
-actionScriptMapObjStillEntry2 = [
+);
+actionScriptMapObjStillEntry2 = initializeScript(actionScriptMapObjStillEntry2.length,
 	PAUSE(8),
 	C0C6B6(),
 	JUMP_IF_TRUE(&actionScriptMapObjStillEntry2[0]),
-	C020F1(),
+	CLEANUP_SELF(),
 	END(),
-].join();
-actionScriptBusDriverCommon = [
+);
+actionScriptBusDriverCommon = initializeScript(actionScriptBusDriverCommon.length,
 	SET_PRIORITY(0),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
@@ -9015,26 +9015,26 @@ actionScriptBusDriverCommon = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript631 = [
+);
+actionScript631 = initializeScript(actionScript631.length,
 	SHORTCALL(&unknownC37439[0]),
 	SHORTJUMP(&actionScript632[3 + 1 * (const(void)*).sizeof]),
-].join();
-actionScriptSwSkyF = [
+);
+actionScriptSwSkyF = initializeScript(actionScriptSwSkyF.length,
 	SHORTCALL(&unknownC3C94E[0]),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_WINS_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC30295 = [
+);
+unknownC30295 = initializeScript(unknownC30295.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-unknownC41A2A = [
+);
+unknownC41A2A = initializeScript(unknownC41A2A.length,
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	PAUSE(1),
 	SET_ANIMATION(255),
@@ -9060,8 +9060,8 @@ unknownC41A2A = [
 	SET_ANIMATION(255),
 	PAUSE(10),
 	END(),
-].join();
-actionScriptMagicButterflyOut = [
+);
+actionScriptMagicButterflyOut = initializeScript(actionScriptMagicButterflyOut.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	C0D77F(),
 	SET_ANIMATION(0),
@@ -9072,15 +9072,15 @@ actionScriptMagicButterflyOut = [
 		SET_ANIMATION(0),
 		PAUSE(5),
 	LOOP_END(),
-	C020F1(),
+	CLEANUP_SELF(),
 	UNFREEZE_ENTITIES(),
 	END(),
-].join();
-actionScript512 = [
+);
+actionScript512 = initializeScript(actionScript512.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4152A[0]),
-].join();
-actionScriptHoihoiC = [
+);
+actionScriptHoihoiC = initializeScript(actionScriptHoihoiC.length,
 	SET_X(5288),
 	SET_Y(8656),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -9096,8 +9096,8 @@ actionScriptHoihoiC = [
 	LOOP_END(),
 	PAUSE(30),
 	SHORTJUMP(&actionScriptHoihoiC[7 + 1 * (const(void)*).sizeof]),
-].join();
-actionScriptMdDung = [
+);
+actionScriptMdDung = initializeScript(actionScriptMdDung.length,
 	SHORTCALL(&unknownC34E73[0]),
 	START_TASK(&actionScriptMdDung[42 + 8 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(320),
@@ -9119,8 +9119,8 @@ actionScriptMdDung = [
 	SET_DIRECTION(),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptMdDung[42 + 8 * (const(void)*).sizeof]),
-].join();
-actionScript893 = [
+);
+actionScript893 = initializeScript(actionScript893.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoSaturn),
@@ -9134,8 +9134,8 @@ actionScript893 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_32"),
 	HALT(),
-].join();
-actionScriptSpiritReturnPola = [
+);
+actionScriptSpiritReturnPola = initializeScript(actionScriptSpiritReturnPola.length,
 	SET_PRIORITY(0),
 	SET_X(200),
 	SET_Y(6080),
@@ -9160,13 +9160,13 @@ actionScriptSpiritReturnPola = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptToFountainA = [
+);
+actionScriptToFountainA = initializeScript(actionScriptToFountainA.length,
 	SHORTCALL(&actionScriptToFountainCommon1[0]),
 	C0A92D(1303),
 	SHORTJUMP(&actionScriptToFountainCommon2[0]),
-].join();
-actionScript23 = [
+);
+actionScript23 = initializeScript(actionScript23.length,
 	START_TASK(&actionScript23[48 + 24 * (const(void)*).sizeof]),
 	SHORTCALL(&unknownC3A42D[0]),
 	C0A6B8(),
@@ -9206,8 +9206,8 @@ actionScript23 = [
 		PAUSE(1),
 	LOOP_END(),
 	SHORTJUMP(&actionScript23[48 + 24 * (const(void)*).sizeof]),
-].join();
-actionScriptBusDsrtTunnelL = [
+);
+actionScriptBusDsrtTunnelL = initializeScript(actionScriptBusDsrtTunnelL.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -9216,13 +9216,13 @@ actionScriptBusDsrtTunnelL = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPsychoMyHomeRouka = [
+);
+actionScriptEvtPsychoMyHomeRouka = initializeScript(actionScriptEvtPsychoMyHomeRouka.length,
 	SET_VAR(ActionScriptVars.v6, 5616),
 	SET_VAR(ActionScriptVars.v7, 4840),
 	SHORTJUMP(&actionScriptEvtPsychoMyHomeCommon[0]),
-].join();
-unknownC3AB26 = [
+);
+unknownC3AB26 = initializeScript(unknownC3AB26.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	SET_PHYSICS_CALLBACK(&updateEntityPosition3D),
 	SET_ANIMATION(0),
@@ -9230,8 +9230,8 @@ unknownC3AB26 = [
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SHORT_RETURN(),
-].join();
-actionScriptEvtPray5GirlA = [
+);
+actionScriptEvtPray5GirlA = initializeScript(actionScriptEvtPray5GirlA.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -9242,14 +9242,14 @@ actionScriptEvtPray5GirlA = [
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC3CEB9 = [
+);
+unknownC3CEB9 = initializeScript(unknownC3CEB9.length,
 	MOVE_TO_SPRITE(OverworldSprite.skyRunner),
 	SET_Y_RELATIVE(-40),
 	PAUSE(1),
 	SHORTJUMP(&unknownC3CEB9[0]),
-].join();
-unknownC3CC5C = [
+);
+unknownC3CC5C = initializeScript(unknownC3CC5C.length,
 	SET_VAR(ActionScriptVars.v6, 5288),
 	SET_VAR(ActionScriptVars.v7, 9024),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
@@ -9266,14 +9266,14 @@ unknownC3CC5C = [
 	SET_VAR(ActionScriptVars.v7, 8496),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-unknownC3BD03 = [
+);
+unknownC3BD03 = initializeScript(unknownC3BD03.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTCALL(&unknownC3AB8A[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptSenzo1 = [
+);
+actionScriptSenzo1 = initializeScript(actionScriptSenzo1.length,
 	C0A87A(128, 0),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(64),
@@ -9285,8 +9285,8 @@ actionScriptSenzo1 = [
 	JUMP_IF_TRUE(&actionScriptSenzo1[27 + 7 * (const(void)*).sizeof]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray1Mama = [
+);
+actionScriptEvtPray1Mama = initializeScript(actionScriptEvtPray1Mama.length,
 	SET_X(1576),
 	SET_Y(8784),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -9336,8 +9336,8 @@ actionScriptEvtPray1Mama = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTBusTunnelBrdg = [
+);
+actionScriptTBusTunnelBrdg = initializeScript(actionScriptTBusTunnelBrdg.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(768),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -9347,8 +9347,8 @@ actionScriptTBusTunnelBrdg = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_BRDG_TUNNEL_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_BRDG_TUNNEL"),
 	HALT(),
-].join();
-actionScriptIntoSwThrk = [
+);
+actionScriptIntoSwThrk = initializeScript(actionScriptIntoSwThrk.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -9359,8 +9359,8 @@ actionScriptIntoSwThrk = [
 	SHORTCALL(&unknownC3B70C[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript642 = [
+);
+actionScript642 = initializeScript(actionScript642.length,
 	SHORTCALL(&unknownC3AAFE[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -9371,12 +9371,12 @@ actionScript642 = [
 	SET_VAR(ActionScriptVars.v7, 7120),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3DFD4 = [
+);
+unknownC3DFD4 = initializeScript(unknownC3DFD4.length,
 	SET_Y_VELOCITY(32),
 	CHOOSE_RANDOM(15, 30, 45, 60),
-].join();
-actionScriptEndPhotoman = [
+);
+actionScriptEndPhotoman = initializeScript(actionScriptEndPhotoman.length,
 	SET_X(3072),
 	SET_Y(896),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -9463,8 +9463,8 @@ actionScriptEndPhotoman = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage2Scr2 = [
+);
+actionScriptTStage2Scr2 = initializeScript(actionScriptTStage2Scr2.length,
 	SET_X(4736),
 	SET_Y(5744),
 	SET_MOVEMENT_SPEED(256),
@@ -9473,8 +9473,8 @@ actionScriptTStage2Scr2 = [
 	SHORTCALL(&unknownC31E2D[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE2_B"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC36A41 = [
+);
+unknownC36A41 = initializeScript(unknownC36A41.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A384),
 	START_TASK(&unknownC3A1F3[0]),
 	START_TASK(&unknownC3A262[0]),
@@ -9482,8 +9482,8 @@ unknownC36A41 = [
 	SET_VELOCITIES_ZERO(),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	SHORT_RETURN(),
-].join();
-actionScriptToGorgeousChaous = [
+);
+actionScriptToGorgeousChaous = initializeScript(actionScriptToGorgeousChaous.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -9497,8 +9497,8 @@ actionScriptToGorgeousChaous = [
 	C0A92D(320),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptToGorgeousChaous[16 + 6 * (const(void)*).sizeof]),
-].join();
-actionScriptGorgeousMonoRide = [
+);
+actionScriptGorgeousMonoRide = initializeScript(actionScriptGorgeousMonoRide.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -9507,8 +9507,8 @@ actionScriptGorgeousMonoRide = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptRunFadeEffect = [
+);
+actionScriptRunFadeEffect = initializeScript(actionScriptRunFadeEffect.length,
 	BACKUP_ENTITY_CALLBACK_FLAGS_AND_DISABLE(),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	JUMP_IF_TRUE(&actionScriptRunFadeEffect[5 + 2 * (const(void)*).sizeof]),
@@ -9532,8 +9532,8 @@ actionScriptRunFadeEffect = [
 	RESTORE_ENTITY_CALLBACK_FLAGS(),
 	WRITE_WORD_WRAM(&entityFadeEntity, -1),
 	END(),
-].join();
-actionScript846 = [
+);
+actionScript846 = initializeScript(actionScript846.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -9541,8 +9541,8 @@ actionScript846 = [
 	PAUSE(180),
 	PAUSE(30),
 	SHORTJUMP(&unknownC36834[0]),
-].join();
-actionScriptBusTunnelBrdgR = [
+);
+actionScriptBusTunnelBrdgR = initializeScript(actionScriptBusTunnelBrdgR.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -9552,8 +9552,8 @@ actionScriptBusTunnelBrdgR = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_BRDG_TUNNEL_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_BRDG_TUNNEL_R"),
 	HALT(),
-].join();
-actionScriptMonoRMan = [
+);
+actionScriptMonoRMan = initializeScript(actionScriptMonoRMan.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	WRITE_WORD_TEMPVAR(4),
@@ -9561,8 +9561,8 @@ actionScriptMonoRMan = [
 	PAUSE(120),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMdThrk = [
+);
+actionScriptMdThrk = initializeScript(actionScriptMdThrk.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -9593,8 +9593,8 @@ actionScriptMdThrk = [
 	PAUSE(120),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript877 = [
+);
+actionScript877 = initializeScript(actionScript877.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoDinoMuseum),
@@ -9608,8 +9608,8 @@ actionScript877 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_16"),
 	HALT(),
-].join();
-actionScript437 = [
+);
+actionScript437 = initializeScript(actionScript437.length,
 	SET_X(4736),
 	SET_Y(5744),
 	SET_MOVEMENT_SPEED(256),
@@ -9618,8 +9618,8 @@ actionScript437 = [
 	SHORTCALL(&unknownC31E2D[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE3_B"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2Scr1 = [
+);
+actionScriptTStage2Scr1 = initializeScript(actionScriptTStage2Scr1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -9632,8 +9632,8 @@ actionScriptTStage2Scr1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE2_A"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptAddParty = [
+);
+actionScriptAddParty = initializeScript(actionScriptAddParty.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 18),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -9643,8 +9643,8 @@ actionScriptAddParty = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage3Venus = [
+);
+actionScriptTStage3Venus = initializeScript(actionScriptTStage3Venus.length,
 	PAUSE(23),
 	SET_X(4632),
 	SET_Y(5728),
@@ -9703,8 +9703,8 @@ actionScriptTStage3Venus = [
 	SHORTCALL(&unknownC33399[0]),
 	SHORTCALL(&unknownC33399[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2LuckyDance6 = [
+);
+actionScriptTStage2LuckyDance6 = initializeScript(actionScriptTStage2LuckyDance6.length,
 	SET_X(4768),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -9712,8 +9712,8 @@ actionScriptTStage2LuckyDance6 = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	PAUSE(75),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptJumpTonchiki = [
+);
+actionScriptJumpTonchiki = initializeScript(actionScriptJumpTonchiki.length,
 	SET_X(1368),
 	SET_Y(6904),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -9746,8 +9746,8 @@ actionScriptJumpTonchiki = [
 	PAUSE(8),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC3AAFE = [
+);
+unknownC3AAFE = initializeScript(unknownC3AAFE.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1CB[0]),
@@ -9755,8 +9755,8 @@ unknownC3AAFE = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(512),
 	SHORT_RETURN(),
-].join();
-actionScript871 = [
+);
+actionScript871 = initializeScript(actionScript871.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoWaterfall),
@@ -9770,8 +9770,8 @@ actionScript871 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_10"),
 	HALT(),
-].join();
-actionScriptBunbunDie = [
+);
+actionScriptBunbunDie = initializeScript(actionScriptBunbunDie.length,
 	SHORTCALL(&unknownC3AB26[0]),
 	MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	SET_Z(16),
@@ -9791,8 +9791,8 @@ actionScriptBunbunDie = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPowspot = [
+);
+actionScriptPowspot = initializeScript(actionScriptPowspot.length,
 	SET_ANIMATION(255),
 	SET_VAR(ActionScriptVars.v0, 0),
 	LOOP(9),
@@ -9821,8 +9821,8 @@ actionScriptPowspot = [
 	JUMP_IF_FALSE(&actionScriptPowspot[6]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript857 = [
+);
+actionScript857 = initializeScript(actionScript857.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(140),
@@ -9837,8 +9837,8 @@ actionScript857 = [
 	SET_VELOCITIES_ZERO(),
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.nessPosing, ActionScript.unknown858),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTBusHwayTunnelL = [
+);
+actionScriptTBusHwayTunnelL = initializeScript(actionScriptTBusHwayTunnelL.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(768),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -9848,8 +9848,8 @@ actionScriptTBusHwayTunnelL = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_THRK_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_THRK_L"),
 	HALT(),
-].join();
-actionScriptVStage1KomoritaAppear = [
+);
+actionScriptVStage1KomoritaAppear = initializeScript(actionScriptVStage1KomoritaAppear.length,
 	SET_X(4872),
 	SET_Y(5808),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -9911,8 +9911,8 @@ actionScriptVStage1KomoritaAppear = [
 	PAUSE(109),
 	SET_VELOCITIES_ZERO(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptLeaf2 = [
+);
+actionScriptLeaf2 = initializeScript(actionScriptLeaf2.length,
 	SET_ANIMATION(255),
 	RAND(),
 	AND_TEMPVAR(127),
@@ -9926,8 +9926,8 @@ actionScriptLeaf2 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTCALL(&actionScriptLeaf1[14 + 6 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTBusFourTunnel = [
+);
+actionScriptTBusFourTunnel = initializeScript(actionScriptTBusFourTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(768),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -9937,8 +9937,8 @@ actionScriptTBusFourTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_BRDG_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_BRDG"),
 	HALT(),
-].join();
-actionScriptNessFollowZombi2 = [
+);
+actionScriptNessFollowZombi2 = initializeScript(actionScriptNessFollowZombi2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC37A7C[0]),
 	SET_MOVEMENT_SPEED(256),
@@ -9961,12 +9961,12 @@ actionScriptNessFollowZombi2 = [
 	SHORTCALL(&unknownC3ABE0[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript710 = [
+);
+actionScript710 = initializeScript(actionScript710.length,
 	GET_EVENT_FLAG(EventFlag.itemLetter3),
 	SHORTJUMP(&actionScript707_708_709_710_Common[0]),
-].join();
-actionScriptOutSkywalker = [
+);
+actionScriptOutSkywalker = initializeScript(actionScriptOutSkywalker.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -9979,8 +9979,8 @@ actionScriptOutSkywalker = [
 	PAUSE(48),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript63 = [
+);
+actionScript63 = initializeScript(actionScript63.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A09F[0]),
@@ -10013,8 +10013,8 @@ actionScript63 = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptComeBackNes = [
+);
+actionScriptComeBackNes = initializeScript(actionScriptComeBackNes.length,
 	SET_X(384),
 	SET_Y(7624),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -10049,8 +10049,8 @@ actionScriptComeBackNes = [
 	YIELD_TO_TEXT(),
 	PAUSE(3),
 	HALT(),
-].join();
-unknownC415BA = [
+);
+unknownC415BA = initializeScript(unknownC415BA.length,
 	SET_X(24),
 	SET_Y(40),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
@@ -10064,8 +10064,8 @@ unknownC415BA = [
 	SET_ANIMATION(255),
 	PAUSE(1),
 	SHORTJUMP(&unknownC415BA[26 + 4 * (const(void)*).sizeof]),
-].join();
-actionScript849 = [
+);
+actionScript849 = initializeScript(actionScript849.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -10073,8 +10073,8 @@ actionScript849 = [
 	PAUSE(80),
 	PAUSE(120),
 	SHORTJUMP(&unknownC36834[0]),
-].join();
-actionScriptSwWinsA = [
+);
+actionScriptSwWinsA = initializeScript(actionScriptSwWinsA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -10113,8 +10113,8 @@ actionScriptSwWinsA = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_B),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptWinsNearKanai = [
+);
+actionScriptWinsNearKanai = initializeScript(actionScriptWinsNearKanai.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -10123,8 +10123,8 @@ actionScriptWinsNearKanai = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptCop5ToNess = [
+);
+actionScriptCop5ToNess = initializeScript(actionScriptCop5ToNess.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 8),
 	START_TASK(&unknownC3AFA3[0]),
@@ -10135,8 +10135,8 @@ actionScriptCop5ToNess = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptGuardA1 = [
+);
+actionScriptGuardA1 = initializeScript(actionScriptGuardA1.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(192),
 	WRITE_WORD_TEMPVAR(4),
@@ -10155,8 +10155,8 @@ actionScriptGuardA1 = [
 	PLAY_SFX(Sfx.doorOpen),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptOutSt2 = [
+);
+actionScriptOutSt2 = initializeScript(actionScriptOutSt2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -10170,8 +10170,8 @@ actionScriptOutSt2 = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript134 = [
+);
+actionScript134 = initializeScript(actionScript134.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	COPY_XY_TO_VARS(),
@@ -10187,8 +10187,8 @@ actionScript134 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptMoveToLocationTypeB = [
+);
+actionScriptMoveToLocationTypeB = initializeScript(actionScriptMoveToLocationTypeB.length,
 	GET_ANGLE_TO_DESTINATION(),
 	SET_MOVEMENT_FROM_ANGLE(),
 	SET_MOVING_DIRECTION_FROM_ANGLE(),
@@ -10200,8 +10200,8 @@ actionScriptMoveToLocationTypeB = [
 	JUMP_IF_FALSE(&actionScriptMoveToLocationTypeB[6 + 6 * (const(void)*).sizeof]),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScriptMochiYunbo = [
+);
+actionScriptMochiYunbo = initializeScript(actionScriptMochiYunbo.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(64),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -10210,8 +10210,8 @@ actionScriptMochiYunbo = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTelRing = [
+);
+actionScriptTelRing = initializeScript(actionScriptTelRing.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(1),
 	SET_VELOCITIES_ZERO(),
@@ -10238,8 +10238,8 @@ actionScriptTelRing = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 1),
 	PAUSE(6),
 	SHORTJUMP(&actionScriptTelRing[5 + 2 * (const(void)*).sizeof]),
-].join();
-actionScriptSwSumsA = [
+);
+actionScriptSwSumsA = initializeScript(actionScriptSwSumsA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -10296,8 +10296,8 @@ actionScriptSwSumsA = [
 	WRITE_DWORD_WRAM(&postTeleportCallback, &restoreMapRendering),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBikiniLookNess = [
+);
+actionScriptBikiniLookNess = initializeScript(actionScriptBikiniLookNess.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_X_RELATIVE(48),
 	SET_Y_RELATIVE(32),
@@ -10305,8 +10305,8 @@ actionScriptBikiniLookNess = [
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
 	HALT(),
-].join();
-unknownC348C4 = [
+);
+unknownC348C4 = initializeScript(unknownC348C4.length,
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10326,8 +10326,8 @@ unknownC348C4 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(20),
 	SHORT_RETURN(),
-].join();
-actionScript55 = [
+);
+actionScript55 = initializeScript(actionScript55.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A17B[0]),
@@ -10341,8 +10341,8 @@ actionScript55 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_DOG_BYE"),
 	HALT(),
-].join();
-unknownC41974 = [
+);
+unknownC41974 = initializeScript(unknownC41974.length,
 	SET_X_VELOCITY(0),
 	SET_Y_VELOCITY(-512),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
@@ -10350,8 +10350,8 @@ unknownC41974 = [
 	UPDATE_SPRITE_DIRECTION(Direction.up, 1),
 	PAUSE(4),
 	SHORTJUMP(&unknownC41974[6]),
-].join();
-actionScriptBusDsrtFourIn = [
+);
+actionScriptBusDsrtFourIn = initializeScript(actionScriptBusDsrtFourIn.length,
 	SET_X(1240),
 	SET_Y(10032),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -10379,8 +10379,8 @@ actionScriptBusDsrtFourIn = [
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScriptBusDsrtFourIn[50 + 10 * (const(void)*).sizeof]),
-].join();
-actionScriptEvtPray4Gaus = [
+);
+actionScriptEvtPray4Gaus = initializeScript(actionScriptEvtPray4Gaus.length,
 	SET_X(7728),
 	SET_Y(3080),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -10395,12 +10395,12 @@ actionScriptEvtPray4Gaus = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript520 = [
+);
+actionScript520 = initializeScript(actionScript520.length,
 	SHORTCALL(&unknownC40F4A[0]),
 	SHORTJUMP(&unknownC4170E[0]),
-].join();
-actionScriptNessFollowZombi1 = [
+);
+actionScriptNessFollowZombi1 = initializeScript(actionScriptNessFollowZombi1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC37A7C[0]),
 	PAUSE(32),
@@ -10421,11 +10421,11 @@ actionScriptNessFollowZombi1 = [
 	SHORTCALL(&unknownC3ABE0[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript94 = [
+);
+actionScript94 = initializeScript(actionScript94.length,
 	SHORTJUMP(&actionScript94_95_98Common[0]),
-].join();
-actionScriptTStage2GorgeousWalk = [
+);
+actionScriptTStage2GorgeousWalk = initializeScript(actionScriptTStage2GorgeousWalk.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	SET_VAR(ActionScriptVars.v0, 0),
@@ -10623,8 +10623,8 @@ actionScriptTStage2GorgeousWalk = [
 	PAUSE(30),
 	PAUSE(180),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMdHashiBus = [
+);
+actionScriptMdHashiBus = initializeScript(actionScriptMdHashiBus.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -10639,8 +10639,8 @@ actionScriptMdHashiBus = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray6Frank = [
+);
+actionScriptEvtPray6Frank = initializeScript(actionScriptEvtPray6Frank.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -10659,8 +10659,8 @@ actionScriptEvtPray6Frank = [
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript587 = [
+);
+actionScript587 = initializeScript(actionScript587.length,
 	SHORTCALL(&unknownC36A41[0]),
 	SET_MOVEMENT_SPEED(448),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -10668,8 +10668,8 @@ actionScript587 = [
 	SET_VAR(ActionScriptVars.v7, 7160),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-actionScriptBusTwsnThrkIn = [
+);
+actionScriptBusTwsnThrkIn = initializeScript(actionScriptBusTwsnThrkIn.length,
 	SET_X(2216),
 	SET_Y(7144),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -10682,15 +10682,15 @@ actionScriptBusTwsnThrkIn = [
 	SHORTCALL(&actionScriptMoveToLocationTypeB[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript65[0]),
-].join();
-actionScriptTStage1MikeL = [
+);
+actionScriptTStage1MikeL = initializeScript(actionScriptTStage1MikeL.length,
 	SET_X(6896),
 	SET_Y(8560),
 	SHORTCALL(&unknownC3AA38[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-unknownC30C67 = [
+);
+unknownC30C67 = initializeScript(unknownC30C67.length,
 	PAUSE(60),
 	SET_VAR(ActionScriptVars.v6, 7696),
 	SET_VAR(ActionScriptVars.v7, 2280),
@@ -10699,8 +10699,8 @@ unknownC30C67 = [
 	SET_VAR(ActionScriptVars.v7, 2288),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&unknownC30C7F[0]),
-].join();
-actionScriptKurokogeJeff = [
+);
+actionScriptKurokogeJeff = initializeScript(actionScriptKurokogeJeff.length,
 	SET_X(6704),
 	SET_Y(10064),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -10709,8 +10709,8 @@ actionScriptKurokogeJeff = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript256 = [
+);
+actionScript256 = initializeScript(actionScript256.length,
 	GET_EVENT_FLAG(EventFlag.unknown0144),
 	JUMP_IF_TRUE(&actionScriptMapObjStill[0]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -10738,8 +10738,8 @@ actionScript256 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptDoseiSt3 = [
+);
+actionScriptDoseiSt3 = initializeScript(actionScriptDoseiSt3.length,
 	SET_X(5976),
 	SET_Y(280),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -10749,8 +10749,8 @@ actionScriptDoseiSt3 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-actionScript834 = [
+);
+actionScript834 = initializeScript(actionScript834.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -10772,8 +10772,8 @@ actionScript834 = [
 	LOOP_END(),
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.starMasterGuy, ActionScript.unknown835),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSpiritReturnJef = [
+);
+actionScriptSpiritReturnJef = initializeScript(actionScriptSpiritReturnJef.length,
 	SET_PRIORITY(0),
 	SET_X(216),
 	SET_Y(6088),
@@ -10798,8 +10798,8 @@ actionScriptSpiritReturnJef = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGrfdPolaAddParty = [
+);
+actionScriptGrfdPolaAddParty = initializeScript(actionScriptGrfdPolaAddParty.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	PAUSE(8),
@@ -10835,8 +10835,8 @@ actionScriptGrfdPolaAddParty = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSlotBrosRotateL = [
+);
+actionScriptSlotBrosRotateL = initializeScript(actionScriptSlotBrosRotateL.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	PLAY_SFX(Sfx.cursor3),
 	C0A673(),
@@ -10848,8 +10848,8 @@ actionScriptSlotBrosRotateL = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(4),
 	SHORTJUMP(&actionScriptSlotBrosRotateL[7 + 3 * (const(void)*).sizeof]),
-].join();
-actionScript885 = [
+);
+actionScript885 = initializeScript(actionScript885.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoSumsRest),
@@ -10863,8 +10863,8 @@ actionScript885 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_24"),
 	HALT(),
-].join();
-actionScriptHeliPokeyFace = [
+);
+actionScriptHeliPokeyFace = initializeScript(actionScriptHeliPokeyFace.length,
 	MOVE_TO_SPRITE(OverworldSprite.helicopter),
 	SET_X_RELATIVE(21),
 	SET_Y_RELATIVE(-14),
@@ -10875,8 +10875,8 @@ actionScriptHeliPokeyFace = [
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript190 = [
+);
+actionScript190 = initializeScript(actionScript190.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -10890,8 +10890,8 @@ actionScript190 = [
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_TONZURABUS_MONO"),
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	HALT(),
-].join();
-actionScriptReturnDog = [
+);
+actionScriptReturnDog = initializeScript(actionScriptReturnDog.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 6),
 	START_TASK(&unknownC3AFA3[0]),
@@ -10915,8 +10915,8 @@ actionScriptReturnDog = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptProloguePokey2 = [
+);
+actionScriptProloguePokey2 = initializeScript(actionScriptProloguePokey2.length,
 	SET_X(2000),
 	SET_Y(1424),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -10935,8 +10935,8 @@ actionScriptProloguePokey2 = [
 	RUN_FLYOVER(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptVStage1BodyguardL = [
+);
+actionScriptVStage1BodyguardL = initializeScript(actionScriptVStage1BodyguardL.length,
 	SET_X(4632),
 	SET_Y(5728),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -10954,8 +10954,8 @@ actionScriptVStage1BodyguardL = [
 	PAUSE(125),
 	SET_VELOCITIES_ZERO(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSlotBrosRotateN = [
+);
+actionScriptSlotBrosRotateN = initializeScript(actionScriptSlotBrosRotateN.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	PLAY_SFX(Sfx.cursor3),
 	C0A673(),
@@ -10967,8 +10967,8 @@ actionScriptSlotBrosRotateN = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(5),
 	SHORTJUMP(&actionScriptSlotBrosRotateN[7 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptBMonkeyFly = [
+);
+actionScriptBMonkeyFly = initializeScript(actionScriptBMonkeyFly.length,
 	SET_X_RELATIVE(7),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	SET_PHYSICS_CALLBACK(&updateEntityPosition3DIgnoreSurface),
@@ -10984,14 +10984,14 @@ actionScriptBMonkeyFly = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSwSkyB = [
+);
+actionScriptSwSkyB = initializeScript(actionScriptSwSkyB.length,
 	SHORTCALL(&unknownC3C90C[0]),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_DSRT_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptFourMuseumReturn = [
+);
+actionScriptFourMuseumReturn = initializeScript(actionScriptFourMuseumReturn.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(352),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -11004,12 +11004,12 @@ actionScriptFourMuseumReturn = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptCircleCultistSouth = [
+);
+actionScriptCircleCultistSouth = initializeScript(actionScriptCircleCultistSouth.length,
 	SHORTCALL(&unknownC30C55[0]),
 	SHORTJUMP(&unknownC30CAF[0]),
-].join();
-actionScript844 = [
+);
+actionScript844 = initializeScript(actionScript844.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	PAUSE(60),
 	SET_MOVEMENT_SPEED(256),
@@ -11021,8 +11021,8 @@ actionScript844 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript674 = [
+);
+actionScript674 = initializeScript(actionScript674.length,
 	SHORTCALL(&actionScript674[52 + 16 * (const(void)*).sizeof + string.sizeof]),
 	WRITE_WORD_TEMPVAR(0),
 	C0A857(EventFlag.animPort6),
@@ -11085,8 +11085,8 @@ actionScript674 = [
 	UPDATE_ENTITY_SPRITE_FRAME1(),
 	PAUSE(4),
 	JUMP_IF_TRUE(&actionScript674[104 + 31 * (const(void)*).sizeof + string.sizeof]),
-].join();
-actionScriptAndSt32 = [
+);
+actionScriptAndSt32 = initializeScript(actionScriptAndSt32.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -11098,8 +11098,8 @@ actionScriptAndSt32 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptTStage3Gorgeous5 = [
+);
+actionScriptTStage3Gorgeous5 = initializeScript(actionScriptTStage3Gorgeous5.length,
 	SET_X(4704),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -11110,8 +11110,8 @@ actionScriptTStage3Gorgeous5 = [
 	SET_X_VELOCITY(45),
 	SHORTCALL(&unknownC333CC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC362C0 = [
+);
+unknownC362C0 = initializeScript(unknownC362C0.length,
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(5),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
@@ -11121,8 +11121,8 @@ unknownC362C0 = [
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 	PAUSE(5),
 	SHORT_RETURN(),
-].join();
-actionScriptSpiritReturnPola2 = [
+);
+actionScriptSpiritReturnPola2 = initializeScript(actionScriptSpiritReturnPola2.length,
 	SET_PRIORITY(0),
 	SET_X(512),
 	SET_Y(7544),
@@ -11147,8 +11147,8 @@ actionScriptSpiritReturnPola2 = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSlotBrosStopN = [
+);
+actionScriptSlotBrosStopN = initializeScript(actionScriptSlotBrosStopN.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	C0A673(),
 	WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -11166,16 +11166,16 @@ actionScriptSlotBrosStopN = [
 	PLAY_SFX(Sfx.cursor4),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray7Kyorokyoro = [
+);
+actionScriptEvtPray7Kyorokyoro = initializeScript(actionScriptEvtPray7Kyorokyoro.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	C0C7DB(),
 	SHORTCALL(&unknownC37545[0]),
 	HALT(),
-].join();
-actionScriptTitleScreen9 = [
+);
+actionScriptTitleScreen9 = initializeScript(actionScriptTitleScreen9.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(6),
 	SET_Y(100),
@@ -11187,18 +11187,18 @@ actionScriptTitleScreen9 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(180),
 	HALT(),
-].join();
-actionScriptTStage2Player = [
+);
+actionScriptTStage2Player = initializeScript(actionScriptTStage2Player.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 30),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript707 = [
+);
+actionScript707 = initializeScript(actionScript707.length,
 	GET_EVENT_FLAG(EventFlag.itemHaemitu),
 	SHORTJUMP(&actionScript707_708_709_710_Common[0]),
-].join();
-unknownC3A0D8 = [
+);
+unknownC3A0D8 = initializeScript(unknownC3A0D8.length,
 	PAUSE(9),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -11231,8 +11231,8 @@ unknownC3A0D8 = [
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	SHORTJUMP(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
-].join();
-actionScript815 = [
+);
+actionScript815 = initializeScript(actionScript815.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_MOVEMENT_SPEED(384),
 	WRITE_WORD_TEMPVAR(2),
@@ -11245,8 +11245,8 @@ actionScript815 = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	PAUSE(106),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSwDsrtB = [
+);
+actionScriptSwDsrtB = initializeScript(actionScriptSwDsrtB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -11270,24 +11270,24 @@ actionScriptSwDsrtB = [
 	SET_Z_VELOCITY(256),
 	PAUSE(128),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMoveToLocationTypeC = [
+);
+actionScriptMoveToLocationTypeC = initializeScript(actionScriptMoveToLocationTypeC.length,
 	SHORTCALL(&unknownC3AB44[0]),
 	PAUSE(1),
 	C0A8DC(),
 	JUMP_IF_FALSE(&actionScriptMoveToLocationTypeC[1 + 1 * (const(void)*).sizeof]),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScript845 = [
+);
+actionScript845 = initializeScript(actionScript845.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(80),
 	SHORTJUMP(&unknownC36834[0]),
-].join();
-actionScript855 = [
+);
+actionScript855 = initializeScript(actionScript855.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(2),
@@ -11296,8 +11296,8 @@ actionScript855 = [
 	SET_VELOCITIES_ZERO(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-unknownC333DD = [
+);
+unknownC333DD = initializeScript(unknownC333DD.length,
 	SHORTCALL(&unknownC33399[0]),
 	SHORTCALL(&unknownC33399[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 1),
@@ -11317,8 +11317,8 @@ unknownC333DD = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	PAUSE(11),
 	SHORT_RETURN(),
-].join();
-unknownC3C871 = [
+);
+unknownC3C871 = initializeScript(unknownC3C871.length,
 	PAUSE(2),
 	SET_VAR(ActionScriptVars.v2, 0),
 	PAUSE(2),
@@ -11345,8 +11345,8 @@ unknownC3C871 = [
 	LOOP_END(),
 	SET_VAR(ActionScriptVars.v2, 1),
 	SHORTJUMP(&unknownC3C871[0]),
-].join();
-unknownC41253 = [
+);
+unknownC41253 = initializeScript(unknownC41253.length,
 	SET_X(-8),
 	SET_Y(40),
 	SET_X_VELOCITY(256),
@@ -11422,8 +11422,8 @@ unknownC41253 = [
 	PAUSE(10),
 	JUMP_TO_LABEL_N_TIMES(8, &unknownC41253[174 + 36 * (const(void)*).sizeof]),
 	SHORTJUMP(&unknownC41253[57 + 11 * (const(void)*).sizeof]),
-].join();
-actionScriptMdSkrb = [
+);
+actionScriptMdSkrb = initializeScript(actionScriptMdSkrb.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -11445,16 +11445,16 @@ actionScriptMdSkrb = [
 	PAUSE(120),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptMapObjStillLive = [
+);
+actionScriptMapObjStillLive = initializeScript(actionScriptMapObjStillLive.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	C0C7DB(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptVStage1VenusLight1 = [
+);
+actionScriptVStage1VenusLight1 = initializeScript(actionScriptVStage1VenusLight1.length,
 	SET_PRIORITY(0),
 	SET_X(4730),
 	SET_Y(5728),
@@ -11466,16 +11466,16 @@ actionScriptVStage1VenusLight1 = [
 	SET_Y_RELATIVE(-8),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptVStage1VenusLight1[14 + 2 * (const(void)*).sizeof]),
-].join();
-actionScriptCop5D = [
+);
+actionScriptCop5D = initializeScript(actionScriptCop5D.length,
 	SET_VAR(ActionScriptVars.v6, 7544),
 	SET_VAR(ActionScriptVars.v7, 200),
 	SET_VAR(ActionScriptVars.v0, 7504),
 	SET_VAR(ActionScriptVars.v1, 200),
 	SHORTCALL(&actionScript228_229_230_231_232Common[0]),
 	HALT(),
-].join();
-actionScriptEvtPray3ChildA = [
+);
+actionScriptEvtPray3ChildA = initializeScript(actionScriptEvtPray3ChildA.length,
 	SET_X(2128),
 	SET_Y(7056),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -11490,12 +11490,12 @@ actionScriptEvtPray3ChildA = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript505 = [
+);
+actionScript505 = initializeScript(actionScript505.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC411EB[0]),
-].join();
-actionScriptEvtHeliFWingStart = [
+);
+actionScriptEvtHeliFWingStart = initializeScript(actionScriptEvtHeliFWingStart.length,
 	SET_PRIORITY(0),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -11533,20 +11533,20 @@ actionScriptEvtHeliFWingStart = [
 	SET_X_RELATIVE(8),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptEvtHeliFWingStart[78 + 9 * (const(void)*).sizeof]),
-].join();
-actionScript2 = [
+);
+actionScript2 = initializeScript(actionScript2.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A26B),
 	SET_ANIMATION(0),
-	C03DAA(),
-	C04EF0(),
+	INITIALIZE_PARTY_MEMBER(),
+	UPDATE_PARTY_MEMBER_POSITION(),
 	CLEAR_CURRENT_ENTITY_COLLISION(),
 	SET_TICK_CALLBACK(&partyMemberTick),
 	C0A6E3(),
 	PAUSE(1),
 	SHORTJUMP(&actionScript2[8 + 6 * (const(void)*).sizeof]),
-].join();
-actionScriptBusTunnelBrdgL = [
+);
+actionScriptBusTunnelBrdgL = initializeScript(actionScriptBusTunnelBrdgL.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -11555,8 +11555,8 @@ actionScriptBusTunnelBrdgL = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptCarpainterThunderCommon = [
+);
+actionScriptCarpainterThunderCommon = initializeScript(actionScriptCarpainterThunderCommon.length,
 	LOOP(11),
 		SET_VAR(ActionScriptVars.v0, 10),
 		C474A8(),
@@ -11568,8 +11568,8 @@ actionScriptCarpainterThunderCommon = [
 		PAUSE(4),
 	LOOP_END(),
 	END_TASK(),
-].join();
-actionScriptBusTunnelHwayR = [
+);
+actionScriptBusTunnelHwayR = initializeScript(actionScriptBusTunnelHwayR.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -11579,8 +11579,8 @@ actionScriptBusTunnelHwayR = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_HWAY_TUNNEL_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_HWAY_TUNNEL_R"),
 	HALT(),
-].join();
-actionScript807 = [
+);
+actionScript807 = initializeScript(actionScript807.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -11599,8 +11599,8 @@ actionScript807 = [
 	LOOP_END(),
 	SET_ANIMATION(0),
 	HALT(),
-].join();
-actionScriptTitleScreen5 = [
+);
+actionScriptTitleScreen5 = initializeScript(actionScriptTitleScreen5.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(2),
 	SET_Y(100),
@@ -11612,16 +11612,16 @@ actionScriptTitleScreen5 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(76),
 	HALT(),
-].join();
-actionScriptBMonkeyFlyS = [
+);
+actionScriptBMonkeyFlyS = initializeScript(actionScriptBMonkeyFlyS.length,
 	SET_X_RELATIVE(7),
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptSwThrkB = [
+);
+actionScriptSwThrkB = initializeScript(actionScriptSwThrkB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -11659,8 +11659,8 @@ actionScriptSwThrkB = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTonzuraBusToThrk = [
+);
+actionScriptTonzuraBusToThrk = initializeScript(actionScriptTonzuraBusToThrk.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -11698,14 +11698,14 @@ actionScriptTonzuraBusToThrk = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TWSN_TUNNEL),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TO_THRK_TUNNEL"),
 	HALT(),
-].join();
-unknownC3AB8A = [
+);
+unknownC3AB8A = initializeScript(unknownC3AB8A.length,
 	PAUSE(1),
 	TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 	JUMP_IF_FALSE(&unknownC3AB8A[0]),
 	SHORT_RETURN(),
-].join();
-unknownC4119D = [
+);
+unknownC4119D = initializeScript(unknownC4119D.length,
 	SET_ANIMATION(255),
 	PAUSE(48),
 	SET_ANIMATION(255),
@@ -11734,8 +11734,8 @@ unknownC4119D = [
 	SET_ANIMATION(255),
 	PAUSE(169),
 	SHORTJUMP(&unknownC4119D[4]),
-].join();
-actionScriptInsekiStarman = [
+);
+actionScriptInsekiStarman = initializeScript(actionScriptInsekiStarman.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.ness),
 	SET_Y_RELATIVE(-16),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
@@ -11765,8 +11765,8 @@ actionScriptInsekiStarman = [
 	RESTORE_MAP_RENDERING(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript822 = [
+);
+actionScript822 = initializeScript(actionScript822.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
@@ -11778,8 +11778,8 @@ actionScript822 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript600 = [
+);
+actionScript600 = initializeScript(actionScript600.length,
 	SET_MOVEMENT_SPEED(512),
 	SET_ANIMATION(0),
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
@@ -11789,8 +11789,8 @@ actionScript600 = [
 	START_TASK(&unknownC36D18[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScript20[6 + 4 * (const(void)*).sizeof]),
-].join();
-actionScript25 = [
+);
+actionScript25 = initializeScript(actionScript25.length,
 	START_TASK(&actionScript25[38 + 20 * (const(void)*).sizeof]),
 	SHORTCALL(&unknownC3A42D[0]),
 	C0A6B8(),
@@ -11825,8 +11825,8 @@ actionScript25 = [
 		PAUSE(1),
 	LOOP_END(),
 	SHORTJUMP(&actionScript25[38 + 20 * (const(void)*).sizeof]),
-].join();
-actionScriptMdOnet = [
+);
+actionScriptMdOnet = initializeScript(actionScriptMdOnet.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -11857,8 +11857,8 @@ actionScriptMdOnet = [
 	PAUSE(120),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage3Lucky6 = [
+);
+actionScriptTStage3Lucky6 = initializeScript(actionScriptTStage3Lucky6.length,
 	SET_X(4752),
 	SET_Y(5728),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -11867,8 +11867,8 @@ actionScriptTStage3Lucky6 = [
 	SET_Y_VELOCITY(45),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBusTunnelDsrtL = [
+);
+actionScriptBusTunnelDsrtL = initializeScript(actionScriptBusTunnelDsrtL.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -11890,8 +11890,8 @@ actionScriptBusTunnelDsrtL = [
 	PAUSE(80),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript832 = [
+);
+actionScript832 = initializeScript(actionScript832.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	LOOP(3),
 		WRITE_WORD_TEMPVAR(Direction.left),
@@ -11916,8 +11916,8 @@ actionScript832 = [
 	WRITE_WORD_TEMPVAR(2),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptTStage1FlipTurn = [
+);
+actionScriptTStage1FlipTurn = initializeScript(actionScriptTStage1FlipTurn.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	C4258C(),
 	SET_VAR(ActionScriptVars.v4, 0),
@@ -11942,8 +11942,8 @@ actionScriptTStage1FlipTurn = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	PAUSE(90),
 	SHORTJUMP(&actionScriptTStage1Flip[32 + 2 * (const(void)*).sizeof]),
-].join();
-actionScriptBlockZombiB = [
+);
+actionScriptBlockZombiB = initializeScript(actionScriptBlockZombiB.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
@@ -11952,12 +11952,12 @@ actionScriptBlockZombiB = [
 	PAUSE(30),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	HALT(),
-].join();
-actionScript519 = [
+);
+actionScript519 = initializeScript(actionScript519.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC415E7[0]),
-].join();
-actionScript500 = [
+);
+actionScript500 = initializeScript(actionScript500.length,
 	C0A643(1311),
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -11965,8 +11965,8 @@ actionScript500 = [
 	EF0C87(),
 	JUMP_IF_TRUE(&actionScript499_500_Common[12 + 6 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript499_500_Common[0]),
-].join();
-unknownC41822 = [
+);
+unknownC41822 = initializeScript(unknownC41822.length,
 	SET_X(-12),
 	SET_Y(40),
 	SET_X_VELOCITY(256),
@@ -12021,8 +12021,8 @@ unknownC41822 = [
 	PAUSE(10),
 	JUMP_TO_LABEL_N_TIMES(2, &unknownC41822[118 + 28 * (const(void)*).sizeof]),
 	SHORTJUMP(&unknownC41822[52 + 10 * (const(void)*).sizeof]),
-].join();
-actionScriptTakeNessKatacomb2C = [
+);
+actionScriptTakeNessKatacomb2C = initializeScript(actionScriptTakeNessKatacomb2C.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_Y_RELATIVE(16),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -12034,8 +12034,8 @@ actionScriptTakeNessKatacomb2C = [
 	WRITE_WORD_TEMPVAR(1),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptMapObjTBack = [
+);
+actionScriptMapObjTBack = initializeScript(actionScriptMapObjTBack.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -12043,8 +12043,8 @@ actionScriptMapObjTBack = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	START_TASK(&unknownC36E41[0]),
 	SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
-].join();
-actionScript103 = [
+);
+actionScript103 = initializeScript(actionScript103.length,
 	COPY_XY_TO_VARS(),
 	SET_VAR(ActionScriptVars.v2, 104),
 	SET_VAR(ActionScriptVars.v3, 96),
@@ -12067,8 +12067,8 @@ actionScript103 = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptFourMuseumBilk = [
+);
+actionScriptFourMuseumBilk = initializeScript(actionScriptFourMuseumBilk.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(352),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -12083,8 +12083,8 @@ actionScriptFourMuseumBilk = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript31 = [
+);
+actionScript31 = initializeScript(actionScript31.length,
 	SET_DIRECTION8(Direction.down),
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
@@ -12105,8 +12105,8 @@ actionScript31 = [
 	SET_VELOCITIES_ZERO(),
 	PAUSE(12),
 	SHORTJUMP(&actionScript31[17 + 8 * (const(void)*).sizeof]),
-].join();
-actionScriptTalkPoo = [
+);
+actionScriptTalkPoo = initializeScript(actionScriptTalkPoo.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
@@ -12120,8 +12120,8 @@ actionScriptTalkPoo = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage3Gorgeous7 = [
+);
+actionScriptTStage3Gorgeous7 = initializeScript(actionScriptTStage3Gorgeous7.length,
 	SET_X(4768),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -12131,16 +12131,16 @@ actionScriptTStage3Gorgeous7 = [
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptPeopleSleep = [
+);
+actionScriptPeopleSleep = initializeScript(actionScriptPeopleSleep.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	C0C7DB(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&unknownC3A17B[0]),
-].join();
-actionScript826 = [
+);
+actionScript826 = initializeScript(actionScript826.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PRIORITY(0),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -12158,8 +12158,8 @@ actionScript826 = [
 		SET_Y_RELATIVE(8),
 	LOOP_END(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptOmarGiveHierogriph = [
+);
+actionScriptOmarGiveHierogriph = initializeScript(actionScriptOmarGiveHierogriph.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	START_TASK(&unknownC3AFA3[0]),
 	SET_VAR(ActionScriptVars.v4, 9),
@@ -12180,13 +12180,13 @@ actionScriptOmarGiveHierogriph = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript610 = [
+);
+actionScript610 = initializeScript(actionScript610.length,
 	GET_EVENT_FLAG(EventFlag.onetDoorClose),
 	JUMP_IF_FALSE(&actionScriptMapObjTBack[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2LuckyDance4 = [
+);
+actionScriptTStage2LuckyDance4 = initializeScript(actionScriptTStage2LuckyDance4.length,
 	SET_X(4768),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -12194,8 +12194,8 @@ actionScriptTStage2LuckyDance4 = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	PAUSE(90),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3A0B2 = [
+);
+unknownC3A0B2 = initializeScript(unknownC3A0B2.length,
 	PAUSE(24),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -12203,8 +12203,8 @@ unknownC3A0B2 = [
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	SHORTJUMP(&unknownC3A0B2[0]),
-].join();
-unknownC37439 = [
+);
+unknownC37439 = initializeScript(unknownC37439.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -12214,8 +12214,8 @@ unknownC37439 = [
 	SET_VAR(ActionScriptVars.v5, 1),
 	SET_VAR(ActionScriptVars.v7, 5654),
 	SHORT_RETURN(),
-].join();
-actionScriptOKFree2A = [
+);
+actionScriptOKFree2A = initializeScript(actionScriptOKFree2A.length,
 	SET_ANIMATION(255),
 	PAUSE(54),
 	SHORTCALL(&unknownC3C143[0]),
@@ -12223,8 +12223,8 @@ actionScriptOKFree2A = [
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-actionScript273 = [
+);
+actionScript273 = initializeScript(actionScript273.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_VAR(ActionScriptVars.v4, 0),
@@ -12266,8 +12266,8 @@ actionScript273 = [
 	SET_VAR(ActionScriptVars.v7, 1096),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPray4Explain = [
+);
+actionScriptEvtPray4Explain = initializeScript(actionScriptEvtPray4Explain.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 10),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12281,8 +12281,8 @@ actionScriptEvtPray4Explain = [
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptHoihoiI = [
+);
+actionScriptHoihoiI = initializeScript(actionScriptHoihoiI.length,
 	SET_X(5448),
 	SET_Y(9152),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -12295,15 +12295,15 @@ actionScriptHoihoiI = [
 	SET_VAR(ActionScriptVars.v7, 9136),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGhostThrkPlus2 = [
+);
+actionScriptGhostThrkPlus2 = initializeScript(actionScriptGhostThrkPlus2.length,
 	C0A87A(0, 144),
 	SHORTCALL(&unknownC3AA38[0]),
 	SHORTCALL(&unknownC3BB73[0]),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScriptEvtKrakenApproach = [
+);
+actionScriptEvtKrakenApproach = initializeScript(actionScriptEvtKrakenApproach.length,
 	SET_X(360),
 	SET_Y(9936),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -12326,8 +12326,8 @@ actionScriptEvtKrakenApproach = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSlotBrosStopNReach = [
+);
+actionScriptSlotBrosStopNReach = initializeScript(actionScriptSlotBrosStopNReach.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	C0A673(),
 	WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -12347,8 +12347,8 @@ actionScriptSlotBrosStopNReach = [
 	SHORTCALL(&unknownC3835D[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray4Tony = [
+);
+actionScriptEvtPray4Tony = initializeScript(actionScriptEvtPray4Tony.length,
 	SET_X(7892),
 	SET_Y(3032),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -12376,8 +12376,8 @@ actionScriptEvtPray4Tony = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	HALT(),
-].join();
-actionScriptShipToSkrb1 = [
+);
+actionScriptShipToSkrb1 = initializeScript(actionScriptShipToSkrb1.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_TICK_CALLBACK(&unknownC48BE1),
@@ -12412,8 +12412,8 @@ actionScriptShipToSkrb1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtMonotolyGoSwitch = [
+);
+actionScriptEvtMonotolyGoSwitch = initializeScript(actionScriptEvtMonotolyGoSwitch.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 12),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12454,21 +12454,21 @@ actionScriptEvtMonotolyGoSwitch = [
 	PAUSE(1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC3AAAA = [
+);
+unknownC3AAAA = initializeScript(unknownC3AAAA.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A12E[0]),
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 12),
 	SHORT_RETURN(),
-].join();
-actionScript128 = [
+);
+actionScript128 = initializeScript(actionScript128.length,
 	SET_X(5440),
 	SET_Y(5856),
 	SHORTJUMP(&actionScript131[6]),
-].join();
-actionScriptPanningWinters2 = [
+);
+actionScriptPanningWinters2 = initializeScript(actionScriptPanningWinters2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -12487,8 +12487,8 @@ actionScriptPanningWinters2 = [
 	RUN_FLYOVER(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptIntoSt2 = [
+);
+actionScriptIntoSt2 = initializeScript(actionScriptIntoSt2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -12500,13 +12500,13 @@ actionScriptIntoSt2 = [
 	YIELD_TO_TEXT(),
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage1Groove = [
+);
+actionScriptTStage1Groove = initializeScript(actionScriptTStage1Groove.length,
 	SET_X(6936),
 	SET_Y(8520),
 	SHORTJUMP(&actionScriptTStage1Thank[6]),
-].join();
-unknownC4121F = [
+);
+unknownC4121F = initializeScript(unknownC4121F.length,
 	SET_ANIMATION(255),
 	PAUSE(48),
 	SET_ANIMATION(255),
@@ -12527,22 +12527,22 @@ unknownC4121F = [
 	SET_ANIMATION(255),
 	PAUSE(122),
 	SHORTJUMP(&unknownC4121F[4]),
-].join();
-actionScriptTitleScreenCommonInit = [
+);
+actionScriptTitleScreenCommonInit = initializeScript(actionScriptTitleScreenCommonInit.length,
 	SET_ANIMATION_POINTER(&unknownE1CF9D[0]),
 	SET_DRAW_CALLBACK(&unknownC0A0FA),
 	SET_PRIORITY(1),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	C0EE53(),
 	SHORT_RETURN(),
-].join();
-actionScriptTitleScreenFlashTask = [
+);
+actionScriptTitleScreenFlashTask = initializeScript(actionScriptTitleScreenFlashTask.length,
 	SET_BG_PALETTES_WHITE(),
 	PAUSE(2),
 	SET_BG_PALETTES_BLACK(),
 	END_TASK(),
-].join();
-actionScript60 = [
+);
+actionScript60 = initializeScript(actionScript60.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12569,13 +12569,13 @@ actionScript60 = [
 	SET_VAR(ActionScriptVars.v7, 2120),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage1MikeR = [
+);
+actionScriptTStage1MikeR = initializeScript(actionScriptTStage1MikeR.length,
 	SET_X(6928),
 	SET_Y(8560),
 	SHORTJUMP(&actionScriptTStage1MikeL[6]),
-].join();
-actionScript57 = [
+);
+actionScript57 = initializeScript(actionScript57.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -12598,12 +12598,12 @@ actionScript57 = [
 	SET_VAR(ActionScriptVars.v7, 7112),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript526 = [
+);
+actionScript526 = initializeScript(actionScript526.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4198D[0]),
-].join();
-actionScriptUzu2TassiBye = [
+);
+actionScriptUzu2TassiBye = initializeScript(actionScriptUzu2TassiBye.length,
 	MOVE_TO_SPRITE(OverworldSprite.tessie),
 	SET_Y_RELATIVE(8),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -12614,8 +12614,8 @@ actionScriptUzu2TassiBye = [
 	SET_Y_RELATIVE(8),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptUzu2TassiBye[12 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptMatentAwayZombi2 = [
+);
+actionScriptMatentAwayZombi2 = initializeScript(actionScriptMatentAwayZombi2.length,
 	SET_X(5424),
 	SET_Y(9608),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -12637,8 +12637,8 @@ actionScriptMatentAwayZombi2 = [
 	SET_VAR(ActionScriptVars.v7, 9472),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSigeYunboMove = [
+);
+actionScriptSigeYunboMove = initializeScript(actionScriptSigeYunboMove.length,
 	MOVE_TO_SPRITE(OverworldSprite.bigDirtScooper),
 	SET_X_RELATIVE(-8),
 	SET_Y_RELATIVE(-8),
@@ -12673,8 +12673,8 @@ actionScriptSigeYunboMove = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGuard3 = [
+);
+actionScriptGuard3 = initializeScript(actionScriptGuard3.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(192),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -12684,22 +12684,22 @@ actionScriptGuard3 = [
 	PLAY_SFX(Sfx.doorClose),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript745 = [
+);
+actionScript745 = initializeScript(actionScript745.length,
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPsychoMyRoom = [
+);
+actionScriptEvtPsychoMyRoom = initializeScript(actionScriptEvtPsychoMyRoom.length,
 	SET_VAR(ActionScriptVars.v6, 6016),
 	SET_VAR(ActionScriptVars.v7, 2136),
 	SHORTJUMP(&actionScriptEvtPsychoMyHomeCommon[0]),
-].join();
-unknownC3C227 = [
+);
+unknownC3C227 = initializeScript(unknownC3C227.length,
 	C48B3B(),
 	C0A94E(839),
 	PAUSE(3),
 	SHORTJUMP(&unknownC3C227[0]),
-].join();
-actionScriptBusTunnelThrkL = [
+);
+actionScriptBusTunnelThrkL = initializeScript(actionScriptBusTunnelThrkL.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -12740,19 +12740,19 @@ actionScriptBusTunnelThrkL = [
 	PAUSE(80),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript524 = [
+);
+actionScript524 = initializeScript(actionScript524.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SET_PRIORITY(0),
 	SHORTJUMP(&unknownC41938[0]),
-].join();
-actionScriptMonotoryOutAGroove = [
+);
+actionScriptMonotoryOutAGroove = initializeScript(actionScriptMonotoryOutAGroove.length,
 	SET_X(6024),
 	SET_Y(5992),
 	SHORTCALL(&actionScriptMonotoryOutAGrooveUnknownRoutine[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMonotoryOutAGrooveUnknownRoutine = [
+);
+actionScriptMonotoryOutAGrooveUnknownRoutine = initializeScript(actionScriptMonotoryOutAGrooveUnknownRoutine.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
@@ -12768,8 +12768,8 @@ actionScriptMonotoryOutAGrooveUnknownRoutine = [
 	SET_VAR(ActionScriptVars.v7, 5992),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-actionScript867 = [
+);
+actionScript867 = initializeScript(actionScript867.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoChaos),
@@ -12783,8 +12783,8 @@ actionScript867 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_6"),
 	HALT(),
-].join();
-unknownC42235 = [
+);
+unknownC42235 = initializeScript(unknownC42235.length,
 	PAUSE(150),
 	PAUSE(30),
 	START_TASK(&actionScriptTitleScreenFlashTask[0]),
@@ -12817,8 +12817,8 @@ unknownC42235 = [
 	C0EDD1(),
 	PAUSE(133),
 	END(),
-].join();
-actionScript856 = [
+);
+actionScript856 = initializeScript(actionScript856.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(6),
@@ -12827,8 +12827,8 @@ actionScript856 = [
 	SET_VELOCITIES_ZERO(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript784 = [
+);
+actionScript784 = initializeScript(actionScript784.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_VELOCITIES_ZERO(),
@@ -12848,8 +12848,8 @@ actionScript784 = [
 	SET_X_VELOCITY(32),
 	PAUSE(128),
 	SHORTJUMP(&actionScript784[20 + 5 * (const(void)*).sizeof]),
-].join();
-actionScript806 = [
+);
+actionScript806 = initializeScript(actionScript806.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -12871,8 +12871,8 @@ actionScript806 = [
 	C4ECE7(),
 	JUMP_IF_TRUE(&actionScript806[12 + 4 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMochi1 = [
+);
+actionScriptMochi1 = initializeScript(actionScriptMochi1.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(208),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -12881,8 +12881,8 @@ actionScriptMochi1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPray1Dog = [
+);
+actionScriptEvtPray1Dog = initializeScript(actionScriptEvtPray1Dog.length,
 	SET_X(1912),
 	SET_Y(8808),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -12909,8 +12909,8 @@ actionScriptEvtPray1Dog = [
 	C0A959(146),
 	PAUSE(3),
 	SHORTJUMP(&actionScriptEvtPray1Dog[51 + 10 * (const(void)*).sizeof]),
-].join();
-actionScript79 = [
+);
+actionScript79 = initializeScript(actionScript79.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	COPY_XY_TO_VARS(),
@@ -12927,8 +12927,8 @@ actionScript79 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	PLAY_SFX(Sfx.doorClose),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMdMakyo = [
+);
+actionScriptMdMakyo = initializeScript(actionScriptMdMakyo.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -12958,15 +12958,15 @@ actionScriptMdMakyo = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript861 = [
+);
+actionScript861 = initializeScript(actionScript861.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&unknownC3A1F3[0]),
-].join();
-unknownC41938 = [
+);
+unknownC41938 = initializeScript(unknownC41938.length,
 	SET_X(24),
 	SET_Y(-32),
 	SET_X_VELOCITY(0),
@@ -12983,8 +12983,8 @@ unknownC41938 = [
 	UPDATE_SPRITE_DIRECTION(Direction.up, 1),
 	PAUSE(10),
 	SHORTJUMP(&unknownC41938[30 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptTBusDsrtTunnel = [
+);
+actionScriptTBusDsrtTunnel = initializeScript(actionScriptTBusDsrtTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(768),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -12994,8 +12994,8 @@ actionScriptTBusDsrtTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_HWAY_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_HWAY_L"),
 	HALT(),
-].join();
-actionScript590 = [
+);
+actionScript590 = initializeScript(actionScript590.length,
 	GET_EVENT_FLAG(EventFlag.twsnTonzuraBusAppear),
 	JUMP_IF_FALSE(&actionScript590[9 + 5 * (const(void)*).sizeof]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -13025,8 +13025,8 @@ actionScript590 = [
 	SET_VAR(ActionScriptVars.v7, 8728),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTBusToThrkTunnel = [
+);
+actionScriptTBusToThrkTunnel = initializeScript(actionScriptTBusToThrkTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -13036,8 +13036,8 @@ actionScriptTBusToThrkTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_THRK_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_INTO_THRK"),
 	HALT(),
-].join();
-actionScriptDoseAndonutEnd = [
+);
+actionScriptDoseAndonutEnd = initializeScript(actionScriptDoseAndonutEnd.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	WRITE_WORD_TEMPVAR(Direction.right),
@@ -13051,8 +13051,8 @@ actionScriptDoseAndonutEnd = [
 	YIELD_TO_TEXT(),
 	PAUSE(3),
 	HALT(),
-].join();
-actionScript694 = [
+);
+actionScript694 = initializeScript(actionScript694.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -13069,8 +13069,8 @@ actionScript694 = [
 	C0C6B6(),
 	JUMP_IF_TRUE(&actionScript694[6 + 3 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript105 = [
+);
+actionScript105 = initializeScript(actionScript105.length,
 	COPY_XY_TO_VARS(),
 	SET_VAR(ActionScriptVars.v2, 56),
 	SET_VAR(ActionScriptVars.v3, 96),
@@ -13093,8 +13093,8 @@ actionScript105 = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptEvtPray3ChildB = [
+);
+actionScriptEvtPray3ChildB = initializeScript(actionScriptEvtPray3ChildB.length,
 	SET_X(2128),
 	SET_Y(7056),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -13109,8 +13109,8 @@ actionScriptEvtPray3ChildB = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript132 = [
+);
+actionScript132 = initializeScript(actionScript132.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.up),
 	SET_DIRECTION(),
@@ -13127,8 +13127,8 @@ actionScript132 = [
 	SET_X_RELATIVE(-1),
 	PAUSE(4),
 	SHORTJUMP(&actionScript132[28 + 5 * (const(void)*).sizeof]),
-].join();
-actionScriptTopolloHallAMuseumKomorita = [
+);
+actionScriptTopolloHallAMuseumKomorita = initializeScript(actionScriptTopolloHallAMuseumKomorita.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	C46A6E(),
@@ -13141,8 +13141,8 @@ actionScriptTopolloHallAMuseumKomorita = [
 	YIELD_TO_TEXT(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptTitleScreen11 = [
+);
+actionScriptTitleScreen11 = initializeScript(actionScriptTitleScreen11.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(8),
 	SET_Y(100),
@@ -13154,8 +13154,8 @@ actionScriptTitleScreen11 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(222),
 	HALT(),
-].join();
-actionScript27 = [
+);
+actionScript27 = initializeScript(actionScript27.length,
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v3, 448),
 	SET_DIRECTION8(Direction.up),
@@ -13190,15 +13190,15 @@ actionScript27 = [
 	SET_DIRECTION(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript27[29 + 15 * (const(void)*).sizeof]),
-].join();
-actionScript90 = [
+);
+actionScript90 = initializeScript(actionScript90.length,
 	GET_EVENT_FLAG(EventFlag.tunnelThrkTwsnWL),
 	JUMP_IF_TRUE(&actionScript94_95_98Common[0]),
 	GET_EVENT_FLAG(EventFlag.tunnelThrkTwsnBL),
 	JUMP_IF_TRUE(&actionScript103[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptAndoughnutMessage = [
+);
+actionScriptAndoughnutMessage = initializeScript(actionScriptAndoughnutMessage.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	LOOP(5),
@@ -13214,8 +13214,8 @@ actionScriptAndoughnutMessage = [
 	C0A857(EventFlag.temp8),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript837 = [
+);
+actionScript837 = initializeScript(actionScript837.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 8),
 	WRITE_WORD_TEMPVAR(Direction.down),
@@ -13254,8 +13254,8 @@ actionScript837 = [
 	PAUSE(40),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SHORTJUMP(&actionScript837[10 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptMatentAwayZombi1 = [
+);
+actionScriptMatentAwayZombi1 = initializeScript(actionScriptMatentAwayZombi1.length,
 	SET_X(5392),
 	SET_Y(9608),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -13277,8 +13277,8 @@ actionScriptMatentAwayZombi1 = [
 	SET_VAR(ActionScriptVars.v7, 9472),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptOpenGateGumi = [
+);
+actionScriptOpenGateGumi = initializeScript(actionScriptOpenGateGumi.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(128),
@@ -13293,8 +13293,8 @@ actionScriptOpenGateGumi = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSumsMuseumRid = [
+);
+actionScriptSumsMuseumRid = initializeScript(actionScriptSumsMuseumRid.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(352),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -13303,16 +13303,16 @@ actionScriptSumsMuseumRid = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptGorgeousFree2A = [
+);
+actionScriptGorgeousFree2A = initializeScript(actionScriptGorgeousFree2A.length,
 	START_TASK(&unknownC3C227[0]),
 	SHORTCALL(&unknownC3C143[0]),
 	PAUSE(152),
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-unknownC3B70C = [
+);
+unknownC3B70C = initializeScript(unknownC3B70C.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -13340,8 +13340,8 @@ unknownC3B70C = [
 	LOOP_END(),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScriptGasStationFlashing = [
+);
+actionScriptGasStationFlashing = initializeScript(actionScriptGasStationFlashing.length,
 	C0F3B2(),
 	PAUSE(15),
 	C0F3E8(),
@@ -13387,13 +13387,13 @@ actionScriptGasStationFlashing = [
 	C0F3E8_WAIT(2),
 	C0F3B2_WAIT(2),
 	END(),
-].join();
-actionScriptSaiteiMaboroshiOut = [
+);
+actionScriptSaiteiMaboroshiOut = initializeScript(actionScriptSaiteiMaboroshiOut.length,
 	SHORTCALL(&actionScriptSaiteiMaboroshiOutUnknownRoutine[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSaiteiMaboroshiOutUnknownRoutine = [
+);
+actionScriptSaiteiMaboroshiOutUnknownRoutine = initializeScript(actionScriptSaiteiMaboroshiOutUnknownRoutine.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(1280),
 	SET_VAR(ActionScriptVars.v5, 5),
@@ -13419,8 +13419,8 @@ actionScriptSaiteiMaboroshiOutUnknownRoutine = [
 	SET_VAR(ActionScriptVars.v7, 128),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptPhotographer = [
+);
+actionScriptPhotographer = initializeScript(actionScriptPhotographer.length,
 	SET_PRIORITY(0),
 	C46D4B(),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -13462,8 +13462,8 @@ actionScriptPhotographer = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(3),
 	SHORTJUMP(&actionScriptPhotographer[55 + 18 * (const(void)*).sizeof]),
-].join();
-unknownC35FCD = [
+);
+unknownC35FCD = initializeScript(unknownC35FCD.length,
 	SET_VAR(ActionScriptVars.v3, 16),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13DDupe),
 	SET_PHYSICS_CALLBACK(&updateEntityPosition3D),
@@ -13472,8 +13472,8 @@ unknownC35FCD = [
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SHORT_RETURN(),
-].join();
-unknownC3A20E = [
+);
+unknownC3A20E = initializeScript(unknownC3A20E.length,
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v0),
@@ -13504,8 +13504,8 @@ unknownC3A20E = [
 	SHORT_RETURN(),
 	PAUSE(16),
 	SHORT_RETURN(),
-].join();
-unknownC3AAD6 = [
+);
+unknownC3AAD6 = initializeScript(unknownC3AAD6.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1A3[0]),
@@ -13513,21 +13513,21 @@ unknownC3AAD6 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(256),
 	SHORT_RETURN(),
-].join();
-unknownC3C20F = [
+);
+unknownC3C20F = initializeScript(unknownC3C20F.length,
 	SET_VAR(ActionScriptVars.v6, 4592),
 	SET_VAR(ActionScriptVars.v7, 4968),
 	SET_MOVEMENT_SPEED(256),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	PLAY_SFX(Sfx.doorClose),
 	SHORT_RETURN(),
-].join();
-actionScriptTStage23Nice = [
+);
+actionScriptTStage23Nice = initializeScript(actionScriptTStage23Nice.length,
 	SET_X(4720),
 	SET_Y(5704),
 	SHORTJUMP(&actionScriptTStage23Thank[6]),
-].join();
-actionScriptHoihoiL = [
+);
+actionScriptHoihoiL = initializeScript(actionScriptHoihoiL.length,
 	SET_X(5744),
 	SET_Y(8952),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -13543,8 +13543,8 @@ actionScriptHoihoiL = [
 	SET_VAR(ActionScriptVars.v7, 9152),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-actionScriptSumsMuseumReturn = [
+);
+actionScriptSumsMuseumReturn = initializeScript(actionScriptSumsMuseumReturn.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(352),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -13557,8 +13557,8 @@ actionScriptSumsMuseumReturn = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptIntoSwWins = [
+);
+actionScriptIntoSwWins = initializeScript(actionScriptIntoSwWins.length,
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
 	C0A92D(623),
@@ -13568,16 +13568,16 @@ actionScriptIntoSwWins = [
 	SHORTCALL(&unknownC3B70C[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3AA2B = [
+);
+unknownC3AA2B = initializeScript(unknownC3AA2B.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1F3[0]),
 	START_TASK(&unknownC3A262[0]),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScriptLuckyFree2A = [
+);
+actionScriptLuckyFree2A = initializeScript(actionScriptLuckyFree2A.length,
 	SET_ANIMATION(255),
 	PAUSE(18),
 	SHORTCALL(&unknownC3C143[0]),
@@ -13585,8 +13585,8 @@ actionScriptLuckyFree2A = [
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-actionScriptEvtPray3Polamama = [
+);
+actionScriptEvtPray3Polamama = initializeScript(actionScriptEvtPray3Polamama.length,
 	SET_X(2128),
 	SET_Y(7056),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -13601,8 +13601,8 @@ actionScriptEvtPray3Polamama = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript848 = [
+);
+actionScript848 = initializeScript(actionScript848.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -13610,8 +13610,8 @@ actionScript848 = [
 	PAUSE(80),
 	PAUSE(90),
 	SHORTJUMP(&unknownC36834[0]),
-].join();
-actionScriptGhostPlus2 = [
+);
+actionScriptGhostPlus2 = initializeScript(actionScriptGhostPlus2.length,
 	C0A87A(0, 144),
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 	JUMP_IF_TRUE(&actionScriptGhostPlus2[12 + 3 * (const(void)*).sizeof]),
@@ -13620,8 +13620,8 @@ actionScriptGhostPlus2 = [
 	SHORTCALL(&unknownC3BB73[0]),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScriptEndCamera = [
+);
+actionScriptEndCamera = initializeScript(actionScriptEndCamera.length,
 	SET_X(2920),
 	SET_Y(1024),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -13631,8 +13631,8 @@ actionScriptEndCamera = [
 	SET_VAR(ActionScriptVars.v7, 1024),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-unknownC37559 = [
+);
+unknownC37559 = initializeScript(unknownC37559.length,
 	LOOP(2),
 		UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 		PAUSE(16),
@@ -13640,8 +13640,8 @@ unknownC37559 = [
 		PAUSE(16),
 	LOOP_END(),
 	SHORT_RETURN(),
-].join();
-unknownC3DBDB = [
+);
+unknownC3DBDB = initializeScript(unknownC3DBDB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -13649,8 +13649,8 @@ unknownC3DBDB = [
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	SET_TICK_CALLBACK(&unknownC48BE1),
 	SHORT_RETURN(),
-].join();
-actionScriptMagicButterfly = [
+);
+actionScriptMagicButterfly = initializeScript(actionScriptMagicButterfly.length,
 	SHORTCALL(&unknownC3A401[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -13715,10 +13715,10 @@ actionScriptMagicButterfly = [
 	BACKUP_POSITION(),
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_BUTTERFLY_HIT"),
-	C020F1(),
+	CLEANUP_SELF(),
 	END(),
-].join();
-unknownC31DF4 = [
+);
+unknownC31DF4 = initializeScript(unknownC31DF4.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -13730,8 +13730,8 @@ unknownC31DF4 = [
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v2),
 	JUMP_IF_FALSE(&unknownC31DF4[12 + 5 * (const(void)*).sizeof]),
 	SHORT_RETURN(),
-].join();
-unknownC31DF4Task = [
+);
+unknownC31DF4Task = initializeScript(unknownC31DF4Task.length,
 	SET_VAR(ActionScriptVars.v0, 0),
 	WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v1),
 	LOOP(15),
@@ -13741,8 +13741,8 @@ unknownC31DF4Task = [
 	LOOP_END(),
 	SET_VAR(ActionScriptVars.v2, 1),
 	END_TASK(),
-].join();
-actionScript4 = [
+);
+actionScript4 = initializeScript(actionScript4.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A09F[0]),
@@ -13750,8 +13750,8 @@ actionScript4 = [
 	SET_DIRECTION(),
 	PAUSE(30),
 	SHORTJUMP(&actionScript4[4 + 2 * (const(void)*).sizeof]),
-].join();
-unknownC3AA5A = [
+);
+unknownC3AA5A = initializeScript(unknownC3AA5A.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0C5[0]),
@@ -13759,8 +13759,8 @@ unknownC3AA5A = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(256),
 	SHORT_RETURN(),
-].join();
-actionScriptUkkariCarrier = [
+);
+actionScriptUkkariCarrier = initializeScript(actionScriptUkkariCarrier.length,
 	SET_X(2672),
 	SET_Y(3648),
 	SHORTCALL(&unknownC3AA82[0]),
@@ -13774,8 +13774,8 @@ actionScriptUkkariCarrier = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript841 = [
+);
+actionScript841 = initializeScript(actionScript841.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -13783,12 +13783,12 @@ actionScript841 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScript840[9 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptNessStill = [
+);
+actionScriptNessStill = initializeScript(actionScriptNessStill.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptBusIntoThrk = [
+);
+actionScriptBusIntoThrk = initializeScript(actionScriptBusIntoThrk.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -13818,8 +13818,8 @@ actionScriptBusIntoThrk = [
 	PAUSE(80),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSwWinsLand = [
+);
+actionScriptSwWinsLand = initializeScript(actionScriptSwWinsLand.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z(200),
@@ -13831,8 +13831,8 @@ actionScriptSwWinsLand = [
 	SHORTCALL(&unknownC3ABE0[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptAppleMouseStepback = [
+);
+actionScriptAppleMouseStepback = initializeScript(actionScriptAppleMouseStepback.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(512),
 	GET_EVENT_FLAG(EventFlag.animPort0),
@@ -13851,8 +13851,8 @@ actionScriptAppleMouseStepback = [
 	YIELD_TO_TEXT(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptTStage2GorgeousDance6 = [
+);
+actionScriptTStage2GorgeousDance6 = initializeScript(actionScriptTStage2GorgeousDance6.length,
 	SET_X(4704),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -13860,15 +13860,15 @@ actionScriptTStage2GorgeousDance6 = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	PAUSE(75),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3CCA8 = [
+);
+unknownC3CCA8 = initializeScript(unknownC3CCA8.length,
 	SET_Y_RELATIVE(-8),
 	PAUSE(2),
 	SET_Y_RELATIVE(8),
 	PAUSE(2),
 	SHORTJUMP(&unknownC3CCA8[0]),
-].join();
-actionScript839 = [
+);
+actionScript839 = initializeScript(actionScript839.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 8),
 	WRITE_WORD_TEMPVAR(Direction.down),
@@ -13907,15 +13907,15 @@ actionScript839 = [
 	PAUSE(40),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SHORTJUMP(&actionScript839[10 + 3 * (const(void)*).sizeof]),
-].join();
-unknownC3AB37 = [
+);
+unknownC3AB37 = initializeScript(unknownC3AB37.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(255),
 	SET_TICK_CALLBACK(&unknownC48BE1),
 	SHORT_RETURN(),
-].join();
-unknownC34D39 = [
+);
+unknownC34D39 = initializeScript(unknownC34D39.length,
 	SET_Z(128),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z_VELOCITY(-1024),
@@ -13929,8 +13929,8 @@ unknownC34D39 = [
 	PAUSE(2),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript59 = [
+);
+actionScript59 = initializeScript(actionScript59.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -13949,8 +13949,8 @@ actionScript59 = [
 	SET_VAR(ActionScriptVars.v7, 2144),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptPooTeleport = [
+);
+actionScriptPooTeleport = initializeScript(actionScriptPooTeleport.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
@@ -13977,8 +13977,8 @@ actionScriptPooTeleport = [
 	PAUSE(32),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3A1F3 = [
+);
+unknownC3A1F3 = initializeScript(unknownC3A1F3.length,
 	PAUSE(16),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -13986,8 +13986,8 @@ unknownC3A1F3 = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A1F3[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage3Lucky8 = [
+);
+actionScriptTStage3Lucky8 = initializeScript(actionScriptTStage3Lucky8.length,
 	SET_X(4704),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -14001,8 +14001,8 @@ actionScriptTStage3Lucky8 = [
 	SHORTCALL(&unknownC333CC[0]),
 	SHORTCALL(&unknownC333CC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGorgeousFree = [
+);
+actionScriptGorgeousFree = initializeScript(actionScriptGorgeousFree.length,
 	SET_X(7656),
 	SET_Y(7656),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -14031,11 +14031,11 @@ actionScriptGorgeousFree = [
 	WRITE_WORD_TEMPVAR(1),
 	C0A857(EventFlag.temp2),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC36BEA = [
+);
+unknownC36BEA = initializeScript(unknownC36BEA.length,
 	END(),
-].join();
-actionScriptMochi2 = [
+);
+actionScriptMochi2 = initializeScript(actionScriptMochi2.length,
 	SET_X(3704),
 	SET_Y(9632),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -14046,8 +14046,8 @@ actionScriptMochi2 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEndShadow = [
+);
+actionScriptEndShadow = initializeScript(actionScriptEndShadow.length,
 	SET_X(3072),
 	SET_Y(1026),
 	SET_PRIORITY(3),
@@ -14055,8 +14055,8 @@ actionScriptEndShadow = [
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(120),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript188 = [
+);
+actionScript188 = initializeScript(actionScript188.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -14071,8 +14071,8 @@ actionScript188 = [
 	C0A92D(960),
 	C0A8C6(),
 	SHORTJUMP(&actionScript188[19 + 7 * (const(void)*).sizeof]),
-].join();
-actionScript589 = [
+);
+actionScript589 = initializeScript(actionScript589.length,
 	SHORTCALL(&unknownC36A41[0]),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureLowerBody),
 	SET_MOVEMENT_SPEED(512),
@@ -14086,8 +14086,8 @@ actionScript589 = [
 	SET_VAR(ActionScriptVars.v7, 6568),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-actionScriptGorgeousMono = [
+);
+actionScriptGorgeousMono = initializeScript(actionScriptGorgeousMono.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 17),
@@ -14102,21 +14102,21 @@ actionScriptGorgeousMono = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage23HighHat = [
+);
+actionScriptTStage23HighHat = initializeScript(actionScriptTStage23HighHat.length,
 	SET_X(4740),
 	SET_Y(5704),
 	SHORTJUMP(&actionScriptTStage23Thank[6]),
-].join();
-actionScript258 = [
+);
+actionScript258 = initializeScript(actionScript258.length,
 	GET_EVENT_FLAG(EventFlag.unknown0144),
 	JUMP_IF_TRUE(&actionScriptMapObjStill[0]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
 	SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
-].join();
-actionScriptStageFadeout = [
+);
+actionScriptStageFadeout = initializeScript(actionScriptStageFadeout.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
 	SET_VELOCITIES_ZERO(),
@@ -14128,8 +14128,8 @@ actionScriptStageFadeout = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript603 = [
+);
+actionScript603 = initializeScript(actionScript603.length,
 	SET_ANIMATION(0),
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	START_TASK(&unknownC3A20E[0]),
@@ -14138,8 +14138,8 @@ actionScript603 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(704),
 	SHORTJUMP(&actionScript28[6 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptTonchiki = [
+);
+actionScriptTonchiki = initializeScript(actionScriptTonchiki.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -14166,15 +14166,15 @@ actionScriptTonchiki = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTowardsPlayer = [
+);
+actionScriptTowardsPlayer = initializeScript(actionScriptTowardsPlayer.length,
 	SHORTCALL(&unknownC3AA2B[0]),
 	START_TASK(&unknownC36D18[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(256),
 	SHORTJUMP(&actionScript21[3 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptDoseDoseiEnd = [
+);
+actionScriptDoseDoseiEnd = initializeScript(actionScriptDoseDoseiEnd.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SET_MOVEMENT_SPEED(128),
@@ -14194,8 +14194,8 @@ actionScriptDoseDoseiEnd = [
 	YIELD_TO_TEXT(),
 	PAUSE(3),
 	HALT(),
-].join();
-actionScriptGuardA2 = [
+);
+actionScriptGuardA2 = initializeScript(actionScriptGuardA2.length,
 	PLAY_SFX(Sfx.doorClose),
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -14217,12 +14217,12 @@ actionScriptGuardA2 = [
 	PAUSE(35),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC383BC = [
+);
+unknownC383BC = initializeScript(unknownC383BC.length,
 	CHOOSE_RANDOM(10, 11, 12, 13, 14, 15, 16, 17),
 	SHORT_RETURN(),
-].join();
-actionScript800 = [
+);
+actionScript800 = initializeScript(actionScript800.length,
 	WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
@@ -14233,8 +14233,8 @@ actionScript800 = [
 	JUMP_IF_TRUE(&actionScript800[10 + 3 * (const(void)*).sizeof]),
 	C0AAAC(),
 	HALT(),
-].join();
-actionScript838 = [
+);
+actionScript838 = initializeScript(actionScript838.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 8),
 	WRITE_WORD_TEMPVAR(Direction.down),
@@ -14273,8 +14273,8 @@ actionScript838 = [
 	PAUSE(60),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SHORTJUMP(&actionScript838[10 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptWanderWithinBounds = [
+);
+actionScriptWanderWithinBounds = initializeScript(actionScriptWanderWithinBounds.length,
 	GET_DIRECTION_TO_BOUNDARY(),
 	JUMP_IF_FALSE(&actionScriptWanderWithinBounds[7 + 3 * (const(void)*).sizeof]),
 	ADD_TEMPVAR(-1),
@@ -14288,8 +14288,8 @@ actionScriptWanderWithinBounds = [
 	CHOOSE_RANDOM(30, 60, 90, 120),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SHORTJUMP(&actionScriptWanderWithinBounds[0]),
-].join();
-actionScript602 = [
+);
+actionScript602 = initializeScript(actionScript602.length,
 	SET_ANIMATION(0),
 	SET_MOVEMENT_SPEED(128),
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
@@ -14299,8 +14299,8 @@ actionScript602 = [
 	START_TASK(&unknownC36D18[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScript29[10 + 4 * (const(void)*).sizeof]),
-].join();
-actionScript836 = [
+);
+actionScript836 = initializeScript(actionScript836.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.up),
 	SET_DIRECTION(),
@@ -14320,8 +14320,8 @@ actionScript836 = [
 	WRITE_WORD_TEMPVAR(2),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScript632 = [
+);
+actionScript632 = initializeScript(actionScript632.length,
 	PAUSE(240),
 	SHORTCALL(&unknownC37439[0]),
 	SET_VAR(ActionScriptVars.v6, 3144),
@@ -14337,12 +14337,12 @@ actionScript632 = [
 	SET_X(3209),
 	SET_ANIMATION(0),
 	SHORTJUMP(&actionScript632[3 + 1 * (const(void)*).sizeof]),
-].join();
-actionScript528 = [
+);
+actionScript528 = initializeScript(actionScript528.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC419BF[0]),
-].join();
-unknownC34392 = [
+);
+unknownC34392 = initializeScript(unknownC34392.length,
 	START_TASK(&unknownC343AE[0]),
 	SET_X_VELOCITY(-256),
 	LOOP(5),
@@ -14352,8 +14352,8 @@ unknownC34392 = [
 		PAUSE(8),
 	LOOP_END(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript809 = [
+);
+actionScript809 = initializeScript(actionScript809.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -14390,8 +14390,8 @@ actionScript809 = [
 	SET_VAR(ActionScriptVars.v3, 12),
 	SET_X_VELOCITY(512),
 	HALT(),
-].join();
-actionScriptBMonkeyRopeOrosu = [
+);
+actionScriptBMonkeyRopeOrosu = initializeScript(actionScriptBMonkeyRopeOrosu.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(0),
 	SET_VAR(ActionScriptVars.v4, 1),
@@ -14433,8 +14433,8 @@ actionScriptBMonkeyRopeOrosu = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript866 = [
+);
+actionScript866 = initializeScript(actionScript866.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoCabin),
@@ -14448,8 +14448,8 @@ actionScript866 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_5"),
 	HALT(),
-].join();
-actionScriptMakyoDoctorApproach = [
+);
+actionScriptMakyoDoctorApproach = initializeScript(actionScriptMakyoDoctorApproach.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0C5[0]),
@@ -14475,8 +14475,8 @@ actionScriptMakyoDoctorApproach = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBusTunnelTwsn = [
+);
+actionScriptBusTunnelTwsn = initializeScript(actionScriptBusTunnelTwsn.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -14514,8 +14514,8 @@ actionScriptBusTunnelTwsn = [
 	PAUSE(200),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC31EEF = [
+);
+unknownC31EEF = initializeScript(unknownC31EEF.length,
 	SET_X_VELOCITY(91),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(22),
@@ -14589,8 +14589,8 @@ unknownC31EEF = [
 	SET_VELOCITIES_ZERO(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	SHORT_RETURN(),
-].join();
-actionScript85 = [
+);
+actionScript85 = initializeScript(actionScript85.length,
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 	JUMP_IF_TRUE(&actionScript94_95_98Common[0]),
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkBR),
@@ -14598,8 +14598,8 @@ actionScript85 = [
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkTR),
 	JUMP_IF_TRUE(&actionScript103[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript66 = [
+);
+actionScript66 = initializeScript(actionScript66.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureLowerBody),
 	SET_MOVEMENT_SPEED(384),
@@ -14621,8 +14621,8 @@ actionScript66 = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TWSN_TUNNEL),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TO_THRK_TUNNEL"),
 	HALT(),
-].join();
-unknownC36BB4 = [
+);
+unknownC36BB4 = initializeScript(unknownC36BB4.length,
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v3),
 	JUMP_IF_TRUE(&unknownC36BB4[11 + 1 * (const(void)*).sizeof]),
 	SET_Y_RELATIVE(-1),
@@ -14630,13 +14630,13 @@ unknownC36BB4 = [
 	SET_Y_RELATIVE(1),
 	PAUSE(2),
 	SHORTJUMP(&unknownC36BB4[0]),
-].join();
-actionScriptElevaterUp = [
+);
+actionScriptElevaterUp = initializeScript(actionScriptElevaterUp.length,
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	SHORTJUMP(&actionScriptElevaterDown[4 + 1 * (const(void)*).sizeof]),
-].join();
-actionScriptEvtPray2Groovy = [
+);
+actionScriptEvtPray2Groovy = initializeScript(actionScriptEvtPray2Groovy.length,
 	SET_X(5240),
 	SET_Y(2808),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -14653,8 +14653,8 @@ actionScriptEvtPray2Groovy = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptLastBattle = [
+);
+actionScriptLastBattle = initializeScript(actionScriptLastBattle.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -14683,8 +14683,8 @@ actionScriptLastBattle = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptLastBattleTask = [
+);
+actionScriptLastBattleTask = initializeScript(actionScriptLastBattleTask.length,
 	WRITE_WORD_TEMPVAR(10),
 	LOOP_TEMPVAR(),
 		LOOP(12),
@@ -14697,8 +14697,8 @@ actionScriptLastBattleTask = [
 		LOOP_END(),
 	LOOP_END(),
 	END_TASK(),
-].join();
-actionScriptEvtPray7DoseiC = [
+);
+actionScriptEvtPray7DoseiC = initializeScript(actionScriptEvtPray7DoseiC.length,
 	SET_X(536),
 	SET_Y(7624),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -14714,8 +14714,8 @@ actionScriptEvtPray7DoseiC = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 1),
 	HALT(),
-].join();
-actionScriptMouseAddParty = [
+);
+actionScriptMouseAddParty = initializeScript(actionScriptMouseAddParty.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v5, 2),
 	GET_POSITION_OF_PARTY_MEMBER(255),
@@ -14741,12 +14741,12 @@ actionScriptMouseAddParty = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray4DirLeft = [
+);
+actionScriptEvtPray4DirLeft = initializeScript(actionScriptEvtPray4DirLeft.length,
 	SET_VAR(ActionScriptVars.v0, 6),
 	SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
-].join();
-actionScriptFourFollowMuseumA = [
+);
+actionScriptFourFollowMuseumA = initializeScript(actionScriptFourFollowMuseumA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -14761,8 +14761,8 @@ actionScriptFourFollowMuseumA = [
 	C0A92D(906),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptFourFollowMuseumA[18 + 7 * (const(void)*).sizeof]),
-].join();
-actionScriptEvtIntoPsychoMyHome = [
+);
+actionScriptEvtIntoPsychoMyHome = initializeScript(actionScriptEvtIntoPsychoMyHome.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_TICK_CALLBACK(&unknownC48BE1),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -14804,8 +14804,8 @@ actionScriptEvtIntoPsychoMyHome = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSpiritReturnPoo = [
+);
+actionScriptSpiritReturnPoo = initializeScript(actionScriptSpiritReturnPoo.length,
 	SET_PRIORITY(0),
 	SET_X(192),
 	SET_Y(6104),
@@ -14832,8 +14832,8 @@ actionScriptSpiritReturnPoo = [
 	PAUSE(180),
 	///fallthrough
 	SHORTJUMP(&actionScriptWhiteout[0]),
-].join();
-actionScriptPaulaFollowZombi1 = [
+);
+actionScriptPaulaFollowZombi1 = initializeScript(actionScriptPaulaFollowZombi1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC37A7C[0]),
 	PAUSE(16),
@@ -14851,8 +14851,8 @@ actionScriptPaulaFollowZombi1 = [
 	C0C83B(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptEvtPray4PupilC = [
+);
+actionScriptEvtPray4PupilC = initializeScript(actionScriptEvtPray4PupilC.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 10),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -14866,8 +14866,8 @@ actionScriptEvtPray4PupilC = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
-].join();
-actionScriptTStage2GorgeousDance35 = [
+);
+actionScriptTStage2GorgeousDance35 = initializeScript(actionScriptTStage2GorgeousDance35.length,
 	SET_X(4728),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -14875,8 +14875,8 @@ actionScriptTStage2GorgeousDance35 = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	PAUSE(90),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript869 = [
+);
+actionScript869 = initializeScript(actionScript869.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoMaze),
@@ -14890,8 +14890,8 @@ actionScript869 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_8"),
 	HALT(),
-].join();
-actionScript592 = [
+);
+actionScript592 = initializeScript(actionScript592.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_ANIMATION(255),
 	SET_VAR(ActionScriptVars.v4, 1),
@@ -14899,8 +14899,8 @@ actionScript592 = [
 	C0C6B6(),
 	JUMP_IF_TRUE(&actionScript592[7 + 1 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript879 = [
+);
+actionScript879 = initializeScript(actionScript879.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoBuilding),
@@ -14914,21 +14914,21 @@ actionScript879 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_18"),
 	HALT(),
-].join();
-actionScript509 = [
+);
+actionScript509 = initializeScript(actionScript509.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC413D6[0]),
-].join();
-actionScriptSwSkyD = [
+);
+actionScriptSwSkyD = initializeScript(actionScriptSwSkyD.length,
 	SHORTCALL(&unknownC3C94E[0]),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_DSRT_B),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript576 = [
+);
+actionScript576 = initializeScript(actionScript576.length,
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript847 = [
+);
+actionScript847 = initializeScript(actionScript847.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -14936,8 +14936,8 @@ actionScript847 = [
 	PAUSE(180),
 	PAUSE(60),
 	SHORTJUMP(&unknownC36834[0]),
-].join();
-actionScriptGrooveFree2A = [
+);
+actionScriptGrooveFree2A = initializeScript(actionScriptGrooveFree2A.length,
 	SET_ANIMATION(255),
 	PAUSE(72),
 	SHORTCALL(&unknownC3C143[0]),
@@ -14947,8 +14947,8 @@ actionScriptGrooveFree2A = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC4163F = [
+);
+unknownC4163F = initializeScript(unknownC4163F.length,
 	SET_X(24),
 	SET_Y(40),
 	SET_ANIMATION(255),
@@ -14982,15 +14982,15 @@ unknownC4163F = [
 	SET_ANIMATION(255),
 	PAUSE(45),
 	SHORTJUMP(&unknownC4163F[14]),
-].join();
-actionScriptMonotoryOutAGorgeous = [
+);
+actionScriptMonotoryOutAGorgeous = initializeScript(actionScriptMonotoryOutAGorgeous.length,
 	SET_X(5928),
 	SET_Y(5992),
 	SHORTCALL(&actionScriptMonotoryOutAGrooveUnknownRoutine[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptIntoShip = [
+);
+actionScriptIntoShip = initializeScript(actionScriptIntoShip.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(Direction.left),
@@ -15000,8 +15000,8 @@ actionScriptIntoShip = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(150),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript28 = [
+);
+actionScript28 = initializeScript(actionScript28.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -15034,8 +15034,8 @@ actionScript28 = [
 	SET_VELOCITIES_ZERO(),
 	PAUSE(8),
 	SHORTJUMP(&actionScript28[35 + 9 * (const(void)*).sizeof]),
-].join();
-actionScriptDoseSpaceTunnel = [
+);
+actionScriptDoseSpaceTunnel = initializeScript(actionScriptDoseSpaceTunnel.length,
 	GET_EVENT_FLAG(EventFlag.xyzOk),
 	JUMP_IF_TRUE(&actionScript335[0]),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -15063,20 +15063,20 @@ actionScriptDoseSpaceTunnel = [
 	YIELD_TO_TEXT(),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScript15 = [
+);
+actionScript15 = initializeScript(actionScript15.length,
 	SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
 	SET_BOUNDARIES(32, 32),
 	SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
-].join();
-unknownC35231 = [
+);
+unknownC35231 = initializeScript(unknownC35231.length,
 	C4E4DA(),
 	PAUSE(1),
 	C4E4F9(),
 	JUMP_IF_FALSE(&unknownC35231[1 + 1 * (const(void)*).sizeof]),
 	SHORT_RETURN(),
-].join();
-actionScriptHoihoiE = [
+);
+actionScriptHoihoiE = initializeScript(actionScriptHoihoiE.length,
 	SET_X(5264),
 	SET_Y(8704),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -15093,12 +15093,12 @@ actionScriptHoihoiE = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(30),
 	SHORTJUMP(&actionScriptHoihoiE[14 + 3 * (const(void)*).sizeof]),
-].join();
-actionScript502 = [
+);
+actionScript502 = initializeScript(actionScript502.length,
 	SHORTCALL(&unknownC40F4A[0]),
 	SHORTJUMP(&unknownC41036[0]),
-].join();
-actionScriptPooExplosion = [
+);
+actionScriptPooExplosion = initializeScript(actionScriptPooExplosion.length,
 	SET_PRIORITY(0),
 	SET_X(368),
 	SET_Y(7608),
@@ -15111,8 +15111,8 @@ actionScriptPooExplosion = [
 	SHORTCALL(&unknownC3D0A4[0]),
 	SHORTCALL(&unknownC3D0A4[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript683 = [
+);
+actionScript683 = initializeScript(actionScript683.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -15153,8 +15153,8 @@ actionScript683 = [
 	C47499(),
 	PAUSE(1),
 	SHORTJUMP(&actionScript683[22 + 3 * (const(void)*).sizeof]),
-].join();
-actionScript284 = [
+);
+actionScript284 = initializeScript(actionScript284.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 12),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -15170,13 +15170,13 @@ actionScript284 = [
 	SET_VAR(ActionScriptVars.v5, 2),
 	SHORTCALL(&actionScriptBMonkeyByeUnknownRoutine[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript5 = [
+);
+actionScript5 = initializeScript(actionScript5.length,
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_ANIMATION(0),
 	SHORTJUMP(&unknownC3A45C[0]),
-].join();
-actionScriptBusTunnelFour = [
+);
+actionScriptBusTunnelFour = initializeScript(actionScriptBusTunnelFour.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -15197,8 +15197,8 @@ actionScriptBusTunnelFour = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptHoihoiF = [
+);
+actionScriptHoihoiF = initializeScript(actionScriptHoihoiF.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -15210,8 +15210,8 @@ actionScriptHoihoiF = [
 	SET_VAR(ActionScriptVars.v7, 8408),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtMonokumaMove = [
+);
+actionScriptEvtMonokumaMove = initializeScript(actionScriptEvtMonokumaMove.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -15221,13 +15221,13 @@ actionScriptEvtMonokumaMove = [
 	SET_VELOCITIES_ZERO(),
 	PLAY_SFX(Sfx.doorOpen),
 	HALT(),
-].join();
-actionScriptPresentBoxShadow2 = [
+);
+actionScriptPresentBoxShadow2 = initializeScript(actionScriptPresentBoxShadow2.length,
 	SET_X(320),
 	SET_Y(7592),
 	SHORTJUMP(&actionScriptPresentBoxShadow1[6]),
-].join();
-actionScriptLiftByFountain = [
+);
+actionScriptLiftByFountain = initializeScript(actionScriptLiftByFountain.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_Y_RELATIVE(9),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -15257,8 +15257,8 @@ actionScriptLiftByFountain = [
 	PAUSE(8),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSpiritReturnNes2 = [
+);
+actionScriptSpiritReturnNes2 = initializeScript(actionScriptSpiritReturnNes2.length,
 	SET_PRIORITY(0),
 	SET_X(512),
 	SET_Y(7560),
@@ -15283,8 +15283,8 @@ actionScriptSpiritReturnNes2 = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript628 = [
+);
+actionScript628 = initializeScript(actionScript628.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -15299,8 +15299,8 @@ actionScript628 = [
 	C0C6B6(),
 	JUMP_IF_TRUE(&actionScript628[7 + 3 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3AA46 = [
+);
+unknownC3AA46 = initializeScript(unknownC3AA46.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0B2[0]),
@@ -15308,8 +15308,8 @@ unknownC3AA46 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(64),
 	SHORT_RETURN(),
-].join();
-actionScriptTStage3Gorgeous1 = [
+);
+actionScriptTStage3Gorgeous1 = initializeScript(actionScriptTStage3Gorgeous1.length,
 	SET_X(4832),
 	SET_Y(5728),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -15472,8 +15472,8 @@ actionScriptTStage3Gorgeous1 = [
 	C4257F(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptHoihoiD = [
+);
+actionScriptHoihoiD = initializeScript(actionScriptHoihoiD.length,
 	SET_X(5240),
 	SET_Y(8656),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -15493,8 +15493,8 @@ actionScriptHoihoiD = [
 	LOOP_END(),
 	PAUSE(30),
 	SHORTJUMP(&actionScriptHoihoiD[14 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptSyochoEscape = [
+);
+actionScriptSyochoEscape = initializeScript(actionScriptSyochoEscape.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 16),
 	START_TASK(&unknownC3AFA3[0]),
@@ -15506,8 +15506,8 @@ actionScriptSyochoEscape = [
 	PLAY_SFX(Sfx.doorClose),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtHeliRWingStart = [
+);
+actionScriptEvtHeliRWingStart = initializeScript(actionScriptEvtHeliRWingStart.length,
 	SET_PRIORITY(0),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -15527,8 +15527,8 @@ actionScriptEvtHeliRWingStart = [
 	SET_X_RELATIVE(-16),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptEvtHeliRWingStart[29 + 7 * (const(void)*).sizeof]),
-].join();
-unknownC4198D = [
+);
+unknownC4198D = initializeScript(unknownC4198D.length,
 	SET_X(-40),
 	SET_Y(41),
 	SET_X_VELOCITY(512),
@@ -15540,12 +15540,12 @@ unknownC4198D = [
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(1),
 	SHORTJUMP(&unknownC4198D[23 + 1 * (const(void)*).sizeof]),
-].join();
-actionScript504 = [
+);
+actionScript504 = initializeScript(actionScript504.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4119D[0]),
-].join();
-actionScriptPooSyugyou1 = [
+);
+actionScriptPooSyugyou1 = initializeScript(actionScriptPooSyugyou1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -15558,8 +15558,8 @@ actionScriptPooSyugyou1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3C1E0 = [
+);
+unknownC3C1E0 = initializeScript(unknownC3C1E0.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	START_TASK(&unknownC3C227[0]),
 	WRITE_WORD_TEMPVAR(0),
@@ -15574,8 +15574,8 @@ unknownC3C1E0 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORT_RETURN(),
-].join();
-unknownC33C1D = [
+);
+unknownC33C1D = initializeScript(unknownC33C1D.length,
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v2),
 	LOOP_TEMPVAR(),
 		C47B77(),
@@ -15584,8 +15584,8 @@ unknownC33C1D = [
 		ADD(ActionScriptVars.v1, 1),
 	LOOP_END(),
 	SHORT_RETURN(),
-].join();
-actionScriptEvtPsychoMyHomeCommon = [
+);
+actionScriptEvtPsychoMyHomeCommon = initializeScript(actionScriptEvtPsychoMyHomeCommon.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB37[0]),
 	SET_MOVEMENT_SPEED(128),
@@ -15593,8 +15593,8 @@ actionScriptEvtPsychoMyHomeCommon = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3AB12 = [
+);
+unknownC3AB12 = initializeScript(unknownC3AB12.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1DF[0]),
@@ -15602,8 +15602,8 @@ unknownC3AB12 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(1536),
 	SHORT_RETURN(),
-].join();
-unknownC4170E = [
+);
+unknownC4170E = initializeScript(unknownC4170E.length,
 	SET_X(-8),
 	SET_Y(48),
 	SET_X_VELOCITY(256),
@@ -15680,8 +15680,8 @@ unknownC4170E = [
 	SET_ANIMATION(255),
 	PAUSE(43),
 	SHORTJUMP(&unknownC4170E[84 + 16 * (const(void)*).sizeof]),
-].join();
-actionScriptMessenger = [
+);
+actionScriptMessenger = initializeScript(actionScriptMessenger.length,
 	SET_X(4840),
 	SET_Y(3880),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -15700,13 +15700,13 @@ actionScriptMessenger = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage3MikeL = [
+);
+actionScriptTStage3MikeL = initializeScript(actionScriptTStage3MikeL.length,
 	SET_X(4704),
 	SET_Y(5748),
 	SHORTJUMP(&actionScriptTStage1MikeL[6]),
-].join();
-unknownC41382 = [
+);
+unknownC41382 = initializeScript(unknownC41382.length,
 	SET_X(24),
 	SET_Y(40),
 	SET_ANIMATION(255),
@@ -15735,8 +15735,8 @@ unknownC41382 = [
 	SET_ANIMATION(255),
 	PAUSE(180),
 	SHORTJUMP(&unknownC41382[14]),
-].join();
-actionScriptSwDsrtA = [
+);
+actionScriptSwDsrtA = initializeScript(actionScriptSwDsrtA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -15760,8 +15760,8 @@ actionScriptSwDsrtA = [
 	SET_Z_VELOCITY(256),
 	PAUSE(128),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptComeBackPoo = [
+);
+actionScriptComeBackPoo = initializeScript(actionScriptComeBackPoo.length,
 	SET_X(368),
 	SET_Y(7608),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -15793,8 +15793,8 @@ actionScriptComeBackPoo = [
 	SHORTCALL(&unknownC34B62[0]),
 	SHORTCALL(&unknownC34B62[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC31ED8 = [
+);
+unknownC31ED8 = initializeScript(unknownC31ED8.length,
 	PAUSE(48),
 	SET_X_VELOCITY(-64),
 	SET_ANIMATION(1),
@@ -15805,18 +15805,18 @@ unknownC31ED8 = [
 	PAUSE(10),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScriptTacyMask1 = [
+);
+actionScriptTacyMask1 = initializeScript(actionScriptTacyMask1.length,
 	SET_X(600),
 	SET_Y(3504),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-actionScriptTStage23OK = [
+);
+actionScriptTStage23OK = initializeScript(actionScriptTStage23OK.length,
 	SET_X(4752),
 	SET_Y(5704),
 	SHORTJUMP(&actionScriptTStage23Thank[6]),
-].join();
-actionScriptBusBrdgTunnelR = [
+);
+actionScriptBusBrdgTunnelR = initializeScript(actionScriptBusBrdgTunnelR.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -15826,8 +15826,8 @@ actionScriptBusBrdgTunnelR = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_FOUR),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_FOUR"),
 	HALT(),
-].join();
-actionScript814 = [
+);
+actionScript814 = initializeScript(actionScript814.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG32D),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(0),
@@ -15847,34 +15847,34 @@ actionScript814 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript854 = [
+);
+actionScript854 = initializeScript(actionScript854.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript127 = [
+);
+actionScript127 = initializeScript(actionScript127.length,
 	SET_X(5416),
 	SET_Y(5864),
 	SHORTCALL(&unknownC3C35D[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript521 = [
+);
+actionScript521 = initializeScript(actionScript521.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC41822[0]),
-].join();
-actionScript522 = [
+);
+actionScript522 = initializeScript(actionScript522.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC41900[0]),
-].join();
-actionScriptPermitControl = [
+);
+actionScriptPermitControl = initializeScript(actionScriptPermitControl.length,
 	WRITE_WORD_WRAM(&pendingInteractions, 0),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript888 = [
+);
+actionScript888 = initializeScript(actionScript888.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoSkarabi),
@@ -15888,15 +15888,15 @@ actionScript888 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_27"),
 	HALT(),
-].join();
-actionScript802 = [
+);
+actionScript802 = initializeScript(actionScript802.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptEvtPray7Andoughnut2 = [
+);
+actionScriptEvtPray7Andoughnut2 = initializeScript(actionScriptEvtPray7Andoughnut2.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
@@ -15910,8 +15910,8 @@ actionScriptEvtPray7Andoughnut2 = [
 	SET_VAR(ActionScriptVars.v4, 20),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	HALT(),
-].join();
-actionScriptOshiokiPickey = [
+);
+actionScriptOshiokiPickey = initializeScript(actionScriptOshiokiPickey.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(384),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -15926,8 +15926,8 @@ actionScriptOshiokiPickey = [
 	PLAY_SFX(Sfx.unknown61),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptAddPartyViaLeader = [
+);
+actionScriptAddPartyViaLeader = initializeScript(actionScriptAddPartyViaLeader.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 16),
 	SET_MOVEMENT_SPEED(128),
@@ -15939,12 +15939,12 @@ actionScriptAddPartyViaLeader = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptForbidControl = [
+);
+actionScriptForbidControl = initializeScript(actionScriptForbidControl.length,
 	WRITE_WORD_WRAM(&pendingInteractions, 1),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript260 = [
+);
+actionScript260 = initializeScript(actionScript260.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	START_TASK(&actionScriptMapObjStillEntry2[0]),
 	SET_ANIMATION(0),
@@ -15959,19 +15959,19 @@ actionScript260 = [
 	WRITE_WORD_TEMPVAR(0),
 	C0A857(EventFlag.bMonkeyRope),
 	SHORTJUMP(&actionScript260[18 + 4 * (const(void)*).sizeof]),
-].join();
-actionScript785 = [
+);
+actionScript785 = initializeScript(actionScript785.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A26B),
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	HALT(),
-].join();
-actionScript511 = [
+);
+actionScript511 = initializeScript(actionScript511.length,
 	SHORTCALL(&unknownC40F4A[0]),
 	SHORTJUMP(&unknownC4144C[0]),
-].join();
-actionScript94_95_98Common = [
+);
+actionScript94_95_98Common = initializeScript(actionScript94_95_98Common.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SHORTCALL(&unknownC3BB5C[0]),
 	SHORTCALL(&unknownC3BB73[0]),
@@ -15986,8 +15986,8 @@ actionScript94_95_98Common = [
 	WRITE_WORD_TEMPVAR(2),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptSwSplinter3 = [
+);
+actionScriptSwSplinter3 = initializeScript(actionScriptSwSplinter3.length,
 	SET_X(5024),
 	SET_Y(3152),
 	SET_PRIORITY(3),
@@ -15999,8 +15999,8 @@ actionScriptSwSplinter3 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScriptSwSplinter1[18 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptCop5Escape = [
+);
+actionScriptCop5Escape = initializeScript(actionScriptCop5Escape.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 6),
 	START_TASK(&unknownC3AFA3[0]),
@@ -16012,8 +16012,8 @@ actionScriptCop5Escape = [
 	PLAY_SFX(Sfx.doorClose),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage3Gorgeous6 = [
+);
+actionScriptTStage3Gorgeous6 = initializeScript(actionScriptTStage3Gorgeous6.length,
 	SET_X(4736),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -16021,8 +16021,8 @@ actionScriptTStage3Gorgeous6 = [
 	SET_X_VELOCITY(45),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTBusBrdgTunnel = [
+);
+actionScriptTBusBrdgTunnel = initializeScript(actionScriptTBusBrdgTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(768),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -16032,13 +16032,13 @@ actionScriptTBusBrdgTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_DSRT_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_TUNNEL_DSRT"),
 	HALT(),
-].join();
-actionScript530 = [
+);
+actionScript530 = initializeScript(actionScript530.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SET_PRIORITY(0),
 	SHORTJUMP(&unknownC41A7D[0]),
-].join();
-actionScriptWinsAwayKanai = [
+);
+actionScriptWinsAwayKanai = initializeScript(actionScriptWinsAwayKanai.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
 	SET_MOVEMENT_SPEED(256),
@@ -16060,8 +16060,8 @@ actionScriptWinsAwayKanai = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPray7Applekid = [
+);
+actionScriptEvtPray7Applekid = initializeScript(actionScriptEvtPray7Applekid.length,
 	MOVE_TO_SPRITE(OverworldSprite.phaseDistorter),
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
@@ -16072,8 +16072,8 @@ actionScriptEvtPray7Applekid = [
 	SET_Y_VELOCITY(0),
 	END_LAST_TASK(),
 	HALT(),
-].join();
-actionScriptBusReturnTwsnB = [
+);
+actionScriptBusReturnTwsnB = initializeScript(actionScriptBusReturnTwsnB.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -16115,16 +16115,16 @@ actionScriptBusReturnTwsnB = [
 	PAUSE(160),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSealPCAllDirDown = [
+);
+actionScriptSealPCAllDirDown = initializeScript(actionScriptSealPCAllDirDown.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	C0C7DB(),
 	SET_VELOCITIES_ZERO(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScriptLeadSarusensei = [
+);
+actionScriptLeadSarusensei = initializeScript(actionScriptLeadSarusensei.length,
 	SHORTCALL(&unknownC3AA82[0]),
 	SET_VAR(ActionScriptVars.v5, 2),
 	SET_VAR(ActionScriptVars.v6, 1416),
@@ -16159,8 +16159,8 @@ actionScriptLeadSarusensei = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_READY_SARUSENSEI"),
 	HALT(),
-].join();
-actionScript835 = [
+);
+actionScript835 = initializeScript(actionScript835.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	LOOP(2),
@@ -16177,14 +16177,14 @@ actionScript835 = [
 	PAUSE(8),
 	SET_VAR(ActionScriptVars.v4, 0),
 	HALT(),
-].join();
-actionScriptPossessPCAllStill = [
+);
+actionScriptPossessPCAllStill = initializeScript(actionScriptPossessPCAllStill.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScript102 = [
+);
+actionScript102 = initializeScript(actionScript102.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A09F[0]),
@@ -16193,20 +16193,20 @@ actionScript102 = [
 	SET_MOVEMENT_SPEED(256),
 	SET_BOUNDARIES(24, 24),
 	SHORTJUMP(&actionScriptWanderWithinBounds[0]),
-].join();
-actionScript533 = [
+);
+actionScript533 = initializeScript(actionScript533.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	SET_VAR(ActionScriptVars.v0, 0),
 	SHORTJUMP(&unknownC34392[0]),
-].join();
-unknownC419B2 = [
+);
+unknownC419B2 = initializeScript(unknownC419B2.length,
 	SET_X_VELOCITY(-512),
 	SET_Y_VELOCITY(0),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScriptFollowToMichiko = [
+);
+actionScriptFollowToMichiko = initializeScript(actionScriptFollowToMichiko.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB37[0]),
 	SET_MOVEMENT_SPEED(256),
@@ -16218,12 +16218,12 @@ actionScriptFollowToMichiko = [
 	C0A92D(231),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptFollowToMichiko[14 + 5 * (const(void)*).sizeof]),
-].join();
-actionScriptNesPeaceSaikyou = [
+);
+actionScriptNesPeaceSaikyou = initializeScript(actionScriptNesPeaceSaikyou.length,
 	SET_PRIORITY(0),
 	SHORTJUMP(&actionScriptNesPeace[0]),
-].join();
-actionScriptAndDose = [
+);
+actionScriptAndDose = initializeScript(actionScriptAndDose.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(176),
 	SET_VAR(ActionScriptVars.v5, 17),
@@ -16231,13 +16231,13 @@ actionScriptAndDose = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPaulaStill = [
+);
+actionScriptPaulaStill = initializeScript(actionScriptPaulaStill.length,
 	SET_X(6792),
 	SET_Y(10056),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptTBusTunnelDsrt = [
+);
+actionScriptTBusTunnelDsrt = initializeScript(actionScriptTBusTunnelDsrt.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_MOVEMENT_SPEED(1024),
@@ -16248,8 +16248,8 @@ actionScriptTBusTunnelDsrt = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_DSRT_TUNNEL_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_DSRT_TUNNEL"),
 	HALT(),
-].join();
-unknownC31E2D = [
+);
+unknownC31E2D = initializeScript(unknownC31E2D.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
 	SET_TICK_CALLBACK(&unknownC48C2B),
@@ -16270,8 +16270,8 @@ unknownC31E2D = [
 	LOOP_END(),
 	SET_VAR(ActionScriptVars.v2, 1),
 	END_TASK(),
-].join();
-actionScriptTacyNearBMonkey = [
+);
+actionScriptTacyNearBMonkey = initializeScript(actionScriptTacyNearBMonkey.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.bubbleMonkey),
 	SHORTCALL(&unknownC3AB26[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
@@ -16284,8 +16284,8 @@ actionScriptTacyNearBMonkey = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSwThrkA = [
+);
+actionScriptSwThrkA = initializeScript(actionScriptSwThrkA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_Y_RELATIVE(-128),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
@@ -16376,8 +16376,8 @@ actionScriptSwThrkA = [
 	WRITE_DWORD_WRAM(&postTeleportCallback, &restoreMapRendering),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC3C824 = [
+);
+unknownC3C824 = initializeScript(unknownC3C824.length,
 	PAUSE(2),
 	SET_VAR(ActionScriptVars.v2, 0),
 	SET_X_RELATIVE(1),
@@ -16413,8 +16413,8 @@ unknownC3C824 = [
 	LOOP_END(),
 	SET_VAR(ActionScriptVars.v2, 1),
 	SHORTJUMP(&unknownC3C824[0]),
-].join();
-actionScriptLuckyFree = [
+);
+actionScriptLuckyFree = initializeScript(actionScriptLuckyFree.length,
 	SET_X(7656),
 	SET_Y(7656),
 	SET_ANIMATION(255),
@@ -16445,15 +16445,15 @@ actionScriptLuckyFree = [
 	WRITE_WORD_TEMPVAR(1),
 	C0A857(EventFlag.temp3),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript827 = [
+);
+actionScript827 = initializeScript(actionScript827.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptEvtPray1Tracy = [
+);
+actionScriptEvtPray1Tracy = initializeScript(actionScriptEvtPray1Tracy.length,
 	SET_X(1576),
 	SET_Y(8784),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -16466,13 +16466,13 @@ actionScriptEvtPray1Tracy = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	HALT(),
-].join();
-actionScriptTStage3Lucky4 = [
+);
+actionScriptTStage3Lucky4 = initializeScript(actionScriptTStage3Lucky4.length,
 	SET_X(4736),
 	SET_Y(5728),
 	SHORTJUMP(&actionScriptTStage3Lucky2[6]),
-].join();
-actionScriptVStage1Venus = [
+);
+actionScriptVStage1Venus = initializeScript(actionScriptVStage1Venus.length,
 	SET_X(4736),
 	SET_Y(5736),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -16829,8 +16829,8 @@ actionScriptVStage1Venus = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	PAUSE(180),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage3Scr1 = [
+);
+actionScriptTStage3Scr1 = initializeScript(actionScriptTStage3Scr1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -16844,8 +16844,8 @@ actionScriptTStage3Scr1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE3_A"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC35F8B = [
+);
+unknownC35F8B = initializeScript(unknownC35F8B.length,
 	WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v3),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	JUMP_IF_TRUE(&unknownC35F8B[8 + 2 * (const(void)*).sizeof]),
@@ -16861,8 +16861,8 @@ unknownC35F8B = [
 	C4ECE7(),
 	JUMP_IF_TRUE(&unknownC35F8B[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript858 = [
+);
+actionScript858 = initializeScript(actionScript858.length,
 	SET_VELOCITIES_ZERO(),
 	MOVE_RELATIVE_TO_BG3(),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
@@ -16870,8 +16870,8 @@ actionScript858 = [
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(240),
 	HALT(),
-].join();
-actionScriptPanningRamma1 = [
+);
+actionScriptPanningRamma1 = initializeScript(actionScriptPanningRamma1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -16889,12 +16889,12 @@ actionScriptPanningRamma1 = [
 	RUN_FLYOVER(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript513 = [
+);
+actionScript513 = initializeScript(actionScript513.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4154E[0]),
-].join();
-actionScriptSaiteiMaboroshiIn = [
+);
+actionScriptSaiteiMaboroshiIn = initializeScript(actionScriptSaiteiMaboroshiIn.length,
 	SET_X(5720),
 	SET_Y(128),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -16934,8 +16934,8 @@ actionScriptSaiteiMaboroshiIn = [
 	SET_DIRECTION(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptToFountainCommon1 = [
+);
+actionScriptToFountainCommon1 = initializeScript(actionScriptToFountainCommon1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -16944,8 +16944,8 @@ actionScriptToFountainCommon1 = [
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
 	SHORT_RETURN(),
-].join();
-unknownC343DB = [
+);
+unknownC343DB = initializeScript(unknownC343DB.length,
 	PAUSE(8),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	JUMP_IF_TRUE(&unknownC343DB[8 + 2 * (const(void)*).sizeof]),
@@ -16959,8 +16959,8 @@ unknownC343DB = [
 	FINISH_DELIVERY(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3899E = [
+);
+unknownC3899E = initializeScript(unknownC3899E.length,
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	PAUSE(1),
@@ -16972,14 +16972,14 @@ unknownC3899E = [
 	UPDATE_ENTITY_SPRITE_FRAME1(),
 	PAUSE(1),
 	SHORTJUMP(&unknownC3899E[0]),
-].join();
-actionScriptBusDriverR = [
+);
+actionScriptBusDriverR = initializeScript(actionScriptBusDriverR.length,
 	MOVE_TO_SPRITE(OverworldSprite.cityBus),
 	SET_X_RELATIVE(16),
 	SET_Y_RELATIVE(-16),
 	SHORTJUMP(&actionScriptBusDriverCommon[0]),
-].join();
-actionScriptWinsAwayBMonkey = [
+);
+actionScriptWinsAwayBMonkey = initializeScript(actionScriptWinsAwayBMonkey.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
 	SET_MOVEMENT_SPEED(256),
@@ -16992,8 +16992,8 @@ actionScriptWinsAwayBMonkey = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBusDsrtToFour = [
+);
+actionScriptBusDsrtToFour = initializeScript(actionScriptBusDsrtToFour.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -17003,13 +17003,13 @@ actionScriptBusDsrtToFour = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_DSRT_TUNNEL_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_DSRT_TUNNEL_R"),
 	HALT(),
-].join();
-actionScriptTStage3Gorgeous3 = [
+);
+actionScriptTStage3Gorgeous3 = initializeScript(actionScriptTStage3Gorgeous3.length,
 	SET_X(4712),
 	SET_Y(5728),
 	SHORTJUMP(&actionScriptTStage3Lucky2[6]),
-].join();
-actionScript106 = [
+);
+actionScript106 = initializeScript(actionScript106.length,
 	COPY_XY_TO_VARS(),
 	SET_VAR(ActionScriptVars.v2, 96),
 	SET_VAR(ActionScriptVars.v3, 96),
@@ -17032,8 +17032,8 @@ actionScript106 = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-unknownC3A0C5 = [
+);
+unknownC3A0C5 = initializeScript(unknownC3A0C5.length,
 	PAUSE(12),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -17041,8 +17041,8 @@ unknownC3A0C5 = [
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	SHORTJUMP(&unknownC3A0C5[0]),
-].join();
-actionScriptSwSplinter2 = [
+);
+actionScriptSwSplinter2 = initializeScript(actionScriptSwSplinter2.length,
 	SET_X(5088),
 	SET_Y(3168),
 	SET_PRIORITY(3),
@@ -17054,8 +17054,8 @@ actionScriptSwSplinter2 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScriptSwSplinter1[18 + 4 * (const(void)*).sizeof]),
-].join();
-actionScriptFollowToSyocho = [
+);
+actionScriptFollowToSyocho = initializeScript(actionScriptFollowToSyocho.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB37[0]),
 	SET_VAR(ActionScriptVars.v5, 17),
@@ -17067,8 +17067,8 @@ actionScriptFollowToSyocho = [
 	C0A938(75),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptFollowToSyocho[14 + 5 * (const(void)*).sizeof]),
-].join();
-actionScriptSlotBrosStopM = [
+);
+actionScriptSlotBrosStopM = initializeScript(actionScriptSlotBrosStopM.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	C0A673(),
 	WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -17086,13 +17086,13 @@ actionScriptSlotBrosStopM = [
 	PLAY_SFX(Sfx.cursor4),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript608 = [
+);
+actionScript608 = initializeScript(actionScript608.length,
 	GET_EVENT_FLAG(EventFlag.onetDoorClose),
 	JUMP_IF_FALSE(&actionScriptPeopleWalk1Narrow[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptToBeContTitle = [
+);
+actionScriptToBeContTitle = initializeScript(actionScriptToBeContTitle.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_VELOCITIES_ZERO(),
@@ -17105,8 +17105,8 @@ actionScriptToBeContTitle = [
 	PLAY_SFX(Sfx.missed),
 	SHORTCALL(&unknownC33C1D[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptLeaf1 = [
+);
+actionScriptLeaf1 = initializeScript(actionScriptLeaf1.length,
 	SET_PRIORITY(0),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -17151,14 +17151,14 @@ actionScriptLeaf1 = [
 	WRITE_WORD_TEMPVAR(0),
 	C0A857(EventFlag.winsTassiEnter),
 	HALT(),
-].join();
-actionScriptSwSkyA = [
+);
+actionScriptSwSkyA = initializeScript(actionScriptSwSkyA.length,
 	SHORTCALL(&unknownC3C90C[0]),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_FOUR_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript880 = [
+);
+actionScript880 = initializeScript(actionScript880.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoDept),
@@ -17172,8 +17172,8 @@ actionScript880 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_19"),
 	HALT(),
-].join();
-actionScript684 = [
+);
+actionScript684 = initializeScript(actionScript684.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -17208,8 +17208,8 @@ actionScript684 = [
 	C47499(),
 	PAUSE(1),
 	SHORTJUMP(&actionScript684[22 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptMdMakyoRafuresia = [
+);
+actionScriptMdMakyoRafuresia = initializeScript(actionScriptMdMakyoRafuresia.length,
 	SET_X(6048),
 	SET_Y(7840),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -17222,8 +17222,8 @@ actionScriptMdMakyoRafuresia = [
 	WRITE_WORD_TEMPVAR(1),
 	C0A857(EventFlag.temp1),
 	HALT(),
-].join();
-actionScriptWanderWithinBounds2 = [
+);
+actionScriptWanderWithinBounds2 = initializeScript(actionScriptWanderWithinBounds2.length,
 	SET_VAR(ActionScriptVars.v4, 0),
 	GET_DIRECTION_TO_BOUNDARY(),
 	JUMP_IF_FALSE(&actionScriptWanderWithinBounds2[11 + 3 * (const(void)*).sizeof]), // if outside boundaries, use direction towards them
@@ -17241,13 +17241,13 @@ actionScriptWanderWithinBounds2 = [
 	CHOOSE_RANDOM(30, 60, 90, 120),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
-].join();
-actionScript129 = [
+);
+actionScript129 = initializeScript(actionScript129.length,
 	SET_X(5464),
 	SET_Y(5864),
 	SHORTJUMP(&actionScript131[6]),
-].join();
-unknownC3BEA4 = [
+);
+unknownC3BEA4 = initializeScript(unknownC3BEA4.length,
 	SET_VAR(ActionScriptVars.v4, 0),
 	WRITE_WORD_TEMPVAR(0),
 	SHORTCALL(&unknownC3AA1E[0]),
@@ -17261,8 +17261,8 @@ unknownC3BEA4 = [
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	YIELD_TO_TEXT(),
 	SHORT_RETURN(),
-].join();
-unknownC3D0A4 = [
+);
+unknownC3D0A4 = initializeScript(unknownC3D0A4.length,
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(5),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
@@ -17272,15 +17272,15 @@ unknownC3D0A4 = [
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 	PAUSE(5),
 	SHORT_RETURN(),
-].join();
-actionScript88 = [
+);
+actionScript88 = initializeScript(actionScript88.length,
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 	JUMP_IF_TRUE(&unknownC3BAA3[0]),
 	GET_EVENT_FLAG(EventFlag.tunnelThrkTwsnWL),
 	JUMP_IF_TRUE(&unknownC3BAC4[0]),
 	SHORTJUMP(&actionScript104[0]),
-].join();
-unknownC31D4F = [
+);
+unknownC31D4F = initializeScript(unknownC31D4F.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC31D2D[0]),
@@ -17288,8 +17288,8 @@ unknownC31D4F = [
 	SET_VELOCITIES_ZERO(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORT_RETURN(),
-].join();
-unknownC411EB = [
+);
+unknownC411EB = initializeScript(unknownC411EB.length,
 	SET_ANIMATION(255),
 	PAUSE(48),
 	SET_ANIMATION(255),
@@ -17310,13 +17310,13 @@ unknownC411EB = [
 	SET_ANIMATION(255),
 	PAUSE(169),
 	SHORTJUMP(&unknownC411EB[4]),
-].join();
-actionScriptToFountainB = [
+);
+actionScriptToFountainB = initializeScript(actionScriptToFountainB.length,
 	SHORTCALL(&actionScriptToFountainCommon1[0]),
 	C0A92D(1304),
 	SHORTJUMP(&actionScriptToFountainCommon2[0]),
-].join();
-actionScriptOutBusR = [
+);
+actionScriptOutBusR = initializeScript(actionScriptOutBusR.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -17333,19 +17333,19 @@ actionScriptOutBusR = [
 	PAUSE(48),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript803 = [
+);
+actionScript803 = initializeScript(actionScript803.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.up),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptCircleCultistWest = [
+);
+actionScriptCircleCultistWest = initializeScript(actionScriptCircleCultistWest.length,
 	SHORTCALL(&unknownC30C55[0]),
 	SHORTJUMP(&unknownC30CC7[0]),
-].join();
-unknownC3BED4 = [
+);
+unknownC3BED4 = initializeScript(unknownC3BED4.length,
 	SET_VAR(ActionScriptVars.v4, 0),
 	SET_VAR(ActionScriptVars.v5, 2),
 	SET_VAR(ActionScriptVars.v6, 7664),
@@ -17353,8 +17353,8 @@ unknownC3BED4 = [
 	SET_MOVEMENT_SPEED(320),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptTStage1Lucky = [
+);
+actionScriptTStage1Lucky = initializeScript(actionScriptTStage1Lucky.length,
 	SET_X(6816),
 	SET_Y(8536),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -17470,8 +17470,8 @@ actionScriptTStage1Lucky = [
 	PAUSE(60),
 	PAUSE(180),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript816 = [
+);
+actionScript816 = initializeScript(actionScript816.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -17492,23 +17492,23 @@ actionScript816 = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	PAUSE(52),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMapObjStill = [
+);
+actionScriptMapObjStill = initializeScript(actionScriptMapObjStill.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	C0C7DB(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
-].join();
-unknownC3AAB8 = [
+);
+unknownC3AAB8 = initializeScript(unknownC3AAB8.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1F3[0]),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScript825 = [
+);
+actionScript825 = initializeScript(actionScript825.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -17519,8 +17519,8 @@ actionScript825 = [
 	PAUSE(64),
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.brokenPhaseDistorter, ActionScript.unknown827),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptWinsNearBMonkey = [
+);
+actionScriptWinsNearBMonkey = initializeScript(actionScriptWinsNearBMonkey.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
 	SET_MOVEMENT_SPEED(256),
@@ -17531,8 +17531,8 @@ actionScriptWinsNearBMonkey = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript1 = [
+);
+actionScript1 = initializeScript(actionScript1.length,
 	SRAM_CHECK_ROUTINE_CHECKSUM(),
 	JUMP_IF_FALSE(&actionScript1[3 + 3 * (const(void)*).sizeof]),
 	DISPLAY_ANTI_PIRACY_SCREEN(),
@@ -17542,8 +17542,8 @@ actionScript1 = [
 	LOOP_END(),
 	INFLICT_SUNSTROKE_CHECK(),
 	SHORTJUMP(&actionScript1[4 + 4 * (const(void)*).sizeof]),
-].join();
-actionScript889 = [
+);
+actionScript889 = initializeScript(actionScript889.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoPyramid),
@@ -17557,8 +17557,8 @@ actionScript889 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_28"),
 	HALT(),
-].join();
-actionScriptMdSums = [
+);
+actionScriptMdSums = initializeScript(actionScriptMdSums.length,
 	SHORTCALL(&unknownC34E73[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -17578,8 +17578,8 @@ actionScriptMdSums = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSwThrkShadowA = [
+);
+actionScriptSwThrkShadowA = initializeScript(actionScriptSwThrkShadowA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -17631,8 +17631,8 @@ actionScriptSwThrkShadowA = [
 	PAUSE(4),
 	PAUSE(30),
 	HALT(),
-].join();
-actionScript498 = [
+);
+actionScript498 = initializeScript(actionScript498.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -17651,11 +17651,11 @@ actionScript498 = [
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_90_DUNGEONMAN"),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScript498[20 + 5 * (const(void)*).sizeof]),
-].join();
-unknownC3A07F = [
+);
+unknownC3A07F = initializeScript(unknownC3A07F.length,
 	HALT(),
-].join();
-actionScriptFourMuseumRid = [
+);
+actionScriptFourMuseumRid = initializeScript(actionScriptFourMuseumRid.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(352),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -17664,8 +17664,8 @@ actionScriptFourMuseumRid = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBMonkeyGum1 = [
+);
+actionScriptBMonkeyGum1 = initializeScript(actionScriptBMonkeyGum1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.bubbleMonkey),
 	SET_X_RELATIVE(-7),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -17675,8 +17675,8 @@ actionScriptBMonkeyGum1 = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC4154E = [
+);
+unknownC4154E = initializeScript(unknownC4154E.length,
 	SET_X(11),
 	SET_Y(31),
 	SET_ANIMATION(255),
@@ -17699,8 +17699,8 @@ unknownC4154E = [
 	SET_ANIMATION(255),
 	PAUSE(137),
 	SHORTJUMP(&unknownC4154E[14]),
-].join();
-actionScriptButukarizaru = [
+);
+actionScriptButukarizaru = initializeScript(actionScriptButukarizaru.length,
 	SHORTCALL(&unknownC3AAFE[0]),
 	SET_VAR(ActionScriptVars.v5, 2),
 	SET_VAR(ActionScriptVars.v6, 2544),
@@ -17716,8 +17716,8 @@ actionScriptButukarizaru = [
 	PLAY_SFX(Sfx.menuOpenClose),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtMonokabeMove = [
+);
+actionScriptEvtMonokabeMove = initializeScript(actionScriptEvtMonokabeMove.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -17730,21 +17730,21 @@ actionScriptEvtMonokabeMove = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript506 = [
+);
+actionScript506 = initializeScript(actionScript506.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4121F[0]),
-].join();
-actionScriptMonotoryOutANice = [
+);
+actionScriptMonotoryOutANice = initializeScript(actionScriptMonotoryOutANice.length,
 	SET_X(5976),
 	SET_Y(5992),
 	SHORTJUMP(&actionScriptMonotoryOutAGroove[6]),
-].join();
-actionScript709 = [
+);
+actionScript709 = initializeScript(actionScript709.length,
 	GET_EVENT_FLAG(EventFlag.itemLetter2),
 	SHORTJUMP(&actionScript707_708_709_710_Common[0]),
-].join();
-unknownC3C143 = [
+);
+unknownC3C143 = initializeScript(unknownC3C143.length,
 	SET_X(4592),
 	SET_Y(4968),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -17756,8 +17756,8 @@ unknownC3C143 = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	SHORT_RETURN(),
-].join();
-actionScript584 = [
+);
+actionScript584 = initializeScript(actionScript584.length,
 	GET_EVENT_FLAG(EventFlag.onetDoorClose),
 	JUMP_IF_TRUE(&actionScript35[0]),
 	SHORTCALL(&unknownC36A41[0]),
@@ -17776,8 +17776,8 @@ actionScript584 = [
 	SET_VAR(ActionScriptVars.v7, 1496),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript584[12 + 4 * (const(void)*).sizeof]),
-].join();
-unknownC31EC1 = [
+);
+unknownC31EC1 = initializeScript(unknownC31EC1.length,
 	PAUSE(48),
 	SET_X_VELOCITY(64),
 	SET_ANIMATION(1),
@@ -17788,8 +17788,8 @@ unknownC31EC1 = [
 	PAUSE(10),
 	SET_VELOCITIES_ZERO(),
 	SHORT_RETURN(),
-].join();
-actionScriptTStage1LuckyDance = [
+);
+actionScriptTStage1LuckyDance = initializeScript(actionScriptTStage1LuckyDance.length,
 	SET_X(6920),
 	SET_Y(8536),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -17839,18 +17839,18 @@ actionScriptTStage1LuckyDance = [
 		PAUSE(23),
 	LOOP_END(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript518 = [
+);
+actionScript518 = initializeScript(actionScript518.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC415BA[0]),
-].join();
-unknownC3AA1E = [
+);
+unknownC3AA1E = initializeScript(unknownC3AA1E.length,
 	SET_DIRECTION(),
 	C0C83B(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORT_RETURN(),
-].join();
-actionScriptSw2Wins = [
+);
+actionScriptSw2Wins = initializeScript(actionScriptSw2Wins.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -17865,8 +17865,8 @@ actionScriptSw2Wins = [
 	PAUSE(1),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_RIDE_SW2_WINS_LAUNCH"),
 	SHORTJUMP(&actionScriptSwWins[25 + 9 * (const(void)*).sizeof + string.sizeof]),
-].join();
-actionScriptVStage1BodyguardR = [
+);
+actionScriptVStage1BodyguardR = initializeScript(actionScriptVStage1BodyguardR.length,
 	SET_X(4840),
 	SET_Y(5728),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -17881,8 +17881,8 @@ actionScriptVStage1BodyguardR = [
 	PAUSE(94),
 	SET_VELOCITIES_ZERO(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptNesFace = [
+);
+actionScriptNesFace = initializeScript(actionScriptNesFace.length,
 	SET_X(4224),
 	SET_Y(872),
 	SET_PRIORITY(3),
@@ -17896,8 +17896,8 @@ actionScriptNesFace = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	PAUSE(60),
 	HALT(),
-].join();
-actionScriptOutTony = [
+);
+actionScriptOutTony = initializeScript(actionScriptOutTony.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -17905,8 +17905,8 @@ actionScriptOutTony = [
 	SET_VAR(ActionScriptVars.v7, 2184),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript811 = [
+);
+actionScript811 = initializeScript(actionScript811.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -17917,8 +17917,8 @@ actionScript811 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(60),
 	SHORTJUMP(&actionScript811[1 + 1 * (const(void)*).sizeof]),
-].join();
-unknownC32CD2 = [
+);
+unknownC32CD2 = initializeScript(unknownC32CD2.length,
 	SET_Y_VELOCITY(0),
 	LOOP(15),
 		SET_Y_VELOCITY_RELATIVE(-17),
@@ -17933,8 +17933,8 @@ unknownC32CD2 = [
 		PAUSE(2),
 	LOOP_END(),
 	SHORTJUMP(&unknownC32CD2[0]),
-].join();
-unknownC3C35D = [
+);
+unknownC3C35D = initializeScript(unknownC3C35D.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	WRITE_WORD_TEMPVAR(Direction.left),
 	SET_DIRECTION(),
@@ -17950,8 +17950,8 @@ unknownC3C35D = [
 	SET_VAR(ActionScriptVars.v7, 5864),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORT_RETURN(),
-].join();
-unknownC3A15E = [
+);
+unknownC3A15E = initializeScript(unknownC3A15E.length,
 	C40023(),
 	PAUSE(8),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
@@ -17962,15 +17962,15 @@ unknownC3A15E = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A15E[1 + 1 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC333CC = [
+);
+unknownC333CC = initializeScript(unknownC333CC.length,
 	UPDATE_SPRITE_DIRECTION(Direction.right, 1),
 	PAUSE(22),
 	UPDATE_SPRITE_DIRECTION(Direction.right, 0),
 	PAUSE(23),
 	SHORT_RETURN(),
-].join();
-unknownC3835D = [
+);
+unknownC3835D = initializeScript(unknownC3835D.length,
 	SWITCH_JUMP_TEMPVAR(&unknownC3835D[3 + 8 * (const(void)*).sizeof], &unknownC3835D[3 + 8 * (const(void)*).sizeof], &unknownC3835D[16 + 10 * (const(void)*).sizeof], &unknownC3835D[16 + 10 * (const(void)*).sizeof], &unknownC3835D[29 + 12 * (const(void)*).sizeof], &unknownC3835D[29 + 12 * (const(void)*).sizeof], &unknownC3835D[42 + 14 * (const(void)*).sizeof], &unknownC3835D[42 + 14 * (const(void)*).sizeof]),
 	SHORT_RETURN(),
 	WRITE_WORD_TEMPVAR(0),
@@ -17993,8 +17993,8 @@ unknownC3835D = [
 	WRITE_WORD_TEMPVAR(1),
 	C0A857(EventFlag.animPort1),
 	SHORT_RETURN(),
-].join();
-actionScriptUzu1 = [
+);
+actionScriptUzu1 = initializeScript(actionScriptUzu1.length,
 	SET_X(600),
 	SET_Y(3480),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
@@ -18012,8 +18012,8 @@ actionScriptUzu1 = [
 	WRITE_WORD_TEMPVAR(0),
 	C0A857(EventFlag.bMonkeyTass),
 	SHORTJUMP(&actionScriptUzu1[27 + 3 * (const(void)*).sizeof]),
-].join();
-actionScriptSpiritReturnNes = [
+);
+actionScriptSpiritReturnNes = initializeScript(actionScriptSpiritReturnNes.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(255),
 	PAUSE(1),
@@ -18043,8 +18043,8 @@ actionScriptSpiritReturnNes = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage3Gorgeous9 = [
+);
+actionScriptTStage3Gorgeous9 = initializeScript(actionScriptTStage3Gorgeous9.length,
 	SET_X(4752),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -18054,8 +18054,8 @@ actionScriptTStage3Gorgeous9 = [
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBMonkeyTassi1B = [
+);
+actionScriptBMonkeyTassi1B = initializeScript(actionScriptBMonkeyTassi1B.length,
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	SET_Z(28),
@@ -18094,13 +18094,13 @@ actionScriptBMonkeyTassi1B = [
 	SET_Y_RELATIVE(-2),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptBMonkeyTassi1B[60 + 21 * (const(void)*).sizeof]),
-].join();
-actionScriptUzu2 = [
+);
+actionScriptUzu2 = initializeScript(actionScriptUzu2.length,
 	SET_X(600),
 	SET_Y(3496),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-unknownC416AC = [
+);
+unknownC416AC = initializeScript(unknownC416AC.length,
 	SET_X(24),
 	SET_Y(40),
 	SET_ANIMATION(255),
@@ -18129,8 +18129,8 @@ unknownC416AC = [
 	SET_ANIMATION(255),
 	PAUSE(189),
 	SHORTJUMP(&unknownC416AC[14]),
-].join();
-actionScriptBusTunnelHwayL = [
+);
+actionScriptBusTunnelHwayL = initializeScript(actionScriptBusTunnelHwayL.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -18139,20 +18139,20 @@ actionScriptBusTunnelHwayL = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptMonotoryOutAOK = [
+);
+actionScriptMonotoryOutAOK = initializeScript(actionScriptMonotoryOutAOK.length,
 	SET_X(6000),
 	SET_Y(5960),
 	SHORTJUMP(&actionScriptMonotoryOutAGroove[6]),
-].join();
-actionScript360 = [
+);
+actionScript360 = initializeScript(actionScript360.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	UPDATE_SPRITE_DIRECTION(Direction.upRight, 0),
 	HALT(),
-].join();
-actionScriptEvtPray7Andoughnut = [
+);
+actionScriptEvtPray7Andoughnut = initializeScript(actionScriptEvtPray7Andoughnut.length,
 	MOVE_TO_SPRITE(OverworldSprite.phaseDistorter),
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 18),
@@ -18164,8 +18164,8 @@ actionScriptEvtPray7Andoughnut = [
 	PAUSE(20),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPeopleTBack = [
+);
+actionScriptPeopleTBack = initializeScript(actionScriptPeopleTBack.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -18173,13 +18173,13 @@ actionScriptPeopleTBack = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	START_TASK(&unknownC36E41[0]),
 	SHORTJUMP(&unknownC3A18F[0]),
-].join();
-actionScript130 = [
+);
+actionScript130 = initializeScript(actionScript130.length,
 	SET_X(5488),
 	SET_Y(5848),
 	SHORTJUMP(&actionScript131[6]),
-].join();
-actionScriptSubmarine2 = [
+);
+actionScriptSubmarine2 = initializeScript(actionScriptSubmarine2.length,
 	SET_X(5856),
 	SET_Y(6792),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -18194,8 +18194,8 @@ actionScriptSubmarine2 = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript891 = [
+);
+actionScript891 = initializeScript(actionScript891.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoMakyou),
@@ -18209,8 +18209,8 @@ actionScript891 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_30"),
 	HALT(),
-].join();
-actionScript45 = [
+);
+actionScript45 = initializeScript(actionScript45.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_VAR(ActionScriptVars.v0, 7792),
@@ -18227,8 +18227,8 @@ actionScript45 = [
 	YIELD_TO_TEXT(),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-actionScriptBusFourThrkGo = [
+);
+actionScriptBusFourThrkGo = initializeScript(actionScriptBusFourThrkGo.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -18237,8 +18237,8 @@ actionScriptBusFourThrkGo = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray3Polapapa = [
+);
+actionScriptEvtPray3Polapapa = initializeScript(actionScriptEvtPray3Polapapa.length,
 	SET_X(1936),
 	SET_Y(7120),
 	SHORTCALL(&unknownC31D4F[0]),
@@ -18274,8 +18274,8 @@ actionScriptEvtPray3Polapapa = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScriptBusTwsnTunnel = [
+);
+actionScriptBusTwsnTunnel = initializeScript(actionScriptBusTwsnTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -18290,8 +18290,8 @@ actionScriptBusTwsnTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_THRK_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_INTO_THRK"),
 	HALT(),
-].join();
-actionScriptSwToSums1 = [
+);
+actionScriptSwToSums1 = initializeScript(actionScriptSwToSums1.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	LOOP(14),
 		SET_X_RELATIVE(2),
@@ -18328,18 +18328,18 @@ actionScriptSwToSums1 = [
 	PAUSE(80),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScriptPresentBoxFall2 = [
+);
+actionScriptPresentBoxFall2 = initializeScript(actionScriptPresentBoxFall2.length,
 	SET_X(320),
 	SET_Y(7592),
 	SHORTJUMP(&unknownC34D39[0]),
-].join();
-actionScriptPeopleWalk1Narrow = [
+);
+actionScriptPeopleWalk1Narrow = initializeScript(actionScriptPeopleWalk1Narrow.length,
 	SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
 	SET_BOUNDARIES(8, 8),
 	SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
-].join();
-actionScriptMagicButterflyApproach = [
+);
+actionScriptMagicButterflyApproach = initializeScript(actionScriptMagicButterflyApproach.length,
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
 	SET_PHYSICS_CALLBACK(&updateEntityPosition3D),
 	START_TASK(&unknownC3A12E[0]),
@@ -18365,8 +18365,8 @@ actionScriptMagicButterflyApproach = [
 	MAGIC_BUTTERFLY_RECOVERY(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript26 = [
+);
+actionScript26 = initializeScript(actionScript26.length,
 	SHORTCALL(&unknownC3A426[0]),
 	SET_TICK_CALLBACK(&unknownC0D7E0),
 	C0A6B8(),
@@ -18405,8 +18405,8 @@ actionScript26 = [
 	CLEAR_CURRENT_ENTITY_COLLISION(),
 	PAUSE(60),
 	SHORTJUMP(&actionScript26[11 + 5 * (const(void)*).sizeof]),
-].join();
-actionScript843 = [
+);
+actionScript843 = initializeScript(actionScript843.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -18423,8 +18423,8 @@ actionScript843 = [
 		PAUSE(40),
 	LOOP_END(),
 	HALT(),
-].join();
-actionScriptLeaveSarusensei = [
+);
+actionScriptLeaveSarusensei = initializeScript(actionScriptLeaveSarusensei.length,
 	SHORTCALL(&unknownC3AA6E[0]),
 	SET_VAR(ActionScriptVars.v5, 2),
 	SET_VAR(ActionScriptVars.v6, 7536),
@@ -18435,8 +18435,8 @@ actionScriptLeaveSarusensei = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPray7DoseiD = [
+);
+actionScriptEvtPray7DoseiD = initializeScript(actionScriptEvtPray7DoseiD.length,
 	SET_X(384),
 	SET_Y(7768),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -18451,8 +18451,8 @@ actionScriptEvtPray7DoseiD = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript876 = [
+);
+actionScript876 = initializeScript(actionScript876.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoBridge),
@@ -18466,8 +18466,8 @@ actionScript876 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_15"),
 	HALT(),
-].join();
-actionScript812 = [
+);
+actionScript812 = initializeScript(actionScript812.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 8),
 	WRITE_WORD_TEMPVAR(Direction.down),
@@ -18487,8 +18487,8 @@ actionScript812 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-unknownC38978 = [
+);
+unknownC38978 = initializeScript(unknownC38978.length,
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	JUMP_IF_TRUE(&unknownC38978[15 + 5 * (const(void)*).sizeof]),
 	GET_EVENT_FLAG(EventFlag.animPort0),
@@ -18501,8 +18501,8 @@ unknownC38978 = [
 	SET_DIRECTION(),
 	PAUSE(1),
 	SHORTJUMP(&unknownC38978[0]),
-].join();
-actionScriptNearAndoughnut = [
+);
+actionScriptNearAndoughnut = initializeScript(actionScriptNearAndoughnut.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -18515,8 +18515,8 @@ actionScriptNearAndoughnut = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBusHwayTunnelR = [
+);
+actionScriptBusHwayTunnelR = initializeScript(actionScriptBusHwayTunnelR.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -18528,8 +18528,8 @@ actionScriptBusHwayTunnelR = [
 	JUMP_IF_TRUE(&unknownC3D913[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_DSRT_R_JYUUTAI"),
 	HALT(),
-].join();
-actionScript89 = [
+);
+actionScript89 = initializeScript(actionScript89.length,
 	GET_EVENT_FLAG(EventFlag.tunnelThrkTwsnWL),
 	JUMP_IF_TRUE(&actionScript94_95_98Common[0]),
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkBR),
@@ -18537,8 +18537,8 @@ actionScript89 = [
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkTR),
 	JUMP_IF_TRUE(&actionScript106[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptKaitenNess = [
+);
+actionScriptKaitenNess = initializeScript(actionScriptKaitenNess.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -18593,8 +18593,8 @@ actionScriptKaitenNess = [
 	SET_DIRECTION(),
 	C0AAAC(),
 	SHORTJUMP(&actionScriptKaitenNess[99 + 16 * (const(void)*).sizeof]),
-].join();
-actionScriptTakeNessKatacomb1C = [
+);
+actionScriptTakeNessKatacomb1C = initializeScript(actionScriptTakeNessKatacomb1C.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_X_RELATIVE(16),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -18605,19 +18605,19 @@ actionScriptTakeNessKatacomb1C = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptMaboroshiOut1 = [
+);
+actionScriptMaboroshiOut1 = initializeScript(actionScriptMaboroshiOut1.length,
 	SHORTCALL(&actionScriptMaboroshiOut[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC30C55 = [
+);
+unknownC30C55 = initializeScript(unknownC30C55.length,
 	SHORTCALL(&unknownC3AA2B[0]),
 	SET_MOVEMENT_SPEED(192),
 	SET_VAR(ActionScriptVars.v5, 1),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORT_RETURN(),
-].join();
-actionScriptBusThrkTwsnIn = [
+);
+actionScriptBusThrkTwsnIn = initializeScript(actionScriptBusThrkTwsnIn.length,
 	SET_X(5744),
 	SET_Y(9000),
 	SET_PHYSICS_CALLBACK(&unknownC0A384),
@@ -18643,8 +18643,8 @@ actionScriptBusThrkTwsnIn = [
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScriptBusThrkTwsnIn[49 + 11 * (const(void)*).sizeof]),
-].join();
-actionScriptCarpDungL = [
+);
+actionScriptCarpDungL = initializeScript(actionScriptCarpDungL.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(6),
@@ -18653,8 +18653,8 @@ actionScriptCarpDungL = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC3DF90 = [
+);
+unknownC3DF90 = initializeScript(unknownC3DF90.length,
 	START_TASK(&unknownC3DFB5[0]),
 	SET_DIRECTION8(Direction.right),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -18662,20 +18662,20 @@ unknownC3DF90 = [
 	PAUSE(10),
 	C0C6B6(),
 	JUMP_IF_TRUE(&unknownC3DF90[7 + 3 * (const(void)*).sizeof]),
-	C020F1(),
+	CLEANUP_SELF(),
 	YIELD_TO_TEXT(),
 	UNFREEZE_ENTITIES(),
 	END(),
-].join();
-actionScriptCop5C = [
+);
+actionScriptCop5C = initializeScript(actionScriptCop5C.length,
 	SET_VAR(ActionScriptVars.v6, 7528),
 	SET_VAR(ActionScriptVars.v7, 216),
 	SET_VAR(ActionScriptVars.v0, 7472),
 	SET_VAR(ActionScriptVars.v1, 216),
 	SHORTCALL(&actionScript228_229_230_231_232Common[0]),
 	HALT(),
-].join();
-unknownC3A17B = [
+);
+unknownC3A17B = initializeScript(unknownC3A17B.length,
 	PAUSE(24),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -18683,8 +18683,8 @@ unknownC3A17B = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A17B[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript865 = [
+);
+actionScript865 = initializeScript(actionScript865.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoRiver),
@@ -18698,8 +18698,8 @@ actionScript865 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_4"),
 	HALT(),
-].join();
-actionScriptAyasii = [
+);
+actionScriptAyasii = initializeScript(actionScriptAyasii.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_X_RELATIVE(128),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -18714,8 +18714,8 @@ actionScriptAyasii = [
 	SHORTCALL(&unknownC3AA1E[0]),
 	PAUSE(32),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript30 = [
+);
+actionScript30 = initializeScript(actionScript30.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -18752,27 +18752,27 @@ actionScript30 = [
 	SET_DIRECTION(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript30[50 + 15 * (const(void)*).sizeof]),
-].join();
-actionScriptTStage3Gorgeous2 = [
+);
+actionScriptTStage3Gorgeous2 = initializeScript(actionScriptTStage3Gorgeous2.length,
 	SET_X(4728),
 	SET_Y(5728),
 	SHORTJUMP(&actionScriptTStage3Lucky2[6]),
-].join();
-unknownC34E73 = [
+);
+unknownC34E73 = initializeScript(unknownC34E73.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
 	SET_TICK_CALLBACK(&unknownC48BE1),
 	SHORT_RETURN(),
-].join();
-unknownC3AB94 = [
+);
+unknownC3AB94 = initializeScript(unknownC3AB94.length,
 	PAUSE(1),
 	TEST_IF_LEADER_WITHIN_BOUNDARIES(),
 	JUMP_IF_TRUE(&unknownC3AB94[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptOdorokiNesPola = [
+);
+actionScriptOdorokiNesPola = initializeScript(actionScriptOdorokiNesPola.length,
 	SET_X(6768),
 	SET_Y(10064),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -18789,8 +18789,8 @@ actionScriptOdorokiNesPola = [
 	PAUSE(40),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptPanningRamma2 = [
+);
+actionScriptPanningRamma2 = initializeScript(actionScriptPanningRamma2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -18809,8 +18809,8 @@ actionScriptPanningRamma2 = [
 	RUN_FLYOVER(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC30CC7 = [
+);
+unknownC30CC7 = initializeScript(unknownC30CC7.length,
 	PAUSE(60),
 	SET_VAR(ActionScriptVars.v6, 7632),
 	SET_VAR(ActionScriptVars.v7, 2312),
@@ -18819,8 +18819,8 @@ unknownC30CC7 = [
 	SET_VAR(ActionScriptVars.v7, 2288),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&unknownC30C67[0]),
-].join();
-actionScript875 = [
+);
+actionScript875 = initializeScript(actionScript875.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoExcavation),
@@ -18834,8 +18834,8 @@ actionScript875 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_14"),
 	HALT(),
-].join();
-actionScript80 = [
+);
+actionScript80 = initializeScript(actionScript80.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_MOVEMENT_SPEED(64),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -18843,8 +18843,8 @@ actionScript80 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	HALT(),
-].join();
-actionScriptSwFourShadowA = [
+);
+actionScriptSwFourShadowA = initializeScript(actionScriptSwFourShadowA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -18871,8 +18871,8 @@ actionScriptSwFourShadowA = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_B),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSwThrkShadowB = [
+);
+actionScriptSwThrkShadowB = initializeScript(actionScriptSwThrkShadowB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -18908,16 +18908,16 @@ actionScriptSwThrkShadowB = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptCop5B = [
+);
+actionScriptCop5B = initializeScript(actionScriptCop5B.length,
 	SET_VAR(ActionScriptVars.v6, 7512),
 	SET_VAR(ActionScriptVars.v7, 232),
 	SET_VAR(ActionScriptVars.v0, 7496),
 	SET_VAR(ActionScriptVars.v1, 232),
 	SHORTCALL(&actionScript228_229_230_231_232Common[0]),
 	HALT(),
-].join();
-actionScriptJumpTonchikiShadow = [
+);
+actionScriptJumpTonchikiShadow = initializeScript(actionScriptJumpTonchikiShadow.length,
 	SET_X(1368),
 	SET_Y(6904),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -18932,8 +18932,8 @@ actionScriptJumpTonchikiShadow = [
 	PAUSE(24),
 	SET_VELOCITIES_ZERO(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript821 = [
+);
+actionScript821 = initializeScript(actionScript821.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -18944,8 +18944,8 @@ actionScript821 = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptMogiriToRight = [
+);
+actionScriptMogiriToRight = initializeScript(actionScriptMogiriToRight.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 18),
 	SET_MOVEMENT_SPEED(128),
@@ -18957,13 +18957,13 @@ actionScriptMogiriToRight = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	HALT(),
-].join();
-actionScriptDoseiPooDown = [
+);
+actionScriptDoseiPooDown = initializeScript(actionScriptDoseiPooDown.length,
 	SET_X(372),
 	SET_Y(7608),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptBusFourThrkIn = [
+);
+actionScriptBusFourThrkIn = initializeScript(actionScriptBusFourThrkIn.length,
 	SET_X(2656),
 	SET_Y(5008),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -18991,8 +18991,8 @@ actionScriptBusFourThrkIn = [
 	PREPARE_NEW_ENTITY_AT_PARTY_LEADER(),
 	SHORTCALL(&unknownC3AB94[0]),
 	SHORTJUMP(&actionScriptBusFourThrkIn[55 + 10 * (const(void)*).sizeof]),
-].join();
-actionScript873 = [
+);
+actionScript873 = initializeScript(actionScript873.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoTento),
@@ -19006,14 +19006,14 @@ actionScript873 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_12"),
 	HALT(),
-].join();
-actionScriptStageParty = [
+);
+actionScriptStageParty = initializeScript(actionScriptStageParty.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_ANIMATION(255),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScriptMaidIntoBuilding = [
+);
+actionScriptMaidIntoBuilding = initializeScript(actionScriptMaidIntoBuilding.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 9),
 	SET_MOVEMENT_SPEED(352),
@@ -19027,8 +19027,8 @@ actionScriptMaidIntoBuilding = [
 	SET_VAR(ActionScriptVars.v7, 4112),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPray2Nice = [
+);
+actionScriptEvtPray2Nice = initializeScript(actionScriptEvtPray2Nice.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 8),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -19039,8 +19039,8 @@ actionScriptEvtPray2Nice = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	HALT(),
-].join();
-actionScriptKidSt3 = [
+);
+actionScriptKidSt3 = initializeScript(actionScriptKidSt3.length,
 	SET_X(5976),
 	SET_Y(280),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -19051,8 +19051,8 @@ actionScriptKidSt3 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-actionScriptSwFourShadowB = [
+);
+actionScriptSwFourShadowB = initializeScript(actionScriptSwFourShadowB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -19078,8 +19078,8 @@ actionScriptSwFourShadowB = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptElevaterDown = [
+);
+actionScriptElevaterDown = initializeScript(actionScriptElevaterDown.length,
 	WRITE_WORD_TEMPVAR(Direction.up),
 	SET_DIRECTION(),
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
@@ -19124,8 +19124,8 @@ actionScriptElevaterDown = [
 	C0C83B(),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptElevaterDown[71 + 19 * (const(void)*).sizeof]),
-].join();
-actionScript221 = [
+);
+actionScript221 = initializeScript(actionScript221.length,
 	GET_EVENT_FLAG(EventFlag.pola),
 	JUMP_IF_TRUE(&actionScriptMapObjStill[0]),
 	GET_EVENT_FLAG(EventFlag.polaGrfd),
@@ -19170,8 +19170,8 @@ actionScript221 = [
 	GET_POSITION_OF_PARTY_MEMBER(2),
 	C0A8C6(),
 	SHORTJUMP(&actionScript221[88 + 21 * (const(void)*).sizeof + string.sizeof]),
-].join();
-actionScriptHoihoiJ = [
+);
+actionScriptHoihoiJ = initializeScript(actionScriptHoihoiJ.length,
 	SET_X(5728),
 	SET_Y(9112),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -19184,8 +19184,8 @@ actionScriptHoihoiJ = [
 	SET_VAR(ActionScriptVars.v7, 9136),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTitleScreen4 = [
+);
+actionScriptTitleScreen4 = initializeScript(actionScriptTitleScreen4.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(1),
 	SET_Y(100),
@@ -19197,8 +19197,8 @@ actionScriptTitleScreen4 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(54),
 	HALT(),
-].join();
-actionScriptTeleportSarusensei = [
+);
+actionScriptTeleportSarusensei = initializeScript(actionScriptTeleportSarusensei.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0D8[0]),
@@ -19274,8 +19274,8 @@ actionScriptTeleportSarusensei = [
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	JUMP_IF_TRUE(&actionScriptTeleportSarusensei[154 + 32 * (const(void)*).sizeof]),
-].join();
-actionScript799 = [
+);
+actionScript799 = initializeScript(actionScript799.length,
 	WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v0),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_SURFACE_FLAGS(SurfaceFlags.obscureUpperBody | SurfaceFlags.obscureLowerBody),
@@ -19284,8 +19284,8 @@ actionScript799 = [
 	SET_DIRECTION8(Direction.down),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptGeppuPass = [
+);
+actionScriptGeppuPass = initializeScript(actionScriptGeppuPass.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -19303,8 +19303,8 @@ actionScriptGeppuPass = [
 	LOOP_END(),
 	QUEUE_INTERACTION_TYPE_8("MSG_GPFT_PASSWORD_LATER"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTBusTunnelHwayL = [
+);
+actionScriptTBusTunnelHwayL = initializeScript(actionScriptTBusTunnelHwayL.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(768),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -19314,13 +19314,13 @@ actionScriptTBusTunnelHwayL = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_HWAY_TUNNEL_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TBUS_HWAY_TUNNEL_L"),
 	HALT(),
-].join();
-unknownC3098B = [
+);
+unknownC3098B = initializeScript(unknownC3098B.length,
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTStage3Gorgeous8 = [
+);
+actionScriptTStage3Gorgeous8 = initializeScript(actionScriptTStage3Gorgeous8.length,
 	SET_X(4752),
 	SET_Y(5736),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -19328,25 +19328,25 @@ actionScriptTStage3Gorgeous8 = [
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTCALL(&unknownC333BB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptDoseiNesDown = [
+);
+actionScriptDoseiNesDown = initializeScript(actionScriptDoseiNesDown.length,
 	SET_X(388),
 	SET_Y(7624),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptCircleCultistEast = [
+);
+actionScriptCircleCultistEast = initializeScript(actionScriptCircleCultistEast.length,
 	SHORTCALL(&unknownC30C55[0]),
 	SHORTJUMP(&unknownC30C97[0]),
-].join();
-actionScript624 = [
+);
+actionScript624 = initializeScript(actionScript624.length,
 	SET_Y_RELATIVE(1),
 	SHORTJUMP(&actionScriptPeopleSleep[0]),
-].join();
-actionScriptEvtPray4DirDown = [
+);
+actionScriptEvtPray4DirDown = initializeScript(actionScriptEvtPray4DirDown.length,
 	SET_VAR(ActionScriptVars.v0, 4),
 	SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
-].join();
-actionScriptSpiritReturnPoo2 = [
+);
+actionScriptSpiritReturnPoo2 = initializeScript(actionScriptSpiritReturnPoo2.length,
 	SET_PRIORITY(0),
 	SET_X(512),
 	SET_Y(7560),
@@ -19371,8 +19371,8 @@ actionScriptSpiritReturnPoo2 = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTakeNessKatacomb2A = [
+);
+actionScriptTakeNessKatacomb2A = initializeScript(actionScriptTakeNessKatacomb2A.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_X_RELATIVE(16),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -19386,13 +19386,13 @@ actionScriptTakeNessKatacomb2A = [
 	WRITE_WORD_TEMPVAR(1),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptTStage2MikeL = [
+);
+actionScriptTStage2MikeL = initializeScript(actionScriptTStage2MikeL.length,
 	SET_X(4704),
 	SET_Y(5748),
 	SHORTJUMP(&actionScriptTStage1MikeL[6]),
-].join();
-actionScriptLastBattlePokey = [
+);
+actionScriptLastBattlePokey = initializeScript(actionScriptLastBattlePokey.length,
 	SET_X(4224),
 	SET_Y(856),
 	PAUSE(2),
@@ -19406,13 +19406,13 @@ actionScriptLastBattlePokey = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript40 = [
+);
+actionScript40 = initializeScript(actionScript40.length,
 	GET_EVENT_FLAG(EventFlag.myhomePhoneRing),
 	JUMP_IF_TRUE(&actionScriptTelRing[0]),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-unknownC3A09F = [
+);
+unknownC3A09F = initializeScript(unknownC3A09F.length,
 	PAUSE(8),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -19420,8 +19420,8 @@ unknownC3A09F = [
 	SET_ANIMATION(0),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
 	SHORTJUMP(&unknownC3A09F[0]),
-].join();
-actionScriptEvtPray5GirlB = [
+);
+actionScriptEvtPray5GirlB = initializeScript(actionScriptEvtPray5GirlB.length,
 	SET_X(4560),
 	SET_Y(3528),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -19449,13 +19449,13 @@ actionScriptEvtPray5GirlB = [
 	C0A94E(1110),
 	PAUSE(3),
 	SHORTJUMP(&actionScriptEvtPray5GirlB[53 + 10 * (const(void)*).sizeof]),
-].join();
-actionScript859 = [
+);
+actionScript859 = initializeScript(actionScript859.length,
 	PAUSE(2),
 	//fallthrough
 	SHORTJUMP(&actionScriptRunFadeEffect[0]),
-].join();
-actionScriptKifuyaTukimatou = [
+);
+actionScriptKifuyaTukimatou = initializeScript(actionScriptKifuyaTukimatou.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A12E[0]),
@@ -19476,23 +19476,23 @@ actionScriptKifuyaTukimatou = [
 		C0A8C6(),
 	LOOP_END(),
 	SHORTJUMP(&actionScriptKifuyaTukimatou[9 + 5 * (const(void)*).sizeof]),
-].join();
-unknownC36D18 = [
+);
+unknownC36D18 = initializeScript(unknownC36D18.length,
 	PAUSE(4),
 	C0D15C(),
 	JUMP_IF_FALSE(&unknownC36D18[0]),
 	SHORTCALL(&unknownC39E01[0]),
 	C4681A(),
 	END_TASK(),
-].join();
-unknownC3ABE0 = [
+);
+unknownC3ABE0 = initializeScript(unknownC3ABE0.length,
 	PAUSE(1),
 	WRITE_WRAM_TEMPVAR(&fadeParameters.word),
 	AND_TEMPVAR(255),
 	JUMP_IF_TRUE(&unknownC3ABE0[0]),
 	SHORT_RETURN(),
-].join();
-actionScript862 = [
+);
+actionScript862 = initializeScript(actionScript862.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoMyHome),
@@ -19506,8 +19506,8 @@ actionScript862 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_1"),
 	HALT(),
-].join();
-actionScriptTakeNessKatacomb2B = [
+);
+actionScriptTakeNessKatacomb2B = initializeScript(actionScriptTakeNessKatacomb2B.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_Y_RELATIVE(-16),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -19521,8 +19521,8 @@ actionScriptTakeNessKatacomb2B = [
 	WRITE_WORD_TEMPVAR(1),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-unknownC3A1A3 = [
+);
+unknownC3A1A3 = initializeScript(unknownC3A1A3.length,
 	PAUSE(12),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -19530,8 +19530,8 @@ unknownC3A1A3 = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A1A3[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMichikoIntoRoomB = [
+);
+actionScriptMichikoIntoRoomB = initializeScript(actionScriptMichikoIntoRoomB.length,
 	SET_X(8176),
 	SET_Y(7528),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -19549,8 +19549,8 @@ actionScriptMichikoIntoRoomB = [
 	WRITE_WORD_WRAM(&pendingInteractions, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptCarpDungR = [
+);
+actionScriptCarpDungR = initializeScript(actionScriptCarpDungR.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(2),
@@ -19559,8 +19559,8 @@ actionScriptCarpDungR = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC39E01 = [
+);
+unknownC39E01 = initializeScript(unknownC39E01.length,
 	WRITE_WRAM_TEMPVAR(&battleSwirlCountdown),
 	JUMP_IF_TRUE(&unknownC39E01[5 + 4 * (const(void)*).sizeof]),
 	WRITE_WRAM_TEMPVAR(&enemyHasBeenTouched),
@@ -19568,8 +19568,8 @@ unknownC39E01 = [
 	SHORT_RETURN(),
 	PAUSE(1),
 	SHORTJUMP(&unknownC39E01[0]),
-].join();
-actionScriptShipToSkrb2 = [
+);
+actionScriptShipToSkrb2 = initializeScript(actionScriptShipToSkrb2.length,
 	SET_X(1560),
 	SET_Y(3672),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -19598,8 +19598,8 @@ actionScriptShipToSkrb2 = [
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG12D),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSwSplinter1 = [
+);
+actionScriptSwSplinter1 = initializeScript(actionScriptSwSplinter1.length,
 	SET_X(5056),
 	SET_Y(3144),
 	SET_PRIORITY(3),
@@ -19614,8 +19614,8 @@ actionScriptSwSplinter1 = [
 	C0C6B6(),
 	JUMP_IF_TRUE(&actionScriptSwSplinter1[18 + 4 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptMizunoA = [
+);
+actionScriptMizunoA = initializeScript(actionScriptMizunoA.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -19624,8 +19624,8 @@ actionScriptMizunoA = [
 	SHORTCALL(&actionScriptMoveToLocationTypeB[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBGChange = [
+);
+actionScriptBGChange = initializeScript(actionScriptBGChange.length,
 	SET_ANIMATION(255),
 	PAUSE(15),
 	SET_VAR(ActionScriptVars.v0, 16),
@@ -19656,8 +19656,8 @@ actionScriptBGChange = [
 	SET_DIRECTION(),
 	DISPLAY_YOUR_SANCTUARY_LOCATION(),
 	SHORTJUMP(&actionScriptBGChange[48 + 5 * (const(void)*).sizeof + 1 * 3 * (const(void)*).sizeof / 2 + 1 * (const(void)*).sizeof * (const(void)*).sizeof / 2]),
-].join();
-actionScript499 = [
+);
+actionScript499 = initializeScript(actionScript499.length,
 	C0A643(1311),
 	EF0C97(),
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
@@ -19665,8 +19665,8 @@ actionScript499 = [
 	SET_ANIMATION(255),
 	SET_VELOCITIES_ZERO(),
 	START_DELIVERY_COUNTDOWN(),
-].join();
-actionScriptMouseDoor = [
+);
+actionScriptMouseDoor = initializeScript(actionScriptMouseDoor.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v5, 1),
 	SET_VAR(ActionScriptVars.v6, 7880),
@@ -19678,8 +19678,8 @@ actionScriptMouseDoor = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptKoke = [
+);
+actionScriptKoke = initializeScript(actionScriptKoke.length,
 	SET_ANIMATION(255),
 	C4880C(),
 	SET_VAR(ActionScriptVars.v1, 0),
@@ -19688,8 +19688,8 @@ actionScriptKoke = [
 	JUMP_IF_FALSE(&actionScriptKoke[7 + 1 * (const(void)*).sizeof]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptHoihoiH = [
+);
+actionScriptHoihoiH = initializeScript(actionScriptHoihoiH.length,
 	SET_X(5456),
 	SET_Y(9144),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -19702,8 +19702,8 @@ actionScriptHoihoiH = [
 	SET_VAR(ActionScriptVars.v7, 9136),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript77 = [
+);
+actionScript77 = initializeScript(actionScript77.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	COPY_XY_TO_VARS(),
@@ -19728,8 +19728,8 @@ actionScript77 = [
 	PAUSE(16),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptHoihoiM = [
+);
+actionScriptHoihoiM = initializeScript(actionScriptHoihoiM.length,
 	SET_X(5456),
 	SET_Y(9008),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -19745,12 +19745,12 @@ actionScriptHoihoiM = [
 	SET_VAR(ActionScriptVars.v7, 9064),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	HALT(),
-].join();
-unknownC36834 = [
+);
+unknownC36834 = initializeScript(unknownC36834.length,
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.flyingMan, ActionScript.unknown802),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3B0B6 = [
+);
+unknownC3B0B6 = initializeScript(unknownC3B0B6.length,
 	LOOP(16),
 		GET_MOVEMENT_SPEED(),
 		ADD_TEMPVAR(256),
@@ -19770,8 +19770,8 @@ unknownC3B0B6 = [
 		PAUSE(32),
 	LOOP_END(),
 	SHORTJUMP(&unknownC3B0B6[11 + 2 * (const(void)*).sizeof]),
-].join();
-actionScriptRetGhostTunnel = [
+);
+actionScriptRetGhostTunnel = initializeScript(actionScriptRetGhostTunnel.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -19782,8 +19782,8 @@ actionScriptRetGhostTunnel = [
 	PAUSE(96),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript286 = [
+);
+actionScript286 = initializeScript(actionScript286.length,
 	GET_EVENT_FLAG(EventFlag.winGiegu),
 	JUMP_IF_FALSE(&actionScriptMapObjStill[0]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -19791,8 +19791,8 @@ actionScript286 = [
 	SET_ANIMATION(255),
 	PAUSE(10),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptRunDotsEffect = [
+);
+actionScriptRunDotsEffect = initializeScript(actionScriptRunDotsEffect.length,
 	OBJFX_CLEAR_DOT_BUFFER(),
 	LOOP(64),
 		OBJFX_DOTS(),
@@ -19801,8 +19801,8 @@ actionScriptRunDotsEffect = [
 	ADD(ActionScriptVars.v4, -1),
 	END_FADE(),
 	END_TASK(),
-].join();
-actionScriptBusDsrtToThrk = [
+);
+actionScriptBusDsrtToThrk = initializeScript(actionScriptBusDsrtToThrk.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -19811,28 +19811,28 @@ actionScriptBusDsrtToThrk = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_HWAY_L"),
 	HALT(),
-].join();
-unknownC3C8FD = [
+);
+unknownC3C8FD = initializeScript(unknownC3C8FD.length,
 	SHORTCALL(&unknownC3C94E[0]),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SUMS_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript534 = [
+);
+actionScript534 = initializeScript(actionScript534.length,
 	SHORTCALL(&unknownC40F59[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.downRight, 0),
 	PAUSE(20),
 	UPDATE_SPRITE_DIRECTION(Direction.upRight, 0),
 	PAUSE(20),
 	SHORTJUMP(&actionScript534[1 + 1 * (const(void)*).sizeof]),
-].join();
-actionScriptSwSkyC = [
+);
+actionScriptSwSkyC = initializeScript(actionScriptSwSkyC.length,
 	SHORTCALL(&unknownC3C90C[0]),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_THRK_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC4144C = [
+);
+unknownC4144C = initializeScript(unknownC4144C.length,
 	SET_X(-8),
 	SET_Y(40),
 	SET_X_VELOCITY(256),
@@ -19889,8 +19889,8 @@ unknownC4144C = [
 	PAUSE(10),
 	JUMP_TO_LABEL_N_TIMES(8, &unknownC4144C[129 + 23 * (const(void)*).sizeof]),
 	SHORTJUMP(&unknownC4144C[79 + 13 * (const(void)*).sizeof]),
-].join();
-actionScript673 = [
+);
+actionScript673 = initializeScript(actionScript673.length,
 	SHORTCALL(&actionScript674[52 + 16 * (const(void)*).sizeof + string.sizeof]),
 	WRITE_WORD_TEMPVAR(0),
 	C0A857(EventFlag.animPort5),
@@ -19914,8 +19914,8 @@ actionScript673 = [
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_FOUNTAIN_B"),
 	SHORTCALL(&actionScript674[61 + 21 * (const(void)*).sizeof + string.sizeof]),
 	SHORTJUMP(&actionScript673[1 + 1 * (const(void)*).sizeof]),
-].join();
-actionScriptHallMayorC = [
+);
+actionScriptHallMayorC = initializeScript(actionScriptHallMayorC.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 18),
 	SET_MOVEMENT_SPEED(128),
@@ -19935,8 +19935,8 @@ actionScriptHallMayorC = [
 	PAUSE(64),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScript240 = [
+);
+actionScript240 = initializeScript(actionScript240.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VELOCITIES_ZERO(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -19983,8 +19983,8 @@ actionScript240 = [
 	SET_DIRECTION(),
 	PAUSE(1),
 	SHORTJUMP(&actionScript240[3 + 2 * (const(void)*).sizeof]),
-].join();
-actionScript20 = [
+);
+actionScript20 = initializeScript(actionScript20.length,
 	SHORTCALL(&unknownC3A426[0]),
 	C0A6B8(),
 	JUMP_IF_TRUE(&unknownC3A47C[0]),
@@ -20021,8 +20021,8 @@ actionScript20 = [
 	SET_DIRECTION(),
 	C0A6AD(8),
 	SHORTJUMP(&actionScript20[26 + 11 * (const(void)*).sizeof]),
-].join();
-actionScriptGrooveFree = [
+);
+actionScriptGrooveFree = initializeScript(actionScriptGrooveFree.length,
 	SET_X(7656),
 	SET_Y(7656),
 	SET_ANIMATION(255),
@@ -20054,13 +20054,13 @@ actionScriptGrooveFree = [
 	SHORTCALL(&unknownC3BED4[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSenzo2 = [
+);
+actionScriptSenzo2 = initializeScript(actionScriptSenzo2.length,
 	C0A87A(128, 128),
 	SHORTCALL(&unknownC3AA38[0]),
 	HALT(),
-].join();
-actionScriptBusThrkTunnelR = [
+);
+actionScriptBusThrkTunnelR = initializeScript(actionScriptBusThrkTunnelR.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -20070,8 +20070,8 @@ actionScriptBusThrkTunnelR = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_HWAY_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_HWAY_R"),
 	HALT(),
-].join();
-actionScriptTStage3TBus = [
+);
+actionScriptTStage3TBus = initializeScript(actionScriptTStage3TBus.length,
 	SET_X(4624),
 	SET_Y(5740),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -20090,8 +20090,8 @@ actionScriptTStage3TBus = [
 	LOOP_END(),
 	PAUSE(120),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptInsekiWakeupWalk = [
+);
+actionScriptInsekiWakeupWalk = initializeScript(actionScriptInsekiWakeupWalk.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A37A),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_X(8136),
@@ -20107,8 +20107,8 @@ actionScriptInsekiWakeupWalk = [
 	PAUSE(2),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage1GorgeousDance = [
+);
+actionScriptTStage1GorgeousDance = initializeScript(actionScriptTStage1GorgeousDance.length,
 	SET_X(6904),
 	SET_Y(8536),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -20158,13 +20158,13 @@ actionScriptTStage1GorgeousDance = [
 		PAUSE(23),
 	LOOP_END(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTacyMask3 = [
+);
+actionScriptTacyMask3 = initializeScript(actionScriptTacyMask3.length,
 	SET_X(600),
 	SET_Y(3536),
 	SHORTJUMP(&actionScriptPeopleWalk0[0]),
-].join();
-actionScriptEvtMonoHeliShadow = [
+);
+actionScriptEvtMonoHeliShadow = initializeScript(actionScriptEvtMonoHeliShadow.length,
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SET_PRIORITY(3),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
@@ -20179,8 +20179,8 @@ actionScriptEvtMonoHeliShadow = [
 		PAUSE(1),
 	LOOP_END(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBusHwayTunnelL = [
+);
+actionScriptBusHwayTunnelL = initializeScript(actionScriptBusHwayTunnelL.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -20189,8 +20189,8 @@ actionScriptBusHwayTunnelL = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC3AA6E = [
+);
+unknownC3AA6E = initializeScript(unknownC3AA6E.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0D8[0]),
@@ -20198,8 +20198,8 @@ unknownC3AA6E = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SET_MOVEMENT_SPEED(352),
 	SHORT_RETURN(),
-].join();
-actionScript884 = [
+);
+actionScript884 = initializeScript(actionScript884.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoSumsHotel),
@@ -20213,8 +20213,8 @@ actionScript884 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_23"),
 	HALT(),
-].join();
-actionScriptEvtPray4DirCommon = [
+);
+actionScriptEvtPray4DirCommon = initializeScript(actionScriptEvtPray4DirCommon.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -20223,8 +20223,8 @@ actionScriptEvtPray4DirCommon = [
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScriptBunbuun = [
+);
+actionScriptBunbuun = initializeScript(actionScriptBunbuun.length,
 	SHORTCALL(&unknownC3AB26[0]),
 	START_TASK(&unknownC3B0B6[0]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
@@ -20244,22 +20244,22 @@ actionScriptBunbuun = [
 	C4730E(),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SHORTJUMP(&actionScriptBunbuun[21 + 9 * (const(void)*).sizeof]),
-].join();
-actionScriptVStage1VenusStill = [
+);
+actionScriptVStage1VenusStill = initializeScript(actionScriptVStage1VenusStill.length,
 	SET_X(4736),
 	SET_Y(5736),
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	HALT(),
-].join();
-actionScriptStSt3 = [
+);
+actionScriptStSt3 = initializeScript(actionScriptStSt3.length,
 	SET_X(5976),
 	SET_Y(280),
 	PAUSE(2),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptNesHomeYure = [
+);
+actionScriptNesHomeYure = initializeScript(actionScriptNesHomeYure.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -20342,8 +20342,8 @@ actionScriptNesHomeYure = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptBusFourTunnel = [
+);
+actionScriptBusFourTunnel = initializeScript(actionScriptBusFourTunnel.length,
 	SHORTCALL(&unknownC3DBDB[0]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -20352,8 +20352,8 @@ actionScriptBusFourTunnel = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPeopleWalk1Live = [
+);
+actionScriptPeopleWalk1Live = initializeScript(actionScriptPeopleWalk1Live.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -20364,8 +20364,8 @@ actionScriptPeopleWalk1Live = [
 	SET_MOVEMENT_SPEED(256),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&actionScriptPeopleWalk1[10 + 6 * (const(void)*).sizeof]),
-].join();
-actionScriptBlackout = [
+);
+actionScriptBlackout = initializeScript(actionScriptBlackout.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -20377,14 +20377,14 @@ actionScriptBlackout = [
 	LOOP_END(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript531 = [
+);
+actionScript531 = initializeScript(actionScript531.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	SET_VAR(ActionScriptVars.v0, 0),
 	SHORTJUMP(&actionScript501_531_Common[0]),
-].join();
-actionScriptTitleScreen8 = [
+);
+actionScriptTitleScreen8 = initializeScript(actionScriptTitleScreen8.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(5),
 	SET_Y(100),
@@ -20396,8 +20396,8 @@ actionScriptTitleScreen8 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(160),
 	HALT(),
-].join();
-actionScriptBusToThrkTunnel = [
+);
+actionScriptBusToThrkTunnel = initializeScript(actionScriptBusToThrkTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -20421,8 +20421,8 @@ actionScriptBusToThrkTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_THRK_TUNNEL_L),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_THRK_TUNNEL"),
 	HALT(),
-].join();
-actionScriptSlotBrosStopL = [
+);
+actionScriptSlotBrosStopL = initializeScript(actionScriptSlotBrosStopL.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	C0A673(),
 	WRITE_TEMPVAR_TO_VAR(ActionScriptVars.v1),
@@ -20440,8 +20440,8 @@ actionScriptSlotBrosStopL = [
 	PLAY_SFX(Sfx.cursor4),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptSwFourB = [
+);
+actionScriptSwFourB = initializeScript(actionScriptSwFourB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -20465,8 +20465,8 @@ actionScriptSwFourB = [
 	SET_Z_VELOCITY(256),
 	PAUSE(128),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage1Scr1 = [
+);
+actionScriptTStage1Scr1 = initializeScript(actionScriptTStage1Scr1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -20478,8 +20478,8 @@ actionScriptTStage1Scr1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_TSTAGE1_A"),
 	HALT(),
-].join();
-actionScriptTStage1Flip = [
+);
+actionScriptTStage1Flip = initializeScript(actionScriptTStage1Flip.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -20503,14 +20503,14 @@ actionScriptTStage1Flip = [
 		PAUSE(23),
 	LOOP_END(),
 	HALT(),
-].join();
-actionScriptPeopleWalk0Live = [
+);
+actionScriptPeopleWalk0Live = initializeScript(actionScriptPeopleWalk0Live.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	START_TASK(&unknownC3A262[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
-].join();
-actionScriptPooToOldman = [
+);
+actionScriptPooToOldman = initializeScript(actionScriptPooToOldman.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(160),
 	SET_VAR(ActionScriptVars.v5, 17),
@@ -20523,20 +20523,20 @@ actionScriptPooToOldman = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray4DirRight = [
+);
+actionScriptEvtPray4DirRight = initializeScript(actionScriptEvtPray4DirRight.length,
 	SET_VAR(ActionScriptVars.v0, 2),
 	SHORTJUMP(&actionScriptEvtPray4DirCommon[0]),
-].join();
-actionScript818 = [
+);
+actionScript818 = initializeScript(actionScript818.length,
 	SET_PRIORITY(0),
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript810 = [
+);
+actionScript810 = initializeScript(actionScript810.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -20547,8 +20547,8 @@ actionScript810 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(60),
 	SHORTJUMP(&actionScript810[1 + 1 * (const(void)*).sizeof]),
-].join();
-actionScript693 = [
+);
+actionScript693 = initializeScript(actionScript693.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -20565,16 +20565,16 @@ actionScript693 = [
 	C0C6B6(),
 	JUMP_IF_TRUE(&actionScript693[6 + 3 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage23Thank = [
+);
+actionScriptTStage23Thank = initializeScript(actionScriptTStage23Thank.length,
 	SET_X(4696),
 	SET_Y(5712),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_VAR(ActionScriptVars.v4, 1),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScriptSyochoToNess = [
+);
+actionScriptSyochoToNess = initializeScript(actionScriptSyochoToNess.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 18),
 	START_TASK(&unknownC3AFA3[0]),
@@ -20585,14 +20585,14 @@ actionScriptSyochoToNess = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript532 = [
+);
+actionScript532 = initializeScript(actionScript532.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	SET_VAR(ActionScriptVars.v0, 1),
 	SHORTJUMP(&unknownC34392[0]),
-].join();
-actionScriptEvtPray3ChildD = [
+);
+actionScriptEvtPray3ChildD = initializeScript(actionScriptEvtPray3ChildD.length,
 	SET_X(2128),
 	SET_Y(7056),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -20608,8 +20608,8 @@ actionScriptEvtPray3ChildD = [
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray4GazeTonyEntry2 = [
+);
+actionScriptEvtPray4GazeTonyEntry2 = initializeScript(actionScriptEvtPray4GazeTonyEntry2.length,
 	C0A938(182),
 	GET_ANGLE_TO_DESTINATION(),
 	SET_MOVING_DIRECTION_FROM_ANGLE(),
@@ -20617,8 +20617,8 @@ actionScriptEvtPray4GazeTonyEntry2 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(4),
 	SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
-].join();
-actionScriptTeleportSuccess = [
+);
+actionScriptTeleportSuccess = initializeScript(actionScriptTeleportSuccess.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
 	SET_MOVEMENT_SPEED(256),
@@ -20688,8 +20688,8 @@ actionScriptTeleportSuccess = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptOutTBusGorgeous = [
+);
+actionScriptOutTBusGorgeous = initializeScript(actionScriptOutTBusGorgeous.length,
 	MOVE_TO_SPRITE(OverworldSprite.runaway5Bus),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
@@ -20702,8 +20702,8 @@ actionScriptOutTBusGorgeous = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptHoihoiA = [
+);
+actionScriptHoihoiA = initializeScript(actionScriptHoihoiA.length,
 	SET_X(6080),
 	SET_Y(8552),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -20716,8 +20716,8 @@ actionScriptHoihoiA = [
 	SET_VAR(ActionScriptVars.v7, 8688),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptOutBusL = [
+);
+actionScriptOutBusL = initializeScript(actionScriptOutBusL.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -20734,8 +20734,8 @@ actionScriptOutBusL = [
 	PAUSE(48),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGhostThrkPlus1 = [
+);
+actionScriptGhostThrkPlus1 = initializeScript(actionScriptGhostThrkPlus1.length,
 	C0A87A(0, 80),
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.THRK_GHOSTTUNNEL_R),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -20743,8 +20743,8 @@ actionScriptGhostThrkPlus1 = [
 	YIELD_TO_TEXT(),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScriptBusThrkToDsrt = [
+);
+actionScriptBusThrkToDsrt = initializeScript(actionScriptBusThrkToDsrt.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -20768,14 +20768,14 @@ actionScriptBusThrkToDsrt = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_THRK_TUNNEL_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_THRK_TUNNEL_R"),
 	HALT(),
-].join();
-unknownC39ABB = [
+);
+unknownC39ABB = initializeScript(unknownC39ABB.length,
 	PAUSE(30),
 	C0C6B6(),
 	JUMP_IF_TRUE(&unknownC39ABB[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTBusIntoThrk = [
+);
+actionScriptTBusIntoThrk = initializeScript(actionScriptTBusIntoThrk.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(512),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -20810,14 +20810,14 @@ actionScriptTBusIntoThrk = [
 	PAUSE(120),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBMonkeyRopeGood = [
+);
+actionScriptBMonkeyRopeGood = initializeScript(actionScriptBMonkeyRopeGood.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(256),
 	SET_VAR(ActionScriptVars.v5, 1),
 	GET_POSITION_OF_PARTY_MEMBER(9),
-].join();
-actionScriptGetOutHallMayor = [
+);
+actionScriptGetOutHallMayor = initializeScript(actionScriptGetOutHallMayor.length,
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -20829,8 +20829,8 @@ actionScriptGetOutHallMayor = [
 	PAUSE(64),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2GorgeousDance = [
+);
+actionScriptTStage2GorgeousDance = initializeScript(actionScriptTStage2GorgeousDance.length,
 	SET_X(4736),
 	SET_Y(5720),
 	SHORTCALL(&unknownC3AA38[0]),
@@ -20859,8 +20859,8 @@ actionScriptTStage2GorgeousDance = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	PAUSE(30),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptIntoTonzuraBusChaous = [
+);
+actionScriptIntoTonzuraBusChaous = initializeScript(actionScriptIntoTonzuraBusChaous.length,
 	SET_MOVEMENT_SPEED(128),
 	SET_VAR(ActionScriptVars.v5, 1),
 	C0A92D(373),
@@ -20870,8 +20870,8 @@ actionScriptIntoTonzuraBusChaous = [
 	SHORTCALL(&unknownC3B70C[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptFrsdFieldL = [
+);
+actionScriptFrsdFieldL = initializeScript(actionScriptFrsdFieldL.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(128),
 	WRITE_WORD_TEMPVAR(6),
@@ -20880,8 +20880,8 @@ actionScriptFrsdFieldL = [
 	SET_VELOCITIES_ZERO(),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScript829 = [
+);
+actionScript829 = initializeScript(actionScript829.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_MOVEMENT_SPEED(384),
 	WRITE_WORD_TEMPVAR(6),
@@ -20892,8 +20892,8 @@ actionScript829 = [
 	C4ECE7(),
 	JUMP_IF_TRUE(&actionScript829[11 + 3 * (const(void)*).sizeof]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTStage2SpotB = [
+);
+actionScriptTStage2SpotB = initializeScript(actionScriptTStage2SpotB.length,
 	SET_X(4768),
 	SET_Y(5736),
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
@@ -20966,8 +20966,8 @@ actionScriptTStage2SpotB = [
 	PAUSE(30),
 	C4257F(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptOutShip = [
+);
+actionScriptOutShip = initializeScript(actionScriptOutShip.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	MOVE_PARTY_TO_LEADER_POSITION(),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
@@ -20981,8 +20981,8 @@ actionScriptOutShip = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptOutTassi1 = [
+);
+actionScriptOutTassi1 = initializeScript(actionScriptOutTassi1.length,
 	C4675C(),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -20998,8 +20998,8 @@ actionScriptOutTassi1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptJumpJef = [
+);
+actionScriptJumpJef = initializeScript(actionScriptJumpJef.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_MOVEMENT_SPEED(256),
@@ -21035,8 +21035,8 @@ actionScriptJumpJef = [
 	SET_VELOCITIES_ZERO(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript769 = [
+);
+actionScript769 = initializeScript(actionScript769.length,
 	CHOOSE_RANDOM(0, 4, 8, 12, 16, 20, 24, 28, 32, 36),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -21061,8 +21061,8 @@ actionScript769 = [
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(8),
 	SHORTJUMP(&actionScript769[28 + 5 * (const(void)*).sizeof]),
-].join();
-unknownC33DBE = [
+);
+unknownC33DBE = initializeScript(unknownC33DBE.length,
 	LOOP(28),
 		PAUSE(10),
 		GET_MOVEMENT_SPEED(),
@@ -21071,8 +21071,8 @@ unknownC33DBE = [
 	LOOP_END(),
 	SET_VAR(ActionScriptVars.v0, 1),
 	END_TASK(),
-].join();
-actionScriptEvtPray7Dosei = [
+);
+actionScriptEvtPray7Dosei = initializeScript(actionScriptEvtPray7Dosei.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 0),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -21105,8 +21105,8 @@ actionScriptEvtPray7Dosei = [
 	END_LAST_TASK(),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-unknownC31D2D = [
+);
+unknownC31D2D = initializeScript(unknownC31D2D.length,
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 	JUMP_IF_FALSE(&unknownC31D2D[17 + 5 * (const(void)*).sizeof]),
 	SET_ANIMATION(1),
@@ -21120,8 +21120,8 @@ unknownC31D2D = [
 	SHORTJUMP(&unknownC31D2D[0]),
 	PAUSE(6),
 	SHORTJUMP(&unknownC31D2D[0]),
-].join();
-actionScriptJeffAddParty = [
+);
+actionScriptJeffAddParty = initializeScript(actionScriptJeffAddParty.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	PAUSE(1),
@@ -21132,15 +21132,15 @@ actionScriptJeffAddParty = [
 	SET_VAR(ActionScriptVars.v4, 1),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript86 = [
+);
+actionScript86 = initializeScript(actionScript86.length,
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 	JUMP_IF_TRUE(&actionScript94_95_98Common[0]),
 	GET_EVENT_FLAG(EventFlag.tunnelThrkTwsnBL),
 	JUMP_IF_TRUE(&actionScript106[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3BB5C = [
+);
+unknownC3BB5C = initializeScript(unknownC3BB5C.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	COPY_XY_TO_VARS(),
@@ -21148,13 +21148,13 @@ unknownC3BB5C = [
 	SET_VAR(ActionScriptVars.v3, 80),
 	SHORTCALL(&unknownC3AB8A[0]),
 	SHORT_RETURN(),
-].join();
-actionScriptTStage3Gorgeous4 = [
+);
+actionScriptTStage3Gorgeous4 = initializeScript(actionScriptTStage3Gorgeous4.length,
 	SET_X(4720),
 	SET_Y(5728),
 	SHORTJUMP(&actionScriptTStage3Lucky2[6]),
-].join();
-actionScriptRideTassi1 = [
+);
+actionScriptRideTassi1 = initializeScript(actionScriptRideTassi1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -21189,8 +21189,8 @@ actionScriptRideTassi1 = [
 	SET_Y_RELATIVE(-22),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptRideTassi1[58 + 13 * (const(void)*).sizeof]),
-].join();
-actionScriptOshiokiPokey = [
+);
+actionScriptOshiokiPokey = initializeScript(actionScriptOshiokiPokey.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	START_TASK(&unknownC3AFA3[0]),
 	SET_MOVEMENT_SPEED(384),
@@ -21200,8 +21200,8 @@ actionScriptOshiokiPokey = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	PLAY_SFX(Sfx.unknown61),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3A18F = [
+);
+unknownC3A18F = initializeScript(unknownC3A18F.length,
 	PAUSE(24),
 	SET_ANIMATION(1),
 	UPDATE_ENTITY_SPRITE_FRAME1(),
@@ -21209,8 +21209,8 @@ unknownC3A18F = [
 	C40015(),
 	JUMP_IF_TRUE(&unknownC3A18F[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGumiStoneRise = [
+);
+actionScriptGumiStoneRise = initializeScript(actionScriptGumiStoneRise.length,
 	SHORTCALL(&unknownC3AB26[0]),
 	DISABLE_CURRENT_ENTITY_COLLISION2(),
 	SET_Z(0),
@@ -21232,10 +21232,10 @@ actionScriptGumiStoneRise = [
 	PAUSE(16),
 	YIELD_TO_TEXT(),
 	SET_VELOCITIES_ZERO(),
-	C020F1(),
+	CLEANUP_SELF(),
 	END(),
-].join();
-actionScriptEvtPray7DoseiA = [
+);
+actionScriptEvtPray7DoseiA = initializeScript(actionScriptEvtPray7DoseiA.length,
 	SET_X(224),
 	SET_Y(7608),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -21251,8 +21251,8 @@ actionScriptEvtPray7DoseiA = [
 	END_LAST_TASK(),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-actionScript108 = [
+);
+actionScript108 = initializeScript(actionScript108.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A1F3[0]),
@@ -21261,8 +21261,8 @@ actionScript108 = [
 	SET_MOVEMENT_SPEED(256),
 	SET_BOUNDARIES(8, 8),
 	SHORTJUMP(&actionScriptWanderWithinBounds[0]),
-].join();
-actionScriptEvtFeelDiggy = [
+);
+actionScriptEvtFeelDiggy = initializeScript(actionScriptEvtFeelDiggy.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -21273,8 +21273,8 @@ actionScriptEvtFeelDiggy = [
 	C0AAB5(-8196, 50, 60),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSpiritReturnJef2 = [
+);
+actionScriptSpiritReturnJef2 = initializeScript(actionScriptSpiritReturnJef2.length,
 	SET_PRIORITY(0),
 	SET_X(512),
 	SET_Y(7576),
@@ -21296,8 +21296,8 @@ actionScriptSpiritReturnJef2 = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptTonchikiEnterHouse = [
+);
+actionScriptTonchikiEnterHouse = initializeScript(actionScriptTonchikiEnterHouse.length,
 	SHORTCALL(&unknownC3AA5A[0]),
 	SET_VAR(ActionScriptVars.v5, 1),
 	SET_VAR(ActionScriptVars.v6, 1360),
@@ -21307,8 +21307,8 @@ actionScriptTonchikiEnterHouse = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSyochoC = [
+);
+actionScriptSyochoC = initializeScript(actionScriptSyochoC.length,
 	SET_X(7632),
 	SET_Y(216),
 	SET_VAR(ActionScriptVars.v6, 7552),
@@ -21324,8 +21324,8 @@ actionScriptSyochoC = [
 	UPDATE_SPRITE_DIRECTION(Direction.left, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript881 = [
+);
+actionScript881 = initializeScript(actionScript881.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoRamma),
@@ -21339,15 +21339,15 @@ actionScript881 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_20"),
 	HALT(),
-].join();
-unknownC33399 = [
+);
+unknownC33399 = initializeScript(unknownC33399.length,
 	UPDATE_SPRITE_DIRECTION(Direction.down, 1),
 	PAUSE(22),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	PAUSE(23),
 	SHORT_RETURN(),
-].join();
-actionScript890 = [
+);
+actionScript890 = initializeScript(actionScript890.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoDungeonMan),
@@ -21361,8 +21361,8 @@ actionScript890 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_29"),
 	HALT(),
-].join();
-actionScript335 = [
+);
+actionScript335 = initializeScript(actionScript335.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -21378,28 +21378,28 @@ actionScript335 = [
 	SHORTCALL(&unknownC3AB8A[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_ST2"),
 	HALT(),
-].join();
-unknownC36E41 = [
+);
+unknownC36E41 = initializeScript(unknownC36E41.length,
 	C40023(),
 	C46914(),
 	C46957(),
 	PAUSE(80),
 	SHORTJUMP(&unknownC36E41[1 + 1 * (const(void)*).sizeof]),
-].join();
-unknownC3AA38 = [
+);
+unknownC3AA38 = initializeScript(unknownC3AA38.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	START_TASK(&unknownC3A0D8[33 + 9 * (const(void)*).sizeof]),
 	SET_VELOCITIES_ZERO(),
 	SET_VAR(ActionScriptVars.v4, 0),
 	SHORT_RETURN(),
-].join();
-actionScriptTStage3OK3Nice3Groove3HighHat3 = [
+);
+actionScriptTStage3OK3Nice3Groove3HighHat3 = initializeScript(actionScriptTStage3OK3Nice3Groove3HighHat3.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	SET_VAR(ActionScriptVars.v4, 40),
 	SHORTJUMP(&actionScriptTStage3Thank3[6 + 2 * (const(void)*).sizeof]),
-].join();
-actionScriptPaulaFollowZombi2 = [
+);
+actionScriptPaulaFollowZombi2 = initializeScript(actionScriptPaulaFollowZombi2.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_X_RELATIVE(-16),
 	SHORTCALL(&unknownC37A7C[0]),
@@ -21423,12 +21423,12 @@ actionScriptPaulaFollowZombi2 = [
 	C0C83B(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	HALT(),
-].join();
-actionScript503 = [
+);
+actionScript503 = initializeScript(actionScript503.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4116C[0]),
-].join();
-unknownC41036 = [
+);
+unknownC41036 = initializeScript(unknownC41036.length,
 	SET_X(-8),
 	SET_Y(40),
 	SET_X_VELOCITY(256),
@@ -21507,8 +21507,8 @@ unknownC41036 = [
 	SET_ANIMATION(255),
 	PAUSE(60),
 	SHORTJUMP(&unknownC41036[40 + 6 * (const(void)*).sizeof]),
-].join();
-actionScriptTStage2LuckyWalk = [
+);
+actionScriptTStage2LuckyWalk = initializeScript(actionScriptTStage2LuckyWalk.length,
 	SHORTCALL(&unknownC31D4F[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
 	SET_VAR(ActionScriptVars.v0, 0),
@@ -21758,8 +21758,8 @@ actionScriptTStage2LuckyWalk = [
 	PAUSE(30),
 	PAUSE(180),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBusThrkTunnel = [
+);
+actionScriptBusThrkTunnel = initializeScript(actionScriptBusThrkTunnel.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -21769,8 +21769,8 @@ actionScriptBusThrkTunnel = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_TWSN),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_TWSN"),
 	HALT(),
-].join();
-actionScript666 = [
+);
+actionScript666 = initializeScript(actionScript666.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	START_TASK(&unknownC3A262[0]),
 	START_TASK(&actionScriptMapObjStillEntry2[0]),
@@ -21796,8 +21796,8 @@ actionScript666 = [
 	SET_VAR(ActionScriptVars.v7, 9136),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptIntoTBusGorgeous = [
+);
+actionScriptIntoTBusGorgeous = initializeScript(actionScriptIntoTBusGorgeous.length,
 	SHORTCALL(&unknownC3AAB8[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
 	SET_MOVEMENT_SPEED(128),
@@ -21806,16 +21806,16 @@ actionScriptIntoTBusGorgeous = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptPeopleWalk0 = [
+);
+actionScriptPeopleWalk0 = initializeScript(actionScriptPeopleWalk0.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	C0C7DB(),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 	SHORTJUMP(&unknownC3A1F3[0]),
-].join();
-actionScriptSwFourA = [
+);
+actionScriptSwFourA = initializeScript(actionScriptSwFourA.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_SURFACE_FLAGS(SurfaceFlags.none),
 	SET_POSITION_CHANGE_CALLBACK(&updateScreenPositionBG13D),
@@ -21839,8 +21839,8 @@ actionScriptSwFourA = [
 	SET_Z_VELOCITY(256),
 	PAUSE(128),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptStrikeNess = [
+);
+actionScriptStrikeNess = initializeScript(actionScriptStrikeNess.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -21867,8 +21867,8 @@ actionScriptStrikeNess = [
 	PAUSE(1),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptSwWins = [
+);
+actionScriptSwWins = initializeScript(actionScriptSwWins.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A37A),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -21906,8 +21906,8 @@ actionScriptSwWins = [
 	YIELD_TO_TEXT(),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScriptTitleScreen1 = [
+);
+actionScriptTitleScreen1 = initializeScript(actionScriptTitleScreen1.length,
 	WRITE_WRAM_TEMPVAR(&titleScreenQuickMode),
 	JUMP_IF_TRUE(&actionScriptTitleScreen1[4 + 2 * (const(void)*).sizeof]),
 	PAUSE(60),
@@ -21931,16 +21931,16 @@ actionScriptTitleScreen1 = [
 	PAUSE(29),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptTonzuraFree2B = [
+);
+actionScriptTonzuraFree2B = initializeScript(actionScriptTonzuraFree2B.length,
 	SHORTCALL(&unknownC3C1E0[0]),
 	YIELD_TO_TEXT(),
 	PAUSE(1),
 	SHORTCALL(&unknownC3C20F[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptBlinkSuicide = [
+);
+actionScriptBlinkSuicide = initializeScript(actionScriptBlinkSuicide.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
@@ -21951,8 +21951,8 @@ actionScriptBlinkSuicide = [
 		PAUSE(5),
 	LOOP_END(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptGhostPlus1 = [
+);
+actionScriptGhostPlus1 = initializeScript(actionScriptGhostPlus1.length,
 	C0A87A(0, 80),
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 	JUMP_IF_TRUE(&actionScriptGhostPlus1[15 + 5 * (const(void)*).sizeof]),
@@ -21965,8 +21965,8 @@ actionScriptGhostPlus1 = [
 	YIELD_TO_TEXT(),
 	SET_VELOCITIES_ZERO(),
 	HALT(),
-].join();
-actionScriptToGuard = [
+);
+actionScriptToGuard = initializeScript(actionScriptToGuard.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_POSITION_CHANGE_CALLBACK(&unknownC0A039),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
@@ -21981,16 +21981,16 @@ actionScriptToGuard = [
 	C0A92D(866),
 	C0A8C6(),
 	SHORTJUMP(&actionScriptToGuard[18 + 7 * (const(void)*).sizeof]),
-].join();
-actionScriptSyochoA = [
+);
+actionScriptSyochoA = initializeScript(actionScriptSyochoA.length,
 	WRITE_WORD_WRAM(&pendingInteractions, 1),
 	SET_VAR(ActionScriptVars.v6, 6928),
 	SET_VAR(ActionScriptVars.v7, 392),
 	SHORTCALL(&unknownC30295[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript501_531_Common = [
+);
+actionScript501_531_Common = initializeScript(actionScript501_531_Common.length,
 	SET_X(-8),
 	SET_Y(40),
 	START_TASK(&actionScript501_531_Common[61 + 12 * (const(void)*).sizeof]),
@@ -22022,8 +22022,8 @@ actionScript501_531_Common = [
 	SET_VELOCITIES_ZERO(),
 	PAUSE(240),
 	SHORTJUMP(&actionScript501_531_Common[67 + 12 * (const(void)*).sizeof]),
-].join();
-actionScriptVStage1Scr1 = [
+);
+actionScriptVStage1Scr1 = initializeScript(actionScriptVStage1Scr1.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_ANIMATION(255),
@@ -22037,8 +22037,8 @@ actionScriptVStage1Scr1 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_VSTAGE1_A"),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript104 = [
+);
+actionScript104 = initializeScript(actionScript104.length,
 	COPY_XY_TO_VARS(),
 	SET_VAR(ActionScriptVars.v2, 80),
 	SET_VAR(ActionScriptVars.v3, 96),
@@ -22061,8 +22061,8 @@ actionScript104 = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScriptCameraEye = [
+);
+actionScriptCameraEye = initializeScript(actionScriptCameraEye.length,
 	SET_ANIMATION(255),
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_VAR(ActionScriptVars.v0, 1),
@@ -22084,8 +22084,8 @@ actionScriptCameraEye = [
 	RESTORE_MAP_RENDERING(),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtFluctuateMagicant = [
+);
+actionScriptEvtFluctuateMagicant = initializeScript(actionScriptEvtFluctuateMagicant.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(255),
@@ -22159,12 +22159,12 @@ actionScriptEvtFluctuateMagicant = [
 	C0AAB5(8192, 49, 60),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript516 = [
+);
+actionScript516 = initializeScript(actionScript516.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC4160A[0]),
-].join();
-actionScriptSyochoB = [
+);
+actionScriptSyochoB = initializeScript(actionScriptSyochoB.length,
 	SET_X(8168),
 	SET_Y(104),
 	SET_VAR(ActionScriptVars.v6, 7960),
@@ -22172,13 +22172,13 @@ actionScriptSyochoB = [
 	SHORTCALL(&unknownC30295[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScript14 = [
+);
+actionScript14 = initializeScript(actionScript14.length,
 	SHORTCALL(&actionScript13_14_15_16_17_Common[0]),
 	SET_BOUNDARIES(16, 16),
 	SHORTJUMP(&actionScriptWanderWithinBounds2[0]),
-].join();
-actionScriptOshiokiMince = [
+);
+actionScriptOshiokiMince = initializeScript(actionScriptOshiokiMince.length,
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_MOVEMENT_SPEED(320),
 	SET_VAR(ActionScriptVars.v5, 2),
@@ -22203,8 +22203,8 @@ actionScriptOshiokiMince = [
 	YIELD_TO_TEXT(),
 	SET_VAR(ActionScriptVars.v4, 1),
 	HALT(),
-].join();
-unknownC3DB7A = [
+);
+unknownC3DB7A = initializeScript(unknownC3DB7A.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -22214,8 +22214,8 @@ unknownC3DB7A = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.BUS_TUNNEL_BRDG_R),
 	QUEUE_INTERACTION_TYPE_8("MSG_EVT_BUS_TUNNEL_BRDG_R"),
 	HALT(),
-].join();
-unknownC3CEA2 = [
+);
+unknownC3CEA2 = initializeScript(unknownC3CEA2.length,
 	PAUSE(120),
 	PAUSE(120),
 	PAUSE(120),
@@ -22224,8 +22224,8 @@ unknownC3CEA2 = [
 	PAUSE(120),
 	PAUSE(120),
 	SHORTJUMP(&unknownC3CEA2[0]),
-].join();
-actionScriptVStage1VenusLight2 = [
+);
+actionScriptVStage1VenusLight2 = initializeScript(actionScriptVStage1VenusLight2.length,
 	SET_PRIORITY(0),
 	SET_X(4739),
 	SET_Y(5736),
@@ -22236,13 +22236,13 @@ actionScriptVStage1VenusLight2 = [
 	SET_X_RELATIVE(3),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptVStage1VenusLight2[14 + 2 * (const(void)*).sizeof]),
-].join();
-actionScriptTStage3MikeR = [
+);
+actionScriptTStage3MikeR = initializeScript(actionScriptTStage3MikeR.length,
 	SET_X(4768),
 	SET_Y(5748),
 	SHORTJUMP(&actionScriptTStage1MikeL[6]),
-].join();
-actionScriptEvtPray7DoseiB = [
+);
+actionScriptEvtPray7DoseiB = initializeScript(actionScriptEvtPray7DoseiB.length,
 	SET_X(360),
 	SET_Y(7504),
 	SHORTCALL(&unknownC3AAAA[0]),
@@ -22254,8 +22254,8 @@ actionScriptEvtPray7DoseiB = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	HALT(),
-].join();
-actionScript629 = [
+);
+actionScript629 = initializeScript(actionScript629.length,
 	SET_PHYSICS_CALLBACK(&unknownC0A360),
 	SET_ANIMATION(0),
 	C0C7DB(),
@@ -22347,8 +22347,8 @@ actionScript629 = [
 	SET_VAR(ActionScriptVars.v7, 241),
 	PAUSE(120),
 	SHORTJUMP(&actionScript629[187 + 27 * (const(void)*).sizeof]),
-].join();
-actionScriptTakeNessKatacomb1A = [
+);
+actionScriptTakeNessKatacomb1A = initializeScript(actionScriptTakeNessKatacomb1A.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_Y_RELATIVE(16),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -22360,8 +22360,8 @@ actionScriptTakeNessKatacomb1A = [
 	WRITE_WORD_TEMPVAR(6),
 	SHORTCALL(&unknownC3AA1E[0]),
 	HALT(),
-].join();
-actionScript863 = [
+);
+actionScript863 = initializeScript(actionScript863.length,
 	SHORTCALL(&unknownC39AC7[0]),
 	PAUSE(1),
 	GET_EVENT_FLAG(EventFlag.photoOnetMisaki),
@@ -22375,8 +22375,8 @@ actionScript863 = [
 	SHORTCALL(&unknownC39E01[0]),
 	QUEUE_INTERACTION_TYPE_8("MSG_GLOBAL_PHOTO_2"),
 	HALT(),
-].join();
-actionScriptSwDsrtShadowB = [
+);
+actionScriptSwDsrtShadowB = initializeScript(actionScriptSwDsrtShadowB.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SHORTCALL(&unknownC3AB26[0]),
 	SET_Z(0),
@@ -22399,8 +22399,8 @@ actionScriptSwDsrtShadowB = [
 	PREPARE_NEW_ENTITY_AT_TELEPORT_DESTINATION(WarpPreset.SKYW_SKY_A),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript830 = [
+);
+actionScript830 = initializeScript(actionScript830.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	WRITE_WORD_TEMPVAR(Direction.down),
 	SET_DIRECTION(),
@@ -22409,20 +22409,20 @@ actionScript830 = [
 	PAUSE(140),
 	SPAWN_ENTITY_AT_SELF(OverworldSprite.poo, ActionScript.unknown802),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-unknownC3C81A = [
+);
+unknownC3C81A = initializeScript(unknownC3C81A.length,
 	ADD(ActionScriptVars.v1, 2),
 	PAUSE(1),
 	SHORTJUMP(&unknownC3C81A[0]),
-].join();
-actionScript87 = [
+);
+actionScript87 = initializeScript(actionScript87.length,
 	GET_EVENT_FLAG(EventFlag.tunnelTwsnThrkWR),
 	JUMP_IF_TRUE(&unknownC3BAC4[0]),
 	GET_EVENT_FLAG(EventFlag.tunnelThrkTwsnWL),
 	JUMP_IF_TRUE(&unknownC3BAA3[0]),
 	SHORTJUMP(&actionScript105[0]),
-].join();
-actionScriptEvtPrayOvalWindow = [
+);
+actionScriptEvtPrayOvalWindow = initializeScript(actionScriptEvtPrayOvalWindow.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	START_TASK(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
@@ -22441,8 +22441,8 @@ actionScriptEvtPrayOvalWindow = [
 	C4A7B0(),
 	PAUSE(1),
 	SHORTJUMP(&actionScriptEvtPrayOvalWindow[21 + 11 * (const(void)*).sizeof]),
-].join();
-unknownC34B62 = [
+);
+unknownC34B62 = initializeScript(unknownC34B62.length,
 	UPDATE_SPRITE_DIRECTION(Direction.down, 1),
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v3),
 	WRITE_TEMPVAR_WAITTIMER(),
@@ -22468,15 +22468,15 @@ unknownC34B62 = [
 	WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v3),
 	WRITE_TEMPVAR_WAITTIMER(),
 	SHORT_RETURN(),
-].join();
-unknownC40F59 = [
+);
+unknownC40F59 = initializeScript(unknownC40F59.length,
 	SET_PHYSICS_CALLBACK(&updateActiveEntityPosition2D),
 	SET_POSITION_CHANGE_CALLBACK(&updateEntityPositionAbsolute),
 	C0AAFD(),
 	SET_VAR(ActionScriptVars.v0, 0),
 	SHORT_RETURN(),
-].join();
-actionScriptGoOutCakeWife = [
+);
+actionScriptGoOutCakeWife = initializeScript(actionScriptGoOutCakeWife.length,
 	SHORTCALL(&unknownC3AA5A[0]),
 	SET_VAR(ActionScriptVars.v5, 1),
 	SET_VAR(ActionScriptVars.v6, 7872),
@@ -22487,8 +22487,8 @@ actionScriptGoOutCakeWife = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptCarpainterThunder = [
+);
+actionScriptCarpainterThunder = initializeScript(actionScriptCarpainterThunder.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.leader),
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	START_TASK(&actionScriptCarpainterThunderCommon[0]),
@@ -22510,16 +22510,16 @@ actionScriptCarpainterThunder = [
 	RESTORE_MAP_RENDERING(),
 	PAUSE(1),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript9 = [
+);
+actionScript9 = initializeScript(actionScript9.length,
 	SET_PHYSICS_CALLBACK(&actionScriptNoPhysics),
 	SET_ANIMATION(0),
 	SET_VELOCITIES_ZERO(),
 	C0C7DB(),
 	C0C353(),
 	SHORTJUMP(&actionScriptMapObjStillEntry2[0]),
-].join();
-actionScriptGiantStepCop = [
+);
+actionScriptGiantStepCop = initializeScript(actionScriptGiantStepCop.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 14),
 	UPDATE_ENTITY_SPRITE_FRAME0(),
@@ -22544,14 +22544,14 @@ actionScriptGiantStepCop = [
 	SET_VAR(ActionScriptVars.v7, 624),
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScriptEvtPray7STunnel = [
+);
+actionScriptEvtPray7STunnel = initializeScript(actionScriptEvtPray7STunnel.length,
 	SET_X(384),
 	SET_Y(7616),
 	PAUSE(2),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptBusTunnelDsrtR = [
+);
+actionScriptBusTunnelDsrtR = initializeScript(actionScriptBusTunnelDsrtR.length,
 	SHORTCALL(&unknownC3DBDB[2 + 1 * (const(void)*).sizeof]),
 	SET_MOVEMENT_SPEED(640),
 	SET_VAR(ActionScriptVars.v5, 3),
@@ -22573,12 +22573,12 @@ actionScriptBusTunnelDsrtR = [
 	PAUSE(112),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript517 = [
+);
+actionScript517 = initializeScript(actionScript517.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC416AC[0]),
-].join();
-actionScriptTitleScreen3 = [
+);
+actionScriptTitleScreen3 = initializeScript(actionScriptTitleScreen3.length,
 	SHORTCALL(&actionScriptTitleScreenCommonInit[0]),
 	SET_ANIMATION(0),
 	SET_Y(100),
@@ -22590,8 +22590,8 @@ actionScriptTitleScreen3 = [
 	SET_VELOCITIES_ZERO(),
 	SET_X(34),
 	HALT(),
-].join();
-actionScriptAddPartyBMonkey = [
+);
+actionScriptAddPartyBMonkey = initializeScript(actionScriptAddPartyBMonkey.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 18),
 	SET_VAR(ActionScriptVars.v5, 1),
@@ -22605,13 +22605,13 @@ actionScriptAddPartyBMonkey = [
 	SET_VAR(ActionScriptVars.v4, 0),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptDoseiJefDown = [
+);
+actionScriptDoseiJefDown = initializeScript(actionScriptDoseiJefDown.length,
 	SET_X(404),
 	SET_Y(7600),
 	SHORTJUMP(&actionScriptMapObjStill[0]),
-].join();
-actionScriptBMonkeyGum = [
+);
+actionScriptBMonkeyGum = initializeScript(actionScriptBMonkeyGum.length,
 	SET_X_RELATIVE(-7),
 	SHORTCALL(&unknownC3AA38[0]),
 	UPDATE_SPRITE_DIRECTION(Direction.up, 0),
@@ -22620,8 +22620,8 @@ actionScriptBMonkeyGum = [
 	PAUSE(30),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptPolaPolastarReturn = [
+);
+actionScriptPolaPolastarReturn = initializeScript(actionScriptPolaPolastarReturn.length,
 	MOVE_TO_PARTY_MEMBER(PartyMember.paula),
 	SHORTCALL(&unknownC3AA38[0]),
 	SET_TICK_CALLBACK(&unknownC48B3B),
@@ -22642,12 +22642,12 @@ actionScriptPolaPolastarReturn = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	SHORTJUMP(&actionScript35[0]),
-].join();
-actionScript510 = [
+);
+actionScript510 = initializeScript(actionScript510.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC41402[0]),
-].join();
-actionScript771 = [
+);
+actionScript771 = initializeScript(actionScript771.length,
 	GET_EVENT_FLAG(EventFlag.dkfdDoorDisappear),
 	JUMP_IF_TRUE(&actionScriptPeopleWalk0[0]),
 	SHORTCALL(&unknownC3AAB8[0]),
@@ -22667,8 +22667,8 @@ actionScript771 = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	YIELD_TO_TEXT(),
 	HALT(),
-].join();
-actionScriptEvtPray4PupilA = [
+);
+actionScriptEvtPray4PupilA = initializeScript(actionScriptEvtPray4PupilA.length,
 	SHORTCALL(&unknownC3AAAA[0]),
 	SET_VAR(ActionScriptVars.v4, 10),
 	UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
@@ -22679,12 +22679,12 @@ actionScriptEvtPray4PupilA = [
 	SHORTCALL(&actionScriptMoveToLocationTypeC[0]),
 	END_LAST_TASK(),
 	SHORTJUMP(&actionScriptEvtPray4GazeTonyEntry2[0]),
-].join();
-actionScript529 = [
+);
+actionScript529 = initializeScript(actionScript529.length,
 	SHORTCALL(&unknownC40F59[0]),
 	SHORTJUMP(&unknownC41A2A[0]),
-].join();
-actionScript813 = [
+);
+actionScript813 = initializeScript(actionScript813.length,
 	SHORTCALL(&unknownC35FB6[0]),
 	SET_VAR(ActionScriptVars.v3, 16),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
@@ -22693,11 +22693,11 @@ actionScript813 = [
 	PAUSE(60),
 	UPDATE_SPRITE_DIRECTION(Direction.down, 0),
 	HALT(),
-].join();
-unknownC40F45 = [
-	C020F1(),
+);
+unknownC40F45 = initializeScript(unknownC40F45.length,
+	CLEANUP_SELF(),
 	END(),
-].join();
+);
 	debug foreach (idx, script; actionScriptScriptPointers) {
 		import std.conv : text;
 		verify(idx.text, script);
@@ -22705,7 +22705,6 @@ unknownC40F45 = [
 	debug foreach (name, script; otherScripts) {
 		verify(name, script);
 	}
-
 }
 bool isTerminatedProperly(const ubyte[] script) {
 	import std.algorithm : among;
@@ -22723,4 +22722,23 @@ void verify(string name, const ubyte[] script) {
 	import std.conv : text;
 	assert(script.length > 0, text("Script ", name, " is empty"));
 	assert(script.isTerminatedProperly, text("Script ", name, " is not terminated properly"));
+}
+
+auto initializeScript(const size_t length, scope ubyte[] delegate()[] commands...) {
+	import std.conv : text;
+	auto newBuffer = new ubyte[](length);
+	size_t position;
+	debug(actionscriptdump) {
+		import std.stdio;
+		writeln();
+	}
+	foreach (idx, command; commands) {
+		const bytes = command();
+		debug(actionscriptdump) writefln!"[%(%02X %)]"(bytes);
+		assert(position + bytes.length <= length, text("Script command ", idx, " would overflow"));
+		newBuffer[position .. position + bytes.length] = bytes;
+		position += bytes.length;
+	}
+	assert(position == length, text("Script size mismatch (Expected ", length, ", got ", position, ")"));
+	return newBuffer;
 }

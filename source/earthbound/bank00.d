@@ -1006,7 +1006,7 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 	entityHitboxUpDownHeight[result] = spriteGroupingPointers[sprite].hitboxHeightUD;
 	entityHitboxLeftRightWidth[result] = spriteGroupingPointers[sprite].hitboxWidthLR;
 	entityHitboxLeftRightHeight[result] = spriteGroupingPointers[sprite].hitboxHeightLR;
-	entityHitboxEnabled[result] = unknownC42AEB[spriteGroupingPointers[sprite].size];
+	entityHitboxEnabled[result] = collisionHeights2[spriteGroupingPointers[sprite].size];
 	entityUpperLowerBodyDivide[result] = cast(ushort)((overworldSpriteTemplates[newEntitySize].lowerBodyCount << 8) | (overworldSpriteTemplates[newEntitySize].count - overworldSpriteTemplates[newEntitySize].lowerBodyCount));
 	entityEnemySpawnTiles[result] = 0xFFFF;
 	entityEnemyIDs[result] = -1;
@@ -1022,8 +1022,10 @@ short createEntity(short sprite, short actionScript, short index, short x, short
 	return result;
 }
 
-/// $C020F1
-void unknownC020F1() {
+/** Cleans up all extra entity data, such as spawned enemy count and sprites
+ * Original_Address: $(DOLLAR)C020F1
+ */
+void activeScriptCleanupSelf() {
 	freeSpritemap(entitySpriteMapPointers[currentEntitySlot]);
 	spriteVramTableOverwrite(currentEntitySlot, 0);
 	if ((entityNPCIDs[currentEntitySlot] & 0xF000) == 0x8000) {
@@ -1937,8 +1939,10 @@ short getNewPositionIndex(short characterID, short distance, short arg3, short a
 	return arg3;
 }
 
-/// $C03DAA
-void unknownC03DAA() {
+/** Actionscript function - Initializes party member data for the party member id stored in var 1
+ * Original_Address: $(DOLLAR)C03DAA
+ */
+void actionScriptInitializePartyMember() {
 	entityAnimationFingerprints[currentEntitySlot] = -1;
 	entityScriptVar3Table[currentEntitySlot] = 8;
 	entityScriptVar2Table[currentEntitySlot] = rand() & 0xF;
@@ -2480,8 +2484,10 @@ void handleSpecialCamera() {
 	}
 }
 
-/// $C04C45
-void unknownC04C45() {
+/** Handles a single frame of party leader movement on the map
+ * Original_Address: $(DOLLAR)C04C45
+ */
+void movePartyLeader() {
 	short x14 = gameState.leaderHasMoved;
 	gameState.leaderHasMoved = 0;
 	if (playerIntangibilityFrames != 0) {
@@ -2507,21 +2513,21 @@ void unknownC04C45() {
 				break;
 		}
 	}
-	short x12 = gameState.leaderPositionIndex;
-	PlayerPositionBufferEntry* x10 = &playerPositionBuffer[gameState.leaderPositionIndex];
+	short positionIndex = gameState.leaderPositionIndex;
+	PlayerPositionBufferEntry* positionEntry = &playerPositionBuffer[gameState.leaderPositionIndex];
 	gameState.troddenTileType = unknownC05F82(gameState.leaderX.integer, gameState.leaderY.integer, gameState.firstPartyMemberEntity);
 	if (gameState.leaderHasMoved != 0) {
-		x10.xCoord = gameState.leaderX.integer;
-		x10.yCoord = gameState.leaderY.integer;
-		gameState.leaderPositionIndex = (x12 + 1) & 0xFF;
+		positionEntry.xCoord = gameState.leaderX.integer;
+		positionEntry.yCoord = gameState.leaderY.integer;
+		gameState.leaderPositionIndex = (positionIndex + 1) & 0xFF;
 		centerScreen(gameState.leaderX.integer, gameState.leaderY.integer);
 		unread7E4DD4 = 1;
 	} else {
 		unread7E4DD4 = 0;
 	}
-	x10.tileFlags = gameState.troddenTileType;
-	x10.walkingStyle = gameState.walkingStyle;
-	x10.direction = gameState.leaderDirection;
+	positionEntry.tileFlags = gameState.troddenTileType;
+	positionEntry.walkingStyle = gameState.walkingStyle;
+	positionEntry.direction = gameState.leaderDirection;
 	footstepSoundIDOverride = 0;
 	if ((gameState.troddenTileType & 8) != 0) {
 		if ((gameState.troddenTileType & 4) != 0) {
@@ -2596,8 +2602,11 @@ void partyMemberTick() {
 	currentPartyMemberTick.positionIndex = x1A & 0xFF;
 }
 
-/// $C04EF0
-void unknownC04EF0() {
+/** Actionscript function - Updates the current position for the party member associated with this entity
+ * Note: Added sometime after the 1995-03-27 build
+ * Original_Address: $(DOLLAR)C04EF0
+ */
+void actionScriptUpdatePartyMemberPosition() {
 	currentPartyMemberTick = chosenFourPtrs[entityScriptVar1Table[currentEntitySlot]];
 	entityDirections[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].direction;
 	entitySurfaceFlags[currentEntitySlot] = playerPositionBuffer[currentPartyMemberTick.positionIndex].tileFlags;
@@ -2737,7 +2746,7 @@ void partyLeaderTick() {
 	if (itemTransformationsLoaded != 0) {
 		processItemTransformations();
 	}
-	unknownC04C45();
+	movePartyLeader();
 	const x = gameState.leaderX.integer >> 8;
 	const y = gameState.leaderY.integer >> 8;
 	if (((x^lastSectorX) != 0) || ((y^lastSectorY) != 0)) {
@@ -3155,8 +3164,8 @@ short checkMovementMapCollision(short x, short y, short arg3, short direction) {
 /// $C05CD7
 short unknownC05CD7(short arg1, short arg2, short arg3, short direction) {
 	tempEntitySurfaceFlags = 0;
-	checkedCollisionLeftX = cast(short)(arg1 - unknownC42A1F[entitySizes[arg3]]);
-	checkedCollisionTopY = cast(short)(arg2 - unknownC42A41[entitySizes[arg3]] + unknownC42AEB[entitySizes[arg3]]);
+	checkedCollisionLeftX = cast(short)(arg1 - collisionWidths[entitySizes[arg3]]);
+	checkedCollisionTopY = cast(short)(arg2 - collisionHeights1[entitySizes[arg3]] + collisionHeights2[entitySizes[arg3]]);
 	switch(direction) {
 		case Direction.upRight:
 			checkHorizontalRightTileCollision(checkedCollisionTopY, entitySizes[arg3]);
@@ -3189,9 +3198,9 @@ short unknownC05CD7(short arg1, short arg2, short arg3, short direction) {
 
 /// $C05D8B
 short getCollisionFlags(short x, short y, short size) {
-	short x0E = cast(short)(x - unknownC42A1F[size]);
+	short x0E = cast(short)(x - collisionWidths[size]);
 	checkedCollisionLeftX = x0E;
-	checkedCollisionTopY = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
+	checkedCollisionTopY = cast(short)(y - collisionHeights1[size] + collisionHeights2[size]);
 	checkVerticalUpTileCollision(x0E, size);
 	checkVerticalDownTileCollision(checkedCollisionLeftX, size);
 	checkHorizontalLeftTileCollision(checkedCollisionTopY, size);
@@ -3268,8 +3277,8 @@ short unknownC05ECE() {
 short getSurfaceFlags(short x, short y, short entityID) {
 	const size = entitySizes[entityID];
 	tempEntitySurfaceFlags = 0;
-	checkedCollisionLeftX = cast(short)(x - unknownC42A1F[size]);
-	checkedCollisionTopY = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
+	checkedCollisionLeftX = cast(short)(x - collisionWidths[size]);
+	checkedCollisionTopY = cast(short)(y - collisionHeights1[size] + collisionHeights2[size]);
 	checkHorizontalLeftTileCollision(checkedCollisionTopY, size);
 	checkHorizontalRightTileCollision(checkedCollisionTopY, size);
 	return tempEntitySurfaceFlags;
@@ -3279,8 +3288,8 @@ short getSurfaceFlags(short x, short y, short entityID) {
 short unknownC05F82(short x, short y, short entityID) {
 	tempEntitySurfaceFlags = 0;
 	const size = entitySizes[entityID];
-	checkedCollisionTopY = cast(short)(y - unknownC42A41[size] + unknownC42AEB[size]);
-	checkedCollisionLeftX = cast(short)(x + unknownC42A1F[size]);
+	checkedCollisionTopY = cast(short)(y - collisionHeights1[size] + collisionHeights2[size]);
+	checkedCollisionLeftX = cast(short)(x + collisionWidths[size]);
 	checkVerticalUpTileCollision(checkedCollisionLeftX, size);
 	checkVerticalDownTileCollision(checkedCollisionLeftX, size);
 	return tempEntitySurfaceFlags;
@@ -8438,8 +8447,8 @@ void gameInit() {
 /// $C0B9BC
 void unknownC0B9BC(PathCtx* arg1, short arg2, short arg3, short arg4) {
 	for (short i = 0; i < arg2; i++) {
-		arg1.targetsPos[i].x = (((entityAbsXTable[gameState.partyEntities[i]] - unknownC42A1F[entitySizes[gameState.partyEntities[i]]]) / 8) - arg3) & 0x3F;
-		arg1.targetsPos[i].y = (((entityAbsYTable[gameState.partyEntities[i]] - unknownC42A41[entitySizes[gameState.partyEntities[i]]] + unknownC42AEB[entitySizes[gameState.partyEntities[i]]]) / 8) - arg4) & 0x3F;
+		arg1.targetsPos[i].x = (((entityAbsXTable[gameState.partyEntities[i]] - collisionWidths[entitySizes[gameState.partyEntities[i]]]) / 8) - arg3) & 0x3F;
+		arg1.targetsPos[i].y = (((entityAbsYTable[gameState.partyEntities[i]] - collisionHeights1[entitySizes[gameState.partyEntities[i]]] + collisionHeights2[entitySizes[gameState.partyEntities[i]]]) / 8) - arg4) & 0x3F;
 	}
 }
 
@@ -8495,8 +8504,8 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		arg1.pathers[x26].fromOffscreen = arg5;
 		arg1.pathers[x26].hitbox.x = hitboxWidths[entitySizes[i]];
 		arg1.pathers[x26].hitbox.y = hitboxHeights[entitySizes[i]];
-		arg1.pathers[x26].origin.x = (((entityAbsXTable[i] - unknownC42A1F[entitySizes[i]]) / 8) - arg3) & 0x3F;
-		arg1.pathers[x26].origin.y = (((entityAbsYTable[i] - unknownC42A41[entitySizes[i]] + unknownC42AEB[entitySizes[i]]) / 8) - arg4) & 0x3F;
+		arg1.pathers[x26].origin.x = (((entityAbsXTable[i] - collisionWidths[entitySizes[i]]) / 8) - arg3) & 0x3F;
+		arg1.pathers[x26].origin.y = (((entityAbsYTable[i] - collisionHeights1[entitySizes[i]] + collisionHeights2[entitySizes[i]]) / 8) - arg4) & 0x3F;
 		x26++;
 	}
 	arg1.patherCount = x26;
@@ -8532,10 +8541,10 @@ short findPathToParty(short partyCount, short arg2, short arg3) {
 	pathfindingState.radius.x = arg3;
 	pathfindingTargetWidth = pathfindingState.radius.y / 2;
 	pathfindingTargetHeight = pathfindingState.radius.x / 2;
-	pathfindingTargetCenterX = (entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
-	pathfindingTargetCenterY = (entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
-	short x02 = ((entityAbsYTable[gameState.firstPartyMemberEntity] - unknownC42A41[entitySizes[gameState.firstPartyMemberEntity]] + unknownC42AEB[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (pathfindingState.radius.x / 2);
-	short x04 = ((entityAbsXTable[gameState.firstPartyMemberEntity] - unknownC42A1F[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (pathfindingState.radius.y / 2);
+	pathfindingTargetCenterX = (entityAbsXTable[gameState.firstPartyMemberEntity] - collisionWidths[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
+	pathfindingTargetCenterY = (entityAbsYTable[gameState.firstPartyMemberEntity] - collisionHeights1[entitySizes[gameState.firstPartyMemberEntity]] + collisionHeights2[entitySizes[gameState.firstPartyMemberEntity]]) / 8;
+	short x02 = ((entityAbsYTable[gameState.firstPartyMemberEntity] - collisionHeights1[entitySizes[gameState.firstPartyMemberEntity]] + collisionHeights2[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (pathfindingState.radius.x / 2);
+	short x04 = ((entityAbsXTable[gameState.firstPartyMemberEntity] - collisionWidths[entitySizes[gameState.firstPartyMemberEntity]]) / 8) - (pathfindingState.radius.y / 2);
 	unknownC0B9BC(&pathfindingState, partyCount, x04, x02);
 	return unknownC0BA35(&pathfindingState, partyCount, x04, x02, 0, 0x40, 0x32);
 }
@@ -8574,15 +8583,15 @@ short unknownC0BD96() {
 	short x02 = pathfindingState.radius.x = 56;
 	pathfindingTargetWidth = pathfindingState.radius.y / 2;
 	pathfindingTargetHeight = pathfindingState.radius.x / 2;
-	pathfindingTargetCenterX = (entityAbsXTable[x2A] - unknownC42A1F[entitySizes[x2A]]) / 8;
-	pathfindingTargetCenterY = (entityAbsYTable[x2A] - unknownC42A41[entitySizes[x2A]] + unknownC42AEB[entitySizes[x2A]]) / 8;
-	x04 = cast(short)((entityAbsXTable[x2A] - unknownC42A1F[entitySizes[x2A]]) / 8 - x04);
-	x02 = cast(short)((entityAbsYTable[x2A] - unknownC42A41[entitySizes[x2A]] + unknownC42AEB[entitySizes[x2A]]) / 8 - x02);
+	pathfindingTargetCenterX = (entityAbsXTable[x2A] - collisionWidths[entitySizes[x2A]]) / 8;
+	pathfindingTargetCenterY = (entityAbsYTable[x2A] - collisionHeights1[entitySizes[x2A]] + collisionHeights2[entitySizes[x2A]]) / 8;
+	x04 = cast(short)((entityAbsXTable[x2A] - collisionWidths[entitySizes[x2A]]) / 8 - x04);
+	x02 = cast(short)((entityAbsYTable[x2A] - collisionHeights1[entitySizes[x2A]] + collisionHeights2[entitySizes[x2A]]) / 8 - x02);
 	unknownC0B9BC(x28, 1, x04, x02);
 	short result = unknownC0BA35(x28, 1, x04, x02, 1, 0xFC, 0x32);
 	if (result == 0) {
-		entityAbsXTable[pathfindingState.pathers[0].objIndex] = cast(short)((pathfindingState.pathers[0].origin.x * 8) + unknownC42A1F[entitySizes[pathfindingState.pathers[0].objIndex]] + ((pathfindingTargetCenterX - pathfindingTargetWidth) * 8));
-		entityAbsYTable[pathfindingState.pathers[0].objIndex] = cast(short)((pathfindingState.pathers[0].origin.y * 8) -unknownC42AEB[entitySizes[pathfindingState.pathers[0].objIndex]] + unknownC42A41[entitySizes[pathfindingState.pathers[0].objIndex]] + ((pathfindingTargetCenterY - pathfindingTargetHeight) * 8));
+		entityAbsXTable[pathfindingState.pathers[0].objIndex] = cast(short)((pathfindingState.pathers[0].origin.x * 8) + collisionWidths[entitySizes[pathfindingState.pathers[0].objIndex]] + ((pathfindingTargetCenterX - pathfindingTargetWidth) * 8));
+		entityAbsYTable[pathfindingState.pathers[0].objIndex] = cast(short)((pathfindingState.pathers[0].origin.y * 8) -collisionHeights2[entitySizes[pathfindingState.pathers[0].objIndex]] + collisionHeights1[entitySizes[pathfindingState.pathers[0].objIndex]] + ((pathfindingTargetCenterY - pathfindingTargetHeight) * 8));
 		entityPathPoints[pathfindingState.pathers[0].objIndex]++;
 		entityPathPointsCount[pathfindingState.pathers[0].objIndex]--;
 	}
@@ -8597,10 +8606,10 @@ short unknownC0BF72() {
 	short x04 = pathfindingState.radius.y / 2;
 	pathfindingTargetWidth = pathfindingState.radius.y / 2;
 	pathfindingTargetHeight = pathfindingState.radius.x / 2;
-	pathfindingTargetCenterX = (entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8;
-	pathfindingTargetCenterY = (entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8;
-	short x = cast(short)((entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8 - x04);
-	short x28 = cast(short)((entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8 - x04);
+	pathfindingTargetCenterX = (entityAbsXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) / 8;
+	pathfindingTargetCenterY = (entityAbsYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]] + collisionHeights2[entitySizes[currentEntitySlot]]) / 8;
+	short x = cast(short)((entityAbsXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) / 8 - x04);
+	short x28 = cast(short)((entityAbsYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]] + collisionHeights2[entitySizes[currentEntitySlot]]) / 8 - x04);
 	pathfindingState.targetsPos[0].x = x04 & 0x3F;
 	pathfindingState.targetsPos[0].y = pathfindingTargetHeight & 0x3F;
 	return unknownC0BA35(x26, 1, x, x28, 1, 0xFC, 0x32);
@@ -8785,7 +8794,7 @@ short unknownC0C6B6() {
 /// $C0C711
 short unknownC0C711() {
 	//weird...
-	if ((((entityScreenXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) | (entityScreenYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]]) | (currentEntitySlot + 8)) & 0xFF00) == 0) {
+	if ((((entityScreenXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) | (entityScreenYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]]) | (currentEntitySlot + 8)) & 0xFF00) == 0) {
 		return -1;
 	} else {
 		return 0;
@@ -9033,8 +9042,8 @@ short unknownC0CF97(short arg1, short arg2) {
 	//x1C = arg2
 	ubyte x00 = cast(ubyte)arg1;
 	const(ubyte)* x06 = &unknownC0CF58[0];
-	short y = cast(short)(((entityAbsXTable[currentEntitySlot] - unknownC42A1F[entitySizes[currentEntitySlot]]) / 8) - 4);
-	short x12 = cast(short)(((entityAbsYTable[currentEntitySlot] - unknownC42A41[entitySizes[currentEntitySlot]] + unknownC42AEB[entitySizes[currentEntitySlot]]) / 8) - 4);
+	short y = cast(short)(((entityAbsXTable[currentEntitySlot] - collisionWidths[entitySizes[currentEntitySlot]]) / 8) - 4);
+	short x12 = cast(short)(((entityAbsYTable[currentEntitySlot] - collisionHeights1[entitySizes[currentEntitySlot]] + collisionHeights2[entitySizes[currentEntitySlot]]) / 8) - 4);
 	short x10 = y & 0x3F;
 	short x18 = x12 & 0x3F;
 	for (short i = 0; i != arg2; i++) {
@@ -9064,8 +9073,8 @@ short unknownC0CF97(short arg1, short arg2) {
 	}
 	return 0;
 	Unknown9:
-	entityScriptVar6Table[currentEntitySlot] = cast(short)(y * 8 + unknownC42A1F[entitySizes[currentEntitySlot]]);
-	entityScriptVar7Table[currentEntitySlot] = cast(short)(x12 * 8 - unknownC42AEB[entitySizes[currentEntitySlot]] + unknownC42A41[entitySizes[currentEntitySlot]]);
+	entityScriptVar6Table[currentEntitySlot] = cast(short)(y * 8 + collisionWidths[entitySizes[currentEntitySlot]]);
+	entityScriptVar7Table[currentEntitySlot] = cast(short)(x12 * 8 - collisionHeights2[entitySizes[currentEntitySlot]] + collisionHeights1[entitySizes[currentEntitySlot]]);
 	return -1;
 }
 
@@ -9353,8 +9362,8 @@ void unknownC0D7F7() {
 	VecYX* x1A = entityPathPoints[currentEntitySlot];
 	short x18 = entityAbsXTable[currentEntitySlot];
 	short x16 = entityAbsYTable[currentEntitySlot];
-	short x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth * 8) + x1A.x * 8 + unknownC42A1F[x1C]);
-	short x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight * 8) + x1A.y * 8 - unknownC42AEB[x1C] + unknownC42A41[x1C]);
+	short x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth * 8) + x1A.x * 8 + collisionWidths[x1C]);
+	short x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight * 8) + x1A.y * 8 - collisionHeights2[x1C] + collisionHeights1[x1C]);
 	short x10 = cast(short)(x18 - x12);
 	if (0 > x10) {
 		x10 = cast(short)-cast(int)x10;
@@ -9367,8 +9376,8 @@ void unknownC0D7F7() {
 		if ((3 > x10) && (--entityPathPointsCount[currentEntitySlot] != 0)) {
 			VecYX* x14 = &x1A[1];
 			entityPathPoints[currentEntitySlot] = x14;
-			x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + x14.x * 8 + unknownC42A1F[x1C]);
-			x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + x14.y * 8 - unknownC42AEB[x1C] + unknownC42A41[x1C]);
+			x12 = cast(short)((pathfindingTargetCenterX - pathfindingTargetWidth) * 8 + x14.x * 8 + collisionWidths[x1C]);
+			x04 = cast(short)((pathfindingTargetCenterY - pathfindingTargetHeight) * 8 + x14.y * 8 - collisionHeights2[x1C] + collisionHeights1[x1C]);
 		}
 	}
 	if (entityPathPointsCount[currentEntitySlot] != 0) {
@@ -9411,8 +9420,8 @@ short unknownC0D98F() {
 	}
 	short x12 = entitySizes[currentEntitySlot];
 	VecYX* x0E = entityPathPoints[currentEntitySlot];
-	entityScriptVar6Table[currentEntitySlot] = cast(short)((x0E.x * 8) + unknownC42A1F[x12] + (pathfindingTargetCenterX - pathfindingTargetWidth) * 8);
-	entityScriptVar7Table[currentEntitySlot] = cast(short)((x0E.y * 8) - unknownC42AEB[x12] + unknownC42A41[x12] + (pathfindingTargetCenterY - pathfindingTargetHeight) * 8);
+	entityScriptVar6Table[currentEntitySlot] = cast(short)((x0E.x * 8) + collisionWidths[x12] + (pathfindingTargetCenterX - pathfindingTargetWidth) * 8);
+	entityScriptVar7Table[currentEntitySlot] = cast(short)((x0E.y * 8) - collisionHeights2[x12] + collisionHeights1[x12] + (pathfindingTargetCenterY - pathfindingTargetHeight) * 8);
 	entityPathPointsCount[currentEntitySlot]--;
 	entityPathPoints[currentEntitySlot] = x0E + 1;
 	return 1;
