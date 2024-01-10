@@ -2,7 +2,7 @@ module earthbound.sdl.sfcdma;
 import earthbound.sdl.rendering;
 import earthbound.commondefs;
 import earthbound.hardware;
-import std.experimental.logger;
+import std.logger;
 
 void dmaCopy(const(ubyte)* src, ubyte* dst, ubyte* wrapAt, ubyte* wrapTo, int count, int transferSize, int srcAdjust, int dstAdjust) {
 	if(count == 0) count = 0x10000;

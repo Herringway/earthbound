@@ -26,7 +26,7 @@ import earthbound.testing;
 import earthbound.text;
 import core.stdc.string;
 
-import std.experimental.logger;
+import std.logger;
 
 /// $C40015
 short unknownC40015() {

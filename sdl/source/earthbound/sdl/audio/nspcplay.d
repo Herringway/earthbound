@@ -1,8 +1,8 @@
 module earthbound.sdl.audio.nspcplay;
 
 import std.conv;
-import std.experimental.logger;
 import std.file;
+import std.logger;
 import std.path;
 import std.string;
 

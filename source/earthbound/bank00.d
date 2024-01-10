@@ -23,7 +23,7 @@ import earthbound.bank2F;
 import earthbound.testing;
 import core.stdc.string;
 import core.bitop;
-import std.experimental.logger;
+import std.logger;
 
 /// $C00000
 short* clearEntityDrawSortingTable() {

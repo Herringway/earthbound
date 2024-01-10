@@ -19,7 +19,7 @@ import earthbound.bank2F;
 import earthbound.globals;
 
 import core.stdc.string;
-import std.experimental.logger;
+import std.logger;
 
 /// $C20000
 void inflictSunstrokeCheck() {

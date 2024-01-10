@@ -16,7 +16,7 @@ import earthbound.globals;
 import earthbound.text;
 
 import core.stdc.string;
-import std.experimental.logger;
+import std.logger;
 
 /// $C10000
 void unknownC10000() {

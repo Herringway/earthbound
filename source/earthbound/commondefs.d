@@ -7676,9 +7676,9 @@ size_t decompBlock(const(ubyte)* cdata, ubyte* buffer, int maxlen) {
 }
 ///
 SaveBlock readSaveFile(short id) {
-	import std.experimental.logger : tracef;
-	import std.stdio : File;
 	import std.file : exists;
+	import std.logger : tracef;
+	import std.stdio : File;
 	SaveBlock[1] data;
 	tracef("Reading save: %s", saveFileName(id));
 	if (saveFileName(id).exists) {
@@ -7688,7 +7688,7 @@ SaveBlock readSaveFile(short id) {
 }
 ///
 void writeSaveFile(short id, SaveBlock block) {
-	import std.experimental.logger : tracef;
+	import std.logger : tracef;
 	import std.stdio : File;
 	SaveBlock[1] data = [block];
 	tracef("Saving file: %s", saveFileName(id));

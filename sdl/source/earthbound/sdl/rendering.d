@@ -2,7 +2,7 @@ module earthbound.sdl.rendering;
 
 import core.time;
 import std.exception;
-import std.experimental.logger;
+import std.logger;
 import std.string;
 
 import bindbc.sdl;

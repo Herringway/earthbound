@@ -4,7 +4,7 @@ import std.algorithm;
 import std.exception;
 import std.datetime;
 import std.file;
-import std.experimental.logger;
+import std.logger;
 import std.path;
 import std.range;
 import std.string;

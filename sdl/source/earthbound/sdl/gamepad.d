@@ -3,8 +3,8 @@ module earthbound.sdl.gamepad;
 import earthbound.sdl.inputconstants;
 import earthbound.sdl.misc;
 
-import std.experimental.logger;
 import std.file;
+import std.logger;
 import std.string;
 
 import bindbc.sdl;

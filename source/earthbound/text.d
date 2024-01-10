@@ -268,7 +268,7 @@ const(void)[] fromBytes(const(ubyte)[] textChunk) {
 }
 
 const(ubyte)* getTextBlock(const(char)[] label) {
-	import std.experimental.logger : tracef;
+	import std.logger : tracef;
 	tracef("Looking for text '%s'", label);
 	static immutable ubyte[1] r = [2];
 	debug if (!(label in textData)) {
