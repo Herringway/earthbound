@@ -4173,8 +4173,8 @@ void recordAutoMovementDemoFrame(short newPadState) {
 
 /// $C48D58
 short recordAutoMovementDemo(short startX, short startY, short destX, short destY) {
-	FixedPoint1616 xPosition = { fraction: startX };
-	FixedPoint1616 yPosition = { fraction: startY };
+	FixedPoint1616 xPosition = { integer: startX };
+	FixedPoint1616 yPosition = { integer: startY };
 	short result = 0;
 	while (true) {
 		short xDifference = cast(short)(xPosition.integer - destX);
