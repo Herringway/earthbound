@@ -862,7 +862,7 @@ immutable BattleAction[318] battleActionTable = [
 	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIFlashGamma), //PSI_FLASH_GAMMA
 	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x20, "MSG_BTL_PSI", &battleActionPSIFlashOmega), //PSI_FLASH_OMEGA
 	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x18, "MSG_BTL_PSI", &battleActionPSIStarstormAlpha), //PSI_STARSTORM_ALPHA
-	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIStarstormOmega), //PSI_STARSTORM_BETA
+	BattleAction(ActionDirection.enemy, ActionTarget.all, ActionType.psi, 0x2A, "MSG_BTL_PSI", &battleActionPSIStarstormOmega), //PSI_STARSTORM_OMEGA
 	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x05, "MSG_BTL_PSI", &battleActionLifeupAlpha), //PSI_LIFEUP_ALPHA
 	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x08, "MSG_BTL_PSI", &battleActionLifeupBeta), //PSI_LIFEUP_BETA
 	BattleAction(ActionDirection.party, ActionTarget.one, ActionType.psi, 0x0D, "MSG_BTL_PSI", &battleActionLifeupGamma), //PSI_LIFEUP_GAMMA

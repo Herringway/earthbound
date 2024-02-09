@@ -1196,11 +1196,11 @@ __gshared short[maxEntities] entityHitboxUpDownHeight;
  */
 __gshared short[maxEntities] entityHitboxLeftRightWidth;
 /** The currently-displayed sprite graphics for active entities
- * Original_Address: $(DOLLAR)331A
+ * Original_Address: $(DOLLAR)341A
  */
 __gshared const(OverworldSpriteGraphics)*[maxEntities] entityCurrentDisplayedSprites;
 /** Active entity animation fingerprints. Effectively just a combination of walking style and direction. Used to determine when an entity sprite needs updating
- * Original_Address: $(DOLLAR)3356
+ * Original_Address: $(DOLLAR)3456
  */
 __gshared short[maxEntities] entityAnimationFingerprints;
 /** Buffer for rendered text tiles
