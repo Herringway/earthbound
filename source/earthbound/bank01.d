@@ -179,7 +179,7 @@ void cc1314(short arg1, short arg2) {
 }
 
 /// $C102D0
-void unknownC102D0() {
+void waitForActionscript() {
 	actionscriptState = ActionScriptState.running;
 	clearInstantPrinting();
 	windowTick();
@@ -767,7 +767,7 @@ int numSelectPrompt(short arg1) {
 /// $C1134B - Opens the HP/PP and wallet windows
 void openHpAndWallet() {
 	showHPPPWindows();
-	unknownC1AA18();
+	openWalletWindow();
 }
 
 /** Finds an unused menu option and returns its index
@@ -3432,7 +3432,7 @@ void* cc1F15(DisplayTextState* arg1, ubyte arg2) {
 /// $C167D6
 void* cc1F1E(DisplayTextState* arg1, ubyte arg2) {
 	mixin(ReadParameters!CC1F1EArguments);
-	initializeEntityFade(findEntityByTPT(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
+	initializeEntityFade(findEntityByNPCID(getCCParameters!ArgType(arg2).tpt), getCCParameters!ArgType(arg2).style);
 	unknownC460CE(getCCParameters!ArgType(arg2).tpt, getCCParameters!ArgType(arg2).style);
 	return null;
 }
@@ -3849,7 +3849,7 @@ void* cc18Tree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x09:
 			return &cc1809;
 		case 0x0A:
-			unknownC1AA18();
+			openWalletWindow();
 			break;
 		case 0x0D:
 			return &cc180D;
@@ -4253,17 +4253,17 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 		case 0x60:
 			return &cc1F60;
 		case 0x61:
-			unknownC102D0();
+			waitForActionscript();
 			break;
 		case 0x62:
 			return &cc1F62;
 		case 0x63:
 			return &cc1F63;
 		case 0x64:
-			unknownC23008();
+			backupClearPartyNPCsMoney();
 			break;
 		case 0x65:
-			unknownC2307B();
+			restorePartyBackup();
 			break;
 		case 0x66:
 			return &cc1F66;
@@ -4295,13 +4295,13 @@ void* cc1FTree(DisplayTextState* arg1, ubyte arg2) {
 			setMainRegister(WorkingMemory(openPhoneMenu()));
 			break;
 		case 0xA0:
-			unknownC226C5(1);
+			setGiftBoxState(1);
 			break;
 		case 0xA1:
-			unknownC226C5(0);
+			setGiftBoxState(0);
 			break;
 		case 0xA2:
-			setMainRegister(WorkingMemory(unknownC226E6()));
+			setMainRegister(WorkingMemory(getActiveNPCFlagState()));
 			break;
 		case 0xB0:
 			saveCurrentGame();
@@ -5040,7 +5040,7 @@ void unknownC19D49() {
 
 /// $C19DB5
 ushort unknownC19DB5(short arg1) {
-	unknownC1AA18();
+	openWalletWindow();
 	setInstantPrinting();
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.unknown0c);
@@ -5369,8 +5369,10 @@ void unknownC1A795(short arg1) {
 	}
 }
 
-/// $C1AA18
-void unknownC1AA18() {
+/** Opens the wallet window, displaying the amount of money held by the party.
+* Original_Address: $(DOLLAR)C1AA18
+*/
+void openWalletWindow() {
 	backupCurrentWindowTextAttributes(&windowTextAttributesBackup);
 	createWindowN(Window.carriedMoney);
 	setCurrentWindowPadding(5);
@@ -5963,7 +5965,7 @@ short triggerSpecialEvent(short arg1) {
 		case 7:
 			return displayTownMap();
 		case 8:
-			return unknownC3FB09();
+			return attackerIsEnemy();
 		case 9:
 			useSoundStone(1);
 			break;

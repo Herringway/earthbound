@@ -8,6 +8,8 @@ version(Have_siryul) {
 	enum skip = 0;
 }
 
+public import earthbound.constants.npcids;
+
 enum maxEntities = 30; ///
 enum maxScripts = 70; ///
 
@@ -1246,7 +1248,7 @@ enum ActionScript {
 	unknown006, //6
 	animBillboard, //7
 	animMapObjStill, //8
-	unknown009, //9
+	present, //9
 	animPeopleWalk0, //10
 	animPeopleWalk0A, //11
 	animPeopleWalk1, //12
@@ -6979,9 +6981,9 @@ struct SpritePlacementEntry {
 }
 ///
 struct SpritePlacement {
-	short unknown0; ///
-	ubyte unknown2; ///
-	ubyte unknown3; ///
+	short npcID; ///
+	ubyte y; ///
+	ubyte x; ///
 }
 ///
 struct StatsGrowth {

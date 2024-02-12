@@ -1465,8 +1465,11 @@ void startBattleAnimation(ushort arg1) {
 	}
 }
 
-/// $C3FB09
-short unknownC3FB09() {
+/** Tests if the current attacker is an enemy
+ * Returns: 0 if friend, 1 if enemy
+ * Original_Address: $(DOLLAR)C3FB09
+ */
+short attackerIsEnemy() {
 	if (currentAttacker.side == BattleSide.friends) {
 		return 0;
 	}

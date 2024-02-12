@@ -1079,15 +1079,23 @@ void unknownC22673(short arg1) {
 	printEquipmentStats(characterForEquipMenu);
 }
 
-/// $C226C5
-short unknownC226C5(short arg1) {
-	short x0E = setEventFlag(currentInteractingEventFlag, arg1);
-	unknownC0C30C(interactingNPCEntity);
-	return x0E;
+/** Sets the state of the current interacting gift box.
+ * Params:
+ * 	state = 0 for closed, 1 for open
+ * Returns: State of the flag and its 7 neighbours
+ * Original_Address: $(DOLLAR)C226C5
+ */
+short setGiftBoxState(short state) {
+	short result = setEventFlag(currentInteractingEventFlag, state);
+	updateGiftBoxState(interactingNPCEntity);
+	return result;
 }
 
-/// $C226E6
-short unknownC226E6() {
+/** Gets the state of the event flag associated with the active NPC
+ * Returns: 0 if clear, 1 if set
+ * Original_Address: $(DOLLAR)C226E6
+ */
+short getActiveNPCFlagState() {
 	return getEventFlag(currentInteractingEventFlag);
 }
 
@@ -1128,8 +1136,10 @@ void learnSpecialPSI(short id) {
 	}
 }
 
-/// $C2281D - Deposits money into your bank account
-/// Returns: amount of money successfully deposited
+/** Deposits money into your bank account
+ * Returns: amount of money successfully deposited
+ * Original_Address: $(DOLLAR)C2281D
+ */
 uint depositIntoATM(uint amount) {
 	uint x0A = gameState.bankBalance + amount;
 	uint x06 = 9999999;
@@ -1361,8 +1371,10 @@ short initBattleScripted(short arg1) {
 	return 0;
 }
 
-/// $C23008
-void unknownC23008() {
+/** Backs up and removes party NPCs and money carried
+ * Original_Address: $(DOLLAR)C23008
+ */
+void backupClearPartyNPCsMoney() {
 	gameState.partyNPC1Copy = gameState.partyNPCs[0];
 	gameState.partyNPC1HPCopy = gameState.partyNPCHP[0];
 	gameState.partyNPC2Copy = gameState.partyNPCs[1];
@@ -1373,8 +1385,10 @@ void unknownC23008() {
 	gameState.moneyCarried = 0;
 }
 
-/// $C2307B
-void unknownC2307B() {
+/** Restores the party NPCs and carried money from the backup
+ * Original_Address: $(DOLLAR)C2307B
+ */
+void restorePartyBackup() {
 	removeCharFromParty(gameState.partyNPCs[0]);
 	removeCharFromParty(gameState.partyNPCs[1]);
 	if (gameState.partyNPC1Copy != 0) {

@@ -28,11 +28,14 @@ import core.stdc.string;
 
 import std.logger;
 
-/// $C40015
-short unknownC40015() {
+/** Tests if the active entity is onscreen and also resets the animation state
+ * Returns: -1 if onscreen, 0 otherwise
+ * Original_Address: $(DOLLAR)C40015
+ */
+short isEntityOnscreenResetAnimation() {
 	entityAnimationFrames[currentActiveEntityOffset / 2] = 0;
 	updateEntitySpriteCurrentFrame0();
-	return unknownC0C6B6();
+	return isEntityOnscreen();
 }
 
 /// $C40023
@@ -2569,10 +2572,15 @@ short findEntityBySprite(short arg1) {
 	return -1;
 }
 
-/// $C4605A
-short findEntityByTPT(short arg1) {
+/** Finds the first active entity with a matching NPC ID
+ * Params:
+ * 	id = The NPC ID to search for
+ * Returns: The first entity ID with a matching NPC ID, or -1 if not found
+ * Original_Address: $(DOLLAR)C4605A
+ */
+short findEntityByNPCID(short id) {
 	for (short i = 0; i < maxEntities; i++) {
-		if (arg1 == entityNPCIDs[i]) {
+		if (id == entityNPCIDs[i]) {
 			return i;
 		}
 	}
@@ -2594,7 +2602,7 @@ short findEntityByPartyMemberID(short arg1) {
 
 /// $C460CE
 void unknownC460CE(short arg1, short arg2) {
-	short x12 = findEntityByTPT(arg1);
+	short x12 = findEntityByNPCID(arg1);
 	if (x12 == -1) {
 		return;
 	}
@@ -2620,7 +2628,7 @@ void unknownC46125(short arg1, short arg2) {
 
 /// $C4617C
 void changeScriptForEntityByTPT(short arg1, short arg2) {
-	short x = findEntityByTPT(arg1);
+	short x = findEntityByNPCID(arg1);
 	if (x == -1) {
 		return;
 	}
@@ -2646,7 +2654,7 @@ short unknownC4621C(short arg1, short arg2) {
 			x0E = findEntityByPartyMemberID(arg2);
 			break;
 		case 1:
-			x0E = findEntityByTPT(arg2);
+			x0E = findEntityByNPCID(arg2);
 			break;
 		case 2:
 			x0E = findEntityBySprite(arg2);
@@ -2680,7 +2688,7 @@ short unknownC462E4(short arg1, short arg2, short arg3) {
 
 /// $C462FF
 void unknownC462FF(short arg1, short arg2) {
-	short x0E = findEntityByTPT(arg1);
+	short x0E = findEntityByNPCID(arg1);
 	if (x0E == -1) {
 		return;
 	}
@@ -2781,7 +2789,7 @@ short spawnEntityAtSelf(short sprite, short actionScriptID) {
 
 /// $C4655E
 void disableEntityByTPT(short arg1) {
-	short a = findEntityByTPT(arg1);
+	short a = findEntityByNPCID(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2815,7 +2823,7 @@ void disableEntityByCharacterOrParty(short arg1) {
 
 /// $C465FB
 void enableEntityByTPT(short arg1) {
-	short a = findEntityByTPT(arg1);
+	short a = findEntityByNPCID(arg1);
 	if (a == -1) {
 		return;
 	}
@@ -2850,7 +2858,7 @@ void enableEntityByCharacterOrParty(short arg1) {
 
 /// $C46698
 void focusCameraOnTPT(short arg1) {
-	cameraFocusEntity = findEntityByTPT(arg1);
+	cameraFocusEntity = findEntityByNPCID(arg1);
 	gameState.cameraMode = CameraMode.followEntity;
 }
 
@@ -2909,13 +2917,15 @@ short unknownC467C2() {
 	return cast(short)((0x100 - entityScreenYTable[currentEntitySlot] / 4) + (rand() & 0x1F));
 }
 
-/// $C467E6
-void unknownC467E6() {
+/** Unfreezes all Tessie leaf entities
+ * Original_Address: $(DOLLAR)C467E6
+ */
+void unfreezeTessieLeaves() {
 	for (short i = 0; i < maxEntities; i++) {
-		if (entitySpriteIDs[i] != 0x16F) {
+		if (entitySpriteIDs[i] != OverworldSprite.leavesForTessieScene) {
 			continue;
 		}
-		entityCallbackFlags[i] &= 0xFFFF ^ (EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
+		entityCallbackFlags[i] &= ~(EntityCallbackFlags.tickDisabled | EntityCallbackFlags.moveDisabled);
 	}
 }
 
@@ -2993,17 +3003,17 @@ void unknownC46957(short arg1) {
 }
 
 /// $C46984
-void unknownC46984(short arg1) {
-	short x04 = findEntityByTPT(arg1);
-	if (x04 == -1) {
+void makeNPCLookAtActiveEntity(short id) {
+	short target = findEntityByNPCID(id);
+	if (target == -1) {
 		return;
 	}
-	short x10 = cast(short)((getScreenAngle(entityAbsXTable[x04], entityAbsYTable[x04], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
-	if (entityDirections[x04] == x10) {
+	short newDirection = cast(short)((getScreenAngle(entityAbsXTable[target], entityAbsYTable[target], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+	if (entityDirections[target] == newDirection) {
 		return;
 	}
-	entityDirections[x04] = x10;
-	updateEntitySprite(x04);
+	entityDirections[target] = newDirection;
+	updateEntitySprite(target);
 }
 
 /// $C469F1
@@ -3121,11 +3131,15 @@ void unknownC46B65() {
 	entityScriptVar7Table[currentEntitySlot] = gameState.leaderY.integer;
 }
 
-/// $C46B8D
-void unknownC46B8D(short arg1) {
-	short x0E = findEntityByTPT(arg1);
-	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[x0E];
-	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[x0E];
+/** Finds the x,y coordinates of an NPC entity and copies them into vars 6,7 for the active entity. Note that this does no error checking, so be sure that the NPC is active!
+ * Params:
+ * 	npc: The NPC ID to look for
+ * Original_Address: $(DOLLAR)C46B8D
+ */
+void findNPCLocationForActiveEntity(short npc) {
+	short entity = findEntityByNPCID(npc);
+	entityScriptVar6Table[currentEntitySlot] = entityAbsXTable[entity];
+	entityScriptVar7Table[currentEntitySlot] = entityAbsYTable[entity];
 }
 
 /// $C46BBB
@@ -3151,16 +3165,20 @@ void getPositionOfPartyMember(short arg1) {
 	entityScriptVar7Table[x12] = entityAbsYTable[x0E];
 }
 
-/// $C46C45
+/** Copies the active entity's x,y coords to vars 0,1
+ * Original_Address: $(DOLLAR)C46C45
+ */
 void copyXYToVars() {
 	entityScriptVar0Table[currentEntitySlot] = entityAbsXTable[currentEntitySlot];
 	entityScriptVar1Table[currentEntitySlot] = entityAbsYTable[currentEntitySlot];
 }
 
-/// $C46C5E
-void unknownC46C5E(short arg1, short arg2) {
-	entityScriptVar0Table[currentEntitySlot] = cast(short)(arg2 + entityAbsXTable[currentEntitySlot]);
-	entityScriptVar1Table[currentEntitySlot] = cast(short)(arg1 + entityAbsYTable[currentEntitySlot]);
+/** Copies the active entity's x,y coords to vars 0,1, adjusted by supplied offsets
+ * Original_Address: $(DOLLAR)C46C5E
+ */
+void copyAdjustedXYToVars(short y, short x) {
+	entityScriptVar0Table[currentEntitySlot] = cast(short)(x + entityAbsXTable[currentEntitySlot]);
+	entityScriptVar1Table[currentEntitySlot] = cast(short)(y + entityAbsYTable[currentEntitySlot]);
 }
 
 /// $C46C87
@@ -3330,30 +3348,35 @@ short setMovementFromAngle(short arg1) {
 	return arg1;
 }
 
-/// $C47143
-short unknownC47143(short arg1, short arg2) {
-	short x12 = cast(short)(entityScriptVar6Table[currentEntitySlot] - entityAbsXTable[currentEntitySlot]);
-	if (0 > x12) {
-		x12 = cast(short)-cast(int)x12;
+/** Moves the active entity towards its destination, as defined by vars 6,7
+ * Params:
+ * 	flip = Face the opposite direction of movement
+ * 	dontSetDirection = Don't update the entity's facing direction
+ * Original_Address: $(DOLLAR)C47143
+ */
+short moveActiveEntityTowardsDestination(short flip, short dontSetDirection) {
+	short distance = cast(short)(entityScriptVar6Table[currentEntitySlot] - entityAbsXTable[currentEntitySlot]);
+	if (0 > distance) {
+		distance = cast(short)-cast(int)distance;
 	} else {
-		x12 = x12; //...ok?
+		distance = distance; //...ok?
 	}
-	if (x12 < entityScriptVar5Table[currentEntitySlot]) {
-		x12 = cast(short)(entityScriptVar7Table[currentEntitySlot] - entityAbsYTable[currentEntitySlot]);
-		if (0 > x12) {
-			x12 = cast(short)-cast(int)x12;
+	if (distance < entityScriptVar5Table[currentEntitySlot]) {
+		distance = cast(short)(entityScriptVar7Table[currentEntitySlot] - entityAbsYTable[currentEntitySlot]);
+		if (0 > distance) {
+			distance = cast(short)-cast(int)distance;
 		} else {
-			x12 = x12;
+			distance = distance;
 		}
-		if (x12 < entityScriptVar5Table[currentEntitySlot]) {
+		if (distance < entityScriptVar5Table[currentEntitySlot]) {
 			return 1;
 		}
 	}
-	x12 = entityAngleToDestination();
-	setMovementFromAngle(x12);
-	if (arg2 == 0) {
-		short x10 = setMovingDirectionFromAngle(x12);
-		if (arg1 != 0) {
+	short angle = entityAngleToDestination();
+	setMovementFromAngle(angle);
+	if (dontSetDirection == 0) {
+		short x10 = setMovingDirectionFromAngle(angle);
+		if (flip != 0) {
 			x10 = getOppositeDirection(x10);
 		}
 		short x0E = entityDirections[currentEntitySlot];
@@ -3365,7 +3388,12 @@ short unknownC47143(short arg1, short arg2) {
 	return 0;
 }
 
-/// $C47225 - Sets boundaries for an entity to be used by directionToEntityBoundaries. Uses vars 0-3.
+/**Sets boundaries for an entity to be used by directionToEntityBoundaries. Uses vars 0-3.
+ * Params:
+ * 	height = The up/down distance from the center
+ * 	width = The left/right distance from the center
+ * Original_Address: $(DOLLAR)C47225
+ */
 void setEntityBoundaries(short height, short width) {
 	entityScriptVar0Table[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] - width);
 	entityScriptVar1Table[currentEntitySlot] = cast(short)(entityAbsXTable[currentEntitySlot] + width);
@@ -4095,8 +4123,10 @@ void actionScriptStartPSITeleportTutorial() {
 	gameState.leaderDirection = Direction.right;
 }
 
-/// $C48B3B
-void unknownC48B3B() {
+/** Makes every party member entity look at the active entity
+ * Original_Address: $(DOLLAR)C48B3B
+ */
+void makePartyLookAtActiveEntity() {
 	if ((frameCounter & 1) != 0) {
 		return;
 	}
@@ -4104,11 +4134,11 @@ void unknownC48B3B() {
 		if (16 <= gameState.partyMemberIndex[i]) {
 			continue;
 		}
-		short x10 = cast(short)(cast(ushort)(getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
-		if (entityDirections[gameState.partyEntities[i]] == x10) {
+		short newDirection = cast(short)(cast(ushort)(getScreenAngle(entityAbsXTable[gameState.partyEntities[i]], entityAbsYTable[gameState.partyEntities[i]], entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot]) + 0x1000) / 0x2000);
+		if (entityDirections[gameState.partyEntities[i]] == newDirection) {
 			continue;
 		}
-		entityDirections[gameState.partyEntities[i]] = x10;
+		entityDirections[gameState.partyEntities[i]] = newDirection;
 		updateEntitySpriteFrame(gameState.partyEntities[i]);
 	}
 }
@@ -5698,7 +5728,7 @@ void unknownC4B4FE(short arg1, short arg2) {
 
 /// $C4B524
 void unknownC4B524(short arg1, short arg2) {
-	spawnFloatingSprite(findEntityByTPT(arg1), arg2);
+	spawnFloatingSprite(findEntityByNPCID(arg1), arg2);
 }
 
 /// $C4B519
@@ -5708,7 +5738,7 @@ void unknownC4B519(short arg1) {
 
 /// $C4B53F
 void unknownC4B53F(short arg1) {
-	unknownC4B4BE(findEntityByTPT(arg1));
+	unknownC4B4BE(findEntityByNPCID(arg1));
 }
 
 /// $C4B54A

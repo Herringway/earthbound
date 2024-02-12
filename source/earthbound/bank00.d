@@ -1098,13 +1098,13 @@ void trySpawnNPCs(short x, short y) {
 		short x24 = spritePlacementPointerTable[y][x].entries;
 		const(SpritePlacement)* x0A = &spritePlacementPointerTable[y][x].spritePlacements[0];
 		for (short i = 0; i < x24; i++) {
-			short x20 = x0A.unknown0;
-			short x1E = x0A.unknown3;
-			short x1C = x0A.unknown2;
+			short npc = x0A.npcID;
+			short npcX = x0A.x;
+			short npcY = x0A.y;
 			x0A++;
-			if ((globalMapTilesetPaletteData[((x1C / 8) + (y * 32)) / 16][((x1E / 8) + (x * 32)) / 32] / 8 == loadedMapTileCombo) && (unknownC0A21C(x20) == 0)) {
-				short x18 = cast(short)((x << 8) + x1E);
-				short x16 = cast(short)((y << 8) + x1C);
+			if ((globalMapTilesetPaletteData[((npcY / 8) + (y * 32)) / 16][((npcX / 8) + (x * 32)) / 32] / 8 == loadedMapTileCombo) && (unknownC0A21C(npc) == 0)) {
+				short x18 = cast(short)((x << 8) + npcX);
+				short x16 = cast(short)((y << 8) + npcY);
 				short x1A = cast(short)(x18 - bg1XPosition);
 				short xreg = cast(short)(x16 - bg1YPosition);
 				if (debugging != 0) {
@@ -1131,26 +1131,26 @@ void trySpawnNPCs(short x, short y) {
 				}
 				x1A = -1;
 				if (photographMapLoadingMode == 0) {
-					if ((debugging != 0) && (npcConfig[x20].appearanceStyle != NPCConfigFlagStyle.showAlways) && (isDebugViewMapMode() != 0) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
+					if ((debugging != 0) && (npcConfig[npc].appearanceStyle != NPCConfigFlagStyle.showAlways) && (isDebugViewMapMode() != 0) && ((((npcConfig[npc].appearanceStyle - 2) ^ getEventFlag(npcConfig[npc].eventFlag)) & 1) == 0)) {
 						continue;
-					} else if ((npcConfig[x20].appearanceStyle != NPCConfigFlagStyle.showAlways) && ((((npcConfig[x20].appearanceStyle - 2) ^ getEventFlag(npcConfig[x20].eventFlag)) & 1) == 0)) {
+					} else if ((npcConfig[npc].appearanceStyle != NPCConfigFlagStyle.showAlways) && ((((npcConfig[npc].appearanceStyle - 2) ^ getEventFlag(npcConfig[npc].eventFlag)) & 1) == 0)) {
 						continue;
 					}
 					if (debugging != 0) {
-						if ((showNPCFlag == 0) || (npcConfig[x20].type == 3)) {
-							x1A = createEntity(npcConfig[x20].sprite, debugViewMapLimitActionscript(npcConfig[x20].actionScript), -1, x18, x16);
+						if ((showNPCFlag == 0) || (npcConfig[npc].type == 3)) {
+							x1A = createEntity(npcConfig[npc].sprite, debugViewMapLimitActionscript(npcConfig[npc].actionScript), -1, x18, x16);
 						}
 					} else {
-						if ((showNPCFlag == 0) || (npcConfig[x20].type == 3)) {
-							x1A = createEntity(npcConfig[x20].sprite, npcConfig[x20].actionScript, -1, x18, x16);
+						if ((showNPCFlag == 0) || (npcConfig[npc].type == 3)) {
+							x1A = createEntity(npcConfig[npc].sprite, npcConfig[npc].actionScript, -1, x18, x16);
 						}
 					}
-				} else if (npcConfig[x20].appearanceStyle == NPCConfigFlagStyle.showAlways) {
-					x1A = createEntity(npcConfig[x20].sprite, ActionScript.unknown799, -1, x18, x16);
+				} else if (npcConfig[npc].appearanceStyle == NPCConfigFlagStyle.showAlways) {
+					x1A = createEntity(npcConfig[npc].sprite, ActionScript.unknown799, -1, x18, x16);
 				}
 				if (x1A != -1) {
-					entityDirections[x1A] = npcConfig[x20].direction;
-					entityNPCIDs[x1A] = x20;
+					entityDirections[x1A] = npcConfig[npc].direction;
+					entityNPCIDs[x1A] = npc;
 				}
 			}
 		}
@@ -3421,23 +3421,22 @@ void unknownC0613C(short arg1, short arg2, short arg3) {
 }
 
 /// $C06267
-short unknownC06267(short arg1, short arg2, short arg3) {
-	short x1A = -1;
-	if (entityHitboxEnabled[arg3] != 0) {
-		short x02;
-		short x16;
-		if ((entityDirections[arg3] == Direction.right) || (entityDirections[arg3] == Direction.left)) {
-			x02 = entityHitboxLeftRightWidth[arg3];
-			x16 = entityHitboxLeftRightHeight[arg3];
+short unknownC06267(short x, short y, short subjectEntity) {
+	short collidedEntity = -1;
+	if (entityHitboxEnabled[subjectEntity] != 0) {
+		short subjectHitboxWidth;
+		short subjectHitboxHeight;
+		if ((entityDirections[subjectEntity] == Direction.right) || (entityDirections[subjectEntity] == Direction.left)) {
+			subjectHitboxWidth = entityHitboxLeftRightWidth[subjectEntity];
+			subjectHitboxHeight = entityHitboxLeftRightHeight[subjectEntity];
 		} else {
-			x02 = entityHitboxUpDownWidth[arg3];
-			x16 = entityHitboxUpDownHeight[arg3];
+			subjectHitboxWidth = entityHitboxUpDownWidth[subjectEntity];
+			subjectHitboxHeight = entityHitboxUpDownHeight[subjectEntity];
 		}
-		short x04 = cast(short)(arg1 - x02);
-		short x18 = cast(short)(x02 * 2);
-		short x14 = cast(short)(arg2 - x16);
+		short leftX = cast(short)(x - subjectHitboxWidth);
+		short topY = cast(short)(y - subjectHitboxHeight);
 		if (playerIntangibilityFrames == 0) {
-			for (short i = 0x18; i < maxEntities; i++) {
+			for (short i = 24; i < maxEntities; i++) {
 				if (entityScriptTable[i] == -1) {
 					continue;
 				}
@@ -3447,33 +3446,33 @@ short unknownC06267(short arg1, short arg2, short arg3) {
 				if (entityHitboxEnabled[i] == 0) {
 					continue;
 				}
-				short x10;
-				short x12;
+				short targetHitboxHeight;
+				short targetHitboxWidth;
 				if ((entityDirections[i] == Direction.right) || (entityDirections[i] == Direction.left)) {
-					x12 = entityHitboxLeftRightWidth[i];
-					x10 = entityHitboxLeftRightHeight[i];
+					targetHitboxWidth = entityHitboxLeftRightWidth[i];
+					targetHitboxHeight = entityHitboxLeftRightHeight[i];
 				} else {
-					x12 = entityHitboxUpDownWidth[i];
-					x10 = entityHitboxUpDownHeight[i];
+					targetHitboxWidth = entityHitboxUpDownWidth[i];
+					targetHitboxHeight = entityHitboxUpDownHeight[i];
 				}
-				if (x14 <= entityAbsYTable[i] - x10 - x16) {
+				if (topY <= entityAbsYTable[i] - targetHitboxHeight - subjectHitboxHeight) {
 					continue;
 				}
-				if (x14 >= entityAbsYTable[i] - x10 + x10) {
+				if (topY >= entityAbsYTable[i] - targetHitboxHeight + targetHitboxHeight) {
 					continue;
 				}
-				if (x04 <= entityAbsXTable[i] - x12 - x18) {
+				if (leftX <= entityAbsXTable[i] - targetHitboxWidth - subjectHitboxWidth * 2) {
 					continue;
 				}
-				if (x04 >= entityAbsXTable[i] - x12 + x12 * 2) {
+				if (leftX >= entityAbsXTable[i] - targetHitboxWidth + targetHitboxWidth * 2) {
 					continue;
 				}
-				x1A = i;
-				goto Unknown26;
+				collidedEntity = i;
+				goto DoneCheckingCollision;
 			}
 		}
 		for (short i = 0; i < partyLeaderEntity; i++) {
-			if (i == arg3) {
+			if (i == subjectEntity) {
 				continue;
 			}
 			if (entityScriptTable[i] == -1) {
@@ -3488,34 +3487,34 @@ short unknownC06267(short arg1, short arg2, short arg3) {
 			if (entityHitboxEnabled[i] == 0) {
 				continue;
 			}
-			short x10;
-			short x12;
+			short targetHitboxHeight;
+			short targetHitboxWidth;
 			if ((entityDirections[i] == Direction.right) || (entityDirections[i] == Direction.left)) {
-				x12 = entityHitboxLeftRightWidth[i];
-				x10 = entityHitboxLeftRightHeight[i];
+				targetHitboxWidth = entityHitboxLeftRightWidth[i];
+				targetHitboxHeight = entityHitboxLeftRightHeight[i];
 			} else {
-				x12 = entityHitboxUpDownWidth[i];
-				x10 = entityHitboxUpDownHeight[i];
+				targetHitboxWidth = entityHitboxUpDownWidth[i];
+				targetHitboxHeight = entityHitboxUpDownHeight[i];
 			}
-			if (x14 <= entityAbsYTable[i] - x10 - x16) {
+			if (topY <= entityAbsYTable[i] - targetHitboxHeight - subjectHitboxHeight) {
 				continue;
 			}
-			if (x14 >= entityAbsYTable[i] - x10 + x10 - 1) {
+			if (topY >= entityAbsYTable[i] - targetHitboxHeight + targetHitboxHeight - 1) {
 				continue;
 			}
-			if (x04 <= entityAbsXTable[i] - x12 - x18) {
+			if (leftX <= entityAbsXTable[i] - targetHitboxWidth - subjectHitboxWidth * 2) {
 				continue;
 			}
-			if (x04 >= entityAbsXTable[i] - x12 + x12 * 2 - 1) {
+			if (leftX >= entityAbsXTable[i] - targetHitboxWidth + targetHitboxWidth * 2 - 1) {
 				continue;
 			}
-			x1A = i;
-			goto Unknown26;
+			collidedEntity = i;
+			goto DoneCheckingCollision;
 		}
 	}
-	Unknown26:
-	entityCollidedObjects[arg3] = x1A;
-	return x1A;
+	DoneCheckingCollision:
+	entityCollidedObjects[subjectEntity] = collidedEntity;
+	return collidedEntity;
 }
 
 /// $C06478
@@ -6645,7 +6644,7 @@ void updateEntityPosition3D() {
 	newPosition.combined = fullEntityAbsZ(currentActiveEntityOffset / 2).combined + fullEntityDeltaZ(currentActiveEntityOffset / 2).combined;
 	entityAbsZFractionTable[currentActiveEntityOffset / 2] = newPosition.fraction;
 	entityAbsZTable[currentActiveEntityOffset / 2] = newPosition.integer;
-	unknownC0C7DB();
+	updateEntitySurfaceFlags();
 }
 
 /// $C0A00C
@@ -6934,7 +6933,7 @@ void unknownC0A37A() {
 
 void unknownC0A37ACommon(short arg1) {
 	updateEntityPosition2D(arg1);
-	unknownC0C7DB();
+	updateEntitySurfaceFlags();
 }
 
 /// $C0A384
@@ -7342,16 +7341,16 @@ void unknownC0A841(short, ref const(ubyte)* arg2) {
 
 /// $C0A84C
 short actionScriptGetEventFlag(short, ref const(ubyte)* arg2) {
-	short tmp = movementDataRead16(arg2);
+	short flag = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	return getEventFlag(tmp);
+	return getEventFlag(flag);
 }
 
 /// $C0A857
-void unknownC0A857(short arg1, ref const(ubyte)* arg2) {
-	short tmp = movementDataRead16(arg2);
+void actionScriptSetEventFlag(short arg1, ref const(ubyte)* arg2) {
+	short flag = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	setEventFlag(tmp, arg1);
+	setEventFlag(flag, arg1);
 }
 
 /// $C0A864
@@ -7392,27 +7391,27 @@ void unknownC0A8A0(short, ref const(ubyte)* arg2) {
 }
 
 /// $C0A8B3
-void unknownC0A8B3(short, ref const(ubyte)* arg2) {
-	short tmp = movementDataRead16(arg2);
+void actionScriptCopyAdjustedXYToVars(short, ref const(ubyte)* arg2) {
+	short x = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	short tmp2 = movementDataRead16(arg2);
+	short y = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC46C5E(tmp2, tmp);
+	copyAdjustedXYToVars(y, x);
 }
 
 /// $C0A8C6
-short unknownC0A8C6() {
-	return unknownC47143(0, 0);
+short actionScriptMoveActiveEntityTowardsDestination() {
+	return moveActiveEntityTowardsDestination(0, 0);
 }
 
 /// $C0A8D1
-short unknownC0A8D1() {
-	return unknownC47143(1, 0);
+short actionScriptMoveActiveEntityTowardsDestinationFaceOpposite() {
+	return moveActiveEntityTowardsDestination(1, 0);
 }
 
 /// $C0A8DC
-short unknownC0A8DC() {
-	return unknownC47143(0, 1);
+short actionScriptMoveActiveEntityTowardsDestinationNoDirChange() {
+	return moveActiveEntityTowardsDestination(0, 1);
 }
 
 /// $C0A8E7
@@ -7453,10 +7452,10 @@ short actionScriptPrepareNewEntity(short, ref const(ubyte)* arg1) {
 }
 
 /// $C0A92D
-void unknownC0A92D(short, ref const(ubyte)* arg2) {
+void actionScriptFindNPCLocationForActiveEntity(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC46B8D(tmp);
+	findNPCLocationForActiveEntity(tmp);
 }
 
 /// $C0A938
@@ -7475,10 +7474,10 @@ short actionScriptGetPositionOfPartyMember(short, ref const(ubyte)* arg1) {
 }
 
 /// $C0A94E
-void unknownC0A94E(short, ref const(ubyte)* arg2) {
+void actionScriptMakeNPCLookAtActiveEntity(short, ref const(ubyte)* arg2) {
 	short tmp = movementDataRead16(arg2);
 	actionScriptLastRead = arg2;
-	unknownC46984(tmp);
+	makeNPCLookAtActiveEntity(tmp);
 }
 
 /// $C0A959
@@ -8656,19 +8655,23 @@ short prepareDeliveryExitPath(short arg1) {
 	return 1;
 }
 
-/// $C0C30C
-void unknownC0C30C(short arg1) {
-	if (getEventFlag(npcConfig[entityNPCIDs[arg1]].eventFlag)) {
-		entityDirections[arg1] = Direction.up; // 0
+/** Sets an NPC entity's direction based on the state of its associated event flag. Used for gift box entities.
+ * Params:
+ * 	entity = The target entity ID
+ * Original_Address: $(DOLLAR)C0C30C
+ */
+void updateGiftBoxState(short entity) {
+	if (getEventFlag(npcConfig[entityNPCIDs[entity]].eventFlag)) {
+		entityDirections[entity] = Direction.up; // 0
 	} else {
-		entityDirections[arg1] = Direction.down; // 4
+		entityDirections[entity] = Direction.down; // 4
 	}
-	updateEntitySprite(arg1);
+	updateEntitySprite(entity);
 }
 
 /// $C0C353
-void unknownC0C353() {
-	unknownC0C30C(currentEntitySlot);
+void updateActiveGiftBoxState() {
+	updateGiftBoxState(currentEntitySlot);
 }
 
 /// $C0C35D
@@ -8776,14 +8779,14 @@ short getDirectionRotatedClockwise(short arg1) {
 }
 
 /// $C0C6B6
-short unknownC0C6B6() {
+short isEntityOnscreen() {
 	if (teleportationSpeed.integer >= 4) {
 		return -1;
 	}
-	short x0E = cast(short)(entityAbsXTable[currentEntitySlot] - (gameState.leaderX.integer - 0x80));
-	short x = cast(short)(entityAbsYTable[currentEntitySlot] - (gameState.leaderY.integer - 0x70));
-	if ((x0E >= -64) && (x0E < 320)) {
-		if ((x >= -64) && (x < 320)) {
+	short x = cast(short)(entityAbsXTable[currentEntitySlot] - (gameState.leaderX.integer - 128));
+	short y = cast(short)(entityAbsYTable[currentEntitySlot] - (gameState.leaderY.integer - 112));
+	if ((x >= -64) && (x < 320)) {
+		if ((y >= -64) && (y < 320)) {
 			return -1;
 		}
 	}
@@ -8819,7 +8822,7 @@ unittest {
 }
 
 /// $C0C7DB
-void unknownC0C7DB() {
+void updateEntitySurfaceFlags() {
 	entitySurfaceFlags[currentEntitySlot] = getSurfaceFlags(entityAbsXTable[currentEntitySlot], entityAbsYTable[currentEntitySlot], currentEntitySlot);
 }
 
