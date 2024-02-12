@@ -1239,7 +1239,7 @@ void unknownC43344(short arg1) {
 void unknownC4334A(short direction) {
 	short x10 = cast(short)(interactXOffsets[direction] + gameState.leaderX.integer / 8);
 	short x04 = cast(short)((direction == Direction.down) ? (interactYOffsets[direction] + (gameState.leaderY.integer + 1) / 8) :(interactYOffsets[direction] + gameState.leaderY.integer / 8));
-	if ((unknownC05CD7(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) == (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
+	if ((getMovingCollisionFlags(cast(short)(x10 * 8), cast(short)(x04 * 8), gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) == (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
 		x10 += interactXOffsets[direction];
 		x04 += interactYOffsets[direction];
 	}

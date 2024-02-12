@@ -2082,7 +2082,7 @@ short unknownC04116(short direction) {
 			interactingNPCEntity = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
+		if ((getMovingCollisionFlags(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2158,7 +2158,7 @@ short unknownC042EF(short direction) {
 			interactingNPCEntity = x10;
 			break;
 		}
-		if ((unknownC05CD7(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
+		if ((getMovingCollisionFlags(x14, x04, gameState.firstPartyMemberEntity, direction) & (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) != (SurfaceFlags.solid | SurfaceFlags.obscureUpperBody)) {
 			break;
 		}
 		if (unknownC3E148[direction] != 0) {
@@ -2399,7 +2399,7 @@ void handleBicycleMovement(short arg1) {
 	x10.combined = gameState.leaderX.combined + horizontalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
 	x14.combined = gameState.leaderY.combined + verticalMovementSpeeds[WalkingStyle.bicycle].directionSpeeds[x1E].combined;
 	ladderStairsTileX = 0xFFFF;
-	short x1A = unknownC05CD7(x10.integer, x14.integer, 0x18, x1E);
+	short x1A = getMovingCollisionFlags(x10.integer, x14.integer, 0x18, x1E);
 	npcCollisionCheck(x10.integer, x14.integer, gameState.firstPartyMemberEntity);
 	if (entityCollidedObjects[partyLeaderEntity] == -1) {
 		gameState.leaderHasMoved++;
@@ -3162,34 +3162,34 @@ short checkMovementMapCollision(short x, short y, short arg3, short direction) {
 }
 
 /// $C05CD7
-short unknownC05CD7(short arg1, short arg2, short arg3, short direction) {
+short getMovingCollisionFlags(short x, short y, short entity, short direction) {
 	tempEntitySurfaceFlags = 0;
-	checkedCollisionLeftX = cast(short)(arg1 - collisionWidths[entitySizes[arg3]]);
-	checkedCollisionTopY = cast(short)(arg2 - collisionHeights1[entitySizes[arg3]] + collisionHeights2[entitySizes[arg3]]);
+	checkedCollisionLeftX = cast(short)(x - collisionWidths[entitySizes[entity]]);
+	checkedCollisionTopY = cast(short)(y - collisionHeights1[entitySizes[entity]] + collisionHeights2[entitySizes[entity]]);
 	switch(direction) {
 		case Direction.upRight:
-			checkHorizontalRightTileCollision(checkedCollisionTopY, entitySizes[arg3]);
+			checkHorizontalRightTileCollision(checkedCollisionTopY, entitySizes[entity]);
 			goto case;
 		case Direction.up:
-			checkVerticalUpTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
+			checkVerticalUpTileCollision(checkedCollisionLeftX, entitySizes[entity]);
 			break;
 		case Direction.downRight:
-			checkVerticalDownTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
+			checkVerticalDownTileCollision(checkedCollisionLeftX, entitySizes[entity]);
 			goto case;
 		case Direction.right:
-			checkHorizontalRightTileCollision(checkedCollisionTopY, entitySizes[arg3]);
+			checkHorizontalRightTileCollision(checkedCollisionTopY, entitySizes[entity]);
 			break;
 		case Direction.downLeft:
-			checkHorizontalLeftTileCollision(checkedCollisionTopY, entitySizes[arg3]);
+			checkHorizontalLeftTileCollision(checkedCollisionTopY, entitySizes[entity]);
 			goto case;
 		case Direction.down:
-			checkVerticalDownTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
+			checkVerticalDownTileCollision(checkedCollisionLeftX, entitySizes[entity]);
 			break;
 		case Direction.upLeft:
-			checkVerticalUpTileCollision(checkedCollisionLeftX, entitySizes[arg3]);
+			checkVerticalUpTileCollision(checkedCollisionLeftX, entitySizes[entity]);
 			goto case;
 		case Direction.left:
-			checkHorizontalLeftTileCollision(checkedCollisionTopY, entitySizes[arg3]);
+			checkHorizontalLeftTileCollision(checkedCollisionTopY, entitySizes[entity]);
 			break;
 		default: break;
 	}
@@ -3235,7 +3235,7 @@ short unknownC05E3B(short arg1) {
 	if (testEntityMovementActive() == 0) {
 		return -256;
 	}
-	entityObstacleFlags[arg1] = unknownC05CD7(entityMovementProspectX, entityMovementProspectY, arg1, entityDirections[arg1]) & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs);
+	entityObstacleFlags[arg1] = getMovingCollisionFlags(entityMovementProspectX, entityMovementProspectY, arg1, entityDirections[arg1]) & (SurfaceFlags.solid | SurfaceFlags.unknown2 | SurfaceFlags.ladderOrStairs);
 	return entityObstacleFlags[arg1];
 }
 
@@ -9094,7 +9094,7 @@ short unknownC0D0E6() {
 		return -1;
 	}
 	testEntityMovementActive();
-	if ((unknownC05CD7(entityMovementProspectX, entityMovementProspectY, currentEntitySlot, Direction.down) & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+	if ((getMovingCollisionFlags(entityMovementProspectX, entityMovementProspectY, currentEntitySlot, Direction.down) & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
 		entityMovementSpeed[currentEntitySlot] -= 0x1000;
 		return 0;
 	}
