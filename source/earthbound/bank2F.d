@@ -475,31 +475,42 @@ void unknownEF0C3D() {
 	fadeIn(1, 1);
 }
 
-/// $EF0C87
-short unknownEF0C87() {
+/** Gets the number of delivery attempts made by the active entity so far.
+ * Returns: Number of attempts made
+ * Original_Address: $(DOLLAR)EF0C87
+ */
+short getEntityDeliveryAttemptCount() {
 	return deliveryAttempts[entityScriptVar0Table[currentEntitySlot]];
 }
 
-/// $EF0C97
-void unknownEF0C97() {
+/** Clears the active entity's delivery attempt count
+ * Original_Address: $(DOLLAR)EF0C97
+ */
+void resetEntityDeliveryAttemptCount() {
 	deliveryAttempts[entityScriptVar0Table[currentEntitySlot]] = 0;
 }
 
-/// $EF0CA7
-short unknownEF0CA7() {
-	if (timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown4 == 0xFF) {
-		return 1;
+/** Tests if the active entity hasn't exceeded the delivery attempt limit
+ * Returns: true if more attempts can be made, false otherwise
+ * Original_Address: $(DOLLAR)EF0CA7
+ */
+short getEntityHasDeliveryAttemptsLeft() {
+	if (timedDeliveries[entityScriptVar0Table[currentEntitySlot]].maxAttempts == 0xFF) {
+		return true;
 	}
 	deliveryAttempts[entityScriptVar0Table[currentEntitySlot]]++;
-	if (timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown4 > deliveryAttempts[entityScriptVar0Table[currentEntitySlot]]) {
-		return 1;
+	if (timedDeliveries[entityScriptVar0Table[currentEntitySlot]].maxAttempts > deliveryAttempts[entityScriptVar0Table[currentEntitySlot]]) {
+		return true;
 	}
-	return 0;
+	return false;
 }
 
-/// $EF0D23
-short unknownEF0D23() {
-	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].unknown6;
+/** Get the amount of time between delivery attempts are made for the active delivery entity
+ * Returns: Time in seconds
+ * Original_Address: $(DOLLAR)EF0D23
+ */
+short getTimeBetweenDeliveryAttempts() {
+	return timedDeliveries[entityScriptVar0Table[currentEntitySlot]].secondsBetweenDeliveryAttempts;
 }
 
 /// $EF0D46

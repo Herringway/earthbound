@@ -3866,7 +3866,7 @@ void loadTextPalette() {
 			break;
 	}
 	palettes[0][0] = 0;
-	preparePaletteUpload(PaletteUpload.halfFirst);
+	preparePaletteUpload(PaletteUpload.bgOnly);
 }
 
 /// $C4800B
@@ -4377,7 +4377,7 @@ void stepMapPaletteFade() {
 		outputPtr[0] = redBits | greenBits | blueBits;
 		outputPtr++;
 	}
-	preparePaletteUpload(PaletteUpload.halfFirst);
+	preparePaletteUpload(PaletteUpload.bgOnly);
 }
 
 /// $C4939C
@@ -6834,7 +6834,7 @@ void animateTownMapIconPalette() {
 			palettes[8][i - 1] = palettes[8][i];
 		}
 		palettes[8][7] = x10;
-		preparePaletteUpload(PaletteUpload.halfSecond);
+		preparePaletteUpload(PaletteUpload.objOnly);
 	}
 	framesUntilMapIconPaletteUpdate--;
 }
@@ -7362,7 +7362,7 @@ void displayYourSanctuaryLocation(short arg1) {
 	waitDMAFinished();
 	copyToVRAM(0, 0x780, 0x3800, &buffer[x02 * 0x800]);
 	memcpy(&palettes[0][0], &buffer[0x4000 + x02 * 0x200], 0x100);
-	paletteUploadMode = PaletteUpload.halfFirst;
+	paletteUploadMode = PaletteUpload.bgOnly;
 	screenTopY = 0;
 	screenLeftX = 0;
 	bg1YPosition = 0;
@@ -7550,7 +7550,7 @@ void unknownC4EBAD(short arg1, short arg2, short arg3) {
 /// $C4EC6E
 void unknownC4EC6E(short arg1) {
 	memcpy(&palettes[12][0], &buffer[0x7000 + arg1 * 32], 0x20);
-	paletteUploadMode = PaletteUpload.halfSecond;
+	paletteUploadMode = PaletteUpload.objOnly;
 }
 
 /// $C4EC05
@@ -7575,13 +7575,16 @@ short createEntityAtV01PlusBG3Y(short arg1, short arg2) {
 	return createEntity(arg1, arg2, -1, entityScriptVar0Table[currentEntitySlot], cast(short)(entityScriptVar1Table[currentEntitySlot] + bg3YPosition));
 }
 
-/// $C4ECE7
-short unknownC4ECE7() {
-	short x0E = 0;
+/** Tests if the entity is still visible on the cast screen
+ * Returns: true if onscreen, false otherwise
+ * Original_Address: $(DOLLAR)C4ECE7
+ */
+short isEntityStillOnCastScreen() {
+	short result = false;
 	if (bg3YPosition - 8 < entityAbsYTable[currentEntitySlot]) {
-		x0E = 1;
+		result = true;
 	}
-	return x0E;
+	return result;
 }
 
 /// $C4ED0E

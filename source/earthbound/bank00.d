@@ -2613,15 +2613,19 @@ void actionScriptUpdatePartyMemberPosition() {
 	doPartyMovementFrame(entityScriptVar0Table[currentEntitySlot], playerPositionBuffer[currentPartyMemberTick.positionIndex].walkingStyle, currentEntitySlot);
 }
 
-/// $C04F47
+/** Restores screen background colour backup and re-enables backgrounds 1, 2, 3 and OBJ
+ * Original_Address: $(DOLLAR)C04F47
+ */
 void restoreBackgroundLayers() {
 	palettes[0][0] = backgroundColourBackup;
 	// re-enable BG1, 2, 3 and OBJ
 	mirrorTM = TMTD.obj | TMTD.bg3 | TMTD.bg2 | TMTD.bg1;
-	preparePaletteUpload(PaletteUpload.halfFirst);
+	preparePaletteUpload(PaletteUpload.bgOnly);
 }
 
-/// $C04F60
+/** Causes the screen to flash red for a single frame by disabling all layers and setting the screen background colour to red
+ * Original_Address: $(DOLLAR)C04F60
+ */
 void redFlash() {
 	if (battleSwirlCountdown != 0) {
 		return;
@@ -2634,21 +2638,24 @@ void redFlash() {
 	palettes[0][0] = 0x1F;
 	// turn off all layers
 	mirrorTM = TMTD.none;
-	preparePaletteUpload(PaletteUpload.halfFirst);
+	preparePaletteUpload(PaletteUpload.bgOnly);
 	scheduleOverworldTask(1, &restoreBackgroundLayers);
 }
 
-/// $C04F9F
-void tryShowHPAlert(short arg1) {
-	short x10 = arg1;
-	PartyCharacter* x0E = chosenFourPtrs[gameState.playerControlledPartyMembers[x10]];
+/** Tries to show an HP alert for the given character, if HP is low enough and an alert hasn't been shown recently
+ * Params:
+ * 	character: Index of character to show the alert for
+ * Original_Address: $(DOLLAR)C04F9F
+ */
+void tryShowHPAlert(short character) {
+	PartyCharacter* x0E = chosenFourPtrs[gameState.playerControlledPartyMembers[character]];
 	if ((x0E.maxHP * 20) / 100 > x0E.hp.current.integer) {
-		if (hpAlertShown[x10] == 0) {
+		if (hpAlertShown[character] == 0) {
 			showHPAlert(cast(short)(x0E.characterID + 1));
 		}
-		hpAlertShown[x10] = 1;
+		hpAlertShown[character] = 1;
 	} else {
-		hpAlertShown[x10] = 0;
+		hpAlertShown[character] = 0;
 	}
 }
 
@@ -6799,7 +6806,7 @@ void copyMapPaletteFrame(short arg1) {
 	while (--bytesLeft >= 0) {
 		*(destination++) = *(source++);
 	}
-	paletteUploadMode = PaletteUpload.halfFirst;
+	paletteUploadMode = PaletteUpload.bgOnly;
 }
 
 __gshared const ubyte*[8] animatedMapPaletteBuffers;

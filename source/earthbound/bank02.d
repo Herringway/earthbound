@@ -8509,7 +8509,7 @@ void singleBattleSpritePaletteEffectFrame() {
 			paletteSteps += 3;
 			targetColour++;
 		}
-		preparePaletteUpload(PaletteUpload.halfSecond);
+		preparePaletteUpload(PaletteUpload.objOnly);
 	}
 }
 
@@ -8520,13 +8520,13 @@ void unknownC2FEF9(short type) {
 		memcpy(&palettes[13][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[14][0], &unknownC3F8F1[type - 1][0], 32);
 		memcpy(&palettes[15][0], &unknownC3F8F1[type - 1][0], 32);
-		preparePaletteUpload(PaletteUpload.halfSecond);
+		preparePaletteUpload(PaletteUpload.objOnly);
 		return;
 	}
 	for (short i = 16 * 8; i < 16 * 12; i++) {
 		palettes[(i / 16) + 4][i % 16] = (palettes[i / 16][i % 16] >> 2) & ((7 << 10) | (7 << 5) | 7);
 	}
-	preparePaletteUpload(PaletteUpload.halfSecond);
+	preparePaletteUpload(PaletteUpload.objOnly);
 }
 
 /** ActionScript function - Tests if player is in a big area, like the Lost Underworld

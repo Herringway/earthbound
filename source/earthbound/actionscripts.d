@@ -8073,7 +8073,7 @@ shared static this() {
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SET_VELOCITIES_ZERO(),
-		EF0C87(),
+		GET_DELIVERY_ATTEMPT_COUNT(),
 		JUMP_IF_TRUE(&actionScript499_500_Common[12 + 6 * (const(void)*).sizeof]),
 		SHORTJUMP(&actionScript499_500_Common[0]),
 	);
@@ -8083,7 +8083,7 @@ immutable ubyte[10 + 5 * (const(void)*).sizeof] actionScript499;
 shared static this() {
 	actionScript499 = initializeScript(actionScript499.length,
 		C0A643(1311),
-		EF0C97(),
+		RESET_DELIVERY_ATTEMPT_COUNT(),
 		SET_PHYSICS_CALLBACK(&unknownC0A360),
 		DISABLE_CURRENT_ENTITY_COLLISION2(),
 		SET_ANIMATION(255),
@@ -8100,9 +8100,9 @@ shared static this() {
 		JUMP_IF_TRUE(&actionScript499_500_Common[0]),
 		SHORTJUMP(&actionScript499_500_Common[12 + 6 * (const(void)*).sizeof]),
 
-		EF0CA7(),
+		HAS_DELIVERY_ATTEMPTS_LEFT(),
 		JUMP_IF_FALSE(&actionScript499_500_Common[29 + 19 * (const(void)*).sizeof]),
-		EF0D23(),
+		GET_DELIVERY_ATTEMPT_DELAY(),
 		LOOP_TEMPVAR(),
 			PAUSE(60),
 		LOOP_END(),
@@ -10246,13 +10246,13 @@ shared static this() {
 		SET_ANIMATION(1),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		WRITE_VAR_TO_WAIT_TIMER(ActionScriptVars.v3),
-		C4ECE7(),
+		IS_ENTITY_ONSCREEN_CAST(),
 		JUMP_IF_FALSE(&unknownC35F8B[20 + 8 * (const(void)*).sizeof]),
 		WRITE_VAR_TO_TEMPVAR(ActionScriptVars.v4),
 		JUMP_IF_TRUE(&unknownC35F8B[18 + 6 * (const(void)*).sizeof]),
 		SET_ANIMATION(0),
 		UPDATE_ENTITY_SPRITE_FRAME0(),
-		C4ECE7(),
+		IS_ENTITY_ONSCREEN_CAST(),
 		JUMP_IF_TRUE(&unknownC35F8B[0]),
 		SHORTJUMP(&actionScript35[0]),
 	);
@@ -10708,7 +10708,7 @@ shared static this() {
 		PAUSE(117),
 		SET_VELOCITIES_ZERO(),
 		PAUSE(8),
-		C4ECE7(),
+		IS_ENTITY_ONSCREEN_CAST(),
 		JUMP_IF_TRUE(&actionScript829[11 + 3 * (const(void)*).sizeof]),
 		SHORTJUMP(&actionScript35[0]),
 	);
@@ -10781,7 +10781,7 @@ shared static this() {
 			UPDATE_ENTITY_SPRITE_FRAME0_FORCED(),
 			PAUSE(8),
 		LOOP_END(),
-		C4ECE7(),
+		IS_ENTITY_ONSCREEN_CAST(),
 		JUMP_IF_TRUE(&actionScript806[12 + 4 * (const(void)*).sizeof]),
 		SHORTJUMP(&actionScript35[0]),
 	);
@@ -11145,7 +11145,7 @@ shared static this() {
 		PAUSE(8),
 		SET_ANIMATION(255),
 		PAUSE(16),
-		C4ECE7(),
+		IS_ENTITY_ONSCREEN_CAST(),
 		JUMP_IF_TRUE(&actionScript840[9 + 4 * (const(void)*).sizeof]),
 		SHORTJUMP(&actionScript35[0]),
 	);
@@ -11390,7 +11390,7 @@ shared static this() {
 		SET_DIRECTION(),
 		UPDATE_ENTITY_SPRITE_FRAME1(),
 		PAUSE(6),
-		C4ECE7(),
+		IS_ENTITY_ONSCREEN_CAST(),
 		JUMP_IF_TRUE(&actionScript852[13 + 4 * (const(void)*).sizeof]),
 		SHORTJUMP(&actionScript35[0]),
 	);
@@ -25956,12 +25956,12 @@ alias OBJFX_DOTS = CALL!actionScriptObjFXDots;
 alias C4E4DA = CALL!unknownC4E4DA;
 alias C4E4F9 = CALL!unknownC4E4F9;
 alias C4EC6E = CALL!unknownC4EC6E;
-alias C4ECE7 = CALL!unknownC4ECE7;
+alias IS_ENTITY_ONSCREEN_CAST = CALL!isEntityStillOnCastScreen;
 alias BUBBLE_MONKEY_INITIALIZE = CALL!bubbleMonkeyInitialize;
-alias EF0C87 = CALL!unknownEF0C87;
-alias EF0C97 = CALL!unknownEF0C97;
-alias EF0CA7 = CALL!unknownEF0CA7;
-alias EF0D23 = CALL!unknownEF0D23;
+alias GET_DELIVERY_ATTEMPT_COUNT = CALL!getEntityDeliveryAttemptCount;
+alias RESET_DELIVERY_ATTEMPT_COUNT = CALL!resetEntityDeliveryAttemptCount;
+alias HAS_DELIVERY_ATTEMPTS_LEFT = CALL!getEntityHasDeliveryAttemptsLeft;
+alias GET_DELIVERY_ATTEMPT_DELAY = CALL!getTimeBetweenDeliveryAttempts;
 alias START_DELIVERY_COUNTDOWN = CALL!startDeliveryCountdown;
 alias DO_DELIVERY_COUNTDOWN = CALL!doDeliveryCountdown;
 alias START_DELIVERY_SUCCESS_TEXT = CALL!startDeliverySuccessText;

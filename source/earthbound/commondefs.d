@@ -5260,8 +5260,8 @@ enum InteractionType {
 
 enum PaletteUpload {
 	none = 0,
-	halfFirst = 8 * 1,
-	halfSecond = 8 * 2,
+	bgOnly = 8 * 1,
+	objOnly = 8 * 2,
 	full = 8 * 3
 }
 
@@ -6247,8 +6247,8 @@ struct OverworldTask {
 struct TimedDelivery {
 	ushort spriteID; ///0
 	ushort eventFlag; ///2
-	short unknown4; ///4
-	short unknown6; ///6
+	short maxAttempts; ///4
+	short secondsBetweenDeliveryAttempts; ///6
 	ushort deliveryTime; ///8
 	string textPointer1; ///10
 	string textPointer2; ///13
