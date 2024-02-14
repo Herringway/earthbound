@@ -3133,7 +3133,7 @@ void unknownC46B65() {
 
 /** Finds the x,y coordinates of an NPC entity and copies them into vars 6,7 for the active entity. Note that this does no error checking, so be sure that the NPC is active!
  * Params:
- * 	npc: The NPC ID to look for
+ * 	npc = The NPC ID to look for
  * Original_Address: $(DOLLAR)C46B8D
  */
 void findNPCLocationForActiveEntity(short npc) {

@@ -2644,7 +2644,7 @@ void redFlash() {
 
 /** Tries to show an HP alert for the given character, if HP is low enough and an alert hasn't been shown recently
  * Params:
- * 	character: Index of character to show the alert for
+ * 	character = Index of character to show the alert for
  * Original_Address: $(DOLLAR)C04F9F
  */
 void tryShowHPAlert(short character) {
