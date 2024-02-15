@@ -9255,7 +9255,7 @@ void unknownC0D19B() {
 			if (searchEnemy != 0) {
 				short matchingEnemies = 0;
 				for (short j = 0; j < pathfindingState.patherCount; j++) {
-					if (pathfindingState.pathers[j].objIndex == searchEnemy) {
+					if (entityEnemyIDs[pathfindingState.pathers[j].objIndex] == searchEnemy) {
 						matchingEnemies++;
 					}
 				}
