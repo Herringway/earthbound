@@ -8528,20 +8528,19 @@ unittest {
 }
 
 /// $C0BA35
-short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg5, short arg6, short arg7) {
-	ubyte* x06 = &buffer[0x3000];
-	arg1.targetCount = arg2;
-	for (short i = 0; i != arg1.radius.x; i++) {
-		for (short j = 0; j != arg1.radius.y; j++) {
-			if ((loadedCollisionTiles[(i + arg4) & 0x3F][(j + arg3) & 0x3F] & 0xC0) != 0) {
-				(x06++)[0] = PathfindingTile.unwalkable;
+short unknownC0BA35(PathCtx* pathState, short targets, short baseX, short baseY, bool offscreen, short arg6, short arg7) {
+	ubyte* pathBuffer = &buffer[0x3000];
+	pathState.targetCount = targets;
+	for (short i = 0; i != pathState.radius.x; i++) {
+		for (short j = 0; j != pathState.radius.y; j++) {
+			if ((loadedCollisionTiles[(i + baseY) & 0x3F][(j + baseX) & 0x3F] & (SurfaceFlags.solid | SurfaceFlags.unknown2)) != 0) {
+				(pathBuffer++)[0] = PathfindingTile.unwalkable;
 			} else {
-				(x06++)[0] = 0;
+				(pathBuffer++)[0] = 0;
 			}
 		}
 	}
-	short x02 = 0;
-	short x26 = 0;
+	short pathfinders = 0;
 	for (short i = 0; i < maxEntities; i++) {
 		if (entityScriptTable[i] == -1) {
 			continue;
@@ -8549,16 +8548,16 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		if (entityPathfindingState[i] != -1) {
 			continue;
 		}
-		arg1.pathers[x26].objIndex = i;
-		arg1.pathers[x26].fromOffscreen = arg5;
-		arg1.pathers[x26].hitbox.x = hitboxWidths[entitySizes[i]];
-		arg1.pathers[x26].hitbox.y = hitboxHeights[entitySizes[i]];
-		arg1.pathers[x26].origin.x = (((entityAbsXTable[i] - collisionWidths[entitySizes[i]]) / 8) - arg3) & 0x3F;
-		arg1.pathers[x26].origin.y = (((entityAbsYTable[i] - collisionHeights1[entitySizes[i]] + collisionHeights2[entitySizes[i]]) / 8) - arg4) & 0x3F;
-		x26++;
+		pathState.pathers[pathfinders].objIndex = i;
+		pathState.pathers[pathfinders].fromOffscreen = offscreen;
+		pathState.pathers[pathfinders].hitbox.x = hitboxWidths[entitySizes[i]];
+		pathState.pathers[pathfinders].hitbox.y = hitboxHeights[entitySizes[i]];
+		pathState.pathers[pathfinders].origin.x = (((entityAbsXTable[i] - collisionWidths[entitySizes[i]]) / 8) - baseX) & 0x3F;
+		pathState.pathers[pathfinders].origin.y = (((entityAbsYTable[i] - collisionHeights1[entitySizes[i]] + collisionHeights2[entitySizes[i]]) / 8) - baseY) & 0x3F;
+		pathfinders++;
 	}
-	arg1.patherCount = x26;
-	ushort x28 = pathMain(0xC00, &pathfindingBuffer[0], &arg1.radius, &buffer[0x3000], 4, arg2, &arg1.targetsPos[0], x26, &arg1.pathers[0], -1, arg6, arg7);
+	pathState.patherCount = pathfinders;
+	ushort x28 = pathMain(0xC00, &pathfindingBuffer[0], &pathState.radius, &buffer[0x3000], 4, targets, &pathState.targetsPos[0], pathfinders, &pathState.pathers[0], -1, arg6, arg7);
 	assert(pathGetHeapSize() <= 0xC00);
 	if (x28 == 0) {
 		for (short i = 0; i != maxEntities; i++) {
@@ -8569,11 +8568,11 @@ short unknownC0BA35(PathCtx* arg1, short arg2, short arg3, short arg4, short arg
 		}
 		return -1;
 	} else {
-		for (short i = 0; i < x26; i++) {
-			short x22 = arg1.pathers[i].objIndex;
-			if (arg1.pathers[i].field0A != 0) {
-				entityPathPoints[x22] = arg1.pathers[i].points;
-				entityPathPointsCount[x22] = arg1.pathers[i].field0A;
+		for (short i = 0; i < pathfinders; i++) {
+			short x22 = pathState.pathers[i].objIndex;
+			if (pathState.pathers[i].field0A != 0) {
+				entityPathPoints[x22] = pathState.pathers[i].points;
+				entityPathPointsCount[x22] = pathState.pathers[i].field0A;
 			} else {
 				entityPathfindingState[x22] = 1;
 			}

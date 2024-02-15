@@ -6029,13 +6029,13 @@ struct VecYX {
 }
 ///
 struct Pather {
-	short fromOffscreen; /// [00] Starts off-screen flag
-	VecYX hitbox; /// [02] ??? some sort of hitbox??? (Old notes, I have no idea why I labeled this "hitbox")
-	VecYX origin; /// [06] Origin point in the collision map?
-	short field0A; /// [0A] ??? unknown index
-	VecYX* points; /// [0C] Goal points
-	short pointCount; /// [0E] Amount of goal points
-	short objIndex; /// [10] Object index
+	short fromOffscreen; /// 0 - Starts off-screen flag
+	VecYX hitbox; /// 2 - Origin hitbox
+	VecYX origin; /// 6 - Origin point
+	short field0A; /// 10 - ??? unknown index
+	VecYX* points; /// 12 - Goal points
+	short pointCount; /// 14 - Amount of goal points
+	short objIndex; /// 16 - Object index
 }
 ///
 struct PathCtx {

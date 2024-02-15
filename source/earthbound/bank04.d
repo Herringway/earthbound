@@ -5781,10 +5781,10 @@ Params:
 	unk2 = Unknown, always 0xFC
 	search_radius = Just a guess...
 ++/
-ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *matrix, ushort border_size, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, short unk1, ushort unk2, ushort search_radius) {
+ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *matrix, ushort border_size, ushort targetCount, VecYX* targetsPos, ushort patherCount, Pather* pathers, short unk1, ushort maxPoints, ushort search_radius) {
 	debug(pathing) {
 		import std.stdio;
-		writeln(heap_size, ", ", *matrix_dim, ", ", border_size, ", ", targetCount, ", ", *targetsPos, ", ", patherCount, ", ", *pathers, ", ", unk1, ", ", unk2, ", ", search_radius);
+		writeln(heap_size, ", ", *matrix_dim, ", ", border_size, ", ", targetCount, ", ", *targetsPos, ", ", patherCount, ", ", *pathers, ", ", unk1, ", ", maxPoints, ", ", search_radius);
 	}
 	ushort dp20 = 0;
 
@@ -5798,7 +5798,7 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 	pathMatrixSize = cast(ushort)(pathMatrixRows * pathMatrixCols);
 	pathMatrixBuffer = matrix;
 
-	ushort *ptr = cast(ushort*)pathSbrk(search_radius*ushort.sizeof + ushort.sizeof); // dp1E
+	ushort *ptr = cast(ushort*)pathSbrk(search_radius*ushort.sizeof + ushort.sizeof);
 	pathSearchTempStart = ptr;
 	pathSearchTempEnd = ptr + search_radius * ushort.sizeof;
 	pathSearchTempA = ptr;
@@ -5835,44 +5835,42 @@ ushort pathMain(ushort heap_size, void *heap_start, VecYX *matrix_dim, ubyte *ma
 	pathDiagonalIndex[3].y = -1;
 	pathDiagonalIndex[3].x = -1;
 
-	if (unk2 >= PathfindingTile.unknownFB) {
-		unk2 = PathfindingTile.unknownFB;
+	if (maxPoints >= 251) {
+		maxPoints = 251;
 	}
 
 	Pather **dp1C = cast(Pather**)pathSbrk(patherCount * (Pather*).sizeof);
 	pathC4B859(patherCount, pathers, dp1C);
 
-	VecYX **dp2A = cast(VecYX**)pathSbrk(unk2 * (VecYX*).sizeof); // Allocate space on heap for pathfinding tile positions
+	VecYX* dp2A = cast(VecYX*)pathSbrk(maxPoints * VecYX.sizeof); // Allocate space on heap for pathfinding tile positions
+	assert(dp2A);
 	pathInitMatrix();
 
-	ushort dp1A = 0;
-	ushort dp18 = 0;
-	ushort dp04;
-	for (dp04 = 0; dp04 < patherCount; dp04++) {
+	ushort y = 0;
+	ushort x = 0;
+	for (ushort i = 0; i < patherCount; i++) {
 		ushort dp1E;
 
-		Pather *dp02 = dp1C[dp04];
-		Pather *dp32 = dp02;
+		Pather* dp02 = dp1C[i];
+		Pather* dp32 = dp02;
 
-		if (dp02.hitbox.y != dp1A || dp02.hitbox.x != dp18) {
-			ushort dp16 = 1;
-			dp1A = dp02.hitbox.y;
-			dp18 = dp02.hitbox.x;
+		if ((dp02.hitbox.y != y) || (dp02.hitbox.x != x)) {
+			ushort matching = 1;
+			y = dp02.hitbox.y;
+			x = dp02.hitbox.x;
 
-			for (dp1E = cast(short)(dp04 + 1); dp1E < patherCount; dp1E++) {
-				// X REGISTER = &dp1C[dp1E]
+			for (dp1E = cast(short)(i + 1); dp1E < patherCount; dp1E++) {
+				if (dp1C[dp1E].hitbox.y != y) break;
+				if (dp1C[dp1E].hitbox.x != x) break;
 
-				if (dp1C[dp1E].hitbox.y != dp1A) break;
-				if (dp1C[dp1E].hitbox.x != dp18) break;
-
-				dp16++;
+				matching++;
 			}
 
-			pathC4B923(dp16, &dp1C[dp04]);
-			pathC4BAF6(targetCount, targetsPos, dp02, dp16, unk2, unk1);
+			pathC4B923(matching, &dp1C[i]);
+			pathC4BAF6(targetCount, targetsPos, dp02, matching, maxPoints, unk1);
 		}
 
-		dp02.pointCount = pathC4BD9A(&dp02.origin, unk2, dp2A);
+		dp02.pointCount = pathC4BD9A(&dp02.origin, maxPoints, dp2A);
 		ushort dp14 = pathC4BF7F(cast(ushort)dp02.pointCount, dp2A);
 
 		VecYX *dp22 = cast(VecYX*)pathSbrk(dp14 * VecYX.sizeof);
@@ -6097,21 +6095,23 @@ exit_loop:
 
 				if (dp0E == unk2) {
 					for (dp11 = 0; dp11 < 4; dp11++) {
-						if (pathMatrixBuffer[ dp02 + pathCardinalOffset[dp11] ] >= PathfindingTile.maybeStart) { // if PathfindingTile.maybeStart or PathfindingTile.start
-							pathMatrixBuffer[ dp02 + pathCardinalOffset[dp11] ] = PathfindingTile.unknownFC;
+						if (pathMatrixBuffer[dp02 + pathCardinalOffset[dp11]] >= PathfindingTile.maybeStart) { // if PathfindingTile.maybeStart or PathfindingTile.start
+							pathMatrixBuffer[dp02 + pathCardinalOffset[dp11]] = PathfindingTile.unknownFC;
 						}
 					}
 				}
 			}
 
 			++dp13;
-			if (unk3 <= dp13 || dp15 == unk1) return;
+			if ((unk3 <= dp13) || (dp15 == unk1)) return;
 		}
 	}
 }
 
 /// $C4BD9A
-ushort pathC4BD9A(VecYX *start, ushort max_points, VecYX **points) {
+ushort pathC4BD9A(VecYX *start, ushort max_points, VecYX* points)
+	in(points)
+{
 	ushort dp28 = start.y;
 	ushort dp26 = start.x;
 	ushort dp24 = 0;
@@ -6199,10 +6199,10 @@ exit_loop:
 }
 
 /// $C4BF7F
-ushort pathC4BF7F(ushort count, VecYX **points) {
+ushort pathC4BF7F(ushort count, VecYX* points) {
 	if (count >= 3) {
 		ushort dp04 = points[1].y;
-		ushort dp1A = points[1].x; // Also dp02
+		ushort dp1A = points[1].x;
 
 		ushort dp18 = cast(ushort)(dp04 - points[0].y);
 		ushort dp16 = cast(ushort)(dp1A - points[0].x);
@@ -6212,9 +6212,9 @@ ushort pathC4BF7F(ushort count, VecYX **points) {
 
 		for (dp12 = 2; dp12 != count; ++dp12) {
 			ushort dp10 = points[dp12].y;
-			ushort dp0E = points[dp12].x; // Also Y REGISTER
+			ushort dp0E = points[dp12].x;
 
-			if (dp04 + dp18 == dp10 && dp1A + dp16 == dp0E) {
+			if ((dp04 + dp18 == dp10) && (dp1A + dp16 == dp0E)) {
 				points[dp14].y = dp10;
 				points[dp14].x = dp0E;
 			} else {
